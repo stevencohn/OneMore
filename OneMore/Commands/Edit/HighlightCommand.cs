@@ -44,7 +44,7 @@ namespace River.OneMoreAddIn.Commands
 				? StyleBase.Transparent
 				: GetColor(index, page.GetPageColor(out _, out _).GetBrightness() < 0.5);
 
-			updated = page.EditSelected((s) =>
+			updated = new PageEditor(page).EditSelected((s) =>
 			{
 				if (s is XText text)
 				{

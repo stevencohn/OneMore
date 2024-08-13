@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2022 Steven M Cohn.  All rights reserved.
+// Copyright © 2022 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -22,8 +22,6 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class CrawlWebPageCommand : Command
 	{
-
-		private OneNote one;
 		private Page parentPage;
 		private ImportWebCommand importer;
 		private List<CrawlHyperlink> selections;
@@ -38,37 +36,37 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			await using (one = new OneNote(out parentPage, out var ns, OneNote.PageDetail.Selection))
+			await using var one = new OneNote(
+				out parentPage, out var ns, OneNote.PageDetail.Selection);
+
+			var candidates = GetHyperlinks(parentPage);
+			if (!candidates.Any())
 			{
-				var candidates = GetHyperlinks(parentPage);
-				if (!candidates.Any())
+				ShowError(Resx.CrawlWebCommand_NoHyperlinks);
+				return;
+			}
+
+			using (var dialog = new CrawlWebPageDialog(candidates))
+			{
+				if (dialog.ShowDialog(owner) != DialogResult.OK)
 				{
-					ShowError(Resx.CrawlWebCommand_NoHyperlinks);
 					return;
 				}
 
-				using (var dialog = new CrawlWebPageDialog(candidates))
-				{
-					if (dialog.ShowDialog(owner) != DialogResult.OK)
-					{
-						return;
-					}
-
-					selections = dialog.GetSelectedHyperlinks();
-					useTextTitles = dialog.UseTextTitles;
-					rewireParentLinks = dialog.RewireParentLinks;
-				}
-
-				// reverse so we create subpages in correct order
-				selections.Reverse();
-
-				importer = new ImportWebCommand();
-				importer.SetLogger(logger);
-
-				var progress = new UI.ProgressDialog(DownloadSelectedSubpages);
-				progress.SetMaximum(selections.Count);
-				progress.RunModeless();
+				selections = dialog.GetSelectedHyperlinks();
+				useTextTitles = dialog.UseTextTitles;
+				rewireParentLinks = dialog.RewireParentLinks;
 			}
+
+			// reverse so we create subpages in correct order
+			selections.Reverse();
+
+			importer = new ImportWebCommand();
+			importer.SetLogger(logger);
+
+			var progress = new UI.ProgressDialog(DownloadSelectedSubpages);
+			progress.SetMaximum(selections.Count);
+			progress.RunModeless();
 		}
 
 
@@ -76,11 +74,13 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var links = new List<CrawlHyperlink>();
 
-			var runs = page.GetSelectedElements(all: true);
+			var range = new Models.SelectionRange(page);
+			var runs = range.GetSelections(defaulToAnytIfNoRange: true);
 
 			IEnumerable<XCData> cdatas;
-			// special case when cursor is on a hyperlink and no selection region
-			if (runs.Any() && page.SelectionScope == SelectionScope.Empty)
+			// special case when cursor is caret or on a hyperlink, no selection range
+			if (range.Scope == SelectionScope.TextCursor ||
+				range.Scope == SelectionScope.SpecialCursor)
 			{
 				cdatas = page.Root.DescendantNodes().OfType<XCData>()
 					.Where(c => Regex.IsMatch(c.Value, $@"<a\s+href=""http[s]?://"));
@@ -136,6 +136,8 @@ namespace River.OneMoreAddIn.Commands
 			UI.ProgressDialog progress, CancellationToken token)
 		{
 			var updated = false;
+
+			await using var one = new OneNote();
 
 			foreach (var selection in selections)
 			{

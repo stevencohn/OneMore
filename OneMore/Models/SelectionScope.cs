@@ -1,38 +1,43 @@
 ﻿//************************************************************************************************
-// Copyright © 2021 Steven M Cohn.  All rights reserved.
+// Copyright © 2021 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn
 {
-
 	/// <summary>
 	/// Describes the selection state on the page or within an outline element
 	/// </summary>
 	internal enum SelectionScope
 	{
 		/// <summary>
-		/// Can't decipher scope
+		/// Can't resolve scope; focus likely on UI widgets rather than page
 		/// </summary>
-		Unknown,
+		None = 0,
 
 		/// <summary>
-		/// Insertion cursor, zero-width selection
+		/// One or more top elements that are not T text runs, like OE or OEChildren.
+		/// The value 3 is equivalent to Range+Run
 		/// </summary>
-		Empty,
+		Block = 3,
 
 		/// <summary>
 		/// A region with more than one run is selected
 		/// </summary>
-		Region,
+		Range = 2,
 
 		/// <summary>
 		/// Exactly one non-empty run is selected
 		/// </summary>
-		Run,
+		Run = 1,
 
 		/// <summary>
-		/// CDATA contains an anchor link or an XML comment
+		/// Exactly one non-empty run containing an anchor link, mathML, or XML comment
 		/// </summary>
-		Special
+		SpecialCursor = 8,
+
+		/// <summary>
+		/// Insertion caret "text cursor", zero-width selection
+		/// </summary>
+		TextCursor = 4,
 	}
 }

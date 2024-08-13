@@ -153,7 +153,7 @@ namespace River.OneMoreAddIn.Commands
 		/// <summary>
 		/// Gets or sets whether this plugin target a page or a hierarchy.
 		/// </summary>
-		[Obsolete("Use Plugin.Target instead")]
+		[Obsolete("Use Plugin.Target instead. Here just for backwards-compatibility")]
 		public bool TargetPage { get; set; } = true;
 
 

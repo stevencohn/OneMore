@@ -6,9 +6,10 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.UI;
+	using System.Collections.Generic;
 	using System.IO;
-	using System.Linq;
 	using System.Threading.Tasks;
+	using System.Xml.Linq;
 	using Resx = Properties.Resources;
 
 
@@ -25,39 +26,63 @@ namespace River.OneMoreAddIn.Commands
 		public override async Task Execute(params object[] args)
 		{
 			using var one = new OneNote(out var page, out var ns);
-			page.GetTextCursor();
-
 			var bounds = one.GetCurrentMainWindowBounds();
+
+			var range = new SelectionRange(page);
+			range.GetSelection();
 
 			var editor = new PageEditor(page)
 			{
-				AllContent = (page.SelectionScope != SelectionScope.Region)
+				AllContent = (range.Scope != SelectionScope.Range)
 			};
 
-			var content = await editor.ExtractSelectedContent();
-			var paragraphs = content.Elements(ns + "OE").ToList();
+			var paragraphs = new List<XElement>();
+			PageNamespace.Set(ns);
+
+			// collect all outlines on page, in document-order
+			foreach (var outline in page.BodyOutlines)
+			{
+				var content = await editor.ExtractSelectedContent(outline);
+				if (content != null)
+				{
+					if (paragraphs.Count >= 1)
+					{
+						// insert horizontal line in between outlines
+						paragraphs.Add(new Paragraph(string.Empty));
+						paragraphs.Add(new Paragraph("---"));
+						paragraphs.Add(new Paragraph(string.Empty));
+					}
+
+					paragraphs.AddRange(content.Elements(ns + "OE"));
+				}
+			}
 
 			var reader = new PageReader(page)
 			{
+				// configure to read for markdown
 				IndentationPrefix = "\n",
 				Indentation = ">",
 				ColumnDivider = "|",
+				ParagraphDivider = "<br>",
 				TableSides = "|"
 			};
 
-			var filepath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-			var text = reader.ReadTextFrom(paragraphs, page.SelectionScope != SelectionScope.Region);
+			var text = reader.ReadTextFrom(paragraphs, range.Scope != SelectionScope.Range);
+			logger.Verbose("preview raw text:");
+			logger.Verbose(text);
 
 			var title = editor.AllContent
 				? $"<p style=\"font-family:Calibri;font-size:20pt\">{page.Title}</p>"
 				: string.Empty;
 
+			var filepath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
 			var body = title + OneMoreDig.ConvertMarkdownToHtml(filepath, text);
 
 			filepath = Path.Combine(
 				Path.GetDirectoryName(filepath),
 				Path.GetFileNameWithoutExtension(filepath)) + ".htm";
 
+			logger.WriteLine($"markdown preview saved to {filepath}");
 			File.WriteAllText(filepath, body);
 
 			await SingleThreaded.Invoke(() =>

@@ -67,8 +67,11 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
+			var range = new Models.SelectionRange(page);
+			range.GetSelection();
+
 			var partial = false;
-			if (page.GetTextCursor() == null && page.SelectionScope == SelectionScope.Region)
+			if (range.Scope == SelectionScope.Range)
 			{
 				// update only selected text...
 

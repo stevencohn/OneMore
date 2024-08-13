@@ -1,12 +1,12 @@
 ﻿//************************************************************************************************
-// Copyright © 2021 Steven M Cohn.  All rights reserved.
+// Copyright © 2021 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
 {
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	/// <summary>
@@ -44,14 +44,14 @@ namespace River.OneMoreAddIn.Commands
 			{
 				// assume Expand command and infer name from current word...
 
-				path = page.GetSelectedText();
+				path = new Models.PageEditor(page).GetSelectedText();
 				if (!string.IsNullOrWhiteSpace(path))
 				{
 					snippet = await provider.LoadByName(path);
 					if (!string.IsNullOrEmpty(snippet))
 					{
 						// remove placeholder
-						var updated = page.EditSelected((s) =>
+						var updated = new Models.PageEditor(page).EditSelected((s) =>
 						{
 							if (s is XText text)
 							{

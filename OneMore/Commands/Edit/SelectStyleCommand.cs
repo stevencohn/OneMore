@@ -71,13 +71,15 @@ namespace River.OneMoreAddIn.Commands
 		// merge text cursor so we don't have to treat it as a special case
 		private bool NormalizeTextCursor(Page page, StyleAnalyzer analyzer)
 		{
-			var cursor = page.GetTextCursor();
-			if (cursor == null || page.SelectionScope != SelectionScope.Empty)
+			var range = new SelectionRange(page);
+			var cursor = range.GetSelection();
+
+			if (range.Scope != SelectionScope.TextCursor)
 			{
 				return false;
 			}
 
-			if (page.SelectionSpecial)
+			if (range.Scope == SelectionScope.SpecialCursor)
 			{
 				// positioned over a hyperlink or MathML equation
 				return true;

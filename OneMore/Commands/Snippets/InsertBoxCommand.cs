@@ -78,7 +78,9 @@ namespace River.OneMoreAddIn.Commands
 			};
 
 			// remember selection cursor
-			var cursor = page.GetTextCursor();
+
+			var range = new SelectionRange(page);
+			var cursor = range.GetSelection(true);
 
 			// determine if cursor is inside a table or outline with a user set width
 			table.AddColumn(CalculateWidth(cursor, page.Root), true);
@@ -108,14 +110,13 @@ namespace River.OneMoreAddIn.Commands
 			row = table.AddRow();
 			cell = row.Cells.First();
 
-			if (// cursor is not null if selection range is empty
-				cursor is not null &&
-				// selection range is a single line containing a hyperlink
-				!(page.SelectionSpecial && page.SelectionScope == SelectionScope.Empty))
+			if (range.Scope == SelectionScope.TextCursor)
 			{
 				// empty text cursor found, add default content
 				cell.SetContent(MakeDefaultContent(addTitle));
-				page.AddNextParagraph(table.Root);
+
+				var editor = new PageEditor(page);
+				editor.AddNextParagraph(table.Root);
 			}
 			else
 			{
@@ -282,16 +283,10 @@ namespace River.OneMoreAddIn.Commands
 				var ground = ColorTranslator.FromHtml(mostFrequent);
 				var bright = ground.GetBrightness() >= 0.5;
 
-				if (dark && bright)
+				if ((dark && bright) || (!dark && !bright))
 				{
 					// page is dark and text background is all light then return
 					// light background color
-					background = mostFrequent;
-				}
-				else if (!dark && !bright)
-				{
-					// page is light and text background is all dark then return
-					// dark background color
 					background = mostFrequent;
 				}
 			}

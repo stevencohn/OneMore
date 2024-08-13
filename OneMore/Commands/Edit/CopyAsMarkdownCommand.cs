@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2022 Steven M Cohn.  All rights reserved.
+// Copyright © 2022 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -23,14 +23,20 @@ namespace River.OneMoreAddIn.Commands
 		public override async Task Execute(params object[] args)
 		{
 			await using var one = new OneNote(out var page, out var _);
-			var cursor = page.GetTextCursor();
 
 			var writer = new MarkdownWriter(page, false);
 
-			if (// cursor is not null if selection range is empty
-				cursor != null &&
-				// selection range is a single line containing a hyperlink
-				!(page.SelectionSpecial && page.SelectionScope == SelectionScope.Empty))
+			// discover selection scope
+			var range = new SelectionRange(page);
+			range.GetSelection();
+
+			if (range.Scope == SelectionScope.None)
+			{
+				return;
+			}
+
+			if (range.Scope == SelectionScope.TextCursor ||
+				range.Scope == SelectionScope.SpecialCursor)
 			{
 				await writer.Copy(page.Root);
 			}

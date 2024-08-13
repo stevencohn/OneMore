@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2023 Steven M Cohn.  All rights reserved.
+// Copyright © 2023 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -72,8 +72,11 @@ namespace River.OneMoreAddIn.Commands
 
 			// get selected content...
 
-			var runs = page.GetSelectedElements().ToList();
-			if (!runs.Any() || page.SelectionScope != SelectionScope.Region)
+			var range = new Models.SelectionRange(page);
+
+			var runs = range.GetSelections().ToList();
+			if (range.Scope != SelectionScope.Range &&
+				range.Scope != SelectionScope.Run) // incase PlantUML lines end with soft-breaks
 			{
 				ShowError(Resx.PlantUml_EmptySelection);
 				return;

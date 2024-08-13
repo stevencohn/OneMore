@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Models;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
@@ -32,17 +33,18 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
+			var editor = new PageEditor(page);
 			var content = new XElement(ns + "T", new XCData(text));
 
 			if (!elements.Any())
 			{
 				// empty page so add new content
-				page.AddNextParagraph(content);
+				editor.AddNextParagraph(content);
 			}
 			else if (elements.Count() > 1)
 			{
 				// selected multiple runs so replace them all
-				page.ReplaceSelectedWithContent(content);
+				editor.ReplaceSelectedWith(content);
 			}
 			else
 			{
@@ -55,7 +57,7 @@ namespace River.OneMoreAddIn.Commands
 				else
 				{
 					// something is selected so replace it
-					page.ReplaceSelectedWithContent(content);
+					editor.ReplaceSelectedWith(content);
 				}
 			}
 

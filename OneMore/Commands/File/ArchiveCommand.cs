@@ -68,7 +68,7 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
-				var topName = hierarchy.Attribute("name").Value;
+				var topName = hierarchy.Attribute("name").Value.Trim();
 				zipPath = await SingleThreaded.Invoke(() =>
 				{
 					// OpenFileDialog must run in STA thread
@@ -118,7 +118,7 @@ namespace River.OneMoreAddIn.Commands
 				using var stream = new FileStream(zipPath, FileMode.Create);
 				using (archive = new ZipArchive(stream, ZipArchiveMode.Create))
 				{
-					await Archive(progress, hierarchy, hierarchy.Attribute("name").Value);
+					await Archive(progress, hierarchy, hierarchy.Attribute("name").Value.Trim());
 				}
 			}
 			catch (Exception exc)
@@ -215,7 +215,7 @@ namespace River.OneMoreAddIn.Commands
 					progress.Increment();
 
 					await ArchivePage(element, page, path);
-					order.Add(page.Title);
+					order.Add(page.Title.Trim());
 
 					CleanupTemp();
 				}
@@ -230,7 +230,7 @@ namespace River.OneMoreAddIn.Commands
 					if (recycle) continue;
 
 					// append name of Section/Group to path to build zip folder path
-					var name = element.Attribute("name").Value;
+					var name = element.Attribute("name").Value.Trim();
 
 					await Archive(progress, element, Path.Combine(path, name));
 					//order.Add(name);
@@ -246,7 +246,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task ArchivePage(XElement element, Page page, string path)
 		{
-			var name = PathHelper.CleanFileName(page.Title).Trim();
+			var name = PathHelper.CleanFileName(page.Title.Trim()).Trim();
 			if (string.IsNullOrEmpty(name))
 			{
 				name = $"Unnamed__{pageCount}";
@@ -256,7 +256,7 @@ namespace River.OneMoreAddIn.Commands
 				// ensure the page name is unique within the section
 				var n = element.Parent.Elements()
 					.Count(e => e.Attribute("name")?.Value ==
-						PathHelper.CleanFileName(page.Title).Trim());
+						PathHelper.CleanFileName(page.Title.Trim()).Trim());
 
 				if (n > 1)
 				{

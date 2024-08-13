@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Models;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text;
@@ -83,11 +84,12 @@ namespace River.OneMoreAddIn.Commands
 
 			var text = builder.ToString();
 			var content = new XElement(ns + "T", text);
+			var editor = new PageEditor(page);
 
 			if (elements.Count() > 1)
 			{
 				// selected multiple runs so replace them all
-				page.ReplaceSelectedWithContent(content);
+				editor.ReplaceSelectedWith(content);
 			}
 			else
 			{
@@ -103,7 +105,7 @@ namespace River.OneMoreAddIn.Commands
 				else
 				{
 					// something is selected so replace it
-					page.ReplaceSelectedWithContent(content);
+					editor.ReplaceSelectedWith(content);
 				}
 			}
 

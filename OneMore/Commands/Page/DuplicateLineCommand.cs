@@ -1,9 +1,10 @@
 ﻿//************************************************************************************************
-// Copyright © 2022 Steven M Cohn.  All rights reserved.
+// Copyright © 2022 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Models;
 	using System.Threading.Tasks;
 
 
@@ -25,8 +26,10 @@ namespace River.OneMoreAddIn.Commands
 
 			await using var one = new OneNote(out var page, out var _);
 
-			var cursor = page.GetTextCursor();
-			if (cursor == null)
+			var range = new SelectionRange(page);
+			var cursor = range.GetSelection(true);
+
+			if (range.Scope == SelectionScope.None)
 			{
 				ShowInfo("Place the cursor on the paragraph to duplicate");
 				return;

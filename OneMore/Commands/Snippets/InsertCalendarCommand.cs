@@ -59,6 +59,8 @@ namespace River.OneMoreAddIn.Commands
 			var root = MakeCalendar(days, dialog.FirstDay, dialog.Large, dialog.HeaderShading);
 			var header = MakeHeader(dialog.Year, dialog.Month);
 
+			var editor = new PageEditor(page);
+
 			if (dialog.Indent)
 			{
 				header.Add(new XElement(ns + "OEChildren",
@@ -66,12 +68,12 @@ namespace River.OneMoreAddIn.Commands
 						root)
 					));
 
-				page.AddNextParagraph(header);
+				editor.AddNextParagraph(header);
 			}
 			else
 			{
-				page.AddNextParagraph(root);
-				page.AddNextParagraph(header);
+				editor.AddNextParagraph(root);
+				editor.AddNextParagraph(header);
 			}
 
 			await one.Update(page);

@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -89,7 +89,10 @@ namespace River.OneMoreAddIn.Commands
 					? OneNote.PageDetail.Selection
 					: OneNote.PageDetail.Basic);
 
-			var runs = page.GetSelectedElements(true);
+			var runs = scope == OneNote.Scope.Self
+				? new SelectionRange(page).GetSelections(defaulToAnytIfNoRange: true)
+				: page.Root.Descendants(ns + "T");
+
 			var count = 0;
 
 			foreach (var run in runs)
@@ -115,7 +118,9 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			var wholePage = page.SelectionScope == SelectionScope.Empty;
+			// presume whole page if any non-selected runs were included
+			var wholePage = runs.Any(e => e.Attribute("selected") is null);
+
 			return (count, wholePage);
 		}
 
@@ -182,7 +187,7 @@ namespace River.OneMoreAddIn.Commands
 						ReportSection(page, container, section);
 					});
 
-					ReportGrantTotal(container);
+					ReportGrandTotal(container);
 				}
 
 				progress.SetMessage("Updating report...");
@@ -254,7 +259,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void ReportGrantTotal(XElement container)
+		private void ReportGrandTotal(XElement container)
 		{
 			var table = new Table(ns, 1, 2)
 			{

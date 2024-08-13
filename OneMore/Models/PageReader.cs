@@ -417,6 +417,13 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
+		/// Gets or sets the paragraph divider. This can be used my PreviewMarkdown to force
+		/// a newline "\" to emulate a line break in between consecutive paragraphs.
+		/// </summary>
+		public string ParagraphDivider { get; set; }
+
+
+		/// <summary>
 		/// Gets or sets the table left and right borders. Generally, this is either empty
 		/// for normal text or a vertical bar for markdown.
 		/// </summary>
@@ -432,8 +439,12 @@ namespace River.OneMoreAddIn.Models
 		/// <returns>A string of raw text content in document-order.</returns>
 		public string GetSelectedText(bool withTitle = true)
 		{
-			page.GetTextCursor(allowPageTitle: withTitle);
-			var allText = page.SelectionScope != SelectionScope.Region;
+			var range = new SelectionRange(page);
+			range.GetSelections(true);
+
+			var allText =
+				range.Scope == SelectionScope.TextCursor ||
+				range.Scope == SelectionScope.SpecialCursor;
 
 			// Allow Title selection as well as body selections.
 			// Only grab the top level objects; we'll recurse in BuildText
@@ -548,7 +559,9 @@ namespace River.OneMoreAddIn.Models
 			{
 				BuildText(paragraph, builder, allText, string.Empty);
 
-				if (paragraph.Parent.Name.LocalName == "Title" && builder.Length > 0)
+				// null check here is needed if caller has manually injected a fabricated
+				// paragraph; it won't have a doc parent and that's OK; see PreviewMarkdownCommand
+				if (paragraph.Parent?.Name.LocalName == "Title" && builder.Length > 0)
 				{
 					builder.AppendLine();
 				}
@@ -591,6 +604,12 @@ namespace River.OneMoreAddIn.Models
 				var text = runs
 					.Select(c => c.Value.PlainText())
 					.Aggregate(string.Empty, (x, y) => $"{x ?? string.Empty}{y ?? string.Empty}");
+
+				// "---" is a special case for markdown rules
+				if (ParagraphDivider is not null && text.Length > 0 && text != "---")
+				{
+					text = $"{text}{ParagraphDivider}";
+				}
 
 				if (runs[0].Parent.PreviousNode is XElement prev &&
 					prev.Name.LocalName == "List")

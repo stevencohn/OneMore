@@ -68,14 +68,15 @@ namespace River.OneMoreAddIn.Commands
 		/// <returns>The number of successful replacements</returns>
 		public int SearchAndReplace(Page page)
 		{
-			var elements = page.GetSelectedElements();
-
 			int count = 0;
-			if (elements.Any())
+
+			var range = new SelectionRange(page);
+			var runs = range.GetSelections(defaulToAnytIfNoRange: true);
+			if (runs.Any())
 			{
-				foreach (var element in elements)
+				foreach (var run in runs)
 				{
-					count += ScanElement(element);
+					count += ScanElement(run);
 				}
 
 				if (count > 0)

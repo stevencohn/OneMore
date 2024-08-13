@@ -21,7 +21,11 @@ namespace River.OneMoreAddIn.Commands
 		{
 			await using var one = new OneNote(out var page, out _);
 
-			if (page.GetTextCursor() != null)
+			var range = new Models.SelectionRange(page);
+			range.GetSelection();
+
+			if (range.Scope != SelectionScope.Range &&
+				range.Scope != SelectionScope.Run)
 			{
 				ShowError(Resx.SaveSnippet_NeedSelection);
 				return;

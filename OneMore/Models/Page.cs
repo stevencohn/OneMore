@@ -1,10 +1,8 @@
 ﻿//************************************************************************************************
-// Copyright © 2016 Steven M Cohn.  All rights reserved.
+// Copyright © 2016 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
-#pragma warning disable S1155 // "Any()" should be used to test for emptiness
 #pragma warning disable S3267 // Loops should be simplified with "LINQ" expressions
-#pragma warning disable S4136 // Method overloads should be grouped together
 
 namespace River.OneMoreAddIn.Models
 {
@@ -17,9 +15,7 @@ namespace River.OneMoreAddIn.Models
 	using System.Linq;
 	using System.Media;
 	using System.Security.Cryptography;
-	using System.Text;
 	using System.Text.RegularExpressions;
-	using System.Xml;
 	using System.Xml.Linq;
 
 
@@ -47,8 +43,6 @@ namespace River.OneMoreAddIn.Models
 
 				Root = root;
 			}
-
-			SelectionScope = SelectionScope.Unknown;
 		}
 
 
@@ -142,30 +136,9 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
-		/// Used as a signal to GetSelectedText that editor scanning is in reverse
-		/// </summary>
-		public bool ReverseScanning { get; set; }
-
-
-		/// <summary>
 		/// Gets the root element of the page
 		/// </summary>
 		public XElement Root { get; private set; }
-
-
-		/// <summary>
-		/// Gets the most recently known selection state where none means unknown, all
-		/// means there is an obvious selection region, and partial means the selection
-		/// region is zero.
-		/// </summary>
-		public SelectionScope SelectionScope { get; private set; }
-
-
-		/// <summary>
-		/// Gets an indication that the text cursor is positioned over either a hyperlink
-		/// or a MathML equation, both of which return zero-length selection ranges.
-		/// </summary>
-		public bool SelectionSpecial { get; private set; }
 
 
 		// TODO: this is inconsistent! It gets the plain text but allows setting complex CDATA
@@ -213,19 +186,6 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
-		/// Appends content to the current page
-		/// </summary>
-		/// <param name="content"></param>
-		/// <returns></returns>
-		public XElement AddContent(IEnumerable<XElement> content)
-		{
-			var container = EnsureContentContainer();
-			container.Add(content);
-			return container;
-		}
-
-
-		/// <summary>
 		/// Appends HTML content to the current page
 		/// </summary>
 		/// <param name="html">Must have the HTML and BODY wrappers</param>
@@ -236,29 +196,6 @@ namespace River.OneMoreAddIn.Models
 			container.Add(new XElement(Namespace + "HTMLBlock",
 				new XElement(Namespace + "Data", new XCData(html))
 				));
-		}
-
-
-		/// <summary>
-		/// Adds the given content after the selected insertion point; this will not
-		/// replace selected regions.
-		/// </summary>
-		/// <param name="content">The content to add</param>
-		public void AddNextParagraph(XElement content)
-		{
-			InsertParagraph(content, false);
-		}
-
-
-		public void AddNextParagraph(params XElement[] content)
-		{
-			// consumer will build content array in document-order but InsertParagraph inserts
-			// just prior to the insertion point which will reverse the order of content items
-			// so insert them in reverse order intentionally so they show up correctly
-			for (var i = content.Length - 1; i >= 0; i--)
-			{
-				InsertParagraph(content[i], false);
-			}
 		}
 
 
@@ -443,222 +380,6 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
-		/// Invokes an edit function on the selected text. The selection may be either infered
-		/// from the current cursor position or explicitly highlighted as a selected region.
-		/// No assumptions are made as to the resultant content or the order in which parts of
-		/// context are edited.
-		/// </summary>
-		/// <param name="edit">
-		/// A Func that accepts an XNode and returns an XNode. The accepted XNode is either an
-		/// XText or a "span" XElement. The returned XNode can be either the original unmodified,
-		/// the original modified, or a new XNode. Regardless, the returned XNode will replace
-		/// the current XNode in the content.
-		/// </param>
-		/// <returns></returns>
-		public bool EditSelected(Func<XNode, XNode> edit)
-		{
-			var cursor = GetTextCursor(true);
-			if (cursor != null)
-			{
-				return EditNode(cursor, edit);
-			}
-
-			return EditSelected(Root, edit);
-		}
-
-
-		public bool EditNode(XElement cursor, Func<XNode, XNode> edit)
-		{
-			var updated = false;
-
-			// T elements can only be a child of an OE but can also have other T siblings...
-			// Each T will have one CDATA with one or more XText and SPAN XElements.
-			// OneNote handles nested spans by normalizing them into consecutive spans
-
-			// Just FYI, because we use XElement.Parse to build the DOM, XText nodes will be
-			// singular but may be surrounded by SPAN elements; i.e., there shouldn't be two
-			// consecutive XText nodes next to each other
-
-			// indicate to GetSelectedText() that we're scanning in reverse
-			ReverseScanning = true;
-
-			// is there a preceding T?
-			if ((cursor.PreviousNode is XElement prev) && !prev.GetCData().EndsWithWhitespace())
-			{
-				var cdata = prev.GetCData();
-				var wrapper = cdata.GetWrapper();
-				var nodes = wrapper.Nodes().ToList();
-
-				// reverse, extracting text and stopping when matching word delimiter
-				for (var i = nodes.Count - 1; i >= 0; i--)
-				{
-					if (nodes[i] is XText text)
-					{
-						// ends with delimiter so can't be part of current word
-						if (text.Value.EndsWithWhitespace())
-							break;
-
-						// extract last word and pump through the editor
-						var pair = text.Value.SplitAtLastWord();
-						if (pair.Item1 == null)
-						{
-							// entire content of this XText
-							edit(text);
-						}
-						else
-						{
-							// last word of this XText
-							text.Value = pair.Item2;
-							text.AddAfterSelf(edit(new XText(pair.Item1)));
-						}
-
-						// remaining text has a word delimiter
-						if (text.Value.StartsWithWhitespace())
-							break;
-					}
-					else if (nodes[i] is XElement span)
-					{
-						// ends with delimiter so can't be part of current word
-						if (span.Value.EndsWithWhitespace())
-							break;
-
-						// extract last word and pump through editor
-						var word = span.ExtractLastWord();
-						if (word == null)
-						{
-							// edit entire contents of SPAN
-							edit(span);
-						}
-						else
-						{
-							// last word of this SPAN
-							var spawn = new XElement(span.Name, span.Attributes(), word);
-							edit(spawn);
-							span.AddAfterSelf(spawn);
-						}
-
-						// remaining text has a word delimiter
-						if (span.Value.StartsWithWhitespace())
-							break;
-					}
-				}
-
-				// rebuild CDATA with edited content
-				cdata.Value = wrapper.GetInnerXml();
-				updated = true;
-			}
-
-			// indicate to GetSelectedText() that we're scanning forward
-			ReverseScanning = false;
-
-			// is there a following T?
-			if ((cursor.NextNode is XElement next) && !next.GetCData().StartsWithWhitespace())
-			{
-				var cdata = next.GetCData();
-				var wrapper = cdata.GetWrapper();
-				var nodes = wrapper.Nodes().ToList();
-
-				// extract text and stop when matching word delimiter
-				for (var i = 0; i < nodes.Count; i++)
-				{
-					if (nodes[i] is XText text)
-					{
-						// starts with delimiter so can't be part of current word
-						if (text.Value.StartsWithWhitespace())
-							break;
-
-						// extract first word and pump through editor
-						var pair = text.Value.SplitAtFirstWord();
-						if (pair.Item1 == null)
-						{
-							// entire content of this XText
-							edit(text);
-						}
-						else
-						{
-							// first word of this XText
-							text.Value = pair.Item2;
-							text.AddBeforeSelf(edit(new XText(pair.Item1)));
-						}
-
-						// remaining text has a word delimiter
-						if (text.Value.EndsWithWhitespace())
-							break;
-					}
-					else if (nodes[i] is XElement span)
-					{
-						// ends with delimiter so can't be part of current word
-						if (span.Value.StartsWithWhitespace())
-							break;
-
-						// extract first word and pump through editor
-						var word = span.ExtractFirstWord();
-						if (word == null)
-						{
-							// eidt entire contents of SPAN
-							edit(span);
-						}
-						else
-						{
-							// first word of this SPAN
-							var spawn = new XElement(span.Name, span.Attributes(), word);
-							edit(spawn);
-							span.AddBeforeSelf(spawn);
-						}
-
-						// remaining text has a word delimiter
-						if (span.Value.EndsWithWhitespace())
-							break;
-					}
-				}
-
-				// rebuild CDATA with edited content
-				cdata.Value = wrapper.GetInnerXml();
-				updated = true;
-			}
-
-			return updated;
-		}
-
-
-		public bool EditSelected(XElement root, Func<XNode, XNode> edit)
-		{
-			// detect all selected text (cdata within T runs)
-			var cdatas = root.Descendants(Namespace + "T")
-				.Where(e => e.Attributes("selected").Any(a => a.Value == "all")
-					&& e.FirstNode?.NodeType == XmlNodeType.CDATA)
-				.Select(e => e.FirstNode as XCData);
-
-			if (!cdatas.Any())
-			{
-				return false;
-			}
-
-			foreach (var cdata in cdatas)
-			{
-				// edit every XText and SPAN in the T wrapper
-				var wrapper = cdata.GetWrapper();
-
-				// use ToList, otherwise enumeration will stop after first ReplaceWith
-				foreach (var node in wrapper.Nodes().ToList())
-				{
-					node.ReplaceWith(edit(node));
-				}
-
-				var text = wrapper.GetInnerXml();
-
-				// special case for <br> + EOL
-				text = text.Replace("<br>", "<br>\n");
-
-				// build CDATA with editing content
-				cdata.Value = text;
-			}
-
-			return true;
-		}
-
-
-		/// <summary>
 		/// Ensures the page contains at least one OEChildren elements and returns it
 		/// </summary>
 		public XElement EnsureContentContainer(bool last = true)
@@ -769,152 +490,6 @@ namespace River.OneMoreAddIn.Models
 			return Root.Elements(Namespace + "Meta")
 				.FirstOrDefault(e => e.Attribute("name").Value == name)?
 				.Attribute("content").Value;
-		}
-
-
-		/// <summary>
-		/// Gets a collection of fully selected text runs
-		/// </summary>
-		/// <param name="all">
-		/// If no selected elements are found and this value is true then return all elements;
-		/// otherwise if no selection and this value is false then return an empty collection.
-		/// Default value is true.
-		/// </param>
-		/// <returns>
-		/// A collection of fully selected text runs. The collection will be empty if the
-		/// selected range is zero characters or one of the known special cases
-		/// </returns>
-		public IEnumerable<XElement> GetSelectedElements(bool all = true)
-		{
-			var selected = BodyOutlines
-				.Descendants(Namespace + "T")
-				.Where(e => e.Attributes().Any(a => a.Name == "selected" && a.Value == "all"));
-
-			if (!selected.Any())
-			{
-				SelectionScope = SelectionScope.Unknown;
-
-				return all
-					? Root.Elements(Namespace + "Outline").Descendants(Namespace + "T")
-					: new List<XElement>();
-			}
-
-			// if exactly one then it could be an empty [] or it could be a special case
-			if (selected.Count() == 1)
-			{
-				var cursor = selected.First();
-				if (cursor.FirstNode.NodeType == XmlNodeType.CDATA)
-				{
-					var cdata = cursor.FirstNode as XCData;
-
-					// empty or link or xml-comment because we can't tell the difference between
-					// a zero-selection zero-selection link and a partial or fully selected link.
-					// Note that XML comments are used to wrap mathML equations
-					if (cdata.Value.Length == 0 ||
-						Regex.IsMatch(cdata.Value, @"<a\s+href.+?</a>", RegexOptions.Singleline) ||
-						Regex.IsMatch(cdata.Value, @"<!--.+?-->", RegexOptions.Singleline))
-					{
-						SelectionScope = SelectionScope.Empty;
-
-						return all
-							? Root.Elements(Namespace + "Outline").Descendants(Namespace + "T")
-							: new List<XElement>();
-					}
-				}
-			}
-
-			SelectionScope = SelectionScope.Region;
-
-			// return zero or more elements
-			return selected;
-		}
-
-
-		/// <summary>
-		/// Gets the currently selected text. If the text cursor is positioned over a word but
-		/// with zero selection length then that word is returned; othewise, text from the selected
-		/// region is returned.
-		/// </summary>
-		/// <returns>A string of the selected text</returns>
-		public string GetSelectedText()
-		{
-			var builder = new StringBuilder();
-
-			// not editing... just using EditSelected to extract the current text,
-			// ignoring inline span styling
-
-			EditSelected((s) =>
-			{
-				if (s is XText text)
-				{
-					if (ReverseScanning)
-						builder.Insert(0, text.Value);
-					else
-						builder.Append(text.Value);
-				}
-				else if (s is not XComment)
-				{
-					if (ReverseScanning)
-						builder.Insert(0, ((XElement)s).Value);
-					else
-						builder.Append(((XElement)s).Value);
-				}
-
-				return s;
-			});
-
-			return builder.ToString();
-		}
-
-
-		/// <summary>
-		/// Gets the T element of a zero-width selection. Visually, this appears as the current
-		/// cursor insertion point and can be used to infer the current word or phrase in text.
-		/// </summary>
-		/// <param name="allowPageTitle">
-		/// True to include the page title, otherwise just the body of the page
-		/// </param>
-		/// <returns>
-		/// Returns the one:T XElement of an empty cursor and Page.SelectionScope
-		/// is set to Empty or Special if the cursor is on a hyperlink or mathML equation
-		/// and sets SelectionSpecial to true if the selection range is not empty.
-		/// Returns null if there is a selected range greater than zero and sets
-		/// the SelectionScope to Region.
-		/// </returns>
-		public XElement GetTextCursor(bool allowPageTitle = false)
-		{
-			var root = allowPageTitle ? Root.Elements() : Root.Elements(Namespace + "Outline");
-
-			var selected = root.Descendants(Namespace + "T")
-				.Where(e => e.Attributes().Any(a => a.Name == "selected" && a.Value == "all"));
-
-			if (!selected.Any())
-			{
-				SelectionScope = SelectionScope.Empty;
-				return null;
-			}
-
-			var count = selected.Count();
-			if (count == 1)
-			{
-				var cursor = selected.First();
-				var cdata = cursor.GetCData();
-
-				// empty, link, or xml-comment because we can't tell the difference between
-				// a zero-selection link and a partial or fully selected link. Note that XML
-				// comments are used to wrap mathML equations
-				if (cdata.Value.Length == 0 ||
-					Regex.IsMatch(cdata.Value, @"^<a\s+href.+?</a>$", RegexOptions.Singleline) ||
-					Regex.IsMatch(cdata.Value, @"^<!--.+?-->$", RegexOptions.Singleline))
-				{
-					SelectionScope = SelectionScope.Empty;
-					SelectionSpecial = cdata.Value.Length > 0;
-					return cursor;
-				}
-			}
-
-			SelectionScope = SelectionScope.Region;
-			return null;
 		}
 
 
@@ -1149,43 +724,6 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
-		/// Adds the given content immediately before or after the selected insertion point;
-		/// this will not replace selected regions.
-		/// </summary>
-		/// <param name="content">The content to insert</param>
-		/// <param name="before">
-		/// If true then insert before the insertion point; otherwise insert after the insertion point
-		/// </param>
-		public void InsertParagraph(XElement content, bool before = true)
-		{
-			var current = Root.Descendants(Namespace + "OE").LastOrDefault(e =>
-				e.Elements(Namespace + "T").Attributes("selected").Any(a => a.Value == "all"));
-
-			if (current != null)
-			{
-				if (content.Name.LocalName != "OE")
-				{
-					content = new XElement(Namespace + "OE", content);
-				}
-
-				if (before)
-					current.AddBeforeSelf(content);
-				else
-					current.AddAfterSelf(content);
-			}
-		}
-
-
-		public void InsertParagraph(params XElement[] content)
-		{
-			foreach (var e in content)
-			{
-				InsertParagraph(e, false);
-			}
-		}
-
-
-		/// <summary>
 		/// Determines if the page is configured for right-to-left text or the Windows
 		/// language is a right-to-left language
 		/// </summary>
@@ -1274,44 +812,6 @@ namespace River.OneMoreAddIn.Models
 			}
 
 			return map;
-		}
-
-
-		/// <summary>
-		/// Replaces the selected range on the page with the given content, keeping
-		/// the cursor after the newly inserted content.
-		/// <para>
-		/// This attempts to replicate what Word might do when pasting content in a
-		/// document with a selection range.
-		/// </para>
-		/// </summary>
-		/// <param name="page">The page root node</param>
-		/// <param name="content">The content to insert</param>
-		public void ReplaceSelectedWithContent(XElement content)
-		{
-			var elements = Root.Descendants(Namespace + "T")
-				.Where(e => e.Attribute("selected")?.Value == "all");
-
-			if ((elements.Count() == 1) &&
-				(elements.First().GetCData().Value.Length == 0))
-			{
-				// zero-width selection so insert just before cursor
-				elements.First().AddBeforeSelf(content);
-			}
-			else
-			{
-				// replace one or more [one:T @select=all] with status, placing cursor after
-				var element = elements.Last();
-				element.AddAfterSelf(content);
-				elements.Remove();
-
-				content.AddAfterSelf(new XElement(Namespace + "T",
-					new XAttribute("selected", "all"),
-					new XCData(string.Empty)
-					));
-
-				SelectionScope = SelectionScope.Region;
-			}
 		}
 
 

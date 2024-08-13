@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2018 Steven M Cohn.  All rights reserved.
+// Copyright © 2018 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -29,7 +29,7 @@ namespace River.OneMoreAddIn.Commands
 			XElement withElement;
 
 			await using var one = new OneNote(out var page, out _);
-			var text = page.GetSelectedText();
+			var text = new Models.PageEditor(page).GetSelectedText();
 
 			using (var dialog = new SearchAndReplaceDialog())
 			{

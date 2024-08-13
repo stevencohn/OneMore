@@ -88,8 +88,11 @@ namespace River.OneMoreAddIn.Commands
 				var next = i < headings.Count - 1 ? headings[i + 1] : null;
 				var content = GetContent(heading, next);
 
-				// copy content along with related quick styles
-				var container = target.AddContent(content);
+				// target is a new blank page so we can blindly append
+				var container = target.EnsureContentContainer();
+				container.Add(content);
+
+				// copy related quick styles
 				var map = target.MergeQuickStyles(page);
 				target.ApplyStyleMapping(map, container);
 
