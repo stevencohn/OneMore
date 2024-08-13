@@ -127,7 +127,7 @@ namespace River.OneMoreAddIn.UI
 		public static Color BlackSmoke => Color.FromArgb(64, 64, 64);
 
 
-		public static bool IsKnown (int candidate)
+		public static bool IsKnown(int candidate)
 		{
 			return colors.Contains(candidate);
 		}

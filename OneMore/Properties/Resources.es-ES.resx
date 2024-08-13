@@ -532,6 +532,30 @@ Invertir</value>
   <data name="ColorizerSheet_Title" xml:space="preserve">
     <value>Colorizador</value>
   </data>
+  <data name="ColorsSheet_clickLabel.Text" xml:space="preserve">
+    <value>(haga clic para cambiar)</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="ColorsSheet_introBox.Text" xml:space="preserve">
+    <value>Personalice el estilo predeterminado para fragmentos de líneas horizontales y tareas marcadas con el comando Tachar etiquetas de tareas pendientes completadas</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="ColorsSheet_linesGroupBox.Text" xml:space="preserve">
+    <value>Líneas horizontales</value>
+    <comment>settings sheet group box</comment>
+  </data>
+  <data name="ColorsSheet_strikeBox.Text" xml:space="preserve">
+    <value>Aplique este color cuando utilice el comando Tachar etiquetas de tareas pendientes completadas</value>
+    <comment>settings sheet checkbox</comment>
+  </data>
+  <data name="ColorsSheet_strikeGroupBox.Text" xml:space="preserve">
+    <value>Tachar tareas pendientes Tags</value>
+    <comment>settings sheet group box</comment>
+  </data>
+  <data name="ColorsSheet_Title" xml:space="preserve">
+    <value>Bandera</value>
+    <comment>settings sheet</comment>
+  </data>
   <data name="Command_Error" xml:space="preserve">
     <value>Error al ejecutar el comando {0}</value>
     <comment>logged and displayed in messagebox</comment>
@@ -1749,26 +1773,6 @@ Título personalizado 3</value>
   <data name="KeyboardSheet_resetAllButton.Text" xml:space="preserve">
     <value>Resetear todo</value>
     <comment>toolstrip button</comment>
-  </data>
-  <data name="LinesSheet_clickLabel.Text" xml:space="preserve">
-    <value>(haga clic para cambiar)</value>
-    <comment>settings sheet</comment>
-  </data>
-  <data name="LinesSheet_colorLabel.Text" xml:space="preserve">
-    <value>Color de linea:</value>
-    <comment>settings sheet</comment>
-  </data>
-  <data name="LinesSheet_introBox.Text" xml:space="preserve">
-    <value>Personalice el estilo predeterminado para fragmentos de líneas horizontales</value>
-    <comment>settings sheet</comment>
-  </data>
-  <data name="LinesSheet_lengthLabel.Text" xml:space="preserve">
-    <value>Largo:</value>
-    <comment>settings sheet</comment>
-  </data>
-  <data name="LinesSheet_Title" xml:space="preserve">
-    <value>Lineas horizontales</value>
-    <comment>settings sheet</comment>
   </data>
   <data name="LinkDialog_groupBox.Text" xml:space="preserve">
     <value>Páginas en</value>
@@ -4232,6 +4236,12 @@ Después del último grupo</value>
     <value>Ejecute el escaneo ahora</value>
     <comment>radio</comment>
   </data>
+  <data name="ScheduleScanDialog_nowWarning" xml:space="preserve">
+    <value>El análisis de hashtags puede provocar una capacidad de respuesta más lenta al utilizar OneNote o la imposibilidad de reiniciar OneNote hasta que se complete el análisis.
+
+¿Está seguro de que desea ejecutar el análisis ahora?</value>
+    <comment>message box</comment>
+  </data>
   <data name="ScheduleScanDialog_Title" xml:space="preserve">
     <value>Programar escaneo de hashtags</value>
     <comment>dialog title</comment>
@@ -5097,6 +5107,9 @@ Ahora se abrirá el cuadro de diálogo Buscar hashtags.</value>
   </data>
   <data name="word_Language" xml:space="preserve">
     <value>Idioma</value>
+  </data>
+  <data name="word_Length" xml:space="preserve">
+    <value>Longitud</value>
   </data>
   <data name="word_Limit" xml:space="preserve">
     <value>Límite</value>

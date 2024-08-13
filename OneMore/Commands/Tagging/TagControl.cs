@@ -5,7 +5,6 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using System;
-	using System.Windows.Forms;
 
 
 	/// <summary>

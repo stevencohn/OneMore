@@ -532,6 +532,30 @@ Umkehren</value>
   <data name="ColorizerSheet_Title" xml:space="preserve">
     <value>Colorizer</value>
   </data>
+  <data name="ColorsSheet_clickLabel.Text" xml:space="preserve">
+    <value>(Klicken Sie, um zu ändern)</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="ColorsSheet_introBox.Text" xml:space="preserve">
+    <value>Passen Sie den Standardstil für horizontale Linienausschnitte und Aufgaben an, die mit dem Befehl „Durchgestrichene Tags für erledigte Aufgaben“ markiert sind</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="ColorsSheet_linesGroupBox.Text" xml:space="preserve">
+    <value>Horizontale Linien</value>
+    <comment>settings sheet group box</comment>
+  </data>
+  <data name="ColorsSheet_strikeBox.Text" xml:space="preserve">
+    <value>Wenden Sie diese Farbe an, wenn Sie den Befehl „Tags für erledigte Aufgaben durchstreichen“ verwenden</value>
+    <comment>settings sheet checkbox</comment>
+  </data>
+  <data name="ColorsSheet_strikeGroupBox.Text" xml:space="preserve">
+    <value>Durchgestrichene To-do-Tags</value>
+    <comment>settings sheet group box</comment>
+  </data>
+  <data name="ColorsSheet_Title" xml:space="preserve">
+    <value>Farben</value>
+    <comment>settings sheet</comment>
+  </data>
   <data name="Command_Error" xml:space="preserve">
     <value>Fehler beim Ausführen des Befehls {0}</value>
     <comment>logged and displayed in messagebox</comment>
@@ -1747,26 +1771,6 @@ Möchten Sie die bestehende Seite aktualisieren?</value>
   <data name="KeyboardSheet_resetAllButton.Text" xml:space="preserve">
     <value>Alles zurücksetzen</value>
     <comment>toolstrip button</comment>
-  </data>
-  <data name="LinesSheet_clickLabel.Text" xml:space="preserve">
-    <value>(Klicken Sie, um zu ändern)</value>
-    <comment>settings sheet</comment>
-  </data>
-  <data name="LinesSheet_colorLabel.Text" xml:space="preserve">
-    <value>Linienfarbe:</value>
-    <comment>settings sheet</comment>
-  </data>
-  <data name="LinesSheet_introBox.Text" xml:space="preserve">
-    <value>Passe den Standardstil für horizontale Zeilenausschnitte an</value>
-    <comment>settings sheet</comment>
-  </data>
-  <data name="LinesSheet_lengthLabel.Text" xml:space="preserve">
-    <value>Länge:</value>
-    <comment>settings sheet</comment>
-  </data>
-  <data name="LinesSheet_Title" xml:space="preserve">
-    <value>Horizontale Linien</value>
-    <comment>settings sheet</comment>
   </data>
   <data name="LinkDialog_groupBox.Text" xml:space="preserve">
     <value>Seiten in</value>
@@ -4226,6 +4230,12 @@ Nach der letzten Gruppe</value>
     <value>Führen Sie den Scan jetzt durch</value>
     <comment>radio</comment>
   </data>
+  <data name="ScheduleScanDialog_nowWarning" xml:space="preserve">
+    <value>Das Scannen von Hashtags kann zu einer langsameren Reaktionsfähigkeit bei der Verwendung von OneNote führen oder dazu führen, dass OneNote nicht neu gestartet werden kann, bis der Scan abgeschlossen ist.
+
+Sind Sie sicher, dass Sie den Scan jetzt ausführen möchten?</value>
+    <comment>message box</comment>
+  </data>
   <data name="ScheduleScanDialog_Title" xml:space="preserve">
     <value>Planen Sie das Hashtag-Scannen</value>
     <comment>dialog title</comment>
@@ -5090,6 +5100,9 @@ Das Dialogfeld „Hashtags suchen“ wird nun geöffnet.</value>
   </data>
   <data name="word_Language" xml:space="preserve">
     <value>Sprache</value>
+  </data>
+  <data name="word_Length" xml:space="preserve">
+    <value>Länge</value>
   </data>
   <data name="word_Limit" xml:space="preserve">
     <value>Grenze</value>

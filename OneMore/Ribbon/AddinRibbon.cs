@@ -63,8 +63,7 @@ namespace River.OneMoreAddIn
 				AddProofingCommands(root);
 
 				// NOTE: temporary page tagging
-				var tagsettings = provider.GetCollection("tagging");
-				if (tagsettings.Get("converted", false))
+				if (new Commands.LegacyTaggingConverter().IsConverted())
 				{
 					root.Descendants(ns + "button")
 						.Where(e =>
@@ -275,7 +274,7 @@ namespace River.OneMoreAddIn
 			var editCommands = ribbonbar.Get<bool>("editCommands");
 			var formulaCommands = ribbonbar.Get<bool>("formulaCommands");
 
-			if (hashtagCommands|| editCommands || formulaCommands)
+			if (hashtagCommands || editCommands || formulaCommands)
 			{
 				group.Add(new XElement(ns + "separator", new XAttribute("id", "omRibbonExtensions")));
 
@@ -716,8 +715,8 @@ namespace River.OneMoreAddIn
 
 			if (key == "pcm" || key == "pcs" || // pcm/pcs - fabricated page context menu items
 				key == "ctx" || key == "cts" || // ctx/cts - de-dupping from within ribbon.xml
-				key == "bar" ||					// bar - custom ribbon bar from settings
-				key == "ct2")					// ct2 - used?
+				key == "bar" ||                 // bar - custom ribbon bar from settings
+				key == "ct2")                   // ct2 - used?
 			{
 				id = $"rib{id.Substring(3)}";
 			}

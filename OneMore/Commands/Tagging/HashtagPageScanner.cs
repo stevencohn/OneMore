@@ -158,7 +158,7 @@ namespace River.OneMoreAddIn.Commands
 								keepTags = true;
 							}
 							// this "else" ensures the #Skip and #Keep tags are not captured
-							else if (keepTags && 
+							else if (keepTags &&
 								!tags.Exists(t => t.Tag == name && t.ObjectID == objectID))
 							{
 								var context = ExtractContext(text, capture.Index, capture.Length);

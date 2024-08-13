@@ -7,7 +7,6 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.Helpers.Office;
 	using System;
 	using System.Drawing;
-	using System.Linq;
 	using System.Windows.Forms;
 
 

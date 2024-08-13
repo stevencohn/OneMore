@@ -531,6 +531,30 @@
   <data name="ColorizerSheet_Title" xml:space="preserve">
     <value>着色器</value>
   </data>
+  <data name="ColorsSheet_clickLabel.Text" xml:space="preserve">
+    <value>（点击更改）</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="ColorsSheet_introBox.Text" xml:space="preserve">
+    <value>自定义由删除线已完成待办事项标签命令标记的水平线片段和任务的默认样式</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="ColorsSheet_linesGroupBox.Text" xml:space="preserve">
+    <value>水平线</value>
+    <comment>settings sheet group box</comment>
+  </data>
+  <data name="ColorsSheet_strikeBox.Text" xml:space="preserve">
+    <value>使用删除线已完成的待办事项标签命令时应用此颜色</value>
+    <comment>settings sheet checkbox</comment>
+  </data>
+  <data name="ColorsSheet_strikeGroupBox.Text" xml:space="preserve">
+    <value>删除线待办事项标签</value>
+    <comment>settings sheet group box</comment>
+  </data>
+  <data name="ColorsSheet_Title" xml:space="preserve">
+    <value>颜色</value>
+    <comment>settings sheet</comment>
+  </data>
   <data name="Command_Error" xml:space="preserve">
     <value>运行命令{0}时出错</value>
     <comment>logged and displayed in messagebox</comment>
@@ -1748,26 +1772,6 @@ OneNote 文件 (*.one)</value>
   <data name="KeyboardSheet_resetAllButton.Text" xml:space="preserve">
     <value>重置所有</value>
     <comment>toolstrip button</comment>
-  </data>
-  <data name="LinesSheet_clickLabel.Text" xml:space="preserve">
-    <value>（点击更改）</value>
-    <comment>settings sheet</comment>
-  </data>
-  <data name="LinesSheet_colorLabel.Text" xml:space="preserve">
-    <value>线条颜色：</value>
-    <comment>settings sheet</comment>
-  </data>
-  <data name="LinesSheet_introBox.Text" xml:space="preserve">
-    <value>自定义水平线片段的默认样式</value>
-    <comment>settings sheet</comment>
-  </data>
-  <data name="LinesSheet_lengthLabel.Text" xml:space="preserve">
-    <value>长度：</value>
-    <comment>settings sheet</comment>
-  </data>
-  <data name="LinesSheet_Title" xml:space="preserve">
-    <value>横线</value>
-    <comment>settings sheet</comment>
   </data>
   <data name="LinkDialog_groupBox.Text" xml:space="preserve">
     <value>页数</value>
@@ -4225,6 +4229,12 @@ ISO-code then comma then language name</comment>
     <value>立即运行扫描</value>
     <comment>radio</comment>
   </data>
+  <data name="ScheduleScanDialog_nowWarning" xml:space="preserve">
+    <value>主题标签扫描可能会导致使用 OneNote 时响应速度变慢，或者在扫描完成之前无法重新启动 OneNote。
+
+您确定要立即运行扫描吗</value>
+    <comment>message box</comment>
+  </data>
   <data name="ScheduleScanDialog_Title" xml:space="preserve">
     <value>安排标签扫描</value>
     <comment>dialog title</comment>
@@ -5090,6 +5100,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Language" xml:space="preserve">
     <value>语</value>
+  </data>
+  <data name="word_Length" xml:space="preserve">
+    <value>长度</value>
   </data>
   <data name="word_Limit" xml:space="preserve">
     <value>限制</value>

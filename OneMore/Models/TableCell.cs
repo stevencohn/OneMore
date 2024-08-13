@@ -103,7 +103,7 @@ namespace River.OneMoreAddIn.Models
 				.Elements(ns + "OE")
 				.Elements(ns + "Meta")
 				.FirstOrDefault(e => e.Attribute("name").Value == name);
-			
+
 			return element?.Attribute("content")?.Value;
 		}
 
@@ -193,8 +193,8 @@ namespace River.OneMoreAddIn.Models
 		{
 			SetContent(new XElement(ns + "T", new XCData(text)));
 		}
-		
-		
+
+
 		/// <summary>
 		/// Sets the contents of the cell to the given content
 		/// </summary>

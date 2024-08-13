@@ -151,9 +151,9 @@ namespace River.OneMoreAddIn.Commands
 
 		public OneNote.Scope Scope => scopeBox.SelectedIndex switch
 		{
-			1 => OneNote.Scope.Pages,		// Apply to pages in this section
-			2 => OneNote.Scope.Sections,	// Apply to pages in this notebook
-			_ => OneNote.Scope.Self			// Apply to this page
+			1 => OneNote.Scope.Pages,       // Apply to pages in this section
+			2 => OneNote.Scope.Sections,    // Apply to pages in this notebook
+			_ => OneNote.Scope.Self         // Apply to this page
 		};
 
 

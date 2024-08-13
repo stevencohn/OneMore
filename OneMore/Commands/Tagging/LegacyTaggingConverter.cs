@@ -22,6 +22,8 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class LegacyTaggingConverter : Loggable
 	{
+		public const string SettingsName = "tagging";
+
 		private XElement root;
 		private XNamespace ns;
 
@@ -45,69 +47,17 @@ namespace River.OneMoreAddIn.Commands
 		public int TagsConverted { get; private set; } = 0;
 
 
-		/// <summary>
-		/// If there are legacy Page tags, ask the user if they want to upgrade to Hashtags
-		/// and, if yes, then perform the upgrade.
-		/// </summary>
-		/// <param name="owner">The owning window so we can center dialogs</param>
-		/// <returns>True if tags are or have been upgraded, otherwise false.</returns>
-		public async Task<bool> UpgradeLegacyTags(IWin32Window owner)
+		public bool IsConverted()
 		{
 			var provider = new SettingsProvider();
-			var settings = provider.GetCollection("tagging");
-
-			if (!await NeedsConversion(settings))
-			{
-				settings.Add("converted", true);
-				provider.SetCollection(settings);
-				provider.Save();
-
-				Converted = true;
-				return false;
-			}
-
-			using var ltdialog = new LegacyTaggingDialog();
-
-			if (ltdialog.ShowDialog(owner) == DialogResult.OK)
-			{
-				using var progress = new ProgressDialog();
-				progress.ShowDialogWithCancel(
-					async (dialog, token) => await UpgradeLegacyTags(dialog, token));
-
-				settings.Add("converted", true);
-				Converted = true;
-
-				// scan now?
-
-				if (HashtagProvider.DatabaseExists())
-				{
-					var scheduler = new HashtagScheduler();
-					if (!scheduler.ScheduleExists && scheduler.State == ScanningState.Ready)
-					{
-						using var scanner = new HashtagScanner();
-						(_, _) = await scanner.Scan();
-					}
-				}
-			}
-
-			if (ltdialog.HideQuestion)
-			{
-				settings.Add("ignore", true);
-			}
-
-			if (settings.IsModified)
-			{
-				provider.SetCollection(settings);
-				provider.Save();
-			}
-
-			return Converted;
+			var settings = provider.GetCollection(SettingsName);
+			return settings.Get("converted", false);
 		}
 
 
 		public async Task<bool> NeedsConversion()
 		{
-			return await NeedsConversion(new SettingsProvider().GetCollection("tagging"));
+			return await NeedsConversion(new SettingsProvider().GetCollection(SettingsName));
 		}
 
 
@@ -124,47 +74,93 @@ namespace River.OneMoreAddIn.Commands
 				return false;
 			}
 
-			var count = await GetLegacyTagCount();
-			return count > 0;
+			return await HasLegacyTags();
 		}
 
 
-		private async Task<int> GetLegacyTagCount()
+		private async Task<bool> HasLegacyTags()
 		{
 			await using var one = new OneNote();
 
 			root = await one.SearchMeta(string.Empty, MetaNames.TaggingLabels);
 			if (root == null)
 			{
-				// may need to restart OneNote?
-				return 0;
+				// error parsing hierarchy XML but OK
+				return false;
 			}
+
+			// page level tags are only deleted if their content attribute is empty, but
+			// page tags never considered that so may exist AND have empty content.
+			// So need to check if any have content values...
 
 			ns = root.GetNamespaceOfPrefix(OneNote.Prefix);
 
-			var metas = root.Descendants(ns + "Meta")
-				.Where(e => e.Attribute("name").Value == MetaNames.TaggingLabels)
-				.Select(e => e.Attribute("content").Value);
+			var found = root.Descendants(ns + "Meta").Any(e =>
+				e.Attribute("name").Value == MetaNames.TaggingLabels &&
+				e.Attribute("content") != null &&
+				!string.IsNullOrWhiteSpace(e.Attribute("content").Value));
 
-			var tags = new List<string>();
-			foreach (var meta in metas)
+			return found;
+		}
+
+
+		/// <summary>
+		/// If there are legacy Page tags, ask the user if they want to upgrade to Hashtags
+		/// and, if yes, then perform the upgrade.
+		/// </summary>
+		/// <param name="owner">The owning window so we can center dialogs</param>
+		/// <returns>True if tags are or have been upgraded, otherwise false.</returns>
+		public async Task<bool> UpgradeLegacyTags(IWin32Window owner)
+		{
+			var provider = new SettingsProvider();
+			var settings = provider.GetCollection(SettingsName);
+
+			if (!await NeedsConversion(settings))
 			{
-				var items = meta
-					.Split(
-						new string[] { AddIn.Culture.TextInfo.ListSeparator },
-						StringSplitOptions.RemoveEmptyEntries)
-					.Select(s => s.Trim().ToLower());
+				settings.Add("converted", true);
+				provider.SetCollection(settings);
+				provider.Save();
 
-				foreach (var item in items)
+				Converted = true;
+				return false;
+			}
+
+			using var dialog = new LegacyTaggingDialog();
+
+			if (dialog.ShowDialog(owner) == DialogResult.OK)
+			{
+				using var progress = new ProgressDialog();
+				progress.ShowDialogWithCancel(
+					async (pdialog, token) => await UpgradeLegacyTags(pdialog, token));
+
+				settings.Add("converted", true);
+				Converted = true;
+
+				// scan now?
+
+				if (HashtagProvider.CatalogExists())
 				{
-					if (!tags.Contains(item))
+					var scheduler = new HashtagScheduler();
+					if (!scheduler.ScheduleExists && scheduler.State == ScanningState.Ready)
 					{
-						tags.Add(item);
+						using var scanner = new HashtagScanner();
+						(_, _) = await scanner.Scan();
 					}
 				}
 			}
 
-			return tags.Count;
+			if (dialog.HideQuestion)
+			{
+				settings.Add("ignore", true);
+			}
+
+			if (settings.IsModified)
+			{
+				provider.SetCollection(settings);
+				provider.Save();
+			}
+
+			return Converted;
 		}
 
 
@@ -189,6 +185,10 @@ namespace River.OneMoreAddIn.Commands
 				{
 					break;
 				}
+
+				var updated = false;
+
+				// update legacy tags in the tagging bank by prefixing them with a hashtag...
 
 				var bank = page.Root.Descendants(ns + "Meta")
 					.FirstOrDefault(e => e.Attribute("name").Value == MetaNames.TaggingBank);
@@ -239,17 +239,35 @@ namespace River.OneMoreAddIn.Commands
 
 					// clear the tagging bank meta element value
 					flag.Value = string.Empty;
+					updated = true;
+				}
 
-					// clear out the tagging label meta element value
-					page.Root.Elements(ns + "Meta")
-						.Where(e => e.Attribute("name").Value == MetaNames.TaggingLabels)
-						.ForEach(e => e.Attribute("content").Value = string.Empty);
+				// remove the omTaggingLabels Meta element from the page...
 
-					if (!token.IsCancellationRequested)
+				if (!token.IsCancellationRequested)
+				{
+					// delete the omTaggingLabels Meta element by removing its content attribute,
+					// should only be one
+					var rogue = page.Root.Elements(ns + "Meta")
+						.FirstOrDefault(e => e.Attribute("name").Value == MetaNames.TaggingLabels &&
+							e.Attribute("content") != null);
+
+					if (rogue is not null &&
+						rogue.Attribute("content") is XAttribute content)
 					{
-						await one.Update(page);
-						PagesConverted++;
+						logger.Verbose($"removing meta on {page.PageId} \"{page.Title}\"");
+						content.Remove();
+						updated = true;
 					}
+				}
+
+				// save page if any updates...
+
+				if (!token.IsCancellationRequested && updated)
+				{
+					logger.Verbose($"saving page {page.PageId} \"{page.Title}\"");
+					await one.Update(page);
+					PagesConverted++;
 				}
 
 				dialog.Increment();
@@ -262,7 +280,7 @@ namespace River.OneMoreAddIn.Commands
 		public static void ResetUpgradeCheck()
 		{
 			var provider = new SettingsProvider();
-			provider.RemoveCollection("tagging");
+			provider.RemoveCollection(SettingsName);
 			provider.Save();
 		}
 	}

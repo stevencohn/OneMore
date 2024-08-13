@@ -6,7 +6,6 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Styles;
-	using System.Collections.Generic;
 	using System.Linq;
 	using System.Xml.Linq;
 
@@ -43,7 +42,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			foreach (var outline in page.Root.Elements("Outline"))
 			{
-				RewriteHeadings(outline.Descendants(ns + "OE"));
+				RewriteHeadings(outline);
 			}
 		}
 
@@ -51,9 +50,10 @@ namespace River.OneMoreAddIn.Commands
 		/// <summary>
 		/// Applies standard OneNote styling all recognizable headings in the given Outline
 		/// </summary>
-		public void RewriteHeadings(IEnumerable<XElement> paragraphs)
+		public void RewriteHeadings(XElement outline)
 		{
-			var headings = paragraphs
+			var headings = outline
+				.Descendants(ns + "OE")
 				// candidate headings imported from markdown should have exactly one text run
 				.Where(e => e.Elements(ns + "T").Count() == 1)
 				.Select(e => new Candidate
@@ -141,7 +141,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			foreach (var outline in page.Root.Elements("Outline"))
 			{
-				SpaceOutParagraphs(outline.Descendants(ns + "OE"), spaceAfter);
+				SpaceOutParagraphs(outline, spaceAfter);
 			}
 		}
 
@@ -150,14 +150,15 @@ namespace River.OneMoreAddIn.Commands
 		/// Adds OneNote paragraph spacing in the given Outline
 		/// </summary>
 		/// <param name="spaceAfter"></param>
-		public void SpaceOutParagraphs(IEnumerable<XElement> paragraphs, float spaceAfter)
+		public void SpaceOutParagraphs(XElement outline, float spaceAfter)
 		{
 			var after = $"{spaceAfter:0.0}";
 
-			var last = paragraphs.Last();
+			var last = outline.Descendants(ns + "OE").Last();
 
-			foreach (var item in paragraphs
-				.Where(e =>
+			foreach (var item in outline
+				.Descendants(ns + "OE")
+				.Where(e => 
 					// not the last paragraph in the Outline
 					e != last &&
 					// any paragraph that is not a List

@@ -13,29 +13,29 @@ namespace River.OneMoreAddIn.Settings
 		{
 			InitializeComponent();
 
-            Name = "RibbonBarSheet";
-            Title = Resx.RibbonBarSheet_Title;
+			Name = "RibbonBarSheet";
+			Title = Resx.RibbonBarSheet_Title;
 
-            if (NeedsLocalizing())
-            {
-                Localize(new string[]
-                {
-                    "positionIntroLabel",
-                    "positionGroup",
-                    "positionLabel",
-                    "positionBox",
-                    "introBox",
-                    "quickGroup",
+			if (NeedsLocalizing())
+			{
+				Localize(new string[]
+				{
+					"positionIntroLabel",
+					"positionGroup",
+					"positionLabel",
+					"positionBox",
+					"introBox",
+					"quickGroup",
 					"hashtagsRibbonBox",
 					"hashtagsIconBox",
 					"editRibbonBox",
 					"editIconBox",
 					"formulaRibbonBox",
-                    "formulaIconBox"
-                });
-            }
-			
-            var settings = provider.GetCollection(Name);
+					"formulaIconBox"
+				});
+			}
+
+			var settings = provider.GetCollection(Name);
 			positionBox.SelectedIndex = settings.Get("position", positionBox.Items.Count - 1);
 
 			hashtagsRibbonBox.Checked = settings.Get<bool>("hashtagCommands");
@@ -45,32 +45,32 @@ namespace River.OneMoreAddIn.Settings
 			editIconBox.Checked = editRibbonBox.Checked && settings.Get<bool>("editIconsOnly");
 
 			formulaRibbonBox.Checked = settings.Get<bool>("formulaCommands");
-            formulaIconBox.Checked = formulaRibbonBox.Checked && settings.Get<bool>("formulaIconsOnly");
-        }
+			formulaIconBox.Checked = formulaRibbonBox.Checked && settings.Get<bool>("formulaIconsOnly");
+		}
 
 
 		private void CheckedChanged(object sender, System.EventArgs e)
 		{
-            if (sender == hashtagsRibbonBox)
-            {
-                hashtagsIconBox.Enabled = hashtagsRibbonBox.Checked;
-            }
-            else if (sender == editRibbonBox)
+			if (sender == hashtagsRibbonBox)
 			{
-                editIconBox.Enabled = editRibbonBox.Checked;
+				hashtagsIconBox.Enabled = hashtagsRibbonBox.Checked;
 			}
-            else
+			else if (sender == editRibbonBox)
 			{
-                formulaIconBox.Enabled = formulaRibbonBox.Checked;
+				editIconBox.Enabled = editRibbonBox.Checked;
+			}
+			else
+			{
+				formulaIconBox.Enabled = formulaRibbonBox.Checked;
 			}
 		}
 
 
 		private void ClickPicture(object sender, System.EventArgs e)
 		{
-            if (sender == hashtagsPicture)
+			if (sender == hashtagsPicture)
 			{
-                hashtagsRibbonBox.Checked = !hashtagsRibbonBox.Checked;
+				hashtagsRibbonBox.Checked = !hashtagsRibbonBox.Checked;
 			}
 			else if (sender == editPicture)
 			{
@@ -78,27 +78,27 @@ namespace River.OneMoreAddIn.Settings
 			}
 			else
 			{
-                formulaRibbonBox.Checked = !formulaRibbonBox.Checked;
-            }
+				formulaRibbonBox.Checked = !formulaRibbonBox.Checked;
+			}
 		}
 
 
-        public override bool CollectSettings()
-        {
-            if (!hashtagsRibbonBox.Checked &&
-                !editRibbonBox.Checked &&
-                !formulaRibbonBox.Checked && 
-                positionBox.SelectedIndex == positionBox.Items.Count)
+		public override bool CollectSettings()
+		{
+			if (!hashtagsRibbonBox.Checked &&
+				!editRibbonBox.Checked &&
+				!formulaRibbonBox.Checked &&
+				positionBox.SelectedIndex == positionBox.Items.Count)
 			{
-                provider.RemoveCollection(Name);
-                return true;
+				provider.RemoveCollection(Name);
+				return true;
 			}
 
-            var settings = provider.GetCollection(Name);
-            var updated = false;
+			var settings = provider.GetCollection(Name);
+			var updated = false;
 
-            // NOTE that the indexes MUST match RibbonGroups enum or it will break user's
-            // established settings so may need migration if changed...
+			// NOTE that the indexes MUST match RibbonGroups enum or it will break user's
+			// established settings so may need migration if changed...
 
 			if (settings.Add("position", positionBox.SelectedIndex)) updated = true;
 
@@ -107,14 +107,14 @@ namespace River.OneMoreAddIn.Settings
 			if (settings.Add("editCommands", editRibbonBox.Checked)) updated = true;
 			if (settings.Add("editIconsOnly", editIconBox.Checked)) updated = true;
 			if (settings.Add("formulaCommands", formulaRibbonBox.Checked)) updated = true;
-            if (settings.Add("formulaIconsOnly", formulaIconBox.Checked)) updated = true;
+			if (settings.Add("formulaIconsOnly", formulaIconBox.Checked)) updated = true;
 
-            if (updated)
-            {
-                provider.SetCollection(settings);
-            }
+			if (updated)
+			{
+				provider.SetCollection(settings);
+			}
 
-            return updated;
-        }
-    }
+			return updated;
+		}
+	}
 }

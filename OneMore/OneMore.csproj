@@ -319,6 +319,7 @@
     <Compile Include="Helpers\Extensions\ScreenExtensions.cs" />
     <Compile Include="Helpers\Heatmap.cs" />
     <Compile Include="Commands\Tagging\HashtagNotebook.cs" />
+    <Compile Include="Helpers\SessionLogger.cs" />
     <Compile Include="Models\OneImage.cs" />
     <Compile Include="Models\KnownSchemaAttributes.cs" />
     <Compile Include="Models\PageEditor.cs" />
@@ -488,11 +489,11 @@
     <Compile Include="Commands\Settings\AliasSheet.Designer.cs">
       <DependentUpon>AliasSheet.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\Settings\LinesSheet.cs">
+    <Compile Include="Commands\Settings\ColorsSheet.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Commands\Settings\LinesSheet.Designer.cs">
-      <DependentUpon>LinesSheet.cs</DependentUpon>
+    <Compile Include="Commands\Settings\ColorsSheet.Designer.cs">
+      <DependentUpon>ColorsSheet.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Settings\GeneralSheet.cs">
       <SubType>UserControl</SubType>
@@ -1111,6 +1112,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Colorizer\Languages\bash.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Colorizer\Languages\cpp.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1188,9 +1192,13 @@
     <EmbeddedResource Include="Commands\Tagging\ScheduleScanDialog.resx">
       <DependentUpon>ScheduleScanDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.ja-JP.resx" />
     <EmbeddedResource Include="UI\WindowElevator.resx">
       <DependentUpon>WindowElevator.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Colorizer\Languages\bash.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Colorizer\Languages\php.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -1487,8 +1495,8 @@
     <EmbeddedResource Include="Commands\Settings\ImagesSheet.resx">
       <DependentUpon>ImagesSheet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Commands\Settings\LinesSheet.resx">
-      <DependentUpon>LinesSheet.cs</DependentUpon>
+    <EmbeddedResource Include="Commands\Settings\ColorsSheet.resx">
+      <DependentUpon>ColorsSheet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Settings\GeneralSheet.resx">
       <DependentUpon>GeneralSheet.cs</DependentUpon>

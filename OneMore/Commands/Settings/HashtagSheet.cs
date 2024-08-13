@@ -128,11 +128,11 @@ namespace River.OneMoreAddIn.Settings
 
 		private void ResetUpgradeCheck(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			// this will save settings.xml
+			// this will save settings.xml...
 			LegacyTaggingConverter.ResetUpgradeCheck();
 
-			// now update local in-memory copy of settings
-			provider.RemoveCollection("tagging");
+			// .. and now update local in-memory copy of settings
+			provider.RemoveCollection(LegacyTaggingConverter.SettingsName);
 
 			upgradeLink.Enabled = true;
 			resetLink.Visible = false;

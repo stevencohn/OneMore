@@ -156,7 +156,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 				builder.Append("A");
 				builder.Append(cell.RowNum);
 				builder.Append(":");
-				builder.Append((cell.ColNum -1).ToAlphabetic());
+				builder.Append((cell.ColNum - 1).ToAlphabetic());
 				builder.Append(cell.RowNum);
 			}
 

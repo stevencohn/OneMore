@@ -24,8 +24,9 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private const int ScannerID = 0;
 
-		private readonly SQLiteConnection con;
 		private readonly string timestamp;
+
+		private SQLiteConnection con;
 		private bool disposed;
 
 
@@ -34,70 +35,90 @@ namespace River.OneMoreAddIn.Commands
 		/// </summary>
 		public HashtagProvider()
 		{
-			var path = Path.Combine(
-				PathHelper.GetAppDataPath(), Resources.DatabaseFilename);
-
-			var refresh = !File.Exists(path);
-
-			con = new SQLiteConnection($"Data source={path}");
-			con.Open();
-
-			if (refresh)
+			if (CatalogExists())
 			{
-				RefreshDatabase();
+				UpgradeCatalog();
 			}
 			else
 			{
-				UpgradeDatabase();
+				RefreshCatalog();
 			}
 
 			timestamp = DateTime.Now.ToZuluString();
 		}
 
 
-		public static bool DatabaseExists()
-		{
-			return File.Exists(Path.Combine(
-				PathHelper.GetAppDataPath(), Resources.DatabaseFilename));
-		}
-
-
-		public static void DeleteDatabase()
+		public static bool CatalogExists()
 		{
 			var path = Path.Combine(
 				PathHelper.GetAppDataPath(), Resources.DatabaseFilename);
 
-			if (File.Exists(path))
+			if (!File.Exists(Path.Combine(path)))
 			{
-				try
+				return false;
+			}
+
+			var con = new SQLiteConnection($"Data source={path}");
+			con.Open();
+
+			using var cmd = con.CreateCommand();
+			cmd.CommandType = CommandType.Text;
+			cmd.CommandText = "SELECT COUNT(1) FROM sqlite_master " +
+				"WHERE type = 'table' AND name = 'hashtag_scanner'";
+
+			var count = 0;
+			try
+			{
+				using var reader = cmd.ExecuteReader();
+				if (reader.Read())
 				{
-					Logger.Current.WriteLine("deleting hashtag database");
-					File.Delete(path);
+					count = reader.GetInt32(0);
 				}
-				catch (Exception exc)
-				{
-					Logger.Current.WriteLine("error deleting hashtag database", exc);
-				}
+			}
+			catch (Exception exc)
+			{
+				ReportError("error reading scanner version", cmd, exc);
+				return false;
+			}
+
+			return count > 0;
+		}
+
+
+		private void OpenDatabase()
+		{
+			if (con is null)
+			{
+				var path = Path.Combine(
+					PathHelper.GetAppDataPath(), Resources.DatabaseFilename);
+
+				con = new SQLiteConnection($"Data source={path}");
+				con.Open();
 			}
 		}
 
 
-		public bool DropDatabase()
+		public bool DropCatalog()
 		{
 			int Drop(string type, IEnumerable<string> names)
 			{
 				using var cmd = con.CreateCommand();
-				cmd.CommandText = $"DROP {type} IF EXISTS @n";
 				cmd.CommandType = CommandType.Text;
-				cmd.Parameters.Add("@n", DbType.String);
+
 				var count = 0;
 
 				foreach (var name in names)
 				{
+					logger.WriteLine($"dropping {type} {name}");
+
+					// Cannot use named parameters here because they would be interpreted as
+					// literal quoted strings rather than direct names like @myview. So use
+					// dynamic SQL. The possibility of SQL injection is quite low because
+					// these names come from an embedded resx in this assembly.
+					cmd.CommandText = $"DROP {type} IF EXISTS {name}";
+
 					try
 					{
-						logger.WriteLine($"dropping {type} {name}");
-						cmd.Parameters["@n"].Value = name;
 						cmd.ExecuteNonQuery();
 						count++;
 					}
@@ -139,40 +160,42 @@ namespace River.OneMoreAddIn.Commands
 			list = entities.Where(e => e.Item1 == "VIEW");
 			if (list.Any())
 			{
-				count += Drop("view", list.Select(e => e.Item2));
+				count += Drop("view", list.Select(e => e.Item2).ToList());
 			}
 
 			list = entities.Where(e => e.Item1 == "INDEX");
 			if (list.Any())
 			{
-				count += Drop("index", list.Select(e => e.Item2));
+				count += Drop("index", list.Select(e => e.Item2).ToList());
 			}
 
 			list = entities.Where(e => e.Item1 == "TABLE");
 			if (list.Any())
 			{
 				// there is one foreign key but tables will be dropped in the right order
-				count += Drop("table", list.Select(e => e.Item2));
+				count += Drop("table", list.Select(e => e.Item2).ToList());
 			}
 
 			if (count != entities.Count())
 			{
-				logger.WriteLine("error dropping hashtag database, see errors above");
+				logger.WriteLine("error dropping hashtag catalog, see errors above");
 				return false;
 			}
 
 			try
 			{
+				transaction.Commit();
+
+				// vacuum must be done outside a transaction
 				using var cmd = con.CreateCommand();
 				cmd.CommandText = "VACUUM";
 				cmd.ExecuteNonQuery();
 
-				transaction.Commit();
-				logger.WriteLine("hashtag database drop done");
+				logger.WriteLine("hashtag catalog drop done");
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error dropping db", exc);
+				logger.WriteLine("error dropping catalog", exc);
 				transaction.Rollback();
 				return false;
 			}
@@ -181,9 +204,12 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void RefreshDatabase()
+		private void RefreshCatalog()
 		{
-			logger.WriteLine("building hashtag database");
+			logger.WriteLine("building hashtag catalog");
+
+			OpenDatabase();
+
 			using var transaction = con.BeginTransaction();
 
 			var ddl = Regex.Split(Resources.HashtagsDB, @"\r\n|\n\r|\n");
@@ -202,7 +228,7 @@ namespace River.OneMoreAddIn.Commands
 					}
 					catch (Exception exc)
 					{
-						ReportError("error building database", cmd, exc);
+						ReportError("error building catalog", cmd, exc);
 						throw;
 					}
 				}
@@ -211,7 +237,7 @@ namespace River.OneMoreAddIn.Commands
 			try
 			{
 				transaction.Commit();
-				logger.WriteLine("hashtag database done");
+				logger.WriteLine("hashtag catalog done");
 			}
 			catch (Exception exc)
 			{
@@ -221,11 +247,13 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		#region UpgradeDatabase
+		#region UpgradeCatalog
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Major Code Smell",
 			"S1854:Unused assignments should be removed", Justification = "<Pending>")]
-		private void UpgradeDatabase()
+		private void UpgradeCatalog()
 		{
+			OpenDatabase();
+
 			using var cmd = con.CreateCommand();
 			cmd.CommandType = CommandType.Text;
 			cmd.CommandText = $"SELECT version FROM hashtag_scanner WHERE scannerID = {ScannerID}";
@@ -267,7 +295,7 @@ namespace River.OneMoreAddIn.Commands
 		private int Upgrade1to2(SQLiteConnection con)
 		{
 			var version = 2;
-			logger.WriteLine($"upgrading database to version {version}");
+			logger.WriteLine($"upgrading hashtag catalog to version {version}");
 			logger.Start();
 
 			using var cmd = con.CreateCommand();
@@ -314,7 +342,7 @@ namespace River.OneMoreAddIn.Commands
 		private int Upgrade2to3(SQLiteConnection con)
 		{
 			var version = 3;
-			logger.WriteLine($"upgrading database to version {version}");
+			logger.WriteLine($"upgrading hashtag catalog to version {version}");
 			logger.Start();
 
 			using var cmd = con.CreateCommand();
@@ -361,7 +389,7 @@ namespace River.OneMoreAddIn.Commands
 		private int Upgrade3to4(SQLiteConnection con)
 		{
 			int version = 4;
-			logger.WriteLine($"upgrading database to version {version}");
+			logger.WriteLine($"upgrading hashtag catalog to version {version}");
 			logger.Start();
 
 			using var cmd = con.CreateCommand();
@@ -496,7 +524,7 @@ namespace River.OneMoreAddIn.Commands
 
 			return true;
 		}
-		#endregion UpgradeDatabase
+		#endregion UpgradeCatalog
 
 
 		protected virtual void Dispose(bool disposing)
@@ -848,7 +876,7 @@ namespace River.OneMoreAddIn.Commands
 		/// <param name="criteria">The user-entered search criteria, optional wildcards</param>
 		/// <returns>A collection of Hashtags</returns>
 		public Hashtags SearchTags(
-			string criteria, bool caseSensitive, 
+			string criteria, bool caseSensitive,
 			out string parsed, string notebookID = null, string sectionID = null)
 		{
 			var parameters = new List<SQLiteParameter>();
@@ -957,10 +985,10 @@ namespace River.OneMoreAddIn.Commands
 		public bool UniqueMoreID(string pageID, string moreID)
 		{
 			using var cmd = con.CreateCommand();
+			cmd.CommandType = CommandType.Text;
 			cmd.CommandText = "SELECT count(1) " +
 				"FROM hashtag_page WHERE moreID = @mid AND pageID <> @pid";
 
-			cmd.CommandType = CommandType.Text;
 			cmd.Parameters.AddWithValue("@mid", moreID);
 			cmd.Parameters.AddWithValue("@pid", pageID);
 
@@ -991,11 +1019,11 @@ namespace River.OneMoreAddIn.Commands
 		public void UpdateSnippet(Hashtags tags)
 		{
 			using var cmd = con.CreateCommand();
+			cmd.CommandType = CommandType.Text;
 			cmd.CommandText = "UPDATE hashtag " +
 				"SET snippet = @c, lastModified = @s " +
 				"WHERE tag = @t AND moreID = @m";
 
-			cmd.CommandType = CommandType.Text;
 			cmd.Parameters.Add("@c", DbType.String);
 			cmd.Parameters.Add("@s", DbType.String);
 			cmd.Parameters.Add("@t", DbType.String);
@@ -1219,17 +1247,18 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void ReportError(string msg, SQLiteCommand cmd, Exception exc)
+		private static void ReportError(string msg, SQLiteCommand cmd, Exception exc)
 		{
 			// provider currently only deals with strings as input so quote everything...
 
 			var sql = Regex.Replace(cmd.CommandText, "@[a-z]+",
 				m => cmd.Parameters.Contains(m.Value)
-					? $"'{cmd.Parameters[m.Value]}'"
+					? $"'{cmd.Parameters[m.Value].Value}'"
 					: m.Value
 			);
 
-			logger.WriteLine("error writing tags");
+			var logger = Logger.Current;
+			logger.WriteLine(msg);
 			logger.WriteLine(sql);
 			logger.WriteLine(exc);
 		}

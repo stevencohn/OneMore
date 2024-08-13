@@ -73,7 +73,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var scheduler = new HashtagScheduler();
 
-			if (!HashtagProvider.DatabaseExists())
+			if (!HashtagProvider.CatalogExists())
 			{
 				using var sdialog = scheduler.State == ScanningState.None
 					? new ScheduleScanDialog(false)

@@ -4,10 +4,10 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using NStandard;
 	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Generic;
-	using System.Data.SqlTypes;
 	using System.Linq;
 	using System.Windows.Forms;
 	using Resx = Properties.Resources;
@@ -159,9 +159,13 @@ namespace River.OneMoreAddIn.Commands
 
 		protected override async void OnLoad(EventArgs e)
 		{
+			base.OnLoad(e);
+
+			AlignHyperlinks();
+
 			if (booksFlow is not null)
 			{
-				if (HashtagProvider.DatabaseExists())
+				if (HashtagProvider.CatalogExists())
 				{
 					using var provider = new HashtagProvider();
 					scannedIDs = provider.ReadTaggedNotebookIDs();
@@ -189,21 +193,10 @@ namespace River.OneMoreAddIn.Commands
 					}
 				}
 
-				if (anyChecked)
-				{
-					okButton.Enabled = true;
-					okButton.Focus();
-				}
-				else
-				{
-					okButton.Enabled = false;
-					cancelButton.Focus();
-				}
+				okButton.Enabled = anyChecked;
 			}
 
-			base.OnLoad(e);
-
-			AlignHyperlinks();
+			FocusButtons();
 		}
 		#endregion Load Helpers
 
@@ -248,19 +241,27 @@ namespace River.OneMoreAddIn.Commands
 		private void DoCheckedChanged(object sender, EventArgs e)
 		{
 			dateTimePicker.Enabled = laterRadio.Checked;
+			FocusButtons();
 		}
 
 
 		private void DoSelectionsChanged(object sender, EventArgs e)
 		{
 			okButton.Enabled = booksFlow.Controls.Cast<MoreCheckBox>().Any(b => b.Checked);
+			FocusButtons();
+		}
 
+
+		private void FocusButtons()
+		{
 			if (okButton.Enabled)
 			{
+				AcceptButton = okButton;
 				okButton.Focus();
 			}
 			else
 			{
+				AcceptButton = cancelButton;
 				cancelButton.Focus();
 			}
 		}
@@ -289,6 +290,24 @@ namespace River.OneMoreAddIn.Commands
 			foreach (MoreCheckBox box in booksFlow.Controls)
 			{
 				box.Checked = false;
+			}
+		}
+
+
+		private void CheckOptionsOnFormClosing(object sender, FormClosingEventArgs e)
+		{
+			if (DialogResult == DialogResult.Cancel || !nowRadio.Checked)
+			{
+				return;
+			}
+
+			var result = MoreMessageBox.Show(this,
+				Resx.ScheduleScanDialog_nowWarning,
+				MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+
+			if (result == DialogResult.Cancel)
+			{
+				e.Cancel = true;
 			}
 		}
 	}

@@ -22,6 +22,13 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		public HashtagScannedEventArgs(string message)
+		{
+			ErrorMessage = message;
+			Failed = true;
+		}
+
+
 		/// <summary>
 		/// Gets the number of pages found with updated hashtags
 		/// </summary>
@@ -50,5 +57,20 @@ namespace River.OneMoreAddIn.Commands
 		/// Gets the total number of pages analyzed in the last scan
 		/// </summary>
 		public int TotalPages { private set; get; }
+
+
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		// Failure state...
+
+		/// <summary>
+		/// Gets the error message from a failed scanner
+		/// </summary>
+		public string ErrorMessage { private set; get; }
+
+
+		/// <summary>
+		/// Gets a Boolean indicating whether the scanner has failed; check ErrorMessage.
+		/// </summary>
+		public bool Failed { private set; get; }
 	}
 }

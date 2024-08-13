@@ -9,7 +9,6 @@ namespace OneMoreSetupActions
 	using Microsoft.Win32;
 	using System;
 	using System.IO;
-	using System.Linq;
 	using System.Runtime.InteropServices;
 	using System.Security.AccessControl;
 	using System.Security.Principal;

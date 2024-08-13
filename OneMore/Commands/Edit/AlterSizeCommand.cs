@@ -94,9 +94,9 @@ namespace River.OneMoreAddIn.Commands
 					if (double.TryParse(attr.Value,
 						NumberStyles.Any, CultureInfo.InvariantCulture, out var size))
 					{
-						 var result = delta < 0
-							? Math.Max(size + delta, MinFontSize)
-							: Math.Min(size + delta, MaxFontSize);
+						var result = delta < 0
+						   ? Math.Max(size + delta, MinFontSize)
+						   : Math.Min(size + delta, MaxFontSize);
 
 						if (!result.EstEquals(size))
 						{

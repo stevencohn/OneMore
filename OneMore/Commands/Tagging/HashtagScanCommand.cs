@@ -4,8 +4,6 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using River.OneMoreAddIn.UI;
-	using System;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using Resx = Properties.Resources;
@@ -36,7 +34,7 @@ namespace River.OneMoreAddIn.Commands
 
 			// by now, there should at least be an automated scheduled scan if no db
 			// but keep this here just incase
-			var showNotebooks = HashtagProvider.DatabaseExists();
+			var showNotebooks = HashtagProvider.CatalogExists();
 
 			using var dialog =
 				scheduler.State == ScanningState.None ||

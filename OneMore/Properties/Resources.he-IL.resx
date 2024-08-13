@@ -541,6 +541,30 @@
   <data name="ColorizerSheet_Title" xml:space="preserve">
     <value>צבעוני</value>
   </data>
+  <data name="ColorsSheet_clickLabel.Text" xml:space="preserve">
+    <value>(לחץ לשינוי)</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="ColorsSheet_introBox.Text" xml:space="preserve">
+    <value>התאם אישית את סגנון ברירת המחדל עבור קטעי קווים אופקיים ומשימה המסומנים על ידי הפקודה Streek-Through Completed To Do Tags</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="ColorsSheet_linesGroupBox.Text" xml:space="preserve">
+    <value>קווים אופקיים</value>
+    <comment>settings sheet group box</comment>
+  </data>
+  <data name="ColorsSheet_strikeBox.Text" xml:space="preserve">
+    <value>החל צבע זה בעת שימוש בפקודה Strikethrough Completed To Do Tags</value>
+    <comment>settings sheet checkbox</comment>
+  </data>
+  <data name="ColorsSheet_strikeGroupBox.Text" xml:space="preserve">
+    <value>תגיות משימות מחוקות</value>
+    <comment>settings sheet group box</comment>
+  </data>
+  <data name="ColorsSheet_Title" xml:space="preserve">
+    <value>צבעים</value>
+    <comment>settings sheet</comment>
+  </data>
   <data name="Command_Error" xml:space="preserve">
     <value>שגיאה בהפעלת הפקודה {0}</value>
     <comment>logged and displayed in messagebox</comment>
@@ -1758,26 +1782,6 @@ Total Row Font
   <data name="KeyboardSheet_resetAllButton.Text" xml:space="preserve">
     <value>לאפס הכל</value>
     <comment>toolstrip button</comment>
-  </data>
-  <data name="LinesSheet_clickLabel.Text" xml:space="preserve">
-    <value>(לחץ לשינוי)</value>
-    <comment>settings sheet</comment>
-  </data>
-  <data name="LinesSheet_colorLabel.Text" xml:space="preserve">
-    <value>צבע קו:</value>
-    <comment>settings sheet</comment>
-  </data>
-  <data name="LinesSheet_introBox.Text" xml:space="preserve">
-    <value>התאם אישית את סגנון ברירת המחדל עבור קטעי קו אופקיים</value>
-    <comment>settings sheet</comment>
-  </data>
-  <data name="LinesSheet_lengthLabel.Text" xml:space="preserve">
-    <value>אורך:</value>
-    <comment>settings sheet</comment>
-  </data>
-  <data name="LinesSheet_Title" xml:space="preserve">
-    <value>קווים אופקיים</value>
-    <comment>settings sheet</comment>
   </data>
   <data name="LinkDialog_groupBox.Text" xml:space="preserve">
     <value>דפים ב</value>
@@ -4243,6 +4247,12 @@ ISO-code then comma then language name</comment>
     <value>הפעל את הסריקה כעת</value>
     <comment>radio</comment>
   </data>
+  <data name="ScheduleScanDialog_nowWarning" xml:space="preserve">
+    <value>סריקת Hashtag יכולה לגרום להיענות איטית יותר בזמן השימוש ב-OneNote או לחוסר יכולת להפעיל מחדש את OneNote עד לסיום הסריקה.
+
+האם אתה בטוח שברצונך להפעיל את הסריקה כעת</value>
+    <comment>message box</comment>
+  </data>
   <data name="ScheduleScanDialog_Title" xml:space="preserve">
     <value>תזמן סריקת Hashtag</value>
     <comment>dialog title</comment>
@@ -5112,6 +5122,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Language" xml:space="preserve">
     <value>שפה</value>
+  </data>
+  <data name="word_Length" xml:space="preserve">
+    <value>מֶשֶׁך</value>
   </data>
   <data name="word_Limit" xml:space="preserve">
     <value>לְהַגבִּיל</value>

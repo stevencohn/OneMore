@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -16,6 +16,9 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class StrikeoutTasksCommand : Command
 	{
+		private string strikeColor;
+
+
 		public StrikeoutTasksCommand()
 		{
 		}
@@ -35,6 +38,7 @@ namespace River.OneMoreAddIn.Commands
 			};
 
 			await using var one = new OneNote(out var page, out var ns);
+
 			var indexes =
 				page.Root.Elements(ns + "TagDef")
 				.Where(e => symbols.Contains(int.Parse(e.Attribute("symbol").Value)))
@@ -46,44 +50,39 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			var elements = page.Root.Descendants(ns + "Tag")
+			var tags = page.Root.Descendants(ns + "Tag")
 				.Where(e => indexes.Contains(e.Attribute("index").Value));
 
-			if (!elements.Any())
+			if (!tags.Any())
 			{
 				return;
 			}
 
+			strikeColor = Settings.ColorsSheet.GetStrikethroughForeColor() ?? Style.Automatic;
+
 			var modified = false;
 
-			foreach (var element in elements)
+			foreach (var tag in tags)
 			{
-				var completed = element.Attribute("completed")?.Value == "true";
+				tag.GetAttributeValue<bool>("completed", out var completed);
 
-				var cdatas =
-					from e in element.NodesAfterSelf().OfType<XElement>()
-					where e.Name.LocalName == "T"
-					let c = e.Nodes().OfType<XCData>().FirstOrDefault()
-					where c != null
-					select c;
+				// each OE can only have 0..1 cdata but there can be more than one run after
+				// the tag if the text caret is position on the paragraph so must enumerate
+
+				var cdatas = tag.NodesAfterSelf().OfType<XElement>()
+					.Where(e => e.Name.LocalName == "T")
+					.Nodes().OfType<XCData>()
+					.ToList();
 
 				foreach (var cdata in cdatas)
 				{
-					if (!string.IsNullOrEmpty(cdata.Value))
+					if (!string.IsNullOrEmpty(cdata.Value)) // use Empty! not whitespace
 					{
-						modified |= RestyleText(cdata, completed);
+						modified |= completed
+							? RestyleWithStrikethrough(cdata)
+							: RestyleWithoutStrikethrough(cdata);
 					}
 				}
-
-				//var disabled = element.Attribute("disabled");
-				//if (completed && (disabled == null || disabled.Value != "true"))
-				//{
-				//	element.SetAttributeValue("disabled", "true");
-				//}
-				//else if (!completed && (disabled != null || disabled.Value == "true"))
-				//{
-				//	disabled.Remove();
-				//}
 			}
 
 			if (modified)
@@ -92,66 +91,99 @@ namespace River.OneMoreAddIn.Commands
 			}
 		}
 
-		private static bool RestyleText(XCData cdata, bool completed)
+
+		private bool RestyleWithStrikethrough(XCData cdata)
 		{
 			var modified = false;
 			var wrapper = cdata.GetWrapper();
-			var span = wrapper.Elements("span").FirstOrDefault(e => e.Attribute("style") != null);
 
-			if (completed)
+			var basicCss = new Style
 			{
-				if (span == null)
+				Color = strikeColor,
+				IsStrikethrough = true,
+				ApplyColors = true
+			}
+			.ToCss(withColor: true);
+
+			foreach (var node in wrapper.Nodes().ToList())
+			{
+				if (node is XText text)
 				{
-					wrapper.FirstNode.ReplaceWith(
-						new XElement("span",
-							new XAttribute("style", "text-decoration:line-through"),
-							cdata.Value
-						));
+					text.ReplaceWith(new XElement("span",
+						new XAttribute("style", basicCss),
+						text));
 
 					modified = true;
 				}
-				else
+				else if (node is XElement span)
 				{
+					// span always and only have a style attribute
 					var style = new Style(span.Attribute("style").Value);
 					if (!style.IsStrikethrough)
 					{
 						style.IsStrikethrough = true;
-						var css = style.ToCss(false);
-						if (string.IsNullOrEmpty(css))
-						{
-							wrapper.Value = span.Value;
-						}
-						else
-						{
-							span.SetAttributeValue("style", style.ToCss(false));
-						}
-						modified = true;
-					}
-				}
-			}
-			else
-			{
-				if (span != null)
-				{
-					var style = new Style(span.Attribute("style").Value);
-					if (style.IsStrikethrough)
-					{
-						style.IsStrikethrough = false;
-						var css = style.ToCss(false);
-						if (string.IsNullOrEmpty(css))
-						{
-							wrapper.Value = span.Value;
-						}
-						else
-						{
-							span.SetAttributeValue("style", style.ToCss(false));
-						}
+						style.Color = strikeColor;
+						style.ApplyColors = true;
+						span.SetAttributeValue("style", style.ToCss(withColor: true));
+
 						modified = true;
 					}
 				}
 			}
 
-			cdata.Value = wrapper.GetInnerXml().Replace("&amp;", "&");
+			if (modified)
+			{
+				if (cdata.Parent.Attribute("style") is XAttribute attribute)
+				{
+					var style = new Style(attribute.Value);
+					style.Color = strikeColor;
+					style.ApplyColors = true;
+					attribute.Value = style.ToCss(withColor: true);
+				}
+
+				cdata.Value = wrapper.GetInnerXml().Replace("&amp;", "&");
+			}
+
+			return modified;
+		}
+
+
+		private bool RestyleWithoutStrikethrough(XCData cdata)
+		{
+			var modified = false;
+			var wrapper = cdata.GetWrapper();
+
+			var emptyStyle = new Style();
+
+			// target only XElement/span nodes, ignore XText nodes
+			foreach (var span in wrapper.Nodes().OfType<XElement>().ToList())
+			{
+				// span always and only have a style attribute
+				var style = new Style(span.Attribute("style").Value);
+				if (style.IsStrikethrough)
+				{
+					style.IsStrikethrough = false;
+
+					// this will override any inline span styling with the CData
+					style.Color = Style.Automatic;
+
+					if (style.Equals(emptyStyle))
+					{
+						span.ReplaceWith(new XText(span.Value));
+					}
+					else
+					{
+						span.SetAttributeValue("style", style.ToCss(withColor: true));
+					}
+				}
+
+				modified = true;
+			}
+
+			if (modified)
+			{
+				cdata.Value = wrapper.GetInnerXml().Replace("&amp;", "&");
+			}
 
 			return modified;
 		}

@@ -134,7 +134,7 @@ namespace River.OneMoreAddIn.UI
 			if (Appearance == Appearance.Normal)
 			{
 				var size = SystemInformation.MenuCheckSize;
-				if (string.IsNullOrWhiteSpace(Text) && 
+				if (string.IsNullOrWhiteSpace(Text) &&
 					(Width < size.Width || Height < size.Height))
 				{
 					AutoSize = false;

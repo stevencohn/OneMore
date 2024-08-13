@@ -126,10 +126,10 @@ namespace River.OneMoreAddIn.Commands
 			Page page, string filename, string hpath = null, bool bookScope = false)
 		{
 			// expand C:\folder\name.htm --> C:\folder\name\name.htm
-			var name = Path.GetFileNameWithoutExtension(filename);				// "name"
-			var fame = PathHelper.CleanFileName(Path.GetFileName(filename));	// "name.htm"
-			var path = Path.Combine(Path.GetDirectoryName(filename), name);		// "c:\folder\name"
-			filename = Path.Combine(path, fame);								// "c:\folder\name\name.htm"
+			var name = Path.GetFileNameWithoutExtension(filename);              // "name"
+			var fame = PathHelper.CleanFileName(Path.GetFileName(filename));    // "name.htm"
+			var path = Path.Combine(Path.GetDirectoryName(filename), name);     // "c:\folder\name"
+			filename = Path.Combine(path, fame);                                // "c:\folder\name\name.htm"
 
 			if (filename.Length > PathHelper.MAX_PATH)
 			{
@@ -390,7 +390,7 @@ namespace River.OneMoreAddIn.Commands
 			catch (Exception exc)
 			{
 				logger.WriteLine("error publishig page as Markdown", exc);
-				UI.MoreMessageBox.ShowError(null, 
+				UI.MoreMessageBox.ShowError(null,
 					string.Format(Resx.SaveAs_Error, "Markdown") + "\n\n" + exc.Message);
 			}
 		}
@@ -408,7 +408,7 @@ namespace River.OneMoreAddIn.Commands
 			try
 			{
 				var path = Path.GetDirectoryName(filename);
-					
+
 				if (withAttachments)
 				{
 					CopyXmlAttachments(root, path);
@@ -426,7 +426,7 @@ namespace River.OneMoreAddIn.Commands
 			catch (Exception exc)
 			{
 				logger.WriteLine("error publishig page as XML", exc);
-				UI.MoreMessageBox.ShowError(null, 
+				UI.MoreMessageBox.ShowError(null,
 					string.Format(Resx.SaveAs_Error, "XML") + "\n\n" + exc.Message);
 			}
 		}

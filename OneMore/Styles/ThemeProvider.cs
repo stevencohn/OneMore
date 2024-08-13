@@ -39,7 +39,7 @@ namespace River.OneMoreAddIn.Styles
 				theme = Load(key);
 				return;
 			}
-			
+
 			// last ditch, load something!
 			var defroot = XElement.Parse(Resx.DefaultStyles);
 			theme = new Theme(defroot, defroot.Attribute("name").Value);

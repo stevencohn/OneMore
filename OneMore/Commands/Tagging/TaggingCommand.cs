@@ -20,8 +20,8 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private const string BankStyleName = "omWordBank";
 
-		private const string RibbonSymbol = "26";	// the award ribbon Tag symbol
-		private const int BankType = 23;			// custom TagDef type for word bank outline
+		private const string RibbonSymbol = "26";   // the award ribbon Tag symbol
+		private const int BankType = 23;            // custom TagDef type for word bank outline
 
 
 		public TaggingCommand()

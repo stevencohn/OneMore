@@ -215,7 +215,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var userChecked = 0;
 			var userUnchecked = 0;
-			foreach (var child in node.Nodes.Where(n => 
+			foreach (var child in node.Nodes.Where(n =>
 				n.Tag is OutlookTask task && string.IsNullOrEmpty(task.OneNoteTaskID)))
 			{
 				if (child.IsChecked)
@@ -245,7 +245,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private IEnumerable<OutlookTask> GetSelectedTask(Node node, List<OutlookTask> tasks)
 		{
-			var t = node.Nodes.Where(n => n.Tag is OutlookTask task && 
+			var t = node.Nodes.Where(n => n.Tag is OutlookTask task &&
 				string.IsNullOrEmpty(task.OneNoteTaskID) && n.IsChecked)
 				.Select(n => n.Tag as OutlookTask);
 

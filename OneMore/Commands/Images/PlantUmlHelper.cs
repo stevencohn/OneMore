@@ -75,7 +75,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					if (response.StatusCode == HttpStatusCode.BadRequest)
 					{
-						var messages = string.Join(Environment.NewLine, 
+						var messages = string.Join(Environment.NewLine,
 							response.Headers.GetValues(DiagramErrorHeader));
 
 						ErrorMessages = $"{response.ReasonPhrase}\n{messages}";

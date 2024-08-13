@@ -241,7 +241,7 @@ namespace River.OneMoreAddIn.Commands
 								var pid = page.Attribute("ID").Value;
 								pids.Add(pid);
 
-								if (forceThru || 
+								if (forceThru ||
 									page.Attribute("lastModifiedTime").Value.CompareTo(lastTime) > 0)
 								{
 									if (await ScanPage(one,

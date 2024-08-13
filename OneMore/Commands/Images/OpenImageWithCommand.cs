@@ -110,7 +110,7 @@ namespace River.OneMoreAddIn.Commands
 			// reader-makes-right...
 			var settings = new SettingsProvider();
 
-			var editor = 
+			var editor =
 				settings.GetCollection(nameof(ImagesSheet)).Get<string>("imageViewer")
 				?? settings.GetCollection("images").Get("viewer", "mspaint");
 

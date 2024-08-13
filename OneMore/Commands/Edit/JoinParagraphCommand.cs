@@ -199,7 +199,7 @@ namespace River.OneMoreAddIn.Commands
 			// collapse soft-breaks
 			var text = cdata.Value.Replace("<br>\n", " ").Trim();
 
-			if ((index < runs.Count - 1) && 
+			if ((index < runs.Count - 1) &&
 				(run.Parent != runs[index + 1].Parent) &&
 				!text.EndsWithWhitespace())
 			{

@@ -78,7 +78,7 @@ namespace River.OneMoreAddIn.Commands
 
 			var meta = page.BodyOutlines
 				.Descendants(ns + "Meta")
-				.FirstOrDefault(e => 
+				.FirstOrDefault(e =>
 					e.Attribute("name") is XAttribute attr && attr.Value == Toc.MetaName);
 
 			if (meta is null)

@@ -34,5 +34,5 @@ namespace River.OneMoreAddIn.Commands
 		/// </summary>
 		[JsonProperty("pinned")]
 		public List<HistoryRecord> Pinned { get; set; }
-	}   
+	}
 }

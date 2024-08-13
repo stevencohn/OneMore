@@ -376,7 +376,7 @@ namespace River.OneMoreAddIn.Styles
 		/// otherwise include only attributes applicable to a CDATA span
 		/// </param>
 		/// <returns></returns>
-		public string ToCss(bool all = true)
+		public string ToCss(bool all = true, bool withColor = true)
 		{
 			var builder = new StringBuilder();
 
@@ -392,7 +392,7 @@ namespace River.OneMoreAddIn.Styles
 
 			if (ApplyColors)
 			{
-				if (!string.IsNullOrEmpty(Color) && !Color.Equals(Automatic) && all)
+				if (!string.IsNullOrEmpty(Color) && !Color.Equals(Automatic) && (all || withColor))
 					builder.Append("color:" + FormatColor(Color) + ";");
 
 				if (!string.IsNullOrEmpty(Highlight) && !Highlight.Equals(Automatic))

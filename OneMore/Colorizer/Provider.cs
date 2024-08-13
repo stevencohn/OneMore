@@ -4,12 +4,12 @@
 
 namespace River.OneMoreAddIn.Colorizer
 {
+	using Newtonsoft.Json;
 	using System;
 	using System.Collections.Generic;
 	using System.IO;
 	using System.Linq;
 	using System.Text.RegularExpressions;
-	using Newtonsoft.Json;
 
 
 	internal static class Provider
@@ -21,7 +21,7 @@ namespace River.OneMoreAddIn.Colorizer
 		/// <param name="path">The path to the language json definition file</param>
 		/// <returns>An ILanguage describing the langauge</returns>
 		public static ILanguage LoadLanguage(string path)
-		{			
+		{
 			Language language = null;
 
 			try

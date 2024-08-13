@@ -20,6 +20,7 @@ namespace River.OneMoreAddIn.Settings
 			General,
 			Aliases,
 			Colorizer,
+			Colors,
 			Context,
 			Favorites,
 			FileImport,
@@ -28,7 +29,6 @@ namespace River.OneMoreAddIn.Settings
 			Images,
 			Keyboard,
 			Navigator,
-			Lines,
 			Plugins,
 			QuickNotes,
 			Ribbon,
@@ -58,13 +58,13 @@ namespace River.OneMoreAddIn.Settings
 
 				navTree.Nodes["generalNode"].Text = Resx.GeneralSheet_Title;
 				navTree.Nodes["colorizerNode"].Text = Resx.ColorizerSheet_Title;
+				navTree.Nodes["colorsNode"].Text = Resx.ColorsSheet_Title;
 				navTree.Nodes["aliasNode"].Text = Resx.AliasSheet_Title;
 				navTree.Nodes["contextNode"].Text = Resx.ContextMenuSheet_Title;
 				navTree.Nodes["favoritesNode"].Text = Resx.word_Favorites;
 				navTree.Nodes["fileImportNode"].Text = Resx.FileImportSheet_Title;
 				navTree.Nodes["hashtagsNode"].Text = Resx.word_Hashtags;
 				navTree.Nodes["highlightNode"].Text = Resx.HighlightsSheet_Title;
-				navTree.Nodes["linesNode"].Text = Resx.LinesSheet_Title;
 				navTree.Nodes["imagesNode"].Text = Resx.word_Images;
 				navTree.Nodes["keyboardNode"].Text = Resx.SettingsDialog_keyboardNode_Text;
 				navTree.Nodes["navigatorNode"].Text = Resx.word_Navigator;
@@ -122,13 +122,13 @@ namespace River.OneMoreAddIn.Settings
 				{
 					0 => new GeneralSheet(provider),
 					1 => new ColorizerSheet(provider),
-					2 => new AliasSheet(provider),
-					3 => new ContextMenuSheet(provider),
-					4 => new FavoritesSheet(provider, ribbon),
-					5 => new FileImportSheet(provider),
-					6 => new HashtagSheet(provider),
-					7 => new HighlightsSheet(provider),
-					8 => new LinesSheet(provider),
+					2 => new ColorsSheet(provider),
+					3 => new AliasSheet(provider),
+					4 => new ContextMenuSheet(provider),
+					5 => new FavoritesSheet(provider, ribbon),
+					6 => new FileImportSheet(provider),
+					7 => new HashtagSheet(provider),
+					8 => new HighlightsSheet(provider),
 					9 => new ImagesSheet(provider),
 					10 => new KeyboardSheet(provider, ribbon),
 					11 => new NavigatorSheet(provider),

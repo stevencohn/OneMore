@@ -28,7 +28,7 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		/// <param name="wrapper">The COM Stream wrapper</param>
 
-		public ReadOnlyStream (Stream wrapper)
+		public ReadOnlyStream(Stream wrapper)
 		{
 			stream = wrapper;
 		}
@@ -37,7 +37,7 @@ namespace River.OneMoreAddIn
 		#region IDisposable Support
 		private bool disposed = false; // To detect redundant calls
 
-		protected virtual void Dispose (bool disposing)
+		protected virtual void Dispose(bool disposing)
 		{
 			if (!disposed)
 			{
@@ -55,7 +55,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public void Dispose ()
+		public void Dispose()
 		{
 			Dispose(true);
 			GC.SuppressFinalize(this);
@@ -76,7 +76,7 @@ namespace River.OneMoreAddIn
 		/// Upon return, contains the new stream object.
 		/// </param>
 
-		public void Clone (out IStream ppstm)
+		public void Clone(out IStream ppstm)
 		{
 			ppstm = new ReadOnlyStream(stream);
 		}
@@ -90,7 +90,7 @@ namespace River.OneMoreAddIn
 		/// A value that controls how the changes for the stream object are committed.
 		/// </param>
 
-		public void Commit (int grfCommitFlags)
+		public void Commit(int grfCommitFlags)
 		{
 			stream.Flush();
 		}
@@ -107,7 +107,7 @@ namespace River.OneMoreAddIn
 		/// <param name="pcbRead">Upon return, the actual number of bytes read from the source.</param>
 		/// <param name="pcbWritten">Upon return, the actual number of bytes written to the destination.</param>
 
-		public void CopyTo (IStream pstm, long cb, IntPtr pcbRead, IntPtr pcbWritten)
+		public void CopyTo(IStream pstm, long cb, IntPtr pcbRead, IntPtr pcbWritten)
 		{
 			// N/A
 		}
@@ -123,7 +123,7 @@ namespace River.OneMoreAddIn
 		/// <param name="cb">The length of the range, in bytes, to restrict.</param>
 		/// <param name="dwLockType">The requested restriction on accessing the range.</param>
 
-		public void LockRegion (long libOffset, long cb, int dwLockType)
+		public void LockRegion(long libOffset, long cb, int dwLockType)
 		{
 			throw new NotSupportedException("ReadOnlyStream does not support LockRegion");
 		}
@@ -143,7 +143,7 @@ namespace River.OneMoreAddIn
 		/// from the stream object.
 		/// </param>
 
-		public void Read (byte[] pv, int cb, IntPtr pcbRead)
+		public void Read(byte[] pv, int cb, IntPtr pcbRead)
 		{
 			Marshal.WriteInt64(pcbRead, (long)stream.Read(pv, 0, cb));
 		}
@@ -156,7 +156,7 @@ namespace River.OneMoreAddIn
 		/// last System.Runtime.InteropServices.ComTypes.IStream.Commit(System.Int32) call.
 		/// </summary>
 
-		public void Revert ()
+		public void Revert()
 		{
 			throw new NotSupportedException("ReadOnlyStream does not support Revert");
 		}
@@ -177,7 +177,7 @@ namespace River.OneMoreAddIn
 		/// Upon return, contains the offset of the seek pointer from the beginning of the stream.
 		/// </param>
 
-		public void Seek (long dlibMove, int dwOrigin, IntPtr plibNewPosition)
+		public void Seek(long dlibMove, int dwOrigin, IntPtr plibNewPosition)
 		{
 			Marshal.WriteInt64(plibNewPosition, stream.Position);
 
@@ -213,7 +213,7 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		/// <param name="libNewSize">The new size of the stream in bytes.</param>
 
-		public void SetSize (long libNewSize)
+		public void SetSize(long libNewSize)
 		{
 			stream.SetLength(libNewSize);
 		}
@@ -227,7 +227,7 @@ namespace River.OneMoreAddIn
 		/// Filter of members to not return in the struct thus saving memory.
 		/// </param>
 
-		public void Stat (out STATSTG pstatstg, int grfStatFlag)
+		public void Stat(out STATSTG pstatstg, int grfStatFlag)
 		{
 			pstatstg = new STATSTG
 			{
@@ -251,7 +251,7 @@ namespace River.OneMoreAddIn
 		/// <param name="cb">The length, in bytes, of the range to restrict.</param>
 		/// <param name="dwLockType">The access restrictions previously placed on the range.</param>
 
-		public void UnlockRegion (long libOffset, long cb, int dwLockType)
+		public void UnlockRegion(long libOffset, long cb, int dwLockType)
 		{
 			throw new NotSupportedException("ReadOnlyStream does not support UnlockRegion");
 		}
@@ -271,7 +271,7 @@ namespace River.OneMoreAddIn
 		/// the actual number of bytes written.
 		/// </param>
 
-		public void Write (byte[] pv, int cb, IntPtr pcbWritten)
+		public void Write(byte[] pv, int cb, IntPtr pcbWritten)
 		{
 			Marshal.WriteInt64(pcbWritten, 0L);
 			stream.Write(pv, 0, cb);

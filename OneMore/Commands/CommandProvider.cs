@@ -95,8 +95,7 @@ namespace River.OneMoreAddIn
 			var setprovider = new SettingsProvider();
 
 			// TODO: temporary Page tagging
-			var tagging = setprovider.GetCollection("tagging");
-			if (tagging.Get("converted", false))
+			if (new Commands.LegacyTaggingConverter().IsConverted())
 			{
 				if (commands.Find(c => c.Method.Name == "TaggedCmd") is CommandInfo cmd1)
 				{
@@ -118,7 +117,7 @@ namespace River.OneMoreAddIn
 			{
 				foreach (var setting in settings.Elements())
 				{
-					var command = commands.Find(c => 
+					var command = commands.Find(c =>
 						c.Method.Name == setting.Attribute("methodName").Value);
 
 					if (command != null)

@@ -59,7 +59,7 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 			{
 				return RefreshOption.Build;
 			}
-			
+
 			await one.NavigateTo(pageID);
 
 			return RefreshOption.Refresh;

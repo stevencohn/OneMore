@@ -1,0 +1,62 @@
+{
+  "name": "bash",
+  "aliases": [
+    "sh"
+  ],
+  "rules": [
+    {
+      "pattern": "(#.*?)\\r?$",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      // TODO: embedded variables
+      "pattern": "('[^\\n]*?(?<!\\\\)')",
+      "captures": [
+        "String"
+      ]
+    },
+    {
+      // TODO: embedded variables
+      "pattern": "(?s)(\"[^\\n]*?(?<!\\\\)\")",
+      "captures": [
+        "String"
+      ]
+    },
+    {
+      // This one was particularlly troublesome, needing to fully specify both captures:
+      // one for the "$$" list, and one for the "$HOME" list, including starting $ token
+      // and different \b boundary specifiers. The "$$" needs a look-behind so it doesn't
+      // falsely treat the second token as a boundary, while the HOME list needs a simple \b
+      // specifier. Altogether, this made it match left-to-right and stop here rather than
+      // proceeding to the ShellUserVariable pattern below,
+      "pattern": "(?:(?:(\\$(?:\\$|\\#|\\@|\\*|\\?)(?<!\\b)))|(\\$(?:HOME|HOSTNAME|NAME|LINENO|PATH|PWD|SHELL|USER|UID|0)(?:\\b)))",
+      "captures": [
+        // there are, in fact, two captures in the pattern, but only one should match at a time
+        // need both to make Verify Compiler.ValidateRule happy
+        "ShellKnownVariable",
+        "ShellKnownVariable"
+      ]
+    },
+    {
+      "pattern": "(\\$[\\p{L}_][\\p{L}\\p{N}_]*(?:\\b))",
+      "captures": [
+        "ShellUserVariable"
+      ]
+    },
+    {
+
+      "pattern": "\\b(if|then|elif|else|fi|time|for|in|until|while|do|done|case|esac|coproc|select|function)\\b",
+      "captures": [
+        "Keyword"
+      ]
+    },
+    {
+      "pattern": "\\b([0-9]{1,})\\b",
+      "captures": [
+        "Number"
+      ]
+    }
+  ]
+}

@@ -193,7 +193,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (themes.Count == 0)
 			{
-				themes.Insert(0, new TableTheme { Name = Resx.phrase_NewStyle});
+				themes.Insert(0, new TableTheme { Name = Resx.phrase_NewStyle });
 				newButton.Enabled = false;
 			}
 			else

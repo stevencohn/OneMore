@@ -6,7 +6,6 @@ namespace River.OneMoreAddIn.Colorizer
 {
 	using System.Collections.Generic;
 	using System.Drawing;
-	using System.Linq;
 	using System.Text;
 
 

@@ -30,8 +30,8 @@ namespace River.OneMoreAddIn.Models
 		#endregion
 
 		private readonly XNamespace ns;
-	
-		
+
+
 		public SectionEditor(XElement section)
 		{
 			Section = section;
@@ -115,7 +115,7 @@ namespace River.OneMoreAddIn.Models
 			}
 
 			var updated = false;
-            if (child != parent.NextNode)
+			if (child != parent.NextNode)
 			{
 				// move page to top of the list of children
 				child.Remove();
@@ -163,7 +163,7 @@ namespace River.OneMoreAddIn.Models
 			var index = Section.Elements(ns + "Page")
 				.Select(e => regex.Match(e.Attribute("name").Value))
 				.Where(m => m.Success)
-				.Max(m => m.Groups.Count > 1 && m.Groups[2].Success 
+				.Max(m => m.Groups.Count > 1 && m.Groups[2].Success
 					? int.Parse(m.Groups[2].Value) : 0) + 1;
 
 			// get the sytlized content so we can update the index in place

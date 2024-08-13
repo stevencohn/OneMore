@@ -97,7 +97,7 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (var run in runs.ToList())
 			{
-                run.SetAttributeValue("lang", "yo");
+				run.SetAttributeValue("lang", "yo");
 				run.Parent.Attributes("spaceAfter").Remove();
 				run.Parent.Attributes("spaceBefore").Remove();
 				var runoffs = new List<XElement>();

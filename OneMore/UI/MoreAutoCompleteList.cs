@@ -4,11 +4,14 @@
 
 #pragma warning disable IDE0060 // Remove unused parameter
 
+//#define DEBUGLOG // set to DEBUGLOG to enable the DebugLog() conditional method
+
 namespace River.OneMoreAddIn.UI
 {
 	using System;
 	using System.Collections.Generic;
 	using System.ComponentModel;
+	using System.Diagnostics;
 	using System.Drawing;
 	using System.Linq;
 	using System.Text.RegularExpressions;
@@ -40,7 +43,7 @@ namespace River.OneMoreAddIn.UI
 		private readonly Font highFont;         // font of matched substring
 		private readonly List<Cmd> commands;    // original list of commands
 		private readonly List<Cmd> matches;     // dynamic list of matched commands
-		private readonly ThemeManager manager;	// color manager
+		private readonly ThemeManager manager;  // color manager
 		private string boxtext;                 // the current/previous text in the Owner TextBox
 
 		// each command name is described by a Cmd entry
@@ -48,9 +51,9 @@ namespace River.OneMoreAddIn.UI
 		{
 			// incoming descriptor is of the form [category:]name[|keys]
 
-			public string Category;				// category part
+			public string Category;             // category part
 			public string Name;                 // name part
-			public string Keys;					// key sequence part
+			public string Keys;                 // key sequence part
 			public bool Recent;                 // true if in "recently used" category
 		}
 
@@ -193,6 +196,8 @@ namespace River.OneMoreAddIn.UI
 			// currently, only allow TextBox as the owner control
 			if (control is TextBox box)
 			{
+				DebugLog("ACL SetAutoCompleteList...");
+
 				Owner = box;
 				Width = Math.Max(box.Width, 300);
 				box.KeyDown += DoKeydown;
@@ -215,6 +220,8 @@ namespace River.OneMoreAddIn.UI
 					// TODO: do we want to disconnect this handler once initialized?
 					box.GotFocus += ShowPopup;
 				}
+
+				DebugLog("ACL SetAutoCompleteList done");
 			}
 			else
 			{
@@ -306,13 +313,17 @@ namespace River.OneMoreAddIn.UI
 
 		private void ShowPopup(object sender, EventArgs e)
 		{
+			DebugLog("ACL ShowPopup...");
+
 			if (Items.Count == 0 || popup?.Visible == true)
 			{
+				DebugLog("ACL SetAutoCompleteList !count");
 				return;
 			}
 
 			if (sender is TextBox box && !box.Visible)
 			{
+				DebugLog("ACL SetAutoCompleteList !visible");
 				popup?.Close();
 				return;
 			}
@@ -343,6 +354,8 @@ namespace River.OneMoreAddIn.UI
 
 				popup.Show(Owner, new Point(0, Owner.Height));
 			}
+
+			DebugLog("ACL SetAutoCompleteList done");
 		}
 		#endregion private HidePopup and ShowPopUp
 
@@ -350,10 +363,11 @@ namespace River.OneMoreAddIn.UI
 		#region Overrides including OnDrawSubItem
 		protected override void OnMouseClick(MouseEventArgs e)
 		{
+			DebugLog("ACL mouseclick");
+
 			base.OnMouseClick(e);
 			var info = HitTest(e.Location);
 
-			Logger.Current.WriteLine("mouseclick");
 			if (info?.Item is ListViewItem item)
 			{
 				item.Selected = true;
@@ -365,6 +379,8 @@ namespace River.OneMoreAddIn.UI
 
 		protected override void OnClientSizeChanged(EventArgs e)
 		{
+			DebugLog("ACL onclientsize changed");
+
 			base.OnClientSizeChanged(e);
 			if (Columns.Count > 0)
 			{
@@ -378,7 +394,7 @@ namespace River.OneMoreAddIn.UI
 			Brush back;
 			Brush fore;
 			Brush high;
-			
+
 			if (e.Item.Selected)
 			{
 				back = new SolidBrush(manager.GetColor("Highlight"));
@@ -550,6 +566,8 @@ namespace River.OneMoreAddIn.UI
 
 		private void DoTextChanged(object sender, EventArgs e)
 		{
+			DebugLog("ACL textchange");
+
 			// as the TextBox.Text changes, this finds matches in the command list and
 			// highlights the first one; the TextBox value is not modified here...
 
@@ -788,6 +806,14 @@ namespace River.OneMoreAddIn.UI
 					EnsureVisible(SelectedIndices.Count > 0 ? SelectedIndices[0] : 0);
 				}
 			}
+		}
+
+
+		// #define DEBUGLOG to enable this method; otherwise compiler will remove it entirely
+		[Conditional("DEBUGLOG")]
+		private void DebugLog(string message)
+		{
+			Logger.Current.WriteLine(message);
 		}
 	}
 }

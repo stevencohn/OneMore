@@ -644,25 +644,43 @@ namespace OneMoreCalendar
 		{
 			if (((MoreButton)sender).Tag is CalendarDay day)
 			{
-				// if we have at least one Hyperlink then we've been here before!
-				if (!day.Pages.Exists(p => p.Hyperlink is not null))
+				// fill and correct hyperlinks...
+
+				var candidates = day.Pages
+					.Where(p => p.Hyperlink is null)
+					.Select(p => p);
+
+				if (candidates.Any())
 				{
+					var empties = new CalendarPages(candidates);
+
 					var one = new OneNoteProvider();
-					await one.GetPageLinks(day.Pages);
+					await one.GetPageLinks(empties);
 
-					// hyperlinks are returned from the OneNote API backwards from the expected
-					// format so this matches the two parts that needs to be swapped
-					var regex = new Regex(@"onenote:(#Boxing&.+?&end)&base-path=(https:.+)");
+					// hyperlinks may be returned from the OneNote API backwards from the
+					// expected format so this matches the two parts that needs to be swapped
+					var regex = new Regex(@"onenote:(#.+?&end)&base-path=(https:.+)");
 
-					foreach (var page in day.Pages)
+					foreach (var page in empties)
 					{
-						var match = regex.Match(page.Hyperlink);
-						if (match.Success)
+						if (page.Hyperlink.StartsWith("onenote:https:"))
 						{
-							page.Hyperlink = $"onenote:{match.Groups[2].Value}{match.Groups[1].Value}";
+							// hyperlink is correct, just strip onenote: part
+							page.Hyperlink = page.Hyperlink.Substring(8);
+						}
+						else
+						{
+							var match = regex.Match(page.Hyperlink);
+							if (match.Success)
+							{
+								// hyperlink is reversed, so correct it
+								page.Hyperlink = $"onenote:{match.Groups[2].Value}{match.Groups[1].Value}";
+							}
 						}
 					}
 				}
+
+				// copy...
 
 				var pages = day.Pages.Where(p => p.Hyperlink is not null).ToList();
 				if (pages.Any())

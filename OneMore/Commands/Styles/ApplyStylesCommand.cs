@@ -228,7 +228,7 @@ namespace River.OneMoreAddIn.Commands
 				.Elements(ns + "Outline")
 				.Descendants(ns + "OE")
 				.Where(e => e.Attribute("quickStyleIndex")?.Value == index &&
-					!e.Elements(ns + "Meta").Any(a => 
+					!e.Elements(ns + "Meta").Any(a =>
 						a.Attribute("name").Value.StartsWith("omfootnote") ||
 						a.Attribute("name").Value.StartsWith("omtaggingbank"))
 					);
