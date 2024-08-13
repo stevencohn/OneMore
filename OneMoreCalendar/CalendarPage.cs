@@ -12,7 +12,18 @@ namespace OneMoreCalendar
 	/// <summary>
 	/// 
 	/// </summary>
-	internal class CalendarPages : List<CalendarPage> { }
+	internal class CalendarPages : List<CalendarPage>
+	{
+		public CalendarPages()
+			: base()
+		{
+		}
+
+		public CalendarPages(IEnumerable<CalendarPage> pages)
+			: base(pages)
+		{
+		}
+	}
 
 
 	/// <summary>
