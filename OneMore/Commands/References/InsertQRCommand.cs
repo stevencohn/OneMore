@@ -19,7 +19,7 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class InsertQRCommand : Command
 	{
-		private const string GetUri = "http://chart.apis.google.com/chart?cht=qr&chs={1}x{1}&chl={0}";
+		private const string GetUri = "https://api.qrserver.com/v1/create-qr-code/?data={0}&size={1}x{1}";
 		private const int Size = 250;
 		private const int MaxLength = 2048;
 
@@ -46,7 +46,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			var url = string.Format(GetUri, HttpUtility.HtmlEncode(text), Size);
+			var url = string.Format(GetUri, HttpUtility.UrlEncode(text), Size);
 
 			if (url.Length > MaxLength)
 			{
