@@ -325,7 +325,13 @@ namespace River.OneMoreAddIn.Commands
 
 			await using var one = new OneNote();
 			var page = await one.GetPage(pageID ?? one.CurrentPageId, OneNote.PageDetail.Basic);
-			var headings = page.GetHeadings(one);
+
+			logger.Verbose();
+			logger.Verbose($"LoadPageHeadings [{page.Title}]");
+			logger.StartClock();
+
+			var headings = page.GetHeadings(one, linked: false);
+			logger.VerboseTime($"GetHeadings <---", keepRunning: true);
 
 			pageHeadLabel.Text = page.TitleID == null
 				? Resx.phrase_QuickNote
@@ -333,6 +339,7 @@ namespace River.OneMoreAddIn.Commands
 
 			pageBox.Controls.Clear();
 
+			// inject the page Title as the top-most Heading
 			if (page.TitleID != null)
 			{
 				var ns = page.Root.GetNamespaceOfPrefix(OneNote.Prefix);
@@ -345,7 +352,8 @@ namespace River.OneMoreAddIn.Commands
 				{
 					headings.Insert(0, new()
 					{
-						Link = page.GetHyperlink(root, one),
+						// defer URL lookup until clicked
+						Link = string.Empty,
 						Root = root,
 						Text = page.Title
 					});
@@ -354,11 +362,15 @@ namespace River.OneMoreAddIn.Commands
 
 			if (headings.Count == 0)
 			{
+				logger.VerboseTime("LoadPageHeadings done, 0 headings");
 				return;
 			}
 
 			var font = new Font("Segoe UI", 8.5F, FontStyle.Regular, GraphicsUnit.Point);
 			trash.Add(font);
+
+			logger.VerboseTime($"suspending layout", keepRunning: true);
+			pageBox.SuspendLayout();
 
 			var margin = SystemInformation.VerticalScrollBarWidth * 2;
 
@@ -389,17 +401,33 @@ namespace River.OneMoreAddIn.Commands
 					if (s is MoreLinkLabel label)
 					{
 						await using var one = new OneNote();
-						var heading = (Models.Heading)label.Tag;
+						var heading = (Heading)label.Tag;
+						if (heading.Link == string.Empty)
+						{
+							logger.Verbose($"fetching URL for [{heading.Text}]");
+							heading.Link = page.GetHyperlink(heading.Root, one);
+						}
+						else
+						{
+							logger.Verbose($"found URL for [{heading.Text}]");
+						}
+
 						await one.NavigateTo(heading.Link);
 					}
 				});
 
 				pageBox.Controls.Add(link);
 				pageBox.SetFlowBreak(link, true);
+
 				((ILoadControl)link).OnLoad();
 			}
 
+			pageBox.ResumeLayout();
+			logger.VerboseTime($"resumed layout", keepRunning: true);
+
 			await UpdateTitles(page);
+
+			logger.VerboseTime("LoadPageHeadings done");
 		}
 
 
@@ -655,7 +683,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					// user clicked ths page in navigator; don't reorder the list or they'll lose
 					// their context and get confused, but refresh the headings pane
-					await LoadPageHeadings(log.History[0].PageId);
+					await ShowPageOutline(log.History[0]);
 					visitedID = null;
 					return;
 				}

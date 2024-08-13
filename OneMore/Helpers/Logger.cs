@@ -27,8 +27,8 @@ namespace River.OneMoreAddIn
 		private readonly bool stdio;
 		private readonly bool verbose;
 		private string preamble;
+		private string timeBar;
 		private bool isNewline;
-		private bool isVerbose;
 		private bool isDisposed;
 		private bool writeHeader;
 		private TextWriter writer;
@@ -45,9 +45,9 @@ namespace River.OneMoreAddIn
 				designMode ? $"{appname}-design.log" : $"{appname}.log");
 
 			preamble = string.Empty;
+			timeBar = "|";
 			writer = null;
 			isNewline = true;
-			isVerbose = false;
 			isDisposed = false;
 			writeHeader = true;
 
@@ -364,9 +364,9 @@ namespace River.OneMoreAddIn
 		{
 			if (verbose)
 			{
-				isVerbose = true;
+				timeBar = "+";
 				Write(message);
-				isVerbose = false;
+				timeBar = "|";
 			}
 		}
 
@@ -375,9 +375,9 @@ namespace River.OneMoreAddIn
 		{
 			if (verbose)
 			{
-				isVerbose = true;
+				timeBar = "+";
 				WriteLine();
-				isVerbose = false;
+				timeBar = "|";
 			}
 		}
 
@@ -386,9 +386,9 @@ namespace River.OneMoreAddIn
 		{
 			if (verbose)
 			{
-				isVerbose = true;
+				timeBar = "+";
 				WriteLine(message);
-				isVerbose = false;
+				timeBar = "|";
 			}
 		}
 
@@ -397,19 +397,29 @@ namespace River.OneMoreAddIn
 		{
 			if (verbose)
 			{
-				isVerbose = true;
+				timeBar = "+";
 				WriteLine(element);
-				isVerbose = false;
+				timeBar = "|";
 			}
 		}
 
+
+		public void VerboseTime(string message, bool keepRunning = false)
+		{
+			if (verbose)
+			{
+				timeBar = "+";
+				WriteTime(message, keepRunning);
+				timeBar = "|";
+			}
+		}
 
 
 		public void WriteTime(string message, bool keepRunning = false)
 		{
 			if (clock == null)
 			{
-				WriteLine($"{message} @ <no time to report>");
+				WriteLine($"--:--.-- {message} @ <no time to report>");
 				return;
 			}
 
@@ -418,7 +428,7 @@ namespace River.OneMoreAddIn
 				clock.Stop();
 			}
 
-			WriteLine($"{message} @ {clock.Elapsed:mm\\:ss\\.ff}");
+			WriteLine($"{clock.Elapsed:mm\\:ss\\.ff} {message}");
 		}
 
 
@@ -426,8 +436,9 @@ namespace River.OneMoreAddIn
 		{
 			if (!stdio)
 			{
-				var bar = isVerbose ? ">" : "|";
-				return $"{Thread.CurrentThread.ManagedThreadId:00}|{DateTime.Now:hh:mm:ss.fff}{bar} {preamble}";
+				return
+					$"{Thread.CurrentThread.ManagedThreadId:00}|" +
+					$"{DateTime.Now:hh:mm:ss.fff}{timeBar} {preamble}";
 			}
 
 			return string.Empty;

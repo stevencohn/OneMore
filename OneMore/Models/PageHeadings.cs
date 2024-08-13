@@ -29,7 +29,16 @@ namespace River.OneMoreAddIn.Models
 		 * </one:OE>
 		 */
 
-		public List<Heading> GetHeadings(OneNote one)
+		/// <summary>
+		/// Load the Headings for the page.
+		/// </summary>
+		/// <param name="one"></param>
+		/// <param name="linked">
+		/// True to lookup hyperlinks and set the Link property for each heading.
+		/// Use false when deferring the lookup for performance, such as Navigator
+		/// </param>
+		/// <returns></returns>
+		public List<Heading> GetHeadings(OneNote one, bool linked = true)
 		{
 			quickStyles = GetQuickStyles();
 
@@ -89,7 +98,7 @@ namespace River.OneMoreAddIn.Models
 								Root = block,
 								// text might include <style...
 								Text = text,
-								Link = GetHyperlink(block, one),
+								Link = linked ? GetHyperlink(block, one) : string.Empty,
 								Style = style
 							};
 
@@ -111,7 +120,7 @@ namespace River.OneMoreAddIn.Models
 								Root = block,
 								// text might include <style...
 								Text = text,
-								Link = GetHyperlink(block, one),
+								Link = linked ? GetHyperlink(block, one) : string.Empty,
 								Style = style
 							};
 
