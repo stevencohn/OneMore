@@ -826,6 +826,7 @@ namespace River.OneMoreAddIn
 		public async Task SearchHashtagsCmd(IRibbonControl control)
 			=> await factory.Run<HashtagCommand>();
 
+		// added to page context menu via Search Engine settings
 		public async Task SearchWebCmd(IRibbonControl control)
 			=> await factory.Run<SearchWebCommand>(control.Tag); // tag=engine
 
