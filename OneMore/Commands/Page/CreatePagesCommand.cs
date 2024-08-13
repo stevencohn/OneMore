@@ -102,9 +102,6 @@ namespace River.OneMoreAddIn.Commands
 		{
 			onlySelected = false;
 
-
-			System.Diagnostics.Debugger.Launch();
-
 			var range = new Models.SelectionRange(page);
 			var selections = range.GetSelections(anyElement: true);
 
@@ -113,7 +110,7 @@ namespace River.OneMoreAddIn.Commands
 				return selections.First();
 			}
 
-			if (range.Scope == SelectionScope.Run || // allow single T
+			if (range.Scope == SelectionScope.Run || // allow single List item
 				range.Scope == SelectionScope.Range ||
 				range.Scope == SelectionScope.Block)
 			{
