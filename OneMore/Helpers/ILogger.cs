@@ -134,6 +134,15 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// If verbose logging is enabled, stops the stopwatch and Writes a message along
+		/// with the mm.ss timespan since the stopwatch was started.
+		/// </summary>
+		/// <param name="message">The message to log</param>
+		/// <param name="keepRunning">True to keep the timer running</param>
+		void VerboseTime(string message, bool keepRunning = false);
+
+
+		/// <summary>
 		/// Stops the stopwatch and Writes a message along with the mm.ss timespan
 		/// since the stopwatch was started.
 		/// </summary>
