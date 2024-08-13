@@ -302,11 +302,17 @@ namespace River.OneMoreAddIn.Models
 		/// all regular Outlines including the tag bank
 		/// </param>
 		/// <param name="defaultToAnyIfNoRange">
-		/// True to fallback and return all elements within scope if no range or run found.
+		/// True to fallback and return all elements within scope if no selected range or
+		/// run found.
+		/// </param>
+		/// <param name="anyElement">
+		/// True to collect any XElement/@select=all from page, not just T runs
 		/// </param>
 		/// <returns>An IEnumerable of XElements, which may be empty</returns>
 		public IEnumerable<XElement> GetSelections(
-			bool allowPageTitle = false, bool defaulToAnytIfNoRange = false)
+			bool allowPageTitle = false,
+			bool defaulToAnytIfNoRange = false,
+			bool anyElement = false)
 		{
 			IEnumerable<XElement> start = new List<XElement>() { root };
 
@@ -316,10 +322,9 @@ namespace River.OneMoreAddIn.Models
 				start = allowPageTitle
 					? Root.Elements()
 					: Root.Elements(ns + "Outline");
-
 			}
 
-			var selections = GetSelections(start);
+			var selections = GetSelections(start, anyElement: anyElement);
 
 			if ((
 				Scope == SelectionScope.TextCursor ||
@@ -337,10 +342,20 @@ namespace River.OneMoreAddIn.Models
 		/// 
 		/// </summary>
 		/// <param name="roots"></param>
+		/// <param name="anyElement">
+		/// True to collect any XElement/@select=all from page, not just T runs
+		/// </param>
 		/// <returns></returns>
-		public IEnumerable<XElement> GetSelections(IEnumerable<XElement> roots)
+		public IEnumerable<XElement> GetSelections(
+			IEnumerable<XElement> roots, bool anyElement = false)
 		{
-			var selections = roots.Descendants(ns + "T")
+			IEnumerable<XElement> selections;
+
+			var start = anyElement
+				? root.Descendants()
+				: root.Descendants(ns + "T");
+
+			selections = start
 				.Where(e => e.Attribute("selected") is XAttribute a && a.Value == "all");
 
 			if (!selections.Any())
@@ -350,7 +365,7 @@ namespace River.OneMoreAddIn.Models
 				return Enumerable.Empty<XElement>();
 			}
 
-			if (selections.Count() > 1)
+			if (selections.Count() > 1 && selections.All(e => e.Name.LocalName == "T"))
 			{
 				Scope = SelectionScope.Range;
 
@@ -360,12 +375,16 @@ namespace River.OneMoreAddIn.Models
 				return selections;
 			}
 
-			// single one:T selected...
+			// single element selected...
 
-			SingleParagraph = true;
+			var element = selections.First();
+			if (element.Name.LocalName != "T" && anyElement)
+			{
+				Scope = SelectionScope.Block;
+				return selections;
+			}
 
-			var run = selections.First();
-			if (run.FirstNode is not XCData cdata)
+			if (element.FirstNode is not XCData cdata)
 			{
 				// shouldn't happen?
 				Logger.Current.WriteLine("found invalid schema, one:T does not contain CDATA");
@@ -373,6 +392,8 @@ namespace River.OneMoreAddIn.Models
 				Scope = SelectionScope.None;
 				return Enumerable.Empty<XElement>();
 			}
+
+			SingleParagraph = true;
 
 			// empty or link or xml-comment because we can't tell the difference between
 			// a zero-selection zero-selection link and a partial or fully selected link.

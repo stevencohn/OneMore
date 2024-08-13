@@ -15,6 +15,12 @@ namespace River.OneMoreAddIn
 		None = 0,
 
 		/// <summary>
+		/// One or more top elements that are not T text runs, like OE or OEChildren.
+		/// The value 3 is equivalent to Range+Run
+		/// </summary>
+		Block = 3,
+
+		/// <summary>
 		/// A region with more than one run is selected
 		/// </summary>
 		Range = 2,
@@ -32,6 +38,6 @@ namespace River.OneMoreAddIn
 		/// <summary>
 		/// Insertion caret "text cursor", zero-width selection
 		/// </summary>
-		TextCursor = 4
+		TextCursor = 4,
 	}
 }

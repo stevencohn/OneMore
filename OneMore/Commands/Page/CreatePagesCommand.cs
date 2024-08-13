@@ -102,16 +102,26 @@ namespace River.OneMoreAddIn.Commands
 		{
 			onlySelected = false;
 
-			var range = new Models.SelectionRange(page);
-			var selections = range.GetSelections();
 
-			if (range.Scope == SelectionScope.None)
+			System.Diagnostics.Debugger.Launch();
+
+			var range = new Models.SelectionRange(page);
+			var selections = range.GetSelections(anyElement: true);
+
+			if (range.Scope == SelectionScope.TextCursor)
 			{
-				return null;
+				return selections.First();
 			}
 
-			onlySelected = range.Scope == SelectionScope.Range;
-			return selections.First();
+			if (range.Scope == SelectionScope.Run || // allow single T
+				range.Scope == SelectionScope.Range ||
+				range.Scope == SelectionScope.Block)
+			{
+				onlySelected = true;
+				return selections.First();
+			}
+
+			return null;
 		}
 
 
@@ -160,14 +170,18 @@ namespace River.OneMoreAddIn.Commands
 
 		private bool ContextIsTable(XElement cursor)
 		{
-			return cursor.Parent?.Parent?.Parent?.Name.LocalName == "Cell";
+			// should have selected Cell
+			return cursor.Name.LocalName == "Cell";
 		}
 
 
 		private void ReadTable(XElement cursor, bool onlySelected)
 		{
 			logger.WriteLine("table");
-			var anchor = cursor.Parent.Parent.Parent;
+
+			// Cell
+			var anchor = cursor;
+
 			var table = anchor.FirstAncestor(ns + "Table");
 			var index = anchor.ElementsBeforeSelf(ns + "Cell").Count();
 
