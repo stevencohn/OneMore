@@ -22,6 +22,7 @@ namespace River.OneMoreAddIn.Commands
 		private Plugin plugin;
 		private ProgressDialog progress = null;
 		private Page page;
+		private OneNote.HierarchyInfo hierarchyInfo;
 		private string workpath;
 		private bool trialRun;
 
@@ -150,6 +151,9 @@ namespace River.OneMoreAddIn.Commands
 				return null;
 			}
 
+			hierarchyInfo = await one.GetPageInfo(page.PageId);
+			hierarchyInfo.PageId = page.PageId;
+
 			return content;
 		}
 
@@ -229,6 +233,9 @@ namespace River.OneMoreAddIn.Commands
 				return null;
 			}
 
+			hierarchyInfo = await one.GetPageInfo();
+			hierarchyInfo.PageId = one.CurrentPageId;
+
 			return content;
 		}
 
@@ -283,6 +290,13 @@ namespace River.OneMoreAddIn.Commands
 				info.Environment["PLUGIN_CREATE"] = plugin.CreateNewPage.ToString();
 				info.Environment["PLUGIN_PAGENAME"] = plugin.PageName;
 				info.Environment["PLUGIN_ASCHILD"] = plugin.AsChildPage.ToString();
+
+				info.Environment["PLUGIN_SOURCE_PAGEID"] = hierarchyInfo.PageId;
+				info.Environment["PLUGIN_SOURCE_SECTIONID"] = hierarchyInfo.SectionId;
+				info.Environment["PLUGIN_SOURCE_NOTEBOOKID"] = hierarchyInfo.NotebookId;
+				info.Environment["PLUGIN_SOURCE_PAGENAME"] = hierarchyInfo.Name;
+				info.Environment["PLUGIN_SOURCE_PAGEPATH"] = hierarchyInfo.Path;
+				info.Environment["PLUGIN_SOURCE_PAGEURL"] = hierarchyInfo.Link;
 
 				process = new Process
 				{
@@ -424,11 +438,11 @@ namespace River.OneMoreAddIn.Commands
 			childRoot.Attribute("ID").Value = pageId;
 			var child = new Page(childRoot);
 
-			// every new page adds hashes so need to remove them
-			child.OptimizeForSave(true);
-
 			var childTitle = child.Title.Trim();
 			var parentTitle = page.Title.Trim();
+
+			// every new page adds hashes so need to remove them
+			child.OptimizeForSave(true);
 
 			// if plugin has modified the page title then accept that
 			// otherwise apply the name template defined by this plugin...
