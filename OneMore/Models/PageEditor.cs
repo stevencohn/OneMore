@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Models
 {
+	using NStandard;
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
@@ -105,6 +106,13 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
+		/// Gets or sets a Boolean indicating whether to maintain the selected state of
+		/// extracted content. Default is to remove selected state.
+		/// </summary>
+		public bool KeepSelected { get; set; }
+
+
+		/// <summary>
 		/// Signals EditSelected(), EditNode() and, by dependency, GetSelectedText() methods
 		/// that editor scanning should be done in reverse doc-order. This must be set prior
 		/// to calling one of those method to take effect.
@@ -131,6 +139,60 @@ namespace River.OneMoreAddIn.Models
 			for (var i = content.Length - 1; i >= 0; i--)
 			{
 				InsertParagraph(content[i], false);
+			}
+		}
+
+
+		/// <summary>
+		/// Removes the selected attribute from the page
+		/// </summary>
+		public void Deselect(XElement root = null)
+		{
+			// clean up selected attributes; keep only select snippets
+
+			(root ?? page.Root).Descendants().Attributes()
+				.Where(a => a.Name == "selected")
+				.Remove();
+		}
+
+
+		public void FollowWithCurosr(XElement root)
+		{
+			var last = root.Descendants()
+				.Attributes("selected")
+				.Where(a => a.Value == "all")
+				.Select(a => a.Parent)
+				.LastOrDefault();
+
+			if (last is not null)
+			{
+				Deselect(root);
+
+				// Within an OE, you're allowed one image, one table, inserted file,
+				// or a mix of Ink and Text pieces...
+
+				if (last.Name.LocalName.In("T", "InkWord"))
+				{
+					if (last.GetCData().Value == string.Empty)
+					{
+						last.SetAttributeValue("selected", "all");
+					}
+					else
+					{
+						last.AddAfterSelf(new XElement(ns + "T",
+							new XAttribute("selected", "all"),
+							new XCData(string.Empty))
+							);
+					}
+				}
+				else
+				{
+					last.AddAfterSelf(new XElement(ns + "OE",
+						new XElement(ns + "T",
+							new XAttribute("selected", "all"),
+							new XCData(string.Empty))
+						));
+				}
 			}
 		}
 
@@ -1015,10 +1077,11 @@ namespace River.OneMoreAddIn.Models
 			//logger.WriteLine($"cleaning ~~> {(items.Any() ? items.Count() : 0)} OEChildren");
 			items.Remove();
 
-			// clean up selected attributes; keep only select snippets
-			page.Root.DescendantNodes().OfType<XAttribute>()
-				.Where(a => a.Name.LocalName == "selected")
-				.Remove();
+			if (!KeepSelected)
+			{
+				// clean up selected attributes; keep only select snippets
+				Deselect();
+			}
 
 			// patch any empty cells, cheap but effective!
 			foreach (var item in page.Root.Descendants(ns + "Cell")
