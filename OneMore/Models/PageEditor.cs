@@ -168,6 +168,9 @@ namespace River.OneMoreAddIn.Models
 			{
 				Deselect(root);
 
+				// Within an OE, you're allowed one image, one table, inserted file,
+				// or a mix of Ink and Text pieces...
+
 				if (last.Name.LocalName.In("T", "InkWord"))
 				{
 					if (last.GetCData().Value == string.Empty)
