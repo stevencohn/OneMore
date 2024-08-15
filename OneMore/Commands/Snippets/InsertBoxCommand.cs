@@ -116,12 +116,26 @@ namespace River.OneMoreAddIn.Commands
 				cell.SetContent(MakeDefaultContent(addTitle));
 
 				var editor = new PageEditor(page);
-				editor.AddNextParagraph(table.Root);
+				await editor.ExtractSelectedContent();
+
+				var box = new XElement(ns + "OE", table.Root);
+				if (editor.Anchor.Name.LocalName.In("OE", "HTMLBlock"))
+				{
+					editor.Anchor.AddAfterSelf(box);
+				}
+				else // if (localName.In("OEChildren", "Outline"))
+				{
+					editor.Anchor.AddFirst(box);
+				}
 			}
 			else
 			{
 				// selection range found so move it into snippet
-				var editor = new PageEditor(page);
+				var editor = new PageEditor(page)
+				{
+					KeepSelected = true
+				};
+
 				var content = await editor.ExtractSelectedContent();
 
 				if (!content.HasElements)
@@ -130,6 +144,8 @@ namespace River.OneMoreAddIn.Commands
 					logger.WriteLine("error reading page content!");
 					return;
 				}
+
+				editor.Deselect();
 
 				cell.SetContent(content);
 
@@ -235,7 +251,11 @@ namespace River.OneMoreAddIn.Commands
 
 			return new XElement(ns + "OEChildren",
 				new Paragraph(string.Empty),
-				new Paragraph(Resx.phrase_YourContentHere),
+				new Paragraph(
+					new XElement(ns + "T",
+						new XAttribute("selected", "all"),
+						new XCData(Resx.phrase_YourContentHere))
+					),
 				new Paragraph(string.Empty)
 				);
 		}

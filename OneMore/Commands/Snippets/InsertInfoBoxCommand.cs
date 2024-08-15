@@ -63,18 +63,26 @@ namespace River.OneMoreAddIn.Commands
 			{
 				content = new XElement(ns + "OE",
 					new XAttribute("style", normalStyle.ToCss()),
-					new XElement(ns + "T", new XCData(Resx.phrase_YourContentHere)
+					new XElement(ns + "T",
+						new XAttribute("selected", "all"),
+						new XCData(Resx.phrase_YourContentHere)
 					));
+
+				var editor = new PageEditor(page);
+				await editor.ExtractSelectedContent();
+				anchor = editor.Anchor;
 			}
 			else
 			{
-				var editor = new PageEditor(page);
+				var editor = new PageEditor(page)
+				{
+					KeepSelected = true
+				};
+
 				content = await editor.ExtractSelectedContent();
 				anchor = editor.Anchor;
 
-				content.Descendants().Attributes()
-					.Where(a => a.Name == "selected")
-					.Remove();
+				editor.Deselect();
 			}
 
 			// inner table...

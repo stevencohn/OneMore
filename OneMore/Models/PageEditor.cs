@@ -105,6 +105,13 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
+		/// Gets or sets a Boolean indicating whether to maintain the selected state of
+		/// extracted content. Default is to remove selected state.
+		/// </summary>
+		public bool KeepSelected { get; set; }
+
+
+		/// <summary>
 		/// Signals EditSelected(), EditNode() and, by dependency, GetSelectedText() methods
 		/// that editor scanning should be done in reverse doc-order. This must be set prior
 		/// to calling one of those method to take effect.
@@ -132,6 +139,18 @@ namespace River.OneMoreAddIn.Models
 			{
 				InsertParagraph(content[i], false);
 			}
+		}
+
+
+		/// <summary>
+		/// Removes the selected attribute from the page
+		/// </summary>
+		public void Deselect(XElement root = null)
+		{
+			// clean up selected attributes; keep only select snippets
+			(root ?? page.Root).DescendantNodes().OfType<XAttribute>()
+				.Where(a => a.Name.LocalName == "selected")
+				.Remove();
 		}
 
 
@@ -1015,10 +1034,11 @@ namespace River.OneMoreAddIn.Models
 			//logger.WriteLine($"cleaning ~~> {(items.Any() ? items.Count() : 0)} OEChildren");
 			items.Remove();
 
-			// clean up selected attributes; keep only select snippets
-			page.Root.DescendantNodes().OfType<XAttribute>()
-				.Where(a => a.Name.LocalName == "selected")
-				.Remove();
+			if (!KeepSelected)
+			{
+				// clean up selected attributes; keep only select snippets
+				Deselect();
+			}
 
 			// patch any empty cells, cheap but effective!
 			foreach (var item in page.Root.Descendants(ns + "Cell")
