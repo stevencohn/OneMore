@@ -76,6 +76,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				var editor = new PageEditor(page)
 				{
+					// the extracted content will be selected=all, keep it that way
 					KeepSelected = true
 				};
 
@@ -83,6 +84,7 @@ namespace River.OneMoreAddIn.Commands
 				anchor = editor.Anchor;
 
 				editor.Deselect();
+				editor.FollowWithCurosr(content);
 			}
 
 			// inner table...

@@ -133,6 +133,7 @@ namespace River.OneMoreAddIn.Commands
 				// selection range found so move it into snippet
 				var editor = new PageEditor(page)
 				{
+					// the extracted content will be selected=all, keep it that way
 					KeepSelected = true
 				};
 
@@ -146,6 +147,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 
 				editor.Deselect();
+				editor.FollowWithCurosr(content);
 
 				cell.SetContent(content);
 

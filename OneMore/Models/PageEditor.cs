@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Models
 {
+	using NStandard;
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
@@ -148,9 +149,48 @@ namespace River.OneMoreAddIn.Models
 		public void Deselect(XElement root = null)
 		{
 			// clean up selected attributes; keep only select snippets
-			(root ?? page.Root).DescendantNodes().OfType<XAttribute>()
-				.Where(a => a.Name.LocalName == "selected")
+
+			(root ?? page.Root).Descendants().Attributes()
+				.Where(a => a.Name == "selected")
 				.Remove();
+		}
+
+
+		public void FollowWithCurosr(XElement root)
+		{
+			var last = root.Descendants()
+				.Attributes("selected")
+				.Where(a => a.Value == "all")
+				.Select(a => a.Parent)
+				.LastOrDefault();
+
+			if (last is not null)
+			{
+				Deselect(root);
+
+				if (last.Name.LocalName.In("T", "InkWord"))
+				{
+					if (last.GetCData().Value == string.Empty)
+					{
+						last.SetAttributeValue("selected", "all");
+					}
+					else
+					{
+						last.AddAfterSelf(new XElement(ns + "T",
+							new XAttribute("selected", "all"),
+							new XCData(string.Empty))
+							);
+					}
+				}
+				else
+				{
+					last.AddAfterSelf(new XElement(ns + "OE",
+						new XElement(ns + "T",
+							new XAttribute("selected", "all"),
+							new XCData(string.Empty))
+						));
+				}
+			}
 		}
 
 
