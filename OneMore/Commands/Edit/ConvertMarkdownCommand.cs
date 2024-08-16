@@ -46,9 +46,6 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (var outline in outlines.ToList())
 			{
-				range = new SelectionRange(outline);
-				range.Deselect();
-
 				var content = await editor.ExtractSelectedContent(outline);
 				var paragraphs = content.Elements(ns + "OE").ToList();
 
