@@ -73,6 +73,7 @@
     <EmbeddedResource Include="Properties\Resources.es-ES.resx" />
     <EmbeddedResource Include="Properties\Resources.fr-FR.resx" />
     <EmbeddedResource Include="Properties\Resources.he-IL.resx" />
+    <EmbeddedResource Include="Properties\Resources.ja-JP.resx" />
     <EmbeddedResource Include="Properties\Resources.nl-NL.resx" />
     <EmbeddedResource Include="Properties\Resources.pl-PL.resx">
       <SubType>Designer</SubType>
