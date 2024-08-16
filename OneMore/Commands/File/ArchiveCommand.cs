@@ -37,6 +37,7 @@ namespace River.OneMoreAddIn.Commands
 		private string tempdir;
 		private int totalCount;
 		private int pageCount = 0;
+		private int quickCount = 0;
 		private bool bookScope;
 
 		private Exception exception = null;
@@ -211,7 +212,7 @@ namespace River.OneMoreAddIn.Commands
 					var page = await one.GetPage(
 						element.Attribute("ID").Value, OneNote.PageDetail.BinaryData);
 
-					progress.SetMessage($"Archiving {page.Title}");
+					progress.SetMessage($"Archiving {page.Title ?? Resx.phrase_QuickNote}");
 					progress.Increment();
 
 					await ArchivePage(element, page, path);
@@ -246,7 +247,20 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task ArchivePage(XElement element, Page page, string path)
 		{
-			var name = PathHelper.CleanFileName(page.Title.Trim()).Trim();
+			if (page.Title == null)
+			{
+				page.SetTitle(quickCount == 0
+					? Resx.phrase_QuickNote
+					: $"{Resx.phrase_QuickNote} ({quickCount})");
+
+				quickCount++;
+			}
+			else
+			{
+				page.SetTitle(page.Title.Trim());
+			}
+
+			var name = PathHelper.CleanFileName(page.Title).Trim();
 			if (string.IsNullOrEmpty(name))
 			{
 				name = $"Unnamed__{pageCount}";
@@ -256,7 +270,7 @@ namespace River.OneMoreAddIn.Commands
 				// ensure the page name is unique within the section
 				var n = element.Parent.Elements()
 					.Count(e => e.Attribute("name")?.Value ==
-						PathHelper.CleanFileName(page.Title.Trim()).Trim());
+						PathHelper.CleanFileName(page.Title).Trim());
 
 				if (n > 1)
 				{
