@@ -19,6 +19,7 @@ namespace River.OneMoreAddIn.Commands
 	internal class ExportCommand : Command
 	{
 		private OneNote one;
+		private int quickCount = 0;
 
 
 		public ExportCommand()
@@ -103,9 +104,21 @@ namespace River.OneMoreAddIn.Commands
 				{
 					var page = await one.GetPage(pageID, OneNote.PageDetail.BinaryData);
 
-					var title = useUnderscores
-						? PathHelper.CleanFileName(page.Title).Replace(' ', '_')
-						: PathHelper.CleanFileName(page.Title);
+					if (page.Title == null)
+					{
+						page.SetTitle(quickCount == 0
+							? Resx.phrase_QuickNote
+							: $"{Resx.phrase_QuickNote} ({quickCount})");
+
+						quickCount++;
+					}
+
+					var title = page.Title.Trim();
+
+					if (useUnderscores)
+					{
+						title = PathHelper.CleanFileName(title).Replace(' ', '_');
+					}
 
 					string filename;
 					if (title.Trim().Length > 0)
