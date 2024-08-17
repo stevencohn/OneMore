@@ -15,18 +15,8 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		Boolean,
 		Double,
 		String,
+		Table,
 		Unknown
-	}
-
-
-	/// <summary>
-	/// Allowed operators in first character of a countif comparison
-	/// </summary>
-	internal enum CountIfOperator
-	{
-		GreaterThan,
-		LessThan,
-		NotEqual
 	}
 
 
@@ -36,7 +26,6 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 	internal class FormulaValue
 	{
 		public FormulaValueType Type { get; private set; }
-		public CountIfOperator Operator { get; private set; }
 		public object Value { get; private set; }
 		public double DoubleValue { get => (double)Value; }
 
@@ -59,6 +48,11 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		{
 			Value = value;
 			Type = FormulaValueType.String;
+		}
+		public FormulaValue(Models.Table value)
+		{
+			Value = value;
+			Type = FormulaValueType.Table;
 		}
 
 		public int CompareTo(FormulaValue template)

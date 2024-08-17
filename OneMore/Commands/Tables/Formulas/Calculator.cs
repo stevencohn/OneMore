@@ -61,14 +61,16 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		// to signify a unary negative; 0x80 follows DEL/0x7F just out of ASCII range
 		private const string UnaryMinus = "\x80";
 
-		private int indexOffset;
+		private Models.Table table;
+		private Coordinates coordinates;
 
 
 		/// <summary>
 		/// Initialize a new instance
 		/// </summary>
-		public Calculator()
+		public Calculator(Models.Table table)
 		{
+			this.table = table;
 		}
 
 
@@ -82,9 +84,9 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		/// accomodate a dynamically growing table of rows without having to update the formula.
 		/// </param>
 		/// <returns></returns>
-		public double Execute(string expression, int indexOffset)
+		public double Execute(string expression, int colNumber, int rowNumber)
 		{
-			this.indexOffset = indexOffset;
+			coordinates = new Coordinates(colNumber, rowNumber);
 
 			var result = ExecuteInternal(expression);
 			if (result.Type == FormulaValueType.Double)
@@ -311,8 +313,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		{
 			int start = parser.Position;
 			var c = parser.Peek();
-			while (char.IsLetterOrDigit(c) || c == '<' || c == '>' || c == '!' || c == '_' ||
-				(c == '-' && indexOffset > 0))
+			while (char.IsLetterOrDigit(c) || c == '<' || c == '>' || c == '!' || c == '_')
 			{
 				parser.MoveAhead();
 				c = parser.Peek();
@@ -335,10 +336,17 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 			// parse function parameters
 			var parameters = ParseParameters(parser);
 
-			var Fn = MathFunctions.Find(name);
-			if (Fn != null)
+			var function = MathFunctions.Find(name);
+			if (function != null)
 			{
-				return new FormulaValue(Fn(parameters));
+				if (function.Spacial)
+				{
+					parameters.Add(new FormulaValue(table));
+					parameters.Add(coordinates.ColNumber);
+					parameters.Add(coordinates.RowNumber);
+				}
+
+				return new FormulaValue(function.Fn(parameters));
 			}
 
 			double result = default;
@@ -475,31 +483,15 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 			if (!match.Success)
 				throw new FormulaException(string.Format(ErrUndefinedSymbol, cell1), p1);
 
-			if (int.Parse(match.Groups["r"].Value) == 0)
-			{
-				// do not include result cell (or off-table) in calculations
-				throw new FormulaException("row offset cannot be zero");
-			}
+			var col1 = match.Groups[1].Value;
+			var row1 = match.Groups[2].Value;
 
-			var col1 = match.Groups["c"].Value;
-			var row1 = match.Groups["r"].Value;
-
-			// cell2...
-
-			match = Regex.Match(cell2, Processor.OffsetPattern);
+			match = Regex.Match(cell2, Processor.AddressPattern);
 			if (!match.Success)
 				throw new FormulaException(string.Format(ErrUndefinedSymbol, cell2), p2);
 
-			if (int.Parse(match.Groups["r"].Value) == 0)
-			{
-				// do not include result cell (or off-table) in calculations
-				throw new FormulaException("row offset cannot be zero");
-			}
-
-			var col2 = match.Groups["c"].Value;
-			var row2 = match.Groups["o"].Success && indexOffset > 0
-				? $"{indexOffset - int.Parse(match.Groups["r"].Value)}"
-				: match.Groups["r"].Value;
+			var col2 = match.Groups[1].Value;
+			var row2 = match.Groups[2].Value;
 
 			// validate...
 
@@ -612,7 +604,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 			// ask consumer to resolve symbol reference
 			if (ProcessSymbol != null)
 			{
-				var args = new SymbolEventArgs(name, indexOffset);
+				var args = new SymbolEventArgs(name, coordinates);
 
 				ProcessSymbol(this, args);
 				if (args.Status == SymbolStatus.OK)

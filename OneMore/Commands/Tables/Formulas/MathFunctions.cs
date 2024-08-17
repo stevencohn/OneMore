@@ -11,18 +11,21 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 	using System.Linq;
 
 
-	internal delegate double MathFunc(FormulaValues args);
+	internal delegate double MathFuncDelegate(FormulaValues args);
 
 
 	internal class MathFunction
 	{
 		public string Name { get; private set; }
 
-		public MathFunc Fn { get; private set; }
+		public bool Spacial { get; private set; }
 
-		public MathFunction(string name, MathFunc fn)
+		public MathFuncDelegate Fn { get; private set; }
+
+		public MathFunction(string name, MathFuncDelegate fn, bool spacial = false)
 		{
 			Name = name;
+			Spacial = spacial;
 			Fn = fn;
 		}
 	}
@@ -42,6 +45,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 			functions.Add(new MathFunction("atan2", (p) => Math.Atan2(p.Match(D, D)[0], p[1])));
 			functions.Add(new MathFunction("average", (p) => Average(p.Match(D, D).ToDoubleArray())));
 			functions.Add(new MathFunction("ceiling", (p) => Math.Ceiling(p.Match(D, D)[0])));
+			functions.Add(new MathFunction("cell", (p) => Cell(p), true));
 			functions.Add(new MathFunction("cos", (p) => Math.Cos(p.Match(D)[0])));
 			functions.Add(new MathFunction("cosh", (p) => Math.Cosh(p.Match(D)[0])));
 			functions.Add(new MathFunction("countif", (p) => CountIf(p)));
@@ -62,6 +66,8 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 			functions.Add(new MathFunction("sqrt", (p) => Math.Sqrt(p.Match(D)[0])));
 			functions.Add(new MathFunction("stdev", (p) => StandardDeviation(p.Match(D).ToDoubleArray())));
 			functions.Add(new MathFunction("sum", (p) => Sum(p.Match(D).ToDoubleArray())));
+			functions.Add(new MathFunction("tablecols", (p) => TableCols(p), true));
+			functions.Add(new MathFunction("tablerows", (p) => TableRows(p), true));
 			functions.Add(new MathFunction("tan", (p) => Math.Tan(p.Match(D)[0])));
 			functions.Add(new MathFunction("tanh", (p) => Math.Tanh(p.Match(D)[0])));
 			functions.Add(new MathFunction("trunc", (p) => Math.Truncate(p.Match(D)[0])));
@@ -69,9 +75,9 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		}
 
 
-		public static MathFunc Find(string name)
+		public static MathFunction Find(string name)
 		{
-			return functions.Find(f => f.Name == name)?.Fn;
+			return functions.Find(f => f.Name == name);
 		}
 
 
@@ -86,10 +92,62 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		}
 
 
+		private static double Cell(FormulaValues p)
+		{
+			// user may specify one or two parameters (colOffset) or (colOffset,Rowoffset)
+			// but Calculator will transform it to (colOffset, rowOffset, table, col, row)
+			if (p.Count < 4 || p.Count > 5)
+				throw new FormulaException("cell function requires one or two parameters");
+
+			var array = p.ToArray();
+
+			// if we don't have a table then do not fail; instead presume this is being
+			// called as a mock run from FormulaDialog
+			if (array[2].Type != FormulaValueType.Table || array[2].Value is not Models.Table table)
+			{
+				return 0.0;
+			}
+
+			if (array[0].Type == FormulaValueType.Double && array[0].Value is double colOffset &&
+				array[1].Type == FormulaValueType.Double && array[1].Value is double rowOffset &&
+				array[3].Type == FormulaValueType.Double && array[3].Value is double col &&
+				array[4].Type == FormulaValueType.Double && array[4].Value is double row)
+			{
+				// row and col are 1-based but we need 0-based indexes
+				var r = (int)row - 1 + (int)rowOffset;
+				var c = (int)col - 1 + (int)colOffset;
+
+				if (c < 0 || c > table.ColumnCount - 1 ||
+					r < 0 || r > table.RowCount - 1)
+				{
+					throw new FormulaException(
+						"cell function col/row indexes are out of range\n" +
+						$"cell(coff:{colOffset}, roff:{rowOffset}, col:{col}, row:{row}) -> " +
+						$"c:{c} r:{r}");
+				}
+
+				var cell = table[r][c];
+				if (cell is not null && double.TryParse(cell.GetText(), out var value))
+				{
+					Logger.Current.Verbose(
+						$"fn cell(coff:{colOffset}, roff:{rowOffset}, Col:{col}, row:{row}) " +
+						$"= {(double)cell.Value}");
+
+					return value;
+				}
+
+				// assumption
+				return 0.0;
+			}
+
+			throw new FormulaException("cell function has invalid arguments");
+		}
+
+
 		private static double CountIf(FormulaValues p)
 		{
 			if (p.Count < 2)
-				throw new FormulaException($"countif requires at least two parameters");
+				throw new FormulaException($"countif function requires at least two parameters");
 
 			var array = p.ToArray();
 
@@ -202,6 +260,46 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 				return 0.0;
 
 			return Math.Sqrt(variance);
+		}
+
+
+		private static double TableCols(FormulaValues p)
+		{
+			// The user fn requires no params but Calculator will include (tablew)
+			if (p.Count > 1)
+				throw new FormulaException("tablecols function does not accept parameters");
+
+			var array = p.ToArray();
+
+			// if we don't have a table then do not fail; instead presume this is being
+			// called as a mock run from FormulaDialog
+			if (array[2].Type != FormulaValueType.Table || array[2].Value is not Models.Table table)
+			{
+				return 0.0;
+			}
+
+			Logger.Current.Verbose($"fn tablecols() = {table.ColumnCount}");
+			return table.ColumnCount;
+		}
+
+
+		private static double TableRows(FormulaValues p)
+		{
+			// The user fn requires no params but Calculator will include (tablew)
+			if (p.Count > 1)
+				throw new FormulaException("tableRows function does not accept parameters");
+
+			var array = p.ToArray();
+
+			// if we don't have a table then do not fail; instead presume this is being
+			// called as a mock run from FormulaDialog
+			if (array[2].Type != FormulaValueType.Table || array[2].Value is not Models.Table table)
+			{
+				return 0.0;
+			}
+
+			Logger.Current.Verbose($"fn tablerows() = {table.ColumnCount}");
+			return table.RowCount;
 		}
 
 

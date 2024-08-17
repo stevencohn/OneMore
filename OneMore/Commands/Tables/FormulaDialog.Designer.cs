@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormulaDialog));
 			this.formatLabel = new System.Windows.Forms.Label();
 			this.formatBox = new System.Windows.Forms.ComboBox();
@@ -45,6 +46,7 @@
 			this.tagBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.decLabel = new System.Windows.Forms.Label();
 			this.decimalBox = new System.Windows.Forms.NumericUpDown();
+			this.tooltip = new System.Windows.Forms.ToolTip(this.components);
 			this.helpPanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.decimalBox)).BeginInit();
 			this.SuspendLayout();
@@ -312,5 +314,6 @@
 		private UI.MoreCheckBox tagBox;
 		private System.Windows.Forms.Label decLabel;
 		private System.Windows.Forms.NumericUpDown decimalBox;
+		private System.Windows.Forms.ToolTip tooltip;
 	}
 }

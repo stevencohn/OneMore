@@ -256,6 +256,7 @@
     <Compile Include="Commands\Tables\EditTableThemesDialog.Designer.cs">
       <DependentUpon>EditTableThemesDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Tables\Formulas\Coordinates.cs" />
     <Compile Include="Commands\Tables\TableThemePainter.cs" />
     <Compile Include="Commands\Tagging\Hashtag.cs" />
     <Compile Include="Commands\Tagging\HashtagCommand.cs" />

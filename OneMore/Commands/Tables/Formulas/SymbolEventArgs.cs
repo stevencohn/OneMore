@@ -15,10 +15,10 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 	/// </summary>
 	internal class SymbolEventArgs : EventArgs
 	{
-		public SymbolEventArgs(string name, int indexOffset)
+		public SymbolEventArgs(string name, Coordinates coordinates)
 		{
 			Name = name;
-			IndexOffset = indexOffset;
+			Coordinates = coordinates;
 			Status = SymbolStatus.OK;
 		}
 
@@ -34,7 +34,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		/// used for OneMore table formulas where the user asked for a row-offset calculation to
 		/// accomodate a dynamically growing table of rows without having to update the formula.
 		/// </summary>
-		public int IndexOffset { get; set; }
+		public Coordinates Coordinates { get; private set; }
 
 
 		/// <summary>

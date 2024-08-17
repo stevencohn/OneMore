@@ -86,17 +86,11 @@ namespace River.OneMoreAddIn.Commands
 			if (cells.Count == 1)
 			{
 				dialog.SetCellNames(cells[0].Coordinates);
-				dialog.SetResultRow(cells[0].RowNum);
 			}
 			else
 			{
 				dialog.SetCellNames(
 					$"{cells[0].Coordinates} - {cells[cells.Count - 1].Coordinates}");
-
-				if (range == TableSelectionRange.Rows)
-				{
-					dialog.SetResultRow(cells[cells.Count - 1].RowNum);
-				}
 			}
 
 			var cell = cells[0];
@@ -162,7 +156,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			var regex = new Regex(Processor.OffsetPattern);
+			var regex = new Regex(Processor.AddressPattern);
 
 			int offset = 0;
 			foreach (var cell in cells)

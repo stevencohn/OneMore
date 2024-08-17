@@ -14,7 +14,6 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private readonly int helpHeight;
 		private readonly Calculator calculator;
-		private int resultRow;
 
 
 		public FormulaDialog()
@@ -49,7 +48,7 @@ namespace River.OneMoreAddIn.Commands
 
 			formatBox.SelectedIndex = 0;
 
-			calculator = new Calculator();
+			calculator = new Calculator(null);
 			calculator.ProcessSymbol += ResolveSymbol;
 		}
 
@@ -81,12 +80,6 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public void SetResultRow(int row)
-		{
-			resultRow = row;
-		}
-
-
 		public bool Tagged
 		{
 			get => tagBox.Checked;
@@ -102,15 +95,17 @@ namespace River.OneMoreAddIn.Commands
 			{
 				try
 				{
-					calculator.Execute(formula, indexOffset: resultRow);
+					calculator.Execute(formula, 0, 0);
 					validStatusLabel.ForeColor = manager.GetColor("ControlText");
 					validStatusLabel.Text = Resx.word_OK;
+					tooltip.SetToolTip(validStatusLabel, string.Empty);
 					okButton.Enabled = true;
 				}
-				catch
+				catch (Exception exc)
 				{
 					validStatusLabel.ForeColor = manager.GetColor("ErrorText");
 					validStatusLabel.Text = Resx.FormulaDialog_status_Invalid;
+					tooltip.SetToolTip(validStatusLabel, exc.Message);
 					okButton.Enabled = false;
 				}
 			}
@@ -118,6 +113,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				validStatusLabel.ForeColor = manager.GetColor("ControlText");
 				validStatusLabel.Text = Resx.FormulaDialog_status_Empty;
+				tooltip.SetToolTip(validStatusLabel, string.Empty);
 				okButton.Enabled = false;
 			}
 		}
@@ -125,13 +121,15 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ResolveSymbol(object sender, SymbolEventArgs e)
 		{
-			if (Regex.Match(e.Name, Processor.OffsetPattern).Success)
+			if (Regex.Match(e.Name, Processor.AddressPattern).Success)
 			{
+				logger.Verbose($"ResolveSymbol({e.Name}) OK");
 				e.SetResult(1.0);
 				e.Status = SymbolStatus.OK;
 			}
 			else
 			{
+				logger.Verbose($"ResolveSymbol({e.Name}) undefined");
 				e.Status = SymbolStatus.UndefinedSymbol;
 			}
 		}
