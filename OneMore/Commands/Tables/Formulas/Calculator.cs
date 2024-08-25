@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 /*
  * Based on the C# Expression Evaluator by Jonathan Wood, 2010
@@ -61,8 +61,9 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		// to signify a unary negative; 0x80 follows DEL/0x7F just out of ASCII range
 		private const string UnaryMinus = "\x80";
 
-		private Models.Table table;
+		private readonly Models.Table table;
 		private Coordinates coordinates;
+		private FunctionFactory factory;
 
 
 		/// <summary>
@@ -78,11 +79,8 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		/// Evaluate the given expression and returns the result
 		/// </summary>
 		/// <param name="expression">The expression to evaluate</param>
-		/// <param name="indexOffset">
-		/// The positional index of the expression in table rows. This is a specialized value
-		/// used for OneMore table formulas where the user asked for a row-offset calculation to
-		/// accomodate a dynamically growing table of rows without having to update the formula.
-		/// </param>
+		/// <param name="colNumber"></param>
+		/// <param name="rowNumber"></param>
 		/// <returns></returns>
 		public double Execute(string expression, int colNumber, int rowNumber)
 		{
@@ -105,6 +103,13 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		private FormulaValue ExecuteInternal(string expression)
 		{
 			var tokenized = TokenizeExpression(expression);
+
+			foreach (var token in tokenized)
+			{
+				Logger.Current.Verbose($"tokenized [{token}]");
+			}
+
+
 			return ExecuteTokens(tokenized);
 		}
 
@@ -114,16 +119,13 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		/// postfix order.
 		/// </summary>
 		/// <param name="expression">Expression to evaluate</param>
-		/// <returns></returns>
-		[System.Diagnostics.CodeAnalysis.SuppressMessage("Major Bug",
-			"S2583:Conditionally executed code should be reachable", Justification = "<Pending>")]
+		/// <returns></returns>s
 		private List<string> TokenizeExpression(string expression)
 		{
 			var tokens = new List<string>();
 			var stack = new Stack<string>();
 			var state = State.None;
 			int parenDepth = 0;
-			string temp;
 
 			var parser = new TextParser(expression);
 
@@ -139,9 +141,11 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 					if (state == State.Operand)
 						throw new FormulaException(ErrOperatorExpected, parser.Position);
 
-					// Allow additional unary operators after "("
+					// allow additional unary operators after "("
 					if (state == State.UnaryOperator)
+					{
 						state = State.Operator;
+					}
 
 					// push opening parenthesis onto stack
 					stack.Push(parser.Peek().ToString());
@@ -150,51 +154,58 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 				}
 				else if (parser.Peek() == ')')
 				{
-					// Must follow operand
+					// must follow operand
 					if (state != State.Operand)
 						throw new FormulaException(ErrOperandExpected, parser.Position);
-					// Must have matching open parenthesis
+
+					// must have matching open parenthesis
 					if (parenDepth == 0)
 						throw new FormulaException(ErrUnmatchedClosingParen, parser.Position);
-					// Pop all operators until matching "(" found
-					temp = stack.Pop();
-					while (temp != "(")
+
+					// pop all operators until matching "(" found
+					var token = stack.Pop();
+					while (token != "(")
 					{
-						tokens.Add(temp);
-						temp = stack.Pop();
+						tokens.Add(token);
+						token = stack.Pop();
 					}
-					// Track number of parentheses
+
+					// track number of parentheses
 					parenDepth--;
 				}
 				else if ("+-*/^".Contains(parser.Peek()))
 				{
-					// Need a bit of extra code to support unary operators
+					// need a bit of extra code to support unary operators
 					if (state == State.Operand)
 					{
-						// Pop operators with precedence >= current operator
-						int currPrecedence = GetPrecedence(parser.Peek().ToString());
-						while (stack.Count > 0 && GetPrecedence(stack.Peek()) >= currPrecedence)
+						var precedence = GetPrecedence(parser.Peek().ToString());
+
+						// pop operators with precedence >= current operator
+						while (stack.Count > 0 && GetPrecedence(stack.Peek()) >= precedence)
+						{
 							tokens.Add(stack.Pop());
+						}
+
 						stack.Push(parser.Peek().ToString());
 						state = State.Operator;
 					}
 					else if (state == State.UnaryOperator)
 					{
-						// Don't allow two unary operators together
+						// don't allow two unary operators together
 						throw new FormulaException(ErrOperandExpected, parser.Position);
 					}
 					else
 					{
-						// Test for unary operator
+						// test for unary operator
 						if (parser.Peek() == '-')
 						{
-							// Push unary minus
+							// push unary minus
 							stack.Push(UnaryMinus);
 							state = State.UnaryOperator;
 						}
 						else if (parser.Peek() == '+')
 						{
-							// Just ignore unary plus
+							// just ignore unary plus
 							state = State.UnaryOperator;
 						}
 						else
@@ -205,77 +216,89 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 				}
 				else if (char.IsDigit(parser.Peek()) || parser.Peek() == '.')
 				{
+					// cannot follow other operand
 					if (state == State.Operand)
-					{
-						// Cannot follow other operand
 						throw new FormulaException(ErrOperatorExpected, parser.Position);
-					}
-					// Parse number
-					temp = ParseNumberToken(parser);
-					tokens.Add(temp);
+
+					// parse number
+					var token = ParseNumberToken(parser);
+					tokens.Add(token);
 					state = State.Operand;
+
 					continue;
 				}
 				else
 				{
-					// Parse symbols and functions
+					// parse symbols and functions...
+
+					// symbol or function cannot follow other operand
 					if (state == State.Operand)
-					{
-						// Symbol or function cannot follow other operand
 						throw new FormulaException(ErrOperatorExpected, parser.Position);
-					}
 
 					var c = parser.Peek();
-					if (!(char.IsLetter(c) || c == '<' || c == '>' || c == '!' || c == '_'))
+
+					// the chars [<>!] support countif second parameter
+					if (!(char.IsLetter(c) || c == '<' || c == '>' || c == '!'))
 					{
 						// Invalid character
-						temp = string.Format(ErrUnexpectedCharacter, parser.Peek());
-						throw new FormulaException(temp, parser.Position);
+						var msg = string.Format(ErrUnexpectedCharacter, parser.Peek());
+						throw new FormulaException(msg, parser.Position);
 					}
 
 					// save start of symbol for error reporting
-					int symbolPos = parser.Position;
+					var symbolPos = parser.Position;
+
 					// parse this symbol
-					temp = ParseSymbolToken(parser);
+					var token = ParseSymbolToken(parser);
 					// skip whitespace
 					parser.MovePastWhitespace();
+
 					// check for parameter list
-					FormulaValue result;
+					FormulaValue value;
 					if (parser.Peek() == '(')
 					{
 						// found parameter list, evaluate function
-						result = EvaluateFunction(parser, temp, symbolPos);
+						value = EvaluateFunction(parser, token, symbolPos);
 					}
 					else
 					{
 						// no parameter list, evaluate symbol (variable)
-						result = EvaluateSymbol(temp, symbolPos);
+						value = EvaluateSymbol(token, symbolPos);
 					}
 
 					// handle negative result
-					if (result.Type == FormulaValueType.Double && result.DoubleValue < 0)
+					if (value.Type == FormulaValueType.Double && value.DoubleValue < 0)
 					{
 						stack.Push(UnaryMinus);
-						result = new FormulaValue(Math.Abs(result.DoubleValue));
+						value = new FormulaValue(Math.Abs(value.DoubleValue));
 					}
 
-					tokens.Add(result.ToString());
+					tokens.Add(value.ToString());
 					state = State.Operand;
+
 					continue;
 				}
+
 				parser.MoveAhead();
 			}
-			// Expression cannot end with operator
+
+			// expression cannot end with operator
 			if (state == State.Operator || state == State.UnaryOperator)
 				throw new FormulaException(ErrOperandExpected, parser.Position);
-			// Check for balanced parentheses
+
+			// check for balanced parentheses
 			if (parenDepth > 0)
 				throw new FormulaException(ErrClosingParenExpected, parser.Position);
-			// Retrieve remaining operators from stack
+
+			// retrieve remaining operators from stack
 			while (stack.Count > 0)
+			{
 				tokens.Add(stack.Pop());
+			}
+
 			return tokens;
 		}
+
 
 		/// <summary>
 		/// Parses and extracts a numeric value at the current position
@@ -313,11 +336,14 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		{
 			int start = parser.Position;
 			var c = parser.Peek();
-			while (char.IsLetterOrDigit(c) || c == '<' || c == '>' || c == '!' || c == '_')
+
+			// the chars [<>!] support countif second parameter
+			while (char.IsLetterOrDigit(c) || c == '<' || c == '>' || c == '!')
 			{
 				parser.MoveAhead();
 				c = parser.Peek();
 			}
+
 			var token = parser.Extract(start, parser.Position);
 			return token;
 		}
@@ -336,8 +362,13 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 			// parse function parameters
 			var parameters = ParseParameters(parser);
 
-			var function = MathFunctions.Find(name);
-			if (function != null)
+			if (factory is null)
+			{
+				factory = new FunctionFactory();
+			}
+
+			var function = factory.Find(name);
+			if (function is not null)
 			{
 				if (function.Spacial)
 				{
@@ -411,8 +442,15 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 			while (!parser.EndOfText)
 			{
 				var next = parser.Peek();
+				Logger.Current.Verbose($"char [{next}]");
 				if (next == ':')
 				{
+					parameters.Add(EvaluateParameter(parser, start));
+					start = parser.Position + 1;
+
+					Logger.Current.Verbose($"add :parameter [{parameters[parameters.Count - 1]}]");
+
+					/*
 					// assume current token and next token are cell references
 					var p1 = parser.Position;
 					var cell1 = parser.Extract(start, parser.Position);
@@ -426,6 +464,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 					{
 						parameters.Add(values[i]);
 					}
+					*/
 				}
 				else if (next == ',')
 				{
@@ -436,6 +475,8 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 						// evaluate the string prior to the comma
 						parameters.Add(EvaluateParameter(parser, start));
 						start = parser.Position + 1;
+
+						Logger.Current.Verbose($"add ,parameter [{parameters[parameters.Count - 1]}]");
 					}
 				}
 
@@ -453,6 +494,8 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 							}
 
 							parameters.Add(EvaluateParameter(parser, start));
+
+							Logger.Current.Verbose($"add )parameter [{parameters[parameters.Count - 1]}]");
 						}
 						break;
 					}
@@ -645,7 +688,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 
 
 		/// <summary>
-		/// Evaluates the given list of tokens and returns the result.
+		/// Evaluates basic arithmetic with the given list of tokens and returns the result.
 		/// Tokens must appear in postfix order.
 		/// </summary>
 		/// <param name="tokens">List of tokens to evaluate.</param>
@@ -656,8 +699,8 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 
 			foreach (string token in tokens)
 			{
-				// TryParse is more performance and complete than regex
-				if (double.TryParse(token, out var d)) // Culture-specific user input?!
+				// TryParse is more performant and complete than regex
+				if (double.TryParse(token, out var d)) // culture-specific user input?!
 				{
 					stack.Push(new FormulaValue(d));
 				}
@@ -666,50 +709,73 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 					var v2 = stack.Pop();
 					var v1 = stack.Pop();
 					if (v1.Type == FormulaValueType.Double && v2.Type == FormulaValueType.Double)
+					{
+						// add
 						stack.Push(new FormulaValue(v1.DoubleValue + v2.DoubleValue));
+					}
 					else
+					{
+						// concat strings
 						stack.Push(new FormulaValue(v1.ToString() + v2.ToString()));
+					}
 				}
 				else if (token == "-")
 				{
 					var v2 = stack.Pop();
 					var v1 = stack.Pop();
 					if (v1.Type == FormulaValueType.Double && v2.Type == FormulaValueType.Double)
+					{
+						// substract
 						stack.Push(new FormulaValue(v1.DoubleValue - v2.DoubleValue));
+					}
 				}
 				else if (token == "*")
 				{
 					var v2 = stack.Pop();
 					var v1 = stack.Pop();
 					if (v1.Type == FormulaValueType.Double && v2.Type == FormulaValueType.Double)
+					{
+						// multiply
 						stack.Push(new FormulaValue(v1.DoubleValue * v2.DoubleValue));
+					}
 				}
 				else if (token == "/")
 				{
 					var v2 = stack.Pop();
 					var v1 = stack.Pop();
 					if (v1.Type == FormulaValueType.Double && v2.Type == FormulaValueType.Double)
+					{
+						// divide
 						stack.Push(new FormulaValue(v1.DoubleValue / v2.DoubleValue));
+					}
 				}
 				else if (token == "^")
 				{
 					var v2 = stack.Pop();
 					var v1 = stack.Pop();
 					if (v1.Type == FormulaValueType.Double && v2.Type == FormulaValueType.Double)
+					{
+						// exponent
 						stack.Push(new FormulaValue(Math.Pow(v1.DoubleValue, v2.DoubleValue)));
+					}
 				}
 				else if (token == UnaryMinus)
 				{
 					var v1 = stack.Pop();
 					if (v1.Type == FormulaValueType.Double)
+					{
+						// negate
 						stack.Push(new FormulaValue(-v1.DoubleValue));
+					}
 				}
 				else if (bool.TryParse(token, out var b))
 				{
+					// bool
 					stack.Push(new FormulaValue(b));
 				}
 				else
 				{
+					// string
 					stack.Push(new FormulaValue(token));
 				}
 			}

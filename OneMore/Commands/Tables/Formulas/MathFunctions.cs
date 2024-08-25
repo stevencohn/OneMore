@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 #pragma warning disable S125 // Sections of code should not be commented out
@@ -31,53 +31,73 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 	}
 
 
-	internal static class MathFunctions
+	internal class FunctionFactory
 	{
-		private static readonly List<MathFunction> functions = new();
-		private static readonly FormulaValueType D = FormulaValueType.Double;
+		private readonly List<MathFunction> functions;
 
-		static MathFunctions()
+		public FunctionFactory()
 		{
-			functions.Add(new MathFunction("abs", (p) => Math.Abs(p.Match(D)[0])));
-			functions.Add(new MathFunction("acos", (p) => Math.Acos(p.Match(D)[0])));
-			functions.Add(new MathFunction("asin", (p) => Math.Asin(p.Match(D)[0])));
-			functions.Add(new MathFunction("atan", (p) => Math.Atan(p.Match(D)[0])));
-			functions.Add(new MathFunction("atan2", (p) => Math.Atan2(p.Match(D, D)[0], p[1])));
-			functions.Add(new MathFunction("average", (p) => Average(p.Match(D, D).ToDoubleArray())));
-			functions.Add(new MathFunction("ceiling", (p) => Math.Ceiling(p.Match(D, D)[0])));
-			functions.Add(new MathFunction("cell", (p) => Cell(p), true));
-			functions.Add(new MathFunction("cos", (p) => Math.Cos(p.Match(D)[0])));
-			functions.Add(new MathFunction("cosh", (p) => Math.Cosh(p.Match(D)[0])));
-			functions.Add(new MathFunction("countif", (p) => CountIf(p)));
-			functions.Add(new MathFunction("exp", (p) => Math.Exp(p.Match(D)[0])));
-			functions.Add(new MathFunction("floor", (p) => Math.Floor(p.Match(D)[0])));
-			functions.Add(new MathFunction("log", (p) => Math.Log(p.Match(D)[0])));
-			functions.Add(new MathFunction("log10", (p) => Math.Log10(p.Match(D)[0])));
-			functions.Add(new MathFunction("max", (p) => Max(p.Match(D).ToDoubleArray())));
-			functions.Add(new MathFunction("median", (p) => Median(p.Match(D).ToDoubleArray())));
-			functions.Add(new MathFunction("min", (p) => Min(p.Match(D).ToDoubleArray())));
-			functions.Add(new MathFunction("mode", (p) => Mode(p.Match(D).ToDoubleArray())));
-			functions.Add(new MathFunction("pow", (p) => Math.Pow(p.Match(D, D)[0], p[1])));
-			functions.Add(new MathFunction("range", (p) => Range(p.Match(D).ToDoubleArray())));
-			functions.Add(new MathFunction("round", (p) => Math.Round(p.Match(D)[0])));
-			functions.Add(new MathFunction("sign", (p) => Math.Sign(p.Match(D)[0])));
-			functions.Add(new MathFunction("sin", (p) => Math.Sin(p.Match(D)[0])));
-			functions.Add(new MathFunction("sinh", (p) => Math.Sinh(p.Match(D)[0])));
-			functions.Add(new MathFunction("sqrt", (p) => Math.Sqrt(p.Match(D)[0])));
-			functions.Add(new MathFunction("stdev", (p) => StandardDeviation(p.Match(D).ToDoubleArray())));
-			functions.Add(new MathFunction("sum", (p) => Sum(p.Match(D).ToDoubleArray())));
-			functions.Add(new MathFunction("tablecols", (p) => TableCols(p), true));
-			functions.Add(new MathFunction("tablerows", (p) => TableRows(p), true));
-			functions.Add(new MathFunction("tan", (p) => Math.Tan(p.Match(D)[0])));
-			functions.Add(new MathFunction("tanh", (p) => Math.Tanh(p.Match(D)[0])));
-			functions.Add(new MathFunction("trunc", (p) => Math.Truncate(p.Match(D)[0])));
-			functions.Add(new MathFunction("variance", (p) => Variance(p.Match(D).ToDoubleArray())));
+			functions = new List<MathFunction>();
 		}
 
 
-		public static MathFunction Find(string name)
+		public MathFunction Find(string name)
 		{
-			return functions.Find(f => f.Name == name);
+			var function = functions.Find(f => f.Name == name);
+			if (function is not null)
+			{
+				return function;
+			}
+
+			// just a short alias
+			var D = FormulaValueType.Double;
+
+			function = name switch
+			{
+				"abs" => new MathFunction("abs", (p) => Math.Abs(p.Match(D)[0])),
+				"acos" => new MathFunction("acos", (p) => Math.Acos(p.Match(D)[0])),
+				"asin" => new MathFunction("asin", (p) => Math.Asin(p.Match(D)[0])),
+				"atan" => new MathFunction("atan", (p) => Math.Atan(p.Match(D)[0])),
+				"atan2" => new MathFunction("atan2", (p) => Math.Atan2(p.Match(D, D)[0], p[1])),
+				"average" => new MathFunction("average", (p) => Average(p.Match(D, D).ToDoubleArray())),
+				"ceiling" => new MathFunction("ceiling", (p) => Math.Ceiling(p.Match(D, D)[0])),
+				"cell" => new MathFunction("cell", (p) => Cell(p), true),
+				"cos" => new MathFunction("cos", (p) => Math.Cos(p.Match(D)[0])),
+				"cosh" => new MathFunction("cosh", (p) => Math.Cosh(p.Match(D)[0])),
+				"countif" => new MathFunction("countif", (p) => CountIf(p)),
+				"exp" => new MathFunction("exp", (p) => Math.Exp(p.Match(D)[0])),
+				"floor" => new MathFunction("floor", (p) => Math.Floor(p.Match(D)[0])),
+				"log" => new MathFunction("log", (p) => Math.Log(p.Match(D)[0])),
+				"log10" => new MathFunction("log10", (p) => Math.Log10(p.Match(D)[0])),
+				"max" => new MathFunction("max", (p) => Max(p.Match(D).ToDoubleArray())),
+				"median" => new MathFunction("median", (p) => Median(p.Match(D).ToDoubleArray())),
+				"min" => new MathFunction("min", (p) => Min(p.Match(D).ToDoubleArray())),
+				"mode" => new MathFunction("mode", (p) => Mode(p.Match(D).ToDoubleArray())),
+				"pow" => new MathFunction("pow", (p) => Math.Pow(p.Match(D, D)[0], p[1])),
+				"range" => new MathFunction("range", (p) => Range(p.Match(D).ToDoubleArray())),
+				"round" => new MathFunction("round", (p) => Math.Round(p.Match(D)[0])),
+				"sign" => new MathFunction("sign", (p) => Math.Sign(p.Match(D)[0])),
+				"sin" => new MathFunction("sin", (p) => Math.Sin(p.Match(D)[0])),
+				"sinh" => new MathFunction("sinh", (p) => Math.Sinh(p.Match(D)[0])),
+				"sqrt" => new MathFunction("sqrt", (p) => Math.Sqrt(p.Match(D)[0])),
+				"stdev" => new MathFunction("stdev", (p) => StandardDeviation(p.Match(D).ToDoubleArray())),
+				"sum" => new MathFunction("sum", (p) => Sum(p.Match(D).ToDoubleArray())),
+				"tablecols" => new MathFunction("tablecols", (p) => TableCols(p), true),
+				"tablerow" => new MathFunction("tablerows", (p) => TableRows(p), true),
+				"tan" => new MathFunction("tan", (p) => Math.Tan(p.Match(D)[0])),
+				"tanh" => new MathFunction("tanh", (p) => Math.Tanh(p.Match(D)[0])),
+				"trunc" => new MathFunction("trunc", (p) => Math.Truncate(p.Match(D)[0])),
+				"variance" => new MathFunction("variance", (p) => Variance(p.Match(D).ToDoubleArray())),
+				_ => null
+			};
+
+			if (function is not null)
+			{
+				functions.Add(function);
+				return function;
+			}
+
+			return null;
 		}
 
 
