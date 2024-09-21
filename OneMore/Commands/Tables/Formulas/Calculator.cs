@@ -1,571 +1,583 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn. All rights reserved.
+// Copyright © 2024 Steven M Cohn. All rights reserved.
+//
+// This is a heavily modified adaptation of the Mathos.Parser by artem@atemlos.net, customized
+// for the OneMore table calculator. Copyright © 2012-2019, Mathos Project. All rights reserved.
+//
 //************************************************************************************************
-/*
- * Based on the C# Expression Evaluator by Jonathan Wood, 2010
- *
- * This source code and all associated files and resources are copyrighted by
- * the author(s). This source code and all associated files and resources may
- * be used as long as they are used according to the terms and conditions set
- * forth in The Code Project Open License (CPOL), which may be viewed at
- * http://www.blackbeltcoder.com/Legal/Licenses/CPOL.
- * Copyright (c) 2010 Jonathan Wood
- */
 
-#pragma warning disable S1066 // Collapsible "if" statements should be merged
+#pragma warning disable S1643 // Strings should not be concatenated using '+' in a loop
 
 namespace River.OneMoreAddIn.Commands.Tables.Formulas
 {
 	using System;
 	using System.Collections.Generic;
+	using System.Globalization;
 	using System.Linq;
 	using System.Text.RegularExpressions;
-	using Resx = Properties.Resources;
 
 
 	/// <summary>
-	/// Expression evaluator
+	/// A mathematical expression parser and evaluator with adaptations for spreadsheet-like
+	/// cell dereferencing and enhanced functions.
 	/// </summary>
-	internal class Calculator
+	internal class Calculator : Loggable
 	{
-		// event handers
-		public delegate void ProcessSymbolHandler(object sender, SymbolEventArgs e);
-		public delegate void ProcessFunctionHandler(object sender, FunctionEventArgs e);
+		// Regex pattern for matching cell addresses of the form [col-letters][row-number] where
+		// row-number is a positive, non-zero integer. Capture groups are named c)ell and r)row.
+		private const string AddressPattern = @"^(?<c>[a-zA-Z]+)(?<r>\d+)$";
 
-		public event ProcessSymbolHandler ProcessSymbol;
-		public event ProcessFunctionHandler ProcessFunction;
+		// names of specialized functions
+		private const string CellFnName = "cell";
+		private const string CountifFnName = "countif";
 
-		// token types
-		private enum State
-		{
-			None = 0,
-			Operand = 1,
-			Operator = 2,
-			UnaryOperator = 3
-		}
+		// single char unicode values for greater-than, less-than, and not-equals-to
+		private const char GeqSign = (char)8805;
+		private const char LeqSign = (char)8804;
+		private const char NeqSign = (char)8800;
 
-		// error messages
-		private readonly string ErrInvalidOperand = Resx.Calculator_ErrInvalidOperand;
-		private readonly string ErrOperandExpected = Resx.Calculator_ErrOperandExpected;
-		private readonly string ErrOperatorExpected = Resx.Calculator_ErrOperatorExpected;
-		private readonly string ErrUnmatchedClosingParen = Resx.Calculator_ErrUnmatchedClosingParen;
-		private readonly string ErrMultipleDecimalPoints = Resx.Calculator_ErrMultipleDecimalPoints;
-		private readonly string ErrUnexpectedCharacter = Resx.Calculator_ErrUnexpectedCharacter;
-		private readonly string ErrUndefinedSymbol = Resx.Calculator_ErrUndefinedSymbol;
-		private readonly string ErrUndefinedFunction = Resx.Calculator_ErrUndefinedFunction;
-		private readonly string ErrClosingParenExpected = Resx.Calculator_ErrClosingParenExpected;
-		private readonly string ErrWrongParamCount = Resx.Calculator_ErrWrongParamCount;
-		private readonly string ErrInvalidCellRange = Resx.Calculator_ErrInvalidCellRange;
+		private readonly FunctionFactory factory;
 
-		// To distinguish it from minus operator, use char unlikely to appear in expressions
-		// to signify a unary negative; 0x80 follows DEL/0x7F just out of ASCII range
-		private const string UnaryMinus = "\x80";
-
-		private readonly Models.Table table;
-		private Coordinates coordinates;
-		private FunctionFactory factory;
+		private readonly Dictionary<string, Func<double, double, double>> operators;
+		private readonly Dictionary<string, double> variables;
+		private readonly Dictionary<string, Func<VariantList, double>> functions;
+		private readonly CultureInfo cultureInfo;
 
 
 		/// <summary>
-		/// Initialize a new instance
+		/// The keyword to use for variable declarations when parsing. The default value is "let".
 		/// </summary>
-		public Calculator(Models.Table table)
+		public string VariableDeclarator { get; set; } = "let";
+
+
+		/// <summary>
+		/// The handler used as a callback to a consumer delegate to ask for cell values.
+		/// </summary>
+		public event GetCellValueHandler GetCellValue;
+
+
+
+		/// <summary>
+		/// Iniitalizes a new calculator.
+		/// </summary>
+		public Calculator()
 		{
-			this.table = table;
+			operators = new Dictionary<string, Func<double, double, double>>
+			{
+				["^"] = Math.Pow,
+				["%"] = (a, b) => a % b,
+				["/"] = (a, b) =>
+				{
+					if (b != 0)
+						return a / b;
+					else if (a > 0)
+						return double.PositiveInfinity;
+					else if (a < 0)
+						return double.NegativeInfinity;
+					else
+						return double.NaN;
+				},
+				["*"] = (a, b) => a * b,
+				["-"] = (a, b) => a - b,
+				["+"] = (a, b) => a + b,
+
+				[">"] = (a, b) => a > b ? 1 : 0,
+				["<"] = (a, b) => a < b ? 1 : 0,
+				["" + GeqSign] = (a, b) => a > b || Math.Abs(a - b) < 0.00000001 ? 1 : 0,
+				["" + LeqSign] = (a, b) => a < b || Math.Abs(a - b) < 0.00000001 ? 1 : 0,
+				["" + NeqSign] = (a, b) => Math.Abs(a - b) < 0.00000001 ? 0 : 1,
+				["="] = (a, b) => Math.Abs(a - b) < 0.00000001 ? 1 : 0
+			};
+
+			variables = new Dictionary<string, double>
+			{
+				["pi"] = 3.14159265358979,
+				["tao"] = 6.28318530717959,
+
+				["e"] = 2.71828182845905,
+				["phi"] = 1.61803398874989,
+				["major"] = 0.61803398874989,
+				["minor"] = 0.38196601125011,
+
+				["pitograd"] = 57.2957795130823,
+				["piofgrad"] = 0.01745329251994
+			};
+
+			functions = new Dictionary<string, Func<VariantList, double>>();
+			factory = new FunctionFactory();
+
+			cultureInfo = CultureInfo.InvariantCulture;
 		}
 
 
 		/// <summary>
-		/// Evaluate the given expression and returns the result
+		/// Adds or replaces a named user-defined function.
 		/// </summary>
-		/// <param name="expression">The expression to evaluate</param>
-		/// <param name="colNumber"></param>
-		/// <param name="rowNumber"></param>
-		/// <returns></returns>
-		public double Execute(string expression, int colNumber, int rowNumber)
+		/// <param name="name">The unique name of the function</param>
+		/// <param name="fn">The function</param>
+		public void AddFunction(string name, Func<VariantList, double> fn)
 		{
-			coordinates = new Coordinates(colNumber, rowNumber);
-
-			var result = ExecuteInternal(expression);
-			if (result.Type == FormulaValueType.Double)
+			if (!functions.ContainsKey(name))
 			{
-				return result.DoubleValue;
+				functions.Add(name, fn);
 			}
-			else if (result.Type == FormulaValueType.Boolean)
+			else
 			{
-				return (bool)result.Value ? 1 : 0;
+				functions[name] = fn;
 			}
-
-			throw new FormulaException($"expression cannot result in a string value");
-		}
-
-
-		private FormulaValue ExecuteInternal(string expression)
-		{
-			var tokenized = TokenizeExpression(expression);
-
-			foreach (var token in tokenized)
-			{
-				Logger.Current.Verbose($"tokenized [{token}]");
-			}
-
-
-			return ExecuteTokens(tokenized);
 		}
 
 
 		/// <summary>
-		/// Converts a standard infix expression to list of tokens in
-		/// postfix order.
+		/// Adds or replaces a named user-defined operator.
 		/// </summary>
-		/// <param name="expression">Expression to evaluate</param>
-		/// <returns></returns>s
-		private List<string> TokenizeExpression(string expression)
+		/// <param name="name">The unique operator syntax; this should be a single char.</param>
+		/// <param name="fn">The operator evaluation function</param>
+		public void AddOperator(string name, Func<double, double, double> fn)
 		{
+			if (!operators.ContainsKey(name))
+			{
+				operators.Add(name, fn);
+			}
+			else
+			{
+				operators[name] = fn;
+			}
+		}
+
+
+		/// <summary>
+		/// Gets the value of a named variable.
+		/// </summary>
+		/// <param name="name">The name of the variable.</param>
+		/// <returns>The value of the variable</returns>
+		public double GetVariable(string name)
+		{
+			if (variables.ContainsKey(name))
+			{
+				return variables[name];
+			}
+
+			return double.NaN;
+		}
+
+
+		/// <summary>
+		/// Adds or replaces a named user-defined variable.
+		/// </summary>
+		/// <param name="name">The unique name of the variable.</param>
+		/// <param name="value">The value of the variable</param>
+		public void SetVariable(string name, double value)
+		{
+			if (!variables.ContainsKey(name))
+			{
+				variables.Add(name, value);
+			}
+			else
+			{
+				variables[name] = value;
+			}
+		}
+
+
+		/// <summary>
+		/// Parse and evaluate a mathematical expression.
+		/// </summary>
+		/// <remarks>
+		/// This method does not evaluate variable declarations.
+		/// </remarks>
+		/// <param name="expression">The math expression to parse and evaluate.</param>
+		/// <returns>Returns the result of executing the given math expression.</returns>
+		public double Compute(string expression)
+		{
+			var tokens = Parse(expression);
+			ReplaceVariables(tokens);
+			PreprocessTableFunctions(tokens);
+			GetCellContents(tokens);
+			return Evaluate(tokens);
+		}
+
+
+		private List<string> Parse(string expr)
+		{
+			logger.WriteLine($"expression=[{expr}]");
+
+			var token = string.Empty;
 			var tokens = new List<string>();
-			var stack = new Stack<string>();
-			var state = State.None;
-			int parenDepth = 0;
 
-			var parser = new TextParser(expression);
+			expr = expr.Replace("+-", "-");
+			expr = expr.Replace("-+", "-");
+			expr = expr.Replace("--", "+");
+			expr = expr.Replace("==", "=");
+			expr = expr.Replace(">=", "" + GeqSign);
+			expr = expr.Replace("<=", "" + LeqSign);
+			expr = expr.Replace("!=", "" + NeqSign);
 
-			while (!parser.EndOfText)
+			for (var i = 0; i < expr.Length; i++)
 			{
-				if (char.IsWhiteSpace(parser.Peek()))
-				{
-					// ignore spaces, tabs, etc.
-				}
-				else if (parser.Peek() == '(')
-				{
-					// cannot follow operand
-					if (state == State.Operand)
-						throw new FormulaException(ErrOperatorExpected, parser.Position);
+				var ch = expr[i];
 
-					// allow additional unary operators after "("
-					if (state == State.UnaryOperator)
+				if (char.IsWhiteSpace(ch))
+				{
+					continue;
+				}
+
+				if (char.IsLetter(ch))
+				{
+					if (i != 0 && (char.IsDigit(expr[i - 1]) || expr[i - 1] == ')'))
 					{
-						state = State.Operator;
+						tokens.Add("*");
 					}
 
-					// push opening parenthesis onto stack
-					stack.Push(parser.Peek().ToString());
-					// track number of parentheses
-					parenDepth++;
-				}
-				else if (parser.Peek() == ')')
-				{
-					// must follow operand
-					if (state != State.Operand)
-						throw new FormulaException(ErrOperandExpected, parser.Position);
+					token += ch;
 
-					// must have matching open parenthesis
-					if (parenDepth == 0)
-						throw new FormulaException(ErrUnmatchedClosingParen, parser.Position);
-
-					// pop all operators until matching "(" found
-					var token = stack.Pop();
-					while (token != "(")
+					while (i + 1 < expr.Length && char.IsLetterOrDigit(expr[i + 1]))
 					{
-						tokens.Add(token);
-						token = stack.Pop();
+						token += expr[++i];
 					}
 
-					// track number of parentheses
-					parenDepth--;
+					tokens.Add(token);
+					token = string.Empty;
+					continue;
 				}
-				else if ("+-*/^".Contains(parser.Peek()))
+
+				if (char.IsDigit(ch))
 				{
-					// need a bit of extra code to support unary operators
-					if (state == State.Operand)
+					token += ch;
+
+					while (i + 1 < expr.Length && (char.IsDigit(expr[i + 1]) || expr[i + 1] == '.'))
 					{
-						var precedence = GetPrecedence(parser.Peek().ToString());
-
-						// pop operators with precedence >= current operator
-						while (stack.Count > 0 && GetPrecedence(stack.Peek()) >= precedence)
-						{
-							tokens.Add(stack.Pop());
-						}
-
-						stack.Push(parser.Peek().ToString());
-						state = State.Operator;
+						token += expr[++i];
 					}
-					else if (state == State.UnaryOperator)
+
+					tokens.Add(token);
+					token = string.Empty;
+					continue;
+				}
+
+				if (ch == '.')
+				{
+					token += ch;
+
+					while (i + 1 < expr.Length && char.IsDigit(expr[i + 1]))
 					{
-						// don't allow two unary operators together
-						throw new FormulaException(ErrOperandExpected, parser.Position);
+						token += expr[++i];
+					}
+
+					tokens.Add(token);
+					token = string.Empty;
+					continue;
+				}
+
+				if (i + 1 < expr.Length &&
+					(ch == '-' || ch == '+') &&
+					char.IsDigit(expr[i + 1]) &&
+					(i == 0 || (tokens.Count > 0 &&
+						operators.ContainsKey(tokens[tokens.Count - 1])) ||
+						i - 1 > 0 && expr[i - 1] == '('))
+				{
+					// if the above is true, then the token for that negative number will be
+					// "-1", not "-","1". To sum up, the above will be true if the minus sign is
+					// in front of the number, but at the beginning, for example, -1+2, or, when
+					// it is inside the brakets (-1), or when it comes after another operator.
+					// NOTE: this works for + as well!
+
+					token += ch;
+
+					while (i + 1 < expr.Length && (char.IsDigit(expr[i + 1]) || expr[i + 1] == '.'))
+					{
+						token += expr[++i];
+					}
+
+					tokens.Add(token);
+					token = string.Empty;
+					continue;
+				}
+
+				if (ch == '(')
+				{
+					if (i != 0 && (char.IsDigit(expr[i - 1]) || expr[i - 1] == ')'))
+					{
+						tokens.Add("*");
+						tokens.Add("(");
 					}
 					else
 					{
-						// test for unary operator
-						if (parser.Peek() == '-')
-						{
-							// push unary minus
-							stack.Push(UnaryMinus);
-							state = State.UnaryOperator;
-						}
-						else if (parser.Peek() == '+')
-						{
-							// just ignore unary plus
-							state = State.UnaryOperator;
-						}
-						else
-						{
-							throw new FormulaException(ErrOperandExpected, parser.Position);
-						}
+						tokens.Add("(");
 					}
-				}
-				else if (char.IsDigit(parser.Peek()) || parser.Peek() == '.')
-				{
-					// cannot follow other operand
-					if (state == State.Operand)
-						throw new FormulaException(ErrOperatorExpected, parser.Position);
-
-					// parse number
-					var token = ParseNumberToken(parser);
-					tokens.Add(token);
-					state = State.Operand;
-
-					continue;
 				}
 				else
 				{
-					// parse symbols and functions...
-
-					// symbol or function cannot follow other operand
-					if (state == State.Operand)
-						throw new FormulaException(ErrOperatorExpected, parser.Position);
-
-					var c = parser.Peek();
-
-					// the chars [<>!] support countif second parameter
-					if (!(char.IsLetter(c) || c == '<' || c == '>' || c == '!'))
-					{
-						// Invalid character
-						var msg = string.Format(ErrUnexpectedCharacter, parser.Peek());
-						throw new FormulaException(msg, parser.Position);
-					}
-
-					// save start of symbol for error reporting
-					var symbolPos = parser.Position;
-
-					// parse this symbol
-					var token = ParseSymbolToken(parser);
-					// skip whitespace
-					parser.MovePastWhitespace();
-
-					// check for parameter list
-					FormulaValue value;
-					if (parser.Peek() == '(')
-					{
-						// found parameter list, evaluate function
-						value = EvaluateFunction(parser, token, symbolPos);
-					}
-					else
-					{
-						// no parameter list, evaluate symbol (variable)
-						value = EvaluateSymbol(token, symbolPos);
-					}
-
-					// handle negative result
-					if (value.Type == FormulaValueType.Double && value.DoubleValue < 0)
-					{
-						stack.Push(UnaryMinus);
-						value = new FormulaValue(Math.Abs(value.DoubleValue));
-					}
-
-					tokens.Add(value.ToString());
-					state = State.Operand;
-
-					continue;
+					tokens.Add(ch.ToString());
 				}
-
-				parser.MoveAhead();
 			}
 
-			// expression cannot end with operator
-			if (state == State.Operator || state == State.UnaryOperator)
-				throw new FormulaException(ErrOperandExpected, parser.Position);
-
-			// check for balanced parentheses
-			if (parenDepth > 0)
-				throw new FormulaException(ErrClosingParenExpected, parser.Position);
-
-			// retrieve remaining operators from stack
-			while (stack.Count > 0)
+			for (var i = 0; i < tokens.Count; i++)
 			{
-				tokens.Add(stack.Pop());
+				logger.WriteLine($"... tokens[{i}] = [{tokens[i]}]");
 			}
 
 			return tokens;
 		}
 
 
-		/// <summary>
-		/// Parses and extracts a numeric value at the current position
-		/// </summary>
-		/// <param name="parser">TextParser object</param>
-		/// <returns></returns>
-		private string ParseNumberToken(TextParser parser)
+		private void ReplaceVariables(List<string> tokens)
 		{
-			bool hasDecimal = false;
-			int start = parser.Position;
-			while (char.IsDigit(parser.Peek()) || parser.Peek() == '.')
+			// Variables replacement
+			for (var i = 0; i < tokens.Count; i++)
 			{
-				if (parser.Peek() == '.')
+				if (variables.Keys.Contains(tokens[i]))
 				{
-					if (hasDecimal)
-						throw new FormulaException(ErrMultipleDecimalPoints, parser.Position);
-					hasDecimal = true;
+					tokens[i] = variables[tokens[i]].ToString(cultureInfo);
 				}
-				parser.MoveAhead();
-			}
-			// Extract token
-			string token = parser.Extract(start, parser.Position);
-			if (token == ".")
-				throw new FormulaException(ErrInvalidOperand, parser.Position - 1);
-			return token;
-		}
-
-		/// <summary>
-		/// Parses and extracts a symbol at the current position comprised of valid name
-		/// characters.
-		/// </summary>
-		/// <param name="parser">TextParser object</param>
-		/// <returns></returns>
-		private string ParseSymbolToken(TextParser parser)
-		{
-			int start = parser.Position;
-			var c = parser.Peek();
-
-			// the chars [<>!] support countif second parameter
-			while (char.IsLetterOrDigit(c) || c == '<' || c == '>' || c == '!')
-			{
-				parser.MoveAhead();
-				c = parser.Peek();
-			}
-
-			var token = parser.Extract(start, parser.Position);
-			return token;
-		}
-
-
-		/// <summary>
-		/// Evaluates a function and returns its value. It is assumed the current
-		/// position is at the opening parenthesis of the argument list.
-		/// </summary>
-		/// <param name="parser">TextParser object</param>
-		/// <param name="name">Name of function</param>
-		/// <param name="pos">Position at start of function</param>
-		/// <returns></returns>
-		private FormulaValue EvaluateFunction(TextParser parser, string name, int pos)
-		{
-			// parse function parameters
-			var parameters = ParseParameters(parser);
-
-			if (factory is null)
-			{
-				factory = new FunctionFactory();
-			}
-
-			var function = factory.Find(name);
-			if (function is not null)
-			{
-				if (function.Spacial)
+				else if (
+					tokens.Count == 1 ||
+					(!(i > 0 && tokens[i - 1] == ":") &&
+					!(i < tokens.Count - 1 && tokens[i + 1] == ":")))
 				{
-					parameters.Add(new FormulaValue(table));
-					parameters.Add(coordinates.ColNumber);
-					parameters.Add(coordinates.RowNumber);
-				}
-
-				return new FormulaValue(function.Fn(parameters));
-			}
-
-			double result = default;
-
-			// ask consumer to evaluate function
-			if (ProcessFunction != null)
-			{
-				var args = new FunctionEventArgs
-				{
-					Name = name,
-					Parameters = parameters,
-					Result = result,
-					Status = FunctionStatus.OK
-				};
-
-				ProcessFunction(this, args);
-				if (args.Status == FunctionStatus.OK)
-				{
-					return new FormulaValue(args.Result);
-				}
-
-				if (args.Status == FunctionStatus.WrongParameterCount)
-				{
-					throw new FormulaException(ErrWrongParamCount, pos);
-				}
-			}
-
-			throw new FormulaException(string.Format(ErrUndefinedFunction, name), pos);
-		}
-
-
-		/// <summary>
-		/// Evaluates each parameter of a function's parameter list and returns
-		/// a list of those values. An empty list is returned if no parameters
-		/// were found. It is assumed the current position is at the opening
-		/// parenthesis of the argument list.
-		/// </summary>
-		/// <param name="parser">TextParser object</param>
-		/// <returns></returns>
-		private FormulaValues ParseParameters(TextParser parser)
-		{
-			var parameters = new FormulaValues();
-
-			// move past open parenthesis
-			parser.MoveAhead();
-			parser.MovePastWhitespace();
-
-			// empty param list
-			if (parser.Peek() == ')')
-			{
-				parser.MoveAhead();
-				return parameters;
-			}
-
-			// collect parameters...
-
-
-			// Parse function parameter list
-			int start = parser.Position;
-			int depth = 1;
-
-			while (!parser.EndOfText)
-			{
-				var next = parser.Peek();
-				Logger.Current.Verbose($"char [{next}]");
-				if (next == ':')
-				{
-					parameters.Add(EvaluateParameter(parser, start));
-					start = parser.Position + 1;
-
-					Logger.Current.Verbose($"add :parameter [{parameters[parameters.Count - 1]}]");
-
-					/*
-					// assume current token and next token are cell references
-					var p1 = parser.Position;
-					var cell1 = parser.Extract(start, parser.Position);
-					parser.MoveAhead();
-					var p2 = parser.Position;
-					var cell2 = ParseSymbolToken(parser);
-					start = parser.Position;
-
-					var values = EvaluateCellReferences(cell1, cell2, p1, p2).ToArray();
-					for (int i = 0; i < values.Length; i++)
+					var match = Regex.Match(tokens[i], AddressPattern);
+					if (match.Success)
 					{
-						parameters.Add(values[i]);
-					}
-					*/
-				}
-				else if (next == ',')
-				{
-					// Note: Ignore commas inside parentheses. They could be
-					// from a parameter list for a function inside the parameters
-					if (depth == 1)
-					{
-						// evaluate the string prior to the comma
-						parameters.Add(EvaluateParameter(parser, start));
-						start = parser.Position + 1;
+						var value = GetCellContentInternal(tokens[i])
+							?? throw new CalculatorException(
+								$"invalid parameter at cell {tokens[i]}");
 
-						Logger.Current.Verbose($"add ,parameter [{parameters[parameters.Count - 1]}]");
+						tokens[i] = value;
 					}
 				}
+			}
+		}
 
-				next = parser.Peek();
-				if (next == ')')
+
+		private void PreprocessTableFunctions(List<string> tokens)
+		{
+			var open = tokens.LastIndexOf("(");
+			while (open > 0) // leave room for "cell" fn token prior to "("
+			{
+				var close = tokens.IndexOf(")", open);
+				if (open >= close)
 				{
-					depth--;
-					if (depth == 0)
+					throw new CalculatorException($"No closing bracket/parenthesis. Token: {open}");
+				}
+
+				if (tokens[open - 1]
+					.Equals(CellFnName, StringComparison.CurrentCultureIgnoreCase))
+				{
+					PreprocessCellFn(tokens, open, close);
+				}
+				else if (tokens[open - 1]
+					.Equals(CountifFnName, StringComparison.CurrentCultureIgnoreCase))
+				{
+					PreprocessCountifFn(tokens, open, close);
+				}
+
+				open = tokens.LastIndexOf("(", open - 1);
+			}
+
+			for (var i = 0; i < tokens.Count; i++)
+			{
+				logger.WriteLine($"... precell[{i}] = [{tokens[i]}]");
+			}
+		}
+
+
+		private void PreprocessCellFn(List<string> tokens, int open, int close)
+		{
+			var lparams = new List<string>();
+			var rparams = new List<string>();
+			var commas = 0;
+			for (var i = open + 1; i < close; i++)
+			{
+				if (tokens[i] == ",")
+				{
+					commas++;
+				}
+				else if (commas == 0)
+				{
+					lparams.Add(tokens[i]);
+				}
+				else
+				{
+					rparams.Add(tokens[i]);
+				}
+			}
+
+			if (commas != 1)
+			{
+				throw new CalculatorException(
+					$"The {CellFnName} function must have two parameters");
+			}
+
+			if (!variables.ContainsKey("col") || !variables.ContainsKey("row"))
+			{
+				throw new CalculatorException(
+					$"The {CellFnName} function requires the col and row variables");
+			}
+
+			var currentCol = variables["col"];
+			var currentRow = variables["row"];
+
+			var col = (int)currentCol + (int)EvaluateBasicMathExpression(lparams);
+			var row = (int)currentRow + (int)EvaluateBasicMathExpression(rparams);
+
+			var cellName = $"{CellIndexToLetters(col)}{row}";
+
+			tokens.RemoveRange(open - 1, close - open + 2);
+			tokens.Insert(open - 1, cellName);
+		}
+
+
+		private static void PreprocessCountifFn(List<string> tokens, int open, int close)
+		{
+			var last = tokens.LastIndexOf(",", close);
+			if (last > open)
+			{
+				var op = tokens[last + 1];
+				// is there an explicit operator?
+				if (op == ">" || op == "<" || op == "!")
+				{
+					if (op == ">") tokens[last + 1] = "1";
+					else if (op == "<") tokens[last + 1] = "-1";
+					else if (op == "!") tokens[last + 1] = "3";
+
+					tokens.Insert(last + 2, ",");
+				}
+				else
+				{
+					// convert implicit equals to explicit
+					tokens.Insert(last, "0");
+					tokens.Insert(last, ",");
+				}
+			}
+		}
+
+
+		private void GetCellContents(List<string> tokens)
+		{
+			var pattern = new Regex(AddressPattern);
+
+			var index = tokens.IndexOf(":");
+			while (index != -1)
+			{
+				if (index == 0 || index == tokens.Count - 1)
+				{
+					throw new CalculatorException("invalid range");
+				}
+
+				// cells...
+
+				var match = pattern.Match(tokens[index - 1]);
+				if (!match.Success)
+				{
+					throw new CalculatorException(
+						$"undefined cell ref [{tokens[index - 1]}]");// string.Format(ErrUndefinedSymbol, cell1), p1);
+				}
+
+				var col1 = match.Groups[1].Value.ToUpper();
+				var row1 = match.Groups[2].Value;
+
+				match = pattern.Match(tokens[index + 1]);
+				if (!match.Success)
+				{
+					throw new CalculatorException(
+						$"undefined cell ref [{tokens[index - 1]}]");//string.Format(ErrUndefinedSymbol, cell1), p1);
+				}
+
+				var col2 = match.Groups[1].Value.ToUpper();
+				var row2 = match.Groups[2].Value;
+
+				// expand...
+
+				var values = new List<string>();
+				if (col1 == col2)
+				{
+					var r1 = int.Parse(row1);
+					var r2 = int.Parse(row2);
+					if (r1 > r2)
 					{
-						if (start < parser.Position)
+						var t = r1; r1 = r2; r2 = t;
+					}
+
+					// iterate rows in column
+					for (var row = r1; row <= r2; row++)
+					{
+						var value = GetCellContentInternal($"{col1}{row}")
+							?? throw new CalculatorException(
+								$"invalid parameter at cell {col1}{row1}");
+
+						// ignore empty cells
+						if (value.Length > 0)
 						{
-							if (parser.PeekAt(start) == ',')
+							if (values.Count > 0)
 							{
-								start++;
+								values.Add(",");
 							}
 
-							parameters.Add(EvaluateParameter(parser, start));
-
-							Logger.Current.Verbose($"add )parameter [{parameters[parameters.Count - 1]}]");
+							values.Add(value);
 						}
-						break;
 					}
 				}
-				else if (next == '(')
+				else if (row1 == row2)
 				{
-					depth++;
-				}
-
-				parser.MoveAhead();
-			}
-
-			// make sure we found a closing parenthesis
-			if (depth > 0)
-				throw new FormulaException(ErrClosingParenExpected, parser.Position);
-
-			// move past closing parenthesis
-			parser.MoveAhead();
-			return parameters;
-		}
-
-
-		private FormulaValues EvaluateCellReferences(string cell1, string cell2, int p1, int p2)
-		{
-			// cell1...
-
-			var match = Regex.Match(cell1, Processor.AddressPattern);
-			if (!match.Success)
-				throw new FormulaException(string.Format(ErrUndefinedSymbol, cell1), p1);
-
-			var col1 = match.Groups[1].Value;
-			var row1 = match.Groups[2].Value;
-
-			match = Regex.Match(cell2, Processor.AddressPattern);
-			if (!match.Success)
-				throw new FormulaException(string.Format(ErrUndefinedSymbol, cell2), p2);
-
-			var col2 = match.Groups[1].Value;
-			var row2 = match.Groups[2].Value;
-
-			// validate...
-
-			var values = new FormulaValues();
-			if (col1 == col2)
-			{
-				// iterate rows in column
-				for (var row = int.Parse(row1); row <= int.Parse(row2); row++)
-				{
-					values.Add(EvaluateSymbol($"{col1}{row}", p1));
-				}
-			}
-			else if (row1 == row2)
-			{
-				// iterate columns in row
-				for (var col = CellLettersToIndex(col1); col <= CellLettersToIndex(col2); col++)
-				{
-					var v = EvaluateSymbol($"{CellIndexToLetters(col)}{row1}", p1);
-					if (v.Type == FormulaValueType.Unknown)
+					var c1 = CellLettersToIndex(col1);
+					var c2 = CellLettersToIndex(col2);
+					if (c1 > c2)
 					{
-						throw new FormulaException($"invalid parameter at cell {CellIndexToLetters(col)}{row1}");
+						var t = c1; c1 = c2; c2 = t;
 					}
 
-					values.Add(v);
-				}
-			}
-			else
-				throw new FormatException(ErrInvalidCellRange);
+					// iterate columns in row
+					for (var col = c1; col <= c2; col++)
+					{
+						var value = GetCellContentInternal($"{CellIndexToLetters(col)}{row1}")
+							?? throw new CalculatorException(
+								$"invalid parameter at cell {CellIndexToLetters(col)}{row1}");
 
-			return values;
+						// ignore empty cells
+						if (value.Length > 0)
+						{
+							if (values.Count > 0)
+							{
+								values.Add(",");
+							}
+
+							values.Add(value);
+						}
+					}
+				}
+				else
+				{
+					throw new FormatException(
+						$"invalid cell range {tokens[index - 1]}:{tokens[index + 1]}"); // ErrInvalidCellRange);
+				}
+
+				// replace token range with values
+
+				if (values.Count > 0)
+				{
+					tokens.RemoveRange(index - 1, 3);
+					tokens.InsertRange(index - 1, values);
+					index += values.Count;
+				}
+
+				index = index < tokens.Count - 1 ? tokens.IndexOf(":", index + 1) : -1;
+			}
 		}
+
+
+		private string GetCellContentInternal(string name)
+		{
+			// ask consumer to resolve cell reference
+			if (GetCellValue != null)
+			{
+				var args = new GetCellValueEventArgs(name);
+				GetCellValue(this, args);
+				return args.Value;
+			}
+
+			return null;
+		}
+
 
 		private static string CellIndexToLetters(int index)
 		{
@@ -582,6 +594,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 			return letters;
 		}
 
+
 		private static int CellLettersToIndex(string letters)
 		{
 			letters = letters.ToUpper();
@@ -596,192 +609,186 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		}
 
 
-
-		/// <summary>
-		/// Extracts and evaluates a function parameter and returns its value. If an
-		/// exception occurs, it is caught and the column is adjusted to reflect the
-		/// position in original string, and the exception is rethrown.
-		/// </summary>
-		/// <param name="parser">TextParser object</param>
-		/// <param name="paramStart">Column where this parameter started</param>
-		/// <returns></returns>
-		private FormulaValue EvaluateParameter(TextParser parser, int paramStart)
+		private double Evaluate(List<string> tokens)
 		{
-			string expression = string.Empty;
-			try
+			var open = tokens.LastIndexOf("(");
+			while (open != -1)
 			{
-				// Extract expression and evaluate it
-				expression = parser.Extract(paramStart, parser.Position).Trim();
-				return ExecuteInternal(expression);
-			}
-			catch (FormulaException ex)
-			{
-				// Adjust column and rethrow exception
-				throw new FormulaException(
-					$"{ex.PlainMessage}\n\"{expression}\"\n",
-					ex.Column + paramStart);
-			}
-		}
+				// getting data between "(" and ")"
+				var close = tokens.IndexOf(")", open
+					); // incase open is -1, i.e. no "(" // , open == 0 ? 0 : open - 1
 
-		/// <summary>
-		/// This method evaluates a symbol name and returns its value.
-		/// </summary>
-		/// <param name="name">Name of symbol</param>
-		/// <param name="pos">Position at start of symbol</param>
-		/// <returns></returns>
-		[System.Diagnostics.CodeAnalysis.SuppressMessage("Style",
-			"IDE0060:Remove unused parameter", Justification = "Future")]
-		private FormulaValue EvaluateSymbol(string name, int pos)
-		{
-			// built-in symbols
-
-			if (string.Compare(name, "pi", true) == 0)
-			{
-				return new FormulaValue(Math.PI);
-			}
-			else if (string.Compare(name, "e", true) == 0)
-			{
-				return new FormulaValue(Math.E);
-			}
-
-			// ask consumer to resolve symbol reference
-			if (ProcessSymbol != null)
-			{
-				var args = new SymbolEventArgs(name, coordinates);
-
-				ProcessSymbol(this, args);
-				if (args.Status == SymbolStatus.OK)
+				if (open >= close)
 				{
-					if (args.Type == FormulaValueType.Double)
-						return new FormulaValue(args.DoubleResult);
-
-					if (args.Type == FormulaValueType.Boolean)
-						return new FormulaValue((bool)args.Result);
-
-					if (args.Type == FormulaValueType.String)
-						return new FormulaValue((string)args.Result);
+					throw new ArithmeticException(
+						$"no closing bracket/parenthesis matching index {open}");
 				}
-			}
 
-			return new FormulaValue(name);
-		}
+				double result;
 
+				// parenthetical elements
+				var elements = new List<string>();
+				for (var i = open + 1; i < close; i++)
+				{
+					elements.Add(tokens[i]);
+				}
 
-		/// <summary>
-		/// Returns a value that indicates the relative precedence of
-		/// the specified operator
-		/// </summary>
-		/// <param name="s">Operator to be tested</param>
-		/// <returns></returns>
-		private static int GetPrecedence(string s)
-		{
-			return s switch
-			{
-				":" => 1,
-				"+" or "-" => 2,
-				"*" or "/" => 3,
-				"^" => 4,
-				UnaryMinus => 10,
-				_ => 0,
-			};
-		}
+				var name = tokens[open == 0 ? 0 : open - 1];
+				var func = functions.Keys.Contains(name)
+					? functions[name]
+					: factory.Find(name);
 
-
-		/// <summary>
-		/// Evaluates basic arithmetic with the given list of tokens and returns the result.
-		/// Tokens must appear in postfix order.
-		/// </summary>
-		/// <param name="tokens">List of tokens to evaluate.</param>
-		/// <returns></returns>
-		private static FormulaValue ExecuteTokens(List<string> tokens)
-		{
-			var stack = new Stack<FormulaValue>();
-
-			foreach (string token in tokens)
-			{
-				// TryParse is more performant and complete than regex
-				if (double.TryParse(token, out var d)) // culture-specific user input?!
+				if (func is null)
 				{
-					stack.Push(new FormulaValue(d));
+					// no function, just simple math
+					result = EvaluateBasicMathExpression(elements);
 				}
-				else if (token == "+")
+				else if (elements.Count == 0)
 				{
-					var v2 = stack.Pop();
-					var v1 = stack.Pop();
-					if (v1.Type == FormulaValueType.Double && v2.Type == FormulaValueType.Double)
-					{
-						// add
-						stack.Push(new FormulaValue(v1.DoubleValue + v2.DoubleValue));
-					}
-					else
-					{
-						// concat strings
-						stack.Push(new FormulaValue(v1.ToString() + v2.ToString()));
-					}
-				}
-				else if (token == "-")
-				{
-					var v2 = stack.Pop();
-					var v1 = stack.Pop();
-					if (v1.Type == FormulaValueType.Double && v2.Type == FormulaValueType.Double)
-					{
-						// substract
-						stack.Push(new FormulaValue(v1.DoubleValue - v2.DoubleValue));
-					}
-				}
-				else if (token == "*")
-				{
-					var v2 = stack.Pop();
-					var v1 = stack.Pop();
-					if (v1.Type == FormulaValueType.Double && v2.Type == FormulaValueType.Double)
-					{
-						// multiply
-						stack.Push(new FormulaValue(v1.DoubleValue * v2.DoubleValue));
-					}
-				}
-				else if (token == "/")
-				{
-					var v2 = stack.Pop();
-					var v1 = stack.Pop();
-					if (v1.Type == FormulaValueType.Double && v2.Type == FormulaValueType.Double)
-					{
-						// divide
-						stack.Push(new FormulaValue(v1.DoubleValue / v2.DoubleValue));
-					}
-				}
-				else if (token == "^")
-				{
-					var v2 = stack.Pop();
-					var v1 = stack.Pop();
-					if (v1.Type == FormulaValueType.Double && v2.Type == FormulaValueType.Double)
-					{
-						// exponent
-						stack.Push(new FormulaValue(Math.Pow(v1.DoubleValue, v2.DoubleValue)));
-					}
-				}
-				else if (token == UnaryMinus)
-				{
-					var v1 = stack.Pop();
-					if (v1.Type == FormulaValueType.Double)
-					{
-						// negate
-						stack.Push(new FormulaValue(-v1.DoubleValue));
-					}
-				}
-				else if (bool.TryParse(token, out var b))
-				{
-					// bool
-					stack.Push(new FormulaValue(b));
+					result = func(new VariantList());
 				}
 				else
 				{
-					// string
-					stack.Push(new FormulaValue(token));
+					var vargs = new VariantList();
+					var i = 0;
+					while (i < elements.Count)
+					{
+						var expr = new List<string>();
+						var nextComma = elements.IndexOf(",", i);
+						var end = nextComma != -1 ? nextComma : elements.Count;
+						while (i < end)
+						{
+							expr.Add(elements[i++]);
+						}
+
+						// this is an exception case for countif where the first n parameters and
+						// the last parameter can be true/false/string
+						if (name == CountifFnName &&
+							expr.Count == 1 &&
+							!double.TryParse(expr[0], NumberStyles.Number, cultureInfo, out _))
+						{
+							// countif match paramter
+							vargs.Add(new Variant(expr[0]));
+						}
+						else
+						{
+							var r = expr.Count == 0 ? 0 : EvaluateBasicMathExpression(expr);
+							vargs.Add(new Variant(r));
+						}
+
+						i++;
+					}
+
+					result = func(vargs);
+				}
+
+				// when all calcs are done, replace opening bracket with result and remove rest
+				tokens[open] = result.ToString(cultureInfo);
+				tokens.RemoveRange(open + 1, close - open);
+
+				if (func is not null)
+				{
+					// remove function name as well
+					tokens.RemoveAt(open - 1);
+				}
+
+				open = tokens.LastIndexOf("(");
+			}
+
+			// at this point, we should have replaced all brackets with the appropriate values,
+			// so we can simply calculate the expression
+			return EvaluateBasicMathExpression(tokens);
+		}
+
+
+		private double EvaluateBasicMathExpression(List<string> tokens)
+		{
+			// PERFORMING A BASIC ARITHMETICAL EXPRESSION CALCULATION. THIS METHOD CAN ONLY
+			// OPERATE WITH NUMBERS AND OPERATORS AND WILL NOT UNDERSTAND ANYTHING BEYOND THAT.
+
+			double token0;
+			double token1;
+
+			switch (tokens.Count)
+			{
+				case 1:
+					if (!double.TryParse(tokens[0], NumberStyles.Number, cultureInfo, out token0))
+					{
+						throw new CalculatorException($"variable {tokens[0]} is undefined");
+					}
+
+					return token0;
+
+				case 2:
+					var op = tokens[0];
+
+					if (op == "-" || op == "+")
+					{
+						var first = op == "+"
+							? string.Empty
+							: tokens[1].Substring(0, 1) == "-" ? string.Empty : "-";
+
+						if (!double.TryParse(first + tokens[1], NumberStyles.Number, cultureInfo, out token1))
+						{
+							throw new CalculatorException($"variable {first + tokens[1]} is undefined");
+						}
+
+						return token1;
+					}
+
+					if (!operators.ContainsKey(op))
+					{
+						throw new CalculatorException($"operator {op} is undefined");
+					}
+
+					if (!double.TryParse(tokens[1], NumberStyles.Number, cultureInfo, out token1))
+					{
+						throw new CalculatorException($"variable {tokens[1]} is undefined");
+					}
+
+					return operators[op](0, token1);
+
+				case 0:
+					return 0;
+			}
+
+			foreach (var op in operators)
+			{
+				int opPlace;
+
+				while ((opPlace = tokens.IndexOf(op.Key)) != -1)
+				{
+					if (!double.TryParse(tokens[opPlace + 1], NumberStyles.Number, cultureInfo, out var rhs))
+					{
+						throw new CalculatorException($"variable {tokens[opPlace + 1]} is undefined");
+					}
+
+					if (op.Key == "-" && opPlace == 0)
+					{
+						var result = op.Value(0.0, rhs);
+						tokens[0] = result.ToString(cultureInfo);
+						tokens.RemoveRange(opPlace + 1, 1);
+					}
+					else
+					{
+						if (!double.TryParse(tokens[opPlace - 1], NumberStyles.Number, cultureInfo, out var lhs))
+						{
+							throw new CalculatorException($"variable {tokens[opPlace - 1]} is undefined");
+						}
+
+						var result = op.Value(lhs, rhs);
+						tokens[opPlace - 1] = result.ToString(cultureInfo);
+						tokens.RemoveRange(opPlace, 2);
+					}
 				}
 			}
 
-			// remaining item on stack contains result
-			return stack.Count > 0 ? stack.Pop() : new FormulaValue(0);
+			if (!double.TryParse(tokens[0], NumberStyles.Number, cultureInfo, out token0))
+			{
+				throw new CalculatorException($"variable {tokens[0]} is undefined");
+			}
+
+			return token0;
 		}
 	}
 }

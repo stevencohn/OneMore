@@ -31,8 +31,11 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 
 		public void Execute(IEnumerable<TableCell> cells)
 		{
-			var calculator = new Calculator(table);
-			calculator.ProcessSymbol += ResolveCellReference;
+			var calculator = new Calculator();
+			calculator.SetVariable("tablecols", table.ColumnCount);
+			calculator.SetVariable("tablerows", table.RowCount);
+
+			calculator.GetCellValue += GetCellValue;
 
 			foreach (var cell in cells)
 			{
@@ -45,7 +48,10 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 
 				try
 				{
-					var result = calculator.Execute(formula.Expression, cell.ColNum, cell.RowNum);
+					calculator.SetVariable("col", cell.ColNum);
+					calculator.SetVariable("row", cell.RowNum);
+
+					var result = calculator.Compute(formula.Expression);
 
 					Report(cell, formula, result);
 				}
@@ -58,12 +64,11 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		}
 
 
-		private void ResolveCellReference(object sender, SymbolEventArgs e)
+		private void GetCellValue(object sender, GetCellValueEventArgs e)
 		{
 			var cell = table.GetCell(e.Name.ToUpper());
 			if (cell is null)
 			{
-				e.Status = SymbolStatus.UndefinedSymbol;
 				return;
 			}
 
@@ -76,7 +81,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 			{
 				maxdec = Math.Max(dvalue.ToString().Length - ((int)dvalue).ToString().Length - 1, maxdec);
 
-				e.SetResult(dvalue);
+				e.Value = dvalue.ToString();
 				return;
 			}
 
@@ -95,7 +100,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 					{
 						if (tag.IsToDo())
 						{
-							e.SetResult(tagx.Attribute("completed").Value == "true");
+							e.Value = (tagx.Attribute("completed").Value == "true").ToString();
 							return;
 						}
 					}
@@ -105,12 +110,12 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 			// can text be interpereted as a boolean?
 			if (bool.TryParse(text, out var bvalue))
 			{
-				e.SetResult(bvalue);
+				e.Value = bvalue.ToString();
 				return;
 			}
 
 			// treat it as a string
-			e.SetResult(text);
+			e.Value = text;
 		}
 
 

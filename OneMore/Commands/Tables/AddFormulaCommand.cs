@@ -80,7 +80,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			using var dialog = new FormulaDialog();
+			using var dialog = new FormulaDialog(table);
 
 			// display selected cell names
 			if (cells.Count == 1)
@@ -138,7 +138,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void StoreFormula(
+		private static void StoreFormula(
 			Table table, IEnumerable<TableCell> cells,
 			string expression, FormulaFormat format, int dplaces,
 			TableSelectionRange rangeType, string tagIndex)
