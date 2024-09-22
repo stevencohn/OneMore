@@ -140,6 +140,7 @@
 <li><a id="search-and-tag-commands" href="Search and Tag Commands.htm">Search and Tag Commands</a></li>
 <li><a id="snippets-commands" href="Snippets Commands.htm">Snippets Commands</a></li>
 <li><a id="table-commands" href="Table Commands.htm">Table Commands</a></li>
+<li><a id="table-formulas-and-calculations" href="Table Formulas and Calculations.htm">Table Formulas and Calculations</a></li>
 <li><a id="table-style-commands" href="Table Style Commands.htm">Table Style Commands</a></li>
 <li><a id="extra-commands" href="Extra Commands.htm">Extra Commands</a></li>
           </ul>
@@ -150,65 +151,15 @@
     <!-- Page Content -->
     <div id="content" style="margin-left: 30px; margin-top:100px;">
       <DIV style="DIRECTION: ltr">
-<DIV style="WIDTH: 8.736in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0in">
+<DIV style="WIDTH: 8.712in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0in">
 <DIV style="WIDTH: 2.465in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0in">
 <P lang=yo style='FONT-SIZE: 20pt; FONT-FAMILY: "Calibri Light"; MARGIN: 0in'>Table Commands</P></DIV>
 <DIV style="WIDTH: 2.477in; MARGIN-TOP: 0.042in; DIRECTION: ltr; MARGIN-LEFT: 0in">
 <P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">Monday, February 20, 2023</P>
 <P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">7:12 AM</P></DIV>
-<DIV style="WIDTH: 8.736in; MARGIN-TOP: 0.427in; DIRECTION: ltr; MARGIN-LEFT: 0in">
-<H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Add, Delete, Highlight, and Recalculate Formula</H1>
-<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">OneNote lets you insert an Excel table on a page or convert a table to an Excel object. This is convenient if you want complicated formulas and charts... and you have Excel installed! But what if you don't?</P>
+<DIV style="WIDTH: 8.712in; MARGIN-TOP: 0.427in; DIRECTION: ltr; MARGIN-LEFT: 0in">
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in"><SPAN lang=yo style="FONT-STYLE: italic">For table formulas and calculations, see the </SPAN><A href="Table Formulas and Calculations.htm"><SPAN lang=en-US>Table Formulas and Calculations</SPAN></A><SPAN lang=yo style="FONT-STYLE: italic"> page.</SPAN></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">OneMore adds Excel-like formula functionality to native OneNote tables. Thanks to the work done by&nbsp;<A href="http://www.blackbeltcoder.com/Articles/algorithms/a-c-expression-evaluator">Jonathan Wood</A>, who created a fantastic expression parser and evaluator, you can apply a formula to one or more selected cells in a table. A formula can consist of basic mathematical operators, parenthesis, and most math functions such as abs, sum, average, sin, etc.</P>
-<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<DIV style="DIRECTION: ltr">
-<TABLE title="" style="BORDER-TOP: #a3a3a3 0pt solid; BORDER-RIGHT: #a3a3a3 0pt solid; BORDER-COLLAPSE: collapse; BORDER-BOTTOM: #a3a3a3 0pt solid; DIRECTION: ltr; MARGIN-LEFT: 0.333in; BORDER-LEFT: #a3a3a3 0pt solid" cellSpacing=0 cellPadding=0 summary="" border=0 valign="top">
-<TBODY>
-<TR>
-<TD style="BORDER-LEFT-WIDTH: 0pt; BORDER-RIGHT-WIDTH: 0pt; WIDTH: 5.138in; VERTICAL-ALIGN: top; BORDER-BOTTOM-WIDTH: 0pt; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; PADDING-RIGHT: 3pt; BORDER-TOP-WIDTH: 0pt">
-<P style="MARGIN: 0in"><IMG alt="Formula Dialog" src="Table%20Commands_files/image001.png" width=480 height=344></P>
-<P lang=yo style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #5b9bd5; TEXT-ALIGN: center; MARGIN: 0in"><SPAN style="FONT-WEIGHT: bold">Formula Dialog</SPAN></P></TD></TR></TBODY></TABLE></DIV>
-<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<P lang=yo style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<OL style="FONT-SIZE: 11.5pt; MARGIN-BOTTOM: 0in; FONT-FAMILY: Calibri; unicode-bidi: embed; MARGIN-TOP: 0in; FONT-WEIGHT: normal; DIRECTION: ltr; FONT-STYLE: normal" type=1>
-<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px" value=1><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: normal; FONT-STYLE: normal">Select the cell or cells into which you want to add a formula; they must be linear and contiguous, meaning in the same row or in the same column.</SPAN> 
-<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Select the Add Formula command, </SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; BACKGROUND: #ffff99">F5</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">. The Formula dialog is displayed showing the names of the selected cells: A1, A2, A3, etc.</SPAN> 
-<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Enter the formula. As you type, OneMore validates the syntax in real-time, showing whether the formula is valid or invalid. Only when it is valid will the OK button be enabled.</SPAN> 
-<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Choose the format of the result: Number, Currency, or Percentage.</SPAN> 
-<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Choose whether you want to tag the cell with a lightning bolt to make it easy to identify cells with formulas in them.</SPAN> 
-<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Click OK.</SPAN> </LI></OL>
-<P lang=yo style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Formula processing is not recursive. This means that if cell A1 has a formula "A2+1" and cell A2 has a formula "1+1", then when A1 is calculated, it will not force A2 to be recalculated. Instead, each cell is calculated in order, top-down and left-to-right across the table.</P>
-<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">The Recalculate command, <SPAN style="BACKGROUND: #ffff99">Shift + F5</SPAN>, will recalculate all formulas in the selected table(s).</P>
-<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">The Highlight command will select all cells on the page containing formulas so you know where you put them.</P>
-<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">The Delete command will remove a formula from the selected cell(s) but retain the values displayed in those cell.</P>
-<P lang=yo style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<H3 lang=yo style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; COLOR: #5b9bd5; MARGIN: 0in">Relative Cell Ranges for Individual Columns</H3>
-<P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Typically, you'll add rows to or remove rows from a table to manage your data, as opposed to adding or removing columns. Changing rows of the table means absolute cell ranges like A1:A9, with the formula cell being A10, will ignore a new tenth row if added above the formula cell. </SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-STYLE: italic">Relative cell ranges</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> can be used in a single column. For example, given a table with 10 rows, you can enter a formula range such as </SPAN><SPAN style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #f1f1f1'>A1:A-1</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> in the formula cell of a column to indicate "start at cell A1 and references all cells up to the formula's row number minus 1.</SPAN></P>
-<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<UL style="MARGIN-BOTTOM: 0in; unicode-bidi: embed; MARGIN-TOP: 0in; DIRECTION: ltr" type=disc>
-<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Relative ranges can only be used in ranges describing contiguous cells in a single column.</SPAN> 
-<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">The relative range syntax, like A-1, can only be used in the second part of the range, such as </SPAN><SPAN style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #f1f1f1'>A1:A-1</SPAN> 
-<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Only negative offsets can be used and must be greater than zero. This means you can use offsets such </SPAN><SPAN style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #f1f1f1'>A-2</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, </SPAN><SPAN style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #f1f1f1'>A-3</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, etc.</SPAN> 
-<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">The formula cell does not need to be the last row in your table but you can only reference negative offsets.</SPAN> 
-<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Relative ranges are not allowed when you've selected multiple cells across columns of a row, as described below.</SPAN> </LI></UL>
-<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<H3 lang=yo style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; COLOR: #5b9bd5; MARGIN: 0in">Auto-Incremented Column References</H3>
-<P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">If you use cell references in your formula and you've selected more than one cell then OneMore will automatically increment the references relative to each seleted cell. For example, if you select cells A10, B10, and C10 and enter the formula </SPAN><SPAN style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #f1f1f1'>sum(A1:A9)</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> then that will apply to A10, </SPAN><SPAN style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #f1f1f1'>sum(B1:B9)</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> will apply to B10, and </SPAN><SPAN style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #f1f1f1'>sum(C1:C9)</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> will apply to C10.</SPAN></P>
-<H1 lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">&nbsp;</H1>
-<H2 lang=yo style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Functions</H2>
-<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Available functions include abs, acos, asin, atan, atan2, average, ceiling, cos, cosh, exp, floor, log, log10, max, median, min, mode, pow, range, round, sign, sin, sinh, sqrt, stdev, sum, tan, tanh, trunc, and variance.</P>
-<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Additionally, the following special functions are included.</P>
-<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<H3 lang=yo style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; COLOR: #5b9bd5; MARGIN: 0in">countif(range,&nbsp;criteria)</H3>
-<P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Counts the number of values in the given range that match the specified criteria. The&nbsp;range&nbsp;can be a simple math formula such as&nbsp;</SPAN><SPAN style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>123</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">&nbsp;or&nbsp;</SPAN><SPAN style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>22.5 * pi</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">&nbsp;or it could be a cell range such as&nbsp;</SPAN><SPAN style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>a2:a7</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">. The&nbsp;criteria&nbsp;can be a numeric value such as&nbsp;</SPAN><SPAN style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>123</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">&nbsp;or&nbsp;</SPAN><SPAN style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>45.66</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">; it can be a boolean,&nbsp;</SPAN><SPAN style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>true</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">&nbsp;or&nbsp;</SPAN><SPAN style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>false</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, in which case it will look for checkbox tags in each cell and will ignore all other content in the cells; or it can be a simple string match such as&nbsp;</SPAN><SPAN style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>abc</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">&nbsp;where quotes are not allowed. Additionally, three operators are allowed for numeric and string matches:&nbsp;&lt;,&nbsp;&gt;, and&nbsp;!, again quotes are not allowed. The countif function will ignore empty cells.</SPAN></P>
-<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Courier New"; COLOR: #43577c; MARGIN: 0in'>────────────────────────────────────────────────────────────────────────────────────────────────────</P>
 <H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Copy Across, Copy Down, Fill Across, and Fill Down</H1>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">The Copy Across and Copy Down commands will duplicate the contents of the lead cells in the selection. For example, if you select one or more cells in the first row and choose Copy Down, the cell values, style, and shading in that row will be copied down the entire table. Restrict the scope by selecting the first cell to copy and subsequent cells to fill, either vertically or horizontally as appropriate.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
@@ -226,22 +177,22 @@
 <LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">dddd, MMM d, yyyy</SPAN> </LI></UL>
 <LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">And these explicit formats</SPAN> 
 <UL style="MARGIN-BOTTOM: 0in; unicode-bidi: embed; MARGIN-TOP: 0in; DIRECTION: ltr" type=disc>
-<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">d-MMM-yyyy</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">d-MMM-yyyyabl </SPAN>
 <LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">MMM d, yyyy</SPAN> 
 <LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">MMM d</SPAN> </LI></UL></LI></UL></LI></UL>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<P style="MARGIN: 0in 0in 0in 0.375in"><IMG src="Table%20Commands_files/image002.png" width=480 height=333></P>
+<P style="MARGIN: 0in 0in 0in 0.375in"><IMG src="Table%20Commands_files/image001.png" width=480 height=333></P>
 <P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Convert Text to Table</H1>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Converts selected text to a table. Text must be delimited by a comma, space, or other special character so the command can detect columns.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<P style="MARGIN: 0in 0in 0in 0.375in"><IMG src="Table%20Commands_files/image003.png" width=336 height=306></P>
+<P style="MARGIN: 0in 0in 0in 0.375in"><IMG src="Table%20Commands_files/image002.png" width=336 height=306></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Insert Table Cells</H1>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Adds the ability to insert cells into a table, shifting existing content down or to the right. This is similar to the Excel functionality with one enhancement - if you select a rectangular region of cells then it will shift just those cells, possibly overwriting other cells. If you select cells from one column or cells from one row then it will insert cells above or to the left and add rows or columns as needed to make room for the new cells.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<P style="MARGIN: 0in 0in 0in 0.375in"><IMG src="Table%20Commands_files/image004.png" width=230 height=178></P>
+<P style="MARGIN: 0in 0in 0in 0.375in"><IMG src="Table%20Commands_files/image003.png" width=230 height=178></P>
 <P lang=yo style="FONT-SIZE: 12pt; MARGIN-BOTTOM: 12pt; FONT-FAMILY: Calibri; MARGIN-TOP: 0pt">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Note that if you move cells with formulas, the cell references in those formulas are not updated automatically by this command; you'll need to adjust those manually.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
