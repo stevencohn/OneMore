@@ -448,6 +448,14 @@
     <value>{0} 函数必须有两个参数</value>
     <comment>error</comment>
   </data>
+  <data name="Calculator_ErrInvalidFnParamType" xml:space="preserve">
+    <value>参数{0}不是类型{1}</value>
+    <comment>error</comment>
+  </data>
+  <data name="Calculator_ErrInvalidParamCount" xml:space="preserve">
+    <value>预期{0}参数，仅给定{1}</value>
+    <comment>error</comment>
+  </data>
   <data name="Calculator_ErrInvalidParameter" xml:space="preserve">
     <value>单元格 {0} 处的参数无效</value>
     <comment>error</comment>

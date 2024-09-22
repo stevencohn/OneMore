@@ -449,6 +449,14 @@ Invertir</value>
     <value>La función {0} debe tener dos parámetros</value>
     <comment>error</comment>
   </data>
+  <data name="Calculator_ErrInvalidFnParamType" xml:space="preserve">
+    <value>El parámetro {0} no es de tipo {1}</value>
+    <comment>error</comment>
+  </data>
+  <data name="Calculator_ErrInvalidParamCount" xml:space="preserve">
+    <value>Parámetros esperados {0}, solo dado {1}</value>
+    <comment>error</comment>
+  </data>
   <data name="Calculator_ErrInvalidParameter" xml:space="preserve">
     <value>Parámetro no válido en la celda {0}</value>
     <comment>error</comment>

@@ -450,6 +450,14 @@ Invert</value>
     <value>The {0} function must have two parameters</value>
     <comment>error</comment>
   </data>
+  <data name="Calculator_ErrInvalidFnParamType" xml:space="preserve">
+    <value>Parameter {0} is not of type {1}</value>
+    <comment>error</comment>
+  </data>
+  <data name="Calculator_ErrInvalidParamCount" xml:space="preserve">
+    <value>Expected {0} parameters, only given {1}</value>
+    <comment>error</comment>
+  </data>
   <data name="Calculator_ErrInvalidParameter" xml:space="preserve">
     <value>Invalid parameter at cell {0}</value>
     <comment>error</comment>

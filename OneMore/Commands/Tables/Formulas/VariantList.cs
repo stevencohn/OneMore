@@ -66,7 +66,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 			if (list.Count < types.Length)
 			{
 				throw new CalculatorException(
-					string.Format(Resx.Calculator_ErrInvalidFnParamType, types.Length, list.Count));
+					string.Format(Resx.Calculator_ErrInvalidParamCount, types.Length, list.Count));
 			}
 
 			for (int i = 0; i < Math.Min(types.Length, list.Count); i++)

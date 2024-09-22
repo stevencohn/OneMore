@@ -449,6 +449,14 @@ Inverser</value>
     <value>La fonction {0} doit avoir deux paramètres</value>
     <comment>error</comment>
   </data>
+  <data name="Calculator_ErrInvalidFnParamType" xml:space="preserve">
+    <value>Le paramètre {0} n'est pas de type {1}</value>
+    <comment>error</comment>
+  </data>
+  <data name="Calculator_ErrInvalidParamCount" xml:space="preserve">
+    <value>Paramètres attendus {0}, uniquement donné {1}</value>
+    <comment>error</comment>
+  </data>
   <data name="Calculator_ErrInvalidParameter" xml:space="preserve">
     <value>Paramètre non valide dans la cellule {0}</value>
     <comment>error</comment>

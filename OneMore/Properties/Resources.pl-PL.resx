@@ -450,6 +450,14 @@ Odwracać</value>
     <value>Funkcja {0} musi mieć dwa parametry</value>
     <comment>error</comment>
   </data>
+  <data name="Calculator_ErrInvalidFnParamType" xml:space="preserve">
+    <value>Parametr {0} nie jest typu {1}</value>
+    <comment>error</comment>
+  </data>
+  <data name="Calculator_ErrInvalidParamCount" xml:space="preserve">
+    <value>Oczekiwane parametry {0}, tylko podane {1}</value>
+    <comment>error</comment>
+  </data>
   <data name="Calculator_ErrInvalidParameter" xml:space="preserve">
     <value>Nieprawidłowy parametr w komórce {0}</value>
     <comment>error</comment>

@@ -820,6 +820,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Parameter {0} is not of type {1}.
+        /// </summary>
+        internal static string Calculator_ErrInvalidFnParamType {
+            get {
+                return ResourceManager.GetString("Calculator_ErrInvalidFnParamType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expected {0} parameters, only given {1}.
+        /// </summary>
+        internal static string Calculator_ErrInvalidParamCount {
+            get {
+                return ResourceManager.GetString("Calculator_ErrInvalidParamCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid parameter at cell {0}.
         /// </summary>
         internal static string Calculator_ErrInvalidParameter {

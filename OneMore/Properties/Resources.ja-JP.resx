@@ -450,6 +450,14 @@
     <value>{0} 関数には 2 つのパラメータが必要です</value>
     <comment>error</comment>
   </data>
+  <data name="Calculator_ErrInvalidFnParamType" xml:space="preserve">
+    <value>パラメーター{0}は{1}のタイプではありません</value>
+    <comment>error</comment>
+  </data>
+  <data name="Calculator_ErrInvalidParamCount" xml:space="preserve">
+    <value>予想{0}パラメーター、{1}のみが与えられます</value>
+    <comment>error</comment>
+  </data>
   <data name="Calculator_ErrInvalidParameter" xml:space="preserve">
     <value>セル {0} のパラメータが無効です</value>
     <comment>error</comment>

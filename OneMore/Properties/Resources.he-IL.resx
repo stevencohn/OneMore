@@ -450,6 +450,14 @@
     <value>הפונקציה {0} חייבת להיות בעלת שני פרמטרים</value>
     <comment>error</comment>
   </data>
+  <data name="Calculator_ErrInvalidFnParamType" xml:space="preserve">
+    <value>פרמטר {0} אינו מסוג {1}</value>
+    <comment>error</comment>
+  </data>
+  <data name="Calculator_ErrInvalidParamCount" xml:space="preserve">
+    <value>פרמטרים צפויים {0}, שניתנו רק {1}</value>
+    <comment>error</comment>
+  </data>
   <data name="Calculator_ErrInvalidParameter" xml:space="preserve">
     <value>פרמטר לא חוקי בתא {0}</value>
     <comment>error</comment>

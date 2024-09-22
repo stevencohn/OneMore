@@ -450,6 +450,14 @@ Invertido</value>
     <value>A função {0} deve ter dois parâmetros</value>
     <comment>error</comment>
   </data>
+  <data name="Calculator_ErrInvalidFnParamType" xml:space="preserve">
+    <value>O parâmetro {0} não é do tipo {1}</value>
+    <comment>error</comment>
+  </data>
+  <data name="Calculator_ErrInvalidParamCount" xml:space="preserve">
+    <value>Espera -se {0} parâmetros, apenas dados {1}</value>
+    <comment>error</comment>
+  </data>
   <data name="Calculator_ErrInvalidParameter" xml:space="preserve">
     <value>Parâmetro inválido na célula {0}</value>
     <comment>error</comment>

@@ -450,6 +450,14 @@ Omkeren</value>
     <value>De functie {0} moet twee parameters hebben</value>
     <comment>error</comment>
   </data>
+  <data name="Calculator_ErrInvalidFnParamType" xml:space="preserve">
+    <value>Parameter {0} is niet van type {1}</value>
+    <comment>error</comment>
+  </data>
+  <data name="Calculator_ErrInvalidParamCount" xml:space="preserve">
+    <value>Verwachte {0} parameters, alleen gegeven {1}</value>
+    <comment>error</comment>
+  </data>
   <data name="Calculator_ErrInvalidParameter" xml:space="preserve">
     <value>Ongeldige parameter in cel {0}</value>
     <comment>error</comment>

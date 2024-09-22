@@ -449,6 +449,14 @@ Umkehren</value>
     <value>Die Funktion {0} muss zwei Parameter haben</value>
     <comment>error</comment>
   </data>
+  <data name="Calculator_ErrInvalidFnParamType" xml:space="preserve">
+    <value>Parameter {0} ist nicht vom Typ {1}</value>
+    <comment>error</comment>
+  </data>
+  <data name="Calculator_ErrInvalidParamCount" xml:space="preserve">
+    <value>Erwartete {0} Parameter, nur angegeben {1}</value>
+    <comment>error</comment>
+  </data>
   <data name="Calculator_ErrInvalidParameter" xml:space="preserve">
     <value>Ungültiger Parameter in Zelle {0}</value>
     <comment>error</comment>

@@ -449,6 +449,14 @@
     <value>يجب أن تحتوي الدالة {0} على معلمتين</value>
     <comment>error</comment>
   </data>
+  <data name="Calculator_ErrInvalidFnParamType" xml:space="preserve">
+    <value>المعلمة {0} ليست من النوع {1}</value>
+    <comment>error</comment>
+  </data>
+  <data name="Calculator_ErrInvalidParamCount" xml:space="preserve">
+    <value>المعلمات المتوقعة {0} ، معطى فقط {1}</value>
+    <comment>error</comment>
+  </data>
   <data name="Calculator_ErrInvalidParameter" xml:space="preserve">
     <value>معلمة غير صالحة في الخلية {0}</value>
     <comment>error</comment>
