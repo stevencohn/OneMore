@@ -119,7 +119,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to OneMore Add-in.
+        ///   Looks up a localized string similar to OneMore Add-in smoker.
         /// </summary>
         internal static string AboutDialog_Text {
             get {
