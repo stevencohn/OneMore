@@ -1209,16 +1209,16 @@ OneNote 文件 (*.one)</value>
     <comment>label</comment>
   </data>
   <data name="FormulaDialog_helpBox.Text" xml:space="preserve">
-    <value>输入的公式应应用于第一个选定的单元格。对于其他选定的单元格，此公式将自动递增。
+    <value>公式适用于第一个选定的单元，并自动为其他选定的单元增量。
 
-函数：abs、acos、asin、atan、atan2、平均值、天花板、cos、cosh、countif、exp、floor、log、log10、max、median、min、mode、pow、range、round、sign、sin、sinh、 sqrt、stdev、总和、tan、tanh、trunc、方差
+函数：ABS，ACOS，ARCCOS，ARCSIN，ARCTAN，ASIN，ATAN，ATAN2，平均，天花板，天花板，COS，COSH，COSH，EXP，FLOOR，LOG10，LOG10，MAX，MAX，中位数，最低，最小，模式，模式，POW，POW，REM，REM， 根，圆形，符号，罪，sinh，sqrt，stdev，sum，tan，tanh，tanh，dunc，截断和方差。
 
-运算符：+ - / * ^
-符号：PI、E
-单元格参考号：A1、A2、...ZZZ999
-单元格范围：A1:A22
-列中的相对范围：A1:A-1</value>
-  <comment></comment></data>
+操作员： +  -  / * ^％
+变量：E，Phi，Pi，Tao，Tablecols，Tablerows
+细胞参考：A1，A2，... ZZZ999
+细胞范围：A1：A22
+相对范围：A1：单元格（0，-1）</value>
+  <comment>!EDIT</comment></data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>选定的单元格：</value>
     <comment>label</comment>

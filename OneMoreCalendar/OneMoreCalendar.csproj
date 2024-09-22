@@ -183,12 +183,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OneMore\OneMore.csproj">
-      <Project>{d874e185-08fe-48c5-bade-0fe84060c978}</Project>
-      <Name>OneMore</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Assets\day-32.png" />
     <Content Include="Assets\Logo.ico" />
     <Content Include="Assets\month-32.png" />

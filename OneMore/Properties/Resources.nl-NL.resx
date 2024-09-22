@@ -1211,16 +1211,16 @@ Percentage</value>
     <comment>label</comment>
   </data>
   <data name="FormulaDialog_helpBox.Text" xml:space="preserve">
-    <value>De ingevoerde formule moet van toepassing zijn op de eerste geselecteerde cel. Deze formule wordt automatisch verhoogd voor extra geselecteerde cellen.
+    <value>Formule is van toepassing op de eerste geselecteerde cel en worden automatisch verhoogd voor extra geselecteerde cellen.
 
-Functies: abs, acos, asin, atan, atan2, gemiddeld, plafond, cos, cosh, countif, exp, floor, log, log10, max, mediaan, min, mode, pow, bereik, rond, teken, sin, sinh, sqrt, stdev, som, tan, tanh, trunc, variantie
+Functies: ABS, ACOS, Arccos, Arcsin, Arctan, Asin, Atan, Atan2, gemiddeld, plafond, plafond, cos, cosh, exp, vloer, log, log10, max, mediaan, min, mode, pow, bereik, rem, Wortel, rond, teken, zonde, sinh, sqrt, stdev, som, tan, tanh, trunc, afknekking en variantie.
 
-Operatoren: + - / * ^
-Symbolen: PI, E
+Operators: + - / * ^ %
+Variabelen: E, PHI, PI, Tao, Tablecols, Tablerows
 Celreferentie: A1, A2, ... ZZZ999
-Celbereik: A1:A22
-Relatief bereik in een kolom: A1:A-1</value>
-  <comment></comment></data>
+Celbereik: A1: A22
+Relatieve bereiken: A1: Cell (0, -1)</value>
+  <comment>!EDIT</comment></data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>Geselecteerde cellen:</value>
     <comment>label</comment>
