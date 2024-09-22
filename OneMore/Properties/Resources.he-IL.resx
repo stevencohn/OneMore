@@ -1211,16 +1211,16 @@ Total Row Font
     <comment>label</comment>
   </data>
   <data name="FormulaDialog_helpBox.Text" xml:space="preserve">
-    <value>הנוסחה שהוזנה צריכה לחול על התא שנבחר הראשון. נוסחה זו תוגדל אוטומטית עבור תאים נוספים שנבחרו.
+    <value>הנוסחה חלה על התא שנבחר הראשון ומוגדלים באופן אוטומטי עבור תאים שנבחרו נוספים.
 
-פונקציות: abs, acos, asin, atan, atan2, ממוצע, תקרה, cos, cosh, countif, exp, floor, log, log10, max, mediaan, min, mode, pow, range, round, round, sign, sin, sinh, sqrt, stdev, sum, tan, tanh, trunc, variance
+פונקציות: ABS, ACOs, Arccos, Arcsin, Arctan, Asin, Atan, Atan2, הממוצע, התקרה, התקרה, COS, Cosh, Exp, Floor, Log, Log10, Max, Median, Min, Mode, Pow, REM, REM, שורש, עגול, סימן, חטא, sinh, sqrt, stdev, sum, tan, tanh, trunc, truncate ושונות.
 
-אופרטורים: + - / * ^
-סמלים: PI, E
-הפניה לתא: A1, A2, ... ZZZ999
-טווח תאים: A1:A22
-טווח יחסי בעמודה: A1:A-1</value>
-  <comment></comment></data>
+מפעילים: + - / * ^ %
+משתנים: E, Phi, Pi, Tao, Tablecols, טבלאות
+הפניה לתאים: A1, A2, ... ZZZ999
+טווח תאים: A1: A22
+טווחים יחסית: A1: תא (0, -1)</value>
+  <comment>!EDIT</comment></data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>תאים שנבחרו:</value>
     <comment>label</comment>

@@ -3223,15 +3223,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Entered formula should apply to the first selected cell. This formula will be incremented automatically for additional selected cells.
+        ///   Looks up a localized string similar to Formula apply to the first selected cell and are incremented automatically for additional selected cells.
         ///
-        ///Functions: abs, acos, asin, atan, atan2, average, ceiling, cos, cosh, countif, exp, floor, log, log10, max, median, min, mode, pow, range, round, sign, sin, sinh, sqrt, stdev, sum, tan, tanh, trunc, variance
+        ///Functions: abs, acos, arccos, arcsin, arctan, asin, atan, atan2, average, ceil, ceiling, cos, cosh, exp, floor, log, log10, max, median, min, mode, pow, range, rem, root, round, sign, sin, sinh, sqrt, stdev, sum, tan, tanh, trunc, truncate, and variance.
         ///
-        ///Operators: + - / * ^
-        ///Symbols: PI, E
+        ///Operators: + - / * ^ %
+        ///Variables: e, phi, pi, tao, tablecols, tablerows
         ///Cell reference: A1, A2, ... ZZZ999
         ///Cell range: A1:A22
-        ///Relative range in a column: A1:A-1.
+        ///Relative ranges [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string FormulaDialog_helpBox_Text {
             get {

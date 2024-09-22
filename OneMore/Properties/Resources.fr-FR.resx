@@ -1210,16 +1210,16 @@ Pourcentage</value>
     <comment>label</comment>
   </data>
   <data name="FormulaDialog_helpBox.Text" xml:space="preserve">
-    <value>La formule saisie doit s'appliquer à la première cellule sélectionnée. Cette formule sera incrémentée automatiquement pour les cellules supplémentaires sélectionnées.
+    <value>La formule s'applique à la première cellule sélectionnée et est incrémentée automatiquement pour des cellules sélectionnées supplémentaires.
 
-Fonctions : abs, acos, asin, atan, atan2, moyenne, plafond, cos, cosh, countif, exp, floor, log, log10, max, median, min, mode, pow, range, round, sign, sin, sinh, sqrt, stdev, somme, tan, tanh, trunc, variance
+Fonctions: ABS, ACOS, ARCCOS, ARCSIN, ARCTAN, ASIN, ATAN, ATAN2, Moyenne, CEIL, Plafond, Cos, Cosh, Exp, Floor, Log, Log10, Max, Median, Min, Mode, Pow, Remar, REM, racine, ronde, signe, péché, sinh, sqrt, stdev, sum, tan, tanh, trunc, truncate et variance.
 
-Opérateurs : + - / * ^
-Symboles : PI, E
-Référence cellule : A1, A2, ... ZZZ999
-Plage de cellules : A1 : A22
-Plage relative dans une colonne : A1:A-1</value>
-  <comment></comment></data>
+Opérateurs: + - / * ^%
+Variables: E, Phi, Pi, Tao, Tablecols, Tablerows
+Référence cellulaire: A1, A2, ... ZZZ999
+Plage cellulaire: A1: A22
+Plages relatives: a1: cellule (0, -1)</value>
+  <comment>!EDIT</comment></data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>Cellules sélectionnées:</value>
     <comment>label</comment>

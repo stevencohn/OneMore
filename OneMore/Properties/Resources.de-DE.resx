@@ -1208,16 +1208,16 @@ OneNote-Datei (*.one)</value>
     <comment>label</comment>
   </data>
   <data name="FormulaDialog_helpBox.Text" xml:space="preserve">
-    <value>Die eingegebene Formel sollte für die erste ausgewählte Zelle gelten. Diese Formel wird für weitere ausgewählte Zellen automatisch erhöht.
+    <value>Die Formel gelten für die erste ausgewählte Zelle und wird für zusätzliche ausgewählte Zellen automatisch erhöht.
 
-Funktionen: abs, acos, asin, atan, atan2, Durchschnitt, Decke, cos, cosh, countif, exp, floor, log, log10, max, median, min, mode, pow, range, rund, sign, sin, sinh, sqrt, stdev, sum, tan, tanh, trunc, Varianz
+Funktionen: ABS, ACOS, ARCCOS, Arcsin, Arctan, Asin, Atan, ATAN2, Durchschnitt, CEIL, Decke, COSH, COSH, EXP, FODEN, LOG, LOG10, MAX, MEDIAN, MIN, MODE, POW, REM, REM, REM, REM, REM, REM, Wurzel, Runde, Zeichen, Sünde, Sinh, Sqrt, Stdev, Sum, Tan, Tanh, Trunc, Truncate und Varianz.
 
-Operatoren: + - / * ^
-Symbole: PI, E
-Zellreferenz: A1, A2, ... ZZZ999
-Zellbereich: A1:A22
-Relativer Bereich in einer Spalte: A1:A-1</value>
-  <comment></comment></data>
+Operatoren: + - / * ^ %
+Variablen: E, PHI, PI, Tao, Tabellen, Tabllerows
+Zellreferenz: A1, A2, ... Zzz999
+Zellbereich: A1: A22
+Verwandte Bereiche: A1: Zelle (0, -1)</value>
+  <comment>!EDIT</comment></data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>Ausgewählte Zellen:</value>
     <comment>label</comment>

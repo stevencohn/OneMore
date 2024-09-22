@@ -1211,16 +1211,16 @@ Odsetek</value>
     <comment>label</comment>
   </data>
   <data name="FormulaDialog_helpBox.Text" xml:space="preserve">
-    <value>Wprowadzona formuła powinna dotyczyć pierwszej zaznaczonej komórki. Ta formuła będzie zwiększana automatycznie dla dodatkowych wybranych komórek.
+    <value>Wzór dotyczy pierwszej wybranej komórki i są automatycznie zwiększane dla dodatkowych wybranych komórek.
 
-Funkcje: abs, acos, asin, atan, atan2, średnia, sufit, cos, cosh, countif, exp, podłoga, log, log10, max, mediana, min, tryb, pow, zakres, okrągły, znak, grzech, sinh, sqrt, stdev, suma, tan, tanh, trunc, wariancja
+Funkcje: ABS, ACOS, ARCCOS, Arcsin, Arctan, Asin, Atan, Atan2, średnia, suil, sufit, cos, cosh, exp, floor, log10, max, mediana, min, tryb, pow, rem, rem, root, okrągły, znak, sin, sinh, sqrt, stdev, sum, tan, tanh, trunc, obcięcie i wariancja.
 
-Operatory: + - / * ^
-Symbole: PI, E
+Operatorzy: + - / * ^ %
+Zmienne: E, Phi, PI, Tao, TableCole, tablerowe
 Odniesienie do komórki: A1, A2, ... ZZZ999
-Zakres komórek: A1:A22
-Względny zakres w kolumnie: A1:A-1</value>
-  <comment></comment></data>
+Zakres komórek: A1: A22
+Zakresy względne: A1: komórka (0, -1)</value>
+  <comment>!EDIT</comment></data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>Wybrane komórki:</value>
     <comment>label</comment>
