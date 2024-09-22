@@ -119,7 +119,7 @@
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="AboutDialog.Text" xml:space="preserve">
-    <value>Onemore Add-In</value>
+    <value>Smoker Dodatkowy Oneemore</value>
     <comment>dialog title bar</comment>
   </data>
   <data name="AboutDialog_clearLogLabel.Text" xml:space="preserve">
@@ -442,48 +442,48 @@ Odwracać</value>
     <value>Dwie przestrzenie między zdaniami</value>
     <comment>radio</comment>
   </data>
-  <data name="Calculator_ErrClosingParenExpected" xml:space="preserve">
-    <value>Oczekiwany spodziewany nawiasów</value>
+  <data name="Calculator_ErrInvalidCountifParams" xml:space="preserve">
+    <value>Funkcja countif wymaga dwóch parametrów</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrInvalidCellRange" xml:space="preserve">
-    <value>Zakres komórek musi znajdować się w jednej kolumnie lub w ciągu jednego rzędu</value>
+  <data name="Calculator_ErrInvalidFnParamCount" xml:space="preserve">
+    <value>Funkcja {0} musi mieć dwa parametry</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrInvalidOperand" xml:space="preserve">
-    <value>Nieprawidłowy operand.</value>
+  <data name="Calculator_ErrInvalidFnParamType" xml:space="preserve">
+    <value>Parametr {0} nie jest typu {1}</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrMultipleDecimalPoints" xml:space="preserve">
-    <value>Operand zawiera wiele punktów dziesiętnych</value>
+  <data name="Calculator_ErrInvalidParamCount" xml:space="preserve">
+    <value>Oczekiwane parametry {0}, tylko podane {1}</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrOperandExpected" xml:space="preserve">
-    <value>Oczekiwany operand.</value>
+  <data name="Calculator_ErrInvalidParameter" xml:space="preserve">
+    <value>Nieprawidłowy parametr w komórce {0}</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrOperatorExpected" xml:space="preserve">
-    <value>Oczekiwany operator.</value>
+  <data name="Calculator_ErrInvalidRange" xml:space="preserve">
+    <value>Nieprawidłowy zakres komórek „{0}”</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrUndefinedFunction" xml:space="preserve">
-    <value>Niezdefiniowana funkcja "{0}"</value>
+  <data name="Calculator_ErrMissingRowColVars" xml:space="preserve">
+    <value>Funkcja {0} wymaga zmiennych col i row</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrUndefinedSymbol" xml:space="preserve">
-    <value>Niezdefiniowany symbol "{0}"</value>
+  <data name="Calculator_ErrNoClosingParenthesis" xml:space="preserve">
+    <value>Nie znaleziono nawiasu zamykającego pasującego do tokena w {0}</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrUnexpectedCharacter" xml:space="preserve">
-    <value>Nieoczekiwana postać napotkała "{0}"</value>
+  <data name="Calculator_ErrUndefinedCellRef" xml:space="preserve">
+    <value>Niezdefiniowane odwołanie do komórki „{0}”</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrUnmatchedClosingParen" xml:space="preserve">
-    <value>Zamknięcie nawiasów bez dopasowywania otwartej nawiasów</value>
+  <data name="Calculator_ErrUndefinedOperator" xml:space="preserve">
+    <value>Niezdefiniowany operator „{0}”</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrWrongParamCount" xml:space="preserve">
-    <value>Zna liczba parametrów funkcji</value>
+  <data name="Calculator_ErrUndefinedVariable" xml:space="preserve">
+    <value>Niezdefiniowana zmienna „{0}”</value>
     <comment>error</comment>
   </data>
   <data name="CleanRemindersCommand_count" xml:space="preserve">
@@ -724,6 +724,10 @@ Odwracać</value>
   <data name="CustomStyle_Screentip" xml:space="preserve">
     <value>{0} (Ctrl + Alt + Shift + {1})</value>
     <comment>Screentip for custom style gallery tiles</comment>
+  </data>
+  <data name="DatabaseFilename" xml:space="preserve">
+    <value>OneMore.db</value>
+    <comment>SKIP, Sqlite database file name</comment>
   </data>
   <data name="DeleteFormulaCommand_Deleted" xml:space="preserve">
     <value>Usunięte formuły z {0} komórki</value>
@@ -1941,6 +1945,18 @@ Czy chcesz odświeżyć istniejącą stronę?</value>
     <value>Wybierz styl numerowania</value>
     <comment>label</comment>
   </data>
+  <data name="OneMore_GitHub" xml:space="preserve">
+    <value>https://github.com/stevencohn/OneMore</value>
+    <comment>SKIP</comment>
+  </data>
+  <data name="OneMore_Home" xml:space="preserve">
+    <value>https://onemoreaddin.com</value>
+    <comment>SKIP</comment>
+  </data>
+  <data name="OneMore_Sponsor" xml:space="preserve">
+    <value>https://github.com/sponsors/stevencohn</value>
+    <comment>SKIP</comment>
+  </data>
   <data name="OneMoreNamespace" xml:space="preserve">
     <value>http://schemas.smc.com/onemore/2020/styles</value>
     <comment>SKIP</comment>
@@ -2135,6 +2151,10 @@ W tej sekcji</value>
   <data name="PlantUml_EmptySelection" xml:space="preserve">
     <value>Pusty wybór. Wybierz prawidłowy blok tekstu PlantUML.</value>
     <comment>error message</comment>
+  </data>
+  <data name="PlantUmlCommand_PlantUrl" xml:space="preserve">
+    <value>http://www.plantuml.com/plantuml/png/</value>
+    <comment>PlantUML Remote servier SKIP</comment>
   </data>
   <data name="Plugin_InvalidSchema" xml:space="preserve">
     <value>Nieprawidłowy wykryty XML. Szczegółowe informacje można znaleźć w pliku dziennika</value>
@@ -4232,6 +4252,10 @@ Po ostatniej grupie</value>
   <data name="SaveSnippetDialog_nameLabel.Text" xml:space="preserve">
     <value>Nazwa fragmentu:</value>
     <comment>label</comment>
+  </data>
+  <data name="ScanningCueFile" xml:space="preserve">
+    <value>HashtagScanner.json</value>
+    <comment>SKIP</comment>
   </data>
   <data name="ScheduleScanDialog_hintLabel.Text" xml:space="preserve">
     <value>Skanowanie najlepiej zaplanować poza godzinami pracy, na przykład o północy</value>

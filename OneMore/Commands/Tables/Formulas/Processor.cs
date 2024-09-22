@@ -8,7 +8,6 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
-	using System.Text.RegularExpressions;
 
 	internal class Processor : Loggable
 	{
@@ -17,13 +16,6 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		/// row-number is a positive, non-zero integer. Capture groups are named c)ell and r)row.
 		/// </summary>
 		public const string AddressPattern = @"^(?<c>[a-zA-Z]{1,3})(?<r>\d{1,3})$";
-
-		/// <summary>
-		/// Regex pattern for matching cell addresses of the form [col-letters][row-number]
-		/// where row-num can be a negative integer specifying offset from last row in table.
-		/// Capture groups are named c)ell, o)ffset, and r)row.
-		/// </summary>
-		public const string OffsetPattern = @"^(?<c>[a-zA-Z]{1,3})(?<o>-)?(?<r>\d{1,3})$";
 
 		private readonly Table table;
 		private int maxdec;
@@ -40,7 +32,10 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		public void Execute(IEnumerable<TableCell> cells)
 		{
 			var calculator = new Calculator();
-			calculator.ProcessSymbol += ResolveCellReference;
+			calculator.SetVariable("tablecols", table.ColumnCount);
+			calculator.SetVariable("tablerows", table.RowCount);
+
+			calculator.GetCellValue += GetCellValue;
 
 			foreach (var cell in cells)
 			{
@@ -53,7 +48,10 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 
 				try
 				{
-					var result = calculator.Execute(formula.Expression, cell.RowNum);
+					calculator.SetVariable("col", cell.ColNum);
+					calculator.SetVariable("row", cell.RowNum);
+
+					var result = calculator.Compute(formula.Expression);
 
 					Report(cell, formula, result);
 				}
@@ -66,36 +64,11 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		}
 
 
-		private void ResolveCellReference(object sender, SymbolEventArgs e)
+		private void GetCellValue(object sender, GetCellValueEventArgs e)
 		{
-			var name = e.Name.ToUpper();
-			if (e.Name.IndexOf('-') >= 1)
+			var cell = table.GetCell(e.Name.ToUpper());
+			if (cell is null)
 			{
-				// convert relative cell ref (B-1) to absolute (B4) using formula index offset
-				var match = Regex.Match(name, Processor.OffsetPattern);
-				if (!match.Success)
-					throw new FormulaException($"Invalid cell ref {name}", 0);
-
-				if (int.Parse(match.Groups["r"].Value) == 0)
-				{
-					// do not include result cell (or off-table) in calculations
-					throw new FormulaException("row offset cannot be zero");
-				}
-
-				var col = match.Groups["c"].Value;
-				var row = match.Groups["o"].Success && e.IndexOffset > 0
-					? $"{e.IndexOffset - int.Parse(match.Groups["r"].Value)}"
-					: match.Groups["r"].Value;
-
-				name = $"{col}{row}";
-			}
-
-			//logger.WriteLine($"resolve {e.Name} indexOffset={e.IndexOffset} -> {name}");
-
-			var cell = table.GetCell(name);
-			if (cell == null)
-			{
-				e.Status = SymbolStatus.UndefinedSymbol;
 				return;
 			}
 
@@ -108,7 +81,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 			{
 				maxdec = Math.Max(dvalue.ToString().Length - ((int)dvalue).ToString().Length - 1, maxdec);
 
-				e.SetResult(dvalue);
+				e.Value = dvalue.ToString();
 				return;
 			}
 
@@ -127,7 +100,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 					{
 						if (tag.IsToDo())
 						{
-							e.SetResult(tagx.Attribute("completed").Value == "true");
+							e.Value = (tagx.Attribute("completed").Value == "true").ToString();
 							return;
 						}
 					}
@@ -137,12 +110,12 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 			// can text be interpereted as a boolean?
 			if (bool.TryParse(text, out var bvalue))
 			{
-				e.SetResult(bvalue);
+				e.Value = bvalue.ToString();
 				return;
 			}
 
 			// treat it as a string
-			e.SetResult(text);
+			e.Value = text;
 		}
 
 

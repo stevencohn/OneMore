@@ -119,7 +119,7 @@
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="AboutDialog.Text" xml:space="preserve">
-    <value>OneMore Add-In</value>
+    <value>Onemore-Add-In-Raucher</value>
     <comment>dialog title bar</comment>
   </data>
   <data name="AboutDialog_clearLogLabel.Text" xml:space="preserve">
@@ -281,6 +281,10 @@ Umkehren</value>
     <value>&amp;lt;span style='font-style:italic'&amp;gt;Keine verwaisten Backup-Verzeichnisse gefunden&amp;lt;/span&amp;gt;</value>
     <comment>status</comment>
   </data>
+  <data name="AnalyzeCommand_OpenSections" xml:space="preserve">
+    <value>Offene Abschnitte</value>
+    <comment>SKIP notebook name</comment>
+  </data>
   <data name="AnalyzeCommand_OrphanSummary" xml:space="preserve">
     <value>Waisen sind Sicherungsordner von Notizbüchern, die in OneNote nicht mehr geöffnet werden. </value>
     <comment>summary text</comment>
@@ -288,6 +292,10 @@ Umkehren</value>
   <data name="AnalyzeCommand_PageSummary" xml:space="preserve">
     <value>Dies ist eine detaillierte Aufschlüsselung jeder Seite, die die Gesamtgröße der internen XML-Darstellung und die Größe jedes Bildes und Dateianhangs zeigt. </value>
     <comment>summary text</comment>
+  </data>
+  <data name="AnalyzeCommand_QuickNotes" xml:space="preserve">
+    <value>Kurze Notizen</value>
+    <comment>SKIP notebook name</comment>
   </data>
   <data name="AnalyzeCommand_SectionSummary" xml:space="preserve">
     <value>Die Anzahl der Sicherungskopien jedes Abschnitts wird in den OneNote-Optionen konfiguriert. </value>
@@ -433,48 +441,48 @@ Umkehren</value>
     <value>Zwei Leerzeichen zwischen Sätzen</value>
     <comment>radio</comment>
   </data>
-  <data name="Calculator_ErrClosingParenExpected" xml:space="preserve">
-    <value>Abschlussklammer erwartet</value>
+  <data name="Calculator_ErrInvalidCountifParams" xml:space="preserve">
+    <value>Die countif-Funktion erfordert zwei Parameter</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrInvalidCellRange" xml:space="preserve">
-    <value>Der Zellbereich muss innerhalb einer Spalte oder innerhalb einer Zeile liegen</value>
+  <data name="Calculator_ErrInvalidFnParamCount" xml:space="preserve">
+    <value>Die Funktion {0} muss zwei Parameter haben</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrInvalidOperand" xml:space="preserve">
-    <value>Ungültiger Operand</value>
+  <data name="Calculator_ErrInvalidFnParamType" xml:space="preserve">
+    <value>Parameter {0} ist nicht vom Typ {1}</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrMultipleDecimalPoints" xml:space="preserve">
-    <value>Der Operand enthält mehrere Dezimalstellen</value>
+  <data name="Calculator_ErrInvalidParamCount" xml:space="preserve">
+    <value>Erwartete {0} Parameter, nur angegeben {1}</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrOperandExpected" xml:space="preserve">
-    <value>Operand erwartet</value>
+  <data name="Calculator_ErrInvalidParameter" xml:space="preserve">
+    <value>Ungültiger Parameter in Zelle {0}</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrOperatorExpected" xml:space="preserve">
-    <value>Betreiber erwartet</value>
+  <data name="Calculator_ErrInvalidRange" xml:space="preserve">
+    <value>Ungültiger Zellbereich „{0}“</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrUndefinedFunction" xml:space="preserve">
-    <value>Undefinierte Funktion \"{0}\"</value>
+  <data name="Calculator_ErrMissingRowColVars" xml:space="preserve">
+    <value>Die Funktion {0} erfordert die Variablen col und row</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrUndefinedSymbol" xml:space="preserve">
-    <value>Undefiniertes Symbol \"{0}\"</value>
+  <data name="Calculator_ErrNoClosingParenthesis" xml:space="preserve">
+    <value>Keine schließende Klammer gefunden, die mit dem Token bei {0} übereinstimmt</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrUnexpectedCharacter" xml:space="preserve">
-    <value>Unerwartetes Zeichen gefunden '{0}'</value>
+  <data name="Calculator_ErrUndefinedCellRef" xml:space="preserve">
+    <value>Undefinierter Zellbezug „{0}“</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrUnmatchedClosingParen" xml:space="preserve">
-    <value>Schließen der Klammer ohne Übereinstimmung mit der offenen Klammer</value>
+  <data name="Calculator_ErrUndefinedOperator" xml:space="preserve">
+    <value>Undefinierter Operator „{0}“</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrWrongParamCount" xml:space="preserve">
-    <value>Falsche Anzahl von Funktionsparametern</value>
+  <data name="Calculator_ErrUndefinedVariable" xml:space="preserve">
+    <value>Undefinierte Variable „{0}“</value>
     <comment>error</comment>
   </data>
   <data name="CleanRemindersCommand_count" xml:space="preserve">
@@ -715,6 +723,10 @@ Umkehren</value>
   <data name="CustomStyle_Screentip" xml:space="preserve">
     <value>{0} (Strg + Alt + Umschalt + {1})</value>
     <comment>Screentip for custom style gallery tiles</comment>
+  </data>
+  <data name="DatabaseFilename" xml:space="preserve">
+    <value>OneMore.db</value>
+    <comment>SKIP, Sqlite database file name</comment>
   </data>
   <data name="DeleteFormulaCommand_Deleted" xml:space="preserve">
     <value>Gelöschte Formeln aus {0} Zelle (n)</value>
@@ -1930,6 +1942,18 @@ Möchten Sie die bestehende Seite aktualisieren?</value>
     <value>Wähle den Nummerierungsstil</value>
     <comment>label</comment>
   </data>
+  <data name="OneMore_GitHub" xml:space="preserve">
+    <value>https://github.com/stevencohn/OneMore</value>
+    <comment>SKIP</comment>
+  </data>
+  <data name="OneMore_Home" xml:space="preserve">
+    <value>https://onemoreaddin.com</value>
+    <comment>SKIP</comment>
+  </data>
+  <data name="OneMore_Sponsor" xml:space="preserve">
+    <value>https://github.com/sponsors/stevencohn</value>
+    <comment>SKIP</comment>
+  </data>
   <data name="OneMoreNamespace" xml:space="preserve">
     <value>http://schemas.smc.com/onemore/2020/styles</value>
     <comment>DO NOT TRANSLATE</comment>
@@ -2125,6 +2149,10 @@ In diesem Abschnitt</value>
     <value>Leere Auswahl. Wählen Sie einen gültigen Block von PlantUML-Text aus.</value>
     <comment>error message</comment>
   </data>
+  <data name="PlantUmlCommand_PlantUrl" xml:space="preserve">
+    <value>http://www.plantuml.com/plantuml/png/</value>
+    <comment>PlantUML Remote servier SKIP</comment>
+  </data>
   <data name="Plugin_InvalidSchema" xml:space="preserve">
     <value>Ungültiges XML erkannt. </value>
     <comment>error message</comment>
@@ -2238,6 +2266,10 @@ Alle Notizbücher und ihre Seiten</value>
   <data name="PreviewMarkdownCommand_Title" xml:space="preserve">
     <value>Markdown-Vorschau</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="ProgramName" xml:space="preserve">
+    <value>OneMore</value>
+    <comment>SKIP</comment>
   </data>
   <data name="Pronunciate_EmptyWord" xml:space="preserve">
     <value>Das ausgewählte Wort darf nicht leer sein</value>
@@ -4214,6 +4246,10 @@ Nach der letzten Gruppe</value>
     <value>Snippet-Name:</value>
     <comment>label</comment>
   </data>
+  <data name="ScanningCueFile" xml:space="preserve">
+    <value>HashtagScanner.json</value>
+    <comment>SKIP</comment>
+  </data>
   <data name="ScheduleScanDialog_hintLabel.Text" xml:space="preserve">
     <value>Planen Sie den Scan am besten außerhalb der Geschäftszeiten, beispielsweise um Mitternacht</value>
     <comment>label</comment>
@@ -4898,6 +4934,10 @@ Das Dialogfeld „Hashtags suchen“ wird nun geöffnet.</value>
   <data name="TextToTableDialog_unquoteBox.Text" xml:space="preserve">
     <value>Entferne Anführungszeichen aus vollständigen Zeichenfolgen</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="ThemesFolder" xml:space="preserve">
+    <value>Themen</value>
+    <comment>SKIP</comment>
   </data>
   <data name="TimerWindow.Text" xml:space="preserve">
     <value>OneNote-Timer</value>

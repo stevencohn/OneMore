@@ -119,7 +119,7 @@
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="AboutDialog.Text" xml:space="preserve">
-    <value>תוסף OneMore</value>
+    <value>מעשן תוספות</value>
     <comment>dialog title bar</comment>
   </data>
   <data name="AboutDialog_clearLogLabel.Text" xml:space="preserve">
@@ -442,48 +442,48 @@
     <value>שני רווחים בין משפטים</value>
     <comment>radio</comment>
   </data>
-  <data name="Calculator_ErrClosingParenExpected" xml:space="preserve">
-    <value>סוגרי סגירה צפוי</value>
+  <data name="Calculator_ErrInvalidCountifParams" xml:space="preserve">
+    <value>הפונקציה countif דורשת שני פרמטרים</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrInvalidCellRange" xml:space="preserve">
-    <value>טווח תאים חייב להיות בתוך עמודה אחת או בתוך שורה אחת</value>
+  <data name="Calculator_ErrInvalidFnParamCount" xml:space="preserve">
+    <value>הפונקציה {0} חייבת להיות בעלת שני פרמטרים</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrInvalidOperand" xml:space="preserve">
-    <value>אופרנד לא חוקי</value>
+  <data name="Calculator_ErrInvalidFnParamType" xml:space="preserve">
+    <value>פרמטר {0} אינו מסוג {1}</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrMultipleDecimalPoints" xml:space="preserve">
-    <value>אופרנד מכיל מספר נקודות עשרוניות</value>
+  <data name="Calculator_ErrInvalidParamCount" xml:space="preserve">
+    <value>פרמטרים צפויים {0}, שניתנו רק {1}</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrOperandExpected" xml:space="preserve">
-    <value>אופרנד צפוי</value>
+  <data name="Calculator_ErrInvalidParameter" xml:space="preserve">
+    <value>פרמטר לא חוקי בתא {0}</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrOperatorExpected" xml:space="preserve">
-    <value>מפעיל צפוי</value>
+  <data name="Calculator_ErrInvalidRange" xml:space="preserve">
+    <value>טווח תאים לא חוקי "{0}"</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrUndefinedFunction" xml:space="preserve">
-    <value>פונקציה לא מוגדרת "{0}"</value>
+  <data name="Calculator_ErrMissingRowColVars" xml:space="preserve">
+    <value>הפונקציה {0} דורשת את משתני הקול והשורה</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrUndefinedSymbol" xml:space="preserve">
-    <value>סמל לא מוגדר "{0}"</value>
+  <data name="Calculator_ErrNoClosingParenthesis" xml:space="preserve">
+    <value>לא נמצא סוגריים סגירה התואם אסימון ב-{0}</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrUnexpectedCharacter" xml:space="preserve">
-    <value>דמות לא צפויה נתקלה ב-'{0}'</value>
+  <data name="Calculator_ErrUndefinedCellRef" xml:space="preserve">
+    <value>הפניה לא מוגדרת לתא "{0}"</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrUnmatchedClosingParen" xml:space="preserve">
-    <value>סגירת סוגריים ללא התאמת סוגריים פתוחים</value>
+  <data name="Calculator_ErrUndefinedOperator" xml:space="preserve">
+    <value>אופרטור לא מוגדר "{0}"</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrWrongParamCount" xml:space="preserve">
-    <value>מספר שגוי של פרמטרי פונקציה</value>
+  <data name="Calculator_ErrUndefinedVariable" xml:space="preserve">
+    <value>משתנה לא מוגדר "{0}"</value>
     <comment>error</comment>
   </data>
   <data name="CleanRemindersCommand_count" xml:space="preserve">
@@ -724,6 +724,10 @@
   <data name="CustomStyle_Screentip" xml:space="preserve">
     <value>{0} (Ctrl+Alt+Shift + {1})</value>
     <comment>Screentip for custom style gallery tiles</comment>
+  </data>
+  <data name="DatabaseFilename" xml:space="preserve">
+    <value>OneMore.db</value>
+    <comment>SKIP, Sqlite database file name</comment>
   </data>
   <data name="DeleteFormulaCommand_Deleted" xml:space="preserve">
     <value>נוסחאות שנמחקו מ-{0} תאים</value>
@@ -1941,6 +1945,18 @@ Total Row Font
     <value>בחר את סגנון המספור</value>
     <comment>label</comment>
   </data>
+  <data name="OneMore_GitHub" xml:space="preserve">
+    <value>https://github.com/stevencohn/OneMore</value>
+    <comment>SKIP</comment>
+  </data>
+  <data name="OneMore_Home" xml:space="preserve">
+    <value>https://onemoreaddin.com</value>
+    <comment>SKIP</comment>
+  </data>
+  <data name="OneMore_Sponsor" xml:space="preserve">
+    <value>https://github.com/sponsors/stevencohn</value>
+    <comment>SKIP</comment>
+  </data>
   <data name="OneMoreNamespace" xml:space="preserve">
     <value>http://schemas.smc.com/onemore/2020/styles</value>
     <comment>SKIP</comment>
@@ -2135,6 +2151,10 @@ Total Row Font
   <data name="PlantUml_EmptySelection" xml:space="preserve">
     <value>בחירה ריקה. בחר בלוק חוקי של טקסט PlantUML.</value>
     <comment>error message</comment>
+  </data>
+  <data name="PlantUmlCommand_PlantUrl" xml:space="preserve">
+    <value>http://www.plantuml.com/plantuml/png/</value>
+    <comment>PlantUML Remote servier SKIP</comment>
   </data>
   <data name="Plugin_InvalidSchema" xml:space="preserve">
     <value>זוהה XML לא חוקי. בדוק את קובץ היומן לפרטים</value>
@@ -4230,6 +4250,10 @@ ISO-code then comma then language name</comment>
   <data name="SaveSnippetDialog_nameLabel.Text" xml:space="preserve">
     <value>שם קטע:</value>
     <comment>label</comment>
+  </data>
+  <data name="ScanningCueFile" xml:space="preserve">
+    <value>HashtagScanner.json</value>
+    <comment>SKIP</comment>
   </data>
   <data name="ScheduleScanDialog_hintLabel.Text" xml:space="preserve">
     <value>עדיף לתזמן את הסריקה בשעות לא שעות, כגון חצות</value>

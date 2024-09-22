@@ -5,8 +5,9 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Commands.Tables.Formulas;
+	using River.OneMoreAddIn.Models;
 	using System;
-	using System.Text.RegularExpressions;
+	using System.Linq;
 	using Resx = Properties.Resources;
 
 
@@ -14,7 +15,7 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private readonly int helpHeight;
 		private readonly Calculator calculator;
-		private int resultRow;
+		private readonly Table table;
 
 
 		public FormulaDialog()
@@ -50,7 +51,21 @@ namespace River.OneMoreAddIn.Commands
 			formatBox.SelectedIndex = 0;
 
 			calculator = new Calculator();
-			calculator.ProcessSymbol += ResolveSymbol;
+			calculator.GetCellValue += GetCellValue;
+		}
+
+
+		public FormulaDialog(Table table)
+			: this()
+		{
+			this.table = table;
+
+			calculator.SetVariable("tablecols", table.ColumnCount);
+			calculator.SetVariable("tablerows", table.RowCount);
+
+			var cell = table.GetSelectedCells(out _).First();
+			calculator.SetVariable("col", cell.ColNum);
+			calculator.SetVariable("row", cell.RowNum);
 		}
 
 
@@ -81,12 +96,6 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public void SetResultRow(int row)
-		{
-			resultRow = row;
-		}
-
-
 		public bool Tagged
 		{
 			get => tagBox.Checked;
@@ -102,15 +111,21 @@ namespace River.OneMoreAddIn.Commands
 			{
 				try
 				{
-					calculator.Execute(formula, indexOffset: resultRow);
+					var result = calculator.Compute(formula);
 					validStatusLabel.ForeColor = manager.GetColor("ControlText");
-					validStatusLabel.Text = Resx.word_OK;
+
+					validStatusLabel.Text = $"{Resx.word_OK} ({result})";
+					tooltip.SetToolTip(validStatusLabel, string.Empty);
+
 					okButton.Enabled = true;
 				}
-				catch
+				catch (Exception exc)
 				{
 					validStatusLabel.ForeColor = manager.GetColor("ErrorText");
 					validStatusLabel.Text = Resx.FormulaDialog_status_Invalid;
+
+					tooltip.SetToolTip(validStatusLabel, exc.Message);
+
 					okButton.Enabled = false;
 				}
 			}
@@ -118,22 +133,26 @@ namespace River.OneMoreAddIn.Commands
 			{
 				validStatusLabel.ForeColor = manager.GetColor("ControlText");
 				validStatusLabel.Text = Resx.FormulaDialog_status_Empty;
+				tooltip.SetToolTip(validStatusLabel, string.Empty);
 				okButton.Enabled = false;
 			}
 		}
 
 
-		private void ResolveSymbol(object sender, SymbolEventArgs e)
+		private void GetCellValue(object sender, GetCellValueEventArgs e)
 		{
-			if (Regex.Match(e.Name, Processor.OffsetPattern).Success)
+			var cell = table.GetCell(e.Name.ToUpper());
+			if (cell is null)
 			{
-				e.SetResult(1.0);
-				e.Status = SymbolStatus.OK;
+				e.Value = string.Empty;
+				return;
 			}
-			else
-			{
-				e.Status = SymbolStatus.UndefinedSymbol;
-			}
+
+			e.Value = cell.GetText().Trim()
+				.Replace(AddIn.Culture.NumberFormat.CurrencySymbol, string.Empty)
+				.Replace(AddIn.Culture.NumberFormat.PercentSymbol, string.Empty);
+
+			logger.Verbose($"FormulaDialog.GetCellValue({e.Name}) = [{e.Value}]");
 		}
 
 

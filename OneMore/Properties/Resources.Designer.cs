@@ -119,7 +119,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to OneMore Add-in.
+        ///   Looks up a localized string similar to OneMore Add-in smoker.
         /// </summary>
         internal static string AboutDialog_Text {
             get {
@@ -802,101 +802,101 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Closing parenthesis expected.
+        ///   Looks up a localized string similar to The countif function requires two parameters.
         /// </summary>
-        internal static string Calculator_ErrClosingParenExpected {
+        internal static string Calculator_ErrInvalidCountifParams {
             get {
-                return ResourceManager.GetString("Calculator_ErrClosingParenExpected", resourceCulture);
+                return ResourceManager.GetString("Calculator_ErrInvalidCountifParams", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cell range must be within one column or within one row.
+        ///   Looks up a localized string similar to The {0} function must have two parameters.
         /// </summary>
-        internal static string Calculator_ErrInvalidCellRange {
+        internal static string Calculator_ErrInvalidFnParamCount {
             get {
-                return ResourceManager.GetString("Calculator_ErrInvalidCellRange", resourceCulture);
+                return ResourceManager.GetString("Calculator_ErrInvalidFnParamCount", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid operand.
+        ///   Looks up a localized string similar to Parameter {0} is not of type {1}.
         /// </summary>
-        internal static string Calculator_ErrInvalidOperand {
+        internal static string Calculator_ErrInvalidFnParamType {
             get {
-                return ResourceManager.GetString("Calculator_ErrInvalidOperand", resourceCulture);
+                return ResourceManager.GetString("Calculator_ErrInvalidFnParamType", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Operand contains multiple decimal points.
+        ///   Looks up a localized string similar to Expected {0} parameters, only given {1}.
         /// </summary>
-        internal static string Calculator_ErrMultipleDecimalPoints {
+        internal static string Calculator_ErrInvalidParamCount {
             get {
-                return ResourceManager.GetString("Calculator_ErrMultipleDecimalPoints", resourceCulture);
+                return ResourceManager.GetString("Calculator_ErrInvalidParamCount", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Operand expected.
+        ///   Looks up a localized string similar to Invalid parameter at cell {0}.
         /// </summary>
-        internal static string Calculator_ErrOperandExpected {
+        internal static string Calculator_ErrInvalidParameter {
             get {
-                return ResourceManager.GetString("Calculator_ErrOperandExpected", resourceCulture);
+                return ResourceManager.GetString("Calculator_ErrInvalidParameter", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Operator expected.
+        ///   Looks up a localized string similar to Invalid cell range &quot;{0}&quot;.
         /// </summary>
-        internal static string Calculator_ErrOperatorExpected {
+        internal static string Calculator_ErrInvalidRange {
             get {
-                return ResourceManager.GetString("Calculator_ErrOperatorExpected", resourceCulture);
+                return ResourceManager.GetString("Calculator_ErrInvalidRange", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Undefined function &quot;{0}&quot;.
+        ///   Looks up a localized string similar to The {0} function requires the col and row variables.
         /// </summary>
-        internal static string Calculator_ErrUndefinedFunction {
+        internal static string Calculator_ErrMissingRowColVars {
             get {
-                return ResourceManager.GetString("Calculator_ErrUndefinedFunction", resourceCulture);
+                return ResourceManager.GetString("Calculator_ErrMissingRowColVars", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Undefined symbol &quot;{0}&quot;.
+        ///   Looks up a localized string similar to No closing parenthesis found to match token at {0}.
         /// </summary>
-        internal static string Calculator_ErrUndefinedSymbol {
+        internal static string Calculator_ErrNoClosingParenthesis {
             get {
-                return ResourceManager.GetString("Calculator_ErrUndefinedSymbol", resourceCulture);
+                return ResourceManager.GetString("Calculator_ErrNoClosingParenthesis", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unexpected character encountered &apos;{0}&apos;.
+        ///   Looks up a localized string similar to Undefined cell reference &quot;{0}&quot;.
         /// </summary>
-        internal static string Calculator_ErrUnexpectedCharacter {
+        internal static string Calculator_ErrUndefinedCellRef {
             get {
-                return ResourceManager.GetString("Calculator_ErrUnexpectedCharacter", resourceCulture);
+                return ResourceManager.GetString("Calculator_ErrUndefinedCellRef", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Closing parenthesis without matching open parenthesis.
+        ///   Looks up a localized string similar to Undefined operator &quot;{0}&quot;.
         /// </summary>
-        internal static string Calculator_ErrUnmatchedClosingParen {
+        internal static string Calculator_ErrUndefinedOperator {
             get {
-                return ResourceManager.GetString("Calculator_ErrUnmatchedClosingParen", resourceCulture);
+                return ResourceManager.GetString("Calculator_ErrUndefinedOperator", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wrong number of function parameters.
+        ///   Looks up a localized string similar to Undefined variable &quot;{0}&quot;.
         /// </summary>
-        internal static string Calculator_ErrWrongParamCount {
+        internal static string Calculator_ErrUndefinedVariable {
             get {
-                return ResourceManager.GetString("Calculator_ErrWrongParamCount", resourceCulture);
+                return ResourceManager.GetString("Calculator_ErrUndefinedVariable", resourceCulture);
             }
         }
         

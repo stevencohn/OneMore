@@ -80,23 +80,17 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			using var dialog = new FormulaDialog();
+			using var dialog = new FormulaDialog(table);
 
 			// display selected cell names
 			if (cells.Count == 1)
 			{
 				dialog.SetCellNames(cells[0].Coordinates);
-				dialog.SetResultRow(cells[0].RowNum);
 			}
 			else
 			{
 				dialog.SetCellNames(
 					$"{cells[0].Coordinates} - {cells[cells.Count - 1].Coordinates}");
-
-				if (range == TableSelectionRange.Rows)
-				{
-					dialog.SetResultRow(cells[cells.Count - 1].RowNum);
-				}
 			}
 
 			var cell = cells[0];
@@ -144,7 +138,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void StoreFormula(
+		private static void StoreFormula(
 			Table table, IEnumerable<TableCell> cells,
 			string expression, FormulaFormat format, int dplaces,
 			TableSelectionRange rangeType, string tagIndex)
@@ -162,7 +156,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			var regex = new Regex(Processor.OffsetPattern);
+			var regex = new Regex(Processor.AddressPattern);
 
 			int offset = 0;
 			foreach (var cell in cells)

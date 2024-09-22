@@ -249,6 +249,11 @@
       <DependentUpon>PageColorSelector.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Tables\ApplyTableThemeCommand.cs" />
+    <Compile Include="Commands\Tables\Formulas\CalculatorException.cs" />
+    <Compile Include="Commands\Tables\Formulas\FunctionFactory.cs" />
+    <Compile Include="Commands\Tables\Formulas\GetCellValueHandler.cs" />
+    <Compile Include="Commands\Tables\Formulas\Variant.cs" />
+    <Compile Include="Commands\Tables\Formulas\VariantList.cs" />
     <Compile Include="Commands\Tables\EditTableThemesCommand.cs" />
     <Compile Include="Commands\Tables\EditTableThemesDialog.cs">
       <SubType>Form</SubType>
@@ -256,6 +261,7 @@
     <Compile Include="Commands\Tables\EditTableThemesDialog.Designer.cs">
       <DependentUpon>EditTableThemesDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Tables\Formulas\Calculator.cs" />
     <Compile Include="Commands\Tables\TableThemePainter.cs" />
     <Compile Include="Commands\Tagging\Hashtag.cs" />
     <Compile Include="Commands\Tagging\HashtagCommand.cs" />
@@ -573,7 +579,6 @@
     <Compile Include="Commands\Tables\FillerModels\IFiller.cs" />
     <Compile Include="Commands\Tables\FillerModels\NumberFiller.cs" />
     <Compile Include="Commands\Tables\FillCellsCommand.cs" />
-    <Compile Include="Commands\Tables\Formulas\FormulaValues.cs" />
     <Compile Include="Commands\Tables\InsertCellsCommand.cs" />
     <Compile Include="Commands\Tables\InsertCellsDialog.cs">
       <SubType>Form</SubType>
@@ -759,12 +764,6 @@
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\Page\WordCountCommand.cs" />
     <Compile Include="Commands\Tables\TextToTableCommand.cs" />
-    <Compile Include="Commands\Tables\Formulas\Calculator.cs" />
-    <Compile Include="Commands\Tables\Formulas\FormulaException.cs" />
-    <Compile Include="Commands\Tables\Formulas\FunctionEventArgs.cs" />
-    <Compile Include="Commands\Tables\Formulas\MathFunctions.cs" />
-    <Compile Include="Commands\Tables\Formulas\SymbolEventArgs.cs" />
-    <Compile Include="Commands\Tables\Formulas\TextParser.cs" />
     <Compile Include="Commands\Snippets\InsertCalendarCommand.cs" />
     <Compile Include="Commands\Images\AddCaptionCommand.cs" />
     <Compile Include="Commands\Clean\RemoveAuthorCommand.cs" />
@@ -1192,7 +1191,9 @@
     <EmbeddedResource Include="Commands\Tagging\ScheduleScanDialog.resx">
       <DependentUpon>ScheduleScanDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.ja-JP.resx" />
+    <EmbeddedResource Include="Properties\Resources.ja-JP.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\WindowElevator.resx">
       <DependentUpon>WindowElevator.cs</DependentUpon>
     </EmbeddedResource>
