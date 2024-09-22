@@ -282,6 +282,10 @@ Invertido</value>
     <value>&amp;lt;span style = 'font-style: italic'&amp;gt; Nenhum diretório de backup órfão descoberto &amp;lt;/span&amp;gt;</value>
     <comment>status</comment>
   </data>
+  <data name="AnalyzeCommand_OpenSections" xml:space="preserve">
+    <value>Seções abertas</value>
+    <comment>SKIP notebook name</comment>
+  </data>
   <data name="AnalyzeCommand_OrphanSummary" xml:space="preserve">
     <value>Órfãos são pastas de backup de blocos de anotações que não são mais abertos no OneNote. </value>
     <comment>summary text</comment>
@@ -289,6 +293,10 @@ Invertido</value>
   <data name="AnalyzeCommand_PageSummary" xml:space="preserve">
     <value>Esta é uma análise detalhada de cada página, mostrando o tamanho total da representação XML interna e o tamanho de cada imagem e anexo de arquivo. </value>
     <comment>summary text</comment>
+  </data>
+  <data name="AnalyzeCommand_QuickNotes" xml:space="preserve">
+    <value>Notas rápidas</value>
+    <comment>SKIP notebook name</comment>
   </data>
   <data name="AnalyzeCommand_SectionSummary" xml:space="preserve">
     <value>O número de cópias de backup de cada seção é configurado nas Opções do OneNote. </value>
@@ -434,48 +442,40 @@ Invertido</value>
     <value>Dois espaços entre as frases</value>
     <comment>radio</comment>
   </data>
-  <data name="Calculator_ErrClosingParenExpected" xml:space="preserve">
-    <value>Parêntese de fechamento esperado</value>
+  <data name="Calculator_ErrInvalidCountifParams" xml:space="preserve">
+    <value>A função countif requer dois parâmetros</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrInvalidCellRange" xml:space="preserve">
-    <value>O intervalo de células deve estar em uma coluna ou em uma linha</value>
+  <data name="Calculator_ErrInvalidFnParamCount" xml:space="preserve">
+    <value>A função {0} deve ter dois parâmetros</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrInvalidOperand" xml:space="preserve">
-    <value>Operando inválido</value>
+  <data name="Calculator_ErrInvalidParameter" xml:space="preserve">
+    <value>Parâmetro inválido na célula {0}</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrMultipleDecimalPoints" xml:space="preserve">
-    <value>Operando contém vários pontos decimais</value>
+  <data name="Calculator_ErrInvalidRange" xml:space="preserve">
+    <value>Intervalo de células "{0}" inválido</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrOperandExpected" xml:space="preserve">
-    <value>Operando esperado</value>
+  <data name="Calculator_ErrMissingRowColVars" xml:space="preserve">
+    <value>A função {0} requer as variáveis ​​col e row</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrOperatorExpected" xml:space="preserve">
-    <value>Operador esperado</value>
+  <data name="Calculator_ErrNoClosingParenthesis" xml:space="preserve">
+    <value>Nenhum parêntese de fechamento encontrado para corresponder ao token em {0}</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrUndefinedFunction" xml:space="preserve">
-    <value>Função indefinida "{0}"</value>
+  <data name="Calculator_ErrUndefinedCellRef" xml:space="preserve">
+    <value>Referência de célula indefinida "{0}"</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrUndefinedSymbol" xml:space="preserve">
-    <value>Símbolo indefinido "{0}"</value>
+  <data name="Calculator_ErrUndefinedOperator" xml:space="preserve">
+    <value>Operador indefinido "{0}"</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrUnexpectedCharacter" xml:space="preserve">
-    <value>Caractere inesperado encontrado '{0}'</value>
-    <comment>error</comment>
-  </data>
-  <data name="Calculator_ErrUnmatchedClosingParen" xml:space="preserve">
-    <value>Fechando parênteses sem combinar parênteses de abertura</value>
-    <comment>error</comment>
-  </data>
-  <data name="Calculator_ErrWrongParamCount" xml:space="preserve">
-    <value>Número errado de parâmetros de função</value>
+  <data name="Calculator_ErrUndefinedVariable" xml:space="preserve">
+    <value>Variável indefinida "{0}"</value>
     <comment>error</comment>
   </data>
   <data name="CleanRemindersCommand_count" xml:space="preserve">
@@ -716,6 +716,10 @@ Invertido</value>
   <data name="CustomStyle_Screentip" xml:space="preserve">
     <value>{0} (Ctrl + Alt + Shift + {1})</value>
     <comment>Screentip for custom style gallery tiles</comment>
+  </data>
+  <data name="DatabaseFilename" xml:space="preserve">
+    <value>Mais um.db</value>
+    <comment>SKIP, Sqlite database file name</comment>
   </data>
   <data name="DeleteFormulaCommand_Deleted" xml:space="preserve">
     <value>Fórmulas excluídas de {0} célula (s)</value>
@@ -1933,6 +1937,18 @@ Deseja atualizar a página existente?</value>
     <value>Escolha o estilo de numeração</value>
     <comment>label</comment>
   </data>
+  <data name="OneMore_GitHub" xml:space="preserve">
+    <value>https://github.com/stevencohn/OneMore</value>
+    <comment>SKIP</comment>
+  </data>
+  <data name="OneMore_Home" xml:space="preserve">
+    <value>https://onemoreaddin.com</value>
+    <comment>SKIP</comment>
+  </data>
+  <data name="OneMore_Sponsor" xml:space="preserve">
+    <value>https://github.com/sponsors/stevencohn</value>
+    <comment>SKIP</comment>
+  </data>
   <data name="OneMoreNamespace" xml:space="preserve">
     <value>http://schemas.smc.com/onemore/2020/styles</value>
     <comment>SKIP</comment>
@@ -2128,6 +2144,10 @@ Nesta secção</value>
     <value>Seleção vazia. Selecione um bloco válido de texto PlantUML.</value>
     <comment>error message</comment>
   </data>
+  <data name="PlantUmlCommand_PlantUrl" xml:space="preserve">
+    <value>http://www.plantuml.com/plantuml/png/</value>
+    <comment>PlantUML Remote servier SKIP</comment>
+  </data>
   <data name="Plugin_InvalidSchema" xml:space="preserve">
     <value>XML inválido detectado. </value>
     <comment>error message</comment>
@@ -2241,6 +2261,10 @@ Todos os cadernos e suas páginas</value>
   <data name="PreviewMarkdownCommand_Title" xml:space="preserve">
     <value>Visualização de redução</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="ProgramName" xml:space="preserve">
+    <value>Mais um</value>
+    <comment>SKIP</comment>
   </data>
   <data name="Pronunciate_EmptyWord" xml:space="preserve">
     <value>A palavra selecionada não pode estar vazia</value>
@@ -4220,6 +4244,10 @@ Depois do último grupo</value>
     <value>Nome do snippet:</value>
     <comment>label</comment>
   </data>
+  <data name="ScanningCueFile" xml:space="preserve">
+    <value>HashtagScanner.json</value>
+    <comment>SKIP</comment>
+  </data>
   <data name="ScheduleScanDialog_hintLabel.Text" xml:space="preserve">
     <value>É melhor agendar a verificação fora do horário comercial, como meia-noite</value>
     <comment>label</comment>
@@ -4905,6 +4933,10 @@ A caixa de diálogo Encontrar hashtags será aberta agora.</value>
   <data name="TextToTableDialog_unquoteBox.Text" xml:space="preserve">
     <value>Remova as aspas de strings completas</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="ThemesFolder" xml:space="preserve">
+    <value>Temas</value>
+    <comment>SKIP</comment>
   </data>
   <data name="TimerWindow.Text" xml:space="preserve">
     <value>Temporizador do OneNote</value>

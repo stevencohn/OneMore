@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 {
 	using System;
 	using System.Collections.Generic;
+	using Resx = Properties.Resources;
 
 
 	internal class VariantList
@@ -64,14 +65,16 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 			// list should contain at least the required types
 			if (list.Count < types.Length)
 			{
-				throw new CalculatorException($"expected {types.Length} parameters, only given {list.Count}");
+				throw new CalculatorException(
+					string.Format(Resx.Calculator_ErrInvalidFnParamType, types.Length, list.Count));
 			}
 
 			for (int i = 0; i < Math.Min(types.Length, list.Count); i++)
 			{
 				if (list[i].VariantType != types[i])
 				{
-					throw new CalculatorException($"parameter {i} is not of type {types[i]}");
+					throw new CalculatorException(
+						string.Format(Resx.Calculator_ErrInvalidFnParamType, i, types[i]));
 				}
 			}
 

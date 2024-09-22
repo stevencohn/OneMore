@@ -281,6 +281,10 @@
     <value>&amp;lt;span style = 'font-style: italic'&amp;gt; لم يتم اكتشاف أدلة احتياطية معزولة &amp;lt;/ span&amp;gt;</value>
     <comment>status</comment>
   </data>
+  <data name="AnalyzeCommand_OpenSections" xml:space="preserve">
+    <value>الأقسام المفتوحة</value>
+    <comment>SKIP notebook name</comment>
+  </data>
   <data name="AnalyzeCommand_OrphanSummary" xml:space="preserve">
     <value>الأيتام عبارة عن مجلدات نسخ احتياطي لدفاتر الملاحظات التي لم تعد مفتوحة في OneNote. </value>
     <comment>summary text</comment>
@@ -288,6 +292,10 @@
   <data name="AnalyzeCommand_PageSummary" xml:space="preserve">
     <value>هذا هو توزيع مفصل لكل صفحة يوضح الحجم الإجمالي لتمثيل XML الداخلي وحجم كل صورة وملف مرفق. </value>
     <comment>summary text</comment>
+  </data>
+  <data name="AnalyzeCommand_QuickNotes" xml:space="preserve">
+    <value>ملاحظات سريعة</value>
+    <comment>SKIP notebook name</comment>
   </data>
   <data name="AnalyzeCommand_SectionSummary" xml:space="preserve">
     <value>يتم تكوين عدد النسخ الاحتياطية لكل قسم في خيارات OneNote. </value>
@@ -433,48 +441,40 @@
     <value>مسافتان بين الجمل</value>
     <comment>radio</comment>
   </data>
-  <data name="Calculator_ErrClosingParenExpected" xml:space="preserve">
-    <value>توقع قوس الإغلاق</value>
+  <data name="Calculator_ErrInvalidCountifParams" xml:space="preserve">
+    <value>تتطلب الدالة countif معلمتين</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrInvalidCellRange" xml:space="preserve">
-    <value>يجب أن يكون نطاق الخلايا داخل عمود واحد أو داخل صف واحد</value>
+  <data name="Calculator_ErrInvalidFnParamCount" xml:space="preserve">
+    <value>يجب أن تحتوي الدالة {0} على معلمتين</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrInvalidOperand" xml:space="preserve">
-    <value>معامل غير صالح</value>
+  <data name="Calculator_ErrInvalidParameter" xml:space="preserve">
+    <value>معلمة غير صالحة في الخلية {0}</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrMultipleDecimalPoints" xml:space="preserve">
-    <value>يحتوي المعامل على عدة نقاط عشرية</value>
+  <data name="Calculator_ErrInvalidRange" xml:space="preserve">
+    <value>نطاق الخلايا غير صالح "{0}"</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrOperandExpected" xml:space="preserve">
-    <value>توقع معامل</value>
+  <data name="Calculator_ErrMissingRowColVars" xml:space="preserve">
+    <value>تتطلب الدالة {0} متغيرات العمود والصف</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrOperatorExpected" xml:space="preserve">
-    <value>توقع عامل</value>
+  <data name="Calculator_ErrNoClosingParenthesis" xml:space="preserve">
+    <value>لم يتم العثور على قوس إغلاق يطابق الرمز المميز في {0}</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrUndefinedFunction" xml:space="preserve">
-    <value>وظيفة غير محددة "{0}"</value>
+  <data name="Calculator_ErrUndefinedCellRef" xml:space="preserve">
+    <value>مرجع الخلية غير المحدد "{0}"</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrUndefinedSymbol" xml:space="preserve">
-    <value>رمز غير محدد "{0}"</value>
+  <data name="Calculator_ErrUndefinedOperator" xml:space="preserve">
+    <value>عامل تشغيل غير محدد "{0}"</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrUnexpectedCharacter" xml:space="preserve">
-    <value>تمت مصادفة حرف غير متوقع "{0}"</value>
-    <comment>error</comment>
-  </data>
-  <data name="Calculator_ErrUnmatchedClosingParen" xml:space="preserve">
-    <value>أقواس إغلاق بدون مطابقة أقواس مفتوحة</value>
-    <comment>error</comment>
-  </data>
-  <data name="Calculator_ErrWrongParamCount" xml:space="preserve">
-    <value>رقم خاطئ لمعلمات الوظيفة</value>
+  <data name="Calculator_ErrUndefinedVariable" xml:space="preserve">
+    <value>متغير غير محدد "{0}"</value>
     <comment>error</comment>
   </data>
   <data name="CleanRemindersCommand_count" xml:space="preserve">
@@ -715,6 +715,10 @@
   <data name="CustomStyle_Screentip" xml:space="preserve">
     <value>{0} (Ctrl + Alt + Shift + {1})</value>
     <comment>Screentip for custom style gallery tiles</comment>
+  </data>
+  <data name="DatabaseFilename" xml:space="preserve">
+    <value>OneMore.db</value>
+    <comment>SKIP, Sqlite database file name</comment>
   </data>
   <data name="DeleteFormulaCommand_Deleted" xml:space="preserve">
     <value>الصيغ المحذوفة من {0} خلية (خلايا)</value>
@@ -1932,6 +1936,18 @@
     <value>اختر نمط الترقيم</value>
     <comment>label</comment>
   </data>
+  <data name="OneMore_GitHub" xml:space="preserve">
+    <value>https://github.com/stevencohn/OneMore</value>
+    <comment>SKIP</comment>
+  </data>
+  <data name="OneMore_Home" xml:space="preserve">
+    <value>https://onemorereaddin.com</value>
+    <comment>SKIP</comment>
+  </data>
+  <data name="OneMore_Sponsor" xml:space="preserve">
+    <value>https://github.com/sponsors/stevencohn</value>
+    <comment>SKIP</comment>
+  </data>
   <data name="OneMoreNamespace" xml:space="preserve">
     <value>http://schemas.smc.com/onemore/2020/styles</value>
     <comment>DO NOT TRANSLATE</comment>
@@ -2127,6 +2143,10 @@
     <value>اختيار فارغ. حدد كتلة صالحة من نص PlantUML.</value>
     <comment>error message</comment>
   </data>
+  <data name="PlantUmlCommand_PlantUrl" xml:space="preserve">
+    <value>http://www.plantuml.com/plantuml/png/</value>
+    <comment>PlantUML Remote servier SKIP</comment>
+  </data>
   <data name="Plugin_InvalidSchema" xml:space="preserve">
     <value>تم اكتشاف ملف XML غير صالح. </value>
     <comment>error message</comment>
@@ -2240,6 +2260,10 @@
   <data name="PreviewMarkdownCommand_Title" xml:space="preserve">
     <value>معاينة تخفيض السعر</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="ProgramName" xml:space="preserve">
+    <value>OneMore</value>
+    <comment>SKIP</comment>
   </data>
   <data name="Pronunciate_EmptyWord" xml:space="preserve">
     <value>لا يمكن أن تكون الكلمة المحددة فارغة</value>
@@ -4220,6 +4244,10 @@ ISO-code then comma then language name</comment>
     <value>اسم المقتطف:</value>
     <comment>label</comment>
   </data>
+  <data name="ScanningCueFile" xml:space="preserve">
+    <value>HashtagScanner.json</value>
+    <comment>SKIP</comment>
+  </data>
   <data name="ScheduleScanDialog_hintLabel.Text" xml:space="preserve">
     <value>من الأفضل جدولة الفحص خارج ساعات العمل، مثل منتصف الليل</value>
     <comment>label</comment>
@@ -4905,6 +4933,10 @@ ISO-code then comma then language name</comment>
   <data name="TextToTableDialog_unquoteBox.Text" xml:space="preserve">
     <value>إزالة الاقتباسات من السلاسل الكاملة</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="ThemesFolder" xml:space="preserve">
+    <value>المواضيع</value>
+    <comment>SKIP</comment>
   </data>
   <data name="TimerWindow.Text" xml:space="preserve">
     <value>مؤقت OneNote</value>

@@ -8,7 +8,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 	using System.Collections.Generic;
 	using System.Diagnostics;
 	using System.Linq;
-
+	using Resx = Properties.Resources;
 
 	internal class FunctionFactory
 	{
@@ -102,7 +102,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 			{
 				// user specifies two parameters (range,opMatch) but preprocessing expands
 				// that to three parameters (range,op,match) so test for three but report two!
-				throw new CalculatorException($"countif function requires two parameters");
+				throw new CalculatorException(Resx.Calculator_ErrInvalidCountifParams);
 			}
 
 			var array = p.ToArray();

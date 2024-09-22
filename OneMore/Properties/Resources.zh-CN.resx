@@ -280,6 +280,10 @@
     <value>&amp;lt;span style='font-style:italic'&amp;gt;未发现孤立的备份目录&amp;lt;/span&amp;gt;</value>
     <comment>status</comment>
   </data>
+  <data name="AnalyzeCommand_OpenSections" xml:space="preserve">
+    <value>开放部分</value>
+    <comment>SKIP notebook name</comment>
+  </data>
   <data name="AnalyzeCommand_OrphanSummary" xml:space="preserve">
     <value>孤立是不再在 OneNote 中打开的笔记本的备份文件夹。</value>
     <comment>summary text</comment>
@@ -287,6 +291,10 @@
   <data name="AnalyzeCommand_PageSummary" xml:space="preserve">
     <value>这是每个页面的详细细分，显示内部 XML 表示的总大小以及每个图像和文件附件的大小。</value>
     <comment>summary text</comment>
+  </data>
+  <data name="AnalyzeCommand_QuickNotes" xml:space="preserve">
+    <value>快速笔记</value>
+    <comment>SKIP notebook name</comment>
   </data>
   <data name="AnalyzeCommand_SectionSummary" xml:space="preserve">
     <value>每个分区的备份份数在 OneNote 选项中配置。</value>
@@ -432,48 +440,40 @@
     <value>句子之间有两个空格</value>
     <comment>radio</comment>
   </data>
-  <data name="Calculator_ErrClosingParenExpected" xml:space="preserve">
-    <value>预计要加上圆括号</value>
+  <data name="Calculator_ErrInvalidCountifParams" xml:space="preserve">
+    <value>countif函数需要两个参数</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrInvalidCellRange" xml:space="preserve">
-    <value>单元格范围必须在一列或一行内</value>
+  <data name="Calculator_ErrInvalidFnParamCount" xml:space="preserve">
+    <value>{0} 函数必须有两个参数</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrInvalidOperand" xml:space="preserve">
-    <value>无效的操作数</value>
+  <data name="Calculator_ErrInvalidParameter" xml:space="preserve">
+    <value>单元格 {0} 处的参数无效</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrMultipleDecimalPoints" xml:space="preserve">
-    <value>操作数包含多个小数点</value>
+  <data name="Calculator_ErrInvalidRange" xml:space="preserve">
+    <value>单元格范围“{0}”无效</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrOperandExpected" xml:space="preserve">
-    <value>预期操作数</value>
+  <data name="Calculator_ErrMissingRowColVars" xml:space="preserve">
+    <value>{0} 函数需要 col 和 row 变量</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrOperatorExpected" xml:space="preserve">
-    <value>运营商期望</value>
+  <data name="Calculator_ErrNoClosingParenthesis" xml:space="preserve">
+    <value>未找到与 {0} 处的标记匹配的右括号</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrUndefinedFunction" xml:space="preserve">
-    <value>未定义函数 “{0}”</value>
+  <data name="Calculator_ErrUndefinedCellRef" xml:space="preserve">
+    <value>未定义的单元格引用“{0}”</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrUndefinedSymbol" xml:space="preserve">
-    <value>未定义符号 “{0}”</value>
+  <data name="Calculator_ErrUndefinedOperator" xml:space="preserve">
+    <value>未定义的运算符“{0}”</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrUnexpectedCharacter" xml:space="preserve">
-    <value>遇到意外字符“ {0}”</value>
-    <comment>error</comment>
-  </data>
-  <data name="Calculator_ErrUnmatchedClosingParen" xml:space="preserve">
-    <value>右括号不匹配右括号</value>
-    <comment>error</comment>
-  </data>
-  <data name="Calculator_ErrWrongParamCount" xml:space="preserve">
-    <value>功能参数数量错误</value>
+  <data name="Calculator_ErrUndefinedVariable" xml:space="preserve">
+    <value>未定义的变量“{0}”</value>
     <comment>error</comment>
   </data>
   <data name="CleanRemindersCommand_count" xml:space="preserve">
@@ -714,6 +714,10 @@
   <data name="CustomStyle_Screentip" xml:space="preserve">
     <value>{0} (Ctrl+Alt+Shift + {1})</value>
     <comment>Screentip for custom style gallery tiles</comment>
+  </data>
+  <data name="DatabaseFilename" xml:space="preserve">
+    <value>OneMore.db</value>
+    <comment>SKIP, Sqlite database file name</comment>
   </data>
   <data name="DeleteFormulaCommand_Deleted" xml:space="preserve">
     <value>已从{0}个单元格中删除了公式</value>
@@ -1931,6 +1935,18 @@ OneNote 文件 (*.one)</value>
     <value>选择编号样式</value>
     <comment>label</comment>
   </data>
+  <data name="OneMore_GitHub" xml:space="preserve">
+    <value>https://github.com/stevencohn/OneMore</value>
+    <comment>SKIP</comment>
+  </data>
+  <data name="OneMore_Home" xml:space="preserve">
+    <value>https://onemoreaddin.com</value>
+    <comment>SKIP</comment>
+  </data>
+  <data name="OneMore_Sponsor" xml:space="preserve">
+    <value>https://github.com/sponsors/stevencohn</value>
+    <comment>SKIP</comment>
+  </data>
   <data name="OneMoreNamespace" xml:space="preserve">
     <value>http://schemas.smc.com/onemore/2020/styles</value>
     <comment>DO NOT TRANSLATE</comment>
@@ -2126,6 +2142,10 @@ OneNote 文件 (*.one)</value>
     <value>空选择。选择一个有效的 PlantUML 文本块。</value>
     <comment>error message</comment>
   </data>
+  <data name="PlantUmlCommand_PlantUrl" xml:space="preserve">
+    <value>http://www.plantuml.com/plantuml/png/</value>
+    <comment>PlantUML Remote servier SKIP</comment>
+  </data>
   <data name="Plugin_InvalidSchema" xml:space="preserve">
     <value>检测到无效的XML。 检查日志文件以获取详细信息</value>
     <comment>error message</comment>
@@ -2239,6 +2259,10 @@ OneNote 文件 (*.one)</value>
   <data name="PreviewMarkdownCommand_Title" xml:space="preserve">
     <value>降价预览</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="ProgramName" xml:space="preserve">
+    <value>多一</value>
+    <comment>SKIP</comment>
   </data>
   <data name="Pronunciate_EmptyWord" xml:space="preserve">
     <value>所选单词不能为空</value>
@@ -4213,6 +4237,10 @@ ISO-code then comma then language name</comment>
     <value>片段名称：</value>
     <comment>label</comment>
   </data>
+  <data name="ScanningCueFile" xml:space="preserve">
+    <value>HashtagScanner.json</value>
+    <comment>SKIP</comment>
+  </data>
   <data name="ScheduleScanDialog_hintLabel.Text" xml:space="preserve">
     <value>最好将扫描安排在非工作时间，例如午夜</value>
     <comment>label</comment>
@@ -4898,6 +4926,10 @@ ISO-code then comma then language name</comment>
   <data name="TextToTableDialog_unquoteBox.Text" xml:space="preserve">
     <value>从完整的字符串中删除引号</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="ThemesFolder" xml:space="preserve">
+    <value>主题</value>
+    <comment>SKIP</comment>
   </data>
   <data name="TimerWindow.Text" xml:space="preserve">
     <value>OneNote 计时器</value>

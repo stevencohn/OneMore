@@ -15,6 +15,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 	using System.Globalization;
 	using System.Linq;
 	using System.Text.RegularExpressions;
+	using Resx = Properties.Resources;
 
 
 	/// <summary>
@@ -200,7 +201,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 
 		private List<string> Parse(string expr)
 		{
-			logger.WriteLine($"expression=[{expr}]");
+			logger.Verbose($"expression=[{expr}]");
 
 			var token = string.Empty;
 			var tokens = new List<string>();
@@ -314,7 +315,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 
 			for (var i = 0; i < tokens.Count; i++)
 			{
-				logger.WriteLine($"... tokens[{i}] = [{tokens[i]}]");
+				logger.Verbose($"... tokens[{i}] = [{tokens[i]}]");
 			}
 
 			return tokens;
@@ -340,7 +341,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 					{
 						var value = GetCellContentInternal(tokens[i])
 							?? throw new CalculatorException(
-								$"invalid parameter at cell {tokens[i]}");
+								string.Format(Resx.Calculator_ErrInvalidParameter, tokens[i]));
 
 						tokens[i] = value;
 					}
@@ -357,7 +358,8 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 				var close = tokens.IndexOf(")", open);
 				if (open >= close)
 				{
-					throw new CalculatorException($"No closing bracket/parenthesis. Token: {open}");
+					throw new CalculatorException(
+						string.Format(Resx.Calculator_ErrNoClosingParenthesis, open));
 				}
 
 				if (tokens[open - 1]
@@ -376,7 +378,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 
 			for (var i = 0; i < tokens.Count; i++)
 			{
-				logger.WriteLine($"... precell[{i}] = [{tokens[i]}]");
+				logger.Verbose($"... precell[{i}] = [{tokens[i]}]");
 			}
 		}
 
@@ -405,13 +407,13 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 			if (commas != 1)
 			{
 				throw new CalculatorException(
-					$"The {CellFnName} function must have two parameters");
+					string.Format(Resx.Calculator_ErrNoClosingParenthesis, CellFnName));
 			}
 
 			if (!variables.ContainsKey("col") || !variables.ContainsKey("row"))
 			{
 				throw new CalculatorException(
-					$"The {CellFnName} function requires the col and row variables");
+					string.Format(Resx.Calculator_ErrMissingRowColVars, CellFnName));
 			}
 
 			var currentCol = variables["col"];
@@ -461,7 +463,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 			{
 				if (index == 0 || index == tokens.Count - 1)
 				{
-					throw new CalculatorException("invalid range");
+					throw new CalculatorException(Resx.Calculator_ErrInvalidRange, ":");
 				}
 
 				// cells...
@@ -470,7 +472,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 				if (!match.Success)
 				{
 					throw new CalculatorException(
-						$"undefined cell ref [{tokens[index - 1]}]");// string.Format(ErrUndefinedSymbol, cell1), p1);
+						string.Format(Resx.Calculator_ErrUndefinedCellRef, tokens[index - 1]));
 				}
 
 				var col1 = match.Groups[1].Value.ToUpper();
@@ -480,7 +482,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 				if (!match.Success)
 				{
 					throw new CalculatorException(
-						$"undefined cell ref [{tokens[index - 1]}]");//string.Format(ErrUndefinedSymbol, cell1), p1);
+						string.Format(Resx.Calculator_ErrUndefinedCellRef, tokens[index - 1]));
 				}
 
 				var col2 = match.Groups[1].Value.ToUpper();
@@ -501,9 +503,10 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 					// iterate rows in column
 					for (var row = r1; row <= r2; row++)
 					{
-						var value = GetCellContentInternal($"{col1}{row}")
+						var addr = $"{col1}{row}";
+						var value = GetCellContentInternal(addr)
 							?? throw new CalculatorException(
-								$"invalid parameter at cell {col1}{row1}");
+								string.Format(Resx.Calculator_ErrInvalidParameter, addr));
 
 						// ignore empty cells
 						if (value.Length > 0)
@@ -529,9 +532,10 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 					// iterate columns in row
 					for (var col = c1; col <= c2; col++)
 					{
-						var value = GetCellContentInternal($"{CellIndexToLetters(col)}{row1}")
+						var addr = $"{CellIndexToLetters(col)}{row1}";
+						var value = GetCellContentInternal(addr)
 							?? throw new CalculatorException(
-								$"invalid parameter at cell {CellIndexToLetters(col)}{row1}");
+								string.Format(Resx.Calculator_ErrInvalidParameter, addr));
 
 						// ignore empty cells
 						if (value.Length > 0)
@@ -547,8 +551,8 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 				}
 				else
 				{
-					throw new FormatException(
-						$"invalid cell range {tokens[index - 1]}:{tokens[index + 1]}"); // ErrInvalidCellRange);
+					throw new FormatException(string.Format(
+						Resx.Calculator_ErrInvalidRange, $"{tokens[index - 1]}:{tokens[index + 1]}"));
 				}
 
 				// replace token range with values
@@ -621,7 +625,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 				if (open >= close)
 				{
 					throw new ArithmeticException(
-						$"no closing bracket/parenthesis matching index {open}");
+						string.Format(Resx.Calculator_ErrNoClosingParenthesis, open));
 				}
 
 				double result;
@@ -714,7 +718,8 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 				case 1:
 					if (!double.TryParse(tokens[0], NumberStyles.Number, cultureInfo, out token0))
 					{
-						throw new CalculatorException($"variable {tokens[0]} is undefined");
+						throw new CalculatorException(
+							string.Format(Resx.Calculator_ErrUndefinedVariable, tokens[0]));
 					}
 
 					return token0;
@@ -730,7 +735,8 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 
 						if (!double.TryParse(first + tokens[1], NumberStyles.Number, cultureInfo, out token1))
 						{
-							throw new CalculatorException($"variable {first + tokens[1]} is undefined");
+							throw new CalculatorException(
+								string.Format(Resx.Calculator_ErrUndefinedVariable, first + tokens[1]));
 						}
 
 						return token1;
@@ -738,12 +744,14 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 
 					if (!operators.ContainsKey(op))
 					{
-						throw new CalculatorException($"operator {op} is undefined");
+						throw new CalculatorException(
+							string.Format(Resx.Calculator_ErrUndefinedOperator, op));
 					}
 
 					if (!double.TryParse(tokens[1], NumberStyles.Number, cultureInfo, out token1))
 					{
-						throw new CalculatorException($"variable {tokens[1]} is undefined");
+						throw new CalculatorException(
+							string.Format(Resx.Calculator_ErrUndefinedVariable, tokens[1]));
 					}
 
 					return operators[op](0, token1);
@@ -760,7 +768,8 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 				{
 					if (!double.TryParse(tokens[opPlace + 1], NumberStyles.Number, cultureInfo, out var rhs))
 					{
-						throw new CalculatorException($"variable {tokens[opPlace + 1]} is undefined");
+						throw new CalculatorException(
+							string.Format(Resx.Calculator_ErrUndefinedVariable, tokens[opPlace + 1]));
 					}
 
 					if (op.Key == "-" && opPlace == 0)
@@ -773,7 +782,8 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 					{
 						if (!double.TryParse(tokens[opPlace - 1], NumberStyles.Number, cultureInfo, out var lhs))
 						{
-							throw new CalculatorException($"variable {tokens[opPlace - 1]} is undefined");
+							throw new CalculatorException(
+								string.Format(Resx.Calculator_ErrUndefinedVariable, tokens[opPlace - 1]));
 						}
 
 						var result = op.Value(lhs, rhs);
@@ -785,7 +795,8 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 
 			if (!double.TryParse(tokens[0], NumberStyles.Number, cultureInfo, out token0))
 			{
-				throw new CalculatorException($"variable {tokens[0]} is undefined");
+				throw new CalculatorException(
+					string.Format(Resx.Calculator_ErrUndefinedVariable, tokens[0]));
 			}
 
 			return token0;

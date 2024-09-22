@@ -442,48 +442,40 @@
     <value>文と文の間に２つのスペースを入れる</value>
     <comment>radio</comment>
   </data>
-  <data name="Calculator_ErrClosingParenExpected" xml:space="preserve">
-    <value>閉じ括弧が必要です。</value>
+  <data name="Calculator_ErrInvalidCountifParams" xml:space="preserve">
+    <value>countif 関数には 2 つのパラメータが必要です</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrInvalidCellRange" xml:space="preserve">
-    <value>セル範囲は、1つの列または1つの行内に収める必要があります。</value>
+  <data name="Calculator_ErrInvalidFnParamCount" xml:space="preserve">
+    <value>{0} 関数には 2 つのパラメータが必要です</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrInvalidOperand" xml:space="preserve">
-    <value>無効なオペランドです。</value>
+  <data name="Calculator_ErrInvalidParameter" xml:space="preserve">
+    <value>セル {0} のパラメータが無効です</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrMultipleDecimalPoints" xml:space="preserve">
-    <value>オペランドに複数の小数点が含まれています。</value>
+  <data name="Calculator_ErrInvalidRange" xml:space="preserve">
+    <value>セル範囲「{0}」が無効です</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrOperandExpected" xml:space="preserve">
-    <value>オペランドが必要です。</value>
+  <data name="Calculator_ErrMissingRowColVars" xml:space="preserve">
+    <value>{0} 関数には、col 変数と row 変数が必要です</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrOperatorExpected" xml:space="preserve">
-    <value>演算子が必要です。</value>
+  <data name="Calculator_ErrNoClosingParenthesis" xml:space="preserve">
+    <value>{0} のトークンに一致する右かっこが見つかりませんでした</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrUndefinedFunction" xml:space="preserve">
-    <value>未定義の関数「{0}」です。</value>
+  <data name="Calculator_ErrUndefinedCellRef" xml:space="preserve">
+    <value>未定義のセル参照「{0}」</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrUndefinedSymbol" xml:space="preserve">
-    <value>未定義のシンボル「{0}」です。</value>
+  <data name="Calculator_ErrUndefinedOperator" xml:space="preserve">
+    <value>未定義の演算子「{0}」</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrUnexpectedCharacter" xml:space="preserve">
-    <value>予期しない文字「{0}」が検出されました。</value>
-    <comment>error</comment>
-  </data>
-  <data name="Calculator_ErrUnmatchedClosingParen" xml:space="preserve">
-    <value>対応する開き括弧がない閉じ括弧です。</value>
-    <comment>error</comment>
-  </data>
-  <data name="Calculator_ErrWrongParamCount" xml:space="preserve">
-    <value>関数のパラメーターの数が間違っています。</value>
+  <data name="Calculator_ErrUndefinedVariable" xml:space="preserve">
+    <value>未定義の変数「{0}」</value>
     <comment>error</comment>
   </data>
   <data name="CleanRemindersCommand_count" xml:space="preserve">

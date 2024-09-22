@@ -282,6 +282,10 @@ Omkeren</value>
     <value>&amp;lt;span style='font-style:italic'&amp;gt;Geen verweesde back-upmappen ontdekt&amp;lt;/span&amp;gt;</value>
     <comment>status</comment>
   </data>
+  <data name="AnalyzeCommand_OpenSections" xml:space="preserve">
+    <value>Secties openen</value>
+    <comment>SKIP notebook name</comment>
+  </data>
   <data name="AnalyzeCommand_OrphanSummary" xml:space="preserve">
     <value>Weeskinderen zijn back-upmappen van notitieblokken die niet meer worden geopend in OneNote. </value>
     <comment>summary text</comment>
@@ -289,6 +293,10 @@ Omkeren</value>
   <data name="AnalyzeCommand_PageSummary" xml:space="preserve">
     <value>Dit is een gedetailleerd overzicht van elke pagina met de totale grootte van de interne XML-representatie en de grootte van elke afbeelding en bestandsbijlage. </value>
     <comment>summary text</comment>
+  </data>
+  <data name="AnalyzeCommand_QuickNotes" xml:space="preserve">
+    <value>Snelle notities</value>
+    <comment>SKIP notebook name</comment>
   </data>
   <data name="AnalyzeCommand_SectionSummary" xml:space="preserve">
     <value>Het aantal reservekopieën van elke sectie wordt geconfigureerd in de OneNote-opties. </value>
@@ -434,48 +442,40 @@ Omkeren</value>
     <value>Twee spaties tussen zinnen</value>
     <comment>radio</comment>
   </data>
-  <data name="Calculator_ErrClosingParenExpected" xml:space="preserve">
-    <value>Haakje sluiten wordt verwacht</value>
+  <data name="Calculator_ErrInvalidCountifParams" xml:space="preserve">
+    <value>De countif-functie vereist twee parameters</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrInvalidCellRange" xml:space="preserve">
-    <value>Het celbereik moet binnen één kolom of binnen één rij vallen</value>
+  <data name="Calculator_ErrInvalidFnParamCount" xml:space="preserve">
+    <value>De functie {0} moet twee parameters hebben</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrInvalidOperand" xml:space="preserve">
-    <value>Ongeldige operand</value>
+  <data name="Calculator_ErrInvalidParameter" xml:space="preserve">
+    <value>Ongeldige parameter in cel {0}</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrMultipleDecimalPoints" xml:space="preserve">
-    <value>Operand bevat meerdere decimale punten</value>
+  <data name="Calculator_ErrInvalidRange" xml:space="preserve">
+    <value>Ongeldig celbereik '{0}'</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrOperandExpected" xml:space="preserve">
-    <value>Operand verwacht</value>
+  <data name="Calculator_ErrMissingRowColVars" xml:space="preserve">
+    <value>Voor de functie {0} zijn de variabelen col en row vereist</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrOperatorExpected" xml:space="preserve">
-    <value>Operator verwacht</value>
+  <data name="Calculator_ErrNoClosingParenthesis" xml:space="preserve">
+    <value>Er is geen sluitend haakje gevonden dat overeenkomt met het token op {0}</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrUndefinedFunction" xml:space="preserve">
-    <value>Ongedefinieerde functie "{0}"</value>
+  <data name="Calculator_ErrUndefinedCellRef" xml:space="preserve">
+    <value>Ongedefinieerde celverwijzing "{0}"</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrUndefinedSymbol" xml:space="preserve">
-    <value>Ongedefinieerd symbool "{0}"</value>
+  <data name="Calculator_ErrUndefinedOperator" xml:space="preserve">
+    <value>Ongedefinieerde operator "{0}"</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrUnexpectedCharacter" xml:space="preserve">
-    <value>Onverwacht teken '{0}' aangetroffen</value>
-    <comment>error</comment>
-  </data>
-  <data name="Calculator_ErrUnmatchedClosingParen" xml:space="preserve">
-    <value>Haakjes sluiten zonder overeenkomende open haakjes</value>
-    <comment>error</comment>
-  </data>
-  <data name="Calculator_ErrWrongParamCount" xml:space="preserve">
-    <value>Verkeerd aantal functieparameters</value>
+  <data name="Calculator_ErrUndefinedVariable" xml:space="preserve">
+    <value>Ongedefinieerde variabele "{0}"</value>
     <comment>error</comment>
   </data>
   <data name="CleanRemindersCommand_count" xml:space="preserve">
@@ -716,6 +716,10 @@ Omkeren</value>
   <data name="CustomStyle_Screentip" xml:space="preserve">
     <value>{0} (Ctrl + Alt + Shift + {1})</value>
     <comment>Screentip for custom style gallery tiles</comment>
+  </data>
+  <data name="DatabaseFilename" xml:space="preserve">
+    <value>OneMore.db</value>
+    <comment>SKIP, Sqlite database file name</comment>
   </data>
   <data name="DeleteFormulaCommand_Deleted" xml:space="preserve">
     <value>Formules verwijderd uit {0} cel (len)</value>
@@ -1933,6 +1937,18 @@ Wilt u de bestaande pagina vernieuwen?</value>
     <value>Kies de nummeringsstijl</value>
     <comment>label</comment>
   </data>
+  <data name="OneMore_GitHub" xml:space="preserve">
+    <value>https://github.com/stevencohn/OneMore</value>
+    <comment>SKIP</comment>
+  </data>
+  <data name="OneMore_Home" xml:space="preserve">
+    <value>https://onemoreaddin.com</value>
+    <comment>SKIP</comment>
+  </data>
+  <data name="OneMore_Sponsor" xml:space="preserve">
+    <value>https://github.com/sponsors/stevencohn</value>
+    <comment>SKIP</comment>
+  </data>
   <data name="OneMoreNamespace" xml:space="preserve">
     <value>http://schemas.smc.com/onemore/2020/styles</value>
     <comment>SKIP</comment>
@@ -2128,6 +2144,10 @@ In deze sectie</value>
     <value>Lege selectie. Selecteer een geldig blok PlantUML-tekst.</value>
     <comment>error message</comment>
   </data>
+  <data name="PlantUmlCommand_PlantUrl" xml:space="preserve">
+    <value>http://www.plantuml.com/plantuml/png/</value>
+    <comment>PlantUML Remote servier SKIP</comment>
+  </data>
   <data name="Plugin_InvalidSchema" xml:space="preserve">
     <value>Ongeldige XML gedetecteerd. </value>
     <comment>error message</comment>
@@ -2241,6 +2261,10 @@ Alle notitieboekjes en hun pagina's</value>
   <data name="PreviewMarkdownCommand_Title" xml:space="preserve">
     <value>Afwaarderingsvoorbeeld</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="ProgramName" xml:space="preserve">
+    <value>EénMeer</value>
+    <comment>SKIP</comment>
   </data>
   <data name="Pronunciate_EmptyWord" xml:space="preserve">
     <value>Het geselecteerde woord mag niet leeg zijn</value>
@@ -4220,6 +4244,10 @@ Na de laatste groep</value>
     <value>Fragmentnaam:</value>
     <comment>label</comment>
   </data>
+  <data name="ScanningCueFile" xml:space="preserve">
+    <value>HashtagScanner.json</value>
+    <comment>SKIP</comment>
+  </data>
   <data name="ScheduleScanDialog_hintLabel.Text" xml:space="preserve">
     <value>Het is het beste om de scan buiten kantooruren te plannen, bijvoorbeeld middernacht</value>
     <comment>label</comment>
@@ -4905,6 +4933,10 @@ Het dialoogvenster Hashtags zoeken wordt nu geopend.</value>
   <data name="TextToTableDialog_unquoteBox.Text" xml:space="preserve">
     <value>Verwijder aanhalingstekens uit volledige strings</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="ThemesFolder" xml:space="preserve">
+    <value>Thema's</value>
+    <comment>SKIP</comment>
   </data>
   <data name="TimerWindow.Text" xml:space="preserve">
     <value>OneNote-timer</value>

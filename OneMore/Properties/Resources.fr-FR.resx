@@ -281,6 +281,10 @@ Inverser</value>
     <value>&amp;lt;span style='font-style:italic'&amp;gt;Aucun répertoire de sauvegarde orphelin découvert&amp;lt;/span&amp;gt;</value>
     <comment>status</comment>
   </data>
+  <data name="AnalyzeCommand_OpenSections" xml:space="preserve">
+    <value>Sections ouvertes</value>
+    <comment>SKIP notebook name</comment>
+  </data>
   <data name="AnalyzeCommand_OrphanSummary" xml:space="preserve">
     <value>Les orphelins sont des dossiers de sauvegarde des blocs-notes qui ne sont plus ouverts dans OneNote. </value>
     <comment>summary text</comment>
@@ -288,6 +292,10 @@ Inverser</value>
   <data name="AnalyzeCommand_PageSummary" xml:space="preserve">
     <value>Il s'agit d'une ventilation détaillée de chaque page indiquant la taille totale de la représentation XML interne et la taille de chaque image et pièce jointe. </value>
     <comment>summary text</comment>
+  </data>
+  <data name="AnalyzeCommand_QuickNotes" xml:space="preserve">
+    <value>Notes rapides</value>
+    <comment>SKIP notebook name</comment>
   </data>
   <data name="AnalyzeCommand_SectionSummary" xml:space="preserve">
     <value>Le nombre de copies de sauvegarde de chaque section est configuré dans les options OneNote. </value>
@@ -433,48 +441,40 @@ Inverser</value>
     <value>Deux espaces entre les phrases</value>
     <comment>radio</comment>
   </data>
-  <data name="Calculator_ErrClosingParenExpected" xml:space="preserve">
-    <value>Parenthèse fermante attendue</value>
+  <data name="Calculator_ErrInvalidCountifParams" xml:space="preserve">
+    <value>La fonction countif nécessite deux paramètres</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrInvalidCellRange" xml:space="preserve">
-    <value>La plage de cellules doit se trouver dans une colonne ou dans une ligne</value>
+  <data name="Calculator_ErrInvalidFnParamCount" xml:space="preserve">
+    <value>La fonction {0} doit avoir deux paramètres</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrInvalidOperand" xml:space="preserve">
-    <value>Opérande invalide</value>
+  <data name="Calculator_ErrInvalidParameter" xml:space="preserve">
+    <value>Paramètre non valide dans la cellule {0}</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrMultipleDecimalPoints" xml:space="preserve">
-    <value>L'opérande contient plusieurs points décimaux</value>
+  <data name="Calculator_ErrInvalidRange" xml:space="preserve">
+    <value>Plage de cellules "{0}" non valide</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrOperandExpected" xml:space="preserve">
-    <value>Opérande attendu</value>
+  <data name="Calculator_ErrMissingRowColVars" xml:space="preserve">
+    <value>La fonction {0} nécessite les variables col et row</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrOperatorExpected" xml:space="preserve">
-    <value>Opérateur attendu</value>
+  <data name="Calculator_ErrNoClosingParenthesis" xml:space="preserve">
+    <value>Aucune parenthèse fermante trouvée pour correspondre au jeton à {0}</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrUndefinedFunction" xml:space="preserve">
-    <value>Fonction non définie \"{0}\"</value>
+  <data name="Calculator_ErrUndefinedCellRef" xml:space="preserve">
+    <value>Référence de cellule non définie "{0}"</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrUndefinedSymbol" xml:space="preserve">
-    <value>Symbole non défini \"{0}\"</value>
+  <data name="Calculator_ErrUndefinedOperator" xml:space="preserve">
+    <value>Opérateur non défini "{0}"</value>
     <comment>error</comment>
   </data>
-  <data name="Calculator_ErrUnexpectedCharacter" xml:space="preserve">
-    <value>Caractère inattendu rencontré \"{0}\"</value>
-    <comment>error</comment>
-  </data>
-  <data name="Calculator_ErrUnmatchedClosingParen" xml:space="preserve">
-    <value>Parenthèse fermante sans parenthèse ouverte correspondante</value>
-    <comment>error</comment>
-  </data>
-  <data name="Calculator_ErrWrongParamCount" xml:space="preserve">
-    <value>Mauvais nombre de paramètres de fonction</value>
+  <data name="Calculator_ErrUndefinedVariable" xml:space="preserve">
+    <value>Variable non définie "{0}"</value>
     <comment>error</comment>
   </data>
   <data name="CleanRemindersCommand_count" xml:space="preserve">
@@ -715,6 +715,10 @@ Inverser</value>
   <data name="CustomStyle_Screentip" xml:space="preserve">
     <value>{0} (Ctrl + Alt + Shift + {1})</value>
     <comment>Screentip for custom style gallery tiles</comment>
+  </data>
+  <data name="DatabaseFilename" xml:space="preserve">
+    <value>OneMore.db</value>
+    <comment>SKIP, Sqlite database file name</comment>
   </data>
   <data name="DeleteFormulaCommand_Deleted" xml:space="preserve">
     <value>Formules supprimées de {0} cellule (s)</value>
@@ -1932,6 +1936,18 @@ Voulez-vous actualiser la page existante ?</value>
     <value>Choisissez le style de numérotation</value>
     <comment>label</comment>
   </data>
+  <data name="OneMore_GitHub" xml:space="preserve">
+    <value>https://github.com/stevencohn/OneMore</value>
+    <comment>SKIP</comment>
+  </data>
+  <data name="OneMore_Home" xml:space="preserve">
+    <value>https://onemoreaddin.com</value>
+    <comment>SKIP</comment>
+  </data>
+  <data name="OneMore_Sponsor" xml:space="preserve">
+    <value>https://github.com/sponsors/stevencohn</value>
+    <comment>SKIP</comment>
+  </data>
   <data name="OneMoreNamespace" xml:space="preserve">
     <value>http://schemas.smc.com/onemore/2020/styles</value>
     <comment>DO NOT TRANSLATE</comment>
@@ -2127,6 +2143,10 @@ Dans cette section</value>
     <value>Sélection vide. Sélectionnez un bloc valide de texte PlantUML.</value>
     <comment>error message</comment>
   </data>
+  <data name="PlantUmlCommand_PlantUrl" xml:space="preserve">
+    <value>http://www.plantuml.com/plantuml/png/</value>
+    <comment>PlantUML Remote servier SKIP</comment>
+  </data>
   <data name="Plugin_InvalidSchema" xml:space="preserve">
     <value>XML non valide détecté. </value>
     <comment>error message</comment>
@@ -2240,6 +2260,10 @@ Tous les cahiers et leurs pages</value>
   <data name="PreviewMarkdownCommand_Title" xml:space="preserve">
     <value>Aperçu de la démarque</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="ProgramName" xml:space="preserve">
+    <value>UnPlus</value>
+    <comment>SKIP</comment>
   </data>
   <data name="Pronunciate_EmptyWord" xml:space="preserve">
     <value>Le mot sélectionné ne peut pas être vide</value>
@@ -4219,6 +4243,10 @@ Après le dernier groupe</value>
     <value>Nom de l'extrait:</value>
     <comment>label</comment>
   </data>
+  <data name="ScanningCueFile" xml:space="preserve">
+    <value>HashtagScanner.json</value>
+    <comment>SKIP</comment>
+  </data>
   <data name="ScheduleScanDialog_hintLabel.Text" xml:space="preserve">
     <value>Il est préférable de planifier l'analyse en dehors des heures d'ouverture, par exemple à minuit.</value>
     <comment>label</comment>
@@ -4903,6 +4931,10 @@ La boîte de dialogue Rechercher des hashtags va maintenant s'ouvrir.</value>
   <data name="TextToTableDialog_unquoteBox.Text" xml:space="preserve">
     <value>Supprimer les guillemets des chaînes complètes</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="ThemesFolder" xml:space="preserve">
+    <value>Thèmes</value>
+    <comment>SKIP</comment>
   </data>
   <data name="TimerWindow.Text" xml:space="preserve">
     <value>Minuteur OneNote</value>
