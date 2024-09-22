@@ -10,6 +10,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 	using System.Linq;
 	using Resx = Properties.Resources;
 
+
 	internal class FunctionFactory
 	{
 		private const int CountIfNe = 3;
@@ -51,13 +52,15 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 				"countif" => inputs => CountIf(inputs),
 				"exp" => inputs => Math.Exp(inputs.Assert(D)[0]),
 				"floor" => inputs => Math.Floor(inputs.Assert(D)[0]),
+				"log" => inputs => Math.Log(inputs.Assert(D)[0]),
+				"log10" => inputs => Math.Log10(inputs.Assert(D)[0]),
 				"max" => inputs => Max(inputs.Assert(D).ToDoubleArray()),
 				"median" => inputs => Median(inputs.Assert(D).ToDoubleArray()),
 				"min" => inputs => Min(inputs.Assert(D).ToDoubleArray()),
 				"mode" => inputs => Mode(inputs.Assert(D).ToDoubleArray()),
 				"pow" => inputs => Math.Pow(inputs.Assert(D)[0], inputs[1]),
-				"rem" => inputs => Math.IEEERemainder(inputs.Assert(D)[0], inputs[1]),
 				"range" => inputs => Range(inputs.Assert(D).ToDoubleArray()),
+				"rem" => inputs => Math.IEEERemainder(inputs.Assert(D)[0], inputs[1]),
 				"root" => inputs => Math.Pow(inputs.Assert(D, D)[0], 1 / inputs[1]),
 				"round" => inputs => Math.Round(inputs.Assert(D)[0], MidpointRounding.AwayFromZero),
 				"sign" => inputs => Math.Sign(inputs.Assert(D)[0]),

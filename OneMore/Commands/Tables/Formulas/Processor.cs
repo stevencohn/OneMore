@@ -11,12 +11,6 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 
 	internal class Processor : Loggable
 	{
-		/// <summary>
-		/// Regex pattern for matching cell addresses of the form [col-letters][row-number] where
-		/// row-number is a positive, non-zero integer. Capture groups are named c)ell and r)row.
-		/// </summary>
-		public const string AddressPattern = @"^(?<c>[a-zA-Z]{1,3})(?<r>\d{1,3})$";
-
 		private readonly Table table;
 		private int maxdec;
 		private List<TagDef> tags;

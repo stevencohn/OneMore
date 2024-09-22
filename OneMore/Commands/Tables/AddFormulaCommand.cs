@@ -156,7 +156,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			var regex = new Regex(Processor.AddressPattern);
+			var regex = new Regex(@"\b(?<c>[a-zA-Z]{1,3})(?<r>\d{1,3})\b");
 
 			int offset = 0;
 			foreach (var cell in cells)
