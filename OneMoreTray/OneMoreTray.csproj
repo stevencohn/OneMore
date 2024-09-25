@@ -111,6 +111,12 @@
   <ItemGroup>
     <Content Include="Logo.ico" />
   </ItemGroup>
+    <ItemGroup>
+    <ProjectReference Include="..\OneMore\OneMore.csproj">
+      <Project>{d874e185-08fe-48c5-bade-0fe84060c978}</Project>
+      <Name>OneMore</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
