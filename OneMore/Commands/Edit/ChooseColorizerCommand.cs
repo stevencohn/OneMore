@@ -10,6 +10,9 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class ChooseColorizerCommand : Command
 	{
+		private ColorizeDialog dialog;
+
+
 		public ChooseColorizerCommand()
 		{
 		}
@@ -17,14 +20,34 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using var dialog = new ColorizeDialog();
-			if (dialog.ShowDialog() == DialogResult.OK)
+			if (dialog != null)
+			{
+				// single instance
+				dialog.Elevate();
+				return;
+			}
+
+			dialog = new ColorizeDialog();
+			dialog.FormClosed += Dialog_FormClosed;
+
+			if (dialog.ShowDialog(owner) == DialogResult.OK)
 			{
 				var key = dialog.LanguageKey;
 				if (key != null)
 				{
 					await factory.Run<ColorizeCommand>(key);
 				}
+			}
+		}
+
+
+		private void Dialog_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			if (dialog != null)
+			{
+				dialog.FormClosed -= Dialog_FormClosed;
+				dialog.Dispose();
+				dialog = null;
 			}
 		}
 	}
