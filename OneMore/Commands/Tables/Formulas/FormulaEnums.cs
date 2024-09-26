@@ -25,20 +25,4 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		Variance,
 		StandardDeviation
 	}
-
-
-	internal enum FunctionStatus
-	{
-		OK,
-		UndefinedFunction,
-		WrongParameterCount
-	}
-
-
-	internal enum SymbolStatus
-	{
-		OK,
-		None,
-		UndefinedSymbol
-	}
 }

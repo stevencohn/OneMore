@@ -121,10 +121,9 @@ namespace River.OneMoreAddIn.Settings
 			var updated = settings.Add("language", lang);
 
 			// does not require a restart
-			if (checkUpdatesBox.Checked)
-				settings.Add("checkUpdates", true);
-			else
-				settings.Remove("checkUpdates");
+			save = checkUpdatesBox.Checked
+				? settings.Add("checkUpdates", true) || save
+				: settings.Remove("checkUpdates") || save;
 
 			// requires a restart
 			updated = verboseBox.Checked

@@ -184,9 +184,6 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		/// <summary>
 		/// Parse and evaluate a mathematical expression.
 		/// </summary>
-		/// <remarks>
-		/// This method does not evaluate variable declarations.
-		/// </remarks>
 		/// <param name="expression">The math expression to parse and evaluate.</param>
 		/// <returns>Returns the result of executing the given math expression.</returns>
 		public double Compute(string expression)
