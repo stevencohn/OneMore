@@ -61,7 +61,10 @@ namespace River.OneMoreAddIn.Commands
 
 				var filepath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
 
-				var text = reader.ReadTextFrom(paragraphs, allContent);
+				var text = reader
+					.ReadTextFrom(paragraphs, allContent)
+					.Replace("<br>", string.Empty);
+
 				var body = OneMoreDig.ConvertMarkdownToHtml(filepath, text);
 
 				editor.InsertAtAnchor(new XElement(ns + "HTMLBlock",
