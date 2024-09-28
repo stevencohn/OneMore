@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.Models;
 	using System.IO;
 	using System.Linq;
+	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
 
@@ -61,9 +62,8 @@ namespace River.OneMoreAddIn.Commands
 
 				var filepath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
 
-				var text = reader
-					.ReadTextFrom(paragraphs, allContent)
-					.Replace("<br>", string.Empty);
+				var text = reader.ReadTextFrom(paragraphs, allContent);
+				text = Regex.Replace(text, @"<br>([\n\r]$)", "$1");
 
 				var body = OneMoreDig.ConvertMarkdownToHtml(filepath, text);
 
