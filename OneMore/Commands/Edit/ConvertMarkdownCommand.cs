@@ -63,7 +63,7 @@ namespace River.OneMoreAddIn.Commands
 				var filepath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
 
 				var text = reader.ReadTextFrom(paragraphs, allContent);
-				text = Regex.Replace(text, @"<br>([\n\r]$)", "$1");
+				text = Regex.Replace(text, @"<br>([\n\r]+)", "$1");
 
 				var body = OneMoreDig.ConvertMarkdownToHtml(filepath, text);
 
