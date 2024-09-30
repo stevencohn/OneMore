@@ -39,7 +39,7 @@ namespace River.OneMoreAddIn.Commands
 					var uri = new Uri(Path.Combine(renderer.BaseUrl.AbsolutePath, filename));
 					var src = uri.AbsoluteUri;
 
-					renderer.Write($"<img src=\"{src}\" />");
+					renderer.Write($"<img src=\"{src}\" alt=\"{label}\" />");
 					Logger.Current.WriteLine($"wrender<img> src=[{src}] alt=[{label}]");
 				}
 				else
