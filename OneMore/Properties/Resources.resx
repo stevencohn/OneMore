@@ -1509,6 +1509,11 @@ Yellow Background</value>
     <value>Preferred resize width</value>
     <comment>label</comment>
   </data>
+  <data name="ImportCommand_noSpaces" xml:space="preserve">
+    <value>OneNote cannot import markdown files from paths containing spaces:
+{0}</value>
+    <comment>error message</comment>
+  </data>
   <data name="ImportDialog_fileLabel.Text" xml:space="preserve">
     <value>File:</value>
     <comment>label</comment>

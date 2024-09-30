@@ -1509,6 +1509,11 @@ Czerwony pierwszy plan
     <value>Preferowana szerokość zmiany rozmiaru</value>
     <comment>label</comment>
   </data>
+  <data name="ImportCommand_noSpaces" xml:space="preserve">
+    <value>Program OneNote nie może importować plików przecen ze ścieżek zawierających spacje:
+{0}</value>
+    <comment>error message</comment>
+  </data>
   <data name="ImportDialog_fileLabel.Text" xml:space="preserve">
     <value>Plik:</value>
     <comment>label</comment>

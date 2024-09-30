@@ -1507,6 +1507,11 @@ OneNote 文件 (*.one)</value>
     <value>首选调整宽度</value>
     <comment>label</comment>
   </data>
+  <data name="ImportCommand_noSpaces" xml:space="preserve">
+    <value>OneNote 无法从包含空格的路径导入 Markdown 文件：
+{0}</value>
+    <comment>error message</comment>
+  </data>
   <data name="ImportDialog_fileLabel.Text" xml:space="preserve">
     <value>文件：</value>
     <comment>label</comment>

@@ -1506,6 +1506,11 @@ Gelber Hintergrund</value>
     <value>Bevorzugte Größenänderungsbreite</value>
     <comment>label</comment>
   </data>
+  <data name="ImportCommand_noSpaces" xml:space="preserve">
+    <value>OneNote kann keine Markdown-Dateien aus Pfaden importieren, die Leerzeichen enthalten:
+{0}</value>
+    <comment>error message</comment>
+  </data>
   <data name="ImportDialog_fileLabel.Text" xml:space="preserve">
     <value>Datei:</value>
     <comment>label</comment>

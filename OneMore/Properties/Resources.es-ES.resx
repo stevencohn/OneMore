@@ -1508,6 +1508,11 @@ Fondo amarillo</value>
     <value>Ancho de cambio de tamaño preferido</value>
     <comment>label</comment>
   </data>
+  <data name="ImportCommand_noSpaces" xml:space="preserve">
+    <value>OneNote no puede importar archivos de rebajas desde rutas que contengan espacios:
+{0}</value>
+    <comment>error message</comment>
+  </data>
   <data name="ImportDialog_fileLabel.Text" xml:space="preserve">
     <value>Archivo:</value>
     <comment>label</comment>

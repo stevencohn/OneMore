@@ -18,6 +18,7 @@ namespace River.OneMoreAddIn.Commands
 	using Windows.Data.Pdf;
 	using Windows.Storage;
 	using Windows.Storage.Streams;
+	using Resx = Properties.Resources;
 
 
 	/// <summary>
@@ -508,6 +509,12 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task ImportMarkdown(string filepath)
 		{
+			if (filepath.IndexOf(' ') >= 0)
+			{
+				ShowInfo(string.Format(Resx.ImportCommand_noSpaces, filepath));
+				return;
+			}
+
 			logger.StartClock();
 
 			if (!PathHelper.HasWildFileName(filepath))
@@ -588,6 +595,9 @@ namespace River.OneMoreAddIn.Commands
 					var converter = new MarkdownConverter(page);
 					converter.RewriteHeadings();
 
+					logger.WriteLine($"saving...");
+					logger.WriteLine(page.Root);
+
 					await one.Update(page);
 
 					// Pass 2, cleanup...
@@ -597,6 +607,9 @@ namespace River.OneMoreAddIn.Commands
 
 					converter = new MarkdownConverter(page);
 					converter.RewriteHeadings();
+
+					logger.WriteLine($"updating...");
+					logger.WriteLine(page.Root);
 
 					await one.Update(page);
 

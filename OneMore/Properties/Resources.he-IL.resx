@@ -1509,6 +1509,11 @@ Total Row Font
     <value>שינוי גודל רוחב מועדף</value>
     <comment>label</comment>
   </data>
+  <data name="ImportCommand_noSpaces" xml:space="preserve">
+    <value>ל-OneNote אין אפשרות לייבא קבצי סימון מנתיבים המכילים רווחים:
+{0}</value>
+    <comment>error message</comment>
+  </data>
   <data name="ImportDialog_fileLabel.Text" xml:space="preserve">
     <value>קוֹבֶץ:</value>
     <comment>label</comment>
