@@ -552,6 +552,9 @@ namespace River.OneMoreAddIn.Commands
 			{
 				progress?.SetMessage($"Importing {filepath}...");
 
+
+				System.Diagnostics.Debugger.Launch();
+
 				logger.WriteLine($"importing markdown {filepath}");
 				var text = File.ReadAllText(filepath);
 
@@ -588,6 +591,9 @@ namespace River.OneMoreAddIn.Commands
 					var converter = new MarkdownConverter(page);
 					converter.RewriteHeadings();
 
+					logger.WriteLine($"saving...");
+					logger.WriteLine(page.Root);
+
 					await one.Update(page);
 
 					// Pass 2, cleanup...
@@ -597,6 +603,9 @@ namespace River.OneMoreAddIn.Commands
 
 					converter = new MarkdownConverter(page);
 					converter.RewriteHeadings();
+
+					logger.WriteLine($"updating...");
+					logger.WriteLine(page.Root);
 
 					await one.Update(page);
 

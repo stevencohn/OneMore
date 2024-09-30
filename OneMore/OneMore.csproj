@@ -147,6 +147,10 @@
     </Compile>
     <Compile Include="Commands\Edit\ConvertMarkdownCommand.cs" />
     <Compile Include="Commands\Edit\CopyAsTextCommand.cs" />
+    <Compile Include="Commands\File\Markdown\WikilinkExtension.cs" />
+    <Compile Include="Commands\File\Markdown\WikilinkParser.cs" />
+    <Compile Include="Commands\File\Markdown\WikilinkRenderer.cs" />
+    <Compile Include="Commands\File\Markdown\WikilinkInline.cs" />
     <Compile Include="Commands\Images\SelectInkCommand.cs" />
     <Compile Include="Commands\Navigator\NextUnreadPageCommand.cs" />
     <Compile Include="Commands\Page\DuplicateLineCommand.cs" />

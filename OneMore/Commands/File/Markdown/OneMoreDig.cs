@@ -23,6 +23,7 @@ namespace River.OneMoreAddIn.Commands
 			var pipeline = new MarkdownPipelineBuilder()
 				.UseAdvancedExtensions()
 				.UseOneMoreExtensions()
+				.UseWikilinks()
 				.Build();
 
 			pipeline.Setup(renderer);
