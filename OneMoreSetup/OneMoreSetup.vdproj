@@ -453,6 +453,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_21DCB79BE104411ABBCE72B4CED41CB6"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_222DF602E02B5BF556050A1E1E37D017"
         "OwnerKey" = "8:_048CCD43549245BBA572EF0A0F83BCCB"
         "MsmSig" = "8:_UNDEFINED"
@@ -1943,6 +1949,12 @@
         {
         "MsmKey" = "8:_9A32BEEB363FAF8FB849330FF5398E1B"
         "OwnerKey" = "8:_048CCD43549245BBA572EF0A0F83BCCB"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9AB7183E6BD1469DBEC987F9699BCFF1"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -5503,6 +5515,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_21DCB79BE104411ABBCE72B4CED41CB6"
+            {
+            "SourcePath" = "8:..\\OneMore\\Colorizer\\Languages\\php.png"
+            "TargetName" = "8:php.png"
+            "Tag" = "8:"
+            "Folder" = "8:_ACA6848561DD4B89996D952DA9D332E9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_222DF602E02B5BF556050A1E1E37D017"
             {
             "AssemblyRegister" = "3:1"
@@ -8089,6 +8121,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9AB7183E6BD1469DBEC987F9699BCFF1"
+            {
+            "SourcePath" = "8:..\\OneMore\\Colorizer\\Languages\\php.json"
+            "TargetName" = "8:php.json"
+            "Tag" = "8:"
+            "Folder" = "8:_ACA6848561DD4B89996D952DA9D332E9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9D7E0857A2314908A9C0541BEBFC9916"
             {
             "SourcePath" = "8:..\\Themes\\DarkBlue.xml"
@@ -8556,7 +8608,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:River.OneMoreAddIn, Version=6.5.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:River.OneMoreAddIn, Version=6.5.2.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_B316B15CEB68A6E42B18DF4602876702"
@@ -10606,7 +10658,7 @@
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
             "Register" = "3:1"
-            "Exclude" = "11:TRUE"
+            "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
