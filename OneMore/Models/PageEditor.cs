@@ -187,6 +187,12 @@ namespace River.OneMoreAddIn.Models
 				}
 				else
 				{
+					// selected item might be Image, so move up to Parent
+					if (last.Parent.Name.LocalName == "OE")
+					{
+						last = last.Parent;
+					}
+
 					last.AddAfterSelf(new XElement(ns + "OE",
 						new XElement(ns + "T",
 							new XAttribute("selected", "all"),

@@ -130,9 +130,9 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 
 		private void Report(TableCell cell, Formula formula, double result)
 		{
-			int dplaces = formula.Version >= 2 ? formula.DecimalPlaces : maxdec;
+			var dplaces = formula.Version >= 2 ? formula.DecimalPlaces : maxdec;
 
-			string text = string.Empty;
+			var text = string.Empty;
 			switch (formula.Format)
 			{
 				case FormulaFormat.Currency:
