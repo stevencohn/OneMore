@@ -399,8 +399,9 @@ namespace River.OneMoreAddIn.Models
 		public bool InsertOrReplace(XElement content, bool above = true)
 		{
 			var range = new SelectionRange(page);
-			var selections = range.GetSelections(allowPageTitle: true);
+			_ = range.GetSelections(allowPageTitle: true);
 
+			//var selections = range.GetSelections(allowPageTitle: true);
 			//if (!selections.Any() && range.Scope == SelectionScope.TextCursor)
 			//{
 			//	// cursor focus on neither body nor title
@@ -997,7 +998,7 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
-		private int IndentLevel(XElement element)
+		private static int IndentLevel(XElement element)
 		{
 			if (element is null || element.Parent is null)
 			{

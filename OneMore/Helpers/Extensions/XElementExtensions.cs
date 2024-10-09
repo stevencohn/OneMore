@@ -200,11 +200,13 @@ namespace River.OneMoreAddIn
 		/// <returns>A string that can be appended to a CData's raw content</returns>
 		public static string ExtractFirstWord(this XElement element, bool styled = false)
 		{
-			if (element.FirstNode == null)
+			// should not happen!
+			if (element.FirstNode is null)
 			{
 				return null;
 			}
 
+			// element is CDATA and first segment is Text, so this is quick and easy
 			if (element.FirstNode.NodeType == XmlNodeType.Text)
 			{
 				var pair = element.Value.SplitAtFirstWord();
@@ -212,10 +214,12 @@ namespace River.OneMoreAddIn
 				return pair.Item1;
 			}
 
+			// CDATA must be multi-segmented with embedded SPANs...
+
 			var cdata = element.GetCData();
 
 			// could be null if element only contains a <br>
-			if (cdata == null || cdata.IsEmpty())
+			if (cdata is null || cdata.IsEmpty())
 			{
 				return string.Empty;
 			}
@@ -228,14 +232,15 @@ namespace River.OneMoreAddIn
 			// whitespace when applying css to words; so we don't need to worry about whitespace
 
 			// get text node or span element but not others like <br/>
+			var wordPattern = new Regex(@"\w");
 			var node = wrapper.Nodes().FirstOrDefault(n =>
 				// text nodes that have at least one word character
-				(n.NodeType == XmlNodeType.Text && Regex.IsMatch((n as XText).Value, @"\w")) ||
+				(n.NodeType == XmlNodeType.Text && wordPattern.IsMatch((n as XText).Value)) ||
 				// span elements that have at least one word character
 				(n.NodeType == XmlNodeType.Element && (n as XElement).Name.LocalName.Equals("span")
-					&& Regex.IsMatch((n as XElement).Value, @"\w")));
+					&& wordPattern.IsMatch((n as XElement).Value)));
 
-			if (node == null)
+			if (node is null)
 			{
 				return null;
 			}
@@ -301,22 +306,26 @@ namespace River.OneMoreAddIn
 		/// <returns>A string that can be appended to a CData's raw content</returns>
 		public static string ExtractLastWord(this XElement element, bool styled = false)
 		{
-			if (element.FirstNode == null)
+			// should not happen!
+			if (element.FirstNode is null)
 			{
 				return null;
 			}
 
-			if (element.FirstNode.NodeType == XmlNodeType.Text)
+			// element is CDATA and last segment is Text, so this is quick and easy
+			if (element.LastNode.NodeType == XmlNodeType.Text)
 			{
 				var pair = element.Value.SplitAtLastWord();
 				element.Value = pair.Item2;
 				return pair.Item1;
 			}
 
+			// CDATA must be multi-segmented with embedded SPANs...
+
 			var cdata = element.GetCData();
 
 			// could be null if element only contains a <br>
-			if (cdata == null || cdata.IsEmpty())
+			if (cdata is null || cdata.IsEmpty())
 			{
 				return string.Empty;
 			}
@@ -329,15 +338,15 @@ namespace River.OneMoreAddIn
 			// whitespace when applying css to words; so we don't need to worry about whitespace
 
 			// get text node or span element but not others like <br/>
-			// Note the use of Reverse() here so we get the last node with content
+			var wordPattern = new Regex(@"\w");
 			var node = wrapper.Nodes().LastOrDefault(n =>
 				// text nodes that have at least one word character
-				(n.NodeType == XmlNodeType.Text && Regex.IsMatch((n as XText).Value, @"\w")) ||
+				(n.NodeType == XmlNodeType.Text && wordPattern.IsMatch((n as XText).Value)) ||
 				// span elements that have at least one word character
 				(n.NodeType == XmlNodeType.Element && (n as XElement).Name.LocalName.Equals("span")
-					&& Regex.IsMatch((n as XElement).Value, @"\w")));
+					&& wordPattern.IsMatch((n as XElement).Value)));
 
-			if (node == null)
+			if (node is null)
 			{
 				return null;
 			}
