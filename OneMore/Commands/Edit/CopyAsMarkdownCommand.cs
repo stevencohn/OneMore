@@ -65,8 +65,7 @@ namespace River.OneMoreAddIn.Commands
 
 				logger.Verbose(page.Root);
 
-				var outlines = page.Root.Elements(ns + "Outline");
-				foreach (var outline in outlines)
+				foreach (var outline in page.BodyOutlines)
 				{
 					WriteMarkdown(editor, writer, outline);
 				}
