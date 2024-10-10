@@ -230,7 +230,7 @@ namespace River.OneMoreAddIn.Commands
 				.Where(e => e.Attribute("quickStyleIndex")?.Value == index &&
 					!e.Elements(ns + "Meta").Any(a =>
 						a.Attribute("name").Value.StartsWith("omfootnote") ||
-						a.Attribute("name").Value.StartsWith("omtaggingbank"))
+						a.Attribute("name").Value.StartsWith(MetaNames.TaggingBank))
 					);
 
 			foreach (var paragraph in paragraphs)
