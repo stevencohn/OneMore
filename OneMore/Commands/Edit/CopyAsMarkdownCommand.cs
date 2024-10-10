@@ -58,9 +58,7 @@ namespace River.OneMoreAddIn.Commands
 			if (range.Scope == SelectionScope.TextCursor ||
 				range.Scope == SelectionScope.SpecialCursor)
 			{
-				var ns = page.Namespace;
 				editor.AllContent = true;
-
 				range.Deselect();
 
 				logger.Verbose(page.Root);

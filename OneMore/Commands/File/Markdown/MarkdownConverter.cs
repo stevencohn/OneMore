@@ -11,6 +11,9 @@ namespace River.OneMoreAddIn.Commands
 	using System.Xml.Linq;
 
 
+	/// <summary>
+	/// Utility class for post-processing a page converted from markdown.
+	/// </summary>
 	internal class MarkdownConverter
 	{
 		private sealed class Candidate

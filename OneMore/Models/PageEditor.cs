@@ -1031,6 +1031,8 @@ namespace River.OneMoreAddIn.Models
 			var depth = 1;
 			foreach (var snippet in snippets)
 			{
+				logger.Verbose($"snippet depth={snippet.Depth}:{depth} [{snippet.Element.Value}]");
+
 				if (snippet.Depth > depth)
 				{
 					// indent...
@@ -1048,11 +1050,14 @@ namespace River.OneMoreAddIn.Models
 
 					current = children;
 				}
-				else if (snippet.Depth < depth)
+				else
 				{
-					// outdent...
-					current = current.Parent.Parent;
-					depth--;
+					while (snippet.Depth < depth)
+					{
+						// outdent...
+						current = current.Parent.Parent;
+						depth--;
+					}
 				}
 
 				if (snippet.Element.Attribute("objectID") is XAttribute attribute)

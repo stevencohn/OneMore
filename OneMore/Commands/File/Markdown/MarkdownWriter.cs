@@ -2,6 +2,7 @@
 // Copyright © 2021 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
+// mask this definition to debug raw markdown processing to ILogger instead of a file/folder
 #define WriteToDisk
 
 namespace River.OneMoreAddIn.Commands
@@ -34,11 +35,11 @@ namespace River.OneMoreAddIn.Commands
 			public string Accent;
 		}
 
-		// Note that if pasting md text directly into OneNote, there is no goodway to indent text
-		// and force OneNote from auto-formatting. Closest alternative is to use a string of nbsp
-		// but that conflicts with other directives like headings and list numbering. On way is to
-		// substitute indentations (e.g., OEChildren) with the blockquote directive instead.
-		private const string Indent = "  "; //">"; //&nbsp;&nbsp;&nbsp;&nbsp;";
+		// Note that if pasting md text directly into OneNote, there's no good way to indent text
+		// and prevent OneNote from auto-formatting. Closest alt is to use a string of nbsp's
+		// but that conflicts with other directives like headings and list numbering. One way is
+		// to substitute indentations (e.g., OEChildren) with the blockquote directive instead.
+		private const string Indent = "    "; //">"; //&nbsp;&nbsp;&nbsp;&nbsp;";
 		private const string Quote = ">";
 
 		private readonly Page page;
@@ -157,66 +158,106 @@ namespace River.OneMoreAddIn.Commands
 		private void Write(XElement container,
 			string prefix = "",
 			int depth = 0,
-			bool startOfLine = true,
 			bool contained = false)
 		{
-			logger.Verbose($"Write({container.Name.LocalName})");
+			// Lines start at the beginning of each paragraph/OE which contains a flat list of
+			// Tag, List, and T, so startOfLine can be handled locally rather than recursively.
+			var startOfLine = true;
+
+			logger.Verbose($"Write({container.Name.LocalName}, prefix:[{prefix}], depth:{depth}, contained:{contained})");
 
 			foreach (var element in container.Elements())
 			{
 				var n = element.Name.LocalName;
-				if (n == "T")
-					logger.Verbose($"- [depth:{depth}, start:{startOfLine}] {prefix}element {n} [{element.Value}]");
-				else
-					logger.Verbose($"- [depth:{depth}, start:{startOfLine}] {prefix}element {n}");
+				var m = $"- [prefix:[{prefix}] depth:{depth} start:{startOfLine} contained:{contained} element {n}";
+				logger.Verbose(n == "T" ? $"{m} [{element.Value}]" : m);
 
 				switch (element.Name.LocalName)
 				{
 					case "OEChildren":
-						DetectQuickStyle(element);
-						writer.WriteLine("  ");
-						Write(element, $"{Indent}{prefix}", depth + 1, startOfLine);
+						Write(element, $"{Indent}{prefix}", depth + 1, contained);
 						break;
 
 					case "OE":
 						{
-							var pushed = DetectQuickStyle(element);
-							Write(element, prefix, depth, startOfLine);
-
-							var context = pushed ? contexts.Pop() : null;
-							if (context is not null && !string.IsNullOrEmpty(context.Accent))
-							{
-								writer.Write(context.Accent);
-							}
-
-							// if not in a table cell
-							// or in a cell and this OE is followed by another OE
-							if (!contained || (element.NextNode is not null))
+							if (!contained) // not in table cell
 							{
 								writer.WriteLine("  ");
+							}
+
+							var context = DetectQuickStyle(element);
+							Write(element, prefix, depth, contained);
+
+							if (context is not null)
+							{
+								if (!string.IsNullOrEmpty(context.Accent))
+								{
+									// close the accent
+									writer.Write(context.Accent);
+								}
+
+								contexts.Pop();
 							}
 						}
 						break;
 
 					case "Tag":
-						writer.Write(prefix);
-						WriteTag(element);
-						startOfLine = false;
+						{
+							// should always be startOfLine
+							var context = DetectQuickStyle(element);
+							if (context is not null)
+							{
+								Stylize(depth > 0
+									? prefix /*new String(Quote[0], depth)*/
+									: string.Empty);
+							}
+							else
+							{
+								writer.Write(prefix);
+							}
+
+							WriteTag(element);
+
+							if (context is not null)
+							{
+								contexts.Pop();
+							}
+
+							startOfLine = false;
+						}
 						break;
 
 					case "T":
-						DetectQuickStyle(element);
-						if (startOfLine && depth > 0)
 						{
-							Stylize(new String(Quote[0], depth));
+							var context = DetectQuickStyle(element);
+							if (context is not null)
+							{
+								Stylize(depth > 0 && startOfLine
+									? prefix /*new String(Quote[0], depth)*/
+									: string.Empty);
+
+								startOfLine = false;
+							}
+
+							WriteText(element.GetCData(), startOfLine);
+
+							if (context is not null)
+							{
+								if (!string.IsNullOrEmpty(context.Accent))
+								{
+									// close the accent
+									writer.Write(context.Accent);
+								}
+
+								contexts.Pop();
+							}
+
 							startOfLine = false;
 						}
-						WriteText(element.GetCData(), startOfLine);
-						startOfLine = false;
 						break;
 
 					case "List":
-						Write(element, prefix, depth, startOfLine);
+						Write(element, prefix, depth, contained);
 						startOfLine = false;
 						break;
 
@@ -256,26 +297,41 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private bool DetectQuickStyle(XElement element)
+		private Context DetectQuickStyle(XElement element)
 		{
-			if (element.GetAttributeValue("quickStyleIndex", out int index))
+			// quickStyleIndex could be on T, OE, or OEChildren, Outline, Page
+			// so ascend until we find one...
+
+			int index = -1;
+			while (element is not null &&
+				!element.GetAttributeValue("quickStyleIndex", out index, -1))
+			{
+				element = element.Parent;
+			}
+
+			if (index >= 0)
 			{
 				var context = new Context
 				{
 					QuickStyleIndex = index
 				};
+
 				var quick = quickStyles.First(q => q.Index == index);
 				if (quick != null)
 				{
+					var name = quick.Name.ToLower();
+
 					// cite becomes italic
-					if (quick.Name == "cite") context.Accent = "*";
-					else if (quick.Name == "code") context.Accent = "`";
+					if (name.In("cite", "citation")) context.Accent = "*";
+					else if (name.Contains("code")) context.Accent = "`";
+
 				}
+
 				contexts.Push(context);
-				return true;
+				return context;
 			}
 
-			return false;
+			return null;
 		}
 
 
@@ -323,7 +379,7 @@ namespace River.OneMoreAddIn.Commands
 				case 94:    // discuss person a/b
 				case 95:    // discuss manager
 					var check = element.Attribute("completed").Value == "true" ? "x" : " ";
-					writer.Write($"- [{check}] ");
+					writer.Write($"[{check}] ");
 					break;
 
 				case 6: writer.Write(":question: "); break;         // question
@@ -489,29 +545,8 @@ namespace River.OneMoreAddIn.Commands
 
 		private void WriteTable(XElement element)
 		{
-			var table = new Table(element);
-
-			// table needs a blank line before it
-			writer.WriteLine();
-
-			// header
-			writer.Write("|");
-			for (int i = 0; i < table.ColumnCount; i++)
-			{
-				writer.Write($" {TableCell.IndexToLetters(i + 1)} |");
-			}
-			writer.WriteLine();
-
-			// separator
-			writer.Write("|");
-			for (int i = 0; i < table.ColumnCount; i++)
-			{
-				writer.Write(" :--- |");
-			}
-			writer.WriteLine();
-
-			// data
-			foreach (var row in table.Rows)
+			#region WriteRow(TableRow row)
+			void WriteRow(TableRow row)
 			{
 				writer.Write("| ");
 				foreach (var cell in row.Cells)
@@ -524,6 +559,50 @@ namespace River.OneMoreAddIn.Commands
 					writer.Write(" | ");
 				}
 				writer.WriteLine();
+			}
+			#endregion WriteRow
+
+			var table = new Table(element);
+
+			// table needs a blank line before it
+			writer.WriteLine();
+
+			var rows = table.Rows;
+
+			// header - - - - - - - - - - - - - - - - - - -
+
+			if (table.HasHeaderRow && rows.Any())
+			{
+				// use first row data as header
+				WriteRow(rows.First());
+				// skip the header row, leaving data rows
+				rows = rows.Skip(1);
+			}
+			else
+			{
+				// write generic column headers: A, B, C, ...
+				writer.Write("| ");
+				for (var i = 0; i < table.ColumnCount; i++)
+				{
+					writer.Write($" {TableCell.IndexToLetters(i + 1)} |");
+				}
+				writer.WriteLine();
+			}
+
+			// separator - - - - - - - - - - - - - - - - -
+
+			writer.Write("|");
+			for (int i = 0; i < table.ColumnCount; i++)
+			{
+				writer.Write(" :--- |");
+			}
+			writer.WriteLine();
+
+			// data - - - - - - - - - - - - - - - - - - - -
+
+			foreach (var row in rows)
+			{
+				WriteRow(row);
 			}
 		}
 	}
