@@ -55,8 +55,19 @@ namespace River.OneMoreAddIn.Settings
 			}
 
 			checkUpdatesBox.Checked = settings.Get("checkUpdates", false);
-			verboseBox.Checked = settings.Get("verbose", false);
 			experimentalBox.Checked = settings.Get("experimental", false);
+
+			// <logging>verbose|debug</logging> is the new way
+			// <verbose>true</verbose> was the old way
+			var loglevel = settings.Get("logging", string.Empty).ToLower();
+			verboseBox.Checked = loglevel.Length == 0
+				? settings.Get("verbose", false)
+				: loglevel.In("verbose", "debug");
+
+			if (loglevel == "debug")
+			{
+				verboseBox.Enabled = false;
+			}
 		}
 
 
@@ -125,11 +136,18 @@ namespace River.OneMoreAddIn.Settings
 				? settings.Add("checkUpdates", true) || save
 				: settings.Remove("checkUpdates") || save;
 
-			// requires a restart
-			updated = verboseBox.Checked
-				? settings.Add("verbose", true) || updated
-				: settings.Remove("verbose") || updated;
+			// does not require a restart; only Enabled if !debug
+			if (verboseBox.Enabled)
+			{
+				save = verboseBox.Checked
+					? settings.Add("logging", "verbose") || save
+					: settings.Remove("logging") || save;
 
+				((Logger)logger).SetLoggingLevel(verboseBox.Checked, false);
+				save = settings.Remove("verbose") || save;
+			}
+
+			// requires a restart
 			updated = experimentalBox.Checked
 				? settings.Add("experimental", true) || updated
 				: settings.Remove("experimental") || updated;
