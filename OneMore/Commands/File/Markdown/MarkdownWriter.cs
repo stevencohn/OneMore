@@ -99,9 +99,9 @@ namespace River.OneMoreAddIn.Commands
 				using var reader = new StreamReader(stream);
 				var text = await reader.ReadToEndAsync();
 
-				logger.Verbose("markdown - - - - - - - -");
-				logger.Verbose(text);
-				logger.Verbose("end markdown - - - - - -");
+				logger.Debug("markdown - - - - - - - -");
+				logger.Debug(text);
+				logger.Debug("end markdown - - - - - -");
 
 				var clippy = new ClipboardProvider();
 				var success = await clippy.SetText(text, true);
@@ -164,13 +164,13 @@ namespace River.OneMoreAddIn.Commands
 			// Tag, List, and T, so startOfLine can be handled locally rather than recursively.
 			var startOfLine = true;
 
-			logger.Verbose($"Write({container.Name.LocalName}, prefix:[{prefix}], depth:{depth}, contained:{contained})");
+			logger.Debug($"Write({container.Name.LocalName}, prefix:[{prefix}], depth:{depth}, contained:{contained})");
 
 			foreach (var element in container.Elements())
 			{
 				var n = element.Name.LocalName;
 				var m = $"- [prefix:[{prefix}] depth:{depth} start:{startOfLine} contained:{contained} element {n}";
-				logger.Verbose(n == "T" ? $"{m} [{element.Value}]" : m);
+				logger.Debug(n == "T" ? $"{m} [{element.Value}]" : m);
 
 				switch (element.Name.LocalName)
 				{
@@ -293,7 +293,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			logger.Verbose("out");
+			logger.Debug("out");
 		}
 
 
@@ -453,7 +453,7 @@ namespace River.OneMoreAddIn.Commands
 				writer.Write("\\");
 			}
 
-			logger.Verbose($"text [{raw}]");
+			logger.Debug($"text [{raw}]");
 			writer.Write(raw);
 		}
 

@@ -28,9 +28,9 @@ namespace River.OneMoreAddIn.Commands
 			{
 				var content = await editor.ExtractSelectedContent(start);
 
-				logger.Verbose("markdown content");
-				logger.Verbose(content);
-				logger.Verbose("- - -");
+				logger.Debug("markdown content");
+				logger.Debug(content);
+				logger.Debug("- - -");
 
 				await writer.Copy(content);
 			}
@@ -61,7 +61,7 @@ namespace River.OneMoreAddIn.Commands
 				editor.AllContent = true;
 				range.Deselect();
 
-				logger.Verbose(page.Root);
+				logger.Debug(page.Root);
 
 				foreach (var outline in page.BodyOutlines)
 				{
