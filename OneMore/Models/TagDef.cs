@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2021 Steven M Cohn.  All rights reserved.
+// Copyright © 2021 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Models
@@ -93,28 +93,28 @@ namespace River.OneMoreAddIn.Models
 /*
 idx	typ	sym	default	Tag
 --- --- --- ------- ------------
-0	0	33			Num three
-1	1	51			Num Two
-2	2	70			Num One
-3	3	39			Num Zero
-4	4	3	false	To Do
-5	5	13			Important
-6	6	15			Question
+0	0	33			Num three --> :three:
+1	1	51			Num Two --> :two:
+2	2	70			Num One --> :one:
+3	3	39			Num Zero --> :zero:
+4	4	3	false	To Do --> [x]
+5	5	13			Important --> :star:
+6	6	15			Question --> :question:
 7	7	0			Remember for later
 8	8	0			Definition
 9	9	136			Highlight
-10	10	118			Contact
-11	11	23			Address
-12	12	18			Phone number
+10	10	118			Contact --> :mailbox:
+11	11	23			Address --> :house:
+12	12	18			Phone number --> :phone:
 13	13	125			Web site to visit
-14	14	21			Idea
-15	15	131			Password
-16	16	17			Critical
+14	14	21			Idea --> :bulb:
+15	15	131			Password --> :secret:
+16	16	17			Critical --> :exclamation:
 17	17	100			Project A
 18	18	101			Project B
-19	19	122			Movie to see
-20	20	132			Book to read
-21	21	121			Music to listen to
+19	19	122			Movie to see --> :movie_camera:
+20	20	132			Book to read --> :book:
+21	21	121			Music to listen to --> :musical_note:
 22	22	125			Source for article
 23	23	24			Remember for blog
 24	24	94	false	Discuss with <Person A>
@@ -126,4 +126,5 @@ idx	typ	sym	default	Tag
 30	30	28	false	To Do priority 1
 31	31	71	false	To Do priority 2
 32	32	8	false	Client request
+        140         lightning bolt --> :zap:
 */

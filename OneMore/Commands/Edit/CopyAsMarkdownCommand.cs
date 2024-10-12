@@ -49,10 +49,6 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-
-			System.Diagnostics.Debugger.Launch();
-
-
 			var editor = new PageEditor(page);
 
 			if (range.Scope == SelectionScope.TextCursor ||
