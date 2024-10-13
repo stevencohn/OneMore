@@ -111,6 +111,7 @@ namespace River.OneMoreAddIn.Commands
 
 		protected virtual async Task StartupLoop()
 		{
+			logger.Debug("StartupLoop() WaitForReady()");
 			if (!await WaitForReady())
 			{
 				return;
@@ -123,6 +124,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				try
 				{
+					logger.Debug("StartupLoop() Scan()");
 					await Scan();
 
 					errors = 0;
@@ -228,6 +230,8 @@ namespace River.OneMoreAddIn.Commands
 
 			OnHashtagScanned?.Invoke(this,
 				new HashtagScannedEventArgs(totalPages, dirtyPages, time, scanCount, avg));
+
+			logger.Debug($"hashtag service scanned {scanCount} times...");
 
 			if (hour != DateTime.Now.Hour)
 			{

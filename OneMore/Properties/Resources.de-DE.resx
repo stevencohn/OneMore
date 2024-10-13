@@ -4143,22 +4143,6 @@ Nach der letzten Gruppe</value>
     <value>Tabellenstile</value>
     <comment>ribbon</comment>
   </data>
-  <data name="ribTaggedButton_Label" xml:space="preserve">
-    <value>Getaggte Seiten finden</value>
-    <comment>ribbon search NODUP</comment>
-  </data>
-  <data name="ribTaggedButton_Screentip" xml:space="preserve">
-    <value>Finden Sie Seiten mit benutzerdefinierten Tags</value>
-    <comment>ribbon search</comment>
-  </data>
-  <data name="ribTaggingButton_Label" xml:space="preserve">
-    <value>Tag-Seite</value>
-    <comment>menu item</comment>
-  </data>
-  <data name="ribTaggingButton_Screentip" xml:space="preserve">
-    <value>Fügen Sie dieser Seite benutzerdefinierte Tags hinzu</value>
-    <comment>ribbon search</comment>
-  </data>
   <data name="ribTextToTableButton_Label" xml:space="preserve">
     <value>Text in Tabelle konvertieren</value>
     <comment>Ribbon OneMore menu item, extras</comment>
@@ -4818,79 +4802,6 @@ Umkehren</value>
   <data name="TagBankCommand_confirm" xml:space="preserve">
     <value>Die Tag-Bank enthält Text. Möchten Sie es wirklich entfernen?</value>
     <comment>messagebox</comment>
-  </data>
-  <data name="TaggedDialog_checkAllLabel.Text" xml:space="preserve">
-    <value>Alle wählen</value>
-    <comment>check all nodes link label</comment>
-  </data>
-  <data name="TaggedDialog_clearAllLabel.Text" xml:space="preserve">
-    <value>Alle abwählen</value>
-    <comment>uncheck all nodes llnk label</comment>
-  </data>
-  <data name="TaggedDialog_clearLabel.Text" xml:space="preserve">
-    <value>Alles löschen</value>
-    <comment>clear tags link label</comment>
-  </data>
-  <data name="TaggedDialog_indexButton.Text" xml:space="preserve">
-    <value>Index</value>
-    <comment>index button</comment>
-  </data>
-  <data name="TaggedDialog_introLabel.Text" xml:space="preserve">
-    <value>Gib ein oder mehrere durch Kommas getrennte Tags ein.</value>
-    <comment>label</comment>
-  </data>
-  <data name="TaggedDialog_opBox.Items" xml:space="preserve">
-    <value>Alle
-Beliebig</value>
-    <comment>listbox</comment>
-  </data>
-  <data name="TaggedDialog_tagsLabel.Text" xml:space="preserve">
-    <value>Stichworte:</value>
-    <comment>label</comment>
-  </data>
-  <data name="TaggedDialog_Title" xml:space="preserve">
-    <value>Suche nach getaggten Seiten</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="TaggingDialog.Text" xml:space="preserve">
-    <value>Seite Tags</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="TaggingDialog_clearLabel.Text" xml:space="preserve">
-    <value>Alles entfernen</value>
-    <comment>linklabel</comment>
-  </data>
-  <data name="TaggingDialog_commonGroup.Text" xml:space="preserve">
-    <value>Häufige Wörter auf dieser Seite</value>
-    <comment>groupbox</comment>
-  </data>
-  <data name="TaggingDialog_introLabel.Text" xml:space="preserve">
-    <value>Separate Tags mit Kommas</value>
-    <comment>intro label</comment>
-  </data>
-  <data name="TaggingDialog_recentGroup.Text" xml:space="preserve">
-    <value>Kürzlich benutzt</value>
-    <comment>groupbox</comment>
-  </data>
-  <data name="TagsUpgraded" xml:space="preserve">
-    <value>Ältere Seiten-Tags wurden in Hashtags umgewandelt.
-
-Aktualisierte Tags: {0}
-Aktualisierte Seiten: {1}
-
-Sie können jetzt Inline-#Hashtags eingeben, um Ihrem Inhalt Tags hinzuzufügen.</value>
-    <comment>message box</comment>
-  </data>
-  <data name="TagsUpgraded2" xml:space="preserve">
-    <value>Ältere Seiten-Tags wurden in Hashtags umgewandelt. Sie können jetzt direkt auf Ihrer Seite Inline-#Hashtags eingeben, um Ihren Inhalt mit Tags zu versehen.</value>
-  </data>
-  <data name="TagsUpgraded3" xml:space="preserve">
-    <value>Ältere Seiten-Tags wurden in Hashtags umgewandelt.
-
-Aktualisierte Tags: {0}
-Aktualisierte Seiten: {1}
-
-Das Dialogfeld „Hashtags suchen“ wird nun geöffnet.</value>
   </data>
   <data name="TextToTable_NoText" xml:space="preserve">
     <value>Es ist kein Text ausgewählt</value>

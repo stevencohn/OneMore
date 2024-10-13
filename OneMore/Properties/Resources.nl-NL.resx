@@ -4150,22 +4150,6 @@ Na de laatste groep</value>
     <value>Tabelstijlen</value>
     <comment>ribbon</comment>
   </data>
-  <data name="ribTaggedButton_Label" xml:space="preserve">
-    <value>Vind gelabelde pagina's</value>
-    <comment>menu item</comment>
-  </data>
-  <data name="ribTaggedButton_Screentip" xml:space="preserve">
-    <value>Vind pagina's met aangepaste tags</value>
-    <comment>ribbon search</comment>
-  </data>
-  <data name="ribTaggingButton_Label" xml:space="preserve">
-    <value>Tag pagina</value>
-    <comment>menu item</comment>
-  </data>
-  <data name="ribTaggingButton_Screentip" xml:space="preserve">
-    <value>Voeg aangepaste tags toe aan deze pagina</value>
-    <comment>ribbon search</comment>
-  </data>
   <data name="ribTextToTableButton_Label" xml:space="preserve">
     <value>Converteer tekst naar tabel</value>
     <comment>Ribbon OneMore menu item, extras</comment>
@@ -4825,79 +4809,6 @@ Omkeren</value>
   <data name="TagBankCommand_confirm" xml:space="preserve">
     <value>De tagbank bevat tekst. Weet je zeker dat je het wilt verwijderen?</value>
     <comment>messagebox</comment>
-  </data>
-  <data name="TaggedDialog_checkAllLabel.Text" xml:space="preserve">
-    <value>Controleer alle pagina's</value>
-    <comment>check all nodes link label</comment>
-  </data>
-  <data name="TaggedDialog_clearAllLabel.Text" xml:space="preserve">
-    <value>Schakel alle pagina's uit</value>
-    <comment>uncheck all nodes llnk label</comment>
-  </data>
-  <data name="TaggedDialog_clearLabel.Text" xml:space="preserve">
-    <value>Wis alles</value>
-    <comment>clear tags link label</comment>
-  </data>
-  <data name="TaggedDialog_indexButton.Text" xml:space="preserve">
-    <value>Inhoudsopgave</value>
-    <comment>index button</comment>
-  </data>
-  <data name="TaggedDialog_introLabel.Text" xml:space="preserve">
-    <value>Voer een of meer tags in, gescheiden door komma's. </value>
-    <comment>label</comment>
-  </data>
-  <data name="TaggedDialog_opBox.Items" xml:space="preserve">
-    <value>Allemaal
-Ieder</value>
-    <comment>listbox</comment>
-  </data>
-  <data name="TaggedDialog_tagsLabel.Text" xml:space="preserve">
-    <value>Trefwoorden:</value>
-    <comment>label</comment>
-  </data>
-  <data name="TaggedDialog_Title" xml:space="preserve">
-    <value>Vind gelabelde pagina's</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="TaggingDialog.Text" xml:space="preserve">
-    <value>Pagina-tags</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="TaggingDialog_clearLabel.Text" xml:space="preserve">
-    <value>Verwijder alles</value>
-    <comment>linklabel</comment>
-  </data>
-  <data name="TaggingDialog_commonGroup.Text" xml:space="preserve">
-    <value>Gemeenschappelijke woorden op deze pagina</value>
-    <comment>groupbox</comment>
-  </data>
-  <data name="TaggingDialog_introLabel.Text" xml:space="preserve">
-    <value>Scheid tags met komma's</value>
-    <comment>intro label</comment>
-  </data>
-  <data name="TaggingDialog_recentGroup.Text" xml:space="preserve">
-    <value>Laatst gebruikt</value>
-    <comment>groupbox</comment>
-  </data>
-  <data name="TagsUpgraded" xml:space="preserve">
-    <value>Verouderde paginatags zijn omgezet in hashtags.
-
-Tags geüpgraded: {0}
-Pagina's bijgewerkt: {1}
-
-U kunt nu inline #hashtags typen om tags aan uw inhoud toe te voegen.</value>
-    <comment>message box</comment>
-  </data>
-  <data name="TagsUpgraded2" xml:space="preserve">
-    <value>Verouderde paginatags zijn omgezet in hastags. U kunt nu inline #hashtags rechtstreeks op uw pagina typen om uw inhoud te taggen.</value>
-  </data>
-  <data name="TagsUpgraded3" xml:space="preserve">
-    <value>Verouderde paginatags zijn omgezet in hashtags.
-
-Tags geüpgraded: {0}
-Pagina's bijgewerkt: {1}
-
-Het dialoogvenster Hashtags zoeken wordt nu geopend.</value>
   </data>
   <data name="TextToTable_NoText" xml:space="preserve">
     <value>Er is geen tekst geselecteerd</value>

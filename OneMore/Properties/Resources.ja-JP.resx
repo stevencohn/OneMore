@@ -4153,22 +4153,6 @@ ISO-code then comma then language name</comment>
     <value>表スタイル</value>
     <comment>ribbon main</comment>
   </data>
-  <data name="ribTaggedButton_Label" xml:space="preserve">
-    <value>タグ付きページの検索</value>
-    <comment>ribbon search NODUP</comment>
-  </data>
-  <data name="ribTaggedButton_Screentip" xml:space="preserve">
-    <value>カスタムタグ付きのページを検索</value>
-    <comment>ribbon search</comment>
-  </data>
-  <data name="ribTaggingButton_Label" xml:space="preserve">
-    <value>ページタグをインラインハッシュタグにアップグレード</value>
-    <comment>ribbon search</comment>
-  </data>
-  <data name="ribTaggingButton_Screentip" xml:space="preserve">
-    <value>Add custom tags to this page</value>
-    <comment>ribbon search</comment>
-  </data>
   <data name="ribTextToTableButton_Label" xml:space="preserve">
     <value>テキストを表に変換</value>
     <comment>ribbon table NODUP</comment>
@@ -4829,79 +4813,6 @@ ISO-code then comma then language name</comment>
   <data name="TagBankCommand_confirm" xml:space="preserve">
     <value>タグバンクにテキストが含まれています。削除してもよろしいですか？</value>
     <comment>messagebox</comment>
-  </data>
-  <data name="TaggedDialog_checkAllLabel.Text" xml:space="preserve">
-    <value>すべてのページをチェック</value>
-    <comment>check all nodes link label</comment>
-  </data>
-  <data name="TaggedDialog_clearAllLabel.Text" xml:space="preserve">
-    <value>すべてのページのチェックを外す</value>
-    <comment>uncheck all nodes llnk label</comment>
-  </data>
-  <data name="TaggedDialog_clearLabel.Text" xml:space="preserve">
-    <value>すべてクリア</value>
-    <comment>clear tags link label</comment>
-  </data>
-  <data name="TaggedDialog_indexButton.Text" xml:space="preserve">
-    <value>インデックス</value>
-    <comment>index button</comment>
-  </data>
-  <data name="TaggedDialog_introLabel.Text" xml:space="preserve">
-    <value>1つまたはカンマで区切った複数のタグを入力してださい。タグを削除するにはマイナス記号を使います。</value>
-    <comment>label</comment>
-  </data>
-  <data name="TaggedDialog_opBox.Items" xml:space="preserve">
-    <value>すべて
-任意</value>
-    <comment>listbox</comment>
-  </data>
-  <data name="TaggedDialog_tagsLabel.Text" xml:space="preserve">
-    <value>タグ:</value>
-    <comment>label</comment>
-  </data>
-  <data name="TaggedDialog_Title" xml:space="preserve">
-    <value>タグ付きページを検索</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="TaggingDialog.Text" xml:space="preserve">
-    <value>ページタグ</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="TaggingDialog_clearLabel.Text" xml:space="preserve">
-    <value>すべて削除</value>
-    <comment>linklabel</comment>
-  </data>
-  <data name="TaggingDialog_commonGroup.Text" xml:space="preserve">
-    <value>このページの一般的な単語</value>
-    <comment>groupbox</comment>
-  </data>
-  <data name="TaggingDialog_introLabel.Text" xml:space="preserve">
-    <value>タグをカンマで区切る</value>
-    <comment>intro label</comment>
-  </data>
-  <data name="TaggingDialog_recentGroup.Text" xml:space="preserve">
-    <value>最近使用した</value>
-    <comment>groupbox</comment>
-  </data>
-  <data name="TagsUpgraded" xml:space="preserve">
-    <value>従来のページタグはハッシュタグに変換されました。
-
-アップグレードしたタグ: {0}
-更新されたページ: {1}
-
-インライン #ハッシュタグ を入力してコンテンツにタグを追加できます。</value>
-    <comment>message box</comment>
-  </data>
-  <data name="TagsUpgraded2" xml:space="preserve">
-    <value>従来のページタグはハッシュタグに変換されました。ページ内で直接インライン #ハッシュタグ を入力してコンテンツにタグ付けできます。</value>
-  </data>
-  <data name="TagsUpgraded3" xml:space="preserve">
-    <value>従来のページタグはハッシュタグに変換されました。
-
-アップグレードしたタグ: {0}
-更新されたページ: {1}
-
-ハッシュタグダイアログが開きます。</value>
   </data>
   <data name="TextToTable_NoText" xml:space="preserve">
     <value>テキストが選択されていません</value>

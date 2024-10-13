@@ -4150,22 +4150,6 @@ Después del último grupo</value>
     <value>Estilos de tabla</value>
     <comment>ribbon</comment>
   </data>
-  <data name="ribTaggedButton_Label" xml:space="preserve">
-    <value>Buscar páginas etiquetadas</value>
-    <comment>menu item</comment>
-  </data>
-  <data name="ribTaggedButton_Screentip" xml:space="preserve">
-    <value>Encuentra páginas con etiquetas personalizadas</value>
-    <comment>ribbon search</comment>
-  </data>
-  <data name="ribTaggingButton_Label" xml:space="preserve">
-    <value>Página de etiqueta</value>
-    <comment>menu item</comment>
-  </data>
-  <data name="ribTaggingButton_Screentip" xml:space="preserve">
-    <value>Agregar etiquetas personalizadas a esta página</value>
-    <comment>ribbon search</comment>
-  </data>
   <data name="ribTextToTableButton_Label" xml:space="preserve">
     <value>Convertir texto en tabla</value>
     <comment>Ribbon OneMore menu item, extras</comment>
@@ -4825,79 +4809,6 @@ Invertir</value>
   <data name="TagBankCommand_confirm" xml:space="preserve">
     <value>El banco de etiquetas contiene texto. ¿Estás seguro de que quieres eliminarlo?</value>
     <comment>messagebox</comment>
-  </data>
-  <data name="TaggedDialog_checkAllLabel.Text" xml:space="preserve">
-    <value>Ver todas las páginas</value>
-    <comment>check all nodes link label</comment>
-  </data>
-  <data name="TaggedDialog_clearAllLabel.Text" xml:space="preserve">
-    <value>Desmarque todas las páginas</value>
-    <comment>uncheck all nodes llnk label</comment>
-  </data>
-  <data name="TaggedDialog_clearLabel.Text" xml:space="preserve">
-    <value>Limpiar todo</value>
-    <comment>clear tags link label</comment>
-  </data>
-  <data name="TaggedDialog_indexButton.Text" xml:space="preserve">
-    <value>Índice</value>
-    <comment>index button</comment>
-  </data>
-  <data name="TaggedDialog_introLabel.Text" xml:space="preserve">
-    <value>Ingrese una o más etiquetas separadas por comas. </value>
-    <comment>label</comment>
-  </data>
-  <data name="TaggedDialog_opBox.Items" xml:space="preserve">
-    <value>Todo
-Ningún</value>
-    <comment>listbox</comment>
-  </data>
-  <data name="TaggedDialog_tagsLabel.Text" xml:space="preserve">
-    <value>Etiquetas:</value>
-    <comment>label</comment>
-  </data>
-  <data name="TaggedDialog_Title" xml:space="preserve">
-    <value>Buscar páginas etiquetadas</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="TaggingDialog.Text" xml:space="preserve">
-    <value>Etiquetas de la página</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="TaggingDialog_clearLabel.Text" xml:space="preserve">
-    <value>Eliminar todo</value>
-    <comment>linklabel</comment>
-  </data>
-  <data name="TaggingDialog_commonGroup.Text" xml:space="preserve">
-    <value>Palabras comunes en esta página</value>
-    <comment>groupbox</comment>
-  </data>
-  <data name="TaggingDialog_introLabel.Text" xml:space="preserve">
-    <value>Separa las etiquetas con comas</value>
-    <comment>intro label</comment>
-  </data>
-  <data name="TaggingDialog_recentGroup.Text" xml:space="preserve">
-    <value>Recientemente usado</value>
-    <comment>groupbox</comment>
-  </data>
-  <data name="TagsUpgraded" xml:space="preserve">
-    <value>Las etiquetas de páginas heredadas se han convertido en hashtags.
-
-Etiquetas actualizadas: {0}
-Páginas actualizadas: {1}
-
-Ahora puede escribir #hashtags en línea para agregar etiquetas a su contenido.</value>
-    <comment>message box</comment>
-  </data>
-  <data name="TagsUpgraded2" xml:space="preserve">
-    <value>Las etiquetas de páginas heredadas se han convertido en hastags. Ahora puedes escribir #hashtags en línea directamente en tu página para etiquetar tu contenido.</value>
-  </data>
-  <data name="TagsUpgraded3" xml:space="preserve">
-    <value>Las etiquetas de páginas heredadas se han convertido en hashtags.
-
-Etiquetas actualizadas: {0}
-Páginas actualizadas: {1}
-
-Ahora se abrirá el cuadro de diálogo Buscar hashtags.</value>
   </data>
   <data name="TextToTable_NoText" xml:space="preserve">
     <value>No hay texto seleccionado</value>

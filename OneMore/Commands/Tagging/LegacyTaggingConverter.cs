@@ -12,7 +12,6 @@ namespace River.OneMoreAddIn.Commands
 	using System.Linq;
 	using System.Threading;
 	using System.Threading.Tasks;
-	using System.Windows.Forms;
 	using System.Xml.Linq;
 
 
@@ -47,34 +46,61 @@ namespace River.OneMoreAddIn.Commands
 		public int TagsConverted { get; private set; } = 0;
 
 
-		public bool IsConverted()
+		/// <summary>
+		/// Perform the upgrade
+		/// </summary>
+		/// <returns>True if tags are or have been upgraded, otherwise false.</returns>
+		public async Task<bool> UpgradeLegacyTags()
 		{
 			var provider = new SettingsProvider();
 			var settings = provider.GetCollection(SettingsName);
-			return settings.Get("converted", false);
-		}
 
-
-		public async Task<bool> NeedsConversion()
-		{
-			return await NeedsConversion(new SettingsProvider().GetCollection(SettingsName));
-		}
-
-
-		private async Task<bool> NeedsConversion(SettingsCollection settings)
-		{
 			if (settings.Get("converted", false))
 			{
-				return false;
+				logger.Verbose("legacy hashtags previously converted");
+				Converted = true;
+				return true;
 			}
 
-			if (settings.Get("ignore", false))
+			if (!await HasLegacyTags())
 			{
-				// previously opted to ignore upgrade
-				return false;
+				settings.Add("converted", true);
+				provider.SetCollection(settings);
+				provider.Save();
+
+				logger.Verbose("no legacy hashtags to convert");
+				Converted = true;
+				return true;
 			}
 
-			return await HasLegacyTags();
+			logger.WriteLine("converting legacy hashtags");
+
+			using var progress = new ProgressDialog();
+			progress.ShowDialogWithCancel(
+				async (pdialog, token) => await UpgradeLegacyTags(pdialog, token));
+
+			settings.Add("converted", true);
+			if (settings.IsModified)
+			{
+				provider.SetCollection(settings);
+				provider.Save();
+			}
+
+			Converted = true;
+
+			// scan now?
+
+			if (HashtagProvider.CatalogExists())
+			{
+				var scheduler = new HashtagScheduler();
+				if (!scheduler.ScheduleExists && scheduler.State == ScanningState.Ready)
+				{
+					using var scanner = new HashtagScanner();
+					(_, _) = await scanner.Scan();
+				}
+			}
+
+			return Converted;
 		}
 
 
@@ -101,66 +127,6 @@ namespace River.OneMoreAddIn.Commands
 				!string.IsNullOrWhiteSpace(e.Attribute("content").Value));
 
 			return found;
-		}
-
-
-		/// <summary>
-		/// If there are legacy Page tags, ask the user if they want to upgrade to Hashtags
-		/// and, if yes, then perform the upgrade.
-		/// </summary>
-		/// <param name="owner">The owning window so we can center dialogs</param>
-		/// <returns>True if tags are or have been upgraded, otherwise false.</returns>
-		public async Task<bool> UpgradeLegacyTags(IWin32Window owner)
-		{
-			var provider = new SettingsProvider();
-			var settings = provider.GetCollection(SettingsName);
-
-			if (!await NeedsConversion(settings))
-			{
-				settings.Add("converted", true);
-				provider.SetCollection(settings);
-				provider.Save();
-
-				Converted = true;
-				return false;
-			}
-
-			using var dialog = new LegacyTaggingDialog();
-
-			if (dialog.ShowDialog(owner) == DialogResult.OK)
-			{
-				using var progress = new ProgressDialog();
-				progress.ShowDialogWithCancel(
-					async (pdialog, token) => await UpgradeLegacyTags(pdialog, token));
-
-				settings.Add("converted", true);
-				Converted = true;
-
-				// scan now?
-
-				if (HashtagProvider.CatalogExists())
-				{
-					var scheduler = new HashtagScheduler();
-					if (!scheduler.ScheduleExists && scheduler.State == ScanningState.Ready)
-					{
-						using var scanner = new HashtagScanner();
-						(_, _) = await scanner.Scan();
-					}
-				}
-			}
-
-			if (dialog.HideQuestion)
-			{
-				settings.Add("ignore", true);
-			}
-
-			if (settings.IsModified)
-			{
-				provider.SetCollection(settings);
-				provider.Save();
-			}
-
-			return Converted;
 		}
 
 
@@ -274,14 +240,6 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return !token.IsCancellationRequested;
-		}
-
-
-		public static void ResetUpgradeCheck()
-		{
-			var provider = new SettingsProvider();
-			provider.RemoveCollection(SettingsName);
-			provider.Save();
 		}
 	}
 }
