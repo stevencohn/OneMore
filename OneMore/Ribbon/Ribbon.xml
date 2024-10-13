@@ -819,18 +819,6 @@
                 getLabel="GetRibbonLabel"
                 getScreentip="GetRibbonScreentip"
                 onAction="PreviousUnreadPageCmd"/>
-              <button
-                id="ribTaggingButton"
-                image="Label"
-                getLabel="GetRibbonLabel"
-                getScreentip="GetRibbonScreentip"
-                onAction="TaggingCmd"/>
-              <button
-                id="ribTaggedButton"
-                image="LabelSearch"
-                getLabel="GetRibbonLabel"
-                getScreentip="GetRibbonScreentip"
-                onAction="TaggedCmd"/>
             </menu>
             <menu id="ribTableMenu" getLabel="GetRibbonLabel" imageMso="TableInsert" showImage="true" enabled="true">
               <button

@@ -35,12 +35,8 @@ namespace River.OneMoreAddIn.Settings
 					"filterBox",
 					"scheduleLink",
 					"warningBox",
-					"upgradeLink",
-					"resetLink=word_Reset",
 					"disabledBox"
 				});
-
-				tooltip.SetToolTip(resetLink, Resx.HashtagSheet_resetTooltip);
 			}
 
 			var settings = provider.GetCollection(Name);
@@ -92,50 +88,12 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
-		protected override async void OnLoad(EventArgs e)
-		{
-			base.OnLoad(e);
-
-			var converter = new LegacyTaggingConverter();
-			var needsConversion = await converter.NeedsConversion();
-			upgradeLink.Enabled = needsConversion;
-			resetLink.Visible = !needsConversion;
-		}
-
-
 		private async void ScheduleRebuild(object sender, LinkLabelLinkClickedEventArgs e)
 		{
 			var cmd = new HashtagScanCommand();
 			cmd.SetLogger(logger);
 			cmd.SetOwner(this);
 			await cmd.Execute();
-		}
-
-
-		// NOTE: temporary page tags
-		private async void UpgradeTags(object sender, LinkLabelLinkClickedEventArgs e)
-		{
-			var converter = new LegacyTaggingConverter();
-			var upgraded = await converter.UpgradeLegacyTags(ParentForm);
-
-			if (upgraded)
-			{
-				upgradeLink.Enabled = false;
-				resetLink.Visible = true;
-			}
-		}
-
-
-		private void ResetUpgradeCheck(object sender, LinkLabelLinkClickedEventArgs e)
-		{
-			// this will save settings.xml...
-			LegacyTaggingConverter.ResetUpgradeCheck();
-
-			// .. and now update local in-memory copy of settings
-			provider.RemoveCollection(LegacyTaggingConverter.SettingsName);
-
-			upgradeLink.Enabled = true;
-			resetLink.Visible = false;
 		}
 
 

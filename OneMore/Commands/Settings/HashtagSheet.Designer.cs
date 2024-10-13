@@ -35,8 +35,6 @@ namespace River.OneMoreAddIn.Settings
 			this.intervalBox = new System.Windows.Forms.NumericUpDown();
 			this.minLabel = new System.Windows.Forms.Label();
 			this.advancedGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
-			this.resetLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
-			this.upgradeLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.warningLabel = new River.OneMoreAddIn.UI.MoreMultilineLabel();
 			this.scheduleLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.disabledBox = new River.OneMoreAddIn.UI.MoreCheckBox();
@@ -113,8 +111,6 @@ namespace River.OneMoreAddIn.Settings
 			this.advancedGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.advancedGroup.BorderThickness = 3;
-			this.advancedGroup.Controls.Add(this.resetLink);
-			this.advancedGroup.Controls.Add(this.upgradeLink);
 			this.advancedGroup.Controls.Add(this.warningLabel);
 			this.advancedGroup.Controls.Add(this.scheduleLink);
 			this.advancedGroup.Controls.Add(this.disabledBox);
@@ -128,46 +124,6 @@ namespace River.OneMoreAddIn.Settings
 			this.advancedGroup.Text = "Advanced Options";
 			this.advancedGroup.ThemedBorder = null;
 			this.advancedGroup.ThemedFore = null;
-			// 
-			// resetLink
-			// 
-			this.resetLink.ActiveLinkColor = System.Drawing.Color.MediumOrchid;
-			this.resetLink.AutoSize = true;
-			this.resetLink.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.resetLink.HoverColor = System.Drawing.Color.Orchid;
-			this.resetLink.LinkColor = System.Drawing.Color.MediumOrchid;
-			this.resetLink.Location = new System.Drawing.Point(522, 144);
-			this.resetLink.Name = "resetLink";
-			this.resetLink.Size = new System.Drawing.Size(52, 20);
-			this.resetLink.StrictColors = false;
-			this.resetLink.TabIndex = 4;
-			this.resetLink.TabStop = true;
-			this.resetLink.Text = "Reset";
-			this.resetLink.ThemedBack = null;
-			this.resetLink.ThemedFore = null;
-			this.tooltip.SetToolTip(this.resetLink, "Advanced: reset the upgrade flag");
-			this.resetLink.Visible = false;
-			this.resetLink.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
-			this.resetLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ResetUpgradeCheck);
-			// 
-			// upgradeLink
-			// 
-			this.upgradeLink.ActiveLinkColor = System.Drawing.Color.MediumOrchid;
-			this.upgradeLink.AutoSize = true;
-			this.upgradeLink.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.upgradeLink.HoverColor = System.Drawing.Color.Orchid;
-			this.upgradeLink.LinkColor = System.Drawing.Color.MediumOrchid;
-			this.upgradeLink.Location = new System.Drawing.Point(18, 144);
-			this.upgradeLink.Name = "upgradeLink";
-			this.upgradeLink.Size = new System.Drawing.Size(274, 20);
-			this.upgradeLink.StrictColors = false;
-			this.upgradeLink.TabIndex = 3;
-			this.upgradeLink.TabStop = true;
-			this.upgradeLink.Text = "Upgrade page tags to inline hashtags";
-			this.upgradeLink.ThemedBack = null;
-			this.upgradeLink.ThemedFore = null;
-			this.upgradeLink.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
-			this.upgradeLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.UpgradeTags);
 			// 
 			// warningLabel
 			// 
@@ -340,8 +296,6 @@ namespace River.OneMoreAddIn.Settings
 		private System.Windows.Forms.Panel layoutPanel;
 		private UI.MoreMultilineLabel warningLabel;
 		private UI.MoreLinkLabel scheduleLink;
-		private UI.MoreLinkLabel upgradeLink;
-		private UI.MoreLinkLabel resetLink;
 		private System.Windows.Forms.ToolTip tooltip;
 	}
 }

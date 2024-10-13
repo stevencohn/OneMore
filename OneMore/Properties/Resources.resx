@@ -4151,22 +4151,6 @@ After last group</value>
     <value>Table Styles</value>
     <comment>ribbon main</comment>
   </data>
-  <data name="ribTaggedButton_Label" xml:space="preserve">
-    <value>Find Tagged Pages</value>
-    <comment>ribbon search NODUP</comment>
-  </data>
-  <data name="ribTaggedButton_Screentip" xml:space="preserve">
-    <value>Find pages with custom tags</value>
-    <comment>ribbon search</comment>
-  </data>
-  <data name="ribTaggingButton_Label" xml:space="preserve">
-    <value>Tag Page</value>
-    <comment>ribbon search</comment>
-  </data>
-  <data name="ribTaggingButton_Screentip" xml:space="preserve">
-    <value>Add custom tags to this page</value>
-    <comment>ribbon search</comment>
-  </data>
   <data name="ribTextToTableButton_Label" xml:space="preserve">
     <value>Convert Text to Table</value>
     <comment>ribbon table NODUP</comment>
@@ -4827,79 +4811,6 @@ Invert</value>
   <data name="TagBankCommand_confirm" xml:space="preserve">
     <value>The tag bank contains text. Are you sure you want to remove it?</value>
     <comment>messagebox</comment>
-  </data>
-  <data name="TaggedDialog_checkAllLabel.Text" xml:space="preserve">
-    <value>Check all pages</value>
-    <comment>check all nodes link label</comment>
-  </data>
-  <data name="TaggedDialog_clearAllLabel.Text" xml:space="preserve">
-    <value>Uncheck all pages</value>
-    <comment>uncheck all nodes llnk label</comment>
-  </data>
-  <data name="TaggedDialog_clearLabel.Text" xml:space="preserve">
-    <value>Clear all</value>
-    <comment>clear tags link label</comment>
-  </data>
-  <data name="TaggedDialog_indexButton.Text" xml:space="preserve">
-    <value>Index</value>
-    <comment>index button</comment>
-  </data>
-  <data name="TaggedDialog_introLabel.Text" xml:space="preserve">
-    <value>Enter one or more tags separated by commas. Use the minus operator to exclude individual tags</value>
-    <comment>label</comment>
-  </data>
-  <data name="TaggedDialog_opBox.Items" xml:space="preserve">
-    <value>All
-Any</value>
-    <comment>listbox</comment>
-  </data>
-  <data name="TaggedDialog_tagsLabel.Text" xml:space="preserve">
-    <value>Tags:</value>
-    <comment>label</comment>
-  </data>
-  <data name="TaggedDialog_Title" xml:space="preserve">
-    <value>Find Tagged Pages</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="TaggingDialog.Text" xml:space="preserve">
-    <value>Page Tags</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="TaggingDialog_clearLabel.Text" xml:space="preserve">
-    <value>Remove all</value>
-    <comment>linklabel</comment>
-  </data>
-  <data name="TaggingDialog_commonGroup.Text" xml:space="preserve">
-    <value>Common words on this page</value>
-    <comment>groupbox</comment>
-  </data>
-  <data name="TaggingDialog_introLabel.Text" xml:space="preserve">
-    <value>Separate tags with commas</value>
-    <comment>intro label</comment>
-  </data>
-  <data name="TaggingDialog_recentGroup.Text" xml:space="preserve">
-    <value>Recently used</value>
-    <comment>groupbox</comment>
-  </data>
-  <data name="TagsUpgraded" xml:space="preserve">
-    <value>Legacy page tags have been converted to hashtags.
-
-Tags upgraded: {0}
-Pages updated: {1}
-
-You may now type inline #hashtags to add tags to your content.</value>
-    <comment>message box</comment>
-  </data>
-  <data name="TagsUpgraded2" xml:space="preserve">
-    <value>Legacy page tags have been converted to hastags. You may now type inline #hashtags directly on your page to tag your content.</value>
-  </data>
-  <data name="TagsUpgraded3" xml:space="preserve">
-    <value>Legacy page tags have been converted to hashtags.
-
-Tags upgraded: {0}
-Pages updated: {1}
-
-The Find Hashtags dialog will now open.</value>
   </data>
   <data name="TextToTable_NoText" xml:space="preserve">
     <value>No text is selected</value>

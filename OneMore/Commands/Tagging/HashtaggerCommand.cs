@@ -25,6 +25,9 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
+			var converter = new LegacyTaggingConverter();
+			await converter.UpgradeLegacyTags();
+
 			await using var one = new OneNote(out var page, out var ns);
 
 			using var dialog = new HashtaggerDialog(page);

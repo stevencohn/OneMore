@@ -4149,22 +4149,6 @@ Après le dernier groupe</value>
     <value>Styles de tableau</value>
     <comment>ribbon</comment>
   </data>
-  <data name="ribTaggedButton_Label" xml:space="preserve">
-    <value>Rechercher des pages balisées</value>
-    <comment>menu item</comment>
-  </data>
-  <data name="ribTaggedButton_Screentip" xml:space="preserve">
-    <value>Rechercher des pages avec des balises personnalisées</value>
-    <comment>ribbon search</comment>
-  </data>
-  <data name="ribTaggingButton_Label" xml:space="preserve">
-    <value>Page de balise</value>
-    <comment>menu item</comment>
-  </data>
-  <data name="ribTaggingButton_Screentip" xml:space="preserve">
-    <value>Ajouter des balises personnalisées à cette page</value>
-    <comment>ribbon search</comment>
-  </data>
   <data name="ribTextToTableButton_Label" xml:space="preserve">
     <value>Convertir le texte en tableau</value>
     <comment>Ribbon OneMore menu item, extras</comment>
@@ -4823,79 +4807,6 @@ Inverser</value>
   <data name="TagBankCommand_confirm" xml:space="preserve">
     <value>La banque de balises contient du texte. Êtes-vous sûr de vouloir le supprimer ?</value>
     <comment>messagebox</comment>
-  </data>
-  <data name="TaggedDialog_checkAllLabel.Text" xml:space="preserve">
-    <value>Vérifiez toutes les pages</value>
-    <comment>check all nodes link label</comment>
-  </data>
-  <data name="TaggedDialog_clearAllLabel.Text" xml:space="preserve">
-    <value>Décochez toutes les pages</value>
-    <comment>uncheck all nodes llnk label</comment>
-  </data>
-  <data name="TaggedDialog_clearLabel.Text" xml:space="preserve">
-    <value>Tout effacer</value>
-    <comment>clear tags link label</comment>
-  </data>
-  <data name="TaggedDialog_indexButton.Text" xml:space="preserve">
-    <value>Indice</value>
-    <comment>index button</comment>
-  </data>
-  <data name="TaggedDialog_introLabel.Text" xml:space="preserve">
-    <value>Saisissez une ou plusieurs balises séparées par des virgules. </value>
-    <comment>label</comment>
-  </data>
-  <data name="TaggedDialog_opBox.Items" xml:space="preserve">
-    <value>Tout
-Quelconque</value>
-    <comment>listbox</comment>
-  </data>
-  <data name="TaggedDialog_tagsLabel.Text" xml:space="preserve">
-    <value>Mots clés:</value>
-    <comment>label</comment>
-  </data>
-  <data name="TaggedDialog_Title" xml:space="preserve">
-    <value>Rechercher des pages balisées</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="TaggingDialog.Text" xml:space="preserve">
-    <value>Tags de page</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="TaggingDialog_clearLabel.Text" xml:space="preserve">
-    <value>Enlever tout</value>
-    <comment>linklabel</comment>
-  </data>
-  <data name="TaggingDialog_commonGroup.Text" xml:space="preserve">
-    <value>Mots communs sur cette page</value>
-    <comment>groupbox</comment>
-  </data>
-  <data name="TaggingDialog_introLabel.Text" xml:space="preserve">
-    <value>Séparez les tags avec des virgules</value>
-    <comment>intro label</comment>
-  </data>
-  <data name="TaggingDialog_recentGroup.Text" xml:space="preserve">
-    <value>Utilisé récemment</value>
-    <comment>groupbox</comment>
-  </data>
-  <data name="TagsUpgraded" xml:space="preserve">
-    <value>Les anciennes balises de page ont été converties en hashtags.
-
-Balises mises à jour : {0}
-Pages mises à jour : {1}
-
-Vous pouvez maintenant saisir des #hashtags en ligne pour ajouter des balises à votre contenu.</value>
-    <comment>message box</comment>
-  </data>
-  <data name="TagsUpgraded2" xml:space="preserve">
-    <value>Les anciennes balises de page ont été converties en hastags. Vous pouvez désormais saisir des #hashtags en ligne directement sur votre page pour marquer votre contenu.</value>
-  </data>
-  <data name="TagsUpgraded3" xml:space="preserve">
-    <value>Les anciennes balises de page ont été converties en hashtags.
-
-Balises mises à jour : {0}
-Pages mises à jour : {1}
-
-La boîte de dialogue Rechercher des hashtags va maintenant s'ouvrir.</value>
   </data>
   <data name="TextToTable_NoText" xml:space="preserve">
     <value>Aucun texte n'est sélectionné</value>

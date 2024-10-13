@@ -4143,22 +4143,6 @@ ISO-code then comma then language name</comment>
     <value>表格样式</value>
     <comment>ribbon</comment>
   </data>
-  <data name="ribTaggedButton_Label" xml:space="preserve">
-    <value>查找标记页面</value>
-    <comment>menu item</comment>
-  </data>
-  <data name="ribTaggedButton_Screentip" xml:space="preserve">
-    <value>查找带有自定义标签的页面</value>
-    <comment>ribbon search</comment>
-  </data>
-  <data name="ribTaggingButton_Label" xml:space="preserve">
-    <value>页面标签</value>
-    <comment>menu item</comment>
-  </data>
-  <data name="ribTaggingButton_Screentip" xml:space="preserve">
-    <value>将自定义标签添加到此页面</value>
-    <comment>ribbon search</comment>
-  </data>
   <data name="ribTextToTableButton_Label" xml:space="preserve">
     <value>显示/隐藏日期和时间</value>
     <comment>Ribbon OneMore menu item, extras</comment>
@@ -4818,79 +4802,6 @@ ISO-code then comma then language name</comment>
   <data name="TagBankCommand_confirm" xml:space="preserve">
     <value>标签库包含文本。您确定要删除它吗？</value>
     <comment>messagebox</comment>
-  </data>
-  <data name="TaggedDialog_checkAllLabel.Text" xml:space="preserve">
-    <value>检查所有页面</value>
-    <comment>check all nodes link label</comment>
-  </data>
-  <data name="TaggedDialog_clearAllLabel.Text" xml:space="preserve">
-    <value>取消选中所有页面</value>
-    <comment>uncheck all nodes llnk label</comment>
-  </data>
-  <data name="TaggedDialog_clearLabel.Text" xml:space="preserve">
-    <value>全部清除</value>
-    <comment>clear tags link label</comment>
-  </data>
-  <data name="TaggedDialog_indexButton.Text" xml:space="preserve">
-    <value>指数</value>
-    <comment>index button</comment>
-  </data>
-  <data name="TaggedDialog_introLabel.Text" xml:space="preserve">
-    <value>输入一个或多个以逗号分隔的标签。</value>
-    <comment>label</comment>
-  </data>
-  <data name="TaggedDialog_opBox.Items" xml:space="preserve">
-    <value>全部
-任何</value>
-    <comment>listbox</comment>
-  </data>
-  <data name="TaggedDialog_tagsLabel.Text" xml:space="preserve">
-    <value>标签：</value>
-    <comment>label</comment>
-  </data>
-  <data name="TaggedDialog_Title" xml:space="preserve">
-    <value>查找标记页面</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="TaggingDialog.Text" xml:space="preserve">
-    <value>页面标签</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="TaggingDialog_clearLabel.Text" xml:space="preserve">
-    <value>移除所有</value>
-    <comment>linklabel</comment>
-  </data>
-  <data name="TaggingDialog_commonGroup.Text" xml:space="preserve">
-    <value>这个页面上的常用词</value>
-    <comment>groupbox</comment>
-  </data>
-  <data name="TaggingDialog_introLabel.Text" xml:space="preserve">
-    <value>用逗号分隔标签</value>
-    <comment>intro label</comment>
-  </data>
-  <data name="TaggingDialog_recentGroup.Text" xml:space="preserve">
-    <value>最近使用过</value>
-    <comment>groupbox</comment>
-  </data>
-  <data name="TagsUpgraded" xml:space="preserve">
-    <value>旧版页面标签已转换为主题标签。
-
-已升级标签：{0}
-更新页面：{1}
-
-您现在可以输入内联 #hashtags 来向您的内容添加标签。</value>
-    <comment>message box</comment>
-  </data>
-  <data name="TagsUpgraded2" xml:space="preserve">
-    <value>旧版页面标签已转换为主题标签。您现在可以直接在页面上输入内联 #hashtags 来标记您的内容。</value>
-  </data>
-  <data name="TagsUpgraded3" xml:space="preserve">
-    <value>旧版页面标签已转换为主题标签。
-
-已升级标签：{0}
-更新页面：{1}
-
-现在将打开“查找主题标签”对话框。</value>
   </data>
   <data name="TextToTable_NoText" xml:space="preserve">
     <value>没有选择文字</value>

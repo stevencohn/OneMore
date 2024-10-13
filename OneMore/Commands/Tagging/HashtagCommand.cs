@@ -41,7 +41,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			var converter = new LegacyTaggingConverter();
-			await converter.UpgradeLegacyTags(owner);
+			await converter.UpgradeLegacyTags();
 
 			dialog = new HashtagDialog();
 			dialog.FormClosed += Dialog_FormClosed;

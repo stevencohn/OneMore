@@ -95,17 +95,13 @@ namespace River.OneMoreAddIn
 			var setprovider = new SettingsProvider();
 
 			// TODO: temporary Page tagging
-			if (new Commands.LegacyTaggingConverter().IsConverted())
+			if (commands.Find(c => c.Method.Name == "TaggedCmd") is CommandInfo cmd1)
 			{
-				if (commands.Find(c => c.Method.Name == "TaggedCmd") is CommandInfo cmd1)
-				{
-					commands.Remove(cmd1);
-				}
-
-				if (commands.Find(c => c.Method.Name == "TaggingCmd") is CommandInfo cmd2)
-				{
-					commands.Remove(cmd2);
-				}
+				commands.Remove(cmd1);
+			}
+			if (commands.Find(c => c.Method.Name == "TaggingCmd") is CommandInfo cmd2)
+			{
+				commands.Remove(cmd2);
 			}
 
 			// load aliases

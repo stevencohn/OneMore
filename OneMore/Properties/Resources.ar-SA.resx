@@ -4150,22 +4150,6 @@ ISO-code then comma then language name</comment>
     <value>أنماط الجدول</value>
     <comment>ribbon</comment>
   </data>
-  <data name="ribTaggedButton_Label" xml:space="preserve">
-    <value>البحث عن الصفحات ذات العلامات</value>
-    <comment>menu item</comment>
-  </data>
-  <data name="ribTaggedButton_Screentip" xml:space="preserve">
-    <value>ابحث عن الصفحات ذات العلامات المخصصة</value>
-    <comment>ribbon search</comment>
-  </data>
-  <data name="ribTaggingButton_Label" xml:space="preserve">
-    <value>صفحة العلامة</value>
-    <comment>menu item</comment>
-  </data>
-  <data name="ribTaggingButton_Screentip" xml:space="preserve">
-    <value>أضف علامات مخصصة لهذه الصفحة</value>
-    <comment>ribbon search</comment>
-  </data>
   <data name="ribTextToTableButton_Label" xml:space="preserve">
     <value>تحويل النص إلى جدول</value>
     <comment>Ribbon OneMore menu item, extras</comment>
@@ -4825,79 +4809,6 @@ ISO-code then comma then language name</comment>
   <data name="TagBankCommand_confirm" xml:space="preserve">
     <value>يحتوي بنك العلامات على نص. هل أنت متأكد أنك تريد إزالته؟</value>
     <comment>messagebox</comment>
-  </data>
-  <data name="TaggedDialog_checkAllLabel.Text" xml:space="preserve">
-    <value>تحقق من كل الصفحات</value>
-    <comment>check all nodes link label</comment>
-  </data>
-  <data name="TaggedDialog_clearAllLabel.Text" xml:space="preserve">
-    <value>قم بإلغاء تحديد كل الصفحات</value>
-    <comment>uncheck all nodes llnk label</comment>
-  </data>
-  <data name="TaggedDialog_clearLabel.Text" xml:space="preserve">
-    <value>امسح الكل</value>
-    <comment>clear tags link label</comment>
-  </data>
-  <data name="TaggedDialog_indexButton.Text" xml:space="preserve">
-    <value>فهرس</value>
-    <comment>index button</comment>
-  </data>
-  <data name="TaggedDialog_introLabel.Text" xml:space="preserve">
-    <value>أدخل علامة أو أكثر مفصولة بفواصل. </value>
-    <comment>label</comment>
-  </data>
-  <data name="TaggedDialog_opBox.Items" xml:space="preserve">
-    <value>الجميع
-أي</value>
-    <comment>listbox</comment>
-  </data>
-  <data name="TaggedDialog_tagsLabel.Text" xml:space="preserve">
-    <value>العلامات:</value>
-    <comment>label</comment>
-  </data>
-  <data name="TaggedDialog_Title" xml:space="preserve">
-    <value>البحث عن الصفحات ذات العلامات</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="TaggingDialog.Text" xml:space="preserve">
-    <value>علامات الصفحة</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="TaggingDialog_clearLabel.Text" xml:space="preserve">
-    <value>حذف الكل</value>
-    <comment>linklabel</comment>
-  </data>
-  <data name="TaggingDialog_commonGroup.Text" xml:space="preserve">
-    <value>كلمات مشتركة في هذه الصفحة</value>
-    <comment>groupbox</comment>
-  </data>
-  <data name="TaggingDialog_introLabel.Text" xml:space="preserve">
-    <value>أفصل التعليقات بفواصل</value>
-    <comment>intro label</comment>
-  </data>
-  <data name="TaggingDialog_recentGroup.Text" xml:space="preserve">
-    <value>مستخدم حديثا</value>
-    <comment>groupbox</comment>
-  </data>
-  <data name="TagsUpgraded" xml:space="preserve">
-    <value>تم تحويل علامات الصفحة القديمة إلى علامات تصنيف.
-
-العلامات التي تمت ترقيتها: {0}
-الصفحات المحدثة: {1}
-
-يمكنك الآن كتابة #علامات التصنيف المضمنة لإضافة علامات إلى المحتوى الخاص بك.</value>
-    <comment>message box</comment>
-  </data>
-  <data name="TagsUpgraded2" xml:space="preserve">
-    <value>تم تحويل علامات الصفحة القديمة إلى علامات التصنيف. يمكنك الآن كتابة #علامات التصنيف المضمنة مباشرةً على صفحتك لوضع علامة على المحتوى الخاص بك.</value>
-  </data>
-  <data name="TagsUpgraded3" xml:space="preserve">
-    <value>تم تحويل علامات الصفحة القديمة إلى علامات تصنيف.
-
-العلامات التي تمت ترقيتها: {0}
-الصفحات المحدثة: {1}
-
-سيتم الآن فتح مربع حوار البحث عن علامات التصنيف.</value>
   </data>
   <data name="TextToTable_NoText" xml:space="preserve">
     <value>لم يتم تحديد نص</value>

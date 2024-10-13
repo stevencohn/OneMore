@@ -935,16 +935,6 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<StylizeImagesCommand>();
 
 
-		[Command("ribTaggedButton_Label", Keys.Control | Keys.Alt | Keys.T, "ribSearchMenu")]
-		public async Task TaggedCmd(IRibbonControl control)
-			=> await factory.Run<TaggedCommand>();
-
-
-		[Command("ribTaggingButton_Label", Keys.None, "ribSearchMenu")]
-		public async Task TaggingCmd(IRibbonControl control)
-			=> await factory.Run<TaggingCommand>();
-
-
 		[Command("ribTextToTableButton_Label", Keys.None, "ribTableMenu")]
 		public async Task TextToTableCmd(IRibbonControl control)
 			=> await factory.Run<TextToTableCommand>();

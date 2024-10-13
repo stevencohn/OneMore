@@ -4149,22 +4149,6 @@ ISO-code then comma then language name</comment>
     <value>סגנונות שולחן</value>
     <comment>ribbon</comment>
   </data>
-  <data name="ribTaggedButton_Label" xml:space="preserve">
-    <value>מצא דפים מתויגים</value>
-    <comment>menu item NODUP</comment>
-  </data>
-  <data name="ribTaggedButton_Screentip" xml:space="preserve">
-    <value>מצא דפים עם תגיות בהתאמה אישית</value>
-    <comment>ribbon search</comment>
-  </data>
-  <data name="ribTaggingButton_Label" xml:space="preserve">
-    <value>עמוד תיוג</value>
-    <comment>menu item</comment>
-  </data>
-  <data name="ribTaggingButton_Screentip" xml:space="preserve">
-    <value>הוסף תגים מותאמים אישית לדף זה</value>
-    <comment>ribbon search</comment>
-  </data>
   <data name="ribTextToTableButton_Label" xml:space="preserve">
     <value>המרת טקסט לטבלה</value>
     <comment>Ribbon OneMore menu item, extras NODUP</comment>
@@ -4824,79 +4808,6 @@ ISO-code then comma then language name</comment>
   <data name="TagBankCommand_confirm" xml:space="preserve">
     <value>בנק התגים מכיל טקסט. האם אתה בטוח שברצונך להסיר אותו?</value>
     <comment>messagebox</comment>
-  </data>
-  <data name="TaggedDialog_checkAllLabel.Text" xml:space="preserve">
-    <value>בדוק את כל העמודים</value>
-    <comment>check all nodes link label</comment>
-  </data>
-  <data name="TaggedDialog_clearAllLabel.Text" xml:space="preserve">
-    <value>בטל את הסימון של כל העמודים</value>
-    <comment>uncheck all nodes llnk label</comment>
-  </data>
-  <data name="TaggedDialog_clearLabel.Text" xml:space="preserve">
-    <value>לנקות הכל</value>
-    <comment>clear tags link label</comment>
-  </data>
-  <data name="TaggedDialog_indexButton.Text" xml:space="preserve">
-    <value>אינדקס</value>
-    <comment>index button</comment>
-  </data>
-  <data name="TaggedDialog_introLabel.Text" xml:space="preserve">
-    <value>הזן תג אחד או יותר מופרדים על ידי פסיקים. השתמש במפעיל מינוס כדי לא לכלול תגיות בודדות</value>
-    <comment>label</comment>
-  </data>
-  <data name="TaggedDialog_opBox.Items" xml:space="preserve">
-    <value>את כל
-כל</value>
-    <comment>listbox</comment>
-  </data>
-  <data name="TaggedDialog_tagsLabel.Text" xml:space="preserve">
-    <value>תגיות:</value>
-    <comment>label</comment>
-  </data>
-  <data name="TaggedDialog_Title" xml:space="preserve">
-    <value>מצא דפים מתויגים</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="TaggingDialog.Text" xml:space="preserve">
-    <value>תגי עמוד</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="TaggingDialog_clearLabel.Text" xml:space="preserve">
-    <value>להסיר את כל</value>
-    <comment>linklabel</comment>
-  </data>
-  <data name="TaggingDialog_commonGroup.Text" xml:space="preserve">
-    <value>מילים נפוצות בדף זה</value>
-    <comment>groupbox</comment>
-  </data>
-  <data name="TaggingDialog_introLabel.Text" xml:space="preserve">
-    <value>תגיות נפרדות עם פסיקים</value>
-    <comment>intro label</comment>
-  </data>
-  <data name="TaggingDialog_recentGroup.Text" xml:space="preserve">
-    <value>שומש לאחרונה</value>
-    <comment>groupbox</comment>
-  </data>
-  <data name="TagsUpgraded" xml:space="preserve">
-    <value>תגי עמוד מדור קודם הומרו להאשטאג.
-
-תגים משודרגים: {0}
-דפים עודכנו: {1}
-
-כעת תוכל להקליד #hashtags בתוך השורה כדי להוסיף תגים לתוכן שלך.</value>
-    <comment>message box</comment>
-  </data>
-  <data name="TagsUpgraded2" xml:space="preserve">
-    <value>תגי עמוד מדור קודם הומרו ל-hastags. כעת תוכל להקליד #hashtags מוטבעים ישירות בדף שלך כדי לתייג את התוכן שלך.</value>
-  </data>
-  <data name="TagsUpgraded3" xml:space="preserve">
-    <value>תגי עמוד מדור קודם הומרו להאשטאג.
-
-תגים משודרגים: {0}
-דפים עודכנו: {1}
-
-תיפתח כעת תיבת הדו-שיח Find Hashtags.</value>
   </data>
   <data name="TextToTable_NoText" xml:space="preserve">
     <value>לא נבחר טקסט</value>

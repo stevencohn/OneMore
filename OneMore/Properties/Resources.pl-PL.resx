@@ -4151,22 +4151,6 @@ Po ostatniej grupie</value>
     <value>Style stołu</value>
     <comment>ribbon</comment>
   </data>
-  <data name="ribTaggedButton_Label" xml:space="preserve">
-    <value>Znajdź Tagged Strony.</value>
-    <comment>menu item NODUP</comment>
-  </data>
-  <data name="ribTaggedButton_Screentip" xml:space="preserve">
-    <value>Znajdź strony z niestandardowymi tagami</value>
-    <comment>ribbon search</comment>
-  </data>
-  <data name="ribTaggingButton_Label" xml:space="preserve">
-    <value>Page.</value>
-    <comment>menu item</comment>
-  </data>
-  <data name="ribTaggingButton_Screentip" xml:space="preserve">
-    <value>Dodaj niestandardowe tagi do tej strony</value>
-    <comment>ribbon search</comment>
-  </data>
   <data name="ribTextToTableButton_Label" xml:space="preserve">
     <value>Konwertuj tekst do tabeli</value>
     <comment>Ribbon OneMore menu item, extras NODUP</comment>
@@ -4826,79 +4810,6 @@ Odwracać</value>
   <data name="TagBankCommand_confirm" xml:space="preserve">
     <value>Bank znaczników zawiera tekst. Czy na pewno chcesz to usunąć?</value>
     <comment>messagebox</comment>
-  </data>
-  <data name="TaggedDialog_checkAllLabel.Text" xml:space="preserve">
-    <value>Sprawdź wszystkie strony.</value>
-    <comment>check all nodes link label</comment>
-  </data>
-  <data name="TaggedDialog_clearAllLabel.Text" xml:space="preserve">
-    <value>Usuń zaznaczenie wszystkich stron</value>
-    <comment>uncheck all nodes llnk label</comment>
-  </data>
-  <data name="TaggedDialog_clearLabel.Text" xml:space="preserve">
-    <value>Wyczyść wszystko</value>
-    <comment>clear tags link label</comment>
-  </data>
-  <data name="TaggedDialog_indexButton.Text" xml:space="preserve">
-    <value>Indeks</value>
-    <comment>index button</comment>
-  </data>
-  <data name="TaggedDialog_introLabel.Text" xml:space="preserve">
-    <value>Wpisz jeden lub więcej tagów oddzielonych przecinkami. Użyj operatora minus, aby wykluczyć indywidualne znaczniki</value>
-    <comment>label</comment>
-  </data>
-  <data name="TaggedDialog_opBox.Items" xml:space="preserve">
-    <value>Wszystkie
-Każdy</value>
-    <comment>listbox</comment>
-  </data>
-  <data name="TaggedDialog_tagsLabel.Text" xml:space="preserve">
-    <value>Tagi:</value>
-    <comment>label</comment>
-  </data>
-  <data name="TaggedDialog_Title" xml:space="preserve">
-    <value>Znajdź Tagged Strony.</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="TaggingDialog.Text" xml:space="preserve">
-    <value>Tagi strony.</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="TaggingDialog_clearLabel.Text" xml:space="preserve">
-    <value>Usuń wszystko</value>
-    <comment>linklabel</comment>
-  </data>
-  <data name="TaggingDialog_commonGroup.Text" xml:space="preserve">
-    <value>Wspólne słowa na tej stronie</value>
-    <comment>groupbox</comment>
-  </data>
-  <data name="TaggingDialog_introLabel.Text" xml:space="preserve">
-    <value>Oddziel tagi z przecinkami</value>
-    <comment>intro label</comment>
-  </data>
-  <data name="TaggingDialog_recentGroup.Text" xml:space="preserve">
-    <value>Ostatnio użyty</value>
-    <comment>groupbox</comment>
-  </data>
-  <data name="TagsUpgraded" xml:space="preserve">
-    <value>Starsze tagi stron zostały przekonwertowane na hashtagi.
-
-Tagi zaktualizowane: {0}
-Strony zaktualizowane: {1}
-
-Możesz teraz wpisać #hashtags, aby dodać tagi do swojej treści.</value>
-    <comment>message box</comment>
-  </data>
-  <data name="TagsUpgraded2" xml:space="preserve">
-    <value>Starsze tagi stron zostały przekonwertowane na hastagi. Możesz teraz wpisać #hashtagi bezpośrednio na swojej stronie, aby oznaczyć swoją treść.</value>
-  </data>
-  <data name="TagsUpgraded3" xml:space="preserve">
-    <value>Starsze tagi stron zostały przekonwertowane na hashtagi.
-
-Tagi zaktualizowane: {0}
-Strony zaktualizowane: {1}
-
-Otworzy się teraz okno dialogowe Znajdź hashtagi.</value>
   </data>
   <data name="TextToTable_NoText" xml:space="preserve">
     <value>Nie jest wybrany tekst</value>
