@@ -249,7 +249,9 @@ namespace River.OneMoreAddIn.Commands
 		private bool StylizeParagraphs()
 		{
 			// find all paragraphs - OE elements - that have selections
-			var elements = page.BodyOutlines.Descendants(ns + "T")
+			var elements = page.Root
+				// NOT BodyOutlines so we can affect page title too
+				.Descendants(ns + "T")
 				.Where(e => e.Attributes("selected").Any(a => a.Value.Equals("all")))
 				.Select(p => p.Parent);
 
