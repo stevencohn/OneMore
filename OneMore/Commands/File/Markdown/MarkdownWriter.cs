@@ -2,7 +2,8 @@
 // Copyright © 2021 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
-#define LOGx
+// mask this definition to debug raw markdown processing to ILogger instead of a file/folder
+#define WriteToDisk
 
 namespace River.OneMoreAddIn.Commands
 {
@@ -20,44 +21,51 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = Properties.Resources;
 
 
-	internal class MarkdownWriter
+	internal class MarkdownWriter : Loggable
 	{
 		private sealed class Context
 		{
-			public string Owner;
+			//// the container element
+			//public string Container;
+			//// true if at start of line
+			//public bool StartOfLine;
+			// index of quick style from container
 			public int QuickStyleIndex;
-			public string Enclosure;
+			// accent enclosure char, asterisk* or backquote`
+			public string Accent;
 		}
 
-		// no good way to indent text; closest alternative is to use a string of nbsp but that
-		// conflicts with other directives like headings and list numbering. so substitute
-		// indentations (OEChildren) with the blockquote directive instead
-		private const string Indent = ">"; //&nbsp;&nbsp;&nbsp;&nbsp;";
+		// Note that if pasting md text directly into OneNote, there's no good way to indent text
+		// and prevent OneNote from auto-formatting. Closest alt is to use a string of nbsp's
+		// but that conflicts with other directives like headings and list numbering. One way is
+		// to substitute indentations (e.g., OEChildren) with the blockquote directive instead.
+		private const string Indent = "    "; //">"; //&nbsp;&nbsp;&nbsp;&nbsp;";
+		private const string Quote = ">";
 
 		private readonly Page page;
 		private readonly XNamespace ns;
-		private readonly bool withAttachments;
 		private readonly List<Style> quickStyles;
 		private readonly Stack<Context> contexts;
+		private bool saveAttachments;
 		private int imageCounter;
-		private bool copyMode;
-#if LOG
-		private readonly ILogger writer = Logger.Current;
-#else
+#if WriteToDisk
 		private StreamWriter writer;
-		private string path;
 		private string attachmentPath;
 		private string attachmentFolder;
+#else
+		private readonly ILogger writer = Logger.Current;
 #endif
 
 
-		public MarkdownWriter(Page page, bool withAttachments)
+		public MarkdownWriter(Page page, bool saveAttachments)
 		{
 			this.page = page;
 			ns = page.Namespace;
+
 			quickStyles = page.GetQuickStyles();
 			contexts = new Stack<Context>();
-			this.withAttachments = withAttachments;
+
+			this.saveAttachments = saveAttachments;
 		}
 
 
@@ -68,7 +76,6 @@ namespace River.OneMoreAddIn.Commands
 		/// <param name="content"></param>
 		public async Task Copy(XElement content)
 		{
-			copyMode = true;
 			using var stream = new MemoryStream();
 			using (writer = new StreamWriter(stream))
 			{
@@ -78,13 +85,11 @@ namespace River.OneMoreAddIn.Commands
 				{
 					content.Elements(ns + "Outline")
 						.Elements(ns + "OEChildren")
-						.Elements()
 						.ForEach(e => Write(e));
 				}
 				else
 				{
-					content.Elements()
-						.ForEach(e => Write(e));
+					Write(content);
 				}
 
 				await writer.WriteLineAsync();
@@ -92,13 +97,20 @@ namespace River.OneMoreAddIn.Commands
 
 				stream.Position = 0;
 				using var reader = new StreamReader(stream);
+				var text = await reader.ReadToEndAsync();
+
+				logger.Debug("markdown - - - - - - - -");
+				logger.Debug(text);
+				logger.Debug("end markdown - - - - - -");
 
 				var clippy = new ClipboardProvider();
-				var success = await clippy.SetText(await reader.ReadToEndAsync(), true);
+				var success = await clippy.SetText(text, true);
 				if (!success)
 				{
 					MoreMessageBox.ShowError(null, Resx.Clipboard_locked);
 				}
+
+				logger.Debug("copied");
 			}
 		}
 
@@ -109,14 +121,16 @@ namespace River.OneMoreAddIn.Commands
 		/// <param name="filename"></param>
 		public void Save(string filename)
 		{
-#if !LOG
-			path = Path.GetDirectoryName(filename);
+#if WriteToDisk
+			var path = Path.GetDirectoryName(filename);
 			attachmentFolder = Path.GetFileNameWithoutExtension(filename);
 			attachmentPath = Path.Combine(path, attachmentFolder);
 
 			using (writer = File.CreateText(filename))
 #endif
 			{
+				saveAttachments = true;
+
 				writer.WriteLine($"# {page.Title}");
 
 				page.Root.Elements(ns + "Outline")
@@ -137,115 +151,189 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void Write(XElement element,
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="container">typically an OEChildren with elements and OEChildren</param>
+		/// <param name="prefix">prefix used to indent markdown lines</param>
+		/// <param name="contained"></param>
+		private void Write(XElement container,
 			string prefix = "",
-			bool startpara = false,
+			int depth = 0,
 			bool contained = false)
 		{
-			bool pushed = false;
-			bool dive = true;
+			// Lines start at the beginning of each paragraph/OE which contains a flat list of
+			// Tag, List, and T, so startOfLine can be handled locally rather than recursively.
+			var startOfLine = true;
 
-			switch (element.Name.LocalName)
+			logger.Debug($"Write({container.Name.LocalName}, prefix:[{prefix}], depth:{depth}, contained:{contained})");
+
+			foreach (var element in container.Elements())
 			{
-				case "OEChildren":
-					pushed = DetectQuickStyle(element);
-					writer.WriteLine("  ");
-					prefix = $"{Indent}{prefix}";
-					break;
+				var n = element.Name.LocalName;
+				var m = $"- [prefix:[{prefix}] depth:{depth} start:{startOfLine} contained:{contained} element {n}";
+				logger.Debug(n == "T" ? $"{m} [{element.Value}]" : m);
 
-				case "OE":
-					pushed = DetectQuickStyle(element);
-					startpara = true;
-					break;
+				switch (element.Name.LocalName)
+				{
+					case "OEChildren":
+						Write(element, $"{Indent}{prefix}", depth + 1, contained);
+						break;
 
-				case "Tag":
-					WriteTag(element);
-					break;
+					case "OE":
+						{
+							if (!contained) // not in table cell
+							{
+								writer.WriteLine("  ");
+							}
 
-				case "T":
-					pushed = DetectQuickStyle(element);
-					if (startpara) Stylize(prefix);
-					WriteText(element.GetCData(), startpara);
-					break;
+							var context = DetectQuickStyle(element);
+							Write(element, prefix, depth, contained);
 
-				case "Bullet":
-					writer.Write($"{prefix}- ");
-					break;
+							if (context is not null)
+							{
+								if (!string.IsNullOrEmpty(context.Accent))
+								{
+									// close the accent
+									writer.Write(context.Accent);
+								}
 
-				case "Number":
-					writer.Write($"{prefix}1. ");
-					break;
+								contexts.Pop();
+							}
+						}
+						break;
 
-				case "Image":
-					if (!copyMode)
-					{
+					case "Tag":
+						{
+							// should always be startOfLine
+							var context = DetectQuickStyle(element);
+							if (context is not null)
+							{
+								Stylize(depth > 0
+									? prefix /*new String(Quote[0], depth)*/
+									: string.Empty);
+							}
+							else
+							{
+								writer.Write(prefix);
+							}
+
+							WriteTag(element);
+
+							if (context is not null)
+							{
+								contexts.Pop();
+							}
+
+							startOfLine = false;
+						}
+						break;
+
+					case "T":
+						{
+							var context = DetectQuickStyle(element);
+							if (context is not null)
+							{
+								Stylize(depth > 0 && startOfLine
+									? prefix /*new String(Quote[0], depth)*/
+									: string.Empty);
+
+								startOfLine = false;
+							}
+
+							WriteText(element.GetCData(), startOfLine);
+
+							if (context is not null)
+							{
+								if (!string.IsNullOrEmpty(context.Accent))
+								{
+									// close the accent
+									writer.Write(context.Accent);
+								}
+
+								contexts.Pop();
+							}
+
+							startOfLine = false;
+						}
+						break;
+
+					case "List":
+						Write(element, prefix, depth, contained);
+						startOfLine = false;
+						break;
+
+					case "Bullet":
+						writer.Write($"{prefix}- ");
+						break;
+
+					case "Number":
+						writer.Write($"{prefix}1. ");
+						break;
+
+					case "Image":
+						if (depth > 0)
+						{
+							writer.Write(new String(Quote[0], depth));
+						}
 						WriteImage(element);
-					}
-					dive = false;
-					break;
+						break;
 
-				case "InsertedFile":
-					if (!copyMode)
-					{
+					case "InkDrawing":
+					case "InsertedFile":
+					case "MediaFile":
 						WriteFile(element);
-					}
-					dive = false;
-					break;
+						break;
 
-				case "Table":
-					WriteTable(element);
-					dive = false;
-					break;
-			}
-
-			if (dive && element.HasElements)
-			{
-				foreach (var child in element.Elements())
-				{
-					Write(child, prefix, startpara);
-					startpara = false;
+					case "Table":
+						if (depth > 0)
+						{
+							writer.Write(new String(Quote[0], depth));
+						}
+						WriteTable(element);
+						break;
 				}
 			}
 
-			var context = pushed ? contexts.Pop() : null;
-			if (element.Name.LocalName == "OE")
-			{
-				if (context != null && !string.IsNullOrEmpty(context.Enclosure))
-				{
-					writer.Write(context.Enclosure);
-				}
-
-				// if not in a table cell
-				// or in a cell and this OE is followed by another OE
-				if (!contained || (element.NextNode != null))
-				{
-					writer.WriteLine("  ");
-				}
-			}
+			logger.Debug("out");
 		}
 
 
-		private bool DetectQuickStyle(XElement element)
+		private Context DetectQuickStyle(XElement element)
 		{
-			if (element.GetAttributeValue("quickStyleIndex", out int index))
+			// quickStyleIndex could be on T, OE, or OEChildren, Outline, Page
+			// so ascend until we find one...
+
+			int index = -1;
+			while (element is not null &&
+				!element.GetAttributeValue("quickStyleIndex", out index, -1))
+			{
+				element = element.Parent;
+			}
+
+			if (index >= 0)
 			{
 				var context = new Context
 				{
-					Owner = element.Name.LocalName,
 					QuickStyleIndex = index
 				};
+
 				var quick = quickStyles.First(q => q.Index == index);
 				if (quick != null)
 				{
+					var name = quick.Name.ToLower();
+
 					// cite becomes italic
-					if (quick.Name == "cite") context.Enclosure = "*";
-					else if (quick.Name == "code") context.Enclosure = "`";
+					if (name.In("cite", "citation")) context.Accent = "*";
+					else if (name.Contains("code")) context.Accent = "`";
+
 				}
+
 				contexts.Push(context);
-				return true;
+				return context;
 			}
 
-			return false;
+			return null;
 		}
 
 
@@ -293,7 +381,7 @@ namespace River.OneMoreAddIn.Commands
 				case 94:    // discuss person a/b
 				case 95:    // discuss manager
 					var check = element.Attribute("completed").Value == "true" ? "x" : " ";
-					writer.Write($"- [{check}] ");
+					writer.Write($"[{check}] ");
 					break;
 
 				case 6: writer.Write(":question: "); break;         // question
@@ -312,12 +400,12 @@ namespace River.OneMoreAddIn.Commands
 				case 133: writer.Write(":movie_camera: "); break;   // movie to see
 				case 132: writer.Write(":book: "); break;           // book to read
 				case 140: writer.Write(":zap: "); break;            // lightning bolt
-				default: writer.Write(":o: "); break;
+				default: writer.Write(":o: "); break;               // big red circle
 			}
 		}
 
 
-		private void WriteText(XCData cdata, bool startParagraph)
+		private void WriteText(XCData cdata, bool startOfLine)
 		{
 			cdata.Value = cdata.Value
 				.Replace("<br>", "  ") // usually followed by NL so leave it there
@@ -362,35 +450,43 @@ namespace River.OneMoreAddIn.Commands
 				.Replace("&lt;", "\\<")
 				.Replace("|", "\\|");
 
-			if (startParagraph && raw.Length > 0 && raw.StartsWith("#"))
+			if (startOfLine && raw.Length > 0 && raw.StartsWith("#"))
 			{
 				writer.Write("\\");
 			}
 
+			logger.Debug($"text [{raw}]");
 			writer.Write(raw);
 		}
 
 
 		private void WriteImage(XElement element)
 		{
-			var data = element.Element(ns + "Data");
-			var binhex = Convert.FromBase64String(data.Value);
-
-			using var stream = new MemoryStream(binhex, 0, binhex.Length);
-			using var image = Image.FromStream(stream);
-
-			var name = $"{attachmentFolder}_{++imageCounter}.png";
-			var filename = Path.Combine(attachmentPath, name);
-#if !LOG
-			if (!Directory.Exists(attachmentPath))
+			if (saveAttachments)
 			{
-				Directory.CreateDirectory(attachmentPath);
-			}
+				var data = element.Element(ns + "Data");
+				var binhex = Convert.FromBase64String(data.Value);
 
-			image.Save(filename, ImageFormat.Png);
+				using var stream = new MemoryStream(binhex, 0, binhex.Length);
+				using var image = Image.FromStream(stream);
+
+				var name = $"{attachmentFolder}_{++imageCounter}.png";
+				var filename = Path.Combine(attachmentPath, name);
+#if WriteToDisk
+				if (!Directory.Exists(attachmentPath))
+				{
+					Directory.CreateDirectory(attachmentPath);
+				}
+
+				image.Save(filename, ImageFormat.Png);
 #endif
-			var imgPath = Path.Combine(attachmentFolder, name);
-			writer.Write($"![Image-{imageCounter}]({imgPath})");
+				var imgPath = Path.Combine(attachmentFolder, name);
+				writer.Write($"![Image-{imageCounter}]({imgPath})");
+			}
+			else
+			{
+				writer.Write($"(*Image:{++imageCounter}.png*)");
+			}
 		}
 
 
@@ -416,13 +512,13 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			if (withAttachments)
+			if (saveAttachments)
 			{
 				var target = Path.Combine(attachmentPath, name);
 
 				try
 				{
-#if !LOG
+#if WriteToDisk
 					if (!Directory.Exists(attachmentPath))
 					{
 						Directory.CreateDirectory(attachmentPath);
@@ -451,29 +547,8 @@ namespace River.OneMoreAddIn.Commands
 
 		private void WriteTable(XElement element)
 		{
-			var table = new Table(element);
-
-			// table needs a blank line before it
-			writer.WriteLine();
-
-			// header
-			writer.Write("|");
-			for (int i = 0; i < table.ColumnCount; i++)
-			{
-				writer.Write($" {TableCell.IndexToLetters(i + 1)} |");
-			}
-			writer.WriteLine();
-
-			// separator
-			writer.Write("|");
-			for (int i = 0; i < table.ColumnCount; i++)
-			{
-				writer.Write(" :--- |");
-			}
-			writer.WriteLine();
-
-			// data
-			foreach (var row in table.Rows)
+			#region WriteRow(TableRow row)
+			void WriteRow(TableRow row)
 			{
 				writer.Write("| ");
 				foreach (var cell in row.Cells)
@@ -486,6 +561,50 @@ namespace River.OneMoreAddIn.Commands
 					writer.Write(" | ");
 				}
 				writer.WriteLine();
+			}
+			#endregion WriteRow
+
+			var table = new Table(element);
+
+			// table needs a blank line before it
+			writer.WriteLine();
+
+			var rows = table.Rows;
+
+			// header - - - - - - - - - - - - - - - - - - -
+
+			if (table.HasHeaderRow && rows.Any())
+			{
+				// use first row data as header
+				WriteRow(rows.First());
+				// skip the header row, leaving data rows
+				rows = rows.Skip(1);
+			}
+			else
+			{
+				// write generic column headers: A, B, C, ...
+				writer.Write("| ");
+				for (var i = 0; i < table.ColumnCount; i++)
+				{
+					writer.Write($" {TableCell.IndexToLetters(i + 1)} |");
+				}
+				writer.WriteLine();
+			}
+
+			// separator - - - - - - - - - - - - - - - - -
+
+			writer.Write("|");
+			for (int i = 0; i < table.ColumnCount; i++)
+			{
+				writer.Write(" :--- |");
+			}
+			writer.WriteLine();
+
+			// data - - - - - - - - - - - - - - - - - - - -
+
+			foreach (var row in rows)
+			{
+				WriteRow(row);
 			}
 		}
 	}

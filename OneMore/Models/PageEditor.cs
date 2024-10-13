@@ -399,8 +399,9 @@ namespace River.OneMoreAddIn.Models
 		public bool InsertOrReplace(XElement content, bool above = true)
 		{
 			var range = new SelectionRange(page);
-			var selections = range.GetSelections(allowPageTitle: true);
+			_ = range.GetSelections(allowPageTitle: true);
 
+			//var selections = range.GetSelections(allowPageTitle: true);
 			//if (!selections.Any() && range.Scope == SelectionScope.TextCursor)
 			//{
 			//	// cursor focus on neither body nor title
@@ -997,7 +998,7 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
-		private int IndentLevel(XElement element)
+		private static int IndentLevel(XElement element)
 		{
 			if (element is null || element.Parent is null)
 			{
@@ -1030,6 +1031,8 @@ namespace River.OneMoreAddIn.Models
 			var depth = 1;
 			foreach (var snippet in snippets)
 			{
+				logger.Debug($"snippet depth={snippet.Depth}:{depth} [{snippet.Element.Value}]");
+
 				if (snippet.Depth > depth)
 				{
 					// indent...
@@ -1047,11 +1050,14 @@ namespace River.OneMoreAddIn.Models
 
 					current = children;
 				}
-				else if (snippet.Depth < depth)
+				else
 				{
-					// outdent...
-					current = current.Parent.Parent;
-					depth--;
+					while (snippet.Depth < depth)
+					{
+						// outdent...
+						current = current.Parent.Parent;
+						depth--;
+					}
 				}
 
 				if (snippet.Element.Attribute("objectID") is XAttribute attribute)

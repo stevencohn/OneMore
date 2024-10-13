@@ -94,39 +94,51 @@ namespace River.OneMoreAddIn.Models
 				JoinCursorContext(selections.First());
 			}
 
-			NormalizeRuns();
+			NormalizeRuns(root);
 
 			root.DescendantsAndSelf().Attributes("selected").Remove();
 		}
 
 
-		// Remove an empty CDATA[] cursor or a selected=all T run, combining it with the previous
-		// and next runs into a single run
+		// Remove an empty CDATA[] cursor and, if possible, combine previous and next runs
 		private void JoinCursorContext(XElement run)
 		{
-			var cdata = run.GetCData();
+			// should only be for SelectionScope.TextCursor...
 
-			if (run.PreviousNode is XElement prev)
+			if (run.PreviousNode is XElement prev && prev.Name.LocalName == "T" &&
+				run.NextNode is XElement next && next.Name.LocalName == "T")
 			{
-				var word = prev.ExtractLastWord(true);
-				cdata.Value = $"{word}{cdata.Value}";
-
-				if (prev.GetCData().Value.Length == 0)
-				{
-					prev.Remove();
-				}
+				run.Remove();
+				NormalizeRuns(prev.Parent);
+			}
+			else
+			{
+				run.Remove();
 			}
 
-			if (run.NextNode is XElement next)
-			{
-				var word = next.ExtractFirstWord(true);
-				cdata.Value = $"{cdata.Value}{word}";
+			//var cdata = run.GetCData();
 
-				if (next.GetCData().Value.Length == 0)
-				{
-					next.Remove();
-				}
-			}
+			//if (run.PreviousNode is XElement prev && prev.Name.LocalName == "T")
+			//{
+			//	var word = prev.ExtractLastWord(true);
+			//	cdata.Value = $"{word}{cdata.Value}";
+
+			//	if (prev.GetCData().Value.Length == 0)
+			//	{
+			//		prev.Remove();
+			//	}
+			//}
+
+			//if (run.NextNode is XElement next && next.Name.LocalName == "T")
+			//{
+			//	var word = next.ExtractFirstWord(true);
+			//	cdata.Value = $"{cdata.Value}{word}";
+
+			//	if (next.GetCData().Value.Length == 0)
+			//	{
+			//		next.Remove();
+			//	}
+			//}
 		}
 
 
@@ -134,12 +146,13 @@ namespace River.OneMoreAddIn.Models
 		// from a selection range within a T by combining similar Ts back into one
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Major Code Smell",
 			"S127:\"for\" loop stop conditions should be invariant", Justification = "<Pending>")]
-		private void NormalizeRuns()
+		private void NormalizeRuns(XElement parent)
 		{
-			var runs = root.Elements(ns + "T").ToList();
+			var runs = parent.Elements(ns + "T").ToList();
 
-			// within a single CDATA,
-			// combine back-to-back SPANS with exactly the same styles into one...
+			// Within a single CDATA, combine back-to-back SPANS with exactly the same styles.
+			// Note that OneNote normalizes these automatically when page is saved, so this
+			// handles spans added by OneMore before saving.
 
 			for (int i = 0; i < runs.Count; i++)
 			{
@@ -147,8 +160,7 @@ namespace River.OneMoreAddIn.Models
 				var wrapper = cdata.GetWrapper();
 				var nodes = wrapper.Nodes().ToList();
 				var updated = false;
-				int n = 0;
-				for (int m = 1; m < nodes.Count; m++)
+				for (int n = 0, m = 1; m < nodes.Count; m++)
 				{
 					if (nodes[n] is XElement noden && nodes[m] is XElement nodem)
 					{
@@ -181,10 +193,17 @@ namespace River.OneMoreAddIn.Models
 
 			// compare back-to-back T runs and merge if we can...
 
-			runs = root.Elements(ns + "T").ToList();
+			runs = parent.Elements(ns + "T").ToList();
 
 			for (int i = 0, j = 1; j < runs.Count; j++)
 			{
+				// both runs must be owned by the same OE
+				if (runs[i].Parent != runs[j].Parent)
+				{
+					i = j;
+					continue;
+				}
+
 				var si = new Style(runs[i].CollectStyleProperties());
 				var sj = new Style(runs[j].CollectStyleProperties());
 
@@ -221,19 +240,22 @@ namespace River.OneMoreAddIn.Models
 				}
 			}
 
-			// finally pass, concat all remaining T runs...
+			// final pass, concat all remaining T runs...
 
-			runs = root.Elements(ns + "T").ToList();
-			if (runs.Count > 1)
+			if (parent.Name.LocalName == "OE")
 			{
-				var first = runs[0];
-				var cdata = first.GetCData();
-
-				for (int i = 1; i < runs.Count; i++)
+				runs = parent.Elements(ns + "T").ToList();
+				if (runs.Count > 1)
 				{
-					var cd = runs[i].GetCData();
-					cdata.Value = $"{cdata.Value}{cd.Value}";
-					runs[i].Remove();
+					var first = runs[0];
+					var cdata = first.GetCData();
+
+					for (int i = 1; i < runs.Count; i++)
+					{
+						var cd = runs[i].GetCData();
+						cdata.Value = $"{cdata.Value}{cd.Value}";
+						runs[i].Remove();
+					}
 				}
 			}
 		}

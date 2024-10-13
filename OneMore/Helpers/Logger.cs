@@ -20,6 +20,9 @@ namespace River.OneMoreAddIn
 
 	internal class Logger : ILogger
 	{
+		private const string DebugFlag = "!";
+		private const string VerboseFlag = "+";
+
 		private static ILogger instance;
 		private static bool designMode;
 		private static string appname = "OneMore";
@@ -163,7 +166,7 @@ namespace River.OneMoreAddIn
 		{
 			if (debug)
 			{
-				timeBar = "+";
+				timeBar = DebugFlag;
 				WriteLine();
 				timeBar = "|";
 			}
@@ -174,7 +177,7 @@ namespace River.OneMoreAddIn
 		{
 			if (debug)
 			{
-				timeBar = "+";
+				timeBar = DebugFlag;
 				WriteLine(message);
 				timeBar = "|";
 			}
@@ -185,7 +188,7 @@ namespace River.OneMoreAddIn
 		{
 			if (debug)
 			{
-				timeBar = "+";
+				timeBar = DebugFlag;
 				WriteLine(element);
 				timeBar = "|";
 			}
@@ -196,7 +199,7 @@ namespace River.OneMoreAddIn
 		{
 			if (debug)
 			{
-				timeBar = "+";
+				timeBar = DebugFlag;
 				WriteTime(message, keepRunning);
 				timeBar = "|";
 			}
@@ -297,7 +300,7 @@ namespace River.OneMoreAddIn
 		{
 			if (verbose)
 			{
-				timeBar = "+";
+				timeBar = VerboseFlag;
 				WriteLine();
 				timeBar = "|";
 			}
@@ -308,7 +311,7 @@ namespace River.OneMoreAddIn
 		{
 			if (verbose)
 			{
-				timeBar = "+";
+				timeBar = VerboseFlag;
 				WriteLine(message);
 				timeBar = "|";
 			}
@@ -319,7 +322,7 @@ namespace River.OneMoreAddIn
 		{
 			if (verbose)
 			{
-				timeBar = "+";
+				timeBar = VerboseFlag;
 				WriteLine(element);
 				timeBar = "|";
 			}

@@ -34,7 +34,7 @@ namespace River.OneMoreAddIn
 		private IRibbonUI ribbon;                   // the ribbon control
 		private ILogger logger;                     // our diagnostic logger
 		private CommandFactory factory;
-		private readonly Process process;           // current process, to kill if necessary
+		//private readonly Process process;         // current process, to kill if necessary
 		private List<IDisposable> trash;            // track disposables
 
 
@@ -49,7 +49,7 @@ namespace River.OneMoreAddIn
 
 			logger = Logger.Current;
 			trash = new List<IDisposable>();
-			process = Process.GetCurrentProcess();
+			//process = Process.GetCurrentProcess();
 
 			UI.Scaling.PrepareUI();
 
@@ -79,7 +79,7 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		private System.Reflection.Assembly CustomAssemblyResolve(object sender, ResolveEventArgs args)
 		{
-			//logger.WriteLine($"AssemblyResolve of '{args.Name}'");
+			logger.Debug($"AssemblyResolve of '{args.Name}'");
 
 			var path = new Uri(Path.Combine(
 				Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase),
@@ -88,13 +88,13 @@ namespace River.OneMoreAddIn
 
 			try
 			{
-				//logger.WriteLine($"resolving {path}");
+				logger.Debug($"resolving {path}");
 				var asm = System.Reflection.Assembly.LoadFrom(path);
 				return asm;
 			}
-			catch (Exception)
+			catch (Exception exc)
 			{
-				//logger.WriteLine($"AssemblyResolve exception {exc.Message} for {path}");
+				logger.Debug($"AssemblyResolve exception {exc.Message} for {path}");
 				return null;
 			}
 		}
@@ -310,7 +310,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private string DescribeCustom(Array custom)
+		private static string DescribeCustom(Array custom)
 		{
 			var description = string.Empty;
 			if (custom is not null)

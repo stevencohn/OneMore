@@ -52,7 +52,7 @@ namespace River.OneMoreAddIn.Models
 		/// be used to optimize the page just prior to saving.
 		/// </summary>
 		/// <param name="root">The root element of the page</param>
-		private void ComputeHashes(XElement root)
+		private static void ComputeHashes(XElement root)
 		{
 			// MD5 should be sufficient and performs best but is not FIPS compliant
 			// so use SHA1 instead. Computers are configured to enable/disable FIPS via
@@ -275,6 +275,9 @@ namespace River.OneMoreAddIn.Models
 		/// </summary>
 		/// <param name="mapping"></param>
 		/// <param name="outline"></param>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Code Smell",
+			"S2325:Methods and properties that don't access instance data should be static",
+			Justification = "false positive")]
 		public void ApplyStyleMapping(List<QuickStyleMapping> mapping, XElement outline)
 		{
 			// reverse sort the styles so logic doesn't overwrite subsequent index references

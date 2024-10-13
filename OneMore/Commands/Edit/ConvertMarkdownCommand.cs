@@ -35,7 +35,7 @@ namespace River.OneMoreAddIn.Commands
 			var editor = new PageEditor(page) { AllContent = allContent };
 
 			var outlines = allContent
-				? page.Root.Elements(ns + "Outline")
+				? page.BodyOutlines
 				: selectedRuns.Select(e => e.FirstAncestor(ns + "Outline")).Distinct();
 
 			// cache all OE objectIDs, compare against later, to only space out new OEs
@@ -48,6 +48,10 @@ namespace River.OneMoreAddIn.Commands
 			foreach (var outline in outlines.ToList())
 			{
 				var content = await editor.ExtractSelectedContent(outline);
+				logger.Debug("outline - - - - - - - - - - - - - - - - - - - - - -");
+				logger.Debug(content);
+				logger.Debug("/outline");
+
 				var paragraphs = content.Elements(ns + "OE").ToList();
 
 				var reader = new PageReader(page)
@@ -90,8 +94,11 @@ namespace River.OneMoreAddIn.Commands
 			if (touched.Any())
 			{
 				var converter = new MarkdownConverter(page);
-				converter.RewriteHeadings(touched);
-				converter.SpaceOutParagraphs(touched, 12);
+
+				converter
+					.RewriteHeadings(touched)
+					.RewriteTodo(touched)
+					.SpaceOutParagraphs(touched, 12);
 
 				await one.Update(page);
 			}

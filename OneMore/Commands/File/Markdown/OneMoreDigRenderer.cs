@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2022 Steven M Cohn.  All rights reserved.
+// Copyright © 2022 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -55,7 +55,6 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			renderer.EnsureLine();
-
 		}
 	}
 }

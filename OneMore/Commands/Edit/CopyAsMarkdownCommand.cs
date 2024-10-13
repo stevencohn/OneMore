@@ -5,9 +5,9 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
-	using River.OneMoreAddIn.UI;
+	using System;
 	using System.Threading.Tasks;
-	using Resx = Properties.Resources;
+	using System.Xml.Linq;
 
 
 	/// <summary>
@@ -22,6 +22,19 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
+			#region WriteMarkdown(PageEditor editor, MarkdownWriter writer, XElement start)
+			async void WriteMarkdown(PageEditor editor, MarkdownWriter writer, XElement start)
+			{
+				var content = await editor.ExtractSelectedContent(start);
+
+				logger.Debug("markdown content");
+				logger.Debug(content);
+				logger.Debug("- - -");
+
+				await writer.Copy(content);
+			}
+			#endregion WriteMarkdown
+
 			await using var one = new OneNote(out var page, out var _);
 
 			var writer = new MarkdownWriter(page, false);
@@ -35,21 +48,34 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			if (range.Scope == SelectionScope.TextCursor ||
-				range.Scope == SelectionScope.SpecialCursor)
+			try
 			{
-				await writer.Copy(page.Root);
-			}
-			else
-			{
-				// selection range found so move it into snippet
 				var editor = new PageEditor(page);
-				var content = await editor.ExtractSelectedContent();
 
-				await writer.Copy(content);
+				if (range.Scope == SelectionScope.TextCursor ||
+					range.Scope == SelectionScope.SpecialCursor)
+				{
+					editor.AllContent = true;
+					range.Deselect();
+
+					logger.Debug(page.Root);
+
+					foreach (var outline in page.BodyOutlines)
+					{
+						WriteMarkdown(editor, writer, outline);
+					}
+				}
+				else
+				{
+					WriteMarkdown(editor, writer, null);
+				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine(exc);
 			}
 
-			MoreBubbleWindow.Show(Resx.CopyAsMarkdownCommand_copied);
+			//MoreBubbleWindow.Show(Resx.CopyAsMarkdownCommand_copied);
 		}
 	}
 }

@@ -8,9 +8,13 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.Styles;
 	using System.Collections.Generic;
 	using System.Linq;
+	using System.Text.RegularExpressions;
 	using System.Xml.Linq;
 
 
+	/// <summary>
+	/// Utility class for post-processing a page converted from markdown.
+	/// </summary>
 	internal class MarkdownConverter
 	{
 		private sealed class Candidate
@@ -31,6 +35,8 @@ namespace River.OneMoreAddIn.Commands
 			this.page = page;
 			ns = page.Namespace;
 
+			PageNamespace.Set(ns);
+
 			analyzer = new StyleAnalyzer(page.Root);
 		}
 
@@ -41,7 +47,7 @@ namespace River.OneMoreAddIn.Commands
 		/// </summary>
 		public void RewriteHeadings()
 		{
-			foreach (var outline in page.Root.Elements("Outline"))
+			foreach (var outline in page.BodyOutlines)
 			{
 				RewriteHeadings(outline.Descendants(ns + "OE"));
 			}
@@ -51,7 +57,7 @@ namespace River.OneMoreAddIn.Commands
 		/// <summary>
 		/// Applies standard OneNote styling all recognizable headings in the given Outline
 		/// </summary>
-		public void RewriteHeadings(IEnumerable<XElement> paragraphs)
+		public MarkdownConverter RewriteHeadings(IEnumerable<XElement> paragraphs)
 		{
 			var headings = paragraphs
 				// candidate headings imported from markdown should have exactly one text run
@@ -91,6 +97,8 @@ namespace River.OneMoreAddIn.Commands
 						stylizer.ApplyStyle(e);
 					});
 			}
+
+			return this;
 		}
 
 
@@ -134,15 +142,58 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
+		/// Tag current line with To Do tag if beginning with [ ] or [x]
+		/// All other :emojis: should be translated inline by Markdig
+		/// </summary>
+		/// <param name="paragraphs"></param>
+		public MarkdownConverter RewriteTodo(IEnumerable<XElement> paragraphs)
+		{
+			var boxpattern = new Regex(@"^\\?\[(?<x>x|\s)\]");
+
+			foreach (var paragraph in paragraphs)
+			{
+				var run = paragraph.Elements(ns + "T").FirstOrDefault();
+
+				if (run is not null)
+				{
+					var cdata = run.GetCData();
+					var wrapper = cdata.GetWrapper();
+					if (wrapper.FirstNode is XText text)
+					{
+						var match = boxpattern.Match(text.Value);
+						if (match.Success)
+						{
+							text.Value = text.Value.Substring(match.Length);
+
+							// ensure TagDef exists
+							var index = page.AddTagDef("3", "To Do", 4);
+
+							// inject tag prior to run
+							run.AddBeforeSelf(new Tag(index, match.Groups["x"].Value == "x"));
+
+							// update run text
+							cdata.Value = wrapper.GetInnerXml();
+						}
+					}
+				}
+			}
+
+			return this;
+		}
+
+
+		/// <summary>
 		/// Adds OneNote paragraph spacing in all Outlines on the page
 		/// </summary>
 		/// <param name="spaceAfter"></param>
-		public void SpaceOutParagraphs(float spaceAfter)
+		public MarkdownConverter SpaceOutParagraphs(float spaceAfter)
 		{
-			foreach (var outline in page.Root.Elements("Outline"))
+			foreach (var outline in page.BodyOutlines)
 			{
 				SpaceOutParagraphs(outline.Descendants(ns + "OE"), spaceAfter);
 			}
+
+			return this;
 		}
 
 
@@ -150,13 +201,14 @@ namespace River.OneMoreAddIn.Commands
 		/// Adds OneNote paragraph spacing in the given Outline
 		/// </summary>
 		/// <param name="spaceAfter"></param>
-		public void SpaceOutParagraphs(IEnumerable<XElement> paragraphs, float spaceAfter)
+		public MarkdownConverter SpaceOutParagraphs(
+			IEnumerable<XElement> paragraphs, float spaceAfter)
 		{
 			var after = $"{spaceAfter:0.0}";
 
 			var last = paragraphs.Last();
 
-			foreach (var item in paragraphs
+			var list = paragraphs
 				.Where(e =>
 					// not the last paragraph in the Outline
 					e != last &&
@@ -164,10 +216,15 @@ namespace River.OneMoreAddIn.Commands
 					((e.NextNode is not null && !e.Elements(ns + "List").Any()) ||
 					// any last item in a List
 					(e.NextNode is null && e.Elements(ns + "List").Any())
-					)))
+					))
+				.ToList();
+
+			foreach (var item in list)
 			{
 				item.SetAttributeValue("spaceAfter", after);
 			}
+
+			return this;
 		}
 	}
 }
