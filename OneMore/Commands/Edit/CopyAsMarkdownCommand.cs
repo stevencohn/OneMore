@@ -5,10 +5,9 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
-	using River.OneMoreAddIn.UI;
+	using System;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
-	using Resx = Properties.Resources;
 
 
 	/// <summary>
@@ -49,27 +48,34 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			var editor = new PageEditor(page);
-
-			if (range.Scope == SelectionScope.TextCursor ||
-				range.Scope == SelectionScope.SpecialCursor)
+			try
 			{
-				editor.AllContent = true;
-				range.Deselect();
+				var editor = new PageEditor(page);
 
-				logger.Debug(page.Root);
-
-				foreach (var outline in page.BodyOutlines)
+				if (range.Scope == SelectionScope.TextCursor ||
+					range.Scope == SelectionScope.SpecialCursor)
 				{
-					WriteMarkdown(editor, writer, outline);
+					editor.AllContent = true;
+					range.Deselect();
+
+					logger.Debug(page.Root);
+
+					foreach (var outline in page.BodyOutlines)
+					{
+						WriteMarkdown(editor, writer, outline);
+					}
+				}
+				else
+				{
+					WriteMarkdown(editor, writer, null);
 				}
 			}
-			else
+			catch (Exception exc)
 			{
-				WriteMarkdown(editor, writer, null);
+				logger.WriteLine(exc);
 			}
 
-			MoreBubbleWindow.Show(Resx.CopyAsMarkdownCommand_copied);
+			//MoreBubbleWindow.Show(Resx.CopyAsMarkdownCommand_copied);
 		}
 	}
 }

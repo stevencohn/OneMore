@@ -20,7 +20,7 @@ namespace River.OneMoreAddIn
 
 	internal class Logger : ILogger
 	{
-		private const string DebugFlag = "*";
+		private const string DebugFlag = "!";
 		private const string VerboseFlag = "+";
 
 		private static ILogger instance;

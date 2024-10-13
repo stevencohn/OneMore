@@ -1031,7 +1031,7 @@ namespace River.OneMoreAddIn.Models
 			var depth = 1;
 			foreach (var snippet in snippets)
 			{
-				logger.Verbose($"snippet depth={snippet.Depth}:{depth} [{snippet.Element.Value}]");
+				logger.Debug($"snippet depth={snippet.Depth}:{depth} [{snippet.Element.Value}]");
 
 				if (snippet.Depth > depth)
 				{

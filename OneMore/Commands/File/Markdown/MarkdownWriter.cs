@@ -109,6 +109,8 @@ namespace River.OneMoreAddIn.Commands
 				{
 					MoreMessageBox.ShowError(null, Resx.Clipboard_locked);
 				}
+
+				logger.Debug("copied");
 			}
 		}
 
