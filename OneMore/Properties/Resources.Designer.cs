@@ -9821,6 +9821,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Scan Hashtags.
+        /// </summary>
+        internal static string ribScanHashtagsButton_Label {
+            get {
+                return ResourceManager.GetString("ribScanHashtagsButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scan hashtags immediately.
+        /// </summary>
+        internal static string ribScanHashtagsButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribScanHashtagsButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Schedule Hashtag Scan.
         /// </summary>
         internal static string ribScheduleHashtagScanButton_Label {

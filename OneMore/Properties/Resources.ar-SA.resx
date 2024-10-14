@@ -3950,6 +3950,14 @@ ISO-code then comma then language name</comment>
     <value>احفظ مقتطفًا مخصصًا جديدًا من المحتوى المحدد</value>
     <comment>ribbon snippets</comment>
   </data>
+  <data name="ribScanHashtagsButton_Label" xml:space="preserve">
+    <value>مسح علامات التصنيف</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribScanHashtagsButton_Screentip" xml:space="preserve">
+    <value>مسح علامات التصنيف على الفور</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribScheduleHashtagScanButton_Label" xml:space="preserve">
     <value>جدولة مسح الهاشتاج</value>
     <comment>palette command</comment>

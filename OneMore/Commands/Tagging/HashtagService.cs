@@ -8,7 +8,6 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Settings;
 	using System;
-	using System.Diagnostics;
 	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
@@ -208,9 +207,6 @@ namespace River.OneMoreAddIn.Commands
 
 		protected async Task Scan()
 		{
-			var clock = new Stopwatch();
-			clock.Start();
-
 			using var scanner = new HashtagScanner();
 
 			if (notebookFilters is not null && notebookFilters.Length > 0)
@@ -218,20 +214,16 @@ namespace River.OneMoreAddIn.Commands
 				scanner.SetNotebookFilters(notebookFilters);
 			}
 
-			var (dirtyPages, totalPages) = await scanner.Scan();
+			await scanner.Scan();
 
-			clock.Stop();
-			var time = clock.ElapsedMilliseconds;
-
+			var s = scanner.Stats;
 			scanCount++;
-			scanTime += time;
+			scanTime += scanner.Stats.Time;
 
 			var avg = scanTime / scanCount;
 
 			OnHashtagScanned?.Invoke(this,
-				new HashtagScannedEventArgs(totalPages, dirtyPages, time, scanCount, avg));
-
-			logger.Debug($"hashtag service scanned {scanCount} times...");
+				new HashtagScannedEventArgs(s.TotalPages, s.DirtyPages, s.Time, scanCount, avg));
 
 			if (hour != DateTime.Now.Hour)
 			{
@@ -240,11 +232,13 @@ namespace River.OneMoreAddIn.Commands
 				scanCount = 0;
 				scanTime = 0;
 			}
-
-			if (dirtyPages > 0 || time > 1000)
+			else if (s.DirtyPages > 0 || s.Time > 1000)
 			{
-				logger.WriteLine(
-					$"hashtag service scanned {totalPages} pages, updating {dirtyPages}, in {time}ms");
+				scanner.Report("hashtag SERVICE");
+			}
+			else if (logger.IsDebug)
+			{
+				scanner.Report("hashtag service");
 			}
 		}
 	}

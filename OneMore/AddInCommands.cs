@@ -807,6 +807,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<SaveSnippetCommand>();
 
 
+		[Command("ribScanHashtagsButton_Label", Keys.Control | Keys.Alt | Keys.F9, "ribSearchMenu")]
+		public async Task ScanHashtagsCmd(IRibbonControl control)
+			=> await factory.Run<ScanHashtagsCommand>();
+
+
 		[Command("ribScheduleHashtagScanButton_Label", Keys.None, "ribSearchMenu")]
 		public async Task ScheduleHashtagScanCmd(IRibbonControl control)
 			=> await factory.Run<HashtagScanCommand>();

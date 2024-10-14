@@ -3950,6 +3950,14 @@ Después del último grupo</value>
     <value>Guardar un nuevo fragmento personalizado del contenido seleccionado</value>
     <comment>ribbon snippets</comment>
   </data>
+  <data name="ribScanHashtagsButton_Label" xml:space="preserve">
+    <value>Escanear hashtags</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribScanHashtagsButton_Screentip" xml:space="preserve">
+    <value>Escanea hashtags inmediatamente</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribScheduleHashtagScanButton_Label" xml:space="preserve">
     <value>Programar escaneo de hashtags</value>
     <comment>palette command</comment>

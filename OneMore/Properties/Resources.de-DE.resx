@@ -3943,6 +3943,14 @@ Nach der letzten Gruppe</value>
     <value>Speichert ein neues benutzerdefiniertes Snippet aus dem ausgewählten Inhalt</value>
     <comment>ribbon snippets</comment>
   </data>
+  <data name="ribScanHashtagsButton_Label" xml:space="preserve">
+    <value>Hashtags scannen</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribScanHashtagsButton_Screentip" xml:space="preserve">
+    <value>Hashtags sofort scannen</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribScheduleHashtagScanButton_Label" xml:space="preserve">
     <value>Planen Sie den Hashtag-Scan</value>
     <comment>palette command</comment>

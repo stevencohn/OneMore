@@ -138,6 +138,12 @@ namespace River.OneMoreAddIn
 		}
 
 
+		public bool IsDebug => debug;
+
+
+		public bool IsVerbose => verbose;
+
+
 		public string LogPath { get; private set; }
 
 

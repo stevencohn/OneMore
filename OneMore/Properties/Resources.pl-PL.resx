@@ -3951,6 +3951,14 @@ Po ostatniej grupie</value>
     <value>Zapisz nowy niestandardowy fragment z wybranej treści</value>
     <comment>ribbon snippets</comment>
   </data>
+  <data name="ribScanHashtagsButton_Label" xml:space="preserve">
+    <value>Skanuj hashtagi</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribScanHashtagsButton_Screentip" xml:space="preserve">
+    <value>Natychmiast skanuj hashtagi</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribScheduleHashtagScanButton_Label" xml:space="preserve">
     <value>Zaplanuj skanowanie hashtagów</value>
     <comment>palette command</comment>

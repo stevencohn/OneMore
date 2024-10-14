@@ -3951,6 +3951,14 @@ After last group</value>
     <value>Save a new snippet from the selected content</value>
     <comment>ribbon snippets</comment>
   </data>
+  <data name="ribScanHashtagsButton_Label" xml:space="preserve">
+    <value>Scan Hashtags</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribScanHashtagsButton_Screentip" xml:space="preserve">
+    <value>Scan hashtags immediately</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribScheduleHashtagScanButton_Label" xml:space="preserve">
     <value>Schedule Hashtag Scan</value>
     <comment>palette command</comment>
