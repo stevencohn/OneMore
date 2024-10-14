@@ -3950,6 +3950,14 @@ Na de laatste groep</value>
     <value>Sla een nieuw aangepast fragment op van de geselecteerde inhoud</value>
     <comment>ribbon snippets</comment>
   </data>
+  <data name="ribScanHashtagsButton_Label" xml:space="preserve">
+    <value>Hashtags scannen</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribScanHashtagsButton_Screentip" xml:space="preserve">
+    <value>Scan hashtags onmiddellijk</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribScheduleHashtagScanButton_Label" xml:space="preserve">
     <value>Plan een hashtagscan</value>
     <comment>palette command</comment>

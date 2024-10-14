@@ -96,7 +96,8 @@ namespace River.OneMoreAddIn.Commands
 				if (!scheduler.ScheduleExists && scheduler.State == ScanningState.Ready)
 				{
 					using var scanner = new HashtagScanner();
-					(_, _) = await scanner.Scan();
+					await scanner.Scan();
+					scanner.Report("legacy converter");
 				}
 			}
 

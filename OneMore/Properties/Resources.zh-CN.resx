@@ -3943,6 +3943,14 @@ ISO-code then comma then language name</comment>
     <value>从所选内容中保存新的自定义片段</value>
     <comment>ribbon snippets</comment>
   </data>
+  <data name="ribScanHashtagsButton_Label" xml:space="preserve">
+    <value>扫描标签</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribScanHashtagsButton_Screentip" xml:space="preserve">
+    <value>立即扫描主题标签</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribScheduleHashtagScanButton_Label" xml:space="preserve">
     <value>安排标签扫描</value>
     <comment>palette command</comment>

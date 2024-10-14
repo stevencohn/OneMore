@@ -3950,6 +3950,14 @@ Depois do último grupo</value>
     <value>Salve um novo snippet personalizado do conteúdo selecionado</value>
     <comment>ribbon snippets</comment>
   </data>
+  <data name="ribScanHashtagsButton_Label" xml:space="preserve">
+    <value>Digitalizar hashtags</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribScanHashtagsButton_Screentip" xml:space="preserve">
+    <value>Digitalize hashtags imediatamente</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribScheduleHashtagScanButton_Label" xml:space="preserve">
     <value>Agendar verificação de hashtag</value>
     <comment>palette command</comment>

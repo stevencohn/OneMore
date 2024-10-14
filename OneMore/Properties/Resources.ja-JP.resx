@@ -3953,6 +3953,14 @@ ISO-code then comma then language name</comment>
     <value>選択した内容から新しいスニペットを保存</value>
     <comment>ribbon snippets</comment>
   </data>
+  <data name="ribScanHashtagsButton_Label" xml:space="preserve">
+    <value>ハッシュタグをスキャンする</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribScanHashtagsButton_Screentip" xml:space="preserve">
+    <value>ハッシュタグをすぐにスキャンする</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribScheduleHashtagScanButton_Label" xml:space="preserve">
     <value>ハッシュタグスキャンのスケジュール設定</value>
     <comment>palette command</comment>

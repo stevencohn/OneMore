@@ -9,6 +9,20 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = Properties.Resources;
 
 
+	#region Wrappers
+	internal class ScanHashtagsCommand : ToCaseCommand
+	{
+		public ScanHashtagsCommand() : base() { }
+		public override async Task Execute(params object[] args)
+		{
+			using var scanner = new HashtagScanner();
+			await scanner.Scan();
+			scanner.Report();
+		}
+	}
+	#endregion
+
+
 	internal class HashtagScanCommand : Command
 	{
 

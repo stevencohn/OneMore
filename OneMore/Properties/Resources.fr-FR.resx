@@ -3949,6 +3949,14 @@ Après le dernier groupe</value>
     <value>Enregistrer un nouvel extrait personnalisé à partir du contenu sélectionné</value>
     <comment>ribbon snippets</comment>
   </data>
+  <data name="ribScanHashtagsButton_Label" xml:space="preserve">
+    <value>Scanner les hashtags</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribScanHashtagsButton_Screentip" xml:space="preserve">
+    <value>Scannez immédiatement les hashtags</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribScheduleHashtagScanButton_Label" xml:space="preserve">
     <value>Planifier une analyse de hashtag</value>
     <comment>palette command</comment>

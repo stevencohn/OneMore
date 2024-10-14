@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.Styles;
 	using System;
 	using System.Collections.Generic;
+	using System.Diagnostics;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
@@ -19,6 +20,18 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class HashtagScanner : Loggable, IDisposable
 	{
+		public class Statistics
+		{
+			public int Notebooks;
+			public int KnownNotebooks;
+			public int FilteredNotebooks;
+			public int Sections;
+			public int TotalPages;
+			public int DirtyPages;
+			public int Tags;
+			public long Time;
+		}
+
 		public const int DefaultThrottle = 40;
 
 		private readonly string lastTime;
@@ -44,9 +57,14 @@ namespace River.OneMoreAddIn.Commands
 				GetStyleTemplate(),
 				settings.Get<bool>("unfiltered"));
 
+			Stats = new Statistics();
+
 			lastTime = provider.ReadScanTime();
 			//logger.Verbose($"HashtagScanner lastTime {lastTime}");
 		}
+
+
+		public Statistics Stats { get; private set; }
 
 
 		/// <summary>
@@ -55,6 +73,7 @@ namespace River.OneMoreAddIn.Commands
 		public void SetNotebookFilters(string[] filters)
 		{
 			notebookFilters = filters;
+			Stats.FilteredNotebooks = filters.Length;
 		}
 
 
@@ -119,10 +138,10 @@ namespace River.OneMoreAddIn.Commands
 		/// Scan all notebooks for all hashtags
 		/// </summary>
 		/// <returns></returns>
-		public async Task<(int, int)> Scan()
+		public async Task Scan()
 		{
-			int dirtyPages = 0;
-			int totalPages = 0;
+			var clock = new Stopwatch();
+			clock.Start();
 
 			await using var one = new OneNote();
 
@@ -131,7 +150,7 @@ namespace River.OneMoreAddIn.Commands
 			if (root is null)
 			{
 				logger.WriteLine("error HashtagScanner one.GetNotebooks()");
-				return (0, 0);
+				return;
 			}
 
 			var ns = one.GetNamespace(root);
@@ -140,6 +159,9 @@ namespace River.OneMoreAddIn.Commands
 			if (notebooks.Any())
 			{
 				var knownNotebooks = provider.ReadKnownNotebooks();
+
+				Stats.Notebooks += notebooks.Count();
+				Stats.KnownNotebooks += knownNotebooks.Count;
 
 				foreach (var notebook in notebooks)
 				{
@@ -180,8 +202,8 @@ namespace River.OneMoreAddIn.Commands
 								one, sections, notebookID, $"/{name}",
 								known?.LastModified == string.Empty);
 
-							dirtyPages += dp;
-							totalPages += tp;
+							Stats.DirtyPages += dp;
+							Stats.TotalPages += tp;
 						}
 
 						// record the notebook regardless of whether we find tags; must be done
@@ -197,7 +219,8 @@ namespace River.OneMoreAddIn.Commands
 
 			provider.WriteScanTime();
 
-			return (dirtyPages, totalPages);
+			clock.Stop();
+			Stats.Time = clock.ElapsedMilliseconds;
 		}
 
 
@@ -262,6 +285,8 @@ namespace River.OneMoreAddIn.Commands
 						}
 					}
 				}
+
+				Stats.Sections += sectionRefs.Count();
 			}
 
 			var groups = parent.Elements(ns + "SectionGroup")
@@ -359,6 +384,8 @@ namespace River.OneMoreAddIn.Commands
 				// few copied records. should scale without issue into the many tens-of-tags
 				provider.WriteTags(pageID, candidates);
 				dirtyPage = true;
+
+				Stats.Tags += updated.Count + discovered.Count;
 			}
 
 			// if first time hashtags were discovered on this page then set omPageID
@@ -385,6 +412,20 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return false;
+		}
+
+
+		public void Report(string title = null)
+		{
+			if (!string.IsNullOrWhiteSpace(title))
+			{
+				logger.Write($"{title} ");
+			}
+
+			logger.WriteLine($"scanned {Stats.TotalPages} pages, " +
+				$"{Stats.KnownNotebooks}/{Stats.Notebooks} notebooks, " +
+				$"{Stats.Sections} sections, updating {Stats.DirtyPages} pages, " +
+				$"saving {Stats.Tags} tags, in {Stats.Time}ms");
 		}
 	}
 }

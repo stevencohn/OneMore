@@ -3949,6 +3949,14 @@ ISO-code then comma then language name</comment>
     <value>שמור קטע מותאם אישית חדש מהתוכן שנבחר</value>
     <comment>ribbon snippets</comment>
   </data>
+  <data name="ribScanHashtagsButton_Label" xml:space="preserve">
+    <value>סרוק Hashtags</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribScanHashtagsButton_Screentip" xml:space="preserve">
+    <value>סרוק hashtags באופן מיידי</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribScheduleHashtagScanButton_Label" xml:space="preserve">
     <value>תזמן סריקת Hashtag</value>
     <comment>palette command</comment>

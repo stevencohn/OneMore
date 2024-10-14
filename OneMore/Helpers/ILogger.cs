@@ -13,6 +13,17 @@ namespace River.OneMoreAddIn
 	/// </summary>
 	public interface ILogger : IDisposable
 	{
+		/// <summary>
+		/// 
+		/// </summary>
+		bool IsDebug { get; }
+
+
+		/// <summary>
+		/// 
+		/// </summary>
+		bool IsVerbose { get; }
+
 
 		/// <summary>
 		/// Gets the system file path of the log file
