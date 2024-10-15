@@ -1332,6 +1332,10 @@ Wyszukiwanie hashtagów nie jest możliwe, dopóki nie zostanie zakończone.</va
     <value>Skanuj teraz</value>
     <comment>menu button</comment>
   </data>
+  <data name="HashtagDialog_scanLink.Text" xml:space="preserve">
+    <value>Odkryto nowe notesy. Kliknij tutaj, aby zeskanować.</value>
+    <comment>link label</comment>
+  </data>
   <data name="HashtagDialog_scheduleButton.Text" xml:space="preserve">
     <value>Zaplanuj skanowanie</value>
     <comment>menu item</comment>

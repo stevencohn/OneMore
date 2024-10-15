@@ -1332,6 +1332,10 @@ Searching for hashtags is unavailable until this is completed.</value>
     <value>Scan Now</value>
     <comment>menu button</comment>
   </data>
+  <data name="HashtagDialog_scanLink.Text" xml:space="preserve">
+    <value>New notebooks discovered. Click here to scan.</value>
+    <comment>link label</comment>
+  </data>
   <data name="HashtagDialog_scheduleButton.Text" xml:space="preserve">
     <value>Schedule Scan</value>
     <comment>menu item</comment>

@@ -33,6 +33,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 		public const int DefaultThrottle = 40;
+		private const int MaxPagesThreshold = 100;
 
 		private readonly string lastTime;
 		private readonly HashtagPageSannerFactory factory;
@@ -171,24 +172,51 @@ namespace River.OneMoreAddIn.Commands
 
 					var known = knownNotebooks.Find(n => n.NotebookID == notebookID);
 
-					// Filter on two levels...
+					// Filter on three levels...
 					//
 					// knownNotebooks
 					//   If knownNotebooks is empty, then we assume that this is the first scan
-					//   and will allow all; otherwise we only scan known notebooks to avoid
-					//   pulling in large data from newly added notebooks - user must schedule
-					//   a scan to pull in those new notebooks explicitly.
+					//   and will allow all; otherwise only scan known notebooks, also include
+					//   newly added notebooks that are below the size threshold to avoid causing
+					//   OneNote to behave sluggishly - user must schedule a scan to pull in those
+					//   new notebooks explicitly.
 					//
 					// notebookFilters
 					//   If notebookFilters is empty then allow any notebook that has passed the
 					//   knownNotebook test; otherwise, the user has explicitly requested a scan
-					//   of notebooks specified in the notebookFilters list.
+					//   of notebooks specified in the notebookFilters list or the notebook is
+					//   within the size threshold.
+					//
+					// size
+					//   If there are known notebooks, yet this notebook is not one of them, and
+					//   not filtered, then check the size of the new notebook; if below the set
+					//   threshold then scanit, otherwise user must schedule explicitly.
 					//
 
-					if (knownNotebooks.Count == 0 ||
-						(notebookFilters is null
-							? known is not null
-							: notebookFilters.Contains(notebookID)))
+					// known is empty so accept any and all
+					var accepted = knownNotebooks.Count == 0;
+					if (!accepted)
+					{
+						if (notebookFilters is null)
+						{
+							// known notebook so accept it
+							accepted = known is not null;
+							if (!accepted)
+							{
+								// notebook size is within threshold?
+								// this may load the notebook twice, but small cost
+								var populated = await one.GetNotebook(notebookID, OneNote.Scope.Pages);
+								accepted = populated.Descendants(ns + "Page")
+									.Count(e => e.Attribute("isInRecycleBin") is null) < MaxPagesThreshold;
+							}
+						}
+						else
+						{
+							accepted = notebookFilters.Contains(notebookID);
+						}
+					}
+
+					if (accepted)
 					{
 						//logger.Verbose($"scanning notebook {notebookID} \"{name}\"");
 
@@ -233,7 +261,8 @@ namespace River.OneMoreAddIn.Commands
 			int totalPages = 0;
 			var ns = one.GetNamespace(parent);
 
-			var sectionRefs = parent.Elements(ns + "Section")
+			// Descendants allows diving into SectionGroups
+			var sectionRefs = parent.Descendants(ns + "Section")
 				.Where(e =>
 					e.Attribute("isRecycleBin") is null &&
 					e.Attribute("isInRecycleBin") is null &&

@@ -1329,6 +1329,10 @@ Die Suche nach Hashtags ist erst möglich, wenn dies abgeschlossen ist.</value>
     <value>Scanne jetzt</value>
     <comment>menu button</comment>
   </data>
+  <data name="HashtagDialog_scanLink.Text" xml:space="preserve">
+    <value>Neue Notizbücher entdeckt. Klicken Sie hier, um zu scannen.</value>
+    <comment>link label</comment>
+  </data>
   <data name="HashtagDialog_scheduleButton.Text" xml:space="preserve">
     <value>Planen Sie den Scan</value>
     <comment>menu item</comment>

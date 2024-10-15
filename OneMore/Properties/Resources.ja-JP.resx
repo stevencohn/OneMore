@@ -1334,6 +1334,10 @@ OneNoteファイル (*.one)</value>
     <value>今すぐスキャン</value>
     <comment>menu button</comment>
   </data>
+  <data name="HashtagDialog_scanLink.Text" xml:space="preserve">
+    <value>新しいノート発見。スキャンするにはここをクリックしてください。</value>
+    <comment>link label</comment>
+  </data>
   <data name="HashtagDialog_scheduleButton.Text" xml:space="preserve">
     <value>スキャンをスケジュール</value>
     <comment>menu item</comment>

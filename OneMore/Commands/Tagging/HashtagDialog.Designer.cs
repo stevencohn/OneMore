@@ -43,6 +43,7 @@
 			this.tagBox = new River.OneMoreAddIn.UI.MoreTextBox();
 			this.introBox = new River.OneMoreAddIn.UI.MoreMultilineLabel();
 			this.controlPanel = new System.Windows.Forms.Panel();
+			this.scanLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.lastScanLabel = new System.Windows.Forms.Label();
 			this.indexButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.copyButton = new River.OneMoreAddIn.UI.MoreButton();
@@ -269,6 +270,7 @@
 			// controlPanel
 			// 
 			this.controlPanel.BackColor = System.Drawing.SystemColors.Control;
+			this.controlPanel.Controls.Add(this.scanLink);
 			this.controlPanel.Controls.Add(this.lastScanLabel);
 			this.controlPanel.Controls.Add(this.indexButton);
 			this.controlPanel.Controls.Add(this.copyButton);
@@ -279,6 +281,25 @@
 			this.controlPanel.Name = "controlPanel";
 			this.controlPanel.Size = new System.Drawing.Size(988, 60);
 			this.controlPanel.TabIndex = 9;
+			// 
+			// scanLink
+			// 
+			this.scanLink.ActiveLinkColor = System.Drawing.Color.MediumOrchid;
+			this.scanLink.AutoSize = true;
+			this.scanLink.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.scanLink.HoverColor = System.Drawing.Color.Orchid;
+			this.scanLink.LinkColor = System.Drawing.Color.MediumOrchid;
+			this.scanLink.Location = new System.Drawing.Point(121, 19);
+			this.scanLink.Name = "scanLink";
+			this.scanLink.Size = new System.Drawing.Size(336, 20);
+			this.scanLink.StrictColors = false;
+			this.scanLink.TabIndex = 11;
+			this.scanLink.TabStop = true;
+			this.scanLink.Text = "New notebooks discovered. Click here to scan.";
+			this.scanLink.ThemedBack = null;
+			this.scanLink.ThemedFore = null;
+			this.scanLink.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
+			this.scanLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ScanDiscovered);
 			// 
 			// lastScanLabel
 			// 
@@ -436,5 +457,6 @@
 		private UI.MoreLabel barLabel;
 		private System.Windows.Forms.ToolTip tooltip;
 		private UI.MoreCheckBox sensitiveBox;
+		private UI.MoreLinkLabel scanLink;
 	}
 }

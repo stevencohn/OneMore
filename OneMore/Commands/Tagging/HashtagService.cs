@@ -123,7 +123,6 @@ namespace River.OneMoreAddIn.Commands
 			{
 				try
 				{
-					logger.Debug("StartupLoop() Scan()");
 					await Scan();
 
 					errors = 0;

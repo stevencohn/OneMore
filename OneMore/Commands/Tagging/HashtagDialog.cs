@@ -50,6 +50,7 @@ namespace River.OneMoreAddIn.Commands
 					"checkAllLink",
 					"uncheckAllLink",
 					"scanButton",
+					"scanLink",
 					"scheduleButton",
 					"indexButton=word_Index",
 					"moveButton=word_Move",
@@ -79,7 +80,11 @@ namespace River.OneMoreAddIn.Commands
 			experimental = new SettingsProvider()
 				.GetCollection("GeneralSheet").Get<bool>("experimental");
 
+			scanLink.Left = lastScanLabel.Left;
+			scanLink.Visible = false;
+
 			ShowScanTimes();
+			CheckForNewNotebooks();
 
 			ShowOfflineNotebooks = new SettingsProvider()
 				.GetCollection(SettingsKey)
@@ -96,6 +101,30 @@ namespace River.OneMoreAddIn.Commands
 
 
 		public bool ShowOfflineNotebooks { get; private set; }
+
+
+		private void CheckForNewNotebooks()
+		{
+			Task.Run(async () =>
+			{
+				await using var one = new OneNote();
+				var books = await one.GetNotebooks();
+				var ns = books.GetNamespaceOfPrefix(OneNote.Prefix);
+
+				var bookIDs = books.Elements(ns + "Notebook")
+					.Where(e => e.Attribute("isRecycleBin") is null)
+					.Select(e => e.Attribute("ID").Value);
+
+				var provider = new HashtagProvider();
+				var known = provider.ReadKnownNotebooks();
+
+				if (bookIDs.Any(e => !known.Contains(e)))
+				{
+					lastScanLabel.Visible = false;
+					scanLink.Visible = true;
+				}
+			});
+		}
 
 
 		private void ShowScanTimes()
@@ -288,6 +317,12 @@ namespace River.OneMoreAddIn.Commands
 
 				Task.Run(async () => { await scheduler.Activate(); });
 			}
+		}
+
+
+		private void ScanDiscovered(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			DoScheduleScan(sender, e);
 		}
 
 
