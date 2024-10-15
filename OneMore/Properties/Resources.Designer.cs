@@ -3499,6 +3499,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New notebooks discovered. Click here to scan..
+        /// </summary>
+        internal static string HashtagDialog_scanLink_Text {
+            get {
+                return ResourceManager.GetString("HashtagDialog_scanLink.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Schedule Scan.
         /// </summary>
         internal static string HashtagDialog_scheduleButton_Text {

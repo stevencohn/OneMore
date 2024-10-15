@@ -1332,6 +1332,10 @@ Zoeken naar hashtags is pas beschikbaar als dit is voltooid.</value>
     <value>Scan nu</value>
     <comment>menu button</comment>
   </data>
+  <data name="HashtagDialog_scanLink.Text" xml:space="preserve">
+    <value>Nieuwe notitieboekjes ontdekt. Klik hier om te scannen.</value>
+    <comment>link label</comment>
+  </data>
   <data name="HashtagDialog_scheduleButton.Text" xml:space="preserve">
     <value>Plan scannen</value>
     <comment>menu item</comment>

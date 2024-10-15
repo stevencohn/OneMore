@@ -35,5 +35,11 @@ namespace River.OneMoreAddIn.Commands
 	/// <summary>
 	/// A collection of HashtagNotebooks
 	/// </summary>
-	internal class HashtagNotebooks : List<HashtagNotebook> { }
+	internal class HashtagNotebooks : List<HashtagNotebook>
+	{
+		public bool Contains(string notebookID)
+		{
+			return Find(e => e.NotebookID == notebookID) is not null;
+		}
+	}
 }

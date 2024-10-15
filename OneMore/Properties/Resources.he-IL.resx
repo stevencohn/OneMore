@@ -1332,6 +1332,10 @@ Total Row Font
     <value>לסרוק עכשיו</value>
     <comment>menu button</comment>
   </data>
+  <data name="HashtagDialog_scanLink.Text" xml:space="preserve">
+    <value>התגלו מחברות חדשות. לחץ כאן לסריקה.</value>
+    <comment>link label</comment>
+  </data>
   <data name="HashtagDialog_scheduleButton.Text" xml:space="preserve">
     <value>תזמון סריקה</value>
     <comment>menu item</comment>

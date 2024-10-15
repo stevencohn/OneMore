@@ -1331,6 +1331,10 @@
     <value>إفحص الآن</value>
     <comment>menu button</comment>
   </data>
+  <data name="HashtagDialog_scanLink.Text" xml:space="preserve">
+    <value>تم اكتشاف دفاتر ملاحظات جديدة. انقر هنا للمسح الضوئي.</value>
+    <comment>link label</comment>
+  </data>
   <data name="HashtagDialog_scheduleButton.Text" xml:space="preserve">
     <value>جدولة المسح</value>
     <comment>menu item</comment>
