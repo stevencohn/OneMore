@@ -119,7 +119,7 @@ namespace River.OneMoreAddIn.Commands
 		/// 
 		/// </summary>
 		/// <param name="page"></param>
-		/// <param name="filename"></param>
+		/// <param name="filename">Unique qualified name</param>
 		/// <param name="hpath"></param>
 		/// <param name="bookScope"></param>
 		public async Task<string> ExportHTML(
@@ -130,12 +130,6 @@ namespace River.OneMoreAddIn.Commands
 			var fame = PathHelper.CleanFileName(Path.GetFileName(filename));    // "name.htm"
 			var path = Path.Combine(Path.GetDirectoryName(filename), name);     // "c:\folder\name"
 			filename = Path.Combine(path, fame);                                // "c:\folder\name\name.htm"
-
-			if (filename.Length > PathHelper.MAX_PATH)
-			{
-				filename = PathHelper.FitMaxPath(filename);
-				path = Path.GetDirectoryName(filename);
-			}
 
 			if (PathHelper.EnsurePathExists(path))
 			{

@@ -595,7 +595,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} pages archive to {1}.
+        ///   Looks up a localized string similar to {0} of {1} pages archived to {2}.
         /// </summary>
         internal static string ArchiveCommand_archived {
             get {
@@ -10461,7 +10461,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Saved {0} pages to {1}.
+        ///   Looks up a localized string similar to Saved {0} of {1} pages to {2}.
         /// </summary>
         internal static string SaveAsMany_Success {
             get {

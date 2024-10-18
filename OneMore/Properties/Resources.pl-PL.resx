@@ -351,7 +351,7 @@ Odwracać</value>
     <comment>message</comment>
   </data>
   <data name="ArchiveCommand_archived" xml:space="preserve">
-    <value>{0} Strony Archiwum do {1}</value>
+    <value>{0} z {1} stron zarchiwizowanych w {2}</value>
     <comment>message</comment>
   </data>
   <data name="ArchiveCommand_noDirectory" xml:space="preserve">
@@ -4231,7 +4231,7 @@ Po ostatniej grupie</value>
     <comment>Save as dialog error message</comment>
   </data>
   <data name="SaveAsMany_Success" xml:space="preserve">
-    <value>Zapisane strony {0} do {1}</value>
+    <value>Zapisano {0} z {1} stron w {2}</value>
     <comment>save many message</comment>
   </data>
   <data name="SaveSnippet_NeedSelection" xml:space="preserve">

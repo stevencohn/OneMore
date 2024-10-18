@@ -156,7 +156,8 @@ namespace River.OneMoreAddIn.Commands
 
 			if (exception == null)
 			{
-				ShowMessage(string.Format(Resx.ArchiveCommand_archived, pageCount, zipPath));
+				ShowMessage(string.Format(
+					Resx.ArchiveCommand_archived, pageCount, totalCount, zipPath));
 			}
 			else
 			{
@@ -278,17 +279,19 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			var filename = string.IsNullOrEmpty(path)
-				? Path.Combine(tempdir, $"{name}.htm")
-				: Path.Combine(tempdir, Path.Combine(path, $"{name}.htm"));
+			var tpath = string.IsNullOrEmpty(path) ? tempdir : Path.Combine(tempdir, path);
+			var filename = PathHelper.GetUniqueQualifiedFileName(tpath, ref name, ".htm");
 
-			filename = PathHelper.FitMaxPath(filename);
-
-			filename = await archivist.ExportHTML(page, filename, path, bookScope);
-
-			await ArchiveAssets(Path.GetDirectoryName(filename), path);
-
-			pageCount++;
+			if (filename is not null)
+			{
+				filename = await archivist.ExportHTML(page, filename, path, bookScope);
+				await ArchiveAssets(Path.GetDirectoryName(filename), path);
+				pageCount++;
+			}
+			else
+			{
+				logger.WriteLine($"archive path too long [{tpath}\\{name}.htm]");
+			}
 		}
 
 

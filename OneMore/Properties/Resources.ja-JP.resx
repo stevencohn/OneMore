@@ -351,7 +351,7 @@
     <comment>message</comment>
   </data>
   <data name="ArchiveCommand_archived" xml:space="preserve">
-    <value>{0} pages archive to {1}</value>
+    <value>{1} ページ中 {0} ページが {2} にアーカイブされました</value>
     <comment>message</comment>
   </data>
   <data name="ArchiveCommand_noDirectory" xml:space="preserve">
@@ -4234,7 +4234,7 @@ ISO-code then comma then language name</comment>
     <comment>Save as dialog error message</comment>
   </data>
   <data name="SaveAsMany_Success" xml:space="preserve">
-    <value>{1} に {0} ページを保存しました</value>
+    <value>{1} ページ中 {0} ページを {2} に保存しました</value>
     <comment>save many message</comment>
   </data>
   <data name="SaveSnippet_NeedSelection" xml:space="preserve">

@@ -351,7 +351,7 @@ Omkeren</value>
     <comment>message</comment>
   </data>
   <data name="ArchiveCommand_archived" xml:space="preserve">
-    <value>{0} pagina's archiveren naar {1}</value>
+    <value>{0} van {1} pagina's gearchiveerd op {2}</value>
     <comment>message</comment>
   </data>
   <data name="ArchiveCommand_noDirectory" xml:space="preserve">
@@ -4230,7 +4230,7 @@ Na de laatste groep</value>
     <comment>Save as dialog error message</comment>
   </data>
   <data name="SaveAsMany_Success" xml:space="preserve">
-    <value>Opgeslagen {0} pagina's in {1}</value>
+    <value>{0} van {1} pagina's opgeslagen in {2}</value>
     <comment>save many message</comment>
   </data>
   <data name="SaveSnippet_NeedSelection" xml:space="preserve">

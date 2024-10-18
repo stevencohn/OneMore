@@ -350,7 +350,7 @@
     <comment>message</comment>
   </data>
   <data name="ArchiveCommand_archived" xml:space="preserve">
-    <value>تم وضع {0} من الصفحات في الأرشيف في {1}</value>
+    <value>تمت أرشفة {0} من {1} صفحة إلى {2}</value>
     <comment>message</comment>
   </data>
   <data name="ArchiveCommand_noDirectory" xml:space="preserve">
@@ -4230,7 +4230,7 @@ ISO-code then comma then language name</comment>
     <comment>Save as dialog error message</comment>
   </data>
   <data name="SaveAsMany_Success" xml:space="preserve">
-    <value>تم حفظ {0} من الصفحات في {1}</value>
+    <value>تم حفظ {0} من {1} صفحة في {2}</value>
     <comment>save many message</comment>
   </data>
   <data name="SaveSnippet_NeedSelection" xml:space="preserve">

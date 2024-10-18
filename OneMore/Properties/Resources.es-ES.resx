@@ -350,7 +350,7 @@ Invertir</value>
     <comment>message</comment>
   </data>
   <data name="ArchiveCommand_archived" xml:space="preserve">
-    <value>{0} páginas archivadas en {1}</value>
+    <value>{0} de {1} páginas archivadas en {2}</value>
     <comment>message</comment>
   </data>
   <data name="ArchiveCommand_noDirectory" xml:space="preserve">
@@ -4230,7 +4230,7 @@ Después del último grupo</value>
     <comment>Save as dialog error message</comment>
   </data>
   <data name="SaveAsMany_Success" xml:space="preserve">
-    <value>Páginas {0} guardadas en {1}</value>
+    <value>Se guardaron {0} de {1} páginas en {2}</value>
     <comment>save many message</comment>
   </data>
   <data name="SaveSnippet_NeedSelection" xml:space="preserve">
