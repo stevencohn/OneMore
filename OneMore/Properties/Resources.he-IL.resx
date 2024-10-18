@@ -351,7 +351,7 @@
     <comment>message</comment>
   </data>
   <data name="ArchiveCommand_archived" xml:space="preserve">
-    <value>{0} דפים בארכיון אל {1}</value>
+    <value>{0} מתוך {1} דפים הועברו לארכיון אל {2}</value>
     <comment>message</comment>
   </data>
   <data name="ArchiveCommand_noDirectory" xml:space="preserve">
@@ -4229,7 +4229,7 @@ ISO-code then comma then language name</comment>
     <comment>Save as dialog error message</comment>
   </data>
   <data name="SaveAsMany_Success" xml:space="preserve">
-    <value>שמר {0} דפים ב-{1}</value>
+    <value>שמר {0} מתוך {1} דפים ב-{2}</value>
     <comment>save many message</comment>
   </data>
   <data name="SaveSnippet_NeedSelection" xml:space="preserve">

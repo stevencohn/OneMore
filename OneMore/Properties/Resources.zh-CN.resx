@@ -349,7 +349,7 @@
     <comment>message</comment>
   </data>
   <data name="ArchiveCommand_archived" xml:space="preserve">
-    <value>{0}页归档到{1}</value>
+    <value>{0} 页（共 {1} 页）已存档至 {2}</value>
     <comment>message</comment>
   </data>
   <data name="ArchiveCommand_noDirectory" xml:space="preserve">
@@ -4223,7 +4223,7 @@ ISO-code then comma then language name</comment>
     <comment>Save as dialog error message</comment>
   </data>
   <data name="SaveAsMany_Success" xml:space="preserve">
-    <value>已将{0}页保存到{1}</value>
+    <value>已将 {0} 页（共 {1} 页）保存到 {2}</value>
     <comment>save many message</comment>
   </data>
   <data name="SaveSnippet_NeedSelection" xml:space="preserve">

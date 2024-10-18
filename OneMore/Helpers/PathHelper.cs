@@ -17,8 +17,10 @@ namespace River.OneMoreAddIn
 	/// </remarks>
 	internal static class PathHelper
 	{
-		// MAX_PATH in Windows should be 260 but OneNote.Export further restricts it to 239
+		// in Windows this should be 260 but OneNote.Export further restricts it to 239
 		public const int MAX_PATH = 239;
+		// shortest filename, allowing 3 chars plus counter " (123)"
+		public const int MIN_NAME = 9;
 
 		//private const string LongKey = @"SYSTEM\CurrentControlSet\Control\FileSystem\LongPathsEnabled";
 
@@ -35,84 +37,12 @@ namespace River.OneMoreAddIn
 		{
 			invalidFileChars ??= Path.GetInvalidFileNameChars();
 
-			// OneNote sometimes add \r\n to URL names in HTML export files
+			// OneNote sometimes adds \r\n to URL names in HTML export files
 			name = Regex.Replace(name, @"[\r\n]+", " ");
 
 			return string.Join("_",
 				name.Split(invalidFileChars, StringSplitOptions.RemoveEmptyEntries))
 				.TrimEnd('.');
-		}
-
-
-		/// <summary>
-		/// Ensures that the given string fits within the MAX_LENGTH characters allowed
-		/// by Windows for a valid file path.
-		/// </summary>
-		/// <param name="path">A file path to test</param>
-		/// <returns>Either path if it is valid or a modified path with shortened file name.</returns>
-		public static string FitMaxPath(string path)
-		{
-			if (path.Length <= MAX_PATH)
-			{
-				return path;
-			}
-
-			/*
-			 * Win 10 1607 and later is suposed to allow LongPathsEnabled Reg key in conjunction
-			 * with UseLegacyPathHandling=false in appSettings but this doesn't seem to work
-			 * correctly along with the .NET System.IO.Path methods
-			 * 
-			if (Environment.OSVersion.Version.Major > 10 ||
-				Environment.OSVersion.Version.Build > 1607)
-			{
-				using var key = Registry.ClassesRoot.OpenSubKey(LongKey, false);
-				if (key != null)
-				{
-					// has user opted to enable long paths, greater than 260?
-					var allows = (int)key.GetValue(string.Empty);
-					if (allows == 1)
-					{
-						return path;
-					}
-				}
-			}
-			*/
-
-			// use our own IO.Path methods to avoid PathTooLongException...
-
-			var dir = GetLongDirectoryName(path);
-			var nam = GetLongFileNameWithoutExtension(path);
-			var ext = GetLongExtension(path);
-
-			var dam = GetLongFileName(dir);
-			if (dam == nam)
-			{
-				// special case with C:\somepath\filename\filename.ext
-				// lets us trim both occurances of filename
-
-				dir = GetLongDirectoryName(dir);
-
-				var maxnam = (MAX_PATH - dir.Length - ext.Length - 1) / 2;
-				if (maxnam > 0 && maxnam < nam.Length)
-				{
-					nam = nam.Substring(0, maxnam);
-					return Path.Combine(dir, nam, nam + ext);
-				}
-			}
-			else
-			{
-				var maxnam = MAX_PATH - dir.Length - ext.Length - 1;
-				if (maxnam > 0 && maxnam < nam.Length)
-				{
-					nam = nam.Substring(0, maxnam);
-					return Path.Combine(dir, nam + ext);
-				}
-			}
-
-			// if maxnam < 0 then dir is too long and will cause PathTooLongException
-			// eventually when caller tries to use it
-
-			return path;
 		}
 
 
@@ -128,113 +58,59 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public static string GetUniqueQualifiedFilename(string filename)
+		/// <summary>
+		/// In its simplest form, appends a counter to the filename if a similarly named file
+		/// already exists to ensure the name is unique, .e.g, "name (1).txt". But this also
+		/// ensures that the full path fits within MAX_PATH for both the filename and a presumed
+		/// parent folder of the same name, e.g. c:\foo\name\name.txt. This parent folder is
+		/// used for attachments associated with the file.
+		/// </summary>
+		/// <param name="path"></param>
+		/// <param name="name"></param>
+		/// <param name="ext"></param>
+		/// <returns></returns>
+		public static string GetUniqueQualifiedFileName(
+			string path, ref string name, string ext)
 		{
-			if (!File.Exists(filename))
+			// max length of FileNameWithoutExt is half the width of MAX_PATH minus the length
+			// of the root path (+1 for path separator). Half because the name is used again
+			// to store attachments in a similarlly named subfolder; also subtract 12 to make
+			// room for an optional counter like " (123)"
+			var max = (PathHelper.MAX_PATH - path.Length - ext.Length - 1) / 2 - 6;
+
+			if (max <= MIN_NAME)
 			{
-				return filename;
+				// root path is too long
+				return null;
 			}
 
-			var path = Path.GetDirectoryName(filename);
-			var name = Path.GetFileNameWithoutExtension(filename);
-			var ext = Path.GetExtension(filename);
+			if (name.Length > max)
+			{
+				name = name.Substring(0, max).Trim();
+			}
+
+			name = CleanFileName(name);
+
+			var full = Path.Combine(path, name + ext);
+			if (!File.Exists(full))
+			{
+				return full;
+			}
 
 			var counter = 1;
-			var full = Path.Combine(path, $"{name} ({counter}){ext}");
+			var nameCounter = $"{name} ({counter})";
+			full = Path.Combine(path, $"{nameCounter}{ext}");
 
 			while (File.Exists(full))
 			{
 				counter++;
-				full = Path.Combine(path, $"{name} ({counter}){ext}");
+				nameCounter = $"{name} ({counter})";
+				full = Path.Combine(path, $"{nameCounter}{ext}");
 			}
 
+			name = nameCounter;
 			return full;
 		}
-
-
-		#region Get File Parts overrides
-		private static string GetLongDirectoryName(string path)
-		{
-			var sep = path.Length - 1;
-			while (sep > 0 &&
-				path[sep] != Path.DirectorySeparatorChar &&
-				path[sep] != Path.AltDirectorySeparatorChar)
-			{
-				sep--;
-			}
-
-			if (sep > 0)
-			{
-				return path.Substring(0, sep);
-			}
-
-			return string.Empty;
-		}
-
-
-		private static string GetLongExtension(string path)
-		{
-			var dot = path.Length - 1;
-			while (dot >= 0 && path[dot] != '.')
-			{
-				dot--;
-			}
-
-			if (dot > -1)
-			{
-				return path.Substring(dot);
-			}
-
-			return String.Empty;
-		}
-
-
-		private static string GetLongFileName(string path)
-		{
-			var sep = path.Length - 1;
-			while (sep >= 0 &&
-				path[sep] != Path.DirectorySeparatorChar &&
-				path[sep] != Path.AltDirectorySeparatorChar)
-			{
-				sep--;
-			}
-
-			if (sep > -1)
-			{
-				return path.Substring(sep + 1);
-			}
-
-			return String.Empty;
-		}
-
-
-		private static string GetLongFileNameWithoutExtension(string path)
-		{
-			var sep = path.Length - 1;
-			while (sep >= 0 &&
-				path[sep] != Path.DirectorySeparatorChar &&
-				path[sep] != Path.AltDirectorySeparatorChar)
-			{
-				sep--;
-			}
-
-			if (sep > -1)
-			{
-				var dot = sep + 1;
-				while (dot < path.Length && path[dot] != '.')
-				{
-					dot++;
-				}
-
-				if (dot < path.Length)
-				{
-					return path.Substring(sep + 1, dot - sep - 1);
-				}
-			}
-
-			return String.Empty;
-		}
-		#endregion Get File Parts overrides
 
 
 		/// <summary>

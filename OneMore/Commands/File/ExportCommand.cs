@@ -6,7 +6,6 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Settings;
 	using System.Collections.Generic;
-	using System.IO;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
@@ -93,6 +92,8 @@ namespace River.OneMoreAddIn.Commands
 
 			// export...
 
+			var savedCount = 0;
+
 			using (var progress = new UI.ProgressDialog())
 			{
 				progress.SetMaximum(pageIDs.Count);
@@ -115,67 +116,67 @@ namespace River.OneMoreAddIn.Commands
 
 					var title = page.Title.Trim();
 
-					if (useUnderscores)
-					{
-						title = PathHelper.CleanFileName(title).Replace(' ', '_');
-					}
-
-					string filename;
-					if (title.Trim().Length > 0)
-					{
-						filename = Path.Combine(path, title + ext);
-					}
-					else
+					if (title.Length == 0)
 					{
 						var pageinfo = await one.GetPageInfo(pageID);
 						var sectinfo = await one.GetSectionInfo(pageinfo.SectionId);
 						title = $"{PathHelper.CleanFileName(sectinfo.Name)} Untitled Page";
-
-						if (useUnderscores)
-						{
-							title = title.Replace(' ', '_');
-						}
-
-						filename = PathHelper
-							.GetUniqueQualifiedFilename(Path.Combine(path, title + ext));
 					}
 
-					progress.SetMessage(filename);
-					progress.Increment();
-
-					if (format == OneNote.ExportFormat.HTML)
+					if (useUnderscores)
 					{
-						if (withAttachments)
+						title = title.Replace(' ', '_');
+					}
+
+					// cleaned, sized, and ready go!
+					var filename = PathHelper.GetUniqueQualifiedFileName(path, ref title, ext);
+					if (filename is not null)
+					{
+						progress.SetMessage(filename);
+						progress.Increment();
+
+						if (format == OneNote.ExportFormat.HTML)
 						{
-							_ = await archivist.ExportHTML(page, filename);
+							if (withAttachments)
+							{
+								await archivist.ExportHTML(page, filename);
+							}
+							else
+							{
+								await archivist.Export(
+									page.PageId, filename, OneNote.ExportFormat.HTML);
+							}
+						}
+						else if (format == OneNote.ExportFormat.XML)
+						{
+							archivist.ExportXML(page.Root, filename, withAttachments);
+						}
+						else if (format == OneNote.ExportFormat.Markdown)
+						{
+							archivist.ExportMarkdown(page, filename, withAttachments);
 						}
 						else
 						{
-							await archivist.Export(page.PageId, filename, OneNote.ExportFormat.HTML);
+							await archivist.Export(
+								page.PageId, filename, format, withAttachments, embedded);
 						}
-					}
-					else if (format == OneNote.ExportFormat.XML)
-					{
-						archivist.ExportXML(page.Root, filename, withAttachments);
-					}
-					else if (format == OneNote.ExportFormat.Markdown)
-					{
-						archivist.ExportMarkdown(page, filename, withAttachments);
+
+						savedCount++;
 					}
 					else
 					{
-						await archivist.Export(page.PageId, filename, format, withAttachments, embedded);
+						logger.WriteLine($"export path too long [{path}\\{title}{ext}]");
 					}
 				}
 			}
 
 			SaveDefaultPath(path);
 
-			ShowMessage(string.Format(Resx.SaveAsMany_Success, pageIDs.Count, path));
+			ShowMessage(string.Format(Resx.SaveAsMany_Success, savedCount, pageIDs.Count, path));
 		}
 
 
-		private void SaveDefaultPath(string path)
+		private static void SaveDefaultPath(string path)
 		{
 			var provider = new SettingsProvider();
 			var settings = provider.GetCollection("Export");

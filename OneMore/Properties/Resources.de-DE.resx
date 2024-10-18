@@ -350,7 +350,7 @@ Umkehren</value>
     <comment>message</comment>
   </data>
   <data name="ArchiveCommand_archived" xml:space="preserve">
-    <value>{0} Seiten archivieren auf {1}</value>
+    <value>{0} von {1} Seiten archiviert auf {2}</value>
     <comment>message</comment>
   </data>
   <data name="ArchiveCommand_noDirectory" xml:space="preserve">
@@ -4224,7 +4224,7 @@ Nach der letzten Gruppe</value>
     <comment>Save as dialog error message</comment>
   </data>
   <data name="SaveAsMany_Success" xml:space="preserve">
-    <value>{0} Seiten auf {1} gespeichert</value>
+    <value>{0} von {1} Seiten auf {2} gespeichert</value>
     <comment>save many message</comment>
   </data>
   <data name="SaveSnippet_NeedSelection" xml:space="preserve">
