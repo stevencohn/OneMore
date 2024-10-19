@@ -7,6 +7,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
+	using River.OneMoreAddIn.Settings;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
@@ -22,6 +23,8 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class BiLinkCommand : Command
 	{
+		public const string SettingsName = "bilink";
+
 		// TODO: consider moving these to a global state cache that can be pruned
 		// rather than holding on to them indefinitely as statics....
 
@@ -54,8 +57,18 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
-				if (anchorText.Length > 20) { anchorText = $"{anchorText.Substring(0, 20)}..."; }
-				ShowInfo(string.Format(Resx.BiLinkCommand_Marked, anchorText));
+				var settings = new SettingsProvider().GetCollection(SettingsName);
+				if (!settings.Get("hideStartMessage", false))
+				{
+					using var dialog = new BiLinkDialog();
+					if (anchorText.Length > 20)
+					{
+						anchorText = $"{anchorText.Substring(0, 20)}...";
+					}
+
+					dialog.SetAnchorText(anchorText);
+					dialog.ShowDialog(owner);
+				}
 			}
 			else
 			{

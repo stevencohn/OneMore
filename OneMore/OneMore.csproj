@@ -191,6 +191,12 @@
     <Compile Include="Commands\Page\DuplicatePageCommand.cs" />
     <Compile Include="Commands\Page\ExtractContentCommand.cs" />
     <Compile Include="Commands\Page\MovePageCommand.cs" />
+    <Compile Include="Commands\References\BiLinkDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\References\BiLinkDialog.Designer.cs">
+      <DependentUpon>BiLinkDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\References\HyperlinkProvider.cs" />
     <Compile Include="Commands\Reminders\CleanRemindersCommand.cs" />
     <Compile Include="Commands\Snippets\Emoji\Emojis.cs" />
@@ -1152,6 +1158,9 @@
     <Content Include="Commands\Navigator\Images\Swap-Down-20.png" />
     <Content Include="Commands\Navigator\Images\Swap-Up-20.png" />
     <Content Include="Commands\Tagging\HashtagsDB.sql" />
+    <EmbeddedResource Include="Commands\References\BiLinkDialog.resx">
+      <DependentUpon>BiLinkDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Commands\Tagging\HashtaggerDialog.resx">
       <DependentUpon>HashtaggerDialog.cs</DependentUpon>
     </EmbeddedResource>
