@@ -462,18 +462,27 @@ namespace River.OneMoreAddIn
 		{
 			if (deep)
 			{
-				var clone = element.Clone();
-
-				var pattern = new Regex(@"\<[^<]+\>[^<]+\<[^<]+\>", RegexOptions.Compiled);
-				var data = clone.DescendantNodes().OfType<XCData>()
-					.Where(d => pattern.IsMatch(d.Value));
-
-				foreach (var cdata in data)
+				var text = string.Empty;
+				var cdatas = element.DescendantNodes().OfType<XCData>();
+				foreach (var cdata in cdatas)
 				{
-					cdata.Value = cdata.GetWrapper().Value;
+					if (cdata.Value.Contains("<span "))
+					{
+						var wrap = cdata.GetWrapper();
+						foreach (var node in wrap.Nodes())
+						{
+							text = node is XElement txt
+								? $"{text}{txt.Value}"
+								: $"{text}{((XText)node).Value}";
+						}
+					}
+					else
+					{
+						text = $"{text}{cdata.Value}";
+					}
 				}
 
-				return clone.Value;
+				return text;
 			}
 
 			return element.Value.ToXmlWrapper().Value;

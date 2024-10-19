@@ -326,16 +326,17 @@ namespace River.OneMoreAddIn.Commands
 			await using var one = new OneNote();
 			var page = await one.GetPage(pageID ?? one.CurrentPageId, OneNote.PageDetail.Basic);
 
-			logger.Verbose();
 			logger.Verbose($"LoadPageHeadings [{page.Title}]");
 			logger.StartClock();
 
 			var headings = page.GetHeadings(one, linked: false);
-			logger.VerboseTime($"GetHeadings <---", keepRunning: true);
+			logger.DebugTime($"GetHeadings <---", keepRunning: true);
 
+			// need to escape ampersand because it is used to indicate keyboard accelerators
+			var title = page.Title.Replace("&", "&&");
 			pageHeadLabel.Text = page.TitleID == null
 				? Resx.phrase_QuickNote
-				: page.Title;
+				: title;
 
 			pageBox.Controls.Clear();
 
@@ -355,7 +356,7 @@ namespace River.OneMoreAddIn.Commands
 						// defer URL lookup until clicked
 						Link = string.Empty,
 						Root = root,
-						Text = page.Title
+						Text = title
 					});
 				}
 			}
@@ -369,15 +370,15 @@ namespace River.OneMoreAddIn.Commands
 			var font = new Font("Segoe UI", 8.5F, FontStyle.Regular, GraphicsUnit.Point);
 			trash.Add(font);
 
-			logger.VerboseTime($"suspending layout", keepRunning: true);
+			logger.DebugTime($"suspending layout", keepRunning: true);
 			pageBox.SuspendLayout();
 
 			var margin = SystemInformation.VerticalScrollBarWidth * 2;
 
 			foreach (var heading in headings)
 			{
-				var wrapper = new XElement("wrapper", heading.Text);
-				var text = wrapper.TextValue();
+				var wrapper = new XElement("T", new XCData(heading.Text));
+				var text = wrapper.TextValue(true);
 
 				var leftpad = heading.Level * HeaderIndent;
 				var leftmar = leftpad + 4;
@@ -423,11 +424,11 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			pageBox.ResumeLayout();
-			logger.VerboseTime($"resumed layout", keepRunning: true);
+			logger.DebugTime($"resumed layout", keepRunning: true);
 
 			await UpdateTitles(page);
 
-			logger.VerboseTime("LoadPageHeadings done");
+			logger.DebugTime("LoadPageHeadings done");
 		}
 
 
