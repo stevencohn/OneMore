@@ -239,6 +239,8 @@ namespace River.OneMoreAddIn.Commands
 							errorMessage = renderer.ErrorMessages;
 							logger.WriteLine("rendering messages:");
 							logger.WriteLine(renderer.ErrorMessages);
+							logger.WriteLine("text ---");
+							logger.WriteLine(text);
 						}
 
 						return false;
