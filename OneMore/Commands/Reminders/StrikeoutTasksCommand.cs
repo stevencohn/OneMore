@@ -115,7 +115,7 @@ namespace River.OneMoreAddIn.Commands
 
 					modified = true;
 				}
-				else if (node is XElement span)
+				else if (node is XElement span && span.Name.LocalName == "span")
 				{
 					// span always and only have a style attribute
 					var style = new Style(span.Attribute("style").Value);
@@ -156,7 +156,9 @@ namespace River.OneMoreAddIn.Commands
 			var emptyStyle = new Style();
 
 			// target only XElement/span nodes, ignore XText nodes
-			foreach (var span in wrapper.Nodes().OfType<XElement>().ToList())
+			foreach (var span in wrapper
+				.Nodes().OfType<XElement>()
+				.Where(n => n.Name.LocalName == "span").ToList())
 			{
 				// span always and only have a style attribute
 				var style = new Style(span.Attribute("style").Value);
