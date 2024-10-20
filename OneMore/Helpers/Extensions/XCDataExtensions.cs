@@ -50,30 +50,7 @@ namespace River.OneMoreAddIn
 		/// </remarks>
 		public static XElement GetWrapper(this XCData cdata)
 		{
-			// ensure proper XML
-
-			// OneNote doesn't like &nbsp; but &#160; is ok and is the same as \u00A0 but 1-byte
-			var value = cdata.Value.Replace("&nbsp;", "&#160;");
-
-			// XElement doesn't like <br> so replace with <br/>
-			value = Regex.Replace(value, @"\<\s*br\s*\>", "<br/>");
-
-			// quote unquoted language attribute, e.g., lang=yo to lang="yo" (or two part en-US)
-			value = Regex.Replace(value, @"(\s)lang=([\w\-]+)([\s/>])", "$1lang=\"$2\"$3");
-
-			// replace non-printable characters (0-31) that break XML validation with "�"
-			// this will change ("fix") user data but there's nothing we can do about it
-			value = Regex.Replace(value, @"(&#(?:0?[0-9]|[12][0-9]|3[01]);)", UnicodeReplacementChar);
-
-			try
-			{
-				return XElement.Parse("<cdata>" + value + "</cdata>", LoadOptions.PreserveWhitespace);
-			}
-			catch
-			{
-				Logger.Current.WriteLine($"error wrapping /{value}/");
-				throw;
-			}
+			return cdata.Value.ToXmlWrapper("cdata");
 		}
 
 

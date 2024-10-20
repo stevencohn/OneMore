@@ -216,8 +216,11 @@ namespace River.OneMoreAddIn.Commands
 					progress.SetMessage($"Archiving {page.Title ?? Resx.phrase_QuickNote}");
 					progress.Increment();
 
-					await ArchivePage(element, page, path);
-					order.Add(page.Title.Trim());
+					var name = await ArchivePage(element, page, path);
+					if (name is not null)
+					{
+						order.Add(name);
+					}
 
 					CleanupTemp();
 				}
@@ -235,7 +238,6 @@ namespace River.OneMoreAddIn.Commands
 					var name = element.Attribute("name").Value.Trim();
 
 					await Archive(progress, element, Path.Combine(path, name));
-					//order.Add(name);
 				}
 			}
 
@@ -246,7 +248,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task ArchivePage(XElement element, Page page, string path)
+		private async Task<string> ArchivePage(XElement element, Page page, string path)
 		{
 			if (page.Title == null)
 			{
@@ -255,10 +257,6 @@ namespace River.OneMoreAddIn.Commands
 					: $"{Resx.phrase_QuickNote} ({quickCount})");
 
 				quickCount++;
-			}
-			else
-			{
-				page.SetTitle(page.Title.Trim());
 			}
 
 			var name = PathHelper.CleanFileName(page.Title).Trim();
@@ -287,11 +285,11 @@ namespace River.OneMoreAddIn.Commands
 				filename = await archivist.ExportHTML(page, filename, path, bookScope);
 				await ArchiveAssets(Path.GetDirectoryName(filename), path);
 				pageCount++;
+				return name;
 			}
-			else
-			{
-				logger.WriteLine($"archive path too long [{tpath}\\{name}.htm]");
-			}
+
+			logger.WriteLine($"archive path too long [{tpath}\\{name}.htm]");
+			return null;
 		}
 
 
