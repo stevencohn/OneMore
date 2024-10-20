@@ -123,17 +123,25 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 
 			// allow semantic version e.g. "v1.2.3" or suffixed e.g. "v1.2.3-beta"
 			var plainver = release.tag_name;
-			var match = Regex.Match(plainver, @"\d+\.\d+(?:\.\d+)?");
-			if (match.Success && match.Captures[0].Value.Length < plainver.Length)
+			if (plainver is not null)
 			{
-				plainver = match.Captures[0].Value;
+				var match = Regex.Match(plainver, @"\d+\.\d+(?:\.\d+)?");
+				if (match.Success && match.Captures[0].Value.Length < plainver.Length)
+				{
+					plainver = match.Captures[0].Value;
+				}
+
+				var currentVersion = new Version(InstalledVersion);
+				var releaseVersion = new Version(plainver);
+				IsUpToDate = currentVersion >= releaseVersion;
+
+				return true;
 			}
 
-			var currentVersion = new Version(InstalledVersion);
-			var releaseVersion = new Version(plainver);
-			IsUpToDate = currentVersion >= releaseVersion;
+			logger.WriteLine("updated fetched empty version, release object dump:");
+			logger.Dump(release);
 
-			return true;
+			return false;
 		}
 
 
