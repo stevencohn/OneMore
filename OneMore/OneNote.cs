@@ -318,7 +318,15 @@ namespace River.OneMoreAddIn
 						retries++;
 						var ms = 250 * retries;
 
-						if ((uint)exc.HResult == ErrorCodes.hrRpcFailed ||
+						if ((uint)exc.HResult == ErrorCodes.hrRpcFailed2)
+						{
+							// can happen if a paragraph is linked to another paragraph but
+							// the first paragraph contains an equation; OneNote API defect!
+							logger.WriteLine("RPC error due to bad XML schema, aborting retries");
+							return false;
+						}
+						else if (
+							(uint)exc.HResult == ErrorCodes.hrRpcFailed ||
 							(uint)exc.HResult == ErrorCodes.hrRpcUnavailable)
 						{
 							// add extra time for new RPC connection to bind
@@ -691,12 +699,12 @@ namespace River.OneMoreAddIn
 			try
 			{
 				string xml = null;
-				await InvokeWithRetry(() =>
+				var success = await InvokeWithRetry(() =>
 				{
 					onenote.GetPageContent(pageId, out xml, (PageInfo)detail, XMLSchema.xs2013);
 				});
 
-				if (!string.IsNullOrEmpty(xml))
+				if (success && !string.IsNullOrEmpty(xml))
 				{
 					return new Page(XElement.Parse(xml));
 				}
