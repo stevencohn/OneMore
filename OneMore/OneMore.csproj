@@ -763,7 +763,7 @@
     <Compile Include="Commands\Edit\PronunciateCommand.cs" />
     <Compile Include="Commands\File\RunPluginCommand.cs" />
     <Compile Include="Commands\File\ExportCommand.cs" />
-    <Compile Include="Commands\Reminders\StrikeoutTasksCommand.cs" />
+    <Compile Include="Commands\Reminders\EditTasksCommand.cs" />
     <Compile Include="Commands\Search\SearchWebCommand.cs" />
     <Compile Include="Commands\Styles\ApplyStyleCommand.cs" />
     <Compile Include="Commands\Styles\ApplyStylesCommand.cs" />
