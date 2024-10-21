@@ -9740,6 +9740,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reset All Completed Tasks.
+        /// </summary>
+        internal static string ribResetTasksButton_Label {
+            get {
+                return ResourceManager.GetString("ribResetTasksButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uncheck and reset all completed tasks on this page.
+        /// </summary>
+        internal static string ribResetTasksButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribResetTasksButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Restore Container Widths.
         /// </summary>
         internal static string ribRestoreAutosizeButton_Label {

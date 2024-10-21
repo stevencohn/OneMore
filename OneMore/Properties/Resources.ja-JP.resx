@@ -3917,6 +3917,14 @@ ISO-code then comma then language name</comment>
     <value>リマインダーの概要レポートを生成</value>
     <comment>ribbon reminders</comment>
   </data>
+  <data name="ribResetTasksButton_Label" xml:space="preserve">
+    <value>完了したタスクをすべてリセット</value>
+    <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribResetTasksButton_Screentip" xml:space="preserve">
+    <value>このページ上の完了したタスクをすべてオフにしてリセットします</value>
+    <comment>ribbon reminders</comment>
+  </data>
   <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
     <value>コンテナ幅を自動調整</value>
     <comment>ribbon clean</comment>

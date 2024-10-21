@@ -96,10 +96,17 @@ namespace River.OneMoreAddIn.Styles
 					fontSize = ParseFontSize(val);
 					found.Add(key);
 				}
-				else if (key.Equals("color") && !found.Contains(key))
+				else if (key.Equals("color"))
 				{
+					// color may be the one exception where a color that is prefaced with &#xA
+					// will override a previous color value, for example:
+					// style="color:#000000;font-family:Calibri;font-size:11.0pt;&#xA;color:#B8B8B8"
+
 					Color = FormatColor(val);
-					found.Add(key);
+					if (!found.Contains(key))
+					{
+						found.Add(key);
+					}
 				}
 				else if (key.Equals("background") && !found.Contains(key))
 				{

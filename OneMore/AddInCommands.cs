@@ -167,6 +167,7 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<ApplyTableThemeCommand>(int.MaxValue);
 
 
+
 		[Command("ribCollapsePagesButton_Label", Keys.None)]
 		public async Task CollapsePagesCmd(IRibbonControl control)
 			=> await factory.Run<CollapsePagesCommand>();
@@ -782,6 +783,11 @@ namespace River.OneMoreAddIn
 		[Command("ribReportRemindersButton_Label", Keys.None, "ribRemindersMenu")]
 		public async Task ReportRemindersCmd(IRibbonControl control)
 			=> await factory.Run<ReportRemindersCommand>();
+
+
+		[Command("ribResetTasksButton_Label", Keys.None, "ribRemindersMenu")]
+		public async Task ResetTasksCmd(IRibbonControl control)
+			=> await factory.Run<ResetTasksCommand>();
 
 
 		[Command("ribRestoreAutosizeButton_Label", Keys.None, "ribCleanMenu")]
