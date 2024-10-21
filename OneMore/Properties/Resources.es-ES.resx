@@ -3914,6 +3914,14 @@ Después del último grupo</value>
     <value>Generar un informe resumido de recordatorios</value>
     <comment>ribbon reminders</comment>
   </data>
+  <data name="ribResetTasksButton_Label" xml:space="preserve">
+    <value>Restablecer todas las tareas completadas</value>
+    <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribResetTasksButton_Screentip" xml:space="preserve">
+    <value>Desmarque y restablezca todas las tareas completadas en esta página</value>
+    <comment>ribbon reminders</comment>
+  </data>
   <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
     <value>Restaurar los anchos del contenedor</value>
     <comment>ribbon clean</comment>

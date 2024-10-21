@@ -3914,6 +3914,14 @@ Na de laatste groep</value>
     <value>Genereer een overzichtsrapport van herinneringen</value>
     <comment>ribbon reminders</comment>
   </data>
+  <data name="ribResetTasksButton_Label" xml:space="preserve">
+    <value>Reset alle voltooide taken</value>
+    <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribResetTasksButton_Screentip" xml:space="preserve">
+    <value>Schakel alle voltooide taken op deze pagina uit en reset ze</value>
+    <comment>ribbon reminders</comment>
+  </data>
   <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
     <value>Herstel containerbreedtes</value>
     <comment>ribbon clean</comment>

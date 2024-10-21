@@ -3914,6 +3914,14 @@ ISO-code then comma then language name</comment>
     <value>قم بإنشاء تقرير موجز للتذكيرات</value>
     <comment>ribbon reminders</comment>
   </data>
+  <data name="ribResetTasksButton_Label" xml:space="preserve">
+    <value>إعادة تعيين جميع المهام المكتملة</value>
+    <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribResetTasksButton_Screentip" xml:space="preserve">
+    <value>قم بإلغاء تحديد وإعادة تعيين جميع المهام المكتملة في هذه الصفحة</value>
+    <comment>ribbon reminders</comment>
+  </data>
   <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
     <value>استعادة عرض الحاوية</value>
     <comment>ribbon clean</comment>

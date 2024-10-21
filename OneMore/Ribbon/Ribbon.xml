@@ -764,6 +764,12 @@
                 getScreentip="GetRibbonScreentip"
                 onAction="ImportOutlookTasksCmd"/>
               <button
+                id="ribResetTasksButton"
+                imageMso="FormFieldClear"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="ResetTasksCmd"/>
+              <button
                 id="ribStrikeoutTasksButton"
                 imageMso="Strikethrough"
                 getLabel="GetRibbonLabel"

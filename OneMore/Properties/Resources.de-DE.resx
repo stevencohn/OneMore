@@ -3907,6 +3907,14 @@ Nach der letzten Gruppe</value>
     <value>Generiert einen zusammenfassenden Bericht der Erinnerungen</value>
     <comment>ribbon reminders</comment>
   </data>
+  <data name="ribResetTasksButton_Label" xml:space="preserve">
+    <value>Alle abgeschlossenen Aufgaben zurücksetzen</value>
+    <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribResetTasksButton_Screentip" xml:space="preserve">
+    <value>Deaktivieren Sie alle abgeschlossenen Aufgaben auf dieser Seite und setzen Sie sie zurück</value>
+    <comment>ribbon reminders</comment>
+  </data>
   <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
     <value>Behälterbreiten wiederherstellen</value>
     <comment>ribbon clean</comment>

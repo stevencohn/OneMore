@@ -3915,6 +3915,14 @@ After last group</value>
     <value>Generate a summary report of reminders</value>
     <comment>ribbon reminders</comment>
   </data>
+  <data name="ribResetTasksButton_Label" xml:space="preserve">
+    <value>Reset All Completed Tasks</value>
+    <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribResetTasksButton_Screentip" xml:space="preserve">
+    <value>Uncheck and reset all completed tasks on this page</value>
+    <comment>ribbon reminders</comment>
+  </data>
   <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
     <value>Restore Container Widths</value>
     <comment>ribbon clean</comment>

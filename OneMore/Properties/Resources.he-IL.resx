@@ -3913,6 +3913,14 @@ ISO-code then comma then language name</comment>
     <value>צור דוח סיכום של תזכורות</value>
     <comment>ribbon reminders</comment>
   </data>
+  <data name="ribResetTasksButton_Label" xml:space="preserve">
+    <value>אפס את כל המשימות שהושלמו</value>
+    <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribResetTasksButton_Screentip" xml:space="preserve">
+    <value>בטל את הסימון ואפס את כל המשימות שהושלמו בדף זה</value>
+    <comment>ribbon reminders</comment>
+  </data>
   <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
     <value>שחזור רוחב מיכל</value>
     <comment>ribbon clean</comment>

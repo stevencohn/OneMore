@@ -3907,6 +3907,14 @@ ISO-code then comma then language name</comment>
     <value>生成提醒摘要报告</value>
     <comment>ribbon reminders</comment>
   </data>
+  <data name="ribResetTasksButton_Label" xml:space="preserve">
+    <value>重置所有已完成的任务</value>
+    <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribResetTasksButton_Screentip" xml:space="preserve">
+    <value>取消选中并重置此页面上所有已完成的任务</value>
+    <comment>ribbon reminders</comment>
+  </data>
   <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
     <value>还原容器宽度</value>
     <comment>ribbon clean</comment>

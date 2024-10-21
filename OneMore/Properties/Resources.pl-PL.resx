@@ -3915,6 +3915,14 @@ Po ostatniej grupie</value>
     <value>Wygeneruj raport podsumowujący przypomnienia</value>
     <comment>ribbon reminders</comment>
   </data>
+  <data name="ribResetTasksButton_Label" xml:space="preserve">
+    <value>Zresetuj wszystkie ukończone zadania</value>
+    <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribResetTasksButton_Screentip" xml:space="preserve">
+    <value>Odznacz i zresetuj wszystkie ukończone zadania na tej stronie</value>
+    <comment>ribbon reminders</comment>
+  </data>
   <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
     <value>Przywróć szerokości pojemników</value>
     <comment>ribbon clean</comment>
