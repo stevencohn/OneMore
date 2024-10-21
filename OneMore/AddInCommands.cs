@@ -167,7 +167,6 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<ApplyTableThemeCommand>(int.MaxValue);
 
 
-
 		[Command("ribCollapsePagesButton_Label", Keys.None)]
 		public async Task CollapsePagesCmd(IRibbonControl control)
 			=> await factory.Run<CollapsePagesCommand>();
