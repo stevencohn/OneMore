@@ -76,7 +76,7 @@ namespace River.OneMoreAddIn
 						await server.WaitForConnectionAsync();
 
 						var buffer = new byte[MaxBytes];
-						await server.ReadAsync(buffer, 0, MaxBytes);
+						_ = await server.ReadAsync(buffer, 0, MaxBytes);
 						data = Encoding.UTF8.GetString(buffer, 0, buffer.Length).Trim((char)0);
 						//logger.WriteLine($"pipe received [{data}]");
 

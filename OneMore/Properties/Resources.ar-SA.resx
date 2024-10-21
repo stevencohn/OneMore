@@ -2518,7 +2518,7 @@ ISO-code then comma then language name</comment>
     <comment>toast message</comment>
   </data>
   <data name="Reminder_PastStart" xml:space="preserve">
-    <value>تجاوزت المهمة تاريخ بدايتها في {0} ، "{1}". </value>
+    <value>لقد تجاوزت المهمة تاريخ بدايتها {0}؛ مستحق {1}. "{2}". انقر هنا للانتقال إلى هذه المهمة</value>
     <comment>toast message</comment>
   </data>
   <data name="Reminder_ToastTitle" xml:space="preserve">

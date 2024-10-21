@@ -2519,7 +2519,7 @@ Diferido</value>
     <comment>toast message</comment>
   </data>
   <data name="Reminder_PastStart" xml:space="preserve">
-    <value>A tarefa já passou da data de início de {0}, "{1}". </value>
+    <value>A data de início da tarefa já passou de {0}; devido {1}. "{2}". Clique aqui para navegar até esta tarefa</value>
     <comment>toast message</comment>
   </data>
   <data name="Reminder_ToastTitle" xml:space="preserve">

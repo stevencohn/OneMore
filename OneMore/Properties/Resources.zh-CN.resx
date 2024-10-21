@@ -2517,7 +2517,7 @@ ISO-code then comma then language name</comment>
     <comment>toast message</comment>
   </data>
   <data name="Reminder_PastStart" xml:space="preserve">
-    <value>任务已超过其开始日期 {0}，“{1}”。</value>
+    <value>任务已超过其开始日期 {0}；截止日期为{1}。 “{2}”。单击此处导航至此任务</value>
     <comment>toast message</comment>
   </data>
   <data name="Reminder_ToastTitle" xml:space="preserve">

@@ -2519,7 +2519,7 @@ Verschoven</value>
     <comment>toast message</comment>
   </data>
   <data name="Reminder_PastStart" xml:space="preserve">
-    <value>Taak is voorbij de startdatum van {0}, "{1}". </value>
+    <value>De taak heeft de startdatum van {0} overschreden; vervalt {1}. "{2}". Klik hier om naar deze taak te navigeren</value>
     <comment>toast message</comment>
   </data>
   <data name="Reminder_ToastTitle" xml:space="preserve">

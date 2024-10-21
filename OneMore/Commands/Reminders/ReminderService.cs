@@ -122,6 +122,7 @@ namespace River.OneMoreAddIn.Commands
 					Send(
 						string.Format(
 							Resx.Reminder_PastStart,
+							reminder.Start.ToShortFriendlyString(),
 							reminder.Due.ToShortFriendlyString(),
 							reminder.Subject
 							),

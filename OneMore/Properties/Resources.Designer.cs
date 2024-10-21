@@ -6547,7 +6547,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Task is past its start date of {0}, &quot;{1}&quot;. Click here to navigate to this task.
+        ///   Looks up a localized string similar to Task is past its start date of {0}; due {1}. &quot;{2}&quot;. Click here to navigate to this task.
         /// </summary>
         internal static string Reminder_PastStart {
             get {

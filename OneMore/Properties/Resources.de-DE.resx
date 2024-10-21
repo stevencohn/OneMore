@@ -2516,7 +2516,7 @@ Aufgeschoben</value>
     <comment>toast message</comment>
   </data>
   <data name="Reminder_PastStart" xml:space="preserve">
-    <value>Aufgabe hat das Startdatum {0}, "{1}" überschritten. </value>
+    <value>Die Aufgabe hat ihr Startdatum {0} überschritten; fällig {1}. „{2}“. Klicken Sie hier, um zu dieser Aufgabe zu navigieren</value>
     <comment>toast message</comment>
   </data>
   <data name="Reminder_ToastTitle" xml:space="preserve">

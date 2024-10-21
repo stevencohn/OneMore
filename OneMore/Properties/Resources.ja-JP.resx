@@ -2521,7 +2521,7 @@ ISO-code then comma then language name</comment>
     <comment>toast message</comment>
   </data>
   <data name="Reminder_PastStart" xml:space="preserve">
-    <value>タスクの開始日 {0} が過ぎています: "{1}"。ここをクリックしてこのタスクに移動します</value>
+    <value>タスクは開始日 {0} を過ぎています。期限は {1} です。 「{2}」。このタスクに移動するにはここをクリックしてください</value>
     <comment>toast message</comment>
   </data>
   <data name="Reminder_ToastTitle" xml:space="preserve">

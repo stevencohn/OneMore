@@ -2519,7 +2519,7 @@ Odroczony</value>
     <comment>toast message</comment>
   </data>
   <data name="Reminder_PastStart" xml:space="preserve">
-    <value>Zadaniem jest data rozpoczęcia {0}, "{1}". Kliknij tutaj, aby przejść do tego zadania</value>
+    <value>Data rozpoczęcia zadania minęła {0}; termin {1}. „{2}”. Kliknij tutaj, aby przejść do tego zadania</value>
     <comment>toast message</comment>
   </data>
   <data name="Reminder_ToastTitle" xml:space="preserve">

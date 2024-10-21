@@ -2518,7 +2518,7 @@ Diferido</value>
     <comment>toast message</comment>
   </data>
   <data name="Reminder_PastStart" xml:space="preserve">
-    <value>La tarea ha superado su fecha de inicio de {0}, "{1}". </value>
+    <value>La tarea ya pasó su fecha de inicio de {0}; debido {1}. "{2}". Haga clic aquí para navegar a esta tarea</value>
     <comment>toast message</comment>
   </data>
   <data name="Reminder_ToastTitle" xml:space="preserve">

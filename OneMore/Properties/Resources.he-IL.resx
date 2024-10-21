@@ -2519,7 +2519,7 @@ ISO-code then comma then language name</comment>
     <comment>toast message</comment>
   </data>
   <data name="Reminder_PastStart" xml:space="preserve">
-    <value>המשימה עברה את תאריך ההתחלה שלה של {0}, "{1}". לחץ כאן כדי לנווט למשימה זו</value>
+    <value>המשימה עברה את תאריך ההתחלה שלה של {0}; לפירעון {1}. "{2}". לחץ כאן כדי לנווט למשימה זו</value>
     <comment>toast message</comment>
   </data>
   <data name="Reminder_ToastTitle" xml:space="preserve">
