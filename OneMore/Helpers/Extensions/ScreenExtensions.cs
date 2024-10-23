@@ -10,20 +10,27 @@ namespace River.OneMoreAddIn.Helpers.Extensions
 
 	internal static class ScreenExtensions
 	{
-		private const int ReasonableMargin = 20;
+		public const int ReasonableMargin = 20;
 
 
+		/// <summary>
+		/// Given a form on a screen (e.g. NavigatorWindow), calculate the maximum Left/Top 
+		/// coordinate for that form on the screen as if it were corralled the screen's workarea
+		/// with a reasonable margin.
+		/// </summary>
+		/// <param name="screen">The screen within which to corral the form</param>
+		/// <param name="form">The form to be corralled</param>
+		/// <returns></returns>
 		public static Point GetBoundedLocation(this Screen screen, Form form)
 		{
-			// While Bounds is the entire screen with zero-based coordinates from upper left,
-			// WorkingArea is the subset of Bound minus space for the taskbar; so it shares the
-			// same origin of upper-left of screen but Top,Left,Right,Bottom may be adjusted
-			// to accomodate the position of the taskbar...
+			// screen.Bounds is the entire canvas of the display including pinned taskbar.
+			// screen.WorkArea is the working canvas of the display excluding the taskbar.
+			// Both Bounds and WorkArea have the same Left/Top origin; but note that the work
+			// area of a secondary extended display is relative to the primary display so its
+			// left-most x coordinate may be greather than zero.
 
+			// useable area of display, excluding taskbar, e.g. the "desktop"
 			var area = screen.WorkingArea;
-
-			// Note also that the working area of an secondary extended display is relative to
-			// the primary display so its left-most X coordinate may be greater than zero...
 
 			return new Point(
 				area.X + (area.Width - form.Width - ReasonableMargin),

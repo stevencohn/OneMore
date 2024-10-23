@@ -23,14 +23,14 @@ namespace River.OneMoreAddIn.Commands
 
 	internal partial class NavigatorWindow : MoreForm
 	{
-		private const int WindowMargin = 20;
+		private const int WindowMargin = ScreenExtensions.ReasonableMargin;
 		private const int HeaderIndent = 18;
 		private const int MinimizedBounds = -32000;
 
 		private static string visitedID;
 
 		private Screen screen;
-		private Point corral;
+		private Rectangle corral;
 		private Point location;
 		private bool minimized;
 		private readonly int depth;
@@ -111,7 +111,11 @@ namespace River.OneMoreAddIn.Commands
 
 		protected override void OnLoad(EventArgs e)
 		{
+			//logger.WriteLine($"NavigatorWindow.OnLoad calling base...");
+
 			base.OnLoad(e);
+			//logger.WriteLine($"NavigatorWindow.OnLoad after base");
+
 			BackColor = manager.GetColor("Control");
 
 			var viewColor = manager.GetColor("ListView");
@@ -132,44 +136,79 @@ namespace River.OneMoreAddIn.Commands
 		#region Window Management
 		private async void PositionOnLoad(object sender, EventArgs e)
 		{
+			//logger.WriteLine($"NavigatorWindow.PositionOnLoad");
+
 			// deal with primary/secondary displays in either duplicate or extended mode...
 			// Load is invoked prior to SizeChanged
 
-			await using var one = new OneNote();
-			screen = Screen.FromHandle(one.WindowHandle);
+			screen = null;
+
+			var settings = new SettingsProvider().GetCollection("navigator");
+			var device = settings.Get<string>("device");
+			if (device is not null)
+			{
+				screen = Array.Find(Screen.AllScreens, s => s.DeviceName == device);
+			}
+
+			if (screen is null)
+			{
+				await using var one = new OneNote();
+				screen = Screen.FromHandle(one.WindowHandle);
+			}
+
+			//logger.WriteLine($"NavigatorWindow.PositionOnLoad screen primary:{screen.Primary} " +
+			//	$"dev:{screen.DeviceName} bounds:{screen.Bounds.X}x{screen.Bounds.Y} " +
+			//	$"Bounds:{screen.Bounds.Width}x{screen.Bounds.Height} " +
+			//	$"WorkArea:{screen.WorkingArea.Width}x{screen.WorkingArea.Height}");
 
 			// move this window into the coordinate space of the active screen
 			Location = screen.WorkingArea.Location;
+			//logger.WriteLine($"NavigatorWindow.PositionOnLoad location:{location.X}x{location.Y}");
 
-			corral = screen.GetBoundedLocation(this);
+			corral = GetCorral(screen);
 
-			var settings = new SettingsProvider().GetCollection("navigator");
 			if (settings.Contains("left") && settings.Contains("top"))
 			{
 				Left = settings.Get("left", Left);
 				Top = settings.Get("top", Top);
+				//logger.WriteLine($"NavigatorWindow.PositionOnLoad setting left:{Left} Top:{Top}");
 			}
 			else
 			{
+				// set to corral origin regardless of whether "corralled" is set
 				Left = corral.X;
-				Top = SystemInformation.CaptionHeight + WindowMargin;
+				Top = corral.Y;
+				//logger.WriteLine($"NavigatorWindow.PositionOnLoad corral left:{Left} Top:{Top}");
 
 				if (CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft)
 				{
 					Left = WindowMargin;
+					//logger.WriteLine($"NavigatorWindow.PositionOnLoad corral RTL left:{Left} Top:{Top}");
 				}
 			}
 
 			// it's possible that screen resolution has changed since settings were saved
 			// and that left/top is now off the visible screen...
-			if (Left > screen.WorkingArea.Width) Left = WindowMargin;
-			if (Top > screen.WorkingArea.Height) Top = WindowMargin;
+			if (Left > screen.WorkingArea.Right)
+			{
+				Left = WindowMargin;
+				//logger.WriteLine($"NavigatorWindow.PositionOnLoad override Left:{Left}");
+			}
+
+			if (Top > screen.WorkingArea.Bottom)
+			{
+				Top = WindowMargin;
+				//logger.WriteLine($"NavigatorWindow.PositionOnLoad override Top:{Top}");
+			}
 
 			if (settings.Contains("width") && settings.Contains("height"))
 			{
 				Width = settings.Get("width", Width);
 				Height = settings.Get("height", Height);
+				//logger.WriteLine($"NavigatorWindow.PositionOnLoad width:{Width} height:{Height}");
 			}
+
+			//logger.WriteLine($"NavigatorWindow.PositionOnLoad data...");
 
 			// designer defines width but height is calculated
 			MaximumSize = new Size(MaximumSize.Width, screen.WorkingArea.Height - (WindowMargin * 2));
@@ -188,6 +227,15 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private Rectangle GetCorral(Screen screen)
+		{
+			var bounds = screen.GetBoundedLocation(this);
+			var left = screen.WorkingArea.X + WindowMargin;
+			var top = screen.WorkingArea.Top + WindowMargin + SystemInformation.CaptionHeight;
+			return new Rectangle(left, top, bounds.X - left, bounds.Y - top);
+		}
+
+
 		private void SetLimitsOnSizeChanged(object sender, EventArgs e)
 		{
 			if (screen == null)
@@ -197,7 +245,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			// SizeChanged is invoked after Load which sets screenArea
-			corral = screen.GetBoundedLocation(this);
+			corral = GetCorral(screen);
 
 			var rowWidth = Width - SystemInformation.VerticalScrollBarWidth * 2;
 
@@ -292,8 +340,20 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (WindowState == FormWindowState.Normal)
 			{
+				screen = Array.Find(Screen.AllScreens, s =>
+					Left >= s.WorkingArea.Left && Left <= s.WorkingArea.Right &&
+					Top >= s.WorkingArea.Top && Top <= s.WorkingArea.Bottom);
+
+				screen ??= Array.Find(Screen.AllScreens, s => s.Primary);
+
 				var settings = new SettingsProvider();
 				var collection = settings.GetCollection("navigator");
+
+				if (screen is not null)
+				{
+					collection.Add("device", screen.DeviceName);
+				}
+
 				collection.Add("left", Left);
 				collection.Add("top", Top);
 				collection.Add("width", Width);
@@ -441,7 +501,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private bool TitleChanged(ListView box, Page page)
+		private static bool TitleChanged(ListView box, Page page)
 		{
 			foreach (IMoreHostItem host in box.Items)
 			{

@@ -170,7 +170,7 @@ namespace River.OneMoreAddIn.UI
 
 		protected override void OnActivated(EventArgs e)
 		{
-			//logger.WriteLine($"activating [{Text}]");
+			//logger.WriteLine($"MoreForm.OnActivated [{Text}]");
 
 			base.OnActivated(e);
 
@@ -203,9 +203,6 @@ namespace River.OneMoreAddIn.UI
 			}
 			#endregion
 
-			//logger.WriteLine("onload");
-			base.OnLoad(e);
-
 			if (ThemeEnabled)
 			{
 				manager.InitializeTheme(this);
@@ -213,6 +210,7 @@ namespace River.OneMoreAddIn.UI
 
 			LoadControls(Controls);
 
+			//logger.WriteLine($"MoreForm.OnLoad try focus");
 			TryFocus();
 
 			// RunModeless has already set location so don't repeat that here and only set
@@ -220,11 +218,16 @@ namespace River.OneMoreAddIn.UI
 			// this in OnLoad so it doesn't visually "jump" as it would if done in OnShown
 			if (DesignMode || modeless)
 			{
+				//logger.WriteLine($"MoreForm.OnLoad calling base due to modeless...");
+				base.OnLoad(e);
+				//logger.WriteLine($"MoreForm.OnLoad returning due to modeless");
 				return;
 			}
 
 			if (!ManualLocation && StartPosition == FormStartPosition.Manual)
 			{
+				//logger.WriteLine($"MoreForm.OnLoad manual manual?");
+
 				/***** ********************************************************** *****/
 				/***** ********************************************************** *****/
 				/*****                                                            *****/
@@ -248,6 +251,8 @@ namespace River.OneMoreAddIn.UI
 						bounds.Top + (bounds.Bottom - bounds.Top) / 2);
 
 					Location = new Point(center.X - (Width / 2), center.Y - (Height / 2));
+
+					//logger.WriteLine($"MoreForm.OnLoad center point {Location.X}x{Location.Y}");
 				}
 			}
 
@@ -258,7 +263,13 @@ namespace River.OneMoreAddIn.UI
 				var y = Location.Y + VerticalOffset;
 
 				Location = new Point(x, y < 0 ? 0 : y);
+
+				//logger.WriteLine($"MoreForm.OnLoad vertical offset {Location.X}x{Location.Y}");
 			}
+
+			//logger.WriteLine($"MoreForm.OnLoad calling base...");
+			base.OnLoad(e);
+			//logger.WriteLine($"MoreForm.OnLoad after base");
 		}
 
 
