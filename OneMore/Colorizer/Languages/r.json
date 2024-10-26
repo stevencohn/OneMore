@@ -1,0 +1,38 @@
+﻿{
+  "name": "R",
+  "aliases": [
+    "R"
+  ],
+  "rules": [
+    {
+      "pattern": "(\\#.*?)\\r?$",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      "pattern": "(?s)(\"[^\\n]*?(?<!\\\\)\")",
+      "captures": [
+        "String"
+      ]
+    },
+    {
+      "pattern": "\\b(break|else|FALSE|for|function|if|in|Inf|NA|NA_integer_|NA_real_|NA_complex_|NA_character_|next|NULL|repeat|TRUE|while)\\b",
+      "captures": [
+        "Keyword"
+      ]
+    },
+    {
+      "pattern": "\\b(\\w+\\()",
+      "captures": [
+        "Predefined"
+      ]
+    },
+    {
+      "pattern": "\\b([0-9]{1,})\\b",
+      "captures": [
+        "Number"
+      ]
+    }
+  ]
+}
