@@ -5,31 +5,36 @@
   ],
   "rules": [
     {
+      // single line comment start with #
       "pattern": "(\\#.*?)\\r?$",
       "captures": [
         "Comment"
       ]
     },
     {
+      // double-quoted string, with negative lookbehind to allow embedded \"
       "pattern": "(?s)(\"[^\\n]*?(?<!\\\\)\")",
       "captures": [
         "String"
       ]
     },
     {
+      // reserved keyword, delimited by word break
       "pattern": "\\b(break|else|FALSE|for|function|if|in|Inf|NA|NA_integer_|NA_real_|NA_complex_|NA_character_|next|NULL|repeat|TRUE|while)\\b",
       "captures": [
         "Keyword"
       ]
     },
     {
+      // function with simple identifier followed by (
       "pattern": "\\b(\\w+\\()",
       "captures": [
         "Predefined"
       ]
     },
     {
-      "pattern": "\\b([0-9]{1,})\\b",
+      // integer or float
+      "pattern": "\\b([0-9]{1,}(?:\\.[0-9]{1,})?)\\b",
       "captures": [
         "Number"
       ]
