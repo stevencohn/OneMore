@@ -2,12 +2,17 @@
   "name": "Pascal",
   "rules": [
     {
+      // single line of a multi-line comment
+      // { foo
+      // { foo }
+      // foo }
       "pattern": "({(?:[^}]|[\\r\\n]|(?:{+(?:[^}]|[\\r\\n])))*})",
       "captures": [
         "Comment"
       ]
     },
     {
+      // single line comment without closure
       "pattern": "({[^\\r\\n]*)$",
       "scope": "Comment",
       "captures": [
@@ -15,6 +20,7 @@
       ]
     },
     {
+      // sinle line comment without opening
       "pattern": "^([^{\\r\\n]*})\\s*$",
       "scope": "",
       "captures": [
@@ -22,31 +28,36 @@
       ]
     },
     {
+      // single line comment starting with //
       "pattern": "(//.*?)\\r?$",
       "captures": [
         "Comment"
       ]
     },
     {
+      // single-quoted string
       "pattern": "('[^\\n]*?(?<!\\\\)')",
       "captures": [
         "String"
       ]
     },
     {
+      // reserved keyword, delimited by word break, case-insensitive
       "pattern": "\\b((?i:absolute|and|array|asm|begin|case|const|constructor|destructor|div|do|downto|else|end|file|for|function|goto|if|implementation|in|inherited|inline|interface|label|mod|nil|not|object|of|operator|or|packed|procedure|program|record|reintroduce|repeat|self|set|shl|shr|string|then|to|type|unit|until|uses|var|while|with|xor))\\b",
       "captures": [
         "Keyword"
       ]
     },
     {
+      // function with simple identifier followed by (
       "pattern": "\\b(\\w+\\()",
       "captures": [
         "Predefined"
       ]
     },
     {
-      "pattern": "\\b([0-9]{1,})\\b",
+      // integer or float
+      "pattern": "\\b([0-9]{1,}(?:\\.[0-9]{1,})?)\\b",
       "captures": [
         "Number"
       ]
