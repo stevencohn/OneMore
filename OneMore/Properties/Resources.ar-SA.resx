@@ -1292,7 +1292,7 @@
     <comment>tooltip</comment>
   </data>
   <data name="HashtagDialog.Title" xml:space="preserve">
-    <value>البحث عن علامات التصنيف</value>
+    <value>البحث في الوسوم</value>
     <comment>dialog title</comment>
   </data>
   <data name="HashtagDialog_allTags" xml:space="preserve">
@@ -3209,8 +3209,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon</comment>
   </data>
   <data name="ribFindHashtagsButton_Label" xml:space="preserve">
-    <value>البحث عن علامات التصنيف</value>
-    <comment>ribbon references</comment>
+    <value>البحث في الوسوم</value>
+    <comment>ribbon references NODUP</comment>
   </data>
   <data name="ribFinishBiLinkButton_Label" xml:space="preserve">
     <value>قم بإنهاء الارتباط ثنائي الاتجاه</value>

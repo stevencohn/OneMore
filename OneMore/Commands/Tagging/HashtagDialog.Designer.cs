@@ -421,7 +421,7 @@
 			this.KeyPreview = true;
 			this.MinimumSize = new System.Drawing.Size(900, 400);
 			this.Name = "HashtagDialog";
-			this.Text = "Find Hashtags";
+			this.Text = "Search Hashtags";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SaveSettings);
 			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DoKeyDown);
 			this.topPanel.ResumeLayout(false);

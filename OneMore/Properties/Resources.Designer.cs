@@ -3546,7 +3546,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Find Hashtags.
+        ///   Looks up a localized string similar to Search Hashtags.
         /// </summary>
         internal static string HashtagDialog_Title {
             get {
@@ -8135,7 +8135,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Find Hashtags.
+        ///   Looks up a localized string similar to Search Hashtags.
         /// </summary>
         internal static string ribFindHashtagsButton_Label {
             get {
