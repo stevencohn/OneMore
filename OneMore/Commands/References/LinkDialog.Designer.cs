@@ -29,7 +29,6 @@ namespace River.OneMoreAddIn.Commands
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LinkDialog));
 			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
@@ -39,8 +38,7 @@ namespace River.OneMoreAddIn.Commands
 			this.groupBox = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.introLabel = new System.Windows.Forms.Label();
 			this.synopsisBox = new River.OneMoreAddIn.UI.MoreCheckBox();
-			this.unindexedBox = new River.OneMoreAddIn.UI.MoreCheckBox();
-			this.tooltip = new System.Windows.Forms.ToolTip(this.components);
+			this.titleLabel = new System.Windows.Forms.Label();
 			this.groupBox.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -55,6 +53,7 @@ namespace River.OneMoreAddIn.Commands
 			this.okButton.Name = "okButton";
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(120, 38);
+			this.okButton.StylizeImage = false;
 			this.okButton.TabIndex = 0;
 			this.okButton.Text = "OK";
 			this.okButton.ThemedBack = null;
@@ -72,6 +71,7 @@ namespace River.OneMoreAddIn.Commands
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(120, 38);
+			this.cancelButton.StylizeImage = false;
 			this.cancelButton.TabIndex = 1;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.ThemedBack = null;
@@ -121,13 +121,15 @@ namespace River.OneMoreAddIn.Commands
 			this.groupBox.Controls.Add(this.sectionRadio);
 			this.groupBox.Controls.Add(this.notebooksRadio);
 			this.groupBox.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.groupBox.Location = new System.Drawing.Point(23, 70);
+			this.groupBox.Location = new System.Drawing.Point(23, 91);
 			this.groupBox.Name = "groupBox";
 			this.groupBox.Padding = new System.Windows.Forms.Padding(20);
 			this.groupBox.Size = new System.Drawing.Size(534, 165);
 			this.groupBox.TabIndex = 5;
 			this.groupBox.TabStop = false;
 			this.groupBox.Text = "Pages in";
+			this.groupBox.ThemedBorder = null;
+			this.groupBox.ThemedFore = null;
 			// 
 			// introLabel
 			// 
@@ -144,26 +146,25 @@ namespace River.OneMoreAddIn.Commands
 			this.synopsisBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.synopsisBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.synopsisBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.synopsisBox.Location = new System.Drawing.Point(46, 256);
+			this.synopsisBox.Location = new System.Drawing.Point(46, 277);
 			this.synopsisBox.Name = "synopsisBox";
 			this.synopsisBox.Size = new System.Drawing.Size(270, 25);
+			this.synopsisBox.StylizeImage = false;
 			this.synopsisBox.TabIndex = 7;
 			this.synopsisBox.Text = "Include a synopsis of each page";
+			this.synopsisBox.ThemedBack = null;
+			this.synopsisBox.ThemedFore = null;
 			this.synopsisBox.UseVisualStyleBackColor = true;
 			// 
-			// unindexedBox
+			// titleLabel
 			// 
-			this.unindexedBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
-			this.unindexedBox.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.unindexedBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.unindexedBox.Location = new System.Drawing.Point(46, 286);
-			this.unindexedBox.Name = "unindexedBox";
-			this.unindexedBox.Size = new System.Drawing.Size(281, 25);
-			this.unindexedBox.TabIndex = 8;
-			this.unindexedBox.Text = "Include unindexed pages in query";
-			this.tooltip.SetToolTip(this.unindexedBox, "Enable to search newer text that has not yet been indexed by OneNote. This may be" +
-        " slower.");
-			this.unindexedBox.UseVisualStyleBackColor = true;
+			this.titleLabel.AutoSize = true;
+			this.titleLabel.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.titleLabel.Location = new System.Drawing.Point(23, 49);
+			this.titleLabel.Name = "titleLabel";
+			this.titleLabel.Size = new System.Drawing.Size(34, 20);
+			this.titleLabel.TabIndex = 8;
+			this.titleLabel.Text = "title";
 			// 
 			// LinkDialog
 			// 
@@ -173,7 +174,7 @@ namespace River.OneMoreAddIn.Commands
 			this.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(580, 386);
-			this.Controls.Add(this.unindexedBox);
+			this.Controls.Add(this.titleLabel);
 			this.Controls.Add(this.synopsisBox);
 			this.Controls.Add(this.introLabel);
 			this.Controls.Add(this.groupBox);
@@ -204,7 +205,6 @@ namespace River.OneMoreAddIn.Commands
 		private UI.MoreGroupBox groupBox;
 		private System.Windows.Forms.Label introLabel;
 		private UI.MoreCheckBox synopsisBox;
-		private UI.MoreCheckBox unindexedBox;
-		private System.Windows.Forms.ToolTip tooltip;
+		private System.Windows.Forms.Label titleLabel;
 	}
 }

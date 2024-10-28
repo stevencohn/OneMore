@@ -349,6 +349,7 @@ namespace River.OneMoreAddIn.Models
 			var selections = GetSelections(start, anyElement: anyElement);
 
 			if ((
+				Scope == SelectionScope.None ||
 				Scope == SelectionScope.TextCursor ||
 				Scope == SelectionScope.SpecialCursor) &&
 				defaulToAnytIfNoRange)
