@@ -271,10 +271,6 @@ namespace River.OneMoreAddIn.Commands
 						Synopsis = showSynopsis ? GetSynopsis(page) : string.Empty
 					});
 				}
-				else
-				{
-					logger.Verbose($"reference not found on {title}");
-				}
 			}
 		}
 
