@@ -264,14 +264,12 @@ namespace River.OneMoreAddIn.Commands
 					logger.Debug($"saving {title}");
 					await one.Update(page);
 
-					var referral = new Referral
+					referrals.Add(new Referral
 					{
 						PageID = pageID,
 						Title = title,
 						Synopsis = showSynopsis ? GetSynopsis(page) : string.Empty
-					};
-
-					referrals.Add(referral);
+					});
 				}
 				else
 				{
