@@ -37,7 +37,7 @@ namespace River.OneMoreAddIn.Commands
 
 
 		// OE meta for linked references paragraph
-		private const string LinkRefsMeta = "omLinkedReferences";
+		public const string LinkRefsMeta = "omLinkedReferences";
 		private const string RefreshStyle = "font-style:italic;font-size:9.0pt;color:#808080";
 		private const int SynopsisLength = 110;
 
@@ -257,7 +257,34 @@ namespace River.OneMoreAddIn.Commands
 				var title = CleanTitle(page.Title);
 				logger.Verbose($"searching for references on {title}");
 
-				var replacements = editor.SearchAndReplace(page);
+				// search and replace...
+
+				var replacements = 0;
+
+				// exclude the omLinkedReferences block
+				var block = page.Root.Descendants(ns + "Meta")
+					.FirstOrDefault(e => e.Attribute("name").Value == LinkRefsMeta);
+
+				if (block is null)
+				{
+					// no omLinkedReferences so just scan the whole page
+					replacements = editor.SearchAndReplace(page);
+				}
+				else
+				{
+					// skip the omLinkedReferences block and its child OEs
+					var blocked = new List<XElement> { block.Parent };
+					var children = block.Parent.Descendants(ns + "OE");
+					if (children.Any()) blocked.AddRange(children);
+
+					// scan the remaining content of the page
+					foreach (var oe in page.Root.Descendants(ns + "OE").Except(blocked))
+					{
+						replacements += editor.SearchAndReplace(oe);
+					}
+				}
+
+				//var replacements = editor.SearchAndReplace(page);
 				if (replacements > 0 && !token.IsCancellationRequested)
 				{
 					// update the referring page with links back to the anchor page
