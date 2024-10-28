@@ -141,6 +141,7 @@
 			this.pageBox.Name = "pageBox";
 			this.pageBox.Size = new System.Drawing.Size(528, 250);
 			this.pageBox.TabIndex = 0;
+			this.pageBox.Resize += new System.EventHandler(this.ResizePageBox);
 			// 
 			// pageHeadPanel
 			// 
