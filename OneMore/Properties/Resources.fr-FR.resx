@@ -1807,14 +1807,6 @@ Voulez-vous actualiser la page existante ?</value>
     <value>Liens de références</value>
     <comment>dialog title</comment>
   </data>
-  <data name="LinkDialog_unindexedBox.Text" xml:space="preserve">
-    <value>Inclure les pages non indexées dans la requête</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="LinkDialog_unindexedBox.Tooltip" xml:space="preserve">
-    <value>Activez pour rechercher du texte plus récent qui n'a pas encore été indexé par OneNote. </value>
-    <comment>tooltip on checkbox</comment>
-  </data>
   <data name="LinkedReferencesCommand_Title" xml:space="preserve">
     <value>Références liées</value>
     <comment>title text</comment>

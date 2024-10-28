@@ -1806,14 +1806,6 @@ OneNote 文件 (*.one)</value>
     <value>链接参考</value>
     <comment>dialog title</comment>
   </data>
-  <data name="LinkDialog_unindexedBox.Text" xml:space="preserve">
-    <value>在查询中包含未编入索引的页面</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="LinkDialog_unindexedBox.Tooltip" xml:space="preserve">
-    <value>启用以搜索尚未被 OneNote 编入索引的较新文本。</value>
-    <comment>tooltip on checkbox</comment>
-  </data>
   <data name="LinkedReferencesCommand_Title" xml:space="preserve">
     <value>链接参考</value>
     <comment>title text</comment>

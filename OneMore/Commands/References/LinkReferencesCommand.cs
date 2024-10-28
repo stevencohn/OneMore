@@ -69,7 +69,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (!refreshReferences)
 			{
-				using var dialog = new LinkDialog(/* anchorTitle */);
+				using var dialog = new LinkDialog(anchorTitle);
 				if (dialog.ShowDialog(owner) != System.Windows.Forms.DialogResult.OK)
 				{
 					return;
@@ -293,6 +293,13 @@ namespace River.OneMoreAddIn.Commands
 			// to the XML will be discarded... remove descendant Images to avoid an issue where
 			// TextValue() can't parse embedded XML snippets in image OCR
 			body.Descendants(page.Namespace + "Image").Remove();
+
+			// remove the linked references block on this page so we don't include it in
+			// the page synopsis
+			body.Descendants(page.Namespace + "Meta")
+				.Where(e => e.Attribute("name").Value == LinkRefsMeta)
+				.Select(e => e.Parent)
+				.Remove();
 
 			// extract snippet of text surrounding first occurances of title within body...
 			// Note that attemps were made to find the sentence containing the title but this

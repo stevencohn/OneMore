@@ -1808,14 +1808,6 @@ Czy chcesz odświeżyć istniejącą stronę?</value>
     <value>Link References.</value>
     <comment>dialog title</comment>
   </data>
-  <data name="LinkDialog_unindexedBox.Text" xml:space="preserve">
-    <value>Uwzględnij strony nienaruszone w zapytaniu</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="LinkDialog_unindexedBox.Tooltip" xml:space="preserve">
-    <value>Włącz wyszukiwanie nowszego tekstu, który nie został jeszcze indeksowany przez OneNote. Może to być wolniejsze.</value>
-    <comment>tooltip on checkbox</comment>
-  </data>
   <data name="LinkedReferencesCommand_Title" xml:space="preserve">
     <value>Połączone referencje.</value>
     <comment>title text</comment>

@@ -4650,24 +4650,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Include unindexed pages in query.
-        /// </summary>
-        internal static string LinkDialog_unindexedBox_Text {
-            get {
-                return ResourceManager.GetString("LinkDialog_unindexedBox.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Enable to search newer text that has not yet been indexed by OneNote. This may be slower..
-        /// </summary>
-        internal static string LinkDialog_unindexedBox_Tooltip {
-            get {
-                return ResourceManager.GetString("LinkDialog_unindexedBox.Tooltip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Linked References.
         /// </summary>
         internal static string LinkedReferencesCommand_Title {
