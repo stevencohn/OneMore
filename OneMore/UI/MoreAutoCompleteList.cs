@@ -238,6 +238,7 @@ namespace River.OneMoreAddIn.UI
 		/// <param name="recentNames">Optional list of recently used command names</param>
 		public void LoadCommands(IEnumerable<string> names, IEnumerable<string> recentNames = null)
 		{
+			SuspendLayout();
 			Items.Clear();
 			commands.Clear();
 			matches.Clear();
@@ -297,6 +298,9 @@ namespace River.OneMoreAddIn.UI
 			{
 				Items[0].Selected = true;
 			}
+
+			Invalidate();
+			ResumeLayout();
 		}
 		#endregion public SetAutoCompleteList and LoadCommands
 
