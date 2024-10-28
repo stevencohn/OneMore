@@ -539,6 +539,20 @@ namespace River.OneMoreAddIn.Commands
 				e.Handled = true;
 			}
 		}
+
+
+		private void ResizePageBox(object sender, EventArgs e)
+		{
+			var margin = SystemInformation.VerticalScrollBarWidth * 2;
+
+			foreach (MoreLinkLabel link in pageBox.Controls)
+			{
+				var leftpad = ((Heading)link.Tag).Level * HeaderIndent;
+				var leftmar = leftpad + 4;
+				link.Width = pageBox.Width - leftmar - margin;
+
+			}
+		}
 		#endregion Page headings
 
 
