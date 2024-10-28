@@ -74,11 +74,6 @@ namespace River.OneMoreAddIn.Commands
 			var runs = range.GetSelections(defaulToAnytIfNoRange: true);
 			if (runs.Any())
 			{
-				runs = runs.Where(e => !e
-					.Ancestors(page.Namespace + "OE")
-					.Elements(page.Namespace + "Meta")
-					.Any(m => m.Attribute("name").Value == LinkReferencesCommand.LinkRefsMeta));
-
 				foreach (var run in runs)
 				{
 					count += ScanElement(run);
