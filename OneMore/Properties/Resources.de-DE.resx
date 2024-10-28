@@ -1290,7 +1290,7 @@ Die Suche nach Hashtags ist erst möglich, wenn dies abgeschlossen ist.</value>
     <comment>tooltip</comment>
   </data>
   <data name="HashtagDialog.Title" xml:space="preserve">
-    <value>Finden Sie Hashtags</value>
+    <value>Suchen Sie nach Hashtags</value>
     <comment>dialog title</comment>
   </data>
   <data name="HashtagDialog_allTags" xml:space="preserve">
@@ -3209,8 +3209,8 @@ Nach der letzten Gruppe</value>
     <comment>ribbon</comment>
   </data>
   <data name="ribFindHashtagsButton_Label" xml:space="preserve">
-    <value>Finden Sie Hashtags</value>
-    <comment>ribbon references</comment>
+    <value>Suchen Sie nach Hashtags</value>
+    <comment>ribbon references NODUP</comment>
   </data>
   <data name="ribFinishBiLinkButton_Label" xml:space="preserve">
     <value>Bidirektionale Verbindung beenden</value>

@@ -3211,7 +3211,7 @@ Na de laatste groep</value>
   </data>
   <data name="ribFindHashtagsButton_Label" xml:space="preserve">
     <value>Zoek hashtags</value>
-    <comment>ribbon references</comment>
+    <comment>ribbon references NODUP</comment>
   </data>
   <data name="ribFinishBiLinkButton_Label" xml:space="preserve">
     <value>Bidirectionele link voltooien</value>

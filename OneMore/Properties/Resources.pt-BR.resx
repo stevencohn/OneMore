@@ -1293,7 +1293,7 @@ A pesquisa de hashtags não estará disponível até que isso seja concluído.</
     <comment>tooltip</comment>
   </data>
   <data name="HashtagDialog.Title" xml:space="preserve">
-    <value>Encontre hashtags</value>
+    <value>Pesquisar hashtags</value>
     <comment>dialog title</comment>
   </data>
   <data name="HashtagDialog_allTags" xml:space="preserve">
@@ -3210,8 +3210,8 @@ Depois do último grupo</value>
     <comment>ribbon</comment>
   </data>
   <data name="ribFindHashtagsButton_Label" xml:space="preserve">
-    <value>Encontre hashtags</value>
-    <comment>ribbon references</comment>
+    <value>Pesquisar hashtags</value>
+    <comment>ribbon references NODUP</comment>
   </data>
   <data name="ribFinishBiLinkButton_Label" xml:space="preserve">
     <value>Concluir link bidirecional</value>

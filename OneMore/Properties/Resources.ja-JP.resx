@@ -3218,7 +3218,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon table</comment>
   </data>
   <data name="ribFindHashtagsButton_Label" xml:space="preserve">
-    <value>ハッシュタグの検索</value>
+    <value>ハッシュタグを検索</value>
     <comment>ribbon references NODUP</comment>
   </data>
   <data name="ribFinishBiLinkButton_Label" xml:space="preserve">

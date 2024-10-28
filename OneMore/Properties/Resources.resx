@@ -1293,7 +1293,7 @@ Searching for hashtags is unavailable until this is completed.</value>
     <comment>tooltip</comment>
   </data>
   <data name="HashtagDialog.Title" xml:space="preserve">
-    <value>Find Hashtags</value>
+    <value>Search Hashtags</value>
     <comment>dialog title</comment>
   </data>
   <data name="HashtagDialog_allTags" xml:space="preserve">
@@ -3216,7 +3216,7 @@ After last group</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribFindHashtagsButton_Label" xml:space="preserve">
-    <value>Find Hashtags</value>
+    <value>Search Hashtags</value>
     <comment>ribbon references NODUP</comment>
   </data>
   <data name="ribFinishBiLinkButton_Label" xml:space="preserve">

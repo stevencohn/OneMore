@@ -3210,7 +3210,7 @@ Después del último grupo</value>
   </data>
   <data name="ribFindHashtagsButton_Label" xml:space="preserve">
     <value>Buscar hashtags</value>
-    <comment>ribbon references</comment>
+    <comment>ribbon references NODUP</comment>
   </data>
   <data name="ribFinishBiLinkButton_Label" xml:space="preserve">
     <value>Finalizar enlace bidireccional</value>

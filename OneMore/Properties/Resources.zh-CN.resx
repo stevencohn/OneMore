@@ -1291,7 +1291,7 @@ OneNote 文件 (*.one)</value>
     <comment>tooltip</comment>
   </data>
   <data name="HashtagDialog.Title" xml:space="preserve">
-    <value>查找标签</value>
+    <value>搜索标签</value>
     <comment>dialog title</comment>
   </data>
   <data name="HashtagDialog_allTags" xml:space="preserve">
@@ -3210,8 +3210,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon</comment>
   </data>
   <data name="ribFindHashtagsButton_Label" xml:space="preserve">
-    <value>查找标签</value>
-    <comment>ribbon references</comment>
+    <value>搜索标签</value>
+    <comment>ribbon references NODUP</comment>
   </data>
   <data name="ribFinishBiLinkButton_Label" xml:space="preserve">
     <value>完成双向链接</value>
