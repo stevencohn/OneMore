@@ -214,7 +214,8 @@
 			this.scopeBox.Items.AddRange(new object[] {
             "All notebooks",
             "This notebook",
-            "This section"});
+            "This section",
+            "This page"});
 			this.scopeBox.Location = new System.Drawing.Point(655, 12);
 			this.scopeBox.Name = "scopeBox";
 			this.scopeBox.Size = new System.Drawing.Size(196, 28);

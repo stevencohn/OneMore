@@ -1344,8 +1344,9 @@ OneNoteファイル (*.one)</value>
   </data>
   <data name="HashtagDialog_scopeBox.Text" xml:space="preserve">
     <value>すべてのノートブック
-このノートブック
-このセクション</value>
+このノート
+このセクション
+このページ</value>
     <comment>combobox</comment>
   </data>
   <data name="HashtagDialog_sensitiveTip" xml:space="preserve">

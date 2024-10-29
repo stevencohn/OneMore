@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Models;
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
@@ -43,7 +44,18 @@ namespace River.OneMoreAddIn.Commands
 			var converter = new LegacyTaggingConverter();
 			await converter.UpgradeLegacyTags();
 
-			dialog = new HashtagDialog();
+			// get page moreID...
+
+			await using var one = new OneNote(out var page, out var ns);
+
+			var moreID = page.Root.Elements(ns + "Meta")
+				.Where(e => e.Attribute("name").Value == MetaNames.PageID)
+				.Select(e => e.Attribute("content").Value)
+				.FirstOrDefault();
+
+			// dialog...
+
+			dialog = new HashtagDialog(moreID);
 			dialog.FormClosed += Dialog_FormClosed;
 
 			dialog.RunModeless(async (sender, e) =>

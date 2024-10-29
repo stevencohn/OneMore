@@ -832,14 +832,20 @@ namespace River.OneMoreAddIn.Commands
 		/// Returns a collection of all unique tag names.
 		/// </summary>
 		/// <returns>A list of strings</returns>
-		public IEnumerable<string> ReadTagNames(string notebookID = null, string sectionID = null)
+		public IEnumerable<string> ReadTagNames(
+			string notebookID = null, string sectionID = null, string moreID = null)
 		{
 			var tags = new List<string>();
 			using var cmd = con.CreateCommand();
 
 			var sql = "SELECT DISTINCT t.tag FROM hashtag t";
 
-			if (!string.IsNullOrWhiteSpace(sectionID))
+			if (!string.IsNullOrWhiteSpace(moreID))
+			{
+				sql = $"{sql} JOIN hashtag_page p ON p.moreID = t.moreID AND t.moreID = @mid";
+				cmd.Parameters.AddWithValue("@mid", moreID);
+			}
+			else if (!string.IsNullOrWhiteSpace(sectionID))
 			{
 				sql = $"{sql} JOIN hashtag_page p ON p.moreID = t.moreID AND p.sectionID = @sid";
 				cmd.Parameters.AddWithValue("@sid", sectionID);
@@ -877,7 +883,8 @@ namespace River.OneMoreAddIn.Commands
 		/// <returns>A collection of Hashtags</returns>
 		public Hashtags SearchTags(
 			string criteria, bool caseSensitive,
-			out string parsed, string notebookID = null, string sectionID = null)
+			out string parsed,
+			string notebookID = null, string sectionID = null, string moreID = null)
 		{
 			var parameters = new List<SQLiteParameter>();
 
@@ -888,7 +895,12 @@ namespace River.OneMoreAddIn.Commands
 			builder.Append("FROM hashtag t ");
 			builder.Append("JOIN hashtag_page p ON t.moreID = p.moreID ");
 
-			if (!string.IsNullOrWhiteSpace(sectionID))
+			if (!string.IsNullOrWhiteSpace(moreID))
+			{
+				builder.Append("AND t.moreID = @mid ");
+				parameters.Add(new("mid", moreID));
+			}
+			else if (!string.IsNullOrWhiteSpace(sectionID))
 			{
 				builder.Append("AND p.sectionID = @sid ");
 				parameters.Add(new("sid", sectionID));

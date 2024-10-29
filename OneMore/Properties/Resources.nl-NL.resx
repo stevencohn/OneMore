@@ -1343,7 +1343,8 @@ Zoeken naar hashtags is pas beschikbaar als dit is voltooid.</value>
   <data name="HashtagDialog_scopeBox.Text" xml:space="preserve">
     <value>Alle notitieboekjes
 Dit notitieboekje
-Deze sectie</value>
+Deze sectie
+Deze pagina</value>
     <comment>combobox</comment>
   </data>
   <data name="HashtagDialog_sensitiveTip" xml:space="preserve">

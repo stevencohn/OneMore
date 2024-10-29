@@ -1342,7 +1342,8 @@
   <data name="HashtagDialog_scopeBox.Text" xml:space="preserve">
     <value>جميع الدفاتر
 هذا دفتر
-هذا القسم</value>
+هذا القسم
+هذه الصفحة</value>
     <comment>combobox</comment>
   </data>
   <data name="HashtagDialog_sensitiveTip" xml:space="preserve">
