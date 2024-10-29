@@ -22,6 +22,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private const string T0 = "0001-01-01T00:00:00.0000Z";
 
+		private readonly string moreID;
 		private readonly MoreAutoCompleteList palette;
 		private readonly bool experimental;
 		private readonly List<string> selections;
@@ -94,6 +95,19 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		public HashtagDialog(string moreID)
+			: this()
+		{
+			this.moreID = moreID;
+
+			if (string.IsNullOrEmpty(moreID))
+			{
+				// if not moreID then page has not been scanned or does not have tags
+				scopeBox.Items.RemoveAt(3);
+			}
+		}
+
+
 		public Commands Command { get; private set; }
 
 
@@ -158,6 +172,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				1 => provider.ReadTagNames(notebookID: one.CurrentNotebookId),
 				2 => provider.ReadTagNames(sectionID: one.CurrentSectionId),
+				3 => provider.ReadTagNames(moreID: moreID),
 				_ => provider.ReadTagNames(),
 			};
 
@@ -222,6 +237,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				1 => provider.SearchTags(where, cs, out parsed, notebookID: one.CurrentNotebookId),
 				2 => provider.SearchTags(where, cs, out parsed, sectionID: one.CurrentSectionId),
+				3 => provider.SearchTags(where, cs, out parsed, moreID: moreID),
 				_ => provider.SearchTags(where, cs, out parsed)
 			};
 

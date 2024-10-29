@@ -3519,7 +3519,8 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized string similar to All notebooks
         ///This notebook
-        ///This section.
+        ///This section
+        ///This page.
         /// </summary>
         internal static string HashtagDialog_scopeBox_Text {
             get {

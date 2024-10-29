@@ -1343,7 +1343,8 @@ A pesquisa de hashtags não estará disponível até que isso seja concluído.</
   <data name="HashtagDialog_scopeBox.Text" xml:space="preserve">
     <value>Todos os cadernos
 Este caderno
-Esta seção</value>
+Esta seção
+Esta página</value>
     <comment>combobox</comment>
   </data>
   <data name="HashtagDialog_sensitiveTip" xml:space="preserve">

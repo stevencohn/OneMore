@@ -1342,7 +1342,8 @@ La recherche de hashtags n'est pas disponible tant qu'elle n'est pas terminée.<
   <data name="HashtagDialog_scopeBox.Text" xml:space="preserve">
     <value>Tous les cahiers
 Ce carnet
-Cette section</value>
+Cette rubrique
+Cette page</value>
     <comment>combobox</comment>
   </data>
   <data name="HashtagDialog_sensitiveTip" xml:space="preserve">

@@ -1340,7 +1340,8 @@ Die Suche nach Hashtags ist erst möglich, wenn dies abgeschlossen ist.</value>
   <data name="HashtagDialog_scopeBox.Text" xml:space="preserve">
     <value>Alle Notizbücher
 Dieses Notizbuch
-Diese Abteilung</value>
+Dieser Abschnitt
+Diese Seite</value>
     <comment>combobox</comment>
   </data>
   <data name="HashtagDialog_sensitiveTip" xml:space="preserve">
