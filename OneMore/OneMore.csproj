@@ -151,6 +151,11 @@
     <Compile Include="Commands\File\Markdown\WikilinkParser.cs" />
     <Compile Include="Commands\File\Markdown\WikilinkRenderer.cs" />
     <Compile Include="Commands\File\Markdown\WikilinkInline.cs" />
+    <Compile Include="Commands\Images\Diagrams\DiagramKeys.cs" />
+    <Compile Include="Commands\Images\Diagrams\DiagramProviderFactory.cs" />
+    <Compile Include="Commands\Images\Diagrams\IDiagramProvider.cs" />
+    <Compile Include="Commands\Images\Diagrams\ImageMetaTextEditor.cs" />
+    <Compile Include="Commands\Images\Diagrams\KrokiDiagramProvider.cs" />
     <Compile Include="Commands\Images\SelectInkCommand.cs" />
     <Compile Include="Commands\Navigator\NextUnreadPageCommand.cs" />
     <Compile Include="Commands\Page\DuplicateLineCommand.cs" />
@@ -163,9 +168,9 @@
     <Compile Include="Commands\File\Markdown\OneMoreDigRenderer.cs" />
     <Compile Include="Commands\Images\CompressImagesCommand.cs" />
     <Compile Include="Commands\Images\ImageEditor.cs" />
-    <Compile Include="Commands\Images\PlantUmlCommand.cs" />
+    <Compile Include="Commands\Images\DiagramCommand.cs" />
     <Compile Include="Commands\Images\OpenImageWithCommand.cs" />
-    <Compile Include="Commands\Images\PlantUmlHelper.cs" />
+    <Compile Include="Commands\Images\Diagrams\PlantUmlDiagramProvider.cs" />
     <Compile Include="Commands\Images\StackBackgroundImagesCommand.cs" />
     <Compile Include="Commands\Images\StylizeImagesCommand.cs" />
     <Compile Include="Commands\Images\StylizeImagesDialog.cs">

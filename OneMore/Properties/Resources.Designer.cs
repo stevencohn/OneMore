@@ -1616,6 +1616,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to https://kroki.io/.
+        /// </summary>
+        internal static string DiagramCommand_Uri {
+            get {
+                return ResourceManager.GetString("DiagramCommand_Uri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reset Settings.
         /// </summary>
         internal static string DialogResetSettings_Text {

@@ -21,21 +21,54 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = Properties.Resources;
 
 
+	#region Wrappers
+	internal class MermaidCommand : DiagramCommand
+	{
+		public MermaidCommand() : base(DiagramKeys.MermaidKey) { }
+		public override Task Execute(params object[] args)
+		{
+			return base.Execute(DiagramKeys.MermaidKey);
+		}
+	}
+	internal class PlantUmlCommand : DiagramCommand
+	{
+		public PlantUmlCommand() : base(DiagramKeys.PlantUmlKey) { }
+		protected override string DiagramTextMetaKey => "omPlant";
+		protected override string DiagramImageMetaKey => "omPlantImage";
+		public override Task Execute(params object[] args)
+		{
+			return base.Execute(DiagramKeys.PlantUmlKey);
+		}
+	}
+	#endregion
+
+
 	/// <summary>
 	/// Render image from selected PlantUML or Graphviz text
 	/// </summary>
 	[CommandService]
-	internal class PlantUmlCommand : Command
+	internal class DiagramCommand : Command
 	{
-		private const string PlantMeta = "omPlant";
-		private const string ImageMeta = "omPlantImage";
-
+		private readonly string keyword;
 		private string errorMessage;
+		private IDiagramProvider provider;
 
 
-		public PlantUmlCommand()
+		public DiagramCommand()
 		{
 		}
+
+
+		public DiagramCommand(string keyword)
+		{
+			this.keyword = keyword;
+		}
+
+
+		protected virtual string DiagramTextMetaKey => "omDiagramText";
+
+
+		protected virtual string DiagramImageMetaKey => "omDiagramImage";
 
 
 		public override async Task Execute(params object[] args)
@@ -45,6 +78,8 @@ namespace River.OneMoreAddIn.Commands
 				ShowInfo(Resx.NetwordConnectionUnavailable);
 				return;
 			}
+
+			provider = DiagramProviderFactory.MakeProvider(keyword);
 
 			if (args.Length > 0)
 			{
@@ -76,7 +111,7 @@ namespace River.OneMoreAddIn.Commands
 
 			var runs = range.GetSelections().ToList();
 			if (range.Scope != SelectionScope.Range &&
-				range.Scope != SelectionScope.Run) // incase PlantUML lines end with soft-breaks
+				range.Scope != SelectionScope.Run) // incase diagram lines end with soft-breaks
 			{
 				ShowError(Resx.PlantUml_EmptySelection);
 				return;
@@ -129,7 +164,7 @@ namespace River.OneMoreAddIn.Commands
 			PageNamespace.Set(ns);
 
 			var content = new XElement(ns + "OE",
-				new Meta(ImageMeta, plantID),
+				new Meta(DiagramImageMetaKey, plantID),
 				new XElement(ns + "Image",
 					new XElement(ns + "Size",
 						new XAttribute("width", FormattableString.Invariant($"{image.Width:0.0}")),
@@ -137,7 +172,7 @@ namespace River.OneMoreAddIn.Commands
 					new XElement(ns + "Data", Convert.ToBase64String(bytes))
 					));
 
-			var title = PlantUmlHelper.ReadTitle(text);
+			var title = provider.ReadTitle(text);
 			var caption = $"{title} <span style='font-style:italic'>(" +
 				$"<a href=\"{url}/extract\">{Resx.word_Extract}</a>)</span>";
 
@@ -159,7 +194,10 @@ namespace River.OneMoreAddIn.Commands
 
 			if (collapse)
 			{
-				new ColorizeCommand(page, true).Colorize("plantuml", runs);
+				if (keyword == DiagramKeys.PlantUmlKey)
+				{
+					new ColorizeCommand(page, true).Colorize("plantuml", runs);
+				}
 
 				if (title != "PlantUML")
 				{
@@ -168,7 +206,7 @@ namespace River.OneMoreAddIn.Commands
 
 				var container = new XElement(ns + "OE",
 					new XAttribute("collapsed", "1"),
-					new Meta(PlantMeta, plantID),
+					new Meta(DiagramTextMetaKey, plantID),
 					new XElement(ns + "T",
 						new XCData(
 							$"<span style='font-style:italic'>{title} " +
@@ -214,7 +252,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using var progress = new ProgressDialog(10);
 			progress.Tag = text;
-			progress.SetMessage("Converting using the service http://www.plantuml.com...");
+			progress.SetMessage("Rendering diagram from remote service...");
 
 			// text will have gone through wrapping and unwrapping so needs decoding
 			text = HttpUtility.HtmlDecode(text);
@@ -225,8 +263,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					try
 					{
-						var renderer = new PlantUmlHelper();
-						bytes = await renderer.RenderRemotely(text, token);
+						bytes = await provider.RenderRemotely(text, token);
 
 						if (bytes.Length > 0)
 						{
@@ -234,11 +271,11 @@ namespace River.OneMoreAddIn.Commands
 							return true;
 						}
 
-						if (!string.IsNullOrWhiteSpace(renderer.ErrorMessages))
+						if (!string.IsNullOrWhiteSpace(provider.ErrorMessages))
 						{
-							errorMessage = renderer.ErrorMessages;
+							errorMessage = provider.ErrorMessages;
 							logger.WriteLine("rendering messages:");
-							logger.WriteLine(renderer.ErrorMessages);
+							logger.WriteLine(provider.ErrorMessages);
 							logger.WriteLine("text ---");
 							logger.WriteLine(text);
 						}
@@ -248,7 +285,7 @@ namespace River.OneMoreAddIn.Commands
 					catch (Exception exc)
 					{
 						errorMessage = exc.Message;
-						logger.WriteLine($"error rendering PlantUml\n{text}", exc);
+						logger.WriteLine($"error rendering diagram\n{text}", exc);
 						return false;
 					}
 				});
@@ -264,7 +301,7 @@ namespace River.OneMoreAddIn.Commands
 
 			var element = page.Root.Descendants(ns + "OE").Elements(ns + "Meta")
 				.Where(e =>
-					e.Attribute("name")?.Value == ImageMeta &&
+					e.Attribute("name")?.Value == DiagramImageMetaKey &&
 					e.Attribute("content")?.Value == plantID)
 				.Select(e => e.Parent.Elements(ns + "Image").FirstOrDefault())
 				.FirstOrDefault();
@@ -277,7 +314,7 @@ namespace River.OneMoreAddIn.Commands
 
 			var plant = page.Root.Descendants(ns + "OE").Elements(ns + "Meta")
 				.Where(e =>
-					e.Attribute("name")?.Value == PlantMeta &&
+					e.Attribute("name")?.Value == DiagramTextMetaKey &&
 					e.Attribute("content")?.Value == plantID)
 				.Select(e => e.Parent.Elements(ns + "OEChildren").FirstOrDefault())
 				.FirstOrDefault();
@@ -340,7 +377,10 @@ namespace River.OneMoreAddIn.Commands
 				size.SetAttributeValue("height", FormattableString.Invariant($"{bitmap.Height:0.0}"));
 			}
 
-			new ColorizeCommand(page, true).Colorize("plantuml", runs);
+			if (keyword == DiagramKeys.PlantUmlKey)
+			{
+				new ColorizeCommand(page, true).Colorize("plantuml", runs);
+			}
 
 			await one.Update(page);
 
@@ -355,7 +395,7 @@ namespace River.OneMoreAddIn.Commands
 
 			var element = page.Root.Descendants(ns + "OE").Elements(ns + "Meta")
 				.Where(e =>
-					e.Attribute("name")?.Value == ImageMeta &&
+					e.Attribute("name")?.Value == DiagramImageMetaKey &&
 					e.Attribute("content")?.Value == plantID)
 				.Select(e => e.Parent.Elements(ns + "Image").FirstOrDefault())
 				.FirstOrDefault();
@@ -366,18 +406,22 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			var uml = PlantUmlHelper.ExtractUmlFromImageData(element.Element(ns + "Data").Value);
+			var editor = new ImageMetaTextEditor(element.Element(ns + "Data").Value);
+			var uml = editor.ReadImageMetaTextEntry();
+			if (!string.IsNullOrWhiteSpace(uml))
+			{
+				var container = element.FirstAncestor(ns + "Table").Parent;
+				PageNamespace.Set(ns);
 
-			var container = element.FirstAncestor(ns + "Table").Parent;
-			PageNamespace.Set(ns);
+				var lines = Regex.Split(uml, "\r\n|\r|\n");
 
-			var lines = Regex.Split(uml, "\r\n|\r|\n");
+				container.AddAfterSelf(
+					new Paragraph(string.Empty),
+					lines.Select(line => new Paragraph(line)));
 
-			container.AddAfterSelf(
-				new Paragraph(string.Empty),
-				lines.Select(line => new Paragraph(line)));
-
-			await one.Update(page);
+				await one.Update(page);
+			}
+			// else show error message?
 		}
 	}
 }
