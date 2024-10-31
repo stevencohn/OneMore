@@ -25,9 +25,9 @@ namespace River.OneMoreAddIn.Commands
 	internal class MermaidCommand : DiagramCommand
 	{
 		public MermaidCommand() : base(DiagramKeys.MermaidKey) { }
-		public override Task Execute(params object[] args)
+		public override async Task Execute(params object[] args)
 		{
-			return base.Execute(DiagramKeys.MermaidKey);
+			await base.Execute(args);
 		}
 	}
 	internal class PlantUmlCommand : DiagramCommand
@@ -35,16 +35,16 @@ namespace River.OneMoreAddIn.Commands
 		public PlantUmlCommand() : base(DiagramKeys.PlantUmlKey) { }
 		protected override string DiagramTextMetaKey => "omPlant";
 		protected override string DiagramImageMetaKey => "omPlantImage";
-		public override Task Execute(params object[] args)
+		public override async Task Execute(params object[] args)
 		{
-			return base.Execute(DiagramKeys.PlantUmlKey);
+			await base.Execute(args);
 		}
 	}
 	#endregion
 
 
 	/// <summary>
-	/// Render image from selected PlantUML or Graphviz text
+	/// Render image from selected PlantUML or Mermaid \text
 	/// </summary>
 	[CommandService]
 	internal class DiagramCommand : Command
@@ -86,19 +86,19 @@ namespace River.OneMoreAddIn.Commands
 				// not sure why logger is null here so we have to set it
 				logger = Logger.Current;
 
-				var pid = (string)args[0];
+				var dID = (string)args[0];
 				if (args.Length > 1)
 				{
 					var cmd = (string)args[1];
 					if ("extract".Equals(cmd, StringComparison.InvariantCultureIgnoreCase))
 					{
-						await ExtractUml(pid);
+						await ExtractUml(dID);
 						return;
 					}
 				}
 				else
 				{
-					await RefreshDiagram(pid);
+					await RefreshDiagram(dID);
 					return;
 				}
 			}
@@ -113,7 +113,7 @@ namespace River.OneMoreAddIn.Commands
 			if (range.Scope != SelectionScope.Range &&
 				range.Scope != SelectionScope.Run) // incase diagram lines end with soft-breaks
 			{
-				ShowError(Resx.PlantUml_EmptySelection);
+				ShowError(Resx.DiagramCommand_EmptySelection);
 				return;
 			}
 
@@ -128,7 +128,7 @@ namespace River.OneMoreAddIn.Commands
 			var text = builder.ToString();
 			if (string.IsNullOrWhiteSpace(text))
 			{
-				ShowError(Resx.PlantUml_EmptySelection);
+				ShowError(Resx.DiagramCommand_EmptySelection);
 				return;
 			}
 
@@ -159,12 +159,12 @@ namespace River.OneMoreAddIn.Commands
 			using var stream = new MemoryStream(bytes);
 			using var image = (Bitmap)Image.FromStream(stream);
 
-			var plantID = Guid.NewGuid().ToString("N");
-			var url = $"onemore://PlantUmlCommand/{plantID}";
+			var diagramID = Guid.NewGuid().ToString("N");
+			var url = $"onemore://DiagramCommand/{diagramID}";
 			PageNamespace.Set(ns);
 
 			var content = new XElement(ns + "OE",
-				new Meta(DiagramImageMetaKey, plantID),
+				new Meta(DiagramImageMetaKey, diagramID),
 				new XElement(ns + "Image",
 					new XElement(ns + "Size",
 						new XAttribute("width", FormattableString.Invariant($"{image.Width:0.0}")),
@@ -206,7 +206,7 @@ namespace River.OneMoreAddIn.Commands
 
 				var container = new XElement(ns + "OE",
 					new XAttribute("collapsed", "1"),
-					new Meta(DiagramTextMetaKey, plantID),
+					new Meta(DiagramTextMetaKey, diagramID),
 					new XElement(ns + "T",
 						new XCData(
 							$"<span style='font-style:italic'>{title} " +
@@ -308,7 +308,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (element == null)
 			{
-				ShowError(Resx.PlantUml_broken);
+				ShowError(Resx.DiagramCommand_broken);
 				return false;
 			}
 
@@ -321,14 +321,14 @@ namespace River.OneMoreAddIn.Commands
 
 			if (plant == null)
 			{
-				ShowError(Resx.PlantUml_broken);
+				ShowError(Resx.DiagramCommand_broken);
 				return false;
 			}
 
 			var runs = plant.Descendants(ns + "T");
 			if (!runs.Any())
 			{
-				ShowError(Resx.PlantUml_broken);
+				ShowError(Resx.DiagramCommand_broken);
 				return false;
 			}
 
@@ -343,7 +343,7 @@ namespace River.OneMoreAddIn.Commands
 			var text = builder.ToString();
 			if (string.IsNullOrWhiteSpace(text))
 			{
-				ShowError(Resx.PlantUml_broken);
+				ShowError(Resx.DiagramCommand_broken);
 				return false;
 			}
 
@@ -361,7 +361,7 @@ namespace River.OneMoreAddIn.Commands
 			var data = element.Elements(ns + "Data").FirstOrDefault();
 			if (data == null)
 			{
-				ShowError(Resx.PlantUml_broken);
+				ShowError(Resx.DiagramCommand_broken);
 				return false;
 			}
 
@@ -402,7 +402,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (element == null)
 			{
-				ShowError(Resx.PlantUml_broken);
+				ShowError(Resx.DiagramCommand_broken);
 				return;
 			}
 

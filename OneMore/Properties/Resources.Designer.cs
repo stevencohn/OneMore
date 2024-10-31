@@ -1616,6 +1616,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Diagram text is either invalid or cannot find connection between text and image.
+        /// </summary>
+        internal static string DiagramCommand_broken {
+            get {
+                return ResourceManager.GetString("DiagramCommand_broken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Empty selection. Select a valid block of diagram text..
+        /// </summary>
+        internal static string DiagramCommand_EmptySelection {
+            get {
+                return ResourceManager.GetString("DiagramCommand_EmptySelection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to https://kroki.io/.
         /// </summary>
         internal static string DiagramCommand_Uri {
@@ -5780,24 +5798,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string phrase_YourContentHere {
             get {
                 return ResourceManager.GetString("phrase_YourContentHere", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to PlantUML text is either invalid or cannot find connection between text and image.
-        /// </summary>
-        internal static string PlantUml_broken {
-            get {
-                return ResourceManager.GetString("PlantUml_broken", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Empty selection. Select a valid block of PlantUML text..
-        /// </summary>
-        internal static string PlantUml_EmptySelection {
-            get {
-                return ResourceManager.GetString("PlantUml_EmptySelection", resourceCulture);
             }
         }
         

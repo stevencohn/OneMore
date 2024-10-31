@@ -748,6 +748,18 @@ Inverser</value>
     <value>Diagnostic OneMore</value>
     <comment>dialog title</comment>
   </data>
+  <data name="DiagramCommand_broken" xml:space="preserve">
+    <value>Le texte du diagramme n'est pas valide ou ne parvient pas à trouver de lien entre le texte et l'image.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="DiagramCommand_EmptySelection" xml:space="preserve">
+    <value>Sélection vide. Sélectionnez un bloc valide de texte de diagramme.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="DiagramCommand_Uri" xml:space="preserve">
+    <value>https://kroki.io/</value>
+    <comment>remote service URI SKIP</comment>
+  </data>
   <data name="DialogResetSettings_Text" xml:space="preserve">
     <value>Réinitialiser les options</value>
     <comment>system menu</comment>
@@ -2144,14 +2156,6 @@ Dans cette section</value>
   </data>
   <data name="phrase_YourContentHere" xml:space="preserve">
     <value>Votre contenu ici...</value>
-  </data>
-  <data name="PlantUml_broken" xml:space="preserve">
-    <value>Le texte PlantUML est invalide ou ne peut pas trouver de connexion entre le texte et l'image</value>
-    <comment>error message</comment>
-  </data>
-  <data name="PlantUml_EmptySelection" xml:space="preserve">
-    <value>Sélection vide. Sélectionnez un bloc valide de texte PlantUML.</value>
-    <comment>error message</comment>
   </data>
   <data name="PlantUmlCommand_PlantUrl" xml:space="preserve">
     <value>http://www.plantuml.com/plantuml/png/</value>

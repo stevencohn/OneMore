@@ -748,6 +748,18 @@
     <value>تشخيص واحد أكثر</value>
     <comment>dialog title</comment>
   </data>
+  <data name="DiagramCommand_broken" xml:space="preserve">
+    <value>نص الرسم التخطيطي إما غير صالح أو لا يمكن العثور على اتصال بين النص والصورة</value>
+    <comment>error message</comment>
+  </data>
+  <data name="DiagramCommand_EmptySelection" xml:space="preserve">
+    <value>اختيار فارغ. حدد كتلة صالحة من نص الرسم التخطيطي.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="DiagramCommand_Uri" xml:space="preserve">
+    <value>https://kroki.io/</value>
+    <comment>remote service URI SKIP</comment>
+  </data>
   <data name="DialogResetSettings_Text" xml:space="preserve">
     <value>اعادة الضبط</value>
     <comment>system menu</comment>
@@ -2144,14 +2156,6 @@
   </data>
   <data name="phrase_YourContentHere" xml:space="preserve">
     <value>محتواك هنا...</value>
-  </data>
-  <data name="PlantUml_broken" xml:space="preserve">
-    <value>نص PlantUML إما غير صالح أو لا يمكنه العثور على اتصال بين النص والصورة</value>
-    <comment>error message</comment>
-  </data>
-  <data name="PlantUml_EmptySelection" xml:space="preserve">
-    <value>اختيار فارغ. حدد كتلة صالحة من نص PlantUML.</value>
-    <comment>error message</comment>
   </data>
   <data name="PlantUmlCommand_PlantUrl" xml:space="preserve">
     <value>http://www.plantuml.com/plantuml/png/</value>
