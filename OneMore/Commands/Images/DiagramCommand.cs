@@ -308,7 +308,7 @@ namespace River.OneMoreAddIn.Commands
 				else
 				{
 					// no EOL, just add run as-is
-					runs.Add(run);
+					runs.Insert(0, run);
 					i--;
 				}
 			}
