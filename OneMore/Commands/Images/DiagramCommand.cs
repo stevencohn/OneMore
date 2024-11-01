@@ -265,9 +265,6 @@ namespace River.OneMoreAddIn.Commands
 				return new List<XElement>();
 			}
 
-
-			System.Diagnostics.Debugger.Launch();
-
 			var runs = new List<XElement>();
 
 			var eolChars = new char[] { '\n', '\r' };
