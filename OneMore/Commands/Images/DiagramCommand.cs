@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.Settings;
 	using River.OneMoreAddIn.UI;
 	using System;
+	using System.Collections.Generic;
 	using System.Drawing;
 	using System.IO;
 	using System.Linq;
@@ -80,9 +81,6 @@ namespace River.OneMoreAddIn.Commands
 			Justification = "False-positive")]
 		public override async Task Execute(params object[] args)
 		{
-
-			System.Diagnostics.Debugger.Launch();
-
 			if (!HttpClientFactory.IsNetworkAvailable())
 			{
 				ShowInfo(Resx.NetwordConnectionUnavailable);
@@ -108,7 +106,7 @@ namespace River.OneMoreAddIn.Commands
 
 				if (arguments.Any(a => a == "extract"))
 				{
-					await ExtractDiagram(gramID);
+					await ExtractTextFromDiagram(gramID);
 				}
 				else
 				{
@@ -118,38 +116,26 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
+			// Read text ~ ~ ~ ~ ~
+
 			await using var one = new OneNote(out var page, out var ns);
 
-			// get selected content...
-
-			var range = new Models.SelectionRange(page);
-
-			var runs = range.GetSelections().ToList();
-			if (range.Scope != SelectionScope.Range &&
-				range.Scope != SelectionScope.Run) // incase diagram lines end with soft-breaks
+			var runs = GetDiagramRuns(page);
+			if (!runs.Any())
 			{
-				ShowError(Resx.DiagramCommand_EmptySelection);
 				return;
 			}
 
-			// build our own text block including Newlines...
-
-			var builder = new StringBuilder();
-			runs.ForEach(e =>
+			var text = BuildDiagramText(runs);
+			if (text is null)
 			{
-				builder.AppendLine(e.TextValue(true));
-			});
-
-			var text = builder.ToString();
-			if (string.IsNullOrWhiteSpace(text))
-			{
-				ShowError(Resx.DiagramCommand_EmptySelection);
 				return;
 			}
 
-			// convert...
+			// Render diagram ~ ~ ~ ~ ~
 
-			var bytes = Render(text);
+			var bytes = RenderDiagram(text);
+
 			if (!string.IsNullOrWhiteSpace(errorMessage))
 			{
 				ShowError(errorMessage);
@@ -265,7 +251,99 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private byte[] Render(string text)
+		private List<XElement> GetDiagramRuns(Page page)
+		{
+			// get selected content...
+
+			var range = new Models.SelectionRange(page);
+
+			var candidates = range.GetSelections().ToList();
+			if (range.Scope != SelectionScope.Range &&
+				range.Scope != SelectionScope.Run) // incase diagram lines end with soft-breaks
+			{
+				ShowError(Resx.DiagramCommand_EmptySelection);
+				return new List<XElement>();
+			}
+
+
+			System.Diagnostics.Debugger.Launch();
+
+			var runs = new List<XElement>();
+
+			var eolChars = new char[] { '\n', '\r' };
+			var eolnPattern = new Regex(@"<br>$");
+			var ns = page.Namespace;
+
+			var i = candidates.Count - 1;
+			while (i >= 0)
+			{
+				var run = candidates[i];
+				var text = run.TextValue();
+
+				// is there a break within the text, not at beginning or end?
+				var index = text.IndexOfAny(eolChars);
+				if (index > 0 && index < text.Length)
+				{
+					// split into lines and make each one its own paragraph
+					var lines = text.Split(eolChars, StringSplitOptions.RemoveEmptyEntries);
+					for (var j = 0; j < lines.Length; j++)
+					{
+						var line = eolnPattern.Replace(lines[j], string.Empty);
+
+						var cdata = new XCData(line);
+
+						if (j < lines.Length - 1)
+						{
+							// insert new paragraph before the anchor (last one)
+							var t = new XElement(ns + "T", cdata);
+							var paragraph = new XElement(ns + "OE", t);
+							run.Parent.AddBeforeSelf(paragraph);
+							runs.Add(t);
+						}
+						else
+						{
+							// keep last run intact, in the hierarchy, just replacing its CDATA
+							run.FirstNode.ReplaceWith(cdata);
+							runs.Add(run);
+						}
+					}
+
+					i -= lines.Length;
+				}
+				else
+				{
+					// no EOL, just add run as-is
+					runs.Add(run);
+					i--;
+				}
+			}
+
+			return runs;
+		}
+
+
+		private string BuildDiagramText(IEnumerable<XElement> runs)
+		{
+			// build our own text block including Newlines...
+
+			var builder = new StringBuilder();
+			runs.ForEach(e =>
+			{
+				builder.AppendLine(e.TextValue(true));
+			});
+
+			var text = builder.ToString();
+			if (string.IsNullOrWhiteSpace(text))
+			{
+				ShowError(Resx.DiagramCommand_EmptySelection);
+				return null;
+			}
+
+			return text;
+		}
+
+
+		private byte[] RenderDiagram(string text)
 		{
 			text = Regex.Replace(text, @"<br>([\n\r]+)", "$1");
 
@@ -322,7 +400,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task ExtractDiagram(string diagramID)
+		private async Task ExtractTextFromDiagram(string diagramID)
 		{
 			await using var one = new OneNote(
 				out var page, out var ns, OneNote.PageDetail.BinaryDataSelection);
@@ -415,9 +493,10 @@ namespace River.OneMoreAddIn.Commands
 				return false;
 			}
 
-			// convert...
+			// Render diagram ~ ~ ~ ~ ~
 
-			var bytes = Render(text);
+			var bytes = RenderDiagram(text);
+
 			if (!string.IsNullOrWhiteSpace(errorMessage))
 			{
 				ShowError(errorMessage);
