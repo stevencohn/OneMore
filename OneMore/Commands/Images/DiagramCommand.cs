@@ -4,21 +4,6 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using River.OneMoreAddIn.Models;
-	using River.OneMoreAddIn.Settings;
-	using River.OneMoreAddIn.UI;
-	using System;
-	using System.Collections.Generic;
-	using System.Drawing;
-	using System.IO;
-	using System.Linq;
-	using System.Text;
-	using System.Text.RegularExpressions;
-	using System.Threading;
-	using System.Threading.Tasks;
-	using System.Web;
-	using System.Windows.Forms;
-	using System.Xml.Linq;
 	using Resx = Properties.Resources;
 
 
@@ -197,10 +182,8 @@ namespace River.OneMoreAddIn.Commands
 
 			if (collapse)
 			{
-				if (keyword == DiagramKeys.PlantUmlKey)
-				{
-					new ColorizeCommand(page, true).Colorize("plantuml", runs);
-				}
+				// for both plantuml and mermaid! TODO: Colorize Mermaid
+				new ColorizeCommand(page, true).Colorize("plantuml", runs);
 
 				if (title != "PlantUML")
 				{
@@ -521,10 +504,8 @@ namespace River.OneMoreAddIn.Commands
 				size.SetAttributeValue("height", FormattableString.Invariant($"{bitmap.Height:0.0}"));
 			}
 
-			if (keyword == DiagramKeys.PlantUmlKey)
-			{
-				new ColorizeCommand(page, true).Colorize("plantuml", runs);
-			}
+			// for both plantuml and mermaid! TODO: Colorize Mermaid
+			new ColorizeCommand(page, true).Colorize("plantuml", runs);
 
 			await one.Update(page);
 
