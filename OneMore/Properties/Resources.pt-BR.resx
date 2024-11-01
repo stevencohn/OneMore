@@ -3549,6 +3549,14 @@ Depois do último grupo</value>
     <value>Mesclar páginas selecionadas</value>
     <comment>ribbon page</comment>
   </data>
+  <data name="ribMermaidButton_Label" xml:space="preserve">
+    <value>Desenhar Diagrama de Sereia</value>
+    <comment>ribbon image</comment>
+  </data>
+  <data name="ribMermaidButton_Screentip" xml:space="preserve">
+    <value>Renderizar imagem da sereia a partir do texto selecionado</value>
+    <comment>ribbon image</comment>
+  </data>
   <data name="ribMovePageBottomButton_Label" xml:space="preserve">
     <value>Mover para baixo</value>
     <comment>ribbon page</comment>

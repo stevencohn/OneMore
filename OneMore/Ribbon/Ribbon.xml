@@ -468,6 +468,12 @@
                 getScreentip="GetRibbonScreentip"
                 onAction="OpenImageWithCmd"/>
               <button
+                id="ribMermaidButton"
+                imageMso="CreateDiagram"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="MermaidCmd"/>
+              <button
                 id="ribPlantUmlButton"
                 imageMso="OrganizationChartInsert"
                 getLabel="GetRibbonLabel"

@@ -3556,6 +3556,14 @@ After last group</value>
     <value>Merge selected pages</value>
     <comment>ribbon page</comment>
   </data>
+  <data name="ribMermaidButton_Label" xml:space="preserve">
+    <value>Draw Mermaid Diagram</value>
+    <comment>ribbon image</comment>
+  </data>
+  <data name="ribMermaidButton_Screentip" xml:space="preserve">
+    <value>Render Mermaid image from selected text</value>
+    <comment>ribbon image</comment>
+  </data>
   <data name="ribMovePageBottomButton_Label" xml:space="preserve">
     <value>Move to Bottom</value>
     <comment>ribbon page</comment>

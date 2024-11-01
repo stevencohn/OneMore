@@ -3550,6 +3550,14 @@ Po ostatniej grupie</value>
     <value>Połącz wybrane strony</value>
     <comment>ribbon page</comment>
   </data>
+  <data name="ribMermaidButton_Label" xml:space="preserve">
+    <value>Narysuj schemat syreny</value>
+    <comment>ribbon image</comment>
+  </data>
+  <data name="ribMermaidButton_Screentip" xml:space="preserve">
+    <value>Renderuj obraz syreny z zaznaczonego tekstu</value>
+    <comment>ribbon image</comment>
+  </data>
   <data name="ribMovePageBottomButton_Label" xml:space="preserve">
     <value>Przejdź na dół</value>
     <comment>ribbon page</comment>

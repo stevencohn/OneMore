@@ -3558,6 +3558,14 @@ ISO-code then comma then language name</comment>
     <value>選択したページをマージ</value>
     <comment>ribbon page</comment>
   </data>
+  <data name="ribMermaidButton_Label" xml:space="preserve">
+    <value>人魚の図を描く</value>
+    <comment>ribbon image</comment>
+  </data>
+  <data name="ribMermaidButton_Screentip" xml:space="preserve">
+    <value>選択したテキストから人魚の画像をレンダリングします</value>
+    <comment>ribbon image</comment>
+  </data>
   <data name="ribMovePageBottomButton_Label" xml:space="preserve">
     <value>一番下に移動</value>
     <comment>ribbon page</comment>

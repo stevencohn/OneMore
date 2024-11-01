@@ -22,17 +22,22 @@ namespace River.OneMoreAddIn.Commands
 
 
 	#region Wrappers
+	[CommandService]
 	internal class MermaidCommand : DiagramCommand
 	{
 		public MermaidCommand() : base(DiagramKeys.MermaidKey) { }
+		protected override string DiagramName => nameof(MermaidCommand);
 		public override async Task Execute(params object[] args)
 		{
 			await base.Execute(args);
 		}
 	}
+
+	[CommandService]
 	internal class PlantUmlCommand : DiagramCommand
 	{
 		public PlantUmlCommand() : base(DiagramKeys.PlantUmlKey) { }
+		protected override string DiagramName => nameof(PlantUmlCommand);
 		protected override string DiagramTextMetaKey => "omPlant";
 		protected override string DiagramImageMetaKey => "omPlantImage";
 		public override async Task Execute(params object[] args)
@@ -49,7 +54,7 @@ namespace River.OneMoreAddIn.Commands
 	[CommandService]
 	internal class DiagramCommand : Command
 	{
-		private readonly string keyword;
+		private string keyword;
 		private string errorMessage;
 		private IDiagramProvider provider;
 
@@ -65,42 +70,49 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		protected virtual string DiagramTextMetaKey => "omDiagramText";
+		protected virtual string DiagramName => "DiagramCommand";
 
 
 		protected virtual string DiagramImageMetaKey => "omDiagramImage";
 
 
+		protected virtual string DiagramTextMetaKey => "omDiagramText";
+
+
 		public override async Task Execute(params object[] args)
 		{
+
+			System.Diagnostics.Debugger.Launch();
+
 			if (!HttpClientFactory.IsNetworkAvailable())
 			{
 				ShowInfo(Resx.NetwordConnectionUnavailable);
 				return;
 			}
 
-			provider = DiagramProviderFactory.MakeProvider(keyword);
-
 			if (args.Length > 0)
 			{
 				// not sure why logger is null here so we have to set it
 				logger = Logger.Current;
 
-				var dID = (string)args[0];
-				if (args.Length > 1)
+				var arguments = args.Cast<string>().ToArray();
+				var gramID = arguments[0];
+
+				// keyword may not be set if called from onemore://
+				keyword = arguments.Any(a => a == DiagramKeys.MermaidKey)
+					? DiagramKeys.MermaidKey
+					: DiagramKeys.PlantUmlKey;
+
+				if (arguments.Any(a => a == "extract"))
 				{
-					var cmd = (string)args[1];
-					if ("extract".Equals(cmd, StringComparison.InvariantCultureIgnoreCase))
-					{
-						await ExtractUml(dID);
-						return;
-					}
+					await ExtractDiagram(gramID);
 				}
 				else
 				{
-					await RefreshDiagram(dID);
-					return;
+					await RefreshDiagram(gramID);
 				}
+
+				return;
 			}
 
 			await using var one = new OneNote(out var page, out var ns);
@@ -160,7 +172,7 @@ namespace River.OneMoreAddIn.Commands
 			using var image = (Bitmap)Image.FromStream(stream);
 
 			var diagramID = Guid.NewGuid().ToString("N");
-			var url = $"onemore://DiagramCommand/{diagramID}";
+			var url = $"onemore://{DiagramName}/{diagramID}/{keyword}";
 			PageNamespace.Set(ns);
 
 			var content = new XElement(ns + "OE",
@@ -250,6 +262,8 @@ namespace River.OneMoreAddIn.Commands
 
 		private byte[] Render(string text)
 		{
+			provider = DiagramProviderFactory.MakeProvider(keyword);
+
 			using var progress = new ProgressDialog(10);
 			progress.Tag = text;
 			progress.SetMessage("Rendering diagram from remote service...");
@@ -291,6 +305,43 @@ namespace River.OneMoreAddIn.Commands
 				});
 
 			return result == DialogResult.OK ? bytes : new byte[0];
+		}
+
+
+		private async Task ExtractDiagram(string plantID)
+		{
+			await using var one = new OneNote(
+				out var page, out var ns, OneNote.PageDetail.BinaryDataSelection);
+
+			var element = page.Root.Descendants(ns + "OE").Elements(ns + "Meta")
+				.Where(e =>
+					e.Attribute("name")?.Value == DiagramImageMetaKey &&
+					e.Attribute("content")?.Value == plantID)
+				.Select(e => e.Parent.Elements(ns + "Image").FirstOrDefault())
+				.FirstOrDefault();
+
+			if (element == null)
+			{
+				ShowError(Resx.DiagramCommand_broken);
+				return;
+			}
+
+			var editor = new ImageMetaTextEditor(element.Element(ns + "Data").Value);
+			var uml = editor.ReadImageMetaTextEntry();
+			if (!string.IsNullOrWhiteSpace(uml))
+			{
+				var container = element.FirstAncestor(ns + "Table").Parent;
+				PageNamespace.Set(ns);
+
+				var lines = Regex.Split(uml, "\r\n|\r|\n");
+
+				container.AddAfterSelf(
+					new Paragraph(string.Empty),
+					lines.Select(line => new Paragraph(line)));
+
+				await one.Update(page);
+			}
+			// else show error message?
 		}
 
 
@@ -385,43 +436,6 @@ namespace River.OneMoreAddIn.Commands
 			await one.Update(page);
 
 			return true;
-		}
-
-
-		private async Task ExtractUml(string plantID)
-		{
-			await using var one = new OneNote(
-				out var page, out var ns, OneNote.PageDetail.BinaryDataSelection);
-
-			var element = page.Root.Descendants(ns + "OE").Elements(ns + "Meta")
-				.Where(e =>
-					e.Attribute("name")?.Value == DiagramImageMetaKey &&
-					e.Attribute("content")?.Value == plantID)
-				.Select(e => e.Parent.Elements(ns + "Image").FirstOrDefault())
-				.FirstOrDefault();
-
-			if (element == null)
-			{
-				ShowError(Resx.DiagramCommand_broken);
-				return;
-			}
-
-			var editor = new ImageMetaTextEditor(element.Element(ns + "Data").Value);
-			var uml = editor.ReadImageMetaTextEntry();
-			if (!string.IsNullOrWhiteSpace(uml))
-			{
-				var container = element.FirstAncestor(ns + "Table").Parent;
-				PageNamespace.Set(ns);
-
-				var lines = Regex.Split(uml, "\r\n|\r|\n");
-
-				container.AddAfterSelf(
-					new Paragraph(string.Empty),
-					lines.Select(line => new Paragraph(line)));
-
-				await one.Update(page);
-			}
-			// else show error message?
 		}
 	}
 }

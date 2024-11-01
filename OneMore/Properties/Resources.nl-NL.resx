@@ -3549,6 +3549,14 @@ Na de laatste groep</value>
     <value>Voeg geselecteerde pagina's samen</value>
     <comment>ribbon page</comment>
   </data>
+  <data name="ribMermaidButton_Label" xml:space="preserve">
+    <value>Teken een zeemeermindiagram</value>
+    <comment>ribbon image</comment>
+  </data>
+  <data name="ribMermaidButton_Screentip" xml:space="preserve">
+    <value>Render zeemeerminafbeelding uit geselecteerde tekst</value>
+    <comment>ribbon image</comment>
+  </data>
   <data name="ribMovePageBottomButton_Label" xml:space="preserve">
     <value>Verplaats naar beneden</value>
     <comment>ribbon page</comment>

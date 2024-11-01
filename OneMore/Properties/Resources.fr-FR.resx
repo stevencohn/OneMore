@@ -3548,6 +3548,14 @@ Après le dernier groupe</value>
     <value>Fusionner les pages sélectionnées</value>
     <comment>ribbon page</comment>
   </data>
+  <data name="ribMermaidButton_Label" xml:space="preserve">
+    <value>Dessiner un diagramme de sirène</value>
+    <comment>ribbon image</comment>
+  </data>
+  <data name="ribMermaidButton_Screentip" xml:space="preserve">
+    <value>Rendre l'image de la sirène à partir du texte sélectionné</value>
+    <comment>ribbon image</comment>
+  </data>
   <data name="ribMovePageBottomButton_Label" xml:space="preserve">
     <value>Déplacer vers le bas</value>
     <comment>ribbon page</comment>

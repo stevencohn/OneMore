@@ -3550,6 +3550,14 @@ ISO-code then comma then language name</comment>
     <value>合并所选页面</value>
     <comment>ribbon page</comment>
   </data>
+  <data name="ribMermaidButton_Label" xml:space="preserve">
+    <value>画美人鱼图</value>
+    <comment>ribbon image</comment>
+  </data>
+  <data name="ribMermaidButton_Screentip" xml:space="preserve">
+    <value>从选定的文本渲染美人鱼图像</value>
+    <comment>ribbon image</comment>
+  </data>
   <data name="ribMovePageBottomButton_Label" xml:space="preserve">
     <value>移至底部</value>
     <comment>ribbon page</comment>

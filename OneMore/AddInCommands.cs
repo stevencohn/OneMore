@@ -293,11 +293,6 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<DisableSpellCheckCommand>();
 
 
-		[Command("ribPlantUmlButton_Label", Keys.None, "ribImagesMenu")]
-		public async Task PlantUmlCmd(IRibbonControl control)
-			=> await factory.Run<PlantUmlCommand>();
-
-
 		[Command("ribDuplicateLineButton_Label", Keys.Alt | Keys.Shift | Keys.C, "ribEditMenu")]
 		public async Task DuplicateLineCmd(IRibbonControl control)
 			=> await factory.Run<DuplicateLineCommand>(false);
@@ -582,6 +577,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<MergeCommand>();
 
 
+		[Command("ribMermaidButton_Label", Keys.None, "ribImagesMenu")]
+		public async Task MermaidCmd(IRibbonControl control)
+			=> await factory.Run<MermaidCommand>();
+
+
 		[Command("ribMovePageBottomButton_Label", Keys.None, "ribPageMenu")]
 		public async Task MovePageBottomCmd(IRibbonControl control)
 			=> await factory.Run<MovePageCommand>(false);
@@ -671,6 +671,11 @@ namespace River.OneMoreAddIn
 		[Command("ribPinPageButton_Label", Keys.Control | Keys.Shift | Keys.B)]
 		public async Task PinpageCmd(IRibbonControl control)
 			=> await factory.Run<PinPageCommand>();
+
+
+		[Command("ribPlantUmlButton_Label", Keys.None, "ribImagesMenu")]
+		public async Task PlantUmlCmd(IRibbonControl control)
+			=> await factory.Run<PlantUmlCommand>();
 
 
 		[Command("ribPreviewMarkdownButton_Label", Keys.Control | Keys.Alt | Keys.Shift | Keys.M, "ribEditMenu")]

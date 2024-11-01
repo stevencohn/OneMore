@@ -3549,6 +3549,14 @@ Nach der letzten Gruppe</value>
     <value>Ausgewählte Seiten zusammenführen</value>
     <comment>ribbon page</comment>
   </data>
+  <data name="ribMermaidButton_Label" xml:space="preserve">
+    <value>Zeichnen Sie ein Meerjungfrau-Diagramm</value>
+    <comment>ribbon image</comment>
+  </data>
+  <data name="ribMermaidButton_Screentip" xml:space="preserve">
+    <value>Rendern Sie das Meerjungfrauenbild aus dem ausgewählten Text</value>
+    <comment>ribbon image</comment>
+  </data>
   <data name="ribMovePageBottomButton_Label" xml:space="preserve">
     <value>Nach unten bewegen</value>
     <comment>ribbon page</comment>

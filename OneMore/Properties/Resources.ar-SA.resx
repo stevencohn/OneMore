@@ -3549,6 +3549,14 @@ ISO-code then comma then language name</comment>
     <value>دمج الصفحات المحددة</value>
     <comment>ribbon page</comment>
   </data>
+  <data name="ribMermaidButton_Label" xml:space="preserve">
+    <value>رسم مخطط حورية البحر</value>
+    <comment>ribbon image</comment>
+  </data>
+  <data name="ribMermaidButton_Screentip" xml:space="preserve">
+    <value>تقديم صورة حورية البحر من النص المحدد</value>
+    <comment>ribbon image</comment>
+  </data>
   <data name="ribMovePageBottomButton_Label" xml:space="preserve">
     <value>الانتقال إلى الأسفل</value>
     <comment>ribbon page</comment>

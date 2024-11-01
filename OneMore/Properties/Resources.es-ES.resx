@@ -3549,6 +3549,14 @@ Después del último grupo</value>
     <value>Combinar páginas seleccionadas</value>
     <comment>ribbon page</comment>
   </data>
+  <data name="ribMermaidButton_Label" xml:space="preserve">
+    <value>Dibujar diagrama de sirena</value>
+    <comment>ribbon image</comment>
+  </data>
+  <data name="ribMermaidButton_Screentip" xml:space="preserve">
+    <value>Renderizar imagen de sirena a partir del texto seleccionado</value>
+    <comment>ribbon image</comment>
+  </data>
   <data name="ribMovePageBottomButton_Label" xml:space="preserve">
     <value>Mover hacia abajo</value>
     <comment>ribbon page</comment>

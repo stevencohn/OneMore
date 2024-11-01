@@ -3556,6 +3556,14 @@ ISO-code then comma then language name</comment>
     <value>למזג דפים נבחרים</value>
     <comment>ribbon page</comment>
   </data>
+  <data name="ribMermaidButton_Label" xml:space="preserve">
+    <value>צייר דיאגרמת בת ים</value>
+    <comment>ribbon image</comment>
+  </data>
+  <data name="ribMermaidButton_Screentip" xml:space="preserve">
+    <value>עיבוד תמונת בת הים מטקסט שנבחר</value>
+    <comment>ribbon image</comment>
+  </data>
   <data name="ribMovePageBottomButton_Label" xml:space="preserve">
     <value>העבר לתחתית</value>
     <comment>ribbon page</comment>

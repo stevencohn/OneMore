@@ -8921,6 +8921,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Draw Mermaid Diagram.
+        /// </summary>
+        internal static string ribMermaidButton_Label {
+            get {
+                return ResourceManager.GetString("ribMermaidButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Render Mermaid image from selected text.
+        /// </summary>
+        internal static string ribMermaidButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribMermaidButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Move to Bottom.
         /// </summary>
         internal static string ribMovePageBottomButton_Label {
