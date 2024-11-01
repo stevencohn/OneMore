@@ -749,6 +749,18 @@ Omkeren</value>
     <value>OneMore Diagnostiek</value>
     <comment>dialog title</comment>
   </data>
+  <data name="DiagramCommand_broken" xml:space="preserve">
+    <value>Diagramtekst is ongeldig of kan geen verbinding vinden tussen tekst en afbeelding</value>
+    <comment>error message</comment>
+  </data>
+  <data name="DiagramCommand_EmptySelection" xml:space="preserve">
+    <value>Lege selectie. Selecteer een geldig blok diagramtekst.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="DiagramCommand_Uri" xml:space="preserve">
+    <value>https://kroki.io/</value>
+    <comment>remote service URI SKIP</comment>
+  </data>
   <data name="DialogResetSettings_Text" xml:space="preserve">
     <value>Reset instellingen</value>
     <comment>system menu</comment>
@@ -2146,14 +2158,6 @@ In deze sectie</value>
   <data name="phrase_YourContentHere" xml:space="preserve">
     <value>Uw inhoud hier...</value>
   </data>
-  <data name="PlantUml_broken" xml:space="preserve">
-    <value>PlantUML-tekst is ongeldig of kan geen verband vinden tussen tekst en afbeelding</value>
-    <comment>error message</comment>
-  </data>
-  <data name="PlantUml_EmptySelection" xml:space="preserve">
-    <value>Lege selectie. Selecteer een geldig blok PlantUML-tekst.</value>
-    <comment>error message</comment>
-  </data>
   <data name="PlantUmlCommand_PlantUrl" xml:space="preserve">
     <value>http://www.plantuml.com/plantuml/png/</value>
     <comment>PlantUML Remote servier SKIP</comment>
@@ -3544,6 +3548,14 @@ Na de laatste groep</value>
   <data name="ribMergeButton_Screentip" xml:space="preserve">
     <value>Voeg geselecteerde pagina's samen</value>
     <comment>ribbon page</comment>
+  </data>
+  <data name="ribMermaidButton_Label" xml:space="preserve">
+    <value>Teken een zeemeermindiagram</value>
+    <comment>ribbon image</comment>
+  </data>
+  <data name="ribMermaidButton_Screentip" xml:space="preserve">
+    <value>Render zeemeerminafbeelding uit geselecteerde tekst</value>
+    <comment>ribbon image</comment>
   </data>
   <data name="ribMovePageBottomButton_Label" xml:space="preserve">
     <value>Verplaats naar beneden</value>

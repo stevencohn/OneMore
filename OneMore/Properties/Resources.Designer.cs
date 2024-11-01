@@ -1616,6 +1616,33 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Diagram text is either invalid or cannot find connection between text and image.
+        /// </summary>
+        internal static string DiagramCommand_broken {
+            get {
+                return ResourceManager.GetString("DiagramCommand_broken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Empty selection. Select a valid block of diagram text..
+        /// </summary>
+        internal static string DiagramCommand_EmptySelection {
+            get {
+                return ResourceManager.GetString("DiagramCommand_EmptySelection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://kroki.io/.
+        /// </summary>
+        internal static string DiagramCommand_Uri {
+            get {
+                return ResourceManager.GetString("DiagramCommand_Uri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reset Settings.
         /// </summary>
         internal static string DialogResetSettings_Text {
@@ -5775,24 +5802,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PlantUML text is either invalid or cannot find connection between text and image.
-        /// </summary>
-        internal static string PlantUml_broken {
-            get {
-                return ResourceManager.GetString("PlantUml_broken", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Empty selection. Select a valid block of PlantUML text..
-        /// </summary>
-        internal static string PlantUml_EmptySelection {
-            get {
-                return ResourceManager.GetString("PlantUml_EmptySelection", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to http://www.plantuml.com/plantuml/png/.
         /// </summary>
         internal static string PlantUmlCommand_PlantUrl {
@@ -8908,6 +8917,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribMergeButton_Screentip {
             get {
                 return ResourceManager.GetString("ribMergeButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Draw Mermaid Diagram.
+        /// </summary>
+        internal static string ribMermaidButton_Label {
+            get {
+                return ResourceManager.GetString("ribMermaidButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Render Mermaid image from selected text.
+        /// </summary>
+        internal static string ribMermaidButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribMermaidButton_Screentip", resourceCulture);
             }
         }
         

@@ -748,6 +748,18 @@ Invertir</value>
     <value>Diagnóstico OneMore</value>
     <comment>dialog title</comment>
   </data>
+  <data name="DiagramCommand_broken" xml:space="preserve">
+    <value>El texto del diagrama no es válido o no se puede encontrar la conexión entre el texto y la imagen.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="DiagramCommand_EmptySelection" xml:space="preserve">
+    <value>Selección vacía. Seleccione un bloque válido de texto de diagrama.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="DiagramCommand_Uri" xml:space="preserve">
+    <value>https://kroki.io/</value>
+    <comment>remote service URI SKIP</comment>
+  </data>
   <data name="DialogResetSettings_Text" xml:space="preserve">
     <value>Reiniciar ajustes</value>
     <comment>system menu</comment>
@@ -2145,14 +2157,6 @@ En esta sección</value>
   <data name="phrase_YourContentHere" xml:space="preserve">
     <value>Tu contenido aquí...</value>
   </data>
-  <data name="PlantUml_broken" xml:space="preserve">
-    <value>El texto de PlantUML no es válido o no puede encontrar una conexión entre el texto y la imagen</value>
-    <comment>error message</comment>
-  </data>
-  <data name="PlantUml_EmptySelection" xml:space="preserve">
-    <value>Selección vacía. Seleccione un bloque válido de texto PlantUML.</value>
-    <comment>error message</comment>
-  </data>
   <data name="PlantUmlCommand_PlantUrl" xml:space="preserve">
     <value>http://www.plantuml.com/plantuml/png/</value>
     <comment>PlantUML Remote servier SKIP</comment>
@@ -3544,6 +3548,14 @@ Después del último grupo</value>
   <data name="ribMergeButton_Screentip" xml:space="preserve">
     <value>Combinar páginas seleccionadas</value>
     <comment>ribbon page</comment>
+  </data>
+  <data name="ribMermaidButton_Label" xml:space="preserve">
+    <value>Dibujar diagrama de sirena</value>
+    <comment>ribbon image</comment>
+  </data>
+  <data name="ribMermaidButton_Screentip" xml:space="preserve">
+    <value>Renderizar imagen de sirena a partir del texto seleccionado</value>
+    <comment>ribbon image</comment>
   </data>
   <data name="ribMovePageBottomButton_Label" xml:space="preserve">
     <value>Mover hacia abajo</value>

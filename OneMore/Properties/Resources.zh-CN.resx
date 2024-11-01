@@ -747,6 +747,18 @@
     <value>OneMore诊断</value>
     <comment>dialog title</comment>
   </data>
+  <data name="DiagramCommand_broken" xml:space="preserve">
+    <value>图表文本无效或无法找到文本和图像之间的连接</value>
+    <comment>error message</comment>
+  </data>
+  <data name="DiagramCommand_EmptySelection" xml:space="preserve">
+    <value>空选择。选择有效的图表文本块。</value>
+    <comment>error message</comment>
+  </data>
+  <data name="DiagramCommand_Uri" xml:space="preserve">
+    <value>https://kroki.io/</value>
+    <comment>remote service URI SKIP</comment>
+  </data>
   <data name="DialogResetSettings_Text" xml:space="preserve">
     <value>重新设置</value>
     <comment>system menu</comment>
@@ -2144,14 +2156,6 @@ OneNote 文件 (*.one)</value>
   <data name="phrase_YourContentHere" xml:space="preserve">
     <value>您的内容在这里...</value>
   </data>
-  <data name="PlantUml_broken" xml:space="preserve">
-    <value>PlantUML 文本无效或找不到文本和图像之间的连接</value>
-    <comment>error message</comment>
-  </data>
-  <data name="PlantUml_EmptySelection" xml:space="preserve">
-    <value>空选择。选择一个有效的 PlantUML 文本块。</value>
-    <comment>error message</comment>
-  </data>
   <data name="PlantUmlCommand_PlantUrl" xml:space="preserve">
     <value>http://www.plantuml.com/plantuml/png/</value>
     <comment>PlantUML Remote servier SKIP</comment>
@@ -3545,6 +3549,14 @@ ISO-code then comma then language name</comment>
   <data name="ribMergeButton_Screentip" xml:space="preserve">
     <value>合并所选页面</value>
     <comment>ribbon page</comment>
+  </data>
+  <data name="ribMermaidButton_Label" xml:space="preserve">
+    <value>画美人鱼图</value>
+    <comment>ribbon image</comment>
+  </data>
+  <data name="ribMermaidButton_Screentip" xml:space="preserve">
+    <value>从选定的文本渲染美人鱼图像</value>
+    <comment>ribbon image</comment>
   </data>
   <data name="ribMovePageBottomButton_Label" xml:space="preserve">
     <value>移至底部</value>

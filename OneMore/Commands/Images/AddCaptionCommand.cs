@@ -59,19 +59,26 @@ namespace River.OneMoreAddIn.Commands
 
 			element.Attribute("selected").Remove();
 
-			// try to detect PlantuML title...
+			// try to detect diagram title...
 
 			string caption = Resx.word_Caption;
 
 			string plantID = null;
-			var uml = PlantUmlHelper.ExtractUmlFromImageData(element.Element(ns + "Data").Value);
+
+			var editor = new ImageMetaTextEditor(element.Element(ns + "Data").Value);
+			var uml = editor.ReadImageMetaTextEntry();
 			if (uml != null)
 			{
-				logger.WriteLine(uml);
-				var title = PlantUmlHelper.ReadTitle(uml);
-				if (!string.IsNullOrWhiteSpace(title))
+				logger.Verbose(uml);
+
+				if (editor.Keyword == DiagramKeys.PlantUmlKey ||
+					editor.Keyword == DiagramKeys.MermaidKey)
 				{
-					caption = MakeExtractCaption(ns, element, title, out plantID);
+					var title = DiagramProviderFactory.MakeProvider(editor.Keyword).ReadTitle(uml);
+					if (!string.IsNullOrWhiteSpace(title))
+					{
+						caption = MakeCaption(ns, element, title, out plantID);
+					}
 				}
 			}
 
@@ -97,7 +104,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public string MakeExtractCaption(
+		public static string MakeCaption(
 			XNamespace ns, XElement image, string title, out string plantID)
 		{
 			var meta = image.Parent.Elements(ns + "Meta")

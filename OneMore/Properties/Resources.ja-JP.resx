@@ -751,6 +751,18 @@
     <value>OneMore Diagnostics</value>
     <comment>dialog title</comment>
   </data>
+  <data name="DiagramCommand_broken" xml:space="preserve">
+    <value>図のテキストが無効であるか、テキストと画像の間の接続が見つかりません。</value>
+    <comment>error message</comment>
+  </data>
+  <data name="DiagramCommand_EmptySelection" xml:space="preserve">
+    <value>空の選択範囲。図テキストの有効なブロックを選択します。</value>
+    <comment>error message</comment>
+  </data>
+  <data name="DiagramCommand_Uri" xml:space="preserve">
+    <value>https://kroki.io/</value>
+    <comment>remote service URI SKIP</comment>
+  </data>
   <data name="DialogResetSettings_Text" xml:space="preserve">
     <value>設定をリセット</value>
     <comment>system menu</comment>
@@ -2147,14 +2159,6 @@ OneNoteファイル (*.one)</value>
   </data>
   <data name="phrase_YourContentHere" xml:space="preserve">
     <value>ここにコンテンツを入力...</value>
-  </data>
-  <data name="PlantUml_broken" xml:space="preserve">
-    <value>PlantUMLテキストが無効であるか、テキストと画像の間に接続が見つかりません</value>
-    <comment>error message</comment>
-  </data>
-  <data name="PlantUml_EmptySelection" xml:space="preserve">
-    <value>空の選択。適切なPlantUMLテキストのブロックを選択してください。</value>
-    <comment>error message</comment>
   </data>
   <data name="PlantUmlCommand_PlantUrl" xml:space="preserve">
     <value>http://www.plantuml.com/plantuml/png/</value>
@@ -3553,6 +3557,14 @@ ISO-code then comma then language name</comment>
   <data name="ribMergeButton_Screentip" xml:space="preserve">
     <value>選択したページをマージ</value>
     <comment>ribbon page</comment>
+  </data>
+  <data name="ribMermaidButton_Label" xml:space="preserve">
+    <value>人魚の図を描く</value>
+    <comment>ribbon image</comment>
+  </data>
+  <data name="ribMermaidButton_Screentip" xml:space="preserve">
+    <value>選択したテキストから人魚の画像をレンダリングします</value>
+    <comment>ribbon image</comment>
   </data>
   <data name="ribMovePageBottomButton_Label" xml:space="preserve">
     <value>一番下に移動</value>

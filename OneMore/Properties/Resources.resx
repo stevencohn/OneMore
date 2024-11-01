@@ -749,6 +749,18 @@ Invert</value>
     <value>OneMore Diagnostics</value>
     <comment>dialog title</comment>
   </data>
+  <data name="DiagramCommand_broken" xml:space="preserve">
+    <value>Diagram text is either invalid or cannot find connection between text and image</value>
+    <comment>error message</comment>
+  </data>
+  <data name="DiagramCommand_EmptySelection" xml:space="preserve">
+    <value>Empty selection. Select a valid block of diagram text.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="DiagramCommand_Uri" xml:space="preserve">
+    <value>https://kroki.io/</value>
+    <comment>remote service URI SKIP</comment>
+  </data>
   <data name="DialogResetSettings_Text" xml:space="preserve">
     <value>Reset Settings</value>
     <comment>system menu</comment>
@@ -2145,14 +2157,6 @@ In this section</value>
   </data>
   <data name="phrase_YourContentHere" xml:space="preserve">
     <value>Your content here...</value>
-  </data>
-  <data name="PlantUml_broken" xml:space="preserve">
-    <value>PlantUML text is either invalid or cannot find connection between text and image</value>
-    <comment>error message</comment>
-  </data>
-  <data name="PlantUml_EmptySelection" xml:space="preserve">
-    <value>Empty selection. Select a valid block of PlantUML text.</value>
-    <comment>error message</comment>
   </data>
   <data name="PlantUmlCommand_PlantUrl" xml:space="preserve">
     <value>http://www.plantuml.com/plantuml/png/</value>
@@ -3551,6 +3555,14 @@ After last group</value>
   <data name="ribMergeButton_Screentip" xml:space="preserve">
     <value>Merge selected pages</value>
     <comment>ribbon page</comment>
+  </data>
+  <data name="ribMermaidButton_Label" xml:space="preserve">
+    <value>Draw Mermaid Diagram</value>
+    <comment>ribbon image</comment>
+  </data>
+  <data name="ribMermaidButton_Screentip" xml:space="preserve">
+    <value>Render Mermaid image from selected text</value>
+    <comment>ribbon image</comment>
   </data>
   <data name="ribMovePageBottomButton_Label" xml:space="preserve">
     <value>Move to Bottom</value>

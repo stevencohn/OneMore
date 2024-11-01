@@ -749,6 +749,18 @@ Odwracać</value>
     <value>Diagnostyka OneMore.</value>
     <comment>dialog title</comment>
   </data>
+  <data name="DiagramCommand_broken" xml:space="preserve">
+    <value>Tekst diagramu jest nieprawidłowy lub nie można znaleźć połączenia między tekstem a obrazem</value>
+    <comment>error message</comment>
+  </data>
+  <data name="DiagramCommand_EmptySelection" xml:space="preserve">
+    <value>Pusty wybór. Wybierz prawidłowy blok tekstu diagramu.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="DiagramCommand_Uri" xml:space="preserve">
+    <value>https://kroki.io/</value>
+    <comment>remote service URI SKIP</comment>
+  </data>
   <data name="DialogResetSettings_Text" xml:space="preserve">
     <value>Resetowanie ustawień</value>
     <comment>system menu</comment>
@@ -2146,14 +2158,6 @@ W tej sekcji</value>
   <data name="phrase_YourContentHere" xml:space="preserve">
     <value>Twoje treści tutaj...</value>
   </data>
-  <data name="PlantUml_broken" xml:space="preserve">
-    <value>Tekst PlantUML jest nieprawidłowy lub nie może znaleźć połączenia między tekstem a obrazem</value>
-    <comment>error message</comment>
-  </data>
-  <data name="PlantUml_EmptySelection" xml:space="preserve">
-    <value>Pusty wybór. Wybierz prawidłowy blok tekstu PlantUML.</value>
-    <comment>error message</comment>
-  </data>
   <data name="PlantUmlCommand_PlantUrl" xml:space="preserve">
     <value>http://www.plantuml.com/plantuml/png/</value>
     <comment>PlantUML Remote servier SKIP</comment>
@@ -3545,6 +3549,14 @@ Po ostatniej grupie</value>
   <data name="ribMergeButton_Screentip" xml:space="preserve">
     <value>Połącz wybrane strony</value>
     <comment>ribbon page</comment>
+  </data>
+  <data name="ribMermaidButton_Label" xml:space="preserve">
+    <value>Narysuj schemat syreny</value>
+    <comment>ribbon image</comment>
+  </data>
+  <data name="ribMermaidButton_Screentip" xml:space="preserve">
+    <value>Renderuj obraz syreny z zaznaczonego tekstu</value>
+    <comment>ribbon image</comment>
   </data>
   <data name="ribMovePageBottomButton_Label" xml:space="preserve">
     <value>Przejdź na dół</value>

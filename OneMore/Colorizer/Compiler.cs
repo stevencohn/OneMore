@@ -55,7 +55,7 @@ namespace River.OneMoreAddIn.Colorizer
 				scopes.AddRange(rule.Captures);
 			}
 
-			Logger.Current.Verbose(builder.ToString());
+			//Logger.Current.Verbose(builder.ToString());
 
 			var compiled = (Language)language;
 			compiled.Regex = new Regex(builder.ToString());

@@ -748,6 +748,18 @@
     <value>تشخيص واحد أكثر</value>
     <comment>dialog title</comment>
   </data>
+  <data name="DiagramCommand_broken" xml:space="preserve">
+    <value>نص الرسم التخطيطي إما غير صالح أو لا يمكن العثور على اتصال بين النص والصورة</value>
+    <comment>error message</comment>
+  </data>
+  <data name="DiagramCommand_EmptySelection" xml:space="preserve">
+    <value>اختيار فارغ. حدد كتلة صالحة من نص الرسم التخطيطي.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="DiagramCommand_Uri" xml:space="preserve">
+    <value>https://kroki.io/</value>
+    <comment>remote service URI SKIP</comment>
+  </data>
   <data name="DialogResetSettings_Text" xml:space="preserve">
     <value>اعادة الضبط</value>
     <comment>system menu</comment>
@@ -2145,14 +2157,6 @@
   <data name="phrase_YourContentHere" xml:space="preserve">
     <value>محتواك هنا...</value>
   </data>
-  <data name="PlantUml_broken" xml:space="preserve">
-    <value>نص PlantUML إما غير صالح أو لا يمكنه العثور على اتصال بين النص والصورة</value>
-    <comment>error message</comment>
-  </data>
-  <data name="PlantUml_EmptySelection" xml:space="preserve">
-    <value>اختيار فارغ. حدد كتلة صالحة من نص PlantUML.</value>
-    <comment>error message</comment>
-  </data>
   <data name="PlantUmlCommand_PlantUrl" xml:space="preserve">
     <value>http://www.plantuml.com/plantuml/png/</value>
     <comment>PlantUML Remote servier SKIP</comment>
@@ -3544,6 +3548,14 @@ ISO-code then comma then language name</comment>
   <data name="ribMergeButton_Screentip" xml:space="preserve">
     <value>دمج الصفحات المحددة</value>
     <comment>ribbon page</comment>
+  </data>
+  <data name="ribMermaidButton_Label" xml:space="preserve">
+    <value>رسم مخطط حورية البحر</value>
+    <comment>ribbon image</comment>
+  </data>
+  <data name="ribMermaidButton_Screentip" xml:space="preserve">
+    <value>تقديم صورة حورية البحر من النص المحدد</value>
+    <comment>ribbon image</comment>
   </data>
   <data name="ribMovePageBottomButton_Label" xml:space="preserve">
     <value>الانتقال إلى الأسفل</value>
