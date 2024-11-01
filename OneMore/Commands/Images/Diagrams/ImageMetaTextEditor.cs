@@ -28,6 +28,16 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
+		/// Initializes a new instance with the given byte array.
+		/// </summary>
+		/// <param name="bytes">The image unencoded byte array</param>
+		public ImageMetaTextEditor(byte[] bytes)
+		{
+			this.bytes = bytes;
+		}
+
+
+		/// <summary>
 		/// Initializes a new instance with the given Base64 image data string.
 		/// </summary>
 		/// <param name="data">The image Data as a base64 encoding</param>
@@ -35,6 +45,12 @@ namespace River.OneMoreAddIn.Commands
 		{
 			bytes = Convert.FromBase64String(data);
 		}
+
+
+		/// <summary>
+		/// Gest the unencoded byte array of the image
+		/// </summary>
+		public byte[] Bytes => bytes;
 
 
 		/// <summary>

@@ -26,24 +26,26 @@ namespace River.OneMoreAddIn.Commands
 	internal class MermaidCommand : DiagramCommand
 	{
 		public MermaidCommand() : base(DiagramKeys.MermaidKey) { }
+
 		protected override string DiagramName => nameof(MermaidCommand);
-		public override async Task Execute(params object[] args)
-		{
-			await base.Execute(args);
-		}
+
+		protected override string DiagramTextMetaKey => "omDiagramText";
+
+		protected override string DiagramImageMetaKey => "omDiagramImage";
 	}
 
 	[CommandService]
 	internal class PlantUmlCommand : DiagramCommand
 	{
 		public PlantUmlCommand() : base(DiagramKeys.PlantUmlKey) { }
+
 		protected override string DiagramName => nameof(PlantUmlCommand);
+
+		// retain name for backwards compatibility
 		protected override string DiagramTextMetaKey => "omPlant";
+
+		// retain name for backwards compatibility
 		protected override string DiagramImageMetaKey => "omPlantImage";
-		public override async Task Execute(params object[] args)
-		{
-			await base.Execute(args);
-		}
 	}
 	#endregion
 
@@ -51,34 +53,31 @@ namespace River.OneMoreAddIn.Commands
 	/// <summary>
 	/// Render image from selected PlantUML or Mermaid \text
 	/// </summary>
-	[CommandService]
-	internal class DiagramCommand : Command
+	internal abstract class DiagramCommand : Command
 	{
 		private string keyword;
 		private string errorMessage;
 		private IDiagramProvider provider;
 
 
-		public DiagramCommand()
-		{
-		}
-
-
-		public DiagramCommand(string keyword)
+		protected DiagramCommand(string keyword)
 		{
 			this.keyword = keyword;
 		}
 
 
-		protected virtual string DiagramName => "DiagramCommand";
+		protected abstract string DiagramName { get; }
 
 
-		protected virtual string DiagramImageMetaKey => "omDiagramImage";
+		protected abstract string DiagramImageMetaKey { get; }
 
 
-		protected virtual string DiagramTextMetaKey => "omDiagramText";
+		protected abstract string DiagramTextMetaKey { get; }
 
 
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Code Smell",
+			"S6605:Collection-specific Exists method should be used instead of the Any extension",
+			Justification = "False-positive")]
 		public override async Task Execute(params object[] args)
 		{
 
@@ -98,10 +97,14 @@ namespace River.OneMoreAddIn.Commands
 				var arguments = args.Cast<string>().ToArray();
 				var gramID = arguments[0];
 
-				// keyword may not be set if called from onemore://
-				keyword = arguments.Any(a => a == DiagramKeys.MermaidKey)
-					? DiagramKeys.MermaidKey
-					: DiagramKeys.PlantUmlKey;
+				if (string.IsNullOrEmpty(keyword))
+				{
+					keyword = arguments.Any(a => a == DiagramKeys.MermaidKey)
+						? DiagramKeys.MermaidKey
+						: DiagramKeys.PlantUmlKey;
+
+					logger.WriteLine($"undefined keyword, setting to {keyword}");
+				}
 
 				if (arguments.Any(a => a == "extract"))
 				{
@@ -159,7 +162,7 @@ namespace River.OneMoreAddIn.Commands
 			var collapse = false;
 			var remove = false;
 			var settings = new SettingsProvider().GetCollection("ImagesSheet");
-			if (settings != null)
+			if (settings is not null)
 			{
 				after = settings.Get("plantAfter", true);
 				collapse = settings.Get("plantCollapsed", false);
@@ -168,12 +171,12 @@ namespace River.OneMoreAddIn.Commands
 
 			// insert image immediately before or after text...
 
+			var diagramID = Guid.NewGuid().ToString("N");
+			PageNamespace.Set(ns);
+
+			// need image just to get width and height
 			using var stream = new MemoryStream(bytes);
 			using var image = (Bitmap)Image.FromStream(stream);
-
-			var diagramID = Guid.NewGuid().ToString("N");
-			var url = $"onemore://{DiagramName}/{diagramID}/{keyword}";
-			PageNamespace.Set(ns);
 
 			var content = new XElement(ns + "OE",
 				new Meta(DiagramImageMetaKey, diagramID),
@@ -185,6 +188,8 @@ namespace River.OneMoreAddIn.Commands
 					));
 
 			var title = provider.ReadTitle(text);
+			var url = $"onemore://{DiagramName}/{diagramID}";
+
 			var caption = $"{title} <span style='font-style:italic'>(" +
 				$"<a href=\"{url}/extract\">{Resx.word_Extract}</a>)</span>";
 
@@ -262,6 +267,8 @@ namespace River.OneMoreAddIn.Commands
 
 		private byte[] Render(string text)
 		{
+			text = Regex.Replace(text, @"<br>([\n\r]+)", "$1");
+
 			provider = DiagramProviderFactory.MakeProvider(keyword);
 
 			using var progress = new ProgressDialog(10);
@@ -281,6 +288,13 @@ namespace River.OneMoreAddIn.Commands
 
 						if (bytes.Length > 0)
 						{
+							if (keyword != DiagramKeys.PlantUmlKey)
+							{
+								var editor = new ImageMetaTextEditor(bytes);
+								editor.WriteImageMetaTextEntry(text, keyword);
+								bytes = editor.Bytes;
+							}
+
 							//logger.WriteLine($"received {bytes.Length} bytes");
 							return true;
 						}
@@ -308,7 +322,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task ExtractDiagram(string plantID)
+		private async Task ExtractDiagram(string diagramID)
 		{
 			await using var one = new OneNote(
 				out var page, out var ns, OneNote.PageDetail.BinaryDataSelection);
@@ -316,36 +330,39 @@ namespace River.OneMoreAddIn.Commands
 			var element = page.Root.Descendants(ns + "OE").Elements(ns + "Meta")
 				.Where(e =>
 					e.Attribute("name")?.Value == DiagramImageMetaKey &&
-					e.Attribute("content")?.Value == plantID)
+					e.Attribute("content")?.Value == diagramID)
 				.Select(e => e.Parent.Elements(ns + "Image").FirstOrDefault())
 				.FirstOrDefault();
 
-			if (element == null)
+			if (element is null)
 			{
 				ShowError(Resx.DiagramCommand_broken);
 				return;
 			}
 
 			var editor = new ImageMetaTextEditor(element.Element(ns + "Data").Value);
-			var uml = editor.ReadImageMetaTextEntry();
-			if (!string.IsNullOrWhiteSpace(uml))
+			var text = editor.ReadImageMetaTextEntry();
+
+			if (string.IsNullOrWhiteSpace(text))
 			{
-				var container = element.FirstAncestor(ns + "Table").Parent;
-				PageNamespace.Set(ns);
-
-				var lines = Regex.Split(uml, "\r\n|\r|\n");
-
-				container.AddAfterSelf(
-					new Paragraph(string.Empty),
-					lines.Select(line => new Paragraph(line)));
-
-				await one.Update(page);
+				logger.WriteLine("could not extract diagram text from image");
+				return;
 			}
-			// else show error message?
+
+			var container = element.FirstAncestor(ns + "Table").Parent;
+			PageNamespace.Set(ns);
+
+			var lines = Regex.Split(text, "\r\n|\r|\n");
+
+			container.AddAfterSelf(
+				new Paragraph(string.Empty),
+				lines.Select(line => new Paragraph(line)));
+
+			await one.Update(page);
 		}
 
 
-		private async Task<bool> RefreshDiagram(string plantID)
+		private async Task<bool> RefreshDiagram(string diagramID)
 		{
 			await using var one = new OneNote(
 				out var page, out var ns, OneNote.PageDetail.BinaryDataSelection);
@@ -353,11 +370,11 @@ namespace River.OneMoreAddIn.Commands
 			var element = page.Root.Descendants(ns + "OE").Elements(ns + "Meta")
 				.Where(e =>
 					e.Attribute("name")?.Value == DiagramImageMetaKey &&
-					e.Attribute("content")?.Value == plantID)
+					e.Attribute("content")?.Value == diagramID)
 				.Select(e => e.Parent.Elements(ns + "Image").FirstOrDefault())
 				.FirstOrDefault();
 
-			if (element == null)
+			if (element is null)
 			{
 				ShowError(Resx.DiagramCommand_broken);
 				return false;
@@ -366,11 +383,11 @@ namespace River.OneMoreAddIn.Commands
 			var plant = page.Root.Descendants(ns + "OE").Elements(ns + "Meta")
 				.Where(e =>
 					e.Attribute("name")?.Value == DiagramTextMetaKey &&
-					e.Attribute("content")?.Value == plantID)
+					e.Attribute("content")?.Value == diagramID)
 				.Select(e => e.Parent.Elements(ns + "OEChildren").FirstOrDefault())
 				.FirstOrDefault();
 
-			if (plant == null)
+			if (plant is null)
 			{
 				ShowError(Resx.DiagramCommand_broken);
 				return false;
@@ -410,7 +427,7 @@ namespace River.OneMoreAddIn.Commands
 			// update image...
 
 			var data = element.Elements(ns + "Data").FirstOrDefault();
-			if (data == null)
+			if (data is null)
 			{
 				ShowError(Resx.DiagramCommand_broken);
 				return false;
@@ -421,7 +438,7 @@ namespace River.OneMoreAddIn.Commands
 			// check image size to maintain aspect ratio...
 
 			var size = element.Element(ns + "Size");
-			if (size != null)
+			if (size is not null)
 			{
 				using var bitmap = (Bitmap)new ImageConverter().ConvertFrom(bytes);
 				size.SetAttributeValue("width", FormattableString.Invariant($"{bitmap.Width:0.0}"));
