@@ -4312,6 +4312,10 @@ ISO-code then comma then language name</comment>
     <value>選択したノートブック...</value>
     <comment>radio</comment>
   </data>
+  <data name="SearchAndReplaceCommand_Results" xml:space="preserve">
+    <value>{1} ページの {0} 個の一致を置換しました</value>
+    <comment>message box</comment>
+  </data>
   <data name="SearchAndReplaceDialog_matchBox.Text" xml:space="preserve">
     <value>大文字と小文字を区別</value>
     <comment>checkbox</comment>
@@ -4323,6 +4327,13 @@ ISO-code then comma then language name</comment>
   <data name="SearchAndReplaceDialog_regBox.Text" xml:space="preserve">
     <value>正規表現を使用</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="SearchAndReplaceDialog_scopBox" xml:space="preserve">
+    <value>このページ
+このセクション
+このノート
+すべてのノートブック</value>
+    <comment>combobox</comment>
   </data>
   <data name="SearchAndReplaceDialog_substitutions" xml:space="preserve">
     <value>有効な置換パラメーター: {0}</value>

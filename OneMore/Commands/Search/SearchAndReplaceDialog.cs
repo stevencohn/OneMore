@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2018 Steven M Cohn.  All rights reserved.
+// Copyright © 2018 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -32,6 +32,8 @@ namespace River.OneMoreAddIn.Commands
 					"withLabel",
 					"matchBox",
 					"regBox",
+					"scopeLabel=word_Scope",
+					"scopeBox",
 					"rawBox",
 					"okButton=word_OK",
 					"cancelButton=word_Cancel"
@@ -40,6 +42,8 @@ namespace River.OneMoreAddIn.Commands
 
 			whatStatusLabel.Text = string.Empty;
 			withStatusLabel.Text = string.Empty;
+
+			scopeBox.SelectedIndex = 0;
 
 			LoadSettings();
 		}
@@ -89,6 +93,8 @@ namespace River.OneMoreAddIn.Commands
 		public bool MatchCase => matchBox.Checked;
 
 		public XElement RawXml { get; private set; }
+
+		public OneNote.Scope Scope { get; private set; } = OneNote.Scope.Self;
 
 		public string WithText => withBox.Text;
 
@@ -221,6 +227,17 @@ namespace River.OneMoreAddIn.Commands
 					}
 				}
 			}
+		}
+
+		private void ChangeScope(object sender, EventArgs e)
+		{
+			Scope = scopeBox.SelectedIndex switch
+			{
+				1 => OneNote.Scope.Pages,
+				2 => OneNote.Scope.Sections,
+				3 => OneNote.Scope.Notebooks,
+				_ => OneNote.Scope.Self
+			};
 		}
 	}
 }

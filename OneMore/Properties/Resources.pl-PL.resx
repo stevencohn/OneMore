@@ -4309,6 +4309,10 @@ Czy na pewno chcesz teraz uruchomić skanowanie?</value>
     <value>Wybrane notebooki ...</value>
     <comment>radio</comment>
   </data>
+  <data name="SearchAndReplaceCommand_Results" xml:space="preserve">
+    <value>Zastąpiono dopasowania {0} na stronach {1}</value>
+    <comment>message box</comment>
+  </data>
   <data name="SearchAndReplaceDialog_matchBox.Text" xml:space="preserve">
     <value>Sprawa meczu</value>
     <comment>checkbox</comment>
@@ -4320,6 +4324,13 @@ Czy na pewno chcesz teraz uruchomić skanowanie?</value>
   <data name="SearchAndReplaceDialog_regBox.Text" xml:space="preserve">
     <value>Używaj wyrażeń regularnych</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="SearchAndReplaceDialog_scopBox" xml:space="preserve">
+    <value>Ta strona
+Ta sekcja
+Ten notatnik
+Wszystkie notesy</value>
+    <comment>combobox</comment>
   </data>
   <data name="SearchAndReplaceDialog_substitutions" xml:space="preserve">
     <value>Prawidłowe parametry podstawienia: {0}</value>

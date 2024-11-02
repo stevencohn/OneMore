@@ -4310,6 +4310,10 @@ Are you sure you want to run the scan now</value>
     <value>Selected notebooks...</value>
     <comment>radio</comment>
   </data>
+  <data name="SearchAndReplaceCommand_Results" xml:space="preserve">
+    <value>Replaced {0} matches on {1} pages</value>
+    <comment>message box</comment>
+  </data>
   <data name="SearchAndReplaceDialog_matchBox.Text" xml:space="preserve">
     <value>Match case</value>
     <comment>checkbox</comment>
@@ -4321,6 +4325,13 @@ Are you sure you want to run the scan now</value>
   <data name="SearchAndReplaceDialog_regBox.Text" xml:space="preserve">
     <value>Use regular expressions</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="SearchAndReplaceDialog_scopBox" xml:space="preserve">
+    <value>This page
+This section
+This notebook
+All notebooks</value>
+    <comment>combobox</comment>
   </data>
   <data name="SearchAndReplaceDialog_substitutions" xml:space="preserve">
     <value>Valid substitution parameters: {0}</value>
