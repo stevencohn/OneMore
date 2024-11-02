@@ -4307,6 +4307,10 @@ Après le dernier groupe</value>
     <value>Notes de carnet sélectionnés ...</value>
     <comment>radio</comment>
   </data>
+  <data name="SearchAndReplaceCommand_Results" xml:space="preserve">
+    <value>Remplacement de {0} correspondances sur {1} pages</value>
+    <comment>message box</comment>
+  </data>
   <data name="SearchAndReplaceDialog_matchBox.Text" xml:space="preserve">
     <value>Cas de correspondance</value>
     <comment>checkbox</comment>
@@ -4318,6 +4322,13 @@ Après le dernier groupe</value>
   <data name="SearchAndReplaceDialog_regBox.Text" xml:space="preserve">
     <value>Utiliser des expressions régulières</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="SearchAndReplaceDialog_scopBox" xml:space="preserve">
+    <value>Cette page
+Cette rubrique
+Ce carnet
+Tous les cahiers</value>
+    <comment>combobox</comment>
   </data>
   <data name="SearchAndReplaceDialog_substitutions" xml:space="preserve">
     <value>Paramètres de substitution valides : {0}</value>

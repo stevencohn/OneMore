@@ -38,6 +38,10 @@ namespace River.OneMoreAddIn.Commands
 				);
 
 			replacementString = replacement;
+
+			CaseSensitive = caseSensitive;
+			EnableRegex = enableRegex;
+			SearchPattern = pattern;
 		}
 
 
@@ -57,7 +61,21 @@ namespace River.OneMoreAddIn.Commands
 				);
 
 			replacementElement = element;
+
+			CaseSensitive = caseSensitive;
+			EnableRegex = enableRegex;
+			SearchPattern = pattern;
 		}
+
+
+		public bool CaseSensitive { get; private set; }
+
+		public bool EnableRegex { get; private set; }
+
+		public string ReplacementString => replacementString;
+		// ?? replacementElement.ToString(SaveOptions.DisableFormatting);
+
+		public string SearchPattern { get; private set; }
 
 
 		/// <summary>

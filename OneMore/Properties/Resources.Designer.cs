@@ -10635,6 +10635,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Replaced {0} matches on {1} pages.
+        /// </summary>
+        internal static string SearchAndReplaceCommand_Results {
+            get {
+                return ResourceManager.GetString("SearchAndReplaceCommand_Results", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Match case.
         /// </summary>
         internal static string SearchAndReplaceDialog_matchBox_Text {
@@ -10658,6 +10667,18 @@ namespace River.OneMoreAddIn.Properties {
         internal static string SearchAndReplaceDialog_regBox_Text {
             get {
                 return ResourceManager.GetString("SearchAndReplaceDialog_regBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This page
+        ///This section
+        ///This notebook
+        ///All notebooks.
+        /// </summary>
+        internal static string SearchAndReplaceDialog_scopBox {
+            get {
+                return ResourceManager.GetString("SearchAndReplaceDialog_scopBox", resourceCulture);
             }
         }
         

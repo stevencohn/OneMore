@@ -4302,6 +4302,10 @@ Sind Sie sicher, dass Sie den Scan jetzt ausführen möchten?</value>
     <value>Ausgewählte Notizbücher ...</value>
     <comment>radio</comment>
   </data>
+  <data name="SearchAndReplaceCommand_Results" xml:space="preserve">
+    <value>{0} Übereinstimmungen auf {1} Seiten ersetzt</value>
+    <comment>message box</comment>
+  </data>
   <data name="SearchAndReplaceDialog_matchBox.Text" xml:space="preserve">
     <value>Match Case</value>
     <comment>checkbox</comment>
@@ -4313,6 +4317,13 @@ Sind Sie sicher, dass Sie den Scan jetzt ausführen möchten?</value>
   <data name="SearchAndReplaceDialog_regBox.Text" xml:space="preserve">
     <value>Verwende reguläre Ausdrücke</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="SearchAndReplaceDialog_scopBox" xml:space="preserve">
+    <value>Diese Seite
+Dieser Abschnitt
+Dieses Notizbuch
+Alle Notizbücher</value>
+    <comment>combobox</comment>
   </data>
   <data name="SearchAndReplaceDialog_substitutions" xml:space="preserve">
     <value>Gültige Ersetzungsparameter: {0}</value>

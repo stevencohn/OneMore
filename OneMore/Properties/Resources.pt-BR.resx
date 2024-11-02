@@ -4308,6 +4308,10 @@ Tem certeza de que deseja executar a verificação agora</value>
     <value>Cadernos selecionados ...</value>
     <comment>radio</comment>
   </data>
+  <data name="SearchAndReplaceCommand_Results" xml:space="preserve">
+    <value>{0} correspondências substituídas em {1} páginas</value>
+    <comment>message box</comment>
+  </data>
   <data name="SearchAndReplaceDialog_matchBox.Text" xml:space="preserve">
     <value>Caso de compatibilidade</value>
     <comment>checkbox</comment>
@@ -4319,6 +4323,13 @@ Tem certeza de que deseja executar a verificação agora</value>
   <data name="SearchAndReplaceDialog_regBox.Text" xml:space="preserve">
     <value>Use expressões regulares</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="SearchAndReplaceDialog_scopBox" xml:space="preserve">
+    <value>Esta página
+Esta seção
+Este caderno
+Todos os cadernos</value>
+    <comment>combobox</comment>
   </data>
   <data name="SearchAndReplaceDialog_substitutions" xml:space="preserve">
     <value>Parâmetros de substituição válidos: {0}</value>

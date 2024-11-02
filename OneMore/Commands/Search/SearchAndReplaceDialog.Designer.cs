@@ -40,6 +40,8 @@
 			this.whatStatusLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.withStatusLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.rawBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.scopeBox = new System.Windows.Forms.ComboBox();
+			this.scopeLabel = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// cancelButton
@@ -49,10 +51,11 @@
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
-			this.cancelButton.Location = new System.Drawing.Point(513, 262);
+			this.cancelButton.Location = new System.Drawing.Point(513, 286);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
+			this.cancelButton.StylizeImage = false;
 			this.cancelButton.TabIndex = 5;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.ThemedBack = null;
@@ -67,10 +70,11 @@
 			this.okButton.Enabled = false;
 			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
-			this.okButton.Location = new System.Drawing.Point(406, 262);
+			this.okButton.Location = new System.Drawing.Point(406, 286);
 			this.okButton.Name = "okButton";
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
+			this.okButton.StylizeImage = false;
 			this.okButton.TabIndex = 4;
 			this.okButton.Text = "OK";
 			this.okButton.ThemedBack = null;
@@ -104,8 +108,11 @@
 			this.matchBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 3);
 			this.matchBox.Name = "matchBox";
 			this.matchBox.Size = new System.Drawing.Size(119, 25);
+			this.matchBox.StylizeImage = false;
 			this.matchBox.TabIndex = 1;
 			this.matchBox.Text = "Match case";
+			this.matchBox.ThemedBack = null;
+			this.matchBox.ThemedFore = null;
 			this.matchBox.UseVisualStyleBackColor = true;
 			// 
 			// regBox
@@ -117,8 +124,11 @@
 			this.regBox.Margin = new System.Windows.Forms.Padding(4, 1, 4, 3);
 			this.regBox.Name = "regBox";
 			this.regBox.Size = new System.Drawing.Size(213, 25);
+			this.regBox.StylizeImage = false;
 			this.regBox.TabIndex = 2;
 			this.regBox.Text = "Use regular expressions";
+			this.regBox.ThemedBack = null;
+			this.regBox.ThemedFore = null;
 			this.regBox.UseVisualStyleBackColor = true;
 			this.regBox.CheckedChanged += new System.EventHandler(this.ToggleRegex);
 			// 
@@ -175,16 +185,45 @@
 			// 
 			// rawBox
 			// 
+			this.rawBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.rawBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.rawBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.rawBox.Location = new System.Drawing.Point(160, 215);
+			this.rawBox.Location = new System.Drawing.Point(154, 281);
 			this.rawBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 3);
 			this.rawBox.Name = "rawBox";
 			this.rawBox.Size = new System.Drawing.Size(199, 25);
+			this.rawBox.StylizeImage = false;
 			this.rawBox.TabIndex = 11;
 			this.rawBox.Text = "Replace with raw XML";
+			this.rawBox.ThemedBack = null;
+			this.rawBox.ThemedFore = null;
 			this.rawBox.UseVisualStyleBackColor = true;
 			this.rawBox.CheckedChanged += new System.EventHandler(this.ToggleRawXml);
+			// 
+			// scopeBox
+			// 
+			this.scopeBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.scopeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.scopeBox.FormattingEnabled = true;
+			this.scopeBox.Items.AddRange(new object[] {
+            "This page",
+            "This section",
+            "This notebook",
+            "All notebooks"});
+			this.scopeBox.Location = new System.Drawing.Point(154, 227);
+			this.scopeBox.Name = "scopeBox";
+			this.scopeBox.Size = new System.Drawing.Size(220, 28);
+			this.scopeBox.TabIndex = 12;
+			this.scopeBox.SelectedIndexChanged += new System.EventHandler(this.ChangeScope);
+			// 
+			// scopeLabel
+			// 
+			this.scopeLabel.AutoSize = true;
+			this.scopeLabel.Location = new System.Drawing.Point(16, 230);
+			this.scopeLabel.Name = "scopeLabel";
+			this.scopeLabel.Size = new System.Drawing.Size(55, 20);
+			this.scopeLabel.TabIndex = 13;
+			this.scopeLabel.Text = "Scope";
 			// 
 			// SearchAndReplaceDialog
 			// 
@@ -193,7 +232,9 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(629, 318);
+			this.ClientSize = new System.Drawing.Size(629, 342);
+			this.Controls.Add(this.scopeLabel);
+			this.Controls.Add(this.scopeBox);
 			this.Controls.Add(this.rawBox);
 			this.Controls.Add(this.withStatusLabel);
 			this.Controls.Add(this.whatStatusLabel);
@@ -233,5 +274,7 @@
 		private UI.MoreLabel whatStatusLabel;
 		private UI.MoreLabel withStatusLabel;
 		private UI.MoreCheckBox rawBox;
+		private System.Windows.Forms.ComboBox scopeBox;
+		private System.Windows.Forms.Label scopeLabel;
 	}
 }
