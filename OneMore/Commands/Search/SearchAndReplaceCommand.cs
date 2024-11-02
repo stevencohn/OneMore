@@ -124,9 +124,6 @@ namespace River.OneMoreAddIn.Commands
 				return false;
 			}
 
-			// Notebook or Notebooks/Notebook
-			var booked = hierarchy.Name.LocalName != "Section";
-
 			var totalPages = 0;
 			var totalMatches = 0;
 			using var progress = new ProgressDialog();
