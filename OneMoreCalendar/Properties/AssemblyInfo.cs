@@ -27,6 +27,6 @@ namespace OneMoreCalendar
 {
 	internal static class AssemblyInfo
 	{
-		public const string Version = "6.5.2";
+		public const string Version = "6.6.0";
 	}
 }
