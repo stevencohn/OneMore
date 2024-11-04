@@ -68,7 +68,7 @@ namespace River.OneMoreAddIn.Commands
 		protected override void OnLoad(EventArgs e)
 		{
 			base.OnLoad(e);
-			Native.SwitchToThisWindow(Handle, false);
+			//Native.SwitchToThisWindow(Handle, false);
 		}
 
 
