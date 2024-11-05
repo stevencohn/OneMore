@@ -434,6 +434,7 @@ namespace River.OneMoreAddIn.UI
 				{
 					string phrase;
 					SizeF size;
+					StringFormat format;
 
 					// track x-offset of each phrase
 					x = e.Bounds.X;
@@ -446,7 +447,7 @@ namespace River.OneMoreAddIn.UI
 						// when phrase is substring of word, GenericTypographic doesn't measure
 						// trailing space and when it is prefaced by a space, GenericDefault
 						// removes that space. So choose appropriate format carefully here
-						var format = index < text.Length - 1 && text[index - 1] == ' '
+						format = index < text.Length - 1 && text[index - 1] == ' '
 							? StringFormat.GenericDefault
 							: StringFormat.GenericTypographic;
 
@@ -457,12 +458,13 @@ namespace River.OneMoreAddIn.UI
 
 					// draw matched phrase
 					phrase = text.Substring(index, Owner.Text.Length);
-					e.Graphics.DrawString(phrase, highFont, high,
-						x, e.Bounds.Y, StringFormat.GenericTypographic);
 
-					size = e.Graphics.MeasureString(
-						phrase, highFont, new PointF(x, e.Bounds.Y), StringFormat.GenericTypographic);
+					format = phrase[phrase.Length - 1] == ' '
+						? StringFormat.GenericDefault
+						: StringFormat.GenericTypographic;
 
+					e.Graphics.DrawString(phrase, highFont, high, x, e.Bounds.Y, format);
+					size = e.Graphics.MeasureString(phrase, highFont, new PointF(x, e.Bounds.Y), format);
 					x += size.Width;
 
 					// draw remaining phrase
