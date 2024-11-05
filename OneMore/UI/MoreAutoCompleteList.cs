@@ -453,7 +453,6 @@ namespace River.OneMoreAddIn.UI
 
 						e.Graphics.DrawString(phrase, Font, fore, x, e.Bounds.Y, format);
 						size = e.Graphics.MeasureString(phrase, Font, new PointF(x, e.Bounds.Y), format);
-
 						x += size.Width;
 					}
 
@@ -466,7 +465,6 @@ namespace River.OneMoreAddIn.UI
 
 					e.Graphics.DrawString(phrase, highFont, high, x, e.Bounds.Y, format);
 					size = e.Graphics.MeasureString(phrase, highFont, new PointF(x, e.Bounds.Y), format);
-
 					x += size.Width;
 
 					// draw remaining phrase
