@@ -11,6 +11,7 @@ namespace River.OneMoreAddIn.Commands
 	internal class ChooseColorizerCommand : Command
 	{
 		private ColorizeDialog dialog;
+		private string key;
 
 
 		public ChooseColorizerCommand()
@@ -32,7 +33,6 @@ namespace River.OneMoreAddIn.Commands
 
 			if (dialog.ShowDialog(owner) == DialogResult.OK)
 			{
-				var key = dialog.LanguageKey;
 				if (key != null)
 				{
 					await factory.Run<ColorizeCommand>(key);
@@ -45,6 +45,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (dialog != null)
 			{
+				key = dialog.LanguageKey;
 				dialog.FormClosed -= Dialog_FormClosed;
 				dialog.Dispose();
 				dialog = null;
