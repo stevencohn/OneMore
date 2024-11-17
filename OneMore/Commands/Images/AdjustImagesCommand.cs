@@ -75,7 +75,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			if (elements != null && elements.Any())
+			if (elements.Any())
 			{
 				var updated = elements.Count == 1
 					// single selected image
@@ -137,17 +137,16 @@ namespace River.OneMoreAddIn.Commands
 				using var image = wrapper.ReadImage();
 
 				var editor = dialog.GetImageEditor(image);
-
-				// when pasting an image onto the page, width or height can be zero
-				// OneNote ignores both if either is zero so we'll do the same...
-				var viewWidth = wrapper.Width;
-				if (viewWidth == 0)
-				{
-					viewWidth = image.Width;
-				}
-
 				if (editor.IsReady || (editor.AutoSize && wrapper.IsSetByUser))
 				{
+					// when pasting an image onto the page, width or height can be zero
+					// OneNote ignores both if either is zero so we'll do the same...
+					var viewWidth = wrapper.Width;
+					if (viewWidth == 0)
+					{
+						viewWidth = image.Width;
+					}
+
 					if (editor.Constraint == SC.All ||
 						(editor.Constraint == SC.OnlyShrink && viewWidth > editor.Size.Width) ||
 						(editor.Constraint == SC.OnlyEnlarge && viewWidth < editor.Size.Width))
@@ -157,7 +156,8 @@ namespace River.OneMoreAddIn.Commands
 					}
 					else
 					{
-						logger.WriteLine($"skipped image, size=[{wrapper.Width} x {wrapper.Width}]");
+						logger.WriteLine("skipped image due to constraint: " +
+							$"viewWidth:{viewWidth} size=[{wrapper.Width} x {wrapper.Width}]");
 					}
 				}
 			}

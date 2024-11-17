@@ -49,6 +49,7 @@ namespace River.OneMoreAddIn.Commands
 			Saturation = float.MinValue;
 			Style = Stylization.None;
 			Size = Size.Empty;
+			SizePercent = float.MinValue;
 			Constraint = SizeConstraint.All;
 			PreserveQualityOnResize = true;
 
@@ -74,6 +75,8 @@ namespace River.OneMoreAddIn.Commands
 
 		public Size Size { get; set; }
 
+		public float SizePercent { get; set; }
+
 		public SizeConstraint Constraint { get; set; }
 
 		public Stylization Style { private get; set; }
@@ -85,6 +88,7 @@ namespace River.OneMoreAddIn.Commands
 			!Opacity.EstEquals(float.MinValue) ||
 			Quality != long.MinValue ||
 			!Saturation.EstEquals(float.MinValue) ||
+			!SizePercent.EstEquals(float.MinValue) ||
 			Size != Size.Empty ||
 			Style != Stylization.None;
 
@@ -101,6 +105,13 @@ namespace River.OneMoreAddIn.Commands
 			if (AutoSize)
 			{
 				wrapper.SetAutoSize();
+			}
+			else if (SizePercent > float.MinValue)
+			{
+				wrapper.SetSize(
+					(int)(SizePercent * wrapper.Width),
+					(int)(SizePercent * wrapper.Height),
+					true);
 			}
 			else if (Size != Size.Empty)
 			{
@@ -171,7 +182,8 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			// resize last, to attempt to preserve quality
-			if (Size != Size.Empty && !PreserveStorageSize)
+			if (!PreserveStorageSize &&
+				(SizePercent > float.MinValue || Size != Size.Empty))
 			{
 				trash.Push(edit);
 				edit = Resize(edit);
@@ -386,7 +398,24 @@ namespace River.OneMoreAddIn.Commands
 			// Resize the physical storage model of the given image, creating a new Image instance
 			// with the specified width and height, optionally decreasing the quality level
 
-			var edit = new Bitmap(Size.Width, Size.Height);
+			int width;
+			int height;
+
+			// when resizing many, height could be zero so much adjust per image
+			if (SizePercent > float.MinValue)
+			{
+				width = (int)(original.Width * SizePercent);
+				height = (int)(original.Height * SizePercent);
+			}
+			else
+			{
+				width = Size.Width;
+				height = Size.Height == 0
+					? (int)(original.Height * (1.0 * Size.Width / original.Width))
+					: Size.Height;
+			}
+
+			var edit = new Bitmap(width, height);
 			edit.SetResolution(original.HorizontalResolution, original.VerticalResolution);
 
 			using var g = Graphics.FromImage(edit);
@@ -404,7 +433,7 @@ namespace River.OneMoreAddIn.Commands
 			attributes.SetWrapMode(WrapMode.TileFlipXY);
 
 			g.DrawImage(original,
-				new Rectangle(0, 0, Size.Width, Size.Height),
+				new Rectangle(0, 0, width, height),
 				0, 0, original.Width, original.Height,
 				GraphicsUnit.Pixel,
 				attributes);

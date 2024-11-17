@@ -283,12 +283,19 @@ namespace River.OneMoreAddIn.Commands
 			}
 			else // %
 			{
-				var w = (int)(viewWidth * percentBox.Value / 100);
-				var h = (int)(viewHeight * percentBox.Value / 100);
-
-				if (w != image.Width || h != image.Height)
+				if (singleImage)
 				{
-					editor.Size = new Size(w, h);
+					var w = (int)(viewWidth * percentBox.Value / 100);
+					var h = (int)(viewHeight * percentBox.Value / 100);
+
+					if (w != image.Width || h != image.Height)
+					{
+						editor.Size = new Size(w, h);
+					}
+				}
+				else
+				{
+					editor.SizePercent = (float)percentBox.Value / 100;
 				}
 			}
 
