@@ -226,50 +226,12 @@ namespace River.OneMoreAddIn.Commands
 
 		private bool SetReminder(XElement paragraph, Reminder reminder)
 		{
-			var index = page.GetTagDefIndex(reminder.Symbol);
-			if (index == null)
-			{
-				index = page.AddTagDef(reminder.Symbol,
-					string.Format(Resx.RemindCommand_nameFormat, reminder.Due.ToFriendlyString()));
-
-				reminder.TagIndex = index;
-			}
-
-			var tag = paragraph.Elements(ns + "Tag")
-				.FirstOrDefault(e => e.Attribute("index").Value == index);
-
-			if (tag == null)
-			{
-				// tags must be ordered by index even within their containing paragraph
-				// so take all, remove from paragraph, append, sort, re-add...
-
-				var tags = paragraph.Elements(ns + "Tag").ToList();
-				tags.ForEach(t => t.Remove());
-
-				// synchronize tag with reminder
-				var completed = reminder.Status == ReminderStatus.Completed
-					? "true" : "false";
-
-				tag = new XElement(ns + "Tag",
-					new XAttribute("index", index),
-					new XAttribute("completed", completed),
-					new XAttribute("disabled", "false")
-					);
-
-				tags.Add(tag);
-
-				paragraph.AddFirst(tags.OrderBy(t => t.Attribute("index").Value));
-			}
-			else
-			{
-				// synchronize tag with reminder
-				var tcompleted = tag.Attribute("completed").Value == "true";
-				var rcompleted = reminder.Status == ReminderStatus.Completed;
-				if (tcompleted != rcompleted)
-				{
-					tag.Attribute("completed").Value = rcompleted ? "true" : "false";
-				}
-			}
+			reminder.TagIndex =  page.SetTag(paragraph,
+				tagSymbol: reminder.Symbol,
+				tagName: string.Format(Resx.RemindCommand_nameFormat, reminder.Due.ToFriendlyString()),
+				tagStatus : reminder.Status == ReminderStatus.Completed,
+				tagType: 0
+				);
 
 			new ReminderSerializer().StoreReminder(page, reminder);
 
