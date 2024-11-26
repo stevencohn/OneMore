@@ -240,7 +240,7 @@ namespace River.OneMoreAddIn.Commands
 		public MarkdownConverter SpaceOutParagraphs(
 			IEnumerable<XElement> paragraphs, float spaceAfter)
 		{
-			var after = $"{spaceAfter:0.0}";
+			var after = spaceAfter.ToString("####0.00", CultureInfo.InvariantCulture);
 
 			var last = paragraphs.Last();
 
