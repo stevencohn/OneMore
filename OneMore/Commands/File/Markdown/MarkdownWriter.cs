@@ -438,7 +438,7 @@ namespace River.OneMoreAddIn.Commands
 				.Select(e => int.Parse(e.Attribute("symbol").Value))
 				.FirstOrDefault();
 			var retValue = "";
-			var tagSymbol = page.taglist.Find(x => x.id == symbol.ToString());
+			var tagSymbol = Page.taglist.Find(x => x.id == symbol.ToString());
 			switch (symbol)
 			{
 				case 3:     // to do
