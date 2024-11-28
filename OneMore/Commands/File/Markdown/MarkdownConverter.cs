@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Styles;
 	using System.Collections.Generic;
+	using System.Globalization;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Xml.Linq;
@@ -195,7 +196,7 @@ namespace River.OneMoreAddIn.Commands
 						else
 						{
 							// look for all other tags
-							foreach (var t in page.taglist)
+							foreach (var t in Page.taglist)
 							{
 								// check for other tags
 								if (text.Value.Contains(t.name))
