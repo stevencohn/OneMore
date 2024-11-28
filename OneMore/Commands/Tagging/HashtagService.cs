@@ -211,6 +211,9 @@ namespace River.OneMoreAddIn.Commands
 			if (notebookFilters is not null && notebookFilters.Length > 0)
 			{
 				scanner.SetNotebookFilters(notebookFilters);
+			} else
+			{
+				return;
 			}
 
 			await scanner.Scan();

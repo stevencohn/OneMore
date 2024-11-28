@@ -380,7 +380,9 @@ namespace River.OneMoreAddIn.Commands
 
 			// saved tags will be in document-order but not have DocumentOrder set,
 			// we can rely on tag + objectID to continue resolving
-			var saved = provider.ReadPageTags(pageID);
+
+			// in case of empty candidate list do not read page tags as it throws exception
+			var saved = (candidates.Count() == 0) ? null : provider.ReadPageTags(pageID);
 
 			var discovered = new Hashtags();
 			var updated = new Hashtags();
