@@ -71,6 +71,8 @@ namespace River.OneMoreAddIn.UI
 			private readonly Font highFont;
 			private readonly Brush fore;
 			private readonly Brush high;
+
+			private float rindent;
 			private bool disposed;
 
 			public HighlightedItemPainter(ThemeManager manager, DrawListViewSubItemEventArgs e)
@@ -118,6 +120,9 @@ namespace River.OneMoreAddIn.UI
 				graphics.FillRectangle(back,
 					bounds.X, bounds.Y + 1,
 					bounds.Width, bounds.Height - 2);
+
+				// presume PaintBackground is the start of a new item so reset rindex
+				rindent = 0;
 			}
 
 
@@ -127,8 +132,10 @@ namespace River.OneMoreAddIn.UI
 				//var size = e.Graphics.MeasureString(annotation, Font);
 
 				var size = TextRenderer.MeasureText(text, item.Font);
-				var x = bounds.Width - size.Width - 5;
+				var x = bounds.Width - size.Width - 5 - rindent;
 				graphics.DrawString(text, item.Font, high, x, bounds.Y);
+
+				rindent -= size.Width;
 			}
 
 
@@ -208,9 +215,11 @@ namespace River.OneMoreAddIn.UI
 					: new SolidBrush(manager.GetColor("ActiveCaption"));
 
 				var size = graphics.MeasureString(keys, item.Font);
-				var x = bounds.Width - size.Width - 5;
+				var x = bounds.Width - size.Width - 5 - rindent;
 
 				graphics.DrawString(keys, item.Font, cap, x, bounds.Y);
+
+				rindent -= size.Width;
 			}
 
 
@@ -606,7 +615,8 @@ namespace River.OneMoreAddIn.UI
 				{
 					painter.PaintDivider();
 				}
-				else if (common == e.ItemIndex)
+
+				if (common == e.ItemIndex)
 				{
 					painter.PaintCategory(OtherKicker);
 				}
