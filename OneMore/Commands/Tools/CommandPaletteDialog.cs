@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Settings;
 	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Text.RegularExpressions;
@@ -29,8 +30,13 @@ namespace River.OneMoreAddIn.Commands
 		{
 			InitializeComponent();
 
+			var settings = new SettingsProvider().GetCollection(nameof(GeneralSheet));
+			var nonseq = settings.Get("nonseqMatching", false);
+
 			palette = new MoreAutoCompleteList
 			{
+				// allow nonsequential character matching
+				NonsequentialMatching = nonseq,
 				// keeping this as false will eliminate flicker on startup
 				ShowPopupOnStartup = false
 			};

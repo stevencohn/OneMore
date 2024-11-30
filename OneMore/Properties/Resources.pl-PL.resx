@@ -1261,6 +1261,10 @@ Zakresy względne: A1: komórka (0, -1)</value>
     <value>Dostosuj ogólne zachowanie OneMore</value>
     <comment>textbox</comment>
   </data>
+  <data name="GeneralSheet_sequentialBox.Text" xml:space="preserve">
+    <value>Zezwalaj na niesekwencyjne dopasowywanie nazw w paletach poleceń</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="GeneralSheet_themeBox.Text" xml:space="preserve">
     <value>System
 Światło

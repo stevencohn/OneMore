@@ -1260,6 +1260,10 @@ Rangos relativos: A1: Cell (0, -1)</value>
     <value>Personalice el comportamiento general de OneMore</value>
     <comment>textbox</comment>
   </data>
+  <data name="GeneralSheet_sequentialBox.Text" xml:space="preserve">
+    <value>Permitir coincidencias de nombres no secuenciales en las paletas de comandos</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="GeneralSheet_themeBox.Text" xml:space="preserve">
     <value>Sistema
 Luz

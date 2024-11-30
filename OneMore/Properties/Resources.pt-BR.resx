@@ -1261,6 +1261,10 @@ Intervalos relativos: a1: célula (0, -1)</value>
     <value>Personalize o comportamento geral do OneMore</value>
     <comment>textbox</comment>
   </data>
+  <data name="GeneralSheet_sequentialBox.Text" xml:space="preserve">
+    <value>Permitir correspondência de nomes não sequenciais em paletas de comandos</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="GeneralSheet_themeBox.Text" xml:space="preserve">
     <value>Sistema
 Luz

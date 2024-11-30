@@ -1261,6 +1261,10 @@ Relatieve bereiken: A1: Cell (0, -1)</value>
     <value>Pas het algemene gedrag van OneMore aan</value>
     <comment>textbox</comment>
   </data>
+  <data name="GeneralSheet_sequentialBox.Text" xml:space="preserve">
+    <value>Sta niet-opeenvolgende namen toe in opdrachtpaletten</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="GeneralSheet_themeBox.Text" xml:space="preserve">
     <value>Systeem
 Licht

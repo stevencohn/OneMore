@@ -33,6 +33,7 @@ namespace River.OneMoreAddIn.Settings
 					"themeLabel",
 					"themeBox",
 					"langLabel=word_Language",
+					"sequentialBox",
 					"checkUpdatesBox",
 					"advancedGroup=phrase_AdvancedOptions",
 					"verboseBox",
@@ -54,6 +55,7 @@ namespace River.OneMoreAddIn.Settings
 				}
 			}
 
+			sequentialBox.Checked = settings.Get("nonseqMatching", false);
 			checkUpdatesBox.Checked = settings.Get("checkUpdates", false);
 			experimentalBox.Checked = settings.Get("experimental", false);
 
@@ -130,6 +132,11 @@ namespace River.OneMoreAddIn.Settings
 
 			var lang = ((CultureInfo)(langBox.SelectedItem)).Name;
 			var updated = settings.Add("language", lang);
+
+			// does not require a restart
+			save = sequentialBox.Checked
+				? settings.Add("nonseqMatching", "true") || save
+				: settings.Remove("nonseqMatching") || save;
 
 			// does not require a restart
 			save = checkUpdatesBox.Checked

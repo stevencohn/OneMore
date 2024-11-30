@@ -31,6 +31,7 @@ namespace River.OneMoreAddIn.Settings
 		{
 			this.introBox = new River.OneMoreAddIn.UI.MoreMultilineLabel();
 			this.layoutPanel = new System.Windows.Forms.Panel();
+			this.sequentialBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.themeBox = new System.Windows.Forms.ComboBox();
 			this.themeLabel = new System.Windows.Forms.Label();
 			this.advancedGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
@@ -59,6 +60,7 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// layoutPanel
 			// 
+			this.layoutPanel.Controls.Add(this.sequentialBox);
 			this.layoutPanel.Controls.Add(this.themeBox);
 			this.layoutPanel.Controls.Add(this.themeLabel);
 			this.layoutPanel.Controls.Add(this.advancedGroup);
@@ -71,6 +73,22 @@ namespace River.OneMoreAddIn.Settings
 			this.layoutPanel.Name = "layoutPanel";
 			this.layoutPanel.Size = new System.Drawing.Size(772, 416);
 			this.layoutPanel.TabIndex = 4;
+			// 
+			// sequentialBox
+			// 
+			this.sequentialBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+			this.sequentialBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.sequentialBox.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.sequentialBox.Location = new System.Drawing.Point(25, 159);
+			this.sequentialBox.Margin = new System.Windows.Forms.Padding(0, 10, 0, 0);
+			this.sequentialBox.Name = "sequentialBox";
+			this.sequentialBox.Size = new System.Drawing.Size(461, 25);
+			this.sequentialBox.StylizeImage = false;
+			this.sequentialBox.TabIndex = 7;
+			this.sequentialBox.Text = "Allow nonsequential name matching in Command Palettes";
+			this.sequentialBox.ThemedBack = null;
+			this.sequentialBox.ThemedFore = null;
+			this.sequentialBox.UseVisualStyleBackColor = true;
 			// 
 			// themeBox
 			// 
@@ -103,11 +121,11 @@ namespace River.OneMoreAddIn.Settings
 			this.advancedGroup.Controls.Add(this.experimentalBox);
 			this.advancedGroup.Controls.Add(this.verboseBox);
 			this.advancedGroup.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.advancedGroup.Location = new System.Drawing.Point(7, 274);
+			this.advancedGroup.Location = new System.Drawing.Point(7, 289);
 			this.advancedGroup.Name = "advancedGroup";
 			this.advancedGroup.Padding = new System.Windows.Forms.Padding(15, 10, 10, 10);
 			this.advancedGroup.ShowOnlyTopEdge = true;
-			this.advancedGroup.Size = new System.Drawing.Size(762, 139);
+			this.advancedGroup.Size = new System.Drawing.Size(762, 124);
 			this.advancedGroup.TabIndex = 4;
 			this.advancedGroup.TabStop = false;
 			this.advancedGroup.Text = "Advanced Options";
@@ -170,7 +188,7 @@ namespace River.OneMoreAddIn.Settings
 			this.checkUpdatesBox.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.checkUpdatesBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.checkUpdatesBox.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.checkUpdatesBox.Location = new System.Drawing.Point(25, 176);
+			this.checkUpdatesBox.Location = new System.Drawing.Point(25, 194);
 			this.checkUpdatesBox.Margin = new System.Windows.Forms.Padding(0, 10, 0, 0);
 			this.checkUpdatesBox.Name = "checkUpdatesBox";
 			this.checkUpdatesBox.Size = new System.Drawing.Size(456, 25);
@@ -211,5 +229,6 @@ namespace River.OneMoreAddIn.Settings
 		private UI.MoreCheckBox experimentalBox;
 		private System.Windows.Forms.ComboBox themeBox;
 		private System.Windows.Forms.Label themeLabel;
+		private UI.MoreCheckBox sequentialBox;
 	}
 }
