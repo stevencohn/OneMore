@@ -46,9 +46,6 @@ namespace River.OneMoreAddIn.Commands
 		/// <returns></returns>
 		public override async Task Execute(params object[] args)
 		{
-
-			System.Diagnostics.Debugger.Launch();
-
 			await using var one = new OneNote(out page, out ns);
 
 			// apply theme page color..
