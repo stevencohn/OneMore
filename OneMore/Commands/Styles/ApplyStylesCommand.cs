@@ -46,6 +46,9 @@ namespace River.OneMoreAddIn.Commands
 		/// <returns></returns>
 		public override async Task Execute(params object[] args)
 		{
+
+			System.Diagnostics.Debugger.Launch();
+
 			await using var one = new OneNote(out page, out ns);
 
 			// apply theme page color..
@@ -151,8 +154,8 @@ namespace River.OneMoreAddIn.Commands
 						// spaceBetween should only apply to normal paragraphs
 						name == "p" ? spacing : null);
 
-					quick.Attribute("fontColor").Value = style.Color;
-					quick.Attribute("highlightColor").Value = style.Highlight;
+					quick.SetAttributeValue("fontColor", style.Color);
+					quick.SetAttributeValue("highlightColor", style.Highlight);
 
 					quick.SetAttributeValue("italic", style.IsItalic.ToString().ToLower());
 					quick.SetAttributeValue("bold", style.IsBold.ToString().ToLower());
