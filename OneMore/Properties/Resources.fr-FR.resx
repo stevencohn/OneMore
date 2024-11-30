@@ -1260,6 +1260,10 @@ Plages relatives: a1: cellule (0, -1)</value>
     <value>Personnalisez le comportement général de OneMore</value>
     <comment>textbox</comment>
   </data>
+  <data name="GeneralSheet_sequentialBox.Text" xml:space="preserve">
+    <value>Autoriser la correspondance de noms non séquentielle dans les palettes de commandes</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="GeneralSheet_themeBox.Text" xml:space="preserve">
     <value>Système
 Lumière

@@ -1258,6 +1258,10 @@ Verwandte Bereiche: A1: Zelle (0, -1)</value>
     <value>Passe das Gesamtverhalten von OneMore an</value>
     <comment>textbox</comment>
   </data>
+  <data name="GeneralSheet_sequentialBox.Text" xml:space="preserve">
+    <value>Erlauben Sie den nichtsequentiellen Namensabgleich in Befehlspaletten</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="GeneralSheet_themeBox.Text" xml:space="preserve">
     <value>System
 Licht

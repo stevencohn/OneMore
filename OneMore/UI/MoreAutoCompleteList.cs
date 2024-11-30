@@ -13,6 +13,7 @@ namespace River.OneMoreAddIn.UI
 	using System.ComponentModel;
 	using System.Diagnostics;
 	using System.Drawing;
+	using System.Globalization;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Windows.Forms;
@@ -39,12 +40,12 @@ namespace River.OneMoreAddIn.UI
 		// The 'commands' field maintains the original list of available Cmds
 		// The 'matches' field maintains the current matched Cmds based on Owner input
 
-		private ToolStripDropDown popup;        // invisible host control of this ListtView	
-		private readonly Font highFont;         // font of matched substring
+		private ToolStripDropDown popup;        // invisible host control of this ListtView
 		private readonly List<Cmd> commands;    // original list of commands
 		private readonly List<Cmd> matches;     // dynamic list of matched commands
 		private readonly ThemeManager manager;  // color manager
 		private string boxtext;                 // the current/previous text in the Owner TextBox
+
 
 		// each command name is described by a Cmd entry
 		private sealed class Cmd
@@ -56,6 +57,169 @@ namespace River.OneMoreAddIn.UI
 			public string Keys;                 // key sequence part
 			public bool Recent;                 // true if in "recently used" category
 		}
+
+		#region HighlightedItemPainter
+		private sealed class HighlightedItemPainter : IDisposable
+		{
+			private const char Space = ' ';
+
+			private readonly ThemeManager manager;
+			private readonly ListViewItem item;
+			private readonly Rectangle bounds;
+			private readonly Graphics graphics;
+
+			private readonly Font highFont;
+			private readonly Brush fore;
+			private readonly Brush high;
+			private bool disposed;
+
+			public HighlightedItemPainter(ThemeManager manager, DrawListViewSubItemEventArgs e)
+			{
+				this.manager = manager;
+				item = e.Item;
+				bounds = e.Bounds;
+				graphics = e.Graphics;
+
+				highFont = new Font(item.Font, item.Font.Style | FontStyle.Bold);
+
+				if (item.Selected)
+				{
+					fore = new SolidBrush(manager.GetColor("HighlightText"));
+					high = new SolidBrush(manager.GetColor("GradientInactiveCaption"));
+				}
+				else
+				{
+					fore = new SolidBrush(manager.GetColor("ControlText"));
+					high = new SolidBrush(manager.GetColor("Highlight"));
+				}
+			}
+
+
+			public void Dispose()
+			{
+				if (!disposed)
+				{
+					highFont?.Dispose();
+					fore?.Dispose();
+					high?.Dispose();
+					disposed = true;
+				}
+			}
+
+
+			public bool NonsequentialMatching { get; set; }
+
+
+			public void PaintBackground()
+			{
+				using var back = new SolidBrush(
+					manager.GetColor(item.Selected ? "Highlight" : "ListView"));
+
+				graphics.FillRectangle(back,
+					bounds.X, bounds.Y + 1,
+					bounds.Width, bounds.Height - 2);
+			}
+
+
+			public void PaintCategory(string text)
+			{
+				// this was used for recent and other annotations; difference?
+				//var size = e.Graphics.MeasureString(annotation, Font);
+
+				var size = TextRenderer.MeasureText(text, item.Font);
+				var x = bounds.Width - size.Width - 5;
+				graphics.DrawString(text, item.Font, high, x, bounds.Y);
+			}
+
+
+			public void PaintDivider()
+			{
+				graphics.DrawLine(Pens.Silver, // yes, this pen is hard-coded
+					bounds.X, bounds.Y, bounds.Width, bounds.Y);
+			}
+
+
+			public void PaintItem(string input, string commandName)
+			{
+				var inputIndex = 0;
+				float x = bounds.X;
+				SizeF size;
+
+				(int, int) range;
+				if (NonsequentialMatching)
+				{
+					range = (int.MaxValue, int.MinValue);
+				}
+				else
+				{
+					var index = commandName.IndexOf(input, StringComparison.InvariantCultureIgnoreCase);
+					range = (index, index + input.Length - 1);
+				}
+
+				bool InRange(int v) => v >= range.Item1 && v <= range.Item2;
+
+				for (int i = 0; i < commandName.Length; i++)
+				{
+					var ch = commandName[i];
+					var text = $"{ch}";
+
+					if (ch == Space)
+					{
+						size = graphics.MeasureString(text, item.Font, new PointF(x, bounds.Y),
+							// GenericDefault will measure space but GenericTypographic will not
+							StringFormat.GenericDefault);
+
+						x += size.Width;
+					}
+					else
+					{
+						Font font;
+						Brush brush;
+
+						if (InRange(i) ||
+							NonsequentialMatching &&
+							(inputIndex < input.Length &&
+							char.ToLower(ch, CultureInfo.InvariantCulture) ==
+							char.ToLower(input[inputIndex], CultureInfo.InvariantCulture)))
+						{
+							font = highFont;
+							brush = high;
+							inputIndex++;
+						}
+						else
+						{
+							font = item.Font;
+							brush = fore;
+						}
+
+						var format = StringFormat.GenericTypographic;
+						graphics.DrawString(text, font, brush, x, bounds.Y, format);
+						size = graphics.MeasureString(text, font, new PointF(x, bounds.Y), format);
+						x += size.Width;
+					}
+				}
+			}
+
+
+			public void PaintKeys(string keys)
+			{
+				using var cap = item.Selected
+					? new SolidBrush(manager.GetColor("GradientInactiveCaption"))
+					: new SolidBrush(manager.GetColor("ActiveCaption"));
+
+				var size = graphics.MeasureString(keys, item.Font);
+				var x = bounds.Width - size.Width - 5;
+
+				graphics.DrawString(keys, item.Font, cap, x, bounds.Y);
+			}
+
+
+			public void PaintPlainText(string text)
+			{
+				graphics.DrawString(text, item.Font, fore, bounds);
+			}
+		}
+		#endregion
 
 
 		/// <summary>
@@ -81,7 +245,6 @@ namespace River.OneMoreAddIn.UI
 			SetStyle(ControlStyles.DoubleBuffer | ControlStyles.OptimizedDoubleBuffer, true);
 
 			Font = new Font("Segoe UI", 9);
-			highFont = new Font(Font, Font.Style | FontStyle.Bold);
 			commands = new List<Cmd>();
 			matches = new List<Cmd>();
 
@@ -129,6 +292,14 @@ namespace River.OneMoreAddIn.UI
 		/// Gets a value indicating whether the hosted popup is visible
 		/// </summary>
 		public bool IsPopupVisible => popup?.Visible == true;
+
+
+		/// <summary>
+		/// Gets or sets whether characters in input text is allowed to match nonsequential
+		/// characters in item text value, e.g. "olf" could match "Open Log File". Otherwise,
+		/// input text must match an explicit substring.
+		/// </summary>
+		public bool NonsequentialMatching { get; set; }
 
 
 		/// <summary>
@@ -395,111 +566,33 @@ namespace River.OneMoreAddIn.UI
 
 		protected override void OnDrawSubItem(DrawListViewSubItemEventArgs e)
 		{
-			Brush back;
-			Brush fore;
-			Brush high;
-
-			if (e.Item.Selected)
+			using var painter = new HighlightedItemPainter(manager, e)
 			{
-				back = new SolidBrush(manager.GetColor("Highlight"));
-				fore = new SolidBrush(manager.GetColor("HighlightText"));
-				high = new SolidBrush(manager.GetColor("GradientInactiveCaption"));
-			}
-			else
-			{
-				back = new SolidBrush(manager.GetColor("ListView"));
-				fore = new SolidBrush(manager.GetColor("ControlText"));
-				high = new SolidBrush(manager.GetColor("Highlight"));
-			}
+				NonsequentialMatching = this.NonsequentialMatching
+			};
 
-			e.Graphics.FillRectangle(back,
-				e.Bounds.X, e.Bounds.Y + 1,
-				e.Bounds.Width, e.Bounds.Height - 2);
+			painter.PaintBackground();
 
 			var source = matches.Any() ? matches : commands;
 			var command = source[e.Item.Index];
 
-			var drawn = false;
-			float x;
-
-			if (!string.IsNullOrWhiteSpace(Owner.Text))
+			if (!string.IsNullOrWhiteSpace(Owner.Text) && IsMatch(Owner.Text, command.Name))
 			{
-				// draw name in three parts: unmatched start, matched middle, unmatched end...
-
-				var text = command.Name;
-
-				// Owner is the bound TextBox
-				var index = text.IndexOf(Owner.Text, StringComparison.InvariantCultureIgnoreCase);
-				if (index >= 0)
-				{
-					string phrase;
-					SizeF size;
-					StringFormat format;
-
-					// track x-offset of each phrase
-					x = e.Bounds.X;
-
-					// phrase is in middle so draw prior phrase
-					if (index > 0)
-					{
-						phrase = text.Substring(0, index);
-
-						// when phrase is substring of word, GenericTypographic doesn't measure
-						// trailing space and when it is prefaced by a space, GenericDefault
-						// removes that space. So choose appropriate format carefully here
-						format = index < text.Length - 1 && text[index - 1] == ' '
-							? StringFormat.GenericDefault
-							: StringFormat.GenericTypographic;
-
-						e.Graphics.DrawString(phrase, Font, fore, x, e.Bounds.Y, format);
-						size = e.Graphics.MeasureString(phrase, Font, new PointF(x, e.Bounds.Y), format);
-						x += size.Width;
-					}
-
-					// draw matched phrase
-					phrase = text.Substring(index, Owner.Text.Length);
-
-					format = phrase[phrase.Length - 1] == ' '
-						? StringFormat.GenericDefault
-						: StringFormat.GenericTypographic;
-
-					e.Graphics.DrawString(phrase, highFont, high, x, e.Bounds.Y, format);
-					size = e.Graphics.MeasureString(phrase, highFont, new PointF(x, e.Bounds.Y), format);
-					x += size.Width;
-
-					// draw remaining phrase
-					index += Owner.Text.Length;
-					if (index < text.Length)
-					{
-						phrase = text.Substring(index);
-						e.Graphics.DrawString(phrase, Font, fore,
-							x, e.Bounds.Y, StringFormat.GenericTypographic);
-					}
-
-					drawn = true;
-				}
+				// paint item text with matching
+				painter.PaintItem(Owner.Text, command.Name);
 			}
-
-			if (!drawn)
+			else
 			{
-				// if no matched part then draw entire name normally...
-
-				e.Graphics.DrawString(command.Name, e.Item.Font, fore, e.Bounds);
+				// paint item text without matching
+				painter.PaintPlainText(command.Name);
 			}
-
-			// leave margin from right side to end of key sequence text
-			x = e.Bounds.Width - 5;
 
 			// did we match any Recent items at all?
 			if (source[0].Recent)
 			{
 				if (e.ItemIndex == 0)
 				{
-					var annotation = RecentKicker;
-					var size = e.Graphics.MeasureString(annotation, Font);
-					// push key sequence positioning over to the left
-					x -= size.Width;
-					e.Graphics.DrawString(annotation, e.Item.Font, high, x, e.Bounds.Y);
+					painter.PaintCategory(RecentKicker);
 				}
 
 				// index of first common command found after all recent commands
@@ -509,20 +602,13 @@ namespace River.OneMoreAddIn.UI
 					common++;
 				}
 
-				// divider line
-				if (common < source.Count && e.ItemIndex == common - 1)
+				if (common < source.Count && e.ItemIndex == common)
 				{
-					e.Graphics.DrawLine(Pens.Silver, // yes, this pen is hard-coded
-						e.Bounds.X, e.Bounds.Y + e.Bounds.Height - 1,
-						e.Bounds.Width, e.Bounds.Y + e.Bounds.Height - 1);
+					painter.PaintDivider();
 				}
 				else if (common == e.ItemIndex)
 				{
-					var annotation = OtherKicker;
-					var size = e.Graphics.MeasureString(annotation, Font);
-					// push key sequence positioning over to the left
-					x -= size.Width;
-					e.Graphics.DrawString(annotation, e.Item.Font, high, x, e.Bounds.Y);
+					painter.PaintCategory(OtherKicker);
 				}
 			}
 
@@ -534,27 +620,16 @@ namespace River.OneMoreAddIn.UI
 				{
 					if (e.Item.Index > 0)
 					{
-						// divider line
-						e.Graphics.DrawLine(Pens.Silver, // yes, this pen is hard-coded
-							e.Bounds.X, e.Bounds.Y, e.Bounds.Width, e.Bounds.Y);
+						painter.PaintDivider();
 					}
 
-					var size = TextRenderer.MeasureText(command.Category, e.Item.Font);
-					x -= size.Width;
-					e.Graphics.DrawString(command.Category, e.Item.Font, high, x, e.Bounds.Y);
+					painter.PaintCategory(command.Category);
 				}
 			}
-			// key sequence
+			// settle for key sequence
 			else if (!string.IsNullOrWhiteSpace(command.Keys))
 			{
-				var size = e.Graphics.MeasureString(command.Keys, Font);
-				x -= size.Width + 5;
-
-				var cap = e.Item.Selected
-					? new SolidBrush(manager.GetColor("GradientInactiveCaption"))
-					: new SolidBrush(manager.GetColor("ActiveCaption"));
-
-				e.Graphics.DrawString(command.Keys, e.Item.Font, cap, x, e.Bounds.Y);
+				painter.PaintKeys(command.Keys);
 			}
 		}
 
@@ -595,7 +670,8 @@ namespace River.OneMoreAddIn.UI
 
 			commands.ForEach(cmd =>
 			{
-				if (cmd.Name.ContainsICIC(text))
+				//if (cmd.Name.ContainsICIC(text))
+				if (IsMatch(text, cmd.Name))
 				{
 					matches.Add(cmd);
 				}
@@ -658,6 +734,29 @@ namespace River.OneMoreAddIn.UI
 
 			var word = Owner.Text.Substring(start, end - start + 1);
 			return word;
+		}
+
+
+		// suggusted by nhwCoder here: https://github.com/stevencohn/OneMore/issues/1680
+		// allows sequential character searching such as "olf" = "Open Log File"
+		private bool IsMatch(string input, string command)
+		{
+			if (!NonsequentialMatching)
+			{
+				return command.ContainsICIC(input);
+			}
+
+			int inputIndex = 0;
+			foreach (var ch in command)
+			{
+				if (inputIndex < input.Length &&
+					char.ToLower(ch, CultureInfo.InvariantCulture) ==
+					char.ToLower(input[inputIndex], CultureInfo.InvariantCulture))
+				{
+					inputIndex++;
+				}
+			}
+			return inputIndex == input.Length;
 		}
 
 

@@ -3339,6 +3339,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Allow nonsequential name matching in Command Palettes.
+        /// </summary>
+        internal static string GeneralSheet_sequentialBox_Text {
+            get {
+                return ResourceManager.GetString("GeneralSheet_sequentialBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to System
         ///Light
         ///Dark.

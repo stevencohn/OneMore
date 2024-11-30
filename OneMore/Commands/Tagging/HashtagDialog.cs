@@ -78,8 +78,11 @@ namespace River.OneMoreAddIn.Commands
 
 			searchButton.NotifyDefault(true);
 
-			experimental = new SettingsProvider()
-				.GetCollection("GeneralSheet").Get<bool>("experimental");
+			var setprovider = new SettingsProvider();
+			var general = setprovider.GetCollection(nameof(GeneralSheet));
+
+			palette.NonsequentialMatching = general.Get<bool>("nonseqMatching");
+			experimental = general.Get<bool>("experimental");
 
 			scanLink.Left = lastScanLabel.Left;
 			scanLink.Visible = false;
@@ -87,7 +90,7 @@ namespace River.OneMoreAddIn.Commands
 			ShowScanTimes();
 			CheckForNewNotebooks();
 
-			ShowOfflineNotebooks = new SettingsProvider()
+			ShowOfflineNotebooks = setprovider
 				.GetCollection(SettingsKey)
 				.Get("showOffline", true);
 

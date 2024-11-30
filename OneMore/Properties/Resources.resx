@@ -1261,6 +1261,10 @@ Relative ranges: A1:cell(0,-1)</value>
     <value>Customize the overall behavior of OneMore</value>
     <comment>textbox</comment>
   </data>
+  <data name="GeneralSheet_sequentialBox.Text" xml:space="preserve">
+    <value>Allow nonsequential name matching in Command Palettes</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="GeneralSheet_themeBox.Text" xml:space="preserve">
     <value>System
 Light

@@ -1261,6 +1261,10 @@ Total Row Font
     <value>התאם אישית את ההתנהגות הכוללת של OneMore</value>
     <comment>textbox</comment>
   </data>
+  <data name="GeneralSheet_sequentialBox.Text" xml:space="preserve">
+    <value>אפשר התאמת שמות לא רציפים בפלטות פקודות</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="GeneralSheet_themeBox.Text" xml:space="preserve">
     <value>מערכת
 אוֹר

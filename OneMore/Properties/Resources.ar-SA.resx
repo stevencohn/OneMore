@@ -1260,6 +1260,10 @@
     <value>تخصيص السلوك العام لـ OneMore</value>
     <comment>textbox</comment>
   </data>
+  <data name="GeneralSheet_sequentialBox.Text" xml:space="preserve">
+    <value>السماح بمطابقة الأسماء غير المتسلسلة في لوحات الأوامر</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="GeneralSheet_themeBox.Text" xml:space="preserve">
     <value>نظام
 ضوء

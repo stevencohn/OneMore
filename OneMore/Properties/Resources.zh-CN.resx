@@ -1259,6 +1259,10 @@ OneNote 文件 (*.one)</value>
     <value>自定义OneMore的整体行为</value>
     <comment>textbox</comment>
   </data>
+  <data name="GeneralSheet_sequentialBox.Text" xml:space="preserve">
+    <value>允许命令面板中的非连续名称匹配</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="GeneralSheet_themeBox.Text" xml:space="preserve">
     <value>系统
 光
