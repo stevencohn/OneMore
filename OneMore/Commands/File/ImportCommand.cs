@@ -509,12 +509,6 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task ImportMarkdown(string filepath)
 		{
-			if (filepath.IndexOf(' ') >= 0)
-			{
-				ShowInfo(string.Format(Resx.ImportCommand_noSpaces, filepath));
-				return;
-			}
-
 			logger.StartClock();
 
 			if (!PathHelper.HasWildFileName(filepath))
@@ -524,7 +518,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			var files = Directory.GetFiles(Path.GetDirectoryName(filepath), Path.GetFileName(filepath));
+			var files = Directory.GetFiles(Path.GetDirectoryName(@filepath), Path.GetFileName(@filepath));
 			var timeout = 10 + (files.Length * 3);
 
 			var completed = RunWithProgress(timeout, filepath, async (token) =>
@@ -560,7 +554,7 @@ namespace River.OneMoreAddIn.Commands
 				progress?.SetMessage($"Importing {filepath}...");
 
 				logger.WriteLine($"importing markdown {filepath}");
-				var text = File.ReadAllText(filepath);
+				var text = File.ReadAllText(@filepath);
 
 				if (token != default && token.IsCancellationRequested)
 				{
