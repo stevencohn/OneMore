@@ -58,7 +58,13 @@ namespace River.OneMoreAddIn.Commands
 
 		public HashtagScheduler()
 		{
-			filePath = Path.Combine(PathHelper.GetAppDataPath(), Resx.ScanningCueFile);
+			var dataPath = PathHelper.GetAppDataPath();
+
+			// very first time running OneMore or OneMoreTray, data folder may not yet exist
+			// so ensure it does exist otherwise saving the schedule may fail
+			PathHelper.EnsurePathExists(dataPath);
+
+			filePath = Path.Combine(dataPath, Resx.ScanningCueFile);
 
 			schedule = ReadSchedule();
 			if (schedule is null)
