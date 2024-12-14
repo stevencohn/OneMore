@@ -67,7 +67,8 @@
 			this.formatBox.Items.AddRange(new object[] {
             "Number",
             "Currency",
-            "Percentage"});
+            "Percentage",
+            "Time"});
 			this.formatBox.Location = new System.Drawing.Point(166, 100);
 			this.formatBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
 			this.formatBox.Name = "formatBox";

@@ -79,6 +79,14 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 				return;
 			}
 
+			if (TimeSpan.TryParse(text, AddIn.Culture, out var tvalue))
+			{
+				// timespans are returned as milliseconds, to be converted
+				// back to formatted strings by the Report() method
+				e.Value = tvalue.TotalMilliseconds.ToString();
+				return;
+			}
+
 			// has a todo checkbox? If so then the comparison is limited to the checkbox
 			// and WILL NOT fall thru to a string comparison!
 			var tagx = cell.Root.Descendants().FirstOrDefault(d => d.Name.LocalName == "Tag");
@@ -145,6 +153,11 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 
 				case FormulaFormat.Percentage:
 					text = (result / 100).ToString($"P{dplaces}", AddIn.Culture);
+					break;
+
+				case FormulaFormat.Time:
+					var span = TimeSpan.FromMilliseconds(result);
+					text = span.ToString();
 					break;
 			}
 

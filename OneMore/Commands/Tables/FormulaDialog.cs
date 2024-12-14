@@ -114,7 +114,11 @@ namespace River.OneMoreAddIn.Commands
 					var result = calculator.Compute(formula);
 					validStatusLabel.ForeColor = manager.GetColor("ControlText");
 
-					validStatusLabel.Text = $"{Resx.word_OK} ({result})";
+					var text = Format == FormulaFormat.Time
+						? TimeSpan.FromMilliseconds(result).ToString()
+						: $"{result}";
+
+					validStatusLabel.Text = $"{Resx.word_OK} ({text})";
 					tooltip.SetToolTip(validStatusLabel, string.Empty);
 
 					okButton.Enabled = true;
@@ -151,6 +155,11 @@ namespace River.OneMoreAddIn.Commands
 			e.Value = cell.GetText().Trim()
 				.Replace(AddIn.Culture.NumberFormat.CurrencySymbol, string.Empty)
 				.Replace(AddIn.Culture.NumberFormat.PercentSymbol, string.Empty);
+
+			if (TimeSpan.TryParse(e.Value, AddIn.Culture, out var tvalue))
+			{
+				e.Value = tvalue.TotalMilliseconds.ToString();
+			}
 
 			logger.Verbose($"FormulaDialog.GetCellValue({e.Name}) = [{e.Value}]");
 		}

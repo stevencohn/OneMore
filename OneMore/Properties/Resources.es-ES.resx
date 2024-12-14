@@ -1209,8 +1209,9 @@ Archivo de OneNote (* .one)</value>
   </data>
   <data name="FormulaDialog_formatBox.Items" xml:space="preserve">
     <value>Número
-Moneda
-Porcentaje</value>
+Divisa
+Porcentaje
+Tiempo</value>
     <comment>formats, one per line</comment>
   </data>
   <data name="FormulaDialog_formatLabel.Text" xml:space="preserve">
