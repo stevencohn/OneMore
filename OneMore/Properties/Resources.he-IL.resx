@@ -1209,9 +1209,10 @@ Total Row Font
     <comment>label</comment>
   </data>
   <data name="FormulaDialog_formatBox.Items" xml:space="preserve">
-    <value>מספר
+    <value>מִספָּר
 מַטְבֵּעַ
-אֲחוּזִים</value>
+אֲחוּזִים
+זְמַן</value>
     <comment>formats, one per line</comment>
   </data>
   <data name="FormulaDialog_formatLabel.Text" xml:space="preserve">

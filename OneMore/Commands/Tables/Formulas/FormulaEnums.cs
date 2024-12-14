@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands.Tables.Formulas
@@ -9,7 +9,8 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 	{
 		Number,
 		Currency,
-		Percentage
+		Percentage,
+		Time
 	}
 
 

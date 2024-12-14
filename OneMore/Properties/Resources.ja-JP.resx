@@ -1211,9 +1211,10 @@ OneNoteファイル (*.one)</value>
     <comment>label</comment>
   </data>
   <data name="FormulaDialog_formatBox.Items" xml:space="preserve">
-    <value>数値
+    <value>番号
 通貨
-パーセンテージ</value>
+パーセンテージ
+時間</value>
     <comment>formats, one per line</comment>
   </data>
   <data name="FormulaDialog_formatLabel.Text" xml:space="preserve">

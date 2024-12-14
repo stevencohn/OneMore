@@ -1207,9 +1207,10 @@ OneNote 文件 (*.one)</value>
     <comment>label</comment>
   </data>
   <data name="FormulaDialog_formatBox.Items" xml:space="preserve">
-    <value>数
+    <value>数字
 货币
-百分比</value>
+百分比
+时间</value>
     <comment>formats, one per line</comment>
   </data>
   <data name="FormulaDialog_formatLabel.Text" xml:space="preserve">

@@ -3223,7 +3223,8 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Number
         ///Currency
-        ///Percentage.
+        ///Percentage
+        ///Time.
         /// </summary>
         internal static string FormulaDialog_formatBox_Items {
             get {
