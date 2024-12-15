@@ -21,6 +21,7 @@ namespace River.OneMoreAddIn
 	using System.Threading.Tasks;
 
 
+
 	/// <summary>
 	/// This is the OneNote addin component for OneMore functionality
 	/// </summary>
@@ -37,6 +38,14 @@ namespace River.OneMoreAddIn
 		//private readonly Process process;         // current process, to kill if necessary
 		private List<IDisposable> trash;            // track disposables
 
+		public static CultureInfo getCulture()
+		{
+			var thread = System.Threading.Thread.CurrentThread;
+
+			var settings = new SettingsProvider().GetCollection(nameof(GeneralSheet));
+			var lang = settings.Get("language", thread.CurrentUICulture.Name);
+			return CultureInfo.GetCultureInfo(lang);
+		}
 
 		// Lifecycle...
 
@@ -45,8 +54,6 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		public AddIn()
 		{
-			//System.Diagnostics.Debugger.Launch();
-
 			logger = Logger.Current;
 			trash = new List<IDisposable>();
 			//process = Process.GetCurrentProcess();
@@ -54,10 +61,6 @@ namespace River.OneMoreAddIn
 			UI.Scaling.PrepareUI();
 
 			var thread = System.Threading.Thread.CurrentThread;
-
-			var settings = new SettingsProvider().GetCollection(nameof(GeneralSheet));
-			var lang = settings.Get("language", thread.CurrentUICulture.Name);
-			Culture = CultureInfo.GetCultureInfo(lang);
 			thread.CurrentCulture = Culture;
 			thread.CurrentUICulture = Culture;
 
@@ -142,7 +145,7 @@ namespace River.OneMoreAddIn
 		/// Gets the thread culture for use in subsequent threads; used primarily for 
 		/// debugging when explicitly setting the culture in the AddIn() constructor
 		/// </summary>
-		public static CultureInfo Culture { get; private set; } = CultureInfo.GetCultureInfo("en");
+		public static CultureInfo Culture { get; private set; } = getCulture();
 
 
 		/// <summary>
