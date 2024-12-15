@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2022 Steven M Cohn.  All rights reserved.
+// Copyright © 2022 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -24,30 +24,23 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			var selectedIndex = (int)args[0];
+			var themeIndex = (int)args[0];
 
 			await using var one = new OneNote(out var page, out var ns);
 
-			// Find first selected cell as anchor point to locate table to stylize; by filtering
-			// on selected=all, we avoid including the parent table of a selected nested table
+			var tables = page.BodyOutlines
+				.Descendants(ns + "Table")
+				.Where(e => e.Descendants().Any(d => d.Attribute("selected")?.Value == "all"))
+				.ToList();
 
-			var anchor = page.Root.Descendants(ns + "Cell")
-				// first dive down to find the selected T
-				.Elements(ns + "OEChildren").Elements(ns + "OE")
-				.Elements(ns + "T")
-				.Where(e => e.Attribute("selected")?.Value == "all")
-				// now move back up to the Cell
-				.Select(e => e.Parent.Parent.Parent)
-				.FirstOrDefault();
-
-			if (anchor == null)
+			if (!tables.Any())
 			{
 				ShowInfo(Resx.ApplyTableTheme_SelectTable);
 				return;
 			}
 
 			TableTheme theme;
-			var clear = selectedIndex == int.MaxValue;
+			var clear = themeIndex == int.MaxValue;
 			if (clear)
 			{
 				// this will clear formatting in the table
@@ -56,34 +49,39 @@ namespace River.OneMoreAddIn.Commands
 			else
 			{
 				var provider = new TableThemeProvider();
-				if (selectedIndex < 0 || selectedIndex >= provider.Count)
+				if (themeIndex < 0 || themeIndex >= provider.Count)
 				{
 					ShowInfo("Invalid theme index"); // Resx.ApplyTableTheme_SelectTable);
 					return;
 				}
 
-				theme = provider.GetTheme(selectedIndex);
+				theme = provider.GetTheme(themeIndex);
 			}
 
-			var table = new Table(anchor.FirstAncestor(ns + "Table"));
-
-			FillTable(table, theme);
-			HighlightTable(table, theme);
-
-			if (clear)
+			foreach (var tabroot in tables)
 			{
-				ClearFonts(table);
-			}
-			else
-			{
-				ApplyFonts(table, theme);
+				//StylizeTable(table, theme, clear);
+
+				var table = new Table(tabroot);
+
+				FillTable(table, theme);
+				HighlightTable(table, theme);
+
+				if (clear)
+				{
+					ClearFonts(table);
+				}
+				else
+				{
+					ApplyFonts(table, theme);
+				}
 			}
 
 			await one.Update(page);
 		}
 
 
-		private void FillTable(Table table, TableTheme theme)
+		private static void FillTable(Table table, TableTheme theme)
 		{
 			if (theme.WholeTable == TableTheme.Rainbow)
 			{
@@ -153,7 +151,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void HighlightTable(Table table, TableTheme theme)
+		private static void HighlightTable(Table table, TableTheme theme)
 		{
 			if (theme.FirstColumn == TableTheme.Rainbow)
 			{
@@ -230,7 +228,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void ClearFonts(Table table)
+		private static void ClearFonts(Table table)
 		{
 			var stylizer = new Stylizer(new Style());
 			for (int r = 0; r < table.RowCount; r++)

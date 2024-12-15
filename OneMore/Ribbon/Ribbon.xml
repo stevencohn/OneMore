@@ -876,6 +876,12 @@
                 getScreentip="GetRibbonScreentip"
                 onAction="PasteCellsCmd"/>
               <button
+                id="ribSelectTablesButton"
+                imageMso="SelectAllRecords"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="SelectTablesCmd"/>
+              <button
                 id="ribCopyAcrossButton"
                 imageMso="TableRowSelect"
                 getLabel="GetRibbonLabel"

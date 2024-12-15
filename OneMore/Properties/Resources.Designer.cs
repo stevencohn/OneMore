@@ -10040,6 +10040,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select All Tables.
+        /// </summary>
+        internal static string ribSelectTablesButton_Label {
+            get {
+                return ResourceManager.GetString("ribSelectTablesButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select all tables on the page.
+        /// </summary>
+        internal static string ribSelectTablesButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribSelectTablesButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Settings.
         /// </summary>
         internal static string ribSettingsButton_Label {

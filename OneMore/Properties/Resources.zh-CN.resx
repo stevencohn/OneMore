@@ -4037,6 +4037,14 @@ ISO-code then comma then language name</comment>
     <value>选择格式相似的文本</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribSelectTablesButton_Label" xml:space="preserve">
+    <value>选择所有表</value>
+    <comment>table menu</comment>
+  </data>
+  <data name="ribSelectTablesButton_Screentip" xml:space="preserve">
+    <value>选择页面上的所有表格</value>
+    <comment>table menu</comment>
+  </data>
   <data name="ribSettingsButton_Label" xml:space="preserve">
     <value>设置</value>
     <comment>ribbon button</comment>

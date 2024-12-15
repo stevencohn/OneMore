@@ -4047,6 +4047,14 @@ ISO-code then comma then language name</comment>
     <value>類似の書式設定を持つテキストを選択</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribSelectTablesButton_Label" xml:space="preserve">
+    <value>すべてのテーブルを選択</value>
+    <comment>table menu</comment>
+  </data>
+  <data name="ribSelectTablesButton_Screentip" xml:space="preserve">
+    <value>ページ上のすべてのテーブルを選択します</value>
+    <comment>table menu</comment>
+  </data>
   <data name="ribSettingsButton_Label" xml:space="preserve">
     <value>設定</value>
     <comment>ribbon main</comment>

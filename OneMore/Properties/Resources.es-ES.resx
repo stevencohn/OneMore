@@ -4044,6 +4044,14 @@ Después del último grupo</value>
     <value>Seleccione texto con formato similar</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribSelectTablesButton_Label" xml:space="preserve">
+    <value>Seleccionar todas las tablas</value>
+    <comment>table menu</comment>
+  </data>
+  <data name="ribSelectTablesButton_Screentip" xml:space="preserve">
+    <value>Seleccionar todas las tablas de la página</value>
+    <comment>table menu</comment>
+  </data>
   <data name="ribSettingsButton_Label" xml:space="preserve">
     <value>Configuraciones</value>
     <comment>ribbon button</comment>

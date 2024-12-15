@@ -870,6 +870,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<SelectStyleCommand>();
 
 
+		[Command("ribSelectTablesButton_Label", Keys.None, "ribTableMenu")]
+		public async Task SelectTablesCmd(IRibbonControl control)
+			=> await factory.Run<SelectTablesCommand>();
+
+
 		public async Task ProofingCmd(IRibbonControl control)
 			=> await factory.Run<ProofingCommand>(control.Tag); // tag=language
 
