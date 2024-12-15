@@ -4043,6 +4043,14 @@ ISO-code then comma then language name</comment>
     <value>בחר טקסט עם עיצוב דומה</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribSelectTablesButton_Label" xml:space="preserve">
+    <value>בחר כל הטבלאות</value>
+    <comment>table menu</comment>
+  </data>
+  <data name="ribSelectTablesButton_Screentip" xml:space="preserve">
+    <value>בחר את כל הטבלאות בעמוד</value>
+    <comment>table menu</comment>
+  </data>
   <data name="ribSettingsButton_Label" xml:space="preserve">
     <value>הגדרות</value>
     <comment>ribbon button</comment>

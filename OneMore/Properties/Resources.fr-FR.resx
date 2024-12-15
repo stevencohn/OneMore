@@ -4043,6 +4043,14 @@ Après le dernier groupe</value>
     <value>Sélectionner du texte avec une mise en forme similaire</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribSelectTablesButton_Label" xml:space="preserve">
+    <value>Sélectionner toutes les tables</value>
+    <comment>table menu</comment>
+  </data>
+  <data name="ribSelectTablesButton_Screentip" xml:space="preserve">
+    <value>Sélectionnez tous les tableaux de la page</value>
+    <comment>table menu</comment>
+  </data>
   <data name="ribSettingsButton_Label" xml:space="preserve">
     <value>Paramètres</value>
     <comment>ribbon button</comment>

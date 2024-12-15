@@ -4044,6 +4044,14 @@ Na de laatste groep</value>
     <value>Selecteer tekst met vergelijkbare opmaak</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribSelectTablesButton_Label" xml:space="preserve">
+    <value>Selecteer Alle tabellen</value>
+    <comment>table menu</comment>
+  </data>
+  <data name="ribSelectTablesButton_Screentip" xml:space="preserve">
+    <value>Selecteer alle tabellen op de pagina</value>
+    <comment>table menu</comment>
+  </data>
   <data name="ribSettingsButton_Label" xml:space="preserve">
     <value>Instellingen</value>
     <comment>ribbon button</comment>

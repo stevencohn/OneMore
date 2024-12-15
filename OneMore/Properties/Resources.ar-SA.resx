@@ -4044,6 +4044,14 @@ ISO-code then comma then language name</comment>
     <value>حدد نصًا بتنسيق مماثل</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribSelectTablesButton_Label" xml:space="preserve">
+    <value>حدد كافة الجداول</value>
+    <comment>table menu</comment>
+  </data>
+  <data name="ribSelectTablesButton_Screentip" xml:space="preserve">
+    <value>تحديد كافة الجداول الموجودة في الصفحة</value>
+    <comment>table menu</comment>
+  </data>
   <data name="ribSettingsButton_Label" xml:space="preserve">
     <value>الإعدادات</value>
     <comment>ribbon button</comment>
