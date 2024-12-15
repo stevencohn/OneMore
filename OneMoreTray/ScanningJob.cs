@@ -28,8 +28,6 @@ namespace OneMoreTray
 		{
 			logger = Logger.Current;
 
-			SetLanguage();
-
 			trayIcon = MakeNotifyIcon();
 
 			scheduler = new HashtagScheduler();
@@ -45,16 +43,6 @@ namespace OneMoreTray
 			River.OneMoreAddIn.Helpers.SessionLogger.WriteSessionHeader();
 
 			ScheduleScan();
-		}
-
-
-		private void SetLanguage()
-		{
-			var settings = new SettingsProvider().GetCollection(nameof(GeneralSheet));
-			var lang = settings.Get("language", "en");
-			var culture = CultureInfo.GetCultureInfo(lang);
-			Thread.CurrentThread.CurrentCulture = culture;
-			Thread.CurrentThread.CurrentUICulture = culture;
 		}
 
 
