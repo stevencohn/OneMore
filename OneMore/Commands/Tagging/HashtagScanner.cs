@@ -32,7 +32,7 @@ namespace River.OneMoreAddIn.Commands
 			public long Time;
 		}
 
-		public const int DefaultThrottle = 40;
+		public const int DefaultThrottle = 20;
 		private const int MaxPagesThreshold = 100;
 
 		private readonly string lastTime;
