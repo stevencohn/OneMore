@@ -10490,6 +10490,60 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to View In Browser.
+        /// </summary>
+        internal static string ribViewNotebookInBrowserButton_Label {
+            get {
+                return ResourceManager.GetString("ribViewNotebookInBrowserButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View notebook in web browser.
+        /// </summary>
+        internal static string ribViewNotebookInBrowserButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribViewNotebookInBrowserButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View in Browser.
+        /// </summary>
+        internal static string ribViewPageInBrowserButton_Label {
+            get {
+                return ResourceManager.GetString("ribViewPageInBrowserButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View page in web browser.
+        /// </summary>
+        internal static string ribViewPageInBrowserButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribViewPageInBrowserButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View in Browser.
+        /// </summary>
+        internal static string ribViewSectionInBrowserButton_Label {
+            get {
+                return ResourceManager.GetString("ribViewSectionInBrowserButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View section in web browser.
+        /// </summary>
+        internal static string ribViewSectionInBrowserButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribViewSectionInBrowserButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Word Count.
         /// </summary>
         internal static string ribWordCountButton_Label {

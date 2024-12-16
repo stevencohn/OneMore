@@ -995,6 +995,21 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<UppercaseCommand>();
 
 
+		[Command("ribViewNotebookInBrowserButton_Label", Keys.None)]
+		public async Task ViewNotebookInBrowserCmd(IRibbonControl control)
+			=> await factory.Run<ViewNotebookInBrowserCommand>();
+
+
+		[Command("ribViewPageInBrowserButton_Label", Keys.None, "ribPageMenu")]
+		public async Task ViewPageInBrowserCmd(IRibbonControl control)
+			=> await factory.Run<ViewPageInBrowserCommand>();
+
+
+		[Command("ribViewSectionInBrowserButton_Label", Keys.None)]
+		public async Task ViewSectionInBrowserCmd(IRibbonControl control)
+			=> await factory.Run<ViewSectionInBrowserCommand>();
+
+
 		[Command("ribWordCountButton_Label", Keys.None, "ribPageMenu")]
 		public async Task WordCountCmd(IRibbonControl control)
 			=> await factory.Run<WordCountCommand>();

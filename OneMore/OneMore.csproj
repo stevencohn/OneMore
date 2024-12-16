@@ -196,6 +196,7 @@
     <Compile Include="Commands\Page\DuplicatePageCommand.cs" />
     <Compile Include="Commands\Page\ExtractContentCommand.cs" />
     <Compile Include="Commands\Page\MovePageCommand.cs" />
+    <Compile Include="Commands\Page\ViewInBrowserCommand.cs" />
     <Compile Include="Commands\References\BiLinkDialog.cs">
       <SubType>Form</SubType>
     </Compile>

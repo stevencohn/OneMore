@@ -4239,6 +4239,30 @@ Nach der letzten Gruppe</value>
     <value>Konvertiert Text in Großbuchstaben (Strg + Umschalt + Alt + U)</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribViewNotebookInBrowserButton_Label" xml:space="preserve">
+    <value>Im Browser anzeigen</value>
+    <comment>notebook context menu</comment>
+  </data>
+  <data name="ribViewNotebookInBrowserButton_Screentip" xml:space="preserve">
+    <value>Notizbuch im Webbrowser anzeigen</value>
+    <comment>notebook context menu</comment>
+  </data>
+  <data name="ribViewPageInBrowserButton_Label" xml:space="preserve">
+    <value>Im Browser anzeigen</value>
+    <comment>page menu, page context menu</comment>
+  </data>
+  <data name="ribViewPageInBrowserButton_Screentip" xml:space="preserve">
+    <value>Seite im Webbrowser anzeigen</value>
+    <comment>page menu, page context menu</comment>
+  </data>
+  <data name="ribViewSectionInBrowserButton_Label" xml:space="preserve">
+    <value>Im Browser anzeigen</value>
+    <comment>section context menu</comment>
+  </data>
+  <data name="ribViewSectionInBrowserButton_Screentip" xml:space="preserve">
+    <value>Abschnitt im Webbrowser anzeigen</value>
+    <comment>section context menu</comment>
+  </data>
   <data name="ribWordCountButton_Label" xml:space="preserve">
     <value>Wortzahl</value>
     <comment>Ribbon OneMore menu extras</comment>

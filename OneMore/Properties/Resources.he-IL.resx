@@ -4242,6 +4242,30 @@ ISO-code then comma then language name</comment>
     <value>המרת טקסט לאותיות רישיות (Ctrl + Shift + Alt + U)</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="ribViewNotebookInBrowserButton_Label" xml:space="preserve">
+    <value>הצג בדפדפן</value>
+    <comment>notebook context menu</comment>
+  </data>
+  <data name="ribViewNotebookInBrowserButton_Screentip" xml:space="preserve">
+    <value>הצג מחברת בדפדפן אינטרנט</value>
+    <comment>notebook context menu</comment>
+  </data>
+  <data name="ribViewPageInBrowserButton_Label" xml:space="preserve">
+    <value>הצג בדפדפן</value>
+    <comment>page menu, page context menu</comment>
+  </data>
+  <data name="ribViewPageInBrowserButton_Screentip" xml:space="preserve">
+    <value>צפה בדף בדפדפן אינטרנט</value>
+    <comment>page menu, page context menu</comment>
+  </data>
+  <data name="ribViewSectionInBrowserButton_Label" xml:space="preserve">
+    <value>הצג בדפדפן</value>
+    <comment>section context menu</comment>
+  </data>
+  <data name="ribViewSectionInBrowserButton_Screentip" xml:space="preserve">
+    <value>צפה בקטע בדפדפן אינטרנט</value>
+    <comment>section context menu</comment>
+  </data>
   <data name="ribWordCountButton_Label" xml:space="preserve">
     <value>ספירת מילים</value>
     <comment>Ribbon OneMore menu extras</comment>

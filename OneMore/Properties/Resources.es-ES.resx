@@ -4243,6 +4243,30 @@ Después del último grupo</value>
     <value>Convertir texto a mayúsculas (Ctrl + Shift + Alt + U)</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="ribViewNotebookInBrowserButton_Label" xml:space="preserve">
+    <value>Ver en el navegador</value>
+    <comment>notebook context menu</comment>
+  </data>
+  <data name="ribViewNotebookInBrowserButton_Screentip" xml:space="preserve">
+    <value>Ver cuaderno en el navegador web</value>
+    <comment>notebook context menu</comment>
+  </data>
+  <data name="ribViewPageInBrowserButton_Label" xml:space="preserve">
+    <value>Ver en el navegador</value>
+    <comment>page menu, page context menu</comment>
+  </data>
+  <data name="ribViewPageInBrowserButton_Screentip" xml:space="preserve">
+    <value>Ver página en el navegador web</value>
+    <comment>page menu, page context menu</comment>
+  </data>
+  <data name="ribViewSectionInBrowserButton_Label" xml:space="preserve">
+    <value>Ver en el navegador</value>
+    <comment>section context menu</comment>
+  </data>
+  <data name="ribViewSectionInBrowserButton_Screentip" xml:space="preserve">
+    <value>Ver sección en el navegador web</value>
+    <comment>section context menu</comment>
+  </data>
   <data name="ribWordCountButton_Label" xml:space="preserve">
     <value>El recuento de palabras</value>
     <comment>Ribbon OneMore menu extras</comment>

@@ -4243,6 +4243,30 @@ Na de laatste groep</value>
     <value>Tekst converteren naar hoofdletters (Ctrl + Shift + Alt + U)</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="ribViewNotebookInBrowserButton_Label" xml:space="preserve">
+    <value>Bekijk in browser</value>
+    <comment>notebook context menu</comment>
+  </data>
+  <data name="ribViewNotebookInBrowserButton_Screentip" xml:space="preserve">
+    <value>Bekijk notitieboekje in webbrowser</value>
+    <comment>notebook context menu</comment>
+  </data>
+  <data name="ribViewPageInBrowserButton_Label" xml:space="preserve">
+    <value>Bekijk in browser</value>
+    <comment>page menu, page context menu</comment>
+  </data>
+  <data name="ribViewPageInBrowserButton_Screentip" xml:space="preserve">
+    <value>Pagina bekijken in webbrowser</value>
+    <comment>page menu, page context menu</comment>
+  </data>
+  <data name="ribViewSectionInBrowserButton_Label" xml:space="preserve">
+    <value>Bekijk in browser</value>
+    <comment>section context menu</comment>
+  </data>
+  <data name="ribViewSectionInBrowserButton_Screentip" xml:space="preserve">
+    <value>Bekijk sectie in webbrowser</value>
+    <comment>section context menu</comment>
+  </data>
   <data name="ribWordCountButton_Label" xml:space="preserve">
     <value>Aantal woorden</value>
     <comment>Ribbon OneMore menu extras</comment>
