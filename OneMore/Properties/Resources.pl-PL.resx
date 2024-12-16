@@ -4228,6 +4228,14 @@ Po ostatniej grupie</value>
     <value>Wykończenia prowadzące białe znaki z wybranego tekstu</value>
     <comment>ribbon item tootp</comment>
   </data>
+  <data name="ribUpdatePageTimeButton_Label" xml:space="preserve">
+    <value>Zaktualizuj czas strony</value>
+    <comment>page menu</comment>
+  </data>
+  <data name="ribUpdatePageTimeButton_Screentip" xml:space="preserve">
+    <value>Zaktualizuj stronę do bieżącej daty/godziny</value>
+    <comment>page menu</comment>
+  </data>
   <data name="ribUpdateSubpageButton_Label" xml:space="preserve">
     <value>Zaktualizuj wbudowane strony.</value>
     <comment>ribbon item</comment>

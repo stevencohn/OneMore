@@ -4229,6 +4229,14 @@ After last group</value>
     <value>Trim leading whitespace from selected text</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribUpdatePageTimeButton_Label" xml:space="preserve">
+    <value>Update Page Time</value>
+    <comment>page menu</comment>
+  </data>
+  <data name="ribUpdatePageTimeButton_Screentip" xml:space="preserve">
+    <value>Update page to current date/time</value>
+    <comment>page menu</comment>
+  </data>
   <data name="ribUpdateSubpageButton_Label" xml:space="preserve">
     <value>Update Embedded Pages</value>
     <comment>ribbon page</comment>

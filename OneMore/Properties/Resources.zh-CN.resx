@@ -4220,6 +4220,14 @@ ISO-code then comma then language name</comment>
     <value>修剪所选文本中的前导空白</value>
     <comment>ribbon item tootp</comment>
   </data>
+  <data name="ribUpdatePageTimeButton_Label" xml:space="preserve">
+    <value>更新页面时间</value>
+    <comment>page menu</comment>
+  </data>
+  <data name="ribUpdatePageTimeButton_Screentip" xml:space="preserve">
+    <value>将页面更新为当前日期/时间</value>
+    <comment>page menu</comment>
+  </data>
   <data name="ribUpdateSubpageButton_Label" xml:space="preserve">
     <value>更新嵌入页面</value>
     <comment>ribbon item</comment>

@@ -4227,6 +4227,14 @@ ISO-code then comma then language name</comment>
     <value>اقتطاع المسافة البيضاء البادئة من النص المحدد</value>
     <comment>ribbon item tootp</comment>
   </data>
+  <data name="ribUpdatePageTimeButton_Label" xml:space="preserve">
+    <value>تحديث وقت الصفحة</value>
+    <comment>page menu</comment>
+  </data>
+  <data name="ribUpdatePageTimeButton_Screentip" xml:space="preserve">
+    <value>تحديث الصفحة إلى التاريخ/الوقت الحالي</value>
+    <comment>page menu</comment>
+  </data>
   <data name="ribUpdateSubpageButton_Label" xml:space="preserve">
     <value>تحديث الصفحات المضمنة</value>
     <comment>ribbon item</comment>
