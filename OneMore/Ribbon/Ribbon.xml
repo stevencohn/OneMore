@@ -634,6 +634,12 @@
                 getScreentip="GetRibbonScreentip"
                 onAction="SplitCmd"/>
               <button
+                id="ribUpdatePageTimeButton"
+                imageMso="DateAndTimeInsert"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="UpdatePageTimeCmd"/>
+              <button
                 id="ribViewPageInBrowserButton"
                 imageMso="OpenInBrowserOutlook"
                 getLabel="GetRibbonLabel"

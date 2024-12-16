@@ -4223,6 +4223,14 @@ Nach der letzten Gruppe</value>
     <value>Entfernt führende Leerzeichen aus ausgewähltem Text</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribUpdatePageTimeButton_Label" xml:space="preserve">
+    <value>Aktualisieren Sie die Seitenzeit</value>
+    <comment>page menu</comment>
+  </data>
+  <data name="ribUpdatePageTimeButton_Screentip" xml:space="preserve">
+    <value>Seite auf aktuelles Datum/Uhrzeit aktualisieren</value>
+    <comment>page menu</comment>
+  </data>
   <data name="ribUpdateSubpageButton_Label" xml:space="preserve">
     <value>Eingebettete Seiten aktualisieren</value>
     <comment>ribbon item</comment>

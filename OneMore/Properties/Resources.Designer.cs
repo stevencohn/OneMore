@@ -10454,6 +10454,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Update Page Time.
+        /// </summary>
+        internal static string ribUpdatePageTimeButton_Label {
+            get {
+                return ResourceManager.GetString("ribUpdatePageTimeButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update page to current date/time.
+        /// </summary>
+        internal static string ribUpdatePageTimeButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribUpdatePageTimeButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Update Embedded Pages.
         /// </summary>
         internal static string ribUpdateSubpageButton_Label {

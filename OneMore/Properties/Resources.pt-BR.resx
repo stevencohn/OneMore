@@ -4227,6 +4227,14 @@ Depois do último grupo</value>
     <value>Cortar o espaço em branco inicial do texto selecionado</value>
     <comment>ribbon item tootp</comment>
   </data>
+  <data name="ribUpdatePageTimeButton_Label" xml:space="preserve">
+    <value>Atualizar tempo da página</value>
+    <comment>page menu</comment>
+  </data>
+  <data name="ribUpdatePageTimeButton_Screentip" xml:space="preserve">
+    <value>Atualizar página para data/hora atual</value>
+    <comment>page menu</comment>
+  </data>
   <data name="ribUpdateSubpageButton_Label" xml:space="preserve">
     <value>Atualizar páginas incorporadas</value>
     <comment>ribbon item</comment>

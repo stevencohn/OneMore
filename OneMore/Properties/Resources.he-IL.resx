@@ -4226,6 +4226,14 @@ ISO-code then comma then language name</comment>
     <value>חתוך את הרווח הלבן המוביל מהטקסט שנבחר</value>
     <comment>ribbon item tootp</comment>
   </data>
+  <data name="ribUpdatePageTimeButton_Label" xml:space="preserve">
+    <value>עדכן את זמן העמוד</value>
+    <comment>page menu</comment>
+  </data>
+  <data name="ribUpdatePageTimeButton_Screentip" xml:space="preserve">
+    <value>עדכן את הדף לתאריך/שעה נוכחיים</value>
+    <comment>page menu</comment>
+  </data>
   <data name="ribUpdateSubpageButton_Label" xml:space="preserve">
     <value>עדכן דפים מוטבעים</value>
     <comment>ribbon item</comment>

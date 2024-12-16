@@ -985,6 +985,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<TrimCommand>(true);
 
 
+		[Command("ribUpdatePageTimeButton_Label", Keys.None, "ribPageMenu")]
+		public async Task UpdatePageTimeCmd(IRibbonControl control)
+			=> await factory.Run<UpdatePageTimeCommand>(true);
+
+
 		[Command("ribUpdateSubpageButton_Label", Keys.None, "ribReferencesMenu")]
 		public async Task UpdateSubpageCmd(IRibbonControl control)
 			=> await factory.Run<EmbedSubpageCommand>(true);

@@ -4231,6 +4231,14 @@ ISO-code then comma then language name</comment>
     <value>選択したテキストから先頭のホワイトスペースを削除する</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribUpdatePageTimeButton_Label" xml:space="preserve">
+    <value>ページ時間の更新</value>
+    <comment>page menu</comment>
+  </data>
+  <data name="ribUpdatePageTimeButton_Screentip" xml:space="preserve">
+    <value>ページを現在の日付/時刻に更新します</value>
+    <comment>page menu</comment>
+  </data>
   <data name="ribUpdateSubpageButton_Label" xml:space="preserve">
     <value>埋め込みページの更新</value>
     <comment>ribbon page</comment>

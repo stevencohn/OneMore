@@ -4227,6 +4227,14 @@ Na de laatste groep</value>
     <value>Snijd de witruimte voor uit de geselecteerde tekst</value>
     <comment>ribbon item tootp</comment>
   </data>
+  <data name="ribUpdatePageTimeButton_Label" xml:space="preserve">
+    <value>Paginatijd bijwerken</value>
+    <comment>page menu</comment>
+  </data>
+  <data name="ribUpdatePageTimeButton_Screentip" xml:space="preserve">
+    <value>Update de pagina naar de huidige datum/tijd</value>
+    <comment>page menu</comment>
+  </data>
   <data name="ribUpdateSubpageButton_Label" xml:space="preserve">
     <value>Ingesloten pagina's bijwerken</value>
     <comment>ribbon item</comment>
