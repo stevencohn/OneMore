@@ -634,11 +634,11 @@
                 getScreentip="GetRibbonScreentip"
                 onAction="SplitCmd"/>
               <button
-                id="ribOpenPageInBrowserButton"
+                id="ribViewPageInBrowserButton"
                 imageMso="OpenInBrowserOutlook"
                 getLabel="GetRibbonLabel"
                 getScreentip="GetRibbonScreentip"
-                onAction="OpenPageInBrowserCmd"/>
+                onAction="ViewPageInBrowserCmd"/>
               <button
                 id="ribWordCountButton"
                 imageMso="WordCount"
@@ -1051,11 +1051,11 @@
         onAction="NotebookWordCountCmd"
         insertBeforeMso="ShareThisNotebook"/>
       <button
-        id="ctxOpenNotebookInBrowserButton"
+        id="ctxViewNotebookInBrowserButton"
         imageMso="OpenInBrowserOutlook"
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
-        onAction="OpenNotebookInBrowserCmd"
+        onAction="ViewNotebookInBrowserCmd"
         insertBeforeMso="ShareThisNotebook"/>
       <menuSeparator
         id="omNotebookContextMenuSeparator"
@@ -1131,11 +1131,11 @@
         onAction="SortPageCmd"
         insertBeforeMso="RenamePageOneNote"/>
       <button
-        id="ctxOpenPageInBrowserButton"
+        id="ctxViewPageInBrowserButton"
         imageMso="OpenInBrowserOutlook"
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
-        onAction="OpenPageInBrowserCmd"
+        onAction="ViewPageInBrowserCmd"
         insertBeforeMso="RenamePageOneNote"/>
       <menuSeparator
         id="omPageContextMenuSeparator"
@@ -1263,11 +1263,11 @@
         onAction="SortPagesCmd"
         insertBeforeMso="SectionRenameOneNote"/>
       <button
-        id="ctxOpenSectionInBrowserButton"
+        id="ctxViewSectionInBrowserButton"
         imageMso="OpenInBrowserOutlook"
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
-        onAction="OpenSectionInBrowserCmd"
+        onAction="ViewSectionInBrowserCmd"
         insertBeforeMso="SectionRenameOneNote"/>
       <button
         id="ctxSectionWordCountButton"

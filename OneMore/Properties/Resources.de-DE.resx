@@ -3667,30 +3667,6 @@ Nach der letzten Gruppe</value>
   <data name="ribOpenLogButton_Label" xml:space="preserve">
     <value>Protokolldatei öffnen</value>
   </data>
-  <data name="ribOpenNotebookInBrowserButton_Label" xml:space="preserve">
-    <value>Im Browser anzeigen</value>
-    <comment>notebook context menu</comment>
-  </data>
-  <data name="ribOpenNotebookInBrowserButton_Screentip" xml:space="preserve">
-    <value>Notizbuch im Webbrowser anzeigen</value>
-    <comment>notebook context menu</comment>
-  </data>
-  <data name="ribOpenPageInBrowserButton_Label" xml:space="preserve">
-    <value>Im Browser anzeigen</value>
-    <comment>page menu, page context menu</comment>
-  </data>
-  <data name="ribOpenPageInBrowserButton_Screentip" xml:space="preserve">
-    <value>Seite im Webbrowser anzeigen</value>
-    <comment>page menu, page context menu</comment>
-  </data>
-  <data name="ribOpenSectionInBrowserButton_Label" xml:space="preserve">
-    <value>Im Browser anzeigen</value>
-    <comment>section context menu</comment>
-  </data>
-  <data name="ribOpenSectionInBrowserButton_Screentip" xml:space="preserve">
-    <value>Abschnitt im Webbrowser anzeigen</value>
-    <comment>section context menu</comment>
-  </data>
   <data name="ribOutlineButton_Label" xml:space="preserve">
     <value>Gliederungsformatierung</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
@@ -4262,6 +4238,30 @@ Nach der letzten Gruppe</value>
   <data name="ribUppercaseButton_Screentip" xml:space="preserve">
     <value>Konvertiert Text in Großbuchstaben (Strg + Umschalt + Alt + U)</value>
     <comment>ribbon edit</comment>
+  </data>
+  <data name="ribViewNotebookInBrowserButton_Label" xml:space="preserve">
+    <value>Im Browser anzeigen</value>
+    <comment>notebook context menu</comment>
+  </data>
+  <data name="ribViewNotebookInBrowserButton_Screentip" xml:space="preserve">
+    <value>Notizbuch im Webbrowser anzeigen</value>
+    <comment>notebook context menu</comment>
+  </data>
+  <data name="ribViewPageInBrowserButton_Label" xml:space="preserve">
+    <value>Im Browser anzeigen</value>
+    <comment>page menu, page context menu</comment>
+  </data>
+  <data name="ribViewPageInBrowserButton_Screentip" xml:space="preserve">
+    <value>Seite im Webbrowser anzeigen</value>
+    <comment>page menu, page context menu</comment>
+  </data>
+  <data name="ribViewSectionInBrowserButton_Label" xml:space="preserve">
+    <value>Im Browser anzeigen</value>
+    <comment>section context menu</comment>
+  </data>
+  <data name="ribViewSectionInBrowserButton_Screentip" xml:space="preserve">
+    <value>Abschnitt im Webbrowser anzeigen</value>
+    <comment>section context menu</comment>
   </data>
   <data name="ribWordCountButton_Label" xml:space="preserve">
     <value>Wortzahl</value>

@@ -3666,30 +3666,6 @@ ISO-code then comma then language name</comment>
   <data name="ribOpenLogButton_Label" xml:space="preserve">
     <value>打开日志文件</value>
   </data>
-  <data name="ribOpenNotebookInBrowserButton_Label" xml:space="preserve">
-    <value>在浏览器中查看</value>
-    <comment>notebook context menu</comment>
-  </data>
-  <data name="ribOpenNotebookInBrowserButton_Screentip" xml:space="preserve">
-    <value>在网络浏览器中查看笔记本</value>
-    <comment>notebook context menu</comment>
-  </data>
-  <data name="ribOpenPageInBrowserButton_Label" xml:space="preserve">
-    <value>在浏览器中查看</value>
-    <comment>page menu, page context menu</comment>
-  </data>
-  <data name="ribOpenPageInBrowserButton_Screentip" xml:space="preserve">
-    <value>在网络浏览器中查看页面</value>
-    <comment>page menu, page context menu</comment>
-  </data>
-  <data name="ribOpenSectionInBrowserButton_Label" xml:space="preserve">
-    <value>在浏览器中查看</value>
-    <comment>section context menu</comment>
-  </data>
-  <data name="ribOpenSectionInBrowserButton_Screentip" xml:space="preserve">
-    <value>在网络浏览器中查看部分</value>
-    <comment>section context menu</comment>
-  </data>
   <data name="ribOutlineButton_Label" xml:space="preserve">
     <value>大纲格式</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
@@ -4259,6 +4235,30 @@ ISO-code then comma then language name</comment>
   <data name="ribUppercaseButton_Screentip" xml:space="preserve">
     <value>将文本转换为大写 (Ctrl + Shift + Alt + U)</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribViewNotebookInBrowserButton_Label" xml:space="preserve">
+    <value>在浏览器中查看</value>
+    <comment>notebook context menu</comment>
+  </data>
+  <data name="ribViewNotebookInBrowserButton_Screentip" xml:space="preserve">
+    <value>在网络浏览器中查看笔记本</value>
+    <comment>notebook context menu</comment>
+  </data>
+  <data name="ribViewPageInBrowserButton_Label" xml:space="preserve">
+    <value>在浏览器中查看</value>
+    <comment>page menu, page context menu</comment>
+  </data>
+  <data name="ribViewPageInBrowserButton_Screentip" xml:space="preserve">
+    <value>在网络浏览器中查看页面</value>
+    <comment>page menu, page context menu</comment>
+  </data>
+  <data name="ribViewSectionInBrowserButton_Label" xml:space="preserve">
+    <value>在浏览器中查看</value>
+    <comment>section context menu</comment>
+  </data>
+  <data name="ribViewSectionInBrowserButton_Screentip" xml:space="preserve">
+    <value>在网络浏览器中查看部分</value>
+    <comment>section context menu</comment>
   </data>
   <data name="ribWordCountButton_Label" xml:space="preserve">
     <value>字数</value>

@@ -9,25 +9,25 @@ namespace River.OneMoreAddIn.Commands
 
 
 	#region Wrappers
-	internal class OpenNotebookInBrowserCommand : OpenInBrowserCommand
+	internal class ViewNotebookInBrowserCommand : ViewInBrowserCommand
 	{
-		public OpenNotebookInBrowserCommand() : base() { }
+		public ViewNotebookInBrowserCommand() : base() { }
 		public override Task Execute(params object[] args)
 		{
 			return base.Execute(OneNote.NodeType.Notebook);
 		}
 	}
-	internal class OpenSectionInBrowserCommand : OpenInBrowserCommand
+	internal class ViewSectionInBrowserCommand : ViewInBrowserCommand
 	{
-		public OpenSectionInBrowserCommand() : base() { }
+		public ViewSectionInBrowserCommand() : base() { }
 		public override Task Execute(params object[] args)
 		{
 			return base.Execute(OneNote.NodeType.Section);
 		}
 	}
-	internal class OpenPageInBrowserCommand : OpenInBrowserCommand
+	internal class ViewPageInBrowserCommand : ViewInBrowserCommand
 	{
-		public OpenPageInBrowserCommand() : base() { }
+		public ViewPageInBrowserCommand() : base() { }
 		public override Task Execute(params object[] args)
 		{
 			return base.Execute(OneNote.NodeType.Page);
@@ -36,9 +36,9 @@ namespace River.OneMoreAddIn.Commands
 	#endregion Wrappers
 
 
-	internal class OpenInBrowserCommand : Command
+	internal class ViewInBrowserCommand : Command
 	{
-		public OpenInBrowserCommand()
+		public ViewInBrowserCommand()
 		{
 		}
 
