@@ -3666,6 +3666,30 @@ Po ostatniej grupie</value>
   <data name="ribOpenLogButton_Label" xml:space="preserve">
     <value>Otwórz plik dziennika</value>
   </data>
+  <data name="ribOpenNotebookInBrowserButton_Label" xml:space="preserve">
+    <value>Wyświetl w przeglądarce</value>
+    <comment>notebook context menu</comment>
+  </data>
+  <data name="ribOpenNotebookInBrowserButton_Screentip" xml:space="preserve">
+    <value>Wyświetl notatnik w przeglądarce internetowej</value>
+    <comment>notebook context menu</comment>
+  </data>
+  <data name="ribOpenPageInBrowserButton_Label" xml:space="preserve">
+    <value>Wyświetl w przeglądarce</value>
+    <comment>page menu, page context menu</comment>
+  </data>
+  <data name="ribOpenPageInBrowserButton_Screentip" xml:space="preserve">
+    <value>Wyświetl stronę w przeglądarce internetowej</value>
+    <comment>page menu, page context menu</comment>
+  </data>
+  <data name="ribOpenSectionInBrowserButton_Label" xml:space="preserve">
+    <value>Wyświetl w przeglądarce</value>
+    <comment>section context menu</comment>
+  </data>
+  <data name="ribOpenSectionInBrowserButton_Screentip" xml:space="preserve">
+    <value>Wyświetl sekcję w przeglądarce internetowej</value>
+    <comment>section context menu</comment>
+  </data>
   <data name="ribOutlineButton_Label" xml:space="preserve">
     <value>Formatowanie konturu.</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>

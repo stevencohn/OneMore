@@ -647,6 +647,21 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<OutlineCommand>();
 
 
+		[Command("ribOpenNotebookInBrowserButton_Label", Keys.None)]
+		public async Task OpenNotebookInBrowserCmd(IRibbonControl control)
+			=> await factory.Run<OpenNotebookInBrowserCommand>();
+
+
+		[Command("ribOpenPageInBrowserButton_Label", Keys.None, "ribPageMenu")]
+		public async Task OpenPageInBrowserCmd(IRibbonControl control)
+			=> await factory.Run<OpenPageInBrowserCommand>();
+
+
+		[Command("ribOpenSectionInBrowserButton_Label", Keys.None)]
+		public async Task OpenSectionInBrowserCmd(IRibbonControl control)
+			=> await factory.Run<OpenSectionInBrowserCommand>();
+
+
 		[Command("ribPageColorButton_Label", Keys.None, "ribPageMenu")]
 		public async Task PageColorCmd(IRibbonControl control)
 			=> await factory.Run<PageColorCommand>();

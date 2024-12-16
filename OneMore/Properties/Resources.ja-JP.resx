@@ -3675,6 +3675,30 @@ ISO-code then comma then language name</comment>
     <value>ログファイルを開く</value>
     <comment>command</comment>
   </data>
+  <data name="ribOpenNotebookInBrowserButton_Label" xml:space="preserve">
+    <value>ブラウザで表示</value>
+    <comment>notebook context menu</comment>
+  </data>
+  <data name="ribOpenNotebookInBrowserButton_Screentip" xml:space="preserve">
+    <value>Web ブラウザでノートブックを表示する</value>
+    <comment>notebook context menu</comment>
+  </data>
+  <data name="ribOpenPageInBrowserButton_Label" xml:space="preserve">
+    <value>ブラウザで見る</value>
+    <comment>page menu, page context menu</comment>
+  </data>
+  <data name="ribOpenPageInBrowserButton_Screentip" xml:space="preserve">
+    <value>Webブラウザでページを表示する</value>
+    <comment>page menu, page context menu</comment>
+  </data>
+  <data name="ribOpenSectionInBrowserButton_Label" xml:space="preserve">
+    <value>ブラウザで見る</value>
+    <comment>section context menu</comment>
+  </data>
+  <data name="ribOpenSectionInBrowserButton_Screentip" xml:space="preserve">
+    <value>Webブラウザでセクションを表示</value>
+    <comment>section context menu</comment>
+  </data>
   <data name="ribOutlineButton_Label" xml:space="preserve">
     <value>アウトラインの書式設定</value>
     <comment>ribbon numbering NODUP</comment>

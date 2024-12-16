@@ -3672,6 +3672,30 @@ ISO-code then comma then language name</comment>
   <data name="ribOpenLogButton_Label" xml:space="preserve">
     <value>פתח את קובץ היומן</value>
   </data>
+  <data name="ribOpenNotebookInBrowserButton_Label" xml:space="preserve">
+    <value>הצג בדפדפן</value>
+    <comment>notebook context menu</comment>
+  </data>
+  <data name="ribOpenNotebookInBrowserButton_Screentip" xml:space="preserve">
+    <value>הצג מחברת בדפדפן אינטרנט</value>
+    <comment>notebook context menu</comment>
+  </data>
+  <data name="ribOpenPageInBrowserButton_Label" xml:space="preserve">
+    <value>הצג בדפדפן</value>
+    <comment>page menu, page context menu</comment>
+  </data>
+  <data name="ribOpenPageInBrowserButton_Screentip" xml:space="preserve">
+    <value>צפה בדף בדפדפן אינטרנט</value>
+    <comment>page menu, page context menu</comment>
+  </data>
+  <data name="ribOpenSectionInBrowserButton_Label" xml:space="preserve">
+    <value>הצג בדפדפן</value>
+    <comment>section context menu</comment>
+  </data>
+  <data name="ribOpenSectionInBrowserButton_Screentip" xml:space="preserve">
+    <value>צפה בקטע בדפדפן אינטרנט</value>
+    <comment>section context menu</comment>
+  </data>
   <data name="ribOutlineButton_Label" xml:space="preserve">
     <value>עיצוב מתאר</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>

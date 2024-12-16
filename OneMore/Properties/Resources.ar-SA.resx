@@ -3665,6 +3665,30 @@ ISO-code then comma then language name</comment>
   <data name="ribOpenLogButton_Label" xml:space="preserve">
     <value>افتح ملف السجل</value>
   </data>
+  <data name="ribOpenNotebookInBrowserButton_Label" xml:space="preserve">
+    <value>عرض في المتصفح</value>
+    <comment>notebook context menu</comment>
+  </data>
+  <data name="ribOpenNotebookInBrowserButton_Screentip" xml:space="preserve">
+    <value>عرض دفتر الملاحظات في متصفح الويب</value>
+    <comment>notebook context menu</comment>
+  </data>
+  <data name="ribOpenPageInBrowserButton_Label" xml:space="preserve">
+    <value>عرض في المتصفح</value>
+    <comment>page menu, page context menu</comment>
+  </data>
+  <data name="ribOpenPageInBrowserButton_Screentip" xml:space="preserve">
+    <value>عرض الصفحة في متصفح الويب</value>
+    <comment>page menu, page context menu</comment>
+  </data>
+  <data name="ribOpenSectionInBrowserButton_Label" xml:space="preserve">
+    <value>عرض في المتصفح</value>
+    <comment>section context menu</comment>
+  </data>
+  <data name="ribOpenSectionInBrowserButton_Screentip" xml:space="preserve">
+    <value>عرض القسم في متصفح الويب</value>
+    <comment>section context menu</comment>
+  </data>
   <data name="ribOutlineButton_Label" xml:space="preserve">
     <value>تنسيق المخطط التفصيلي</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>

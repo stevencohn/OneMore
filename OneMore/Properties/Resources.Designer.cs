@@ -9193,6 +9193,60 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to View In Browser.
+        /// </summary>
+        internal static string ribOpenNotebookInBrowserButton_Label {
+            get {
+                return ResourceManager.GetString("ribOpenNotebookInBrowserButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View notebook in web browser.
+        /// </summary>
+        internal static string ribOpenNotebookInBrowserButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribOpenNotebookInBrowserButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View in Browser.
+        /// </summary>
+        internal static string ribOpenPageInBrowserButton_Label {
+            get {
+                return ResourceManager.GetString("ribOpenPageInBrowserButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View page in web browser.
+        /// </summary>
+        internal static string ribOpenPageInBrowserButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribOpenPageInBrowserButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View in Browser.
+        /// </summary>
+        internal static string ribOpenSectionInBrowserButton_Label {
+            get {
+                return ResourceManager.GetString("ribOpenSectionInBrowserButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View section in web browser.
+        /// </summary>
+        internal static string ribOpenSectionInBrowserButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribOpenSectionInBrowserButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Outline Formatting.
         /// </summary>
         internal static string ribOutlineButton_Label {

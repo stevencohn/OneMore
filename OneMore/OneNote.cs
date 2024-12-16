@@ -569,18 +569,18 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Gets a Web hyperlink to an object on the specified page
+		/// Gets a Web hyperlink to an object on the specified hierarchy object
 		/// </summary>
-		/// <param name="pageId">The ID of a page</param>
+		/// <param name="hierarchyID">The ID of a notebook, section, or page</param>
 		/// <param name="objectId">
 		/// The ID of an object on the page or string.Empty to link to the page itself
 		/// </param>
 		/// <returns></returns>
-		public string GetWebHyperlink(string pageId, string objectId)
+		public string GetWebHyperlink(string hierarchyID, string objectId)
 		{
 			try
 			{
-				onenote.GetWebHyperlinkToObject(pageId, objectId, out var hyperlink);
+				onenote.GetWebHyperlinkToObject(hierarchyID, objectId, out var hyperlink);
 				return hyperlink.SafeUrlEncode();
 			}
 			catch (Exception exc)

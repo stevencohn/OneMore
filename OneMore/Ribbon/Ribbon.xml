@@ -634,6 +634,12 @@
                 getScreentip="GetRibbonScreentip"
                 onAction="SplitCmd"/>
               <button
+                id="ribOpenPageInBrowserButton"
+                imageMso="OpenInBrowserOutlook"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="OpenPageInBrowserCmd"/>
+              <button
                 id="ribWordCountButton"
                 imageMso="WordCount"
                 getLabel="GetRibbonLabel"
@@ -1044,6 +1050,13 @@
         getScreentip="GetRibbonScreentip"
         onAction="NotebookWordCountCmd"
         insertBeforeMso="ShareThisNotebook"/>
+      <button
+        id="ctxOpenNotebookInBrowserButton"
+        imageMso="OpenInBrowserOutlook"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="OpenNotebookInBrowserCmd"
+        insertBeforeMso="ShareThisNotebook"/>
       <menuSeparator
         id="omNotebookContextMenuSeparator"
         insertBeforeMso="ShareThisNotebook"/>
@@ -1116,6 +1129,13 @@
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
         onAction="SortPageCmd"
+        insertBeforeMso="RenamePageOneNote"/>
+      <button
+        id="ctxOpenPageInBrowserButton"
+        imageMso="OpenInBrowserOutlook"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="OpenPageInBrowserCmd"
         insertBeforeMso="RenamePageOneNote"/>
       <menuSeparator
         id="omPageContextMenuSeparator"
@@ -1241,6 +1261,13 @@
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
         onAction="SortPagesCmd"
+        insertBeforeMso="SectionRenameOneNote"/>
+      <button
+        id="ctxOpenSectionInBrowserButton"
+        imageMso="OpenInBrowserOutlook"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="OpenSectionInBrowserCmd"
         insertBeforeMso="SectionRenameOneNote"/>
       <button
         id="ctxSectionWordCountButton"

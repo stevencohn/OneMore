@@ -3664,6 +3664,30 @@ Après le dernier groupe</value>
   <data name="ribOpenLogButton_Label" xml:space="preserve">
     <value>Ouvrir le fichier journal</value>
   </data>
+  <data name="ribOpenNotebookInBrowserButton_Label" xml:space="preserve">
+    <value>Afficher dans le navigateur</value>
+    <comment>notebook context menu</comment>
+  </data>
+  <data name="ribOpenNotebookInBrowserButton_Screentip" xml:space="preserve">
+    <value>Afficher le bloc-notes dans le navigateur Web</value>
+    <comment>notebook context menu</comment>
+  </data>
+  <data name="ribOpenPageInBrowserButton_Label" xml:space="preserve">
+    <value>Afficher dans le navigateur</value>
+    <comment>page menu, page context menu</comment>
+  </data>
+  <data name="ribOpenPageInBrowserButton_Screentip" xml:space="preserve">
+    <value>Afficher la page dans le navigateur Web</value>
+    <comment>page menu, page context menu</comment>
+  </data>
+  <data name="ribOpenSectionInBrowserButton_Label" xml:space="preserve">
+    <value>Afficher dans le navigateur</value>
+    <comment>section context menu</comment>
+  </data>
+  <data name="ribOpenSectionInBrowserButton_Screentip" xml:space="preserve">
+    <value>Afficher la section dans le navigateur Web</value>
+    <comment>section context menu</comment>
+  </data>
   <data name="ribOutlineButton_Label" xml:space="preserve">
     <value>Mise en forme du contour</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
