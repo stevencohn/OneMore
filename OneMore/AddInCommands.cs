@@ -822,6 +822,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<ScanHashtagsCommand>();
 
 
+		[Command("ribScanHashtagsOnPageButton_Label", Keys.Control | Keys.Alt | Keys.F10, "ribSearchMenu")]
+		public async Task ScanHashtagsOnPageCmd(IRibbonControl control)
+			=> await factory.Run<ScanHashtagsOnPageCommand>();
+
+
 		[Command("ribScheduleHashtagScanButton_Label", Keys.None, "ribSearchMenu")]
 		public async Task ScheduleHashtagScanCmd(IRibbonControl control)
 			=> await factory.Run<HashtagScanCommand>();

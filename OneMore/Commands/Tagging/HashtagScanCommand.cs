@@ -10,7 +10,7 @@ namespace River.OneMoreAddIn.Commands
 
 
 	#region Wrappers
-	internal class ScanHashtagsCommand : ToCaseCommand
+	internal class ScanHashtagsCommand : HashtagScanCommand
 	{
 		public ScanHashtagsCommand() : base() { }
 		public override async Task Execute(params object[] args)
@@ -18,6 +18,22 @@ namespace River.OneMoreAddIn.Commands
 			using var scanner = new HashtagScanner();
 			await scanner.Scan();
 			scanner.Report();
+		}
+	}
+
+	internal class ScanHashtagsOnPageCommand : HashtagScanCommand
+	{
+		public ScanHashtagsOnPageCommand() : base() { }
+		public override async Task Execute(params object[] args)
+		{
+			using var one = new OneNote();
+			using var scanner = new HashtagScanner();
+
+			var section = await one.GetSectionInfo();
+
+			await scanner.ScanPage(one,
+				one.CurrentPageId, one.CurrentNotebookId, one.CurrentSectionId,
+				section.Path, true);
 		}
 	}
 	#endregion

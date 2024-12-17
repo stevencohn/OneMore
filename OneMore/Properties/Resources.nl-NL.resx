@@ -3988,6 +3988,10 @@ Na de laatste groep</value>
     <value>Scan hashtags onmiddellijk</value>
     <comment>ribbon search</comment>
   </data>
+  <data name="ribScanHashtagsOnPageButton_Label" xml:space="preserve">
+    <value>Scan hashtags op deze pagina</value>
+    <comment>search menu</comment>
+  </data>
   <data name="ribScheduleHashtagScanButton_Label" xml:space="preserve">
     <value>Plan een hashtagscan</value>
     <comment>palette command</comment>

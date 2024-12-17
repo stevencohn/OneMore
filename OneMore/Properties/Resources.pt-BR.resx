@@ -3988,6 +3988,10 @@ Depois do último grupo</value>
     <value>Digitalize hashtags imediatamente</value>
     <comment>ribbon search</comment>
   </data>
+  <data name="ribScanHashtagsOnPageButton_Label" xml:space="preserve">
+    <value>Digitalize hashtags nesta página</value>
+    <comment>search menu</comment>
+  </data>
   <data name="ribScheduleHashtagScanButton_Label" xml:space="preserve">
     <value>Agendar verificação de hashtag</value>
     <comment>palette command</comment>

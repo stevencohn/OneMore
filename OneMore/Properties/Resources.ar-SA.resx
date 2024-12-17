@@ -3988,6 +3988,10 @@ ISO-code then comma then language name</comment>
     <value>مسح علامات التصنيف على الفور</value>
     <comment>ribbon search</comment>
   </data>
+  <data name="ribScanHashtagsOnPageButton_Label" xml:space="preserve">
+    <value>مسح علامات التصنيف على هذه الصفحة</value>
+    <comment>search menu</comment>
+  </data>
   <data name="ribScheduleHashtagScanButton_Label" xml:space="preserve">
     <value>جدولة مسح الهاشتاج</value>
     <comment>palette command</comment>

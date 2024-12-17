@@ -3981,6 +3981,10 @@ ISO-code then comma then language name</comment>
     <value>立即扫描主题标签</value>
     <comment>ribbon search</comment>
   </data>
+  <data name="ribScanHashtagsOnPageButton_Label" xml:space="preserve">
+    <value>扫描此页面上的标签</value>
+    <comment>search menu</comment>
+  </data>
   <data name="ribScheduleHashtagScanButton_Label" xml:space="preserve">
     <value>安排标签扫描</value>
     <comment>palette command</comment>

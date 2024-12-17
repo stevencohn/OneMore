@@ -3987,6 +3987,10 @@ ISO-code then comma then language name</comment>
     <value>סרוק hashtags באופן מיידי</value>
     <comment>ribbon search</comment>
   </data>
+  <data name="ribScanHashtagsOnPageButton_Label" xml:space="preserve">
+    <value>סרוק Hashtags בדף זה</value>
+    <comment>search menu</comment>
+  </data>
   <data name="ribScheduleHashtagScanButton_Label" xml:space="preserve">
     <value>תזמן סריקת Hashtag</value>
     <comment>palette command</comment>
