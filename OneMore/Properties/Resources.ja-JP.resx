@@ -3991,6 +3991,10 @@ ISO-code then comma then language name</comment>
     <value>ハッシュタグをすぐにスキャンする</value>
     <comment>ribbon search</comment>
   </data>
+  <data name="ribScanHashtagsOnPageButton_Label" xml:space="preserve">
+    <value>このページのハッシュタグをスキャンしてください</value>
+    <comment>search menu</comment>
+  </data>
   <data name="ribScheduleHashtagScanButton_Label" xml:space="preserve">
     <value>ハッシュタグスキャンのスケジュール設定</value>
     <comment>palette command</comment>

@@ -340,7 +340,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task<bool> ScanPage(
+		public async Task<bool> ScanPage(
 			OneNote one, string pageID, string notebookID, string sectionID,
 			string path, bool forceThru)
 		{

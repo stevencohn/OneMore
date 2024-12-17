@@ -3988,6 +3988,10 @@ Después del último grupo</value>
     <value>Escanea hashtags inmediatamente</value>
     <comment>ribbon search</comment>
   </data>
+  <data name="ribScanHashtagsOnPageButton_Label" xml:space="preserve">
+    <value>Escanear hashtags en esta página</value>
+    <comment>search menu</comment>
+  </data>
   <data name="ribScheduleHashtagScanButton_Label" xml:space="preserve">
     <value>Programar escaneo de hashtags</value>
     <comment>palette command</comment>

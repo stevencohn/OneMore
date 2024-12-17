@@ -3983,6 +3983,10 @@ Nach der letzten Gruppe</value>
     <value>Hashtags sofort scannen</value>
     <comment>ribbon search</comment>
   </data>
+  <data name="ribScanHashtagsOnPageButton_Label" xml:space="preserve">
+    <value>Scannen Sie Hashtags auf dieser Seite</value>
+    <comment>search menu</comment>
+  </data>
   <data name="ribScheduleHashtagScanButton_Label" xml:space="preserve">
     <value>Planen Sie den Hashtag-Scan</value>
     <comment>palette command</comment>
