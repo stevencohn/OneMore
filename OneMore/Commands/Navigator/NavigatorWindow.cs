@@ -887,6 +887,18 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private void HistoryKeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Control && e.KeyCode == Keys.A)
+			{
+				foreach (ListViewItem item in historyBox.Items)
+				{
+					item.Selected = true;
+				}
+			}
+		}
+
+
 		public static void SetVisited(string ID)
 		{
 			// called from HistoryControl!
