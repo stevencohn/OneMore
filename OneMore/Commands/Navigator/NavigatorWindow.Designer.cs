@@ -60,6 +60,7 @@
 			this.copyHistoryButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.historyHeadLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.tooltip = new System.Windows.Forms.ToolTip(this.components);
+			this.deleteHistoryButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.controlPanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.mainContainer)).BeginInit();
 			this.mainContainer.Panel1.SuspendLayout();
@@ -427,6 +428,7 @@
 			// 
 			// historyToolPanel
 			// 
+			this.historyToolPanel.Controls.Add(this.deleteHistoryButton);
 			this.historyToolPanel.Controls.Add(this.pinButton);
 			this.historyToolPanel.Controls.Add(this.copyHistoryButton);
 			this.historyToolPanel.Dock = System.Windows.Forms.DockStyle.Right;
@@ -444,7 +446,7 @@
 			this.pinButton.Font = new System.Drawing.Font("Segoe UI Symbol", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.pinButton.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.pinButton.ImageOver = null;
-			this.pinButton.Location = new System.Drawing.Point(150, 3);
+			this.pinButton.Location = new System.Drawing.Point(110, 3);
 			this.pinButton.Name = "pinButton";
 			this.pinButton.ShowBorder = true;
 			this.pinButton.Size = new System.Drawing.Size(32, 32);
@@ -467,7 +469,7 @@
 			this.copyHistoryButton.Font = new System.Drawing.Font("Segoe UI Symbol", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.copyHistoryButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.copyHistoryButton.ImageOver = null;
-			this.copyHistoryButton.Location = new System.Drawing.Point(108, 3);
+			this.copyHistoryButton.Location = new System.Drawing.Point(68, 3);
 			this.copyHistoryButton.Name = "copyHistoryButton";
 			this.copyHistoryButton.ShowBorder = true;
 			this.copyHistoryButton.Size = new System.Drawing.Size(32, 32);
@@ -493,6 +495,29 @@
 			this.historyHeadLabel.ThemedBack = null;
 			this.historyHeadLabel.ThemedFore = null;
 			this.historyHeadLabel.Click += new System.EventHandler(this.PanelFocusOnClick);
+			// 
+			// deleteHistoryButton
+			// 
+			this.deleteHistoryButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.deleteHistoryButton.BackColor = System.Drawing.SystemColors.ButtonFace;
+			this.deleteHistoryButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+			this.deleteHistoryButton.FlatAppearance.BorderSize = 0;
+			this.deleteHistoryButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.deleteHistoryButton.Font = new System.Drawing.Font("Segoe UI Symbol", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.deleteHistoryButton.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.deleteHistoryButton.ImageOver = null;
+			this.deleteHistoryButton.Location = new System.Drawing.Point(153, 3);
+			this.deleteHistoryButton.Name = "deleteHistoryButton";
+			this.deleteHistoryButton.ShowBorder = true;
+			this.deleteHistoryButton.Size = new System.Drawing.Size(32, 32);
+			this.deleteHistoryButton.StylizeImage = false;
+			this.deleteHistoryButton.TabIndex = 4;
+			this.deleteHistoryButton.Text = "🗑";
+			this.deleteHistoryButton.ThemedBack = null;
+			this.deleteHistoryButton.ThemedFore = null;
+			this.tooltip.SetToolTip(this.deleteHistoryButton, "Delete selected items from History");
+			this.deleteHistoryButton.UseVisualStyleBackColor = false;
+			this.deleteHistoryButton.Click += new System.EventHandler(this.DeleteHistoryRecords);
 			// 
 			// NavigatorWindow
 			// 
@@ -567,5 +592,6 @@
 		private River.OneMoreAddIn.UI.MoreButton copyHistoryButton;
 		private System.Windows.Forms.Panel historyToolPanel;
 		private System.Windows.Forms.Panel pinnedToolPanel;
+		private UI.MoreButton deleteHistoryButton;
 	}
 }

@@ -1905,9 +1905,17 @@ Wilt u de bestaande pagina vernieuwen?</value>
     <value>Houd snelle notities bij</value>
     <comment>checkbox</comment>
   </data>
+  <data name="NavigatorWindow_confirmDelete" xml:space="preserve">
+    <value>Weet u zeker dat u de {0} geselecteerde records wilt verwijderen?</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="NavigatorWindow_copyTooltip" xml:space="preserve">
     <value>Kopieer geselecteerde items naar het klembord</value>
     <comment>button tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_deleteHistoryButton_Tooltip" xml:space="preserve">
+    <value>Verwijder geselecteerde items uit de geschiedenislijst</value>
+    <comment>tooltip</comment>
   </data>
   <data name="NavigatorWindow_disabled" xml:space="preserve">
     <value>De navigatieservice is uitgeschakeld. Open Instellingen om de service in te schakelen.</value>

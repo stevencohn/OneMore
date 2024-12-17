@@ -1904,9 +1904,17 @@
     <value>تتبع الملاحظات السريعة</value>
     <comment>checkbox</comment>
   </data>
+  <data name="NavigatorWindow_confirmDelete" xml:space="preserve">
+    <value>هل أنت متأكد أنك تريد حذف {0} من السجلات المحددة؟</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="NavigatorWindow_copyTooltip" xml:space="preserve">
     <value>نسخ العناصر المحددة إلى الحافظة</value>
     <comment>button tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_deleteHistoryButton_Tooltip" xml:space="preserve">
+    <value>حذف العناصر المحددة من قائمة المحفوظات</value>
+    <comment>tooltip</comment>
   </data>
   <data name="NavigatorWindow_disabled" xml:space="preserve">
     <value>تم تعطيل خدمة الملاحة. افتح الإعدادات لتمكين الخدمة.</value>

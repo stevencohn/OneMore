@@ -1905,9 +1905,17 @@ Deseja atualizar a página existente?</value>
     <value>Acompanhe notas rápidas</value>
     <comment>checkbox</comment>
   </data>
+  <data name="NavigatorWindow_confirmDelete" xml:space="preserve">
+    <value>Tem certeza de que deseja excluir os {0} registros selecionados?</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="NavigatorWindow_copyTooltip" xml:space="preserve">
     <value>Copiar itens selecionados para a área de transferência</value>
     <comment>button tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_deleteHistoryButton_Tooltip" xml:space="preserve">
+    <value>Exclua os itens selecionados da lista Histórico</value>
+    <comment>tooltip</comment>
   </data>
   <data name="NavigatorWindow_disabled" xml:space="preserve">
     <value>O serviço de navegação está desativado. Abra Configurações para habilitar o serviço.</value>

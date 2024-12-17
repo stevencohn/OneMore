@@ -1905,9 +1905,17 @@ Czy chcesz odświeżyć istniejącą stronę?</value>
     <value>Śledź szybkie notatki</value>
     <comment>checkbox</comment>
   </data>
+  <data name="NavigatorWindow_confirmDelete" xml:space="preserve">
+    <value>Czy na pewno chcesz usunąć wybrane rekordy ({0})?</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="NavigatorWindow_copyTooltip" xml:space="preserve">
     <value>Skopiuj wybrane elementy do schowka</value>
     <comment>button tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_deleteHistoryButton_Tooltip" xml:space="preserve">
+    <value>Usuń wybrane elementy z listy Historia</value>
+    <comment>tooltip</comment>
   </data>
   <data name="NavigatorWindow_disabled" xml:space="preserve">
     <value>Usługa nawigacji jest wyłączona. Otwórz Ustawienia, aby włączyć usługę.</value>

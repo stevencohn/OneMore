@@ -5168,11 +5168,29 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete the {0} selected records?.
+        /// </summary>
+        internal static string NavigatorWindow_confirmDelete {
+            get {
+                return ResourceManager.GetString("NavigatorWindow_confirmDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Copy selected items to the clipboard.
         /// </summary>
         internal static string NavigatorWindow_copyTooltip {
             get {
                 return ResourceManager.GetString("NavigatorWindow_copyTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete selected items from the History list.
+        /// </summary>
+        internal static string NavigatorWindow_deleteHistoryButton_Tooltip {
+            get {
+                return ResourceManager.GetString("NavigatorWindow_deleteHistoryButton_Tooltip", resourceCulture);
             }
         }
         

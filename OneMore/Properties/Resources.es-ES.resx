@@ -1904,9 +1904,17 @@ Título personalizado 3</value>
     <value>Seguimiento de notas rápidas</value>
     <comment>checkbox</comment>
   </data>
+  <data name="NavigatorWindow_confirmDelete" xml:space="preserve">
+    <value>¿Está seguro de que desea eliminar los {0} registros seleccionados?</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="NavigatorWindow_copyTooltip" xml:space="preserve">
     <value>Copiar elementos seleccionados al portapapeles</value>
     <comment>button tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_deleteHistoryButton_Tooltip" xml:space="preserve">
+    <value>Eliminar elementos seleccionados de la lista Historial</value>
+    <comment>tooltip</comment>
   </data>
   <data name="NavigatorWindow_disabled" xml:space="preserve">
     <value>El servicio de navegación está deshabilitado. Abra Configuración para habilitar el servicio.</value>
