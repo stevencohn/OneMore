@@ -1904,9 +1904,17 @@ Möchten Sie die bestehende Seite aktualisieren?</value>
     <value>Verfolgen Sie schnelle Notizen</value>
     <comment>checkbox</comment>
   </data>
+  <data name="NavigatorWindow_confirmDelete" xml:space="preserve">
+    <value>Sind Sie sicher, dass Sie die {0} ausgewählten Datensätze löschen möchten?</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="NavigatorWindow_copyTooltip" xml:space="preserve">
     <value>Ausgewählte Elemente in die Zwischenablage kopieren</value>
     <comment>button tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_deleteHistoryButton_Tooltip" xml:space="preserve">
+    <value>Ausgewählte Elemente aus der Verlaufsliste löschen</value>
+    <comment>tooltip</comment>
   </data>
   <data name="NavigatorWindow_disabled" xml:space="preserve">
     <value>Der Navigationsdienst ist deaktiviert. Öffnen Sie Einstellungen, um den Dienst zu aktivieren.</value>

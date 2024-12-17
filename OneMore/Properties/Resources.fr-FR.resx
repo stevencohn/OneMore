@@ -1904,9 +1904,17 @@ Voulez-vous actualiser la page existante ?</value>
     <value>Suivre les notes rapides</value>
     <comment>checkbox</comment>
   </data>
+  <data name="NavigatorWindow_confirmDelete" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir supprimer les {0} enregistrements sélectionnés ?</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="NavigatorWindow_copyTooltip" xml:space="preserve">
     <value>Copier les éléments sélectionnés dans le presse-papiers</value>
     <comment>button tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_deleteHistoryButton_Tooltip" xml:space="preserve">
+    <value>Supprimer les éléments sélectionnés de la liste Historique</value>
+    <comment>tooltip</comment>
   </data>
   <data name="NavigatorWindow_disabled" xml:space="preserve">
     <value>Le service de navigation est désactivé. Ouvrez Paramètres pour activer le service.</value>

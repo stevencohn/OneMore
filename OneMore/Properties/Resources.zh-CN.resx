@@ -1903,9 +1903,17 @@ OneNote 文件 (*.one)</value>
     <value>追踪快速笔记</value>
     <comment>checkbox</comment>
   </data>
+  <data name="NavigatorWindow_confirmDelete" xml:space="preserve">
+    <value>您确定要删除所选的 {0} 条记录吗？</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="NavigatorWindow_copyTooltip" xml:space="preserve">
     <value>将所选项目复制到剪贴板</value>
     <comment>button tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_deleteHistoryButton_Tooltip" xml:space="preserve">
+    <value>从历史记录列表中删除选定的项目</value>
+    <comment>tooltip</comment>
   </data>
   <data name="NavigatorWindow_disabled" xml:space="preserve">
     <value>导航服务被禁用。打开设置以启用该服务。</value>

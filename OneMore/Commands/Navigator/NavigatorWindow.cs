@@ -66,6 +66,7 @@ namespace River.OneMoreAddIn.Commands
 				tooltip.SetToolTip(pinButton, Resx.NavigatorWindow_pinButton_Tooltip);
 				tooltip.SetToolTip(copyPinnedButton, Resx.NavigatorWindow_copyTooltip);
 				tooltip.SetToolTip(copyHistoryButton, Resx.NavigatorWindow_copyTooltip);
+				tooltip.SetToolTip(deleteHistoryButton, Resx.NavigatorWindow_deleteHistoryButton_Tooltip);
 			}
 
 			ManualLocation = true;
@@ -767,32 +768,45 @@ namespace River.OneMoreAddIn.Commands
 
 				await ShowPageOutline(log.History[0]);
 
-				historyBox.BeginUpdate();
-				historyBox.Items.Clear();
-				var viewColor = manager.GetColor("ListView");
-
-				log.History.ForEach(record =>
-				{
-					var control = new HistoryControl(record)
-					{
-						BackColor = viewColor
-					};
-
-					control.ApplyTheme(manager);
-
-					var item = historyBox.AddHostedItem(control);
-					item.Tag = record;
-				});
-
-				historyBox.Items[0].Selected = true;
-				historyBox.EndUpdate();
-				historyBox.EnableItemEventBubbling();
+				UpdateHistoryBox(log);
 			}
 			catch (Exception exc)
 			{
 				logger.WriteLine($"error navigating", exc);
 			}
 		}
+
+
+		private void UpdateHistoryBox(HistoryLog log)
+		{
+			if (historyBox.InvokeRequired)
+			{
+				historyBox.BeginInvoke(new Action(() => UpdateHistoryBox(log)));
+				return;
+			}
+
+			historyBox.BeginUpdate();
+			historyBox.Items.Clear();
+			var viewColor = manager.GetColor("ListView");
+
+			log.History.ForEach(record =>
+			{
+				var control = new HistoryControl(record)
+				{
+					BackColor = viewColor
+				};
+
+				control.ApplyTheme(manager);
+
+				var item = historyBox.AddHostedItem(control);
+				item.Tag = record;
+			});
+
+			historyBox.Items[0].Selected = true;
+			historyBox.EndUpdate();
+			historyBox.EnableItemEventBubbling();
+		}
+
 
 		private void Control_DoubleClick(object sender, EventArgs e)
 		{
@@ -844,6 +858,32 @@ namespace River.OneMoreAddIn.Commands
 			board.Stash(System.Windows.TextDataFormat.UnicodeText, text);
 
 			await board.RestoreState();
+		}
+
+
+		private async void DeleteHistoryRecords(object sender, EventArgs e)
+		{
+			var result = MoreMessageBox.Show(Owner,
+				string.Format(Resx.NavigatorWindow_confirmDelete, historyBox.SelectedItems.Count),
+				MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+			if (result != DialogResult.Yes)
+			{
+				return;
+			}
+
+			var records = new List<HistoryRecord>();
+			foreach (IMoreHostItem host in historyBox.SelectedItems)
+			{
+				if (host.Tag is HistoryRecord record)
+				{
+					records.Add(record);
+				}
+			}
+
+			await provider.DeleteHistory(records);
+			var log = await provider.ReadHistoryLog();
+			UpdateHistoryBox(log);
 		}
 
 

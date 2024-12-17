@@ -131,6 +131,43 @@ namespace River.OneMoreAddIn.Commands
 		// History...
 
 		/// <summary>
+		/// Deletes the given records from the history log.
+		/// </summary>
+		/// <param name="records">Records to delete</param>
+		/// <returns></returns>
+		public async Task DeleteHistory(List<HistoryRecord> records)
+		{
+			await semalock.WaitAsync();
+
+			try
+			{
+				var log = await Read();
+
+				var updated = false;
+
+				foreach (var record in records)
+				{
+					var index = log.History.FindIndex(r => r.PageId == record.PageId);
+					if (index >= 0)
+					{
+						log.History.RemoveAt(index);
+						updated = true;
+					}
+				}
+
+				if (updated)
+				{
+					await Save(log);
+				}
+			}
+			finally
+			{
+				semalock.Release();
+			}
+		}
+
+
+		/// <summary>
 		/// Returns the list of history items tracking visited pages.
 		/// </summary>
 		/// <returns></returns>

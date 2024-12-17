@@ -1907,9 +1907,17 @@ OneNoteファイル (*.one)</value>
     <value>クイックノートを追跡</value>
     <comment>checkbox</comment>
   </data>
+  <data name="NavigatorWindow_confirmDelete" xml:space="preserve">
+    <value>選択した {0} レコードを削除してもよろしいですか?</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="NavigatorWindow_copyTooltip" xml:space="preserve">
     <value>選択した項目をクリップボードにコピー</value>
     <comment>button tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_deleteHistoryButton_Tooltip" xml:space="preserve">
+    <value>選択したアイテムを履歴リストから削除します</value>
+    <comment>tooltip</comment>
   </data>
   <data name="NavigatorWindow_disabled" xml:space="preserve">
     <value>ナビゲーションサービスが無効です。サービスを有効にするには設定を開いてください。</value>
