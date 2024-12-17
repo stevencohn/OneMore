@@ -405,6 +405,7 @@
 			this.historyBox.TabIndex = 0;
 			this.historyBox.UseCompatibleStateImageBehavior = false;
 			this.historyBox.View = System.Windows.Forms.View.Details;
+			this.historyBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.HistoryKeyDown);
 			// 
 			// historyHeadPanel
 			// 
