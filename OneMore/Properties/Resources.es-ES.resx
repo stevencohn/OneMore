@@ -1290,6 +1290,10 @@ Oscuro</value>
   <data name="HasActiveMedia" xml:space="preserve">
     <value>No se pueden invocar los comandos de OneMore mientras hay una grabación activa. Detenga la grabación y vuelva a intentarlo.</value>
   </data>
+  <data name="HashtagCommand_indexTitle" xml:space="preserve">
+    <value>Páginas etiquetadas</value>
+    <comment>page title</comment>
+  </data>
   <data name="HashtagCommand_scanning" xml:space="preserve">
     <value>OneMore está creando actualmente su catálogo de hashtags.
 

@@ -66,51 +66,6 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public async Task IndexPages(IEnumerable<string> pageIds)
-		{
-			string indexId = null;
-
-			using (var progress = new UI.ProgressDialog())
-			{
-				progress.SetMaximum(pageIds.Count());
-				progress.Show();
-
-				// create a new page to get a new ID
-				one.CreatePage(sectionId, out indexId);
-				var indexPage = await one.GetPage(indexId);
-
-				indexPage.Title = "Page Index";
-
-				var container = indexPage.EnsureContentContainer();
-
-				foreach (var pageId in pageIds)
-				{
-					// get the page to copy
-					var page = await one.GetPage(pageId);
-					var ns = page.Namespace;
-
-					progress.SetMessage(page.Title);
-					progress.Increment();
-
-					var link = one.GetHyperlink(page.PageId, string.Empty);
-
-					container.Add(new XElement(ns + "OE",
-						new XElement(ns + "T",
-							new XCData($"<a href=\"{link}\">{page.Title}</a>"))
-						));
-				}
-
-				await one.Update(indexPage);
-			}
-
-			// navigate after progress dialog is closed otherwise it will hang!
-			if (indexId != null)
-			{
-				await one.NavigateTo(indexId);
-			}
-		}
-
-
 		public async Task MovePages(IEnumerable<string> pageIds)
 		{
 			var sections = new Dictionary<string, XElement>();

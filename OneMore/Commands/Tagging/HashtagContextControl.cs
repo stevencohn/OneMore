@@ -94,6 +94,8 @@ namespace River.OneMoreAddIn.Commands
 			{
 				Height += snippetsPanel.Height - height;
 			}
+
+			Tag = item;
 		}
 
 

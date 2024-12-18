@@ -1291,6 +1291,10 @@ Total Row Font
   <data name="HasActiveMedia" xml:space="preserve">
     <value>לא יכול להפעיל פקודות של OneMore בזמן שיש הקלטה פעילה. אנא הפסק את ההקלטה ונסה שוב.</value>
   </data>
+  <data name="HashtagCommand_indexTitle" xml:space="preserve">
+    <value>דפים מתויגים</value>
+    <comment>page title</comment>
+  </data>
   <data name="HashtagCommand_scanning" xml:space="preserve">
     <value>OneMore יוצר כעת את קטלוג ההאשטאג שלך.
 
