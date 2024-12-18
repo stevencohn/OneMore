@@ -10535,7 +10535,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to View In Browser.
+        ///   Looks up a localized string similar to View Notebook In Browser.
         /// </summary>
         internal static string ribViewNotebookInBrowserButton_Label {
             get {
@@ -10553,7 +10553,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to View in Browser.
+        ///   Looks up a localized string similar to View Page In Browser.
         /// </summary>
         internal static string ribViewPageInBrowserButton_Label {
             get {
@@ -10571,7 +10571,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to View in Browser.
+        ///   Looks up a localized string similar to View Section In Browser.
         /// </summary>
         internal static string ribViewSectionInBrowserButton_Label {
             get {

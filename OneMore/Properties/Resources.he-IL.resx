@@ -4263,7 +4263,7 @@ ISO-code then comma then language name</comment>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribViewNotebookInBrowserButton_Label" xml:space="preserve">
-    <value>הצג בדפדפן</value>
+    <value>הצג מחברת בדפדפן</value>
     <comment>notebook context menu</comment>
   </data>
   <data name="ribViewNotebookInBrowserButton_Screentip" xml:space="preserve">
@@ -4271,7 +4271,7 @@ ISO-code then comma then language name</comment>
     <comment>notebook context menu</comment>
   </data>
   <data name="ribViewPageInBrowserButton_Label" xml:space="preserve">
-    <value>הצג בדפדפן</value>
+    <value>הצג דף בדפדפן</value>
     <comment>page menu, page context menu</comment>
   </data>
   <data name="ribViewPageInBrowserButton_Screentip" xml:space="preserve">
@@ -4279,7 +4279,7 @@ ISO-code then comma then language name</comment>
     <comment>page menu, page context menu</comment>
   </data>
   <data name="ribViewSectionInBrowserButton_Label" xml:space="preserve">
-    <value>הצג בדפדפן</value>
+    <value>צפה בקטע בדפדפן</value>
     <comment>section context menu</comment>
   </data>
   <data name="ribViewSectionInBrowserButton_Screentip" xml:space="preserve">

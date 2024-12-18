@@ -4260,7 +4260,7 @@ Nach der letzten Gruppe</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribViewNotebookInBrowserButton_Label" xml:space="preserve">
-    <value>Im Browser anzeigen</value>
+    <value>Notizbuch im Browser anzeigen</value>
     <comment>notebook context menu</comment>
   </data>
   <data name="ribViewNotebookInBrowserButton_Screentip" xml:space="preserve">
@@ -4268,7 +4268,7 @@ Nach der letzten Gruppe</value>
     <comment>notebook context menu</comment>
   </data>
   <data name="ribViewPageInBrowserButton_Label" xml:space="preserve">
-    <value>Im Browser anzeigen</value>
+    <value>Seite im Browser anzeigen</value>
     <comment>page menu, page context menu</comment>
   </data>
   <data name="ribViewPageInBrowserButton_Screentip" xml:space="preserve">
@@ -4276,7 +4276,7 @@ Nach der letzten Gruppe</value>
     <comment>page menu, page context menu</comment>
   </data>
   <data name="ribViewSectionInBrowserButton_Label" xml:space="preserve">
-    <value>Im Browser anzeigen</value>
+    <value>Abschnitt im Browser anzeigen</value>
     <comment>section context menu</comment>
   </data>
   <data name="ribViewSectionInBrowserButton_Screentip" xml:space="preserve">

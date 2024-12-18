@@ -4263,7 +4263,7 @@ Après le dernier groupe</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribViewNotebookInBrowserButton_Label" xml:space="preserve">
-    <value>Afficher dans le navigateur</value>
+    <value>Afficher le bloc-notes dans le navigateur</value>
     <comment>notebook context menu</comment>
   </data>
   <data name="ribViewNotebookInBrowserButton_Screentip" xml:space="preserve">
@@ -4271,7 +4271,7 @@ Après le dernier groupe</value>
     <comment>notebook context menu</comment>
   </data>
   <data name="ribViewPageInBrowserButton_Label" xml:space="preserve">
-    <value>Afficher dans le navigateur</value>
+    <value>Afficher la page dans le navigateur</value>
     <comment>page menu, page context menu</comment>
   </data>
   <data name="ribViewPageInBrowserButton_Screentip" xml:space="preserve">
@@ -4279,7 +4279,7 @@ Après le dernier groupe</value>
     <comment>page menu, page context menu</comment>
   </data>
   <data name="ribViewSectionInBrowserButton_Label" xml:space="preserve">
-    <value>Afficher dans le navigateur</value>
+    <value>Afficher la section dans le navigateur</value>
     <comment>section context menu</comment>
   </data>
   <data name="ribViewSectionInBrowserButton_Screentip" xml:space="preserve">
