@@ -1293,6 +1293,10 @@ OneNoteファイル (*.one)</value>
   <data name="HasActiveMedia" xml:space="preserve">
     <value>アクティブな録画中にOneMoreコマンドを呼び出すことはできません。録画を停止してから再試行してください。</value>
   </data>
+  <data name="HashtagCommand_indexTitle" xml:space="preserve">
+    <value>タグ付きページ</value>
+    <comment>page title</comment>
+  </data>
   <data name="HashtagCommand_scanning" xml:space="preserve">
     <value>OneMoreが現在ハッシュタグカタログを作成しています。
 

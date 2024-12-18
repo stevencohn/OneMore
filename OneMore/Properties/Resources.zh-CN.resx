@@ -1289,6 +1289,10 @@ OneNote 文件 (*.one)</value>
   <data name="HasActiveMedia" xml:space="preserve">
     <value>存在活动记录时无法调用 OneMore 命令。请停止录制并重试。</value>
   </data>
+  <data name="HashtagCommand_indexTitle" xml:space="preserve">
+    <value>标记页面</value>
+    <comment>page title</comment>
+  </data>
   <data name="HashtagCommand_scanning" xml:space="preserve">
     <value>OneMore 当前正在创建您的主题标签目录。
 

@@ -3415,6 +3415,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tagged Pages.
+        /// </summary>
+        internal static string HashtagCommand_indexTitle {
+            get {
+                return ResourceManager.GetString("HashtagCommand_indexTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OneMore is currently creating your hashtag catalog.
         ///
         ///Searching for hashtags is unavailable until this is completed..

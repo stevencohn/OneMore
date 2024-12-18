@@ -191,7 +191,7 @@ namespace River.OneMoreAddIn.Commands
 				var ns = parent.Namespace;
 				PageNamespace.Set(ns);
 
-				parent.Title = "Tagged Pages";
+				parent.Title = Resx.HashtagCommand_indexTitle;
 
 				var container = parent.EnsureContentContainer();
 
