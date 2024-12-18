@@ -25,7 +25,7 @@ namespace River.OneMoreAddIn.Commands
 		private readonly string moreID;
 		private readonly MoreAutoCompleteList palette;
 		private readonly bool experimental;
-		private readonly List<string> selections;
+		private readonly List<HashtagContext> selections;
 
 
 		public enum Commands
@@ -63,7 +63,7 @@ namespace River.OneMoreAddIn.Commands
 
 			DefaultControl = tagBox;
 
-			selections = new List<string>();
+			selections = new List<HashtagContext>();
 
 			palette = new MoreAutoCompleteList
 			{
@@ -114,7 +114,10 @@ namespace River.OneMoreAddIn.Commands
 		public Commands Command { get; private set; }
 
 
-		public IEnumerable<string> SelectedPages => selections;
+		public string Query { get; private set; }
+
+
+		public IEnumerable<HashtagContext> SelectedPages => selections;
 
 
 		public bool ShowOfflineNotebooks { get; private set; }
@@ -226,6 +229,8 @@ namespace River.OneMoreAddIn.Commands
 			{
 				return;
 			}
+
+			Query = where;
 
 			await using var one = new OneNote();
 
@@ -348,13 +353,15 @@ namespace River.OneMoreAddIn.Commands
 		private void Control_Checked(object sender, EventArgs e)
 		{
 			var control = sender as HashtagContextControl;
+			var context = (HashtagContext)control.Tag;
 			var enabled = control.IsChecked;
 
 			if (!enabled)
 			{
-				if (selections.Contains(control.PageID))
+				var index = selections.FindIndex(s => s.PageID == context.PageID);
+				if (index >= 0)
 				{
-					selections.Remove(control.PageID);
+					selections.RemoveAt(index);
 				}
 
 				for (int i = 0; i < contextPanel.Controls.Count; i++)
@@ -366,9 +373,9 @@ namespace River.OneMoreAddIn.Commands
 					}
 				}
 			}
-			else if (!selections.Contains(control.PageID))
+			else if (!selections.Any(s => s.PageID == context.PageID))
 			{
-				selections.Add(control.PageID);
+				selections.Add(context);
 			}
 
 			indexButton.Enabled = moveButton.Enabled = copyButton.Enabled = enabled;

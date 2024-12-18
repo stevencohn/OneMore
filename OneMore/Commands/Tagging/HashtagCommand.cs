@@ -10,13 +10,15 @@ namespace River.OneMoreAddIn.Commands
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
+	using System.Xml.Linq;
 	using Resx = Properties.Resources;
 
 
 	internal class HashtagCommand : Command
 	{
 		private HashtagDialog.Commands command;
-		private IEnumerable<string> pageIds;
+		private IEnumerable<HashtagContext> selectedPages;
+		private string query;
 
 		private static HashtagDialog dialog;
 
@@ -64,7 +66,8 @@ namespace River.OneMoreAddIn.Commands
 				if (d.DialogResult == DialogResult.OK)
 				{
 					command = d.Command;
-					pageIds = d.SelectedPages.ToList();
+					selectedPages = d.SelectedPages;
+					query = d.Query;
 
 					var msg = command switch
 					{
@@ -136,26 +139,28 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			logger.Start($"..{command} {pageIds.Count()} pages");
+			logger.Start($"..{command} {selectedPages.Count()} pages");
 
 			try
 			{
-				await using var one = new OneNote();
-				var service = new SearchServices(one, sectionId);
-
-				switch (command)
+				if (command == HashtagDialog.Commands.Index)
 				{
-					case HashtagDialog.Commands.Index:
-						await service.IndexPages(pageIds);
-						break;
+					await IndexTaggedPages(sectionId);
+				}
+				else
+				{
+					await using var one = new OneNote();
+					var service = new SearchServices(one, sectionId);
+					var pageIds = selectedPages.Select(p => p.PageID).ToList();
 
-					case HashtagDialog.Commands.Copy:
+					if (command == HashtagDialog.Commands.Copy)
+					{
 						await service.CopyPages(pageIds);
-						break;
-
-					case HashtagDialog.Commands.Move:
+					}
+					else
+					{
 						await service.MovePages(pageIds);
-						break;
+					}
 				}
 			}
 			catch (Exception exc)
@@ -166,6 +171,73 @@ namespace River.OneMoreAddIn.Commands
 			{
 				logger.End();
 			}
+		}
+
+
+		private async Task IndexTaggedPages(string sectionId)
+		{
+			await using var one = new OneNote();
+			string parentId = null;
+
+			using (var progress = new UI.ProgressDialog())
+			{
+				progress.SetMaximum(selectedPages.Count());
+				progress.Show();
+
+				// create a new page to get a new ID
+				one.CreatePage(sectionId, out parentId);
+				var parent = await one.GetPage(parentId);
+
+				var ns = parent.Namespace;
+				PageNamespace.Set(ns);
+
+				parent.Title = "Tagged Pages";
+
+				var container = parent.EnsureContentContainer();
+
+				var h1Index = parent.GetQuickStyle(Styles.StandardStyles.Heading1).Index;
+				var todoIndex = parent.AddTagDef("3", "To Do", 4);
+
+				container.Add(new Paragraph(query).SetQuickStyle(h1Index));
+
+				var content = new XElement(ns + "OEChildren");
+				container.Add(new Paragraph(content));
+
+				foreach (var context in selectedPages
+					.OrderBy(c => c.HierarchyPath)
+					.ThenBy(c => c.PageTitle))
+				{
+					progress.SetMessage(context.PageTitle);
+					progress.Increment();
+
+					var link = one.GetHyperlink(context.PageID,
+						string.IsNullOrWhiteSpace(context.TitleID) ? string.Empty : context.TitleID);
+
+					var text = $"{context.HierarchyPath}/{context.PageTitle}";
+
+					content.Add(new Paragraph(
+						new Tag(todoIndex, false),
+						new XElement(ns + "T",
+							new XCData($"<a href=\"{link}\">{text}</a>"))
+						));
+
+					var bullets = new ContentList(ns);
+					foreach (var snippet in context.Snippets)
+					{
+						link = one.GetHyperlink(context.PageID, snippet.ObjectID);
+						bullets.Add(new Bullet($"<a href=\"{link}\">{snippet.Snippet}</a>"));
+					}
+
+					content.Add(new Paragraph(bullets));
+					content.Add(new Paragraph(string.Empty));
+				}
+
+				await one.Update(parent);
+				parentId = parent.PageId;
+			}
+
+			// navigate after progress dialog is closed otherwise it will hang!
+			await one.NavigateTo(parentId);
 		}
 	}
 }
