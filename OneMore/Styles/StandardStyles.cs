@@ -39,24 +39,32 @@ namespace River.OneMoreAddIn.Styles
 			{
 				case StandardStyles.Heading1:
 					style.FontSize = "16.0";
+					style.SpaceAfter = "0.5";
+					style.SpaceBefore = "0.8";
 					style.Color = "#1e4e79";
 					style.StyleType = StyleType.Heading;
 					break;
 
 				case StandardStyles.Heading2:
 					style.FontSize = "14.0";
+					style.SpaceAfter = "0.5";
+					style.SpaceBefore = "0.8";
 					style.Color = "#2e75b5";
 					style.StyleType = StyleType.Heading;
 					break;
 
 				case StandardStyles.Heading3:
 					style.FontSize = "12.0";
+					style.SpaceAfter = "0.3";
+					style.SpaceBefore = "0.3";
 					style.Color = "#5b9bd5";
 					style.StyleType = StyleType.Heading;
 					break;
 
 				case StandardStyles.Heading4:
 					style.FontSize = "12.0";
+					style.SpaceAfter = "0.3";
+					style.SpaceBefore = "0.3";
 					style.IsItalic = true;
 					style.Color = "#5b9bd5";
 					style.StyleType = StyleType.Heading;
