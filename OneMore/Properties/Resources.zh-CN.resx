@@ -4236,6 +4236,14 @@ ISO-code then comma then language name</comment>
     <value>修剪所选文本中的前导空白</value>
     <comment>ribbon item tootp</comment>
   </data>
+  <data name="ribUnnameUrlsButton_Label" xml:space="preserve">
+    <value>将 URL 替换为网址</value>
+    <comment>ribbon reference</comment>
+  </data>
+  <data name="ribUnnameUrlsButton_Screentip" xml:space="preserve">
+    <value>将 URL 标题替换为基本网址</value>
+    <comment>ribbon reference</comment>
+  </data>
   <data name="ribUpdatePageTimeButton_Label" xml:space="preserve">
     <value>更新页面时间</value>
     <comment>page menu</comment>

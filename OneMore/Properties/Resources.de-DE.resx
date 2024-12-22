@@ -4239,6 +4239,14 @@ Nach der letzten Gruppe</value>
     <value>Entfernt führende Leerzeichen aus ausgewähltem Text</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribUnnameUrlsButton_Label" xml:space="preserve">
+    <value>Ersetzen Sie URLs durch Webadressen</value>
+    <comment>ribbon reference</comment>
+  </data>
+  <data name="ribUnnameUrlsButton_Screentip" xml:space="preserve">
+    <value>Ersetzen Sie URL-Titel durch einfache Webadressen</value>
+    <comment>ribbon reference</comment>
+  </data>
   <data name="ribUpdatePageTimeButton_Label" xml:space="preserve">
     <value>Aktualisieren Sie die Seitenzeit</value>
     <comment>page menu</comment>

@@ -990,6 +990,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<TrimCommand>(true);
 
 
+		[Command("ribUnnameUrlsButton_Label", Keys.None, "ribReferencesMenu")]
+		public async Task UnnameUrlsCmd(IRibbonControl control)
+			=> await factory.Run<UnnameUrlsCommand>();
+
+
 		[Command("ribUpdatePageTimeButton_Label", Keys.None, "ribPageMenu")]
 		public async Task UpdatePageTimeCmd(IRibbonControl control)
 			=> await factory.Run<UpdatePageTimeCommand>(true);

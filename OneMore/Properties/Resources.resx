@@ -4245,6 +4245,14 @@ After last group</value>
     <value>Trim leading whitespace from selected text</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribUnnameUrlsButton_Label" xml:space="preserve">
+    <value>Replace URLs with Web Address</value>
+    <comment>ribbon reference</comment>
+  </data>
+  <data name="ribUnnameUrlsButton_Screentip" xml:space="preserve">
+    <value>Replace URL titles with basic Web address</value>
+    <comment>ribbon reference</comment>
+  </data>
   <data name="ribUpdatePageTimeButton_Label" xml:space="preserve">
     <value>Update Page Time</value>
     <comment>page menu</comment>

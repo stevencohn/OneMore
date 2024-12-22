@@ -4244,6 +4244,14 @@ Po ostatniej grupie</value>
     <value>Wykończenia prowadzące białe znaki z wybranego tekstu</value>
     <comment>ribbon item tootp</comment>
   </data>
+  <data name="ribUnnameUrlsButton_Label" xml:space="preserve">
+    <value>Zastąp adresy URL adresem internetowym</value>
+    <comment>ribbon reference</comment>
+  </data>
+  <data name="ribUnnameUrlsButton_Screentip" xml:space="preserve">
+    <value>Zastąp tytuły adresów URL podstawowym adresem internetowym</value>
+    <comment>ribbon reference</comment>
+  </data>
   <data name="ribUpdatePageTimeButton_Label" xml:space="preserve">
     <value>Zaktualizuj czas strony</value>
     <comment>page menu</comment>

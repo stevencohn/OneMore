@@ -10490,6 +10490,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Replace URLs with Web Address.
+        /// </summary>
+        internal static string ribUnnameUrlsButton_Label {
+            get {
+                return ResourceManager.GetString("ribUnnameUrlsButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Replace URL titles with basic Web address.
+        /// </summary>
+        internal static string ribUnnameUrlsButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribUnnameUrlsButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Update Page Time.
         /// </summary>
         internal static string ribUpdatePageTimeButton_Label {
