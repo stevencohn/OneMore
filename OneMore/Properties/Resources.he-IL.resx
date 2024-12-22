@@ -4242,6 +4242,14 @@ ISO-code then comma then language name</comment>
     <value>חתוך את הרווח הלבן המוביל מהטקסט שנבחר</value>
     <comment>ribbon item tootp</comment>
   </data>
+  <data name="ribUnnameUrlsButton_Label" xml:space="preserve">
+    <value>החלף כתובות URL בכתובת אינטרנט</value>
+    <comment>ribbon reference</comment>
+  </data>
+  <data name="ribUnnameUrlsButton_Screentip" xml:space="preserve">
+    <value>החלף את כותרות הכתובות בכתובת אינטרנט בסיסית</value>
+    <comment>ribbon reference</comment>
+  </data>
   <data name="ribUpdatePageTimeButton_Label" xml:space="preserve">
     <value>עדכן את זמן העמוד</value>
     <comment>page menu</comment>

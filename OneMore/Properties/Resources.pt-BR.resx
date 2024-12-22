@@ -4243,6 +4243,14 @@ Depois do último grupo</value>
     <value>Cortar o espaço em branco inicial do texto selecionado</value>
     <comment>ribbon item tootp</comment>
   </data>
+  <data name="ribUnnameUrlsButton_Label" xml:space="preserve">
+    <value>Substitua URLs por endereço da web</value>
+    <comment>ribbon reference</comment>
+  </data>
+  <data name="ribUnnameUrlsButton_Screentip" xml:space="preserve">
+    <value>Substitua os títulos de URL por endereços da Web básicos</value>
+    <comment>ribbon reference</comment>
+  </data>
   <data name="ribUpdatePageTimeButton_Label" xml:space="preserve">
     <value>Atualizar tempo da página</value>
     <comment>page menu</comment>

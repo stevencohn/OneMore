@@ -4243,6 +4243,14 @@ Na de laatste groep</value>
     <value>Snijd de witruimte voor uit de geselecteerde tekst</value>
     <comment>ribbon item tootp</comment>
   </data>
+  <data name="ribUnnameUrlsButton_Label" xml:space="preserve">
+    <value>Vervang URL's door een webadres</value>
+    <comment>ribbon reference</comment>
+  </data>
+  <data name="ribUnnameUrlsButton_Screentip" xml:space="preserve">
+    <value>Vervang URL-titels door een standaard webadres</value>
+    <comment>ribbon reference</comment>
+  </data>
   <data name="ribUpdatePageTimeButton_Label" xml:space="preserve">
     <value>Paginatijd bijwerken</value>
     <comment>page menu</comment>

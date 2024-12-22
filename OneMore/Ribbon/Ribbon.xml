@@ -738,6 +738,12 @@
                 getScreentip="GetRibbonScreentip"
                 onAction="NameUrlsCmd"/>
               <button
+                id="ribUnnameUrlsButton"
+                imageMso="HyperlinkEdit"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="UnnameUrlsCmd"/>
+              <button
                 id="ribGetImagesButton"
                 imageMso="PictureReset"
                 getLabel="GetRibbonLabel"

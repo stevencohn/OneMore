@@ -4247,6 +4247,14 @@ ISO-code then comma then language name</comment>
     <value>選択したテキストから先頭のホワイトスペースを削除する</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribUnnameUrlsButton_Label" xml:space="preserve">
+    <value>URL を Web アドレスに置き換えます</value>
+    <comment>ribbon reference</comment>
+  </data>
+  <data name="ribUnnameUrlsButton_Screentip" xml:space="preserve">
+    <value>URL タイトルを基本的な Web アドレスに置き換えます</value>
+    <comment>ribbon reference</comment>
+  </data>
   <data name="ribUpdatePageTimeButton_Label" xml:space="preserve">
     <value>ページ時間の更新</value>
     <comment>page menu</comment>

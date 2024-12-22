@@ -4243,6 +4243,14 @@ ISO-code then comma then language name</comment>
     <value>اقتطاع المسافة البيضاء البادئة من النص المحدد</value>
     <comment>ribbon item tootp</comment>
   </data>
+  <data name="ribUnnameUrlsButton_Label" xml:space="preserve">
+    <value>استبدل عناوين URL بعنوان الويب</value>
+    <comment>ribbon reference</comment>
+  </data>
+  <data name="ribUnnameUrlsButton_Screentip" xml:space="preserve">
+    <value>استبدل عناوين URL بعنوان الويب الأساسي</value>
+    <comment>ribbon reference</comment>
+  </data>
   <data name="ribUpdatePageTimeButton_Label" xml:space="preserve">
     <value>تحديث وقت الصفحة</value>
     <comment>page menu</comment>
