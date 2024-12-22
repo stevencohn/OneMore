@@ -77,13 +77,14 @@ namespace River.OneMoreAddIn.Commands
 
 			var elements = GetCandiateElements(page);
 
-			var count = 0;
+			var total = 0;
 			foreach (var element in elements)
 			{
 				var cdata = element.GetCData();
 				var wrapper = cdata.GetWrapper();
-				var anchor = wrapper.Element("a");
-				if (anchor is not null)
+
+				var count = 0;
+				foreach (var anchor in wrapper.Elements("a"))
 				{
 					var href = anchor.Attribute("href")?.Value;
 					if (ValidWebAddress(href))
@@ -91,14 +92,20 @@ namespace River.OneMoreAddIn.Commands
 						if (anchor.TextValue() != href)
 						{
 							anchor.Value = href;
-							cdata.Value = anchor.ToString(SaveOptions.DisableFormatting);
 							count++;
 						}
 					}
 				}
+
+				if (count > 0)
+				{
+					cdata.Value = wrapper.GetInnerXml();
+				}
+
+				total += count;
 			}
 
-			return count > 0;
+			return total > 0;
 		}
 
 
@@ -166,45 +173,29 @@ namespace River.OneMoreAddIn.Commands
 		private async Task<int> ReplaceUrlText(XElement element)
 		{
 			var cdata = element.GetCData();
-
 			var wrapper = cdata.GetWrapper();
-			var anchor = wrapper.Element("a");
-			if (anchor is null)
+
+			var count = 0;
+			foreach (var anchor in wrapper.Elements("a"))
 			{
-				return 0;
-			}
-
-			var href = anchor.Attribute("href")?.Value;
-			if (string.IsNullOrWhiteSpace(href))
-			{
-				return 0;
-			}
-
-			string title;
-			var watch = new System.Diagnostics.Stopwatch();
-			watch.Start();
-
-			try
-			{
-				title = await FetchPageTitle(href);
-				watch.Stop();
-
-				if (!string.IsNullOrWhiteSpace(title))
+				var href = anchor.Attribute("href")?.Value;
+				if (!string.IsNullOrWhiteSpace(href))
 				{
-					var text = HttpUtility.HtmlDecode(title);
-					logger.WriteLine($"resolved {href} to [{text}] in {watch.ElapsedMilliseconds}ms");
-					anchor.Value = text;
-					cdata.ReplaceWith(wrapper.GetInnerXml());
-					return 1;
+					var title = await FetchPageTitle(href);
+					if (!string.IsNullOrWhiteSpace(title))
+					{
+						anchor.Value = title;
+						count++;
+					}
 				}
 			}
-			catch
+
+			if (count > 0)
 			{
-				watch.Stop();
-				logger.WriteLine($"cannot resolve {href} after {watch.ElapsedMilliseconds}ms");
+				cdata.ReplaceWith(wrapper.GetInnerXml());
 			}
 
-			return 0;
+			return count;
 		}
 
 
@@ -216,6 +207,9 @@ namespace River.OneMoreAddIn.Commands
 		{
 			string title = null;
 
+			var watch = new System.Diagnostics.Stopwatch();
+			watch.Start();
+
 			try
 			{
 				logger.WriteLine($"fetching {url}");
@@ -224,6 +218,8 @@ namespace River.OneMoreAddIn.Commands
 				using var source = new CancellationTokenSource(TimeSpan.FromSeconds(5));
 				using var response = await client
 					.GetAsync(new Uri(url, UriKind.Absolute), source.Token).ConfigureAwait(false);
+
+				watch.Stop();
 
 				if (response.IsSuccessStatusCode)
 				{
@@ -261,11 +257,21 @@ namespace River.OneMoreAddIn.Commands
 							break;
 						}
 					}
+
+					title = HttpUtility.HtmlDecode(title);
+					logger.WriteLine($"resolved {url} to [{title}] in {watch.ElapsedMilliseconds}ms");
+				}
+				else
+				{
+					logger.WriteLine($"cannot resolve {url} after {watch.ElapsedMilliseconds}ms");
+					logger.WriteLine($"- StatusCode [{response.StatusCode}]");
+					logger.WriteLine($"- ReasonPhrase [{response.ReasonPhrase}]");
 				}
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine($"cannot retrieve title of {url}", exc);
+				watch.Stop();
+				logger.WriteLine($"cannot resolve {url} after {watch.ElapsedMilliseconds}ms", exc);
 			}
 
 			return title;
