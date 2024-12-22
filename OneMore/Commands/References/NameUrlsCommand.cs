@@ -62,19 +62,6 @@ namespace River.OneMoreAddIn.Commands
 
 		private static bool SimplifyUrls(Page page)
 		{
-			static bool ValidWebAddress(string href)
-			{
-				return
-					!string.IsNullOrWhiteSpace(href) &&
-					!href.StartsWith("onenote:") &&
-					!(
-						href.StartsWith("https://onedrive.live.com/view.aspx") &&
-						href.Contains("&id=documents") &&
-						href.Contains(".one")
-					);
-
-			}
-
 			var elements = GetCandiateElements(page);
 
 			var total = 0;
@@ -106,6 +93,20 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return total > 0;
+		}
+
+
+		private static bool ValidWebAddress(string href)
+		{
+			return
+				!string.IsNullOrWhiteSpace(href) &&
+				!href.StartsWith("onenote:") &&
+				!(
+					href.StartsWith("https://onedrive.live.com/view.aspx") &&
+					href.Contains("&id=documents") &&
+					href.Contains(".one")
+				);
+
 		}
 
 
@@ -179,7 +180,7 @@ namespace River.OneMoreAddIn.Commands
 			foreach (var anchor in wrapper.Elements("a"))
 			{
 				var href = anchor.Attribute("href")?.Value;
-				if (!string.IsNullOrWhiteSpace(href))
+				if (ValidWebAddress(href))
 				{
 					var title = await FetchPageTitle(href);
 					if (!string.IsNullOrWhiteSpace(title))
