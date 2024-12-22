@@ -142,6 +142,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<UpdateCommand>(true);
 
 
+		[Command("ribCheckUrlsButton_Label", Keys.None, "ribReferencesMenu")]
+		public async Task CheckUrlsCmd(IRibbonControl control)
+			=> await factory.Run<CheckUrlsCommand>(true);
+
+
 		[Command("ribChooseFavoriteButton_Label", Keys.Alt | Keys.F)]
 		public async Task ChooseFavoriteCmd(IRibbonControl control)
 			=> await factory.Run<GotoFavoriteCommand>(null);

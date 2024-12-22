@@ -2890,6 +2890,14 @@ Na de laatste groep</value>
     <value>Controleren op updates</value>
     <comment>command</comment>
   </data>
+  <data name="ribCheckUrlsButton_Label" xml:space="preserve">
+    <value>Controleer URL's</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribCheckUrlsButton_Screentip" xml:space="preserve">
+    <value>Controleer op ongeldige URL's en markeer deze</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribChooseColorizerButton_Label" xml:space="preserve">
     <value>Inkleuren</value>
     <comment>ribbon edit</comment>

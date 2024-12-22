@@ -2890,6 +2890,14 @@ Po ostatniej grupie</value>
     <value>Sprawdź aktualizacje</value>
     <comment>command</comment>
   </data>
+  <data name="ribCheckUrlsButton_Label" xml:space="preserve">
+    <value>Sprawdź adresy URL</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribCheckUrlsButton_Screentip" xml:space="preserve">
+    <value>Sprawdź i zaznacz nieprawidłowe adresy URL</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribChooseColorizerButton_Label" xml:space="preserve">
     <value>Pokoloruj</value>
     <comment>ribbon edit</comment>

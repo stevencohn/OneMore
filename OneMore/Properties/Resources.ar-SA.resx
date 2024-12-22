@@ -2889,6 +2889,14 @@ ISO-code then comma then language name</comment>
     <value>تحقق من وجود تحديثات</value>
     <comment>command</comment>
   </data>
+  <data name="ribCheckUrlsButton_Label" xml:space="preserve">
+    <value>تحقق من عناوين URL</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribCheckUrlsButton_Screentip" xml:space="preserve">
+    <value>تحقق من وجود عناوين URL غير الصالحة وحددها</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribChooseColorizerButton_Label" xml:space="preserve">
     <value>تلوين</value>
     <comment>ribbon edit</comment>

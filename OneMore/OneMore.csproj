@@ -204,6 +204,7 @@
     <Compile Include="Commands\References\BiLinkDialog.Designer.cs">
       <DependentUpon>BiLinkDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\References\CheckUrlsCommand.cs" />
     <Compile Include="Commands\References\HyperlinkProvider.cs" />
     <Compile Include="Commands\Reminders\CleanRemindersCommand.cs" />
     <Compile Include="Commands\Snippets\Emoji\Emojis.cs" />

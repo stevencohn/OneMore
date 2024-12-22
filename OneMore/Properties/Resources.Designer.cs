@@ -7408,6 +7408,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check URLs.
+        /// </summary>
+        internal static string ribCheckUrlsButton_Label {
+            get {
+                return ResourceManager.GetString("ribCheckUrlsButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check for and highlight invalid URLs.
+        /// </summary>
+        internal static string ribCheckUrlsButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribCheckUrlsButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Colorize.
         /// </summary>
         internal static string ribChooseColorizerButton_Label {
