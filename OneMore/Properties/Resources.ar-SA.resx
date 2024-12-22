@@ -4244,11 +4244,11 @@ ISO-code then comma then language name</comment>
     <comment>ribbon item tootp</comment>
   </data>
   <data name="ribUnnameUrlsButton_Label" xml:space="preserve">
-    <value>استبدل عناوين URL بعنوان الويب</value>
+    <value>استبدل عناوين URL بالعناوين</value>
     <comment>ribbon reference</comment>
   </data>
   <data name="ribUnnameUrlsButton_Screentip" xml:space="preserve">
-    <value>استبدل عناوين URL بعنوان الويب الأساسي</value>
+    <value>استبدل عناوين URL بعناوين الويب الأساسية</value>
     <comment>ribbon reference</comment>
   </data>
   <data name="ribUpdatePageTimeButton_Label" xml:space="preserve">

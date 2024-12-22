@@ -4245,11 +4245,11 @@ Po ostatniej grupie</value>
     <comment>ribbon item tootp</comment>
   </data>
   <data name="ribUnnameUrlsButton_Label" xml:space="preserve">
-    <value>Zastąp adresy URL adresem internetowym</value>
+    <value>Zamień tytuły adresów URL na adresy</value>
     <comment>ribbon reference</comment>
   </data>
   <data name="ribUnnameUrlsButton_Screentip" xml:space="preserve">
-    <value>Zastąp tytuły adresów URL podstawowym adresem internetowym</value>
+    <value>Zastąp tytuły adresów URL podstawowymi adresami internetowymi</value>
     <comment>ribbon reference</comment>
   </data>
   <data name="ribUpdatePageTimeButton_Label" xml:space="preserve">

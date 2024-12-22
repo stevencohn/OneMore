@@ -10490,7 +10490,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Replace URLs with Web Address.
+        ///   Looks up a localized string similar to Replace URL Titles with Addresses.
         /// </summary>
         internal static string ribUnnameUrlsButton_Label {
             get {
@@ -10499,7 +10499,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Replace URL titles with basic Web address.
+        ///   Looks up a localized string similar to Replace URL titles with basic Web addresses.
         /// </summary>
         internal static string ribUnnameUrlsButton_Screentip {
             get {

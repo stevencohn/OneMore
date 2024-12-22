@@ -4243,11 +4243,11 @@ ISO-code then comma then language name</comment>
     <comment>ribbon item tootp</comment>
   </data>
   <data name="ribUnnameUrlsButton_Label" xml:space="preserve">
-    <value>החלף כתובות URL בכתובת אינטרנט</value>
+    <value>החלף כותרות של כתובות אתרים בכתובות</value>
     <comment>ribbon reference</comment>
   </data>
   <data name="ribUnnameUrlsButton_Screentip" xml:space="preserve">
-    <value>החלף את כותרות הכתובות בכתובת אינטרנט בסיסית</value>
+    <value>החלף כותרות כתובות אתרים בכתובות אינטרנט בסיסיות</value>
     <comment>ribbon reference</comment>
   </data>
   <data name="ribUpdatePageTimeButton_Label" xml:space="preserve">
