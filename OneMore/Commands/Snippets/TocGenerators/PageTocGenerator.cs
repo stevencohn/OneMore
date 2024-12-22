@@ -44,24 +44,7 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 			var headings = CollectHeadings(one, out var titleID);
 			if (!headings.Any())
 			{
-				if (FindMetaElement() is XElement meta)
-				{
-					var result = UI.MoreMessageBox.ShowQuestion(
-						one.OwnerWindow, Resx.InsertTocForPage_ClearToc);
-
-					if (result == System.Windows.Forms.DialogResult.Yes)
-					{
-						meta.Parent.Remove();
-						page.EnsureContentContainer();
-						await one.Update(page);
-					}
-				}
-				else
-				{
-					logger.WriteLine($"{nameof(PageTocGenerator)} found no headings");
-					UI.MoreMessageBox.ShowError(one.OwnerWindow, Resx.InsertTocCommand_NoHeadings);
-				}
-
+				await ClearToC(one);
 				return false;
 			}
 
@@ -167,6 +150,28 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 			}
 
 			return headings;
+		}
+
+
+		private async Task ClearToC(OneNote one)
+		{
+			if (FindMetaElement() is XElement meta)
+			{
+				var result = UI.MoreMessageBox.ShowQuestion(
+					one.OwnerWindow, Resx.InsertTocForPage_ClearToc);
+
+				if (result == System.Windows.Forms.DialogResult.Yes)
+				{
+					meta.Parent.Remove();
+					page.EnsureContentContainer();
+					await one.Update(page);
+				}
+			}
+			else
+			{
+				logger.WriteLine($"{nameof(PageTocGenerator)} found no headings");
+				UI.MoreMessageBox.ShowError(one.OwnerWindow, Resx.InsertTocCommand_NoHeadings);
+			}
 		}
 
 
