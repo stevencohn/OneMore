@@ -2888,6 +2888,14 @@ ISO-code then comma then language name</comment>
     <value>检查更新</value>
     <comment>command</comment>
   </data>
+  <data name="ribCheckUrlsButton_Label" xml:space="preserve">
+    <value>检查网址</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribCheckUrlsButton_Screentip" xml:space="preserve">
+    <value>检查并突出显示无效 URL</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribChooseColorizerButton_Label" xml:space="preserve">
     <value>着色</value>
     <comment>ribbon edit</comment>

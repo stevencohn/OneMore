@@ -2896,6 +2896,14 @@ ISO-code then comma then language name</comment>
     <value>更新の確認</value>
     <comment>command NODUP</comment>
   </data>
+  <data name="ribCheckUrlsButton_Label" xml:space="preserve">
+    <value>URLを確認する</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribCheckUrlsButton_Screentip" xml:space="preserve">
+    <value>無効な URL をチェックして強調表示する</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribChooseColorizerButton_Label" xml:space="preserve">
     <value>コードハイライト</value>
     <comment>ribbon edit NODUP</comment>

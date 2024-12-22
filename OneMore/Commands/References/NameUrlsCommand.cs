@@ -100,7 +100,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			return
 				!string.IsNullOrWhiteSpace(href) &&
-				!href.StartsWith("onenote:") &&
+				href.StartsWith("http") &&
 				!(
 					href.StartsWith("https://onedrive.live.com/view.aspx") &&
 					href.Contains("&id=documents") &&
@@ -272,7 +272,8 @@ namespace River.OneMoreAddIn.Commands
 			catch (Exception exc)
 			{
 				watch.Stop();
-				logger.WriteLine($"cannot resolve {url} after {watch.ElapsedMilliseconds}ms", exc);
+				logger.WriteLine($"cannot resolve {url} after {watch.ElapsedMilliseconds}ms");
+				logger.WriteLine($"ERROR: {exc.Message}");
 			}
 
 			return title;

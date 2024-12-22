@@ -732,6 +732,12 @@
                 getScreentip="GetRibbonScreentip"
                 onAction="RefreshPageLinksCmd"/>
               <button
+                id="ribCheckUrlsButton"
+                imageMso="HyperlinksVerify"
+                getLabel="GetRibbonLabel"
+                getScreentip="GetRibbonScreentip"
+                onAction="CheckUrlsCmd"/>
+              <button
                 id="ribNameUrlsButton"
                 imageMso="AutoSigWebInsertHyperlink"
                 getLabel="GetRibbonLabel"
