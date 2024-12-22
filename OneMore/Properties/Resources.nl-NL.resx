@@ -4244,11 +4244,11 @@ Na de laatste groep</value>
     <comment>ribbon item tootp</comment>
   </data>
   <data name="ribUnnameUrlsButton_Label" xml:space="preserve">
-    <value>Vervang URL's door een webadres</value>
+    <value>Vervang URL-titels door adressen</value>
     <comment>ribbon reference</comment>
   </data>
   <data name="ribUnnameUrlsButton_Screentip" xml:space="preserve">
-    <value>Vervang URL-titels door een standaard webadres</value>
+    <value>Vervang URL-titels door standaardwebadressen</value>
     <comment>ribbon reference</comment>
   </data>
   <data name="ribUpdatePageTimeButton_Label" xml:space="preserve">

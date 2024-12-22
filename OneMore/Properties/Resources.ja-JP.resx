@@ -4248,7 +4248,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribUnnameUrlsButton_Label" xml:space="preserve">
-    <value>URL を Web アドレスに置き換えます</value>
+    <value>URL タイトルをアドレスに置き換える</value>
     <comment>ribbon reference</comment>
   </data>
   <data name="ribUnnameUrlsButton_Screentip" xml:space="preserve">

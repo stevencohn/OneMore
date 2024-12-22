@@ -62,6 +62,19 @@ namespace River.OneMoreAddIn.Commands
 
 		private static bool SimplifyUrls(Page page)
 		{
+			static bool ValidWebAddress(string href)
+			{
+				return
+					!string.IsNullOrWhiteSpace(href) &&
+					!href.StartsWith("onenote:") &&
+					!(
+						href.StartsWith("https://onedrive.live.com/view.aspx") &&
+						href.Contains("&id=documents") &&
+						href.Contains(".one")
+					);
+
+			}
+
 			var elements = GetCandiateElements(page);
 
 			var count = 0;
@@ -73,7 +86,7 @@ namespace River.OneMoreAddIn.Commands
 				if (anchor is not null)
 				{
 					var href = anchor.Attribute("href")?.Value;
-					if (!string.IsNullOrWhiteSpace(href))
+					if (ValidWebAddress(href))
 					{
 						if (anchor.TextValue() != href)
 						{

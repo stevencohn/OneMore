@@ -4237,7 +4237,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon item tootp</comment>
   </data>
   <data name="ribUnnameUrlsButton_Label" xml:space="preserve">
-    <value>将 URL 替换为网址</value>
+    <value>将 URL 标题替换为地址</value>
     <comment>ribbon reference</comment>
   </data>
   <data name="ribUnnameUrlsButton_Screentip" xml:space="preserve">

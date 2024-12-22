@@ -4243,11 +4243,11 @@ Après le dernier groupe</value>
     <comment>ribbon item tootp</comment>
   </data>
   <data name="ribUnnameUrlsButton_Label" xml:space="preserve">
-    <value>Remplacer les URL par une adresse Web</value>
+    <value>Remplacer les titres d'URL par des adresses</value>
     <comment>ribbon reference</comment>
   </data>
   <data name="ribUnnameUrlsButton_Screentip" xml:space="preserve">
-    <value>Remplacer les titres d'URL par une adresse Web de base</value>
+    <value>Remplacer les titres d'URL par des adresses Web de base</value>
     <comment>ribbon reference</comment>
   </data>
   <data name="ribUpdatePageTimeButton_Label" xml:space="preserve">

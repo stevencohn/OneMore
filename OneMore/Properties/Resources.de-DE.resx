@@ -4240,7 +4240,7 @@ Nach der letzten Gruppe</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribUnnameUrlsButton_Label" xml:space="preserve">
-    <value>Ersetzen Sie URLs durch Webadressen</value>
+    <value>Ersetzen Sie URL-Titel durch Adressen</value>
     <comment>ribbon reference</comment>
   </data>
   <data name="ribUnnameUrlsButton_Screentip" xml:space="preserve">

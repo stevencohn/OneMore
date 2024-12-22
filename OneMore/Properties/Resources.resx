@@ -4246,11 +4246,11 @@ After last group</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribUnnameUrlsButton_Label" xml:space="preserve">
-    <value>Replace URLs with Web Address</value>
+    <value>Replace URL Titles with Addresses</value>
     <comment>ribbon reference</comment>
   </data>
   <data name="ribUnnameUrlsButton_Screentip" xml:space="preserve">
-    <value>Replace URL titles with basic Web address</value>
+    <value>Replace URL titles with basic Web addresses</value>
     <comment>ribbon reference</comment>
   </data>
   <data name="ribUpdatePageTimeButton_Label" xml:space="preserve">

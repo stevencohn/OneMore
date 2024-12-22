@@ -4244,7 +4244,7 @@ Depois do último grupo</value>
     <comment>ribbon item tootp</comment>
   </data>
   <data name="ribUnnameUrlsButton_Label" xml:space="preserve">
-    <value>Substitua URLs por endereço da web</value>
+    <value>Substitua títulos de URL por endereços</value>
     <comment>ribbon reference</comment>
   </data>
   <data name="ribUnnameUrlsButton_Screentip" xml:space="preserve">
