@@ -99,9 +99,8 @@ namespace River.OneMoreAddIn.Commands
 
 				converter
 					.RewriteHeadings(touched)
-					.RewriteTodo(touched);
-// disabled, as it will space out also short lines. Added space in heading defintion instead
-//					.SpaceOutParagraphs(touched, 12);
+					.RewriteTodo(touched)
+					.SpaceOutParagraphs(touched, 12);
 
 				await one.Update(page);
 			}
