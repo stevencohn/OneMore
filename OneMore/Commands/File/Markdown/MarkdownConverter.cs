@@ -70,9 +70,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			void replaceAtributes(XElement quickstyle, double spaceBefore, double spaceAfter)
 			{
-				quickstyle.Attributes().Where(a => a.Name == "spaceBefore").Remove();
 				quickstyle.SetAttributeValue("spaceBefore", spaceBefore.ToString("####0.00", CultureInfo.InvariantCulture));
-				quickstyle.Attributes().Where(a => a.Name == "spaceAfter").Remove();
 				quickstyle.SetAttributeValue("spaceAfter", spaceAfter.ToString("####0.00", CultureInfo.InvariantCulture));
 			}
 
