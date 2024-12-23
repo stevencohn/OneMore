@@ -462,11 +462,13 @@ namespace River.OneMoreAddIn
 		{
 			if (deep)
 			{
+				var regex = new Regex(@"<span\s+", RegexOptions.Compiled);
+
 				var text = string.Empty;
 				var cdatas = element.DescendantNodes().OfType<XCData>();
 				foreach (var cdata in cdatas)
 				{
-					if (cdata.Value.Contains("<span "))
+					if (regex.IsMatch(cdata.Value))
 					{
 						var wrap = cdata.GetWrapper();
 						foreach (var node in wrap.Nodes())
