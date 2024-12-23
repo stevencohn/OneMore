@@ -1534,11 +1534,6 @@ Fond jaune</value>
     <value>Largeur de redimensionnement préférée</value>
     <comment>label</comment>
   </data>
-  <data name="ImportCommand_noSpaces" xml:space="preserve">
-    <value>OneNote ne peut pas importer de fichiers démarques à partir de chemins contenant des espaces :
-{0}</value>
-    <comment>error message</comment>
-  </data>
   <data name="ImportDialog_fileLabel.Text" xml:space="preserve">
     <value>Fichier:</value>
     <comment>label</comment>

@@ -3975,16 +3975,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to OneNote cannot import markdown files from paths containing spaces:
-        ///{0}.
-        /// </summary>
-        internal static string ImportCommand_noSpaces {
-            get {
-                return ResourceManager.GetString("ImportCommand_noSpaces", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to File:.
         /// </summary>
         internal static string ImportDialog_fileLabel_Text {

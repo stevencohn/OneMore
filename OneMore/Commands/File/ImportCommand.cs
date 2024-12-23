@@ -18,7 +18,6 @@ namespace River.OneMoreAddIn.Commands
 	using Windows.Data.Pdf;
 	using Windows.Storage;
 	using Windows.Storage.Streams;
-	using Resx = Properties.Resources;
 
 
 	/// <summary>
@@ -509,12 +508,6 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task ImportMarkdown(string filepath)
 		{
-			if (filepath.IndexOf(' ') >= 0)
-			{
-				ShowInfo(string.Format(Resx.ImportCommand_noSpaces, filepath));
-				return;
-			}
-
 			logger.StartClock();
 
 			if (!PathHelper.HasWildFileName(filepath))

@@ -1535,11 +1535,6 @@ Gele achtergrond</value>
     <value>Voorkeur formaat wijzigen breedte</value>
     <comment>label</comment>
   </data>
-  <data name="ImportCommand_noSpaces" xml:space="preserve">
-    <value>OneNote kan geen markdown-bestanden importeren uit paden die spaties bevatten:
-{0}</value>
-    <comment>error message</comment>
-  </data>
   <data name="ImportDialog_fileLabel.Text" xml:space="preserve">
     <value>Het dossier:</value>
     <comment>label</comment>

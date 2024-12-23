@@ -1537,11 +1537,6 @@ OneNoteファイル (*.one)</value>
     <value>標準サイズ幅</value>
     <comment>label</comment>
   </data>
-  <data name="ImportCommand_noSpaces" xml:space="preserve">
-    <value>OneNote は、スペースを含むパスからマークダウン ファイルをインポートできません。
-{0}</value>
-    <comment>error message</comment>
-  </data>
   <data name="ImportDialog_fileLabel.Text" xml:space="preserve">
     <value>ファイル:</value>
     <comment>label</comment>
