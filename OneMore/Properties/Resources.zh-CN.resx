@@ -2888,6 +2888,14 @@ ISO-code then comma then language name</comment>
     <value>检查更新</value>
     <comment>command</comment>
   </data>
+  <data name="ribCheckUrlsButton_Label" xml:space="preserve">
+    <value>检查网址</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribCheckUrlsButton_Screentip" xml:space="preserve">
+    <value>检查并突出显示无效 URL</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribChooseColorizerButton_Label" xml:space="preserve">
     <value>着色</value>
     <comment>ribbon edit</comment>
@@ -4235,6 +4243,14 @@ ISO-code then comma then language name</comment>
   <data name="ribTrimLeadingButton_Screentip" xml:space="preserve">
     <value>修剪所选文本中的前导空白</value>
     <comment>ribbon item tootp</comment>
+  </data>
+  <data name="ribUnnameUrlsButton_Label" xml:space="preserve">
+    <value>将 URL 标题替换为地址</value>
+    <comment>ribbon reference</comment>
+  </data>
+  <data name="ribUnnameUrlsButton_Screentip" xml:space="preserve">
+    <value>将 URL 标题替换为基本网址</value>
+    <comment>ribbon reference</comment>
   </data>
   <data name="ribUpdatePageTimeButton_Label" xml:space="preserve">
     <value>更新页面时间</value>

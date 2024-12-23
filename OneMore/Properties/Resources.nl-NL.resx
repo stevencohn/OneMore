@@ -2890,6 +2890,14 @@ Na de laatste groep</value>
     <value>Controleren op updates</value>
     <comment>command</comment>
   </data>
+  <data name="ribCheckUrlsButton_Label" xml:space="preserve">
+    <value>Controleer URL's</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribCheckUrlsButton_Screentip" xml:space="preserve">
+    <value>Controleer op ongeldige URL's en markeer deze</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribChooseColorizerButton_Label" xml:space="preserve">
     <value>Inkleuren</value>
     <comment>ribbon edit</comment>
@@ -4242,6 +4250,14 @@ Na de laatste groep</value>
   <data name="ribTrimLeadingButton_Screentip" xml:space="preserve">
     <value>Snijd de witruimte voor uit de geselecteerde tekst</value>
     <comment>ribbon item tootp</comment>
+  </data>
+  <data name="ribUnnameUrlsButton_Label" xml:space="preserve">
+    <value>Vervang URL-titels door adressen</value>
+    <comment>ribbon reference</comment>
+  </data>
+  <data name="ribUnnameUrlsButton_Screentip" xml:space="preserve">
+    <value>Vervang URL-titels door standaardwebadressen</value>
+    <comment>ribbon reference</comment>
   </data>
   <data name="ribUpdatePageTimeButton_Label" xml:space="preserve">
     <value>Paginatijd bijwerken</value>

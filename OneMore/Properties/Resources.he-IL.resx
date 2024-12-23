@@ -2894,6 +2894,14 @@ ISO-code then comma then language name</comment>
     <value>בדוק עדכונים</value>
     <comment>command</comment>
   </data>
+  <data name="ribCheckUrlsButton_Label" xml:space="preserve">
+    <value>בדוק כתובות אתרים</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribCheckUrlsButton_Screentip" xml:space="preserve">
+    <value>בדוק והדגש כתובות אתרים לא חוקיות</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribChooseColorizerButton_Label" xml:space="preserve">
     <value>צבע</value>
     <comment>ribbon edit</comment>
@@ -4241,6 +4249,14 @@ ISO-code then comma then language name</comment>
   <data name="ribTrimLeadingButton_Screentip" xml:space="preserve">
     <value>חתוך את הרווח הלבן המוביל מהטקסט שנבחר</value>
     <comment>ribbon item tootp</comment>
+  </data>
+  <data name="ribUnnameUrlsButton_Label" xml:space="preserve">
+    <value>החלף כותרות של כתובות אתרים בכתובות</value>
+    <comment>ribbon reference</comment>
+  </data>
+  <data name="ribUnnameUrlsButton_Screentip" xml:space="preserve">
+    <value>החלף כותרות כתובות אתרים בכתובות אינטרנט בסיסיות</value>
+    <comment>ribbon reference</comment>
   </data>
   <data name="ribUpdatePageTimeButton_Label" xml:space="preserve">
     <value>עדכן את זמן העמוד</value>

@@ -2890,6 +2890,14 @@ Po ostatniej grupie</value>
     <value>Sprawdź aktualizacje</value>
     <comment>command</comment>
   </data>
+  <data name="ribCheckUrlsButton_Label" xml:space="preserve">
+    <value>Sprawdź adresy URL</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribCheckUrlsButton_Screentip" xml:space="preserve">
+    <value>Sprawdź i zaznacz nieprawidłowe adresy URL</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribChooseColorizerButton_Label" xml:space="preserve">
     <value>Pokoloruj</value>
     <comment>ribbon edit</comment>
@@ -4243,6 +4251,14 @@ Po ostatniej grupie</value>
   <data name="ribTrimLeadingButton_Screentip" xml:space="preserve">
     <value>Wykończenia prowadzące białe znaki z wybranego tekstu</value>
     <comment>ribbon item tootp</comment>
+  </data>
+  <data name="ribUnnameUrlsButton_Label" xml:space="preserve">
+    <value>Zamień tytuły adresów URL na adresy</value>
+    <comment>ribbon reference</comment>
+  </data>
+  <data name="ribUnnameUrlsButton_Screentip" xml:space="preserve">
+    <value>Zastąp tytuły adresów URL podstawowymi adresami internetowymi</value>
+    <comment>ribbon reference</comment>
   </data>
   <data name="ribUpdatePageTimeButton_Label" xml:space="preserve">
     <value>Zaktualizuj czas strony</value>

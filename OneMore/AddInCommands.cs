@@ -142,6 +142,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<UpdateCommand>(true);
 
 
+		[Command("ribCheckUrlsButton_Label", Keys.None, "ribReferencesMenu")]
+		public async Task CheckUrlsCmd(IRibbonControl control)
+			=> await factory.Run<CheckUrlsCommand>(true);
+
+
 		[Command("ribChooseFavoriteButton_Label", Keys.Alt | Keys.F)]
 		public async Task ChooseFavoriteCmd(IRibbonControl control)
 			=> await factory.Run<GotoFavoriteCommand>(null);
@@ -988,6 +993,11 @@ namespace River.OneMoreAddIn
 		[Command("ribTrimLeadingButton_Label", Keys.None, "ribCleanMenu")]
 		public async Task TrimLeadingCmd(IRibbonControl control)
 			=> await factory.Run<TrimCommand>(true);
+
+
+		[Command("ribUnnameUrlsButton_Label", Keys.None, "ribReferencesMenu")]
+		public async Task UnnameUrlsCmd(IRibbonControl control)
+			=> await factory.Run<UnnameUrlsCommand>();
 
 
 		[Command("ribUpdatePageTimeButton_Label", Keys.None, "ribPageMenu")]

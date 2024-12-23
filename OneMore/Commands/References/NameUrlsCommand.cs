@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -17,6 +17,18 @@ namespace River.OneMoreAddIn.Commands
 	using System.Xml.Linq;
 
 
+	#region wrappers
+	internal class UnnameUrlsCommand : NameUrlsCommand
+	{
+		public UnnameUrlsCommand() { }
+		public override Task Execute(params object[] args)
+		{
+			return base.Execute(false);
+		}
+	}
+	#endregion
+
+
 	internal class NameUrlsCommand : Command
 	{
 
@@ -27,47 +39,115 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			if (!HttpClientFactory.IsNetworkAvailable())
+			var friendly = args.Length == 0 || (bool)args[0];
+
+			if (friendly && !HttpClientFactory.IsNetworkAvailable())
 			{
 				ShowInfo(Properties.Resources.NetwordConnectionUnavailable);
 				return;
 			}
 
 			await using var one = new OneNote(out var page, out _);
-			if (await NameUrls(page))
+
+			var updated = friendly
+				? await NameUrls(page)
+				: SimplifyUrls(page);
+
+			if (updated)
 			{
 				await one.Update(page);
 			}
 		}
 
 
-		private async Task<bool> NameUrls(Page page)
+		private static bool SimplifyUrls(Page page)
 		{
-			List<XElement> elements = null;
+			var elements = GetCandiateElements(page);
+
+			var total = 0;
+			foreach (var element in elements)
+			{
+				var cdata = element.GetCData();
+				var wrapper = cdata.GetWrapper();
+
+				var count = 0;
+				foreach (var anchor in wrapper.Elements("a"))
+				{
+					var href = anchor.Attribute("href")?.Value;
+					if (ValidWebAddress(href))
+					{
+						if (anchor.TextValue() != href)
+						{
+							anchor.Value = href;
+							count++;
+						}
+					}
+				}
+
+				if (count > 0)
+				{
+					cdata.Value = wrapper.GetInnerXml();
+				}
+
+				total += count;
+			}
+
+			return total > 0;
+		}
+
+
+		private static bool ValidWebAddress(string href)
+		{
+			return
+				!string.IsNullOrWhiteSpace(href) &&
+				href.StartsWith("http") &&
+				!(
+					href.StartsWith("https://onedrive.live.com/view.aspx") &&
+					href.Contains("&id=documents") &&
+					href.Contains(".one")
+				);
+
+		}
+
+
+		private static List<XElement> GetCandiateElements(Page page)
+		{
+			List<XElement> elements;
+
+			// OneNote XML will insert CR prior to 'href' in the CDATA
 			var regex = new Regex(@"<a\s+href=", RegexOptions.Compiled);
 
-			var selections = page.Root.Descendants(page.Namespace + "T")
-				.Where(e =>
-					e.Attributes("selected").Any(a => a.Value.Equals("all")));
+			var range = new SelectionRange(page);
+			range.GetSelection();
 
-			if ((selections.Count() == 1) &&
-				(selections.First().DescendantNodes().OfType<XCData>().First().Value.Length == 0))
+			if (range.Scope == SelectionScope.None ||
+				range.Scope == SelectionScope.TextCursor)
 			{
-				// single empty selection so affect entire page
-				elements = page.Root.DescendantNodes().OfType<XCData>()
+				// entire page
+				elements = page.Root
+					.DescendantNodes().OfType<XCData>()
 					.Where(c => regex.IsMatch(c.Value))
 					.Select(e => e.Parent)
 					.ToList();
 			}
 			else
 			{
-				// selected range so affect only within that
-				elements = page.Root.DescendantNodes().OfType<XCData>()
+				// only selections
+				elements = page.Root
+					.DescendantNodes().OfType<XCData>()
 					.Where(c => regex.IsMatch(c.Value))
 					.Select(e => e.Parent)
 					.Where(e => e.Attributes("selected").Any(a => a.Value == "all"))
 					.ToList();
 			}
+
+			return elements;
+		}
+
+
+		private async Task<bool> NameUrls(Page page)
+		{
+			var elements = GetCandiateElements(page);
 
 			// parallelize internet access for all hyperlinks on page...
 
@@ -94,45 +174,29 @@ namespace River.OneMoreAddIn.Commands
 		private async Task<int> ReplaceUrlText(XElement element)
 		{
 			var cdata = element.GetCData();
-
 			var wrapper = cdata.GetWrapper();
-			var anchor = wrapper.Element("a");
-			if (anchor == null)
+
+			var count = 0;
+			foreach (var anchor in wrapper.Elements("a"))
 			{
-				return 0;
-			}
-
-			var href = anchor.Attribute("href")?.Value;
-			if (string.IsNullOrWhiteSpace(href))
-			{
-				return 0;
-			}
-
-			string title;
-			var watch = new System.Diagnostics.Stopwatch();
-			watch.Start();
-
-			try
-			{
-				title = await FetchPageTitle(href);
-				watch.Stop();
-
-				if (!string.IsNullOrWhiteSpace(title))
+				var href = anchor.Attribute("href")?.Value;
+				if (ValidWebAddress(href))
 				{
-					var text = HttpUtility.HtmlDecode(title);
-					logger.WriteLine($"resolved {href} to [{text}] in {watch.ElapsedMilliseconds}ms");
-					anchor.Value = text;
-					cdata.ReplaceWith(wrapper.GetInnerXml());
-					return 1;
+					var title = await FetchPageTitle(href);
+					if (!string.IsNullOrWhiteSpace(title))
+					{
+						anchor.Value = title;
+						count++;
+					}
 				}
 			}
-			catch
+
+			if (count > 0)
 			{
-				watch.Stop();
-				logger.WriteLine($"cannot resolve {href} after {watch.ElapsedMilliseconds}ms");
+				cdata.ReplaceWith(wrapper.GetInnerXml());
 			}
 
-			return 0;
+			return count;
 		}
 
 
@@ -144,6 +208,9 @@ namespace River.OneMoreAddIn.Commands
 		{
 			string title = null;
 
+			var watch = new System.Diagnostics.Stopwatch();
+			watch.Start();
+
 			try
 			{
 				logger.WriteLine($"fetching {url}");
@@ -152,6 +219,8 @@ namespace River.OneMoreAddIn.Commands
 				using var source = new CancellationTokenSource(TimeSpan.FromSeconds(5));
 				using var response = await client
 					.GetAsync(new Uri(url, UriKind.Absolute), source.Token).ConfigureAwait(false);
+
+				watch.Stop();
 
 				if (response.IsSuccessStatusCode)
 				{
@@ -168,7 +237,7 @@ namespace River.OneMoreAddIn.Commands
 					var contents = "";
 					var length = 0;
 
-					while ((title == null) && (length = await stream.ReadAsync(buffer, 0, chunkSize)) > 0)
+					while ((title is null) && (length = await stream.ReadAsync(buffer, 0, chunkSize)) > 0)
 					{
 						// convert the byte-array to a string and add it to the rest of the
 						// contents that have been downloaded so far
@@ -189,11 +258,22 @@ namespace River.OneMoreAddIn.Commands
 							break;
 						}
 					}
+
+					title = HttpUtility.HtmlDecode(title);
+					logger.WriteLine($"resolved {url} to [{title}] in {watch.ElapsedMilliseconds}ms");
+				}
+				else
+				{
+					logger.WriteLine($"cannot resolve {url} after {watch.ElapsedMilliseconds}ms");
+					logger.WriteLine($"- StatusCode [{response.StatusCode}]");
+					logger.WriteLine($"- ReasonPhrase [{response.ReasonPhrase}]");
 				}
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine($"cannot retrieve title of {url}", exc);
+				watch.Stop();
+				logger.WriteLine($"cannot resolve {url} after {watch.ElapsedMilliseconds}ms");
+				logger.WriteLine($"ERROR: {exc.Message}");
 			}
 
 			return title;

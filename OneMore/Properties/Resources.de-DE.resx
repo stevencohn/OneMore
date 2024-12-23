@@ -2889,6 +2889,14 @@ Nach der letzten Gruppe</value>
     <value>Auf Updates prüfen</value>
     <comment>command</comment>
   </data>
+  <data name="ribCheckUrlsButton_Label" xml:space="preserve">
+    <value>Überprüfen Sie URLs</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribCheckUrlsButton_Screentip" xml:space="preserve">
+    <value>Suchen Sie nach ungültigen URLs und markieren Sie sie</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribChooseColorizerButton_Label" xml:space="preserve">
     <value>Einfärben</value>
     <comment>ribbon edit</comment>
@@ -4238,6 +4246,14 @@ Nach der letzten Gruppe</value>
   <data name="ribTrimLeadingButton_Screentip" xml:space="preserve">
     <value>Entfernt führende Leerzeichen aus ausgewähltem Text</value>
     <comment>ribbon edit</comment>
+  </data>
+  <data name="ribUnnameUrlsButton_Label" xml:space="preserve">
+    <value>Ersetzen Sie URL-Titel durch Adressen</value>
+    <comment>ribbon reference</comment>
+  </data>
+  <data name="ribUnnameUrlsButton_Screentip" xml:space="preserve">
+    <value>Ersetzen Sie URL-Titel durch einfache Webadressen</value>
+    <comment>ribbon reference</comment>
   </data>
   <data name="ribUpdatePageTimeButton_Label" xml:space="preserve">
     <value>Aktualisieren Sie die Seitenzeit</value>

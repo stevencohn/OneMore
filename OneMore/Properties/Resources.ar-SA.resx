@@ -2889,6 +2889,14 @@ ISO-code then comma then language name</comment>
     <value>تحقق من وجود تحديثات</value>
     <comment>command</comment>
   </data>
+  <data name="ribCheckUrlsButton_Label" xml:space="preserve">
+    <value>تحقق من عناوين URL</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribCheckUrlsButton_Screentip" xml:space="preserve">
+    <value>تحقق من وجود عناوين URL غير الصالحة وحددها</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribChooseColorizerButton_Label" xml:space="preserve">
     <value>تلوين</value>
     <comment>ribbon edit</comment>
@@ -4242,6 +4250,14 @@ ISO-code then comma then language name</comment>
   <data name="ribTrimLeadingButton_Screentip" xml:space="preserve">
     <value>اقتطاع المسافة البيضاء البادئة من النص المحدد</value>
     <comment>ribbon item tootp</comment>
+  </data>
+  <data name="ribUnnameUrlsButton_Label" xml:space="preserve">
+    <value>استبدل عناوين URL بالعناوين</value>
+    <comment>ribbon reference</comment>
+  </data>
+  <data name="ribUnnameUrlsButton_Screentip" xml:space="preserve">
+    <value>استبدل عناوين URL بعناوين الويب الأساسية</value>
+    <comment>ribbon reference</comment>
   </data>
   <data name="ribUpdatePageTimeButton_Label" xml:space="preserve">
     <value>تحديث وقت الصفحة</value>
