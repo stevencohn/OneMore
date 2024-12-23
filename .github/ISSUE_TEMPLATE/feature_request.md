@@ -1,9 +1,8 @@
 ---
 name: Feature request
-about: Suggest an idea for this project - PLEASE create a separate issue for each
-  request
+about: Suggest an idea for this project - PLEASE create a separate issue for each request
 title: ''
-labels: ''
+labels: feature-request, unread
 assignees: ''
 
 ---

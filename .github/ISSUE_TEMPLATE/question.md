@@ -2,7 +2,7 @@
 name: Question
 about: Ask a question about use, design, implementation, life, where you left your keys...
 title: ''
-labels: ''
+labels: question, unread
 assignees: ''
 
 ---
