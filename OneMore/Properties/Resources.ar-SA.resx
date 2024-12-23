@@ -1534,11 +1534,6 @@
     <value>عرض تغيير الحجم المفضل</value>
     <comment>label</comment>
   </data>
-  <data name="ImportCommand_noSpaces" xml:space="preserve">
-    <value>لا يمكن لـ OneNote استيراد ملفات تخفيض السعر من المسارات التي تحتوي على مسافات:
-{0}</value>
-    <comment>error message</comment>
-  </data>
   <data name="ImportDialog_fileLabel.Text" xml:space="preserve">
     <value>ملف:</value>
     <comment>label</comment>
