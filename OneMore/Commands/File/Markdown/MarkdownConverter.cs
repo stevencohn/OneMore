@@ -52,6 +52,30 @@ namespace River.OneMoreAddIn.Commands
 			{
 				RewriteHeadings(outline.Descendants(ns + "OE"));
 			}
+
+			// added header spacing specific to markdown
+			var quickstyles = page.Root.Elements(ns + "QuickStyleDef");
+			foreach (var quickstyle in quickstyles)
+			{
+				var name = quickstyle.Attribute("name").Value;
+				if (name.Equals("h1") || name.Equals("h2"))
+				{
+					replaceAtributes(quickstyle, spaceBefore: 0.8, spaceAfter: 0.5);
+				}
+				else
+				if (name.Equals("h3") || name.Equals("h4"))
+				{
+					replaceAtributes(quickstyle, spaceBefore: 0.3, spaceAfter: 0.3);
+				}
+			}
+			void replaceAtributes(XElement quickstyle, double spaceBefore, double spaceAfter)
+			{
+				quickstyle.Attributes().Where(a => a.Name == "spaceBefore").Remove();
+				quickstyle.SetAttributeValue("spaceBefore", spaceBefore.ToString("####0.00", CultureInfo.InvariantCulture));
+				quickstyle.Attributes().Where(a => a.Name == "spaceAfter").Remove();
+				quickstyle.SetAttributeValue("spaceAfter", spaceAfter.ToString("####0.00", CultureInfo.InvariantCulture));
+			}
+
 		}
 
 
