@@ -1855,6 +1855,10 @@ Voulez-vous actualiser la page existante ?</value>
     <value>Créer un plan de page</value>
     <comment>dialog title</comment>
   </data>
+  <data name="MoreMessageBox_hideBox.Text" xml:space="preserve">
+    <value>Masquer ce message à l'avenir</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="MovePageCommand_noPages" xml:space="preserve">
     <value>Il n'y a aucune page sélectionnée à déplacer</value>
     <comment>error message</comment>

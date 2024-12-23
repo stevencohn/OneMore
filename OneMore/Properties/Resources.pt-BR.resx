@@ -1856,6 +1856,10 @@ Deseja atualizar a página existente?</value>
     <value>Criar mapa de página</value>
     <comment>dialog title</comment>
   </data>
+  <data name="MoreMessageBox_hideBox.Text" xml:space="preserve">
+    <value>Ocultar esta mensagem no futuro</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="MovePageCommand_noPages" xml:space="preserve">
     <value>Não há páginas selecionadas para mover</value>
     <comment>error message</comment>

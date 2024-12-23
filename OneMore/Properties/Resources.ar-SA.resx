@@ -1855,6 +1855,10 @@
     <value>إنشاء خريطة الصفحة</value>
     <comment>dialog title</comment>
   </data>
+  <data name="MoreMessageBox_hideBox.Text" xml:space="preserve">
+    <value>إخفاء هذه الرسالة في المستقبل</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="MovePageCommand_noPages" xml:space="preserve">
     <value>لا توجد صفحات محددة لنقلها</value>
     <comment>error message</comment>

@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
+	using River.OneMoreAddIn.Settings;
 	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Diagnostics;
@@ -361,7 +362,7 @@ namespace River.OneMoreAddIn.Commands
 				var updated = root.ToString(SaveOptions.DisableFormatting);
 				if (updated == content && !plugin.CreateNewPage)
 				{
-					ShowInfo(Resx.Plugin_NoChanges);
+					InformNoChange();
 					return null;
 				}
 
@@ -385,6 +386,31 @@ namespace River.OneMoreAddIn.Commands
 				logger.WriteLine("error updating page", exc);
 				ShowError(Resx.Plugin_NoUpdate);
 				return null;
+			}
+		}
+
+
+		private void InformNoChange()
+		{
+			var provider = new SettingsProvider();
+			var settings = provider.GetCollection("plugins");
+			if (settings.Get("hideNoChange", false))
+			{
+				return;
+			}
+
+			var box = new MoreMessageBox();
+			box.SetIcon(MessageBoxIcon.Information);
+			box.SetMessage(Resx.Plugin_NoChanges);
+			box.SetButtons(MessageBoxButtons.OK);
+			box.EnableSuppression();
+			var result = box.ShowDialog(owner);
+
+			if (result == DialogResult.OK && box.SuppressMessage)
+			{
+				settings.Add("hideNoChange", "true");
+				provider.SetCollection(settings);
+				provider.Save();
 			}
 		}
 
