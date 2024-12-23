@@ -38,9 +38,13 @@ namespace River.OneMoreAddIn.Commands
 
 					var uri = new Uri(Path.Combine(renderer.BaseUrl.AbsolutePath, filename));
 
-					var src = uri.AbsoluteUri
+					var src = uri.AbsoluteUri;
+
+					if (src.Contains("%25"))
+					{
 						// double-encoding might encode "%20" to "%2520" (%25 is "%")
-						.Replace("%2520", "%20");
+						src = Uri.UnescapeDataString(src);
+					}
 
 					renderer.Write($"<img src=\"{src}\" alt=\"{label}\" />");
 					Logger.Current.WriteLine($"wrender<img> src=[{src}] alt=[{label}]");
