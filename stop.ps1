@@ -47,7 +47,7 @@ Process
     if ($processId)
     {
         Write-Host "... stopping OneMoreTray.exe" -Fore DarkYellow
-        taskkill /fi "pid gt 0" /im ONENOTE.exe /t /f
+        taskkill /fi "pid gt 0" /im OneMoreTray.exe /t /f
     }
     else
     {
