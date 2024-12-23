@@ -53,14 +53,6 @@ namespace River.OneMoreAddIn
 
 			UI.Scaling.PrepareUI();
 
-			var thread = System.Threading.Thread.CurrentThread;
-
-			var settings = new SettingsProvider().GetCollection(nameof(GeneralSheet));
-			var lang = settings.Get("language", thread.CurrentUICulture.Name);
-			Culture = CultureInfo.GetCultureInfo(lang);
-			thread.CurrentCulture = Culture;
-			thread.CurrentUICulture = Culture;
-
 			Helpers.SessionLogger.WriteSessionHeader();
 
 			Self = this;
@@ -138,11 +130,24 @@ namespace River.OneMoreAddIn
 		}
 
 
+		private static CultureInfo GetCultureSetting()
+		{
+			var thread = System.Threading.Thread.CurrentThread;
+
+			var settings = new SettingsProvider().GetCollection(nameof(GeneralSheet));
+			var lang = settings.Get("language", thread.CurrentUICulture.Name);
+			var culture = CultureInfo.GetCultureInfo(lang);
+			thread.CurrentCulture = culture;
+			thread.CurrentUICulture = culture;
+			return culture;
+		}
+
+
 		/// <summary>
 		/// Gets the thread culture for use in subsequent threads; used primarily for 
 		/// debugging when explicitly setting the culture in the AddIn() constructor
 		/// </summary>
-		public static CultureInfo Culture { get; private set; } = CultureInfo.GetCultureInfo("en");
+		public static CultureInfo Culture { get; private set; } = GetCultureSetting();
 
 
 		/// <summary>
