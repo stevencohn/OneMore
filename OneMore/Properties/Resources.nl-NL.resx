@@ -1856,6 +1856,10 @@ Wilt u de bestaande pagina vernieuwen?</value>
     <value>Maak een paginakaart</value>
     <comment>dialog title</comment>
   </data>
+  <data name="MoreMessageBox_hideBox.Text" xml:space="preserve">
+    <value>Verberg dit bericht in de toekomst</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="MovePageCommand_noPages" xml:space="preserve">
     <value>Er zijn geen pagina's geselecteerd om te verplaatsen</value>
     <comment>error message</comment>

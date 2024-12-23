@@ -1856,6 +1856,10 @@ Czy chcesz odświeżyć istniejącą stronę?</value>
     <value>Utwórz mapę stron</value>
     <comment>dialog title</comment>
   </data>
+  <data name="MoreMessageBox_hideBox.Text" xml:space="preserve">
+    <value>Ukryj tę wiadomość w przyszłości</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="MovePageCommand_noPages" xml:space="preserve">
     <value>Nie wybrano żadnych stron do przeniesienia</value>
     <comment>error message</comment>

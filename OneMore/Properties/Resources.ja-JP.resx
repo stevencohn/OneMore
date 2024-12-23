@@ -1858,6 +1858,10 @@ OneNoteファイル (*.one)</value>
     <value>ページマップを作成</value>
     <comment>dialog title</comment>
   </data>
+  <data name="MoreMessageBox_hideBox.Text" xml:space="preserve">
+    <value>今後このメッセージを非表示にします</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="MovePageCommand_noPages" xml:space="preserve">
     <value>移動するページが選択されていません</value>
     <comment>error message</comment>

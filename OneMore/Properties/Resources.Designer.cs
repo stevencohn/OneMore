@@ -5059,6 +5059,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hide this message in the future.
+        /// </summary>
+        internal static string MoreMessageBox_hideBox_Text {
+            get {
+                return ResourceManager.GetString("MoreMessageBox_hideBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There are no pages selected to move.
         /// </summary>
         internal static string MovePageCommand_noPages {

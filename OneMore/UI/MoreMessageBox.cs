@@ -18,11 +18,19 @@ namespace River.OneMoreAddIn.UI
 
 			if (NeedsLocalizing())
 			{
+				Localize(new string[]
+				{
+					"hideBox"
+				});
+
 				Text = Resx.ProgramName;
 			}
 
 			messageBox.Clear();
 		}
+
+
+		public bool SuppressMessage { get; private set; }
 
 
 		public void ShowLogLink()
@@ -40,6 +48,12 @@ namespace River.OneMoreAddIn.UI
 		public void AppendMessage(string message, Color color)
 		{
 			messageBox.AppendFormattedText(message, color);
+		}
+
+
+		public void EnableSuppression()
+		{
+			hideBox.Visible = true;
 		}
 
 
@@ -178,6 +192,12 @@ namespace River.OneMoreAddIn.UI
 		public static DialogResult ShowWarning(IWin32Window owner, string text)
 		{
 			return Show(owner, text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+		}
+
+
+		private void ChangeSuppression(object sender, System.EventArgs e)
+		{
+			SuppressMessage = hideBox.Visible && hideBox.Checked;
 		}
 
 

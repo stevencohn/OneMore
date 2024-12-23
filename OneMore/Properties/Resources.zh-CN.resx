@@ -1854,6 +1854,10 @@ OneNote 文件 (*.one)</value>
     <value>为页面创建链接图谱</value>
     <comment>dialog title</comment>
   </data>
+  <data name="MoreMessageBox_hideBox.Text" xml:space="preserve">
+    <value>以后隐藏此消息</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="MovePageCommand_noPages" xml:space="preserve">
     <value>没有选择要移动的页面</value>
     <comment>error message</comment>

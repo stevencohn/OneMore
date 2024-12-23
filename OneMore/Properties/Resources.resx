@@ -1856,6 +1856,10 @@ Do you want to refresh the existing page?</value>
     <value>Create Page Map</value>
     <comment>dialog title</comment>
   </data>
+  <data name="MoreMessageBox_hideBox.Text" xml:space="preserve">
+    <value>Hide this message in the future</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="MovePageCommand_noPages" xml:space="preserve">
     <value>There are no pages selected to move</value>
     <comment>error message</comment>

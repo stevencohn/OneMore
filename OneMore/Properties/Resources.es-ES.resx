@@ -1855,6 +1855,10 @@ Título personalizado 3</value>
     <value>Crear mapa de página</value>
     <comment>dialog title</comment>
   </data>
+  <data name="MoreMessageBox_hideBox.Text" xml:space="preserve">
+    <value>Ocultar este mensaje en el futuro</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="MovePageCommand_noPages" xml:space="preserve">
     <value>No hay páginas seleccionadas para mover</value>
     <comment>error message</comment>

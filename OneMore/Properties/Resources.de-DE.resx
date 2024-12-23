@@ -1855,6 +1855,10 @@ Möchten Sie die bestehende Seite aktualisieren?</value>
     <value>Seitenzuordnung erstellen</value>
     <comment>dialog title</comment>
   </data>
+  <data name="MoreMessageBox_hideBox.Text" xml:space="preserve">
+    <value>Verstecken Sie diese Nachricht in Zukunft</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="MovePageCommand_noPages" xml:space="preserve">
     <value>Es sind keine Seiten zum Verschieben ausgewählt</value>
     <comment>error message</comment>

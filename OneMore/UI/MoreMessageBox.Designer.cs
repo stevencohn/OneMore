@@ -36,6 +36,7 @@
 			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.hideBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.noButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.topPanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.iconBox)).BeginInit();
@@ -148,6 +149,7 @@
 			// panel1
 			// 
 			this.panel1.BackColor = System.Drawing.SystemColors.Control;
+			this.panel1.Controls.Add(this.hideBox);
 			this.panel1.Controls.Add(this.noButton);
 			this.panel1.Controls.Add(this.cancelButton);
 			this.panel1.Controls.Add(this.okButton);
@@ -157,6 +159,23 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(753, 61);
 			this.panel1.TabIndex = 3;
+			// 
+			// hideBox
+			// 
+			this.hideBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.hideBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.hideBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.hideBox.Location = new System.Drawing.Point(23, 20);
+			this.hideBox.Name = "hideBox";
+			this.hideBox.Size = new System.Drawing.Size(262, 25);
+			this.hideBox.StylizeImage = false;
+			this.hideBox.TabIndex = 3;
+			this.hideBox.Text = "Hide this message in the future";
+			this.hideBox.ThemedBack = null;
+			this.hideBox.ThemedFore = null;
+			this.hideBox.UseVisualStyleBackColor = false;
+			this.hideBox.Visible = false;
+			this.hideBox.CheckedChanged += new System.EventHandler(this.ChangeSuppression);
 			// 
 			// noButton
 			// 
@@ -211,5 +230,6 @@
 		private River.OneMoreAddIn.UI.MoreRichLabel messageBox;
 		private River.OneMoreAddIn.UI.MoreLinkLabel logLink;
 		private MoreButton noButton;
+		private MoreCheckBox hideBox;
 	}
 }

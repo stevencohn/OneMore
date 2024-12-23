@@ -1856,6 +1856,10 @@ Total Row Font
     <value>צור מפת עמוד</value>
     <comment>dialog title</comment>
   </data>
+  <data name="MoreMessageBox_hideBox.Text" xml:space="preserve">
+    <value>הסתר הודעה זו בעתיד</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="MovePageCommand_noPages" xml:space="preserve">
     <value>לא נבחרו דפים להזזה</value>
     <comment>error message</comment>
