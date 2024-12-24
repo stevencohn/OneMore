@@ -218,7 +218,7 @@ namespace River.OneMoreAddIn.Commands
 						else
 						{
 							// look for all other tags
-							foreach (var t in Page.taglist)
+							foreach (var t in MarkdownEmojis.taglist)
 							{
 								// check for other tags
 								if (text.Value.Contains(t.name))
