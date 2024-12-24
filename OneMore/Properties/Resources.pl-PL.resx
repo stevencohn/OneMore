@@ -3953,6 +3953,14 @@ Po ostatniej grupie</value>
     <value>Odznacz i zresetuj wszystkie ukończone zadania na tej stronie</value>
     <comment>ribbon reminders</comment>
   </data>
+  <data name="ribRestartTimerButton_Label" xml:space="preserve">
+    <value>Uruchom ponownie stoper</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribRestartTimerButton_Screentip" xml:space="preserve">
+    <value>Uruchom ponownie Timer, ustawiając go z powrotem na zero</value>
+    <comment>ribbon extras</comment>
+  </data>
   <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
     <value>Przywróć szerokości pojemników</value>
     <comment>ribbon clean</comment>
@@ -4096,6 +4104,14 @@ Po ostatniej grupie</value>
   <data name="ribShowXmlButton_Screentip" xml:space="preserve">
     <value>Pokaż XML hierarchii i bieżącej strony (Ctrl + Shift + Alt + X)</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribShutdownTimerButton_Label" xml:space="preserve">
+    <value>Zatrzymaj licznik czasu</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribShutdownTimerButton_Screentip" xml:space="preserve">
+    <value>Zatrzymaj i zamknij okno Timera</value>
+    <comment>ribbon extras</comment>
   </data>
   <data name="ribSnippetsMenu_Label" xml:space="preserve">
     <value>Fragmenty</value>

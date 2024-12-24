@@ -9823,6 +9823,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Restart Timer.
+        /// </summary>
+        internal static string ribRestartTimerButton_Label {
+            get {
+                return ResourceManager.GetString("ribRestartTimerButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restart the Timer, setting it back to zero.
+        /// </summary>
+        internal static string ribRestartTimerButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribRestartTimerButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Restore Container Widths.
         /// </summary>
         internal static string ribRestoreAutosizeButton_Label {
@@ -10153,6 +10171,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribShowXmlButton_Screentip {
             get {
                 return ResourceManager.GetString("ribShowXmlButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stop Timer.
+        /// </summary>
+        internal static string ribShutdownTimerButton_Label {
+            get {
+                return ResourceManager.GetString("ribShutdownTimerButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stop and close the Timer window.
+        /// </summary>
+        internal static string ribShutdownTimerButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribShutdownTimerButton_Screentip", resourceCulture);
             }
         }
         

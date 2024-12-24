@@ -54,6 +54,26 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
+			var cmd = (int)args[0];
+
+			if (cmd == TimerWindow.CopyCmd)
+			{
+				await CopyAndInsertTime();
+			}
+			else if (cmd == TimerWindow.RestartCmd)
+			{
+				window.Restart();
+			}
+			else if (cmd == TimerWindow.ShutdownCmd)
+			{
+				window.Shutdown();
+			}
+		}
+
+
+		// default binding: F2
+		private static async Task CopyAndInsertTime()
+		{
 			await using var one = new OneNote(out var page, out var ns);
 			var run = page.Root.Descendants(ns + "T")
 				.FirstOrDefault(e => e.Attribute("selected")?.Value == "all");
@@ -75,7 +95,8 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void CloseTimerWindow(object sender, System.Windows.Forms.FormClosedEventArgs e)
+		private static void CloseTimerWindow(
+			object sender, System.Windows.Forms.FormClosedEventArgs e)
 		{
 			window.Dispose();
 			window = null;

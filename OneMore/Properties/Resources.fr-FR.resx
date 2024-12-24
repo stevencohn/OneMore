@@ -3951,6 +3951,14 @@ Après le dernier groupe</value>
     <value>Décochez et réinitialisez toutes les tâches terminées sur cette page</value>
     <comment>ribbon reminders</comment>
   </data>
+  <data name="ribRestartTimerButton_Label" xml:space="preserve">
+    <value>Redémarrer la minuterie</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribRestartTimerButton_Screentip" xml:space="preserve">
+    <value>Redémarrez le minuteur en le remettant à zéro</value>
+    <comment>ribbon extras</comment>
+  </data>
   <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
     <value>Restaurer les largeurs de conteneurs</value>
     <comment>ribbon clean</comment>
@@ -4094,6 +4102,14 @@ Après le dernier groupe</value>
   <data name="ribShowXmlButton_Screentip" xml:space="preserve">
     <value>Afficher le XML de la hiérarchie et de la page actuelle (Ctrl + Maj + Alt + X)</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribShutdownTimerButton_Label" xml:space="preserve">
+    <value>Arrêter la minuterie</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribShutdownTimerButton_Screentip" xml:space="preserve">
+    <value>Arrêtez et fermez la fenêtre du minuteur</value>
+    <comment>ribbon extras</comment>
   </data>
   <data name="ribSnippetsMenu_Label" xml:space="preserve">
     <value>Extraits</value>

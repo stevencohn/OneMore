@@ -3955,6 +3955,14 @@ ISO-code then comma then language name</comment>
     <value>このページ上の完了したタスクをすべてオフにしてリセットします</value>
     <comment>ribbon reminders</comment>
   </data>
+  <data name="ribRestartTimerButton_Label" xml:space="preserve">
+    <value>リスタートタイマー</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribRestartTimerButton_Screentip" xml:space="preserve">
+    <value>タイマーを再起動してゼロに戻します</value>
+    <comment>ribbon extras</comment>
+  </data>
   <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
     <value>コンテナ幅を自動調整</value>
     <comment>ribbon clean</comment>
@@ -4097,6 +4105,14 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="ribShowXmlButton_Screentip" xml:space="preserve">
     <value>階層と現在のページのXMLを表示 (Ctrl + Shift + Alt + X)</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribShutdownTimerButton_Label" xml:space="preserve">
+    <value>タイマーの停止</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribShutdownTimerButton_Screentip" xml:space="preserve">
+    <value>タイマーウィンドウを停止して閉じます</value>
     <comment>ribbon extras</comment>
   </data>
   <data name="ribSnippetsMenu_Label" xml:space="preserve">

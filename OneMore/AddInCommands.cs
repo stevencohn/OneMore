@@ -524,7 +524,7 @@ namespace River.OneMoreAddIn
 
 		[Command("ribInsertTimerButton_Label", Keys.F2)]
 		public async Task InsertTimerCmd(IRibbonControl control)
-			=> await factory.Run<TimerWindowCommand>(true);
+			=> await factory.Run<TimerWindowCommand>(TimerWindow.CopyCmd);
 
 
 		[Command("ribInsertTocButton_Label", Keys.None, "ribSnippetsMenu")]
@@ -799,6 +799,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<ResetTasksCommand>();
 
 
+		[Command("ribRestartTimerButton_Label", Keys.Shift | Keys.F2)]
+		public async Task RestartTimerCmd(IRibbonControl control)
+			=> await factory.Run<TimerWindowCommand>(TimerWindow.RestartCmd);
+
+
 		[Command("ribRestoreAutosizeButton_Label", Keys.None, "ribCleanMenu")]
 		public async Task RestoreAutosizeCmd(IRibbonControl control)
 			=> await factory.Run<RestoreAutosizeCommand>();
@@ -901,6 +906,11 @@ namespace River.OneMoreAddIn
 		[Command("ribShowXmlButton_Label", Keys.Control | Keys.Alt | Keys.Shift | Keys.X)]
 		public async Task ShowXmlCmd(IRibbonControl control)
 			=> await factory.Run<ShowXmlCommand>();
+
+
+		[Command("ribShutdownTimerButton_Label", Keys.Control | Keys.Shift | Keys.F2)]
+		public async Task ShutdownTimerCmd(IRibbonControl control)
+			=> await factory.Run<TimerWindowCommand>(TimerWindow.ShutdownCmd);
 
 
 		[Command("ribSortButton_Label", Keys.None)]
