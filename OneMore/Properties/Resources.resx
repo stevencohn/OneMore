@@ -1723,6 +1723,10 @@ Yellow Background</value>
     <value>Top of page</value>
     <comment>hyperlink</comment>
   </data>
+  <data name="InsertTocDialog_levelsLabel.Text" xml:space="preserve">
+    <value>Show Levels</value>
+    <comment>label</comment>
+  </data>
   <data name="InsertTocDialog_locationBox.Text" xml:space="preserve">
     <value>At top of page
 At top of page, overlayed

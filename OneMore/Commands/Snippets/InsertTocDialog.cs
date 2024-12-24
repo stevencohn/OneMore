@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.UI;
 	using Snippets.TocGenerators;
 	using System;
 	using Resx = Properties.Resources;
@@ -24,6 +25,7 @@ namespace River.OneMoreAddIn.Commands
 
 				Localize(new string[]
 				{
+					"pageGroup=word_Page",
 					"pageRadio",
 					"topBox",
 					"rightAlignBox",
@@ -31,8 +33,11 @@ namespace River.OneMoreAddIn.Commands
 					"locationBox",
 					"styleLabel",
 					"styleBox",
+					"levelsLabel",
+					"sectionGroup=word_Section",
 					"sectionRadio",
 					"previewBox",
+					"notebookGroup=word_Notebook",
 					"notebookRadio",
 					"pagesBox",
 					"preview2Box=InsertTocDialog_previewBox.Text",
@@ -79,6 +84,15 @@ namespace River.OneMoreAddIn.Commands
 						styleBox.SelectedIndex = index;
 					}
 				}
+
+				levelsBox.Value = 6;
+				if (parameters.Find(p => p.StartsWith("level")) is string level)
+				{
+					if (int.TryParse(level.Substring(5), out var value))
+					{
+						levelsBox.Value = value;
+					}
+				}
 			}
 		}
 
@@ -86,31 +100,46 @@ namespace River.OneMoreAddIn.Commands
 		// main radio boxes: page, section, notebook
 		private void ChangeScopeRadioSelection(object sender, EventArgs e)
 		{
+			// only handle IsChecked...
+			if (sender is MoreRadioButton box && !box.Checked)
+			{
+				return;
+			}
+
 			if (sender == pageRadio)
 			{
+				sectionRadio.Checked = false;
+				notebookRadio.Checked = false;
 				topBox.Enabled = true;
 				rightAlignBox.Enabled = topBox.Checked;
 				locationBox.Enabled = true;
 				styleBox.Enabled = true;
+				levelsBox.Enabled = true;
 				sectionPagePreviewBox.Enabled = false;
 				pagesBox.Enabled = false;
 				notebookPagePreviewBox.Enabled = false;
 			}
 			else if (sender == sectionRadio)
 			{
+				pageRadio.Checked = false;
+				notebookRadio.Checked = false;
 				topBox.Enabled = pagesBox.Enabled = false;
 				rightAlignBox.Enabled = false;
 				locationBox.Enabled = false;
 				styleBox.Enabled = false;
+				levelsBox.Enabled = false;
 				sectionPagePreviewBox.Enabled = true;
 				notebookPagePreviewBox.Enabled = false;
 			}
 			else
 			{
+				pageRadio.Checked = false;
+				sectionRadio.Checked = false;
 				topBox.Enabled = false;
 				rightAlignBox.Enabled = false;
 				locationBox.Enabled = false;
 				styleBox.Enabled = false;
+				levelsBox.Enabled = false;
 				sectionPagePreviewBox.Enabled = false;
 				pagesBox.Enabled = true;
 				notebookPagePreviewBox.Enabled = pagesBox.Checked;
@@ -152,6 +181,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				parameters.Add("page");
 				parameters.Add($"style{styleBox.SelectedIndex}");
+				parameters.Add($"level{levelsBox.Value}");
 				if (topBox.Checked) parameters.Add("links");
 				if (rightAlignBox.Checked) parameters.Add("align");
 

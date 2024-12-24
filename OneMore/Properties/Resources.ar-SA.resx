@@ -1722,6 +1722,10 @@
     <value>أعلى الصفحة</value>
     <comment>hyperlink</comment>
   </data>
+  <data name="InsertTocDialog_levelsLabel.Text" xml:space="preserve">
+    <value>إظهار المستويات</value>
+    <comment>label</comment>
+  </data>
   <data name="InsertTocDialog_locationBox.Text" xml:space="preserve">
     <value>في أعلى الصفحة
 في أعلى الصفحة، متراكب

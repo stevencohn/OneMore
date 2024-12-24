@@ -1722,6 +1722,10 @@ Fondo amarillo</value>
     <value>Parte superior de la página</value>
     <comment>hyperlink</comment>
   </data>
+  <data name="InsertTocDialog_levelsLabel.Text" xml:space="preserve">
+    <value>Mostrar niveles</value>
+    <comment>label</comment>
+  </data>
   <data name="InsertTocDialog_locationBox.Text" xml:space="preserve">
     <value>En la parte superior de la página
 En la parte superior de la página, superpuesto

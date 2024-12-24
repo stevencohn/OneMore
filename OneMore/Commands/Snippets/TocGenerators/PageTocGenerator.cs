@@ -68,6 +68,13 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 				return false;
 			}
 
+			var level = parameters.FirstOrDefault(p => p.StartsWith("level"));
+			if (level is not null)
+			{
+				var levels = int.Parse(level.Substring(5));
+				headings = headings.Where(h => h.Level <= levels).ToList();
+			}
+
 			// build new TOC...
 
 			var op = parameters.Contains(RefreshCmd) ? "refresh" : "build";
@@ -107,6 +114,7 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 			if (parameters.Contains("align")) segments = $"{segments}/align";
 			if (parameters.Contains("here")) segments = $"{segments}/here";
 			if (parameters.Contains("over")) segments = $"{segments}/over";
+			if (level is not null) segments = $"{segments}/{level}";
 
 			table[0][0].SetContent(MakeTitle(page, segments));
 			table[1][0].SetContent(content);

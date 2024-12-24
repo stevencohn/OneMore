@@ -1723,6 +1723,10 @@ Fundo Amarelo</value>
     <value>Topo da página</value>
     <comment>hyperlink</comment>
   </data>
+  <data name="InsertTocDialog_levelsLabel.Text" xml:space="preserve">
+    <value>Mostrar níveis</value>
+    <comment>label</comment>
+  </data>
   <data name="InsertTocDialog_locationBox.Text" xml:space="preserve">
     <value>No topo da página
 No topo da página, sobreposto

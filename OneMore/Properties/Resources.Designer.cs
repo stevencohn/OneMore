@@ -4428,6 +4428,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show Levels.
+        /// </summary>
+        internal static string InsertTocDialog_levelsLabel_Text {
+            get {
+                return ResourceManager.GetString("InsertTocDialog_levelsLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to At top of page
         ///At top of page, overlayed
         ///At current cursor.

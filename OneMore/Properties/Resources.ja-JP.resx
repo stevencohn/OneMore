@@ -1725,6 +1725,10 @@ OneNoteファイル (*.one)</value>
     <value>ページの上部</value>
     <comment>hyperlink</comment>
   </data>
+  <data name="InsertTocDialog_levelsLabel.Text" xml:space="preserve">
+    <value>レベルを表示</value>
+    <comment>label</comment>
+  </data>
   <data name="InsertTocDialog_locationBox.Text" xml:space="preserve">
     <value>ページの先頭にある
 ページの上部にオーバーレイされます
