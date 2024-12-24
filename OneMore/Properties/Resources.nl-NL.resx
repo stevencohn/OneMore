@@ -1725,6 +1725,7 @@ Gele achtergrond</value>
   </data>
   <data name="InsertTocDialog_locationBox.Text" xml:space="preserve">
     <value>Bovenaan de pagina
+Bovenaan de pagina, overlay
 Bij de huidige cursor</value>
     <comment>combobox</comment>
   </data>

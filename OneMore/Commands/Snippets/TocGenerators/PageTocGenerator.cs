@@ -19,6 +19,26 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 	/// </summary>
 	internal sealed class PageTocGenerator : TocGenerator
 	{
+		/*
+		TBC...
+
+		internal enum TocLocation
+		{
+			// values must match index of InsertTocDialog.locationBox items
+			//
+			// At top of first outline
+			// At top of page, inserted
+			// At top of page, overlayed
+			// At current cursor
+		
+
+			TopOutline,
+			//TopInserted,
+			TopOverlay,
+			Cursor
+		}
+		*/
+
 		public const int MinToCWidth = 400;
 
 		private Page page;
@@ -86,6 +106,7 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 			if (parameters.Contains("links")) segments = $"{segments}/links";
 			if (parameters.Contains("align")) segments = $"{segments}/align";
 			if (parameters.Contains("here")) segments = $"{segments}/here";
+			if (parameters.Contains("over")) segments = $"{segments}/over";
 
 			table[0][0].SetContent(MakeTitle(page, segments));
 			table[1][0].SetContent(content);
@@ -200,6 +221,11 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 
 			// creating new TOC...
 
+			if (parameters.Contains("over"))
+			{
+				return CreateOverlayContainer();
+			}
+
 			container = new XElement(ns + "OE");
 
 			// try to find selection; need to find T runs and then OE because OE will be
@@ -251,6 +277,37 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 
 			// NOTE: I don't think this can break?!
 			anchor.Elements(ns + "OEChildren").First().AddFirst(container);
+
+			return container;
+		}
+
+
+		private XElement CreateOverlayContainer()
+		{
+			// <one:Position x="36.0" y="86.0" z="0" />
+			// <one:Size width="286.3078918457031" height="375.5271911621094" isSetByUser="true" />
+
+			var outlines = page.Root.Elements(ns + "Outline");
+
+			var x = (int)outlines.Max(o =>
+				float.Parse(o.Element(ns + "Position").Attribute("x").Value) +
+				float.Parse(o.Element(ns + "Size").Attribute("width").Value));
+
+			var y = (int)outlines.Elements(ns + "Position").Min(p => float.Parse(p.Attribute("y").Value));
+
+			x = Math.Max(x - MinToCWidth, 200);
+			y = Math.Min(y + 30, 125);
+
+			var container = new XElement(ns + "OE");
+			var outline = new XElement(ns + "Outline",
+				new XElement(ns + "Position",
+					new XAttribute("x", $"{x}.0"),
+					new XAttribute("y", $"{y}.0")),
+				new XElement(ns + "OEChildren",
+					container)
+				);
+
+			page.Root.Add(outline);
 
 			return container;
 		}

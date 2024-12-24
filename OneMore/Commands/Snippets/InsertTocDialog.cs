@@ -67,7 +67,10 @@ namespace River.OneMoreAddIn.Commands
 				pageRadio.Checked = true;
 				topBox.Checked = parameters.Contains("links");
 				rightAlignBox.Checked = parameters.Contains("align");
-				locationBox.SelectedIndex = parameters.Contains("here") ? 1 : 0;
+
+				if (parameters.Contains("here")) locationBox.SelectedIndex = 2;
+				else if (parameters.Contains("over")) locationBox.SelectedIndex = 1;
+				else locationBox.SelectedIndex = 0;
 
 				if (parameters.Find(p => p.StartsWith("style")) is string style)
 				{
@@ -152,8 +155,8 @@ namespace River.OneMoreAddIn.Commands
 				if (topBox.Checked) parameters.Add("links");
 				if (rightAlignBox.Checked) parameters.Add("align");
 
-				// for backwards compatibilty, we only track 'here' and not 'top'
-				if (locationBox.SelectedIndex == 1) parameters.Add("here");
+				if (locationBox.SelectedIndex == 2) parameters.Add("here");
+				else if (locationBox.SelectedIndex == 1) parameters.Add("over");
 			}
 			else if (sectionRadio.Checked)
 			{

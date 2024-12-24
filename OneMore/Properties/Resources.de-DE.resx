@@ -1724,6 +1724,7 @@ Gelber Hintergrund</value>
   </data>
   <data name="InsertTocDialog_locationBox.Text" xml:space="preserve">
     <value>Oben auf der Seite
+Oben auf der Seite, überlagert
 Am aktuellen Cursor</value>
     <comment>combobox</comment>
   </data>

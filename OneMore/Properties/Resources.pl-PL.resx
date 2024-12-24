@@ -1725,6 +1725,7 @@ Czerwony pierwszy plan
   </data>
   <data name="InsertTocDialog_locationBox.Text" xml:space="preserve">
     <value>Na górze strony
+Na górze strony, nakładka
 Przy bieżącym kursorze</value>
     <comment>combobox</comment>
   </data>

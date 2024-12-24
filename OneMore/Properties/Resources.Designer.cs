@@ -4429,6 +4429,7 @@ namespace River.OneMoreAddIn.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to At top of page
+        ///At top of page, overlayed
         ///At current cursor.
         /// </summary>
         internal static string InsertTocDialog_locationBox_Text {

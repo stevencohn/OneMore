@@ -1725,6 +1725,7 @@ Yellow Background</value>
   </data>
   <data name="InsertTocDialog_locationBox.Text" xml:space="preserve">
     <value>At top of page
+At top of page, overlayed
 At current cursor</value>
     <comment>combobox</comment>
   </data>

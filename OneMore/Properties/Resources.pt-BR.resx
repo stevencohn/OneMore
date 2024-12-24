@@ -1725,6 +1725,7 @@ Fundo Amarelo</value>
   </data>
   <data name="InsertTocDialog_locationBox.Text" xml:space="preserve">
     <value>No topo da página
+No topo da página, sobreposto
 No cursor atual</value>
     <comment>combobox</comment>
   </data>
