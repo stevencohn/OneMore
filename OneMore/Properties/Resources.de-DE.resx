@@ -1722,6 +1722,10 @@ Gelber Hintergrund</value>
     <value>Seitenanfang</value>
     <comment>hyperlink</comment>
   </data>
+  <data name="InsertTocDialog_levelsLabel.Text" xml:space="preserve">
+    <value>Ebenen anzeigen</value>
+    <comment>label</comment>
+  </data>
   <data name="InsertTocDialog_locationBox.Text" xml:space="preserve">
     <value>Oben auf der Seite
 Oben auf der Seite, überlagert

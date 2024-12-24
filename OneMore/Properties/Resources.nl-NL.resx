@@ -1723,6 +1723,10 @@ Gele achtergrond</value>
     <value>Bovenaan de pagina</value>
     <comment>hyperlink</comment>
   </data>
+  <data name="InsertTocDialog_levelsLabel.Text" xml:space="preserve">
+    <value>Niveaus weergeven</value>
+    <comment>label</comment>
+  </data>
   <data name="InsertTocDialog_locationBox.Text" xml:space="preserve">
     <value>Bovenaan de pagina
 Bovenaan de pagina, overlay

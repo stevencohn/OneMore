@@ -1723,6 +1723,10 @@ Total Row Font
     <value>ראש העמוד</value>
     <comment>hyperlink</comment>
   </data>
+  <data name="InsertTocDialog_levelsLabel.Text" xml:space="preserve">
+    <value>הצג רמות</value>
+    <comment>label</comment>
+  </data>
   <data name="InsertTocDialog_locationBox.Text" xml:space="preserve">
     <value>בראש העמוד
 בראש העמוד, שכבת-על

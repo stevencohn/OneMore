@@ -1723,6 +1723,10 @@ Czerwony pierwszy plan
     <value>Na górze strony</value>
     <comment>hyperlink</comment>
   </data>
+  <data name="InsertTocDialog_levelsLabel.Text" xml:space="preserve">
+    <value>Pokaż poziomy</value>
+    <comment>label</comment>
+  </data>
   <data name="InsertTocDialog_locationBox.Text" xml:space="preserve">
     <value>Na górze strony
 Na górze strony, nakładka

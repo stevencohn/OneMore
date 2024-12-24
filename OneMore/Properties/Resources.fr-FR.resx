@@ -1722,6 +1722,10 @@ Fond jaune</value>
     <value>Haut de page</value>
     <comment>hyperlink</comment>
   </data>
+  <data name="InsertTocDialog_levelsLabel.Text" xml:space="preserve">
+    <value>Afficher les niveaux</value>
+    <comment>label</comment>
+  </data>
   <data name="InsertTocDialog_locationBox.Text" xml:space="preserve">
     <value>En haut de la page
 En haut de la page, superposé
