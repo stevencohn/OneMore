@@ -1726,8 +1726,9 @@ OneNoteファイル (*.one)</value>
     <comment>hyperlink</comment>
   </data>
   <data name="InsertTocDialog_locationBox.Text" xml:space="preserve">
-    <value>ページの上部に
-現在のカーソル位置に</value>
+    <value>ページの先頭にある
+ページの上部にオーバーレイされます
+現在のカーソル位置</value>
     <comment>combobox</comment>
   </data>
   <data name="InsertTocDialog_locationLabel.Text" xml:space="preserve">

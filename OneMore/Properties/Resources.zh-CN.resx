@@ -1723,6 +1723,7 @@ OneNote 文件 (*.one)</value>
   </data>
   <data name="InsertTocDialog_locationBox.Text" xml:space="preserve">
     <value>在页面顶部
+在页面顶部，覆盖
 在当前光标处</value>
     <comment>combobox</comment>
   </data>

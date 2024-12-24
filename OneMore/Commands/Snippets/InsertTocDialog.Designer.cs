@@ -209,6 +209,7 @@
 			this.locationBox.FormattingEnabled = true;
 			this.locationBox.Items.AddRange(new object[] {
             "At top of page",
+            "At top of page, overlayed",
             "At current cursor"});
 			this.locationBox.Location = new System.Drawing.Point(227, 124);
 			this.locationBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);

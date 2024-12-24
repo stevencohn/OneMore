@@ -68,7 +68,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task<TocParameters> CollectParameterDefaults()
+		private static async Task<TocParameters> CollectParameterDefaults()
 		{
 			var parameters = new TocParameters();
 

@@ -1724,6 +1724,7 @@ Fond jaune</value>
   </data>
   <data name="InsertTocDialog_locationBox.Text" xml:space="preserve">
     <value>En haut de la page
+En haut de la page, superposé
 Au curseur actuel</value>
     <comment>combobox</comment>
   </data>

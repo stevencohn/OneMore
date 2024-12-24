@@ -1724,6 +1724,7 @@
   </data>
   <data name="InsertTocDialog_locationBox.Text" xml:space="preserve">
     <value>في أعلى الصفحة
+في أعلى الصفحة، متراكب
 في المؤشر الحالي</value>
     <comment>combobox</comment>
   </data>

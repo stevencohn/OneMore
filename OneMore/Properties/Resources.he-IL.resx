@@ -1725,6 +1725,7 @@ Total Row Font
   </data>
   <data name="InsertTocDialog_locationBox.Text" xml:space="preserve">
     <value>בראש העמוד
+בראש העמוד, שכבת-על
 בסמן הנוכחי</value>
     <comment>combobox</comment>
   </data>
