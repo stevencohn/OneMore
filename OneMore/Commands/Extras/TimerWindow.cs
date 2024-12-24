@@ -15,6 +15,9 @@ namespace River.OneMoreAddIn.Commands
 
 	internal partial class TimerWindow : MoreForm
 	{
+		public const int CopyCmd = 1;
+		public const int RestartCmd = 2;
+		public const int ShutdownCmd = 3;
 
 		private readonly float scalingX;
 		private readonly float scalingY;
@@ -139,10 +142,22 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		public void Restart()
+		{
+			RestartTimer(this, EventArgs.Empty);
+		}
+
+
 		private void RestartTimer(object sender, EventArgs e)
 		{
 			// start at -1 so the user will see Time Zero
 			Seconds = -1;
+		}
+
+
+		public void Shutdown()
+		{
+			CloseWindow(this, EventArgs.Empty);
 		}
 
 

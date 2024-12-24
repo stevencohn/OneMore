@@ -3952,6 +3952,14 @@ ISO-code then comma then language name</comment>
     <value>قم بإلغاء تحديد وإعادة تعيين جميع المهام المكتملة في هذه الصفحة</value>
     <comment>ribbon reminders</comment>
   </data>
+  <data name="ribRestartTimerButton_Label" xml:space="preserve">
+    <value>إعادة تشغيل الموقت</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribRestartTimerButton_Screentip" xml:space="preserve">
+    <value>أعد تشغيل المؤقت، وأعده مرة أخرى إلى الصفر</value>
+    <comment>ribbon extras</comment>
+  </data>
   <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
     <value>استعادة عرض الحاوية</value>
     <comment>ribbon clean</comment>
@@ -4095,6 +4103,14 @@ ISO-code then comma then language name</comment>
   <data name="ribShowXmlButton_Screentip" xml:space="preserve">
     <value>إظهار XML للتسلسل الهرمي والصفحة الحالية (Ctrl + Shift + Alt + X)</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribShutdownTimerButton_Label" xml:space="preserve">
+    <value>إيقاف الموقت</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribShutdownTimerButton_Screentip" xml:space="preserve">
+    <value>توقف وأغلق نافذة المؤقت</value>
+    <comment>ribbon extras</comment>
   </data>
   <data name="ribSnippetsMenu_Label" xml:space="preserve">
     <value>المقتطفات</value>

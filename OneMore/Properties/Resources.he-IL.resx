@@ -3951,6 +3951,14 @@ ISO-code then comma then language name</comment>
     <value>בטל את הסימון ואפס את כל המשימות שהושלמו בדף זה</value>
     <comment>ribbon reminders</comment>
   </data>
+  <data name="ribRestartTimerButton_Label" xml:space="preserve">
+    <value>הפעל מחדש את הטיימר</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribRestartTimerButton_Screentip" xml:space="preserve">
+    <value>הפעל מחדש את הטיימר, החזר אותו לאפס</value>
+    <comment>ribbon extras</comment>
+  </data>
   <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
     <value>שחזור רוחב מיכל</value>
     <comment>ribbon clean</comment>
@@ -4094,6 +4102,14 @@ ISO-code then comma then language name</comment>
   <data name="ribShowXmlButton_Screentip" xml:space="preserve">
     <value>הצג XML של ההיררכיה והדף הנוכחי (Ctrl + Shift + Alt + X)</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribShutdownTimerButton_Label" xml:space="preserve">
+    <value>עצור טיימר</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribShutdownTimerButton_Screentip" xml:space="preserve">
+    <value>עצור וסגור את חלון הטיימר</value>
+    <comment>ribbon extras</comment>
   </data>
   <data name="ribSnippetsMenu_Label" xml:space="preserve">
     <value>קטעים</value>

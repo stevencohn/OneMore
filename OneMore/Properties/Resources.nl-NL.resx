@@ -3952,6 +3952,14 @@ Na de laatste groep</value>
     <value>Schakel alle voltooide taken op deze pagina uit en reset ze</value>
     <comment>ribbon reminders</comment>
   </data>
+  <data name="ribRestartTimerButton_Label" xml:space="preserve">
+    <value>Start de timer opnieuw</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribRestartTimerButton_Screentip" xml:space="preserve">
+    <value>Start de timer opnieuw en zet deze terug op nul</value>
+    <comment>ribbon extras</comment>
+  </data>
   <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
     <value>Herstel containerbreedtes</value>
     <comment>ribbon clean</comment>
@@ -4095,6 +4103,14 @@ Na de laatste groep</value>
   <data name="ribShowXmlButton_Screentip" xml:space="preserve">
     <value>Toon XML van hiërarchie en huidige pagina (Ctrl + Shift + Alt + X)</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribShutdownTimerButton_Label" xml:space="preserve">
+    <value>Stop-timer</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribShutdownTimerButton_Screentip" xml:space="preserve">
+    <value>Stop en sluit het timervenster</value>
+    <comment>ribbon extras</comment>
   </data>
   <data name="ribSnippetsMenu_Label" xml:space="preserve">
     <value>Fragmenten</value>

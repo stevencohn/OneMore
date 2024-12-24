@@ -3953,6 +3953,14 @@ After last group</value>
     <value>Uncheck and reset all completed tasks on this page</value>
     <comment>ribbon reminders</comment>
   </data>
+  <data name="ribRestartTimerButton_Label" xml:space="preserve">
+    <value>Restart Timer</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribRestartTimerButton_Screentip" xml:space="preserve">
+    <value>Restart the Timer, setting it back to zero</value>
+    <comment>ribbon extras</comment>
+  </data>
   <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
     <value>Restore Container Widths</value>
     <comment>ribbon clean</comment>
@@ -4095,6 +4103,14 @@ After last group</value>
   </data>
   <data name="ribShowXmlButton_Screentip" xml:space="preserve">
     <value>Show XML of hierarchy and current page (Ctrl + Shift + Alt + X)</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribShutdownTimerButton_Label" xml:space="preserve">
+    <value>Stop Timer</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribShutdownTimerButton_Screentip" xml:space="preserve">
+    <value>Stop and close the Timer window</value>
     <comment>ribbon extras</comment>
   </data>
   <data name="ribSnippetsMenu_Label" xml:space="preserve">

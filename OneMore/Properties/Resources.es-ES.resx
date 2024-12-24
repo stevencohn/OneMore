@@ -3952,6 +3952,14 @@ Después del último grupo</value>
     <value>Desmarque y restablezca todas las tareas completadas en esta página</value>
     <comment>ribbon reminders</comment>
   </data>
+  <data name="ribRestartTimerButton_Label" xml:space="preserve">
+    <value>Reiniciar temporizador</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribRestartTimerButton_Screentip" xml:space="preserve">
+    <value>Reinicie el temporizador y vuelva a ponerlo a cero.</value>
+    <comment>ribbon extras</comment>
+  </data>
   <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
     <value>Restaurar los anchos del contenedor</value>
     <comment>ribbon clean</comment>
@@ -4095,6 +4103,14 @@ Después del último grupo</value>
   <data name="ribShowXmlButton_Screentip" xml:space="preserve">
     <value>Mostrar XML de jerarquía y página actual (Ctrl + Shift + Alt + X)</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribShutdownTimerButton_Label" xml:space="preserve">
+    <value>Detener el temporizador</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribShutdownTimerButton_Screentip" xml:space="preserve">
+    <value>Detener y cerrar la ventana del temporizador</value>
+    <comment>ribbon extras</comment>
   </data>
   <data name="ribSnippetsMenu_Label" xml:space="preserve">
     <value>Fragmentos</value>

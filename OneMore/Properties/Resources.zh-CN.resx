@@ -3945,6 +3945,14 @@ ISO-code then comma then language name</comment>
     <value>取消选中并重置此页面上所有已完成的任务</value>
     <comment>ribbon reminders</comment>
   </data>
+  <data name="ribRestartTimerButton_Label" xml:space="preserve">
+    <value>重启定时器</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribRestartTimerButton_Screentip" xml:space="preserve">
+    <value>重新启动计时器，将其设置回零</value>
+    <comment>ribbon extras</comment>
+  </data>
   <data name="ribRestoreAutosizeButton_Label" xml:space="preserve">
     <value>还原容器宽度</value>
     <comment>ribbon clean</comment>
@@ -4088,6 +4096,14 @@ ISO-code then comma then language name</comment>
   <data name="ribShowXmlButton_Screentip" xml:space="preserve">
     <value>显示层次结构和当前页面的XML (Ctrl + Shift + Alt + X)</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribShutdownTimerButton_Label" xml:space="preserve">
+    <value>停止定时器</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribShutdownTimerButton_Screentip" xml:space="preserve">
+    <value>停止并关闭计时器窗口</value>
+    <comment>ribbon extras</comment>
   </data>
   <data name="ribSnippetsMenu_Label" xml:space="preserve">
     <value>片段</value>
