@@ -8,8 +8,6 @@ namespace River.OneMoreAddIn.Commands
 	using Markdig.Extensions.Emoji;
 	using System.Collections.Generic;
 	using System.Linq;
-	using River.OneMoreAddIn.Helpers.Office;
-	using System.Web.UI.WebControls;
 
 	internal static class OneMoreDigExtensions
 	{
@@ -21,7 +19,7 @@ namespace River.OneMoreAddIn.Commands
 			var emojiDicNew = new Dictionary<string, string>();
 			foreach (var mappings in emojiDic)
 			{
-				var tagName = Models.Page.taglist.FirstOrDefault(x => x.name.Equals(mappings.Key)).name;
+				var tagName = MarkdownEmojis.taglist.FirstOrDefault(x => x.name.Equals(mappings.Key)).name;
 				if (tagName.IsNullOrEmpty())
 				{
 					emojiDicNew.Add(mappings.Key,mappings.Value);
