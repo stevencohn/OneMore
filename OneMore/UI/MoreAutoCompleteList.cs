@@ -44,6 +44,7 @@ namespace River.OneMoreAddIn.UI
 		private readonly List<Cmd> commands;    // original list of commands
 		private readonly List<Cmd> matches;     // dynamic list of matched commands
 		private readonly ThemeManager manager;  // color manager
+		private HighlightedItemPainter painter; // single painter for performance
 		private string boxtext;                 // the current/previous text in the Owner TextBox
 
 
@@ -64,36 +65,35 @@ namespace River.OneMoreAddIn.UI
 			private const char Space = ' ';
 
 			private readonly ThemeManager manager;
-			private readonly ListViewItem item;
-			private readonly Rectangle bounds;
-			private readonly Graphics graphics;
+			private readonly Brush normalBack;
+			private readonly Brush normalFore;
+			private readonly Brush normalHigh;
+			private readonly Brush selectedBack;
+			private readonly Brush selectedFore;
+			private readonly Brush selectedHigh;
 
-			private readonly Font highFont;
-			private readonly Brush fore;
-			private readonly Brush high;
-
+			private ListViewItem item;
+			private Rectangle bounds;
+			private Graphics graphics;
+			private Brush back;
+			private Brush fore;
+			private Brush high;
+			private Font highFont;
 			private float rindent;
 			private bool disposed;
 
-			public HighlightedItemPainter(ThemeManager manager, DrawListViewSubItemEventArgs e)
+
+			public HighlightedItemPainter(ThemeManager manager)
 			{
 				this.manager = manager;
-				item = e.Item;
-				bounds = e.Bounds;
-				graphics = e.Graphics;
 
-				highFont = new Font(item.Font, item.Font.Style | FontStyle.Bold);
+				normalBack = new SolidBrush(manager.GetColor("ListView"));
+				normalFore = new SolidBrush(manager.GetColor("ControlText"));
+				normalHigh = new SolidBrush(manager.GetColor("Highlight"));
 
-				if (item.Selected)
-				{
-					fore = new SolidBrush(manager.GetColor("HighlightText"));
-					high = new SolidBrush(manager.GetColor("GradientInactiveCaption"));
-				}
-				else
-				{
-					fore = new SolidBrush(manager.GetColor("ControlText"));
-					high = new SolidBrush(manager.GetColor("Highlight"));
-				}
+				selectedBack = new SolidBrush(manager.GetColor("Highlight"));
+				selectedFore = new SolidBrush(manager.GetColor("HighlightText"));
+				selectedHigh = new SolidBrush(manager.GetColor("GradientInactiveCaption"));
 			}
 
 
@@ -101,9 +101,20 @@ namespace River.OneMoreAddIn.UI
 			{
 				if (!disposed)
 				{
+					back = null;
+					fore = null;
+					high = null;
+
+					normalBack?.Dispose();
+					normalFore?.Dispose();
+					normalHigh?.Dispose();
+
+					selectedBack?.Dispose();
+					selectedFore?.Dispose();
+					selectedHigh?.Dispose();
+
 					highFont?.Dispose();
-					fore?.Dispose();
-					high?.Dispose();
+
 					disposed = true;
 				}
 			}
@@ -112,11 +123,31 @@ namespace River.OneMoreAddIn.UI
 			public bool NonsequentialMatching { get; set; }
 
 
+			public void SetContext(DrawListViewSubItemEventArgs e)
+			{
+				item = e.Item;
+				bounds = e.Bounds;
+				graphics = e.Graphics;
+
+				highFont ??= new Font(item.Font, item.Font.Style | FontStyle.Bold);
+
+				if (item.Selected)
+				{
+					back = selectedBack;
+					fore = selectedFore;
+					high = selectedHigh;
+				}
+				else
+				{
+					back = normalBack;
+					fore = normalFore;
+					high = normalHigh;
+				}
+			}
+
+
 			public void PaintBackground()
 			{
-				using var back = new SolidBrush(
-					manager.GetColor(item.Selected ? "Highlight" : "ListView"));
-
 				graphics.FillRectangle(back,
 					bounds.X, bounds.Y + 1,
 					bounds.Width, bounds.Height - 2);
@@ -259,6 +290,16 @@ namespace River.OneMoreAddIn.UI
 
 			RecentKicker = Resx.AutoComplete_recentlyUsed;
 			OtherKicker = Resx.AutoComplete_otherCommands;
+		}
+
+
+		protected override void Dispose(bool disposing)
+		{
+			base.Dispose(disposing);
+			if (disposing)
+			{
+				painter?.Dispose();
+			}
 		}
 
 
@@ -575,11 +616,12 @@ namespace River.OneMoreAddIn.UI
 
 		protected override void OnDrawSubItem(DrawListViewSubItemEventArgs e)
 		{
-			using var painter = new HighlightedItemPainter(manager, e)
+			painter ??= new HighlightedItemPainter(manager)
 			{
 				NonsequentialMatching = this.NonsequentialMatching
 			};
 
+			painter.SetContext(e);
 			painter.PaintBackground();
 
 			var source = matches.Any() ? matches : commands;
