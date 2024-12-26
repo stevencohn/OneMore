@@ -46,6 +46,21 @@ namespace River.OneMoreAddIn.Settings
 
 			formulaRibbonBox.Checked = settings.Get<bool>("formulaCommands");
 			formulaIconBox.Checked = formulaRibbonBox.Checked && settings.Get<bool>("formulaIconsOnly");
+
+			layoutBox.SelectedIndex = settings.Get("layout", "group") == "tab" ? 1 : 0;
+		}
+
+
+		private void ChangeSelectedLayout(object sender, System.EventArgs e)
+		{
+			var grouped = layoutBox.SelectedIndex == 0;
+			positionBox.Enabled = grouped;
+			hashtagsRibbonBox.Enabled = grouped;
+			hashtagsIconBox.Enabled = grouped;
+			editRibbonBox.Enabled = grouped;
+			editIconBox.Enabled = grouped;
+			formulaRibbonBox.Enabled = grouped;
+			formulaIconBox.Enabled = grouped;
 		}
 
 
@@ -97,17 +112,25 @@ namespace River.OneMoreAddIn.Settings
 			var settings = provider.GetCollection(Name);
 			var updated = false;
 
+			var layout = layoutBox.SelectedIndex == 0 ? "group" : "tab";
+			if (settings.Add("layout", layout)) updated = true;
+
 			// NOTE that the indexes MUST match RibbonGroups enum or it will break user's
 			// established settings so may need migration if changed...
 
-			if (settings.Add("position", positionBox.SelectedIndex)) updated = true;
+			if (layout == "group")
+			{
+				// only update these if layout is 'group'; otherwise leave them as-is...
 
-			if (settings.Add("hashtagCommands", hashtagsRibbonBox.Checked)) updated = true;
-			if (settings.Add("hashtagIconsOnly", hashtagsIconBox.Checked)) updated = true;
-			if (settings.Add("editCommands", editRibbonBox.Checked)) updated = true;
-			if (settings.Add("editIconsOnly", editIconBox.Checked)) updated = true;
-			if (settings.Add("formulaCommands", formulaRibbonBox.Checked)) updated = true;
-			if (settings.Add("formulaIconsOnly", formulaIconBox.Checked)) updated = true;
+				if (settings.Add("position", positionBox.SelectedIndex)) updated = true;
+
+				if (settings.Add("hashtagCommands", hashtagsRibbonBox.Checked)) updated = true;
+				if (settings.Add("hashtagIconsOnly", hashtagsIconBox.Checked)) updated = true;
+				if (settings.Add("editCommands", editRibbonBox.Checked)) updated = true;
+				if (settings.Add("editIconsOnly", editIconBox.Checked)) updated = true;
+				if (settings.Add("formulaCommands", formulaRibbonBox.Checked)) updated = true;
+				if (settings.Add("formulaIconsOnly", formulaIconBox.Checked)) updated = true;
+			}
 
 			if (updated)
 			{

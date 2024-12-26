@@ -2835,6 +2835,15 @@ Seleccione No para mantener una línea vacía entre los párrafos</value>
     <value>Elija una agrupación preestablecida opcional para agregar a la barra de la cinta</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
+  <data name="RibbonBarSheet_layoutBox.Text" xml:space="preserve">
+    <value>Aa un grupo en la pestaña Inicio
+Como una pestaña OneMore separada</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="RibbonBarSheet_layoutLabel.Text" xml:space="preserve">
+    <value>Disposición</value>
+    <comment>label</comment>
+  </data>
   <data name="RibbonBarSheet_positionBox.Text" xml:space="preserve">
     <value>Grupo de portapapeles
 Grupo de texto básico
@@ -3670,6 +3679,14 @@ Después del último grupo</value>
     <value>Agregar o actualizar la numeración de todas las secciones de este cuaderno</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="ribOneMoreBasicsGroup_Label" xml:space="preserve">
+    <value>Lo esencial</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribOneMoreEvenMoreGroup_Label" xml:space="preserve">
+    <value>Más</value>
+    <comment>ribbon</comment>
+  </data>
   <data name="ribOneMoreGroup_Label" xml:space="preserve">
     <value>Uno mas</value>
     <comment>Ribbon Group</comment>
@@ -3677,6 +3694,22 @@ Después del último grupo</value>
   <data name="ribOneMoreMenu_Label" xml:space="preserve">
     <value>Más</value>
     <comment>Ribbon main button</comment>
+  </data>
+  <data name="ribOneMoreSnippetsGroup_Label" xml:space="preserve">
+    <value>Fragmentos</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribOneMoreStylesGroup_Label" xml:space="preserve">
+    <value>Estilos</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribOneMoreTableGroup_Label" xml:space="preserve">
+    <value>Mesa</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribOneMoreTagGroup_Label" xml:space="preserve">
+    <value>Buscar</value>
+    <comment>ribbon</comment>
   </data>
   <data name="ribOpenImageWithButton_Label" xml:space="preserve">
     <value>Abrir imagen con</value>
@@ -4938,6 +4971,10 @@ Invertir</value>
   <data name="TableTheme_Screentip" xml:space="preserve">
     <value>Tema de mesa OneMore {0}</value>
     <comment>Screentip for table theme gallery tiles</comment>
+  </data>
+  <data name="TabOneMore_Label" xml:space="preserve">
+    <value>uno más</value>
+    <comment>ribbon</comment>
   </data>
   <data name="TagBankCommand_confirm" xml:space="preserve">
     <value>El banco de etiquetas contiene texto. ¿Estás seguro de que quieres eliminarlo?</value>

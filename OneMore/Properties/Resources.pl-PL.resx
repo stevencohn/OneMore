@@ -2836,6 +2836,15 @@ Wybierz Nie, aby zachować jedną pustą linię między akapitami</value>
     <value>Wybierz opcjonalne gotowe grupowanie, które chcesz dodać do paska wstążki</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
+  <data name="RibbonBarSheet_layoutBox.Text" xml:space="preserve">
+    <value>Aa grupa na karcie Strona główna
+Jako osobna karta OneMore</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="RibbonBarSheet_layoutLabel.Text" xml:space="preserve">
+    <value>Układ</value>
+    <comment>label</comment>
+  </data>
   <data name="RibbonBarSheet_positionBox.Text" xml:space="preserve">
     <value>Grupa schowka
 Podstawowa grupa tekstowa
@@ -3671,6 +3680,14 @@ Po ostatniej grupie</value>
     <value>Dodaj lub zaktualizuj numerowanie wszystkich sekcji w tym notebooku</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="ribOneMoreBasicsGroup_Label" xml:space="preserve">
+    <value>Podstawy</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribOneMoreEvenMoreGroup_Label" xml:space="preserve">
+    <value>Więcej</value>
+    <comment>ribbon</comment>
+  </data>
   <data name="ribOneMoreGroup_Label" xml:space="preserve">
     <value>Jeszcze jeden</value>
     <comment>Ribbon Group NODUP</comment>
@@ -3678,6 +3695,22 @@ Po ostatniej grupie</value>
   <data name="ribOneMoreMenu_Label" xml:space="preserve">
     <value>Jeszcze</value>
     <comment>Ribbon main button</comment>
+  </data>
+  <data name="ribOneMoreSnippetsGroup_Label" xml:space="preserve">
+    <value>Fragmenty</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribOneMoreStylesGroup_Label" xml:space="preserve">
+    <value>Style</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribOneMoreTableGroup_Label" xml:space="preserve">
+    <value>Tabela</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribOneMoreTagGroup_Label" xml:space="preserve">
+    <value>Szukaj</value>
+    <comment>ribbon</comment>
   </data>
   <data name="ribOpenImageWithButton_Label" xml:space="preserve">
     <value>Otwórz obraz za pomocą</value>
@@ -4939,6 +4972,10 @@ Odwracać</value>
   <data name="TableTheme_Screentip" xml:space="preserve">
     <value>Motyw tabeli OneMore {0}</value>
     <comment>Screentip for table theme gallery tiles</comment>
+  </data>
+  <data name="TabOneMore_Label" xml:space="preserve">
+    <value>Jeszcze jeden</value>
+    <comment>ribbon</comment>
   </data>
   <data name="TagBankCommand_confirm" xml:space="preserve">
     <value>Bank znaczników zawiera tekst. Czy na pewno chcesz to usunąć?</value>

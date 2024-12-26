@@ -2842,6 +2842,15 @@ ISO-code then comma then language name</comment>
     <value>リボンに追加するプリセットグループを選択</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
+  <data name="RibbonBarSheet_layoutBox.Text" xml:space="preserve">
+    <value>「ホーム」タブのグループ
+別個の OneMore タブとして</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="RibbonBarSheet_layoutLabel.Text" xml:space="preserve">
+    <value>レイアウト</value>
+    <comment>label</comment>
+  </data>
   <data name="RibbonBarSheet_positionBox.Text" xml:space="preserve">
     <value>クリップボードグループの後
 基本テキストグループの後
@@ -3679,6 +3688,14 @@ ISO-code then comma then language name</comment>
     <value>このノートブックの全てのセクションに番号を追加または更新</value>
     <comment>ribbon numbering</comment>
   </data>
+  <data name="ribOneMoreBasicsGroup_Label" xml:space="preserve">
+    <value>基本</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribOneMoreEvenMoreGroup_Label" xml:space="preserve">
+    <value>もっと</value>
+    <comment>ribbon</comment>
+  </data>
   <data name="ribOneMoreGroup_Label" xml:space="preserve">
     <value>OneMore</value>
     <comment>ribbon Group NODUP</comment>
@@ -3686,6 +3703,22 @@ ISO-code then comma then language name</comment>
   <data name="ribOneMoreMenu_Label" xml:space="preserve">
     <value>More</value>
     <comment>ribbon main button</comment>
+  </data>
+  <data name="ribOneMoreSnippetsGroup_Label" xml:space="preserve">
+    <value>スニペット</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribOneMoreStylesGroup_Label" xml:space="preserve">
+    <value>スタイル</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribOneMoreTableGroup_Label" xml:space="preserve">
+    <value>テーブル</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribOneMoreTagGroup_Label" xml:space="preserve">
+    <value>検索</value>
+    <comment>ribbon</comment>
   </data>
   <data name="ribOpenImageWithButton_Label" xml:space="preserve">
     <value>画像を開く</value>
@@ -4942,6 +4975,10 @@ ISO-code then comma then language name</comment>
   <data name="TableTheme_Screentip" xml:space="preserve">
     <value>OneMore 表テーマ {0}</value>
     <comment>Screentip for table theme gallery tiles</comment>
+  </data>
+  <data name="TabOneMore_Label" xml:space="preserve">
+    <value>ワンモア</value>
+    <comment>ribbon</comment>
   </data>
   <data name="TagBankCommand_confirm" xml:space="preserve">
     <value>タグバンクにテキストが含まれています。削除してもよろしいですか？</value>

@@ -2834,6 +2834,15 @@ ISO-code then comma then language name</comment>
     <value>选择可选的预设分组以添加到功能区栏</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
+  <data name="RibbonBarSheet_layoutBox.Text" xml:space="preserve">
+    <value>Aa 主页选项卡中的组
+作为单独的 OneMore 选项卡</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="RibbonBarSheet_layoutLabel.Text" xml:space="preserve">
+    <value>布局</value>
+    <comment>label</comment>
+  </data>
   <data name="RibbonBarSheet_positionBox.Text" xml:space="preserve">
     <value>剪贴板组
 基本文本组
@@ -3671,6 +3680,14 @@ ISO-code then comma then language name</comment>
     <value>添加或更新此笔记本中所有部分的编号</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="ribOneMoreBasicsGroup_Label" xml:space="preserve">
+    <value>基础知识</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribOneMoreEvenMoreGroup_Label" xml:space="preserve">
+    <value>更多的</value>
+    <comment>ribbon</comment>
+  </data>
   <data name="ribOneMoreGroup_Label" xml:space="preserve">
     <value>OneMore</value>
     <comment>Ribbon Group</comment>
@@ -3678,6 +3695,22 @@ ISO-code then comma then language name</comment>
   <data name="ribOneMoreMenu_Label" xml:space="preserve">
     <value>更多</value>
     <comment>Ribbon main button</comment>
+  </data>
+  <data name="ribOneMoreSnippetsGroup_Label" xml:space="preserve">
+    <value>片段</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribOneMoreStylesGroup_Label" xml:space="preserve">
+    <value>风格</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribOneMoreTableGroup_Label" xml:space="preserve">
+    <value>桌子</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribOneMoreTagGroup_Label" xml:space="preserve">
+    <value>搜索</value>
+    <comment>ribbon</comment>
   </data>
   <data name="ribOpenImageWithButton_Label" xml:space="preserve">
     <value>打开图像</value>
@@ -4931,6 +4964,10 @@ ISO-code then comma then language name</comment>
   <data name="TableTheme_Screentip" xml:space="preserve">
     <value>OneMore 表格主题{0}</value>
     <comment>Screentip for table theme gallery tiles</comment>
+  </data>
+  <data name="TabOneMore_Label" xml:space="preserve">
+    <value>多一</value>
+    <comment>ribbon</comment>
   </data>
   <data name="TagBankCommand_confirm" xml:space="preserve">
     <value>标签库包含文本。您确定要删除它吗？</value>

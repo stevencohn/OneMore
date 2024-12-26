@@ -2836,6 +2836,15 @@ Selecteer NO om één lege regel tussen paragrafen te behouden</value>
     <value>Kies optionele vooraf ingestelde groeperingen om toe te voegen aan de lintbalk</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
+  <data name="RibbonBarSheet_layoutBox.Text" xml:space="preserve">
+    <value>Een groep op het tabblad Home
+Als apart OneMore tabblad</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="RibbonBarSheet_layoutLabel.Text" xml:space="preserve">
+    <value>Indeling</value>
+    <comment>label</comment>
+  </data>
   <data name="RibbonBarSheet_positionBox.Text" xml:space="preserve">
     <value>Klembordgroep
 Basistekstgroep
@@ -3670,6 +3679,14 @@ Na de laatste groep</value>
     <value>Voeg de nummering van alle secties in dit notitieboek toe of werk deze bij</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="ribOneMoreBasicsGroup_Label" xml:space="preserve">
+    <value>Basisprincipes</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribOneMoreEvenMoreGroup_Label" xml:space="preserve">
+    <value>Meer</value>
+    <comment>ribbon</comment>
+  </data>
   <data name="ribOneMoreGroup_Label" xml:space="preserve">
     <value>Nog een</value>
     <comment>Ribbon Group</comment>
@@ -3677,6 +3694,22 @@ Na de laatste groep</value>
   <data name="ribOneMoreMenu_Label" xml:space="preserve">
     <value>Meer</value>
     <comment>Ribbon main button</comment>
+  </data>
+  <data name="ribOneMoreSnippetsGroup_Label" xml:space="preserve">
+    <value>Fragmenten</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribOneMoreStylesGroup_Label" xml:space="preserve">
+    <value>Stijlen</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribOneMoreTableGroup_Label" xml:space="preserve">
+    <value>Tafel</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribOneMoreTagGroup_Label" xml:space="preserve">
+    <value>Zoekopdracht</value>
+    <comment>ribbon</comment>
   </data>
   <data name="ribOpenImageWithButton_Label" xml:space="preserve">
     <value>Afbeelding openen met</value>
@@ -4938,6 +4971,10 @@ Omkeren</value>
   <data name="TableTheme_Screentip" xml:space="preserve">
     <value>OneMore Table-thema {0}</value>
     <comment>Screentip for table theme gallery tiles</comment>
+  </data>
+  <data name="TabOneMore_Label" xml:space="preserve">
+    <value>EénMeer</value>
+    <comment>ribbon</comment>
   </data>
   <data name="TagBankCommand_confirm" xml:space="preserve">
     <value>De tagbank bevat tekst. Weet je zeker dat je het wilt verwijderen?</value>

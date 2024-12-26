@@ -42,6 +42,8 @@
 			this.editPicture = new River.OneMoreAddIn.UI.MorePictureBox();
 			this.positionIntroLabel = new River.OneMoreAddIn.UI.MoreMultilineLabel();
 			this.positionGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
+			this.layoutBox = new System.Windows.Forms.ComboBox();
+			this.layoutLabel = new System.Windows.Forms.Label();
 			this.positionBox = new System.Windows.Forms.ComboBox();
 			this.positionLabel = new System.Windows.Forms.Label();
 			this.quickGroup.SuspendLayout();
@@ -70,7 +72,7 @@
 			this.editRibbonBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.editRibbonBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.editRibbonBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.editRibbonBox.Location = new System.Drawing.Point(257, 165);
+			this.editRibbonBox.Location = new System.Drawing.Point(216, 159);
 			this.editRibbonBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.editRibbonBox.Name = "editRibbonBox";
 			this.editRibbonBox.Size = new System.Drawing.Size(153, 25);
@@ -88,7 +90,7 @@
 			this.editIconBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.editIconBox.Enabled = false;
 			this.editIconBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.editIconBox.Location = new System.Drawing.Point(257, 198);
+			this.editIconBox.Location = new System.Drawing.Point(216, 192);
 			this.editIconBox.Name = "editIconBox";
 			this.editIconBox.Size = new System.Drawing.Size(294, 25);
 			this.editIconBox.StylizeImage = false;
@@ -103,7 +105,7 @@
 			this.formulaRibbonBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.formulaRibbonBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.formulaRibbonBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.formulaRibbonBox.Location = new System.Drawing.Point(257, 276);
+			this.formulaRibbonBox.Location = new System.Drawing.Point(216, 254);
 			this.formulaRibbonBox.Name = "formulaRibbonBox";
 			this.formulaRibbonBox.Size = new System.Drawing.Size(185, 25);
 			this.formulaRibbonBox.StylizeImage = false;
@@ -120,7 +122,7 @@
 			this.formulaIconBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.formulaIconBox.Enabled = false;
 			this.formulaIconBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.formulaIconBox.Location = new System.Drawing.Point(257, 307);
+			this.formulaIconBox.Location = new System.Drawing.Point(216, 285);
 			this.formulaIconBox.Name = "formulaIconBox";
 			this.formulaIconBox.Size = new System.Drawing.Size(322, 25);
 			this.formulaIconBox.StylizeImage = false;
@@ -145,11 +147,11 @@
 			this.quickGroup.Controls.Add(this.editPicture);
 			this.quickGroup.Controls.Add(this.editRibbonBox);
 			this.quickGroup.Controls.Add(this.editIconBox);
-			this.quickGroup.Location = new System.Drawing.Point(13, 178);
+			this.quickGroup.Location = new System.Drawing.Point(13, 216);
 			this.quickGroup.Name = "quickGroup";
 			this.quickGroup.Padding = new System.Windows.Forms.Padding(20, 15, 3, 3);
 			this.quickGroup.ShowOnlyTopEdge = true;
-			this.quickGroup.Size = new System.Drawing.Size(774, 398);
+			this.quickGroup.Size = new System.Drawing.Size(774, 360);
 			this.quickGroup.TabIndex = 9;
 			this.quickGroup.TabStop = false;
 			this.quickGroup.Text = "Quick Commands";
@@ -162,7 +164,7 @@
 			this.hashtagsIconBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.hashtagsIconBox.Enabled = false;
 			this.hashtagsIconBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.hashtagsIconBox.Location = new System.Drawing.Point(257, 113);
+			this.hashtagsIconBox.Location = new System.Drawing.Point(216, 113);
 			this.hashtagsIconBox.Name = "hashtagsIconBox";
 			this.hashtagsIconBox.Size = new System.Drawing.Size(334, 25);
 			this.hashtagsIconBox.StylizeImage = false;
@@ -177,7 +179,7 @@
 			this.hashtagsRibbonBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.hashtagsRibbonBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.hashtagsRibbonBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.hashtagsRibbonBox.Location = new System.Drawing.Point(257, 82);
+			this.hashtagsRibbonBox.Location = new System.Drawing.Point(216, 82);
 			this.hashtagsRibbonBox.Name = "hashtagsRibbonBox";
 			this.hashtagsRibbonBox.Size = new System.Drawing.Size(194, 25);
 			this.hashtagsRibbonBox.StylizeImage = false;
@@ -197,7 +199,8 @@
 			this.hashtagsPicture.Location = new System.Drawing.Point(27, 81);
 			this.hashtagsPicture.Margin = new System.Windows.Forms.Padding(4, 5, 4, 10);
 			this.hashtagsPicture.Name = "hashtagsPicture";
-			this.hashtagsPicture.Size = new System.Drawing.Size(212, 70);
+			this.hashtagsPicture.Size = new System.Drawing.Size(161, 64);
+			this.hashtagsPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.hashtagsPicture.TabIndex = 13;
 			this.hashtagsPicture.TabStop = false;
 			this.hashtagsPicture.Click += new System.EventHandler(this.ClickPicture);
@@ -208,10 +211,10 @@
 			this.formulaPicture.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.formulaPicture.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.formulaPicture.Image = ((System.Drawing.Image)(resources.GetObject("formulaPicture.Image")));
-			this.formulaPicture.Location = new System.Drawing.Point(27, 276);
+			this.formulaPicture.Location = new System.Drawing.Point(27, 254);
 			this.formulaPicture.Margin = new System.Windows.Forms.Padding(4, 5, 4, 10);
 			this.formulaPicture.Name = "formulaPicture";
-			this.formulaPicture.Size = new System.Drawing.Size(212, 95);
+			this.formulaPicture.Size = new System.Drawing.Size(161, 80);
 			this.formulaPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.formulaPicture.TabIndex = 12;
 			this.formulaPicture.TabStop = false;
@@ -223,10 +226,10 @@
 			this.editPicture.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.editPicture.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.editPicture.Image = ((System.Drawing.Image)(resources.GetObject("editPicture.Image")));
-			this.editPicture.Location = new System.Drawing.Point(27, 166);
+			this.editPicture.Location = new System.Drawing.Point(27, 160);
 			this.editPicture.Margin = new System.Windows.Forms.Padding(4, 5, 4, 10);
 			this.editPicture.Name = "editPicture";
-			this.editPicture.Size = new System.Drawing.Size(212, 95);
+			this.editPicture.Size = new System.Drawing.Size(161, 80);
 			this.editPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.editPicture.TabIndex = 11;
 			this.editPicture.TabStop = false;
@@ -250,6 +253,8 @@
 			// 
 			this.positionGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.positionGroup.Controls.Add(this.layoutBox);
+			this.positionGroup.Controls.Add(this.layoutLabel);
 			this.positionGroup.Controls.Add(this.positionBox);
 			this.positionGroup.Controls.Add(this.positionLabel);
 			this.positionGroup.Location = new System.Drawing.Point(13, 71);
@@ -257,12 +262,34 @@
 			this.positionGroup.Name = "positionGroup";
 			this.positionGroup.Padding = new System.Windows.Forms.Padding(20, 20, 3, 3);
 			this.positionGroup.ShowOnlyTopEdge = true;
-			this.positionGroup.Size = new System.Drawing.Size(774, 93);
+			this.positionGroup.Size = new System.Drawing.Size(774, 127);
 			this.positionGroup.TabIndex = 0;
 			this.positionGroup.TabStop = false;
 			this.positionGroup.Text = "Position";
 			this.positionGroup.ThemedBorder = null;
 			this.positionGroup.ThemedFore = null;
+			// 
+			// layoutBox
+			// 
+			this.layoutBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.layoutBox.FormattingEnabled = true;
+			this.layoutBox.Items.AddRange(new object[] {
+            "Aa a group in the Home tab",
+            "As a separate OneMore tab"});
+			this.layoutBox.Location = new System.Drawing.Point(254, 36);
+			this.layoutBox.Name = "layoutBox";
+			this.layoutBox.Size = new System.Drawing.Size(378, 28);
+			this.layoutBox.TabIndex = 3;
+			this.layoutBox.SelectedIndexChanged += new System.EventHandler(this.ChangeSelectedLayout);
+			// 
+			// layoutLabel
+			// 
+			this.layoutLabel.AutoSize = true;
+			this.layoutLabel.Location = new System.Drawing.Point(23, 39);
+			this.layoutLabel.Name = "layoutLabel";
+			this.layoutLabel.Size = new System.Drawing.Size(57, 20);
+			this.layoutLabel.TabIndex = 2;
+			this.layoutLabel.Text = "Layout";
 			// 
 			// positionBox
 			// 
@@ -276,7 +303,7 @@
             "Email Group",
             "Meetings Group",
             "After last group"});
-			this.positionBox.Location = new System.Drawing.Point(254, 36);
+			this.positionBox.Location = new System.Drawing.Point(254, 81);
 			this.positionBox.Name = "positionBox";
 			this.positionBox.Size = new System.Drawing.Size(378, 28);
 			this.positionBox.TabIndex = 1;
@@ -284,7 +311,7 @@
 			// positionLabel
 			// 
 			this.positionLabel.AutoSize = true;
-			this.positionLabel.Location = new System.Drawing.Point(23, 39);
+			this.positionLabel.Location = new System.Drawing.Point(23, 84);
 			this.positionLabel.Name = "positionLabel";
 			this.positionLabel.Size = new System.Drawing.Size(163, 20);
 			this.positionLabel.TabIndex = 0;
@@ -329,5 +356,7 @@
 		private UI.MoreCheckBox hashtagsIconBox;
 		private UI.MoreCheckBox hashtagsRibbonBox;
 		private UI.MorePictureBox hashtagsPicture;
+		private System.Windows.Forms.ComboBox layoutBox;
+		private System.Windows.Forms.Label layoutLabel;
 	}
 }
