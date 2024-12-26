@@ -20,6 +20,8 @@ namespace River.OneMoreAddIn.Settings
 			{
 				Localize(new string[]
 				{
+					"layoutLabel",
+					"layoutBox",
 					"positionIntroLabel",
 					"positionGroup",
 					"positionLabel",
