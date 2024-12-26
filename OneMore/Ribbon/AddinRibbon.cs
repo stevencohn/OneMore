@@ -5,7 +5,7 @@
 #pragma warning disable CS3001      // Type is not CLS-compliant
 #pragma warning disable IDE0060     // remove unused parameter
 
-#define DEBUGRIB // uncomment to enable the DebugRibbon() conditional method
+//#define DEBUGRIB // uncomment to enable the DebugRibbon() conditional method
 
 namespace River.OneMoreAddIn
 {
