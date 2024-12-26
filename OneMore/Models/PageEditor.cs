@@ -26,61 +26,9 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
-		#region Schema
-		/// <summary>
-		/// Provides an on-demand instantiation of schema arrays.
-		/// </summary>
-		private sealed class Schema
-		{
-			private string[] outHeaders;   // Outline info elements
-			private string[] oecHeaders; // OEChildren info elements
-			private string[] oecContent; // OEChildren content elements
-			private string[] oeHeaders;  // OE info elements
-			private string[] oeContent;  // OE content elements
-
-			// Outline Schema...
-
-			public string[] OutHeaders => outHeaders ??= new string[]
-			{
-				"Postion", "Size", "Meta", "Indents"
-			};
-
-			// public static string[] OutContent => ...
-
-			// OEChildren Schema...
-
-			public string[] OecHeaders => oecHeaders ??= new string[]
-			{
-				"ChildOELayout"
-			};
-
-			public string[] OecContent => oecContent ??= new string[]
-			{
-				"OE", "HTMLBlock"
-			};
-
-			// OE Schema...
-
-			public string[] OeHeaders => oeHeaders ??= new string[]
-			{
-				"MediaIndex", "Tag", "OutlookTask"/*+Tag?*/, "Meta", "List"
-			};
-
-			public string[] OeContent => oeContent ??= new string[]
-			{
-				"Image", "Table", "InkDrawing", "InsertedFile",
-				"MediaFile", "InkParagraph", "FutureObject",
-				"T", "InkWord",
-				"OEChildren",
-				"LinkedNote"
-			};
-		}
-		#endregion Schema
-
-
 		private readonly Page page;
 		private readonly XNamespace ns;
-		private Schema schema;
+		private PageSchema schema;
 
 
 		public PageEditor(Page page)
@@ -692,7 +640,7 @@ namespace River.OneMoreAddIn.Models
 		/// <returns>An OEChildren XElement</returns>
 		public async Task<XElement> ExtractSelectedContent(XElement targetOutline = null)
 		{
-			schema = new Schema();
+			schema = new PageSchema();
 
 			var content = new XElement(ns + "OEChildren");
 
