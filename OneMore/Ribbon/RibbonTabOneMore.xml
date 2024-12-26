@@ -3,7 +3,8 @@
   xmlns="http://schemas.microsoft.com/office/2009/07/customui"
   id="TabOneMore"
   getLabel="GetRibbonLabel"
-  insertAfterMso="TabView">
+  insertAfterMso="TabView"
+  keytip="M">
 
   <group id="ribOneMoreBasicsGroup" getLabel="GetRibbonLabel" getImage="GetOneMoreRibbonImage">
     <button
@@ -12,41 +13,46 @@
       getLabel="GetRibbonLabel"
       getScreentip="GetRibbonScreentip"
       onAction="CommandPaletteCmd"
-      size="large"/>
+      size="large"
+      keytip="P"/>
     <button
       id="ribQuickPaletteButton"
       imageMso="StylesDialogClassic"
       getLabel="GetRibbonLabel"
       getScreentip="GetRibbonScreentip"
       onAction="QuickPaletteCmd"
-      size="large"/>
+      size="large"
+      keytip="Q"/>
     <button
       id="ribNavigatorButton"
       getImage="GetRibbonImageByID"
       getLabel="GetRibbonLabel"
       getScreentip="GetRibbonScreentip"
       onAction="NavigatorCmd"
-      size="large"/>
+      size="large"
+      keytip="N"/>
     <button
       id="ribCalendarButton"
       imageMso="OpenAttachedCalendar"
       getLabel="GetRibbonLabel"
       getScreentip="GetRibbonScreentip"
       onAction="CalendarCmd"
-      size="large"/>
+      size="large"
+      keytip="D"/>
     <dynamicMenu
       id="ribFavoritesMenu"
       getLabel="GetRibbonLabel"
       image="Favorites"
       getContent="GetFavoritesContent"
       size="large"
-      keytip="SF"/>
+      keytip="F"/>
     <menu
       id="ribColorizeMenu"
       imageMso="SmartArtChangeColorsGallery"
       getLabel="GetRibbonLabel"
       showImage="true"
-      size="large"/>
+      size="large"
+      keytip="C"/>
   </group>
 
   <group id="ribOneMoreStylesGroup" getLabel="GetRibbonLabel" getImage="GetOneMoreRibbonImage">
@@ -59,7 +65,7 @@
       getItemImage="GetStyleGalleryItemImage"
       getItemScreentip="GetStyleGalleryItemScreentip"
       onAction="ApplyStyleCmd"
-      keytip="ST">
+      keytip="MS">
       <button
         id="ribApplyStylesButton"
         getLabel="GetRibbonLabel"
@@ -100,7 +106,7 @@
       getItemImage="GetTableGalleryItemImage"
       getItemScreentip="GetTableGalleryItemScreentip"
       onAction="ApplyTableThemeCmd"
-      keytip="SH">
+      keytip="TT">
       <button
         id="ribEditTableThemesButton"
         getLabel="GetRibbonLabel"
@@ -121,7 +127,7 @@
       image="Snippets"
       showImage="true"
       size="large"
-      keytip="SS">
+      keytip="SN">
       <button
         id="ribInsertBreadcrumbButton"
         imageMso="ShapeRightArrow"
@@ -177,41 +183,47 @@
       getLabel="GetRibbonLabel"
       getScreentip="GetRibbonScreentip"
       onAction="InsertTocCmd"
-      size="large"/>
+      size="large"
+      keytip="TC"/>
     <button
       id="ribInsertCodeBoxButton"
       imageMso="CodeEdit"
       getLabel="GetRibbonLabel"
       getScreentip="GetRibbonScreentip"
       onAction="InsertCodeBoxCmd"
-      size="normal"/>
+      size="normal"
+      keytip="CB"/>
     <button
       id="ribInsertTextBoxButton"
       imageMso="TextBoxInsert"
       getLabel="GetRibbonLabel"
       getScreentip="GetRibbonScreentip"
       onAction="InsertTextBoxCmd"
-      size="normal"/>
+      size="normal"
+      keytip="TB"/>
     <button
       id="ribInsertInfoBoxButton"
       imageMso="Info"
       getLabel="GetRibbonLabel"
       getScreentip="GetRibbonScreentip"
       onAction="InsertInfoBoxCmd"
-      size="normal"/>
+      size="normal"
+      keytip="IB"/>
     <button
       id="ribInsertNoteBoxButton"
       getImage="GetRibbonImageByID"
       getLabel="GetRibbonLabel"
       getScreentip="GetRibbonScreentip"
       onAction="InsertNoteBoxCmd"
-      size="normal"/>
+      size="normal"
+      keytip="NB"/>
     <menu 
       id="ribStatusMenu" 
       getLabel="GetRibbonLabel" 
       imageMso="AppointmentColorDialog" 
       showImage ="true"
-      size="normal">
+      size="normal"
+      keytip="ST">
       <button
         id="ribInsertGrayStatusButton"
         imageMso="AppointmentColor4"
@@ -248,7 +260,8 @@
       getLabel="GetRibbonLabel"
       imageMso="StarUnratedFull"
       getContent="GetMySnippetsContent"
-      size="normal"/>
+      size="normal"
+      keytip="MN"/>
   </group>
 
   <group id="ribOneMoreTableGroup" getLabel="GetRibbonLabel" getImage="GetOneMoreRibbonImage">
@@ -258,7 +271,8 @@
       imageMso="TableInsert" 
       showImage="true"
       size="large"
-      enabled="true">
+      enabled="true"
+      keytip="TA">
       <button
         id="ribDeleteFormulaButton"
         imageMso="SheetDelete"
@@ -327,7 +341,8 @@
       getScreentip="GetRibbonScreentip"
       onAction="AddFormulaCmd"
       showImage="true"
-      showLabel="false"/>
+      showLabel="false"
+      keytip="AF"/>
     <button
       id="ribHighlightFormulaButton"
       imageMso="PivotTableListFormulas"
@@ -335,7 +350,8 @@
       getScreentip="GetRibbonScreentip"
       onAction="HighlightFormulaCmd"
       showImage="true"
-      showLabel="false"/>
+      showLabel="false"
+      keytip="HF"/>
     <button
       id="ribRecalculateFormulaButton"
       imageMso="CalculateSheet"
@@ -343,7 +359,8 @@
       getScreentip="GetRibbonScreentip"
       onAction="RecalculateFormulaCmd"
       showImage="true"
-      showLabel="false"/>
+      showLabel="false"
+      keytip="RF"/>
   </group>
 
   <group id="ribOneMoreTagGroup" getLabel="GetRibbonLabel" getImage="GetOneMoreRibbonImage">
@@ -353,15 +370,17 @@
       getLabel="GetRibbonLabel"
       getScreentip="GetRibbonScreentip"
       onAction="SearchHashtagsCmd"
-      size="normal"/>
+      size="normal"
+      keytip="FH"/>
     <button
       id="ribHashtaggerButton"
       image="Label"
       getLabel="GetRibbonLabel"
       getScreentip="GetRibbonScreentip"
       onAction="HashtaggerCmd"
-      size="normal"/>
-    <menu id="ribSearchMenu" getLabel="GetRibbonLabel" imageMso="SearchUI" showImage="true">
+      size="normal"
+      keytip="HA"/>
+    <menu id="ribSearchMenu" getLabel="GetRibbonLabel" imageMso="SearchUI" showImage="true" keytip="SE">
       <button
         id="ribSearchAndReplaceButton"
         imageMso="ReplaceDialog"
@@ -402,7 +421,7 @@
   </group>
 
   <group id="ribOneMoreEvenMoreGroup" getLabel="GetRibbonLabel" getImage="GetOneMoreRibbonImage">
-    <menu id="ribCleanMenu" getLabel="GetRibbonLabel" imageMso="Clear" showImage="true">
+    <menu id="ribCleanMenu" getLabel="GetRibbonLabel" imageMso="Clear" showImage="true" keytip="CL">
       <button
         id="ribBreakingButton"
         imageMso="CharacterSpacingGallery"
@@ -483,7 +502,7 @@
         onAction="TrimLeadingCmd"/>
     </menu>
 
-    <menu id="ribEditMenu" getLabel="GetRibbonLabel" imageMso="EditComposePage" showImage="true">
+    <menu id="ribEditMenu" getLabel="GetRibbonLabel" imageMso="EditComposePage" showImage="true" keytip="ED">
       <button
         id="ribConvertMarkdownButton"
         imageMso="ReviewShowOrHideMarkup"
@@ -587,7 +606,7 @@
         getScreentip="GetRibbonScreentip"
         onAction="TitlecaseCmd"/>
     </menu>
-    <menu id="ribFileMenu" getLabel="GetRibbonLabel" imageMso="FileOpen" showImage="true">
+    <menu id="ribFileMenu" getLabel="GetRibbonLabel" imageMso="FileOpen" showImage="true" keytip="FI">
       <button
         id="ribExportButton"
         imageMso="FileSave"
@@ -632,7 +651,7 @@
         imageMso="AddInsMenu"
         getContent="GetMyPluginsContent" />
     </menu>
-    <menu id="ribImagesMenu" getLabel="GetRibbonLabel" imageMso="ObjectPictureFill" showImage="true">
+    <menu id="ribImagesMenu" getLabel="GetRibbonLabel" imageMso="ObjectPictureFill" showImage="true" keytip="IM">
       <button
         id="ribAddCaptionButton"
         imageMso="CaptionInsert"
@@ -700,7 +719,7 @@
         getScreentip="GetRibbonScreentip"
         onAction="StackBackgroundImagesCmd"/>
     </menu>
-    <menu id="ribNumberingMenu" getLabel="GetRibbonLabel" imageMso="Numbering" showImage="true">
+    <menu id="ribNumberingMenu" getLabel="GetRibbonLabel" imageMso="Numbering" showImage="true" keytip="NU">
       <button
         id="ribOutlineButton"
         imageMso="OutlineShowDetail"
@@ -738,7 +757,7 @@
         getScreentip="GetRibbonScreentip"
         onAction="RemovePageNumbersCmd"/>
     </menu>
-    <menu id="ribPageMenu" getLabel="GetRibbonLabel" imageMso="PageOrientationPortrait" showImage="true">
+    <menu id="ribPageMenu" getLabel="GetRibbonLabel" imageMso="PageOrientationPortrait" showImage="true" keytip="PG">
       <button
         id="ribArrangeContainersButton"
         imageMso="WindowsArrangeAll"
@@ -842,7 +861,7 @@
         getScreentip="GetRibbonScreentip"
         onAction="WordCountCmd"/>
     </menu>
-    <menu id="ribReferencesMenu" getLabel="GetRibbonLabel" imageMso="CrossReferenceInsert" showImage="true">
+    <menu id="ribReferencesMenu" getLabel="GetRibbonLabel" imageMso="CrossReferenceInsert" showImage="true" keytip="RE">
       <button
       id="ribAddFootnoteButton"
       imageMso="FootnoteInsert"
@@ -946,7 +965,7 @@
         getScreentip="GetRibbonScreentip"
         onAction="GetImagesCmd"/>
     </menu>
-    <menu id="ribRemindersMenu" getLabel="GetRibbonLabel" imageMso="ReminderGallery" showImage="true">
+    <menu id="ribRemindersMenu" getLabel="GetRibbonLabel" imageMso="ReminderGallery" showImage="true" keytip="RM">
       <button
         id="ribRemindButton"
         imageMso="NewTask"
@@ -996,7 +1015,7 @@
         getScreentip="GetRibbonScreentip"
         onAction="StrikeoutTasksCmd"/>
     </menu>
-    <menu id="ribExtrasMenu" getLabel="GetRibbonLabel" imageMso="OutlineDemote" showImage="true">
+    <menu id="ribExtrasMenu" getLabel="GetRibbonLabel" imageMso="OutlineDemote" showImage="true" keytip="EX">
       <button
         id="ribCollapsePagesButton"
         imageMso="CollapseAll"
