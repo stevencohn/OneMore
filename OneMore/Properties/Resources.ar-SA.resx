@@ -620,14 +620,6 @@
     <value>لا يمكن نسخ مجلد إلى نفسه أو إلى أحد توابعه</value>
     <comment>error message</comment>
   </data>
-  <data name="CopyLinkCommand_LinkToPage" xml:space="preserve">
-    <value>رابط نسخ لهذه الصفحة</value>
-    <comment>message box</comment>
-  </data>
-  <data name="CopyLinkCommand_LinkToParagraph" xml:space="preserve">
-    <value>رابط نسخ لهذه الفقرة</value>
-    <comment>message box</comment>
-  </data>
   <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">
     <value>لا ارتباطات تشعبية موجودة في النطاق</value>
     <comment>message box</comment>
@@ -1800,10 +1792,6 @@
   <data name="JoinParagraphCommand_Select" xml:space="preserve">
     <value>حدد سطرين أو أكثر للانضمام</value>
     <comment>info message</comment>
-  </data>
-  <data name="KeyboardSheet_clearButton.Text" xml:space="preserve">
-    <value>صافي</value>
-    <comment>toolstrip button</comment>
   </data>
   <data name="KeyboardSheet_introBox.Text" xml:space="preserve">
     <value>إدارة اختصارات لوحة المفاتيح المخصصة. حدد أمرًا واضغط على تسلسل مفتاح.</value>

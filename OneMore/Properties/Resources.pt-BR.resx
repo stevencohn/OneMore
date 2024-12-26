@@ -621,14 +621,6 @@ Invertido</value>
     <value>Não é possível copiar uma pasta para ela mesma ou para um de seus filhos</value>
     <comment>error message</comment>
   </data>
-  <data name="CopyLinkCommand_LinkToPage" xml:space="preserve">
-    <value>Link copiado para esta página</value>
-    <comment>message box</comment>
-  </data>
-  <data name="CopyLinkCommand_LinkToParagraph" xml:space="preserve">
-    <value>Link copiado para este parágrafo</value>
-    <comment>message box</comment>
-  </data>
   <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">
     <value>Nenhum hiperlink encontrado no intervalo</value>
     <comment>message box</comment>
@@ -1801,10 +1793,6 @@ Deseja atualizar a página existente?</value>
   <data name="JoinParagraphCommand_Select" xml:space="preserve">
     <value>Selecione duas ou mais linhas para unir</value>
     <comment>info message</comment>
-  </data>
-  <data name="KeyboardSheet_clearButton.Text" xml:space="preserve">
-    <value>Claro</value>
-    <comment>toolstrip button</comment>
   </data>
   <data name="KeyboardSheet_introBox.Text" xml:space="preserve">
     <value>Gerencie meus atalhos de teclado personalizados. Selecione um comando e pressione uma sequência de teclas.</value>

@@ -621,14 +621,6 @@ Odwracać</value>
     <value>Nie można skopiować folderu do siebie lub jednego z jego dzieci</value>
     <comment>error message</comment>
   </data>
-  <data name="CopyLinkCommand_LinkToPage" xml:space="preserve">
-    <value>Skopiowany link do tej strony</value>
-    <comment>message box</comment>
-  </data>
-  <data name="CopyLinkCommand_LinkToParagraph" xml:space="preserve">
-    <value>Skopiowany link do tego akapitu</value>
-    <comment>message box</comment>
-  </data>
   <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">
     <value>Nie znaleziono hiperłączy w zasięgu</value>
     <comment>message box</comment>
@@ -1801,10 +1793,6 @@ Czy chcesz odświeżyć istniejącą stronę?</value>
   <data name="JoinParagraphCommand_Select" xml:space="preserve">
     <value>Wybierz dwie lub więcej linii, aby dołączyć</value>
     <comment>info message</comment>
-  </data>
-  <data name="KeyboardSheet_clearButton.Text" xml:space="preserve">
-    <value>Jasne</value>
-    <comment>toolstrip button</comment>
   </data>
   <data name="KeyboardSheet_introBox.Text" xml:space="preserve">
     <value>Zarządzaj moimi niestandardowymi skrótami klawiatury. Wybierz polecenie i naciśnij sekwencję klucza.</value>

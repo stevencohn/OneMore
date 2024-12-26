@@ -621,14 +621,6 @@ Omkeren</value>
     <value>Kan een map niet naar zichzelf of een van de onderliggende mappen kopiëren</value>
     <comment>error message</comment>
   </data>
-  <data name="CopyLinkCommand_LinkToPage" xml:space="preserve">
-    <value>Gekopieerd link naar deze pagina</value>
-    <comment>message box</comment>
-  </data>
-  <data name="CopyLinkCommand_LinkToParagraph" xml:space="preserve">
-    <value>Gekopieerde link naar deze paragraaf</value>
-    <comment>message box</comment>
-  </data>
   <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">
     <value>Geen hyperlinks gevonden in het bereik</value>
     <comment>message box</comment>
@@ -1801,10 +1793,6 @@ Wilt u de bestaande pagina vernieuwen?</value>
   <data name="JoinParagraphCommand_Select" xml:space="preserve">
     <value>Selecteer twee of meer lijnen om mee te doen</value>
     <comment>info message</comment>
-  </data>
-  <data name="KeyboardSheet_clearButton.Text" xml:space="preserve">
-    <value>Duidelijk</value>
-    <comment>toolstrip button</comment>
   </data>
   <data name="KeyboardSheet_introBox.Text" xml:space="preserve">
     <value>Beheer mijn aangepaste sneltoetsen. Selecteer een opdracht en druk op een sleutelreeks.</value>

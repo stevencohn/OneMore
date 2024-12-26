@@ -620,14 +620,6 @@ Inverser</value>
     <value>Impossible de copier un dossier dans lui-même ou dans l'un de ses enfants</value>
     <comment>error message</comment>
   </data>
-  <data name="CopyLinkCommand_LinkToPage" xml:space="preserve">
-    <value>Lien copié vers cette page</value>
-    <comment>message box</comment>
-  </data>
-  <data name="CopyLinkCommand_LinkToParagraph" xml:space="preserve">
-    <value>Lien copié à ce paragraphe</value>
-    <comment>message box</comment>
-  </data>
   <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">
     <value>Aucun lien hypertexte trouvé dans la plage</value>
     <comment>message box</comment>
@@ -1800,10 +1792,6 @@ Voulez-vous actualiser la page existante ?</value>
   <data name="JoinParagraphCommand_Select" xml:space="preserve">
     <value>Sélectionnez deux ou plusieurs lignes à joindre</value>
     <comment>info message</comment>
-  </data>
-  <data name="KeyboardSheet_clearButton.Text" xml:space="preserve">
-    <value>Dégager</value>
-    <comment>toolstrip button</comment>
   </data>
   <data name="KeyboardSheet_introBox.Text" xml:space="preserve">
     <value>Gérez mes raccourcis clavier personnalisés. Sélectionnez une commande et appuyez sur une séquence de touches.</value>

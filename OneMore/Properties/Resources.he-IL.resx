@@ -621,14 +621,6 @@
     <value>לא ניתן להעתיק תיקיה לעצמה או לאחד מהילדים שלה</value>
     <comment>error message</comment>
   </data>
-  <data name="CopyLinkCommand_LinkToPage" xml:space="preserve">
-    <value>הועתק קישור לדף זה</value>
-    <comment>message box</comment>
-  </data>
-  <data name="CopyLinkCommand_LinkToParagraph" xml:space="preserve">
-    <value>הועתק קישור לפסקה זו</value>
-    <comment>message box</comment>
-  </data>
   <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">
     <value>לא נמצאו היפר-קישורים בטווח</value>
     <comment>message box</comment>
@@ -1801,10 +1793,6 @@ Total Row Font
   <data name="JoinParagraphCommand_Select" xml:space="preserve">
     <value>בחר שתי שורות או יותר להצטרפות</value>
     <comment>info message</comment>
-  </data>
-  <data name="KeyboardSheet_clearButton.Text" xml:space="preserve">
-    <value>ברור</value>
-    <comment>toolstrip button</comment>
   </data>
   <data name="KeyboardSheet_introBox.Text" xml:space="preserve">
     <value>נהל את קיצורי המקשים המותאמים אישית שלי. בחר פקודה ולחץ על רצף מקשים.</value>

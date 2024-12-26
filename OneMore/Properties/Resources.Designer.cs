@@ -1207,24 +1207,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Copied link to this page.
-        /// </summary>
-        internal static string CopyLinkCommand_LinkToPage {
-            get {
-                return ResourceManager.GetString("CopyLinkCommand_LinkToPage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Copied link to this paragraph.
-        /// </summary>
-        internal static string CopyLinkCommand_LinkToParagraph {
-            get {
-                return ResourceManager.GetString("CopyLinkCommand_LinkToParagraph", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to No hyperlinks found in range.
         /// </summary>
         internal static string CrawlWebCommand_NoHyperlinks {
@@ -4587,15 +4569,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Clear.
-        /// </summary>
-        internal static string KeyboardSheet_clearButton_Text {
-            get {
-                return ResourceManager.GetString("KeyboardSheet_clearButton.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Manage my custom keyboard shortcuts. Select a command and press a key sequence..
         /// </summary>
         internal static string KeyboardSheet_introBox_Text {
@@ -7402,18 +7375,17 @@ namespace River.OneMoreAddIn.Properties {
         ///  xmlns=&quot;http://schemas.microsoft.com/office/2009/07/customui&quot;
         ///  id=&quot;TabOneMore&quot;
         ///  getLabel=&quot;GetRibbonLabel&quot;
-        ///  insertAfterMso=&quot;TabView&quot;&gt;
+        ///  insertAfterMso=&quot;TabView&quot;
+        ///  keytip=&quot;M&quot;&gt;
         ///
-        ///  &lt;group id=&quot;ribOneMoreBasicsGroup&quot; getLabel=&quot;GetRibbonLabel&quot;&gt;
+        ///  &lt;group id=&quot;ribOneMoreBasicsGroup&quot; getLabel=&quot;GetRibbonLabel&quot; getImage=&quot;GetOneMoreRibbonImage&quot;&gt;
         ///    &lt;button
         ///      id=&quot;ribCommandPaletteButton&quot;
         ///      imageMso=&quot;FormControlEditBox&quot;
         ///      getLabel=&quot;GetRibbonLabel&quot;
         ///      getScreentip=&quot;GetRibbonScreentip&quot;
         ///      onAction=&quot;CommandPaletteCmd&quot;
-        ///      size=&quot;large&quot;/&gt;
-        ///    &lt;button
-        ///      id=&quot;ribQuickPaletteBu [rest of string was truncated]&quot;;.
+        ///      size=&quot;lar [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string RibbonTabOneMore {
             get {
