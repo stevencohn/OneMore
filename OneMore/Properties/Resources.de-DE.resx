@@ -2835,6 +2835,15 @@ Wähle Nein, um eine leere Zeile zwischen den Absätzen zu halten</value>
     <value>Wähle aus, welche Befehle in die Multifunktionsleiste aufgenommen werden sollen und ob Symbole oder Symbole und Etiketten angezeigt werden sollen.</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
+  <data name="RibbonBarSheet_layoutBox.Text" xml:space="preserve">
+    <value>Eine Gruppe auf der Registerkarte „Startseite“.
+Als separate OneMore-Registerkarte</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="RibbonBarSheet_layoutLabel.Text" xml:space="preserve">
+    <value>Layout</value>
+    <comment>label</comment>
+  </data>
   <data name="RibbonBarSheet_positionBox.Text" xml:space="preserve">
     <value>Zwischenablagegruppe
 Grundlegende Textgruppe
@@ -3672,6 +3681,14 @@ Nach der letzten Gruppe</value>
     <value>Hinzufügen oder Aktualisieren der Nummerierung aller Abschnitte in diesem Notizbuch</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="ribOneMoreBasicsGroup_Label" xml:space="preserve">
+    <value>Grundlagen</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribOneMoreEvenMoreGroup_Label" xml:space="preserve">
+    <value>Mehr</value>
+    <comment>ribbon</comment>
+  </data>
   <data name="ribOneMoreGroup_Label" xml:space="preserve">
     <value>Einer noch</value>
     <comment>Ribbon Group</comment>
@@ -3679,6 +3696,22 @@ Nach der letzten Gruppe</value>
   <data name="ribOneMoreMenu_Label" xml:space="preserve">
     <value>Mehr</value>
     <comment>Ribbon main button</comment>
+  </data>
+  <data name="ribOneMoreSnippetsGroup_Label" xml:space="preserve">
+    <value>Ausschnitte</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribOneMoreStylesGroup_Label" xml:space="preserve">
+    <value>Stile</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribOneMoreTableGroup_Label" xml:space="preserve">
+    <value>Tisch</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribOneMoreTagGroup_Label" xml:space="preserve">
+    <value>Suchen</value>
+    <comment>ribbon</comment>
   </data>
   <data name="ribOpenImageWithButton_Label" xml:space="preserve">
     <value>Bild öffnen mit</value>
@@ -4933,6 +4966,10 @@ Umkehren</value>
   <data name="TableTheme_Screentip" xml:space="preserve">
     <value>OneMore-Tabellendesign {0}</value>
     <comment>Screentip for table theme gallery tiles</comment>
+  </data>
+  <data name="TabOneMore_Label" xml:space="preserve">
+    <value>OneMore</value>
+    <comment>ribbon</comment>
   </data>
   <data name="TagBankCommand_confirm" xml:space="preserve">
     <value>Die Tag-Bank enthält Text. Möchten Sie es wirklich entfernen?</value>

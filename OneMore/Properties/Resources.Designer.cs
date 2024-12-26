@@ -7215,14 +7215,17 @@ namespace River.OneMoreAddIn.Properties {
         ///	onLoad=&quot;RibbonLoaded&quot;
         ///	loadImage=&quot;GetRibbonImage&quot;&gt;
         ///  &lt;ribbon&gt;
-        ///    &lt;tabs&gt;
-        ///      &lt;tab idMso=&quot;TabHome&quot;&gt;
-        ///        &lt;group id=&quot;ribOneMoreGroup&quot; getLabel=&quot;GetRibbonLabel&quot;&gt;
-        ///          &lt;gallery
-        ///            id=&quot;ribCustomStylesButton&quot; columns=&quot;4&quot; showItemLabel=&quot;false&quot; size=&quot;normal&quot;
-        ///            image=&quot;CustomStyles&quot;
-        ///            getLabel=&quot;GetRibbonLabel&quot;
-        ///            getItemCount=&quot;GetStyleGalleryIte [rest of string was truncated]&quot;;.
+        ///    &lt;tabs/&gt;
+        ///  &lt;/ribbon&gt;
+        ///  &lt;contextMenus&gt;
+        ///    &lt;contextMenu idMso=&quot;ContextMenuFileAttachment&quot;&gt;
+        ///      &lt;button
+        ///        id=&quot;ctxCaptionAttachmentsButton&quot;
+        ///        imageMso=&quot;CaptionInsert&quot;
+        ///        getLabel=&quot;GetRibbonLabel&quot;
+        ///        getScreentip=&quot;GetRibbonScreentip&quot;
+        ///        onAction=&quot;CaptionAttachmentsCmd&quot;
+        ///        insertBeforeMs [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Ribbon {
             get {
@@ -7294,6 +7297,25 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Aa a group in the Home tab
+        ///As a separate OneMore tab.
+        /// </summary>
+        internal static string RibbonBarSheet_layoutBox_Text {
+            get {
+                return ResourceManager.GetString("RibbonBarSheet_layoutBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Layout.
+        /// </summary>
+        internal static string RibbonBarSheet_layoutLabel_Text {
+            get {
+                return ResourceManager.GetString("RibbonBarSheet_layoutLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clipboard Group
         ///Basic Text Group
         ///Styles Group
@@ -7350,6 +7372,52 @@ namespace River.OneMoreAddIn.Properties {
         internal static string RibbonBarSheet_Title {
             get {
                 return ResourceManager.GetString("RibbonBarSheet_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
+        ///&lt;tab
+        ///  xmlns=&quot;http://schemas.microsoft.com/office/2009/07/customui&quot;
+        ///  idMso=&quot;TabHome&quot;&gt;
+        ///  &lt;group id=&quot;ribOneMoreGroup&quot; getLabel=&quot;GetRibbonLabel&quot;&gt;
+        ///    &lt;gallery
+        ///      id=&quot;ribCustomStylesButton&quot; columns=&quot;4&quot; showItemLabel=&quot;false&quot; size=&quot;normal&quot;
+        ///      image=&quot;CustomStyles&quot;
+        ///      getLabel=&quot;GetRibbonLabel&quot;
+        ///      getItemCount=&quot;GetStyleGalleryItemCount&quot;
+        ///      getItemID=&quot;GetStyleGalleryItemId&quot;
+        ///      getItemImage=&quot;GetStyleGalleryItemImage&quot;
+        ///      getItemScreentip=&quot;GetStyl [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string RibbonTabHome {
+            get {
+                return ResourceManager.GetString("RibbonTabHome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
+        ///&lt;tab
+        ///  xmlns=&quot;http://schemas.microsoft.com/office/2009/07/customui&quot;
+        ///  id=&quot;TabOneMore&quot;
+        ///  getLabel=&quot;GetRibbonLabel&quot;
+        ///  insertAfterMso=&quot;TabView&quot;&gt;
+        ///
+        ///  &lt;group id=&quot;ribOneMoreBasicsGroup&quot; getLabel=&quot;GetRibbonLabel&quot;&gt;
+        ///    &lt;button
+        ///      id=&quot;ribCommandPaletteButton&quot;
+        ///      imageMso=&quot;FormControlEditBox&quot;
+        ///      getLabel=&quot;GetRibbonLabel&quot;
+        ///      getScreentip=&quot;GetRibbonScreentip&quot;
+        ///      onAction=&quot;CommandPaletteCmd&quot;
+        ///      size=&quot;large&quot;/&gt;
+        ///    &lt;button
+        ///      id=&quot;ribQuickPaletteBu [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string RibbonTabOneMore {
+            get {
+                return ResourceManager.GetString("RibbonTabOneMore", resourceCulture);
             }
         }
         
@@ -9202,6 +9270,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Basics.
+        /// </summary>
+        internal static string ribOneMoreBasicsGroup_Label {
+            get {
+                return ResourceManager.GetString("ribOneMoreBasicsGroup_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to More.
+        /// </summary>
+        internal static string ribOneMoreEvenMoreGroup_Label {
+            get {
+                return ResourceManager.GetString("ribOneMoreEvenMoreGroup_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OneMore.
         /// </summary>
         internal static string ribOneMoreGroup_Label {
@@ -9216,6 +9302,42 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribOneMoreMenu_Label {
             get {
                 return ResourceManager.GetString("ribOneMoreMenu_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Snippets.
+        /// </summary>
+        internal static string ribOneMoreSnippetsGroup_Label {
+            get {
+                return ResourceManager.GetString("ribOneMoreSnippetsGroup_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Styles.
+        /// </summary>
+        internal static string ribOneMoreStylesGroup_Label {
+            get {
+                return ResourceManager.GetString("ribOneMoreStylesGroup_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Table.
+        /// </summary>
+        internal static string ribOneMoreTableGroup_Label {
+            get {
+                return ResourceManager.GetString("ribOneMoreTableGroup_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        internal static string ribOneMoreTagGroup_Label {
+            get {
+                return ResourceManager.GetString("ribOneMoreTagGroup_Label", resourceCulture);
             }
         }
         
@@ -12082,6 +12204,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string TableTheme_Screentip {
             get {
                 return ResourceManager.GetString("TableTheme_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OneMore.
+        /// </summary>
+        internal static string TabOneMore_Label {
+            get {
+                return ResourceManager.GetString("TabOneMore_Label", resourceCulture);
             }
         }
         

@@ -2835,6 +2835,15 @@ ISO-code then comma then language name</comment>
     <value>اختر تجميعًا اختياريًا مُعدًا مسبقًا لإضافته إلى شريط الشريط</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
+  <data name="RibbonBarSheet_layoutBox.Text" xml:space="preserve">
+    <value>أأ مجموعة في علامة التبويب الصفحة الرئيسية
+كعلامة تبويب OneMore منفصلة</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="RibbonBarSheet_layoutLabel.Text" xml:space="preserve">
+    <value>تَخطِيط</value>
+    <comment>label</comment>
+  </data>
   <data name="RibbonBarSheet_positionBox.Text" xml:space="preserve">
     <value>مجموعة الحافظة
 مجموعة النص الأساسية
@@ -3670,6 +3679,14 @@ ISO-code then comma then language name</comment>
     <value>قم بإضافة أو تحديث ترقيم كافة الأقسام في دفتر الملاحظات هذا</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="ribOneMoreBasicsGroup_Label" xml:space="preserve">
+    <value>الأساسيات</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribOneMoreEvenMoreGroup_Label" xml:space="preserve">
+    <value>أكثر</value>
+    <comment>ribbon</comment>
+  </data>
   <data name="ribOneMoreGroup_Label" xml:space="preserve">
     <value>مرة اخرى</value>
     <comment>Ribbon Group</comment>
@@ -3677,6 +3694,22 @@ ISO-code then comma then language name</comment>
   <data name="ribOneMoreMenu_Label" xml:space="preserve">
     <value>أكثر</value>
     <comment>Ribbon main button</comment>
+  </data>
+  <data name="ribOneMoreSnippetsGroup_Label" xml:space="preserve">
+    <value>مقتطفات</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribOneMoreStylesGroup_Label" xml:space="preserve">
+    <value>الأنماط</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribOneMoreTableGroup_Label" xml:space="preserve">
+    <value>طاولة</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribOneMoreTagGroup_Label" xml:space="preserve">
+    <value>يبحث</value>
+    <comment>ribbon</comment>
   </data>
   <data name="ribOpenImageWithButton_Label" xml:space="preserve">
     <value>فتح الصورة باستخدام</value>
@@ -4938,6 +4971,10 @@ ISO-code then comma then language name</comment>
   <data name="TableTheme_Screentip" xml:space="preserve">
     <value>موضوع جدول OneMore {0}</value>
     <comment>Screentip for table theme gallery tiles</comment>
+  </data>
+  <data name="TabOneMore_Label" xml:space="preserve">
+    <value>OneMore</value>
+    <comment>ribbon</comment>
   </data>
   <data name="TagBankCommand_confirm" xml:space="preserve">
     <value>يحتوي بنك العلامات على نص. هل أنت متأكد أنك تريد إزالته؟</value>

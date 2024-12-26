@@ -5,7 +5,7 @@
 #pragma warning disable CS3001      // Type is not CLS-compliant
 #pragma warning disable IDE0060     // remove unused parameter
 
-#define xLOG_AddInRibbon
+#define DEBUGRIB // uncomment to enable the DebugRibbon() conditional method
 
 namespace River.OneMoreAddIn
 {
@@ -16,6 +16,7 @@ namespace River.OneMoreAddIn
 	using River.OneMoreAddIn.Settings;
 	using River.OneMoreAddIn.Styles;
 	using System;
+	using System.Diagnostics;
 	using System.Drawing;
 	using System.Globalization;
 	using System.IO;
@@ -52,12 +53,25 @@ namespace River.OneMoreAddIn
 
 			try
 			{
+				var provider = new SettingsProvider();
+
 				var root = XElement.Parse(Resx.Ribbon);
 				ns = root.GetDefaultNamespace();
 
-				var provider = new SettingsProvider();
+				var layout = provider
+					.GetCollection(nameof(RibbonBarSheet))
+					.Get("layout", "group");
 
-				SetGroupPosition(root, ns, provider);
+				var tab = XElement.Parse(layout == "tab"
+					? Resx.RibbonTabOneMore
+					: Resx.RibbonTabHome);
+
+				root.Element(ns + "ribbon").Element(ns + "tabs").Add(tab);
+
+				if (layout == "group")
+				{
+					SetGroupPosition(root, ns, provider);
+				}
 
 				AddColorizerCommands(root, provider.GetCollection(nameof(ColorizerSheet)));
 				AddProofingCommands(root);
@@ -69,10 +83,13 @@ namespace River.OneMoreAddIn
 					root.Add(contextMenus);
 				}
 
-				var ribbonbar = provider.GetCollection(nameof(RibbonBarSheet));
-				if (ribbonbar.Count > 0)
+				if (layout == "group")
 				{
-					AddRibbonBarCommands(ribbonbar, root);
+					var ribbonbar = provider.GetCollection(nameof(RibbonBarSheet));
+					if (ribbonbar.Count > 0)
+					{
+						AddRibbonBarCommands(ribbonbar, root);
+					}
 				}
 
 				var ccommands = provider.GetCollection(nameof(ContextMenuSheet));
@@ -466,9 +483,8 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public string GetFavoritesContent(IRibbonControl control)
 		{
-#if LOG_AddInRibbon
-			logger.WriteLine($"GetFavoritesContent({control.Id}) culture:{AddIn.Culture.Name}");
-#endif
+			DebugRibbon($"GetFavoritesContent({control.Id}) culture:{AddIn.Culture.Name}");
+
 			// TODO: this doesn't seem to work!
 			System.Threading.Thread.CurrentThread.CurrentCulture = AddIn.Culture;
 			System.Threading.Thread.CurrentThread.CurrentUICulture = AddIn.Culture;
@@ -510,9 +526,7 @@ namespace River.OneMoreAddIn
 		/// <param name="ribbon">The Ribbon</param>
 		public void RibbonLoaded(IRibbonUI ribbon)
 		{
-#if LOG_AddInRibbon
-			logger.WriteLine("RibbonLoaded()");
-#endif
+			DebugRibbon("RibbonLoaded()");
 			this.ribbon = ribbon;
 		}
 
@@ -524,9 +538,8 @@ namespace River.OneMoreAddIn
 		/// <returns>A Bitmap image</returns>
 		public IStream GetColorizeImage(IRibbonControl control)
 		{
-#if LOG_AddInRibbon
-			logger.WriteLine($"GetColorizeImage({control.Tag})");
-#endif
+			DebugRibbon($"GetColorizeImage({control.Tag})");
+
 			IStream stream = null;
 			try
 			{
@@ -563,9 +576,8 @@ namespace River.OneMoreAddIn
 			if (Office.IsBlackThemeEnabled(true))
 			{
 				var darkName = $"Dark{imageName}";
-#if LOG_AddInRibbon
-				logger.WriteLine($"GetRibbonImage({imageName})");
-#endif
+				DebugRibbon($"GetRibbonImage({imageName})");
+
 				try
 				{
 					if (Resx.ResourceManager.GetObject(darkName) is Bitmap res)
@@ -583,9 +595,8 @@ namespace River.OneMoreAddIn
 
 			try
 			{
-#if LOG_AddInRibbon
-				logger.WriteLine($"GetRibbonImage({imageName})");
-#endif
+				DebugRibbon($"GetRibbonImage({imageName})");
+
 				if (Resx.ResourceManager.GetObject(imageName) is Bitmap res)
 				{
 					var stream = res.GetReadOnlyStream();
@@ -603,9 +614,7 @@ namespace River.OneMoreAddIn
 
 		public IStream GetRibbonImageByID(IRibbonControl control)
 		{
-#if LOG_AddInRibbon
-			logger.WriteLine($"GetRibbonImageByID({control.Id})");
-#endif
+			DebugRibbon($"GetRibbonImageByID({control.Id})");
 
 			var id = control.Id;
 			if (!id.StartsWith("rib"))
@@ -641,9 +650,8 @@ namespace River.OneMoreAddIn
 		 */
 		public IStream GetOneMoreRibbonImage(IRibbonControl control)
 		{
-#if LOG_AddInRibbon
-			logger.WriteLine($"GetOneMoreRibbonImage({control.Id})");
-#endif
+			DebugRibbon($"GetOneMoreRibbonImage({control.Id})");
+
 			IStream stream = null;
 			try
 			{
@@ -666,9 +674,7 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public string GetRibbonContent(IRibbonControl control)
 		{
-#if LOG_AddInRibbon
-			logger.WriteLine($"GetRibbonContent({control.Id})");
-#endif
+			DebugRibbon($"GetRibbonContent({control.Id})");
 			return null;
 		}
 
@@ -680,9 +686,7 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public bool GetRibbonEnabled(IRibbonControl control)
 		{
-#if LOG_AddInRibbon
-			logger.WriteLine($"GetRibbonEnabled({control.Id})");
-#endif
+			DebugRibbon($"GetRibbonEnabled({control.Id})");
 			return true;
 		}
 
@@ -719,9 +723,7 @@ namespace River.OneMoreAddIn
 
 			label ??= ReadString($"{id}_Label");
 
-#if LOG_AddInRibbon
-			logger.WriteLine($"GetRibbonLabel({id}_Label) => [{label}]");
-#endif
+			DebugRibbon($"GetRibbonLabel({id}_Label) => [{label}]");
 			return label;
 		}
 
@@ -764,9 +766,8 @@ namespace River.OneMoreAddIn
 			{
 				tip = GetRibbonLabel(control);
 			}
-#if LOG_AddInRibbon
-			logger.WriteLine($"GetRibbonScreentip({id}_Screentip) => [{tip}]");
-#endif
+
+			DebugRibbon($"GetRibbonScreentip({id}_Screentip) => [{tip}]");
 			return tip;
 		}
 
@@ -795,9 +796,7 @@ namespace River.OneMoreAddIn
 		/// <returns>A steam of the Image to display</returns>
 		public IStream GetRibbonSearchImage(IRibbonControl control)
 		{
-#if LOG_AddInRibbon
-			logger.WriteLine($"GetRibbonSearchImage({control.Tag})");
-#endif
+			DebugRibbon($"GetRibbonSearchImage({control.Tag})");
 
 			if (engines?.HasElements == true)
 			{
@@ -817,6 +816,14 @@ namespace River.OneMoreAddIn
 			}
 
 			return Resx.e_Smiley.GetReadOnlyStream();
+		}
+
+
+		// #define DEBUGRIBBON to enable this method; otherwise compiler will remove it entirely
+		[Conditional("DEBUGRIB")]
+		private void DebugRibbon(string message)
+		{
+			Logger.Current.WriteLine(message);
 		}
 	}
 }

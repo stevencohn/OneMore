@@ -2840,6 +2840,15 @@ ISO-code then comma then language name</comment>
     <value>בחר קיבוץ מוגדר מראש אופציונלי כדי להוסיף לסרגל רצועת הכלים</value>
     <comment>settings dialog, ribbon bar options</comment>
   </data>
+  <data name="RibbonBarSheet_layoutBox.Text" xml:space="preserve">
+    <value>Aa קבוצה בכרטיסייה בית
+ככרטיסיית OneMore נפרדת</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="RibbonBarSheet_layoutLabel.Text" xml:space="preserve">
+    <value>מַעֲרָך</value>
+    <comment>label</comment>
+  </data>
   <data name="RibbonBarSheet_positionBox.Text" xml:space="preserve">
     <value>קבוצת לוח
 קבוצת טקסט בסיסית
@@ -3677,6 +3686,14 @@ ISO-code then comma then language name</comment>
     <value>הוסף או עדכן את המספור של כל הסעיפים במחברת זו</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="ribOneMoreBasicsGroup_Label" xml:space="preserve">
+    <value>יסודות</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribOneMoreEvenMoreGroup_Label" xml:space="preserve">
+    <value>יוֹתֵר</value>
+    <comment>ribbon</comment>
+  </data>
   <data name="ribOneMoreGroup_Label" xml:space="preserve">
     <value>עוד אחד</value>
     <comment>Ribbon Group NODUP</comment>
@@ -3684,6 +3701,22 @@ ISO-code then comma then language name</comment>
   <data name="ribOneMoreMenu_Label" xml:space="preserve">
     <value>יותר</value>
     <comment>Ribbon main button</comment>
+  </data>
+  <data name="ribOneMoreSnippetsGroup_Label" xml:space="preserve">
+    <value>קטעים</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribOneMoreStylesGroup_Label" xml:space="preserve">
+    <value>סגנונות</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribOneMoreTableGroup_Label" xml:space="preserve">
+    <value>לוּחַ</value>
+    <comment>ribbon</comment>
+  </data>
+  <data name="ribOneMoreTagGroup_Label" xml:space="preserve">
+    <value>לְחַפֵּשׂ</value>
+    <comment>ribbon</comment>
   </data>
   <data name="ribOpenImageWithButton_Label" xml:space="preserve">
     <value>פתח תמונה עם</value>
@@ -4937,6 +4970,10 @@ ISO-code then comma then language name</comment>
   <data name="TableTheme_Screentip" xml:space="preserve">
     <value>נושא טבלה onemore {0}</value>
     <comment>Screentip for table theme gallery tiles</comment>
+  </data>
+  <data name="TabOneMore_Label" xml:space="preserve">
+    <value>OneMore</value>
+    <comment>ribbon</comment>
   </data>
   <data name="TagBankCommand_confirm" xml:space="preserve">
     <value>בנק התגים מכיל טקסט. האם אתה בטוח שברצונך להסיר אותו?</value>
