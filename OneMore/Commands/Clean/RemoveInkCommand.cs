@@ -49,7 +49,7 @@ namespace River.OneMoreAddIn.Commands
 					word.Remove();
 					updated = true;
 
-					CleanParents(one, parent);
+					RemoveEmptyContainers(one, parent);
 				}
 			}
 
@@ -62,7 +62,7 @@ namespace River.OneMoreAddIn.Commands
 					paragraph.Remove();
 					updated = true;
 
-					CleanParents(one, parent);
+					RemoveEmptyContainers(one, parent);
 				}
 			}
 
@@ -75,7 +75,7 @@ namespace River.OneMoreAddIn.Commands
 
 		// InkParagraph can only exist inside of an OE
 		// InkWord can existing in an InkParagraph or an OE
-		private void CleanParents(OneNote one, XElement node)
+		private void RemoveEmptyContainers(OneNote one, XElement node)
 		{
 			var parent = node.Parent;
 
@@ -92,6 +92,8 @@ namespace River.OneMoreAddIn.Commands
 
 					break;
 				}
+
+				// remove empty OE.. OEChildren.. Outline..
 
 				var names = schema.GetContentNames(node.Name.LocalName);
 
