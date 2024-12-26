@@ -344,6 +344,7 @@
     <Compile Include="Models\PageEditor.cs" />
     <Compile Include="AddInHotkeys.cs" />
     <Compile Include="Models\PageReader.cs" />
+    <Compile Include="Models\PageSchema.cs" />
     <Compile Include="Models\SectionEditor.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
