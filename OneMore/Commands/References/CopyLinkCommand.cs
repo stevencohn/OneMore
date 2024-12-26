@@ -4,7 +4,6 @@
 
 namespace River.OneMoreAddIn
 {
-	using River.OneMoreAddIn.UI;
 	using System.Linq;
 	using System.Text;
 	using System.Threading.Tasks;
@@ -122,10 +121,6 @@ namespace River.OneMoreAddIn
 			board.Stash(Win.TextDataFormat.Html, html);
 			board.Stash(Win.TextDataFormat.Text, hyperlink);
 			await board.RestoreState();
-
-			MoreBubbleWindow.Show(specific
-				? Resx.CopyLinkCommand_LinkToParagraph
-				: Resx.CopyLinkCommand_LinkToPage);
 
 			await Task.Yield();
 		}

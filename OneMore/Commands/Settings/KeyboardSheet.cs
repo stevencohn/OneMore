@@ -64,7 +64,7 @@ namespace River.OneMoreAddIn.Settings
 				Localize(new string[]
 				{
 					"introBox",
-					"clearButton",
+					"clearButton=word_Clear",
 					"resetButton=word_Reset",
 					"resetAllButton"
 				});

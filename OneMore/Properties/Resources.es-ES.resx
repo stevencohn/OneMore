@@ -620,14 +620,6 @@ Invertir</value>
     <value>No se puede copiar una carpeta en sí misma o en uno de sus elementos secundarios</value>
     <comment>error message</comment>
   </data>
-  <data name="CopyLinkCommand_LinkToPage" xml:space="preserve">
-    <value>Enlace copiado a esta página</value>
-    <comment>message box</comment>
-  </data>
-  <data name="CopyLinkCommand_LinkToParagraph" xml:space="preserve">
-    <value>Enlace copiado a este párrafo</value>
-    <comment>message box</comment>
-  </data>
   <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">
     <value>No se han encontrado hipervínculos en el rango.</value>
     <comment>message box</comment>
@@ -1800,10 +1792,6 @@ Título personalizado 3</value>
   <data name="JoinParagraphCommand_Select" xml:space="preserve">
     <value>Seleccione dos o más líneas para unir</value>
     <comment>info message</comment>
-  </data>
-  <data name="KeyboardSheet_clearButton.Text" xml:space="preserve">
-    <value>Claro</value>
-    <comment>toolstrip button</comment>
   </data>
   <data name="KeyboardSheet_introBox.Text" xml:space="preserve">
     <value>Administre mis atajos de teclado personalizados. Seleccione un comando y presione una secuencia de teclas.</value>

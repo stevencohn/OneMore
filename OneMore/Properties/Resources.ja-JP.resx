@@ -623,14 +623,6 @@
     <value>フォルダーを自分自身またはその子フォルダーにコピーすることはできません</value>
     <comment>error message</comment>
   </data>
-  <data name="CopyLinkCommand_LinkToPage" xml:space="preserve">
-    <value>このページへのリンクをコピーしました</value>
-    <comment>message box</comment>
-  </data>
-  <data name="CopyLinkCommand_LinkToParagraph" xml:space="preserve">
-    <value>この段落へのリンクをコピーしました</value>
-    <comment>message box</comment>
-  </data>
   <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">
     <value>範囲内にハイパーリンクが見つかりませんでした</value>
     <comment>message box</comment>
@@ -1803,10 +1795,6 @@ OneNoteファイル (*.one)</value>
   <data name="JoinParagraphCommand_Select" xml:space="preserve">
     <value>2行以上を選択して結合</value>
     <comment>info message</comment>
-  </data>
-  <data name="KeyboardSheet_clearButton.Text" xml:space="preserve">
-    <value>クリア</value>
-    <comment>toolstrip button</comment>
   </data>
   <data name="KeyboardSheet_introBox.Text" xml:space="preserve">
     <value>カスタムキーボードショートカットを管理します。コマンドを選択してキーシーケンスを押します。</value>
