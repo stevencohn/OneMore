@@ -38,7 +38,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (!HttpClientFactory.IsNetworkAvailable())
 			{
-				ShowInfo(Properties.Resources.NetwordConnectionUnavailable);
+				ShowInfo(Resx.NetwordConnectionUnavailable);
 				return;
 			}
 
@@ -97,9 +97,10 @@ namespace River.OneMoreAddIn.Commands
 			logger.Start();
 			logger.StartClock();
 
-			if (HasOneNoteReferences())
+			var scope = GetOneNoteScope();
+			if (scope != OneNote.Scope.Self)
 			{
-				await BuildHyperlinkMap(progress, token);
+				await BuildHyperlinkMap(scope, progress, token);
 			}
 
 			progress.SetMaximum(candidates.Count);
@@ -126,19 +127,47 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private bool HasOneNoteReferences()
+		private OneNote.Scope GetOneNoteScope()
 		{
-			return candidates.Any(e =>
-				e.Descendants().OfType<XCData>()
-					.Any(c => c.Value.StartsWith("<a href=\"onenote:")));
+			/*
+			 * Notebook reference will start with "onenote:https://...."
+             * onenote:https://d.docs.live.net/6925.../&amp;section-id={...}&amp;page-id={...}&amp;end
+			 * 
+			 * Any pages within this notebook will have a base-path=https...
+             * onenote:...&amp;section-id={...}&amp;page-id={...}&amp;end&amp;base-path=https://d...
+             * 
+             * Possible future optimization: collect all named notebooks/sections since the
+             * notebook URI contains the exact names, here "OneMore Wiki" and "Get Started"
+             * https://d.docs.live.net/.../Documents/OneMore%20Wiki/Get%20Started.one
+			 */
+
+			var scope = OneNote.Scope.Self;
+
+			foreach (var candidate in candidates)
+			{
+				var data = candidates.DescendantNodes().OfType<XCData>();
+				if (data.Any(d => d.Value.Contains("<a\nhref=\"onenote:http")))
+				{
+					return OneNote.Scope.Notebooks;
+				}
+
+				if (data.Any(d => d.Value.Contains("<a\nhref=\"onenote:")))
+				{
+					if (scope == OneNote.Scope.Self)
+					{
+						scope = OneNote.Scope.Sections;
+					}
+				}
+			}
+
+			return scope;
 		}
 
 
-		private async Task BuildHyperlinkMap(ProgressDialog progress, CancellationToken token)
+		private async Task BuildHyperlinkMap(
+			OneNote.Scope scope, ProgressDialog progress, CancellationToken token)
 		{
-			map = await new HyperlinkProvider(one).BuildHyperlinkMap(
-				OneNote.Scope.Notebooks,
-				token,
+			map = await new HyperlinkProvider(one).BuildHyperlinkMap(scope, token,
 				async (count) =>
 				{
 					progress.SetMaximum(count);
@@ -263,12 +292,10 @@ namespace River.OneMoreAddIn.Commands
 
 		private bool InvalidOneNoteUrl(string url)
 		{
-			var match = Regex.Match(url, @"section-id=({[^}]+})&amp;page-id=({[^}]+})");
+			var match = Regex.Match(url, @"section-id=({[^}]+})&page-id=({[^}]+})");
 			if (match.Success)
 			{
-				return map.Any(m =>
-					m.Value.SectionID == match.Groups[1].Value &&
-					m.Value.PageID == match.Groups[2].Value);
+				return !map.ContainsKey(match.Groups[2].Value);
 			}
 
 			return false;
