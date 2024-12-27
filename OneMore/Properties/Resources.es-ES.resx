@@ -485,6 +485,18 @@ Invertir</value>
     <value>Variable no definida "{0}"</value>
     <comment>error</comment>
   </data>
+  <data name="CheckUrlsCommand_checkingMsg" xml:space="preserve">
+    <value>Comprobando {0} URL</value>
+    <comment>message</comment>
+  </data>
+  <data name="CheckUrlsCommand_invaldiMsg" xml:space="preserve">
+    <value>Se encontraron {0} URL no válidas en esta página</value>
+    <comment>message</comment>
+  </data>
+  <data name="CheckUrlsCommand_mappingMsg" xml:space="preserve">
+    <value>Asignación de {0} referencias de página</value>
+    <comment>message</comment>
+  </data>
   <data name="CleanRemindersCommand_count" xml:space="preserve">
     <value>Se limpiaron {0} recordatorios huérfanos</value>
     <comment>message box</comment>

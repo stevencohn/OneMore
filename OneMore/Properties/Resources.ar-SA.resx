@@ -485,6 +485,18 @@
     <value>متغير غير محدد "{0}"</value>
     <comment>error</comment>
   </data>
+  <data name="CheckUrlsCommand_checkingMsg" xml:space="preserve">
+    <value>التحقق من {0} عناوين URL</value>
+    <comment>message</comment>
+  </data>
+  <data name="CheckUrlsCommand_invaldiMsg" xml:space="preserve">
+    <value>تم العثور على {0} عنوان URL غير صالح في هذه الصفحة</value>
+    <comment>message</comment>
+  </data>
+  <data name="CheckUrlsCommand_mappingMsg" xml:space="preserve">
+    <value>تعيين مراجع الصفحة {0}.</value>
+    <comment>message</comment>
+  </data>
   <data name="CleanRemindersCommand_count" xml:space="preserve">
     <value>تم تنظيف {0} من التذكيرات المعزولة</value>
     <comment>message box</comment>

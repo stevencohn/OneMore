@@ -485,6 +485,18 @@ Inverser</value>
     <value>Variable non définie "{0}"</value>
     <comment>error</comment>
   </data>
+  <data name="CheckUrlsCommand_checkingMsg" xml:space="preserve">
+    <value>Vérification de {0} URL</value>
+    <comment>message</comment>
+  </data>
+  <data name="CheckUrlsCommand_invaldiMsg" xml:space="preserve">
+    <value>{0} URL non valides trouvées sur cette page</value>
+    <comment>message</comment>
+  </data>
+  <data name="CheckUrlsCommand_mappingMsg" xml:space="preserve">
+    <value>Mappage de {0} références de page</value>
+    <comment>message</comment>
+  </data>
   <data name="CleanRemindersCommand_count" xml:space="preserve">
     <value>Nettoyage de {0} rappels orphelins</value>
     <comment>message box</comment>

@@ -15,6 +15,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
+	using Resx = Properties.Resources;
 
 
 	internal class CheckUrlsCommand : Command
@@ -102,7 +103,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			progress.SetMaximum(candidates.Count);
-			progress.SetMessage($"Checking {candidates.Count} URLs");
+			progress.SetMessage(string.Format(Resx.CheckUrlsCommand_checkingMsg, candidates.Count));
 
 			try
 			{
@@ -141,7 +142,7 @@ namespace River.OneMoreAddIn.Commands
 				async (count) =>
 				{
 					progress.SetMaximum(count);
-					progress.SetMessage($"Mapping {count} page references");
+					progress.SetMessage(string.Format(Resx.CheckUrlsCommand_mappingMsg, count));
 					await Task.Yield();
 				},
 				async () =>
@@ -332,7 +333,7 @@ namespace River.OneMoreAddIn.Commands
 				if (badCount > 0)
 				{
 					MoreMessageBox.ShowWarning(owner,
-						$"Found {badCount} invalid URLs on this page");
+						string.Format(Resx.CheckUrlsCommand_invaldiMsg, badCount));
 				}
 			}
 			else

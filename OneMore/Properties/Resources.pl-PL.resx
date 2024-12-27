@@ -486,6 +486,18 @@ Odwracać</value>
     <value>Niezdefiniowana zmienna „{0}”</value>
     <comment>error</comment>
   </data>
+  <data name="CheckUrlsCommand_checkingMsg" xml:space="preserve">
+    <value>Sprawdzanie adresów URL: {0}</value>
+    <comment>message</comment>
+  </data>
+  <data name="CheckUrlsCommand_invaldiMsg" xml:space="preserve">
+    <value>Znaleziono {0} nieprawidłowych adresów URL na tej stronie</value>
+    <comment>message</comment>
+  </data>
+  <data name="CheckUrlsCommand_mappingMsg" xml:space="preserve">
+    <value>Mapowanie odwołań do stron {0}</value>
+    <comment>message</comment>
+  </data>
   <data name="CleanRemindersCommand_count" xml:space="preserve">
     <value>Poprawiono {0} osieroconych przypomnień</value>
     <comment>message box</comment>

@@ -486,6 +486,18 @@ Invertido</value>
     <value>Variável indefinida "{0}"</value>
     <comment>error</comment>
   </data>
+  <data name="CheckUrlsCommand_checkingMsg" xml:space="preserve">
+    <value>Verificando {0} URLs</value>
+    <comment>message</comment>
+  </data>
+  <data name="CheckUrlsCommand_invaldiMsg" xml:space="preserve">
+    <value>Foram encontrados {0} URLs inválidos nesta página</value>
+    <comment>message</comment>
+  </data>
+  <data name="CheckUrlsCommand_mappingMsg" xml:space="preserve">
+    <value>Mapeando {0} referências de página</value>
+    <comment>message</comment>
+  </data>
   <data name="CleanRemindersCommand_count" xml:space="preserve">
     <value>Foram limpos {0} lembretes órfãos</value>
     <comment>message box</comment>

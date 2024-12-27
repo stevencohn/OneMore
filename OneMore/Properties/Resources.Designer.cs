@@ -901,6 +901,33 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Checking {0} URLs.
+        /// </summary>
+        internal static string CheckUrlsCommand_checkingMsg {
+            get {
+                return ResourceManager.GetString("CheckUrlsCommand_checkingMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Found {0} invalid URLs on this page.
+        /// </summary>
+        internal static string CheckUrlsCommand_invaldiMsg {
+            get {
+                return ResourceManager.GetString("CheckUrlsCommand_invaldiMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mapping {0} page references.
+        /// </summary>
+        internal static string CheckUrlsCommand_mappingMsg {
+            get {
+                return ResourceManager.GetString("CheckUrlsCommand_mappingMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cleaned up {0} orphaned reminders.
         /// </summary>
         internal static string CleanRemindersCommand_count {
