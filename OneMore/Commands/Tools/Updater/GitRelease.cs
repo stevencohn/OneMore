@@ -21,6 +21,8 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 
 		public string name { get; set; }
 
+		public bool prerelease { get; set; }
+
 		public string published_at { get; set; }
 
 		public List<GitAsset> assets { get; set; }

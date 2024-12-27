@@ -3,7 +3,9 @@
 //************************************************************************************************
 
 #pragma warning disable S1075 // URIs should not be hardcoded
-#define xDebugUpdater
+
+// uncomment this to enable interactive interception of the installer
+//#define Interactive
 
 namespace River.OneMoreAddIn.Commands.Tools.Updater
 {
@@ -19,7 +21,9 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 
 	internal class Updater : Loggable, IUpdateReport
 	{
-		private const string LatestUrl = "https://api.github.com/repos/stevencohn/onemore/releases/latest";
+		private const string LatestUrl = "https://api.github.com/repos/stevencohn/onemore/releases";
+		private const string Latest = "/latest";
+		private const string LatestN = "?per_page=5";
 		private const string TagUrl = "https://github.com/stevencohn/OneMore/releases/tag";
 
 		private GitRelease release;
@@ -52,7 +56,7 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 				.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
 
 			using var root = hive.OpenSubKey(path);
-			if (root != null)
+			if (root is not null)
 			{
 				foreach (var subName in root.GetSubKeyNames())
 				{
@@ -90,16 +94,18 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 		public async Task<bool> FetchLatestRelease()
 		{
 			var client = HttpClientFactory.Create();
+			var uri = $"{LatestUrl}{LatestN}";
+			GitRelease[] releases;
 
 			try
 			{
-				using var response = await client.GetAsync(LatestUrl);
+				using var response = await client.GetAsync(uri);
 				var body = await response.Content.ReadAsStringAsync();
 
 				// use the .NET Framework serializer;
 				// it's not great but I didn't want to pull in a nuget if I didn't need to
 				var serializer = new JavaScriptSerializer();
-				release = serializer.Deserialize<GitRelease>(body);
+				releases = serializer.Deserialize<GitRelease[]>(body);
 			}
 			catch (AggregateException exc)
 			{
@@ -118,6 +124,35 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 			catch (Exception exc)
 			{
 				logger.WriteLine($"error fetching latest release {exc.Message}", exc);
+				return false;
+			}
+
+			// find latest released-release, allowing prereleases to be published
+			release = null;
+			foreach (var r in releases)
+			{
+				// dump them out for debugging
+				var name = r.prerelease ? $"{r.name} PRERELEASE" : r.name;
+				logger.WriteLine($"fetched {r.tag_name}, {r.published_at} - \"{name}\"");
+				if (!r.prerelease && release is null)
+				{
+					release = r;
+				}
+			}
+
+			// either no releases fetched or only prerelease versions!
+			if (release is null)
+			{
+				logger.Write($"no official release found; ");
+				if (releases.Length == 0)
+				{
+					logger.WriteLine("empty release list returned");
+				}
+				else
+				{
+					logger.WriteLine($"latest release is [{releases[0].tag_name}]");
+				}
+
 				return false;
 			}
 
@@ -161,7 +196,7 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 			var key = Environment.Is64BitOperatingSystem ? "x64" : "x86";
 
 			var asset = release.assets.Find(a => a.browser_download_url.Contains(key));
-			if (asset == null)
+			if (asset is null)
 			{
 				logger.WriteLine($"did not find installer asset for {key}");
 				return false;
@@ -203,7 +238,7 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 			using var writer = new StreamWriter(path, false);
 			await writer.WriteLineAsync(shutdown);
 			await writer.WriteLineAsync(msi);
-#if DebugUpdater
+#if Interactive
 			writer.WriteLine("set /p \"continue: \""); // for debugging
 #endif
 			await writer.FlushAsync();
@@ -217,7 +252,7 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 				FileName = Environment.ExpandEnvironmentVariables("%ComSpec%"),
 				Arguments = $"/c {path}",
 				UseShellExecute = true,
-#if DebugUpdater
+#if Interactive
 				WindowStyle = ProcessWindowStyle.Normal
 #else
 				WindowStyle = ProcessWindowStyle.Hidden
