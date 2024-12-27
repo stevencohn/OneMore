@@ -486,6 +486,18 @@ Omkeren</value>
     <value>Ongedefinieerde variabele "{0}"</value>
     <comment>error</comment>
   </data>
+  <data name="CheckUrlsCommand_checkingMsg" xml:space="preserve">
+    <value>{0} URL's controleren</value>
+    <comment>message</comment>
+  </data>
+  <data name="CheckUrlsCommand_invaldiMsg" xml:space="preserve">
+    <value>Er zijn {0} ongeldige URL's gevonden op deze pagina</value>
+    <comment>message</comment>
+  </data>
+  <data name="CheckUrlsCommand_mappingMsg" xml:space="preserve">
+    <value>Het in kaart brengen van {0} paginareferenties</value>
+    <comment>message</comment>
+  </data>
   <data name="CleanRemindersCommand_count" xml:space="preserve">
     <value>{0} zwevende herinneringen opgeschoond</value>
     <comment>message box</comment>

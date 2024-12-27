@@ -484,6 +484,18 @@
     <value>未定义的变量“{0}”</value>
     <comment>error</comment>
   </data>
+  <data name="CheckUrlsCommand_checkingMsg" xml:space="preserve">
+    <value>检查 {0} 个网址</value>
+    <comment>message</comment>
+  </data>
+  <data name="CheckUrlsCommand_invaldiMsg" xml:space="preserve">
+    <value>在此页上发现 {0} 个无效网址</value>
+    <comment>message</comment>
+  </data>
+  <data name="CheckUrlsCommand_mappingMsg" xml:space="preserve">
+    <value>映射 {0} 页面引用</value>
+    <comment>message</comment>
+  </data>
   <data name="CleanRemindersCommand_count" xml:space="preserve">
     <value>清理了 {0} 个孤立的提醒</value>
     <comment>message box</comment>

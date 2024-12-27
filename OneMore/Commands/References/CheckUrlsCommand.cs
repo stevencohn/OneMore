@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Styles;
+	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Concurrent;
 	using System.Collections.Generic;
@@ -14,10 +15,19 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
+	using Resx = Properties.Resources;
 
 
 	internal class CheckUrlsCommand : Command
 	{
+		private OneNote one;
+		private Page page;
+		private List<XElement> candidates;
+		private Dictionary<string, OneNote.HyperlinkInfo> map;
+
+		private int badCount;
+		private Exception exception;
+
 
 		public CheckUrlsCommand()
 		{
@@ -28,45 +38,21 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (!HttpClientFactory.IsNetworkAvailable())
 			{
-				ShowInfo(Properties.Resources.NetwordConnectionUnavailable);
+				ShowInfo(Resx.NetwordConnectionUnavailable);
 				return;
 			}
 
-			await using var one = new OneNote(out var page, out _);
-
-			var count = await HasInvalidUrls(page);
-			if (count > 0)
+			await using (one = new OneNote(out page, out _))
 			{
-				await one.Update(page);
-
-				UI.MoreMessageBox.ShowWarning(owner, $"Found {count} invalid URLs on this page");
-			}
-		}
-
-
-		private async Task<int> HasInvalidUrls(Page page)
-		{
-			var elements = GetCandiateElements(page);
-
-			// parallelize internet access for all chosen hyperlinks on the page...
-
-			var count = 0;
-			if (elements.Any())
-			{
-				// must use a thread-safe collection here
-				var tasks = new ConcurrentBag<Task<int>>();
-
-				foreach (var element in elements)
+				candidates = GetCandiateElements(page);
+				if (candidates.Count > 0)
 				{
-					// do not use await in the body loop; just build list of tasks
-					tasks.Add(ValidateUrls(element));
+					var progressDialog = new ProgressDialog(Execute);
+
+					// report results on UI thread after execution
+					progressDialog.RunModeless(ReportResult);
 				}
-
-				await Task.WhenAll(tasks.ToArray());
-				count = tasks.Sum(t => t.IsFaulted ? 0 : t.Result);
 			}
-
-			return count;
 		}
 
 
@@ -105,16 +91,127 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task<int> ValidateUrls(XElement element)
+		// Invoked by the ProgressDialog OnShown callback
+		private async Task Execute(ProgressDialog progress, CancellationToken token)
+		{
+			logger.Start();
+			logger.StartClock();
+
+			var scope = GetOneNoteScope();
+			if (scope != OneNote.Scope.Self)
+			{
+				await BuildHyperlinkMap(scope, progress, token);
+			}
+
+			progress.SetMaximum(candidates.Count);
+			progress.SetMessage(string.Format(Resx.CheckUrlsCommand_checkingMsg, candidates.Count));
+
+			try
+			{
+				await ValidateUrls(progress);
+				if (badCount > 0)
+				{
+					await one.Update(page);
+				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error validating URLs", exc);
+				exception = exc;
+			}
+
+			progress.Close();
+
+			logger.WriteTime("check complete");
+			logger.End();
+		}
+
+
+		private OneNote.Scope GetOneNoteScope()
+		{
+			/*
+			 * Notebook reference will start with "onenote:https://...."
+             * onenote:https://d.docs.live.net/6925.../&amp;section-id={...}&amp;page-id={...}&amp;end
+			 * 
+			 * Any pages within this notebook will have a base-path=https...
+             * onenote:...&amp;section-id={...}&amp;page-id={...}&amp;end&amp;base-path=https://d...
+             * 
+             * Possible future optimization: collect all named notebooks/sections since the
+             * notebook URI contains the exact names, here "OneMore Wiki" and "Get Started"
+             * https://d.docs.live.net/.../Documents/OneMore%20Wiki/Get%20Started.one
+			 */
+
+			var scope = OneNote.Scope.Self;
+
+			foreach (var candidate in candidates)
+			{
+				var data = candidates.DescendantNodes().OfType<XCData>();
+				if (data.Any(d => d.Value.Contains("<a\nhref=\"onenote:http")))
+				{
+					return OneNote.Scope.Notebooks;
+				}
+
+				if (data.Any(d => d.Value.Contains("<a\nhref=\"onenote:")))
+				{
+					if (scope == OneNote.Scope.Self)
+					{
+						scope = OneNote.Scope.Sections;
+					}
+				}
+			}
+
+			return scope;
+		}
+
+
+		private async Task BuildHyperlinkMap(
+			OneNote.Scope scope, ProgressDialog progress, CancellationToken token)
+		{
+			map = await new HyperlinkProvider(one).BuildHyperlinkMap(scope, token,
+				async (count) =>
+				{
+					progress.SetMaximum(count);
+					progress.SetMessage(string.Format(Resx.CheckUrlsCommand_mappingMsg, count));
+					await Task.Yield();
+				},
+				async () =>
+				{
+					progress.Increment();
+					await Task.Yield();
+				});
+		}
+
+
+		private async Task ValidateUrls(ProgressDialog progress)
+		{
+			// parallelize internet access for all chosen hyperlinks on the page...
+
+			// must use a thread-safe collection here
+			var tasks = new ConcurrentBag<Task>();
+
+			foreach (var candidate in candidates)
+			{
+				// do not use await in the body loop; just build list of tasks
+				tasks.Add(ValidateUrl(candidate, progress));
+			}
+
+			await Task.WhenAll(tasks.ToArray());
+			//var count = tasks.Sum(t => t.IsFaulted ? 0 : t.Result);
+		}
+
+
+		private async Task ValidateUrl(XElement element, ProgressDialog progress)
 		{
 			var cdata = element.GetCData();
 			var wrapper = cdata.GetWrapper();
 
-			var count = 0;
+			var count = badCount;
 			foreach (var anchor in wrapper.Elements("a"))
 			{
+				progress.Increment();
+
 				var href = anchor.Attribute("href")?.Value;
-				if (ValidWebAddress(href))
+				if (ValidAddress(href))
 				{
 					if (await InvalidUrl(href))
 					{
@@ -144,34 +241,68 @@ namespace River.OneMoreAddIn.Commands
 							);
 						}
 
-						count++;
+						Interlocked.Increment(ref badCount);
 					}
 				}
 			}
 
-			if (count > 0)
+			if (badCount > count)
 			{
 				cdata.ReplaceWith(wrapper.GetInnerXml());
 			}
-
-			return count;
 		}
 
 
-		private static bool ValidWebAddress(string href)
+		private static bool ValidAddress(string href)
 		{
-			return
-				!string.IsNullOrWhiteSpace(href) &&
-				href.StartsWith("http") &&
+			if (string.IsNullOrWhiteSpace(href))
+			{
+				return false;
+			}
+
+			if (href.StartsWith("http") &&
 				!(
-					href.StartsWith("https://onedrive.live.com/view.aspx") &&
+					href.Contains("onedrive.live.com/view.aspx") &&
 					href.Contains("&id=documents") &&
 					href.Contains(".one")
-				);
+				))
+			{
+				return true;
+			}
+
+			return
+				href.StartsWith("onenote:") &&
+				href.Contains("section-id=") &&
+				href.Contains("page-id=");
 		}
 
 
 		private async Task<bool> InvalidUrl(string url)
+		{
+			if (url.StartsWith("onenote:") && url.Contains("page-id="))
+			{
+				return InvalidOneNoteUrl(url);
+			}
+			else
+			{
+				return await InvalidWebUrl(url);
+			}
+		}
+
+
+		private bool InvalidOneNoteUrl(string url)
+		{
+			var match = Regex.Match(url, @"section-id=({[^}]+})&page-id=({[^}]+})");
+			if (match.Success)
+			{
+				return !map.ContainsKey(match.Groups[2].Value);
+			}
+
+			return false;
+		}
+
+
+		private async Task<bool> InvalidWebUrl(string url)
 		{
 			var invalid = false;
 
@@ -212,5 +343,31 @@ namespace River.OneMoreAddIn.Commands
 
 			return invalid;
 		}
+
+
+		private void ReportResult(object sender, EventArgs e)
+		{
+			// report results back on the main UI thread...
+
+			if (sender is ProgressDialog progress)
+			{
+				// otherwise ShowMessage window will appear behind progress dialog
+				progress.Visible = false;
+			}
+
+			if (exception is null)
+			{
+				if (badCount > 0)
+				{
+					MoreMessageBox.ShowWarning(owner,
+						string.Format(Resx.CheckUrlsCommand_invaldiMsg, badCount));
+				}
+			}
+			else
+			{
+				MoreMessageBox.ShowErrorWithLogLink(owner, exception.Message);
+			}
+		}
+
 	}
 }

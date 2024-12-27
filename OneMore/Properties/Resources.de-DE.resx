@@ -485,6 +485,18 @@ Umkehren</value>
     <value>Undefinierte Variable „{0}“</value>
     <comment>error</comment>
   </data>
+  <data name="CheckUrlsCommand_checkingMsg" xml:space="preserve">
+    <value>{0} URLs werden überprüft</value>
+    <comment>message</comment>
+  </data>
+  <data name="CheckUrlsCommand_invaldiMsg" xml:space="preserve">
+    <value>Auf dieser Seite wurden {0} ungültige URLs gefunden</value>
+    <comment>message</comment>
+  </data>
+  <data name="CheckUrlsCommand_mappingMsg" xml:space="preserve">
+    <value>Zuordnung von {0} Seitenverweisen</value>
+    <comment>message</comment>
+  </data>
   <data name="CleanRemindersCommand_count" xml:space="preserve">
     <value>{0} verwaiste Erinnerungen wurden bereinigt</value>
     <comment>message box</comment>

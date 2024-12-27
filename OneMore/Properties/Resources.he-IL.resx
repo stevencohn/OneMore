@@ -486,6 +486,18 @@
     <value>משתנה לא מוגדר "{0}"</value>
     <comment>error</comment>
   </data>
+  <data name="CheckUrlsCommand_checkingMsg" xml:space="preserve">
+    <value>בודק {0} כתובות אתרים</value>
+    <comment>message</comment>
+  </data>
+  <data name="CheckUrlsCommand_invaldiMsg" xml:space="preserve">
+    <value>נמצאו {0} כתובות אתרים לא חוקיות בדף זה</value>
+    <comment>message</comment>
+  </data>
+  <data name="CheckUrlsCommand_mappingMsg" xml:space="preserve">
+    <value>מיפוי של {0} הפניות לדפים</value>
+    <comment>message</comment>
+  </data>
   <data name="CleanRemindersCommand_count" xml:space="preserve">
     <value>ניקה {0} תזכורות יתומות</value>
     <comment>message box</comment>
