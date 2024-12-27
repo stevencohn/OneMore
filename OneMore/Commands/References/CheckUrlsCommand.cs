@@ -168,7 +168,6 @@ namespace River.OneMoreAddIn.Commands
 					href.Contains("&id=documents") &&
 					href.Contains(".one")
 				);
-
 		}
 
 
