@@ -1,11 +1,14 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************                
+
+//#define DEBUGLOG // uncomment to enable the DebugLog() conditional method
 
 namespace River.OneMoreAddIn.Colorizer
 {
 	using System;
 	using System.Collections.Generic;
+	using System.Diagnostics;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 
@@ -19,7 +22,7 @@ namespace River.OneMoreAddIn.Colorizer
 	/// for different visualizations such as HTML, RTF, or OneNote. See the Colorizer class
 	/// for a OneNote visualizer.
 	/// </remarks>
-	internal class Parser
+	internal class Parser : Loggable
 	{
 		#region Note
 		// Due to the way the regular expression are defined, we may end up with a MatchCollection
@@ -53,8 +56,8 @@ namespace River.OneMoreAddIn.Colorizer
 		}
 
 
-		private readonly ILogger logger;
 		private readonly ICompiledLanguage language;
+		private readonly Regex crPattern;
 		private MatchCollection matches;
 		private int captureIndex;
 		private string scopeOverride;
@@ -63,7 +66,7 @@ namespace River.OneMoreAddIn.Colorizer
 		public Parser(ICompiledLanguage language)
 		{
 			this.language = language;
-			logger = Logger.Current;
+			crPattern = new Regex(@"(?:\r\n)|(?:\n\r)", RegexOptions.Compiled);
 		}
 
 
@@ -98,13 +101,13 @@ namespace River.OneMoreAddIn.Colorizer
 
 			// collapse \r\n sequence to just \n to make parsing easier;
 			// this sequence appears when using C# @"verbatim" multiline strings
-			source = Regex.Replace(source, @"(?:\r\n)|(?:\n\r)", "\n");
+			source = crPattern.Replace(source, "\n");
 
 			matches = language.Regex.Matches(source);
 
 			if (matches.Count == 0)
 			{
-				logger.Debug($"report(\"{source}\", null); // no match");
+				logger.Debug($"report(\"{source}\", null); - no match");
 
 				captureIndex = 0;
 				report(source, null);
@@ -122,9 +125,9 @@ namespace River.OneMoreAddIn.Colorizer
 
 				if (index < capture.Index)
 				{
-					logger.Debug(
+					DebugLog(
 						$"report(\"{source.Substring(index, capture.Index - index)}\", " +
-						$"{scopeOverride ?? "null"}); // space");
+						$"{scopeOverride ?? "null"}); - space");
 
 					report(source.Substring(index, capture.Index - index), scopeOverride ?? null);
 				}
@@ -137,7 +140,7 @@ namespace River.OneMoreAddIn.Colorizer
 
 				logger.Debug(
 					$"report(\"{capture.Value}\", {scope}); " +
-					$"// scopeOverride:{scopeOverride ?? "null"}, colorized");
+					(scopeOverride is null ? string.Empty : $"- scopeOverride:{scopeOverride}"));
 
 				report(capture.Value, scope);
 				index = capture.Index + capture.Length;
@@ -165,24 +168,35 @@ namespace River.OneMoreAddIn.Colorizer
 					var rule = language.Rules[ri];
 					var newOverride = rule.Scope;
 
-					logger.Debug(
-						$".. newOverride ({newOverride ?? "null"}) from rule {ri} /{rule.Pattern}/");
+					if (!string.IsNullOrEmpty(scopeOverride) && newOverride == scopeOverride)
+					{
+						DebugLog(
+							$".. reverting {scopeOverride} scope override " +
+							$"from rule {{ri}} /{{rule.Pattern}}/\"");
 
-					// special case of multi-line comments, started by a rule with
-					// the "comment" scope and ended by a rule with the "" scope
-					// ignore other scopes until the ending "" scope is discovered
-
-					if (newOverride == string.Empty)
 						scopeOverride = null;
-					else if (scopeOverride != "comment")
-						scopeOverride = newOverride;
+					}
+					else
+					{
+						DebugLog(
+							$".. newOverride ({newOverride ?? "null"}) from rule {ri} /{rule.Pattern}/");
 
-					logger.Debug($".. scopeOverride ({scopeOverride ?? "null"})");
+						// special case of multi-line comments, started by a rule with
+						// the "comment" scope and ended by a rule with the "" scope
+						// ignore other scopes until the ending "" scope is discovered
+
+						if (newOverride == string.Empty)
+							scopeOverride = null;
+						else if (scopeOverride != "comment")
+							scopeOverride = newOverride;
+
+						DebugLog($".. scopeOverride ({scopeOverride ?? "null"})");
+					}
 				}
 			}
 			if (index < source.Length)
 			{
-				logger.Debug($"report(\"{source.Substring(index)}\", null); // remaining");
+				DebugLog($"report(\"{source.Substring(index)}\", null); - remaining");
 
 				// remaining source after all captures
 				report(source.Substring(index), null);
@@ -218,6 +232,14 @@ namespace River.OneMoreAddIn.Colorizer
 					}
 				}
 			}
+		}
+
+
+		// #define DEBUGRIBBON to enable this method; otherwise compiler will remove it entirely
+		[Conditional("DEBUGLOG")]
+		private void DebugLog(string message)
+		{
+			logger.WriteLine(message);
 		}
 	}
 }
