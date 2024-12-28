@@ -83,8 +83,8 @@ namespace River.OneMoreAddIn.Commands
 
 			// must add to area.X here to handle extended mode in which the coord of the secondary
 			// display is an extension of the first, so X would be greater than zero
-			Left = (int)(area.X + (area.Width - Width - (10 * scalingX)));
-			Top = (int)((SystemInformation.CaptionHeight + 5) * scalingY);
+			Left = (int)(area.X + (area.Width - Width - (40 * scalingX)));
+			Top = (int)((SystemInformation.CaptionHeight + 60) * scalingY);
 
 			maxLeft = Left;
 			maxTop = area.Height - Height - 50;
