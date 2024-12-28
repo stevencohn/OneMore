@@ -3300,8 +3300,8 @@ ISO-code then comma then language name</comment>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribHighlightFormulaButton_Screentip" xml:space="preserve">
-    <value>خلايا عالية مع صيغة في الجدول الحالي</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
+    <value>حدد الخلايا التي تحتوي على الصيغة في الجدول الحالي</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribHighlightLastButton_Label" xml:space="preserve">
     <value>كرر لون قلم التمييز الدوار</value>

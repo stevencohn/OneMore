@@ -3309,7 +3309,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon table</comment>
   </data>
   <data name="ribHighlightFormulaButton_Screentip" xml:space="preserve">
-    <value>現在の表内で数式があるセルをハイライトする</value>
+    <value>現在のテーブル内の数式が含まれるセルを選択します</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribHighlightLastButton_Label" xml:space="preserve">

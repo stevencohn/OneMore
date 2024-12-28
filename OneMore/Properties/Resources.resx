@@ -3307,7 +3307,7 @@ After last group</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribHighlightFormulaButton_Screentip" xml:space="preserve">
-    <value>High cells with formula in current table</value>
+    <value>Select cells with formula in current table</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribHighlightLastButton_Label" xml:space="preserve">

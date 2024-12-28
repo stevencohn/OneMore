@@ -8384,7 +8384,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to High cells with formula in current table.
+        ///   Looks up a localized string similar to Select cells with formula in current table.
         /// </summary>
         internal static string ribHighlightFormulaButton_Screentip {
             get {

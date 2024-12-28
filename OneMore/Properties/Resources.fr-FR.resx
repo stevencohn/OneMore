@@ -3300,8 +3300,8 @@ Après le dernier groupe</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribHighlightFormulaButton_Screentip" xml:space="preserve">
-    <value>Cellules hautes avec formule dans le tableau actuel</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
+    <value>Sélectionnez les cellules avec la formule dans le tableau actuel</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribHighlightLastButton_Label" xml:space="preserve">
     <value>Répéter la couleur du surligneur rotatif</value>

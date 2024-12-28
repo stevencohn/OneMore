@@ -3301,8 +3301,8 @@ Depois do último grupo</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribHighlightFormulaButton_Screentip" xml:space="preserve">
-    <value>Células altas com fórmula na tabela atual</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
+    <value>Selecione células com fórmula na tabela atual</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribHighlightLastButton_Label" xml:space="preserve">
     <value>Repita a cor do marcador giratório</value>

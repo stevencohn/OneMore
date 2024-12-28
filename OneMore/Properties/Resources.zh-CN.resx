@@ -3301,8 +3301,8 @@ ISO-code then comma then language name</comment>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribHighlightFormulaButton_Screentip" xml:space="preserve">
-    <value>当前表中具有公式的高级单元格</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
+    <value>选择当前表格中包含公式的单元格</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribHighlightLastButton_Label" xml:space="preserve">
     <value>重复旋转荧光笔颜色</value>

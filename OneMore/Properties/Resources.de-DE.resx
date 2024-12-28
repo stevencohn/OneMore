@@ -3302,8 +3302,8 @@ Nach der letzten Gruppe</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribHighlightFormulaButton_Screentip" xml:space="preserve">
-    <value>Hohe Zellen mit Formel in der aktuellen Tabelle</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
+    <value>Wählen Sie Zellen mit Formel in der aktuellen Tabelle aus</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribHighlightLastButton_Label" xml:space="preserve">
     <value>Wiederholen Sie die rotierende Textmarkerfarbe</value>

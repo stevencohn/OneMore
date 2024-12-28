@@ -3301,8 +3301,8 @@ Po ostatniej grupie</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribHighlightFormulaButton_Screentip" xml:space="preserve">
-    <value>Wysokie komórki o wzorze w bieżącej tabeli</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
+    <value>Wybierz komórki z formułą w bieżącej tabeli</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribHighlightLastButton_Label" xml:space="preserve">
     <value>Powtórz obracanie koloru zakreślacza</value>

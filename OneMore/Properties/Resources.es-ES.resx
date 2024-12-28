@@ -3300,8 +3300,8 @@ Después del último grupo</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribHighlightFormulaButton_Screentip" xml:space="preserve">
-    <value>Celdas altas con fórmula en la tabla actual</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
+    <value>Seleccionar celdas con fórmula en la tabla actual</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribHighlightLastButton_Label" xml:space="preserve">
     <value>Repetir el color del resaltador giratorio</value>
