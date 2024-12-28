@@ -103,13 +103,18 @@ namespace River.OneMoreAddIn.Commands
 				await BuildHyperlinkMap(scope, progress, token);
 			}
 
+			if (token.IsCancellationRequested)
+			{
+				return;
+			}
+
 			progress.SetMaximum(candidates.Count);
 			progress.SetMessage(string.Format(Resx.CheckUrlsCommand_checkingMsg, candidates.Count));
 
 			try
 			{
-				await ValidateUrls(progress);
-				if (badCount > 0)
+				await ValidateUrls(progress, token);
+				if (badCount > 0 && !token.IsCancellationRequested)
 				{
 					await one.Update(page);
 				}
@@ -182,7 +187,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task ValidateUrls(ProgressDialog progress)
+		private async Task ValidateUrls(ProgressDialog progress, CancellationToken token)
 		{
 			// parallelize internet access for all chosen hyperlinks on the page...
 
@@ -192,7 +197,7 @@ namespace River.OneMoreAddIn.Commands
 			foreach (var candidate in candidates)
 			{
 				// do not use await in the body loop; just build list of tasks
-				tasks.Add(ValidateUrl(candidate, progress));
+				tasks.Add(ValidateUrl(candidate, progress, token));
 			}
 
 			await Task.WhenAll(tasks.ToArray());
@@ -200,7 +205,8 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task ValidateUrl(XElement element, ProgressDialog progress)
+		private async Task ValidateUrl(
+			XElement element, ProgressDialog progress, CancellationToken token)
 		{
 			var cdata = element.GetCData();
 			var wrapper = cdata.GetWrapper();
@@ -208,6 +214,11 @@ namespace River.OneMoreAddIn.Commands
 			var count = badCount;
 			foreach (var anchor in wrapper.Elements("a"))
 			{
+				if (token.IsCancellationRequested)
+				{
+					return;
+				}
+
 				progress.Increment();
 
 				var href = anchor.Attribute("href")?.Value;
@@ -246,7 +257,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			if (badCount > count)
+			if (badCount > count && !token.IsCancellationRequested)
 			{
 				cdata.ReplaceWith(wrapper.GetInnerXml());
 			}

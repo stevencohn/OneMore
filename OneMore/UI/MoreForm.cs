@@ -22,6 +22,7 @@ namespace River.OneMoreAddIn.UI
 		protected readonly ThemeManager manager;
 		protected readonly ILogger logger;
 
+		private ApplicationContext appContext;
 		private bool modeless = false;
 
 
@@ -117,13 +118,23 @@ namespace River.OneMoreAddIn.UI
 				ModelessClosed += (sender, e) => { closedAction(sender, e); };
 			}
 
-			Application.Run(new ApplicationContext(this));
+			if (Application.MessageLoop)
+			{
+				// starting a second message loop on a single thread is not a valid operation
+				// so just display the form if we already have a message loop
+				Show();
+				return;
+			}
+
+			appContext = new ApplicationContext(this);
+			Application.Run(appContext);
 		}
 
 
 		protected override void OnFormClosed(FormClosedEventArgs e)
 		{
 			base.OnFormClosed(e);
+			appContext?.Dispose();
 			ModelessClosed?.Invoke(this, e);
 		}
 
