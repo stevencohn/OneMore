@@ -4,6 +4,8 @@
 
 namespace River.OneMoreAddIn.Settings
 {
+	using River.OneMoreAddIn.Ribbon;
+	using System;
 	using Resx = Properties.Resources;
 
 
@@ -38,7 +40,14 @@ namespace River.OneMoreAddIn.Settings
 			}
 
 			var settings = provider.GetCollection(Name);
-			positionBox.SelectedIndex = settings.Get("position", positionBox.Items.Count - 1);
+
+			layoutBox.SelectedIndex = settings.Get("layout", "group") == "tab" ? 1 : 0;
+
+			var position = settings.Get("position", positionBox.Items.Count - 1);
+			if (layoutBox.SelectedIndex == 1)
+				position -= (int)RibbonPosiition.TabHome;
+
+			positionBox.SelectedIndex = Math.Min(position, positionBox.Items.Count - 1);
 
 			hashtagsRibbonBox.Checked = settings.Get<bool>("hashtagCommands");
 			hashtagsIconBox.Checked = hashtagsRibbonBox.Checked && settings.Get<bool>("hashtagIconsOnly");
@@ -48,15 +57,24 @@ namespace River.OneMoreAddIn.Settings
 
 			formulaRibbonBox.Checked = settings.Get<bool>("formulaCommands");
 			formulaIconBox.Checked = formulaRibbonBox.Checked && settings.Get<bool>("formulaIconsOnly");
-
-			layoutBox.SelectedIndex = settings.Get("layout", "group") == "tab" ? 1 : 0;
 		}
 
 
 		private void ChangeSelectedLayout(object sender, System.EventArgs e)
 		{
+			var text = layoutBox.SelectedIndex == 0
+				? Resx.RibbonBarSheet_positionBox_Text
+				: Resx.RibbonBarSheet_positionTabBox_Text;
+
+			positionBox.Items.Clear();
+			positionBox.Items.AddRange(
+				text.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries));
+
+			positionBox.SelectedIndex = layoutBox.SelectedIndex == 0
+				? positionBox.Items.Count - 1
+				: positionBox.Items.Count - 2;
+
 			var grouped = layoutBox.SelectedIndex == 0;
-			positionBox.Enabled = grouped;
 			hashtagsRibbonBox.Enabled = grouped;
 			hashtagsIconBox.Enabled = grouped;
 			editRibbonBox.Enabled = grouped;
@@ -117,14 +135,18 @@ namespace River.OneMoreAddIn.Settings
 			var layout = layoutBox.SelectedIndex == 0 ? "group" : "tab";
 			if (settings.Add("layout", layout)) updated = true;
 
+			var position = layout == "group"
+				? positionBox.SelectedIndex
+				: positionBox.SelectedIndex + (int)RibbonPosiition.TabHome;
+
+			if (settings.Add("position", position)) updated = true;
+
 			// NOTE that the indexes MUST match RibbonGroups enum or it will break user's
 			// established settings so may need migration if changed...
 
 			if (layout == "group")
 			{
 				// only update these if layout is 'group'; otherwise leave them as-is...
-
-				if (settings.Add("position", positionBox.SelectedIndex)) updated = true;
 
 				if (settings.Add("hashtagCommands", hashtagsRibbonBox.Checked)) updated = true;
 				if (settings.Add("hashtagIconsOnly", hashtagsIconBox.Checked)) updated = true;

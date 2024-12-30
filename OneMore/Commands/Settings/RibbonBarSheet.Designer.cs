@@ -313,9 +313,9 @@
 			this.positionLabel.AutoSize = true;
 			this.positionLabel.Location = new System.Drawing.Point(23, 84);
 			this.positionLabel.Name = "positionLabel";
-			this.positionLabel.Size = new System.Drawing.Size(163, 20);
+			this.positionLabel.Size = new System.Drawing.Size(102, 20);
 			this.positionLabel.TabIndex = 0;
-			this.positionLabel.Text = "After OneMore Group";
+			this.positionLabel.Text = "Position after";
 			// 
 			// RibbonBarSheet
 			// 

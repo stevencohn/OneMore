@@ -2863,8 +2863,18 @@ ISO-code then comma then language name</comment>
     <comment>intro label</comment>
   </data>
   <data name="RibbonBarSheet_positionLabel.Text" xml:space="preserve">
-    <value>بعد مجموعة OneMore</value>
+    <value>الموقف بعد</value>
     <comment>label</comment>
+  </data>
+  <data name="RibbonBarSheet_positionTabBox.Text" xml:space="preserve">
+    <value>علامة تبويب الصفحة الرئيسية
+إدراج علامة تبويب
+رسم علامة التبويب
+علامة تبويب التاريخ
+علامة تبويب المراجعة
+عرض علامة التبويب
+علامة تبويب المساعدة</value>
+    <comment>combobox</comment>
   </data>
   <data name="RibbonBarSheet_quickGroup.Text" xml:space="preserve">
     <value>أوامر سريعة</value>

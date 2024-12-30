@@ -2868,8 +2868,18 @@ After last group</value>
     <comment>intro label</comment>
   </data>
   <data name="RibbonBarSheet_positionLabel.Text" xml:space="preserve">
-    <value>After OneMore Group</value>
+    <value>Position after</value>
     <comment>label</comment>
+  </data>
+  <data name="RibbonBarSheet_positionTabBox.Text" xml:space="preserve">
+    <value>Home Tab
+Insert Tab
+Draw Tab
+History Tab
+Review Tab
+View Tab
+Help Tab</value>
+    <comment>combobox</comment>
   </data>
   <data name="RibbonBarSheet_quickGroup.Text" xml:space="preserve">
     <value>Quick Commands</value>

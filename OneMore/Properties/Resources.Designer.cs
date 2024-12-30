@@ -7349,11 +7349,26 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to After OneMore Group.
+        ///   Looks up a localized string similar to Position after.
         /// </summary>
         internal static string RibbonBarSheet_positionLabel_Text {
             get {
                 return ResourceManager.GetString("RibbonBarSheet_positionLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Home Tab
+        ///Insert Tab
+        ///Draw Tab
+        ///History Tab
+        ///Review Tab
+        ///View Tab
+        ///Help Tab.
+        /// </summary>
+        internal static string RibbonBarSheet_positionTabBox_Text {
+            get {
+                return ResourceManager.GetString("RibbonBarSheet_positionTabBox.Text", resourceCulture);
             }
         }
         

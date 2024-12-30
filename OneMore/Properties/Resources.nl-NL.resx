@@ -2864,8 +2864,18 @@ Na de laatste groep</value>
     <comment>intro label</comment>
   </data>
   <data name="RibbonBarSheet_positionLabel.Text" xml:space="preserve">
-    <value>Na OneMore Group</value>
+    <value>Positie na</value>
     <comment>label</comment>
+  </data>
+  <data name="RibbonBarSheet_positionTabBox.Text" xml:space="preserve">
+    <value>Tabblad Start
+Tabblad invoegen
+Tabblad tekenen
+Tabblad Geschiedenis
+Tabblad Recensie
+Tabblad bekijken
+Tabblad Help</value>
+    <comment>combobox</comment>
   </data>
   <data name="RibbonBarSheet_quickGroup.Text" xml:space="preserve">
     <value>Snelle opdrachten</value>
