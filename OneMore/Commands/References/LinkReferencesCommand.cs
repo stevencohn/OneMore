@@ -218,6 +218,11 @@ namespace River.OneMoreAddIn.Commands
 						logger.Verbose($"saving {anchorTitle}");
 						await one.Update(anchorPage);
 					}
+					else if (refreshReferences)
+					{
+						logger.Verbose($"saving {anchorTitle} with no referrals");
+						await one.Update(anchorPage);
+					}
 				}
 			}
 			finally
