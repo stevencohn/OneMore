@@ -83,6 +83,10 @@ namespace River.OneMoreAddIn.Models
 						continue;
 					}
 
+					// strip out all <style> elements
+					var wrapper = new XElement("wrapper", text);
+					text = wrapper.TextValue();
+
 					Heading heading = null;
 
 					if (block.GetAttributeValue("quickStyleIndex", out var quickStyleIndex, -1))
