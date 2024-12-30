@@ -18,46 +18,19 @@ namespace River.OneMoreAddIn.Models
 		#region class Mapping
 		private sealed class Mapping
 		{
-			/// <summary>
-			/// Gets a reference to the original TagDef XElement
-			/// </summary>
-			public XElement Element { get; private set; }
-
-			/// <summary>
-			/// Gets a model representation of the TagDef
-			/// </summary>
 			public TagDef TagDef { get; private set; }
 
-			/// <summary>
-			/// Gets the original index from the "source" page
-			/// </summary>
 			public List<int> SourceIndex { get; set; }
 
-			/// <summary>
-			/// Gets the Symbol represented by this TagDef; Primary Key!
-			/// </summary>
-			public string Symbol => TagDef.Symbol;
-
-			/// <summary>
-			/// Gets or sets the index as defined on the "target" page
-			/// </summary>
 			public int TargetIndex { get; set; }
 
-			/// <summary>
-			/// Initializes a new instance from the given TagDef
-			/// </summary>
-			/// <param name="element">The TagDef XElement</param>
 			public Mapping(XElement element)
+				: this(new TagDef(element))
 			{
-				Element = element;
-				TagDef = new TagDef(element);
-				SourceIndex = new List<int> { TagDef.IndexValue };
-				TargetIndex = TagDef.IndexValue;
 			}
 
 			public Mapping(TagDef tagdef)
 			{
-				Element = tagdef.ElementRef;
 				TagDef = tagdef;
 				SourceIndex = new List<int> { tagdef.IndexValue };
 				TargetIndex = tagdef.IndexValue;
@@ -108,7 +81,7 @@ namespace River.OneMoreAddIn.Models
 			// resolve source tagdefs with target tagdefs
 			foreach (var source in sourcedefs)
 			{
-				var mapping = map.Find(m => m.Symbol == source.Symbol);
+				var mapping = map.Find(m => m.TagDef.Symbol == source.Symbol);
 				if (mapping is null)
 				{
 					// no match so add it and set index to maxIndex+1
