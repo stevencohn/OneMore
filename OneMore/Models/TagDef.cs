@@ -29,17 +29,23 @@ namespace River.OneMoreAddIn.Models
 			: base(original.GetNamespaceOfPrefix(OneNote.Prefix) + "TagDef",
 				  original.Attributes())
 		{
-			Index = Attribute("index").Value;
+			ElementRef = original;
 			IndexValue = int.Parse(original.Attribute("index").Value);
 			Type = int.Parse(Attribute("type").Value);
 			hashcode = original.GetHashCode();
 		}
 
 
-		public string Index { get; private set; }
+		/// <summary>
+		/// Dynamic, indicates the order in which the tagdefs were added to the page
+		/// </summary>
+		public string Index => Attribute("index").Value;
 
 
-		public int Type { get; private set; }
+		/// <summary>
+		/// Gets the original XElement reference.
+		/// </summary>
+		public XElement ElementRef { get; private set; }
 
 
 		public int IndexValue
@@ -54,9 +60,23 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
+		/// <summary>
+		/// Static, indicates the specific glyph used for the tag
+		/// </summary>
 		public string Symbol => Attribute("symbol").Value;
 
 
+		/// <summary>
+		/// Dynamic, can differ page to page, seems meaningless??
+		/// </summary>
+		public int Type { get; private set; }
+
+
+		/// <summary>
+		/// Compares by Symbol
+		/// </summary>
+		/// <param name="obj">other instance</param>
+		/// <returns>True if the Symbols are equal</returns>
 		public override bool Equals(object obj)
 		{
 			if (obj is XElement other)

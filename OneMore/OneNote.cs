@@ -1200,7 +1200,14 @@ namespace River.OneMoreAddIn
 
 			public void OnDialogClosed(IQuickFilingDialog dialog)
 			{
-				userCallback(dialog.SelectedItem);
+				try
+				{
+					userCallback(dialog.SelectedItem);
+				}
+				catch (Exception exc)
+				{
+					Logger.Current.WriteLine("error returned from FilingCallback", exc);
+				}
 			}
 		}
 

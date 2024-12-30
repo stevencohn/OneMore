@@ -1,9 +1,10 @@
 ﻿//************************************************************************************************
-// Copyright © 2021 Steven M Cohn.  All rights reserved.
+// Copyright © 2021 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Models;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
@@ -31,7 +32,7 @@ namespace River.OneMoreAddIn.Commands
 
 			var updated = false;
 			var reminders = new ReminderSerializer().LoadReminders(page);
-			var tagdefs = page.GetTagDefMap().Select(m => m.TagDef);
+			var tagdefs = TagMapper.GetTagDefs(page);
 
 			foreach (var tag in tags)
 			{

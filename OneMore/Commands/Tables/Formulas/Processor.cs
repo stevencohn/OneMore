@@ -95,7 +95,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 				var index = tagx.Attribute("index").Value;
 				if (index != null)
 				{
-					tags ??= DiscoverTags();
+					tags ??= DiscoverToDoTags();
 
 					var tag = tags.Find(t => t.Index == index);
 					if (tag != null)
@@ -121,7 +121,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		}
 
 
-		private List<TagDef> DiscoverTags()
+		private List<TagDef> DiscoverToDoTags()
 		{
 			var pageElement = table.Root.Ancestors().FirstOrDefault(e => e.Name.LocalName == "Page");
 			if (pageElement == null)
@@ -130,9 +130,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 			}
 
 			var page = new Page(pageElement);
-			var map = page.GetTagDefMap();
-			var list = map.Where(m => m.TagDef.IsToDo()).Select(m => m.TagDef).ToList();
-			return list;
+			return TagMapper.GetTagDefs(page).Where(d => d.IsToDo()).ToList();
 		}
 
 
