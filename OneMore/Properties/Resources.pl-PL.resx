@@ -2864,8 +2864,18 @@ Po ostatniej grupie</value>
     <comment>intro label</comment>
   </data>
   <data name="RibbonBarSheet_positionLabel.Text" xml:space="preserve">
-    <value>Po grupie OneMore</value>
+    <value>Pozycja po</value>
     <comment>label</comment>
+  </data>
+  <data name="RibbonBarSheet_positionTabBox.Text" xml:space="preserve">
+    <value>Karta Strona główna
+Wstaw zakładkę
+Zakładka Rysuj
+Zakładka Historia
+Zakładka Recenzja
+Wyświetl kartę
+Zakładka Pomoc</value>
+    <comment>combobox</comment>
   </data>
   <data name="RibbonBarSheet_quickGroup.Text" xml:space="preserve">
     <value>Szybkie polecenia</value>

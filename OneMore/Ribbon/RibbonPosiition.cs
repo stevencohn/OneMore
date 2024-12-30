@@ -4,7 +4,7 @@
 
 namespace River.OneMoreAddIn.Ribbon
 {
-	internal enum RibbonGroups
+	internal enum RibbonPosiition
 	{
 		// NOTE that these values MUST match the RibbonBarSheet combobox value indexes.
 		// If these enums are modified, it will likely break user's established settings
@@ -18,6 +18,12 @@ namespace River.OneMoreAddIn.Ribbon
 		GroupTagging = 3,
 		GroupShareEmail = 4,
 		GroupOutlook = 5,
-		End = 6
+		TabHome = 6,
+		TabInsert = 7,
+		TabDraw = 8,
+		TabHistory = 9,
+		TabReview = 10,
+		TabView = 11,
+		End = 99
 	}
 }

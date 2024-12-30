@@ -105,6 +105,9 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
+
+			System.Diagnostics.Debugger.Launch();
+
 			stylizer = new Stylizer(actual);
 
 			bool success = actual.StyleType == StyleType.Character

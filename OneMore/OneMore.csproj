@@ -530,7 +530,7 @@
     </Compile>
     <Compile Include="Commands\Snippets\InsertBreadcrumbCommand.cs" />
     <Compile Include="Commands\References\EmbedSubpageCommand.cs" />
-    <Compile Include="Ribbon\RibbonGroups.cs" />
+    <Compile Include="Ribbon\RibbonPosiition.cs" />
     <Compile Include="UI\EventRouter.cs" />
     <Compile Include="UI\ILoadControl.cs" />
     <Compile Include="UI\MoreDataGridView.cs">

@@ -2868,8 +2868,18 @@ ISO-code then comma then language name</comment>
     <comment>intro label</comment>
   </data>
   <data name="RibbonBarSheet_positionLabel.Text" xml:space="preserve">
-    <value>אחרי קבוצת OneMore</value>
+    <value>עמדה אחרי</value>
     <comment>label</comment>
+  </data>
+  <data name="RibbonBarSheet_positionTabBox.Text" xml:space="preserve">
+    <value>כרטיסיית בית
+הכנס טאב
+לשונית צייר
+כרטיסיית היסטוריה
+כרטיסיית סקירה
+לשונית תצוגה
+כרטיסיית עזרה</value>
+    <comment>combobox</comment>
   </data>
   <data name="RibbonBarSheet_quickGroup.Text" xml:space="preserve">
     <value>פקודות מהירות</value>

@@ -68,10 +68,7 @@ namespace River.OneMoreAddIn
 
 				root.Element(ns + "ribbon").Element(ns + "tabs").Add(tab);
 
-				if (layout == "group")
-				{
-					SetGroupPosition(root, ns, provider);
-				}
+				SetPosition(layout, root, ns, provider);
 
 				AddColorizerCommands(root, provider.GetCollection(nameof(ColorizerSheet)));
 				AddProofingCommands(root);
@@ -134,22 +131,34 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void SetGroupPosition(XElement root, XNamespace ns, SettingsProvider provider)
+		private static void SetPosition(
+			string layout, XElement root, XNamespace ns, SettingsProvider provider)
 		{
 			var position = provider
 				.GetCollection(nameof(RibbonBarSheet))
-				.Get("position", (int)RibbonGroups.End);
+				.Get("position", (int)RibbonPosiition.End);
 
-			if (position < (int)RibbonGroups.End)
+			if (position < (int)RibbonPosiition.End)
 			{
-				var group = root.Element(ns + "ribbon")
-					.Element(ns + "tabs")
-					.Elements(ns + "tab")
-					.Where(e => e.Attribute("idMso").Value == "TabHome")
-					.Elements(ns + "group")
-					.FirstOrDefault(e => e.Attribute("id").Value == "ribOneMoreGroup");
+				XElement element;
+				if (layout == "tab")
+				{
+					element = root.Elements(ns + "ribbon")
+						.Elements(ns + "tabs")
+						.Elements(ns + "tab")
+						.FirstOrDefault(e => e.Attribute("id").Value == "TabOneMore");
+				}
+				else
+				{
+					element = root.Element(ns + "ribbon")
+						.Element(ns + "tabs")
+						.Elements(ns + "tab")
+						.Where(e => e.Attribute("idMso").Value == "TabHome")
+						.Elements(ns + "group")
+						.FirstOrDefault(e => e.Attribute("id").Value == "ribOneMoreGroup");
+				}
 
-				group?.SetAttributeValue("insertAfterMso", ((RibbonGroups)position).ToString());
+				element?.SetAttributeValue("insertAfterMso", ((RibbonPosiition)position).ToString());
 			}
 		}
 

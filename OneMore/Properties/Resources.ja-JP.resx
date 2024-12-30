@@ -2870,8 +2870,18 @@ ISO-code then comma then language name</comment>
     <comment>intro label</comment>
   </data>
   <data name="RibbonBarSheet_positionLabel.Text" xml:space="preserve">
-    <value>OneMoreグループの位置</value>
+    <value>後の位置</value>
     <comment>label</comment>
+  </data>
+  <data name="RibbonBarSheet_positionTabBox.Text" xml:space="preserve">
+    <value>「ホーム」タブ
+挿入タブ
+描画タブ
+履歴タブ
+レビュータブ
+「表示」タブ
+「ヘルプ」タブ</value>
+    <comment>combobox</comment>
   </data>
   <data name="RibbonBarSheet_quickGroup.Text" xml:space="preserve">
     <value>クイックコマンド</value>

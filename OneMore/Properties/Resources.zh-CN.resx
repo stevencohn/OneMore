@@ -2862,8 +2862,18 @@ ISO-code then comma then language name</comment>
     <comment>intro label</comment>
   </data>
   <data name="RibbonBarSheet_positionLabel.Text" xml:space="preserve">
-    <value>继OneMore集团之后</value>
+    <value>位置之后</value>
     <comment>label</comment>
+  </data>
+  <data name="RibbonBarSheet_positionTabBox.Text" xml:space="preserve">
+    <value>主页选项卡
+插入标签
+绘制选项卡
+历史选项卡
+评论选项卡
+查看选项卡
+帮助选项卡</value>
+    <comment>combobox</comment>
   </data>
   <data name="RibbonBarSheet_quickGroup.Text" xml:space="preserve">
     <value>快速命令</value>

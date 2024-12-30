@@ -2863,8 +2863,18 @@ Después del último grupo</value>
     <comment>intro label</comment>
   </data>
   <data name="RibbonBarSheet_positionLabel.Text" xml:space="preserve">
-    <value>Después del grupo OneMore</value>
+    <value>Posición después</value>
     <comment>label</comment>
+  </data>
+  <data name="RibbonBarSheet_positionTabBox.Text" xml:space="preserve">
+    <value>Pestaña Inicio
+Insertar pestaña
+Pestaña Dibujar
+Pestaña Historial
+Pestaña Revisar
+Pestaña Ver
+Pestaña Ayuda</value>
+    <comment>combobox</comment>
   </data>
   <data name="RibbonBarSheet_quickGroup.Text" xml:space="preserve">
     <value>Comandos rápidos</value>
