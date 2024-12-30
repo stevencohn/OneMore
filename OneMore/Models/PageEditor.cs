@@ -369,7 +369,6 @@ namespace River.OneMoreAddIn.Models
 		/// document with a selection range.
 		/// </para>
 		/// </summary>
-		/// <param name="page">The page root node</param>
 		/// <param name="content">The content to insert</param>
 		public SelectionScope ReplaceSelectedWith(XElement content)
 		{

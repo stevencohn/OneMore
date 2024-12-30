@@ -346,6 +346,7 @@
     <Compile Include="Models\PageReader.cs" />
     <Compile Include="Models\PageSchema.cs" />
     <Compile Include="Models\SectionEditor.cs" />
+    <Compile Include="Models\TagMapper.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -733,7 +734,6 @@
     <Compile Include="Models\SelectionScope.cs" />
     <Compile Include="Models\Tag.cs" />
     <Compile Include="Models\TagDef.cs" />
-    <Compile Include="Models\TagDefMapping.cs" />
     <Compile Include="Ribbon\AddInRibbonTableGallery.cs" />
     <Compile Include="Commands\Tables\TableTheme.cs" />
     <Compile Include="Commands\Tables\TableThemeProvider.cs" />

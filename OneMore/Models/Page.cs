@@ -35,7 +35,7 @@ namespace River.OneMoreAddIn.Models
 		/// <param name="root"></param>
 		public Page(XElement root)
 		{
-			if (root != null)
+			if (root is not null)
 			{
 				Namespace = root.GetNamespaceOfPrefix(OneNote.Prefix);
 				PageId = root.Attribute("ID")?.Value;
@@ -67,7 +67,7 @@ namespace River.OneMoreAddIn.Models
 					child.Name.LocalName != "Meta")
 				{
 					var att = child.Attribute(HashAttributeName);
-					if (att == null)
+					if (att is null)
 					{
 						child.Add(new XAttribute(
 							HashAttributeName,
@@ -93,7 +93,7 @@ namespace River.OneMoreAddIn.Models
 			foreach (var child in Root.Elements().ToList())
 			{
 				var att = child.Attribute(HashAttributeName);
-				if (att != null)
+				if (att is not null)
 				{
 					att.Remove();
 
@@ -120,7 +120,7 @@ namespace River.OneMoreAddIn.Models
 				.Any(m => m.Attribute("name").Value.Equals(MetaNames.TaggingBank)));
 
 
-		public bool IsValid => Root != null;
+		public bool IsValid => Root is not null;
 
 
 		/// <summary>
@@ -207,7 +207,7 @@ namespace River.OneMoreAddIn.Models
 		public void AddQuickStyleDef(XElement def)
 		{
 			var tagdef = Root.Elements(Namespace + "TagDef").LastOrDefault();
-			if (tagdef == null)
+			if (tagdef is null)
 			{
 				Root.AddFirst(def);
 			}
@@ -233,7 +233,7 @@ namespace River.OneMoreAddIn.Models
 			if (tags?.Any() == true)
 			{
 				var tag = tags.FirstOrDefault(e => e.Attribute("symbol").Value == symbol);
-				if (tag != null)
+				if (tag is not null)
 				{
 					return tag.Attribute("index").Value;
 				}
@@ -260,7 +260,7 @@ namespace River.OneMoreAddIn.Models
 			if (tags?.Any() == true)
 			{
 				var tag = tags.FirstOrDefault(e => e.Attribute("symbol").Value == tagdef.Symbol);
-				if (tag != null)
+				if (tag is not null)
 				{
 					return;
 				}
@@ -296,34 +296,6 @@ namespace River.OneMoreAddIn.Models
 						foreach (var element in elements)
 						{
 							element.Attribute("quickStyleIndex").Value = index;
-						}
-					}
-				}
-			}
-		}
-
-
-		/// <summary>
-		/// Apply the given tagdef mappings to all descendants of the specified outline
-		/// </summary>
-		/// <param name="mapping"></param>
-		/// <param name="outline"></param>
-		public void ApplyTagDefMapping(List<TagDefMapping> mapping, XElement outline)
-		{
-			// reverse sort the indexes so logic doesn't overwrite subsequent index references
-			foreach (var map in mapping.OrderByDescending(s => s.TagDef.IndexValue))
-			{
-				if (map.OriginalIndex != map.TagDef.Index)
-				{
-					// apply new index to child outline elements
-					var elements = outline.Descendants(Namespace + "Tag")
-						.Where(e => e.Attribute("index")?.Value == map.OriginalIndex);
-
-					if (elements.Any())
-					{
-						foreach (var element in elements)
-						{
-							element.Attribute("index").Value = map.TagDef.Index;
 						}
 					}
 				}
@@ -392,7 +364,7 @@ namespace River.OneMoreAddIn.Models
 				? Root.Elements(Namespace + "Outline").LastOrDefault()
 				: Root.Elements(Namespace + "Outline").FirstOrDefault();
 
-			if (outline == null)
+			if (outline is null)
 			{
 				container = new XElement(Namespace + "OEChildren");
 				outline = new XElement(Namespace + "Outline", container);
@@ -404,7 +376,7 @@ namespace River.OneMoreAddIn.Models
 					? outline.Elements(Namespace + "OEChildren").LastOrDefault()
 					: outline.Elements(Namespace + "OEChildren").FirstOrDefault();
 
-				if (container == null)
+				if (container is null)
 				{
 					container = new XElement(Namespace + "OEChildren");
 					outline.Add(container);
@@ -413,7 +385,7 @@ namespace River.OneMoreAddIn.Models
 
 			// check Outline size
 			var size = outline.Elements(Namespace + "Size").FirstOrDefault();
-			if (size == null)
+			if (size is null)
 			{
 				// this size is close to OneNote defaults when a new Outline is created
 				outline.AddFirst(new XElement(Namespace + "Size",
@@ -452,13 +424,13 @@ namespace River.OneMoreAddIn.Models
 				.Elements(Namespace + "Size")
 				.FirstOrDefault();
 
-			if (element == null)
+			if (element is null)
 			{
 				return;
 			}
 
 			var attr = element.Attribute("width");
-			if (attr != null)
+			if (attr is not null)
 			{
 				var outlinePoints = double.Parse(attr.Value, CultureInfo.InvariantCulture);
 
@@ -474,7 +446,7 @@ namespace River.OneMoreAddIn.Models
 					attr.Value = stringPoints.ToString("#0.00", CultureInfo.InvariantCulture);
 
 					// must include isSetByUser or width doesn't take effect!
-					if (element.Attribute("isSetByUser") == null)
+					if (element.Attribute("isSetByUser") is null)
 					{
 						element.Add(new XAttribute("isSetByUser", "true"));
 					}
@@ -511,12 +483,12 @@ namespace River.OneMoreAddIn.Models
 				.Select(p => new Style(new QuickStyleDef(p)))
 				.FirstOrDefault();
 
-			if (style == null)
+			if (style is null)
 			{
 				var quick = key.GetDefaults();
 
 				var sibling = Root.Elements(Namespace + "QuickStyleDef").LastOrDefault();
-				if (sibling == null)
+				if (sibling is null)
 				{
 					quick.Index = 0;
 					Root.AddFirst(quick.ToElement(Namespace));
@@ -647,7 +619,7 @@ namespace River.OneMoreAddIn.Models
 			var tag = Root.Elements(Namespace + "TagDef")
 				.FirstOrDefault(e => e.Attribute("symbol").Value == symbol);
 
-			if (tag != null)
+			if (tag is not null)
 			{
 				return tag.Attribute("index").Value;
 			}
@@ -666,25 +638,12 @@ namespace River.OneMoreAddIn.Models
 			var tag = Root.Elements(Namespace + "TagDef")
 				.FirstOrDefault(e => e.Attribute("index").Value == index);
 
-			if (tag != null)
+			if (tag is not null)
 			{
 				return tag.Attribute("symbol").Value;
 			}
 
 			return null;
-		}
-
-
-		/// <summary>
-		/// Gets the TagDef mappings for the current page. Used to copy or merge
-		/// content on this page
-		/// </summary>
-		/// <returns></returns>
-		public List<TagDefMapping> GetTagDefMap()
-		{
-			return Root.Elements(Namespace + "TagDef")
-				.Select(e => new TagDefMapping(e))
-				.ToList();
 		}
 
 
@@ -715,7 +674,7 @@ namespace River.OneMoreAddIn.Models
 					.Elements(Namespace + "MediaReference")
 					.FirstOrDefault(e => e.Attribute("mediaID").Value == mediaID);
 
-				if (file == null)
+				if (file is null)
 				{
 					// MediaFile element exists only after recording has stopped
 					return true;
@@ -758,7 +717,7 @@ namespace River.OneMoreAddIn.Models
 			foreach (var source in sourcemap)
 			{
 				var quick = map.Find(q => q.Style.Equals(source.Style));
-				if (quick == null)
+				if (quick is null)
 				{
 					// no match so add it and set index to maxIndex+1
 					// O(n) is OK here; there should only be a few
@@ -780,45 +739,6 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
-		/// Merges the TagDefs from a source page with the TagDefs on the current page,
-		/// adjusting index values to avoid collisions with pre-existing definitions
-		/// </summary>
-		/// <param name="sourcePage">
-		/// The page from which to copy TagDefs into this page. The value of the index
-		/// attribute of the TagDefs are updated for each definition
-		/// </param>
-		public List<TagDefMapping> MergeTagDefs(Page sourcePage)
-		{
-			var sourcemap = sourcePage.GetTagDefMap();
-			var map = GetTagDefMap();
-
-			var index = map.Any() ? map.Max(t => t.TagDef.IndexValue) + 1 : 0;
-
-			foreach (var source in sourcemap)
-			{
-				var tagdef = map.Find(t => t.TagDef.Equals(source.TagDef));
-				if (tagdef == null)
-				{
-					// no match so add it and set index to maxIndex+1
-					// O(n) is OK here; there should only be a few
-					source.TagDef.IndexValue = index++;
-
-					source.Element = new XElement(source.Element);
-					source.Element.Attribute("index").Value = source.TagDef.Index;
-
-					map.Add(source);
-					AddTagDef(source.TagDef);
-				}
-
-				// else if found then the index may differ but keep it so it can be mapped
-				// to content later...
-			}
-
-			return map;
-		}
-
-
-		/// <summary>
 		/// Adds a Meta element to the page (in the proper schema sequence) with the
 		/// specified name and value.
 		/// </summary>
@@ -829,7 +749,7 @@ namespace River.OneMoreAddIn.Models
 			var meta = Root.Elements(Namespace + "Meta")
 				.FirstOrDefault(e => e.Attribute("name").Value == name);
 
-			if (meta == null)
+			if (meta is null)
 			{
 				meta = new XElement(Namespace + "Meta",
 					new XAttribute("name", name),
@@ -838,13 +758,13 @@ namespace River.OneMoreAddIn.Models
 
 				// add into schema sequence...
 				var after = Root.Elements(Namespace + "XPSFile").LastOrDefault();
-				if (after == null)
+				if (after is null)
 				{
 					after = Root.Elements(Namespace + "QuickStyleDef").LastOrDefault();
 					after ??= Root.Elements(Namespace + "TagDef").LastOrDefault();
 				}
 
-				if (after == null)
+				if (after is null)
 				{
 					Root.AddFirst(meta);
 				}
@@ -870,7 +790,7 @@ namespace River.OneMoreAddIn.Models
 			PageNamespace.Set(ns);
 
 			var block = Root.Elements(ns + "Title").FirstOrDefault();
-			if (block == null)
+			if (block is null)
 			{
 				var style = GetQuickStyle(StandardStyles.PageTitle);
 				block = new XElement(ns + "Title",

@@ -16,6 +16,7 @@ namespace River.OneMoreAddIn.Commands
 	{
 		public EmbedSubpageProxy()
 		{
+			IsCancelled = true;
 		}
 
 
