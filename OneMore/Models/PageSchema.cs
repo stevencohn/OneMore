@@ -25,7 +25,7 @@ namespace River.OneMoreAddIn.Models
 			"Postion", "Size", "Meta", "Indents"
 		};
 
-		public string[] OutContent => outContent ?? new string[]
+		public string[] OutContent => outContent ??= new string[]
 		{
 			"OEChildren"
 		};
