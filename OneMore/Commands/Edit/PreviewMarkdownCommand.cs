@@ -42,7 +42,7 @@ namespace River.OneMoreAddIn.Commands
 			// collect all outlines on page, in document-order
 			foreach (var outline in page.BodyOutlines)
 			{
-				var content = await editor.ExtractSelectedContent(outline);
+				var content = editor.ExtractSelectedContent(outline);
 				if (content != null)
 				{
 					if (paragraphs.Count >= 1)

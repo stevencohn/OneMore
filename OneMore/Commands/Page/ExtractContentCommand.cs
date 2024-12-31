@@ -61,7 +61,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			var editor = new PageEditor(page);
-			var content = await editor.ExtractSelectedContent();
+			var content = editor.ExtractSelectedContent();
 
 			var sectionEditor = new SectionEditor(await one.GetSection());
 

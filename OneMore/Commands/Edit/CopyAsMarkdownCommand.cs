@@ -25,7 +25,7 @@ namespace River.OneMoreAddIn.Commands
 			#region WriteMarkdown(PageEditor editor, MarkdownWriter writer, XElement start)
 			async void WriteMarkdown(PageEditor editor, MarkdownWriter writer, XElement start)
 			{
-				var content = await editor.ExtractSelectedContent(start);
+				var content = editor.ExtractSelectedContent(start);
 
 				logger.Debug("markdown content");
 				logger.Debug(content);

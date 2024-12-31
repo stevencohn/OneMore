@@ -47,7 +47,7 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (var outline in outlines.ToList())
 			{
-				var content = await editor.ExtractSelectedContent(outline);
+				var content = editor.ExtractSelectedContent(outline);
 				logger.Debug("outline - - - - - - - - - - - - - - - - - - - - - -");
 				logger.Debug(content);
 				logger.Debug("/outline");

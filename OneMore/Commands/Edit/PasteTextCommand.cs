@@ -23,14 +23,14 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			await using var one = new OneNote(out var page, out var ns);
-			PageNamespace.Set(ns);
-
 			var text = await new ClipboardProvider().GetText();
 			if (string.IsNullOrEmpty(text))
 			{
 				return;
 			}
+
+			await using var one = new OneNote(out var page, out var ns);
+			PageNamespace.Set(ns);
 
 			var elements = page.Root.Descendants(ns + "T")
 				.Where(e => e.Attribute("selected")?.Value == "all");
@@ -42,7 +42,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (elements.Any())
 			{
-				await editor.ExtractSelectedContent();
+				editor.ExtractSelectedContent();
 			}
 
 			// OneNote transforms \r\n into soft-break <br> but we want hard-breaks,
