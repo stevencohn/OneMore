@@ -9,7 +9,6 @@ namespace River.OneMoreAddIn.Models
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text;
-	using System.Threading.Tasks;
 	using System.Xml;
 	using System.Xml.Linq;
 
@@ -637,7 +636,7 @@ namespace River.OneMoreAddIn.Models
 		/// Default is to process all page content.
 		/// </param>
 		/// <returns>An OEChildren XElement</returns>
-		public async Task<XElement> ExtractSelectedContent(XElement targetOutline = null)
+		public XElement ExtractSelectedContent(XElement targetOutline = null)
 		{
 			schema = new PageSchema();
 
@@ -694,7 +693,7 @@ namespace River.OneMoreAddIn.Models
 			//	: Anchor.Elements(ns + "OE").Select(e => e.Attribute("objectID").Value).FirstOrDefault();
 			//logger.WriteLine($"first anchor ({oid})", Anchor);
 
-			var snippets = await ExtractSnippets(runs);
+			var snippets = ExtractSnippets(runs);
 			RebuildContent(snippets, content);
 
 			//logger.WriteLine($"content", content);
@@ -760,9 +759,8 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
-		private async Task<List<Snippet>> ExtractSnippets(List<XElement> runs)
+		private List<Snippet> ExtractSnippets(List<XElement> runs)
 		{
-			await using var one = new OneNote();
 			var tables = new List<XElement>();
 
 			var snippets = new List<Snippet>();
@@ -867,6 +865,7 @@ namespace River.OneMoreAddIn.Models
 					if (run.Name.LocalName == "Image" &&
 						run.Elements(ns + "CallbackID").FirstOrDefault() is XElement callback)
 					{
+						using var one = new OneNote();
 						var data = one.GetPageContent(page.PageId,
 							callback.Attribute("callbackID").Value);
 
@@ -1078,9 +1077,9 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
-		public async Task<bool> ReplaceSelectedContent(XElement replacement)
+		public bool ReplaceSelectedContent(XElement replacement)
 		{
-			var content = await ExtractSelectedContent();
+			var content = ExtractSelectedContent();
 
 			if (!content.HasElements)
 			{

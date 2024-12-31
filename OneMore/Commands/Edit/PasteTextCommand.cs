@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2022 Steven M Cohn.  All rights reserved.
+// Copyright © 2022 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -23,43 +23,49 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			await using var one = new OneNote(out var page, out var ns);
-			var elements = page.Root.Descendants(ns + "T")
-				.Where(e => e.Attribute("selected")?.Value == "all");
-
 			var text = await new ClipboardProvider().GetText();
 			if (string.IsNullOrEmpty(text))
 			{
 				return;
 			}
 
-			var editor = new PageEditor(page);
-			var content = new XElement(ns + "T", new XCData(text));
+			await using var one = new OneNote(out var page, out var ns);
+			PageNamespace.Set(ns);
 
-			if (!elements.Any())
+			var elements = page.Root.Descendants(ns + "T")
+				.Where(e => e.Attribute("selected")?.Value == "all");
+
+			var editor = new PageEditor(page)
 			{
-				// empty page so add new content
-				editor.AddNextParagraph(content);
-			}
-			else if (elements.Count() > 1)
+				KeepSelected = false
+			};
+
+			if (elements.Any())
 			{
-				// selected multiple runs so replace them all
-				editor.ReplaceSelectedWith(content);
+				editor.ExtractSelectedContent();
 			}
-			else
+
+			// OneNote transforms \r\n into soft-break <br> but we want hard-breaks,
+			// so split text into lines...
+
+			var lines = text.Split(new string[] { "\r\n" }, System.StringSplitOptions.None);
+
+			XElement first = null;
+			for (var i = lines.Length - 1; i >= 0; i--)
 			{
-				var line = elements.First();
-				if (line.Value.Length == 0)
-				{
-					// empty cdata, unselected cursor so just insert
-					line.GetCData().Value = text;
-				}
-				else
-				{
-					// something is selected so replace it
-					editor.ReplaceSelectedWith(content);
-				}
+				var run = new XElement(ns + "T", new XCData(lines[i]));
+				first ??= run;
+
+				editor.InsertAtAnchor(run);
 			}
+
+			// position insertion cursor after last line...
+
+			page.Root.DescendantNodes().OfType<XAttribute>()
+				.Where(a => a.Name == "selected")
+				.Remove();
+
+			first?.SetAttributeValue("selected", "all");
 
 			await one.Update(page);
 		}
