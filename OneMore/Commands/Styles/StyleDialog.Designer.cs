@@ -499,10 +499,13 @@
 			this.optionsGroup.Controls.Add(this.pageColorBox);
 			this.optionsGroup.Location = new System.Drawing.Point(22, 420);
 			this.optionsGroup.Name = "optionsGroup";
+			this.optionsGroup.ShowOnlyTopEdge = true;
 			this.optionsGroup.Size = new System.Drawing.Size(620, 150);
 			this.optionsGroup.TabIndex = 30;
 			this.optionsGroup.TabStop = false;
 			this.optionsGroup.Text = "Options";
+			this.optionsGroup.ThemedBorder = null;
+			this.optionsGroup.ThemedFore = null;
 			// 
 			// statusLabel
 			// 

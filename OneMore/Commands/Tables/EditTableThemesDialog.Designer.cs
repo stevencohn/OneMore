@@ -131,10 +131,13 @@ namespace River.OneMoreAddIn.Commands
 			this.elementsGroup.Location = new System.Drawing.Point(5, 18);
 			this.elementsGroup.Name = "elementsGroup";
 			this.elementsGroup.Padding = new System.Windows.Forms.Padding(10, 7, 7, 7);
+			this.elementsGroup.ShowOnlyTopEdge = true;
 			this.elementsGroup.Size = new System.Drawing.Size(503, 496);
 			this.elementsGroup.TabIndex = 8;
 			this.elementsGroup.TabStop = false;
 			this.elementsGroup.Text = "Table Elements";
+			this.elementsGroup.ThemedBorder = null;
+			this.elementsGroup.ThemedFore = null;
 			// 
 			// elementsBox
 			// 
@@ -192,6 +195,8 @@ namespace River.OneMoreAddIn.Commands
 			this.previewGroup.TabIndex = 9;
 			this.previewGroup.TabStop = false;
 			this.previewGroup.Text = "Preview";
+			this.previewGroup.ThemedBorder = null;
+			this.previewGroup.ThemedFore = null;
 			// 
 			// previewBox
 			// 
@@ -344,10 +349,13 @@ namespace River.OneMoreAddIn.Commands
 			this.fontsGroup.Location = new System.Drawing.Point(8, 279);
 			this.fontsGroup.Name = "fontsGroup";
 			this.fontsGroup.Padding = new System.Windows.Forms.Padding(10, 3, 10, 3);
+			this.fontsGroup.ShowOnlyTopEdge = true;
 			this.fontsGroup.Size = new System.Drawing.Size(711, 127);
 			this.fontsGroup.TabIndex = 16;
 			this.fontsGroup.TabStop = false;
 			this.fontsGroup.Text = "Font";
+			this.fontsGroup.ThemedBorder = null;
+			this.fontsGroup.ThemedFore = null;
 			// 
 			// applyFontButton
 			// 
@@ -492,10 +500,13 @@ namespace River.OneMoreAddIn.Commands
 			this.fontElementsGroup.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
 			this.fontElementsGroup.Name = "fontElementsGroup";
 			this.fontElementsGroup.Padding = new System.Windows.Forms.Padding(10, 3, 10, 3);
+			this.fontElementsGroup.ShowOnlyTopEdge = true;
 			this.fontElementsGroup.Size = new System.Drawing.Size(714, 248);
 			this.fontElementsGroup.TabIndex = 15;
 			this.fontElementsGroup.TabStop = false;
 			this.fontElementsGroup.Text = "Table Elements";
+			this.fontElementsGroup.ThemedBorder = null;
+			this.fontElementsGroup.ThemedFore = null;
 			// 
 			// defaultFontButton
 			// 
