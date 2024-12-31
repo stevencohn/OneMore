@@ -11,6 +11,8 @@ namespace River.OneMoreAddIn.Settings
 
 	internal partial class RibbonBarSheet : SheetBase
 	{
+		private bool grouped;
+
 		public RibbonBarSheet(SettingsProvider provider) : base(provider)
 		{
 			InitializeComponent();
@@ -41,7 +43,8 @@ namespace River.OneMoreAddIn.Settings
 
 			var settings = provider.GetCollection(Name);
 
-			layoutBox.SelectedIndex = settings.Get("layout", "group") == "tab" ? 1 : 0;
+			grouped = settings.Get("layout", "group") == "group";
+			layoutBox.SelectedIndex = grouped ? 0 : 1;
 
 			var position = settings.Get("position", positionBox.Items.Count - 1);
 			if (layoutBox.SelectedIndex == 1)
@@ -74,13 +77,16 @@ namespace River.OneMoreAddIn.Settings
 				? positionBox.Items.Count - 1
 				: positionBox.Items.Count - 2;
 
-			var grouped = layoutBox.SelectedIndex == 0;
+			grouped = layoutBox.SelectedIndex == 0;
+			hashtagsPicture.Enabled = grouped;
 			hashtagsRibbonBox.Enabled = grouped;
-			hashtagsIconBox.Enabled = grouped;
+			hashtagsIconBox.Enabled = grouped && hashtagsRibbonBox.Checked;
+			editPicture.Enabled = grouped;
 			editRibbonBox.Enabled = grouped;
-			editIconBox.Enabled = grouped;
+			editIconBox.Enabled = grouped && editRibbonBox.Checked;
+			formulaPicture.Enabled = grouped;
 			formulaRibbonBox.Enabled = grouped;
-			formulaIconBox.Enabled = grouped;
+			formulaIconBox.Enabled = grouped && formulaRibbonBox.Checked;
 		}
 
 
@@ -88,15 +94,15 @@ namespace River.OneMoreAddIn.Settings
 		{
 			if (sender == hashtagsRibbonBox)
 			{
-				hashtagsIconBox.Enabled = hashtagsRibbonBox.Checked;
+				hashtagsIconBox.Enabled = grouped && hashtagsRibbonBox.Checked;
 			}
 			else if (sender == editRibbonBox)
 			{
-				editIconBox.Enabled = editRibbonBox.Checked;
+				editIconBox.Enabled = grouped && editRibbonBox.Checked;
 			}
 			else
 			{
-				formulaIconBox.Enabled = formulaRibbonBox.Checked;
+				formulaIconBox.Enabled = grouped && formulaRibbonBox.Checked;
 			}
 		}
 
