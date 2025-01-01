@@ -59,6 +59,7 @@
 			this.pathBox.Location = new System.Drawing.Point(105, 42);
 			this.pathBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 9);
 			this.pathBox.Name = "pathBox";
+			this.pathBox.ProcessEnterKey = false;
 			this.pathBox.Size = new System.Drawing.Size(400, 26);
 			this.pathBox.TabIndex = 1;
 			this.pathBox.ThemedBack = null;
@@ -110,10 +111,13 @@
 			this.groupBox.Location = new System.Drawing.Point(18, 18);
 			this.groupBox.Name = "groupBox";
 			this.groupBox.Padding = new System.Windows.Forms.Padding(10, 9, 10, 9);
+			this.groupBox.ShowOnlyTopEdge = true;
 			this.groupBox.Size = new System.Drawing.Size(679, 236);
 			this.groupBox.TabIndex = 5;
 			this.groupBox.TabStop = false;
 			this.groupBox.Text = "Export 2 Pages";
+			this.groupBox.ThemedBorder = null;
+			this.groupBox.ThemedFore = null;
 			// 
 			// embeddedBox
 			// 
@@ -125,8 +129,11 @@
 			this.embeddedBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.embeddedBox.Name = "embeddedBox";
 			this.embeddedBox.Size = new System.Drawing.Size(182, 25);
+			this.embeddedBox.StylizeImage = false;
 			this.embeddedBox.TabIndex = 7;
 			this.embeddedBox.Text = "Embed attachments";
+			this.embeddedBox.ThemedBack = null;
+			this.embeddedBox.ThemedFore = null;
 			this.embeddedBox.UseVisualStyleBackColor = true;
 			// 
 			// underBox
@@ -137,8 +144,11 @@
 			this.underBox.Location = new System.Drawing.Point(105, 186);
 			this.underBox.Name = "underBox";
 			this.underBox.Size = new System.Drawing.Size(393, 25);
+			this.underBox.StylizeImage = false;
 			this.underBox.TabIndex = 6;
 			this.underBox.Text = "Replace spaces in the filename with underscores";
+			this.underBox.ThemedBack = null;
+			this.underBox.ThemedFore = null;
 			this.underBox.UseVisualStyleBackColor = true;
 			// 
 			// attachmentsBox
@@ -151,8 +161,11 @@
 			this.attachmentsBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.attachmentsBox.Name = "attachmentsBox";
 			this.attachmentsBox.Size = new System.Drawing.Size(183, 25);
+			this.attachmentsBox.StylizeImage = false;
 			this.attachmentsBox.TabIndex = 5;
 			this.attachmentsBox.Text = "Include attachments";
+			this.attachmentsBox.ThemedBack = null;
+			this.attachmentsBox.ThemedFore = null;
 			this.attachmentsBox.UseVisualStyleBackColor = true;
 			this.attachmentsBox.CheckedChanged += new System.EventHandler(this.ChangeIncludeAttachments);
 			// 

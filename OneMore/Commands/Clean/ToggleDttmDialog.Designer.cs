@@ -72,10 +72,13 @@
 			this.toggleGroup.Location = new System.Drawing.Point(18, 18);
 			this.toggleGroup.Name = "toggleGroup";
 			this.toggleGroup.Padding = new System.Windows.Forms.Padding(15);
+			this.toggleGroup.ShowOnlyTopEdge = true;
 			this.toggleGroup.Size = new System.Drawing.Size(424, 119);
 			this.toggleGroup.TabIndex = 2;
 			this.toggleGroup.TabStop = false;
 			this.toggleGroup.Text = "Toggle";
+			this.toggleGroup.ThemedBorder = null;
+			this.toggleGroup.ThemedFore = null;
 			// 
 			// scopeGroup
 			// 
@@ -86,10 +89,13 @@
 			this.scopeGroup.Location = new System.Drawing.Point(18, 159);
 			this.scopeGroup.Name = "scopeGroup";
 			this.scopeGroup.Padding = new System.Windows.Forms.Padding(15);
+			this.scopeGroup.ShowOnlyTopEdge = true;
 			this.scopeGroup.Size = new System.Drawing.Size(424, 124);
 			this.scopeGroup.TabIndex = 3;
 			this.scopeGroup.TabStop = false;
 			this.scopeGroup.Text = "Scope";
+			this.scopeGroup.ThemedBorder = null;
+			this.scopeGroup.ThemedFore = null;
 			// 
 			// scopeSelector
 			// 
@@ -111,6 +117,7 @@
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
+			this.cancelButton.StylizeImage = false;
 			this.cancelButton.TabIndex = 1;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.ThemedBack = null;
@@ -128,6 +135,7 @@
 			this.okButton.Name = "okButton";
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
+			this.okButton.StylizeImage = false;
 			this.okButton.TabIndex = 0;
 			this.okButton.Text = "OK";
 			this.okButton.ThemedBack = null;

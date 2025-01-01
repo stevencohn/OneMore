@@ -24,7 +24,6 @@ namespace River.OneMoreAddIn.Commands
 
 				Localize(new string[]
 				{
-					"numberingGroup=word_Numbering",
 					"introLabel",
 					"alphaRadio=word_Alphanumeric",
 					"numRadio=word_Numeric",

@@ -52,10 +52,13 @@
 			this.scopeGroupBox.Margin = new System.Windows.Forms.Padding(3, 12, 3, 3);
 			this.scopeGroupBox.Name = "scopeGroupBox";
 			this.scopeGroupBox.Padding = new System.Windows.Forms.Padding(20, 15, 3, 3);
+			this.scopeGroupBox.ShowOnlyTopEdge = true;
 			this.scopeGroupBox.Size = new System.Drawing.Size(567, 341);
 			this.scopeGroupBox.TabIndex = 0;
 			this.scopeGroupBox.TabStop = false;
 			this.scopeGroupBox.Text = "Scope";
+			this.scopeGroupBox.ThemedBorder = null;
+			this.scopeGroupBox.ThemedFore = null;
 			// 
 			// scopeSelector
 			// 
@@ -79,6 +82,7 @@
 			this.okButton.Name = "okButton";
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
+			this.okButton.StylizeImage = false;
 			this.okButton.TabIndex = 0;
 			this.okButton.Text = "OK";
 			this.okButton.ThemedBack = null;
@@ -96,6 +100,7 @@
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
+			this.cancelButton.StylizeImage = false;
 			this.cancelButton.TabIndex = 1;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.ThemedBack = null;
@@ -111,10 +116,13 @@
 			this.depthBox.Location = new System.Drawing.Point(18, 13);
 			this.depthBox.Name = "depthBox";
 			this.depthBox.Padding = new System.Windows.Forms.Padding(3, 15, 3, 3);
+			this.depthBox.ShowOnlyTopEdge = true;
 			this.depthBox.Size = new System.Drawing.Size(567, 191);
 			this.depthBox.TabIndex = 8;
 			this.depthBox.TabStop = false;
 			this.depthBox.Text = "Scanning Depth";
+			this.depthBox.ThemedBorder = null;
+			this.depthBox.ThemedFore = null;
 			// 
 			// includeTitlesBox
 			// 
@@ -125,8 +133,11 @@
 			this.includeTitlesBox.Location = new System.Drawing.Point(20, 148);
 			this.includeTitlesBox.Name = "includeTitlesBox";
 			this.includeTitlesBox.Size = new System.Drawing.Size(293, 25);
+			this.includeTitlesBox.StylizeImage = false;
 			this.includeTitlesBox.TabIndex = 3;
 			this.includeTitlesBox.Text = "Include page titles when comparing";
+			this.includeTitlesBox.ThemedBack = null;
+			this.includeTitlesBox.ThemedFore = null;
 			this.includeTitlesBox.UseVisualStyleBackColor = true;
 			// 
 			// deepRadio
