@@ -311,9 +311,6 @@ namespace River.OneMoreAddIn.Commands
 
 		private void SetQuickStyle(Page page, XElement element, Style style)
 		{
-
-			System.Diagnostics.Debugger.Launch();
-
 			if (style.StyleType == StyleType.Heading &&
 				// must be in heading range h1=0..h6=5
 				style.Index < 6)

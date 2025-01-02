@@ -61,7 +61,19 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
-		/// Static, indicates the specific glyph used for the tag
+		/// Gets the unique font color of this symbol tag
+		/// </summary>
+		public string FontColor => Attribute("fontColor").Value;
+
+
+		/// <summary>
+		/// Gets the unique highlight color of this symbol tag
+		/// </summary>
+		public string HighlightColor => Attribute("highlightColor").Value;
+
+
+		/// <summary>
+		/// Gets the specific glyph used for the tag
 		/// </summary>
 		public string Symbol => Attribute("symbol").Value;
 
@@ -79,10 +91,15 @@ namespace River.OneMoreAddIn.Models
 		/// <returns>True if the Symbols are equal</returns>
 		public override bool Equals(object obj)
 		{
-			if (obj is XElement other)
+			if (obj is XElement other && other.Name.LocalName == "TagDef")
 			{
-				// this is all we care about; OneNote allows exactly one of each symbol, no more
-				return Attribute("symbol").Value.Equals(other.Attribute("symbol").Value);
+				// OneNote typically allows one of each symbol, however, you can have multiple
+				// instances of each symbol as long as the font/highlight colors are unique
+
+				return
+					Symbol.Equals(other.Attribute("symbol").Value) &&
+					FontColor.Equals(other.Attribute("fontColor").Value) &&
+					HighlightColor.Equals(other.Attribute("highlightColor").Value);
 			}
 
 			return false;
