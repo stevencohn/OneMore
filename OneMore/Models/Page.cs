@@ -232,7 +232,11 @@ namespace River.OneMoreAddIn.Models
 			int index = 0;
 			if (tags?.Any() == true)
 			{
-				var tag = tags.FirstOrDefault(e => e.Attribute("symbol").Value == symbol);
+				var tag = tags.FirstOrDefault(e =>
+					e.Attribute("symbol").Value == symbol &&
+					e.Attribute("fontColor").Value == "automatic" &&
+					e.Attribute("highlightColor").Value == "none");
+
 				if (tag is not null)
 				{
 					return tag.Attribute("index").Value;
@@ -259,7 +263,11 @@ namespace River.OneMoreAddIn.Models
 			var tags = Root.Elements(Namespace + "TagDef");
 			if (tags?.Any() == true)
 			{
-				var tag = tags.FirstOrDefault(e => e.Attribute("symbol").Value == tagdef.Symbol);
+				var tag = tags.FirstOrDefault(e =>
+					e.Attribute("symbol").Value == tagdef.Symbol &&
+					e.Attribute("fontColor").Value == tagdef.FontColor &&
+					e.Attribute("highlightColor").Value == tagdef.HighlightColor);
+
 				if (tag is not null)
 				{
 					return;

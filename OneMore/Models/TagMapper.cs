@@ -81,7 +81,7 @@ namespace River.OneMoreAddIn.Models
 			// resolve source tagdefs with target tagdefs
 			foreach (var source in sourcedefs)
 			{
-				var mapping = map.Find(m => m.TagDef.Symbol == source.Symbol);
+				var mapping = map.Find(m => m.TagDef.Equals(source));
 				if (mapping is null)
 				{
 					// no match so add it and set index to maxIndex+1
