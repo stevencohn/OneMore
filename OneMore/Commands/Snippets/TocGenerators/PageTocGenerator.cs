@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 	using System.Collections.Generic;
 	using System.Globalization;
 	using System.Linq;
+	using System.Security;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
 	using Resx = Properties.Resources;
@@ -324,11 +325,12 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 		private void BuildHeadings(
 			XElement container, List<Heading> headings, ref int index, int level, bool dark)
 		{
-			static string RemoveHyperlinks(string text)
+			static string CleanTitle(string text)
 			{
+				// Escape URI to handle special chars like '&'
 				// removes hyperlinks from the text of a heading so the TOC hyperlink can be applied
 				// clean up illegal directives; can be caused by using "Clip to OneNote" from Edge
-				var wrapper = new XCData(text).GetWrapper();
+				var wrapper = new XCData(SecurityElement.Escape(text)).GetWrapper();
 				var links = wrapper.Elements("a").ToList();
 				foreach (var link in links)
 				{
@@ -360,7 +362,7 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 					if (!string.IsNullOrEmpty(heading.Link))
 					{
 						var linkColor = dark ? " style='color:#5B9BD5'" : string.Empty;
-						var clean = RemoveHyperlinks(heading.Text);
+						var clean = CleanTitle(heading.Text);
 						text = $"<a href=\"{heading.Link}\"{linkColor}>{clean}</a>";
 					}
 
