@@ -1003,7 +1003,7 @@ namespace River.OneMoreAddIn.Commands
 
 			using var dialog = new PageColorDialog(color);
 			dialog.HideOptions();
-			dialog.StartPosition = FormStartPosition.CenterParent;
+			//dialog.StartPosition = FormStartPosition.CenterParent;
 			dialog.VerticalOffset = 50;
 
 			if (dialog.ShowDialog(this) == DialogResult.OK)

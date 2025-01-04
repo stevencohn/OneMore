@@ -114,7 +114,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public string MakePageColor(Color color)
+		public static string MakePageColor(Color color)
 		{
 			var dark = Office.IsBlackThemeEnabled();
 

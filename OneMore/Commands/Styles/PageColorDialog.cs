@@ -14,7 +14,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = Properties.Resources;
 
 
-	internal partial class PageColorDialog : UI.MoreForm
+	internal partial class PageColorDialog : MoreForm
 	{
 		private Theme theme;
 		private readonly Color pageColor;
@@ -43,8 +43,8 @@ namespace River.OneMoreAddIn.Commands
 				});
 			}
 
-			VerticalOffset = -(Height / 3);
 			Height -= optionsPanel.Height;
+			//VerticalOffset = -(Height / 3);
 			optionsPanel.Height = 0;
 			optionsAvailable = true;
 
@@ -76,7 +76,7 @@ namespace River.OneMoreAddIn.Commands
 
 			// prioritize MRU, otherwise default to page color
 			var setting = settings["customColor"];
-			if (setting != null)
+			if (setting is not null)
 			{
 				customPaint = ColorHelper.FromHtml(setting);
 			}
@@ -91,7 +91,7 @@ namespace River.OneMoreAddIn.Commands
 
 			// prioritize MRU, otherwise default to page color
 			setting = settings["omColor"];
-			if (setting == null)
+			if (setting is null)
 			{
 				var colors = new PageColors();
 				var index = colors.FindIndex(s => s.Color.Equals(pageColor));
@@ -133,7 +133,7 @@ namespace River.OneMoreAddIn.Commands
 		public PageColorDialog(Color color, string themeKey)
 			: this(color)
 		{
-			if (themeKey != null)
+			if (themeKey is not null)
 			{
 				currentThemeLabel.Text =
 					string.Format(Resx.PageColorDialog_currentThemeLabel_Text, themeKey);
@@ -273,7 +273,7 @@ namespace River.OneMoreAddIn.Commands
 		private void LoadTheme(object sender, LinkLabelLinkClickedEventArgs e)
 		{
 			var candidate = new LoadStylesCommand().LoadTheme();
-			if (candidate != null)
+			if (candidate is not null)
 			{
 				theme = candidate;
 				currentThemeLabel.Text =
@@ -286,7 +286,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void CheckContrast()
 		{
-			if (theme == null || !optionsAvailable)
+			if (theme is null || !optionsAvailable)
 			{
 				statusLabel.Text = string.Empty;
 				return;

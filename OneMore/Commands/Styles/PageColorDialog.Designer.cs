@@ -107,6 +107,7 @@
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(130, 40);
+			this.cancelButton.StylizeImage = false;
 			this.cancelButton.TabIndex = 9;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.ThemedBack = null;
@@ -171,13 +172,17 @@
 			// 
 			// applyThemeBox
 			// 
+			this.applyThemeBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.applyThemeBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.applyThemeBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.applyThemeBox.Location = new System.Drawing.Point(51, 82);
 			this.applyThemeBox.Name = "applyThemeBox";
 			this.applyThemeBox.Size = new System.Drawing.Size(213, 25);
+			this.applyThemeBox.StylizeImage = false;
 			this.applyThemeBox.TabIndex = 0;
 			this.applyThemeBox.Text = "Apply styles to this page";
+			this.applyThemeBox.ThemedBack = null;
+			this.applyThemeBox.ThemedFore = null;
 			this.applyThemeBox.UseVisualStyleBackColor = true;
 			// 
 			// okButton
@@ -191,6 +196,7 @@
 			this.okButton.Name = "okButton";
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(130, 40);
+			this.okButton.StylizeImage = false;
 			this.okButton.TabIndex = 12;
 			this.okButton.Text = "OK";
 			this.okButton.ThemedBack = null;
@@ -293,7 +299,7 @@
 			this.Padding = new System.Windows.Forms.Padding(15, 15, 10, 10);
 			this.ShowInTaskbar = false;
 			this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Page Color";
 			((System.ComponentModel.ISupportInitialize)(this.omBox)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.customBox)).EndInit();
