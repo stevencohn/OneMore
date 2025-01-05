@@ -27,10 +27,9 @@ Process
 	$xml = [xml](Get-Content $0)
 	$xml.package.metadata.version = $version
 	$xml.package.metadata.releaseNotes = $release.body
-	$xml.Save($0)
-
 	$encoding = New-Object System.Text.UTF8Encoding($false)
-	$writer = New-Object System.IO.StreamWriter($file, $false, $encoding)
+	$writer = New-Object System.IO.StreamWriter($0, $false, $encoding)
+	$writer.NewLine = '`n'
 	$xml.Save($writer)
 	$writer.Close()
 
@@ -40,5 +39,6 @@ Process
 	$content = $content -replace "(checksum\s+= \')([^\']+)(\')","`$1$checksum`$3"
 	$checksum = (checksum $home\Downloads\OneMore_$version`_Setupx64.msi)
 	$content = $content -replace "(checksum64\s+= \')([^\']+)(\')","`$1$checksum`$3"
-	$content | Out-File $0 -Encoding utf8 -Force
+	$conetnt = $content -replace '`r`n','`n'
+	$content | Out-File $0 -Encoding utf8BOM -Force
 }
