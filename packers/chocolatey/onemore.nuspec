@@ -3,7 +3,7 @@
   <metadata>
     <id>onemore</id>
     <version>6.7.0</version>
-    <packageSourceUrl>https://github.com/stevencohn/OneMore/packers/chocolatey</packageSourceUrl>
+    <packageSourceUrl>https://github.com/stevencohn/OneMore/tree/main/packers/chocolatey</packageSourceUrl>
     <owners>Steven Cohn</owners>
     <title>OneMore</title>
     <authors>Steven Cohn</authors>
