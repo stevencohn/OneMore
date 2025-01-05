@@ -29,16 +29,16 @@ Process
 	$xml.package.metadata.releaseNotes = $release.body
 	$encoding = New-Object System.Text.UTF8Encoding($false)
 	$writer = New-Object System.IO.StreamWriter($0, $false, $encoding)
-	$writer.NewLine = '`n'
+	$writer.NewLine = "`n"
 	$xml.Save($writer)
 	$writer.Close()
 
 	$0 = '.\chocolatey\tools\chocolateyinstall.ps1'
 	$content = (Get-Content $0) -replace '\d+\.\d+(?:\.\d+)?/OneMore_\d+\.\d+(?:\.\d+)?',"$version/OneMore_$version"
-	$checksum = (checksum $home\Downloads\OneMore_$version`_Setupx86.msi)
-	$content = $content -replace "(checksum\s+= \')([^\']+)(\')","`$1$checksum`$3"
-	$checksum = (checksum $home\Downloads\OneMore_$version`_Setupx64.msi)
-	$content = $content -replace "(checksum64\s+= \')([^\']+)(\')","`$1$checksum`$3"
-	$conetnt = $content -replace '`r`n','`n'
+	$checksum = (checksum -t sha256 $home\Downloads\OneMore_$version`_Setupx86.msi)
+	$content = $content -replace "(checksum\s+=\s+)\'([^']+)(\')","`$1'$checksum`$3"
+	$checksum = (checksum -t sha256 $home\Downloads\OneMore_$version`_Setupx64.msi)
+	$content = $content -replace "(checksum64\s+=\s+)\'([^']+)(\')","`$1'$checksum`$3"
+	$conetnt = $content -replace "`r`n","`n"
 	$content | Out-File $0 -Encoding utf8BOM -Force
 }

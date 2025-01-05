@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!-- Do not remove this test for UTF-8: if “Ω” doesn’t appear as greek uppercase omega letter enclosed in quotation marks, you should use an editor that supports UTF-8, not this one. -->
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
@@ -18,65 +19,65 @@
     <tags>onemore onenote addin calendar calculations colorizer favorites formula hashtags snippets styles navigator tagging</tags>
     <summary>A OneNote add-in with simple, yet powerful and useful features</summary>
     <description>OneMore is an add-in for OneNote with simple and powerful features that make OneNote a better OneNote.</description>
-	<releaseNotes>
-## What's Changed
+    <releaseNotes>## What's Changed
 
-As mentioned in previous releases, legacy page tagging has been completely removed in this release and replaced with hashtags. Any legacy tags will be updated to hashtags automatically when running either the Find Hashtags command or the Insert Hashtags command, PR [#1609](https://github.com/stevencohn/OneMore/pull/1609)
+* Added the _Check URLs_ command to check valid URLs on a page, #1046 
+* Added the _Replace URL Titles With Addresses_ command, #1713
+* Added the _Open page/section/notebook In Web Browser_ commands, #1629
+* Added the _Scan Hashtags_ command, bound to `Ctrl + Alt + F10`, to scan the current page, #1675
+* Added the _Select All Tables_ command, #1679
+* Added the _Update Page Time_ command, #1702
+* Added the ability to delete items from the Navigator History panel, #1707
+* Added the ability to sum timespan values in table formulas, #1696
+* Added the option to limit the depth of headings displayed in the page Table of Contents, #1521 
+* Added the option to separate OneMore into its own ribbon tab, #1651 
+* Added the option to overlay the Table of Contents over existing outlines, #1712
+* Added the option allow incremental character searching in the command palettes, #1680
+* Added the option to hide the "no changes" message when running a plugin, #1656 
+* Added keyboard shortcuts to restart and close the timer window, #1552 
+* Enhanced the hashtag Index pages feature to include a checkbox for each page, #1649 
+* Removed the bubble window form appearing after copying link to para or page, #1070
+* Fixed an issue where CSS was exposed in Navigator Heading panel, #1722
+* Fixed an issue where spaces where not allowed in path to Obsidian wiki-style linked images, #1718
+* Fixed an issue where the custom color was not applied to the horizontal line snippets, #1688
+* Fixed an issue where comma-separated hashtags were not recognized, #1663 
+* Fixed an issue where _Apply Styles to Page_ caused an exception, #1662 
+* Fixed an issue where the Colorize dialog caused an exception, #1660 
+* Fixed an issue where spaces were not rendered correctly in the command palette, #1655 
+* Fixed an issue where _Remove Ink_ would not remove InkWord and InkParagraph elements, #1730
+* Fixed an issue where Python multiline comments were not colorized properly, #1732
+* Fixed an issue where embedded content misinterpreted incoming TagDefs, #1736
+* Fixed an issue where the last deleted ref was not removed from the Linked References block, #1737
+* Fixed an issue where custom headings with the default font size were set to wrong QuickStyle, #1738
+* Fixed an issue where _Paste as Text_ command pasted soft breaks instead of hard breaks, #1745
 
-* Added the ability to Search and Replace across sections and notebooks, [#1646](https://github.com/stevencohn/OneMore/issues/1646)
-* Added an option to search only the current page to the Search Hashtags dialog, [#1636](https://github.com/stevencohn/OneMore/issues/1636)
-* Added colorization definitions for R and Pascal, [#1633](https://github.com/stevencohn/OneMore/issues/1633)
-* Added the Reset Checked Tasks command to uncheck all checked tasks, [#1626](https://github.com/stevencohn/OneMore/issues/1626)
-* Added the Scan Hashtags command, available in the command pallette and for key binding, [#1607](https://github.com/stevencohn/OneMore/issues/1607)
-* Added option to hide the Bidirectional Link confirmation dialog, [#1577](https://github.com/stevencohn/OneMore/issues/1577)
-* Added due date to the reminder toast message, [#1571](https://github.com/stevencohn/OneMore/issues/1571)
-* Added Japanese translations for the OneMoreTray app, thanks to @forestail, PR [#1546](https://github.com/stevencohn/OneMore/pull/1546)
-* Added the ability to import wikilinks images as used in Obsidian, [#1549](https://github.com/stevencohn/OneMore/issues/1549)
-* Added support for Mermaid diagrams, similar to the PlantUML support, [#1511](https://github.com/stevencohn/OneMore/issues/1511)
-* Changed the way new notebooks are discovered by the hashtags scanner [#1606](https://github.com/stevencohn/OneMore/issues/1606)
-    * Small notebooks with less than 100 pages will be included automatically
-    * Larger notebooks will be noted in the Find Hashtags dialog where you can choose to schedule a scan or run the scan now.
-* Changed declaration of logging levels in Settings.xml, see Wiki for more info, PR [#1605](https://github.com/stevencohn/OneMore/pull/1605)
-* Fixed an issue where Alt-F (Favorites dialog) causes OneNote windows to stack incorrectly, [#1652](https://github.com/stevencohn/OneMore/issues/1652)
-* Fixed an issue where the Navigator window headings when resizing the window, [#1640](https://github.com/stevencohn/OneMore/issues/1640)
-* Fixed an issue where the Search Hashtags command palette didn't redraw correctly, [#1639](https://github.com/stevencohn/OneMore/issues/1639)
-* Fixed an issue where the Search Hashtags dialog title was incorrect, [#1637](https://github.com/stevencohn/OneMore/issues/1637)
-* Fixed an issue where Navigator failed to display a pages with special characters, [#1618](https://github.com/stevencohn/OneMore/issues/1618)
-* Fixed an issue where Export failed with exceedingly long page names, [#1615](https://github.com/stevencohn/OneMore/issues/1615)
-* Fixed an issue where the Navigator window was not placed on correct display monitor, [#1600](https://github.com/stevencohn/OneMore/issues/1600)
-* Fixed an issue where styles were not applied to the page title text, [#1599](https://github.com/stevencohn/OneMore/issues/1599)
-* Fixed an isuse where single digit hashtags were skipped, [#1592](https://github.com/stevencohn/OneMore/issues/1592)
-* Fixed an issue where the Check for Updates option was not preserved, [#1588](https://github.com/stevencohn/OneMore/issues/1588)
-* Fixed an issue where the Colorize dialog appeared behind the OneMore window, [#1587](https://github.com/stevencohn/OneMore/issues/1587)
-* Fixed an issue where Copy as Markdown lost nested indentations, [#1583](https://github.com/stevencohn/OneMore/issues/1583)
-* Fixed an issue where Copy as Markdown steals focus, [#1582](https://github.com/stevencohn/OneMore/issues/1582)
-* Fixed an issue where Strikeout Tasks command failed, [#1572](https://github.com/stevencohn/OneMore/issues/1572)
-* Fixed an issue where Link References failed when using Windows Search, [#1568](https://github.com/stevencohn/OneMore/issues/1568)
-* Fixed an issue where line breaks were not added to markdown tables, [#1565](https://github.com/stevencohn/OneMore/issues/1565)
-* Fixed an issue where the PHP colorization files were missing from the installe, [#1561](https://github.com/stevencohn/OneMore/issues/1561)
-* Fixed an issue where the Update command failed on a prerelease version, [#1559](https://github.com/stevencohn/OneMore/issues/1559)
-* Fixed an issue where System.Numerics.Vector failed to load, [#1538](https://github.com/stevencohn/OneMore/issues/1538)
-* Fixed an issue where opening the command palette caused the OneNote windows to blink, [#1422](https://github.com/stevencohn/OneMore/issues/1422)
+## Internal Updates
 
-## Known Issues and Proposed Changes
+* Changed the default Hashtag scanner throttle from 40ms to 20ms, [commit](https://github.com/stevencohn/OneMore/commit/08e7f25ab2e2441d6e5abb539b0b6ef3cbcfe2b3)
+* Updated the Update command to ignore prerelease versions, [commit](https://github.com/stevencohn/OneMore/commit/2dfda5175fa0bb30685d801634ba6bd9f92edb49)
+* Removed call to SwitchToThisWindow when opening command palettes, [#1422](https://github.com/stevencohn/OneMore/issues/1422)
+* Fixed an issue where multiple selected images were not resized correclty, PR [#1673](https://github.com/stevencohn/OneMore/pull/1673)
+* Fixed an issue where the HashtagScanner failed on the first run on a new install, [commit](https://github.com/stevencohn/OneMore/commit/3167098342f76e5f7af2b1c70aecc5d394dcfa88)
+* Fixed an issue where OneMoreTray Schedule dialog was not translated correctly, [commit](https://github.com/stevencohn/OneMore/commit/ae8f06340765ad835b77017515eada21e498f0ef)
+* Fixed an issue where Stop.ps1 was not stopping OneMoreTray, [commit](https://github.com/stevencohn/OneMore/commit/66993c80044b492ac8d9f3f241b052c176c8c592)
+* Fixed an issue where `Ctrl + R` would cause an exception when running modeless dialogs, [commit](https://github.com/stevencohn/OneMore/commit/fc833244650b1d7660ec9eb87281db2ea7265131)
 
-* 🐜 SearchAndReplace doesn't replace the currently highlighted or selected word/phrase; sometimes it doesn't replace other candidates either
-* 🐜Replaying a command using Ctrl+Shift+R is done in a single thread, breaking progress.RunModeless; see CreatePagesCommand
-* 🐜Select Similar Styles will find differences in colors Auto vs #000000 - make it more fuzzy?
-* 🐜PasteText should convert CRLF to hard-breaks, currently creates soft-breaks
-* 💡Command to convert friendly URLs to raw URLs; References menu
-* 💡Paginate Hashtag search results
-* 💡Move Navigator to DB, paginate history panel, provide import/export
-* 💡Move Reminders to DB, option in dialog and on-page link to delete completed reminders
-* 💡Update the update command to look for #warning keyword (or similar) and display warning to user
-* 💡Github PR action to pull ticket# prefix from branch name, e.g. 1234-do-something-cool
+## Known Issues
+
+* ≡ƒÉ£ _Search and Replace_ doesn't replace the currently highlighted or selected word/phrase; sometimes it doesn't replace other candidates either
+* ≡ƒÉ£_Select Similar Styles_ will find differences in colors Auto vs #000000 - make it more fuzzy?
+* ≡ƒÆíPaginate Hashtag search results
+* ≡ƒÆíMove Navigator to DB, paginate history panel, provide import/export
+* ≡ƒÆíMove Reminders to DB, option in dialog and on-page link to delete completed reminders
+* ≡ƒÆíGithub PR action to pull ticket# prefix from branch name, e.g. 1234-do-something-cool
 
 ## Checksums
 * x86 = 410AD464AE692FA23AD44CD85B8159E2E2775751AA0E413F0C773195C128A856
 * x64 = AF3712289DCB4C67C8429E3C0A095D730B47AD40CD051793DEE460FAF4616314
 
-**Full Changelog**: https://github.com/stevencohn/OneMore/compare/6.5.2...6.6.1
-	</releaseNotes>
+**Full Changelog**: https://github.com/stevencohn/OneMore/compare/6.6.1...6.7.0
+
+</releaseNotes>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />
