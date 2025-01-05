@@ -15,24 +15,30 @@ param (
 
 Begin
 {
+	$tagUri = "https://api.github.com/repos/stevencohn/OneMore/releases/tags/$version"
 }
 Process
 {
-	$release = (curl --request GET https://api.github.com/repos/stevencohn/OneMore/releases/tags/$version) | ConvertFrom-Json
+	$release = (curl -s --request GET $tagUri) | ConvertFrom-Json
 
 	# choco...
 
-	$0 = '.\packers\chocolatey\onemore.nuspec'
+	$0 = Resolve-Path '.\chocolatey\onemore.nuspec'
 	$xml = [xml](Get-Content $0)
 	$xml.package.metadata.version = $version
 	$xml.package.metadata.releaseNotes = $release.body
-	$xml.OuterXml | Out-File $0 -Force
+	$xml.Save($0)
 
-	$0 = '.\packers\chocolatey\tools\chocolateyinstall.ps1'
+	$encoding = New-Object System.Text.UTF8Encoding($false)
+	$writer = New-Object System.IO.StreamWriter($file, $false, $encoding)
+	$xml.Save($writer)
+	$writer.Close()
+
+	$0 = '.\chocolatey\tools\chocolateyinstall.ps1'
 	$content = (Get-Content $0) -replace '\d+\.\d+(?:\.\d+)?/OneMore_\d+\.\d+(?:\.\d+)?',"$version/OneMore_$version"
 	$checksum = (checksum $home\Downloads\OneMore_$version`_Setupx86.msi)
-	$content = $content -replace "(checksum\s+= \')([^\']+)(\')","`$1$version$3"
+	$content = $content -replace "(checksum\s+= \')([^\']+)(\')","`$1$checksum`$3"
 	$checksum = (checksum $home\Downloads\OneMore_$version`_Setupx64.msi)
-	$content = $content -replace "(checksum64\s+= \')([^\']+)(\')","`$1$version$3"
-	$content | Out-File $0 -Force
+	$content = $content -replace "(checksum64\s+= \')([^\']+)(\')","`$1$checksum`$3"
+	$content | Out-File $0 -Encoding utf8 -Force
 }
