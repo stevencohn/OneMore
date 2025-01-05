@@ -20,6 +20,11 @@ Begin
 Process
 {
 	$release = (curl -s --request GET $tagUri) | ConvertFrom-Json
+	if ($release.status)
+	{
+		Write-Host "** cannot curl releases/tags/$version" -Fore Red
+		return
+	}
 
 	# choco...
 
