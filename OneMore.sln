@@ -84,6 +84,25 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reference", "Reference", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneMoreTray", "OneMoreTray\OneMoreTray.csproj", "{383ABB76-4F97-4C78-AC59-BC851AA15B5A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "packers", "packers", "{06C4CB95-3744-44A4-9F5A-201F9909EA13}"
+	ProjectSection(SolutionItems) = preProject
+		packers\prepare.ps1 = packers\prepare.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "chocolatey", "chocolatey", "{51C92C04-B6EF-4DF3-B832-BBF4F92AD6E9}"
+	ProjectSection(SolutionItems) = preProject
+		packers\chocolatey\onemore.nuspec = packers\chocolatey\onemore.nuspec
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{6A346706-764C-40DA-AFFC-BFB22B310BF5}"
+	ProjectSection(SolutionItems) = preProject
+		packers\chocolatey\tools\chocolateybeforemodify.ps1 = packers\chocolatey\tools\chocolateybeforemodify.ps1
+		packers\chocolatey\tools\chocolateyinstall.ps1 = packers\chocolatey\tools\chocolateyinstall.ps1
+		packers\chocolatey\tools\chocolateyuninstall.ps1 = packers\chocolatey\tools\chocolateyuninstall.ps1
+		packers\chocolatey\tools\LICENSE.txt = packers\chocolatey\tools\LICENSE.txt
+		packers\chocolatey\tools\VERIFICATION.txt = packers\chocolatey\tools\VERIFICATION.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -177,6 +196,9 @@ Global
 		{5771E974-F302-4CB6-86B8-B57C74C07709} = {AD3F5496-C83B-4C86-B78D-EE7C6CCABB8A}
 		{147D185C-D069-495B-955A-74C81BDD20CF} = {AD3F5496-C83B-4C86-B78D-EE7C6CCABB8A}
 		{64F48016-BB0D-4F25-89BE-00444FD64C53} = {2679BE09-8144-4B5B-957E-D463F00FA66E}
+		{06C4CB95-3744-44A4-9F5A-201F9909EA13} = {2679BE09-8144-4B5B-957E-D463F00FA66E}
+		{51C92C04-B6EF-4DF3-B832-BBF4F92AD6E9} = {06C4CB95-3744-44A4-9F5A-201F9909EA13}
+		{6A346706-764C-40DA-AFFC-BFB22B310BF5} = {51C92C04-B6EF-4DF3-B832-BBF4F92AD6E9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {19E5943B-AB7E-4164-98B6-0C88B01BFABE}
