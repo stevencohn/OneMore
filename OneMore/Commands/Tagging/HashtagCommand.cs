@@ -192,6 +192,7 @@ namespace River.OneMoreAddIn.Commands
 				PageNamespace.Set(ns);
 
 				parent.Title = Resx.HashtagCommand_indexTitle;
+				parent.SetMeta(MetaNames.TagIndex, "true");
 
 				var container = parent.EnsureContentContainer();
 

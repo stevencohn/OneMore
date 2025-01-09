@@ -277,7 +277,12 @@ namespace River.OneMoreAddIn.Commands
 					if (section is not null)
 					{
 						var pages = section.Elements(ns + "Page")
-							.Where(e => e.Attribute("isInRecycleBin") is null);
+							.Where(e => e.Attribute("isInRecycleBin") is null &&
+								// skip tag index pages
+								!(e.Element(ns + "Meta") is XElement meta &&
+								meta.Attribute("name").Value == MetaNames.TagIndex &&
+								meta.Attribute("content").Value == "true")
+							);
 
 						if (pages.Any())
 						{
