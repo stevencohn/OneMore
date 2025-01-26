@@ -20,7 +20,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (renderer.EnableHtmlForInline)
 			{
-				var label = obj.Label.ToString();
+				var label = obj.Label.Text.Substring(obj.Label.Start, obj.Label.Length);
 				label = Path.Combine(
 					Path.GetDirectoryName(label),
 					Path.GetFileNameWithoutExtension(label));
@@ -30,7 +30,7 @@ namespace River.OneMoreAddIn.Commands
 					// convert to <img> ...
 
 					// special case for Obsidian pasted images; presume this is correct!
-					var link = obj.Link.ToString();
+					var link = obj.Link.Text.Substring(obj.Link.Start, obj.Link.Length);
 					var filename = link;
 					//var filename = link.StartsWith("Pasted image")
 					//	? link.Replace("Pasted image ", string.Empty)
@@ -53,8 +53,11 @@ namespace River.OneMoreAddIn.Commands
 				{
 					// convert to <a> ...
 
+					var link = obj.Link.Text.Substring(obj.Link.Start, obj.Link.Length);
+					if (string.IsNullOrEmpty(link)) link = label;
+
 					var href = new Uri(
-						Path.Combine(renderer.BaseUrl.AbsolutePath, obj.Link.Text))
+						Path.Combine(renderer.BaseUrl.AbsolutePath, link))
 						.AbsoluteUri;
 
 					renderer.Write($"<a href=\"{href}\">{label}</a>");
