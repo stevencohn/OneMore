@@ -24,6 +24,7 @@ namespace River.OneMoreAddIn.Ribbon
 		TabHistory = 9,
 		TabReview = 10,
 		TabView = 11,
+		TabHelp = 12,
 		End = 99
 	}
 }
