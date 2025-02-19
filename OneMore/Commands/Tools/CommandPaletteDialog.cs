@@ -114,10 +114,12 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var text = cmdBox.Text.Trim();
 
+			// this includs ^ and $ to ensure the full command name is matched exactly
+			// to avoid hitting the wrong substring "Double Horizontal Line" vs "Horizontal Line"
 			var pattern = new Regex(
-				@$"(?:(?<cat>[^{palette.CategoryDivider}]+){palette.CategoryDivider})?" +
+				@$"^(?:(?<cat>[^{palette.CategoryDivider}]+){palette.CategoryDivider})?" +
 				text +
-				$@"(?:\{palette.KeyDivider}(?<seq>.*))?",
+				$@"(?:\{palette.KeyDivider}(?<seq>.*))?$",
 				RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
 			Index = commands.IndexOf(c => pattern.IsMatch(c));
