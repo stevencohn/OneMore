@@ -213,6 +213,14 @@ namespace River.OneMoreAddIn.Commands
 			foreach (var notebook in notebooks.Elements(ns + "Notebook"))
 			{
 				var name = notebook.Attribute("name").Value;
+
+				var counter = 0;
+				var nam = name;
+				while (books.ContainsKey(name))
+				{
+					name = $"{nam}_{counter}";
+				}
+
 				books.Add(name, new Book
 				{
 					Online = true,
