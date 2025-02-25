@@ -22,7 +22,7 @@ namespace River.OneMoreAddIn.Commands
 			await using var one = new OneNote(out var page, out _);
 
 			var range = new Models.SelectionRange(page);
-			range.GetSelection();
+			range.GetSelection(allowNonEmpty: true);
 
 			if (range.Scope != SelectionScope.Range &&
 				range.Scope != SelectionScope.Run)
