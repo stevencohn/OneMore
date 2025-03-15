@@ -1,0 +1,689 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hints>
+  <hint name="AboutDialog.Text">
+    <source>OneMore Add-in</source>
+    <preferred>Complément OneMore</preferred>
+  </hint>
+  <hint name="AdjustImagesDialog_heightLabel.Text">
+    <source>Height</source>
+    <preferred>Hauteur</preferred>
+  </hint>
+  <hint name="AdjustImagesDialog_viewSizeLabel.Text">
+    <source>View size</source>
+    <preferred>Taille de vue</preferred>
+  </hint>
+  <hint name="AnalyzeCommand_OrphanSummary">
+    <source>Orphans are backup folders of notebooks that are no longer opened in OneNote. If they are no longer used, and you've confirmed that they are obsolete, they can be removed safely.</source>
+    <preferred>Les orphelins sont des dossiers de sauvegarde des notebooks qui ne sont plus ouverts dans OneNote. S'ils ne sont plus utilisés et que vous avez confirmé qu'ils sont obsolètes, ils peuvent être supprimés en toute sécurité.</preferred>
+  </hint>
+  <hint name="AnalyzeCommand_SummarySummary">
+    <source>Notebooks can be stored locally or remotely on OneDrive. Remote notebooks can only be analyzed by their local backups as configured in the OneNote Options. This summary shows the total disk usage in either the data location for local notebooks or the backup location for remote notebooks including all backup copies and the per-notebook recycle bins.</source>
+    <preferred>Les notebooks peuvent être stockés localement ou à distance sur OneDrive. Les notebooks distants ne peuvent être analysés que par leurs sauvegardes locales, comme configuré dans les options OneNote. Ce résumé montre l'utilisation totale du disque dans l'emplacement des données pour les notebooks locaux ou dans l'emplacement de sauvegarde pour les notebooks distants, y compris toutes les copies de sauvegarde et les corbeilles de recyclage par notebook.</preferred>
+  </hint>
+  <hint name="AnalyzeDialog_allDetailsBox.Text">
+    <source>Include page details for all sections in this notebook</source>
+    <preferred>Inclure les détails de la page pour toutes les sections de ce notebook</preferred>
+  </hint>
+  <hint name="AnalyzeDialog_notebookBox.Text">
+    <source>Include notebook backup summary</source>
+    <preferred>Inclure le résumé de la sauvegarde du notebook</preferred>
+  </hint>
+  <hint name="ClearLog_Message">
+    <source>Clear the log file now?</source>
+    <preferred>Effacer le fichier journal maintenant ?</preferred>
+  </hint>
+  <hint name="ColorsSheet_strikeGroupBox.Text">
+    <source>Strikethrough To Do Tags</source>
+    <preferred>Balises « à faire » barrées</preferred>
+  </hint>
+  <hint name="CommandPalette_unrecognized">
+    <source>Unrecognized command</source>
+    <preferred>Commande non reconnue</preferred>
+  </hint>
+  <hint name="CustomStyle_Screentip">
+    <source>{0} (Ctrl+Alt+Shift + {1})</source>
+    <preferred>{0} (Ctrl + Alt + Maj + {1})</preferred>
+  </hint>
+  <hint name="EditTableThemesDialog_deleteStyle">
+    <source>Delete this style?</source>
+    <preferred>Supprimer ce style ?</preferred>
+  </hint>
+  <hint name="EditTableThemesDialog_discard">
+    <source>Discard unsaved changes?</source>
+    <preferred>Jeter les changements non sauvés ?</preferred>
+  </hint>
+  <hint name="EditTableThemesDialog_Text">
+    <source>Custom Table Styles</source>
+    <preferred>Styles de tableaux personnalisés</preferred>
+  </hint>
+  <hint name="Emoji_Shazam">
+    <source>Shazam!</source>
+    <preferred>Shazam !</preferred>
+  </hint>
+  <hint name="EmojiDialog.Text">
+    <source>Insert Emojis</source>
+    <preferred>Insérer des emojis</preferred>
+  </hint>
+  <hint name="ExportDialog_embeddedBox.Text">
+    <source>Embed attachments</source>
+    <preferred>Intégrer des pièces jointes</preferred>
+  </hint>
+  <hint name="ExportDialog_formatBox.Text">
+    <source>HTML File (*.htm)
+PDF File (*.pdf)
+Word File (*.docx)
+XML File (*.xml)
+Markdown File (*.md)
+OneNote File (*.one)</source>
+    <preferred>Fichier HTML (*.htm)
+Fichier PDF (*.pdf)
+Fichier Word (*.docx)
+Fichier XML (*.xml)
+Fichier Markdown (*.md)
+Fichier OneNote (*.one)</preferred>
+  </hint>
+  <hint name="Favorites_suspect">
+    <source>Page not found; it may have been renamed or moved</source>
+    <preferred>Page non trouvée ; il a peut-être été renommé ou déplacé</preferred>
+  </hint>
+  <hint name="FavoritesSheet_DeleteMessage">
+    <source>Delete {0}?</source>
+    <preferred>Supprimer {0} ?</preferred>
+  </hint>
+  <hint name="FileQuickNotesCommand_noTargetNotebook">
+    <source>Cannot find target notebook. Open OneMore Settings to specify a target.</source>
+    <preferred>Impossible de trouver le notebook cible. Ouvrez les paramètres OneMore pour spécifier une cible.</preferred>
+  </hint>
+  <hint name="FormulaDialog_formatLabel.Text">
+    <source>Format:</source>
+    <preferred>Format :</preferred>
+  </hint>
+  <hint name="FormulaDialog_formulaLabel.Text">
+    <source>Formula:</source>
+    <preferred>Formule :</preferred>
+  </hint>
+  <hint name="FormulaDialog_helpBox.Text">
+    <source>Formula apply to the first selected cell and are incremented automatically for additional selected cells.
+
+Functions: abs, acos, arccos, arcsin, arctan, asin, atan, atan2, average, ceil, ceiling, cos, cosh, exp, floor, log, log10, max, median, min, mode, pow, range, rem, root, round, sign, sin, sinh, sqrt, stdev, sum, tan, tanh, trunc, truncate, and variance.
+
+Operators: + - / * ^ %
+Variables: e, phi, pi, tao, tablecols, tablerows
+Cell reference: A1, A2, ... ZZZ999
+Cell range: A1:A22
+Relative ranges: A1:cell(0,-1)</source>
+    <preferred>La formule s'applique à la première cellule sélectionnée et est incrémentée automatiquement pour des cellules sélectionnées supplémentaires.
+
+Fonctions : ABS, ACOS, ARCCOS, ARCSIN, ARCTAN, ASIN, ATAN, ATAN2, Moyenne, CEIL, Plafond, Cos, Cosh, Exp, Floor, Log, Log10, Max, Median, Min, Mode, Pow, Remar, REM, racine, ronde, signe, péché, sinh, sqrt, stdev, sum, tan, tanh, trunc, truncate et variance.
+
+Opérateurs : + - / * ^%
+Variables : E, Phi, Pi, Tao, Tablecols, Tablerows
+Référence cellulaire : A1, A2, ... ZZZ999
+Plage cellulaire : A1: A22
+Plages relatives : a1: cellule (0, -1)</preferred>
+  </hint>
+  <hint name="FormulaDialog_selectedLabel.Text">
+    <source>Selected cells:</source>
+    <preferred>Cellules sélectionnées :</preferred>
+  </hint>
+  <hint name="FormulaDialog_statusLabel.Text">
+    <source>Status:</source>
+    <preferred>Statut :</preferred>
+  </hint>
+  <hint name="HashtagContext_jumpParaTip">
+    <source>Jump to this paragraph; last updated {0}</source>
+    <preferred>Sauter à ce paragraphe ; Dernière mise à jour {0}</preferred>
+  </hint>
+  <hint name="HashtagDialog_checkAllLink.Text">
+    <source>Check all</source>
+    <preferred>Tout vérifier</preferred>
+  </hint>
+  <hint name="HashtagDialog_hideOfflineMenuItem">
+    <source>Hide Offline Notebooks</source>
+    <preferred>Masquer les notebooks hors ligne</preferred>
+  </hint>
+  <hint name="HashtagDialog_scanButton.Text">
+    <source>Scan Now</source>
+    <preferred>Scanner maintenant</preferred>
+  </hint>
+  <hint name="HashtagDialog_scanLink.Text">
+    <source>New notebooks discovered. Click here to scan.</source>
+    <preferred>Nouveaux notebooks découverts. Cliquez ici pour numériser.</preferred>
+  </hint>
+  <hint name="HashtagDialog_scopeBox.Text">
+    <source>All notebooks
+This notebook
+This section
+This page</source>
+    <preferred>Tous les notebooks
+Ce notebook
+Cette section
+Cette page</preferred>
+  </hint>
+  <hint name="HashtagDialog_showOfflineMenuItem">
+    <source>Show Offline Notebooks</source>
+    <preferred>Afficher les notebooks hors ligne</preferred>
+  </hint>
+  <hint name="HashtagDialog_uncheckAllLink.Text">
+    <source>Uncheck all</source>
+    <preferred>Tout décocher</preferred>
+  </hint>
+  <hint name="HashtagSheet_scanNotebooks">
+    <source>Schedule an incremental scan of your newly added notebooks</source>
+    <preferred>Planifiez une analyse incrémentielle de vos notebooks nouvellement ajoutés</preferred>
+  </hint>
+  <data name="HashtagSheet_warningLabel.Text">
+    <source>This should be used after adding or removing one or more notebooks. It is recommended to schedule rebuilds after-hours, such as midnight.</source>
+    <preferred>Ceci doit être utilisé après avoir ajouté ou supprimé un ou plusieurs notebooks. Il est recommandé de planifier des reconstructions après les heures d'ouverture, comme minuit.</preferred>
+  </data>
+  <data name="ImportDialog_fileLabel.Text">
+    <source>File:</source>
+    <preferred>Fichier :</preferred>
+  </data>
+  <data name="InsertQRCommand_NoSelection">
+    <source>Select text to render as a new QR code</source>
+    <preferred>Sélectionnez le texte à rendre sous forme de nouveau QR code</preferred>
+  </data>
+  <data name="InsertTocDialog_notebookRadio.Text">
+    <source>New page with index of sections in this notebook</source>
+    <preferred>Nouvelle page avec index des sections de ce notebook</preferred>
+  </data>
+  <data name="InsertTocDialog_rightAlignBox.Text">
+    <source>Right-align top of page link</source>
+    <preferred>Alignement à droite du lien en haut de page</preferred>
+  </data>
+  <data name="InsertTocDialog_styleBox.Text">
+    <source>Standard Page Title
+Standard Heading 1
+Standard Heading 2
+Standard Heading 3
+Custom Page Title
+Custom Heading 1
+Custom Heading 2
+Custom Heading 3</source>
+    <preferred>Titre de la page standard
+Titre standard 1
+Titre standard 2
+Section standard 3
+Titre de page personnalisé
+Titre personnalisé 1
+Titre personnalisé 2
+Titre personnalisé 3</preferred>
+  </data>
+  <data name="InsertTocForNotebook_RefreshQuestion">
+    <source>There is a table of contents page for this notebook. You can refresh that page or create a new page.
+
+Do you want to refresh the existing page?</source>
+    <preferred>Il existe une page de table des matières pour ce notebook. Vous pouvez actualiser cette page ou créer une nouvelle page.
+
+Voulez-vous actualiser la page existante ?</preferred>
+  </data>
+  <data name="OneMoreTab_Label">
+    <source>OneMore</source>
+    <preferred>OneMore</preferred>
+  </data>
+  <data name="OutlineDialog_indentTagBox.Tooltip">
+    <source>Indents content below only tagged headings or non-tagged paragraphs</source>
+    <preferred>Le contenu est mis en retrait en dessous des titres balisés ou des paragraphes non balisés</preferred>
+  </data>
+  <data name="OutlineDialog_tagLabel.Text">
+    <source>Tag:</source>
+    <preferred>Balise :</preferred>
+  </data>
+  <data name="OutlookTaskReport_DateDue">
+    <source>Due/Completed</source>
+    <preferred>Dû/Complété</preferred>
+  </data>
+  <data name="PageColorDialog_scopeBox.Text">
+    <source>Apply to this page
+Apply to this section
+Apply to this notebook</source>
+    <preferred>Appliquer sur cette page
+Appliquer à cette section
+Appliquer à ce notebook</preferred>
+  </data>
+  <data name="phrase_AllNotebooks">
+    <source>All notebooks</source>
+    <preferred>Tous les notebooks</preferred>
+  </data>
+  <data name="phrase_AllSectionInTheCurrentNotebook">
+    <source>All sections in the current notebook</source>
+    <preferred>Toutes les sections du notebook actuel</preferred>
+  </data>
+  <data name="phrase_scopeOptions">
+    <source>In all notebooks
+In this notebook
+In this section</source>
+    <preferred>Dans tous les notebooks
+Dans ce notebook
+Dans cette section</preferred>
+  </data>
+  <data name="Plugin_Unsuccessful">
+    <source>Plugin did not complete successfully. See log file.</source>
+    <preferred>Le plugin ne s'est pas terminé correctement. </preferred>
+  </data>
+  <data name="PluginDialog_okButton.Text">
+    <source>Run</source>
+    <preferred>Démarrer</preferred>
+  </data>
+  <data name="PluginDialog_targetBox.Text">
+    <source>Current page
+Current section and its pages
+Current notebook and its sections
+Current notebook and its pages
+All notebooks and their pages</source>
+    <preferred>Page actuelle
+Section actuelle et ses pages
+Notebook actuel et ses sections
+Notebook actuel et ses pages
+Tous les notebooks et leurs pages</preferred>
+  </data>
+  <data name="PluginsSheet_ConfirmDelete">
+    <source>Delete plugin "{0}"</source>
+    <preferred>Supprimer le plugin "{0}"</preferred>
+  </data>
+  <data name="PreviewMarkdownCommand_Title">
+    <source>Markdown Preview</source>
+    <preferred>Aperçu Markdown</preferred>
+  </data>
+  <data name="ProgramName">
+    <source>OneMore</source>
+    <preferred>OneMore</preferred>
+  </data>
+  <data name="Pronunciate_FullWord">
+    <source>Must select a full word</source>
+    <preferred>Il faut sélectionner un mot complet</preferred>
+  </data>
+  <data name="PronunciateDialog_languages">
+    <source>en,English
+hi,Hindi
+es,Spanish
+fr,French
+ja,Japanese
+ru,Russian
+de,German
+it,Italian
+ko,Korean
+pt-BR,Brazilian Portuguese
+ar,Arabic
+tr,Turkish
+zh-CN,Chinese (Simplified)</source>
+    <preferred>en,anglais
+hi,hindi
+es,espagnol
+fr,français
+ja,japonais
+ru,russe
+de,allemand
+ça,italien
+ko,coréen
+pt-BR,portugais brésilien
+ar,arabe
+tr,turc
+zh-CN,chinois (simplifié)</preferred>
+  </data>
+  <data name="QuickNotesSheet_notebookButton.Text">
+    <source>Move Quick Notes into this notebook</source>
+    <preferred>Déplacer les notes rapides dans ce notebook</preferred>
+  </data>
+  <data name="QuickNotesSheet_notebookLink.Text">
+    <source>Click here to select the notebook</source>
+    <preferred>Cliquez ici pour sélectionner le notebook</preferred>
+  </data>
+  <data name="QuickNotesSheet_sectionLink.Text">
+    <source>Click here to select the section</source>
+    <preferred>Cliquez ici pour sélectionner la section</preferred>
+  </data>
+  <data name="QuickNotesSheet_SelectNotebookIntro">
+    <source>Select the notebook used to organize your Quick Notes</source>
+    <preferred>Sélectionnez le notebook utilisé pour organiser vos notes rapides</preferred>
+  </data>
+  <data name="QuickNotesSheet_SelectNotebookTitle">
+    <source>Select Notebook</source>
+    <preferred>Sélectionnez le notebook</preferred>
+  </data>
+  <data name="QuickNotesSheet_SelectSectionTitle">
+    <source>Select Section</source>
+    <preferred>Sélectionnez la section</preferred>
+  </data>
+  <data name="RemoveDuplicatesNavigator_confirm1">
+    <source>Are you sure you want to delete the selected page?</source>
+    <preferred>Êtes-vous sûr de vouloir supprimer la page sélectionnée ?</preferred>
+  </data>
+  <data name="RemoveDuplicatesNavigator_confirmAll">
+    <source>Are you sure you want to delete the {0} selected pages?</source>
+    <preferred>Êtes-vous sûr de vouloir supprimer les pages sélectionnées {0} ?</preferred>
+  </data>
+  <data name="RemoveEmptyCommand_option">
+    <source>Remove all empty lines?
+
+Select Yes to remove all empty lines between paragraphs
+Select No to keep one empty line between paragraphs</source>
+    <preferred>Enlevez toutes les lignes vides ?
+
+Sélectionnez Oui pour supprimer toutes les lignes vides entre les paragraphes
+Sélectionnez Non pour conserver une ligne vide entre les paragraphes</preferred>
+  </data>
+  <data name="ReportRemindersDialog.Text">
+    <source>Report Scope</source>
+    <preferred>Portée du rapport</preferred>
+  </data>
+  <data name="ribAnalyzeButton_Screentip">
+    <source>Generate a report of storage used by section or notebook</source>
+    <preferred>Générer un rapport de stockage utilisé par section ou notebook</preferred>
+  </data>
+  <data name="ribArchiveNotebookButton_Label">
+    <source>Archive Notebook</source>
+    <preferred>Notebook d'archives</preferred>
+  </data>
+  <data name="RibbonBarSheet_positionBox.Text">
+    <source>Clipboard Group
+Basic Text Group
+Styles Group
+Tags Group
+Email Group
+Meetings Group
+After last group</source>
+    <preferred>Groupe Presse-papiers
+Groupe de texte de base
+Groupe de styles
+Groupe de balises
+Groupe de courriel
+Groupe de réunions
+Après le dernier groupe</preferred>
+  </data>
+  <data name="RibbonBarSheet_positionLabel.Text">
+    <source>Position after</source>
+    <preferred>Position suivante</preferred>
+  </data>
+  <data name="ribConvertMarkdownButton_Label">
+    <source>Convert Markdown</source>
+    <preferred>Convertir Markdown</preferred>
+  </data>
+  <data name="ribConvertMarkdownButton_Screentip">
+    <source>Convert page or selected markdown to OneNote format</source>
+    <preferred>Convertir la page ou le markdown sélectionné au format OneNote</preferred>
+  </data>
+  <data name="ribDecreaseFontSizeButton_Screentip">
+    <source>Decrease page font size (Ctrl + Alt + Minus)</source>
+    <preferred>Diminuer la taille de la police de la page (Ctrl + Alt + Maj)</preferred>
+  </data>
+  <data name="ribFileMenu_Label">
+    <source>File</source>
+    <preferred>Fichier</preferred>
+  </data>
+  <data name="ribFileQuickNotesButton_Label">
+    <source>File Quick Notes</source>
+    <preferred>Fichier de notes rapides</preferred>
+  </data>
+  <data name="ribFileQuickNotesButton_Screentip">
+    <source>Organize Quick Notes into a notebook or section</source>
+    <preferred>Organiser les notes rapides dans un notebook ou une section</preferred>
+  </data>
+  <data name="ribInsertDoubleLineButton_Screentip">
+    <source>Insert double horizontal line (Shift + Alt + Equals)</source>
+    <preferred>Insérer une double ligne horizontale (Maj + Alt + Equals)</preferred>
+  </data>
+  <data name="ribInsertEmojiButton_Label">
+    <source>Emoji</source>
+    <preferred>Emoji</preferred>
+  </data>
+  <data name="ribInsertQRButton_Label">
+    <source>Insert QR Code</source>
+    <preferred>Insérer le QR code</preferred>
+  </data>
+  <data name="ribInsertSingleLineButton_Screentip">
+    <source>Insert single horizontal line (Shift + Alt + Minus)</source>
+    <preferred>Insérer une seule ligne horizontale (Maj + Alt + Moins)</preferred>
+  </data>
+  <data name="ribLowercaseButton_Screentip">
+    <source>Convert text to lowercase (Ctrl + Shift + U)</source>
+    <preferred>Convertir le texte en minuscules (Ctrl + Maj + U)</preferred>
+  </data>
+  <data name="ribNotebookWordCountButton_Label">
+    <source>Total Words in Notebook</source>
+    <preferred>Total de mots dans le notebook</preferred>
+  </data>
+  <data name="ribNumberSectionsButton_Screentip">
+    <source>Add or update numbering of all sections in this notebook</source>
+    <preferred>Ajouter ou mettre à jour la numérotation de toutes les sections de ce notebook</preferred>
+  </data>
+  <data name="ribOneMoreGroup_Label">
+    <source>OneMore</source>
+    <preferred>OneMore</preferred>
+  </data>
+  <data name="ribPreviewMarkdownButton_Label">
+    <source>Preview Markdown</source>
+    <preferred>Aperçu Markdown</preferred>
+  </data>
+  <data name="ribPreviewMarkdownButton_Screentip">
+    <source>Preview page or selected text as markdown</source>
+    <preferred>Aperçu de la page ou du texte sélectionné sous forme Markdown</preferred>
+  </data>
+  <data name="ribRemoveSectionNumbersButton_Screentip">
+    <source>Remove numbers from all sectionsin this notebook</source>
+    <preferred>Supprimer les numéros de toutes les sections de ce notebook</preferred>
+  </data>
+  <data name="ribReplayButton_Screentip">
+    <source>Replay last command (Alt + Shift + R)</source>
+    <preferred>Rejouer la dernière commande (Alt + Maj + R)</preferred>
+  </data>
+  <data name="ribSortButton_Screentip">
+    <source>Sort pages, section, or notebooks</source>
+    <preferred>Trier des pages, une section ou des notebooks</preferred>
+  </data>
+  <data name="ribSortNotebooksButton_Label">
+    <source>Sort Notebooks</source>
+    <preferred>Trier les notebooks</preferred>
+  </data>
+  <data name="ribSortNotebookSectionsButton_Label">
+    <source>Sort Sections in Notebook</source>
+    <preferred>Trier les sections dans le notebook</preferred>
+  </data>
+  <data name="ribSplitTableButton_Label">
+    <source>Split Table</source>
+    <preferred>Tableau divisée</preferred>
+  </data>
+  <data name="ribViewNotebookInBrowserButton_Label">
+    <source>View Notebook In Browser</source>
+    <preferred>Afficher le notebook dans le navigateur</preferred>
+  </data>
+  <data name="ribViewNotebookInBrowserButton_Screentip">
+    <source>View notebook in web browser</source>
+    <preferred>Afficher le notebook dans le navigateur Web</preferred>
+  </data>
+  <data name="ScopeSelector_selectedButton.Text">
+    <source>Selected notebooks...</source>
+    <preferred>Notes de notebooks sélectionnés ...</preferred>
+  </data>
+  <data name="SearchAndReplaceDialog_scopBox">
+    <source>This page
+This section
+This notebook
+All notebooks</source>
+    <preferred>Cette page
+Cette section
+Ce notebook
+Tous les notebooks</preferred>
+  </data>
+  <data name="SearchEngineDialog_DeleteMessage">
+    <source>Delete {0}?</source>
+    <preferred>Supprimer {0} ?</preferred>
+  </data>
+  <data name="ShowXmlDialog_nbSectionsTab.Text">
+    <source>Notebook with Sections</source>
+    <preferred>Notebook avec sections</preferred>
+  </data>
+  <data name="ShowXmlDialog_pageLinkLabel.Text">
+    <source>Link:</source>
+    <preferred>Lien :</preferred>
+  </data>
+  <data name="ShowXmlDialog_pageNameLabel.Text">
+    <source>Name:</source>
+    <preferred>Nom :</preferred>
+  </data>
+  <data name="ShowXmlDialog_pagePathLabel.Text">
+    <source>Path:</source>
+    <preferred>Chemin :</preferred>
+  </data>
+  <data name="ShowXmlDialog_WARNING">
+    <source>This is a dangerous operation!
+
+Incorrect changes may result in lost data.
+
+Are you sure you want to continue?</source>
+    <preferred>C'est une opération dangereuse !
+
+Des modifications incorrectes peuvent entraîner la perte de données.
+
+Êtes-vous sûr(e) de vouloir continuer ?</preferred>
+  </data>
+  <data name="SortDialog_scopeBox.Items">
+    <source>Children of Current Page
+Pages in this section
+Sections in this notebook
+Sections in this group
+Notebooks</source>
+    <preferred>Enfants de la page actuelle
+Pages de cette section
+Sections de ce notebook
+Sections de ce groupe
+Des notebooks</preferred>
+  </data>
+  <data name="SortDialog_scopeLabel.Text">
+    <source>Scope:</source>
+    <preferred>Portée :</preferred>
+  </data>
+  <data name="SortDialog_sortLabel.Text">
+    <source>Sort by:</source>
+    <preferred>Trier par :</preferred>
+  </data>
+  <data name="SplitDialog_tagLabel.Text">
+    <source>Tag:</source>
+    <preferred>Marque :</preferred>
+  </data>
+  <data name="StyleDialog_afterLabel.Text">
+    <source>Space After:</source>
+    <preferred>Espace après :</preferred>
+  </data>
+  <data name="StyleDialog_beforeLabel.Text">
+    <source>Space Before:</source>
+    <preferred>Espace avant :</preferred>
+  </data>
+  <data name="StyleDialog_fontLabel.Text">
+    <source>Font:</source>
+    <preferred>Police de caractère :</preferred>
+  </data>
+  <data name="StyleDialog_loadButton.Text">
+    <source>Open...</source>
+    <preferred>Ouvrir...</preferred>
+  </data>
+  <data name="StyleDialog_nameLabel.Text">
+    <source>Style Name:</source>
+    <preferred>Nom du style :</preferred>
+  </data>
+  <data name="StyleDialog_spacingLabel.Text">
+    <source>Spacing:</source>
+    <preferred>Espacement :</preferred>
+  </data>
+  <data name="StyleDialog_styleTypeLabel.Text">
+    <source>Style Type:</source>
+    <preferred>Type de style :</preferred>
+  </data>
+  <data name="TableTheme_Screentip">
+    <source>OneMore Table Theme {0}</source>
+    <preferred>Thème de tableau OneMore {0}</preferred>
+  </data>
+  <data name="TabOneMore_Label">
+    <source>OneMore</source>
+    <preferred>OneMore</preferred>
+  </data>
+  <data name="TextToTableDialog_columnsLabel.Text">
+    <source>Number of columns:</source>
+    <preferred>Le nombre de colonnes :</preferred>
+  </data>
+  <data name="TextToTableDialog_rowsLabel.Text">
+    <source>Number of rows:</source>
+    <preferred>Nombre de rangées :</preferred>
+  </data>
+  <data name="UpdateDialog_lastUpdatedLabel.Text">
+    <source>Last updated:</source>
+    <preferred>Dernière mise à jour :</preferred>
+  </data>
+  <data name="UpdateDialog_releaseDateLabel.Text">
+    <source>Release date:</source>
+    <preferred>Date de sortie :</preferred>
+  </data>
+  <data name="UpdateDialog_upCurrentVersionLabel.Text">
+    <source>Current version:</source>
+    <preferred>Version actuelle :</preferred>
+  </data>
+  <data name="UpdateDialog_upDescriptionLabel.Text">
+    <source>Description:</source>
+    <preferred>Description :</preferred>
+  </data>
+  <data name="UpdateDialog_upVersionLabel.Text">
+    <source>Update version:</source>
+    <preferred>Version de mise à jour :</preferred>
+  </data>
+  <data name="word_Close">
+    <source>Close</source>
+    <preferred>Fermer</preferred>
+  </data>
+  <data name="word_Font">
+    <source>Font</source>
+    <preferred>Police de caractères</preferred>
+  </data>
+  <data name="word_Index">
+    <source>word_Index</source>
+    <preferred>Index</preferred>
+  </data>
+  <data name="word_Notebook">
+    <source>Notebook</source>
+    <preferred>Notebook</preferred>
+  </data>
+  <data name="word_Notebooks">
+    <source>Notebooks</source>
+    <preferred>Notebooks</preferred>
+  </data>
+  <data name="word_OK">
+    <source>OK</source>
+    <preferred>OK</preferred>
+  </data>
+  <data name="word_Options">
+    <source>Options</source>
+    <preferred>Options</preferred>
+  </data>
+  <data name="word_Save">
+    <source>Save</source>
+    <preferred>Sauvegarder</preferred>
+  </data>
+  <data name="word_Started">
+    <source>Started</source>
+    <preferred>Débuté</preferred>
+  </data>
+  <data name="word_Total">
+    <source>Total</source>
+    <preferred>Total</preferred>
+  </data>
+  <data name="word_XML">
+    <source>XML</source>
+    <preferred>XML</preferred>
+  </data>
+  <data name="WordCountCommand_Count">
+    <source>Total words on page: {0}</source>
+    <preferred>Nombre total de mots sur la page : {0}</preferred>
+  </data>
+  <data name="WordCounts_Notebook">
+    <source>{0} Notebook</source>
+    <preferred>{0} Notebooks</preferred>
+  </data>
+  <data name="WordCounts_NotebookTotal">
+    <source>Total words in notebook across {0} pages</source>
+    <preferred>Nombre total de mots dans le notebook sur {0} pages</preferred>
+  </data>
+  <data name="WordCounts_Section">
+    <source>{0} Section</source>
+    <preferred>{0} Sections</preferred>
+  </data>
+</hints>
