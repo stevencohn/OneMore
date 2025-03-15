@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hints>
+  <hint name="AboutDialog_clearLogLabel.Text">
+    <source>Clear the log file</source>
+    <preferred>Lösche Protokolldatei</preferred>
+  </hint>
+  <hint name="word_Exit">
+    <source>Exit</source>
+    <preferred>Quitter</preferred>
+  </data>
+  <hint name="word_OK">
+    <source>OK</source>
+    <preferred>OK</preferred>
+  </data>
+  </hint>
+</hints>
