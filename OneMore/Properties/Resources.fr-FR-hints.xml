@@ -40,6 +40,10 @@
     <source>Unrecognized command</source>
     <preferred>Commande non reconnue</preferred>
   </hint>
+  <hint name="ctxUppercaseButton_Label">
+    <source>To UPPERCASE</source>
+    <preferred>En MAJUSCULES</preferred>
+  </hint>
   <hint name="CustomStyle_Screentip">
     <source>{0} (Ctrl+Alt+Shift + {1})</source>
     <preferred>{0} (Ctrl + Alt + Maj + {1})</preferred>
@@ -484,6 +488,10 @@ Après le dernier groupe</preferred>
     <source>Split Table</source>
     <preferred>Tableau divisée</preferred>
   </data>
+  <hint name="ribUppercaseButton_Label">
+    <source>To UPPERCASE</source>
+    <preferred>En MAJUSCULES</preferred>
+  </hint>
   <data name="ribViewNotebookInBrowserButton_Label">
     <source>View Notebook In Browser</source>
     <preferred>Afficher le notebook dans le navigateur</preferred>
@@ -625,6 +633,10 @@ Des notebooks</preferred>
   <data name="UpdateDialog_upVersionLabel.Text">
     <source>Update version:</source>
     <preferred>Version de mise à jour :</preferred>
+  </data>
+  <data name="word_Clear">
+    <source>Clear</source>
+    <preferred>Enlever</preferred>
   </data>
   <data name="word_Close">
     <source>Close</source>
