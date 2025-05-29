@@ -50,14 +50,23 @@ namespace River.OneMoreAddIn.Helpers
 			// battery capacity and other factors, whereas MaxClockSpeed is a constant
 
 			uint speed = ReasonableClockSpeed;
-			using (var searcher =
-				new ManagementObjectSearcher("select CurrentClockSpeed from Win32_Processor"))
+
+			try
 			{
-				foreach (var item in searcher.Get())
+				using (var searcher =
+					new ManagementObjectSearcher("select CurrentClockSpeed from Win32_Processor"))
 				{
-					speed = Convert.ToUInt32(item["CurrentClockSpeed"]);
-					item.Dispose();
+					foreach (var item in searcher.Get())
+					{
+						speed = Convert.ToUInt32(item["CurrentClockSpeed"]);
+						item.Dispose();
+					}
 				}
+			}
+			catch (Exception exc)
+			{
+				Logger.Current.WriteLine(
+					"error reading CurrentClockSpeed from Win32_Processor", exc);
 			}
 
 			if (speed == 0) speed = ReasonableClockSpeed;
@@ -70,14 +79,23 @@ namespace River.OneMoreAddIn.Helpers
 			//	"*", "Win32_OperatingSystem", "TotalVisibleMemorySize") * 1024);
 
 			double memory = 0;
-			using (var searcher =
-				new ManagementObjectSearcher("select * from Win32_OperatingSystem"))
+
+			try
 			{
-				foreach (var item in searcher.Get())
+				using (var searcher =
+					new ManagementObjectSearcher("select * from Win32_OperatingSystem"))
 				{
-					memory = Convert.ToDouble(item["TotalVisibleMemorySize"]);
-					item.Dispose();
+					foreach (var item in searcher.Get())
+					{
+						memory = Convert.ToDouble(item["TotalVisibleMemorySize"]);
+						item.Dispose();
+					}
 				}
+			}
+			catch (Exception exc)
+			{
+				Logger.Current.WriteLine(
+					"error reading TotalVisibleMemorySize from Win32_OperatingSystem", exc);
 			}
 
 			return (speed, memory);
