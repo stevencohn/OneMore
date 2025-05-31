@@ -212,7 +212,7 @@ Begin
 			}
 			if ($ans -ne 'n')
 			{
-				."$($env:ProgramFiles)\Beyond Compare 4\BCompare.exe" $here 'C:\GitHub\OneMore\docs'
+				."$($env:ProgramFiles)\Beyond Compare 5\BCompare.exe" $here 'C:\GitHub\OneMore\docs'
 			}
 		}
 		elseif ($Compare)
