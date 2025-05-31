@@ -221,9 +221,7 @@ namespace River.OneMoreAddIn.Commands
 			page.Root.Descendants(ns + "OEChildren").Where(e => !e.HasElements).Remove();
 
 			// unselect all, including any beyond the scoped container
-			page.Root.DescendantNodes().OfType<XAttribute>()
-				.Where(a => a.Name.LocalName == "selected")
-				.Remove();
+			new PageEditor(page).Deselect();
 		}
 	}
 }

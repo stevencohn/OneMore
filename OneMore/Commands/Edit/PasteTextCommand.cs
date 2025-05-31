@@ -60,11 +60,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			// position insertion cursor after last line...
-
-			page.Root.DescendantNodes().OfType<XAttribute>()
-				.Where(a => a.Name == "selected")
-				.Remove();
-
+			editor.Deselect();
 			first?.SetAttributeValue("selected", "all");
 
 			await one.Update(page);
