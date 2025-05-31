@@ -462,6 +462,21 @@ namespace River.OneMoreAddIn
 		{
 			if (deep)
 			{
+				// this will work for CDATA that contain zero or more <span> elements
+				// regardless of XML validity; used to use cdata.GetWrapper() but that breaks!
+
+				var regex = new Regex(@"<\s*span[^>]*>(.*?)<\s*/\s*span>", RegexOptions.Compiled);
+
+				var text = string.Empty;
+				foreach (var cdata in element.DescendantNodes().OfType<XCData>())
+				{
+					var parts = regex.Split(cdata.Value);
+					text = $"{text}{string.Join(string.Empty, parts)}";
+				}
+
+				return text;
+
+				/*
 				var regex = new Regex(@"<span\s+", RegexOptions.Compiled);
 
 				var text = string.Empty;
@@ -485,6 +500,7 @@ namespace River.OneMoreAddIn
 				}
 
 				return text;
+				*/
 			}
 
 			return element.Value.ToXmlWrapper().Value;

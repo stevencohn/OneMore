@@ -285,7 +285,14 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 				: anchor.FirstAncestor(ns + "Outline");
 
 			// NOTE: I don't think this can break?!
-			anchor.Elements(ns + "OEChildren").First().AddFirst(container);
+			if (anchor.Name.LocalName == "OEChildren")
+			{
+				anchor.AddFirst(container);
+			}
+			else
+			{
+				anchor.Elements(ns + "OEChildren").First().AddFirst(container);
+			}
 
 			return container;
 		}
