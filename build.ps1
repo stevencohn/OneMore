@@ -109,7 +109,7 @@ Begin
 		param([int]$bitness)
 		$lines = @(Get-Content $vdproj)
 
-		$productVersion = $lines | `
+		$script:productVersion = $lines | `
 			Where-Object { $_ -match '"ProductVersion" = "8:(.+?)"' } | `
 			ForEach-Object { $matches[1] }
 
@@ -284,16 +284,28 @@ Process
 		$script:vdproj = Resolve-Path .\OneMoreSetup.vdproj
 		PreserveVdproj
 
+		$check = Get-Command checksum -ErrorAction SilentlyContinue
+
 		if ($configbits -eq 86 -or $both)
 		{
 			Configure 86
 			Build 86
+
+			if ($check)
+			{
+				checksum -t sha256 C:\Users\steve\Downloads\OneMore_$($productVersion)_Setupx86.msi
+			}
 		}
 
 		if ($configBits -eq 64 -or $both)
 		{
 			Configure 64
 			Build 64
+
+			if ($check)
+			{
+				checksum -t sha256 C:\Users\steve\Downloads\OneMore_$($productVersion)_Setupx64.msi
+			}
 		}
 
 		RestoreVdproj
