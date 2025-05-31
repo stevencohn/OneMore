@@ -83,9 +83,28 @@ namespace River.OneMoreAddIn.Settings
 
 			if (validator is not null)
 			{
-				await Task.WhenAll(validator);
+				try
+				{
+					if (!(validator.IsCompleted || validator.IsFaulted || validator.IsCanceled))
+					{
+						await Task.WhenAll(validator);
+					}
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine($"error awaiting in {nameof(FinishValidationOnRowEnter)}", exc);
+				}
+
 				validator = null;
-				favorites.ResetBindings();
+
+				try
+				{
+					favorites.ResetBindings();
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine($"error resetting in {nameof(FinishValidationOnRowEnter)}", exc);
+				}
 			}
 		}
 
