@@ -293,7 +293,8 @@ Process
 
 			if ($check)
 			{
-				checksum -t sha256 C:\Users\steve\Downloads\OneMore_$($productVersion)_Setupx86.msi
+				$sum = (checksum -t sha256 C:\Users\steve\Downloads\OneMore_$($productVersion)_Setupx86.msi)
+				Write-Host "... x86 checksum: $sum" -ForegroundColor DarkYellow
 			}
 		}
 
@@ -304,7 +305,8 @@ Process
 
 			if ($check)
 			{
-				checksum -t sha256 C:\Users\steve\Downloads\OneMore_$($productVersion)_Setupx64.msi
+				$sum = (checksum -t sha256 C:\Users\steve\Downloads\OneMore_$($productVersion)_Setupx64.msi)
+				Write-Host "... x64 checksum: $sum" -ForegroundColor DarkYellow
 			}
 		}
 
