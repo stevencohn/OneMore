@@ -116,7 +116,7 @@ namespace River.OneMoreAddIn.Commands
 				cell.SetContent(MakeDefaultContent(addTitle));
 
 				var editor = new PageEditor(page);
-				editor.ExtractSelectedContent();
+				editor.ExtractSelectedContent(breakParagraph: true);
 
 				var box = new XElement(ns + "OE", table.Root);
 				if (editor.Anchor.Name.LocalName.In("OE", "HTMLBlock"))
@@ -137,7 +137,7 @@ namespace River.OneMoreAddIn.Commands
 					KeepSelected = true
 				};
 
-				var content = editor.ExtractSelectedContent();
+				var content = editor.ExtractSelectedContent(breakParagraph: true);
 
 				if (!content.HasElements)
 				{
