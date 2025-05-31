@@ -635,8 +635,15 @@ namespace River.OneMoreAddIn.Models
 		/// Optional Outline element to process.
 		/// Default is to process all page content.
 		/// </param>
+		/// <param name="breakParagraph">
+		/// True to break the paragraph into multiple paragraphs when the entire selection
+		/// range is an inner part of the paragraph. This is for inserting paragraph-based
+		/// snippets. Set to false to keep the paragraph intact when inserting run-based snippets.
+		/// </param>
 		/// <returns>An OEChildren XElement</returns>
-		public XElement ExtractSelectedContent(XElement targetOutline = null)
+		public XElement ExtractSelectedContent(
+			XElement targetOutline = null,
+			bool breakParagraph = false)
 		{
 			schema = new PageSchema();
 
@@ -685,6 +692,14 @@ namespace River.OneMoreAddIn.Models
 					return content;
 				}
 			}
+			else if (breakParagraph && runs.Count == 1)
+			{
+				if (runs[0].PreviousNode is XElement prev &&
+					prev.Name.LocalName.In(schema.OeContent))
+				{
+					SplitParagraph(runs[0]);
+				}
+			}
 
 			FindBestAnchorPoint(runs[0]);
 
@@ -701,6 +716,28 @@ namespace River.OneMoreAddIn.Models
 			CleanupOrphanedElements();
 
 			return content;
+		}
+
+
+		private void SplitParagraph(XElement run)
+		{
+			var parent = run.Parent;
+
+			var prevParagraph = new XElement(ns + "OE",
+				parent.Attributes().Where(a => !a.Name.LocalName.In("objectID", "selected"))
+				);
+
+			var prev = run.PreviousNode;
+			while (prev is not null)
+			{
+				var node = prev;
+				prev = prev.PreviousNode;
+
+				node.Remove();
+				prevParagraph.AddFirst(node);
+			}
+
+			parent.AddBeforeSelf(prevParagraph);
 		}
 
 

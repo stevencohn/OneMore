@@ -69,7 +69,7 @@ namespace River.OneMoreAddIn.Commands
 					));
 
 				var editor = new PageEditor(page);
-				editor.ExtractSelectedContent();
+				editor.ExtractSelectedContent(breakParagraph: true);
 				anchor = editor.Anchor;
 			}
 			else
@@ -80,7 +80,7 @@ namespace River.OneMoreAddIn.Commands
 					KeepSelected = true
 				};
 
-				content = editor.ExtractSelectedContent();
+				content = editor.ExtractSelectedContent(breakParagraph: true);
 				anchor = editor.Anchor;
 
 				editor.Deselect();
