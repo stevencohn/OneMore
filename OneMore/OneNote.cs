@@ -117,7 +117,7 @@ namespace River.OneMoreAddIn
 
 		public const string Prefix = "one";
 
-		private const int MaxInclusiveHResult = -2146231999;
+		private const int MinMaxInclusiveHResult = -2146231999;
 		private const int ObjectDoesNotExist = -2147213292;
 
 
@@ -1081,8 +1081,18 @@ namespace River.OneMoreAddIn
 				Logger.Current.WriteLine(e.Exception);
 
 				if (o is XAttribute attribute &&
-					e.Exception.InnerException?.HResult == MaxInclusiveHResult)
+					e.Exception.InnerException?.HResult == MinMaxInclusiveHResult)
 				{
+					// MinInclusive, remove negative
+					if (attribute.Value[0] == '-' && e.Exception.InnerException.Message.Contains("MinInclusive"))
+					{
+						var fix = attribute.Value.Substring(1);
+						Logger.Current.WriteLine($"schema error, correcting [{o}] -> adjusted [{fix}]");
+						attribute.Value = fix;
+						return;
+					}
+
+					// MaxInclusive, remove sci-notation
 					var exp = attribute.Value.IndexOf('E');
 					if (exp > 0)
 					{
