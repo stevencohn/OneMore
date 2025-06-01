@@ -122,6 +122,10 @@
       "foreground": "Blue"
     },
     {
+      "name": "JsonKey",
+      "foreground": "Orange"
+    },
+    {
       "name": "Keyword",
       "foreground": "Blue"
     },
