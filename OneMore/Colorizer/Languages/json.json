@@ -1,0 +1,86 @@
+{
+  "name": "Json",
+  "aliases": [
+    "json"
+  ],
+  "rules": [
+    {
+      // single line of a multi-line comment
+      // /* foo
+      // /* foo */
+      // foo */
+      "pattern": "^\\s*(/\\*(?:[^*]|[\\r\\n]|(?:\\*+(?:[^*/]|[\\r\\n])))*\\*+/)\\s*$",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      // single line comment without closure
+      "pattern": "^\\s*(/\\*[^\\r\\n]*)$",
+      "scope": "Comment",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      // sinle line comment without opening
+      "pattern": "^([^\\r\\n]*\\*/)\\s*$",
+      "scope": "",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      // single line comment starting with //
+      "pattern": "^\\s*(//.*?)\\r?$",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      // "key" : 123
+      "pattern": "(\".*?\")\\s*:\\s*(-?[0-9]{1,}(?:\\.[0-9]{1,})?)",
+      "captures": [
+        "JsonKey",
+        "Number"
+      ]
+    },
+    {
+      // "key" : "value"
+      "pattern": "(\".*?\")\\s*:\\s*(\".*?\")",
+      "captures": [
+        "JsonKey",
+        "String"
+      ]
+    },
+    {
+      // "key" : [
+      "pattern": "(\".*?\")\\s*:\\s*(\\[)",
+      "captures": [
+        "JsonKey",
+        "Keyword"
+      ]
+    },
+    {
+      // "string"
+      "pattern": "(\".*?\")",
+      "captures": [
+        "String"
+      ]
+    },
+    {
+      // 123
+      "pattern": "(-?[0-9]{1,}(?:\\.[0-9]{1,})?)",
+      "captures": [
+        "Number"
+      ]
+    },
+    {
+      // array brackets []
+      "pattern": "(\\[|\\])",
+      "captures": [
+        "Keyword"
+      ]
+    }
+  ]
+}

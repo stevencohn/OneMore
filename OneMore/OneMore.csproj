@@ -1125,6 +1125,9 @@
     <Content Include="Colorizer\Languages\javascript.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Colorizer\Languages\json.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Colorizer\Languages\pascal.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1193,6 +1196,9 @@
       <DependentUpon>WindowElevator.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Colorizer\Languages\bash.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Colorizer\Languages\json.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Colorizer\Languages\pascal.json">
@@ -1363,6 +1369,7 @@
     <Content Include="Properties\Menu\m_Superscript.png" />
     <Content Include="Properties\Menu\m_Underline.png" />
     <Content Include="Properties\Menu\m_WrapText.png" />
+    <Content Include="Properties\Resources.fr-FR-hints.xml" />
     <Content Include="Ribbon\Images\ribSearchHashtagsButton.png" />
     <Content Include="Properties\Images\Label.png" />
     <Content Include="Properties\Images\LabelSearch.png" />
