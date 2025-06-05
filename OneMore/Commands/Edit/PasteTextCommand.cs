@@ -35,10 +35,7 @@ namespace River.OneMoreAddIn.Commands
 			var elements = page.Root.Descendants(ns + "T")
 				.Where(e => e.Attribute("selected")?.Value == "all");
 
-			var editor = new PageEditor(page)
-			{
-				KeepSelected = false
-			};
+			var editor = new PageEditor(page);
 
 			var multiline = text.Contains("\n") || text.Contains("\r");
 			if (multiline)
@@ -52,6 +49,10 @@ namespace River.OneMoreAddIn.Commands
 				// so split text into lines...
 
 				var lines = text.Split(new string[] { "\r\n" }, System.StringSplitOptions.None);
+				if (lines[lines.Length - 1].Length == 0)
+				{
+					lines = lines.Take(lines.Length - 1).ToArray();
+				}
 
 				XElement first = null;
 				for (var i = lines.Length - 1; i >= 0; i--)
@@ -64,7 +65,10 @@ namespace River.OneMoreAddIn.Commands
 
 				// position insertion cursor after last line...
 				editor.Deselect();
-				first?.SetAttributeValue("selected", "all");
+				first?.AddAfterSelf(
+					new XElement(ns + "T",
+						new XAttribute("selected", "all"),
+						new XCData(string.Empty)));
 			}
 			else
 			{
