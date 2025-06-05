@@ -14,7 +14,7 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class SnippetsProvider : Loggable
 	{
-		private const string SaveSnippetButtonId = "ribSaveSnippetButton";
+		public const string SaveSnippetButtonId = "ribSaveSnippetButton";
 		private const string ManageSnippetsButtonId = "ribManageSnippetsButton";
 		private const string ExpandSnippetButtonId = "ribExpandSnippetButton";
 
@@ -178,13 +178,7 @@ namespace River.OneMoreAddIn.Commands
 		public XElement MakeSnippetsMenu(XNamespace ns)
 		{
 			var menu = new XElement(ns + "menu",
-				new XElement(ns + "button",
-					new XAttribute("id", SaveSnippetButtonId),
-					new XAttribute("getLabel", "GetRibbonLabel"),
-					new XAttribute("getScreentip", "GetRibbonScreentip"),
-					new XAttribute("imageMso", "SaveSelectionToQuickPartGallery"),
-					new XAttribute("onAction", "SaveSnippetCmd")
-					),
+				MakeSaveSnippetButton(ns),
 				new XElement(ns + "button",
 					new XAttribute("id", ManageSnippetsButtonId),
 					new XAttribute("getLabel", "GetRibbonLabel"),
@@ -221,6 +215,23 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return menu;
+		}
+
+
+		/// <summary>
+		/// Generate the Save Snippets button
+		/// </summary>
+		/// <param name="ns"></param>
+		/// <returns></returns>
+		public static XElement MakeSaveSnippetButton(XNamespace ns)
+		{
+			return new XElement(ns + "button",
+				new XAttribute("id", SaveSnippetButtonId),
+				new XAttribute("getLabel", "GetRibbonLabel"),
+				new XAttribute("getScreentip", "GetRibbonScreentip"),
+				new XAttribute("imageMso", "SaveSelectionToQuickPartGallery"),
+				new XAttribute("onAction", "SaveSnippetCmd")
+				);
 		}
 	}
 }

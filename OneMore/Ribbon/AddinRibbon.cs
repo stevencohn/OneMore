@@ -346,8 +346,13 @@ namespace River.OneMoreAddIn
 					}
 				}
 
-				var element = root.Descendants()
-					.FirstOrDefault(e => e.Attribute("id")?.Value == key);
+				// special case for Save Snippet button which doesn't exist yet because that
+				// submenu is created dynamically
+
+				var element = key == SnippetsProvider.SaveSnippetButtonId
+					? SnippetsProvider.MakeSaveSnippetButton(ns)
+					: root.Descendants()
+						.FirstOrDefault(e => e.Attribute("id")?.Value == key);
 
 				if (element == null)
 				{
