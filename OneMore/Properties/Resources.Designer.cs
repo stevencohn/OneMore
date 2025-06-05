@@ -10860,6 +10860,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No content found. Run the command from the ribbon menu..
+        /// </summary>
+        internal static string SaveSnippet_NoContext {
+            get {
+                return ResourceManager.GetString("SaveSnippet_NoContext", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name is already in use.
         /// </summary>
         internal static string SaveSnippetDialog_duplicateName {

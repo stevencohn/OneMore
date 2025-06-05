@@ -4390,6 +4390,10 @@ Tabblad Help</value>
     <value>Selecteer inhoud om op te slaan als een nieuw fragment</value>
     <comment>error message</comment>
   </data>
+  <data name="SaveSnippet_NoContext" xml:space="preserve">
+    <value>Geen inhoud gevonden. Voer de opdracht uit vanuit het lintmenu.</value>
+    <comment>error message</comment>
+  </data>
   <data name="SaveSnippetDialog.Text" xml:space="preserve">
     <value>Bewaar fragment</value>
     <comment>dialog title</comment>

@@ -4390,6 +4390,10 @@ Guia Ajuda</value>
     <value>Selecione o conteúdo para salvar como um novo snippet</value>
     <comment>error message</comment>
   </data>
+  <data name="SaveSnippet_NoContext" xml:space="preserve">
+    <value>Nenhum conteúdo encontrado. Execute o comando no menu da faixa de opções.</value>
+    <comment>error message</comment>
+  </data>
   <data name="SaveSnippetDialog.Text" xml:space="preserve">
     <value>Salvar trecho</value>
     <comment>dialog title</comment>

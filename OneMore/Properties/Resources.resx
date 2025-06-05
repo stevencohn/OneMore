@@ -4392,6 +4392,10 @@ Help Tab</value>
     <value>Select content to save as a new snippet</value>
     <comment>error message</comment>
   </data>
+  <data name="SaveSnippet_NoContext" xml:space="preserve">
+    <value>No content found. Run the command from the ribbon menu.</value>
+    <comment>error message</comment>
+  </data>
   <data name="SaveSnippetDialog.Text" xml:space="preserve">
     <value>Save Snippet</value>
     <comment>dialog title</comment>

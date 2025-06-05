@@ -4390,6 +4390,10 @@ ISO-code then comma then language name</comment>
     <value>حدد المحتوى المراد حفظه كمقتطف جديد</value>
     <comment>error message</comment>
   </data>
+  <data name="SaveSnippet_NoContext" xml:space="preserve">
+    <value>لم يتم العثور على محتوى. قم بتشغيل الأمر من قائمة الشريط.</value>
+    <comment>error message</comment>
+  </data>
   <data name="SaveSnippetDialog.Text" xml:space="preserve">
     <value>حفظ المقتطف</value>
     <comment>dialog title</comment>

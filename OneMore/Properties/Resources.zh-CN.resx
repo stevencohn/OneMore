@@ -4383,6 +4383,10 @@ ISO-code then comma then language name</comment>
     <value>选择内容另存为新片段</value>
     <comment>error message</comment>
   </data>
+  <data name="SaveSnippet_NoContext" xml:space="preserve">
+    <value>找不到内容。从功能区菜单运行命令。</value>
+    <comment>error message</comment>
+  </data>
   <data name="SaveSnippetDialog.Text" xml:space="preserve">
     <value>保存代码段</value>
     <comment>dialog title</comment>
