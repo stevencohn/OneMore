@@ -4394,6 +4394,10 @@ ISO-code then comma then language name</comment>
     <value>新しいスニペットとして保存する内容を選択してください</value>
     <comment>error message</comment>
   </data>
+  <data name="SaveSnippet_NoContext" xml:space="preserve">
+    <value>コンテンツは見つかりません。リボンメニューからコマンドを実行します。</value>
+    <comment>error message</comment>
+  </data>
   <data name="SaveSnippetDialog.Text" xml:space="preserve">
     <value>スニペットの保存</value>
     <comment>dialog title</comment>

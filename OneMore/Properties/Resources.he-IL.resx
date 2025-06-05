@@ -4389,6 +4389,10 @@ ISO-code then comma then language name</comment>
     <value>בחר תוכן לשמירה כקטע קוד חדש</value>
     <comment>error message</comment>
   </data>
+  <data name="SaveSnippet_NoContext" xml:space="preserve">
+    <value>לא נמצא תוכן. הפעל את הפקודה מתפריט הסרט.</value>
+    <comment>error message</comment>
+  </data>
   <data name="SaveSnippetDialog.Text" xml:space="preserve">
     <value>שמור את הקטע</value>
     <comment>dialog title</comment>

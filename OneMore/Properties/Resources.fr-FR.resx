@@ -119,7 +119,7 @@
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="AboutDialog.Text" xml:space="preserve">
-    <value>Fumeur complémentaire Onemore</value>
+    <value>Complément OneMore</value>
     <comment>dialog title bar</comment>
   </data>
   <data name="AboutDialog_clearLogLabel.Text" xml:space="preserve">
@@ -190,7 +190,7 @@
     <comment>radio</comment>
   </data>
   <data name="AdjustImagesDialog_heightLabel.Text" xml:space="preserve">
-    <value>la taille</value>
+    <value>Hauteur</value>
     <comment>label</comment>
   </data>
   <data name="AdjustImagesDialog_imageSizeLabel.Text" xml:space="preserve">
@@ -246,7 +246,7 @@ Inverser</value>
     <comment>combobox</comment>
   </data>
   <data name="AdjustImagesDialog_viewSizeLabel.Text" xml:space="preserve">
-    <value>Ta taille de vue</value>
+    <value>Taille de vue</value>
     <comment>label</comment>
   </data>
   <data name="AliasSheet.Text" xml:space="preserve">
@@ -286,7 +286,7 @@ Inverser</value>
     <comment>SKIP notebook name</comment>
   </data>
   <data name="AnalyzeCommand_OrphanSummary" xml:space="preserve">
-    <value>Les orphelins sont des dossiers de sauvegarde des blocs-notes qui ne sont plus ouverts dans OneNote. </value>
+    <value>Les orphelins sont des dossiers de sauvegarde des notebooks qui ne sont plus ouverts dans OneNote. S'ils ne sont plus utilisés et que vous avez confirmé qu'ils sont obsolètes, ils peuvent être supprimés en toute sécurité.</value>
     <comment>summary text</comment>
   </data>
   <data name="AnalyzeCommand_PageSummary" xml:space="preserve">
@@ -302,7 +302,7 @@ Inverser</value>
     <comment>summary text</comment>
   </data>
   <data name="AnalyzeCommand_SummarySummary" xml:space="preserve">
-    <value>Les blocs-notes peuvent être stockés localement ou à distance sur OneDrive. </value>
+    <value>Les notebooks peuvent être stockés localement ou à distance sur OneDrive. Les notebooks distants ne peuvent être analysés que par leurs sauvegardes locales, comme configuré dans les options OneNote. Ce résumé montre l'utilisation totale du disque dans l'emplacement des données pour les notebooks locaux ou dans l'emplacement de sauvegarde pour les notebooks distants, y compris toutes les copies de sauvegarde et les corbeilles de recyclage par notebook.</value>
     <comment>summary text</comment>
   </data>
   <data name="AnalyzeCommand_Title" xml:space="preserve">
@@ -322,7 +322,7 @@ Inverser</value>
     <comment>dialog title</comment>
   </data>
   <data name="AnalyzeDialog_allDetailsBox.Text" xml:space="preserve">
-    <value>Inclure les détails de la page pour toutes les sections de ce bloc-notes</value>
+    <value>Inclure les détails de la page pour toutes les sections de ce notebook</value>
     <comment>radio</comment>
   </data>
   <data name="AnalyzeDialog_noDetailsBox.Text" xml:space="preserve">
@@ -330,7 +330,7 @@ Inverser</value>
     <comment>radio</comment>
   </data>
   <data name="AnalyzeDialog_notebookBox.Text" xml:space="preserve">
-    <value>Inclure le résumé de la sauvegarde du bloc-notes</value>
+    <value>Inclure le résumé de la sauvegarde du notebook</value>
     <comment>checkbox</comment>
   </data>
   <data name="AnalyzeDialog_sectionBox.Text" xml:space="preserve">
@@ -502,7 +502,7 @@ Inverser</value>
     <comment>message box</comment>
   </data>
   <data name="ClearLog_Message" xml:space="preserve">
-    <value>Effacer le fichier journal maintenant?</value>
+    <value>Effacer le fichier journal maintenant ?</value>
     <comment>message box message</comment>
   </data>
   <data name="ClearLog_NoneMessage" xml:space="preserve">
@@ -569,7 +569,7 @@ Inverser</value>
     <comment>settings sheet checkbox</comment>
   </data>
   <data name="ColorsSheet_strikeGroupBox.Text" xml:space="preserve">
-    <value>Barré à faire Tags</value>
+    <value>Balises « à faire » barrées</value>
     <comment>settings sheet group box</comment>
   </data>
   <data name="ColorsSheet_Title" xml:space="preserve">
@@ -593,7 +593,7 @@ Inverser</value>
     <comment>dialog title</comment>
   </data>
   <data name="CommandPalette_unrecognized" xml:space="preserve">
-    <value>commande non reconnue</value>
+    <value>Commande non reconnue</value>
     <comment>error</comment>
   </data>
   <data name="CommandPaletteDialog_clearLink.Text" xml:space="preserve">
@@ -717,7 +717,7 @@ Inverser</value>
     <comment>Context menu</comment>
   </data>
   <data name="ctxUppercaseButton_Label" xml:space="preserve">
-    <value>Vers MAJUSCULES</value>
+    <value>En MAJUSCULES</value>
     <comment>Context menu</comment>
   </data>
   <data name="CustomColorsFilesname" xml:space="preserve">
@@ -725,7 +725,7 @@ Inverser</value>
     <comment>FILENAME</comment>
   </data>
   <data name="CustomStyle_Screentip" xml:space="preserve">
-    <value>{0} (Ctrl + Alt + Shift + {1})</value>
+    <value>{0} (Ctrl + Alt + Maj + {1})</value>
     <comment>Screentip for custom style gallery tiles</comment>
   </data>
   <data name="DatabaseFilename" xml:space="preserve">
@@ -773,11 +773,11 @@ Inverser</value>
     <comment>tab</comment>
   </data>
   <data name="EditTableThemesDialog_deleteStyle" xml:space="preserve">
-    <value>Supprimer ce style?</value>
+    <value>Supprimer ce style ?</value>
     <comment>message box</comment>
   </data>
   <data name="EditTableThemesDialog_discard" xml:space="preserve">
-    <value>Jeter les changements non sauvés?</value>
+    <value>Jeter les changements non sauvés ?</value>
     <comment>message box</comment>
   </data>
   <data name="EditTableThemesDialog_elements" xml:space="preserve">
@@ -817,7 +817,7 @@ Police de la dernière colonne</value>
     <comment>button</comment>
   </data>
   <data name="EditTableThemesDialog_Text" xml:space="preserve">
-    <value>Styles de tableau personnalisés</value>
+    <value>Styles de tableaux personnalisés</value>
     <comment>dialog</comment>
   </data>
   <data name="EmbedSubpageCommand_NoContent" xml:space="preserve">
@@ -985,7 +985,7 @@ Police de la dernière colonne</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Shazam" xml:space="preserve">
-    <value>Shazam!</value>
+    <value>Shazam !</value>
     <comment>emoji</comment>
   </data>
   <data name="Emoji_Smiley" xml:space="preserve">
@@ -1041,7 +1041,7 @@ Police de la dernière colonne</value>
     <comment>emoji</comment>
   </data>
   <data name="EmojiDialog.Text" xml:space="preserve">
-    <value>Insérer des émojis</value>
+    <value>Insérer des emojis</value>
     <comment>dialog title</comment>
   </data>
   <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
@@ -1075,7 +1075,7 @@ Police de la dernière colonne</value>
     <comment>checkbox</comment>
   </data>
   <data name="ExportDialog_embeddedBox.Text" xml:space="preserve">
-    <value>Attachements d'intégration</value>
+    <value>Intégrer des pièces jointes</value>
     <comment>checkbox</comment>
   </data>
   <data name="ExportDialog_formatBox.Text" xml:space="preserve">
@@ -1083,7 +1083,7 @@ Police de la dernière colonne</value>
 Fichier PDF (*.pdf)
 Fichier Word (*.docx)
 Fichier XML (*.xml)
-Fichier de démarques (*.md)
+Fichier Markdown (*.md)
 Fichier OneNote (*.one)</value>
     <comment>combo box</comment>
   </data>
@@ -1104,7 +1104,7 @@ Fichier OneNote (*.one)</value>
     <comment>checkbox</comment>
   </data>
   <data name="Favorites_suspect" xml:space="preserve">
-    <value>Page non trouvée; il a peut-être été renommé ou déplacé</value>
+    <value>Page non trouvée ; il a peut-être été renommé ou déplacé</value>
     <comment>tooltip</comment>
   </data>
   <data name="Favorites_unknown" xml:space="preserve">
@@ -1128,7 +1128,7 @@ Fichier OneNote (*.one)</value>
     <comment>FILENAME</comment>
   </data>
   <data name="FavoritesSheet_DeleteMessage" xml:space="preserve">
-    <value>Supprimer {0}?</value>
+    <value>Supprimer {0} ?</value>
     <comment>settings</comment>
   </data>
   <data name="FavoritesSheet_locationColumn.HeaderText" xml:space="preserve">
@@ -1156,7 +1156,7 @@ Fichier OneNote (*.one)</value>
     <comment>message</comment>
   </data>
   <data name="FileQuickNotesCommand_noTargetNotebook" xml:space="preserve">
-    <value>Impossible de trouver le bloc-notes cible. Ouvrez les paramètres OneMore pour spécifier une cible.</value>
+    <value>Impossible de trouver le notebook cible. Ouvrez les paramètres OneMore pour spécifier une cible.</value>
     <comment>message</comment>
   </data>
   <data name="FileQuickNotesCommand_noTargetSection" xml:space="preserve">
@@ -1219,26 +1219,26 @@ Temps</value>
     <comment>formats, one per line</comment>
   </data>
   <data name="FormulaDialog_formatLabel.Text" xml:space="preserve">
-    <value>Format:</value>
+    <value>Format :</value>
     <comment>label</comment>
   </data>
   <data name="FormulaDialog_formulaLabel.Text" xml:space="preserve">
-    <value>Formule:</value>
+    <value>Formule :</value>
     <comment>label</comment>
   </data>
   <data name="FormulaDialog_helpBox.Text" xml:space="preserve">
     <value>La formule s'applique à la première cellule sélectionnée et est incrémentée automatiquement pour des cellules sélectionnées supplémentaires.
 
-Fonctions: ABS, ACOS, ARCCOS, ARCSIN, ARCTAN, ASIN, ATAN, ATAN2, Moyenne, CEIL, Plafond, Cos, Cosh, Exp, Floor, Log, Log10, Max, Median, Min, Mode, Pow, Remar, REM, racine, ronde, signe, péché, sinh, sqrt, stdev, sum, tan, tanh, trunc, truncate et variance.
+Fonctions : ABS, ACOS, ARCCOS, ARCSIN, ARCTAN, ASIN, ATAN, ATAN2, Moyenne, CEIL, Plafond, Cos, Cosh, Exp, Floor, Log, Log10, Max, Median, Min, Mode, Pow, Remar, REM, racine, ronde, signe, péché, sinh, sqrt, stdev, sum, tan, tanh, trunc, truncate et variance.
 
-Opérateurs: + - / * ^%
-Variables: E, Phi, Pi, Tao, Tablecols, Tablerows
-Référence cellulaire: A1, A2, ... ZZZ999
-Plage cellulaire: A1: A22
-Plages relatives: a1: cellule (0, -1)</value>
+Opérateurs : + - / * ^%
+Variables : E, Phi, Pi, Tao, Tablecols, Tablerows
+Référence cellulaire : A1, A2, ... ZZZ999
+Plage cellulaire : A1: A22
+Plages relatives : a1: cellule (0, -1)</value>
   <comment>!EDIT</comment></data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
-    <value>Cellules sélectionnées:</value>
+    <value>Cellules sélectionnées :</value>
     <comment>label</comment>
   </data>
   <data name="FormulaDialog_status_Empty" xml:space="preserve">
@@ -1250,7 +1250,7 @@ Plages relatives: a1: cellule (0, -1)</value>
     <comment>label</comment>
   </data>
   <data name="FormulaDialog_statusLabel.Text" xml:space="preserve">
-    <value>Statut:</value>
+    <value>Statut :</value>
     <comment>status label</comment>
   </data>
   <data name="GeneralSheet_checkUpdatesBox.Text" xml:space="preserve">
@@ -1309,7 +1309,7 @@ La recherche de hashtags n'est pas disponible tant qu'elle n'est pas terminée.<
 La recherche de hashtags n'est pas disponible tant qu'elle n'est pas terminée.</value>
   </data>
   <data name="HashtagContext_jumpParaTip" xml:space="preserve">
-    <value>Sauter à ce paragraphe; Dernière mise à jour {0}</value>
+    <value>Sauter à ce paragraphe ; Dernière mise à jour {0}</value>
     <comment>tooltip</comment>
   </data>
   <data name="HashtagContext_jumpTip" xml:space="preserve">
@@ -1329,11 +1329,11 @@ La recherche de hashtags n'est pas disponible tant qu'elle n'est pas terminée.<
     <comment>info message</comment>
   </data>
   <data name="HashtagDialog_checkAllLink.Text" xml:space="preserve">
-    <value>Vérifie tout</value>
+    <value>Tout vérifier</value>
     <comment>link label</comment>
   </data>
   <data name="HashtagDialog_hideOfflineMenuItem" xml:space="preserve">
-    <value>Masquer les blocs-notes hors ligne</value>
+    <value>Masquer les notebooks hors ligne</value>
     <comment>context menu item</comment>
   </data>
   <data name="HashtagDialog_introLabel.Text" xml:space="preserve">
@@ -1353,11 +1353,11 @@ La recherche de hashtags n'est pas disponible tant qu'elle n'est pas terminée.<
     <comment>text</comment>
   </data>
   <data name="HashtagDialog_scanButton.Text" xml:space="preserve">
-    <value>Scanne maintenant</value>
+    <value>Scanner maintenant</value>
     <comment>menu button</comment>
   </data>
   <data name="HashtagDialog_scanLink.Text" xml:space="preserve">
-    <value>Nouveaux cahiers découverts. Cliquez ici pour numériser.</value>
+    <value>Nouveaux notebooks découverts. Cliquez ici pour numériser.</value>
     <comment>link label</comment>
   </data>
   <data name="HashtagDialog_scheduleButton.Text" xml:space="preserve">
@@ -1365,9 +1365,9 @@ La recherche de hashtags n'est pas disponible tant qu'elle n'est pas terminée.<
     <comment>menu item</comment>
   </data>
   <data name="HashtagDialog_scopeBox.Text" xml:space="preserve">
-    <value>Tous les cahiers
-Ce carnet
-Cette rubrique
+    <value>Tous les notebooks
+Ce notebook
+Cette section
 Cette page</value>
     <comment>combobox</comment>
   </data>
@@ -1376,11 +1376,11 @@ Cette page</value>
     <comment>tooltip</comment>
   </data>
   <data name="HashtagDialog_showOfflineMenuItem" xml:space="preserve">
-    <value>Afficher les blocs-notes hors ligne</value>
+    <value>Afficher les notebooks hors ligne</value>
     <comment>context menu item</comment>
   </data>
   <data name="HashtagDialog_uncheckAllLink.Text" xml:space="preserve">
-    <value>Décocher tout</value>
+    <value>Tout décocher</value>
     <comment>link label</comment>
   </data>
   <data name="HashtaggerDialog.Text" xml:space="preserve">
@@ -1447,7 +1447,7 @@ Cette page</value>
     <comment>tooltip</comment>
   </data>
   <data name="HashtagSheet_scanNotebooks" xml:space="preserve">
-    <value>Planifiez une analyse incrémentielle de vos blocs-notes nouvellement ajoutés</value>
+    <value>Planifiez une analyse incrémentielle de vos notebooks nouvellement ajoutés</value>
   </data>
   <data name="HashtagSheet_scheduleLink.Text" xml:space="preserve">
     <value>Planifiez une reconstruction de votre catalogue de hashtag</value>
@@ -1468,7 +1468,7 @@ Fond jaune</value>
     <comment>link</comment>
   </data>
   <data name="HashtagSheet_warningLabel.Text" xml:space="preserve">
-    <value>Ceci doit être utilisé après avoir ajouté ou supprimé un ou plusieurs cahiers. Il est recommandé de planifier des reconstructions après les heures d'ouverture, comme minuit.</value>
+    <value>Ceci doit être utilisé après avoir ajouté ou supprimé un ou plusieurs notebooks. Il est recommandé de planifier des reconstructions après les heures d'ouverture, comme minuit.</value>
     <comment>multiline label</comment>
   </data>
   <data name="HighlightFormulaCommand_NoFormulas" xml:space="preserve">
@@ -1539,7 +1539,7 @@ Fond jaune</value>
     <comment>label</comment>
   </data>
   <data name="ImportDialog_fileLabel.Text" xml:space="preserve">
-    <value>Fichier:</value>
+    <value>Fichier :</value>
     <comment>label</comment>
   </data>
   <data name="ImportDialog_introLabel.Text" xml:space="preserve">
@@ -1699,7 +1699,7 @@ Fond jaune</value>
     <comment>message</comment>
   </data>
   <data name="InsertQRCommand_NoSelection" xml:space="preserve">
-    <value>Sélectionnez le texte à rendre sous forme de nouveau code QR</value>
+    <value>Sélectionnez le texte à rendre sous forme de nouveau QR code</value>
     <comment>message</comment>
   </data>
   <data name="InsertSnippets_CouldNotLoad" xml:space="preserve">
@@ -1741,7 +1741,7 @@ Au curseur actuel</value>
     <comment>label</comment>
   </data>
   <data name="InsertTocDialog_notebookRadio.Text" xml:space="preserve">
-    <value>Nouvelle page avec index des sections de ce cahier</value>
+    <value>Nouvelle page avec index des sections de ce notebook</value>
     <comment>radio</comment>
   </data>
   <data name="InsertTocDialog_pageRadio.Text" xml:space="preserve">
@@ -1757,7 +1757,7 @@ Au curseur actuel</value>
     <comment>checkbox</comment>
   </data>
   <data name="InsertTocDialog_rightAlignBox.Text" xml:space="preserve">
-    <value>Lien haut de page aligné à droite</value>
+    <value>Alignement à droite du lien en haut de page</value>
     <comment>checkbox</comment>
   </data>
   <data name="InsertTocDialog_sectionRadio.Text" xml:space="preserve">
@@ -1768,7 +1768,7 @@ Au curseur actuel</value>
     <value>Titre de la page standard
 Titre standard 1
 Titre standard 2
-Rubrique standard 3
+Section standard 3
 Titre de page personnalisé
 Titre personnalisé 1
 Titre personnalisé 2
@@ -1784,7 +1784,7 @@ Titre personnalisé 3</value>
     <comment>checkbox</comment>
   </data>
   <data name="InsertTocForNotebook_RefreshQuestion" xml:space="preserve">
-    <value>Il existe une page de table des matières pour ce bloc-notes. Vous pouvez actualiser cette page ou créer une nouvelle page.
+    <value>Il existe une page de table des matières pour ce notebook. Vous pouvez actualiser cette page ou créer une nouvelle page.
 
 Voulez-vous actualiser la page existante ?</value>
     <comment>message box</comment>
@@ -1996,7 +1996,7 @@ Voulez-vous actualiser la page existante ?</value>
     <comment>DO NOT TRANSLATE</comment>
   </data>
   <data name="OneMoreTab_Label" xml:space="preserve">
-    <value>Un de plus</value>
+    <value>OneMore</value>
   </data>
   <data name="oneNamespace" xml:space="preserve">
     <value>http://schemas.microsoft.com/office/onenote/2013/onenote</value>
@@ -2026,7 +2026,7 @@ Voulez-vous actualiser la page existante ?</value>
     <comment>checkbox</comment>
   </data>
   <data name="OutlineDialog_indentTagBox.Tooltip" xml:space="preserve">
-    <value>Met le contenu en retrait sous uniquement les en-têtes balisés ou les paragraphes non balisés</value>
+    <value>Le contenu est mis en retrait en dessous des titres balisés ou des paragraphes non balisés</value>
     <comment>tooltip</comment>
   </data>
   <data name="OutlineDialog_numberingBox.Text" xml:space="preserve">
@@ -2042,11 +2042,11 @@ Voulez-vous actualiser la page existante ?</value>
     <comment>checkbox</comment>
   </data>
   <data name="OutlineDialog_tagLabel.Text" xml:space="preserve">
-    <value>Marque:</value>
+    <value>Balise :</value>
     <comment>label</comment>
   </data>
   <data name="OutlookTaskReport_DateDue" xml:space="preserve">
-    <value>Échéance/Terminé</value>
+    <value>Dû/Complété</value>
     <comment>report</comment>
   </data>
   <data name="OutlookTaskReport_DateStarted" xml:space="preserve">
@@ -2114,9 +2114,9 @@ Différé</value>
     <comment>label</comment>
   </data>
   <data name="PageColorDialog_scopeBox.Text" xml:space="preserve">
-    <value>Postuler sur cette page
-Postuler à cette section
-Postuler à ce carnet</value>
+    <value>Appliquer sur cette page
+Appliquer à cette section
+Appliquer à ce notebook</value>
     <comment>combobox</comment>
   </data>
   <data name="PasteCellsCommand_NoContent" xml:space="preserve">
@@ -2131,10 +2131,10 @@ Postuler à ce carnet</value>
     <value>Options avancées</value>
   </data>
   <data name="phrase_AllNotebooks" xml:space="preserve">
-    <value>Tous les cahiers</value>
+    <value>Tous les notebooks</value>
   </data>
   <data name="phrase_AllSectionInTheCurrentNotebook" xml:space="preserve">
-    <value>Toutes les sections du carnet actuel</value>
+    <value>Toutes les sections du notebook actuel</value>
   </data>
   <data name="phrase_AppendToThisPage" xml:space="preserve">
     <value>Joindre à cette page</value>
@@ -2161,8 +2161,8 @@ Haut</value>
     <value>Note rapide</value>
   </data>
   <data name="phrase_scopeOptions" xml:space="preserve">
-    <value>Dans tous les cahiers
-Dans ce cahier
+    <value>Dans tous les notebooks
+Dans ce notebook
 Dans cette section</value>
     <comment>drop down</comment>
   </data>
@@ -2209,7 +2209,7 @@ Cache : {0}</value>
     <comment>message</comment>
   </data>
   <data name="Plugin_Unsuccessful" xml:space="preserve">
-    <value>Le plug-in ne s'est pas terminé correctement. </value>
+    <value>Le plugin ne s'est pas terminé correctement.</value>
     <comment>error message</comment>
   </data>
   <data name="Plugin_WritingTemp" xml:space="preserve">
@@ -2253,7 +2253,7 @@ Cache : {0}</value>
     <comment>combobox item</comment>
   </data>
   <data name="PluginDialog_okButton.Text" xml:space="preserve">
-    <value>Courir</value>
+    <value>Démarrer</value>
     <comment>ok button</comment>
   </data>
   <data name="PluginDialog_skipLockRadio.Text" xml:space="preserve">
@@ -2263,9 +2263,9 @@ Cache : {0}</value>
   <data name="PluginDialog_targetBox.Text" xml:space="preserve">
     <value>Page actuelle
 Section actuelle et ses pages
-Carnet actuel et ses sections
-Carnet actuel et ses pages
-Tous les cahiers et leurs pages</value>
+Notebook actuel et ses sections
+Notebook actuel et ses pages
+Tous les notebooks et leurs pages</value>
     <comment>combobox</comment>
   </data>
   <data name="PluginDialog_timeoutLabel.Text" xml:space="preserve">
@@ -2285,7 +2285,7 @@ Tous les cahiers et leurs pages</value>
     <comment>label</comment>
   </data>
   <data name="PluginsSheet_ConfirmDelete" xml:space="preserve">
-    <value>Supprimer le plug-in "{0}"</value>
+    <value>Supprimer le plugin "{0}"</value>
     <comment>question</comment>
   </data>
   <data name="PluginsSheet_introBox.Text" xml:space="preserve">
@@ -2293,11 +2293,11 @@ Tous les cahiers et leurs pages</value>
     <comment>label</comment>
   </data>
   <data name="PreviewMarkdownCommand_Title" xml:space="preserve">
-    <value>Aperçu de la démarque</value>
+    <value>Aperçu Markdown</value>
     <comment>dialog title</comment>
   </data>
   <data name="ProgramName" xml:space="preserve">
-    <value>UnPlus</value>
+    <value>OneMore</value>
     <comment>SKIP</comment>
   </data>
   <data name="Pronunciate_EmptyWord" xml:space="preserve">
@@ -2305,7 +2305,7 @@ Tous les cahiers et leurs pages</value>
     <comment>error message box</comment>
   </data>
   <data name="Pronunciate_FullWord" xml:space="preserve">
-    <value>Doit sélectionner un mot complet</value>
+    <value>Il faut sélectionner un mot complet</value>
     <comment>error message box</comment>
   </data>
   <data name="Pronunciate_NetError" xml:space="preserve">
@@ -2321,19 +2321,19 @@ Tous les cahiers et leurs pages</value>
     <comment>dialog title</comment>
   </data>
   <data name="PronunciateDialog_languages" xml:space="preserve">
-    <value>fr,anglais
-salut, hindi
-es, espagnol
-fr, français
-ja, japonais
-ru, russe
-de, allemand
-ça, italien
-ko, coréen
-pt-BR, portugais brésilien
+    <value>en,anglais
+hi,hindi
+es,espagnol
+fr,français
+ja,japonais
+ru,russe
+de,allemand
+ça,italien
+ko,coréen
+pt-BR,portugais brésilien
 ar,arabe
-tr, turc
-zh-CN, chinois (simplifié)</value>
+tr,turc
+zh-CN,chinois (simplifié)</value>
     <comment>Recognized languages, one per line.
 ISO-code then comma then language name</comment>
   </data>
@@ -2354,11 +2354,11 @@ Année (2023)
     <comment>textbox</comment>
   </data>
   <data name="QuickNotesSheet_notebookButton.Text" xml:space="preserve">
-    <value>Déplacer les notes rapides dans ce bloc-notes</value>
+    <value>Déplacer les notes rapides dans ce notebook</value>
     <comment>radio</comment>
   </data>
   <data name="QuickNotesSheet_notebookLink.Text" xml:space="preserve">
-    <value>Cliquez ici pour sélectionner le carnet</value>
+    <value>Cliquez ici pour sélectionner le notebook</value>
     <comment>linklabel</comment>
   </data>
   <data name="QuickNotesSheet_sectionButton.Text" xml:space="preserve">
@@ -2366,15 +2366,15 @@ Année (2023)
     <comment>radio</comment>
   </data>
   <data name="QuickNotesSheet_sectionLink.Text" xml:space="preserve">
-    <value>Cliquez ici pour sélectionner la rubrique</value>
+    <value>Cliquez ici pour sélectionner la section</value>
     <comment>linklabel</comment>
   </data>
   <data name="QuickNotesSheet_SelectNotebookIntro" xml:space="preserve">
-    <value>Sélectionnez le bloc-notes utilisé pour organiser vos notes rapides</value>
+    <value>Sélectionnez le notebook utilisé pour organiser vos notes rapides</value>
     <comment>quick filing dialog intro</comment>
   </data>
   <data name="QuickNotesSheet_SelectNotebookTitle" xml:space="preserve">
-    <value>Sélectionnez le bloc-notes</value>
+    <value>Sélectionnez le notebook</value>
     <comment>quick filing dialog title</comment>
   </data>
   <data name="QuickNotesSheet_SelectSectionIntro" xml:space="preserve">
@@ -2382,7 +2382,7 @@ Année (2023)
     <comment>quick filing dialog intro</comment>
   </data>
   <data name="QuickNotesSheet_SelectSectionTitle" xml:space="preserve">
-    <value>Sélectionnez la rubrique</value>
+    <value>Sélectionnez la section</value>
     <comment>quick filing dialog title</comment>
   </data>
   <data name="QuickNotesSheet_stampBox.Text" xml:space="preserve">
@@ -2608,17 +2608,17 @@ Différé</value>
     <value>Texte simple (rapide)</value>
   </data>
   <data name="RemoveDuplicatesNavigator_confirm1" xml:space="preserve">
-    <value>Êtes-vous sûr de vouloir supprimer la page sélectionnée?</value>
+    <value>Êtes-vous sûr de vouloir supprimer la page sélectionnée ?</value>
   </data>
   <data name="RemoveDuplicatesNavigator_confirmAll" xml:space="preserve">
-    <value>Êtes-vous sûr de vouloir supprimer les pages sélectionnées {0}?</value>
+    <value>Êtes-vous sûr de vouloir supprimer les pages sélectionnées {0} ?</value>
   </data>
   <data name="RemoveDuplicatesNavigator_pagesSimilarTo" xml:space="preserve">
     <value>Pages similaires à {0}</value>
     <comment>listview group title</comment>
   </data>
   <data name="RemoveEmptyCommand_option" xml:space="preserve">
-    <value>Enlevez toutes les lignes vides?
+    <value>Enlevez toutes les lignes vides ?
 
 Sélectionnez Oui pour supprimer toutes les lignes vides entre les paragraphes
 Sélectionnez Non pour conserver une ligne vide entre les paragraphes</value>
@@ -2657,7 +2657,7 @@ Sélectionnez Non pour conserver une ligne vide entre les paragraphes</value>
     <comment>instructions</comment>
   </data>
   <data name="ReportRemindersDialog.Text" xml:space="preserve">
-    <value>SPODE SPORT</value>
+    <value>Portée du rapport</value>
   </data>
   <data name="ReportRemindersDialog_introLabel.Text" xml:space="preserve">
     <value>Générer un rapport pour les rappels dans cette portée</value>
@@ -2748,7 +2748,7 @@ Sélectionnez Non pour conserver une ligne vide entre les paragraphes</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribAnalyzeButton_Screentip" xml:space="preserve">
-    <value>Générer un rapport de stockage utilisé par section ou bloc-notes</value>
+    <value>Générer un rapport de stockage utilisé par section ou notebook</value>
     <comment>ribbon extras</comment>
   </data>
   <data name="ribApplyStyle0Button_Label" xml:space="preserve">
@@ -2796,7 +2796,7 @@ Sélectionnez Non pour conserver une ligne vide entre les paragraphes</value>
     <comment>ribbon styles</comment>
   </data>
   <data name="ribArchiveNotebookButton_Label" xml:space="preserve">
-    <value>Cahier d'archives</value>
+    <value>Notebook d'archives</value>
     <comment>ribbon menu</comment>
   </data>
   <data name="ribArchiveSectionButton_Label" xml:space="preserve">
@@ -2849,7 +2849,7 @@ En tant qu'onglet OneMore distinct</value>
 Groupe de texte de base
 Groupe de styles
 Groupe de balises
-Groupe de messagerie
+Groupe de courriel
 Groupe de réunions
 Après le dernier groupe</value>
     <comment>combobox</comment>
@@ -2863,7 +2863,7 @@ Après le dernier groupe</value>
     <comment>intro label</comment>
   </data>
   <data name="RibbonBarSheet_positionLabel.Text" xml:space="preserve">
-    <value>Poste après</value>
+    <value>Position suivante</value>
     <comment>label</comment>
   </data>
   <data name="RibbonBarSheet_positionTabBox.Text" xml:space="preserve">
@@ -3002,11 +3002,11 @@ Onglet Aide</value>
     <comment>ribbon images</comment>
   </data>
   <data name="ribConvertMarkdownButton_Label" xml:space="preserve">
-    <value>Convertir la démarque</value>
+    <value>Convertir Markdown</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribConvertMarkdownButton_Screentip" xml:space="preserve">
-    <value>Convertir la page ou la démarque sélectionnée au format OneNote</value>
+    <value>Convertir la page ou le markdown sélectionné au format OneNote</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribCopyAcrossButton_Label" xml:space="preserve">
@@ -3114,7 +3114,7 @@ Onglet Aide</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribDecreaseFontSizeButton_Screentip" xml:space="preserve">
-    <value>Diminuer la taille de la police de la page (Ctrl + Alt + Shift)</value>
+    <value>Diminuer la taille de la police de la page (Ctrl + Alt + Maj)</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribDeleteFormulaButton_Label" xml:space="preserve">
@@ -3234,15 +3234,15 @@ Onglet Aide</value>
     <comment>Ribbon main favorites button</comment>
   </data>
   <data name="ribFileMenu_Label" xml:space="preserve">
-    <value>Déposer</value>
+    <value>Fichier</value>
     <comment>ribbon menu</comment>
   </data>
   <data name="ribFileQuickNotesButton_Label" xml:space="preserve">
-    <value>Déposer des notes rapides</value>
+    <value>Fichier de notes rapides</value>
     <comment>ribbon file</comment>
   </data>
   <data name="ribFileQuickNotesButton_Screentip" xml:space="preserve">
-    <value>Organiser les notes rapides dans un bloc-notes ou une section</value>
+    <value>Organiser les notes rapides dans un notebook ou une section</value>
     <comment>ribbon file</comment>
   </data>
   <data name="ribFillAcrossButton_Label" xml:space="preserve">
@@ -3414,11 +3414,11 @@ Onglet Aide</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribInsertDoubleLineButton_Screentip" xml:space="preserve">
-    <value>Insérer une double ligne horizontale (Shift + Alt + Equals)</value>
+    <value>Insérer une double ligne horizontale (Maj + Alt + Equals)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribInsertEmojiButton_Label" xml:space="preserve">
-    <value>Émoji</value>
+    <value>Emoji</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertEmojiButton_Screentip" xml:space="preserve">
@@ -3466,7 +3466,7 @@ Onglet Aide</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertQRButton_Label" xml:space="preserve">
-    <value>Insérer le code QR</value>
+    <value>Insérer le QR code</value>
     <comment>ribbon button</comment>
   </data>
   <data name="ribInsertQRButton_Screentip" xml:space="preserve">
@@ -3486,7 +3486,7 @@ Onglet Aide</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribInsertSingleLineButton_Screentip" xml:space="preserve">
-    <value>Insérer une seule ligne horizontale (Shift + Alt + Moins)</value>
+    <value>Insérer une seule ligne horizontale (Maj + Alt + Moins)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribInsertTextBoxButton_Label" xml:space="preserve">
@@ -3565,7 +3565,7 @@ Onglet Aide</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribLowercaseButton_Screentip" xml:space="preserve">
-    <value>Convertir le texte en minuscules (Ctrl + Shift + U)</value>
+    <value>Convertir le texte en minuscules (Ctrl + Maj + U)</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribManageFavoritesButton_Label" xml:space="preserve">
@@ -3665,7 +3665,7 @@ Onglet Aide</value>
     <comment>Ribbon OneMore menu item, no spell check on this page</comment>
   </data>
   <data name="ribNotebookWordCountButton_Label" xml:space="preserve">
-    <value>Total de mots dans le cahier</value>
+    <value>Total de mots dans le notebook</value>
     <comment>ribbon</comment>
   </data>
   <data name="ribNumberingMenu_Label" xml:space="preserve">
@@ -3685,7 +3685,7 @@ Onglet Aide</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribNumberSectionsButton_Screentip" xml:space="preserve">
-    <value>Ajouter ou mettre à jour la numérotation de toutes les sections de ce bloc-notes</value>
+    <value>Ajouter ou mettre à jour la numérotation de toutes les sections de ce notebook</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribOneMoreBasicsGroup_Label" xml:space="preserve">
@@ -3697,7 +3697,7 @@ Onglet Aide</value>
     <comment>ribbon</comment>
   </data>
   <data name="ribOneMoreGroup_Label" xml:space="preserve">
-    <value>Un de plus</value>
+    <value>OneMore</value>
     <comment>Ribbon Group</comment>
   </data>
   <data name="ribOneMoreMenu_Label" xml:space="preserve">
@@ -3808,11 +3808,11 @@ Onglet Aide</value>
     <comment>ribbon file</comment>
   </data>
   <data name="ribPreviewMarkdownButton_Label" xml:space="preserve">
-    <value>Aperçu de la démarque</value>
+    <value>Aperçu Markdown</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribPreviewMarkdownButton_Screentip" xml:space="preserve">
-    <value>Aperçu de la page ou du texte sélectionné sous forme de démarque</value>
+    <value>Aperçu de la page ou du texte sélectionné sous forme Markdown</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribPreviousUnreadPageButton_Label" xml:space="preserve">
@@ -3948,7 +3948,7 @@ Onglet Aide</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribRemoveSectionNumbersButton_Screentip" xml:space="preserve">
-    <value>Supprimer les numéros de toutes les sections de ce bloc-notes</value>
+    <value>Supprimer les numéros de toutes les sections de ce notebook</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribRemoveSpacingButton_Label" xml:space="preserve">
@@ -3979,7 +3979,7 @@ Onglet Aide</value>
     <comment>Ribbon OneMore menu item, trim</comment>
   </data>
   <data name="ribReplayButton_Screentip" xml:space="preserve">
-    <value>Rejouer la dernière commande (Alt + Shift + R)</value>
+    <value>Rejouer la dernière commande (Alt + Maj + R)</value>
     <comment>Ribbon OneMore menu item, trim</comment>
   </data>
   <data name="ribReportRemindersButton_Label" xml:space="preserve">
@@ -4167,7 +4167,7 @@ Onglet Aide</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribSortButton_Screentip" xml:space="preserve">
-    <value>Trier des pages, une section ou des blocs-notes</value>
+    <value>Trier des pages, une section ou des notebooks</value>
     <comment>ribbon extras</comment>
   </data>
   <data name="ribSortListButton_Label" xml:space="preserve">
@@ -4179,11 +4179,11 @@ Onglet Aide</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribSortNotebooksButton_Label" xml:space="preserve">
-    <value>Trier les cahiers</value>
+    <value>Trier les notebooks</value>
     <comment>ribbon/context menu</comment>
   </data>
   <data name="ribSortNotebookSectionsButton_Label" xml:space="preserve">
-    <value>Trier les sections dans le bloc-notes</value>
+    <value>Trier les sections dans le notebook</value>
     <comment>ribbon/context menu</comment>
   </data>
   <data name="ribSortPageButton_Label" xml:space="preserve">
@@ -4215,7 +4215,7 @@ Onglet Aide</value>
     <comment>ribbon page</comment>
   </data>
   <data name="ribSplitTableButton_Label" xml:space="preserve">
-    <value>Table divisée</value>
+    <value>Tableau divisée</value>
     <comment>ribbon button</comment>
   </data>
   <data name="ribSplitTableButton_Screentip" xml:space="preserve">
@@ -4338,7 +4338,7 @@ Onglet Aide</value>
     <comment>ribbon item screentip</comment>
   </data>
   <data name="ribUppercaseButton_Label" xml:space="preserve">
-    <value>Vers MAJUSCULES</value>
+    <value>En MAJUSCULES</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribUppercaseButton_Screentip" xml:space="preserve">
@@ -4346,11 +4346,11 @@ Onglet Aide</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribViewNotebookInBrowserButton_Label" xml:space="preserve">
-    <value>Afficher le bloc-notes dans le navigateur</value>
+    <value>Afficher le notebook dans le navigateur</value>
     <comment>notebook context menu</comment>
   </data>
   <data name="ribViewNotebookInBrowserButton_Screentip" xml:space="preserve">
-    <value>Afficher le bloc-notes dans le navigateur Web</value>
+    <value>Afficher le notebook dans le navigateur Web</value>
     <comment>notebook context menu</comment>
   </data>
   <data name="ribViewPageInBrowserButton_Label" xml:space="preserve">
@@ -4387,6 +4387,10 @@ Onglet Aide</value>
   </data>
   <data name="SaveSnippet_NeedSelection" xml:space="preserve">
     <value>Sélectionnez le contenu à enregistrer en tant que nouvel extrait de code</value>
+    <comment>error message</comment>
+  </data>
+  <data name="SaveSnippet_NoContext" xml:space="preserve">
+    <value>Aucun contenu trouvé. Exécutez la commande à partir du menu du ruban.</value>
     <comment>error message</comment>
   </data>
   <data name="SaveSnippetDialog.Text" xml:space="preserve">
@@ -4444,7 +4448,7 @@ Onglet Aide</value>
     <comment>radio</comment>
   </data>
   <data name="ScopeSelector_selectedButton.Text" xml:space="preserve">
-    <value>Notes de carnet sélectionnés ...</value>
+    <value>Notes de notebooks sélectionnés ...</value>
     <comment>radio</comment>
   </data>
   <data name="SearchAndReplaceCommand_Results" xml:space="preserve">
@@ -4465,9 +4469,9 @@ Onglet Aide</value>
   </data>
   <data name="SearchAndReplaceDialog_scopBox" xml:space="preserve">
     <value>Cette page
-Cette rubrique
-Ce carnet
-Tous les cahiers</value>
+Cette section
+Ce notebook
+Tous les notebooks</value>
     <comment>combobox</comment>
   </data>
   <data name="SearchAndReplaceDialog_substitutions" xml:space="preserve">
@@ -4503,7 +4507,7 @@ Tous les cahiers</value>
     <comment>delete label</comment>
   </data>
   <data name="SearchEngineDialog_DeleteMessage" xml:space="preserve">
-    <value>Supprimer {0}?</value>
+    <value>Supprimer {0} ?</value>
     <comment>delete confirmation message</comment>
   </data>
   <data name="SearchEngineDialog_downButton.Text" xml:space="preserve">
@@ -4637,7 +4641,7 @@ Les moteurs de recherche apparaîtront dans le menu du contexte de la page, cliq
     <comment>tab</comment>
   </data>
   <data name="ShowXmlDialog_nbSectionsTab.Text" xml:space="preserve">
-    <value>Cahier avec sections</value>
+    <value>Notebook avec sections</value>
     <comment>tab</comment>
   </data>
   <data name="ShowXmlDialog_noHierarchy" xml:space="preserve">
@@ -4649,15 +4653,15 @@ Les moteurs de recherche apparaîtront dans le menu du contexte de la page, cliq
     <comment>ok button</comment>
   </data>
   <data name="ShowXmlDialog_pageLinkLabel.Text" xml:space="preserve">
-    <value>Lien:</value>
+    <value>Lien :</value>
     <comment>label</comment>
   </data>
   <data name="ShowXmlDialog_pageNameLabel.Text" xml:space="preserve">
-    <value>Nom:</value>
+    <value>Nom :</value>
     <comment>label</comment>
   </data>
   <data name="ShowXmlDialog_pagePathLabel.Text" xml:space="preserve">
-    <value>Chemin:</value>
+    <value>Chemin :</value>
     <comment>label</comment>
   </data>
   <data name="ShowXmlDialog_pidBox.Text" xml:space="preserve">
@@ -4669,11 +4673,11 @@ Les moteurs de recherche apparaîtront dans le menu du contexte de la page, cliq
     <comment>checkbox</comment>
   </data>
   <data name="ShowXmlDialog_WARNING" xml:space="preserve">
-    <value>C'est une opération dangereuse !
+    <value>C'est une opération dangereuse !
 
 Des modifications incorrectes peuvent entraîner la perte de données.
 
-Es-tu sur de vouloir continuer?</value>
+Êtes-vous sûr(e) de vouloir continuer ?</value>
     <comment>confirmation</comment>
   </data>
   <data name="ShowXmlDialog_wrapBox.Text" xml:space="preserve">
@@ -4718,18 +4722,18 @@ Es-tu sur de vouloir continuer?</value>
   </data>
   <data name="SortDialog_scopeBox.Items" xml:space="preserve">
     <value>Enfants de la page actuelle
-Pages de cette rubrique
-Sections de ce bloc-notes
+Pages de cette section
+Sections de ce notebook
 Sections de ce groupe
-Des cahiers</value>
+Des notebooks</value>
     <comment>scope dropdown, one per line</comment>
   </data>
   <data name="SortDialog_scopeLabel.Text" xml:space="preserve">
-    <value>Portée:</value>
+    <value>Portée :</value>
     <comment>label</comment>
   </data>
   <data name="SortDialog_sortLabel.Text" xml:space="preserve">
-    <value>Trier par:</value>
+    <value>Trier par :</value>
     <comment>label</comment>
   </data>
   <data name="SortListCommand_BadContext" xml:space="preserve">
@@ -4797,7 +4801,7 @@ Des cahiers</value>
     <comment>checkbox</comment>
   </data>
   <data name="SplitDialog_tagLabel.Text" xml:space="preserve">
-    <value>Marque:</value>
+    <value>Marque :</value>
     <comment>label</comment>
   </data>
   <data name="SplitTableCommand_FirstRow" xml:space="preserve">
@@ -4825,7 +4829,7 @@ Des cahiers</value>
     <comment>message box</comment>
   </data>
   <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
-    <value>Espace après:</value>
+    <value>Espace après :</value>
     <comment>label</comment>
   </data>
   <data name="StyleDialog_applyColorsBox.Text" xml:space="preserve">
@@ -4837,7 +4841,7 @@ Des cahiers</value>
     <comment>button tip</comment>
   </data>
   <data name="StyleDialog_beforeLabel.Text" xml:space="preserve">
-    <value>Espace avant:</value>
+    <value>Espace avant :</value>
     <comment>label</comment>
   </data>
   <data name="StyleDialog_boldButton.Text" xml:space="preserve">
@@ -4866,7 +4870,7 @@ Des cahiers</value>
     <comment>menu item</comment>
   </data>
   <data name="StyleDialog_fontLabel.Text" xml:space="preserve">
-    <value>Police de caractère:</value>
+    <value>Police de caractère :</value>
     <comment>label</comment>
   </data>
   <data name="StyleDialog_ignoredBox.Text" xml:space="preserve">
@@ -4878,11 +4882,11 @@ Des cahiers</value>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_loadButton.Text" xml:space="preserve">
-    <value>Ouvert...</value>
+    <value>Ouvrir...</value>
     <comment>menu item</comment>
   </data>
   <data name="StyleDialog_nameLabel.Text" xml:space="preserve">
-    <value>Nom du style:</value>
+    <value>Nom du style :</value>
     <comment>label</comment>
   </data>
   <data name="StyleDialog_newStyleButton.Text" xml:space="preserve">
@@ -4910,7 +4914,7 @@ Des cahiers</value>
     <comment>dialog title</comment>
   </data>
   <data name="StyleDialog_spacingLabel.Text" xml:space="preserve">
-    <value>Espacement:</value>
+    <value>Espacement :</value>
     <comment>label</comment>
   </data>
   <data name="StyleDialog_strikeButton.Text" xml:space="preserve">
@@ -4924,7 +4928,7 @@ Titre - inclure dans la table des matières</value>
     <comment>combobox</comment>
   </data>
   <data name="StyleDialog_styleTypeLabel.Text" xml:space="preserve">
-    <value>Type de style:</value>
+    <value>Type de style :</value>
     <comment>label</comment>
   </data>
   <data name="StyleDialog_subButton.Text" xml:space="preserve">
@@ -4977,11 +4981,11 @@ Inverser</value>
     <comment>dialog title</comment>
   </data>
   <data name="TableTheme_Screentip" xml:space="preserve">
-    <value>Thème de table OneMore {0}</value>
+    <value>Thème de tableau OneMore {0}</value>
     <comment>Screentip for table theme gallery tiles</comment>
   </data>
   <data name="TabOneMore_Label" xml:space="preserve">
-    <value>UnPlus</value>
+    <value>OneMore</value>
     <comment>ribbon</comment>
   </data>
   <data name="TagBankCommand_confirm" xml:space="preserve">
@@ -4997,7 +5001,7 @@ Inverser</value>
     <comment>dialog title</comment>
   </data>
   <data name="TextToTableDialog_columnsLabel.Text" xml:space="preserve">
-    <value>Le nombre de colonnes:</value>
+    <value>Le nombre de colonnes :</value>
     <comment>label</comment>
   </data>
   <data name="TextToTableDialog_commasRadio.Text" xml:space="preserve">
@@ -5025,7 +5029,7 @@ Inverser</value>
     <comment>radio</comment>
   </data>
   <data name="TextToTableDialog_rowsLabel.Text" xml:space="preserve">
-    <value>Nombre de rangées:</value>
+    <value>Nombre de rangées :</value>
     <comment>label</comment>
   </data>
   <data name="TextToTableDialog_tabsRadio.Text" xml:space="preserve">
@@ -5081,11 +5085,11 @@ Inverser</value>
     <comment>panel title</comment>
   </data>
   <data name="UpdateDialog_lastUpdatedLabel.Text" xml:space="preserve">
-    <value>Dernière mise à jour:</value>
+    <value>Dernière mise à jour :</value>
     <comment>label</comment>
   </data>
   <data name="UpdateDialog_releaseDateLabel.Text" xml:space="preserve">
-    <value>Date de sortie:</value>
+    <value>Date de sortie :</value>
     <comment>label</comment>
   </data>
   <data name="UpdateDialog_releaseNotesLink.Text" xml:space="preserve">
@@ -5093,11 +5097,11 @@ Inverser</value>
     <comment>link</comment>
   </data>
   <data name="UpdateDialog_upCurrentVersionLabel.Text" xml:space="preserve">
-    <value>Version actuelle:</value>
+    <value>Version actuelle :</value>
     <comment>label</comment>
   </data>
   <data name="UpdateDialog_upDescriptionLabel.Text" xml:space="preserve">
-    <value>La description:</value>
+    <value>Description :</value>
     <comment>label</comment>
   </data>
   <data name="UpdateDialog_upIntroLabel.Text" xml:space="preserve">
@@ -5109,7 +5113,7 @@ Inverser</value>
     <comment>button</comment>
   </data>
   <data name="UpdateDialog_upVersionLabel.Text" xml:space="preserve">
-    <value>Version de mise à jour:</value>
+    <value>Version de mise à jour :</value>
     <comment>label</comment>
   </data>
   <data name="UpdateDialog_versionLabel.Text" xml:space="preserve">
@@ -5144,10 +5148,10 @@ Inverser</value>
     <value>Légende</value>
   </data>
   <data name="word_Clear" xml:space="preserve">
-    <value>Clair</value>
+    <value>Enlever</value>
   </data>
   <data name="word_Close" xml:space="preserve">
-    <value>proche</value>
+    <value>Fermer</value>
   </data>
   <data name="word_Code" xml:space="preserve">
     <value>Code</value>
@@ -5201,7 +5205,7 @@ Inverser</value>
     <value>Dossier</value>
   </data>
   <data name="word_Font" xml:space="preserve">
-    <value>Police de caractère</value>
+    <value>Police de caractères</value>
   </data>
   <data name="word_Format" xml:space="preserve">
     <value>Format</value>
@@ -5231,7 +5235,7 @@ Inverser</value>
     <value>Retrait</value>
   </data>
   <data name="word_Index" xml:space="preserve">
-    <value>mot_Index</value>
+    <value>Index</value>
   </data>
   <data name="word_Information" xml:space="preserve">
     <value>Information</value>
@@ -5267,10 +5271,10 @@ Inverser</value>
     <value>Aucun</value>
   </data>
   <data name="word_Notebook" xml:space="preserve">
-    <value>Carnet de notes</value>
+    <value>Notebook</value>
   </data>
   <data name="word_Notebooks" xml:space="preserve">
-    <value>Des cahiers</value>
+    <value>Notebooks</value>
   </data>
   <data name="word_Notes" xml:space="preserve">
     <value>Remarques</value>
@@ -5282,13 +5286,13 @@ Inverser</value>
     <value>Numérique</value>
   </data>
   <data name="word_OK" xml:space="preserve">
-    <value>d'accord</value>
+    <value>OK</value>
   </data>
   <data name="word_Opacity" xml:space="preserve">
     <value>Opacité</value>
   </data>
   <data name="word_Options" xml:space="preserve">
-    <value>Option</value>
+    <value>Options</value>
   </data>
   <data name="word_Page" xml:space="preserve">
     <value>Page</value>
@@ -5324,7 +5328,7 @@ Inverser</value>
     <value>Saturation</value>
   </data>
   <data name="word_Save" xml:space="preserve">
-    <value>sauvegarder</value>
+    <value>Sauvegarder</value>
   </data>
   <data name="word_Schedule" xml:space="preserve">
     <value>Calendrier</value>
@@ -5351,7 +5355,7 @@ Inverser</value>
     <value>Début</value>
   </data>
   <data name="word_Started" xml:space="preserve">
-    <value>Commencé</value>
+    <value>Débuté</value>
   </data>
   <data name="word_Status" xml:space="preserve">
     <value>Statut</value>
@@ -5375,7 +5379,7 @@ Inverser</value>
     <value>Texte</value>
   </data>
   <data name="word_Total" xml:space="preserve">
-    <value>Le total</value>
+    <value>Total</value>
   </data>
   <data name="word_Warning" xml:space="preserve">
     <value>Avertissement</value>
@@ -5390,13 +5394,13 @@ Inverser</value>
     <value>Mots</value>
   </data>
   <data name="word_XML" xml:space="preserve">
-    <value>Xml</value>
+    <value>XML</value>
   </data>
   <data name="word_Yes" xml:space="preserve">
     <value>Oui</value>
   </data>
   <data name="WordCountCommand_Count" xml:space="preserve">
-    <value>Nombre total de mots sur la page: {0}</value>
+    <value>Nombre total de mots sur la page : {0}</value>
     <comment>message box</comment>
   </data>
   <data name="WordCountCommand_Selected" xml:space="preserve">
@@ -5404,15 +5408,15 @@ Inverser</value>
     <comment>message box</comment>
   </data>
   <data name="WordCounts_Notebook" xml:space="preserve">
-    <value>{0} Bloc-notes</value>
+    <value>{0} Notebooks</value>
     <comment>page heading</comment>
   </data>
   <data name="WordCounts_NotebookTotal" xml:space="preserve">
-    <value>Nombre total de mots dans le bloc-notes sur {0} pages</value>
+    <value>Nombre total de mots dans le notebook sur {0} pages</value>
     <comment>report</comment>
   </data>
   <data name="WordCounts_Section" xml:space="preserve">
-    <value>{0} Rubrique</value>
+    <value>{0} Sections</value>
     <comment>page heading</comment>
   </data>
   <data name="WordCounts_SectionTotal" xml:space="preserve">

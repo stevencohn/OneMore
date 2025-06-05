@@ -4390,6 +4390,10 @@ Pestaña Ayuda</value>
     <value>Seleccionar contenido para guardar como un nuevo fragmento</value>
     <comment>error message</comment>
   </data>
+  <data name="SaveSnippet_NoContext" xml:space="preserve">
+    <value>No se encontró contenido. Ejecute el comando desde el menú de cinta.</value>
+    <comment>error message</comment>
+  </data>
   <data name="SaveSnippetDialog.Text" xml:space="preserve">
     <value>Guardar fragmento</value>
     <comment>dialog title</comment>

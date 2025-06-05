@@ -40,6 +40,8 @@ namespace River.OneMoreAddIn.Commands
 			var html = await new ClipboardProvider().GetHtml();
 			if (string.IsNullOrWhiteSpace(html))
 			{
+				logger.WriteLine($"{nameof(SaveSnippetCommand)} empty HTML");
+				ShowError(Resx.SaveSnippet_NoContext);
 				return;
 			}
 

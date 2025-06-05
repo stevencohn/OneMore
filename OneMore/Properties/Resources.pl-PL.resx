@@ -4391,6 +4391,10 @@ Zakładka Pomoc</value>
     <value>Wybierz zawartość, aby zapisać jako nowy fragment</value>
     <comment>error message</comment>
   </data>
+  <data name="SaveSnippet_NoContext" xml:space="preserve">
+    <value>Nie znaleziono treści. Uruchom polecenie z menu wstążkowego.</value>
+    <comment>error message</comment>
+  </data>
   <data name="SaveSnippetDialog.Text" xml:space="preserve">
     <value>Zapisz fragment</value>
     <comment>dialog title</comment>

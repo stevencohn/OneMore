@@ -4386,6 +4386,10 @@ Registerkarte „Hilfe“.</value>
     <value>Wähle den Inhalt aus, der als neues Snippet gespeichert werden soll</value>
     <comment>error message</comment>
   </data>
+  <data name="SaveSnippet_NoContext" xml:space="preserve">
+    <value>Kein Inhalt gefunden. Führen Sie den Befehl aus dem Gelenkmenü aus.</value>
+    <comment>error message</comment>
+  </data>
   <data name="SaveSnippetDialog.Text" xml:space="preserve">
     <value>Snippet speichern</value>
     <comment>dialog title</comment>
