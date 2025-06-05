@@ -40,28 +40,36 @@ namespace River.OneMoreAddIn.Commands
 				KeepSelected = false
 			};
 
-			if (elements.Any())
+			var multiline = text.Contains("\n") || text.Contains("\r");
+			if (multiline)
 			{
-				editor.ExtractSelectedContent();
+				if (elements.Any())
+				{
+					editor.ExtractSelectedContent(breakParagraph: multiline);
+				}
+
+				// OneNote transforms \r\n into soft-break <br> but we want hard-breaks,
+				// so split text into lines...
+
+				var lines = text.Split(new string[] { "\r\n" }, System.StringSplitOptions.None);
+
+				XElement first = null;
+				for (var i = lines.Length - 1; i >= 0; i--)
+				{
+					var run = new XElement(ns + "T", new XCData(lines[i]));
+					first ??= run;
+
+					editor.InsertAtAnchor(run);
+				}
+
+				// position insertion cursor after last line...
+				editor.Deselect();
+				first?.SetAttributeValue("selected", "all");
 			}
-
-			// OneNote transforms \r\n into soft-break <br> but we want hard-breaks,
-			// so split text into lines...
-
-			var lines = text.Split(new string[] { "\r\n" }, System.StringSplitOptions.None);
-
-			XElement first = null;
-			for (var i = lines.Length - 1; i >= 0; i--)
+			else
 			{
-				var run = new XElement(ns + "T", new XCData(lines[i]));
-				first ??= run;
-
-				editor.InsertAtAnchor(run);
+				editor.ReplaceSelectedWith(new XElement(ns + "T", new XCData(text)));
 			}
-
-			// position insertion cursor after last line...
-			editor.Deselect();
-			first?.SetAttributeValue("selected", "all");
 
 			await one.Update(page);
 		}
