@@ -1449,7 +1449,7 @@ OneNote 文件 (*.one)</value>
     <value>安排对新添加的笔记本进行增量扫描</value>
   </data>
   <data name="HashtagSheet_scheduleLink.Text" xml:space="preserve">
-    <value>安排您的主题标签目录的重建</value>
+    <value>立即安排标签扫描或扫描</value>
     <comment>link label</comment>
   </data>
   <data name="HashtagSheet_styleBox.Text" xml:space="preserve">

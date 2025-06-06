@@ -151,7 +151,7 @@ namespace River.OneMoreAddIn.Settings
 			this.scheduleLink.StrictColors = false;
 			this.scheduleLink.TabIndex = 1;
 			this.scheduleLink.TabStop = true;
-			this.scheduleLink.Text = "Schedule a rebuild of your hashtag catalog";
+			this.scheduleLink.Text = "Schedule Hashtag Scanning or Scan Now";
 			this.scheduleLink.ThemedBack = null;
 			this.scheduleLink.ThemedFore = null;
 			this.scheduleLink.VisitedLinkColor = System.Drawing.Color.MediumOrchid;

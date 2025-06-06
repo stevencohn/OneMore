@@ -1451,7 +1451,7 @@ This page</value>
     <value>Schedule an incremental scan of your newly added notebooks</value>
   </data>
   <data name="HashtagSheet_scheduleLink.Text" xml:space="preserve">
-    <value>Schedule a rebuild of your hashtag catalog</value>
+    <value>Schedule Hashtag Scanning or Scan Now</value>
     <comment>link label</comment>
   </data>
   <data name="HashtagSheet_styleBox.Text" xml:space="preserve">

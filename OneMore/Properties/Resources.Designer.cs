@@ -3784,7 +3784,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Schedule a rebuild of your hashtag catalog.
+        ///   Looks up a localized string similar to Schedule Hashtag Scanning or Scan Now.
         /// </summary>
         internal static string HashtagSheet_scheduleLink_Text {
             get {
