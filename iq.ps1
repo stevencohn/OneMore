@@ -350,7 +350,7 @@ Begin
 }
 Process
 {
-    $vcolor = $Host.PrivateData.VerboseForegroundColor
+    $script:vcolor = $Host.PrivateData.VerboseForegroundColor
     $Host.PrivateData.VerboseForegroundColor = 'DarkGray'
 
     GetVersions
@@ -366,6 +366,8 @@ Process
 
     CheckUser
     CheckWebView2
-
+}
+End
+{
     $Host.PrivateData.VerboseForegroundColor = $vcolor
 }
