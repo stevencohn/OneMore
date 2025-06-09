@@ -1504,7 +1504,7 @@ Gele achtergrond</value>
     <value>Afbeeldingsviewer</value>
   </data>
   <data name="ImagesSheet_imageViewerLabel.Text" xml:space="preserve">
-    <value>Externe afbeeldingsviewer (standaard indien leeg is mspaint)</value>
+    <value>Externe afbeeldingsviewer (laat leeg staan ​​om het systeem standaard te gebruiken)</value>
     <comment>label</comment>
   </data>
   <data name="ImagesSheet_introBox.Text" xml:space="preserve">

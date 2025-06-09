@@ -1504,7 +1504,7 @@ Total Row Font
     <value>צופה תמונה</value>
   </data>
   <data name="ImagesSheet_imageViewerLabel.Text" xml:space="preserve">
-    <value>מציג תמונות חיצוני (ברירת מחדל אם ריק הוא mspaint)</value>
+    <value>מציג תמונות חיצוני (השאר ריק לשימוש ברירת מחדל של המערכת)</value>
     <comment>label</comment>
   </data>
   <data name="ImagesSheet_introBox.Text" xml:space="preserve">

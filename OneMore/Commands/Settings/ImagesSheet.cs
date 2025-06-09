@@ -44,7 +44,7 @@ namespace River.OneMoreAddIn.Settings
 			// reader-makes-right...
 			var viewer = settings.Get<string>("imageViewer")
 				?? provider.GetCollection("GeneralSheet").Get<string>("imageViewer")
-				?? provider.GetCollection("images").Get("viewer", "mspaint");
+				?? provider.GetCollection("images").Get("viewer", string.Empty);
 
 			imageViewerBox.Text = viewer;
 
@@ -94,7 +94,7 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
-		private string GetValidPath(string path)
+		private static string GetValidPath(string path)
 		{
 			path = path.Trim();
 			if (path == string.Empty)
@@ -123,11 +123,8 @@ namespace River.OneMoreAddIn.Settings
 
 		private void ToggleOnClick(object sender, EventArgs e)
 		{
-			if (sender == plantAfterBox && plantAfterBox.Checked)
-			{
-				plantRemoveBox.Checked = false;
-			}
-			else if (sender == plantCollapseBox && plantCollapseBox.Checked)
+			if ((sender == plantAfterBox && plantAfterBox.Checked) ||
+				(sender == plantCollapseBox && plantCollapseBox.Checked))
 			{
 				plantRemoveBox.Checked = false;
 			}
@@ -147,10 +144,8 @@ namespace River.OneMoreAddIn.Settings
 			// generalGroup
 
 			var viewer = imageViewerBox.Text.Trim();
-			if (string.IsNullOrEmpty(viewer))
-			{
-				viewer = "mspaint";
-			}
+			// remove the key incase it's an empty XElement, to be replaced with a String
+			settings.Remove("imageViewer");
 			settings.Add("imageViewer", viewer);
 
 			// resizeGroup
