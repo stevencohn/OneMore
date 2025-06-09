@@ -3748,11 +3748,11 @@ Zakładka Pomoc</value>
     <comment>ribbon images</comment>
   </data>
   <data name="ribOpenLocationButton_Label" xml:space="preserve">
-    <value>Otwarty folder w Explorer</value>
+    <value>Otwórz w eksploratorze plików</value>
     <comment>ribbon file</comment>
   </data>
   <data name="ribOpenLocationButton_Screentip" xml:space="preserve">
-    <value>Otwórz lokalny folder w Eksploratorze Windows</value>
+    <value>Otwórz folder lokalny w eksploratorze plików</value>
     <comment>ribbon file</comment>
   </data>
   <data name="ribOpenLogButton_Label" xml:space="preserve">

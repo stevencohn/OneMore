@@ -3747,11 +3747,11 @@ Tabblad Help</value>
     <comment>ribbon images</comment>
   </data>
   <data name="ribOpenLocationButton_Label" xml:space="preserve">
-    <value>Open de map in Explorer</value>
+    <value>Open in File Explorer</value>
     <comment>ribbon file</comment>
   </data>
   <data name="ribOpenLocationButton_Screentip" xml:space="preserve">
-    <value>Open de lokale map in Windows Explorer</value>
+    <value>Open de lokale map in File Explorer</value>
     <comment>ribbon file</comment>
   </data>
   <data name="ribOpenLogButton_Label" xml:space="preserve">

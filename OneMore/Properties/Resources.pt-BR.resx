@@ -3747,11 +3747,11 @@ Guia Ajuda</value>
     <comment>ribbon images</comment>
   </data>
   <data name="ribOpenLocationButton_Label" xml:space="preserve">
-    <value>Pasta aberta no Explorer</value>
+    <value>Abrir no File Explorer</value>
     <comment>ribbon file</comment>
   </data>
   <data name="ribOpenLocationButton_Screentip" xml:space="preserve">
-    <value>Abra a pasta local no Windows Explorer</value>
+    <value>Abra a pasta local no arquivo explorador</value>
     <comment>ribbon file</comment>
   </data>
   <data name="ribOpenLogButton_Label" xml:space="preserve">

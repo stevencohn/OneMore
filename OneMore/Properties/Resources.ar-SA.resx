@@ -3747,11 +3747,11 @@ ISO-code then comma then language name</comment>
     <comment>ribbon images</comment>
   </data>
   <data name="ribOpenLocationButton_Label" xml:space="preserve">
-    <value>فتح المجلد في المستكشف</value>
+    <value>افتح في مستكشف الملفات</value>
     <comment>ribbon file</comment>
   </data>
   <data name="ribOpenLocationButton_Screentip" xml:space="preserve">
-    <value>افتح المجلد المحلي في مستكشف Windows</value>
+    <value>افتح المجلد المحلي في مستكشف الملفات</value>
     <comment>ribbon file</comment>
   </data>
   <data name="ribOpenLogButton_Label" xml:space="preserve">

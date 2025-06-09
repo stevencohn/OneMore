@@ -3749,11 +3749,11 @@ Registerkarte „Hilfe“.</value>
     <comment>ribbon images</comment>
   </data>
   <data name="ribOpenLocationButton_Label" xml:space="preserve">
-    <value>Ordner im Entdecker öffnen</value>
+    <value>Im Datei -Explorer geöffnet</value>
     <comment>ribbon file</comment>
   </data>
   <data name="ribOpenLocationButton_Screentip" xml:space="preserve">
-    <value>Öffnen Sie den lokalen Ordner im Windows Explorer</value>
+    <value>Öffnen Sie den lokalen Ordner im Datei -Explorer</value>
     <comment>ribbon file</comment>
   </data>
   <data name="ribOpenLogButton_Label" xml:space="preserve">

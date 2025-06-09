@@ -3754,11 +3754,11 @@ Help Tab</value>
     <comment>ribbon images</comment>
   </data>
   <data name="ribOpenLocationButton_Label" xml:space="preserve">
-    <value>Open Folder in Explorer</value>
+    <value>Open in File Explorer</value>
     <comment>ribbon file</comment>
   </data>
   <data name="ribOpenLocationButton_Screentip" xml:space="preserve">
-    <value>Open the local folder in Windows Explorer</value>
+    <value>Open the local folder in File Explorer</value>
     <comment>ribbon file</comment>
   </data>
   <data name="ribOpenLogButton_Label" xml:space="preserve">

@@ -3747,11 +3747,11 @@ Pestaña Ayuda</value>
     <comment>ribbon images</comment>
   </data>
   <data name="ribOpenLocationButton_Label" xml:space="preserve">
-    <value>Carpeta abierta en Explorer</value>
+    <value>Abrir en el explorador de archivos</value>
     <comment>ribbon file</comment>
   </data>
   <data name="ribOpenLocationButton_Screentip" xml:space="preserve">
-    <value>Abra la carpeta local en Windows Explorer</value>
+    <value>Abra la carpeta local en el explorador de archivos</value>
     <comment>ribbon file</comment>
   </data>
   <data name="ribOpenLogButton_Label" xml:space="preserve">

@@ -3756,11 +3756,11 @@ ISO-code then comma then language name</comment>
     <comment>ribbon images</comment>
   </data>
   <data name="ribOpenLocationButton_Label" xml:space="preserve">
-    <value>Explorerの開いたフォルダー</value>
+    <value>ファイルエクスプローラーで開きます</value>
     <comment>ribbon file</comment>
   </data>
   <data name="ribOpenLocationButton_Screentip" xml:space="preserve">
-    <value>Windows Explorerのローカルフォルダーを開きます</value>
+    <value>File Explorerでローカルフォルダーを開きます</value>
     <comment>ribbon file</comment>
   </data>
   <data name="ribOpenLogButton_Label" xml:space="preserve">

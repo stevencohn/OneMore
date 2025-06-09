@@ -9411,7 +9411,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open Folder in Explorer.
+        ///   Looks up a localized string similar to Open in File Explorer.
         /// </summary>
         internal static string ribOpenLocationButton_Label {
             get {
@@ -9420,7 +9420,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open the local folder in Windows Explorer.
+        ///   Looks up a localized string similar to Open the local folder in File Explorer.
         /// </summary>
         internal static string ribOpenLocationButton_Screentip {
             get {
