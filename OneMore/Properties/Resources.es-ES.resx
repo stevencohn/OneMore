@@ -1503,7 +1503,7 @@ Fondo amarillo</value>
     <value>Visor de imágenes</value>
   </data>
   <data name="ImagesSheet_imageViewerLabel.Text" xml:space="preserve">
-    <value>Visor de imágenes externo (predeterminado si está vacío es mspaint)</value>
+    <value>Visor de imágenes externas (deje en blanco para usar el sistema predeterminado)</value>
     <comment>label</comment>
   </data>
   <data name="ImagesSheet_introBox.Text" xml:space="preserve">

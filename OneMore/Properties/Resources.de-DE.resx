@@ -1503,7 +1503,7 @@ Gelber Hintergrund</value>
     <value>Bildbetrachter</value>
   </data>
   <data name="ImagesSheet_imageViewerLabel.Text" xml:space="preserve">
-    <value>Externer Bildbetrachter (Standard, wenn leer, ist mspaint)</value>
+    <value>Externer Bildbieter (lassen Sie leer, um System Standard zu verwenden)</value>
     <comment>label</comment>
   </data>
   <data name="ImagesSheet_introBox.Text" xml:space="preserve">

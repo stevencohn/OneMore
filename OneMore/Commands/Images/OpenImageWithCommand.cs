@@ -1,11 +1,12 @@
 ﻿//************************************************************************************************
-// Copyright © 2022 Steven M Cohn.  All rights reserved.
+// Copyright © 2022 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Settings;
 	using System;
+	using System.Diagnostics;
 	using System.Drawing;
 	using System.Drawing.Imaging;
 	using System.IO;
@@ -68,10 +69,25 @@ namespace River.OneMoreAddIn.Commands
 				image.Save(path, format);
 
 				var editor = GetEditor();
-				if (editor != null)
+				if (editor is not null)
 				{
-					logger.WriteLine($"opening image viewer {editor} {path}");
-					System.Diagnostics.Process.Start(editor, path);
+					var info = new ProcessStartInfo
+					{
+						FileName = editor,
+						Arguments = path
+					};
+
+					if (editor == string.Empty)
+					{
+						info.FileName = "cmd.exe";
+						info.Arguments = $"/c start {path}";
+						info.UseShellExecute = true; // required for cmd.exe
+						info.CreateNoWindow = true;
+						info.WindowStyle = ProcessWindowStyle.Hidden;
+					}
+
+					logger.WriteLine($"opening image viewer {info.FileName} {info.Arguments}");
+					Process.Start(info);
 				}
 				else
 				{
@@ -87,7 +103,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private ImageFormat DetectFormat(Image image)
+		private static ImageFormat DetectFormat(Image image)
 		{
 			var stream = new MemoryStream();
 			image.Save(stream, image.RawFormat);
@@ -112,9 +128,9 @@ namespace River.OneMoreAddIn.Commands
 
 			var editor =
 				settings.GetCollection(nameof(ImagesSheet)).Get<string>("imageViewer")
-				?? settings.GetCollection("images").Get("viewer", "mspaint");
+				?? settings.GetCollection("images").Get("viewer", string.Empty);
 
-			if (editor != null)
+			if (editor is not null)
 			{
 				editor = Environment.ExpandEnvironmentVariables(editor);
 			}

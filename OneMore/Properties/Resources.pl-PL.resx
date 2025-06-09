@@ -1504,7 +1504,7 @@ Czerwony pierwszy plan
     <value>Przeglądarka obrazów</value>
   </data>
   <data name="ImagesSheet_imageViewerLabel.Text" xml:space="preserve">
-    <value>Zewnętrzna przeglądarka obrazów (domyślna, jeśli pusta to mspaint)</value>
+    <value>Zewnętrzny przeglądarka obrazu (pozostaw puste, aby użyć systemu domyślnego)</value>
     <comment>label</comment>
   </data>
   <data name="ImagesSheet_introBox.Text" xml:space="preserve">

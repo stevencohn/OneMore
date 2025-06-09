@@ -3903,7 +3903,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to External image viewer (default if empty is mspaint).
+        ///   Looks up a localized string similar to External image viewer (leave blank to use system default).
         /// </summary>
         internal static string ImagesSheet_imageViewerLabel_Text {
             get {

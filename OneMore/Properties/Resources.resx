@@ -1504,7 +1504,7 @@ Yellow Background</value>
     <value>Image Viewer</value>
   </data>
   <data name="ImagesSheet_imageViewerLabel.Text" xml:space="preserve">
-    <value>External image viewer (default if empty is mspaint)</value>
+    <value>External image viewer (leave blank to use system default)</value>
     <comment>label</comment>
   </data>
   <data name="ImagesSheet_introBox.Text" xml:space="preserve">

@@ -1506,7 +1506,7 @@ OneNoteファイル (*.one)</value>
     <value>画像ビューア</value>
   </data>
   <data name="ImagesSheet_imageViewerLabel.Text" xml:space="preserve">
-    <value>外部画像ビューア（空の場合はデフォルトでmspaint）</value>
+    <value>外部画像ビューアー（システムのデフォルトを使用するために空白のまま）</value>
     <comment>label</comment>
   </data>
   <data name="ImagesSheet_introBox.Text" xml:space="preserve">

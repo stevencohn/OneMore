@@ -1503,7 +1503,7 @@ Fond jaune</value>
     <value>Visionneuse d'images</value>
   </data>
   <data name="ImagesSheet_imageViewerLabel.Text" xml:space="preserve">
-    <value>Visionneuse d'images externe (par défaut si vide est mspaint)</value>
+    <value>Vue d'image externe (laissez en blanc pour utiliser le système par défaut)</value>
     <comment>label</comment>
   </data>
   <data name="ImagesSheet_introBox.Text" xml:space="preserve">
