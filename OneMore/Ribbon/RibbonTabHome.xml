@@ -418,6 +418,12 @@
           getLabel="GetRibbonLabel"
           getScreentip="GetRibbonScreentip"
           onAction="CrawlWebPageCmd"/>
+        <button
+          id="ribOpenLocationButton"
+          imageMso="Folder"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="OpenLocationCmd"/>
         <menuSeparator id="sepFile" />
         <button
           id="ribAnalyzeButton"

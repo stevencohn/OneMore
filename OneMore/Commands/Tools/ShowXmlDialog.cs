@@ -108,9 +108,12 @@ namespace River.OneMoreAddIn.Commands
 			// populate page info...
 			await using var one = new OneNote();
 			var info = await one.GetPageInfo(sized: true);
-			pageName.Text = $"{info.Name} ({info.Size.ToBytes()})";
-			pagePath.Text = info.Path;
-			pageLink.Text = info.Link;
+			if (info is not null) // empty section group?
+			{
+				pageName.Text = $"{info.Name} ({info.Size.ToBytes()})";
+				pagePath.Text = info.Path;
+				pageLink.Text = info.Link;
+			}
 
 			var settings = new SettingsProvider().GetCollection("XmlDialog");
 			saveWindowBox.Checked = settings.Count > 0;
@@ -340,7 +343,8 @@ namespace River.OneMoreAddIn.Commands
 			var page = await one.GetPage(scope);
 			if (page == null)
 			{
-				// should never happen!
+				// empty section group?
+				pageBox.Text = "No page";
 				return;
 			}
 
@@ -769,33 +773,42 @@ namespace River.OneMoreAddIn.Commands
 			if (box.TextLength == 0)
 			{
 				await using var one = new OneNote();
-				var root = await action(one);
 
-				if (root != null)
+				XElement root = null;
+				try
 				{
-					if (pidBox.Checked)
+					root = await action(one);
+					if (root is not null)
 					{
-						Sanitize(root);
+						if (pidBox.Checked)
+						{
+							Sanitize(root);
+						}
+
+						logger.WriteLine($"box1={hideEditedByBox2.Checked} box2={multilineBox2.Checked}");
+
+						var xml = Format(
+							root.ToString(SaveOptions.None),
+							hideEditedByBox2.Checked, multilineBox2.Checked, linefeedBox.Checked);
+
+						box.Clear();
+						box.WordWrap = wrapBox.Checked;
+						box.SelectionColor = manager.GetColor("XmlText");
+						box.Text = $"<!-- {comment} -->\n{xml}";
+						box.Select(0, comment.Length + 9);
+						box.SelectionColor = manager.GetColor("XmlComment");
+
+						Colorize(box, !hideEditedByBox2.Checked);
+
+						logger.WriteLine($"XmlDialog loaded hierarchy, {comment}, {xml.Length} chars");
 					}
-
-					logger.WriteLine($"box1={hideEditedByBox2.Checked} box2={multilineBox2.Checked}");
-
-					var xml = Format(
-						root.ToString(SaveOptions.None),
-						hideEditedByBox2.Checked, multilineBox2.Checked, linefeedBox.Checked);
-
-					box.Clear();
-					box.WordWrap = wrapBox.Checked;
-					box.SelectionColor = manager.GetColor("XmlText");
-					box.Text = $"<!-- {comment} -->\n{xml}";
-					box.Select(0, comment.Length + 9);
-					box.SelectionColor = manager.GetColor("XmlComment");
-
-					Colorize(box, !hideEditedByBox2.Checked);
-
-					logger.WriteLine($"XmlDialog loaded hierarchy, {comment}, {xml.Length} chars");
 				}
-				else
+				catch (Exception exc)
+				{
+					logger.WriteLine("error in ShowHierarchy, possibly no section", exc);
+				}
+
+				if (root is null)
 				{
 					box.Text = Resx.ShowXmlDialog_noHierarchy;
 				}

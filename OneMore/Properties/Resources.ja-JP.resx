@@ -2005,8 +2005,17 @@ OneNoteファイル (*.one)</value>
     <value>http://schemas.microsoft.com/office/onenote/2013/onenote</value>
     <comment>SKIP</comment>
   </data>
+  <data name="OpenFolderDialog_Text" xml:space="preserve">
+    <value>ノートブックとしてフォルダーを開きます</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="OpenImageWithCommand_selectOne" xml:space="preserve">
     <value>1つの画像を選択して開く</value>
+  </data>
+  <data name="OpenLocationCommand_NoPath" xml:space="preserve">
+    <value>ローカルに保存されているセクションまたはセクショングループを選択します。
+OneDriveに保存されているノートブックのフォルダーを開くことはできません。</value>
+    <comment>error message</comment>
   </data>
   <data name="OutlineDialog.Text" xml:space="preserve">
     <value>アウトラインフォーマット</value>
@@ -3730,6 +3739,14 @@ ISO-code then comma then language name</comment>
     <value>検索</value>
     <comment>ribbon</comment>
   </data>
+  <data name="ribOpenFolderButton_Label" xml:space="preserve">
+    <value>ノートブックとしてフォルダーを開きます</value>
+    <comment>ribbon file</comment>
+  </data>
+  <data name="ribOpenFolderButton_Screentip" xml:space="preserve">
+    <value>新しいノートブックとしてローカルフォルダー階層を開きます</value>
+    <comment>ribbon file</comment>
+  </data>
   <data name="ribOpenImageWithButton_Label" xml:space="preserve">
     <value>画像を開く</value>
     <comment>ribbon images</comment>
@@ -3737,6 +3754,14 @@ ISO-code then comma then language name</comment>
   <data name="ribOpenImageWithButton_Screentip" xml:space="preserve">
     <value>選択した画像を外部エディタで開く</value>
     <comment>ribbon images</comment>
+  </data>
+  <data name="ribOpenLocationButton_Label" xml:space="preserve">
+    <value>Explorerの開いたフォルダー</value>
+    <comment>ribbon file</comment>
+  </data>
+  <data name="ribOpenLocationButton_Screentip" xml:space="preserve">
+    <value>Windows Explorerのローカルフォルダーを開きます</value>
+    <comment>ribbon file</comment>
   </data>
   <data name="ribOpenLogButton_Label" xml:space="preserve">
     <value>ログファイルを開く</value>
@@ -4833,6 +4858,9 @@ ISO-code then comma then language name</comment>
   <data name="StartupFailureMessage" xml:space="preserve">
     <value>OneMoreはOneNoteに接続できませんでした。ログファイルで例外の詳細を確認してください</value>
     <comment>message box</comment>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
   </data>
   <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
     <value>後ろスペース:</value>

@@ -2003,8 +2003,17 @@ Wilt u de bestaande pagina vernieuwen?</value>
     <value>http://schemas.microsoft.com/office/onenote/2013/onenote</value>
     <comment>SKIP</comment>
   </data>
+  <data name="OpenFolderDialog_Text" xml:space="preserve">
+    <value>Open de map als notitieboekje</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="OpenImageWithCommand_selectOne" xml:space="preserve">
     <value>Selecteer een afbeelding om te openen</value>
+  </data>
+  <data name="OpenLocationCommand_NoPath" xml:space="preserve">
+    <value>Selecteer een sectie of sectiegroep die lokaal is opgeslagen.
+U kunt de map niet openen van een notebook dat is opgeslagen op OneDrive.</value>
+    <comment>error message</comment>
   </data>
   <data name="OutlineDialog.Text" xml:space="preserve">
     <value>Overzichtsopmaak</value>
@@ -3721,6 +3730,14 @@ Tabblad Help</value>
     <value>Zoekopdracht</value>
     <comment>ribbon</comment>
   </data>
+  <data name="ribOpenFolderButton_Label" xml:space="preserve">
+    <value>Open de map als notitieboekje</value>
+    <comment>ribbon file</comment>
+  </data>
+  <data name="ribOpenFolderButton_Screentip" xml:space="preserve">
+    <value>Open een lokale maphiërarchie als een nieuw notitieboekje</value>
+    <comment>ribbon file</comment>
+  </data>
   <data name="ribOpenImageWithButton_Label" xml:space="preserve">
     <value>Afbeelding openen met</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -3728,6 +3745,14 @@ Tabblad Help</value>
   <data name="ribOpenImageWithButton_Screentip" xml:space="preserve">
     <value>Open de geselecteerde afbeelding met een externe editor</value>
     <comment>ribbon images</comment>
+  </data>
+  <data name="ribOpenLocationButton_Label" xml:space="preserve">
+    <value>Open de map in Explorer</value>
+    <comment>ribbon file</comment>
+  </data>
+  <data name="ribOpenLocationButton_Screentip" xml:space="preserve">
+    <value>Open de lokale map in Windows Explorer</value>
+    <comment>ribbon file</comment>
   </data>
   <data name="ribOpenLogButton_Label" xml:space="preserve">
     <value>Logbestand openen</value>
@@ -4829,6 +4854,9 @@ Notitieboekjes</value>
   <data name="StartupFailureMessage" xml:space="preserve">
     <value>OneMore kon geen verbinding maken met OneNote, zie logbestand voor details over uitzonderingen</value>
     <comment>message box</comment>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
   </data>
   <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
     <value>Ruimte na:</value>

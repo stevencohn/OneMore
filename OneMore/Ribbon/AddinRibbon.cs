@@ -723,6 +723,7 @@ namespace River.OneMoreAddIn
 
 			if (key == "pcm" || key == "pcs" || // pcm/pcs - fabricated page context menu items
 				key == "ctx" || key == "cts" || // ctx/cts - de-dupping from within ribbon.xml
+				key == "ctg" ||                 // ctg - context menu section group
 				key == "bar" ||                 // bar - custom ribbon bar from settings
 				key == "ct2")                   // ct2 - used?
 			{

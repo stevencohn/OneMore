@@ -2002,8 +2002,17 @@ Título personalizado 3</value>
     <value>http://schemas.microsoft.com/office/onenote/2013/onenote</value>
     <comment>DO NOT TRANSLATE</comment>
   </data>
+  <data name="OpenFolderDialog_Text" xml:space="preserve">
+    <value>Abra la carpeta como portátil</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="OpenImageWithCommand_selectOne" xml:space="preserve">
     <value>Seleccione una imagen para abrir</value>
+  </data>
+  <data name="OpenLocationCommand_NoPath" xml:space="preserve">
+    <value>Seleccione una sección o grupo de sección que se almacene localmente.
+No puede abrir la carpeta de un cuaderno almacenado en OneDrive.</value>
+    <comment>error message</comment>
   </data>
   <data name="OutlineDialog.Text" xml:space="preserve">
     <value>Formato de esquema</value>
@@ -3721,6 +3730,14 @@ Pestaña Ayuda</value>
     <value>Buscar</value>
     <comment>ribbon</comment>
   </data>
+  <data name="ribOpenFolderButton_Label" xml:space="preserve">
+    <value>Abra la carpeta como portátil</value>
+    <comment>ribbon file</comment>
+  </data>
+  <data name="ribOpenFolderButton_Screentip" xml:space="preserve">
+    <value>Abra una jerarquía de carpetas local como un nuevo cuaderno</value>
+    <comment>ribbon file</comment>
+  </data>
   <data name="ribOpenImageWithButton_Label" xml:space="preserve">
     <value>Abrir imagen con</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -3728,6 +3745,14 @@ Pestaña Ayuda</value>
   <data name="ribOpenImageWithButton_Screentip" xml:space="preserve">
     <value>Abre la imagen seleccionada con un editor externo</value>
     <comment>ribbon images</comment>
+  </data>
+  <data name="ribOpenLocationButton_Label" xml:space="preserve">
+    <value>Carpeta abierta en Explorer</value>
+    <comment>ribbon file</comment>
+  </data>
+  <data name="ribOpenLocationButton_Screentip" xml:space="preserve">
+    <value>Abra la carpeta local en Windows Explorer</value>
+    <comment>ribbon file</comment>
   </data>
   <data name="ribOpenLogButton_Label" xml:space="preserve">
     <value>Abrir archivo de registro</value>
@@ -4829,6 +4854,9 @@ Cuadernos</value>
   <data name="StartupFailureMessage" xml:space="preserve">
     <value>OneMore no pudo conectarse a OneNote, consulte el archivo de registro para obtener detalles de la excepción</value>
     <comment>message box</comment>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
   </data>
   <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
     <value>Espacio después:</value>

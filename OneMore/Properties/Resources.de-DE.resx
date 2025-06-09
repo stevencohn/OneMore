@@ -2002,8 +2002,17 @@ Möchten Sie die bestehende Seite aktualisieren?</value>
     <value>http://schemas.microsoft.com/office/onenote/2013/onenote</value>
     <comment>DO NOT TRANSLATE</comment>
   </data>
+  <data name="OpenFolderDialog_Text" xml:space="preserve">
+    <value>Öffnen Sie den Ordner als Notizbuch</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="OpenImageWithCommand_selectOne" xml:space="preserve">
     <value>Wähle ein Bild zum Öffnen aus</value>
+  </data>
+  <data name="OpenLocationCommand_NoPath" xml:space="preserve">
+    <value>Wählen Sie einen Abschnitt oder eine Abschnittsgruppe aus, die lokal gespeichert wird.
+Sie können den Ordner eines auf OneDrive gespeicherten Notizbuchs nicht öffnen.</value>
+    <comment>error message</comment>
   </data>
   <data name="OutlineDialog.Text" xml:space="preserve">
     <value>Gliederungsformatierung</value>
@@ -3723,6 +3732,14 @@ Registerkarte „Hilfe“.</value>
     <value>Suchen</value>
     <comment>ribbon</comment>
   </data>
+  <data name="ribOpenFolderButton_Label" xml:space="preserve">
+    <value>Öffnen Sie den Ordner als Notizbuch</value>
+    <comment>ribbon file</comment>
+  </data>
+  <data name="ribOpenFolderButton_Screentip" xml:space="preserve">
+    <value>Öffnen Sie eine lokale Ordnerhierarchie als neues Notizbuch</value>
+    <comment>ribbon file</comment>
+  </data>
   <data name="ribOpenImageWithButton_Label" xml:space="preserve">
     <value>Bild öffnen mit</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -3730,6 +3747,14 @@ Registerkarte „Hilfe“.</value>
   <data name="ribOpenImageWithButton_Screentip" xml:space="preserve">
     <value>Öffnet das ausgewählte Bild mit einem externen Editor</value>
     <comment>ribbon images</comment>
+  </data>
+  <data name="ribOpenLocationButton_Label" xml:space="preserve">
+    <value>Ordner im Entdecker öffnen</value>
+    <comment>ribbon file</comment>
+  </data>
+  <data name="ribOpenLocationButton_Screentip" xml:space="preserve">
+    <value>Öffnen Sie den lokalen Ordner im Windows Explorer</value>
+    <comment>ribbon file</comment>
   </data>
   <data name="ribOpenLogButton_Label" xml:space="preserve">
     <value>Protokolldatei öffnen</value>
@@ -4824,6 +4849,9 @@ Notizbücher</value>
   <data name="StartupFailureMessage" xml:space="preserve">
     <value>OneMore konnte keine Verbindung zu OneNote herstellen. Ausnahmedetails finden Sie in der Protokolldatei</value>
     <comment>message box</comment>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
   </data>
   <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
     <value>Leerzeichen nach:</value>

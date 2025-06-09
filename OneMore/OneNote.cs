@@ -1330,6 +1330,23 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="path"></param>
+		/// <returns></returns>
+		public async Task<string> OpenHierarchy(string path)
+		{
+			string sectionID = null;
+			await InvokeWithRetry(() =>
+			{
+				onenote.OpenHierarchy(path, null, out sectionID, CreateFileType.cftNotebook);
+			});
+
+			return sectionID;
+		}
+
+
+		/// <summary>
 		/// Search pages under the specified hierarchy node using the given query.
 		/// </summary>
 		/// <param name="nodeId">
