@@ -637,9 +637,19 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<NumberSectionsCommand>();
 
 
+		[Command("ribOpenFolderButton_Label", Keys.None, "ribFileMenu")]
+		public async Task OpenFolderCmd(IRibbonControl control)
+			=> await factory.Run<OpenFolderCommand>();
+
+
 		[Command("ribOpenImageWithButton_Label", Keys.None, "ribImagesMenu")]
 		public async Task OpenImageWithCmd(IRibbonControl control)
 			=> await factory.Run<OpenImageWithCommand>();
+
+
+		[Command("ribOpenLocationButton_Label", Keys.None, "ribFileMenu")]
+		public async Task OpenLocationCmd(IRibbonControl control)
+			=> await factory.Run<OpenLocationCommand>();
 
 
 		[Command("ribOpenLogButton_Label", Keys.None)]

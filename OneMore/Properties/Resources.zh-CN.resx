@@ -2001,8 +2001,17 @@ OneNote 文件 (*.one)</value>
     <value>http://schemas.microsoft.com/office/onenote/2013/onenote</value>
     <comment>DO NOT TRANSLATE</comment>
   </data>
+  <data name="OpenFolderDialog_Text" xml:space="preserve">
+    <value>打开文件夹作为笔记本</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="OpenImageWithCommand_selectOne" xml:space="preserve">
     <value>选择一张图片打开</value>
+  </data>
+  <data name="OpenLocationCommand_NoPath" xml:space="preserve">
+    <value>选择本地存储的部分或部分组。
+您无法打开存储在OneDrive上的笔记本的文件夹。</value>
+    <comment>error message</comment>
   </data>
   <data name="OutlineDialog.Text" xml:space="preserve">
     <value>大纲格式</value>
@@ -3722,6 +3731,14 @@ ISO-code then comma then language name</comment>
     <value>搜索</value>
     <comment>ribbon</comment>
   </data>
+  <data name="ribOpenFolderButton_Label" xml:space="preserve">
+    <value>打开文件夹作为笔记本</value>
+    <comment>ribbon file</comment>
+  </data>
+  <data name="ribOpenFolderButton_Screentip" xml:space="preserve">
+    <value>打开本地文件夹层次结构作为新笔记本</value>
+    <comment>ribbon file</comment>
+  </data>
   <data name="ribOpenImageWithButton_Label" xml:space="preserve">
     <value>打开图像</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -3729,6 +3746,14 @@ ISO-code then comma then language name</comment>
   <data name="ribOpenImageWithButton_Screentip" xml:space="preserve">
     <value>使用外部编辑器打开所选图像</value>
     <comment>ribbon images</comment>
+  </data>
+  <data name="ribOpenLocationButton_Label" xml:space="preserve">
+    <value>Explorer中的打开文件夹</value>
+    <comment>ribbon file</comment>
+  </data>
+  <data name="ribOpenLocationButton_Screentip" xml:space="preserve">
+    <value>打开Windows Explorer中的本地文件夹</value>
+    <comment>ribbon file</comment>
   </data>
   <data name="ribOpenLogButton_Label" xml:space="preserve">
     <value>打开日志文件</value>
@@ -4822,6 +4847,9 @@ ISO-code then comma then language name</comment>
   <data name="StartupFailureMessage" xml:space="preserve">
     <value>OneMore无法连接到OneNote，请参阅日志文件以获取异常详细信息</value>
     <comment>message box</comment>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
   </data>
   <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
     <value>段后空间：</value>

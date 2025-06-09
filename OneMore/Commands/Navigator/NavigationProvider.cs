@@ -88,6 +88,7 @@ namespace River.OneMoreAddIn.Commands
 					NotifyFilter = NotifyFilters.LastWrite
 				};
 				watcher.Changed += NavigationHandler;
+				watcher.Error += Watcher_Error;
 				watcher.EnableRaisingEvents = true;
 				navigated += value;
 			}
@@ -97,9 +98,17 @@ namespace River.OneMoreAddIn.Commands
 				navigated -= value;
 				watcher.EnableRaisingEvents = false;
 				watcher.Changed -= NavigationHandler;
+				watcher.Error -= Watcher_Error;
 				watcher.Dispose();
 				watcher = null;
 			}
+		}
+
+		private void Watcher_Error(object sender, ErrorEventArgs e)
+		{
+			watcher.EnableRaisingEvents = false;
+			logger.WriteLine("error in FileSystemWatcher, resetting EnableRaisingEvents", e.GetException());
+			watcher.EnableRaisingEvents = true;
 		}
 
 

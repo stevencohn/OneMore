@@ -5433,11 +5433,30 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Open Folder as Notebook.
+        /// </summary>
+        internal static string OpenFolderDialog_Text {
+            get {
+                return ResourceManager.GetString("OpenFolderDialog_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select one image to open.
         /// </summary>
         internal static string OpenImageWithCommand_selectOne {
             get {
                 return ResourceManager.GetString("OpenImageWithCommand_selectOne", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a section or section group that is stored locally.
+        ///You cannot open the folder of a notebook stored on OneDrive..
+        /// </summary>
+        internal static string OpenLocationCommand_NoPath {
+            get {
+                return ResourceManager.GetString("OpenLocationCommand_NoPath", resourceCulture);
             }
         }
         
@@ -9356,6 +9375,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Open Folder as Notebook.
+        /// </summary>
+        internal static string ribOpenFolderButton_Label {
+            get {
+                return ResourceManager.GetString("ribOpenFolderButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open a local folder hierarchy as a new notebook.
+        /// </summary>
+        internal static string ribOpenFolderButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribOpenFolderButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Open Image With.
         /// </summary>
         internal static string ribOpenImageWithButton_Label {
@@ -9370,6 +9407,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribOpenImageWithButton_Screentip {
             get {
                 return ResourceManager.GetString("ribOpenImageWithButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open Folder in Explorer.
+        /// </summary>
+        internal static string ribOpenLocationButton_Label {
+            get {
+                return ResourceManager.GetString("ribOpenLocationButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open the local folder in Windows Explorer.
+        /// </summary>
+        internal static string ribOpenLocationButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribOpenLocationButton_Screentip", resourceCulture);
             }
         }
         
@@ -11876,6 +11931,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string StartupFailureMessage {
             get {
                 return ResourceManager.GetString("StartupFailureMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string String1 {
+            get {
+                return ResourceManager.GetString("String1", resourceCulture);
             }
         }
         

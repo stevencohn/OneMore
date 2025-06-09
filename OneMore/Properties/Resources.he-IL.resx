@@ -2003,8 +2003,17 @@ Total Row Font
     <value>http://schemas.microsoft.com/office/onenote/2013/onenote</value>
     <comment>SKIP</comment>
   </data>
+  <data name="OpenFolderDialog_Text" xml:space="preserve">
+    <value>פתח את התיקיה כמחברת</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="OpenImageWithCommand_selectOne" xml:space="preserve">
     <value>בחר תמונה אחת לפתיחה</value>
+  </data>
+  <data name="OpenLocationCommand_NoPath" xml:space="preserve">
+    <value>בחר קטע או קבוצת קטעים המאוחסנים באופן מקומי.
+אינך יכול לפתוח את התיקיה של מחברת המאוחסנת ב- OneDrive.</value>
+    <comment>error message</comment>
   </data>
   <data name="OutlineDialog.Text" xml:space="preserve">
     <value>עיצוב מתאר</value>
@@ -3728,6 +3737,14 @@ ISO-code then comma then language name</comment>
     <value>לְחַפֵּשׂ</value>
     <comment>ribbon</comment>
   </data>
+  <data name="ribOpenFolderButton_Label" xml:space="preserve">
+    <value>פתח את התיקיה כמחברת</value>
+    <comment>ribbon file</comment>
+  </data>
+  <data name="ribOpenFolderButton_Screentip" xml:space="preserve">
+    <value>פתח היררכיה של תיקיות מקומיות כמחברת חדשה</value>
+    <comment>ribbon file</comment>
+  </data>
   <data name="ribOpenImageWithButton_Label" xml:space="preserve">
     <value>פתח תמונה עם</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -3735,6 +3752,14 @@ ISO-code then comma then language name</comment>
   <data name="ribOpenImageWithButton_Screentip" xml:space="preserve">
     <value>פתח את התמונה שנבחרה עם עורך חיצוני</value>
     <comment>ribbon images</comment>
+  </data>
+  <data name="ribOpenLocationButton_Label" xml:space="preserve">
+    <value>פתח את התיקיה ב- Explorer</value>
+    <comment>ribbon file</comment>
+  </data>
+  <data name="ribOpenLocationButton_Screentip" xml:space="preserve">
+    <value>פתח את התיקיה המקומית ב- Windows Explorer</value>
+    <comment>ribbon file</comment>
   </data>
   <data name="ribOpenLogButton_Label" xml:space="preserve">
     <value>פתח את קובץ היומן</value>
@@ -4828,6 +4853,9 @@ ISO-code then comma then language name</comment>
   <data name="StartupFailureMessage" xml:space="preserve">
     <value>OneMore לא הצליח להתחבר ל- OneNote, ראה קובץ יומן לקבלת פרטי חריג</value>
     <comment>message box</comment>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
   </data>
   <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
     <value>מרחב אחרי:</value>

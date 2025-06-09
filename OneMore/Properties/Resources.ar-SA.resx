@@ -2002,8 +2002,17 @@
     <value>http://schemas.microsoft.com/office/onenote/2013/onenote</value>
     <comment>DO NOT TRANSLATE</comment>
   </data>
+  <data name="OpenFolderDialog_Text" xml:space="preserve">
+    <value>فتح المجلد كدفتر ملاحظات</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="OpenImageWithCommand_selectOne" xml:space="preserve">
     <value>حدد صورة واحدة لفتحها</value>
+  </data>
+  <data name="OpenLocationCommand_NoPath" xml:space="preserve">
+    <value>حدد قسمًا أو مجموعة مقطع يتم تخزينه محليًا.
+لا يمكنك فتح مجلد دفتر ملاحظات مخزّن على OneDrive.</value>
+    <comment>error message</comment>
   </data>
   <data name="OutlineDialog.Text" xml:space="preserve">
     <value>تنسيق المخطط التفصيلي</value>
@@ -3721,6 +3730,14 @@ ISO-code then comma then language name</comment>
     <value>يبحث</value>
     <comment>ribbon</comment>
   </data>
+  <data name="ribOpenFolderButton_Label" xml:space="preserve">
+    <value>فتح المجلد كدفتر ملاحظات</value>
+    <comment>ribbon file</comment>
+  </data>
+  <data name="ribOpenFolderButton_Screentip" xml:space="preserve">
+    <value>افتح التسلسل الهرمي للمجلد المحلي كدفتر جديد</value>
+    <comment>ribbon file</comment>
+  </data>
   <data name="ribOpenImageWithButton_Label" xml:space="preserve">
     <value>فتح الصورة باستخدام</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -3728,6 +3745,14 @@ ISO-code then comma then language name</comment>
   <data name="ribOpenImageWithButton_Screentip" xml:space="preserve">
     <value>افتح الصورة المحددة باستخدام محرر خارجي</value>
     <comment>ribbon images</comment>
+  </data>
+  <data name="ribOpenLocationButton_Label" xml:space="preserve">
+    <value>فتح المجلد في المستكشف</value>
+    <comment>ribbon file</comment>
+  </data>
+  <data name="ribOpenLocationButton_Screentip" xml:space="preserve">
+    <value>افتح المجلد المحلي في مستكشف Windows</value>
+    <comment>ribbon file</comment>
   </data>
   <data name="ribOpenLogButton_Label" xml:space="preserve">
     <value>افتح ملف السجل</value>
@@ -4829,6 +4854,9 @@ ISO-code then comma then language name</comment>
   <data name="StartupFailureMessage" xml:space="preserve">
     <value>فشل OneMore في الاتصال بـ OneNote ، راجع ملف السجل للحصول على تفاصيل الاستثناء</value>
     <comment>message box</comment>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
   </data>
   <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
     <value>مسافة بعد:</value>

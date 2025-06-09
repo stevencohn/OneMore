@@ -2003,8 +2003,17 @@ Czy chcesz odświeżyć istniejącą stronę?</value>
     <value>http://schemas.microsoft.com/office/onenote/2013/onenote</value>
     <comment>SKIP</comment>
   </data>
+  <data name="OpenFolderDialog_Text" xml:space="preserve">
+    <value>Otwórz folder jako notatnik</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="OpenImageWithCommand_selectOne" xml:space="preserve">
     <value>Wybierz jeden obraz do otwarcia</value>
+  </data>
+  <data name="OpenLocationCommand_NoPath" xml:space="preserve">
+    <value>Wybierz sekcję lub grupę sekcji, która jest przechowywana lokalnie.
+Nie możesz otworzyć folderu notebooka przechowywanego na OneDrive.</value>
+    <comment>error message</comment>
   </data>
   <data name="OutlineDialog.Text" xml:space="preserve">
     <value>Formatowanie konturu.</value>
@@ -3722,6 +3731,14 @@ Zakładka Pomoc</value>
     <value>Szukaj</value>
     <comment>ribbon</comment>
   </data>
+  <data name="ribOpenFolderButton_Label" xml:space="preserve">
+    <value>Otwórz folder jako notatnik</value>
+    <comment>ribbon file</comment>
+  </data>
+  <data name="ribOpenFolderButton_Screentip" xml:space="preserve">
+    <value>Otwórz lokalną hierarchię folderów jako nowy notatnik</value>
+    <comment>ribbon file</comment>
+  </data>
   <data name="ribOpenImageWithButton_Label" xml:space="preserve">
     <value>Otwórz obraz za pomocą</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -3729,6 +3746,14 @@ Zakładka Pomoc</value>
   <data name="ribOpenImageWithButton_Screentip" xml:space="preserve">
     <value>Otwórz wybrany obraz za pomocą zewnętrznego edytora</value>
     <comment>ribbon images</comment>
+  </data>
+  <data name="ribOpenLocationButton_Label" xml:space="preserve">
+    <value>Otwarty folder w Explorer</value>
+    <comment>ribbon file</comment>
+  </data>
+  <data name="ribOpenLocationButton_Screentip" xml:space="preserve">
+    <value>Otwórz lokalny folder w Eksploratorze Windows</value>
+    <comment>ribbon file</comment>
   </data>
   <data name="ribOpenLogButton_Label" xml:space="preserve">
     <value>Otwórz plik dziennika</value>
@@ -4830,6 +4855,9 @@ Notatniki</value>
   <data name="StartupFailureMessage" xml:space="preserve">
     <value>Onemore nie udało się połączyć z OneNote, zobacz plik dziennika dla szczegółów wyjątków</value>
     <comment>message box</comment>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
   </data>
   <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
     <value>Przestrzeń po:</value>

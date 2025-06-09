@@ -251,6 +251,13 @@
         onAction="SectionColorCmd"
         insertBeforeMso="SectionRenameOneNote"/>
       <button
+        id="ctxOpenLocationButton"
+        imageMso="Folder"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="OpenLocationCmd"
+        insertBeforeMso="SectionRenameOneNote"/>
+      <button
         id="ctxRemoveDateStampButton"
         imageMso="RemoveCitation"
         getLabel="GetRibbonLabel"
@@ -319,14 +326,21 @@
     </contextMenu>
     <contextMenu idMso="ContextMenuSectionGroup">
       <button
-        id="ctxCopyFolderButton"
+        id="ctgCopyFolderButton"
         imageMso="CopyFolder"
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
         onAction="CopyFolderCmd"
         insertBeforeMso="FolderRename"/>
       <button
-        id="ctxSortSectionsInGroupButton"
+        id="ctgOpenLocationButton"
+        imageMso="Folder"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="OpenLocationCmd"
+        insertBeforeMso="FolderRename"/>
+      <button
+        id="ctgSortSectionsInGroupButton"
         imageMso="SortUp"
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
