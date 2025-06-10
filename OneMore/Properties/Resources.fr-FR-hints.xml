@@ -180,6 +180,10 @@ Cette page</preferred>
     <source>This should be used after adding or removing one or more notebooks. It is recommended to schedule rebuilds after-hours, such as midnight.</source>
     <preferred>Ceci doit être utilisé après avoir ajouté ou supprimé un ou plusieurs notebooks. Il est recommandé de planifier des reconstructions après les heures d'ouverture, comme minuit.</preferred>
   </data>
+  <data name="ImagesSheet_imageViewerLabel.Text">
+    <source>External image viewer (leave blank to use system default)</source>
+    <preferred>Visionneuse d'images externe (laisser vide pour utiliser la valeur par défaut du système)</preferred>
+  </data>
   <data name="ImportDialog_fileLabel.Text">
     <source>File:</source>
     <preferred>Fichier :</preferred>
