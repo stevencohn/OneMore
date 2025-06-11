@@ -2813,6 +2813,10 @@ Selecteer NO om één lege regel tussen paragrafen te behouden</value>
     <value>Archiefgedeelte</value>
     <comment>ribbon menu</comment>
   </data>
+  <data name="ribArchiveSectionGroupButton_Label" xml:space="preserve">
+    <value>Archiefmap</value>
+    <comment>sectiongroup context menu</comment>
+  </data>
   <data name="ribArrangeContainersButton_Label" xml:space="preserve">
     <value>Containers schikken</value>
     <comment>ribbon button</comment>

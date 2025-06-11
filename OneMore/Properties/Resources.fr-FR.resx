@@ -1503,7 +1503,7 @@ Fond jaune</value>
     <value>Visionneuse d'images</value>
   </data>
   <data name="ImagesSheet_imageViewerLabel.Text" xml:space="preserve">
-    <value>Vue d'image externe (laissez en blanc pour utiliser le système par défaut)</value>
+    <value>Visionneuse d'images externe (laisser vide pour utiliser la valeur par défaut du système)</value>
     <comment>label</comment>
   </data>
   <data name="ImagesSheet_introBox.Text" xml:space="preserve">
@@ -2811,6 +2811,10 @@ Sélectionnez Non pour conserver une ligne vide entre les paragraphes</value>
   <data name="ribArchiveSectionButton_Label" xml:space="preserve">
     <value>Section des archives</value>
     <comment>ribbon menu</comment>
+  </data>
+  <data name="ribArchiveSectionGroupButton_Label" xml:space="preserve">
+    <value>Dossier d'archive</value>
+    <comment>sectiongroup context menu</comment>
   </data>
   <data name="ribArrangeContainersButton_Label" xml:space="preserve">
     <value>Organiser les conteneurs</value>

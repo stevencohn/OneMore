@@ -2817,6 +2817,10 @@ Select No to keep one empty line between paragraphs</value>
     <value>Archive Section</value>
     <comment>section context menu</comment>
   </data>
+  <data name="ribArchiveSectionGroupButton_Label" xml:space="preserve">
+    <value>Archive Folder</value>
+    <comment>sectiongroup context menu</comment>
+  </data>
   <data name="ribArrangeContainersButton_Label" xml:space="preserve">
     <value>Arrange Containers</value>
     <comment>ribbon button NODUP</comment>

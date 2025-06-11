@@ -326,6 +326,14 @@
     </contextMenu>
     <contextMenu idMso="ContextMenuSectionGroup">
       <button
+        id="ctgArchiveSectionGroupButton"
+        imageMso="SaveAttachments"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="ArchiveCmd"
+        tag="sectiongroup"
+        insertBeforeMso="FolderRename"/>
+      <button
         id="ctgCopyFolderButton"
         imageMso="CopyFolder"
         getLabel="GetRibbonLabel"

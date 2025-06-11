@@ -2812,6 +2812,10 @@ Seleccione No para mantener una línea vacía entre los párrafos</value>
     <value>Sección de archivo</value>
     <comment>ribbon menu</comment>
   </data>
+  <data name="ribArchiveSectionGroupButton_Label" xml:space="preserve">
+    <value>Carpeta de archivo</value>
+    <comment>sectiongroup context menu</comment>
+  </data>
   <data name="ribArrangeContainersButton_Label" xml:space="preserve">
     <value>Organizar contenedores</value>
     <comment>ribbon button</comment>

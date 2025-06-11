@@ -2819,6 +2819,10 @@ ISO-code then comma then language name</comment>
     <value>セクションのアーカイブ</value>
     <comment>section context menu</comment>
   </data>
+  <data name="ribArchiveSectionGroupButton_Label" xml:space="preserve">
+    <value>アーカイブフォルダー</value>
+    <comment>sectiongroup context menu</comment>
+  </data>
   <data name="ribArrangeContainersButton_Label" xml:space="preserve">
     <value>コンテナの配置</value>
     <comment>ribbon button NODUP</comment>

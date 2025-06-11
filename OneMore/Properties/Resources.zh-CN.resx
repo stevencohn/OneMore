@@ -2811,6 +2811,10 @@ ISO-code then comma then language name</comment>
     <value>档案科</value>
     <comment>ribbon menu</comment>
   </data>
+  <data name="ribArchiveSectionGroupButton_Label" xml:space="preserve">
+    <value>存档文件夹</value>
+    <comment>sectiongroup context menu</comment>
+  </data>
   <data name="ribArrangeContainersButton_Label" xml:space="preserve">
     <value>排列容器</value>
     <comment>ribbon button</comment>
