@@ -2817,6 +2817,10 @@ ISO-code then comma then language name</comment>
     <value>מדור ארכיון</value>
     <comment>ribbon menu</comment>
   </data>
+  <data name="ribArchiveSectionGroupButton_Label" xml:space="preserve">
+    <value>תיקיית ארכיון</value>
+    <comment>sectiongroup context menu</comment>
+  </data>
   <data name="ribArrangeContainersButton_Label" xml:space="preserve">
     <value>מסדרים מיכלים</value>
     <comment>ribbon button NODUP</comment>

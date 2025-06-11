@@ -7219,6 +7219,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Archive Folder.
+        /// </summary>
+        internal static string ribArchiveSectionGroupButton_Label {
+            get {
+                return ResourceManager.GetString("ribArchiveSectionGroupButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Arrange Containers.
         /// </summary>
         internal static string ribArrangeContainersButton_Label {

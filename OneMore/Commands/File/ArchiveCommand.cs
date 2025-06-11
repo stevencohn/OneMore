@@ -54,11 +54,20 @@ namespace River.OneMoreAddIn.Commands
 
 			await using (one = new OneNote())
 			{
-				bookScope = scope == "notebook";
+				bookScope = scope.In("notebook", "sectiongroup");
 
-				hierarchy = bookScope
-					? await one.GetNotebook(one.CurrentNotebookId, OneNote.Scope.Pages)
-					: await one.GetSection(one.CurrentSectionId);
+				if (bookScope)
+				{
+					string id = scope == "notebook"
+						? one.CurrentNotebookId
+						: one.GetParent(one.CurrentSectionId);
+
+					hierarchy = await one.GetNotebook(id, OneNote.Scope.Pages);
+				}
+				else
+				{
+					hierarchy = await one.GetSection(one.CurrentSectionId);
+				}
 
 				var ns = one.GetNamespace(hierarchy);
 

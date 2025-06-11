@@ -2813,6 +2813,10 @@ Wybierz Nie, aby zachować jedną pustą linię między akapitami</value>
     <value>Sekcja archiwum.</value>
     <comment>ribbon menu</comment>
   </data>
+  <data name="ribArchiveSectionGroupButton_Label" xml:space="preserve">
+    <value>Folder archiwum</value>
+    <comment>sectiongroup context menu</comment>
+  </data>
   <data name="ribArrangeContainersButton_Label" xml:space="preserve">
     <value>Ułóż pojemniki</value>
     <comment>ribbon button NODUP</comment>
