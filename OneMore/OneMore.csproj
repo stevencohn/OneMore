@@ -215,6 +215,12 @@
     <Compile Include="Commands\References\CheckUrlsCommand.cs" />
     <Compile Include="Commands\References\HyperlinkProvider.cs" />
     <Compile Include="Commands\Reminders\CleanRemindersCommand.cs" />
+    <Compile Include="Commands\Settings\VariablesSheet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Commands\Settings\VariablesSheet.Designer.cs">
+      <DependentUpon>VariablesSheet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Snippets\Emoji\Emojis.cs" />
     <Compile Include="Commands\Settings\ColorizerSheet.cs">
       <SubType>UserControl</SubType>
@@ -1194,6 +1200,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\References\BiLinkDialog.resx">
       <DependentUpon>BiLinkDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Settings\VariablesSheet.resx">
+      <DependentUpon>VariablesSheet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Tagging\HashtaggerDialog.resx">
       <DependentUpon>HashtaggerDialog.cs</DependentUpon>

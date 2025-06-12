@@ -6,9 +6,16 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 {
 	internal sealed class Variable
 	{
-		public string Name { get; private set; }
+		public string Name { get; set; }
 
-		public double Value { get; private set; }
+		public double Value { get; set; }
+
+
+		public Variable()
+		{
+			Name = string.Empty;
+			Value = 0.0;
+		}
 
 
 		public Variable(string name, double value)

@@ -12650,6 +12650,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Variables are used in table formulas.
+        /// </summary>
+        internal static string VariablesSheet_introBox_Text {
+            get {
+                return ResourceManager.GetString("VariablesSheet_introBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Variables.
+        /// </summary>
+        internal static string VariablesSheet_Title {
+            get {
+                return ResourceManager.GetString("VariablesSheet_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Actual.
         /// </summary>
         internal static string word_Actual {
@@ -13429,6 +13447,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_Total {
             get {
                 return ResourceManager.GetString("word_Total", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value.
+        /// </summary>
+        internal static string word_Value {
+            get {
+                return ResourceManager.GetString("word_Value", resourceCulture);
             }
         }
         
