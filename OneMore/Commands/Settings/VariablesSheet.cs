@@ -11,8 +11,8 @@ namespace River.OneMoreAddIn.Settings
 	using System;
 	using System.Collections.Generic;
 	using System.ComponentModel;
+	using System.Linq;
 	using System.Windows.Forms;
-	using System.Xml.Linq;
 	using Resx = Properties.Resources;
 
 
@@ -138,28 +138,21 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
+		private void SortItems(object sender, EventArgs e)
+		{
+			var ordered = variables.OrderBy(v => v.Name).ToList();
+
+			variables.Clear();
+			foreach (var variable in ordered)
+			{
+				variables.Add(variable);
+			}
+		}
+
+
 		public override bool CollectSettings()
 		{
-			var element = new XElement("engines");
-
-			foreach (var engine in variables)
-			{
-				element.Add(new XElement("engine",
-					new XElement("name", engine.Name),
-					new XElement("uri", engine.Value)
-					));
-			}
-
-			if (element.HasElements)
-			{
-				var settings = provider.GetCollection(Name);
-				settings.Add("engines", element);
-				provider.SetCollection(settings);
-			}
-			else
-			{
-				provider.RemoveCollection(Name);
-			}
+			// there no settings here; variables are stored in the DB...
 
 			return false;
 		}

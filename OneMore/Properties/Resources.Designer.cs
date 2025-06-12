@@ -12650,6 +12650,16 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CREATE TABLE IF NOT EXISTS variable (name TEXT (50) PRIMARY KEY UNIQUE NOT NULL, value REAL NOT NULL);
+        ///.
+        /// </summary>
+        internal static string VariablesDB {
+            get {
+                return ResourceManager.GetString("VariablesDB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Variables are used in table formulas.
         /// </summary>
         internal static string VariablesSheet_introBox_Text {

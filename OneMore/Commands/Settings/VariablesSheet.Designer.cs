@@ -37,6 +37,8 @@
 			this.valueColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.introBox = new River.OneMoreAddIn.UI.MoreMultilineLabel();
 			this.toolStrip = new River.OneMoreAddIn.UI.MoreToolStrip();
+			this.sortButton = new River.OneMoreAddIn.UI.MoreMenuItem();
+			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.deleteButton = new River.OneMoreAddIn.UI.MoreMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.gridView)).BeginInit();
 			this.toolStrip.SuspendLayout();
@@ -109,13 +111,31 @@
 			this.toolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
 			this.toolStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
 			this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.deleteButton});
+			this.sortButton,
+			this.toolStripSeparator1,
+			this.deleteButton});
 			this.toolStrip.Location = new System.Drawing.Point(10, 90);
 			this.toolStrip.Name = "toolStrip";
 			this.toolStrip.Padding = new System.Windows.Forms.Padding(0, 0, 3, 0);
 			this.toolStrip.Size = new System.Drawing.Size(780, 38);
 			this.toolStrip.TabIndex = 4;
 			this.toolStrip.Text = "Tool Strip";
+			// 
+			// sortButton
+			// 
+			this.sortButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.sortButton.Image = global::River.OneMoreAddIn.Properties.Resources.m_Sort;
+			this.sortButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.sortButton.Name = "sortButton";
+			this.sortButton.Size = new System.Drawing.Size(40, 29);
+			this.sortButton.Text = "Sort";
+			this.sortButton.ToolTipText = "Sort by Name";
+			this.sortButton.Click += new System.EventHandler(this.SortItems);
+			// 
+			// toolStripSeparator1
+			// 
+			this.toolStripSeparator1.Name = "toolStripSeparator1";
+			this.toolStripSeparator1.Size = new System.Drawing.Size(6, 29);
 			// 
 			// deleteButton
 			// 
@@ -155,6 +175,8 @@
 		private UI.MoreMultilineLabel introBox;
 		private UI.MoreToolStrip toolStrip;
 		private UI.MoreMenuItem deleteButton;
+		private UI.MoreMenuItem sortButton;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
 		private System.Windows.Forms.DataGridViewTextBoxColumn nameColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn valueColumn;
 	}
