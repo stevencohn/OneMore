@@ -29,9 +29,6 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 			calculator.SetVariable("tablecols", table.ColumnCount);
 			calculator.SetVariable("tablerows", table.RowCount);
 
-
-			System.Diagnostics.Debugger.Launch();
-
 			LoadVariables(calculator);
 
 			calculator.GetCellValue += GetCellValue;
