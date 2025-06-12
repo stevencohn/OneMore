@@ -278,6 +278,8 @@
     <Compile Include="Commands\Tables\Formulas\CalculatorException.cs" />
     <Compile Include="Commands\Tables\Formulas\FunctionFactory.cs" />
     <Compile Include="Commands\Tables\Formulas\GetCellValueHandler.cs" />
+    <Compile Include="Commands\Tables\Formulas\Variable.cs" />
+    <Compile Include="Commands\Tables\Formulas\VariableProvider.cs" />
     <Compile Include="Commands\Tables\Formulas\Variant.cs" />
     <Compile Include="Commands\Tables\Formulas\VariantList.cs" />
     <Compile Include="Commands\Tables\EditTableThemesCommand.cs" />
@@ -338,6 +340,7 @@
     <Compile Include="Commands\Tagging\TagBankCommand.cs" />
     <Compile Include="Commands\Tools\QuickPaletteCommand.cs" />
     <Compile Include="Helpers\ColorHelper.cs" />
+    <Compile Include="Helpers\DatabaseProvider.cs" />
     <Compile Include="Helpers\Extensions\ArrayExtensions.cs" />
     <Compile Include="Helpers\Extensions\DoubleExtensions.cs" />
     <Compile Include="Helpers\Extensions\FontFamilyExtensions.cs" />
