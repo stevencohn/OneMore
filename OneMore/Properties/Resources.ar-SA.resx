@@ -5154,6 +5154,34 @@ ISO-code then comma then language name</comment>
     <value>الإصدار المثبت:</value>
     <comment>label</comment>
   </data>
+  <data name="VariablesSheet_deleteVariable" xml:space="preserve">
+    <value>حذف المتغير {0}؟</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="VariablesSheet_deleteVariables" xml:space="preserve">
+    <value>حذف المتغيرات المختارة؟</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="VariablesSheet_doubleWarning" xml:space="preserve">
+    <value>الرجاء إدخال قيمة مزدوجة صالحة</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="VariablesSheet_introBox.Text" xml:space="preserve">
+    <value>حدد المتغيرات الخاصة بك للاستخدام في صيغ الجدول</value>
+    <comment>text</comment>
+  </data>
+  <data name="VariablesSheet_reserved" xml:space="preserve">
+    <value>لا يمكن إنشاء متغير اسم tablecols أو Tablerows</value>
+    <comment>message</comment>
+  </data>
+  <data name="VariablesSheet_Title" xml:space="preserve">
+    <value>المتغيرات</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="VariablesSheet_uniqueError" xml:space="preserve">
+    <value>يجب أن تكون الأسماء المتغيرة فريدة من نوعها</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="word_Actual" xml:space="preserve">
     <value>فعلي</value>
   </data>
@@ -5385,6 +5413,9 @@ ISO-code then comma then language name</comment>
   <data name="word_Snippets" xml:space="preserve">
     <value>مقتطفات</value>
   </data>
+  <data name="word_Sort" xml:space="preserve">
+    <value>نوع</value>
+  </data>
   <data name="word_Start" xml:space="preserve">
     <value>يبدأ</value>
   </data>
@@ -5414,6 +5445,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Total" xml:space="preserve">
     <value>مجموع</value>
+  </data>
+  <data name="word_Value" xml:space="preserve">
+    <value>قيمة</value>
   </data>
   <data name="word_Warning" xml:space="preserve">
     <value>تحذير</value>

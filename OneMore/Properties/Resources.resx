@@ -5156,6 +5156,34 @@ Invert</value>
     <value>Installed version:</value>
     <comment>label</comment>
   </data>
+  <data name="VariablesSheet_deleteVariable" xml:space="preserve">
+    <value>Delete variable {0}?</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="VariablesSheet_deleteVariables" xml:space="preserve">
+    <value>Delete selected variables?</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="VariablesSheet_doubleWarning" xml:space="preserve">
+    <value>Please enter a valid double value</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="VariablesSheet_introBox.Text" xml:space="preserve">
+    <value>Define your own variables for use in table formulas</value>
+    <comment>text</comment>
+  </data>
+  <data name="VariablesSheet_reserved" xml:space="preserve">
+    <value>Cannot create a variable named tablecols or tablerows</value>
+    <comment>message</comment>
+  </data>
+  <data name="VariablesSheet_Title" xml:space="preserve">
+    <value>Variables</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="VariablesSheet_uniqueError" xml:space="preserve">
+    <value>Variable names must be unique</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="word_Actual" xml:space="preserve">
     <value>Actual</value>
   </data>
@@ -5387,6 +5415,9 @@ Invert</value>
   <data name="word_Snippets" xml:space="preserve">
     <value>Snippets</value>
   </data>
+  <data name="word_Sort" xml:space="preserve">
+    <value>Sort</value>
+  </data>
   <data name="word_Start" xml:space="preserve">
     <value>Start</value>
   </data>
@@ -5416,6 +5447,9 @@ Invert</value>
   </data>
   <data name="word_Total" xml:space="preserve">
     <value>Total</value>
+  </data>
+  <data name="word_Value" xml:space="preserve">
+    <value>Value</value>
   </data>
   <data name="word_Warning" xml:space="preserve">
     <value>Warning</value>
@@ -5804,6 +5838,9 @@ Invert</value>
   </data>
   <data name="InfoBoxThemes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\commands\snippets\infoboxthemes.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="VariablesDB" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Commands\Tables\Formulas\VariablesDB.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="HashtagsDB" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Commands\Tagging\HashtagsDB.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>

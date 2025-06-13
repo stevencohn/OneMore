@@ -215,6 +215,12 @@
     <Compile Include="Commands\References\CheckUrlsCommand.cs" />
     <Compile Include="Commands\References\HyperlinkProvider.cs" />
     <Compile Include="Commands\Reminders\CleanRemindersCommand.cs" />
+    <Compile Include="Commands\Settings\VariablesSheet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Commands\Settings\VariablesSheet.Designer.cs">
+      <DependentUpon>VariablesSheet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Snippets\Emoji\Emojis.cs" />
     <Compile Include="Commands\Settings\ColorizerSheet.cs">
       <SubType>UserControl</SubType>
@@ -278,6 +284,8 @@
     <Compile Include="Commands\Tables\Formulas\CalculatorException.cs" />
     <Compile Include="Commands\Tables\Formulas\FunctionFactory.cs" />
     <Compile Include="Commands\Tables\Formulas\GetCellValueHandler.cs" />
+    <Compile Include="Commands\Tables\Formulas\Variable.cs" />
+    <Compile Include="Commands\Tables\Formulas\VariableProvider.cs" />
     <Compile Include="Commands\Tables\Formulas\Variant.cs" />
     <Compile Include="Commands\Tables\Formulas\VariantList.cs" />
     <Compile Include="Commands\Tables\EditTableThemesCommand.cs" />
@@ -338,6 +346,7 @@
     <Compile Include="Commands\Tagging\TagBankCommand.cs" />
     <Compile Include="Commands\Tools\QuickPaletteCommand.cs" />
     <Compile Include="Helpers\ColorHelper.cs" />
+    <Compile Include="Helpers\DatabaseProvider.cs" />
     <Compile Include="Helpers\Extensions\ArrayExtensions.cs" />
     <Compile Include="Helpers\Extensions\DoubleExtensions.cs" />
     <Compile Include="Helpers\Extensions\FontFamilyExtensions.cs" />
@@ -1184,6 +1193,7 @@
     <Content Include="Commands\Navigator\Images\Student-Read-01-20.png" />
     <Content Include="Commands\Navigator\Images\Swap-Down-20.png" />
     <Content Include="Commands\Navigator\Images\Swap-Up-20.png" />
+    <Content Include="Commands\Tables\Formulas\VariablesDB.sql" />
     <Content Include="Commands\Tagging\HashtagsDB.sql" />
     <EmbeddedResource Include="Commands\File\OpenFolderDialog.resx">
       <DependentUpon>OpenFolderDialog.cs</DependentUpon>
@@ -1191,6 +1201,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\References\BiLinkDialog.resx">
       <DependentUpon>BiLinkDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Settings\VariablesSheet.resx">
+      <DependentUpon>VariablesSheet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Tagging\HashtaggerDialog.resx">
       <DependentUpon>HashtaggerDialog.cs</DependentUpon>

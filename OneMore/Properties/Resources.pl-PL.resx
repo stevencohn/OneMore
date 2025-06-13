@@ -5155,6 +5155,34 @@ Odwracać</value>
     <value>Zainstalowana wersja:</value>
     <comment>label</comment>
   </data>
+  <data name="VariablesSheet_deleteVariable" xml:space="preserve">
+    <value>Usuń zmienną {0}?</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="VariablesSheet_deleteVariables" xml:space="preserve">
+    <value>Usuń wybrane zmienne?</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="VariablesSheet_doubleWarning" xml:space="preserve">
+    <value>Wprowadź ważną podwójną wartość</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="VariablesSheet_introBox.Text" xml:space="preserve">
+    <value>Zdefiniuj własne zmienne do użytku w formułach tabeli</value>
+    <comment>text</comment>
+  </data>
+  <data name="VariablesSheet_reserved" xml:space="preserve">
+    <value>Nie może utworzyć zmiennej o nazwie TableCols lub Tablerows</value>
+    <comment>message</comment>
+  </data>
+  <data name="VariablesSheet_Title" xml:space="preserve">
+    <value>Zmienne</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="VariablesSheet_uniqueError" xml:space="preserve">
+    <value>Nazwy zmiennych muszą być unikalne</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="word_Actual" xml:space="preserve">
     <value>Rzeczywisty</value>
   </data>
@@ -5386,6 +5414,9 @@ Odwracać</value>
   <data name="word_Snippets" xml:space="preserve">
     <value>Fragmenty</value>
   </data>
+  <data name="word_Sort" xml:space="preserve">
+    <value>Sortować</value>
+  </data>
   <data name="word_Start" xml:space="preserve">
     <value>Początek</value>
   </data>
@@ -5415,6 +5446,9 @@ Odwracać</value>
   </data>
   <data name="word_Total" xml:space="preserve">
     <value>Całkowity</value>
+  </data>
+  <data name="word_Value" xml:space="preserve">
+    <value>Wartość</value>
   </data>
   <data name="word_Warning" xml:space="preserve">
     <value>Ostrzeżenie</value>

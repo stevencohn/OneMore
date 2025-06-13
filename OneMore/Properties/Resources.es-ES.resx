@@ -5154,6 +5154,34 @@ Invertir</value>
     <value>Versión instalada:</value>
     <comment>label</comment>
   </data>
+  <data name="VariablesSheet_deleteVariable" xml:space="preserve">
+    <value>Eliminar variable {0}?</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="VariablesSheet_deleteVariables" xml:space="preserve">
+    <value>Eliminar variables seleccionadas?</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="VariablesSheet_doubleWarning" xml:space="preserve">
+    <value>Ingrese un valor doble válido</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="VariablesSheet_introBox.Text" xml:space="preserve">
+    <value>Defina sus propias variables para su uso en fórmulas de tabla</value>
+    <comment>text</comment>
+  </data>
+  <data name="VariablesSheet_reserved" xml:space="preserve">
+    <value>No se puede crear una variable llamada TableCols o Tablerows</value>
+    <comment>message</comment>
+  </data>
+  <data name="VariablesSheet_Title" xml:space="preserve">
+    <value>Variables</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="VariablesSheet_uniqueError" xml:space="preserve">
+    <value>Los nombres variables deben ser únicos</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="word_Actual" xml:space="preserve">
     <value>Real</value>
   </data>
@@ -5385,6 +5413,9 @@ Invertir</value>
   <data name="word_Snippets" xml:space="preserve">
     <value>Fragmentos</value>
   </data>
+  <data name="word_Sort" xml:space="preserve">
+    <value>Clasificar</value>
+  </data>
   <data name="word_Start" xml:space="preserve">
     <value>Comienzo</value>
   </data>
@@ -5414,6 +5445,9 @@ Invertir</value>
   </data>
   <data name="word_Total" xml:space="preserve">
     <value>Total</value>
+  </data>
+  <data name="word_Value" xml:space="preserve">
+    <value>Valor</value>
   </data>
   <data name="word_Warning" xml:space="preserve">
     <value>Advertencia</value>

@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands.Tables.Formulas
@@ -29,6 +29,8 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 			calculator.SetVariable("tablecols", table.ColumnCount);
 			calculator.SetVariable("tablerows", table.RowCount);
 
+			LoadVariables(calculator);
+
 			calculator.GetCellValue += GetCellValue;
 
 			foreach (var cell in cells)
@@ -54,6 +56,17 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 					logger.WriteLine($"error calculating {cell.Coordinates} formula '{formula}'", exc);
 					UI.MoreMessageBox.ShowError(null, exc.Message);
 				}
+			}
+		}
+
+
+		private static void LoadVariables(Calculator calculator)
+		{
+			using var provider = new VariableProvider();
+			var variables = provider.ReadVariables();
+			foreach (var variable in variables)
+			{
+				calculator.SetVariable(variable.Name, variable.Value);
 			}
 		}
 
