@@ -100,7 +100,7 @@
 			this.introBox.Padding = new System.Windows.Forms.Padding(0, 0, 0, 36);
 			this.introBox.Size = new System.Drawing.Size(780, 81);
 			this.introBox.TabIndex = 0;
-			this.introBox.Text = "Variables are used in table formulas";
+			this.introBox.Text = "Define your own variables for use in table formulas";
 			this.introBox.ThemedBack = "ControlLightLight";
 			this.introBox.ThemedFore = null;
 			// 
