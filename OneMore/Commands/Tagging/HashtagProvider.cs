@@ -20,20 +20,18 @@ namespace River.OneMoreAddIn.Commands
 	/// <summary>
 	/// Reads, Writes, manages a data store of Hashtags.
 	/// </summary>
-	internal class HashtagProvider : Loggable, IDisposable
+	internal class HashtagProvider : DatabaseProvider
 	{
 		private const int ScannerID = 0;
 
 		private readonly string timestamp;
-
-		private SQLiteConnection con;
-		private bool disposed;
 
 
 		/// <summary>
 		/// Initialize this provider, opening the standard database
 		/// </summary>
 		public HashtagProvider()
+			: base()
 		{
 			if (CatalogExists())
 			{
@@ -50,10 +48,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public static bool CatalogExists()
 		{
-			var path = Path.Combine(
-				PathHelper.GetAppDataPath(), Resources.DatabaseFilename);
-
-			if (!File.Exists(Path.Combine(path)))
+			if (!File.Exists(path))
 			{
 				return false;
 			}
@@ -82,19 +77,6 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return count > 0;
-		}
-
-
-		private void OpenDatabase()
-		{
-			if (con is null)
-			{
-				var path = Path.Combine(
-					PathHelper.GetAppDataPath(), Resources.DatabaseFilename);
-
-				con = new SQLiteConnection($"Data source={path}");
-				con.Open();
-			}
 		}
 
 
@@ -525,27 +507,6 @@ namespace River.OneMoreAddIn.Commands
 			return true;
 		}
 		#endregion UpgradeCatalog
-
-
-		protected virtual void Dispose(bool disposing)
-		{
-			if (!disposed)
-			{
-				if (disposing)
-				{
-					con?.Dispose();
-				}
-
-				disposed = true;
-			}
-		}
-
-
-		public void Dispose()
-		{
-			Dispose(disposing: true);
-			GC.SuppressFinalize(this);
-		}
 
 
 		/// <summary>
@@ -1256,23 +1217,6 @@ namespace River.OneMoreAddIn.Commands
 			{
 				ReportError("error writing tags", cmd, exc);
 			}
-		}
-
-
-		private static void ReportError(string msg, SQLiteCommand cmd, Exception exc)
-		{
-			// provider currently only deals with strings as input so quote everything...
-
-			var sql = Regex.Replace(cmd.CommandText, "@[a-z]+",
-				m => cmd.Parameters.Contains(m.Value)
-					? $"'{cmd.Parameters[m.Value].Value}'"
-					: m.Value
-			);
-
-			var logger = Logger.Current;
-			logger.WriteLine(msg);
-			logger.WriteLine(sql);
-			logger.WriteLine(exc);
 		}
 	}
 }

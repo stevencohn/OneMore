@@ -5154,6 +5154,34 @@ Invertido</value>
     <value>Versão instalada:</value>
     <comment>label</comment>
   </data>
+  <data name="VariablesSheet_deleteVariable" xml:space="preserve">
+    <value>Excluir variável {0}?</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="VariablesSheet_deleteVariables" xml:space="preserve">
+    <value>Excluir variáveis ​​selecionadas?</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="VariablesSheet_doubleWarning" xml:space="preserve">
+    <value>Por favor, insira um valor duplo válido</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="VariablesSheet_introBox.Text" xml:space="preserve">
+    <value>Defina suas próprias variáveis ​​para uso em fórmulas de tabela</value>
+    <comment>text</comment>
+  </data>
+  <data name="VariablesSheet_reserved" xml:space="preserve">
+    <value>Não é possível criar uma variável denominada comprimidos ou tablerows</value>
+    <comment>message</comment>
+  </data>
+  <data name="VariablesSheet_Title" xml:space="preserve">
+    <value>Variáveis</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="VariablesSheet_uniqueError" xml:space="preserve">
+    <value>Nomes variáveis ​​devem ser únicos</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="word_Actual" xml:space="preserve">
     <value>Real</value>
   </data>
@@ -5385,6 +5413,9 @@ Invertido</value>
   <data name="word_Snippets" xml:space="preserve">
     <value>Trechos</value>
   </data>
+  <data name="word_Sort" xml:space="preserve">
+    <value>Organizar</value>
+  </data>
   <data name="word_Start" xml:space="preserve">
     <value>Começar</value>
   </data>
@@ -5414,6 +5445,9 @@ Invertido</value>
   </data>
   <data name="word_Total" xml:space="preserve">
     <value>Total</value>
+  </data>
+  <data name="word_Value" xml:space="preserve">
+    <value>Valor</value>
   </data>
   <data name="word_Warning" xml:space="preserve">
     <value>Aviso</value>

@@ -5153,6 +5153,34 @@ ISO-code then comma then language name</comment>
     <value>גרסה מותקנת:</value>
     <comment>label</comment>
   </data>
+  <data name="VariablesSheet_deleteVariable" xml:space="preserve">
+    <value>למחוק משתנה {0}?</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="VariablesSheet_deleteVariables" xml:space="preserve">
+    <value>למחוק משתנים נבחרים?</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="VariablesSheet_doubleWarning" xml:space="preserve">
+    <value>אנא הזן ערך כפול תקף</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="VariablesSheet_introBox.Text" xml:space="preserve">
+    <value>הגדר משתנים משלך לשימוש בנוסחאות טבלה</value>
+    <comment>text</comment>
+  </data>
+  <data name="VariablesSheet_reserved" xml:space="preserve">
+    <value>לא ניתן ליצור משתנה בשם TableCols או טבלאות</value>
+    <comment>message</comment>
+  </data>
+  <data name="VariablesSheet_Title" xml:space="preserve">
+    <value>משתנים</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="VariablesSheet_uniqueError" xml:space="preserve">
+    <value>שמות משתנים חייבים להיות ייחודיים</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="word_Actual" xml:space="preserve">
     <value>מַמָשִׁי</value>
   </data>
@@ -5384,6 +5412,9 @@ ISO-code then comma then language name</comment>
   <data name="word_Snippets" xml:space="preserve">
     <value>קטעים</value>
   </data>
+  <data name="word_Sort" xml:space="preserve">
+    <value>סוּג</value>
+  </data>
   <data name="word_Start" xml:space="preserve">
     <value>הַתחָלָה</value>
   </data>
@@ -5413,6 +5444,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Total" xml:space="preserve">
     <value>סה"כ</value>
+  </data>
+  <data name="word_Value" xml:space="preserve">
+    <value>עֵרֶך</value>
   </data>
   <data name="word_Warning" xml:space="preserve">
     <value>אַזהָרָה</value>

@@ -5158,6 +5158,34 @@ ISO-code then comma then language name</comment>
     <value>インストール済みバージョン:</value>
     <comment>label</comment>
   </data>
+  <data name="VariablesSheet_deleteVariable" xml:space="preserve">
+    <value>変数{0}を削除しますか？</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="VariablesSheet_deleteVariables" xml:space="preserve">
+    <value>選択した変数を削除しますか？</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="VariablesSheet_doubleWarning" xml:space="preserve">
+    <value>有効な二重値を入力してください</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="VariablesSheet_introBox.Text" xml:space="preserve">
+    <value>テーブル式で使用するために独自の変数を定義します</value>
+    <comment>text</comment>
+  </data>
+  <data name="VariablesSheet_reserved" xml:space="preserve">
+    <value>TablecolsまたはTablerowsという名前の変数を作成できません</value>
+    <comment>message</comment>
+  </data>
+  <data name="VariablesSheet_Title" xml:space="preserve">
+    <value>変数</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="VariablesSheet_uniqueError" xml:space="preserve">
+    <value>変数名は一意でなければなりません</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="word_Actual" xml:space="preserve">
     <value>実績</value>
   </data>
@@ -5389,6 +5417,9 @@ ISO-code then comma then language name</comment>
   <data name="word_Snippets" xml:space="preserve">
     <value>スニペット</value>
   </data>
+  <data name="word_Sort" xml:space="preserve">
+    <value>選別</value>
+  </data>
   <data name="word_Start" xml:space="preserve">
     <value>開始</value>
   </data>
@@ -5418,6 +5449,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Total" xml:space="preserve">
     <value>合計</value>
+  </data>
+  <data name="word_Value" xml:space="preserve">
+    <value>価値</value>
   </data>
   <data name="word_Warning" xml:space="preserve">
     <value>警告</value>

@@ -66,6 +66,8 @@ namespace River.OneMoreAddIn.Commands
 			var cell = table.GetSelectedCells(out _).First();
 			calculator.SetVariable("col", cell.ColNum);
 			calculator.SetVariable("row", cell.RowNum);
+
+			LoadVariables(calculator);
 		}
 
 
@@ -100,6 +102,17 @@ namespace River.OneMoreAddIn.Commands
 		{
 			get => tagBox.Checked;
 			set => tagBox.Checked = value;
+		}
+
+
+		private static void LoadVariables(Calculator calculator)
+		{
+			using var provider = new VariableProvider();
+			var variables = provider.ReadVariables();
+			foreach (var variable in variables)
+			{
+				calculator.SetVariable(variable.Name, variable.Value);
+			}
 		}
 
 

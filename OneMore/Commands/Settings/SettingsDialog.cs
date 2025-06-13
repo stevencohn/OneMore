@@ -33,7 +33,8 @@ namespace River.OneMoreAddIn.Settings
 			QuickNotes,
 			Ribbon,
 			Search,
-			Snippets
+			Snippets,
+			Variables
 		}
 
 		private readonly Dictionary<int, SheetBase> sheets;
@@ -73,6 +74,7 @@ namespace River.OneMoreAddIn.Settings
 				navTree.Nodes["ribbonNode"].Text = Resx.RibbonBarSheet_Title;
 				navTree.Nodes["searchNode"].Text = Resx.SearchEngineDialog_Text;
 				navTree.Nodes["snippetsNode"].Text = Resx.word_Snippets;
+				navTree.Nodes["variablesNode"].Text = Resx.VariablesSheet_Title;
 			}
 
 			this.ribbon = ribbon;
@@ -136,7 +138,8 @@ namespace River.OneMoreAddIn.Settings
 					13 => new QuickNotesSheet(provider),
 					14 => new RibbonBarSheet(provider),
 					15 => new SearchEngineSheet(provider),
-					_ => new SnippetsSheet(provider, ribbon),
+					16 => new SnippetsSheet(provider, ribbon),
+					_ => new VariablesSheet(provider)
 				};
 
 				sheets.Add(e.Node.Index, sheet);

@@ -5152,6 +5152,34 @@ Inverser</value>
     <value>Version installée :</value>
     <comment>label</comment>
   </data>
+  <data name="VariablesSheet_deleteVariable" xml:space="preserve">
+    <value>Supprimer la variable {0}?</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="VariablesSheet_deleteVariables" xml:space="preserve">
+    <value>Supprimer les variables sélectionnées?</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="VariablesSheet_doubleWarning" xml:space="preserve">
+    <value>Veuillez saisir une double valeur valide</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="VariablesSheet_introBox.Text" xml:space="preserve">
+    <value>Définissez vos propres variables à utiliser dans les formules de table</value>
+    <comment>text</comment>
+  </data>
+  <data name="VariablesSheet_reserved" xml:space="preserve">
+    <value>Impossible de créer une variable nommée TableCols ou Tablerows</value>
+    <comment>message</comment>
+  </data>
+  <data name="VariablesSheet_Title" xml:space="preserve">
+    <value>Variables</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="VariablesSheet_uniqueError" xml:space="preserve">
+    <value>Les noms variables doivent être uniques</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="word_Actual" xml:space="preserve">
     <value>Réel</value>
   </data>
@@ -5383,6 +5411,9 @@ Inverser</value>
   <data name="word_Snippets" xml:space="preserve">
     <value>Extraits</value>
   </data>
+  <data name="word_Sort" xml:space="preserve">
+    <value>Trier</value>
+  </data>
   <data name="word_Start" xml:space="preserve">
     <value>Début</value>
   </data>
@@ -5412,6 +5443,9 @@ Inverser</value>
   </data>
   <data name="word_Total" xml:space="preserve">
     <value>Total</value>
+  </data>
+  <data name="word_Value" xml:space="preserve">
+    <value>Valeur</value>
   </data>
   <data name="word_Warning" xml:space="preserve">
     <value>Avertissement</value>

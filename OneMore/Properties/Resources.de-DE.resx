@@ -5149,6 +5149,34 @@ Umkehren</value>
     <value>Installierte Version:</value>
     <comment>label</comment>
   </data>
+  <data name="VariablesSheet_deleteVariable" xml:space="preserve">
+    <value>Variable löschen {0}?</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="VariablesSheet_deleteVariables" xml:space="preserve">
+    <value>Ausgewählte Variablen löschen?</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="VariablesSheet_doubleWarning" xml:space="preserve">
+    <value>Bitte geben Sie einen gültigen Doppelwert ein</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="VariablesSheet_introBox.Text" xml:space="preserve">
+    <value>Definieren Sie Ihre eigenen Variablen für die Verwendung in Tabellenformeln</value>
+    <comment>text</comment>
+  </data>
+  <data name="VariablesSheet_reserved" xml:space="preserve">
+    <value>Eine Variable namens TableCols oder Tablerows kann nicht erstellt werden</value>
+    <comment>message</comment>
+  </data>
+  <data name="VariablesSheet_Title" xml:space="preserve">
+    <value>Variablen</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="VariablesSheet_uniqueError" xml:space="preserve">
+    <value>Variablennamen müssen eindeutig sein</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="word_Actual" xml:space="preserve">
     <value>Tatsächlich</value>
   </data>
@@ -5380,6 +5408,9 @@ Umkehren</value>
   <data name="word_Snippets" xml:space="preserve">
     <value>Snippets</value>
   </data>
+  <data name="word_Sort" xml:space="preserve">
+    <value>Sortieren</value>
+  </data>
   <data name="word_Start" xml:space="preserve">
     <value>Start</value>
   </data>
@@ -5409,6 +5440,9 @@ Umkehren</value>
   </data>
   <data name="word_Total" xml:space="preserve">
     <value>Gesamt</value>
+  </data>
+  <data name="word_Value" xml:space="preserve">
+    <value>Wert</value>
   </data>
   <data name="word_Warning" xml:space="preserve">
     <value>Warnung</value>

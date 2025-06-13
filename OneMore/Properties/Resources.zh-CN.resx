@@ -5147,6 +5147,34 @@ ISO-code then comma then language name</comment>
     <value>已安装版本：</value>
     <comment>label</comment>
   </data>
+  <data name="VariablesSheet_deleteVariable" xml:space="preserve">
+    <value>删除变量{0}？</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="VariablesSheet_deleteVariables" xml:space="preserve">
+    <value>删除选定的变量？</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="VariablesSheet_doubleWarning" xml:space="preserve">
+    <value>请输入有效的双重值</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="VariablesSheet_introBox.Text" xml:space="preserve">
+    <value>定义您自己的变量以用于表公式</value>
+    <comment>text</comment>
+  </data>
+  <data name="VariablesSheet_reserved" xml:space="preserve">
+    <value>无法创建名为TableCols或Tablerows的变量</value>
+    <comment>message</comment>
+  </data>
+  <data name="VariablesSheet_Title" xml:space="preserve">
+    <value>变量</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="VariablesSheet_uniqueError" xml:space="preserve">
+    <value>可变名称必须是唯一的</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="word_Actual" xml:space="preserve">
     <value>实际的</value>
   </data>
@@ -5378,6 +5406,9 @@ ISO-code then comma then language name</comment>
   <data name="word_Snippets" xml:space="preserve">
     <value>片段</value>
   </data>
+  <data name="word_Sort" xml:space="preserve">
+    <value>种类</value>
+  </data>
   <data name="word_Start" xml:space="preserve">
     <value>开始</value>
   </data>
@@ -5407,6 +5438,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Total" xml:space="preserve">
     <value>全部的</value>
+  </data>
+  <data name="word_Value" xml:space="preserve">
+    <value>价值</value>
   </data>
   <data name="word_Warning" xml:space="preserve">
     <value>警告</value>
