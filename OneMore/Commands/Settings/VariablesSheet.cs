@@ -35,6 +35,7 @@ namespace River.OneMoreAddIn.Settings
 				Localize(new string[]
 				{
 					"introBox",
+					"sortButton=word_Sort",
 					"deleteButton=word_Delete"
 				});
 
@@ -68,27 +69,41 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
-		private void gridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-		{
-			if (e.ColumnIndex == 2)
-			{
-				if (variables[e.RowIndex] is Variable variable)
-				{
-					gridView.Refresh();
-				}
-			}
-		}
-
-
 		private void gridView_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
 		{
-			if (gridView.Columns[e.ColumnIndex].ValueType == typeof(double))
+			if (e.ColumnIndex == 0)
+			{
+				var name = e.FormattedValue.ToString().ToLower();
+				if (name.In("tablecols", "tablerows"))
+				{
+					e.Cancel = true;
+					UI.MoreMessageBox.Show(this,
+						Resx.VariablesSheet_reserved,
+						MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+					return;
+				}
+
+				for (var i = 0; i < variables.Count; i++)
+				{
+					if (i != e.RowIndex && variables[i].Name == e.FormattedValue.ToString())
+					{
+						e.Cancel = true;
+						UI.MoreMessageBox.Show(this,
+							Resx.VariablesSheet_uniqueError,
+							MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+						return;
+					}
+				}
+			}
+			else
 			{
 				if (!double.TryParse(e.FormattedValue.ToString(), out _))
 				{
 					e.Cancel = true;
 					UI.MoreMessageBox.Show(this,
-						"Please enter a valid double value",
+						Resx.VariablesSheet_doubleWarning,
 						MessageBoxButtons.OK, MessageBoxIcon.Warning);
 				}
 			}
@@ -110,6 +125,51 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
+		protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+		{
+			if (keyData == Keys.Escape)
+			{
+				if (gridView.IsCurrentCellDirty)
+				{
+					gridView.CancelEdit();
+				}
+
+				return true;
+			}
+
+			if (keyData == Keys.Delete)
+			{
+				if (gridView.SelectedCells.Count > 0)
+				{
+					var result = UI.MoreMessageBox.Show(this,
+						Resx.VariablesSheet_deleteVariables,
+						MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+					if (result == DialogResult.Yes)
+					{
+						var rows = gridView.SelectedCells
+							.Cast<DataGridViewCell>()
+							.Select(c => c.OwningRow)
+							.Distinct()
+							.ToList();
+
+						foreach (DataGridViewRow row in rows)
+						{
+							if (!row.IsNewRow)
+							{
+								gridView.Rows.Remove(row);
+							}
+						}
+					}
+				}
+
+				return true;
+			}
+
+			return base.ProcessCmdKey(ref msg, keyData);
+		}
+
+
 		private void deleteButton_Click(object sender, EventArgs e)
 		{
 			if (gridView.SelectedCells.Count == 0)
@@ -119,10 +179,10 @@ namespace River.OneMoreAddIn.Settings
 			if (rowIndex >= variables.Count)
 				return;
 
-			var engine = variables[rowIndex];
+			var variable = variables[rowIndex];
 
 			var result = UI.MoreMessageBox.Show(this,
-				string.Format(Resx.SearchEngineDialog_DeleteMessage, engine.Name),
+				string.Format(Resx.VariablesSheet_deleteVariable, variable.Name),
 				MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
 			if (result != DialogResult.Yes)
@@ -140,7 +200,9 @@ namespace River.OneMoreAddIn.Settings
 
 		private void SortItems(object sender, EventArgs e)
 		{
-			var ordered = variables.OrderBy(v => v.Name).ToList();
+			var ordered = variables
+				.Where(v => !string.IsNullOrWhiteSpace(v.Name))
+				.OrderBy(v => v.Name).ToList();
 
 			variables.Clear();
 			foreach (var variable in ordered)
@@ -153,6 +215,17 @@ namespace River.OneMoreAddIn.Settings
 		public override bool CollectSettings()
 		{
 			// there no settings here; variables are stored in the DB...
+
+			using var provider = new VariableProvider();
+
+			if (variables.Any())
+			{
+				provider.WriteVariables(variables);
+			}
+			else
+			{
+				provider.DeleteVariables();
+			}
 
 			return false;
 		}

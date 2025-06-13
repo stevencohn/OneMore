@@ -58,7 +58,7 @@
 			this.gridView.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.gridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystrokeOrF2;
 			this.gridView.Location = new System.Drawing.Point(10, 128);
-			this.gridView.MultiSelect = false;
+			this.gridView.MultiSelect = true;
 			this.gridView.Name = "gridView";
 			this.gridView.ReadOnly = false;
 			this.gridView.RowHeadersVisible = false;
@@ -66,7 +66,6 @@
 			this.gridView.RowTemplate.Height = 28;
 			this.gridView.Size = new System.Drawing.Size(780, 363);
 			this.gridView.TabIndex = 2;
-			this.gridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridView_CellEndEdit);
 			this.gridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.gridView_CellValidating);
 			this.gridView.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.gridView_DataBindingComplete);
 			// 
@@ -75,9 +74,9 @@
 			dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
 			this.nameColumn.DefaultCellStyle = dataGridViewCellStyle2;
 			this.nameColumn.HeaderText = "Name";
-			this.nameColumn.MinimumWidth = 150;
+			this.nameColumn.MinimumWidth = 200;
 			this.nameColumn.Name = "nameColumn";
-			this.nameColumn.Width = 150;
+			this.nameColumn.Width = 200;
 			this.nameColumn.ReadOnly = false;
 			// 
 			// urlColumn

@@ -65,6 +65,29 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		}
 
 
+		public bool DeleteVariables()
+		{
+			if (CatalogExists())
+			{
+				using var cmd = con.CreateCommand();
+				cmd.CommandText = "DELETE FROM variable";
+				cmd.CommandType = CommandType.Text;
+
+				try
+				{
+					cmd.ExecuteNonQuery();
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine("error deleting variables", exc);
+					return false;
+				}
+			}
+
+			return true;
+		}
+
+
 		public List<Variable> ReadVariables()
 		{
 			var variables = new List<Variable>();
@@ -99,52 +122,47 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 
 			using var transaction = con.BeginTransaction();
 
-			using var cmd = con.CreateCommand();
-			try
+			if (DeleteVariables())
 			{
-				cmd.CommandText = "DELETE FROM variable";
-				cmd.CommandType = CommandType.Text;
-				cmd.ExecuteNonQuery();
-			}
-			catch (Exception exc)
-			{
-				ReportError("error deleting variables", cmd, exc);
-				throw;
-			}
+				using var cmd = con.CreateCommand();
 
-			using var cmd2 = con.CreateCommand();
-			try
-			{
-				cmd2.CommandText = "INSERT INTO variable (name, value) VALUES (@n, @v)";
-
-				cmd2.Parameters.Clear();
-				cmd2.Parameters.Add("@n", DbType.String);
-				cmd2.Parameters.Add("@v", DbType.Double);
-
-				foreach (var variable in variables)
+				try
 				{
-					logger.Verbose($"writing variable {variable.Name}");
+					cmd.CommandText = "INSERT INTO variable (name, value) VALUES (@n, @v)";
 
-					cmd2.Parameters["@n"].Value = variable.Name;
-					cmd2.Parameters["@v"].Value = variable.Value;
+					cmd.Parameters.Clear();
+					cmd.Parameters.Add("@n", DbType.String);
+					cmd.Parameters.Add("@v", DbType.Double);
 
-					try
+					foreach (var variable in variables)
 					{
-						cmd2.ExecuteNonQuery();
-					}
-					catch (Exception exc)
-					{
-						logger.WriteLine("error saving variable", exc);
+						if (!string.IsNullOrWhiteSpace(variable.Name))
+						{
+							logger.Verbose($"writing variable {variable.Name}");
+
+							cmd.Parameters["@n"].Value = variable.Name;
+							cmd.Parameters["@v"].Value = variable.Value;
+
+							try
+							{
+								cmd.ExecuteNonQuery();
+							}
+							catch (Exception exc)
+							{
+								logger.WriteLine("error saving variable", exc);
+							}
+						}
 					}
 				}
+				catch (Exception exc)
+				{
+					logger.WriteLine("error saving variables", exc);
+					transaction.Rollback();
+					return;
+				}
+			}
 
-				transaction.Commit();
-			}
-			catch (Exception exc)
-			{
-				ReportError("error saving variables", cmd2, exc);
-				transaction.Rollback();
-			}
+			transaction.Commit();
 		}
 
 
@@ -173,7 +191,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 			}
 			catch (Exception exc)
 			{
-				ReportError("error reading scanner version", cmd, exc);
+				logger.WriteLine("error reading scanner version", exc);
 				return false;
 			}
 

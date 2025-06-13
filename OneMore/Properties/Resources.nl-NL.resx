@@ -5154,6 +5154,34 @@ Omkeren</value>
     <value>Geïnstalleerde versie:</value>
     <comment>label</comment>
   </data>
+  <data name="VariablesSheet_deleteVariable" xml:space="preserve">
+    <value>Variabele {0} verwijderen?</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="VariablesSheet_deleteVariables" xml:space="preserve">
+    <value>Geselecteerde variabelen verwijderen?</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="VariablesSheet_doubleWarning" xml:space="preserve">
+    <value>Voer een geldige dubbele waarde in</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="VariablesSheet_introBox.Text" xml:space="preserve">
+    <value>Definieer uw eigen variabelen voor gebruik in tabelformules</value>
+    <comment>text</comment>
+  </data>
+  <data name="VariablesSheet_reserved" xml:space="preserve">
+    <value>Kan geen variabele met de naam Tablecols of Tableerows maken</value>
+    <comment>message</comment>
+  </data>
+  <data name="VariablesSheet_Title" xml:space="preserve">
+    <value>Variabelen</value>
+    <comment>settings sheet</comment>
+  </data>
+  <data name="VariablesSheet_uniqueError" xml:space="preserve">
+    <value>Variabele namen moeten uniek zijn</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="word_Actual" xml:space="preserve">
     <value>Werkelijk</value>
   </data>
@@ -5385,6 +5413,9 @@ Omkeren</value>
   <data name="word_Snippets" xml:space="preserve">
     <value>Fragmenten</value>
   </data>
+  <data name="word_Sort" xml:space="preserve">
+    <value>Soort</value>
+  </data>
   <data name="word_Start" xml:space="preserve">
     <value>Begin</value>
   </data>
@@ -5414,6 +5445,9 @@ Omkeren</value>
   </data>
   <data name="word_Total" xml:space="preserve">
     <value>Totaal</value>
+  </data>
+  <data name="word_Value" xml:space="preserve">
+    <value>Waarde</value>
   </data>
   <data name="word_Warning" xml:space="preserve">
     <value>Waarschuwing</value>

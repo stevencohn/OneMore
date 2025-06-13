@@ -12660,11 +12660,47 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Variables are used in table formulas.
+        ///   Looks up a localized string similar to Delete variable {0}?.
+        /// </summary>
+        internal static string VariablesSheet_deleteVariable {
+            get {
+                return ResourceManager.GetString("VariablesSheet_deleteVariable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete selected variables?.
+        /// </summary>
+        internal static string VariablesSheet_deleteVariables {
+            get {
+                return ResourceManager.GetString("VariablesSheet_deleteVariables", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter a valid double value.
+        /// </summary>
+        internal static string VariablesSheet_doubleWarning {
+            get {
+                return ResourceManager.GetString("VariablesSheet_doubleWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Define your own variables for use in table formulas.
         /// </summary>
         internal static string VariablesSheet_introBox_Text {
             get {
                 return ResourceManager.GetString("VariablesSheet_introBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot create a variable named tablecols or tablerows.
+        /// </summary>
+        internal static string VariablesSheet_reserved {
+            get {
+                return ResourceManager.GetString("VariablesSheet_reserved", resourceCulture);
             }
         }
         
@@ -12674,6 +12710,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string VariablesSheet_Title {
             get {
                 return ResourceManager.GetString("VariablesSheet_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Variable names must be unique.
+        /// </summary>
+        internal static string VariablesSheet_uniqueError {
+            get {
+                return ResourceManager.GetString("VariablesSheet_uniqueError", resourceCulture);
             }
         }
         
@@ -13367,6 +13412,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_Snippets {
             get {
                 return ResourceManager.GetString("word_Snippets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sort.
+        /// </summary>
+        internal static string word_Sort {
+            get {
+                return ResourceManager.GetString("word_Sort", resourceCulture);
             }
         }
         
