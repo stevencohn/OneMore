@@ -209,10 +209,13 @@ namespace River.OneMoreAddIn.Commands
 						// special treatment of todo tag 
 						if (match.Success)
 						{
+							text.Value = text.Value.Substring(match.Length);
+
 							var org = text.Value;
 							var completed = match.Groups["x"].Value == "x";
 							text.Value = text.Value.Replace((completed ? "[x]" : "[ ]"), "");
 							cdata.Value = cdata.Value.Replace(org, text.Value);
+							// ensure TagDef exists
 							page.SetTag(paragraph, tagSymbol: "3", tagStatus:completed,tagName:"todo");
 						}
 						else
@@ -263,7 +266,7 @@ namespace River.OneMoreAddIn.Commands
 		public MarkdownConverter SpaceOutParagraphs(
 			IEnumerable<XElement> paragraphs, float spaceAfter)
 		{
-			var after = spaceAfter.ToString("####0.00", CultureInfo.InvariantCulture);
+			var after = $"{spaceAfter:0.0}";
 
 			var last = paragraphs.Last();
 
