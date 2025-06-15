@@ -28,6 +28,7 @@ namespace River.OneMoreAddIn.Models
 
 		private const string HashAttributeName = "omHash";
 
+
 		/// <summary>
 		/// Initialize a new instance with the given page XML root
 		/// </summary>
