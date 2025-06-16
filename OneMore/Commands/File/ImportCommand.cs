@@ -11,7 +11,8 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Drawing;
 	using System.IO;
-	using System.Threading;
+    using System.Text.RegularExpressions;
+    using System.Threading;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
@@ -578,6 +579,8 @@ namespace River.OneMoreAddIn.Commands
 					page.Title = Path.GetFileNameWithoutExtension(filepath);
 
 					var container = page.EnsureContentContainer();
+					body = Regex.Replace(body, @"\<*input\s+type*=*\""checkbox\""\s+unchecked\s+[a-zA-Z *]*\/\>", "[ ]");
+					body = Regex.Replace(body, @"\<*input\s+type*=*\""checkbox\""\s+checked\s+[a-zA-Z *]*\/\>", "[x]");
 
 					container.Add(new XElement(ns + "HTMLBlock",
 						new XElement(ns + "Data",
@@ -600,6 +603,7 @@ namespace River.OneMoreAddIn.Commands
 
 					converter = new MarkdownConverter(page);
 					converter.RewriteHeadings();
+					converter.RewriteTodo();
 
 					logger.WriteLine($"updating...");
 					logger.WriteLine(page.Root);
