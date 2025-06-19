@@ -282,6 +282,9 @@ Process
 	{
 		Push-Location OneMoreSetup
 		$script:vdproj = Resolve-Path .\OneMoreSetup.vdproj
+		
+		git restore $vdproj
+
 		PreserveVdproj
 
 		$check = Get-Command checksum -ErrorAction SilentlyContinue
