@@ -182,9 +182,20 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (rawBox.Checked)
 			{
+				// rawBox lets users replace content with XML snippets;
+				// it does not replace XML with xML!
+
 				var xml = withBox.Text.Trim();
 				try
 				{
+					// if XML then ensure the 'one' prefix is defined as an xmlns...
+
+					var match = Regex.Match(xml, @"^<(?:(?<prefix>\w+):)?\w+(?<space>\s*)>");
+					if (match.Success && match.Groups["prefix"].Length > 0)
+					{
+						xml = xml.Insert(6, $" xmlns:{match.Groups["prefix"].Value}='anything'");
+					}
+
 					RawXml = XElement.Parse(xml);
 				}
 				catch
