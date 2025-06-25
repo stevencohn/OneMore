@@ -113,7 +113,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (success)
 			{
-				logger.WriteLine(page.Root);
+				logger.Verbose(page.Root);
 				await one.Update(page);
 			}
 			else
