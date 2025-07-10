@@ -195,13 +195,26 @@ namespace River.OneMoreAddIn.Commands
 
 					// known is empty so accept any and all
 					var accepted = knownNotebooks.Count == 0;
-					if (!accepted)
+
+					var forceThru = true;
+
+					if (accepted)
+					{
+						// force a full rescan of a known notebook if selected
+						forceThru =
+							notebookFilters is not null && notebookFilters.Contains(notebookID);
+					}
+					else
 					{
 						if (notebookFilters is null)
 						{
 							// known notebook so accept it
-							accepted = known is not null;
-							if (!accepted)
+							if (known is not null)
+							{
+								accepted = true;
+								forceThru = known.LastModified == string.Empty;
+							}
+							else
 							{
 								// notebook size is within threshold?
 								// this may load the notebook twice, but small cost
@@ -218,7 +231,8 @@ namespace River.OneMoreAddIn.Commands
 
 					if (accepted)
 					{
-						//logger.Verbose($"scanning notebook {notebookID} \"{name}\"");
+						logger.Verbose(
+							$"scanning notebook {notebookID} \"{name}\", forceThru={forceThru}");
 
 						var dp = 0;
 
@@ -226,9 +240,8 @@ namespace River.OneMoreAddIn.Commands
 						if (sections is not null)
 						{
 							int tp;
-							(dp, tp) = await Scan(
-								one, sections, notebookID, $"/{name}",
-								known?.LastModified == string.Empty);
+
+							(dp, tp) = await Scan(one, sections, notebookID, $"/{name}", forceThru);
 
 							Stats.DirtyPages += dp;
 							Stats.TotalPages += tp;
@@ -255,7 +268,7 @@ namespace River.OneMoreAddIn.Commands
 		private async Task<(int, int)> Scan(
 			OneNote one, XElement parent, string notebookID, string path, bool forceThru)
 		{
-			//logger.Verbose($"scanning parent {path}");
+			//logger.Verbose($"scanning parent {path}, forceThru={forceThru}");
 
 			int dirtyPages = 0;
 			int totalPages = 0;

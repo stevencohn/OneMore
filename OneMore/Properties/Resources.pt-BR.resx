@@ -4443,6 +4443,10 @@ Guia Ajuda</value>
     <value>HashtagScanner.json</value>
     <comment>SKIP</comment>
   </data>
+  <data name="ScheduleScanDialog_booksInfoLabel.Text" xml:space="preserve">
+    <value>Selecione Notebooks para agendar para um Rescan completo</value>
+    <comment>label</comment>
+  </data>
   <data name="ScheduleScanDialog_hintLabel.Text" xml:space="preserve">
     <value>É melhor agendar a verificação fora do horário comercial, como meia-noite</value>
     <comment>label</comment>
@@ -4454,6 +4458,10 @@ Guia Ajuda</value>
   <data name="ScheduleScanDialog_laterRadio.Text" xml:space="preserve">
     <value>Agende a verificação mais tarde</value>
     <comment>radio</comment>
+  </data>
+  <data name="ScheduleScanDialog_neverScanned" xml:space="preserve">
+    <value>nunca digitalizado</value>
+    <comment>label</comment>
   </data>
   <data name="ScheduleScanDialog_nowRadio.Text" xml:space="preserve">
     <value>Execute a verificação agora</value>

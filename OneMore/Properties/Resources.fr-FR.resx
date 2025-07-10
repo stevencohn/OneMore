@@ -4442,6 +4442,10 @@ Onglet Aide</value>
     <value>HashtagScanner.json</value>
     <comment>SKIP</comment>
   </data>
+  <data name="ScheduleScanDialog_booksInfoLabel.Text" xml:space="preserve">
+    <value>Sélectionnez des cahiers à planifier pour un sauvetage complet</value>
+    <comment>label</comment>
+  </data>
   <data name="ScheduleScanDialog_hintLabel.Text" xml:space="preserve">
     <value>Il est préférable de planifier l'analyse en dehors des heures d'ouverture, par exemple à minuit.</value>
     <comment>label</comment>
@@ -4453,6 +4457,10 @@ Onglet Aide</value>
   <data name="ScheduleScanDialog_laterRadio.Text" xml:space="preserve">
     <value>Planifier l'analyse plus tard</value>
     <comment>radio</comment>
+  </data>
+  <data name="ScheduleScanDialog_neverScanned" xml:space="preserve">
+    <value>jamais scanné</value>
+    <comment>label</comment>
   </data>
   <data name="ScheduleScanDialog_nowRadio.Text" xml:space="preserve">
     <value>Exécutez l'analyse maintenant</value>

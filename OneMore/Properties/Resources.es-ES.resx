@@ -4443,6 +4443,10 @@ Pestaña Ayuda</value>
     <value>HashtagScanner.json</value>
     <comment>SKIP</comment>
   </data>
+  <data name="ScheduleScanDialog_booksInfoLabel.Text" xml:space="preserve">
+    <value>Seleccione cuadernos para programar una rescan completa</value>
+    <comment>label</comment>
+  </data>
   <data name="ScheduleScanDialog_hintLabel.Text" xml:space="preserve">
     <value>Es mejor programar el escaneo fuera del horario laboral, como la medianoche.</value>
     <comment>label</comment>
@@ -4454,6 +4458,10 @@ Pestaña Ayuda</value>
   <data name="ScheduleScanDialog_laterRadio.Text" xml:space="preserve">
     <value>Programe el escaneo más tarde</value>
     <comment>radio</comment>
+  </data>
+  <data name="ScheduleScanDialog_neverScanned" xml:space="preserve">
+    <value>nunca escaneado</value>
+    <comment>label</comment>
   </data>
   <data name="ScheduleScanDialog_nowRadio.Text" xml:space="preserve">
     <value>Ejecute el escaneo ahora</value>

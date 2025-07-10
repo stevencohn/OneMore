@@ -180,12 +180,19 @@ namespace River.OneMoreAddIn.Commands
 				{
 					var id = book.Attribute("ID").Value;
 
+					var unscanned = scannedIDs is null || !scannedIDs.Contains(id);
+
 					var isChecked =
 						(preferredIDs is not null && preferredIDs.Contains(id)) ||
-						scannedIDs is null || !scannedIDs.Contains(id);
+						unscanned;
 
-					booksFlow.AddNotebook(
-						book.Attribute("name").Value, id, isChecked);
+					var name = book.Attribute("name").Value;
+					if (unscanned)
+					{
+						name = $"{name} ({Resx.ScheduleScanDialog_neverScanned})";
+					}
+
+					booksFlow.AddNotebook(name, id, isChecked);
 
 					if (isChecked)
 					{
