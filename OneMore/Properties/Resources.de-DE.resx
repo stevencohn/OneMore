@@ -4456,7 +4456,7 @@ Registerkarte „Hilfe“.</value>
     <comment>radio</comment>
   </data>
   <data name="ScheduleScanDialog_neverScanned" xml:space="preserve">
-    <value>Nie gescannt</value>
+    <value>niemals gescannt oder keine Tags</value>
     <comment>label</comment>
   </data>
   <data name="ScheduleScanDialog_nowRadio.Text" xml:space="preserve">

@@ -4464,7 +4464,7 @@ ISO-code then comma then language name</comment>
     <comment>radio</comment>
   </data>
   <data name="ScheduleScanDialog_neverScanned" xml:space="preserve">
-    <value>スキャンしたことはありません</value>
+    <value>スキャンしたり、タグをスキャンしたりしないでください</value>
     <comment>label</comment>
   </data>
   <data name="ScheduleScanDialog_nowRadio.Text" xml:space="preserve">

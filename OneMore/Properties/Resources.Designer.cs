@@ -11014,7 +11014,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to never scanned.
+        ///   Looks up a localized string similar to never scanned or no tags.
         /// </summary>
         internal static string ScheduleScanDialog_neverScanned {
             get {

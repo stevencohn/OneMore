@@ -4462,7 +4462,7 @@ Help Tab</value>
     <comment>radio</comment>
   </data>
   <data name="ScheduleScanDialog_neverScanned" xml:space="preserve">
-    <value>never scanned</value>
+    <value>never scanned or no tags</value>
     <comment>label</comment>
   </data>
   <data name="ScheduleScanDialog_nowRadio.Text" xml:space="preserve">

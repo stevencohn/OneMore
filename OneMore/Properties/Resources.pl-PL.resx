@@ -4461,7 +4461,7 @@ Zakładka Pomoc</value>
     <comment>radio</comment>
   </data>
   <data name="ScheduleScanDialog_neverScanned" xml:space="preserve">
-    <value>Nigdy nie skanowałem</value>
+    <value>nigdy nie skanowałem lub nie ma tagów</value>
     <comment>label</comment>
   </data>
   <data name="ScheduleScanDialog_nowRadio.Text" xml:space="preserve">

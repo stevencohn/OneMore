@@ -4453,7 +4453,7 @@ ISO-code then comma then language name</comment>
     <comment>radio</comment>
   </data>
   <data name="ScheduleScanDialog_neverScanned" xml:space="preserve">
-    <value>从未扫描过</value>
+    <value>从不扫描或没有标签</value>
     <comment>label</comment>
   </data>
   <data name="ScheduleScanDialog_nowRadio.Text" xml:space="preserve">

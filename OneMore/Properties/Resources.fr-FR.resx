@@ -4459,7 +4459,7 @@ Onglet Aide</value>
     <comment>radio</comment>
   </data>
   <data name="ScheduleScanDialog_neverScanned" xml:space="preserve">
-    <value>jamais scanné</value>
+    <value>jamais scanné ou pas de balises</value>
     <comment>label</comment>
   </data>
   <data name="ScheduleScanDialog_nowRadio.Text" xml:space="preserve">

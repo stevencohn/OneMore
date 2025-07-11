@@ -4460,7 +4460,7 @@ Pestaña Ayuda</value>
     <comment>radio</comment>
   </data>
   <data name="ScheduleScanDialog_neverScanned" xml:space="preserve">
-    <value>nunca escaneado</value>
+    <value>nunca escaneó o no hay etiquetas</value>
     <comment>label</comment>
   </data>
   <data name="ScheduleScanDialog_nowRadio.Text" xml:space="preserve">

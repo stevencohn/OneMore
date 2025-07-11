@@ -4459,7 +4459,7 @@ ISO-code then comma then language name</comment>
     <comment>radio</comment>
   </data>
   <data name="ScheduleScanDialog_neverScanned" xml:space="preserve">
-    <value>מעולם לא סרק</value>
+    <value>מעולם לא סרק או ללא תגיות</value>
     <comment>label</comment>
   </data>
   <data name="ScheduleScanDialog_nowRadio.Text" xml:space="preserve">
