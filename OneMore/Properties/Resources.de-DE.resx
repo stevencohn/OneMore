@@ -4439,6 +4439,10 @@ Registerkarte „Hilfe“.</value>
     <value>HashtagScanner.json</value>
     <comment>SKIP</comment>
   </data>
+  <data name="ScheduleScanDialog_booksInfoLabel.Text" xml:space="preserve">
+    <value>Wählen Sie Notizbücher aus, um einen vollständigen Rescan zu planen</value>
+    <comment>label</comment>
+  </data>
   <data name="ScheduleScanDialog_hintLabel.Text" xml:space="preserve">
     <value>Planen Sie den Scan am besten außerhalb der Geschäftszeiten, beispielsweise um Mitternacht</value>
     <comment>label</comment>
@@ -4450,6 +4454,10 @@ Registerkarte „Hilfe“.</value>
   <data name="ScheduleScanDialog_laterRadio.Text" xml:space="preserve">
     <value>Planen Sie den Scan zu einem späteren Zeitpunkt</value>
     <comment>radio</comment>
+  </data>
+  <data name="ScheduleScanDialog_neverScanned" xml:space="preserve">
+    <value>niemals gescannt oder keine Tags</value>
+    <comment>label</comment>
   </data>
   <data name="ScheduleScanDialog_nowRadio.Text" xml:space="preserve">
     <value>Führen Sie den Scan jetzt durch</value>

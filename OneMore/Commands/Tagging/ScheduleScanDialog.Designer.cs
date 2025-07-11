@@ -37,6 +37,7 @@
 			this.scheduleLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
 			this.notebooksPanel = new River.OneMoreAddIn.UI.MorePanel();
+			this.booksInfoLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.booksPanel = new River.OneMoreAddIn.UI.MorePanel();
 			this.sep2 = new River.OneMoreAddIn.UI.MoreLabel();
 			this.notebooksLabel = new River.OneMoreAddIn.UI.MoreLabel();
@@ -145,6 +146,7 @@
 			this.notebooksPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.notebooksPanel.BottomBorderColor = System.Drawing.Color.Transparent;
 			this.notebooksPanel.BottomBorderSize = 0;
+			this.notebooksPanel.Controls.Add(this.booksInfoLabel);
 			this.notebooksPanel.Controls.Add(this.booksPanel);
 			this.notebooksPanel.Controls.Add(this.sep2);
 			this.notebooksPanel.Controls.Add(this.notebooksLabel);
@@ -156,12 +158,24 @@
 			this.notebooksPanel.Location = new System.Drawing.Point(0, 388);
 			this.notebooksPanel.Name = "notebooksPanel";
 			this.notebooksPanel.Padding = new System.Windows.Forms.Padding(0, 0, 20, 20);
-			this.notebooksPanel.Size = new System.Drawing.Size(718, 288);
+			this.notebooksPanel.Size = new System.Drawing.Size(718, 400);
 			this.notebooksPanel.TabIndex = 25;
 			this.notebooksPanel.ThemedBack = "ControlLightLight";
 			this.notebooksPanel.ThemedFore = null;
 			this.notebooksPanel.TopBorderColor = System.Drawing.SystemColors.Control;
 			this.notebooksPanel.TopBorderSize = 0;
+			// 
+			// booksInfoLabel
+			// 
+			this.booksInfoLabel.AutoSize = true;
+			this.booksInfoLabel.Location = new System.Drawing.Point(27, 43);
+			this.booksInfoLabel.Margin = new System.Windows.Forms.Padding(3, 0, 3, 12);
+			this.booksInfoLabel.Name = "booksInfoLabel";
+			this.booksInfoLabel.Size = new System.Drawing.Size(331, 20);
+			this.booksInfoLabel.TabIndex = 7;
+			this.booksInfoLabel.Text = "Select notebooks to schedule for a full rescan";
+			this.booksInfoLabel.ThemedBack = null;
+			this.booksInfoLabel.ThemedFore = null;
 			// 
 			// booksPanel
 			// 
@@ -171,9 +185,9 @@
 			this.booksPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.booksPanel.BottomBorderColor = System.Drawing.Color.Transparent;
 			this.booksPanel.BottomBorderSize = 0;
-			this.booksPanel.Location = new System.Drawing.Point(31, 46);
+			this.booksPanel.Location = new System.Drawing.Point(31, 103);
 			this.booksPanel.Name = "booksPanel";
-			this.booksPanel.Size = new System.Drawing.Size(656, 219);
+			this.booksPanel.Size = new System.Drawing.Size(656, 274);
 			this.booksPanel.TabIndex = 21;
 			this.booksPanel.ThemedBack = null;
 			this.booksPanel.ThemedFore = null;
@@ -184,7 +198,7 @@
 			// 
 			this.sep2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.sep2.AutoSize = true;
-			this.sep2.Location = new System.Drawing.Point(614, 16);
+			this.sep2.Location = new System.Drawing.Point(608, 80);
 			this.sep2.Name = "sep2";
 			this.sep2.Size = new System.Drawing.Size(14, 20);
 			this.sep2.TabIndex = 24;
@@ -214,7 +228,7 @@
 			this.resetLink.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.resetLink.HoverColor = System.Drawing.Color.MediumOrchid;
 			this.resetLink.LinkColor = System.Drawing.SystemColors.ControlDark;
-			this.resetLink.Location = new System.Drawing.Point(635, 16);
+			this.resetLink.Location = new System.Drawing.Point(629, 80);
 			this.resetLink.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.resetLink.MaximumSize = new System.Drawing.Size(420, 0);
 			this.resetLink.Name = "resetLink";
@@ -236,7 +250,7 @@
 			this.selectAllLink.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.selectAllLink.HoverColor = System.Drawing.Color.MediumOrchid;
 			this.selectAllLink.LinkColor = System.Drawing.SystemColors.ControlDark;
-			this.selectAllLink.Location = new System.Drawing.Point(408, 16);
+			this.selectAllLink.Location = new System.Drawing.Point(402, 80);
 			this.selectAllLink.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.selectAllLink.MaximumSize = new System.Drawing.Size(420, 0);
 			this.selectAllLink.Name = "selectAllLink";
@@ -254,7 +268,7 @@
 			// 
 			this.sep1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.sep1.AutoSize = true;
-			this.sep1.Location = new System.Drawing.Point(490, 16);
+			this.sep1.Location = new System.Drawing.Point(484, 80);
 			this.sep1.Name = "sep1";
 			this.sep1.Size = new System.Drawing.Size(14, 20);
 			this.sep1.TabIndex = 22;
@@ -270,7 +284,7 @@
 			this.selectNoneLink.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.selectNoneLink.HoverColor = System.Drawing.Color.MediumOrchid;
 			this.selectNoneLink.LinkColor = System.Drawing.SystemColors.ControlDark;
-			this.selectNoneLink.Location = new System.Drawing.Point(511, 16);
+			this.selectNoneLink.Location = new System.Drawing.Point(505, 80);
 			this.selectNoneLink.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.selectNoneLink.MaximumSize = new System.Drawing.Size(420, 0);
 			this.selectNoneLink.Name = "selectNoneLink";
@@ -291,7 +305,7 @@
 			this.buttonPanel.Controls.Add(this.okButton);
 			this.buttonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.buttonPanel.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.buttonPanel.Location = new System.Drawing.Point(0, 676);
+			this.buttonPanel.Location = new System.Drawing.Point(0, 788);
 			this.buttonPanel.Name = "buttonPanel";
 			this.buttonPanel.Size = new System.Drawing.Size(718, 61);
 			this.buttonPanel.TabIndex = 5;
@@ -351,7 +365,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(718, 737);
+			this.ClientSize = new System.Drawing.Size(718, 849);
 			this.Controls.Add(this.notebooksPanel);
 			this.Controls.Add(this.topPanel);
 			this.Controls.Add(this.introBox);
@@ -396,5 +410,6 @@
 		private UI.MoreLinkLabel resetLink;
 		private UI.MoreLabel sep1;
 		private UI.MorePanel notebooksPanel;
+		private UI.MoreLabel booksInfoLabel;
 	}
 }

@@ -4444,6 +4444,10 @@ Zakładka Pomoc</value>
     <value>HashtagScanner.json</value>
     <comment>SKIP</comment>
   </data>
+  <data name="ScheduleScanDialog_booksInfoLabel.Text" xml:space="preserve">
+    <value>Wybierz notebooki, aby zaplanować pełną reskan</value>
+    <comment>label</comment>
+  </data>
   <data name="ScheduleScanDialog_hintLabel.Text" xml:space="preserve">
     <value>Skanowanie najlepiej zaplanować poza godzinami pracy, na przykład o północy</value>
     <comment>label</comment>
@@ -4455,6 +4459,10 @@ Zakładka Pomoc</value>
   <data name="ScheduleScanDialog_laterRadio.Text" xml:space="preserve">
     <value>Zaplanuj skanowanie w późniejszym czasie</value>
     <comment>radio</comment>
+  </data>
+  <data name="ScheduleScanDialog_neverScanned" xml:space="preserve">
+    <value>nigdy nie skanowałem lub nie ma tagów</value>
+    <comment>label</comment>
   </data>
   <data name="ScheduleScanDialog_nowRadio.Text" xml:space="preserve">
     <value>Uruchom skanowanie teraz</value>

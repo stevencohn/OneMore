@@ -4443,6 +4443,10 @@ Tabblad Help</value>
     <value>HashtagScanner.json</value>
     <comment>SKIP</comment>
   </data>
+  <data name="ScheduleScanDialog_booksInfoLabel.Text" xml:space="preserve">
+    <value>Selecteer Notebooks om te plannen voor een volledige skier</value>
+    <comment>label</comment>
+  </data>
   <data name="ScheduleScanDialog_hintLabel.Text" xml:space="preserve">
     <value>Het is het beste om de scan buiten kantooruren te plannen, bijvoorbeeld middernacht</value>
     <comment>label</comment>
@@ -4454,6 +4458,10 @@ Tabblad Help</value>
   <data name="ScheduleScanDialog_laterRadio.Text" xml:space="preserve">
     <value>Plan de scan op een later tijdstip</value>
     <comment>radio</comment>
+  </data>
+  <data name="ScheduleScanDialog_neverScanned" xml:space="preserve">
+    <value>Nooit gescand of geen tags</value>
+    <comment>label</comment>
   </data>
   <data name="ScheduleScanDialog_nowRadio.Text" xml:space="preserve">
     <value>Voer de scan nu uit</value>

@@ -10978,6 +10978,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select notebooks to schedule for a full rescan.
+        /// </summary>
+        internal static string ScheduleScanDialog_booksInfoLabel_Text {
+            get {
+                return ResourceManager.GetString("ScheduleScanDialog_booksInfoLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to It is best to schedule the scan during off-hours, such as midnight.
         /// </summary>
         internal static string ScheduleScanDialog_hintLabel_Text {
@@ -11001,6 +11010,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ScheduleScanDialog_laterRadio_Text {
             get {
                 return ResourceManager.GetString("ScheduleScanDialog_laterRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to never scanned or no tags.
+        /// </summary>
+        internal static string ScheduleScanDialog_neverScanned {
+            get {
+                return ResourceManager.GetString("ScheduleScanDialog_neverScanned", resourceCulture);
             }
         }
         

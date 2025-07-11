@@ -4447,6 +4447,10 @@ ISO-code then comma then language name</comment>
     <value>HashtagScanner.json</value>
     <comment>SKIP</comment>
   </data>
+  <data name="ScheduleScanDialog_booksInfoLabel.Text" xml:space="preserve">
+    <value>完全なレスパンをスケジュールするためにノートブックを選択します</value>
+    <comment>label</comment>
+  </data>
   <data name="ScheduleScanDialog_hintLabel.Text" xml:space="preserve">
     <value>スキャンは夜間などのオフ時間にスケジュールするのが最適です</value>
     <comment>label</comment>
@@ -4458,6 +4462,10 @@ ISO-code then comma then language name</comment>
   <data name="ScheduleScanDialog_laterRadio.Text" xml:space="preserve">
     <value>後でスキャンをスケジュールする</value>
     <comment>radio</comment>
+  </data>
+  <data name="ScheduleScanDialog_neverScanned" xml:space="preserve">
+    <value>スキャンしたり、タグをスキャンしたりしないでください</value>
+    <comment>label</comment>
   </data>
   <data name="ScheduleScanDialog_nowRadio.Text" xml:space="preserve">
     <value>今すぐスキャンを実行</value>
