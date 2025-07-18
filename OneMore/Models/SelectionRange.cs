@@ -375,8 +375,8 @@ namespace River.OneMoreAddIn.Models
 			IEnumerable<XElement> selections;
 
 			var start = anyElement
-				? root.Descendants()
-				: root.Descendants(ns + "T");
+				? roots.Descendants()
+				: roots.Descendants(ns + "T");
 
 			selections = start
 				.Where(e => e.Attribute("selected") is XAttribute a && a.Value == "all");
