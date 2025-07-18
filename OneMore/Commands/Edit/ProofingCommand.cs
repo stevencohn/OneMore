@@ -67,11 +67,12 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
+
 			var range = new Models.SelectionRange(page);
-			range.GetSelection();
+			range.GetSelection(allowNonEmpty: true);
 
 			var partial = false;
-			if (range.Scope == SelectionScope.Range)
+			if (range.Scope == SelectionScope.Range || range.Scope == SelectionScope.Run)
 			{
 				// update only selected text...
 
