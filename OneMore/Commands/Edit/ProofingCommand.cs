@@ -67,7 +67,6 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-
 			var range = new Models.SelectionRange(page);
 			range.GetSelection(allowNonEmpty: true);
 
