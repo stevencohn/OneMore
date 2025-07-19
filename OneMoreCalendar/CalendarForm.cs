@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2021 Steven M. Cohn. All Rights Reserved.
+// Copyright © 2021 Steven M Cohn. All Rights Reserved.
 //************************************************************************************************
 
 namespace OneMoreCalendar
@@ -21,6 +21,7 @@ namespace OneMoreCalendar
 
 		private DateTime date;
 		private CalendarPages pages;
+		private int monthDelta;
 
 		private MonthView monthView;
 		private DetailView detailView;
@@ -28,9 +29,12 @@ namespace OneMoreCalendar
 		private SettingsForm settingsForm;
 
 
-		public CalendarForm()
+		public CalendarForm(int userMonthDelta)
 		{
 			InitializeComponent();
+
+			monthDelta = userMonthDelta;
+			date = DateTime.Now.StartOfMonth();
 
 			statusLabel.Text = string.Empty;
 			statusCreatedLabel.Text = string.Empty;
@@ -64,7 +68,7 @@ namespace OneMoreCalendar
 
 			contentPanel.Controls.Add(monthView);
 
-			await SetMonth(0);
+			await SetMonth(monthDelta);
 
 			// when started from OneNote, need to force window to top
 			TopMost = true;
