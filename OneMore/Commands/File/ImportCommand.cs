@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -98,7 +98,7 @@ namespace River.OneMoreAddIn.Commands
 				progress.SetMessage($"Importing {path}...");
 
 				var result = progress.ShowTimedDialog(
-					async (ProgressDialog progDialog, CancellationToken token) =>
+					async (progDialog, token) =>
 					{
 						try
 						{
@@ -143,6 +143,8 @@ namespace River.OneMoreAddIn.Commands
 
 			logger.StartClock();
 
+			var good = 0;
+
 			var completed = RunWithProgress(timeout, filepath, async (token) =>
 			{
 				foreach (var file in files)
@@ -152,7 +154,10 @@ namespace River.OneMoreAddIn.Commands
 						break;
 					}
 
-					await ImportWordFile(file, append, token);
+					if (await ImportWordFile(file, append, token))
+					{
+						good++;
+					}
 				}
 
 				return !token.IsCancellationRequested;
@@ -160,49 +165,76 @@ namespace River.OneMoreAddIn.Commands
 
 			if (completed)
 			{
-				logger.WriteTime("word file(s) imported");
+				logger.WriteTime($"imported {good} of {files.Length} word file(s)");
 			}
 			else
 			{
-				logger.WriteTime("word file(s) cancelled");
+				logger.WriteTime($"importing word files cancelled; {good} of {files.Length} completed");
 			}
 		}
 
 
-		private async Task ImportWordFile(string filepath, bool append, CancellationToken token)
+		private async Task<bool> ImportWordFile(string filepath, bool append, CancellationToken token)
 		{
 			progress.SetMessage($"Importing {filepath}...");
 
 			string html;
-			// do not use single-line using here!!
-			using (var word = new Word())
+
+			try
 			{
-				html = word.ConvertFileToHtml(filepath);
+				// do not use single-line using here!!
+				using (var word = new Word())
+				{
+					html = word.ConvertFileToHtml(filepath);
+				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"error converting {filepath} to HTML", exc);
+				return false;
 			}
 
 			if (token.IsCancellationRequested)
 			{
 				logger.WriteLine("WordImporter cancelled");
-				return;
+				return false;
 			}
 
 			if (append)
 			{
-				await using var one = new OneNote(out var page, out _);
-				page.AddHtmlContent(html);
-				await one.Update(page);
+				try
+				{
+					await using var one = new OneNote(out var page, out _);
+					page.AddHtmlContent(html);
+					await one.Update(page);
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine($"error appending {filepath} to current page", exc);
+					return false;
+				}
 			}
 			else
 			{
-				await using var one = new OneNote();
-				one.CreatePage(one.CurrentSectionId, out var pageId);
-				var page = await one.GetPage(pageId);
+				try
+				{
+					await using var one = new OneNote();
+					one.CreatePage(one.CurrentSectionId, out var pageId);
+					var page = await one.GetPage(pageId);
 
-				page.Title = Path.GetFileName(filepath);
-				page.AddHtmlContent(html);
-				await one.Update(page);
-				await one.NavigateTo(page.PageId);
+					page.Title = Path.GetFileName(filepath);
+					page.AddHtmlContent(html);
+					await one.Update(page);
+					await one.NavigateTo(page.PageId);
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine($"error creating page for {filepath}", exc);
+					return false;
+				}
 			}
+
+			return true;
 		}
 
 
@@ -231,6 +263,8 @@ namespace River.OneMoreAddIn.Commands
 
 			logger.StartClock();
 
+			int good = 0;
+
 			var completed = RunWithProgress(timeout, filepath, async (token) =>
 			{
 				foreach (var file in files)
@@ -240,7 +274,10 @@ namespace River.OneMoreAddIn.Commands
 						break;
 					}
 
-					await ImportPowerPointFile(file, append, split, token);
+					if (await ImportPowerPointFile(file, append, split, token))
+					{
+						good++;
+					}
 				}
 
 				return !token.IsCancellationRequested;
@@ -248,16 +285,16 @@ namespace River.OneMoreAddIn.Commands
 
 			if (completed)
 			{
-				logger.WriteTime("powerpoint file(s) imported");
+				logger.WriteTime($"imported {good} of {files.Length} powerpoint file(s)");
 			}
 			else
 			{
-				logger.WriteTime("powerpoint file(s) cancelled");
+				logger.WriteTime($"importing powerpoint files cancelled; {good} of {files.Length} completed");
 			}
 		}
 
 
-		private async Task ImportPowerPointFile(
+		private async Task<bool> ImportPowerPointFile(
 			string filepath, bool append, bool split, CancellationToken token)
 		{
 			progress.SetMessage($"Importing {filepath}...");
@@ -268,69 +305,85 @@ namespace River.OneMoreAddIn.Commands
 			if (outpath == null)
 			{
 				logger.WriteLine($"failed to create output path {filepath}");
-				return;
+				return false;
 			}
 
 			if (token.IsCancellationRequested)
 			{
 				logger.WriteLine("PowerPointImporter cancelled");
-				return;
+				return false;
 			}
 
 			if (split)
 			{
-				await using var one = new OneNote();
-				var section = await one.CreateSection(Path.GetFileNameWithoutExtension(filepath));
-				var sectionId = section.Attribute("ID").Value;
-				var ns = one.GetNamespace(section);
-
-				await one.NavigateTo(sectionId);
-
-				int i = 1;
-				foreach (var file in Directory.GetFiles(outpath, "*.jpg"))
+				try
 				{
-					one.CreatePage(sectionId, out var pageId);
-					var page = await one.GetPage(pageId);
-					page.Title = $"Slide {i}";
-					var container = page.EnsureContentContainer();
+					await using var one = new OneNote();
+					var section = await one.CreateSection(Path.GetFileNameWithoutExtension(filepath));
+					var sectionId = section.Attribute("ID").Value;
+					var ns = one.GetNamespace(section);
 
-					EmbedImage(container, ns, file);
+					await one.NavigateTo(sectionId);
 
-					await one.Update(page);
+					int i = 1;
+					foreach (var file in Directory.GetFiles(outpath, "*.jpg"))
+					{
+						one.CreatePage(sectionId, out var pageId);
+						var page = await one.GetPage(pageId);
+						page.Title = $"Slide {i}";
+						var container = page.EnsureContentContainer();
 
-					i++;
+						EmbedImage(container, ns, file);
+
+						await one.Update(page);
+
+						i++;
+					}
+
+					logger.WriteLine("created section");
 				}
-
-				logger.WriteLine("created section");
+				catch (Exception exc)
+				{
+					logger.WriteLine($"error importing and splitting {filepath}", exc);
+					return false;
+				}
 			}
 			else
 			{
-				await using var one = new OneNote();
-				Page page;
-				if (append)
+				try
 				{
-					page = await one.GetPage();
+					await using var one = new OneNote();
+					Page page;
+					if (append)
+					{
+						page = await one.GetPage();
+					}
+					else
+					{
+						one.CreatePage(one.CurrentSectionId, out var pageId);
+						page = await one.GetPage(pageId);
+						page.Title = Path.GetFileName(filepath);
+					}
+
+					var container = page.EnsureContentContainer();
+
+					foreach (var file in Directory.GetFiles(outpath, "*.jpg"))
+					{
+						using var image = Image.FromFile(file);
+						EmbedImage(container, page.Namespace, file);
+					}
+
+					await one.Update(page);
+
+					if (!append)
+					{
+						await one.NavigateTo(page.PageId);
+					}
 				}
-				else
+				catch (Exception exc)
 				{
-					one.CreatePage(one.CurrentSectionId, out var pageId);
-					page = await one.GetPage(pageId);
-					page.Title = Path.GetFileName(filepath);
-				}
-
-				var container = page.EnsureContentContainer();
-
-				foreach (var file in Directory.GetFiles(outpath, "*.jpg"))
-				{
-					using var image = Image.FromFile(file);
-					EmbedImage(container, page.Namespace, file);
-				}
-
-				await one.Update(page);
-
-				if (!append)
-				{
-					await one.NavigateTo(page.PageId);
+					logger.WriteLine($"error importing {filepath}", exc);
+					return false;
 				}
 			}
 
@@ -340,12 +393,14 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine($"error cleaning up {outpath}", exc);
+				logger.WriteLine($"error cleaning up {outpath}, but continuing", exc);
 			}
+
+			return true;
 		}
 
 
-		private void EmbedImage(XElement container, XNamespace ns, string filepath)
+		private static void EmbedImage(XElement container, XNamespace ns, string filepath)
 		{
 			using var image = Image.FromFile(filepath);
 
@@ -385,6 +440,8 @@ namespace River.OneMoreAddIn.Commands
 
 			logger.StartClock();
 
+			var good = 0;
+
 			var completed = RunWithProgress(timeout, filepath, async (token) =>
 			{
 				foreach (var file in files)
@@ -395,7 +452,10 @@ namespace River.OneMoreAddIn.Commands
 						break;
 					}
 
-					await ImportPdfFile(file, append, token);
+					if (await ImportPdfFile(file, append, token))
+					{
+						good++;
+					}
 
 					// OneNote needs a moment to calm down...
 					await Task.Delay(300);
@@ -406,16 +466,16 @@ namespace River.OneMoreAddIn.Commands
 
 			if (completed)
 			{
-				logger.WriteTime("pdf file(s) imported");
+				logger.WriteTime($"imported {good} of {files.Length} pdf file(s)");
 			}
 			else
 			{
-				logger.WriteTime("pdf file(s) cancelled");
+				logger.WriteTime($"importing pdf files cancelled; {good} of {files.Length} completed");
 			}
 		}
 
 
-		private async Task ImportPdfFile(string filepath, bool append, CancellationToken token)
+		private async Task<bool> ImportPdfFile(string filepath, bool append, CancellationToken token)
 		{
 			progress.SetMessage($"Importing {filepath}...");
 
@@ -448,7 +508,7 @@ namespace River.OneMoreAddIn.Commands
 			catch (Exception exc)
 			{
 				logger.WriteLine($"error reading pdf {filepath}", exc);
-				return;
+				return false;
 			}
 
 			// Convert physical pixels to device independent pixel DestinationWidth
@@ -461,33 +521,41 @@ namespace River.OneMoreAddIn.Commands
 					Scaling.GetScalingFactors().Item1)
 			};
 
-			for (int i = 0; i < doc.PageCount; i++)
+			try
 			{
-				progress.SetMessage($"Rasterizing image {i} of {doc.PageCount}");
-				progress.Increment();
+				for (int i = 0; i < doc.PageCount; i++)
+				{
+					progress.SetMessage($"Rasterizing image {i} of {doc.PageCount}");
+					progress.Increment();
 
-				//logger.WriteLine($"rasterizing page {i}");
-				var pdfpage = doc.GetPage((uint)i);
+					//logger.WriteLine($"rasterizing page {i}");
+					var pdfpage = doc.GetPage((uint)i);
 
-				using var stream = new InMemoryRandomAccessStream();
-				await pdfpage.RenderToStreamAsync(stream, options);
+					using var stream = new InMemoryRandomAccessStream();
+					await pdfpage.RenderToStreamAsync(stream, options);
 
-				using var image = new Bitmap(stream.AsStream());
+					using var image = new Bitmap(stream.AsStream());
 
-				var data = Convert.ToBase64String(
-					(byte[])new ImageConverter().ConvertTo(image, typeof(byte[]))
+					var data = Convert.ToBase64String(
+						(byte[])new ImageConverter().ConvertTo(image, typeof(byte[]))
+						);
+
+					container.Add(new XElement(page.Namespace + "OE",
+						new XElement(page.Namespace + "Image",
+							new XAttribute("format", "png"),
+							new XElement(page.Namespace + "Size",
+								new XAttribute("width", $"{image.Width}.0"),
+								new XAttribute("height", $"{image.Height}.0")),
+							new XElement(page.Namespace + "Data", data)
+						)),
+						new Paragraph(page.Namespace, " ")
 					);
-
-				container.Add(new XElement(page.Namespace + "OE",
-					new XElement(page.Namespace + "Image",
-						new XAttribute("format", "png"),
-						new XElement(page.Namespace + "Size",
-							new XAttribute("width", $"{image.Width}.0"),
-							new XAttribute("height", $"{image.Height}.0")),
-						new XElement(page.Namespace + "Data", data)
-					)),
-					new Paragraph(page.Namespace, " ")
-				);
+				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"error rasterizing pdf {filepath}", exc);
+				return false;
 			}
 
 			// keep this using block or the StorageFile/PdfDocument context will corrupt it
@@ -500,6 +568,8 @@ namespace River.OneMoreAddIn.Commands
 					await one.NavigateTo(page.PageId);
 				}
 			}
+
+			return true;
 		}
 
 
@@ -520,6 +590,8 @@ namespace River.OneMoreAddIn.Commands
 			var files = Directory.GetFiles(Path.GetDirectoryName(filepath), Path.GetFileName(filepath));
 			var timeout = 10 + (files.Length * 3);
 
+			var good = 0;
+
 			var completed = RunWithProgress(timeout, filepath, async (token) =>
 			{
 				foreach (var file in files)
@@ -529,7 +601,10 @@ namespace River.OneMoreAddIn.Commands
 						break;
 					}
 
-					await ImportMarkdownFile(file, token);
+					if (await ImportMarkdownFile(file, token))
+					{
+						good++;
+					}
 				}
 
 				return !token.IsCancellationRequested;
@@ -537,16 +612,16 @@ namespace River.OneMoreAddIn.Commands
 
 			if (completed)
 			{
-				logger.WriteTime("markdown file(s) imported");
+				logger.WriteTime($"imported {good} of {files.Length} markdown file(s)");
 			}
 			else
 			{
-				logger.WriteTime("markdown file(s) import cancelled");
+				logger.WriteTime($"importing markdown files cancelled; {good} of {files.Length} completed");
 			}
 		}
 
 
-		private async Task ImportMarkdownFile(string filepath, CancellationToken token)
+		private async Task<bool> ImportMarkdownFile(string filepath, CancellationToken token)
 		{
 			try
 			{
@@ -558,7 +633,7 @@ namespace River.OneMoreAddIn.Commands
 				if (token != default && token.IsCancellationRequested)
 				{
 					logger.WriteLine("import markdown cancelled");
-					return;
+					return false;
 				}
 
 				// render HTML...
@@ -611,10 +686,11 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine(exc);
-				MoreMessageBox.ShowErrorWithLogLink(
-					owner, "Could not import. See log file for details");
+				logger.WriteLine($"error importing {filepath}", exc);
+				return false;
 			}
+
+			return true;
 		}
 
 
