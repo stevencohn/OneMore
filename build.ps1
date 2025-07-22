@@ -23,6 +23,7 @@ param (
 	[int] $configbits = 64,
 	[switch] $fast,
 	[switch] $both,
+	[switch] $arm,
 	[switch] $prep
 	)
 
@@ -113,8 +114,10 @@ Begin
 			Where-Object { $_ -match '"ProductVersion" = "8:(.+?)"' } | `
 			ForEach-Object { $matches[1] }
 
+		$cfg = $bitness -eq 65 ? 'ARM64' : "x$bitness"
+
 		Write-Host
-		Write-Host "... configuring vdproj for x$bitness build of $productVersion" -ForegroundColor Yellow
+		Write-Host "... configuring vdproj for $cfg build of $productVersion" -ForegroundColor Yellow
 
 		'' | Out-File $vdproj -nonewline
 
@@ -124,7 +127,7 @@ Begin
 			{
 				# "OutputFilename" = "8:Debug\\OneMore_v_Setupx86.msi"
 				$line = $_.Replace('OneMore_v_', "OneMore_$($productVersion)_")
-				if ($bitness -eq 64) {
+				if ($bitness -ge 64) {
 					$line.Replace('x86', 'x64') | Out-File $vdproj -Append
 				} else {
 					$line.Replace('x64', 'x86') | Out-File $vdproj -Append
@@ -133,7 +136,7 @@ Begin
 			elseif ($_ -match '"DefaultLocation" = "')
 			{
 				# "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\[ProductName]"
-				if ($bitness -eq 64) {
+				if ($bitness -ge 64) {
 					$_.Replace('ProgramFilesFolder', 'ProgramFiles64Folder') | Out-File $vdproj -Append
 				} else {
 					$_.Replace('ProgramFiles64Folder', 'ProgramFilesFolder') | Out-File $vdproj -Append
@@ -143,7 +146,7 @@ Begin
 			{
 				# x86 -> "3:0"
 				# x64 -> "3:1"
-				if ($bitness -eq 64) {
+				if ($bitness -ge 64) {
 					'"TargetPlatform" = "3:1"' | Out-File $vdproj -Append
 				} else {
 					'"TargetPlatform" = "3:0"' | Out-File $vdproj -Append
@@ -162,7 +165,7 @@ Begin
 			elseif (($_ -match '"Name" = "8:OneMoreSetupActions --install ') -or `
 					($_ -match '"Arguments" = "8:--install '))
 			{
-				if ($bitness -eq 64) {
+				if ($bitness -ge 64) {
 					$_.Replace('x86', 'x64') | Out-File $vdproj -Append
 				} else {
 					$_.Replace('x64', 'x86') | Out-File $vdproj -Append
@@ -226,7 +229,9 @@ Begin
 	function Build
 	{
 		param([int]$bitness)
-		Write-Host "... building x$bitness MSI" -ForegroundColor Yellow
+
+		$cfg = $bitness -eq 65 ? 'ARM64' : "x$bitness"
+		Write-Host "... building $cfg MSI" -ForegroundColor Yellow
 
 		# output file cannot exist before build
 		if (Test-Path .\Debug\*)
@@ -242,15 +247,15 @@ Begin
 			. $vsregedit set local HKCU General MSBuildLoggerVerbosity dword 4 | Out-Null
 		}
 
-		$cmd = "$devenv .\OneMoreSetup.vdproj /build ""Debug|x$bitness"" /project Setup /projectconfig Debug /out `$env:TEMP\OneMoreBuild.log"
+		$cmd = "$devenv .\OneMoreSetup.vdproj /build ""Debug|$cfg"" /project Setup /projectconfig Debug /out `$env:TEMP\OneMoreBuild.log"
 		write-Host $cmd -ForegroundColor DarkGray
 
 		# build
-		. $devenv .\OneMoreSetup.vdproj /build "Debug|x$bitness" /project Setup /projectconfig Debug /out $env:TEMP\OneMorebuild.log
+		. $devenv .\OneMoreSetup.vdproj /build "Debug|$cfg" /project Setup /projectconfig Debug /out $env:TEMP\OneMorebuild.log
 
 		# move msi to Downloads for safe-keeping and to allow next Platform build
 		Move-Item .\Debug\*.msi $home\Downloads -Force
-		Write-Host "... x$bitness MSI copied to $home\Downloads\" -ForegroundColor DarkYellow
+		Write-Host "... $cfg MSI copied to $home\Downloads\" -ForegroundColor DarkYellow
 
 		if ($PSCmdlet.MyInvocation.BoundParameters["Verbose"].IsPresent)
 		{
@@ -289,27 +294,41 @@ Process
 
 		$check = Get-Command checksum -ErrorAction SilentlyContinue
 
-		if ($configbits -eq 86 -or $both)
+		if ($arm -or ($configbits -eq 65))
 		{
-			Configure 86
-			Build 86
+			Configure 65
+			Build 65
 
 			if ($check)
 			{
-				$sum = (checksum -t sha256 C:\Users\steve\Downloads\OneMore_$($productVersion)_Setupx86.msi)
-				Write-Host "... x86 checksum: $sum" -ForegroundColor DarkYellow
+				$sum = (checksum -t sha256 C:\Users\steve\Downloads\OneMore_$($productVersion)_SetupARM64.msi)
+				Write-Host "... ARM64 checksum: $sum" -ForegroundColor DarkYellow
 			}
 		}
-
-		if ($configBits -eq 64 -or $both)
+		else
 		{
-			Configure 64
-			Build 64
-
-			if ($check)
+			if ($configbits -eq 86 -or $both)
 			{
-				$sum = (checksum -t sha256 C:\Users\steve\Downloads\OneMore_$($productVersion)_Setupx64.msi)
-				Write-Host "... x64 checksum: $sum" -ForegroundColor DarkYellow
+				Configure 86
+				Build 86
+
+				if ($check)
+				{
+					$sum = (checksum -t sha256 C:\Users\steve\Downloads\OneMore_$($productVersion)_Setupx86.msi)
+					Write-Host "... x86 checksum: $sum" -ForegroundColor DarkYellow
+				}
+			}
+
+			if ($configBits -eq 64 -or $both)
+			{
+				Configure 64
+				Build 64
+
+				if ($check)
+				{
+					$sum = (checksum -t sha256 C:\Users\steve\Downloads\OneMore_$($productVersion)_Setupx64.msi)
+					Write-Host "... x64 checksum: $sum" -ForegroundColor DarkYellow
+				}
 			}
 		}
 
