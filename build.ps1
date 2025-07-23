@@ -125,13 +125,9 @@ Begin
 		{
 			if ($_ -match '"OutputFileName" = "')
 			{
-				# "OutputFilename" = "8:Debug\\OneMore_v_Setupx86.msi"
+				# "OutputFilename" = "8:Debug\\OneMore_v_Setupx64.msi"
 				$line = $_.Replace('OneMore_v_', "OneMore_$($productVersion)_")
-				if ($bitness -ge 64) {
-					$line.Replace('x86', 'x64') | Out-File $vdproj -Append
-				} else {
-					$line.Replace('x64', 'x86') | Out-File $vdproj -Append
-				}
+				$line.Replace('x64', $cfg) | Out-File $vdproj -Append
 			}
 			elseif ($_ -match '"DefaultLocation" = "')
 			{
@@ -165,11 +161,9 @@ Begin
 			elseif (($_ -match '"Name" = "8:OneMoreSetupActions --install ') -or `
 					($_ -match '"Arguments" = "8:--install '))
 			{
-				if ($bitness -ge 64) {
-					$_.Replace('x86', 'x64') | Out-File $vdproj -Append
-				} else {
-					$_.Replace('x64', 'x86') | Out-File $vdproj -Append
-				}
+				# "Name" = "8:OneMoreSetupActions --install --x86"
+				# "Arguments" = "8:--install --x86"
+				$_.Replace('x86', $cfg) | Out-File $vdproj -Append
 			}
 			elseif ($_ -notmatch '^"Scc')
 			{
