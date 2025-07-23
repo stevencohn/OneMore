@@ -316,7 +316,7 @@ Process
 
 	$checkable = Get-Command checksum -ErrorAction SilentlyContinue
 
-	if ($AMR) { $ConfigBits = 65 }
+	if ($ARM) { $ConfigBits = 65 }
 
 	if ($AllConfigs)
 	{
