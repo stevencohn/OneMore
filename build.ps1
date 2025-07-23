@@ -2,11 +2,15 @@
 .SYNOPSIS
 Build both x86 and x64 msi
 
-.PARAMETER ConfigBits
-Specifies the bitness of the build: 64 or 86, default is 64
+.PARAMETER AllConfigs
+Build x86, x64, and ARM64 kits.
 
-.PARAMETER Both
-Build both x86 and x64 kits.
+.PARAMETER ARM
+Build just the ARM64 kit.
+
+.PARAMETER ConfigBits
+Specifies the bitness of the build: 64 or 86, default is 64.
+Can also specify 65 as a synonym of -ARM
 
 .PARAMETER Fast
 Build just the .csproj projects using default parameters.
@@ -20,11 +24,11 @@ or reinstalling Visual Studio. It is required to build installer kits from the c
 # CmdletBinding adds -Verbose functionality, SupportsShouldProcess adds -WhatIf
 [CmdletBinding(SupportsShouldProcess = $true)]
 param (
-	[int] $configbits = 64,
-	[switch] $fast,
-	[switch] $both,
-	[switch] $arm,
-	[switch] $prep
+	[int] $ConfigBits = 64,
+	[switch] $Fast,
+	[switch] $AllConfigs,
+	[switch] $ARM,
+	[switch] $Prep
 	)
 
 Begin
@@ -107,17 +111,17 @@ Begin
 
 	function Configure
 	{
-		param([int]$bitness)
+		param([int]$bits)
+		$config = $bits -eq 65 ? 'ARM64' : "x$bits"
+
 		$lines = @(Get-Content $vdproj)
 
 		$script:productVersion = $lines | `
 			Where-Object { $_ -match '"ProductVersion" = "8:(.+?)"' } | `
 			ForEach-Object { $matches[1] }
 
-		$cfg = $bitness -eq 65 ? 'ARM64' : "x$bitness"
-
 		Write-Host
-		Write-Host "... configuring vdproj for $cfg build of $productVersion" -ForegroundColor Yellow
+		Write-Host "... configuring vdproj for $config build of $productVersion" -ForegroundColor Yellow
 
 		'' | Out-File $vdproj -nonewline
 
@@ -127,12 +131,12 @@ Begin
 			{
 				# "OutputFilename" = "8:Debug\\OneMore_v_Setupx64.msi"
 				$line = $_.Replace('OneMore_v_', "OneMore_$($productVersion)_")
-				$line.Replace('x64', $cfg) | Out-File $vdproj -Append
+				$line.Replace('x64', $config) | Out-File $vdproj -Append
 			}
 			elseif ($_ -match '"DefaultLocation" = "')
 			{
 				# "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\[ProductName]"
-				if ($bitness -ge 64) {
+				if ($bits -ge 64) {
 					$_.Replace('ProgramFilesFolder', 'ProgramFiles64Folder') | Out-File $vdproj -Append
 				} else {
 					$_.Replace('ProgramFiles64Folder', 'ProgramFilesFolder') | Out-File $vdproj -Append
@@ -142,7 +146,7 @@ Begin
 			{
 				# x86 -> "3:0"
 				# x64 -> "3:1"
-				if ($bitness -ge 64) {
+				if ($bits -ge 64) {
 					'"TargetPlatform" = "3:1"' | Out-File $vdproj -Append
 				} else {
 					'"TargetPlatform" = "3:0"' | Out-File $vdproj -Append
@@ -150,7 +154,7 @@ Begin
 			}
 			#elseif ($_ -match '"SourcePath" = .*WebView2Loader\.dll"$')
 			#{
-			#    if ($bitness -eq 64) {
+			#    if ($bits -eq 64) {
 			#        $_.Replace('\\x86', '\\x64') | Out-File $vdproj -Append
 			#        $_.Replace('win-x86', 'win-x64') | Out-File $vdproj -Append
 			#    } else {
@@ -163,7 +167,7 @@ Begin
 			{
 				# "Name" = "8:OneMoreSetupActions --install --x86"
 				# "Arguments" = "8:--install --x86"
-				$_.Replace('x86', $cfg) | Out-File $vdproj -Append
+				$_.Replace('x86', $config) | Out-File $vdproj -Append
 			}
 			elseif ($_ -notmatch '^"Scc')
 			{
@@ -174,8 +178,8 @@ Begin
 
 	function BuildFast
 	{
-		param([int]$bitness)
-		Write-Host "... building x$bitness DLLs" -ForegroundColor Yellow
+		param([int]$bits)
+		Write-Host "... building x$bits DLLs" -ForegroundColor Yellow
 
 		# build...
 
@@ -222,10 +226,10 @@ Begin
 
 	function Build
 	{
-		param([int]$bitness)
+		param([int]$bits)
+		$config = $bits -eq 65 ? 'ARM64' : "x$bits"
 
-		$cfg = $bitness -eq 65 ? 'ARM64' : "x$bitness"
-		Write-Host "... building $cfg MSI" -ForegroundColor Yellow
+		Write-Host "... building $config MSI" -ForegroundColor Yellow
 
 		# output file cannot exist before build
 		if (Test-Path .\Debug\*)
@@ -241,15 +245,15 @@ Begin
 			. $vsregedit set local HKCU General MSBuildLoggerVerbosity dword 4 | Out-Null
 		}
 
-		$cmd = "$devenv .\OneMoreSetup.vdproj /build ""Debug|$cfg"" /project Setup /projectconfig Debug /out `$env:TEMP\OneMoreBuild.log"
+		$cmd = "$devenv .\OneMoreSetup.vdproj /build ""Debug|$config"" /project Setup /projectconfig Debug /out `$env:TEMP\OneMoreBuild.log"
 		write-Host $cmd -ForegroundColor DarkGray
 
 		# build
-		. $devenv .\OneMoreSetup.vdproj /build "Debug|$cfg" /project Setup /projectconfig Debug /out $env:TEMP\OneMorebuild.log
+		. $devenv .\OneMoreSetup.vdproj /build "Debug|$config" /project Setup /projectconfig Debug /out $env:TEMP\OneMorebuild.log
 
 		# move msi to Downloads for safe-keeping and to allow next Platform build
 		Move-Item .\Debug\*.msi $home\Downloads -Force
-		Write-Host "... $cfg MSI copied to $home\Downloads\" -ForegroundColor DarkYellow
+		Write-Host "... $config MSI copied to $home\Downloads\" -ForegroundColor DarkYellow
 
 		if ($PSCmdlet.MyInvocation.BoundParameters["Verbose"].IsPresent)
 		{
@@ -257,6 +261,30 @@ Begin
 			$cmd = ". '$vsregedit' set local HKCU General MSBuildLoggerVerbosity dword 1`n"
 			write-Host $cmd -ForegroundColor DarkGray
 			. $vsregedit set local HKCU General MSBuildLoggerVerbosity dword 1 | Out-Null
+		}
+	}
+
+	function BuildConfig
+	{
+		param([int]$bits)
+		$config = $bits -eq 65 ? 'ARM64' : "x$bits"
+
+		PreserveVdproj
+
+		try
+		{
+			Configure $bits
+			Build $bits
+
+			if ($checkable)
+			{
+				$sum = (checksum -t sha256 $home\Downloads\OneMore_$($productVersion)_Setup$config.msi)
+				Write-Host "... $config checksum: $sum" -ForegroundColor DarkYellow
+			}
+		}
+		finally
+		{
+			RestoreVdproj
 		}
 	}
 }
@@ -267,66 +295,38 @@ Process
 		return
 	}
 	
-	if ($prep)
+	if ($Prep)
 	{
 		DisableOutOfProcBuild
 		return
 	}
 
-	if ($fast)
+	if ($Fast)
 	{
-		BuildFast 64
+		BuildFast $ConfigBits
+		return
+	}
+
+	# BUILD
+
+	Push-Location OneMoreSetup
+	$script:vdproj = Resolve-Path .\OneMoreSetup.vdproj
+		
+	git restore $vdproj
+
+	$checkable = Get-Command checksum -ErrorAction SilentlyContinue
+
+	if ($AMR) { $ConfigBits = 65 }
+
+	if ($AllConfigs)
+	{
+		BuildConfig 86
+		BuildConfig 64
+		BuildConfig 65
 	}
 	else
 	{
-		Push-Location OneMoreSetup
-		$script:vdproj = Resolve-Path .\OneMoreSetup.vdproj
-		
-		git restore $vdproj
-
-		PreserveVdproj
-
-		$check = Get-Command checksum -ErrorAction SilentlyContinue
-
-		if ($arm -or ($configbits -eq 65))
-		{
-			Configure 65
-			Build 65
-
-			if ($check)
-			{
-				$sum = (checksum -t sha256 C:\Users\steve\Downloads\OneMore_$($productVersion)_SetupARM64.msi)
-				Write-Host "... ARM64 checksum: $sum" -ForegroundColor DarkYellow
-			}
-		}
-		else
-		{
-			if ($configbits -eq 86 -or $both)
-			{
-				Configure 86
-				Build 86
-
-				if ($check)
-				{
-					$sum = (checksum -t sha256 C:\Users\steve\Downloads\OneMore_$($productVersion)_Setupx86.msi)
-					Write-Host "... x86 checksum: $sum" -ForegroundColor DarkYellow
-				}
-			}
-
-			if ($configBits -eq 64 -or $both)
-			{
-				Configure 64
-				Build 64
-
-				if ($check)
-				{
-					$sum = (checksum -t sha256 C:\Users\steve\Downloads\OneMore_$($productVersion)_Setupx64.msi)
-					Write-Host "... x64 checksum: $sum" -ForegroundColor DarkYellow
-				}
-			}
-		}
-
-		RestoreVdproj
+		BuildConfig $ConfigBits
 	}
 
 	Pop-Location
