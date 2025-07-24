@@ -60,7 +60,7 @@ namespace River.OneMoreAddIn
 
 				var layout = provider
 					.GetCollection(nameof(RibbonBarSheet))
-					.Get("layout", "group");
+					.Get("layout", "tab");
 
 				var tab = XElement.Parse(layout == "tab"
 					? Resx.RibbonTabOneMore
@@ -136,7 +136,7 @@ namespace River.OneMoreAddIn
 		{
 			var position = provider
 				.GetCollection(nameof(RibbonBarSheet))
-				.Get("position", (int)RibbonPosiition.End);
+				.Get("position", (int)RibbonPosiition.TabView);
 
 			if (position < (int)RibbonPosiition.End)
 			{
