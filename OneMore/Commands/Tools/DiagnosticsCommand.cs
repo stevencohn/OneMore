@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Diagnostics;
 	using System.IO;
 	using System.Reflection;
+	using System.Runtime.InteropServices;
 	using System.Text;
 	using System.Threading.Tasks;
 
@@ -166,6 +167,10 @@ namespace River.OneMoreAddIn.Commands
 				name.Append($", Build {kernel.ProductBuildPart}");
 				name.Append(Environment.Is64BitOperatingSystem ? ", 64 bit" : ", 32 bit");
 
+				if (RuntimeInformation.OSArchitecture == Architecture.Arm64)
+				{
+					name.Append(", 64 bit (ARM64)");
+				}
 			}
 			catch (Exception exc)
 			{
