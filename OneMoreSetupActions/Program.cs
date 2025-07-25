@@ -58,9 +58,9 @@ namespace OneMoreSetupActions
 
 			int status;
 
-			if (args.Any(a => a == "--x64" || a == "--x86"))
+			if (args.Any(a => a == "--x64" || a == "--x86" || a == "--ARM64"))
 			{
-				var x64 = args.Any(a => a == "--x64");
+				var x64 = args.Any(a => a == "--x64" || a == "--ARM64");
 				status = new CheckBitnessAction(logger, stepper, x64).Install();
 				if (status != CustomAction.SUCCESS)
 				{
