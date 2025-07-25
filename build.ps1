@@ -178,8 +178,7 @@ Begin
 
 	function BuildFast
 	{
-		param([int]$bits)
-		Write-Host "... building x$bits DLLs" -ForegroundColor Yellow
+		Write-Host "... fast build with default configs" -ForegroundColor Yellow
 
 		# build...
 
@@ -219,9 +218,10 @@ Begin
 			write-Host $cmd -ForegroundColor DarkGray
 			nuget restore .\$name.csproj
 		}
-		$cmd = "$devenv .\$name.csproj /build ""Debug|AnyCPU"" /project $name /projectconfig Debug"
+		$cmd = "$devenv .\$name.csproj /build 'Debug|AnyCPU' /project $name /projectconfig 'Debug|AnyCPU'"
 		write-Host $cmd -ForegroundColor DarkGray
-		. $devenv .\$name.csproj /build "Debug|AnyCPU" /project $name /projectconfig Debug
+
+		. $devenv .\$name.csproj /build 'Debug|AnyCPU' /project $name /projectconfig 'Debug|AnyCPU'
 	}
 
 	function Build
@@ -303,7 +303,7 @@ Process
 
 	if ($Fast)
 	{
-		BuildFast $ConfigBits
+		BuildFast
 		return
 	}
 
