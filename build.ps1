@@ -26,6 +26,7 @@ Enable verbose logging for MSBuild. This is useful for debugging build issues.
 param (
 	[ValidateSet('x86','x64','ARM64','All')][string] $Architecture = 'x86',
 	[string] $Detect,
+	[int] $SetVerbosity,
 	[switch] $Clean,
 	[switch] $Fast,
 	[switch] $Prep,
@@ -452,9 +453,10 @@ Process
 	$script:verboseColor = $PSStyle.Formatting.Verbose
 	$PSStyle.Formatting.Verbose = $PSStyle.Foreground.BrightBlack
 
-	if ($Detect) { DetectArchitecture $Detect; return }
-
 	if (-not (FindVisualStudio)) { return }
+
+	if ($SetVerbosity) { $VLog = $true; SetBuildVerbosity $SetVerbosity; return }
+	if ($Detect) { DetectArchitecture $Detect; return }
 
 	if ($Prep) { DisablPrepOutOfProcBuild; return }
 	if ($Clean) { CleanSolution; return }
