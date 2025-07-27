@@ -214,6 +214,9 @@ Begin
 
 	function Build
 	{
+		param($arc)
+		$script:Architecture = $arc
+
 		CleanSolution
 		RestoreSolution
 
@@ -265,7 +268,7 @@ Begin
 				$succeeded = $matches[1]
 				$failed = $matches[2]
 				$color = $failed -eq 0 ? 'Green' : 'Red'
-				write-Host "`n... build completed: $succeeded succeeded, $failed failed" -fg $color
+				write-Host "`n... build completed: $succeeded succeeded, $failed failed" -ForegroundColor $color
 			}
 
 		return [bool]($succeeded -gt 0 -and $failed -eq 0)
@@ -342,14 +345,14 @@ Begin
 							Write-Host "... $Architecture checksum: $sum" -ForegroundColor DarkYellow
 						}
 					}
+				}
 			}
 		}
 		finally
 		{
 			RestoreVdproj $vdproj
+			Pop-Location
 		}
-
-		Pop-Location
 	}
 
 	function PreserveVdproj
@@ -367,8 +370,12 @@ Begin
 	{
 		param($vdproj)
 		Write-Host '... restoring vdproj' -ForegroundColor DarkGray
-		Copy-Item .\vdproj.tmp $vdproj -Force -Confirm:$false
-		Remove-Item .\vdproj.tmp -Force
+		$0 = .\vdproj.tmp
+		if (Test-Path $0)
+		{
+			Copy-Item $0 $vdproj -Force -Confirm:$false
+			Remove-Item $0 -Force -Confirm:$false
+		}
 	}
 
 	function ConfigureSetupProject
@@ -450,7 +457,16 @@ Process
 
 	if ($Fast) { BuildFast; return }
 
-	Build
+	if ($Architecture -eq 'All')
+	{
+		Build 'ARM64'
+		Build 'x64'
+		Build 'x86'
+	}
+	else
+	{
+		Build $Architecture
+	}
 }
 End
 {
