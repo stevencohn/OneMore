@@ -439,6 +439,26 @@ Begin
 					$line = $_.Replace('x86', $Architecture)
 					$line.Replace('x64', $Architecture) | Out-File $vdproj -Append
 				}
+				else
+				{
+					$_ | Out-File $vdproj -Append
+				}
+			}
+			elseif ($_ -match '"SourcePath" = .*SQLite.Interop\.dll"$')
+			{
+				if ($Architecture -eq 'x64')
+				{
+					$_.Replace('x86', 'x64') | Out-File $vdproj -Append
+				}
+				elseif ($Architecture -eq 'ARM64')
+				{
+					$line = $_.Replace('bin\\x86', 'bin\\ARM64')
+					$line.Replace('Debug\\x86', 'Debug\\x64') | Out-File $vdproj -Append
+				}
+				else
+				{
+					$_ | Out-File $vdproj -Append
+				}
 			}
 			elseif ($_ -notmatch '^"Scc')
 			{
@@ -470,6 +490,8 @@ Process
 	}
 	else
 	{
+		if ($Architecture -eq 'arm64') { $Architecture = 'ARM64' }
+
 		Build $Architecture
 	}
 }
