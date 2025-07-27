@@ -24,7 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <RegisterForComInterop>false</RegisterForComInterop>
     <DebugType>full</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>
     </CodeAnalysisRuleSet>
@@ -77,6 +77,29 @@
   <PropertyGroup />
   <PropertyGroup>
     <ApplicationIcon>Properties\Images\Logo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM64</PlatformTarget>
+    <LangVersion>9.0</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM64'">
+    <OutputPath>bin\ARM64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM64</PlatformTarget>
+    <LangVersion>9.0</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Aga.Controls">
@@ -1760,25 +1783,25 @@
       <Version>0.5.0</Version>
     </PackageReference>
     <PackageReference Include="HtmlAgilityPack">
-      <Version>1.11.67</Version>
+      <Version>1.12.2</Version>
     </PackageReference>
     <PackageReference Include="InputSimulator">
       <Version>1.0.4</Version>
     </PackageReference>
     <PackageReference Include="Markdig.Signed">
-      <Version>0.37.0</Version>
+      <Version>0.41.3</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.AspNetCore.WebUtilities">
-      <Version>2.2.0</Version>
+      <Version>2.3.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Logging">
-      <Version>8.0.0</Version>
+      <Version>9.0.7</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Net.Http.Headers">
-      <Version>2.2.8</Version>
+      <Version>2.3.4</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Web.WebView2">
-      <Version>1.0.2210.55</Version>
+      <Version>1.0.3351.48</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.3</Version>
@@ -1799,7 +1822,7 @@
       <Version>4.3.2</Version>
     </PackageReference>
     <PackageReference Include="System.Text.Encodings.Web">
-      <Version>8.0.0</Version>
+      <Version>9.0.7</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
