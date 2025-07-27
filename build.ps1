@@ -182,6 +182,8 @@ Begin
 		BuildProject 'OneMoreProtocolHandler'
 
 		BuildProject 'OneMoreSetupActions'
+
+		ReportArchitectures
 	}
 
 	function NugetRestore
@@ -336,9 +338,8 @@ Begin
 				$0 = Get-ChildItem .\Debug\OneMore_*.msi | select -first 1
 				if (Test-Path $0)
 				{
-					$1 = Resolve-Path $home\Downloads\OneMore_$($productVersion)_Setup$Architecture.msi
-
 					# move msi to Downloads for safe-keeping and to allow next Platform build
+					$1 = "$home\Downloads\OneMore_$productVersion`_Setup$Architecture.msi"
 					Move-Item $0 $1 -Force -Confirm:$false
 					Write-Host "... $Architecture MSI copied to $1" -ForegroundColor DarkYellow
 
@@ -375,7 +376,7 @@ Begin
 	{
 		param($vdproj)
 		Write-Host '... restoring vdproj' -ForegroundColor DarkGray
-		$0 = .\vdproj.tmp
+		$0 = (Resolve-Path .\vdproj.tmp)
 		if (Test-Path $0)
 		{
 			Copy-Item $0 $vdproj -Force -Confirm:$false
@@ -431,16 +432,14 @@ Begin
 				# "Arguments" = "8:--install --x86"
 				$_.Replace('x86', $Architecture) | Out-File $vdproj -Append
 			}
-			#elseif ($_ -match '"SourcePath" = .*WebView2Loader\.dll"$')
-			#{
-			#    if ($Architecture -eq 86) {
-			#        $_.Replace('\\x64', '\\x86') | Out-File $vdproj -Append
-			#        $_.Replace('win-x64', 'win-x86') | Out-File $vdproj -Append
-			#    } else {
-			#        $_.Replace('\\x86', '\\x64') | Out-File $vdproj -Append
-			#        $_.Replace('win-x86', 'win-x64') | Out-File $vdproj -Append
-			#    }
-			#}
+			elseif ($_ -match '"SourcePath" = .*WebView2Loader\.dll"$')
+			{
+				if ($Architecture -ne 'x86')
+				{
+					$line = $_.Replace('x86', $Architecture)
+					$line.Replace('x64', $Architecture) | Out-File $vdproj -Append
+				}
+			}
 			elseif ($_ -notmatch '^"Scc')
 			{
 				$_ | Out-File $vdproj -Append
