@@ -212,35 +212,223 @@ Begin
 	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 	# Kit...
 
-	function BuildKit
+	function Build
 	{
 		CleanSolution
+		RestoreSolution
+
+		if (BuildSolution)
+		{
+			ReportArchitectures
+			BuildKit
+		}
+	}
+
+	function RestoreSolution
+	{
+		Write-Host "`n... restoring nuget packages" -ForegroundColor Cyan
+		Write-Host
 
 		NugetRestore 'OneMore'
 		NugetRestore 'OneMoreTray'
 		NugetRestore 'OneMoreCalendar'
+	}
 
-		$log = "$($env:TEMP)\OneMoreBuild.log"
-		if (Test-Path $log) { Remove-Item $log -Force -Confirm:$false }
+	function BuildSolution
+	{
+		Write-Host "`n... building solution" -ForegroundColor Cyan
+		Write-Host
 
-		$cmd = "$devenv .\OneMore.sln /build ""Debug|$Architecture"" /out ""$log"""
-		Write-Host $cmd -ForegroundColor DarkGray
-		. $devenv .\OneMore.sln /build "Debug|$Architecture" /out $log
+		SetBuildVerbosity 4
 
-		$succeeded = 0; $failed = 1
-		Get-Content $env:TEMP\OneMoreBuild.log -ErrorAction SilentlyContinue | where {
-			$_ -match '== Build: (\d+) succeeded, (\d+) failed'
-		} | select -last 1 | foreach {
-			$succeeded = $matches[1]
-			$failed = $matches[2]
-			$color = $failed -eq 0 ? 'Green' : 'Red'
-			write-Host
-			write-Host "... build completed: $succeeded succeeded, $failed failed" -ForegroundColor $color
+		try
+		{
+			$log = "$($env:TEMP)\OneMoreBuild.log"
+			if (Test-Path $log) { Remove-Item $log -Force -Confirm:$false }
+
+			$cmd = "$devenv .\OneMore.sln /build 'Debug|$Architecture' /out '$log'"
+			Write-Host $cmd -ForegroundColor DarkGray
+			. $devenv .\OneMore.sln /build "Debug|$Architecture" /out $log
+		}
+		finally
+		{
+			SetBuildVerbosity 1
 		}
 
-		if ($succeeded -gt 0 -and $failed -eq 0)
+		$succeeded = 0;
+		$failed = 1
+
+		Get-Content $env:TEMP\OneMoreBuild.log -ErrorAction SilentlyContinue | `
+			where { $_ -match '== Build: (\d+) succeeded, (\d+) failed'} | `
+			select -last 1 | `
+			foreach {
+				$succeeded = $matches[1]
+				$failed = $matches[2]
+				$color = $failed -eq 0 ? 'Green' : 'Red'
+				write-Host "`n... build completed: $succeeded succeeded, $failed failed" -fg $color
+			}
+
+		return [bool]($succeeded -gt 0 -and $failed -eq 0)
+	}
+
+	function SetBuildVerbosity
+	{
+		param($level)
+		if ($PSCmdlet.MyInvocation.BoundParameters["Verbose"].IsPresent)
 		{
-			write-host 'good'
+			$desc = $level -eq 4 ? 'enabling' : 'disabling'
+			Write-Host "... $desc MSBuild verbose logging" -ForegroundColor DarkYellow
+			$cmd = ". '$vsregedit' set local HKCU General MSBuildLoggerVerbosity dword $level`n"
+			write-Host $cmd -ForegroundColor DarkGray
+			. $vsregedit set local HKCU General MSBuildLoggerVerbosity dword $level | Out-Null
+		}
+	}
+
+	function ReportArchitectures
+	{
+		$arc = (DetectArchitecture .\OneMore\bin\$Architecture\Debug\River.OneMoreAddIn.dll)
+		Write-Host "... OneMore: $arc" -ForegroundColor DarkGray
+
+		ReportModuleArchitecture 'OneMoreCalendar'
+		ReportModuleArchitecture 'OneMoreProtocolHandler'
+		ReportModuleArchitecture 'OneMoreSetupActions'
+		ReportModuleArchitecture 'OneMoreTray'
+		Write-Host
+	}
+
+	function ReportModuleArchitecture
+	{
+		param($name)
+		$arc = (DetectArchitecture .\$name\bin\Debug\$name.exe)
+		Write-Host "... $name`: $arc" -ForegroundColor DarkGray
+	}
+
+	function BuildKit
+	{
+		Write-Host "`n... building kit" -ForegroundColor Cyan
+		Write-Host
+
+		Push-Location OneMoreSetup
+		$vdproj = Resolve-Path .\OneMoreSetup.vdproj
+
+		PreserveVdproj $vdproj
+
+		try
+		{
+			ConfigureSetupProject $vdproj
+
+			$log = "$($env:TEMP)\OneMoreBuild.log"
+			$cmd = "$devenv .\OneMoreSetup.vdproj /build 'Debug|$Architecture' /project Setup /out '$log'"
+			write-Host $cmd -ForegroundColor DarkGray
+
+			. $devenv .\OneMoreSetup.vdproj /build "Debug|$Architecture" /project Setup /out $env:TEMP\OneMorebuild.log
+
+			# move msi to Downloads for safe-keeping and to allow next Platform build
+			Move-Item .\Debug\*.msi $home\Downloads -Force
+			Write-Host "... $config MSI copied to $home\Downloads\" -ForegroundColor DarkYellow
+
+			#. $devenv .\OneMoreSetup.vdproj /clean
+			#>
+		}
+		finally
+		{
+			RestoreVdproj $vdproj
+		}
+
+		Pop-Location
+
+		if (Get-Command checksum -ErrorAction SilentlyContinue)
+		{
+			$0 = Resolve-Path $home\Downloads\OneMore_$($productVersion)_Setup$Architecture.msi
+			if (Test-Path $0)
+			{
+				$sum = (checksum -t sha256 $0)
+				Write-Host "... $Architecture checksum: $sum" -ForegroundColor DarkYellow
+			}
+		}
+	}
+
+	function PreserveVdproj
+	{
+		param($vdproj)
+		Write-Host '... preserving vdproj' -ForegroundColor DarkGray
+
+		Write-Verbose '... restoring vdproj from git'
+		git restore $vdproj
+
+		Copy-Item $vdproj .\vdproj.tmp -Force -Confirm:$false
+	}
+
+	function RestoreVdproj
+	{
+		param($vdproj)
+		Write-Host '... restoring vdproj' -ForegroundColor DarkGray
+		Copy-Item .\vdproj.tmp $vdproj -Force -Confirm:$false
+		Remove-Item .\vdproj.tmp -Force
+	}
+
+	function ConfigureSetupProject
+	{
+		param($vdproj)
+		$lines = @(Get-Content $vdproj)
+
+		$script:productVersion = $lines | `
+			where { $_ -match '"ProductVersion" = "8:(.+?)"' } | `
+			foreach { $matches[1] }
+
+		Write-Host
+		Write-Host "... configuring vdproj for $Architecture build of $productVersion" -fg Yellow
+
+		'' | Out-File $vdproj -nonewline
+
+		$lines | foreach `
+		{
+			if ($_ -match '"OutputFileName" = "')
+			{
+				# "OutputFilename" = "8:Debug\\OneMore_v_Setupx64.msi"
+				$line = $_.Replace('OneMore_v_', "OneMore_$($productVersion)_")
+				$line.Replace('x64', $Architecture) | Out-File $vdproj -Append
+			}
+			elseif ($_ -match '"DefaultLocation" = "')
+			{
+				# "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\[ProductName]"
+				if ($Architecture -ge 'x86') {
+					$_.Replace('ProgramFiles64Folder', 'ProgramFilesFolder') | Out-File $vdproj -Append
+				} else {
+					$_.Replace('ProgramFilesFolder', 'ProgramFiles64Folder') | Out-File $vdproj -Append
+				}
+			}
+			elseif ($_ -match '"TargetPlatform" = "')
+			{
+				# x86 -> "3:0"
+				# x64 -> "3:1"
+				if ($Architecture -ge 'x86') {
+					'"TargetPlatform" = "3:0"' | Out-File $vdproj -Append
+				} else {
+					'"TargetPlatform" = "3:1"' | Out-File $vdproj -Append
+				}
+			}
+			elseif (($_ -match '"Name" = "8:OneMoreSetupActions --install ') -or `
+					($_ -match '"Arguments" = "8:--install '))
+			{
+				# "Name" = "8:OneMoreSetupActions --install --x86"
+				# "Arguments" = "8:--install --x86"
+				$_.Replace('x86', $Architecture) | Out-File $vdproj -Append
+			}
+			#elseif ($_ -match '"SourcePath" = .*WebView2Loader\.dll"$')
+			#{
+			#    if ($Architecture -eq 86) {
+			#        $_.Replace('\\x64', '\\x86') | Out-File $vdproj -Append
+			#        $_.Replace('win-x64', 'win-x86') | Out-File $vdproj -Append
+			#    } else {
+			#        $_.Replace('\\x86', '\\x64') | Out-File $vdproj -Append
+			#        $_.Replace('win-x86', 'win-x64') | Out-File $vdproj -Append
+			#    }
+			#}
+			elseif ($_ -notmatch '^"Scc')
+			{
+				$_ | Out-File $vdproj -Append
+			}
 		}
 	}
 }
@@ -258,196 +446,9 @@ Process
 
 	if ($Fast) { BuildFast; return }
 
-	BuildKit
+	Build
 }
 End
 {
 	$PSStyle.Formatting.Verbose = $verboseColor
 }
-
-<#
-Begin
-{
-	function PreserveVdproj
-	{
-		Write-Host '... preserving vdproj' -ForegroundColor DarkGray
-		Copy-Item $vdproj .\vdproj.tmp -Force -Confirm:$false
-	}
-
-	function RestoreVdproj
-	{
-		Write-Host '... restoring vdproj' -ForegroundColor DarkGray
-		Copy-Item .\vdproj.tmp $vdproj -Force -Confirm:$false
-		Remove-Item .\vdproj.tmp -Force
-	}
-
-	function Configure
-	{
-		param([int]$bits)
-		$config = $bits -eq 65 ? 'ARM64' : "x$bits"
-
-		$lines = @(Get-Content $vdproj)
-
-		$script:productVersion = $lines | `
-			Where-Object { $_ -match '"ProductVersion" = "8:(.+?)"' } | `
-			ForEach-Object { $matches[1] }
-
-		Write-Host
-		Write-Host "... configuring vdproj for $config build of $productVersion" -ForegroundColor Yellow
-
-		'' | Out-File $vdproj -nonewline
-
-		$lines | ForEach-Object `
-		{
-			if ($_ -match '"OutputFileName" = "')
-			{
-				# "OutputFilename" = "8:Debug\\OneMore_v_Setupx64.msi"
-				$line = $_.Replace('OneMore_v_', "OneMore_$($productVersion)_")
-				$line.Replace('x64', $config) | Out-File $vdproj -Append
-			}
-			elseif ($_ -match '"DefaultLocation" = "')
-			{
-				# "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\[ProductName]"
-				if ($bits -ge 64) {
-					$_.Replace('ProgramFilesFolder', 'ProgramFiles64Folder') | Out-File $vdproj -Append
-				} else {
-					$_.Replace('ProgramFiles64Folder', 'ProgramFilesFolder') | Out-File $vdproj -Append
-				}
-			}
-			elseif ($_ -match '"TargetPlatform" = "')
-			{
-				# x86 -> "3:0"
-				# x64 -> "3:1"
-				if ($bits -ge 64) {
-					'"TargetPlatform" = "3:1"' | Out-File $vdproj -Append
-				} else {
-					'"TargetPlatform" = "3:0"' | Out-File $vdproj -Append
-				}
-			}
-			#elseif ($_ -match '"SourcePath" = .*WebView2Loader\.dll"$')
-			#{
-			#    if ($bits -eq 64) {
-			#        $_.Replace('\\x86', '\\x64') | Out-File $vdproj -Append
-			#        $_.Replace('win-x86', 'win-x64') | Out-File $vdproj -Append
-			#    } else {
-			#        $_.Replace('\\x64', '\\x86') | Out-File $vdproj -Append
-			#        $_.Replace('win-x64', 'win-x86') | Out-File $vdproj -Append
-			#    }
-			#}
-			elseif (($_ -match '"Name" = "8:OneMoreSetupActions --install ') -or `
-					($_ -match '"Arguments" = "8:--install '))
-			{
-				# "Name" = "8:OneMoreSetupActions --install --x86"
-				# "Arguments" = "8:--install --x86"
-				$_.Replace('x86', $config) | Out-File $vdproj -Append
-			}
-			elseif ($_ -notmatch '^"Scc')
-			{
-				$_ | Out-File $vdproj -Append
-			}
-		}
-	}
-
-
-
-	function Build
-	{
-		param([int]$bits)
-		$config = $bits -eq 65 ? 'ARM64' : "x$bits"
-
-		Write-Host "... building $config MSI" -ForegroundColor Yellow
-
-		# output file cannot exist before build
-		if (Test-Path .\Debug\*)
-		{
-			Remove-Item .\Debug\*.* -Force -Confirm:$false
-		}
-
-		if ($PSCmdlet.MyInvocation.BoundParameters["Verbose"].IsPresent)
-		{
-			Write-Host '... enabling MSBuild verbose logging' -ForegroundColor DarkYellow
-			$cmd = ". '$vsregedit' set local HKCU General MSBuildLoggerVerbosity dword 4`n"
-			write-Host $cmd -ForegroundColor DarkGray
-			. $vsregedit set local HKCU General MSBuildLoggerVerbosity dword 4 | Out-Null
-		}
-
-		$cmd = "$devenv .\OneMoreSetup.vdproj /build ""Debug|$config"" /project Setup /projectconfig Debug /out `$env:TEMP\OneMoreBuild.log"
-		write-Host $cmd -ForegroundColor DarkGray
-
-		# build
-		. $devenv .\OneMoreSetup.vdproj /build "Debug|$config" /project Setup /projectconfig Debug /out $env:TEMP\OneMorebuild.log
-
-		# move msi to Downloads for safe-keeping and to allow next Platform build
-		Move-Item .\Debug\*.msi $home\Downloads -Force
-		Write-Host "... $config MSI copied to $home\Downloads\" -ForegroundColor DarkYellow
-
-		#. $devenv .\OneMoreSetup.vdproj /clean
-
-		if ($PSCmdlet.MyInvocation.BoundParameters["Verbose"].IsPresent)
-		{
-			Write-Host '... disabling MSBuild verbose logging' -ForegroundColor DarkYellow
-			$cmd = ". '$vsregedit' set local HKCU General MSBuildLoggerVerbosity dword 1`n"
-			write-Host $cmd -ForegroundColor DarkGray
-			. $vsregedit set local HKCU General MSBuildLoggerVerbosity dword 1 | Out-Null
-		}
-	}
-	
-	function BuildConfig
-	{
-		param([int]$bits)
-		$config = $bits -eq 65 ? 'ARM64' : "x$bits"
-
-		CleanSolution
-
-		Write-Host "... nuget restores" -ForegroundColor Yellow
-		nuget restore ..\OneMore\OneMore.csproj
-		nuget restore ..\OneMoreTray\OneMoreTray.csproj
-		nuget restore ..\OneMoreCalendar\OneMoreCalendar.csproj
-
-		PreserveVdproj
-
-		try
-		{
-			Configure $bits
-			Build $bits
-
-			if ($checkable)
-			{
-				$sum = (checksum -t sha256 $home\Downloads\OneMore_$($productVersion)_Setup$config.msi)
-				Write-Host "... $config checksum: $sum" -ForegroundColor DarkYellow
-			}
-		}
-		finally
-		{
-			RestoreVdproj
-		}
-	}
-}
-Process
-{
-	# BUILD	
-
-	Push-Location OneMoreSetup
-	$script:vdproj = Resolve-Path .\OneMoreSetup.vdproj
-		
-	git restore $vdproj
-
-	$checkable = Get-Command checksum -ErrorAction SilentlyContinue
-
-	if ($ARM) { $ConfigBits = 65 }
-
-	if ($AllConfigs)
-	{
-		# ordered so we end up with a clean 86 build for dev
-		#BuildConfig 65
-		BuildConfig 64
-		BuildConfig 86
-	}
-	else
-	{
-		BuildConfig $ConfigBits
-	}
-
-	Pop-Location
-}
-#>
