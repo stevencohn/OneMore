@@ -323,12 +323,26 @@ Begin
 
 			. $devenv .\OneMoreSetup.vdproj /build "Debug|$Architecture" /project Setup /out $env:TEMP\OneMorebuild.log
 
-			# move msi to Downloads for safe-keeping and to allow next Platform build
-			Move-Item .\Debug\*.msi $home\Downloads -Force
-			Write-Host "... $config MSI copied to $home\Downloads\" -ForegroundColor DarkYellow
+			if ($LASTEXITCODE -eq 0)
+			{
+				$0 = Get-ChildItem .\Debug\OneMore_*.msi | select -first 1
+				if (Test-Path $0)
+				{
+					$1 = Resolve-Path $home\Downloads\OneMore_$($productVersion)_Setup$Architecture.msi
 
-			#. $devenv .\OneMoreSetup.vdproj /clean
-			#>
+					# move msi to Downloads for safe-keeping and to allow next Platform build
+					Move-Item $0 $1 -Force -Confirm:$false
+					Write-Host "... $Architecture MSI copied to $1" -ForegroundColor DarkYellow
+
+					if (Get-Command checksum -ErrorAction SilentlyContinue)
+					{
+						if (Test-Path $0)
+						{
+							$sum = (checksum -t sha256 $0)
+							Write-Host "... $Architecture checksum: $sum" -ForegroundColor DarkYellow
+						}
+					}
+			}
 		}
 		finally
 		{
@@ -336,16 +350,6 @@ Begin
 		}
 
 		Pop-Location
-
-		if (Get-Command checksum -ErrorAction SilentlyContinue)
-		{
-			$0 = Resolve-Path $home\Downloads\OneMore_$($productVersion)_Setup$Architecture.msi
-			if (Test-Path $0)
-			{
-				$sum = (checksum -t sha256 $0)
-				Write-Host "... $Architecture checksum: $sum" -ForegroundColor DarkYellow
-			}
-		}
 	}
 
 	function PreserveVdproj
@@ -377,7 +381,7 @@ Begin
 			foreach { $matches[1] }
 
 		Write-Host
-		Write-Host "... configuring vdproj for $Architecture build of $productVersion" -fg Yellow
+		Write-Host "... configuring vdproj for $Architecture build of $productVersion" -ForegroundColor Yellow
 
 		'' | Out-File $vdproj -nonewline
 
