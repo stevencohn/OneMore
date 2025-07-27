@@ -17,6 +17,9 @@ OneMore, OneMorCalendar, OneMoreProtocolHandler, OneMoreSetupActions, and OneMor
 Run DisableOutOfProcBuild. This only needs to be run once on a machine, or after upgrading
 or reinstalling Visual Studio. It is required to build installer kits from the command line.
 No build is performed.
+
+.PARAMETER VLog
+Enable verbose logging for MSBuild. This is useful for debugging build issues.
 #>
 
 [CmdletBinding(SupportsShouldProcess = $true)]
@@ -25,7 +28,8 @@ param (
 	[string] $Detect,
 	[switch] $Clean,
 	[switch] $Fast,
-	[switch] $Prep
+	[switch] $Prep,
+	[switch] $VLog
 	)
 
 Begin
@@ -239,7 +243,7 @@ Begin
 
 	function BuildSolution
 	{
-		Write-Host "`n... building solution" -ForegroundColor Cyan
+		Write-Host "`n... building $Architecture solution" -ForegroundColor Cyan
 		Write-Host
 
 		SetBuildVerbosity 4
@@ -277,7 +281,7 @@ Begin
 	function SetBuildVerbosity
 	{
 		param($level)
-		if ($PSCmdlet.MyInvocation.BoundParameters["Verbose"].IsPresent)
+		if ($VLog)
 		{
 			$desc = $level -eq 4 ? 'enabling' : 'disabling'
 			Write-Host "... $desc MSBuild verbose logging" -ForegroundColor DarkYellow
@@ -308,7 +312,7 @@ Begin
 
 	function BuildKit
 	{
-		Write-Host "`n... building kit" -ForegroundColor Cyan
+		Write-Host "`n... building $Architecture kit" -ForegroundColor Cyan
 		Write-Host
 
 		Push-Location OneMoreSetup
