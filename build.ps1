@@ -1,41 +1,37 @@
 <#
 .SYNOPSIS
-Build both x86 and x64 msi
+Build OneMore full installer kit for the specified architecture, or default project builds.
 
-.PARAMETER AllConfigs
-Build x86, x64, and ARM64 kits.
+.PARAMETER Architecture
+Builds the installer kit for the specifies architecture: x86 (default), x64, ARM64, or All.
 
-.PARAMETER ARM
-Build just the ARM64 kit.
-
-.PARAMETER ConfigBits
-Specifies the bitness of the build: 64 or 86, default is 64.
-Can also specify 65 as a synonym of -ARM
+.PARAMETER Clean
+Clean all projects in the solution, removing all bin and obj directories.
+No build is performed.
 
 .PARAMETER Fast
-Build just the .csproj projects using default parameters.
-This will build OneMore, OneMorCalendar, OneMoreProtocolHandler, and OneMoreSetupActions.
+Build just the .csproj projects using default parameters:
+OneMore, OneMorCalendar, OneMoreProtocolHandler, OneMoreSetupActions, and OneMoreTray.
 
 .PARAMETER Prep
 Run DisableOutOfProcBuild. This only needs to be run once on a machine, or after upgrading
 or reinstalling Visual Studio. It is required to build installer kits from the command line.
+No build is performed.
 #>
 
-# CmdletBinding adds -Verbose functionality, SupportsShouldProcess adds -WhatIf
 [CmdletBinding(SupportsShouldProcess = $true)]
 param (
-	[int] $ConfigBits = 64,
+	[ValidateSet('x86','x64','ARM64','All')][string] $Architecture = 'x86',
+	[string] $Detect,
+	[switch] $Clean,
 	[switch] $Fast,
-	[switch] $AllConfigs,
-	[switch] $ARM,
 	[switch] $Prep
 	)
 
 Begin
 {
-	$script:devenv = ''
-	$script:vsregedit = ''
-	$script:vdproj = ''
+	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	# Helpers...
 
 	function FindVisualStudio
 	{
@@ -45,6 +41,7 @@ Begin
 			$script:devenv = $cmd.Source
 			$script:ideroot = Split-Path -Parent $devenv
 			$script:vsregedit = Join-Path $ideroot 'VSRegEdit.exe'
+			write-Verbose "... devenv found at $devenv"
 			return $true
 		}
 
@@ -58,29 +55,65 @@ Begin
 	function FindVS
 	{
 		param($vsroot)
-		$script:devenv = Join-Path $vsroot 'Enterprise\Common7\IDE\devenv.com'
-
+		$script:devenv = Join-Path $vsroot 'Professional\Common7\IDE\devenv.com'
 		if (!(Test-Path $devenv))
 		{
-			$script:devenv = Join-Path $vsroot 'Professional\Common7\IDE\devenv.com'
-		}
-		if (!(Test-Path $devenv))
-		{
-			$script:devenv = Join-Path $vsroot 'Community\Common7\IDE\devenv.com'
-		}
-
-		if (!(Test-Path $devenv))
-		{
-			Write-Host "devenv not found in $vsroot" -ForegroundColor Yellow
-			return $false
+			$script:devenv = Join-Path $vsroot 'Enterprise\Common7\IDE\devenv.com'
+			if (!(Test-Path $devenv))
+			{
+				$script:devenv = Join-Path $vsroot 'Community\Common7\IDE\devenv.com'
+				if (!(Test-Path $devenv))
+				{
+					Write-Host "devenv not found in $vsroot" -ForegroundColor Yellow
+					return $false
+				}
+			}
 		}
 
 		$script:ideroot = Split-Path -Parent $devenv
 		$script:vsregedit = Join-Path $ideroot 'VSRegEdit.exe'
+		write-Verbose "... devenv found at $devenv"
 		return $true
 	}
 
-	function DisableOutOfProcBuild
+	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	# Single Commands...
+
+	function CleanSolution
+	{
+		$pushpop = (!(Test-Path OneMore.sln))
+		if ($pushpop) { Push-Location .. }
+		CleanProject 'OneMore'
+		CleanProject 'OneMoreCalendar'
+		CleanProject 'OneMoreProtocolHandler'
+		CleanProject 'OneMoreSetup'
+		CleanProject 'OneMoreSetupActions'
+		CleanProject 'OneMoreTray'
+		if ($pushpop) { Pop-Location }
+	}
+	
+	function CleanProject
+	{
+		param([string]$project)
+		Push-Location $project
+		try
+		{
+			Write-verbose "... cleaning $project"
+			$progpref = $ProgressPreference
+			$ProgressPreference = 'SilentlyContinue' 
+			if (Test-Path bin) { Remove-Item bin -Recurse -Force -Confirm:$false | Out-Null }
+			if (Test-Path obj) { Remove-Item obj -Recurse -Force -Confirm:$false | Out-Null }
+			if (Test-Path Debug) { Remove-Item Debug -Recurse -Force -Confirm:$false | Out-Null }
+			if (Test-Path Release) { Remove-Item Release -Recurse -Force -Confirm:$false | Out-Null }
+			$ProgressPreference = $progpref
+		}
+		finally
+		{
+			Pop-Location
+		}
+	}
+
+	function DisablPrepOutOfProcBuild
 	{
 		$0 = Join-Path $ideroot 'CommonExtensions\Microsoft\VSI\DisableOutOfProcBuild'
 		if (Test-Path $0)
@@ -96,6 +129,145 @@ Begin
 		Write-Host "*** could not find $0\DisableOutOfProcBuild.exe" -ForegroundColor Yellow
 	}
 
+	function DetectArchitecture
+	{
+		param($dllpath)
+
+		$dllpath = resolve-Path $dllpath
+		if (-not (Test-Path $DllPath)) {
+			Write-Error "File not found: $DllPath"
+			return
+		}
+
+		# Open the file as a binary stream
+		$stream = [System.IO.File]::OpenRead($DllPath)
+		try {
+			$reader = New-Object System.Reflection.PortableExecutable.PEReader $stream
+			$machine = $reader.PEHeaders.CoffHeader.Machine
+
+			switch ([int]$machine) {
+				0x014c { "x86" }
+				0x0200 { "Itanium" }
+				0x8664 { "x64" }
+				0x01c4 { "ARM" }
+				0xaa64 { "ARM64" }
+				default { "Unknown Architecture: $machine" }
+			}
+		} finally {
+			$stream.Close()
+		}
+	}
+
+	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	# Fast...
+
+	function BuildFast
+	{
+		Write-Host "... fast build with default configs" -ForegroundColor Yellow
+
+		NugetRestore 'OneMore'
+		BuildProject 'OneMore'
+
+		NugetRestore 'OneMoreTray'
+		BuildProject 'OneMoreTray'
+
+		NugetRestore 'OneMoreCalendar'
+		BuildProject 'OneMoreCalendar'
+
+		BuildProject 'OneMoreProtocolHandler'
+
+		BuildProject 'OneMoreSetupActions'
+	}
+
+	function NugetRestore
+	{
+		param($name)
+		Push-Location $name
+
+		$cmd = "nuget restore .\$name.csproj"
+		write-Host $cmd -ForegroundColor DarkGray
+		nuget restore .\$name.csproj -solutiondirectory ..
+
+		Pop-Location
+	}
+
+	function BuildProject
+	{
+		param($name)
+		Push-Location $name
+
+		# output file cannot exist before build
+		if (Test-Path .\Debug\*)
+		{
+			Remove-Item .\Debug\*.* -Force -Confirm:$false
+		}
+
+		$cmd = "$devenv .\$name.csproj /project $name /projectconfig 'Debug|AnyCPU' /build"
+		write-Host $cmd -ForegroundColor DarkGray
+		. $devenv .\$name.csproj /project $name /projectconfig 'Debug|AnyCPU' /build
+
+		Pop-Location
+	}
+
+	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	# Kit...
+
+	function BuildKit
+	{
+		CleanSolution
+
+		NugetRestore 'OneMore'
+		NugetRestore 'OneMoreTray'
+		NugetRestore 'OneMoreCalendar'
+
+		$log = "$($env:TEMP)\OneMoreBuild.log"
+		if (Test-Path $log) { Remove-Item $log -Force -Confirm:$false }
+
+		$cmd = "$devenv .\OneMore.sln /build ""Debug|$Architecture"" /out ""$log"""
+		Write-Host $cmd -ForegroundColor DarkGray
+		. $devenv .\OneMore.sln /build "Debug|$Architecture" /out $log
+
+		$succeeded = 0; $failed = 1
+		Get-Content $env:TEMP\OneMoreBuild.log -ErrorAction SilentlyContinue | where {
+			$_ -match '== Build: (\d+) succeeded, (\d+) failed'
+		} | select -last 1 | foreach {
+			$succeeded = $matches[1]
+			$failed = $matches[2]
+			$color = $failed -eq 0 ? 'Green' : 'Red'
+			write-Host
+			write-Host "... build completed: $succeeded succeeded, $failed failed" -ForegroundColor $color
+		}
+
+		if ($succeeded -gt 0 -and $failed -eq 0)
+		{
+			write-host 'good'
+		}
+	}
+}
+Process
+{
+	$script:verboseColor = $PSStyle.Formatting.Verbose
+	$PSStyle.Formatting.Verbose = $PSStyle.Foreground.BrightBlack
+
+	if ($Detect) { DetectArchitecture $Detect; return }
+
+	if (-not (FindVisualStudio)) { return }
+
+	if ($Prep) { DisablPrepOutOfProcBuild; return }
+	if ($Clean) { CleanSolution; return }
+
+	if ($Fast) { BuildFast; return }
+
+	BuildKit
+}
+End
+{
+	$PSStyle.Formatting.Verbose = $verboseColor
+}
+
+<#
+Begin
+{
 	function PreserveVdproj
 	{
 		Write-Host '... preserving vdproj' -ForegroundColor DarkGray
@@ -176,53 +348,7 @@ Begin
 		}
 	}
 
-	function BuildFast
-	{
-		Write-Host "... fast build with default configs" -ForegroundColor Yellow
 
-		# build...
-
-		Push-Location OneMore
-		BuildComponent 'OneMore' $true
-		Pop-Location
-
-		Push-Location OneMoreTray
-		BuildComponent 'OneMoreTray' $true
-		Pop-Location
-
-		Push-Location OneMoreCalendar
-		BuildComponent 'OneMoreCalendar' $true
-		Pop-Location
-
-		Push-Location OneMoreProtocolHandler
-		BuildComponent 'OneMoreProtocolHandler'
-		Pop-Location
- 
-		Push-Location OneMoreSetupActions
-		BuildComponent 'OneMoreSetupActions'
-		Pop-Location
-	}
-
-	function BuildComponent
-	{
-		param($name, $restore = $false)
-		# output file cannot exist before build
-		if (Test-Path .\Debug\*)
-		{
-			Remove-Item .\Debug\*.* -Force -Confirm:$false
-		}
-		# nuget restore
-		if ($restore)
-		{
-			$cmd = 'nuget restore .\$name.csproj'
-			write-Host $cmd -ForegroundColor DarkGray
-			nuget restore .\$name.csproj
-		}
-		$cmd = "$devenv .\$name.csproj /build 'Debug|AnyCPU' /project $name /projectconfig 'Debug|AnyCPU'"
-		write-Host $cmd -ForegroundColor DarkGray
-
-		. $devenv .\$name.csproj /build 'Debug|AnyCPU' /project $name /projectconfig 'Debug|AnyCPU'
-	}
 
 	function Build
 	{
@@ -255,6 +381,8 @@ Begin
 		Move-Item .\Debug\*.msi $home\Downloads -Force
 		Write-Host "... $config MSI copied to $home\Downloads\" -ForegroundColor DarkYellow
 
+		#. $devenv .\OneMoreSetup.vdproj /clean
+
 		if ($PSCmdlet.MyInvocation.BoundParameters["Verbose"].IsPresent)
 		{
 			Write-Host '... disabling MSBuild verbose logging' -ForegroundColor DarkYellow
@@ -263,11 +391,18 @@ Begin
 			. $vsregedit set local HKCU General MSBuildLoggerVerbosity dword 1 | Out-Null
 		}
 	}
-
+	
 	function BuildConfig
 	{
 		param([int]$bits)
 		$config = $bits -eq 65 ? 'ARM64' : "x$bits"
+
+		CleanSolution
+
+		Write-Host "... nuget restores" -ForegroundColor Yellow
+		nuget restore ..\OneMore\OneMore.csproj
+		nuget restore ..\OneMoreTray\OneMoreTray.csproj
+		nuget restore ..\OneMoreCalendar\OneMoreCalendar.csproj
 
 		PreserveVdproj
 
@@ -290,24 +425,7 @@ Begin
 }
 Process
 {
-	if (-not (FindVisualStudio))
-	{
-		return
-	}
-	
-	if ($Prep)
-	{
-		DisableOutOfProcBuild
-		return
-	}
-
-	if ($Fast)
-	{
-		BuildFast
-		return
-	}
-
-	# BUILD
+	# BUILD	
 
 	Push-Location OneMoreSetup
 	$script:vdproj = Resolve-Path .\OneMoreSetup.vdproj
@@ -320,9 +438,10 @@ Process
 
 	if ($AllConfigs)
 	{
-		BuildConfig 86
+		# ordered so we end up with a clean 86 build for dev
+		#BuildConfig 65
 		BuildConfig 64
-		BuildConfig 65
+		BuildConfig 86
 	}
 	else
 	{
@@ -331,3 +450,4 @@ Process
 
 	Pop-Location
 }
+#>
