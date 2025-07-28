@@ -33,33 +33,46 @@ namespace OneMoreSetupActions
 			logger.WriteLine("CheckBitnessAction.Install ---");
 
 			var inarc = Environment.Is64BitProcess ? Architecture.X64 : Architecture.X86;
-			var oparc = RuntimeInformation.OSArchitecture;
+			var osarc = RuntimeInformation.OSArchitecture;
 			var onarc = GetOneNoteArchitecture();
 			var urarc = architecture;
-			logger.WriteLine($"Install process architecture: {inarc}, OS:{oparc}, OneNote.exe:{onarc}, requesting:{urarc}");
+			logger.WriteLine($"Install process architecture: {inarc}, OS:{osarc}, OneNote.exe:{onarc}, requesting:{urarc}");
 
 			/*
-			 * Either x86 or x64 OneMore can run with x64 OneNote.
+			 * On Windows x64 with OneNote x64, must run OneMore x64 installer.
+			 * On Windows x64 with OneNote x86, must run OneMore x86 installer.
 			 */
 
-			var ok =
-				// 32-bit installer can run on X86 OS
-				(inarc == Architecture.X86 && oparc == Architecture.X86) ||
-				// 64-bit installer can run on x64 or Arm64 OS
-				(inarc == Architecture.X64 && oparc != Architecture.X86) ||
-				// Requesting x86 install for x86 OneNote
-				(urarc == Architecture.X86 && onarc == Architecture.X86) ||
-				// Requesting x64 install for x64 or Arm64 OneNote
-				(urarc == Architecture.X64 && onarc != Architecture.X86)
-				;
+			bool ok;
+			if (osarc == Architecture.Arm64)
+			{
+				ok =
+					(urarc == Architecture.Arm64) &&
+					(onarc == Architecture.X64 || onarc == Architecture.Arm64)
+					;
+			}
+			else if (osarc == Architecture.X64)
+			{
+				ok =
+					(onarc == Architecture.X64 && urarc == Architecture.X64) ||
+					(onarc == Architecture.X86 && urarc == Architecture.X86)
+					;
+			}
+			else
+			{
+				ok =
+					urarc == Architecture.X86 &&
+					onarc == Architecture.X86
+					;
+			}
 
 			if (!ok)
 			{
-				var msg = $"Installer architecture ({inarc}) does not match OS ({oparc}) or request ({urarc})";
+				var msg = $"error: installer architecture ({urarc}) does not match OS ({osarc}) or OneNote ({onarc})";
 				logger.WriteLine(msg);
 
 				MessageBox.Show(
-					$"This is a {inarc} bit installer.\nYou must use the OneMore {oparc} bit installer.",
+					$"This is a {urarc} installer.\nYou must use the OneMore {osarc} installer.",
 					"Incompatible Installer",
 					MessageBoxButtons.OK, MessageBoxIcon.Error);
 
