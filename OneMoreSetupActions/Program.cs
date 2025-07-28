@@ -58,14 +58,23 @@ namespace OneMoreSetupActions
 
 			int status;
 
-			if (args.Any(a => a == "--x64" || a == "--x86" || a == "--ARM64"))
+			var architecture = Architecture.X86;
+			foreach (var arg in args)
 			{
-				var x64 = args.Any(a => a == "--x64" || a == "--ARM64");
-				status = new CheckBitnessAction(logger, stepper, x64).Install();
-				if (status != CustomAction.SUCCESS)
+				if (arg.Equals("--x64", StringComparison.InvariantCultureIgnoreCase))
 				{
-					Environment.Exit(status);
+					architecture = Architecture.X64;
 				}
+				else if (arg.Equals("--ARM64", StringComparison.InvariantCultureIgnoreCase))
+				{
+					architecture = Architecture.Arm64;
+				}
+			}
+
+			status = new CheckBitnessAction(logger, stepper, architecture).Install();
+			if (status != CustomAction.SUCCESS)
+			{
+				Environment.Exit(status);
 			}
 
 			switch (args[0])
@@ -82,10 +91,6 @@ namespace OneMoreSetupActions
 
 				case "--install-activesetup":
 					status = new ActiveSetupAction(logger, stepper).Install();
-					break;
-
-				case "--install-checkbitness":
-					status = new CheckBitnessAction(logger, stepper, true).Install();
 					break;
 
 				case "--install-checkonenote":

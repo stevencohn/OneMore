@@ -8,7 +8,11 @@ Resets the registry settings back to the install path
 #>
 
 [CmdletBinding()]
-param ([switch] $Reset)
+param (
+	[ValidateSet('x86','x64','ARM64','All')]
+	[string] $Architecture = 'x86',
+    [switch] $Reset
+)
 
 Begin
 {
@@ -156,10 +160,11 @@ Begin
         else
         {
             $script:root = Get-Location
-            $script:addin = Join-Path $root 'OneMore\bin\x86\Debug\River.OneMoreAddIn.dll'
+            $script:addin = Join-Path $root "OneMore\bin\$Architecture\Debug\River.OneMoreAddIn.dll"
             if (!(Test-Path $addin))
             {
-                $script:addin = Join-Path $root 'OneMore\bin\x64\Debug\River.OneMoreAddIn.dll'
+                $arc = $Architecture -eq 'x86' ? 'x64' : 'x86'
+                $script:addin = Join-Path $root "OneMore\bin\$Architecture\Debug\River.OneMoreAddIn.dll"
             }
 
             $script:proto = Join-Path $root 'OneMoreProtocolHandler\bin\Debug\OneMoreProtocolHandler.exe'
