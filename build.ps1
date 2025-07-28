@@ -168,7 +168,8 @@ Begin
 
 	function BuildFast
 	{
-		Write-Host "... fast build with default configs" -ForegroundColor Yellow
+		Write-Host "`n... fast build with default configs" -ForegroundColor Cyan
+		Write-Host
 
 		NugetRestore 'OneMore'
 		BuildProject 'OneMore'
@@ -191,9 +192,9 @@ Begin
 		param($name)
 		Push-Location $name
 
-		$cmd = "nuget restore .\$name.csproj"
+		$cmd = "nuget restore .\$name.csproj -solutiondirectory .."
 		write-Host $cmd -ForegroundColor DarkGray
-		nuget restore .\$name.csproj -solutiondirectory ..
+		Invoke-Expression $cmd
 
 		Pop-Location
 	}
@@ -209,9 +210,9 @@ Begin
 			Remove-Item .\Debug\*.* -Force -Confirm:$false
 		}
 
-		$cmd = "$devenv .\$name.csproj /project $name /projectconfig 'Debug|AnyCPU' /build"
+		$cmd = ". '$devenv' .\$name.csproj /project $name /projectconfig 'Debug|AnyCPU' /build"
 		write-Host $cmd -ForegroundColor DarkGray
-		. $devenv .\$name.csproj /project $name /projectconfig 'Debug|AnyCPU' /build
+		Invoke-Expression $cmd
 
 		Pop-Location
 	}
@@ -256,9 +257,9 @@ Begin
 			$log = "$($env:TEMP)\OneMoreBuild.log"
 			if (Test-Path $log) { Remove-Item $log -Force -Confirm:$false }
 
-			$cmd = "$devenv .\OneMore.sln /build 'Debug|$Architecture' /out '$log'"
+			$cmd = ". '$devenv' .\OneMore.sln /build 'Debug|$Architecture' /out '$log'"
 			Write-Host $cmd -ForegroundColor DarkGray
-			. $devenv .\OneMore.sln /build "Debug|$Architecture" /out $log
+			Invoke-Expression $cmd
 		}
 		finally
 		{
@@ -288,9 +289,9 @@ Begin
 		{
 			$desc = $level -eq 4 ? 'enabling' : 'disabling'
 			Write-Host "... $desc MSBuild verbose logging" -ForegroundColor DarkYellow
-			$cmd = ". '$vsregedit' set local HKCU General MSBuildLoggerVerbosity dword $level`n"
+			$cmd = ". '$vsregedit' set local HKCU General MSBuildLoggerVerbosity dword $level`n | Out-Null"
 			write-Host $cmd -ForegroundColor DarkGray
-			. $vsregedit set local HKCU General MSBuildLoggerVerbosity dword $level | Out-Null
+			Invoke-Expression $cmd
 		}
 	}
 
@@ -328,10 +329,9 @@ Begin
 			ConfigureSetupProject $vdproj
 
 			$log = "$($env:TEMP)\OneMoreBuild.log"
-			$cmd = "$devenv .\OneMoreSetup.vdproj /build 'Debug|$Architecture' /project Setup /out '$log'"
+			$cmd = ". '$devenv' .\OneMoreSetup.vdproj /build 'Debug|$Architecture' /project Setup /out '$log'"
 			write-Host $cmd -ForegroundColor DarkGray
-
-			. $devenv .\OneMoreSetup.vdproj /build "Debug|$Architecture" /project Setup /out $env:TEMP\OneMorebuild.log
+			Invoke-Expression $cmd
 
 			if ($LASTEXITCODE -eq 0)
 			{
