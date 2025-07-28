@@ -34,12 +34,17 @@ namespace River.OneMoreAddIn.Commands
 			if (processes.Length > 0)
 			{
 				var module = processes[0].MainModule;
-				moduledesc = $"{module.FileName} ({module.FileVersionInfo.ProductVersion})";
+				var arc = RuntimeInformation.ProcessArchitecture.ToString();
+				moduledesc = $"{module.FileName} ({module.FileVersionInfo.ProductVersion}) {arc}";
 			}
+
+			var ad = Assembly.GetExecutingAssembly();
+			var adloc = ad.Location;
+			var adarc = ad.GetName().ProcessorArchitecture;
 
 			logger.WriteLine($"Windows...: {GetWindowsProductName()}");
 			logger.WriteLine($"ONENOTE...: {moduledesc}");
-			logger.WriteLine($"Addin path: {Assembly.GetExecutingAssembly().Location}");
+			logger.WriteLine($"Addin path: {adloc}, {adarc}");
 			logger.WriteLine($"Data path.: {PathHelper.GetAppDataPath()}");
 			logger.WriteLine($"Log path..: {logger.LogPath}");
 			logger.WriteLine();
@@ -165,11 +170,11 @@ namespace River.OneMoreAddIn.Commands
 				}
 
 				name.Append($", Build {kernel.ProductBuildPart}");
-				name.Append(Environment.Is64BitOperatingSystem ? ", 64 bit" : ", 32 bit");
+				name.Append(Environment.Is64BitOperatingSystem ? ", x64" : ", x86");
 
 				if (RuntimeInformation.OSArchitecture == Architecture.Arm64)
 				{
-					name.Append(", 64 bit (ARM64)");
+					name.Append(", (ARM64)");
 				}
 			}
 			catch (Exception exc)
