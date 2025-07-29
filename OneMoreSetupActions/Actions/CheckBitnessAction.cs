@@ -7,8 +7,10 @@ namespace OneMoreSetupActions
 	using Microsoft.Win32;
 	using System;
 	using System.IO;
+	using System.Linq;
 	using System.Reflection.PortableExecutable;
 	using System.Runtime.InteropServices;
+	using System.Text.RegularExpressions;
 	using System.Windows.Forms;
 
 
@@ -74,7 +76,7 @@ namespace OneMoreSetupActions
 				logger.WriteLine(msg);
 
 				MessageBox.Show(
-					$"This is a {urarc} installer.\nYou must use the OneMore {osarc} installer.",
+					$"This is a {urarc} installer.\nYou must use the OneMore {onarc} installer.",
 					"Incompatible Installer",
 					MessageBoxButtons.OK, MessageBoxIcon.Error);
 
@@ -88,43 +90,88 @@ namespace OneMoreSetupActions
 
 		private Architecture GetOneNoteArchitecture()
 		{
+			string ReadDefaultValue(string path)
+			{
+				using var key = Registry.LocalMachine.OpenSubKey(path, false);
+				if (key == null)
+				{
+					logger.WriteLine($"warn finding HKLM:\\{path}");
+					return null;
+				}
+
+				var value = key.GetValue(null, string.Empty) as string;
+				if (string.IsNullOrWhiteSpace(value))
+				{
+					logger.WriteLine($"warn finding value at HKLM:\\{path}");
+					return null;
+				}
+
+				return value;
+			}
+
+			string ReadAppPathValue(string path, string subname)
+			{
+				using var key = Registry.LocalMachine.OpenSubKey(path, false);
+				if (key == null)
+				{
+					logger.WriteLine($"warn finding HKLM:\\{path}");
+					return null;
+				}
+				foreach (var name in key.GetSubKeyNames().Where(n => Regex.IsMatch(n, @"^\d+\.\d+$")))
+				{
+					using var subkey = key.OpenSubKey($@"{name}\{subname}\InstallRoot", false);
+					if (subkey != null)
+					{
+						var value = subkey.GetValue("Path") as string;
+						if (!string.IsNullOrWhiteSpace(value))
+						{
+							logger.WriteLine($@"found value at HKLM:\{path}\{subname}\InstallRoot");
+							return Path.Combine(value, "ONENOTE.EXE");
+						}
+					}
+					logger.WriteLine($@"warn finding value at HKLM:\{path}\{subname}\InstallRoot");
+				}
+				return null;
+			}
+
 			logger.WriteLine(nameof(GetOneNoteArchitecture) + "()");
 			logger.Indented = true;
 
-			// [HKEY_CLASSES_ROOT\OneNote.Application]
-			// @= "Application Class"
-			var path = @"OneNote.Application\CLSID";
-			var key = Registry.ClassesRoot.OpenSubKey(path, false);
+			var onepath = ReadDefaultValue(
+				@"SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\OneNote.exe");
 
-			if (key == null)
+			if (string.IsNullOrWhiteSpace(onepath))
 			{
-				logger.WriteLine($"error finding HKCR:\\{path}");
-				return Architecture.Arm;
+				onepath = ReadDefaultValue(
+					@"SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\App Paths\OneNote.exe");
+
+				if (string.IsNullOrWhiteSpace(onepath))
+				{
+					onepath = ReadAppPathValue(@"SOFTWARE\Microsoft\Office", "OneNote");
+					if (string.IsNullOrWhiteSpace(onepath))
+					{
+						onepath = ReadAppPathValue(@"SOFTWARE\WOW6432Node\Microsoft\Office", "OneNote");
+						if (string.IsNullOrWhiteSpace(onepath))
+						{
+							onepath = ReadAppPathValue(@"SOFTWARE\Microsoft\Office", "Common");
+							if (string.IsNullOrWhiteSpace(onepath))
+							{
+								onepath = ReadAppPathValue(@"SOFTWARE\WOW6432Node\Microsoft\Office", "Common");
+							}
+						}
+					}
+				}
 			}
 
-			var clsid = key.GetValue(null, string.Empty) as string;
-			key.Dispose();
-
-			path = @$"CLSID\{clsid}\LocalServer32";
-			key = Registry.ClassesRoot.OpenSubKey(path, false);
-			if (key == null)
+			if (string.IsNullOrWhiteSpace(onepath))
 			{
-				logger.WriteLine($"error finding HKCR:\\{path}");
-				return Architecture.Arm;
-			}
-
-			var onepath = key.GetValue(null, string.Empty) as string;
-			key.Dispose();
-
-			if (onepath == null)
-			{
-				logger.WriteLine($"error reading {path} value");
+				logger.WriteLine($"error finding OneNote.exe path");
 				return Architecture.Arm;
 			}
 
 			if (!File.Exists(onepath))
 			{
-				logger.WriteLine($"error finding executable at {onepath}");
+				logger.WriteLine($"error OneNote.exe not found at {onepath}");
 				return Architecture.Arm;
 			}
 
