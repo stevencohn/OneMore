@@ -90,6 +90,46 @@ namespace OneMoreSetupActions
 
 		private Architecture GetOneNoteArchitecture()
 		{
+			var onepath = GetOneNotePath();
+
+			if (string.IsNullOrWhiteSpace(onepath))
+			{
+				logger.WriteLine($"error finding OneNote.exe path");
+				return Architecture.Arm;
+			}
+
+			if (!File.Exists(onepath))
+			{
+				logger.WriteLine($"error OneNote.exe not found at {onepath}");
+				return Architecture.Arm;
+			}
+
+			var onearc = Architecture.Arm; // Arm is actually unused
+
+			try
+			{
+				using var stream = new FileStream(onepath, FileMode.Open, FileAccess.Read);
+				using var reader = new PEReader(stream);
+				onearc = reader.PEHeaders.CoffHeader.Machine switch
+				{
+					Machine.I386 => Architecture.X86,
+					Machine.Arm64 => Architecture.Arm64,
+					_ => Architecture.X64
+				};
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"error reading OneNote.exe header");
+				logger.WriteLine(exc);
+			}
+
+			logger.Indented = false;
+			return onearc;
+		}
+
+
+		private string GetOneNotePath()
+		{
 			string ReadDefaultValue(string path)
 			{
 				using var key = Registry.LocalMachine.OpenSubKey(path, false);
@@ -117,7 +157,9 @@ namespace OneMoreSetupActions
 					logger.WriteLine($"warn finding HKLM:\\{path}");
 					return null;
 				}
-				foreach (var name in key.GetSubKeyNames().Where(n => Regex.IsMatch(n, @"^\d+\.\d+$")))
+
+				foreach (var name in key.GetSubKeyNames()
+					.Where(n => Regex.IsMatch(n, @"^\d+\.\d+$")))
 				{
 					using var subkey = key.OpenSubKey($@"{name}\{subname}\InstallRoot", false);
 					if (subkey != null)
@@ -129,6 +171,7 @@ namespace OneMoreSetupActions
 							return Path.Combine(value, "ONENOTE.EXE");
 						}
 					}
+
 					logger.WriteLine($@"warn finding value at HKLM:\{path}\{subname}\InstallRoot");
 				}
 				return null;
@@ -163,29 +206,7 @@ namespace OneMoreSetupActions
 				}
 			}
 
-			if (string.IsNullOrWhiteSpace(onepath))
-			{
-				logger.WriteLine($"error finding OneNote.exe path");
-				return Architecture.Arm;
-			}
-
-			if (!File.Exists(onepath))
-			{
-				logger.WriteLine($"error OneNote.exe not found at {onepath}");
-				return Architecture.Arm;
-			}
-
-			using var stream = new FileStream(onepath, FileMode.Open, FileAccess.Read);
-			using var reader = new PEReader(stream);
-			var onearc = reader.PEHeaders.CoffHeader.Machine switch
-			{
-				Machine.I386 => Architecture.X86,
-				Machine.Arm64 => Architecture.Arm64,
-				_ => Architecture.X64
-			};
-
-			logger.Indented = false;
-			return onearc;
+			return onepath;
 		}
 
 
