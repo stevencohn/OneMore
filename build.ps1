@@ -169,7 +169,6 @@ Begin
 	function BuildFast
 	{
 		Write-Host "`n... fast build with default configs" -ForegroundColor Cyan
-		Write-Host
 
 		NugetRestore 'OneMore'
 		BuildProject 'OneMore'
@@ -191,6 +190,7 @@ Begin
 	{
 		param($name)
 		Push-Location $name
+		Write-Host "`n... restoring $name" -ForegroundColor DarkCyan
 
 		$cmd = "nuget restore .\$name.csproj -solutiondirectory .."
 		write-Host $cmd -ForegroundColor DarkGray
@@ -203,6 +203,7 @@ Begin
 	{
 		param($name)
 		Push-Location $name
+		Write-Host "`n... building $name" -ForegroundColor DarkCyan
 
 		# output file cannot exist before build
 		if (Test-Path .\Debug\*)
