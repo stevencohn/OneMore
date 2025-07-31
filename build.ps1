@@ -118,7 +118,7 @@ Begin
 		}
 	}
 
-	function DisablPrepOutOfProcBuild
+	function DisablOutOfProcBuild
 	{
 		$0 = Join-Path $ideroot 'CommonExtensions\Microsoft\VSI\DisableOutOfProcBuild'
 		if (Test-Path $0)
@@ -477,7 +477,7 @@ Process
 
 	if ($Detect) { DetectArchitecture $Detect; return }
 
-	if ($Prep) { DisablPrepOutOfProcBuild; return }
+	if ($Prep) { DisablOutOfProcBuild; return }
 	if ($Clean) { CleanSolution; return }
 
 	if ($Fast) { BuildFast; return }
