@@ -29,6 +29,9 @@ namespace OneMoreSetupActions
 		}
 
 
+		public Architecture OneNoteArchitecture { get; private set; }
+
+
 		public override int Install()
 		{
 			logger.WriteLine();
@@ -69,6 +72,8 @@ namespace OneMoreSetupActions
 					onarc == Architecture.X86
 					;
 			}
+
+			OneNoteArchitecture = onarc;
 
 			if (!ok)
 			{

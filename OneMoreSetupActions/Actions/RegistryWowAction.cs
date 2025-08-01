@@ -6,6 +6,7 @@ namespace OneMoreSetupActions
 {
 	using Microsoft.Win32;
 	using System;
+	using System.Runtime.InteropServices;
 
 
 	/// <summary>
@@ -13,6 +14,8 @@ namespace OneMoreSetupActions
 	/// </summary>
 	internal class RegistryWowAction : CustomAction
 	{
+		private Architecture architecture;
+
 
 		public RegistryWowAction(Logger logger, Stepper stepper)
 			: base(logger, stepper)
@@ -23,13 +26,25 @@ namespace OneMoreSetupActions
 		//========================================================================================
 
 		/// <summary>
-		/// Note this is invoked as its own CustomAction, not as part of Program
+		/// Note this is invoked as a single call, not as part of Program:Install
+		/// </summary>
+		/// <param name="oArchitecture">The bit architecture of the installed OneNote.exe</param>
+		/// <returns></returns>
+		public int Install(Architecture onArchitecture)
+		{
+			architecture = onArchitecture;
+			return Install();
+		}
+
+
+		/// <summary>
+		/// Note this is invoked as a single call, not as part of Program:Install
 		/// </summary>
 		/// <returns></returns>
 		public override int Install()
 		{
 			logger.WriteLine();
-			logger.WriteLine($"RegistryWowAction.Install --- x64:{Environment.Is64BitProcess}");
+			logger.WriteLine($"RegistryWowAction.Install --- OS x64:{Environment.Is64BitProcess}, OneNote:{architecture}");
 
 			if (CloningRequired())
 			{

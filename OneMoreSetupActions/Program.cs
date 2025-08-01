@@ -71,11 +71,14 @@ namespace OneMoreSetupActions
 				}
 			}
 
-			status = new CheckBitnessAction(logger, stepper, architecture).Install();
+			var action = new CheckBitnessAction(logger, stepper, architecture);
+			status = action.Install();
 			if (status != CustomAction.SUCCESS)
 			{
 				Environment.Exit(status);
 			}
+
+			var onArchitecture = action.OneNoteArchitecture;
 
 			switch (args[0])
 			{
@@ -106,7 +109,7 @@ namespace OneMoreSetupActions
 					break;
 
 				case "--install-registrywow":
-					status = new RegistryWowAction(logger, stepper).Install();
+					status = new RegistryWowAction(logger, stepper).Install(onArchitecture);
 					break;
 
 				case "--install-shutdown":
