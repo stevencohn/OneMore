@@ -77,7 +77,7 @@ namespace OneMoreSetupActions
 		{
 			logger.WriteLine($"step {stepper.Step()}: cloning CLSID");
 			using (var source = Registry.ClassesRoot.OpenSubKey(
-				$@"CLSID\{RegistryHelper.OneNoteID}",
+				$@"CLSID\{RegistryHelper.OneMoreID}",
 				RegistryKeyPermissionCheck.ReadSubTree, RegistryHelper.ReadRights))
 			{
 				if (source != null)
@@ -118,8 +118,8 @@ namespace OneMoreSetupActions
 			{
 				if (key != null)
 				{
-					key.DeleteSubKeyTree(RegistryHelper.OneNoteID, false);
-					key.DeleteSubKey(RegistryHelper.OneNoteID, false);
+					key.DeleteSubKeyTree(RegistryHelper.OneMoreID, false);
+					key.DeleteSubKey(RegistryHelper.OneMoreID, false);
 				}
 				else
 				{
