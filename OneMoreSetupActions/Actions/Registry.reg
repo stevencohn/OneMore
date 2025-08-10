@@ -1,7 +1,5 @@
 ﻿;---------------------------------------------------------------
-;; This is an example showing how an add-in is registered.
-;; It is not intended to be run directly.
-;; Instead, use setregistry.ps1 or run the installer.
+; Configuration template for OneMore registration.
 ;---------------------------------------------------------------
 Windows Registry Editor Version 5.00
 
@@ -79,4 +77,5 @@ Windows Registry Editor Version 5.00
 [HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\River.OneMoreAddIn.dll]
 "Path"="{ProgramFiles}\\River\\OneMoreAddIn\\River.OneMoreAddIn.dll"
 
-[HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\Office\16.0\Common\Security\Trusted Protocols\All Applications\onemore:]
+;handled by TrustedProtocolAction
+;[HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\Office\16.0\Common\Security\Trusted Protocols\All Applications\onemore:]

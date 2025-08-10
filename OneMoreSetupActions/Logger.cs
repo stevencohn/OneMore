@@ -28,6 +28,7 @@ namespace OneMoreSetupActions
 			}
 
 			LogPath = Path.Combine(temp, $"{name}.log");
+			Console.WriteLine($"Logging to: {LogPath}");
 
 			writer = new StreamWriter(LogPath, true);
 		}
