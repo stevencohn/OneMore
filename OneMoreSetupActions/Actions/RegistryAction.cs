@@ -15,26 +15,16 @@ namespace OneMoreSetupActions
 	/// </summary>
 	internal class RegistryAction : CustomAction
 	{
-		private Architecture architecture;
+		private readonly Architecture architecture;
 
-		public RegistryAction(Logger logger, Stepper stepper)
+		public RegistryAction(Logger logger, Stepper stepper, Architecture onArchitecture)
 			: base(logger, stepper)
 		{
+			architecture = onArchitecture;
 		}
 
 
 		//========================================================================================
-
-		/// <summary>
-		/// </summary>
-		/// <param name="oArchitecture">The bit architecture of the installed OneNote.exe</param>
-		/// <returns></returns>
-		public int Install(Architecture onArchitecture)
-		{
-			architecture = onArchitecture;
-			return Install();
-		}
-
 
 		/// <summary>
 		/// </summary>
@@ -168,11 +158,41 @@ namespace OneMoreSetupActions
 		public override int Uninstall()
 		{
 			logger.WriteLine();
-			logger.WriteLine("RegistryAction.Uninstall ---");
+			logger.WriteLine($"RegistryAction.Uninstall --- {architecture}");
 
-			//var config = GetRegistryConfig();
+			var config = GetRegistryConfig();
 
-			logger.WriteLine("RegistryAction.Uninstall N/A ---");
+			string marker = null;
+
+			try
+			{
+				foreach (var line in config.Split(new[] { Environment.NewLine }, StringSplitOptions.None))
+				{
+					if (line.Length > 0 && line[0] == '[')
+					{
+						var raw = line.Trim('[', ']');
+						if (marker is null || !raw.StartsWith(marker))
+						{
+							var hiveName = raw.Substring(0, raw.IndexOf('\\'));
+							var hive = hiveName.EndsWith("ROOT") ? Registry.ClassesRoot : Registry.CurrentUser;
+							var keyName = raw.Substring(raw.IndexOf('\\') + 1);
+
+							logger.WriteLine($"deleting tree: {raw}");
+							hive.DeleteSubKeyTree(keyName, false);
+
+							// remember for next pass; only need to delete root of subtree
+							marker = raw;
+						}
+					}
+				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("RegistryAction.Uninstall failed:");
+				logger.WriteLine(exc);
+				return FAILURE;
+			}
+
 			return SUCCESS;
 		}
 	}

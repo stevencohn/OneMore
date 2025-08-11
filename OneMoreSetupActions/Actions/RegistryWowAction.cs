@@ -14,28 +14,17 @@ namespace OneMoreSetupActions
 	/// </summary>
 	internal class RegistryWowAction : CustomAction
 	{
-		private Architecture architecture;
+		private readonly Architecture architecture;
 
 
-		public RegistryWowAction(Logger logger, Stepper stepper)
+		public RegistryWowAction(Logger logger, Stepper stepper, Architecture onArchitecture)
 			: base(logger, stepper)
 		{
+			architecture = onArchitecture;
 		}
 
 
 		//========================================================================================
-
-		/// <summary>
-		/// Note this is invoked as a single call, not as part of Program:Install
-		/// </summary>
-		/// <param name="oArchitecture">The bit architecture of the installed OneNote.exe</param>
-		/// <returns></returns>
-		public int Install(Architecture onArchitecture)
-		{
-			architecture = onArchitecture;
-			return Install();
-		}
-
 
 		/// <summary>
 		/// Note this is invoked as a single call, not as part of Program:Install

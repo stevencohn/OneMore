@@ -22,6 +22,7 @@ namespace OneMoreSetupActions
 
 		private static Logger logger;
 		private static Stepper stepper;
+		private static Architecture onArchitecture;
 
 
 		static void Main(string[] args)
@@ -78,12 +79,12 @@ namespace OneMoreSetupActions
 				Environment.Exit(status);
 			}
 
-			var onArchitecture = action.OneNoteArchitecture;
+			onArchitecture = action.OneNoteArchitecture;
 
 			switch (args[0])
 			{
 				case "--install":
-					status = Install(onArchitecture);
+					status = Install();
 					break;
 
 				case "--uninstall":
@@ -109,11 +110,11 @@ namespace OneMoreSetupActions
 					break;
 
 				case "--install-registry":
-					status = new RegistryAction(logger, stepper).Install(onArchitecture);
+					status = new RegistryAction(logger, stepper, onArchitecture).Install();
 					break;
 
 				case "--install-registrywow":
-					status = new RegistryWowAction(logger, stepper).Install(onArchitecture);
+					status = new RegistryWowAction(logger, stepper, onArchitecture).Install();
 					break;
 
 				case "--install-shutdown":
@@ -129,11 +130,11 @@ namespace OneMoreSetupActions
 					break;
 
 				case "--uninstall-registry":
-					status = new RegistryAction(logger, stepper).Uninstall();
+					status = new RegistryAction(logger, stepper, onArchitecture).Uninstall();
 					break;
 
 				case "--uninstall-registrywow":
-					status = new RegistryWowAction(logger, stepper).Uninstall();
+					status = new RegistryWowAction(logger, stepper, onArchitecture).Uninstall();
 					break;
 
 				case "--uninstall-shutdown":
@@ -188,7 +189,7 @@ namespace OneMoreSetupActions
 		}
 
 
-		static int Install(Architecture onArchitecture)
+		static int Install()
 		{
 			// protocol handler...
 			// Registers this program as the handler for the onemore:// protocol
@@ -212,7 +213,7 @@ namespace OneMoreSetupActions
 			try
 			{
 				if (new ShutdownOneNoteAction(logger, stepper).Install() == CustomAction.SUCCESS &&
-					new RegistryAction(logger, stepper).Install(onArchitecture) == CustomAction.SUCCESS &&
+					new RegistryAction(logger, stepper, onArchitecture).Install() == CustomAction.SUCCESS &&
 					new ProtocolHandlerAction(logger, stepper).Install() == CustomAction.SUCCESS &&
 					new TrustedProtocolAction(logger, stepper).Install() == CustomAction.SUCCESS &&
 					new EdgeWebViewAction(logger, stepper).Install() == CustomAction.SUCCESS)
@@ -251,8 +252,8 @@ namespace OneMoreSetupActions
 				var ok0 = new ShutdownOneNoteAction(logger, stepper).Uninstall() == CustomAction.SUCCESS;
 				var ok1 = new ProtocolHandlerAction(logger, stepper).Uninstall() == CustomAction.SUCCESS;
 				var ok2 = new TrustedProtocolAction(logger, stepper).Uninstall() == CustomAction.SUCCESS;
-				var ok3 = new RegistryWowAction(logger, stepper).Uninstall() == CustomAction.SUCCESS;
-				var ok4 = new RegistryAction(logger, stepper).Uninstall() == CustomAction.SUCCESS;
+				var ok3 = new RegistryWowAction(logger, stepper, onArchitecture).Uninstall() == CustomAction.SUCCESS;
+				var ok4 = new RegistryAction(logger, stepper, onArchitecture).Uninstall() == CustomAction.SUCCESS;
 
 				if (ok0 && ok1 && ok2 && ok3 && ok4)
 				{
