@@ -4267,12 +4267,12 @@
             }
             "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_A2E3DC22F53A4E5CAA2488AD8CDF137B"
             {
-            "Name" = "8:OneMoreSetupActions --uninstall"
+            "Name" = "8:OneMoreSetupActions --uninstall --x86"
             "Condition" = "8:"
             "Object" = "8:_C11FDCA4CBE8463DA2B0DE679BF17921"
             "FileType" = "3:2"
             "InstallAction" = "3:4"
-            "Arguments" = "8:--uninstall"
+            "Arguments" = "8:--uninstall --x86"
             "EntryPoint" = "8:"
             "Sequence" = "3:1"
             "Identifier" = "8:_B25E79E3_550D_402F_86ED_3FD26666BA83"
@@ -4281,12 +4281,12 @@
             }
             "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_FAB9D2D16CE640009235620A1891002E"
             {
-            "Name" = "8:OneMoreSetupActions --install-activesetup"
+            "Name" = "8:OneMoreSetupActions --install-activesetup --x86"
             "Condition" = "8:NOT Installed OR MaintenanceMode=\"Modify\""
             "Object" = "8:_C11FDCA4CBE8463DA2B0DE679BF17921"
             "FileType" = "3:2"
             "InstallAction" = "3:2"
-            "Arguments" = "8:--install-activesetup"
+            "Arguments" = "8:--install-activesetup --x86"
             "EntryPoint" = "8:"
             "Sequence" = "3:2"
             "Identifier" = "8:_92AF78F8_2EBA_4DB2_B799_F8741DC7E4C6"

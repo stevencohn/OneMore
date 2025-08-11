@@ -425,8 +425,7 @@ Begin
 					'"TargetPlatform" = "3:1"' | Out-File $vdproj -Append
 				}
 			}
-			elseif (($_ -match '"Name" = "8:OneMoreSetupActions --install ') -or `
-					($_ -match '"Arguments" = "8:--install '))
+			elseif (($_ -match ' --x86'))
 			{
 				# "Name" = "8:OneMoreSetupActions --install --x86"
 				# "Arguments" = "8:--install --x86"
