@@ -6,6 +6,7 @@ namespace OneMoreSetupActions
 {
 	using Microsoft.Win32;
 	using System;
+	using System.Runtime.InteropServices;
 	using System.Text.RegularExpressions;
 
 
@@ -14,6 +15,7 @@ namespace OneMoreSetupActions
 	/// </summary>
 	internal class RegistryAction : CustomAction
 	{
+		private Architecture architecture;
 
 		public RegistryAction(Logger logger, Stepper stepper)
 			: base(logger, stepper)
@@ -24,7 +26,17 @@ namespace OneMoreSetupActions
 		//========================================================================================
 
 		/// <summary>
-		/// Note this is invoked as a single call, not as part of Program:Install
+		/// </summary>
+		/// <param name="oArchitecture">The bit architecture of the installed OneNote.exe</param>
+		/// <returns></returns>
+		public int Install(Architecture onArchitecture)
+		{
+			architecture = onArchitecture;
+			return Install();
+		}
+
+
+		/// <summary>
 		/// </summary>
 		/// <returns></returns>
 		public override int Install()
@@ -70,11 +82,13 @@ namespace OneMoreSetupActions
 		}
 
 
-		private static string GetRegistryConfig()
+		private string GetRegistryConfig()
 		{
+			var env = architecture == Architecture.X86 ? "ProgramFiles" : "ProgramFiles(x86)";
+
 			var config = Properties.Resource.Registry
 				.Replace("{OneMoreID}", RegistryHelper.OneMoreID)
-				.Replace("{ProgramFiles}", Environment.GetEnvironmentVariable("ProgramFiles"))
+				.Replace("{ProgramFiles}", Environment.GetEnvironmentVariable(env))
 				.Replace("{Version}", AssemblyInfo.Version);
 
 			return config;

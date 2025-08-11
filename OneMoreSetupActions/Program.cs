@@ -83,7 +83,7 @@ namespace OneMoreSetupActions
 			switch (args[0])
 			{
 				case "--install":
-					status = Install();
+					status = Install(onArchitecture);
 					break;
 
 				case "--uninstall":
@@ -109,7 +109,7 @@ namespace OneMoreSetupActions
 					break;
 
 				case "--install-registry":
-					status = new RegistryAction(logger, stepper).Install();
+					status = new RegistryAction(logger, stepper).Install(onArchitecture);
 					break;
 
 				case "--install-registrywow":
@@ -188,7 +188,7 @@ namespace OneMoreSetupActions
 		}
 
 
-		static int Install()
+		static int Install(Architecture onArchitecture)
 		{
 			// protocol handler...
 			// Registers this program as the handler for the onemore:// protocol
@@ -212,7 +212,7 @@ namespace OneMoreSetupActions
 			try
 			{
 				if (new ShutdownOneNoteAction(logger, stepper).Install() == CustomAction.SUCCESS &&
-					new RegistryAction(logger, stepper).Install() == CustomAction.SUCCESS &&
+					new RegistryAction(logger, stepper).Install(onArchitecture) == CustomAction.SUCCESS &&
 					new ProtocolHandlerAction(logger, stepper).Install() == CustomAction.SUCCESS &&
 					new TrustedProtocolAction(logger, stepper).Install() == CustomAction.SUCCESS &&
 					new EdgeWebViewAction(logger, stepper).Install() == CustomAction.SUCCESS)
