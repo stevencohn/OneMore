@@ -6,6 +6,7 @@ namespace OneMoreSetupActions
 {
 	using Microsoft.Win32;
 	using System;
+	using System.Runtime.InteropServices;
 
 
 	/// <summary>
@@ -13,23 +14,26 @@ namespace OneMoreSetupActions
 	/// </summary>
 	internal class RegistryWowAction : CustomAction
 	{
+		private readonly Architecture architecture;
 
-		public RegistryWowAction(Logger logger, Stepper stepper)
+
+		public RegistryWowAction(Logger logger, Stepper stepper, Architecture onArchitecture)
 			: base(logger, stepper)
 		{
+			architecture = onArchitecture;
 		}
 
 
 		//========================================================================================
 
 		/// <summary>
-		/// Note this is invoked as its own CustomAction, not as part of Program
+		/// Note this is invoked as a single call, not as part of Program:Install
 		/// </summary>
 		/// <returns></returns>
 		public override int Install()
 		{
 			logger.WriteLine();
-			logger.WriteLine($"RegistryWowAction.Install --- x64:{Environment.Is64BitProcess}");
+			logger.WriteLine($"RegistryWowAction.Install --- OS x64:{Environment.Is64BitProcess}, OneNote:{architecture}");
 
 			if (CloningRequired())
 			{
@@ -62,7 +66,7 @@ namespace OneMoreSetupActions
 		{
 			logger.WriteLine($"step {stepper.Step()}: cloning CLSID");
 			using (var source = Registry.ClassesRoot.OpenSubKey(
-				$@"CLSID\{RegistryHelper.OneNoteID}",
+				$@"CLSID\{RegistryHelper.OneMoreID}",
 				RegistryKeyPermissionCheck.ReadSubTree, RegistryHelper.ReadRights))
 			{
 				if (source != null)
@@ -103,8 +107,8 @@ namespace OneMoreSetupActions
 			{
 				if (key != null)
 				{
-					key.DeleteSubKeyTree(RegistryHelper.OneNoteID, false);
-					key.DeleteSubKey(RegistryHelper.OneNoteID, false);
+					key.DeleteSubKeyTree(RegistryHelper.OneMoreID, false);
+					key.DeleteSubKey(RegistryHelper.OneMoreID, false);
 				}
 				else
 				{

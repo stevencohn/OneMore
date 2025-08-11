@@ -70,7 +70,7 @@ namespace OneMoreSetupActions
 
 			var sql =
 				"SELECT ProcessID, CommandLine FROM Win32_Process " +
-				$"WHERE CommandLine LIKE '%{RegistryHelper.OneNoteID}%'";
+				$"WHERE CommandLine LIKE '%{RegistryHelper.OneMoreID}%'";
 
 			try
 			{

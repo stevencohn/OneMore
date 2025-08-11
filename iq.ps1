@@ -329,17 +329,18 @@ Begin
         if ($ok) {
             $ok = (HasValue $path 'pv' '[^0\.0\.0\.0]' -match)
             if ($ok) {
+                $pv = $lastvalue
                 $location = (Get-ItemPropertyValue -Path $path -Name 'location')
                 $ok = (Test-Path $location)
                 if ($ok) {
                     WriteOK $path
-                    WriteOK "location = $location"
+                    WriteValue "location = $location"
                 } else {
                     WriteBad $path
                     Write-Host "... location not found $location" -Fore Yellow
                 }
-                WriteValue "version = $lastvalue"
-                WriteValue "location = $location"
+
+                WriteValue "pv = $pv (version)"
             } else {
                 WriteBad $path
                 Write-Host '... has version 0.0.0.0' -Fore Yellow

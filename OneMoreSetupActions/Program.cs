@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2021 Steven M Cohn.  All rights reserved.
+// Copyright © 2021 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 #pragma warning disable S1118 // Utility classes should not have public constructors
@@ -22,6 +22,7 @@ namespace OneMoreSetupActions
 
 		private static Logger logger;
 		private static Stepper stepper;
+		private static Architecture onArchitecture;
 
 
 		static void Main(string[] args)
@@ -71,11 +72,14 @@ namespace OneMoreSetupActions
 				}
 			}
 
-			status = new CheckBitnessAction(logger, stepper, architecture).Install();
+			var action = new CheckBitnessAction(logger, stepper, architecture);
+			status = action.Install();
 			if (status != CustomAction.SUCCESS)
 			{
 				Environment.Exit(status);
 			}
+
+			onArchitecture = action.OneNoteArchitecture;
 
 			switch (args[0])
 			{
@@ -105,8 +109,12 @@ namespace OneMoreSetupActions
 					status = new ProtocolHandlerAction(logger, stepper).Install();
 					break;
 
+				case "--install-registry":
+					status = new RegistryAction(logger, stepper, onArchitecture).Install();
+					break;
+
 				case "--install-registrywow":
-					status = new RegistryWowAction(logger, stepper).Install();
+					status = new RegistryWowAction(logger, stepper, onArchitecture).Install();
 					break;
 
 				case "--install-shutdown":
@@ -121,8 +129,12 @@ namespace OneMoreSetupActions
 					status = new EdgeWebViewAction(logger, stepper).Uninstall();
 					break;
 
+				case "--uninstall-registry":
+					status = new RegistryAction(logger, stepper, onArchitecture).Uninstall();
+					break;
+
 				case "--uninstall-registrywow":
-					status = new RegistryWowAction(logger, stepper).Uninstall();
+					status = new RegistryWowAction(logger, stepper, onArchitecture).Uninstall();
 					break;
 
 				case "--uninstall-shutdown":
@@ -201,6 +213,7 @@ namespace OneMoreSetupActions
 			try
 			{
 				if (new ShutdownOneNoteAction(logger, stepper).Install() == CustomAction.SUCCESS &&
+					new RegistryAction(logger, stepper, onArchitecture).Install() == CustomAction.SUCCESS &&
 					new ProtocolHandlerAction(logger, stepper).Install() == CustomAction.SUCCESS &&
 					new TrustedProtocolAction(logger, stepper).Install() == CustomAction.SUCCESS &&
 					new EdgeWebViewAction(logger, stepper).Install() == CustomAction.SUCCESS)
@@ -239,9 +252,10 @@ namespace OneMoreSetupActions
 				var ok0 = new ShutdownOneNoteAction(logger, stepper).Uninstall() == CustomAction.SUCCESS;
 				var ok1 = new ProtocolHandlerAction(logger, stepper).Uninstall() == CustomAction.SUCCESS;
 				var ok2 = new TrustedProtocolAction(logger, stepper).Uninstall() == CustomAction.SUCCESS;
-				var ok3 = new RegistryWowAction(logger, stepper).Uninstall() == CustomAction.SUCCESS;
+				var ok3 = new RegistryWowAction(logger, stepper, onArchitecture).Uninstall() == CustomAction.SUCCESS;
+				var ok4 = new RegistryAction(logger, stepper, onArchitecture).Uninstall() == CustomAction.SUCCESS;
 
-				if (ok0 && ok1 && ok2 && ok3)
+				if (ok0 && ok1 && ok2 && ok3 && ok4)
 				{
 					logger.WriteLine("uninstall completed successfully");
 				}

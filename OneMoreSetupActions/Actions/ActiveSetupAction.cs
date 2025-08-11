@@ -38,7 +38,7 @@ namespace OneMoreSetupActions
 
 			try
 			{
-				var p = $@"Software\Microsoft\Active Setup\Installed Components\{RegistryHelper.OneNoteID}";
+				var p = $@"Software\Microsoft\Active Setup\Installed Components\{RegistryHelper.OneMoreID}";
 				logger.WriteLine($"opening key HKLM:\\{p}");
 
 				using var key = Registry.LocalMachine.OpenSubKey(p,
