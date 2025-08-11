@@ -17,7 +17,19 @@ namespace OneMoreSetupActions
 
 		public Logger(string name)
 		{
-			LogPath = Path.Combine(Path.GetTempPath(), $"{name}.log");
+			// probably running under System account and TEMP path would be C:\Windows\SystemTemp
+			// but most users don't have access to read that. So, first try the user's TEMP path
+			// and, if it is SystemTemp, instead use C:\Windows\TEMP
+
+			var temp = Path.GetTempPath();
+			if (temp.Contains("SystemTemp"))
+			{
+				temp = Path.Combine(Environment.GetEnvironmentVariable("SystemRoot"), "TEMP");
+			}
+
+			LogPath = Path.Combine(temp, $"{name}.log");
+			Console.WriteLine($"Logging to: {LogPath}");
+
 			writer = new StreamWriter(LogPath, true);
 		}
 

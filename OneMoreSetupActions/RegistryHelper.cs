@@ -15,7 +15,7 @@ namespace OneMoreSetupActions
 
 	internal static class RegistryHelper
 	{
-		public const string OneNoteID = "{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}";
+		public const string OneMoreID = "{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}";
 
 		public static readonly RegistryRights DeleteRights =
 			RegistryRights.EnumerateSubKeys |
