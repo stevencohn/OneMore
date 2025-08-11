@@ -239,7 +239,6 @@ Begin
 	function RestoreSolution
 	{
 		Write-Host "`n... restoring nuget packages" -ForegroundColor Cyan
-		Write-Host
 
 		NugetRestore 'OneMore'
 		NugetRestore 'OneMoreTray'
