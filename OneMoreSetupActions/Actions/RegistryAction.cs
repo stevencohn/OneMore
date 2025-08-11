@@ -42,7 +42,7 @@ namespace OneMoreSetupActions
 		public override int Install()
 		{
 			logger.WriteLine();
-			logger.WriteLine("RegistryAction.Install ---");
+			logger.WriteLine($"RegistryAction.Install --- {architecture}");
 
 			var config = GetRegistryConfig();
 			RegistryKey key = null;
@@ -84,7 +84,7 @@ namespace OneMoreSetupActions
 
 		private string GetRegistryConfig()
 		{
-			var env = architecture == Architecture.X86 ? "ProgramFiles" : "ProgramFiles(x86)";
+			var env = architecture == Architecture.X86 ? "ProgramFiles(x86)" : "ProgramFiles";
 
 			var config = Properties.Resource.Registry
 				.Replace("{OneMoreID}", RegistryHelper.OneMoreID)
