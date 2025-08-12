@@ -34,7 +34,7 @@ namespace OneMoreSetupActions
 			// - Can comment this out for debugging
 			ShowWindow(Process.GetCurrentProcess().MainWindowHandle, 0);
 
-			if (args.Length == 0 || string.IsNullOrEmpty(args[0]))
+			if (args.Length == 0 || string.IsNullOrWhiteSpace(args[0]))
 			{
 				// nothing to do
 				return;
@@ -43,16 +43,18 @@ namespace OneMoreSetupActions
 			logger = new Logger("OneMoreSetup");
 			stepper = new Stepper();
 
+			var command = args[0];
+
 			logger.WriteLine();
-			if (args[0] == "--install" || args[0] == "--uninstall")
+			if (command == "--install" || command == "--uninstall")
 			{
 				logger.WriteLine(new string('=', 70));
-				logger.WriteLine($"starting action: {args[0]} .. {DateTime.Now}");
+				logger.WriteLine($"starting action: {command} .. {DateTime.Now}");
 			}
 			else
 			{
 				logger.WriteLine(new string('-', 50));
-				logger.WriteLine($"direct action: {args[0]} .. {DateTime.Now}");
+				logger.WriteLine($"direct action: {command} .. {DateTime.Now}");
 			}
 
 			ReportContext(args.Any(a => a == "--install" || a == "--uninstall"));
@@ -81,7 +83,7 @@ namespace OneMoreSetupActions
 
 			onArchitecture = action.OneNoteArchitecture;
 
-			switch (args[0])
+			switch (command)
 			{
 				case "--install":
 					status = Install();
@@ -142,7 +144,7 @@ namespace OneMoreSetupActions
 					break;
 
 				default:
-					logger.WriteLine($"unrecognized command: {args[0]}");
+					logger.WriteLine($"unrecognized command: {command}");
 					status = CustomAction.FAILURE;
 					break;
 			}
