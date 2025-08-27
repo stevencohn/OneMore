@@ -71,7 +71,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private async void ImportWebDialog_Load(object sender, EventArgs e)
 		{
-			var text = await new ClipboardProvider().GetText();
+			var text = await ClipboardProvider.GetText();
 			if (Uri.IsWellFormedUriString(text, UriKind.Absolute))
 			{
 				addressBox.Text = text;

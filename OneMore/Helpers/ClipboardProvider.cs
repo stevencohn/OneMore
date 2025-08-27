@@ -8,6 +8,9 @@ namespace River.OneMoreAddIn
 {
 	using System;
 	using System.Collections.Generic;
+	using System.Drawing;
+	using System.IO;
+	using System.Linq;
 	using System.Runtime.InteropServices;
 	using System.Text;
 	using System.Text.RegularExpressions;
@@ -70,7 +73,7 @@ namespace River.OneMoreAddIn
 		/// thread so that Windows and the active application have time to complete the copy
 		/// </summary>
 		/// <returns></returns>
-		public async Task Copy()
+		public static async Task Copy()
 		{
 			//SendKeys.SendWait("^(c)");
 			new InputSimulator().Keyboard
@@ -85,7 +88,7 @@ namespace River.OneMoreAddIn
 		/// Returns any HTML content stored on the clipboard
 		/// </summary>
 		/// <returns>A string of HTML or null if the clipboard do not contain HTML</returns>
-		public async Task<string> GetHtml()
+		public static async Task<string> GetHtml()
 		{
 			return await SingleThreaded.Invoke(() =>
 			{
@@ -97,10 +100,38 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Returns an image stored on the clipboard.
+		/// Only returns explicit image streams (PNG, JPG, GIF, BMP), not bimaps
+		/// conversion of other content.
+		/// </summary>
+		/// <returns>An Image or null if the clipboard does not contain an image</returns>
+		public static async Task<Image> GetImage()
+		{
+			return await SingleThreaded.Invoke(() =>
+			{
+				var data = Win.Clipboard.GetDataObject();
+				var formats = data.GetFormats();
+				var format = formats.FirstOrDefault(f => f.Contains("PNG"));
+				format ??= formats.FirstOrDefault(f => f.Contains("JPG") || f.Contains("JPEG"));
+				format ??= formats.FirstOrDefault(f => f.Contains("GIF"));
+				format ??= formats.FirstOrDefault(f => f.Contains("BMP"));
+
+				if (format is not null &&
+					data.GetData(format) is MemoryStream stream)
+				{
+					return Image.FromStream(stream);
+				}
+
+				return null;
+			});
+		}
+
+
+		/// <summary>
 		/// Returns any plain text content stored on the clipboard
 		/// </summary>
 		/// <returns>A string plain text or null if the clipboard does not contain text</returns>
-		public async Task<string> GetText()
+		public static async Task<string> GetText()
 		{
 			return await SingleThreaded.Invoke(() =>
 			{
@@ -120,7 +151,7 @@ namespace River.OneMoreAddIn
 		/// operations to stabilize
 		/// </param>
 		/// <returns></returns>
-		public async Task Paste(bool delayBefore = false)
+		public static async Task Paste(bool delayBefore = false)
 		{
 			if (delayBefore)
 			{

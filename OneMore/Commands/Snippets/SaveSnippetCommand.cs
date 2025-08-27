@@ -35,9 +35,9 @@ namespace River.OneMoreAddIn.Commands
 			// focus on the OneNote main window provides a direct path for SendKeys
 			Native.SetForegroundWindow(one.WindowHandle);
 
-			await new ClipboardProvider().Copy();
+			await ClipboardProvider.Copy();
 
-			var html = await new ClipboardProvider().GetHtml();
+			var html = await ClipboardProvider.GetHtml();
 			if (string.IsNullOrWhiteSpace(html))
 			{
 				logger.WriteLine($"{nameof(SaveSnippetCommand)} empty HTML");

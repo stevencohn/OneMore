@@ -64,7 +64,7 @@ namespace River.OneMoreAddIn.Commands
 				// focus on the OneNote main window provides a direct path for SendKeys
 				Native.SetForegroundWindow(one.WindowHandle);
 
-				await new ClipboardProvider().Paste();
+				await ClipboardProvider.Paste();
 			}
 
 			await Task.Yield();
