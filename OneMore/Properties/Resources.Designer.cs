@@ -276,6 +276,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to PNG, JPG, GIF, BMP not found on the clipboard.
+        /// </summary>
+        internal static string AdjustImagesDialog_noImageToPaste {
+            get {
+                return ResourceManager.GetString("AdjustImagesDialog_noImageToPaste", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Percentage.
         /// </summary>
         internal static string AdjustImagesDialog_pctRadio_Text {
@@ -9506,6 +9515,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribPasteCellsButton_Screentip {
             get {
                 return ResourceManager.GetString("ribPasteCellsButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paste Image.
+        /// </summary>
+        internal static string ribPasteImageButton_Label {
+            get {
+                return ResourceManager.GetString("ribPasteImageButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adjust and paste image from clipboard.
+        /// </summary>
+        internal static string ribPasteImageButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribPasteImageButton_Screentip", resourceCulture);
             }
         }
         

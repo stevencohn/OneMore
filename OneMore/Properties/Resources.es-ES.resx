@@ -209,6 +209,10 @@ No ampliar imágenes más pequeñas</value>
 Las imágenes deben estar en un contenedor de contorno. Las imágenes de fondo no se pueden ajustar.</value>
     <comment>message box</comment>
   </data>
+  <data name="AdjustImagesDialog_noImageToPaste" xml:space="preserve">
+    <value>PNG, JPG, GIF, BMP no se encuentra en el portapapeles</value>
+    <comment>error message</comment>
+  </data>
   <data name="AdjustImagesDialog_pctRadio.Text" xml:space="preserve">
     <value>Porcentaje</value>
     <comment>radio</comment>
@@ -3788,6 +3792,14 @@ Pestaña Ayuda</value>
   <data name="ribPasteCellsButton_Screentip" xml:space="preserve">
     <value>Pegar contenido en celdas existentes</value>
     <comment>ribbon table</comment>
+  </data>
+  <data name="ribPasteImageButton_Label" xml:space="preserve">
+    <value>Pegar imagen</value>
+    <comment>images menu</comment>
+  </data>
+  <data name="ribPasteImageButton_Screentip" xml:space="preserve">
+    <value>Ajustar y pegar la imagen del portapapeles</value>
+    <comment>images menu</comment>
   </data>
   <data name="ribPasteRtfButton_Label" xml:space="preserve">
     <value>Pegar texto enriquecido</value>

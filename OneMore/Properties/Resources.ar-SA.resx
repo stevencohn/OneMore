@@ -209,6 +209,10 @@
 يجب أن تكون الصور في حاوية المخطط التفصيلي. لا يمكن تعديل صور الخلفية.</value>
     <comment>message box</comment>
   </data>
+  <data name="AdjustImagesDialog_noImageToPaste" xml:space="preserve">
+    <value>PNG ، JPG ، GIF ، BMP غير موجود على الحافظة</value>
+    <comment>error message</comment>
+  </data>
   <data name="AdjustImagesDialog_pctRadio.Text" xml:space="preserve">
     <value>النسبة المئوية</value>
     <comment>radio</comment>
@@ -3788,6 +3792,14 @@ ISO-code then comma then language name</comment>
   <data name="ribPasteCellsButton_Screentip" xml:space="preserve">
     <value>لصق المحتوى في الخلايا الموجودة</value>
     <comment>ribbon table</comment>
+  </data>
+  <data name="ribPasteImageButton_Label" xml:space="preserve">
+    <value>لصق الصورة</value>
+    <comment>images menu</comment>
+  </data>
+  <data name="ribPasteImageButton_Screentip" xml:space="preserve">
+    <value>ضبط ولصق الصورة من الحافظة</value>
+    <comment>images menu</comment>
   </data>
   <data name="ribPasteRtfButton_Label" xml:space="preserve">
     <value>لصق نص منسق</value>

@@ -210,6 +210,10 @@ Do no enlarge smaller images</value>
 Images must be in an outline container. Background images cannot be adjusted.</value>
     <comment>message box</comment>
   </data>
+  <data name="AdjustImagesDialog_noImageToPaste" xml:space="preserve">
+    <value>PNG, JPG, GIF, BMP not found on the clipboard</value>
+    <comment>error message</comment>
+  </data>
   <data name="AdjustImagesDialog_pctRadio.Text" xml:space="preserve">
     <value>Percentage</value>
     <comment>radio</comment>
@@ -3796,6 +3800,14 @@ Help Tab</value>
   <data name="ribPasteCellsButton_Screentip" xml:space="preserve">
     <value>Paste content in existing cells</value>
     <comment>ribbon table</comment>
+  </data>
+  <data name="ribPasteImageButton_Label" xml:space="preserve">
+    <value>Paste Image</value>
+    <comment>images menu</comment>
+  </data>
+  <data name="ribPasteImageButton_Screentip" xml:space="preserve">
+    <value>Adjust and paste image from clipboard</value>
+    <comment>images menu</comment>
   </data>
   <data name="ribPasteRtfButton_Label" xml:space="preserve">
     <value>Paste Rich Text</value>

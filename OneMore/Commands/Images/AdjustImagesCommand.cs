@@ -58,7 +58,7 @@ namespace River.OneMoreAddIn.Commands
 				? await PreparePastingElement(page, ns)
 				: FindOnPageElements(page, ns);
 
-			if (elements.Any())
+			if (elements is not null && elements.Any())
 			{
 				var updated = elements.Count == 1
 					// single selected image
@@ -70,6 +70,10 @@ namespace River.OneMoreAddIn.Commands
 				{
 					await one.Update(page);
 				}
+			}
+			else if (pasting)
+			{
+				ShowError(Resx.AdjustImagesDialog_noImageToPaste);
 			}
 			else
 			{
@@ -91,6 +95,7 @@ namespace River.OneMoreAddIn.Commands
 			var element =
 				new XElement(ns + "Image",
 					new XAttribute(XNamespace.Xmlns + OneNote.Prefix, ns),
+					new XAttribute("selected", "all"),
 					new XElement(ns + "Size",
 						new XAttribute("width", $"{image.Width:00}"),
 						new XAttribute("height", $"{image.Height:00}"),
@@ -98,28 +103,19 @@ namespace River.OneMoreAddIn.Commands
 					new XElement(ns + "Data", image.ToBase64String())
 				);
 
-
 			var editor = new PageEditor(page);
-			//editor.ExtractSelectedContent(breakParagraph: false);
+			editor.ExtractSelectedContent(breakParagraph: true);
 
-			var elements = new List<XElement>
+			var content = new XElement(ns + "OE", element);
+
+			if (editor.Anchor.Name.LocalName.In("OE", "HTMLBlock"))
 			{
-				new(ns + "OE", element),
-				new(ns + "OE", new XElement(ns + "T",
-					new XAttribute("selected", "all"),
-					string.Empty))
-			};
-
-			editor.ReplaceSelectedWith(new(ns + "OE", element));
-
-			//if (editor.Anchor.Name.LocalName.In("OE", "HTMLBlock"))
-			//{
-			//	editor.Anchor.AddAfterSelf(elements);
-			//}
-			//else // if (localName.In("OEChildren", "Outline"))
-			//{
-			//	editor.Anchor.AddFirst(elements);
-			//}
+				editor.Anchor.AddAfterSelf(content);
+			}
+			else // if (localName.In("OEChildren", "Outline"))
+			{
+				editor.Anchor.AddFirst(content);
+			}
 
 			return new List<XElement> { element };
 		}
