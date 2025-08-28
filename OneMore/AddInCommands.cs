@@ -672,7 +672,7 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<PasteCellsCommand>();
 
 
-		[Command("ribPasteImageButton_Label", Keys.None, "ribImagesMenu")]
+		[Command("ribPasteImageButton_Label", Keys.Shift | Keys.Alt | Keys.I, "ribImagesMenu")]
 		public async Task PasteImageCmd(IRibbonControl control)
 			=> await factory.Run<AdjustImageFromClipboardCommand>();
 
