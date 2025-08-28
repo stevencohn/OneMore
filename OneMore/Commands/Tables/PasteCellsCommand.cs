@@ -139,7 +139,7 @@ namespace River.OneMoreAddIn.Commands
 		private async Task<Page> GetSourcePage()
 		{
 			// the Clipboard will contain HTML of the copied cells wrapped in a <table>
-			var content = await new ClipboardProvider().GetHtml();
+			var content = await ClipboardProvider.GetHtml();
 			if (string.IsNullOrWhiteSpace(content))
 			{
 				return null;
@@ -211,7 +211,7 @@ namespace River.OneMoreAddIn.Commands
 			// focus on the OneNote main window provides a direct path for SendKeys
 			Native.SetForegroundWindow(one.WindowHandle);
 
-			await new ClipboardProvider().Paste();
+			await ClipboardProvider.Paste();
 
 			var page = await one.GetPage(pageId);
 			one.DeleteHierarchy(pageId);

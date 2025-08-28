@@ -23,7 +23,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			var text = await new ClipboardProvider().GetText();
+			var text = await ClipboardProvider.GetText();
 			if (string.IsNullOrEmpty(text))
 			{
 				return;

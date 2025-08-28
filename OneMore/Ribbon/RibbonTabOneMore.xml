@@ -701,6 +701,12 @@
         getScreentip="GetRibbonScreentip"
         onAction="PlantUmlCmd"/>
       <button
+        id="ribPasteImageButton"
+        imageMso="PasteSpecialDialog"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="PasteImageCmd"/>
+      <button
         id="ribAdjustImagesButton"
         imageMso="GroupPictureCompress"
         getLabel="GetRibbonLabel"

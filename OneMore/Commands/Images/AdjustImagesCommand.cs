@@ -14,12 +14,33 @@ namespace River.OneMoreAddIn.Commands
 	using SC = ImageEditor.SizeConstraint;
 
 
+	#region Wrappers
+	internal class AdjustImageFromClipboardCommand : AdjustImagesCommand
+	{
+		public AdjustImageFromClipboardCommand() : base() { }
+		public override Task Execute(params object[] args)
+		{
+			return base.Execute(true);
+		}
+	}
+	internal class AdjustImagesOnPageCommand : AdjustImagesCommand
+	{
+		public AdjustImagesOnPageCommand() : base() { }
+		public override Task Execute(params object[] args)
+		{
+			return base.Execute(false);
+		}
+	}
+	#endregion Wrappers
+
+
 	/// <summary>
 	/// Resize and adjust images on the page
 	/// </summary>
 	internal class AdjustImagesCommand : Command
 	{
 		private bool scopeFore;
+		private bool pasting;
 
 
 		public AdjustImagesCommand()
@@ -31,6 +52,77 @@ namespace River.OneMoreAddIn.Commands
 		{
 			await using var one = new OneNote(out var page, out var ns, OneNote.PageDetail.All);
 
+			pasting = args.Length > 0 && args[0] is bool b && b;
+
+			var elements = pasting
+				? await PreparePastingElement(page, ns)
+				: FindOnPageElements(page, ns);
+
+			if (elements is not null && elements.Any())
+			{
+				var updated = elements.Count == 1
+					// single selected image
+					? ResizeOne(elements[0])
+					// multiple selections or all if none selected
+					: ResizeMany(elements, page);
+
+				if (updated)
+				{
+					await one.Update(page);
+				}
+			}
+			else if (pasting)
+			{
+				ShowError(Resx.AdjustImagesDialog_noImageToPaste);
+			}
+			else
+			{
+				ShowError(Resx.AdjustImagesDialog_noImages);
+			}
+		}
+
+
+		private async Task<List<XElement>> PreparePastingElement(Page page, XNamespace ns)
+		{
+			var image = await ClipboardProvider.GetImage();
+
+			if (image is null)
+			{
+				logger.WriteLine("no clipboard image found");
+				return default;
+			}
+
+			var element =
+				new XElement(ns + "Image",
+					new XAttribute(XNamespace.Xmlns + OneNote.Prefix, ns),
+					new XAttribute("selected", "all"),
+					new XElement(ns + "Size",
+						new XAttribute("width", $"{image.Width:00}"),
+						new XAttribute("height", $"{image.Height:00}"),
+						new XAttribute("isSetByUser", "true")),
+					new XElement(ns + "Data", image.ToBase64String())
+				);
+
+			var editor = new PageEditor(page);
+			editor.ExtractSelectedContent(breakParagraph: true);
+
+			var content = new XElement(ns + "OE", element);
+
+			if (editor.Anchor.Name.LocalName.In("OE", "HTMLBlock"))
+			{
+				editor.Anchor.AddAfterSelf(content);
+			}
+			else // if (localName.In("OEChildren", "Outline"))
+			{
+				editor.Anchor.AddFirst(content);
+			}
+
+			return new List<XElement> { element };
+		}
+
+
+		private List<XElement> FindOnPageElements(Page page, XNamespace ns)
+		{
 			// find selected foreground images
 			var elements = page.Root
 				.Elements(ns + "Outline")
@@ -75,23 +167,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			if (elements.Any())
-			{
-				var updated = elements.Count == 1
-					// single selected image
-					? ResizeOne(elements[0])
-					// multiple selections or all if none selected
-					: ResizeMany(elements, page);
-
-				if (updated)
-				{
-					await one.Update(page);
-				}
-			}
-			else
-			{
-				ShowError(Resx.AdjustImagesDialog_noImages);
-			}
+			return elements;
 		}
 
 
@@ -105,7 +181,7 @@ namespace River.OneMoreAddIn.Commands
 			if (result == DialogResult.OK)
 			{
 				var editor = dialog.GetImageEditor(image);
-				if (editor.IsReady || (editor.AutoSize && wrapper.IsSetByUser))
+				if (pasting || editor.IsReady || (editor.AutoSize && wrapper.IsSetByUser))
 				{
 					editor.Apply(wrapper);
 					return true;

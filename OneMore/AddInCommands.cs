@@ -57,7 +57,7 @@ namespace River.OneMoreAddIn
 
 		[Command("ribAdjustImagesButton_Label", Keys.None, "ribImagesMenu")]
 		public async Task AdjustImagesCmd(IRibbonControl control)
-			=> await factory.Run<AdjustImagesCommand>();
+			=> await factory.Run<AdjustImagesOnPageCommand>();
 
 		public async Task AnalyzeCmd(IRibbonControl control)
 			=> await factory.Run<AnalyzeCommand>();
@@ -670,6 +670,11 @@ namespace River.OneMoreAddIn
 		[Command("ribPasteCellsButton_Label", Keys.None, "ribTableMenu")]
 		public async Task PasteCellsCmd(IRibbonControl control)
 			=> await factory.Run<PasteCellsCommand>();
+
+
+		[Command("ribPasteImageButton_Label", Keys.Shift | Keys.Alt | Keys.I, "ribImagesMenu")]
+		public async Task PasteImageCmd(IRibbonControl control)
+			=> await factory.Run<AdjustImageFromClipboardCommand>();
 
 
 		[Command("ribPasteRtfButton_Label", Keys.Control | Keys.Alt | Keys.V, "ribEditMenu")]

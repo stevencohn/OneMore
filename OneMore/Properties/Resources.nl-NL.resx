@@ -210,6 +210,10 @@ Kleinere afbeeldingen niet vergroten</value>
 Afbeeldingen moeten zich in een overzichtscontainer bevinden. Achtergrondafbeeldingen kunnen niet worden aangepast.</value>
     <comment>message box</comment>
   </data>
+  <data name="AdjustImagesDialog_noImageToPaste" xml:space="preserve">
+    <value>PNG, JPG, GIF, BMP niet op het klembord gevonden</value>
+    <comment>error message</comment>
+  </data>
   <data name="AdjustImagesDialog_pctRadio.Text" xml:space="preserve">
     <value>Percentage</value>
     <comment>radio</comment>
@@ -3788,6 +3792,14 @@ Tabblad Help</value>
   <data name="ribPasteCellsButton_Screentip" xml:space="preserve">
     <value>Plak inhoud in bestaande cellen</value>
     <comment>ribbon table</comment>
+  </data>
+  <data name="ribPasteImageButton_Label" xml:space="preserve">
+    <value>Plakafbeelding</value>
+    <comment>images menu</comment>
+  </data>
+  <data name="ribPasteImageButton_Screentip" xml:space="preserve">
+    <value>Pas en plak de afbeelding van het klembord</value>
+    <comment>images menu</comment>
   </data>
   <data name="ribPasteRtfButton_Label" xml:space="preserve">
     <value>Plak Rich Text</value>

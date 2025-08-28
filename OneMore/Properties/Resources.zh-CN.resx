@@ -208,6 +208,10 @@
 图像必须位于轮廓容器中。背景图像无法调整。</value>
     <comment>message box</comment>
   </data>
+  <data name="AdjustImagesDialog_noImageToPaste" xml:space="preserve">
+    <value>PNG，JPG，GIF，剪贴板上找不到BMP</value>
+    <comment>error message</comment>
+  </data>
   <data name="AdjustImagesDialog_pctRadio.Text" xml:space="preserve">
     <value>百分比</value>
     <comment>radio</comment>
@@ -3789,6 +3793,14 @@ ISO-code then comma then language name</comment>
   <data name="ribPasteCellsButton_Screentip" xml:space="preserve">
     <value>在现有单元格中粘贴内容</value>
     <comment>ribbon table</comment>
+  </data>
+  <data name="ribPasteImageButton_Label" xml:space="preserve">
+    <value>糊状图像</value>
+    <comment>images menu</comment>
+  </data>
+  <data name="ribPasteImageButton_Screentip" xml:space="preserve">
+    <value>调整和粘贴剪贴板的图像</value>
+    <comment>images menu</comment>
   </data>
   <data name="ribPasteRtfButton_Label" xml:space="preserve">
     <value>粘贴富文本</value>

@@ -210,6 +210,10 @@
 התמונות חייבות להיות במיכל מתאר. לא ניתן לכוונן תמונות רקע.</value>
     <comment>message box</comment>
   </data>
+  <data name="AdjustImagesDialog_noImageToPaste" xml:space="preserve">
+    <value>PNG, JPG, GIF, BMP לא נמצא על הלוח</value>
+    <comment>error message</comment>
+  </data>
   <data name="AdjustImagesDialog_pctRadio.Text" xml:space="preserve">
     <value>אֲחוּזִים</value>
     <comment>radio</comment>
@@ -3795,6 +3799,14 @@ ISO-code then comma then language name</comment>
   <data name="ribPasteCellsButton_Screentip" xml:space="preserve">
     <value>הדבק תוכן בתאים קיימים</value>
     <comment>ribbon table</comment>
+  </data>
+  <data name="ribPasteImageButton_Label" xml:space="preserve">
+    <value>הדבק תמונה</value>
+    <comment>images menu</comment>
+  </data>
+  <data name="ribPasteImageButton_Screentip" xml:space="preserve">
+    <value>התאם והדבק תמונה מהלוח</value>
+    <comment>images menu</comment>
   </data>
   <data name="ribPasteRtfButton_Label" xml:space="preserve">
     <value>הדבק טקסט עשיר</value>
