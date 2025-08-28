@@ -1,10 +1,11 @@
 ﻿//************************************************************************************************
-// Copyright © 2022 Steven M Cohn.  All rights reserved.
+// Copyright © 2022 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
+	using System;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
 
@@ -33,6 +34,12 @@ namespace River.OneMoreAddIn.Commands
 
 			// set the page ID to the new page's ID
 			page.Root.Attribute("ID").Value = newId;
+
+			// ensure unique OneMore page ID
+			if (page.GetMetaContent(MetaNames.PageID) is not null)
+			{
+				page.SetMeta(MetaNames.PageID, Guid.NewGuid().ToString("N"));
+			}
 
 			// remove all objectID values and let OneNote generate new IDs
 			page.Root.Descendants().Attributes("objectID").Remove();
