@@ -9,6 +9,9 @@ Builds the installer kit for the specifies architecture: x86 (default), x64, ARM
 Clean all projects in the solution, removing all bin and obj directories.
 No build is performed.
 
+.PARAMETER Detect
+Detect the targeted CPU architecture of the specified DLL or EXE file.
+
 .PARAMETER Fast
 Build just the .csproj projects using default parameters:
 OneMore, OneMorCalendar, OneMoreProtocolHandler, OneMoreSetupActions, and OneMoreTray.
@@ -26,7 +29,10 @@ Enable verbose logging for MSBuild. This is useful for debugging build issues.
 param (
 	[ValidateSet('x86','x64','ARM64','All')]
 	[string] $Architecture = 'x86',
+
+	[ValidateScript({ Test-Path $_ -PathType Leaf })]
 	[string] $Detect,
+
 	[switch] $Clean,
 	[switch] $Fast,
 	[switch] $Prep,
@@ -136,32 +142,42 @@ Begin
 
 	function DetectArchitecture
 	{
-		param($dllpath)
+		param($dllPath)
 
-		$dllpath = resolve-Path $dllpath
-		if (-not (Test-Path $DllPath)) {
-			Write-Error "File not found: $DllPath"
+		$resolved = Resolve-Path $dllPath -ErrorAction SilentlyContinue
+		if (-not $resolved) {
+			Write-Error "File not found: $dllPath"
 			return
 		}
 
-		# Open the file as a binary stream
-		$stream = [System.IO.File]::OpenRead($DllPath)
+		$resolved = $resolved.Path
+
+		# Open the file as a readonly binary stream
+		$stream = [System.IO.File]::OpenRead($resolved)
+
 		try {
 			$reader = New-Object System.Reflection.PortableExecutable.PEReader $stream
-			$machine = $reader.PEHeaders.CoffHeader.Machine
+			$machine = [int]$reader.PEHeaders.CoffHeader.Machine
 
-			switch ([int]$machine) {
-				0x014c { "x86" }
-				0x0200 { "Itanium" }
-				0x8664 { "x64" }
-				0x01c4 { "ARM" }
-				0xaa64 { "ARM64" }
-				default { "Unknown Architecture: $machine" }
+			switch ($machine) {
+				# some ARM64X/ARM64EC hybrids still present 0x8664
+                # Without external tools or parsing CHPE metadata, we can't be 100% certain.
+				0x8664 { 'x64' }
+
+				0x014c { 'x86' }
+				0xaa64 { 'ARM64' }
+				0xA641 { "ARM64EC" }
+				0xA64E { "ARM64X" }
+				0x01c4 { 'ARM' }
+				0x0200 { 'Itanium' }
+
+				default { 'Unknown Architecture: 0x{0:X4}' -f $machine }
 			}
 		} finally {
 			$stream.Close()
 		}
 	}
+
 
 	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 	# Fast...
