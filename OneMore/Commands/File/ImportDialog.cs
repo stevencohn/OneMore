@@ -27,6 +27,13 @@ namespace River.OneMoreAddIn.Commands
 			Pdf
 		}
 
+		private enum PowerPointOptions
+		{
+			Append = 0,
+			Create = 1,
+			Section = 2
+		}
+
 
 		private readonly bool wordInstalled;
 		private readonly bool powerPointInstalled;
@@ -74,15 +81,24 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 
-			var settings = new SettingsProvider();
-			var defaultPath = settings.GetCollection("Import")?["path"];
-			if (string.IsNullOrWhiteSpace(defaultPath))
+			var settings = new SettingsProvider().GetCollection("Import");
+			if (settings is not null)
 			{
-				pathBox.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-			}
-			else
-			{
-				pathBox.Text = defaultPath;
+				var path = settings["path"];
+				pathBox.Text = string.IsNullOrWhiteSpace(path)
+					? Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
+					: path;
+
+				wordAppendButton.Checked = settings.Get("wordAppend", false);
+				wordCreateButton.Checked = !wordAppendButton.Checked;
+
+				pdfAppendButton.Checked = settings.Get("pdfAppend", false);
+				pdfCreateButton.Checked = !pdfAppendButton.Checked;
+
+				var option = settings.Get("powerOption", PowerPointOptions.Append);
+				powerAppendButton.Checked = option == PowerPointOptions.Append;
+				powerCreateButton.Checked = option == PowerPointOptions.Create;
+				powerSectionButton.Checked = option == PowerPointOptions.Section;
 			}
 
 			initialized = true;
@@ -283,6 +299,15 @@ namespace River.OneMoreAddIn.Commands
 					var settings = new SettingsProvider();
 					var collection = settings.GetCollection("Import");
 					collection.Add("path", path);
+					collection.Add("wordAppend", wordAppendButton.Checked);
+					collection.Add("pdfAppend", pdfAppendButton.Checked);
+
+					var option = powerAppendButton.Checked ? (int)PowerPointOptions.Append
+						: powerCreateButton.Checked ? (int)PowerPointOptions.Create
+						: (int)PowerPointOptions.Section;
+
+					collection.Add("powerOption", option);
+
 					settings.SetCollection(collection);
 					settings.Save();
 				}
