@@ -155,13 +155,13 @@
     <!-- Page Content -->
     <div id="content" style="margin-left: 30px; margin-top:100px;">
       <DIV style="DIRECTION: ltr">
-<DIV style="WIDTH: 8.553in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0in">
+<DIV style="WIDTH: 8.556in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0in">
 <DIV style="WIDTH: 2.869in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0.075in">
 <P lang=yo style='FONT-SIZE: 20pt; FONT-FAMILY: "Calibri Light"; MARGIN: 0in'>Building The Installer</P></DIV>
 <DIV style="WIDTH: 2.422in; MARGIN-TOP: 0.042in; DIRECTION: ltr; MARGIN-LEFT: 0.075in">
 <P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">Sunday, February 19, 2023</P>
 <P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">8:46 AM</P></DIV>
-<DIV style="WIDTH: 8.553in; MARGIN-TOP: 0.434in; DIRECTION: ltr; MARGIN-LEFT: 0in">
+<DIV style="WIDTH: 8.556in; MARGIN-TOP: 0.434in; DIRECTION: ltr; MARGIN-LEFT: 0in">
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">During normal OneMore development, you do not need to build the entire solution every time you make a change. The installer, for example only needs to be built when you want an installer. First, build OneMore, OneMoreCalendar, and OneMoreProtocolHandler to get the necessary run-time dependencies. Then you'll typically only need to rebuild OneMore from change to change, making it very quick to iterate. </P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">If you've followed the setregistry.ps1 instructions <A href="Scripts.htm">on the Scripts page</A>, then you should be able to continually build and test OneMore without reinstalling or rebuilding the installer. But if you do need to rebuild the installer, keep reading.</P>
@@ -177,11 +177,9 @@
 <TR>
 <TD style="BORDER-LEFT-WIDTH: 0pt; BORDER-RIGHT-WIDTH: 0pt; WIDTH: 0.667in; VERTICAL-ALIGN: top; BORDER-BOTTOM-WIDTH: 0pt; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; PADDING-RIGHT: 3pt; BORDER-TOP-WIDTH: 0pt">
 <P lang=yo style='FONT-SIZE: 22pt; FONT-FAMILY: "Segoe UI Symbol"; COLOR: #5f497a; TEXT-ALIGN: center; MARGIN: 0in'><SPAN style="FONT-WEIGHT: bold">📓</SPAN></P></TD>
-<TD style="BORDER-LEFT-WIDTH: 0pt; BORDER-RIGHT-WIDTH: 0pt; WIDTH: 7.654in; VERTICAL-ALIGN: top; BORDER-BOTTOM-WIDTH: 0pt; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; PADDING-RIGHT: 3pt; BORDER-TOP-WIDTH: 0pt">
-<P lang=yo style='FONT-SIZE: 11pt; FONT-FAMILY: "Segoe UI"; COLOR: #333333; MARGIN: 0in'><SPAN style="FONT-WEIGHT: bold">x86 vs x64</SPAN></P>
-<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">There is no technical different between the 32-bit build and 64-bit builds of OneMore and its DLLs so OneMore is built as a 32-bit/x86 assembly; this can be used in both x86 and x64 versions of OneNote.</P>
-<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">However, there is a difference in the 32-bit and 64-bit builds of the OneMore installer. If you have Windows 32-bit then you must use the 32-bit installer. If you Windows 64-bit then you must use the 64-bit installer. Note that the bitness of the installer must match the bitness of Windows. </SPAN><SPAN style="FONT-SIZE: 11.5pt; TEXT-DECORATION: underline; FONT-FAMILY: Calibri">The bitness of Microsoft Office is irrelevant and has no bearing on OneMore or its installer</SPAN><SPAN style='FONT-SIZE: 11pt; FONT-FAMILY: "Segoe UI"; COLOR: #333333'>.</SPAN></P></TD></TR></TBODY></TABLE></DIV></TD></TR></TBODY></TABLE></DIV>
+<TD style="BORDER-LEFT-WIDTH: 0pt; BORDER-RIGHT-WIDTH: 0pt; WIDTH: 7.668in; VERTICAL-ALIGN: top; BORDER-BOTTOM-WIDTH: 0pt; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; PADDING-RIGHT: 3pt; BORDER-TOP-WIDTH: 0pt">
+<P lang=yo style='FONT-SIZE: 11pt; FONT-FAMILY: "Segoe UI"; COLOR: #333333; MARGIN: 0in'><SPAN style="FONT-WEIGHT: bold">x86 vs x64 vs ARM64</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">The OneMore installer that you choose must match the installed architecture of OneNote. If you have OneNote x86 then you must use the x86 installer. If you have OneNote x64 then you must use the x64 installer. If you are running on an ARM64 machine (such as later editions of Microsoft Surface) then use the ARM64 installer.</P></TD></TR></TBODY></TABLE></DIV></TD></TR></TBODY></TABLE></DIV>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Prep</H1>
 <P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Prior to running </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>build.ps1</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> as described below, you must first configure your machine to enable Visual Studio to build </SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-STYLE: italic">Visual Studio Installer Projects </SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">(.vdproj) from the command line. It only needs to be run once on your machine, or after a reinstall or upgrade of Visual Studio.</SPAN></P>
@@ -189,6 +187,8 @@
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">From an administrative PowerShell prompt, run this command</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; COLOR: #172b4d; MARGIN: 0in 0in 0in 0.375in'><SPAN style="BACKGROUND: #e8e8e8">.\build.ps1 -prep</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">A reboot is recommended after the -prep command.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Update SDK</H1>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Recommended when pulling down a new clone of the repo to patch the OneMore.csproj file.</P>
@@ -200,27 +200,34 @@
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; COLOR: #172b4d; MARGIN: 0in 0in 0in 0.375in'><SPAN style="BACKGROUND: #e8e8e8">.\build-ps1 -fast</SPAN></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">At this point, you should have a working version of OneMore.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Build The Installer</H1>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">The setup project is configured to generate a 64-bit Windows installer with the idea that there are very few, if any, 32-bit machines still in use out there. But this 64-bit installer is customized to support both 64-bit and 32-bit installs of OneNote. So one installer to rule them all!</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">However, if a 32-bit installer is needed, use the provided </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>build.ps1</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> script with the&nbsp;</SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>86</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">&nbsp;argument. This script can be run in three modes.</SPAN></P>
+<P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">However, if a 32-bit installer is needed, use the provided </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>build.ps1</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> script with the&nbsp;</SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>-Architecture x86</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">&nbsp;argument. This script can be run in three modes.</SPAN></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <UL style="MARGIN-BOTTOM: 0in; unicode-bidi: embed; MARGIN-TOP: 0in; DIRECTION: ltr" type=disc>
-<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>.\build.ps1 86</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">&nbsp;- builds just the x86 installer</SPAN> 
-<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>.\build.ps1 64</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">&nbsp;- builds just the x64 installer; the default if no arguments are provided</SPAN> 
-<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>.\build.ps1 -both</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">&nbsp;- builds both the x86 and the x64 installers</SPAN> </LI></UL>
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>.\build.ps1 x86</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">&nbsp;- builds just the x86 installer</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>.\build.ps1 x64</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">&nbsp;- builds just the x64 installer; the default if no arguments are provided</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>.\build.ps1 ARM64</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">&nbsp;- builds just the ARM64 installer</SPAN> </LI></UL>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<BLOCKQUOTE lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in"><SPAN style="FONT-STYLE: italic">Note that you wil see warnings while the installer is building. These are harmless and can be ignored.</SPAN></BLOCKQUOTE>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">There is a fourth mode to build all configurations for a new release of OneMore.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<UL style="MARGIN-BOTTOM: 0in; unicode-bidi: embed; MARGIN-TOP: 0in; DIRECTION: ltr" type=disc>
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>.\build.ps1 -All</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">&nbsp;- builds the ARM64, x64, and x86 installers, in that order, leaving the x86 build in place for continued development</SPAN> </LI></UL>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<BLOCKQUOTE lang=yo style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in"><SPAN style="FONT-STYLE: italic">Note that you may see warnings while the installer is building. These are harmless and can be ignored.</SPAN></BLOCKQUOTE>
 <BLOCKQUOTE lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">&nbsp;</BLOCKQUOTE>
 <H2 lang=yo style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Debug The Build</H2>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">To enable msbuild verbose logging, enter this command before runnig build.ps1, where vsregedit is in the same path as devenv.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in 0in 0in 0.375in'><SPAN style="BACKGROUND: #e9e9e9">VsRegEdit set local HKCU General MSBuildLoggerVerbosity dword 4</SPAN></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">This can reverted back to a value of </SPAN><SPAN style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e9e9e9'>1</SPAN></P>
+<P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">This can then be reverted back to a value of </SPAN><SPAN style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e9e9e9'>1</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> when debugging is no longer needed.</SPAN></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <H3 lang=yo style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; COLOR: #5b9bd5; MARGIN: 0in">HRESULT</H3>
-<P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">If the output looks similar to this, you may need to r erun the </SPAN><SPAN style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e9e9e9'>.\build.ps1 -prep</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> command</SPAN></P>
+<P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">If the output looks similar to this, with a validation error, you may need to rerun the </SPAN><SPAN style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e9e9e9'>.\build.ps1 -prep</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> command</SPAN></P>
 <P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'>Microsoft Visual Studio 2022 Version 17.8.3.</P>
 <P style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'>Copyright (C) Microsoft Corp. All rights reserved.</P>
