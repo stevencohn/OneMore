@@ -7,6 +7,7 @@
 namespace River.OneMoreAddIn.Settings
 {
 	using River.OneMoreAddIn.Helpers.Office;
+	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
@@ -40,7 +41,7 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
-		private sealed class MenuPanel : FlowLayoutPanel
+		private sealed class MenuPanel : MoreFlowLayoutPanel
 		{
 			public MenuPanel()
 			{
