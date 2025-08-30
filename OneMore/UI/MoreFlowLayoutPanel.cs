@@ -16,5 +16,26 @@ namespace River.OneMoreAddIn.UI
 		{
 			DoubleBuffered = true;
 		}
+
+
+		protected override void WndProc(ref Message m)
+		{
+			const int WM_MOUSEWHEEL = 0x020A;
+			const int WM_VSCROLL = 0x0115;
+
+			base.WndProc(ref m);
+
+			if (m.Msg == WM_MOUSEWHEEL ||
+				m.Msg == WM_VSCROLL)
+			{
+				foreach (Control control in Controls)
+				{
+					if (control.Visible)
+					{
+						control.Refresh();
+					}
+				}
+			}
+		}
 	}
 }
