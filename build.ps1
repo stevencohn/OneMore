@@ -21,6 +21,10 @@ Run DisableOutOfProcBuild. This only needs to be run once on a machine, or after
 or reinstalling Visual Studio. It is required to build installer kits from the command line.
 No build is performed.
 
+.PARAMETER Stepped
+When building All architectures, pause between each architecture build to allow examination
+of output and configuration of vdproj. This is a debugging option.
+
 .PARAMETER VLog
 Enable verbose logging for MSBuild. This is useful for debugging build issues.
 #>
@@ -36,6 +40,7 @@ param (
 	[switch] $Clean,
 	[switch] $Fast,
 	[switch] $Prep,
+	[switch] $Stepped,
 	[switch] $VLog
 	)
 
@@ -347,6 +352,14 @@ Begin
 			$log = "$($env:TEMP)\OneMoreBuild.log"
 			$cmd = ". '$devenv' .\OneMoreSetup.vdproj /build 'Debug|$Architecture' /project Setup /out '$log'"
 			write-Host $cmd -ForegroundColor DarkGray
+
+			if ($Stepped)
+			{
+				Write-Host "`n... skipping Setup build, Enter to continue: " -Fore Magenta -nonewline
+				Read-Host
+				return
+			}
+
 			Invoke-Expression $cmd
 
 			if ($LASTEXITCODE -eq 0)
@@ -499,7 +512,21 @@ Process
 	if ($Architecture -eq 'All')
 	{
 		Build 'ARM64'
+
+		if ($Stepped)
+		{
+			Write-Host "`n... press Enter to continue with x64 build: " -Fore Magenta -nonewline
+			Read-Host
+		}
+
 		Build 'x64'
+
+		if ($Stepped)
+		{
+			Write-Host "`n... press Enter to continue with x86 build: " -Fore Magenta -nonewline
+			Read-Host
+		}
+
 		Build 'x86'
 	}
 	else
