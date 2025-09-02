@@ -592,13 +592,13 @@
         "Entry"
         {
         "MsmKey" = "8:_29E54BC4D89D3E8ED41E2C1CE2CD987C"
-        "OwnerKey" = "8:_048CCD43549245BBA572EF0A0F83BCCB"
+        "OwnerKey" = "8:_76174F6DA34C3CDD7272F7BB2D4E277C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_29E54BC4D89D3E8ED41E2C1CE2CD987C"
-        "OwnerKey" = "8:_76174F6DA34C3CDD7272F7BB2D4E277C"
+        "OwnerKey" = "8:_048CCD43549245BBA572EF0A0F83BCCB"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1907,12 +1907,6 @@
         {
         "MsmKey" = "8:_8CCC218672BBD36DF5FFCFE742AC1E72"
         "OwnerKey" = "8:_692D7E391D074D36AD2530720FB8D6C4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_8FD93226DE604B71BEA7E00C2A368681"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -3634,7 +3628,25 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_29E54BC4D89D3E8ED41E2C1CE2CD987C"
+        "OwnerKey" = "8:_5FEF8858B0DC33617889997803E4440B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_527FF1ACECC2BB26BB19BB9848BB555E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_4E66B61D5FF5E39EE4BFF0F400AC1710"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_19293DB0116387C4F6FEADD7C6F3FF0C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -3664,7 +3676,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_F595B09A932BF37016D0EC00AF541BDE"
+        "OwnerKey" = "8:_29E54BC4D89D3E8ED41E2C1CE2CD987C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -5395,11 +5407,6 @@
             "AssemblyAsmDisplayName" = "8:Microsoft.Office.Interop.Outlook, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_13B8CBA1751ADD66FD7A9E086EDFD9D8"
-                    {
-                    "Name" = "8:Microsoft.Office.Interop.Outlook.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Microsoft.Office.Interop.Outlook.dll"
             "TargetName" = "8:"
@@ -5796,11 +5803,6 @@
             "AssemblyAsmDisplayName" = "8:Microsoft.Office.Interop.PowerPoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_24B5C00FD31D2BF3096BD1078409240C"
-                    {
-                    "Name" = "8:Microsoft.Office.Interop.PowerPoint.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Microsoft.Office.Interop.PowerPoint.dll"
             "TargetName" = "8:"
@@ -6399,11 +6401,6 @@
             "AssemblyAsmDisplayName" = "8:Microsoft.Vbe.Interop, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_3F2DE23C75E71AFDF4DCBCBD51BC8737"
-                    {
-                    "Name" = "8:Microsoft.Vbe.Interop.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Microsoft.Vbe.Interop.dll"
             "TargetName" = "8:"
@@ -7336,11 +7333,6 @@
             "AssemblyAsmDisplayName" = "8:Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_60A303F2D21F558ED4C158BA8E3E640A"
-                    {
-                    "Name" = "8:Microsoft.Office.Interop.Word.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Microsoft.Office.Interop.Word.dll"
             "TargetName" = "8:"
@@ -7897,11 +7889,6 @@
             "AssemblyAsmDisplayName" = "8:Windows, Version=255.255.255.255, Culture=neutral"
                 "ScatterAssemblies"
                 {
-                    "_76174F6DA34C3CDD7272F7BB2D4E277C"
-                    {
-                    "Name" = "8:Windows.winmd"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Windows.winmd"
             "TargetName" = "8:"
@@ -7948,11 +7935,6 @@
             "AssemblyAsmDisplayName" = "8:Aga.Controls, Version=1.7.7.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_7AAD9B1D7F11BB35870DDAC44FE8AE93"
-                    {
-                    "Name" = "8:Aga.Controls.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Aga.Controls.dll"
             "TargetName" = "8:"
@@ -8247,26 +8229,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8FD93226DE604B71BEA7E00C2A368681"
-            {
-            "SourcePath" = "8:..\\OneMore\\bin\\x64\\Debug\\x64\\SQLite.Interop.dll"
-            "TargetName" = "8:SQLite.Interop.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_7DBCEE34F8644DEF8B721F652A80D3A6"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_91FEA2A9BB4045AEB0CCCCBC0E1E8214"
@@ -8954,11 +8916,6 @@
             "AssemblyAsmDisplayName" = "8:River.OneMoreAddIn, Version=6.7.5.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_B316B15CEB68A6E42B18DF4602876702"
-                    {
-                    "Name" = "8:River.OneMoreAddIn.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:River.OneMoreAddIn.dll"
             "TargetName" = "8:"
@@ -9129,11 +9086,6 @@
             "AssemblyAsmDisplayName" = "8:Chinese, Version=0.5.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_B86BE5D2ECEF3B6A7DB7899B5AC1619C"
-                    {
-                    "Name" = "8:Chinese.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Chinese.dll"
             "TargetName" = "8:"
@@ -9521,11 +9473,6 @@
             "AssemblyAsmDisplayName" = "8:stdole, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
                 "ScatterAssemblies"
                 {
-                    "_C32CAFE3CE1768EF1810D0CEB14A659A"
-                    {
-                    "Name" = "8:stdole.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:stdole.dll"
             "TargetName" = "8:"
@@ -9736,11 +9683,6 @@
             "AssemblyAsmDisplayName" = "8:office, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_CC01B73CEE5A549CC16BCDECB19B679E"
-                    {
-                    "Name" = "8:office.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:office.dll"
             "TargetName" = "8:"
@@ -10013,11 +9955,6 @@
             "AssemblyAsmDisplayName" = "8:NStandard, Version=0.9.4.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_D5D48E17673A038818152857DB5F637A"
-                    {
-                    "Name" = "8:NStandard.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:NStandard.dll"
             "TargetName" = "8:"
@@ -10095,11 +10032,6 @@
             "AssemblyAsmDisplayName" = "8:Microsoft.Office.Interop.OneNote, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_D883E8A4381C26DA2195DA3B9A871350"
-                    {
-                    "Name" = "8:Microsoft.Office.Interop.OneNote.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Microsoft.Office.Interop.OneNote.dll"
             "TargetName" = "8:"
@@ -10826,11 +10758,6 @@
             "AssemblyAsmDisplayName" = "8:System.Runtime.WindowsRuntime, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_F1FF22E12B59D4E608A27CD6F971BC4E"
-                    {
-                    "Name" = "8:System.Runtime.WindowsRuntime.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:System.Runtime.WindowsRuntime.dll"
             "TargetName" = "8:"
@@ -10919,11 +10846,6 @@
             "AssemblyAsmDisplayName" = "8:System.Buffers, Version=4.0.4.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_F595B09A932BF37016D0EC00AF541BDE"
-                    {
-                    "Name" = "8:System.Buffers.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:System.Buffers.dll"
             "TargetName" = "8:"
@@ -12759,7 +12681,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_692D7E391D074D36AD2530720FB8D6C4"
             {
-            "SourcePath" = "8:"
+            "SourcePath" = "8:..\\OneMore\\obj\\x86\\Debug\\River.OneMoreAddIn.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_76DE0C3E4C3C41398EBF2960C9F81C36"

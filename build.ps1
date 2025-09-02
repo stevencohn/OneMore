@@ -355,9 +355,8 @@ Begin
 
 			if ($Stepped)
 			{
-				Write-Host "`n... skipping Setup build, Enter to continue: " -Fore Magenta -nonewline
-				Read-Host
-				return
+				Write-Host "`n... press Enter to continue, S to skip Setup: " -Fore Magenta -nonewline
+				if ((Read-Host) -eq 's') { return }
 			}
 
 			Invoke-Expression $cmd
@@ -416,7 +415,10 @@ Begin
 	function ConfigureSetupProject
 	{
 		param($vdproj)
-		$lines = @(Get-Content $vdproj)
+		$lines = (Get-Content $vdproj)
+
+		$folder86 = GetArcFolder $lines 'x86'
+		$folderArc = GetArcFolder $lines ($Architecture -eq 'ARM64' ? 'x64' : $Architecture)
 
 		$script:productVersion = $lines | `
 			where { $_ -match '"ProductVersion" = "8:(.+?)"' } | `
@@ -480,19 +482,42 @@ Begin
 				}
 				elseif ($Architecture -eq 'ARM64')
 				{
-					$line = $_.Replace('bin\\x86', 'bin\\ARM64')
-					$line.Replace('Debug\\x86', 'Debug\\x64') | Out-File $vdproj -Append
+					$_.Replace('bin\\x86\\Debug\\x86', 'bin\\ARM64\\Debug\\x64') | Out-File $vdproj -Append
 				}
 				else
 				{
 					$_ | Out-File $vdproj -Append
 				}
 			}
+			elseif ($_.Trim() -eq """Folder"" = ""8:$folder86""")
+			{
+				Write-Verbose "... updating folder from $folder86 to $folderArc"
+				"""Folder"" = ""8:$folderArc""" | Out-File $vdproj -Append
+			}
 			elseif ($_ -notmatch '^"Scc')
 			{
 				$_ | Out-File $vdproj -Append
 			}
 		}
+	}
+
+	function GetArcFolder
+	{
+		param($lines, $arc)
+		$key = $null
+		foreach ($line in $lines)
+		{
+			if ($line -match '"{[0-9A-F\-]+}:(_[0-9A-F]+)"$')
+			{
+				$key = $matches[1]
+			}
+			elseif ($line.Trim() -eq """Name"" = ""8:$arc""")
+			{
+				Write-Verbose "... found folder key $key for $arc"
+				return $key
+			}
+		}
+		return $null
 	}
 }
 Process
