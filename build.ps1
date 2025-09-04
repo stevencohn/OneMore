@@ -57,7 +57,7 @@ Begin
 			$script:devenv = $cmd.Source
 			$script:ideroot = Split-Path -Parent $devenv
 			$script:vsregedit = Join-Path $ideroot 'VSRegEdit.exe'
-			write-Verbose "... devenv found at $devenv"
+			write-Host "... devenv found at $devenv" -Fore DarkGray
 			return $true
 		}
 
@@ -88,7 +88,7 @@ Begin
 
 		$script:ideroot = Split-Path -Parent $devenv
 		$script:vsregedit = Join-Path $ideroot 'VSRegEdit.exe'
-		write-Verbose "... devenv found at $devenv"
+		write-Host "... devenv found at $devenv" -Fore DarkGray
 		return $true
 	}
 
@@ -114,7 +114,7 @@ Begin
 		Push-Location $project
 		try
 		{
-			Write-verbose "... cleaning $project"
+			Write-Host "... cleaning $project" -Fore DarkGray
 			$progpref = $ProgressPreference
 			$ProgressPreference = 'SilentlyContinue' 
 			if (Test-Path bin) { Remove-Item bin -Recurse -Force -Confirm:$false | Out-Null }
@@ -394,7 +394,7 @@ Begin
 		param($vdproj)
 		Write-Host '... preserving vdproj' -ForegroundColor DarkGray
 
-		Write-Verbose '... restoring vdproj from git'
+		Write-Host '... restoring vdproj from git' -Fore DarkGray
 		git restore $vdproj
 
 		Copy-Item $vdproj .\vdproj.tmp -Force -Confirm:$false
@@ -491,7 +491,7 @@ Begin
 			}
 			elseif ($_.Trim() -eq """Folder"" = ""8:$folder86""")
 			{
-				Write-Verbose "... updating folder from $folder86 to $folderArc"
+				Write-Host "... updating folder from $folder86 to $folderArc" -Fore DarkGray
 				"""Folder"" = ""8:$folderArc""" | Out-File $vdproj -Append
 			}
 			elseif ($_ -notmatch '^"Scc')
@@ -513,7 +513,7 @@ Begin
 			}
 			elseif ($line.Trim() -eq """Name"" = ""8:$arc""")
 			{
-				Write-Verbose "... found folder key $key for $arc"
+				Write-Host "... found folder key $key for $arc" -Fore DarkGray
 				return $key
 			}
 		}
