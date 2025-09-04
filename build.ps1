@@ -395,7 +395,7 @@ Begin
 		Write-Host '... preserving vdproj' -ForegroundColor DarkGray
 
 		Write-Verbose '... restoring vdproj from git'
-		git restore $vdproj
+		#git restore $vdproj
 
 		Copy-Item $vdproj .\vdproj.tmp -Force -Confirm:$false
 	}
@@ -536,6 +536,7 @@ Process
 
 	if ($Architecture -eq 'All')
 	{
+		<#
 		Build 'ARM64'
 
 		if ($Stepped)
@@ -543,6 +544,7 @@ Process
 			Write-Host "`n... press Enter to continue with x64 build: " -Fore Magenta -nonewline
 			Read-Host
 		}
+		#>
 
 		Build 'x64'
 
