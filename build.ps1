@@ -46,6 +46,8 @@ param (
 
 Begin
 {
+	$script:guid = '{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}'
+
 	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 	# Helpers...
 
@@ -90,6 +92,31 @@ Begin
 		$script:vsregedit = Join-Path $ideroot 'VSRegEdit.exe'
 		write-Host "... devenv found at $devenv" -Fore DarkGray
 		return $true
+	}
+
+	function OneNoteRunning
+	{
+		$processId = gcim Win32_Process | select ProcessId, Name | `
+			where { $_.Name -eq 'ONENOTE.EXE' } | `
+			foreach { $_.ProcessId }
+
+		if ($processId)
+		{
+			Write-Host "`n*** ONENOTE.EXE is running; please close it and try again" -Fore Red
+			return $true
+		}
+
+		$processId = gcim Win32_Process | select ProcessId, CommandLine | `
+			where { $_.CommandLine -and $_.CommandLine.Contains($guid) } | `
+			foreach { $_.ProcessId }
+
+		if ($processId)
+		{
+			Write-Host "`n*** OneMoreAddIn dllhost ($processId) is running; please close it and try again" -Fore Red
+			return $true
+		}
+
+		return $false
 	}
 
 	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -417,8 +444,8 @@ Begin
 		param($vdproj)
 		$lines = (Get-Content $vdproj)
 
-		$folder86 = GetArcFolder $lines 'x86'
-		$folderArc = GetArcFolder $lines ($Architecture -eq 'ARM64' ? 'x64' : $Architecture)
+		$json = ConvertVdprojToJson $vdproj
+		$folders = GetArcFolders $json
 
 		$script:productVersion = $lines | `
 			where { $_ -match '"ProductVersion" = "8:(.+?)"' } | `
@@ -466,8 +493,7 @@ Begin
 			{
 				if ($Architecture -ne 'x86')
 				{
-					$line = $_.Replace('x86', $Architecture)
-					$line.Replace('x64', $Architecture) | Out-File $vdproj -Append
+					$_.Replace('x86', $Architecture.ToLower()) | Out-File $vdproj -Append
 				}
 				else
 				{
@@ -489,10 +515,17 @@ Begin
 					$_ | Out-File $vdproj -Append
 				}
 			}
-			elseif ($_.Trim() -eq """Folder"" = ""8:$folder86""")
+			elseif ($_.Trim() -eq """Folder"" = ""8:$($folders.x86)""" -and $Architecture -ne 'x86')
 			{
-				Write-Host "... updating folder from $folder86 to $folderArc" -Fore DarkGray
-				"""Folder"" = ""8:$folderArc""" | Out-File $vdproj -Append
+				# SQLite.Interop.dll Folder location
+				Write-Host "... updating folder from $($folders.x86) to $($folders.x64)" -Fore DarkGray
+				"""Folder"" = ""8:$($folders.x64)""" | Out-File $vdproj -Append
+			}
+			elseif ($_.Trim() -eq """Folder"" = ""8:$($folders.win86)""" -and $Architecture -ne 'x86')
+			{
+				# WebView2Loader.dll Folder location
+				Write-Host "... updating folder from $($folders.win86) to $($folders.win64)" -Fore DarkGray
+				"""Folder"" = ""8:$($folders.win64)""" | Out-File $vdproj -Append
 			}
 			elseif ($_ -notmatch '^"Scc')
 			{
@@ -501,23 +534,143 @@ Begin
 		}
 	}
 
-	function GetArcFolder
+	function ConvertVdprojToJson
 	{
-		param($lines, $arc)
-		$key = $null
-		foreach ($line in $lines)
+		param($vdproj)
+
+		$file = "$vdproj.json"
+		'' | out-file $file
+
+		$lines = (Get-Content $vdproj) | Select-Object -Skip 1
+
+		$depth = 0
+		$containerDepth = -1
+
+		for ($i = 0; $i -lt $lines.Count; $i++)
 		{
-			if ($line -match '"{[0-9A-F\-]+}:(_[0-9A-F]+)"$')
+			$line = $lines[$i]
+			if ($line -match '^\s*"([^"]+)"$')
 			{
-				$key = $matches[1]
+				# Hierarchy.Entry[] is the only collection with duplicate names.
+				# So we only need to track Entries and wrap them in a JSON array.
+
+				if ($matches[1] -eq 'Hierarchy')
+				{
+					$containerDepth = $depth
+					"$line`:" | out-File $file -Append
+				}
+				elseif ($matches[1] -ne 'Entry') # skip Entry object names
+				{
+					"$line`:" | out-File $file -Append
+				}
 			}
-			elseif ($line.Trim() -eq """Name"" = ""8:$arc""")
+			elseif ($line -match '^(\s*)("[^"]+") = ("(.*)")$')
 			{
-				Write-Host "... found folder key $key for $arc" -Fore DarkGray
-				return $key
+				$text = "$($matches[1])$($matches[2]): $($matches[3])"
+				if (($i -lt $lines.Count - 1) -and -not $lines[$i+1].EndsWith('}'))
+				{
+					"$text," | out-File $file -Append
+				}
+				else
+				{
+					"$text" | out-File $file -Append
+				}
+			}
+			else
+			{
+				$tag = $line.Trim()
+				if ($tag -eq '{')
+				{
+					if ($depth -eq $containerDepth)
+					{
+						$line = $line.Replace('{', '[')
+					}
+
+					$depth = $depth + 1
+				}
+				elseif ($tag -eq '}')
+				{
+					$depth = $depth - 1
+					if ($depth -eq $containerDepth)
+					{
+						$line = $line.Replace('}', ']')
+						$containerDepth = -1
+					}
+
+					if (($i -lt $lines.Count - 1) -and 
+						($lines[$i+1] -match '^\s*"[^"]+"$' -or $lines[$i+1] -match '^(\s*)("[^"]+"\s*)= ("(.*)")$'))
+					{
+						$line = "$line,"
+					}
+				}
+
+				"$line" | out-File $file -Append
 			}
 		}
-		return $null
+
+		$json = Get-Content $file | ConvertFrom-Json
+		return $json
+	}
+
+	function GetArcFolders
+	{
+		param($json)
+
+		$folder = $json.Deployable.Folder
+		$folders = ($folder | ExplodeNoteProperties | where { $_.Property -eq '8:TARGETDIR' }).Folders
+		# $json.Deployable.Folder['TARGETDIR'].Folders['8:x86'].omKey
+		$x86 = $folders | ExplodeNoteProperties | where { $_.Name -eq '8:x86' } | select -expand omKey
+		# $json.Deployable.Folder['TARGETDIR'].Folders['8:x64'].omKey
+		$x64 = $folders | ExplodeNoteProperties | where { $_.Name -eq '8:x64' } | select -expand omKey
+
+		$runtimes = ($folders | ExplodeNoteProperties | where { $_.Name -eq '8:runtimes' }).Folders
+
+		# $json.Deployable.Folder['TARGETDIR'].Folders['8:runtimes']['8:win-x86'].Folders['8:native'].omKey
+		$win86 = ($runtimes | `
+			ExplodeNoteProperties | where { $_.Name -eq '8:win-x86' }).Folders | `
+			ExplodeNoteProperties | where { $_.Name -eq '8:native' } | `
+			select -expand omKey
+
+		# $json.Deployable.Folder['TARGETDIR'].Folders['8:runtimes']['8:win-x64'].Folders['8:native'].omKey
+		$win64 = ($runtimes | `
+			ExplodeNoteProperties | where { $_.Name -eq '8:win-x64' }).Folders | `
+			ExplodeNoteProperties | where { $_.Name -eq '8:native' } | `
+			select -expand omKey
+
+		$rex = '{[0-9A-F\-]+}:(_[0-9A-F]+)$'
+		if ($x86 -match $rex) { $x86 = $matches[1] }
+		if ($x64 -match $rex) { $x64 = $matches[1] }
+		if ($win86 -match $rex) { $win86 = $matches[1] }
+		if ($win64 -match $rex) { $win64 = $matches[1] }
+
+		Write-Host
+		Write-Host "... x86 folder: $x86" -Fore DarkGray
+		Write-Host "... x64 folder: $x64" -Fore DarkGray
+		Write-Host "... win-x86 folder: $win86" -Fore DarkGray
+		Write-Host "... win-x64 folder: $win64" -Fore DarkGray
+
+		return [PSCustomObject]@{
+			'x86' = $x86
+			'x64' = $x64
+			'win86' = $win86
+			'win64' = $win64
+		}
+	}
+
+	function ExplodeNoteProperties
+	{
+		[CmdletBinding()]
+		param([Parameter(ValueFromPipeline)]$json)
+		Process
+		{
+			# explode hashtable NoteProperty into object of properties
+			$json | Get-Member -MemberType NoteProperty | foreach {
+				$obj = $json.$($_.Name)
+				# inject omKey property into object to hold the object's name (json key)
+				$obj | Add-Member -MemberType NoteProperty -Name 'omKey' -Value $_.Name -Force
+				Write-Output $obj
+			}
+		}
 	}
 }
 Process
@@ -530,12 +683,16 @@ Process
 	if ($Detect) { DetectArchitecture $Detect; return }
 
 	if ($Prep) { DisablOutOfProcBuild; return }
+
+	if (OneNoteRunning) { return }
+
 	if ($Clean) { CleanSolution; return }
 
 	if ($Fast) { BuildFast; return }
 
 	if ($Architecture -eq 'All')
 	{
+		<#
 		Build 'ARM64'
 
 		if ($Stepped)
@@ -543,6 +700,7 @@ Process
 			Write-Host "`n... press Enter to continue with x64 build: " -Fore Magenta -nonewline
 			Read-Host
 		}
+		#>
 
 		Build 'x64'
 
