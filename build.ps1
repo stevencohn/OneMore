@@ -396,13 +396,13 @@ Begin
 					# move msi to Downloads for safe-keeping and to allow next Platform build
 					$1 = "$home\Downloads\OneMore_$productVersion`_Setup$Architecture.msi"
 					Move-Item $0 $1 -Force -Confirm:$false
-					Write-Host "... $Architecture MSI copied to $1" -ForegroundColor DarkYellow
+					Write-Host "... $Architecture MSI moved to $1" -ForegroundColor DarkYellow
 
 					if (Get-Command checksum -ErrorAction SilentlyContinue)
 					{
-						if (Test-Path $0)
+						if (Test-Path $1)
 						{
-							$sum = (checksum -t sha256 $0)
+							$sum = (checksum -t sha256 $1)
 							Write-Host "... $Architecture checksum: $sum" -ForegroundColor DarkYellow
 						}
 					}
