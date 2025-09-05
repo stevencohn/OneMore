@@ -692,7 +692,6 @@ Process
 
 	if ($Architecture -eq 'All')
 	{
-		<#
 		Build 'ARM64'
 
 		if ($Stepped)
@@ -700,7 +699,6 @@ Process
 			Write-Host "`n... press Enter to continue with x64 build: " -Fore Magenta -nonewline
 			Read-Host
 		}
-		#>
 
 		Build 'x64'
 
