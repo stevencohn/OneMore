@@ -442,10 +442,11 @@ Begin
 	function ConfigureSetupProject
 	{
 		param($vdproj)
-		$lines = (Get-Content $vdproj)
 
 		$json = ConvertVdprojToJson $vdproj
 		$folders = GetArcFolders $json
+
+		$lines = (Get-Content $vdproj)
 
 		$script:productVersion = $lines | `
 			where { $_ -match '"ProductVersion" = "8:(.+?)"' } | `
@@ -518,13 +519,13 @@ Begin
 			elseif ($_.Trim() -eq """Folder"" = ""8:$($folders.x86)""" -and $Architecture -ne 'x86')
 			{
 				# SQLite.Interop.dll Folder location
-				Write-Host "... updating folder from $($folders.x86) to $($folders.x64)" -Fore DarkGray
+				Write-Host "... updating SQLite.Interop x86 folder from $($folders.x86) to $($folders.x64)" -Fore DarkGray
 				"""Folder"" = ""8:$($folders.x64)""" | Out-File $vdproj -Append
 			}
 			elseif ($_.Trim() -eq """Folder"" = ""8:$($folders.win86)""" -and $Architecture -ne 'x86')
 			{
 				# WebView2Loader.dll Folder location
-				Write-Host "... updating folder from $($folders.win86) to $($folders.win64)" -Fore DarkGray
+				Write-Host "... updating WebView2Loader win-x86 folder from $($folders.win86) to $($folders.win64)" -Fore DarkGray
 				"""Folder"" = ""8:$($folders.win64)""" | Out-File $vdproj -Append
 			}
 			elseif ($_ -notmatch '^"Scc')
@@ -665,9 +666,10 @@ Begin
 		{
 			# explode hashtable NoteProperty into object of properties
 			$json | Get-Member -MemberType NoteProperty | foreach {
-				$obj = $json.$($_.Name)
+				$omKey = $_.Name
+				$obj = $json.$omKey
 				# inject omKey property into object to hold the object's name (json key)
-				$obj | Add-Member -MemberType NoteProperty -Name 'omKey' -Value $_.Name -Force
+				$obj | Add-Member -MemberType NoteProperty -Name 'omKey' -Value $omKey -Force
 				Write-Output $obj
 			}
 		}
