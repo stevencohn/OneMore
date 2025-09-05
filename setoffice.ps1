@@ -1,6 +1,8 @@
 <#
 .SYNOPSIS
 Check or set the Office Bitness/Platform registry values.
+This is used to trick the OneNote OfficeSetup.exe into installing the desired version
+when testing on a clean machine (VM) without Office installed.
 
 .PARAMETER Architecture
 The architecture to set. Valid values are 'x86' or 'x64'. Default is 'x86'.
@@ -90,7 +92,6 @@ Begin
 			}
 		}
 	}
-	#>
 }
 Process
 {
