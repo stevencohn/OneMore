@@ -382,7 +382,9 @@ Begin
 
 			$log = "$($env:TEMP)\OneMoreBuild.log"
 			$cmd = ". '$devenv' .\OneMoreSetup.vdproj /build 'Debug|$Architecture' /project Setup /out '$log'"
-			write-Host $cmd -ForegroundColor DarkGray
+			
+			Write-Host
+			Write-Host $cmd -ForegroundColor DarkGray
 
 			if ($Stepped)
 			{
