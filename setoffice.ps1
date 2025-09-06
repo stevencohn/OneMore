@@ -47,7 +47,7 @@ Begin
 			try
 			{
 				$props = Get-ItemProperty -Path $path -ErrorAction Stop
-				Write-Host "... $path`\$key: $($props.$key)"
+				Write-Host "... $path`\$key`: $($props.$key)"
 			}
 			catch
 			{
