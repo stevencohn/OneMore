@@ -16,6 +16,9 @@ Detect the targeted CPU architecture of the specified DLL or EXE file.
 Build just the .csproj projects using default parameters:
 OneMore, OneMorCalendar, OneMoreProtocolHandler, OneMoreSetupActions, and OneMoreTray.
 
+.PARAMETER Local
+Do not attempt to git restore the vdproj file. Keep the local version.
+
 .PARAMETER Prep
 Run DisableOutOfProcBuild. This only needs to be run once on a machine, or after upgrading
 or reinstalling Visual Studio. It is required to build installer kits from the command line.
@@ -39,6 +42,7 @@ param (
 
 	[switch] $Clean,
 	[switch] $Fast,
+	[switch] $Local,
 	[switch] $Prep,
 	[switch] $Stepped,
 	[switch] $VLog
@@ -421,8 +425,12 @@ Begin
 		param($vdproj)
 		Write-Host '... preserving vdproj' -ForegroundColor DarkGray
 
-		Write-Host '... restoring vdproj from git' -Fore DarkGray
-		git restore $vdproj
+		if ($Local) {
+			Write-Host '... using local copy of vdproj' -Fore DarkGray
+		} else {
+			Write-Host '... restoring vdproj from git' -Fore DarkGray
+			git restore $vdproj
+		}
 
 		Copy-Item $vdproj .\vdproj.tmp -Force -Confirm:$false
 	}
