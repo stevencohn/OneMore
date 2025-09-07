@@ -2,53 +2,62 @@
   "name": "Python",
   "rules": [
     {
-      // [2] (""" comment)
+      // [2] (""" comment """)
+      // single line multi-line comment
+      "pattern": "^((?:\\s*)\"{3}[^\\r\\n]*?\"{3}(?:\\s*))$",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      // [3] (""" comment)
       // start of a multi-line comment
-      "pattern": "^((?:\\s*)\\u0022{3}[^\\r\\n]*)$",
+      "pattern": "^((?:\\s*)\"{3}[^\\r\\n]*)$",
       "scope": "Comment",
       "captures": [
         "Comment"
       ]
     },
     {
-      // [3] (comment """)
+      // [4] (comment """)
       // end of a multi-line comment
-      "pattern": "([^\\r\\n\\u0022]*\\u0022{3}(?:\\s*))",
+      "pattern": "([^\\r\\n\"]*\"{3}(?:\\s*))",
       "scope": "",
       "captures": [
         "Comment"
       ]
     },
     {
-      // [4] (# comment)
+      // [5] (# comment)
       "pattern": "(#[^\\r\\n]*)[]\\r\\n]?$",
       "captures": [
         "Comment"
       ]
     },
     {
-      // [5] ('string')
+      // [6] ('string')
       "pattern": "('[^\\r\\n\\']*\\')",
       "captures": [
         "String"
       ]
     },
     {
-      // [6] ("string")
-      "pattern": "(\\u0022[^\\r\\n\\u0022]*\\u0022)",
+      // [7] ("string")
+      "pattern": "(\"[^\\r\\n\"]*\")",
+      //"pattern": "\"(?:([^{}\"]+)|(\\{[^{}\"]+\\})+)\"", ;string,number
       "captures": [
         "String"
       ]
     },
     {
-      // [7] (keyword)
+      // [8] (keyword)
       "pattern": "\\b(and|as|assert|async|await|break|class|continue|def|del|elif|else|except|exec|False|finally|for|from|global|if|import|in|is|lambda|None|not|or|pass|print|raise|return|True|try|while|yield)\\b",
       "captures": [
         "Keyword"
       ]
     },
     {
-      // [8] (1234)
+      // [9] (1234)
       "pattern": "\\b([0-9]{1,})\\b",
       "captures": [
         "Number"
