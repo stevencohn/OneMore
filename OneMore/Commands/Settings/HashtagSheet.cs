@@ -42,7 +42,10 @@ namespace River.OneMoreAddIn.Settings
 			var settings = provider.GetCollection(Name);
 
 			intervalBox.Value = settings.Get("interval", HashtagService.DefaultPollingInterval);
-			disabledBox.Checked = settings.Get("disabled", false);
+
+			var disabled = settings.Get("disabled", false);
+			disabledBox.Checked = disabled;
+			scheduleLink.Enabled = !disabled;
 
 			var theme = new ThemeProvider().Theme;
 			var styles = theme.GetStyles().Where(s => s.StyleType == StyleType.Character).ToList();
@@ -94,6 +97,12 @@ namespace River.OneMoreAddIn.Settings
 			cmd.SetLogger(logger);
 			cmd.SetOwner(this);
 			await cmd.Execute();
+		}
+
+
+		private void ToggleDIsabled(object sender, EventArgs e)
+		{
+			scheduleLink.Enabled = !disabledBox.Checked;
 		}
 
 
