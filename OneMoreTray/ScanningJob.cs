@@ -124,6 +124,15 @@ namespace OneMoreTray
 
 		private void Execute()
 		{
+			var settings = new SettingsProvider().GetCollection(nameof(HashtagSheet));
+			if (settings.Get("disabled", false))
+			{
+				logger.WriteLine("hashtag scanning is disabled, aborting scheduler");
+				scheduler.ClearSchedule();
+				source.Dispose();
+				return;
+			}
+
 			logger.WriteLine("starting HashtagService");
 
 			trayIcon.ShowBalloonTip(0, Resx.ScannerTitle, Resx.ScanStarting, ToolTipIcon.Info);

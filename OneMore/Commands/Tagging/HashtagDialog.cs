@@ -84,6 +84,12 @@ namespace River.OneMoreAddIn.Commands
 			palette.NonsequentialMatching = general.Get<bool>("nonseqMatching");
 			experimental = general.Get<bool>("experimental");
 
+			if (setprovider.GetCollection(nameof(HashtagSheet)).Get("disabled", false))
+			{
+				scanButton.Enabled = false;
+				scheduleButton.Enabled = false;
+			}
+
 			scanLink.Left = lastScanLabel.Left;
 			scanLink.Visible = false;
 

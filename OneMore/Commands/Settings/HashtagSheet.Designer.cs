@@ -147,7 +147,7 @@ namespace River.OneMoreAddIn.Settings
 			this.scheduleLink.LinkColor = System.Drawing.Color.MediumOrchid;
 			this.scheduleLink.Location = new System.Drawing.Point(18, 35);
 			this.scheduleLink.Name = "scheduleLink";
-			this.scheduleLink.Size = new System.Drawing.Size(310, 20);
+			this.scheduleLink.Size = new System.Drawing.Size(306, 20);
 			this.scheduleLink.StrictColors = false;
 			this.scheduleLink.TabIndex = 1;
 			this.scheduleLink.TabStop = true;
@@ -171,6 +171,7 @@ namespace River.OneMoreAddIn.Settings
 			this.disabledBox.ThemedBack = null;
 			this.disabledBox.ThemedFore = null;
 			this.disabledBox.UseVisualStyleBackColor = true;
+			this.disabledBox.CheckedChanged += new System.EventHandler(this.ToggleDIsabled);
 			// 
 			// styleLabel
 			// 
