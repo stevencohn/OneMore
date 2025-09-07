@@ -75,7 +75,7 @@ namespace OneMoreSetupActions
 					return FAILURE;
 				}
 
-				logger.WriteLine($"found CLSID {onenoteCLSID}");
+				logger.WriteLine($"verified CLSID as {onenoteCLSID}");
 
 				// onenoteCurVer
 				// [HKEY_CLASSES_ROOT\OneNote.Application\CurVer]
@@ -86,7 +86,7 @@ namespace OneMoreSetupActions
 					return FAILURE;
 				}
 
-				logger.WriteLine($"found CurVer {onenoteCurVer}");
+				logger.WriteLine($"verified CurVer as {onenoteCurVer}");
 			}
 			catch (Exception exc)
 			{
@@ -142,7 +142,7 @@ namespace OneMoreSetupActions
 					return FAILURE;
 				}
 
-				logger.WriteLine($"verified {p} {aname}");
+				logger.WriteLine($"verified {p} as {aname}");
 
 				// remaining properties are WARNINGs/Informational...
 
@@ -174,7 +174,7 @@ namespace OneMoreSetupActions
 				else if (!root.StartsWith("Software"))
 				{
 					onenoteTypeLib = typelib;
-					logger.WriteLine($"found TypeLib as {onenoteTypeLib}");
+					logger.WriteLine($"verified TypeLib as {onenoteTypeLib}");
 				}
 				else if (typelib != onenoteTypeLib)
 				{
@@ -196,24 +196,22 @@ namespace OneMoreSetupActions
 				else
 				{
 					var path2 = $"{vip}\\CurVer";
-					using (var key2 = Registry.ClassesRoot.OpenSubKey(path2, false))
+					using var key2 = Registry.ClassesRoot.OpenSubKey(path2, false);
+					if (key2 == null)
 					{
-						if (key2 == null)
+						logger.WriteLine($"warning finding key {path2}");
+					}
+					else
+					{
+						var ver = (string)key2.GetValue(string.Empty);
+						if (string.IsNullOrWhiteSpace(ver) ||
+							ver != onenoteCurVer)
 						{
-							logger.WriteLine($"warning finding key {path2}");
+							logger.WriteLine($"warning confirming VersionIndependentProgID ({ver ?? "null"} != {onenoteCurVer})");
 						}
 						else
 						{
-							var ver = (string)key2.GetValue(string.Empty);
-							if (string.IsNullOrWhiteSpace(ver) ||
-								ver != onenoteCurVer)
-							{
-								logger.WriteLine($"warning confirming VersionIndependentProgID ({ver ?? "null"} != {onenoteCurVer})");
-							}
-							else
-							{
-								logger.WriteLine($"verified VersionIndependentProgID as {ver}");
-							}
+							logger.WriteLine($"verified VersionIndependentProgID as {ver}");
 						}
 					}
 				}
@@ -298,7 +296,7 @@ namespace OneMoreSetupActions
 					return FAILURE;
 				}
 
-				logger.WriteLine($"verified CLSID {clsid}");
+				logger.WriteLine($"verified CLSID as {clsid}");
 			}
 			catch (Exception exc)
 			{
@@ -342,68 +340,67 @@ namespace OneMoreSetupActions
 				// 1.0, 1.1, ...
 				foreach (var subname in key.GetSubKeyNames())
 				{
-					using (var sub = key.OpenSubKey(subname, false))
+					using var sub = key.OpenSubKey(subname, false);
+
+					//[HKEY_CLASSES_ROOT\TypeLib\{0EA692EE-BB50-4E3C-AEF0-356D91732725}\1.0]
+					//"PrimaryInteropAssemblyName"="Microsoft.Office.Interop.OneNote, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71E9BCE111E9429C"
+					// =>  C:\Windows\assembly\GAC_MSIL\Microsoft.Office.Interop.OneNote\15.0.0.0__71e9bce111e9429c
+					var pia = (string)sub.GetValue("PrimaryInteropAssemblyName");
+					if (!string.IsNullOrWhiteSpace(pia))
 					{
-						//[HKEY_CLASSES_ROOT\TypeLib\{0EA692EE-BB50-4E3C-AEF0-356D91732725}\1.0]
-						//"PrimaryInteropAssemblyName"="Microsoft.Office.Interop.OneNote, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71E9BCE111E9429C"
-						// =>  C:\Windows\assembly\GAC_MSIL\Microsoft.Office.Interop.OneNote\15.0.0.0__71e9bce111e9429c
-						var pia = (string)sub.GetValue("PrimaryInteropAssemblyName");
-						if (!string.IsNullOrWhiteSpace(pia))
+						var status = VerifyGacAssembly(pia);
+						if (status == FAILURE)
 						{
-							var status = VerifyGacAssembly(pia);
-							if (status == FAILURE)
-							{
-								logger.WriteLine($"error finding GAC assembly {pia}");
-							}
-							else
-							{
-								logger.WriteLine($"verified {pia}");
-							}
+							logger.WriteLine($"error finding GAC assembly {pia}");
 						}
 						else
 						{
-							//[HKEY_CLASSES_ROOT\TypeLib\{0EA692EE-BB50-4E3C-AEF0-356D91732725}\1.1]
-							//@="Microsoft OneNote 15.0 Object Library"
-							var value = (string)sub.GetValue(string.Empty);
-							if (Regex.Match(value, @"Microsoft OneNote .+ (?:Object|Type) Library").Success)
+							logger.WriteLine($"verified {pia}");
+						}
+					}
+					else
+					{
+						//[HKEY_CLASSES_ROOT\TypeLib\{0EA692EE-BB50-4E3C-AEF0-356D91732725}\1.1]
+						//@="Microsoft OneNote 15.0 Object Library"
+						var value = (string)sub.GetValue(string.Empty);
+						if (Regex.Match(value, @"Microsoft OneNote .+ (?:Object|Type) Library").Success)
+						{
+							//[HKEY_CLASSES_ROOT\TypeLib\{0EA692EE-BB50-4E3C-AEF0-356D91732725}\1.1\0\Win32]
+							//@="C:\\Program Files\\Microsoft Office\\Root\\Office16\\ONENOTE.EXE\\3"
+							p = "0\\Win32";
+							var win32 = sub.GetSubKeyPropertyValue(p, string.Empty, false);
+							if (win32 == null)
 							{
-								//[HKEY_CLASSES_ROOT\TypeLib\{0EA692EE-BB50-4E3C-AEF0-356D91732725}\1.1\0\Win32]
-								//@="C:\\Program Files\\Microsoft Office\\Root\\Office16\\ONENOTE.EXE\\3"
-								p = "0\\Win32";
-								var win32 = sub.GetSubKeyPropertyValue(p, string.Empty, false);
-								if (win32 == null)
-								{
-									logger.WriteLine($@"warning did not find key HKCR:\\{sub.Name}\{p}");
-								}
-								// strip off trailing "\3"
-								else if (!File.Exists(Path.GetDirectoryName(win32)))
-								{
-									logger.WriteLine($@"warning did not find Win32 path {win32}");
-								}
-								else
-								{
-									logger.WriteLine($"verified Win32 Object Library {win32}");
-									foundLib = true;
-								}
+								logger.WriteLine($@"warning did not find key HKCR:\\{sub.Name}\{p}");
+							}
+							// strip off trailing "\3"
+							else if (!File.Exists(Path.GetDirectoryName(win32)))
+							{
+								logger.WriteLine($@"warning did not find Win32 path {win32}");
+							}
+							else
+							{
+								logger.WriteLine($"verified Win32 Object Library {win32}");
+								foundLib = true;
+							}
 
-								//[HKEY_CLASSES_ROOT\TypeLib\{0EA692EE-BB50-4E3C-AEF0-356D91732725}\1.1\0\win64]
-								//@="C:\\Program Files\\Microsoft Office\\root\\Office16\\ONENOTE.EXE\\3"
-								p = "0\\Win32";
-								var win64 = sub.GetSubKeyPropertyValue(p, string.Empty, false);
-								if (win64 == null)
-								{
-									logger.WriteLine($@"warning did not find key HKCR:\\{sub.Name}\{p}");
-								}
-								// strip off trailing "\3"
-								else if (!File.Exists(Path.GetDirectoryName(win64)))
-								{
-									logger.WriteLine($@"warning did not find win64 path {win64}");
-								}
-								else
-								{
-									logger.WriteLine($"verified win64 Object Library {win64}");
-									foundLib = true;
-								}
+							//[HKEY_CLASSES_ROOT\TypeLib\{0EA692EE-BB50-4E3C-AEF0-356D91732725}\1.1\0\win64]
+							//@="C:\\Program Files\\Microsoft Office\\root\\Office16\\ONENOTE.EXE\\3"
+							p = "0\\Win32";
+							var win64 = sub.GetSubKeyPropertyValue(p, string.Empty, false);
+							if (win64 == null)
+							{
+								logger.WriteLine($@"warning did not find key HKCR:\\{sub.Name}\{p}");
+							}
+							// strip off trailing "\3"
+							else if (!File.Exists(Path.GetDirectoryName(win64)))
+							{
+								logger.WriteLine($@"warning did not find win64 path {win64}");
+							}
+							else
+							{
+								logger.WriteLine($"verified win64 Object Library {win64}");
+								foundLib = true;
 							}
 						}
 					}

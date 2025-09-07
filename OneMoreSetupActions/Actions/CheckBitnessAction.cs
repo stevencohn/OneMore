@@ -41,7 +41,7 @@ namespace OneMoreSetupActions
 			var osarc = RuntimeInformation.OSArchitecture;
 			var onarc = GetOneNoteArchitecture();
 			var urarc = architecture;
-			logger.WriteLine($"Install process architecture: {inarc}, OS:{osarc}, OneNote.exe:{onarc}, requesting:{urarc}");
+			logger.WriteLine($"... Install process architecture:{inarc}, OS:{osarc}, OneNote.exe:{onarc}, requesting:{urarc}");
 
 			/*
 			 * On Windows x64 with OneNote x64, must run OneMore x64 installer.
@@ -88,7 +88,7 @@ namespace OneMoreSetupActions
 				return FAILURE;
 			}
 
-			logger.WriteLine("OK - bitness check passed");
+			logger.WriteLine("... OK - bitness check passed");
 			return SUCCESS;
 		}
 
@@ -172,7 +172,8 @@ namespace OneMoreSetupActions
 						var value = subkey.GetValue("Path") as string;
 						if (!string.IsNullOrWhiteSpace(value))
 						{
-							logger.WriteLine($@"found value at HKLM:\{path}\{subname}\InstallRoot");
+							logger.WriteLine($@"found Path at HKLM:\{path}\{subname}\InstallRoot");
+							logger.WriteLine($@"Path is {value}\ONENOTE.EXE");
 							return Path.Combine(value, "ONENOTE.EXE");
 						}
 					}
