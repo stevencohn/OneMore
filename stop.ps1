@@ -18,8 +18,10 @@ Process
 
     if ($processId)
     {
-        Write-Host "... stopping dllhost" -Fore DarkYellow
-        taskkill /pid $processId /f
+        $processId | foreach {
+            Write-Host "... stopping dllhost $_" -Fore DarkYellow
+            taskkill /pid $_ /f
+        }
     }
     else
     {
