@@ -6,7 +6,10 @@ namespace River.OneMoreAddIn.Helpers
 {
 	using System;
 	using System.Diagnostics;
+	using System.IO;
 	using System.Management;
+	using System.Reflection;
+	using System.Reflection.PortableExecutable;
 	using System.Threading;
 
 	internal static class SessionLogger
@@ -24,22 +27,19 @@ namespace River.OneMoreAddIn.Helpers
 			var process = Process.GetCurrentProcess();
 			var thread = Thread.CurrentThread;
 
+			var codebase = Assembly.GetExecutingAssembly().CodeBase;
+			var arc = GetAssemblyArchitecture(new Uri(codebase).LocalPath);
+
 			logger.WriteLine();
 			logger.Start(
 				$"Starting {process.ProcessName} {process.Id}, {cpu} Mhz, {uram}, " +
 				$"{thread.CurrentCulture.Name}/{thread.CurrentUICulture.Name}, " +
-				$"v{AssemblyInfo.Version}, OneNote {Office.Office.GetOneNoteVersion()}, " +
+				$"v{AssemblyInfo.Version} {arc}, OneNote {Office.Office.GetOneNoteVersion()}, " +
 				$"Office {Office.Office.GetOfficeVersion()}, " +
 				DateTime.Now.ToString("yyyy-MM-dd HH:mm"));
 
 			logger.WriteLine(Commands.DiagnosticsCommand.GetWindowsProductName());
-
-			var hostproc = Process.GetProcessesByName("ONENOTE");
-			if (hostproc.Length > 0)
-			{
-				var module = hostproc[0].MainModule;
-				logger.WriteLine($"{module.FileName} ({module.FileVersionInfo.ProductVersion})");
-			}
+			logger.WriteLine(DescribeOneNote());
 		}
 
 
@@ -53,14 +53,13 @@ namespace River.OneMoreAddIn.Helpers
 
 			try
 			{
-				using (var searcher =
-					new ManagementObjectSearcher("select CurrentClockSpeed from Win32_Processor"))
+				using var searcher =
+					new ManagementObjectSearcher("select CurrentClockSpeed from Win32_Processor");
+
+				foreach (var item in searcher.Get())
 				{
-					foreach (var item in searcher.Get())
-					{
-						speed = Convert.ToUInt32(item["CurrentClockSpeed"]);
-						item.Dispose();
-					}
+					speed = Convert.ToUInt32(item["CurrentClockSpeed"]);
+					item.Dispose();
 				}
 			}
 			catch (Exception exc)
@@ -82,14 +81,13 @@ namespace River.OneMoreAddIn.Helpers
 
 			try
 			{
-				using (var searcher =
-					new ManagementObjectSearcher("select * from Win32_OperatingSystem"))
+				using var searcher =
+					new ManagementObjectSearcher("select * from Win32_OperatingSystem");
+
+				foreach (var item in searcher.Get())
 				{
-					foreach (var item in searcher.Get())
-					{
-						memory = Convert.ToDouble(item["TotalVisibleMemorySize"]);
-						item.Dispose();
-					}
+					memory = Convert.ToDouble(item["TotalVisibleMemorySize"]);
+					item.Dispose();
 				}
 			}
 			catch (Exception exc)
@@ -99,6 +97,48 @@ namespace River.OneMoreAddIn.Helpers
 			}
 
 			return (speed, memory);
+		}
+
+
+		private static string GetAssemblyArchitecture(string path)
+		{
+			try
+			{
+				using var stream = new FileStream(path, FileMode.Open, FileAccess.Read);
+				using var reader = new PEReader(stream);
+				return reader.PEHeaders.CoffHeader.Machine switch
+				{
+					Machine.I386 => "x86",
+					Machine.Arm64 => "ARM64",
+					_ => "x64"
+				};
+			}
+			catch (Exception exc)
+			{
+				return $"error reading header: {exc.Message}";
+			}
+		}
+
+
+		private static string DescribeOneNote()
+		{
+			var hostproc = Process.GetProcessesByName("ONENOTE");
+			if (hostproc.Length == 0)
+			{
+				return "could not read ONENOTE.EXE process information";
+			}
+
+			try
+			{
+				var module = hostproc[0].MainModule;
+				var arc = GetAssemblyArchitecture(module.FileName);
+
+				return $"{module.FileName} ({module.FileVersionInfo.ProductVersion} {arc})";
+			}
+			catch (Exception exc)
+			{
+				return $"error reading OneNote.exe header: {exc.Message}";
+			}
 		}
 	}
 }
