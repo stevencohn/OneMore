@@ -100,7 +100,7 @@ namespace River.OneMoreAddIn.Helpers
 		}
 
 
-		private static string GetAssemblyArchitecture(string path)
+		public static string GetAssemblyArchitecture(string path)
 		{
 			try
 			{
