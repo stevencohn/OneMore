@@ -10,6 +10,7 @@
 namespace River.OneMoreAddIn.Commands.Tools.Updater
 {
 	using Microsoft.Win32;
+	using River.OneMoreAddIn.Helpers;
 	using System;
 	using System.Diagnostics;
 	using System.IO;
@@ -190,10 +191,11 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 				return false;
 			}
 
-			// presume the msi has one of these two keywords in its name
-			// NOTE that only the x64 installer is released as of Dec 2021 so this will
-			// still fail if the user's computer is 32-bit. But seriously, who still has one?!
-			var key = Environment.Is64BitOperatingSystem ? "x64" : "x86";
+			// The msi will have one of these keywords in its name: x86, x64, or ARM64.
+			// The bitness of the executing assembly can tell us the msi to request.
+			var localPath = new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath;
+			var key = SessionLogger.GetAssemblyArchitecture(localPath);
+			logger.WriteLine($"architecture is {key}");
 
 			var asset = release.assets.Find(a => a.browser_download_url.Contains(key));
 			if (asset is null)
