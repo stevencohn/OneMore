@@ -83,6 +83,64 @@ function ConvertVDProjToJson
 	return $json
 }
 
+function ConvertJsonToVDProj
+{
+	param($json, $vdproj)
+
+	'"DeployProject"' | Out-File $vdproj
+
+	$hierarchy = $false
+
+	$text = ($json | ConvertTo-Json -Depth 100) -split "`r`n"
+	foreach ($line in $text)
+	{
+		# object name
+		if ($line -match '^(\s*)("[^"]+"): [\[\{]$')
+		{
+			$matches[1] + $matches[2] | Out-File $vdproj -Append
+			$matches[1] + '{' | Out-File $vdproj -Append
+			if ($matches[2] -eq '"Hierarchy"')
+			{
+				$hierarchy = $true
+			}
+		}
+		# convert JSON properties back to vdproj properties
+		elseif ($line -match '^(\s*)("[^"]+")\s*:\s*(".*"),?$')
+		{
+			$matches[1] + $matches[2] + ' = ' + $matches[3] | Out-File $vdproj -Append
+		}
+		# end of Hierarchy.Entries collection
+		elseif ($line -match '^(\s*)],?$')
+		{
+			$matches[1] + '}' | Out-File $vdproj -Append
+			$hierarchy = $false
+		}
+		elseif ($line -match '^(\s*)},?$')
+		{
+			$matches[1] + '}' | Out-File $vdproj -Append
+		}
+		elseif ($line -match '^(\s*){$')
+		{
+			if ($hierarchy)
+			{
+				$matches[1] + "Entry" | Out-File $vdproj -Append
+			}
+
+			$line | Out-File $vdproj -Append
+		}
+		elseif ($line -match '^(\s*)("[^"]+"): {},?$')
+		{
+			$matches[1] + $matches[2] | Out-File $vdproj -Append
+			$matches[1] + '{' | Out-File $vdproj -Append
+			$matches[1] + '}' | Out-File $vdproj -Append
+		}
+		else
+		{
+			Write-Host "- $line" -Fore DarkGray
+		}
+	}
+}
+
 function ExplodeNoteProperties
 {
 	[CmdletBinding()]

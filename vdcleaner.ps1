@@ -88,7 +88,8 @@ Process
 {
 	Push-Location .\OneMoreSetup
 
-	$json = ConvertVDProjToJson .\OneMoreSetup.vdproj
+	$vdproj = Resolve-Path .\OneMoreSetup.vdproj
+	$json = ConvertVDProjToJson $vdproj
 
 	#$arcFolders = GetArcFolders $json
 
@@ -129,6 +130,10 @@ Process
 	}
 
 	$json | ConvertTo-Json -Depth 100 | Out-File .\OneMoreSetup.clean.json -Encoding UTF8
+
+	$name = [System.IO.Path]::GetFileNameWithoutExtension($vdproj)
+	$clean = (Join-Path (Split-Path $vdproj -Parent) $name) + '.clean.vdproj'
+	ConvertJsonToVDProj $json $clean
 }
 End
 {

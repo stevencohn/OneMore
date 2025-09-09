@@ -550,7 +550,7 @@ Begin
 		param($vdproj)
 
 		$file = "$vdproj.json"
-		'' | out-file $file
+		'' | Out-file $file
 
 		$lines = (Get-Content $vdproj) | Select-Object -Skip 1
 
@@ -568,11 +568,11 @@ Begin
 				if ($matches[1] -eq 'Hierarchy')
 				{
 					$containerDepth = $depth
-					"$line`:" | out-File $file -Append
+					"$line`:" | Out-File $file -Append
 				}
 				elseif ($matches[1] -ne 'Entry') # skip Entry object names
 				{
-					"$line`:" | out-File $file -Append
+					"$line`:" | Out-File $file -Append
 				}
 			}
 			elseif ($line -match '^(\s*)("[^"]+") = ("(.*)")$')
@@ -580,11 +580,11 @@ Begin
 				$text = "$($matches[1])$($matches[2]): $($matches[3])"
 				if (($i -lt $lines.Count - 1) -and -not $lines[$i+1].EndsWith('}'))
 				{
-					"$text," | out-File $file -Append
+					"$text," | Out-File $file -Append
 				}
 				else
 				{
-					"$text" | out-File $file -Append
+					"$text" | Out-File $file -Append
 				}
 			}
 			else
@@ -615,7 +615,7 @@ Begin
 					}
 				}
 
-				"$line" | out-File $file -Append
+				"$line" | Out-File $file -Append
 			}
 		}
 
