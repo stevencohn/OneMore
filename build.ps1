@@ -471,7 +471,7 @@ Begin
 		{
 			if ($_ -match '"OutputFileName" = "')
 			{
-				# "OutputFilename" = "8:Debug\\OneMore_v_Setupx64.msi"
+				# "OutputFilename" = "8:Debug\\OneMore_v_Setupx86.msi"
 				$line = $_.Replace('OneMore_v_', "OneMore_$($productVersion)_")
 				$line.Replace('x86', $Architecture) | Out-File $vdproj -Append
 			}
@@ -661,10 +661,10 @@ Begin
 		Write-Host "... win-x64 folder: $win64" -Fore DarkGray
 
 		return [PSCustomObject]@{
-			'x86' = $x86
-			'x64' = $x64
-			'win86' = $win86
-			'win64' = $win64
+			x86 = $x86
+			x64 = $x64
+			win86 = $win86
+			win64 = $win64
 		}
 	}
 
