@@ -10,6 +10,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2679BE09-8144-4B5B-957E-D463F00FA66E}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		.gitignore = .gitignore
 		build.ps1 = build.ps1
 		install-vsix.ps1 = install-vsix.ps1
 		iq.ps1 = iq.ps1
@@ -21,6 +22,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		setversion.ps1 = setversion.ps1
 		stop.ps1 = stop.ps1
 		update-sdk.ps1 = update-sdk.ps1
+		vdcleaner.ps1 = vdcleaner.ps1
+		vdparser.ps1 = vdparser.ps1
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Themes", "Themes", "{B33891C1-D812-4C1D-B6DC-2175A68C4ADC}"
