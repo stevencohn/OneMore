@@ -139,15 +139,18 @@ Process
 	$rogues | foreach { write-Host $_ -Fore DarkGray }
 
 	Write-Host "`nCleaning" -Fore DarkYellow
-	foreach ($rogue in $rogues)
+	foreach ($key in $rogues)
 	{
 		$json.Hierarchy = $json.Hierarchy | where {
-			!$_.MsmKey.EndsWith($rogue) -and !$_.OwnerKey.EndsWith($rogue)
+			-not ($_.MsmKey.EndsWith($key) -or $_.OwnerKey.EndsWith($key))
 		}
 
 		$json.Deployable.File.PSObject.Properties | `
-			where { $_.Name.EndsWith($rogue) } | `
-			foreach { $json.Deployable.File.PSObject.Properties.Remove($_.Name) }
+			where { $_.Name.EndsWith($key) } | `
+			foreach { 
+				Write-Host "... removing file $($_.Name)" -Fore DarkGray
+				$json.Deployable.File.PSObject.Properties.Remove($_.Name)
+			}
 	}
 
 	$json | ConvertTo-Json -Depth 100 | Out-File .\OneMoreSetup.clean.json -Encoding UTF8
