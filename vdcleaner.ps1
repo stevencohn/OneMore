@@ -10,51 +10,6 @@ Begin
 {
 	. "$PSScriptRoot\vdparser.ps1"
 
-	function GetArcFolders
-	{
-		param($json)
-
-		$folder = $json.Deployable.Folder
-		$folders = ($folder | ExplodeNoteProperties | where { $_.Property -eq '8:TARGETDIR' }).Folders
-		# $json.Deployable.Folder['TARGETDIR'].Folders['8:x86'].omKey
-		$x86 = $folders | ExplodeNoteProperties | where { $_.Name -eq '8:x86' } | select -expand omKey
-		# $json.Deployable.Folder['TARGETDIR'].Folders['8:x64'].omKey
-		$x64 = $folders | ExplodeNoteProperties | where { $_.Name -eq '8:x64' } | select -expand omKey
-
-		$runtimes = ($folders | ExplodeNoteProperties | where { $_.Name -eq '8:runtimes' }).Folders
-
-		# $json.Deployable.Folder['TARGETDIR'].Folders['8:runtimes']['8:win-x86'].Folders['8:native'].omKey
-		$win86 = ($runtimes | `
-			ExplodeNoteProperties | where { $_.Name -eq '8:win-x86' }).Folders | `
-			ExplodeNoteProperties | where { $_.Name -eq '8:native' } | `
-			select -expand omKey
-
-		# $json.Deployable.Folder['TARGETDIR'].Folders['8:runtimes']['8:win-x64'].Folders['8:native'].omKey
-		$win64 = ($runtimes | `
-			ExplodeNoteProperties | where { $_.Name -eq '8:win-x64' }).Folders | `
-			ExplodeNoteProperties | where { $_.Name -eq '8:native' } | `
-			select -expand omKey
-
-		$rex = '{[0-9A-F\-]+}:(_[0-9A-F]+)$'
-		if ($x86 -match $rex) { $x86 = $matches[1] }
-		if ($x64 -match $rex) { $x64 = $matches[1] }
-		if ($win86 -match $rex) { $win86 = $matches[1] }
-		if ($win64 -match $rex) { $win64 = $matches[1] }
-
-		Write-Host
-		Write-Host "... x86 folder: $x86" -Fore DarkGray
-		Write-Host "... x64 folder: $x64" -Fore DarkGray
-		Write-Host "... win-x86 folder: $win86" -Fore DarkGray
-		Write-Host "... win-x64 folder: $win64" -Fore DarkGray
-
-		return [PSCustomObject]@{
-			x86 = $x86
-			x64 = $x64
-			win86 = $win86
-			win64 = $win64
-		}
-	}
-
 	function GetProjectOutputs
 	{
 		param($json)
@@ -99,6 +54,56 @@ Begin
 		if ($owner) { return $owner.OwnerKey.Substring(2) }
 		return $null
 	}
+
+	function CleanEntries
+	{
+		param($json, $rogues)
+		Write-Host "`nCleaning Entries" -Fore DarkYellow
+
+		$count = $json.Hierarchy.count
+		Write-Host "... $count Entry items to scan" -Fore DarkGray
+
+		$dead = $json.Hierarchy | where { $_.MsmKey -in $rogues -or $_.OwnerKey -in $rogues }
+		$deadCount = $dead.count
+		$expected = $count - $deadCount
+		Write-Host "... $deadCount Entry items to remove, expecting $expected" -Fore DarkGray
+
+		$json.Hierarchy = $json.Hierarchy | where {
+			-not ($_.MsmKey -in $rogues -or $_.OwnerKey -in $rogues)
+		}
+
+		if ($json.Hierarchy.Count -eq $expected) {
+			Write-Host "... successfully removed $deadCount Entry items" -Fore DarkGreen
+		} else {
+			Write-Host "... mismatch: $($json.Hierarchy.Count), expected $expected" -Fore DarkRed
+		}
+	}
+
+	function CleanFiles
+	{
+		param($json, $rogues)
+		Write-Host "`nCleaning Files" -Fore DarkYellow
+		$count = ($json.Deployable.File.PSObject.Properties | measure).Count
+		$expected = $count - $rogues.Count
+		Write-Host "... $($rogues.Count) Files to remove, expecting $expected" -Fore DarkGray
+
+		$json.Deployable.File.PSObject.Properties | `
+			where {
+				$key = '8:' + $_.Name.Substring($_.Name.IndexOf(':') + 1)
+				return $key -in $rogues
+			} | `
+			foreach { 
+				Write-Host "... removing file $($_.Name)" -Fore DarkGray
+				$json.Deployable.File.PSObject.Properties.Remove($_.Name)
+			}
+
+		$result = ($json.Deployable.File.PSObject.Properties | measure).Count
+		if ($result -eq $expected) {
+			Write-Host "... successfully removed $($rogues.Count) File items" -Fore DarkGreen
+		} else {
+			Write-Host "... mismatch: $result, expected $expected" -Fore DarkRed
+		}
+	}
 }
 Process
 {
@@ -107,14 +112,13 @@ Process
 	$vdproj = Resolve-Path .\OneMoreSetup.vdproj
 
 	$json = ConvertVDProjToJson $vdproj
+	# save Json for debugging
 	$json | ConvertTo-Json -Depth 100 | Out-File .\OneMoreSetup.vdproj.json
-
-	#$arcFolders = GetArcFolders $json
 
 	$outputs = GetProjectOutputs $json
 
 	$primary = $outputs | where { $_.SourcePath.Contains('OneMoreAddIn') } | select -expand Key
-	Write-Host "`nOneNoteAddIn: " -NoNewline -Fore DarkYellow
+	Write-Host "`nOneMoreAddIn: " -NoNewline -Fore DarkYellow
 	Write-Host $primary -Fore DarkCyan
 
 	$duplicates = GetDuplicateFiles $json
@@ -130,7 +134,7 @@ Process
 
 			if ($owners -notcontains $primary)
 			{
-				$rogues += $_
+				$rogues += "8:$_"
 			}
 		}
 	}
@@ -138,23 +142,14 @@ Process
 	Write-Host "`nRogues Keys" -Fore DarkYellow
 	$rogues | foreach { write-Host $_ -Fore DarkGray }
 
-	Write-Host "`nCleaning" -Fore DarkYellow
-	foreach ($key in $rogues)
-	{
-		$json.Hierarchy = $json.Hierarchy | where {
-			-not ($_.MsmKey.EndsWith($key) -or $_.OwnerKey.EndsWith($key))
-		}
+	CleanEntries $json $rogues
+	CleanFiles $json $rogues
 
-		$json.Deployable.File.PSObject.Properties | `
-			where { $_.Name.EndsWith($key) } | `
-			foreach { 
-				Write-Host "... removing file $($_.Name)" -Fore DarkGray
-				$json.Deployable.File.PSObject.Properties.Remove($_.Name)
-			}
-	}
-
+	Write-Host "`nSaving" -Fore DarkYellow
+	Write-Host "... writing clean json" -Fore DarkGray
 	$json | ConvertTo-Json -Depth 100 | Out-File .\OneMoreSetup.clean.json -Encoding UTF8
 
+	Write-Host "... writing clean vdproj" -Fore DarkGray
 	$name = [System.IO.Path]::GetFileNameWithoutExtension($vdproj)
 	$clean = (Join-Path (Split-Path $vdproj -Parent) $name) + '.clean.vdproj'
 	ConvertJsonToVDProj $json $clean
