@@ -115,25 +115,29 @@ function ConvertJsonToVDProj
 			$matches[1] + '}' | Out-File $vdproj -Append
 			$hierarchy = $false
 		}
+		# end of object
 		elseif ($line -match '^(\s*)},?$')
 		{
 			$matches[1] + '}' | Out-File $vdproj -Append
 		}
+		# start of object, perhaps Hierarchy.Entry
 		elseif ($line -match '^(\s*){$')
 		{
 			if ($hierarchy)
 			{
-				$matches[1] + "Entry" | Out-File $vdproj -Append
+				$matches[1] + '"Entry"' | Out-File $vdproj -Append
 			}
 
 			$line | Out-File $vdproj -Append
 		}
+		# empty object
 		elseif ($line -match '^(\s*)("[^"]+"): {},?$')
 		{
 			$matches[1] + $matches[2] | Out-File $vdproj -Append
 			$matches[1] + '{' | Out-File $vdproj -Append
 			$matches[1] + '}' | Out-File $vdproj -Append
 		}
+		# unhandled lines
 		else
 		{
 			Write-Host "- $line" -Fore DarkGray

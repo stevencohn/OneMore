@@ -1,3 +1,11 @@
+<#
+#>
+
+[CmdletBinding(SupportsShouldProcess = $true)]
+param (
+	[string] $vdproj = '.\OneMoreSetup.vdproj'
+)
+
 Begin
 {
 	. "$PSScriptRoot\vdparser.ps1"
@@ -47,41 +55,49 @@ Begin
 		}
 	}
 
+	function GetProjectOutputs
+	{
+		param($json)
+		$outputs = @(
+			$json.Deployable.ProjectOutput.PSObject.Properties | `
+			where { $_.value.sourcepath -ne '8:' } | `
+			foreach { 
+				[PSCustomObject]@{
+					Key = $_.Name.Substring($_.Name.IndexOf(':') + 1)
+					SourcePath = (Split-Path $_.value.sourcepath.Substring(2) -leaf)
+				}
+			})
+
+		Write-Host "`nProject Outputs" -Fore DarkYellow
+		$outputs | foreach { Write-Host "... $($_.Key) $($_.SourcePath)" -Fore DarkGray }
+		return $outputs
+	}
+
 	function GetDuplicateFiles
 	{
 		param($json)
-		$files = $json.Deployable.File | ExplodeNoteProperties | foreach {
-			[PSCustomObject]@{
-				Key = [string]$_.omKey.Substring($_.omKey.IndexOf(':') + 1)
-				SourcePath = [string]$_.SourcePath.Substring(2)
-			}
-		} | sort -property SourcePath | group -property SourcePath | where { $_.Count -gt 1 }
 
-		return $files
+		$duplicates = $json.Deployable.File.PSObject.Properties | `
+			foreach { [PSCustomObject]@{ key = $_.Name; SourcePath = $_.value.sourcepath } } | `
+			sort -property SourcePath | group -property SourcePath | where { $_.count -gt 1 } | `
+			foreach {
+				[PSCustomObject]@{
+					Name = $_.Name.Substring(2)
+					Keys = @($_.Group | foreach { $_.Key.substring($_.key.indexof(':')+1) })
+				}
+			}
+
+		Write-Host "`nDuplicate Files" -Fore DarkYellow
+		$duplicates | foreach { Write-Host "... $($_.Name.PadRight(30)) $($_.Keys)" -Fore DarkGray }
+		return $duplicates
 	}
 
 	function GetFileOwners
 	{
-		param($file)
-		$owner = $json.Hierarchy | where { $_.MsmKey -eq "8:$($file.Key)" }
+		param($key)
+		$owner = $json.Hierarchy | where { $_.MsmKey -eq "8:$key" }
 		if ($owner) { return $owner.OwnerKey.Substring(2) }
 		return $null
-	}
-
-	function GetProjectOutputs
-	{
-		param($json)
-		$projects = $json.Deployable.ProjectOutput | ExplodeNoteProperties | where { $_.SourcePath -ne '8:' }
-		$outputs = @()
-		foreach ($proj in $projects)
-		{
-			$outputs += [PSCustomObject]@{
-				Key = $proj.omKey.Substring($proj.omKey.IndexOf(':') + 1)
-				SourcePath = (Split-Path $proj.SourcePath.Substring(2) -leaf)
-			}
-		}
-
-		return $outputs
 	}
 }
 Process
@@ -89,43 +105,48 @@ Process
 	Push-Location .\OneMoreSetup
 
 	$vdproj = Resolve-Path .\OneMoreSetup.vdproj
+
 	$json = ConvertVDProjToJson $vdproj
+	$json | ConvertTo-Json -Depth 100 | Out-File .\OneMoreSetup.vdproj.json
 
 	#$arcFolders = GetArcFolders $json
 
 	$outputs = GetProjectOutputs $json
-	$outputs | Format-Table
 
-	$key = $outputs | where { $_.SourcePath.Contains('OneMoreAddIn') } | select -expand Key
-	$key
+	$primary = $outputs | where { $_.SourcePath.Contains('OneMoreAddIn') } | select -expand Key
+	Write-Host "`nOneNoteAddIn: " -NoNewline -Fore DarkYellow
+	Write-Host $primary -Fore DarkCyan
 
-	$groups = GetDuplicateFiles $json
-	$groups | Format-Table
+	$duplicates = GetDuplicateFiles $json
 
+	Write-Host "`nRogues Owners" -Fore DarkYellow
 	$rogues = @()
-	foreach ($group in $groups)
+	foreach ($duplicate in $duplicates)
 	{
-		$group.Group | foreach {
+		$duplicate.Keys | foreach {
 			$owners = GetFileOwners $_
-			"$($_.Key) $($group.Name) owners [$owners]"
+			$name = [System.IO.Path]::GetFileNameWithoutExtension($duplicate.Name)
+			Write-Host "$_ $name [$owners]" -Fore DarkGray
 
-			if ($owners -notcontains $key)
+			if ($owners -notcontains $primary)
 			{
 				$rogues += $_
 			}
 		}
 	}
 
-	$rogues
+	Write-Host "`nRogues Keys" -Fore DarkYellow
+	$rogues | foreach { write-Host $_ -Fore DarkGray }
 
+	Write-Host "`nCleaning" -Fore DarkYellow
 	foreach ($rogue in $rogues)
 	{
 		$json.Hierarchy = $json.Hierarchy | where {
-			!$_.MsmKey.EndsWith($rogue.Key) -and !$_.OwnerKey.EndsWith($rogue.Key)
+			!$_.MsmKey.EndsWith($rogue) -and !$_.OwnerKey.EndsWith($rogue)
 		}
 
 		$json.Deployable.File.PSObject.Properties | `
-			where { $_.Name.EndsWith($rogue.Key) } | `
+			where { $_.Name.EndsWith($rogue) } | `
 			foreach { $json.Deployable.File.PSObject.Properties.Remove($_.Name) }
 	}
 
