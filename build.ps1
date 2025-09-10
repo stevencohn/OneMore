@@ -50,6 +50,8 @@ param (
 
 Begin
 {
+	. "$PSScriptRoot\vdparser.ps1"
+
 	$script:guid = '{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}'
 
 	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -545,84 +547,6 @@ Begin
 		}
 	}
 
-	function ConvertVdprojToJson
-	{
-		param($vdproj)
-
-		$file = "$vdproj.json"
-		'' | Out-file $file
-
-		$lines = (Get-Content $vdproj) | Select-Object -Skip 1
-
-		$depth = 0
-		$containerDepth = -1
-
-		for ($i = 0; $i -lt $lines.Count; $i++)
-		{
-			$line = $lines[$i]
-			if ($line -match '^\s*"([^"]+)"$')
-			{
-				# Hierarchy.Entry[] is the only collection with duplicate names.
-				# So we only need to track Entries and wrap them in a JSON array.
-
-				if ($matches[1] -eq 'Hierarchy')
-				{
-					$containerDepth = $depth
-					"$line`:" | Out-File $file -Append
-				}
-				elseif ($matches[1] -ne 'Entry') # skip Entry object names
-				{
-					"$line`:" | Out-File $file -Append
-				}
-			}
-			elseif ($line -match '^(\s*)("[^"]+") = ("(.*)")$')
-			{
-				$text = "$($matches[1])$($matches[2]): $($matches[3])"
-				if (($i -lt $lines.Count - 1) -and -not $lines[$i+1].EndsWith('}'))
-				{
-					"$text," | Out-File $file -Append
-				}
-				else
-				{
-					"$text" | Out-File $file -Append
-				}
-			}
-			else
-			{
-				$tag = $line.Trim()
-				if ($tag -eq '{')
-				{
-					if ($depth -eq $containerDepth)
-					{
-						$line = $line.Replace('{', '[')
-					}
-
-					$depth = $depth + 1
-				}
-				elseif ($tag -eq '}')
-				{
-					$depth = $depth - 1
-					if ($depth -eq $containerDepth)
-					{
-						$line = $line.Replace('}', ']')
-						$containerDepth = -1
-					}
-
-					if (($i -lt $lines.Count - 1) -and 
-						($lines[$i+1] -match '^\s*"[^"]+"$' -or $lines[$i+1] -match '^(\s*)("[^"]+"\s*)= ("(.*)")$'))
-					{
-						$line = "$line,"
-					}
-				}
-
-				"$line" | Out-File $file -Append
-			}
-		}
-
-		$json = Get-Content $file | ConvertFrom-Json
-		return $json
-	}
-
 	function GetArcFolders
 	{
 		param($json)
@@ -665,23 +589,6 @@ Begin
 			x64 = $x64
 			win86 = $win86
 			win64 = $win64
-		}
-	}
-
-	function ExplodeNoteProperties
-	{
-		[CmdletBinding()]
-		param([Parameter(ValueFromPipeline)]$json)
-		Process
-		{
-			# explode hashtable NoteProperty into object of properties
-			$json | Get-Member -MemberType NoteProperty | foreach {
-				$omKey = $_.Name
-				$obj = $json.$omKey
-				# inject omKey property into object to hold the object's name (json key)
-				$obj | Add-Member -MemberType NoteProperty -Name 'omKey' -Value $omKey -Force
-				Write-Output $obj
-			}
 		}
 	}
 }
