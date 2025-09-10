@@ -473,7 +473,7 @@ Begin
 			{
 				# "OutputFilename" = "8:Debug\\OneMore_v_Setupx64.msi"
 				$line = $_.Replace('OneMore_v_', "OneMore_$($productVersion)_")
-				$line.Replace('x64', $Architecture) | Out-File $vdproj -Append
+				$line.Replace('x86', $Architecture) | Out-File $vdproj -Append
 			}
 			elseif ($_ -match '"DefaultLocation" = "')
 			{
