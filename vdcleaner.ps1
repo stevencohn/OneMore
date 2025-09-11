@@ -62,7 +62,7 @@ Begin
 	{
 		# get duplicate file references, not associated with the primary OneMoreAddIn
 		# assembly ID. these "rogue" files can be removed along with their Entry references
-		param(json)
+		param($json)
 		Write-Host "`nRogues Owners" -Fore DarkYellow
 		$duplicates = GetDuplicateFiles $json
 		$rogues = @()
@@ -170,7 +170,7 @@ Begin
 		# setting Exclude in VS typically is not preserved. this attempts to Exclude
 		# known protected files from being included in the installer.
 		param($json)
-		Write-Host "`nExcluding protected files"
+		Write-Host "`nExcluding protected files" -Fore DarkYellow
 		foreach ($exclusion in $Exclusions)
 		{
 			$json.Deployable.File.PSObject.Properties | `
@@ -184,7 +184,7 @@ Begin
 }
 Process
 {
-	$vdproj = (Resolve-Path $vdproj).Path
+	$vdproj = (Resolve-Path $vdproj -ErrorAction Stop).Path
 
 	Push-Location (Split-Path $vdproj -Parent)
 
