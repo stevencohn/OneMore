@@ -351,7 +351,8 @@ Begin
 
 	function ReportArchitectures
 	{
-		$arc = (DetectArchitecture .\OneMore\bin\$Architecture\Debug\River.OneMoreAddIn.dll)
+		#$arc = (DetectArchitecture .\OneMore\bin\$Architecture\Debug\River.OneMoreAddIn.dll)
+		$arc = (DetectArchitecture .\OneMore\bin\Debug\River.OneMoreAddIn.dll)
 		Write-Host "... OneMore: $arc" -ForegroundColor DarkGray
 
 		ReportModuleArchitecture 'OneMoreCalendar'
@@ -364,7 +365,8 @@ Begin
 	function ReportModuleArchitecture
 	{
 		param($name)
-		$arc = (DetectArchitecture .\$name\bin\Debug\$name.exe)
+		#$arc = (DetectArchitecture .\$name\bin\Debug\$name.exe)
+		$arc = (DetectArchitecture .\OneMore\bin\Debug\$name.exe)
 		Write-Host "... $name`: $arc" -ForegroundColor DarkGray
 	}
 
