@@ -291,5 +291,6 @@ __pycache__/
 
 OneNote_RecycleBin/
 /docs/OneMore Wiki.zip
-/OneMoreSetup/*.json
-/OneMoreSetup/*.clean.vdproj
+*.clean.json
+*.clean.vdproj
+*.vdproj.json
