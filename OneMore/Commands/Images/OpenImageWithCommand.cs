@@ -74,7 +74,7 @@ namespace River.OneMoreAddIn.Commands
 					var info = new ProcessStartInfo
 					{
 						FileName = editor,
-						Arguments = path
+						Arguments = $"\"{path}\""
 					};
 
 					if (editor == string.Empty)
