@@ -1828,9 +1828,6 @@
     <PackageReference Include="System.Security.Cryptography.X509Certificates">
       <Version>4.3.2</Version>
     </PackageReference>
-    <PackageReference Include="System.Text.Encodings.Web">
-      <Version>9.0.7</Version>
-    </PackageReference>
     <PackageReference Include="System.Threading.Tasks.Extensions">
       <Version>4.6.3</Version>
     </PackageReference>
