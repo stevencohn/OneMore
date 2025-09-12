@@ -42,6 +42,7 @@ param (
 
 	[switch] $Clean,
 	[switch] $Fast,
+	[switch] $Kit,
 	[switch] $Local,
 	[switch] $Prep,
 	[switch] $Stepped,
@@ -610,6 +611,8 @@ Process
 	if ($Clean) { CleanSolution; return }
 
 	if ($Fast) { BuildFast; return }
+
+	if ($Kit) { BuildKit; return }
 
 	if ($Architecture -eq 'All')
 	{
