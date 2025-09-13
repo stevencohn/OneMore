@@ -422,7 +422,7 @@ Begin
 						{
 							$sum = (checksum -t sha256 $1)
 							Write-Host "... $Architecture checksum: $sum" -ForegroundColor DarkYellow
-							$script:checksums += $sum
+							$script:checksums += "$Architecture checksum: $sum"
 						}
 					}
 				}
@@ -608,7 +608,7 @@ Begin
 		if ($script:checksums.Count -gt 0)
 		{
 			Write-Host "`n... all checksums:" -ForegroundColor Cyan
-			$script:checksums | foreach { Write-Host $_ -ForegroundColor DarkYellow }
+			$script:checksums | foreach { Write-Host "... $_" -ForegroundColor DarkYellow }
 		}
 	}
 }
