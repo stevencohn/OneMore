@@ -607,7 +607,7 @@ Begin
 	{
 		if ($script:checksums.Count -gt 0)
 		{
-			Write-Host "`n... all checksums:" -ForegroundColor Cyan
+			Write-Host "`n... checksums" -ForegroundColor Cyan
 			$script:checksums | foreach { Write-Host "... $_" -ForegroundColor DarkYellow }
 		}
 	}
