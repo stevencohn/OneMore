@@ -67,15 +67,13 @@ namespace River.OneMoreAddIn.Commands
 			filePath = Path.Combine(dataPath, Resx.ScanningCueFile);
 
 			schedule = ReadSchedule();
-			if (schedule is null)
+
+			schedule ??= new Schedule
 			{
-				schedule = new Schedule
-				{
-					State = HashtagProvider.CatalogExists()
-						? ScanningState.Ready
-						: ScanningState.PendingRebuild
-				};
-			}
+				State = HashtagProvider.CatalogExists()
+					? ScanningState.Ready
+					: ScanningState.PendingRebuild
+			};
 		}
 
 
@@ -141,6 +139,7 @@ namespace River.OneMoreAddIn.Commands
 			var dir = new Uri(
 				Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase)).LocalPath;
 
+			/*
 			if (dir.Contains("Debug"))
 			{
 				// if dev environment, apps won't be in same directory so add extra hop
@@ -149,6 +148,7 @@ namespace River.OneMoreAddIn.Commands
 						Path.GetDirectoryName(Path.GetDirectoryName(dir)))),
 					@$"{TrayName}\bin\Debug");
 			}
+			*/
 
 			var exe = Path.Combine(dir, $"{TrayName}.exe");
 			if (!File.Exists(exe))
