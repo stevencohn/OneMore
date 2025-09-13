@@ -42,6 +42,7 @@ param (
 
 	[switch] $Clean,
 	[switch] $Fast,
+	[switch] $Kit,
 	[switch] $Local,
 	[switch] $Prep,
 	[switch] $Stepped,
@@ -53,6 +54,7 @@ Begin
 	. "$PSScriptRoot\vdparser.ps1"
 
 	$script:guid = '{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}'
+	$script:checksums = @()
 
 	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 	# Helpers...
@@ -280,6 +282,12 @@ Begin
 		param($arc)
 		$script:Architecture = $arc
 
+		if ($Stepped -and $arc -ne 'ARM64')
+		{
+			Write-Host "`n... press Enter to continue with $arc build: " -Fore Magenta -nonewline
+			Read-Host
+		}
+
 		CleanSolution
 		RestoreSolution
 
@@ -351,7 +359,8 @@ Begin
 
 	function ReportArchitectures
 	{
-		$arc = (DetectArchitecture .\OneMore\bin\$Architecture\Debug\River.OneMoreAddIn.dll)
+		#$arc = (DetectArchitecture .\OneMore\bin\$Architecture\Debug\River.OneMoreAddIn.dll)
+		$arc = (DetectArchitecture .\OneMore\bin\Debug\River.OneMoreAddIn.dll)
 		Write-Host "... OneMore: $arc" -ForegroundColor DarkGray
 
 		ReportModuleArchitecture 'OneMoreCalendar'
@@ -364,7 +373,8 @@ Begin
 	function ReportModuleArchitecture
 	{
 		param($name)
-		$arc = (DetectArchitecture .\$name\bin\Debug\$name.exe)
+		#$arc = (DetectArchitecture .\$name\bin\Debug\$name.exe)
+		$arc = (DetectArchitecture .\OneMore\bin\Debug\$name.exe)
 		Write-Host "... $name`: $arc" -ForegroundColor DarkGray
 	}
 
@@ -412,6 +422,7 @@ Begin
 						{
 							$sum = (checksum -t sha256 $1)
 							Write-Host "... $Architecture checksum: $sum" -ForegroundColor DarkYellow
+							$script:checksums += "$Architecture checksum: $sum"
 						}
 					}
 				}
@@ -591,6 +602,15 @@ Begin
 			win64 = $win64
 		}
 	}
+
+	function ReportChecksums
+	{
+		if ($script:checksums.Count -gt 0)
+		{
+			Write-Host "`n... checksums" -ForegroundColor Cyan
+			$script:checksums | foreach { Write-Host "... $_" -ForegroundColor DarkYellow }
+		}
+	}
 }
 Process
 {
@@ -609,25 +629,15 @@ Process
 
 	if ($Fast) { BuildFast; return }
 
+	if ($Kit) { BuildKit; return }
+
 	if ($Architecture -eq 'All')
 	{
 		Build 'ARM64'
-
-		if ($Stepped)
-		{
-			Write-Host "`n... press Enter to continue with x64 build: " -Fore Magenta -nonewline
-			Read-Host
-		}
-
 		Build 'x64'
-
-		if ($Stepped)
-		{
-			Write-Host "`n... press Enter to continue with x86 build: " -Fore Magenta -nonewline
-			Read-Host
-		}
-
 		Build 'x86'
+
+		ReportChecksums
 	}
 	else
 	{
