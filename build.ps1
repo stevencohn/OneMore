@@ -3,7 +3,8 @@
 Build OneMore full installer kit for the specified architecture, or default project builds.
 
 .PARAMETER Architecture
-Builds the installer kit for the specifies architecture: x86 (default), x64, ARM64, or All.
+Builds the installer kit for the specifies architecture: x86 (default), x64, ARM64, All, or x.
+'x' is a shorthand for building x86 and x64, without the ARM64 build.
 
 .PARAMETER Clean
 Clean all projects in the solution, removing all bin and obj directories.
@@ -16,8 +17,13 @@ Detect the targeted CPU architecture of the specified DLL or EXE file.
 Build just the .csproj projects using default parameters:
 OneMore, OneMorCalendar, OneMoreProtocolHandler, OneMoreSetupActions, and OneMoreTray.
 
+.PARAMETER Kit
+Skips recompiling the binaries, grabbing whatever is in the bin, and proceeds to build
+the installer kit for the specified architecture.
+
 .PARAMETER Local
 Do not attempt to git restore the vdproj file. Keep the local version.
+This is useful for testing vdproj changes without committing.
 
 .PARAMETER Prep
 Run DisableOutOfProcBuild. This only needs to be run once on a machine, or after upgrading
@@ -34,7 +40,7 @@ Enable verbose logging for MSBuild. This is useful for debugging build issues.
 
 [CmdletBinding(SupportsShouldProcess = $true)]
 param (
-	[ValidateSet('x86','x64','ARM64','All')]
+	[ValidateSet('x86','x64','ARM64','All', 'x')]
 	[string] $Architecture = 'x86',
 
 	[ValidateScript({ Test-Path $_ -PathType Leaf })]
@@ -631,9 +637,10 @@ Process
 
 	if ($Kit) { BuildKit; return }
 
-	if ($Architecture -eq 'All')
+	if ($Architecture -eq 'All' -or $Architecture -eq 'x')
 	{
-		Build 'ARM64'
+		if ($Architecture -eq 'All') { Build 'ARM64' }
+
 		Build 'x64'
 		Build 'x86'
 
