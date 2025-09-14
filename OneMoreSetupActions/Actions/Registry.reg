@@ -15,7 +15,7 @@ Windows Registry Editor Version 5.00
 [HKEY_CLASSES_ROOT\onemore\shell\open]
 
 [HKEY_CLASSES_ROOT\onemore\shell\open\command]
-@="\"{ProgramFiles}\\River\\OneMoreAddIn\\OneMoreProtocolHandler.exe\" %1 %2 %3 %4 %5"
+@="\"{ProgramFiles}\River\OneMoreAddIn\OneMoreProtocolHandler.exe\" %1 %2 %3 %4 %5"
 
 [HKEY_CLASSES_ROOT\River.OneMoreAddIn]
 @="River.OneMoreAddIn.AddIn"
@@ -43,14 +43,14 @@ Windows Registry Editor Version 5.00
 [HKEY_CLASSES_ROOT\CLSID\{OneMoreID}\InprocServer32]
 @="mscoree.dll"
 "ThreadingModel"="Both"
-"CodeBase"="{ProgramFiles}\\River\\OneMoreAddIn\\River.OneMoreAddIn.dll"
+"CodeBase"="{ProgramFiles}\River\OneMoreAddIn\River.OneMoreAddIn.dll"
 "Class"="River.OneMoreAddIn.AddIn"
 "RuntimeVersion"="v4.0.30319"
 "Assembly"="River.OneMoreAddIn, Version={Version}, Culture=neutral, PublicKeyToken=null"
 
 [HKEY_CLASSES_ROOT\CLSID\{OneMoreID}\InprocServer32\{Version}]
 "Assembly"="River.OneMoreAddIn, Version={Version}, Culture=neutral, PublicKeyToken=null"
-"CodeBase"="{ProgramFiles}\\River\\OneMoreAddIn\\River.OneMoreAddIn.dll"
+"CodeBase"="{ProgramFiles}\River\OneMoreAddIn\River.OneMoreAddIn.dll"
 "RuntimeVersion"="v4.0.30319"
 "Class"="River.OneMoreAddIn.AddIn"
 
@@ -75,7 +75,7 @@ Windows Registry Editor Version 5.00
 "FriendlyName"="OneMoreAddIn"
 
 [HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\River.OneMoreAddIn.dll]
-"Path"="{ProgramFiles}\\River\\OneMoreAddIn\\River.OneMoreAddIn.dll"
+"Path"="{ProgramFiles}\River\OneMoreAddIn\River.OneMoreAddIn.dll"
 
 ;handled by TrustedProtocolAction
 ;[HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\Office\16.0\Common\Security\Trusted Protocols\All Applications\onemore:]
