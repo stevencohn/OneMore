@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -12,13 +12,13 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = Properties.Resources;
 
 
-	internal class SearchCommand : Command
+	internal class SearchServiceCommand : Command
 	{
 		private bool copying;
 		private List<string> pageIds;
 
 
-		public SearchCommand()
+		public SearchServiceCommand()
 		{
 		}
 

@@ -826,7 +826,7 @@
           imageMso="FileFind"
           getLabel="GetRibbonLabel"
           getScreentip="GetRibbonScreentip"
-          onAction="SearchCmd"/>
+          onAction="SearchServiceCmd"/>
         <button
           id="ribSearchHashtagsButton"
           getImage="GetRibbonImageByID"

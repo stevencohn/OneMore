@@ -4115,11 +4115,11 @@ ISO-code then comma then language name</comment>
     <value>検索と置換 (Ctrl + H)</value>
     <comment>ribbon search</comment>
   </data>
-  <data name="ribSearchButton_Label" xml:space="preserve">
+  <data name="ribSearchServiceButton_Label" xml:space="preserve">
     <value>検索とコピー/移動</value>
     <comment>ribbon search</comment>
   </data>
-  <data name="ribSearchButton_Screentip" xml:space="preserve">
+  <data name="ribSearchServiceButton_Screentip" xml:space="preserve">
     <value>キーワードを検索して別のセクションにコピー/移動 (Alt + F)</value>
     <comment>ribbon search</comment>
   </data>

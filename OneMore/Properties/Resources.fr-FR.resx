@@ -4111,11 +4111,11 @@ Onglet Aide</value>
     <value>Rechercher et remplacer (Ctrl + H)</value>
     <comment>Ribbon OneMore menu item, search and replace</comment>
   </data>
-  <data name="ribSearchButton_Label" xml:space="preserve">
+  <data name="ribSearchServiceButton_Label" xml:space="preserve">
     <value>Rechercher et copier / déplacer</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="ribSearchButton_Screentip" xml:space="preserve">
+  <data name="ribSearchServiceButton_Screentip" xml:space="preserve">
     <value>Rechercher dans les pages des mots-clés et copier / déplacer vers une autre section (Alt + F)</value>
     <comment>ribbon item</comment>
   </data>
