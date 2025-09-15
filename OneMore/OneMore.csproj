@@ -248,6 +248,7 @@
     <Compile Include="Commands\References\CheckUrlsCommand.cs" />
     <Compile Include="Commands\References\HyperlinkProvider.cs" />
     <Compile Include="Commands\Reminders\CleanRemindersCommand.cs" />
+    <Compile Include="Commands\Search\SearchCommand.cs" />
     <Compile Include="Commands\Settings\VariablesSheet.cs">
       <SubType>UserControl</SubType>
     </Compile>
