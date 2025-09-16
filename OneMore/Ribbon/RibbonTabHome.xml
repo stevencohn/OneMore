@@ -822,7 +822,7 @@
           getScreentip="GetRibbonScreentip"
           onAction="SearchAndReplaceCmd"/>
         <button
-          id="ribSearchButton"
+          id="ribSearchServiceButton"
           imageMso="FileFind"
           getLabel="GetRibbonLabel"
           getScreentip="GetRibbonScreentip"
