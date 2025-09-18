@@ -248,7 +248,6 @@
     <Compile Include="Commands\References\CheckUrlsCommand.cs" />
     <Compile Include="Commands\References\HyperlinkProvider.cs" />
     <Compile Include="Commands\Reminders\CleanRemindersCommand.cs" />
-    <Compile Include="Commands\Search\SearchCommand.cs" />
     <Compile Include="Commands\Settings\VariablesSheet.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1824,7 +1823,7 @@
       <Version>6.1.2</Version>
     </PackageReference>
     <PackageReference Include="System.Threading.Tasks.Extensions">
-      <Version>4.6.3</Version>
+      <Version>4.5.4</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
