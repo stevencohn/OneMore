@@ -4112,11 +4112,11 @@ ISO-code then comma then language name</comment>
     <value>بحث واستبدال (Ctrl + H)</value>
     <comment>Ribbon OneMore menu item, search and replace</comment>
   </data>
-  <data name="ribSearchServiceButton_Label" xml:space="preserve">
+  <data name="ribSearchButton_Label" xml:space="preserve">
     <value>بحث ونسخ / نقل</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="ribSearchServiceButton_Screentip" xml:space="preserve">
+  <data name="ribSearchButton_Screentip" xml:space="preserve">
     <value>صفحات البحث عن الكلمات الرئيسية ونسخ / نقل إلى قسم آخر (Alt + F)</value>
     <comment>ribbon item</comment>
   </data>

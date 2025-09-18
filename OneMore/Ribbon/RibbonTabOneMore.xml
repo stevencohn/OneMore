@@ -388,11 +388,11 @@
         getScreentip="GetRibbonScreentip"
         onAction="SearchAndReplaceCmd"/>
       <button
-        id="ribSearchServiceButton"
+        id="ribSearchButton"
         imageMso="FileFind"
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
-        onAction="SearchServiceCmd"/>
+        onAction="SearchCmd"/>
       <button
         id="ribAddTagBankButton"
         imageMso="DataFormAddRecord"

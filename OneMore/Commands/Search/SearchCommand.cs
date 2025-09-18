@@ -12,13 +12,13 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = Properties.Resources;
 
 
-	internal class SearchServiceCommand : Command
+	internal class SearchCommand : Command
 	{
 		private bool copying;
 		private List<string> pageIds;
 
 
-		public SearchServiceCommand()
+		public SearchCommand()
 		{
 		}
 

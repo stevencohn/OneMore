@@ -4113,11 +4113,11 @@ Zakładka Pomoc</value>
     <value>Wyszukaj i zamień (Ctrl + H)</value>
     <comment>Ribbon OneMore menu item, search and replace</comment>
   </data>
-  <data name="ribSearchServiceButton_Label" xml:space="preserve">
+  <data name="ribSearchButton_Label" xml:space="preserve">
     <value>Wyszukaj i skopiuj / ruszaj</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="ribSearchServiceButton_Screentip" xml:space="preserve">
+  <data name="ribSearchButton_Screentip" xml:space="preserve">
     <value>Szukaj stron ze słów kluczowych i skopiuj / Przenieś do innej sekcji (ALT + F)</value>
     <comment>ribbon item</comment>
   </data>

@@ -857,11 +857,6 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<HashtagScanCommand>();
 
 
-		[Command("ribSearchButton_Label", Keys.Control | Keys.Shift | Keys.F, "ribSearchMenu")]
-		public async Task SearchCmd(IRibbonControl control)
-			=> await factory.Run<SearchCommand>();
-
-
 		[Command("ribSearchAndReplaceButton_Label", Keys.Control | Keys.H, "ribSearchMenu")]
 		public async Task SearchAndReplaceCmd(IRibbonControl control)
 			=> await factory.Run<SearchAndReplaceCommand>();
@@ -872,9 +867,9 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<HashtagCommand>();
 
 
-		[Command("ribSearchServiceButton_Label", Keys.None, "ribSearchMenu")]
-		public async Task SearchServiceCmd(IRibbonControl control)
-			=> await factory.Run<SearchServiceCommand>();
+		[Command("ribSearchButton_Label", Keys.None, "ribSearchMenu")]
+		public async Task SearchSCmd(IRibbonControl control)
+			=> await factory.Run<SearchCommand>();
 
 
 		// added to page context menu via Search Engine settings

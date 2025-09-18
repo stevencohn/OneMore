@@ -4112,11 +4112,11 @@ Pestaña Ayuda</value>
     <value>Buscar y reemplazar (Ctrl + H)</value>
     <comment>Ribbon OneMore menu item, search and replace</comment>
   </data>
-  <data name="ribSearchServiceButton_Label" xml:space="preserve">
+  <data name="ribSearchButton_Label" xml:space="preserve">
     <value>Buscar y copiar/mover</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="ribSearchServiceButton_Screentip" xml:space="preserve">
+  <data name="ribSearchButton_Screentip" xml:space="preserve">
     <value>Buscar páginas por palabras clave y copiar/mover a otra sección (Alt + F)</value>
     <comment>ribbon item</comment>
   </data>

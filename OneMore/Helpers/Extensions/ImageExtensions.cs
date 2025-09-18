@@ -85,7 +85,7 @@ namespace River.OneMoreAddIn
 
 		/// <summary>
 		/// OneMore Extension >> Replaces fromColor with toColor in the given image. This can be
-		/// used to "colorize" an image mask such as Notebooks and Sections in the SearchServiceCommand
+		/// used to "colorize" an image mask such as Notebooks and Sections in the SearchCommand
 		/// dialog
 		/// </summary>
 		/// <param name="image">The image to use as a mask</param>

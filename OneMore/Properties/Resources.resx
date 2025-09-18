@@ -4112,11 +4112,11 @@ Help Tab</value>
     <value>Search and replace (Ctrl + H)</value>
     <comment>ribbon search</comment>
   </data>
-  <data name="ribSearchServiceButton_Label" xml:space="preserve">
+  <data name="ribSearchButton_Label" xml:space="preserve">
     <value>Search and Copy/Move</value>
     <comment>ribbon search</comment>
   </data>
-  <data name="ribSearchServiceButton_Screentip" xml:space="preserve">
+  <data name="ribSearchButton_Screentip" xml:space="preserve">
     <value>Search pages for keywords and copy/move to another section (Alt + F)</value>
     <comment>ribbon search</comment>
   </data>
@@ -5888,13 +5888,5 @@ Invert</value>
   </data>
   <data name="_0336_OneNoteApplication_2013" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>0336.OneNoteApplication_2013.xsd;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="ribSearchButton_Label" xml:space="preserve">
-    <value>Search</value>
-    <comment>ribbon search</comment>
-  </data>
-  <data name="ribSearchButton_Screentip" xml:space="preserve">
-    <value>Search for text</value>
-    <comment>ribbon search</comment>
   </data>
 </root>

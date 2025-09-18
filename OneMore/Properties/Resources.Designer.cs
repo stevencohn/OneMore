@@ -10221,7 +10221,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Search.
+        ///   Looks up a localized string similar to Search and Copy/Move.
         /// </summary>
         internal static string ribSearchButton_Label {
             get {
@@ -10230,7 +10230,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Search for text.
+        ///   Looks up a localized string similar to Search pages for keywords and copy/move to another section (Alt + F).
         /// </summary>
         internal static string ribSearchButton_Screentip {
             get {
@@ -10272,24 +10272,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribSearchMenu_Label {
             get {
                 return ResourceManager.GetString("ribSearchMenu_Label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Search and Copy/Move.
-        /// </summary>
-        internal static string ribSearchServiceButton_Label {
-            get {
-                return ResourceManager.GetString("ribSearchServiceButton_Label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Search pages for keywords and copy/move to another section (Alt + F).
-        /// </summary>
-        internal static string ribSearchServiceButton_Screentip {
-            get {
-                return ResourceManager.GetString("ribSearchServiceButton_Screentip", resourceCulture);
             }
         }
         

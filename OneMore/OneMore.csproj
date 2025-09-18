@@ -674,7 +674,7 @@
     <Compile Include="Commands\References\InsertQRCommand.cs" />
     <Compile Include="Commands\Tables\Formulas\Formula.cs" />
     <Compile Include="Commands\References\RefreshFootnotesCommand.cs" />
-    <Compile Include="Commands\Search\SearchServiceCommand.cs" />
+    <Compile Include="Commands\Search\SearchCommand.cs" />
     <Compile Include="Commands\Search\SearchDialog.cs">
       <SubType>Form</SubType>
     </Compile>
