@@ -248,6 +248,12 @@
     <Compile Include="Commands\References\CheckUrlsCommand.cs" />
     <Compile Include="Commands\References\HyperlinkProvider.cs" />
     <Compile Include="Commands\Reminders\CleanRemindersCommand.cs" />
+    <Compile Include="Commands\Search\SearchAndGoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Commands\Search\SearchAndGoControl.Designer.cs">
+      <DependentUpon>SearchAndGoControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Settings\VariablesSheet.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1234,6 +1240,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\References\BiLinkDialog.resx">
       <DependentUpon>BiLinkDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Search\SearchAndGoControl.resx">
+      <DependentUpon>SearchAndGoControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Settings\VariablesSheet.resx">
       <DependentUpon>VariablesSheet.cs</DependentUpon>
