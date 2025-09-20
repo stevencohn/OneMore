@@ -13,7 +13,6 @@ namespace River.OneMoreAddIn.Commands
 
 	internal partial class SearchAndGoControl : MoreUserControl
 	{
-		private readonly Form form;
 		private readonly OneNote one;
 
 
@@ -43,10 +42,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public SearchAndGoControl(Form form)
-		{
-			this.form = form;
-		}
+		public event EventHandler<SearchCloseEventArgs> SearchClosing;
 
 
 		/// <summary>
@@ -151,22 +147,19 @@ namespace River.OneMoreAddIn.Commands
 		private void CopyPressed(object sender, EventArgs e)
 		{
 			CopySelections = true;
-			form.DialogResult = DialogResult.OK;
-			form.Close();
+			SearchClosing?.Invoke(this, new(DialogResult.OK));
 		}
 
 
 		private void MovePressed(object sender, EventArgs e)
 		{
 			CopySelections = false;
-			form.DialogResult = DialogResult.OK;
-			form.Close();
+			SearchClosing?.Invoke(this, new(DialogResult.OK));
 		}
 
 		private void Nevermind(object sender, EventArgs e)
 		{
-			form.DialogResult = DialogResult.Cancel;
-			form.Close();
+			SearchClosing?.Invoke(this, new(DialogResult.Cancel));
 		}
 	}
 }

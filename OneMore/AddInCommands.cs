@@ -868,7 +868,7 @@ namespace River.OneMoreAddIn
 
 
 		[Command("ribSearchButton_Label", Keys.None, "ribSearchMenu")]
-		public async Task SearchSCmd(IRibbonControl control)
+		public async Task SearchCmd(IRibbonControl control)
 			=> await factory.Run<SearchCommand>();
 
 

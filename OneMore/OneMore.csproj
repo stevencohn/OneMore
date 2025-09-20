@@ -254,6 +254,7 @@
     <Compile Include="Commands\Search\SearchAndGoControl.Designer.cs">
       <DependentUpon>SearchAndGoControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Search\SearchCloseEventArgs.cs" />
     <Compile Include="Commands\Settings\VariablesSheet.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -35,8 +35,8 @@
 			this.searchButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.findBox = new River.OneMoreAddIn.UI.MoreTextBox();
-			this.findLabel = new System.Windows.Forms.Label();
-			this.introLabel = new System.Windows.Forms.Label();
+			this.findLabel = new River.OneMoreAddIn.UI.MoreLabel();
+			this.introLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.SuspendLayout();
 			// 
 			// scopeBox
@@ -220,7 +220,7 @@
 		private UI.MoreButton searchButton;
 		private UI.MoreButton cancelButton;
 		private UI.MoreTextBox findBox;
-		private System.Windows.Forms.Label findLabel;
-		private System.Windows.Forms.Label introLabel;
+		private UI.MoreLabel findLabel;
+		private UI.MoreLabel introLabel;
 	}
 }

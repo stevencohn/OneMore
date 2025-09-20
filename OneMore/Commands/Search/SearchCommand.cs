@@ -4,7 +4,6 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using River.OneMoreAddIn.Commands.Search;
 	using System;
 	using System.Collections.Generic;
 	using System.Threading.Tasks;
@@ -30,11 +29,10 @@ namespace River.OneMoreAddIn.Commands
 			var dialog = new SearchDialog();
 			dialog.RunModeless(async (sender, e) =>
 			{
-				var d = sender as SearchDialog;
-				if (d.DialogResult == DialogResult.OK)
+				if (sender is SearchDialog d && d.DialogResult == DialogResult.OK)
 				{
-					copying = dialog.CopySelections;
-					pageIds = dialog.SelectedPages;
+					copying = d.CopySelections;
+					pageIds = d.SelectedPages;
 
 					var desc = copying
 						? Resx.SearchQF_DescriptionCopy
