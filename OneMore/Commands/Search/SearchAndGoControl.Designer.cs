@@ -48,10 +48,10 @@
             "In all notebooks",
             "In this notebook",
             "In this section"});
-			this.scopeBox.Location = new System.Drawing.Point(610, 57);
+			this.scopeBox.Location = new System.Drawing.Point(610, 69);
 			this.scopeBox.Name = "scopeBox";
 			this.scopeBox.Size = new System.Drawing.Size(183, 28);
-			this.scopeBox.TabIndex = 11;
+			this.scopeBox.TabIndex = 2;
 			// 
 			// resultTree
 			// 
@@ -62,11 +62,11 @@
 			this.resultTree.DrawMode = System.Windows.Forms.TreeViewDrawMode.OwnerDrawText;
 			this.resultTree.HideSelection = false;
 			this.resultTree.HotTracking = true;
-			this.resultTree.Location = new System.Drawing.Point(18, 104);
+			this.resultTree.Location = new System.Drawing.Point(23, 120);
 			this.resultTree.Name = "resultTree";
 			this.resultTree.ShowLines = false;
 			this.resultTree.ShowRootLines = false;
-			this.resultTree.Size = new System.Drawing.Size(775, 451);
+			this.resultTree.Size = new System.Drawing.Size(770, 448);
 			this.resultTree.Suspend = false;
 			this.resultTree.TabIndex = 12;
 			this.resultTree.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.TreeAfterCheck);
@@ -80,13 +80,13 @@
 			this.copyButton.Enabled = false;
 			this.copyButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.copyButton.ImageOver = null;
-			this.copyButton.Location = new System.Drawing.Point(441, 580);
+			this.copyButton.Location = new System.Drawing.Point(441, 576);
 			this.copyButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.copyButton.Name = "copyButton";
 			this.copyButton.ShowBorder = true;
 			this.copyButton.Size = new System.Drawing.Size(112, 35);
 			this.copyButton.StylizeImage = false;
-			this.copyButton.TabIndex = 13;
+			this.copyButton.TabIndex = 3;
 			this.copyButton.Text = "Copy";
 			this.copyButton.ThemedBack = null;
 			this.copyButton.ThemedFore = null;
@@ -101,13 +101,13 @@
 			this.moveButton.Enabled = false;
 			this.moveButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.moveButton.ImageOver = null;
-			this.moveButton.Location = new System.Drawing.Point(561, 580);
+			this.moveButton.Location = new System.Drawing.Point(561, 576);
 			this.moveButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.moveButton.Name = "moveButton";
 			this.moveButton.ShowBorder = true;
 			this.moveButton.Size = new System.Drawing.Size(112, 35);
 			this.moveButton.StylizeImage = false;
-			this.moveButton.TabIndex = 14;
+			this.moveButton.TabIndex = 4;
 			this.moveButton.Text = "Move";
 			this.moveButton.ThemedBack = null;
 			this.moveButton.ThemedFore = null;
@@ -122,13 +122,13 @@
 			this.searchButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.searchButton.Image = global::River.OneMoreAddIn.Properties.Resources.m_Search;
 			this.searchButton.ImageOver = null;
-			this.searchButton.Location = new System.Drawing.Point(535, 54);
+			this.searchButton.Location = new System.Drawing.Point(535, 66);
 			this.searchButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 15);
 			this.searchButton.Name = "searchButton";
 			this.searchButton.ShowBorder = true;
 			this.searchButton.Size = new System.Drawing.Size(68, 32);
 			this.searchButton.StylizeImage = true;
-			this.searchButton.TabIndex = 9;
+			this.searchButton.TabIndex = 1;
 			this.searchButton.ThemedBack = null;
 			this.searchButton.ThemedFore = null;
 			this.searchButton.UseVisualStyleBackColor = true;
@@ -141,13 +141,13 @@
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
-			this.cancelButton.Location = new System.Drawing.Point(681, 580);
+			this.cancelButton.Location = new System.Drawing.Point(681, 576);
 			this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 15);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(112, 35);
 			this.cancelButton.StylizeImage = false;
-			this.cancelButton.TabIndex = 15;
+			this.cancelButton.TabIndex = 5;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.ThemedBack = null;
 			this.cancelButton.ThemedFore = null;
@@ -159,35 +159,40 @@
 			this.findBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.findBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.findBox.Location = new System.Drawing.Point(74, 55);
+			this.findBox.Location = new System.Drawing.Point(71, 70);
 			this.findBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.findBox.Name = "findBox";
 			this.findBox.ProcessEnterKey = false;
 			this.findBox.Size = new System.Drawing.Size(453, 26);
-			this.findBox.TabIndex = 7;
+			this.findBox.TabIndex = 0;
 			this.findBox.ThemedBack = null;
 			this.findBox.ThemedFore = null;
 			this.findBox.TextChanged += new System.EventHandler(this.ChangeQuery);
+			this.findBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SearchOnKeydown);
 			// 
 			// findLabel
 			// 
 			this.findLabel.AutoSize = true;
-			this.findLabel.Location = new System.Drawing.Point(19, 58);
+			this.findLabel.Location = new System.Drawing.Point(19, 72);
 			this.findLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.findLabel.Name = "findLabel";
 			this.findLabel.Size = new System.Drawing.Size(44, 20);
 			this.findLabel.TabIndex = 10;
 			this.findLabel.Text = "Find:";
+			this.findLabel.ThemedBack = null;
+			this.findLabel.ThemedFore = null;
 			// 
 			// introLabel
 			// 
 			this.introLabel.AutoSize = true;
-			this.introLabel.Location = new System.Drawing.Point(19, 15);
+			this.introLabel.Location = new System.Drawing.Point(19, 20);
 			this.introLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 15);
 			this.introLabel.Name = "introLabel";
 			this.introLabel.Size = new System.Drawing.Size(579, 20);
 			this.introLabel.TabIndex = 8;
 			this.introLabel.Text = "Enter one or more keywords, \"quoted phrases\", and use uppercase AND and OR";
+			this.introLabel.ThemedBack = null;
+			this.introLabel.ThemedFore = null;
 			// 
 			// SearchAndGoControl
 			// 
@@ -203,6 +208,7 @@
 			this.Controls.Add(this.findLabel);
 			this.Controls.Add(this.introLabel);
 			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.Margin = new System.Windows.Forms.Padding(0);
 			this.Name = "SearchAndGoControl";
 			this.Padding = new System.Windows.Forms.Padding(15, 15, 15, 10);
 			this.Size = new System.Drawing.Size(812, 636);

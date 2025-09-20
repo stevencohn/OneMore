@@ -33,7 +33,9 @@
 			this.searchTab = new System.Windows.Forms.TabPage();
 			this.searchAndGoTab = new System.Windows.Forms.TabPage();
 			this.searchAndGoControl = new River.OneMoreAddIn.Commands.SearchAndGoControl();
+			this.searchDialogTextControl = new River.OneMoreAddIn.Commands.SearchDialogTextControl();
 			this.tabControl.SuspendLayout();
+			this.searchTab.SuspendLayout();
 			this.searchAndGoTab.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -54,7 +56,9 @@
 			// 
 			// searchTab
 			// 
+			this.searchTab.Controls.Add(this.searchDialogTextControl);
 			this.searchTab.Location = new System.Drawing.Point(4, 29);
+			this.searchTab.Margin = new System.Windows.Forms.Padding(0);
 			this.searchTab.Name = "searchTab";
 			this.searchTab.Size = new System.Drawing.Size(1094, 670);
 			this.searchTab.TabIndex = 1;
@@ -78,10 +82,23 @@
 			this.searchAndGoControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.searchAndGoControl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.searchAndGoControl.Location = new System.Drawing.Point(3, 3);
+			this.searchAndGoControl.Margin = new System.Windows.Forms.Padding(0);
 			this.searchAndGoControl.Name = "searchAndGoControl";
 			this.searchAndGoControl.Padding = new System.Windows.Forms.Padding(15, 15, 15, 10);
 			this.searchAndGoControl.Size = new System.Drawing.Size(1088, 664);
 			this.searchAndGoControl.TabIndex = 0;
+			// 
+			// searchDialogTextControl
+			// 
+			this.searchDialogTextControl.BackColor = System.Drawing.Color.Transparent;
+			this.searchDialogTextControl.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.searchDialogTextControl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.searchDialogTextControl.Location = new System.Drawing.Point(0, 0);
+			this.searchDialogTextControl.Margin = new System.Windows.Forms.Padding(0);
+			this.searchDialogTextControl.Name = "searchDialogTextControl";
+			this.searchDialogTextControl.Padding = new System.Windows.Forms.Padding(15, 15, 15, 10);
+			this.searchDialogTextControl.Size = new System.Drawing.Size(1094, 670);
+			this.searchDialogTextControl.TabIndex = 0;
 			// 
 			// SearchDialog
 			// 
@@ -101,6 +118,7 @@
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Search and Move or Copy";
 			this.tabControl.ResumeLayout(false);
+			this.searchTab.ResumeLayout(false);
 			this.searchAndGoTab.ResumeLayout(false);
 			this.ResumeLayout(false);
 
@@ -112,5 +130,6 @@
 		private System.Windows.Forms.TabPage searchAndGoTab;
 		private System.Windows.Forms.TabPage searchTab;
 		private SearchAndGoControl searchAndGoControl;
+		private SearchDialogTextControl searchDialogTextControl;
 	}
 }

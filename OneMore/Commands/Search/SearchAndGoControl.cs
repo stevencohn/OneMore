@@ -45,26 +45,6 @@ namespace River.OneMoreAddIn.Commands
 		public event EventHandler<SearchCloseEventArgs> SearchClosing;
 
 
-		/// <summary>
-		/// Localizes each of the named controls by looking up the appropriate resource string
-		/// </summary>
-		/// <param name="keys">An collection of strings specifying the control names</param>
-		protected void Localize(string[] keys)
-		{
-			Translator.Localize(this, keys);
-		}
-
-
-		/// <summary>
-		/// Determines if the sheet needs to be localized
-		/// </summary>
-		/// <returns>True if the sheets needs to be localized; language is not default 'en'</returns>
-		protected static bool NeedsLocalizing()
-		{
-			return AddIn.Culture.TwoLetterISOLanguageName != "en";
-		}
-
-
 		public bool CopySelections { get; private set; }
 
 
