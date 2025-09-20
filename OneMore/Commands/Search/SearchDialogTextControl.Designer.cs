@@ -61,11 +61,12 @@
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(112, 35);
 			this.cancelButton.StylizeImage = false;
-			this.cancelButton.TabIndex = 10;
+			this.cancelButton.TabIndex = 3;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.ThemedBack = null;
 			this.cancelButton.ThemedFore = null;
 			this.cancelButton.UseVisualStyleBackColor = true;
+			this.cancelButton.Click += new System.EventHandler(this.Nevermind);
 			// 
 			// textLabel
 			// 
@@ -89,9 +90,11 @@
 			this.findBox.Name = "findBox";
 			this.findBox.ProcessEnterKey = false;
 			this.findBox.Size = new System.Drawing.Size(554, 26);
-			this.findBox.TabIndex = 12;
+			this.findBox.TabIndex = 0;
 			this.findBox.ThemedBack = null;
 			this.findBox.ThemedFore = null;
+			this.findBox.TextChanged += new System.EventHandler(this.ChangedText);
+			this.findBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SearchOnKeydown);
 			// 
 			// searchButton
 			// 
@@ -107,10 +110,11 @@
 			this.searchButton.ShowBorder = true;
 			this.searchButton.Size = new System.Drawing.Size(68, 32);
 			this.searchButton.StylizeImage = true;
-			this.searchButton.TabIndex = 13;
+			this.searchButton.TabIndex = 1;
 			this.searchButton.ThemedBack = null;
 			this.searchButton.ThemedFore = null;
 			this.searchButton.UseVisualStyleBackColor = true;
+			this.searchButton.Click += new System.EventHandler(this.Search);
 			// 
 			// resultsView
 			// 
@@ -128,7 +132,7 @@
 			this.resultsView.RowHeight = 24;
 			this.resultsView.Size = new System.Drawing.Size(770, 448);
 			this.resultsView.SortedBackground = System.Drawing.SystemColors.Window;
-			this.resultsView.TabIndex = 14;
+			this.resultsView.TabIndex = 2;
 			this.resultsView.UseCompatibleStateImageBehavior = false;
 			this.resultsView.View = System.Windows.Forms.View.Details;
 			// 
@@ -142,6 +146,7 @@
 			this.Controls.Add(this.textLabel);
 			this.Controls.Add(this.cancelButton);
 			this.Controls.Add(this.introLabel);
+			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.Margin = new System.Windows.Forms.Padding(0);
 			this.Name = "SearchDialogTextControl";
 			this.Padding = new System.Windows.Forms.Padding(15, 15, 15, 10);

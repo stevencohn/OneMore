@@ -32,7 +32,7 @@
 			this.tabControl = new River.OneMoreAddIn.UI.MoreTabControl();
 			this.searchTab = new System.Windows.Forms.TabPage();
 			this.searchAndGoTab = new System.Windows.Forms.TabPage();
-			this.searchAndGoControl = new River.OneMoreAddIn.Commands.SearchAndGoControl();
+			this.searchAndGoControl = new River.OneMoreAddIn.Commands.SearchDialogActionControl();
 			this.searchDialogTextControl = new River.OneMoreAddIn.Commands.SearchDialogTextControl();
 			this.tabControl.SuspendLayout();
 			this.searchTab.SuspendLayout();
@@ -129,7 +129,7 @@
 		private UI.MoreTabControl tabControl;
 		private System.Windows.Forms.TabPage searchAndGoTab;
 		private System.Windows.Forms.TabPage searchTab;
-		private SearchAndGoControl searchAndGoControl;
+		private SearchDialogActionControl searchAndGoControl;
 		private SearchDialogTextControl searchDialogTextControl;
 	}
 }

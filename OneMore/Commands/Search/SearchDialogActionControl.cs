@@ -11,12 +11,12 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = Properties.Resources;
 
 
-	internal partial class SearchAndGoControl : MoreUserControl
+	internal partial class SearchDialogActionControl : MoreUserControl
 	{
 		private readonly OneNote one;
 
 
-		public SearchAndGoControl()
+		public SearchDialogActionControl()
 		{
 			InitializeComponent();
 

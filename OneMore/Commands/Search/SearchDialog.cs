@@ -22,8 +22,11 @@ namespace River.OneMoreAddIn.Commands
 				Text = Resx.SearchDialog_Title;
 			}
 
-			var sagSheet = tabControl.TabPages["searchAndGoTab"].Controls[0] as SearchAndGoControl;
-			sagSheet.SearchClosing += ClosingSearchAndGo;
+			var actSheet = tabControl.TabPages["searchAndGoTab"].Controls[0] as SearchDialogActionControl;
+			actSheet.SearchClosing += ClosingSearch;
+
+			var textSheet = tabControl.TabPages["searchTab"].Controls[0] as SearchDialogTextControl;
+			textSheet.SearchClosing += ClosingSearch;
 		}
 
 
@@ -33,10 +36,10 @@ namespace River.OneMoreAddIn.Commands
 		public List<string> SelectedPages { get; private set; }
 
 
-		private void ClosingSearchAndGo(object sender, SearchCloseEventArgs e)
+		private void ClosingSearch(object sender, SearchCloseEventArgs e)
 		{
 			if (e.DialogResult == DialogResult.OK &&
-				sender is SearchAndGoControl sheet)
+				sender is SearchDialogActionControl sheet)
 			{
 				CopySelections = sheet.CopySelections;
 				SelectedPages = sheet.SelectedPages;

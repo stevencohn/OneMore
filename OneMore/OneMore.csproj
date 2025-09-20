@@ -248,11 +248,11 @@
     <Compile Include="Commands\References\CheckUrlsCommand.cs" />
     <Compile Include="Commands\References\HyperlinkProvider.cs" />
     <Compile Include="Commands\Reminders\CleanRemindersCommand.cs" />
-    <Compile Include="Commands\Search\SearchAndGoControl.cs">
+    <Compile Include="Commands\Search\SearchDialogActionControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Commands\Search\SearchAndGoControl.Designer.cs">
-      <DependentUpon>SearchAndGoControl.cs</DependentUpon>
+    <Compile Include="Commands\Search\SearchDialogActionControl.Designer.cs">
+      <DependentUpon>SearchDialogActionControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Search\SearchCloseEventArgs.cs" />
     <Compile Include="Commands\Search\SearchDialogTextControl.cs">
@@ -261,6 +261,7 @@
     <Compile Include="Commands\Search\SearchDialogTextControl.Designer.cs">
       <DependentUpon>SearchDialogTextControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Search\TextMatchBuilder.cs" />
     <Compile Include="Commands\Settings\VariablesSheet.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1248,8 +1249,8 @@
     <EmbeddedResource Include="Commands\References\BiLinkDialog.resx">
       <DependentUpon>BiLinkDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Commands\Search\SearchAndGoControl.resx">
-      <DependentUpon>SearchAndGoControl.cs</DependentUpon>
+    <EmbeddedResource Include="Commands\Search\SearchDialogActionControl.resx">
+      <DependentUpon>SearchDialogActionControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Search\SearchDialogTextControl.resx">
       <DependentUpon>SearchDialogTextControl.cs</DependentUpon>

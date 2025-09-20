@@ -1,6 +1,6 @@
 ﻿namespace River.OneMoreAddIn.Commands
 {
-	partial class SearchAndGoControl
+	partial class SearchDialogActionControl
 	{
 		/// <summary> 
 		/// Required designer variable.
@@ -194,7 +194,7 @@
 			this.introLabel.ThemedBack = null;
 			this.introLabel.ThemedFore = null;
 			// 
-			// SearchAndGoControl
+			// SearchDialogActionControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
