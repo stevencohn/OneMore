@@ -351,6 +351,11 @@ namespace River.OneMoreAddIn.UI
 				var pid = element.Current.ProcessId;
 				var process = Process.GetProcessById(pid);
 				var name = process.ProcessName;
+
+				// elevates this form notop of ONENOTE when ONENOTE is elevated, but also allows
+				// ONENOTE to be on top of this window when switching immediately from this
+				// window to ONENOTE
+
 				if (name == "ONENOTE" && trackedId != pid && trackedId != processId)
 				{
 					//logger.WriteLine($"focused tracking elevating");
