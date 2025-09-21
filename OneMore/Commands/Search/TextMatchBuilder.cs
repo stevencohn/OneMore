@@ -135,7 +135,7 @@ namespace River.OneMoreAddIn.Commands
 					_ => null
 				};
 
-				if (type != null)
+				if (type is not null)
 				{
 					// flush any buffered terms as one phrase
 					if (termBuffer.Count > 0)
