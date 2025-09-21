@@ -31,6 +31,7 @@ namespace River.OneMoreAddIn.Settings
 					"hidePinnedBox",
 					"quickBox",
 					"corrallBox",
+					"elevateBox",
 					"advancedGroup=phrase_AdvancedOptions",
 					"disabledBox"
 				});
@@ -57,6 +58,7 @@ namespace River.OneMoreAddIn.Settings
 			corrallBox.Checked = settings.Get("corralled", false);
 			//}
 
+			elevateBox.Checked = settings.Get("elevated", false);
 			disabledBox.Checked = settings.Get("disabled", false);
 		}
 
@@ -82,6 +84,10 @@ namespace River.OneMoreAddIn.Settings
 			updated = corrallBox.Checked
 				? settings.Add("corralled", true) || updated
 				: settings.Remove("corralled") || updated;
+
+			updated = elevateBox.Checked
+				? settings.Add("elevated", true) || updated
+				: settings.Remove("elevated") || updated;
 
 			updated = disabledBox.Checked
 				? settings.Add("disabled", true) || updated

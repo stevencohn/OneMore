@@ -1901,6 +1901,10 @@ Total Row Font
     <value>השבת את שירות הניווט. פעולה זו תהפוך את חלון הניווט לבלתי ניתן להפעלה.</value>
     <comment>checkbox</comment>
   </data>
+  <data name="NavigatorSheet_elevateBox.Text" xml:space="preserve">
+    <value>העלאת נווט כאשר OneNote מוגבה</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="NavigatorSheet_hidePinnedBox.Text" xml:space="preserve">
     <value>הסתר את החלונית 'רשימת הקריאה שלי'</value>
     <comment>checkbox</comment>

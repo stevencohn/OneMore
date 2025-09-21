@@ -101,6 +101,8 @@ namespace River.OneMoreAddIn.Commands
 				.Get("showOffline", true);
 
 			tooltip.SetToolTip(sensitiveBox, Resx.HashtagDialog_sensitiveTip);
+
+			ElevatedWithOneNote = true;
 		}
 
 

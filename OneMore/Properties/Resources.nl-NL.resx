@@ -1901,6 +1901,10 @@ Wilt u de bestaande pagina vernieuwen?</value>
     <value>Schakel de navigatieservice uit. Hierdoor wordt het Navigator-venster onbruikbaar.</value>
     <comment>checkbox</comment>
   </data>
+  <data name="NavigatorSheet_elevateBox.Text" xml:space="preserve">
+    <value>Verhoog navigator wanneer OneNote is verhoogd</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="NavigatorSheet_hidePinnedBox.Text" xml:space="preserve">
     <value>Verberg het paneel Mijn leeslijst</value>
     <comment>checkbox</comment>
