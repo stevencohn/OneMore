@@ -75,6 +75,7 @@ namespace River.OneMoreAddIn.Commands
 			var settings = new SettingsProvider().GetCollection(nameof(NavigatorSheet));
 			reading = !settings.Get("hidePinned", false);
 			corralled = settings.Get("corralled", false); //|| Screen.AllScreens.Length == 1;
+			ElevatedWithOneNote = settings.Get("elevated", false);
 			depth = settings.Get("depth", NavigationService.DefaultHistoryDepth);
 
 			provider = new NavigationProvider();

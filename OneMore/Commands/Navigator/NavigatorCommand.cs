@@ -36,7 +36,6 @@ namespace River.OneMoreAddIn.Commands
 			{
 				window = new NavigatorWindow();
 				window.FormClosed += CloseNavigatorWindow;
-				window.ElevatedWithOneNote = settings.Get("elevated", false);
 				window.RunModeless();
 				return;
 			}
