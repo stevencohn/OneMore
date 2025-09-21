@@ -4117,8 +4117,8 @@ Tabblad Help</value>
     <comment>Ribbon OneMore menu item, search and replace</comment>
   </data>
   <data name="ribSearchButton_Label" xml:space="preserve">
-    <value>Zoeken en kopiëren / verplaatsen</value>
-    <comment>ribbon item</comment>
+    <value>Zoekopdracht</value>
+    <comment>ribbon search</comment>
   </data>
   <data name="ribSearchButton_Screentip" xml:space="preserve">
     <value>Zoek pagina's op trefwoorden en kopieer / ga naar een andere sectie (Alt + F)</value>
@@ -4544,21 +4544,17 @@ Alle notitieboekjes</value>
     <value>Vervangen door:</value>
     <comment>label</comment>
   </data>
-  <data name="SearchDialog_findLabel.Text" xml:space="preserve">
-    <value>Vind:</value>
+  <data name="SearchDialogActionControl_introLabel.Text" xml:space="preserve">
+    <value>Voer een of meer trefwoorden in, "geciteerde zinnen", en gebruik hoofdletters en en of</value>
     <comment>label</comment>
   </data>
-  <data name="SearchDialog_introLabel.Text" xml:space="preserve">
-    <value>Voer een of meer trefwoorden in, "zinnen tussen aanhalingstekens", en gebruik hoofdletters EN en OF</value>
-    <comment>intro label</comment>
-  </data>
-  <data name="SearchDialog_Title" xml:space="preserve">
-    <value>Zoeken en verplaatsen / kopiëren</value>
-    <comment>dialog title</comment>
+  <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
+    <value>Voer de zoekcriteria in om tekst te vinden op de huidige pagina</value>
+    <comment>label</comment>
   </data>
   <data name="SearchEngineDialog_deleteLabel.Text" xml:space="preserve">
     <value>Verwijderen:</value>
-    <comment>delete label</comment>
+    <comment>delete label NODUP</comment>
   </data>
   <data name="SearchEngineDialog_DeleteMessage" xml:space="preserve">
     <value>{0} verwijderen?</value>
@@ -5286,6 +5282,9 @@ Omkeren</value>
   </data>
   <data name="word_Favorites" xml:space="preserve">
     <value>Favorieten</value>
+  </data>
+  <data name="word_Find" xml:space="preserve">
+    <value>Vinden</value>
   </data>
   <data name="word_Folder" xml:space="preserve">
     <value>Map</value>

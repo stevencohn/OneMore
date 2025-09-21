@@ -4110,8 +4110,8 @@ ISO-code then comma then language name</comment>
     <comment>Ribbon OneMore menu item, search and replace</comment>
   </data>
   <data name="ribSearchButton_Label" xml:space="preserve">
-    <value>搜索和复制/移动</value>
-    <comment>ribbon item</comment>
+    <value>搜索</value>
+    <comment>ribbon search</comment>
   </data>
   <data name="ribSearchButton_Screentip" xml:space="preserve">
     <value>在页面上搜索关键字，然后将其复制/移动到另一部分（Alt + F）</value>
@@ -4537,21 +4537,17 @@ ISO-code then comma then language name</comment>
     <value>用。。。来代替:</value>
     <comment>label</comment>
   </data>
-  <data name="SearchDialog_findLabel.Text" xml:space="preserve">
-    <value>找：</value>
+  <data name="SearchDialogActionControl_introLabel.Text" xml:space="preserve">
+    <value>输入一个或多个关键字，“引用短语”，并使用大写和OS</value>
     <comment>label</comment>
   </data>
-  <data name="SearchDialog_introLabel.Text" xml:space="preserve">
-    <value>输入一个或多个关键字，“带引号的短语”，并使用大写的AND和OR</value>
-    <comment>intro label</comment>
-  </data>
-  <data name="SearchDialog_Title" xml:space="preserve">
-    <value>搜索和移动/复制</value>
-    <comment>dialog title</comment>
+  <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
+    <value>输入搜索标准以在当前页面上查找文本</value>
+    <comment>label</comment>
   </data>
   <data name="SearchEngineDialog_deleteLabel.Text" xml:space="preserve">
     <value>删除：</value>
-    <comment>delete label</comment>
+    <comment>delete label NODUP</comment>
   </data>
   <data name="SearchEngineDialog_DeleteMessage" xml:space="preserve">
     <value>删除{0}？</value>
@@ -5279,6 +5275,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Favorites" xml:space="preserve">
     <value>收藏夹</value>
+  </data>
+  <data name="word_Find" xml:space="preserve">
+    <value>寻找</value>
   </data>
   <data name="word_Folder" xml:space="preserve">
     <value>文件夹</value>

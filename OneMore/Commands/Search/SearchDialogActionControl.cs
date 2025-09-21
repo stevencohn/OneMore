@@ -25,7 +25,7 @@ namespace River.OneMoreAddIn.Commands
 				Localize(new string[]
 				{
 					"introLabel",
-					"findLabel",
+					"findLabel=word_Find",
 					"moveButton=word_Move",
 					"copyButton=word_Copy",
 					"cancelButton=word_Cancel"

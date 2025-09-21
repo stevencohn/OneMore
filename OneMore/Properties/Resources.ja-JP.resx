@@ -4120,7 +4120,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon search</comment>
   </data>
   <data name="ribSearchButton_Label" xml:space="preserve">
-    <value>検索とコピー/移動</value>
+    <value>検索</value>
     <comment>ribbon search</comment>
   </data>
   <data name="ribSearchButton_Screentip" xml:space="preserve">
@@ -4548,20 +4548,16 @@ ISO-code then comma then language name</comment>
     <value>置換後:</value>
     <comment>label</comment>
   </data>
-  <data name="SearchDialog_findLabel.Text" xml:space="preserve">
-    <value>検索:</value>
+  <data name="SearchDialogActionControl_introLabel.Text" xml:space="preserve">
+    <value>1つ以上のキーワード、「引用されたフレーズ」を入力し、大文字を使用し、</value>
     <comment>label</comment>
   </data>
-  <data name="SearchDialog_introLabel.Text" xml:space="preserve">
-    <value>一つ以上のキーワード、""で囲んだフレーズを入力。検索式は大文字のAND/ORを利用。</value>
-    <comment>intro label</comment>
-  </data>
-  <data name="SearchDialog_Title" xml:space="preserve">
-    <value>検索してページの移動/コピー</value>
-    <comment>dialog title</comment>
+  <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
+    <value>現在のページでテキストを見つけるには、検索条件を入力してください</value>
+    <comment>label</comment>
   </data>
   <data name="SearchEngineDialog_deleteLabel.Text" xml:space="preserve">
-    <value>削除:</value>
+    <value>消去：</value>
     <comment>delete label NODUP</comment>
   </data>
   <data name="SearchEngineDialog_DeleteMessage" xml:space="preserve">
@@ -5290,6 +5286,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Favorites" xml:space="preserve">
     <value>お気に入り</value>
+  </data>
+  <data name="word_Find" xml:space="preserve">
+    <value>探す</value>
   </data>
   <data name="word_Folder" xml:space="preserve">
     <value>フォルダー</value>

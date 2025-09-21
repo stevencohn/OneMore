@@ -4117,8 +4117,8 @@ Pestaña Ayuda</value>
     <comment>Ribbon OneMore menu item, search and replace</comment>
   </data>
   <data name="ribSearchButton_Label" xml:space="preserve">
-    <value>Buscar y copiar/mover</value>
-    <comment>ribbon item</comment>
+    <value>Buscar</value>
+    <comment>ribbon search</comment>
   </data>
   <data name="ribSearchButton_Screentip" xml:space="preserve">
     <value>Buscar páginas por palabras clave y copiar/mover a otra sección (Alt + F)</value>
@@ -4544,21 +4544,17 @@ Todos los cuadernos</value>
     <value>Reemplazar con:</value>
     <comment>label</comment>
   </data>
-  <data name="SearchDialog_findLabel.Text" xml:space="preserve">
-    <value>Encontrar:</value>
+  <data name="SearchDialogActionControl_introLabel.Text" xml:space="preserve">
+    <value>Ingrese una o más palabras clave, "frases citadas" y use mayúsculas y mayúsculas</value>
     <comment>label</comment>
   </data>
-  <data name="SearchDialog_introLabel.Text" xml:space="preserve">
-    <value>Ingrese una o más palabras clave, "frases entre comillas" y use mayúsculas Y y O</value>
-    <comment>intro label</comment>
-  </data>
-  <data name="SearchDialog_Title" xml:space="preserve">
-    <value>Buscar y mover / copiar</value>
-    <comment>dialog title</comment>
+  <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
+    <value>Ingrese los criterios de búsqueda para encontrar texto en la página actual</value>
+    <comment>label</comment>
   </data>
   <data name="SearchEngineDialog_deleteLabel.Text" xml:space="preserve">
-    <value>Eliminar:</value>
-    <comment>delete label</comment>
+    <value>Borrar:</value>
+    <comment>delete label NODUP</comment>
   </data>
   <data name="SearchEngineDialog_DeleteMessage" xml:space="preserve">
     <value>¿Eliminar {0}?</value>
@@ -5286,6 +5282,9 @@ Invertir</value>
   </data>
   <data name="word_Favorites" xml:space="preserve">
     <value>Favoritos</value>
+  </data>
+  <data name="word_Find" xml:space="preserve">
+    <value>Encontrar</value>
   </data>
   <data name="word_Folder" xml:space="preserve">
     <value>Carpeta</value>

@@ -22,6 +22,17 @@ namespace River.OneMoreAddIn.Commands
 		public SearchDialogTextControl()
 		{
 			InitializeComponent();
+
+			if (NeedsLocalizing())
+			{
+				Localize(new string[]
+				{
+					"introLabel",
+					"textLabel=word_Text",
+					"cancelButton=word_Cancel"
+				});
+			}
+
 			logger = Logger.Current;
 
 			// pattern to remove SPAN|A elements and &#nn; escaped characters
@@ -97,8 +108,10 @@ namespace River.OneMoreAddIn.Commands
 					var text = GetRawText(paragraph, ns);
 					if (text.Length > 0)
 					{
+						//logger.WriteLine($"testing [{text}]");
 						if (finder.IsMatch(text))
 						{
+							//logger.WriteLine("match");
 							var paragraphID = paragraph.Attribute("objectID").Value;
 							AddResult(one, page, paragraphID, text);
 						}

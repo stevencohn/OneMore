@@ -20,7 +20,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (NeedsLocalizing())
 			{
-				Text = Resx.SearchDialog_Title;
+				Text = Resx.word_Search;
 			}
 
 			var actSheet = tabControl.TabPages["searchAndGoTab"].Controls[0] as SearchDialogActionControl;

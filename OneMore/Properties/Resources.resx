@@ -117,6 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="AboutDialog.Text" xml:space="preserve">
     <value>OneMore Add-in</value>
     <comment>dialog title bar</comment>
@@ -4117,7 +4118,7 @@ Help Tab</value>
     <comment>ribbon search</comment>
   </data>
   <data name="ribSearchButton_Label" xml:space="preserve">
-    <value>Search and Copy/Move</value>
+    <value>Search</value>
     <comment>ribbon search</comment>
   </data>
   <data name="ribSearchButton_Screentip" xml:space="preserve">
@@ -4545,17 +4546,13 @@ All notebooks</value>
     <value>Replace with:</value>
     <comment>label</comment>
   </data>
-  <data name="SearchDialog_findLabel.Text" xml:space="preserve">
-    <value>Find:</value>
+  <data name="SearchDialogActionControl_introLabel.Text" xml:space="preserve">
+    <value>Enter one or more keywords, "quoted phrases", and use uppercase AND and OR</value>
     <comment>label</comment>
   </data>
-  <data name="SearchDialog_introLabel.Text" xml:space="preserve">
-    <value>Enter one or more keywords, "quoted phrases", and use uppercase AND and OR</value>
-    <comment>intro label</comment>
-  </data>
-  <data name="SearchDialog_Title" xml:space="preserve">
-    <value>Search and Move/Copy</value>
-    <comment>dialog title</comment>
+  <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
+    <value>Enter the search criteria to find text on the current page</value>
+    <comment>label</comment>
   </data>
   <data name="SearchEngineDialog_deleteLabel.Text" xml:space="preserve">
     <value>Delete:</value>
@@ -5288,6 +5285,9 @@ Invert</value>
   <data name="word_Favorites" xml:space="preserve">
     <value>Favorites</value>
   </data>
+  <data name="word_Find" xml:space="preserve">
+    <value>Find</value>
+  </data>
   <data name="word_Folder" xml:space="preserve">
     <value>Folder</value>
   </data>
@@ -5520,7 +5520,6 @@ Invert</value>
     <value>Word Counts</value>
     <comment>page title</comment>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="sponsor_dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Commands\Tools\sponsor-dark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

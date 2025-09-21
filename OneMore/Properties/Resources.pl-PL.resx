@@ -4118,8 +4118,8 @@ Zakładka Pomoc</value>
     <comment>Ribbon OneMore menu item, search and replace</comment>
   </data>
   <data name="ribSearchButton_Label" xml:space="preserve">
-    <value>Wyszukaj i skopiuj / ruszaj</value>
-    <comment>ribbon item</comment>
+    <value>Szukaj</value>
+    <comment>ribbon search</comment>
   </data>
   <data name="ribSearchButton_Screentip" xml:space="preserve">
     <value>Szukaj stron ze słów kluczowych i skopiuj / Przenieś do innej sekcji (ALT + F)</value>
@@ -4545,21 +4545,17 @@ Wszystkie notesy</value>
     <value>Zamienić:</value>
     <comment>label</comment>
   </data>
-  <data name="SearchDialog_findLabel.Text" xml:space="preserve">
-    <value>Znajdować:</value>
+  <data name="SearchDialogActionControl_introLabel.Text" xml:space="preserve">
+    <value>Wprowadź jedno lub więcej słów kluczowych, „cytowane frazy” i użyj wielkich i lub lub lub</value>
     <comment>label</comment>
   </data>
-  <data name="SearchDialog_introLabel.Text" xml:space="preserve">
-    <value>Wprowadź jeden lub więcej słów kluczowych, "cytowane frazy" i użyj wielkich liter i lub lub lub lub</value>
-    <comment>intro label</comment>
-  </data>
-  <data name="SearchDialog_Title" xml:space="preserve">
-    <value>Wyszukaj i przenieś / Kopiuj</value>
-    <comment>dialog title</comment>
+  <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
+    <value>Wprowadź kryteria wyszukiwania, aby znaleźć tekst na bieżącej stronie</value>
+    <comment>label</comment>
   </data>
   <data name="SearchEngineDialog_deleteLabel.Text" xml:space="preserve">
-    <value>Kasować:</value>
-    <comment>delete label</comment>
+    <value>Usuwać:</value>
+    <comment>delete label NODUP</comment>
   </data>
   <data name="SearchEngineDialog_DeleteMessage" xml:space="preserve">
     <value>Usuń {0}?</value>
@@ -5287,6 +5283,9 @@ Odwracać</value>
   </data>
   <data name="word_Favorites" xml:space="preserve">
     <value>Ulubione</value>
+  </data>
+  <data name="word_Find" xml:space="preserve">
+    <value>Znajdować</value>
   </data>
   <data name="word_Folder" xml:space="preserve">
     <value>Teczka</value>
