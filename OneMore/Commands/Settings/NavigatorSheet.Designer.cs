@@ -43,6 +43,7 @@ namespace River.OneMoreAddIn.Settings
 			this.depthLabel = new System.Windows.Forms.Label();
 			this.corrallBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.tooltip = new System.Windows.Forms.ToolTip(this.components);
+			this.elevateBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.layoutPanel.SuspendLayout();
 			this.advancedGroup.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.intervalBox)).BeginInit();
@@ -64,6 +65,7 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// layoutPanel
 			// 
+			this.layoutPanel.Controls.Add(this.elevateBox);
 			this.layoutPanel.Controls.Add(this.hidePinnedBox);
 			this.layoutPanel.Controls.Add(this.quickBox);
 			this.layoutPanel.Controls.Add(this.advancedGroup);
@@ -226,7 +228,7 @@ namespace River.OneMoreAddIn.Settings
 			this.corrallBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.corrallBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.corrallBox.Location = new System.Drawing.Point(7, 174);
-			this.corrallBox.Margin = new System.Windows.Forms.Padding(0);
+			this.corrallBox.Margin = new System.Windows.Forms.Padding(0, 0, 0, 5);
 			this.corrallBox.Name = "corrallBox";
 			this.corrallBox.Size = new System.Drawing.Size(400, 25);
 			this.corrallBox.StylizeImage = false;
@@ -236,6 +238,23 @@ namespace River.OneMoreAddIn.Settings
 			this.corrallBox.ThemedFore = null;
 			this.tooltip.SetToolTip(this.corrallBox, "Enabled only when multiple screens are available");
 			this.corrallBox.UseVisualStyleBackColor = true;
+			// 
+			// elevateBox
+			// 
+			this.elevateBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.elevateBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.elevateBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.elevateBox.Location = new System.Drawing.Point(7, 204);
+			this.elevateBox.Margin = new System.Windows.Forms.Padding(0, 0, 0, 5);
+			this.elevateBox.Name = "elevateBox";
+			this.elevateBox.Size = new System.Drawing.Size(400, 25);
+			this.elevateBox.StylizeImage = false;
+			this.elevateBox.TabIndex = 8;
+			this.elevateBox.Text = "Elevate Navigator when OneNote is elevated";
+			this.elevateBox.ThemedBack = null;
+			this.elevateBox.ThemedFore = null;
+			this.tooltip.SetToolTip(this.elevateBox, "Keep Navigator on top when OneNote has focus");
+			this.elevateBox.UseVisualStyleBackColor = true;
 			// 
 			// NavigatorSheet
 			// 
@@ -272,5 +291,6 @@ namespace River.OneMoreAddIn.Settings
 		private UI.MoreCheckBox disabledBox;
 		private UI.MoreCheckBox quickBox;
 		private UI.MoreCheckBox hidePinnedBox;
+		private UI.MoreCheckBox elevateBox;
 	}
 }

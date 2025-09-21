@@ -1903,6 +1903,10 @@ OneNoteファイル (*.one)</value>
     <value>ナビゲーションサービスを無効にします。これにより、ナビゲーターウィンドウが操作不能になります。</value>
     <comment>checkbox</comment>
   </data>
+  <data name="NavigatorSheet_elevateBox.Text" xml:space="preserve">
+    <value>OneNoteが昇格したときにナビゲーターを高めます</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="NavigatorSheet_hidePinnedBox.Text" xml:space="preserve">
     <value>マイリーディングリストパネルを非表示</value>
     <comment>checkbox</comment>

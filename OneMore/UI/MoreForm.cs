@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.UI
 	using System;
 	using System.Diagnostics;
 	using System.Drawing;
+	using System.Windows.Automation;
 	using System.Windows.Forms;
 
 
@@ -25,6 +26,10 @@ namespace River.OneMoreAddIn.UI
 		private ApplicationContext appContext;
 		private bool modeless = false;
 
+		private bool elevatedWithOneNote;
+		private int processId;
+		private int trackedId;
+
 
 		public MoreForm()
 		{
@@ -35,9 +40,26 @@ namespace River.OneMoreAddIn.UI
 
 
 		/// <summary>
-		/// 
+		/// Gets or sets the control that should be focused by default when the form is loaded.
 		/// </summary>
 		protected Control DefaultControl { get; set; }
+
+
+		/// <summary>
+		/// Gets or sets whether this form tracks the elevation of any ONENOTE window and,
+		/// based on user preference, will elevate this form as well.
+		/// </summary>
+		public bool ElevatedWithOneNote
+		{
+			get => elevatedWithOneNote;
+
+			set
+			{
+				elevatedWithOneNote = value;
+				processId = Process.GetCurrentProcess().Id;
+				trackedId = processId;
+			}
+		}
 
 
 		/// <summary>
@@ -59,6 +81,8 @@ namespace River.OneMoreAddIn.UI
 		/// </summary>
 		public int VerticalOffset { private get; set; }
 
+
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 		/// <summary>
 		/// Determines if the main OneNote thread culture differs from our default design-time
@@ -289,6 +313,11 @@ namespace River.OneMoreAddIn.UI
 			//logger.WriteLine($"showing [{Text}]");
 			base.OnShown(e);
 			TryFocus();
+
+			if (ElevatedWithOneNote)
+			{
+				Automation.AddAutomationFocusChangedEventHandler(OnFocusChanged);
+			}
 		}
 
 
@@ -305,6 +334,30 @@ namespace River.OneMoreAddIn.UI
 				DefaultControl.FindForm()?.Activate();
 				DefaultControl.Select();
 				DefaultControl.Focus();
+			}
+		}
+
+
+		/// <summary>
+		/// Uses Windows Automation to track when a main ONENOTE window is focused or elevated
+		/// on top of other windows, and elevates this form. Typically used for NavigatorWindow.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void OnFocusChanged(object sender, AutomationFocusChangedEventArgs e)
+		{
+			if (sender is AutomationElement element)
+			{
+				var pid = element.Current.ProcessId;
+				var process = Process.GetProcessById(pid);
+				var name = process.ProcessName;
+				if (name == "ONENOTE" && trackedId != pid && trackedId != processId)
+				{
+					//logger.WriteLine($"focused tracking elevating");
+					Elevate();
+				}
+
+				trackedId = pid;
 			}
 		}
 

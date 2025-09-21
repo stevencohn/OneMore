@@ -1901,6 +1901,10 @@ Deseja atualizar a página existente?</value>
     <value>Desabilite o serviço de navegação. Isso tornará a janela do Navegador inoperável.</value>
     <comment>checkbox</comment>
   </data>
+  <data name="NavigatorSheet_elevateBox.Text" xml:space="preserve">
+    <value>Elevar o navegador quando o OneNote estiver elevado</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="NavigatorSheet_hidePinnedBox.Text" xml:space="preserve">
     <value>Ocultar o painel Minha lista de leitura</value>
     <comment>checkbox</comment>

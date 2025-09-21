@@ -25,8 +25,8 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			if (new SettingsProvider()
-				.GetCollection(nameof(NavigatorSheet)).Get("disabled", false))
+			var settings = new SettingsProvider().GetCollection(nameof(NavigatorSheet));
+			if (settings.Get("disabled", false))
 			{
 				ShowInfo(Resx.NavigatorWindow_disabled);
 				return;
@@ -36,6 +36,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				window = new NavigatorWindow();
 				window.FormClosed += CloseNavigatorWindow;
+				window.ElevatedWithOneNote = settings.Get("elevated", false);
 				window.RunModeless();
 				return;
 			}
@@ -56,7 +57,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void CloseNavigatorWindow(object sender, FormClosedEventArgs e)
+		private static void CloseNavigatorWindow(object sender, FormClosedEventArgs e)
 		{
 			window.Dispose();
 			window = null;

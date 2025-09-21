@@ -1900,6 +1900,10 @@ Título personalizado 3</value>
     <value>Deshabilitar el servicio de navegación. Esto hará que la ventana del Navegador no funcione.</value>
     <comment>checkbox</comment>
   </data>
+  <data name="NavigatorSheet_elevateBox.Text" xml:space="preserve">
+    <value>Elevate Navigator cuando OneNote está elevado</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="NavigatorSheet_hidePinnedBox.Text" xml:space="preserve">
     <value>Ocultar el panel Mi lista de lectura</value>
     <comment>checkbox</comment>

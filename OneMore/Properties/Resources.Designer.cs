@@ -5159,6 +5159,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Elevate Navigator when OneNote is elevated.
+        /// </summary>
+        internal static string NavigatorSheet_elevateBox_Text {
+            get {
+                return ResourceManager.GetString("NavigatorSheet_elevateBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hide the My Reading List panel.
         /// </summary>
         internal static string NavigatorSheet_hidePinnedBox_Text {
