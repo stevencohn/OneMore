@@ -139,6 +139,7 @@
 			this.resultsView.TabIndex = 2;
 			this.resultsView.UseCompatibleStateImageBehavior = false;
 			this.resultsView.View = System.Windows.Forms.View.Details;
+			this.resultsView.Resize += new System.EventHandler(this.ResizeResultsView);
 			// 
 			// hitColumn
 			// 

@@ -15,6 +15,14 @@ namespace River.OneMoreAddIn.Commands
 
 	internal partial class SearchDialogTextControl : MoreUserControl
 	{
+		private sealed class SearchHit
+		{
+			public string Hyperlink { get; set; }
+			public string PageID { get; set; }
+			public string ObjectID { get; set; }
+		}
+
+
 		private readonly ILogger logger;
 		private readonly Regex cleaner;
 
@@ -79,12 +87,18 @@ namespace River.OneMoreAddIn.Commands
 			}
 		}
 
-		private sealed class SearchHit
+
+		private void ResizeResultsView(object sender, EventArgs e)
 		{
-			public string Hyperlink { get; set; }
-			public string PageID { get; set; }
-			public string ObjectID { get; set; }
+			if (sender is MoreListView view)
+			{
+				foreach (ColumnHeader column in view.Columns)
+				{
+					column.Width = view.Width - SystemInformation.VerticalScrollBarWidth * 2;
+				}
+			}
 		}
+
 
 		private async void Search(object sender, EventArgs e)
 		{
