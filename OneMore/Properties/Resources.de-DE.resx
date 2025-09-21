@@ -1900,6 +1900,10 @@ Möchten Sie die bestehende Seite aktualisieren?</value>
     <value>Deaktivieren Sie den Navigationsdienst. Dadurch wird das Navigator-Fenster funktionsunfähig.</value>
     <comment>checkbox</comment>
   </data>
+  <data name="NavigatorSheet_elevateBox.Text" xml:space="preserve">
+    <value>Navigator erhöhen, wenn OneNote erhöht ist</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="NavigatorSheet_hidePinnedBox.Text" xml:space="preserve">
     <value>Blenden Sie den Bereich „Meine Leseliste“ aus</value>
     <comment>checkbox</comment>

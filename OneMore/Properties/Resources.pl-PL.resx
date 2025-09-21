@@ -1901,6 +1901,10 @@ Czy chcesz odświeżyć istniejącą stronę?</value>
     <value>Wyłącz usługę nawigacji. Spowoduje to, że okno Nawigatora przestanie działać.</value>
     <comment>checkbox</comment>
   </data>
+  <data name="NavigatorSheet_elevateBox.Text" xml:space="preserve">
+    <value>Podnieś nawigator po podniesieniu OneNote</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="NavigatorSheet_hidePinnedBox.Text" xml:space="preserve">
     <value>Ukryj panel Moja lista czytelnicza</value>
     <comment>checkbox</comment>

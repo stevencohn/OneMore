@@ -1901,6 +1901,10 @@ Do you want to refresh the existing page?</value>
     <value>Disable the navigation service. This will render the Navigator window inoperaable.</value>
     <comment>checkbox</comment>
   </data>
+  <data name="NavigatorSheet_elevateBox.Text" xml:space="preserve">
+    <value>Elevate Navigator when OneNote is elevated</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="NavigatorSheet_hidePinnedBox.Text" xml:space="preserve">
     <value>Hide the My Reading List panel</value>
     <comment>checkbox</comment>

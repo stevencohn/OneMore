@@ -1900,6 +1900,10 @@
     <value>قم بتعطيل خدمة الملاحة. سيؤدي هذا إلى جعل نافذة المستكشف غير قابلة للتشغيل.</value>
     <comment>checkbox</comment>
   </data>
+  <data name="NavigatorSheet_elevateBox.Text" xml:space="preserve">
+    <value>رفع المستكشف عند ارتفاع OneNote</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="NavigatorSheet_hidePinnedBox.Text" xml:space="preserve">
     <value>إخفاء لوحة قائمة القراءة الخاصة بي</value>
     <comment>checkbox</comment>
