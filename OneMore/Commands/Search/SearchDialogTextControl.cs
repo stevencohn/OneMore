@@ -92,9 +92,18 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (sender is MoreListView view)
 			{
+				var w = view.Width - SystemInformation.VerticalScrollBarWidth;
 				foreach (ColumnHeader column in view.Columns)
 				{
-					column.Width = view.Width - SystemInformation.VerticalScrollBarWidth * 2;
+					column.Width = w;
+				}
+
+				foreach (MoreHostedListViewItem hosted in view.Items)
+				{
+					if (hosted.Control is MoreLinkLabel label)
+					{
+						label.Width = w;
+					}
 				}
 			}
 		}
