@@ -34,6 +34,7 @@
 			this.findBox = new River.OneMoreAddIn.UI.MoreTextBox();
 			this.searchButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.resultsView = new River.OneMoreAddIn.UI.MoreListView();
+			this.hitColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.SuspendLayout();
 			// 
 			// introLabel
@@ -122,8 +123,11 @@
 			this.resultsView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.resultsView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.hitColumn});
 			this.resultsView.ControlPadding = 2;
 			this.resultsView.FullRowSelect = true;
+			this.resultsView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
 			this.resultsView.HideSelection = false;
 			this.resultsView.HighlightBackground = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(193)))), ((int)(((byte)(255)))));
 			this.resultsView.HighlightForeground = System.Drawing.SystemColors.HighlightText;
@@ -135,6 +139,10 @@
 			this.resultsView.TabIndex = 2;
 			this.resultsView.UseCompatibleStateImageBehavior = false;
 			this.resultsView.View = System.Windows.Forms.View.Details;
+			// 
+			// hitColumn
+			// 
+			this.hitColumn.Text = "Hit";
 			// 
 			// SearchDialogTextControl
 			// 
@@ -164,5 +172,6 @@
 		private UI.MoreTextBox findBox;
 		private UI.MoreButton searchButton;
 		private UI.MoreListView resultsView;
+		private System.Windows.Forms.ColumnHeader hitColumn;
 	}
 }

@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.UI;
+	using System;
 	using System.Collections.Generic;
 	using System.Windows.Forms;
 	using Resx = Properties.Resources;
@@ -27,6 +28,8 @@ namespace River.OneMoreAddIn.Commands
 
 			var textSheet = tabControl.TabPages["searchTab"].Controls[0] as SearchDialogTextControl;
 			textSheet.SearchClosing += ClosingSearch;
+
+			ElevatedWithOneNote = true;
 		}
 
 
@@ -34,6 +37,13 @@ namespace River.OneMoreAddIn.Commands
 
 
 		public List<string> SelectedPages { get; private set; }
+
+
+		protected override void OnShown(EventArgs e)
+		{
+			var textSheet = tabControl.TabPages["searchTab"].Controls[0] as SearchDialogTextControl;
+			textSheet.Focus();
+		}
 
 
 		private void ClosingSearch(object sender, SearchCloseEventArgs e)
