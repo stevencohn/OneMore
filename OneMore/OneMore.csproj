@@ -249,6 +249,20 @@
     <Compile Include="Commands\References\CheckUrlsCommand.cs" />
     <Compile Include="Commands\References\HyperlinkProvider.cs" />
     <Compile Include="Commands\Reminders\CleanRemindersCommand.cs" />
+    <Compile Include="Commands\Search\SearchDialogActionControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Commands\Search\SearchDialogActionControl.Designer.cs">
+      <DependentUpon>SearchDialogActionControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commands\Search\SearchCloseEventArgs.cs" />
+    <Compile Include="Commands\Search\SearchDialogTextControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Commands\Search\SearchDialogTextControl.Designer.cs">
+      <DependentUpon>SearchDialogTextControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commands\Search\TextMatchBuilder.cs" />
     <Compile Include="Commands\Settings\VariablesSheet.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1236,6 +1250,12 @@
     <EmbeddedResource Include="Commands\References\BiLinkDialog.resx">
       <DependentUpon>BiLinkDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Search\SearchDialogActionControl.resx">
+      <DependentUpon>SearchDialogActionControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Search\SearchDialogTextControl.resx">
+      <DependentUpon>SearchDialogTextControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Commands\Settings\VariablesSheet.resx">
       <DependentUpon>VariablesSheet.cs</DependentUpon>
     </EmbeddedResource>
@@ -1814,7 +1834,7 @@
     <PackageReference Include="System.Buffers">
       <Version>4.6.1</Version>
     </PackageReference>
-    <PackageReference Include="System.Data.SQLite">
+    <PackageReference Include="System.Data.SQLite.Core">
       <Version>1.0.119</Version>
     </PackageReference>
     <PackageReference Include="System.Net.Http">
@@ -1824,7 +1844,7 @@
       <Version>6.1.2</Version>
     </PackageReference>
     <PackageReference Include="System.Threading.Tasks.Extensions">
-      <Version>4.6.3</Version>
+      <Version>4.5.4</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

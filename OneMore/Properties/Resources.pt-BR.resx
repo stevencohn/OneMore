@@ -4117,8 +4117,8 @@ Guia Ajuda</value>
     <comment>Ribbon OneMore menu item, search and replace</comment>
   </data>
   <data name="ribSearchButton_Label" xml:space="preserve">
-    <value>Pesquisar e copiar/mover</value>
-    <comment>ribbon item</comment>
+    <value>Procurar</value>
+    <comment>ribbon search</comment>
   </data>
   <data name="ribSearchButton_Screentip" xml:space="preserve">
     <value>Pesquisar palavras-chave nas páginas e copiar/mover para outra seção (Alt + F)</value>
@@ -4544,21 +4544,17 @@ Todos os cadernos</value>
     <value>Substituir com:</value>
     <comment>label</comment>
   </data>
-  <data name="SearchDialog_findLabel.Text" xml:space="preserve">
-    <value>Encontrar:</value>
+  <data name="SearchDialogActionControl_introLabel.Text" xml:space="preserve">
+    <value>Digite uma ou mais palavras -chave, "frases citadas" e use uppercase e e ou</value>
     <comment>label</comment>
   </data>
-  <data name="SearchDialog_introLabel.Text" xml:space="preserve">
-    <value>Insira uma ou mais palavras-chave, "frases entre aspas", e use E e OU maiúsculas</value>
-    <comment>intro label</comment>
-  </data>
-  <data name="SearchDialog_Title" xml:space="preserve">
-    <value>Pesquisar e mover/copiar</value>
-    <comment>dialog title</comment>
+  <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
+    <value>Digite os critérios de pesquisa para encontrar texto na página atual</value>
+    <comment>label</comment>
   </data>
   <data name="SearchEngineDialog_deleteLabel.Text" xml:space="preserve">
     <value>Excluir:</value>
-    <comment>delete label</comment>
+    <comment>delete label NODUP</comment>
   </data>
   <data name="SearchEngineDialog_DeleteMessage" xml:space="preserve">
     <value>Excluir {0}?</value>
@@ -5286,6 +5282,9 @@ Invertido</value>
   </data>
   <data name="word_Favorites" xml:space="preserve">
     <value>Favoritos</value>
+  </data>
+  <data name="word_Find" xml:space="preserve">
+    <value>Encontrar</value>
   </data>
   <data name="word_Folder" xml:space="preserve">
     <value>Pasta</value>

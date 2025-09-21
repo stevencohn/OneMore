@@ -10230,7 +10230,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Search and Copy/Move.
+        ///   Looks up a localized string similar to Search.
         /// </summary>
         internal static string ribSearchButton_Label {
             get {
@@ -11199,29 +11199,20 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Find:.
-        /// </summary>
-        internal static string SearchDialog_findLabel_Text {
-            get {
-                return ResourceManager.GetString("SearchDialog_findLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Enter one or more keywords, &quot;quoted phrases&quot;, and use uppercase AND and OR.
         /// </summary>
-        internal static string SearchDialog_introLabel_Text {
+        internal static string SearchDialogActionControl_introLabel_Text {
             get {
-                return ResourceManager.GetString("SearchDialog_introLabel.Text", resourceCulture);
+                return ResourceManager.GetString("SearchDialogActionControl_introLabel.Text", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Search and Move/Copy.
+        ///   Looks up a localized string similar to Enter the search criteria to find text on the current page.
         /// </summary>
-        internal static string SearchDialog_Title {
+        internal static string SearchDialogTextControl_introLabel_Text {
             get {
-                return ResourceManager.GetString("SearchDialog_Title", resourceCulture);
+                return ResourceManager.GetString("SearchDialogTextControl_introLabel.Text", resourceCulture);
             }
         }
         
@@ -13016,6 +13007,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_Favorites {
             get {
                 return ResourceManager.GetString("word_Favorites", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Find.
+        /// </summary>
+        internal static string word_Find {
+            get {
+                return ResourceManager.GetString("word_Find", resourceCulture);
             }
         }
         

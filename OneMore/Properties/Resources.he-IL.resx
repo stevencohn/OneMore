@@ -4116,8 +4116,8 @@ ISO-code then comma then language name</comment>
     <comment>Ribbon OneMore menu item, search and replace</comment>
   </data>
   <data name="ribSearchButton_Label" xml:space="preserve">
-    <value>חפש והעתק/הזז</value>
-    <comment>ribbon item</comment>
+    <value>לְחַפֵּשׂ</value>
+    <comment>ribbon search</comment>
   </data>
   <data name="ribSearchButton_Screentip" xml:space="preserve">
     <value>חפש בדפים אחר מילות מפתח והעתק/העבר למקטע אחר (Alt + F)</value>
@@ -4543,17 +4543,13 @@ ISO-code then comma then language name</comment>
     <value>להחליף ב:</value>
     <comment>label</comment>
   </data>
-  <data name="SearchDialog_findLabel.Text" xml:space="preserve">
-    <value>למצוא:</value>
+  <data name="SearchDialogActionControl_introLabel.Text" xml:space="preserve">
+    <value>הזן מילת מפתח אחת או יותר, "ביטויים מצוטטים" והשתמש</value>
     <comment>label</comment>
   </data>
-  <data name="SearchDialog_introLabel.Text" xml:space="preserve">
-    <value>הזן מילת מפתח אחת או יותר, "ביטויים מצוטטים", והשתמשו ב- SuperCace ו- AND</value>
-    <comment>intro label</comment>
-  </data>
-  <data name="SearchDialog_Title" xml:space="preserve">
-    <value>חפש והעבר/העתק</value>
-    <comment>dialog title</comment>
+  <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
+    <value>הזן את קריטריוני החיפוש כדי למצוא טקסט בעמוד הנוכחי</value>
+    <comment>label</comment>
   </data>
   <data name="SearchEngineDialog_deleteLabel.Text" xml:space="preserve">
     <value>לִמְחוֹק:</value>
@@ -5285,6 +5281,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Favorites" xml:space="preserve">
     <value>מועדפים</value>
+  </data>
+  <data name="word_Find" xml:space="preserve">
+    <value>לִמצוֹא</value>
   </data>
   <data name="word_Folder" xml:space="preserve">
     <value>תיקיה</value>

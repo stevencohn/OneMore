@@ -2,7 +2,7 @@
 // Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn.Commands.Search
+namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.UI;
 	using System;
@@ -13,8 +13,6 @@ namespace River.OneMoreAddIn.Commands.Search
 
 	internal partial class SearchDialog : MoreForm
 	{
-		private readonly OneNote one;
-
 
 		public SearchDialog()
 		{
@@ -22,25 +20,16 @@ namespace River.OneMoreAddIn.Commands.Search
 
 			if (NeedsLocalizing())
 			{
-				Text = Resx.SearchDialog_Title;
-
-				Localize(new string[]
-				{
-					"introLabel",
-					"findLabel",
-					"moveButton=word_Move",
-					"copyButton=word_Copy",
-					"cancelButton=word_Cancel"
-				});
-
-				scopeBox.Items.Clear();
-				scopeBox.Items.AddRange(Resx.phrase_scopeOptions.Split('\n'));
+				Text = Resx.word_Search;
 			}
 
-			scopeBox.SelectedIndex = 0;
-			SelectedPages = new List<string>();
+			var actSheet = tabControl.TabPages["searchAndGoTab"].Controls[0] as SearchDialogActionControl;
+			actSheet.SearchClosing += ClosingSearch;
 
-			one = new OneNote();
+			var textSheet = tabControl.TabPages["searchTab"].Controls[0] as SearchDialogTextControl;
+			textSheet.SearchClosing += ClosingSearch;
+
+			ElevatedWithOneNote = true;
 		}
 
 
@@ -50,97 +39,23 @@ namespace River.OneMoreAddIn.Commands.Search
 		public List<string> SelectedPages { get; private set; }
 
 
-		private void ChangeQuery(object sender, EventArgs e)
+		protected override void OnShown(EventArgs e)
 		{
-			searchButton.Enabled = findBox.Text.Trim().Length > 0;
+			var textSheet = tabControl.TabPages["searchTab"].Controls[0] as SearchDialogTextControl;
+			textSheet.Focus();
 		}
 
 
-		private void SearchOnKeydown(object sender, KeyEventArgs e)
+		private void ClosingSearch(object sender, SearchCloseEventArgs e)
 		{
-			if (e.KeyCode == Keys.Enter &&
-				findBox.Text.Trim().Length > 0)
+			if (e.DialogResult == DialogResult.OK &&
+				sender is SearchDialogActionControl sheet)
 			{
-				Search(sender, e);
-			}
-		}
-
-
-		private void Search(object sender, EventArgs e)
-		{
-			resultTree.Nodes.Clear();
-
-			string startId = string.Empty;
-			switch (scopeBox.SelectedIndex)
-			{
-				case 1: startId = one.CurrentNotebookId; break;
-				case 2: startId = one.CurrentSectionId; break;
+				CopySelections = sheet.CopySelections;
+				SelectedPages = sheet.SelectedPages;
 			}
 
-			var results = one.Search(startId, findBox.Text);
-
-			if (results.HasElements)
-			{
-				resultTree.Populate(results, one.GetNamespace(results));
-			}
-		}
-
-
-		// async event handlers should be be declared 'async void'
-		private async void ClickNode(object sender, TreeNodeMouseClickEventArgs e)
-		{
-			// thanksfully, Bounds specifies bounds of label
-			var node = e.Node as HierarchyNode;
-			if (node.Hyperlinked && e.Node.Bounds.Contains(e.Location))
-			{
-				var pageId = node.Root.Attribute("ID").Value;
-				if (!pageId.Equals(one.CurrentPageId))
-				{
-					await one.NavigateTo(pageId);
-				}
-			}
-		}
-
-
-		private void TreeAfterCheck(object sender, TreeViewEventArgs e)
-		{
-			var node = e.Node as HierarchyNode;
-			var id = node.Root.Attribute("ID").Value;
-
-			if (node.Checked)
-			{
-				if (!SelectedPages.Contains(id))
-				{
-					SelectedPages.Add(id);
-				}
-			}
-			else if (SelectedPages.Contains(id))
-			{
-				SelectedPages.Remove(id);
-			}
-
-			copyButton.Enabled = moveButton.Enabled = SelectedPages.Count > 0;
-		}
-
-
-		private void CopyPressed(object sender, EventArgs e)
-		{
-			CopySelections = true;
-			DialogResult = DialogResult.OK;
-			Close();
-		}
-
-
-		private void MovePressed(object sender, EventArgs e)
-		{
-			CopySelections = false;
-			DialogResult = DialogResult.OK;
-			Close();
-		}
-
-		private void Nevermind(object sender, EventArgs e)
-		{
-			DialogResult = DialogResult.Cancel;
+			DialogResult = e.DialogResult;
 			Close();
 		}
 	}

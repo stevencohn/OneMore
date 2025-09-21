@@ -4116,8 +4116,8 @@ Onglet Aide</value>
     <comment>Ribbon OneMore menu item, search and replace</comment>
   </data>
   <data name="ribSearchButton_Label" xml:space="preserve">
-    <value>Rechercher et copier / déplacer</value>
-    <comment>ribbon item</comment>
+    <value>Recherche</value>
+    <comment>ribbon search</comment>
   </data>
   <data name="ribSearchButton_Screentip" xml:space="preserve">
     <value>Rechercher dans les pages des mots-clés et copier / déplacer vers une autre section (Alt + F)</value>
@@ -4543,21 +4543,17 @@ Tous les notebooks</value>
     <value>Remplacer par:</value>
     <comment>label</comment>
   </data>
-  <data name="SearchDialog_findLabel.Text" xml:space="preserve">
-    <value>Trouver:</value>
+  <data name="SearchDialogActionControl_introLabel.Text" xml:space="preserve">
+    <value>Entrez un ou plusieurs mots clés, "phrases citées" et utilisez</value>
     <comment>label</comment>
   </data>
-  <data name="SearchDialog_introLabel.Text" xml:space="preserve">
-    <value>Saisissez un ou plusieurs mots clés, \"phrases entre guillemets\", et utilisez les majuscules ET et OU</value>
-    <comment>intro label</comment>
-  </data>
-  <data name="SearchDialog_Title" xml:space="preserve">
-    <value>Rechercher et déplacer / copier</value>
-    <comment>dialog title</comment>
+  <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
+    <value>Entrez les critères de recherche pour trouver du texte sur la page actuelle</value>
+    <comment>label</comment>
   </data>
   <data name="SearchEngineDialog_deleteLabel.Text" xml:space="preserve">
     <value>Supprimer:</value>
-    <comment>delete label</comment>
+    <comment>delete label NODUP</comment>
   </data>
   <data name="SearchEngineDialog_DeleteMessage" xml:space="preserve">
     <value>Supprimer {0} ?</value>
@@ -5284,6 +5280,9 @@ Inverser</value>
   </data>
   <data name="word_Favorites" xml:space="preserve">
     <value>Favoris</value>
+  </data>
+  <data name="word_Find" xml:space="preserve">
+    <value>Trouver</value>
   </data>
   <data name="word_Folder" xml:space="preserve">
     <value>Dossier</value>
