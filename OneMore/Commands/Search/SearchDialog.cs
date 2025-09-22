@@ -23,10 +23,12 @@ namespace River.OneMoreAddIn.Commands
 				Text = Resx.word_Search;
 			}
 
-			var actSheet = tabControl.TabPages["searchAndGoTab"].Controls[0] as SearchDialogActionControl;
+			var actTab = tabControl.TabPages["searchAndGoTab"];
+			var actSheet = actTab.Controls[0] as SearchDialogActionControl;
 			actSheet.SearchClosing += ClosingSearch;
 
-			var textSheet = tabControl.TabPages["searchTab"].Controls[0] as SearchDialogTextControl;
+			var textTab = tabControl.TabPages["searchTab"];
+			var textSheet = textTab.Controls[0] as SearchDialogTextControl;
 			textSheet.SearchClosing += ClosingSearch;
 
 			ElevatedWithOneNote = true;
