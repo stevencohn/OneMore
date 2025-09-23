@@ -84,6 +84,7 @@ namespace River.OneMoreAddIn.Commands
 				findBox.Text.Trim().Length > 0)
 			{
 				Search(sender, e);
+				e.Handled = true;
 			}
 		}
 

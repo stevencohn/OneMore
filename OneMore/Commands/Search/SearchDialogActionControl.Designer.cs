@@ -37,6 +37,12 @@
 			this.findBox = new River.OneMoreAddIn.UI.MoreTextBox();
 			this.findLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.introLabel = new River.OneMoreAddIn.UI.MoreLabel();
+			this.morePanel1 = new River.OneMoreAddIn.UI.MorePanel();
+			this.morePanel2 = new River.OneMoreAddIn.UI.MorePanel();
+			this.morePanel3 = new River.OneMoreAddIn.UI.MorePanel();
+			this.morePanel1.SuspendLayout();
+			this.morePanel2.SuspendLayout();
+			this.morePanel3.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// scopeBox
@@ -48,25 +54,23 @@
             "In all notebooks",
             "In this notebook",
             "In this section"});
-			this.scopeBox.Location = new System.Drawing.Point(610, 69);
+			this.scopeBox.Location = new System.Drawing.Point(590, 9);
 			this.scopeBox.Name = "scopeBox";
 			this.scopeBox.Size = new System.Drawing.Size(183, 28);
 			this.scopeBox.TabIndex = 2;
 			// 
 			// resultTree
 			// 
-			this.resultTree.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
 			this.resultTree.CheckBoxes = true;
+			this.resultTree.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.resultTree.DrawMode = System.Windows.Forms.TreeViewDrawMode.OwnerDrawText;
 			this.resultTree.HideSelection = false;
 			this.resultTree.HotTracking = true;
-			this.resultTree.Location = new System.Drawing.Point(23, 120);
+			this.resultTree.Location = new System.Drawing.Point(15, 125);
 			this.resultTree.Name = "resultTree";
 			this.resultTree.ShowLines = false;
 			this.resultTree.ShowRootLines = false;
-			this.resultTree.Size = new System.Drawing.Size(770, 448);
+			this.resultTree.Size = new System.Drawing.Size(782, 435);
 			this.resultTree.Suspend = false;
 			this.resultTree.TabIndex = 12;
 			this.resultTree.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.TreeAfterCheck);
@@ -80,7 +84,7 @@
 			this.copyButton.Enabled = false;
 			this.copyButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.copyButton.ImageOver = null;
-			this.copyButton.Location = new System.Drawing.Point(441, 576);
+			this.copyButton.Location = new System.Drawing.Point(423, 13);
 			this.copyButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.copyButton.Name = "copyButton";
 			this.copyButton.ShowBorder = true;
@@ -101,7 +105,7 @@
 			this.moveButton.Enabled = false;
 			this.moveButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.moveButton.ImageOver = null;
-			this.moveButton.Location = new System.Drawing.Point(561, 576);
+			this.moveButton.Location = new System.Drawing.Point(543, 13);
 			this.moveButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.moveButton.Name = "moveButton";
 			this.moveButton.ShowBorder = true;
@@ -122,7 +126,7 @@
 			this.searchButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.searchButton.Image = global::River.OneMoreAddIn.Properties.Resources.m_Search;
 			this.searchButton.ImageOver = null;
-			this.searchButton.Location = new System.Drawing.Point(535, 66);
+			this.searchButton.Location = new System.Drawing.Point(515, 5);
 			this.searchButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 15);
 			this.searchButton.Name = "searchButton";
 			this.searchButton.ShowBorder = true;
@@ -141,7 +145,7 @@
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
-			this.cancelButton.Location = new System.Drawing.Point(681, 576);
+			this.cancelButton.Location = new System.Drawing.Point(663, 13);
 			this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 15);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.ShowBorder = true;
@@ -159,7 +163,7 @@
 			this.findBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.findBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.findBox.Location = new System.Drawing.Point(71, 70);
+			this.findBox.Location = new System.Drawing.Point(59, 8);
 			this.findBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.findBox.Name = "findBox";
 			this.findBox.ProcessEnterKey = false;
@@ -173,7 +177,7 @@
 			// findLabel
 			// 
 			this.findLabel.AutoSize = true;
-			this.findLabel.Location = new System.Drawing.Point(19, 72);
+			this.findLabel.Location = new System.Drawing.Point(7, 12);
 			this.findLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.findLabel.Name = "findLabel";
 			this.findLabel.Size = new System.Drawing.Size(44, 20);
@@ -185,7 +189,7 @@
 			// introLabel
 			// 
 			this.introLabel.AutoSize = true;
-			this.introLabel.Location = new System.Drawing.Point(19, 20);
+			this.introLabel.Location = new System.Drawing.Point(4, 3);
 			this.introLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 15);
 			this.introLabel.Name = "introLabel";
 			this.introLabel.Size = new System.Drawing.Size(579, 20);
@@ -194,26 +198,81 @@
 			this.introLabel.ThemedBack = null;
 			this.introLabel.ThemedFore = null;
 			// 
+			// morePanel1
+			// 
+			this.morePanel1.BottomBorderColor = System.Drawing.SystemColors.ActiveBorder;
+			this.morePanel1.BottomBorderSize = 0;
+			this.morePanel1.Controls.Add(this.cancelButton);
+			this.morePanel1.Controls.Add(this.moveButton);
+			this.morePanel1.Controls.Add(this.copyButton);
+			this.morePanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.morePanel1.Location = new System.Drawing.Point(15, 560);
+			this.morePanel1.Margin = new System.Windows.Forms.Padding(0);
+			this.morePanel1.Name = "morePanel1";
+			this.morePanel1.Padding = new System.Windows.Forms.Padding(3);
+			this.morePanel1.Size = new System.Drawing.Size(782, 66);
+			this.morePanel1.TabIndex = 13;
+			this.morePanel1.ThemedBack = null;
+			this.morePanel1.ThemedFore = null;
+			this.morePanel1.TopBorderColor = System.Drawing.SystemColors.Control;
+			this.morePanel1.TopBorderSize = 0;
+			// 
+			// morePanel2
+			// 
+			this.morePanel2.BottomBorderColor = System.Drawing.SystemColors.ActiveBorder;
+			this.morePanel2.BottomBorderSize = 0;
+			this.morePanel2.Controls.Add(this.introLabel);
+			this.morePanel2.Dock = System.Windows.Forms.DockStyle.Top;
+			this.morePanel2.Location = new System.Drawing.Point(15, 15);
+			this.morePanel2.Margin = new System.Windows.Forms.Padding(0);
+			this.morePanel2.Name = "morePanel2";
+			this.morePanel2.Padding = new System.Windows.Forms.Padding(3);
+			this.morePanel2.Size = new System.Drawing.Size(782, 46);
+			this.morePanel2.TabIndex = 14;
+			this.morePanel2.ThemedBack = null;
+			this.morePanel2.ThemedFore = null;
+			this.morePanel2.TopBorderColor = System.Drawing.SystemColors.Control;
+			this.morePanel2.TopBorderSize = 0;
+			// 
+			// morePanel3
+			// 
+			this.morePanel3.BottomBorderColor = System.Drawing.SystemColors.ActiveBorder;
+			this.morePanel3.BottomBorderSize = 0;
+			this.morePanel3.Controls.Add(this.findBox);
+			this.morePanel3.Controls.Add(this.findLabel);
+			this.morePanel3.Controls.Add(this.searchButton);
+			this.morePanel3.Controls.Add(this.scopeBox);
+			this.morePanel3.Dock = System.Windows.Forms.DockStyle.Top;
+			this.morePanel3.Location = new System.Drawing.Point(15, 61);
+			this.morePanel3.Margin = new System.Windows.Forms.Padding(0);
+			this.morePanel3.Name = "morePanel3";
+			this.morePanel3.Padding = new System.Windows.Forms.Padding(3);
+			this.morePanel3.Size = new System.Drawing.Size(782, 64);
+			this.morePanel3.TabIndex = 15;
+			this.morePanel3.ThemedBack = null;
+			this.morePanel3.ThemedFore = null;
+			this.morePanel3.TopBorderColor = System.Drawing.SystemColors.Control;
+			this.morePanel3.TopBorderSize = 0;
+			// 
 			// SearchDialogActionControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Controls.Add(this.scopeBox);
 			this.Controls.Add(this.resultTree);
-			this.Controls.Add(this.copyButton);
-			this.Controls.Add(this.moveButton);
-			this.Controls.Add(this.searchButton);
-			this.Controls.Add(this.cancelButton);
-			this.Controls.Add(this.findBox);
-			this.Controls.Add(this.findLabel);
-			this.Controls.Add(this.introLabel);
+			this.Controls.Add(this.morePanel3);
+			this.Controls.Add(this.morePanel2);
+			this.Controls.Add(this.morePanel1);
 			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.Margin = new System.Windows.Forms.Padding(0);
-			this.Name = "SearchAndGoControl";
+			this.Name = "SearchDialogActionControl";
 			this.Padding = new System.Windows.Forms.Padding(15, 15, 15, 10);
 			this.Size = new System.Drawing.Size(812, 636);
+			this.morePanel1.ResumeLayout(false);
+			this.morePanel2.ResumeLayout(false);
+			this.morePanel2.PerformLayout();
+			this.morePanel3.ResumeLayout(false);
+			this.morePanel3.PerformLayout();
 			this.ResumeLayout(false);
-			this.PerformLayout();
 
 		}
 
@@ -228,5 +287,8 @@
 		private UI.MoreTextBox findBox;
 		private UI.MoreLabel findLabel;
 		private UI.MoreLabel introLabel;
+		private UI.MorePanel morePanel1;
+		private UI.MorePanel morePanel2;
+		private UI.MorePanel morePanel3;
 	}
 }

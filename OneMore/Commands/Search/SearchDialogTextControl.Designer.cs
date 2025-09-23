@@ -111,7 +111,7 @@
 			this.searchButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.searchButton.Image = global::River.OneMoreAddIn.Properties.Resources.m_Search;
 			this.searchButton.ImageOver = null;
-			this.searchButton.Location = new System.Drawing.Point(621, 4);
+			this.searchButton.Location = new System.Drawing.Point(621, 5);
 			this.searchButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 15);
 			this.searchButton.Name = "searchButton";
 			this.searchButton.ShowBorder = true;
