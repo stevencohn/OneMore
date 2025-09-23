@@ -27,6 +27,8 @@ namespace River.OneMoreAddIn.Commands
 			copying = false;
 
 			var dialog = new SearchDialog();
+			dialog.ElevatedWithOneNote = true;
+
 			dialog.RunModeless(async (sender, e) =>
 			{
 				if (sender is SearchDialog d && d.DialogResult == DialogResult.OK)

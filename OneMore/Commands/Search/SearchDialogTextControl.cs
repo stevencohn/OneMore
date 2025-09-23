@@ -121,7 +121,11 @@ namespace River.OneMoreAddIn.Commands
 			if (paragraphs.Any())
 			{
 				resultsView.SuspendLayout();
-				resultsView.Items.Clear();
+
+				if (resultsView.Items.Count > 0)
+				{
+					ClearResults();
+				}
 
 				var builder = new TextMatchBuilder(false, false);
 				var finder = builder.BuildRegex(findBox.Text);
@@ -144,6 +148,22 @@ namespace River.OneMoreAddIn.Commands
 
 				resultsView.ResumeLayout(true);
 			}
+		}
+
+
+		private void ClearResults()
+		{
+			foreach (MoreHostedListViewItem item in resultsView.Items)
+			{
+				if (item.Control is MoreLinkLabel label)
+				{
+					label.LinkClicked -= NavigateToHit;
+				}
+
+				item.Control?.Dispose();
+			}
+
+			resultsView.Items.Clear();
 		}
 
 
@@ -184,17 +204,19 @@ namespace River.OneMoreAddIn.Commands
 			};
 
 			link.Links.Add(new(0, 0, hit));
-			link.LinkClicked += new LinkLabelLinkClickedEventHandler(async (s, e) =>
-			{
-				if (s is MoreLinkLabel label &&
-					label.Links[0].LinkData is SearchHit hit)
-				{
-					await using var one = new OneNote();
-					await one.NavigateTo(hit.Hyperlink);
-				}
-			});
+			link.LinkClicked += NavigateToHit;
 
 			resultsView.AddHostedItem(link);
+		}
+
+
+		private async void NavigateToHit(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			if (e.Link.LinkData is SearchHit hit)
+			{
+				await using var one = new OneNote();
+				await one.NavigateTo(hit.Hyperlink);
+			}
 		}
 	}
 }

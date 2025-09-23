@@ -82,7 +82,7 @@
 			this.searchAndGoTab.Controls.Add(this.searchAndGoControl);
 			this.searchAndGoTab.Location = new System.Drawing.Point(4, 29);
 			this.searchAndGoTab.Name = "searchAndGoTab";
-			this.searchAndGoTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+			this.searchAndGoTab.Padding = new System.Windows.Forms.Padding(3);
 			this.searchAndGoTab.Size = new System.Drawing.Size(1094, 670);
 			this.searchAndGoTab.TabIndex = 0;
 			this.searchAndGoTab.Text = "Search and Move";
@@ -90,16 +90,14 @@
 			// 
 			// searchAndGoControl
 			// 
-			this.searchAndGoControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
 			this.searchAndGoControl.BackColor = System.Drawing.Color.Transparent;
+			this.searchAndGoControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.searchAndGoControl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.searchAndGoControl.Location = new System.Drawing.Point(3, 3);
 			this.searchAndGoControl.Margin = new System.Windows.Forms.Padding(0);
 			this.searchAndGoControl.Name = "searchAndGoControl";
 			this.searchAndGoControl.Padding = new System.Windows.Forms.Padding(15, 15, 15, 9);
-			this.searchAndGoControl.Size = new System.Drawing.Size(1084, 652);
+			this.searchAndGoControl.Size = new System.Drawing.Size(1088, 664);
 			this.searchAndGoControl.TabIndex = 0;
 			// 
 			// SearchDialog

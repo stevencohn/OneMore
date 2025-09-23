@@ -115,15 +115,10 @@ namespace River.OneMoreAddIn.Commands
 				plugin.Path = path;
 
 				// reader-makes-right
-				if (plugin.Version < 2)
+				if (plugin.Version < 3)
 				{
 					plugin.Version = Plugin.SchemaVersion;
 					plugin.Target = PluginTarget.Page;
-				}
-				else if (plugin.Version < 3)
-				{
-					plugin.Version = Plugin.SchemaVersion;
-					plugin.Target = plugin.TargetPage ? PluginTarget.Page : PluginTarget.Notebook;
 				}
 
 				return plugin;
