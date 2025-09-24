@@ -29,7 +29,7 @@ namespace River.OneMoreAddIn.Commands
 				});
 			}
 
-			DefaultControl = searchTab;
+			DefaultControl = textTab;
 			ElevatedWithOneNote = true;
 		}
 
@@ -45,22 +45,34 @@ namespace River.OneMoreAddIn.Commands
 			// base method must be called to complete the EvelatedWithOneNote procedure
 			base.OnShown(e);
 
-			var textSheet = tabControl.TabPages["searchTab"].Controls[0] as SearchDialogTextControl;
+			// force focus on textSheet's tabIndex(0) control
 			textSheet.Focus();
 		}
 
 
 		private void ClosingSearch(object sender, SearchCloseEventArgs e)
 		{
-			if (e.DialogResult == DialogResult.OK &&
-				sender is SearchDialogActionControl sheet)
+			if (e.DialogResult == DialogResult.OK && sender == actionSheet)
 			{
-				CopySelections = sheet.CopySelections;
-				SelectedPages = sheet.SelectedPages;
+				CopySelections = actionSheet.CopySelections;
+				SelectedPages = actionSheet.SelectedPages;
 			}
 
 			DialogResult = e.DialogResult;
 			Close();
+		}
+
+
+		private void TabSelected(object sender, EventArgs e)
+		{
+			if (tabControl.SelectedIndex == 0)
+			{
+				textSheet.Focus();
+			}
+			else
+			{
+				actionSheet.Focus();
+			}
 		}
 	}
 }
