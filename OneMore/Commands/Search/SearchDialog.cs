@@ -29,6 +29,7 @@ namespace River.OneMoreAddIn.Commands
 				});
 			}
 
+			DefaultControl = searchTab;
 			ElevatedWithOneNote = true;
 		}
 

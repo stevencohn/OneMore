@@ -117,7 +117,6 @@
 			this.MinimumSize = new System.Drawing.Size(720, 391);
 			this.Name = "SearchDialog";
 			this.Padding = new System.Windows.Forms.Padding(10, 9, 10, 9);
-			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Search and Move or Copy";
 			this.tabControl.ResumeLayout(false);
 			this.searchTab.ResumeLayout(false);
