@@ -52,7 +52,7 @@
 			this.tabControl.Padding = new System.Drawing.Point(0, 0);
 			this.tabControl.SelectedIndex = 0;
 			this.tabControl.Size = new System.Drawing.Size(1102, 703);
-			this.tabControl.TabIndex = 7;
+			this.tabControl.TabIndex = 0;
 			// 
 			// searchTab
 			// 
@@ -76,6 +76,7 @@
 			this.searchDialogTextControl.Padding = new System.Windows.Forms.Padding(15, 15, 15, 9);
 			this.searchDialogTextControl.Size = new System.Drawing.Size(1094, 670);
 			this.searchDialogTextControl.TabIndex = 0;
+			this.searchDialogTextControl.SearchClosing += new System.EventHandler<River.OneMoreAddIn.Commands.SearchCloseEventArgs>(this.ClosingSearch);
 			// 
 			// searchAndGoTab
 			// 
@@ -99,6 +100,7 @@
 			this.searchAndGoControl.Padding = new System.Windows.Forms.Padding(15, 15, 15, 9);
 			this.searchAndGoControl.Size = new System.Drawing.Size(1088, 664);
 			this.searchAndGoControl.TabIndex = 0;
+			this.searchAndGoControl.SearchClosing += new System.EventHandler<River.OneMoreAddIn.Commands.SearchCloseEventArgs>(this.ClosingSearch);
 			// 
 			// SearchDialog
 			// 
@@ -115,7 +117,6 @@
 			this.MinimumSize = new System.Drawing.Size(720, 391);
 			this.Name = "SearchDialog";
 			this.Padding = new System.Windows.Forms.Padding(10, 9, 10, 9);
-			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Search and Move or Copy";
 			this.tabControl.ResumeLayout(false);
 			this.searchTab.ResumeLayout(false);

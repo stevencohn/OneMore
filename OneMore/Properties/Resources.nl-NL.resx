@@ -4544,9 +4544,19 @@ Alle notitieboekjes</value>
     <value>Vervangen door:</value>
     <comment>label</comment>
   </data>
+  <data name="SearchDialog_searchAndGoTab.Text" xml:space="preserve">
+    <value>Zoeken en bewegen</value>
+    <comment>tab</comment>
+  </data>
   <data name="SearchDialogActionControl_introLabel.Text" xml:space="preserve">
     <value>Voer een of meer trefwoorden in, "geciteerde zinnen", en gebruik hoofdletters en en of</value>
     <comment>label</comment>
+  </data>
+  <data name="SearchDialogText_scopeOptions" xml:space="preserve">
+    <value>In dit notitieboekje
+In deze sectie
+Op deze pagina</value>
+    <comment>combobox</comment>
   </data>
   <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
     <value>Voer de zoekcriteria in om tekst te vinden op de huidige pagina</value>

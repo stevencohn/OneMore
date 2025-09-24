@@ -11199,11 +11199,31 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search and Move.
+        /// </summary>
+        internal static string SearchDialog_searchAndGoTab_Text {
+            get {
+                return ResourceManager.GetString("SearchDialog_searchAndGoTab.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter one or more keywords, &quot;quoted phrases&quot;, and use uppercase AND and OR.
         /// </summary>
         internal static string SearchDialogActionControl_introLabel_Text {
             get {
                 return ResourceManager.GetString("SearchDialogActionControl_introLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In this notebook
+        ///In this section
+        ///On this page.
+        /// </summary>
+        internal static string SearchDialogText_scopeOptions {
+            get {
+                return ResourceManager.GetString("SearchDialogText_scopeOptions", resourceCulture);
             }
         }
         

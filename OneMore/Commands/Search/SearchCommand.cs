@@ -15,6 +15,7 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private bool copying;
 		private List<string> pageIds;
+		private SearchDialog dialog;
 
 
 		public SearchCommand()
@@ -24,11 +25,15 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
+			if (dialog is not null)
+			{
+				dialog.Elevate();
+				return;
+			}
+
 			copying = false;
 
-			var dialog = new SearchDialog();
-			dialog.ElevatedWithOneNote = true;
-
+			dialog = new SearchDialog();
 			dialog.RunModeless(async (sender, e) =>
 			{
 				if (sender is SearchDialog d && d.DialogResult == DialogResult.OK)

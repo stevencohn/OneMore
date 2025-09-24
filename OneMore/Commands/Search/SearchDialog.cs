@@ -21,16 +21,15 @@ namespace River.OneMoreAddIn.Commands
 			if (NeedsLocalizing())
 			{
 				Text = Resx.word_Search;
+
+				Localize(new string[]
+				{
+					"searchTab=word_Search",
+					"searchAndGoTab"
+				});
 			}
 
-			var actTab = tabControl.TabPages["searchAndGoTab"];
-			var actSheet = actTab.Controls[0] as SearchDialogActionControl;
-			actSheet.SearchClosing += ClosingSearch;
-
-			var textTab = tabControl.TabPages["searchTab"];
-			var textSheet = textTab.Controls[0] as SearchDialogTextControl;
-			textSheet.SearchClosing += ClosingSearch;
-
+			DefaultControl = searchTab;
 			ElevatedWithOneNote = true;
 		}
 

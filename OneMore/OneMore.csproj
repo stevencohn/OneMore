@@ -262,6 +262,9 @@
     <Compile Include="Commands\Search\SearchDialogTextControl.Designer.cs">
       <DependentUpon>SearchDialogTextControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Search\SearchGroupControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Commands\Search\TextMatchBuilder.cs" />
     <Compile Include="Commands\Settings\VariablesSheet.cs">
       <SubType>UserControl</SubType>

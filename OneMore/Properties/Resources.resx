@@ -4546,9 +4546,19 @@ All notebooks</value>
     <value>Replace with:</value>
     <comment>label</comment>
   </data>
+  <data name="SearchDialog_searchAndGoTab.Text" xml:space="preserve">
+    <value>Search and Move</value>
+    <comment>tab</comment>
+  </data>
   <data name="SearchDialogActionControl_introLabel.Text" xml:space="preserve">
     <value>Enter one or more keywords, "quoted phrases", and use uppercase AND and OR</value>
     <comment>label</comment>
+  </data>
+  <data name="SearchDialogText_scopeOptions" xml:space="preserve">
+    <value>In this notebook
+In this section
+On this page</value>
+    <comment>combobox</comment>
   </data>
   <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
     <value>Enter the search criteria to find text on the current page</value>

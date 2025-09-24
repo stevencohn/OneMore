@@ -942,7 +942,8 @@ namespace River.OneMoreAddIn
 			var info = new HierarchyInfo
 			{
 				SectionId = secID,
-				Name = section.Attribute("name")?.Value
+				Name = section.Attribute("name")?.Value,
+				Color = section.Attribute("color")?.Value
 			};
 
 			// path

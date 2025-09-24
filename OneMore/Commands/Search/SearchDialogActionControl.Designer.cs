@@ -177,7 +177,7 @@
 			// findLabel
 			// 
 			this.findLabel.AutoSize = true;
-			this.findLabel.Location = new System.Drawing.Point(7, 12);
+			this.findLabel.Location = new System.Drawing.Point(7, 11);
 			this.findLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.findLabel.Name = "findLabel";
 			this.findLabel.Size = new System.Drawing.Size(44, 20);
