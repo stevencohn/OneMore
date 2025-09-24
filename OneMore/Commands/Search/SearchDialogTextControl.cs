@@ -44,6 +44,8 @@ namespace River.OneMoreAddIn.Commands
 				{
 					"introLabel",
 					"textLabel=word_Text",
+					"matchBox",
+					"regBox",
 					"cancelButton=word_Cancel"
 				});
 

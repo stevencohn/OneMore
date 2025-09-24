@@ -4548,7 +4548,7 @@ ISO-code then comma then language name</comment>
     <value>置換後:</value>
     <comment>label</comment>
   </data>
-  <data name="SearchDialog_searchAndGoTab.Text" xml:space="preserve">
+  <data name="SearchDialog_actionTab.Text" xml:space="preserve">
     <value>検索と移動</value>
     <comment>tab</comment>
   </data>
@@ -4565,6 +4565,14 @@ ISO-code then comma then language name</comment>
   <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
     <value>現在のページでテキストを見つけるには、検索条件を入力してください</value>
     <comment>label</comment>
+  </data>
+  <data name="SearchDialogTextControl_matchBox.Text" xml:space="preserve">
+    <value>マッチケース</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SearchDialogTextControl_regBox.Text" xml:space="preserve">
+    <value>正規表現を使用します</value>
+    <comment>checkbox</comment>
   </data>
   <data name="SearchEngineDialog_deleteLabel.Text" xml:space="preserve">
     <value>消去：</value>

@@ -24,8 +24,8 @@ namespace River.OneMoreAddIn.Commands
 
 				Localize(new string[]
 				{
-					"searchTab=word_Search",
-					"searchAndGoTab"
+					"textTab=word_Search",
+					"actionTab"
 				});
 			}
 

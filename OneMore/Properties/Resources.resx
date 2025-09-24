@@ -4546,7 +4546,7 @@ All notebooks</value>
     <value>Replace with:</value>
     <comment>label</comment>
   </data>
-  <data name="SearchDialog_searchAndGoTab.Text" xml:space="preserve">
+  <data name="SearchDialog_actionTab.Text" xml:space="preserve">
     <value>Search and Move</value>
     <comment>tab</comment>
   </data>
@@ -4563,6 +4563,14 @@ On this page</value>
   <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
     <value>Enter the search criteria to find text on the current page</value>
     <comment>label</comment>
+  </data>
+  <data name="SearchDialogTextControl_matchBox.Text" xml:space="preserve">
+    <value>Match case</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SearchDialogTextControl_regBox.Text" xml:space="preserve">
+    <value>Use regular expressions</value>
+    <comment>checkbox</comment>
   </data>
   <data name="SearchEngineDialog_deleteLabel.Text" xml:space="preserve">
     <value>Delete:</value>

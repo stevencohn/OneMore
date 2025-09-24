@@ -4543,7 +4543,7 @@ Tous les notebooks</value>
     <value>Remplacer par:</value>
     <comment>label</comment>
   </data>
-  <data name="SearchDialog_searchAndGoTab.Text" xml:space="preserve">
+  <data name="SearchDialog_actionTab.Text" xml:space="preserve">
     <value>Recherche et déplacer</value>
     <comment>tab</comment>
   </data>
@@ -4560,6 +4560,14 @@ Sur cette page</value>
   <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
     <value>Entrez les critères de recherche pour trouver du texte sur la page actuelle</value>
     <comment>label</comment>
+  </data>
+  <data name="SearchDialogTextControl_matchBox.Text" xml:space="preserve">
+    <value>Caisse de correspondance</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SearchDialogTextControl_regBox.Text" xml:space="preserve">
+    <value>Utiliser des expressions régulières</value>
+    <comment>checkbox</comment>
   </data>
   <data name="SearchEngineDialog_deleteLabel.Text" xml:space="preserve">
     <value>Supprimer:</value>
