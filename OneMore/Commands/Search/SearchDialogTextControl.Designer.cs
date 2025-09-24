@@ -40,6 +40,8 @@
 			this.progressBar = new System.Windows.Forms.ProgressBar();
 			this.morePanel2 = new River.OneMoreAddIn.UI.MorePanel();
 			this.morePanel3 = new River.OneMoreAddIn.UI.MorePanel();
+			this.regBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.matchBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.scopeBox = new System.Windows.Forms.ComboBox();
 			this.morePanel1.SuspendLayout();
 			this.morePanel2.SuspendLayout();
@@ -138,10 +140,10 @@
 			this.resultsView.HideSelection = false;
 			this.resultsView.HighlightBackground = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(193)))), ((int)(((byte)(255)))));
 			this.resultsView.HighlightForeground = System.Drawing.SystemColors.HighlightText;
-			this.resultsView.Location = new System.Drawing.Point(15, 125);
+			this.resultsView.Location = new System.Drawing.Point(15, 174);
 			this.resultsView.Name = "resultsView";
 			this.resultsView.RowHeight = 24;
-			this.resultsView.Size = new System.Drawing.Size(782, 435);
+			this.resultsView.Size = new System.Drawing.Size(782, 386);
 			this.resultsView.SortedBackground = System.Drawing.SystemColors.Window;
 			this.resultsView.TabIndex = 0;
 			this.resultsView.TabStop = false;
@@ -215,6 +217,8 @@
 			// 
 			this.morePanel3.BottomBorderColor = System.Drawing.SystemColors.ActiveBorder;
 			this.morePanel3.BottomBorderSize = 0;
+			this.morePanel3.Controls.Add(this.regBox);
+			this.morePanel3.Controls.Add(this.matchBox);
 			this.morePanel3.Controls.Add(this.scopeBox);
 			this.morePanel3.Controls.Add(this.findBox);
 			this.morePanel3.Controls.Add(this.textLabel);
@@ -224,12 +228,45 @@
 			this.morePanel3.Margin = new System.Windows.Forms.Padding(0);
 			this.morePanel3.Name = "morePanel3";
 			this.morePanel3.Padding = new System.Windows.Forms.Padding(3);
-			this.morePanel3.Size = new System.Drawing.Size(782, 64);
+			this.morePanel3.Size = new System.Drawing.Size(782, 113);
 			this.morePanel3.TabIndex = 0;
 			this.morePanel3.ThemedBack = null;
 			this.morePanel3.ThemedFore = null;
 			this.morePanel3.TopBorderColor = System.Drawing.SystemColors.Control;
 			this.morePanel3.TopBorderSize = 0;
+			// 
+			// regBox
+			// 
+			this.regBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.regBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.regBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.regBox.Location = new System.Drawing.Point(58, 72);
+			this.regBox.Margin = new System.Windows.Forms.Padding(4, 1, 4, 3);
+			this.regBox.Name = "regBox";
+			this.regBox.Size = new System.Drawing.Size(213, 25);
+			this.regBox.StylizeImage = false;
+			this.regBox.TabIndex = 13;
+			this.regBox.Text = "Use regular expressions";
+			this.regBox.ThemedBack = null;
+			this.regBox.ThemedFore = null;
+			this.regBox.UseVisualStyleBackColor = true;
+			this.regBox.CheckedChanged += new System.EventHandler(this.TogglerRegBox);
+			// 
+			// matchBox
+			// 
+			this.matchBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.matchBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.matchBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.matchBox.Location = new System.Drawing.Point(58, 44);
+			this.matchBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 3);
+			this.matchBox.Name = "matchBox";
+			this.matchBox.Size = new System.Drawing.Size(119, 25);
+			this.matchBox.StylizeImage = false;
+			this.matchBox.TabIndex = 12;
+			this.matchBox.Text = "Match case";
+			this.matchBox.ThemedBack = null;
+			this.matchBox.ThemedFore = null;
+			this.matchBox.UseVisualStyleBackColor = true;
 			// 
 			// scopeBox
 			// 
@@ -283,5 +320,7 @@
 		private System.Windows.Forms.ProgressBar progressBar;
 		private UI.MoreLabel pageLabel;
 		private System.Windows.Forms.ComboBox scopeBox;
+		private UI.MoreCheckBox regBox;
+		private UI.MoreCheckBox matchBox;
 	}
 }

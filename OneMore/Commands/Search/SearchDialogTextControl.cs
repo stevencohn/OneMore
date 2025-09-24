@@ -99,7 +99,32 @@ namespace River.OneMoreAddIn.Commands
 		private void ChangedText(object sender, EventArgs e)
 		{
 			var text = findBox.Text.Trim();
-			searchButton.Enabled = text.Length > 0;
+
+			if (text.Length == 0)
+			{
+				searchButton.Enabled = false;
+				searchButton.NotifyDefault(false);
+				return;
+			}
+
+			if (regBox.Checked)
+			{
+				try
+				{
+					_ = new Regex(text);
+				}
+				catch
+				{
+					// swallow bad regex
+					searchButton.Enabled = false;
+					searchButton.NotifyDefault(false);
+					return;
+				}
+
+			}
+
+			searchButton.Enabled = true;
+			searchButton.NotifyDefault(true);
 		}
 
 
@@ -139,6 +164,13 @@ namespace River.OneMoreAddIn.Commands
 					// swallow null reference after CancellationRequested
 				}
 			}
+		}
+
+
+		private void TogglerRegBox(object sender, EventArgs e)
+		{
+			searchButton.Enabled = !regBox.Checked;
+			ChangedText(sender, e);
 		}
 
 
@@ -347,7 +379,8 @@ namespace River.OneMoreAddIn.Commands
 				return hits;
 			}
 
-			var builder = new TextMatchBuilder(false, false);
+			var builder = new TextMatchBuilder(regBox.Checked, matchBox.Checked);
+
 			var finder = builder.BuildRegex(findBox.Text);
 			//logger.WriteLine(finder.ToString());
 
