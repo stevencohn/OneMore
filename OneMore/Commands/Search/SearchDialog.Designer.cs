@@ -52,7 +52,7 @@
 			this.tabControl.Padding = new System.Drawing.Point(0, 0);
 			this.tabControl.SelectedIndex = 0;
 			this.tabControl.Size = new System.Drawing.Size(1102, 703);
-			this.tabControl.TabIndex = 7;
+			this.tabControl.TabIndex = 0;
 			// 
 			// searchTab
 			// 
