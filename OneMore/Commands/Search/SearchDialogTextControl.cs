@@ -164,7 +164,7 @@ namespace River.OneMoreAddIn.Commands
 				var section = await one.GetSection();
 				var ns = one.GetNamespace(section);
 				SetupProgressBar(section.Descendants(ns + "Page").Count());
-				await SearchSection(one, section, string.Empty);
+				await SearchSection(one, section);
 			}
 			else
 			{
@@ -227,7 +227,7 @@ namespace River.OneMoreAddIn.Commands
 						break;
 					}
 
-					await SearchSection(one, section, path);
+					await SearchSection(one, section);
 				}
 
 				var sectionGroups = parent.Elements(ns + "SectionGroup")
@@ -263,7 +263,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task SearchSection(OneNote one, XElement section, string path)
+		private async Task SearchSection(OneNote one, XElement section)
 		{
 			var ns = one.GetNamespace(section);
 			var sectionId = section.Attribute("ID").Value;
@@ -351,6 +351,7 @@ namespace River.OneMoreAddIn.Commands
 				try
 				{
 					if (source?.IsCancellationRequested == true) { break; }
+					await Task.Yield();
 				}
 				catch (TaskCanceledException)
 				{
