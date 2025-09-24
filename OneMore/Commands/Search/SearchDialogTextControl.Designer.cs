@@ -143,7 +143,8 @@
 			this.resultsView.RowHeight = 24;
 			this.resultsView.Size = new System.Drawing.Size(782, 435);
 			this.resultsView.SortedBackground = System.Drawing.SystemColors.Window;
-			this.resultsView.TabIndex = 2;
+			this.resultsView.TabIndex = 0;
+			this.resultsView.TabStop = false;
 			this.resultsView.UseCompatibleStateImageBehavior = false;
 			this.resultsView.View = System.Windows.Forms.View.Details;
 			this.resultsView.Resize += new System.EventHandler(this.ResizeResultsView);
@@ -164,7 +165,7 @@
 			this.morePanel1.Name = "morePanel1";
 			this.morePanel1.Padding = new System.Windows.Forms.Padding(3);
 			this.morePanel1.Size = new System.Drawing.Size(782, 66);
-			this.morePanel1.TabIndex = 12;
+			this.morePanel1.TabIndex = 1;
 			this.morePanel1.ThemedBack = null;
 			this.morePanel1.ThemedFore = null;
 			this.morePanel1.TopBorderColor = System.Drawing.SystemColors.Control;
@@ -224,7 +225,7 @@
 			this.morePanel3.Name = "morePanel3";
 			this.morePanel3.Padding = new System.Windows.Forms.Padding(3);
 			this.morePanel3.Size = new System.Drawing.Size(782, 64);
-			this.morePanel3.TabIndex = 14;
+			this.morePanel3.TabIndex = 0;
 			this.morePanel3.ThemedBack = null;
 			this.morePanel3.ThemedFore = null;
 			this.morePanel3.TopBorderColor = System.Drawing.SystemColors.Control;
@@ -242,7 +243,7 @@
 			this.scopeBox.Location = new System.Drawing.Point(592, 7);
 			this.scopeBox.Name = "scopeBox";
 			this.scopeBox.Size = new System.Drawing.Size(183, 28);
-			this.scopeBox.TabIndex = 12;
+			this.scopeBox.TabIndex = 2;
 			// 
 			// SearchDialogTextControl
 			// 
