@@ -4544,7 +4544,7 @@ ISO-code then comma then language name</comment>
     <value>استبدل ب:</value>
     <comment>label</comment>
   </data>
-  <data name="SearchDialog_searchAndGoTab.Text" xml:space="preserve">
+  <data name="SearchDialog_actionTab.Text" xml:space="preserve">
     <value>البحث والتحرك</value>
     <comment>tab</comment>
   </data>
@@ -4561,6 +4561,14 @@ ISO-code then comma then language name</comment>
   <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
     <value>أدخل معايير البحث للعثور على نص على الصفحة الحالية</value>
     <comment>label</comment>
+  </data>
+  <data name="SearchDialogTextControl_matchBox.Text" xml:space="preserve">
+    <value>حالة المباراة</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SearchDialogTextControl_regBox.Text" xml:space="preserve">
+    <value>استخدم التعبيرات العادية</value>
+    <comment>checkbox</comment>
   </data>
   <data name="SearchEngineDialog_deleteLabel.Text" xml:space="preserve">
     <value>يمسح:</value>

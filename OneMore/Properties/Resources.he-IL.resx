@@ -4543,7 +4543,7 @@ ISO-code then comma then language name</comment>
     <value>להחליף ב:</value>
     <comment>label</comment>
   </data>
-  <data name="SearchDialog_searchAndGoTab.Text" xml:space="preserve">
+  <data name="SearchDialog_actionTab.Text" xml:space="preserve">
     <value>לחפש ולעבור</value>
     <comment>tab</comment>
   </data>
@@ -4560,6 +4560,14 @@ ISO-code then comma then language name</comment>
   <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
     <value>הזן את קריטריוני החיפוש כדי למצוא טקסט בעמוד הנוכחי</value>
     <comment>label</comment>
+  </data>
+  <data name="SearchDialogTextControl_matchBox.Text" xml:space="preserve">
+    <value>מקרה התאמה</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SearchDialogTextControl_regBox.Text" xml:space="preserve">
+    <value>השתמש בביטויים רגילים</value>
+    <comment>checkbox</comment>
   </data>
   <data name="SearchEngineDialog_deleteLabel.Text" xml:space="preserve">
     <value>לִמְחוֹק:</value>

@@ -4544,7 +4544,7 @@ Alle notitieboekjes</value>
     <value>Vervangen door:</value>
     <comment>label</comment>
   </data>
-  <data name="SearchDialog_searchAndGoTab.Text" xml:space="preserve">
+  <data name="SearchDialog_actionTab.Text" xml:space="preserve">
     <value>Zoeken en bewegen</value>
     <comment>tab</comment>
   </data>
@@ -4561,6 +4561,14 @@ Op deze pagina</value>
   <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
     <value>Voer de zoekcriteria in om tekst te vinden op de huidige pagina</value>
     <comment>label</comment>
+  </data>
+  <data name="SearchDialogTextControl_matchBox.Text" xml:space="preserve">
+    <value>Match case</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SearchDialogTextControl_regBox.Text" xml:space="preserve">
+    <value>Gebruik reguliere uitdrukkingen</value>
+    <comment>checkbox</comment>
   </data>
   <data name="SearchEngineDialog_deleteLabel.Text" xml:space="preserve">
     <value>Verwijderen:</value>

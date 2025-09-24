@@ -4540,7 +4540,7 @@ Alle Notizbücher</value>
     <value>Ersetzen mit:</value>
     <comment>label</comment>
   </data>
-  <data name="SearchDialog_searchAndGoTab.Text" xml:space="preserve">
+  <data name="SearchDialog_actionTab.Text" xml:space="preserve">
     <value>Suchen und bewegen</value>
     <comment>tab</comment>
   </data>
@@ -4557,6 +4557,14 @@ Auf dieser Seite</value>
   <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
     <value>Geben Sie die Suchkriterien ein, um Text auf der aktuellen Seite zu finden</value>
     <comment>label</comment>
+  </data>
+  <data name="SearchDialogTextControl_matchBox.Text" xml:space="preserve">
+    <value>Match -Fall</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SearchDialogTextControl_regBox.Text" xml:space="preserve">
+    <value>Verwenden Sie reguläre Ausdrücke</value>
+    <comment>checkbox</comment>
   </data>
   <data name="SearchEngineDialog_deleteLabel.Text" xml:space="preserve">
     <value>Löschen:</value>

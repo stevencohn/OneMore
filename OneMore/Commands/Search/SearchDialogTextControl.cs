@@ -44,6 +44,8 @@ namespace River.OneMoreAddIn.Commands
 				{
 					"introLabel",
 					"textLabel=word_Text",
+					"matchBox",
+					"regBox",
 					"cancelButton=word_Cancel"
 				});
 
@@ -53,8 +55,6 @@ namespace River.OneMoreAddIn.Commands
 
 			scopeBox.SelectedIndex = 2;
 			pageLabel.Text = string.Empty;
-
-			searchButton.NotifyDefault(true);
 
 			logger = Logger.Current;
 
@@ -96,10 +96,44 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private void ChangeSelection(object sender, EventArgs e)
+		{
+			if (resultsView.SelectedItems.Count > 0)
+			{
+				nextButton.Enabled = prevButton.Enabled = true;
+			}
+		}
+
+
 		private void ChangedText(object sender, EventArgs e)
 		{
 			var text = findBox.Text.Trim();
-			searchButton.Enabled = text.Length > 0;
+
+			if (text.Length == 0)
+			{
+				searchButton.Enabled = false;
+				searchButton.NotifyDefault(false);
+				return;
+			}
+
+			if (regBox.Checked)
+			{
+				try
+				{
+					_ = new Regex(text);
+				}
+				catch
+				{
+					// swallow bad regex
+					searchButton.Enabled = false;
+					searchButton.NotifyDefault(false);
+					return;
+				}
+
+			}
+
+			searchButton.Enabled = true;
+			searchButton.NotifyDefault(true);
 		}
 
 
@@ -142,6 +176,13 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private void TogglerRegBox(object sender, EventArgs e)
+		{
+			searchButton.Enabled = !regBox.Checked;
+			ChangedText(sender, e);
+		}
+
+
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 		private async void Search(object sender, EventArgs e)
@@ -152,6 +193,8 @@ namespace River.OneMoreAddIn.Commands
 			if (resultsView.Items.Count > 0)
 			{
 				ClearResults();
+
+				nextButton.Enabled = prevButton.Enabled = false;
 			}
 
 			await using var one = new OneNote();
@@ -347,7 +390,8 @@ namespace River.OneMoreAddIn.Commands
 				return hits;
 			}
 
-			var builder = new TextMatchBuilder(false, false);
+			var builder = new TextMatchBuilder(regBox.Checked, matchBox.Checked);
+
 			var finder = builder.BuildRegex(findBox.Text);
 			//logger.WriteLine(finder.ToString());
 
@@ -425,8 +469,83 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (e.Link.LinkData is SearchHit hit)
 			{
+				if (resultsView.SelectedItems.Count > 0)
+				{
+					var item = resultsView.SelectedItems[0] as MoreHostedListViewItem;
+					item.Selected = false;
+
+					var link = item.Control as MoreLinkLabel;
+					link.Selected = false;
+				}
+
+				var label = sender as MoreLinkLabel;
+
+				// Convert LinkLabel location to ListView client coordinates
+				var relativePoint = resultsView.PointToClient(label.PointToScreen(Point.Empty));
+				var info = resultsView.HitTest(relativePoint);
+				if (info.Item is not null)
+				{
+					var item = info.Item;
+					item.Selected = true;
+					label.Selected = true;
+				}
+
 				await using var one = new OneNote();
 				await one.NavigateTo(hit.Hyperlink);
+
+				resultsView.Focus();
+			}
+		}
+
+
+		private void MoveToPreviousSelection(object sender, EventArgs e)
+		{
+			MoveTo(-1);
+		}
+
+		private void MoveToNextSelection(object sender, EventArgs e)
+		{
+			MoveTo(1);
+		}
+
+		private void MoveTo(int delta)
+		{
+			var index = resultsView.SelectedIndices[0];
+			if ((delta < 0 && index > 0) ||
+				(delta > 0 && index < resultsView.Items.Count - 1))
+			{
+				var item = resultsView.Items[index] as MoreHostedListViewItem;
+				item.Selected = false;
+				var label = item.Control as MoreLinkLabel;
+				label.Selected = false;
+
+				item = resultsView.Items[index + delta] as MoreHostedListViewItem;
+				item.Selected = true;
+				item.EnsureVisible();
+
+				label = item.Control as MoreLinkLabel;
+				label.Selected = true;
+				NavigateToHit(label, new LinkLabelLinkClickedEventArgs(label.Links[0]));
+			}
+
+			resultsView.Focus();
+		}
+
+
+		private void HandleNavKey(object sender, KeyEventArgs e)
+		{
+			if (resultsView.SelectedItems.Count > 0)
+			{
+				if (e.KeyCode == Keys.N && e.Modifiers == Keys.None)
+				{
+					MoveTo(1);
+					e.Handled = true;
+				}
+				else if (e.KeyCode == Keys.P && e.Modifiers == Keys.None)
+				{
+					MoveTo(-1);
+					e.Handled = true;
+				}
 			}
 		}
 	}

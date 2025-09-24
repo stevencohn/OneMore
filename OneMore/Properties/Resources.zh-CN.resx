@@ -4537,7 +4537,7 @@ ISO-code then comma then language name</comment>
     <value>用。。。来代替:</value>
     <comment>label</comment>
   </data>
-  <data name="SearchDialog_searchAndGoTab.Text" xml:space="preserve">
+  <data name="SearchDialog_actionTab.Text" xml:space="preserve">
     <value>搜索和移动</value>
     <comment>tab</comment>
   </data>
@@ -4554,6 +4554,14 @@ ISO-code then comma then language name</comment>
   <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
     <value>输入搜索标准以在当前页面上查找文本</value>
     <comment>label</comment>
+  </data>
+  <data name="SearchDialogTextControl_matchBox.Text" xml:space="preserve">
+    <value>匹配案例</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SearchDialogTextControl_regBox.Text" xml:space="preserve">
+    <value>使用正则表达式</value>
+    <comment>checkbox</comment>
   </data>
   <data name="SearchEngineDialog_deleteLabel.Text" xml:space="preserve">
     <value>删除：</value>

@@ -4544,7 +4544,7 @@ Todos los cuadernos</value>
     <value>Reemplazar con:</value>
     <comment>label</comment>
   </data>
-  <data name="SearchDialog_searchAndGoTab.Text" xml:space="preserve">
+  <data name="SearchDialog_actionTab.Text" xml:space="preserve">
     <value>Buscar y moverse</value>
     <comment>tab</comment>
   </data>
@@ -4561,6 +4561,14 @@ En esta página</value>
   <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
     <value>Ingrese los criterios de búsqueda para encontrar texto en la página actual</value>
     <comment>label</comment>
+  </data>
+  <data name="SearchDialogTextControl_matchBox.Text" xml:space="preserve">
+    <value>Estuche</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SearchDialogTextControl_regBox.Text" xml:space="preserve">
+    <value>Use expresiones regulares</value>
+    <comment>checkbox</comment>
   </data>
   <data name="SearchEngineDialog_deleteLabel.Text" xml:space="preserve">
     <value>Borrar:</value>

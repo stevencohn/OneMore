@@ -16,7 +16,9 @@ namespace River.OneMoreAddIn.UI
 	internal class MoreLinkLabel : LinkLabel, ILoadControl
 	{
 		private readonly IntPtr hcursor;
+		private Color back;
 		private Color fore;
+		private bool selected;
 
 
 		public MoreLinkLabel()
@@ -37,6 +39,25 @@ namespace River.OneMoreAddIn.UI
 			get;
 			set;
 		} = Color.Orchid;
+
+
+		public bool Selected
+		{
+			get => selected;
+			set
+			{
+				selected = value;
+				if (selected)
+				{
+					back = BackColor;
+					BackColor = ThemeManager.Instance.GetColor("LinkHighlight");
+				}
+				else
+				{
+					BackColor = back;
+				}
+			}
+		}
 
 
 		public bool StrictColors { get; set; }
@@ -62,7 +83,7 @@ namespace River.OneMoreAddIn.UI
 				ActiveLinkColor = foreColor;
 				HoverColor = manager.GetColor("HoverColor");
 
-				BackColor = !string.IsNullOrWhiteSpace(ThemedBack)
+				BackColor = back = !string.IsNullOrWhiteSpace(ThemedBack)
 					? manager.GetColor(ThemedBack)
 					: Parent.BackColor;
 			}

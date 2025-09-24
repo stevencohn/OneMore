@@ -60,7 +60,7 @@
 			this.textTab.Controls.Add(this.textSheet);
 			this.textTab.Location = new System.Drawing.Point(4, 29);
 			this.textTab.Margin = new System.Windows.Forms.Padding(0);
-			this.textTab.Name = "searchTab";
+			this.textTab.Name = "textTab";
 			this.textTab.Size = new System.Drawing.Size(1094, 670);
 			this.textTab.TabIndex = 1;
 			this.textTab.Text = "Search";
@@ -73,7 +73,7 @@
 			this.textSheet.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.textSheet.Location = new System.Drawing.Point(0, 0);
 			this.textSheet.Margin = new System.Windows.Forms.Padding(0);
-			this.textSheet.Name = "searchDialogTextControl";
+			this.textSheet.Name = "textSheet";
 			this.textSheet.Padding = new System.Windows.Forms.Padding(15, 15, 15, 9);
 			this.textSheet.Size = new System.Drawing.Size(1094, 670);
 			this.textSheet.TabIndex = 0;
@@ -83,7 +83,7 @@
 			// 
 			this.actionTab.Controls.Add(this.actionSheet);
 			this.actionTab.Location = new System.Drawing.Point(4, 29);
-			this.actionTab.Name = "searchAndGoTab";
+			this.actionTab.Name = "actionTab";
 			this.actionTab.Padding = new System.Windows.Forms.Padding(3);
 			this.actionTab.Size = new System.Drawing.Size(1094, 670);
 			this.actionTab.TabIndex = 0;
@@ -97,7 +97,7 @@
 			this.actionSheet.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.actionSheet.Location = new System.Drawing.Point(3, 3);
 			this.actionSheet.Margin = new System.Windows.Forms.Padding(0);
-			this.actionSheet.Name = "searchAndGoControl";
+			this.actionSheet.Name = "actionSheet";
 			this.actionSheet.Padding = new System.Windows.Forms.Padding(15, 15, 15, 9);
 			this.actionSheet.Size = new System.Drawing.Size(1088, 664);
 			this.actionSheet.TabIndex = 0;
@@ -118,7 +118,7 @@
 			this.MinimumSize = new System.Drawing.Size(720, 391);
 			this.Name = "SearchDialog";
 			this.Padding = new System.Windows.Forms.Padding(10, 9, 10, 9);
-			this.Text = "Search and Move or Copy";
+			this.Text = "w";
 			this.tabControl.ResumeLayout(false);
 			this.textTab.ResumeLayout(false);
 			this.actionTab.ResumeLayout(false);
