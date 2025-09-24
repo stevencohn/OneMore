@@ -54,8 +54,6 @@ namespace River.OneMoreAddIn.Commands
 			scopeBox.SelectedIndex = 2;
 			pageLabel.Text = string.Empty;
 
-			searchButton.NotifyDefault(true);
-
 			logger = Logger.Current;
 
 			// pattern to remove SPAN|A elements and &#nn; escaped characters
