@@ -51,6 +51,8 @@ namespace River.OneMoreAddIn.Commands
 			},
 			20);
 
+			dialog.Elevate(true);
+
 			await Task.Yield();
 		}
 

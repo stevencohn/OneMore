@@ -402,8 +402,18 @@ namespace River.OneMoreAddIn.UI
 			TopMost = true;
 			TopMost = keepTop;
 
-			Select();
-			Focus();
+			if (!IsDisposed)
+			{
+				try
+				{
+					Select();
+					Focus();
+				}
+				catch
+				{
+					// swallow disposed exception
+				}
+			}
 		}
 
 

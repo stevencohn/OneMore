@@ -42,6 +42,9 @@ namespace River.OneMoreAddIn.Commands
 
 		protected override void OnShown(EventArgs e)
 		{
+			// base method must be called to complete the EvelatedWithOneNote procedure
+			base.OnShown(e);
+
 			var textSheet = tabControl.TabPages["searchTab"].Controls[0] as SearchDialogTextControl;
 			textSheet.Focus();
 		}
