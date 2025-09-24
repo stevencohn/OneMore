@@ -4548,6 +4548,12 @@ Alle Notizbücher</value>
     <value>Geben Sie ein oder mehrere Schlüsselwörter ein, "zitierte Phrasen" und verwenden Sie Großbuchstaben und und und und</value>
     <comment>label</comment>
   </data>
+  <data name="SearchDialogText_scopeOptions" xml:space="preserve">
+    <value>In diesem Notebook
+In diesem Abschnitt
+Auf dieser Seite</value>
+    <comment>combobox</comment>
+  </data>
   <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
     <value>Geben Sie die Suchkriterien ein, um Text auf der aktuellen Seite zu finden</value>
     <comment>label</comment>

@@ -15,6 +15,8 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
+	using Resx = Properties.Resources;
+
 
 	internal partial class SearchDialogTextControl : MoreUserControl
 	{
@@ -29,6 +31,7 @@ namespace River.OneMoreAddIn.Commands
 		private readonly ILogger logger;
 		private readonly Regex cleaner;
 		private CancellationTokenSource source;
+		private bool grouping;
 
 
 		public SearchDialogTextControl()
@@ -43,7 +46,13 @@ namespace River.OneMoreAddIn.Commands
 					"textLabel=word_Text",
 					"cancelButton=word_Cancel"
 				});
+
+				scopeBox.Items.Clear();
+				scopeBox.Items.AddRange(Resx.SearchDialogText_scopeOptions.Split('\n'));
 			}
+
+			scopeBox.SelectedIndex = 2;
+			pageLabel.Text = string.Empty;
 
 			logger = Logger.Current;
 
@@ -107,18 +116,25 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (sender is MoreListView view)
 			{
-				var w = view.Width - SystemInformation.VerticalScrollBarWidth;
+				var w = (int)(view.Width - SystemInformation.VerticalScrollBarWidth * 1.5);
 				foreach (ColumnHeader column in view.Columns)
 				{
 					column.Width = w;
 				}
 
-				foreach (MoreHostedListViewItem hosted in view.Items)
+				try
 				{
-					if (hosted.Control is MoreLinkLabel label)
+					foreach (MoreHostedListViewItem hosted in view.Items)
 					{
-						label.Width = w;
+						if (hosted is not null)
+						{
+							hosted.Control.Width = w;
+						}
 					}
+				}
+				catch (Exception)
+				{
+					// swallow null reference after CancellationRequested
 				}
 			}
 		}
@@ -128,6 +144,8 @@ namespace River.OneMoreAddIn.Commands
 
 		private async void Search(object sender, EventArgs e)
 		{
+			findBox.Enabled = false;
+			searchButton.Enabled = false;
 			resultsView.SuspendLayout();
 			if (resultsView.Items.Count > 0)
 			{
@@ -136,13 +154,13 @@ namespace River.OneMoreAddIn.Commands
 
 			await using var one = new OneNote();
 
-			var scope = 1; // scopeBox.Index;
-			if (scope == 0)
+			if (scopeBox.SelectedIndex == 0)
 			{
 				await SearchNotebook(one);
 			}
-			else if (scope == 1)
+			else if (scopeBox.SelectedIndex == 1)
 			{
+				grouping = true;
 				var section = await one.GetSection();
 				var ns = one.GetNamespace(section);
 				SetupProgressBar(section.Descendants(ns + "Page").Count());
@@ -154,16 +172,21 @@ namespace River.OneMoreAddIn.Commands
 				await SearchPage(one, page);
 			}
 
-			source.Dispose();
+			source?.Dispose();
 			source = null;
 
+			pageLabel.Text = string.Empty;
 			progressBar.Visible = false;
 			resultsView.ResumeLayout(true);
+			findBox.Enabled = true;
+			searchButton.Enabled = true;
 		}
 
 
 		private void ClearResults()
 		{
+			grouping = true;
+
 			foreach (MoreHostedListViewItem item in resultsView.Items)
 			{
 				if (item.Control is MoreLinkLabel label)
@@ -196,8 +219,8 @@ namespace River.OneMoreAddIn.Commands
 				{
 					try
 					{
-						if (source.IsCancellationRequested) { break; }
-						await Task.Delay(50, source.Token);
+						if (source?.IsCancellationRequested == true) { break; }
+						await Task.Delay(10, source.Token);
 					}
 					catch (TaskCanceledException)
 					{
@@ -214,8 +237,8 @@ namespace River.OneMoreAddIn.Commands
 				{
 					try
 					{
-						if (source.IsCancellationRequested) { break; }
-						await Task.Delay(50, source.Token);
+						if (source?.IsCancellationRequested == true) { break; }
+						await Task.Delay(10, source.Token);
 					}
 					catch (TaskCanceledException)
 					{
@@ -243,8 +266,8 @@ namespace River.OneMoreAddIn.Commands
 		private async Task SearchSection(OneNote one, XElement section, string path)
 		{
 			var ns = one.GetNamespace(section);
-			var sectionName = section.Attribute("name").Value;
-			path = path.Length == 0 ? sectionName : $"{path}/{sectionName}";
+			var sectionId = section.Attribute("ID").Value;
+			var info = await one.GetSectionInfo(sectionId);
 
 			var pageIds = section.Elements(ns + "Page")
 				.Select(e => e.Attribute("ID").Value)
@@ -254,38 +277,37 @@ namespace River.OneMoreAddIn.Commands
 			{
 				try
 				{
-					if (source.IsCancellationRequested) { break; }
-					await Task.Delay(50, source.Token);
+					if (source?.IsCancellationRequested == true) { break; }
+					await Task.Delay(10, source.Token);
 				}
 				catch (TaskCanceledException)
 				{
 					break;
 				}
 
-				progressBar.Value++;
+				progressBar.Increment(1);
 
 				var page = await one.GetPage(pageId, OneNote.PageDetail.Basic);
 				var pageName = page.Root.Attribute("name").Value;
 
+				if (grouping)
+				{
+					pageLabel.Text = pageName;
+				}
+
 				var hits = await SearchPageBody(one, page);
 				if (hits.Any())
 				{
+					if (grouping)
+					{
+						var group = new SearchGroupControl(info.Color, $"{info.Path}/{pageName}");
+						group.ApplyTheme(manager);
+
+						resultsView.AddHostedItem(group);
+					}
+
 					foreach (var hit in hits)
 					{
-						try
-						{
-							if (source.IsCancellationRequested) { break; }
-							await Task.Delay(50, source.Token);
-						}
-						catch (TaskCanceledException)
-						{
-							break;
-						}
-
-						hit.PlainText = path.Length == 0
-							? $"{pageName}/{hit.PlainText}"
-							: $"{path}/{pageName}/{hit.PlainText}";
-
 						AddResult(hit);
 					}
 				}
@@ -328,8 +350,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				try
 				{
-					if (source.IsCancellationRequested) { break; }
-					await Task.Delay(50, source.Token);
+					if (source?.IsCancellationRequested == true) { break; }
 				}
 				catch (TaskCanceledException)
 				{

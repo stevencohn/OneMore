@@ -4554,6 +4554,12 @@ All notebooks</value>
     <value>Enter one or more keywords, "quoted phrases", and use uppercase AND and OR</value>
     <comment>label</comment>
   </data>
+  <data name="SearchDialogText_scopeOptions" xml:space="preserve">
+    <value>In this notebook
+In this section
+On this page</value>
+    <comment>combobox</comment>
+  </data>
   <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
     <value>Enter the search criteria to find text on the current page</value>
     <comment>label</comment>

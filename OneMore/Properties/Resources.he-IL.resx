@@ -4551,6 +4551,12 @@ ISO-code then comma then language name</comment>
     <value>הזן מילת מפתח אחת או יותר, "ביטויים מצוטטים" והשתמש</value>
     <comment>label</comment>
   </data>
+  <data name="SearchDialogText_scopeOptions" xml:space="preserve">
+    <value>במחברת זו
+בחלק זה
+בדף זה</value>
+    <comment>combobox</comment>
+  </data>
   <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
     <value>הזן את קריטריוני החיפוש כדי למצוא טקסט בעמוד הנוכחי</value>
     <comment>label</comment>

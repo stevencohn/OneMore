@@ -4552,6 +4552,12 @@ Todos los cuadernos</value>
     <value>Ingrese una o más palabras clave, "frases citadas" y use mayúsculas y mayúsculas</value>
     <comment>label</comment>
   </data>
+  <data name="SearchDialogText_scopeOptions" xml:space="preserve">
+    <value>En este cuaderno
+En esta sección
+En esta página</value>
+    <comment>combobox</comment>
+  </data>
   <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
     <value>Ingrese los criterios de búsqueda para encontrar texto en la página actual</value>
     <comment>label</comment>

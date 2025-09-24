@@ -4556,6 +4556,12 @@ ISO-code then comma then language name</comment>
     <value>1つ以上のキーワード、「引用されたフレーズ」を入力し、大文字を使用し、</value>
     <comment>label</comment>
   </data>
+  <data name="SearchDialogText_scopeOptions" xml:space="preserve">
+    <value>このノートブックで
+このセクションで
+このページで</value>
+    <comment>combobox</comment>
+  </data>
   <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
     <value>現在のページでテキストを見つけるには、検索条件を入力してください</value>
     <comment>label</comment>

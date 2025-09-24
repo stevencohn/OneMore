@@ -4545,6 +4545,12 @@ ISO-code then comma then language name</comment>
     <value>输入一个或多个关键字，“引用短语”，并使用大写和OS</value>
     <comment>label</comment>
   </data>
+  <data name="SearchDialogText_scopeOptions" xml:space="preserve">
+    <value>在此笔记本中
+在这个部分
+在此页面上</value>
+    <comment>combobox</comment>
+  </data>
   <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
     <value>输入搜索标准以在当前页面上查找文本</value>
     <comment>label</comment>

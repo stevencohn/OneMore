@@ -11217,6 +11217,17 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to In this notebook
+        ///In this section
+        ///On this page.
+        /// </summary>
+        internal static string SearchDialogText_scopeOptions {
+            get {
+                return ResourceManager.GetString("SearchDialogText_scopeOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter the search criteria to find text on the current page.
         /// </summary>
         internal static string SearchDialogTextControl_introLabel_Text {

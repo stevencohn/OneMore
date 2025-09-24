@@ -4553,6 +4553,12 @@ Wszystkie notesy</value>
     <value>Wprowadź jedno lub więcej słów kluczowych, „cytowane frazy” i użyj wielkich i lub lub lub</value>
     <comment>label</comment>
   </data>
+  <data name="SearchDialogText_scopeOptions" xml:space="preserve">
+    <value>W tym notatniku
+W tej sekcji
+Na tej stronie</value>
+    <comment>combobox</comment>
+  </data>
   <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
     <value>Wprowadź kryteria wyszukiwania, aby znaleźć tekst na bieżącej stronie</value>
     <comment>label</comment>
