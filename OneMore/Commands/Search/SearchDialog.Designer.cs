@@ -118,7 +118,7 @@
 			this.MinimumSize = new System.Drawing.Size(720, 391);
 			this.Name = "SearchDialog";
 			this.Padding = new System.Windows.Forms.Padding(10, 9, 10, 9);
-			this.Text = "w";
+			this.Text = "Search";
 			this.tabControl.ResumeLayout(false);
 			this.textTab.ResumeLayout(false);
 			this.actionTab.ResumeLayout(false);
