@@ -4537,6 +4537,10 @@ ISO-code then comma then language name</comment>
     <value>用。。。来代替:</value>
     <comment>label</comment>
   </data>
+  <data name="SearchDialog_searchAndGoTab.Text" xml:space="preserve">
+    <value>搜索和移动</value>
+    <comment>tab</comment>
+  </data>
   <data name="SearchDialogActionControl_introLabel.Text" xml:space="preserve">
     <value>输入一个或多个关键字，“引用短语”，并使用大写和OS</value>
     <comment>label</comment>

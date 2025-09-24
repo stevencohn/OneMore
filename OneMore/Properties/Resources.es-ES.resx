@@ -4544,6 +4544,10 @@ Todos los cuadernos</value>
     <value>Reemplazar con:</value>
     <comment>label</comment>
   </data>
+  <data name="SearchDialog_searchAndGoTab.Text" xml:space="preserve">
+    <value>Buscar y moverse</value>
+    <comment>tab</comment>
+  </data>
   <data name="SearchDialogActionControl_introLabel.Text" xml:space="preserve">
     <value>Ingrese una o más palabras clave, "frases citadas" y use mayúsculas y mayúsculas</value>
     <comment>label</comment>

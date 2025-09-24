@@ -4545,6 +4545,10 @@ Wszystkie notesy</value>
     <value>Zamienić:</value>
     <comment>label</comment>
   </data>
+  <data name="SearchDialog_searchAndGoTab.Text" xml:space="preserve">
+    <value>Wyszukaj i przesuń</value>
+    <comment>tab</comment>
+  </data>
   <data name="SearchDialogActionControl_introLabel.Text" xml:space="preserve">
     <value>Wprowadź jedno lub więcej słów kluczowych, „cytowane frazy” i użyj wielkich i lub lub lub</value>
     <comment>label</comment>

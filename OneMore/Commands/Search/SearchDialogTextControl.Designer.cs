@@ -47,7 +47,7 @@
 			// introLabel
 			// 
 			this.introLabel.AutoSize = true;
-			this.introLabel.Location = new System.Drawing.Point(7, 3);
+			this.introLabel.Location = new System.Drawing.Point(4, 3);
 			this.introLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 15);
 			this.introLabel.Name = "introLabel";
 			this.introLabel.Size = new System.Drawing.Size(399, 20);
@@ -63,7 +63,7 @@
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
-			this.cancelButton.Location = new System.Drawing.Point(666, 16);
+			this.cancelButton.Location = new System.Drawing.Point(663, 13);
 			this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 15);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.ShowBorder = true;
@@ -79,7 +79,7 @@
 			// textLabel
 			// 
 			this.textLabel.AutoSize = true;
-			this.textLabel.Location = new System.Drawing.Point(7, 10);
+			this.textLabel.Location = new System.Drawing.Point(7, 11);
 			this.textLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.textLabel.Name = "textLabel";
 			this.textLabel.Size = new System.Drawing.Size(43, 20);
@@ -159,6 +159,7 @@
 			this.morePanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.morePanel1.Location = new System.Drawing.Point(15, 560);
 			this.morePanel1.Name = "morePanel1";
+			this.morePanel1.Padding = new System.Windows.Forms.Padding(3);
 			this.morePanel1.Size = new System.Drawing.Size(782, 66);
 			this.morePanel1.TabIndex = 12;
 			this.morePanel1.ThemedBack = null;
@@ -170,9 +171,9 @@
 			// 
 			this.progressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.progressBar.Location = new System.Drawing.Point(25, 25);
+			this.progressBar.Location = new System.Drawing.Point(28, 28);
 			this.progressBar.Name = "progressBar";
-			this.progressBar.Size = new System.Drawing.Size(555, 16);
+			this.progressBar.Size = new System.Drawing.Size(549, 16);
 			this.progressBar.Step = 1;
 			this.progressBar.TabIndex = 4;
 			this.progressBar.Visible = false;

@@ -4544,6 +4544,10 @@ Todos os cadernos</value>
     <value>Substituir com:</value>
     <comment>label</comment>
   </data>
+  <data name="SearchDialog_searchAndGoTab.Text" xml:space="preserve">
+    <value>Pesquise e mova</value>
+    <comment>tab</comment>
+  </data>
   <data name="SearchDialogActionControl_introLabel.Text" xml:space="preserve">
     <value>Digite uma ou mais palavras -chave, "frases citadas" e use uppercase e e ou</value>
     <comment>label</comment>

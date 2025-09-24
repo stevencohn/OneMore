@@ -4543,6 +4543,10 @@ ISO-code then comma then language name</comment>
     <value>להחליף ב:</value>
     <comment>label</comment>
   </data>
+  <data name="SearchDialog_searchAndGoTab.Text" xml:space="preserve">
+    <value>לחפש ולעבור</value>
+    <comment>tab</comment>
+  </data>
   <data name="SearchDialogActionControl_introLabel.Text" xml:space="preserve">
     <value>הזן מילת מפתח אחת או יותר, "ביטויים מצוטטים" והשתמש</value>
     <comment>label</comment>

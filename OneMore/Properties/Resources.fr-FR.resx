@@ -4543,6 +4543,10 @@ Tous les notebooks</value>
     <value>Remplacer par:</value>
     <comment>label</comment>
   </data>
+  <data name="SearchDialog_searchAndGoTab.Text" xml:space="preserve">
+    <value>Recherche et déplacer</value>
+    <comment>tab</comment>
+  </data>
   <data name="SearchDialogActionControl_introLabel.Text" xml:space="preserve">
     <value>Entrez un ou plusieurs mots clés, "phrases citées" et utilisez</value>
     <comment>label</comment>

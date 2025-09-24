@@ -76,6 +76,7 @@
 			this.searchDialogTextControl.Padding = new System.Windows.Forms.Padding(15, 15, 15, 9);
 			this.searchDialogTextControl.Size = new System.Drawing.Size(1094, 670);
 			this.searchDialogTextControl.TabIndex = 0;
+			this.searchDialogTextControl.SearchClosing += new System.EventHandler<River.OneMoreAddIn.Commands.SearchCloseEventArgs>(this.ClosingSearch);
 			// 
 			// searchAndGoTab
 			// 
@@ -99,6 +100,7 @@
 			this.searchAndGoControl.Padding = new System.Windows.Forms.Padding(15, 15, 15, 9);
 			this.searchAndGoControl.Size = new System.Drawing.Size(1088, 664);
 			this.searchAndGoControl.TabIndex = 0;
+			this.searchAndGoControl.SearchClosing += new System.EventHandler<River.OneMoreAddIn.Commands.SearchCloseEventArgs>(this.ClosingSearch);
 			// 
 			// SearchDialog
 			// 

@@ -4548,6 +4548,10 @@ ISO-code then comma then language name</comment>
     <value>置換後:</value>
     <comment>label</comment>
   </data>
+  <data name="SearchDialog_searchAndGoTab.Text" xml:space="preserve">
+    <value>検索と移動</value>
+    <comment>tab</comment>
+  </data>
   <data name="SearchDialogActionControl_introLabel.Text" xml:space="preserve">
     <value>1つ以上のキーワード、「引用されたフレーズ」を入力し、大文字を使用し、</value>
     <comment>label</comment>
