@@ -90,7 +90,7 @@
 			this.copyButton.ShowBorder = true;
 			this.copyButton.Size = new System.Drawing.Size(112, 35);
 			this.copyButton.StylizeImage = false;
-			this.copyButton.TabIndex = 3;
+			this.copyButton.TabIndex = 0;
 			this.copyButton.Text = "Copy";
 			this.copyButton.ThemedBack = null;
 			this.copyButton.ThemedFore = null;
@@ -111,7 +111,7 @@
 			this.moveButton.ShowBorder = true;
 			this.moveButton.Size = new System.Drawing.Size(112, 35);
 			this.moveButton.StylizeImage = false;
-			this.moveButton.TabIndex = 4;
+			this.moveButton.TabIndex = 1;
 			this.moveButton.Text = "Move";
 			this.moveButton.ThemedBack = null;
 			this.moveButton.ThemedFore = null;
@@ -151,7 +151,7 @@
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(112, 35);
 			this.cancelButton.StylizeImage = false;
-			this.cancelButton.TabIndex = 5;
+			this.cancelButton.TabIndex = 2;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.ThemedBack = null;
 			this.cancelButton.ThemedFore = null;
@@ -211,7 +211,7 @@
 			this.morePanel1.Name = "morePanel1";
 			this.morePanel1.Padding = new System.Windows.Forms.Padding(3);
 			this.morePanel1.Size = new System.Drawing.Size(782, 66);
-			this.morePanel1.TabIndex = 13;
+			this.morePanel1.TabIndex = 1;
 			this.morePanel1.ThemedBack = null;
 			this.morePanel1.ThemedFore = null;
 			this.morePanel1.TopBorderColor = System.Drawing.SystemColors.Control;
@@ -248,7 +248,7 @@
 			this.morePanel3.Name = "morePanel3";
 			this.morePanel3.Padding = new System.Windows.Forms.Padding(3);
 			this.morePanel3.Size = new System.Drawing.Size(782, 64);
-			this.morePanel3.TabIndex = 15;
+			this.morePanel3.TabIndex = 0;
 			this.morePanel3.ThemedBack = null;
 			this.morePanel3.ThemedFore = null;
 			this.morePanel3.TopBorderColor = System.Drawing.SystemColors.Control;
