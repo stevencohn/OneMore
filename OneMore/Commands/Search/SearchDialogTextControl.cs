@@ -24,8 +24,6 @@ namespace River.OneMoreAddIn.Commands
 		{
 			public string PlainText { get; set; }
 			public string Hyperlink { get; set; }
-			public string PageID { get; set; }
-			public string ObjectID { get; set; }
 		}
 
 		private readonly ILogger logger;
@@ -70,8 +68,6 @@ namespace River.OneMoreAddIn.Commands
 
 		private void Nevermind(object sender, EventArgs e)
 		{
-			logger.WriteLine("cancel");
-
 			if (source is not null)
 			{
 				logger.WriteLine("cancelling search");
@@ -120,6 +116,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				try
 				{
+					// validate regular expression
 					_ = new Regex(text);
 				}
 				catch
@@ -187,6 +184,8 @@ namespace River.OneMoreAddIn.Commands
 
 		private async void Search(object sender, EventArgs e)
 		{
+			// set controls and prepare for search...
+
 			findBox.Enabled = false;
 			searchButton.Enabled = false;
 			resultsView.SuspendLayout();
@@ -198,6 +197,8 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			await using var one = new OneNote();
+
+			// search by scope...
 
 			if (scopeBox.SelectedIndex == 0)
 			{
@@ -216,6 +217,8 @@ namespace River.OneMoreAddIn.Commands
 				var page = await one.GetPage(one.CurrentPageId, OneNote.PageDetail.Basic);
 				await SearchPage(one, page);
 			}
+
+			// restore controls...
 
 			source?.Dispose();
 			source = null;
@@ -239,6 +242,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				if (item.Control is MoreLinkLabel label)
 				{
+					// detach event handler to avoid memory leak
 					label.LinkClicked -= NavigateToHit;
 				}
 
@@ -257,6 +261,7 @@ namespace River.OneMoreAddIn.Commands
 			SetupProgressBar(notebook.Descendants(ns + "Page").Count());
 			await TraverseSections(notebook, string.Empty);
 
+			// decending recursive section traversal
 			async Task TraverseSections(XElement parent, string path)
 			{
 				var sections = parent.Elements(ns + "Section").Where(e =>
@@ -419,8 +424,6 @@ namespace River.OneMoreAddIn.Commands
 						hits.Add(new SearchHit
 						{
 							PlainText = text,
-							PageID = page.PageId,
-							ObjectID = paragraphID,
 							Hyperlink = one.GetHyperlink(page.PageId, paragraphID)
 						});
 					}
@@ -516,6 +519,8 @@ namespace River.OneMoreAddIn.Commands
 			MoreHostedListViewItem item = null;
 			MoreLinkLabel label = null;
 
+			// find next or previous MoreLinkLabel item, skipping group headers...
+
 			while (!found && (
 				(delta < 0 && i > 0) ||
 				(delta > 0 && i < resultsView.Items.Count - 1)))
@@ -532,11 +537,15 @@ namespace River.OneMoreAddIn.Commands
 
 			if (found)
 			{
+				// found next or previous available item
+
+				// deselect current
 				var curItem = resultsView.Items[index] as MoreHostedListViewItem;
 				curItem.Selected = false;
 				var curLabel = curItem.Control as MoreLinkLabel;
 				curLabel.Selected = false;
 
+				// select new
 				item.Selected = true;
 				item.EnsureVisible();
 
