@@ -184,6 +184,12 @@ namespace River.OneMoreAddIn.Commands
 
 		private async void Search(object sender, EventArgs e)
 		{
+			if (!searchButton.Enabled)
+			{
+				// presume Regex is chosen but the input text is an invalid regular expression
+				return;
+			}
+
 			// set controls and prepare for search...
 
 			findBox.Enabled = false;
