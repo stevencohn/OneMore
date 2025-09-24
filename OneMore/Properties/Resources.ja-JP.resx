@@ -4563,7 +4563,7 @@ ISO-code then comma then language name</comment>
     <comment>combobox</comment>
   </data>
   <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
-    <value>現在のページでテキストを見つけるには、検索条件を入力してください</value>
+    <value>検索条件を入力します。</value>
     <comment>label</comment>
   </data>
   <data name="SearchDialogTextControl_matchBox.Text" xml:space="preserve">

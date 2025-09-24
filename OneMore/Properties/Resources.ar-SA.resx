@@ -4559,7 +4559,7 @@ ISO-code then comma then language name</comment>
     <comment>combobox</comment>
   </data>
   <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
-    <value>أدخل معايير البحث للعثور على نص على الصفحة الحالية</value>
+    <value>أدخل معايير البحث ، بما في ذلك اختياريا ، أو ، أو لا ، اقتباسات وأقواس</value>
     <comment>label</comment>
   </data>
   <data name="SearchDialogTextControl_matchBox.Text" xml:space="preserve">

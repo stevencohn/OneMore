@@ -4560,7 +4560,7 @@ Na tej stronie</value>
     <comment>combobox</comment>
   </data>
   <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
-    <value>Wprowadź kryteria wyszukiwania, aby znaleźć tekst na bieżącej stronie</value>
+    <value>Wprowadź kryteria wyszukiwania, opcjonalnie, w tym i, lub nie, cytaty i nawiasy</value>
     <comment>label</comment>
   </data>
   <data name="SearchDialogTextControl_matchBox.Text" xml:space="preserve">

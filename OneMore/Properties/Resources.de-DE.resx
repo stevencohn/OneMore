@@ -4555,7 +4555,7 @@ Auf dieser Seite</value>
     <comment>combobox</comment>
   </data>
   <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
-    <value>Geben Sie die Suchkriterien ein, um Text auf der aktuellen Seite zu finden</value>
+    <value>Geben Sie die Suchkriterien ein, einschließlich und, oder nicht, Zitate und Klammern</value>
     <comment>label</comment>
   </data>
   <data name="SearchDialogTextControl_matchBox.Text" xml:space="preserve">

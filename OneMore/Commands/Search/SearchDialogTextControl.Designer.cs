@@ -56,9 +56,10 @@
 			this.introLabel.Location = new System.Drawing.Point(4, 3);
 			this.introLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 15);
 			this.introLabel.Name = "introLabel";
-			this.introLabel.Size = new System.Drawing.Size(399, 20);
+			this.introLabel.Size = new System.Drawing.Size(603, 20);
 			this.introLabel.TabIndex = 9;
-			this.introLabel.Text = "Enter the search criteria to find text on the current page";
+			this.introLabel.Text = "Enter the search criteria, optionally including AND, OR, NOT, quotes and parenthe" +
+    "sis\r\n";
 			this.introLabel.ThemedBack = null;
 			this.introLabel.ThemedFore = null;
 			// 

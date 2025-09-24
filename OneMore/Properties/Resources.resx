@@ -4561,7 +4561,7 @@ On this page</value>
     <comment>combobox</comment>
   </data>
   <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
-    <value>Enter the search criteria to find text on the current page</value>
+    <value>Enter the search criteria, optionally including AND, OR, NOT, quotes and parenthesis</value>
     <comment>label</comment>
   </data>
   <data name="SearchDialogTextControl_matchBox.Text" xml:space="preserve">

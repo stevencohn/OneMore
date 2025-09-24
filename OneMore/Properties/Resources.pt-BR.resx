@@ -4559,7 +4559,7 @@ Nesta página</value>
     <comment>combobox</comment>
   </data>
   <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
-    <value>Digite os critérios de pesquisa para encontrar texto na página atual</value>
+    <value>Digite os critérios de pesquisa, opcionalmente, incluindo e, ou não, citações e parênteses</value>
     <comment>label</comment>
   </data>
   <data name="SearchDialogTextControl_matchBox.Text" xml:space="preserve">

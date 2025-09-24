@@ -4559,7 +4559,7 @@ Op deze pagina</value>
     <comment>combobox</comment>
   </data>
   <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
-    <value>Voer de zoekcriteria in om tekst te vinden op de huidige pagina</value>
+    <value>Voer de zoekcriteria in, optioneel inclusief en, of, niet, citaten en haakjes</value>
     <comment>label</comment>
   </data>
   <data name="SearchDialogTextControl_matchBox.Text" xml:space="preserve">

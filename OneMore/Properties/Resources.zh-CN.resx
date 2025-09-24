@@ -4552,7 +4552,7 @@ ISO-code then comma then language name</comment>
     <comment>combobox</comment>
   </data>
   <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
-    <value>输入搜索标准以在当前页面上查找文本</value>
+    <value>输入搜索标准，可选地包括和或不包括引号和括号</value>
     <comment>label</comment>
   </data>
   <data name="SearchDialogTextControl_matchBox.Text" xml:space="preserve">

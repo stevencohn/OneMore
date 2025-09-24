@@ -4558,7 +4558,7 @@ ISO-code then comma then language name</comment>
     <comment>combobox</comment>
   </data>
   <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
-    <value>הזן את קריטריוני החיפוש כדי למצוא טקסט בעמוד הנוכחי</value>
+    <value>הזן את קריטריוני החיפוש, לחלופין כולל, או, לא, ציטוטים וסוגריים</value>
     <comment>label</comment>
   </data>
   <data name="SearchDialogTextControl_matchBox.Text" xml:space="preserve">
