@@ -7,9 +7,11 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.UI;
 	using System;
+	using System.Collections.Generic;
 	using System.Drawing;
 	using System.Linq;
 	using System.Text.RegularExpressions;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
 
@@ -17,6 +19,7 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private sealed class SearchHit
 		{
+			public string PlainText { get; set; }
 			public string Hyperlink { get; set; }
 			public string PageID { get; set; }
 			public string ObjectID { get; set; }
@@ -110,44 +113,38 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 		private async void Search(object sender, EventArgs e)
 		{
-			await using var one = new OneNote(out var page, out var ns);
-
-			var paragraphs = page.BodyOutlines
-				.Descendants(ns + "OE")
-				.Where(e => e.Elements(ns + "T").Any());
-
-			if (paragraphs.Any())
+			resultsView.SuspendLayout();
+			if (resultsView.Items.Count > 0)
 			{
-				resultsView.SuspendLayout();
-
-				if (resultsView.Items.Count > 0)
-				{
-					ClearResults();
-				}
-
-				var builder = new TextMatchBuilder(false, false);
-				var finder = builder.BuildRegex(findBox.Text);
-				//logger.WriteLine(finder.ToString());
-
-				foreach (var paragraph in paragraphs)
-				{
-					var text = GetRawText(paragraph, ns);
-					if (text.Length > 0)
-					{
-						//logger.WriteLine($"testing [{text}]");
-						if (finder.IsMatch(text))
-						{
-							//logger.WriteLine("match");
-							var paragraphID = paragraph.Attribute("objectID").Value;
-							AddResult(one, page, paragraphID, text);
-						}
-					}
-				}
-
-				resultsView.ResumeLayout(true);
+				ClearResults();
 			}
+
+			await using var one = new OneNote();
+
+			var scope = 1; // scopeBox.Index;
+			if (scope == 0)
+			{
+				await SearchNotebook(one);
+			}
+			else if (scope == 1)
+			{
+				var section = await one.GetSection();
+				var ns = one.GetNamespace(section);
+				SetupProgressBar(section.Descendants(ns + "Page").Count());
+				await SearchSection(one, section, string.Empty);
+			}
+			else
+			{
+				var page = await one.GetPage(one.CurrentPageId, OneNote.PageDetail.Basic);
+				SearchPage(one, page);
+			}
+
+			progressBar.Visible = false;
+			resultsView.ResumeLayout(true);
 		}
 
 
@@ -167,6 +164,137 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private async Task SearchNotebook(OneNote one)
+		{
+			var notebook = await one.GetNotebook(OneNote.Scope.Pages);
+			var ns = one.GetNamespace(notebook);
+
+			SetupProgressBar(notebook.Descendants(ns + "Page").Count());
+			await TraverseSections(notebook, string.Empty);
+
+			async Task TraverseSections(XElement parent, string path)
+			{
+				var sections = parent.Elements(ns + "Section").Where(e =>
+					e.Attribute("isRecycleBin") is null &&
+					e.Attribute("isInRecycleBin") is null);
+
+				foreach (var section in sections)
+				{
+					await SearchSection(one, section, path);
+				}
+
+				var sectionGroups = parent.Elements(ns + "SectionGroup")
+					.Where(e => e.Attribute("isRecycleBin") is null);
+
+				foreach (var group in sectionGroups)
+				{
+					var groupName = group.Attribute("name").Value;
+					path = path.Length == 0 ? groupName : $"{path}/{groupName}";
+
+					await TraverseSections(group, path);
+				}
+			}
+		}
+
+
+		private void SetupProgressBar(int count)
+		{
+			progressBar.Visible = true;
+			progressBar.Maximum = count;
+			progressBar.Value = 0;
+		}
+
+
+		private async Task SearchSection(OneNote one, XElement section, string path)
+		{
+			var ns = one.GetNamespace(section);
+			var sectionName = section.Attribute("name").Value;
+			path = path.Length == 0 ? sectionName : $"{path}/{sectionName}";
+
+			var pageIds = section.Elements(ns + "Page")
+				.Select(e => e.Attribute("ID").Value)
+				.ToList();
+
+			foreach (var pageId in pageIds)
+			{
+				progressBar.Value++;
+
+				var page = await one.GetPage(pageId, OneNote.PageDetail.Basic);
+				var pageName = page.Root.Attribute("name").Value;
+
+				var hits = SearchPageBody(one, page);
+				if (hits.Any())
+				{
+					foreach (var hit in hits)
+					{
+						hit.PlainText = path.Length == 0
+							? $"{pageName}/{hit.PlainText}"
+							: $"{path}/{pageName}/{hit.PlainText}";
+
+						AddResult(hit);
+					}
+				}
+			}
+		}
+
+
+		private void SearchPage(OneNote one, Page page)
+		{
+			var hits = SearchPageBody(one, page);
+			if (hits.Any())
+			{
+				foreach (var hit in hits)
+				{
+					AddResult(hit);
+				}
+			}
+		}
+
+
+		private IList<SearchHit> SearchPageBody(OneNote one, Page page)
+		{
+			var hits = new List<SearchHit>();
+
+			var ns = page.Namespace;
+			var paragraphs = page.BodyOutlines
+				.Descendants(ns + "OE")
+				.Where(e => e.Elements(ns + "T").Any());
+
+			if (!paragraphs.Any())
+			{
+				return hits;
+			}
+
+			var builder = new TextMatchBuilder(false, false);
+			var finder = builder.BuildRegex(findBox.Text);
+			//logger.WriteLine(finder.ToString());
+
+			foreach (var paragraph in paragraphs)
+			{
+				var text = GetRawText(paragraph, ns);
+				if (text.Length > 0)
+				{
+					//logger.WriteLine($"testing [{text}]");
+					if (finder.IsMatch(text))
+					{
+						//logger.WriteLine("match");
+						var paragraphID = paragraph.Attribute("objectID").Value;
+
+						hits.Add(new SearchHit
+						{
+							PlainText = text,
+							PageID = page.PageId,
+							ObjectID = paragraphID,
+							Hyperlink = one.GetHyperlink(page.PageId, paragraphID)
+						});
+					}
+				}
+			}
+
+			return hits;
+		}
+
+
 		private string GetRawText(XElement paragraph, XNamespace ns)
 		{
 			var text = string.Empty;
@@ -183,20 +311,11 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void AddResult(OneNote one, Page page, string paragraphID, string text)
+		private void AddResult(SearchHit hit)
 		{
-			//logger.WriteLine($"hit [{text}]");
-
-			var hit = new SearchHit
-			{
-				PageID = page.PageId,
-				ObjectID = paragraphID,
-				Hyperlink = one.GetHyperlink(page.PageId, paragraphID)
-			};
-
 			var link = new MoreLinkLabel
 			{
-				Text = text,
+				Text = hit.PlainText,
 				Font = new("Segoe UI", 8.5f, FontStyle.Regular, GraphicsUnit.Point),
 				Padding = new(0),
 				Margin = new(0, 0, 0, 0),

@@ -36,6 +36,7 @@
 			this.resultsView = new River.OneMoreAddIn.UI.MoreListView();
 			this.hitColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.morePanel1 = new River.OneMoreAddIn.UI.MorePanel();
+			this.progressBar = new System.Windows.Forms.ProgressBar();
 			this.morePanel2 = new River.OneMoreAddIn.UI.MorePanel();
 			this.morePanel3 = new River.OneMoreAddIn.UI.MorePanel();
 			this.morePanel1.SuspendLayout();
@@ -153,6 +154,7 @@
 			// 
 			this.morePanel1.BottomBorderColor = System.Drawing.SystemColors.ActiveBorder;
 			this.morePanel1.BottomBorderSize = 0;
+			this.morePanel1.Controls.Add(this.progressBar);
 			this.morePanel1.Controls.Add(this.cancelButton);
 			this.morePanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.morePanel1.Location = new System.Drawing.Point(15, 560);
@@ -163,6 +165,17 @@
 			this.morePanel1.ThemedFore = null;
 			this.morePanel1.TopBorderColor = System.Drawing.SystemColors.Control;
 			this.morePanel1.TopBorderSize = 0;
+			// 
+			// progressBar
+			// 
+			this.progressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.progressBar.Location = new System.Drawing.Point(25, 25);
+			this.progressBar.Name = "progressBar";
+			this.progressBar.Size = new System.Drawing.Size(555, 16);
+			this.progressBar.Step = 1;
+			this.progressBar.TabIndex = 4;
+			this.progressBar.Visible = false;
 			// 
 			// morePanel2
 			// 
@@ -234,5 +247,6 @@
 		private UI.MorePanel morePanel1;
 		private UI.MorePanel morePanel2;
 		private UI.MorePanel morePanel3;
+		private System.Windows.Forms.ProgressBar progressBar;
 	}
 }
