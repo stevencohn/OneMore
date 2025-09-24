@@ -11,6 +11,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Drawing;
 	using System.Linq;
 	using System.Text.RegularExpressions;
+	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
@@ -25,9 +26,9 @@ namespace River.OneMoreAddIn.Commands
 			public string ObjectID { get; set; }
 		}
 
-
 		private readonly ILogger logger;
 		private readonly Regex cleaner;
+		private CancellationTokenSource source;
 
 
 		public SearchDialogTextControl()
@@ -58,6 +59,16 @@ namespace River.OneMoreAddIn.Commands
 
 		private void Nevermind(object sender, EventArgs e)
 		{
+			logger.WriteLine("cancel");
+
+			if (source is not null)
+			{
+				logger.WriteLine("cancelling search");
+				source.Cancel();
+				return;
+			}
+
+			logger.WriteLine("closing search");
 			SearchClosing?.Invoke(this, new(DialogResult.Cancel));
 		}
 
@@ -140,8 +151,11 @@ namespace River.OneMoreAddIn.Commands
 			else
 			{
 				var page = await one.GetPage(one.CurrentPageId, OneNote.PageDetail.Basic);
-				SearchPage(one, page);
+				await SearchPage(one, page);
 			}
+
+			source.Dispose();
+			source = null;
 
 			progressBar.Visible = false;
 			resultsView.ResumeLayout(true);
@@ -180,6 +194,16 @@ namespace River.OneMoreAddIn.Commands
 
 				foreach (var section in sections)
 				{
+					try
+					{
+						if (source.IsCancellationRequested) { break; }
+						await Task.Delay(50, source.Token);
+					}
+					catch (TaskCanceledException)
+					{
+						break;
+					}
+
 					await SearchSection(one, section, path);
 				}
 
@@ -188,6 +212,16 @@ namespace River.OneMoreAddIn.Commands
 
 				foreach (var group in sectionGroups)
 				{
+					try
+					{
+						if (source.IsCancellationRequested) { break; }
+						await Task.Delay(50, source.Token);
+					}
+					catch (TaskCanceledException)
+					{
+						break;
+					}
+
 					var groupName = group.Attribute("name").Value;
 					path = path.Length == 0 ? groupName : $"{path}/{groupName}";
 
@@ -202,6 +236,7 @@ namespace River.OneMoreAddIn.Commands
 			progressBar.Visible = true;
 			progressBar.Maximum = count;
 			progressBar.Value = 0;
+			source = new CancellationTokenSource();
 		}
 
 
@@ -217,16 +252,36 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (var pageId in pageIds)
 			{
+				try
+				{
+					if (source.IsCancellationRequested) { break; }
+					await Task.Delay(50, source.Token);
+				}
+				catch (TaskCanceledException)
+				{
+					break;
+				}
+
 				progressBar.Value++;
 
 				var page = await one.GetPage(pageId, OneNote.PageDetail.Basic);
 				var pageName = page.Root.Attribute("name").Value;
 
-				var hits = SearchPageBody(one, page);
+				var hits = await SearchPageBody(one, page);
 				if (hits.Any())
 				{
 					foreach (var hit in hits)
 					{
+						try
+						{
+							if (source.IsCancellationRequested) { break; }
+							await Task.Delay(50, source.Token);
+						}
+						catch (TaskCanceledException)
+						{
+							break;
+						}
+
 						hit.PlainText = path.Length == 0
 							? $"{pageName}/{hit.PlainText}"
 							: $"{path}/{pageName}/{hit.PlainText}";
@@ -238,9 +293,9 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void SearchPage(OneNote one, Page page)
+		private async Task SearchPage(OneNote one, Page page)
 		{
-			var hits = SearchPageBody(one, page);
+			var hits = await SearchPageBody(one, page);
 			if (hits.Any())
 			{
 				foreach (var hit in hits)
@@ -251,7 +306,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private IList<SearchHit> SearchPageBody(OneNote one, Page page)
+		private async Task<IList<SearchHit>> SearchPageBody(OneNote one, Page page)
 		{
 			var hits = new List<SearchHit>();
 
@@ -271,6 +326,16 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (var paragraph in paragraphs)
 			{
+				try
+				{
+					if (source.IsCancellationRequested) { break; }
+					await Task.Delay(50, source.Token);
+				}
+				catch (TaskCanceledException)
+				{
+					break;
+				}
+
 				var text = GetRawText(paragraph, ns);
 				if (text.Length > 0)
 				{
