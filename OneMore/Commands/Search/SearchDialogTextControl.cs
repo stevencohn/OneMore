@@ -511,19 +511,35 @@ namespace River.OneMoreAddIn.Commands
 		private void MoveTo(int delta)
 		{
 			var index = resultsView.SelectedIndices[0];
-			if ((delta < 0 && index > 0) ||
-				(delta > 0 && index < resultsView.Items.Count - 1))
-			{
-				var item = resultsView.Items[index] as MoreHostedListViewItem;
-				item.Selected = false;
-				var label = item.Control as MoreLinkLabel;
-				label.Selected = false;
+			var found = false;
+			var i = index;
+			MoreHostedListViewItem item = null;
+			MoreLinkLabel label = null;
 
-				item = resultsView.Items[index + delta] as MoreHostedListViewItem;
+			while (!found && (
+				(delta < 0 && i > 0) ||
+				(delta > 0 && i < resultsView.Items.Count - 1)))
+			{
+				i += delta;
+				if (resultsView.Items[i] is MoreHostedListViewItem icast &&
+					icast.Control is MoreLinkLabel lcast)
+				{
+					item = icast;
+					label = lcast;
+					found = true;
+				}
+			}
+
+			if (found)
+			{
+				var curItem = resultsView.Items[index] as MoreHostedListViewItem;
+				curItem.Selected = false;
+				var curLabel = curItem.Control as MoreLinkLabel;
+				curLabel.Selected = false;
+
 				item.Selected = true;
 				item.EnsureVisible();
 
-				label = item.Control as MoreLinkLabel;
 				label.Selected = true;
 				NavigateToHit(label, new LinkLabelLinkClickedEventArgs(label.Links[0]));
 			}
