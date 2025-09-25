@@ -242,8 +242,6 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ClearResults()
 		{
-			grouping = true;
-
 			foreach (MoreHostedListViewItem item in resultsView.Items)
 			{
 				if (item.Control is MoreLinkLabel label)
@@ -256,11 +254,14 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			resultsView.Items.Clear();
+			grouping = false;
 		}
 
 
 		private async Task SearchNotebook(OneNote one)
 		{
+			grouping = true;
+
 			var notebook = await one.GetNotebook(OneNote.Scope.Pages);
 			var ns = one.GetNamespace(notebook);
 
