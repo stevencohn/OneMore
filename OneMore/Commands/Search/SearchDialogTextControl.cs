@@ -242,15 +242,11 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ClearResults()
 		{
-			foreach (MoreHostedListViewItem item in resultsView.Items)
+			foreach (var lable in resultsView.GetAllItems<MoreLinkLabel>())
 			{
-				if (item.Control is MoreLinkLabel label)
-				{
-					// detach event handler to avoid memory leak
-					label.LinkClicked -= NavigateToHit;
-				}
-
-				item.Control?.Dispose();
+				// detach event handler to avoid memory leak
+				lable.LinkClicked -= NavigateToHit;
+				lable.Dispose();
 			}
 
 			resultsView.Items.Clear();
@@ -446,14 +442,16 @@ namespace River.OneMoreAddIn.Commands
 			var text = string.Empty;
 			paragraph.Elements(ns + "T").ForEach(e =>
 			{
-				var line = e.TextValue(true).Trim();
+				// custom cleaner regex adds filter for "&#nnn;" escapes, instead of TextValue
+				//var line = e.TextValue(true).Trim();
+				var line = cleaner.Replace(e.Value, string.Empty).Trim();
 				if (line.Length > 0)
 				{
 					text = $"{text}{line} ";
 				}
 			});
 
-			return cleaner.Replace(text.Trim(), string.Empty);
+			return text.Trim();
 		}
 
 
@@ -568,12 +566,12 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (resultsView.SelectedItems.Count > 0)
 			{
-				if (e.KeyCode == Keys.N && e.Modifiers == Keys.None)
+				if ((e.KeyCode == Keys.N || e.KeyCode == Keys.Down) && e.Modifiers == Keys.None)
 				{
 					MoveTo(1);
 					e.Handled = true;
 				}
-				else if (e.KeyCode == Keys.P && e.Modifiers == Keys.None)
+				else if ((e.KeyCode == Keys.P || e.KeyCode == Keys.Up) && e.Modifiers == Keys.None)
 				{
 					MoveTo(-1);
 					e.Handled = true;

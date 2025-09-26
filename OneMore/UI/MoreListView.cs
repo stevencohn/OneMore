@@ -251,12 +251,29 @@ namespace River.OneMoreAddIn.UI
 
 
 		/// <summary>
-		/// Returns a collection of selected T objects from the specified column in the list view.
+		/// Returns a collection of all hosted T objects from the list view.
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
-		/// <param name="columnIndex"></param>
 		/// <returns></returns>
-		public IEnumerable<T> GetSelectedItems<T>(int columnIndex)
+		public IEnumerable<T> GetAllItems<T>()
+		{
+			for (int i = 0; i < Items.Count; i++)
+			{
+				if (Items[i] is MoreHostedListViewItem item &&
+					item.Control is T thing)
+				{
+					yield return thing;
+				}
+			}
+		}
+
+
+		/// <summary>
+		/// Returns a collection of selected T objects from the list view.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <returns></returns>
+		public IEnumerable<T> GetSelectedItems<T>()
 		{
 			if (SelectedItems.Count == 0)
 			{
