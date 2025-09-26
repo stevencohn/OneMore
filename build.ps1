@@ -50,6 +50,7 @@ param (
 	[switch] $Fast,
 	[switch] $Kit,
 	[switch] $Local,
+	[switch] $Main,
 	[switch] $Prep,
 	[switch] $Stepped,
 	[switch] $VLog
@@ -234,6 +235,8 @@ Begin
 
 		NugetRestore 'OneMore'
 		BuildProject 'OneMore'
+		
+		if ($Main) { return }
 
 		NugetRestore 'OneMoreTray'
 		BuildProject 'OneMoreTray'
