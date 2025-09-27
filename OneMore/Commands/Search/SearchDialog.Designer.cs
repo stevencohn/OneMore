@@ -44,6 +44,7 @@
 			this.tabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.tabControl.Border = "Control";
 			this.tabControl.Controls.Add(this.textTab);
 			this.tabControl.Controls.Add(this.actionTab);
 			this.tabControl.Location = new System.Drawing.Point(10, 9);
@@ -83,8 +84,8 @@
 			// 
 			this.actionTab.Controls.Add(this.actionSheet);
 			this.actionTab.Location = new System.Drawing.Point(4, 29);
+			this.actionTab.Margin = new System.Windows.Forms.Padding(0);
 			this.actionTab.Name = "actionTab";
-			this.actionTab.Padding = new System.Windows.Forms.Padding(3);
 			this.actionTab.Size = new System.Drawing.Size(1094, 670);
 			this.actionTab.TabIndex = 0;
 			this.actionTab.Text = "Search and Move";
@@ -95,11 +96,11 @@
 			this.actionSheet.BackColor = System.Drawing.Color.Transparent;
 			this.actionSheet.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.actionSheet.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.actionSheet.Location = new System.Drawing.Point(3, 3);
+			this.actionSheet.Location = new System.Drawing.Point(0, 0);
 			this.actionSheet.Margin = new System.Windows.Forms.Padding(0);
 			this.actionSheet.Name = "actionSheet";
 			this.actionSheet.Padding = new System.Windows.Forms.Padding(15, 15, 15, 9);
-			this.actionSheet.Size = new System.Drawing.Size(1088, 664);
+			this.actionSheet.Size = new System.Drawing.Size(1094, 670);
 			this.actionSheet.TabIndex = 0;
 			this.actionSheet.SearchClosing += new System.EventHandler<River.OneMoreAddIn.Commands.SearchCloseEventArgs>(this.ClosingSearch);
 			// 

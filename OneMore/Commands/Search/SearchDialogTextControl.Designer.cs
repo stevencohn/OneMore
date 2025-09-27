@@ -30,18 +30,20 @@
 		{
 			this.introLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
-			this.textLabel = new River.OneMoreAddIn.UI.MoreLabel();
+			this.findLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.findBox = new River.OneMoreAddIn.UI.MoreTextBox();
 			this.searchButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.resultsView = new River.OneMoreAddIn.UI.MoreListView();
 			this.hitColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.morePanel1 = new River.OneMoreAddIn.UI.MorePanel();
+			this.prevButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.nextButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.pageLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.progressBar = new System.Windows.Forms.ProgressBar();
 			this.morePanel2 = new River.OneMoreAddIn.UI.MorePanel();
 			this.optionsPanel = new River.OneMoreAddIn.UI.MorePanel();
-			this.prevButton = new River.OneMoreAddIn.UI.MoreButton();
-			this.nextButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.dateSelector = new System.Windows.Forms.ComboBox();
+			this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
 			this.regBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.matchBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.scopeBox = new System.Windows.Forms.ComboBox();
@@ -70,7 +72,7 @@
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
-			this.cancelButton.Location = new System.Drawing.Point(663, 13);
+			this.cancelButton.Location = new System.Drawing.Point(663, 16);
 			this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 15);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.ShowBorder = true;
@@ -83,28 +85,28 @@
 			this.cancelButton.UseVisualStyleBackColor = true;
 			this.cancelButton.Click += new System.EventHandler(this.Nevermind);
 			// 
-			// textLabel
+			// findLabel
 			// 
-			this.textLabel.AutoSize = true;
-			this.textLabel.Location = new System.Drawing.Point(7, 11);
-			this.textLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-			this.textLabel.Name = "textLabel";
-			this.textLabel.Size = new System.Drawing.Size(43, 20);
-			this.textLabel.TabIndex = 11;
-			this.textLabel.Text = "Text:";
-			this.textLabel.ThemedBack = null;
-			this.textLabel.ThemedFore = null;
+			this.findLabel.AutoSize = true;
+			this.findLabel.Location = new System.Drawing.Point(7, 11);
+			this.findLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.findLabel.Name = "findLabel";
+			this.findLabel.Size = new System.Drawing.Size(40, 20);
+			this.findLabel.TabIndex = 11;
+			this.findLabel.Text = "Find";
+			this.findLabel.ThemedBack = null;
+			this.findLabel.ThemedFore = null;
 			// 
 			// findBox
 			// 
 			this.findBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.findBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.findBox.Location = new System.Drawing.Point(58, 8);
+			this.findBox.Location = new System.Drawing.Point(58, 9);
 			this.findBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.findBox.Name = "findBox";
 			this.findBox.ProcessEnterKey = false;
-			this.findBox.Size = new System.Drawing.Size(419, 26);
+			this.findBox.Size = new System.Drawing.Size(451, 26);
 			this.findBox.TabIndex = 0;
 			this.findBox.ThemedBack = null;
 			this.findBox.ThemedFore = null;
@@ -119,7 +121,7 @@
 			this.searchButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.searchButton.Image = global::River.OneMoreAddIn.Properties.Resources.m_Search;
 			this.searchButton.ImageOver = null;
-			this.searchButton.Location = new System.Drawing.Point(485, 5);
+			this.searchButton.Location = new System.Drawing.Point(515, 5);
 			this.searchButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 15);
 			this.searchButton.Name = "searchButton";
 			this.searchButton.ShowBorder = true;
@@ -143,18 +145,17 @@
 			this.resultsView.HideSelection = false;
 			this.resultsView.HighlightBackground = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(193)))), ((int)(((byte)(255)))));
 			this.resultsView.HighlightForeground = System.Drawing.SystemColors.HighlightText;
-			this.resultsView.Location = new System.Drawing.Point(15, 174);
+			this.resultsView.Location = new System.Drawing.Point(15, 207);
 			this.resultsView.MultiSelect = false;
 			this.resultsView.Name = "resultsView";
 			this.resultsView.RowHeight = 24;
 			this.resultsView.ShowGroups = false;
-			this.resultsView.Size = new System.Drawing.Size(782, 386);
+			this.resultsView.Size = new System.Drawing.Size(782, 353);
 			this.resultsView.SortedBackground = System.Drawing.SystemColors.Window;
 			this.resultsView.TabIndex = 0;
 			this.resultsView.TabStop = false;
 			this.resultsView.UseCompatibleStateImageBehavior = false;
 			this.resultsView.View = System.Windows.Forms.View.Details;
-			this.resultsView.SelectedIndexChanged += new System.EventHandler(this.ChangeSelection);
 			this.resultsView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.HandleNavKey);
 			this.resultsView.Resize += new System.EventHandler(this.ResizeResultsView);
 			// 
@@ -166,6 +167,8 @@
 			// 
 			this.morePanel1.BottomBorderColor = System.Drawing.SystemColors.ActiveBorder;
 			this.morePanel1.BottomBorderSize = 0;
+			this.morePanel1.Controls.Add(this.prevButton);
+			this.morePanel1.Controls.Add(this.nextButton);
 			this.morePanel1.Controls.Add(this.pageLabel);
 			this.morePanel1.Controls.Add(this.progressBar);
 			this.morePanel1.Controls.Add(this.cancelButton);
@@ -179,6 +182,44 @@
 			this.morePanel1.ThemedFore = null;
 			this.morePanel1.TopBorderColor = System.Drawing.SystemColors.Control;
 			this.morePanel1.TopBorderSize = 0;
+			// 
+			// prevButton
+			// 
+			this.prevButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.prevButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.prevButton.Image = global::River.OneMoreAddIn.Properties.Resources.UpArrow;
+			this.prevButton.ImageOver = null;
+			this.prevButton.Location = new System.Drawing.Point(93, 18);
+			this.prevButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 15);
+			this.prevButton.Name = "prevButton";
+			this.prevButton.ShowBorder = true;
+			this.prevButton.Size = new System.Drawing.Size(60, 30);
+			this.prevButton.StylizeImage = true;
+			this.prevButton.TabIndex = 15;
+			this.prevButton.ThemedBack = null;
+			this.prevButton.ThemedFore = null;
+			this.prevButton.UseVisualStyleBackColor = true;
+			this.prevButton.Visible = false;
+			this.prevButton.Click += new System.EventHandler(this.MoveToPreviousSelection);
+			// 
+			// nextButton
+			// 
+			this.nextButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.nextButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.nextButton.Image = global::River.OneMoreAddIn.Properties.Resources.DownArrow;
+			this.nextButton.ImageOver = null;
+			this.nextButton.Location = new System.Drawing.Point(25, 18);
+			this.nextButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 15);
+			this.nextButton.Name = "nextButton";
+			this.nextButton.ShowBorder = true;
+			this.nextButton.Size = new System.Drawing.Size(60, 30);
+			this.nextButton.StylizeImage = true;
+			this.nextButton.TabIndex = 14;
+			this.nextButton.ThemedBack = null;
+			this.nextButton.ThemedFore = null;
+			this.nextButton.UseVisualStyleBackColor = true;
+			this.nextButton.Visible = false;
+			this.nextButton.Click += new System.EventHandler(this.MoveToNextSelection);
 			// 
 			// pageLabel
 			// 
@@ -224,65 +265,53 @@
 			// 
 			this.optionsPanel.BottomBorderColor = System.Drawing.SystemColors.ActiveBorder;
 			this.optionsPanel.BottomBorderSize = 0;
-			this.optionsPanel.Controls.Add(this.prevButton);
-			this.optionsPanel.Controls.Add(this.nextButton);
+			this.optionsPanel.Controls.Add(this.dateSelector);
+			this.optionsPanel.Controls.Add(this.dateTimePicker);
 			this.optionsPanel.Controls.Add(this.regBox);
 			this.optionsPanel.Controls.Add(this.matchBox);
 			this.optionsPanel.Controls.Add(this.scopeBox);
 			this.optionsPanel.Controls.Add(this.findBox);
-			this.optionsPanel.Controls.Add(this.textLabel);
+			this.optionsPanel.Controls.Add(this.findLabel);
 			this.optionsPanel.Controls.Add(this.searchButton);
 			this.optionsPanel.Dock = System.Windows.Forms.DockStyle.Top;
 			this.optionsPanel.Location = new System.Drawing.Point(15, 61);
 			this.optionsPanel.Margin = new System.Windows.Forms.Padding(0);
 			this.optionsPanel.Name = "optionsPanel";
 			this.optionsPanel.Padding = new System.Windows.Forms.Padding(3);
-			this.optionsPanel.Size = new System.Drawing.Size(782, 113);
+			this.optionsPanel.Size = new System.Drawing.Size(782, 146);
 			this.optionsPanel.TabIndex = 0;
 			this.optionsPanel.ThemedBack = null;
 			this.optionsPanel.ThemedFore = null;
 			this.optionsPanel.TopBorderColor = System.Drawing.SystemColors.Control;
 			this.optionsPanel.TopBorderSize = 0;
 			// 
-			// prevButton
+			// dateSelector
 			// 
-			this.prevButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.prevButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
-			this.prevButton.Enabled = false;
-			this.prevButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.prevButton.Image = global::River.OneMoreAddIn.Properties.Resources.UpArrow;
-			this.prevButton.ImageOver = null;
-			this.prevButton.Location = new System.Drawing.Point(660, 68);
-			this.prevButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 15);
-			this.prevButton.Name = "prevButton";
-			this.prevButton.ShowBorder = true;
-			this.prevButton.Size = new System.Drawing.Size(60, 30);
-			this.prevButton.StylizeImage = true;
-			this.prevButton.TabIndex = 15;
-			this.prevButton.ThemedBack = null;
-			this.prevButton.ThemedFore = null;
-			this.prevButton.UseVisualStyleBackColor = true;
-			this.prevButton.Click += new System.EventHandler(this.MoveToPreviousSelection);
+			this.dateSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.dateSelector.Enabled = false;
+			this.dateSelector.FormattingEnabled = true;
+			this.dateSelector.Items.AddRange(new object[] {
+            "Any date",
+            "Created after",
+            "Created before",
+            "Modified after",
+            "Modified before"});
+			this.dateSelector.Location = new System.Drawing.Point(58, 103);
+			this.dateSelector.Name = "dateSelector";
+			this.dateSelector.Size = new System.Drawing.Size(234, 28);
+			this.dateSelector.TabIndex = 15;
+			this.dateSelector.SelectedIndexChanged += new System.EventHandler(this.ChangeDateSelector);
 			// 
-			// nextButton
+			// dateTimePicker
 			// 
-			this.nextButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.nextButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
-			this.nextButton.Enabled = false;
-			this.nextButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.nextButton.Image = global::River.OneMoreAddIn.Properties.Resources.DownArrow;
-			this.nextButton.ImageOver = null;
-			this.nextButton.Location = new System.Drawing.Point(592, 68);
-			this.nextButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 15);
-			this.nextButton.Name = "nextButton";
-			this.nextButton.ShowBorder = true;
-			this.nextButton.Size = new System.Drawing.Size(60, 30);
-			this.nextButton.StylizeImage = true;
-			this.nextButton.TabIndex = 14;
-			this.nextButton.ThemedBack = null;
-			this.nextButton.ThemedFore = null;
-			this.nextButton.UseVisualStyleBackColor = true;
-			this.nextButton.Click += new System.EventHandler(this.MoveToNextSelection);
+			this.dateTimePicker.Enabled = false;
+			this.dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+			this.dateTimePicker.Location = new System.Drawing.Point(298, 103);
+			this.dateTimePicker.MaxDate = new System.DateTime(3000, 12, 31, 0, 0, 0, 0);
+			this.dateTimePicker.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
+			this.dateTimePicker.Name = "dateTimePicker";
+			this.dateTimePicker.Size = new System.Drawing.Size(183, 26);
+			this.dateTimePicker.TabIndex = 14;
 			// 
 			// regBox
 			// 
@@ -326,10 +355,11 @@
             "In this notebook",
             "In this section",
             "On this page"});
-			this.scopeBox.Location = new System.Drawing.Point(592, 7);
+			this.scopeBox.Location = new System.Drawing.Point(592, 9);
 			this.scopeBox.Name = "scopeBox";
 			this.scopeBox.Size = new System.Drawing.Size(183, 28);
 			this.scopeBox.TabIndex = 2;
+			this.scopeBox.SelectedIndexChanged += new System.EventHandler(this.ChangeScope);
 			// 
 			// SearchDialogTextControl
 			// 
@@ -358,7 +388,7 @@
 
 		private UI.MoreLabel introLabel;
 		private UI.MoreButton cancelButton;
-		private UI.MoreLabel textLabel;
+		private UI.MoreLabel findLabel;
 		private UI.MoreTextBox findBox;
 		private UI.MoreButton searchButton;
 		private UI.MoreListView resultsView;
@@ -373,5 +403,7 @@
 		private UI.MoreCheckBox matchBox;
 		private UI.MoreButton prevButton;
 		private UI.MoreButton nextButton;
+		private System.Windows.Forms.ComboBox dateSelector;
+		private System.Windows.Forms.DateTimePicker dateTimePicker;
 	}
 }

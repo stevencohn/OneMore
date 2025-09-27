@@ -4562,6 +4562,14 @@ ISO-code then comma then language name</comment>
 このページで</value>
     <comment>combobox</comment>
   </data>
+  <data name="SearchDialogTextControl_dateOptions" xml:space="preserve">
+    <value>任意の日付
+後に作成されました
+以前に作成されました
+後に変更されました
+前に変更されました</value>
+    <comment>combobox</comment>
+  </data>
   <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
     <value>検索条件を入力します。</value>
     <comment>label</comment>

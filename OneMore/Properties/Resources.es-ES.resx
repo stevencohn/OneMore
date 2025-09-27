@@ -4558,6 +4558,14 @@ En esta sección
 En esta página</value>
     <comment>combobox</comment>
   </data>
+  <data name="SearchDialogTextControl_dateOptions" xml:space="preserve">
+    <value>Cualquier fecha
+Creado después
+Creado antes
+Modificado después
+Modificado antes</value>
+    <comment>combobox</comment>
+  </data>
   <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
     <value>Ingrese los criterios de búsqueda, opcionalmente incluyendo y, o no, citas y paréntesis</value>
     <comment>label</comment>

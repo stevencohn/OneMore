@@ -80,6 +80,20 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		protected override void Dispose(bool disposing)
+		{
+			picture?.Dispose();
+			link?.Dispose();
+			BackColorChanged -= new EventHandler((s, e) =>
+			{
+				picture.BackColor = ((Control)s).BackColor;
+				link.BackColor = ((Control)s).BackColor;
+			});
+
+			base.Dispose(disposing);
+		}
+
+
 		public override string Text { get => link.Text; set => link.Text = value; }
 
 

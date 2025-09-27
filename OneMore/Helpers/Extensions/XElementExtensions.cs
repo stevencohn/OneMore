@@ -454,13 +454,13 @@ namespace River.OneMoreAddIn
 		/// OneMore Extension >> Extract the sanitized text value of the given element
 		/// </summary>
 		/// <param name="element">The root element from which to extract text</param>
-		/// <param name="deep">
+		/// <param name="stripHtml">
 		/// If true then also strip all HTML out of CDATA values; default is to keep HTML
 		/// </param>
 		/// <returns></returns>
-		public static string TextValue(this XElement element, bool deep = false)
+		public static string TextValue(this XElement element, bool stripHtml = false)
 		{
-			if (deep)
+			if (stripHtml)
 			{
 				// this will work for CDATA that contain zero or more <span> elements
 				// regardless of XML validity; used to use cdata.GetWrapper() but that breaks!

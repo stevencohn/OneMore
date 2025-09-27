@@ -4560,6 +4560,14 @@ In this section
 On this page</value>
     <comment>combobox</comment>
   </data>
+  <data name="SearchDialogTextControl_dateOptions" xml:space="preserve">
+    <value>Any date
+Created after
+Created before
+Modified after
+Modified before</value>
+    <comment>combobox</comment>
+  </data>
   <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
     <value>Enter the search criteria, optionally including AND, OR, NOT, quotes and parenthesis</value>
     <comment>label</comment>
