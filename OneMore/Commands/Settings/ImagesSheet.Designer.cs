@@ -58,11 +58,10 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			this.introBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.introBox.Dock = System.Windows.Forms.DockStyle.Top;
-			this.introBox.Location = new System.Drawing.Point(9, 5);
-			this.introBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.introBox.Location = new System.Drawing.Point(14, 8);
 			this.introBox.Name = "introBox";
-			this.introBox.Padding = new System.Windows.Forms.Padding(0, 0, 0, 23);
-			this.introBox.Size = new System.Drawing.Size(514, 34);
+			this.introBox.Padding = new System.Windows.Forms.Padding(0, 0, 0, 35);
+			this.introBox.Size = new System.Drawing.Size(771, 52);
 			this.introBox.TabIndex = 3;
 			this.introBox.Text = "Customize the defaults for Image commands";
 			this.introBox.ThemedBack = "ControlLightLight";
@@ -74,10 +73,10 @@ namespace River.OneMoreAddIn.Settings
 			this.layoutPanel.Controls.Add(this.generalGroup);
 			this.layoutPanel.Controls.Add(this.plantGroup);
 			this.layoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.layoutPanel.Location = new System.Drawing.Point(9, 39);
+			this.layoutPanel.Location = new System.Drawing.Point(14, 60);
 			this.layoutPanel.Margin = new System.Windows.Forms.Padding(0);
 			this.layoutPanel.Name = "layoutPanel";
-			this.layoutPanel.Size = new System.Drawing.Size(514, 280);
+			this.layoutPanel.Size = new System.Drawing.Size(771, 431);
 			this.layoutPanel.TabIndex = 4;
 			// 
 			// resizeGroup
@@ -86,12 +85,10 @@ namespace River.OneMoreAddIn.Settings
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.resizeGroup.Controls.Add(this.widthBox);
 			this.resizeGroup.Controls.Add(this.widthLabel);
-			this.resizeGroup.Location = new System.Drawing.Point(5, 79);
-			this.resizeGroup.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.resizeGroup.Location = new System.Drawing.Point(8, 122);
 			this.resizeGroup.Name = "resizeGroup";
-			this.resizeGroup.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.resizeGroup.ShowOnlyTopEdge = true;
-			this.resizeGroup.Size = new System.Drawing.Size(507, 58);
+			this.resizeGroup.Size = new System.Drawing.Size(760, 89);
 			this.resizeGroup.TabIndex = 11;
 			this.resizeGroup.TabStop = false;
 			this.resizeGroup.Text = "Resize Options";
@@ -100,15 +97,14 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// widthBox
 			// 
-			this.widthBox.Location = new System.Drawing.Point(169, 21);
-			this.widthBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.widthBox.Location = new System.Drawing.Point(254, 32);
 			this.widthBox.Maximum = new decimal(new int[] {
             2000,
             0,
             0,
             0});
 			this.widthBox.Name = "widthBox";
-			this.widthBox.Size = new System.Drawing.Size(80, 20);
+			this.widthBox.Size = new System.Drawing.Size(120, 26);
 			this.widthBox.TabIndex = 1;
 			this.widthBox.Value = new decimal(new int[] {
             500,
@@ -119,10 +115,9 @@ namespace River.OneMoreAddIn.Settings
 			// widthLabel
 			// 
 			this.widthLabel.AutoSize = true;
-			this.widthLabel.Location = new System.Drawing.Point(19, 23);
-			this.widthLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.widthLabel.Location = new System.Drawing.Point(28, 35);
 			this.widthLabel.Name = "widthLabel";
-			this.widthLabel.Size = new System.Drawing.Size(108, 13);
+			this.widthLabel.Size = new System.Drawing.Size(162, 20);
 			this.widthLabel.TabIndex = 0;
 			this.widthLabel.Text = "Preferred resize width";
 			// 
@@ -133,12 +128,10 @@ namespace River.OneMoreAddIn.Settings
 			this.generalGroup.Controls.Add(this.imageViewerLabel);
 			this.generalGroup.Controls.Add(this.imageViewerBox);
 			this.generalGroup.Controls.Add(this.imageViewerButton);
-			this.generalGroup.Location = new System.Drawing.Point(5, 4);
-			this.generalGroup.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.generalGroup.Location = new System.Drawing.Point(8, 6);
 			this.generalGroup.Name = "generalGroup";
-			this.generalGroup.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.generalGroup.ShowOnlyTopEdge = true;
-			this.generalGroup.Size = new System.Drawing.Size(507, 71);
+			this.generalGroup.Size = new System.Drawing.Size(760, 109);
 			this.generalGroup.TabIndex = 10;
 			this.generalGroup.TabStop = false;
 			this.generalGroup.Text = "General";
@@ -148,22 +141,21 @@ namespace River.OneMoreAddIn.Settings
 			// imageViewerLabel
 			// 
 			this.imageViewerLabel.AutoSize = true;
-			this.imageViewerLabel.Location = new System.Drawing.Point(19, 21);
-			this.imageViewerLabel.Margin = new System.Windows.Forms.Padding(2, 6, 2, 0);
+			this.imageViewerLabel.Location = new System.Drawing.Point(28, 32);
+			this.imageViewerLabel.Margin = new System.Windows.Forms.Padding(3, 9, 3, 0);
 			this.imageViewerLabel.Name = "imageViewerLabel";
-			this.imageViewerLabel.Size = new System.Drawing.Size(276, 13);
+			this.imageViewerLabel.Size = new System.Drawing.Size(410, 20);
 			this.imageViewerLabel.TabIndex = 9;
 			this.imageViewerLabel.Text = "External image viewer (leave blank to use system default)";
 			// 
 			// imageViewerBox
 			// 
 			this.imageViewerBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.imageViewerBox.Location = new System.Drawing.Point(21, 36);
-			this.imageViewerBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.imageViewerBox.Location = new System.Drawing.Point(32, 55);
 			this.imageViewerBox.Name = "imageViewerBox";
 			this.imageViewerBox.ProcessEnterKey = false;
-			this.imageViewerBox.Size = new System.Drawing.Size(386, 20);
-			this.imageViewerBox.TabIndex = 7;
+			this.imageViewerBox.Size = new System.Drawing.Size(578, 26);
+			this.imageViewerBox.TabIndex = 0;
 			this.imageViewerBox.Text = "mspaint";
 			this.imageViewerBox.ThemedBack = null;
 			this.imageViewerBox.ThemedFore = null;
@@ -174,13 +166,12 @@ namespace River.OneMoreAddIn.Settings
 			this.imageViewerButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.imageViewerButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.imageViewerButton.ImageOver = null;
-			this.imageViewerButton.Location = new System.Drawing.Point(411, 35);
-			this.imageViewerButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.imageViewerButton.Location = new System.Drawing.Point(616, 54);
 			this.imageViewerButton.Name = "imageViewerButton";
 			this.imageViewerButton.ShowBorder = true;
-			this.imageViewerButton.Size = new System.Drawing.Size(24, 20);
+			this.imageViewerButton.Size = new System.Drawing.Size(36, 31);
 			this.imageViewerButton.StylizeImage = false;
-			this.imageViewerButton.TabIndex = 8;
+			this.imageViewerButton.TabIndex = 1;
 			this.imageViewerButton.Text = "...";
 			this.imageViewerButton.ThemedBack = null;
 			this.imageViewerButton.ThemedFore = null;
@@ -196,12 +187,10 @@ namespace River.OneMoreAddIn.Settings
 			this.plantGroup.Controls.Add(this.plantRemoveBox);
 			this.plantGroup.Controls.Add(this.plantCollapseBox);
 			this.plantGroup.Controls.Add(this.plantAfterBox);
-			this.plantGroup.Location = new System.Drawing.Point(5, 141);
-			this.plantGroup.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.plantGroup.Location = new System.Drawing.Point(8, 217);
 			this.plantGroup.Name = "plantGroup";
-			this.plantGroup.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.plantGroup.ShowOnlyTopEdge = true;
-			this.plantGroup.Size = new System.Drawing.Size(507, 130);
+			this.plantGroup.Size = new System.Drawing.Size(760, 200);
 			this.plantGroup.TabIndex = 0;
 			this.plantGroup.TabStop = false;
 			this.plantGroup.Text = "PlantUML Options";
@@ -211,22 +200,21 @@ namespace River.OneMoreAddIn.Settings
 			// plantUriLabel
 			// 
 			this.plantUriLabel.AutoSize = true;
-			this.plantUriLabel.Location = new System.Drawing.Point(19, 88);
-			this.plantUriLabel.Margin = new System.Windows.Forms.Padding(2, 6, 2, 0);
+			this.plantUriLabel.Location = new System.Drawing.Point(28, 135);
+			this.plantUriLabel.Margin = new System.Windows.Forms.Padding(3, 9, 3, 0);
 			this.plantUriLabel.Name = "plantUriLabel";
-			this.plantUriLabel.Size = new System.Drawing.Size(260, 13);
-			this.plantUriLabel.TabIndex = 11;
+			this.plantUriLabel.Size = new System.Drawing.Size(386, 20);
+			this.plantUriLabel.TabIndex = 3;
 			this.plantUriLabel.Text = "PlantUML Server Address (leave blank to use default)";
 			// 
 			// plantUriBox
 			// 
 			this.plantUriBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.plantUriBox.Location = new System.Drawing.Point(21, 103);
-			this.plantUriBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.plantUriBox.Location = new System.Drawing.Point(32, 158);
 			this.plantUriBox.Name = "plantUriBox";
 			this.plantUriBox.ProcessEnterKey = false;
-			this.plantUriBox.Size = new System.Drawing.Size(386, 20);
-			this.plantUriBox.TabIndex = 10;
+			this.plantUriBox.Size = new System.Drawing.Size(578, 26);
+			this.plantUriBox.TabIndex = 4;
 			this.plantUriBox.ThemedBack = null;
 			this.plantUriBox.ThemedFore = null;
 			// 
@@ -235,10 +223,9 @@ namespace River.OneMoreAddIn.Settings
 			this.plantRemoveBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.plantRemoveBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.plantRemoveBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.plantRemoveBox.Location = new System.Drawing.Point(21, 63);
-			this.plantRemoveBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.plantRemoveBox.Location = new System.Drawing.Point(32, 97);
 			this.plantRemoveBox.Name = "plantRemoveBox";
-			this.plantRemoveBox.Size = new System.Drawing.Size(265, 16);
+			this.plantRemoveBox.Size = new System.Drawing.Size(597, 38);
 			this.plantRemoveBox.StylizeImage = false;
 			this.plantRemoveBox.TabIndex = 2;
 			this.plantRemoveBox.Text = "Remove PlantUML text and embed it in the image";
@@ -252,10 +239,9 @@ namespace River.OneMoreAddIn.Settings
 			this.plantCollapseBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.plantCollapseBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.plantCollapseBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.plantCollapseBox.Location = new System.Drawing.Point(21, 44);
-			this.plantCollapseBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.plantCollapseBox.Location = new System.Drawing.Point(32, 68);
 			this.plantCollapseBox.Name = "plantCollapseBox";
-			this.plantCollapseBox.Size = new System.Drawing.Size(138, 16);
+			this.plantCollapseBox.Size = new System.Drawing.Size(310, 38);
 			this.plantCollapseBox.StylizeImage = false;
 			this.plantCollapseBox.TabIndex = 1;
 			this.plantCollapseBox.Text = "Collapse PlantUML text";
@@ -269,10 +255,9 @@ namespace River.OneMoreAddIn.Settings
 			this.plantAfterBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.plantAfterBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.plantAfterBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.plantAfterBox.Location = new System.Drawing.Point(21, 24);
-			this.plantAfterBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.plantAfterBox.Location = new System.Drawing.Point(32, 37);
 			this.plantAfterBox.Name = "plantAfterBox";
-			this.plantAfterBox.Size = new System.Drawing.Size(279, 16);
+			this.plantAfterBox.Size = new System.Drawing.Size(628, 38);
 			this.plantAfterBox.StylizeImage = false;
 			this.plantAfterBox.TabIndex = 0;
 			this.plantAfterBox.Text = "Insert drawing after PlantUML text rather than before";
@@ -287,16 +272,15 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// ImagesSheet
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.Controls.Add(this.layoutPanel);
 			this.Controls.Add(this.introBox);
 			this.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.Name = "ImagesSheet";
-			this.Padding = new System.Windows.Forms.Padding(9, 5, 10, 6);
-			this.Size = new System.Drawing.Size(533, 325);
+			this.Padding = new System.Windows.Forms.Padding(14, 8, 15, 9);
+			this.Size = new System.Drawing.Size(800, 500);
 			this.layoutPanel.ResumeLayout(false);
 			this.resizeGroup.ResumeLayout(false);
 			this.resizeGroup.PerformLayout();

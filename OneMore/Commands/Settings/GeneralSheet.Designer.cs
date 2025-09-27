@@ -84,7 +84,7 @@ namespace River.OneMoreAddIn.Settings
 			this.sequentialBox.Name = "sequentialBox";
 			this.sequentialBox.Size = new System.Drawing.Size(461, 25);
 			this.sequentialBox.StylizeImage = false;
-			this.sequentialBox.TabIndex = 7;
+			this.sequentialBox.TabIndex = 2;
 			this.sequentialBox.Text = "Allow nonsequential name matching in Command Palettes";
 			this.sequentialBox.ThemedBack = null;
 			this.sequentialBox.ThemedFore = null;
@@ -101,7 +101,7 @@ namespace River.OneMoreAddIn.Settings
 			this.themeBox.Location = new System.Drawing.Point(186, 20);
 			this.themeBox.Name = "themeBox";
 			this.themeBox.Size = new System.Drawing.Size(300, 28);
-			this.themeBox.TabIndex = 6;
+			this.themeBox.TabIndex = 0;
 			// 
 			// themeLabel
 			// 
@@ -169,7 +169,7 @@ namespace River.OneMoreAddIn.Settings
 			this.langBox.Location = new System.Drawing.Point(186, 83);
 			this.langBox.Name = "langBox";
 			this.langBox.Size = new System.Drawing.Size(300, 28);
-			this.langBox.TabIndex = 3;
+			this.langBox.TabIndex = 1;
 			// 
 			// langLabel
 			// 
@@ -193,7 +193,7 @@ namespace River.OneMoreAddIn.Settings
 			this.checkUpdatesBox.Name = "checkUpdatesBox";
 			this.checkUpdatesBox.Size = new System.Drawing.Size(456, 25);
 			this.checkUpdatesBox.StylizeImage = false;
-			this.checkUpdatesBox.TabIndex = 1;
+			this.checkUpdatesBox.TabIndex = 3;
 			this.checkUpdatesBox.Text = "Check for new versions of OneMore when OneNote starts";
 			this.checkUpdatesBox.ThemedBack = null;
 			this.checkUpdatesBox.ThemedFore = null;

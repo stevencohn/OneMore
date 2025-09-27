@@ -53,12 +53,12 @@ namespace River.OneMoreAddIn.Settings
 			this.introBox.Dock = System.Windows.Forms.DockStyle.Top;
 			this.introBox.Location = new System.Drawing.Point(13, 8);
 			this.introBox.Name = "introBox";
-			this.introBox.ThemedBack = "ControlLightLight";
-			this.introBox.ThemedFore = null;
 			this.introBox.Size = new System.Drawing.Size(772, 66);
 			this.introBox.TabIndex = 3;
 			this.introBox.Text = "Customize the behavior of the Colorize command. Secondary font applies when colla" +
     "psing PlantUML";
+			this.introBox.ThemedBack = "ControlLightLight";
+			this.introBox.ThemedFore = null;
 			// 
 			// layoutPanel
 			// 
@@ -81,7 +81,7 @@ namespace River.OneMoreAddIn.Settings
 			this.layoutPanel.Margin = new System.Windows.Forms.Padding(0);
 			this.layoutPanel.Name = "layoutPanel";
 			this.layoutPanel.Size = new System.Drawing.Size(772, 416);
-			this.layoutPanel.TabIndex = 4;
+			this.layoutPanel.TabIndex = 0;
 			// 
 			// barLabel
 			// 
@@ -103,10 +103,14 @@ namespace River.OneMoreAddIn.Settings
 			this.allLink.LinkColor = System.Drawing.Color.MediumOrchid;
 			this.allLink.Location = new System.Drawing.Point(501, 217);
 			this.allLink.Name = "allLink";
+			this.allLink.Selected = false;
 			this.allLink.Size = new System.Drawing.Size(26, 20);
+			this.allLink.StrictColors = false;
 			this.allLink.TabIndex = 20;
 			this.allLink.TabStop = true;
 			this.allLink.Text = "All";
+			this.allLink.ThemedBack = null;
+			this.allLink.ThemedFore = null;
 			this.allLink.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
 			this.allLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ToggleLanguages);
 			// 
@@ -120,10 +124,14 @@ namespace River.OneMoreAddIn.Settings
 			this.noneLink.LinkColor = System.Drawing.Color.MediumOrchid;
 			this.noneLink.Location = new System.Drawing.Point(553, 217);
 			this.noneLink.Name = "noneLink";
+			this.noneLink.Selected = false;
 			this.noneLink.Size = new System.Drawing.Size(47, 20);
+			this.noneLink.StrictColors = false;
 			this.noneLink.TabIndex = 19;
 			this.noneLink.TabStop = true;
 			this.noneLink.Text = "None";
+			this.noneLink.ThemedBack = null;
+			this.noneLink.ThemedFore = null;
 			this.noneLink.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
 			this.noneLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ToggleLanguages);
 			// 
@@ -138,7 +146,7 @@ namespace River.OneMoreAddIn.Settings
 			this.langView.Location = new System.Drawing.Point(10, 240);
 			this.langView.Name = "langView";
 			this.langView.Size = new System.Drawing.Size(590, 173);
-			this.langView.TabIndex = 18;
+			this.langView.TabIndex = 5;
 			this.langView.UseCompatibleStateImageBehavior = false;
 			this.langView.View = System.Windows.Forms.View.SmallIcon;
 			// 
@@ -163,7 +171,7 @@ namespace River.OneMoreAddIn.Settings
 			this.family2Box.Location = new System.Drawing.Point(135, 106);
 			this.family2Box.Name = "family2Box";
 			this.family2Box.Size = new System.Drawing.Size(355, 32);
-			this.family2Box.TabIndex = 16;
+			this.family2Box.TabIndex = 2;
 			// 
 			// size2Box
 			// 
@@ -189,7 +197,7 @@ namespace River.OneMoreAddIn.Settings
 			this.size2Box.Location = new System.Drawing.Point(496, 105);
 			this.size2Box.Name = "size2Box";
 			this.size2Box.Size = new System.Drawing.Size(104, 33);
-			this.size2Box.TabIndex = 15;
+			this.size2Box.TabIndex = 3;
 			// 
 			// font2Label
 			// 
@@ -208,8 +216,11 @@ namespace River.OneMoreAddIn.Settings
 			this.fixedBox.Location = new System.Drawing.Point(135, 167);
 			this.fixedBox.Name = "fixedBox";
 			this.fixedBox.Size = new System.Drawing.Size(235, 25);
-			this.fixedBox.TabIndex = 3;
+			this.fixedBox.StylizeImage = false;
+			this.fixedBox.TabIndex = 4;
 			this.fixedBox.Text = "Show only fixed-width fonts";
+			this.fixedBox.ThemedBack = null;
+			this.fixedBox.ThemedFore = null;
 			this.fixedBox.UseVisualStyleBackColor = true;
 			this.fixedBox.CheckedChanged += new System.EventHandler(this.FilterFontsOnCheckedChanged);
 			// 
@@ -225,7 +236,7 @@ namespace River.OneMoreAddIn.Settings
 			this.familyBox.Location = new System.Drawing.Point(135, 57);
 			this.familyBox.Name = "familyBox";
 			this.familyBox.Size = new System.Drawing.Size(355, 32);
-			this.familyBox.TabIndex = 1;
+			this.familyBox.TabIndex = 0;
 			// 
 			// sizeBox
 			// 
@@ -251,7 +262,7 @@ namespace River.OneMoreAddIn.Settings
 			this.sizeBox.Location = new System.Drawing.Point(496, 57);
 			this.sizeBox.Name = "sizeBox";
 			this.sizeBox.Size = new System.Drawing.Size(104, 33);
-			this.sizeBox.TabIndex = 2;
+			this.sizeBox.TabIndex = 1;
 			// 
 			// fontLabel
 			// 
@@ -270,8 +281,11 @@ namespace River.OneMoreAddIn.Settings
 			this.applyBox.Location = new System.Drawing.Point(3, 6);
 			this.applyBox.Name = "applyBox";
 			this.applyBox.Size = new System.Drawing.Size(426, 25);
+			this.applyBox.StylizeImage = false;
 			this.applyBox.TabIndex = 0;
 			this.applyBox.Text = "Always apply the following fonts when colorizing code";
+			this.applyBox.ThemedBack = null;
+			this.applyBox.ThemedFore = null;
 			this.applyBox.UseVisualStyleBackColor = true;
 			// 
 			// ColorizerSheet

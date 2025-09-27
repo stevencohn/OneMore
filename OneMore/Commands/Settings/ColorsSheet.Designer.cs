@@ -92,7 +92,7 @@ namespace River.OneMoreAddIn.Settings
 			this.strikeGroupBox.Padding = new System.Windows.Forms.Padding(20, 10, 10, 10);
 			this.strikeGroupBox.ShowOnlyTopEdge = true;
 			this.strikeGroupBox.Size = new System.Drawing.Size(756, 161);
-			this.strikeGroupBox.TabIndex = 6;
+			this.strikeGroupBox.TabIndex = 1;
 			this.strikeGroupBox.TabStop = false;
 			this.strikeGroupBox.Text = "Strikethrough To Do Tags";
 			this.strikeGroupBox.ThemedBorder = null;
@@ -108,7 +108,7 @@ namespace River.OneMoreAddIn.Settings
 			this.strikeBox.Name = "strikeBox";
 			this.strikeBox.Size = new System.Drawing.Size(626, 25);
 			this.strikeBox.StylizeImage = false;
-			this.strikeBox.TabIndex = 5;
+			this.strikeBox.TabIndex = 0;
 			this.strikeBox.Text = "Apply this color when using the Strike-Through Completed To Do Tags command";
 			this.strikeBox.ThemedBack = null;
 			this.strikeBox.ThemedFore = null;
@@ -168,7 +168,7 @@ namespace River.OneMoreAddIn.Settings
 			this.linesGroupBox.Padding = new System.Windows.Forms.Padding(20, 10, 10, 15);
 			this.linesGroupBox.ShowOnlyTopEdge = true;
 			this.linesGroupBox.Size = new System.Drawing.Size(756, 136);
-			this.linesGroupBox.TabIndex = 5;
+			this.linesGroupBox.TabIndex = 0;
 			this.linesGroupBox.TabStop = false;
 			this.linesGroupBox.Text = "Horizontal Lines";
 			this.linesGroupBox.ThemedBorder = null;
@@ -224,7 +224,7 @@ namespace River.OneMoreAddIn.Settings
             0});
 			this.lengthBox.Name = "lengthBox";
 			this.lengthBox.Size = new System.Drawing.Size(132, 26);
-			this.lengthBox.TabIndex = 3;
+			this.lengthBox.TabIndex = 0;
 			this.lengthBox.Value = new decimal(new int[] {
             20,
             0,

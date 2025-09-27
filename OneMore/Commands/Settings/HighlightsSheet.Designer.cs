@@ -67,7 +67,7 @@
 			this.normalRadio.Margin = new System.Windows.Forms.Padding(3, 3, 3, 12);
 			this.normalRadio.Name = "normalRadio";
 			this.normalRadio.Size = new System.Drawing.Size(79, 25);
-			this.normalRadio.TabIndex = 3;
+			this.normalRadio.TabIndex = 0;
 			this.normalRadio.TabStop = true;
 			this.normalRadio.Text = "Bright";
 			this.normalRadio.UseVisualStyleBackColor = true;
@@ -79,7 +79,7 @@
 			this.fadedRadio.Margin = new System.Windows.Forms.Padding(3, 3, 3, 12);
 			this.fadedRadio.Name = "fadedRadio";
 			this.fadedRadio.Size = new System.Drawing.Size(82, 25);
-			this.fadedRadio.TabIndex = 4;
+			this.fadedRadio.TabIndex = 1;
 			this.fadedRadio.Text = "Faded";
 			this.fadedRadio.UseVisualStyleBackColor = true;
 			// 
@@ -147,7 +147,7 @@
 			this.deepRadio.Margin = new System.Windows.Forms.Padding(3, 3, 3, 12);
 			this.deepRadio.Name = "deepRadio";
 			this.deepRadio.Size = new System.Drawing.Size(75, 25);
-			this.deepRadio.TabIndex = 5;
+			this.deepRadio.TabIndex = 2;
 			this.deepRadio.Text = "Deep";
 			this.deepRadio.UseVisualStyleBackColor = true;
 			// 

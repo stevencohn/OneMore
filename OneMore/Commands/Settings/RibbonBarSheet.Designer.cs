@@ -77,7 +77,7 @@
 			this.editRibbonBox.Name = "editRibbonBox";
 			this.editRibbonBox.Size = new System.Drawing.Size(153, 25);
 			this.editRibbonBox.StylizeImage = false;
-			this.editRibbonBox.TabIndex = 5;
+			this.editRibbonBox.TabIndex = 2;
 			this.editRibbonBox.Text = "Edit Commands";
 			this.editRibbonBox.ThemedBack = null;
 			this.editRibbonBox.ThemedFore = null;
@@ -94,7 +94,7 @@
 			this.editIconBox.Name = "editIconBox";
 			this.editIconBox.Size = new System.Drawing.Size(294, 25);
 			this.editIconBox.StylizeImage = false;
-			this.editIconBox.TabIndex = 6;
+			this.editIconBox.TabIndex = 3;
 			this.editIconBox.Text = "Show only icons for edit commands";
 			this.editIconBox.ThemedBack = null;
 			this.editIconBox.ThemedFore = null;
@@ -109,7 +109,7 @@
 			this.formulaRibbonBox.Name = "formulaRibbonBox";
 			this.formulaRibbonBox.Size = new System.Drawing.Size(185, 25);
 			this.formulaRibbonBox.StylizeImage = false;
-			this.formulaRibbonBox.TabIndex = 7;
+			this.formulaRibbonBox.TabIndex = 4;
 			this.formulaRibbonBox.Text = "Formula Commands";
 			this.formulaRibbonBox.ThemedBack = null;
 			this.formulaRibbonBox.ThemedFore = null;
@@ -126,7 +126,7 @@
 			this.formulaIconBox.Name = "formulaIconBox";
 			this.formulaIconBox.Size = new System.Drawing.Size(322, 25);
 			this.formulaIconBox.StylizeImage = false;
-			this.formulaIconBox.TabIndex = 8;
+			this.formulaIconBox.TabIndex = 5;
 			this.formulaIconBox.Text = "Show only icons for formula commands";
 			this.formulaIconBox.ThemedBack = null;
 			this.formulaIconBox.ThemedFore = null;
@@ -168,7 +168,7 @@
 			this.hashtagsIconBox.Name = "hashtagsIconBox";
 			this.hashtagsIconBox.Size = new System.Drawing.Size(334, 25);
 			this.hashtagsIconBox.StylizeImage = false;
-			this.hashtagsIconBox.TabIndex = 15;
+			this.hashtagsIconBox.TabIndex = 1;
 			this.hashtagsIconBox.Text = "Show only icons for hashtags commands";
 			this.hashtagsIconBox.ThemedBack = null;
 			this.hashtagsIconBox.ThemedFore = null;
@@ -183,7 +183,7 @@
 			this.hashtagsRibbonBox.Name = "hashtagsRibbonBox";
 			this.hashtagsRibbonBox.Size = new System.Drawing.Size(194, 25);
 			this.hashtagsRibbonBox.StylizeImage = false;
-			this.hashtagsRibbonBox.TabIndex = 14;
+			this.hashtagsRibbonBox.TabIndex = 0;
 			this.hashtagsRibbonBox.Text = "Hashtags Commands";
 			this.hashtagsRibbonBox.ThemedBack = null;
 			this.hashtagsRibbonBox.ThemedFore = null;
@@ -279,7 +279,7 @@
 			this.layoutBox.Location = new System.Drawing.Point(254, 36);
 			this.layoutBox.Name = "layoutBox";
 			this.layoutBox.Size = new System.Drawing.Size(378, 28);
-			this.layoutBox.TabIndex = 3;
+			this.layoutBox.TabIndex = 0;
 			this.layoutBox.SelectedIndexChanged += new System.EventHandler(this.ChangeSelectedLayout);
 			// 
 			// layoutLabel

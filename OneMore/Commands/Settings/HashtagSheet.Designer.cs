@@ -90,7 +90,7 @@ namespace River.OneMoreAddIn.Settings
             0});
 			this.intervalBox.Name = "intervalBox";
 			this.intervalBox.Size = new System.Drawing.Size(120, 26);
-			this.intervalBox.TabIndex = 4;
+			this.intervalBox.TabIndex = 0;
 			this.intervalBox.Value = new decimal(new int[] {
             20,
             0,
@@ -132,7 +132,7 @@ namespace River.OneMoreAddIn.Settings
 			this.warningLabel.Location = new System.Drawing.Point(18, 58);
 			this.warningLabel.Name = "warningLabel";
 			this.warningLabel.Size = new System.Drawing.Size(735, 49);
-			this.warningLabel.TabIndex = 2;
+			this.warningLabel.TabIndex = 1;
 			this.warningLabel.Text = "This should be used after adding or removing one or more notebooks. It is recomme" +
     "nded to schedule rebuilds after-hours, such as midnight.";
 			this.warningLabel.ThemedBack = null;
@@ -147,9 +147,10 @@ namespace River.OneMoreAddIn.Settings
 			this.scheduleLink.LinkColor = System.Drawing.Color.MediumOrchid;
 			this.scheduleLink.Location = new System.Drawing.Point(18, 35);
 			this.scheduleLink.Name = "scheduleLink";
+			this.scheduleLink.Selected = false;
 			this.scheduleLink.Size = new System.Drawing.Size(306, 20);
 			this.scheduleLink.StrictColors = false;
-			this.scheduleLink.TabIndex = 1;
+			this.scheduleLink.TabIndex = 0;
 			this.scheduleLink.TabStop = true;
 			this.scheduleLink.Text = "Schedule Hashtag Scanning or Scan Now";
 			this.scheduleLink.ThemedBack = null;
@@ -166,7 +167,7 @@ namespace River.OneMoreAddIn.Settings
 			this.disabledBox.Name = "disabledBox";
 			this.disabledBox.Size = new System.Drawing.Size(540, 25);
 			this.disabledBox.StylizeImage = false;
-			this.disabledBox.TabIndex = 0;
+			this.disabledBox.TabIndex = 2;
 			this.disabledBox.Text = "Disable the hashtag service. This will also disable hashtag searching.";
 			this.disabledBox.ThemedBack = null;
 			this.disabledBox.ThemedFore = null;
@@ -193,7 +194,7 @@ namespace River.OneMoreAddIn.Settings
 			this.styleBox.Location = new System.Drawing.Point(304, 141);
 			this.styleBox.Name = "styleBox";
 			this.styleBox.Size = new System.Drawing.Size(280, 28);
-			this.styleBox.TabIndex = 8;
+			this.styleBox.TabIndex = 3;
 			// 
 			// filterBox
 			// 
@@ -204,7 +205,7 @@ namespace River.OneMoreAddIn.Settings
 			this.filterBox.Name = "filterBox";
 			this.filterBox.Size = new System.Drawing.Size(497, 25);
 			this.filterBox.StylizeImage = false;
-			this.filterBox.TabIndex = 11;
+			this.filterBox.TabIndex = 2;
 			this.filterBox.Text = "Treat HTML Hex colors and C# and C++ directives as hashtags";
 			this.filterBox.ThemedBack = null;
 			this.filterBox.ThemedFore = null;
@@ -229,7 +230,7 @@ namespace River.OneMoreAddIn.Settings
             0});
 			this.delayBox.Name = "delayBox";
 			this.delayBox.Size = new System.Drawing.Size(120, 26);
-			this.delayBox.TabIndex = 13;
+			this.delayBox.TabIndex = 1;
 			// 
 			// msLabel
 			// 
