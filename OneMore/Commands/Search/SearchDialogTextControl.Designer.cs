@@ -78,7 +78,7 @@
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(112, 35);
 			this.cancelButton.StylizeImage = false;
-			this.cancelButton.TabIndex = 0;
+			this.cancelButton.TabIndex = 2;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.ThemedBack = null;
 			this.cancelButton.ThemedFore = null;
@@ -195,7 +195,7 @@
 			this.prevButton.ShowBorder = true;
 			this.prevButton.Size = new System.Drawing.Size(60, 30);
 			this.prevButton.StylizeImage = true;
-			this.prevButton.TabIndex = 2;
+			this.prevButton.TabIndex = 1;
 			this.prevButton.ThemedBack = null;
 			this.prevButton.ThemedFore = null;
 			this.prevButton.UseVisualStyleBackColor = true;
@@ -214,7 +214,7 @@
 			this.nextButton.ShowBorder = true;
 			this.nextButton.Size = new System.Drawing.Size(60, 30);
 			this.nextButton.StylizeImage = true;
-			this.nextButton.TabIndex = 1;
+			this.nextButton.TabIndex = 0;
 			this.nextButton.ThemedBack = null;
 			this.nextButton.ThemedFore = null;
 			this.nextButton.UseVisualStyleBackColor = true;
