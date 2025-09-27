@@ -30,7 +30,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				Image = Resx.SectionMask.MapColor(Color.Black, ColorHelper.FromHtml(htmlColor)),
 				Dock = DockStyle.Left,
-				Padding = new(5, 6, 0, 0),
+				Padding = new(5, 4, 0, 2),
 				Width = 30
 			};
 
