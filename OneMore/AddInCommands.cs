@@ -867,7 +867,7 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<HashtagCommand>();
 
 
-		[Command("ribSearchButton_Label", Keys.Shift | Keys.Alt | Keys.S, "ribSearchMenu")]
+		[Command("ribSearchButton_Label", Keys.Shift | Keys.Alt | Keys.G, "ribSearchMenu")]
 		public async Task SearchCmd(IRibbonControl control)
 			=> await factory.Run<SearchCommand>();
 
