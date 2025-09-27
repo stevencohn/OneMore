@@ -213,7 +213,7 @@ namespace River.OneMoreAddIn.Commands
 
 			findBox.Enabled = false;
 			searchButton.Enabled = false;
-			resultsView.BeginUpdate();
+			resultsView.SuspendLayout();
 
 			ClearResults();
 			nextButton.Visible = prevButton.Visible = false;
@@ -257,7 +257,7 @@ namespace River.OneMoreAddIn.Commands
 			findBox.Enabled = true;
 			searchButton.Enabled = true;
 
-			resultsView.EndUpdate();
+			resultsView.ResumeLayout();
 
 			findBox.Focus();
 			searchButton.NotifyDefault(true);
