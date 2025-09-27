@@ -47,6 +47,23 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing)
+			{
+				if (hcursor != IntPtr.Zero)
+				{
+					Native.DestroyCursor(hcursor);
+				}
+				if (pcursor != IntPtr.Zero)
+				{
+					Native.DestroyCursor(pcursor);
+				}
+			}
+			base.Dispose(disposing);
+		}
+
+
 		/// <summary>
 		/// Set this when updating the text of a node, otherwise a stack overflow will occur
 		/// </summary>

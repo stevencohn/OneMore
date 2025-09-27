@@ -275,8 +275,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				if (item.Control is MoreLinkLabel label)
 				{
-					// detach event handler to avoid memory leak
-					label.LinkClicked -= NavigateToHit;
+					// detaches event handler to avoid memory leak
 					label.Dispose();
 				}
 				else if (item.Control is SearchGroupControl group)

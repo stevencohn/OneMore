@@ -400,6 +400,13 @@ namespace River.OneMoreAddIn.Commands
 				? Resx.phrase_QuickNote
 				: title;
 
+			foreach (var control in pageBox.Controls)
+			{
+				if (control is MoreLinkLabel label)
+				{
+					label.Dispose();
+				}
+			}
 			pageBox.Controls.Clear();
 
 			// inject the page Title as the top-most Heading
@@ -577,6 +584,11 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			pinnedBox.BeginUpdate();
+
+			foreach (var label in pinnedBox.GetAllItems<MoreLinkLabel>())
+			{
+				label.Dispose();
+			}
 			pinnedBox.Items.Clear();
 
 			var viewColor = manager.GetColor("ListView");
@@ -787,7 +799,13 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			historyBox.BeginUpdate();
+
+			foreach (var history in historyBox.GetAllItems<HistoryControl>())
+			{
+				history.Dispose();
+			}
 			historyBox.Items.Clear();
+
 			var viewColor = manager.GetColor("ListView");
 
 			log.History.ForEach(record =>

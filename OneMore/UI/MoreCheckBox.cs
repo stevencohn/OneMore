@@ -47,6 +47,19 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing)
+			{
+				if (hcursor != IntPtr.Zero)
+				{
+					Native.DestroyCursor(hcursor);
+				}
+			}
+			base.Dispose(disposing);
+		}
+
+
 		/// <summary>
 		/// Gets the state indicating normal, hover, or pressed.
 		/// </summary>

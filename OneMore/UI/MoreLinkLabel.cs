@@ -19,6 +19,7 @@ namespace River.OneMoreAddIn.UI
 		private Color back;
 		private Color fore;
 		private bool selected;
+		private LinkLabelLinkClickedEventHandler linkClicked;
 
 
 		public MoreLinkLabel()
@@ -30,6 +31,30 @@ namespace River.OneMoreAddIn.UI
 			ActiveLinkColor = Color.MediumOrchid;
 			LinkColor = Color.MediumOrchid;
 			VisitedLinkColor = Color.MediumOrchid;
+		}
+
+
+		/// <summary>
+		/// Properly dispose the unmanaged resources
+		/// </summary>
+		/// <param name="disposing"></param>
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing)
+			{
+				if (linkClicked is not null)
+				{
+					base.LinkClicked -= linkClicked;
+					linkClicked = null;
+				}
+
+				if (hcursor != IntPtr.Zero)
+				{
+					Native.DestroyCursor(hcursor);
+				}
+			}
+
+			base.Dispose(disposing);
 		}
 
 
@@ -67,6 +92,30 @@ namespace River.OneMoreAddIn.UI
 
 
 		public string ThemedFore { get; set; }
+
+
+		/// <summary>
+		/// Overrides the base LinkClicked event so we can keep a reference to the handler
+		/// in order to unhook it later in our Dispose override. This assumes that we only
+		/// bind to a single handler.
+		/// </summary>
+		public new event LinkLabelLinkClickedEventHandler LinkClicked
+		{
+			add
+			{
+				base.LinkClicked += value;
+				linkClicked = value;
+			}
+
+			remove
+			{
+				base.LinkClicked -= value;
+				if (linkClicked == value)
+				{
+					linkClicked = null;
+				}
+			}
+		}
 
 
 		void ILoadControl.OnLoad()

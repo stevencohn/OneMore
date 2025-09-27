@@ -59,6 +59,13 @@ namespace River.OneMoreAddIn.UI
 			ImageOver?.Dispose();
 			enabledImage?.Dispose();
 			grayImage?.Dispose();
+
+			if (hcursor != IntPtr.Zero)
+			{
+				Native.DestroyCursor(hcursor);
+			}
+
+			base.Dispose(disposing);
 		}
 
 
