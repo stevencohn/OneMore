@@ -54,7 +54,7 @@
             "In all notebooks",
             "In this notebook",
             "In this section"});
-			this.scopeBox.Location = new System.Drawing.Point(590, 9);
+			this.scopeBox.Location = new System.Drawing.Point(592, 9);
 			this.scopeBox.Name = "scopeBox";
 			this.scopeBox.Size = new System.Drawing.Size(183, 28);
 			this.scopeBox.TabIndex = 2;
@@ -84,7 +84,7 @@
 			this.copyButton.Enabled = false;
 			this.copyButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.copyButton.ImageOver = null;
-			this.copyButton.Location = new System.Drawing.Point(423, 13);
+			this.copyButton.Location = new System.Drawing.Point(423, 16);
 			this.copyButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.copyButton.Name = "copyButton";
 			this.copyButton.ShowBorder = true;
@@ -105,7 +105,7 @@
 			this.moveButton.Enabled = false;
 			this.moveButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.moveButton.ImageOver = null;
-			this.moveButton.Location = new System.Drawing.Point(543, 13);
+			this.moveButton.Location = new System.Drawing.Point(543, 16);
 			this.moveButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.moveButton.Name = "moveButton";
 			this.moveButton.ShowBorder = true;
@@ -145,7 +145,7 @@
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
-			this.cancelButton.Location = new System.Drawing.Point(663, 13);
+			this.cancelButton.Location = new System.Drawing.Point(663, 16);
 			this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 15);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.ShowBorder = true;
@@ -163,7 +163,7 @@
 			this.findBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.findBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.findBox.Location = new System.Drawing.Point(59, 8);
+			this.findBox.Location = new System.Drawing.Point(58, 9);
 			this.findBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.findBox.Name = "findBox";
 			this.findBox.ProcessEnterKey = false;
@@ -180,9 +180,9 @@
 			this.findLabel.Location = new System.Drawing.Point(7, 11);
 			this.findLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.findLabel.Name = "findLabel";
-			this.findLabel.Size = new System.Drawing.Size(44, 20);
+			this.findLabel.Size = new System.Drawing.Size(40, 20);
 			this.findLabel.TabIndex = 10;
-			this.findLabel.Text = "Find:";
+			this.findLabel.Text = "Find";
 			this.findLabel.ThemedBack = null;
 			this.findLabel.ThemedFore = null;
 			// 

@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
+	using System.Globalization;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Threading;
@@ -25,6 +26,11 @@ namespace River.OneMoreAddIn.Commands
 			public string PlainText { get; set; }
 			public string Hyperlink { get; set; }
 		}
+
+		//private const int CreatedAfter = 1;
+		private const int CreatedBefore = 2;
+		private const int UpdatedAfter = 3;
+		private const int UpdatedBefore = 4;
 
 		private readonly ILogger logger;
 		private readonly Regex cleaner;
@@ -52,6 +58,8 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			scopeBox.SelectedIndex = 2;
+			dateSelector.SelectedIndex = 0;
+			dateTimePicker.MaxDate = DateTime.Today.AddDays(1);
 			pageLabel.Text = string.Empty;
 
 			logger = Logger.Current;
@@ -89,15 +97,6 @@ namespace River.OneMoreAddIn.Commands
 			resultsView.Columns[0].Width = rowWidth;
 
 			findBox.Focus();
-		}
-
-
-		private void ChangeSelection(object sender, EventArgs e)
-		{
-			if (resultsView.SelectedItems.Count > 0)
-			{
-				nextButton.Enabled = prevButton.Enabled = true;
-			}
 		}
 
 
@@ -173,6 +172,20 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private void ChangeDateSelector(object sender, EventArgs e)
+		{
+			dateTimePicker.Enabled = dateSelector.SelectedIndex > 0;
+		}
+
+
+		private void ChangeScope(object sender, EventArgs e)
+		{
+			// not Page scope
+			dateSelector.Enabled = scopeBox.SelectedIndex < scopeBox.Items.Count - 1;
+			dateTimePicker.Enabled = dateSelector.Enabled && dateSelector.SelectedIndex > 0;
+		}
+
+
 		private void TogglerRegBox(object sender, EventArgs e)
 		{
 			searchButton.Enabled = !regBox.Checked;
@@ -195,12 +208,9 @@ namespace River.OneMoreAddIn.Commands
 			findBox.Enabled = false;
 			searchButton.Enabled = false;
 			resultsView.SuspendLayout();
-			if (resultsView.Items.Count > 0)
-			{
-				ClearResults();
 
-				nextButton.Enabled = prevButton.Enabled = false;
-			}
+			ClearResults();
+			nextButton.Visible = prevButton.Visible = false;
 
 			await using var one = new OneNote();
 
@@ -215,11 +225,18 @@ namespace River.OneMoreAddIn.Commands
 				grouping = true;
 				var section = await one.GetSection();
 				var ns = one.GetNamespace(section);
+
+				if (dateSelector.SelectedIndex > 0)
+				{
+					FilterPagesByDate(section, ns);
+				}
+
 				SetupProgressBar(section.Descendants(ns + "Page").Count());
 				await SearchSection(one, section);
 			}
 			else
 			{
+				grouping = false;
 				var page = await one.GetPage(one.CurrentPageId, OneNote.PageDetail.Basic);
 				await SearchPage(one, page);
 			}
@@ -231,26 +248,66 @@ namespace River.OneMoreAddIn.Commands
 
 			pageLabel.Text = string.Empty;
 			progressBar.Visible = false;
-			resultsView.ResumeLayout(true);
 			findBox.Enabled = true;
 			searchButton.Enabled = true;
 
+			resultsView.ResumeLayout();
+
 			findBox.Focus();
 			searchButton.NotifyDefault(true);
+
+			nextButton.Visible = prevButton.Visible = resultsView.Items.Count > 0;
 		}
 
 
 		private void ClearResults()
 		{
-			foreach (var lable in resultsView.GetAllItems<MoreLinkLabel>())
+			foreach (var label in resultsView.GetAllItems<MoreLinkLabel>())
 			{
 				// detach event handler to avoid memory leak
-				lable.LinkClicked -= NavigateToHit;
-				lable.Dispose();
+				label.LinkClicked -= NavigateToHit;
+				label.Dispose();
 			}
 
 			resultsView.Items.Clear();
-			grouping = false;
+		}
+
+
+		private void FilterPagesByDate(XElement parent, XNamespace ns)
+		{
+			var field = "dateTime";
+			var after = true;
+
+			switch (dateSelector.SelectedIndex)
+			{
+				case CreatedBefore:
+					after = false;
+					break;
+
+				case UpdatedAfter:
+					field = "lastModifiedTime";
+					break;
+
+				case UpdatedBefore:
+					field = "lastModifiedTime";
+					after = false;
+					break;
+			}
+
+			var date = dateTimePicker.Value.Date;
+
+			var pages = parent.Descendants(ns + "Page").ToList();
+			foreach (var page in pages)
+			{
+				var value = DateTime.Parse(
+					page.Attribute(field).Value, CultureInfo.InvariantCulture).ToLocalTime().Date;
+
+				// note: these comparisons are inverted because we Remove() non-matches
+				if ((after && value < date) || (!after && value > date))
+				{
+					page.Remove();
+				}
+			}
 		}
 
 
@@ -260,6 +317,11 @@ namespace River.OneMoreAddIn.Commands
 
 			var notebook = await one.GetNotebook(OneNote.Scope.Pages);
 			var ns = one.GetNamespace(notebook);
+
+			if (dateSelector.SelectedIndex > 0)
+			{
+				FilterPagesByDate(notebook, ns);
+			}
 
 			SetupProgressBar(notebook.Descendants(ns + "Page").Count());
 			await TraverseSections(notebook, string.Empty);
@@ -518,11 +580,22 @@ namespace River.OneMoreAddIn.Commands
 
 		private void MoveTo(int delta)
 		{
+			MoreHostedListViewItem item = null;
+			MoreLinkLabel label = null;
+
+			if (resultsView.SelectedItems.Count == 0)
+			{
+				item = resultsView.Items[0] as MoreHostedListViewItem;
+				item.Selected = true;
+				label = item.Control as MoreLinkLabel;
+				label.Selected = true;
+				NavigateToHit(label, new LinkLabelLinkClickedEventArgs(label.Links[0]));
+				return;
+			}
+
 			var index = resultsView.SelectedIndices[0];
 			var found = false;
 			var i = index;
-			MoreHostedListViewItem item = null;
-			MoreLinkLabel label = null;
 
 			// find next or previous MoreLinkLabel item, skipping group headers...
 
