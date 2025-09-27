@@ -11228,6 +11228,19 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Any date
+        ///Created after
+        ///Created before
+        ///Modified after
+        ///Modified before.
+        /// </summary>
+        internal static string SearchDialogTextControl_dateOptions {
+            get {
+                return ResourceManager.GetString("SearchDialogTextControl_dateOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter the search criteria, optionally including AND, OR, NOT, quotes and parenthesis.
         /// </summary>
         internal static string SearchDialogTextControl_introLabel_Text {

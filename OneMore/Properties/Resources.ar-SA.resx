@@ -4558,6 +4558,14 @@ ISO-code then comma then language name</comment>
 في هذه الصفحة</value>
     <comment>combobox</comment>
   </data>
+  <data name="SearchDialogTextControl_dateOptions" xml:space="preserve">
+    <value>أي تاريخ
+تم إنشاؤها بعد
+تم إنشاؤها من قبل
+تعديل بعد
+تم تعديله من قبل</value>
+    <comment>combobox</comment>
+  </data>
   <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
     <value>أدخل معايير البحث ، بما في ذلك اختياريا ، أو ، أو لا ، اقتباسات وأقواس</value>
     <comment>label</comment>

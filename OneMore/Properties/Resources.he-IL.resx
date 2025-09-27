@@ -4557,6 +4557,14 @@ ISO-code then comma then language name</comment>
 בדף זה</value>
     <comment>combobox</comment>
   </data>
+  <data name="SearchDialogTextControl_dateOptions" xml:space="preserve">
+    <value>כל תאריך
+נוצר אחרי
+נוצר לפני
+שונה לאחר
+שונה לפני</value>
+    <comment>combobox</comment>
+  </data>
   <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
     <value>הזן את קריטריוני החיפוש, לחלופין כולל, או, לא, ציטוטים וסוגריים</value>
     <comment>label</comment>

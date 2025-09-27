@@ -4558,6 +4558,14 @@ In deze sectie
 Op deze pagina</value>
     <comment>combobox</comment>
   </data>
+  <data name="SearchDialogTextControl_dateOptions" xml:space="preserve">
+    <value>Elke datum
+Gemaakt na
+Eerder gemaakt
+Aangepast na
+Gewijzigd eerder</value>
+    <comment>combobox</comment>
+  </data>
   <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
     <value>Voer de zoekcriteria in, optioneel inclusief en, of, niet, citaten en haakjes</value>
     <comment>label</comment>
