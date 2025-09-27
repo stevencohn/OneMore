@@ -195,7 +195,7 @@
 			this.prevButton.ShowBorder = true;
 			this.prevButton.Size = new System.Drawing.Size(60, 30);
 			this.prevButton.StylizeImage = true;
-			this.prevButton.TabIndex = 15;
+			this.prevButton.TabIndex = 2;
 			this.prevButton.ThemedBack = null;
 			this.prevButton.ThemedFore = null;
 			this.prevButton.UseVisualStyleBackColor = true;
@@ -214,7 +214,7 @@
 			this.nextButton.ShowBorder = true;
 			this.nextButton.Size = new System.Drawing.Size(60, 30);
 			this.nextButton.StylizeImage = true;
-			this.nextButton.TabIndex = 14;
+			this.nextButton.TabIndex = 1;
 			this.nextButton.ThemedBack = null;
 			this.nextButton.ThemedFore = null;
 			this.nextButton.UseVisualStyleBackColor = true;
@@ -299,7 +299,7 @@
 			this.dateSelector.Location = new System.Drawing.Point(58, 103);
 			this.dateSelector.Name = "dateSelector";
 			this.dateSelector.Size = new System.Drawing.Size(234, 28);
-			this.dateSelector.TabIndex = 15;
+			this.dateSelector.TabIndex = 5;
 			this.dateSelector.SelectedIndexChanged += new System.EventHandler(this.ChangeDateSelector);
 			// 
 			// dateTimePicker
@@ -311,7 +311,7 @@
 			this.dateTimePicker.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
 			this.dateTimePicker.Name = "dateTimePicker";
 			this.dateTimePicker.Size = new System.Drawing.Size(183, 26);
-			this.dateTimePicker.TabIndex = 14;
+			this.dateTimePicker.TabIndex = 6;
 			// 
 			// regBox
 			// 
@@ -323,7 +323,7 @@
 			this.regBox.Name = "regBox";
 			this.regBox.Size = new System.Drawing.Size(213, 25);
 			this.regBox.StylizeImage = false;
-			this.regBox.TabIndex = 13;
+			this.regBox.TabIndex = 4;
 			this.regBox.Text = "Use regular expressions";
 			this.regBox.ThemedBack = null;
 			this.regBox.ThemedFore = null;
@@ -340,7 +340,7 @@
 			this.matchBox.Name = "matchBox";
 			this.matchBox.Size = new System.Drawing.Size(119, 25);
 			this.matchBox.StylizeImage = false;
-			this.matchBox.TabIndex = 12;
+			this.matchBox.TabIndex = 3;
 			this.matchBox.Text = "Match case";
 			this.matchBox.ThemedBack = null;
 			this.matchBox.ThemedFore = null;
