@@ -203,11 +203,17 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
+			if (InvokeRequired)
+			{
+				BeginInvoke(new Action<object, EventArgs>(Search), sender, e);
+				return;
+			}
+
 			// set controls and prepare for search...
 
 			findBox.Enabled = false;
 			searchButton.Enabled = false;
-			resultsView.SuspendLayout();
+			resultsView.BeginUpdate();
 
 			ClearResults();
 			nextButton.Visible = prevButton.Visible = false;
@@ -251,7 +257,7 @@ namespace River.OneMoreAddIn.Commands
 			findBox.Enabled = true;
 			searchButton.Enabled = true;
 
-			resultsView.ResumeLayout();
+			resultsView.EndUpdate();
 
 			findBox.Focus();
 			searchButton.NotifyDefault(true);
@@ -262,11 +268,18 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ClearResults()
 		{
-			foreach (var label in resultsView.GetAllItems<MoreLinkLabel>())
+			foreach (MoreHostedListViewItem item in resultsView.Items)
 			{
-				// detach event handler to avoid memory leak
-				label.LinkClicked -= NavigateToHit;
-				label.Dispose();
+				if (item.Control is MoreLinkLabel label)
+				{
+					// detach event handler to avoid memory leak
+					label.LinkClicked -= NavigateToHit;
+					label.Dispose();
+				}
+				else if (item.Control is SearchGroupControl group)
+				{
+					group.Dispose();
+				}
 			}
 
 			resultsView.Items.Clear();
