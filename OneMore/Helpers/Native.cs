@@ -259,6 +259,12 @@ namespace River.OneMoreAddIn
 		public static extern bool DeleteObject(IntPtr hObject);
 
 
+		// https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-destroycursor
+		[DllImport("user32.dll", SetLastError = true)]
+		[return: MarshalAs(UnmanagedType.Bool)]
+		public static extern bool DestroyCursor(IntPtr hCursor);
+
+
 		// https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getcursorpos
 		[DllImport("user32.dll")]
 		public static extern bool GetCursorPos(out Point lpPoint);

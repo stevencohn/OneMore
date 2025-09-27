@@ -23,6 +23,19 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing)
+			{
+				if (hcursor != IntPtr.Zero)
+				{
+					Native.DestroyCursor(hcursor);
+				}
+			}
+			base.Dispose(disposing);
+		}
+
+
 		protected override void WndProc(ref Message m)
 		{
 			if (m.Msg == Native.WM_SETCURSOR && hcursor != IntPtr.Zero)
