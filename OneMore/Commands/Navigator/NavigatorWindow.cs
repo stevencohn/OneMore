@@ -377,22 +377,25 @@ namespace River.OneMoreAddIn.Commands
 		// Page headings...
 
 		#region Page headings
-		private async Task LoadPageHeadings(string pageID)
+		private async Task LoadPageHeadings(string pageID, bool highlight)
 		{
 			if (pageBox.InvokeRequired)
 			{
-				pageBox.BeginInvoke(new Action(async () => await LoadPageHeadings(pageID)));
+				pageBox.BeginInvoke(
+					new Action(async () => await LoadPageHeadings(pageID, highlight)));
 				return;
 			}
 
 			await using var one = new OneNote();
-			var page = await one.GetPage(pageID ?? one.CurrentPageId, OneNote.PageDetail.Basic);
+			var page = await one.GetPage(
+				pageID ?? one.CurrentPageId,
+				highlight ? OneNote.PageDetail.Selection : OneNote.PageDetail.Basic);
 
-			logger.Verbose($"LoadPageHeadings [{page.Title}]");
-			logger.StartClock();
+			//logger.Verbose($"LoadPageHeadings [{page.Title}]");
+			//logger.StartClock();
 
 			var headings = page.GetHeadings(one, linked: false);
-			logger.DebugTime($"GetHeadings <---", keepRunning: true);
+			//logger.DebugTime($"GetHeadings <---", keepRunning: true);
 
 			// need to escape ampersand because it is used to indicate keyboard accelerators
 			var title = page.Title.Replace("&", "&&");
@@ -432,14 +435,35 @@ namespace River.OneMoreAddIn.Commands
 
 			if (headings.Count == 0)
 			{
-				logger.VerboseTime("LoadPageHeadings done, 0 headings");
+				//logger.VerboseTime("LoadPageHeadings done, 0 headings");
 				return;
 			}
 
-			var font = new Font("Segoe UI", 8.5F, FontStyle.Regular, GraphicsUnit.Point);
-			trash.Add(font);
+			Heading current = null;
+			if (highlight)
+			{
+				var range = new Models.SelectionRange(page);
+				var cursor = range.GetSelections(true).FirstOrDefault();
 
-			logger.DebugTime($"suspending layout", keepRunning: true);
+				if (cursor is not null)
+				{
+					for (var i = headings.Count - 1; i > 0; i--)
+					{
+						if (XNode.CompareDocumentOrder(headings[i].Root, cursor) < 0)
+						{
+							current = headings[i];
+							break;
+						}
+					}
+				}
+			}
+
+			var font = new Font("Segoe UI", 8.5F, FontStyle.Regular, GraphicsUnit.Point);
+			var bold = new Font("Segoe UI", 8.5F, FontStyle.Bold, GraphicsUnit.Point);
+			trash.Add(font);
+			trash.Add(bold);
+
+			//logger.DebugTime($"suspending layout", keepRunning: true);
 			pageBox.SuspendLayout();
 
 			var margin = SystemInformation.VerticalScrollBarWidth * 2;
@@ -452,18 +476,20 @@ namespace River.OneMoreAddIn.Commands
 				var leftpad = heading.Level * HeaderIndent;
 				var leftmar = leftpad + 4;
 
+				var headFont = heading == current ? bold : font;
+
 				var link = new MoreLinkLabel
 				{
 					Text = text,
 					Tag = heading,
-					Font = font,
+					Font = headFont,
 					Padding = new Padding(0),
 					Margin = new Padding(leftmar, 0, 0, 4),
 					Width = pageBox.Width - leftmar - margin
 				};
 
 				using var g = link.CreateGraphics();
-				var size = g.MeasureString(text, font);
+				var size = g.MeasureString(text, headFont);
 				link.Height = (int)(size.Height + link.Padding.Top + link.Padding.Bottom);
 
 				link.LinkClicked += new LinkLabelLinkClickedEventHandler(async (s, e) =>
@@ -474,12 +500,12 @@ namespace River.OneMoreAddIn.Commands
 						var heading = (Heading)label.Tag;
 						if (heading.Link == string.Empty)
 						{
-							logger.Verbose($"fetching URL for [{heading.Text}]");
+							//logger.Verbose($"fetching URL for [{heading.Text}]");
 							heading.Link = page.GetHyperlink(heading.Root, one);
 						}
 						else
 						{
-							logger.Verbose($"found URL for [{heading.Text}]");
+							//logger.Verbose($"found URL for [{heading.Text}]");
 						}
 
 						await one.NavigateTo(heading.Link);
@@ -493,11 +519,11 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			pageBox.ResumeLayout();
-			logger.DebugTime($"resumed layout", keepRunning: true);
+			//logger.DebugTime($"resumed layout", keepRunning: true);
 
 			await UpdateTitles(page);
 
-			logger.DebugTime("LoadPageHeadings done");
+			//logger.DebugTime("LoadPageHeadings done");
 		}
 
 
@@ -530,13 +556,19 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task ShowPageOutline(HistoryRecord info)
 		{
-			await LoadPageHeadings(info.PageId);
+			await LoadPageHeadings(info.PageId, false);
+		}
+
+
+		public async Task RefreshPageHeadings()
+		{
+			await LoadPageHeadings(null, true);
 		}
 
 
 		private async void RefreshPageHeadings(object sender, EventArgs e)
 		{
-			await LoadPageHeadings(null);
+			await LoadPageHeadings(null, true);
 		}
 
 
@@ -544,7 +576,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (e.KeyCode == Keys.F5)
 			{
-				await LoadPageHeadings(null);
+				await LoadPageHeadings(null, true);
 				e.Handled = true;
 			}
 		}
