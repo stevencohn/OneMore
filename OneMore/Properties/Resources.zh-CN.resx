@@ -1755,7 +1755,7 @@ OneNote 文件 (*.one)</value>
     <value>在每个部分中包含页面</value>
     <comment>checkbox</comment>
   </data>
-  <data name="InsertTocDialog_previewBox.Text" xml:space="preserve">
+  <data name="InsertTocDialog_previewBox" xml:space="preserve">
     <value>包括每个页面的文本预览</value>
     <comment>checkbox</comment>
   </data>
@@ -1781,6 +1781,10 @@ OneNote 文件 (*.one)</value>
   <data name="InsertTocDialog_styleLabel.Text" xml:space="preserve">
     <value>标题样式</value>
     <comment>label</comment>
+  </data>
+  <data name="InsertTocDialog_timeBox" xml:space="preserve">
+    <value>更新页面日期和时间</value>
+    <comment>checkbox</comment>
   </data>
   <data name="InsertTocDialog_topBox.Text" xml:space="preserve">
     <value>将链接添加到每个标题以跳至页面顶部</value>

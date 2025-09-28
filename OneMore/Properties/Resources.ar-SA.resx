@@ -1756,7 +1756,7 @@
     <value>تضمين صفحات في كل قسم</value>
     <comment>checkbox</comment>
   </data>
-  <data name="InsertTocDialog_previewBox.Text" xml:space="preserve">
+  <data name="InsertTocDialog_previewBox" xml:space="preserve">
     <value>قم بتضمين معاينة النص لكل صفحة</value>
     <comment>checkbox</comment>
   </data>
@@ -1782,6 +1782,10 @@
   <data name="InsertTocDialog_styleLabel.Text" xml:space="preserve">
     <value>نمط العنوان</value>
     <comment>label</comment>
+  </data>
+  <data name="InsertTocDialog_timeBox" xml:space="preserve">
+    <value>تحديث تاريخ الصفحة والوقت</value>
+    <comment>checkbox</comment>
   </data>
   <data name="InsertTocDialog_topBox.Text" xml:space="preserve">
     <value>أضف ارتباطًا إلى كل عنوان للانتقال إلى أعلى الصفحة</value>

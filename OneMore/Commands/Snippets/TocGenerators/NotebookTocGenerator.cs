@@ -90,6 +90,12 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 			if (parameters.Contains("pages")) segments = $"{segments}/pages";
 			if (parameters.Contains("preview")) segments = $"{segments}/preview";
 
+			if (parameters.Contains("time"))
+			{
+				page.Root.SetAttributeValue("dateTime", System.DateTime.Now.ToZuluString());
+				segments = $"{segments}/time";
+			}
+
 			var titleElement = MakeTitle(page, segments);
 
 			// add meta to title OE
