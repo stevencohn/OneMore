@@ -140,7 +140,7 @@
     <source>Include pages in each section</source>
     <preferred>Füge Seiten in jeden Abschnitt ein</preferred>
   </hint>
-  <hint name="InsertTocDialog_previewBox.Text">
+  <hint name="InsertTocDialog_previewBox">
     <source>Include text preview of each page</source>
     <preferred>Füge die Textvorschau der jeder Seite ein</preferred>
   </hint>

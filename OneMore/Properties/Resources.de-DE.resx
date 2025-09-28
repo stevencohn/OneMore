@@ -1756,8 +1756,8 @@ Am aktuellen Cursor</value>
     <value>Füge Seiten in jeden Abschnitt ein</value>
     <comment>checkbox</comment>
   </data>
-  <data name="InsertTocDialog_previewBox.Text" xml:space="preserve">
-    <value>Füge die Textvorschau der jeder Seite ein</value>
+  <data name="InsertTocDialog_previewBox" xml:space="preserve">
+    <value>Fügen Sie die Textvorschau jeder Seite ein</value>
     <comment>checkbox</comment>
   </data>
   <data name="InsertTocDialog_rightAlignBox.Text" xml:space="preserve">
@@ -1782,6 +1782,10 @@ Benutzerdefinierte Überschrift 3</value>
   <data name="InsertTocDialog_styleLabel.Text" xml:space="preserve">
     <value>Titelstil</value>
     <comment>label</comment>
+  </data>
+  <data name="InsertTocDialog_timeBox" xml:space="preserve">
+    <value>Datum und Uhrzeit des Seitens aktualisieren</value>
+    <comment>checkbox</comment>
   </data>
   <data name="InsertTocDialog_topBox.Text" xml:space="preserve">
     <value>Füge jeder Überschrift einen Link hinzu, um zum Seitenanfang zu springen</value>

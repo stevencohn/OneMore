@@ -1756,8 +1756,8 @@ En el cursor actual</value>
     <value>Incluir páginas en cada sección</value>
     <comment>checkbox</comment>
   </data>
-  <data name="InsertTocDialog_previewBox.Text" xml:space="preserve">
-    <value>Incluir la vista previa de texto de cada página.</value>
+  <data name="InsertTocDialog_previewBox" xml:space="preserve">
+    <value>Incluya una vista previa de texto de cada página</value>
     <comment>checkbox</comment>
   </data>
   <data name="InsertTocDialog_rightAlignBox.Text" xml:space="preserve">
@@ -1782,6 +1782,10 @@ Título personalizado 3</value>
   <data name="InsertTocDialog_styleLabel.Text" xml:space="preserve">
     <value>Estilo del título</value>
     <comment>label</comment>
+  </data>
+  <data name="InsertTocDialog_timeBox" xml:space="preserve">
+    <value>Actualizar la fecha y hora de la página</value>
+    <comment>checkbox</comment>
   </data>
   <data name="InsertTocDialog_topBox.Text" xml:space="preserve">
     <value>Agregue un enlace a cada encabezado para saltar a la parte superior de la página</value>

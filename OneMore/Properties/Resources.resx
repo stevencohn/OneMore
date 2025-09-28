@@ -1757,7 +1757,7 @@ At current cursor</value>
     <value>Include pages in each section</value>
     <comment>checkbox</comment>
   </data>
-  <data name="InsertTocDialog_previewBox.Text" xml:space="preserve">
+  <data name="InsertTocDialog_previewBox" xml:space="preserve">
     <value>Include text preview of each page</value>
     <comment>checkbox</comment>
   </data>
@@ -1783,6 +1783,10 @@ Custom Heading 3</value>
   <data name="InsertTocDialog_styleLabel.Text" xml:space="preserve">
     <value>Title Style</value>
     <comment>label</comment>
+  </data>
+  <data name="InsertTocDialog_timeBox" xml:space="preserve">
+    <value>Update page date and time</value>
+    <comment>checkbox</comment>
   </data>
   <data name="InsertTocDialog_topBox.Text" xml:space="preserve">
     <value>Add link to each heading to jump to top of page</value>

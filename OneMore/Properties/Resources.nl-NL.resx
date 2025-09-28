@@ -1757,8 +1757,8 @@ Bij de huidige cursor</value>
     <value>Voeg pagina's toe aan elke sectie</value>
     <comment>checkbox</comment>
   </data>
-  <data name="InsertTocDialog_previewBox.Text" xml:space="preserve">
-    <value>Inclusief tekstvoorbeeld van elke pagina</value>
+  <data name="InsertTocDialog_previewBox" xml:space="preserve">
+    <value>Voeg tekst preview van elke pagina toe</value>
     <comment>checkbox</comment>
   </data>
   <data name="InsertTocDialog_rightAlignBox.Text" xml:space="preserve">
@@ -1783,6 +1783,10 @@ Aangepaste kop 3</value>
   <data name="InsertTocDialog_styleLabel.Text" xml:space="preserve">
     <value>Titelstijl</value>
     <comment>label</comment>
+  </data>
+  <data name="InsertTocDialog_timeBox" xml:space="preserve">
+    <value>Update pagina datum en tijd</value>
+    <comment>checkbox</comment>
   </data>
   <data name="InsertTocDialog_topBox.Text" xml:space="preserve">
     <value>Voeg een link toe aan elke kop om naar de bovenkant van de pagina te gaan</value>

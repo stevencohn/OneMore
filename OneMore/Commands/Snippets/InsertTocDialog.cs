@@ -10,7 +10,7 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = Properties.Resources;
 
 
-	internal partial class InsertTocDialog : UI.MoreForm
+	internal partial class InsertTocDialog : MoreForm
 	{
 		private readonly TocParameters parameters;
 
@@ -36,11 +36,13 @@ namespace River.OneMoreAddIn.Commands
 					"levelsLabel",
 					"sectionGroup=word_Section",
 					"sectionRadio",
-					"previewBox",
+					"sectionTimeBox=InsertTocDialog_timeBox",
+					"sectionPagePreviewBox=InsertTocDialog_previewBox",
 					"notebookGroup=word_Notebook",
 					"notebookRadio",
+					"notebookTimeBox=InsertTocDialog_timeBox",
 					"pagesBox",
-					"preview2Box=InsertTocDialog_previewBox.Text",
+					"notebookPagePreviewBox=InsertTocDialog_previewBox",
 					"okButton=word_OK",
 					"cancelButton=word_Cancel"
 				});
@@ -60,12 +62,14 @@ namespace River.OneMoreAddIn.Commands
 			{
 				sectionRadio.Checked = true;
 				sectionPagePreviewBox.Checked = parameters.Contains("preview");
+				sectionTimeBox.Checked = parameters.Contains("time");
 			}
 			else if (parameters.Contains("notebook"))
 			{
 				notebookRadio.Checked = true;
 				pagesBox.Checked = parameters.Contains("pages");
 				notebookPagePreviewBox.Checked = parameters.Contains("preview");
+				notebookTimeBox.Checked = parameters.Contains("time");
 			}
 			else // page is default
 			{
@@ -116,8 +120,10 @@ namespace River.OneMoreAddIn.Commands
 				styleBox.Enabled = true;
 				levelsBox.Enabled = true;
 				sectionPagePreviewBox.Enabled = false;
+				sectionTimeBox.Enabled = false;
 				pagesBox.Enabled = false;
 				notebookPagePreviewBox.Enabled = false;
+				notebookTimeBox.Enabled = false;
 			}
 			else if (sender == sectionRadio)
 			{
@@ -129,7 +135,9 @@ namespace River.OneMoreAddIn.Commands
 				styleBox.Enabled = false;
 				levelsBox.Enabled = false;
 				sectionPagePreviewBox.Enabled = true;
+				sectionTimeBox.Enabled = true;
 				notebookPagePreviewBox.Enabled = false;
+				notebookTimeBox.Enabled = false;
 			}
 			else
 			{
@@ -141,8 +149,10 @@ namespace River.OneMoreAddIn.Commands
 				styleBox.Enabled = false;
 				levelsBox.Enabled = false;
 				sectionPagePreviewBox.Enabled = false;
+				sectionTimeBox.Enabled = false;
 				pagesBox.Enabled = true;
 				notebookPagePreviewBox.Enabled = pagesBox.Checked;
+				notebookTimeBox.Enabled = true;
 			}
 		}
 
@@ -192,12 +202,14 @@ namespace River.OneMoreAddIn.Commands
 			{
 				parameters.Add("section");
 				if (sectionPagePreviewBox.Checked) parameters.Add("preview");
+				if (sectionTimeBox.Checked) parameters.Add("time");
 			}
 			else
 			{
 				parameters.Add("notebook");
 				if (pagesBox.Checked) parameters.Add("pages");
 				if (notebookPagePreviewBox.Checked) parameters.Add("preview");
+				if (notebookTimeBox.Checked) parameters.Add("time");
 			}
 		}
 	}

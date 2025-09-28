@@ -44,7 +44,9 @@
 			this.styleLabel = new System.Windows.Forms.Label();
 			this.styleBox = new System.Windows.Forms.ComboBox();
 			this.notebookGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
+			this.notebookTimeBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.sectionGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
+			this.sectionTimeBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.pageGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.levelsLabel = new System.Windows.Forms.Label();
 			this.levelsBox = new River.OneMoreAddIn.UI.MoreNumericUpDown();
@@ -61,7 +63,7 @@
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
-			this.okButton.Location = new System.Drawing.Point(298, 648);
+			this.okButton.Location = new System.Drawing.Point(371, 682);
 			this.okButton.Name = "okButton";
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(120, 38);
@@ -80,7 +82,7 @@
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
-			this.cancelButton.Location = new System.Drawing.Point(424, 648);
+			this.cancelButton.Location = new System.Drawing.Point(497, 682);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(120, 38);
@@ -220,7 +222,7 @@
             "At top of page",
             "At top of page, overlayed",
             "At current cursor"});
-			this.locationBox.Location = new System.Drawing.Point(212, 142);
+			this.locationBox.Location = new System.Drawing.Point(227, 142);
 			this.locationBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
 			this.locationBox.Name = "locationBox";
 			this.locationBox.Size = new System.Drawing.Size(217, 28);
@@ -257,7 +259,7 @@
             "Custom Heading 1",
             "Custom Heading 2",
             "Custom Heading 3"});
-			this.styleBox.Location = new System.Drawing.Point(212, 179);
+			this.styleBox.Location = new System.Drawing.Point(227, 179);
 			this.styleBox.Name = "styleBox";
 			this.styleBox.Size = new System.Drawing.Size(217, 28);
 			this.styleBox.TabIndex = 6;
@@ -266,36 +268,71 @@
 			// 
 			this.notebookGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.notebookGroup.Controls.Add(this.notebookTimeBox);
 			this.notebookGroup.Controls.Add(this.notebookRadio);
 			this.notebookGroup.Controls.Add(this.pagesBox);
 			this.notebookGroup.Controls.Add(this.notebookPagePreviewBox);
-			this.notebookGroup.Location = new System.Drawing.Point(23, 459);
+			this.notebookGroup.Location = new System.Drawing.Point(23, 479);
 			this.notebookGroup.Name = "notebookGroup";
 			this.notebookGroup.Padding = new System.Windows.Forms.Padding(5, 5, 3, 3);
 			this.notebookGroup.ShowOnlyTopEdge = true;
-			this.notebookGroup.Size = new System.Drawing.Size(521, 167);
+			this.notebookGroup.Size = new System.Drawing.Size(594, 186);
 			this.notebookGroup.TabIndex = 13;
 			this.notebookGroup.TabStop = false;
 			this.notebookGroup.Text = "Notebook";
 			this.notebookGroup.ThemedBorder = null;
 			this.notebookGroup.ThemedFore = null;
 			// 
+			// notebookTimeBox
+			// 
+			this.notebookTimeBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.notebookTimeBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.notebookTimeBox.Enabled = false;
+			this.notebookTimeBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.notebookTimeBox.Location = new System.Drawing.Point(34, 145);
+			this.notebookTimeBox.Name = "notebookTimeBox";
+			this.notebookTimeBox.Size = new System.Drawing.Size(280, 25);
+			this.notebookTimeBox.StylizeImage = false;
+			this.notebookTimeBox.TabIndex = 12;
+			this.notebookTimeBox.Text = "Update page date and time";
+			this.notebookTimeBox.ThemedBack = null;
+			this.notebookTimeBox.ThemedFore = null;
+			this.notebookTimeBox.UseVisualStyleBackColor = true;
+			// 
 			// sectionGroup
 			// 
 			this.sectionGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.sectionGroup.Controls.Add(this.sectionTimeBox);
 			this.sectionGroup.Controls.Add(this.sectionRadio);
 			this.sectionGroup.Controls.Add(this.sectionPagePreviewBox);
 			this.sectionGroup.Location = new System.Drawing.Point(23, 309);
 			this.sectionGroup.Name = "sectionGroup";
 			this.sectionGroup.Padding = new System.Windows.Forms.Padding(5, 5, 3, 3);
 			this.sectionGroup.ShowOnlyTopEdge = true;
-			this.sectionGroup.Size = new System.Drawing.Size(521, 144);
+			this.sectionGroup.Size = new System.Drawing.Size(594, 164);
 			this.sectionGroup.TabIndex = 14;
 			this.sectionGroup.TabStop = false;
 			this.sectionGroup.Text = "Section";
 			this.sectionGroup.ThemedBorder = null;
 			this.sectionGroup.ThemedFore = null;
+			// 
+			// sectionTimeBox
+			// 
+			this.sectionTimeBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.sectionTimeBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.sectionTimeBox.Enabled = false;
+			this.sectionTimeBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.sectionTimeBox.Location = new System.Drawing.Point(34, 117);
+			this.sectionTimeBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
+			this.sectionTimeBox.Name = "sectionTimeBox";
+			this.sectionTimeBox.Size = new System.Drawing.Size(280, 25);
+			this.sectionTimeBox.StylizeImage = false;
+			this.sectionTimeBox.TabIndex = 9;
+			this.sectionTimeBox.Text = "Update page date and time";
+			this.sectionTimeBox.ThemedBack = null;
+			this.sectionTimeBox.ThemedFore = null;
+			this.sectionTimeBox.UseVisualStyleBackColor = true;
 			// 
 			// pageGroup
 			// 
@@ -314,7 +351,7 @@
 			this.pageGroup.Name = "pageGroup";
 			this.pageGroup.Padding = new System.Windows.Forms.Padding(5, 5, 3, 3);
 			this.pageGroup.ShowOnlyTopEdge = true;
-			this.pageGroup.Size = new System.Drawing.Size(521, 275);
+			this.pageGroup.Size = new System.Drawing.Size(594, 275);
 			this.pageGroup.TabIndex = 15;
 			this.pageGroup.TabStop = false;
 			this.pageGroup.Text = "Page";
@@ -332,7 +369,7 @@
 			// 
 			// levelsBox
 			// 
-			this.levelsBox.Location = new System.Drawing.Point(212, 213);
+			this.levelsBox.Location = new System.Drawing.Point(227, 213);
 			this.levelsBox.Maximum = new decimal(new int[] {
             6,
             0,
@@ -361,7 +398,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(556, 698);
+			this.ClientSize = new System.Drawing.Size(629, 732);
 			this.Controls.Add(this.pageGroup);
 			this.Controls.Add(this.sectionGroup);
 			this.Controls.Add(this.notebookGroup);
@@ -407,5 +444,7 @@
 		private UI.MoreGroupBox pageGroup;
 		private System.Windows.Forms.Label levelsLabel;
 		private UI.MoreNumericUpDown levelsBox;
+		private UI.MoreCheckBox notebookTimeBox;
+		private UI.MoreCheckBox sectionTimeBox;
 	}
 }

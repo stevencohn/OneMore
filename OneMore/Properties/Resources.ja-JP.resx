@@ -1759,8 +1759,8 @@ OneNoteファイル (*.one)</value>
     <value>各セクション内のページを含める</value>
     <comment>checkbox</comment>
   </data>
-  <data name="InsertTocDialog_previewBox.Text" xml:space="preserve">
-    <value>各ページのテキストプレビューを含める</value>
+  <data name="InsertTocDialog_previewBox" xml:space="preserve">
+    <value>各ページのテキストプレビューを含めます</value>
     <comment>checkbox</comment>
   </data>
   <data name="InsertTocDialog_rightAlignBox.Text" xml:space="preserve">
@@ -1785,6 +1785,10 @@ OneNoteファイル (*.one)</value>
   <data name="InsertTocDialog_styleLabel.Text" xml:space="preserve">
     <value>タイトルスタイル</value>
     <comment>label</comment>
+  </data>
+  <data name="InsertTocDialog_timeBox" xml:space="preserve">
+    <value>ページの日付と時刻を更新します</value>
+    <comment>checkbox</comment>
   </data>
   <data name="InsertTocDialog_topBox.Text" xml:space="preserve">
     <value>見出しへのリンク・見出しからページ上部へのリンクを追加</value>

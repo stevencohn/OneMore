@@ -1756,7 +1756,7 @@ Au curseur actuel</value>
     <value>Inclure des pages dans chaque section</value>
     <comment>checkbox</comment>
   </data>
-  <data name="InsertTocDialog_previewBox.Text" xml:space="preserve">
+  <data name="InsertTocDialog_previewBox" xml:space="preserve">
     <value>Inclure l'aperçu du texte de chaque page</value>
     <comment>checkbox</comment>
   </data>
@@ -1782,6 +1782,10 @@ Titre personnalisé 3</value>
   <data name="InsertTocDialog_styleLabel.Text" xml:space="preserve">
     <value>Style de titre</value>
     <comment>label</comment>
+  </data>
+  <data name="InsertTocDialog_timeBox" xml:space="preserve">
+    <value>Mettre à jour la date et l'heure de la page</value>
+    <comment>checkbox</comment>
   </data>
   <data name="InsertTocDialog_topBox.Text" xml:space="preserve">
     <value>Ajoutez un lien à chaque titre pour passer en haut de la page</value>
