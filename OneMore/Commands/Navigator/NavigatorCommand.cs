@@ -50,6 +50,7 @@ namespace River.OneMoreAddIn.Commands
 				window.WindowState = FormWindowState.Normal;
 			}
 
+			await window.RefreshPageHeadings();
 			window.Elevate(false);
 
 			await Task.Yield();

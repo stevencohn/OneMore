@@ -159,7 +159,7 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
-		private void CheckTopLink(Heading heading)
+		private static void CheckTopLink(Heading heading)
 		{
 			// quick test if it's a left-aligned [Top of page] link with square brackets
 			if (heading.Text.Contains('['))
@@ -271,7 +271,8 @@ namespace River.OneMoreAddIn.Models
 			quickStyles = quickStyles.OrderBy(s => s.Name).ToList();
 
 			string name = null;
-			for (int i = 0, j = 0; i < quickStyles.Count; i++)
+			var j = 0;
+			for (var i = 0; i < quickStyles.Count; i++)
 			{
 				// there are cases where OneNote will duplicate quick styles
 				if (quickStyles[i].Name != name)
