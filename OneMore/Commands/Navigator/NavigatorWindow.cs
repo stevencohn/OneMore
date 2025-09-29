@@ -439,7 +439,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			Heading current = null;
+			Heading currentHeading = null;
 			if (highlight)
 			{
 				var range = new Models.SelectionRange(page);
@@ -451,7 +451,7 @@ namespace River.OneMoreAddIn.Commands
 					{
 						if (XNode.CompareDocumentOrder(headings[i].Root, cursor) < 0)
 						{
-							current = headings[i];
+							currentHeading = headings[i];
 							break;
 						}
 					}
@@ -467,6 +467,7 @@ namespace River.OneMoreAddIn.Commands
 			pageBox.SuspendLayout();
 
 			var margin = SystemInformation.VerticalScrollBarWidth * 2;
+			MoreLinkLabel currentLabel = null;
 
 			foreach (var heading in headings)
 			{
@@ -476,7 +477,7 @@ namespace River.OneMoreAddIn.Commands
 				var leftpad = heading.Level * HeaderIndent;
 				var leftmar = leftpad + 4;
 
-				var headFont = heading == current ? bold : font;
+				var headFont = heading == currentHeading ? bold : font;
 
 				var link = new MoreLinkLabel
 				{
@@ -512,6 +513,11 @@ namespace River.OneMoreAddIn.Commands
 					}
 				});
 
+				if (heading == currentHeading)
+				{
+					currentLabel = link;
+				}
+
 				pageBox.Controls.Add(link);
 				pageBox.SetFlowBreak(link, true);
 
@@ -520,6 +526,12 @@ namespace River.OneMoreAddIn.Commands
 
 			pageBox.ResumeLayout();
 			//logger.DebugTime($"resumed layout", keepRunning: true);
+
+			if (currentLabel is not null)
+			{
+				pageBox.ScrollControlIntoView(currentLabel);
+			}
+
 
 			await UpdateTitles(page);
 
