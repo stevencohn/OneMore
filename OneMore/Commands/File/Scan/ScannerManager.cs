@@ -8,18 +8,44 @@ namespace River.OneMoreAddIn.Commands
 	using System.Collections.Generic;
 	using System.Drawing;
 	using System.IO;
+	using System.Runtime.InteropServices;
 	using WIA;
 
 
-	internal class ScannerManager
+	internal class ScannerManager : IDisposable
 	{
 		private readonly DeviceInfo device;
+		private bool disposed;
 
 
 		public ScannerManager(DeviceInfo device)
 		{
 			this.device = device;
 		}
+
+
+		#region Lifecycle
+		protected virtual void Dispose(bool disposing)
+		{
+			if (!disposed)
+			{
+				if (disposing)
+				{
+					Marshal.ReleaseComObject(device);
+				}
+
+				disposed = true;
+			}
+		}
+
+
+		public void Dispose()
+		{
+			// Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+			Dispose(disposing: true);
+			GC.SuppressFinalize(this);
+		}
+		#endregion Lifecycle
 
 
 		/// <summary>
@@ -43,13 +69,20 @@ namespace River.OneMoreAddIn.Commands
 			var devices = new List<DeviceInfo>();
 			var manager = new DeviceManager();
 
-			for (int i = 1; i <= manager.DeviceInfos.Count; i++)
+			try
 			{
-				var info = manager.DeviceInfos[i];
-				if (info.Type == WiaDeviceType.ScannerDeviceType)
+				for (int i = 1; i <= manager.DeviceInfos.Count; i++)
 				{
-					devices.Add(info);
+					var info = manager.DeviceInfos[i];
+					if (info.Type == WiaDeviceType.ScannerDeviceType)
+					{
+						devices.Add(info);
+					}
 				}
+			}
+			finally
+			{
+				Marshal.ReleaseComObject(manager);
 			}
 
 			return devices;
@@ -66,7 +99,8 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var scanner = device.Connect().Items[1];
 
-			//Set(scanner.Properties, "Document Handling Select", useFeeder ? 0x01 : 0x02); // 0x01 = Feeder, 0x02 = Flatbed
+			// 0x01 = Feeder, 0x02 = Flatbed
+			Set(scanner.Properties, "Document Handling Select", useFeeder ? 0x01 : 0x02);
 			Set(scanner.Properties, "Horizontal Resolution", 300);
 			Set(scanner.Properties, "Vertical Resolution", 300);
 			Set(scanner.Properties, "Current Intent", ScanIntents.Color);

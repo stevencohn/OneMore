@@ -20,7 +20,7 @@ namespace River.OneMoreAddIn.Commands
 		public override async Task Execute(params object[] args)
 		{
 			var device = ScannerManager.ListScannerDevices()[0];
-			var manager = new ScannerManager(device);
+			using var manager = new ScannerManager(device);
 
 			var data = manager.Scan();
 
