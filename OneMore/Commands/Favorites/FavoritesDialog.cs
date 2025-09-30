@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands.Favorites
 {
+	using Microsoft.Office.Core;
 	using System;
 	using System.ComponentModel;
 	using System.Drawing;
@@ -16,6 +17,8 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 	internal partial class FavoritesDialog : UI.MoreForm
 	{
+		private readonly IRibbonUI ribbon;
+
 
 		public FavoritesDialog()
 		{
@@ -43,11 +46,17 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		}
 
 
+		public FavoritesDialog(IRibbonUI ribbon) : this()
+		{
+			this.ribbon = ribbon;
+		}
+
+
 		private async void BindOnLoad(object sender, EventArgs e)
 		{
 			//Native.SwitchToThisWindow(Handle, false);
 
-			await using var provider = new FavoritesProvider(null);
+			await using var provider = new FavoritesProvider(ribbon);
 			var favorites = provider.LoadFavorites();
 
 			gridView.AutoGenerateColumns = false;
@@ -446,7 +455,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 			{
 				await AddIn.Self.AddFavoritePageCmd(null);
 
-				await using var provider = new FavoritesProvider(null);
+				await using var provider = new FavoritesProvider(ribbon);
 				var favorites = provider.LoadFavorites();
 				source.Add(favorites[favorites.Count - 1]);
 				MoveBottom();
@@ -501,7 +510,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 		private async void CheckFavorites(object sender, EventArgs e)
 		{
-			await using var provider = new FavoritesProvider(null);
+			await using var provider = new FavoritesProvider(ribbon);
 
 			var list = ((BindingList<Favorite>)gridView.DataSource).ToList();
 			await provider.ValidateFavorites(list);
@@ -519,7 +528,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 		private async void SortFavorites(object sender, EventArgs e)
 		{
-			await using var provider = new FavoritesProvider(null);
+			await using var provider = new FavoritesProvider(ribbon);
 			var list = provider.SortFavorites();
 			gridView.DataSource = new BindingList<Favorite>(list);
 		}

@@ -25,7 +25,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (string.IsNullOrWhiteSpace(uri))
 			{
-				using var dialog = new FavoritesDialog();
+				using var dialog = new FavoritesDialog(ribbon);
 				if (dialog.ShowDialog(owner) == DialogResult.Cancel)
 				{
 					return;

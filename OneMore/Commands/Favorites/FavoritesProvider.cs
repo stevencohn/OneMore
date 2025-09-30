@@ -242,8 +242,7 @@ namespace River.OneMoreAddIn
 					root.Add(favorite.Root);
 				}
 
-				await using var provider = new FavoritesProvider(ribbon);
-				provider.SaveFavorites(root);
+				SaveFavorites(root);
 			}
 			else
 			{
