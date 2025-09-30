@@ -432,7 +432,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 			Favorite favorite = null;
 			while (index < source.Count && favorite == null)
 			{
-				if (source[index].Location.EqualsICIC(info.Path))
+				if (source[index].ObjectID == info.PageId)
 				{
 					favorite = source[index];
 				}

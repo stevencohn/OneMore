@@ -11,6 +11,7 @@ namespace OneMoreCalendar
 	using System.Globalization;
 	using System.IO;
 	using System.Linq;
+	using System.Runtime.InteropServices;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
 
@@ -21,6 +22,10 @@ namespace OneMoreCalendar
 	/// </summary>
 	internal class OneNoteProvider
 	{
+		[DllImport("user32.dll")]
+		[return: MarshalAs(UnmanagedType.Bool)]
+		public static extern bool SetForegroundWindow(IntPtr hWnd);
+
 
 		/// <summary>
 		/// Export an EMF representation of the specified page to the TEMP folder
@@ -232,6 +237,7 @@ namespace OneMoreCalendar
 			if (!string.IsNullOrEmpty(url))
 			{
 				await one.NavigateTo(url);
+				SetForegroundWindow(one.WindowHandle);
 			}
 		}
 	}
