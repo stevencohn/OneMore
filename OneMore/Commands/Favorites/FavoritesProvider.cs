@@ -222,7 +222,7 @@ namespace River.OneMoreAddIn
 				if (!string.IsNullOrWhiteSpace(f.NotebookID) &&
 					!string.IsNullOrWhiteSpace(f.ObjectID))
 				{
-					await ConfirmByID(f);
+					updated = await ConfirmByID(f) || updated;
 				}
 
 				// ConfirmByID would only return either Known or Unknown
@@ -252,7 +252,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private async Task ConfirmByID(Favorite favorite)
+		private async Task<bool> ConfirmByID(Favorite favorite)
 		{
 			XElement notebook = null;
 			if (notebooks.ContainsKey(favorite.NotebookID))
@@ -280,15 +280,33 @@ namespace River.OneMoreAddIn
 			}
 
 			if (notebook is not null &&
-				notebook.Descendants().Any(e => e.Attribute("ID")?.Value == favorite.ObjectID))
+				notebook.Descendants().First(e => e.Attribute("ID")?.Value == favorite.ObjectID) is XElement node)
 			{
 				favorite.Status = FavoriteStatus.Known;
+
+				var name = node.Attribute("name").Value;
+				if (favorite.Name != name)
+				{
+					// auto-correct page/section name
+					favorite.Name = name;
+
+					if (name.Length > 50)
+					{
+						name = name.Substring(0, 50) + "...";
+					}
+
+					favorite.Root.Attribute("label").Value = name;
+
+					return true;
+				}
 			}
 			else
 			{
 				logger.WriteLine($"broken link to favorite notebook {favorite.Location}");
 				favorite.Status = FavoriteStatus.Unknown;
 			}
+
+			return false;
 		}
 
 
