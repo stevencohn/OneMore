@@ -193,6 +193,11 @@
     <Compile Include="Commands\File\Markdown\WikilinkInline.cs" />
     <Compile Include="Commands\File\OpenFolderCommand.cs" />
     <Compile Include="Commands\File\OpenLocationCommand.cs" />
+    <Compile Include="Commands\File\Scan\ScanCommand.cs" />
+    <Compile Include="Commands\File\Scan\ScanFormatID.cs" />
+    <Compile Include="Commands\File\Scan\ScanIntents.cs" />
+    <Compile Include="Commands\File\Scan\ScannerManager.cs" />
+    <Compile Include="Commands\File\Scan\ScanProfile.cs" />
     <Compile Include="Commands\Images\Diagrams\DiagramKeys.cs" />
     <Compile Include="Commands\Images\Diagrams\DiagramProviderFactory.cs" />
     <Compile Include="Commands\Images\Diagrams\IDiagramProvider.cs" />
