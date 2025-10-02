@@ -111,20 +111,47 @@ namespace River.OneMoreAddIn.Commands
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <returns></returns>
-		public string GetModel()
+		public ScanCapabilities GetCapabilities()
 		{
 			var device = info.Connect();
+			var caps = new ScanCapabilities();
 
+			try
+			{
+				caps.Model = GetModel(device);
+				caps.Intents = GetSupportedIntents(device);
+
+				if (device.Properties.Set("Document Handling Capabilities", ScanHandling.Flatbed))
+				{
+					caps.FlatbedResoltuions = GetSupportedResolutions(device);
+				}
+
+				caps.HasFeeder = device.Properties.Get<bool>("Document Handling Capabilities");
+				if (caps.HasFeeder)
+				{
+					if (device.Properties.Set("Document Handling Capabilities", ScanHandling.Feeder))
+					{
+						caps.FeederResoltuions = GetSupportedResolutions(device);
+					}
+				}
+			}
+			finally
+			{
+				Marshal.ReleaseComObject(device);
+			}
+
+			return caps;
+		}
+
+
+		private static string GetModel(Device device)
+		{
 			try
 			{
 				var name = device.Properties.Get<string>("Model name");
 				if (name is null)
 				{
-					return "-";
+					return string.Empty;
 				}
 
 				var number = device.Properties.Get<string>("Model number");
@@ -135,11 +162,57 @@ namespace River.OneMoreAddIn.Commands
 
 				return $"{name} ({number})";
 			}
-			finally
-			{
-				Marshal.ReleaseComObject(device);
-			}
+			catch { /* noop */ }
+
+			return string.Empty;
 		}
+
+
+		private static IEnumerable<int> GetSupportedIntents(Device device)
+		{
+			var item = device.Items[1];
+
+			if (item.Properties.Set("Current Intent", ScanIntents.Color))
+			{
+				yield return ScanIntents.Color;
+			}
+
+			if (item.Properties.Set("Current Intent", ScanIntents.Grayscale))
+			{
+				yield return ScanIntents.Grayscale;
+			}
+
+			if (item.Properties.Set("Current Intent", ScanIntents.BlackAndWhite))
+			{
+				yield return ScanIntents.BlackAndWhite;
+			}
+
+			yield return default;
+		}
+
+
+		private static IEnumerable<int> GetSupportedResolutions(Device device)
+		{
+			var item = device.Items[1];
+			var supported = new List<int>();
+			int[] testRes = { 75, 100, 150, 200, 300, 600, 1200 };
+
+			foreach (int dpi in testRes)
+			{
+				try
+				{
+					if (item.Properties.Set("Horizontal Resolution", dpi) &&
+						item.Properties.Set("Vertical Resolution", dpi))
+					{
+						supported.Add(dpi);
+					}
+				}
+				catch { /* noop */ }
+			}
+
+			return supported;
+		}
+
 
 
 		/// <summary>
@@ -150,7 +223,8 @@ namespace River.OneMoreAddIn.Commands
 		/// <returns></returns>
 		public string Scan(string format = ScanFormatID.wiaFormatJPEG, bool useFeeder = false)
 		{
-			var item = info.Connect().Items[1];
+			var device = info.Connect();
+			var item = device.Items[1];
 			ImageFile file = null;
 
 			try
@@ -176,6 +250,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				Marshal.ReleaseComObject(file);
 				Marshal.ReleaseComObject(item);
+				Marshal.ReleaseComObject(device);
 			}
 		}
 	}

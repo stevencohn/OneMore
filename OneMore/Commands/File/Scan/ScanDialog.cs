@@ -20,7 +20,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			public string DeviceID { get; private set; }
 			public string Name { get; private set; }
-			public string Model { get; set; }
+			public ScanCapabilities Capabilities { get; set; }
 			public Scanner(DeviceInfo info)
 			{
 				DeviceID = info.DeviceID;
@@ -104,15 +104,15 @@ namespace River.OneMoreAddIn.Commands
 		private void ChangeScanner(object sender, EventArgs e)
 		{
 			var scanner = scannerBox.SelectedItem as Scanner;
-			if (scanner.Model is null)
+			if (scanner.Capabilities is null)
 			{
 				SetState(false);
 				using var manager = new ScannerManager(scanner.DeviceID);
-				scanner.Model = manager.GetModel();
+				scanner.Capabilities = manager.GetCapabilities();
 				SetState(true);
 			}
 
-			modelLabel.Text = scanner.Model;
+			modelLabel.Text = scanner.Capabilities.Model;
 		}
 
 
@@ -171,7 +171,7 @@ namespace River.OneMoreAddIn.Commands
 
 			SetState(false);
 
-			Task.Run(async () =>
+			Task.Run(() =>
 			{
 				try
 				{
@@ -184,13 +184,14 @@ namespace River.OneMoreAddIn.Commands
 					{
 						timer.Stop();
 						timer.Dispose();
-						timer = null;
 
 						if (cancelled)
 						{
 							progressBar.Visible = false;
 							okButton.Visible = true;
 							SetState(true);
+							cancelled = false;
+							return;
 						}
 
 						DialogResult = DialogResult.OK;
@@ -203,7 +204,6 @@ namespace River.OneMoreAddIn.Commands
 
 					timer.Stop();
 					timer.Dispose();
-					timer = null;
 					progressBar.Visible = false;
 					okButton.Visible = true;
 					SetState(true);
@@ -232,7 +232,6 @@ namespace River.OneMoreAddIn.Commands
 			cancelled = true;
 			timer.Stop();
 			timer.Dispose();
-			timer = null;
 			progressBar.Visible = false;
 			okButton.Visible = true;
 			SetState(true);

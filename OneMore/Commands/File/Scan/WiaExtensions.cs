@@ -35,16 +35,22 @@ namespace River.OneMoreAddIn.Commands
 		/// <param name="properties"></param>
 		/// <param name="key"></param>
 		/// <param name="value"></param>
-		public static void Set(this Properties properties, object key, object value)
+		public static bool Set(this Properties properties, object key, object value)
 		{
 			foreach (Property property in properties)
 			{
 				if (property.Name.Equals(key) || property.PropertyID.Equals(key))
 				{
-					property.set_Value(value);
-					return;
+					try
+					{
+						property.set_Value(value);
+						return true;
+					}
+					catch { /* unsupported */ }
 				}
 			}
+
+			return false;
 		}
 	}
 }
