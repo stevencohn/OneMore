@@ -21,13 +21,20 @@ namespace River.OneMoreAddIn.Commands
 		public ScannerManager(string deviceID)
 		{
 			var manager = new DeviceManager();
-			for (int i = 1; i <= manager.DeviceInfos.Count; i++)
+			try
 			{
-				if (manager.DeviceInfos[i].DeviceID == deviceID)
+				for (int i = 1; i <= manager.DeviceInfos.Count; i++)
 				{
-					info = manager.DeviceInfos[i];
-					break;
+					if (manager.DeviceInfos[i].DeviceID == deviceID)
+					{
+						info = manager.DeviceInfos[i];
+						break;
+					}
 				}
+			}
+			finally
+			{
+				Marshal.ReleaseComObject(manager);
 			}
 
 			if (info is null)
@@ -102,6 +109,39 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		public string GetModel()
+		{
+			var device = info.Connect();
+
+			try
+			{
+				var name = device.Properties.Get<string>("Model name");
+				if (name is null)
+				{
+					return "-";
+				}
+
+				var number = device.Properties.Get<string>("Model number");
+				if (number is null)
+				{
+					return name;
+				}
+
+				return $"{name} ({number})";
+			}
+			finally
+			{
+				Marshal.ReleaseComObject(device);
+			}
+		}
+
+
 		/// <summary>
 		/// 
 		/// </summary>
@@ -110,24 +150,33 @@ namespace River.OneMoreAddIn.Commands
 		/// <returns></returns>
 		public string Scan(string format = ScanFormatID.wiaFormatJPEG, bool useFeeder = false)
 		{
-			var scanner = info.Connect().Items[1];
+			var item = info.Connect().Items[1];
+			ImageFile file = null;
 
-			// 0x01 = Feeder, 0x02 = Flatbed
-			scanner.Properties.Set("Document Handling Select", useFeeder ? 0x01 : 0x02);
-			scanner.Properties.Set("Horizontal Resolution", 300);
-			scanner.Properties.Set("Vertical Resolution", 300);
-			scanner.Properties.Set("Current Intent", ScanIntents.Color);
+			try
+			{
+				// 0x01 = Feeder, 0x02 = Flatbed
+				item.Properties.Set("Document Handling Select", useFeeder ? 0x01 : 0x02);
+				item.Properties.Set("Horizontal Resolution", 300);
+				item.Properties.Set("Vertical Resolution", 300);
+				item.Properties.Set("Current Intent", ScanIntents.Color);
 
-			var file = (ImageFile)scanner.Transfer(format);
-			var bytes = (byte[])file.FileData.get_BinaryData();
+				file = (ImageFile)item.Transfer(format);
+				var bytes = (byte[])file.FileData.get_BinaryData();
 
-			using var stream = new MemoryStream(bytes);
-			using var image = Image.FromStream(stream);
+				using var stream = new MemoryStream(bytes);
+				using var image = Image.FromStream(stream);
 
-			ImageHeight = image.Height;
-			ImageWidth = image.Width;
+				ImageHeight = image.Height;
+				ImageWidth = image.Width;
 
-			return Convert.ToBase64String(bytes);
+				return Convert.ToBase64String(bytes);
+			}
+			finally
+			{
+				Marshal.ReleaseComObject(file);
+				Marshal.ReleaseComObject(item);
+			}
 		}
 	}
 }

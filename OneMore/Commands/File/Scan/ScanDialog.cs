@@ -8,7 +8,6 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing.Printing;
-	using System.Runtime.InteropServices;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using WIA;
@@ -16,20 +15,19 @@ namespace River.OneMoreAddIn.Commands
 
 	internal partial class ScanDialog : MoreForm
 	{
+		#region Private classes
 		private sealed class Scanner
 		{
-			public DeviceInfo Info { get; private set; }
-			public Device Device { get; set; }
 			public string DeviceID { get; private set; }
+			public string Name { get; private set; }
+			public string Model { get; set; }
 			public Scanner(DeviceInfo info)
 			{
-				Info = info;
 				DeviceID = info.DeviceID;
+				Name = info.Properties.Get<string>("Name");
+
 			}
-			public override string ToString()
-			{
-				return (string)Info.Properties["Name"].get_Value();
-			}
+			public override string ToString() => Name;
 		}
 
 		private sealed class ScanPaperSize
@@ -56,6 +54,7 @@ namespace River.OneMoreAddIn.Commands
 				return Name;
 			}
 		}
+		#endregion Private classes
 
 		private readonly List<Scanner> scanners;
 		private Timer timer;
@@ -85,6 +84,11 @@ namespace River.OneMoreAddIn.Commands
 				sizes.Add(new ScanPaperSize(size));
 			}
 			sizeBox.DataSource = sizes;
+
+			sourceBox.SelectedIndex = 0;
+			sizeBox.SelectedIndex = 0;
+			colorBox.SelectedIndex = 0;
+			//resolutionBox.SelectedIndex = 0;
 		}
 
 
@@ -100,37 +104,21 @@ namespace River.OneMoreAddIn.Commands
 		private void ChangeScanner(object sender, EventArgs e)
 		{
 			var scanner = scannerBox.SelectedItem as Scanner;
-			if (scanner.Device is null)
+			if (scanner.Model is null)
 			{
 				SetState(false);
-				scanner.Device = scanner.Info.Connect();
-
-				var name = scanner.Device.Properties.Get<string>("Model name");
-				if (name is null)
-				{
-					modelLabel.Text = "-";
-				}
-				else
-				{
-					var number = scanner.Device.Properties.Get<string>("Model number");
-					if (number is null)
-					{
-						modelLabel.Text = name;
-					}
-					else
-					{
-						modelLabel.Text = $"{name} ({number})";
-					}
-
-				}
-
+				using var manager = new ScannerManager(scanner.DeviceID);
+				scanner.Model = manager.GetModel();
 				SetState(true);
 			}
+
+			modelLabel.Text = scanner.Model;
 		}
 
 
 		private void SetState(bool enabled)
 		{
+			scannerBox.Enabled = enabled;
 			profileBox.Enabled = enabled;
 			sourceBox.Enabled = enabled;
 			sizeBox.Enabled = enabled;
@@ -187,7 +175,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				try
 				{
-					var manager = new ScannerManager(((Scanner)scannerBox.SelectedItem).DeviceID);
+					using var manager = new ScannerManager(((Scanner)scannerBox.SelectedItem).DeviceID);
 					ImageData = manager.Scan();
 					ImageHeight = manager.ImageHeight;
 					ImageWidth = manager.ImageWidth;
@@ -253,15 +241,6 @@ namespace River.OneMoreAddIn.Commands
 
 		protected override void OnFormClosing(FormClosingEventArgs e)
 		{
-			foreach (var scanner in scanners)
-			{
-				Marshal.ReleaseComObject(scanner.Info);
-				if (scanner.Device is not null)
-				{
-					Marshal.ReleaseComObject(scanner.Device);
-				}
-			}
-
 			base.OnFormClosing(e);
 		}
 	}
