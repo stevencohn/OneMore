@@ -113,7 +113,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public ScanCapabilities GetCapabilities()
 		{
-			var device = info.Connect();
+			var device = info.Connect() as IDevice;
 			var caps = new ScanCapabilities();
 
 			try
@@ -121,18 +121,15 @@ namespace River.OneMoreAddIn.Commands
 				caps.Model = GetModel(device);
 				caps.Intents = GetSupportedIntents(device);
 
-				if (device.Properties.Set("Document Handling Capabilities", ScanHandling.Flatbed))
+				var mask = device.Properties.Get<int>(PropertyNames.DocumentHandling);
+				if ((mask & ScanHandling.Flatbed) > 0)
 				{
 					caps.FlatbedResoltuions = GetSupportedResolutions(device);
 				}
 
-				caps.HasFeeder = device.Properties.Get<bool>("Document Handling Capabilities");
-				if (caps.HasFeeder)
+				if ((mask & ScanHandling.Feeder) > 0)
 				{
-					if (device.Properties.Set("Document Handling Capabilities", ScanHandling.Feeder))
-					{
-						caps.FeederResoltuions = GetSupportedResolutions(device);
-					}
+					caps.FeederResoltuions = GetSupportedResolutions(device);
 				}
 			}
 			finally
@@ -144,17 +141,17 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private static string GetModel(Device device)
+		private static string GetModel(IDevice device)
 		{
 			try
 			{
-				var name = device.Properties.Get<string>("Model name");
+				var name = device.Properties.Get<string>(PropertyNames.ModelName);
 				if (name is null)
 				{
 					return string.Empty;
 				}
 
-				var number = device.Properties.Get<string>("Model number");
+				var number = device.Properties.Get<string>(PropertyNames.ModelNumber);
 				if (number is null)
 				{
 					return name;
@@ -168,41 +165,42 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private static IEnumerable<int> GetSupportedIntents(Device device)
+		private static IEnumerable<int> GetSupportedIntents(IDevice device)
 		{
 			var item = device.Items[1];
+			var intents = new List<int>();
 
-			if (item.Properties.Set("Current Intent", ScanIntents.Color))
+			if (item.Properties.Set(PropertyNames.CurrentIntent, ScanIntents.Color))
 			{
-				yield return ScanIntents.Color;
+				intents.Add(ScanIntents.Color);
 			}
 
-			if (item.Properties.Set("Current Intent", ScanIntents.Grayscale))
+			if (item.Properties.Set(PropertyNames.CurrentIntent, ScanIntents.Grayscale))
 			{
-				yield return ScanIntents.Grayscale;
+				intents.Add(ScanIntents.Grayscale);
 			}
 
-			if (item.Properties.Set("Current Intent", ScanIntents.BlackAndWhite))
+			if (item.Properties.Set(PropertyNames.CurrentIntent, ScanIntents.BlackAndWhite))
 			{
-				yield return ScanIntents.BlackAndWhite;
+				intents.Add(ScanIntents.BlackAndWhite);
 			}
 
-			yield return default;
+			return intents;
 		}
 
 
-		private static IEnumerable<int> GetSupportedResolutions(Device device)
+		private static IEnumerable<int> GetSupportedResolutions(IDevice device)
 		{
 			var item = device.Items[1];
 			var supported = new List<int>();
-			int[] testRes = { 75, 100, 150, 200, 300, 600, 1200 };
+			int[] testDPIs = { 75, 100, 150, 200, 300, 600, 1200 };
 
-			foreach (int dpi in testRes)
+			foreach (int dpi in testDPIs)
 			{
 				try
 				{
-					if (item.Properties.Set("Horizontal Resolution", dpi) &&
-						item.Properties.Set("Vertical Resolution", dpi))
+					if (item.Properties.Set(PropertyNames.HorizontalResolution, dpi) &&
+						item.Properties.Set(PropertyNames.VerticalResolution, dpi))
 					{
 						supported.Add(dpi);
 					}
@@ -221,7 +219,7 @@ namespace River.OneMoreAddIn.Commands
 		/// <param name="format"></param>
 		/// <param name="useFeeder"></param>
 		/// <returns></returns>
-		public string Scan(string format = ScanFormatID.wiaFormatJPEG, bool useFeeder = false)
+		public string Scan()
 		{
 			var device = info.Connect();
 			var item = device.Items[1];
@@ -229,13 +227,12 @@ namespace River.OneMoreAddIn.Commands
 
 			try
 			{
-				// 0x01 = Feeder, 0x02 = Flatbed
-				item.Properties.Set("Document Handling Select", useFeeder ? 0x01 : 0x02);
-				item.Properties.Set("Horizontal Resolution", 300);
-				item.Properties.Set("Vertical Resolution", 300);
-				item.Properties.Set("Current Intent", ScanIntents.Color);
+				item.Properties.Set(PropertyNames.HandlingSelect, false ? 0x01 : 0x02);
+				item.Properties.Set(PropertyNames.HorizontalResolution, 300);
+				item.Properties.Set(PropertyNames.VerticalResolution, 300);
+				item.Properties.Set(PropertyNames.CurrentIntent, ScanIntents.Color);
 
-				file = (ImageFile)item.Transfer(format);
+				file = (ImageFile)item.Transfer(ScanFormatID.wiaFormatJPEG);
 				var bytes = (byte[])file.FileData.get_BinaryData();
 
 				using var stream = new MemoryStream(bytes);

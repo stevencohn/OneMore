@@ -156,6 +156,7 @@
 			// 
 			// contentPanel
 			// 
+			this.contentPanel.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.contentPanel.BottomBorderColor = System.Drawing.SystemColors.ActiveBorder;
 			this.contentPanel.BottomBorderSize = 0;
 			this.contentPanel.Controls.Add(this.contrastBox);
@@ -331,9 +332,6 @@
 			this.sourceBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.sourceBox.Enabled = false;
 			this.sourceBox.FormattingEnabled = true;
-			this.sourceBox.Items.AddRange(new object[] {
-            "Flatbed",
-            "Feeder"});
 			this.sourceBox.Location = new System.Drawing.Point(245, 170);
 			this.sourceBox.Name = "sourceBox";
 			this.sourceBox.Size = new System.Drawing.Size(322, 28);

@@ -200,7 +200,6 @@
     <Compile Include="Commands\File\Scan\ScanDialog.Designer.cs">
       <DependentUpon>ScanDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\File\Scan\ScanFormatID.cs" />
     <Compile Include="Commands\File\Scan\ScanCapabilities.cs" />
     <Compile Include="Commands\File\Scan\ScannerManager.cs" />
     <Compile Include="Commands\File\Scan\ScanProfile.cs" />

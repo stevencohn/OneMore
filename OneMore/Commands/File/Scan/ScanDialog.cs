@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing.Printing;
+	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using WIA;
@@ -54,6 +55,18 @@ namespace River.OneMoreAddIn.Commands
 				return Name;
 			}
 		}
+
+		private sealed class ScanSource
+		{
+			public string Name { get; private set; }
+			public int Bitmask { get; private set; }
+			public ScanSource(string name, int mask)
+			{
+				Name = name;
+				Bitmask = mask;
+			}
+			public override string ToString() => Name;
+		}
 		#endregion Private classes
 
 		private readonly List<Scanner> scanners;
@@ -85,10 +98,8 @@ namespace River.OneMoreAddIn.Commands
 			}
 			sizeBox.DataSource = sizes;
 
-			sourceBox.SelectedIndex = 0;
 			sizeBox.SelectedIndex = 0;
 			colorBox.SelectedIndex = 0;
-			//resolutionBox.SelectedIndex = 0;
 		}
 
 
@@ -113,6 +124,44 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			modelLabel.Text = scanner.Capabilities.Model;
+			PopulateSource(scanner.Capabilities);
+			PopulateResolutions(scanner.Capabilities);
+		}
+
+
+		private void PopulateSource(ScanCapabilities caps)
+		{
+			sourceBox.Items.Clear();
+			if (caps.FlatbedResoltuions is not null && caps.FlatbedResoltuions.Any())
+			{
+				sourceBox.Items.Add(new ScanSource("Flatbed", ScanHandling.Flatbed));
+			}
+
+			if (caps.FeederResoltuions is not null && caps.FeederResoltuions.Any())
+			{
+				sourceBox.Items.Add(new ScanSource("Feeder", ScanHandling.Feeder));
+			}
+
+			if (sourceBox.Items.Count > 0)
+			{
+				sourceBox.SelectedIndex = 0;
+			}
+		}
+
+
+		private void PopulateResolutions(ScanCapabilities caps)
+		{
+			resolutionBox.Items.Clear();
+
+			foreach (var res in caps.FeederResoltuions)
+			{
+				resolutionBox.Items.Add($"{res} DPI");
+			}
+
+			if (resolutionBox.Items.Count > 0)
+			{
+				resolutionBox.SelectedIndex = 0;
+			}
 		}
 
 
@@ -158,6 +207,8 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 		private void BeginScanning(object sender, EventArgs e)
 		{
 			okButton.Visible = false;
@@ -175,7 +226,8 @@ namespace River.OneMoreAddIn.Commands
 			{
 				try
 				{
-					using var manager = new ScannerManager(((Scanner)scannerBox.SelectedItem).DeviceID);
+					var scanner = (Scanner)scannerBox.SelectedItem;
+					using var manager = new ScannerManager(scanner.DeviceID);
 					ImageData = manager.Scan();
 					ImageHeight = manager.ImageHeight;
 					ImageWidth = manager.ImageWidth;
