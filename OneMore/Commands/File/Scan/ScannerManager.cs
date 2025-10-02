@@ -14,13 +14,26 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class ScannerManager : IDisposable
 	{
-		private readonly DeviceInfo device;
+		private readonly DeviceInfo info;
 		private bool disposed;
 
 
-		public ScannerManager(DeviceInfo device)
+		public ScannerManager(string deviceID)
 		{
-			this.device = device;
+			var manager = new DeviceManager();
+			for (int i = 1; i <= manager.DeviceInfos.Count; i++)
+			{
+				if (manager.DeviceInfos[i].DeviceID == deviceID)
+				{
+					info = manager.DeviceInfos[i];
+					break;
+				}
+			}
+
+			if (info is null)
+			{
+				throw new InvalidDataException("invalid DeviceID");
+			}
 		}
 
 
@@ -31,7 +44,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				if (disposing)
 				{
-					Marshal.ReleaseComObject(device);
+					Marshal.ReleaseComObject(info);
 				}
 
 				disposed = true;
@@ -64,9 +77,9 @@ namespace River.OneMoreAddIn.Commands
 		/// 
 		/// </summary>
 		/// <returns></returns>
-		public static List<DeviceInfo> ListScannerDevices()
+		public static IEnumerable<DeviceInfo> ListScannerDevices()
 		{
-			var devices = new List<DeviceInfo>();
+			var infos = new List<DeviceInfo>();
 			var manager = new DeviceManager();
 
 			try
@@ -76,7 +89,7 @@ namespace River.OneMoreAddIn.Commands
 					var info = manager.DeviceInfos[i];
 					if (info.Type == WiaDeviceType.ScannerDeviceType)
 					{
-						devices.Add(info);
+						infos.Add(info);
 					}
 				}
 			}
@@ -85,7 +98,7 @@ namespace River.OneMoreAddIn.Commands
 				Marshal.ReleaseComObject(manager);
 			}
 
-			return devices;
+			return infos;
 		}
 
 
@@ -97,16 +110,16 @@ namespace River.OneMoreAddIn.Commands
 		/// <returns></returns>
 		public string Scan(string format = ScanFormatID.wiaFormatJPEG, bool useFeeder = false)
 		{
-			var scanner = device.Connect().Items[1];
+			var scanner = info.Connect().Items[1];
 
 			// 0x01 = Feeder, 0x02 = Flatbed
-			Set(scanner.Properties, "Document Handling Select", useFeeder ? 0x01 : 0x02);
-			Set(scanner.Properties, "Horizontal Resolution", 300);
-			Set(scanner.Properties, "Vertical Resolution", 300);
-			Set(scanner.Properties, "Current Intent", ScanIntents.Color);
+			scanner.Properties.Set("Document Handling Select", useFeeder ? 0x01 : 0x02);
+			scanner.Properties.Set("Horizontal Resolution", 300);
+			scanner.Properties.Set("Vertical Resolution", 300);
+			scanner.Properties.Set("Current Intent", ScanIntents.Color);
 
-			var imageFile = (ImageFile)scanner.Transfer(format);
-			var bytes = (byte[])imageFile.FileData.get_BinaryData();
+			var file = (ImageFile)scanner.Transfer(format);
+			var bytes = (byte[])file.FileData.get_BinaryData();
 
 			using var stream = new MemoryStream(bytes);
 			using var image = Image.FromStream(stream);
@@ -115,22 +128,6 @@ namespace River.OneMoreAddIn.Commands
 			ImageWidth = image.Width;
 
 			return Convert.ToBase64String(bytes);
-		}
-
-
-		/// <summary>
-		/// Sets a property value by name or ID.
-		/// </summary>
-		private static void Set(IProperties properties, /* boxed */ object key, object value)
-		{
-			foreach (Property property in properties)
-			{
-				if (property.PropertyID.Equals(key) || property.Name.Equals(key))
-				{
-					property.set_Value(value);
-					return;
-				}
-			}
 		}
 	}
 }

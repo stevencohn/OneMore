@@ -194,10 +194,17 @@
     <Compile Include="Commands\File\OpenFolderCommand.cs" />
     <Compile Include="Commands\File\OpenLocationCommand.cs" />
     <Compile Include="Commands\File\Scan\ScanCommand.cs" />
+    <Compile Include="Commands\File\Scan\ScanDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\File\Scan\ScanDialog.Designer.cs">
+      <DependentUpon>ScanDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\File\Scan\ScanFormatID.cs" />
     <Compile Include="Commands\File\Scan\ScanIntents.cs" />
     <Compile Include="Commands\File\Scan\ScannerManager.cs" />
     <Compile Include="Commands\File\Scan\ScanProfile.cs" />
+    <Compile Include="Commands\File\Scan\WiaExtensions.cs" />
     <Compile Include="Commands\Images\Diagrams\DiagramKeys.cs" />
     <Compile Include="Commands\Images\Diagrams\DiagramProviderFactory.cs" />
     <Compile Include="Commands\Images\Diagrams\IDiagramProvider.cs" />
@@ -1251,6 +1258,9 @@
     <EmbeddedResource Include="Commands\File\OpenFolderDialog.resx">
       <DependentUpon>OpenFolderDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\File\Scan\ScanDialog.resx">
+      <DependentUpon>ScanDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\References\BiLinkDialog.resx">
       <DependentUpon>BiLinkDialog.cs</DependentUpon>
