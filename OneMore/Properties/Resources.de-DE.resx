@@ -5328,6 +5328,9 @@ Umkehren</value>
   <data name="word_Distance" xml:space="preserve">
     <value>Distanz</value>
   </data>
+  <data name="word_Document" xml:space="preserve">
+    <value>Dokumentieren</value>
+  </data>
   <data name="word_Due" xml:space="preserve">
     <value>Während</value>
   </data>
@@ -5453,6 +5456,9 @@ Umkehren</value>
   </data>
   <data name="word_PercentSymbol" xml:space="preserve">
     <value>%</value>
+  </data>
+  <data name="word_Photo" xml:space="preserve">
+    <value>Foto</value>
   </data>
   <data name="word_Planned" xml:space="preserve">
     <value>Geplant</value>

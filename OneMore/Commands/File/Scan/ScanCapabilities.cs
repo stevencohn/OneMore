@@ -73,11 +73,9 @@ namespace River.OneMoreAddIn.Commands
 	/// </remarks>
 	internal static class ScanIntents
 	{
-		public static int Color => 0x01;
-
-		public static int Grayscale => 0x02;
-
-		public static int BlackAndWhite => 0x04;
+		public const int Color = 0x01;
+		public const int Grayscale = 0x02;
+		public const int BlackAndWhite = 0x04;
 	}
 
 

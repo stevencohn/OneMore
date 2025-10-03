@@ -37,6 +37,8 @@ namespace River.OneMoreAddIn.Commands
 			public string Name { get; private set; }
 			public int Height { get; private set; }
 			public int Width { get; private set; }
+			public bool IsCustom { get; private set; }
+			public PaperKind Kind { get; private set; }
 			public ScanPaperSize(PaperSize size)
 			{
 				var win = (size.Width / 100.0).ToString("0.0");
@@ -44,12 +46,14 @@ namespace River.OneMoreAddIn.Commands
 				var wmm = (int)Math.Round(size.Width * 0.254);
 				var hmm = (int)Math.Round(size.Height * 0.254);
 				var dims = $"{win} x {hin} in ({wmm} x {hmm} mm)";
-				Name = size.Kind == PaperKind.Custom
+				Kind = size.Kind;
+				Name = IsCustom
 					? $"{size.PaperName} {dims} Custom"
 					: $"{size.PaperName} {dims}";
 
 				Height = size.Height;
 				Width = size.Width;
+				IsCustom = size.Kind == PaperKind.Custom;
 			}
 			public override string ToString()
 			{
@@ -71,7 +75,7 @@ namespace River.OneMoreAddIn.Commands
 		#endregion Private classes
 
 		private readonly List<Scanner> scanners;
-		private readonly List<ScanPaperSize> paperSizes;
+		private List<ScanPaperSize> paperSizes;
 		private Timer timer;
 		private bool cancelled;
 
@@ -108,21 +112,20 @@ namespace River.OneMoreAddIn.Commands
 		public ScanDialog(IEnumerable<DeviceInfo> devices)
 			: this()
 		{
-			paperSizes = new List<ScanPaperSize>();
-			var printDoc = new PrintDocument();
-			foreach (PaperSize size in printDoc.PrinterSettings.PaperSizes)
-			{
-				paperSizes.Add(new ScanPaperSize(size));
-			}
+			// do this first, before ChangeScanner is called
+			DiscoverPaperSizes();
 
+			profileBox.DataSource = ScanProfile.MakeDefaultProfiles();
+			profileBox.SelectedIndex = 0;
+			profileBox.SelectedIndexChanged += ChangedProfile;
+
+			// discover scanners
 			scanners = new List<Scanner>();
 			foreach (var device in devices)
 			{
 				scanners.Add(new Scanner(device));
 			}
 			scannerBox.DataSource = scanners;
-
-			colorBox.SelectedIndex = 0;
 		}
 
 
@@ -133,6 +136,62 @@ namespace River.OneMoreAddIn.Commands
 
 
 		public int ImageWidth { get; private set; }
+
+
+		protected override void OnLoad(EventArgs e)
+		{
+			base.OnLoad(e);
+			ChangedProfile(null, e);
+		}
+
+
+		protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+		{
+			// ProcessCmdKey intercepts Key messages before they reach individual controls
+			if (keyData == Keys.Escape && okButton.Visible)
+			{
+				DialogResult = DialogResult.Cancel;
+				Close();
+				return true; // handled
+			}
+
+			if (keyData == Keys.Enter && okButton.Visible)
+			{
+				BeginScanning(null, EventArgs.Empty);
+				return true; // handled
+			}
+
+			return base.ProcessCmdKey(ref msg, keyData);
+		}
+
+
+
+		private void DiscoverPaperSizes()
+		{
+			var sizes = new List<ScanPaperSize>();
+			var printDoc = new PrintDocument();
+			foreach (PaperSize size in printDoc.PrinterSettings.PaperSizes)
+			{
+				sizes.Add(new ScanPaperSize(size));
+			}
+
+			paperSizes = new List<ScanPaperSize>(sizes.Count);
+
+			Move(PaperKind.Letter);
+			Move(PaperKind.Legal);
+			Move(PaperKind.A4);
+			paperSizes.AddRange(sizes.Where(s => !s.IsCustom).OrderBy(s => s.Name));
+			paperSizes.AddRange(sizes.Where(s => s.IsCustom).OrderBy(s => s.Name));
+
+			void Move(PaperKind kind)
+			{
+				if (sizes.FirstOrDefault(s => s.Kind == kind) is ScanPaperSize item)
+				{
+					sizes.Remove(item);
+					paperSizes.Add(item);
+				}
+			}
+		}
 
 
 		private void ChangeScanner(object sender, EventArgs e)
@@ -151,6 +210,31 @@ namespace River.OneMoreAddIn.Commands
 			PopulatePaperSizes(scanner.Capabilities);
 
 			// no need to call PopulateResolutions; triggered by PopulateSource (box.selectedIdx)
+		}
+
+
+		private void ChangedProfile(object sender, EventArgs e)
+		{
+			var profile = (ScanProfile)profileBox.SelectedItem;
+
+			var mask = profile.UseFeeder ? ScanHandling.Feeder : ScanHandling.Flatbed;
+			var index = sourceBox.Items.Cast<ScanSource>().ToList().FindIndex(s => s.Bitmask == mask);
+			sourceBox.SelectedIndex = index >= 0 ? index : 0;
+
+			colorBox.SelectedIndex = profile.Intent switch
+			{
+				ScanIntents.Color => 0,
+				ScanIntents.Grayscale => 1,
+				ScanIntents.BlackAndWhite => 2,
+				_ => 0
+			};
+
+			var dpi = $"{profile.Dpi} DPI";
+			index = resolutionBox.Items.Cast<string>().ToList().FindIndex(r => r == dpi);
+			resolutionBox.SelectedIndex = index >= 0 ? index : 0;
+
+			brightnessSlider.Value = profile.Brightness;
+			contrastSlider.Value = profile.Contrast;
 		}
 
 
@@ -200,10 +284,13 @@ namespace River.OneMoreAddIn.Commands
 				resolutionBox.Items.Add($"{res} DPI");
 			}
 
-			if (resolutionBox.Items.Count > 0)
-			{
-				resolutionBox.SelectedIndex = 0;
-			}
+			//if (resolutionBox.Items.Count > 0)
+			//{
+			//	var items = resolutionBox.Items.Cast<string>().ToList();
+			//	var index = items.FindIndex(r => r == "300 DPI");
+			//	if (index < 0) index = items.FindIndex(r => r == "150 DPI");
+			//	resolutionBox.SelectedIndex = index >= 0 ? index : 0;
+			//}
 		}
 
 
@@ -292,8 +379,8 @@ namespace River.OneMoreAddIn.Commands
 					{
 						UseFeeder = ((ScanSource)sourceBox.SelectedItem).Bitmask == ScanHandling.Feeder,
 						ColorIntent = 1 << colorBox.SelectedIndex,
-						Brightness = (int)brightnessBox.Value,
-						Contrast = (int)contrastBox.Value,
+						Brightness = (int)brightnessBox.Value * 10,
+						Contrast = (int)contrastBox.Value * 10,
 						HorizontalResolution = dpi,
 						VerticalResolution = dpi
 					};
@@ -302,33 +389,27 @@ namespace River.OneMoreAddIn.Commands
 					ImageHeight = manager.ImageHeight;
 					ImageWidth = manager.ImageWidth;
 
-					Invoke((MethodInvoker)(() =>
+					if (!cancelled)
 					{
-						timer.Stop();
-						timer.Dispose();
-
-						if (cancelled)
+						Invoke((MethodInvoker)(() =>
 						{
-							progressBar.Visible = false;
-							okButton.Visible = true;
-							SetState(true);
-							cancelled = false;
-							return;
-						}
-
-						DialogResult = DialogResult.OK;
-						Close();
-					}));
+							DialogResult = DialogResult.OK;
+							Close();
+						}));
+					}
 				}
 				catch (Exception exc)
 				{
 					logger.WriteLine(exc);
 
-					timer.Stop();
-					timer.Dispose();
 					progressBar.Visible = false;
 					okButton.Visible = true;
 					SetState(true);
+				}
+				finally
+				{
+					timer.Stop();
+					timer.Dispose();
 				}
 			});
 		}
@@ -344,19 +425,16 @@ namespace River.OneMoreAddIn.Commands
 
 		private void Cancel(object sender, EventArgs e)
 		{
-			if (timer is null)
+			cancelled = true;
+
+			if (timer is not null)
 			{
-				DialogResult = DialogResult.Cancel;
-				Close();
-				return;
+				timer.Stop();
+				timer.Dispose();
 			}
 
-			cancelled = true;
-			timer.Stop();
-			timer.Dispose();
-			progressBar.Visible = false;
-			okButton.Visible = true;
-			SetState(true);
+			DialogResult = DialogResult.Cancel;
+			Close();
 		}
 
 

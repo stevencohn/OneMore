@@ -4,6 +4,10 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using System.Collections.Generic;
+	using Resx = Properties.Resources;
+
+
 	/// <summary>
 	/// Represents a reusable scan configuration profile for WIA-based scanning.
 	/// </summary>
@@ -22,12 +26,12 @@ namespace River.OneMoreAddIn.Commands
 		/// <summary>
 		/// Physical width of scan area in inches.
 		/// </summary>
-		public double WidthInInches { get; set; } = 8.5;
+		public int WidthInInches { get; set; } = 8500;
 
 		/// <summary>
 		/// Physical height of scan area in inches.
 		/// </summary>
-		public double HeightInInches { get; set; } = 11.0;
+		public int HeightInInches { get; set; } = 11000;
 
 		/// <summary>
 		/// Brightness adjustment (-100 to +100).
@@ -54,14 +58,36 @@ namespace River.OneMoreAddIn.Commands
 		/// </summary>
 		public string FormatId { get; set; } = ScanFormatID.wiaFormatJPEG;
 
-		/// <summary>
-		/// Optional output path for saving the scanned image.
-		/// </summary>
-		public string OutputPath { get; set; }
 
-		/// <summary>
-		/// Optional notes or description for audit or UI display.
-		/// </summary>
-		public string Notes { get; set; }
+		public override string ToString() => Name;
+
+
+		public static List<ScanProfile> MakeDefaultProfiles()
+		{
+			return new List<ScanProfile>
+			{
+				new()
+				{
+					Name = Resx.word_Document,
+					Dpi = 300,
+					Brightness = 0,
+					Contrast = 0,
+					Intent = ScanIntents.Grayscale,
+					UseFeeder = false,
+					FormatId = ScanFormatID.wiaFormatTIFF
+				},
+
+				new()
+				{
+					Name = Resx.word_Photo,
+					Dpi = 600,
+					Brightness = 10,
+					Contrast = 0,
+					Intent = ScanIntents.Color,
+					UseFeeder = false,
+					FormatId = ScanFormatID.wiaFormatJPEG
+				}
+			};
+		}
 	}
 }

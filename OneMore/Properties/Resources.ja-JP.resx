@@ -5337,6 +5337,9 @@ ISO-code then comma then language name</comment>
   <data name="word_Distance" xml:space="preserve">
     <value>距離</value>
   </data>
+  <data name="word_Document" xml:space="preserve">
+    <value>書類</value>
+  </data>
   <data name="word_Due" xml:space="preserve">
     <value>期限</value>
   </data>
@@ -5462,6 +5465,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_PercentSymbol" xml:space="preserve">
     <value>%</value>
+  </data>
+  <data name="word_Photo" xml:space="preserve">
+    <value>写真</value>
   </data>
   <data name="word_Planned" xml:space="preserve">
     <value>計画済み</value>
