@@ -134,6 +134,7 @@
 <li><a id="how-to-add-a-settings-sheet" href="How to Add A Settings Sheet.htm">How to Add A Settings Sheet</a></li>
 <li><a id="language-translations" href="Language Translations.htm">Language Translations</a></li>
 <li><a id="logging-options" href="Logging Options.htm">Logging Options</a></li>
+<li><a id="nuget-dependencies" href="Nuget Dependencies.htm">Nuget Dependencies</a></li>
 <li><a id="scripts" href="Scripts.htm">Scripts</a></li>
 <li><a id="smoke-tests" href="Smoke Tests.htm">Smoke Tests</a></li>
 <li><a id="references" href="References.htm">References</a></li>
@@ -191,7 +192,7 @@
 <P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">OneMore references Windows.winmd out of the Windows SDK to consume PDF files and other features. Select the latest version of the SDK for your current OS, either Windows 10 or Windows 11. The winmd is expecting to exist at </SPAN><SPAN style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e9e9e9'>C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.version.0\Windows.winmd</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, where&nbsp;the </SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-STYLE: italic">version</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">&nbsp;string is the version of the SDK you selected, for example 22621. </SPAN></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">To automate the update of your csproj file, use the </SPAN><SPAN style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #f1f1f1'>update-sdk.ps1</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> script as explained below under the heading </SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-STYLE: italic">Upgrade OneMore Project References</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">.</SPAN></P>
-<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P style="MARGIN: 0in 0in 0in 0.375in"><IMG src="Setup_files/image003.png" width=307 height=161></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <H2 lang=yo style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Install Visual Studio Installer Projects Extension</H2>
@@ -210,7 +211,7 @@
 <P lang=yo style="MARGIN: 0in 0in 0in 0.375in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">PS C:\Github\OneMore&gt; </SPAN><SPAN style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>.\update-sdk.ps1</SPAN></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Configure Registry Settings</H1>
-<P style="MARGIN: 0in"><SPAN lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">During normal development, OneMore is compiled into </SPAN><SPAN lang=en-US style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">bin\x86\Debug. OneNote COM add-ins must be configured in the Windows Registry. After the initial build of the solution, the </SPAN><SPAN lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>setregistry.ps1 </SPAN><SPAN lang=en-US style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">script can be used to </SPAN><SPAN lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">create the initial Registry settings including the add-in COM registration pointing to the InprocServer32 path. Note that using the development path means that you don't have to copy the output artifacts every time the projects are rebuilt.</SPAN></P>
+<P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">During normal development, OneMore is compiled into bin\x86\Debug. OneNote COM add-ins must be configured in the Windows Registry. After the initial build of the solution, the </SPAN><SPAN style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>setregistry.ps1 </SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">script can be used to create the initial Registry settings including the add-in COM registration pointing to the InprocServer32 path. Note that using the development path means that you don't have to copy the output artifacts every time the projects are rebuilt.</SPAN></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <UL style="MARGIN-BOTTOM: 0in; unicode-bidi: embed; MARGIN-TOP: 0in; DIRECTION: ltr" type=disc>
 <LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Open an elevated PowerShell (v7) console and </SPAN><SPAN style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>cd</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> to the OneNote root folder containing the </SPAN><SPAN style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>setregistry.ps1</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> script.</SPAN> 
@@ -220,38 +221,16 @@
 <H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Recently Tested With</H1>
 <P lang=yo style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <UL style="MARGIN-BOTTOM: 0in; unicode-bidi: embed; MARGIN-TOP: 0in; DIRECTION: ltr" type=disc>
-<LI style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Windows 11 Pro 23H2 </SPAN><SPAN lang=en-US style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">22631.5335</SPAN> 
+<LI style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Windows 11 Pro 23H2 </SPAN><SPAN lang=en-US style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">22631.5909</SPAN> 
 <LI style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Windows 11 SDK </SPAN><SPAN lang=en-US style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">10.0.22621.0</SPAN> 
-<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Visual Studio 2022 17.13.7</SPAN> 
-<LI style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">OneNote® 2021 MSO (Version 2504 Build 16.0.18730.20186) 64-bit </SPAN></LI></UL>
-<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Dependencies</H1>
-<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in"><SPAN lang=yo>This is a list of nuget packages and libraries that OneMore depends on and are required to build. The nuget packages require that VS Nuget Package Manager settings include a link to </SPAN><A href="https://api.nuget.org/v3/index.json"><SPAN lang=en-US>https://api.nuget.org/v3/index.json</SPAN></A><SPAN lang=en-US>.</SPAN></P>
-<H1 lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">&nbsp;</H1>
-<UL style="MARGIN-BOTTOM: 0in; unicode-bidi: embed; MARGIN-TOP: 0in; DIRECTION: ltr" type=disc>
-<LI style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><A href="https://www.nuget.org/packages/Chinese"><SPAN lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Chinese</SPAN></A><SPAN lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">&nbsp;- nuget, MIT license</SPAN> 
-<UL style="MARGIN-BOTTOM: 0in; unicode-bidi: embed; MARGIN-TOP: 0in; DIRECTION: ltr" type=circle>
-<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Used by Word Count command for Chinese text</SPAN> </LI></UL>
-<LI style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><A href="https://www.nuget.org/packages/HtmlAgilityPack"><SPAN lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">HtmlAgilityPack</SPAN></A><SPAN lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">&nbsp;- nuget, MIT license</SPAN> 
-<UL style="MARGIN-BOTTOM: 0in; unicode-bidi: embed; MARGIN-TOP: 0in; DIRECTION: ltr" type=circle>
-<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Normalizes HTML and non-conformant XML to well-formed XML that can be consumed by XElement.Parse</SPAN> </LI></UL>
-<LI style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><A href="https://www.nuget.org/packages/InputSimulator"><SPAN lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">InputSimulator</SPAN></A><SPAN lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">&nbsp;- nuget, MIT license</SPAN> 
-<UL style="MARGIN-BOTTOM: 0in; unicode-bidi: embed; MARGIN-TOP: 0in; DIRECTION: ltr" type=circle>
-<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Replaces the use of SendKeys.Send, adding support for multilingual keyboards</SPAN> </LI></UL>
-<LI style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><A href="https://www.nuget.org/packages/Markdig.Signed"><SPAN lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Markdig.Signed</SPAN></A><SPAN lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">&nbsp;- nuget. BSD-2 license</SPAN> 
-<UL style="MARGIN-BOTTOM: 0in; unicode-bidi: embed; MARGIN-TOP: 0in; DIRECTION: ltr" type=circle>
-<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">A fast, powerful, CommonMark compliant, extensible Markdown processor for .NET</SPAN> </LI></UL>
-<LI style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><A href="https://www.nuget.org/packages/Newtonsoft.Json/"><SPAN lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Newtonsoft.Json</SPAN></A><SPAN lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">&nbsp;- nuget, MIT license</SPAN> 
-<UL style="MARGIN-BOTTOM: 0in; unicode-bidi: embed; MARGIN-TOP: 0in; DIRECTION: ltr" type=circle>
-<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Json.NET is a popular high-performance JSON framework for .NET</SPAN> </LI></UL></LI></UL>
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Visual Studio 2022 17.14.14</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">OneNote® 2021 MSO (Version 2508 Build 16.0.19127.20192) 64-bit </SPAN></LI></UL>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P><CITE lang=yo style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">#omwiki #omdeveloper</CITE></P>
 <P><CITE lang=yo style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">&nbsp;</CITE></P>
 <P><CITE lang=yo style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">© 2020 Steven M Cohn. All rights reserved.</CITE></P>
-<P><CITE lang=yo style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">Please consider a <A href="https://github.com/sponsors/stevencohn">sponsorship or one-time donation</A> to support ongoing development</CITE></P>
-<P><CITE lang=yo style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">&nbsp;</CITE></P>
-<P><CITE lang=yo style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">&nbsp;</CITE></P></DIV></DIV></DIV>
+<P><CITE lang=yo style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">Please consider a <A href="https://github.com/sponsors/stevencohn">sponsorship or one-time donation</A> to support ongoing development</CITE></P></DIV></DIV></DIV>
 <DIV>
 <P style="MARGIN: 0in">&nbsp;</P>
 <P style="FONT-SIZE: 9pt; FONT-FAMILY: Arial; COLOR: #969696; DIRECTION: ltr; TEXT-ALIGN: left; MARGIN: 0in">Created with OneNote.</P></DIV>
