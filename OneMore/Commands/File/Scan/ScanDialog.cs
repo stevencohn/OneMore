@@ -286,7 +286,19 @@ namespace River.OneMoreAddIn.Commands
 				{
 					var scanner = (Scanner)scannerBox.SelectedItem;
 					using var manager = new ScannerManager(scanner.DeviceID);
-					ImageData = manager.Scan();
+
+					var dpi = int.Parse(resolutionBox.SelectedItem.ToString().Split(' ')[0]);
+					var props = new ScannerManager.ScanProperties
+					{
+						UseFeeder = ((ScanSource)sourceBox.SelectedItem).Bitmask == ScanHandling.Feeder,
+						ColorIntent = 1 << colorBox.SelectedIndex,
+						Brightness = (int)brightnessBox.Value,
+						Contrast = (int)contrastBox.Value,
+						HorizontalResolution = dpi,
+						VerticalResolution = dpi
+					};
+
+					ImageData = manager.Scan(props);
 					ImageHeight = manager.ImageHeight;
 					ImageWidth = manager.ImageWidth;
 

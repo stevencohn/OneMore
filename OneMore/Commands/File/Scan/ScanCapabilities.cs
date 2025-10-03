@@ -18,6 +18,8 @@ namespace River.OneMoreAddIn.Commands
 	/// </remarks>
 	internal static class PropertyNames
 	{
+		// https://learn.microsoft.com/en-us/previous-versions/windows/desktop/wia/-wia-wiaitempropscannerdevice
+
 		public const string BedHeight = "Vertical Bed Size";
 		public const string BedWidth = "Horizontal Bed Size";
 		public const string CurrentIntent = "Current Intent";

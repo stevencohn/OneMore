@@ -14,6 +14,17 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class ScannerManager : IDisposable
 	{
+		public class ScanProperties
+		{
+			public bool UseFeeder { get; set; }
+			public int ColorIntent { get; set; }
+			public int Brightness { get; set; }
+			public int Contrast { get; set; }
+			public int HorizontalResolution { get; set; }
+			public int VerticalResolution { get; set; }
+		}
+
+
 		private readonly DeviceInfo info;
 		private bool disposed;
 
@@ -221,7 +232,7 @@ namespace River.OneMoreAddIn.Commands
 		/// <param name="format"></param>
 		/// <param name="useFeeder"></param>
 		/// <returns></returns>
-		public string Scan()
+		public string Scan(ScanProperties props)
 		{
 			var device = info.Connect();
 			var item = device.Items[1];
