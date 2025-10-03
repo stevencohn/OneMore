@@ -64,7 +64,7 @@ namespace River.OneMoreAddIn.Settings
 			(_, float scaleY) = UI.Scaling.GetScalingFactors();
 			gridView.RowTemplate.Height = (int)(16 * scaleY);
 
-			await using var provider = new FavoritesProvider(null);
+			await using var provider = new FavoritesProvider(ribbon);
 			var list = provider.LoadFavorites();
 
 			// capture Task so it can be completed later in RowEnter

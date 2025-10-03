@@ -4099,6 +4099,14 @@ ISO-code then comma then language name</comment>
     <value>選択した内容から新しいスニペットを保存</value>
     <comment>ribbon snippets</comment>
   </data>
+  <data name="ribScanButton_Label" xml:space="preserve">
+    <value>スキャン</value>
+    <comment>file ribbon</comment>
+  </data>
+  <data name="ribScanButton_Screentip" xml:space="preserve">
+    <value>スキャナーからのインポート</value>
+    <comment>file ribbon</comment>
+  </data>
   <data name="ribScanHashtagsButton_Label" xml:space="preserve">
     <value>ハッシュタグをスキャンする</value>
     <comment>ribbon search</comment>
@@ -4461,6 +4469,36 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="SaveSnippetDialog_nameLabel.Text" xml:space="preserve">
     <value>スニペット名:</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog.Text" xml:space="preserve">
+    <value>スキャン</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ScanDialog_colorBox" xml:space="preserve">
+    <value>色
+グレースケール
+白黒</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="ScanDialog_colorLabel.Text" xml:space="preserve">
+    <value>カラー形式</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_profileLabel.Text" xml:space="preserve">
+    <value>プロフィール</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_resolutionLabel.Text" xml:space="preserve">
+    <value>解決</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_scannLabel.Text" xml:space="preserve">
+    <value>スキャナー</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_sizeLabel.Text" xml:space="preserve">
+    <value>サイズ</value>
     <comment>label</comment>
   </data>
   <data name="ScanningCueFile" xml:space="preserve">
@@ -5299,6 +5337,9 @@ ISO-code then comma then language name</comment>
   <data name="word_Distance" xml:space="preserve">
     <value>距離</value>
   </data>
+  <data name="word_Document" xml:space="preserve">
+    <value>書類</value>
+  </data>
   <data name="word_Due" xml:space="preserve">
     <value>期限</value>
   </data>
@@ -5317,8 +5358,14 @@ ISO-code then comma then language name</comment>
   <data name="word_Favorites" xml:space="preserve">
     <value>お気に入り</value>
   </data>
+  <data name="word_Feeder" xml:space="preserve">
+    <value>フィーダ</value>
+  </data>
   <data name="word_Find" xml:space="preserve">
     <value>探す</value>
+  </data>
+  <data name="word_Flatbed" xml:space="preserve">
+    <value>フラットベッド</value>
   </data>
   <data name="word_Folder" xml:space="preserve">
     <value>フォルダー</value>
@@ -5418,6 +5465,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_PercentSymbol" xml:space="preserve">
     <value>%</value>
+  </data>
+  <data name="word_Photo" xml:space="preserve">
+    <value>写真</value>
   </data>
   <data name="word_Planned" xml:space="preserve">
     <value>計画済み</value>

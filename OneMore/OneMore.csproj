@@ -193,6 +193,17 @@
     <Compile Include="Commands\File\Markdown\WikilinkInline.cs" />
     <Compile Include="Commands\File\OpenFolderCommand.cs" />
     <Compile Include="Commands\File\OpenLocationCommand.cs" />
+    <Compile Include="Commands\File\Scan\ScanCommand.cs" />
+    <Compile Include="Commands\File\Scan\ScanDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\File\Scan\ScanDialog.Designer.cs">
+      <DependentUpon>ScanDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commands\File\Scan\ScanCapabilities.cs" />
+    <Compile Include="Commands\File\Scan\ScannerManager.cs" />
+    <Compile Include="Commands\File\Scan\ScanProfile.cs" />
+    <Compile Include="Commands\File\Scan\WiaExtensions.cs" />
     <Compile Include="Commands\Images\Diagrams\DiagramKeys.cs" />
     <Compile Include="Commands\Images\Diagrams\DiagramProviderFactory.cs" />
     <Compile Include="Commands\Images\Diagrams\IDiagramProvider.cs" />
@@ -671,9 +682,9 @@
     </Compile>
     <Compile Include="Commands\File\ArchiveCommand.cs" />
     <Compile Include="Commands\File\Archivist.cs" />
-    <Compile Include="Commands\File\ManagePluginsCommand.cs" />
-    <Compile Include="Commands\File\Plugin.cs" />
-    <Compile Include="Commands\File\PluginsProvider.cs" />
+    <Compile Include="Commands\File\Plugins\ManagePluginsCommand.cs" />
+    <Compile Include="Commands\File\Plugins\Plugin.cs" />
+    <Compile Include="Commands\File\Plugins\PluginsProvider.cs" />
     <Compile Include="Commands\References\MapCommand.cs" />
     <Compile Include="Commands\References\MapDialog.cs">
       <SubType>Form</SubType>
@@ -836,7 +847,7 @@
     <Compile Include="Commands\Numbering\RemoveSectionNumbersCommand.cs" />
     <Compile Include="Commands\Numbering\OutlineCommand.cs" />
     <Compile Include="Commands\Edit\PronunciateCommand.cs" />
-    <Compile Include="Commands\File\RunPluginCommand.cs" />
+    <Compile Include="Commands\File\Plugins\RunPluginCommand.cs" />
     <Compile Include="Commands\File\ExportCommand.cs" />
     <Compile Include="Commands\Reminders\EditTasksCommand.cs" />
     <Compile Include="Commands\Search\SearchWebCommand.cs" />
@@ -936,10 +947,10 @@
     <Compile Include="Commands\Images\AdjustImagesDialog.Designer.cs">
       <DependentUpon>AdjustImagesDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\File\PluginDialog.cs">
+    <Compile Include="Commands\File\Plugins\PluginDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Commands\File\PluginDialog.Designer.cs">
+    <Compile Include="Commands\File\Plugins\PluginDialog.Designer.cs">
       <DependentUpon>PluginDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\SelectorScope.cs" />
@@ -1246,6 +1257,9 @@
     <EmbeddedResource Include="Commands\File\OpenFolderDialog.resx">
       <DependentUpon>OpenFolderDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\File\Scan\ScanDialog.resx">
+      <DependentUpon>ScanDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\References\BiLinkDialog.resx">
       <DependentUpon>BiLinkDialog.cs</DependentUpon>
@@ -1719,7 +1733,7 @@
     <EmbeddedResource Include="Commands\Images\AdjustImagesDialog.resx">
       <DependentUpon>AdjustImagesDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Commands\File\PluginDialog.resx">
+    <EmbeddedResource Include="Commands\File\Plugins\PluginDialog.resx">
       <DependentUpon>PluginDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Search\SearchAndReplaceDialog.resx">
@@ -1846,6 +1860,17 @@
     <PackageReference Include="System.Threading.Tasks.Extensions">
       <Version>4.5.4</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="WIA">
+      <Guid>{94A0E92D-43C0-494E-AC29-FD45948A5221}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

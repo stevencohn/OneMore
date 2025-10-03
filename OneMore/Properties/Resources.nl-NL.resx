@@ -4096,6 +4096,14 @@ Tabblad Help</value>
     <value>Sla een nieuw aangepast fragment op van de geselecteerde inhoud</value>
     <comment>ribbon snippets</comment>
   </data>
+  <data name="ribScanButton_Label" xml:space="preserve">
+    <value>Scannen</value>
+    <comment>file ribbon</comment>
+  </data>
+  <data name="ribScanButton_Screentip" xml:space="preserve">
+    <value>Importeren uit scanner</value>
+    <comment>file ribbon</comment>
+  </data>
   <data name="ribScanHashtagsButton_Label" xml:space="preserve">
     <value>Hashtags scannen</value>
     <comment>ribbon search</comment>
@@ -4457,6 +4465,36 @@ Tabblad Help</value>
   </data>
   <data name="SaveSnippetDialog_nameLabel.Text" xml:space="preserve">
     <value>Fragmentnaam:</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog.Text" xml:space="preserve">
+    <value>Scannen</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ScanDialog_colorBox" xml:space="preserve">
+    <value>Kleur
+G greeschaal
+Zwart en wit</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="ScanDialog_colorLabel.Text" xml:space="preserve">
+    <value>Kleurformaat</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_profileLabel.Text" xml:space="preserve">
+    <value>Profiel</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_resolutionLabel.Text" xml:space="preserve">
+    <value>Oplossing</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_scannLabel.Text" xml:space="preserve">
+    <value>Scanner</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_sizeLabel.Text" xml:space="preserve">
+    <value>Maat</value>
     <comment>label</comment>
   </data>
   <data name="ScanningCueFile" xml:space="preserve">
@@ -5295,6 +5333,9 @@ Omkeren</value>
   <data name="word_Distance" xml:space="preserve">
     <value>Afstand</value>
   </data>
+  <data name="word_Document" xml:space="preserve">
+    <value>Document</value>
+  </data>
   <data name="word_Due" xml:space="preserve">
     <value>Ten gevolge</value>
   </data>
@@ -5313,8 +5354,14 @@ Omkeren</value>
   <data name="word_Favorites" xml:space="preserve">
     <value>Favorieten</value>
   </data>
+  <data name="word_Feeder" xml:space="preserve">
+    <value>Voeder</value>
+  </data>
   <data name="word_Find" xml:space="preserve">
     <value>Vinden</value>
+  </data>
+  <data name="word_Flatbed" xml:space="preserve">
+    <value>Platbed</value>
   </data>
   <data name="word_Folder" xml:space="preserve">
     <value>Map</value>
@@ -5414,6 +5461,9 @@ Omkeren</value>
   </data>
   <data name="word_PercentSymbol" xml:space="preserve">
     <value>Vermogend</value>
+  </data>
+  <data name="word_Photo" xml:space="preserve">
+    <value>Foto</value>
   </data>
   <data name="word_Planned" xml:space="preserve">
     <value>Gepland</value>

@@ -1757,7 +1757,7 @@ Am aktuellen Cursor</value>
     <comment>checkbox</comment>
   </data>
   <data name="InsertTocDialog_previewBox" xml:space="preserve">
-    <value>Fügen Sie die Textvorschau jeder Seite ein</value>
+    <value>Füge die Textvorschau der jeder Seite ein</value>
     <comment>checkbox</comment>
   </data>
   <data name="InsertTocDialog_rightAlignBox.Text" xml:space="preserve">
@@ -4091,6 +4091,14 @@ Registerkarte „Hilfe“.</value>
     <value>Speichert ein neues benutzerdefiniertes Snippet aus dem ausgewählten Inhalt</value>
     <comment>ribbon snippets</comment>
   </data>
+  <data name="ribScanButton_Label" xml:space="preserve">
+    <value>Scan</value>
+    <comment>file ribbon</comment>
+  </data>
+  <data name="ribScanButton_Screentip" xml:space="preserve">
+    <value>Vom Scanner importieren</value>
+    <comment>file ribbon</comment>
+  </data>
   <data name="ribScanHashtagsButton_Label" xml:space="preserve">
     <value>Hashtags scannen</value>
     <comment>ribbon search</comment>
@@ -4453,6 +4461,36 @@ Registerkarte „Hilfe“.</value>
   </data>
   <data name="SaveSnippetDialog_nameLabel.Text" xml:space="preserve">
     <value>Snippet-Name:</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog.Text" xml:space="preserve">
+    <value>Scan</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ScanDialog_colorBox" xml:space="preserve">
+    <value>Farbe
+Graustufen
+Schwarz und Weiß</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="ScanDialog_colorLabel.Text" xml:space="preserve">
+    <value>Farbformat</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_profileLabel.Text" xml:space="preserve">
+    <value>Profil</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_resolutionLabel.Text" xml:space="preserve">
+    <value>Auflösung</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_scannLabel.Text" xml:space="preserve">
+    <value>Scanner</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_sizeLabel.Text" xml:space="preserve">
+    <value>Größe</value>
     <comment>label</comment>
   </data>
   <data name="ScanningCueFile" xml:space="preserve">
@@ -5290,6 +5328,9 @@ Umkehren</value>
   <data name="word_Distance" xml:space="preserve">
     <value>Distanz</value>
   </data>
+  <data name="word_Document" xml:space="preserve">
+    <value>Dokumentieren</value>
+  </data>
   <data name="word_Due" xml:space="preserve">
     <value>Während</value>
   </data>
@@ -5308,8 +5349,14 @@ Umkehren</value>
   <data name="word_Favorites" xml:space="preserve">
     <value>Favoriten</value>
   </data>
+  <data name="word_Feeder" xml:space="preserve">
+    <value>Feeder</value>
+  </data>
   <data name="word_Find" xml:space="preserve">
     <value>Finden</value>
+  </data>
+  <data name="word_Flatbed" xml:space="preserve">
+    <value>Flachbett</value>
   </data>
   <data name="word_Folder" xml:space="preserve">
     <value>Ordner</value>
@@ -5409,6 +5456,9 @@ Umkehren</value>
   </data>
   <data name="word_PercentSymbol" xml:space="preserve">
     <value>%</value>
+  </data>
+  <data name="word_Photo" xml:space="preserve">
+    <value>Foto</value>
   </data>
   <data name="word_Planned" xml:space="preserve">
     <value>Geplant</value>

@@ -20,6 +20,7 @@ namespace River.OneMoreAddIn.UI
 			: base()
 		{
 			manager = ThemeManager.Instance;
+			foreColor = manager.GetColor("ControlText");
 		}
 
 

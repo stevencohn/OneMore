@@ -4089,6 +4089,14 @@ ISO-code then comma then language name</comment>
     <value>从所选内容中保存新的自定义片段</value>
     <comment>ribbon snippets</comment>
   </data>
+  <data name="ribScanButton_Label" xml:space="preserve">
+    <value>扫描</value>
+    <comment>file ribbon</comment>
+  </data>
+  <data name="ribScanButton_Screentip" xml:space="preserve">
+    <value>从扫描仪进口</value>
+    <comment>file ribbon</comment>
+  </data>
   <data name="ribScanHashtagsButton_Label" xml:space="preserve">
     <value>扫描标签</value>
     <comment>ribbon search</comment>
@@ -4450,6 +4458,36 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="SaveSnippetDialog_nameLabel.Text" xml:space="preserve">
     <value>片段名称：</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog.Text" xml:space="preserve">
+    <value>扫描</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ScanDialog_colorBox" xml:space="preserve">
+    <value>颜色
+灰度
+黑白</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="ScanDialog_colorLabel.Text" xml:space="preserve">
+    <value>颜色格式</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_profileLabel.Text" xml:space="preserve">
+    <value>轮廓</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_resolutionLabel.Text" xml:space="preserve">
+    <value>解决</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_scannLabel.Text" xml:space="preserve">
+    <value>扫描器</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_sizeLabel.Text" xml:space="preserve">
+    <value>尺寸</value>
     <comment>label</comment>
   </data>
   <data name="ScanningCueFile" xml:space="preserve">
@@ -5288,6 +5326,9 @@ ISO-code then comma then language name</comment>
   <data name="word_Distance" xml:space="preserve">
     <value>距离</value>
   </data>
+  <data name="word_Document" xml:space="preserve">
+    <value>文档</value>
+  </data>
   <data name="word_Due" xml:space="preserve">
     <value>到期的</value>
   </data>
@@ -5306,8 +5347,14 @@ ISO-code then comma then language name</comment>
   <data name="word_Favorites" xml:space="preserve">
     <value>收藏夹</value>
   </data>
+  <data name="word_Feeder" xml:space="preserve">
+    <value>馈线</value>
+  </data>
   <data name="word_Find" xml:space="preserve">
     <value>寻找</value>
+  </data>
+  <data name="word_Flatbed" xml:space="preserve">
+    <value>平板</value>
   </data>
   <data name="word_Folder" xml:space="preserve">
     <value>文件夹</value>
@@ -5407,6 +5454,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_PercentSymbol" xml:space="preserve">
     <value>%</value>
+  </data>
+  <data name="word_Photo" xml:space="preserve">
+    <value>照片</value>
   </data>
   <data name="word_Planned" xml:space="preserve">
     <value>计划</value>

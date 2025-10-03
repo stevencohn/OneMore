@@ -4097,6 +4097,14 @@ Help Tab</value>
     <value>Save a new snippet from the selected content</value>
     <comment>ribbon snippets</comment>
   </data>
+  <data name="ribScanButton_Label" xml:space="preserve">
+    <value>Scan</value>
+    <comment>file ribbon</comment>
+  </data>
+  <data name="ribScanButton_Screentip" xml:space="preserve">
+    <value>Import from scanner</value>
+    <comment>file ribbon</comment>
+  </data>
   <data name="ribScanHashtagsButton_Label" xml:space="preserve">
     <value>Scan Hashtags</value>
     <comment>ribbon search</comment>
@@ -4459,6 +4467,36 @@ Help Tab</value>
   </data>
   <data name="SaveSnippetDialog_nameLabel.Text" xml:space="preserve">
     <value>Snippet name:</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog.Text" xml:space="preserve">
+    <value>Scan</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ScanDialog_colorBox" xml:space="preserve">
+    <value>Color
+Grayscale
+Black and White</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="ScanDialog_colorLabel.Text" xml:space="preserve">
+    <value>Color format</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_profileLabel.Text" xml:space="preserve">
+    <value>Profile</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_resolutionLabel.Text" xml:space="preserve">
+    <value>Resolution</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_scannLabel.Text" xml:space="preserve">
+    <value>Scanner</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_sizeLabel.Text" xml:space="preserve">
+    <value>Size</value>
     <comment>label</comment>
   </data>
   <data name="ScanningCueFile" xml:space="preserve">
@@ -5297,6 +5335,9 @@ Invert</value>
   <data name="word_Distance" xml:space="preserve">
     <value>Distance</value>
   </data>
+  <data name="word_Document" xml:space="preserve">
+    <value>Document</value>
+  </data>
   <data name="word_Due" xml:space="preserve">
     <value>Due</value>
   </data>
@@ -5315,8 +5356,14 @@ Invert</value>
   <data name="word_Favorites" xml:space="preserve">
     <value>Favorites</value>
   </data>
+  <data name="word_Feeder" xml:space="preserve">
+    <value>Feeder</value>
+  </data>
   <data name="word_Find" xml:space="preserve">
     <value>Find</value>
+  </data>
+  <data name="word_Flatbed" xml:space="preserve">
+    <value>Flatbed</value>
   </data>
   <data name="word_Folder" xml:space="preserve">
     <value>Folder</value>
@@ -5416,6 +5463,9 @@ Invert</value>
   </data>
   <data name="word_PercentSymbol" xml:space="preserve">
     <value>%</value>
+  </data>
+  <data name="word_Photo" xml:space="preserve">
+    <value>Photo</value>
   </data>
   <data name="word_Planned" xml:space="preserve">
     <value>Planned</value>
