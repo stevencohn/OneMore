@@ -92,8 +92,13 @@ namespace River.OneMoreAddIn.Commands
 					"colorLabel",
 					"resolutionLabel",
 					"brightnessLabel=word_Brightness",
-					"contrastLabel=word_Contrast"
+					"contrastLabel=word_Contrast",
+					"okButton=word_OK",
+					"cancelButton=word_Cancel"
 				});
+
+				colorBox.Items.Clear();
+				colorBox.Items.AddRange(Resx.ScanDialog_colorBox.Split('\n'));
 			}
 
 			okButton.NotifyDefault(true);

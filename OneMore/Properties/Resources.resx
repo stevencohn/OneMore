@@ -4097,6 +4097,14 @@ Help Tab</value>
     <value>Save a new snippet from the selected content</value>
     <comment>ribbon snippets</comment>
   </data>
+  <data name="ribScanButton_Label" xml:space="preserve">
+    <value>Scan</value>
+    <comment>file ribbon</comment>
+  </data>
+  <data name="ribScanButton_Screentip" xml:space="preserve">
+    <value>Import from scanner</value>
+    <comment>file ribbon</comment>
+  </data>
   <data name="ribScanHashtagsButton_Label" xml:space="preserve">
     <value>Scan Hashtags</value>
     <comment>ribbon search</comment>
@@ -4464,6 +4472,12 @@ Help Tab</value>
   <data name="ScanDialog.Text" xml:space="preserve">
     <value>Scan</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="ScanDialog_colorBox" xml:space="preserve">
+    <value>Color
+Grayscale
+Black and White</value>
+    <comment>combobox</comment>
   </data>
   <data name="ScanDialog_colorLabel.Text" xml:space="preserve">
     <value>Color format</value>

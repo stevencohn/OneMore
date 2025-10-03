@@ -4096,6 +4096,14 @@ Tabblad Help</value>
     <value>Sla een nieuw aangepast fragment op van de geselecteerde inhoud</value>
     <comment>ribbon snippets</comment>
   </data>
+  <data name="ribScanButton_Label" xml:space="preserve">
+    <value>Scannen</value>
+    <comment>file ribbon</comment>
+  </data>
+  <data name="ribScanButton_Screentip" xml:space="preserve">
+    <value>Importeren uit scanner</value>
+    <comment>file ribbon</comment>
+  </data>
   <data name="ribScanHashtagsButton_Label" xml:space="preserve">
     <value>Hashtags scannen</value>
     <comment>ribbon search</comment>
@@ -4462,6 +4470,12 @@ Tabblad Help</value>
   <data name="ScanDialog.Text" xml:space="preserve">
     <value>Scannen</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="ScanDialog_colorBox" xml:space="preserve">
+    <value>Kleur
+G greeschaal
+Zwart en wit</value>
+    <comment>combobox</comment>
   </data>
   <data name="ScanDialog_colorLabel.Text" xml:space="preserve">
     <value>Kleurformaat</value>

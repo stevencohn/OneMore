@@ -4099,6 +4099,14 @@ ISO-code then comma then language name</comment>
     <value>選択した内容から新しいスニペットを保存</value>
     <comment>ribbon snippets</comment>
   </data>
+  <data name="ribScanButton_Label" xml:space="preserve">
+    <value>スキャン</value>
+    <comment>file ribbon</comment>
+  </data>
+  <data name="ribScanButton_Screentip" xml:space="preserve">
+    <value>スキャナーからのインポート</value>
+    <comment>file ribbon</comment>
+  </data>
   <data name="ribScanHashtagsButton_Label" xml:space="preserve">
     <value>ハッシュタグをスキャンする</value>
     <comment>ribbon search</comment>
@@ -4466,6 +4474,12 @@ ISO-code then comma then language name</comment>
   <data name="ScanDialog.Text" xml:space="preserve">
     <value>スキャン</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="ScanDialog_colorBox" xml:space="preserve">
+    <value>色
+グレースケール
+白黒</value>
+    <comment>combobox</comment>
   </data>
   <data name="ScanDialog_colorLabel.Text" xml:space="preserve">
     <value>カラー形式</value>

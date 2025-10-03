@@ -4096,6 +4096,14 @@ Pestaña Ayuda</value>
     <value>Guardar un nuevo fragmento personalizado del contenido seleccionado</value>
     <comment>ribbon snippets</comment>
   </data>
+  <data name="ribScanButton_Label" xml:space="preserve">
+    <value>Escanear</value>
+    <comment>file ribbon</comment>
+  </data>
+  <data name="ribScanButton_Screentip" xml:space="preserve">
+    <value>Importar desde el escáner</value>
+    <comment>file ribbon</comment>
+  </data>
   <data name="ribScanHashtagsButton_Label" xml:space="preserve">
     <value>Escanear hashtags</value>
     <comment>ribbon search</comment>
@@ -4462,6 +4470,12 @@ Pestaña Ayuda</value>
   <data name="ScanDialog.Text" xml:space="preserve">
     <value>Escanear</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="ScanDialog_colorBox" xml:space="preserve">
+    <value>Color
+Escala de grises
+En blanco y negro</value>
+    <comment>combobox</comment>
   </data>
   <data name="ScanDialog_colorLabel.Text" xml:space="preserve">
     <value>Formato de color</value>

@@ -4097,6 +4097,14 @@ Zakładka Pomoc</value>
     <value>Zapisz nowy niestandardowy fragment z wybranej treści</value>
     <comment>ribbon snippets</comment>
   </data>
+  <data name="ribScanButton_Label" xml:space="preserve">
+    <value>Skandować</value>
+    <comment>file ribbon</comment>
+  </data>
+  <data name="ribScanButton_Screentip" xml:space="preserve">
+    <value>Importuj ze skanera</value>
+    <comment>file ribbon</comment>
+  </data>
   <data name="ribScanHashtagsButton_Label" xml:space="preserve">
     <value>Skanuj hashtagi</value>
     <comment>ribbon search</comment>
@@ -4463,6 +4471,12 @@ Zakładka Pomoc</value>
   <data name="ScanDialog.Text" xml:space="preserve">
     <value>Skandować</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="ScanDialog_colorBox" xml:space="preserve">
+    <value>Kolor
+Skala szarości
+Czarno -biały</value>
+    <comment>combobox</comment>
   </data>
   <data name="ScanDialog_colorLabel.Text" xml:space="preserve">
     <value>Format kolorów</value>

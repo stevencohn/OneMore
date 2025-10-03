@@ -4096,6 +4096,14 @@ ISO-code then comma then language name</comment>
     <value>احفظ مقتطفًا مخصصًا جديدًا من المحتوى المحدد</value>
     <comment>ribbon snippets</comment>
   </data>
+  <data name="ribScanButton_Label" xml:space="preserve">
+    <value>مسح</value>
+    <comment>file ribbon</comment>
+  </data>
+  <data name="ribScanButton_Screentip" xml:space="preserve">
+    <value>استيراد من الماسح الضوئي</value>
+    <comment>file ribbon</comment>
+  </data>
   <data name="ribScanHashtagsButton_Label" xml:space="preserve">
     <value>مسح علامات التصنيف</value>
     <comment>ribbon search</comment>
@@ -4462,6 +4470,12 @@ ISO-code then comma then language name</comment>
   <data name="ScanDialog.Text" xml:space="preserve">
     <value>مسح</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="ScanDialog_colorBox" xml:space="preserve">
+    <value>لون
+رمادي
+بالأبيض والأسود</value>
+    <comment>combobox</comment>
   </data>
   <data name="ScanDialog_colorLabel.Text" xml:space="preserve">
     <value>تنسيق اللون</value>
