@@ -18,6 +18,8 @@ namespace River.OneMoreAddIn.Commands
 	/// </remarks>
 	internal static class PropertyNames
 	{
+		public const string BedHeight = "Vertical Bed Size";
+		public const string BedWidth = "Horizontal Bed Size";
 		public const string CurrentIntent = "Current Intent";
 		public const string DocumentHandling = "Document Handling Capabilities";
 		public const string HandlingSelect = "Document Handling Select";
@@ -88,6 +90,10 @@ namespace River.OneMoreAddIn.Commands
 	internal sealed class ScanCapabilities
 	{
 		public string Model { get; set; }
+
+		public int BedHeight { get; set; }
+
+		public int BedWidth { get; set; }
 
 		public IEnumerable<int> FlatbedResoltuions { get; set; }
 

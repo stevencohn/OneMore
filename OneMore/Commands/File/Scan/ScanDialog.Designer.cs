@@ -336,6 +336,7 @@
 			this.sourceBox.Name = "sourceBox";
 			this.sourceBox.Size = new System.Drawing.Size(322, 28);
 			this.sourceBox.TabIndex = 2;
+			this.sourceBox.SelectedIndexChanged += new System.EventHandler(this.ChangeSource);
 			// 
 			// profileBox
 			// 

@@ -120,6 +120,8 @@ namespace River.OneMoreAddIn.Commands
 			{
 				caps.Model = GetModel(device);
 				caps.Intents = GetSupportedIntents(device);
+				caps.BedHeight = device.Properties.Get<int>(PropertyNames.BedHeight);
+				caps.BedWidth = device.Properties.Get<int>(PropertyNames.BedWidth);
 
 				var mask = device.Properties.Get<int>(PropertyNames.DocumentHandling);
 				if ((mask & ScanHandling.Flatbed) > 0)

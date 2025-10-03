@@ -70,6 +70,7 @@ namespace River.OneMoreAddIn.Commands
 		#endregion Private classes
 
 		private readonly List<Scanner> scanners;
+		private readonly List<ScanPaperSize> paperSizes;
 		private Timer timer;
 		private bool cancelled;
 
@@ -77,12 +78,25 @@ namespace River.OneMoreAddIn.Commands
 		public ScanDialog()
 		{
 			InitializeComponent();
+
+			if (NeedsLocalizing())
+			{
+			}
+
+			okButton.NotifyDefault(true);
 		}
 
 
 		public ScanDialog(IEnumerable<DeviceInfo> devices)
 			: this()
 		{
+			paperSizes = new List<ScanPaperSize>();
+			var printDoc = new PrintDocument();
+			foreach (PaperSize size in printDoc.PrinterSettings.PaperSizes)
+			{
+				paperSizes.Add(new ScanPaperSize(size));
+			}
+
 			scanners = new List<Scanner>();
 			foreach (var device in devices)
 			{
@@ -90,15 +104,6 @@ namespace River.OneMoreAddIn.Commands
 			}
 			scannerBox.DataSource = scanners;
 
-			var sizes = new List<ScanPaperSize>();
-			var printDoc = new PrintDocument();
-			foreach (PaperSize size in printDoc.PrinterSettings.PaperSizes)
-			{
-				sizes.Add(new ScanPaperSize(size));
-			}
-			sizeBox.DataSource = sizes;
-
-			sizeBox.SelectedIndex = 0;
 			colorBox.SelectedIndex = 0;
 		}
 
@@ -125,7 +130,9 @@ namespace River.OneMoreAddIn.Commands
 
 			modelLabel.Text = scanner.Capabilities.Model;
 			PopulateSource(scanner.Capabilities);
-			PopulateResolutions(scanner.Capabilities);
+			PopulatePaperSizes(scanner.Capabilities);
+
+			// no need to call PopulateResolutions; triggered by PopulateSource (box.selectedIdx)
 		}
 
 
@@ -149,11 +156,28 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void PopulateResolutions(ScanCapabilities caps)
+		private void PopulatePaperSizes(ScanCapabilities caps)
+		{
+			// device capabilities are 100th of an inch whereas bed size is 1000th of an inch,
+			// so need to divide bed size by 10 to keep them propportional for comparison...
+
+			var sizes = paperSizes
+				.Where(s => s.Width <= caps.BedWidth / 10 && s.Height <= caps.BedHeight / 10)
+				.ToList();
+
+			if (sizes.Any())
+			{
+				sizeBox.DataSource = sizes;
+				sizeBox.SelectedIndex = 0;
+			}
+		}
+
+
+		private void PopulateResolutions(IEnumerable<int> resolutions)
 		{
 			resolutionBox.Items.Clear();
 
-			foreach (var res in caps.FeederResoltuions)
+			foreach (var res in resolutions)
 			{
 				resolutionBox.Items.Add($"{res} DPI");
 			}
@@ -181,7 +205,23 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void ChangedSlider(object sender, System.EventArgs e)
+		private void ChangeSource(object sender, EventArgs e)
+		{
+			var scanner = scannerBox.SelectedItem as Scanner;
+
+			var source = (ScanSource)sourceBox.SelectedItem;
+			if ((source.Bitmask & ScanHandling.Flatbed) > 0)
+			{
+				PopulateResolutions(scanner.Capabilities.FlatbedResoltuions);
+			}
+			else
+			{
+				PopulateResolutions(scanner.Capabilities.FeederResoltuions);
+			}
+		}
+
+
+		private void ChangedSlider(object sender, EventArgs e)
 		{
 			if (sender == brightnessSlider)
 			{
@@ -194,7 +234,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void ChangedUpDown(object sender, System.EventArgs e)
+		private void ChangedUpDown(object sender, EventArgs e)
 		{
 			if (sender == brightnessBox)
 			{
