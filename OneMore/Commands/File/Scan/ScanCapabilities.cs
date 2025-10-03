@@ -22,6 +22,8 @@ namespace River.OneMoreAddIn.Commands
 
 		public const string BedHeight = "Vertical Bed Size";
 		public const string BedWidth = "Horizontal Bed Size";
+		public const string Brightness = "Brightness";
+		public const string Contrast = "Contrast";
 		public const string CurrentIntent = "Current Intent";
 		public const string DocumentHandling = "Document Handling Capabilities";
 		public const string HandlingSelect = "Document Handling Select";

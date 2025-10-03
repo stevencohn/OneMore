@@ -240,10 +240,14 @@ namespace River.OneMoreAddIn.Commands
 
 			try
 			{
-				item.Properties.Set(PropertyNames.HandlingSelect, false ? 0x01 : 0x02);
-				item.Properties.Set(PropertyNames.HorizontalResolution, 300);
-				item.Properties.Set(PropertyNames.VerticalResolution, 300);
-				item.Properties.Set(PropertyNames.CurrentIntent, ScanIntents.Color);
+				item.Properties.Set(PropertyNames.HandlingSelect,
+					props.UseFeeder ? ScanHandling.Feeder : ScanHandling.Flatbed);
+
+				item.Properties.Set(PropertyNames.HorizontalResolution, props.VerticalResolution);
+				item.Properties.Set(PropertyNames.VerticalResolution, props.HorizontalResolution);
+				item.Properties.Set(PropertyNames.CurrentIntent, props.ColorIntent);
+				item.Properties.Set(PropertyNames.Brightness, props.Brightness);
+				item.Properties.Set(PropertyNames.Contrast, props.Contrast);
 
 				file = (ImageFile)item.Transfer(ScanFormatID.wiaFormatJPEG);
 				var bytes = (byte[])file.FileData.get_BinaryData();
