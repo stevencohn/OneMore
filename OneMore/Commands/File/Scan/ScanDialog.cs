@@ -284,13 +284,7 @@ namespace River.OneMoreAddIn.Commands
 				resolutionBox.Items.Add($"{res} DPI");
 			}
 
-			//if (resolutionBox.Items.Count > 0)
-			//{
-			//	var items = resolutionBox.Items.Cast<string>().ToList();
-			//	var index = items.FindIndex(r => r == "300 DPI");
-			//	if (index < 0) index = items.FindIndex(r => r == "150 DPI");
-			//	resolutionBox.SelectedIndex = index >= 0 ? index : 0;
-			//}
+			// SelectedIndex will be set when ChangeProfile is called
 		}
 
 
