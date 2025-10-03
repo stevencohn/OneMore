@@ -4459,6 +4459,30 @@ Pestaña Ayuda</value>
     <value>Nombre del fragmento:</value>
     <comment>label</comment>
   </data>
+  <data name="ScanDialog.Text" xml:space="preserve">
+    <value>Escanear</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ScanDialog_colorLabel.Text" xml:space="preserve">
+    <value>Formato de color</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_profileLabel.Text" xml:space="preserve">
+    <value>Perfil</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_resolutionLabel.Text" xml:space="preserve">
+    <value>Resolución</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_scannLabel.Text" xml:space="preserve">
+    <value>Escáner</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_sizeLabel.Text" xml:space="preserve">
+    <value>Tamaño</value>
+    <comment>label</comment>
+  </data>
   <data name="ScanningCueFile" xml:space="preserve">
     <value>HashtagScanner.json</value>
     <comment>SKIP</comment>
@@ -5313,8 +5337,14 @@ Invertir</value>
   <data name="word_Favorites" xml:space="preserve">
     <value>Favoritos</value>
   </data>
+  <data name="word_Feeder" xml:space="preserve">
+    <value>Alimentador</value>
+  </data>
   <data name="word_Find" xml:space="preserve">
     <value>Encontrar</value>
+  </data>
+  <data name="word_Flatbed" xml:space="preserve">
+    <value>Lecho plano</value>
   </data>
   <data name="word_Folder" xml:space="preserve">
     <value>Carpeta</value>

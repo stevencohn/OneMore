@@ -4459,6 +4459,30 @@ Tabblad Help</value>
     <value>Fragmentnaam:</value>
     <comment>label</comment>
   </data>
+  <data name="ScanDialog.Text" xml:space="preserve">
+    <value>Scannen</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ScanDialog_colorLabel.Text" xml:space="preserve">
+    <value>Kleurformaat</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_profileLabel.Text" xml:space="preserve">
+    <value>Profiel</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_resolutionLabel.Text" xml:space="preserve">
+    <value>Oplossing</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_scannLabel.Text" xml:space="preserve">
+    <value>Scanner</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_sizeLabel.Text" xml:space="preserve">
+    <value>Maat</value>
+    <comment>label</comment>
+  </data>
   <data name="ScanningCueFile" xml:space="preserve">
     <value>HashtagScanner.json</value>
     <comment>SKIP</comment>
@@ -5313,8 +5337,14 @@ Omkeren</value>
   <data name="word_Favorites" xml:space="preserve">
     <value>Favorieten</value>
   </data>
+  <data name="word_Feeder" xml:space="preserve">
+    <value>Voeder</value>
+  </data>
   <data name="word_Find" xml:space="preserve">
     <value>Vinden</value>
+  </data>
+  <data name="word_Flatbed" xml:space="preserve">
+    <value>Platbed</value>
   </data>
   <data name="word_Folder" xml:space="preserve">
     <value>Map</value>

@@ -1757,7 +1757,7 @@ Am aktuellen Cursor</value>
     <comment>checkbox</comment>
   </data>
   <data name="InsertTocDialog_previewBox" xml:space="preserve">
-    <value>Fügen Sie die Textvorschau jeder Seite ein</value>
+    <value>Füge die Textvorschau der jeder Seite ein</value>
     <comment>checkbox</comment>
   </data>
   <data name="InsertTocDialog_rightAlignBox.Text" xml:space="preserve">
@@ -4455,6 +4455,30 @@ Registerkarte „Hilfe“.</value>
     <value>Snippet-Name:</value>
     <comment>label</comment>
   </data>
+  <data name="ScanDialog.Text" xml:space="preserve">
+    <value>Scan</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ScanDialog_colorLabel.Text" xml:space="preserve">
+    <value>Farbformat</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_profileLabel.Text" xml:space="preserve">
+    <value>Profil</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_resolutionLabel.Text" xml:space="preserve">
+    <value>Auflösung</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_scannLabel.Text" xml:space="preserve">
+    <value>Scanner</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_sizeLabel.Text" xml:space="preserve">
+    <value>Größe</value>
+    <comment>label</comment>
+  </data>
   <data name="ScanningCueFile" xml:space="preserve">
     <value>HashtagScanner.json</value>
     <comment>SKIP</comment>
@@ -5308,8 +5332,14 @@ Umkehren</value>
   <data name="word_Favorites" xml:space="preserve">
     <value>Favoriten</value>
   </data>
+  <data name="word_Feeder" xml:space="preserve">
+    <value>Feeder</value>
+  </data>
   <data name="word_Find" xml:space="preserve">
     <value>Finden</value>
+  </data>
+  <data name="word_Flatbed" xml:space="preserve">
+    <value>Flachbett</value>
   </data>
   <data name="word_Folder" xml:space="preserve">
     <value>Ordner</value>

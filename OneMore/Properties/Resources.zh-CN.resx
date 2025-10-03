@@ -4452,6 +4452,30 @@ ISO-code then comma then language name</comment>
     <value>片段名称：</value>
     <comment>label</comment>
   </data>
+  <data name="ScanDialog.Text" xml:space="preserve">
+    <value>扫描</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ScanDialog_colorLabel.Text" xml:space="preserve">
+    <value>颜色格式</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_profileLabel.Text" xml:space="preserve">
+    <value>轮廓</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_resolutionLabel.Text" xml:space="preserve">
+    <value>解决</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_scannLabel.Text" xml:space="preserve">
+    <value>扫描器</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_sizeLabel.Text" xml:space="preserve">
+    <value>尺寸</value>
+    <comment>label</comment>
+  </data>
   <data name="ScanningCueFile" xml:space="preserve">
     <value>HashtagScanner.json</value>
     <comment>SKIP</comment>
@@ -5306,8 +5330,14 @@ ISO-code then comma then language name</comment>
   <data name="word_Favorites" xml:space="preserve">
     <value>收藏夹</value>
   </data>
+  <data name="word_Feeder" xml:space="preserve">
+    <value>馈线</value>
+  </data>
   <data name="word_Find" xml:space="preserve">
     <value>寻找</value>
+  </data>
+  <data name="word_Flatbed" xml:space="preserve">
+    <value>平板</value>
   </data>
   <data name="word_Folder" xml:space="preserve">
     <value>文件夹</value>

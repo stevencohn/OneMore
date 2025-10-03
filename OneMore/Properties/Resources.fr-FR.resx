@@ -4458,6 +4458,30 @@ Onglet Aide</value>
     <value>Nom de l'extrait:</value>
     <comment>label</comment>
   </data>
+  <data name="ScanDialog.Text" xml:space="preserve">
+    <value>Balayage</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ScanDialog_colorLabel.Text" xml:space="preserve">
+    <value>Format de couleur</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_profileLabel.Text" xml:space="preserve">
+    <value>Profil</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_resolutionLabel.Text" xml:space="preserve">
+    <value>Résolution</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_scannLabel.Text" xml:space="preserve">
+    <value>Scanner</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_sizeLabel.Text" xml:space="preserve">
+    <value>Taille</value>
+    <comment>label</comment>
+  </data>
   <data name="ScanningCueFile" xml:space="preserve">
     <value>HashtagScanner.json</value>
     <comment>SKIP</comment>
@@ -5311,8 +5335,14 @@ Inverser</value>
   <data name="word_Favorites" xml:space="preserve">
     <value>Favoris</value>
   </data>
+  <data name="word_Feeder" xml:space="preserve">
+    <value>Mangeur</value>
+  </data>
   <data name="word_Find" xml:space="preserve">
     <value>Trouver</value>
+  </data>
+  <data name="word_Flatbed" xml:space="preserve">
+    <value>À plat</value>
   </data>
   <data name="word_Folder" xml:space="preserve">
     <value>Dossier</value>

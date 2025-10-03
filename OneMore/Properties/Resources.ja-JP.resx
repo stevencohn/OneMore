@@ -4463,6 +4463,30 @@ ISO-code then comma then language name</comment>
     <value>スニペット名:</value>
     <comment>label</comment>
   </data>
+  <data name="ScanDialog.Text" xml:space="preserve">
+    <value>スキャン</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ScanDialog_colorLabel.Text" xml:space="preserve">
+    <value>カラー形式</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_profileLabel.Text" xml:space="preserve">
+    <value>プロフィール</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_resolutionLabel.Text" xml:space="preserve">
+    <value>解決</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_scannLabel.Text" xml:space="preserve">
+    <value>スキャナー</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_sizeLabel.Text" xml:space="preserve">
+    <value>サイズ</value>
+    <comment>label</comment>
+  </data>
   <data name="ScanningCueFile" xml:space="preserve">
     <value>HashtagScanner.json</value>
     <comment>SKIP</comment>
@@ -5317,8 +5341,14 @@ ISO-code then comma then language name</comment>
   <data name="word_Favorites" xml:space="preserve">
     <value>お気に入り</value>
   </data>
+  <data name="word_Feeder" xml:space="preserve">
+    <value>フィーダ</value>
+  </data>
   <data name="word_Find" xml:space="preserve">
     <value>探す</value>
+  </data>
+  <data name="word_Flatbed" xml:space="preserve">
+    <value>フラットベッド</value>
   </data>
   <data name="word_Folder" xml:space="preserve">
     <value>フォルダー</value>

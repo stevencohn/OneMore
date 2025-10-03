@@ -4459,6 +4459,30 @@ ISO-code then comma then language name</comment>
     <value>اسم المقتطف:</value>
     <comment>label</comment>
   </data>
+  <data name="ScanDialog.Text" xml:space="preserve">
+    <value>مسح</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ScanDialog_colorLabel.Text" xml:space="preserve">
+    <value>تنسيق اللون</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_profileLabel.Text" xml:space="preserve">
+    <value>حساب تعريفي</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_resolutionLabel.Text" xml:space="preserve">
+    <value>دقة</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_scannLabel.Text" xml:space="preserve">
+    <value>الماسح الضوئي</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_sizeLabel.Text" xml:space="preserve">
+    <value>مقاس</value>
+    <comment>label</comment>
+  </data>
   <data name="ScanningCueFile" xml:space="preserve">
     <value>HashtagScanner.json</value>
     <comment>SKIP</comment>
@@ -5313,8 +5337,14 @@ ISO-code then comma then language name</comment>
   <data name="word_Favorites" xml:space="preserve">
     <value>المفضلة</value>
   </data>
+  <data name="word_Feeder" xml:space="preserve">
+    <value>التغذية</value>
+  </data>
   <data name="word_Find" xml:space="preserve">
     <value>يجد</value>
+  </data>
+  <data name="word_Flatbed" xml:space="preserve">
+    <value>مسطحة</value>
   </data>
   <data name="word_Folder" xml:space="preserve">
     <value>مجلد</value>

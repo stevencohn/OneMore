@@ -4460,6 +4460,30 @@ Zakładka Pomoc</value>
     <value>Nazwa fragmentu:</value>
     <comment>label</comment>
   </data>
+  <data name="ScanDialog.Text" xml:space="preserve">
+    <value>Skandować</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ScanDialog_colorLabel.Text" xml:space="preserve">
+    <value>Format kolorów</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_profileLabel.Text" xml:space="preserve">
+    <value>Profil</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_resolutionLabel.Text" xml:space="preserve">
+    <value>Rezolucja</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_scannLabel.Text" xml:space="preserve">
+    <value>Skaner</value>
+    <comment>label</comment>
+  </data>
+  <data name="ScanDialog_sizeLabel.Text" xml:space="preserve">
+    <value>Rozmiar</value>
+    <comment>label</comment>
+  </data>
   <data name="ScanningCueFile" xml:space="preserve">
     <value>HashtagScanner.json</value>
     <comment>SKIP</comment>
@@ -5314,8 +5338,14 @@ Odwracać</value>
   <data name="word_Favorites" xml:space="preserve">
     <value>Ulubione</value>
   </data>
+  <data name="word_Feeder" xml:space="preserve">
+    <value>Podajnik</value>
+  </data>
   <data name="word_Find" xml:space="preserve">
     <value>Znajdować</value>
+  </data>
+  <data name="word_Flatbed" xml:space="preserve">
+    <value>Płaski</value>
   </data>
   <data name="word_Folder" xml:space="preserve">
     <value>Teczka</value>

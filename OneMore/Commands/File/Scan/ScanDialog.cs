@@ -12,6 +12,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using WIA;
+	using Resx = Properties.Resources;
 
 
 	internal partial class ScanDialog : MoreForm
@@ -81,6 +82,18 @@ namespace River.OneMoreAddIn.Commands
 
 			if (NeedsLocalizing())
 			{
+				Text = Resx.ScanDialog_Text;
+
+				Localize(new string[]
+				{
+					"scanLabel",
+					"profileLabel",
+					"sizeLabel",
+					"colorLabel",
+					"resolutionLabel",
+					"brightnessLabel=word_Brightness",
+					"contrastLabel=word_Contrast"
+				});
 			}
 
 			okButton.NotifyDefault(true);
@@ -141,12 +154,12 @@ namespace River.OneMoreAddIn.Commands
 			sourceBox.Items.Clear();
 			if (caps.FlatbedResoltuions is not null && caps.FlatbedResoltuions.Any())
 			{
-				sourceBox.Items.Add(new ScanSource("Flatbed", ScanHandling.Flatbed));
+				sourceBox.Items.Add(new ScanSource(Resx.word_Flatbed, ScanHandling.Flatbed));
 			}
 
 			if (caps.FeederResoltuions is not null && caps.FeederResoltuions.Any())
 			{
-				sourceBox.Items.Add(new ScanSource("Feeder", ScanHandling.Feeder));
+				sourceBox.Items.Add(new ScanSource(Resx.word_Feeder, ScanHandling.Feeder));
 			}
 
 			if (sourceBox.Items.Count > 0)
