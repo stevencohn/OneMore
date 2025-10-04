@@ -468,5 +468,30 @@ namespace River.OneMoreAddIn
 
 			return builder.ToString();
 		}
+
+
+		/// <summary>
+		/// Removes the preamble and postamble, returning just the raw HTML.
+		/// </summary>
+		/// <param name="html"></param>
+		/// <returns></returns>
+		public static string UnwrapHtml(string html)
+		{
+			var start = html.IndexOf(StartFragmentLine);
+			if (start < 0)
+			{
+				return html;
+			}
+
+			start += StartFragmentLine.Length;
+			var end = html.IndexOf(EndFragmentLine, start);
+
+			if (end < 0)
+			{
+				return html;
+			}
+
+			return html.Substring(start, end - start);
+		}
 	}
 }
