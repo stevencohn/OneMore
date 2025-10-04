@@ -161,6 +161,25 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="s"></param>
+		/// <param name="oldValue"></param>
+		/// <param name="newValue"></param>
+		/// <returns></returns>
+		public static string ReplaceIgnoreCase(this string s, string oldValue, string newValue)
+		{
+			int index = s.IndexOf(oldValue, StringComparison.OrdinalIgnoreCase);
+			while (index >= 0)
+			{
+				s = s.Remove(index, oldValue.Length).Insert(index, newValue);
+				index = s.IndexOf(oldValue, index + newValue.Length, StringComparison.OrdinalIgnoreCase);
+			}
+			return s;
+		}
+
+
+		/// <summary>
 		/// OneMore Extension >> Escapes only a select few special character in a URL. Needed
 		/// for the Copy Link to Page command so the pasted link can be clicked and properly 
 		/// navigate back to the source page.

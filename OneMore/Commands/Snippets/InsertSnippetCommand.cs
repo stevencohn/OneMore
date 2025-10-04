@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Models;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
 	using Resx = Properties.Resources;
@@ -16,6 +17,8 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class InsertSnippetCommand : Command
 	{
+		private const string BodyTag = "{SNIPPET_BODY}";
+
 
 		public InsertSnippetCommand()
 		{
@@ -85,21 +88,74 @@ namespace River.OneMoreAddIn.Commands
 			var clippy = new ClipboardProvider();
 			await clippy.StashState();
 
-			var success = await clippy.SetHtml(snippet);
-			if (success)
+			try
 			{
-				await ClipboardProvider.Paste(true);
+				if (snippet.ContainsICIC(BodyTag))
+				{
+					snippet = await ExpandSnippetBody(page, snippet);
+				}
+
+				await clippy.Clear();
+				var success = await clippy.SetHtml(snippet);
+				if (success)
+				{
+					await ClipboardProvider.Paste(true);
+				}
+				else
+				{
+					ShowInfo(Resx.Clipboard_locked);
+				}
 			}
-			else
+			finally
 			{
-				ShowInfo(Resx.Clipboard_locked);
+				var success = await clippy.RestoreState();
+				if (!success)
+				{
+					ShowInfo(Resx.Clipboard_norestore);
+				}
+			}
+		}
+
+
+		private async Task<string> ExpandSnippetBody(Page page, string snippet)
+		{
+			var range = new SelectionRange(page);
+			_ = range.GetSelection(true);
+			if (range.Scope != SelectionScope.TextCursor)
+			{
+				// selection range found so move it into snippet
+				var editor = new PageEditor(page)
+				{
+					// the extracted content will be selected=all, keep it that way
+					KeepSelected = true
+				};
+
+				var content = editor.ExtractSelectedContent(breakParagraph: true);
+
+				if (!content.HasElements)
+				{
+					ShowError(Resx.Error_BodyContext);
+					logger.WriteLine("error reading page content!");
+					return snippet;
+				}
+
+				editor.Deselect();
+				editor.FollowWithCurosr(content);
+
+				// copy the selected content to the clipboard where it can be transformed to HTML
+				await ClipboardProvider.Copy();
+
+				var html = await ClipboardProvider.GetHtml();
+				html = ClipboardProvider.UnwrapHtml(html);
+
+				snippet = snippet.ReplaceIgnoreCase(BodyTag, html);
+
+				// recalculate preamble offsets
+				snippet = ClipboardProvider.WrapWithHtmlPreamble(
+					ClipboardProvider.UnwrapHtml(snippet));
 			}
 
-			success = await clippy.RestoreState();
-			if (!success)
-			{
-				ShowInfo(Resx.Clipboard_norestore);
-			}
+			return snippet;
 		}
 	}
 }
