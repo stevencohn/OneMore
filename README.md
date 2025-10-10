@@ -33,7 +33,7 @@ _Click an image to enlarge_
 ## 💁 Features - Over 160 commands and growing!
 *Want more from OneMore? OneMore has more...*
 
-See the 📓 **[OneNote Wiki](https://onemoreaddin.com/)** for a full user guide, setup instructions,
+See the 📓 **[OneMore Wiki](https://onemoreaddin.com/)** for a full user guide, setup instructions,
 and description of each command.
 
 
