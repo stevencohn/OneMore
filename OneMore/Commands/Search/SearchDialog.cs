@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Settings;
 	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace River.OneMoreAddIn.Commands
 
 	internal partial class SearchDialog : MoreForm
 	{
+		private readonly bool experimental;
 
 		public SearchDialog()
 		{
@@ -31,6 +33,13 @@ namespace River.OneMoreAddIn.Commands
 
 			DefaultControl = textTab;
 			ElevatedWithOneNote = true;
+
+			var provider = new SettingsProvider();
+			experimental = provider.GetCollection("GeneralSheet").Get<bool>("experimental");
+			if (!experimental)
+			{
+				tabControl.TabPages.Remove(textTab);
+			}
 		}
 
 
@@ -46,6 +55,12 @@ namespace River.OneMoreAddIn.Commands
 			base.OnShown(e);
 
 			// force focus on textSheet's tabIndex(0) control
+			if (experimental)
+			{
+				actionSheet.Focus();
+				return;
+			}
+
 			textSheet.Focus();
 		}
 

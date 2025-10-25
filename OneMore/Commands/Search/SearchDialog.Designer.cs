@@ -15,6 +15,8 @@
 		{
 			if (disposing && (components != null))
 			{
+				textSheet?.Dispose();
+				actionSheet?.Dispose();
 				components.Dispose();
 			}
 			base.Dispose(disposing);

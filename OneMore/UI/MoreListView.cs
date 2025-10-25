@@ -113,6 +113,16 @@ namespace River.OneMoreAddIn.UI
 			base.Dispose(disposing);
 			if (disposing)
 			{
+				if (hostedControls is not null && hostedControls.Any())
+				{
+					foreach (var control in hostedControls)
+					{
+						control.Control?.Dispose();
+					}
+
+					hostedControls.Clear();
+				}
+
 				router.Dispose();
 				highBackBrush.Dispose();
 				highForeBrush.Dispose();

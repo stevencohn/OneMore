@@ -308,7 +308,7 @@ namespace River.OneMoreAddIn
 			trash = null;
 
 			GC.Collect();
-			GC.WaitForPendingFinalizers();
+			//GC.WaitForPendingFinalizers();
 
 			// this is a hack, modeless dialogs seem to keep OneNote open :-(
 			Environment.Exit(0);
