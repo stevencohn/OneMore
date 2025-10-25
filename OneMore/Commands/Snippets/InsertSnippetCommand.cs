@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
+	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
 	using Resx = Properties.Resources;
@@ -17,6 +18,7 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class InsertSnippetCommand : Command
 	{
+		private const string DateTimePattern = @"{=DATETIME\(([^""]+)\)}";
 		private const string BodyTag = "{SNIPPET_BODY}";
 
 
@@ -47,14 +49,14 @@ namespace River.OneMoreAddIn.Commands
 			{
 				// assume Expand command and infer name from current word...
 
-				path = new Models.PageEditor(page).GetSelectedText();
+				path = new PageEditor(page).GetSelectedText();
 				if (!string.IsNullOrWhiteSpace(path))
 				{
 					snippet = await provider.LoadByName(path);
 					if (!string.IsNullOrEmpty(snippet))
 					{
 						// remove placeholder
-						var updated = new Models.PageEditor(page).EditSelected((s) =>
+						var updated = new PageEditor(page).EditSelected((s) =>
 						{
 							if (s is XText text)
 							{
@@ -90,10 +92,7 @@ namespace River.OneMoreAddIn.Commands
 
 			try
 			{
-				if (snippet.ContainsICIC(BodyTag))
-				{
-					snippet = await ExpandSnippetBody(page, snippet);
-				}
+				snippet = await Expand(page, snippet);
 
 				await clippy.Clear();
 				var success = await clippy.SetHtml(snippet);
@@ -114,6 +113,32 @@ namespace River.OneMoreAddIn.Commands
 					ShowInfo(Resx.Clipboard_norestore);
 				}
 			}
+		}
+
+
+		private async Task<string> Expand(Page page, string snippet)
+		{
+			// process datetime patterns
+			snippet = Regex.Replace(snippet, DateTimePattern, (m) =>
+			{
+				var format = m.Groups[1].Value;
+				try
+				{
+					return System.DateTime.Now.ToString(format);
+				}
+				catch
+				{
+					// invalid format, return default datetime formatted string
+					return System.DateTime.Now.ToString();
+				}
+			}, RegexOptions.IgnoreCase);
+
+			if (snippet.ContainsICIC(BodyTag))
+			{
+				snippet = await ExpandSnippetBody(page, snippet);
+			}
+
+			return snippet;
 		}
 
 
