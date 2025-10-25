@@ -318,7 +318,12 @@ namespace River.OneMoreAddIn
 						retries++;
 						var ms = 250 * retries;
 
-						if ((uint)exc.HResult == ErrorCodes.hrRpcFailed2)
+						if ((uint)exc.HResult == ErrorCodes.hrXmlIsInvalid)
+						{
+							logger.WriteLine("0x80042001 The XML is invalid, aborting retries");
+							return false;
+						}
+						else if ((uint)exc.HResult == ErrorCodes.hrRpcFailed2)
 						{
 							// can happen if a paragraph is linked to another paragraph but
 							// the first paragraph contains an equation; OneNote API defect!
