@@ -13,10 +13,13 @@
 		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
 		protected override void Dispose(bool disposing)
 		{
-			if (disposing && (components != null))
+			if (disposing)
 			{
-				components.Dispose();
+				resultsView?.Dispose();
+				source?.Dispose();
+				components?.Dispose();
 			}
+
 			base.Dispose(disposing);
 		}
 
@@ -156,8 +159,10 @@
 			this.resultsView.TabStop = false;
 			this.resultsView.UseCompatibleStateImageBehavior = false;
 			this.resultsView.View = System.Windows.Forms.View.Details;
+			this.resultsView.VirtualMode = true;
 			this.resultsView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.HandleNavKey);
 			this.resultsView.Resize += new System.EventHandler(this.ResizeResultsView);
+			this.resultsView.RetrieveVirtualItem += new System.Windows.Forms.RetrieveVirtualItemEventHandler(this.RetrieveVirtualItem);
 			// 
 			// hitColumn
 			// 

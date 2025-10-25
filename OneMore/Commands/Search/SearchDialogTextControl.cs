@@ -21,11 +21,86 @@ namespace River.OneMoreAddIn.Commands
 
 	internal partial class SearchDialogTextControl : MoreUserControl
 	{
+
 		private sealed class SearchHit
 		{
 			public string PlainText { get; set; }
 			public string Hyperlink { get; set; }
 		}
+
+		private class SearchResultCache
+		{
+			private readonly List<SearchHit> hits = new();
+			private readonly object gate = new();
+
+			public int Count => hits.Count;
+
+			public SearchHit Get(int index)
+			{
+				lock (gate)
+				{
+					return index < hits.Count ? hits[index] : null;
+				}
+			}
+
+			public void AddRange(IEnumerable<SearchHit> hit)
+			{
+				lock (gate)
+				{
+					hits.AddRange(hit);
+				}
+			}
+		}
+
+
+		/*
+		private class SearchEngine
+		{
+			public event Action<List<SearchHit>> PageReady;
+
+			public void StartSearch(string query)
+			{
+				Task.Run(() =>
+				{
+					for (int page = 0; page < 100; page++)
+					{
+						Thread.Sleep(300); // Simulate search delay
+						var results = Enumerable.Range(page * 50, 50)
+							.Select(i => new SearchHit($"Result {i}", $"https://example.com/{i}"))
+							.ToList();
+
+						PageReady?.Invoke(results);
+					}
+				});
+			}
+		}
+
+		private class SearchCoordinator
+		{
+			private readonly SearchResultBuffer _buffer;
+			private readonly ListView _listView;
+
+			public SearchCoordinator(SearchResultBuffer buffer, ListView listView)
+			{
+				_buffer = buffer;
+				_listView = listView;
+			}
+
+			public void Attach(SearchEngine engine)
+			{
+				engine.PageReady += results =>
+				{
+					_buffer.AddRange(results);
+					_listView.Invoke(() =>
+					{
+						_listView.VirtualListSize = _buffer.Count;
+						_listView.Invalidate();
+					});
+				};
+			}
+		}
+		*/
+
 
 		//private const int CreatedAfter = 1;
 		private const int CreatedBefore = 2;
@@ -36,6 +111,8 @@ namespace River.OneMoreAddIn.Commands
 		private readonly Regex cleaner;
 		private CancellationTokenSource source;
 		private bool grouping;
+
+		private SearchResultCache cache;
 
 
 		public SearchDialogTextControl()
@@ -245,9 +322,14 @@ namespace River.OneMoreAddIn.Commands
 			}
 			else
 			{
+				logger.StartClock();
 				grouping = false;
+
 				var page = await one.GetPage(one.CurrentPageId, OneNote.PageDetail.Basic);
+				logger.WriteTime("loaded page", keepRunning: true);
+
 				await SearchPage(one, page);
+				logger.WriteTime("search complete");
 			}
 
 			// restore controls...
@@ -266,6 +348,13 @@ namespace River.OneMoreAddIn.Commands
 			searchButton.NotifyDefault(true);
 
 			nextButton.Visible = prevButton.Visible = resultsView.Items.Count > 0;
+		}
+
+
+		private void RetrieveVirtualItem(object sender, RetrieveVirtualItemEventArgs e)
+		{
+			var item = cache.Get(e.ItemIndex);
+			e.Item = new ListViewItem(item?.PlainText ?? "Loading...");
 		}
 
 
