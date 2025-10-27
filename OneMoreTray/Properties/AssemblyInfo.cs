@@ -27,6 +27,6 @@ namespace OneMoreService
 {
 	internal static class AssemblyInfo
 	{
-		public const string Version = "6.8.0";
+		public const string Version = "6.8.1";
 	}
 }
