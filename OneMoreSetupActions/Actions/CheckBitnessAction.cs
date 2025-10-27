@@ -47,15 +47,15 @@ namespace OneMoreSetupActions
 			 * On Windows x64 with OneNote x64, must run OneMore x64 installer.
 			 * On Windows x64 with OneNote x86, must run OneMore x86 installer.
 			 * On Windows x86 must run OneMore x86 installer.
-			 * On Windows ARM64, must run OneMore ARM64 installer.
+			 * On Windows ARM64, OneMore installer must match OneNote, either ARM64 or x64.
 			 */
 
 			bool ok;
 			if (osarc == Architecture.Arm64)
 			{
 				ok =
-					(urarc == Architecture.Arm64) &&
-					(onarc == Architecture.X64 || onarc == Architecture.Arm64)
+					(onarc == Architecture.X64 && urarc == Architecture.X64) ||
+					(onarc == Architecture.Arm64 && urarc == Architecture.Arm64)
 					;
 			}
 			else if (osarc == Architecture.X64)
