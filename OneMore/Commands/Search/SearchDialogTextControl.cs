@@ -28,7 +28,7 @@ namespace River.OneMoreAddIn.Commands
 			public string Hyperlink { get; set; }
 		}
 
-		private class SearchResultCache
+		private sealed class SearchResultBuffer
 		{
 			private readonly List<SearchHit> hits = new();
 			private readonly object gate = new();
@@ -52,9 +52,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 		}
 
-
-		/*
-		private class SearchEngine
+		private sealed class SearchEngine
 		{
 			public event Action<List<SearchHit>> PageReady;
 
@@ -66,7 +64,7 @@ namespace River.OneMoreAddIn.Commands
 					{
 						Thread.Sleep(300); // Simulate search delay
 						var results = Enumerable.Range(page * 50, 50)
-							.Select(i => new SearchHit($"Result {i}", $"https://example.com/{i}"))
+							.Select(i => new SearchHit { PlainText = $"Result {i}", Hyperlink = $"https://example.com/{i}" })
 							.ToList();
 
 						PageReady?.Invoke(results);
@@ -75,31 +73,30 @@ namespace River.OneMoreAddIn.Commands
 			}
 		}
 
-		private class SearchCoordinator
+		private sealed class SearchCoordinator
 		{
-			private readonly SearchResultBuffer _buffer;
-			private readonly ListView _listView;
+			private readonly SearchResultBuffer buffer;
+			private readonly ListView listview;
 
 			public SearchCoordinator(SearchResultBuffer buffer, ListView listView)
 			{
-				_buffer = buffer;
-				_listView = listView;
+				this.buffer = buffer;
+				this.listview = listView;
 			}
 
 			public void Attach(SearchEngine engine)
 			{
 				engine.PageReady += results =>
 				{
-					_buffer.AddRange(results);
-					_listView.Invoke(() =>
+					buffer.AddRange(results);
+					listview.Invoke(new Action(() =>
 					{
-						_listView.VirtualListSize = _buffer.Count;
-						_listView.Invalidate();
-					});
+						listview.VirtualListSize = buffer.Count;
+						listview.Invalidate();
+					}));
 				};
 			}
 		}
-		*/
 
 
 		//private const int CreatedAfter = 1;
@@ -112,7 +109,7 @@ namespace River.OneMoreAddIn.Commands
 		private CancellationTokenSource source;
 		private bool grouping;
 
-		private SearchResultCache cache;
+		private SearchResultBuffer buffer;
 
 
 		public SearchDialogTextControl()
@@ -353,7 +350,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void RetrieveVirtualItem(object sender, RetrieveVirtualItemEventArgs e)
 		{
-			var item = cache.Get(e.ItemIndex);
+			var item = buffer.Get(e.ItemIndex);
 			e.Item = new ListViewItem(item?.PlainText ?? "Loading...");
 		}
 
