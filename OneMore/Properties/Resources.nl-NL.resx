@@ -5234,6 +5234,10 @@ Omkeren</value>
     <value>Update</value>
     <comment>button</comment>
   </data>
+  <data name="UpdateDialog_upSkipButton.Text" xml:space="preserve">
+    <value>Overslaan</value>
+    <comment>button</comment>
+  </data>
   <data name="UpdateDialog_upVersionLabel.Text" xml:space="preserve">
     <value>Versie bijwerken:</value>
     <comment>label</comment>

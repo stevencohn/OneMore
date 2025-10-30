@@ -5234,6 +5234,10 @@ Invertido</value>
     <value>Atualizar</value>
     <comment>button</comment>
   </data>
+  <data name="UpdateDialog_upSkipButton.Text" xml:space="preserve">
+    <value>Pular</value>
+    <comment>button</comment>
+  </data>
   <data name="UpdateDialog_upVersionLabel.Text" xml:space="preserve">
     <value>Versão atualizada:</value>
     <comment>label</comment>

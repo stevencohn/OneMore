@@ -47,6 +47,11 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
+			if (updater.IsSkippedRelease)
+			{
+				return;
+			}
+
 			if (updater.IsUpToDate)
 			{
 				if (args.Length > 0 && args[0] is bool report && report)
@@ -60,9 +65,14 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			using var question = new UpdateDialog(updater);
-			if (question.ShowDialog(owner) == DialogResult.OK)
+			var result = question.ShowDialog(owner);
+			if (result == DialogResult.OK)
 			{
 				Updated = await updater.Update();
+			}
+			else if (result == DialogResult.Ignore)
+			{
+				updater.SkipRelease();
 			}
 		}
 	}
