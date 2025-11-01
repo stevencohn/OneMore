@@ -5229,6 +5229,10 @@ Umkehren</value>
     <value>Aktualisieren</value>
     <comment>button</comment>
   </data>
+  <data name="UpdateDialog_upSkipButton.Text" xml:space="preserve">
+    <value>Überspringen</value>
+    <comment>button</comment>
+  </data>
   <data name="UpdateDialog_upVersionLabel.Text" xml:space="preserve">
     <value>Update-Version:</value>
     <comment>label</comment>
