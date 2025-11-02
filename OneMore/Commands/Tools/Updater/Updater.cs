@@ -173,7 +173,7 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 				IsUpToDate = currentVersion >= releaseVersion;
 
 				// check if this version is skipped...
-				var collection = new Settings.SettingsProvider().GetCollection("General");
+				var collection = new Settings.SettingsProvider().GetCollection(nameof(Settings.GeneralSheet));
 				if (collection.Get<string>("SkippedUpdateVersion") == release.tag_name)
 				{
 					IsSkippedRelease = true;
@@ -192,7 +192,7 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 		public void SkipRelease()
 		{
 			var provider = new Settings.SettingsProvider();
-			var collection = provider.GetCollection("General");
+			var collection = provider.GetCollection(nameof(Settings.GeneralSheet));
 			collection.Add("SkippedUpdateVersion", UpdateVersion);
 			provider.SetCollection(collection);
 			provider.Save();
@@ -281,7 +281,7 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 
 			// reset skipped version
 			var provider = new Settings.SettingsProvider();
-			var collection = provider.GetCollection("General");
+			var collection = provider.GetCollection(nameof(Settings.GeneralSheet));
 			collection.Remove("SkippedUpdateVersion");
 			provider.SetCollection(collection);
 			provider.Save();
