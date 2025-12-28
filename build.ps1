@@ -78,6 +78,9 @@ Begin
 			return $true
 		}
 
+		$0 = 'C:\Program Files\Microsoft Visual Studio\18' # VS 2026
+		if (FindVS $0) { return $true }
+
 		$0 = 'C:\Program Files\Microsoft Visual Studio\2022'
 		if (FindVS $0) { return $true }
 
