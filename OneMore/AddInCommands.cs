@@ -10,6 +10,7 @@ namespace River.OneMoreAddIn
 {
 	using Microsoft.Office.Core;
 	using River.OneMoreAddIn.Commands;
+	using River.OneMoreAddIn.Commands.OneSearch;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 
@@ -875,6 +876,22 @@ namespace River.OneMoreAddIn
 		[Command("ribSearchButton_Label", Keys.Shift | Keys.Alt | Keys.G, "ribSearchMenu")]
 		public async Task SearchCmd(IRibbonControl control)
 			=> await factory.Run<SearchCommand>();
+
+		[Command("ribOneSearchSearchButton_Label", Keys.None, "ribOneSearchGroup")]
+		public async Task OneSearchOpenCmd(IRibbonControl control)
+			=> await factory.Run<OneSearchCommand>();
+
+		[Command("ribOneSearchSyncButton_Label", Keys.None, "ribOneSearchGroup")]
+		public async Task OneSearchSyncCmd(IRibbonControl control)
+			=> await factory.Run<OneSearchSyncCommand>();
+
+		[Command("ribOneSearchClearButton_Label", Keys.None, "ribOneSearchGroup")]
+		public async Task OneSearchClearCacheCmd(IRibbonControl control)
+			=> await factory.Run<OneSearchClearCacheCommand>();
+
+		[Command("ribOneSearchCacheButton_Label", Keys.None, "ribOneSearchGroup")]
+		public async Task OneSearchSetCacheCmd(IRibbonControl control)
+			=> await factory.Run<OneSearchSetCacheCommand>();
 
 
 		// added to page context menu via Search Engine settings

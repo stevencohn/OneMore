@@ -420,6 +420,37 @@
     </menu>
   </group>
 
+  <group id="ribOneSearchGroup" getLabel="GetRibbonLabel" getImage="GetOneMoreRibbonImage">
+    <button
+      id="ribOneSearchSyncButton"
+      imageMso="Sync"
+      getLabel="GetRibbonLabel"
+      getScreentip="GetRibbonScreentip"
+      onAction="OneSearchSyncCmd"
+      size="large"/>
+    <button
+      id="ribOneSearchClearButton"
+      imageMso="ClearFormatting"
+      getLabel="GetRibbonLabel"
+      getScreentip="GetRibbonScreentip"
+      onAction="OneSearchClearCacheCmd"
+      size="normal"/>
+    <button
+      id="ribOneSearchCacheButton"
+      imageMso="Folder"
+      getLabel="GetRibbonLabel"
+      getScreentip="GetRibbonScreentip"
+      onAction="OneSearchSetCacheCmd"
+      size="normal"/>
+    <button
+      id="ribOneSearchSearchButton"
+      imageMso="SearchUI"
+      getLabel="GetRibbonLabel"
+      getScreentip="GetRibbonScreentip"
+      onAction="OneSearchOpenCmd"
+      size="large"/>
+  </group>
+
   <group id="ribOneMoreEvenMoreGroup" getLabel="GetRibbonLabel" getImage="GetOneMoreRibbonImage">
     <menu id="ribCleanMenu" getLabel="GetRibbonLabel" imageMso="Clear" showImage="true" keytip="CL">
       <button

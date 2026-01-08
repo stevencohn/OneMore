@@ -277,6 +277,16 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Commands\Search\TextMatchBuilder.cs" />
+    <Compile Include="Commands\OneSearch\OneSearchCommands.cs" />
+    <Compile Include="Commands\OneSearch\OneSearchEngine.cs" />
+    <Compile Include="Commands\OneSearch\OneSearchExport.cs" />
+    <Compile Include="Commands\OneSearch\OneSearchService.cs" />
+    <Compile Include="Commands\OneSearch\SearchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\OneSearch\OneSearchSyncDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Commands\Settings\VariablesSheet.cs">
       <SubType>UserControl</SubType>
     </Compile>

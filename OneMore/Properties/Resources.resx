@@ -5976,4 +5976,46 @@ Invert</value>
   <data name="_0336_OneNoteApplication_2013" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>0336.OneNoteApplication_2013.xsd;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
+  <data name="ribOneSearchGroup_Label" xml:space="preserve">
+    <value>OneSearch</value>
+  </data>
+  <data name="ribOneSearchSyncButton_Label" xml:space="preserve">
+    <value>Sync cache</value>
+  </data>
+  <data name="ribOneSearchSyncButton_Screentip" xml:space="preserve">
+    <value>Export all pages to the OneSearch markdown cache</value>
+  </data>
+  <data name="ribOneSearchClearButton_Label" xml:space="preserve">
+    <value>Clear cache</value>
+  </data>
+  <data name="ribOneSearchClearButton_Screentip" xml:space="preserve">
+    <value>Delete cached markdown files</value>
+  </data>
+  <data name="ribOneSearchSearchButton_Label" xml:space="preserve">
+    <value>Open OneSearch</value>
+  </data>
+  <data name="ribOneSearchSearchButton_Screentip" xml:space="preserve">
+    <value>Search cached notebooks</value>
+  </data>
+  <data name="OneSearch_Title" xml:space="preserve">
+    <value>OneSearch</value>
+  </data>
+  <data name="OneSearch_MissingCache" xml:space="preserve">
+    <value>Please set a cache folder in OneSearch before syncing.</value>
+  </data>
+  <data name="OneSearch_SyncSummary" xml:space="preserve">
+    <value>Sync completed. Updated {0}, skipped {1}, failed {2}.</value>
+  </data>
+  <data name="OneSearch_CacheCleared" xml:space="preserve">
+    <value>Cache cleared.</value>
+  </data>
+  <data name="OneSearch_CacheSet" xml:space="preserve">
+    <value>Cache folder updated.</value>
+  </data>
+  <data name="ribOneSearchCacheButton_Label" xml:space="preserve">
+    <value>Cache folder</value>
+  </data>
+  <data name="ribOneSearchCacheButton_Screentip" xml:space="preserve">
+    <value>Select the OneSearch cache folder</value>
+  </data>
 </root>

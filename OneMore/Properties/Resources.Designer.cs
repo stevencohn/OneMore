@@ -13881,5 +13881,131 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("WordCountsCommand_Title", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OneSearch.
+        /// </summary>
+        internal static string OneSearch_Title {
+            get {
+                return ResourceManager.GetString("OneSearch_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please set a cache folder in OneSearch before syncing..
+        /// </summary>
+        internal static string OneSearch_MissingCache {
+            get {
+                return ResourceManager.GetString("OneSearch_MissingCache", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sync completed. Updated {0}, skipped {1}, failed {2}..
+        /// </summary>
+        internal static string OneSearch_SyncSummary {
+            get {
+                return ResourceManager.GetString("OneSearch_SyncSummary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cache cleared..
+        /// </summary>
+        internal static string OneSearch_CacheCleared {
+            get {
+                return ResourceManager.GetString("OneSearch_CacheCleared", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cache folder updated..
+        /// </summary>
+        internal static string OneSearch_CacheSet {
+            get {
+                return ResourceManager.GetString("OneSearch_CacheSet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OneSearch.
+        /// </summary>
+        internal static string ribOneSearchGroup_Label {
+            get {
+                return ResourceManager.GetString("ribOneSearchGroup_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sync cache.
+        /// </summary>
+        internal static string ribOneSearchSyncButton_Label {
+            get {
+                return ResourceManager.GetString("ribOneSearchSyncButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export all pages to the OneSearch markdown cache.
+        /// </summary>
+        internal static string ribOneSearchSyncButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribOneSearchSyncButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear cache.
+        /// </summary>
+        internal static string ribOneSearchClearButton_Label {
+            get {
+                return ResourceManager.GetString("ribOneSearchClearButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete cached markdown files.
+        /// </summary>
+        internal static string ribOneSearchClearButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribOneSearchClearButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open OneSearch.
+        /// </summary>
+        internal static string ribOneSearchSearchButton_Label {
+            get {
+                return ResourceManager.GetString("ribOneSearchSearchButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search cached notebooks.
+        /// </summary>
+        internal static string ribOneSearchSearchButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribOneSearchSearchButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cache folder.
+        /// </summary>
+        internal static string ribOneSearchCacheButton_Label {
+            get {
+                return ResourceManager.GetString("ribOneSearchCacheButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select the OneSearch cache folder.
+        /// </summary>
+        internal static string ribOneSearchCacheButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribOneSearchCacheButton_Screentip", resourceCulture);
+            }
+        }
     }
 }
