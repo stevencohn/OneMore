@@ -41,6 +41,7 @@ namespace River.OneMoreAddIn.Commands
 			this.lastUpdatedBox = new System.Windows.Forms.Label();
 			this.readyPanel = new System.Windows.Forms.Panel();
 			this.updatePanel = new System.Windows.Forms.Panel();
+			this.upSkipButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.upReleaseDateBox = new System.Windows.Forms.Label();
 			this.releaseDateLabel = new System.Windows.Forms.Label();
 			this.upLastUpdatedBox = new System.Windows.Forms.Label();
@@ -95,44 +96,58 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// releaseNotesLink
 			// 
+			this.releaseNotesLink.ActiveLinkColor = System.Drawing.Color.MediumOrchid;
 			this.releaseNotesLink.AutoSize = true;
-			this.releaseNotesLink.BackColor = System.Drawing.SystemColors.Window;
 			this.releaseNotesLink.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.releaseNotesLink.HoverColor = System.Drawing.Color.Orchid;
 			this.releaseNotesLink.LinkColor = System.Drawing.Color.MediumOrchid;
 			this.releaseNotesLink.Location = new System.Drawing.Point(31, 104);
 			this.releaseNotesLink.Name = "releaseNotesLink";
+			this.releaseNotesLink.Selected = false;
 			this.releaseNotesLink.Size = new System.Drawing.Size(112, 20);
+			this.releaseNotesLink.StrictColors = false;
 			this.releaseNotesLink.TabIndex = 1;
 			this.releaseNotesLink.TabStop = true;
 			this.releaseNotesLink.Text = "Release notes";
+			this.releaseNotesLink.ThemedBack = null;
+			this.releaseNotesLink.ThemedFore = null;
 			this.releaseNotesLink.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
 			this.releaseNotesLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.GotoReleaseNotes);
 			// 
 			// okButton
 			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.okButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
 			this.okButton.Location = new System.Drawing.Point(480, 142);
 			this.okButton.Name = "okButton";
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(104, 42);
+			this.okButton.StylizeImage = false;
 			this.okButton.TabIndex = 0;
 			this.okButton.Text = "OK";
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.UseVisualStyleBackColor = true;
 			// 
 			// cancelButton
 			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.cancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
 			this.cancelButton.Location = new System.Drawing.Point(480, 254);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(104, 42);
+			this.cancelButton.StylizeImage = false;
 			this.cancelButton.TabIndex = 2;
 			this.cancelButton.Text = "Cancel";
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
 			// versionBox
@@ -177,6 +192,7 @@ namespace River.OneMoreAddIn.Commands
 			this.updatePanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.updatePanel.BackColor = System.Drawing.SystemColors.Window;
+			this.updatePanel.Controls.Add(this.upSkipButton);
 			this.updatePanel.Controls.Add(this.upReleaseDateBox);
 			this.updatePanel.Controls.Add(this.releaseDateLabel);
 			this.updatePanel.Controls.Add(this.upLastUpdatedBox);
@@ -196,6 +212,25 @@ namespace River.OneMoreAddIn.Commands
 			this.updatePanel.Name = "updatePanel";
 			this.updatePanel.Size = new System.Drawing.Size(587, 299);
 			this.updatePanel.TabIndex = 11;
+			// 
+			// upSkipButton
+			// 
+			this.upSkipButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.upSkipButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.upSkipButton.DialogResult = System.Windows.Forms.DialogResult.Ignore;
+			this.upSkipButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.upSkipButton.ImageOver = null;
+			this.upSkipButton.Location = new System.Drawing.Point(370, 254);
+			this.upSkipButton.Name = "upSkipButton";
+			this.upSkipButton.ShowBorder = true;
+			this.upSkipButton.Size = new System.Drawing.Size(104, 42);
+			this.upSkipButton.StylizeImage = false;
+			this.upSkipButton.TabIndex = 22;
+			this.upSkipButton.Text = "Skip";
+			this.upSkipButton.ThemedBack = null;
+			this.upSkipButton.ThemedFore = null;
+			this.upSkipButton.UseVisualStyleBackColor = true;
+			this.upSkipButton.Click += new System.EventHandler(this.SkipRelease);
 			// 
 			// upReleaseDateBox
 			// 
@@ -314,17 +349,21 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// upReleaseNotesLink
 			// 
+			this.upReleaseNotesLink.ActiveLinkColor = System.Drawing.Color.MediumOrchid;
 			this.upReleaseNotesLink.AutoSize = true;
-			this.upReleaseNotesLink.BackColor = System.Drawing.SystemColors.Window;
 			this.upReleaseNotesLink.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.upReleaseNotesLink.HoverColor = System.Drawing.Color.Orchid;
 			this.upReleaseNotesLink.LinkColor = System.Drawing.Color.MediumOrchid;
 			this.upReleaseNotesLink.Location = new System.Drawing.Point(31, 132);
 			this.upReleaseNotesLink.Name = "upReleaseNotesLink";
+			this.upReleaseNotesLink.Selected = false;
 			this.upReleaseNotesLink.Size = new System.Drawing.Size(112, 20);
+			this.upReleaseNotesLink.StrictColors = false;
 			this.upReleaseNotesLink.TabIndex = 1;
 			this.upReleaseNotesLink.TabStop = true;
 			this.upReleaseNotesLink.Text = "Release notes";
+			this.upReleaseNotesLink.ThemedBack = null;
+			this.upReleaseNotesLink.ThemedFore = null;
 			this.upReleaseNotesLink.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
 			this.upReleaseNotesLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.GotoReleaseNotes);
 			// 
@@ -342,14 +381,19 @@ namespace River.OneMoreAddIn.Commands
 			// upOKButton
 			// 
 			this.upOKButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.upOKButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.upOKButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.upOKButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.upOKButton.ImageOver = null;
-			this.upOKButton.Location = new System.Drawing.Point(370, 254);
+			this.upOKButton.Location = new System.Drawing.Point(260, 254);
 			this.upOKButton.Name = "upOKButton";
 			this.upOKButton.ShowBorder = true;
 			this.upOKButton.Size = new System.Drawing.Size(104, 42);
+			this.upOKButton.StylizeImage = false;
 			this.upOKButton.TabIndex = 0;
 			this.upOKButton.Text = "Update";
+			this.upOKButton.ThemedBack = null;
+			this.upOKButton.ThemedFore = null;
 			this.upOKButton.UseVisualStyleBackColor = true;
 			// 
 			// timer
@@ -410,5 +454,6 @@ namespace River.OneMoreAddIn.Commands
 		private System.Windows.Forms.Label upReleaseDateBox;
 		private System.Windows.Forms.Label releaseDateLabel;
 		private System.Windows.Forms.Timer timer;
+		private UI.MoreButton upSkipButton;
 	}
 }

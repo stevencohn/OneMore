@@ -5238,6 +5238,10 @@ ISO-code then comma then language name</comment>
     <value>アップデート</value>
     <comment>button</comment>
   </data>
+  <data name="UpdateDialog_upSkipButton.Text" xml:space="preserve">
+    <value>スキップ</value>
+    <comment>button</comment>
+  </data>
   <data name="UpdateDialog_upVersionLabel.Text" xml:space="preserve">
     <value>更新バージョン:</value>
     <comment>label</comment>

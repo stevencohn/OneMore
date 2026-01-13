@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 #pragma warning disable S1075 // URIs should not be hardcoded
@@ -23,7 +23,7 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 	internal class Updater : Loggable, IUpdateReport
 	{
 		private const string LatestUrl = "https://api.github.com/repos/stevencohn/onemore/releases";
-		private const string Latest = "/latest";
+		//private const string Latest = "/latest";
 		private const string LatestN = "?per_page=5";
 		private const string TagUrl = "https://github.com/stevencohn/OneMore/releases/tag";
 
@@ -31,6 +31,7 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 		private readonly string productCode;
 
 
+		public bool IsSkippedRelease { get; private set; }
 		public bool IsUpToDate { get; private set; }
 		public string InstalledDate { get; private set; }
 		public string InstalledUrl { get; private set; }
@@ -171,6 +172,13 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 				var releaseVersion = new Version(plainver);
 				IsUpToDate = currentVersion >= releaseVersion;
 
+				// check if this version is skipped...
+				var collection = new Settings.SettingsProvider().GetCollection(nameof(Settings.GeneralSheet));
+				if (collection.Get<string>("SkippedUpdateVersion") == release.tag_name)
+				{
+					IsSkippedRelease = true;
+				}
+
 				return true;
 			}
 
@@ -178,6 +186,16 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 			logger.Dump(release);
 
 			return false;
+		}
+
+
+		public void SkipRelease()
+		{
+			var provider = new Settings.SettingsProvider();
+			var collection = provider.GetCollection(nameof(Settings.GeneralSheet));
+			collection.Add("SkippedUpdateVersion", UpdateVersion);
+			provider.SetCollection(collection);
+			provider.Save();
 		}
 
 
@@ -260,6 +278,13 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 				WindowStyle = ProcessWindowStyle.Hidden
 #endif
 			});
+
+			// reset skipped version
+			var provider = new Settings.SettingsProvider();
+			var collection = provider.GetCollection(nameof(Settings.GeneralSheet));
+			collection.Remove("SkippedUpdateVersion");
+			provider.SetCollection(collection);
+			provider.Save();
 
 			return true;
 		}

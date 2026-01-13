@@ -67,6 +67,7 @@ namespace River.OneMoreAddIn.Commands
 						"upCurrentVersionLabel",
 						"upLastUpdatedLabel=UpdateDialog_lastUpdatedLabel",
 						"upOKButton",
+						"upSkipButton",
 						"cancelButton=word_Cancel"
 					});
 				}
@@ -133,6 +134,12 @@ namespace River.OneMoreAddIn.Commands
 		private void TimerTick(object sender, EventArgs e)
 		{
 			TopMost = true;
+		}
+
+		private void SkipRelease(object sender, EventArgs e)
+		{
+			DialogResult = upSkipButton.DialogResult;
+			Close();
 		}
 	}
 }

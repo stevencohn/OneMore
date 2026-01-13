@@ -5227,6 +5227,10 @@ ISO-code then comma then language name</comment>
     <value>更新</value>
     <comment>button</comment>
   </data>
+  <data name="UpdateDialog_upSkipButton.Text" xml:space="preserve">
+    <value>跳过</value>
+    <comment>button</comment>
+  </data>
   <data name="UpdateDialog_upVersionLabel.Text" xml:space="preserve">
     <value>更新版本：</value>
     <comment>label</comment>

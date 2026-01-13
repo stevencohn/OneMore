@@ -12820,6 +12820,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Skip.
+        /// </summary>
+        internal static string UpdateDialog_upSkipButton_Text {
+            get {
+                return ResourceManager.GetString("UpdateDialog_upSkipButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Update version:.
         /// </summary>
         internal static string UpdateDialog_upVersionLabel_Text {

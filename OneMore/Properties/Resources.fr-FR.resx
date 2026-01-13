@@ -5232,6 +5232,10 @@ Inverser</value>
     <value>Mettre à jour</value>
     <comment>button</comment>
   </data>
+  <data name="UpdateDialog_upSkipButton.Text" xml:space="preserve">
+    <value>Sauter</value>
+    <comment>button</comment>
+  </data>
   <data name="UpdateDialog_upVersionLabel.Text" xml:space="preserve">
     <value>Version de mise à jour :</value>
     <comment>label</comment>

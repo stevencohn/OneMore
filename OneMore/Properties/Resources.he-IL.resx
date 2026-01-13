@@ -5233,6 +5233,10 @@ ISO-code then comma then language name</comment>
     <value>עדכון</value>
     <comment>button</comment>
   </data>
+  <data name="UpdateDialog_upSkipButton.Text" xml:space="preserve">
+    <value>לְדַלֵג</value>
+    <comment>button</comment>
+  </data>
   <data name="UpdateDialog_upVersionLabel.Text" xml:space="preserve">
     <value>עדכון גירסא:</value>
     <comment>label</comment>
