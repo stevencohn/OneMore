@@ -120,6 +120,7 @@ namespace River.OneMoreAddIn
 		public async Task ArchiveCmd(IRibbonControl control)
 			=> await factory.Run<ArchiveCommand>(control.Tag); // tag=scope
 
+		[Command("ribArrangeContainersButton_Label", Keys.Control | Keys.Alt | Keys.A, "ribPageMenu")]
 		public async Task ArrangeContainersCmd(IRibbonControl control)
 			=> await factory.Run<ArrangeContainersCommand>();
 
