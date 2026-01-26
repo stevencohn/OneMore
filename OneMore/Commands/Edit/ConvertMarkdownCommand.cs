@@ -68,6 +68,8 @@ namespace River.OneMoreAddIn.Commands
 
 				var text = reader.ReadTextFrom(paragraphs, allContent);
 				text = Regex.Replace(text, @"<br>([\n\r]+)", "$1");
+				text = Regex.Replace(text, @"\<*input\s+type*=*\""checkbox\""\s+unchecked\s+[a-zA-Z *]*\/\>", "[ ]");
+				text = Regex.Replace(text, @"\<*input\s+type*=*\""checkbox\""\s+checked\s+[a-zA-Z *]*\/\>", "[x]");
 
 				var body = OneMoreDig.ConvertMarkdownToHtml(filepath, text);
 

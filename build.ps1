@@ -84,6 +84,9 @@ Begin
 		$0 = 'C:\Program Files\Microsoft Visual Studio\2022'
 		if (FindVS $0) { return $true }
 
+		$0 = 'C:\Program Files\Microsoft Visual Studio\18'
+		if (FindVS $0) { return $true }
+
 		$0 = 'C:\Program Files (x86)\Microsoft Visual Studio\2019'
 		return FindVS $0
 	}

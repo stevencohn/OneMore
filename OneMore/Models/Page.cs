@@ -122,7 +122,6 @@ namespace River.OneMoreAddIn.Models
 
 		public bool IsValid => Root is not null;
 
-
 		/// <summary>
 		/// Gets the namespace used to create new elements for the page
 		/// </summary>
@@ -275,6 +274,55 @@ namespace River.OneMoreAddIn.Models
 			}
 
 			Root.AddFirst(tagdef);
+		}
+
+		/// <summary>
+		/// Extended version from RemindCommand to handle also non Todo Tags
+		/// </summary>
+		public string SetTag(XElement paragraph, string tagSymbol, string tagName, int tagType = 0, bool tagStatus = false)
+		{
+			var index = this.GetTagDefIndex(tagSymbol);
+			if (index == null)
+			{
+				index = this.AddTagDef(tagSymbol, tagName, tagType);
+			}
+
+			var tag = paragraph.Elements(Namespace + "Tag")
+				.FirstOrDefault(e => e.Attribute("index").Value == index);
+
+			if (tag == null)
+			{
+				// tags must be ordered by index even within their containing paragraph
+				// so take all, remove from paragraph, append, sort, re-add...
+
+				var tags = paragraph.Elements(Namespace + "Tag").ToList();
+				tags.ForEach(t => t.Remove());
+
+				// synchronize tag with reminder
+				var completed = tagStatus == true
+					? "true" : "false";
+
+				tag = new XElement(Namespace + "Tag",
+					new XAttribute("index", index),
+					new XAttribute("completed", completed),
+					new XAttribute("disabled", "false")
+					);
+
+				tags.Add(tag);
+
+				paragraph.AddFirst(tags.OrderBy(t => t.Attribute("index").Value));
+			}
+			else
+			{
+				// synchronize tag with reminder
+				var tcompleted = tag.Attribute("completed").Value == "true";
+				var rcompleted = tagStatus;
+				if (tcompleted != rcompleted)
+				{
+					tag.Attribute("completed").Value = rcompleted ? "true" : "false";
+				}
+			}
+			return index;
 		}
 
 

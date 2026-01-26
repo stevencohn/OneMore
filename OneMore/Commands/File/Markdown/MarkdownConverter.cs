@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Styles;
 	using System.Collections.Generic;
+	using System.Globalization;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Xml.Linq;
@@ -51,6 +52,28 @@ namespace River.OneMoreAddIn.Commands
 			{
 				RewriteHeadings(outline.Descendants(ns + "OE"));
 			}
+
+			// added header spacing specific to markdown
+			var quickstyles = page.Root.Elements(ns + "QuickStyleDef");
+			foreach (var quickstyle in quickstyles)
+			{
+				var name = quickstyle.Attribute("name").Value;
+				if (name.Equals("h1") || name.Equals("h2"))
+				{
+					replaceAtributes(quickstyle, spaceBefore: 0.8, spaceAfter: 0.5);
+				}
+				else
+				if (name.Equals("h3") || name.Equals("h4"))
+				{
+					replaceAtributes(quickstyle, spaceBefore: 0.3, spaceAfter: 0.3);
+				}
+			}
+			void replaceAtributes(XElement quickstyle, double spaceBefore, double spaceAfter)
+			{
+				quickstyle.SetAttributeValue("spaceBefore", spaceBefore.ToString("####0.00", CultureInfo.InvariantCulture));
+				quickstyle.SetAttributeValue("spaceAfter", spaceAfter.ToString("####0.00", CultureInfo.InvariantCulture));
+			}
+
 		}
 
 
@@ -142,7 +165,21 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
+		/// Applies standard OneNote styling to all recognizable headings in all Outlines
+		/// on the page
+		/// </summary>
+		public void RewriteTodo()
+		{
+			foreach (var outline in page.BodyOutlines)
+			{
+				RewriteTodo(outline.Descendants(ns + "OE"));
+			}
+		}
+
+
+		/// <summary>
 		/// Tag current line with To Do tag if beginning with [ ] or [x]
+		/// Also :TAGS: will be handled here
 		/// All other :emojis: should be translated inline by Markdig
 		/// </summary>
 		/// <param name="paragraphs"></param>
@@ -158,21 +195,46 @@ namespace River.OneMoreAddIn.Commands
 				{
 					var cdata = run.GetCData();
 					var wrapper = cdata.GetWrapper();
+					if (wrapper.FirstNode is XText)
+					{
+						cdata.Value = wrapper.GetInnerXml();
+					}
+					while (wrapper.FirstNode is not XText && wrapper.FirstNode is not null)
+					{
+						wrapper = (XElement)wrapper.FirstNode;
+					}
 					if (wrapper.FirstNode is XText text)
 					{
 						var match = boxpattern.Match(text.Value);
+						// special treatment of todo tag 
 						if (match.Success)
 						{
 							text.Value = text.Value.Substring(match.Length);
 
+							var org = text.Value;
+							var completed = match.Groups["x"].Value == "x";
+							text.Value = text.Value.Replace((completed ? "[x]" : "[ ]"), "");
+							cdata.Value = cdata.Value.Replace(org, text.Value);
 							// ensure TagDef exists
-							var index = page.AddTagDef("3", "To Do", 4);
+							page.SetTag(paragraph, tagSymbol: "3", tagStatus:completed,tagName:"todo");
+						}
+						else
+						{
+							// look for all other tags
+							foreach (var t in MarkdownEmojis.taglist)
+							{
+								// check for other tags
+								if (text.Value.Contains(t.name))
+								{
+									var org = text.Value;
+									text.Value = text.Value.Replace(t.name, "");
+									cdata.Value = cdata.Value.Replace(org, text.Value);
+									// ensure TagDef exists
+									page.SetTag(paragraph, tagSymbol: t.id, tagStatus: false, tagName: t.topic, tagType: t.type);
+									break;
+								}
+							}
 
-							// inject tag prior to run
-							run.AddBeforeSelf(new Tag(index, match.Groups["x"].Value == "x"));
-
-							// update run text
-							cdata.Value = wrapper.GetInnerXml();
 						}
 					}
 				}
