@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<hints>
+  <hint name="AdjustImagesDialog_autoSizeRadio.Text">
+    <source>Auto-size</source>
+    <preferred>Dimensione automatica</preferred>
+  </hint>
+  <hint name="AdjustImagesDialog_previewGroup.Text">
+    <source>Preview {0}</source>
+    <preferred>Anteprima di {0}</preferred>
+  </hint>
+  <hint name="AdjustImagesDialog_repositionBox.Text">
+    <source>Reposition background images</source>
+    <preferred>Riposiziona le immagini di sfondo</preferred>
+  </hint>
+  <hint name="AdjustImagesDialog_viewSizeLabel.Text">
+    <source>View size</source>
+    <preferred>Dimensione vista</preferred>
+  </hint>
+  <hint name="ArrangeContainersDialog.Text">
+    <source>Arrange Containers</source>
+    <preferred>Disposizione contenitori </preferred>
+  </hint>
+  <hint name="ContextMenuSheet_menu">
+    <source>{0} Menu</source>
+    <preferred>Menu {0}</preferred>
+  </hint>
+  <hint name="CopyAsMarkdownCommand_copied">
+    <source>Copied markdown</source>
+    <preferred>Markdown copiato</preferred>
+  </hint>
+  <hint name="ribArrangeContainersButton_Label">
+    <source>Arrange Containers</source>
+    <preferred>Disposizione contenitori </preferred>
+  </hint>
+  <hint name="ribStrikeoutTasksButton_Label">
+    <source>Strikethrough Completed To Do Tags</source>
+    <preferred>Applica questo colore ai tag attività completati barrati</preferred>
+  </hint>
+</hints>
