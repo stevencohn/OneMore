@@ -4195,6 +4195,14 @@ ISO-code then comma then language name</comment>
     <value>פתח את חלון ההגדרות של OneMore</value>
     <comment>ribbon main</comment>
   </data>
+  <data name="ribShowContainersButton_Label" xml:space="preserve">
+    <value>החלף את מיכלי הערות</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribShowContainersButton_Screentip" xml:space="preserve">
+    <value>החלף את האפשרות 'הצג מכילי הערות'</value>
+    <comment>ribbon extras</comment>
+  </data>
   <data name="ribShowKeyboardShortcutsButton_Label" xml:space="preserve">
     <value>קיצורי מקשים של OneNote</value>
     <comment>favorite</comment>

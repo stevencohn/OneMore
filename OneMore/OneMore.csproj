@@ -276,6 +276,7 @@
     <Compile Include="Commands\Search\SearchGroupControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Commands\Tools\ShowContainersCommand.cs" />
     <Compile Include="Commands\Search\TextMatchBuilder.cs" />
     <Compile Include="Commands\Settings\VariablesSheet.cs">
       <SubType>UserControl</SubType>

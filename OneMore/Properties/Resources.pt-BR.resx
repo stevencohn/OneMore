@@ -4196,6 +4196,14 @@ Guia Ajuda</value>
     <value>Abra a janela de configurações do OneMore</value>
     <comment>ribbon main</comment>
   </data>
+  <data name="ribShowContainersButton_Label" xml:space="preserve">
+    <value>Alternar contêineres de notas</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribShowContainersButton_Screentip" xml:space="preserve">
+    <value>Alternar opção Mostrar contêineres de notas</value>
+    <comment>ribbon extras</comment>
+  </data>
   <data name="ribShowKeyboardShortcutsButton_Label" xml:space="preserve">
     <value>Atalhos de teclado do OneNote</value>
     <comment>favorite</comment>

@@ -4197,6 +4197,14 @@ Help Tab</value>
     <value>Open the OneMore settings window</value>
     <comment>ribbon main</comment>
   </data>
+  <data name="ribShowContainersButton_Label" xml:space="preserve">
+    <value>Toggle Note Containers</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribShowContainersButton_Screentip" xml:space="preserve">
+    <value>Toggle Show Note Containers Option</value>
+    <comment>ribbon extras</comment>
+  </data>
   <data name="ribShowKeyboardShortcutsButton_Label" xml:space="preserve">
     <value>OneNote Keyboard Shortcuts</value>
     <comment>ribbon favorites</comment>

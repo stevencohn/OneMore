@@ -142,6 +142,11 @@ namespace River.OneMoreAddIn.Commands
 			logger = Logger.Current;
 
 			// pattern to remove SPAN|A elements and &#nn; escaped characters
+			//
+			//
+			// NOTE, instead of ignoring escape sequences, use WebUtility.HtmlDecode(input);
+			//
+			//
 			cleaner = new Regex(
 				@"(?:<\s*(?:span|a)[^>]*?>)|(?:</(?:span|a)>)|(?:&#\d+;)",
 				RegexOptions.Compiled);
@@ -607,6 +612,11 @@ namespace River.OneMoreAddIn.Commands
 			{
 				// custom cleaner regex adds filter for "&#nnn;" escapes, instead of TextValue
 				//var line = e.TextValue(true).Trim();
+				//
+				//
+				// NOTE, instead of ignoring escape sequences, use WebUtility.HtmlDecode(input);
+				//
+				//
 				var line = cleaner.Replace(e.Value, string.Empty).Trim();
 				if (line.Length > 0)
 				{

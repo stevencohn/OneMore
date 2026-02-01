@@ -1082,6 +1082,12 @@
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
         onAction="ShowXmlCmd"/>
+      <button
+        id="ribShowContainersButton"
+        imageMso="TextBoxWordClassic"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="ShowContainersCmd"/>
     </menu>
     <separator id="sepShowXml"/>
     <button

@@ -4196,6 +4196,14 @@ Tabblad Help</value>
     <value>Open het instellingenvenster van OneMore</value>
     <comment>ribbon main</comment>
   </data>
+  <data name="ribShowContainersButton_Label" xml:space="preserve">
+    <value>Schakel notitiecontainers in</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribShowContainersButton_Screentip" xml:space="preserve">
+    <value>Schakel de optie Notitiecontainers weergeven in</value>
+    <comment>ribbon extras</comment>
+  </data>
   <data name="ribShowKeyboardShortcutsButton_Label" xml:space="preserve">
     <value>OneNote-sneltoetsen</value>
     <comment>favorite</comment>

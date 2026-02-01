@@ -4195,6 +4195,14 @@ Onglet Aide</value>
     <value>Ouvrez la fenêtre des paramètres OneMore</value>
     <comment>ribbon main</comment>
   </data>
+  <data name="ribShowContainersButton_Label" xml:space="preserve">
+    <value>Toggle Conteneurs de notes</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribShowContainersButton_Screentip" xml:space="preserve">
+    <value>Activer/Désactiver l'option Afficher les conteneurs de notes</value>
+    <comment>ribbon extras</comment>
+  </data>
   <data name="ribShowKeyboardShortcutsButton_Label" xml:space="preserve">
     <value>Raccourcis clavier OneNote</value>
     <comment>favorite</comment>
