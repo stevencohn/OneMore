@@ -921,6 +921,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<SettingsCommand>(ribbon);
 
 
+		[Command("ribShowContainers_Label", Keys.Alt | Keys.B)]
+		public async Task ShowContainersCmd(IRibbonControl control)
+			=> await factory.Run<ShowContainersCommand>();
+
+
 		public async Task ShowKeyboardShortcutsCmd(IRibbonControl control)
 			=> await factory.Run<ShowKeyboardShortcutsCommand>();
 

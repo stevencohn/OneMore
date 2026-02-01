@@ -4197,6 +4197,14 @@ Zakładka Pomoc</value>
     <value>Otwórz okno ustawień OneMore</value>
     <comment>ribbon main</comment>
   </data>
+  <data name="ribShowContainersButton_Label" xml:space="preserve">
+    <value>Przełącz kontenery notatek</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribShowContainersButton_Screentip" xml:space="preserve">
+    <value>Przełącz opcję Pokaż kontenery notatek</value>
+    <comment>ribbon extras</comment>
+  </data>
   <data name="ribShowKeyboardShortcutsButton_Label" xml:space="preserve">
     <value>Skróty klawiaturowe programu OneNote</value>
     <comment>favorite</comment>

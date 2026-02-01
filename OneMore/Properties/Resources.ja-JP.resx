@@ -4199,6 +4199,14 @@ ISO-code then comma then language name</comment>
     <value>OneMoreの設定ウィンドウを開く</value>
     <comment>ribbon main</comment>
   </data>
+  <data name="ribShowContainersButton_Label" xml:space="preserve">
+    <value>Toggle ノートコンテナ</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribShowContainersButton_Screentip" xml:space="preserve">
+    <value>Toggle ノートコンテナの表示オプション</value>
+    <comment>ribbon extras</comment>
+  </data>
   <data name="ribShowKeyboardShortcutsButton_Label" xml:space="preserve">
     <value>OneNoteのショートカットキー</value>
     <comment>ribbon favorites</comment>

@@ -4196,6 +4196,14 @@ Pestaña Ayuda</value>
     <value>Abra la ventana Configuración de Onemore</value>
     <comment>ribbon main</comment>
   </data>
+  <data name="ribShowContainersButton_Label" xml:space="preserve">
+    <value>Alternar contenedores de notas</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribShowContainersButton_Screentip" xml:space="preserve">
+    <value>Toggle Mostrar opción de contenedores de notas</value>
+    <comment>ribbon extras</comment>
+  </data>
   <data name="ribShowKeyboardShortcutsButton_Label" xml:space="preserve">
     <value>Métodos abreviados de teclado de OneNote</value>
     <comment>favorite</comment>

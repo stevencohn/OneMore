@@ -4189,6 +4189,14 @@ ISO-code then comma then language name</comment>
     <value>打开 OneMore 设置窗口</value>
     <comment>ribbon main</comment>
   </data>
+  <data name="ribShowContainersButton_Label" xml:space="preserve">
+    <value>Toggle 注释容器</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribShowContainersButton_Screentip" xml:space="preserve">
+    <value>Toggle 显示注释容器选项</value>
+    <comment>ribbon extras</comment>
+  </data>
   <data name="ribShowKeyboardShortcutsButton_Label" xml:space="preserve">
     <value>OneNote 键盘快捷键</value>
     <comment>favorite</comment>

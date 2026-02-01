@@ -4191,6 +4191,14 @@ Registerkarte „Hilfe“.</value>
     <value>Öffnet die OneMore Einstellungen</value>
     <comment>ribbon main</comment>
   </data>
+  <data name="ribShowContainersButton_Label" xml:space="preserve">
+    <value>Notizcontainer umschalten</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribShowContainersButton_Screentip" xml:space="preserve">
+    <value>Schalten Sie die Option „Notizcontainer anzeigen“ um</value>
+    <comment>ribbon extras</comment>
+  </data>
   <data name="ribShowKeyboardShortcutsButton_Label" xml:space="preserve">
     <value>OneNote-Tastenkombinationen</value>
     <comment>favorite</comment>

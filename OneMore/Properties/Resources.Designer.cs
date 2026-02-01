@@ -19,7 +19,7 @@ namespace River.OneMoreAddIn.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -10416,6 +10416,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribSettingsButton_Screentip {
             get {
                 return ResourceManager.GetString("ribSettingsButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle Note Containers.
+        /// </summary>
+        internal static string ribShowContainersButton_Label {
+            get {
+                return ResourceManager.GetString("ribShowContainersButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle Show Note Containers Option.
+        /// </summary>
+        internal static string ribShowContainersButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribShowContainersButton_Screentip", resourceCulture);
             }
         }
         
