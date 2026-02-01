@@ -1283,6 +1283,9 @@
     <EmbeddedResource Include="Commands\Tagging\ScheduleScanDialog.resx">
       <DependentUpon>ScheduleScanDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.it-IT.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.ja-JP.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -1464,6 +1467,7 @@
     <Content Include="Properties\Menu\m_Underline.png" />
     <Content Include="Properties\Menu\m_WrapText.png" />
     <Content Include="Properties\Resources.fr-FR-hints.xml" />
+    <Content Include="Properties\Resources.it-IT-hints.xml" />
     <Content Include="Ribbon\Images\ribSearchHashtagsButton.png" />
     <Content Include="Properties\Images\Label.png" />
     <Content Include="Properties\Images\LabelSearch.png" />
