@@ -1,371 +1,2155 @@
 <?xml version="1.0" encoding="utf-8"?>
 <hints>
-  <hint name="AboutDialog.Text">
-    <source>
-      OneMore Add-in
-    </source>
-    <preferred>
-      OneMore 加载项
-    </preferred>
-  </hint>
-  <hint name="AboutDialog_LatestTitle">
-    <source>
-      You're good to go!
-    </source>
-    <preferred>
-      您已准备就绪！
-    </preferred>
-  </hint>
-  <hint name="ribNavigatorButton_Label">
-    <source>
-      Navigator
-    </source>
-    <preferred>
-      导航
-    </preferred>
-  </hint>
-  <hint name="ribTitlecaseButton_Label">
-    <source>
-      To Title Case
-    </source>
-    <preferred>
-      标题大小写
-    </preferred>
-  </hint>
-  <hint name="ribInsertBreadcrumbButton_Label">
-    <source>
-      Breadcrumb
-    </source>
-    <preferred>
-      页面路径
-    </preferred>
-  </hint>
-  <hint name="ribInsertBreadcrumbButton_Screentip">
-    <source>
-      Insert breadcrumb of page location at top of page
-    </source>
-    <preferred>
-      在页面顶部插入页面路径
-    </preferred>
-  </hint>
-  <hint name="ribRemoveEmptyButton_Label">
-    <source>
-      Remove Empty Lines
-    </source>
-    <preferred>
-      删除空行
-    </preferred>
-  </hint>
-  <hint name="ribFileQuickNotesButton_Label">
-    <source>
-      File Quick Notes
-    </source>
-    <preferred>
-      归档快速笔记
-    </preferred>
-  </hint>
-  <hint name="ribFileQuickNotesButton_Screentip">
-    <source>
-      Organize Quick Notes into a notebook or section
-    </source>
-    <preferred>
-      将快速笔记整理到笔记本或分区中
-    </preferred>
-  </hint>
-  <hint name="word_Caption">
-    <source>
-      Caption
-    </source>
-    <preferred>
-      说明
-    </preferred>
-  </hint>
-  <hint name="AddCaptionCommand_Captioned">
-    <source>
-      Image already has a caption
-    </source>
-    <preferred>
-      图片已有说明
-    </preferred>
-  </hint>
-  <hint name="ribAddCaptionButton_Label">
-    <source>
-      Add Caption
-    </source>
-    <preferred>
-      添加说明
-    </preferred>
-  </hint>
-  <hint name="ribCaptionAttachmentsButton_Label">
-    <source>
-      Caption Attachments
-    </source>
-    <preferred>
-      为附件添加说明
-    </preferred>
-  </hint>
-  <hint name="ribCaptionAttachmentsButton_Screentip">
-    <source>
-      Add a caption to each attachment on the page
-    </source>
-    <preferred>
-      为页面上的每个附件添加说明
-    </preferred>
-  </hint>
-  <hint name="ribClearBackgroundButton_Label">
-    <source>
-      Clear Background Color
-    </source>
-    <preferred>
-      清除背景颜色
-    </preferred>
-  </hint>
-  <hint name="ribPasteTextButton_Label">
-    <source>
-      Paste and Keep Text Only
-    </source>
-    <preferred>
-      粘贴并只保留文本
-    </preferred>
-  </hint>
-  <hint name="ribPasteTextButton_Screentip">
-    <source>
-      Paste and Keep Text Only (Ctrl + Shift + V)
-    </source>
-    <preferred>
-      粘贴并只保留文本（Ctrl + Shift + V）
-    </preferred>
-  </hint>
-  <hint name="ribRemoveSectionNumbersButton_Label">
-    <source>
-      Remove Section Numbers
-    </source>
-    <preferred>
-      删除分区编号
-    </preferred>
-  </hint>
-  <hint name="ribRemoveSectionNumbersButton_Screentip">
-    <source>
-      Remove numbers from all sectionsin this notebook
-    </source>
-    <preferred>
-      删除此笔记本中所有分区的编号
-    </preferred>
-  </hint>
-  <hint name="ribRemovePageNumbersButton_Screentip">
-    <source>
-      Remove numbers from all pages in this section
-    </source>
-    <preferred>
-      删除此分区中所有页面的页码
-    </preferred>
-  </hint>
-  <hint name="ribCompleteReminderButton_Label">
-    <source>
-      Complete Reminder
-    </source>
-    <preferred>
-      完成提醒
-    </preferred>
-  </hint>
-  <hint name="ribCopyAcrossButton_Label">
-    <source>
-      Copy Across
-    </source>
-    <preferred>
-      向右复制
-    </preferred>
-  </hint>
-  <hint name="ribCopyAcrossButton_Screentip">
-    <source>
-      Copy content across the selected rows
-    </source>
-    <preferred>
-      向右复制所选行的内容
-    </preferred>
-  </hint>
-  <hint name="ribCopyDownButton_Label">
-    <source>
-      Copy Down
-    </source>
-    <preferred>
-      向下复制
-    </preferred>
-  </hint>
-  <hint name="ribCopyDownButton_Screentip">
-    <source>
-      Copy content down the selected columns
-    </source>
-    <preferred>
-      向下复制所选列的内容
-    </preferred>
-  </hint>
-  <hint name="ribFillAcrossButton_Label">
-    <source>
-      Fill Across
-    </source>
-    <preferred>
-      向右填充
-    </preferred>
-  </hint>
-  <hint name="ribFillAcrossButton_Screentip">
-    <source>
-      Fill sequence across selected rows
-    </source>
-    <preferred>
-      向右填充所选行的序列
-    </preferred>
-  </hint>
-  <hint name="ribFillDownButton_Label">
-    <source>
-      Fill Down
-    </source>
-    <preferred>
-      向下填充
-    </preferred>
-  </hint>
-  <hint name="ribFillDownButton_Screentip">
-    <source>
-      Fill sequence down selected columns (Ctrl + D)
-    </source>
-    <preferred>
-      向下填充所选列的序列（Ctrl + D）
-    </preferred>
-  </hint>
-  <hint name="ribCopyAsMarkdownButton_Screentip">
-    <source>
-      Copy select content as markdown
-    </source>
-    <preferred>
-      将所选内容复制为 Markdown
-    </preferred>
-  </hint>
-  <hint name="ribSplitButton_Label">
-    <source>
-      Split Page
-    </source>
-    <preferred>
-      拆分页面
-    </preferred>
-  </hint>
-  <hint name="ribInsertCellsButton_Label">
-    <source>
-      Insert Table Cells
-    </source>
-    <preferred>
-      插入表格单元格
-    </preferred>
-  </hint>
-  <hint name="ribImportButton_Label">
-    <source>
-      Import
-    </source>
-    <preferred>
-      导入
-    </preferred>
-  </hint>
-  <hint name="ribTableMenu_Label">
-    <source>
-      Table
-    </source>
-    <preferred>
-      表格
-    </preferred>
-  </hint>
-  <hint name="StyleDialog_afterLabel.Text">
-    <source>
-      Space After:
-    </source>
-    <preferred>
-      段后空间：
-    </preferred>
-  </hint>
-  <hint name="StyleDialog_beforeLabel.Text">
-    <source>
-      Space Before:
-    </source>
-    <preferred>
-      段前空间：
-    </preferred>
-  </hint>
-  <hint name="StyleDialog_spacingLabel.Text">
-    <source>
-      Spacing:
-    </source>
-    <preferred>
-      行距：
-    </preferred>
-  </hint>
-  <hint name="word_Apply">
-    <source>
-      Apply
-    </source>
-    <preferred>
-      应用
-    </preferred>
-  </hint>
-  <hint name="word_Close">
-    <source>
-      Close
-    </source>
-    <preferred>
-      关闭
-    </preferred>
-  </hint>
-  <hint name="word_Completed">
-    <source>
-      Completed
-    </source>
-    <preferred>
-      已完成
-    </preferred>
-  </hint>
-  <hint name="word_Navigator">
-    <source>
-      Navigator
-    </source>
-    <preferred>
-      导航
-    </preferred>
-  </hint>
-  <hint name="word_No">
-    <source>
-      No
-    </source>
-    <preferred>
-      否
-    </preferred>
-  </hint>
-  <hint name="word_None">
-    <source>
-      None
-    </source>
-    <preferred>
-      无
-    </preferred>
-  </hint>
-  <hint name="word_OK">
-    <source>
-      OK
-    </source>
-    <preferred>
-      确定
-    </preferred>
-  </hint>
-  <hint name="word_PercentSymbol">
-    <source>
-      %
-    </source>
-    <preferred>
-      %
-    </preferred>
-  </hint>
-  <hint name="word_Yes">
-    <source>
-      Yes
-    </source>
-    <preferred>
-      是
-    </preferred>
-  </hint>
+    <hint name="AboutDialog.Text">
+        <source>OneMore Add-in</source>
+        <preferred>关于 OneMore 加载项</preferred>
+    </hint>
+    <hint name="AboutDialog_copyLabel.Text">
+        <source>Copyright @ 2016-{0} Steven M Cohn. All rights reserved.</source>
+        <preferred>版权所有 @ 2016-{0} Steven M Cohn。</preferred>
+    </hint>
+    <hint name="AboutDialog_githubLink.Text">
+        <source>See the project on GitHub</source>
+        <preferred>在 GitHub 上查看项目</preferred>
+    </hint>
+    <hint name="AboutDialog_titleLabel.Text">
+        <source>OneMore Add-in for OneNote</source>
+        <preferred>适用 OneNote 的 OneMore 加载项</preferred>
+    </hint>
+    <hint name="AboutDialog_versionLabel.Text">
+        <source>Version {0} with OneNote {1}</source>
+        <preferred>插件版本 {0} 安装在 Onenote版本 {1}</preferred>
+    </hint>
+    <hint name="AddCaptionCommand_cannotCaptionBg">
+        <source>Cannot add a caption to a background image on the page. Images must be in an outline container to be captioned.</source>
+        <preferred>无法为页面上的背景图像添加说明。图像必须位于容器中才能添加图片说明。</preferred>
+    </hint>
+    <hint name="AddCaptionCommand_Captioned">
+        <source>Image already has a caption</source>
+        <preferred>图片说明已存在</preferred>
+    </hint>
+    <hint name="AddFormulaCommand_Calculated">
+        <source>Calculated</source>
+        <preferred>公式计算完成</preferred>
+    </hint>
+    <hint name="AdjustImagesDialog.Text">
+        <source>Resize and Adjust Image</source>
+        <preferred>图像大小与样式调整</preferred>
+    </hint>
+    <hint name="AdjustImagesDialog_absRadio.Text">
+        <source>Absolute</source>
+        <preferred>固定尺寸</preferred>
+    </hint>
+    <hint name="AdjustImagesDialog_appliesTo">
+        <source>Applies to</source>
+        <preferred>应用到</preferred>
+    </hint>
+    <hint name="AdjustImagesDialog_autoSizeRadio.Text">
+        <source>Auto-size</source>
+        <preferred>自动</preferred>
+    </hint>
+    <hint name="AdjustImagesDialog_imageSizeLabel.Text">
+        <source>Image size</source>
+        <preferred>文件尺寸</preferred>
+    </hint>
+    <hint name="AdjustImagesDialog_limitsBox.Text">
+        <source>Resize all images
+            Do not shrink larger images
+            Do no enlarge smaller images</source>
+        <preferred>调整所有图像的大小
+            放大所有图像以达到最大图像的尺寸
+            缩小所有的图像以达到小图像尺寸</preferred>
+    </hint>
+    <hint name="AdjustImagesDialog_noImages">
+        <source>No images were found on this page.
+
+            Images must be in an outline container. Background images cannot be adjusted.</source>
+        <preferred>在此页面上未找到任何图像。
+
+            图像必须位于容器中。背景图像无法调整。</preferred>
+    </hint>
+    <hint name="AdjustImagesDialog_noImageToPaste">
+        <source>PNG, JPG, GIF, BMP not found on the clipboard</source>
+        <preferred>剪贴板上找不到 PNG，JPG，GIF，BMP 格式的图像文件</preferred>
+    </hint>
+    <hint name="AdjustImagesDialog_pctRadio.Text">
+        <source>Percentage</source>
+        <preferred>百分比缩放</preferred>
+    </hint>
+    <hint name="AdjustImagesDialog_preserveBox.Text">
+        <source>Preserve storage size</source>
+        <preferred>保存原文件尺寸</preferred>
+    </hint>
+    <hint name="AdjustImagesDialog_presetRadio.Text">
+        <source>Preset</source>
+        <preferred>预设宽度</preferred>
+    </hint>
+    <hint name="AdjustImagesDialog_resetLinkLabel.Text">
+        <source>Reset values</source>
+        <preferred>重置</preferred>
+    </hint>
+    <hint name="AdjustImagesDialog_styleBox.Text">
+        <source>Original
+            Gray scale
+            Sepia
+            Polaroid
+            Invert</source>
+        <preferred>原图
+            灰度
+            棕褐色
+            宝丽来
+            反色</preferred>
+    </hint>
+    <hint name="AdjustImagesDialog_viewSizeLabel.Text">
+        <source>View size</source>
+        <preferred>显示尺寸</preferred>
+    </hint>
+    <hint name="AliasSheet_introBox.Text">
+        <source>Define command aliases for use in the Command Palette.</source>
+        <preferred>定义命令别名，可在命令面板中输入别名来调用命令</preferred>
+    </hint>
+    <hint name="AnalyzeCommand_CacheSummary">
+        <source>The cache is an internal directory managed by OneNote to optimize its performance.
+            The recommendation is to avoid manually deleting the contents of the cache directory
+            unless it becomes corrupted or hampers the operation of OneNote.</source>
+        <preferred>缓存文件是 OneNote 管理的一个内部目录，用于优化其性能。建议避免手动删除缓存目录的内容，除非它已经损坏或妨碍 OneNote 的运行。</preferred>
+    </hint>
+    <hint name="AnalyzeCommand_est">
+        <source>{0} est</source>
+        <preferred>预计 {0}</preferred>
+    </hint>
+    <hint name="AnalyzeCommand_NoCache">
+        <source>&lt;span style='font-style:italic'&gt;Cache not found; location likely changed in
+            OneNote options&lt;/span&gt;</source>
+        <preferred>&lt;span style='font-style:italic'&gt;缓存未找到；缓存路径可能已经更改&lt;/span&gt;</preferred>
+    </hint>
+    <hint name="AnalyzeCommand_OpenSections">
+        <source>Open Sections</source>
+        <preferred>已打开的分区</preferred>
+    </hint>
+    <hint name="AnalyzeCommand_OrphanSummary">
+        <source>Orphans are backup folders of notebooks that are no longer opened in OneNote. If
+            they are no longer used, and you've confirmed that they are obsolete, they can be
+            removed safely.</source>
+        <preferred>孤立文件是 OneNote 中不再打开的笔记本的备份文件夹。如果它们不再使用，并且您已确认它们已过时，则可以删除它们。</preferred>
+    </hint>
+    <hint name="AnalyzeCommand_PageSummary">
+        <source>This is a detailed breakdown of each page showing the total size of the internal XML representation and the size of each image and file attachment. Images are shown in both "BinHex" XML sizes and native Bitmap sizes. Files are shown along with the amount of space they consume on disk.</source>
+        <preferred>这是每页的详细记录，显示了内部 XML 文件的总大小以及每个图像和文件附件的大小。图像以“BinHex”XML 大小和原生 Bitmap 大小显示，文件显示它们在磁盘上占用的空间量。</preferred>
+    </hint>
+    <hint name="AnalyzeCommand_SectionSummary">
+        <source>The number of backup copies of each section is configured in the OneNote Options. This summarizes the sections per notebook, showing the size of each section's data file, the number of backup copies, and the total disk space consumed by all copies of each section.</source>
+        <preferred>每个分区的备份副本数量在 OneNote
+            选项中配置。这总结了每个笔记本的分区，显示了每个分区的数据文件的大小、备份副本的数量以及每个分区的所有副本占用的总磁盘空间。</preferred>
+    </hint>
+    <hint name="AnalyzeCommand_SummarySummary">
+        <source>Notebooks can be stored locally or remotely on OneDrive. Remote notebooks can only be analyzed by their local backups as configured in the OneNote Options. This summary shows the total disk usage in either the data location for local notebooks or the backup location for remote notebooks including all backup copies and the per-notebook recycle bins.</source>
+        <preferred>笔记本可以本地存储或存储在 OneDrive 上。远程笔记本只能通过 OneNote 选项中配置的本地备份进行分析。此摘要显示了本地笔记本的数据位置或远程笔记本的本地备份的磁盘使用总量，包括所有备份副本和每个笔记本的回收站的占用空间。</preferred>
+    </hint>
+    <hint name="AnalyzeCommand_total">
+        <source>{0} total</source>
+        <preferred>总计 {0}</preferred>
+    </hint>
+    <hint name="AnalyzeCommand_totalImages">
+        <source>{0} total images</source>
+        <preferred>包含 {0} 张图片</preferred>
+    </hint>
+    <hint name="AnalyzeDialog.Text">
+        <source>Storage Analysis Report Options</source>
+        <preferred>Onenote 存储分析选项</preferred>
+    </hint>
+    <hint name="AnalyzeDialog_allDetailsBox.Text">
+        <source>Include page details for all sections in this notebook</source>
+        <preferred>包含此笔记本中所有分区的页面详细信息</preferred>
+    </hint>
+    <hint name="AnalyzeDialog_noDetailsBox.Text">
+        <source>No page details</source>
+        <preferred>不包含页面详细信息</preferred>
+    </hint>
+    <hint name="AnalyzeDialog_notebookBox.Text">
+        <source>Include notebook backup summary</source>
+        <preferred>包含笔记本备份摘要</preferred>
+    </hint>
+    <hint name="AnalyzeDialog_sectionBox.Text">
+        <source>Include section summary</source>
+        <preferred>包含分区摘要</preferred>
+    </hint>
+    <hint name="AnalyzeDialog_sectionDetailsBox.Text">
+        <source>Include page details for current section</source>
+        <preferred>包含当前部分的页面详细信息</preferred>
+    </hint>
+    <hint name="AnalyzeDialog_warningLabel.Text">
+        <source>Report may take minutes</source>
+        <preferred>报告生成可能需要几分钟</preferred>
+    </hint>
+    <hint name="ApplyTableTheme_SelectTable">
+        <source>Move the text cursor into a table cell</source>
+        <preferred>请对要设置的表格的单元格激活文本光标</preferred>
+    </hint>
+    <hint name="ArchiveCommand_noDirectory">
+        <source>Directory does not exist</source>
+        <preferred>文件路径不存在</preferred>
+    </hint>
+    <hint name="ArchiveCommand_OpenFileTitle">
+        <source>Archive Location</source>
+        <preferred>存档位置</preferred>
+    </hint>
+    <hint name="ArrangeContainersDialog_columnsLabel.Text">
+        <source>Columns</source>
+        <preferred>列数量</preferred>
+    </hint>
+    <hint name="ArrangeContainersDialog_flowButton.Text">
+        <source>Arrange in columns and then rows, fit to page width</source>
+        <preferred>先列后行排列，并匹配页面宽度</preferred>
+    </hint>
+    <hint name="BiLinkCommand_BadAnchor">
+        <source>Could not mark anchor point. Select a word or phrase from one paragraph. See log file for details.</source>
+        <preferred>无法标记锚点。请选择至少一个单词或文字作为锚点。请参阅日志文件以获取详细信息</preferred>
+    </hint>
+    <hint name="BiLinkCommand_Circular">
+        <source>Cannot link a phrase to itself</source>
+        <preferred>无法链接到自身</preferred>
+    </hint>
+    <hint name="BiLinkCommand_Marked">
+        <source>Marked "{0}" as the anchor. Now select the target text and finish the bi-directional
+            link</source>
+        <preferred>将“{0}”标记为起始锚点。</preferred>
+    </hint>
+    <hint name="BiLinkCommand_NoTarget">
+        <source>Select a word or phrase from one paragraph</source>
+        <preferred>选择至少一个单词或文字作为锚点</preferred>
+    </hint>
+    <hint name="BreakingDialog_oneButton.Text">
+        <source>One space between sentences</source>
+        <preferred>句子之间空一格</preferred>
+    </hint>
+    <hint name="BreakingDialog_Text">
+        <source>Change Sentence Spacing</source>
+        <preferred>更改句子间空格</preferred>
+    </hint>
+    <hint name="BreakingDialog_twoButton.Text">
+        <source>Two spaces between sentences</source>
+        <preferred>句子之间空两格</preferred>
+    </hint>
+    <hint name="Calculator_ErrInvalidParamCount">
+        <source>Expected {0} parameters, only given {1}</source>
+        <preferred>需要{0}参数，但仅提供{1}</preferred>
+    </hint>
+    <hint name="Calculator_ErrMissingRowColVars">
+        <source>The {0} function requires the col and row variables</source>
+        <preferred>{0} 函数需要 行和列 参数</preferred>
+    </hint>
+    <hint name="ClearLog_Message">
+        <source>Clear the log file now?</source>
+        <preferred>立即清除日志文件？</preferred>
+    </hint>
+    <hint name="Clipboard_locked">
+        <source>Cannot copy at this time. The clipboard is locked.</source>
+        <preferred>无法复制。剪贴板已锁定。</preferred>
+    </hint>
+    <hint name="ColorizerSheet_applyBox.Text">
+        <source>Always apply the following fonts when colorizing code</source>
+        <preferred>代码着色时格式化为以下字体</preferred>
+    </hint>
+    <hint name="ColorizerSheet_enabledLabel.Text">
+        <source>Enabled Languages</source>
+        <preferred>启用的编程语言</preferred>
+    </hint>
+    <hint name="ColorizerSheet_fixedBox.Text">
+        <source>Show only fixed-width fonts</source>
+        <preferred>仅显示等宽字体</preferred>
+    </hint>
+    <hint name="ColorizerSheet_font2Label.Text">
+        <source>Secondary</source>
+        <preferred>次要字体</preferred>
+    </hint>
+    <hint name="ColorizerSheet_fontLabel.Text">
+        <source>Primary</source>
+        <preferred>主字体</preferred>
+    </hint>
+    <hint name="ColorizerSheet_introBox.Text">
+        <source>Customize the behavior of the Colorize command. Secondary font applies when collapsing PlantUML</source>
+        <preferred>设置代码着色命令的行为。 绘制plantuml图时需指定次要字体</preferred>
+    </hint>
+    <hint name="ColorizerSheet_Title">
+        <source>Colorizer</source>
+        <preferred>代码着色</preferred>
+    </hint>
+    <hint name="ColorsSheet_introBox.Text">
+        <source>Customize the default style for horizontal line snippets and task marked by the
+            Strike-Through Completed To Do Tags command</source>
+        <preferred>自定义待办事项标签默认样式</preferred>
+    </hint>
+    <hint name="ContextMenuSheet_introBox.Text">
+        <source>Choose commands to display in the Page context menu. Menu items include all commands in that menu. Restart OneNote to see changes. If you choose one of the "menu" options such as "Edit Menu" then that will be added as a fly-out menu and include all Edit Menu items. But if you choose one of the sub-items, such as "To lowercase" then that item will be added as a top-level context menu item. If you happen to select both then both will be shown, possibly duplicating items.</source>
+        <preferred>选择要在页面中上下文菜单（右键菜单）中显示的命令。一级选项包含所有子选项。重新启动 OneNote 以查看更改。如果您选择一级选项，例如“编辑”菜单，那么它将作为弹出菜单添加并包括所有“编辑”子选项。如果您选择一级选项中的其中一个子项，例如“小写”，那么该项将单独添加到上下文菜单。如果您同时选择了两者，那么两者都会显示。</preferred>
+    </hint>
+    <hint name="ConvertImagesCommand_NoImages">
+        <source>Found no images to compress</source>
+        <preferred>没有发现可压缩的图像</preferred>
+    </hint>
+    <hint name="CopyAsMarkdownCommand_copied">
+        <source>Copied markdown</source>
+        <preferred>已复制为 Markdown</preferred>
+    </hint>
+    <hint name="CrawlWebPageDialog_introBox.Text">
+        <source>Select links to import as sub-pages. These will be relinked to from this page.</source>
+        <preferred>选择链接，将链接对应的网页导入为子页面。这些子页面将链接到当前页面。</preferred>
+    </hint>
+    <hint name="CrawlWebPageDialog_rewireBox.Text">
+        <source>Rewire parent links to sub-pages</source>
+        <preferred>将子页面重新链接到当前页面</preferred>
+    </hint>
+    <hint name="CrawlWebPageDialog_Text">
+        <source>Import Web Sub-pages</source>
+        <preferred>从链接导入网页</preferred>
+    </hint>
+    <hint name="CrawlWebPageDialog_unselectLabel.Text">
+        <source>Select none</source>
+        <preferred>全不选</preferred>
+    </hint>
+    <hint name="CrawlWebPageDialog_useTextBox.Text">
+        <source>Apply Text columns to sub-page titles</source>
+        <preferred>子页面标题使用Text列内容</preferred>
+    </hint>
+    <hint name="CreatePagesCommand_NoNamesFound">
+        <source>A name list was not found on the page</source>
+        <preferred>请选择包含页面名的表格区域</preferred>
+    </hint>
+    <hint name="CropImageDialog_bounds">
+        <source>Selection top left: {0}, {1}. Bounding rectangle size: {2} x {3}.</source>
+        <preferred>选择区域左上角坐标：{0}，{1}。 区域尺寸：{2} x {3}。</preferred>
+    </hint>
+    <hint name="CropImageDialog_imageSize">
+        <source>Image size: {0} x {1}</source>
+        <preferred>原图尺寸：{0} x {1}</preferred>
+    </hint>
+    <hint name="CropImageDialog_printout">
+        <source>This image is from a printout. If it is cropped, it will no longer be associated
+            with that original file. Do you want to continue cropping?</source>
+        <preferred>这张图片来自打印输出。如果对它裁剪，它将不再与原始文件关联。您要继续裁剪吗？</preferred>
+    </hint>
+    <hint name="ctxCleanMenu_Label">
+        <source>Clean...</source>
+        <preferred>清理</preferred>
+    </hint>
+    <hint name="ctxLowercaseButton_Label">
+        <source>To lowercase</source>
+        <preferred>转为小写</preferred>
+    </hint>
+    <hint name="ctxNoSpellCheckButton_Label">
+        <source>No Spell Check</source>
+        <preferred>关闭拼写检查</preferred>
+    </hint>
+    <hint name="ctxUppercaseButton_Label">
+        <source>To UPPERCASE</source>
+        <preferred>转为大写</preferred>
+    </hint>
+    <hint name="DeleteFormulaCommand_NoFormulas">
+        <source>Formula not found. Select one or more table cells containing formulas.</source>
+        <preferred>找不到公式。请选择一个或多个包含公式的单元格。</preferred>
+    </hint>
+    <hint name="DeleteReminderCommand_deleteTag">
+        <source>About to delete reminder. Would you also like to delete the tag associated with this
+            reminder?</source>
+        <preferred>确认删除此提醒。是否同时删除与此提醒关联的标签？</preferred>
+    </hint>
+    <hint name="DiagnosticsDialog_introLabel.Text">
+        <source>Diagnostics written to</source>
+        <preferred>保存诊断日志到</preferred>
+    </hint>
+    <hint name="DiagramCommand_broken">
+        <source>Diagram text is either invalid or cannot find connection between text and image</source>
+        <preferred>示意图对象无效或无法找到示意图代码文本和图像之间的连接</preferred>
+    </hint>
+    <hint name="DiagramCommand_EmptySelection">
+        <source>Empty selection. Select a valid block of diagram text.</source>
+        <preferred>选择为空。请选择有效的示意图容器块。</preferred>
+    </hint>
+    <hint name="DialogResetSettings_Text">
+        <source>Reset Settings</source>
+        <preferred>重置设置</preferred>
+    </hint>
+    <hint name="EditTableThemesDialog_deleteStyle">
+        <source>Delete this style?</source>
+        <preferred>删除此样式？</preferred>
+    </hint>
+    <hint name="EditTableThemesDialog_elements">
+        <source>Whole Table
+            First Column Stripe
+            Second Column Stripe
+            First Row Stripe
+            Second Row Stripe
+            First Column
+            Last Column
+            Header Row
+            Total Row
+            Header First Cell
+            Header Last Cell
+            Total Row First Cell
+            Total Row Last Cell</source>
+        <preferred>整个表格
+            第一列条纹
+            第二列条纹
+            第一行条纹
+            第二行条纹
+            第一列
+            最后一列
+            标题行
+            汇总行
+            第一个标题单元格
+            最后一个标题单元格
+            第一个汇总单元格
+            最后一个汇总单元格</preferred>
+    </hint>
+    <hint name="EditTableThemesDialog_fontElements">
+        <source>Default Font
+            Header Row Font
+            Total Row Font
+            First Column Font
+            Last Column Font</source>
+        <preferred>默认字体
+            标题行字体
+            汇总行字体
+            第一列字体
+            最后一列字体</preferred>
+    </hint>
+    <hint name="EditTableThemesDialog_resetButton.Text">
+        <source>Reset All</source>
+        <preferred>全部重置</preferred>
+    </hint>
+    <hint name="Emoji_Circle">
+        <source>Circle</source>
+        <preferred>圆圈</preferred>
+    </hint>
+    <hint name="Emoji_Delta">
+        <source>Delta</source>
+        <preferred>三角符号</preferred>
+    </hint>
+    <hint name="ribInsertEmojiButton_Label">
+        <source>Emoji</source>
+        <preferred>表情符号 Emoji</preferred>
+    </hint>
+    <hint name="Emoji_Interrobang">
+        <source>Interrobang</source>
+        <preferred>惊叹号</preferred>
+    </hint>
+    <hint name="Emoji_Sports">
+        <source>Sports</source>
+        <preferred>棒球</preferred>
+    </hint>
+    <hint name="Emoji_SportsEU">
+        <source>Sports EU</source>
+        <preferred>足球</preferred>
+    </hint>
+    <hint name="Error_BodyContext">
+        <source>Text focus must be in the body of the page</source>
+        <preferred>文字焦点必须激活在页面的正文文本中</preferred>
+    </hint>
+    <hint name="Error_CursorContext">
+        <source>Position the cursor in the body of the page without selecting a range of text</source>
+        <preferred>将光标放置在页面正文中，而无需选择一串文本</preferred>
+    </hint>
+    <hint name="ExpandoCommand_Saved">
+        <source>Outline state has been saved for this page</source>
+        <preferred>已保存此页面的大纲</preferred>
+    </hint>
+    <hint name="Favorites_suspect">
+        <source>Page not found; it may have been renamed or moved</source>
+        <preferred>找不到页面；可能已重命名或被删除</preferred>
+    </hint>
+    <hint name="Favorites_unknown">
+        <source>Page no longer found; it may have been deleted</source>
+        <preferred>找不到页面；可能已重命名或被删除</preferred>
+    </hint>
+    <hint name="FavoritesSheet_locationColumn.HeaderText">
+        <source>Location</source>
+        <preferred>引用笔记路径</preferred>
+    </hint>
+    <hint name="FavoritesSheet_shortcutsBox.Text">
+        <source>Include reference to keyboard shortcuts page</source>
+        <preferred>启用快捷键页面生成功能</preferred>
+    </hint>
+    <hint name="FileImportSheet_widthLabel.Text">
+        <source>Preferred import image width</source>
+        <preferred>默认导入图像宽度</preferred>
+    </hint>
+    <hint name="FileQuickNotesCommand_noQuickNotes">
+        <source>Could not load Quick Notes. Check the location in OneNote Options.</source>
+        <preferred>无法加载快速笔记。请检查 OneNote 设置。</preferred>
+    </hint>
+    <hint name="FileQuickNotesCommand_noTargetSection">
+        <source>Cannot find target section. Open OneMore Settings to specify a target.</source>
+        <preferred>找不到目标分区。打开 OneMore 设置以指定目标。</preferred>
+    </hint>
+    <hint name="FitGridToTextCommand_noGrid">
+        <source>Enable grid lines before using this command</source>
+        <preferred>使用此命令前请先启用网格线</preferred>
+    </hint>
+    <hint name="FitGridToTextDialog_autoButton.Text">
+        <source>Automatically adjust grid to most common font size</source>
+        <preferred>自动将单元格调整为最常见的字体大小</preferred>
+    </hint>
+    <hint name="FitGridToTextDialog_customButton.Text">
+        <source>Customize grid size</source>
+        <preferred>自定义单元格大小</preferred>
+    </hint>
+    <hint name="FitGridToTextDialog_Text">
+        <source>Fit Grid to Text</source>
+        <preferred>调整单元格以适应文本</preferred>
+    </hint>
+    <hint name="FormulaDialog.Text">
+        <source>Formula</source>
+        <preferred>公式</preferred>
+    </hint>
+    <hint name="FormulaDialog_formulaLabel.Text">
+        <source>Formula:</source>
+        <preferred>公式：</preferred>
+    </hint>
+    <hint name="FormulaDialog_helpBox.Text">
+        <source>Formula apply to the first selected cell and are incremented automatically for
+            additional selected cells.
+
+            Functions: abs, acos, arccos, arcsin, arctan, asin, atan, atan2, average, ceil, ceiling,
+            cos, cosh, exp, floor, log, log10, max, median, min, mode, pow, range, rem, root, round,
+            sign, sin, sinh, sqrt, stdev, sum, tan, tanh, trunc, truncate, and variance.
+
+            Operators: + - / * ^ %
+            Variables: e, phi, pi, tao, tablecols, tablerows
+            Cell reference: A1, A2, ... ZZZ999
+            Cell range: A1:A22
+            Relative ranges: A1:cell(0,-1)</source>
+        <preferred>公式应用于第一个选定的单元格，并对其他选定的单元格自动递增。
+
+            函数：abs, acos, arccos, arcsin, arctan, asin, atan, atan2, average, ceil, ceiling, cos,
+            cosh, exp, floor, log, log10, max, median, min, mode, pow, range, rem, root, round,
+            sign, sin, sinh, sqrt, stdev, sum, tan, tanh, trunc, truncate, variance
+
+            运算符： + - / * ^％
+            内置变量：E，Phi，Pi，Tao，Tablecols，Tablerows
+            单元格：A1，A2，... ZZZ999
+            单元格范围：A1：A22
+            相对单元格范围：A1:cell(0,-1)</preferred>
+    </hint>
+    <hint name="GeneralSheet_introBox.Text">
+        <source>Customize the overall behavior of OneMore</source>
+        <preferred>OneMore的通用设置</preferred>
+    </hint>
+    <hint name="GeneralSheet_sequentialBox.Text">
+        <source>Allow nonsequential name matching in Command Palettes</source>
+        <preferred>允许命令面板中的关键词非连续匹配</preferred>
+    </hint>
+    <hint name="GeneralSheet_themeBox.Text">
+        <source>System
+            Light
+            Dark</source>
+        <preferred>跟随系统
+            亮色
+            暗色</preferred>
+    </hint>
+    <hint name="GeneralSheet_Title">
+        <source>General Options</source>
+        <preferred>常规</preferred>
+    </hint>
+    <hint name="GetImagesCommand_Cite">
+        <source>Would you like to annotate the image with its URL?</source>
+        <preferred>是否使用图像URL作为图像说明文本？</preferred>
+    </hint>
+    <hint name="HashtagCommand_waiting">
+        <source>Your hashtag catalog is scheduled to be created on {0}. You can change this schedule
+            from the OneMore Tray application.
+
+            Searching for hashtags is unavailable until this is completed.</source>
+        <preferred>您的主题标签目录计划于 {0} 创建。您可以在任务栏中的 OneMore 应用程序更改此计划。
+
+            在完成此操作之前，无法搜索主题标签。</preferred>
+    </hint>
+    <hint name="HashtagDialog_badLink">
+        <source>Cannot navigate to this page. It may have been deleted</source>
+        <preferred>无法跳转到此页面。此页面可能已被删除</preferred>
+    </hint>
+    <hint name="HashtagDialog_introLabel.Text">
+        <source>Type any part of one or more hashtags. Wildcards are implied unless a tag is ended
+            with a period. Parenthesis and logical operators are allowed.</source>
+        <preferred>输入一个或多个主题标签的任意部分。若标签不以句号结束，则隐含通配符。允许使用括号和逻辑运算符。</preferred>
+    </hint>
+    <hint name="HashtagDialog_scanLink.Text">
+        <source>New notebooks discovered. Click here to scan.</source>
+        <preferred>发现新笔记本。点击这里开始扫描。</preferred>
+    </hint>
+    <hint name="HashtagDialog_scheduleButton.Text">
+        <source>Schedule Scan</source>
+        <preferred>添加扫描计划</preferred>
+    </hint>
+    <hint name="HashtagDialog_scopeBox.Text">
+        <source>All notebooks
+            This notebook
+            This section
+            This page</source>
+        <preferred>所有笔记本
+            这个笔记本
+            本分区
+            本页面</preferred>
+    </hint>
+    <hint name="HashtagDialog_sensitiveTip">
+        <source>Case-sensitive search</source>
+        <preferred>搜索区分大小写</preferred>
+    </hint>
+    <hint name="HashtagDialog_uncheckAllLink.Text">
+        <source>Uncheck all</source>
+        <preferred>全部取消勾选</preferred>
+    </hint>
+    <hint name="HashtaggerDialog_bankBox.Text">
+        <source>Add to tag bank at top of page</source>
+        <preferred>添加到页面顶部的标签容器</preferred>
+    </hint>
+    <hint name="HashtaggerDialog_hideRecentMenuItem">
+        <source>Hide recently used</source>
+        <preferred>隐藏最近使用的内容</preferred>
+    </hint>
+    <hint name="HashtaggerDialog_showRecentMenuItem">
+        <source>Show recently used</source>
+        <preferred>显示最近使用过的内容</preferred>
+    </hint>
+    <hint name="HashtagSheet_disabledBox.Text">
+        <source>Disable the hashtag service. This will also disable hashtag searching.</source>
+        <preferred>禁用主题标签服务。这会使主题标签搜索功能也不可用。</preferred>
+    </hint>
+    <hint name="HashtagSheet_introBox.Text">
+        <source>Customize advanced options for the Hashtag Scanner Service</source>
+        <preferred>设置标签扫描服务高级选项</preferred>
+    </hint>
+    <hint name="HashtagSheet_scanNotebooks">
+        <source>Schedule an incremental scan of your newly added notebooks</source>
+        <preferred>添加对新添加的笔记本进行增量扫描的计划</preferred>
+    </hint>
+    <hint name="HashtagSheet_scheduleLink.Text">
+        <source>Schedule Hashtag Scanning or Scan Now</source>
+        <preferred>立即扫描或添加扫描计划</preferred>
+    </hint>
+    <hint name="HashtagSheet_styleLabel.Text">
+        <source>Apply custom style</source>
+        <preferred>标签使用的样式</preferred>
+    </hint>
+    <hint name="HashtagSheet_upgradeLink.Text">
+        <source>Upgrade page tags to inline hashtags</source>
+        <preferred>将页面标签转换为主题标签</preferred>
+    </hint>
+    <hint name="HighlightsSheet_deepRadio.Text">
+        <source>Deep</source>
+        <preferred>深色</preferred>
+    </hint>
+    <hint name="HighlightsSheet_fadedRadio.Text">
+        <source>Faded</source>
+        <preferred>浅色</preferred>
+    </hint>
+    <hint name="HighlightsSheet_introBox.Text">
+        <source>The highlighter command will cycle through the colors of the chosen theme. Colors
+            shown here are for light background pages. Dark background pages use automatic highlight
+            colors</source>
+        <preferred>荧光高亮命令将循环切换所选的主题颜色。</preferred>
+    </hint>
+    <hint name="HighlightsSheet_normalRadio.Text">
+        <source>Bright</source>
+        <preferred>亮色</preferred>
+    </hint>
+    <hint name="HighlightsSheet_Title">
+        <source>Highlighter Themes</source>
+        <preferred>荧光高亮主题色</preferred>
+    </hint>
+    <hint name="ImagesSheet_imageViewerLabel.Text">
+        <source>External image viewer (leave blank to use system default)</source>
+        <preferred>外部图像查看器（留空则使用系统默认）</preferred>
+    </hint>
+    <hint name="ImagesSheet_introBox.Text">
+        <source>Customize the defaults for Image commands</source>
+        <preferred>设置图片相关配置</preferred>
+    </hint>
+    <hint name="ImagesSheet_plantRemoveBox.Text">
+        <source>Remove PlantUML text and embed it in the image</source>
+        <preferred>插入 PlantUML 图像，并删除对应代码文本</preferred>
+    </hint>
+    <hint name="ImagesSheet_plantUriLabel.Text">
+        <source>PlantUML Server Address (leave blank to use default)</source>
+        <preferred>Plantuml 服务器地址（留空以使用默认）</preferred>
+    </hint>
+    <hint name="ImagesSheet_widthLabel.Text">
+        <source>Preferred resize width</source>
+        <preferred>默认图像宽度</preferred>
+    </hint>
+    <hint name="ImportDialog_notInstalledLabel.Text">
+        <source>The required Office product is not installed</source>
+        <preferred>未安装所需的 Office 软件</preferred>
+    </hint>
+    <hint name="ImportDialog_pdfGroup.Text">
+        <source>PDF Options</source>
+        <preferred>PDF导入选项</preferred>
+    </hint>
+    <hint name="ImportDialog_powerGroup.Text">
+        <source>Powerpoint Options</source>
+        <preferred>幻灯片文件导入选项</preferred>
+    </hint>
+    <hint name="ImportDialog_powerSectionButton.Text">
+        <source>Create a new section with a page for each slide</source>
+        <preferred>为每张幻灯片创建一个带有页面的新分区</preferred>
+    </hint>
+    <hint name="ImportDialog_wordGroup.Text">
+        <source>Word Options</source>
+        <preferred>Word导入选项</preferred>
+    </hint>
+    <hint name="ImportOutlookTasksDialog_introBox.Text">
+        <source>Choose an entire folder or individual tasks to import from Outlook into OneNote. Disabled items indicate tasks already linked to OneNote</source>
+        <preferred>选择要从 Outlook 导入 OneNote 的整个文件夹或单个任务。不可选的项目已经链接到Onenote中。</preferred>
+    </hint>
+    <hint name="ImportOutlookTasksDialog_warningBox.Text">
+        <source>Note that OneNote does not bind completely to task that are not in the Outlook Tasks folder. Tasks from sub-folders are shown in red to indicate that their status flags will not update automatically after importing.</source>
+        <preferred>请注意，OneNote 不会完全绑定到不在 Outlook 主任务文件夹中的任务。在Outlook子文件夹中的任务不会自动更新，并已用红色标出</preferred>
+    </hint>
+    <hint name="ImportWebDialog_addressLabel.Text">
+        <source>Address</source>
+        <preferred>网址</preferred>
+    </hint>
+    <hint name="ImportWebDialog_appendButton.Text">
+        <source>Append to current page</source>
+        <preferred>添加到当前页面</preferred>
+    </hint>
+    <hint name="ImportWebDialog_newChildButton.Text">
+        <source>Create as new child of current page</source>
+        <preferred>添加到当前页面的子页面</preferred>
+    </hint>
+    <hint name="ImportWebDialog_newPageButton.Text">
+        <source>Create as new page</source>
+        <preferred>添加到新页面</preferred>
+    </hint>
+    <hint name="InsertBoxCommand_Code">
+        <source>Your code here...</source>
+        <preferred>在这里输入代码内容...</preferred>
+    </hint>
+    <hint name="InsertCalendarDialog_monthLabel.Text">
+        <source>Month</source>
+        <preferred>月份</preferred>
+    </hint>
+    <hint name="InsertCalendarDialog_yearLabel.Text">
+        <source>Year</source>
+        <preferred>年份</preferred>
+    </hint>
+    <hint name="InsertCellsDialog_shiftDownRadio.Text">
+        <source>Shift cells down</source>
+        <preferred>单元格下移</preferred>
+    </hint>
+    <hint name="InsertCellsDialog_shiftRightRadio.Text">
+        <source>Shift cells right</source>
+        <preferred>单元格右移</preferred>
+    </hint>
+    <hint name="InsertQRCommand_NoSelection">
+        <source>Select text to render as a new QR code</source>
+        <preferred>选择要转换为二维码的文本</preferred>
+    </hint>
+    <hint name="InsertSnippets_CouldNotLoad">
+        <source>Could not load snippet from "{0}"</source>
+        <preferred>无法加载来自“{0}”的代码段</preferred>
+    </hint>
+    <hint name="InsertTocDialog_levelsLabel.Text">
+        <source>Show Levels</source>
+        <preferred>显示的标题级别</preferred>
+    </hint>
+    <hint name="InsertTocDialog_notebookRadio.Text">
+        <source>New page with index of sections in this notebook</source>
+        <preferred>插入到新页面，包含此笔记本中各分区的目录</preferred>
+    </hint>
+    <hint name="InsertTocDialog_pageRadio.Text">
+        <source>Insert table of headings on this page</source>
+        <preferred>插入到当前页面，包含此页面各级标题的目录</preferred>
+    </hint>
+    <hint name="InsertTocDialog_pagesBox.Text">
+        <source>Include pages in each section</source>
+        <preferred>包含各个分区中的子页面</preferred>
+    </hint>
+    <hint name="InsertTocDialog_rightAlignBox.Text">
+        <source>Right-align top of page link</source>
+        <preferred>页面链接右对齐显示</preferred>
+    </hint>
+    <hint name="InsertTocDialog_sectionRadio.Text">
+        <source>New page with index of pages in this section</source>
+        <preferred>插入到新页面，包含此分区的页面目录</preferred>
+    </hint>
+    <hint name="InsertTocDialog_timeBox">
+        <source>Update page date and time</source>
+        <preferred>更新各页面标题的日期和时间</preferred>
+    </hint>
+    <hint name="InsertTocDialog_topBox.Text">
+        <source>Add link to each heading to jump to top of page</source>
+        <preferred>为每个页面标题添加跳转链接</preferred>
+    </hint>
+    <hint name="InsertTocForNotebook_RefreshQuestion">
+        <source>There is a table of contents page for this notebook. You can refresh that page or
+            create a new page.
+
+            Do you want to refresh the existing page?</source>
+        <preferred>此笔记本有一个目录页。您可以刷新该页面或创建新目录页。
+
+            您想刷新现有目录页吗？</preferred>
+    </hint>
+    <hint name="InsertTocForPage_ClearToc">
+        <source>There are no headings on this page. However, there is a table of contents.
+
+            Would you like to remove the table of contents from this page?</source>
+        <preferred>此页面上没有标题。但是有一个目录。
+
+            您想删除此页面的目录吗？</preferred>
+    </hint>
+    <hint name="InsertTocForSection_RefreshQuestion">
+        <source>There is a table of contents page for this section. You can refresh that page or
+            create a new page.
+
+            Do you want to refresh the existing page?</source>
+        <preferred>此分区有一个目录页。您可以刷新该页面或创建新目录页。
+
+            您想刷新现有目录页面吗？</preferred>
+    </hint>
+    <hint name="KeyboardSheet_introBox.Text">
+        <source>Manage my custom keyboard shortcuts. Select a command and press a key sequence.</source>
+        <preferred>自定义键盘快捷键。选中一个命令，然后输入快捷键。</preferred>
+    </hint>
+    <hint name="KeyboardSheet_keyColumn.HeaderText">
+        <source>Key Sequence</source>
+        <preferred>快捷键</preferred>
+    </hint>
+    <hint name="KeyboardSheet_resetAllButton.Text">
+        <source>Reset all</source>
+        <preferred>重置快捷键</preferred>
+    </hint>
+    <hint name="NavigatorSheet_corrallBox.Text">
+        <source>Restrict the Navigator window to the active screen</source>
+        <preferred>导航器窗口仅显示当前活动Onenote窗口的内容</preferred>
+    </hint>
+    <hint name="NavigatorSheet_corrallBox_disabled">
+        <source>Not available</source>
+        <preferred>不可用</preferred>
+    </hint>
+    <hint name="NavigatorSheet_depthLabel.Text">
+        <source>Max length of stored history</source>
+        <preferred>存储的最大历史记录数</preferred>
+    </hint>
+    <hint name="NavigatorSheet_elevateBox.Text">
+        <source>Elevate Navigator when OneNote is elevated</source>
+        <preferred>打开Onenote界面时同时打开导航窗口</preferred>
+    </hint>
+    <hint name="NavigatorSheet_introBox.Text">
+        <source>Customize advanced options for the Navigator Service</source>
+        <preferred>自定义导航服务及导航窗口的高级选项</preferred>
+    </hint>
+    <hint name="phrase_AllSectionInTheCurrentNotebook">
+        <source>All sections in the current notebook</source>
+        <preferred>当前笔记本中的所有分区</preferred>
+    </hint>
+    <hint name="phrase_NewStyle">
+        <source>New Style</source>
+        <preferred>新样式</preferred>
+    </hint>
+    <hint name="phrase_PctComplete">
+        <source>% Complete</source>
+        <preferred>％ 进度</preferred>
+    </hint>
+    <hint name="phrase_QuickNote">
+        <source>Quick Note</source>
+        <preferred>快速笔记</preferred>
+    </hint>
+    <hint name="phrase_SelectNone">
+        <source>Select None</source>
+        <preferred>选择为空</preferred>
+    </hint>
+    <hint name="phrase_TheCurrentSection">
+        <source>The current section</source>
+        <preferred>当前分区</preferred>
+    </hint>
+    <hint name="phrase_YourContentHere">
+        <source>Your content here...</source>
+        <preferred>请输入内容...</preferred>
+    </hint>
+    <hint name="Plugin_NoUpdate">
+        <source>Error updating page. See log file</source>
+        <preferred>更新页面时出错。 请参阅日志文件。</preferred>
+    </hint>
+    <hint name="PluginDialog_argsLabel.Text">
+        <source>Arguments</source>
+        <preferred>参数</preferred>
+    </hint>
+    <hint name="PluginDialog_childBox.Text">
+        <source>Create as child of current page</source>
+        <preferred>创建为当前页面的子页面</preferred>
+    </hint>
+    <hint name="PluginDialog_createRadio.Text">
+        <source>Create a new page named</source>
+        <preferred>创建新页面名为：</preferred>
+    </hint>
+    <hint name="PluginDialog_failLockRadio.Text">
+        <source>Fail if any section is locked</source>
+        <preferred>如果目标文件中任意内容被锁定，则返回失败</preferred>
+    </hint>
+    <hint name="PluginDialog_nameTip">
+        <source>The keyword $name will be replaced automatically with the page name when running
+            this plugin</source>
+        <preferred>运行此插件时，关键字 $name 将自动替换为页面名称。</preferred>
+    </hint>
+    <hint name="PluginDialog_newItem">
+        <source>(new)</source>
+        <preferred>(新建)</preferred>
+    </hint>
+    <hint name="PluginDialog_targetBox.Text">
+        <source>Current page
+            Current section and its pages
+            Current notebook and its sections
+            Current notebook and its pages
+            All notebooks and their pages</source>
+        <preferred>当前页面
+            当前分区及其页面
+            当前笔记本及其分区
+            当前笔记本及其页面
+            所有笔记本及其页面</preferred>
+    </hint>
+    <hint name="PluginDialog_timeoutLabel.Text">
+        <source>Tmeout</source>
+        <preferred>运行超时</preferred>
+    </hint>
+    <hint name="PluginDialog_trialBox.Text">
+        <source>Trial run - keep cache file and do not update OneNote</source>
+        <preferred>试运行-保留缓存文件但不更新 onenote 文件</preferred>
+    </hint>
+    <hint name="PluginDialog_userArgsLabel.Text">
+        <source>User Arguments</source>
+        <preferred>用户参数</preferred>
+    </hint>
+    <hint name="PluginsSheet_introBox.Text">
+        <source>Manage my plugins</source>
+        <preferred>插件管理</preferred>
+    </hint>
+    <hint name="ProgramName">
+        <source>OneMore</source>
+        <preferred>OneMore</preferred>
+    </hint>
+    <hint name="PronunciateDialog_languages">
+        <source>en,English
+            hi,Hindi
+            es,Spanish
+            fr,French
+            ja,Japanese
+            ru,Russian
+            de,German
+            it,Italian
+            ko,Korean
+            pt-BR,Brazilian Portuguese
+            ar,Arabic
+            tr,Turkish
+            zh-CN,Chinese (Simplified)</source>
+        <preferred>en,英语
+            hi,印地语
+            es,西班牙语
+            fr,法语
+            ja,日语
+            ru,俄语
+            de,德语
+            it,意大利语
+            ko,韩语
+            pt-BR,巴西葡萄牙语
+            ar,阿拉伯语
+            tr,土耳其语
+            zh-CN,中文（简体）</preferred>
+    </hint>
+    <hint name="QuickNotesSheet_introBox.Text">
+        <source>Custom the behavior of the Organize Quick Notes command</source>
+        <preferred>设置快速笔记命令的行为</preferred>
+    </hint>
+    <hint name="QuickNotesSheet_sectionButton.Text">
+        <source>Move Quick Notes into this section</source>
+        <preferred>将快速注释移至此分区</preferred>
+    </hint>
+    <hint name="QuickNotesSheet_SelectNotebookIntro">
+        <source>Select the notebook used to organize your Quick Notes</source>
+        <preferred>选择存放快速笔记的笔记本</preferred>
+    </hint>
+    <hint name="QuickNotesSheet_SelectSectionIntro">
+        <source>Select the section used to organize your Quick Notes</source>
+        <preferred>选择存放快速笔记的分区</preferred>
+    </hint>
+    <hint name="QuickNotesSheet_SelectSectionTitle">
+        <source>Select Section</source>
+        <preferred>选择分区</preferred>
+    </hint>
+    <hint name="QuickPaletteCommand_basic_category">
+        <source>basic text</source>
+        <preferred>正文</preferred>
+    </hint>
+    <hint name="QuickPaletteCommand_basics">
+        <source>Bold
+            Italic
+            Underline
+            Strikethrough
+            Subscript
+            Superscript</source>
+        <preferred>加粗
+            斜体
+            强调
+            删除线
+            下标
+            上标</preferred>
+    </hint>
+    <hint name="QuickPaletteCommand_colors">
+        <source>Blue
+            Green
+            Orange
+            Purple
+            Red
+            Yellow</source>
+        <preferred>蓝色
+            绿色
+            橙色
+            紫色
+            红色
+            黄色</preferred>
+    </hint>
+    <hint name="QuickPaletteCommand_highlight_category">
+        <source>highlight colors</source>
+        <preferred>高亮标记颜色</preferred>
+    </hint>
+    <hint name="QuickPaletteCommand_highlights">
+        <source>Blue Highlight
+            Green Highlight
+            Orange Highlight
+            Purple Highlight
+            Red Highlight
+            Yellow Highlight</source>
+        <preferred>蓝色高亮
+            绿色高亮
+            橙色高亮
+            紫色高亮
+            红色高亮
+            黄色高亮</preferred>
+    </hint>
+    <hint name="QuickPaletteCommand_Title">
+        <source>Quick Palette</source>
+        <preferred>快捷样式</preferred>
+    </hint>
+    <hint name="RefreshPageLinksDialog_Text">
+        <source>Refresh Page References</source>
+        <preferred>更新页面引用</preferred>
+    </hint>
+    <hint name="RemindCommand_noReminder">
+        <source>There is no reminder on this paragraph</source>
+        <preferred>这一段中不含任务提醒块</preferred>
+    </hint>
+    <hint name="RemindDialog_dueDateLabel.Text">
+        <source>Due date</source>
+        <preferred>到期时间</preferred>
+    </hint>
+    <hint name="RemindDialog_priorityLabel.Text">
+        <source>Priority</source>
+        <preferred>优先级</preferred>
+    </hint>
+    <hint name="RemindDialog_snoozeBox.Items">
+        <source>Do not snooze
+            5 minutes
+            10 minutes
+            15 minutes
+            30 minutes
+            1 hour
+            2 hours
+            4 hours
+            1 day
+            2 days
+            3 days
+            1 week
+            2 weeks</source>
+        <preferred>不设置
+            5分钟
+            10分钟
+            15分钟
+            30分钟
+            1小时
+            2小时
+            4个小时
+            1天
+            2天
+            3天
+            1周
+            2周</preferred>
+    </hint>
+    <hint name="RemindDialog_snoozeButton.Text">
+        <source>Snooze</source>
+        <preferred>稍后提醒</preferred>
+    </hint>
+    <hint name="RemindDialog_snoozeLabel.Text">
+        <source>Click snooze to be reminded in</source>
+        <preferred>稍后提醒间隔</preferred>
+    </hint>
+    <hint name="RemindDialog_startDateLabel.Text">
+        <source>Start date</source>
+        <preferred>开始时间</preferred>
+    </hint>
+    <hint name="RemindDialog_statusBox.Text">
+        <source>Not started
+            In progress
+            Completed
+            Waiting on someone else
+            Deferred</source>
+        <preferred>未开始
+            进行中
+            已完成
+            等待协作人
+            延期</preferred>
+    </hint>
+    <hint name="Reminder_ToastTitle">
+        <source>OneMore Reminder</source>
+        <preferred>OneMore 提醒</preferred>
+    </hint>
+    <hint name="ReminderReport_ActiveReminders">
+        <source>Active Reminders</source>
+        <preferred>启用的提醒</preferred>
+    </hint>
+    <hint name="ReminderReport_ActiveSummary">
+        <source>These are reminders not yet completed or deferred and ordered by due date year, week of year, and priority</source>
+        <preferred>这些是尚未完成或推迟的提醒，按截止日期的年份、周数和优先级排序</preferred>
+    </hint>
+    <hint name="ReminderReport_InactiveReminders">
+        <source>Inactive Reminders</source>
+        <preferred>禁用的提醒</preferred>
+    </hint>
+    <hint name="ReminderReport_InactiveSummary">
+        <source>These are reminders that have been completed or deferred and ordered by status, completion date, and priority</source>
+        <preferred>这些是尚未完成或推迟的提醒，按截止日期的年份、周数和优先级排序</preferred>
+    </hint>
+    <hint name="ReportRemindersDialog.Text">
+        <source>Report Scope</source>
+        <preferred>报告涉及的范围</preferred>
+    </hint>
+    <hint name="ribAboutButton_Screentip">
+        <source>Show information about OneMore</source>
+        <preferred>显示有关 OneMore 插件的信息</preferred>
+    </hint>
+    <hint name="ribAddCaptionButton_Screentip">
+        <source>Add caption to selected image</source>
+        <preferred>在所选图像底部添加说明文字</preferred>
+    </hint>
+    <hint name="ribAddFavoritePageButton_Label">
+        <source>Add current page</source>
+        <preferred>收藏当前页面</preferred>
+    </hint>
+    <hint name="ribAddFavoriteSectionButton_Screentip">
+        <source>Add section to Favorites menu</source>
+        <preferred>将分区添加到收藏夹菜单</preferred>
+    </hint>
+    <hint name="ribAddTagBankButton_Label">
+        <source>Add Tag Bank</source>
+        <preferred>添加标签容器</preferred>
+    </hint>
+    <hint name="ribAddTagBankButton_Screentip">
+        <source>Add top-of-page tag outline</source>
+        <preferred>在页面顶部添加标签块</preferred>
+    </hint>
+    <hint name="ribAdjustImagesButton_Label">
+        <source>Resize and Adjust</source>
+        <preferred>图像大小与样式调整</preferred>
+    </hint>
+    <hint name="ribAdjustImagesButton_Screentip">
+        <source>Resize and adjust selected images</source>
+        <preferred>调整所选图像的大小与样式</preferred>
+    </hint>
+    <hint name="RibbonBarSheet_editIconBox.Text">
+        <source>Show only icons for edit commands</source>
+        <preferred>仅显示指令图标</preferred>
+    </hint>
+    <hint name="RibbonBarSheet_editRibbonBox.Text">
+        <source>Edit Commands</source>
+        <preferred>“编辑”命令</preferred>
+    </hint>
+    <hint name="RibbonBarSheet_formulaIconBox.Text">
+        <source>Show only icons for formula commands</source>
+        <preferred>仅显示指令图标</preferred>
+    </hint>
+    <hint name="RibbonBarSheet_formulaRibbonBox.Text">
+        <source>Formula Commands</source>
+        <preferred>“公式”命令</preferred>
+    </hint>
+    <hint name="RibbonBarSheet_hashtagsIconBox.Text">
+        <source>Show only icons for hashtag commands</source>
+        <preferred>仅显示指令图标</preferred>
+    </hint>
+    <hint name="RibbonBarSheet_hashtagsRibbonBox.Text">
+        <source>Hashtag Commands</source>
+        <preferred>“标签”命令</preferred>
+    </hint>
+    <hint name="RibbonBarSheet_introBox.Text">
+        <source>Choose optional preset grouping to add to the ribbon bar</source>
+        <preferred>还可添加以下预设分组</preferred>
+    </hint>
+    <hint name="RibbonBarSheet_layoutBox.Text">
+        <source>Aa a group in the Home tab
+            As a separate OneMore tab</source>
+        <preferred>主页选项卡中的一个组
+            单独的 OneMore 选项卡</preferred>
+    </hint>
+    <hint name="RibbonBarSheet_layoutLabel.Text">
+        <source>Layout</source>
+        <preferred>Onemore 插件显示样式</preferred>
+    </hint>
+    <hint name="RibbonBarSheet_positionBox.Text">
+        <source>Clipboard Group
+            Basic Text Group
+            Styles Group
+            Tags Group
+            Email Group
+            Meetings Group
+            After last group</source>
+        <preferred>剪贴板组
+            普通文本组
+            样式组
+            标记组
+            电子邮件组
+            会议组
+            最后一组之后</preferred>
+    </hint>
+    <hint name="RibbonBarSheet_positionGroup.Text">
+        <source>Position</source>
+        <preferred>布局</preferred>
+    </hint>
+    <hint name="RibbonBarSheet_positionIntroLabel.Text">
+        <source>Select the location of the OneMore ribbon group.</source>
+        <preferred>设置 OneMore 插件的显示方式、功能区组的位置</preferred>
+    </hint>
+    <hint name="RibbonBarSheet_positionLabel.Text">
+        <source>Position after</source>
+        <preferred>在此位置之后显示</preferred>
+    </hint>
+    <hint name="RibbonBarSheet_positionTabBox.Text">
+        <source>Home Tab
+            Insert Tab
+            Draw Tab
+            History Tab
+            Review Tab
+            View Tab
+            Help Tab</source>
+        <preferred>开始选项卡
+            插入选项卡
+            绘图选项卡
+            历史记录选项卡
+            审阅选项卡
+            视图选项卡
+            帮助选项卡</preferred>
+    </hint>
+    <hint name="RibbonBarSheet_Title">
+        <source>Ribbon Bar</source>
+        <preferred>外观</preferred>
+    </hint>
+    <hint name="ribCalendarButton_Screentip">
+        <source>Open the OneMore Calendar app</source>
+        <preferred>打开 OneMore 日历应用</preferred>
+    </hint>
+    <hint name="ribCleanMenu_Label">
+        <source>Clean</source>
+        <preferred>清理</preferred>
+    </hint>
+    <hint name="ribClearTableShadingButton_Screentip">
+        <source>Reset shading in all cells in the current table</source>
+        <preferred>清除当前表格中所有单元格的样式</preferred>
+    </hint>
+    <hint name="ribConvertMarkdownButton_Label">
+        <source>Convert Markdown</source>
+        <preferred>Markdown 转换</preferred>
+    </hint>
+    <hint name="ribConvertMarkdownButton_Screentip">
+        <source>Convert page or selected markdown to OneNote format</source>
+        <preferred>将页面或选定的 Markdown 内容转换为 OneNote 格式</preferred>
+    </hint>
+    <hint name="ribCopyAcrossButton_Label">
+        <source>Copy Across</source>
+        <preferred>向右填充复制值</preferred>
+    </hint>
+    <hint name="ribCopyAcrossButton_Screentip">
+        <source>Copy content across the selected rows</source>
+        <preferred>对所选的表格区域，每一行填充第一列的内容</preferred>
+    </hint>
+    <hint name="ribCopyAsTextButton_Screentip">
+        <source>Copy select context as plain text</source>
+        <preferred>将所选内容复制为纯文本</preferred>
+    </hint>
+    <hint name="ribCopyDownButton_Label">
+        <source>Copy Down</source>
+        <preferred>向下填充复制值</preferred>
+    </hint>
+    <hint name="ribCopyDownButton_Screentip">
+        <source>Copy content down the selected columns</source>
+        <preferred>对所选的表格区域，每一列填充第一行的内容</preferred>
+    </hint>
+    <hint name="ribCrawlWebPageButton_Label">
+        <source>Import Hyperlinks</source>
+        <preferred>从链接导入网页</preferred>
+    </hint>
+    <hint name="ribCrawlWebPageButton_Screentip">
+        <source>Import hyperlinks as new pages</source>
+        <preferred>将超链接对应的网页导入为新页面</preferred>
+    </hint>
+    <hint name="ribCropImageButton_Screentip">
+        <source>Crop and rotate selected image</source>
+        <preferred>对所选图像进行裁剪和旋转</preferred>
+    </hint>
+    <hint name="ribCustomSnippetsMenu_Label">
+        <source>My Snippets</source>
+        <preferred>片段管理</preferred>
+    </hint>
+    <hint name="ribCustomStylesButton_Label">
+        <source>My Styles</source>
+        <preferred>自定义样式</preferred>
+    </hint>
+    <hint name="ribDecreaseFontSizeButton_Label">
+        <source>Decrease Font Size</source>
+        <preferred>缩小字号</preferred>
+    </hint>
+    <hint name="ribDeleteFormulaButton_Screentip">
+        <source>Delete formula from selected table cell(s)</source>
+        <preferred>删除选定的表格单元格中的公式</preferred>
+    </hint>
+    <hint name="ribDiagnosticsButton_Label">
+        <source>Dump Diagnostics to Log</source>
+        <preferred>转储诊断日志</preferred>
+    </hint>
+    <hint name="ribDisableSpellCheckButton_Screentip">
+        <source>Disable spell checking within selected content</source>
+        <preferred>对所选内容禁用拼写检查</preferred>
+    </hint>
+    <hint name="ribDuplicateLineButton_Label">
+        <source>Duplicate Paragraph</source>
+        <preferred>复制段落</preferred>
+    </hint>
+    <hint name="ribDuplicateLineButton_Screentip">
+        <source>Duplicate the current paragraph</source>
+        <preferred>将当前段落复制为新段落</preferred>
+    </hint>
+    <hint name="ribEnableSpellCheckButton_Screentip">
+        <source>Enable spell check within selected content</source>
+        <preferred>对所选内容启用拼写检查</preferred>
+    </hint>
+    <hint name="ribExtrasMenu_Label">
+        <source>Extras</source>
+        <preferred>更多功能</preferred>
+    </hint>
+    <hint name="ribFavoritesMenu_Label">
+        <source>Favorites</source>
+        <preferred>收藏夹</preferred>
+    </hint>
+    <hint name="ribFillAcrossButton_Label">
+        <source>Fill Across</source>
+        <preferred>向右填充序列</preferred>
+    </hint>
+    <hint name="ribFillAcrossButton_Screentip">
+        <source>Fill sequence across selected rows</source>
+        <preferred>对所选的表格区域，每一行向右填充数字序列</preferred>
+    </hint>
+    <hint name="ribFillDownButton_Label">
+        <source>Fill Down</source>
+        <preferred>向下填充序列</preferred>
+    </hint>
+    <hint name="ribFillDownButton_Screentip">
+        <source>Fill sequence down selected columns (Ctrl + D)</source>
+        <preferred>对所选的表格区域，每一列向下填充数字序列</preferred>
+    </hint>
+    <hint name="ribHashtaggerButton_Screentip">
+        <source>Pick from a smart list of words and tags to insert hashtags</source>
+        <preferred>从智能单词和标签列表中创建主题标签</preferred>
+    </hint>
+    <hint name="ribHighlightButton_Label">
+        <source>Rotating Highlighter</source>
+        <preferred>荧光笔高亮标记文字</preferred>
+    </hint>
+    <hint name="ribHighlightButton_Screentip">
+        <source>Highligt text with a rotating highlighter</source>
+        <preferred>使用荧光笔标记选中文本</preferred>
+    </hint>
+    <hint name="ribHighlightFormulaButton_Label">
+        <source>Highlight Formula</source>
+        <preferred>选中公式单元格</preferred>
+    </hint>
+    <hint name="ribHighlightLastButton_Label">
+        <source>Repeat Rotating Highlighter Color</source>
+        <preferred>切换标记颜色</preferred>
+    </hint>
+    <hint name="ribHighlightNoneButton_Label">
+        <source>Remove Highlighting</source>
+        <preferred>删除荧光笔标记</preferred>
+    </hint>
+    <hint name="ribIncreaseFontSizeButton_Label">
+        <source>Increase Font Size</source>
+        <preferred>加大字号</preferred>
+    </hint>
+    <hint name="ribIncreaseFontSizeButton_Screentip">
+        <source>Increase page font size (Ctrl + Alt + Plus)</source>
+        <preferred>放大页面字体大小 (Ctrl + Alt + Plus)</preferred>
+    </hint>
+    <hint name="ribInsertBlueStatusButton_Label">
+        <source>Blue Status</source>
+        <preferred>状态标签：蓝色</preferred>
+    </hint>
+    <hint name="ribInsertBreadcrumbButton_Screentip">
+        <source>Insert breadcrumb of page location at top of page</source>
+        <preferred>在页面顶部插入面包屑样式页面路径</preferred>
+    </hint>
+    <hint name="ribInsertCalendarButton_Screentip">
+        <source>Insert a montly calendar</source>
+        <preferred>插入某月份日历</preferred>
+    </hint>
+    <hint name="ribInsertCodeBoxButton_Label">
+        <source>Code Box</source>
+        <preferred>代码块</preferred>
+    </hint>
+    <hint name="ribInsertCodeBoxButton_Screentip">
+        <source>Insert a code box (F6), wrapping selected content</source>
+        <preferred>插入代码块（F6），包裹选中的内容</preferred>
+    </hint>
+    <hint name="ribInsertDateButton_Label">
+        <source>Sortable Date</source>
+        <preferred>当前日期（可排序）</preferred>
+    </hint>
+    <hint name="ribInsertDateButton_Screentip">
+        <source>Insert the current date (Ctrl + Shift + D)</source>
+        <preferred>插入当前日期：年-月-日格式（Ctrl + Shift + D）</preferred>
+    </hint>
+    <hint name="ribInsertDateTimeButton_Label">
+        <source>Sortable Date with Time</source>
+        <preferred>当前时间+日期（可排序）</preferred>
+    </hint>
+    <hint name="ribInsertExpandButton_Label">
+        <source>Expand/Collapse</source>
+        <preferred>展开/折叠块</preferred>
+    </hint>
+    <hint name="ribInsertExpandButton_Screentip">
+        <source>Insert a collapsible control</source>
+        <preferred>插入可折叠块</preferred>
+    </hint>
+    <hint name="ribInsertGrayStatusButton_Label">
+        <source>Gray Status</source>
+        <preferred>状态标签：灰色</preferred>
+    </hint>
+    <hint name="ribInsertGreenStatusButton_Label">
+        <source>Green Status</source>
+        <preferred>状态标签：绿色</preferred>
+    </hint>
+    <hint name="ribInsertNoteBoxButton_Label">
+        <source>Notes Box</source>
+        <preferred>笔记框</preferred>
+    </hint>
+    <hint name="ribInsertNoteBoxButton_Screentip">
+        <source>Insert a notes box</source>
+        <preferred>插入笔记框</preferred>
+    </hint>
+    <hint name="ribInsertRedStatusButton_Label">
+        <source>Red Status</source>
+        <preferred>状态标签：红色</preferred>
+    </hint>
+    <hint name="ribInsertTextBoxButton_Screentip">
+        <source>Insert a single-cell table, wrapping selected text</source>
+        <preferred>将选定文字插入只有一个单元格的、换行显示的表格</preferred>
+    </hint>
+    <hint name="ribInsertTimerButton_Label">
+        <source>Insert Timer</source>
+        <preferred>插入计时器</preferred>
+    </hint>
+    <hint name="ribInsertTimerButton_Screentip">
+        <source>Insert the current timer value</source>
+        <preferred>插入显示计时器时间值的容器</preferred>
+    </hint>
+    <hint name="ribInsertYellowStatusButton_Label">
+        <source>Yellow Status</source>
+        <preferred>状态标签：黄色</preferred>
+    </hint>
+    <hint name="ribInvertSelectionButton_Label">
+        <source>Invert Selection</source>
+        <preferred>反选</preferred>
+    </hint>
+    <hint name="ribInvertSelectionButton_Screentip">
+        <source>Invert selection</source>
+        <preferred>反向选择</preferred>
+    </hint>
+    <hint name="ribJoinParagraphButton_Label">
+        <source>Join Paragraph</source>
+        <preferred>合并段落</preferred>
+    </hint>
+    <hint name="ribJoinParagraphButton_Screentip">
+        <source>Join selected paragraphs</source>
+        <preferred>将选中的多个段落合并为一个段落</preferred>
+    </hint>
+    <hint name="ribLowercaseButton_Label">
+        <source>To lowercase</source>
+        <preferred>转为小写</preferred>
+    </hint>
+    <hint name="ribManageSnippetsButton_Label">
+        <source>Manage My Snippets</source>
+        <preferred>管理自定义的片段</preferred>
+    </hint>
+    <hint name="ribMermaidButton_Label">
+        <source>Draw Mermaid Diagram</source>
+        <preferred>插入 Mermaid 示意图</preferred>
+    </hint>
+    <hint name="ribMermaidButton_Screentip">
+        <source>Render Mermaid image from selected text</source>
+        <preferred>根据选定的代码渲染 Mermaid 示意图</preferred>
+    </hint>
+    <hint name="ribNewStyleButton_Screentip">
+        <source>Create a new style from the current selection</source>
+        <preferred>根据当前选择的内容创建新样式</preferred>
+    </hint>
+    <hint name="ribNextUnreadPageButton_Screentip">
+        <source>Move to the next unread page</source>
+        <preferred>跳转至下一个未读页面</preferred>
+    </hint>
+    <hint name="ribNumberPagesButton_Label">
+        <source>Number Pages</source>
+        <preferred>页面编号</preferred>
+    </hint>
+    <hint name="ribNumberPagesButton_Screentip">
+        <source>Add or update number of all pages in this section</source>
+        <preferred>添加或更新此分区中所有页面的编号</preferred>
+    </hint>
+    <hint name="ribNumberSectionsButton_Label">
+        <source>Number Sections</source>
+        <preferred>分区编号</preferred>
+    </hint>
+    <hint name="ribNumberSectionsButton_Screentip">
+        <source>Add or update numbering of all sections in this notebook</source>
+        <preferred>添加或更新此笔记本中所有分区的编号</preferred>
+    </hint>
+    <hint name="ribOpenImageWithButton_Label">
+        <source>Open Image With</source>
+        <preferred>打开图像...</preferred>
+    </hint>
+    <hint name="ribOutlineButton_Screentip">
+        <source>Numbering headings on this page</source>
+        <preferred>添加或更新此页面中的标题文本</preferred>
+    </hint>
+    <hint name="ribPasteImageButton_Label">
+        <source>Paste Image</source>
+        <preferred>粘贴图像</preferred>
+    </hint>
+    <hint name="ribPasteImageButton_Screentip">
+        <source>Adjust and paste image from clipboard</source>
+        <preferred>调整并粘贴剪贴板图像</preferred>
+    </hint>
+    <hint name="ribPasteRtfButton_Screentip">
+        <source>Paste rich text (Ctrl + Alt + V)</source>
+        <preferred>粘贴并保留文本格式 (Ctrl + Alt + V)</preferred>
+    </hint>
+    <hint name="ribPasteTextButton_Label">
+        <source>Paste and Keep Text Only</source>
+        <preferred>粘贴为纯文本</preferred>
+    </hint>
+    <hint name="ribPasteTextButton_Screentip">
+        <source>Paste and Keep Text Only (Ctrl + Shift + V)</source>
+        <preferred>粘贴为纯文本 (Ctrl + Shift + V)</preferred>
+    </hint>
+    <hint name="ribPlantUmlButton_Label">
+        <source>Draw PlantUML</source>
+        <preferred>插入 PlantUML 示意图</preferred>
+    </hint>
+    <hint name="ribPlantUmlButton_Screentip">
+        <source>Render PlantUML or Graphviz image from selected text</source>
+        <preferred>根据选定的代码渲染 PlantUML 或 Graphviz 图像</preferred>
+    </hint>
+    <hint name="ribPreviewMarkdownButton_Label">
+        <source>Preview Markdown</source>
+        <preferred>Markdown 预览</preferred>
+    </hint>
+    <hint name="ribPreviousUnreadPageButton_Screentip">
+        <source>Move to the previous unread page</source>
+        <preferred>跳转至上一个未读页面</preferred>
+    </hint>
+    <hint name="ribQuickPaletteButton_Label">
+        <source>Quick Palette</source>
+        <preferred>快捷样式</preferred>
+    </hint>
+    <hint name="ribQuickPaletteButton_Screentip">
+        <source>Open the Quick Palette window</source>
+        <preferred>打开样式调整窗口</preferred>
+    </hint>
+    <hint name="ribRecalculateFormulaButton_Label">
+        <source>Recalculate Formula</source>
+        <preferred>重算所有公式</preferred>
+    </hint>
+    <hint name="ribRemovePageNumbersButton_Label">
+        <source>Remove Page Numbers</source>
+        <preferred>删除页面编号</preferred>
+    </hint>
+    <hint name="ribRemovePageNumbersButton_Screentip">
+        <source>Remove numbers from all pages in this section</source>
+        <preferred>删除此分区中所有页面的页面编号</preferred>
+    </hint>
+    <hint name="ribRemoveSectionNumbersButton_Screentip">
+        <source>Remove numbers from all sectionsin this notebook</source>
+        <preferred>删除此笔记本中所有分区的编号</preferred>
+    </hint>
+    <hint name="ribRemoveTagBankButton_Label">
+        <source>Remove Tag Bank</source>
+        <preferred>删除标签容器</preferred>
+    </hint>
+    <hint name="ribRemoveTagBankButton_Screentip">
+        <source>Remove top-of-page tag outline</source>
+        <preferred>删除页面顶部的标签块</preferred>
+    </hint>
+    <hint name="ribReplayButton_Label">
+        <source>Replay Last Command</source>
+        <preferred>重做上一个命令</preferred>
+    </hint>
+    <hint name="ribReplayButton_Screentip">
+        <source>Replay last command (Alt + Shift + R)</source>
+        <preferred>重做上一个命令 (Alt + Shift + R)</preferred>
+    </hint>
+    <hint name="ribRestartTimerButton_Label">
+        <source>Restart Timer</source>
+        <preferred>重置计时器</preferred>
+    </hint>
+    <hint name="ribRestartTimerButton_Screentip">
+        <source>Restart the Timer, setting it back to zero</source>
+        <preferred>重置计时器，将其计时复位为0</preferred>
+    </hint>
+    <hint name="ribSaveSnippetButton_Screentip">
+        <source>Save a new snippet from the selected content</source>
+        <preferred>将所选内容保存为新的自定义片段</preferred>
+    </hint>
+    <hint name="ribScanButton_Screentip">
+        <source>Import from scanner</source>
+        <preferred>从扫描仪导入</preferred>
+    </hint>
+    <hint name="ribScanHashtagsButton_Label">
+        <source>Scan Hashtags</source>
+        <preferred>扫描主题标签</preferred>
+    </hint>
+    <hint name="ribScheduleHashtagScanButton_Label">
+        <source>Schedule Hashtag Scan</source>
+        <preferred>添加标签扫描计划</preferred>
+    </hint>
+    <hint name="ribSearchAndReplaceButton_Screentip">
+        <source>Search and replace (Ctrl + H)</source>
+        <preferred>搜索和替换主题标签内容 (Ctrl + H)</preferred>
+    </hint>
+    <hint name="ribSearchMenu_Label">
+        <source>Search and Tag</source>
+        <preferred>搜索和标签块</preferred>
+    </hint>
+    <hint name="ribSelectImagesButton_Label">
+        <source>Select All Images</source>
+        <preferred>选中所有图像</preferred>
+    </hint>
+    <hint name="ribSelectImagesButton_Screentip">
+        <source>Select all images on the page</source>
+        <preferred>选中此页面上的所有图像</preferred>
+    </hint>
+    <hint name="ribSelectInkButton_Label">
+        <source>Select All Ink</source>
+        <preferred>选中所有墨迹</preferred>
+    </hint>
+    <hint name="ribSelectInkButton_Screentip">
+        <source>Select all ink on the page</source>
+        <preferred>选中此页面上的所有墨迹</preferred>
+    </hint>
+    <hint name="ribSelectStyleButton_Label">
+        <source>Select Similar Text</source>
+        <preferred>选中相似格式文本</preferred>
+    </hint>
+    <hint name="ribSelectStyleButton_Screentip">
+        <source>Select text with similar formatting</source>
+        <preferred>选中与选中文本格式相似的文本</preferred>
+    </hint>
+    <hint name="ribShutdownTimerButton_Label">
+        <source>Stop Timer</source>
+        <preferred>停止计时器</preferred>
+    </hint>
+    <hint name="ribSortListButton_Label">
+        <source>Sort List</source>
+        <preferred>列表项排序</preferred>
+    </hint>
+    <hint name="ribSortListButton_Screentip">
+        <source>Sort items within a list</source>
+        <preferred>对选中列表中的内容进行排序</preferred>
+    </hint>
+    <hint name="ribSplitButton_Screentip">
+        <source>Split page at Heading 1 into multiple pages</source>
+        <preferred>将页面根据标题1拆分为多个页面</preferred>
+    </hint>
+    <hint name="ribSplitTableButton_Label">
+        <source>Split Table</source>
+        <preferred>拆分表格</preferred>
+    </hint>
+    <hint name="ribStackBackgroundImagesButton_Label">
+        <source>Stack Background Images</source>
+        <preferred>背景图像位置重排</preferred>
+    </hint>
+    <hint name="ribStackBackgroundImagesButton_Screentip">
+        <source>Reposition background images top to bottom</source>
+        <preferred>重新调整背景图像位置以消除重叠和空隙</preferred>
+    </hint>
+    <hint name="ribStylizeImagesButton_Label">
+        <source>Stylize Images</source>
+        <preferred>调整图像风格</preferred>
+    </hint>
+    <hint name="ribStylizeImagesButton_Screentip">
+        <source>Recolor images using selected style</source>
+        <preferred>对所选图像使用选定的风格重新重色</preferred>
+    </hint>
+    <hint name="ribTextToTableButton_Label">
+        <source>Convert Text to Table</source>
+        <preferred>文本转换为表格</preferred>
+    </hint>
+    <hint name="ribTitlecaseButton_Label">
+        <source>To Title Case</source>
+        <preferred>转换为标题大小写格式</preferred>
+    </hint>
+    <hint name="ribTitlecaseButton_Screentip">
+        <source>Convert text to title case</source>
+        <preferred>将选中文本转换为标题大小写格式(主要单词首字母大写)</preferred>
+    </hint>
+    <hint name="ribTrimButton_Label">
+        <source>Trim Whitespace</source>
+        <preferred>删除末尾空格</preferred>
+    </hint>
+    <hint name="ribTrimButton_Screentip">
+        <source>Trim trailing whitespace from selected text</source>
+        <preferred>删除所选文本末尾的空格</preferred>
+    </hint>
+    <hint name="ribTrimLeadingButton_Label">
+        <source>Trim Leading Whitespace</source>
+        <preferred>删除开头空格</preferred>
+    </hint>
+    <hint name="ribTrimLeadingButton_Screentip">
+        <source>Trim leading whitespace from selected text</source>
+        <preferred>删除所选文本开头的空格</preferred>
+    </hint>
+    <hint name="ScanDialog_colorBox">
+        <source>Color
+            Grayscale
+            Black and White</source>
+        <preferred>彩色
+            灰度
+            黑白</preferred>
+    </hint>
+    <hint name="ScanDialog_profileLabel.Text">
+        <source>Profile</source>
+        <preferred>文档类型</preferred>
+    </hint>
+    <hint name="ScanDialog_resolutionLabel.Text">
+        <source>Resolution</source>
+        <preferred>分辨率</preferred>
+    </hint>
+    <hint name="ScanDialog_scannLabel.Text">
+        <source>Scanner</source>
+        <preferred>扫描仪</preferred>
+    </hint>
+    <hint name="ScheduleScanDialog_booksInfoLabel.Text">
+        <source>Select notebooks to schedule for a full rescan</source>
+        <preferred>选择整本笔记本以对整本笔记本进行完整的重扫描</preferred>
+    </hint>
+    <hint name="ScheduleScanDialog_introBox.Text">
+        <source>The hashtag catalog has not yet been created. Choose below when OneMore should build
+            the catalog.</source>
+        <preferred>主题标签索引目录尚未创建。在下面设置何时 OneMore 应自动构建目录。</preferred>
+    </hint>
+    <hint name="ScheduleScanDialog_laterRadio.Text">
+        <source>Schedule the scan at a later time</source>
+        <preferred>添加稍后扫描计划</preferred>
+    </hint>
+    <hint name="ScheduleScanDialog_neverScanned">
+        <source>never scanned or no tags</source>
+        <preferred>从不扫描或不添加标签</preferred>
+    </hint>
+    <hint name="ScheduleScanDialog_Title">
+        <source>Schedule Hashtag Scanning</source>
+        <preferred>添加扫描计划</preferred>
+    </hint>
+    <hint name="ScopeSelector_pageButton.Text">
+        <source>This page</source>
+        <preferred>此页面</preferred>
+    </hint>
+    <hint name="SearchAndReplaceDialog_scopBox">
+        <source>This page
+            This section
+            This notebook
+            All notebooks</source>
+        <preferred>此页面
+            此分区
+            此笔记本
+            所有笔记本</preferred>
+    </hint>
+    <hint name="SearchDialogText_scopeOptions">
+        <source>In this notebook
+            In this section
+            On this page</source>
+        <preferred>在此笔记本中
+            在此分区中
+            在此页面上</preferred>
+    </hint>
+    <hint name="SearchEngineDialog_refreshButton.Text">
+        <source>Refresh icons</source>
+        <preferred>更新图标</preferred>
+    </hint>
+    <hint name="SearchEngineDialog_Text">
+        <source>Search Engines</source>
+        <preferred>自定义网络搜索</preferred>
+    </hint>
+    <hint name="SearchEngineSheet_introBox.Text">
+        <source>URL Patterns must contain a string replacement token, such as &amp;q={0}
+
+            Search engines will appear in the page context menu, right-click.</source>
+        <preferred>设置的网址格式中必须包含一个字符串更换令牌，例如＆q = {0}
+
+            搜索引擎将出现在页面右键的弹出“上下文菜单”中。</preferred>
+    </hint>
+    <hint name="SearchEngineSheet_upButton.Text">
+        <source>Move up</source>
+        <preferred>上移</preferred>
+    </hint>
+    <hint name="SettingsDialog_Restart">
+        <source>One or more changes require OneNote to be restarted. Do you want to restart OneNote
+            now?</source>
+        <preferred>一项或多项更改需要重新启动 OneNote 才能生效。</preferred>
+    </hint>
+    <hint name="ShowXmlDialog_linefeedBox.Text">
+        <source>Remove LF from CDATA</source>
+        <preferred>删除 CDATA 属性中的换行符 LF</preferred>
+    </hint>
+    <hint name="ShowXmlDialog_manualLabel.Text">
+        <source>Manual ObjectID</source>
+        <preferred>手动设置 ObijectID</preferred>
+    </hint>
+    <hint name="ShowXmlDialog_multilineBox.Text">
+        <source>Attributes on new lines</source>
+        <preferred>每个属性换行显示</preferred>
+    </hint>
+    <hint name="ShowXmlDialog_nbPagesTab.Text">
+        <source>Notebook with Pages</source>
+        <preferred>包含页面的笔记本</preferred>
+    </hint>
+    <hint name="ShowXmlDialog_nbSectionsTab.Text">
+        <source>Notebook with Sections</source>
+        <preferred>包含分区的笔记本</preferred>
+    </hint>
+    <hint name="ShowXmlDialog_noHierarchy">
+        <source>No hierarchy</source>
+        <preferred>不显示层级关系</preferred>
+    </hint>
+    <hint name="ShowXmlDialog_okButton.Text">
+        <source>Update Page</source>
+        <preferred>更新XML</preferred>
+    </hint>
+    <hint name="ShowXmlDialog_saveWindowBox.Text">
+        <source>Save window location</source>
+        <preferred>保存此窗口的位置和大小</preferred>
+    </hint>
+    <hint name="ShowXmlDialog_WARNING">
+        <source>This is a dangerous operation!
+
+            Incorrect changes may result in lost data.
+
+            Are you sure you want to continue?</source>
+        <preferred>这是危险的操作！
+
+            不正确的更改可能会导致数据丢失。
+
+            确定要继续吗？</preferred>
+    </hint>
+    <hint name="SnippetsSheet_introBox.Text">
+        <source>Manage my snippets</source>
+        <preferred>管理自定义片段</preferred>
+    </hint>
+    <hint name="SortDialog.Text">
+        <source>Sort</source>
+        <preferred>排序</preferred>
+    </hint>
+    <hint name="SortDialog_ascButton.Text">
+        <source>Ascending</source>
+        <preferred>升序</preferred>
+    </hint>
+    <hint name="SortDialog_direcitonLabel.Text">
+        <source>Direction:</source>
+        <preferred>顺序:</preferred>
+    </hint>
+    <hint name="SortDialog_pinNotesBox.Text">
+        <source>Pin Notes to top and
+            Quick Notes to bottom</source>
+        <preferred>将普通笔记固定在顶部
+            并将快速笔记放在尾部</preferred>
+    </hint>
+    <hint name="SortDialog_scopeBox.Items">
+        <source>Children of Current Page
+            Pages in this section
+            Sections in this notebook
+            Sections in this group
+            Notebooks</source>
+        <preferred>当前页面的子项
+            此分区中的页面
+            此笔记本中的分区
+            此组中的分区
+            所有笔记本</preferred>
+    </hint>
+    <hint name="SortDialog_sortLabel.Text">
+        <source>Sort by:</source>
+        <preferred>排序字段:</preferred>
+    </hint>
+    <hint name="SplitDialog_byHeading1Box.Text">
+        <source>Heading 1</source>
+        <preferred>根据标题1生成多个页面</preferred>
+    </hint>
+    <hint name="SplitDialog_splitByGroup.Text">
+        <source>Split by</source>
+        <preferred>分割方式</preferred>
+    </hint>
+    <hint name="SplitDialog_taggedBox.Text">
+        <source>Apply only to tagged headings and links</source>
+        <preferred>仅应用到有标记的标题和链接</preferred>
+    </hint>
+    <hint name="StyleDialog_afterLabel.Text">
+        <source>Space After:</source>
+        <preferred>段后间距：</preferred>
+    </hint>
+    <hint name="StyleDialog_applyColorsBox.Text">
+        <source>Apply colors</source>
+        <preferred>设置文本颜色</preferred>
+    </hint>
+    <hint name="StyleDialog_backColorButton.ToolTipText">
+        <source>Highlight Color</source>
+        <preferred>高亮标记颜色</preferred>
+    </hint>
+    <hint name="StyleDialog_beforeLabel.Text">
+        <source>Space Before:</source>
+        <preferred>段前间距：</preferred>
+    </hint>
+    <hint name="StyleDialog_boldButton.Text">
+        <source>Bold</source>
+        <preferred>加粗</preferred>
+    </hint>
+    <hint name="StyleDialog_darkBox.Text">
+        <source>Intended for pages with dark backgrounds</source>
+        <preferred>使用适用于深色页面的背景色</preferred>
+    </hint>
+    <hint name="StyleDialog_fontLabel.Text">
+        <source>Font:</source>
+        <preferred>字体：</preferred>
+    </hint>
+    <hint name="StyleDialog_newStyleButton.Text">
+        <source>New</source>
+        <preferred>新建</preferred>
+    </hint>
+    <hint name="StyleDialog_pageColorBox.Text">
+        <source>Change the page color when applying these styles</source>
+        <preferred>应用样式时更新关联文本的页面颜色</preferred>
+    </hint>
+    <hint name="StyleDialog_pageColorLink.Text">
+        <source>Click here to select the page color</source>
+        <preferred>设置页面颜色</preferred>
+    </hint>
+    <hint name="StyleDialog_reorderButton.Text">
+        <source>Reorder</source>
+        <preferred>排序</preferred>
+    </hint>
+    <hint name="StyleDialog_styleTypeBox_Items">
+        <source>Character - words in paragraph
+            Paragraph - entire paragraph
+            Heading - include in TOC</source>
+        <preferred>字符-段落中的文字
+            段落-整个段落
+            标题-整个页面</preferred>
+    </hint>
+    <hint name="StyleDialog_Text">
+        <source>My Styles</source>
+        <preferred>自定义样式</preferred>
+    </hint>
+    <hint name="StyleDialog_transparentToolStripMenuItem.Text">
+        <source>Transparent</source>
+        <preferred>无</preferred>
+    </hint>
+    <hint name="StyleDialog_underlineButton.Text">
+        <source>Underline</source>
+        <preferred>下划线</preferred>
+    </hint>
+    <hint name="StylizeImagesDialog_backBox.Text">
+        <source>Apply to background images
+            Background images: {0}, selected: {1}</source>
+        <preferred>应用于背景图像
+            背景图片：共 {0}，已选择：{1}</preferred>
+    </hint>
+    <hint name="StylizeImagesDialog_foreBox.Text">
+        <source>Apply to foreground images
+            Foreground images: {0}, selected: {1}</source>
+        <preferred>应用于前景图像
+            前景图像：共{0}，已选择：{1}</preferred>
+    </hint>
+    <hint name="StylizeImagesDialog_styleBox.Text">
+        <source>Gray scale
+            Sepia
+            Polaroid
+            Invert</source>
+        <preferred>灰度
+            棕褐色
+            宝丽来
+            反色</preferred>
+    </hint>
+    <hint name="StylizeImagesDialog_Text">
+        <source>Stylize Images</source>
+        <preferred>调整图像风格</preferred>
+    </hint>
+    <hint name="TabOneMore_Label">
+        <source>OneMore</source>
+        <preferred>OneMore</preferred>
+    </hint>
+    <hint name="TagBankCommand_confirm">
+        <source>The tag bank contains text. Are you sure you want to remove it?</source>
+        <preferred>标签库非空。您确定要删除它吗？</preferred>
+    </hint>
+    <hint name="TextToTable_NoText">
+        <source>No text is selected</source>
+        <preferred>未选择文字</preferred>
+    </hint>
+    <hint name="TextToTableDialog_group1.Text">
+        <source>Separate text at</source>
+        <preferred>列分隔符</preferred>
+    </hint>
+    <hint name="TextToTableDialog_group2.Text">
+        <source>Table size</source>
+        <preferred>表格大小</preferred>
+    </hint>
+    <hint name="TextToTableDialog_headerBox.Text">
+        <source>First row is a header</source>
+        <preferred>第一行设为标题行</preferred>
+    </hint>
+    <hint name="TextToTableDialog_tabsRadio.Text">
+        <source>Tabs</source>
+        <preferred>制表符</preferred>
+    </hint>
+    <hint name="TextToTableDialog_unquoteBox.Text">
+        <source>Remove quotes from complete strings</source>
+        <preferred>删除字符串中的引号</preferred>
+    </hint>
+    <hint name="TimerWindow_resetButton.Text">
+        <source>Restart Timer</source>
+        <preferred>重置计时器</preferred>
+    </hint>
+    <hint name="VariablesSheet_doubleWarning">
+        <source>Please enter a valid double value</source>
+        <preferred>请输入有效的双变量值</preferred>
+    </hint>
+    <hint name="VariablesSheet_introBox.Text">
+        <source>Define your own variables for use in table formulas</source>
+        <preferred>定义以用于表格公式的自定义变量</preferred>
+    </hint>
+    <hint name="VariablesSheet_uniqueError">
+        <source>Variable names must be unique</source>
+        <preferred>变量名称必须唯一</preferred>
+    </hint>
+    <hint name="word_Contrast">
+        <source>Contrast</source>
+        <preferred>对比度</preferred>
+    </hint>
+    <hint name="word_Default">
+        <source>Default</source>
+        <preferred>默认值</preferred>
+    </hint>
+    <hint name="word_Extract">
+        <source>Extract</source>
+        <preferred>提取</preferred>
+    </hint>
+    <hint name="word_Feeder">
+        <source>Feeder</source>
+        <preferred>供纸器</preferred>
+    </hint>
+    <hint name="word_Find">
+        <source>Find</source>
+        <preferred>查找</preferred>
+    </hint>
+    <hint name="word_Flatbed">
+        <source>Flatbed</source>
+        <preferred>平板扫描仪</preferred>
+    </hint>
+    <hint name="word_Function">
+        <source>Function</source>
+        <preferred>函数</preferred>
+    </hint>
+    <hint name="word_General">
+        <source>General</source>
+        <preferred>通用</preferred>
+    </hint>
+    <hint name="word_Go">
+        <source>Go</source>
+        <preferred>跳转到</preferred>
+    </hint>
+    <hint name="word_Language">
+        <source>Language</source>
+        <preferred>语言</preferred>
+    </hint>
+    <hint name="word_Notebooks">
+        <source>Notebooks</source>
+        <preferred>笔记本</preferred>
+    </hint>
+    <hint name="word_Page">
+        <source>Page</source>
+        <preferred>页面</preferred>
+    </hint>
+    <hint name="word_Planned">
+        <source>Planned</source>
+        <preferred>已计划</preferred>
+    </hint>
+    <hint name="word_Rename">
+        <source>Rename</source>
+        <preferred>重命名</preferred>
+    </hint>
+    <hint name="word_Saturation">
+        <source>Saturation</source>
+        <preferred>饱和度</preferred>
+    </hint>
+    <hint name="word_Save">
+        <source>Save</source>
+        <preferred>保存</preferred>
+    </hint>
+    <hint name="word_Section">
+        <source>Section</source>
+        <preferred>分区</preferred>
+    </hint>
+    <hint name="word_Sort">
+        <source>Sort</source>
+        <preferred>排序</preferred>
+    </hint>
+    <hint name="word_Started">
+        <source>Started</source>
+        <preferred>已开始</preferred>
+    </hint>
+    <hint name="word_Status">
+        <source>Status</source>
+        <preferred>状态</preferred>
+    </hint>
+    <hint name="word_Storage">
+        <source>Storage</source>
+        <preferred>存储</preferred>
+    </hint>
+    <hint name="word_Stylize">
+        <source>Stylize</source>
+        <preferred>调整风格</preferred>
+    </hint>
+    <hint name="word_Total">
+        <source>Total</source>
+        <preferred>总计</preferred>
+    </hint>
+    <hint name="word_Value">
+        <source>Value</source>
+        <preferred>值</preferred>
+    </hint>
+    <hint name="WordCounts_Notebook">
+        <source>{0} Notebook</source>
+        <preferred>笔记本数量：{0}</preferred>
+    </hint>
+    <hint name="WordCounts_NotebookTotal">
+        <source>Total words in notebook across {0} pages</source>
+        <preferred>此笔记本共 {0} 页包含总字数</preferred>
+    </hint>
+    <hint name="WordCounts_Section">
+        <source>{0} Section</source>
+        <preferred>{0} 分区</preferred>
+    </hint>
+    <hint name="WordCounts_SectionTotal">
+        <source>Total words in section across {0} pages</source>
+        <preferred>此分区共 {0} 页包含总字数</preferred>
+    </hint>
 </hints>
