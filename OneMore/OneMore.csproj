@@ -181,6 +181,7 @@
     </Compile>
     <Compile Include="Commands\Edit\ConvertMarkdownCommand.cs" />
     <Compile Include="Commands\Edit\CopyAsTextCommand.cs" />
+    <Compile Include="Commands\File\Markdown\MarkdownEmojis.cs" />
     <Compile Include="Commands\File\OpenFolderDialog.cs">
       <SubType>Form</SubType>
     </Compile>
