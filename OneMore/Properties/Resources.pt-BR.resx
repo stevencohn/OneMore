@@ -2469,6 +2469,10 @@ Destaque amarelo</value>
     <value>Nenhuma fórmula encontrada na tabela selecionada</value>
     <comment>recalculate command message</comment>
   </data>
+  <data name="RecolorInkCommand_noselection" xml:space="preserve">
+    <value>Selecione um traço de tinta para recolorir</value>
+    <comment>error message</comment>
+  </data>
   <data name="RefreshPageLinksCommand_none" xml:space="preserve">
     <value>Nenhuma referência encontrada para esta página</value>
     <comment>message</comment>
@@ -3900,6 +3904,13 @@ Guia Ajuda</value>
   <data name="ribRecalculateFormulaButton_Screentip" xml:space="preserve">
     <value>Recalcular todas as fórmulas na tabela atual (Shift + F5)</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
+  </data>
+  <data name="ribRecolorInkButton_Label" xml:space="preserve">
+    <value>Recolorir tinta</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribRecolorInkButton_Screentip" xml:space="preserve">
+    <value>Recolorir desenhos selecionados com tinta</value>
   </data>
   <data name="ribReferencesMenu_Label" xml:space="preserve">
     <value>Referências</value>

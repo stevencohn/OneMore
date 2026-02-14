@@ -363,6 +363,12 @@
           getScreentip="GetRibbonScreentip"
           onAction="PreviewMarkdownCmd"/>
         <button
+          id="ribRecolorInkButton"
+          imageMso="RecolorColorPicker"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="RecolorInkCmd"/>
+        <button
           id="ribHighlightButton"
           imageMso="AppointmentColorDialog"
           getLabel="GetRibbonLabel"

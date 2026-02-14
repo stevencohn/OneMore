@@ -2468,6 +2468,10 @@ ISO-code then comma then language name</comment>
     <value>لم يتم العثور على صيغة في الجدول المحدد</value>
     <comment>recalculate command message</comment>
   </data>
+  <data name="RecolorInkCommand_noselection" xml:space="preserve">
+    <value>حدد ضغطة حبر لإعادة تلوينها</value>
+    <comment>error message</comment>
+  </data>
   <data name="RefreshPageLinksCommand_none" xml:space="preserve">
     <value>لا توجد مراجع وجدت لهذه الصفحة</value>
     <comment>message</comment>
@@ -3900,6 +3904,13 @@ ISO-code then comma then language name</comment>
   <data name="ribRecalculateFormulaButton_Screentip" xml:space="preserve">
     <value>إعادة حساب كل الصيغ في الجدول الحالي (Shift + F5)</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
+  </data>
+  <data name="ribRecolorInkButton_Label" xml:space="preserve">
+    <value>إعادة تلوين الحبر</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribRecolorInkButton_Screentip" xml:space="preserve">
+    <value>إعادة تلوين الرسومات المحددة بالحبر</value>
   </data>
   <data name="ribReferencesMenu_Label" xml:space="preserve">
     <value>المراجع</value>

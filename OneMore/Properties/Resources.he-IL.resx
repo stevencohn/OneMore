@@ -2469,6 +2469,10 @@ ISO-code then comma then language name</comment>
     <value>לא נמצאה נוסחה בטבלה שנבחרה</value>
     <comment>recalculate command message</comment>
   </data>
+  <data name="RecolorInkCommand_noselection" xml:space="preserve">
+    <value>בחר קו דיו לצבע מחדש</value>
+    <comment>error message</comment>
+  </data>
   <data name="RefreshPageLinksCommand_none" xml:space="preserve">
     <value>לא נמצאו הפניות לדף זה</value>
     <comment>message</comment>
@@ -3899,6 +3903,13 @@ ISO-code then comma then language name</comment>
   <data name="ribRecalculateFormulaButton_Screentip" xml:space="preserve">
     <value>חישוב מחדש של כל הנוסחה בטבלה הנוכחית (Shift + F5)</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
+  </data>
+  <data name="ribRecolorInkButton_Label" xml:space="preserve">
+    <value>צבע מחדש דיו</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribRecolorInkButton_Screentip" xml:space="preserve">
+    <value>צבע מחדש שרטוטי דיו נבחרים</value>
   </data>
   <data name="ribReferencesMenu_Label" xml:space="preserve">
     <value>הפניות</value>

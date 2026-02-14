@@ -2468,6 +2468,10 @@ Surligneur jaune</value>
     <value>Aucune formule trouvée dans le tableau sélectionné</value>
     <comment>recalculate command message</comment>
   </data>
+  <data name="RecolorInkCommand_noselection" xml:space="preserve">
+    <value>Sélectionnez un trait d'encre à recolorer</value>
+    <comment>error message</comment>
+  </data>
   <data name="RefreshPageLinksCommand_none" xml:space="preserve">
     <value>Aucune référence trouvée sur cette page</value>
     <comment>message</comment>
@@ -3899,6 +3903,13 @@ Onglet Aide</value>
   <data name="ribRecalculateFormulaButton_Screentip" xml:space="preserve">
     <value>Recalculer toutes les formules du tableau actuel (Maj + F5)</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
+  </data>
+  <data name="ribRecolorInkButton_Label" xml:space="preserve">
+    <value>Recolorer l'encre</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribRecolorInkButton_Screentip" xml:space="preserve">
+    <value>Recolorer certains dessins à l'encre</value>
   </data>
   <data name="ribReferencesMenu_Label" xml:space="preserve">
     <value>Références</value>

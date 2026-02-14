@@ -2469,6 +2469,10 @@ Czerwone wyróżnienie
     <value>Nie znaleziono formuły w wybranej tabeli</value>
     <comment>recalculate command message</comment>
   </data>
+  <data name="RecolorInkCommand_noselection" xml:space="preserve">
+    <value>Wybierz pociągnięcie odręczne, które chcesz ponownie pokolorować</value>
+    <comment>error message</comment>
+  </data>
   <data name="RefreshPageLinksCommand_none" xml:space="preserve">
     <value>Nie znaleziono referencji na tej stronie</value>
     <comment>message</comment>
@@ -3901,6 +3905,13 @@ Zakładka Pomoc</value>
   <data name="ribRecalculateFormulaButton_Screentip" xml:space="preserve">
     <value>Przelicz wszystkie formułę w bieżącej tabeli (Shift + F5)</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
+  </data>
+  <data name="ribRecolorInkButton_Label" xml:space="preserve">
+    <value>Pokoloruj ponownie atrament</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribRecolorInkButton_Screentip" xml:space="preserve">
+    <value>Pokoloruj ponownie wybrane rysunki odręczne</value>
   </data>
   <data name="ribReferencesMenu_Label" xml:space="preserve">
     <value>Bibliografia</value>

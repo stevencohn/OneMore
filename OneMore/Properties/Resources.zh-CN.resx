@@ -2467,6 +2467,10 @@ ISO-code then comma then language name</comment>
     <value>在所选表格中找不到公式</value>
     <comment>recalculate command message</comment>
   </data>
+  <data name="RecolorInkCommand_noselection" xml:space="preserve">
+    <value>选择要重新着色的墨迹笔划</value>
+    <comment>error message</comment>
+  </data>
   <data name="RefreshPageLinksCommand_none" xml:space="preserve">
     <value>没有找到对本页的引用</value>
     <comment>message</comment>
@@ -3893,6 +3897,13 @@ ISO-code then comma then language name</comment>
   <data name="ribRecalculateFormulaButton_Screentip" xml:space="preserve">
     <value>重新计算当前表中的所有公式（Shift + F5）</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
+  </data>
+  <data name="ribRecolorInkButton_Label" xml:space="preserve">
+    <value>重新着色墨水</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribRecolorInkButton_Screentip" xml:space="preserve">
+    <value>重新着色选定的墨水绘图</value>
   </data>
   <data name="ribReferencesMenu_Label" xml:space="preserve">
     <value>参考文献</value>

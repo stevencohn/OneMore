@@ -187,7 +187,7 @@
     <comment>label override</comment>
   </data>
   <data name="AdjustImagesDialog_autoSizeRadio.Text" xml:space="preserve">
-    <value>Ridimensionamento automatico</value>
+    <value>Dimensione automatica</value>
     <comment>radio</comment>
   </data>
   <data name="AdjustImagesDialog_heightLabel.Text" xml:space="preserve">
@@ -227,11 +227,11 @@ Le immagini devono essere in un contenitore di contorno. Le immagini di sfondo n
     <comment>radio</comment>
   </data>
   <data name="AdjustImagesDialog_previewGroup.Text" xml:space="preserve">
-    <value>Anteprima {0}</value>
+    <value>Anteprima di {0}</value>
     <comment>group box for single image</comment>
   </data>
   <data name="AdjustImagesDialog_repositionBox.Text" xml:space="preserve">
-    <value>Riposizionare le immagini di sfondo</value>
+    <value>Riposiziona le immagini di sfondo</value>
     <comment>checkbox</comment>
   </data>
   <data name="AdjustImagesDialog_resetLinkLabel.Text" xml:space="preserve">
@@ -251,7 +251,7 @@ Invertire</value>
     <comment>combobox</comment>
   </data>
   <data name="AdjustImagesDialog_viewSizeLabel.Text" xml:space="preserve">
-    <value>Visualizza dimensione</value>
+    <value>Dimensione vista</value>
     <comment>label</comment>
   </data>
   <data name="AliasSheet.Text" xml:space="preserve">
@@ -379,7 +379,7 @@ Invertire</value>
     <comment>message</comment>
   </data>
   <data name="ArrangeContainersDialog.Text" xml:space="preserve">
-    <value>Disporre i contenitori</value>
+    <value>Disposizione contenitori</value>
     <comment>dialog title</comment>
   </data>
   <data name="ArrangeContainersDialog_columnsLabel.Text" xml:space="preserve">
@@ -614,7 +614,7 @@ Invertire</value>
     <comment>intro</comment>
   </data>
   <data name="ContextMenuSheet_menu" xml:space="preserve">
-    <value>Menù {0}</value>
+    <value>Menu {0}</value>
     <comment>checkbox text replacement</comment>
   </data>
   <data name="ContextMenuSheet_Title" xml:space="preserve">
@@ -630,7 +630,7 @@ Invertire</value>
     <comment>messagebox</comment>
   </data>
   <data name="CopyAsMarkdownCommand_copied" xml:space="preserve">
-    <value>Ribasso copiato</value>
+    <value>Markdown copiato</value>
     <comment>message box</comment>
   </data>
   <data name="CopyFolderCommand_InvalidTarget" xml:space="preserve">
@@ -2469,6 +2469,10 @@ Evidenziazione gialla</value>
     <value>Nessuna formula trovata nella tabella selezionata</value>
     <comment>recalculate command message</comment>
   </data>
+  <data name="RecolorInkCommand_noselection" xml:space="preserve">
+    <value>Selezionare un tratto input penna da ricolorare</value>
+    <comment>error message</comment>
+  </data>
   <data name="RefreshPageLinksCommand_none" xml:space="preserve">
     <value>Nessun riferimento trovato a questa pagina</value>
     <comment>message</comment>
@@ -2834,7 +2838,7 @@ Selezionare No per mantenere una riga vuota tra i paragrafi</value>
     <comment>sectiongroup context menu</comment>
   </data>
   <data name="ribArrangeContainersButton_Label" xml:space="preserve">
-    <value>Disporre i contenitori</value>
+    <value>Disposizione contenitori</value>
     <comment>ribbon button NODUP</comment>
   </data>
   <data name="RibbonBarSheet_editIconBox.Text" xml:space="preserve">
@@ -3901,6 +3905,13 @@ Scheda Aiuto</value>
     <value>Ricalcola tutta la formula nella tabella corrente (Maiusc + F5)</value>
     <comment>ribbon table</comment>
   </data>
+  <data name="ribRecolorInkButton_Label" xml:space="preserve">
+    <value>Ricolora inchiostro</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribRecolorInkButton_Screentip" xml:space="preserve">
+    <value>Ricolorare i disegni a inchiostro selezionati</value>
+  </data>
   <data name="ribReferencesMenu_Label" xml:space="preserve">
     <value>Riferimenti</value>
     <comment>ribbon menu</comment>
@@ -4318,7 +4329,7 @@ Scheda Aiuto</value>
     <comment>ribbon snippets NODUP</comment>
   </data>
   <data name="ribStrikeoutTasksButton_Label" xml:space="preserve">
-    <value>Barrato Completato To Do Tag</value>
+    <value>Applica questo colore ai tag attività completati barrati</value>
     <comment>ribbon reminders</comment>
   </data>
   <data name="ribStrikeoutTasksButton_Screentip" xml:space="preserve">

@@ -2469,6 +2469,10 @@ Gele highlight</value>
     <value>Geen formule gevonden in de geselecteerde tabel</value>
     <comment>recalculate command message</comment>
   </data>
+  <data name="RecolorInkCommand_noselection" xml:space="preserve">
+    <value>Selecteer een inktstreek die u opnieuw wilt kleuren</value>
+    <comment>error message</comment>
+  </data>
   <data name="RefreshPageLinksCommand_none" xml:space="preserve">
     <value>Geen referenties gevonden naar deze pagina</value>
     <comment>message</comment>
@@ -3900,6 +3904,13 @@ Tabblad Help</value>
   <data name="ribRecalculateFormulaButton_Screentip" xml:space="preserve">
     <value>Bereken alle formules in de huidige tabel opnieuw (Shift + F5)</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
+  </data>
+  <data name="ribRecolorInkButton_Label" xml:space="preserve">
+    <value>Inkt opnieuw kleuren</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribRecolorInkButton_Screentip" xml:space="preserve">
+    <value>Kleur geselecteerde inkttekeningen opnieuw</value>
   </data>
   <data name="ribReferencesMenu_Label" xml:space="preserve">
     <value>Referenties</value>

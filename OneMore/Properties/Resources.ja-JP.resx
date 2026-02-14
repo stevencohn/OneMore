@@ -2471,6 +2471,10 @@ ISO-code then comma then language name</comment>
     <value>選択された表に数式が見つかりません</value>
     <comment>recalculate command message</comment>
   </data>
+  <data name="RecolorInkCommand_noselection" xml:space="preserve">
+    <value>色を変更するインク ストロークを選択します</value>
+    <comment>error message</comment>
+  </data>
   <data name="RefreshPageLinksCommand_none" xml:space="preserve">
     <value>このページへの参照が見つかりません</value>
     <comment>message</comment>
@@ -3902,6 +3906,13 @@ ISO-code then comma then language name</comment>
   <data name="ribRecalculateFormulaButton_Screentip" xml:space="preserve">
     <value>現在の表内のすべての数式を再計算 (Shift + F5)</value>
     <comment>ribbon table</comment>
+  </data>
+  <data name="ribRecolorInkButton_Label" xml:space="preserve">
+    <value>リカラーインク</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribRecolorInkButton_Screentip" xml:space="preserve">
+    <value>選択したインク描画の色を変更する</value>
   </data>
   <data name="ribReferencesMenu_Label" xml:space="preserve">
     <value>参照</value>

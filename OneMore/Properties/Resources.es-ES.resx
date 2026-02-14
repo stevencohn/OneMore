@@ -2468,6 +2468,10 @@ Resaltado amarillo</value>
     <value>No se encontró ninguna fórmula en la tabla seleccionada</value>
     <comment>recalculate command message</comment>
   </data>
+  <data name="RecolorInkCommand_noselection" xml:space="preserve">
+    <value>Seleccione un trazo de tinta para cambiar el color</value>
+    <comment>error message</comment>
+  </data>
   <data name="RefreshPageLinksCommand_none" xml:space="preserve">
     <value>No se encontraron referencias a esta página.</value>
     <comment>message</comment>
@@ -3900,6 +3904,13 @@ Pestaña Ayuda</value>
   <data name="ribRecalculateFormulaButton_Screentip" xml:space="preserve">
     <value>Volver a calcular todas las fórmulas de la tabla actual (Mayús + F5)</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
+  </data>
+  <data name="ribRecolorInkButton_Label" xml:space="preserve">
+    <value>Recolorear tinta</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribRecolorInkButton_Screentip" xml:space="preserve">
+    <value>Cambiar el color de determinados dibujos a tinta</value>
   </data>
   <data name="ribReferencesMenu_Label" xml:space="preserve">
     <value>Referencias</value>

@@ -2468,6 +2468,10 @@ Gelbe Markierung</value>
     <value>In der ausgewählten Tabelle wurde keine Formel gefunden</value>
     <comment>recalculate command message</comment>
   </data>
+  <data name="RecolorInkCommand_noselection" xml:space="preserve">
+    <value>Wählen Sie einen Tintenstrich aus, den Sie neu einfärben möchten</value>
+    <comment>error message</comment>
+  </data>
   <data name="RefreshPageLinksCommand_none" xml:space="preserve">
     <value>Keine Verweise auf diese Seite gefunden</value>
     <comment>message</comment>
@@ -3894,6 +3898,13 @@ Registerkarte „Hilfe“.</value>
   <data name="ribRecalculateFormulaButton_Screentip" xml:space="preserve">
     <value>Berechnet alle Formeln in der aktuellen Tabelle neu (Umschalt + F5).</value>
     <comment>ribbon table</comment>
+  </data>
+  <data name="ribRecolorInkButton_Label" xml:space="preserve">
+    <value>Tinte neu einfärben</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribRecolorInkButton_Screentip" xml:space="preserve">
+    <value>Ausgewählte Tuschezeichnungen neu einfärben</value>
   </data>
   <data name="ribReferencesMenu_Label" xml:space="preserve">
     <value>Verweise</value>

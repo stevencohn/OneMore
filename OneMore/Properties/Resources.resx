@@ -2469,6 +2469,10 @@ Yellow Highlight</value>
     <value>No formula found in the selected table</value>
     <comment>recalculate command message</comment>
   </data>
+  <data name="RecolorInkCommand_noselection" xml:space="preserve">
+    <value>Select an ink stroke to recolor</value>
+    <comment>error message</comment>
+  </data>
   <data name="RefreshPageLinksCommand_none" xml:space="preserve">
     <value>No references found to this page</value>
     <comment>message</comment>
@@ -3900,6 +3904,13 @@ Help Tab</value>
   <data name="ribRecalculateFormulaButton_Screentip" xml:space="preserve">
     <value>Recalculate all formula in the current table (Shift + F5)</value>
     <comment>ribbon table</comment>
+  </data>
+  <data name="ribRecolorInkButton_Label" xml:space="preserve">
+    <value>Recolor Ink</value>
+    <comment>ribbon edit</comment>
+  </data>
+  <data name="ribRecolorInkButton_Screentip" xml:space="preserve">
+    <value>Recolor select ink drawings</value>
   </data>
   <data name="ribReferencesMenu_Label" xml:space="preserve">
     <value>References</value>
