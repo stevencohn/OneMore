@@ -58,15 +58,14 @@ namespace River.OneMoreAddIn.Commands
             }
 
 			badColor = strokes[0].DrawingAttributes.Color;
-			var sampleColor = Color.FromArgb(badColor.A, badColor.R, badColor.G, badColor.B);
 
-			var color = GetNewColor(sampleColor);
+			var color = GetNewColor(Color.FromArgb(badColor.A, badColor.R, badColor.G, badColor.B));
 			if (color == Color.Empty)
 			{
 				return;
 			}
 
-			var modified = UpdatePage(color);
+			var modified = Recolor(color);
 			if (modified)
 			{
 				await one.Update(page);
@@ -99,7 +98,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private bool UpdatePage(Color color)
+		private bool Recolor(Color color)
 		{
 			var goodColor = new System.Windows.Media.Color
 			{
