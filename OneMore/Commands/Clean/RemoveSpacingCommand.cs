@@ -17,6 +17,8 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class RemoveSpacingCommand : Command
 	{
+		private static bool commandIsActive = false;
+
 		private bool spaceBefore;
 		private bool spaceAfter;
 		private bool spaceBetween;
@@ -30,17 +32,28 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using var dialog = new RemoveSpacingDialog();
-			if (dialog.ShowDialog(owner) == DialogResult.OK)
-			{
-				spaceBefore = dialog.SpaceBefore;
-				spaceAfter = dialog.SpaceAfter;
-				spaceBetween = dialog.SpaceBetween;
-				includeHeadings = dialog.IncludeHeadings;
+			if (commandIsActive) { return; }
+			commandIsActive = true;
 
-				await RemoveSpacing();
+			try
+			{
+				using var dialog = new RemoveSpacingDialog();
+				if (dialog.ShowDialog(owner) == DialogResult.OK)
+				{
+					spaceBefore = dialog.SpaceBefore;
+					spaceAfter = dialog.SpaceAfter;
+					spaceBetween = dialog.SpaceBetween;
+					includeHeadings = dialog.IncludeHeadings;
+
+					await RemoveSpacing();
+				}
+			}
+			finally
+			{
+				commandIsActive = false;
 			}
 		}
+
 
 		private async Task RemoveSpacing()
 		{

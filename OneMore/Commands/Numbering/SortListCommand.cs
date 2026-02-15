@@ -24,7 +24,7 @@ namespace River.OneMoreAddIn.Commands
 			public List<XElement> Spaces;
 		}
 
-
+		private static bool commandIsActive = false;
 		private XNamespace ns;
 
 
@@ -35,67 +35,77 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			await using var one = new OneNote(out var page, out ns);
+			if (commandIsActive) { return; }
+			commandIsActive = true;
 
-			var range = new Models.SelectionRange(page);
-			var cursor = range.GetSelection();
-
-			if (cursor == null)
+			try
 			{
-				ShowError(Resx.SortListCommand_BadContext);
-				return;
-			}
+				await using var one = new OneNote(out var page, out ns);
 
-			if (cursor.Parent.FirstNode is not XElement first ||
-				first.Name.LocalName != "List")
-			{
-				ShowError(Resx.SortListCommand_BadContext);
-				return;
-			}
+				var range = new Models.SelectionRange(page);
+				var cursor = range.GetSelection();
 
-			using var dialog = new SortListDialog();
-			var result = dialog.ShowDialog(owner);
-			if (result == DialogResult.Cancel)
-			{
-				return;
-			}
-
-			if (dialog.IncludeAllLists)
-			{
-				var lists = page.Root.Descendants(ns + "OEChildren")
-					.Elements(ns + "OE")
-					.Elements(ns + "List")
-					.Select(e => e.Parent.Parent)
-					.Distinct();
-
-				if (!dialog.IncludeChildLists)
+				if (cursor == null)
 				{
-					// whittle it down to only top level lists
-					lists = lists.Where(
-						e => e.Parent.Elements().First().Name.LocalName != "List");
+					ShowError(Resx.SortListCommand_BadContext);
+					return;
 				}
 
-				if (!dialog.IncludeNumberedLists)
+				if (cursor.Parent.FirstNode is not XElement first ||
+					first.Name.LocalName != "List")
 				{
-					// whittle it down to only bulleted lists
-					lists = lists.Where(
-						e => !e.Elements(ns + "OE")
-							.Elements(ns + "List").Elements(ns + "Number").Any());
+					ShowError(Resx.SortListCommand_BadContext);
+					return;
 				}
 
-				foreach (var list in lists)
+				using var dialog = new SortListDialog();
+				var result = dialog.ShowDialog(owner);
+				if (result == DialogResult.Cancel)
 				{
-					OrderList(list, false, dialog.RemoveDuplicates);
+					return;
 				}
+
+				if (dialog.IncludeAllLists)
+				{
+					var lists = page.Root.Descendants(ns + "OEChildren")
+						.Elements(ns + "OE")
+						.Elements(ns + "List")
+						.Select(e => e.Parent.Parent)
+						.Distinct();
+
+					if (!dialog.IncludeChildLists)
+					{
+						// whittle it down to only top level lists
+						lists = lists.Where(
+							e => e.Parent.Elements().First().Name.LocalName != "List");
+					}
+
+					if (!dialog.IncludeNumberedLists)
+					{
+						// whittle it down to only bulleted lists
+						lists = lists.Where(
+							e => !e.Elements(ns + "OE")
+								.Elements(ns + "List").Elements(ns + "Number").Any());
+					}
+
+					foreach (var list in lists)
+					{
+						OrderList(list, false, dialog.RemoveDuplicates);
+					}
+				}
+				else
+				{
+					// root is the list's containing OEChildren
+					var list = cursor.Parent.Parent;
+					OrderList(list, dialog.IncludeChildLists, dialog.RemoveDuplicates);
+				}
+
+				await one.Update(page);
 			}
-			else
+			finally
 			{
-				// root is the list's containing OEChildren
-				var list = cursor.Parent.Parent;
-				OrderList(list, dialog.IncludeChildLists, dialog.RemoveDuplicates);
+				commandIsActive = false;
 			}
-
-			await one.Update(page);
 		}
 
 

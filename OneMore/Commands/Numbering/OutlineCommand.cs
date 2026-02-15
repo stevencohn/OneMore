@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -20,6 +20,8 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class OutlineCommand : Command
 	{
+		private static bool commandIsActive = false;
+
 		private XNamespace ns;
 		private List<Heading> headings;
 
@@ -31,44 +33,54 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using var dialog = new OutlineDialog();
-			if (dialog.ShowDialog(owner) != DialogResult.OK)
-			{
-				return;
-			}
+			if (commandIsActive) { return; }
+			commandIsActive = true;
 
-			await using var one = new OneNote(out var page, out ns);
-			if (!page.IsValid)
+			try
 			{
-				return;
-			}
+				using var dialog = new OutlineDialog();
+				if (dialog.ShowDialog(owner) != DialogResult.OK)
+				{
+					return;
+				}
 
-			headings = page.GetHeadings(one);
-			if (dialog.CleanupNumbering)
-			{
-				RemoveOutlineNumbering();
-			}
+				await using var one = new OneNote(out var page, out ns);
+				if (!page.IsValid)
+				{
+					return;
+				}
 
-			if (dialog.NumericNumbering)
-			{
-				AddOutlineNumbering(true, 0, 1, 1, string.Empty);
-			}
-			else if (dialog.AlphaNumbering)
-			{
-				AddOutlineNumbering(false, 0, 1, 1, string.Empty);
-			}
+				headings = page.GetHeadings(one);
+				if (dialog.CleanupNumbering)
+				{
+					RemoveOutlineNumbering();
+				}
 
-			if (dialog.Indent || dialog.IndentTagged)
-			{
-				IndentContent(page,
-					dialog.Indent,
-					dialog.IndentTagged,
-					dialog.TagSymbol,
-					dialog.RemoveTags);
-			}
+				if (dialog.NumericNumbering)
+				{
+					AddOutlineNumbering(true, 0, 1, 1, string.Empty);
+				}
+				else if (dialog.AlphaNumbering)
+				{
+					AddOutlineNumbering(false, 0, 1, 1, string.Empty);
+				}
 
-			// if OK then something must have happened, so save it
-			await one.Update(page);
+				if (dialog.Indent || dialog.IndentTagged)
+				{
+					IndentContent(page,
+						dialog.Indent,
+						dialog.IndentTagged,
+						dialog.TagSymbol,
+						dialog.RemoveTags);
+				}
+
+				// if OK then something must have happened, so save it
+				await one.Update(page);
+			}
+			finally
+			{
+				commandIsActive = false;
+			}
 		}
 
 

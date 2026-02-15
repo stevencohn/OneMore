@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -17,6 +17,8 @@ namespace River.OneMoreAddIn.Commands
 	internal class ColorizeCommand : Command
 	{
 		private const string DepthAttributeName = "omDepth";
+
+		private static bool commandIsActive = false;
 
 		private Page page;
 		private XNamespace ns;
@@ -44,24 +46,34 @@ namespace River.OneMoreAddIn.Commands
 		/// <returns></returns>
 		public override async Task Execute(params object[] args)
 		{
-			await using var one = new OneNote(out page, out ns);
+			if (commandIsActive) { return; }
+			commandIsActive = true;
 
-			AddDepth(page.Root);
-
-			var runs = page.Root.Descendants(ns + "T")
-				.Where(e => e.Attributes().Any(a => a.Name == "selected" && a.Value == "all"));
-
-			if (!runs.Any())
+			try
 			{
-				return;
+				await using var one = new OneNote(out page, out ns);
+
+				AddDepth(page.Root);
+
+				var runs = page.Root.Descendants(ns + "T")
+					.Where(e => e.Attributes().Any(a => a.Name == "selected" && a.Value == "all"));
+
+				if (!runs.Any())
+				{
+					return;
+				}
+
+				var updated = Colorize(args[0] as string, runs);
+
+				if (updated)
+				{
+					RemoveDepth(page.Root);
+					await one.Update(page);
+				}
 			}
-
-			var updated = Colorize(args[0] as string, runs);
-
-			if (updated)
+			finally
 			{
-				RemoveDepth(page.Root);
-				await one.Update(page);
+				commandIsActive = false;
 			}
 		}
 

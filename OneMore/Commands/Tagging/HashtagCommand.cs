@@ -21,6 +21,8 @@ namespace River.OneMoreAddIn.Commands
 		private string query;
 
 		private static HashtagDialog dialog;
+		private static bool commandIsActive = false;
+
 
 		public HashtagCommand()
 		{
@@ -31,56 +33,66 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			if (!await ConfirmReady())
+			if (commandIsActive) { return; }
+			commandIsActive = true;
+
+			try
 			{
-				return;
-			}
-
-			if (dialog != null)
-			{
-				// single instance
-				dialog.Elevate();
-				return;
-			}
-
-			var converter = new LegacyTaggingConverter();
-			await converter.UpgradeLegacyTags();
-
-			// get page moreID...
-
-			await using var one = new OneNote(out var page, out var ns);
-
-			var moreID = page.Root.Elements(ns + "Meta")
-				.Where(e => e.Attribute("name").Value == MetaNames.PageID)
-				.Select(e => e.Attribute("content").Value)
-				.FirstOrDefault();
-
-			// dialog...
-
-			dialog = new HashtagDialog(moreID);
-			dialog.FormClosed += Dialog_FormClosed;
-
-			dialog.RunModeless(async (sender, e) =>
-			{
-				var d = sender as HashtagDialog;
-				if (d.DialogResult == DialogResult.OK)
+				if (!await ConfirmReady())
 				{
-					command = d.Command;
-					selectedPages = d.SelectedPages;
-					query = d.Query;
-
-					var msg = command switch
-					{
-						HashtagDialog.Commands.Copy => Resx.SearchQF_DescriptionCopy,
-						HashtagDialog.Commands.Move => Resx.SearchQF_DescriptionMove,
-						_ => Resx.SearchQF_DescriptionIndex
-					};
-
-					await using var one = new OneNote();
-					one.SelectLocation(Resx.SearchQF_Title, msg, OneNote.Scope.Sections, Callback);
+					return;
 				}
-			},
-			20);
+
+				if (dialog != null)
+				{
+					// single instance
+					dialog.Elevate();
+					return;
+				}
+
+				var converter = new LegacyTaggingConverter();
+				await converter.UpgradeLegacyTags();
+
+				// get page moreID...
+
+				await using var one = new OneNote(out var page, out var ns);
+
+				var moreID = page.Root.Elements(ns + "Meta")
+					.Where(e => e.Attribute("name").Value == MetaNames.PageID)
+					.Select(e => e.Attribute("content").Value)
+					.FirstOrDefault();
+
+				// dialog...
+
+				dialog = new HashtagDialog(moreID);
+				dialog.FormClosed += Dialog_FormClosed;
+
+				dialog.RunModeless(async (sender, e) =>
+				{
+					var d = sender as HashtagDialog;
+					if (d.DialogResult == DialogResult.OK)
+					{
+						command = d.Command;
+						selectedPages = d.SelectedPages;
+						query = d.Query;
+
+						var msg = command switch
+						{
+							HashtagDialog.Commands.Copy => Resx.SearchQF_DescriptionCopy,
+							HashtagDialog.Commands.Move => Resx.SearchQF_DescriptionMove,
+							_ => Resx.SearchQF_DescriptionIndex
+						};
+
+						await using var one = new OneNote();
+						one.SelectLocation(Resx.SearchQF_Title, msg, OneNote.Scope.Sections, Callback);
+					}
+				},
+				20);
+			}
+			finally
+			{
+				commandIsActive = false;
+			}
 		}
 
 

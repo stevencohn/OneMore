@@ -35,6 +35,7 @@ namespace River.OneMoreAddIn.Commands
 	internal class AddFormulaCommand : Command
 	{
 		public const string BoltSymbol = "140";
+		private static bool commandIsActive = false;
 
 
 		public AddFormulaCommand()
@@ -44,97 +45,107 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			await using var one = new OneNote(out var page, out var ns);
+			if (commandIsActive) { return; }
+			commandIsActive = true;
 
-			if (!page.ConfirmBodyContext())
+			try
 			{
-				ShowInfo(Resx.FormulaCommand_SelectOne);
-				return;
-			}
+				await using var one = new OneNote(out var page, out var ns);
 
-			// Find first selected cell as anchor point to locate table into which
-			// the formula should be inserted; By filtering on selected=all, we avoid
-			// including the parent table of a selected nested table.
-
-			var anchor = page.Root.Descendants(ns + "Cell")
-				// first dive down to find the selected T
-				.Elements(ns + "OEChildren").Elements(ns + "OE")
-				.Elements(ns + "T")
-				.Where(e => e.Attribute("selected")?.Value == "all")
-				// now move back up to the Cell
-				.Select(e => e.Parent.Parent.Parent)
-				.FirstOrDefault();
-
-			if (anchor == null)
-			{
-				ShowInfo(Resx.FormulaCommand_SelectOne);
-				return;
-			}
-
-			var table = new Table(anchor.FirstAncestor(ns + "Table"));
-			var cells = table.GetSelectedCells(out var range).ToList();
-
-			if (range == TableSelectionRange.Rectangular)
-			{
-				ShowInfo(Resx.FormulaCommand_Linear);
-				return;
-			}
-
-			using var dialog = new FormulaDialog(table);
-
-			// display selected cell names
-			if (cells.Count == 1)
-			{
-				dialog.SetCellNames(cells[0].Coordinates);
-			}
-			else
-			{
-				dialog.SetCellNames(
-					$"{cells[0].Coordinates} - {cells[cells.Count - 1].Coordinates}");
-			}
-
-			var cell = cells[0];
-
-			// display formula of first cell if any
-			var formula = new Formula(cell);
-			if (formula.Valid)
-			{
-				dialog.Format = formula.Format;
-				dialog.Formula = formula.Expression;
-				dialog.DecimalPlaces = formula.DecimalPlaces;
-			}
-
-			var tagIndex = page.GetTagDefIndex(BoltSymbol);
-			if (!string.IsNullOrEmpty(tagIndex))
-			{
-				if (cell.HasTag(tagIndex))
+				if (!page.ConfirmBodyContext())
 				{
-					dialog.Tagged = true;
+					ShowInfo(Resx.FormulaCommand_SelectOne);
+					return;
+				}
+
+				// Find first selected cell as anchor point to locate table into which
+				// the formula should be inserted; By filtering on selected=all, we avoid
+				// including the parent table of a selected nested table.
+
+				var anchor = page.Root.Descendants(ns + "Cell")
+					// first dive down to find the selected T
+					.Elements(ns + "OEChildren").Elements(ns + "OE")
+					.Elements(ns + "T")
+					.Where(e => e.Attribute("selected")?.Value == "all")
+					// now move back up to the Cell
+					.Select(e => e.Parent.Parent.Parent)
+					.FirstOrDefault();
+
+				if (anchor == null)
+				{
+					ShowInfo(Resx.FormulaCommand_SelectOne);
+					return;
+				}
+
+				var table = new Table(anchor.FirstAncestor(ns + "Table"));
+				var cells = table.GetSelectedCells(out var range).ToList();
+
+				if (range == TableSelectionRange.Rectangular)
+				{
+					ShowInfo(Resx.FormulaCommand_Linear);
+					return;
+				}
+
+				using var dialog = new FormulaDialog(table);
+
+				// display selected cell names
+				if (cells.Count == 1)
+				{
+					dialog.SetCellNames(cells[0].Coordinates);
 				}
 				else
 				{
-					tagIndex = null;
+					dialog.SetCellNames(
+						$"{cells[0].Coordinates} - {cells[cells.Count - 1].Coordinates}");
 				}
-			}
 
-			if (dialog.ShowDialog(owner) != DialogResult.OK)
+				var cell = cells[0];
+
+				// display formula of first cell if any
+				var formula = new Formula(cell);
+				if (formula.Valid)
+				{
+					dialog.Format = formula.Format;
+					dialog.Formula = formula.Expression;
+					dialog.DecimalPlaces = formula.DecimalPlaces;
+				}
+
+				var tagIndex = page.GetTagDefIndex(BoltSymbol);
+				if (!string.IsNullOrEmpty(tagIndex))
+				{
+					if (cell.HasTag(tagIndex))
+					{
+						dialog.Tagged = true;
+					}
+					else
+					{
+						tagIndex = null;
+					}
+				}
+
+				if (dialog.ShowDialog(owner) != DialogResult.OK)
+				{
+					return;
+				}
+
+				if (dialog.Tagged)
+				{
+					tagIndex = page.AddTagDef(BoltSymbol, Resx.AddFormulaCommand_Calculated);
+				}
+
+				StoreFormula(table, cells,
+					dialog.Formula, dialog.Format, dialog.DecimalPlaces,
+					range, tagIndex);
+
+				var processor = new Processor(table);
+				processor.Execute(cells);
+
+				await one.Update(page);
+			}
+			finally
 			{
-				return;
+				commandIsActive = false;
 			}
-
-			if (dialog.Tagged)
-			{
-				tagIndex = page.AddTagDef(BoltSymbol, Resx.AddFormulaCommand_Calculated);
-			}
-
-			StoreFormula(table, cells,
-				dialog.Formula, dialog.Format, dialog.DecimalPlaces,
-				range, tagIndex);
-
-			var processor = new Processor(table);
-			processor.Execute(cells);
-
-			await one.Update(page);
 		}
 
 

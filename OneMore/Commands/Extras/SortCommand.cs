@@ -24,6 +24,9 @@ namespace River.OneMoreAddIn.Commands
 	/// </remarks>
 	internal class SortCommand : Command
 	{
+		private static bool commandIsActive = false;
+
+
 		public enum SortBy
 		{
 			Name,
@@ -89,50 +92,60 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using var dialog = new SortDialog();
+			if (commandIsActive) { return; }
+			commandIsActive = true;
 
-			if (args != null && args.Length > 0 && args[0] is OneNote.Scope scopeArg)
+			try
 			{
-				dialog.SetScope(scopeArg);
+				using var dialog = new SortDialog();
+
+				if (args != null && args.Length > 0 && args[0] is OneNote.Scope scopeArg)
+				{
+					dialog.SetScope(scopeArg);
+				}
+
+				if (dialog.ShowDialog(owner) != DialogResult.OK)
+				{
+					return;
+				}
+
+				var sorting = dialog.Sorting;
+				var ascending = dialog.Direction == SortDialog.Directions.Ascending;
+				logger.WriteLine($"sort scope:{dialog.Scope} sorting:{sorting} ascending:{ascending}");
+
+				if (sorting == SortBy.Name)
+				{
+					// create a pattern to match the sequence number at the start of the name
+					// e.g. "1 - Color", "2) Thing", "(3) Notes", "[4] Automobiles"
+					SortablePattern = new Regex(@"^(?:[([{]\s*)?(\d+)(?:\s*[)\]}])?\s*(.*)");
+				}
+
+				switch (dialog.Scope)
+				{
+					case OneNote.Scope.Children:
+						await SortPages(sorting, ascending, true);
+						break;
+
+					case OneNote.Scope.Pages:
+						await SortPages(sorting, ascending, false);
+						break;
+
+					case OneNote.Scope.Sections:
+						await SortSections(sorting, ascending, dialog.PinNotes, false);
+						break;
+
+					case OneNote.Scope.SectionGroups:
+						await SortSections(sorting, ascending, dialog.PinNotes, true);
+						break;
+
+					case OneNote.Scope.Notebooks:
+						await SortNotebooks(sorting, ascending);
+						break;
+				}
 			}
-
-			if (dialog.ShowDialog(owner) != DialogResult.OK)
+			finally
 			{
-				return;
-			}
-
-			var sorting = dialog.Sorting;
-			var ascending = dialog.Direction == SortDialog.Directions.Ascending;
-			logger.WriteLine($"sort scope:{dialog.Scope} sorting:{sorting} ascending:{ascending}");
-
-			if (sorting == SortBy.Name)
-			{
-				// create a pattern to match the sequence number at the start of the name
-				// e.g. "1 - Color", "2) Thing", "(3) Notes", "[4] Automobiles"
-				SortablePattern = new Regex(@"^(?:[([{]\s*)?(\d+)(?:\s*[)\]}])?\s*(.*)");
-			}
-
-			switch (dialog.Scope)
-			{
-				case OneNote.Scope.Children:
-					await SortPages(sorting, ascending, true);
-					break;
-
-				case OneNote.Scope.Pages:
-					await SortPages(sorting, ascending, false);
-					break;
-
-				case OneNote.Scope.Sections:
-					await SortSections(sorting, ascending, dialog.PinNotes, false);
-					break;
-
-				case OneNote.Scope.SectionGroups:
-					await SortSections(sorting, ascending, dialog.PinNotes, true);
-					break;
-
-				case OneNote.Scope.Notebooks:
-					await SortNotebooks(sorting, ascending);
-					break;
+				commandIsActive = false;
 			}
 		}
 

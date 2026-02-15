@@ -18,6 +18,7 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class InsertEmojiCommand : Command
 	{
+		private static bool commandIsActive = false;
 		private const string ReplayElementName = "symbols";
 		private IEnumerable<IEmoji> emojis;
 
@@ -43,19 +44,29 @@ namespace River.OneMoreAddIn.Commands
 				emojis = map.ParseSymbols(element.Value);
 			}
 
-			if (emojis == null)
+			if (commandIsActive) { return; }
+			commandIsActive = true;
+
+			try
 			{
-				using var dialog = new EmojiDialog();
-				if (dialog.ShowDialog(owner) == DialogResult.Cancel)
+				if (emojis == null)
 				{
-					IsCancelled = true;
-					return;
+					using var dialog = new EmojiDialog();
+					if (dialog.ShowDialog(owner) == DialogResult.Cancel)
+					{
+						IsCancelled = true;
+						return;
+					}
+
+					emojis = dialog.GetEmojis();
 				}
 
-				emojis = dialog.GetEmojis();
+				await InsertSymbols();
 			}
-
-			await InsertSymbols();
+			finally
+			{
+				commandIsActive = false;
+			}
 		}
 
 

@@ -26,6 +26,8 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class PronunciateCommand : Command
 	{
+		private static bool commandIsActive = false;
+
 		private string isoCode;
 
 
@@ -57,73 +59,83 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			await using var one = new OneNote(out var page, out var ns);
-			var element = page.Root.Descendants(ns + "T")
-				.FirstOrDefault(e =>
-					e.Attributes("selected").Any(a => a.Value.Equals("all")) &&
-					e.FirstNode.NodeType == XmlNodeType.CDATA &&
-					((XCData)e.FirstNode).Value.Length > 0);
+			if (commandIsActive) { return; }
+			commandIsActive = true;
 
-			if (element == null)
+			try
 			{
-				ShowError(Resx.Pronunciate_FullWord);
-				return;
-			}
+				await using var one = new OneNote(out var page, out var ns);
+				var element = page.Root.Descendants(ns + "T")
+					.FirstOrDefault(e =>
+						e.Attributes("selected").Any(a => a.Value.Equals("all")) &&
+						e.FirstNode.NodeType == XmlNodeType.CDATA &&
+						((XCData)e.FirstNode).Value.Length > 0);
 
-			var cdata = element.GetCData();
-			var wrapper = cdata.GetWrapper();
-
-			var word = wrapper.Value;
-			var spaced = char.IsWhiteSpace(word[word.Length - 1]);
-			word = word.Trim();
-
-			if (string.IsNullOrEmpty(word))
-			{
-				ShowError(Resx.Pronunciate_EmptyWord);
-				return;
-			}
-
-			// check for replay
-			if (args is not null)
-			{
-				var index = args.IndexOf(a => a is XElement e && e.Name.LocalName == "isoCode");
-				if (index >= 0 && args[index] is XElement isoElement &&
-					!string.IsNullOrEmpty(isoElement.Value))
+				if (element == null)
 				{
-					isoCode = isoElement.Value;
-				}
-			}
-
-			if (isoCode is null)
-			{
-				using var dialog = new PronunciateDialog();
-				dialog.Word = word;
-
-				if (dialog.ShowDialog(owner) != DialogResult.OK)
-				{
-					IsCancelled = true;
+					ShowError(Resx.Pronunciate_FullWord);
 					return;
 				}
 
-				isoCode = dialog.Language;
-			}
+				var cdata = element.GetCData();
+				var wrapper = cdata.GetWrapper();
 
-			var ruby = await LookupPhonetics(word, isoCode);
-			if (!string.IsNullOrEmpty(ruby))
-			{
-				if (ruby[0] != '/' || ruby[ruby.Length - 1] != '/')
+				var word = wrapper.Value;
+				var spaced = char.IsWhiteSpace(word[word.Length - 1]);
+				word = word.Trim();
+
+				if (string.IsNullOrEmpty(word))
 				{
-					ruby = $"/{ruby}/";
+					ShowError(Resx.Pronunciate_EmptyWord);
+					return;
 				}
 
-				ruby = spaced ? ruby + ' ' : $" {ruby} ";
+				// check for replay
+				if (args is not null)
+				{
+					var index = args.IndexOf(a => a is XElement e && e.Name.LocalName == "isoCode");
+					if (index >= 0 && args[index] is XElement isoElement &&
+						!string.IsNullOrEmpty(isoElement.Value))
+					{
+						isoCode = isoElement.Value;
+					}
+				}
 
-				element.AddAfterSelf(
-					new XElement(ns + "T",
-						new XCData($"<span style='color:#8496B0'>{ruby}</span>"))
-					);
+				if (isoCode is null)
+				{
+					using var dialog = new PronunciateDialog();
+					dialog.Word = word;
 
-				await one.Update(page);
+					if (dialog.ShowDialog(owner) != DialogResult.OK)
+					{
+						IsCancelled = true;
+						return;
+					}
+
+					isoCode = dialog.Language;
+				}
+
+				var ruby = await LookupPhonetics(word, isoCode);
+				if (!string.IsNullOrEmpty(ruby))
+				{
+					if (ruby[0] != '/' || ruby[ruby.Length - 1] != '/')
+					{
+						ruby = $"/{ruby}/";
+					}
+
+					ruby = spaced ? ruby + ' ' : $" {ruby} ";
+
+					element.AddAfterSelf(
+						new XElement(ns + "T",
+							new XCData($"<span style='color:#8496B0'>{ruby}</span>"))
+						);
+
+					await one.Update(page);
+				}
+			}
+			finally
+			{
+				commandIsActive = false;
 			}
 		}
 

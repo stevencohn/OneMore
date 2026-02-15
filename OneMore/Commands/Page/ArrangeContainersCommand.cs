@@ -24,6 +24,8 @@ namespace River.OneMoreAddIn.Commands
 		private const double RightMargin = 20.0;
 		private const double TopMargin = 86.0;
 
+		private static bool commandIsActive = false;
+
 		private Page page;
 		private XNamespace ns;
 		private double topMargin;
@@ -37,35 +39,45 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			await using var one = new OneNote(out page, out ns);
+			if (commandIsActive) { return; }
+			commandIsActive = true;
 
-			if (!page.Root.Elements(ns + "Outline").Any())
+			try
 			{
-				ShowInfo(Resx.ArrangeContainersCommand_noContainers);
-				return;
+				await using var one = new OneNote(out page, out ns);
+
+				if (!page.Root.Elements(ns + "Outline").Any())
+				{
+					ShowInfo(Resx.ArrangeContainersCommand_noContainers);
+					return;
+				}
+
+				using var dialog = new ArrangeContainersDialog();
+				if (dialog.ShowDialog(owner) != System.Windows.Forms.DialogResult.OK)
+				{
+					return;
+				}
+
+				FindTopMargin();
+
+				indent = LeftMargin + dialog.Indent;
+
+				var updated = dialog.Vertical
+					? ArrangeVertical(dialog.PageWidth)
+					: ArrangeFlow(dialog.Columns, dialog.PageWidth);
+
+				if (updated)
+				{
+					await one.Update(page);
+				}
+				else
+				{
+					ShowInfo(Resx.ArrangeContainersCommand_noContainers);
+				}
 			}
-
-			using var dialog = new ArrangeContainersDialog();
-			if (dialog.ShowDialog(owner) != System.Windows.Forms.DialogResult.OK)
+			finally
 			{
-				return;
-			}
-
-			FindTopMargin();
-
-			indent = LeftMargin + dialog.Indent;
-
-			var updated = dialog.Vertical
-				? ArrangeVertical(dialog.PageWidth)
-				: ArrangeFlow(dialog.Columns, dialog.PageWidth);
-
-			if (updated)
-			{
-				await one.Update(page);
-			}
-			else
-			{
-				ShowInfo(Resx.ArrangeContainersCommand_noContainers);
+				commandIsActive = false;
 			}
 		}
 

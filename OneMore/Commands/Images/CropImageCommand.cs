@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 #define xLogging
@@ -19,6 +19,8 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class CropImageCommand : Command
 	{
+		private static bool commandIsActive = false;
+
 		private Page page;
 		private XNamespace ns;
 
@@ -30,27 +32,37 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			await using var one = new OneNote(out page, out ns, OneNote.PageDetail.All);
+			if (commandIsActive) { return; }
+			commandIsActive = true;
 
-			var images = page.Root.Descendants(ns + "Image")?
-				.Where(e => e.Attribute("selected")?.Value == "all");
-
-			if (!images.Any())
+			try
 			{
-				ShowError(Resx.CropImage_oneImage);
-				return;
-			}
+				await using var one = new OneNote(out page, out ns, OneNote.PageDetail.All);
 
-			var image = images.First();
-			if (image.Attributes().Any(a => a.Name == "isPrintOut"))
-			{
-				if (UI.MoreMessageBox.ShowQuestion(owner, Resx.CropImageDialog_printout) != DialogResult.Yes)
+				var images = page.Root.Descendants(ns + "Image")?
+					.Where(e => e.Attribute("selected")?.Value == "all");
+
+				if (!images.Any())
 				{
+					ShowError(Resx.CropImage_oneImage);
 					return;
 				}
-			}
 
-			await CropImage(one, image);
+				var image = images.First();
+				if (image.Attributes().Any(a => a.Name == "isPrintOut"))
+				{
+					if (UI.MoreMessageBox.ShowQuestion(owner, Resx.CropImageDialog_printout) != DialogResult.Yes)
+					{
+						return;
+					}
+				}
+
+				await CropImage(one, image);
+			}
+			finally
+			{
+				commandIsActive = false;
+			}
 		}
 
 

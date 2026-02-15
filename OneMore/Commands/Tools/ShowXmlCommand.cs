@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2016 Steven M Cohn.  All rights reserved.
+// Copyright © 2016 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -12,6 +12,9 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class ShowXmlCommand : Command
 	{
+		private static bool commandIsActive = false;
+
+
 		public ShowXmlCommand()
 		{
 			// prevent replay
@@ -21,10 +24,20 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using var dialog = new ShowXmlDialog();
-			dialog.ShowDialog(owner);
+			if (commandIsActive) { return; }
+			commandIsActive = true;
 
-			await Task.Yield();
+			try
+			{
+				using var dialog = new ShowXmlDialog();
+				dialog.ShowDialog(owner);
+
+				await Task.Yield();
+			}
+			finally
+			{
+				commandIsActive = false;
+			}
 		}
 	}
 }

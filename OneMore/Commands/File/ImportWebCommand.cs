@@ -41,6 +41,8 @@ namespace River.OneMoreAddIn.Commands
 		private const string ClientKey = @"SOFTWARE\WOW6432Node\Microsoft\EdgeUpdate\Clients";
 		private const string RuntimeId = "{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}";
 
+		private static bool commandIsActive = false;
+
 		private sealed class WebPageInfo
 		{
 			public string Content;
@@ -60,41 +62,51 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			if (!HttpClientFactory.IsNetworkAvailable())
-			{
-				ShowInfo(Resx.NetwordConnectionUnavailable);
-				return;
-			}
+			if (commandIsActive) { return; }
+			commandIsActive = true;
 
-			var key = Registry.LocalMachine.OpenSubKey($"{ClientKey}\\{RuntimeId}");
-			if (key == null)
+			try
 			{
-				ShowError("Unable to use this command; Edge WebView2 is not installed");
-				return;
-			}
-
-			using (var dialog = new ImportWebDialog())
-			{
-				if (dialog.ShowDialog(owner) != DialogResult.OK)
+				if (!HttpClientFactory.IsNetworkAvailable())
 				{
+					ShowInfo(Resx.NetwordConnectionUnavailable);
 					return;
 				}
 
-				address = dialog.Address;
-				target = dialog.Target;
-				importImages = dialog.ImportImages;
-			}
+				var key = Registry.LocalMachine.OpenSubKey($"{ClientKey}\\{RuntimeId}");
+				if (key == null)
+				{
+					ShowError("Unable to use this command; Edge WebView2 is not installed");
+					return;
+				}
 
-			if (importImages)
-			{
-				ImportAsImages();
-			}
-			else
-			{
-				ImportAsContent();
-			}
+				using (var dialog = new ImportWebDialog())
+				{
+					if (dialog.ShowDialog(owner) != DialogResult.OK)
+					{
+						return;
+					}
 
-			await Task.Yield();
+					address = dialog.Address;
+					target = dialog.Target;
+					importImages = dialog.ImportImages;
+				}
+
+				if (importImages)
+				{
+					ImportAsImages();
+				}
+				else
+				{
+					ImportAsContent();
+				}
+
+				await Task.Yield();
+			}
+			finally
+			{
+				commandIsActive = false;
+			}
 		}
 
 

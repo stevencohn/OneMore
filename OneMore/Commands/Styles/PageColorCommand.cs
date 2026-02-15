@@ -20,6 +20,8 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class PageColorCommand : Command
 	{
+		private static bool commandIsActive = false;
+
 		private string pageColor;
 		private ApplyStylesCommand styler;
 
@@ -31,43 +33,53 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			Color color;
-			Page page;
-			await using (var one = new OneNote(out page, out _))
+			if (commandIsActive) { return; }
+			commandIsActive = true;
+
+			try
 			{
-				color = page.GetPageColor(out var automatic, out _);
-				if (automatic)
+				Color color;
+				Page page;
+				await using (var one = new OneNote(out page, out _))
 				{
-					color = Color.Transparent;
+					color = page.GetPageColor(out var automatic, out _);
+					if (automatic)
+					{
+						color = Color.Transparent;
+					}
+				}
+
+				using var dialog = new PageColorDialog(color, new ThemeProvider().Theme.Name);
+				if (dialog.ShowDialog(owner) != DialogResult.OK)
+				{
+					return;
+				}
+
+				pageColor = MakePageColor(dialog.Color);
+
+				if (dialog.ApplyStyle)
+				{
+					ThemeProvider.RecordTheme(dialog.ThemeKey);
+					styler = new ApplyStylesCommand();
+					styler.SetLogger(logger);
+				}
+
+				if (dialog.Scope == OneNote.Scope.Self)
+				{
+					UpdatePageColor(page, pageColor);
+					styler?.ApplyTheme(page);
+
+					await using var one = new OneNote();
+					await one.Update(page);
+				}
+				else
+				{
+					await ColorPages(dialog.Scope, pageColor);
 				}
 			}
-
-			using var dialog = new PageColorDialog(color, new ThemeProvider().Theme.Name);
-			if (dialog.ShowDialog(owner) != DialogResult.OK)
+			finally
 			{
-				return;
-			}
-
-			pageColor = MakePageColor(dialog.Color);
-
-			if (dialog.ApplyStyle)
-			{
-				ThemeProvider.RecordTheme(dialog.ThemeKey);
-				styler = new ApplyStylesCommand();
-				styler.SetLogger(logger);
-			}
-
-			if (dialog.Scope == OneNote.Scope.Self)
-			{
-				UpdatePageColor(page, pageColor);
-				styler?.ApplyTheme(page);
-
-				await using var one = new OneNote();
-				await one.Update(page);
-			}
-			else
-			{
-				await ColorPages(dialog.Scope, pageColor);
+				commandIsActive = false;
 			}
 		}
 

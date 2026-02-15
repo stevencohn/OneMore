@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2022 Steven M Cohn.  All rights reserved.
+// Copyright © 2022 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -16,6 +16,8 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class CommandPaletteCommand : Command
 	{
+		private static bool commandIsActive = false;
+
 		private List<CommandInfo> commands;
 		private List<CommandInfo> recent;
 
@@ -29,40 +31,50 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using var dialog = new CommandPaletteDialog();
-			dialog.RequestData += PopulateCommands;
-			PopulateCommands(dialog, null);
+			if (commandIsActive) { return; }
+			commandIsActive = true;
 
-			if (dialog.ShowDialog(owner) == DialogResult.OK &&
-				dialog.Index >= 0)
+			try
 			{
-				var command = dialog.Recent
-					? recent[dialog.Index]
-					: commands[dialog.Index];
+				using var dialog = new CommandPaletteDialog();
+				dialog.RequestData += PopulateCommands;
+				PopulateCommands(dialog, null);
 
-				//logger.WriteLine($"invoking command[index:{dialog.Index},recent:{dialog.Recent}] 'method:{command.Method.Name}'");
-				await (Task)command.Method.Invoke(AddIn.Self, new object[] { null });
-
-				// save if not IsCancelled...
-
-				var type = Type.GetType($"River.OneMoreAddIn.Commands.{command.Method.Name}");
-				if (type != null)
+				if (dialog.ShowDialog(owner) == DialogResult.OK &&
+					dialog.Index >= 0)
 				{
-					var prop = type.GetProperty("IsCancelled");
-					if (prop != null)
+					var command = dialog.Recent
+						? recent[dialog.Index]
+						: commands[dialog.Index];
+
+					//logger.WriteLine($"invoking command[index:{dialog.Index},recent:{dialog.Recent}] 'method:{command.Method.Name}'");
+					await (Task)command.Method.Invoke(AddIn.Self, new object[] { null });
+
+					// save if not IsCancelled...
+
+					var type = Type.GetType($"River.OneMoreAddIn.Commands.{command.Method.Name}");
+					if (type != null)
 					{
-						if (prop.GetValue(Activator.CreateInstance(type)) is bool isCancelled &&
-							!isCancelled)
+						var prop = type.GetProperty("IsCancelled");
+						if (prop != null)
 						{
-							new CommandProvider().SaveToMRU(command);
+							if (prop.GetValue(Activator.CreateInstance(type)) is bool isCancelled &&
+								!isCancelled)
+							{
+								new CommandProvider().SaveToMRU(command);
+							}
 						}
 					}
 				}
-			}
 
-			// reset focus to OneNote window
-			await using var one = new OneNote();
-			Native.SwitchToThisWindow(one.WindowHandle, false);
+				// reset focus to OneNote window
+				await using var one = new OneNote();
+				Native.SwitchToThisWindow(one.WindowHandle, false);
+			}
+			finally
+			{
+				commandIsActive = false;
+			}
 		}
 
 

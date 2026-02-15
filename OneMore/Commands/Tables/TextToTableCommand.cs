@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -20,6 +20,7 @@ namespace River.OneMoreAddIn.Commands
 	internal class TextToTableCommand : Command
 	{
 		private const string HeaderShading = "#DEEBF6";
+		private static bool commandIsActive = false;
 
 
 		public TextToTableCommand()
@@ -29,33 +30,43 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			await using var one = new OneNote(out var page, out var ns, OneNote.PageDetail.Selection);
-			var selections = page.Root
-				.Descendants(page.Namespace + "OE")
-				.Elements(page.Namespace + "T")
-				.Where(e => e.Attribute("selected")?.Value == "all")
-				.Select(e => e.Parent)
-				.ToList();
+			if (commandIsActive) { return; }
+			commandIsActive = true;
 
-			if (selections.Count == 0 || (selections.Count == 1 && selections[0].Value == string.Empty))
+			try
 			{
-				ShowInfo(Resx.TextToTable_NoText);
-				return;
-			}
+				await using var one = new OneNote(out var page, out var ns, OneNote.PageDetail.Selection);
+				var selections = page.Root
+					.Descendants(page.Namespace + "OE")
+					.Elements(page.Namespace + "T")
+					.Where(e => e.Attribute("selected")?.Value == "all")
+					.Select(e => e.Parent)
+					.ToList();
 
-			var table = TextToTable(page.Namespace, selections);
-
-			if (table != null)
-			{
-				var first = selections[0];
-				for (int i = 1; i < selections.Count; i++)
+				if (selections.Count == 0 || (selections.Count == 1 && selections[0].Value == string.Empty))
 				{
-					selections[i].Remove();
+					ShowInfo(Resx.TextToTable_NoText);
+					return;
 				}
 
-				first.ReplaceNodes(table.Root);
+				var table = TextToTable(page.Namespace, selections);
 
-				await one.Update(page);
+				if (table != null)
+				{
+					var first = selections[0];
+					for (int i = 1; i < selections.Count; i++)
+					{
+						selections[i].Remove();
+					}
+
+					first.ReplaceNodes(table.Root);
+
+					await one.Update(page);
+				}
+			}
+			finally
+			{
+				commandIsActive = false;
 			}
 		}
 

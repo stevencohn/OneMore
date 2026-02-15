@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -23,6 +23,8 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class InsertCellsCommand : Command
 	{
+		private static bool commandIsActive = false;
+
 
 		public InsertCellsCommand()
 		{
@@ -31,45 +33,55 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			await using var one = new OneNote(out var page, out var ns);
+			if (commandIsActive) { return; }
+			commandIsActive = true;
 
-			// Find first selected cell as anchor point to locate table ; By filtering on
-			// selected=all, we avoid including the parent table of a selected nested table.
-
-			var anchor = page.Root.Descendants(ns + "Cell")
-				// first dive down to find the selected T
-				.Elements(ns + "OEChildren").Elements(ns + "OE")
-				.Elements(ns + "T")
-				.Where(e => e.Attribute("selected")?.Value == "all")
-				// now move back up to the Cell
-				.Select(e => e.Parent.Parent.Parent)
-				.FirstOrDefault();
-
-			if (anchor == null)
+			try
 			{
-				ShowInfo(Resx.InsertCellsCommand_NoSelection);
-				return;
+				await using var one = new OneNote(out var page, out var ns);
+
+				// Find first selected cell as anchor point to locate table ; By filtering on
+				// selected=all, we avoid including the parent table of a selected nested table.
+
+				var anchor = page.Root.Descendants(ns + "Cell")
+					// first dive down to find the selected T
+					.Elements(ns + "OEChildren").Elements(ns + "OE")
+					.Elements(ns + "T")
+					.Where(e => e.Attribute("selected")?.Value == "all")
+					// now move back up to the Cell
+					.Select(e => e.Parent.Parent.Parent)
+					.FirstOrDefault();
+
+				if (anchor == null)
+				{
+					ShowInfo(Resx.InsertCellsCommand_NoSelection);
+					return;
+				}
+
+				var table = new Table(anchor.FirstAncestor(ns + "Table"));
+				var cells = table.GetSelectedCells(out var range).ToList();
+
+				using var dialog = new InsertCellsDialog();
+				if (dialog.ShowDialog(owner) != DialogResult.OK)
+				{
+					return;
+				}
+
+				if (dialog.ShiftDown)
+				{
+					ShiftDown(table, cells, dialog.ShiftCount);
+				}
+				else
+				{
+					ShiftRight(table, cells, dialog.ShiftCount);
+				}
+
+				await one.Update(page);
 			}
-
-			var table = new Table(anchor.FirstAncestor(ns + "Table"));
-			var cells = table.GetSelectedCells(out var range).ToList();
-
-			using var dialog = new InsertCellsDialog();
-			if (dialog.ShowDialog(owner) != DialogResult.OK)
+			finally
 			{
-				return;
+				commandIsActive = false;
 			}
-
-			if (dialog.ShiftDown)
-			{
-				ShiftDown(table, cells, dialog.ShiftCount);
-			}
-			else
-			{
-				ShiftRight(table, cells, dialog.ShiftCount);
-			}
-
-			await one.Update(page);
 		}
 
 

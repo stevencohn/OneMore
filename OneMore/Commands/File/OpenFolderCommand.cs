@@ -10,6 +10,8 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class OpenFolderCommand : Command
 	{
+		private static bool commandIsActive = false;
+
 		public OpenFolderCommand()
 		{
 		}
@@ -17,25 +19,35 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using var dialog = new OpenFolderDialog();
-			var result = dialog.ShowDialog(owner);
+			if (commandIsActive) { return; }
+			commandIsActive = true;
 
-			if (result != System.Windows.Forms.DialogResult.OK)
+			try
 			{
-				return;
+				using var dialog = new OpenFolderDialog();
+				var result = dialog.ShowDialog(owner);
+
+				if (result != System.Windows.Forms.DialogResult.OK)
+				{
+					return;
+				}
+
+				var path = dialog.FolderPath;
+				if (!string.IsNullOrWhiteSpace(path) && Directory.Exists(path))
+				{
+					// no need to check if the folder is already open as a notebook; OneNote will
+					// handle that by navigating directly to the notebook for the user. This is
+					// also true for subfolders within that notebook.
+
+					// TODO: do we need to check if opening the parent folder of an open notebook?
+
+					using var one = new OneNote();
+					await one.OpenHierarchy(path);
+				}
 			}
-
-			var path = dialog.FolderPath;
-			if (!string.IsNullOrWhiteSpace(path) && Directory.Exists(path))
+			finally
 			{
-				// no need to check if the folder is already open as a notebook; OneNote will
-				// handle that by navigating directly to the notebook for the user. This is
-				// also true for subfolders within that notebook.
-
-				// TODO: do we need to check if opening the parent folder of an open notebook?
-
-				using var one = new OneNote();
-				await one.OpenHierarchy(path);
+				commandIsActive = false;
 			}
 		}
 	}

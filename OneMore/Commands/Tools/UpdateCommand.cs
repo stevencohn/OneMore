@@ -12,6 +12,9 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class UpdateCommand : Command
 	{
+		private static bool commandIsActive = false;
+
+
 		public UpdateCommand()
 		{
 			// prevent replay
@@ -69,15 +72,25 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			using var question = new UpdateDialog(updater);
-			var result = question.ShowDialog(owner);
-			if (result == DialogResult.OK)
+			if (commandIsActive) { return; }
+			commandIsActive = true;
+
+			try
 			{
-				Updated = await updater.Update();
+				using var question = new UpdateDialog(updater);
+				var result = question.ShowDialog(owner);
+				if (result == DialogResult.OK)
+				{
+					Updated = await updater.Update();
+				}
+				else if (result == DialogResult.Ignore)
+				{
+					updater.SkipRelease();
+				}
 			}
-			else if (result == DialogResult.Ignore)
+			finally
 			{
-				updater.SkipRelease();
+				commandIsActive = false;
 			}
 		}
 	}

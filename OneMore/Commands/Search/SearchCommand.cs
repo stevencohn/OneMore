@@ -13,6 +13,8 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class SearchCommand : Command
 	{
+		private static bool commandIsActive = false;
+
 		private bool copying;
 		private List<string> pageIds;
 		private SearchDialog dialog;
@@ -31,29 +33,41 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			copying = false;
+			if (commandIsActive) { return; }
+			commandIsActive = true;
 
-			dialog = new SearchDialog();
-			dialog.RunModeless(async (sender, e) =>
+			try
 			{
-				if (sender is SearchDialog d && d.DialogResult == DialogResult.OK)
+				copying = false;
+
+				dialog = new SearchDialog();
+				dialog.RunModeless(async (sender, e) =>
 				{
-					copying = d.CopySelections;
-					pageIds = d.SelectedPages;
+					if (sender is SearchDialog d && d.DialogResult == DialogResult.OK)
+					{
+						copying = d.CopySelections;
+						pageIds = d.SelectedPages;
 
-					var desc = copying
-						? Resx.SearchQF_DescriptionCopy
-						: Resx.SearchQF_DescriptionMove;
+						var desc = copying
+							? Resx.SearchQF_DescriptionCopy
+							: Resx.SearchQF_DescriptionMove;
 
-					await using var one = new OneNote();
-					one.SelectLocation(Resx.SearchQF_Title, desc, OneNote.Scope.Sections, Callback);
-				}
-			},
-			20);
+						await using var one = new OneNote();
+						one.SelectLocation(Resx.SearchQF_Title, desc, OneNote.Scope.Sections, Callback);
+					}
+				},
+				20);
 
-			dialog.Elevate(true);
+				dialog.Elevate(true);
 
-			await Task.Yield();
+				await Task.Yield();
+			}
+			finally
+			{
+				commandIsActive = false;
+				dialog.Dispose();
+				dialog = null;
+			}
 		}
 
 

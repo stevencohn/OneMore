@@ -15,6 +15,8 @@ namespace River.OneMoreAddIn.Commands
 	[CommandService]
 	internal class InsertTocCommand : Command
 	{
+		private static bool commandIsActive	= false;
+
 
 		public InsertTocCommand()
 		{
@@ -29,15 +31,25 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			var parameters = await CollectParameterDefaults();
+			if (commandIsActive) { return; }
+			commandIsActive = true;
 
-			using var dialog = new InsertTocDialog(parameters);
-			if (dialog.ShowDialog(owner) == DialogResult.Cancel)
+			try
 			{
-				return;
-			}
+				var parameters = await CollectParameterDefaults();
 
-			await Build(parameters);
+				using var dialog = new InsertTocDialog(parameters);
+				if (dialog.ShowDialog(owner) == DialogResult.Cancel)
+				{
+					return;
+				}
+
+				await Build(parameters);
+			}
+			finally
+			{
+				commandIsActive = false;
+			}
 		}
 
 

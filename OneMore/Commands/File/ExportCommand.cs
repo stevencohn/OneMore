@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -17,6 +17,8 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class ExportCommand : Command
 	{
+		private static bool commandIsActive = false;
+
 		private OneNote one;
 		private int quickCount = 0;
 
@@ -28,28 +30,38 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			await using (one = new OneNote())
+			if (commandIsActive) { return; }
+			commandIsActive = true;
+
+			try
 			{
-				var section = await one.GetSection();
-				var ns = one.GetNamespace(section);
-
-				var pageIDs = section.Elements(ns + "Page")
-					.Where(e => e.Attribute("selected")?.Value == "all")
-					.Select(e => e.Attribute("ID").Value)
-					.ToList();
-
-				if (pageIDs.Count == 0)
+				await using (one = new OneNote())
 				{
-					pageIDs.Add(one.CurrentPageId);
-					await Export(pageIDs);
+					var section = await one.GetSection();
+					var ns = one.GetNamespace(section);
+
+					var pageIDs = section.Elements(ns + "Page")
+						.Where(e => e.Attribute("selected")?.Value == "all")
+						.Select(e => e.Attribute("ID").Value)
+						.ToList();
+
+					if (pageIDs.Count == 0)
+					{
+						pageIDs.Add(one.CurrentPageId);
+						await Export(pageIDs);
+					}
+					else
+					{
+						await Export(pageIDs);
+					}
 				}
-				else
-				{
-					await Export(pageIDs);
-				}
+
+				await Task.Yield();
 			}
-
-			await Task.Yield();
+			finally
+			{
+				commandIsActive = false;
+			}
 		}
 
 

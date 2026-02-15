@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -11,7 +11,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	internal class InsertCalendarCommand : Command
@@ -27,6 +27,8 @@ namespace River.OneMoreAddIn.Commands
 		private const string BrightCss = ";color:#FEFEFE";
 		private const string DailyCss = "font-family:Calibri;font-size:11.0pt";
 		private const string GhostCss = "font-family:Calibri;font-size:11.0pt;color:#BFBFBF";
+
+		private static bool commandIsActive = false;
 
 		private Page page;
 		private XNamespace ns;
@@ -46,37 +48,47 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			using var dialog = new InsertCalendarDialog();
-			if (dialog.ShowDialog(owner) != DialogResult.OK)
+			if (commandIsActive) { return; }
+			commandIsActive = true;
+
+			try
 			{
-				return;
+				using var dialog = new InsertCalendarDialog();
+				if (dialog.ShowDialog(owner) != DialogResult.OK)
+				{
+					return;
+				}
+
+				logger.WriteLine($"making calendar for {dialog.Month}/{dialog.Year}");
+
+				var days = MakeDayList(dialog.Year, dialog.Month, dialog.FirstDay);
+
+				var root = MakeCalendar(days, dialog.FirstDay, dialog.Large, dialog.HeaderShading);
+				var header = MakeHeader(dialog.Year, dialog.Month);
+
+				var editor = new PageEditor(page);
+
+				if (dialog.Indent)
+				{
+					header.Add(new XElement(ns + "OEChildren",
+							new XElement(ns + "OE",
+							root)
+						));
+
+					editor.AddNextParagraph(header);
+				}
+				else
+				{
+					editor.AddNextParagraph(root);
+					editor.AddNextParagraph(header);
+				}
+
+				await one.Update(page);
 			}
-
-			logger.WriteLine($"making calendar for {dialog.Month}/{dialog.Year}");
-
-			var days = MakeDayList(dialog.Year, dialog.Month, dialog.FirstDay);
-
-			var root = MakeCalendar(days, dialog.FirstDay, dialog.Large, dialog.HeaderShading);
-			var header = MakeHeader(dialog.Year, dialog.Month);
-
-			var editor = new PageEditor(page);
-
-			if (dialog.Indent)
+			finally
 			{
-				header.Add(new XElement(ns + "OEChildren",
-						new XElement(ns + "OE",
-						root)
-					));
-
-				editor.AddNextParagraph(header);
+				commandIsActive = false;
 			}
-			else
-			{
-				editor.AddNextParagraph(root);
-				editor.AddNextParagraph(header);
-			}
-
-			await one.Update(page);
 		}
 
 

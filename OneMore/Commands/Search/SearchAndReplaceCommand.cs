@@ -17,6 +17,8 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class SearchAndReplaceCommand : Command
 	{
+		private static bool commandIsActive = false;
+
 		private Page currentPage;
 		private OneNote.Scope scope;
 		private SearchAndReplaceEditor editor;
@@ -29,19 +31,29 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			editor = await MakeEditor();
-			if (editor is null)
+			if (commandIsActive) { return; }
+			commandIsActive = true;
+
+			try
 			{
-				return;
+				editor = await MakeEditor();
+				if (editor is null)
+				{
+					return;
+				}
+
+				var found = scope == OneNote.Scope.Self
+					? await SearchPage()
+					: await SearchHierarchy();
+
+				if (found)
+				{
+					SaveSettings();
+				}
 			}
-
-			var found = scope == OneNote.Scope.Self
-				? await SearchPage()
-				: await SearchHierarchy();
-
-			if (found)
+			finally
 			{
-				SaveSettings();
+				commandIsActive = false;
 			}
 		}
 

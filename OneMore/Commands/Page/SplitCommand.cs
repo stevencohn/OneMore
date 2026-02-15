@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 #pragma warning disable S125 // Sections of code should not be commented out
@@ -36,6 +36,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private const string LinkPattern = @"\<a\s*?href=""onenote\:#";
 		private const string IDPattern = @"section-id=(?<sid>{.*?}).*?page-id=(?<pid>{.*?})";
+		private static bool commandIsActive = false;
 
 		private Dictionary<string, string> hyperlinks;
 		private OneNote one;
@@ -50,13 +51,23 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using var dialog = new SplitDialog();
-			if (dialog.ShowDialog(owner) == DialogResult.OK)
+			if (commandIsActive) { return; }
+			commandIsActive = true;
+
+			try
 			{
-				await using (one = new OneNote(out page, out ns, OneNote.PageDetail.All))
+				using var dialog = new SplitDialog();
+				if (dialog.ShowDialog(owner) == DialogResult.OK)
 				{
-					await SplitPage(dialog.SplitByHeading, dialog.Tagged ? dialog.TagSymbol : -1);
+					await using (one = new OneNote(out page, out ns, OneNote.PageDetail.All))
+					{
+						await SplitPage(dialog.SplitByHeading, dialog.Tagged ? dialog.TagSymbol : -1);
+					}
 				}
+			}
+			finally
+			{
+				commandIsActive = false;
 			}
 		}
 

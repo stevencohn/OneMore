@@ -17,6 +17,8 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class ToggleDttmCommand : Command
 	{
+		private static bool commandIsActive = false;
+
 
 		public ToggleDttmCommand()
 		{
@@ -25,10 +27,20 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using var dialog = new ToggleDttmDialog();
-			if (dialog.ShowDialog(owner) == DialogResult.OK)
+			if (commandIsActive) { return; }
+			commandIsActive = true;
+
+			try
 			{
-				await Toggle(dialog.PageOnly, dialog.ShowTimestamps);
+				using var dialog = new ToggleDttmDialog();
+				if (dialog.ShowDialog(owner) == DialogResult.OK)
+				{
+					await Toggle(dialog.PageOnly, dialog.ShowTimestamps);
+				}
+			}
+			finally
+			{
+				commandIsActive = false;
 			}
 		}
 

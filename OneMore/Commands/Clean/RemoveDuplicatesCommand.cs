@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2022 Steven M Cohn.  All rights reserved.
+// Copyright © 2022 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -37,6 +37,8 @@ namespace River.OneMoreAddIn.Commands
 			public List<HashNode> Siblings = new();
 		}
 
+		private static bool commandIsActive = false;
+
 		private OneNote one;
 		private XNamespace ns;
 		private readonly SHA1CryptoServiceProvider hasher;
@@ -63,54 +65,64 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			DialogResult result;
+			if (commandIsActive) { return; }
+			commandIsActive = true;
 
-			using (var dialog = new RemoveDuplicatesDialog())
+			try
 			{
-				result = dialog.ShowDialog(owner);
-				if (result != DialogResult.OK)
+				DialogResult result;
+
+				using (var dialog = new RemoveDuplicatesDialog())
 				{
+					result = dialog.ShowDialog(owner);
+					if (result != DialogResult.OK)
+					{
+						return;
+					}
+
+					depth = dialog.Depth;
+					scope = dialog.Scope;
+					books = dialog.SelectedNotebooks;
+					includeTitles = dialog.IncludeTitles;
+				}
+
+				// analyze pages, scanning for duplicates and close matches...
+
+				logger.StartClock();
+
+				using (progress = new UI.ProgressDialog())
+				{
+					result = progress.ShowDialogWithCancel(
+						async (dialog, token) => await Scan(dialog, token));
+
+					if (result != DialogResult.OK)
+					{
+						return;
+					}
+				}
+
+				logger.WriteTime($"{hashes.Count} pages have one or more duplicates, scanned {scanCount} pages");
+
+				if (hashes.Count == 0)
+				{
+					ShowInfo("No duplicate pages were found");
 					return;
 				}
 
-				depth = dialog.Depth;
-				scope = dialog.Scope;
-				books = dialog.SelectedNotebooks;
-				includeTitles = dialog.IncludeTitles;
-			}
-
-			// analyze pages, scanning for duplicates and close matches...
-
-			logger.StartClock();
-
-			using (progress = new UI.ProgressDialog())
-			{
-				result = progress.ShowDialogWithCancel(
-					async (dialog, token) => await Scan(dialog, token));
-
-				if (result != DialogResult.OK)
+				// let user cherrypick duplicate pages to delete...
+				var navigator = new RemoveDuplicatesNavigator(hashes);
+				navigator.RunModeless((sender, e) =>
 				{
-					return;
-				}
+					var d = sender as RemoveDuplicatesNavigator;
+					d.Dispose();
+				}, 20);
+
+				await Task.Yield();
 			}
-
-			logger.WriteTime($"{hashes.Count} pages have one or more duplicates, scanned {scanCount} pages");
-
-			if (hashes.Count == 0)
+			finally
 			{
-				ShowInfo("No duplicate pages were found");
-				return;
+				commandIsActive = false;
 			}
-
-			// let user cherrypick duplicate pages to delete...
-			var navigator = new RemoveDuplicatesNavigator(hashes);
-			navigator.RunModeless((sender, e) =>
-			{
-				var d = sender as RemoveDuplicatesNavigator;
-				d.Dispose();
-			}, 20);
-
-			await Task.Yield();
 		}
 
 

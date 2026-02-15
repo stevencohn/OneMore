@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2023 Steven M Cohn.  All rights reserved.
+// Copyright © 2023 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -16,6 +16,7 @@ namespace River.OneMoreAddIn.Commands
 	internal class NavigatorCommand : Command
 	{
 		private static NavigatorWindow window;
+		private static bool commandIsActive = false;
 
 
 		public NavigatorCommand()
@@ -25,35 +26,45 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			var settings = new SettingsProvider().GetCollection(nameof(NavigatorSheet));
-			if (settings.Get("disabled", false))
+			if (commandIsActive) { return; }
+			commandIsActive = true;
+
+			try
 			{
-				ShowInfo(Resx.NavigatorWindow_disabled);
-				return;
-			}
+				var settings = new SettingsProvider().GetCollection(nameof(NavigatorSheet));
+				if (settings.Get("disabled", false))
+				{
+					ShowInfo(Resx.NavigatorWindow_disabled);
+					return;
+				}
 
-			if (window == null)
+				if (window == null)
+				{
+					window = new NavigatorWindow();
+					window.FormClosed += CloseNavigatorWindow;
+					window.RunModeless();
+					return;
+				}
+
+				if (window.IsDisposed)
+				{
+					return;
+				}
+
+				if (window.WindowState == FormWindowState.Minimized)
+				{
+					window.WindowState = FormWindowState.Normal;
+				}
+
+				await window.RefreshPageHeadings();
+				window.Elevate(false);
+
+				await Task.Yield();
+			}
+			finally
 			{
-				window = new NavigatorWindow();
-				window.FormClosed += CloseNavigatorWindow;
-				window.RunModeless();
-				return;
+				commandIsActive = false;
 			}
-
-			if (window.IsDisposed)
-			{
-				return;
-			}
-
-			if (window.WindowState == FormWindowState.Minimized)
-			{
-				window.WindowState = FormWindowState.Normal;
-			}
-
-			await window.RefreshPageHeadings();
-			window.Elevate(false);
-
-			await Task.Yield();
 		}
 
 

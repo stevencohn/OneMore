@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2021 Steven M Cohn.  All rights reserved.
+// Copyright © 2021 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -25,6 +25,8 @@ namespace River.OneMoreAddIn.Commands
 		// search for one space to be replaced by two
 		private const string TwoSpacePattern = @"(\w[\.?;])(\<[^>]+\>)?[\s]+(\<[^>]+\>)?(\w)";
 
+		private static bool commandIsActive = false;
+
 
 		public BreakingCommand()
 		{
@@ -33,48 +35,58 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using var dialog = new BreakingDialog();
-			if (dialog.ShowDialog(owner) != DialogResult.OK)
+			if (commandIsActive) { return; }
+			commandIsActive = true;
+
+			try
 			{
-				return;
-			}
-
-			Regex regex;
-			string replacement;
-			if (dialog.SingleSpace)
-			{
-				regex = new Regex(OneSpacePattern);
-				replacement = "$1 $2$3$4$5";
-			}
-			else
-			{
-				regex = new Regex(TwoSpacePattern);
-				replacement = "$1  $2$3$4";
-			}
-
-			await using var one = new OneNote(out var page, out var ns);
-			logger.StartClock();
-
-			var nodes = page.Root.DescendantNodes().OfType<XCData>()
-				.Where(n => n.Value.Contains('.'));
-
-			if (nodes.Any())
-			{
-				var updated = false;
-
-				foreach (var cdata in nodes)
+				using var dialog = new BreakingDialog();
+				if (dialog.ShowDialog(owner) != DialogResult.OK)
 				{
-					cdata.Value = regex.Replace(cdata.Value, replacement);
-					updated = true;
+					return;
 				}
 
-				if (updated)
+				Regex regex;
+				string replacement;
+				if (dialog.SingleSpace)
 				{
-					await one.Update(page);
+					regex = new Regex(OneSpacePattern);
+					replacement = "$1 $2$3$4$5";
 				}
-			}
+				else
+				{
+					regex = new Regex(TwoSpacePattern);
+					replacement = "$1  $2$3$4";
+				}
 
-			logger.StopClock();
+				await using var one = new OneNote(out var page, out var ns);
+				logger.StartClock();
+
+				var nodes = page.Root.DescendantNodes().OfType<XCData>()
+					.Where(n => n.Value.Contains('.'));
+
+				if (nodes.Any())
+				{
+					var updated = false;
+
+					foreach (var cdata in nodes)
+					{
+						cdata.Value = regex.Replace(cdata.Value, replacement);
+						updated = true;
+					}
+
+					if (updated)
+					{
+						await one.Update(page);
+					}
+				}
+
+				logger.StopClock();
+			}
+			finally
+			{
+				commandIsActive = false;
+			}
 		}
 	}
 }

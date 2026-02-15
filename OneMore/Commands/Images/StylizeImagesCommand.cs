@@ -18,6 +18,7 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class StylizeImagesCommand : Command
 	{
+		private static bool commandIsActive = false;
 		private XNamespace ns;
 
 		public StylizeImagesCommand()
@@ -27,72 +28,82 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			await using var one = new OneNote(out var page, out ns, OneNote.PageDetail.All);
+			if (commandIsActive) { return; }
+			commandIsActive = true;
 
-			var foreElements = page.Root
-				.Elements(ns + "Outline")
-				.Descendants(ns + "Image")
-				.ToList();
-
-			var backElements = page.Root
-				.Elements(ns + "Image")
-				.ToList();
-
-			if (!foreElements.Any() && !backElements.Any())
+			try
 			{
-				ShowError(Resx.StylizeImagesCommand_noImages);
-				return;
-			}
+				await using var one = new OneNote(out var page, out ns, OneNote.PageDetail.All);
 
-			var foreSelected = foreElements
-				.Where(e => e.Attribute("selected")?.Value == "all")
-				.ToList();
+				var foreElements = page.Root
+					.Elements(ns + "Outline")
+					.Descendants(ns + "Image")
+					.ToList();
 
-			var backSelected = backElements
-				.Where(e => e.Attribute("selected")?.Value == "all")
-				.ToList();
+				var backElements = page.Root
+					.Elements(ns + "Image")
+					.ToList();
 
-			using var dialog = new StylizeImagesDialog(
-				foreElements.Count, foreSelected.Count,
-				backElements.Count, backSelected.Count);
-
-			var result = dialog.ShowDialog(owner);
-			if (result != DialogResult.OK)
-			{
-				return;
-			}
-
-			var updated = false;
-			if (foreSelected.Any() && dialog.ApplyForeground)
-			{
-				Stylize(foreSelected, dialog.Style);
-				updated = true;
-			}
-
-			if (backSelected.Any() && dialog.ApplyBackground)
-			{
-				Stylize(backSelected, dialog.Style);
-				updated = true;
-			}
-
-			if (!updated)
-			{
-				if (foreElements.Any() && dialog.ApplyForeground)
+				if (!foreElements.Any() && !backElements.Any())
 				{
-					Stylize(foreElements, dialog.Style);
+					ShowError(Resx.StylizeImagesCommand_noImages);
+					return;
+				}
+
+				var foreSelected = foreElements
+					.Where(e => e.Attribute("selected")?.Value == "all")
+					.ToList();
+
+				var backSelected = backElements
+					.Where(e => e.Attribute("selected")?.Value == "all")
+					.ToList();
+
+				using var dialog = new StylizeImagesDialog(
+					foreElements.Count, foreSelected.Count,
+					backElements.Count, backSelected.Count);
+
+				var result = dialog.ShowDialog(owner);
+				if (result != DialogResult.OK)
+				{
+					return;
+				}
+
+				var updated = false;
+				if (foreSelected.Any() && dialog.ApplyForeground)
+				{
+					Stylize(foreSelected, dialog.Style);
 					updated = true;
 				}
 
-				if (backElements.Any() && dialog.ApplyBackground)
+				if (backSelected.Any() && dialog.ApplyBackground)
 				{
-					Stylize(backElements, dialog.Style);
+					Stylize(backSelected, dialog.Style);
 					updated = true;
 				}
-			}
 
-			if (updated)
+				if (!updated)
+				{
+					if (foreElements.Any() && dialog.ApplyForeground)
+					{
+						Stylize(foreElements, dialog.Style);
+						updated = true;
+					}
+
+					if (backElements.Any() && dialog.ApplyBackground)
+					{
+						Stylize(backElements, dialog.Style);
+						updated = true;
+					}
+				}
+
+				if (updated)
+				{
+					await one.Update(page);
+				}
+			}
+			finally
 			{
-				await one.Update(page);
+				commandIsActive = false;
 			}
 		}
 

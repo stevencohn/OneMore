@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -12,6 +12,9 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class GotoFavoriteCommand : Command
 	{
+		private static bool commandIsActive = false;
+
+
 		public GotoFavoriteCommand()
 		{
 			// do not write to MRU
@@ -21,49 +24,59 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			var uri = args == null || args.Length == 0 ? null : (string)args[0];
+			if (commandIsActive) { return; }
+			commandIsActive = true;
 
-			if (string.IsNullOrWhiteSpace(uri))
-			{
-				using var dialog = new FavoritesDialog(ribbon);
-				if (dialog.ShowDialog(owner) == DialogResult.Cancel)
-				{
-					return;
-				}
-
-				if (dialog.Manage)
-				{
-					await factory.Run<ManageFavoritesCommand>(ribbon);
-					return;
-				}
-
-				uri = dialog.Uri;
-			}
-
-			if (string.IsNullOrWhiteSpace(uri))
-			{
-				return;
-			}
-
-			var success = true;
 			try
 			{
-				await using var one = new OneNote();
-				success = await one.NavigateTo(uri);
-			}
-			catch (Exception exc)
-			{
-				logger.WriteLine($"error navigating to {uri}", exc);
-				success = false;
-			}
+				var uri = args == null || args.Length == 0 ? null : (string)args[0];
 
-			// reset focus to OneNote window
-			await using var onx = new OneNote();
-			Native.SwitchToThisWindow(onx.WindowHandle, false);
+				if (string.IsNullOrWhiteSpace(uri))
+				{
+					using var dialog = new FavoritesDialog(ribbon);
+					if (dialog.ShowDialog(owner) == DialogResult.Cancel)
+					{
+						return;
+					}
 
-			if (!success)
+					if (dialog.Manage)
+					{
+						await factory.Run<ManageFavoritesCommand>(ribbon);
+						return;
+					}
+
+					uri = dialog.Uri;
+				}
+
+				if (string.IsNullOrWhiteSpace(uri))
+				{
+					return;
+				}
+
+				var success = true;
+				try
+				{
+					await using var one = new OneNote();
+					success = await one.NavigateTo(uri);
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine($"error navigating to {uri}", exc);
+					success = false;
+				}
+
+				// reset focus to OneNote window
+				await using var onx = new OneNote();
+				Native.SwitchToThisWindow(onx.WindowHandle, false);
+
+				if (!success)
+				{
+					ShowError("Could not navigate at this time. Try again in a few seconds");
+				}
+			}
+			finally
 			{
-				ShowError("Could not navigate at this time. Try again in a few seconds");
+				commandIsActive = false;
 			}
 		}
 	}

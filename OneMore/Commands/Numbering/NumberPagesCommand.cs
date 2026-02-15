@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -23,6 +23,7 @@ namespace River.OneMoreAddIn.Commands
 			public int Level;
 		}
 
+		private static bool commandIsActive = false;
 
 		private OneNote one;
 		private XNamespace ns;
@@ -37,52 +38,62 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using var dialog = new NumberPagesDialog();
-			if (dialog.ShowDialog(owner) != DialogResult.OK)
+			if (commandIsActive) { return; }
+			commandIsActive = true;
+
+			try
 			{
-				return;
-			}
-
-			await using (one = new OneNote())
-			{
-				var section = await one.GetSection();
-				ns = one.GetNamespace(section);
-
-				var pages = section.Elements(ns + "Page")
-					.Select(e => new PageBasics
-					{
-						ID = e.Attribute("ID").Value,
-						Name = e.Attribute("name").Value,
-						Level = int.Parse(e.Attribute("pageLevel").Value)
-					});
-
-				if (pages.Any())
+				using var dialog = new NumberPagesDialog();
+				if (dialog.ShowDialog(owner) != DialogResult.OK)
 				{
-					logger.StartClock();
-
-					var list = pages.ToList();
-					var index = 0;
-
-					if (dialog.CleanupNumbering)
-					{
-						cleaner = new RemovePageNumbersCommand();
-					}
-
-					using (progress = new UI.ProgressDialog())
-					{
-						progress.SetMaximum(list.Count);
-						progress.Show();
-
-						await ApplyNumbering(
-							list, index, list[0].Level,
-							dialog.NumericNumbering, string.Empty);
-
-						progress.Close();
-					}
-
-					logger.StopClock();
-					logger.WriteTime("numbered pages");
+					return;
 				}
+
+				await using (one = new OneNote())
+				{
+					var section = await one.GetSection();
+					ns = one.GetNamespace(section);
+
+					var pages = section.Elements(ns + "Page")
+						.Select(e => new PageBasics
+						{
+							ID = e.Attribute("ID").Value,
+							Name = e.Attribute("name").Value,
+							Level = int.Parse(e.Attribute("pageLevel").Value)
+						});
+
+					if (pages.Any())
+					{
+						logger.StartClock();
+
+						var list = pages.ToList();
+						var index = 0;
+
+						if (dialog.CleanupNumbering)
+						{
+							cleaner = new RemovePageNumbersCommand();
+						}
+
+						using (progress = new UI.ProgressDialog())
+						{
+							progress.SetMaximum(list.Count);
+							progress.Show();
+
+							await ApplyNumbering(
+								list, index, list[0].Level,
+								dialog.NumericNumbering, string.Empty);
+
+							progress.Close();
+						}
+
+						logger.StopClock();
+						logger.WriteTime("numbered pages");
+					}
+				}
+			}
+			finally
+			{
+				commandIsActive = false;
 			}
 		}
 
