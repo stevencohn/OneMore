@@ -21,6 +21,8 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class RemoveEmptyCommand : Command
 	{
+		private static bool commandIsActive = false;
+
 		private Page page;
 		private XNamespace ns;
 		private IEnumerable<XElement> runs;
@@ -34,36 +36,46 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			var result = UI.MoreMessageBox.ShowQuestion(owner,
+			if (commandIsActive) { return; }
+			commandIsActive = true;
+
+			try
+			{
+				var result = UI.MoreMessageBox.ShowQuestion(owner,
 				Resx.RemoveEmptyCommand_option, cancel: true);
 
-			if (result == DialogResult.Cancel)
-			{
-				return;
+				if (result == DialogResult.Cancel)
+				{
+					return;
+				}
+
+				all = result == DialogResult.Yes;
+
+				logger.StartClock();
+
+				await using var one = new OneNote();
+				page = await one.GetPage(OneNote.PageDetail.Selection);
+				ns = page.Namespace;
+
+				var range = new Models.SelectionRange(page);
+				runs = range.GetSelections(defaulToAnytIfNoRange: true);
+				logger.WriteLine($"found {runs.Count()} runs, scope={range.Scope}");
+
+				var modified = OutdentEmptyLines();
+				modified = CollapseEmptyLines() || modified;
+				modified = IndentEmptyLines() || modified;
+
+				logger.WriteTime("saving", true);
+
+				if (modified)
+				{
+					await one.Update(page);
+					logger.WriteTime("saved");
+				}
 			}
-
-			all = result == DialogResult.Yes;
-
-			logger.StartClock();
-
-			await using var one = new OneNote();
-			page = await one.GetPage(OneNote.PageDetail.Selection);
-			ns = page.Namespace;
-
-			var range = new Models.SelectionRange(page);
-			runs = range.GetSelections(defaulToAnytIfNoRange: true);
-			logger.WriteLine($"found {runs.Count()} runs, scope={range.Scope}");
-
-			var modified = OutdentEmptyLines();
-			modified = CollapseEmptyLines() || modified;
-			modified = IndentEmptyLines() || modified;
-
-			logger.WriteTime("saving", true);
-
-			if (modified)
+			finally
 			{
-				await one.Update(page);
-				logger.WriteTime("saved");
+				commandIsActive = false;
 			}
 		}
 
