@@ -341,6 +341,8 @@ namespace River.OneMoreAddIn.Commands
 		private byte[] RenderDiagram(string text)
 		{
 			text = Regex.Replace(text, @"<br>([\n\r]+)", "$1");
+			text = Regex.Replace(text, @"<a\b[^>]*>(.*?)</a>", "$1");
+
 
 			provider = DiagramProviderFactory.MakeProvider(keyword);
 
