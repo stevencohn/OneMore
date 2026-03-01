@@ -23,6 +23,7 @@ namespace OneMoreSetupActions
 {
 	internal static class AssemblyInfo
 	{
+		public const string ProductName = "OneMoreAddIn";
 		public const string Version = "6.8.2";
 	}
 }
