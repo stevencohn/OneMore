@@ -443,8 +443,10 @@ namespace River.OneMoreAddIn.Models
 			range.GetSelections(true);
 
 			var allText =
-				range.Scope == SelectionScope.TextCursor ||
-				range.Scope == SelectionScope.SpecialCursor;
+				range.Scope == SelectionScope.TextCursor; 
+				// do not include SpecialCursor here because it would copy the entire page
+				// if the cursor is only positioned over a URL; that's too aggresive!
+				/* || range.Scope == SelectionScope.SpecialCursor; */
 
 			// Allow Title selection as well as body selections.
 			// Only grab the top level objects; we'll recurse in BuildText
