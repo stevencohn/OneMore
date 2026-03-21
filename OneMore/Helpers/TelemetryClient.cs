@@ -33,11 +33,11 @@ namespace River.OneMoreAddIn
 			public string? EventType { get; set; }
 			public string? Version { get; set; }
 			public string? SessionId { get; set; }
-			public TelemetryClientInfo? Client { get; set; }
-			public TelemetryPayload? Data { get; set; }
+			public ClientInfo? Client { get; set; }
+			public Payload? Data { get; set; }
 		}
 
-		private sealed class TelemetryClientInfo
+		private sealed class ClientInfo
 		{
 			public string? OneNoteVersion { get; set; }
 			public string? Windows { get; set; }
@@ -47,7 +47,7 @@ namespace River.OneMoreAddIn
 			public string? Culture { get; set; }
 		}
 
-		private sealed class TelemetryPayload
+		private sealed class Payload
 		{
 			public string? Message { get; set; }
 			public string? Info { get; set; }
@@ -120,7 +120,7 @@ namespace River.OneMoreAddIn
 				EventType = eventType,                  // event | error | ...
 				Version = props["Version"],             // OneMore addin version
 				SessionId = sessionID,                  // OneNote sessionId/correlationId
-				Client = new TelemetryClientInfo
+				Client = new ClientInfo
 				{
 					OneNoteVersion = props["OneNoteVersion"],
 					Windows = props["Windows"],
@@ -129,7 +129,7 @@ namespace River.OneMoreAddIn
 					InstallBitness = props["InstallBitness"],
 					Culture = props["Culture"]
 				},
-				Data = new TelemetryPayload
+				Data = new Payload
 				{
 					Message = message,
 					Info = info ?? string.Empty
