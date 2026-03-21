@@ -126,14 +126,20 @@ namespace River.OneMoreAddIn
 			{
 				// catch-all exception hander
 
-				var msg = string.Format(Resx.Command_Error, type.Name);
+				var msg = $"error running command {type.Name}";
+
+				if (AddIn.Telemetry)
+				{
+					await TelemetryClient.LogException(type.Name, msg, exc);
+				}
+
 				logger.End();
 				logger.WriteLine(msg);
 				logger.WriteLine(exc);
 				logger.WriteLine();
 
 				MoreMessageBox.ShowErrorWithLogLink(
-					owner, string.Format(Resx.Command_ErrorMsg, msg));
+					owner, string.Format(Resx.Command_ErrorMsg, type.Name));
 			}
 		}
 
