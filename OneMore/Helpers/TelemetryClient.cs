@@ -19,6 +19,7 @@ namespace River.OneMoreAddIn
 		private const string ApiUrl = "https:" + "//uetc84spi9.execute-api.us-east-1.amazonaws.com/prod/telemetry";
 		private const string ApiKey = "F3J9FKPYsX7gypXLaBQmITRu5DCoIe77x8jgV4m0";
 
+		// cached for each new session (OneNote process lifetime)
 		private static readonly string sessionID = Guid.NewGuid().ToString("N");
 		private static readonly Dictionary<string, string> props = Helpers.SessionLogger.CollectProperties();
 
