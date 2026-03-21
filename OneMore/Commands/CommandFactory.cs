@@ -101,7 +101,10 @@ namespace River.OneMoreAddIn
 
 			if (AddIn.Telemetry)
 			{
-				await TelemetryClient.LogEvent(type.Name, string.Empty);
+				await Task.Run(async () =>
+				{
+					await TelemetryClient.LogEvent(type.Name, string.Empty);
+				});
 			}
 
 			// need to rediscover active OneNote window for each command instantiation
@@ -130,7 +133,10 @@ namespace River.OneMoreAddIn
 
 				if (AddIn.Telemetry)
 				{
-					await TelemetryClient.LogException(type.Name, msg, exc);
+					await Task.Run(async () =>
+					{
+						await TelemetryClient.LogException(type.Name, msg, exc);
+					});
 				}
 
 				logger.End();
