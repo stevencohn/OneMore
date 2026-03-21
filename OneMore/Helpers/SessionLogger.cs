@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Helpers
 {
 	using System;
+	using System.Collections.Generic;
 	using System.Diagnostics;
 	using System.IO;
 	using System.Management;
@@ -139,6 +140,58 @@ namespace River.OneMoreAddIn.Helpers
 			{
 				return $"error reading OneNote.exe header: {exc.Message}";
 			}
+		}
+
+
+		/// <summary>
+		/// Collects diagnostic properties related to the current application, OneNote
+		/// process, and system environment. Used by TelemetryClient to read and cache
+		/// once during the session.
+		/// </summary>
+		/// <remarks>
+		/// <returns>
+		/// The dictionary is empty if the OneNote process is not found or if an
+		/// error occurs while retrieving process information.
+		/// </returns>
+		public static Dictionary<string, string> CollectProperties()
+		{
+			var props = new Dictionary<string, string>();
+
+			var hostproc = Process.GetProcessesByName("ONENOTE");
+			if (hostproc.Length == 0) { return props; }
+			string oneArc;
+			string oneVer;
+			try
+			{
+				var module = hostproc[0].MainModule;
+				oneArc = GetAssemblyArchitecture(module.FileName);
+				oneVer = module.FileVersionInfo.ProductVersion;
+			}
+			catch (Exception exc)
+			{
+				Logger.Current.WriteLine("error reading OneNote.exe header", exc);
+				return props;
+			}
+
+			// collect...
+
+			props.Add("Version", AssemblyInfo.Version);
+			props.Add("OneNoteVersion", oneVer);
+
+			var win = Commands.DiagnosticsCommand.GetWindowsProductName();
+			props.Add("Windows", win);
+
+			var winbit = win.Contains("ARM64") ? "ARM64" : (win.Contains("x64") ? "x64" : "x86");
+			props.Add("WindowsBitness", winbit);
+
+			props.Add("OneNoteBitness", oneArc);
+
+			var codebase = Assembly.GetExecutingAssembly().CodeBase;
+			props.Add("InstallBitness", GetAssemblyArchitecture(new Uri(codebase).LocalPath));
+
+			props.Add("Culture", Thread.CurrentThread.CurrentCulture.Name);
+
+			return props;
 		}
 	}
 }

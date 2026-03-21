@@ -156,6 +156,12 @@ namespace River.OneMoreAddIn
 		public static AddIn Self { get; private set; }
 
 
+		/// <summary>
+		/// Gets a value indicating whether telemetry collection is enabled for the session.
+		/// </summary>
+		public static bool Telemetry { get; set; } = true;
+
+
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 		// IDTExtensibility2

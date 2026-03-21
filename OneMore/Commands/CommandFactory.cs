@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2016 Steven M Cohn.  All rights reserved.
+// Copyright © 2016 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn
@@ -98,6 +98,11 @@ namespace River.OneMoreAddIn
 		{
 			var type = command.GetType();
 			logger.Start($"{note} command {type.Name}");
+
+			if (AddIn.Telemetry)
+			{
+				await TelemetryClient.LogEvent(type.Name, string.Empty);
+			}
 
 			// need to rediscover active OneNote window for each command instantiation
 			// otherwise closing the primary or last-used active window will leave owner
