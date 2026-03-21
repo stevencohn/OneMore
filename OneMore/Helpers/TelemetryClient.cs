@@ -80,7 +80,7 @@ namespace River.OneMoreAddIn
 				eventName = eventName.Substring(0, eventName.Length - 7);
 			}
 
-			var payload = MakeTestEvent(eventType, eventName, message, info);
+			var payload = MakeEvent(eventType, eventName, message, info);
 			var json = JsonConvert.SerializeObject(payload);
 			Logger.Current.Verbose("telemetry:");
 			Logger.Current.Verbose(json);
@@ -109,7 +109,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		static TelemetryEvent MakeTestEvent(
+		static TelemetryEvent MakeEvent(
 			string eventType, string eventName, string message, string info)
 		{
 			return new TelemetryEvent
