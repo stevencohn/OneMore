@@ -1272,6 +1272,10 @@ OneNote 文件 (*.one)</value>
     <value>允许命令面板中的非连续名称匹配</value>
     <comment>checkbox</comment>
   </data>
+  <data name="GeneralSheet_telemetryBox.Text" xml:space="preserve">
+    <value>启用匿名遥测</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="GeneralSheet_themeBox.Text" xml:space="preserve">
     <value>系统
 光

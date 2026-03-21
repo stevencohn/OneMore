@@ -159,7 +159,7 @@ namespace River.OneMoreAddIn
 		/// <summary>
 		/// Gets a value indicating whether telemetry collection is enabled for the session.
 		/// </summary>
-		public static bool Telemetry { get; set; } = true;
+		public static bool Telemetry { get; set; } = false;
 
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -242,6 +242,8 @@ namespace River.OneMoreAddIn
 		{
 			var provider = new SettingsProvider();
 			var settings = provider.GetCollection(nameof(GeneralSheet));
+
+			Telemetry = settings.Get("telemetry", false);
 
 			if (settings.Get("checkUpdates", false))
 			{

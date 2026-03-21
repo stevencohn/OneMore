@@ -1274,6 +1274,10 @@ Relatieve bereiken: A1: Cell (0, -1)</value>
     <value>Sta niet-opeenvolgende namen toe in opdrachtpaletten</value>
     <comment>checkbox</comment>
   </data>
+  <data name="GeneralSheet_telemetryBox.Text" xml:space="preserve">
+    <value>Schakel anonieme telemetrie in</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="GeneralSheet_themeBox.Text" xml:space="preserve">
     <value>Systeem
 Licht

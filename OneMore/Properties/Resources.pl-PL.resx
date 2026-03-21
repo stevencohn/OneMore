@@ -1274,6 +1274,10 @@ Zakresy względne: A1: komórka (0, -1)</value>
     <value>Zezwalaj na niesekwencyjne dopasowywanie nazw w paletach poleceń</value>
     <comment>checkbox</comment>
   </data>
+  <data name="GeneralSheet_telemetryBox.Text" xml:space="preserve">
+    <value>Włącz anonimową telemetrię</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="GeneralSheet_themeBox.Text" xml:space="preserve">
     <value>System
 Światło

@@ -1276,6 +1276,10 @@ OneNoteファイル (*.one)</value>
     <value>コマンド パレットで連続しない名前の一致を許可する</value>
     <comment>checkbox</comment>
   </data>
+  <data name="GeneralSheet_telemetryBox.Text" xml:space="preserve">
+    <value>匿名テレメトリを有効にする</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="GeneralSheet_themeBox.Text" xml:space="preserve">
     <value>システム
 ライト

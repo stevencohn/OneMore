@@ -1274,6 +1274,10 @@ Relative ranges: A1:cell(0,-1)</value>
     <value>Allow nonsequential name matching in Command Palettes</value>
     <comment>checkbox</comment>
   </data>
+  <data name="GeneralSheet_telemetryBox.Text" xml:space="preserve">
+    <value>Enable anonymous telemetry</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="GeneralSheet_themeBox.Text" xml:space="preserve">
     <value>System
 Light

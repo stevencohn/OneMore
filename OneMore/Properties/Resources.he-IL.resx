@@ -1274,6 +1274,10 @@ Total Row Font
     <value>אפשר התאמת שמות לא רציפים בפלטות פקודות</value>
     <comment>checkbox</comment>
   </data>
+  <data name="GeneralSheet_telemetryBox.Text" xml:space="preserve">
+    <value>אפשר טלמטריה אנונימית</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="GeneralSheet_themeBox.Text" xml:space="preserve">
     <value>מערכת
 אוֹר
