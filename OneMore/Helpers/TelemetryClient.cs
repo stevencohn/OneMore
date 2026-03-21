@@ -20,8 +20,9 @@ namespace River.OneMoreAddIn
 		private const string ApiKey = "F3J9FKPYsX7gypXLaBQmITRu5DCoIe77x8jgV4m0";
 
 		// cached for each new session (OneNote process lifetime)
-		private static readonly string sessionID = Guid.NewGuid().ToString("N");
 		private static readonly Dictionary<string, string> props = Helpers.SessionLogger.CollectProperties();
+
+		public static readonly string SessionID = Guid.NewGuid().ToString("N");
 
 
 		#region Schema classes
@@ -119,7 +120,7 @@ namespace River.OneMoreAddIn
 				EventName = eventName,                  // event/fn/op name
 				EventType = eventType,                  // event | error | ...
 				Version = props["Version"],             // OneMore addin version
-				SessionId = sessionID,                  // OneNote sessionId/correlationId
+				SessionId = SessionID,                  // OneNote sessionId/correlationId
 				Client = new ClientInfo
 				{
 					OneNoteVersion = props["OneNoteVersion"],

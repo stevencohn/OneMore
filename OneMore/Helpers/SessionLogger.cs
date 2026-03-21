@@ -35,12 +35,11 @@ namespace River.OneMoreAddIn.Helpers
 			logger.Start(
 				$"Starting {process.ProcessName} {process.Id}, {cpu} Mhz, {uram}, " +
 				$"{thread.CurrentCulture.Name}/{thread.CurrentUICulture.Name}, " +
-				$"v{AssemblyInfo.Version} {arc}, OneNote {Office.Office.GetOneNoteVersion()}, " +
-				$"Office {Office.Office.GetOfficeVersion()}, " +
-				DateTime.Now.ToString("yyyy-MM-dd HH:mm"));
+				$"v{AssemblyInfo.Version} {arc}, " +
+				$"{DateTime.Now.ToString("yyyy-MM-dd HH:mm")} " +
+				$"[{TelemetryClient.SessionID}]");
 
-			logger.WriteLine(Commands.DiagnosticsCommand.GetWindowsProductName());
-			logger.WriteLine(DescribeOneNote());
+			logger.WriteLine(DescribeProducts());
 		}
 
 
@@ -121,7 +120,7 @@ namespace River.OneMoreAddIn.Helpers
 		}
 
 
-		private static string DescribeOneNote()
+		private static string DescribeProducts()
 		{
 			var hostproc = Process.GetProcessesByName("ONENOTE");
 			if (hostproc.Length == 0)
@@ -133,8 +132,11 @@ namespace River.OneMoreAddIn.Helpers
 			{
 				var module = hostproc[0].MainModule;
 				var arc = GetAssemblyArchitecture(module.FileName);
+				var win = Commands.DiagnosticsCommand.GetWindowsProductName();
 
-				return $"{module.FileName} ({module.FileVersionInfo.ProductVersion} {arc})";
+				return $"OneNote {Office.Office.GetOneNoteVersion()} " + 
+					$"({module.FileVersionInfo.ProductVersion} {arc}), " +
+					$"Office {Office.Office.GetOfficeVersion()} | {win}";
 			}
 			catch (Exception exc)
 			{
