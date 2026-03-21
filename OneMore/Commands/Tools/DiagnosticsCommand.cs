@@ -7,12 +7,10 @@ namespace River.OneMoreAddIn.Commands
 	using Microsoft.Win32;
 	using System;
 	using System.Diagnostics;
-	using System.IO;
 	using System.Reflection;
 	using System.Runtime.InteropServices;
 	using System.Text;
 	using System.Threading.Tasks;
-
 
 	internal class DiagnosticsCommand : Command
 	{
@@ -128,11 +126,10 @@ namespace River.OneMoreAddIn.Commands
 				using var hive = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
 				using var key = hive.OpenSubKey(@"Software\Microsoft\Windows NT\CurrentVersion", false);
 
-				var kernel = FileVersionInfo.GetVersionInfo(
-					Path.Combine(Environment.SystemDirectory, "Kernel32.dll"));
+				var os = Version.Parse(RuntimeInformation.OSDescription.Split(' ')[2]);
 
-				// Kernel32.dll on Windows 11 has Product Version >= 10.0.22000.120
-				if (kernel.ProductMajorPart == 10 && kernel.ProductBuildPart >= 22000)
+				// Windows 11 21H2 starts at Version >= 10.0.22000.120
+				if (os.Major == 10 && os.Build >= 22000)
 				{
 					name.Append("Windows 11");
 
@@ -169,7 +166,7 @@ namespace River.OneMoreAddIn.Commands
 					}
 				}
 
-				name.Append($", Build {kernel.ProductBuildPart}");
+				name.Append($", Build {os.Build}");
 				name.Append(Environment.Is64BitOperatingSystem ? ", x64" : ", x86");
 
 				if (RuntimeInformation.OSArchitecture == Architecture.Arm64)
