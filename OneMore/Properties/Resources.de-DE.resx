@@ -1273,6 +1273,10 @@ Verwandte Bereiche: A1: Zelle (0, -1)</value>
     <value>Erlauben Sie den nichtsequentiellen Namensabgleich in Befehlspaletten</value>
     <comment>checkbox</comment>
   </data>
+  <data name="GeneralSheet_telemetryBox.Text" xml:space="preserve">
+    <value>Aktivieren Sie anonyme Telemetrie</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="GeneralSheet_themeBox.Text" xml:space="preserve">
     <value>System
 Licht

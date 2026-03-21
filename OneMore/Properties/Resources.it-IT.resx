@@ -1274,6 +1274,10 @@ Intervalli relativi: A1:cella(0,-1)</value>
     <value>Consenti la corrispondenza dei nomi non sequenziali nelle tavolozze dei comandi</value>
     <comment>checkbox</comment>
   </data>
+  <data name="GeneralSheet_telemetryBox.Text" xml:space="preserve">
+    <value>Abilita la telemetria anonima</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="GeneralSheet_themeBox.Text" xml:space="preserve">
     <value>Sistema
 Luce

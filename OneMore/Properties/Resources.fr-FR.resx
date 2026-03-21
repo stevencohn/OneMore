@@ -1273,6 +1273,10 @@ Plages relatives : a1: cellule (0, -1)</value>
     <value>Autoriser la correspondance de noms non séquentielle dans les palettes de commandes</value>
     <comment>checkbox</comment>
   </data>
+  <data name="GeneralSheet_telemetryBox.Text" xml:space="preserve">
+    <value>Activer la télémétrie anonyme</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="GeneralSheet_themeBox.Text" xml:space="preserve">
     <value>Système
 Lumière

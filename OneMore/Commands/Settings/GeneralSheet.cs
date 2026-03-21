@@ -36,6 +36,7 @@ namespace River.OneMoreAddIn.Settings
 					"sequentialBox",
 					"checkUpdatesBox",
 					"advancedGroup=phrase_AdvancedOptions",
+					"telemetryBox",
 					"verboseBox",
 					"experimentalBox"
 				});
@@ -58,6 +59,7 @@ namespace River.OneMoreAddIn.Settings
 			sequentialBox.Checked = settings.Get("nonseqMatching", false);
 			checkUpdatesBox.Checked = settings.Get("checkUpdates", false);
 			experimentalBox.Checked = settings.Get("experimental", false);
+			telemetryBox.Checked = settings.Get("telemetry", false);
 
 			// <logging>verbose|debug</logging> is the new way
 			// <verbose>true</verbose> was the old way
@@ -142,6 +144,13 @@ namespace River.OneMoreAddIn.Settings
 			save = checkUpdatesBox.Checked
 				? settings.Add("checkUpdates", true) || save
 				: settings.Remove("checkUpdates") || save;
+
+			// does not require a restart
+			save = telemetryBox.Checked
+				? settings.Add("telemetry", true) || save
+				: settings.Remove("telemetry") || save;
+
+			AddIn.Telemetry = telemetryBox.Checked;
 
 			// does not require a restart; only Enabled if !debug
 			if (verboseBox.Enabled)

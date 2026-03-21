@@ -1273,6 +1273,10 @@
     <value>السماح بمطابقة الأسماء غير المتسلسلة في لوحات الأوامر</value>
     <comment>checkbox</comment>
   </data>
+  <data name="GeneralSheet_telemetryBox.Text" xml:space="preserve">
+    <value>تمكين القياس عن بعد مجهول</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="GeneralSheet_themeBox.Text" xml:space="preserve">
     <value>نظام
 ضوء

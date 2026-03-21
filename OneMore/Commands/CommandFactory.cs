@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2016 Steven M Cohn.  All rights reserved.
+// Copyright © 2016 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn
@@ -99,6 +99,14 @@ namespace River.OneMoreAddIn
 			var type = command.GetType();
 			logger.Start($"{note} command {type.Name}");
 
+			if (AddIn.Telemetry)
+			{
+				await Task.Run(async () =>
+				{
+					await TelemetryClient.LogEvent(type.Name, string.Empty);
+				});
+			}
+
 			// need to rediscover active OneNote window for each command instantiation
 			// otherwise closing the primary or last-used active window will leave owner
 			// set to an invalid window handle
@@ -121,14 +129,23 @@ namespace River.OneMoreAddIn
 			{
 				// catch-all exception hander
 
-				var msg = string.Format(Resx.Command_Error, type.Name);
+				var msg = $"error running command {type.Name}";
+
+				if (AddIn.Telemetry)
+				{
+					await Task.Run(async () =>
+					{
+						await TelemetryClient.LogException(type.Name, msg, exc);
+					});
+				}
+
 				logger.End();
 				logger.WriteLine(msg);
 				logger.WriteLine(exc);
 				logger.WriteLine();
 
 				MoreMessageBox.ShowErrorWithLogLink(
-					owner, string.Format(Resx.Command_ErrorMsg, msg));
+					owner, string.Format(Resx.Command_ErrorMsg, type.Name));
 			}
 		}
 
