@@ -15,7 +15,7 @@ namespace River.OneMoreAddIn
 	internal static class TelemetryClient
 	{
 		// these are not secrets
-		private const string ApiUrl = 
+		private const string ApiUrl =
 			"https:" + "//uetc84spi9.execute-api.us-east-1.amazonaws.com/prod/telemetry";
 
 		private const string ApiKey = "F3J9FKPYsX7gypXLaBQmITRu5DCoIe77x8jgV4m0";
@@ -61,26 +61,20 @@ namespace River.OneMoreAddIn
 
 		public static async Task LogEvent(string eventName, string message, string info = "")
 		{
-			if (Template is not null)
-			{
-				await Log("event", eventName, message, info);
-			}
+			await Log("event", eventName, message, info);
 		}
 
 
 		public static async Task LogException(string eventName, string message, Exception exc)
 		{
-			if (Template is not null)
-			{
-				await Log("error", eventName, message, exc.FormatDetails());
-			}
+			await Log("error", eventName, message, exc.FormatDetails());
 		}
 
 
 		private static async Task Log(
 			string eventType, string eventName, string message, string info)
 		{
-			if (!HttpClientFactory.IsNetworkAvailable())
+			if (Template is null || !HttpClientFactory.IsNetworkAvailable())
 			{
 				return;
 			}
