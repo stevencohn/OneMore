@@ -2,12 +2,11 @@
 // Copyright © 2026 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
-#pragma warning disable CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
+#pragma warning disable CS8632 // ignore nullable reference types
 
 namespace River.OneMoreAddIn
 {
 	using System;
-	using System.Collections.Generic;
 	using System.Net.Http;
 	using System.Threading.Tasks;
 	using Newtonsoft.Json;
@@ -16,39 +15,43 @@ namespace River.OneMoreAddIn
 	internal static class TelemetryClient
 	{
 		// these are not secrets
-		private const string ApiUrl = "https:" + "//uetc84spi9.execute-api.us-east-1.amazonaws.com/prod/telemetry";
+		private const string ApiUrl = 
+			"https:" + "//uetc84spi9.execute-api.us-east-1.amazonaws.com/prod/telemetry";
+
 		private const string ApiKey = "F3J9FKPYsX7gypXLaBQmITRu5DCoIe77x8jgV4m0";
 
 		// cached for each new session (OneNote process lifetime)
-		private static readonly Dictionary<string, string> props = Helpers.SessionLogger.CollectProperties();
-
-		public static readonly string SessionID = Guid.NewGuid().ToString("N");
+		public static readonly TelemetryEvent Template =
+			Helpers.SessionLogger.MakeTelemetryTemplate();
 
 
 		#region Schema classes
-		private sealed class TelemetryEvent
+		public sealed class TelemetryEvent
 		{
-			public string? EventId { get; set; }
-			public DateTime Timestamp { get; set; }
-			public string? EventName { get; set; }
-			public string? EventType { get; set; }
-			public string? Version { get; set; }
-			public string? SessionId { get; set; }
+			public string? EventId { get; set; }        // GUID, unique for each event
+			public DateTime Timestamp { get; set; }     // UTC time of the event
+			public string? EventName { get; set; }      // action
+			public string? EventType { get; set; }      // "event" | "error"
+			public string? Version { get; set; }        // e.g. "6.8.2" of OneMoreAddIn.dll
+			public string? SessionId { get; set; }      // correlation id
 			public ClientInfo? Client { get; set; }
 			public Payload? Data { get; set; }
 		}
 
-		private sealed class ClientInfo
+		public sealed class ClientInfo
 		{
-			public string? OneNoteVersion { get; set; }
-			public string? Windows { get; set; }
-			public string? WindowsBitness { get; set; }
-			public string? OneNoteBitness { get; set; }
-			public string? InstallBitness { get; set; }
-			public string? Culture { get; set; }
+			public string? OneVersion { get; set; }     // e.g. "6.8.2"
+			public string? OneArc { get; set; }         // e.g. "x64" of ONENOTE.exe
+			public string? MoreArc { get; set; }        // e.g. "x64" of OneMoreAddIn.dll
+			public int? OsMajor { get; set; }           // e.g. 10
+			public int? OsMinor { get; set; }           // e.g. 0
+			public int? OsBuild { get; set; }           // e.g. 26100
+			public string? OsEdition { get; set; }      // e.g. "Professional"
+			public string? OsArc { get; set; }          // e.g. "x64"
+			public string? Culture { get; set; }        // e.g. "en-US"
 		}
 
-		private sealed class Payload
+		public sealed class Payload
 		{
 			public string? Message { get; set; }
 			public string? Info { get; set; }
@@ -58,13 +61,19 @@ namespace River.OneMoreAddIn
 
 		public static async Task LogEvent(string eventName, string message, string info = "")
 		{
-			await Log("event", eventName, message, info);
+			if (Template is not null)
+			{
+				await Log("event", eventName, message, info);
+			}
 		}
 
 
 		public static async Task LogException(string eventName, string message, Exception exc)
 		{
-			await Log("error", eventName, message, exc.FormatDetails());
+			if (Template is not null)
+			{
+				await Log("error", eventName, message, exc.FormatDetails());
+			}
 		}
 
 
@@ -119,17 +128,16 @@ namespace River.OneMoreAddIn
 				Timestamp = DateTime.UtcNow,            // event timestamp
 				EventName = eventName,                  // event/fn/op name
 				EventType = eventType,                  // event | error | ...
-				Version = props["Version"],             // OneMore addin version
-				SessionId = SessionID,                  // OneNote sessionId/correlationId
-				Client = new ClientInfo
-				{
-					OneNoteVersion = props["OneNoteVersion"],
-					Windows = props["Windows"],
-					WindowsBitness = props["WindowsBitness"],
-					OneNoteBitness = props["OneNoteBitness"],
-					InstallBitness = props["InstallBitness"],
-					Culture = props["Culture"]
-				},
+
+				Version = Template.Version,
+
+				// correlation id
+				SessionId = Template.SessionId,
+
+				// refeence template.Client - it never changes
+				Client = Template.Client,
+
+				// new payload for this event
 				Data = new Payload
 				{
 					Message = message,

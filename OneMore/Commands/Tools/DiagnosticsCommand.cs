@@ -116,6 +116,39 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		public static string GetWindowsEdition(Version version)
+		{
+			// on 32 bit Windows this will read the 32 bit hive instead
+			using var hive = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
+			using var key = hive.OpenSubKey(@"Software\Microsoft\Windows NT\CurrentVersion", false);
+			return GetWindowsEdition(key, version);
+		}
+
+
+		private static string GetWindowsEdition(RegistryKey key, Version version)
+		{
+
+			// Windows 11 21H2 starts at Version >= 10.0.22000.120
+			if (version.Major == 10 && version.Build >= 22000)
+			{
+				var editionID = key.GetValue("EditionID"); // e.g. "Professional"
+				if (editionID is string edition && !string.IsNullOrWhiteSpace(edition))
+				{
+					return edition;
+				}
+			}
+			else
+			{
+				// "Microsoft Windows XP"
+				// "Windows 7 Ultimate"
+				// "Windows 10 Pro"  (same string on Windows 11. Microsoft SUCKS!)
+				return (string)key.GetValue("ProductName");
+			}
+
+			return string.Empty;
+		}
+
+
 		public static string GetWindowsProductName()
 		{
 			var name = new StringBuilder();
@@ -127,24 +160,21 @@ namespace River.OneMoreAddIn.Commands
 				using var key = hive.OpenSubKey(@"Software\Microsoft\Windows NT\CurrentVersion", false);
 
 				var os = Version.Parse(RuntimeInformation.OSDescription.Split(' ')[2]);
+				var edition = GetWindowsEdition(key, os);
 
 				// Windows 11 21H2 starts at Version >= 10.0.22000.120
 				if (os.Major == 10 && os.Build >= 22000)
 				{
 					name.Append("Windows 11");
 
-					var editionID = key.GetValue("EditionID"); // e.g. "Professional"
-					if (editionID is string edition && !string.IsNullOrWhiteSpace(edition))
+					if (!string.IsNullOrWhiteSpace(edition))
 					{
 						name.Append($" {edition}");
 					}
 				}
 				else
 				{
-					// "Microsoft Windows XP"
-					// "Windows 7 Ultimate"
-					// "Windows 10 Pro"  (same string on Windows 11. Microsoft SUCKS!)
-					name.Append((string)key.GetValue("ProductName"));
+					name.Append(edition);
 				}
 
 				// see: https://en.wikipedia.org/wiki/Windows_10_version_history

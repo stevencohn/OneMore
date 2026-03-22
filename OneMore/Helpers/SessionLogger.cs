@@ -4,13 +4,14 @@
 
 namespace River.OneMoreAddIn.Helpers
 {
+	using River.OneMoreAddIn.Commands;
 	using System;
-	using System.Collections.Generic;
 	using System.Diagnostics;
 	using System.IO;
 	using System.Management;
 	using System.Reflection;
 	using System.Reflection.PortableExecutable;
+	using System.Runtime.InteropServices;
 	using System.Threading;
 
 	internal static class SessionLogger
@@ -37,7 +38,7 @@ namespace River.OneMoreAddIn.Helpers
 				$"{thread.CurrentCulture.Name}/{thread.CurrentUICulture.Name}, " +
 				$"v{AssemblyInfo.Version} {arc}, " +
 				$"{DateTime.Now.ToString("yyyy-MM-dd HH:mm")} " +
-				$"[{TelemetryClient.SessionID}]");
+				$"[{TelemetryClient.Template.SessionId}]");
 
 			logger.WriteLine(DescribeProducts());
 		}
@@ -155,12 +156,10 @@ namespace River.OneMoreAddIn.Helpers
 		/// The dictionary is empty if the OneNote process is not found or if an
 		/// error occurs while retrieving process information.
 		/// </returns>
-		public static Dictionary<string, string> CollectProperties()
+		public static TelemetryClient.TelemetryEvent MakeTelemetryTemplate()
 		{
-			var props = new Dictionary<string, string>();
-
 			var hostproc = Process.GetProcessesByName("ONENOTE");
-			if (hostproc.Length == 0) { return props; }
+			if (hostproc.Length == 0) { return null; }
 			string oneArc;
 			string oneVer;
 			try
@@ -172,28 +171,36 @@ namespace River.OneMoreAddIn.Helpers
 			catch (Exception exc)
 			{
 				Logger.Current.WriteLine("error reading OneNote.exe header", exc);
-				return props;
+				return null;
 			}
 
 			// collect...
 
-			props.Add("Version", AssemblyInfo.Version);
-			props.Add("OneNoteVersion", oneVer);
+			var winver = Version.Parse(RuntimeInformation.OSDescription.Split(' ')[2]);
 
-			var win = Commands.DiagnosticsCommand.GetWindowsProductName();
-			props.Add("Windows", win);
-
-			var winbit = win.Contains("ARM64") ? "ARM64" : (win.Contains("x64") ? "x64" : "x86");
-			props.Add("WindowsBitness", winbit);
-
-			props.Add("OneNoteBitness", oneArc);
+			var winarc = RuntimeInformation.OSArchitecture == Architecture.Arm64
+				? "ARM64" : (Environment.Is64BitOperatingSystem ? ", x64" : ", x86");
 
 			var codebase = Assembly.GetExecutingAssembly().CodeBase;
-			props.Add("InstallBitness", GetAssemblyArchitecture(new Uri(codebase).LocalPath));
 
-			props.Add("Culture", Thread.CurrentThread.CurrentCulture.Name);
+			return new TelemetryClient.TelemetryEvent
+			{
+				Version = AssemblyInfo.Version,
+				SessionId = Guid.NewGuid().ToString("N"),
+				Client = new TelemetryClient.ClientInfo
+				{
+					OneVersion = oneVer,
+					OneArc = oneArc,
+					MoreArc = GetAssemblyArchitecture(new Uri(codebase).LocalPath),
+					OsMajor = winver.Major,
+					OsMinor = winver.Minor,
+					OsBuild = winver.Build,
+					OsEdition = DiagnosticsCommand.GetWindowsEdition(winver),
+					OsArc = winarc,
 
-			return props;
+					Culture = Thread.CurrentThread.CurrentCulture.Name
+				}
+			};
 		}
 	}
 }
