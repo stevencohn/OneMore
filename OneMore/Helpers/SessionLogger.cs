@@ -178,8 +178,12 @@ namespace River.OneMoreAddIn.Helpers
 
 			var winver = Version.Parse(RuntimeInformation.OSDescription.Split(' ')[2]);
 
-			var winarc = RuntimeInformation.OSArchitecture == Architecture.Arm64
-				? "ARM64" : (Environment.Is64BitOperatingSystem ? ", x64" : ", x86");
+			var winarc = RuntimeInformation.OSArchitecture switch
+			{
+				Architecture.Arm64 => "ARM64",
+				Architecture.X64 => "x64",
+				_ => "x86"
+			};
 
 			var codebase = Assembly.GetExecutingAssembly().CodeBase;
 
