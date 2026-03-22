@@ -189,6 +189,7 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		/// <param name="message">The message to log</param>
 		/// <param name="keepRunning">True to keep the timer running</param>
-		void WriteTime(string message, bool keepRunning = false);
+		/// <param name="after">True to log the time after the message instead of before</param>
+		void WriteTime(string message, bool keepRunning = false, bool after = false);
 	}
 }

@@ -466,7 +466,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public void WriteTime(string message, bool keepRunning = false)
+		public void WriteTime(string message, bool keepRunning = false, bool after = false)
 		{
 			if (clock is null)
 			{
@@ -479,7 +479,14 @@ namespace River.OneMoreAddIn
 				clock.Stop();
 			}
 
-			WriteLine($"{clock.Elapsed:mm\\:ss\\.ff} {message}");
+			if (after)
+			{
+				WriteLine($"{message} {clock.Elapsed:mm\\:ss\\.ff}");
+			}
+			else
+			{
+				WriteLine($"{clock.Elapsed:mm\\:ss\\.ff} {message}");
+			}
 		}
 
 

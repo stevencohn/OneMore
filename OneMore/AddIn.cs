@@ -221,10 +221,18 @@ namespace River.OneMoreAddIn
 				new Commands.NavigationService().Startup();
 
 				// hashtags scanner
-				new Commands.HashtagService().Startup();
+				Task.Run(async () => { new Commands.HashtagService().Startup(); });
 
 				// update check
-				Task.Run(async () => { await SetGeneralOptions(); });
+				Task.Run(async () =>
+				{
+					await SetGeneralOptions();
+
+					if (Telemetry)
+					{
+						await TelemetryClient.Warmup();
+					}
+				});
 
 				logger.WriteLine($"ready");
 			}

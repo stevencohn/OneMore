@@ -4,9 +4,12 @@
 
 #pragma warning disable CS8632 // ignore nullable reference types
 
+//#define DIAG
+
 namespace River.OneMoreAddIn
 {
 	using System;
+	using System.Net;
 	using System.Net.Http;
 	using System.Threading.Tasks;
 	using Newtonsoft.Json;
@@ -15,10 +18,10 @@ namespace River.OneMoreAddIn
 	internal static class TelemetryClient
 	{
 		// these are not secrets
-		private const string ApiUrl =
-			"https:" + "//uetc84spi9.execute-api.us-east-1.amazonaws.com/prod/telemetry";
+		private static readonly string ApiRoot = "uetc84spi9.execute-api.us-east-1.amazonaws.com";
+		private static readonly string ApiUrl = $"https://{ApiRoot}/prod/telemetry";
 
-		private const string ApiKey = "F3J9FKPYsX7gypXLaBQmITRu5DCoIe77x8jgV4m0";
+		private static readonly string ApiKey = "F3J9FKPYsX7gypXLaBQmITRu5DCoIe77x8jgV4m0";
 
 		// cached for each new session (OneNote process lifetime)
 		public static readonly TelemetryEvent Template =
@@ -57,6 +60,22 @@ namespace River.OneMoreAddIn
 			public string? Info { get; set; }
 		}
 		#endregion Schema classes
+
+
+		public static async Task Warmup()
+		{
+			var logger = Logger.Current;
+			logger.StartClock();
+
+			_ = JsonConvert.SerializeObject(new TelemetryEvent());
+			await Dns.GetHostEntryAsync(ApiRoot);
+
+			var client = HttpClientFactory.Create();
+			await client.GetAsync($"https://{ApiRoot}/prod/ping");
+
+			logger.StopClock();
+			logger.WriteTime("telemetry warmup completed", after: true);
+		}
 
 
 		public static async Task LogEvent(string eventName, string message, string info = "")
@@ -98,13 +117,14 @@ namespace River.OneMoreAddIn
 
 			try
 			{
+#if DIAG
+				var response = await client.SendAsync(request);
+				Logger.Current.WriteLine($"Status: {response.StatusCode}");
+				Logger.Current.WriteLine(await response.Content.ReadAsStringAsync());
+#else
 				// fire-and-forget...
-
 				_ = await client.SendAsync(request);
-
-				// comment out for production!
-				//Logger.Current.WriteLine($"Status: {response.StatusCode}");
-				//Logger.Current.WriteLine(await response.Content.ReadAsStringAsync());
+#endif
 			}
 			catch (Exception ex)
 			{
