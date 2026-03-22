@@ -207,34 +207,34 @@ namespace River.OneMoreAddIn
 			try
 			{
 				// hotkeys
-				Task.Run(async () => { await RegisterHotkeys(); });
-
-				factory = new CommandFactory(logger, ribbon, trash);
-
-				// command listener for Refresh links
-				new CommandService(factory).Startup();
-
-				// reminder task scanner
-				new Commands.ReminderService().Startup();
-
-				// navigation listener
-				new Commands.NavigationService().Startup();
-
-				// hashtags scanner
-				Task.Run(async () => { new Commands.HashtagService().Startup(); });
-
-				// update check
 				Task.Run(async () =>
 				{
+					await RegisterHotkeys();
+
+					factory = new CommandFactory(logger, ribbon, trash);
+
+					// command listener for Refresh links
+					new CommandService(factory).Startup();
+
+					// reminder task scanner
+					new Commands.ReminderService().Startup();
+
+					// navigation listener
+					new Commands.NavigationService().Startup();
+
+					// hashtags scanner
+					new Commands.HashtagService().Startup();
+
+					// settings and update check
 					await SetGeneralOptions();
 
 					if (Telemetry)
 					{
 						await TelemetryClient.Warmup();
 					}
-				});
 
-				logger.WriteLine($"ready");
+					logger.WriteLine($"ready");
+				});
 			}
 			catch (Exception exc)
 			{
