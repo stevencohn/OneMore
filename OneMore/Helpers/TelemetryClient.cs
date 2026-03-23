@@ -122,8 +122,25 @@ namespace River.OneMoreAddIn
 				Logger.Current.WriteLine($"Status: {response.StatusCode}");
 				Logger.Current.WriteLine(await response.Content.ReadAsStringAsync());
 #else
-				// fire-and-forget...
-				_ = await client.SendAsync(request);
+				// fire-and-forget on ThreadPool
+				_ = Task.Run(() =>
+				{
+					try
+					{
+						var task = client.SendAsync(request);
+						task.ContinueWith(t =>
+						{
+							if (t.IsFaulted)
+							{
+								Logger.Current.WriteLine("error sending telemetry", t.Exception);
+							}
+						}, TaskScheduler.Default);
+					}
+					catch (Exception exc)
+					{
+						Logger.Current.WriteLine("error sending telemetry", exc);
+					}
+				});
 #endif
 			}
 			catch (Exception ex)
@@ -131,7 +148,6 @@ namespace River.OneMoreAddIn
 				Logger.Current.WriteLine("error sending telemetry", ex);
 			}
 		}
-
 
 		static TelemetryEvent MakeEvent(
 			string eventType, string eventName, string message, string info)
