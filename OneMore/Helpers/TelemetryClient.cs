@@ -122,7 +122,7 @@ namespace River.OneMoreAddIn
 				Logger.Current.WriteLine($"Status: {response.StatusCode}");
 				Logger.Current.WriteLine(await response.Content.ReadAsStringAsync());
 #else
-				// fire-and-forget on ThreadPool
+				// fire-and-forget on ThreadPool - DO NOT await
 				_ = Task.Run(() =>
 				{
 					try
