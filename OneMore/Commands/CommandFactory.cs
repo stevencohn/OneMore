@@ -94,6 +94,7 @@ namespace River.OneMoreAddIn
 		}
 
 
+#pragma warning disable CS4014 // ignore call not awaited
 		private async Task Run(string note, Command command, params object[] args)
 		{
 			var type = command.GetType();
@@ -101,9 +102,10 @@ namespace River.OneMoreAddIn
 
 			if (AddIn.Telemetry)
 			{
-				await Task.Run(async () =>
+				_ = Task.Run(() =>
 				{
-					await TelemetryClient.LogEvent(type.Name, string.Empty);
+					// do not await
+					TelemetryClient.LogEvent(type.Name, string.Empty);
 				});
 			}
 
@@ -133,9 +135,10 @@ namespace River.OneMoreAddIn
 
 				if (AddIn.Telemetry)
 				{
-					await Task.Run(async () =>
+					_ = Task.Run(() =>
 					{
-						await TelemetryClient.LogException(type.Name, msg, exc);
+						// do not await
+						TelemetryClient.LogException(type.Name, msg, exc);
 					});
 				}
 
@@ -148,6 +151,7 @@ namespace River.OneMoreAddIn
 					owner, string.Format(Resx.Command_ErrorMsg, type.Name));
 			}
 		}
+#pragma warning restore CS4014 // ignore call not awaited
 
 
 		/// <summary>

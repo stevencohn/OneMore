@@ -1,0 +1,82 @@
+;---------------------------------------------------------------
+;; This is an example showing how an add-in is registered.
+;; It is not intended to be run directly.
+;; Instead, use setregistry.ps1 or run the installer.
+;---------------------------------------------------------------
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\AppID\{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}]
+"DllSurrogate"=""
+
+[HKEY_CLASSES_ROOT\onemore]
+@="URL:OneMore Protocol Handler"
+"URL Protocol"=""
+
+[HKEY_CLASSES_ROOT\onemore\shell]
+
+[HKEY_CLASSES_ROOT\onemore\shell\open]
+
+[HKEY_CLASSES_ROOT\onemore\shell\open\command]
+@="\"C:\\Program Files\\River\\OneMoreAddIn\\OneMoreProtocolHandler.exe\" %1 %2 %3 %4 %5"
+
+[HKEY_CLASSES_ROOT\River.OneMoreAddIn]
+@="River.OneMoreAddIn.AddIn"
+
+[HKEY_CLASSES_ROOT\River.OneMoreAddIn\CLSID]
+@="{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}"
+
+[HKEY_CLASSES_ROOT\River.OneMoreAddIn\CurVer]
+@="River.OneMoreAddIn.1"
+
+[HKEY_CLASSES_ROOT\River.OneMoreAddIn.1]
+@="Addin class"
+
+[HKEY_CLASSES_ROOT\River.OneMoreAddIn.1\CLSID]
+@="{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}"
+
+[HKEY_CLASSES_ROOT\CLSID\{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}]
+@="River.OneMoreAddIn.AddIn"
+"AppID"="{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}"
+
+[HKEY_CLASSES_ROOT\CLSID\{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}\Implemented Categories]
+
+[HKEY_CLASSES_ROOT\CLSID\{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}\Implemented Categories\{62C8FE65-4EBB-45E7-B440-6E39B2CDBF29}]
+
+[HKEY_CLASSES_ROOT\CLSID\{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}\InprocServer32]
+@="mscoree.dll"
+"ThreadingModel"="Both"
+"CodeBase"="C:\\Program Files\\River\\OneMoreAddIn\\River.OneMoreAddIn.dll"
+"Class"="River.OneMoreAddIn.AddIn"
+"RuntimeVersion"="v4.0.30319"
+"Assembly"="River.OneMoreAddIn, Version=5.8.3.0, Culture=neutral, PublicKeyToken=null"
+
+[HKEY_CLASSES_ROOT\CLSID\{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}\InprocServer32\5.8.3.0]
+"Assembly"="River.OneMoreAddIn, Version=5.8.3.0, Culture=neutral, PublicKeyToken=null"
+"CodeBase"="C:\\Program Files\\River\\OneMoreAddIn\\River.OneMoreAddIn.dll"
+"RuntimeVersion"="v4.0.30319"
+"Class"="River.OneMoreAddIn.AddIn"
+
+[HKEY_CLASSES_ROOT\CLSID\{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}\ProgID]
+@="River.OneMoreAddin"
+
+[HKEY_CLASSES_ROOT\CLSID\{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}\Programmable]
+@=""
+
+[HKEY_CLASSES_ROOT\CLSID\{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}\TypeLib]
+@="{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}"
+
+[HKEY_CLASSES_ROOT\CLSID\{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}\VersionIndependentProgID]
+@="River.OneMoreAddIn"
+
+[HKEY_CURRENT_USER\SOFTWARE\Classes\AppID\{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}]
+"DllSurrogate"=""
+
+[HKEY_CURRENT_USER\SOFTWARE\Microsoft\Office\OneNote\AddIns\River.OneMoreAddIn]
+"LoadBehavior"=dword:00000003
+"Description"="Extension for OneNote"
+"FriendlyName"="OneMoreAddIn"
+
+[HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\River.OneMoreAddIn.dll]
+"Path"="C:\\Program Files\\River\\OneMoreAddIn\\River.OneMoreAddIn.dll"
+
+[HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\Office\16.0\Common\Security\Trusted Protocols\All Applications\onemore:]
