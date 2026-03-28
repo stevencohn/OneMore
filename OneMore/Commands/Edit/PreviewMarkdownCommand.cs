@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.UI;
 	using System.Collections.Generic;
 	using System.IO;
+	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
 	using Resx = Properties.Resources;
@@ -68,6 +69,10 @@ namespace River.OneMoreAddIn.Commands
 			};
 
 			var text = reader.ReadTextFrom(paragraphs, range.Scope != SelectionScope.Range);
+
+			// solves the ``` end of code block being on a new line, which markdown doesn't like
+			text = Regex.Replace(text, @"<br>([\n\r]+)", "$1");
+
 			logger.Verbose("preview raw text:");
 			logger.Verbose(text);
 
@@ -83,7 +88,7 @@ namespace River.OneMoreAddIn.Commands
 				Path.GetFileNameWithoutExtension(filepath)) + ".htm";
 
 			logger.WriteLine($"markdown preview saved to {filepath}");
-			File.WriteAllText(filepath, body);
+			File.WriteAllText(filepath, $"<html><body>{body}</body></html>");
 
 			await SingleThreaded.Invoke(() =>
 			{
