@@ -180,39 +180,38 @@ namespace OneMoreSetupActions
 
 					logger.WriteLine($@"warn finding value at HKLM:\{path}\{subname}\InstallRoot");
 				}
+
 				return null;
 			}
 
 			logger.WriteLine(nameof(GetOneNoteArchitecture) + "()");
 			logger.Indented = true;
 
-			var onepath = ReadDefaultValue(
-				@"SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\OneNote.exe");
+			var sub = @"Microsoft\Windows\CurrentVersion\App Paths\OneNote.exe";
 
-			if (string.IsNullOrWhiteSpace(onepath))
-			{
-				onepath = ReadDefaultValue(
-					@"SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\App Paths\OneNote.exe");
+			// this lookup order should work for ARM64, x64, and x86 versions of OneNote on
+			// both ARM64, x64 and x86 Windows
+			//
+			// ARM64 Win allows ARM64 OneNote or x64/x86 emulated OneNote
+			// .. SOFTWARE\ = native ARM64
+			// .. SOFTWARE\WOWAA64Node\ = x64 emulated on ARM64
+			// .. SOFTWARE\WOW6432Node\ = x86 emulated on ARM64
+			// x64 Win allows x64 OneNote or x86 OneNote, but not ARM64 OneNote
+			// .. SOFTWARE\ = native x64
+			// .. SOFTWARE\WOW6432Node\ = x86 emulated on x64
+			// x86 Win allows only x86 OneNote
+			// .. SOFTWARE\ = native x86
 
-				if (string.IsNullOrWhiteSpace(onepath))
-				{
-					onepath = ReadAppPathValue(@"SOFTWARE\Microsoft\Office", "OneNote");
-					if (string.IsNullOrWhiteSpace(onepath))
-					{
-						onepath = ReadAppPathValue(@"SOFTWARE\WOW6432Node\Microsoft\Office", "OneNote");
-						if (string.IsNullOrWhiteSpace(onepath))
-						{
-							onepath = ReadAppPathValue(@"SOFTWARE\Microsoft\Office", "Common");
-							if (string.IsNullOrWhiteSpace(onepath))
-							{
-								onepath = ReadAppPathValue(@"SOFTWARE\WOW6432Node\Microsoft\Office", "Common");
-							}
-						}
-					}
-				}
-			}
-
-			return onepath;
+			return ReadDefaultValue(@$"SOFTWARE\{sub}")
+				?? ReadDefaultValue(@$"SOFTWARE\WOWAA64Node\{sub}")
+				?? ReadDefaultValue(@$"SOFTWARE\WOW6432Node\{sub}")
+				?? ReadAppPathValue(@"SOFTWARE\Microsoft\Office", "OneNote")
+				?? ReadAppPathValue(@"SOFTWARE\WOWAA64Node\Microsoft\Office", "OneNote")
+				?? ReadAppPathValue(@"SOFTWARE\WOW6432Node\Microsoft\Office", "OneNote")
+				?? ReadAppPathValue(@"SOFTWARE\Microsoft\Office", "Common")
+				?? ReadAppPathValue(@"SOFTWARE\WOWAA64Node\Microsoft\Office", "Common")
+				?? ReadAppPathValue(@"SOFTWARE\WOW6432Node\Microsoft\Office", "Common")
+				;
 		}
 
 
