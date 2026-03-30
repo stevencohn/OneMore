@@ -53,7 +53,7 @@ namespace OneMoreProtocolHandler
 
 		public void WriteLine(string message)
 		{
-			writer.WriteLine(message);
+			writer.WriteLine($"{DateTime.Now:hh:mm:ss.fff}|{message}");
 			writer.Flush();
 		}
 
@@ -68,7 +68,7 @@ namespace OneMoreProtocolHandler
 		private static string FormatDetails(Exception exc)
 		{
 			var builder = new StringBuilder();
-			builder.AppendLine(exc.GetType().FullName);
+			builder.AppendLine($"{DateTime.Now:hh:mm:ss.fff}|{exc.GetType().FullName}");
 
 			FormatDetails(exc, builder, 0);
 
