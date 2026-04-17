@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2021 Steven M Cohn.  All rights reserved.
+// Copyright © 2021 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -17,6 +17,9 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class CopyFolderCommand : Command
 	{
+		private const string SectionName = "Section";
+		private const string SectionGroupName = "SectionGroup";
+
 		private UI.ProgressDialog progress;
 
 		public CopyFolderCommand()
@@ -64,14 +67,14 @@ namespace River.OneMoreAddIn.Commands
 				var element = notebook.Descendants(ns + "Page")
 					.FirstOrDefault(e => e.Attribute("ID").Value == one.CurrentPageId);
 
-				var folder = element.FirstAncestor(ns + "SectionGroup");
+				var folder = element.FirstAncestor(ns + SectionGroupName);
 				if (folder == null)
 				{
 					logger.WriteLine("error finding ancestor folder");
 					return;
 				}
 
-				if (folder.DescendantsAndSelf().Any(e => e.Attribute("ID").Value == targetId))
+				if (folder.DescendantsAndSelf().Any(e => e.Attribute("ID")?.Value == targetId))
 				{
 					logger.WriteLine("cannot copy a folder into itself or one of its children");
 
@@ -136,7 +139,7 @@ namespace River.OneMoreAddIn.Commands
 				ns + folder.Name.LocalName,
 				folder.Attributes().Where(a => a.Name.LocalName != "ID"));
 
-			foreach (var group in folder.Elements(ns + "SectionGroup"))
+			foreach (var group in folder.Elements(ns + SectionName))
 			{
 				var s = new XElement(ns + group.Name.LocalName,
 					group.Attributes().Where(a => a.Name.LocalName != "ID"));
@@ -145,7 +148,7 @@ namespace River.OneMoreAddIn.Commands
 				CloneFolder(group, ns, s);
 			}
 
-			foreach (var group in folder.Elements(ns + "Section"))
+			foreach (var group in folder.Elements(ns + SectionGroupName))
 			{
 				var s = new XElement(ns + group.Name.LocalName,
 					group.Attributes().Where(a => a.Name.LocalName != "ID"));
@@ -186,17 +189,17 @@ namespace River.OneMoreAddIn.Commands
 			// NOTE that these find target sections by name, so the names must be unique otherwise
 			// this will copy all pages into the first occurance with a matching name!
 
-			foreach (var section in root.Elements(ns + "SectionGroup").Elements(ns + "Section"))
+			foreach (var section in root.Elements(ns + SectionGroupName).Elements(ns + SectionName))
 			{
-				var cloneSection = clone.Elements(ns + "SectionGroup").Elements(ns + "Section")
+				var cloneSection = clone.Elements(ns + SectionGroupName).Elements(ns + SectionName)
 					.FirstOrDefault(e => e.Attribute("name").Value == section.Attribute("name").Value);
 
 				await CopyPages(section, cloneSection, one, ns);
 			}
 
-			foreach (var section in root.Elements(ns + "Section"))
+			foreach (var section in root.Elements(ns + SectionName))
 			{
-				var cloneSection = clone.Elements(ns + "Section")
+				var cloneSection = clone.Elements(ns + SectionName)
 					.FirstOrDefault(e => e.Attribute("name").Value == section.Attribute("name").Value);
 
 				await CopyPages(section, cloneSection, one, ns);
