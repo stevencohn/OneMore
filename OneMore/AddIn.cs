@@ -206,9 +206,9 @@ namespace River.OneMoreAddIn
 
 			try
 			{
-				// hotkeys
 				Task.Run(async () =>
 				{
+					// hotkeys
 					await RegisterHotkeys();
 
 					factory = new CommandFactory(logger, ribbon, trash);
@@ -251,8 +251,6 @@ namespace River.OneMoreAddIn
 			var provider = new SettingsProvider();
 			var settings = provider.GetCollection(nameof(GeneralSheet));
 
-			Telemetry = settings.Get("telemetry", false);
-
 			if (settings.Get("checkUpdates", false))
 			{
 				try
@@ -264,6 +262,23 @@ namespace River.OneMoreAddIn
 					logger.WriteLine("error checking for updates", exc);
 				}
 			}
+
+			if (!settings.Contains("telemetry"))
+			{
+				try
+				{
+					await factory.Run<Commands.TelemetryCommand>();
+					provider = new SettingsProvider();
+					settings = provider.GetCollection(nameof(GeneralSheet));
+				}
+				catch (Exception exc)
+				{
+					Logger.Current.WriteLine("error checking telemetry", exc);
+				}
+			}
+
+			Telemetry = settings.Get("telemetry", false);
+			logger.WriteLine("telemetry is " + (Telemetry ? "enabled" : "disabled"));
 		}
 
 

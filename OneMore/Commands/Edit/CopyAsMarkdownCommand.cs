@@ -22,7 +22,6 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			#region WriteMarkdown(PageEditor editor, MarkdownWriter writer, XElement start)
 			async void WriteMarkdown(PageEditor editor, MarkdownWriter writer, XElement start)
 			{
 				var content = editor.ExtractSelectedContent(start);
@@ -33,7 +32,8 @@ namespace River.OneMoreAddIn.Commands
 
 				await writer.Copy(content);
 			}
-			#endregion WriteMarkdown
+
+			// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 			await using var one = new OneNote(out var page, out var _);
 
@@ -52,8 +52,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				var editor = new PageEditor(page);
 
-				if (range.Scope == SelectionScope.TextCursor ||
-					range.Scope == SelectionScope.SpecialCursor)
+				if (range.Scope == SelectionScope.TextCursor)
 				{
 					editor.AllContent = true;
 					range.Deselect();

@@ -12574,6 +12574,69 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to https://onemoreaddin.com/developers/Design%20-%20Telemetry.htm.
+        /// </summary>
+        internal static string TelemetryDialog_designLink {
+            get {
+                return ResourceManager.GetString("TelemetryDialog_designLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No, do not enable telemetry.
+        /// </summary>
+        internal static string TelemetryDialog_noButton_Text {
+            get {
+                return ResourceManager.GetString("TelemetryDialog_noButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Read about the telemetry design.
+        /// </summary>
+        internal static string TelemetryDialog_readLabel_Text {
+            get {
+                return ResourceManager.GetString("TelemetryDialog_readLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable Anonymous Telemetry.
+        /// </summary>
+        internal static string TelemetryDialog_subtitleLabel_Text {
+            get {
+                return ResourceManager.GetString("TelemetryDialog_subtitleLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Help Improve OneMore.
+        /// </summary>
+        internal static string TelemetryDialog_titleLabel_Text {
+            get {
+                return ResourceManager.GetString("TelemetryDialog_titleLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please consider enabling anonymous telemetry to help us improve OneMore. Telemetry records which commands are used, basic environment details, and a session‑only ID that resets each time OneNote restarts. This information helps us understand which features matter most and how the add‑in is used. No personal or identifying data is ever collected—only fully anonymous usage events..
+        /// </summary>
+        internal static string TelemetryDialog_whyBox_Text {
+            get {
+                return ResourceManager.GetString("TelemetryDialog_whyBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes, I&apos;ll help! Enable telemetry.
+        /// </summary>
+        internal static string TelemetryDialog_yesButton_Text {
+            get {
+                return ResourceManager.GetString("TelemetryDialog_yesButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap TextHighlightColorPicker {
@@ -12733,6 +12796,16 @@ namespace River.OneMoreAddIn.Properties {
         internal static string TimerWindow_Text {
             get {
                 return ResourceManager.GetString("TimerWindow.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap TLogo {
+            get {
+                object obj = ResourceManager.GetObject("TLogo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

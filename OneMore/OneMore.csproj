@@ -409,6 +409,13 @@
     </Compile>
     <Compile Include="Commands\Tagging\TagBankCommand.cs" />
     <Compile Include="Commands\Tools\QuickPaletteCommand.cs" />
+    <Compile Include="Commands\Tools\Telemetry\TelemetryCommand.cs" />
+    <Compile Include="Commands\Tools\Telemetry\TelemetryDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Tools\Telemetry\TelemetryDialog.Designer.cs">
+      <DependentUpon>TelemetryDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\ColorHelper.cs" />
     <Compile Include="Helpers\DatabaseProvider.cs" />
     <Compile Include="Helpers\Extensions\ArrayExtensions.cs" />
@@ -420,7 +427,7 @@
     <Compile Include="Helpers\Heatmap.cs" />
     <Compile Include="Commands\Tagging\HashtagNotebook.cs" />
     <Compile Include="Helpers\SessionLogger.cs" />
-    <Compile Include="Helpers\TelemetryClient.cs" />
+    <Compile Include="Commands\Tools\Telemetry\TelemetryClient.cs" />
     <Compile Include="Models\OneImage.cs" />
     <Compile Include="Models\KnownSchemaAttributes.cs" />
     <Compile Include="Models\PageEditor.cs" />
@@ -1285,6 +1292,10 @@
     <EmbeddedResource Include="Commands\Tagging\ScheduleScanDialog.resx">
       <DependentUpon>ScheduleScanDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Tools\Telemetry\TelemetryDialog.resx">
+      <DependentUpon>TelemetryDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.it-IT.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -1375,6 +1386,7 @@
       <DependentUpon>HistoryControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Tools\sponsor-dark.png" />
+    <Content Include="Commands\Tools\Telemetry\TLogo.png" />
     <Content Include="Properties\Emoji\e_Architecture.png" />
     <Content Include="Properties\Emoji\e_Automobile.png" />
     <Content Include="Properties\Emoji\e_BallotBox.png" />
@@ -1437,6 +1449,7 @@
     <Content Include="Properties\Images\Favorites.png" />
     <Content Include="Properties\Images\FolderClose.png" />
     <Content Include="Properties\Images\FolderOpen.png" />
+    <None Include="Commands\Tools\Telemetry\TLogo.psd" />
     <None Include="Properties\Images\Grid40.png" />
     <Content Include="Properties\Images\HashtagsRibbon.png" />
     <Content Include="Properties\Menu\m_Bold.png" />
