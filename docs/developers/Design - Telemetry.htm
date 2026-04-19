@@ -206,12 +206,12 @@
 <H3 style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; COLOR: #5b9bd5; MARGIN: 0in">Telemetry Storage</H3>
 <H3 style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">The top half of this diagram is the storage workflow.</H3>
 <P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<P style="MARGIN: 0in"><IMG src="Design%20-%20Telemetry_files/image001.jpg" width=366 height=212></P>
+<P style="MARGIN: 0in 0in 0in 0.375in"><IMG src="Design%20-%20Telemetry_files/image001.jpg" width=366 height=212></P>
 <P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">The OneMore client collects the data, serializes it as JSON, and POSTs to an API Gateway endpoint. This is sent on to a lambda where the packet schema and its data are validated and then stored in S3.</P>
 <P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<P style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">The S3 storage models is simply </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e1e1e1'>&lt;bucket&gt;\telemetry\&lt;version&gt;\eventId.jsonl</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> where &lt;version&gt; is the OneMore version. This is enough to enable partitioning by version if query scalability becomes an issue.</SPAN></P>
+<P style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">The S3 storage models is simply </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e1e1e1'>&lt;bucket&gt;\telemetry\&lt;version&gt;\&lt;EventId&gt;.jsonl</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> where &lt;version&gt; is the OneMore version. This is enough to enable partitioning by version if query scalability becomes an issue.</SPAN></P>
 <P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <H3 style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; COLOR: #5b9bd5; MARGIN: 0in">Telemetry Reporting</H3>
 <P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Glue is used to define the catalog schemas. Aside from the telemetry schema itself, there is also a small lookup table that correlates Windows major.minor.build versions to product names. For example, 10.0.26200 is the first build of Windows 11 25H2.</P>
