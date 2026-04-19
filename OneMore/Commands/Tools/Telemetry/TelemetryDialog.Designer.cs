@@ -30,9 +30,9 @@
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelemetryDialog));
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
-			this.titleLabel = new System.Windows.Forms.Label();
+			this.titleLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.subtitleLabel = new River.OneMoreAddIn.UI.MoreTextBox();
-			this.readLabel = new System.Windows.Forms.Label();
+			this.readLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.yesButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.designLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.topPanel = new System.Windows.Forms.Panel();
@@ -64,6 +64,8 @@
 			this.titleLabel.Size = new System.Drawing.Size(327, 38);
 			this.titleLabel.TabIndex = 1;
 			this.titleLabel.Text = "Help Improve OneMore";
+			this.titleLabel.ThemedBack = null;
+			this.titleLabel.ThemedFore = null;
 			// 
 			// subtitleLabel
 			// 
@@ -92,6 +94,8 @@
 			this.readLabel.Size = new System.Drawing.Size(240, 20);
 			this.readLabel.TabIndex = 3;
 			this.readLabel.Text = "Read about the telemetry design";
+			this.readLabel.ThemedBack = null;
+			this.readLabel.ThemedFore = null;
 			// 
 			// yesButton
 			// 
@@ -100,7 +104,7 @@
 			this.yesButton.DialogResult = System.Windows.Forms.DialogResult.Yes;
 			this.yesButton.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.yesButton.ImageOver = null;
-			this.yesButton.Location = new System.Drawing.Point(442, 518);
+			this.yesButton.Location = new System.Drawing.Point(442, 584);
 			this.yesButton.Name = "yesButton";
 			this.yesButton.ShowBorder = true;
 			this.yesButton.Size = new System.Drawing.Size(511, 42);
@@ -162,7 +166,7 @@
 			this.whyBox.Name = "whyBox";
 			this.whyBox.ProcessEnterKey = false;
 			this.whyBox.ReadOnly = true;
-			this.whyBox.Size = new System.Drawing.Size(903, 269);
+			this.whyBox.Size = new System.Drawing.Size(903, 320);
 			this.whyBox.TabIndex = 3;
 			this.whyBox.Text = resources.GetString("whyBox.Text");
 			this.whyBox.ThemedBack = "Control";
@@ -175,7 +179,7 @@
 			this.noButton.DialogResult = System.Windows.Forms.DialogResult.No;
 			this.noButton.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.noButton.ImageOver = null;
-			this.noButton.Location = new System.Drawing.Point(442, 572);
+			this.noButton.Location = new System.Drawing.Point(442, 638);
 			this.noButton.Name = "noButton";
 			this.noButton.ShowBorder = true;
 			this.noButton.Size = new System.Drawing.Size(511, 42);
@@ -192,7 +196,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.Control;
-			this.ClientSize = new System.Drawing.Size(990, 649);
+			this.ClientSize = new System.Drawing.Size(990, 715);
 			this.Controls.Add(this.noButton);
 			this.Controls.Add(this.whyBox);
 			this.Controls.Add(this.topPanel);
@@ -217,9 +221,9 @@
 		#endregion
 
 		private System.Windows.Forms.PictureBox pictureBox1;
-		private System.Windows.Forms.Label titleLabel;
+		private UI.MoreLabel titleLabel;
 		private UI.MoreTextBox subtitleLabel;
-		private System.Windows.Forms.Label readLabel;
+		private UI.MoreLabel readLabel;
 		private UI.MoreButton yesButton;
 		private UI.MoreLinkLabel designLink;
 		private System.Windows.Forms.Panel topPanel;

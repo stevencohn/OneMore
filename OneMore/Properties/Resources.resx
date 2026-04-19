@@ -5154,7 +5154,7 @@ Invert</value>
   </data>
   <data name="TelemetryDialog_titleLabel.Text" xml:space="preserve">
     <value>Help Improve {0}</value>
-    <comment>!EDIT</comment>
+    <comment></comment>
   </data>
   <data name="TelemetryDialog_whyBox.Text" xml:space="preserve">
     <value>Please consider enabling anonymous telemetry to help us improve {0}. Telemetry records which commands are used, basic environment details, and a session‑only ID that resets each time OneNote restarts. This information helps us understand which features matter most and how the add‑in is used. No personal or identifying data is ever collected—only fully anonymous usage events.
@@ -5162,7 +5162,7 @@ Invert</value>
 You can enable or disable telemetry at any time from the {0} Settings dialog.
 
 Thank you!</value>
-    <comment>!EDIT</comment>
+    <comment></comment>
   </data>
   <data name="TelemetryDialog_yesButton.Text" xml:space="preserve">
     <value>Yes, I'll help! Enable telemetry</value>

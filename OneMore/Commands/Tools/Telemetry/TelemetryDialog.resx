@@ -118,9 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="whyBox.Text" xml:space="preserve">
-    <value>Please consider enabling anonymous telemetry to help us improve OneMore. Telemetry records which commands are used, basic environment details, and a session‑only ID that resets each time OneNote restarts. This information helps us understand which features matter most and how the add‑in is used. No personal or identifying data is ever collected—only fully anonymous usage events.
+    <value>Please consider enabling anonymous telemetry to help us improve {0}. Telemetry records which commands are used, basic environment details, and a session‑only ID that resets each time OneNote restarts. This information helps us understand which features matter most and how the add‑in is used. No personal or identifying data is ever collected—only fully anonymous usage events.
 
-You can enable or disable telemetry at any time from the OneMore Settings dialog.
+You can enable or disable telemetry at any time from the {0} Settings dialog.
 
 Thank you!</value>
   </data>

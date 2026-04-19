@@ -25,8 +25,6 @@ namespace River.OneMoreAddIn.Commands
 		public TelemetryDialog(CommandFactory factory)
 			: this()
 		{
-			readLabel.Text = string.Format(Resx.AboutDialog_copyLabel_Text, DateTime.Now.Year);
-
 			if (NeedsLocalizing())
 			{
 				Text = Resx.AboutDialog_Text;
@@ -53,8 +51,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void GotoDesign(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			//https://onemoreaddin.com/developers/Design%20-%20Telemetry.htm
-			Process.Start(Resx.OneMore_Home);
+			Process.Start(Resx.TelemetryDialog_designLink);
 			yesButton.Focus();
 		}
 

@@ -2297,7 +2297,6 @@ Todos los cuadernos y sus páginas.</value>
     <value>Vista previa de rebajas</value>
     <comment>dialog title</comment>
   </data>
-  </data>
   <data name="Pronunciate_EmptyWord" xml:space="preserve">
     <value>La palabra seleccionada no puede estar vacía</value>
     <comment>error message box</comment>
