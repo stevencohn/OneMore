@@ -1995,18 +1995,6 @@
     <value>اختر نمط الترقيم</value>
     <comment>label</comment>
   </data>
-  <data name="OneMore_GitHub" xml:space="preserve">
-    <value>https://github.com/stevencohn/OneMore</value>
-    <comment>SKIP</comment>
-  </data>
-  <data name="OneMore_Home" xml:space="preserve">
-    <value>https://onemorereaddin.com</value>
-    <comment>SKIP</comment>
-  </data>
-  <data name="OneMore_Sponsor" xml:space="preserve">
-    <value>https://github.com/sponsors/stevencohn</value>
-    <comment>SKIP</comment>
-  </data>
   <data name="OneMoreNamespace" xml:space="preserve">
     <value>http://schemas.smc.com/onemore/2020/styles</value>
     <comment>DO NOT TRANSLATE</comment>
@@ -2320,10 +2308,6 @@
   <data name="PreviewMarkdownCommand_Title" xml:space="preserve">
     <value>معاينة تخفيض السعر</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="ProgramName" xml:space="preserve">
-    <value>OneMore</value>
-    <comment>SKIP</comment>
   </data>
   <data name="Pronunciate_EmptyWord" xml:space="preserve">
     <value>لا يمكن أن تكون الكلمة المحددة فارغة</value>
@@ -4520,10 +4504,6 @@ ISO-code then comma then language name</comment>
     <value>مقاس</value>
     <comment>label</comment>
   </data>
-  <data name="ScanningCueFile" xml:space="preserve">
-    <value>HashtagScanner.json</value>
-    <comment>SKIP</comment>
-  </data>
   <data name="ScheduleScanDialog_booksInfoLabel.Text" xml:space="preserve">
     <value>حدد دفاتر الملاحظات لجدولة لإنقاذ كامل</value>
     <comment>label</comment>
@@ -5137,6 +5117,28 @@ ISO-code then comma then language name</comment>
     <value>يحتوي بنك العلامات على نص. هل أنت متأكد أنك تريد إزالته؟</value>
     <comment>messagebox</comment>
   </data>
+  <data name="TelemetryDialog_noButton.Text" xml:space="preserve">
+    <value>لا، لا تقم بتمكين القياس عن بعد</value>
+  </data>
+  <data name="TelemetryDialog_readLabel.Text" xml:space="preserve">
+    <value>اقرأ عن تصميم القياس عن بعد</value>
+  </data>
+  <data name="TelemetryDialog_subtitleLabel.Text" xml:space="preserve">
+    <value>تمكين القياس عن بعد المجهول</value>
+  </data>
+  <data name="TelemetryDialog_titleLabel.Text" xml:space="preserve">
+    <value>ساعد في تحسين {0}</value>
+  <comment>!EDIT</comment></data>
+  <data name="TelemetryDialog_whyBox.Text" xml:space="preserve">
+    <value>يرجى النظر في تمكين القياس عن بعد المجهول لمساعدتنا في تحسين {0}. يسجل القياس عن بعد الأوامر المستخدمة وتفاصيل البيئة الأساسية ومعرف الجلسة فقط الذي تتم إعادة تعيينه في كل مرة يتم فيها إعادة تشغيل OneNote. تساعدنا هذه المعلومات على فهم الميزات الأكثر أهمية وكيفية استخدام الوظيفة الإضافية. لا يتم جمع أي بيانات شخصية أو تعريفية على الإطلاق - فقط أحداث الاستخدام المجهولة بالكامل.
+
+يمكنك تمكين القياس عن بعد أو تعطيله في أي وقت من مربع حوار الإعدادات {0}.
+
+شكرًا لك!</value>
+  <comment>!EDIT</comment></data>
+  <data name="TelemetryDialog_yesButton.Text" xml:space="preserve">
+    <value>نعم، سوف أساعد! تمكين القياس عن بعد</value>
+  </data>
   <data name="TextToTable_NoText" xml:space="preserve">
     <value>لم يتم تحديد نص</value>
     <comment>info message</comment>
@@ -5184,10 +5186,6 @@ ISO-code then comma then language name</comment>
   <data name="TextToTableDialog_unquoteBox.Text" xml:space="preserve">
     <value>إزالة الاقتباسات من السلاسل الكاملة</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="ThemesFolder" xml:space="preserve">
-    <value>المواضيع</value>
-    <comment>SKIP</comment>
   </data>
   <data name="TimerWindow.Text" xml:space="preserve">
     <value>مؤقت OneNote</value>

@@ -148,7 +148,7 @@ namespace River.OneMoreAddIn.Settings
 			// does not require a restart
 			save = telemetryBox.Checked
 				? settings.Add("telemetry", true) || save
-				: settings.Remove("telemetry") || save;
+				: settings.Add("telemetry", false) || save;
 
 			AddIn.Telemetry = telemetryBox.Checked;
 

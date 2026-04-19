@@ -162,10 +162,6 @@
     <value>Berekend</value>
     <comment>tag name</comment>
   </data>
-  <data name="AddInTitle" xml:space="preserve">
-    <value>OneMoreAddIn</value>
-    <comment>SKIP</comment>
-  </data>
   <data name="AdjustImagesDialog.Text" xml:space="preserve">
     <value>De grootte van het formaat wijzigen en aanpassen</value>
     <comment>dialog title</comment>
@@ -1996,28 +1992,8 @@ Wilt u de bestaande pagina vernieuwen?</value>
     <value>Kies de nummeringsstijl</value>
     <comment>label</comment>
   </data>
-  <data name="OneMore_GitHub" xml:space="preserve">
-    <value>https://github.com/stevencohn/OneMore</value>
-    <comment>SKIP</comment>
-  </data>
-  <data name="OneMore_Home" xml:space="preserve">
-    <value>https://onemoreaddin.com</value>
-    <comment>SKIP</comment>
-  </data>
-  <data name="OneMore_Sponsor" xml:space="preserve">
-    <value>https://github.com/sponsors/stevencohn</value>
-    <comment>SKIP</comment>
-  </data>
-  <data name="OneMoreNamespace" xml:space="preserve">
-    <value>http://schemas.smc.com/onemore/2020/styles</value>
-    <comment>SKIP</comment>
-  </data>
   <data name="OneMoreTab_Label" xml:space="preserve">
     <value>Nog een</value>
-  </data>
-  <data name="oneNamespace" xml:space="preserve">
-    <value>http://schemas.microsoft.com/office/onenote/2013/onenote</value>
-    <comment>SKIP</comment>
   </data>
   <data name="OpenFolderDialog_Text" xml:space="preserve">
     <value>Open de map als notitieboekje</value>
@@ -2321,10 +2297,6 @@ Alle notitieboekjes en hun pagina's</value>
   <data name="PreviewMarkdownCommand_Title" xml:space="preserve">
     <value>Afwaarderingsvoorbeeld</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="ProgramName" xml:space="preserve">
-    <value>EénMeer</value>
-    <comment>SKIP</comment>
   </data>
   <data name="Pronunciate_EmptyWord" xml:space="preserve">
     <value>Het geselecteerde woord mag niet leeg zijn</value>
@@ -4520,10 +4492,6 @@ Zwart en wit</value>
     <value>Maat</value>
     <comment>label</comment>
   </data>
-  <data name="ScanningCueFile" xml:space="preserve">
-    <value>HashtagScanner.json</value>
-    <comment>SKIP</comment>
-  </data>
   <data name="ScheduleScanDialog_booksInfoLabel.Text" xml:space="preserve">
     <value>Selecteer Notebooks om te plannen voor een volledige skier</value>
     <comment>label</comment>
@@ -5137,6 +5105,28 @@ Omkeren</value>
     <value>De tagbank bevat tekst. Weet je zeker dat je het wilt verwijderen?</value>
     <comment>messagebox</comment>
   </data>
+  <data name="TelemetryDialog_noButton.Text" xml:space="preserve">
+    <value>Nee, schakel telemetrie niet in</value>
+  </data>
+  <data name="TelemetryDialog_readLabel.Text" xml:space="preserve">
+    <value>Lees meer over het telemetrieontwerp</value>
+  </data>
+  <data name="TelemetryDialog_subtitleLabel.Text" xml:space="preserve">
+    <value>Anonieme telemetrie inschakelen</value>
+  </data>
+  <data name="TelemetryDialog_titleLabel.Text" xml:space="preserve">
+    <value>Help {0} verbeteren</value>
+  <comment>!EDIT</comment></data>
+  <data name="TelemetryDialog_whyBox.Text" xml:space="preserve">
+    <value>Overweeg om anonieme telemetrie in te schakelen om ons te helpen {0} te verbeteren. Telemetrie registreert welke opdrachten worden gebruikt, basisomgevingsgegevens en een sessie-ID die elke keer opnieuw wordt ingesteld wanneer OneNote opnieuw wordt opgestart. Deze informatie helpt ons te begrijpen welke functies het belangrijkst zijn en hoe de invoegtoepassing wordt gebruikt. Er worden nooit persoonlijke of identificerende gegevens verzameld, alleen volledig anonieme gebruiksgebeurtenissen.
+
+U kunt telemetrie op elk gewenst moment in- of uitschakelen via het dialoogvenster {0} Instellingen.
+
+Bedankt!</value>
+  <comment>!EDIT</comment></data>
+  <data name="TelemetryDialog_yesButton.Text" xml:space="preserve">
+    <value>Ja, ik help! Schakel telemetrie in</value>
+  </data>
   <data name="TextToTable_NoText" xml:space="preserve">
     <value>Er is geen tekst geselecteerd</value>
     <comment>info message</comment>
@@ -5184,10 +5174,6 @@ Omkeren</value>
   <data name="TextToTableDialog_unquoteBox.Text" xml:space="preserve">
     <value>Verwijder aanhalingstekens uit volledige strings</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="ThemesFolder" xml:space="preserve">
-    <value>Thema's</value>
-    <comment>SKIP</comment>
   </data>
   <data name="TimerWindow.Text" xml:space="preserve">
     <value>OneNote-timer</value>

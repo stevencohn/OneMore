@@ -732,10 +732,6 @@ Invertir</value>
     <value>{0} (Ctrl + Alt + Mayús + {1})</value>
     <comment>Screentip for custom style gallery tiles</comment>
   </data>
-  <data name="DatabaseFilename" xml:space="preserve">
-    <value>UnoMás.db</value>
-    <comment>SKIP, Sqlite database file name</comment>
-  </data>
   <data name="DeleteFormulaCommand_Deleted" xml:space="preserve">
     <value>Fórmulas eliminadas de {0} celda (s)</value>
     <comment>delete command message</comment>
@@ -763,10 +759,6 @@ Invertir</value>
   <data name="DiagramCommand_EmptySelection" xml:space="preserve">
     <value>Selección vacía. Seleccione un bloque válido de texto de diagrama.</value>
     <comment>error message</comment>
-  </data>
-  <data name="DiagramCommand_Uri" xml:space="preserve">
-    <value>https://kroki.io/</value>
-    <comment>remote service URI SKIP</comment>
   </data>
   <data name="DialogResetSettings_Text" xml:space="preserve">
     <value>Reiniciar ajustes</value>
@@ -1995,18 +1987,6 @@ Título personalizado 3</value>
     <value>Elija el estilo de numeración</value>
     <comment>label</comment>
   </data>
-  <data name="OneMore_GitHub" xml:space="preserve">
-    <value>https://github.com/stevencohn/OneMore</value>
-    <comment>SKIP</comment>
-  </data>
-  <data name="OneMore_Home" xml:space="preserve">
-    <value>https://onemoreaddin.com</value>
-    <comment>SKIP</comment>
-  </data>
-  <data name="OneMore_Sponsor" xml:space="preserve">
-    <value>https://github.com/sponsors/stevencohn</value>
-    <comment>SKIP</comment>
-  </data>
   <data name="OneMoreNamespace" xml:space="preserve">
     <value>http://schemas.smc.com/onemore/2020/styles</value>
     <comment>DO NOT TRANSLATE</comment>
@@ -2203,10 +2183,6 @@ En esta sección</value>
   <data name="phrase_YourContentHere" xml:space="preserve">
     <value>Tu contenido aquí...</value>
   </data>
-  <data name="PlantUmlCommand_PlantUrl" xml:space="preserve">
-    <value>http://www.plantuml.com/plantuml/png/</value>
-    <comment>PlantUML Remote servier SKIP</comment>
-  </data>
   <data name="Plugin_InvalidSchema" xml:space="preserve">
     <value>XML no válido detectado. </value>
     <comment>error message</comment>
@@ -2320,10 +2296,6 @@ Todos los cuadernos y sus páginas.</value>
   <data name="PreviewMarkdownCommand_Title" xml:space="preserve">
     <value>Vista previa de rebajas</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="ProgramName" xml:space="preserve">
-    <value>UnoMás</value>
-    <comment>SKIP</comment>
   </data>
   <data name="Pronunciate_EmptyWord" xml:space="preserve">
     <value>La palabra seleccionada no puede estar vacía</value>
@@ -4520,10 +4492,6 @@ En blanco y negro</value>
     <value>Tamaño</value>
     <comment>label</comment>
   </data>
-  <data name="ScanningCueFile" xml:space="preserve">
-    <value>HashtagScanner.json</value>
-    <comment>SKIP</comment>
-  </data>
   <data name="ScheduleScanDialog_booksInfoLabel.Text" xml:space="preserve">
     <value>Seleccione cuadernos para programar una rescan completa</value>
     <comment>label</comment>
@@ -5137,6 +5105,28 @@ Invertir</value>
     <value>El banco de etiquetas contiene texto. ¿Estás seguro de que quieres eliminarlo?</value>
     <comment>messagebox</comment>
   </data>
+  <data name="TelemetryDialog_noButton.Text" xml:space="preserve">
+    <value>No, no habilitar la telemetría</value>
+  </data>
+  <data name="TelemetryDialog_readLabel.Text" xml:space="preserve">
+    <value>Lea sobre el diseño de telemetría</value>
+  </data>
+  <data name="TelemetryDialog_subtitleLabel.Text" xml:space="preserve">
+    <value>Habilitar telemetría anónima</value>
+  </data>
+  <data name="TelemetryDialog_titleLabel.Text" xml:space="preserve">
+    <value>Ayude a mejorar {0}</value>
+  <comment>!EDIT</comment></data>
+  <data name="TelemetryDialog_whyBox.Text" xml:space="preserve">
+    <value>Considere habilitar la telemetría anónima para ayudarnos a mejorar {0}. La telemetría registra qué comandos se utilizan, detalles básicos del entorno y un ID de solo sesión que se restablece cada vez que se reinicia OneNote. Esta información nos ayuda a comprender qué funciones son más importantes y cómo se utiliza el complemento. Nunca se recopilan datos personales o de identificación, solo eventos de uso totalmente anónimos.
+
+Puede habilitar o deshabilitar la telemetría en cualquier momento desde el cuadro de diálogo Configuración {0}.
+
+¡Gracias!</value>
+  <comment>!EDIT</comment></data>
+  <data name="TelemetryDialog_yesButton.Text" xml:space="preserve">
+    <value>¡Sí, te ayudaré! Habilitar telemetría</value>
+  </data>
   <data name="TextToTable_NoText" xml:space="preserve">
     <value>No hay texto seleccionado</value>
     <comment>info message</comment>
@@ -5184,10 +5174,6 @@ Invertir</value>
   <data name="TextToTableDialog_unquoteBox.Text" xml:space="preserve">
     <value>Eliminar comillas de cadenas completas</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="ThemesFolder" xml:space="preserve">
-    <value>Temas</value>
-    <comment>SKIP</comment>
   </data>
   <data name="TimerWindow.Text" xml:space="preserve">
     <value>Temporizador de OneNote</value>

@@ -164,7 +164,7 @@
   </data>
   <data name="AddInTitle" xml:space="preserve">
     <value>OneMoreAddIn</value>
-    <comment>SKIP</comment>
+    <comment>!SKIP</comment>
   </data>
   <data name="AdjustImagesDialog.Text" xml:space="preserve">
     <value>Resize and Adjust Image</value>
@@ -727,7 +727,7 @@ Invert</value>
   </data>
   <data name="CustomColorsFilesname" xml:space="preserve">
     <value>CustomColors.xml</value>
-    <comment>SKIP, filename</comment>
+    <comment>!SKIP, filename</comment>
   </data>
   <data name="CustomStyle_Screentip" xml:space="preserve">
     <value>{0} (Ctrl+Alt+Shift + {1})</value>
@@ -735,7 +735,7 @@ Invert</value>
   </data>
   <data name="DatabaseFilename" xml:space="preserve">
     <value>OneMore.db</value>
-    <comment>SKIP, Sqlite database file name</comment>
+    <comment>!SKIP, Sqlite database file name</comment>
   </data>
   <data name="DeleteFormulaCommand_Deleted" xml:space="preserve">
     <value>Deleted formulas from {0} cell(s)</value>
@@ -767,7 +767,7 @@ Invert</value>
   </data>
   <data name="DiagramCommand_Uri" xml:space="preserve">
     <value>https://kroki.io/</value>
-    <comment>remote service URI SKIP</comment>
+    <comment>remote service URI !SKIP</comment>
   </data>
   <data name="DialogResetSettings_Text" xml:space="preserve">
     <value>Reset Settings</value>
@@ -1130,7 +1130,7 @@ OneNote File (*.one)</value>
   </data>
   <data name="FavoritesFilename" xml:space="preserve">
     <value>Favorites.xml</value>
-    <comment>SKIP, filename</comment>
+    <comment>!SKIP, filename</comment>
   </data>
   <data name="FavoritesSheet_DeleteMessage" xml:space="preserve">
     <value>Delete {0}?</value>
@@ -1998,26 +1998,26 @@ Do you want to refresh the existing page?</value>
   </data>
   <data name="OneMore_GitHub" xml:space="preserve">
     <value>https://github.com/stevencohn/OneMore</value>
-    <comment>SKIP</comment>
+    <comment>!SKIP</comment>
   </data>
   <data name="OneMore_Home" xml:space="preserve">
     <value>https://onemoreaddin.com</value>
-    <comment>SKIP</comment>
+    <comment>!SKIP</comment>
   </data>
   <data name="OneMore_Sponsor" xml:space="preserve">
     <value>https://github.com/sponsors/stevencohn</value>
-    <comment>SKIP</comment>
+    <comment>!SKIP</comment>
   </data>
   <data name="OneMoreNamespace" xml:space="preserve">
     <value>http://schemas.smc.com/onemore/2020/styles</value>
-    <comment>SKIP</comment>
+    <comment>!SKIP</comment>
   </data>
   <data name="OneMoreTab_Label" xml:space="preserve">
     <value>OneMore</value>
   </data>
   <data name="oneNamespace" xml:space="preserve">
     <value>http://schemas.microsoft.com/office/onenote/2013/onenote</value>
-    <comment>SKIP</comment>
+    <comment>!SKIP</comment>
   </data>
   <data name="OpenFolderDialog_Text" xml:space="preserve">
     <value>Open Folder as Notebook</value>
@@ -2206,7 +2206,7 @@ In this section</value>
   </data>
   <data name="PlantUmlCommand_PlantUrl" xml:space="preserve">
     <value>http://www.plantuml.com/plantuml/png/</value>
-    <comment>PlantUML Remote servier SKIP</comment>
+    <comment>PlantUML Remote servier !SKIP</comment>
   </data>
   <data name="Plugin_InvalidSchema" xml:space="preserve">
     <value>Invalid XML detected. Check log file for details</value>
@@ -2324,7 +2324,7 @@ All notebooks and their pages</value>
   </data>
   <data name="ProgramName" xml:space="preserve">
     <value>OneMore</value>
-    <comment>SKIP</comment>
+    <comment>!SKIP</comment>
   </data>
   <data name="Pronunciate_EmptyWord" xml:space="preserve">
     <value>Selected word cannot be empty</value>
@@ -4524,7 +4524,7 @@ Black and White</value>
   </data>
   <data name="ScanningCueFile" xml:space="preserve">
     <value>HashtagScanner.json</value>
-    <comment>SKIP</comment>
+    <comment>!SKIP</comment>
   </data>
   <data name="ScheduleScanDialog_booksInfoLabel.Text" xml:space="preserve">
     <value>Select notebooks to schedule for a full rescan</value>
@@ -4749,7 +4749,7 @@ Search engines will appear in the page context menu, right-click.</value>
   </data>
   <data name="SettingsFilename" xml:space="preserve">
     <value>Settings.xml</value>
-    <comment>SKIP, filename</comment>
+    <comment>!SKIP, filename</comment>
   </data>
   <data name="ShowXmlDialog.Text" xml:space="preserve">
     <value>OneMore XML</value>
@@ -5139,6 +5139,34 @@ Invert</value>
     <value>The tag bank contains text. Are you sure you want to remove it?</value>
     <comment>messagebox</comment>
   </data>
+  <data name="TelemetryDialog_designLink" xml:space="preserve">
+    <value>https://onemoreaddin.com/developers/Design%20-%20Telemetry.htm</value>
+    <comment>!SKIP</comment>
+  </data>
+  <data name="TelemetryDialog_noButton.Text" xml:space="preserve">
+    <value>No, do not enable telemetry</value>
+  </data>
+  <data name="TelemetryDialog_readLabel.Text" xml:space="preserve">
+    <value>Read about the telemetry design</value>
+  </data>
+  <data name="TelemetryDialog_subtitleLabel.Text" xml:space="preserve">
+    <value>Enable Anonymous Telemetry</value>
+  </data>
+  <data name="TelemetryDialog_titleLabel.Text" xml:space="preserve">
+    <value>Help Improve {0}</value>
+    <comment></comment>
+  </data>
+  <data name="TelemetryDialog_whyBox.Text" xml:space="preserve">
+    <value>Please consider enabling anonymous telemetry to help us improve {0}. Telemetry records which commands are used, basic environment details, and a session‑only ID that resets each time OneNote restarts. This information helps us understand which features matter most and how the add‑in is used. No personal or identifying data is ever collected—only fully anonymous usage events.
+
+You can enable or disable telemetry at any time from the {0} Settings dialog.
+
+Thank you!</value>
+    <comment></comment>
+  </data>
+  <data name="TelemetryDialog_yesButton.Text" xml:space="preserve">
+    <value>Yes, I'll help! Enable telemetry</value>
+  </data>
   <data name="TextToTable_NoText" xml:space="preserve">
     <value>No text is selected</value>
     <comment>info message</comment>
@@ -5189,7 +5217,7 @@ Invert</value>
   </data>
   <data name="ThemesFolder" xml:space="preserve">
     <value>Themes</value>
-    <comment>SKIP</comment>
+    <comment>!SKIP</comment>
   </data>
   <data name="TimerWindow.Text" xml:space="preserve">
     <value>OneNote Timer</value>
@@ -5260,7 +5288,7 @@ Invert</value>
     <comment>button</comment>
   </data>
   <data name="UpdateDialog_upSkipButton.Text" xml:space="preserve">
-    <value>Skip</value>
+    <value>!SKIP</value>
     <comment>button</comment>
   </data>
   <data name="UpdateDialog_upVersionLabel.Text" xml:space="preserve">
@@ -5632,6 +5660,9 @@ Invert</value>
   </data>
   <data name="sponsor_light" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Commands\Tools\sponsor-light.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Commands\Tools\Telemetry\TLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ribInsertNoteBoxButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ribbon\images\ribinsertnoteboxbutton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

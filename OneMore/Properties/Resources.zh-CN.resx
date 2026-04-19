@@ -1994,18 +1994,6 @@ OneNote 文件 (*.one)</value>
     <value>选择编号样式</value>
     <comment>label</comment>
   </data>
-  <data name="OneMore_GitHub" xml:space="preserve">
-    <value>https://github.com/stevencohn/OneMore</value>
-    <comment>SKIP</comment>
-  </data>
-  <data name="OneMore_Home" xml:space="preserve">
-    <value>https://onemoreaddin.com</value>
-    <comment>SKIP</comment>
-  </data>
-  <data name="OneMore_Sponsor" xml:space="preserve">
-    <value>https://github.com/sponsors/stevencohn</value>
-    <comment>SKIP</comment>
-  </data>
   <data name="OneMoreNamespace" xml:space="preserve">
     <value>http://schemas.smc.com/onemore/2020/styles</value>
     <comment>DO NOT TRANSLATE</comment>
@@ -2319,10 +2307,6 @@ OneNote 文件 (*.one)</value>
   <data name="PreviewMarkdownCommand_Title" xml:space="preserve">
     <value>降价预览</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="ProgramName" xml:space="preserve">
-    <value>多一</value>
-    <comment>SKIP</comment>
   </data>
   <data name="Pronunciate_EmptyWord" xml:space="preserve">
     <value>所选单词不能为空</value>
@@ -4513,10 +4497,6 @@ ISO-code then comma then language name</comment>
     <value>尺寸</value>
     <comment>label</comment>
   </data>
-  <data name="ScanningCueFile" xml:space="preserve">
-    <value>HashtagScanner.json</value>
-    <comment>SKIP</comment>
-  </data>
   <data name="ScheduleScanDialog_booksInfoLabel.Text" xml:space="preserve">
     <value>选择笔记本以安排完整的恢复</value>
     <comment>label</comment>
@@ -5130,6 +5110,28 @@ ISO-code then comma then language name</comment>
     <value>标签库包含文本。您确定要删除它吗？</value>
     <comment>messagebox</comment>
   </data>
+  <data name="TelemetryDialog_noButton.Text" xml:space="preserve">
+    <value>否，不启用遥测</value>
+  </data>
+  <data name="TelemetryDialog_readLabel.Text" xml:space="preserve">
+    <value>了解遥测设计</value>
+  </data>
+  <data name="TelemetryDialog_subtitleLabel.Text" xml:space="preserve">
+    <value>启用匿名遥测</value>
+  </data>
+  <data name="TelemetryDialog_titleLabel.Text" xml:space="preserve">
+    <value>帮助改进{0}</value>
+  <comment>!EDIT</comment></data>
+  <data name="TelemetryDialog_whyBox.Text" xml:space="preserve">
+    <value>请考虑启用匿名遥测以帮助我们改进{0}。 遥测记录使用了哪些命令、基本环境详细信息以及每次 OneNote 重新启动时重置的仅会话 ID。 这些信息有助于我们了解哪些功能最重要以及如何使用插件。 不会收集任何个人或识别数据，仅收集完全匿名的使用事件。
+
+您可以随时从 {0} 设置对话框启用或禁用遥测。
+
+谢谢你！</value>
+  <comment>!EDIT</comment></data>
+  <data name="TelemetryDialog_yesButton.Text" xml:space="preserve">
+    <value>是的，我会帮忙的！启用遥测</value>
+  </data>
   <data name="TextToTable_NoText" xml:space="preserve">
     <value>没有选择文字</value>
     <comment>info message</comment>
@@ -5177,10 +5179,6 @@ ISO-code then comma then language name</comment>
   <data name="TextToTableDialog_unquoteBox.Text" xml:space="preserve">
     <value>从完整的字符串中删除引号</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="ThemesFolder" xml:space="preserve">
-    <value>主题</value>
-    <comment>SKIP</comment>
   </data>
   <data name="TimerWindow.Text" xml:space="preserve">
     <value>OneNote 计时器</value>

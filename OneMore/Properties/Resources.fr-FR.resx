@@ -1995,18 +1995,6 @@ Voulez-vous actualiser la page existante ?</value>
     <value>Choisissez le style de numérotation</value>
     <comment>label</comment>
   </data>
-  <data name="OneMore_GitHub" xml:space="preserve">
-    <value>https://github.com/stevencohn/OneMore</value>
-    <comment>SKIP</comment>
-  </data>
-  <data name="OneMore_Home" xml:space="preserve">
-    <value>https://onemoreaddin.com</value>
-    <comment>SKIP</comment>
-  </data>
-  <data name="OneMore_Sponsor" xml:space="preserve">
-    <value>https://github.com/sponsors/stevencohn</value>
-    <comment>SKIP</comment>
-  </data>
   <data name="OneMoreNamespace" xml:space="preserve">
     <value>http://schemas.smc.com/onemore/2020/styles</value>
     <comment>DO NOT TRANSLATE</comment>
@@ -2320,10 +2308,6 @@ Tous les notebooks et leurs pages</value>
   <data name="PreviewMarkdownCommand_Title" xml:space="preserve">
     <value>Aperçu Markdown</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="ProgramName" xml:space="preserve">
-    <value>OneMore</value>
-    <comment>SKIP</comment>
   </data>
   <data name="Pronunciate_EmptyWord" xml:space="preserve">
     <value>Le mot sélectionné ne peut pas être vide</value>
@@ -4519,10 +4503,6 @@ Noir et blanc</value>
     <value>Taille</value>
     <comment>label</comment>
   </data>
-  <data name="ScanningCueFile" xml:space="preserve">
-    <value>HashtagScanner.json</value>
-    <comment>SKIP</comment>
-  </data>
   <data name="ScheduleScanDialog_booksInfoLabel.Text" xml:space="preserve">
     <value>Sélectionnez des cahiers à planifier pour un sauvetage complet</value>
     <comment>label</comment>
@@ -5135,6 +5115,28 @@ Inverser</value>
     <value>La banque de balises contient du texte. Êtes-vous sûr de vouloir le supprimer ?</value>
     <comment>messagebox</comment>
   </data>
+  <data name="TelemetryDialog_noButton.Text" xml:space="preserve">
+    <value>Non, n'activez pas la télémétrie</value>
+  </data>
+  <data name="TelemetryDialog_readLabel.Text" xml:space="preserve">
+    <value>En savoir plus sur la conception de la télémétrie</value>
+  </data>
+  <data name="TelemetryDialog_subtitleLabel.Text" xml:space="preserve">
+    <value>Activer la télémétrie anonyme</value>
+  </data>
+  <data name="TelemetryDialog_titleLabel.Text" xml:space="preserve">
+    <value>Aidez-nous à améliorer {0}</value>
+  <comment>!EDIT</comment></data>
+  <data name="TelemetryDialog_whyBox.Text" xml:space="preserve">
+    <value>Veuillez envisager d'activer la télémétrie anonyme pour nous aider à améliorer {0}. La télémétrie enregistre les commandes utilisées, les détails de base de l'environnement et un ID de session uniquement qui se réinitialise à chaque redémarrage de OneNote. Ces informations nous aident à comprendre quelles fonctionnalités sont les plus importantes et comment le complément est utilisé. Aucune donnée personnelle ou d'identification n'est jamais collectée, uniquement des événements d'utilisation totalement anonymes.
+
+Vous pouvez activer ou désactiver la télémétrie à tout moment à partir de la boîte de dialogue Paramètres {0}.
+
+Merci!</value>
+  <comment>!EDIT</comment></data>
+  <data name="TelemetryDialog_yesButton.Text" xml:space="preserve">
+    <value>Oui, je vais aider ! Activer la télémétrie</value>
+  </data>
   <data name="TextToTable_NoText" xml:space="preserve">
     <value>Aucun texte n'est sélectionné</value>
     <comment>info message</comment>
@@ -5182,10 +5184,6 @@ Inverser</value>
   <data name="TextToTableDialog_unquoteBox.Text" xml:space="preserve">
     <value>Supprimer les guillemets des chaînes complètes</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="ThemesFolder" xml:space="preserve">
-    <value>Thèmes</value>
-    <comment>SKIP</comment>
   </data>
   <data name="TimerWindow.Text" xml:space="preserve">
     <value>Minuteur OneNote</value>

@@ -162,10 +162,6 @@
     <value>מְחוֹשָׁב</value>
     <comment>tag name</comment>
   </data>
-  <data name="AddInTitle" xml:space="preserve">
-    <value>OneMoreAddIn</value>
-    <comment>SKIP</comment>
-  </data>
   <data name="AdjustImagesDialog.Text" xml:space="preserve">
     <value>שנה גודל והתאם תמונה</value>
     <comment>dialog title</comment>
@@ -1996,28 +1992,8 @@ Total Row Font
     <value>בחר את סגנון המספור</value>
     <comment>label</comment>
   </data>
-  <data name="OneMore_GitHub" xml:space="preserve">
-    <value>https://github.com/stevencohn/OneMore</value>
-    <comment>SKIP</comment>
-  </data>
-  <data name="OneMore_Home" xml:space="preserve">
-    <value>https://onemoreaddin.com</value>
-    <comment>SKIP</comment>
-  </data>
-  <data name="OneMore_Sponsor" xml:space="preserve">
-    <value>https://github.com/sponsors/stevencohn</value>
-    <comment>SKIP</comment>
-  </data>
-  <data name="OneMoreNamespace" xml:space="preserve">
-    <value>http://schemas.smc.com/onemore/2020/styles</value>
-    <comment>SKIP</comment>
-  </data>
   <data name="OneMoreTab_Label" xml:space="preserve">
     <value>עוד אחד</value>
-  </data>
-  <data name="oneNamespace" xml:space="preserve">
-    <value>http://schemas.microsoft.com/office/onenote/2013/onenote</value>
-    <comment>SKIP</comment>
   </data>
   <data name="OpenFolderDialog_Text" xml:space="preserve">
     <value>פתח את התיקיה כמחברת</value>
@@ -2321,10 +2297,6 @@ Total Row Font
   <data name="PreviewMarkdownCommand_Title" xml:space="preserve">
     <value>Markdown תצוגה מקדימה</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="ProgramName" xml:space="preserve">
-    <value>OneMore</value>
-    <comment>SKIP</comment>
   </data>
   <data name="Pronunciate_EmptyWord" xml:space="preserve">
     <value>המילה שנבחרה לא יכולה להיות ריקה</value>
@@ -4519,10 +4491,6 @@ ISO-code then comma then language name</comment>
     <value>גוֹדֶל</value>
     <comment>label</comment>
   </data>
-  <data name="ScanningCueFile" xml:space="preserve">
-    <value>HashtagScanner.json</value>
-    <comment>SKIP</comment>
-  </data>
   <data name="ScheduleScanDialog_booksInfoLabel.Text" xml:space="preserve">
     <value>בחר מחברות כדי לתזמן עבור Respan מלא</value>
     <comment>label</comment>
@@ -5136,6 +5104,28 @@ ISO-code then comma then language name</comment>
     <value>בנק התגים מכיל טקסט. האם אתה בטוח שברצונך להסיר אותו?</value>
     <comment>messagebox</comment>
   </data>
+  <data name="TelemetryDialog_noButton.Text" xml:space="preserve">
+    <value>לא, אל תפעיל טלמטריה</value>
+  </data>
+  <data name="TelemetryDialog_readLabel.Text" xml:space="preserve">
+    <value>קרא על עיצוב הטלמטריה</value>
+  </data>
+  <data name="TelemetryDialog_subtitleLabel.Text" xml:space="preserve">
+    <value>אפשר טלמטריה אנונימית</value>
+  </data>
+  <data name="TelemetryDialog_titleLabel.Text" xml:space="preserve">
+    <value>עזור לשפר את {0}</value>
+  <comment>!EDIT</comment></data>
+  <data name="TelemetryDialog_whyBox.Text" xml:space="preserve">
+    <value>אנא שקול להפעיל טלמטריה אנונימית כדי לעזור לנו לשפר את {0}. הטלמטריה מתעדת באילו פקודות נעשה שימוש, פרטי סביבה בסיסיים ומזהה הפעלה בלבד שמתאפס בכל פעם מחדש של OneNote. מידע זה עוזר לנו להבין אילו תכונות חשובות ביותר וכיצד נעשה שימוש בתוסף. לעולם לא נאספים נתונים אישיים או מזהים - רק אירועי שימוש אנונימיים לחלוטין.
+
+אתה יכול להפעיל או להשבית טלמטריה בכל עת מתיבת הדו-שיח {0} הגדרות.
+
+תודה לך!</value>
+  <comment>!EDIT</comment></data>
+  <data name="TelemetryDialog_yesButton.Text" xml:space="preserve">
+    <value>כן, אני אעזור! אפשר טלמטריה</value>
+  </data>
   <data name="TextToTable_NoText" xml:space="preserve">
     <value>לא נבחר טקסט</value>
     <comment>info message</comment>
@@ -5183,10 +5173,6 @@ ISO-code then comma then language name</comment>
   <data name="TextToTableDialog_unquoteBox.Text" xml:space="preserve">
     <value>הסר הצעות מחיר ממיתרים שלמים</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="ThemesFolder" xml:space="preserve">
-    <value>Themes</value>
-    <comment>SKIP</comment>
   </data>
   <data name="TimerWindow.Text" xml:space="preserve">
     <value>טיימר OneNote</value>
