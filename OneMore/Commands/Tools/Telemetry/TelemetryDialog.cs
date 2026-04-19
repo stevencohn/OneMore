@@ -36,10 +36,10 @@ namespace River.OneMoreAddIn.Commands
 					"yesButton",
 					"noButton"
 				});
-
-				titleLabel.Text = string.Format(Resx.TelemetryDialog_titleLabel_Text, Resx.ProgramName);
-				whyBox.Text = string.Format(Resx.TelemetryDialog_whyBox_Text, Resx.ProgramName);
 			}
+
+			titleLabel.Text = string.Format(Resx.TelemetryDialog_titleLabel_Text, Resx.ProgramName);
+			whyBox.Text = string.Format(Resx.TelemetryDialog_whyBox_Text, Resx.ProgramName);
 		}
 
 
