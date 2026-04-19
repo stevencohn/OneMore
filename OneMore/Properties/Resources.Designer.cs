@@ -12610,7 +12610,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Help Improve OneMore.
+        ///   Looks up a localized string similar to Help Improve {0}.
         /// </summary>
         internal static string TelemetryDialog_titleLabel_Text {
             get {
@@ -12619,7 +12619,11 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please consider enabling anonymous telemetry to help us improve OneMore. Telemetry records which commands are used, basic environment details, and a session‑only ID that resets each time OneNote restarts. This information helps us understand which features matter most and how the add‑in is used. No personal or identifying data is ever collected—only fully anonymous usage events..
+        ///   Looks up a localized string similar to Please consider enabling anonymous telemetry to help us improve {0}. Telemetry records which commands are used, basic environment details, and a session‑only ID that resets each time OneNote restarts. This information helps us understand which features matter most and how the add‑in is used. No personal or identifying data is ever collected—only fully anonymous usage events.
+        ///
+        ///You can enable or disable telemetry at any time from the {0} Settings dialog.
+        ///
+        ///Thank you!.
         /// </summary>
         internal static string TelemetryDialog_whyBox_Text {
             get {
@@ -12947,7 +12951,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Skip.
+        ///   Looks up a localized string similar to !SKIP.
         /// </summary>
         internal static string UpdateDialog_upSkipButton_Text {
             get {

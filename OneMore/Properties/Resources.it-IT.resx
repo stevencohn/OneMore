@@ -162,10 +162,6 @@
     <value>Calcolato</value>
     <comment>tag name</comment>
   </data>
-  <data name="AddInTitle" xml:space="preserve">
-    <value>OneMoreAddIn</value>
-    <comment>SKIP</comment>
-  </data>
   <data name="AdjustImagesDialog.Text" xml:space="preserve">
     <value>Ridimensiona e regola l'immagine</value>
     <comment>dialog title</comment>
@@ -1996,28 +1992,8 @@ Vuoi aggiornare la pagina esistente?</value>
     <value>Scegli lo stile di numerazione</value>
     <comment>label</comment>
   </data>
-  <data name="OneMore_GitHub" xml:space="preserve">
-    <value>https://github.com/stevencohn/OneMore</value>
-    <comment>SKIP</comment>
-  </data>
-  <data name="OneMore_Home" xml:space="preserve">
-    <value>https://onemoreaddin.com</value>
-    <comment>SKIP</comment>
-  </data>
-  <data name="OneMore_Sponsor" xml:space="preserve">
-    <value>https://github.com/sponsors/stevencohn</value>
-    <comment>SKIP</comment>
-  </data>
-  <data name="OneMoreNamespace" xml:space="preserve">
-    <value>http://schemas.smc.com/onemore/2020/styles</value>
-    <comment>SKIP</comment>
-  </data>
   <data name="OneMoreTab_Label" xml:space="preserve">
     <value>Uno di più</value>
-  </data>
-  <data name="oneNamespace" xml:space="preserve">
-    <value>http://schemas.microsoft.com/office/onenote/2013/onenote</value>
-    <comment>SKIP</comment>
   </data>
   <data name="OpenFolderDialog_Text" xml:space="preserve">
     <value>Apri la cartella come taccuino</value>
@@ -2321,10 +2297,6 @@ Tutti i quaderni e le loro pagine</value>
   <data name="PreviewMarkdownCommand_Title" xml:space="preserve">
     <value>Anteprima del ribasso</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="ProgramName" xml:space="preserve">
-    <value>Uno di più</value>
-    <comment>SKIP</comment>
   </data>
   <data name="Pronunciate_EmptyWord" xml:space="preserve">
     <value>La parola selezionata non può essere vuota</value>
@@ -4522,10 +4494,6 @@ In bianco e nero</value>
     <value>Misurare</value>
     <comment>label</comment>
   </data>
-  <data name="ScanningCueFile" xml:space="preserve">
-    <value>HashtagScanner.json</value>
-    <comment>SKIP</comment>
-  </data>
   <data name="ScheduleScanDialog_booksInfoLabel.Text" xml:space="preserve">
     <value>Seleziona i taccuini per pianificare una nuova scansione completa</value>
     <comment>label</comment>
@@ -5139,6 +5107,28 @@ Invertire</value>
     <value>La banca dei tag contiene testo. Sei sicuro di volerlo rimuovere?</value>
     <comment>messagebox</comment>
   </data>
+  <data name="TelemetryDialog_noButton.Text" xml:space="preserve">
+    <value>No, non abilitare la telemetria</value>
+  </data>
+  <data name="TelemetryDialog_readLabel.Text" xml:space="preserve">
+    <value>Leggi informazioni sulla progettazione della telemetria</value>
+  </data>
+  <data name="TelemetryDialog_subtitleLabel.Text" xml:space="preserve">
+    <value>Abilita telemetria anonima</value>
+  </data>
+  <data name="TelemetryDialog_titleLabel.Text" xml:space="preserve">
+    <value>Aiutaci a migliorare {0}</value>
+  <comment>!EDIT</comment></data>
+  <data name="TelemetryDialog_whyBox.Text" xml:space="preserve">
+    <value>Ti invitiamo a considerare l'attivazione della telemetria anonima per aiutarci a migliorare {0}. La telemetria registra i comandi utilizzati, i dettagli dell'ambiente di base e un ID solo sessione che viene reimpostato a ogni riavvio di OneNote. Queste informazioni ci aiutano a capire quali funzionalità sono più importanti e come viene utilizzato il componente aggiuntivo. Non vengono mai raccolti dati personali o identificativi, ma solo eventi di utilizzo completamente anonimi.
+
+Puoi abilitare o disabilitare la telemetria in qualsiasi momento dalla finestra di dialogo Impostazioni {0}.
+
+Grazie!</value>
+  <comment>!EDIT</comment></data>
+  <data name="TelemetryDialog_yesButton.Text" xml:space="preserve">
+    <value>Sì, ti aiuterò! Abilita la telemetria</value>
+  </data>
   <data name="TextToTable_NoText" xml:space="preserve">
     <value>Nessun testo selezionato</value>
     <comment>info message</comment>
@@ -5186,10 +5176,6 @@ Invertire</value>
   <data name="TextToTableDialog_unquoteBox.Text" xml:space="preserve">
     <value>Rimuovere le virgolette dalle stringhe complete</value>
     <comment>checkbox</comment>
-  </data>
-  <data name="ThemesFolder" xml:space="preserve">
-    <value>Temi</value>
-    <comment>SKIP</comment>
   </data>
   <data name="TimerWindow.Text" xml:space="preserve">
     <value>Temporizzatore di OneNote</value>

@@ -33,13 +33,14 @@ namespace River.OneMoreAddIn.Commands
 
 				Localize(new string[]
 				{
-					"titleLabel",
 					"subtitleLabel",
 					"readLabel",
-					"whyBox",
 					"yesButton",
 					"noButton"
 				});
+
+				titleLabel.Text = string.Format(Resx.TelemetryDialog_titleLabel_Text, Resx.ProgramName);
+				whyBox.Text = string.Format(Resx.TelemetryDialog_whyBox_Text, Resx.ProgramName);
 			}
 		}
 
