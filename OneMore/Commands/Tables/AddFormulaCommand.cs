@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Commands.Tables.Formulas;
 	using River.OneMoreAddIn.Models;
+	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text;
@@ -68,7 +69,7 @@ namespace River.OneMoreAddIn.Commands
 					.Elements(ns + "T")
 					.Where(e => e.Attribute("selected")?.Value == "all")
 					// now move back up to the Cell
-					.Select(e => e.Parent.Parent.Parent)
+					.Select(e => e.Parent?.Parent?.Parent)
 					.FirstOrDefault();
 
 				if (anchor == null)
@@ -141,6 +142,11 @@ namespace River.OneMoreAddIn.Commands
 				processor.Execute(cells);
 
 				await one.Update(page);
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error adding formula", exc);
+				ShowInfo("Error adding formula. Please check the OneMore.log file");
 			}
 			finally
 			{
