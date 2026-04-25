@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
+	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
 	using Resx = Properties.Resources;
@@ -20,6 +21,10 @@ namespace River.OneMoreAddIn.Commands
 	internal class TextToTableCommand : Command
 	{
 		private const string HeaderShading = "#DEEBF6";
+		private const string nbtab = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+		private const string nbsp = "&nbsp;";
+		private const string ucsp = "\u00A0";
+
 		private static bool commandIsActive = false;
 
 
@@ -49,6 +54,7 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
+
 				var table = TextToTable(page.Namespace, selections);
 
 				if (table != null)
@@ -76,7 +82,6 @@ namespace River.OneMoreAddIn.Commands
 			// when pasting text with tabs \t from Notepad into OneNote, OneNote will preserve
 			// the tabs internally but the presentation XML through the COM API will transform
 			// them to a sequence of 8x "&nbsp;" so we can assume this represents a tab
-			string nbsp = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 
 			TextToTableDialog.Delimeter delimetedBy;
 			string delimeter;
@@ -85,29 +90,7 @@ namespace River.OneMoreAddIn.Commands
 			bool unquote;
 
 			using var dialog = new TextToTableDialog();
-
-			var first = selections[0].Value;
-			if (first.Contains('\t'))
-			{
-				dialog.DelimetedBy = TextToTableDialog.Delimeter.Tabs;
-				dialog.Columns = first.Split('\t').Length;
-			}
-			else if (first.Contains(','))
-			{
-				dialog.DelimetedBy = TextToTableDialog.Delimeter.Commas;
-				dialog.Columns = first.Split(',').Length;
-			}
-			else if (first.Contains(nbsp))
-			{
-				dialog.DelimetedBy = TextToTableDialog.Delimeter.Nbsp;
-				dialog.Columns = first.Split(new string[] { nbsp }, StringSplitOptions.None).Length;
-			}
-			else
-			{
-				dialog.DelimetedBy = TextToTableDialog.Delimeter.Paragraphs;
-				dialog.Columns = 1;
-			}
-
+			PrepareDialog(dialog, selections[0].Value);
 			dialog.Rows = selections.Count;
 
 			if (dialog.ShowDialog(owner) == System.Windows.Forms.DialogResult.Cancel)
@@ -123,7 +106,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				TextToTableDialog.Delimeter.Commas => ",",
 				TextToTableDialog.Delimeter.Tabs => "\t",
-				TextToTableDialog.Delimeter.Nbsp => "\t",
+				TextToTableDialog.Delimeter.NbTab => "\t",
 				TextToTableDialog.Delimeter.Other => dialog.CustomDelimeter,
 				_ => string.Empty,
 			};
@@ -150,8 +133,8 @@ namespace River.OneMoreAddIn.Commands
 					// special case to avoid exception when XML parsing the &nbsp; so replace
 					// string of 8 &nbsp; sequences with a tab and split by that instead...
 
-					var text = delimetedBy == TextToTableDialog.Delimeter.Nbsp
-						? selection.Value.Replace(nbsp, delimeter)
+					var text = delimetedBy == TextToTableDialog.Delimeter.NbTab
+						? selection.Value.Replace(nbtab, delimeter)
 						: selection.Value;
 
 					var parts = SmartSplit(text, delimeter);
@@ -167,7 +150,32 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private string[] SmartSplit(string xml, string delimeter)
+		private static void PrepareDialog(TextToTableDialog dialog, string first)
+		{
+			if (first.Contains('\t'))
+			{
+				dialog.DelimetedBy = TextToTableDialog.Delimeter.Tabs;
+				dialog.Columns = first.Split('\t').Length;
+			}
+			else if (first.Contains(','))
+			{
+				dialog.DelimetedBy = TextToTableDialog.Delimeter.Commas;
+				dialog.Columns = first.Split(',').Length;
+			}
+			else if (first.Contains(nbtab))
+			{
+				dialog.DelimetedBy = TextToTableDialog.Delimeter.NbTab;
+				dialog.Columns = first.Split(new string[] { nbtab }, StringSplitOptions.None).Length;
+			}
+			else
+			{
+				dialog.DelimetedBy = TextToTableDialog.Delimeter.Paragraphs;
+				dialog.Columns = 1;
+			}
+		}
+
+
+		private static string[] SmartSplit(string xml, string delimeter)
 		{
 			// handles odd OneNote style normalizations like this in order to preserve
 			// styles of each column
@@ -176,54 +184,22 @@ namespace River.OneMoreAddIn.Commands
 			//		style='font-weight: bold;font-style:italic'>Olde</span>
 			//
 
+			if (xml.Contains(nbsp))
+			{
+				xml = Regex.Replace(xml, $"(?:{nbsp})+", ucsp);
+			}
+
 			var wrapper = XElement.Parse($"<w>{xml}</w>");
 			var parts = new List<string>();
 			foreach (var node in wrapper.Nodes())
 			{
 				if (node is XText text)
 				{
-					if (text.Value.Contains(delimeter))
-					{
-						var values = text.Value
-							.Split(new string[] { delimeter }, StringSplitOptions.None);
-
-						for (int i = 0; i < values.Length; i++)
-						{
-							var v = values[i].Trim();
-							if (v.Length > 0 || parts.Count == 0)
-							{
-								parts.Add(v);
-							}
-						}
-					}
-					else
-					{
-						parts.Add(text.Value);
-					}
+					SplitText(parts, text, delimeter);
 				}
 				else
 				{
-					var element = (XElement)node;
-					if (element.Value.Contains(delimeter))
-					{
-						var values = element.Value
-							.Split(new string[] { delimeter }, StringSplitOptions.None);
-
-						for (int i = 0; i < values.Length; i++)
-						{
-							var v = values[i].Trim();
-							if (v.Length > 0 || i < values.Length - 1)
-							{
-								parts.Add(
-									new XElement("span", element.Attributes(), v)
-									.ToString(SaveOptions.DisableFormatting));
-							}
-						}
-					}
-					else
-					{
-						parts.Add(node.ToString(SaveOptions.DisableFormatting));
-					}
+					SplitElement(parts, node, delimeter);
 				}
 			}
 
@@ -231,7 +207,57 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public void SetCellContent(TableCell cell, string text, int rownum, bool unquote, bool hasHeader)
+		private static void SplitText(List<string> parts, XText text, string delimeter)
+		{
+			if (text.Value.Contains(delimeter))
+			{
+				var values = text.Value
+					.Split(new string[] { delimeter }, StringSplitOptions.None);
+
+				for (int i = 0; i < values.Length; i++)
+				{
+					var v = values[i].Trim();
+					if (v.Length > 0 || parts.Count == 0)
+					{
+						parts.Add(v);
+					}
+				}
+			}
+			else
+			{
+				parts.Add(text.Value);
+			}
+		}
+
+
+		private static void SplitElement(List<string> parts, XNode node, string delimeter)
+		{
+			var element = (XElement)node;
+			if (element.Value.Contains(delimeter))
+			{
+				var values = element.Value
+					.Split(new string[] { delimeter }, StringSplitOptions.None);
+
+				for (int i = 0; i < values.Length; i++)
+				{
+					var v = values[i].Trim();
+					if (v.Length > 0 || i < values.Length - 1)
+					{
+						parts.Add(
+							new XElement("span", element.Attributes(), v)
+							.ToString(SaveOptions.DisableFormatting));
+					}
+				}
+			}
+			else
+			{
+				parts.Add(node.ToString(SaveOptions.DisableFormatting));
+			}
+		}
+
+
+		public static void SetCellContent(
+			TableCell cell, string text, int rownum, bool unquote, bool hasHeader)
 		{
 			if (unquote)
 			{

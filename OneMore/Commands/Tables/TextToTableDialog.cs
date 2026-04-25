@@ -1,10 +1,10 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
 {
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	internal partial class TextToTableDialog : UI.MoreForm
@@ -14,13 +14,13 @@ namespace River.OneMoreAddIn.Commands
 			Paragraphs,
 			Tabs,
 			// variant of tabs; OneNote sometimes converts tabs to 8x "&nbsp;"
-			Nbsp,
+			NbTab,
 			Commas,
 			Other
 		}
 
 		private int userCols;
-		private bool nbsp;
+		private bool nbtab;
 
 
 		public TextToTableDialog()
@@ -58,7 +58,7 @@ namespace River.OneMoreAddIn.Commands
 			get
 			{
 				if (paragraphsRadio.Checked) return Delimeter.Paragraphs;
-				if (tabsRadio.Checked) return nbsp ? Delimeter.Nbsp : Delimeter.Tabs;
+				if (tabsRadio.Checked) return nbtab ? Delimeter.NbTab : Delimeter.Tabs;
 				if (commasRadio.Checked) return Delimeter.Commas;
 				return Delimeter.Other;
 			}
@@ -69,7 +69,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					case Delimeter.Paragraphs: paragraphsRadio.Checked = true; break;
 					case Delimeter.Tabs: tabsRadio.Checked = true; break;
-					case Delimeter.Nbsp: tabsRadio.Checked = nbsp = true; break;
+					case Delimeter.NbTab: tabsRadio.Checked = nbtab = true; break;
 					case Delimeter.Commas: commasRadio.Checked = true; break;
 					case Delimeter.Other: otherRadio.Checked = true; break;
 				}
