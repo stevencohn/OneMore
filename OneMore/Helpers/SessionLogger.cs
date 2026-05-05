@@ -203,7 +203,7 @@ namespace River.OneMoreAddIn.Helpers
 					OsArc = winarc,
 
 					Culture = Thread.CurrentThread.CurrentCulture.Name,
-					OneCulture = AddIn.Culture.Name
+					MoreCulture = AddIn.Culture.Name
 				}
 			};
 		}

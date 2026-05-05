@@ -52,7 +52,7 @@ namespace River.OneMoreAddIn
 			public string? OsEdition { get; set; }      // e.g. "Professional"
 			public string? OsArc { get; set; }          // e.g. "x64"
 			public string? Culture { get; set; }        // e.g. "en-US"
-			public string? OneCulture { get; set; }     // e.g. "en-US"
+			public string? MoreCulture { get; set; }    // e.g. "en-US"
 		}
 
 		public sealed class Payload
