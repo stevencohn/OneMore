@@ -202,7 +202,8 @@ namespace River.OneMoreAddIn.Helpers
 					OsEdition = DiagnosticsCommand.GetWindowsEdition(winver),
 					OsArc = winarc,
 
-					Culture = Thread.CurrentThread.CurrentCulture.Name
+					Culture = Thread.CurrentThread.CurrentCulture.Name,
+					OneCulture = AddIn.Culture.Name
 				}
 			};
 		}
