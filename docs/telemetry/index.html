@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Telemetry Dashboard</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    table { border-collapse: collapse; margin-top: 20px; }
+    td, th { border: 1px solid #ccc; padding: 6px 10px; }
+    th { background: #f0f0f0; }
+    #results { margin-top: 20px; }
+  </style>
+</head>
+
+<body>
+  <h1>Telemetry Dashboard</h1>
+
+  <label for="querySelect">Choose a query:</label>
+  <select id="querySelect"></select>
+
+  <button id="runBtn">Run Query</button>
+
+  <div id="results">Select a query and click Run.</div>
+
+  <!-- AWS SDK v2 browser bundle -->
+  <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1481.0.min.js"></script>
+
+  <script>
+    // ------------------------------------------------------------
+    // 1. Configure Cognito Identity Pool credentials
+    // ------------------------------------------------------------
+    window.onload = function() {
+      AWS.config.region = "us-east-1";
+
+      AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+        IdentityPoolId: "us-east-1:a4f3a55a-e219-49c8-aa6a-a12c6b9098b6",
+        Logins: {}
+      });
+
+      AWS.config.credentials.clearCachedId();
+
+      console.log("FORCED POOL:", AWS.config.credentials.params.IdentityPoolId);
+
+      AWS.config.credentials.get(function(err) {
+        if (err) {
+          console.error("Credential error:", err);
+          document.getElementById("results").innerHTML =
+            "<b>Error loading AWS credentials</b><br>" + err;
+          return;
+        }
+        console.log("Resolved Role ARN:", AWS.config.credentials.roleArn);
+        console.log("Identity ID:", AWS.config.credentials.identityId);
+        console.log("Access Key:", AWS.config.credentials.accessKeyId);
+        console.log("Secret Key:", AWS.config.credentials.secretAccessKey);
+        console.log("Session Token:", AWS.config.credentials.sessionToken);
+
+        window.athena = new AWS.Athena({ region: "us-east-1" });
+
+ var sts = new AWS.STS();
+
+sts.getCallerIdentity({}, function(err, data) {
+  if (err) {
+    console.error("STS error:", err);
+  } else {
+    console.log("CallerIdentity:", data);
+  }
+});
+
+      });
+    };
+
+    // ------------------------------------------------------------
+    // 2. Load manifest.json from /telemetry/
+    // ------------------------------------------------------------
+    fetch("/telemetry/manifest.json")
+      .then(r => r.json())
+      .then(manifest => {
+        const select = document.getElementById("querySelect");
+        Object.entries(manifest).forEach(([label, id]) => {
+          const opt = document.createElement("option");
+          opt.value = id;
+          opt.textContent = label;
+          select.appendChild(opt);
+        });
+      });
+
+    // ------------------------------------------------------------
+    // 3. Run Athena query
+    // ------------------------------------------------------------
+    function runQuery(sql) {
+      return new Promise((resolve, reject) => {
+        athena.startQueryExecution(
+          {
+            QueryString: sql,
+            WorkGroup: "primary",
+            ResultConfiguration: {
+              OutputLocation: "s3://onemore-telemetry/"
+            }
+          },
+          function (err, data) {
+            if (err) return reject(err);
+
+            const queryId = data.QueryExecutionId;
+
+            // Poll until finished
+            function poll() {
+              athena.getQueryExecution(
+                { QueryExecutionId: queryId },
+                function (err, execData) {
+                  if (err) return reject(err);
+
+                  const state = execData.QueryExecution.Status.State;
+
+                  if (state === "SUCCEEDED") {
+                    athena.getQueryResults(
+                      { QueryExecutionId: queryId },
+                      function (err, results) {
+                        if (err) return reject(err);
+                        resolve(results.ResultSet.Rows);
+                      }
+                    );
+                  } else if (state === "FAILED" || state === "CANCELLED") {
+                    reject(new Error("Query failed"));
+                  } else {
+                    setTimeout(poll, 1000);
+                  }
+                }
+              );
+            }
+
+            poll();
+          }
+        );
+      });
+    }
+
+    // ------------------------------------------------------------
+    // 4. Run selected Saved Query
+    // ------------------------------------------------------------
+    document.getElementById("runBtn").onclick = async () => {
+      const queryId = document.getElementById("querySelect").value;
+      document.getElementById("results").innerHTML = "Running query…";
+
+      try {
+        // Fetch SQL text from Saved Query
+        const named = await athena
+          .getNamedQuery({ NamedQueryId: queryId })
+          .promise();
+
+        const sql = named.NamedQuery.QueryString;
+
+        const rows = await runQuery(sql);
+
+        let html = "<table><tr>";
+        rows[0].Data.forEach(col => html += `<th>${col.VarCharValue}</th>`);
+        html += "</tr>";
+
+        rows.slice(1).forEach(r => {
+          html += "<tr>";
+          r.Data.forEach(c => html += `<td>${c.VarCharValue || ""}</td>`);
+          html += "</tr>";
+        });
+
+        html += "</table>";
+        document.getElementById("results").innerHTML = html;
+
+      } catch (err) {
+        document.getElementById("results").innerHTML =
+          "<b>Error:</b> " + err.message;
+      }
+    };
+  </script>
+</body>
+</html>
