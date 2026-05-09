@@ -20,7 +20,7 @@ Begin
     $script:SpaceBefore  = 0.0
     $script:SpaceAfter   = 0.0
     $script:SpaceBetween = 0.0
-    $script:AllowListOEs  = $true
+    $script:AllowListOEs  = $false
     $script:AllowTableOEs = $false
 
     # here we go...
