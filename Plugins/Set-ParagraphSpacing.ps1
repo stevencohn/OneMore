@@ -9,19 +9,24 @@ or Section.
 
 param(
     [Parameter(Mandatory = $true)]
-    [string]$Path
+    [string]$Path,
+
+    # user arguments; override these defaults using the User Arguments field
+    # in the Plugins Run dialog
+    [double]$Before = 0.0,
+    [double]$After = 0.0,
+    [double]$Between = 0.0,
+    [switch]$Lists,
+    [switch]$Tables
 )
 
 Begin
 {
-    #
-    # Your options:
-    #
-    $script:SpaceBefore  = 0.0
-    $script:SpaceAfter   = 0.0
-    $script:SpaceBetween = 0.0
-    $script:AllowListOEs  = $false
-    $script:AllowTableOEs = $false
+    $script:SpaceBefore  = $Before
+    $script:SpaceAfter   = $After
+    $script:SpaceBetween = $Between
+    $script:AllowListOEs  = $Lists.IsPresent
+    $script:AllowTableOEs = $Tables.IsPresent
 
     # here we go...
 
