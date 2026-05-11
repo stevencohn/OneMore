@@ -1,4 +1,4 @@
-body {
+#content {
   font-family: Calibri, 'Segoe UI', Arial, sans-serif;
 }
 
@@ -18,7 +18,7 @@ h1 {
 
 .report-layout {
   display: flex;
-  gap: 28px;
+  gap: 80px;
   align-items: flex-start;
 }
 
@@ -36,7 +36,7 @@ h1 {
 .report-top {
   display: flex;
   flex-wrap: wrap;
-  gap: 28px;
+  gap: 80px;
   align-items: flex-start;
 }
 
@@ -92,7 +92,6 @@ th {
 
 tr.grand-total td {
   background-color: #EBE5E1 !important;
-  font-weight: bold;
 }
 
 td:not(:first-child) {
@@ -101,9 +100,28 @@ td:not(:first-child) {
 
 /* Per-table alternating row colors */
 
-#onemore-version tr:nth-child(even) td  { background-color: #ede8f5; }
-#onenote-version tr:nth-child(even) td  { background-color: #e8eef8; }
-#os-culture      tr:nth-child(even) td  { background-color: #e8f3ed; }
-#more-culture    tr:nth-child(even) td  { background-color: #e8f3f5; }
-#os-version      tr:nth-child(even) td  { background-color: #f5f0e8; }
-#unused-commands tr:nth-child(even) td  { background-color: #f3f3f3; }
+#command         th                      { background-color: #e2c5ff; }
+#event-type      th                      { background-color: #e2c5ff; }
+
+#os-version      td                      { background-color: #bdd7ee; color: black; }
+#os-version      th                      { background-color: #1f4e78; color: white; }
+#os-version      tr.grand-total td       { background-color: #1f4e78 !important; color: white; }
+
+#os-culture      td                      { background-color: #ffe699; color: black; }
+#os-culture      th                      { background-color: #806000; color: white; }
+#os-culture      tr.grand-total td       { background-color: #806000 !important; color: white; }
+
+#more-culture    td                      { background-color: #ffe699; color: black; }
+#more-culture    th                      { background-color: #806000; color: white; }
+#more-culture    tr.grand-total td       { background-color: #806000 !important; color: white; }
+
+#onemore-version td                      { background-color: #c6e0b4; color: black; }
+#onemore-version th                      { background-color: #375623; color: white; }
+#onemore-version tr.grand-total td       { background-color: #375623 !important; color: white; }
+
+#onenote-version td                      { background-color: #c6e0b4; color: black; }
+#onenote-version th                      { background-color: #375623; color: white; }
+#onenote-version tr.grand-total td       { background-color: #375623 !important; color: white; }
+#unused-commands td                      { background-color: #f3f3f3; color: black; }
+#unused-commands th                      { background-color: #adadad; color: white; }
+#unused-commands tr.grand-total td       { background-color: #c0c0c0 !important; color: white; }

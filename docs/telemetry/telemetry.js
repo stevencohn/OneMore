@@ -5,16 +5,6 @@ const CONFIG = {
   outputBucket: "s3://onemore-telemetry-logs/athena-results/"
 };
 
-const REPORT_SECTIONS = [
-  { key: "ReportOneMoreVersionCounts", target: "onemore-version" },
-  { key: "ReportOneNoteVersionCounts", target: "onenote-version" },
-  { key: "ReportOSCultureCounts",      target: "os-culture"      },
-  { key: "ReportEventTypeCounts",      target: "event-type"      },
-  { key: "ReportMoreCultureCounts",    target: "more-culture"    },
-  { key: "ReportCommandCounts",        target: "command",         heatCol: "Count" },
-  { key: "ReportOSVersionCounts",      target: "os-version"      },
-];
-
 let athena;
 let allCommands = [];
 let unusedCommandsTimer = null;
@@ -53,7 +43,7 @@ function loadManifest() {
 }
 
 async function loadSubtitle(manifest) {
-  const queryId = manifest["ReportStartTime"];
+  const queryId = manifest["ReportStartTime"]?.id;
   if (!queryId) return;
 
   const el = document.getElementById("subtitle");
@@ -80,17 +70,19 @@ async function loadSubtitle(manifest) {
 }
 
 function loadReport(manifest) {
-  Promise.all(REPORT_SECTIONS.map(section => loadSection(manifest, section)));
+  const sections = Object.entries(manifest)
+    .filter(([, v]) => v.target)
+    .map(([key, v]) => ({ key, ...v }));
+  Promise.all(sections.map(section => loadSection(section)));
 }
 
-async function loadSection(manifest, { key, target, heatCol }) {
-  const queryId = manifest[key];
+async function loadSection({ key, id, target, heatCol }) {
   const el = document.getElementById(target);
-  if (!queryId || !el) return;
+  if (!id || !el) return;
 
   const timer = startProgress(el);
   try {
-    const named = await athena.getNamedQuery({ NamedQueryId: queryId }).promise();
+    const named = await athena.getNamedQuery({ NamedQueryId: id }).promise();
     const rows = await runQuery(named.NamedQuery.QueryString, named.NamedQuery.Database);
     clearInterval(timer);
     el.innerHTML = renderTable(rows);
@@ -154,13 +146,24 @@ function pollQueryStatus(queryId, resolve, reject) {
 }
 
 function renderTable(rows) {
+  const headers = rows[0].Data.map(col => col.VarCharValue);
+  const pctIndices = new Set(
+    headers.map((h, i) => h.trim() === "Pct" ? i : -1).filter(i => i !== -1)
+  );
+
   let html = "<table><tr>";
-  rows[0].Data.forEach(col => html += `<th>${col.VarCharValue}</th>`);
+  headers.forEach(h => html += `<th>${h}</th>`);
   html += "</tr>";
   rows.slice(1).forEach(row => {
-    const isTotal = row.Data[0]?.VarCharValue?.toLowerCase() === "grand total";
+    const isTotal = row.Data[0]?.VarCharValue?.toLowerCase().includes("total");
     html += isTotal ? '<tr class="grand-total">' : "<tr>";
-    row.Data.forEach(cell => html += `<td>${cell.VarCharValue || ""}</td>`);
+    row.Data.forEach((cell, i) => {
+      const val = cell.VarCharValue || "";
+      const display = pctIndices.has(i) && val !== ""
+        ? `${parseFloat(val).toFixed(1)}%`
+        : val;
+      html += `<td>${display}</td>`;
+    });
     html += "</tr>";
   });
   return html + "</table>";
@@ -178,14 +181,17 @@ function applyHeatmap(tableEl, colName) {
     parseFloat(row.cells[colIndex]?.textContent.replace(/,/g, "")) || 0
   );
 
-  const max = Math.max(...values);
-  const min = Math.min(...values);
-  const range = max - min || 1;
+  const n = dataRows.length;
+  const ranked = values.map((v, i) => ({ v, i })).sort((a, b) => b.v - a.v);
+  const tByIndex = new Array(n);
+  ranked.forEach(({ i }, rank) => {
+    tByIndex[i] = n > 1 ? 1 - rank / (n - 1) : 1;
+  });
 
   dataRows.forEach((row, i) => {
     const cell = row.cells[colIndex];
     if (cell) {
-      const { bg, text } = heatColor((values[i] - min) / range);
+      const { bg, text } = heatColor(tByIndex[i]);
       cell.style.backgroundColor = bg;
       cell.style.color = text;
     }
@@ -193,19 +199,31 @@ function applyHeatmap(tableEl, colName) {
 }
 
 function heatColor(t) {
-  // white (low) → blue (mid) → red (high)
-  let r, g, b;
-  if (t <= 0.5) {
-    const s = t * 2;
-    r = Math.round(255 + (30 - 255) * s);
-    g = Math.round(255 + (78 - 255) * s);
-    b = Math.round(255 + (121 - 255) * s);
-  } else {
-    const s = (t - 0.5) * 2;
-    r = Math.round(30 + (200 - 30) * s);
-    g = Math.round(78 + (0 - 78) * s);
-    b = Math.round(121 + (0 - 121) * s);
+  // white (t=0) → light blue → medium blue → red (t=1)
+  // red zone confined to top ~15% of rows (t >= 0.85)
+  const stops = [
+    { t: 0.00, r: 255, g: 255, b: 255 },
+    { t: 0.40, r: 189, g: 215, b: 238 },
+    { t: 0.75, r:  68, g: 114, b: 196 },
+    { t: 0.85, r:  30, g:  78, b: 121 },
+    { t: 1.00, r: 192, g:   0, b:   0 },
+  ];
+
+  let lo = stops[0], hi = stops[stops.length - 1];
+  for (let i = 0; i < stops.length - 1; i++) {
+    if (t <= stops[i + 1].t) { lo = stops[i]; hi = stops[i + 1]; break; }
   }
+
+  const s = hi.t === lo.t ? 0 : (t - lo.t) / (hi.t - lo.t);
+  let r = Math.round(lo.r + (hi.r - lo.r) * s);
+  let g = Math.round(lo.g + (hi.g - lo.g) * s);
+  let b = Math.round(lo.b + (hi.b - lo.b) * s);
+
+  // Increase brightness 75%: blend toward white
+  r = Math.round(r + (255 - r) * 0.75);
+  g = Math.round(g + (255 - g) * 0.75);
+  b = Math.round(b + (255 - b) * 0.75);
+
   const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
   return {
     bg: `rgb(${r},${g},${b})`,
@@ -238,9 +256,7 @@ function renderUnusedCommands(commandRows) {
     return;
   }
 
-  let html = "<table><tr><th>Command</th></tr>";
-  unused.forEach(cmd => html += `<tr><td>${cmd}</td></tr>`);
-  el.innerHTML = html + "</table>";
+  el.innerHTML = `<table><tr><th>Command</th></tr><tr><td>${unused.join("<br>")}</td></tr></table>`;
 }
 
 initAWS();
