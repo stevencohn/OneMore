@@ -1,4 +1,4 @@
-﻿//************************************************************************************************
+//************************************************************************************************
 // Copyright © 2025 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
@@ -28,74 +28,15 @@ namespace River.OneMoreAddIn.Commands
 			public string Hyperlink { get; set; }
 		}
 
-		private sealed class SearchResultBuffer
+		// One entry per visible row in the results ListView.
+		// Groups are section headers; hits are navigable matches.
+		private sealed class ResultItem
 		{
-			private readonly List<SearchHit> hits = new();
-			private readonly object gate = new();
-
-			public int Count => hits.Count;
-
-			public SearchHit Get(int index)
-			{
-				lock (gate)
-				{
-					return index < hits.Count ? hits[index] : null;
-				}
-			}
-
-			public void AddRange(IEnumerable<SearchHit> hit)
-			{
-				lock (gate)
-				{
-					hits.AddRange(hit);
-				}
-			}
-		}
-
-		private sealed class SearchEngine
-		{
-			public event Action<List<SearchHit>> PageReady;
-
-			public void StartSearch(string query)
-			{
-				Task.Run(() =>
-				{
-					for (int page = 0; page < 100; page++)
-					{
-						Thread.Sleep(300); // Simulate search delay
-						var results = Enumerable.Range(page * 50, 50)
-							.Select(i => new SearchHit { PlainText = $"Result {i}", Hyperlink = $"https://example.com/{i}" })
-							.ToList();
-
-						PageReady?.Invoke(results);
-					}
-				});
-			}
-		}
-
-		private sealed class SearchCoordinator
-		{
-			private readonly SearchResultBuffer buffer;
-			private readonly ListView listview;
-
-			public SearchCoordinator(SearchResultBuffer buffer, ListView listView)
-			{
-				this.buffer = buffer;
-				this.listview = listView;
-			}
-
-			public void Attach(SearchEngine engine)
-			{
-				engine.PageReady += results =>
-				{
-					buffer.AddRange(results);
-					listview.Invoke(new Action(() =>
-					{
-						listview.VirtualListSize = buffer.Count;
-						listview.Invalidate();
-					}));
-				};
-			}
+			public bool IsGroup { get; set; }
+			public string Text { get; set; }
+			public Color SectionColor { get; set; }     // group only: left swatch color
+			public Color SectionBackColor { get; set; }  // group only: row background tint
+			public string Hyperlink { get; set; }        // hit only
 		}
 
 
@@ -104,12 +45,20 @@ namespace River.OneMoreAddIn.Commands
 		private const int UpdatedAfter = 3;
 		private const int UpdatedBefore = 4;
 
+		// Matches the original HighlightBackground / HighlightForeground from the Designer
+		private static readonly Color SelectionBack = Color.FromArgb(215, 193, 255);
+		private static readonly Color SelectionFore = SystemColors.HighlightText;
+
 		private readonly ILogger logger;
 		private readonly Regex cleaner;
 		private CancellationTokenSource source;
 		private bool grouping;
 
-		private SearchResultBuffer buffer;
+		private readonly List<ResultItem> results = new();
+		private Font groupFont;
+		private Font hitFont;
+		private SolidBrush hitBackBrush;       // unselected hit row background
+		private SolidBrush selectionBackBrush; // selected hit row background
 
 
 		public SearchDialogTextControl()
@@ -150,6 +99,25 @@ namespace River.OneMoreAddIn.Commands
 			cleaner = new Regex(
 				@"(?:<\s*(?:span|a)[^>]*?>)|(?:</(?:span|a)>)|(?:&#\d+;)",
 				RegexOptions.Compiled);
+
+			groupFont = new Font("Segoe UI", 8.5f, FontStyle.Bold, GraphicsUnit.Point);
+			hitFont = new Font("Segoe UI", 8.5f, FontStyle.Regular, GraphicsUnit.Point);
+			selectionBackBrush = new SolidBrush(SelectionBack);
+
+			// Wire virtual-mode events now so they are ready before first show
+			resultsView.RetrieveVirtualItem += OnRetrieveVirtualItem;
+			resultsView.DrawItem += OnDrawItem;
+			resultsView.DrawSubItem += OnDrawSubItem;
+			resultsView.DrawColumnHeader += (s, e) => e.DrawDefault = true;
+			resultsView.MouseClick += OnResultsMouseClick;
+
+			Disposed += (_, _) =>
+			{
+				groupFont?.Dispose();
+				hitFont?.Dispose();
+				hitBackBrush?.Dispose();
+				selectionBackBrush?.Dispose();
+			};
 		}
 
 
@@ -173,10 +141,12 @@ namespace River.OneMoreAddIn.Commands
 		protected override void OnLoad(EventArgs e)
 		{
 			base.OnLoad(e);
-			resultsView.BackColor = manager.GetColor("ListView");
 
-			var rowWidth = Width - SystemInformation.VerticalScrollBarWidth * 2;
-			resultsView.Columns[0].Width = rowWidth;
+			// BackColor comes from the theme; create the brush now that it is known
+			resultsView.BackColor = manager.GetColor("ListView");
+			hitBackBrush = new SolidBrush(resultsView.BackColor);
+
+			hitColumn.Width = resultsView.Width - SystemInformation.VerticalScrollBarWidth;
 
 			findBox.Focus();
 		}
@@ -228,28 +198,9 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ResizeResultsView(object sender, EventArgs e)
 		{
-			if (sender is MoreListView view)
+			if (sender is ListView view)
 			{
-				var w = (int)(view.Width - SystemInformation.VerticalScrollBarWidth * 1.5);
-				foreach (ColumnHeader column in view.Columns)
-				{
-					column.Width = w;
-				}
-
-				try
-				{
-					foreach (MoreHostedListViewItem hosted in view.Items)
-					{
-						if (hosted is not null)
-						{
-							hosted.Control.Width = w;
-						}
-					}
-				}
-				catch (Exception)
-				{
-					// swallow null reference after CancellationRequested
-				}
+				hitColumn.Width = view.Width - SystemInformation.VerticalScrollBarWidth;
 			}
 		}
 
@@ -295,10 +246,20 @@ namespace River.OneMoreAddIn.Commands
 
 			findBox.Enabled = false;
 			searchButton.Enabled = false;
-			resultsView.SuspendLayout();
 
 			ClearResults();
 			nextButton.Visible = prevButton.Visible = false;
+
+			// Build the regex once for the entire search; all scope methods share it
+			var finder = new TextMatchBuilder(regBox.Checked, matchBox.Checked)
+				.BuildRegex(findBox.Text);
+
+			if (finder is null)
+			{
+				// invalid regex — ChangedText should have caught this, but guard anyway
+				RestoreControls();
+				return;
+			}
 
 			await using var one = new OneNote();
 
@@ -306,7 +267,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (scopeBox.SelectedIndex == 0)
 			{
-				await SearchNotebook(one);
+				await SearchNotebook(one, finder);
 			}
 			else if (scopeBox.SelectedIndex == 1)
 			{
@@ -320,7 +281,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 
 				SetupProgressBar(section.Descendants(ns + "Page").Count());
-				await SearchSection(one, section);
+				await SearchSection(one, section, finder);
 			}
 			else
 			{
@@ -330,7 +291,7 @@ namespace River.OneMoreAddIn.Commands
 				var page = await one.GetPage(one.CurrentPageId, OneNote.PageDetail.Basic);
 				logger.WriteTime("loaded page", keepRunning: true);
 
-				await SearchPage(one, page);
+				await SearchPage(one, page, finder);
 				logger.WriteTime("search complete");
 			}
 
@@ -339,45 +300,245 @@ namespace River.OneMoreAddIn.Commands
 			source?.Dispose();
 			source = null;
 
+			RestoreControls();
+		}
+
+
+		private void RestoreControls()
+		{
 			pageLabel.Text = string.Empty;
 			progressBar.Visible = false;
 			findBox.Enabled = true;
 			searchButton.Enabled = true;
-
-			resultsView.ResumeLayout();
-
 			findBox.Focus();
 			searchButton.NotifyDefault(true);
 
-			nextButton.Visible = prevButton.Visible = resultsView.Items.Count > 0;
+			// only show nav buttons if there is at least one navigable hit
+			nextButton.Visible = prevButton.Visible = results.Any(r => !r.IsGroup);
 		}
 
 
-		private void RetrieveVirtualItem(object sender, RetrieveVirtualItemEventArgs e)
-		{
-			var item = buffer.Get(e.ItemIndex);
-			e.Item = new ListViewItem(item?.PlainText ?? "Loading...");
-		}
-
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		// Results list management
 
 		private void ClearResults()
 		{
-			foreach (MoreHostedListViewItem item in resultsView.Items)
-			{
-				if (item.Control is MoreLinkLabel label)
-				{
-					// detaches event handler to avoid memory leak
-					label.Dispose();
-				}
-				else if (item.Control is SearchGroupControl group)
-				{
-					group.Dispose();
-				}
-			}
-
-			resultsView.Items.Clear();
+			results.Clear();
+			resultsView.VirtualListSize = 0;
 		}
 
+
+		/// <summary>
+		/// Appends a section group header (when groupTitle is non-null) followed by
+		/// all hits for that page. Updating VirtualListSize once per page batch keeps
+		/// the number of repaints proportional to pages searched, not matches found.
+		/// </summary>
+		private void AddPageResults(string groupTitle, string sectionColor, IList<SearchHit> hits)
+		{
+			if (groupTitle is not null)
+			{
+				var color = ColorHelper.FromHtml(sectionColor);
+				var bg = resultsView.BackColor;
+
+				// 15% section color blended with the list background for the row tint
+				var tinted = Color.FromArgb(
+					(color.R * 15 + bg.R * 85) / 100,
+					(color.G * 15 + bg.G * 85) / 100,
+					(color.B * 15 + bg.B * 85) / 100);
+
+				results.Add(new ResultItem
+				{
+					IsGroup = true,
+					Text = groupTitle,
+					SectionColor = color,
+					SectionBackColor = tinted
+				});
+			}
+
+			foreach (var hit in hits)
+			{
+				results.Add(new ResultItem
+				{
+					Text = hit.PlainText,
+					Hyperlink = hit.Hyperlink
+				});
+			}
+
+			resultsView.VirtualListSize = results.Count;
+		}
+
+
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		// Virtual ListView rendering
+
+		private void OnRetrieveVirtualItem(object sender, RetrieveVirtualItemEventArgs e)
+		{
+			if (e.ItemIndex >= results.Count) return;
+			var result = results[e.ItemIndex];
+
+			// The item text and font are used by the ListView for keyboard search and
+			// accessibility; actual painting happens in OnDrawItem / OnDrawSubItem.
+			e.Item = new ListViewItem(result.Text)
+			{
+				Font = result.IsGroup ? groupFont : hitFont
+			};
+		}
+
+
+		private void OnDrawItem(object sender, DrawListViewItemEventArgs e)
+		{
+			if (e.ItemIndex >= results.Count) return;
+
+			var result = results[e.ItemIndex];
+			var selected = (e.State & ListViewItemStates.Selected) != 0;
+
+			if (result.IsGroup)
+			{
+				using var bgBrush = new SolidBrush(result.SectionBackColor);
+				e.Graphics.FillRectangle(bgBrush, e.Bounds);
+			}
+			else if (selected)
+			{
+				e.Graphics.FillRectangle(selectionBackBrush, e.Bounds);
+			}
+			else
+			{
+				e.Graphics.FillRectangle(hitBackBrush, e.Bounds);
+			}
+
+			if ((e.State & ListViewItemStates.Focused) != 0)
+			{
+				e.DrawFocusRectangle();
+			}
+		}
+
+
+		private void OnDrawSubItem(object sender, DrawListViewSubItemEventArgs e)
+		{
+			if (e.ItemIndex >= results.Count) return;
+
+			var result = results[e.ItemIndex];
+
+			// MultiSelect = false so there is at most one selected index
+			var selected = resultsView.SelectedIndices.Count > 0
+				&& resultsView.SelectedIndices[0] == e.ItemIndex;
+
+			const TextFormatFlags flags =
+				TextFormatFlags.VerticalCenter |
+				TextFormatFlags.EndEllipsis |
+				TextFormatFlags.NoPrefix |
+				TextFormatFlags.SingleLine;
+
+			if (result.IsGroup)
+			{
+				// Colored swatch on the left edge indicating the section's accent color
+				const int pad = 4;
+				const int swatchW = 8;
+				var swatch = new Rectangle(
+					e.Bounds.X + pad, e.Bounds.Y + pad,
+					swatchW, e.Bounds.Height - pad * 2);
+				using var swatchBrush = new SolidBrush(result.SectionColor);
+				e.Graphics.FillRectangle(swatchBrush, swatch);
+
+				var textRect = new Rectangle(
+					swatch.Right + pad * 2, e.Bounds.Y,
+					e.Bounds.Width - swatch.Right - pad * 2, e.Bounds.Height);
+				TextRenderer.DrawText(e.Graphics, result.Text, groupFont, textRect, ForeColor, flags);
+			}
+			else
+			{
+				var foreColor = selected ? SelectionFore : ForeColor;
+				var textRect = new Rectangle(
+					e.Bounds.X + 4, e.Bounds.Y, e.Bounds.Width - 4, e.Bounds.Height);
+				TextRenderer.DrawText(e.Graphics, result.Text, hitFont, textRect, foreColor, flags);
+			}
+		}
+
+
+		private async void OnResultsMouseClick(object sender, MouseEventArgs e)
+		{
+			var hit = resultsView.HitTest(e.X, e.Y);
+			if (hit.Item is null || hit.Item.Index >= results.Count) return;
+
+			var result = results[hit.Item.Index];
+			if (result.IsGroup) return;
+
+			await NavigateTo(result);
+		}
+
+
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		// Keyboard navigation
+
+		private void HandleNavKey(object sender, KeyEventArgs e)
+		{
+			if ((e.KeyCode == Keys.N || e.KeyCode == Keys.Down) && e.Modifiers == Keys.None)
+			{
+				MoveTo(1);
+				e.Handled = true;
+			}
+			else if ((e.KeyCode == Keys.P || e.KeyCode == Keys.Up) && e.Modifiers == Keys.None)
+			{
+				MoveTo(-1);
+				e.Handled = true;
+			}
+			else if (e.KeyCode == Keys.Enter && e.Modifiers == Keys.None
+				&& resultsView.SelectedIndices.Count > 0)
+			{
+				var index = resultsView.SelectedIndices[0];
+				if (index < results.Count && !results[index].IsGroup)
+				{
+					NavigateTo(results[index]);
+				}
+
+				e.Handled = true;
+			}
+		}
+
+
+		private void MoveToPreviousSelection(object sender, EventArgs e) => MoveTo(-1);
+		private void MoveToNextSelection(object sender, EventArgs e) => MoveTo(1);
+
+
+		private async void MoveTo(int delta)
+		{
+			if (results.Count == 0) return;
+
+			// Start from the current selection, or from the appropriate edge when nothing is selected
+			var current = resultsView.SelectedIndices.Count > 0
+				? resultsView.SelectedIndices[0]
+				: (delta > 0 ? -1 : results.Count);
+
+			// Walk in the requested direction, skipping group header rows
+			var i = current;
+			var found = false;
+			while (true)
+			{
+				i += delta;
+				if (i < 0 || i >= results.Count) break;
+				if (!results[i].IsGroup) { found = true; break; }
+			}
+
+			if (!found) return;
+
+			resultsView.SelectedIndices.Clear();
+			resultsView.SelectedIndices.Add(i);
+			resultsView.EnsureVisible(i);
+			resultsView.Focus();
+
+			await NavigateTo(results[i]);
+		}
+
+
+		private async Task NavigateTo(ResultItem result)
+		{
+			await using var one = new OneNote();
+			await one.NavigateTo(result.Hyperlink);
+		}
+
+
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		// Search pipeline
 
 		private void FilterPagesByDate(XElement parent, XNamespace ns)
 		{
@@ -417,7 +578,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task SearchNotebook(OneNote one)
+		private async Task SearchNotebook(OneNote one, Regex finder)
 		{
 			grouping = true;
 
@@ -441,17 +602,9 @@ namespace River.OneMoreAddIn.Commands
 
 				foreach (var section in sections)
 				{
-					try
-					{
-						if (source?.IsCancellationRequested == true) { break; }
-						await Task.Delay(10, source.Token);
-					}
-					catch (TaskCanceledException)
-					{
-						break;
-					}
-
-					await SearchSection(one, section);
+					if (source.IsCancellationRequested) break;
+					await Task.Yield();
+					await SearchSection(one, section, finder);
 				}
 
 				var sectionGroups = parent.Elements(ns + "SectionGroup")
@@ -459,15 +612,8 @@ namespace River.OneMoreAddIn.Commands
 
 				foreach (var group in sectionGroups)
 				{
-					try
-					{
-						if (source?.IsCancellationRequested == true) { break; }
-						await Task.Delay(10, source.Token);
-					}
-					catch (TaskCanceledException)
-					{
-						break;
-					}
+					if (source.IsCancellationRequested) break;
+					await Task.Yield();
 
 					var groupName = group.Attribute("name").Value;
 					path = path.Length == 0 ? groupName : $"{path}/{groupName}";
@@ -487,7 +633,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task SearchSection(OneNote one, XElement section)
+		private async Task SearchSection(OneNote one, XElement section, Regex finder)
 		{
 			var ns = one.GetNamespace(section);
 			var sectionId = section.Attribute("ID").Value;
@@ -499,15 +645,8 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (var pageId in pageIds)
 			{
-				try
-				{
-					if (source?.IsCancellationRequested == true) { break; }
-					await Task.Delay(10, source.Token);
-				}
-				catch (TaskCanceledException)
-				{
-					break;
-				}
+				if (source.IsCancellationRequested) break;
+				await Task.Yield();
 
 				progressBar.Increment(1);
 
@@ -519,88 +658,79 @@ namespace River.OneMoreAddIn.Commands
 					pageLabel.Text = pageName;
 				}
 
-				var hits = await SearchPageBody(one, page);
+				var hits = await SearchPageBody(one, page, finder);
+
+				// skip adding results if cancelled mid-page
+				if (source.IsCancellationRequested) break;
+
 				if (hits.Any())
 				{
-					if (grouping)
-					{
-						var group = new SearchGroupControl(info.Color, $"{info.Path}/{pageName}");
-						group.ApplyTheme(manager);
-
-						resultsView.AddHostedItem(group);
-					}
-
-					foreach (var hit in hits)
-					{
-						AddResult(hit);
-					}
+					AddPageResults(
+						grouping ? $"{info.Path}/{pageName}" : null,
+						info.Color,
+						hits);
 				}
 			}
 		}
 
 
-		private async Task SearchPage(OneNote one, Page page)
+		private async Task SearchPage(OneNote one, Page page, Regex finder)
 		{
-			var hits = await SearchPageBody(one, page);
+			var hits = await SearchPageBody(one, page, finder);
 			if (hits.Any())
 			{
-				foreach (var hit in hits)
-				{
-					AddResult(hit);
-				}
+				AddPageResults(null, null, hits);
 			}
 		}
 
 
-		private async Task<IList<SearchHit>> SearchPageBody(OneNote one, Page page)
+		private async Task<IList<SearchHit>> SearchPageBody(OneNote one, Page page, Regex finder)
 		{
-			var hits = new List<SearchHit>();
-
 			var ns = page.Namespace;
+
+			// Materialize paragraphs on the UI thread before going to the thread pool,
+			// so the lazy XLinq query is evaluated while we own the XDocument.
 			var paragraphs = page.BodyOutlines
 				.Descendants(ns + "OE")
-				.Where(e => e.Elements(ns + "T").Any());
+				.Where(e => e.Elements(ns + "T").Any())
+				.ToList();
 
-			if (!paragraphs.Any())
+			if (paragraphs.Count == 0)
 			{
-				return hits;
+				return Array.Empty<SearchHit>();
 			}
 
-			var builder = new TextMatchBuilder(regBox.Checked, matchBox.Checked);
+			var token = source?.Token ?? CancellationToken.None;
 
-			var finder = builder.BuildRegex(findBox.Text);
-			//logger.WriteLine(finder.ToString());
-
-			foreach (var paragraph in paragraphs)
+			// Text extraction and regex matching on a background thread — pure XLinq, no COM.
+			// IsCancellationRequested is checked without throwing to avoid propagating
+			// OperationCanceledException through the async void Search() call chain.
+			var matched = await Task.Run(() =>
 			{
-				try
+				var results = new List<(string objectId, string text)>();
+				foreach (var paragraph in paragraphs)
 				{
-					if (source?.IsCancellationRequested == true) { break; }
-					await Task.Yield();
-				}
-				catch (TaskCanceledException)
-				{
-					break;
-				}
+					if (token.IsCancellationRequested) break;
 
-				var text = GetRawText(paragraph, ns);
-				if (text.Length > 0)
-				{
-					//logger.WriteLine($"testing [{text}]");
-					if (finder.IsMatch(text))
+					var text = GetRawText(paragraph, ns);
+					if (text.Length > 0 && finder.IsMatch(text))
 					{
-						//logger.WriteLine("match");
-						var paragraphID = paragraph.Attribute("objectID").Value;
-
-						hits.Add(new SearchHit
-						{
-							PlainText = text,
-							Hyperlink = one.GetHyperlink(page.PageId, paragraphID)
-						});
+						results.Add((paragraph.Attribute("objectID").Value, text));
 					}
 				}
-			}
+				return results;
+			});
 
+			// Back on the UI thread — resolve hyperlinks via COM.
+			var hits = new List<SearchHit>(matched.Count);
+			foreach (var (objectId, text) in matched)
+			{
+				hits.Add(new SearchHit
+				{
+					PlainText = text,
+					Hyperlink = one.GetHyperlink(page.PageId, objectId)
+				});
+			}
 			return hits;
 		}
 
@@ -611,7 +741,6 @@ namespace River.OneMoreAddIn.Commands
 			paragraph.Elements(ns + "T").ForEach(e =>
 			{
 				// custom cleaner regex adds filter for "&#nnn;" escapes, instead of TextValue
-				//var line = e.TextValue(true).Trim();
 				//
 				//
 				// NOTE, instead of ignoring escape sequences, use WebUtility.HtmlDecode(input);
@@ -625,142 +754,6 @@ namespace River.OneMoreAddIn.Commands
 			});
 
 			return text.Trim();
-		}
-
-
-		private void AddResult(SearchHit hit)
-		{
-			var link = new MoreLinkLabel
-			{
-				Text = hit.PlainText,
-				Font = new("Segoe UI", 8.5f, FontStyle.Regular, GraphicsUnit.Point),
-				Padding = new(0),
-				Margin = new(0, 0, 0, 0),
-				Width = resultsView.Width
-			};
-
-			link.Links.Add(new(0, 0, hit));
-			link.LinkClicked += NavigateToHit;
-
-			resultsView.AddHostedItem(link);
-		}
-
-
-		private async void NavigateToHit(object sender, LinkLabelLinkClickedEventArgs e)
-		{
-			if (e.Link.LinkData is SearchHit hit)
-			{
-				if (resultsView.SelectedItems.Count > 0)
-				{
-					var item = resultsView.SelectedItems[0] as MoreHostedListViewItem;
-					item.Selected = false;
-
-					var link = item.Control as MoreLinkLabel;
-					link.Selected = false;
-				}
-
-				var label = sender as MoreLinkLabel;
-
-				// Convert LinkLabel location to ListView client coordinates
-				var relativePoint = resultsView.PointToClient(label.PointToScreen(Point.Empty));
-				var info = resultsView.HitTest(relativePoint);
-				if (info.Item is not null)
-				{
-					var item = info.Item;
-					item.Selected = true;
-					label.Selected = true;
-				}
-
-				await using var one = new OneNote();
-				await one.NavigateTo(hit.Hyperlink);
-
-				resultsView.Focus();
-			}
-		}
-
-
-		private void MoveToPreviousSelection(object sender, EventArgs e)
-		{
-			MoveTo(-1);
-		}
-
-		private void MoveToNextSelection(object sender, EventArgs e)
-		{
-			MoveTo(1);
-		}
-
-		private void MoveTo(int delta)
-		{
-			MoreHostedListViewItem item = null;
-			MoreLinkLabel label = null;
-
-			if (resultsView.SelectedItems.Count == 0)
-			{
-				item = resultsView.Items[0] as MoreHostedListViewItem;
-				item.Selected = true;
-				label = item.Control as MoreLinkLabel;
-				label.Selected = true;
-				NavigateToHit(label, new LinkLabelLinkClickedEventArgs(label.Links[0]));
-				return;
-			}
-
-			var index = resultsView.SelectedIndices[0];
-			var found = false;
-			var i = index;
-
-			// find next or previous MoreLinkLabel item, skipping group headers...
-
-			while (!found && (
-				(delta < 0 && i > 0) ||
-				(delta > 0 && i < resultsView.Items.Count - 1)))
-			{
-				i += delta;
-				if (resultsView.Items[i] is MoreHostedListViewItem icast &&
-					icast.Control is MoreLinkLabel lcast)
-				{
-					item = icast;
-					label = lcast;
-					found = true;
-				}
-			}
-
-			if (found)
-			{
-				// found next or previous available item
-
-				// deselect current
-				var curItem = resultsView.Items[index] as MoreHostedListViewItem;
-				curItem.Selected = false;
-				var curLabel = curItem.Control as MoreLinkLabel;
-				curLabel.Selected = false;
-
-				// select new
-				item.Selected = true;
-				item.EnsureVisible();
-
-				label.Selected = true;
-				NavigateToHit(label, new LinkLabelLinkClickedEventArgs(label.Links[0]));
-			}
-
-			resultsView.Focus();
-		}
-
-
-		private void HandleNavKey(object sender, KeyEventArgs e)
-		{
-			if (resultsView.SelectedItems.Count > 0)
-			{
-				if ((e.KeyCode == Keys.N || e.KeyCode == Keys.Down) && e.Modifiers == Keys.None)
-				{
-					MoveTo(1);
-					e.Handled = true;
-				}
-				else if ((e.KeyCode == Keys.P || e.KeyCode == Keys.Up) && e.Modifiers == Keys.None)
-				{
-					MoveTo(-1);
-					e.Handled = true;
-				}
-			}
 		}
 	}
 }

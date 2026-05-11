@@ -1,0 +1,109 @@
+body {
+  font-family: Calibri, 'Segoe UI', Arial, sans-serif;
+}
+
+h1 {
+  font-family: 'Calibri Light', Calibri, sans-serif;
+  font-size: 20pt;
+  color: #464646;
+  margin-bottom: 4px;
+}
+
+#subtitle {
+  font-size: 10pt;
+  color: #767676;
+}
+
+/* Report layout */
+
+.report-layout {
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+}
+
+.report-left {
+  flex-shrink: 0;
+}
+
+.report-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.report-top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  align-items: flex-start;
+}
+
+.report-section {
+  flex-shrink: 0;
+}
+
+.report-column {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  flex-shrink: 0;
+}
+
+.section-title {
+  font-family: Calibri, sans-serif;
+  font-size: 13pt;
+  font-weight: bold;
+  color: #1e4e79;
+  margin: 0 0 6px 0;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #c8bfd4;
+}
+
+.section-body {
+  min-height: 20px;
+  font-size: 11pt;
+  color: #767676;
+}
+
+/* Table - matches wiki style */
+
+table {
+  border-collapse: collapse;
+  margin: 0;
+}
+
+th, td {
+  border: 1px solid #a3a3a3;
+  padding: 3px 8px;
+  font-family: Calibri, sans-serif;
+  font-size: 11pt;
+  color: black;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+th {
+  background-color: #EBE5E1;
+  font-weight: bold;
+  color: #1e4e79;
+}
+
+tr.grand-total td {
+  background-color: #EBE5E1 !important;
+  font-weight: bold;
+}
+
+td:not(:first-child) {
+  text-align: right;
+}
+
+/* Per-table alternating row colors */
+
+#onemore-version tr:nth-child(even) td  { background-color: #ede8f5; }
+#onenote-version tr:nth-child(even) td  { background-color: #e8eef8; }
+#os-culture      tr:nth-child(even) td  { background-color: #e8f3ed; }
+#more-culture    tr:nth-child(even) td  { background-color: #e8f3f5; }
+#os-version      tr:nth-child(even) td  { background-color: #f5f0e8; }
+#unused-commands tr:nth-child(even) td  { background-color: #f3f3f3; }
