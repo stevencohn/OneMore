@@ -86,6 +86,7 @@ async function loadSection({ key, id, target, heatCol }) {
     const rows = await runQuery(named.NamedQuery.QueryString, named.NamedQuery.Database);
     clearInterval(timer);
     el.innerHTML = renderTable(rows);
+    if (key !== "ReportEventTypeCounts") makeSortable(el.querySelector("table"));
     if (heatCol) applyHeatmap(el.querySelector("table"), heatCol);
     if (key === "ReportEventTypeCounts") applyEventTypeColors(el.querySelector("table"));
     if (key === "ReportCommandCounts") renderUnusedCommands(rows);
@@ -151,9 +152,9 @@ function renderTable(rows) {
     headers.map((h, i) => h.trim() === "Pct" ? i : -1).filter(i => i !== -1)
   );
 
-  let html = "<table><tr>";
+  let html = "<table><thead><tr>";
   headers.forEach(h => html += `<th>${h}</th>`);
-  html += "</tr>";
+  html += "</tr></thead><tbody>";
   rows.slice(1).forEach(row => {
     const isTotal = row.Data[0]?.VarCharValue?.toLowerCase().includes("total");
     html += isTotal ? '<tr class="grand-total">' : "<tr>";
@@ -166,7 +167,49 @@ function renderTable(rows) {
     });
     html += "</tr>";
   });
-  return html + "</table>";
+  return html + "</tbody></table>";
+}
+
+function makeSortable(tableEl) {
+  if (!tableEl) return;
+  const headerRow = tableEl.querySelector("thead tr");
+  if (!headerRow) return;
+  Array.from(headerRow.cells).forEach((th, colIdx) => {
+    if (th.textContent.trim() === "Pct") return;
+    th.classList.add("sortable");
+    th.dataset.sort = "";
+    th.addEventListener("click", () => sortTable(tableEl, colIdx, th));
+  });
+}
+
+function sortTable(tableEl, colIdx, clickedTh) {
+  const headerRow = tableEl.querySelector("thead tr");
+  const newDir = clickedTh.dataset.sort === "asc" ? "desc" : "asc";
+
+  Array.from(headerRow.cells).forEach(th => { th.dataset.sort = ""; });
+  clickedTh.dataset.sort = newDir;
+
+  const tbody = tableEl.querySelector("tbody");
+  if (!tbody) return;
+  const allRows = Array.from(tbody.querySelectorAll("tr"));
+  const dataRows = allRows.filter(r => !r.classList.contains("grand-total"));
+  const totalRows = allRows.filter(r => r.classList.contains("grand-total"));
+
+  const sampleVal = dataRows[0]?.cells[colIdx]?.textContent.replace(/[%,]/g, "").trim() || "";
+  const isNumeric = sampleVal !== "" && !isNaN(parseFloat(sampleVal));
+
+  dataRows.sort((a, b) => {
+    const aRaw = a.cells[colIdx]?.textContent.replace(/[%,]/g, "").trim() || "";
+    const bRaw = b.cells[colIdx]?.textContent.replace(/[%,]/g, "").trim() || "";
+    if (isNumeric) {
+      return newDir === "asc"
+        ? (parseFloat(aRaw) || 0) - (parseFloat(bRaw) || 0)
+        : (parseFloat(bRaw) || 0) - (parseFloat(aRaw) || 0);
+    }
+    return newDir === "asc" ? aRaw.localeCompare(bRaw) : bRaw.localeCompare(aRaw);
+  });
+
+  [...dataRows, ...totalRows].forEach(r => tbody.appendChild(r));
 }
 
 function applyHeatmap(tableEl, colName) {
@@ -175,7 +218,7 @@ function applyHeatmap(tableEl, colName) {
   if (colIndex === -1) return;
 
   const dataRows = Array.from(
-    tableEl.querySelectorAll("tr:not(:first-child):not(.grand-total)")
+    tableEl.querySelectorAll("tbody tr:not(.grand-total)")
   );
   const values = dataRows.map(row =>
     parseFloat(row.cells[colIndex]?.textContent.replace(/,/g, "")) || 0
@@ -232,7 +275,7 @@ function heatColor(t) {
 }
 
 function applyEventTypeColors(tableEl) {
-  const dataRows = Array.from(tableEl.querySelectorAll("tr:not(:first-child):not(.grand-total)"));
+  const dataRows = Array.from(tableEl.querySelectorAll("tbody tr:not(.grand-total)"));
   dataRows.forEach(row => {
     const label = row.cells[0]?.textContent.trim().toLowerCase() || "";
     const color = label.includes("error") ? "#fde8e8" : label.includes("event") ? "#e8f5e9" : null;

@@ -98,6 +98,33 @@ td:not(:first-child) {
   text-align: right;
 }
 
+th.sortable {
+  cursor: pointer;
+  user-select: none;
+  padding-right: 22px;
+  position: relative;
+}
+
+th.sortable::after {
+  content: "⇅";
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.35;
+  font-size: 0.8em;
+}
+
+th.sortable[data-sort="asc"]::after {
+  content: "▲";
+  opacity: 1;
+}
+
+th.sortable[data-sort="desc"]::after {
+  content: "▼";
+  opacity: 1;
+}
+
 /* Per-table alternating row colors */
 
 #command         th                      { background-color: #e2c5ff; }
