@@ -1,10 +1,10 @@
 {
-  "ReportStartTime":            { "id": "597f697a-3fe7-4ee4-8c1e-250f092eaa88" },
-  "ReportOneMoreVersionCounts": { "id": "8b2a3156-6b81-4225-a665-95c21223c741", "target": "onemore-version" },
-  "ReportOneNoteVersionCounts": { "id": "0bb043ec-dfd7-426c-9e7a-cd35583ee088", "target": "onenote-version" },
-  "ReportOSCultureCounts":      { "id": "83d310f4-3bb2-4eb0-b138-8e68877295f3", "target": "os-culture"      },
-  "ReportEventTypeCounts":      { "id": "a3e80d3a-d257-4cfe-b187-6bec115a416b", "target": "event-type"      },
-  "ReportMoreCultureCounts":    { "id": "4183cff6-71e9-4ef2-b310-038a8366ad3c", "target": "more-culture"    },
-  "ReportCommandCounts":        { "id": "ade8093e-85b1-4387-acc8-889309fc42de", "target": "command",         "heatCol": "Count" },
-  "ReportOSVersionCounts":      { "id": "e6cf638d-4b62-4f1d-9ef6-df5c79bb0ee9", "target": "os-version"      }
+  "ReportCommandCounts":        { "id": "f4a9de62-3370-418f-a004-1f62256ae373", "target": "command",         "heatCol": "Count" },
+  "ReportEventTypeCounts":      { "id": "627561cf-257e-43aa-8740-3a6618d0b8b8", "target": "event-type"      },
+  "ReportMoreCultureCounts":    { "id": "e3fb4ed8-3762-4c6c-b38f-58236ad8a39d", "target": "more-culture"    },
+  "ReportOneMoreVersionCounts": { "id": "b6280fce-ce19-44b2-a372-5016f24637c3", "target": "onemore-version" },
+  "ReportOneNoteVersionCounts": { "id": "97998dec-3fc8-4b65-83da-40748780bfbf", "target": "onenote-version" },
+  "ReportOSCultureCounts":      { "id": "9c34db63-69c4-458d-a2a4-55b006e757b5", "target": "os-culture"      },
+  "ReportOSVersionCounts":      { "id": "1dc076a2-5014-41a9-b832-27200adc4b7e", "target": "os-version"      },
+  "ReportStartTime":            { "id": "fc66a828-9664-4715-bf11-965cf1b40681" }
 }
