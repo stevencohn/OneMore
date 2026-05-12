@@ -1,33 +1,26 @@
-const CONFIG = {
-  region: "us-east-1",
-  poolId: "us-east-1:a4f3a55a-e219-49c8-aa6a-a12c6b9098b6",
-  roleArn: "arn:aws:iam::855406835171:role/onemore-telemetry-unauth",
-  outputBucket: "s3://onemore-athena-results/"
-};
+const API_URL = 'https://uetc84spi9.execute-api.us-east-1.amazonaws.com/prod/query';
 
-let athena;
 let allCommands = [];
 let unusedCommandsTimer = null;
 
-function initAWS() {
-  AWS.config.region = CONFIG.region;
-
-  const creds = new AWS.CognitoIdentityCredentials({
-    IdentityPoolId: CONFIG.poolId,
-    RoleArn: CONFIG.roleArn
+async function runQuery(queryId) {
+  const response = await fetch(API_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ queryId })
   });
 
-  creds.clearCachedId();
-  creds.get(function (err) {
-    if (err) {
-      document.getElementById("subtitle").innerHTML = `<b>Error loading AWS credentials</b> ${err}`;
-      return;
-    }
+  if (response.status === 429) {
+    const err = new Error('Rate limited');
+    err.status = 429;
+    throw err;
+  }
 
-    AWS.config.credentials = creds;
-    athena = new AWS.Athena({ region: CONFIG.region, credentials: creds });
-    loadManifest();
-  });
+  if (!response.ok) {
+    throw new Error(`API error ${response.status}: ${response.statusText}`);
+  }
+
+  return response.json();
 }
 
 function loadManifest() {
@@ -50,9 +43,7 @@ async function loadSubtitle(manifest) {
   const timer = startProgress(el);
 
   try {
-    const named = await athena.getNamedQuery({ NamedQueryId: queryId }).promise();
-    const rows = await runQuery(named.NamedQuery.QueryString, named.NamedQuery.Database);
-
+    const rows = await runQuery(queryId);
     clearInterval(timer);
     if (rows.length > 1 && rows[1].Data.length > 0) {
       const date = new Date(rows[1].Data[0].VarCharValue);
@@ -64,7 +55,13 @@ async function loadSubtitle(manifest) {
     }
   } catch (err) {
     clearInterval(timer);
-    el.textContent = "";
+    if (err.status === 429) {
+      el.classList.remove('text-muted');
+      el.style.color = 'red';
+      el.textContent = 'Rate limited. Please try again in an hour.';
+    } else {
+      el.textContent = '';
+    }
     console.error("[subtitle] failed:", err);
   }
 }
@@ -82,8 +79,7 @@ async function loadSection({ key, id, target, heatCol }) {
 
   const timer = startProgress(el);
   try {
-    const named = await athena.getNamedQuery({ NamedQueryId: id }).promise();
-    const rows = await runQuery(named.NamedQuery.QueryString, named.NamedQuery.Database);
+    const rows = await runQuery(id);
     clearInterval(timer);
     el.innerHTML = renderTable(rows);
     if (key !== "ReportEventTypeCounts") makeSortable(el.querySelector("table"));
@@ -109,41 +105,6 @@ function startProgress(el) {
     frame = (frame + 1) % frames.length;
     el.textContent = frames[frame];
   }, 350);
-}
-
-function runQuery(sql, database) {
-  return new Promise((resolve, reject) => {
-    athena.startQueryExecution(
-      {
-        QueryString: sql,
-        QueryExecutionContext: { Database: database, Catalog: "AwsDataCatalog" },
-        WorkGroup: "onemore-telemetry",
-        ResultConfiguration: { OutputLocation: CONFIG.outputBucket }
-      },
-      function (err, data) {
-        if (err) return reject(err);
-        pollQueryStatus(data.QueryExecutionId, resolve, reject);
-      }
-    );
-  });
-}
-
-function pollQueryStatus(queryId, resolve, reject) {
-  athena.getQueryExecution({ QueryExecutionId: queryId }, function (err, execData) {
-    if (err) return reject(err);
-
-    const status = execData.QueryExecution.Status;
-    if (status.State === "SUCCEEDED") {
-      athena.getQueryResults({ QueryExecutionId: queryId }, function (err, results) {
-        if (err) return reject(err);
-        resolve(results.ResultSet.Rows);
-      });
-    } else if (status.State === "FAILED" || status.State === "CANCELLED") {
-      reject(new Error(status.StateChangeReason || "Query failed"));
-    } else {
-      setTimeout(() => pollQueryStatus(queryId, resolve, reject), 1000);
-    }
-  });
 }
 
 function renderTable(rows) {
@@ -302,4 +263,4 @@ function renderUnusedCommands(commandRows) {
   el.innerHTML = `<table><tr><th>Command</th></tr><tr><td>${unused.join("<br>")}</td></tr></table>`;
 }
 
-initAWS();
+loadManifest();
