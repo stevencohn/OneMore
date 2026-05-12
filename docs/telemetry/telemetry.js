@@ -2,7 +2,7 @@ const CONFIG = {
   region: "us-east-1",
   poolId: "us-east-1:a4f3a55a-e219-49c8-aa6a-a12c6b9098b6",
   roleArn: "arn:aws:iam::855406835171:role/onemore-telemetry-unauth",
-  outputBucket: "s3://onemore-telemetry-logs/athena-results/"
+  outputBucket: "s3://onemore-athena-results/"
 };
 
 let athena;
@@ -117,7 +117,7 @@ function runQuery(sql, database) {
       {
         QueryString: sql,
         QueryExecutionContext: { Database: database, Catalog: "AwsDataCatalog" },
-        WorkGroup: "primary",
+        WorkGroup: "onemore-telemetry",
         ResultConfiguration: { OutputLocation: CONFIG.outputBucket }
       },
       function (err, data) {
