@@ -3,9 +3,9 @@
     "allow": [
       "PowerShell(aws logs describe-log-groups *)",
       "PowerShell(aws ssm get-parameter *)",
-      "Bash(dir \"C:/Github/wiki/telemetry/lambda/\")",
-      "Bash(npm install *)",
-      "Bash(terraform plan *)"
+      "PowerShell(dir \"C:/Github/wiki/telemetry/lambda/\")",
+      "PowerShell(npm install *)",
+      "PowerShell(terraform plan *)"
     ]
   }
 }
