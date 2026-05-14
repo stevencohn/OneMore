@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(aws logs describe-log-groups *)",
+      "PowerShell(aws ssm get-parameter *)",
+      "Bash(dir \"C:/Github/wiki/telemetry/lambda/\")",
+      "Bash(npm install *)",
+      "Bash(terraform plan *)"
+    ]
+  }
+}

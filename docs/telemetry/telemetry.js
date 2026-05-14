@@ -88,13 +88,33 @@ async function loadSection({ key, id, target, heatCol }) {
     if (key === "ReportCommandCounts") renderUnusedCommands(rows);
   } catch (err) {
     clearInterval(timer);
-    el.textContent = "Failed to load.";
-    if (key === "ReportCommandCounts") {
-      clearInterval(unusedCommandsTimer);
-      document.getElementById("unused-commands").textContent = "Failed to load.";
+    if (err instanceof TypeError) {
+      setRetryLink(el, () => loadSection({ key, id, target, heatCol }));
+      if (key === "ReportCommandCounts") {
+        clearInterval(unusedCommandsTimer);
+        setRetryLink(document.getElementById("unused-commands"), () => loadSection({ key, id, target, heatCol }));
+      }
+    } else {
+      el.textContent = "Failed to load.";
+      if (key === "ReportCommandCounts") {
+        clearInterval(unusedCommandsTimer);
+        document.getElementById("unused-commands").textContent = "Failed to load.";
+      }
     }
     console.error(`[${key}] failed:`, err);
   }
+}
+
+function setRetryLink(el, onRetry) {
+  const link = document.createElement('a');
+  link.href = '#';
+  link.textContent = 'Failed to load, click to retry';
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    onRetry();
+  });
+  el.textContent = '';
+  el.appendChild(link);
 }
 
 function startProgress(el) {

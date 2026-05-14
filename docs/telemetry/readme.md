@@ -12,7 +12,7 @@ to bind query results to the correct table on the dashboard page.
 Fetch new query IDs using:
 
 ```powershell
-aws athena list-named-queries --query "NamedQueryIds" | convertfrom-json | % { aws athena get-named-query --named-query-id $_ | convertfrom-json | select @{Name='Name';Expression={$_.NamedQuery.Name}}, @{Name='Id';Expression={$_.NamedQuery.NamedQueryId}} } | where { $_.Name.StartsWith('Report') } | sort Name
+aws athena list-named-queries --query "NamedQueryIds" --work-group onemore-telemetry | convertfrom-json | % { aws athena get-named-query --named-query-id $_ | convertfrom-json | select @{Name='Name';Expression={$_.NamedQuery.Name}}, @{Name='Id';Expression={$_.NamedQuery.NamedQueryId}} } | where { $_.Name.StartsWith('Report') } | sort Name
 ```
 
 ---
