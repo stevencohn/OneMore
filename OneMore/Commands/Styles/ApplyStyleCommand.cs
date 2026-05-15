@@ -311,7 +311,24 @@ namespace River.OneMoreAddIn.Commands
 
 		private void SetQuickStyle(Page page, XElement element, Style style)
 		{
-			if (style.StyleType == StyleType.Heading &&
+			if (style.IsCode)
+			{
+				// bind the paragraph to OneNote's "code" quickstyle so OneNote
+				// (and Apply Styles to Page) recognize it as code regardless
+				// of what it was before — heading, normal, cite, quote, etc.
+
+				var quick = page.GetQuickStyle(StandardStyles.Code);
+				var attr = element.Attribute("quickStyleIndex");
+				if (attr is null)
+				{
+					element.Add(new XAttribute("quickStyleIndex", quick.Index));
+				}
+				else
+				{
+					attr.Value = quick.Index.ToString();
+				}
+			}
+			else if (style.StyleType == StyleType.Heading &&
 				// must be in heading range h1=0..h6=5
 				style.Index < 6)
 			{

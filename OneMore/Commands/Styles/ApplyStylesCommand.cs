@@ -132,7 +132,8 @@ namespace River.OneMoreAddIn.Commands
 				// and ignore all additional "p" occurances defined, QuickStyleDef[@name='p']
 				// I don't remember why but pulled out that logic Feb 7 2022
 
-				if (FindStyle(styles, name) is Style style)
+				var style = FindStyle(styles, name);
+				if (style is not null)
 				{
 					//logger.WriteLine(
 					//	$"~ name:{quick.Attribute("name").Value} style:{style.Name}");
@@ -151,8 +152,15 @@ namespace River.OneMoreAddIn.Commands
 						// spaceBetween should only apply to normal paragraphs
 						name == "p" ? spacing : null);
 
-					quick.SetAttributeValue("fontColor", style.Color);
-					quick.SetAttributeValue("highlightColor", style.Highlight);
+					// code styles never repaint the page's code quickstyle, so the
+					// user's syntax-highlighting (or any custom fontColor on the
+					// QuickStyleDef) is preserved; other styles honor their own
+					// ApplyColors setting
+					if (style.ApplyColors && !style.IsCode)
+					{
+						quick.SetAttributeValue("fontColor", style.Color);
+						quick.SetAttributeValue("highlightColor", style.Highlight);
+					}
 
 					quick.SetAttributeValue("italic", style.IsItalic.ToString().ToLower());
 					quick.SetAttributeValue("bold", style.IsBold.ToString().ToLower());
@@ -164,7 +172,19 @@ namespace River.OneMoreAddIn.Commands
 				}
 
 				var index = quick.Attribute("index").Value;
-				ClearInlineStyles(index, name == "p");
+
+				// preserve inline colors for code paragraphs (syntax highlighting)
+				// and for any style that opted out of ApplyColors; otherwise keep
+				// the historic behavior: Gray-clear normal "p" paragraphs (to keep
+				// deliberate accents) and All-clear everything else
+				var clearing =
+					style is not null && (style.IsCode || !style.ApplyColors)
+						? Stylizer.Clearing.Gray
+						: name == "p"
+							? Stylizer.Clearing.Gray
+							: Stylizer.Clearing.All;
+
+				ClearInlineStyles(index, clearing);
 			}
 
 			return applied;
@@ -195,7 +215,12 @@ namespace River.OneMoreAddIn.Commands
 					break;
 
 				case "code":
-					style = styles.SingleOrDefault(s => s.Name.ToLower() == "code")
+					// prefer the explicit IsCode flag (set by the user in the Edit
+					// Styles dialog, or migrated by StyleRecord for legacy themes)
+					// and fall back to conventional names so themes that haven't
+					// been resaved yet still resolve
+					style = styles.FirstOrDefault(s => s.IsCode)
+						?? styles.SingleOrDefault(s => s.Name.ToLower() == "code")
 						?? styles.SingleOrDefault(s => s.Name.ToLower() == "source code");
 					break;
 
@@ -247,10 +272,10 @@ namespace River.OneMoreAddIn.Commands
 
 
 		// when applying styles, we want to preserve any special treatments to paragraphs
-		// because that would be tedious for the user to restore manually if their intention 
+		// because that would be tedious for the user to restore manually if their intention
 		// was to keep those colors, but we want to clear all color styling from every other
 		// element type like headings, et al.
-		private void ClearInlineStyles(string index, bool paragraph)
+		private void ClearInlineStyles(string index, Stylizer.Clearing clearing)
 		{
 			var elements = page.Root.Descendants()
 				.Where(e => e.Attribute("quickStyleIndex")?.Value == index)
@@ -272,8 +297,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				foreach (var element in elements)
 				{
-					stylizer.Clear(element,
-						paragraph ? Stylizer.Clearing.Gray : Stylizer.Clearing.All);
+					stylizer.Clear(element, clearing);
 				}
 			}
 		}

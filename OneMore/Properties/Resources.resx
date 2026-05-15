@@ -4983,6 +4983,10 @@ Notebooks</value>
     <value>Apply colors</value>
     <comment>checkbox</comment>
   </data>
+  <data name="StyleDialog_isCodeBox.Text" xml:space="preserve">
+    <value>Source code paragraph</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="StyleDialog_backColorButton.ToolTipText" xml:space="preserve">
     <value>Highlight Color</value>
     <comment>button tip</comment>
