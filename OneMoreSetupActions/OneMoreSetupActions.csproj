@@ -111,6 +111,7 @@
   <ItemGroup>
     <None Include="Actions\Registry.reg" />
     <None Include="App.config" />
+    <None Include="CLAUDE.md" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Logo.ico" />
