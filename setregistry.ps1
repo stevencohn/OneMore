@@ -341,7 +341,7 @@ Begin
         $0 = 'Registry::HKEY_CURRENT_USER\SOFTWARE\Microsoft\Office\OneNote\AddIns\River.OneMoreAddIn'
         EnsurePath $0
         Set-ItemProperty $0 -Name 'LoadBehavior' -Type DWord -Value 3
-        Set-ItemProperty $0 -Name 'Description' -Type String -Value 'Extension for OneNote'
+        Set-ItemProperty $0 -Name 'Description' -Type String -Value 'Add-in for OneNote'
         Set-ItemProperty $0 -Name 'FriendlyName' -Type String -Value 'OneMoreAddIn'
         WriteOK $0
 

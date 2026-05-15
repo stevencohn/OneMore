@@ -85,15 +85,21 @@ namespace OneMoreSetupActions
 		}
 
 
+		private static RegistryKey ResolveHive(string hiveName)
+		{
+			if (hiveName.EndsWith("ROOT")) return Registry.ClassesRoot;
+			if (hiveName.EndsWith("MACHINE")) return Registry.LocalMachine;
+			return Registry.CurrentUser;
+		}
+
+
 		private RegistryKey OpenOrCreateKey(string line)
 		{
 			var raw = line.Trim('[', ']');
 
 			// extract hive name, ending up with something like "HKEY_CLASSES_ROOT"
 			var hiveName = raw.Substring(0, raw.IndexOf('\\'));
-
-			// we only care about these two!
-			var hive = hiveName.EndsWith("ROOT") ? Registry.ClassesRoot : Registry.CurrentUser;
+			var hive = ResolveHive(hiveName);
 
 			// extract key path, ending up with something like "Software\OneMore"
 			var keyName = raw.Substring(raw.IndexOf('\\') + 1);
@@ -174,7 +180,7 @@ namespace OneMoreSetupActions
 						if (marker is null || !raw.StartsWith(marker))
 						{
 							var hiveName = raw.Substring(0, raw.IndexOf('\\'));
-							var hive = hiveName.EndsWith("ROOT") ? Registry.ClassesRoot : Registry.CurrentUser;
+							var hive = ResolveHive(hiveName);
 							var keyName = raw.Substring(raw.IndexOf('\\') + 1);
 
 							logger.WriteLine($"deleting tree: {raw}");
