@@ -97,6 +97,9 @@ namespace River.OneMoreAddIn.Commands
 				return info.TextInfo.ToUpper(text);
 			}
 
+			// pre-lowercase so ToTitleCase doesn't preserve all-caps words as acronyms, #1988
+			text = info.TextInfo.ToLower(text);
+
 			if (info.TwoLetterISOLanguageName == "en")
 			{
 				return ToProperTitleCase(info, text);
@@ -123,8 +126,8 @@ namespace River.OneMoreAddIn.Commands
 		 */
 		private string ToProperTitleCase(CultureInfo info, string text)
 		{
-			// capitalize each word
-			text = info.TextInfo.ToTitleCase(text.ToLower(info));
+			// capitalize each word (caller has already lowercased)
+			text = info.TextInfo.ToTitleCase(text);
 
 			// lowercase the exceptions...
 
