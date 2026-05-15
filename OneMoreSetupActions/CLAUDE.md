@@ -77,6 +77,16 @@ registry paths or `WOW6432Node` presence. The matching rules:
 On mismatch, the action shows a `MessageBox` telling the user which installer
 flavour to download, and returns `FAILURE` (1603).
 
+## Architecture detection — PE header is the right tool
+
+When code needs to pick the correct installer for the running machine, always read
+the **PE header** of the relevant binary (`PEReader.PEHeaders.CoffHeader.Machine`)
+and apply the **ARM64EC heuristic**: `Machine.Amd64` on an ARM64 OS means ARM64EC,
+not plain x64. Do NOT use `RuntimeInformation.ProcessArchitecture` as a shortcut —
+the add-in runs in **dllhost.exe** (COM surrogate), not in `ONENOTE.EXE`, so
+`ProcessArchitecture` reflects dllhost's bitness, not OneNote's. For OneNote's
+architecture, read `ONENOTE.EXE`'s PE header directly.
+
 ## References worth knowing
 
 - `System.Reflection.Metadata` / `System.Collections.Immutable` — used by
