@@ -15,6 +15,8 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 	using System.Diagnostics;
 	using System.IO;
 	using System.Reflection;
+	using System.Reflection.PortableExecutable;
+	using System.Runtime.InteropServices;
 	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 	using System.Web.Script.Serialization;
@@ -45,21 +47,20 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 
 		public Updater()
 		{
-			// get current installed info...
-
-			//var path = Environment.Is64BitProcess
-			//	? @"Software\Microsoft\Windows\CurrentVersion\Uninstall"
-			//	: @"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall";
-
-			// since we only deploy a 64-bit installer now...
+			// x64 and ARM64 installs register under the 64-bit view;
+			// x86 installs register under Wow6432Node — probe both.
 			var path = @"Software\Microsoft\Windows\CurrentVersion\Uninstall";
 
-			using var hive = RegistryKey
-				.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
-
-			using var root = hive.OpenSubKey(path);
-			if (root is not null)
+			void ProbeView(RegistryView view)
 			{
+				using var hive = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, view);
+				using var root = hive.OpenSubKey(path);
+				if (root is null)
+				{
+					logger.WriteLine($"updater: Registry key not found HKLM::{path} ({view})");
+					return;
+				}
+
 				foreach (var subName in root.GetSubKeyNames())
 				{
 					using var key = root.OpenSubKey(subName);
@@ -78,14 +79,16 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 							InstalledDate = indate;
 						}
 
-						// found the OneMore key so our job is done here
 						break;
 					}
 				}
 			}
-			else
+
+			ProbeView(RegistryView.Registry64);
+
+			if (string.IsNullOrEmpty(productCode))
 			{
-				logger.WriteLine($"updater: Registry key not found HKLM::{path}");
+				ProbeView(RegistryView.Registry32);
 			}
 
 			InstalledVersion = AssemblyInfo.Version;
@@ -210,12 +213,35 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 			}
 
 			// The msi will have one of these keywords in its name: x86, x64, or ARM64.
-			// The bitness of the executing assembly can tell us the msi to request.
-			var localPath = new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath;
-			var key = SessionLogger.GetAssemblyArchitecture(localPath);
+			// Read the PE header of the executing assembly to determine which installer to
+			// download. Apply the ARM64EC heuristic: Office on ARM64 ships as ARM64EC whose
+			// COFF Machine field reports Amd64; treat it as ARM64 so we download the right
+			// installer rather than silently pulling the x64 build on an ARM64 machine.
+			var localPath = Assembly.GetExecutingAssembly().Location;
+			string key;
+			try
+			{
+				using var stream = new FileStream(localPath, FileMode.Open, FileAccess.Read);
+				using var reader = new PEReader(stream);
+				key = reader.PEHeaders.CoffHeader.Machine switch
+				{
+					Machine.I386  => "x86",
+					Machine.Arm64 => "ARM64",
+					// ARM64EC reports Machine.Amd64 but runs natively on ARM64 Windows
+					Machine.Amd64 when RuntimeInformation.OSArchitecture == Architecture.Arm64
+						=> "ARM64",
+					_ => "x64"
+				};
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"error reading assembly header, defaulting to x64: {exc.Message}");
+				key = "x64";
+			}
+
 			logger.WriteLine($"architecture is {key}");
 
-			var asset = release.assets.Find(a => a.browser_download_url.Contains(key));
+			var asset = release.assets.Find(a => a.browser_download_url.Contains($"Setup{key}.msi"));
 			if (asset is null)
 			{
 				logger.WriteLine($"did not find installer asset for {key}");

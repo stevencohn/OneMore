@@ -101,6 +101,9 @@ namespace River.OneMoreAddIn.Helpers
 		}
 
 
+		// Returns the literal PE machine type ("x86", "x64", "ARM64") for diagnostics and
+		// telemetry. Do NOT use this for installer selection — ARM64EC binaries report "x64"
+		// here even though they run on ARM64. Use RuntimeInformation.ProcessArchitecture instead.
 		public static string GetAssemblyArchitecture(string path)
 		{
 			try
