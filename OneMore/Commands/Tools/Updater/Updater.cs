@@ -50,6 +50,8 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 			// x64 and ARM64 installs register under the 64-bit view;
 			// x86 installs register under Wow6432Node — probe both.
 			var path = @"Software\Microsoft\Windows\CurrentVersion\Uninstall";
+			string foundCode = null;
+			string foundDate = null;
 
 			void ProbeView(RegistryView view)
 			{
@@ -71,12 +73,12 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 						if (key.GetValue("UninstallString") is string cmd &&
 							!string.IsNullOrEmpty(cmd))
 						{
-							productCode = cmd.Substring(cmd.IndexOf('{'));
+							foundCode = cmd.Substring(cmd.IndexOf('{'));
 						}
 
 						if (key.GetValue("InstallDate") is string indate)
 						{
-							InstalledDate = indate;
+							foundDate = indate;
 						}
 
 						break;
@@ -86,11 +88,13 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 
 			ProbeView(RegistryView.Registry64);
 
-			if (string.IsNullOrEmpty(productCode))
+			if (string.IsNullOrEmpty(foundCode))
 			{
 				ProbeView(RegistryView.Registry32);
 			}
 
+			productCode = foundCode;
+			InstalledDate = foundDate;
 			InstalledVersion = AssemblyInfo.Version;
 			InstalledUrl = $"{TagUrl}/{InstalledVersion}";
 		}
