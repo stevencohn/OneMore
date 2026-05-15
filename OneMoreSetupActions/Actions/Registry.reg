@@ -66,6 +66,14 @@ Windows Registry Editor Version 5.00
 [HKEY_CLASSES_ROOT\CLSID\{OneMoreID}\VersionIndependentProgID]
 @="River.OneMoreAddIn"
 
+; HKLM AddIns key so the add-in is discoverable for all users on the machine —
+; required for Intune/SYSTEM deployments where Active Setup repair is blocked
+; (see #1963). HKCU below still wins when present; this is a fallback.
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Office\OneNote\AddIns\River.OneMoreAddIn]
+"LoadBehavior"=dword:00000003
+"Description"="Extension for OneNote"
+"FriendlyName"="OneMoreAddIn"
+
 [HKEY_CURRENT_USER\SOFTWARE\Classes\AppID\{OneMoreID}]
 "DllSurrogate"=""
 

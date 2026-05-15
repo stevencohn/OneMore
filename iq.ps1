@@ -269,6 +269,18 @@ Begin
         if ($ok) { WriteOK $1 } else { WriteBad $1 }
     }
 
+    function CheckMachine
+    {
+        # Machine-wide AddIns registration — the fallback OneNote uses when HKCU
+        # is missing (e.g., Intune/SYSTEM deployments where Active Setup never ran).
+        WriteTitle 'Machine'
+        $0 = 'Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Office\OneNote\AddIns\River.OneMoreAddIn'
+        $ok = (HasValue $0 'LoadBehavior' '3')
+        $ok = (HasValue $0 'Description' 'Extension for OneNote') -and $ok
+        $ok = (HasValue $0 'FriendlyName' 'OneMoreAddIn') -and $ok
+        if ($ok) { WriteOK $0 } else { WriteBad $0 }
+    }
+
     function CheckUser
     {
         WriteTitle 'User'
@@ -281,7 +293,10 @@ Begin
         $ok = (HasValue $0 'LoadBehavior' '3')
         $ok = (HasValue $0 'Description' 'Extension for OneNote') -and $ok
         $ok = (HasValue $0 'FriendlyName' 'OneMoreAddIn') -and $ok
-        if ($ok) { WriteOK $0 } else { WriteBad $0 }
+        if ($ok) { WriteOK $0 } else {
+            WriteBad $0
+            Write-Host '... HKCU AddIns missing; HKLM fallback (Machine section above) covers this on SYSTEM/Intune installs' -Fore Yellow
+        }
 
         $0 = 'Registry::HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\River.OneMoreAddIn.dll'
         if ($codebase -eq $null) {
@@ -365,6 +380,7 @@ Process
         CheckCLSID $true
     }
 
+    CheckMachine
     CheckUser
     CheckWebView2
 }
