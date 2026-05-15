@@ -276,7 +276,7 @@ Begin
         WriteTitle 'Machine'
         $0 = 'Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Office\OneNote\AddIns\River.OneMoreAddIn'
         $ok = (HasValue $0 'LoadBehavior' '3')
-        $ok = (HasValue $0 'Description' 'Extension for OneNote') -and $ok
+        $ok = (HasValue $0 'Description' 'Add-in for OneNote') -and $ok
         $ok = (HasValue $0 'FriendlyName' 'OneMoreAddIn') -and $ok
         if ($ok) { WriteOK $0 } else { WriteBad $0 }
     }
@@ -291,7 +291,7 @@ Begin
 
         $0 = 'Registry::HKEY_CURRENT_USER\SOFTWARE\Microsoft\Office\OneNote\AddIns\River.OneMoreAddIn'
         $ok = (HasValue $0 'LoadBehavior' '3')
-        $ok = (HasValue $0 'Description' 'Extension for OneNote') -and $ok
+        $ok = (HasValue $0 'Description' 'Add-in for OneNote') -and $ok
         $ok = (HasValue $0 'FriendlyName' 'OneMoreAddIn') -and $ok
         if ($ok) { WriteOK $0 } else {
             WriteBad $0

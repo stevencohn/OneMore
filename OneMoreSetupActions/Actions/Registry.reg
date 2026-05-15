@@ -71,7 +71,7 @@ Windows Registry Editor Version 5.00
 ; (see #1963). HKCU below still wins when present; this is a fallback.
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Office\OneNote\AddIns\River.OneMoreAddIn]
 "LoadBehavior"=dword:00000003
-"Description"="Extension for OneNote"
+"Description"="Add-in for OneNote"
 "FriendlyName"="OneMoreAddIn"
 
 [HKEY_CURRENT_USER\SOFTWARE\Classes\AppID\{OneMoreID}]
@@ -79,7 +79,7 @@ Windows Registry Editor Version 5.00
 
 [HKEY_CURRENT_USER\SOFTWARE\Microsoft\Office\OneNote\AddIns\River.OneMoreAddIn]
 "LoadBehavior"=dword:00000003
-"Description"="Extension for OneNote"
+"Description"="Add-in for OneNote"
 "FriendlyName"="OneMoreAddIn"
 
 [HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\River.OneMoreAddIn.dll]
