@@ -8,7 +8,6 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
-	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
 	using Resx = Properties.Resources;
@@ -22,8 +21,6 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private const string HeaderShading = "#DEEBF6";
 		private const string nbtab = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-		private const string nbsp = "&nbsp;";
-		private const string ucsp = "\u00A0";
 
 		private static bool commandIsActive = false;
 
@@ -183,13 +180,10 @@ namespace River.OneMoreAddIn.Commands
 			//		<span style='font-weight:bold'>Word, Int, Double, </span><span
 			//		style='font-weight: bold;font-style:italic'>Olde</span>
 			//
+			// ToXmlWrapper normalizes &nbsp;, <br>, and unquoted lang= attributes so
+			// the row content can be parsed as valid XML
 
-			if (xml.Contains(nbsp))
-			{
-				xml = Regex.Replace(xml, $"(?:{nbsp})+", ucsp);
-			}
-
-			var wrapper = XElement.Parse($"<w>{xml}</w>");
+			var wrapper = xml.ToXmlWrapper("w");
 			var parts = new List<string>();
 			foreach (var node in wrapper.Nodes())
 			{
