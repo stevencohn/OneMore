@@ -46,6 +46,34 @@ to `Environment.Is64BitProcess`, `RuntimeInformation.OSArchitecture`,
 `WOW6432Node`, or PE-header inspection is part of this machinery and is not
 incidental. See `OneMoreSetupActions/CLAUDE.md` for the enforcement rules.
 
+### ARM64EC heuristic — apply everywhere architecture is detected
+
+Office on ARM64 Windows ships as **ARM64EC**: binaries whose COFF `Machine`
+field is `IMAGE_FILE_MACHINE_AMD64` even though they run natively on ARM64.
+A plain PE-header read therefore misreports ARM64EC OneNote/OneMore as x64.
+
+**The required pattern** (used in `CheckBitnessAction.cs` and `Updater.cs`):
+
+```csharp
+Machine.I386  => /* x86 */,
+Machine.Arm64 => /* ARM64 */,
+Machine.Amd64 when RuntimeInformation.OSArchitecture == Architecture.Arm64
+              => /* ARM64  ← ARM64EC heuristic */,
+_             => /* x64 */
+```
+
+Apply this whenever selecting an installer, matching a registry path, or
+otherwise branching on the architecture of a binary running on this machine.
+
+**Do NOT apply it in `SessionLogger.GetAssemblyArchitecture`** — that method
+intentionally returns the literal PE value for diagnostics and telemetry.
+ARM64EC reporting as `"x64"` there is useful population data.
+
+**Do NOT use `RuntimeInformation.ProcessArchitecture`** as a shortcut for
+OneNote's architecture. The add-in runs in **dllhost.exe** (COM surrogate),
+not `ONENOTE.EXE`, so `ProcessArchitecture` reflects dllhost's bitness.
+Read `ONENOTE.EXE`'s PE header directly when you need OneNote's architecture.
+
 ## Conventions and norms
 
 - **Issues / PRs:** use the `gh` CLI. Default repo is `stevencohn/OneMore`
