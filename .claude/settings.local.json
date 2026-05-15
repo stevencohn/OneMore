@@ -12,7 +12,10 @@
       "Bash(git add *)",
       "Bash(git reset *)",
       "Bash(git checkout *)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git commit *)",
+      "Bash(git pull *)"
     ]
   }
 }
