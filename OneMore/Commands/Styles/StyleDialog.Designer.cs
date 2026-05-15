@@ -69,6 +69,7 @@
 			this.styleTypeLabel = new System.Windows.Forms.Label();
 			this.styleTypeBox = new System.Windows.Forms.ComboBox();
 			this.applyColorsBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.isCodeBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.familyBox = new River.OneMoreAddIn.UI.FontComboBox();
 			this.mainTools = new River.OneMoreAddIn.UI.MoreMenuStrip();
 			this.loadButton = new River.OneMoreAddIn.UI.MoreMenuItem();
@@ -121,7 +122,7 @@
 			// beforeLabel
 			// 
 			this.beforeLabel.AutoSize = true;
-			this.beforeLabel.Location = new System.Drawing.Point(18, 289);
+			this.beforeLabel.Location = new System.Drawing.Point(18, 320);
 			this.beforeLabel.Name = "beforeLabel";
 			this.beforeLabel.Size = new System.Drawing.Size(111, 20);
 			this.beforeLabel.TabIndex = 6;
@@ -131,7 +132,7 @@
 			// afterLabel
 			// 
 			this.afterLabel.AutoSize = true;
-			this.afterLabel.Location = new System.Drawing.Point(18, 326);
+			this.afterLabel.Location = new System.Drawing.Point(18, 357);
 			this.afterLabel.Name = "afterLabel";
 			this.afterLabel.Size = new System.Drawing.Size(98, 20);
 			this.afterLabel.TabIndex = 7;
@@ -176,7 +177,7 @@
 			// spaceBeforeSpinner
 			// 
 			this.spaceBeforeSpinner.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.spaceBeforeSpinner.Location = new System.Drawing.Point(169, 283);
+			this.spaceBeforeSpinner.Location = new System.Drawing.Point(169, 314);
 			this.spaceBeforeSpinner.Name = "spaceBeforeSpinner";
 			this.spaceBeforeSpinner.Size = new System.Drawing.Size(108, 31);
 			this.spaceBeforeSpinner.TabIndex = 7;
@@ -186,7 +187,7 @@
 			// spaceAfterSpinner
 			// 
 			this.spaceAfterSpinner.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.spaceAfterSpinner.Location = new System.Drawing.Point(169, 319);
+			this.spaceAfterSpinner.Location = new System.Drawing.Point(169, 350);
 			this.spaceAfterSpinner.Name = "spaceAfterSpinner";
 			this.spaceAfterSpinner.Size = new System.Drawing.Size(108, 31);
 			this.spaceAfterSpinner.TabIndex = 8;
@@ -199,7 +200,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.previewBox.BackColor = System.Drawing.Color.White;
 			this.previewBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.previewBox.Location = new System.Drawing.Point(296, 283);
+			this.previewBox.Location = new System.Drawing.Point(296, 314);
 			this.previewBox.Name = "previewBox";
 			this.previewBox.Size = new System.Drawing.Size(347, 107);
 			this.previewBox.TabIndex = 18;
@@ -213,7 +214,7 @@
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
-			this.cancelButton.Location = new System.Drawing.Point(527, 585);
+			this.cancelButton.Location = new System.Drawing.Point(527, 629);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(116, 38);
@@ -231,7 +232,7 @@
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
-			this.okButton.Location = new System.Drawing.Point(405, 585);
+			this.okButton.Location = new System.Drawing.Point(405, 629);
 			this.okButton.Name = "okButton";
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(116, 38);
@@ -249,7 +250,7 @@
 			this.namesBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.namesBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.namesBox.FormattingEnabled = true;
-			this.namesBox.Location = new System.Drawing.Point(18, 589);
+			this.namesBox.Location = new System.Drawing.Point(18, 633);
 			this.namesBox.Name = "namesBox";
 			this.namesBox.Size = new System.Drawing.Size(121, 33);
 			this.namesBox.TabIndex = 10;
@@ -271,6 +272,7 @@
 			this.bodyPanel.Controls.Add(this.styleTypeLabel);
 			this.bodyPanel.Controls.Add(this.styleTypeBox);
 			this.bodyPanel.Controls.Add(this.applyColorsBox);
+			this.bodyPanel.Controls.Add(this.isCodeBox);
 			this.bodyPanel.Controls.Add(this.nameLabel);
 			this.bodyPanel.Controls.Add(this.familyBox);
 			this.bodyPanel.Controls.Add(this.okButton);
@@ -287,7 +289,7 @@
 			this.bodyPanel.Location = new System.Drawing.Point(8, 35);
 			this.bodyPanel.Name = "bodyPanel";
 			this.bodyPanel.Padding = new System.Windows.Forms.Padding(15, 20, 15, 9);
-			this.bodyPanel.Size = new System.Drawing.Size(661, 635);
+			this.bodyPanel.Size = new System.Drawing.Size(661, 679);
 			this.bodyPanel.TabIndex = 25;
 			// 
 			// styleTools
@@ -477,7 +479,7 @@
 			this.ignoredBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.ignoredBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.ignoredBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.ignoredBox.Location = new System.Drawing.Point(169, 244);
+			this.ignoredBox.Location = new System.Drawing.Point(169, 275);
 			this.ignoredBox.Name = "ignoredBox";
 			this.ignoredBox.Size = new System.Drawing.Size(176, 25);
 			this.ignoredBox.StylizeImage = false;
@@ -497,10 +499,10 @@
 			this.optionsGroup.Controls.Add(this.pageColorLink);
 			this.optionsGroup.Controls.Add(this.darkBox);
 			this.optionsGroup.Controls.Add(this.pageColorBox);
-			this.optionsGroup.Location = new System.Drawing.Point(22, 420);
+			this.optionsGroup.Location = new System.Drawing.Point(22, 458);
 			this.optionsGroup.Name = "optionsGroup";
 			this.optionsGroup.ShowOnlyTopEdge = true;
-			this.optionsGroup.Size = new System.Drawing.Size(620, 150);
+			this.optionsGroup.Size = new System.Drawing.Size(620, 156);
 			this.optionsGroup.TabIndex = 30;
 			this.optionsGroup.TabStop = false;
 			this.optionsGroup.Text = "Options";
@@ -528,6 +530,7 @@
 			this.pageColorLink.LinkColor = System.Drawing.Color.MediumOrchid;
 			this.pageColorLink.Location = new System.Drawing.Point(46, 90);
 			this.pageColorLink.Name = "pageColorLink";
+			this.pageColorLink.Selected = false;
 			this.pageColorLink.Size = new System.Drawing.Size(247, 20);
 			this.pageColorLink.StrictColors = false;
 			this.pageColorLink.TabIndex = 2;
@@ -573,7 +576,7 @@
 			// spacingLabel
 			// 
 			this.spacingLabel.AutoSize = true;
-			this.spacingLabel.Location = new System.Drawing.Point(18, 362);
+			this.spacingLabel.Location = new System.Drawing.Point(18, 393);
 			this.spacingLabel.Name = "spacingLabel";
 			this.spacingLabel.Size = new System.Drawing.Size(71, 20);
 			this.spacingLabel.TabIndex = 29;
@@ -583,7 +586,7 @@
 			// spacingSpinner
 			// 
 			this.spacingSpinner.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.spacingSpinner.Location = new System.Drawing.Point(169, 356);
+			this.spacingSpinner.Location = new System.Drawing.Point(169, 387);
 			this.spacingSpinner.Name = "spacingSpinner";
 			this.spacingSpinner.Size = new System.Drawing.Size(108, 31);
 			this.spacingSpinner.TabIndex = 9;
@@ -634,6 +637,23 @@
 			this.applyColorsBox.ThemedFore = null;
 			this.applyColorsBox.UseVisualStyleBackColor = true;
 			this.applyColorsBox.CheckedChanged += new System.EventHandler(this.ChangeApplyColorsOption);
+			// 
+			// isCodeBox
+			// 
+			this.isCodeBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.isCodeBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.isCodeBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.isCodeBox.Location = new System.Drawing.Point(169, 244);
+			this.isCodeBox.Name = "isCodeBox";
+			this.isCodeBox.Size = new System.Drawing.Size(188, 25);
+			this.isCodeBox.StylizeImage = false;
+			this.isCodeBox.TabIndex = 7;
+			this.isCodeBox.Text = "Source code paragraph";
+			this.isCodeBox.ThemedBack = null;
+			this.isCodeBox.ThemedFore = null;
+			this.tooltip.SetToolTip(this.isCodeBox, "Mark this as the code style used by Apply Styles to Page");
+			this.isCodeBox.UseVisualStyleBackColor = true;
+			this.isCodeBox.CheckedChanged += new System.EventHandler(this.ChangeIsCodeOption);
 			// 
 			// familyBox
 			// 
@@ -741,7 +761,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(676, 678);
+			this.ClientSize = new System.Drawing.Size(676, 722);
 			this.Controls.Add(this.mainTools);
 			this.Controls.Add(this.bodyPanel);
 			this.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -798,6 +818,7 @@
 		private UI.MoreMenuItem deleteButton;
 		private System.Windows.Forms.Panel bodyPanel;
 		private UI.MoreCheckBox applyColorsBox;
+		private UI.MoreCheckBox isCodeBox;
 		private System.Windows.Forms.Label styleTypeLabel;
 		private System.Windows.Forms.ComboBox styleTypeBox;
 		private UI.MoreMenuItem loadButton;

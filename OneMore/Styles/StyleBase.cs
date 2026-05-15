@@ -111,6 +111,7 @@ namespace River.OneMoreAddIn.Styles
 			Ignored = other.Ignored;
 
 			ApplyColors = other.ApplyColors;
+			IsCode = other.IsCode;
 		}
 
 
@@ -265,6 +266,18 @@ namespace River.OneMoreAddIn.Styles
 		/// Stored by StyleRecord and used by Style but ignored by QuickStyleDef
 		/// </remarks>
 		public bool ApplyColors { get; set; }
+
+
+		/// <summary>
+		/// Gets or sets a Boolean indicating that this style represents the user's
+		/// preferred code style. When true, "Apply Styles to Page" treats
+		/// OneNote code-quickstyle paragraphs as targets for this style and
+		/// preserves any inline colors (e.g. syntax highlighting) on them.
+		/// </summary>
+		/// <remarks>
+		/// Stored by StyleRecord and used by Style but ignored by QuickStyleDef
+		/// </remarks>
+		public bool IsCode { get; set; }
 
 
 		/// <summary>

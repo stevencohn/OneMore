@@ -5000,6 +5000,10 @@ Des notebooks</value>
     <value>Désactiver la vérification orthographique</value>
     <comment>checkbox</comment>
   </data>
+  <data name="StyleDialog_isCodeBox.Text" xml:space="preserve">
+    <value>Paragraphe du code source</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="StyleDialog_italicButton.Text" xml:space="preserve">
     <value>Italique</value>
     <comment>button</comment>

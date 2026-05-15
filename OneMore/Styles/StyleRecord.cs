@@ -60,6 +60,18 @@ namespace River.OneMoreAddIn.Styles
 			if (element.GetAttributeValue("applyColors", out bool applyColors, false))
 				ApplyColors = applyColors;
 
+			if (element.GetAttributeValue("isCode", out bool isCode, false))
+			{
+				IsCode = isCode;
+			}
+			else if (!string.IsNullOrEmpty(Name))
+			{
+				// reader-makes-right migration for themes that pre-date the
+				// isCode attribute: infer from the conventional style name
+				var lower = Name.ToLowerInvariant();
+				IsCode = lower == "code" || lower == "source code";
+			}
+
 			if (element.GetAttributeValue("bold", out bool bold, false))
 				IsBold = bold;
 
@@ -108,6 +120,11 @@ namespace River.OneMoreAddIn.Styles
 
 			writer.WriteAttributeString("applyColors", ApplyColors.ToString().ToLower());
 			writer.WriteAttributeString("styleType", StyleType.ToString());
+
+			if (IsCode)
+			{
+				writer.WriteAttributeString("isCode", "true");
+			}
 		}
 	}
 }

@@ -144,6 +144,7 @@ namespace River.OneMoreAddIn.Commands
 					"fontLabel",
 					"styleTypeLabel",
 					"applyColorsBox",
+					"isCodeBox",
 					// options
 					"optionsGroup=word_Options",
 					"darkBox",
@@ -313,6 +314,7 @@ namespace River.OneMoreAddIn.Commands
 			subButton.Checked = selection.IsSubscript;
 
 			applyColorsBox.Checked = selection.ApplyColors;
+			isCodeBox.Checked = selection.IsCode;
 			ignoredBox.Checked = selection.Ignored;
 
 			if (double.TryParse(selection.SpaceAfter, NumberStyles.Any, CultureInfo.InvariantCulture, out var sa))
@@ -515,13 +517,21 @@ namespace River.OneMoreAddIn.Commands
 						spaceAfterSpinner.Enabled = false;
 						spaceBeforeSpinner.Enabled = false;
 						spacingSpinner.Enabled = false;
+						isCodeBox.Enabled = isCodeBox.Checked = false;
 						break;
 
 					case StyleType.Paragraph:
+						spaceAfterSpinner.Enabled = true;
+						spaceBeforeSpinner.Enabled = true;
+						spacingSpinner.Enabled = true;
+						isCodeBox.Enabled = true;
+						break;
+
 					case StyleType.Heading:
 						spaceAfterSpinner.Enabled = true;
 						spaceBeforeSpinner.Enabled = true;
 						spacingSpinner.Enabled = true;
+						isCodeBox.Enabled = isCodeBox.Checked = false;
 						break;
 				}
 			}
@@ -672,6 +682,12 @@ namespace River.OneMoreAddIn.Commands
 				= applyColorsBox.Checked;
 
 			previewBox.Invalidate();
+		}
+
+
+		private void ChangeIsCodeOption(object sender, EventArgs e)
+		{
+			selection.IsCode = isCodeBox.Checked;
 		}
 
 

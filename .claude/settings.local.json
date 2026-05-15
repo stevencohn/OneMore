@@ -20,7 +20,8 @@
       "Bash(curl -s -o C:\\\\Users\\\\steve\\\\AppData\\\\Local\\\\Temp\\\\issue1988.png -L \"https://github.com/user-attachments/assets/3b933688-0d66-46d7-9504-00e3ed96f829\")",
       "Bash(dir C:\\\\Users\\\\steve\\\\AppData\\\\Local\\\\Temp\\\\issue1988.png)",
       "PowerShell(Join-Path *)",
-      "PowerShell(Get-Item *)"
+      "PowerShell(Get-Item *)",
+      "Bash(Select-Object -First 20)"
     ]
   }
 }

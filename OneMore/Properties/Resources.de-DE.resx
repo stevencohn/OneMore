@@ -4985,6 +4985,10 @@ Notizbücher</value>
     <value>Rechtschreibprüfung deaktivieren</value>
     <comment>checkbox</comment>
   </data>
+  <data name="StyleDialog_isCodeBox.Text" xml:space="preserve">
+    <value>Absatz zum Quellcode</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="StyleDialog_italicButton.Text" xml:space="preserve">
     <value>Kursiv</value>
     <comment>button</comment>

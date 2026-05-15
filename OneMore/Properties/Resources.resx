@@ -5024,6 +5024,10 @@ Notebooks</value>
     <value>Disable spell check</value>
     <comment>checkbox</comment>
   </data>
+  <data name="StyleDialog_isCodeBox.Text" xml:space="preserve">
+    <value>Source code paragraph</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="StyleDialog_italicButton.Text" xml:space="preserve">
     <value>Italic</value>
     <comment>button</comment>

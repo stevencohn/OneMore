@@ -12304,6 +12304,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Source code paragraph.
+        /// </summary>
+        internal static string StyleDialog_isCodeBox_Text {
+            get {
+                return ResourceManager.GetString("StyleDialog_isCodeBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Italic.
         /// </summary>
         internal static string StyleDialog_italicButton_Text {
