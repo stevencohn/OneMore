@@ -367,14 +367,21 @@ namespace River.OneMoreAddIn
 			// and is the same as \u00A0 but 1-byte
 			var value = s.Replace("&nbsp;", "&#160;");
 
+			// escape any & that is not already part of a valid XML entity reference
+			// (e.g. "R&D", "Ben & Jerry's", or HTML entities like "&copy;") \u2014 anything
+			// not matching amp/lt/gt/apos/quot/numeric becomes &amp; so the parser
+			// treats it as literal text rather than throwing on EntityName.
+			// Do not try SecurityElement.Escape as it's too aggressive — it would also
+			// escape < and >, destroying the HTML markup we want to preserve.
+			value = Regex.Replace(value,
+				@"&(?!(?:amp|lt|gt|apos|quot|#\d+|#x[0-9a-fA-F]+);)",
+				"&amp;");
+
 			// XElement doesn't like <br> so replace with <br/>
 			value = Regex.Replace(value, @"\<\s*br\s*\>", "<br/>");
 
 			// quote unquote language attribute, e.g., lang=yo to lang="yo" (or two part en-US)
 			value = Regex.Replace(value, @"(\s)lang=([\w\-]+)([\s/>])", "$1lang=\"$2\"$3");
-
-			// escape &
-			//value = System.Security.SecurityElement.Escape(value);
 
 			try
 			{
