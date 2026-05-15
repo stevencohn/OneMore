@@ -75,7 +75,10 @@ namespace River.OneMoreAddIn.Commands
 
 			var indexes =
 				page.Root.Elements(ns + "TagDef")
-				.Where(e => symbols.Contains(int.Parse(e.Attribute("symbol").Value)))
+				.Where(e =>
+					int.TryParse(e.Attribute("symbol")?.Value, out var sym) &&
+					symbols.Contains(sym) &&
+					e.Attribute("index") is not null)
 				.Select(e => e.Attribute("index").Value)
 				.ToList();
 
@@ -85,7 +88,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			var tags = page.Root.Descendants(ns + "Tag")
-				.Where(e => indexes.Contains(e.Attribute("index").Value));
+				.Where(e => e.Attribute("index") is XAttribute idx && indexes.Contains(idx.Value));
 
 			if (!tags.Any())
 			{
@@ -194,8 +197,13 @@ namespace River.OneMoreAddIn.Commands
 				}
 				else if (node is XElement span && span.Name.LocalName == "span")
 				{
-					// span always and only have a style attribute
-					var style = new Style(span.Attribute("style").Value);
+					// most spans have a style attribute, but some (e.g. <span lang="..">) do not
+					if (span.Attribute("style") is not XAttribute styleAttr)
+					{
+						continue;
+					}
+
+					var style = new Style(styleAttr.Value);
 					if (!style.IsStrikethrough)
 					{
 						style.IsStrikethrough = true;
@@ -210,7 +218,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (modified)
 			{
-				if (cdata.Parent.Attribute("style") is XAttribute attribute)
+				if (cdata.Parent?.Attribute("style") is XAttribute attribute)
 				{
 					var style = new Style(attribute.Value);
 					style.Color = fontColor;
@@ -255,7 +263,10 @@ namespace River.OneMoreAddIn.Commands
 				modified |= Unstrike(span);
 			}
 
-			modified |= Unstrike(cdata.Parent.Parent); // cdata->T->OE
+			if (cdata.Parent?.Parent is XElement oe) // cdata->T->OE
+			{
+				modified |= Unstrike(oe);
+			}
 
 			if (modified)
 			{
