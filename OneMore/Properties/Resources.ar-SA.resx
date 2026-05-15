@@ -5002,6 +5002,10 @@ ISO-code then comma then language name</comment>
     <value>تعطيل التدقيق الإملائي</value>
     <comment>checkbox</comment>
   </data>
+  <data name="StyleDialog_isCodeBox.Text" xml:space="preserve">
+    <value>فقرة كود المصدر</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="StyleDialog_italicButton.Text" xml:space="preserve">
     <value>مائل</value>
     <comment>button</comment>
