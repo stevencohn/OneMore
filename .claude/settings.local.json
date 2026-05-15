@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"C:\\\\Github\\\\OneMore\" -Directory)",
+      "Bash(Select-Object -ExpandProperty Name)",
+      "Bash(Sort-Object)",
+      "PowerShell(Get-ChildItem *)",
+      "Bash(Get-ChildItem C:\\\\Github\\\\OneMore *)",
+      "PowerShell(Get-Command *)",
+      "PowerShell(gh issue *)",
+      "WebSearch",
+      "Bash(git add *)",
+      "Bash(git reset *)",
+      "Bash(git checkout *)",
+      "Bash(git push *)"
+    ]
+  }
+}
