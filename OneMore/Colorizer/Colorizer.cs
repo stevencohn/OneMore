@@ -45,7 +45,27 @@ namespace River.OneMoreAddIn.Colorizer
 				throw new FileNotFoundException(path);
 			}
 
-			parser = new Parser(Compiler.Compile(Provider.LoadLanguage(path)));
+			ILanguage language;
+			try
+			{
+				language = Provider.LoadLanguage(path);
+			}
+			catch (System.Exception exc)
+			{
+				Logger.Current.WriteLine($"error loading language {path}", exc);
+				throw new LanguageException(
+					$"language definition '{languageName}' is malformed: {path}",
+					languageName, -1);
+			}
+
+			if (language == null)
+			{
+				throw new LanguageException(
+					$"language definition '{languageName}' could not be loaded: {path}",
+					languageName, -1);
+			}
+
+			parser = new Parser(Compiler.Compile(language));
 
 			theme = Provider.LoadTheme(
 				Path.Combine(root, $@"Themes\{themeName}-theme.json"), autoOverride);
