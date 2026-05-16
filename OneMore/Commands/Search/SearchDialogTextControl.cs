@@ -57,10 +57,11 @@ namespace River.OneMoreAddIn.Commands
 
 		private readonly List<ResultItem> results = new();
 		private readonly Dictionary<Color, SolidBrush> groupBrushes = new();
+
 		private Font groupFont;
 		private Font hitFont;
-		private SolidBrush hitBackBrush;       // unselected hit row background
-		private SolidBrush selectionBackBrush; // selected hit row background
+		private SolidBrush hitBackBrush;					// unselected hit row background
+		private readonly SolidBrush selectionBackBrush;		// selected hit row background
 
 
 		public SearchDialogTextControl()
@@ -122,19 +123,6 @@ namespace River.OneMoreAddIn.Commands
 				foreach (var brush in groupBrushes.Values) brush.Dispose();
 				groupBrushes.Clear();
 			};
-		}
-
-
-		// Returns a cached SolidBrush for the given color, allocating one on first use.
-		// Lifetime is tied to the control; brushes are disposed in the Disposed handler.
-		private SolidBrush GetGroupBrush(Color color)
-		{
-			if (!groupBrushes.TryGetValue(color, out var brush))
-			{
-				brush = new SolidBrush(color);
-				groupBrushes[color] = brush;
-			}
-			return brush;
 		}
 
 
@@ -471,28 +459,45 @@ namespace River.OneMoreAddIn.Commands
 				TextFormatFlags.NoPrefix |
 				TextFormatFlags.SingleLine;
 
+			const int swatchW = 8;
+
 			if (result.IsGroup)
 			{
 				// Colored swatch on the left edge indicating the section's accent color
 				const int pad = 4;
-				const int swatchW = 8;
 				var swatch = new Rectangle(
 					e.Bounds.X + pad, e.Bounds.Y + pad,
 					swatchW, e.Bounds.Height - pad * 2);
+
 				e.Graphics.FillRectangle(GetGroupBrush(result.SectionColor), swatch);
 
 				var textRect = new Rectangle(
 					swatch.Right + pad * 2, e.Bounds.Y,
 					e.Bounds.Width - swatch.Right - pad * 2, e.Bounds.Height);
+
 				TextRenderer.DrawText(e.Graphics, result.Text, groupFont, textRect, ForeColor, flags);
 			}
 			else
 			{
 				var foreColor = selected ? SelectionFore : ForeColor;
 				var textRect = new Rectangle(
-					e.Bounds.X + 4, e.Bounds.Y, e.Bounds.Width - 4, e.Bounds.Height);
+					e.Bounds.X + swatchW + 4, e.Bounds.Y, e.Bounds.Width - swatchW - 4, e.Bounds.Height);
+
 				TextRenderer.DrawText(e.Graphics, result.Text, hitFont, textRect, foreColor, flags);
 			}
+		}
+
+
+		// Returns a cached SolidBrush for the given color, allocating one on first use.
+		// Lifetime is tied to the control; brushes are disposed in the Disposed handler.
+		private SolidBrush GetGroupBrush(Color color)
+		{
+			if (!groupBrushes.TryGetValue(color, out var brush))
+			{
+				brush = new SolidBrush(color);
+				groupBrushes[color] = brush;
+			}
+			return brush;
 		}
 
 
