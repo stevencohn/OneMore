@@ -37,6 +37,7 @@ namespace River.OneMoreAddIn.Commands
 			public Color SectionColor { get; set; }     // group only: left swatch color
 			public Color SectionBackColor { get; set; }  // group only: row background tint
 			public string Hyperlink { get; set; }        // hit only
+			public ListViewItem ViewItem { get; set; }   // lazily cached for OnRetrieveVirtualItem
 		}
 
 
@@ -55,6 +56,7 @@ namespace River.OneMoreAddIn.Commands
 		private bool grouping;
 
 		private readonly List<ResultItem> results = new();
+		private readonly Dictionary<Color, SolidBrush> groupBrushes = new();
 		private Font groupFont;
 		private Font hitFont;
 		private SolidBrush hitBackBrush;       // unselected hit row background
@@ -117,7 +119,22 @@ namespace River.OneMoreAddIn.Commands
 				hitFont?.Dispose();
 				hitBackBrush?.Dispose();
 				selectionBackBrush?.Dispose();
+				foreach (var brush in groupBrushes.Values) brush.Dispose();
+				groupBrushes.Clear();
 			};
+		}
+
+
+		// Returns a cached SolidBrush for the given color, allocating one on first use.
+		// Lifetime is tied to the control; brushes are disposed in the Disposed handler.
+		private SolidBrush GetGroupBrush(Color color)
+		{
+			if (!groupBrushes.TryGetValue(color, out var brush))
+			{
+				brush = new SolidBrush(color);
+				groupBrushes[color] = brush;
+			}
+			return brush;
 		}
 
 
@@ -383,6 +400,12 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			resultsView.VirtualListSize = results.Count;
+
+			// WM_PAINT is the lowest-priority message; without this the search loop's
+			// own SynchronizationContext continuations starve the paint and rows do not
+			// appear until the loop ends. Update() dispatches any pending paint for the
+			// invalid region (only the new tail rows) without re-invalidating.
+			resultsView.Update();
 		}
 
 
@@ -396,7 +419,9 @@ namespace River.OneMoreAddIn.Commands
 
 			// The item text and font are used by the ListView for keyboard search and
 			// accessibility; actual painting happens in OnDrawItem / OnDrawSubItem.
-			e.Item = new ListViewItem(result.Text)
+			// Cache the ListViewItem on the result so sustained scroll over thousands
+			// of rows does not allocate one per visible-row callback.
+			e.Item = result.ViewItem ??= new ListViewItem(result.Text)
 			{
 				Font = result.IsGroup ? groupFont : hitFont
 			};
@@ -412,8 +437,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (result.IsGroup)
 			{
-				using var bgBrush = new SolidBrush(result.SectionBackColor);
-				e.Graphics.FillRectangle(bgBrush, e.Bounds);
+				e.Graphics.FillRectangle(GetGroupBrush(result.SectionBackColor), e.Bounds);
 			}
 			else if (selected)
 			{
@@ -455,8 +479,7 @@ namespace River.OneMoreAddIn.Commands
 				var swatch = new Rectangle(
 					e.Bounds.X + pad, e.Bounds.Y + pad,
 					swatchW, e.Bounds.Height - pad * 2);
-				using var swatchBrush = new SolidBrush(result.SectionColor);
-				e.Graphics.FillRectangle(swatchBrush, swatch);
+				e.Graphics.FillRectangle(GetGroupBrush(result.SectionColor), swatch);
 
 				var textRect = new Rectangle(
 					swatch.Right + pad * 2, e.Bounds.Y,
