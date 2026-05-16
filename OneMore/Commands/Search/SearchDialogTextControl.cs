@@ -46,6 +46,8 @@ namespace River.OneMoreAddIn.Commands
 		private const int UpdatedAfter = 3;
 		private const int UpdatedBefore = 4;
 
+		private readonly ThemeManager manager = ThemeManager.Instance;
+
 		// Matches the original HighlightBackground / HighlightForeground from the Designer
 		private static readonly Color SelectionBack = Color.FromArgb(215, 193, 255);
 		private static readonly Color SelectionFore = SystemColors.HighlightText;
