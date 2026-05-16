@@ -16,33 +16,24 @@ namespace River.OneMoreAddIn.Colorizer
 	{
 
 		/// <summary>
-		/// Loads a language from the given file path
+		/// Loads a language from the given file path. Throws on IO or JSON parse failure
+		/// so callers can distinguish a malformed file from a missing one.
 		/// </summary>
 		/// <param name="path">The path to the language json definition file</param>
 		/// <returns>An ILanguage describing the langauge</returns>
 		public static ILanguage LoadLanguage(string path)
 		{
-			Language language = null;
+			var lines = File.ReadAllLines(path)
+				.Where(line => !Regex.IsMatch(line, @"^\\s*//"));
 
-			try
-			{
-				var lines = File.ReadAllLines(path)
-					.Where(line => !Regex.IsMatch(line, @"^\\s*//"));
-
-				language = JsonConvert.DeserializeObject<Language>(
-					string.Join(Environment.NewLine, lines));
-			}
-			catch (Exception exc)
-			{
-				Logger.Current.WriteLine($"error loading language {path}", exc);
-			}
-
-			return language;
+			return JsonConvert.DeserializeObject<Language>(
+				string.Join(Environment.NewLine, lines));
 		}
 
 
 		/// <summary>
-		/// Gets a list of available language names
+		/// Gets a list of available language names. Per-file failures are logged and
+		/// skipped so a single malformed definition does not break the picker.
 		/// </summary>
 		/// <param name="dirPath">The directory path containing the language definition files</param>
 		/// <returns></returns>
@@ -55,9 +46,9 @@ namespace River.OneMoreAddIn.Colorizer
 
 			var names = new SortedDictionary<string, string>();
 
-			try
+			foreach (var file in Directory.GetFiles(dirPath, "*.json"))
 			{
-				foreach (var file in Directory.GetFiles(dirPath, "*.json"))
+				try
 				{
 					var language = LoadLanguage(file);
 					if (language != null)
@@ -65,10 +56,10 @@ namespace River.OneMoreAddIn.Colorizer
 						names.Add(language.Name, Path.GetFileNameWithoutExtension(file));
 					}
 				}
-			}
-			catch (Exception exc)
-			{
-				Logger.Current.WriteLine($"error listing language {dirPath}", exc);
+				catch (Exception exc)
+				{
+					Logger.Current.WriteLine($"error loading language {file}", exc);
+				}
 			}
 
 			return names;

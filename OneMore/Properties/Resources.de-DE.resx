@@ -525,6 +525,10 @@ Umkehren</value>
     <value>Der Zustand der Zwischenablage kann nicht wiederhergestellt werden</value>
     <comment>message</comment>
   </data>
+  <data name="ColorizeCommand_LanguageError" xml:space="preserve">
+    <value>Die Sprachdefinitionsdatei für „{0}“ konnte nicht geladen werden. Möglicherweise ist die Datei fehlerhaft. Weitere Informationen finden Sie in der Protokolldatei.</value>
+    <comment>messagebox (0 arg is language key)</comment>
+  </data>
   <data name="ColorizeDialog_Title" xml:space="preserve">
     <value>Sprache auswählen</value>
     <comment>dialog title</comment>

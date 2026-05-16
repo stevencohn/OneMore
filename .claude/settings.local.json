@@ -21,7 +21,10 @@
       "Bash(dir C:\\\\Users\\\\steve\\\\AppData\\\\Local\\\\Temp\\\\issue1988.png)",
       "PowerShell(Join-Path *)",
       "PowerShell(Get-Item *)",
-      "Bash(Select-Object -First 20)"
+      "Bash(Select-Object -First 20)",
+      "PowerShell(gh pr *)",
+      "PowerShell(git *)",
+      "Bash(Select-Object FullName)"
     ]
   }
 }

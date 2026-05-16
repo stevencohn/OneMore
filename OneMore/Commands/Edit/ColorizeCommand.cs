@@ -12,6 +12,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
+	using Resx = Properties.Resources;
 
 
 	internal class ColorizeCommand : Command
@@ -70,6 +71,14 @@ namespace River.OneMoreAddIn.Commands
 					RemoveDepth(page.Root);
 					await one.Update(page);
 				}
+			}
+			catch (LanguageException exc)
+			{
+				// surfaces a malformed/unreadable language definition file (e.g. a user
+				// edited Colorizer\Languages\{lang}.json and broke its JSON) so the user
+				// gets an actionable message instead of CommandFactory's generic toast
+				logger.WriteLine(exc);
+				ShowError(string.Format(Resx.ColorizeCommand_LanguageError, exc.Name));
 			}
 			finally
 			{

@@ -991,6 +991,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The language definition file for &apos;{0}&apos; could not be loaded. It may be malformed - see the log file for details..
+        /// </summary>
+        internal static string ColorizeCommand_LanguageError {
+            get {
+                return ResourceManager.GetString("ColorizeCommand_LanguageError", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Select Language.
         /// </summary>
         internal static string ColorizeDialog_Title {

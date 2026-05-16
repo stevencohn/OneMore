@@ -526,6 +526,10 @@ Invert</value>
     <value>Unable to restore clipboard state</value>
     <comment>message</comment>
   </data>
+  <data name="ColorizeCommand_LanguageError" xml:space="preserve">
+    <value>The language definition file for '{0}' could not be loaded. It may be malformed - see the log file for details.</value>
+    <comment>messagebox (0 arg is language key)</comment>
+  </data>
   <data name="ColorizeDialog_Title" xml:space="preserve">
     <value>Select Language</value>
     <comment>dialog title</comment>
