@@ -522,6 +522,10 @@ Omkeren</value>
     <value>Kan de klembordstatus niet herstellen</value>
     <comment>message</comment>
   </data>
+  <data name="ColorizeCommand_LanguageError" xml:space="preserve">
+    <value>Het taaldefinitiebestand voor '{0}' kan niet worden geladen. Mogelijk is de indeling onjuist. Zie het logbestand voor meer informatie.</value>
+    <comment>messagebox (0 arg is language key)</comment>
+  </data>
   <data name="ColorizeDialog_Title" xml:space="preserve">
     <value>Selecteer Taal</value>
     <comment>dialog title</comment>

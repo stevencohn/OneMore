@@ -525,6 +525,10 @@ Invertir</value>
     <value>No se puede restaurar el estado del portapapeles</value>
     <comment>message</comment>
   </data>
+  <data name="ColorizeCommand_LanguageError" xml:space="preserve">
+    <value>No se pudo cargar el archivo de definición de idioma para '{0}'. Es posible que tenga un formato incorrecto; consulte el archivo de registro para obtener más detalles.</value>
+    <comment>messagebox (0 arg is language key)</comment>
+  </data>
   <data name="ColorizeDialog_Title" xml:space="preserve">
     <value>Seleccione el idioma</value>
     <comment>dialog title</comment>

@@ -522,6 +522,10 @@ Odwracać</value>
     <value>Nie można przywrócić stanu schowka</value>
     <comment>message</comment>
   </data>
+  <data name="ColorizeCommand_LanguageError" xml:space="preserve">
+    <value>Nie można załadować pliku definicji języka dla '{0}'. Może być zniekształcony — szczegółowe informacje można znaleźć w pliku dziennika.</value>
+    <comment>messagebox (0 arg is language key)</comment>
+  </data>
   <data name="ColorizeDialog_Title" xml:space="preserve">
     <value>Wybierz język</value>
     <comment>dialog title</comment>

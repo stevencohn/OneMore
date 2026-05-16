@@ -524,6 +524,10 @@
     <value>无法恢复剪贴板状态</value>
     <comment>message</comment>
   </data>
+  <data name="ColorizeCommand_LanguageError" xml:space="preserve">
+    <value>无法加载“{0}”的语言定义文件。它可能格式错误 - 有关详细信息，请参阅日志文件。</value>
+    <comment>messagebox (0 arg is language key)</comment>
+  </data>
   <data name="ColorizeDialog_Title" xml:space="preserve">
     <value>选择语言</value>
     <comment>dialog title</comment>
