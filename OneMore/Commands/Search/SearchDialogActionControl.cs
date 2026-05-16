@@ -39,6 +39,8 @@ namespace River.OneMoreAddIn.Commands
 			SelectedPages = new List<string>();
 
 			one = new OneNote();
+
+			Disposed += (_, _) => one?.Dispose();
 		}
 
 

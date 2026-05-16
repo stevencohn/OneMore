@@ -126,10 +126,14 @@ namespace River.OneMoreAddIn.Commands
 
 		private void Nevermind(object sender, EventArgs e)
 		{
-			if (source is not null)
+			// snapshot the token source — Search() nulls the field after completion,
+			// so a race here would otherwise NRE
+			var cts = source;
+			if (cts is not null)
 			{
 				logger.WriteLine("cancelling search");
-				source.Cancel();
+				try { cts.Cancel(); }
+				catch (ObjectDisposedException) { /* search already completed */ }
 				return;
 			}
 
@@ -261,46 +265,60 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			await using var one = new OneNote();
-
-			// search by scope...
-
-			if (scopeBox.SelectedIndex == 0)
+			// async void must not let exceptions escape to the SynchronizationContext,
+			// which under the dllhost surrogate can take down OneNote
+			try
 			{
-				await SearchNotebook(one, finder);
-			}
-			else if (scopeBox.SelectedIndex == 1)
-			{
-				grouping = true;
-				var section = await one.GetSection();
-				var ns = one.GetNamespace(section);
+				await using var one = new OneNote();
 
-				if (dateSelector.SelectedIndex > 0)
+				// search by scope...
+
+				if (scopeBox.SelectedIndex == 0)
 				{
-					FilterPagesByDate(section, ns);
+					await SearchNotebook(one, finder);
 				}
+				else if (scopeBox.SelectedIndex == 1)
+				{
+					grouping = true;
+					var section = await one.GetSection();
+					var ns = one.GetNamespace(section);
 
-				SetupProgressBar(section.Descendants(ns + "Page").Count());
-				await SearchSection(one, section, finder);
+					if (dateSelector.SelectedIndex > 0)
+					{
+						FilterPagesByDate(section, ns);
+					}
+
+					SetupProgressBar(section.Descendants(ns + "Page").Count());
+					await SearchSection(one, section, finder);
+				}
+				else
+				{
+					logger.StartClock();
+					grouping = false;
+
+					var page = await one.GetPage(one.CurrentPageId, OneNote.PageDetail.Basic);
+					logger.WriteTime("loaded page", keepRunning: true);
+
+					await SearchPage(one, page, finder);
+					logger.WriteTime("search complete");
+				}
 			}
-			else
+			catch (OperationCanceledException)
 			{
-				logger.StartClock();
-				grouping = false;
-
-				var page = await one.GetPage(one.CurrentPageId, OneNote.PageDetail.Basic);
-				logger.WriteTime("loaded page", keepRunning: true);
-
-				await SearchPage(one, page, finder);
-				logger.WriteTime("search complete");
+				logger.WriteLine("search cancelled");
 			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error during search", exc);
+			}
+			finally
+			{
+				// restore controls and dispose the cancellation source even on failure
+				source?.Dispose();
+				source = null;
 
-			// restore controls...
-
-			source?.Dispose();
-			source = null;
-
-			RestoreControls();
+				RestoreControls();
+			}
 		}
 
 
