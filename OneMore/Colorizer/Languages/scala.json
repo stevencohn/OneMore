@@ -1,0 +1,76 @@
+{
+  "name": "Scala",
+  "aliases": [
+    "sc"
+  ],
+  "rules": [
+    {
+      "pattern": "(/\\*(?:[^*]|[\\r\\n]|(?:\\*+(?:[^*/]|[\\r\\n])))*\\*+/)",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      "pattern": "(/\\*[^\\r\\n]*)$",
+      "scope": "Comment",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      "pattern": "^([^\\r\\n]*\\*/)",
+      "scope": "",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      "pattern": "(//.*?)\\r?$",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      "pattern": "((?:[a-z]+)?\"{3}[^\\r\\n]*?\"{3})",
+      "captures": [
+        "String"
+      ]
+    },
+    {
+      "pattern": "('[^\\n]*?(?<!\\\\)')",
+      "captures": [
+        "String"
+      ]
+    },
+    {
+      "pattern": "((?:[a-z]+)?\"[^\\n]*?(?<!\\\\)\")",
+      "captures": [
+        "String"
+      ]
+    },
+    {
+      "pattern": "(@[a-zA-Z_][a-zA-Z0-9_]*)",
+      "captures": [
+        "Macro"
+      ]
+    },
+    {
+      "pattern": "\\b(abstract|case|catch|class|def|derives|do|else|enum|export|extends|extension|false|final|finally|for|forSome|given|if|implicit|import|inline|lazy|macro|match|new|null|object|opaque|open|override|package|private|protected|return|sealed|super|then|this|throw|trait|transparent|true|try|type|using|val|var|while|with|yield)\\b",
+      "captures": [
+        "Keyword"
+      ]
+    },
+    {
+      "pattern": "\\b(Any|AnyRef|AnyVal|Array|Boolean|Byte|Char|Double|Either|Failure|Float|Future|Int|Left|List|Long|Map|None|Nothing|Null|Option|Right|Seq|Set|Short|Some|String|Success|Try|Tuple|Unit|Vector)\\b",
+      "captures": [
+        "PsuedoKeyword"
+      ]
+    },
+    {
+      "pattern": "\\b(0[xX][0-9a-fA-F]+[lL]?|[0-9]+(?:\\.[0-9]+)?(?:[eE][+\\-]?[0-9]+)?[fFdDlL]?)\\b",
+      "captures": [
+        "Number"
+      ]
+    }
+  ]
+}
