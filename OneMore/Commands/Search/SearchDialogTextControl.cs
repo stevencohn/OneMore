@@ -37,6 +37,7 @@ namespace River.OneMoreAddIn.Commands
 			public Color SectionColor { get; set; }     // group only: left swatch color
 			public Color SectionBackColor { get; set; }  // group only: row background tint
 			public string Hyperlink { get; set; }        // hit only
+			public ListViewItem ViewItem { get; set; }   // lazily cached for OnRetrieveVirtualItem
 		}
 
 
@@ -44,6 +45,8 @@ namespace River.OneMoreAddIn.Commands
 		private const int CreatedBefore = 2;
 		private const int UpdatedAfter = 3;
 		private const int UpdatedBefore = 4;
+
+		private readonly ThemeManager manager = ThemeManager.Instance;
 
 		// Matches the original HighlightBackground / HighlightForeground from the Designer
 		private static readonly Color SelectionBack = Color.FromArgb(215, 193, 255);
@@ -55,10 +58,12 @@ namespace River.OneMoreAddIn.Commands
 		private bool grouping;
 
 		private readonly List<ResultItem> results = new();
+		private readonly Dictionary<Color, SolidBrush> groupBrushes = new();
+
 		private Font groupFont;
 		private Font hitFont;
-		private SolidBrush hitBackBrush;       // unselected hit row background
-		private SolidBrush selectionBackBrush; // selected hit row background
+		private SolidBrush hitBackBrush;					// unselected hit row background
+		private readonly SolidBrush selectionBackBrush;		// selected hit row background
 
 
 		public SearchDialogTextControl()
@@ -117,6 +122,8 @@ namespace River.OneMoreAddIn.Commands
 				hitFont?.Dispose();
 				hitBackBrush?.Dispose();
 				selectionBackBrush?.Dispose();
+				foreach (var brush in groupBrushes.Values) brush.Dispose();
+				groupBrushes.Clear();
 			};
 		}
 
@@ -126,10 +133,14 @@ namespace River.OneMoreAddIn.Commands
 
 		private void Nevermind(object sender, EventArgs e)
 		{
-			if (source is not null)
+			// snapshot the token source — Search() nulls the field after completion,
+			// so a race here would otherwise NRE
+			var cts = source;
+			if (cts is not null)
 			{
 				logger.WriteLine("cancelling search");
-				source.Cancel();
+				try { cts.Cancel(); }
+				catch (ObjectDisposedException) { /* search already completed */ }
 				return;
 			}
 
@@ -261,46 +272,60 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			await using var one = new OneNote();
-
-			// search by scope...
-
-			if (scopeBox.SelectedIndex == 0)
+			// async void must not let exceptions escape to the SynchronizationContext,
+			// which under the dllhost surrogate can take down OneNote
+			try
 			{
-				await SearchNotebook(one, finder);
-			}
-			else if (scopeBox.SelectedIndex == 1)
-			{
-				grouping = true;
-				var section = await one.GetSection();
-				var ns = one.GetNamespace(section);
+				await using var one = new OneNote();
 
-				if (dateSelector.SelectedIndex > 0)
+				// search by scope...
+
+				if (scopeBox.SelectedIndex == 0)
 				{
-					FilterPagesByDate(section, ns);
+					await SearchNotebook(one, finder);
 				}
+				else if (scopeBox.SelectedIndex == 1)
+				{
+					grouping = true;
+					var section = await one.GetSection();
+					var ns = one.GetNamespace(section);
 
-				SetupProgressBar(section.Descendants(ns + "Page").Count());
-				await SearchSection(one, section, finder);
+					if (dateSelector.SelectedIndex > 0)
+					{
+						FilterPagesByDate(section, ns);
+					}
+
+					SetupProgressBar(section.Descendants(ns + "Page").Count());
+					await SearchSection(one, section, finder);
+				}
+				else
+				{
+					logger.StartClock();
+					grouping = false;
+
+					var page = await one.GetPage(one.CurrentPageId, OneNote.PageDetail.Basic);
+					logger.WriteTime("loaded page", keepRunning: true);
+
+					await SearchPage(one, page, finder);
+					logger.WriteTime("search complete");
+				}
 			}
-			else
+			catch (OperationCanceledException)
 			{
-				logger.StartClock();
-				grouping = false;
-
-				var page = await one.GetPage(one.CurrentPageId, OneNote.PageDetail.Basic);
-				logger.WriteTime("loaded page", keepRunning: true);
-
-				await SearchPage(one, page, finder);
-				logger.WriteTime("search complete");
+				logger.WriteLine("search cancelled");
 			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error during search", exc);
+			}
+			finally
+			{
+				// restore controls and dispose the cancellation source even on failure
+				source?.Dispose();
+				source = null;
 
-			// restore controls...
-
-			source?.Dispose();
-			source = null;
-
-			RestoreControls();
+				RestoreControls();
+			}
 		}
 
 
@@ -365,6 +390,12 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			resultsView.VirtualListSize = results.Count;
+
+			// WM_PAINT is the lowest-priority message; without this the search loop's
+			// own SynchronizationContext continuations starve the paint and rows do not
+			// appear until the loop ends. Update() dispatches any pending paint for the
+			// invalid region (only the new tail rows) without re-invalidating.
+			resultsView.Update();
 		}
 
 
@@ -378,7 +409,9 @@ namespace River.OneMoreAddIn.Commands
 
 			// The item text and font are used by the ListView for keyboard search and
 			// accessibility; actual painting happens in OnDrawItem / OnDrawSubItem.
-			e.Item = new ListViewItem(result.Text)
+			// Cache the ListViewItem on the result so sustained scroll over thousands
+			// of rows does not allocate one per visible-row callback.
+			e.Item = result.ViewItem ??= new ListViewItem(result.Text)
 			{
 				Font = result.IsGroup ? groupFont : hitFont
 			};
@@ -394,8 +427,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (result.IsGroup)
 			{
-				using var bgBrush = new SolidBrush(result.SectionBackColor);
-				e.Graphics.FillRectangle(bgBrush, e.Bounds);
+				e.Graphics.FillRectangle(GetGroupBrush(result.SectionBackColor), e.Bounds);
 			}
 			else if (selected)
 			{
@@ -429,29 +461,45 @@ namespace River.OneMoreAddIn.Commands
 				TextFormatFlags.NoPrefix |
 				TextFormatFlags.SingleLine;
 
+			const int swatchW = 8;
+
 			if (result.IsGroup)
 			{
 				// Colored swatch on the left edge indicating the section's accent color
 				const int pad = 4;
-				const int swatchW = 8;
 				var swatch = new Rectangle(
 					e.Bounds.X + pad, e.Bounds.Y + pad,
 					swatchW, e.Bounds.Height - pad * 2);
-				using var swatchBrush = new SolidBrush(result.SectionColor);
-				e.Graphics.FillRectangle(swatchBrush, swatch);
+
+				e.Graphics.FillRectangle(GetGroupBrush(result.SectionColor), swatch);
 
 				var textRect = new Rectangle(
 					swatch.Right + pad * 2, e.Bounds.Y,
 					e.Bounds.Width - swatch.Right - pad * 2, e.Bounds.Height);
+
 				TextRenderer.DrawText(e.Graphics, result.Text, groupFont, textRect, ForeColor, flags);
 			}
 			else
 			{
 				var foreColor = selected ? SelectionFore : ForeColor;
 				var textRect = new Rectangle(
-					e.Bounds.X + 4, e.Bounds.Y, e.Bounds.Width - 4, e.Bounds.Height);
+					e.Bounds.X + swatchW + 4, e.Bounds.Y, e.Bounds.Width - swatchW - 4, e.Bounds.Height);
+
 				TextRenderer.DrawText(e.Graphics, result.Text, hitFont, textRect, foreColor, flags);
 			}
+		}
+
+
+		// Returns a cached SolidBrush for the given color, allocating one on first use.
+		// Lifetime is tied to the control; brushes are disposed in the Disposed handler.
+		private SolidBrush GetGroupBrush(Color color)
+		{
+			if (!groupBrushes.TryGetValue(color, out var brush))
+			{
+				brush = new SolidBrush(color);
+				groupBrushes[color] = brush;
+			}
+			return brush;
 		}
 
 

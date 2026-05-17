@@ -228,19 +228,19 @@ namespace River.OneMoreAddIn
 		/// <summary>
 		/// Gets the currently viewed page ID
 		/// </summary>
-		public string CurrentPageId => onenote.Windows.CurrentWindow?.CurrentPageId;
+		public string CurrentPageId => WithCurrentWindow(w => w.CurrentPageId, null);
 
 
 		/// <summary>
 		/// Gets the currently viewed section ID
 		/// </summary>
-		public string CurrentSectionId => onenote.Windows.CurrentWindow?.CurrentSectionId;
+		public string CurrentSectionId => WithCurrentWindow(w => w.CurrentSectionId, null);
 
 
 		/// <summary>
 		/// Gets the currently viewed notebook ID
 		/// </summary>
-		public string CurrentNotebookId => onenote.Windows.CurrentWindow?.CurrentNotebookId;
+		public string CurrentNotebookId => WithCurrentWindow(w => w.CurrentNotebookId, null);
 
 
 		/// <summary>
@@ -256,7 +256,7 @@ namespace River.OneMoreAddIn
 		/// the owner parameter to MoreMessageBox Show methods.
 		/// </summary>
 		public Win32WindowHandle OwnerWindow =>
-			new(new IntPtr((long)(IntPtr)onenote.Windows.CurrentWindow.WindowHandle));
+			new(WithCurrentWindow(w => new IntPtr((long)(IntPtr)w.WindowHandle), IntPtr.Zero));
 
 
 		/// <summary>
@@ -268,13 +268,47 @@ namespace River.OneMoreAddIn
 		/// <summary>
 		/// Gets the number of open OneNote windows
 		/// </summary>
-		public int WindowCount => (int)onenote.Windows.Count;
+		public int WindowCount
+		{
+			get
+			{
+				var windows = onenote.Windows;
+				try { return (int)windows.Count; }
+				finally { Marshal.ReleaseComObject(windows); }
+			}
+		}
 
 
 		/// <summary>
 		/// Gets the handle of the current window
 		/// </summary>
-		public IntPtr WindowHandle => (IntPtr)onenote.Windows.CurrentWindow.WindowHandle;
+		public IntPtr WindowHandle =>
+			WithCurrentWindow(w => (IntPtr)w.WindowHandle, IntPtr.Zero);
+
+
+		// Reads a property from the current Window, explicitly releasing the intermediate
+		// Windows collection and Window RCWs rather than waiting for GC. Finalizer-driven
+		// release of these proxies under the dllhost MTA can stall OneNote.
+		private T WithCurrentWindow<T>(Func<Window, T> reader, T fallback)
+		{
+			var windows = onenote.Windows;
+			try
+			{
+				var window = windows.CurrentWindow;
+				try
+				{
+					return window is null ? fallback : reader(window);
+				}
+				finally
+				{
+					if (window is not null) Marshal.ReleaseComObject(window);
+				}
+			}
+			finally
+			{
+				Marshal.ReleaseComObject(windows);
+			}
+		}
 
 
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
@@ -310,7 +344,7 @@ namespace River.OneMoreAddIn
 							$"invalid COM object error, (HResult {exc.HResult:X}), " +
 							$"retrying in {ms}ms with new Application object", exc);
 
-						onenote = ApplicationFactory.CreateApplication();
+						ReplaceApplication();
 						await Task.Delay(ms);
 					}
 					catch (COMException exc)
@@ -347,7 +381,7 @@ namespace River.OneMoreAddIn
 								$"retyring in {ms}ms with new Application object");
 						}
 
-						onenote = ApplicationFactory.CreateApplication();
+						ReplaceApplication();
 						await Task.Delay(ms);
 					}
 					// cancellation tokens will cause ThreadAbort which is normal
@@ -365,6 +399,21 @@ namespace River.OneMoreAddIn
 			}
 
 			return retries == int.MaxValue;
+		}
+
+
+		// Release the current Application RCW before allocating a replacement so the
+		// old proxy does not linger until GC. The old proxy may already be in a bad
+		// state (that is why we are retrying), so swallow any release errors.
+		private void ReplaceApplication()
+		{
+			if (onenote is not null)
+			{
+				try { Marshal.FinalReleaseComObject(onenote); }
+				catch (Exception exc) { logger.WriteLine("error releasing onenote in retry", exc); }
+			}
+
+			onenote = ApplicationFactory.CreateApplication();
 		}
 
 
@@ -451,7 +500,7 @@ namespace River.OneMoreAddIn
 		/// <returns>The bounds expressed as a Rectangle</returns>
 		public System.Drawing.Rectangle GetCurrentMainWindowBounds()
 		{
-			var handle = (IntPtr)onenote.Windows.CurrentWindow.WindowHandle;
+			var handle = WithCurrentWindow(w => (IntPtr)w.WindowHandle, IntPtr.Zero);
 			var parent = handle;
 			while (parent != IntPtr.Zero)
 			{
@@ -1171,47 +1220,69 @@ namespace River.OneMoreAddIn
 			string title, string description, Scope scope, SelectLocationCallback callback)
 		{
 			var dialog = onenote.QuickFiling();
-			dialog.Title = title;
-			dialog.Description = description;
-			dialog.ParentWindowHandle = onenote.Windows.CurrentWindow.WindowHandle;
-
-			var restriction = HierarchyElement.heNotebooks;
-
-			switch (scope)
+			try
 			{
-				case Scope.Notebooks:
-					dialog.TreeDepth = HierarchyElement.heNotebooks;
-					break;
-				case Scope.SectionGroups:
-					dialog.TreeDepth = HierarchyElement.heSectionGroups;
-					dialog.TreeCollapsedState = TreeCollapsedStateType.tcsExpanded;
-					dialog.ShowCreateNewNotebook();
-					restriction = HierarchyElement.heSectionGroups | HierarchyElement.heNotebooks;
-					break;
-				case Scope.Sections:
-					dialog.TreeDepth = HierarchyElement.heSections;
-					restriction = HierarchyElement.heSections;
-					break;
-				case Scope.Pages:
-					dialog.TreeDepth = HierarchyElement.hePages;
-					restriction = HierarchyElement.heSectionGroups | HierarchyElement.heNotebooks |
-						HierarchyElement.heSections | HierarchyElement.hePages;
-					break;
+				dialog.Title = title;
+				dialog.Description = description;
+
+				// release intermediate Windows/Window RCWs immediately rather than waiting for GC
+				var windows = onenote.Windows;
+				try
+				{
+					var window = windows.CurrentWindow;
+					try { dialog.ParentWindowHandle = window.WindowHandle; }
+					finally { if (window is not null) Marshal.ReleaseComObject(window); }
+				}
+				finally { Marshal.ReleaseComObject(windows); }
+
+				var restriction = HierarchyElement.heNotebooks;
+
+				switch (scope)
+				{
+					case Scope.Notebooks:
+						dialog.TreeDepth = HierarchyElement.heNotebooks;
+						break;
+					case Scope.SectionGroups:
+						dialog.TreeDepth = HierarchyElement.heSectionGroups;
+						dialog.TreeCollapsedState = TreeCollapsedStateType.tcsExpanded;
+						dialog.ShowCreateNewNotebook();
+						restriction = HierarchyElement.heSectionGroups | HierarchyElement.heNotebooks;
+						break;
+					case Scope.Sections:
+						dialog.TreeDepth = HierarchyElement.heSections;
+						restriction = HierarchyElement.heSections;
+						break;
+					case Scope.Pages:
+						dialog.TreeDepth = HierarchyElement.hePages;
+						restriction = HierarchyElement.heSectionGroups | HierarchyElement.heNotebooks |
+							HierarchyElement.heSections | HierarchyElement.hePages;
+						break;
+				}
+
+				dialog.AddButton(Resx.word_OK, restriction, restriction, false);
+
+				// the dialog RCW must survive Run() since the user interacts with it asynchronously;
+				// FilingCallback releases it when OnDialogClosed fires
+				dialog.Run(new FilingCallback(callback, dialog));
+				dialog = null;
 			}
-
-			dialog.AddButton(Resx.word_OK, restriction, restriction, false);
-
-			dialog.Run(new FilingCallback(callback));
+			finally
+			{
+				// only fires if we threw before handing the dialog to Run()
+				if (dialog is not null) Marshal.ReleaseComObject(dialog);
+			}
 		}
 
 
 		private sealed class FilingCallback : IQuickFilingDialogCallback
 		{
 			private readonly SelectLocationCallback userCallback;
+			private IQuickFilingDialog ownedDialog;
 
-			public FilingCallback(SelectLocationCallback usercb)
+			public FilingCallback(SelectLocationCallback usercb, IQuickFilingDialog dialog)
 			{
 				userCallback = usercb;
+				ownedDialog = dialog;
 			}
 
 			public void OnDialogClosed(IQuickFilingDialog dialog)
@@ -1223,6 +1294,15 @@ namespace River.OneMoreAddIn
 				catch (Exception exc)
 				{
 					Logger.Current.WriteLine("error returned from FilingCallback", exc);
+				}
+				finally
+				{
+					if (ownedDialog is not null)
+					{
+						try { Marshal.ReleaseComObject(ownedDialog); }
+						catch (Exception exc) { Logger.Current.WriteLine("error releasing filing dialog", exc); }
+						ownedDialog = null;
+					}
 				}
 			}
 		}
