@@ -43,7 +43,7 @@
       ]
     },
     {
-      "pattern": "\\b(break|case|chan|const|continue|default|defer|else|fallthrough|for|func|Go|Goto|if|interface|import|map|package|return|select|Struct|Switch|range|Type|Var)\\b",
+      "pattern": "\\b(break|case|chan|const|continue|default|defer|else|fallthrough|for|func|go|goto|if|interface|import|map|package|range|return|select|struct|switch|type|var)\\b",
       "captures": [
         "Keyword"
       ]
