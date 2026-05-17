@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
 
-  <!--
-    ArchFlag preprocessor: arm64 becomes ARM64 for OneMoreSetupActions CLI flag.
-    Also controls which arch-specific SQLite and WebView2Loader variant is included.
-  -->
-  <?define ArchFlag = $(sys.BUILDARCH) ?>
-  <?if $(sys.BUILDARCH) = arm64 ?>
-    <?define ArchFlag = ARM64 ?>
-  <?endif ?>
-
   <Fragment>
     <ComponentGroup Id="MainFiles" Directory="INSTALLDIR">
 
@@ -140,7 +131,7 @@
 
       <!--
         Architecture-specific SQLite native interop.
-        ARM64 build uses the x64 interop from the ARM64 build tree (ARM64EC).
+        ARM64 reuses the x64 interop (ARM64EC); all configs output to bin\Debug\.
       -->
       <?if $(sys.BUILDARCH) = x86 ?>
       <Component Id="SqliteInterop" Directory="SQLiteX86Dir">
@@ -152,7 +143,7 @@
       </Component>
       <?elseif $(sys.BUILDARCH) = arm64 ?>
       <Component Id="SqliteInterop" Directory="SQLiteArm64Dir">
-        <File Source="..\OneMore\bin\ARM64\$(var.Configuration)\x64\SQLite.Interop.dll" KeyPath="yes" />
+        <File Source="..\OneMore\bin\$(var.Configuration)\x64\SQLite.Interop.dll" KeyPath="yes" />
       </Component>
       <?endif ?>
 

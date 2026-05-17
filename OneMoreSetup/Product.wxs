@@ -8,6 +8,7 @@
   -->
   <?define ArchFlag = $(sys.BUILDARCH) ?>
   <?if $(sys.BUILDARCH) = arm64 ?>
+    <?undef ArchFlag ?>
     <?define ArchFlag = ARM64 ?>
   <?endif ?>
 
