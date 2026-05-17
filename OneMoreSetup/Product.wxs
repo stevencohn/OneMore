@@ -75,6 +75,21 @@
               <Directory Id="SyllabificationDir" Name="Syllabification" />
             </Directory>
           </Directory>
+          <!-- Satellite assembly directories for localized resources -->
+          <Directory Id="CultureArSA"   Name="ar-SA" />
+          <Directory Id="CultureDeDe"   Name="de-DE" />
+          <Directory Id="CultureEsEs"   Name="es-ES" />
+          <Directory Id="CultureFrFr"   Name="fr-FR" />
+          <Directory Id="CultureHe"     Name="he" />
+          <Directory Id="CultureHeIl"   Name="he-IL" />
+          <Directory Id="CultureIt"     Name="it" />
+          <Directory Id="CultureItIt"   Name="it-IT" />
+          <Directory Id="CultureJaJp"   Name="ja-JP" />
+          <Directory Id="CultureNlNl"   Name="nl-NL" />
+          <Directory Id="CulturePlPl"   Name="pl-PL" />
+          <Directory Id="CulturePtBr"   Name="pt-BR" />
+          <Directory Id="CultureZhCn"   Name="zh-CN" />
+          <Directory Id="CultureZhHans" Name="zh-Hans" />
         </Directory>
       </Directory>
     </StandardDirectory>
@@ -94,6 +109,7 @@
       <ComponentGroupRef Id="ColorizerLanguages" />
       <ComponentGroupRef Id="ColorizerThemes" />
       <ComponentGroupRef Id="AppDataThemes" />
+      <ComponentGroupRef Id="SatelliteAssemblies" />
     </Feature>
 
     <!--
