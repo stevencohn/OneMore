@@ -35,6 +35,34 @@
       ]
     },
     {
+      // prefixed triple-quoted string (single-line): f"""...""", r"""...""", b"""...""", rb"""..."""
+      "pattern": "((?:[rRbBfFuU]{1,2})\"{3}[^\\r\\n]*?\"{3})",
+      "captures": [
+        "String"
+      ]
+    },
+    {
+      // prefixed triple-quoted string (single-line, single-quoted): f'''...''', r'''...''', etc.
+      "pattern": "((?:[rRbBfFuU]{1,2})'{3}[^\\r\\n]*?'{3})",
+      "captures": [
+        "String"
+      ]
+    },
+    {
+      // prefixed string (double-quoted): f"...", r"...", b"...", rb"...", fr"..."
+      "pattern": "((?:[rRbBfFuU]{1,2})\"[^\\r\\n\"]*?\")",
+      "captures": [
+        "String"
+      ]
+    },
+    {
+      // prefixed string (single-quoted): f'...', r'...', b'...', etc.
+      "pattern": "((?:[rRbBfFuU]{1,2})'[^\\r\\n']*?')",
+      "captures": [
+        "String"
+      ]
+    },
+    {
       // [6] ('string')
       "pattern": "('[^\\r\\n\\']*\\')",
       "captures": [
@@ -47,6 +75,14 @@
       //"pattern": "\"(?:([^{}\"]+)|(\\{[^{}\"]+\\})+)\"", ;string,number
       "captures": [
         "String"
+      ]
+    },
+    {
+      // decorator at line start: @decorator, @module.func, @obj.method
+      // line-anchored to avoid matching the @ matrix-multiplication operator (Python 3.5+)
+      "pattern": "^\\s*(@[a-zA-Z_][a-zA-Z0-9_\\.]*)",
+      "captures": [
+        "Macro"
       ]
     },
     {
