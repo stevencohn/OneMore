@@ -21,9 +21,6 @@ OneMore, OneMorCalendar, OneMoreProtocolHandler, OneMoreSetupActions, and OneMor
 Skips recompiling the binaries, grabbing whatever is in the bin, and proceeds to build
 the installer kit for the specified architecture.
 
-.PARAMETER Local
-No longer used. Retained for compatibility with existing build scripts.
-
 .PARAMETER Prep
 Run DisableOutOfProcBuild. This only needs to be run once on a machine, or after upgrading
 or reinstalling Visual Studio. It is required to build installer kits from the command line.
@@ -48,7 +45,6 @@ param (
 	[switch] $Clean,
 	[switch] $Fast,
 	[switch] $Kit,
-	[switch] $Local,
 	[switch] $Main,
 	[switch] $Prep,
 	[switch] $Stepped,
