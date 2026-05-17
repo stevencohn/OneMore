@@ -2,6 +2,12 @@
   "name": "CSS",
   "rules": [
     {
+      "pattern": "(@(?:charset|container|counter-style|document|font-face|font-feature-values|import|keyframes|layer|media|namespace|page|property|scope|starting-style|supports|viewport))\\b",
+      "captures": [
+        "Keyword"
+      ]
+    },
+    {
       "pattern": "([^\\r\\n,{}]+)(?:,(?=[^}]*{)|\\s*{)",
       "captures": [
         "CssSelector"
