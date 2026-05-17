@@ -62,10 +62,25 @@
       ]
     },
     {
+      // "key" : true | false | null
+      "pattern": "(\".*?\")\\s*:\\s*(true|false|null)\\b",
+      "captures": [
+        "JsonKey",
+        "Keyword"
+      ]
+    },
+    {
       // "string"
       "pattern": "(\".*?\")",
       "captures": [
         "String"
+      ]
+    },
+    {
+      // true, false, null (as array elements or bare values)
+      "pattern": "\\b(true|false|null)\\b",
+      "captures": [
+        "Keyword"
       ]
     },
     {
