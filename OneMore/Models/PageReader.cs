@@ -577,8 +577,15 @@ namespace River.OneMoreAddIn.Models
 			// the entire line, plus the beginning of the next line. This is better than always
 			// adding a newline if the whole line is selected because it's the lesser of two evils
 			// when pasting into Excel, for example.
-			var match = true;
 			var newline = Environment.NewLine;
+
+			// selection covered only non-text content (images, ink, etc.) so nothing was appended
+			if (builder.Length < newline.Length)
+			{
+				return builder.ToString();
+			}
+
+			var match = true;
 			for (var i = 0; i < newline.Length; i++)
 			{
 				if (builder[builder.Length - (newline.Length - i)] != newline[i])
