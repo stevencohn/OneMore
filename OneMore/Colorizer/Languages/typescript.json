@@ -43,6 +43,12 @@
       ]
     },
     {
+      "pattern": "(`[^\\r\\n]*?(?<!\\\\)`)",
+      "captures": [
+        "String"
+      ]
+    },
+    {
       "pattern": "\\b(abstract|any|as|asserts|async|await|bool|boolean|break|byte|case|catch|char|class|const|constructor|continue|debugger|declare|default|delete|do|double|else|enum|export|extends|false|final|finally|float|for|function|goto|if|implements|import|in|infer|instanceof|int|interface|is|keyof|let|long|module|namespace|native|never|new|number|null|of|out|package|private|protected|public|readonly|return|satisfies|short|static|string|super|switch|synchronized|this|throw|throws|transient|true|try|type|typeof|unknown|var|void|volatile|while|with|yield)\\b",
       "captures": [
         "Keyword"
