@@ -33,7 +33,7 @@
     {
       "pattern": "('#[^\\n]*?(?<!\\\\)')",
       "captures": [
-        "Char"
+        "String"
       ]
     },
     {

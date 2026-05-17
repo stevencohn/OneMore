@@ -87,11 +87,11 @@
     {
       "pattern": "(?xi)(<\\/)(?:([a-z][a-z0-9-]*)(:))?([a-z][a-z0-9-_\\.]*)(>)",
       "captures": [
-        "XmlDelimeter",
+        "XmlDelimiter",
         "XmlName",
-        "XmlDelimeter",
+        "XmlDelimiter",
         "XmlName",
-        "XmlDelimeter"
+        "XmlDelimiter"
       ]
     },
     {
@@ -103,7 +103,7 @@
     {
       "pattern": "(?s)(<!\\[CDATA\\[)(.*?)(\\]\\]>)",
       "captures": [
-        "XmlDelimter",
+        "XmlDelimiter",
         "XmlCDataSection",
         "XmlDelimiter"
       ]
