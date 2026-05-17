@@ -23,6 +23,8 @@
 
     <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
 
+    <MediaTemplate EmbedCab="yes" />
+
     <!-- Require .NET Framework 4.8 -->
     <Property Id="NETFRAMEWORK48">
       <RegistrySearch Id="NetFx48Search"
