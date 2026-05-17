@@ -35,7 +35,8 @@ namespace River.OneMoreAddIn
 		{
 			if (client == null)
 			{
-				ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+				ServicePointManager.SecurityProtocol =
+					SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
 
 				var handler = new HttpClientHandler()
 				{

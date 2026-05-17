@@ -314,6 +314,9 @@ namespace River.OneMoreAddIn
 			var cude = DescribeCustom(custom);
 			logger.WriteLine($"OnDisconnection(RemoveMode:{RemoveMode},custom:[{cude}])");
 
+			AppDomain.CurrentDomain.AssemblyResolve -= CustomAssemblyResolve;
+			AppDomain.CurrentDomain.UnhandledException -= CatchUnhandledException;
+
 			try
 			{
 				if (trash.Count > 0)

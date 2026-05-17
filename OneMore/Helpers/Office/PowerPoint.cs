@@ -53,6 +53,14 @@ namespace River.OneMoreAddIn.Helpers.Office
 
 		public string ConvertFileToImages(string source)
 		{
+			// Note: do not explicitly Marshal.ReleaseComObject anything we obtain from the
+			// Presentation tree here. Opening a Presentation with WithWindow=msoFalse puts
+			// PowerPoint into windowless automation mode, and releasing the child RCWs has
+			// been observed to cause the Application itself to detach (its RCW becomes
+			// separated), so the subsequent power.Quit() in Dispose throws
+			// InvalidComObjectException. The original implementation deliberately leaks these
+			// RCWs so the COM objects stay alive until Dispose; the leak is reclaimed when
+			// the Application is released. See git history for details.
 			try
 			{
 				var presentation = power.Presentations.Open(
@@ -81,7 +89,7 @@ namespace River.OneMoreAddIn.Helpers.Office
 					Directory.CreateDirectory(path);
 				}
 
-				Logger.Current.WriteLine($"exporting {presentation.Slides.Count} slides to {path}");
+				Logger.Current.WriteLine($"exporting {count} slides to {path}");
 
 				presentation.Export(path, "JPG", width, height);
 

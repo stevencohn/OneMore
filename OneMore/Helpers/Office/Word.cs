@@ -52,6 +52,9 @@ namespace River.OneMoreAddIn.Helpers.Office
 		public string ConvertFileToHtml(object source)
 		{
 			object target = null;
+			MSWord.Document opened = null;
+			MSWord.Document doc = null;
+			MSWord.WebOptions webOptions = null;
 
 			try
 			{
@@ -59,11 +62,13 @@ namespace River.OneMoreAddIn.Helpers.Office
 				target = Path.Combine(tempPath, Path.GetRandomFileName());
 				object format = MSWord.WdSaveFormat.wdFormatHTML;
 
-				// open document
-				word.Documents.Open(ref source);
-				var doc = word.ActiveDocument;
+				// open document; do not capture/release word.Documents — see PowerPoint.cs
+				// for why Office Application-owned collections must not be released
+				opened = word.Documents.Open(ref source);
+				doc = word.ActiveDocument;
 
-				doc.WebOptions.Encoding = Microsoft.Office.Core.MsoEncoding.msoEncodingUTF8;
+				webOptions = doc.WebOptions;
+				webOptions.Encoding = Microsoft.Office.Core.MsoEncoding.msoEncodingUTF8;
 
 				// save as HTML
 				doc.SaveAs2(ref target, ref format);
@@ -99,6 +104,10 @@ namespace River.OneMoreAddIn.Helpers.Office
 			}
 			finally
 			{
+				if (webOptions != null) Marshal.ReleaseComObject(webOptions);
+				if (doc != null) Marshal.ReleaseComObject(doc);
+				if (opened != null) Marshal.ReleaseComObject(opened);
+
 				try
 				{
 					if (File.Exists((string)target))
@@ -119,15 +128,30 @@ namespace River.OneMoreAddIn.Helpers.Office
 		public string ConvertClipboardToHtml()
 		{
 			object target = null;
+			MSWord.Document doc = null;
+			MSWord.Range content = null;
+			MSWord.Paragraphs paragraphs = null;
+			MSWord.Bookmarks bookmarks = null;
+			MSWord.Bookmark endBookmark = null;
+			MSWord.Range bookmarkRange = null;
+			MSWord.Paragraph para = null;
+			MSWord.Range paraRange = null;
 
 			try
 			{
-				// create new document
-				var doc = word.Documents.Add();
+				// create new document; do not capture/release word.Documents — Application
+				// owns it and releasing the collection separates the Application's RCW
+				doc = word.Documents.Add();
 
 				// insert new paragraph at the end of document; \endofdoc is a predefined bookmark
-				var para = doc.Content.Paragraphs.Add(doc.Bookmarks[@"\endofdoc"].Range);
-				para.Range.Paste();
+				content = doc.Content;
+				paragraphs = content.Paragraphs;
+				bookmarks = doc.Bookmarks;
+				endBookmark = bookmarks[@"\endofdoc"];
+				bookmarkRange = endBookmark.Range;
+				para = paragraphs.Add(bookmarkRange);
+				paraRange = para.Range;
+				paraRange.Paste();
 
 				// save as HTML
 				target = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
@@ -146,6 +170,15 @@ namespace River.OneMoreAddIn.Helpers.Office
 			}
 			finally
 			{
+				if (paraRange != null) Marshal.ReleaseComObject(paraRange);
+				if (para != null) Marshal.ReleaseComObject(para);
+				if (bookmarkRange != null) Marshal.ReleaseComObject(bookmarkRange);
+				if (endBookmark != null) Marshal.ReleaseComObject(endBookmark);
+				if (bookmarks != null) Marshal.ReleaseComObject(bookmarks);
+				if (paragraphs != null) Marshal.ReleaseComObject(paragraphs);
+				if (content != null) Marshal.ReleaseComObject(content);
+				if (doc != null) Marshal.ReleaseComObject(doc);
+
 				try
 				{
 					if (File.Exists((string)target))
@@ -170,95 +203,114 @@ namespace River.OneMoreAddIn.Helpers.Office
 			var ns = root.GetNamespaceOfPrefix(OneNote.Prefix);
 			var path = Path.GetDirectoryName(docPath);
 
-			word.Documents.Open(docPath);
-			var doc = word.ActiveDocument;
+			MSWord.Document opened = null;
+			MSWord.Document doc = null;
+			MSWord.Selection selection = null;
+			MSWord.Find find = null;
 
-			var find = word.Selection.Find;
-			find.ClearFormatting();
-
-			// in a find-and-replace, this is a special control sequence that grabs the
-			// contents of the clipboard and uses that as the replacement text
-			//find.Replacement.Text = "^c";
-
-			// can use regular expression here
-			find.Text = @"\<\<*\.*\>\>";
-
-			find.Forward = true;
-			find.Wrap = MSWord.WdFindWrap.wdFindContinue;
-			find.Format = false;
-			find.MatchCase = false;
-			find.MatchWholeWord = false;
-			find.MatchKashida = false;
-			find.MatchDiacritics = false;
-			find.MatchAlefHamza = false;
-			find.MatchControl = false;
-			find.MatchAllWordForms = false;
-			find.MatchSoundsLike = false;
-			find.MatchWildcards = true;
-
-			var updated = false;
-
-			while (find.Execute())
+			try
 			{
-				// text without << and >>
-				var text = word.Selection.Text.Substring(2, word.Selection.Text.Length - 4);
+				// do not capture/release word.Documents — Application owns it; releasing
+				// the collection separates the Application's RCW
+				opened = word.Documents.Open(docPath);
+				doc = word.ActiveDocument;
 
-				var element = root.Descendants(ns + "InsertedFile")
-					.FirstOrDefault(e => text.Equals(
-						e.Attribute("preferredName")?.Value,
-						StringComparison.InvariantCultureIgnoreCase));
+				selection = word.Selection;
+				find = selection.Find;
+				find.ClearFormatting();
 
-				if (element != null)
+				// in a find-and-replace, this is a special control sequence that grabs the
+				// contents of the clipboard and uses that as the replacement text
+				//find.Replacement.Text = "^c";
+
+				// can use regular expression here
+				find.Text = @"\<\<*\.*\>\>";
+
+				find.Forward = true;
+				find.Wrap = MSWord.WdFindWrap.wdFindContinue;
+				find.Format = false;
+				find.MatchCase = false;
+				find.MatchWholeWord = false;
+				find.MatchKashida = false;
+				find.MatchDiacritics = false;
+				find.MatchAlefHamza = false;
+				find.MatchControl = false;
+				find.MatchAllWordForms = false;
+				find.MatchSoundsLike = false;
+				find.MatchWildcards = true;
+
+				var updated = false;
+
+				while (find.Execute())
 				{
-					var source = element.Attribute("pathSource")?.Value;
-					if (string.IsNullOrEmpty(source) || !File.Exists(source))
+					// text without << and >>
+					var selectionText = selection.Text;
+					var text = selectionText.Substring(2, selectionText.Length - 4);
+
+					var element = root.Descendants(ns + "InsertedFile")
+						.FirstOrDefault(e => text.Equals(
+							e.Attribute("preferredName")?.Value,
+							StringComparison.InvariantCultureIgnoreCase));
+
+					if (element != null)
 					{
-						source = element.Attribute("pathCache")?.Value;
-						if (!string.IsNullOrEmpty(source) && !File.Exists(source))
+						var source = element.Attribute("pathSource")?.Value;
+						if (string.IsNullOrEmpty(source) || !File.Exists(source))
 						{
-							// broken link
-							source = null;
-						}
-					}
-
-					if (source != null)
-					{
-						string target = source;
-
-						if (!embedded)
-						{
-							// linking to a target file, copied to output directory...
-							target = Path.Combine(path, text);
-
-							try
+							source = element.Attribute("pathCache")?.Value;
+							if (!string.IsNullOrEmpty(source) && !File.Exists(source))
 							{
-								if (File.Exists(target))
+								// broken link
+								source = null;
+							}
+						}
+
+						if (source != null)
+						{
+							string target = source;
+
+							if (!embedded)
+							{
+								// linking to a target file, copied to output directory...
+								target = Path.Combine(path, text);
+
+								try
 								{
-									// attempt to remove to avoid any permissions issues
-									File.Delete(target);
+									if (File.Exists(target))
+									{
+										// attempt to remove to avoid any permissions issues
+										File.Delete(target);
+									}
+
+									// copy cached/source file to md output directory
+									File.Copy(source, target, true);
 								}
+								catch (Exception exc)
+								{
+									Logger.Current.WriteLine($"error copying to {target}", exc);
+									// error copying
+									continue;
+								}
+							}
 
-								// copy cached/source file to md output directory
-								File.Copy(source, target, true);
-							}
-							catch (Exception exc)
-							{
-								Logger.Current.WriteLine($"error copying to {target}", exc);
-								// error copying
-								continue;
-							}
+							RenderAttachment(selection, target, text, embedded);
+
+							updated = true;
 						}
-
-						RenderAttachment(word.Selection, target, text, embedded);
-
-						updated = true;
 					}
 				}
-			}
 
-			if (updated)
+				if (updated)
+				{
+					doc.Save();
+				}
+			}
+			finally
 			{
-				doc.Save();
+				if (find != null) Marshal.ReleaseComObject(find);
+				if (selection != null) Marshal.ReleaseComObject(selection);
+				if (doc != null) Marshal.ReleaseComObject(doc);
+				if (opened != null) Marshal.ReleaseComObject(opened);
 			}
 		}
 
@@ -271,24 +323,35 @@ namespace River.OneMoreAddIn.Helpers.Office
 			var association = RegistryHelper.GetAssociation(ext);
 			if (association != null)
 			{
-				selection.Text = String.Empty;
+				MSWord.InlineShapes inlineShapes = null;
+				MSWord.InlineShape ole = null;
+				try
+				{
+					selection.Text = String.Empty;
 
-				object filename = target;
-				object linkToFile = !embedded;
-				object displayAsIcon = true;
-				object iconIndex = association.IconIndex;
-				object iconFilename = association.IconFilename;
-				object iconLabel = Path.GetFileName(target);
+					object filename = target;
+					object linkToFile = !embedded;
+					object displayAsIcon = true;
+					object iconIndex = association.IconIndex;
+					object iconFilename = association.IconFilename;
+					object iconLabel = Path.GetFileName(target);
 
-				selection.InlineShapes.AddOLEObject(
-					association.ProgID,
-					ref filename,
-					ref linkToFile,
-					ref displayAsIcon,
-					ref iconFilename,
-					ref iconIndex,
-					ref iconLabel
-					);
+					inlineShapes = selection.InlineShapes;
+					ole = inlineShapes.AddOLEObject(
+						association.ProgID,
+						ref filename,
+						ref linkToFile,
+						ref displayAsIcon,
+						ref iconFilename,
+						ref iconIndex,
+						ref iconLabel
+						);
+				}
+				finally
+				{
+					if (ole != null) Marshal.ReleaseComObject(ole);
+					if (inlineShapes != null) Marshal.ReleaseComObject(inlineShapes);
+				}
 
 				return;
 			}
@@ -298,9 +361,23 @@ namespace River.OneMoreAddIn.Helpers.Office
 
 			selection.Text = text;
 
-			object range = word.Selection.Range;
-			object uri = System.Web.HttpUtility.UrlDecode(new Uri(target).AbsoluteUri);
-			word.Selection.Hyperlinks.Add(range, ref uri);
+			MSWord.Range range = null;
+			MSWord.Hyperlinks hyperlinks = null;
+			MSWord.Hyperlink hyperlink = null;
+			try
+			{
+				range = selection.Range;
+				object anchor = range;
+				object uri = System.Web.HttpUtility.UrlDecode(new Uri(target).AbsoluteUri);
+				hyperlinks = selection.Hyperlinks;
+				hyperlink = hyperlinks.Add(anchor, ref uri);
+			}
+			finally
+			{
+				if (hyperlink != null) Marshal.ReleaseComObject(hyperlink);
+				if (hyperlinks != null) Marshal.ReleaseComObject(hyperlinks);
+				if (range != null) Marshal.ReleaseComObject(range);
+			}
 		}
 	}
 }

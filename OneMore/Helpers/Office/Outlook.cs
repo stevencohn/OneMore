@@ -38,32 +38,20 @@ namespace River.OneMoreAddIn.Helpers.Office
 
 		protected virtual void Dispose(bool disposing)
 		{
-			if (!disposed)
+			if (disposed || outlook == null)
 			{
-				// this automation class will create a process with the -Embedding cmdline
-				// switch but a user-started Outlook will not so look for a user process
-				// and skip disposing so we don't interrupt the user's interactive session
-				if (!Process.GetProcessesByName("OUTLOOK")
-					.Any(p =>
-					{
-						var cmd = p.GetCommandLine();
-						return cmd != null && !cmd.Contains("-Embedding");
-					}))
-				{
-					// unfortunately, the above assumptions are not true; if an embedded instance
-					// is running and Outlook UI is then started, the embedded instance will
-					// take over so we still have an -Embedding processing serving UI!
-					//outlook.Quit();
-					Marshal.ReleaseComObject(outlook);
-					disposed = true;
-				}
+				return;
 			}
 
-			if (outlook != null)
-			{
-				Marshal.ReleaseComObject(outlook);
-				outlook = null;
-			}
+			// this automation class will create a process with the -Embedding cmdline
+			// switch but a user-started Outlook will not so look for a user process
+			// and skip disposing so we don't interrupt the user's interactive session
+			// (note: an embedded instance can be taken over by a later UI launch, so the
+			// check is best-effort; we always release our RCW regardless)
+			//outlook.Quit();
+			Marshal.ReleaseComObject(outlook);
+			outlook = null;
+			disposed = true;
 		}
 
 
