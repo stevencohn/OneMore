@@ -36,7 +36,7 @@ Enable verbose logging for MSBuild. This is useful for debugging build issues.
 
 [CmdletBinding(SupportsShouldProcess = $true)]
 param (
-	[ValidateSet('x86','x64','arm64','All', 'x')]
+	[ValidateSet('x86','x64','ARM64','All', 'x')]
 	[string] $Architecture = 'x86',
 
 	[ValidateScript({ Test-Path $_ -PathType Leaf })]
@@ -208,9 +208,9 @@ Begin
 				0x8664 { 'x64' }
 
 				0x014c { 'x86' }
-				0xaa64 { 'arm64' }
-				0xA641 { 'arm64EC' }
-				0xA64E { 'arm64X' }
+				0xaa64 { 'ARM64' }
+				0xA641 { 'ARM64EC' }
+				0xA64E { 'ARM64X' }
 				0x01c4 { 'ARM' }
 				0x0200 { 'Itanium' }
 
@@ -287,7 +287,7 @@ Begin
 		param($arc)
 		$script:Architecture = $arc
 
-		if ($Stepped -and $arc -ne 'arm64')
+		if ($Stepped -and $arc -ne 'ARM64')
 		{
 			Write-Host "`n... press Enter to continue with $arc build: " -Fore Magenta -nonewline
 			Read-Host
@@ -486,7 +486,7 @@ Process
 
 	if ($Architecture -eq 'All' -or $Architecture -eq 'x')
 	{
-		if ($Architecture -eq 'All') { Build 'arm64' }
+		if ($Architecture -eq 'All') { Build 'ARM64' }
 
 		Build 'x64'
 		Build 'x86'
@@ -495,7 +495,7 @@ Process
 	}
 	else
 	{
-		if ($Architecture -eq 'arm64') { $Architecture = 'arm64' }
+		if ($Architecture -eq 'ARM64') { $Architecture = 'ARM64' }
 
 		Build $Architecture
 	}
