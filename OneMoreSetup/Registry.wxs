@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+
+  <!--
+    Registry entries mirrored from OneMoreSetup.vdproj.
+
+    Entries managed exclusively by custom actions (OneMoreSetupActions.exe) are
+    NOT duplicated here:
+      - HKLM SOFTWARE\Microsoft\Office\OneNote\AddIns  (RegistryAction)
+      - HKCU SOFTWARE\Classes\CLSID WOW6432Node        (RegistryWowAction)
+      - onemore:// protocol handler                     (ProtocolHandlerAction)
+      - TrustedProtocol                                 (TrustedProtocolAction)
+  -->
+
+  <Fragment>
+    <ComponentGroup Id="RegistryEntries" Directory="INSTALLDIR">
+
+      <!-- HKCR: AppID DllSurrogate — enables COM surrogate hosting -->
+      <Component Id="RegHkcrAppId">
+        <RegistryKey Root="HKCR"
+                     Key="AppID\{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}"
+                     ForceCreateOnInstall="yes"
+                     ForceDeleteOnUninstall="yes">
+          <RegistryValue Name="DllSurrogate" Value="" Type="string" KeyPath="yes" />
+        </RegistryKey>
+      </Component>
+
+      <!-- HKCR: CLSID — full COM class registration for the add-in -->
+      <Component Id="RegHkcrClsid">
+        <RegistryKey Root="HKCR"
+                     Key="CLSID\{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}"
+                     ForceCreateOnInstall="yes"
+                     ForceDeleteOnUninstall="yes">
+          <RegistryValue Value="OneMoreAddIn Class" Type="string" KeyPath="yes" />
+          <RegistryValue Name="AppID" Value="{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKCR"
+                     Key="CLSID\{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}\InprocServer32"
+                     ForceCreateOnInstall="yes">
+          <RegistryValue Value="" Type="string" />
+          <RegistryValue Name="ThreadingModel" Value="Apartment" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKCR"
+                     Key="CLSID\{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}\VersionIndependentProgID"
+                     ForceCreateOnInstall="yes">
+          <RegistryValue Value="River.OneMoreAddIn" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKCR"
+                     Key="CLSID\{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}\ProgID"
+                     ForceCreateOnInstall="yes">
+          <RegistryValue Value="River.OneMoreAddIn.1" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKCR"
+                     Key="CLSID\{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}\TypeLib"
+                     ForceCreateOnInstall="yes">
+          <RegistryValue Value="{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKCR"
+                     Key="CLSID\{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}\Programmable"
+                     ForceCreateOnInstall="yes">
+          <RegistryValue Value="" Type="string" />
+        </RegistryKey>
+      </Component>
+
+      <!-- HKCR: ProgID aliases -->
+      <Component Id="RegHkcrProgId">
+        <RegistryKey Root="HKCR"
+                     Key="River.OneMoreAddIn"
+                     ForceDeleteOnUninstall="yes">
+          <RegistryValue Value="Addin class" Type="string" KeyPath="yes" />
+        </RegistryKey>
+        <RegistryKey Root="HKCR"
+                     Key="River.OneMoreAddIn\CurVer"
+                     ForceCreateOnInstall="yes">
+          <RegistryValue Value="River.OneMoreAddIn.1" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKCR"
+                     Key="River.OneMoreAddIn\CLSID"
+                     ForceCreateOnInstall="yes">
+          <RegistryValue Value="{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}" Type="string" />
+        </RegistryKey>
+      </Component>
+
+      <Component Id="RegHkcrProgId1">
+        <RegistryKey Root="HKCR"
+                     Key="River.OneMoreAddIn.1"
+                     ForceDeleteOnUninstall="yes">
+          <RegistryValue Value="Addin class" Type="string" KeyPath="yes" />
+        </RegistryKey>
+        <RegistryKey Root="HKCR"
+                     Key="River.OneMoreAddIn.1\CLSID"
+                     ForceCreateOnInstall="yes">
+          <RegistryValue Value="{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}" Type="string" />
+        </RegistryKey>
+      </Component>
+
+      <!-- HKCU: Office add-in registration -->
+      <Component Id="RegHkcuAddIn">
+        <RegistryKey Root="HKCU"
+                     Key="SOFTWARE\Microsoft\Office\OneNote\AddIns\River.OneMoreAddIn"
+                     ForceCreateOnInstall="yes"
+                     ForceDeleteOnUninstall="yes">
+          <RegistryValue Name="LoadBehavior" Value="3" Type="integer" KeyPath="yes" />
+          <RegistryValue Name="Description" Value="Add-in for OneNote" Type="string" />
+          <RegistryValue Name="FriendlyName" Value="OneMoreAddIn" Type="string" />
+        </RegistryKey>
+      </Component>
+
+      <!-- HKCU: App Paths for the add-in DLL -->
+      <Component Id="RegHkcuAppPaths">
+        <RegistryKey Root="HKCU"
+                     Key="SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\River.OneMoreAddIn.dll"
+                     ForceCreateOnInstall="yes"
+                     ForceDeleteOnUninstall="yes">
+          <RegistryValue Name="Path" Value="[INSTALLDIR]River.OneMoreAddIn.dll" Type="string" KeyPath="yes" />
+        </RegistryKey>
+      </Component>
+
+      <!-- HKCU: Classes CLSID and AppID (companion to HKCR, for per-user context) -->
+      <Component Id="RegHkcuClassesClsid">
+        <RegistryKey Root="HKCU"
+                     Key="SOFTWARE\Classes\CLSID\{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}"
+                     ForceDeleteOnUninstall="yes">
+          <RegistryValue Name="AppID" Value="{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}" Type="string" KeyPath="yes" />
+        </RegistryKey>
+      </Component>
+
+      <Component Id="RegHkcuClassesAppId">
+        <RegistryKey Root="HKCU"
+                     Key="SOFTWARE\Classes\AppID\{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}"
+                     ForceDeleteOnUninstall="yes">
+          <RegistryValue Name="DllSurrogate" Value="" Type="string" KeyPath="yes" />
+        </RegistryKey>
+      </Component>
+
+      <!--
+        HKLM: Active Setup — triggers per-user repair on next logon.
+        Permanent="yes" preserves this key after uninstall (matches vdproj DeleteAtUninstall=FALSE).
+      -->
+      <Component Id="RegHklmActiveSetup" Permanent="yes">
+        <RegistryKey Root="HKLM"
+                     Key="SOFTWARE\Microsoft\Active Setup\Installed Components\{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}"
+                     ForceCreateOnInstall="yes">
+          <RegistryValue Value="River.OneMoreAddIn" Type="string" KeyPath="yes" />
+          <RegistryValue Name="StubPath" Value="msiexec.exe /fu [ProductCode] /qn" Type="string" />
+          <RegistryValue Name="Version" Value="[ProductVersion]" Type="string" />
+        </RegistryKey>
+      </Component>
+
+    </ComponentGroup>
+  </Fragment>
+
+</Wix>

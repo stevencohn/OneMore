@@ -22,8 +22,7 @@ Skips recompiling the binaries, grabbing whatever is in the bin, and proceeds to
 the installer kit for the specified architecture.
 
 .PARAMETER Local
-Do not attempt to git restore the vdproj file. Keep the local version.
-This is useful for testing vdproj changes without committing.
+No longer used. Retained for compatibility with existing build scripts.
 
 .PARAMETER Prep
 Run DisableOutOfProcBuild. This only needs to be run once on a machine, or after upgrading
@@ -58,8 +57,6 @@ param (
 
 Begin
 {
-	. "$PSScriptRoot\vdparser.ps1"
-
 	$script:guid = '{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}'
 	$script:checksums = @()
 
@@ -395,19 +392,39 @@ Begin
 		Write-Host "`n... building $Architecture kit" -ForegroundColor Cyan
 		Write-Host
 
+		# Read product version from the built DLL
+		$dllPath = '.\OneMore\bin\Debug\River.OneMoreAddIn.dll'
+		if (-not (Test-Path $dllPath))
+		{
+			Write-Host "... $dllPath not found; run a solution build first" -ForegroundColor Red
+			return
+		}
+		$ver = (Get-Item $dllPath).VersionInfo.ProductVersion
+		# Normalise x.y.z.w → x.y.z (strip revision component)
+		if ($ver -match '^(\d+\.\d+\.\d+)\.\d+$') { $ver = $matches[1] }
+		$script:productVersion = $ver
+
+		Write-Host "... building $Architecture kit for v$ver" -ForegroundColor Yellow
+
+		# Locate MSBuild from the VS installation found by FindVisualStudio
+		$vsRoot = Split-Path -Parent (Split-Path -Parent $script:ideroot)
+		$msbuild = Join-Path $vsRoot 'MSBuild\Current\Bin\MSBuild.exe'
+		if (-not (Test-Path $msbuild))
+		{
+			Write-Host "... MSBuild not found at $msbuild; ensure Visual Studio is installed" -ForegroundColor Red
+			return
+		}
+
 		Push-Location OneMoreSetup
-		$vdproj = Resolve-Path .\OneMoreSetup.vdproj
-
-		PreserveVdproj $vdproj
-
 		try
 		{
-			ConfigureSetupProject $vdproj
+			$cmd = "& '$msbuild' OneMoreSetup.wixproj" +
+				" /Restore" +
+				" /p:Platform=$Architecture" +
+				" /p:Configuration=Debug" +
+				" /p:ProductVersion=$ver" +
+				" /nologo /m"
 
-			$log = "$($env:TEMP)\OneMoreBuild.log"
-			$cmd = ". '$devenv' .\OneMoreSetup.vdproj /build 'Debug|$Architecture' /project Setup /out '$log'"
-			
-			Write-Host
 			Write-Host $cmd -ForegroundColor DarkGray
 
 			if ($Stepped)
@@ -420,198 +437,26 @@ Begin
 
 			if ($LASTEXITCODE -eq 0)
 			{
-				$0 = Get-ChildItem .\Debug\OneMore_*.msi | select -first 1
-				if (Test-Path $0)
+				$msi = Get-ChildItem "bin\$Architecture\Debug\OneMore_*.msi" | Select-Object -First 1
+				if ($msi)
 				{
 					# move msi to Downloads for safe-keeping and to allow next Platform build
-					$1 = "$home\Downloads\OneMore_$productVersion`_Setup$Architecture.msi"
-					Move-Item $0 $1 -Force -Confirm:$false
-					Write-Host "... $Architecture MSI moved to $1" -ForegroundColor DarkYellow
+					$dest = "$home\Downloads\OneMore_${ver}_Setup${Architecture}.msi"
+					Move-Item $msi $dest -Force -Confirm:$false
+					Write-Host "... $Architecture MSI moved to $dest" -ForegroundColor DarkYellow
 
 					if (Get-Command checksum -ErrorAction SilentlyContinue)
 					{
-						if (Test-Path $1)
-						{
-							$sum = (checksum -t sha256 $1)
-							Write-Host "... $Architecture checksum: $sum" -ForegroundColor DarkYellow
-							$script:checksums += "$Architecture checksum: $sum"
-						}
+						$sum = (checksum -t sha256 $dest)
+						Write-Host "... $Architecture checksum: $sum" -ForegroundColor DarkYellow
+						$script:checksums += "$Architecture checksum: $sum"
 					}
 				}
 			}
 		}
 		finally
 		{
-			RestoreVdproj $vdproj
 			Pop-Location
-		}
-	}
-
-	function PreserveVdproj
-	{
-		param($vdproj)
-		Write-Host '... preserving vdproj' -ForegroundColor DarkGray
-
-		if ($Local) {
-			Write-Host '... using local copy of vdproj' -Fore DarkGray
-		} else {
-			Write-Host '... restoring vdproj from git' -Fore DarkGray
-			git restore $vdproj
-		}
-
-		Copy-Item $vdproj .\vdproj.tmp -Force -Confirm:$false
-	}
-
-	function RestoreVdproj
-	{
-		param($vdproj)
-		Write-Host '... restoring vdproj' -ForegroundColor DarkGray
-		$0 = (Resolve-Path .\vdproj.tmp)
-		if (Test-Path $0)
-		{
-			Copy-Item $0 $vdproj -Force -Confirm:$false
-			Remove-Item $0 -Force -Confirm:$false
-		}
-	}
-
-	function ConfigureSetupProject
-	{
-		param($vdproj)
-
-		$json = ConvertVdprojToJson $vdproj
-		$folders = GetArcFolders $json
-
-		$lines = (Get-Content $vdproj)
-
-		$script:productVersion = $lines | `
-			where { $_ -match '"ProductVersion" = "8:(.+?)"' } | `
-			foreach { $matches[1] }
-
-		Write-Host
-		Write-Host "... configuring vdproj for $Architecture build of $productVersion" -ForegroundColor Yellow
-
-		'' | Out-File $vdproj -nonewline
-
-		$lines | foreach `
-		{
-			if ($_ -match '"OutputFileName" = "')
-			{
-				# "OutputFilename" = "8:Debug\\OneMore_v_Setupx86.msi"
-				$line = $_.Replace('OneMore_v_', "OneMore_$($productVersion)_")
-				$line.Replace('x86', $Architecture) | Out-File $vdproj -Append
-			}
-			elseif ($_ -match '"DefaultLocation" = "')
-			{
-				# "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\[ProductName]"
-				if ($Architecture -ge 'x86') {
-					$_.Replace('ProgramFiles64Folder', 'ProgramFilesFolder') | Out-File $vdproj -Append
-				} else {
-					$_.Replace('ProgramFilesFolder', 'ProgramFiles64Folder') | Out-File $vdproj -Append
-				}
-			}
-			elseif ($_ -match '"TargetPlatform" = "')
-			{
-				# x86 -> "3:0"
-				# x64 -> "3:1"
-				if ($Architecture -ge 'x86') {
-					'"TargetPlatform" = "3:0"' | Out-File $vdproj -Append
-				} else {
-					'"TargetPlatform" = "3:1"' | Out-File $vdproj -Append
-				}
-			}
-			elseif (($_ -match ' --x86'))
-			{
-				# "Name" = "8:OneMoreSetupActions --install --x86"
-				# "Arguments" = "8:--install --x86"
-				$_.Replace('x86', $Architecture) | Out-File $vdproj -Append
-			}
-			elseif ($_ -match '"SourcePath" = .*WebView2Loader\.dll"$')
-			{
-				if ($Architecture -ne 'x86')
-				{
-					$_.Replace('x86', $Architecture.ToLower()) | Out-File $vdproj -Append
-				}
-				else
-				{
-					$_ | Out-File $vdproj -Append
-				}
-			}
-			elseif ($_ -match '"SourcePath" = .*SQLite.Interop\.dll"$')
-			{
-				if ($Architecture -eq 'x64')
-				{
-					$_.Replace('x86', 'x64') | Out-File $vdproj -Append
-				}
-				elseif ($Architecture -eq 'ARM64')
-				{
-					$_.Replace('bin\\x86\\Debug\\x86', 'bin\\ARM64\\Debug\\x64') | Out-File $vdproj -Append
-				}
-				else
-				{
-					$_ | Out-File $vdproj -Append
-				}
-			}
-			elseif ($_.Trim() -eq """Folder"" = ""8:$($folders.x86)""" -and $Architecture -ne 'x86')
-			{
-				# SQLite.Interop.dll Folder location
-				Write-Host "... updating SQLite.Interop x86 folder from $($folders.x86) to $($folders.x64)" -Fore DarkGray
-				"""Folder"" = ""8:$($folders.x64)""" | Out-File $vdproj -Append
-			}
-			elseif ($_.Trim() -eq """Folder"" = ""8:$($folders.win86)""" -and $Architecture -ne 'x86')
-			{
-				# WebView2Loader.dll Folder location
-				Write-Host "... updating WebView2Loader win-x86 folder from $($folders.win86) to $($folders.win64)" -Fore DarkGray
-				"""Folder"" = ""8:$($folders.win64)""" | Out-File $vdproj -Append
-			}
-			elseif ($_ -notmatch '^"Scc')
-			{
-				$_ | Out-File $vdproj -Append
-			}
-		}
-	}
-
-	function GetArcFolders
-	{
-		param($json)
-
-		$folder = $json.Deployable.Folder
-		$folders = ($folder | ExplodeNoteProperties | where { $_.Property -eq '8:TARGETDIR' }).Folders
-		# $json.Deployable.Folder['TARGETDIR'].Folders['8:x86'].omKey
-		$x86 = $folders | ExplodeNoteProperties | where { $_.Name -eq '8:x86' } | select -expand omKey
-		# $json.Deployable.Folder['TARGETDIR'].Folders['8:x64'].omKey
-		$x64 = $folders | ExplodeNoteProperties | where { $_.Name -eq '8:x64' } | select -expand omKey
-
-		$runtimes = ($folders | ExplodeNoteProperties | where { $_.Name -eq '8:runtimes' }).Folders
-
-		# $json.Deployable.Folder['TARGETDIR'].Folders['8:runtimes']['8:win-x86'].Folders['8:native'].omKey
-		$win86 = ($runtimes | `
-			ExplodeNoteProperties | where { $_.Name -eq '8:win-x86' }).Folders | `
-			ExplodeNoteProperties | where { $_.Name -eq '8:native' } | `
-			select -expand omKey
-
-		# $json.Deployable.Folder['TARGETDIR'].Folders['8:runtimes']['8:win-x64'].Folders['8:native'].omKey
-		$win64 = ($runtimes | `
-			ExplodeNoteProperties | where { $_.Name -eq '8:win-x64' }).Folders | `
-			ExplodeNoteProperties | where { $_.Name -eq '8:native' } | `
-			select -expand omKey
-
-		$rex = '{[0-9A-F\-]+}:(_[0-9A-F]+)$'
-		if ($x86 -match $rex) { $x86 = $matches[1] }
-		if ($x64 -match $rex) { $x64 = $matches[1] }
-		if ($win86 -match $rex) { $win86 = $matches[1] }
-		if ($win64 -match $rex) { $win64 = $matches[1] }
-
-		Write-Host
-		Write-Host "... x86 folder: $x86" -Fore DarkGray
-		Write-Host "... x64 folder: $x64" -Fore DarkGray
-		Write-Host "... win-x86 folder: $win86" -Fore DarkGray
-		Write-Host "... win-x64 folder: $win64" -Fore DarkGray
-
-		return [PSCustomObject]@{
-			x86 = $x86
-			x64 = $x64
-			win86 = $win86
-			win64 = $win64
 		}
 	}
 

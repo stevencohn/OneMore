@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+
+  <!--
+    ArchFlag preprocessor: arm64 becomes ARM64 for OneMoreSetupActions CLI flag.
+    Also controls which arch-specific SQLite and WebView2Loader variant is included.
+  -->
+  <?define ArchFlag = $(sys.BUILDARCH) ?>
+  <?if $(sys.BUILDARCH) = arm64 ?>
+    <?define ArchFlag = ARM64 ?>
+  <?endif ?>
+
+  <Fragment>
+    <ComponentGroup Id="MainFiles" Directory="INSTALLDIR">
+
+      <!-- Core add-in assembly -->
+      <Component Id="MainAddInDll">
+        <File Id="OneMoreAddInDll"
+              Source="..\OneMore\bin\$(var.Configuration)\River.OneMoreAddIn.dll"
+              KeyPath="yes" />
+        <File Source="..\OneMore\bin\$(var.Configuration)\River.OneMoreAddIn.dll.config" />
+      </Component>
+
+      <!-- Companion executables -->
+      <Component Id="CalendarExe">
+        <File Source="..\OneMore\bin\$(var.Configuration)\OneMoreCalendar.exe" KeyPath="yes" />
+        <File Source="..\OneMore\bin\$(var.Configuration)\OneMoreCalendar.exe.config" />
+      </Component>
+
+      <Component Id="ProtocolHandlerExe">
+        <File Source="..\OneMore\bin\$(var.Configuration)\OneMoreProtocolHandler.exe" KeyPath="yes" />
+        <File Source="..\OneMore\bin\$(var.Configuration)\OneMoreProtocolHandler.exe.config" />
+      </Component>
+
+      <Component Id="TrayExe">
+        <File Source="..\OneMore\bin\$(var.Configuration)\OneMoreTray.exe" KeyPath="yes" />
+        <File Source="..\OneMore\bin\$(var.Configuration)\OneMoreTray.exe.config" />
+      </Component>
+
+      <!-- Setup actions runner — Id referenced by CustomAction elements in Product.wxs -->
+      <Component Id="SetupActionsExe">
+        <File Id="OneMoreSetupActionsExe"
+              Source="..\OneMore\bin\$(var.Configuration)\OneMoreSetupActions.exe"
+              KeyPath="yes" />
+        <File Source="..\OneMore\bin\$(var.Configuration)\OneMoreSetupActions.exe.config" />
+      </Component>
+
+      <!-- Third-party and interop DLLs -->
+      <Component Id="AgaControlsDll">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Aga.Controls.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="ChineseDll">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Chinese.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="HtmlAgilityPackDll">
+        <File Source="..\OneMore\bin\$(var.Configuration)\HtmlAgilityPack.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="MarkdigSignedDll">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Markdig.Signed.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="MicrosoftBclAsyncInterfacesDll">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Microsoft.Bcl.AsyncInterfaces.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="MicrosoftOfficeInteropOneNoteDll">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Microsoft.Office.Interop.OneNote.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="MicrosoftOfficeInteropOutlookDll">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Microsoft.Office.Interop.Outlook.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="MicrosoftOfficeInteropPowerPointDll">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Microsoft.Office.Interop.PowerPoint.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="MicrosoftOfficeInteropWordDll">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Microsoft.Office.Interop.Word.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="MicrosoftVbeInteropDll">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Microsoft.Vbe.Interop.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="MicrosoftWebWebView2CoreDll">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Microsoft.Web.WebView2.Core.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="MicrosoftWebWebView2WinFormsDll">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Microsoft.Web.WebView2.WinForms.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="MicrosoftWebWebView2WpfDll">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Microsoft.Web.WebView2.Wpf.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="NewtonsoftJsonDll">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Newtonsoft.Json.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="NStandardDll">
+        <File Source="..\OneMore\bin\$(var.Configuration)\NStandard.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="OfficeDll">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Office.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="StdoleDll">
+        <File Source="..\OneMore\bin\$(var.Configuration)\stdole.dll" KeyPath="yes" />
+      </Component>
+
+      <!-- .NET Standard/Core backport shims -->
+      <Component Id="SystemBuffersDll">
+        <File Source="..\OneMore\bin\$(var.Configuration)\System.Buffers.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="SystemCollectionsImmutableDll">
+        <File Source="..\OneMore\bin\$(var.Configuration)\System.Collections.Immutable.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="SystemDataSQLiteDll">
+        <File Source="..\OneMore\bin\$(var.Configuration)\System.Data.SQLite.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="SystemMemoryDll">
+        <File Source="..\OneMore\bin\$(var.Configuration)\System.Memory.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="SystemNumericsVectorsDll">
+        <File Source="..\OneMore\bin\$(var.Configuration)\System.Numerics.Vectors.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="SystemReflectionMetadataDll">
+        <File Source="..\OneMore\bin\$(var.Configuration)\System.Reflection.Metadata.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="SystemRuntimeCompilerServicesUnsafeDll">
+        <File Source="..\OneMore\bin\$(var.Configuration)\System.Runtime.CompilerServices.Unsafe.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="SystemRuntimeWindowsRuntimeDll">
+        <File Source="..\OneMore\bin\$(var.Configuration)\System.Runtime.WindowsRuntime.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="SystemThreadingTasksExtensionsDll">
+        <File Source="..\OneMore\bin\$(var.Configuration)\System.Threading.Tasks.Extensions.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="WindowsInputDll">
+        <File Source="..\OneMore\bin\$(var.Configuration)\WindowsInput.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="WindowsWinmd">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Windows.winmd" KeyPath="yes" />
+      </Component>
+
+      <!-- Segoe Symbol font — installed to system Fonts folder -->
+      <Component Id="SegoeSymbolFont" Directory="FontsFolder">
+        <File Source="Resources\seguisym.ttf" KeyPath="yes" />
+      </Component>
+
+      <!--
+        Architecture-specific SQLite native interop.
+        ARM64 build uses the x64 interop from the ARM64 build tree (ARM64EC).
+      -->
+      <?if $(sys.BUILDARCH) = x86 ?>
+      <Component Id="SqliteInterop" Directory="SQLiteX86Dir">
+        <File Source="..\OneMore\bin\$(var.Configuration)\x86\SQLite.Interop.dll" KeyPath="yes" />
+      </Component>
+      <?elseif $(sys.BUILDARCH) = x64 ?>
+      <Component Id="SqliteInterop" Directory="SQLiteX64Dir">
+        <File Source="..\OneMore\bin\$(var.Configuration)\x64\SQLite.Interop.dll" KeyPath="yes" />
+      </Component>
+      <?elseif $(sys.BUILDARCH) = arm64 ?>
+      <Component Id="SqliteInterop" Directory="SQLiteArm64Dir">
+        <File Source="..\OneMore\bin\ARM64\$(var.Configuration)\x64\SQLite.Interop.dll" KeyPath="yes" />
+      </Component>
+      <?endif ?>
+
+      <!-- Architecture-specific WebView2 native loader -->
+      <?if $(sys.BUILDARCH) = x86 ?>
+      <Component Id="WebView2Loader" Directory="WinX86NativeDir">
+        <File Source="..\OneMore\bin\$(var.Configuration)\runtimes\win-x86\native\WebView2Loader.dll" KeyPath="yes" />
+      </Component>
+      <?elseif $(sys.BUILDARCH) = x64 ?>
+      <Component Id="WebView2Loader" Directory="WinX64NativeDir">
+        <File Source="..\OneMore\bin\$(var.Configuration)\runtimes\win-x64\native\WebView2Loader.dll" KeyPath="yes" />
+      </Component>
+      <?elseif $(sys.BUILDARCH) = arm64 ?>
+      <Component Id="WebView2Loader" Directory="WinArm64NativeDir">
+        <File Source="..\OneMore\bin\$(var.Configuration)\runtimes\win-arm64\native\WebView2Loader.dll" KeyPath="yes" />
+      </Component>
+      <?endif ?>
+
+    </ComponentGroup>
+  </Fragment>
+
+</Wix>

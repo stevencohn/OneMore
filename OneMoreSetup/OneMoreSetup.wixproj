@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="WixToolset.Sdk/7.0.0">
+
+  <PropertyGroup>
+    <Platform Condition="'$(Platform)' == ''">x86</Platform>
+    <Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
+    <ProductVersion Condition="'$(ProductVersion)' == ''">6.8.4</ProductVersion>
+    <OutputName>OneMore_$(ProductVersion)_Setup$(Platform)</OutputName>
+    <OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
+    <DefineConstants>ProductVersion=$(ProductVersion)</DefineConstants>
+    <!-- ICE38/ICE64: perMachine package intentionally installs to %APPDATA% for user themes.
+         Active Setup propagates them to each user profile on login. -->
+    <SuppressIces>ICE38;ICE60;ICE64;ICE91</SuppressIces>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="WixToolset.UI.wixext" Version="7.0.*" />
+    <PackageReference Include="WixToolset.Util.wixext" Version="7.0.*" />
+  </ItemGroup>
+
+</Project>
