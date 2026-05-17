@@ -89,13 +89,38 @@ namespace River.OneMoreAddIn.Colorizer
 	/// </summary>
 	internal class Theme : ITheme
 	{
+		private Dictionary<string, Style> stylesByName;
+
 		public Dictionary<string, string> Colors { get; set; }
 
 		public List<Style> Styles { get; set; }
 
 		public Style GetStyle(string name)
 		{
-			return Styles.Find(s => s.Name == name);
+			if (name == null)
+			{
+				return null;
+			}
+
+			if (stylesByName == null)
+			{
+				stylesByName = new Dictionary<string, Style>(
+					Styles?.Count ?? 0,
+					System.StringComparer.OrdinalIgnoreCase);
+
+				if (Styles != null)
+				{
+					foreach (var style in Styles)
+					{
+						if (style.Name != null)
+						{
+							stylesByName[style.Name] = style;
+						}
+					}
+				}
+			}
+
+			return stylesByName.TryGetValue(name, out var s) ? s : null;
 		}
 
 
@@ -118,7 +143,8 @@ namespace River.OneMoreAddIn.Colorizer
 
 			foreach (var style in Styles)
 			{
-				// standardize on lowercase names because users are stupid
+				// standardize on lowercase names because users may be unpredictable in their
+				// use of case, and we want to be able to look up styles by name regardless
 				style.Name = style.Name.ToLower();
 
 				style.Background = TranslateColorName(style.Background);
