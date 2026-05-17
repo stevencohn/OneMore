@@ -299,8 +299,15 @@ namespace River.OneMoreAddIn.Commands
 		{
 			progress.SetMessage($"Importing {filepath}...");
 
-			using var powerpoint = new PowerPoint();
-			var outpath = powerpoint.ConvertFileToImages(filepath);
+			// PowerPoint is opened with WithWindow=msoFalse (windowless automation). If its
+			// using-scope extends across the OneNote awaits below, the Application RCW can
+			// detach before Dispose runs and power.Quit() throws InvalidComObjectException.
+			// Scope it tightly so PowerPoint quits before any async work begins.
+			string outpath;
+			using (var powerpoint = new PowerPoint())
+			{
+				outpath = powerpoint.ConvertFileToImages(filepath);
+			}
 
 			if (outpath == null)
 			{

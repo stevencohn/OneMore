@@ -24,7 +24,13 @@
       "Bash(Select-Object -First 20)",
       "PowerShell(gh pr *)",
       "PowerShell(git *)",
-      "Bash(Select-Object FullName)"
+      "Bash(Select-Object FullName)",
+      "Bash(awk -F'\"' '{print $2}')",
+      "Bash(Select-Object Name)",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Github\\\\OneMore\\\\OneMore\" -Directory -Exclude Commands | Sort-Object Name | ForEach-Object { Write-Host \"$\\($_.Name\\)\" })",
+      "Bash(awk '{print $NF}')",
+      "Bash(xargs basename -a)",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Github\\\\OneMore\\\\OneMore\\\\External\" | ForEach-Object { Write-Host \"$\\($_.Name\\)\" })"
     ]
   }
 }

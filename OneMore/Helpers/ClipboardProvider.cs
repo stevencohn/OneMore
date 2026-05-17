@@ -105,6 +105,12 @@ namespace River.OneMoreAddIn
 		/// conversion of other content.
 		/// </summary>
 		/// <returns>An Image or null if the clipboard does not contain an image</returns>
+		/// <remarks>
+		/// The returned Image takes ownership of the underlying stream; the caller MUST
+		/// Dispose() the Image when done. The (false, false) overload skips embedded color
+		/// validation, which has historically been the buggier GDI+ decode path for malformed
+		/// images planted on the clipboard by another process.
+		/// </remarks>
 		public static async Task<Image> GetImage()
 		{
 			return await SingleThreaded.Invoke(() =>
@@ -119,7 +125,7 @@ namespace River.OneMoreAddIn
 				if (format is not null &&
 					data.GetData(format) is MemoryStream stream)
 				{
-					return Image.FromStream(stream);
+					return Image.FromStream(stream, false, false);
 				}
 
 				return null;
