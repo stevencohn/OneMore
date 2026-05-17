@@ -4,8 +4,21 @@
   ],
   "rules": [
     {
-      "pattern": "(\\(\\*[^\\)]\\*\\))",
+      "pattern": "(\\(\\*(?:[^*]|\\*+[^*)])*\\*+\\))",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      "pattern": "(\\(\\*[^\\r\\n]*)$",
       "scope": "Comment",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      "pattern": "^([^\\r\\n]*\\*\\))",
+      "scope": "",
       "captures": [
         "Comment"
       ]
