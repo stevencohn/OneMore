@@ -8,23 +8,29 @@ Builds the installer kit for the specifies architecture: x86 (default), x64, ARM
 
 .PARAMETER Clean
 Clean all projects in the solution, removing all bin and obj directories.
-No build is performed.
+No build is performed. This is a standalone command that executes and exits.
 
 .PARAMETER Detect
-Detect the targeted CPU architecture of the specified DLL or EXE file.
+Detect and report the targeted CPU architecture of the specified DLL or EXE file.
+This is a standalone command that executes and exits.
 
 .PARAMETER Fast
-Build just the .csproj projects using default parameters:
-OneMore, OneMorCalendar, OneMoreProtocolHandler, OneMoreSetupActions, and OneMoreTray.
+Build just the .csproj projects using default parameters: OneMore, OneMorCalendar, 
+OneMoreProtocolHandler, OneMoreSetupActions, and OneMoreTray.
+This is a standalone command that executes and exits.
 
 .PARAMETER Kit
 Skips recompiling the binaries, grabbing whatever is in the bin, and proceeds to build
 the installer kit for the specified architecture.
 
+.PARAMETER Main
+When building with -Fast, only build the main OneMore add-in project, skipping the tray, 
+calendar, protocol handler, and setup actions projects. This is a debugging option.
+
 .PARAMETER Prep
 Run DisableOutOfProcBuild. This only needs to be run once on a machine, or after upgrading
 or reinstalling Visual Studio. It is required to build installer kits from the command line.
-No build is performed.
+No build is performed. This is a standalone command that executes and exits.
 
 .PARAMETER Stepped
 When building All architectures, pause between each architecture build to allow examination
