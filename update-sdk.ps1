@@ -4,7 +4,10 @@ Update the OneMore.csproj reference hints to point to the latest installed versi
 of the Windows SDK.
 #>
 
-param ()
+param(
+    [Alias('dryrun')]
+    [switch] $WhatIf
+)
 
 Begin
 {
@@ -83,7 +86,7 @@ Begin
                 $p = [System.IO.Path]::GetFullPath($basePath + $matches[1].ToString())
                 if (($p.ToString() -ne $netpath) -or $forceBase)
                 {
-                    WriteOK "updating .NET Framework path: $netpath"
+                    WriteOK "updating$dry .NET Framework path: $netpath"
                     $lines[$i] = $line.Replace($matches[1], $netpath)
                     $handled = $true
                 }
@@ -101,7 +104,7 @@ Begin
                     $fullpath = $kitsroot; 'UnionMetadata', $sdkver, 'Windows.winmd' | `
                         foreach { $fullpath = Join-Path $fullpath $_ }
 
-                    WriteOK "patching Windows SDK path: $fullpath"
+                    WriteOK "patching$dry Windows SDK path: $fullpath"
                     $lines[$i] = "<HintPath>$fullpath</HintPath>"
                     $handled = $true
                 }
@@ -120,7 +123,7 @@ Begin
         # Updating $lines in memory is super fast. Also, Out-File -Append seems to have a problem
         # where it skips lines because it thinks the csproj is locked, probably if VS is open
 
-        if ($updated)
+        if ($updated -and -not $WhatIf)
         {
             $lines | Out-File $csproj
         }
@@ -134,11 +137,13 @@ Process
     GetDriveMapping
     $script:csproj = Resolve-Path .\OneMore.csproj
 
+    $script:dry = $WhatIf ? ' (dry run)' : ''
+
     $script:sdkver = GetSDKVersion
     if ($sdkver) 
     {
-        Write-Host "`nUpdating Windows SDK $sdkver " -NoNewline
-        write-Host "($kitsroot)`n" -ForegroundColor DarkGray
+        Write-Host "`nUpdating$dry Windows SDK $sdkver " -NoNewline
+        Write-Host "($kitsroot)`n" -ForegroundColor DarkGray
 
         if (PatchReferences) {
             WriteOK 'done'
