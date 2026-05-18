@@ -104,37 +104,38 @@ namespace River.OneMoreAddIn.Commands
 
 		private static StandardStyles? MatchHeading(Style style)
 		{
-			if (style.FontFamily == "Calibri")
+			// do not gate the rest of this routine by font family as that is not a reliable
+			// indicator of heading level in markdown since the default font was changed from
+			// Calibri to Aptos in OneNote starting in 2023 and users may have custom defaults
+
+			var standard = StandardStyles.PageTitle.GetDefaults();
+			if (style.FontSize == standard.FontSize && style.Color == Style.Automatic)
 			{
-				var standard = StandardStyles.PageTitle.GetDefaults();
-				if (style.FontSize == standard.FontSize && style.Color == Style.Automatic)
-				{
-					return StandardStyles.PageTitle;
-				}
+				return StandardStyles.PageTitle;
+			}
 
-				standard = StandardStyles.Heading1.GetDefaults();
-				if (style.FontSize == standard.FontSize && style.Color == standard.Color)
-				{
-					return StandardStyles.Heading1;
-				}
+			standard = StandardStyles.Heading1.GetDefaults();
+			if (style.FontSize == standard.FontSize && style.Color == standard.Color)
+			{
+				return StandardStyles.Heading1;
+			}
 
-				standard = StandardStyles.Heading2.GetDefaults();
-				if (style.FontSize == standard.FontSize && style.Color == standard.Color)
-				{
-					return StandardStyles.Heading2;
-				}
+			standard = StandardStyles.Heading2.GetDefaults();
+			if (style.FontSize == standard.FontSize && style.Color == standard.Color)
+			{
+				return StandardStyles.Heading2;
+			}
 
-				standard = StandardStyles.Heading3.GetDefaults();
-				if (style.FontSize == standard.FontSize && style.Color == standard.Color)
-				{
-					return style.IsItalic ? StandardStyles.Heading4 : StandardStyles.Heading3;
-				}
+			standard = StandardStyles.Heading3.GetDefaults();
+			if (style.FontSize == standard.FontSize && style.Color == standard.Color)
+			{
+				return style.IsItalic ? StandardStyles.Heading4 : StandardStyles.Heading3;
+			}
 
-				standard = StandardStyles.Heading5.GetDefaults();
-				if (style.Color == standard.Color)
-				{
-					return style.IsItalic ? StandardStyles.Heading6 : StandardStyles.Heading5;
-				}
+			standard = StandardStyles.Heading5.GetDefaults();
+			if (style.Color == standard.Color)
+			{
+				return style.IsItalic ? StandardStyles.Heading6 : StandardStyles.Heading5;
 			}
 
 			return null;
