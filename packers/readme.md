@@ -2,15 +2,20 @@
 
 1. Run prepare.ps1 (you've done this)
 
-   `.\prepare.ps1 -version 6.8.4`
+   ```powershell
+   $omVersion = '6.8.4'
+   .\prepare.ps1 -version $omVersion
+   ```
 
    This updates the nuspec, install script, and VERIFICATION.txt with the new version and checksums.
 
 2. Build the .nupkg package
 
-   `choco pack .\chocolatey\onemore.nuspec`
+   ```powershell
+   choco pack .\chocolatey\onemore.nuspec
+   ```
 
-   This creates onemore.6.8.4.nupkg in the current directory.
+   This creates `onemore.$omVersion.nupkg` in the current directory.
 
 ## Publish and Validate
 
@@ -23,11 +28,15 @@
 
 5. Register the API key locally
 
-   `choco apikey -k $env:CHOCO_APIKEY -s https://push.chocolatey.org/`
+   ```powershell
+   choco apikey -k $env:CHOCO_APIKEY -s https://push.chocolatey.org/
+   ```
 
 6. Push the package
 
-   `choco push onemore.6.8.4.nupkg -s https://push.chocolatey.org/`
+   ```powershell
+   choco push onemore.$omVersion.nupkg -s https://push.chocolatey.org/
+   ```
 
 7. Wait for moderation
 
