@@ -11,8 +11,8 @@
     <projectUrl>https://github.com/stevencohn/OneMore</projectUrl>
     <iconUrl>https://cdn.statically.io/gh/stevencohn/OneMore/main/OneMore/Properties/Images/Logo.png</iconUrl>
     <copyright>Copyright © 2016 Steven M Cohn. All rights reserved.</copyright>
-    <license type="expression">MPL-2.0</license>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://cdn.statically.io/gh/stevencohn/OneMore/main/LICENSE</licenseUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <projectSourceUrl>https://github.com/stevencohn/OneMore</projectSourceUrl>
     <docsUrl>https://onemoreaddin.com/</docsUrl>
     <bugTrackerUrl>https://github.com/stevencohn/OneMore/issues</bugTrackerUrl>
