@@ -3,7 +3,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <id>onemore</id>
-    <version>6.7.0</version>
+    <version>6.8.4</version>
     <packageSourceUrl>https://github.com/stevencohn/OneMore/tree/main/packers/chocolatey</packageSourceUrl>
     <owners>Steven Cohn</owners>
     <title>OneMore</title>
@@ -11,8 +11,8 @@
     <projectUrl>https://github.com/stevencohn/OneMore</projectUrl>
     <iconUrl>https://cdn.statically.io/gh/stevencohn/OneMore/main/OneMore/Properties/Images/Logo.png</iconUrl>
     <copyright>Copyright © 2016 Steven M Cohn. All rights reserved.</copyright>
-    <licenseUrl>https://cdn.statically.io/gh/stevencohn/OneMore/main/LICENSE</licenseUrl>
-    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license type="expression">MPL-2.0</license>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <projectSourceUrl>https://github.com/stevencohn/OneMore</projectSourceUrl>
     <docsUrl>https://onemoreaddin.com/</docsUrl>
     <bugTrackerUrl>https://github.com/stevencohn/OneMore/issues</bugTrackerUrl>
@@ -21,49 +21,25 @@
     <description>OneMore is an add-in for OneNote with simple and powerful features that make OneNote a better OneNote.</description>
     <releaseNotes>## What's Changed
 
-* Added the _Check URLs_ command to check valid URLs on a page, #1046 
-* Added the _Replace URL Titles With Addresses_ command, #1713
-* Added the _Open page/section/notebook In Web Browser_ commands, #1629
-* Added the _Scan Hashtags_ command, bound to `Ctrl + Alt + F10`, to scan the current page, #1675
-* Added the _Select All Tables_ command, #1679
-* Added the _Update Page Time_ command, #1702
-* Added the ability to delete items from the Navigator History panel, #1707
-* Added the ability to sum timespan values in table formulas, #1696
-* Added the option to limit the depth of headings displayed in the page Table of Contents, #1521 
-* Added the option to separate OneMore into its own ribbon tab, #1651 
-* Added the option to overlay the Table of Contents over existing outlines, #1712
-* Added the option allow incremental character searching in the command palettes, #1680
-* Added the option to hide the "no changes" message when running a plugin, #1656 
-* Added keyboard shortcuts to restart and close the timer window, #1552 
-* Enhanced the hashtag Index pages feature to include a checkbox for each page, #1649 
-* Removed the bubble window form appearing after copying link to para or page, #1070
-* Fixed an issue where CSS was exposed in Navigator Heading panel, #1722
-* Fixed an issue where spaces where not allowed in path to Obsidian wiki-style linked images, #1718
-* Fixed an issue where the custom color was not applied to the horizontal line snippets, #1688
-* Fixed an issue where comma-separated hashtags were not recognized, #1663 
-* Fixed an issue where _Apply Styles to Page_ caused an exception, #1662 
-* Fixed an issue where the Colorize dialog caused an exception, #1660 
-* Fixed an issue where spaces were not rendered correctly in the command palette, #1655 
-* Fixed an issue where _Remove Ink_ would not remove InkWord and InkParagraph elements, #1730
-* Fixed an issue where Python multiline comments were not colorized properly, #1732
-* Fixed an issue where embedded content misinterpreted incoming TagDefs, #1736
-* Fixed an issue where the last deleted ref was not removed from the Linked References block, #1737
-* Fixed an issue where custom headings with the default font size were set to wrong QuickStyle, #1738
-* Fixed an issue where _Paste as Text_ command pasted soft breaks instead of hard breaks, #1745
+* Added option to capture anonymous telemetry, [#1974](https://github.com/stevencohn/OneMore/issues/1974)
+   * User is prompted with one-time splash screen, but it can be turned on or off in Settings
+   * Please opt-in to help me improve OneMore!
+* Updated Active Setup robustness, [#1963](https://github.com/stevencohn/OneMore/issues/1963)
+* Fixed an issue where Copy as Text would copy the entire page is only a URL is selected, [#1921](https://github.com/stevencohn/OneMore/issues/1921)
+* Fixed an issue where PlantUML would fail if containing a URL, [#1967](https://github.com/stevencohn/OneMore/issues/1967)
+* Fixed an issue Preview Markdown would stop interpreting after a code blocks, [#1979](https://github.com/stevencohn/OneMore/issues/1979)
+* Fixed(?) an issue where OneNote architecture was not properly detected on AMR64, [#1981](https://github.com/stevencohn/OneMore/issues/1981)
+* Fixed an issue where copy section group failed to copy to another notebook, [#1990](https://github.com/stevencohn/OneMore/issues/1990)
+
+## Experimental
+* Added non-indexed full-text search capabilities, bound to `Alt+Shift+G`, [#1856](https://github.com/stevencohn/OneMore/issues/1856)
+   * ΓÜá∩╕Å WARNING: this is not fully baked. Needs performance improvements and may cause OneNote to hang upon exit
+   * Only available after enabling the _Experimental_ option
 
 ## Internal Updates
-
-* Changed the default Hashtag scanner throttle from 40ms to 20ms, [commit](https://github.com/stevencohn/OneMore/commit/08e7f25ab2e2441d6e5abb539b0b6ef3cbcfe2b3)
-* Updated the Update command to ignore prerelease versions, [commit](https://github.com/stevencohn/OneMore/commit/2dfda5175fa0bb30685d801634ba6bd9f92edb49)
-* Removed call to SwitchToThisWindow when opening command palettes, [#1422](https://github.com/stevencohn/OneMore/issues/1422)
-* Fixed an issue where multiple selected images were not resized correclty, PR [#1673](https://github.com/stevencohn/OneMore/pull/1673)
-* Fixed an issue where the HashtagScanner failed on the first run on a new install, [commit](https://github.com/stevencohn/OneMore/commit/3167098342f76e5f7af2b1c70aecc5d394dcfa88)
-* Fixed an issue where OneMoreTray Schedule dialog was not translated correctly, [commit](https://github.com/stevencohn/OneMore/commit/ae8f06340765ad835b77017515eada21e498f0ef)
-* Fixed an issue where Stop.ps1 was not stopping OneMoreTray, [commit](https://github.com/stevencohn/OneMore/commit/66993c80044b492ac8d9f3f241b052c176c8c592)
-* Fixed an issue where `Ctrl + R` would cause an exception when running modeless dialogs, [commit](https://github.com/stevencohn/OneMore/commit/fc833244650b1d7660ec9eb87281db2ea7265131)
+* Updated build.ps1 to allow VS2026
 
 ## Known Issues
-
 * ≡ƒÉ£ _Search and Replace_ doesn't replace the currently highlighted or selected word/phrase; sometimes it doesn't replace other candidates either
 * ≡ƒÉ£_Select Similar Styles_ will find differences in colors Auto vs #000000 - make it more fuzzy?
 * ≡ƒÆíPaginate Hashtag search results
@@ -72,12 +48,18 @@
 * ≡ƒÆíGithub PR action to pull ticket# prefix from branch name, e.g. 1234-do-something-cool
 
 ## Checksums
-* x86 = 410AD464AE692FA23AD44CD85B8159E2E2775751AA0E413F0C773195C128A856
-* x64 = AF3712289DCB4C67C8429E3C0A095D730B47AD40CD051793DEE460FAF4616314
+* x86 = A57BA2E3611491A59DB74B6AB20491EE49FB6EB0AC9F621C968319A36CB56205
+* x64 = 003001D7205866E9EBA7AFF2F32D24C1A2B2B15D07B7DA9A8F3F8507EAD5C80C
+* ARM64 = 7067968D4B7FE4985EB6FC03F37E83B707D3A8426CEF46FD0818D8963C5EE745
 
-**Full Changelog**: https://github.com/stevencohn/OneMore/compare/6.6.1...6.7.0
+**Full Changelog**: https://github.com/stevencohn/OneMore/compare/6.8.2...6.8.4
 
-</releaseNotes>
+# Which Installer?
+v6.7.7 changed the fundamental approach to installation. Rather than installers that are tied to the operating system architecture, they are now dependent on the architecture of OneNote itself. If you do not know which version of OneNote you have, refer to Which Version of Office Do I Have? on the [How to Install OneNote](https://onemoreaddin.com/get-started/How%20to%20Install%20OneNote.htm) page.
+
+* If you have 64-bit OneNote installed, download the x64 installer
+* If you have 32-bit OneNote installed, download the x86 installer
+* If you have Arm64 OneNote installed, download the ARM64 installer</releaseNotes>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />

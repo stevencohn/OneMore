@@ -1,8 +1,18 @@
-﻿
+
 VERIFICATION
 Verification is intended to assist the Chocolatey moderators and community
 in verifying that this package's contents are trustworthy.
 
-MSI is verified by its checksum.
-The MSI is published with each release under https://github.com/stevencohn/OneMore/releases
-The checksum of each MSI is noted in the release notes for each release.
+1. Go to
+     https://github.com/stevencohn/OneMore/releases/tag/6.8.4
+   to confirm the files listed in the download section.
+
+2. Download the release files:
+     x86: https://github.com/stevencohn/OneMore/releases/download/6.8.4/OneMore_6.8.4_Setupx86.msi
+     x64: https://github.com/stevencohn/OneMore/releases/download/6.8.4/OneMore_6.8.4_Setupx64.msi
+
+3. Verify the SHA256 checksum using Get-FileHash or checksum.exe:
+
+   checksum type: sha256
+   checksum (x86): 1687B2E6FFBC7ACDCF25517D1001F3F94DE864A574165382A869CDC4BCE8D605
+   checksum (x64): 3848AFD8518A605CF57A2E52E525982CB8CB446C1A3E19EE74F8E61107D4D7CF
