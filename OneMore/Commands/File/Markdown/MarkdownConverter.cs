@@ -104,6 +104,10 @@ namespace River.OneMoreAddIn.Commands
 
 		private static StandardStyles? MatchHeading(Style style)
 		{
+			// do not gate the rest of this routine by font family as that is not a reliable
+			// indicator of heading level in markdown since the default font was changed from
+			// Calibri to Aptos in OneNote starting in 2023 and users may have custom defaults
+
 			var standard = StandardStyles.PageTitle.GetDefaults();
 			if (style.FontSize == standard.FontSize && style.Color == Style.Automatic)
 			{
