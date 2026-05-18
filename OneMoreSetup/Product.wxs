@@ -158,7 +158,7 @@
     <Property Id="WIXUI_INSTALLDIR" Value="INSTALLDIR" />
     <ui:WixUI Id="WixUI_InstallDir" />
     <WixVariable Id="WixUIBannerBmp" Value="Resources\Banner.jpg" />
-    <!--WixVariable Id="WixUIDialogBmp"  Value="Resources\Dialog.jpg" /-->
+    <WixVariable Id="WixUIDialogBmp"  Value="Resources\Dialog.jpg" />
     <WixVariable Id="WixUILicenseRtf" Value="Resources\license.rtf" />
 
   </Package>
