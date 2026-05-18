@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+
+  <!-- Satellite assemblies (localized resources) installed to INSTALLDIR\[culture]\ -->
+  <Fragment>
+    <ComponentGroup Id="SatelliteAssemblies" Directory="INSTALLDIR">
+      <!-- ar-SA -->
+      <Component Id="SatelliteArSaAddIn" Directory="CultureArSA">
+        <File Source="..\OneMore\bin\$(var.Configuration)\ar-SA\River.OneMoreAddIn.resources.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="SatelliteArSaTray" Directory="CultureArSA">
+        <File Source="..\OneMore\bin\$(var.Configuration)\ar-SA\OneMoreTray.resources.dll" KeyPath="yes" />
+      </Component>
+
+      <!-- de-DE -->
+      <Component Id="SatelliteDeDeDe" Directory="CultureDeDe">
+        <File Source="..\OneMore\bin\$(var.Configuration)\de-DE\River.OneMoreAddIn.resources.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="SatelliteDeDeT" Directory="CultureDeDe">
+        <File Source="..\OneMore\bin\$(var.Configuration)\de-DE\OneMoreTray.resources.dll" KeyPath="yes" />
+      </Component>
+
+      <!-- es-ES -->
+      <Component Id="SatelliteEsEs" Directory="CultureEsEs">
+        <File Source="..\OneMore\bin\$(var.Configuration)\es-ES\River.OneMoreAddIn.resources.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="SatelliteEsEsT" Directory="CultureEsEs">
+        <File Source="..\OneMore\bin\$(var.Configuration)\es-ES\OneMoreTray.resources.dll" KeyPath="yes" />
+      </Component>
+
+      <!-- fr-FR -->
+      <Component Id="SatelliteFrFr" Directory="CultureFrFr">
+        <File Source="..\OneMore\bin\$(var.Configuration)\fr-FR\River.OneMoreAddIn.resources.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="SatelliteFrFrT" Directory="CultureFrFr">
+        <File Source="..\OneMore\bin\$(var.Configuration)\fr-FR\OneMoreTray.resources.dll" KeyPath="yes" />
+      </Component>
+
+      <!-- he -->
+      <Component Id="SatelliteHe" Directory="CultureHe">
+        <File Source="..\OneMore\bin\$(var.Configuration)\he\System.Runtime.WindowsRuntime.resources.dll" KeyPath="yes" />
+      </Component>
+
+      <!-- he-IL -->
+      <Component Id="SatelliteHeIl" Directory="CultureHeIl">
+        <File Source="..\OneMore\bin\$(var.Configuration)\he-IL\River.OneMoreAddIn.resources.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="SatelliteHeIlT" Directory="CultureHeIl">
+        <File Source="..\OneMore\bin\$(var.Configuration)\he-IL\OneMoreTray.resources.dll" KeyPath="yes" />
+      </Component>
+
+      <!-- it -->
+      <Component Id="SatelliteIt" Directory="CultureIt">
+        <File Source="..\OneMore\bin\$(var.Configuration)\it\System.Runtime.WindowsRuntime.resources.dll" KeyPath="yes" />
+      </Component>
+
+      <!-- it-IT -->
+      <Component Id="SatelliteItIt" Directory="CultureItIt">
+        <File Source="..\OneMore\bin\$(var.Configuration)\it-IT\River.OneMoreAddIn.resources.dll" KeyPath="yes" />
+      </Component>
+
+      <!-- ja-JP -->
+      <Component Id="SatelliteJaJp" Directory="CultureJaJp">
+        <File Source="..\OneMore\bin\$(var.Configuration)\ja-JP\River.OneMoreAddIn.resources.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="SatelliteJaJpT" Directory="CultureJaJp">
+        <File Source="..\OneMore\bin\$(var.Configuration)\ja-JP\OneMoreTray.resources.dll" KeyPath="yes" />
+      </Component>
+
+      <!-- nl-NL -->
+      <Component Id="SatelliteNlNl" Directory="CultureNlNl">
+        <File Source="..\OneMore\bin\$(var.Configuration)\nl-NL\River.OneMoreAddIn.resources.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="SatelliteNlNlT" Directory="CultureNlNl">
+        <File Source="..\OneMore\bin\$(var.Configuration)\nl-NL\OneMoreTray.resources.dll" KeyPath="yes" />
+      </Component>
+
+      <!-- pl-PL -->
+      <Component Id="SatellitePlPl" Directory="CulturePlPl">
+        <File Source="..\OneMore\bin\$(var.Configuration)\pl-PL\River.OneMoreAddIn.resources.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="SatellitePlPlT" Directory="CulturePlPl">
+        <File Source="..\OneMore\bin\$(var.Configuration)\pl-PL\OneMoreTray.resources.dll" KeyPath="yes" />
+      </Component>
+
+      <!-- pt-BR -->
+      <Component Id="SatellitePtBr" Directory="CulturePtBr">
+        <File Source="..\OneMore\bin\$(var.Configuration)\pt-BR\River.OneMoreAddIn.resources.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="SatellitePtBrT" Directory="CulturePtBr">
+        <File Source="..\OneMore\bin\$(var.Configuration)\pt-BR\OneMoreTray.resources.dll" KeyPath="yes" />
+      </Component>
+
+      <!-- zh-CN -->
+      <Component Id="SatelliteZhCn" Directory="CultureZhCn">
+        <File Source="..\OneMore\bin\$(var.Configuration)\zh-CN\River.OneMoreAddIn.resources.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="SatelliteZhCnT" Directory="CultureZhCn">
+        <File Source="..\OneMore\bin\$(var.Configuration)\zh-CN\OneMoreTray.resources.dll" KeyPath="yes" />
+      </Component>
+
+      <!-- zh-Hans -->
+      <Component Id="SatelliteZhHans" Directory="CultureZhHans">
+        <File Source="..\OneMore\bin\$(var.Configuration)\zh-Hans\System.Runtime.WindowsRuntime.resources.dll" KeyPath="yes" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+
+</Wix>

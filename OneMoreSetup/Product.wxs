@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs"
+     xmlns:ui="http://wixtoolset.org/schemas/v4/wxs/ui">
+
+  <!--
+    ArchFlag: arm64 becomes ARM64 (OneMoreSetupActions expects uppercase -\-ARM64)
+    x86/x64 pass through unchanged.
+  -->
+  <?define ArchFlag = $(sys.BUILDARCH) ?>
+  <?if $(sys.BUILDARCH) = arm64 ?>
+    <?undef ArchFlag ?>
+    <?define ArchFlag = ARM64 ?>
+  <?endif ?>
+
+  <Package Name="OneMore Add-in"
+           Language="1033"
+           Version="$(var.ProductVersion)"
+           Manufacturer="River"
+           UpgradeCode="{058F6D04-E0D0-4984-B6B7-7FE0C581680E}"
+           Scope="perMachine">
+
+    <SummaryInformation Description="An add-in for OneNote"
+                        Keywords="OneNote OneMore add-in" />
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+
+    <MediaTemplate EmbedCab="yes" />
+
+    <!-- Require .NET Framework 4.8 -->
+    <Property Id="NETFRAMEWORK48">
+      <RegistrySearch Id="NetFx48Search"
+                      Root="HKLM"
+                      Key="SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full"
+                      Name="Release"
+                      Type="raw"
+                      Bitness="always32" />
+    </Property>
+    <Launch Condition="Installed OR NETFRAMEWORK48"
+            Message="This application requires .NET Framework 4.8 or later. Please install it from https://dotnet.microsoft.com/download/dotnet-framework/net48" />
+
+    <!-- Product icon for Add/Remove Programs -->
+    <Icon Id="ProductIcon" SourceFile="..\OneMore\Properties\Images\Logo.ico" />
+    <Property Id="ARPPRODUCTICON" Value="ProductIcon" />
+    <Property Id="ARPHELPLINK" Value="https://github.com/stevencohn/OneMore" />
+    <Property Id="ARPURLINFOABOUT" Value="https://onemoreaddin.com" />
+    <Property Id="ARPCONTACT" Value="Steven M Cohn" />
+    <Property Id="ARPCOMMENTS" Value="A OneNote add-in with simple, yet powerful and useful features" />
+
+    <!-- Directory structure -->
+    <StandardDirectory Id="ProgramFiles6432Folder">
+      <Directory Id="ManufacturerDir" Name="River">
+        <Directory Id="INSTALLDIR" Name="OneMoreAddIn">
+          <Directory Id="COLORIZERDIR" Name="Colorizer">
+            <Directory Id="COLORIZERLANGDIR" Name="Languages" />
+            <Directory Id="COLORIZERTHEMESDIR" Name="Themes" />
+          </Directory>
+          <Directory Id="SQLiteX86Dir" Name="x86" />
+          <Directory Id="SQLiteX64Dir" Name="x64" />
+          <Directory Id="SQLiteArm64Dir" Name="arm64" />
+          <Directory Id="RuntimesDir" Name="runtimes">
+            <Directory Id="WinX86Dir" Name="win-x86">
+              <Directory Id="WinX86NativeDir" Name="native" />
+            </Directory>
+            <Directory Id="WinX64Dir" Name="win-x64">
+              <Directory Id="WinX64NativeDir" Name="native" />
+            </Directory>
+            <Directory Id="WinArm64Dir" Name="win-arm64">
+              <Directory Id="WinArm64NativeDir" Name="native" />
+            </Directory>
+          </Directory>
+          <Directory Id="ModelsDir" Name="models">
+            <Directory Id="ModelsEnDir" Name="en">
+              <Directory Id="SplitMergeParserDir" Name="SplitMergeParser" />
+              <Directory Id="CmmTaggerDir" Name="CmmTagger" />
+              <Directory Id="SyllabificationDir" Name="Syllabification" />
+            </Directory>
+          </Directory>
+          <!-- Satellite assembly directories for localized resources -->
+          <Directory Id="CultureArSA"   Name="ar-SA" />
+          <Directory Id="CultureDeDe"   Name="de-DE" />
+          <Directory Id="CultureEsEs"   Name="es-ES" />
+          <Directory Id="CultureFrFr"   Name="fr-FR" />
+          <Directory Id="CultureHe"     Name="he" />
+          <Directory Id="CultureHeIl"   Name="he-IL" />
+          <Directory Id="CultureIt"     Name="it" />
+          <Directory Id="CultureItIt"   Name="it-IT" />
+          <Directory Id="CultureJaJp"   Name="ja-JP" />
+          <Directory Id="CultureNlNl"   Name="nl-NL" />
+          <Directory Id="CulturePlPl"   Name="pl-PL" />
+          <Directory Id="CulturePtBr"   Name="pt-BR" />
+          <Directory Id="CultureZhCn"   Name="zh-CN" />
+          <Directory Id="CultureZhHans" Name="zh-Hans" />
+        </Directory>
+      </Directory>
+    </StandardDirectory>
+
+    <StandardDirectory Id="AppDataFolder">
+      <Directory Id="OneMoreAppDataDir" Name="OneMore">
+        <Directory Id="APPDATATHEMESDIR" Name="Themes" />
+      </Directory>
+    </StandardDirectory>
+
+    <StandardDirectory Id="FontsFolder" />
+
+    <!-- Feature -->
+    <Feature Id="ProductFeature" Title="OneMore Add-in" Level="1">
+      <ComponentGroupRef Id="MainFiles" />
+      <ComponentGroupRef Id="RegistryEntries" />
+      <ComponentGroupRef Id="ColorizerLanguages" />
+      <ComponentGroupRef Id="ColorizerThemes" />
+      <ComponentGroupRef Id="AppDataThemes" />
+      <ComponentGroupRef Id="SatelliteAssemblies" />
+    </Feature>
+
+    <!--
+      Custom actions invoke OneMoreSetupActions.exe (installed with the product).
+      - CA_Install: deferred, runs after InstallFiles on fresh install
+      - CA_InstallRegistryWow: commit, runs on fresh install or repair (writes WOW6432Node)
+      - CA_InstallActiveSetup: commit, runs on fresh install or repair (wires Active Setup)
+      - CA_Uninstall: deferred, runs before RemoveFiles on uninstall
+    -->
+    <CustomAction Id="CA_Install"
+                  FileRef="OneMoreSetupActionsExe"
+                  ExeCommand="--install --$(var.ArchFlag)"
+                  Execute="deferred"
+                  Return="check"
+                  Impersonate="no" />
+
+    <CustomAction Id="CA_InstallRegistryWow"
+                  FileRef="OneMoreSetupActionsExe"
+                  ExeCommand="--install-registrywow --$(var.ArchFlag)"
+                  Execute="commit"
+                  Return="check"
+                  Impersonate="no" />
+
+    <CustomAction Id="CA_InstallActiveSetup"
+                  FileRef="OneMoreSetupActionsExe"
+                  ExeCommand="--install-activesetup --$(var.ArchFlag)"
+                  Execute="commit"
+                  Return="check"
+                  Impersonate="no" />
+
+    <CustomAction Id="CA_Uninstall"
+                  FileRef="OneMoreSetupActionsExe"
+                  ExeCommand="--uninstall --$(var.ArchFlag)"
+                  Execute="deferred"
+                  Return="check"
+                  Impersonate="no" />
+
+    <InstallExecuteSequence>
+      <Custom Action="CA_Install" After="InstallFiles" Condition="NOT Installed" />
+      <Custom Action="CA_InstallRegistryWow" After="InstallFiles" Condition="NOT Installed OR (Installed AND REINSTALL)" />
+      <Custom Action="CA_InstallActiveSetup" After="CA_InstallRegistryWow" Condition="NOT Installed OR (Installed AND REINSTALL)" />
+      <Custom Action="CA_Uninstall" Before="RemoveFiles" Condition="REMOVE=&quot;ALL&quot;" />
+    </InstallExecuteSequence>
+
+    <!-- UI: standard install-dir dialog set with banner and license -->
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLDIR" />
+    <ui:WixUI Id="WixUI_InstallDir" />
+    <WixVariable Id="WixUIBannerBmp" Value="Resources\Banner.jpg" />
+    <!--WixVariable Id="WixUIDialogBmp"  Value="Resources\Dialog.jpg" /-->
+    <WixVariable Id="WixUILicenseRtf" Value="Resources\license.rtf" />
+
+  </Package>
+</Wix>

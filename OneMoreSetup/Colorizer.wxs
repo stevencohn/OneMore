@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+
+  <!-- Colorizer language definitions (json + png) installed to INSTALLDIR\Colorizer\Languages\ -->
+  <Fragment>
+    <ComponentGroup Id="ColorizerLanguages" Directory="COLORIZERLANGDIR">
+      <Component Id="LangBashJson">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\bash.json" KeyPath="yes" />
+      </Component>
+      <Component Id="LangBashPng">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\bash.png" KeyPath="yes" />
+      </Component>
+      <Component Id="LangCppJson">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\cpp.json" KeyPath="yes" />
+      </Component>
+      <Component Id="LangCppPng">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\cpp.png" KeyPath="yes" />
+      </Component>
+      <Component Id="LangCsharpJson">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\csharp.json" KeyPath="yes" />
+      </Component>
+      <Component Id="LangCsharpPng">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\csharp.png" KeyPath="yes" />
+      </Component>
+      <Component Id="LangCssJson">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\css.json" KeyPath="yes" />
+      </Component>
+      <Component Id="LangCssPng">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\css.png" KeyPath="yes" />
+      </Component>
+      <Component Id="LangGolangJson">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\golang.json" KeyPath="yes" />
+      </Component>
+      <Component Id="LangGolangPng">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\golang.png" KeyPath="yes" />
+      </Component>
+      <Component Id="LangHtmlJson">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\html.json" KeyPath="yes" />
+      </Component>
+      <Component Id="LangHtmlPng">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\html.png" KeyPath="yes" />
+      </Component>
+      <Component Id="LangJavaJson">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\java.json" KeyPath="yes" />
+      </Component>
+      <Component Id="LangJavaPng">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\java.png" KeyPath="yes" />
+      </Component>
+      <Component Id="LangJavascriptJson">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\javascript.json" KeyPath="yes" />
+      </Component>
+      <Component Id="LangJavascriptPng">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\javascript.png" KeyPath="yes" />
+      </Component>
+      <Component Id="LangJsonJson">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\json.json" KeyPath="yes" />
+      </Component>
+      <Component Id="LangJsonPng">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\json.png" KeyPath="yes" />
+      </Component>
+      <Component Id="LangPascalJson">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\pascal.json" KeyPath="yes" />
+      </Component>
+      <Component Id="LangPascalPng">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\pascal.png" KeyPath="yes" />
+      </Component>
+      <Component Id="LangPhpJson">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\php.json" KeyPath="yes" />
+      </Component>
+      <Component Id="LangPhpPng">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\php.png" KeyPath="yes" />
+      </Component>
+      <Component Id="LangPlantumlJson">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\plantuml.json" KeyPath="yes" />
+      </Component>
+      <Component Id="LangPlantumlPng">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\plantuml.png" KeyPath="yes" />
+      </Component>
+      <Component Id="LangPowershellJson">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\powershell.json" KeyPath="yes" />
+      </Component>
+      <Component Id="LangPowershellPng">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\powershell.png" KeyPath="yes" />
+      </Component>
+      <Component Id="LangPythonJson">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\python.json" KeyPath="yes" />
+      </Component>
+      <Component Id="LangPythonPng">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\python.png" KeyPath="yes" />
+      </Component>
+      <Component Id="LangRJson">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\r.json" KeyPath="yes" />
+      </Component>
+      <Component Id="LangRPng">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\r.png" KeyPath="yes" />
+      </Component>
+      <Component Id="LangRegistryJson">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\registry.json" KeyPath="yes" />
+      </Component>
+      <Component Id="LangRegistryPng">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\registry.png" KeyPath="yes" />
+      </Component>
+      <Component Id="LangRustJson">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\rust.json" KeyPath="yes" />
+      </Component>
+      <Component Id="LangRustPng">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\rust.png" KeyPath="yes" />
+      </Component>
+      <Component Id="LangScalaJson">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\scala.json" KeyPath="yes" />
+      </Component>
+      <Component Id="LangScalaPng">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\scala.png" KeyPath="yes" />
+      </Component>
+      <Component Id="LangSqlJson">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\sql.json" KeyPath="yes" />
+      </Component>
+      <Component Id="LangSqlPng">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\sql.png" KeyPath="yes" />
+      </Component>
+      <Component Id="LangTypescriptJson">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\typescript.json" KeyPath="yes" />
+      </Component>
+      <Component Id="LangTypescriptPng">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\typescript.png" KeyPath="yes" />
+      </Component>
+      <Component Id="LangVbJson">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\vb.json" KeyPath="yes" />
+      </Component>
+      <Component Id="LangVbPng">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\vb.png" KeyPath="yes" />
+      </Component>
+      <Component Id="LangVerilogJson">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\verilog.json" KeyPath="yes" />
+      </Component>
+      <Component Id="LangVerilogPng">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\verilog.png" KeyPath="yes" />
+      </Component>
+      <Component Id="LangWolframJson">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\wolfram.json" KeyPath="yes" />
+      </Component>
+      <Component Id="LangWolframPng">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\wolfram.png" KeyPath="yes" />
+      </Component>
+      <Component Id="LangXmlJson">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\xml.json" KeyPath="yes" />
+      </Component>
+      <Component Id="LangXmlPng">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\xml.png" KeyPath="yes" />
+      </Component>
+      <Component Id="LangYamlJson">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\yaml.json" KeyPath="yes" />
+      </Component>
+      <Component Id="LangYamlPng">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\yaml.png" KeyPath="yes" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+
+  <!-- Colorizer themes installed to INSTALLDIR\Colorizer\Themes\ -->
+  <Fragment>
+    <ComponentGroup Id="ColorizerThemes" Directory="COLORIZERTHEMESDIR">
+      <Component Id="ThemeDark">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Themes\dark-theme.json" KeyPath="yes" />
+      </Component>
+      <Component Id="ThemeLight">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Themes\light-theme.json" KeyPath="yes" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+
+</Wix>

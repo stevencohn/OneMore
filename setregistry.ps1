@@ -1,10 +1,14 @@
 <#
 .SYNOPSIS
-Update OneMore registry keys to point to the current development directories
-intead of the program files install path
+This is a helper script to flip the registry keys for OneMore add-in development
+between the install path and the development path. This is useful during development
+but is not intended to be used by end users to set deployed configuration.
+
+.PARAMETER Architecture
+The architecture of the add-in to register. This is only used to determine the path.
 
 .PARAMETER Reset
-Resets the registry settings back to the install path
+Resets the registry settings back to the install path.
 #>
 
 [CmdletBinding()]

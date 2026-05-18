@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+
+  <!-- User themes installed to %APPDATA%\OneMore\Themes\ -->
+  <Fragment>
+    <ComponentGroup Id="AppDataThemes" Directory="APPDATATHEMESDIR">
+      <Component Id="ThemeConfluence6">
+        <File Source="..\Themes\Confluence6.xml" KeyPath="yes" />
+      </Component>
+      <Component Id="ThemeConfluence7">
+        <File Source="..\Themes\Confluence7.xml" KeyPath="yes" />
+      </Component>
+      <Component Id="ThemeDarkBlue">
+        <File Source="..\Themes\DarkBlue.xml" KeyPath="yes" />
+      </Component>
+      <Component Id="ThemeDarkGreen">
+        <File Source="..\Themes\DarkGreen.xml" KeyPath="yes" />
+      </Component>
+      <Component Id="ThemeDarkOrange">
+        <File Source="..\Themes\DarkOrange.xml" KeyPath="yes" />
+      </Component>
+      <Component Id="ThemeOrange">
+        <File Source="..\Themes\Orange.xml" KeyPath="yes" />
+      </Component>
+      <Component Id="ThemeRed">
+        <File Source="..\Themes\Red.xml" KeyPath="yes" />
+      </Component>
+      <Component Id="ThemeStandard">
+        <File Source="..\Themes\Standard.xml" KeyPath="yes" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+
+</Wix>

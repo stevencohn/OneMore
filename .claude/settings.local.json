@@ -1,5 +1,6 @@
 {
   "permissions": {
+    "defaultMode": "acceptEdits",
     "allow": [
       "Bash(Get-ChildItem -Path \"C:\\\\Github\\\\OneMore\" -Directory)",
       "Bash(Select-Object -ExpandProperty Name)",
@@ -30,7 +31,12 @@
       "PowerShell(Get-ChildItem -Path \"C:\\\\Github\\\\OneMore\\\\OneMore\" -Directory -Exclude Commands | Sort-Object Name | ForEach-Object { Write-Host \"$\\($_.Name\\)\" })",
       "Bash(awk '{print $NF}')",
       "Bash(xargs basename -a)",
-      "PowerShell(Get-ChildItem -Path \"C:\\\\Github\\\\OneMore\\\\OneMore\\\\External\" | ForEach-Object { Write-Host \"$\\($_.Name\\)\" })"
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Github\\\\OneMore\\\\OneMore\\\\External\" | ForEach-Object { Write-Host \"$\\($_.Name\\)\" })",
+      "Skill(update-config)",
+      "Bash(awk '{print $2}')",
+      "Bash(cmd *)",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Github\\\\OneMore\\\\OneMore\" | Where-Object { $_.Name -match '\\\\.\\(csproj|config|manifest\\)$' })",
+      "Bash(curl *)"
     ]
   }
 }
