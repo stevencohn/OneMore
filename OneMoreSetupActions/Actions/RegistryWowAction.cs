@@ -112,7 +112,7 @@ namespace OneMoreSetupActions
 				}
 				else
 				{
-					logger.WriteLine("CLSID clone note found");
+					logger.WriteLine("CLSID key not found");
 				}
 			}
 

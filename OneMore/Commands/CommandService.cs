@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2021 Steven M Cohn.  All rights reserved.
+// Copyright © 2021 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn
@@ -11,6 +11,7 @@ namespace River.OneMoreAddIn
 	using System.Security.AccessControl;
 	using System.Security.Principal;
 	using System.Text;
+	using System.Text.RegularExpressions;
 	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Web;
@@ -22,8 +23,15 @@ namespace River.OneMoreAddIn
 	internal class CommandService : Loggable
 	{
 		private const int MaxBytes = 512;
+		private const int ReadTimeoutSeconds = 5;
 		private const string Protocol = "onemore://";
 		private const string KeyPath = @"River.OneMoreAddIn\CLSID";
+
+		// action flows into Type.GetType, which accepts assembly-qualified names
+		// ("Foo, SomeAssembly") and nested-type syntax ("Outer+Inner"); require a
+		// plain identifier so neither can be smuggled in via the URL
+		private static readonly Regex ActionPattern =
+			new Regex("^[A-Za-z_][A-Za-z0-9_]*$", RegexOptions.Compiled);
 
 		private readonly string pipe;
 		private readonly CommandFactory factory;
@@ -76,7 +84,21 @@ namespace River.OneMoreAddIn
 						await server.WaitForConnectionAsync();
 
 						var buffer = new byte[MaxBytes];
-						_ = await server.ReadAsync(buffer, 0, MaxBytes);
+
+						// pipe has maxNumberOfServerInstances = 1, so a client that
+						// connects but never writes would wedge the listener forever
+						using var cts = new CancellationTokenSource(
+							TimeSpan.FromSeconds(ReadTimeoutSeconds));
+						try
+						{
+							_ = await server.ReadAsync(buffer, 0, MaxBytes, cts.Token);
+						}
+						catch (OperationCanceledException)
+						{
+							logger.WriteLine("pipe read timed out");
+							continue;
+						}
+
 						data = Encoding.UTF8.GetString(buffer, 0, buffer.Length).Trim((char)0);
 						//logger.WriteLine($"pipe received [{data}]");
 
@@ -89,7 +111,7 @@ namespace River.OneMoreAddIn
 							// isolate work into its own thread so any uncaught exceptions
 							// won't tip over the service thread...
 
-							var worker = new Thread(async (d) => await InvokeCommand(data))
+							var worker = new Thread(async () => await InvokeCommand(data))
 							{
 								Name = $"{nameof(CommandService)}WorkerThread"
 							};
@@ -146,7 +168,18 @@ namespace River.OneMoreAddIn
 			var parts = data.Substring(Protocol.Length)
 				.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
 
+			if (parts.Length == 0)
+			{
+				return;
+			}
+
 			var action = parts[0];
+			if (!ActionPattern.IsMatch(action))
+			{
+				logger.WriteLine($"rejected invalid command name '{action}'");
+				return;
+			}
+
 			var arguments = parts.Skip(1).ToArray();
 			for (int i = 0; i < arguments.Length; i++)
 			{

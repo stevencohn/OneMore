@@ -130,7 +130,7 @@ namespace OneMoreSetupActions
 					}
 					else
 					{
-						logger.WriteLine("coult not get command value");
+						logger.WriteLine("could not get command value");
 						verified = FAILURE;
 					}
 				}
