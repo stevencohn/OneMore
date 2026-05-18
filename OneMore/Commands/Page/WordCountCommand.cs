@@ -107,8 +107,14 @@ namespace River.OneMoreAddIn.Commands
 
 						if (regex.IsMatch(text))
 						{
-							// works well for Chinese but is questionable for JP and KO
-							count += ChineseTokenizer.SplitWords(text).Count();
+							// count each CJK run via dictionary segmentation
+							foreach (Match m in regex.Matches(text))
+							{
+								count += ChineseTokenizer.SplitWords(m.Value).Count();
+							}
+							// count non-CJK content in the same run (Latin, numbers, etc.)
+							var nonCjk = regex.Replace(text, " ");
+							count += Regex.Matches(nonCjk, @"[\w]+").Count;
 						}
 						else
 						{
