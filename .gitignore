@@ -295,4 +295,5 @@ OneNote_RecycleBin/
 *.clean.vdproj
 *.vdproj.json
 OneMoreSetup/installer.md
+.claude/settings.local.json
 settings.local.json
