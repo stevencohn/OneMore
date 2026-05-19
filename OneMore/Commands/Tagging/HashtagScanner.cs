@@ -203,6 +203,7 @@ namespace River.OneMoreAddIn.Commands
 					var accepted = knownNotebooks.Count == 0;
 
 					var forceThru = true;
+					XElement prefetched = null; // set when we already fetched the notebook
 
 					if (accepted)
 					{
@@ -223,10 +224,16 @@ namespace River.OneMoreAddIn.Commands
 							else
 							{
 								// notebook size is within threshold?
-								// this may load the notebook twice, but small cost
-								var populated = await one.GetNotebook(notebookID, OneNote.Scope.Pages);
-								accepted = populated.Descendants(ns + "Page")
+								// Scope.Pages is a superset of section metadata so we can reuse
+								// this result below instead of fetching the notebook a second time
+								prefetched = await one.GetNotebook(notebookID, OneNote.Scope.Pages);
+								accepted = prefetched.Descendants(ns + "Page")
 									.Count(e => e.Attribute("isInRecycleBin") is null) < MaxPagesThreshold;
+
+								if (!accepted)
+								{
+									prefetched = null; // not scanning, don't hold the reference
+								}
 							}
 						}
 						else
@@ -242,7 +249,8 @@ namespace River.OneMoreAddIn.Commands
 
 						var dp = 0;
 
-						var sections = await one.GetNotebook(notebookID);
+						// reuse prefetched data when available to avoid a second COM call
+						var sections = prefetched ?? await one.GetNotebook(notebookID);
 						if (sections is not null)
 						{
 							int tp;

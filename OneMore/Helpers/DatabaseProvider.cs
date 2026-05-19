@@ -56,6 +56,17 @@ namespace River.OneMoreAddIn
 			{
 				con = new SQLiteConnection($"Data source={path}");
 				con.Open();
+
+				// WAL mode lets readers proceed concurrently with the scanner's write
+				// transactions; NORMAL synchronous is the safe companion to WAL;
+				// busy_timeout lets a conflicting writer back off instead of failing immediately
+				using var pragma = con.CreateCommand();
+				pragma.CommandText =
+					"PRAGMA journal_mode=WAL;" +
+					"PRAGMA synchronous=NORMAL;" +
+					"PRAGMA busy_timeout=3000;" +
+					"PRAGMA temp_store=MEMORY;";
+				pragma.ExecuteNonQuery();
 			}
 		}
 

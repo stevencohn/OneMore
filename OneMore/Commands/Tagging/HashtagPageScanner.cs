@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using Models;
 	using System;
+	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Xml.Linq;
@@ -95,6 +96,7 @@ namespace River.OneMoreAddIn.Commands
 		public Hashtags Scan()
 		{
 			var tags = new Hashtags();
+			var seen = new HashSet<(string, string)>();
 
 			var paragraphs = page.Root
 				.Elements(ns + "Outline")
@@ -109,7 +111,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					var count = tags.Count;
 
-					ScanParagraph(paragraph, tags);
+					ScanParagraph(paragraph, tags, seen);
 
 					if (editor != null && tags.Count != count)
 					{
@@ -123,14 +125,14 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void ScanParagraph(XElement paragraph, Hashtags tags)
+		private void ScanParagraph(XElement paragraph, Hashtags tags, HashSet<(string, string)> seen)
 		{
 			// where all the magic happens...
 
-			var text = paragraph.Elements(ns + "T")?
+			// string.Join avoids the quadratic allocations of Aggregate($"{x} {y}")
+			var text = string.Join(" ", paragraph.Elements(ns + "T")
 				.DescendantNodes().OfType<XCData>()
-				.Select(c => c.Value.PlainText())
-				.Aggregate(string.Empty, (x, y) => $"{x} {y}");
+				.Select(c => c.Value.PlainText()));
 
 			if (!string.IsNullOrWhiteSpace(text))
 			{
@@ -147,19 +149,18 @@ namespace River.OneMoreAddIn.Commands
 							// hashPattern always has at least one capture group
 							var capture = match.Groups[1].Captures[0];
 							var name = capture.Value;
-							var lower = name.ToLower();
 
-							if (lower == SkipRegion)
+							if (string.Equals(name, SkipRegion, StringComparison.OrdinalIgnoreCase))
 							{
 								keepTags = false;
 							}
-							else if (lower == KeepRegion)
+							else if (string.Equals(name, KeepRegion, StringComparison.OrdinalIgnoreCase))
 							{
 								keepTags = true;
 							}
-							// this "else" ensures the #Skip and #Keep tags are not captured
-							else if (keepTags &&
-								!tags.Exists(t => t.Tag == name && t.ObjectID == objectID))
+							// this "else" ensures the #Skip and #Keep tags are not captured;
+							// seen.Add() is O(1) amortized vs O(n) List.Exists
+							else if (keepTags && seen.Add((name, objectID)))
 							{
 								var context = ExtractContext(text, capture.Index, capture.Length);
 
@@ -181,34 +182,26 @@ namespace River.OneMoreAddIn.Commands
 
 			var children = paragraph
 				.Elements(ns + "OEChildren")
-				.Elements(ns + "OE");
+				.Elements(ns + "OE")
+				.ToList();
 
-			if (children.Any())
+			foreach (var child in children)
 			{
-				foreach (var child in children)
-				{
-					ScanParagraph(child, tags);
-				}
+				ScanParagraph(child, tags, seen);
 			}
 
-			var tables = paragraph.Elements(ns + "Table");
-			if (tables.Any())
+			foreach (var table in paragraph.Elements(ns + "Table"))
 			{
-				foreach (var table in tables)
-				{
-					var toes = table
-						.Elements(ns + "Row")
-						.Elements(ns + "Cell")
-						.Elements(ns + "OEChildren")
-						.Elements(ns + "OE");
+				var toes = table
+					.Elements(ns + "Row")
+					.Elements(ns + "Cell")
+					.Elements(ns + "OEChildren")
+					.Elements(ns + "OE")
+					.ToList();
 
-					if (toes.Any())
-					{
-						foreach (var toe in toes)
-						{
-							ScanParagraph(toe, tags);
-						}
-					}
+				foreach (var toe in toes)
+				{
+					ScanParagraph(toe, tags, seen);
 				}
 			}
 		}
