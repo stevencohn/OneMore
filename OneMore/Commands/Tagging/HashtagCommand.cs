@@ -22,6 +22,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private static HashtagDialog dialog;
 		private static bool commandIsActive = false;
+		private static IDisposable pauseHandle;
 
 
 		public HashtagCommand()
@@ -66,6 +67,10 @@ namespace River.OneMoreAddIn.Commands
 
 				dialog = new HashtagDialog(moreID);
 				dialog.FormClosed += Dialog_FormClosed;
+
+				// signal the background scanner to use a longer inter-page delay while this
+				// dialog is open, so its DB reads and OneNote COM calls aren't starved
+				pauseHandle = HashtagServicePause.Hold();
 
 				dialog.RunModeless(async (sender, e) =>
 				{
@@ -134,6 +139,9 @@ namespace River.OneMoreAddIn.Commands
 
 		private void Dialog_FormClosed(object sender, FormClosedEventArgs e)
 		{
+			pauseHandle?.Dispose();
+			pauseHandle = null;
+
 			if (dialog != null)
 			{
 				dialog.FormClosed -= Dialog_FormClosed;

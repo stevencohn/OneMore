@@ -73,17 +73,22 @@ namespace OneMoreTray
 			// we want this to complete exactly once and then exit but allow
 			// for up to five consecutive errors during execution...
 
+			var token = serviceToken?.Token ?? default;
 			var errors = 0;
 			var done = false;
 
-			while (errors < 5 && !done)
+			while (errors < 5 && !done && !token.IsCancellationRequested)
 			{
 				try
 				{
-					await Scan();
+					await Scan(token);
 
 					errors = 0;
 					done = true;
+				}
+				catch (OperationCanceledException)
+				{
+					break;
 				}
 				catch (Exception exc)
 				{
@@ -91,9 +96,16 @@ namespace OneMoreTray
 					errors++;
 				}
 
-				if (!done)
+				if (!done && !token.IsCancellationRequested)
 				{
-					await Task.Delay(scanInterval);
+					try
+					{
+						await Task.Delay(scanInterval, token);
+					}
+					catch (OperationCanceledException)
+					{
+						break;
+					}
 				}
 			}
 
