@@ -11,6 +11,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Drawing;
 	using System.Linq;
 	using System.Windows.Forms;
+	using System.Windows.Forms.VisualStyles;
 
 
 	/// <summary>
@@ -33,6 +34,8 @@ namespace River.OneMoreAddIn.Commands
 		private const int TopPad = 6;        // gap above first card
 		private const int CornerRadius = 6;
 		private const int MaxHits = 10_000;
+		private const int CheckBoxSize = 16; // width/height of the checkbox glyph in the title row
+		private const int CheckBoxGap = 4;   // gap between checkbox right edge and title text
 
 		private readonly List<CardModel> cards = new();
 		private bool layoutDirty;
@@ -72,9 +75,39 @@ namespace River.OneMoreAddIn.Commands
 
 		public event EventHandler<NavigateCardEventArgs> CardActivated;
 		public event EventHandler<NavigateHitEventArgs> HitActivated;
+		public event EventHandler CheckedChanged;
 
 
 		public bool HasHits => cards.Any(c => c.Hits.Count > 0);
+
+
+		public int CheckedCount => cards.Count(c => c.IsChecked && c.PageId != null);
+
+
+		public IReadOnlyList<string> GetCheckedPageIds() =>
+			cards.Where(c => c.IsChecked && c.PageId != null).Select(c => c.PageId).ToList();
+
+
+		public void CheckAll()
+		{
+			foreach (var card in cards.Where(c => c.Title != null && c.PageId != null))
+			{
+				card.IsChecked = true;
+			}
+			Invalidate();
+			CheckedChanged?.Invoke(this, EventArgs.Empty);
+		}
+
+
+		public void ClearChecked()
+		{
+			foreach (var card in cards.Where(c => c.IsChecked))
+			{
+				card.IsChecked = false;
+			}
+			Invalidate();
+			CheckedChanged?.Invoke(this, EventArgs.Empty);
+		}
 
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -271,8 +304,26 @@ namespace River.OneMoreAddIn.Commands
 			{
 				var isHovered = hoverCard == cardIndex && hoverHit == -1;
 				var fore      = isHovered ? hoverFore : titleFore;
-				var titleRect = new Rectangle(contentX, y, contentW, TitleRowH);
 
+				// Checkbox glyph: visible when the card is hovered or already checked.
+				// Reserve horizontal space for the checkbox in all titled cards so titles
+				// don't reflow as the mouse moves between cards.
+				var checkboxX  = contentX;
+				var titleTextX = contentX + CheckBoxSize + CheckBoxGap;
+				var titleW     = contentW - CheckBoxSize - CheckBoxGap;
+
+				if (card.PageId != null && (isHovered || card.IsChecked))
+				{
+					var state = card.IsChecked
+						? (isHovered ? CheckBoxState.CheckedHot : CheckBoxState.CheckedNormal)
+						: CheckBoxState.UncheckedHot;
+
+					var checkY = y + (TitleRowH - CheckBoxSize) / 2;
+					CheckBoxRenderer.DrawCheckBox(g,
+						new Point(checkboxX, checkY), state);
+				}
+
+				var titleRect = new Rectangle(titleTextX, y, titleW, TitleRowH);
 				TextRenderer.DrawText(g, card.Title, titleFont ?? Font, titleRect, fore, flags);
 				y += TitleRowH;
 			}
@@ -372,6 +423,16 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private Rectangle GetCheckboxScreenRect(int cardIndex)
+		{
+			var card  = cards[cardIndex];
+			var cx    = CardMarginH;
+			var checkX = cx + SwatchWidth + CardPadX;
+			var checkY = card.Y + CardPadV + (TitleRowH - CheckBoxSize) / 2 + AutoScrollPosition.Y;
+			return new Rectangle(checkX, checkY, CheckBoxSize, CheckBoxSize);
+		}
+
+
 		protected override void OnMouseClick(MouseEventArgs e)
 		{
 			base.OnMouseClick(e);
@@ -379,6 +440,19 @@ namespace River.OneMoreAddIn.Commands
 			if (hit == null) return;
 
 			var card = cards[hit.Value.CardIndex];
+
+			// Checkbox click: toggle selection when clicking the glyph area on a titled card
+			if (hit.Value.HitIndex == -1 && card.PageId != null && card.Title != null)
+			{
+				var cbRect = GetCheckboxScreenRect(hit.Value.CardIndex);
+				if (cbRect.Contains(e.Location))
+				{
+					card.IsChecked = !card.IsChecked;
+					InvalidateHitRegion(hit.Value.CardIndex, -1);
+					CheckedChanged?.Invoke(this, EventArgs.Empty);
+					return;
+				}
+			}
 
 			if (hit.Value.HitIndex == -1 && card.PageId != null)
 			{

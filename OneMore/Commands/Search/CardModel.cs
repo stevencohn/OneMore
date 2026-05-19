@@ -14,6 +14,7 @@ namespace River.OneMoreAddIn.Commands
 		public string PageId { get; set; }
 		public Color SectionColor { get; set; }
 		public List<CardHit> Hits { get; } = new List<CardHit>();
+		public bool IsChecked { get; set; }
 
 		// layout cache — computed by SearchResultsCardView.EnsureLayout
 		internal int Y;

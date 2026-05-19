@@ -54,7 +54,11 @@ namespace River.OneMoreAddIn.Commands
 					"findLabel=word_Find",
 					"matchBox",
 					"regBox",
-					"cancelButton=word_Cancel"
+					"moveButton=word_Move",
+					"copyButton=word_Copy",
+					"cancelButton=word_Cancel",
+					"selectAllButton",
+					"clearButton"
 				});
 
 				scopeBox.Items.Clear();
@@ -81,10 +85,53 @@ namespace River.OneMoreAddIn.Commands
 
 			resultsView.CardActivated += OnCardActivated;
 			resultsView.HitActivated += OnHitActivated;
+			resultsView.CheckedChanged += OnCheckedChanged;
 		}
 
 
 		public event EventHandler<SearchCloseEventArgs> SearchClosing;
+
+
+		public bool CopySelections { get; private set; }
+
+
+		public List<string> SelectedPages { get; private set; }
+
+
+		private void OnCheckedChanged(object sender, EventArgs e)
+		{
+			var hasChecked = resultsView.CheckedCount > 0;
+			moveButton.Enabled = hasChecked;
+			copyButton.Enabled = hasChecked;
+		}
+
+
+		private void MovePressed(object sender, EventArgs e)
+		{
+			CopySelections = false;
+			SelectedPages = resultsView.GetCheckedPageIds().ToList();
+			SearchClosing?.Invoke(this, new(DialogResult.OK));
+		}
+
+
+		private void CopyPressed(object sender, EventArgs e)
+		{
+			CopySelections = true;
+			SelectedPages = resultsView.GetCheckedPageIds().ToList();
+			SearchClosing?.Invoke(this, new(DialogResult.OK));
+		}
+
+
+		private void SelectAll(object sender, EventArgs e)
+		{
+			resultsView.CheckAll();
+		}
+
+
+		private void ClearSelection(object sender, EventArgs e)
+		{
+			resultsView.ClearChecked();
+		}
 
 
 		private void Nevermind(object sender, EventArgs e)
@@ -280,6 +327,7 @@ namespace River.OneMoreAddIn.Commands
 
 			// only show nav buttons if there is at least one navigable hit
 			nextButton.Visible = prevButton.Visible = resultsView.HasHits;
+			resultsHeaderPanel.Visible = resultsView.HasHits;
 		}
 
 
@@ -289,6 +337,9 @@ namespace River.OneMoreAddIn.Commands
 		private void ClearResults()
 		{
 			resultsView.Clear();
+			resultsHeaderPanel.Visible = false;
+			moveButton.Enabled = false;
+			copyButton.Enabled = false;
 		}
 
 

@@ -2166,12 +2166,6 @@ Hoog</value>
   <data name="phrase_QuickNote" xml:space="preserve">
     <value>Snelle notitie</value>
   </data>
-  <data name="phrase_scopeOptions" xml:space="preserve">
-    <value>In alle notitieboekjes
-In dit notitieboekje
-In deze sectie</value>
-    <comment>drop down</comment>
-  </data>
   <data name="phrase_SelectAll" xml:space="preserve">
     <value>Selecteer alles</value>
   </data>
@@ -4579,14 +4573,6 @@ Alle notitieboekjes</value>
   </data>
   <data name="SearchAndReplaceDialog_withLabel.Text" xml:space="preserve">
     <value>Vervangen door:</value>
-    <comment>label</comment>
-  </data>
-  <data name="SearchDialog_actionTab.Text" xml:space="preserve">
-    <value>Zoeken en bewegen</value>
-    <comment>tab</comment>
-  </data>
-  <data name="SearchDialogActionControl_introLabel.Text" xml:space="preserve">
-    <value>Voer een of meer trefwoorden in, "geciteerde zinnen", en gebruik hoofdletters en en of</value>
     <comment>label</comment>
   </data>
   <data name="SearchDialogText_scopeOptions" xml:space="preserve">

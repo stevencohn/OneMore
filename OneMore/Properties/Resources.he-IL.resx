@@ -2166,12 +2166,6 @@ Total Row Font
   <data name="phrase_QuickNote" xml:space="preserve">
     <value>הערה מהירה</value>
   </data>
-  <data name="phrase_scopeOptions" xml:space="preserve">
-    <value>בכל המחברות
-במחברת זו
-בחלק הזה</value>
-    <comment>drop down</comment>
-  </data>
   <data name="phrase_SelectAll" xml:space="preserve">
     <value>בחר הכל</value>
   </data>
@@ -4578,14 +4572,6 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="SearchAndReplaceDialog_withLabel.Text" xml:space="preserve">
     <value>להחליף ב:</value>
-    <comment>label</comment>
-  </data>
-  <data name="SearchDialog_actionTab.Text" xml:space="preserve">
-    <value>לחפש ולעבור</value>
-    <comment>tab</comment>
-  </data>
-  <data name="SearchDialogActionControl_introLabel.Text" xml:space="preserve">
-    <value>הזן מילת מפתח אחת או יותר, "ביטויים מצוטטים" והשתמש</value>
     <comment>label</comment>
   </data>
   <data name="SearchDialogText_scopeOptions" xml:space="preserve">

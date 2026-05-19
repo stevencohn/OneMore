@@ -2177,12 +2177,6 @@
   <data name="phrase_QuickNote" xml:space="preserve">
     <value>ملاحظة سريعة</value>
   </data>
-  <data name="phrase_scopeOptions" xml:space="preserve">
-    <value>في جميع دفاتر الملاحظات
-في هذا الكمبيوتر الدفتري
-في هذا القسم</value>
-    <comment>drop down</comment>
-  </data>
   <data name="phrase_SelectAll" xml:space="preserve">
     <value>اختر الكل</value>
   </data>
@@ -4591,14 +4585,6 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="SearchAndReplaceDialog_withLabel.Text" xml:space="preserve">
     <value>استبدل ب:</value>
-    <comment>label</comment>
-  </data>
-  <data name="SearchDialog_actionTab.Text" xml:space="preserve">
-    <value>البحث والتحرك</value>
-    <comment>tab</comment>
-  </data>
-  <data name="SearchDialogActionControl_introLabel.Text" xml:space="preserve">
-    <value>أدخل كلمة رئيسية أو أكثر ، "عبارات مقتبسة" ، واستخدم الأحرف الكبيرة و OR</value>
     <comment>label</comment>
   </data>
   <data name="SearchDialogText_scopeOptions" xml:space="preserve">

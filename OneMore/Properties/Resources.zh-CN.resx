@@ -2176,12 +2176,6 @@ OneNote 文件 (*.one)</value>
   <data name="phrase_QuickNote" xml:space="preserve">
     <value>快速注释</value>
   </data>
-  <data name="phrase_scopeOptions" xml:space="preserve">
-    <value>在所有笔记本中
-在此笔记本中
-在这个部分</value>
-    <comment>drop down</comment>
-  </data>
   <data name="phrase_SelectAll" xml:space="preserve">
     <value>全选</value>
   </data>
@@ -4584,14 +4578,6 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="SearchAndReplaceDialog_withLabel.Text" xml:space="preserve">
     <value>用。。。来代替:</value>
-    <comment>label</comment>
-  </data>
-  <data name="SearchDialog_actionTab.Text" xml:space="preserve">
-    <value>搜索和移动</value>
-    <comment>tab</comment>
-  </data>
-  <data name="SearchDialogActionControl_introLabel.Text" xml:space="preserve">
-    <value>输入一个或多个关键字，“引用短语”，并使用大写和OS</value>
     <comment>label</comment>
   </data>
   <data name="SearchDialogText_scopeOptions" xml:space="preserve">
