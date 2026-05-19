@@ -4,11 +4,13 @@ on:
     types: [released]
 jobs:
   publish:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
-      - uses: vedantmgoyal2009/winget-releaser@93fd8b606a1672ec3e5c6c3bb19426be68d1a8b0 #v2
+      - uses: vedantmgoyal9/winget-releaser@4ffc7888bffd451b357355dc214d43bb9f23917e # v2
         with:
           identifier: stevencohn.OneMore
-          installers-regex: '\.msi$' # Only .msi files
+          installers-regex: '\.msi$'
           token: ${{ secrets.WINGET_TOKEN }}
-    
+
