@@ -1,0 +1,35 @@
+name: Link Issue to PR
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  link-issue:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const branch = context.payload.pull_request.head.ref;
+            const match = branch.match(/^(\d+)-/);
+            if (!match) {
+              console.log(`Branch "${branch}" does not start with an issue number — skipping.`);
+              return;
+            }
+            const issue = match[1];
+            const existing = context.payload.pull_request.body || '';
+            const prefix = `Relates to #${issue}\n\n`;
+            if (existing.includes(`#${issue}`)) {
+              console.log(`PR body already references #${issue} — skipping.`);
+              return;
+            }
+            await github.rest.pulls.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.pull_request.number,
+              body: prefix + existing
+            });
+            console.log(`Prepended "Relates to #${issue}" to PR description.`);
