@@ -164,7 +164,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			CleanupToken();
-			logger.WriteLine("hashtag service has stopped; check for exceptions above");
+			logger.WriteLine("hashtag service has stopped");
 		}
 
 
