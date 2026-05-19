@@ -186,7 +186,7 @@ namespace River.OneMoreAddIn.Commands
 			// resultsView
 			// 
 			this.resultsView.AutoScroll = true;
-			this.resultsView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+			this.resultsView.BackColor = System.Drawing.SystemColors.AppWorkspace;
 			this.resultsView.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.resultsView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.resultsView.Location = new System.Drawing.Point(15, 237);

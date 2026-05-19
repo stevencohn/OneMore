@@ -125,14 +125,14 @@ namespace River.OneMoreAddIn.Commands
 			base.OnThemeChange();
 			DisposeThemed();
 
-			cardBackBrush    = new SolidBrush(manager.GetColor("Control"));
+			cardBackBrush    = new SolidBrush(manager.GetColor("ControlLightLight"));
 			borderPen        = new Pen(manager.GetColor("ControlDark"));
 			selectionBackBrush = new SolidBrush(manager.GetColor("Highlight"));
 			titleFore        = manager.GetColor("ControlText");
 			hitFore          = manager.GetColor("HintText");
 			selectionFore    = manager.GetColor("HighlightText");
 			hoverFore        = manager.GetColor("HoverColor");
-			BackColor        = manager.GetColor("ListView");
+			BackColor        = manager.GetColor("AppWorkspace");
 
 			titleFont?.Dispose();
 			hitFont?.Dispose();
@@ -336,7 +336,7 @@ namespace River.OneMoreAddIn.Commands
 
 				if (isSelected)
 				{
-					var selRect = new Rectangle(cx + 1, y, cw - 2, HitRowH);
+					var selRect = new Rectangle(cx + SwatchWidth + 4, y, cw - SwatchWidth - 5, HitRowH);
 					g.FillRectangle(selectionBackBrush, selRect);
 				}
 
@@ -456,6 +456,10 @@ namespace River.OneMoreAddIn.Commands
 
 			if (hit.Value.HitIndex == -1 && card.PageId != null)
 			{
+				if (card.Hits.Count > 0)
+				{
+					SelectHit(hit.Value.CardIndex, 0);
+				}
 				CardActivated?.Invoke(this, new NavigateCardEventArgs(card.PageId));
 			}
 			else if (hit.Value.HitIndex >= 0)
