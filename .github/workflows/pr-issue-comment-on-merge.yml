@@ -1,0 +1,49 @@
+name: Comment on Issue on PR Merge
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [main]
+
+jobs:
+  comment-on-merge:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/github-script@v8
+        with:
+          script: |
+            const branch = context.payload.pull_request.head.ref;
+            const body = context.payload.pull_request.body || '';
+
+            // Branch prefix takes priority (e.g. "2061-fix-something")
+            let issue = null;
+            const branchMatch = branch.match(/^(\d+)-/);
+            if (branchMatch) {
+              issue = branchMatch[1];
+            } else {
+              // Fall back to first #N mention in the PR description
+              const bodyMatch = body.match(/#(\d+)/);
+              if (bodyMatch) {
+                issue = bodyMatch[1];
+              }
+            }
+
+            if (!issue) {
+              console.log(`No issue number found in branch "${branch}" or description — skipping.`);
+              return;
+            }
+
+            const pr = context.payload.pull_request.number;
+            const title = context.payload.pull_request.title;
+            const url = context.payload.pull_request.html_url;
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: parseInt(issue),
+              body: `Merged in PR #${pr}: [${title}](${url})`
+            });
+            console.log(`Commented on issue #${issue} referencing PR #${pr}.`);
