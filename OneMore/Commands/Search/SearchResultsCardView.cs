@@ -29,7 +29,7 @@ namespace River.OneMoreAddIn.Commands
 		private const int CardPadV = 5;      // vertical padding inside card (top and bottom)
 		private const int TitleRowH = 26;    // height of the page-title row
 		private const int HitRowH = 22;      // height of each snippet row
-		private const int HitIndent = 8;     // additional indent for snippet rows
+		private const int HitIndent = 20;     // additional indent for snippet rows
 		private const int CardGap = 6;       // gap between consecutive cards
 		private const int TopPad = 6;        // gap above first card
 		private const int CornerRadius = 6;

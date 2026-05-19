@@ -4581,6 +4581,10 @@ In deze sectie
 Op deze pagina</value>
     <comment>combobox</comment>
   </data>
+  <data name="SearchDialogTextControl_clearAllLink.Text" xml:space="preserve">
+    <value>Duidelijke selectie</value>
+    <comment>link</comment>
+  </data>
   <data name="SearchDialogTextControl_dateOptions" xml:space="preserve">
     <value>Elke datum
 Gemaakt na
@@ -4600,6 +4604,10 @@ Gewijzigd eerder</value>
   <data name="SearchDialogTextControl_regBox.Text" xml:space="preserve">
     <value>Gebruik reguliere uitdrukkingen</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="SearchDialogTextControl_selectAllLink.Text" xml:space="preserve">
+    <value>Selecteer alles</value>
+    <comment>link</comment>
   </data>
   <data name="SearchEngineDialog_deleteLabel.Text" xml:space="preserve">
     <value>Verwijderen:</value>

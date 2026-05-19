@@ -4580,6 +4580,10 @@ ISO-code then comma then language name</comment>
 בדף זה</value>
     <comment>combobox</comment>
   </data>
+  <data name="SearchDialogTextControl_clearAllLink.Text" xml:space="preserve">
+    <value>נקה בחירה</value>
+    <comment>link</comment>
+  </data>
   <data name="SearchDialogTextControl_dateOptions" xml:space="preserve">
     <value>כל תאריך
 נוצר אחרי
@@ -4599,6 +4603,10 @@ ISO-code then comma then language name</comment>
   <data name="SearchDialogTextControl_regBox.Text" xml:space="preserve">
     <value>השתמש בביטויים רגילים</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="SearchDialogTextControl_selectAllLink.Text" xml:space="preserve">
+    <value>בחר הכל</value>
+    <comment>link</comment>
   </data>
   <data name="SearchEngineDialog_deleteLabel.Text" xml:space="preserve">
     <value>לִמְחוֹק:</value>

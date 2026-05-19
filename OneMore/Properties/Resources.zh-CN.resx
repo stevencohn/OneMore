@@ -4586,6 +4586,10 @@ ISO-code then comma then language name</comment>
 在此页面上</value>
     <comment>combobox</comment>
   </data>
+  <data name="SearchDialogTextControl_clearAllLink.Text" xml:space="preserve">
+    <value>清除选择</value>
+    <comment>link</comment>
+  </data>
   <data name="SearchDialogTextControl_dateOptions" xml:space="preserve">
     <value>任何日期
 创建之后
@@ -4605,6 +4609,10 @@ ISO-code then comma then language name</comment>
   <data name="SearchDialogTextControl_regBox.Text" xml:space="preserve">
     <value>使用正则表达式</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="SearchDialogTextControl_selectAllLink.Text" xml:space="preserve">
+    <value>选择全部</value>
+    <comment>link</comment>
   </data>
   <data name="SearchEngineDialog_deleteLabel.Text" xml:space="preserve">
     <value>删除：</value>

@@ -11396,18 +11396,18 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Select all.
         /// </summary>
-        internal static string SearchDialogTextControl_selectAllButton_Text {
+        internal static string SearchDialogTextControl_selectAllLink_Text {
             get {
-                return ResourceManager.GetString("SearchDialogTextControl_selectAllButton.Text", resourceCulture);
+                return ResourceManager.GetString("SearchDialogTextControl_selectAllLink.Text", resourceCulture);
             }
         }
 
         /// <summary>
         ///   Looks up a localized string similar to Clear selection.
         /// </summary>
-        internal static string SearchDialogTextControl_clearButton_Text {
+        internal static string SearchDialogTextControl_clearAllLink_Text {
             get {
-                return ResourceManager.GetString("SearchDialogTextControl_clearButton.Text", resourceCulture);
+                return ResourceManager.GetString("SearchDialogTextControl_clearAllLink.Text", resourceCulture);
             }
         }
 
