@@ -2,6 +2,8 @@
 // Copyright © 2025 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
+#pragma warning disable S125 // ignore commented out code
+
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
@@ -25,19 +27,7 @@ namespace River.OneMoreAddIn.Commands
 		private sealed class SearchHit
 		{
 			public string PlainText { get; set; }
-			public string Hyperlink { get; set; }
-		}
-
-		// One entry per visible row in the results ListView.
-		// Groups are section headers; hits are navigable matches.
-		private sealed class ResultItem
-		{
-			public bool IsGroup { get; set; }
-			public string Text { get; set; }
-			public Color SectionColor { get; set; }     // group only: left swatch color
-			public Color SectionBackColor { get; set; }  // group only: row background tint
-			public string Hyperlink { get; set; }        // hit only
-			public ListViewItem ViewItem { get; set; }   // lazily cached for OnRetrieveVirtualItem
+			public string ObjectId { get; set; }
 		}
 
 
@@ -46,24 +36,10 @@ namespace River.OneMoreAddIn.Commands
 		private const int UpdatedAfter = 3;
 		private const int UpdatedBefore = 4;
 
-		private readonly ThemeManager manager = ThemeManager.Instance;
-
-		// Matches the original HighlightBackground / HighlightForeground from the Designer
-		private static readonly Color SelectionBack = Color.FromArgb(215, 193, 255);
-		private static readonly Color SelectionFore = SystemColors.HighlightText;
-
 		private readonly ILogger logger;
 		private readonly Regex cleaner;
 		private CancellationTokenSource source;
 		private bool grouping;
-
-		private readonly List<ResultItem> results = new();
-		private readonly Dictionary<Color, SolidBrush> groupBrushes = new();
-
-		private Font groupFont;
-		private Font hitFont;
-		private SolidBrush hitBackBrush;					// unselected hit row background
-		private readonly SolidBrush selectionBackBrush;		// selected hit row background
 
 
 		public SearchDialogTextControl()
@@ -97,34 +73,14 @@ namespace River.OneMoreAddIn.Commands
 
 			// pattern to remove SPAN|A elements and &#nn; escaped characters
 			//
-			//
 			// NOTE, instead of ignoring escape sequences, use WebUtility.HtmlDecode(input);
-			//
 			//
 			cleaner = new Regex(
 				@"(?:<\s*(?:span|a)[^>]*?>)|(?:</(?:span|a)>)|(?:&#\d+;)",
 				RegexOptions.Compiled);
 
-			groupFont = new Font("Segoe UI", 8.5f, FontStyle.Bold, GraphicsUnit.Point);
-			hitFont = new Font("Segoe UI", 8.5f, FontStyle.Regular, GraphicsUnit.Point);
-			selectionBackBrush = new SolidBrush(SelectionBack);
-
-			// Wire virtual-mode events now so they are ready before first show
-			resultsView.RetrieveVirtualItem += OnRetrieveVirtualItem;
-			resultsView.DrawItem += OnDrawItem;
-			resultsView.DrawSubItem += OnDrawSubItem;
-			resultsView.DrawColumnHeader += (s, e) => e.DrawDefault = true;
-			resultsView.MouseClick += OnResultsMouseClick;
-
-			Disposed += (_, _) =>
-			{
-				groupFont?.Dispose();
-				hitFont?.Dispose();
-				hitBackBrush?.Dispose();
-				selectionBackBrush?.Dispose();
-				foreach (var brush in groupBrushes.Values) brush.Dispose();
-				groupBrushes.Clear();
-			};
+			resultsView.CardActivated += OnCardActivated;
+			resultsView.HitActivated += OnHitActivated;
 		}
 
 
@@ -152,13 +108,6 @@ namespace River.OneMoreAddIn.Commands
 		protected override void OnLoad(EventArgs e)
 		{
 			base.OnLoad(e);
-
-			// BackColor comes from the theme; create the brush now that it is known
-			resultsView.BackColor = manager.GetColor("ListView");
-			hitBackBrush = new SolidBrush(resultsView.BackColor);
-
-			hitColumn.Width = resultsView.Width - SystemInformation.VerticalScrollBarWidth;
-
 			findBox.Focus();
 		}
 
@@ -203,15 +152,6 @@ namespace River.OneMoreAddIn.Commands
 			{
 				Search(sender, e);
 				e.Handled = true;
-			}
-		}
-
-
-		private void ResizeResultsView(object sender, EventArgs e)
-		{
-			if (sender is ListView view)
-			{
-				hitColumn.Width = view.Width - SystemInformation.VerticalScrollBarWidth;
 			}
 		}
 
@@ -339,7 +279,7 @@ namespace River.OneMoreAddIn.Commands
 			searchButton.NotifyDefault(true);
 
 			// only show nav buttons if there is at least one navigable hit
-			nextButton.Visible = prevButton.Visible = results.Any(r => !r.IsGroup);
+			nextButton.Visible = prevButton.Visible = resultsView.HasHits;
 		}
 
 
@@ -348,170 +288,50 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ClearResults()
 		{
-			results.Clear();
-			resultsView.VirtualListSize = 0;
+			resultsView.Clear();
 		}
 
 
 		/// <summary>
-		/// Appends a section group header (when groupTitle is non-null) followed by
-		/// all hits for that page. Updating VirtualListSize once per page batch keeps
-		/// the number of repaints proportional to pages searched, not matches found.
+		/// Appends a card for the page (when pageId/groupTitle are non-null) with all its hits.
+		/// Appending one card per page keeps the number of repaints proportional to pages
+		/// searched, not individual matches. SearchResultsCardView.AppendCard primes the
+		/// paint queue via Update() using the same trick as the previous virtual ListView.
 		/// </summary>
-		private void AddPageResults(string groupTitle, string sectionColor, IList<SearchHit> hits)
+		private void AddPageResults(string pageId, string groupTitle, string sectionColor, IList<SearchHit> hits)
 		{
-			if (groupTitle is not null)
+			var swatch = groupTitle != null ? ColorHelper.FromHtml(sectionColor) : Color.Empty;
+
+			var card = new CardModel
 			{
-				var color = ColorHelper.FromHtml(sectionColor);
-				var bg = resultsView.BackColor;
-
-				// 15% section color blended with the list background for the row tint
-				var tinted = Color.FromArgb(
-					(color.R * 15 + bg.R * 85) / 100,
-					(color.G * 15 + bg.G * 85) / 100,
-					(color.B * 15 + bg.B * 85) / 100);
-
-				results.Add(new ResultItem
-				{
-					IsGroup = true,
-					Text = groupTitle,
-					SectionColor = color,
-					SectionBackColor = tinted
-				});
-			}
+				Title = groupTitle,
+				PageId = pageId,
+				SectionColor = swatch
+			};
 
 			foreach (var hit in hits)
 			{
-				results.Add(new ResultItem
+				card.Hits.Add(new CardHit
 				{
-					Text = hit.PlainText,
-					Hyperlink = hit.Hyperlink
+					PlainText = hit.PlainText,
+					PageId = pageId,
+					ObjectId = hit.ObjectId
 				});
 			}
 
-			resultsView.VirtualListSize = results.Count;
-
-			// WM_PAINT is the lowest-priority message; without this the search loop's
-			// own SynchronizationContext continuations starve the paint and rows do not
-			// appear until the loop ends. Update() dispatches any pending paint for the
-			// invalid region (only the new tail rows) without re-invalidating.
-			resultsView.Update();
+			resultsView.AppendCard(card);
 		}
 
 
-		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-		// Virtual ListView rendering
-
-		private void OnRetrieveVirtualItem(object sender, RetrieveVirtualItemEventArgs e)
+		private async void OnCardActivated(object sender, NavigateCardEventArgs e)
 		{
-			if (e.ItemIndex >= results.Count) return;
-			var result = results[e.ItemIndex];
-
-			// The item text and font are used by the ListView for keyboard search and
-			// accessibility; actual painting happens in OnDrawItem / OnDrawSubItem.
-			// Cache the ListViewItem on the result so sustained scroll over thousands
-			// of rows does not allocate one per visible-row callback.
-			e.Item = result.ViewItem ??= new ListViewItem(result.Text)
-			{
-				Font = result.IsGroup ? groupFont : hitFont
-			};
+			await NavigateTo(e.PageId, string.Empty);
 		}
 
 
-		private void OnDrawItem(object sender, DrawListViewItemEventArgs e)
+		private async void OnHitActivated(object sender, NavigateHitEventArgs e)
 		{
-			if (e.ItemIndex >= results.Count) return;
-
-			var result = results[e.ItemIndex];
-			var selected = (e.State & ListViewItemStates.Selected) != 0;
-
-			if (result.IsGroup)
-			{
-				e.Graphics.FillRectangle(GetGroupBrush(result.SectionBackColor), e.Bounds);
-			}
-			else if (selected)
-			{
-				e.Graphics.FillRectangle(selectionBackBrush, e.Bounds);
-			}
-			else
-			{
-				e.Graphics.FillRectangle(hitBackBrush, e.Bounds);
-			}
-
-			if ((e.State & ListViewItemStates.Focused) != 0)
-			{
-				e.DrawFocusRectangle();
-			}
-		}
-
-
-		private void OnDrawSubItem(object sender, DrawListViewSubItemEventArgs e)
-		{
-			if (e.ItemIndex >= results.Count) return;
-
-			var result = results[e.ItemIndex];
-
-			// MultiSelect = false so there is at most one selected index
-			var selected = resultsView.SelectedIndices.Count > 0
-				&& resultsView.SelectedIndices[0] == e.ItemIndex;
-
-			const TextFormatFlags flags =
-				TextFormatFlags.VerticalCenter |
-				TextFormatFlags.EndEllipsis |
-				TextFormatFlags.NoPrefix |
-				TextFormatFlags.SingleLine;
-
-			const int swatchW = 8;
-
-			if (result.IsGroup)
-			{
-				// Colored swatch on the left edge indicating the section's accent color
-				const int pad = 4;
-				var swatch = new Rectangle(
-					e.Bounds.X + pad, e.Bounds.Y + pad,
-					swatchW, e.Bounds.Height - pad * 2);
-
-				e.Graphics.FillRectangle(GetGroupBrush(result.SectionColor), swatch);
-
-				var textRect = new Rectangle(
-					swatch.Right + pad * 2, e.Bounds.Y,
-					e.Bounds.Width - swatch.Right - pad * 2, e.Bounds.Height);
-
-				TextRenderer.DrawText(e.Graphics, result.Text, groupFont, textRect, ForeColor, flags);
-			}
-			else
-			{
-				var foreColor = selected ? SelectionFore : ForeColor;
-				var textRect = new Rectangle(
-					e.Bounds.X + swatchW + 4, e.Bounds.Y, e.Bounds.Width - swatchW - 4, e.Bounds.Height);
-
-				TextRenderer.DrawText(e.Graphics, result.Text, hitFont, textRect, foreColor, flags);
-			}
-		}
-
-
-		// Returns a cached SolidBrush for the given color, allocating one on first use.
-		// Lifetime is tied to the control; brushes are disposed in the Disposed handler.
-		private SolidBrush GetGroupBrush(Color color)
-		{
-			if (!groupBrushes.TryGetValue(color, out var brush))
-			{
-				brush = new SolidBrush(color);
-				groupBrushes[color] = brush;
-			}
-			return brush;
-		}
-
-
-		private async void OnResultsMouseClick(object sender, MouseEventArgs e)
-		{
-			var hit = resultsView.HitTest(e.X, e.Y);
-			if (hit.Item is null || hit.Item.Index >= results.Count) return;
-
-			var result = results[hit.Item.Index];
-			if (result.IsGroup) return;
-
-			await NavigateTo(result);
+			await NavigateTo(e.PageId, e.ObjectId);
 		}
 
 
@@ -530,15 +350,13 @@ namespace River.OneMoreAddIn.Commands
 				MoveTo(-1);
 				e.Handled = true;
 			}
-			else if (e.KeyCode == Keys.Enter && e.Modifiers == Keys.None
-				&& resultsView.SelectedIndices.Count > 0)
+			else if (e.KeyCode == Keys.Enter && e.Modifiers == Keys.None)
 			{
-				var index = resultsView.SelectedIndices[0];
-				if (index < results.Count && !results[index].IsGroup)
+				var target = resultsView.GetSelectedTarget();
+				if (target.HasValue)
 				{
-					NavigateTo(results[index]);
+					_ = NavigateTo(target.Value.pageId, target.Value.objectId);
 				}
-
 				e.Handled = true;
 			}
 		}
@@ -550,38 +368,21 @@ namespace River.OneMoreAddIn.Commands
 
 		private async void MoveTo(int delta)
 		{
-			if (results.Count == 0) return;
-
-			// Start from the current selection, or from the appropriate edge when nothing is selected
-			var current = resultsView.SelectedIndices.Count > 0
-				? resultsView.SelectedIndices[0]
-				: (delta > 0 ? -1 : results.Count);
-
-			// Walk in the requested direction, skipping group header rows
-			var i = current;
-			var found = false;
-			while (true)
-			{
-				i += delta;
-				if (i < 0 || i >= results.Count) break;
-				if (!results[i].IsGroup) { found = true; break; }
-			}
-
-			if (!found) return;
-
-			resultsView.SelectedIndices.Clear();
-			resultsView.SelectedIndices.Add(i);
-			resultsView.EnsureVisible(i);
+			resultsView.MoveSelection(delta);
 			resultsView.Focus();
 
-			await NavigateTo(results[i]);
+			var target = resultsView.GetSelectedTarget();
+			if (target.HasValue)
+			{
+				await NavigateTo(target.Value.pageId, target.Value.objectId);
+			}
 		}
 
 
-		private async Task NavigateTo(ResultItem result)
+		private async Task NavigateTo(string pageId, string objectId = "")
 		{
 			await using var one = new OneNote();
-			await one.NavigateTo(result.Hyperlink);
+			await one.NavigateTo(pageId, objectId);
 		}
 
 
@@ -706,7 +507,7 @@ namespace River.OneMoreAddIn.Commands
 					pageLabel.Text = pageName;
 				}
 
-				var hits = await SearchPageBody(one, page, finder);
+				var hits = await SearchPageBody(page, finder);
 
 				// skip adding results if cancelled mid-page
 				if (source.IsCancellationRequested) break;
@@ -714,6 +515,7 @@ namespace River.OneMoreAddIn.Commands
 				if (hits.Any())
 				{
 					AddPageResults(
+						pageId,
 						grouping ? $"{info.Path}/{pageName}" : null,
 						info.Color,
 						hits);
@@ -724,15 +526,15 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task SearchPage(OneNote one, Page page, Regex finder)
 		{
-			var hits = await SearchPageBody(one, page, finder);
+			var hits = await SearchPageBody(page, finder);
 			if (hits.Any())
 			{
-				AddPageResults(null, null, hits);
+				AddPageResults(page.PageId, null, null, hits);
 			}
 		}
 
 
-		private async Task<IList<SearchHit>> SearchPageBody(OneNote one, Page page, Regex finder)
+		private async Task<IList<SearchHit>> SearchPageBody(Page page, Regex finder)
 		{
 			var ns = page.Namespace;
 
@@ -755,7 +557,7 @@ namespace River.OneMoreAddIn.Commands
 			// OperationCanceledException through the async void Search() call chain.
 			var matched = await Task.Run(() =>
 			{
-				var results = new List<(string objectId, string text)>();
+				var hits = new List<(string objectId, string text)>();
 				foreach (var paragraph in paragraphs)
 				{
 					if (token.IsCancellationRequested) break;
@@ -763,23 +565,19 @@ namespace River.OneMoreAddIn.Commands
 					var text = GetRawText(paragraph, ns);
 					if (text.Length > 0 && finder.IsMatch(text))
 					{
-						results.Add((paragraph.Attribute("objectID").Value, text));
+						hits.Add((paragraph.Attribute("objectID").Value, text));
 					}
 				}
-				return results;
+				return hits;
 			});
 
-			// Back on the UI thread — resolve hyperlinks via COM.
-			var hits = new List<SearchHit>(matched.Count);
-			foreach (var (objectId, text) in matched)
+			// Hyperlinks are resolved lazily at navigation time (one.NavigateTo(pageId, objectId))
+			// so no COM round-trip is needed here per hit.
+			return matched.Select(m => new SearchHit
 			{
-				hits.Add(new SearchHit
-				{
-					PlainText = text,
-					Hyperlink = one.GetHyperlink(page.PageId, objectId)
-				});
-			}
-			return hits;
+				PlainText = m.text,
+				ObjectId  = m.objectId
+			}).ToList();
 		}
 
 
