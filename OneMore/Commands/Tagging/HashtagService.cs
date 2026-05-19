@@ -1,4 +1,4 @@
-﻿//************************************************************************************************
+//************************************************************************************************
 // Copyright © 2023 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
@@ -31,10 +31,13 @@ namespace River.OneMoreAddIn.Commands
 		protected HashtagScheduler scheduler;
 		protected int scanInterval;
 		protected ThreadPriority threadPriority;
+		protected CancellationTokenSource serviceToken;
 
 		private int scanCount;
 		private long scanTime;
 		protected int hour;
+
+		private int running; // re-entrancy guard, Interlocked access only
 
 
 		public delegate void HashtagScannedHandler(object sender, HashtagScannedEventArgs e);
@@ -88,6 +91,9 @@ namespace River.OneMoreAddIn.Commands
 
 			hour = DateTime.Now.Hour;
 
+			serviceToken = new CancellationTokenSource();
+			Application.ApplicationExit += OnApplicationExit;
+
 			// new thread to provide a bit of isolation
 			var thread = new Thread(async () =>
 			{
@@ -104,6 +110,13 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private void OnApplicationExit(object sender, EventArgs e)
+		{
+			logger.WriteLine("cancelling HashtagService on ApplicationExit");
+			serviceToken?.Cancel();
+		}
+
+
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 		// This base method is executed in the context of the OneMore add-in running in OneNote.
 		// Compare against the OneMoreTray override.
@@ -111,21 +124,25 @@ namespace River.OneMoreAddIn.Commands
 		protected virtual async Task StartupLoop()
 		{
 			logger.Debug("StartupLoop() WaitForReady()");
-			if (!await WaitForReady())
+			if (!await WaitForReady(serviceToken.Token))
 			{
+				CleanupToken();
 				return;
 			}
 
 			// execute forever or until there are five consecutive errors...
 
 			var errors = 0;
-			while (errors < 5)
+			while (errors < 5 && !serviceToken.IsCancellationRequested)
 			{
 				try
 				{
-					await Scan();
-
+					await Scan(serviceToken.Token);
 					errors = 0;
+				}
+				catch (OperationCanceledException)
+				{
+					break;
 				}
 				catch (Exception exc)
 				{
@@ -133,17 +150,33 @@ namespace River.OneMoreAddIn.Commands
 					errors++;
 				}
 
-				if (errors < 5)
+				if (errors < 5 && !serviceToken.IsCancellationRequested)
 				{
-					await Task.Delay(scanInterval);
+					try
+					{
+						await Task.Delay(scanInterval, serviceToken.Token);
+					}
+					catch (OperationCanceledException)
+					{
+						break;
+					}
 				}
 			}
 
-			logger.WriteLine("hashtag service has stopped; check for exceptions above");
+			CleanupToken();
+			logger.WriteLine("hashtag service has stopped");
 		}
 
 
-		private async Task<bool> WaitForReady()
+		private void CleanupToken()
+		{
+			Application.ApplicationExit -= OnApplicationExit;
+			serviceToken?.Dispose();
+			serviceToken = null;
+		}
+
+
+		private async Task<bool> WaitForReady(CancellationToken token)
 		{
 			if (scheduler.State != ScanningState.None &&
 				scheduler.State != ScanningState.Ready &&
@@ -151,17 +184,6 @@ namespace River.OneMoreAddIn.Commands
 			{
 				await scheduler.Activate();
 			}
-
-			using var source = new CancellationTokenSource();
-
-			EventHandler handler = (object sender, EventArgs e) =>
-			{
-				logger.WriteLine("cancelling HashtagService on ApplicationExit");
-				source.Cancel();
-			};
-
-			// must cancel Task.Delay upon exit or OneNote will hang until Delay completes
-			Application.ApplicationExit += handler;
 
 			try
 			{
@@ -179,65 +201,72 @@ namespace River.OneMoreAddIn.Commands
 						logger.WriteLine($"hashtag service waiting, {scheduler.State}");
 					}
 
-					await Task.Delay(delay, source.Token);
-					if (!source.IsCancellationRequested)
-					{
-						scheduler.Refresh();
-						count++;
+					await Task.Delay(delay, token);
+					scheduler.Refresh();
+					count++;
 
-						// resume normal 10s interval
-						delay = PollingDelay;
-					}
+					// resume normal 10s interval
+					delay = PollingDelay;
 				}
-				while (scheduler.State != ScanningState.Ready && !source.IsCancellationRequested);
+				while (scheduler.State != ScanningState.Ready && !token.IsCancellationRequested);
 			}
-			catch (TaskCanceledException)
+			catch (OperationCanceledException)
 			{
 				logger.Verbose("WaitForReady canceled");
 			}
-			finally
-			{
-				Application.ApplicationExit -= handler;
-			}
 
-			return !source.IsCancellationRequested;
+			return !token.IsCancellationRequested;
 		}
 
 
-		protected async Task Scan()
+		protected async Task Scan(CancellationToken token = default)
 		{
-			using var scanner = new HashtagScanner();
-
-			if (notebookFilters is not null && notebookFilters.Length > 0)
+			// guard against overlapping scans if the interval is shorter than a scan's duration
+			if (Interlocked.CompareExchange(ref running, 1, 0) != 0)
 			{
-				scanner.SetNotebookFilters(notebookFilters);
+				logger.WriteLine("hashtag service: skipping scan, previous scan still in progress");
+				return;
 			}
 
-			await scanner.Scan();
-
-			var s = scanner.Stats;
-			scanCount++;
-			scanTime += scanner.Stats.Time;
-
-			var avg = scanTime / scanCount;
-
-			OnHashtagScanned?.Invoke(this,
-				new HashtagScannedEventArgs(s.TotalPages, s.DirtyPages, s.Time, scanCount, avg));
-
-			if (hour != DateTime.Now.Hour)
+			try
 			{
-				logger.WriteLine($"hashtag service scanned {scanCount} times in the last hour, averaging {avg}ms");
-				hour = DateTime.Now.Hour;
-				scanCount = 0;
-				scanTime = 0;
+				using var scanner = new HashtagScanner();
+
+				if (notebookFilters is not null && notebookFilters.Length > 0)
+				{
+					scanner.SetNotebookFilters(notebookFilters);
+				}
+
+				await scanner.Scan(token);
+
+				var s = scanner.Stats;
+				scanCount++;
+				scanTime += scanner.Stats.Time;
+
+				var avg = scanTime / scanCount;
+
+				OnHashtagScanned?.Invoke(this,
+					new HashtagScannedEventArgs(s.TotalPages, s.DirtyPages, s.Time, scanCount, avg));
+
+				if (hour != DateTime.Now.Hour)
+				{
+					logger.WriteLine($"hashtag service scanned {scanCount} times in the last hour, averaging {avg}ms");
+					hour = DateTime.Now.Hour;
+					scanCount = 0;
+					scanTime = 0;
+				}
+				else if (s.DirtyPages > 0 || s.Time > 1000)
+				{
+					scanner.Report("hashtag SERVICE");
+				}
+				else if (logger.IsDebug)
+				{
+					scanner.Report("hashtag service");
+				}
 			}
-			else if (s.DirtyPages > 0 || s.Time > 1000)
+			finally
 			{
-				scanner.Report("hashtag SERVICE");
-			}
-			else if (logger.IsDebug)
-			{
-				scanner.Report("hashtag service");
+				Interlocked.Exchange(ref running, 0);
 			}
 		}
 	}

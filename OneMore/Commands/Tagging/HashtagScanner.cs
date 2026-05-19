@@ -11,6 +11,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Collections.Generic;
 	using System.Diagnostics;
 	using System.Linq;
+	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
 
@@ -135,11 +136,16 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		// extended delay used when a foreground command holds a HashtagServicePause token
+		private const int PausedThrottle = 500;
+
+
 		/// <summary>
 		/// Scan all notebooks for all hashtags
 		/// </summary>
+		/// <param name="token">Optional token to cancel the scan between pages</param>
 		/// <returns></returns>
-		public async Task Scan()
+		public async Task Scan(CancellationToken token = default)
 		{
 			var clock = new Stopwatch();
 			clock.Start();
@@ -241,7 +247,7 @@ namespace River.OneMoreAddIn.Commands
 						{
 							int tp;
 
-							(dp, tp) = await Scan(one, sections, notebookID, $"/{name}", forceThru);
+							(dp, tp) = await Scan(one, sections, notebookID, $"/{name}", forceThru, token);
 
 							Stats.DirtyPages += dp;
 							Stats.TotalPages += tp;
@@ -266,7 +272,8 @@ namespace River.OneMoreAddIn.Commands
 
 
 		private async Task<(int, int)> Scan(
-			OneNote one, XElement parent, string notebookID, string path, bool forceThru)
+			OneNote one, XElement parent, string notebookID, string path, bool forceThru,
+			CancellationToken token = default)
 		{
 			//logger.Verbose($"scanning parent {path}, forceThru={forceThru}");
 
@@ -308,6 +315,11 @@ namespace River.OneMoreAddIn.Commands
 
 							foreach (var page in pages)
 							{
+								if (token.IsCancellationRequested)
+								{
+									break;
+								}
+
 								var pid = page.Attribute("ID").Value;
 								pids.Add(pid);
 
@@ -321,10 +333,19 @@ namespace River.OneMoreAddIn.Commands
 									}
 								}
 
-								// throttle the workload to give breathing room to OneNote UI
+								// throttle the workload to give breathing room to OneNote UI;
+								// use an extended delay when a foreground command is active
 								if (throttle > 0)
 								{
-									await Task.Delay(throttle);
+									var delay = HashtagServicePause.IsPaused ? PausedThrottle : throttle;
+									try
+									{
+										await Task.Delay(delay, token);
+									}
+									catch (OperationCanceledException)
+									{
+										break;
+									}
 								}
 							}
 
@@ -347,7 +368,7 @@ namespace River.OneMoreAddIn.Commands
 				foreach (var group in groups)
 				{
 					var (dp, tp) = await Scan(
-						one, group, notebookID, $"{path}/{group.Attribute("name").Value}", forceThru);
+						one, group, notebookID, $"{path}/{group.Attribute("name").Value}", forceThru, token);
 
 					dirtyPages += dp;
 					totalPages += tp;
