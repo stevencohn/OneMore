@@ -516,6 +516,9 @@ namespace River.OneMoreAddIn.Commands
 		/// <param name="knownIDs"></param>
 		public void DeletePhantoms(List<string> knownIDs, string sectionID, string sectionPath)
 		{
+			// HashSet for O(1) membership vs O(n) List.Contains
+			var knownSet = new HashSet<string>(knownIDs, StringComparer.Ordinal);
+
 			using var cmd = con.CreateCommand();
 			cmd.CommandType = CommandType.Text;
 			cmd.CommandText = "SELECT moreID, pageID FROM hashtag_page WHERE sectionID = @sid";
@@ -542,7 +545,7 @@ namespace River.OneMoreAddIn.Commands
 				while (reader.Read())
 				{
 					var pageID = reader.GetString(1);
-					if (!knownIDs.Contains(pageID))
+					if (!knownSet.Contains(pageID))
 					{
 						tagcmd.Parameters["@pid"].Value = pageID;
 						tagcmd.ExecuteNonQuery();
