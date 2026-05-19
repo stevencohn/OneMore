@@ -35,8 +35,7 @@ namespace River.OneMoreAddIn.Commands
 			this.findLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.findBox = new River.OneMoreAddIn.UI.MoreTextBox();
 			this.searchButton = new River.OneMoreAddIn.UI.MoreButton();
-			this.resultsView = new System.Windows.Forms.ListView();
-			this.hitColumn = new System.Windows.Forms.ColumnHeader();
+			this.resultsView = new River.OneMoreAddIn.Commands.SearchResultsCardView();
 			this.morePanel1 = new River.OneMoreAddIn.UI.MorePanel();
 			this.prevButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.nextButton = new River.OneMoreAddIn.UI.MoreButton();
@@ -137,29 +136,13 @@ namespace River.OneMoreAddIn.Commands
 			//
 			// resultsView
 			//
-			this.resultsView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.hitColumn});
 			this.resultsView.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.resultsView.FullRowSelect = true;
-			this.resultsView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-			this.resultsView.HideSelection = false;
 			this.resultsView.Location = new System.Drawing.Point(15, 207);
-			this.resultsView.MultiSelect = false;
 			this.resultsView.Name = "resultsView";
-			this.resultsView.OwnerDraw = true;
-			this.resultsView.ShowGroups = false;
 			this.resultsView.Size = new System.Drawing.Size(782, 353);
 			this.resultsView.TabIndex = 0;
 			this.resultsView.TabStop = false;
-			this.resultsView.UseCompatibleStateImageBehavior = false;
-			this.resultsView.View = System.Windows.Forms.View.Details;
-			this.resultsView.VirtualMode = true;
 			this.resultsView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.HandleNavKey);
-			this.resultsView.Resize += new System.EventHandler(this.ResizeResultsView);
-			//
-			// hitColumn
-			//
-			this.hitColumn.Text = "Hit";
 			//
 			// morePanel1
 			//
@@ -389,8 +372,7 @@ namespace River.OneMoreAddIn.Commands
 		private UI.MoreLabel findLabel;
 		private UI.MoreTextBox findBox;
 		private UI.MoreButton searchButton;
-		private System.Windows.Forms.ListView resultsView;
-		private System.Windows.Forms.ColumnHeader hitColumn;
+		private SearchResultsCardView resultsView;
 		private UI.MorePanel morePanel1;
 		private UI.MorePanel morePanel2;
 		private UI.MorePanel optionsPanel;

@@ -261,6 +261,8 @@
     <Compile Include="Commands\References\CheckUrlsCommand.cs" />
     <Compile Include="Commands\References\HyperlinkProvider.cs" />
     <Compile Include="Commands\Reminders\CleanRemindersCommand.cs" />
+    <Compile Include="Commands\Search\CardHit.cs" />
+    <Compile Include="Commands\Search\CardModel.cs" />
     <Compile Include="Commands\Search\SearchDialogActionControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -275,6 +277,9 @@
       <DependentUpon>SearchDialogTextControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Search\SearchGroupControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Commands\Search\SearchResultsCardView.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Commands\Tools\ShowContainersCommand.cs" />
