@@ -2166,12 +2166,6 @@ Alto</value>
   <data name="phrase_QuickNote" xml:space="preserve">
     <value>Nota veloce</value>
   </data>
-  <data name="phrase_scopeOptions" xml:space="preserve">
-    <value>In tutti i quaderni
-In questo quaderno
-In questa sezione</value>
-    <comment>drop down</comment>
-  </data>
   <data name="phrase_SelectAll" xml:space="preserve">
     <value>Seleziona tutto</value>
   </data>
@@ -4581,14 +4575,6 @@ Tutti i quaderni</value>
   </data>
   <data name="SearchAndReplaceDialog_withLabel.Text" xml:space="preserve">
     <value>Sostituisci con:</value>
-    <comment>label</comment>
-  </data>
-  <data name="SearchDialog_actionTab.Text" xml:space="preserve">
-    <value>Cerca e spostati</value>
-    <comment>tab</comment>
-  </data>
-  <data name="SearchDialogActionControl_introLabel.Text" xml:space="preserve">
-    <value>Inserisci una o più parole chiave, "frasi tra virgolette" e utilizza le maiuscole AND e OR</value>
     <comment>label</comment>
   </data>
   <data name="SearchDialogText_scopeOptions" xml:space="preserve">

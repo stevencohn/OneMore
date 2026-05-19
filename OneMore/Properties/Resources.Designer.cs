@@ -5865,17 +5865,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to In all notebooks
-        ///In this notebook
-        ///In this section.
-        /// </summary>
-        internal static string phrase_scopeOptions {
-            get {
-                return ResourceManager.GetString("phrase_scopeOptions", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Select All.
         /// </summary>
         internal static string phrase_SelectAll {
@@ -11354,24 +11343,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Search and Move.
-        /// </summary>
-        internal static string SearchDialog_actionTab_Text {
-            get {
-                return ResourceManager.GetString("SearchDialog_actionTab.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Enter one or more keywords, &quot;quoted phrases&quot;, and use uppercase AND and OR.
-        /// </summary>
-        internal static string SearchDialogActionControl_introLabel_Text {
-            get {
-                return ResourceManager.GetString("SearchDialogActionControl_introLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to In this notebook
         ///In this section
         ///On this page.
@@ -11421,7 +11392,25 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("SearchDialogTextControl_regBox.Text", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Select all.
+        /// </summary>
+        internal static string SearchDialogTextControl_selectAllButton_Text {
+            get {
+                return ResourceManager.GetString("SearchDialogTextControl_selectAllButton.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Clear selection.
+        /// </summary>
+        internal static string SearchDialogTextControl_clearButton_Text {
+            get {
+                return ResourceManager.GetString("SearchDialogTextControl_clearButton.Text", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Delete:.
         /// </summary>

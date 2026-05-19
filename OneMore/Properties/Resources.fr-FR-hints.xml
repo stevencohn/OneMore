@@ -258,14 +258,6 @@ Appliquer à ce notebook</preferred>
     <source>All sections in the current notebook</source>
     <preferred>Toutes les sections du notebook actuel</preferred>
   </data>
-  <data name="phrase_scopeOptions">
-    <source>In all notebooks
-In this notebook
-In this section</source>
-    <preferred>Dans tous les notebooks
-Dans ce notebook
-Dans cette section</preferred>
-  </data>
   <data name="Plugin_Unsuccessful">
     <source>Plugin did not complete successfully. See log file.</source>
     <preferred>Le plugin ne s'est pas terminé correctement. </preferred>

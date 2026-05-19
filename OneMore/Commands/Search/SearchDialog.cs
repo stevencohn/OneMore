@@ -20,15 +20,9 @@ namespace River.OneMoreAddIn.Commands
 			if (NeedsLocalizing())
 			{
 				Text = Resx.word_Search;
-
-				Localize(new string[]
-				{
-					"textTab=word_Search",
-					"actionTab"
-				});
 			}
 
-			DefaultControl = textTab;
+			DefaultControl = textSheet;
 			ElevatedWithOneNote = true;
 		}
 
@@ -44,34 +38,20 @@ namespace River.OneMoreAddIn.Commands
 			// base method must be called to complete the EvelatedWithOneNote procedure
 			base.OnShown(e);
 
-			// force focus on textSheet's tabIndex(0) control
 			textSheet.Focus();
 		}
 
 
 		private void ClosingSearch(object sender, SearchCloseEventArgs e)
 		{
-			if (e.DialogResult == DialogResult.OK && sender == actionSheet)
+			if (e.DialogResult == DialogResult.OK)
 			{
-				CopySelections = actionSheet.CopySelections;
-				SelectedPages = actionSheet.SelectedPages;
+				CopySelections = textSheet.CopySelections;
+				SelectedPages  = textSheet.SelectedPages;
 			}
 
 			DialogResult = e.DialogResult;
 			Close();
-		}
-
-
-		private void TabSelected(object sender, EventArgs e)
-		{
-			if (tabControl.SelectedIndex == 0)
-			{
-				textSheet.Focus();
-			}
-			else
-			{
-				actionSheet.Focus();
-			}
 		}
 	}
 }

@@ -2169,12 +2169,6 @@ Alto</value>
   <data name="phrase_QuickNote" xml:space="preserve">
     <value>Nota rápida</value>
   </data>
-  <data name="phrase_scopeOptions" xml:space="preserve">
-    <value>En todos los cuadernos
-En este cuaderno
-En esta sección</value>
-    <comment>drop down</comment>
-  </data>
   <data name="phrase_SelectAll" xml:space="preserve">
     <value>Seleccionar todo</value>
   </data>
@@ -4579,14 +4573,6 @@ Todos los cuadernos</value>
   </data>
   <data name="SearchAndReplaceDialog_withLabel.Text" xml:space="preserve">
     <value>Reemplazar con:</value>
-    <comment>label</comment>
-  </data>
-  <data name="SearchDialog_actionTab.Text" xml:space="preserve">
-    <value>Buscar y moverse</value>
-    <comment>tab</comment>
-  </data>
-  <data name="SearchDialogActionControl_introLabel.Text" xml:space="preserve">
-    <value>Ingrese una o más palabras clave, "frases citadas" y use mayúsculas y mayúsculas</value>
     <comment>label</comment>
   </data>
   <data name="SearchDialogText_scopeOptions" xml:space="preserve">

@@ -2190,12 +2190,6 @@ High</value>
   <data name="phrase_QuickNote" xml:space="preserve">
     <value>Quick Note</value>
   </data>
-  <data name="phrase_scopeOptions" xml:space="preserve">
-    <value>In all notebooks
-In this notebook
-In this section</value>
-    <comment>drop down</comment>
-  </data>
   <data name="phrase_SelectAll" xml:space="preserve">
     <value>Select All</value>
   </data>
@@ -4615,14 +4609,6 @@ All notebooks</value>
     <value>Replace with:</value>
     <comment>label</comment>
   </data>
-  <data name="SearchDialog_actionTab.Text" xml:space="preserve">
-    <value>Search and Move</value>
-    <comment>tab</comment>
-  </data>
-  <data name="SearchDialogActionControl_introLabel.Text" xml:space="preserve">
-    <value>Enter one or more keywords, "quoted phrases", and use uppercase AND and OR</value>
-    <comment>label</comment>
-  </data>
   <data name="SearchDialogText_scopeOptions" xml:space="preserve">
     <value>In this notebook
 In this section
@@ -4648,6 +4634,14 @@ Modified before</value>
   <data name="SearchDialogTextControl_regBox.Text" xml:space="preserve">
     <value>Use regular expressions</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="SearchDialogTextControl_selectAllButton.Text" xml:space="preserve">
+    <value>Select all</value>
+    <comment>button</comment>
+  </data>
+  <data name="SearchDialogTextControl_clearButton.Text" xml:space="preserve">
+    <value>Clear selection</value>
+    <comment>button</comment>
   </data>
   <data name="SearchEngineDialog_deleteLabel.Text" xml:space="preserve">
     <value>Delete:</value>

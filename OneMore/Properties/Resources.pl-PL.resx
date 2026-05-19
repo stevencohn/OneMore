@@ -2166,12 +2166,6 @@ Wysoki</value>
   <data name="phrase_QuickNote" xml:space="preserve">
     <value>Krótka notatka</value>
   </data>
-  <data name="phrase_scopeOptions" xml:space="preserve">
-    <value>We wszystkich notebookach
-W tym notatniku
-W tej sekcji</value>
-    <comment>drop down</comment>
-  </data>
   <data name="phrase_SelectAll" xml:space="preserve">
     <value>Zaznacz wszystko</value>
   </data>
@@ -4580,14 +4574,6 @@ Wszystkie notesy</value>
   </data>
   <data name="SearchAndReplaceDialog_withLabel.Text" xml:space="preserve">
     <value>Zamienić:</value>
-    <comment>label</comment>
-  </data>
-  <data name="SearchDialog_actionTab.Text" xml:space="preserve">
-    <value>Wyszukaj i przesuń</value>
-    <comment>tab</comment>
-  </data>
-  <data name="SearchDialogActionControl_introLabel.Text" xml:space="preserve">
-    <value>Wprowadź jedno lub więcej słów kluczowych, „cytowane frazy” i użyj wielkich i lub lub lub</value>
     <comment>label</comment>
   </data>
   <data name="SearchDialogText_scopeOptions" xml:space="preserve">

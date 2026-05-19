@@ -32,6 +32,8 @@ namespace River.OneMoreAddIn.Commands
 		{
 			this.introLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.moveButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.copyButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.findLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.findBox = new River.OneMoreAddIn.UI.MoreTextBox();
 			this.searchButton = new River.OneMoreAddIn.UI.MoreButton();
@@ -43,6 +45,9 @@ namespace River.OneMoreAddIn.Commands
 			this.progressBar = new System.Windows.Forms.ProgressBar();
 			this.morePanel2 = new River.OneMoreAddIn.UI.MorePanel();
 			this.optionsPanel = new River.OneMoreAddIn.UI.MorePanel();
+			this.resultsHeaderPanel = new River.OneMoreAddIn.UI.MorePanel();
+			this.selectAllButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.clearButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.dateSelector = new System.Windows.Forms.ComboBox();
 			this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
 			this.regBox = new River.OneMoreAddIn.UI.MoreCheckBox();
@@ -51,6 +56,7 @@ namespace River.OneMoreAddIn.Commands
 			this.morePanel1.SuspendLayout();
 			this.morePanel2.SuspendLayout();
 			this.optionsPanel.SuspendLayout();
+			this.resultsHeaderPanel.SuspendLayout();
 			this.SuspendLayout();
 			//
 			// introLabel
@@ -85,6 +91,46 @@ namespace River.OneMoreAddIn.Commands
 			this.cancelButton.ThemedFore = null;
 			this.cancelButton.UseVisualStyleBackColor = true;
 			this.cancelButton.Click += new System.EventHandler(this.Nevermind);
+			//
+			// moveButton
+			//
+			this.moveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.moveButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.moveButton.Enabled = false;
+			this.moveButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.moveButton.ImageOver = null;
+			this.moveButton.Location = new System.Drawing.Point(543, 16);
+			this.moveButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 15);
+			this.moveButton.Name = "moveButton";
+			this.moveButton.ShowBorder = true;
+			this.moveButton.Size = new System.Drawing.Size(112, 35);
+			this.moveButton.StylizeImage = false;
+			this.moveButton.TabIndex = 4;
+			this.moveButton.Text = "Move";
+			this.moveButton.ThemedBack = null;
+			this.moveButton.ThemedFore = null;
+			this.moveButton.UseVisualStyleBackColor = true;
+			this.moveButton.Click += new System.EventHandler(this.MovePressed);
+			//
+			// copyButton
+			//
+			this.copyButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.copyButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.copyButton.Enabled = false;
+			this.copyButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.copyButton.ImageOver = null;
+			this.copyButton.Location = new System.Drawing.Point(423, 16);
+			this.copyButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 15);
+			this.copyButton.Name = "copyButton";
+			this.copyButton.ShowBorder = true;
+			this.copyButton.Size = new System.Drawing.Size(112, 35);
+			this.copyButton.StylizeImage = false;
+			this.copyButton.TabIndex = 3;
+			this.copyButton.Text = "Copy";
+			this.copyButton.ThemedBack = null;
+			this.copyButton.ThemedFore = null;
+			this.copyButton.UseVisualStyleBackColor = true;
+			this.copyButton.Click += new System.EventHandler(this.CopyPressed);
 			//
 			// findLabel
 			//
@@ -152,6 +198,8 @@ namespace River.OneMoreAddIn.Commands
 			this.morePanel1.Controls.Add(this.nextButton);
 			this.morePanel1.Controls.Add(this.pageLabel);
 			this.morePanel1.Controls.Add(this.progressBar);
+			this.morePanel1.Controls.Add(this.copyButton);
+			this.morePanel1.Controls.Add(this.moveButton);
 			this.morePanel1.Controls.Add(this.cancelButton);
 			this.morePanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.morePanel1.Location = new System.Drawing.Point(15, 560);
@@ -342,11 +390,69 @@ namespace River.OneMoreAddIn.Commands
 			this.scopeBox.TabIndex = 2;
 			this.scopeBox.SelectedIndexChanged += new System.EventHandler(this.ChangeScope);
 			//
+			// selectAllButton
+			//
+			this.selectAllButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.selectAllButton.BackColor = System.Drawing.Color.Transparent;
+			this.selectAllButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.selectAllButton.ImageOver = null;
+			this.selectAllButton.Location = new System.Drawing.Point(557, 4);
+			this.selectAllButton.Margin = new System.Windows.Forms.Padding(0);
+			this.selectAllButton.Name = "selectAllButton";
+			this.selectAllButton.ShowBorder = false;
+			this.selectAllButton.Size = new System.Drawing.Size(100, 22);
+			this.selectAllButton.StylizeImage = false;
+			this.selectAllButton.TabIndex = 0;
+			this.selectAllButton.Text = "Select all";
+			this.selectAllButton.ThemedBack = null;
+			this.selectAllButton.ThemedFore = null;
+			this.selectAllButton.UseVisualStyleBackColor = true;
+			this.selectAllButton.Click += new System.EventHandler(this.SelectAll);
+			//
+			// clearButton
+			//
+			this.clearButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.clearButton.BackColor = System.Drawing.Color.Transparent;
+			this.clearButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.clearButton.ImageOver = null;
+			this.clearButton.Location = new System.Drawing.Point(663, 4);
+			this.clearButton.Margin = new System.Windows.Forms.Padding(0);
+			this.clearButton.Name = "clearButton";
+			this.clearButton.ShowBorder = false;
+			this.clearButton.Size = new System.Drawing.Size(112, 22);
+			this.clearButton.StylizeImage = false;
+			this.clearButton.TabIndex = 1;
+			this.clearButton.Text = "Clear selection";
+			this.clearButton.ThemedBack = null;
+			this.clearButton.ThemedFore = null;
+			this.clearButton.UseVisualStyleBackColor = true;
+			this.clearButton.Click += new System.EventHandler(this.ClearSelection);
+			//
+			// resultsHeaderPanel
+			//
+			this.resultsHeaderPanel.BottomBorderColor = System.Drawing.SystemColors.ActiveBorder;
+			this.resultsHeaderPanel.BottomBorderSize = 0;
+			this.resultsHeaderPanel.Controls.Add(this.selectAllButton);
+			this.resultsHeaderPanel.Controls.Add(this.clearButton);
+			this.resultsHeaderPanel.Dock = System.Windows.Forms.DockStyle.Top;
+			this.resultsHeaderPanel.Location = new System.Drawing.Point(15, 207);
+			this.resultsHeaderPanel.Margin = new System.Windows.Forms.Padding(0);
+			this.resultsHeaderPanel.Name = "resultsHeaderPanel";
+			this.resultsHeaderPanel.Padding = new System.Windows.Forms.Padding(3);
+			this.resultsHeaderPanel.Size = new System.Drawing.Size(782, 30);
+			this.resultsHeaderPanel.TabIndex = 14;
+			this.resultsHeaderPanel.ThemedBack = null;
+			this.resultsHeaderPanel.ThemedFore = null;
+			this.resultsHeaderPanel.TopBorderColor = System.Drawing.SystemColors.Control;
+			this.resultsHeaderPanel.TopBorderSize = 0;
+			this.resultsHeaderPanel.Visible = false;
+			//
 			// SearchDialogTextControl
 			//
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.resultsView);
+			this.Controls.Add(this.resultsHeaderPanel);
 			this.Controls.Add(this.optionsPanel);
 			this.Controls.Add(this.morePanel2);
 			this.Controls.Add(this.morePanel1);
@@ -361,6 +467,7 @@ namespace River.OneMoreAddIn.Commands
 			this.morePanel2.PerformLayout();
 			this.optionsPanel.ResumeLayout(false);
 			this.optionsPanel.PerformLayout();
+			this.resultsHeaderPanel.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -369,6 +476,8 @@ namespace River.OneMoreAddIn.Commands
 
 		private UI.MoreLabel introLabel;
 		private UI.MoreButton cancelButton;
+		private UI.MoreButton moveButton;
+		private UI.MoreButton copyButton;
 		private UI.MoreLabel findLabel;
 		private UI.MoreTextBox findBox;
 		private UI.MoreButton searchButton;
@@ -376,6 +485,9 @@ namespace River.OneMoreAddIn.Commands
 		private UI.MorePanel morePanel1;
 		private UI.MorePanel morePanel2;
 		private UI.MorePanel optionsPanel;
+		private UI.MorePanel resultsHeaderPanel;
+		private UI.MoreButton selectAllButton;
+		private UI.MoreButton clearButton;
 		private System.Windows.Forms.ProgressBar progressBar;
 		private UI.MoreLabel pageLabel;
 		private System.Windows.Forms.ComboBox scopeBox;
