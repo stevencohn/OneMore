@@ -28,6 +28,7 @@ namespace River.OneMoreAddIn.Commands
 		private readonly bool quickNotes;
 		private FileSystemWatcher watcher;
 		private EventHandler<HistoryLog> navigated;
+		private int watcherRefCount;
 		private DateTime lastWrite;
 		private bool disposedValue;
 
@@ -80,27 +81,35 @@ namespace River.OneMoreAddIn.Commands
 		{
 			add
 			{
-				var dir = Path.GetDirectoryName(path);
-				var nam = Path.GetFileNameWithoutExtension(path);
-				var ext = Path.GetExtension(path);
-				watcher = new FileSystemWatcher(dir, $"{nam}*{ext}")
+				if (watcherRefCount == 0)
 				{
-					NotifyFilter = NotifyFilters.LastWrite
-				};
-				watcher.Changed += NavigationHandler;
-				watcher.Error += Watcher_Error;
-				watcher.EnableRaisingEvents = true;
+					var dir = Path.GetDirectoryName(path);
+					var nam = Path.GetFileNameWithoutExtension(path);
+					var ext = Path.GetExtension(path);
+					watcher = new FileSystemWatcher(dir, $"{nam}*{ext}")
+					{
+						NotifyFilter = NotifyFilters.LastWrite
+					};
+					watcher.Changed += NavigationHandler;
+					watcher.Error += Watcher_Error;
+					watcher.EnableRaisingEvents = true;
+				}
+				watcherRefCount++;
 				navigated += value;
 			}
 
 			remove
 			{
 				navigated -= value;
-				watcher.EnableRaisingEvents = false;
-				watcher.Changed -= NavigationHandler;
-				watcher.Error -= Watcher_Error;
-				watcher.Dispose();
-				watcher = null;
+				watcherRefCount--;
+				if (watcherRefCount == 0 && watcher != null)
+				{
+					watcher.EnableRaisingEvents = false;
+					watcher.Changed -= NavigationHandler;
+					watcher.Error -= Watcher_Error;
+					watcher.Dispose();
+					watcher = null;
+				}
 			}
 		}
 

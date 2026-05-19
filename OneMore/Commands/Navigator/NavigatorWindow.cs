@@ -469,6 +469,8 @@ namespace River.OneMoreAddIn.Commands
 			var margin = SystemInformation.VerticalScrollBarWidth * 2;
 			MoreLinkLabel currentLabel = null;
 
+			using var g = pageBox.CreateGraphics();
+
 			foreach (var heading in headings)
 			{
 				var wrapper = new XElement("T", new XCData(heading.Text));
@@ -489,7 +491,6 @@ namespace River.OneMoreAddIn.Commands
 					Width = pageBox.Width - leftmar - margin
 				};
 
-				using var g = link.CreateGraphics();
 				var size = g.MeasureString(text, headFont);
 				link.Height = (int)(size.Height + link.Padding.Top + link.Padding.Bottom);
 

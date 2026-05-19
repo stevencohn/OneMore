@@ -19,6 +19,8 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private readonly PictureBox picture;
 		private readonly MoreLinkLabel link;
+		private EventHandler backColorChangedHandler;
+		private ToolTip tip;
 
 
 		public HistoryControl(HierarchyInfo info)
@@ -59,7 +61,7 @@ namespace River.OneMoreAddIn.Commands
 			// history items should have a Visited value but pinned items would not
 			if (info.Visited > 0)
 			{
-				var tip = new ToolTip();
+				tip = new ToolTip();
 				var visited = DateTimeHelper.FromTicksSeconds(info.Visited).ToFriendlyString();
 				tip.SetToolTip(link, $"{info.Path}\n{visited}");
 			}
@@ -69,11 +71,12 @@ namespace River.OneMoreAddIn.Commands
 			Height = 24;
 			Margin = new Padding(0, 2, 0, 2);
 
-			BackColorChanged += new EventHandler((s, e) =>
+			backColorChangedHandler = (s, e) =>
 			{
 				picture.BackColor = ((Control)s).BackColor;
 				link.BackColor = ((Control)s).BackColor;
-			});
+			};
+			BackColorChanged += backColorChangedHandler;
 
 			Controls.Add(link);
 			Controls.Add(picture);
@@ -82,13 +85,13 @@ namespace River.OneMoreAddIn.Commands
 
 		protected override void Dispose(bool disposing)
 		{
-			picture?.Dispose();
-			link?.Dispose();
-			BackColorChanged -= new EventHandler((s, e) =>
+			if (disposing)
 			{
-				picture.BackColor = ((Control)s).BackColor;
-				link.BackColor = ((Control)s).BackColor;
-			});
+				tip?.Dispose();
+				picture?.Dispose();
+				link?.Dispose();
+				BackColorChanged -= backColorChangedHandler;
+			}
 
 			base.Dispose(disposing);
 		}
