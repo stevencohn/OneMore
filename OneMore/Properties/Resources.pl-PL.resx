@@ -4582,6 +4582,10 @@ W tej sekcji
 Na tej stronie</value>
     <comment>combobox</comment>
   </data>
+  <data name="SearchDialogTextControl_clearAllLink.Text" xml:space="preserve">
+    <value>Wyczyść wybór</value>
+    <comment>link</comment>
+  </data>
   <data name="SearchDialogTextControl_dateOptions" xml:space="preserve">
     <value>Dowolna data
 Stworzony po
@@ -4601,6 +4605,10 @@ Zmodyfikowane wcześniej</value>
   <data name="SearchDialogTextControl_regBox.Text" xml:space="preserve">
     <value>Użyj wyrażeń regularnych</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="SearchDialogTextControl_selectAllLink.Text" xml:space="preserve">
+    <value>Zaznacz wszystko</value>
+    <comment>link</comment>
   </data>
   <data name="SearchEngineDialog_deleteLabel.Text" xml:space="preserve">
     <value>Usuwać:</value>

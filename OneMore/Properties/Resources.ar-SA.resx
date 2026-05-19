@@ -4593,6 +4593,10 @@ ISO-code then comma then language name</comment>
 في هذه الصفحة</value>
     <comment>combobox</comment>
   </data>
+  <data name="SearchDialogTextControl_clearAllLink.Text" xml:space="preserve">
+    <value>مسح التحديد</value>
+    <comment>link</comment>
+  </data>
   <data name="SearchDialogTextControl_dateOptions" xml:space="preserve">
     <value>أي تاريخ
 تم إنشاؤها بعد
@@ -4612,6 +4616,10 @@ ISO-code then comma then language name</comment>
   <data name="SearchDialogTextControl_regBox.Text" xml:space="preserve">
     <value>استخدم التعبيرات العادية</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="SearchDialogTextControl_selectAllLink.Text" xml:space="preserve">
+    <value>حدد الكل</value>
+    <comment>link</comment>
   </data>
   <data name="SearchEngineDialog_deleteLabel.Text" xml:space="preserve">
     <value>يمسح:</value>

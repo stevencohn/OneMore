@@ -4615,6 +4615,10 @@ In this section
 On this page</value>
     <comment>combobox</comment>
   </data>
+  <data name="SearchDialogTextControl_clearAllLink.Text" xml:space="preserve">
+    <value>Clear selection</value>
+    <comment>link</comment>
+  </data>
   <data name="SearchDialogTextControl_dateOptions" xml:space="preserve">
     <value>Any date
 Created after
@@ -4635,13 +4639,9 @@ Modified before</value>
     <value>Use regular expressions</value>
     <comment>checkbox</comment>
   </data>
-  <data name="SearchDialogTextControl_selectAllButton.Text" xml:space="preserve">
+  <data name="SearchDialogTextControl_selectAllLink.Text" xml:space="preserve">
     <value>Select all</value>
-    <comment>button</comment>
-  </data>
-  <data name="SearchDialogTextControl_clearButton.Text" xml:space="preserve">
-    <value>Clear selection</value>
-    <comment>button</comment>
+    <comment>link</comment>
   </data>
   <data name="SearchEngineDialog_deleteLabel.Text" xml:space="preserve">
     <value>Delete:</value>

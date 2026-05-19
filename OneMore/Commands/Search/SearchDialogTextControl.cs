@@ -57,8 +57,8 @@ namespace River.OneMoreAddIn.Commands
 					"moveButton=word_Move",
 					"copyButton=word_Copy",
 					"cancelButton=word_Cancel",
-					"selectAllButton",
-					"clearButton"
+					"selectAllLink",
+					"clearAllLink"
 				});
 
 				scopeBox.Items.Clear();
@@ -122,13 +122,13 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void SelectAll(object sender, EventArgs e)
+		private void SelectAll(object sender, LinkLabelLinkClickedEventArgs e)
 		{
 			resultsView.CheckAll();
 		}
 
 
-		private void ClearSelection(object sender, EventArgs e)
+		private void ClearSelection(object sender, LinkLabelLinkClickedEventArgs e)
 		{
 			resultsView.ClearChecked();
 		}
@@ -247,6 +247,7 @@ namespace River.OneMoreAddIn.Commands
 
 			ClearResults();
 			nextButton.Visible = prevButton.Visible = false;
+			moveButton.Visible = copyButton.Visible = false;
 
 			// Build the regex once for the entire search; all scope methods share it
 			var finder = new TextMatchBuilder(regBox.Checked, matchBox.Checked)
@@ -327,6 +328,7 @@ namespace River.OneMoreAddIn.Commands
 
 			// only show nav buttons if there is at least one navigable hit
 			nextButton.Visible = prevButton.Visible = resultsView.HasHits;
+			moveButton.Visible = copyButton.Visible = resultsView.HasHits;
 			resultsHeaderPanel.Visible = resultsView.HasHits;
 		}
 

@@ -4585,6 +4585,10 @@ ISO-code then comma then language name</comment>
 このページで</value>
     <comment>combobox</comment>
   </data>
+  <data name="SearchDialogTextControl_clearAllLink.Text" xml:space="preserve">
+    <value>選択をクリア</value>
+    <comment>link</comment>
+  </data>
   <data name="SearchDialogTextControl_dateOptions" xml:space="preserve">
     <value>任意の日付
 後に作成されました
@@ -4604,6 +4608,10 @@ ISO-code then comma then language name</comment>
   <data name="SearchDialogTextControl_regBox.Text" xml:space="preserve">
     <value>正規表現を使用します</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="SearchDialogTextControl_selectAllLink.Text" xml:space="preserve">
+    <value>すべて選択</value>
+    <comment>link</comment>
   </data>
   <data name="SearchEngineDialog_deleteLabel.Text" xml:space="preserve">
     <value>消去：</value>
