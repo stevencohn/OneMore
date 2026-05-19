@@ -53,7 +53,7 @@ namespace River.OneMoreAddIn.Commands
 				return false;
 			}
 
-			var con = new SQLiteConnection($"Data source={path}");
+			using var con = new SQLiteConnection($"Data source={path}");
 			con.Open();
 
 			using var cmd = con.CreateCommand();

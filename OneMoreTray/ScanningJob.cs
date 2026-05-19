@@ -34,9 +34,9 @@ namespace OneMoreTray
 
 			scheduler = new HashtagScheduler();
 
-			// for debugging, pass an argument!
+			// for debugging, pass an argument to bypass the schedule-existence check
 			var args = Environment.GetCommandLineArgs();
-			if (args.Length == 0 && !scheduler.ScheduleExists)
+			if (args.Length == 1 && !scheduler.ScheduleExists)
 			{
 				ToastMissingSchedule();
 				return;
