@@ -190,6 +190,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					// only one cell to fill, no pattern so increment by 1
 					filler = GetFiller(table[ri][minCol]);
+					if (filler == null) continue;
 				}
 				else
 				{
@@ -235,6 +236,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					// only one cell to fill, no pattern so increment by 1
 					filler = GetFiller(table[minRow][ci]);
+					if (filler == null) continue;
 				}
 				else
 				{
