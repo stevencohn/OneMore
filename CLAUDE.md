@@ -13,16 +13,21 @@ A OneNote add-in (VSIX) with 160+ commands. Internal namespace
 
 ## Building
 
-Use `.\build.ps1 -fast -local` from the repo root in PowerShell — **not** `dotnet build`
+Use `.\build.ps1 -fast` from the repo root in PowerShell — **not** `dotnet build`
 (this is .NET Framework + MSBuild + WiX installer). Key flags:
+
+When only changing code in the OneMore project, use `.\build.ps1 -fast -main` to
+rebuild just the main OneMore add-in project.
+
+When only changing the OneMoreSetup installer project use `.\build.ps1 -kit`
+to reuse existing binaries and just build the installer.
 
 | Flag | Purpose |
 |------|---------|
 | `-Architecture <x86\|x64\|ARM64\|All\|x>` | Default `x86`. `x` = x86+x64. |
 | `-Fast` | Skip the installer kit; just build the .csproj projects. |
 | `-Kit` | Reuse existing binaries; build the installer only. |
-| `-Prep` | One-time `DisableOutOfProcBuild` for Visual Studio. |
-| `-Local` | Skip restoring the .vdproj from git (advanced — usually leave off). |
+| `-Main` | Build only the main OneMore add-in project. |
 | `-VLog` | Verbose MSBuild logging. |
 
 CI: `.github/workflows/build.yml` runs `build.ps1` on `windows-latest`.
@@ -79,6 +84,10 @@ Read `ONENOTE.EXE`'s PE header directly when you need OneNote's architecture.
 - **Issues / PRs:** use the `gh` CLI. Default repo is `stevencohn/OneMore`
   (e.g. `gh issue view 2017 --repo stevencohn/OneMore --comments`).
 - **Commits are GPG-signed.** See `.github/pull_request_template.md`.
+
+- **Branching:** `main` is protected. Use feature branches named like
+  `1234-calendar-integration`, where the prefix `1234-` is the GitHub issue number 
+  for the work in that branch. Open a PR from that branch to `main` when ready.
 
 ## Where to read more (don't duplicate here)
 
