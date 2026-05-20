@@ -10,7 +10,6 @@
 namespace River.OneMoreAddIn.Commands.Tools.Updater
 {
 	using Microsoft.Win32;
-	using River.OneMoreAddIn.Helpers;
 	using System;
 	using System.Diagnostics;
 	using System.IO;
@@ -25,9 +24,10 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 	internal class Updater : Loggable, IUpdateReport
 	{
 		private const string LatestUrl = "https://api.github.com/repos/stevencohn/onemore/releases";
-		//private const string Latest = "/latest";
 		private const string LatestN = "?per_page=5";
 		private const string TagUrl = "https://github.com/stevencohn/OneMore/releases/tag";
+
+		private const string AllowPrerelease = "ONEMORE_ALLOW_PRERELEASE";
 
 		private GitRelease release;
 		private readonly string productCode;
@@ -170,14 +170,19 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 				return false;
 			}
 
-			// find latest released-release, allowing prereleases to be published
+			// find latest released-release, or prerelease if env variable is set for testing;
+			// log the whole list for debugging...
+
+			var allowPrerelease = 
+				!string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable(AllowPrerelease));
+
 			release = null;
 			foreach (var r in releases)
 			{
 				// dump them out for debugging
 				var name = r.prerelease ? $"{r.name} PRERELEASE" : r.name;
 				logger.WriteLine($"fetched {r.tag_name}, {r.published_at} - \"{name}\"");
-				if (!r.prerelease && release is null)
+				if ((allowPrerelease || !r.prerelease) && release is null)
 				{
 					release = r;
 				}
