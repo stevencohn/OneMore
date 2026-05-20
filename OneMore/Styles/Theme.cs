@@ -207,7 +207,9 @@ namespace River.OneMoreAddIn.Styles
 			{
 				// calculate new index
 				style.Index = root.Elements(ns + "Style")
-					.Max(e => int.Parse(e.Attribute("index").Value)) + 1;
+					.Select(e => int.Parse(e.Attribute("index").Value))
+					.DefaultIfEmpty(-1)
+					.Max() + 1;
 
 				root.Add(new StyleRecord(style).ToXElement());
 			}
