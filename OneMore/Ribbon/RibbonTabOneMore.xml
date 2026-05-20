@@ -13,7 +13,7 @@
       getLabel="GetRibbonLabel"
       getScreentip="GetRibbonScreentip"
       onAction="CommandPaletteCmd"
-      size="large"
+      size="normal"
       keytip="P"/>
     <button
       id="ribQuickPaletteButton"
@@ -21,8 +21,16 @@
       getLabel="GetRibbonLabel"
       getScreentip="GetRibbonScreentip"
       onAction="QuickPaletteCmd"
-      size="large"
+      size="normal"
       keytip="Q"/>
+    <button
+      id="ribCalendarButton"
+      imageMso="OpenAttachedCalendar"
+      getLabel="GetRibbonLabel"
+      getScreentip="GetRibbonScreentip"
+      onAction="CalendarCmd"
+      size="normal"
+      keytip="D"/>
     <button
       id="ribNavigatorButton"
       getImage="GetRibbonImageByID"
@@ -31,14 +39,6 @@
       onAction="NavigatorCmd"
       size="large"
       keytip="N"/>
-    <button
-      id="ribCalendarButton"
-      imageMso="OpenAttachedCalendar"
-      getLabel="GetRibbonLabel"
-      getScreentip="GetRibbonScreentip"
-      onAction="CalendarCmd"
-      size="large"
-      keytip="D"/>
     <dynamicMenu
       id="ribFavoritesMenu"
       getLabel="GetRibbonLabel"
@@ -46,13 +46,6 @@
       getContent="GetFavoritesContent"
       size="large"
       keytip="F"/>
-    <menu
-      id="ribColorizeMenu"
-      imageMso="SmartArtChangeColorsGallery"
-      getLabel="GetRibbonLabel"
-      showImage="true"
-      size="large"
-      keytip="C"/>
   </group>
 
   <group id="ribOneMoreStylesGroup" getLabel="GetRibbonLabel" getImage="GetOneMoreRibbonImage">
@@ -118,6 +111,13 @@
         getScreentip="GetRibbonScreentip"
         onAction="ClearTableShadingCmd"/>
     </gallery>
+    <menu
+      id="ribColorizeMenu"
+      imageMso="SmartArtChangeColorsGallery"
+      getLabel="GetRibbonLabel"
+      showImage="true"
+      size="large"
+      keytip="C"/>
   </group>
 
   <group id="ribOneMoreSnippetsGroup" getLabel="GetRibbonLabel" getImage="GetOneMoreRibbonImage">
@@ -365,6 +365,13 @@
 
   <group id="ribOneMoreTagGroup" getLabel="GetRibbonLabel" getImage="GetOneMoreRibbonImage">
     <button
+      id="ribSearchButton"
+      imageMso="FileFind"
+      getLabel="GetRibbonLabel"
+      getScreentip="GetRibbonScreentip"
+      onAction="SearchCmd"
+      size="large"/>
+    <button
       id="ribSearchHashtagsButton"
       getImage="GetRibbonImageByID"
       getLabel="GetRibbonLabel"
@@ -387,12 +394,6 @@
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
         onAction="SearchAndReplaceCmd"/>
-      <button
-        id="ribSearchButton"
-        imageMso="FileFind"
-        getLabel="GetRibbonLabel"
-        getScreentip="GetRibbonScreentip"
-        onAction="SearchCmd"/>
       <button
         id="ribAddTagBankButton"
         imageMso="DataFormAddRecord"
