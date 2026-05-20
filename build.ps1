@@ -27,11 +27,6 @@ the installer kit for the specified architecture.
 When building with -Fast, only build the main OneMore add-in project, skipping the tray, 
 calendar, protocol handler, and setup actions projects. This is a debugging option.
 
-.PARAMETER Prep
-Run DisableOutOfProcBuild. This only needs to be run once on a machine, or after upgrading
-or reinstalling Visual Studio. It is required to build installer kits from the command line.
-No build is performed. This is a standalone command that executes and exits.
-
 .PARAMETER Stepped
 When building All architectures, pause between each architecture build to allow examination
 of output and configuration of vdproj. This is a debugging option.
@@ -52,7 +47,6 @@ param (
 	[switch] $Fast,
 	[switch] $Kit,
 	[switch] $Main,
-	[switch] $Prep,
 	[switch] $Stepped,
 	[switch] $VLog
 	)
@@ -171,22 +165,6 @@ Begin
 		{
 			Pop-Location
 		}
-	}
-
-	function DisablOutOfProcBuild
-	{
-		$0 = Join-Path $ideroot 'CommonExtensions\Microsoft\VSI\DisableOutOfProcBuild'
-		if (Test-Path $0)
-		{
-			Push-Location $0
-			if (Test-Path .\DisableOutOfProcBuild.exe) {
-				.\DisableOutOfProcBuild.exe
-			}
-			Pop-Location
-			Write-Host '... disabled out-of-proc builds; reboot is recommended'
-			return
-		}
-		Write-Host "*** could not find $0\DisableOutOfProcBuild.exe" -ForegroundColor Yellow
 	}
 
 	function DetectArchitecture
@@ -479,8 +457,6 @@ Process
 	if (-not (FindVisualStudio)) { return }
 
 	if ($Detect) { DetectArchitecture $Detect; return }
-
-	if ($Prep) { DisablOutOfProcBuild; return }
 
 	if (OneNoteRunning) { return }
 
