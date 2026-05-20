@@ -38,9 +38,10 @@ Begin
         param($text)
         if ($verbose) {
             if ($text) {
-                Write-Host "OK $text" -Fore DarkGray
+                Write-Host "   OK " -Fore DarkGreen -NoNewline
+                Write-Host $text -Fore DarkGray
             } else {
-                Write-Host "BAD $text" -Fore DarkRed
+                Write-Host "   BAD" -Fore DarkRed
             }
         }
     }
@@ -156,7 +157,7 @@ Begin
         }
         if ($ok) { WriteOK $0 } else { WriteBad $0 }
 
-        WriteValue "() = $defaultValue"; $defaultValue = $null
+        WriteValue "@ = $defaultValue"; $defaultValue = $null
         WriteValue "URL Protocol = $urlProtocol"
     }
 
@@ -170,7 +171,7 @@ Begin
         if ($ok) { $defaultValue = $lastValue }
         if ($ok) { WriteOK "$0" } else { WriteBad $0 }
 
-        WriteValue "() = $defaultValue"; $defaultValue = $null
+        WriteValue "@ = $defaultValue"; $defaultValue = $null
     }
 
     function CheckAddIn
@@ -210,7 +211,7 @@ Begin
             if ($ok) { $appId = $lastValue }
         }
         if ($ok) { WriteOK $0 } else { WriteBad $0 ; return }
-        WriteValue "() = $defaultValue"; $defaultValue = $null
+        WriteValue "@ = $defaultValue"; $defaultValue = $null
         WriteValue "AppID = $appId"
 
         $1 = "$0\Implemented Categories\{62C8FE65-4EBB-45E7-B440-6E39B2CDBF29}"
@@ -250,7 +251,7 @@ Begin
             }
         }
         if ($ok) { WriteOK $1 } else { WriteBad $1 }
-        WriteValue "() = $defaultValue"; $defaultValue = $null
+        WriteValue "@ = $defaultValue"; $defaultValue = $null
         WriteValue "Assembly = $assembly"
         WriteValue "Class = $class"
         WriteValue "CodeBase = $codeBase"
@@ -285,28 +286,28 @@ Begin
         if ($ok) { $ok = (HasValue $1 '(default)' 'River.OneMoreAddIn') }
         if ($ok) { $defaultValue = $lastValue }
         if ($ok) { WriteOK $1 } else { WriteBad $1 }
-        WriteValue "() = $defaultValue"; $defaultValue = $null
+        WriteValue "@ = $defaultValue"; $defaultValue = $null
 
         $1 = "$0\Programmable"
         $ok = (HasKey $1)
         if ($ok) { $ok = (HasValue $1 '(default)' '') }
         if ($ok) { $defaultValue = $lastValue }
         if ($ok) { WriteOK $1 } else { WriteBad $1 }
-        WriteValue "() = $defaultValue"; $defaultValue = $null
+        WriteValue "@ = $defaultValue"; $defaultValue = $null
 
         $1 = "$0\TypeLib"
         $ok = (HasKey $1)
         if ($ok) { $ok = (HasValue $1 '(default)' $guid) }
         if ($ok) { $defaultValue = $lastValue }
         if ($ok) { WriteOK $1 } else { WriteBad $1 }
-        WriteValue "() = $defaultValue"; $defaultValue = $null
+        WriteValue "@ = $defaultValue"; $defaultValue = $null
 
         $1 = "$0\VersionIndependentProgID"
         $ok = (HasKey $1)
         if ($ok) { $ok = (HasValue $1 '(default)' 'River.OneMoreAddIn') }
         if ($ok) { $defaultValue = $lastValue }
         if ($ok) { WriteOK $1 } else { WriteBad $1 }
-        WriteValue "() = $defaultValue"; $defaultValue = $null
+        WriteValue "@ = $defaultValue"; $defaultValue = $null
     }
 
     function CheckMachine
