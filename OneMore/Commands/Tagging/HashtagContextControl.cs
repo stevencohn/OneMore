@@ -15,7 +15,9 @@ namespace River.OneMoreAddIn.Commands
 
 	internal partial class HashtagContextControl : MoreUserControl
 	{
+		private const int SwatchWidth = 5;
 		private int radius = 5;
+		private Color sectionColor = Color.Empty;
 
 
 		public HashtagContextControl()
@@ -33,8 +35,21 @@ namespace River.OneMoreAddIn.Commands
 			var hoverColor = manager.GetColor("HoverColor");
 
 			PageID = item.PageID;
+			sectionColor = item.SectionColor;
 
 			checkbox.Enabled = item.Available;
+			checkbox.Visible = false;
+
+			MouseEnter += (s, e) => UpdateCheckboxVisibility();
+			MouseMove  += (s, e) => UpdateCheckboxVisibility();
+			MouseLeave += (s, e) => UpdateCheckboxVisibility();
+			pageLink.MouseEnter += (s, e) => UpdateCheckboxVisibility();
+			pageLink.MouseMove  += (s, e) => UpdateCheckboxVisibility();
+			pageLink.MouseLeave += (s, e) => UpdateCheckboxVisibility();
+			dateLabel.MouseEnter += (s, e) => UpdateCheckboxVisibility();
+			dateLabel.MouseLeave += (s, e) => UpdateCheckboxVisibility();
+			snippetsPanel.MouseEnter += (s, e) => UpdateCheckboxVisibility();
+			snippetsPanel.MouseLeave += (s, e) => UpdateCheckboxVisibility();
 
 			pageLink.Text = $"{item.HierarchyPath}/{item.PageTitle}";
 			var oid = string.IsNullOrWhiteSpace(item.TitleID) ? string.Empty : item.TitleID;
@@ -78,6 +93,8 @@ namespace River.OneMoreAddIn.Commands
 					StrictColors = true
 				};
 
+				link.MouseEnter += (s, e) => UpdateCheckboxVisibility();
+				link.MouseLeave += (s, e) => UpdateCheckboxVisibility();
 				link.LinkClicked += NavigateTo;
 				link.Links.Add(0, link.Text.Length, (item.PageID, snippet.ObjectID));
 
@@ -108,8 +125,17 @@ namespace River.OneMoreAddIn.Commands
 			set
 			{
 				checkbox.Checked = value;
+				UpdateCheckboxVisibility();
 				Checked?.Invoke(this, new EventArgs());
 			}
+		}
+
+
+		private void UpdateCheckboxVisibility()
+		{
+			var pt = PointToClient(MousePosition);
+			var inTitleRow = ClientRectangle.Contains(pt) && pt.Y < snippetsPanel.Top;
+			checkbox.Visible = IsChecked || inTitleRow;
 		}
 
 
@@ -137,6 +163,17 @@ namespace River.OneMoreAddIn.Commands
 
 			Invalidate();
 		}
+
+
+		protected override void OnPaint(PaintEventArgs e)
+		{
+			base.OnPaint(e);
+			if (sectionColor == Color.Empty) return;
+			var swatchRect = new Rectangle(0, radius, SwatchWidth, Height - radius * 2);
+			using var brush = new SolidBrush(sectionColor);
+			e.Graphics.FillRectangle(brush, swatchRect);
+		}
+
 
 		protected override void OnSizeChanged(EventArgs e)
 		{

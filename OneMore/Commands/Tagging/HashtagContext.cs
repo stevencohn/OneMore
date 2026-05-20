@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using System.Collections.Generic;
+	using System.Drawing;
 
 
 	/// <summary>
@@ -47,6 +48,12 @@ namespace River.OneMoreAddIn.Commands
 		/// Gets or sets the body-level snippets of text on the page that contain contextual tags
 		/// </summary>
 		public HashtagSnippets Snippets { get; set; }
+
+
+		/// <summary>
+		/// Gets or sets the section color to display as a left-edge swatch on the card
+		/// </summary>
+		public Color SectionColor { get; set; }
 
 
 		public bool HasSnippet(string objectID)

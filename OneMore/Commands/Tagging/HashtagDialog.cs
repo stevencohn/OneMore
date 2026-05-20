@@ -277,6 +277,21 @@ namespace River.OneMoreAddIn.Commands
 				var items = CollateTags(tags, loadedBookIDs);
 				tags.Clear();
 
+				var colorCache = new Dictionary<string, Color>();
+				foreach (var item in items)
+				{
+					if (item.SectionID is null) continue;
+					if (!colorCache.TryGetValue(item.SectionID, out var color))
+					{
+						var info = await one.GetSectionInfo(item.SectionID);
+						color = info?.Color is not null
+							? ColorHelper.FromHtml(info.Color)
+							: Color.Empty;
+						colorCache[item.SectionID] = color;
+					}
+					item.SectionColor = color;
+				}
+
 				var controls = new HashtagContextControl[items.Count];
 
 				for (var i = 0; i < items.Count; i++)
