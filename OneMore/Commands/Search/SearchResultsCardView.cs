@@ -313,6 +313,9 @@ namespace River.OneMoreAddIn.Commands
 				// Checkbox glyph: visible when the card is hovered or already checked.
 				// Reserve horizontal space for the checkbox in all titled cards so titles
 				// don't reflow as the mouse moves between cards.
+
+				// Note that this emulates the styling of MoreCheckbox
+
 				var checkboxX  = contentX;
 				var titleTextX = contentX + CheckBoxSize + CheckBoxGap;
 				var titleW     = contentW - CheckBoxSize - CheckBoxGap;
