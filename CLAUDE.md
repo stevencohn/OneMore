@@ -14,7 +14,7 @@ A OneNote add-in (VSIX) with 160+ commands. Internal namespace
 ## Building
 
 Use `.\build.ps1 -fast -local` from the repo root in PowerShell — **not** `dotnet build`
-(this is .NET Framework + MSBuild + a legacy installer). Key flags:
+(this is .NET Framework + MSBuild + WiX installer). Key flags:
 
 | Flag | Purpose |
 |------|---------|
@@ -32,8 +32,8 @@ CI: `.github/workflows/build.yml` runs `build.ps1` on `windows-latest`.
 | Project | Kind | Role |
 |---------|------|------|
 | `OneMore` | VSIX (.csproj) | Main add-in: ribbon, commands, UI |
-| `OneMoreSetup` | **Legacy .vdproj** | Builds the MSI installer |
-| `OneMoreSetupActions` | Console .exe (.csproj) | MSI custom actions runner — see `OneMoreSetupActions/CLAUDE.md` |
+| `OneMoreSetup` | WiX (.wixproj) | Builds the installer (MSI + Burn bootstrapper) |
+| `OneMoreSetupActions` | Console .exe (.csproj) | Custom actions runner (bitness check, etc.) — see `OneMoreSetupActions/CLAUDE.md` |
 | `OneMoreCalendar` | .csproj | Calendar feature |
 | `OneMoreTray` | .csproj | System-tray companion |
 | `OneMoreProtocolHandler` | .csproj | `onemore://` URL handler |
@@ -79,10 +79,6 @@ Read `ONENOTE.EXE`'s PE header directly when you need OneNote's architecture.
 - **Issues / PRs:** use the `gh` CLI. Default repo is `stevencohn/OneMore`
   (e.g. `gh issue view 2017 --repo stevencohn/OneMore --comments`).
 - **Commits are GPG-signed.** See `.github/pull_request_template.md`.
-- The .vdproj is **restored from git** on each build. Don't hand-edit it
-  casually; if you must, expect `build.ps1` to overwrite it unless `-Local`.
-- The installer is **VS Deployment Project (.vdproj), not WiX**. Don't propose
-  a WiX migration as scope-creep on unrelated work.
 
 ## Where to read more (don't duplicate here)
 
@@ -90,8 +86,8 @@ Read `ONENOTE.EXE`'s PE header directly when you need OneNote's architecture.
 - `README.md` — user-facing overview
 - `OneMore/Commands/Search/CLAUDE.md` — Search subsystem (virtual ListView,
   atom model, regex replace engine)
-- `OneMoreSetupActions/CLAUDE.md` — MSI custom actions, bitness rules, .vdproj
-  quirks
+- `OneMoreSetup/CLAUDE.md` — WiX installer, Burn bootstrapper, bitness check
+- `OneMoreSetupActions/CLAUDE.md` — MSI custom actions, bitness enforcement rules
 - `docs/` — wiki rebuild + telemetry dashboard notes
 
 ### Architecture and design docs
