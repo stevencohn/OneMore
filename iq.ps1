@@ -275,9 +275,13 @@ Begin
         # is missing (e.g., Intune/SYSTEM deployments where Active Setup never ran).
         WriteTitle 'Machine'
         $0 = 'Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Office\OneNote\AddIns\River.OneMoreAddIn'
-        $ok = (HasValue $0 'LoadBehavior' '3')
-        $ok = (HasValue $0 'Description' 'Add-in for OneNote') -and $ok
-        $ok = (HasValue $0 'FriendlyName' 'OneMoreAddIn') -and $ok
+        $ok = (HasKey $0)
+        if ($ok)
+        {
+            $ok = (HasValue $0 'LoadBehavior' '3') -and $ok
+            $ok = (HasValue $0 'Description' 'Add-in for OneNote') -and $ok
+            $ok = (HasValue $0 'FriendlyName' 'OneMoreAddIn') -and $ok
+        }
         if ($ok) { WriteOK $0 } else { WriteBad $0 }
     }
 
