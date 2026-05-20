@@ -16,6 +16,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Text.RegularExpressions;
 	using System.Threading;
 	using System.Threading.Tasks;
+	using System.Web;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
 	using Resx = Properties.Resources;
@@ -628,7 +629,7 @@ namespace River.OneMoreAddIn.Commands
 			// so no COM round-trip is needed here per hit.
 			return matched.Select(m => new SearchHit
 			{
-				PlainText = m.text,
+				PlainText = HttpUtility.HtmlDecode(m.text),
 				ObjectId  = m.objectId
 			}).ToList();
 		}
