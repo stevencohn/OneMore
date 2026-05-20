@@ -11,7 +11,6 @@ namespace River.OneMoreAddIn.Commands
 	using System.Drawing;
 	using System.Linq;
 	using System.Windows.Forms;
-	using System.Windows.Forms.VisualStyles;
 
 
 	/// <summary>
@@ -60,6 +59,8 @@ namespace River.OneMoreAddIn.Commands
 		private Color hoverFore;
 		private Font titleFont;
 		private Font hitFont;
+		private Pen checkboxPen;
+		private SolidBrush checkboxFillBrush;
 
 
 		public SearchResultsCardView()
@@ -132,7 +133,9 @@ namespace River.OneMoreAddIn.Commands
 			hitFore          = manager.GetColor("HintText");
 			selectionFore    = manager.GetColor("HighlightText");
 			hoverFore        = manager.GetColor("HoverColor");
-			BackColor        = manager.GetColor("AppWorkspace");
+			BackColor         = manager.GetColor("AppWorkspace");
+			checkboxPen       = new Pen(manager.GetColor("Highlight"));
+			checkboxFillBrush = new SolidBrush(manager.GetColor("Highlight"));
 
 			titleFont?.Dispose();
 			hitFont?.Dispose();
@@ -147,7 +150,9 @@ namespace River.OneMoreAddIn.Commands
 		{
 			cardBackBrush?.Dispose();    cardBackBrush = null;
 			borderPen?.Dispose();        borderPen = null;
-			selectionBackBrush?.Dispose(); selectionBackBrush = null;
+			selectionBackBrush?.Dispose();  selectionBackBrush = null;
+			checkboxPen?.Dispose();         checkboxPen = null;
+			checkboxFillBrush?.Dispose();   checkboxFillBrush = null;
 		}
 
 
@@ -308,19 +313,23 @@ namespace River.OneMoreAddIn.Commands
 				// Checkbox glyph: visible when the card is hovered or already checked.
 				// Reserve horizontal space for the checkbox in all titled cards so titles
 				// don't reflow as the mouse moves between cards.
+
+				// Note that this emulates the styling of MoreCheckbox
+
 				var checkboxX  = contentX;
 				var titleTextX = contentX + CheckBoxSize + CheckBoxGap;
 				var titleW     = contentW - CheckBoxSize - CheckBoxGap;
 
 				if (card.PageId != null && (isHovered || card.IsChecked))
 				{
-					var state = card.IsChecked
-						? (isHovered ? CheckBoxState.CheckedHot : CheckBoxState.CheckedNormal)
-						: CheckBoxState.UncheckedHot;
-
 					var checkY = y + (TitleRowH - CheckBoxSize) / 2;
-					CheckBoxRenderer.DrawCheckBox(g,
-						new Point(checkboxX, checkY), state);
+					var cbRect = new Rectangle(checkboxX, checkY, CheckBoxSize, CheckBoxSize);
+					g.DrawRoundedRectangle(checkboxPen, cbRect, 2);
+					if (card.IsChecked)
+					{
+						g.FillRoundedRectangle(checkboxFillBrush,
+							new Rectangle(checkboxX + 2, checkY + 2, CheckBoxSize - 4, CheckBoxSize - 4), 2);
+					}
 				}
 
 				var titleRect = new Rectangle(titleTextX, y, titleW, TitleRowH);
