@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2021 Steven M Cohn.  All rights reserved.
+// Copyright © 2021 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands.Tools.Updater
@@ -13,6 +13,8 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 		string InstalledUrl { get; }
 
 		string InstalledVersion { get; }
+
+		string InstalledArchitecture { get; }
 
 		string UpdateDate { get; }
 

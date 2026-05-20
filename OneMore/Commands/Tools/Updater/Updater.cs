@@ -38,6 +38,7 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 		public string InstalledDate { get; private set; }
 		public string InstalledUrl { get; private set; }
 		public string InstalledVersion { get; private set; }
+		public string InstalledArchitecture { get; private set; }
 
 		public string UpdateDate => release.published_at;
 		public string UpdateDescription => release.name;
@@ -97,8 +98,41 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 			InstalledDate = foundDate;
 			InstalledVersion = AssemblyInfo.Version;
 			InstalledUrl = $"{TagUrl}/{InstalledVersion}";
+			InstalledArchitecture = InferArchitectureKey();
 		}
 
+
+		private string InferArchitectureKey()
+		{
+			// The msi will have one of these keywords in its name: x86, x64, or ARM64.
+			// Read the PE header of the executing assembly to determine which installer to
+			// download. Apply the ARM64EC heuristic: Office on ARM64 ships as ARM64EC whose
+			// COFF Machine field reports Amd64; treat it as ARM64 so we download the right
+			// installer rather than silently pulling the x64 build on an ARM64 machine.
+			var localPath = Assembly.GetExecutingAssembly().Location;
+			string key;
+			try
+			{
+				using var stream = new FileStream(localPath, FileMode.Open, FileAccess.Read);
+				using var reader = new PEReader(stream);
+				key = reader.PEHeaders.CoffHeader.Machine switch
+				{
+					Machine.I386 => "x86",
+					Machine.Arm64 => "ARM64",
+					// ARM64EC reports Machine.Amd64 but runs natively on ARM64 Windows
+					Machine.Amd64 when RuntimeInformation.OSArchitecture == Architecture.Arm64
+						=> "ARM64",
+					_ => "x64"
+				};
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"error reading assembly header, defaulting to x64: {exc.Message}");
+				key = "x64";
+			}
+
+			return key;
+		}
 
 		public async Task<bool> FetchLatestRelease()
 		{
@@ -216,32 +250,7 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 				return false;
 			}
 
-			// The msi will have one of these keywords in its name: x86, x64, or ARM64.
-			// Read the PE header of the executing assembly to determine which installer to
-			// download. Apply the ARM64EC heuristic: Office on ARM64 ships as ARM64EC whose
-			// COFF Machine field reports Amd64; treat it as ARM64 so we download the right
-			// installer rather than silently pulling the x64 build on an ARM64 machine.
-			var localPath = Assembly.GetExecutingAssembly().Location;
-			string key;
-			try
-			{
-				using var stream = new FileStream(localPath, FileMode.Open, FileAccess.Read);
-				using var reader = new PEReader(stream);
-				key = reader.PEHeaders.CoffHeader.Machine switch
-				{
-					Machine.I386  => "x86",
-					Machine.Arm64 => "ARM64",
-					// ARM64EC reports Machine.Amd64 but runs natively on ARM64 Windows
-					Machine.Amd64 when RuntimeInformation.OSArchitecture == Architecture.Arm64
-						=> "ARM64",
-					_ => "x64"
-				};
-			}
-			catch (Exception exc)
-			{
-				logger.WriteLine($"error reading assembly header, defaulting to x64: {exc.Message}");
-				key = "x64";
-			}
+			var key = InferArchitectureKey();
 
 			logger.WriteLine($"architecture is {key}");
 
