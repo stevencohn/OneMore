@@ -171,7 +171,7 @@ namespace River.OneMoreAddIn.Commands
 			this.searchButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.searchButton.Image = global::River.OneMoreAddIn.Properties.Resources.m_Search;
 			this.searchButton.ImageOver = null;
-			this.searchButton.Location = new System.Drawing.Point(515, 8);
+			this.searchButton.Location = new System.Drawing.Point(706, 11);
 			this.searchButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 15);
 			this.searchButton.Name = "searchButton";
 			this.searchButton.ShowBorder = true;
@@ -186,7 +186,7 @@ namespace River.OneMoreAddIn.Commands
 			// resultsView
 			// 
 			this.resultsView.AutoScroll = true;
-			this.resultsView.BackColor = System.Drawing.SystemColors.AppWorkspace;
+			this.resultsView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
 			this.resultsView.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.resultsView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.resultsView.Location = new System.Drawing.Point(15, 237);
@@ -390,7 +390,7 @@ namespace River.OneMoreAddIn.Commands
             "In this notebook",
             "In this section",
             "On this page"});
-			this.scopeBox.Location = new System.Drawing.Point(592, 9);
+			this.scopeBox.Location = new System.Drawing.Point(516, 9);
 			this.scopeBox.Name = "scopeBox";
 			this.scopeBox.Size = new System.Drawing.Size(183, 28);
 			this.scopeBox.TabIndex = 2;
