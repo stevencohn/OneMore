@@ -9,6 +9,9 @@ The architecture of the add-in to register. This is only used to determine the p
 
 .PARAMETER Reset
 Resets the registry settings back to the install path.
+
+.COPYRIGHT
+Copyright © 2016 Steven M Cohn. All rights reserved.
 #>
 
 [CmdletBinding()]

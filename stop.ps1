@@ -1,6 +1,9 @@
 <#
 .SYNOPSIS
 Stop the OneMore add-in dllhost process and then the OneNote process
+
+.COPYRIGHT
+Copyright © 2016 Steven M Cohn. All rights reserved.
 #>
 
 [CmdletBinding(SupportsShouldProcess = $true)]
