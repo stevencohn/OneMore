@@ -86,7 +86,7 @@ namespace River.OneMoreAddIn.Commands
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(112, 35);
 			this.cancelButton.StylizeImage = false;
-			this.cancelButton.TabIndex = 2;
+			this.cancelButton.TabIndex = 4;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.ThemedBack = null;
 			this.cancelButton.ThemedFore = null;
@@ -106,7 +106,7 @@ namespace River.OneMoreAddIn.Commands
 			this.moveButton.ShowBorder = true;
 			this.moveButton.Size = new System.Drawing.Size(112, 35);
 			this.moveButton.StylizeImage = false;
-			this.moveButton.TabIndex = 4;
+			this.moveButton.TabIndex = 3;
 			this.moveButton.Text = "Move";
 			this.moveButton.ThemedBack = null;
 			this.moveButton.ThemedFore = null;
@@ -127,7 +127,7 @@ namespace River.OneMoreAddIn.Commands
 			this.copyButton.ShowBorder = true;
 			this.copyButton.Size = new System.Drawing.Size(112, 35);
 			this.copyButton.StylizeImage = false;
-			this.copyButton.TabIndex = 3;
+			this.copyButton.TabIndex = 2;
 			this.copyButton.Text = "Copy";
 			this.copyButton.ThemedBack = null;
 			this.copyButton.ThemedFore = null;
@@ -177,7 +177,7 @@ namespace River.OneMoreAddIn.Commands
 			this.searchButton.ShowBorder = true;
 			this.searchButton.Size = new System.Drawing.Size(68, 32);
 			this.searchButton.StylizeImage = true;
-			this.searchButton.TabIndex = 1;
+			this.searchButton.TabIndex = 2;
 			this.searchButton.ThemedBack = null;
 			this.searchButton.ThemedFore = null;
 			this.searchButton.UseVisualStyleBackColor = true;
@@ -393,7 +393,7 @@ namespace River.OneMoreAddIn.Commands
 			this.scopeBox.Location = new System.Drawing.Point(516, 9);
 			this.scopeBox.Name = "scopeBox";
 			this.scopeBox.Size = new System.Drawing.Size(183, 28);
-			this.scopeBox.TabIndex = 2;
+			this.scopeBox.TabIndex = 1;
 			this.scopeBox.SelectedIndexChanged += new System.EventHandler(this.ChangeScope);
 			// 
 			// resultsHeaderPanel
