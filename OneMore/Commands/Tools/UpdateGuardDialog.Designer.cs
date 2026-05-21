@@ -42,7 +42,7 @@
 			// 
 			// topPanel
 			// 
-			this.topPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
+			this.topPanel.BackColor = System.Drawing.SystemColors.Info;
 			this.topPanel.Controls.Add(this.browseLink);
 			this.topPanel.Controls.Add(this.messageBox);
 			this.topPanel.Controls.Add(this.iconBox);
@@ -81,11 +81,11 @@
 			this.messageBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.messageBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
+			this.messageBox.BackColor = System.Drawing.SystemColors.Info;
 			this.messageBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.messageBox.Cursor = System.Windows.Forms.Cursors.Default;
 			this.messageBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.messageBox.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.messageBox.ForeColor = System.Drawing.SystemColors.InfoText;
 			this.messageBox.Location = new System.Drawing.Point(94, 23);
 			this.messageBox.Name = "messageBox";
 			this.messageBox.ReadOnly = true;
