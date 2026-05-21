@@ -226,10 +226,9 @@ namespace OneMoreSetupActions
 				//return CustomAction.FAILURE;
 			}
 
-			var shutdown = new ShutdownOneNoteAction(logger, stepper);
 			try
 			{
-				if (shutdown.Install() == CustomAction.SUCCESS &&
+				if (new ShutdownOneNoteAction(logger, stepper).Install() == CustomAction.SUCCESS &&
 					new RegistryAction(logger, stepper, onArchitecture).Install() == CustomAction.SUCCESS &&
 					new ProtocolHandlerAction(logger, stepper).Install() == CustomAction.SUCCESS &&
 					new TrustedProtocolAction(logger, stepper).Install() == CustomAction.SUCCESS &&
@@ -253,10 +252,6 @@ namespace OneMoreSetupActions
 
 				return CustomAction.FAILURE;
 			}
-			finally
-			{
-				shutdown.StartClickToRun();
-			}
 		}
 
 
@@ -271,13 +266,12 @@ namespace OneMoreSetupActions
 			logger.WriteLine();
 			logger.WriteLine($"Unregister... version {AssemblyInfo.Version}");
 
-			var shutdown = new ShutdownOneNoteAction(logger, stepper);
 			try
 			{
 				// unregister is more lenient than register... if any of these
 				// actions don't succeed, we can still complete with SUCCESS
 
-				var ok0 = shutdown.Uninstall() == CustomAction.SUCCESS;
+				var ok0 = new ShutdownOneNoteAction(logger, stepper).Uninstall() == CustomAction.SUCCESS;
 				var ok1 = new ProtocolHandlerAction(logger, stepper).Uninstall() == CustomAction.SUCCESS;
 				var ok2 = new TrustedProtocolAction(logger, stepper).Uninstall() == CustomAction.SUCCESS;
 				var ok3 = new RegistryWowAction(logger, stepper, onArchitecture).Uninstall() == CustomAction.SUCCESS;
@@ -303,10 +297,6 @@ namespace OneMoreSetupActions
 					"Action Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
 				return CustomAction.FAILURE;
-			}
-			finally
-			{
-				shutdown.StartClickToRun();
 			}
 		}
 	}

@@ -5258,6 +5258,17 @@ Dziękuję!</value>
     <value>Zainstalowana wersja:</value>
     <comment>label</comment>
   </data>
+  <data name="UpdateGuardDialog.Text" xml:space="preserve">
+    <value>Zablokowane przez opcję „kliknij, aby uruchomić”.</value>
+    <comment>title</comment>
+  </data>
+  <data name="UpdateGuardDialog_browseLink.Text" xml:space="preserve">
+    <value>Otwórz stronę pobierania w przeglądarce</value>
+    <comment>link label</comment>
+  </data>
+  <data name="UpdateGuardDialog_messageBox.Text" xml:space="preserve">
+    <value>Program OneNote działa w ramach wirtualizacji typu „kliknij, aby uruchomić”. Za pomocą tego okna dialogowego nie można zaktualizować OneMore. Zamknij program OneNote, pobierz instalator OneMore i uruchom go ręcznie.</value>
+  </data>
   <data name="VariablesSheet_deleteVariable" xml:space="preserve">
     <value>Usuń zmienną {0}?</value>
     <comment>messagebox</comment>

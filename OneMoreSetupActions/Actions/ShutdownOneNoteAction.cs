@@ -11,7 +11,6 @@ namespace OneMoreSetupActions
 	using System.Diagnostics;
 	using System.Linq;
 	using System.Management;
-	using System.ServiceProcess;
 
 
 	/// <summary>
@@ -21,7 +20,6 @@ namespace OneMoreSetupActions
 	{
 		private const string OneNoteName = "ONENOTE";
 		private const string DllHostName = "dllhost";
-		private const string ClickToRunServiceName = "ClickToRunSvc";
 
 
 		public ShutdownOneNoteAction(Logger logger, Stepper stepper)
@@ -37,8 +35,6 @@ namespace OneMoreSetupActions
 		{
 			logger.WriteLine();
 			logger.WriteLine("ShutdownOneNoteAction.Install ---");
-
-			StopClickToRun();
 
 			var status = StopHost();
 			if (status == SUCCESS)
@@ -59,8 +55,6 @@ namespace OneMoreSetupActions
 			logger.WriteLine();
 			logger.WriteLine("ShutdownOneNoteAction.Uninstall ---");
 
-			StopClickToRun();
-
 			var status = FAILURE;
 			var tries = 0;
 
@@ -76,79 +70,6 @@ namespace OneMoreSetupActions
 			}
 
 			return status;
-		}
-
-
-		/// <summary>
-		/// Stops the ClickToRun service so its watchdog cannot relaunch OneNote
-		/// during installation. Note: an external scheduled task may restart the service
-		/// within ~1 minute of a clean stop, which is acceptable since file replacement
-		/// completes well within that window.
-		/// </summary>
-		private void StopClickToRun()
-		{
-			logger.WriteLine();
-			logger.WriteLine("StopClickToRun ---");
-
-			try
-			{
-				using var controller = new ServiceController(ClickToRunServiceName);
-
-				if (controller.Status != ServiceControllerStatus.Running)
-				{
-					logger.WriteLine($"ClickToRun service is not running ({controller.Status})");
-					return;
-				}
-
-				controller.Stop();
-				controller.WaitForStatus(ServiceControllerStatus.Stopped, TimeSpan.FromSeconds(10));
-				logger.WriteLine("ClickToRun service stopped");
-			}
-			catch (InvalidOperationException)
-			{
-				logger.WriteLine("ClickToRun service not found on this machine");
-			}
-			catch (Exception exc)
-			{
-				logger.WriteLine("failed to stop ClickToRun service (non-fatal)");
-				logger.WriteLine(exc);
-			}
-		}
-
-
-		/// <summary>
-		/// Restarts the ClickToRun service so OneNote can be launched after installation.
-		/// Non-fatal: if the service is not found or fails to start, the error is logged
-		/// and execution continues.
-		/// </summary>
-		internal void StartClickToRun()
-		{
-			logger.WriteLine();
-			logger.WriteLine("StartClickToRun ---");
-
-			try
-			{
-				using var controller = new ServiceController(ClickToRunServiceName);
-
-				if (controller.Status == ServiceControllerStatus.Running)
-				{
-					logger.WriteLine("ClickToRun service is already running");
-					return;
-				}
-
-				controller.Start();
-				controller.WaitForStatus(ServiceControllerStatus.Running, TimeSpan.FromSeconds(10));
-				logger.WriteLine("ClickToRun service started");
-			}
-			catch (InvalidOperationException)
-			{
-				logger.WriteLine("ClickToRun service not found on this machine");
-			}
-			catch (Exception exc)
-			{
-				logger.WriteLine("failed to start ClickToRun service (non-fatal)");
-				logger.WriteLine(exc);
-			}
 		}
 
 

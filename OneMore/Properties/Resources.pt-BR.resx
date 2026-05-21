@@ -5257,6 +5257,17 @@ Obrigado!</value>
     <value>Versão instalada:</value>
     <comment>label</comment>
   </data>
+  <data name="UpdateGuardDialog.Text" xml:space="preserve">
+    <value>Bloqueado por clique para executar</value>
+    <comment>title</comment>
+  </data>
+  <data name="UpdateGuardDialog_browseLink.Text" xml:space="preserve">
+    <value>Abra a página de download no seu navegador</value>
+    <comment>link label</comment>
+  </data>
+  <data name="UpdateGuardDialog_messageBox.Text" xml:space="preserve">
+    <value>O OneNote está sendo executado na virtualização Click-to-Run. Você não pode atualizar o OneMore usando esta caixa de diálogo. Feche o OneNote, baixe o instalador do OneMore e execute o instalador manualmente.</value>
+  </data>
   <data name="VariablesSheet_deleteVariable" xml:space="preserve">
     <value>Excluir variável {0}?</value>
     <comment>messagebox</comment>

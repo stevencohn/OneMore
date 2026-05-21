@@ -5156,7 +5156,6 @@ Invert</value>
   </data>
   <data name="TelemetryDialog_titleLabel.Text" xml:space="preserve">
     <value>Help Improve {0}</value>
-    <comment></comment>
   </data>
   <data name="TelemetryDialog_whyBox.Text" xml:space="preserve">
     <value>Please consider enabling anonymous telemetry to help us improve {0}. Telemetry records which commands are used, basic environment details, and a session‑only ID that resets each time OneNote restarts. This information helps us understand which features matter most and how the add‑in is used. No personal or identifying data is ever collected—only fully anonymous usage events.
@@ -5164,7 +5163,6 @@ Invert</value>
 You can enable or disable telemetry at any time from the {0} Settings dialog.
 
 Thank you!</value>
-    <comment></comment>
   </data>
   <data name="TelemetryDialog_yesButton.Text" xml:space="preserve">
     <value>Yes, I'll help! Enable telemetry</value>
@@ -5300,6 +5298,17 @@ Thank you!</value>
   <data name="UpdateDialog_versionLabel.Text" xml:space="preserve">
     <value>Installed version:</value>
     <comment>label</comment>
+  </data>
+  <data name="UpdateGuardDialog.Text" xml:space="preserve">
+    <value>Blocked by Click-to-run</value>
+    <comment>title</comment>
+  </data>
+  <data name="UpdateGuardDialog_browseLink.Text" xml:space="preserve">
+    <value>Open the download page in your browser</value>
+    <comment>link label</comment>
+  </data>
+  <data name="UpdateGuardDialog_messageBox.Text" xml:space="preserve">
+    <value>OneNote is running under Click-to-Run virtualization. You cannot update OneMore using this dialog. Close OneNote, download the OneMore installer and run the installer manually.</value>
   </data>
   <data name="VariablesSheet_deleteVariable" xml:space="preserve">
     <value>Delete variable {0}?</value>
