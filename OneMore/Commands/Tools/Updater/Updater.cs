@@ -69,7 +69,7 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 					using var key = root.OpenSubKey(subName);
 
 					if (key?.GetValue("DisplayName") is string name &&
-						name == "OneMoreAddIn")
+						(name == "OneMore Add-in" || name == "OneMoreAddIn"))
 					{
 						if (key.GetValue("UninstallString") is string cmd &&
 							!string.IsNullOrEmpty(cmd))
@@ -99,6 +99,11 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 			InstalledVersion = AssemblyInfo.Version;
 			InstalledUrl = $"{TagUrl}/{InstalledVersion}";
 			InstalledArchitecture = InferArchitectureKey();
+
+			logger.WriteLine(
+				$"installed: {InstalledVersion} ({InstalledArchitecture}) " +
+				$"on {InstalledDate} productCode: {productCode}"
+				);
 		}
 
 
