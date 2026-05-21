@@ -1,11 +1,12 @@
 ﻿//************************************************************************************************
-// Copyright © 2021 Steven M Cohn. All rights reserved.
+// Copyright © 2021 Steven M Cohn. All rights reserved. 
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Commands.Tools.Updater;
 	using River.OneMoreAddIn.UI;
+	using System.Diagnostics;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 
@@ -29,6 +30,11 @@ namespace River.OneMoreAddIn.Commands
 		{
 			// intentional user request from About box; otherwise, silent check on startup
 			var requested = args.Length > 0 && args[0] is bool req && req;
+
+			if (GuardedByClickToRun(requested))
+			{
+				return;
+			}
 
 			if (!HttpClientFactory.IsNetworkAvailable())
 			{
@@ -92,6 +98,36 @@ namespace River.OneMoreAddIn.Commands
 			{
 				commandIsActive = false;
 			}
+		}
+
+
+		private bool GuardedByClickToRun(bool requested)
+		{
+			var processes = Process.GetProcessesByName("ONENOTE");
+			if (processes.Length > 0)
+			{
+				var module = processes[0].MainModule.FileName.ToLower();
+				if (module.Contains("microsoft office\\root\\office"))
+				{
+					if (requested)
+					{
+						var result = MoreMessageBox.Show(owner,
+							"OneNote is running under Click-to-Run virtualization. It is strongly " +
+							"recommended that you stop OneNote and install this update manually.\n\n" +
+							"Are you sure you want to proceed with the automatic update?",
+							MessageBoxButtons.YesNo,
+							MessageBoxIcon.Warning);
+
+						return result == DialogResult.No;
+					}
+					else
+					{
+						return true;
+					}
+				}
+			}
+
+			return !requested;
 		}
 	}
 }
