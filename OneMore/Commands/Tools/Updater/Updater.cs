@@ -69,7 +69,8 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 					using var key = root.OpenSubKey(subName);
 
 					if (key?.GetValue("DisplayName") is string name &&
-						(name == "OneMore Add-in" || name == "OneMoreAddIn"))
+						(name.Equals("OneMore Add-in", StringComparison.InvariantCultureIgnoreCase) ||
+						 name.Equals("OneMoreAddIn", StringComparison.InvariantCultureIgnoreCase)))
 					{
 						if (key.GetValue("UninstallString") is string cmd &&
 							!string.IsNullOrEmpty(cmd))
