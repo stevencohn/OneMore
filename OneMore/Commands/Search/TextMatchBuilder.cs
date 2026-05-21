@@ -161,7 +161,42 @@ namespace River.OneMoreAddIn.Commands
 			if (termBuffer.Count > 0)
 				tokens.Add(new Token(TokenType.Term, string.Join(" ", termBuffer)));
 
-			return tokens;
+			return NormalizeTokens(tokens);
+		}
+
+
+		private static List<Token> NormalizeTokens(List<Token> tokens)
+		{
+			if (tokens.Count == 0) return tokens;
+
+			// AND or OR at the start has no left operand — demote to raw text
+			if (tokens[0].Type == TokenType.And || tokens[0].Type == TokenType.Or)
+				tokens[0] = new Token(TokenType.Term, tokens[0].Value);
+
+			// AND, OR, or NOT at the end has no right operand — demote to raw text
+			int last = tokens.Count - 1;
+			var lastType = tokens[last].Type;
+			if (lastType == TokenType.And || lastType == TokenType.Or || lastType == TokenType.Not)
+				tokens[last] = new Token(TokenType.Term, tokens[last].Value);
+
+			// merge newly-adjacent Term tokens into a single phrase
+			var result = new List<Token>(tokens.Count);
+			foreach (var token in tokens)
+			{
+				if (token.Type == TokenType.Term
+					&& result.Count > 0
+					&& result[result.Count - 1].Type == TokenType.Term)
+				{
+					var prev = result[result.Count - 1];
+					result[result.Count - 1] = new Token(TokenType.Term, prev.Value + " " + token.Value);
+				}
+				else
+				{
+					result.Add(token);
+				}
+			}
+
+			return result;
 		}
 
 
