@@ -43,6 +43,10 @@ namespace OneMoreSetupActions
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Code Smell",
 			"S6605:Collection-specific \"Exists\" method should be used instead of the \"Any\" extension",
 			Justification = "<Pending>")]
+		/// <summary>
+		/// Installs the Edge WebView2 runtime via the Evergreen Bootstrapper if not already
+		/// present. Skips silently if there is no internet connection.
+		/// </summary>
 		public override int Install()
 		{
 			logger.WriteLine();
@@ -102,6 +106,11 @@ namespace OneMoreSetupActions
 		}
 
 
+		/// <summary>
+		/// Returns true if any non-loopback, non-tunnel network interface is up and has
+		/// both sent and received data, indicating real internet connectivity rather than
+		/// just an active adapter.
+		/// </summary>
 		private static bool IsNetworkAvailable()
 		{
 			// only recognizes changes related to Internet adapters
@@ -136,6 +145,9 @@ namespace OneMoreSetupActions
 		}
 
 
+		/// <summary>
+		/// Downloads the WebView2 Evergreen Bootstrapper from Microsoft to the given temp path.
+		/// </summary>
 		private bool DownloadBootstrap(string bootstrap)
 		{
 			using var client = new HttpClient();
@@ -156,6 +168,9 @@ namespace OneMoreSetupActions
 		}
 
 
+		/// <summary>
+		/// Uninstalls WebView2 by invoking its SilentUninstall command found in the registry.
+		/// </summary>
 		public override int Uninstall()
 		{
 			logger.WriteLine();

@@ -25,13 +25,18 @@ namespace OneMoreSetupActions
 		private static Architecture onArchitecture;
 
 
+		/// <summary>
+		/// Entry point. Parses the command-line verb and architecture flag, runs
+		/// CheckBitnessAction first to gate everything else, then dispatches to Install,
+		/// Uninstall, or a named direct action for testing individual steps.
+		/// Runs as a hidden console app so it blocks (keeping the MSI transaction open)
+		/// while child processes like the WebView2 bootstrapper complete.
+		/// </summary>
 		static void Main(string[] args)
 		{
-			// hide this console window
-			// - This program needs to run as a console app so it blocks while the edge webview2
-			// - installer runs and completes. But we want to hide the window so the user can't
-			// - close it while the installer is running, leaving it in a bad state.
-			// - Can comment this out for debugging
+			// Must be a console app so execution blocks while child processes run (e.g. the
+			// WebView2 bootstrapper). Window is hidden so the user cannot close it mid-install.
+			// Comment out ShowWindow for debugging.
 			ShowWindow(Process.GetCurrentProcess().MainWindowHandle, 0);
 
 			if (args.Length == 0 || string.IsNullOrWhiteSpace(args[0]))
@@ -153,6 +158,10 @@ namespace OneMoreSetupActions
 		}
 
 
+		/// <summary>
+		/// Logs the running process identity and the on-behalf-of user. Aborts with FAILURE
+		/// if elevation is required but not present — the installer must run as administrator.
+		/// </summary>
 		static void ReportContext(bool requireElevated)
 		{
 			// current user...
@@ -191,6 +200,11 @@ namespace OneMoreSetupActions
 		}
 
 
+		/// <summary>
+		/// Runs the full install action sequence: verify OneNote COM config, shut down OneNote,
+		/// write registry entries, register the onemore:// protocol handler, trust the protocol,
+		/// and install the Edge WebView2 runtime.
+		/// </summary>
 		static int Install()
 		{
 			// protocol handler...
@@ -241,6 +255,12 @@ namespace OneMoreSetupActions
 		}
 
 
+		/// <summary>
+		/// Runs the full uninstall action sequence: shut down OneNote, remove the protocol
+		/// handler, remove the trusted protocol, and delete registry entries. Individual
+		/// action failures are treated as warnings — Uninstall always returns SUCCESS so
+		/// the MSI can complete the removal even if cleanup is partial.
+		/// </summary>
 		static int Uninstall()
 		{
 			logger.WriteLine();

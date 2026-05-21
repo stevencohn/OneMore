@@ -5269,6 +5269,17 @@ ISO-code then comma then language name</comment>
     <value>الإصدار المثبت:</value>
     <comment>label</comment>
   </data>
+  <data name="UpdateGuardDialog.Text" xml:space="preserve">
+    <value>تم حظره بواسطة النقر للتشغيل</value>
+    <comment>title</comment>
+  </data>
+  <data name="UpdateGuardDialog_browseLink.Text" xml:space="preserve">
+    <value>افتح صفحة التنزيل في متصفحك</value>
+    <comment>link label</comment>
+  </data>
+  <data name="UpdateGuardDialog_messageBox.Text" xml:space="preserve">
+    <value>يتم تشغيل OneNote ضمن المحاكاة الافتراضية للتشغيل الفوري. لا يمكنك تحديث OneMore باستخدام مربع الحوار هذا. أغلق OneNote، وقم بتنزيل برنامج تثبيت OneMore، وقم بتشغيل برنامج التثبيت يدويًا.</value>
+  </data>
   <data name="VariablesSheet_deleteVariable" xml:space="preserve">
     <value>حذف المتغير {0}؟</value>
     <comment>messagebox</comment>

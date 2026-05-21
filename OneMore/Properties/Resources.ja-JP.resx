@@ -5261,6 +5261,17 @@ ISO-code then comma then language name</comment>
     <value>インストール済みバージョン:</value>
     <comment>label</comment>
   </data>
+  <data name="UpdateGuardDialog.Text" xml:space="preserve">
+    <value>クイック実行によってブロックされました</value>
+    <comment>title</comment>
+  </data>
+  <data name="UpdateGuardDialog_browseLink.Text" xml:space="preserve">
+    <value>ブラウザでダウンロード ページを開きます</value>
+    <comment>link label</comment>
+  </data>
+  <data name="UpdateGuardDialog_messageBox.Text" xml:space="preserve">
+    <value>OneNote はクイック実行仮想化で実行されています。このダイアログを使用して OneMore を更新することはできません。 OneNote を閉じ、OneMore インストーラーをダウンロードし、インストーラーを手動で実行します。</value>
+  </data>
   <data name="VariablesSheet_deleteVariable" xml:space="preserve">
     <value>変数{0}を削除しますか？</value>
     <comment>messagebox</comment>

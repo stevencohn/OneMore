@@ -416,6 +416,12 @@
     <Compile Include="Commands\Tools\Telemetry\TelemetryDialog.Designer.cs">
       <DependentUpon>TelemetryDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Tools\UpdateGuardDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Tools\UpdateGuardDialog.Designer.cs">
+      <DependentUpon>UpdateGuardDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\ColorHelper.cs" />
     <Compile Include="Helpers\DatabaseProvider.cs" />
     <Compile Include="Helpers\Extensions\ArrayExtensions.cs" />
@@ -1298,6 +1304,9 @@
     <EmbeddedResource Include="Commands\Tools\Telemetry\TelemetryDialog.resx">
       <DependentUpon>TelemetryDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Tools\UpdateGuardDialog.resx">
+      <DependentUpon>UpdateGuardDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.it-IT.resx">
       <SubType>Designer</SubType>

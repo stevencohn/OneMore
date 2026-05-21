@@ -21,6 +21,10 @@ namespace OneMoreSetupActions
 		}
 
 
+		/// <summary>
+		/// Returns the base policies path and the full onemore: trusted-protocol subkey path
+		/// under it, rooted at the detected Office version number.
+		/// </summary>
 		public void GetPolicyPaths(out string policiesPath, out string policyPath)
 		{
 			var version = GetVersion("Excel", 16);
@@ -28,6 +32,11 @@ namespace OneMoreSetupActions
 			policyPath = $@"Microsoft\Office\{version}\Common\Security\Trusted Protocols\All Applications\onemore:";
 		}
 
+		/// <summary>
+		/// Reads the Office version from the CurVer key of the named application class
+		/// (e.g. Excel.Application) to find the correct policy path. Falls back to the
+		/// given latest version number if the key is absent.
+		/// </summary>
 		private Version GetVersion(string name, int latest)
 		{
 			using (var key = Registry.ClassesRoot.OpenSubKey($@"\{name}.Application\CurVer", false))
@@ -51,6 +60,11 @@ namespace OneMoreSetupActions
 
 		//========================================================================================
 
+		/// <summary>
+		/// Registers onemore: as a trusted protocol in the user's Office security policy.
+		/// Must write to HKEY_USERS\{sid} rather than HKEY_CURRENT_USER because the installer
+		/// runs as the System account; HKCU under System points to the wrong hive.
+		/// </summary>
 		public override int Install()
 		{
 			logger.WriteLine();
@@ -136,6 +150,9 @@ namespace OneMoreSetupActions
 
 		//========================================================================================
 
+		/// <summary>
+		/// Removes the onemore: trusted protocol key from the user's Office security policy.
+		/// </summary>
 		public override int Uninstall()
 		{
 			logger.WriteLine();

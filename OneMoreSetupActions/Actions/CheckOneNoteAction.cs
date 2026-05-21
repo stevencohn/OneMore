@@ -26,6 +26,11 @@ namespace OneMoreSetupActions
 		}
 
 
+		/// <summary>
+		/// Verifies the OneNote COM registration is intact. Returns FAILURE if any required
+		/// key is missing or inconsistent; a failed check is treated as a warning by the
+		/// caller rather than aborting the install.
+		/// </summary>
 		public override int Install()
 		{
 			logger.WriteLine();
@@ -46,6 +51,10 @@ namespace OneMoreSetupActions
 		}
 
 
+		/// <summary>
+		/// Reads HKCR\OneNote.Application to extract the CLSID and CurVer strings
+		/// used by all subsequent verification steps.
+		/// </summary>
 		private int VerifyOneNoteApplication()
 		{
 			logger.WriteLine(nameof(VerifyOneNoteApplication) + "()");
@@ -105,6 +114,11 @@ namespace OneMoreSetupActions
 		}
 
 
+		/// <summary>
+		/// Confirms the OneNote CLSID is registered under the given root hive path
+		/// (CLSID, WOW6432Node\CLSID, or Software\Classes\CLSID) and that the
+		/// InprocServer32 interop assembly is present in the Windows GAC.
+		/// </summary>
 		private int VerifyRootClass(string root)
 		{
 			logger.WriteLine(nameof(VerifyRootClass) + $"({root})");
@@ -233,6 +247,10 @@ namespace OneMoreSetupActions
 		}
 
 
+		/// <summary>
+		/// Parses an assembly strong name and checks that the corresponding DLL exists
+		/// under %windir%\assembly\GAC_MSIL.
+		/// </summary>
 		private int VerifyGacAssembly(string fullName)
 		{
 			// AssemblyName class doesn't expose token so just parse the string
@@ -261,6 +279,10 @@ namespace OneMoreSetupActions
 		}
 
 
+		/// <summary>
+		/// Confirms the versioned ProgID key (e.g. OneNote.Application.15) exists and its
+		/// CLSID value matches the one found in VerifyOneNoteApplication.
+		/// </summary>
 		private int VerifyCurVer()
 		{
 			logger.WriteLine(nameof(VerifyCurVer) + "()");
@@ -315,6 +337,10 @@ namespace OneMoreSetupActions
 		}
 
 
+		/// <summary>
+		/// Verifies the OneNote TypeLib registration and confirms the Win32/Win64 object
+		/// library path is accessible on disk.
+		/// </summary>
 		private int VerifyTypeLib()
 		{
 			logger.WriteLine(nameof(VerifyTypeLib) + "()");

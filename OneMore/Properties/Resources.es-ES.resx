@@ -5257,6 +5257,17 @@ Puede habilitar o deshabilitar la telemetría en cualquier momento desde el cuad
     <value>Versión instalada:</value>
     <comment>label</comment>
   </data>
+  <data name="UpdateGuardDialog.Text" xml:space="preserve">
+    <value>Bloqueado por hacer clic y ejecutar</value>
+    <comment>title</comment>
+  </data>
+  <data name="UpdateGuardDialog_browseLink.Text" xml:space="preserve">
+    <value>Abra la página de descarga en su navegador.</value>
+    <comment>link label</comment>
+  </data>
+  <data name="UpdateGuardDialog_messageBox.Text" xml:space="preserve">
+    <value>OneNote se ejecuta bajo virtualización Hacer clic y ejecutar. No puede actualizar OneMore usando este cuadro de diálogo. Cierre OneNote, descargue el instalador de OneMore y ejecútelo manualmente.</value>
+  </data>
   <data name="VariablesSheet_deleteVariable" xml:space="preserve">
     <value>Eliminar variable {0}?</value>
     <comment>messagebox</comment>

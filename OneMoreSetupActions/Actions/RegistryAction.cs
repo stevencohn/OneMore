@@ -27,8 +27,10 @@ namespace OneMoreSetupActions
 		//========================================================================================
 
 		/// <summary>
+		/// Applies the OneMore registry configuration by processing the embedded Registry.reg
+		/// template, substituting the architecture-appropriate ProgramFiles path, OneMore CLSID,
+		/// and current version, then writing each key and value.
 		/// </summary>
-		/// <returns></returns>
 		public override int Install()
 		{
 			logger.WriteLine();
@@ -72,6 +74,10 @@ namespace OneMoreSetupActions
 		}
 
 
+		/// <summary>
+		/// Loads the Registry.reg embedded resource and substitutes the OneMore CLSID,
+		/// ProgramFiles path, and version placeholders.
+		/// </summary>
 		private string GetRegistryConfig()
 		{
 			var env = architecture == Architecture.X86 ? "ProgramFiles(x86)" : "ProgramFiles";
@@ -85,6 +91,10 @@ namespace OneMoreSetupActions
 		}
 
 
+		/// <summary>
+		/// Maps a .reg-format hive name (e.g. HKEY_LOCAL_MACHINE) to the corresponding
+		/// RegistryKey, defaulting to CurrentUser for anything unrecognised.
+		/// </summary>
 		private static RegistryKey ResolveHive(string hiveName)
 		{
 			if (hiveName.EndsWith("ROOT")) return Registry.ClassesRoot;
@@ -93,6 +103,10 @@ namespace OneMoreSetupActions
 		}
 
 
+		/// <summary>
+		/// Opens or creates the registry key described by a .reg-format section header line
+		/// such as [HKEY_LOCAL_MACHINE\Software\...].
+		/// </summary>
 		private RegistryKey OpenOrCreateKey(string line)
 		{
 			var raw = line.Trim('[', ']');
@@ -119,6 +133,10 @@ namespace OneMoreSetupActions
 		}
 
 
+		/// <summary>
+		/// Parses a .reg-format value line (e.g. "Name"=dword:0000001) and writes the
+		/// typed value to the given key. Skips the write if the value is already correct.
+		/// </summary>
 		private void SetValue(RegistryKey key, string line)
 		{
 			var matches = Regex.Match(line, @"^(?<name>@|""\w+"")=(?<type>[^""]\w+:)?(?<value>.+)$");
@@ -161,6 +179,10 @@ namespace OneMoreSetupActions
 
 		//========================================================================================
 
+		/// <summary>
+		/// Deletes all registry subtrees defined in the config. Tracks the last deleted root
+		/// so child keys of an already-deleted tree are skipped rather than causing errors.
+		/// </summary>
 		public override int Uninstall()
 		{
 			logger.WriteLine();

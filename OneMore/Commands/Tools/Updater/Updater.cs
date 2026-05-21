@@ -303,7 +303,7 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 				Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
 				"OneMoreSetupActions.exe");
 
-			var shutdown = $"start /b \"\" \"{action}\" --uninstall-shutdown";
+			var shutdown = $"start /b \"\" \"{action}\" --{key} --uninstall-shutdown";
 
 			using var writer = new StreamWriter(path, false);
 			await writer.WriteLineAsync(shutdown);
