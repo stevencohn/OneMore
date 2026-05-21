@@ -33,6 +33,9 @@ of output and configuration of vdproj. This is a debugging option.
 
 .PARAMETER VLog
 Enable verbose logging for MSBuild. This is useful for debugging build issues.
+
+.COPYRIGHT
+Copyright © 2016 Steven M Cohn. All rights reserved.
 #>
 
 [CmdletBinding(SupportsShouldProcess = $true)]

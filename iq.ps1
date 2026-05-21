@@ -1,6 +1,9 @@
 <#
 .SYNOPSIS
 Installation qualification
+
+.COPYRIGHT
+Copyright © 2016 Steven M Cohn. All rights reserved.
 #>
 
 [CmdletBinding()]

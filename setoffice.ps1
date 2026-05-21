@@ -12,6 +12,9 @@ Check the current Office Bitness/Platform registry values. This is the default a
 
 .PARAMETER Set
 Set the Office Bitness/Platform registry values to the specified Architecture.
+
+.COPYRIGHT
+Copyright © 2016 Steven M Cohn. All rights reserved.
 #>
 
 [CmdletBinding()]

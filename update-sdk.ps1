@@ -2,6 +2,9 @@
 .SYNOPSIS
 Update the OneMore.csproj reference hints to point to the latest installed version
 of the Windows SDK.
+
+.COPYRIGHT
+Copyright © 2016 Steven M Cohn. All rights reserved.
 #>
 
 param(
