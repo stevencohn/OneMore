@@ -62,6 +62,10 @@ namespace OneMoreSetupActions
 		 * it should. After trial and error, realized that only the ClassesRoot\CLSID\{guid}
 		 * key needed to be cloned to WOW6432Node\CLSID and that could be done directly.
 		 */
+		/// <summary>
+		/// Copies the OneMore CLSID branch from HKCR\CLSID to HKCR\WOW6432Node\CLSID so
+		/// both 32-bit and 64-bit OneNote on the same machine can activate the add-in.
+		/// </summary>
 		private int RegisterWow()
 		{
 			logger.WriteLine($"step {stepper.Step()}: cloning CLSID");
@@ -85,6 +89,9 @@ namespace OneMoreSetupActions
 
 		//========================================================================================
 
+		/// <summary>
+		/// Removes the WOW6432Node CLSID clone if cloning was required for this configuration.
+		/// </summary>
 		public override int Uninstall()
 		{
 			logger.WriteLine();
@@ -100,6 +107,9 @@ namespace OneMoreSetupActions
 		}
 
 
+		/// <summary>
+		/// Deletes the OneMore CLSID entry from HKCR\WOW6432Node\CLSID.
+		/// </summary>
 		private int UnregisterWow()
 		{
 			logger.WriteLine($"step {stepper.Step()}: deleting CLSID clone");
@@ -121,9 +131,11 @@ namespace OneMoreSetupActions
 
 
 
-		// Determines if 32-bit OneNote is installed.
-		// When this is true, the guid will exist under ClassesRoot\CLSID however the path
-		// will be blank and instead the the path is under ClassesRoot\WOW6432Node\CLSID\{guid}
+		/// <summary>
+		/// Returns true when OneNote is a 32-bit installation, determined by checking whether
+		/// its LocalServer32 path contains "Program Files (x86)". When true, the CLSID must
+		/// be cloned to WOW6432Node so the 32-bit COM activation path can find it.
+		/// </summary>
 		private bool CloningRequired()
 		{
 			string clsid = null;

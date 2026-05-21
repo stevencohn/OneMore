@@ -32,6 +32,11 @@ namespace OneMoreSetupActions
 		public Architecture OneNoteArchitecture { get; private set; }
 
 
+		/// <summary>
+		/// Validates that the installer architecture is compatible with the OS and OneNote.
+		/// Returns FAILURE with a user-facing MessageBox if OneNote is not found or the
+		/// wrong installer bitness was used; sets OneNoteArchitecture for downstream actions.
+		/// </summary>
 		public override int Install()
 		{
 			logger.WriteLine();
@@ -112,7 +117,11 @@ namespace OneMoreSetupActions
 		}
 
 
-		// Returns null when OneNote Desktop is not installed or its PE header cannot be read.
+		/// <summary>
+		/// Reads ONENOTE.EXE's PE header to determine its architecture. Returns null if
+		/// OneNote Desktop is not installed or the header cannot be read. Applies the
+		/// ARM64EC heuristic: Machine.Amd64 on an ARM64 OS is treated as Arm64.
+		/// </summary>
 		private Architecture? GetOneNoteArchitecture()
 		{
 			var onepath = GetOneNotePath();
@@ -161,6 +170,11 @@ namespace OneMoreSetupActions
 		}
 
 
+		/// <summary>
+		/// Locates ONENOTE.EXE by trying multiple registry paths in order of preference,
+		/// covering all supported Office configurations (ARM64, x64, x86, Click-to-Run,
+		/// MSI-based) on all supported Windows architectures.
+		/// </summary>
 		private string GetOneNotePath()
 		{
 			string ReadDefaultValue(string path)

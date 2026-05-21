@@ -31,6 +31,11 @@ namespace OneMoreSetupActions
 
 		//========================================================================================
 
+		/// <summary>
+		/// Ensures the Active Setup version string uses commas instead of dots.
+		/// Active Setup compares versions component-by-component using commas; dots cause
+		/// the check to fail and the per-user repair to run on every logon.
+		/// </summary>
 		public override int Install()
 		{
 			logger.WriteLine();
@@ -77,6 +82,11 @@ namespace OneMoreSetupActions
 		}
 
 
+		/// <summary>
+		/// Creates the Active Setup registry key and configures msiexec to run a silent
+		/// per-user repair (msiexec /fu) on next logon for users who have not yet received
+		/// this version of the add-in.
+		/// </summary>
 		private void ConfigureActiveSetup(string p)
 		{
 			var productCode = FindProductCode();
@@ -101,6 +111,10 @@ namespace OneMoreSetupActions
 		}
 
 
+		/// <summary>
+		/// Searches the Uninstall registry hive for the OneMore product code GUID,
+		/// trying the 64-bit view first then falling back to the 32-bit view.
+		/// </summary>
 		private static string FindProductCode()
 		{
 			static string Search(RegistryView view)
