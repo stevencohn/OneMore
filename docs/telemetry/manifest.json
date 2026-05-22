@@ -4,6 +4,7 @@
   "ReportMoreCultureCounts":    { "id": "62159bc6-1181-460e-98e0-1232d2bb6076", "target": "more-culture"    },
   "ReportOneMoreVersionCounts": { "id": "3cfd7090-63be-4ad3-a5d2-596b5814527a", "target": "onemore-version" },
   "ReportOneNoteVersionCounts": { "id": "8b9691ea-4004-4d21-8dbc-2cf009c922e4", "target": "onenote-version" },
+  "ReportOSArchitectureCounts": { "id": "5f8de2f5-76a3-4bfa-be48-9922c2830541", "target": "os-architecture" },
   "ReportOSCultureCounts":      { "id": "dde18d59-cc5b-46d7-ac5f-c3632f3a38a4", "target": "os-culture"      },
   "ReportOSVersionCounts":      { "id": "ba3362cf-cd1b-4e9d-bf33-097a6c48dbac", "target": "os-version"      },
   "ReportStartTime":            { "id": "378965fa-1cb3-4075-83d6-cb236bb48c3d" }

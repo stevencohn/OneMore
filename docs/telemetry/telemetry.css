@@ -130,6 +130,10 @@ th.sortable[data-sort="desc"]::after {
 #command         th                      { background-color: #e2c5ff; }
 #event-type      th                      { background-color: #e2c5ff; }
 
+#os-architecture td                      { background-color: #bdd7ee; color: black; }
+#os-architecture th                      { background-color: #1f4e78; color: white; }
+#os-architecture tr.grand-total td       { background-color: #1f4e78 !important; color: white; }
+
 #os-version      td                      { background-color: #bdd7ee; color: black; }
 #os-version      th                      { background-color: #1f4e78; color: white; }
 #os-version      tr.grand-total td       { background-color: #1f4e78 !important; color: white; }
@@ -149,6 +153,7 @@ th.sortable[data-sort="desc"]::after {
 #onenote-version td                      { background-color: #c6e0b4; color: black; }
 #onenote-version th                      { background-color: #375623; color: white; }
 #onenote-version tr.grand-total td       { background-color: #375623 !important; color: white; }
+
 #unused-commands td                      { background-color: #f3f3f3; color: black; }
 #unused-commands th                      { background-color: #adadad; color: white; }
 #unused-commands tr.grand-total td       { background-color: #c0c0c0 !important; color: white; }
