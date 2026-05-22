@@ -662,6 +662,9 @@
     <Compile Include="UI\MoreRadioButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="UI\MoreRichTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UI\MoreTabControl.cs">
       <SubType>Component</SubType>
     </Compile>
