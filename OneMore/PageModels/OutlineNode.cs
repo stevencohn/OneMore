@@ -139,9 +139,22 @@ namespace River.OneMoreAddIn.PageModels
 			var existing = el.Elements(NS + "Meta")
 				.FirstOrDefault(e => e.Attribute("name")?.Value == name);
 			if (existing is not null)
+			{
 				existing.SetAttributeValue("content", content ?? string.Empty);
+				return;
+			}
+
+			// Meta must appear after Position/Size but before OEChildren per PageObject schema
+			var meta = MetaNode.Create(name, content).Element;
+			var lastMeta = el.Elements(NS + "Meta").LastOrDefault();
+			if (lastMeta is not null)
+				lastMeta.AddAfterSelf(meta);
 			else
-				el.Add(MetaNode.Create(name, content).Element);
+			{
+				var oec = el.Element(NS + "OEChildren");
+				if (oec is not null) oec.AddBeforeSelf(meta);
+				else el.Add(meta);
+			}
 		}
 
 

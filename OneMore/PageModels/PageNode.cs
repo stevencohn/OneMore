@@ -51,7 +51,10 @@ namespace River.OneMoreAddIn.PageModels
 					var firstContent = el.Elements()
 						.FirstOrDefault(e => e.Name.LocalName != "TagDef"
 							&& e.Name.LocalName != "QuickStyleDef"
+							&& e.Name.LocalName != "XPSFile"
 							&& e.Name.LocalName != "Meta"
+							&& e.Name.LocalName != "MediaPlaylist"
+							&& e.Name.LocalName != "MeetingInfo"
 							&& e.Name.LocalName != "PageSettings");
 					if (firstContent is not null)
 						firstContent.AddBeforeSelf(titleEl);
@@ -85,10 +88,23 @@ namespace River.OneMoreAddIn.PageModels
 				if (settingsEl is null)
 				{
 					var node = PageSettingsNode.Create();
-					// PageSettings appears before Title in the schema
+					// PageSettings appears after Meta/MediaPlaylist/MeetingInfo, before Title
 					var title = el.Element(NS + "Title");
-					if (title is not null) title.AddBeforeSelf(node.Element);
-					else el.AddFirst(node.Element);
+					if (title is not null)
+					{
+						title.AddBeforeSelf(node.Element);
+					}
+					else
+					{
+						var anchor = el.Elements(NS + "MeetingInfo").LastOrDefault()
+							?? el.Elements(NS + "MediaPlaylist").LastOrDefault()
+							?? el.Elements(NS + "Meta").LastOrDefault()
+							?? el.Elements(NS + "XPSFile").LastOrDefault()
+							?? el.Elements(NS + "QuickStyleDef").LastOrDefault()
+							?? el.Elements(NS + "TagDef").LastOrDefault();
+						if (anchor is null) el.AddFirst(node.Element);
+						else anchor.AddAfterSelf(node.Element);
+					}
 					return node;
 				}
 				return new PageSettingsNode(settingsEl);
@@ -115,9 +131,19 @@ namespace River.OneMoreAddIn.PageModels
 			var existing = el.Elements(NS + "Meta")
 				.FirstOrDefault(e => e.Attribute("name")?.Value == name);
 			if (existing is not null)
+			{
 				existing.SetAttributeValue("content", content ?? string.Empty);
-			else
-				el.Add(MetaNode.Create(name, content).Element);
+				return;
+			}
+
+			// Meta appears after QuickStyleDef/TagDef but before Title/Outline per Page schema
+			var meta = MetaNode.Create(name, content).Element;
+			var after = el.Elements(NS + "Meta").LastOrDefault()
+				?? el.Elements(NS + "XPSFile").LastOrDefault()
+				?? el.Elements(NS + "QuickStyleDef").LastOrDefault()
+				?? el.Elements(NS + "TagDef").LastOrDefault();
+			if (after is null) el.AddFirst(meta);
+			else after.AddAfterSelf(meta);
 		}
 
 

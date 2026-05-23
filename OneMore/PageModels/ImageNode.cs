@@ -114,7 +114,12 @@ namespace River.OneMoreAddIn.PageModels
 			if (size is null)
 			{
 				size = E("Size");
-				el.Add(size);
+				// Size must precede the image data per PageObject base schema
+				var data = el.Element(NS + "Data")
+					?? el.Element(NS + "File")
+					?? el.Element(NS + "CallbackID");
+				if (data is not null) data.AddBeforeSelf(size);
+				else el.Add(size);
 			}
 			size.SetAttributeValue(dimension, value.ToString("F2", CultureInfo.InvariantCulture));
 		}

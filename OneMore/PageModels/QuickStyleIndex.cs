@@ -94,8 +94,9 @@ namespace River.OneMoreAddIn.PageModels
 				new XAttribute("spaceBefore", spaceBefore ?? "0.0"),
 				new XAttribute("spaceAfter", spaceAfter ?? "0.0"));
 
-			// QuickStyleDef elements appear before content on the page; insert after last existing one
-			var last = page.Elements(NS + "QuickStyleDef").LastOrDefault();
+			// QuickStyleDef elements appear after TagDef elements; insert after last existing one
+			var last = page.Elements(NS + "QuickStyleDef").LastOrDefault()
+				?? page.Elements(NS + "TagDef").LastOrDefault();
 			if (last is not null)
 				last.AddAfterSelf(def);
 			else

@@ -433,7 +433,7 @@ namespace River.OneMoreAddIn.PageModels
 		internal void SetBullet(string bulletId, string fontSize)
 		{
 			el.Elements(NS + "List").Remove();
-			el.AddFirst(E("List", E("Bullet",
+			InsertList(E("List", E("Bullet",
 				new XAttribute("bullet", bulletId),
 				new XAttribute("fontSize", fontSize))));
 		}
@@ -442,10 +442,21 @@ namespace River.OneMoreAddIn.PageModels
 		internal void SetNumber(int sequence, string format, string font)
 		{
 			el.Elements(NS + "List").Remove();
-			el.AddFirst(E("List", E("Number",
+			InsertList(E("List", E("Number",
 				new XAttribute("numberSequence", sequence),
 				new XAttribute("numberFormat", format),
 				new XAttribute("font", font))));
+		}
+
+
+		private void InsertList(XElement list)
+		{
+			// List appears after Meta (and Tag, MediaIndex) per OE schema sequence
+			var anchor = el.Elements(NS + "Meta").LastOrDefault()
+				?? el.Elements(NS + "Tag").LastOrDefault()
+				?? el.Elements(NS + "MediaIndex").LastOrDefault();
+			if (anchor is null) el.AddFirst(list);
+			else anchor.AddAfterSelf(list);
 		}
 
 
@@ -493,7 +504,10 @@ namespace River.OneMoreAddIn.PageModels
 			if (existing is not null) return new TagNode(existing);
 
 			var tag = TagNode.Create(tagDefIndex);
-			el.AddFirst(tag.Element);
+			// Tag appears after MediaIndex per OE schema sequence
+			var lastMedia = el.Elements(NS + "MediaIndex").LastOrDefault();
+			if (lastMedia is not null) lastMedia.AddAfterSelf(tag.Element);
+			else el.AddFirst(tag.Element);
 			return tag;
 		}
 
