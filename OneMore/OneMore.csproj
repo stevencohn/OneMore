@@ -628,6 +628,9 @@
     <Compile Include="Ribbon\RibbonPosiition.cs" />
     <Compile Include="UI\EventRouter.cs" />
     <Compile Include="UI\ILoadControl.cs" />
+    <Compile Include="UI\MoreComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UI\MoreDataGridView.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -1473,6 +1476,7 @@
     <None Include="Commands\Tools\Telemetry\TLogo.psd" />
     <None Include="Properties\Images\Grid40.png" />
     <Content Include="Properties\Images\HashtagsRibbon.png" />
+    <Content Include="Properties\Images\TocTodoIconStrip.png" />
     <Content Include="Properties\Menu\m_Bold.png" />
     <Content Include="Properties\Menu\m_Copy.png" />
     <Content Include="Properties\Menu\m_Delete.png" />

@@ -39,17 +39,19 @@
 			this.rightAlignBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.sectionPagePreviewBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.notebookPagePreviewBox = new River.OneMoreAddIn.UI.MoreCheckBox();
-			this.locationBox = new System.Windows.Forms.ComboBox();
-			this.locationLabel = new System.Windows.Forms.Label();
-			this.styleLabel = new System.Windows.Forms.Label();
-			this.styleBox = new System.Windows.Forms.ComboBox();
+			this.locationBox = new River.OneMoreAddIn.UI.MoreComboBox();
+			this.locationLabel = new River.OneMoreAddIn.UI.MoreLabel();
+			this.styleLabel = new River.OneMoreAddIn.UI.MoreLabel();
+			this.styleBox = new River.OneMoreAddIn.UI.MoreComboBox();
 			this.notebookGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.notebookTimeBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.sectionGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.sectionTimeBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.pageGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
-			this.levelsLabel = new System.Windows.Forms.Label();
+			this.todoBox = new River.OneMoreAddIn.UI.MoreComboBox();
+			this.levelsLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.levelsBox = new River.OneMoreAddIn.UI.MoreNumericUpDown();
+			this.todoLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.notebookGroup.SuspendLayout();
 			this.sectionGroup.SuspendLayout();
 			this.pageGroup.SuspendLayout();
@@ -63,7 +65,7 @@
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
-			this.okButton.Location = new System.Drawing.Point(371, 682);
+			this.okButton.Location = new System.Drawing.Point(371, 707);
 			this.okButton.Name = "okButton";
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(120, 38);
@@ -82,7 +84,7 @@
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
-			this.cancelButton.Location = new System.Drawing.Point(497, 682);
+			this.cancelButton.Location = new System.Drawing.Point(497, 707);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(120, 38);
@@ -222,29 +224,35 @@
             "At top of page",
             "At top of page, overlayed",
             "At current cursor"});
-			this.locationBox.Location = new System.Drawing.Point(227, 142);
+			this.locationBox.Location = new System.Drawing.Point(284, 180);
 			this.locationBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
 			this.locationBox.Name = "locationBox";
-			this.locationBox.Size = new System.Drawing.Size(217, 28);
+			this.locationBox.Size = new System.Drawing.Size(251, 27);
 			this.locationBox.TabIndex = 5;
+			this.locationBox.ThemedBack = null;
+			this.locationBox.ThemedFore = null;
 			// 
 			// locationLabel
 			// 
 			this.locationLabel.AutoSize = true;
-			this.locationLabel.Location = new System.Drawing.Point(34, 147);
+			this.locationLabel.Location = new System.Drawing.Point(30, 183);
 			this.locationLabel.Name = "locationLabel";
 			this.locationLabel.Size = new System.Drawing.Size(115, 20);
 			this.locationLabel.TabIndex = 11;
 			this.locationLabel.Text = "Insert Location";
+			this.locationLabel.ThemedBack = null;
+			this.locationLabel.ThemedFore = null;
 			// 
 			// styleLabel
 			// 
 			this.styleLabel.AutoSize = true;
-			this.styleLabel.Location = new System.Drawing.Point(34, 184);
+			this.styleLabel.Location = new System.Drawing.Point(30, 215);
 			this.styleLabel.Name = "styleLabel";
 			this.styleLabel.Size = new System.Drawing.Size(77, 20);
 			this.styleLabel.TabIndex = 12;
 			this.styleLabel.Text = "Title Style";
+			this.styleLabel.ThemedBack = null;
+			this.styleLabel.ThemedFore = null;
 			// 
 			// styleBox
 			// 
@@ -259,10 +267,12 @@
             "Custom Heading 1",
             "Custom Heading 2",
             "Custom Heading 3"});
-			this.styleBox.Location = new System.Drawing.Point(227, 179);
+			this.styleBox.Location = new System.Drawing.Point(284, 215);
 			this.styleBox.Name = "styleBox";
-			this.styleBox.Size = new System.Drawing.Size(217, 28);
+			this.styleBox.Size = new System.Drawing.Size(251, 27);
 			this.styleBox.TabIndex = 6;
+			this.styleBox.ThemedBack = null;
+			this.styleBox.ThemedFore = null;
 			// 
 			// notebookGroup
 			// 
@@ -272,7 +282,7 @@
 			this.notebookGroup.Controls.Add(this.notebookRadio);
 			this.notebookGroup.Controls.Add(this.pagesBox);
 			this.notebookGroup.Controls.Add(this.notebookPagePreviewBox);
-			this.notebookGroup.Location = new System.Drawing.Point(23, 479);
+			this.notebookGroup.Location = new System.Drawing.Point(23, 502);
 			this.notebookGroup.Name = "notebookGroup";
 			this.notebookGroup.Padding = new System.Windows.Forms.Padding(5, 5, 3, 3);
 			this.notebookGroup.ShowOnlyTopEdge = true;
@@ -306,7 +316,7 @@
 			this.sectionGroup.Controls.Add(this.sectionTimeBox);
 			this.sectionGroup.Controls.Add(this.sectionRadio);
 			this.sectionGroup.Controls.Add(this.sectionPagePreviewBox);
-			this.sectionGroup.Location = new System.Drawing.Point(23, 309);
+			this.sectionGroup.Location = new System.Drawing.Point(23, 332);
 			this.sectionGroup.Name = "sectionGroup";
 			this.sectionGroup.Padding = new System.Windows.Forms.Padding(5, 5, 3, 3);
 			this.sectionGroup.ShowOnlyTopEdge = true;
@@ -338,6 +348,8 @@
 			// 
 			this.pageGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.pageGroup.Controls.Add(this.todoLabel);
+			this.pageGroup.Controls.Add(this.todoBox);
 			this.pageGroup.Controls.Add(this.levelsLabel);
 			this.pageGroup.Controls.Add(this.levelsBox);
 			this.pageGroup.Controls.Add(this.pageRadio);
@@ -351,25 +363,39 @@
 			this.pageGroup.Name = "pageGroup";
 			this.pageGroup.Padding = new System.Windows.Forms.Padding(5, 5, 3, 3);
 			this.pageGroup.ShowOnlyTopEdge = true;
-			this.pageGroup.Size = new System.Drawing.Size(594, 275);
+			this.pageGroup.Size = new System.Drawing.Size(594, 298);
 			this.pageGroup.TabIndex = 15;
 			this.pageGroup.TabStop = false;
 			this.pageGroup.Text = "Page";
 			this.pageGroup.ThemedBorder = null;
 			this.pageGroup.ThemedFore = null;
 			// 
+			// todoBox
+			// 
+			this.todoBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.todoBox.FormattingEnabled = true;
+			this.todoBox.ItemHeight = 24;
+			this.todoBox.Location = new System.Drawing.Point(284, 143);
+			this.todoBox.Name = "todoBox";
+			this.todoBox.Size = new System.Drawing.Size(251, 30);
+			this.todoBox.TabIndex = 16;
+			this.todoBox.ThemedBack = null;
+			this.todoBox.ThemedFore = null;
+			// 
 			// levelsLabel
 			// 
 			this.levelsLabel.AutoSize = true;
-			this.levelsLabel.Location = new System.Drawing.Point(34, 215);
+			this.levelsLabel.Location = new System.Drawing.Point(30, 251);
 			this.levelsLabel.Name = "levelsLabel";
 			this.levelsLabel.Size = new System.Drawing.Size(98, 20);
 			this.levelsLabel.TabIndex = 14;
 			this.levelsLabel.Text = "Show Levels";
+			this.levelsLabel.ThemedBack = null;
+			this.levelsLabel.ThemedFore = null;
 			// 
 			// levelsBox
 			// 
-			this.levelsBox.Location = new System.Drawing.Point(227, 213);
+			this.levelsBox.Location = new System.Drawing.Point(284, 249);
 			this.levelsBox.Maximum = new decimal(new int[] {
             6,
             0,
@@ -391,6 +417,17 @@
             0,
             0});
 			// 
+			// todoLabel
+			// 
+			this.todoLabel.AutoSize = true;
+			this.todoLabel.Location = new System.Drawing.Point(30, 146);
+			this.todoLabel.Name = "todoLabel";
+			this.todoLabel.Size = new System.Drawing.Size(153, 20);
+			this.todoLabel.TabIndex = 17;
+			this.todoLabel.Text = "Mark Todo headings";
+			this.todoLabel.ThemedBack = null;
+			this.todoLabel.ThemedFore = null;
+			// 
 			// InsertTocDialog
 			// 
 			this.AcceptButton = this.okButton;
@@ -398,7 +435,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(629, 732);
+			this.ClientSize = new System.Drawing.Size(629, 757);
 			this.Controls.Add(this.pageGroup);
 			this.Controls.Add(this.sectionGroup);
 			this.Controls.Add(this.notebookGroup);
@@ -435,16 +472,18 @@
 		private UI.MoreCheckBox rightAlignBox;
 		private UI.MoreCheckBox sectionPagePreviewBox;
 		private UI.MoreCheckBox notebookPagePreviewBox;
-		private System.Windows.Forms.ComboBox locationBox;
-		private System.Windows.Forms.Label locationLabel;
-		private System.Windows.Forms.Label styleLabel;
-		private System.Windows.Forms.ComboBox styleBox;
+		private UI.MoreComboBox locationBox;
+		private UI.MoreLabel locationLabel;
+		private UI.MoreLabel styleLabel;
+		private UI.MoreComboBox styleBox;
 		private UI.MoreGroupBox notebookGroup;
 		private UI.MoreGroupBox sectionGroup;
 		private UI.MoreGroupBox pageGroup;
-		private System.Windows.Forms.Label levelsLabel;
+		private UI.MoreLabel levelsLabel;
 		private UI.MoreNumericUpDown levelsBox;
 		private UI.MoreCheckBox notebookTimeBox;
 		private UI.MoreCheckBox sectionTimeBox;
+		private UI.MoreComboBox todoBox;
+		private UI.MoreLabel todoLabel;
 	}
 }

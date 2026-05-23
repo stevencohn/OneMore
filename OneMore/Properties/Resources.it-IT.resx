@@ -1792,6 +1792,19 @@ Intestazione personalizzata 3</value>
     <value>Aggiorna data e ora della pagina</value>
     <comment>checkbox</comment>
   </data>
+  <data name="InsertTocDialog_todoBox.Text" xml:space="preserve">
+    <value>Nessuno
+Urne
+Cerchio Rosso
+Piazza Rossa
+Quadrato Blu
+Piazza Arancione
+Quadrato Giallo
+Piazza Verde
+Quadrato Viola
+Quadrato Marrone</value>
+    <comment>combobox</comment>
+  </data>
   <data name="InsertTocDialog_topBox.Text" xml:space="preserve">
     <value>Aggiungi un collegamento a ciascuna intestazione per passare alla parte superiore della pagina</value>
     <comment>checkbox</comment>

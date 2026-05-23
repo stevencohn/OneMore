@@ -1796,6 +1796,19 @@ Custom Heading 3</value>
     <value>Update page date and time</value>
     <comment>checkbox</comment>
   </data>
+  <data name="InsertTocDialog_todoBox.Text" xml:space="preserve">
+    <value>None
+Ballot Box
+Red Circle
+Red Square
+Blue Square
+Orange Square
+Yellow Square
+Green Square
+Purple Square
+Brown Square</value>
+    <comment>combobox</comment>
+  </data>
   <data name="InsertTocDialog_topBox.Text" xml:space="preserve">
     <value>Add link to each heading to jump to top of page</value>
     <comment>checkbox</comment>
@@ -5914,6 +5927,10 @@ Thank you!</value>
   </data>
   <data name="TextHighlightColorPicker" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\texthighlightcolorpicker.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TocTodoIconStrip" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Images\TocTodoIconStrip.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <comment>!SKIP image strip</comment>
   </data>
   <data name="Unlocked" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\unlocked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
