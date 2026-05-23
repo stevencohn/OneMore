@@ -4611,7 +4611,7 @@ ISO-code then comma then language name</comment>
 修改之前</value>
     <comment>combobox</comment>
   </data>
-  <data name="SearchDialogTextControl_includeToxBox.Text" xml:space="preserve">
+  <data name="SearchDialogTextControl_includeTocBox.Text" xml:space="preserve">
     <value>在目录中搜索文本</value>
     <comment>checkbox</comment>
   </data>

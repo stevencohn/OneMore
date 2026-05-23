@@ -4617,7 +4617,7 @@ Modifié après
 Modifié avant</value>
     <comment>combobox</comment>
   </data>
-  <data name="SearchDialogTextControl_includeToxBox.Text" xml:space="preserve">
+  <data name="SearchDialogTextControl_includeTocBox.Text" xml:space="preserve">
     <value>Rechercher du texte dans la table des matières</value>
     <comment>checkbox</comment>
   </data>

@@ -4607,7 +4607,7 @@ Zmodyfikowany po
 Zmodyfikowane wcześniej</value>
     <comment>combobox</comment>
   </data>
-  <data name="SearchDialogTextControl_includeToxBox.Text" xml:space="preserve">
+  <data name="SearchDialogTextControl_includeTocBox.Text" xml:space="preserve">
     <value>Wyszukaj tekst w spisie treści</value>
     <comment>checkbox</comment>
   </data>

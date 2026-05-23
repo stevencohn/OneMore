@@ -55,6 +55,7 @@ namespace River.OneMoreAddIn.Commands
 					"findLabel=word_Find",
 					"matchBox",
 					"regBox",
+					"includeTocBox",
 					"moveButton=word_Move",
 					"copyButton=word_Copy",
 					"cancelButton=word_Cancel",

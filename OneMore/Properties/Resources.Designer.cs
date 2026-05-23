@@ -11395,9 +11395,9 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Search text in table of contents.
         /// </summary>
-        internal static string SearchDialogTextControl_includeToxBox_Text {
+        internal static string SearchDialogTextControl_includeTocBox_Text {
             get {
-                return ResourceManager.GetString("SearchDialogTextControl_includeToxBox.Text", resourceCulture);
+                return ResourceManager.GetString("SearchDialogTextControl_includeTocBox.Text", resourceCulture);
             }
         }
         

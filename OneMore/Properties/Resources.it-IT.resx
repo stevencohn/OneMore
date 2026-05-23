@@ -4608,7 +4608,7 @@ Modificato dopo
 Modificato prima</value>
     <comment>combobox</comment>
   </data>
-  <data name="SearchDialogTextControl_includeToxBox.Text" xml:space="preserve">
+  <data name="SearchDialogTextControl_includeTocBox.Text" xml:space="preserve">
     <value>Cerca il testo nel sommario</value>
     <comment>checkbox</comment>
   </data>
