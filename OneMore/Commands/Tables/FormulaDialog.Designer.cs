@@ -30,21 +30,21 @@
 		{
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormulaDialog));
-			this.formatLabel = new System.Windows.Forms.Label();
-			this.formatBox = new System.Windows.Forms.ComboBox();
+			this.formatLabel = new UI.MoreLabel();
+			this.formatBox = new UI.MoreComboBox();
 			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
-			this.formulaLabel = new System.Windows.Forms.Label();
+			this.formulaLabel = new UI.MoreLabel();
 			this.formulaBox = new River.OneMoreAddIn.UI.MoreTextBox();
-			this.selectedLabel = new System.Windows.Forms.Label();
-			this.cellLabel = new System.Windows.Forms.Label();
+			this.selectedLabel = new UI.MoreLabel();
+			this.cellLabel = new UI.MoreLabel();
 			this.helpBox = new River.OneMoreAddIn.UI.MoreMultilineLabel();
 			this.helpPanel = new System.Windows.Forms.Panel();
 			this.helpButton = new River.OneMoreAddIn.UI.MoreCheckBox();
-			this.validStatusLabel = new System.Windows.Forms.Label();
-			this.statusLabel = new System.Windows.Forms.Label();
+			this.validStatusLabel = new UI.MoreLabel();
+			this.statusLabel = new UI.MoreLabel();
 			this.tagBox = new River.OneMoreAddIn.UI.MoreCheckBox();
-			this.decLabel = new System.Windows.Forms.Label();
+			this.decLabel = new UI.MoreLabel();
 			this.decimalBox = new System.Windows.Forms.NumericUpDown();
 			this.tooltip = new System.Windows.Forms.ToolTip(this.components);
 			this.helpPanel.SuspendLayout();
@@ -299,21 +299,21 @@
 
 		#endregion
 
-		private System.Windows.Forms.Label formatLabel;
-		private System.Windows.Forms.ComboBox formatBox;
+		private UI.MoreLabel formatLabel;
+		private UI.MoreComboBox formatBox;
 		private UI.MoreButton cancelButton;
 		private UI.MoreButton okButton;
-		private System.Windows.Forms.Label formulaLabel;
+		private UI.MoreLabel formulaLabel;
 		private UI.MoreTextBox formulaBox;
-		private System.Windows.Forms.Label selectedLabel;
-		private System.Windows.Forms.Label cellLabel;
+		private UI.MoreLabel selectedLabel;
+		private UI.MoreLabel cellLabel;
 		private UI.MoreMultilineLabel helpBox;
 		private System.Windows.Forms.Panel helpPanel;
 		private UI.MoreCheckBox helpButton;
-		private System.Windows.Forms.Label validStatusLabel;
-		private System.Windows.Forms.Label statusLabel;
+		private UI.MoreLabel validStatusLabel;
+		private UI.MoreLabel statusLabel;
 		private UI.MoreCheckBox tagBox;
-		private System.Windows.Forms.Label decLabel;
+		private UI.MoreLabel decLabel;
 		private System.Windows.Forms.NumericUpDown decimalBox;
 		private System.Windows.Forms.ToolTip tooltip;
 	}

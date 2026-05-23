@@ -29,10 +29,10 @@
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ExportDialog));
-			this.folderLabel = new System.Windows.Forms.Label();
+			this.folderLabel = new UI.MoreLabel();
 			this.pathBox = new River.OneMoreAddIn.UI.MoreTextBox();
-			this.formatLabel = new System.Windows.Forms.Label();
-			this.formatBox = new System.Windows.Forms.ComboBox();
+			this.formatLabel = new UI.MoreLabel();
+			this.formatBox = new UI.MoreComboBox();
 			this.groupBox = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.embeddedBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.underBox = new River.OneMoreAddIn.UI.MoreCheckBox();
@@ -252,10 +252,10 @@
 
 		#endregion
 
-		private System.Windows.Forms.Label folderLabel;
+		private UI.MoreLabel folderLabel;
 		private UI.MoreTextBox pathBox;
-		private System.Windows.Forms.Label formatLabel;
-		private System.Windows.Forms.ComboBox formatBox;
+		private UI.MoreLabel formatLabel;
+		private UI.MoreComboBox formatBox;
 		private UI.MoreGroupBox groupBox;
 		private UI.MoreButton browseButton;
 		private UI.MoreButton cancelButton;

@@ -39,8 +39,8 @@ namespace River.OneMoreAddIn.Settings
 			this.sectionButton = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.sectionLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.notebookGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
-			this.groupingBox = new System.Windows.Forms.ComboBox();
-			this.groupingLabel = new System.Windows.Forms.Label();
+			this.groupingBox = new UI.MoreComboBox();
+			this.groupingLabel = new UI.MoreLabel();
 			this.notebookButton = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.notebookLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.tooltip = new System.Windows.Forms.ToolTip(this.components);
@@ -278,8 +278,8 @@ namespace River.OneMoreAddIn.Settings
 		private UI.MoreMultilineLabel introBox;
 		private System.Windows.Forms.Panel layoutPanel;
 		private UI.MoreGroupBox notebookGroup;
-		private System.Windows.Forms.ComboBox groupingBox;
-		private System.Windows.Forms.Label groupingLabel;
+		private UI.MoreComboBox groupingBox;
+		private UI.MoreLabel groupingLabel;
 		private UI.MoreRadioButton notebookButton;
 		private River.OneMoreAddIn.UI.MoreLinkLabel notebookLink;
 		private River.OneMoreAddIn.UI.MoreLinkLabel sectionLink;

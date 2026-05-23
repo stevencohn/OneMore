@@ -50,7 +50,7 @@
 			this.multilineBox2 = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.fnLabel = new System.Windows.Forms.Label();
 			this.queryButton = new River.OneMoreAddIn.UI.MoreButton();
-			this.functionBox = new System.Windows.Forms.ComboBox();
+			this.functionBox = new UI.MoreComboBox();
 			this.objectIdBox = new River.OneMoreAddIn.UI.MoreTextBox();
 			this.manualLabel = new System.Windows.Forms.Label();
 			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
@@ -867,7 +867,7 @@
 		private System.Windows.Forms.Label pagePathLabel;
 		private System.Windows.Forms.ListBox scopeBox;
 		private System.Windows.Forms.Label manualLabel;
-		private System.Windows.Forms.ComboBox functionBox;
+		private UI.MoreComboBox functionBox;
 		private UI.MoreButton queryButton;
 		private System.Windows.Forms.TabPage sectionTab;
 		private System.Windows.Forms.TabPage notebooksTab;

@@ -32,13 +32,13 @@ namespace River.OneMoreAddIn.Settings
 			this.introBox = new River.OneMoreAddIn.UI.MoreMultilineLabel();
 			this.layoutPanel = new System.Windows.Forms.Panel();
 			this.sequentialBox = new River.OneMoreAddIn.UI.MoreCheckBox();
-			this.themeBox = new System.Windows.Forms.ComboBox();
-			this.themeLabel = new System.Windows.Forms.Label();
+			this.themeBox = new UI.MoreComboBox();
+			this.themeLabel = new UI.MoreLabel();
 			this.advancedGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.experimentalBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.verboseBox = new River.OneMoreAddIn.UI.MoreCheckBox();
-			this.langBox = new System.Windows.Forms.ComboBox();
-			this.langLabel = new System.Windows.Forms.Label();
+			this.langBox = new UI.MoreComboBox();
+			this.langLabel = new UI.MoreLabel();
 			this.checkUpdatesBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.telemetryBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.layoutPanel.SuspendLayout();
@@ -239,13 +239,13 @@ namespace River.OneMoreAddIn.Settings
 		private UI.MoreMultilineLabel introBox;
 		private System.Windows.Forms.Panel layoutPanel;
 		private UI.MoreCheckBox checkUpdatesBox;
-		private System.Windows.Forms.ComboBox langBox;
-		private System.Windows.Forms.Label langLabel;
+		private UI.MoreComboBox langBox;
+		private UI.MoreLabel langLabel;
 		private UI.MoreGroupBox advancedGroup;
 		private UI.MoreCheckBox verboseBox;
 		private UI.MoreCheckBox experimentalBox;
-		private System.Windows.Forms.ComboBox themeBox;
-		private System.Windows.Forms.Label themeLabel;
+		private UI.MoreComboBox themeBox;
+		private UI.MoreLabel themeLabel;
 		private UI.MoreCheckBox sequentialBox;
 		private UI.MoreCheckBox telemetryBox;
 	}

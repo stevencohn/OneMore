@@ -29,24 +29,24 @@
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InsertCalendarDialog));
-			this.yearLabel = new System.Windows.Forms.Label();
+			this.yearLabel = new UI.MoreLabel();
 			this.yearBox = new System.Windows.Forms.NumericUpDown();
-			this.monthLabel = new System.Windows.Forms.Label();
-			this.formatLabel = new System.Windows.Forms.Label();
-			this.monthBox = new System.Windows.Forms.ComboBox();
+			this.monthLabel = new UI.MoreLabel();
+			this.formatLabel = new UI.MoreLabel();
+			this.monthBox = new UI.MoreComboBox();
 			this.smallRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.largeRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.indentBox = new River.OneMoreAddIn.UI.MoreCheckBox();
-			this.firstLabel = new System.Windows.Forms.Label();
+			this.firstLabel = new UI.MoreLabel();
 			this.sundayButton = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.mondayButton = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.firstPanel = new System.Windows.Forms.Panel();
 			this.formatPanel = new System.Windows.Forms.Panel();
-			this.clickLabel = new System.Windows.Forms.Label();
+			this.clickLabel = new UI.MoreLabel();
 			this.shadingBox = new River.OneMoreAddIn.UI.MorePictureBox();
-			this.colorLabel = new System.Windows.Forms.Label();
+			this.colorLabel = new UI.MoreLabel();
 			((System.ComponentModel.ISupportInitialize)(this.yearBox)).BeginInit();
 			this.firstPanel.SuspendLayout();
 			this.formatPanel.SuspendLayout();
@@ -310,23 +310,23 @@
 
 		#endregion
 
-		private System.Windows.Forms.Label yearLabel;
+		private UI.MoreLabel yearLabel;
 		private System.Windows.Forms.NumericUpDown yearBox;
-		private System.Windows.Forms.Label monthLabel;
-		private System.Windows.Forms.Label formatLabel;
-		private System.Windows.Forms.ComboBox monthBox;
+		private UI.MoreLabel monthLabel;
+		private UI.MoreLabel formatLabel;
+		private UI.MoreComboBox monthBox;
 		private UI.MoreRadioButton smallRadio;
 		private UI.MoreRadioButton largeRadio;
 		private UI.MoreButton cancelButton;
 		private UI.MoreButton okButton;
 		private UI.MoreCheckBox indentBox;
-		private System.Windows.Forms.Label firstLabel;
+		private UI.MoreLabel firstLabel;
 		private UI.MoreRadioButton sundayButton;
 		private UI.MoreRadioButton mondayButton;
 		private System.Windows.Forms.Panel firstPanel;
 		private System.Windows.Forms.Panel formatPanel;
-		private System.Windows.Forms.Label colorLabel;
+		private UI.MoreLabel colorLabel;
 		private UI.MorePictureBox shadingBox;
-		private System.Windows.Forms.Label clickLabel;
+		private UI.MoreLabel clickLabel;
 	}
 }

@@ -31,18 +31,18 @@
 		{
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StyleDialog));
-			this.sizeBox = new System.Windows.Forms.ComboBox();
-			this.beforeLabel = new System.Windows.Forms.Label();
-			this.afterLabel = new System.Windows.Forms.Label();
-			this.nameLabel = new System.Windows.Forms.Label();
+			this.sizeBox = new UI.MoreComboBox();
+			this.beforeLabel = new UI.MoreLabel();
+			this.afterLabel = new UI.MoreLabel();
+			this.nameLabel = new UI.MoreLabel();
 			this.nameBox = new River.OneMoreAddIn.UI.MoreTextBox();
-			this.fontLabel = new System.Windows.Forms.Label();
+			this.fontLabel = new UI.MoreLabel();
 			this.spaceBeforeSpinner = new System.Windows.Forms.NumericUpDown();
 			this.spaceAfterSpinner = new System.Windows.Forms.NumericUpDown();
 			this.previewBox = new System.Windows.Forms.PictureBox();
 			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
-			this.namesBox = new System.Windows.Forms.ComboBox();
+			this.namesBox = new UI.MoreComboBox();
 			this.bodyPanel = new System.Windows.Forms.Panel();
 			this.styleTools = new River.OneMoreAddIn.UI.MoreToolStrip();
 			this.renameButton = new River.OneMoreAddIn.UI.MoreMenuItem();
@@ -64,10 +64,10 @@
 			this.pageColorLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.darkBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.pageColorBox = new River.OneMoreAddIn.UI.MoreCheckBox();
-			this.spacingLabel = new System.Windows.Forms.Label();
+			this.spacingLabel = new UI.MoreLabel();
 			this.spacingSpinner = new System.Windows.Forms.NumericUpDown();
-			this.styleTypeLabel = new System.Windows.Forms.Label();
-			this.styleTypeBox = new System.Windows.Forms.ComboBox();
+			this.styleTypeLabel = new UI.MoreLabel();
+			this.styleTypeBox = new UI.MoreComboBox();
 			this.applyColorsBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.isCodeBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.familyBox = new River.OneMoreAddIn.UI.FontComboBox();
@@ -796,12 +796,12 @@
 		#endregion
 
 		private UI.FontComboBox familyBox;
-		private System.Windows.Forms.ComboBox sizeBox;
-		private System.Windows.Forms.Label beforeLabel;
-		private System.Windows.Forms.Label afterLabel;
-		private System.Windows.Forms.Label nameLabel;
+		private UI.MoreComboBox sizeBox;
+		private UI.MoreLabel beforeLabel;
+		private UI.MoreLabel afterLabel;
+		private UI.MoreLabel nameLabel;
 		private UI.MoreTextBox nameBox;
-		private System.Windows.Forms.Label fontLabel;
+		private UI.MoreLabel fontLabel;
 		private UI.MoreToolStrip fontTools;
 		private UI.MoreSplitButton colorButton;
 		private System.Windows.Forms.NumericUpDown spaceBeforeSpinner;
@@ -810,7 +810,7 @@
 		private System.Windows.Forms.PictureBox previewBox;
 		private UI.MoreButton cancelButton;
 		private UI.MoreButton okButton;
-		private System.Windows.Forms.ComboBox namesBox;
+		private UI.MoreComboBox namesBox;
 		private System.Windows.Forms.ToolStripMenuItem transparentToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem defaultBlackToolStripMenuItem;
 		private UI.MoreMenuStrip mainTools;
@@ -819,12 +819,12 @@
 		private System.Windows.Forms.Panel bodyPanel;
 		private UI.MoreCheckBox applyColorsBox;
 		private UI.MoreCheckBox isCodeBox;
-		private System.Windows.Forms.Label styleTypeLabel;
-		private System.Windows.Forms.ComboBox styleTypeBox;
+		private UI.MoreLabel styleTypeLabel;
+		private UI.MoreComboBox styleTypeBox;
 		private UI.MoreMenuItem loadButton;
 		private UI.MoreMenuItem saveButton;
 		private UI.MoreMenuItem newStyleButton;
-		private System.Windows.Forms.Label spacingLabel;
+		private UI.MoreLabel spacingLabel;
 		private System.Windows.Forms.NumericUpDown spacingSpinner;
 		private UI.MoreMenuItem renameButton;
 		private UI.MoreGroupBox optionsGroup;
