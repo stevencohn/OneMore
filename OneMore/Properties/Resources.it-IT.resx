@@ -4726,10 +4726,6 @@ I motori di ricerca verranno visualizzati nel menu contestuale della pagina, far
     <value>Impostazioni OneMore</value>
     <comment>dialog title</comment>
   </data>
-  <data name="SettingsFilename" xml:space="preserve">
-    <value>Impostazioni.xml</value>
-    <comment>SKIP, filename</comment>
-  </data>
   <data name="ShowXmlDialog.Text" xml:space="preserve">
     <value>Un altro XML</value>
     <comment>dialog title</comment>

@@ -4724,10 +4724,6 @@ Los motores de búsqueda aparecerán en el menú contextual de la página, haga 
     <value>Configuración de OneMore</value>
     <comment>dialog title</comment>
   </data>
-  <data name="SettingsFilename" xml:space="preserve">
-    <value>Settings.xml</value>
-    <comment>FILENAME</comment>
-  </data>
   <data name="ShowXmlDialog.Text" xml:space="preserve">
     <value>OneMore XML</value>
     <comment>dialog title</comment>

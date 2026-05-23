@@ -24,8 +24,18 @@ namespace River.OneMoreAddIn.Settings
 		/// </summary>
 		public SettingsProvider()
 		{
+			bool italian = false;
+
 			path = Path.Combine(
 				PathHelper.GetAppDataPath(), Properties.Resources.SettingsFilename);
+
+			if (!File.Exists(path))
+			{
+				// temporary reader-makes-right rix for Italian translated filename
+				// Fixed in 7.0.0 on May 23, 2026
+				path = Path.Combine(PathHelper.GetAppDataPath(), "Impostazioni.xml");
+				italian = true;
+			}
 
 			if (File.Exists(path))
 			{
@@ -37,6 +47,13 @@ namespace River.OneMoreAddIn.Settings
 				{
 					Logger.Current.WriteLine($"error reading {path}", exc);
 				}
+			}
+
+			if (italian)
+			{
+				// reset path back to correct filename
+				path = Path.Combine(
+					PathHelper.GetAppDataPath(), Properties.Resources.SettingsFilename);
 			}
 
 			if (root == null)

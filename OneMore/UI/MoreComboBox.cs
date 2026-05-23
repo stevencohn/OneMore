@@ -167,7 +167,9 @@ namespace River.OneMoreAddIn.UI
 
 			using var foreBrush = new SolidBrush(fore);
 			e.Graphics.DrawString(
-				raw?.ToString() ?? string.Empty, Font, foreBrush, textBounds, stringFormat);
+				// use GetItemText here to pick up DisplayMember when there is a DataSource
+				GetItemText(raw),
+				Font, foreBrush, textBounds, stringFormat);
 
 			if (!isEdit && (e.State & DrawItemState.Focus) != 0)
 				e.DrawFocusRectangle();
