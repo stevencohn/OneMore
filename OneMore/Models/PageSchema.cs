@@ -22,7 +22,7 @@ namespace River.OneMoreAddIn.Models
 
 		public string[] OutHeaders => outHeaders ??= new string[]
 		{
-			"Postion", "Size", "Meta", "Indents"
+			"Position", "Size", "Meta", "Indents"
 		};
 
 		public string[] OutContent => outContent ??= new string[]

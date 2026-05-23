@@ -287,7 +287,7 @@ namespace River.OneMoreAddIn.Models
 			{
 				// can't find cursor so append to page
 				var container = page.EnsureContentContainer();
-				container.Add(new XElement(ns + "T", new XCData(text)));
+				container.Add(new XElement(ns + "OE", new XElement(ns + "T", new XCData(text))));
 			}
 			else
 			{

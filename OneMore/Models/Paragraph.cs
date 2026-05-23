@@ -56,10 +56,16 @@ namespace River.OneMoreAddIn.Models
 
 		public Paragraph SetMeta(string name, string content)
 		{
-			AddFirst(new XElement(PageNamespace.Value + "Meta",
+			var meta = new XElement(PageNamespace.Value + "Meta",
 				new XAttribute("name", name),
 				new XAttribute("content", content)
-				));
+				);
+
+			// Meta appears after Tag/MediaIndex per OE schema sequence
+			var anchor = Elements(PageNamespace.Value + "Tag").LastOrDefault()
+				?? Elements(PageNamespace.Value + "MediaIndex").LastOrDefault();
+			if (anchor is null) AddFirst(meta);
+			else anchor.AddAfterSelf(meta);
 
 			return this;
 		}
