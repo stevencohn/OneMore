@@ -276,6 +276,12 @@
     <Compile Include="Commands\Search\SearchResultsCardView.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Commands\Settings\TableThemesSheet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Commands\Settings\TableThemesSheet.Designer.cs">
+      <DependentUpon>TableThemesSheet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Tools\ShowContainersCommand.cs" />
     <Compile Include="Commands\Search\TextMatchBuilder.cs" />
     <Compile Include="Commands\Settings\VariablesSheet.cs">
@@ -1294,6 +1300,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Search\SearchDialogTextControl.resx">
       <DependentUpon>SearchDialogTextControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Settings\TableThemesSheet.resx">
+      <DependentUpon>TableThemesSheet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Settings\VariablesSheet.resx">
       <DependentUpon>VariablesSheet.cs</DependentUpon>
