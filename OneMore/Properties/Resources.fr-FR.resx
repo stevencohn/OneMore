@@ -4735,10 +4735,6 @@ Les moteurs de recherche apparaîtront dans le menu du contexte de la page, cliq
     <value>Paramètres OneMore</value>
     <comment>dialog title</comment>
   </data>
-  <data name="SettingsFilename" xml:space="preserve">
-    <value>Settings.xml</value>
-    <comment>FILENAME</comment>
-  </data>
   <data name="ShowXmlDialog.Text" xml:space="preserve">
     <value>OneMore XML</value>
     <comment>dialog title</comment>

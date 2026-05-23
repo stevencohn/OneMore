@@ -4723,10 +4723,6 @@ ISO-code then comma then language name</comment>
     <value>הגדרות אונמורות</value>
     <comment>dialog title</comment>
   </data>
-  <data name="SettingsFilename" xml:space="preserve">
-    <value>Settings.xml</value>
-    <comment>SKIP, filename</comment>
-  </data>
   <data name="ShowXmlDialog.Text" xml:space="preserve">
     <value>Onemore XML</value>
     <comment>dialog title</comment>

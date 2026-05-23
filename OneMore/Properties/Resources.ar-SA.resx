@@ -4736,10 +4736,6 @@ ISO-code then comma then language name</comment>
     <value>إعدادات OneMore</value>
     <comment>dialog title</comment>
   </data>
-  <data name="SettingsFilename" xml:space="preserve">
-    <value>Settings.xml</value>
-    <comment>FILENAME</comment>
-  </data>
   <data name="ShowXmlDialog.Text" xml:space="preserve">
     <value>OneMore XML</value>
     <comment>dialog title</comment>
