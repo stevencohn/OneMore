@@ -45,11 +45,11 @@ namespace River.OneMoreAddIn.Commands
 			this.progressBar = new System.Windows.Forms.ProgressBar();
 			this.morePanel2 = new River.OneMoreAddIn.UI.MorePanel();
 			this.optionsPanel = new River.OneMoreAddIn.UI.MorePanel();
-			this.dateSelector = new System.Windows.Forms.ComboBox();
+			this.dateSelector = new UI.MoreComboBox();
 			this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
 			this.regBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.matchBox = new River.OneMoreAddIn.UI.MoreCheckBox();
-			this.scopeBox = new System.Windows.Forms.ComboBox();
+			this.scopeBox = new UI.MoreComboBox();
 			this.resultsHeaderPanel = new River.OneMoreAddIn.UI.MorePanel();
 			this.selectAllLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.barLabel = new River.OneMoreAddIn.UI.MoreLabel();
@@ -515,12 +515,12 @@ namespace River.OneMoreAddIn.Commands
 		private UI.MoreLinkLabel clearAllLink;
 		private System.Windows.Forms.ProgressBar progressBar;
 		private UI.MoreLabel pageLabel;
-		private System.Windows.Forms.ComboBox scopeBox;
+		private UI.MoreComboBox scopeBox;
 		private UI.MoreCheckBox regBox;
 		private UI.MoreCheckBox matchBox;
 		private UI.MoreButton prevButton;
 		private UI.MoreButton nextButton;
-		private System.Windows.Forms.ComboBox dateSelector;
+		private UI.MoreComboBox dateSelector;
 		private System.Windows.Forms.DateTimePicker dateTimePicker;
 	}
 }

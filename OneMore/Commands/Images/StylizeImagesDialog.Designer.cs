@@ -31,8 +31,8 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StylizeImagesDialog));
 			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
-			this.styleLabel = new System.Windows.Forms.Label();
-			this.styleBox = new System.Windows.Forms.ComboBox();
+			this.styleLabel = new UI.MoreLabel();
+			this.styleBox = new UI.MoreComboBox();
 			this.foreBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.backBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.SuspendLayout();
@@ -154,8 +154,8 @@
 
 		private UI.MoreButton okButton;
 		private UI.MoreButton cancelButton;
-		private System.Windows.Forms.Label styleLabel;
-		private System.Windows.Forms.ComboBox styleBox;
+		private UI.MoreLabel styleLabel;
+		private UI.MoreComboBox styleBox;
 		private UI.MoreCheckBox foreBox;
 		private UI.MoreCheckBox backBox;
 	}

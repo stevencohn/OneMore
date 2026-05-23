@@ -29,10 +29,10 @@
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PronunciateDialog));
-			this.wordLabel = new System.Windows.Forms.Label();
+			this.wordLabel = new UI.MoreLabel();
 			this.wordBox = new River.OneMoreAddIn.UI.MoreTextBox();
-			this.languageLabel = new System.Windows.Forms.Label();
-			this.languagesBox = new System.Windows.Forms.ComboBox();
+			this.languageLabel = new UI.MoreLabel();
+			this.languagesBox = new UI.MoreComboBox();
 			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.SuspendLayout();
@@ -159,10 +159,10 @@
 
 		#endregion
 
-		private System.Windows.Forms.Label wordLabel;
+		private UI.MoreLabel wordLabel;
 		private UI.MoreTextBox wordBox;
-		private System.Windows.Forms.Label languageLabel;
-		private System.Windows.Forms.ComboBox languagesBox;
+		private UI.MoreLabel languageLabel;
+		private UI.MoreComboBox languagesBox;
 		private UI.MoreButton cancelButton;
 		private UI.MoreButton okButton;
 	}

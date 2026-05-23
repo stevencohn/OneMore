@@ -42,10 +42,10 @@
 			this.editPicture = new River.OneMoreAddIn.UI.MorePictureBox();
 			this.positionIntroLabel = new River.OneMoreAddIn.UI.MoreMultilineLabel();
 			this.positionGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
-			this.layoutBox = new System.Windows.Forms.ComboBox();
-			this.layoutLabel = new System.Windows.Forms.Label();
-			this.positionBox = new System.Windows.Forms.ComboBox();
-			this.positionLabel = new System.Windows.Forms.Label();
+			this.layoutBox = new UI.MoreComboBox();
+			this.layoutLabel = new UI.MoreLabel();
+			this.positionBox = new UI.MoreComboBox();
+			this.positionLabel = new UI.MoreLabel();
 			this.quickGroup.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.hashtagsPicture)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.formulaPicture)).BeginInit();
@@ -351,12 +351,12 @@
 		private UI.MoreMultilineLabel introBox;
 		private UI.MoreGroupBox positionGroup;
 		private UI.MoreMultilineLabel positionIntroLabel;
-		private System.Windows.Forms.Label positionLabel;
-		private System.Windows.Forms.ComboBox positionBox;
+		private UI.MoreLabel positionLabel;
+		private UI.MoreComboBox positionBox;
 		private UI.MoreCheckBox hashtagsIconBox;
 		private UI.MoreCheckBox hashtagsRibbonBox;
 		private UI.MorePictureBox hashtagsPicture;
-		private System.Windows.Forms.ComboBox layoutBox;
-		private System.Windows.Forms.Label layoutLabel;
+		private UI.MoreComboBox layoutBox;
+		private UI.MoreLabel layoutLabel;
 	}
 }

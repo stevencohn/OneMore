@@ -37,8 +37,8 @@ namespace River.OneMoreAddIn.Commands
 			this.sectionDetailBox = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.allDetailsBox = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.noDetailsBox = new River.OneMoreAddIn.UI.MoreRadioButton();
-			this.thumbnailLabel = new System.Windows.Forms.Label();
-			this.sizeBox = new System.Windows.Forms.ComboBox();
+			this.thumbnailLabel = new UI.MoreLabel();
+			this.sizeBox = new UI.MoreComboBox();
 			this.warningLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.SuspendLayout();
 			// 
@@ -220,8 +220,8 @@ namespace River.OneMoreAddIn.Commands
 		private UI.MoreRadioButton sectionDetailBox;
 		private UI.MoreRadioButton allDetailsBox;
 		private UI.MoreRadioButton noDetailsBox;
-		private System.Windows.Forms.Label thumbnailLabel;
-		private System.Windows.Forms.ComboBox sizeBox;
+		private UI.MoreLabel thumbnailLabel;
+		private UI.MoreComboBox sizeBox;
 		private UI.MoreLabel warningLabel;
 	}
 }

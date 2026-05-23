@@ -88,6 +88,10 @@ Read `ONENOTE.EXE`'s PE header directly when you need OneNote's architecture.
 - **Branching:** `main` is protected. Use feature branches named like
   `1234-calendar-integration`, where the prefix `1234-` is the GitHub issue number 
   for the work in that branch. Open a PR from that branch to `main` when ready.
+  
+- **Prompting:** While in Planning mode, do not prompt to ask permission to
+  read files or perform basic research and discovery operations. Proceed as if
+  you have full permission for read-only commands.
 
 ## Where to read more (don't duplicate here)
 

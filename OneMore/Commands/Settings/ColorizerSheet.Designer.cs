@@ -31,18 +31,18 @@ namespace River.OneMoreAddIn.Settings
 		{
 			this.introBox = new River.OneMoreAddIn.UI.MoreMultilineLabel();
 			this.layoutPanel = new System.Windows.Forms.Panel();
-			this.barLabel = new System.Windows.Forms.Label();
+			this.barLabel = new UI.MoreLabel();
 			this.allLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.noneLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.langView = new System.Windows.Forms.ListView();
-			this.enabledLabel = new System.Windows.Forms.Label();
+			this.enabledLabel = new UI.MoreLabel();
 			this.family2Box = new River.OneMoreAddIn.UI.FontComboBox();
-			this.size2Box = new System.Windows.Forms.ComboBox();
-			this.font2Label = new System.Windows.Forms.Label();
+			this.size2Box = new UI.MoreComboBox();
+			this.font2Label = new UI.MoreLabel();
 			this.fixedBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.familyBox = new River.OneMoreAddIn.UI.FontComboBox();
-			this.sizeBox = new System.Windows.Forms.ComboBox();
-			this.fontLabel = new System.Windows.Forms.Label();
+			this.sizeBox = new UI.MoreComboBox();
+			this.fontLabel = new UI.MoreLabel();
 			this.applyBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.layoutPanel.SuspendLayout();
 			this.SuspendLayout();
@@ -311,15 +311,15 @@ namespace River.OneMoreAddIn.Settings
 		private System.Windows.Forms.Panel layoutPanel;
 		private UI.MoreCheckBox applyBox;
 		private UI.FontComboBox familyBox;
-		private System.Windows.Forms.ComboBox sizeBox;
-		private System.Windows.Forms.Label fontLabel;
+		private UI.MoreComboBox sizeBox;
+		private UI.MoreLabel fontLabel;
 		private UI.MoreCheckBox fixedBox;
-		private System.Windows.Forms.ComboBox size2Box;
-		private System.Windows.Forms.Label font2Label;
+		private UI.MoreComboBox size2Box;
+		private UI.MoreLabel font2Label;
 		private UI.FontComboBox family2Box;
 		private System.Windows.Forms.ListView langView;
-		private System.Windows.Forms.Label enabledLabel;
-		private System.Windows.Forms.Label barLabel;
+		private UI.MoreLabel enabledLabel;
+		private UI.MoreLabel barLabel;
 		private UI.MoreLinkLabel allLink;
 		private UI.MoreLinkLabel noneLink;
 	}

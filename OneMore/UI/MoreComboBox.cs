@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn.UI
 	using System.ComponentModel;
 	using System.Drawing;
 	using System.Drawing.Text;
+	using System.Runtime.InteropServices;
 	using System.Windows.Forms;
 
 
@@ -183,6 +184,72 @@ namespace River.OneMoreAddIn.UI
 				Alignment     = StringAlignment.Near,
 				LineAlignment = StringAlignment.Center
 			};
+		}
+
+
+		// dark-mode dropdown button theming - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+		[StructLayout(LayoutKind.Sequential)]
+		private struct RECT
+		{
+			public int Left, Top, Right, Bottom;
+			public Rectangle ToRectangle() => Rectangle.FromLTRB(Left, Top, Right, Bottom);
+		}
+
+		[StructLayout(LayoutKind.Sequential)]
+		private struct COMBOBOXINFO
+		{
+			public int cbSize;
+			public RECT rcItem;
+			public RECT rcButton;
+			public int stateButton;    // 2 = pressed
+			public IntPtr hwndCombo;
+			public IntPtr hwndEdit;
+			public IntPtr hwndList;
+		}
+
+		[DllImport("user32.dll")]
+		private static extern bool GetComboBoxInfo(IntPtr hwndCombo, ref COMBOBOXINFO pcbi);
+
+
+		protected override void WndProc(ref Message m)
+		{
+			base.WndProc(ref m);
+
+			if (m.Msg != Native.WM_PAINT || !ThemeManager.Instance.DarkMode)
+				return;
+
+			var info = new COMBOBOXINFO { cbSize = Marshal.SizeOf<COMBOBOXINFO>() };
+			if (!GetComboBoxInfo(Handle, ref info))
+				return;
+
+			var btnRect = info.rcButton.ToRectangle();
+			if (btnRect.IsEmpty)
+				return;
+
+			var manager = ThemeManager.Instance;
+			bool pressed = info.stateButton == 2;
+
+			using var g = Graphics.FromHwnd(Handle);
+
+			var backColor = pressed ? manager.ButtonPressBorder : manager.ButtonBack;
+			using var backBrush = new SolidBrush(backColor);
+			g.FillRectangle(backBrush, btnRect);
+
+			using var borderPen = new Pen(manager.ButtonBorder);
+			g.DrawLine(borderPen, btnRect.Left, btnRect.Top, btnRect.Left, btnRect.Bottom - 1);
+
+			var arrowColor = Enabled ? ForeColor : manager.GetColor("GrayText");
+			using var arrowBrush = new SolidBrush(arrowColor);
+			const int aw = 8, ah = 4;
+			int ax = btnRect.Left + (btnRect.Width - aw) / 2;
+			int ay = btnRect.Top  + (btnRect.Height - ah) / 2;
+			g.FillPolygon(arrowBrush, new[]
+			{
+				new Point(ax,          ay),
+				new Point(ax + aw,     ay),
+				new Point(ax + aw / 2, ay + ah)
+			});
 		}
 	}
 }

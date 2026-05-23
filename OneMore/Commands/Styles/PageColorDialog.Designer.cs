@@ -32,13 +32,13 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PageColorDialog));
 			this.omBox = new River.OneMoreAddIn.UI.MorePictureBox();
 			this.customBox = new River.OneMoreAddIn.UI.MorePictureBox();
-			this.noLabel = new System.Windows.Forms.Label();
+			this.noLabel = new UI.MoreLabel();
 			this.noPanel = new System.Windows.Forms.Panel();
 			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.expander = new River.OneMoreAddIn.UI.MoreExpander();
 			this.optionsPanel = new System.Windows.Forms.Panel();
 			this.loadThemeLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
-			this.currentThemeLabel = new System.Windows.Forms.Label();
+			this.currentThemeLabel = new UI.MoreLabel();
 			this.applyThemeBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.omButton = new River.OneMoreAddIn.UI.MoreRadioButton();
@@ -46,7 +46,7 @@
 			this.noButton = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.statusLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.tooltip = new System.Windows.Forms.ToolTip(this.components);
-			this.scopeBox = new System.Windows.Forms.ComboBox();
+			this.scopeBox = new UI.MoreComboBox();
 			this.detailPanel = new System.Windows.Forms.Panel();
 			((System.ComponentModel.ISupportInitialize)(this.omBox)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.customBox)).BeginInit();
@@ -317,13 +317,13 @@
 
 		private River.OneMoreAddIn.UI.MorePictureBox omBox;
 		private River.OneMoreAddIn.UI.MorePictureBox customBox;
-		private System.Windows.Forms.Label noLabel;
+		private UI.MoreLabel noLabel;
 		private System.Windows.Forms.Panel noPanel;
 		private UI.MoreButton cancelButton;
 		private UI.MoreExpander expander;
 		private System.Windows.Forms.Panel optionsPanel;
 		private UI.MoreLinkLabel loadThemeLink;
-		private System.Windows.Forms.Label currentThemeLabel;
+		private UI.MoreLabel currentThemeLabel;
 		private UI.MoreCheckBox applyThemeBox;
 		private UI.MoreButton okButton;
 		private UI.MoreRadioButton omButton;
@@ -331,7 +331,7 @@
 		private UI.MoreRadioButton noButton;
 		private UI.MoreLabel statusLabel;
 		private System.Windows.Forms.ToolTip tooltip;
-		private System.Windows.Forms.ComboBox scopeBox;
+		private UI.MoreComboBox scopeBox;
 		private System.Windows.Forms.Panel detailPanel;
 	}
 }

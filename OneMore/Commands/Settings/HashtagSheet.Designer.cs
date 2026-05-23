@@ -31,19 +31,19 @@ namespace River.OneMoreAddIn.Settings
 		{
 			this.components = new System.ComponentModel.Container();
 			this.introBox = new River.OneMoreAddIn.UI.MoreMultilineLabel();
-			this.intervalLabel = new System.Windows.Forms.Label();
+			this.intervalLabel = new UI.MoreLabel();
 			this.intervalBox = new System.Windows.Forms.NumericUpDown();
-			this.minLabel = new System.Windows.Forms.Label();
+			this.minLabel = new UI.MoreLabel();
 			this.advancedGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.warningLabel = new River.OneMoreAddIn.UI.MoreMultilineLabel();
 			this.scheduleLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.disabledBox = new River.OneMoreAddIn.UI.MoreCheckBox();
-			this.styleLabel = new System.Windows.Forms.Label();
-			this.styleBox = new System.Windows.Forms.ComboBox();
+			this.styleLabel = new UI.MoreLabel();
+			this.styleBox = new UI.MoreComboBox();
 			this.filterBox = new River.OneMoreAddIn.UI.MoreCheckBox();
-			this.delayLabel = new System.Windows.Forms.Label();
+			this.delayLabel = new UI.MoreLabel();
 			this.delayBox = new System.Windows.Forms.NumericUpDown();
-			this.msLabel = new System.Windows.Forms.Label();
+			this.msLabel = new UI.MoreLabel();
 			this.layoutPanel = new System.Windows.Forms.Panel();
 			this.tooltip = new System.Windows.Forms.ToolTip(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.intervalBox)).BeginInit();
@@ -284,17 +284,17 @@ namespace River.OneMoreAddIn.Settings
 		#endregion
 
 		private UI.MoreMultilineLabel introBox;
-		private System.Windows.Forms.Label intervalLabel;
+		private UI.MoreLabel intervalLabel;
 		private System.Windows.Forms.NumericUpDown intervalBox;
-		private System.Windows.Forms.Label minLabel;
+		private UI.MoreLabel minLabel;
 		private UI.MoreGroupBox advancedGroup;
 		private UI.MoreCheckBox disabledBox;
-		private System.Windows.Forms.Label styleLabel;
-		private System.Windows.Forms.ComboBox styleBox;
+		private UI.MoreLabel styleLabel;
+		private UI.MoreComboBox styleBox;
 		private UI.MoreCheckBox filterBox;
-		private System.Windows.Forms.Label delayLabel;
+		private UI.MoreLabel delayLabel;
 		private System.Windows.Forms.NumericUpDown delayBox;
-		private System.Windows.Forms.Label msLabel;
+		private UI.MoreLabel msLabel;
 		private System.Windows.Forms.Panel layoutPanel;
 		private UI.MoreMultilineLabel warningLabel;
 		private UI.MoreLinkLabel scheduleLink;

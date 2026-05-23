@@ -31,17 +31,17 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SearchAndReplaceDialog));
 			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
-			this.whatLabel = new System.Windows.Forms.Label();
-			this.withLabel = new System.Windows.Forms.Label();
+			this.whatLabel = new UI.MoreLabel();
+			this.withLabel = new UI.MoreLabel();
 			this.matchBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.regBox = new River.OneMoreAddIn.UI.MoreCheckBox();
-			this.whatBox = new System.Windows.Forms.ComboBox();
-			this.withBox = new System.Windows.Forms.ComboBox();
+			this.whatBox = new UI.MoreComboBox();
+			this.withBox = new UI.MoreComboBox();
 			this.whatStatusLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.withStatusLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.rawBox = new River.OneMoreAddIn.UI.MoreCheckBox();
-			this.scopeBox = new System.Windows.Forms.ComboBox();
-			this.scopeLabel = new System.Windows.Forms.Label();
+			this.scopeBox = new UI.MoreComboBox();
+			this.scopeLabel = new UI.MoreLabel();
 			this.SuspendLayout();
 			// 
 			// cancelButton
@@ -265,16 +265,16 @@
 
 		private UI.MoreButton cancelButton;
 		private UI.MoreButton okButton;
-		private System.Windows.Forms.Label whatLabel;
-		private System.Windows.Forms.Label withLabel;
+		private UI.MoreLabel whatLabel;
+		private UI.MoreLabel withLabel;
 		private UI.MoreCheckBox matchBox;
 		private UI.MoreCheckBox regBox;
-		private System.Windows.Forms.ComboBox whatBox;
-		private System.Windows.Forms.ComboBox withBox;
+		private UI.MoreComboBox whatBox;
+		private UI.MoreComboBox withBox;
 		private UI.MoreLabel whatStatusLabel;
 		private UI.MoreLabel withStatusLabel;
 		private UI.MoreCheckBox rawBox;
-		private System.Windows.Forms.ComboBox scopeBox;
-		private System.Windows.Forms.Label scopeLabel;
+		private UI.MoreComboBox scopeBox;
+		private UI.MoreLabel scopeLabel;
 	}
 }
