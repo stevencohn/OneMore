@@ -22,8 +22,14 @@ namespace River.OneMoreAddIn.Commands
 
 
 		public TableThemeProvider()
+w			: this(false)
 		{
-			themes = LoadSystemThemes();
+		}
+
+
+		public TableThemeProvider(bool unfiltered)
+		{
+			themes = LoadSystemThemes(unfiltered);
 
 			// first 'syscount' entires are system-defined default themes
 			syscount = themes.Count;
@@ -31,30 +37,46 @@ namespace River.OneMoreAddIn.Commands
 			themes.AddRange(LoadUserThemes());
 		}
 
-		private static List<TableTheme> LoadSystemThemes()
+
+		private static List<TableTheme> LoadSystemThemes(bool unfiltered)
 		{
+			string[] keepers = null;
+
+			var collection = new SettingsProvider().GetCollection("TableThemesSheet");
+			if (collection.Count > 0)
+			{
+				var categories = collection.Get<string>("categories", null);
+				if (categories is not null)
+				{
+					keepers = categories.
+						Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+				}
+			}
+
+			if (keepers?.Length == 0)
+			{
+				return new List<TableTheme>();
+			}
+
 			// Reminder that when adding a .json file into a .resx file, you need to change
 			// the FileType property of the resource to Text instead of Binary...
 
-			var sysThemes = JsonConvert.DeserializeObject<List<TableTheme>>(Resx.DefaultTableThemes);
+			var sthemes = JsonConvert.DeserializeObject<List<TableTheme>>(Resx.DefaultTableThemes);
 
-			var keeperCats = new SettingsProvider()
-				.GetCollection("TableThemes")
-				.Get("categories", string.Empty);
-
-			if (string.IsNullOrWhiteSpace(keeperCats))
+			if (unfiltered || keepers is null)
 			{
-				return sysThemes;
+				return sthemes;
 			}
 
-			var allKnownCats = new string[] { "WC", "WCH", "CC", "CCH", "CCHH", "M" };
-			var keepers = keeperCats.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-			foreach (var known in allKnownCats.Where(cat => !keepers.Contains(cat)))
+			var drops = new string[] { "WC", "WCH", "CC", "CCH", "CCHH", "M" }
+				.Where(c => !keepers.Contains(c));
+
+			foreach (var drop in drops)
 			{
-				sysThemes.RemoveAll(t => t.Category == known);
+				sthemes.RemoveAll(t => t.Category == drop);
 			}
 
-			return sysThemes;
+			return sthemes;
 		}
 
 
@@ -82,7 +104,7 @@ namespace River.OneMoreAddIn.Commands
 		/// <summary>
 		/// Gets the total number of system-defined and user-defined themes.
 		/// </summary>
-		public int Count => themes.Count;
+		public int Count => themes is not null ? themes.Count : 0;
 
 
 		/// <summary>

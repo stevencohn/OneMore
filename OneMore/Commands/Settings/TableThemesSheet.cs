@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Settings
 {
+	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
 	using System.Linq;
@@ -42,7 +43,7 @@ namespace River.OneMoreAddIn.Settings
 
 		private void FillThumbnails()
 		{
-			var provider = new TableThemeProvider();
+			var provider = new TableThemeProvider(true);
 
 			// we currently have 32 system tiles with 5x7=35 banded and 1x4 multi
 			// so grab the first representative 0, 7, 14, 21, 28, and 35
@@ -68,9 +69,14 @@ namespace River.OneMoreAddIn.Settings
 
 		private void SetSelections()
 		{
-			var settings = provider.GetCollection(Name);
-			var categories = settings.Get("categories", string.Empty)
-				.Split(new char[] { ',' }, System.StringSplitOptions.RemoveEmptyEntries);
+			var settings = provider.GetCollection(Name).Get<string>("categories", null);
+			if (settings is null)
+			{
+				SetChecks(true);
+				return;
+			}
+
+			var categories = settings.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
 
 			showWCBox.Checked = categories.Contains("WC");
 			showWCHBox.Checked = categories.Contains("WCH");
@@ -116,22 +122,16 @@ namespace River.OneMoreAddIn.Settings
 			if (showCCHHBox.Checked) keepList.Add("CCHH");
 			if (showMBox.Checked) keepList.Add("M");
 
-			var keepers = keepList.Aggregate((a, b) => $"{a},{b}");
+			var keepers = keepList.Count == 0 
+				? "none"
+				: keepList.Aggregate((a, b) => $"{a},{b}");
 
 			var settings = provider.GetCollection(Name);
 			var categories = settings.Get("categories", string.Empty);
 
 			if (keepers != categories)
 			{
-				if (keepList.Count == 0)
-				{
-					settings.Remove("categories");
-				}
-				else
-				{
-					settings.Add("categories", keepers);
-				}
-
+				settings.Add("categories", keepers);
 				updated = true;
 			}
 
