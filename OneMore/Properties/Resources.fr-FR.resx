@@ -4617,6 +4617,10 @@ Modifié après
 Modifié avant</value>
     <comment>combobox</comment>
   </data>
+  <data name="SearchDialogTextControl_includeTocBox.Text" xml:space="preserve">
+    <value>Rechercher du texte dans la table des matières</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
     <value>Entrez les critères de recherche, incluant éventuellement et, ou non, les citations et les parenthèses</value>
     <comment>label</comment>

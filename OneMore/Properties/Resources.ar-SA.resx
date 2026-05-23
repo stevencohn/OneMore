@@ -4618,6 +4618,10 @@ ISO-code then comma then language name</comment>
 تم تعديله من قبل</value>
     <comment>combobox</comment>
   </data>
+  <data name="SearchDialogTextControl_includeTocBox.Text" xml:space="preserve">
+    <value>البحث عن نص في جدول المحتويات</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
     <value>أدخل معايير البحث ، بما في ذلك اختياريا ، أو ، أو لا ، اقتباسات وأقواس</value>
     <comment>label</comment>

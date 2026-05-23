@@ -4640,6 +4640,10 @@ Modified after
 Modified before</value>
     <comment>combobox</comment>
   </data>
+  <data name="SearchDialogTextControl_includeTocBox.Text" xml:space="preserve">
+    <value>Search text in table of contents</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
     <value>Enter the search criteria, optionally including AND, OR, NOT, quotes and parenthesis</value>
     <comment>label</comment>

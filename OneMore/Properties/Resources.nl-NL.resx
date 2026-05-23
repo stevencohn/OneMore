@@ -4606,6 +4606,10 @@ Aangepast na
 Gewijzigd eerder</value>
     <comment>combobox</comment>
   </data>
+  <data name="SearchDialogTextControl_includeTocBox.Text" xml:space="preserve">
+    <value>Zoek tekst in de inhoudsopgave</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
     <value>Voer de zoekcriteria in, optioneel inclusief en, of, niet, citaten en haakjes</value>
     <comment>label</comment>

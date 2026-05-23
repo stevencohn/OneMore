@@ -4605,6 +4605,10 @@ ISO-code then comma then language name</comment>
 שונה לפני</value>
     <comment>combobox</comment>
   </data>
+  <data name="SearchDialogTextControl_includeTocBox.Text" xml:space="preserve">
+    <value>חיפוש טקסט בתוכן העניינים</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
     <value>הזן את קריטריוני החיפוש, לחלופין כולל, או, לא, ציטוטים וסוגריים</value>
     <comment>label</comment>

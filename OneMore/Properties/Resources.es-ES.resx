@@ -4606,6 +4606,10 @@ Modificado después
 Modificado antes</value>
     <comment>combobox</comment>
   </data>
+  <data name="SearchDialogTextControl_includeTocBox.Text" xml:space="preserve">
+    <value>Buscar texto en la tabla de contenido</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
     <value>Ingrese los criterios de búsqueda, opcionalmente incluyendo y, o no, citas y paréntesis</value>
     <comment>label</comment>

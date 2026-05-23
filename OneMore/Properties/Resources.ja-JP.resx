@@ -4610,6 +4610,10 @@ ISO-code then comma then language name</comment>
 前に変更されました</value>
     <comment>combobox</comment>
   </data>
+  <data name="SearchDialogTextControl_includeTocBox.Text" xml:space="preserve">
+    <value>目次内のテキストを検索する</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
     <value>検索条件を入力します。</value>
     <comment>label</comment>

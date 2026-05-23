@@ -4606,6 +4606,10 @@ Modificado depois
 Modificado antes</value>
     <comment>combobox</comment>
   </data>
+  <data name="SearchDialogTextControl_includeTocBox.Text" xml:space="preserve">
+    <value>Pesquisar texto no sumário</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
     <value>Digite os critérios de pesquisa, opcionalmente, incluindo e, ou não, citações e parênteses</value>
     <comment>label</comment>
