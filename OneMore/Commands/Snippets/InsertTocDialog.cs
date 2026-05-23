@@ -7,6 +7,8 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.UI;
 	using Snippets.TocGenerators;
 	using System;
+	using System.Drawing;
+	using System.Windows.Forms;
 	using Resx = Properties.Resources;
 
 
@@ -48,8 +50,35 @@ namespace River.OneMoreAddIn.Commands
 				});
 			}
 
+			PopulateTodoBox();
+
+			todoBox.SelectedIndex = 0;
 			locationBox.SelectedIndex = 0;
 			styleBox.SelectedIndex = 0;
+		}
+
+
+		private void PopulateTodoBox()
+		{
+			var list = new ImageList
+			{
+				ImageSize = new Size(24, 24),           // the size of each icon in the strip
+				ColorDepth = ColorDepth.Depth32Bit,     // preserve alpha/transparency
+			};
+
+			list.Images.AddStrip(Resx.TocTodoIconStrip);
+			var lines = Resx.InsertTocDialog_todoBox_Text.Split(
+				new string[] { Environment.NewLine },
+				StringSplitOptions.RemoveEmptyEntries);
+
+			// add None item
+			todoBox.Items.Add(new MoreComboBox.ComboItem(lines[0]));
+
+			for (var i = 1; i < lines.Length; i++)
+			{
+				// offset Image index -1 from lines Index because we already used "None" at [0]
+				todoBox.Items.Add(new MoreComboBox.ComboItem(lines[i], list.Images[i - 1]));
+			}
 		}
 
 
@@ -81,21 +110,24 @@ namespace River.OneMoreAddIn.Commands
 				else if (parameters.Contains("over")) locationBox.SelectedIndex = 1;
 				else locationBox.SelectedIndex = 0;
 
-				if (parameters.Find(p => p.StartsWith("style")) is string style)
+				if (parameters.Find(p => p.StartsWith("style")) is string style &&
+					int.TryParse(style.Substring(5), out var index))
 				{
-					if (int.TryParse(style.Substring(5), out var index))
-					{
-						styleBox.SelectedIndex = index;
-					}
+					styleBox.SelectedIndex = index;
 				}
 
 				levelsBox.Value = 6;
-				if (parameters.Find(p => p.StartsWith("level")) is string level)
+				if (parameters.Find(p => p.StartsWith("level")) is string level &&
+					int.TryParse(level.Substring(5), out var value))
 				{
-					if (int.TryParse(level.Substring(5), out var value))
-					{
-						levelsBox.Value = value;
-					}
+					levelsBox.Value = value;
+				}
+
+				if (parameters.Find(p => p.StartsWith("todo")) is string todo &&
+					int.TryParse(todo.Substring(4), out var todoIndex) &&
+					todoIndex > 0)
+				{
+					todoBox.SelectedIndex = todoIndex + 1;
 				}
 			}
 		}
@@ -197,6 +229,9 @@ namespace River.OneMoreAddIn.Commands
 
 				if (locationBox.SelectedIndex == 2) parameters.Add("here");
 				else if (locationBox.SelectedIndex == 1) parameters.Add("over");
+
+				if (todoBox.SelectedIndex > 0)
+					parameters.Add($"todo{todoBox.SelectedIndex - 1}");
 			}
 			else if (sectionRadio.Checked)
 			{

@@ -1795,6 +1795,19 @@
     <value>تحديث تاريخ الصفحة والوقت</value>
     <comment>checkbox</comment>
   </data>
+  <data name="InsertTocDialog_todoBox.Text" xml:space="preserve">
+    <value>لا أحد
+صندوق الاقتراع
+الدائرة الحمراء
+الساحة الحمراء
+الساحة الزرقاء
+ساحة البرتقال
+الساحة الصفراء
+الساحة الخضراء
+الساحة الأرجوانية
+ساحة براون</value>
+    <comment>combobox</comment>
+  </data>
   <data name="InsertTocDialog_topBox.Text" xml:space="preserve">
     <value>أضف ارتباطًا إلى كل عنوان للانتقال إلى أعلى الصفحة</value>
     <comment>checkbox</comment>

@@ -1794,6 +1794,19 @@ OneNoteファイル (*.one)</value>
     <value>ページの日付と時刻を更新します</value>
     <comment>checkbox</comment>
   </data>
+  <data name="InsertTocDialog_todoBox.Text" xml:space="preserve">
+    <value>なし
+投票箱
+赤い丸
+赤の広場
+ブルースクエア
+オレンジスクエア
+イエロースクエア
+グリーンスクエア
+パープルスクエア
+ブラウンスクエア</value>
+    <comment>combobox</comment>
+  </data>
   <data name="InsertTocDialog_topBox.Text" xml:space="preserve">
     <value>見出しへのリンク・見出しからページ上部へのリンクを追加</value>
     <comment>checkbox</comment>

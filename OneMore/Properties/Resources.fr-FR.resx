@@ -1795,6 +1795,19 @@ Titre personnalisé 3</value>
     <value>Mettre à jour la date et l'heure de la page</value>
     <comment>checkbox</comment>
   </data>
+  <data name="InsertTocDialog_todoBox.Text" xml:space="preserve">
+    <value>Aucun
+Urne électorale
+Cercle rouge
+Place Rouge
+Carré Bleu
+Carré Orange
+Carré Jaune
+Place Verte
+Carré violet
+Carré Marron</value>
+    <comment>combobox</comment>
+  </data>
   <data name="InsertTocDialog_topBox.Text" xml:space="preserve">
     <value>Ajoutez un lien à chaque titre pour passer en haut de la page</value>
     <comment>checkbox</comment>

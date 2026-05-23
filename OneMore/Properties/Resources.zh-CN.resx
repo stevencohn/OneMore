@@ -1794,6 +1794,19 @@ OneNote 文件 (*.one)</value>
     <value>更新页面日期和时间</value>
     <comment>checkbox</comment>
   </data>
+  <data name="InsertTocDialog_todoBox.Text" xml:space="preserve">
+    <value>没有任何
+票箱
+红圈
+红场
+蓝色方块
+橙色广场
+黄色方块
+绿色广场
+紫色方块
+布朗广场</value>
+    <comment>combobox</comment>
+  </data>
   <data name="InsertTocDialog_topBox.Text" xml:space="preserve">
     <value>将链接添加到每个标题以跳至页面顶部</value>
     <comment>checkbox</comment>
