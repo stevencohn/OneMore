@@ -41,9 +41,12 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 		*/
 
 		public const int MinToCWidth = 400;
+		private const string TodoChars = "☐⭕🟥🟦🟧🟨🟩🟪🟫"; // Segoe UI Emoji
 
 		private Page page;
 		private XNamespace ns;
+		private int todoIndex = -1;
+		private List<string> todos;
 
 
 		public PageTocGenerator(TocParameters parameters)
@@ -74,6 +77,13 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 			{
 				var levels = int.Parse(level.Substring(5));
 				headings = headings.Where(h => h.Level <= levels).ToList();
+			}
+
+			var todo = parameters.FirstOrDefault(p => p.StartsWith("todo"));
+			if (todo is not null)
+			{
+				todoIndex = int.Parse(todo.Substring(4));
+				todos = MakeEmojiList();
 			}
 
 			// build new TOC...
@@ -115,6 +125,7 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 			if (parameters.Contains("align")) segments = $"{segments}/align";
 			if (parameters.Contains("here")) segments = $"{segments}/here";
 			if (parameters.Contains("over")) segments = $"{segments}/over";
+			if (todo is not null) segments = $"{segments}/{todo}";
 			if (level is not null) segments = $"{segments}/{level}";
 
 			table[0][0].SetContent(MakeTitle(page, segments));
@@ -144,6 +155,18 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 
 			await one.Update(page);
 			return true;
+		}
+
+
+		private List<string> MakeEmojiList()
+		{
+			var list = new List<string>();
+			var e = StringInfo.GetTextElementEnumerator(TodoChars);
+
+			while (e.MoveNext())
+				list.Add(e.GetTextElement());
+
+			return list;
 		}
 
 
@@ -370,7 +393,19 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 					{
 						var linkColor = dark ? " style='color:#5B9BD5'" : string.Empty;
 						var clean = CleanTitle(heading.Text);
+
 						text = $"<a href=\"{heading.Link}\"{linkColor}>{clean}</a>";
+					}
+
+					if (todoIndex >= 0)
+					{
+						var incomplete = heading.Root.Elements(ns + "Tag")
+							.Count(t => t.Attribute("completed").Value == "false");
+
+						if (incomplete > 0)
+						{
+							text = $"{text} <span style='font-family:\"Segoe UI Emoji\"'>{todos[todoIndex]}</span>";
+						}
 					}
 
 					var textColor = dark ? "#FFFFFF" : "#000000";
