@@ -5109,6 +5109,46 @@ Odwracać</value>
     <value>Motyw tabeli OneMore {0}</value>
     <comment>Screentip for table theme gallery tiles</comment>
   </data>
+  <data name="TableThemesSheet_clearLink.Text" xml:space="preserve">
+    <value>Wyczyść wszystko</value>
+    <comment>link label</comment>
+  </data>
+  <data name="TableThemesSheet_introBox.Text" xml:space="preserve">
+    <value>Dostosuj listę dostępnych gotowych motywów tabel na wstążce.</value>
+    <comment>label</comment>
+  </data>
+  <data name="TableThemesSheet_selectLink.Text" xml:space="preserve">
+    <value>Zaznacz wszystko</value>
+    <comment>link label</comment>
+  </data>
+  <data name="TableThemesSheet_showCCBox.Text" xml:space="preserve">
+    <value>Pokaż motywy kolorowych wierszy</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="TableThemesSheet_showCCHBox.Text" xml:space="preserve">
+    <value>Pokaż wiersze typu kolor-kolor z motywami kolorów nagłówka</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="TableThemesSheet_showCCHHBox.Text" xml:space="preserve">
+    <value>Pokaż wiersze typu kolor-kolor z obydwoma motywami kolorów nagłówka</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="TableThemesSheet_showMBox.Text" xml:space="preserve">
+    <value>Pokaż wielokolorowe motywy wierszy</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="TableThemesSheet_showWCBox.Text" xml:space="preserve">
+    <value>Pokaż motywy wierszy w kolorze białym</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="TableThemesSheet_showWCHBox.Text" xml:space="preserve">
+    <value>Pokaż wiersze w kolorze białym z motywami kolorów nagłówka</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="TableThemesSheet_Title" xml:space="preserve">
+    <value>Motywy stołu</value>
+    <comment>settings dialog</comment>
+  </data>
   <data name="TabOneMore_Label" xml:space="preserve">
     <value>Jeszcze jeden</value>
     <comment>ribbon</comment>

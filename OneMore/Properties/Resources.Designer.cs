@@ -1571,25 +1571,24 @@ namespace River.OneMoreAddIn.Properties {
         ///  {
         ///    &quot;Name&quot;: &quot;White-Purple Rows&quot;,
         ///    &quot;FirstRowStripe&quot;: &quot;Transparent&quot;,
-        ///    &quot;SecondRowStripe&quot;: &quot;229, 224, 236&quot;
+        ///    &quot;SecondRowStripe&quot;: &quot;229, 224, 236&quot;,
+        ///    &quot;Category&quot;:  &quot;WC&quot;
         ///  },
         ///  {
         ///    &quot;Name&quot;: &quot;White-Blue Rows&quot;,
         ///    &quot;FirstRowStripe&quot;: &quot;Transparent&quot;,
-        ///    &quot;SecondRowStripe&quot;: &quot;222, 235, 246&quot;
+        ///    &quot;SecondRowStripe&quot;: &quot;222, 235, 246&quot;,
+        ///    &quot;Category&quot;: &quot;WC&quot;
         ///  },
         ///  {
         ///    &quot;Name&quot;: &quot;White-Green Rows&quot;,
         ///    &quot;FirstRowStripe&quot;: &quot;Transparent&quot;,
-        ///    &quot;SecondRowStripe&quot;: &quot;226, 239, 217&quot;
+        ///    &quot;SecondRowStripe&quot;: &quot;226, 239, 217&quot;,
+        ///    &quot;Category&quot;: &quot;WC&quot;
         ///  },
         ///  {
         ///    &quot;Name&quot;: &quot;White-Yellow Rows&quot;,
-        ///    &quot;FirstRowStripe&quot;: &quot;Transparent&quot;,
-        ///    &quot;SecondRowStripe&quot;: &quot;255, 242, 204&quot;
-        ///  },
-        ///  {
-        ///    &quot;Name&quot;: &quot;Wh [rest of string was truncated]&quot;;.
+        ///    &quot;FirstRowStripe&quot;: &quot;Transparent [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DefaultTableThemes {
             get {
@@ -12567,6 +12566,96 @@ namespace River.OneMoreAddIn.Properties {
         internal static string TableTheme_Screentip {
             get {
                 return ResourceManager.GetString("TableTheme_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear all.
+        /// </summary>
+        internal static string TableThemesSheet_clearLink_Text {
+            get {
+                return ResourceManager.GetString("TableThemesSheet_clearLink.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customize list of available pre-built table themes on the ribbon..
+        /// </summary>
+        internal static string TableThemesSheet_introBox_Text {
+            get {
+                return ResourceManager.GetString("TableThemesSheet_introBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select all.
+        /// </summary>
+        internal static string TableThemesSheet_selectLink_Text {
+            get {
+                return ResourceManager.GetString("TableThemesSheet_selectLink.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show color-color rows themes.
+        /// </summary>
+        internal static string TableThemesSheet_showCCBox_Text {
+            get {
+                return ResourceManager.GetString("TableThemesSheet_showCCBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show color-color rows with header color themes.
+        /// </summary>
+        internal static string TableThemesSheet_showCCHBox_Text {
+            get {
+                return ResourceManager.GetString("TableThemesSheet_showCCHBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show color-color rows with both header color themes.
+        /// </summary>
+        internal static string TableThemesSheet_showCCHHBox_Text {
+            get {
+                return ResourceManager.GetString("TableThemesSheet_showCCHHBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show multi-color rows themes.
+        /// </summary>
+        internal static string TableThemesSheet_showMBox_Text {
+            get {
+                return ResourceManager.GetString("TableThemesSheet_showMBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show white-color rows themes.
+        /// </summary>
+        internal static string TableThemesSheet_showWCBox_Text {
+            get {
+                return ResourceManager.GetString("TableThemesSheet_showWCBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show white-color rows with header color themes.
+        /// </summary>
+        internal static string TableThemesSheet_showWCHBox_Text {
+            get {
+                return ResourceManager.GetString("TableThemesSheet_showWCHBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Table Themes.
+        /// </summary>
+        internal static string TableThemesSheet_Title {
+            get {
+                return ResourceManager.GetString("TableThemesSheet_Title", resourceCulture);
             }
         }
         

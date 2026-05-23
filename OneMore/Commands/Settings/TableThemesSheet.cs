@@ -31,6 +31,15 @@ namespace River.OneMoreAddIn.Settings
 			{
 				Localize(new string[]
 				{
+					"introBox",
+					"selectLink",
+					"clearLink",
+					"showWCBox",
+					"showWCHBox",
+					"showCCBox",
+					"showCCHBox",
+					"showCCHHBox",
+					"showMBox"
 				});
 			}
 

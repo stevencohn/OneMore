@@ -22,7 +22,7 @@ namespace River.OneMoreAddIn.Commands
 
 
 		public TableThemeProvider()
-w			: this(false)
+			: this(false)
 		{
 		}
 
