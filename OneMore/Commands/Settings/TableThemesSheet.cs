@@ -4,26 +4,18 @@
 
 namespace River.OneMoreAddIn.Settings
 {
+	using System.Collections.Generic;
+	using System.Drawing;
+	using System.Linq;
+	using System.Windows.Forms;
 	using Microsoft.Office.Core;
 	using River.OneMoreAddIn.Commands;
-	using System;
-	using System.Collections.Generic;
-	using System.ComponentModel;
-	using System.Data;
-	using System.Drawing;
-	using System.IO;
-	using System.Linq;
-	using System.Runtime.InteropServices;
-	using System.Runtime.InteropServices.ComTypes;
-	using System.Text;
-	using System.Threading.Tasks;
-	using System.Windows.Forms;
 	using Resx = Properties.Resources;
 
 
 	internal partial class TableThemesSheet : SheetBase
 	{
-		private IRibbonUI ribbon;
+		private readonly IRibbonUI ribbon;
 
 
 		public TableThemesSheet(SettingsProvider provider, IRibbonUI ribbon)
@@ -44,6 +36,7 @@ namespace River.OneMoreAddIn.Settings
 			this.ribbon = ribbon;
 
 			FillThumbnails();
+			SetSelections();
 		}
 
 
@@ -66,14 +59,25 @@ namespace River.OneMoreAddIn.Settings
 		private Image ImageFromStream(TableThemeProvider provider, int index)
 		{
 			var image = new Bitmap(70, 60);
-
-			// inset table so there's a margin
 			var bounds = new Rectangle(7, 7, 55, 45);
-
 			var painter = new TableThemePainter(image, bounds, BackColor);
 			painter.Paint(provider.GetTheme(index));
-
 			return image;
+		}
+
+
+		private void SetSelections()
+		{
+			var settings = provider.GetCollection(Name);
+			var categories = settings.Get("categories", string.Empty)
+				.Split(new char[] { ',' }, System.StringSplitOptions.RemoveEmptyEntries);
+
+			showWCBox.Checked = categories.Contains("WC");
+			showWCHBox.Checked = categories.Contains("WCH");
+			showCCBox.Checked = categories.Contains("CC");
+			showCCHBox.Checked = categories.Contains("CCH");
+			showCCHHBox.Checked = categories.Contains("CCHH");
+			showMBox.Checked = categories.Contains("M");
 		}
 
 
@@ -105,12 +109,12 @@ namespace River.OneMoreAddIn.Settings
 			var updated = false;
 
 			var keepList = new List<string>();
-			if (showCCBox.Checked) keepList.Add("WC");
-			if (showCCBox.Checked) keepList.Add("WCH");
+			if (showWCBox.Checked) keepList.Add("WC");
+			if (showWCHBox.Checked) keepList.Add("WCH");
 			if (showCCBox.Checked) keepList.Add("CC");
-			if (showCCBox.Checked) keepList.Add("CCH");
-			if (showCCBox.Checked) keepList.Add("CCHH");
-			if (showCCBox.Checked) keepList.Add("M");
+			if (showCCHBox.Checked) keepList.Add("CCH");
+			if (showCCHHBox.Checked) keepList.Add("CCHH");
+			if (showMBox.Checked) keepList.Add("M");
 
 			var keepers = keepList.Aggregate((a, b) => $"{a},{b}");
 
