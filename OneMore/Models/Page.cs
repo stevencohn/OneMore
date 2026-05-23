@@ -206,15 +206,12 @@ namespace River.OneMoreAddIn.Models
 		/// <param name="def"></param>
 		public void AddQuickStyleDef(XElement def)
 		{
-			var tagdef = Root.Elements(Namespace + "TagDef").LastOrDefault();
-			if (tagdef is null)
-			{
+			var anchor = Root.Elements(Namespace + "QuickStyleDef").LastOrDefault()
+				?? Root.Elements(Namespace + "TagDef").LastOrDefault();
+			if (anchor is null)
 				Root.AddFirst(def);
-			}
 			else
-			{
-				tagdef.AddAfterSelf(def);
-			}
+				anchor.AddAfterSelf(def);
 		}
 
 
@@ -396,10 +393,15 @@ namespace River.OneMoreAddIn.Models
 			if (size is null)
 			{
 				// this size is close to OneNote defaults when a new Outline is created
-				outline.AddFirst(new XElement(Namespace + "Size",
+				var newSize = new XElement(Namespace + "Size",
 					new XAttribute("width", "300.0"),
 					new XAttribute("height", "14.0")
-					));
+					);
+
+				// Size must follow Position per PageObject schema
+				var position = outline.Element(Namespace + "Position");
+				if (position is null) outline.AddFirst(newSize);
+				else position.AddAfterSelf(newSize);
 			}
 
 			return container;
@@ -499,7 +501,11 @@ namespace River.OneMoreAddIn.Models
 				if (sibling is null)
 				{
 					quick.Index = 0;
-					Root.AddFirst(quick.ToElement(Namespace));
+					var tagdef = Root.Elements(Namespace + "TagDef").LastOrDefault();
+					if (tagdef is null)
+						Root.AddFirst(quick.ToElement(Namespace));
+					else
+						tagdef.AddAfterSelf(quick.ToElement(Namespace));
 				}
 				else
 				{
@@ -765,12 +771,10 @@ namespace River.OneMoreAddIn.Models
 					);
 
 				// add into schema sequence...
-				var after = Root.Elements(Namespace + "XPSFile").LastOrDefault();
-				if (after is null)
-				{
-					after = Root.Elements(Namespace + "QuickStyleDef").LastOrDefault();
-					after ??= Root.Elements(Namespace + "TagDef").LastOrDefault();
-				}
+				var after = Root.Elements(Namespace + "Meta").LastOrDefault()
+					?? Root.Elements(Namespace + "XPSFile").LastOrDefault()
+					?? Root.Elements(Namespace + "QuickStyleDef").LastOrDefault()
+					?? Root.Elements(Namespace + "TagDef").LastOrDefault();
 
 				if (after is null)
 				{

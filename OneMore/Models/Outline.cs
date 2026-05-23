@@ -114,7 +114,9 @@ namespace River.OneMoreAddIn.Models
 					size.Add(new XAttribute("height", $"{height}.0"));
 				}
 
-				AddFirst(size);
+				var position = Element(ns + "Position");
+				if (position is null) AddFirst(size);
+				else position.AddAfterSelf(size);
 			}
 			else
 			{

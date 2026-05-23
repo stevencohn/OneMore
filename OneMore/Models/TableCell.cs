@@ -267,11 +267,16 @@ namespace River.OneMoreAddIn.Models
 
 			if (element == null)
 			{
-				// Meta must precede T
-				parent.AddFirst(new XElement(ns + "Meta",
+				// Meta appears after Tag/MediaIndex per OE schema sequence
+				var meta = new XElement(ns + "Meta",
 					new XAttribute("name", name),
 					new XAttribute("content", value)
-					));
+					);
+
+				var anchor = parent.Elements(ns + "Tag").LastOrDefault()
+					?? parent.Elements(ns + "MediaIndex").LastOrDefault();
+				if (anchor is null) parent.AddFirst(meta);
+				else anchor.AddAfterSelf(meta);
 			}
 			else
 			{
@@ -296,12 +301,16 @@ namespace River.OneMoreAddIn.Models
 
 			if (element == null)
 			{
-				// Meta must precede T
-				parent.AddFirst(new XElement(ns + "Tag",
+				// Tag appears after MediaIndex per OE schema sequence
+				var tag = new XElement(ns + "Tag",
 					new XAttribute("index", index),
 					new XAttribute("completed", "true"),
 					new XAttribute("disabled", "false")
-					));
+					);
+
+				var lastMedia = parent.Elements(ns + "MediaIndex").LastOrDefault();
+				if (lastMedia is null) parent.AddFirst(tag);
+				else lastMedia.AddAfterSelf(tag);
 			}
 		}
 
