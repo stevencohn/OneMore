@@ -34,6 +34,7 @@ namespace River.OneMoreAddIn.Settings
 			Ribbon,
 			Search,
 			Snippets,
+			TableThemes,
 			Variables
 		}
 
@@ -74,6 +75,7 @@ namespace River.OneMoreAddIn.Settings
 				navTree.Nodes["ribbonNode"].Text = Resx.RibbonBarSheet_Title;
 				navTree.Nodes["searchNode"].Text = Resx.SearchEngineDialog_Text;
 				navTree.Nodes["snippetsNode"].Text = Resx.word_Snippets;
+				navTree.Nodes["tableThemesNode"].Text = "Table Themes";
 				navTree.Nodes["variablesNode"].Text = Resx.VariablesSheet_Title;
 			}
 
@@ -139,6 +141,7 @@ namespace River.OneMoreAddIn.Settings
 					14 => new RibbonBarSheet(provider),
 					15 => new SearchEngineSheet(provider),
 					16 => new SnippetsSheet(provider, ribbon),
+					17 => new TableThemesSheet(provider, ribbon),
 					_ => new VariablesSheet(provider)
 				};
 
