@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Collections.Generic;
 	using System.IO;
 	using System.Linq;
+	using River.OneMoreAddIn.Settings;
 	using Resx = Properties.Resources;
 
 
@@ -22,10 +23,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public TableThemeProvider()
 		{
-			// Reminder that when adding a .json file into a .resx file, you need to change
-			// the FileType property of the resource to Text instead of Binary...
-
-			themes = JsonConvert.DeserializeObject<List<TableTheme>>(Resx.DefaultTableThemes);
+			themes = LoadSystemThemes();
 
 			// first 'syscount' entires are system-defined default themes
 			syscount = themes.Count;
@@ -33,8 +31,34 @@ namespace River.OneMoreAddIn.Commands
 			themes.AddRange(LoadUserThemes());
 		}
 
+		private static List<TableTheme> LoadSystemThemes()
+		{
+			// Reminder that when adding a .json file into a .resx file, you need to change
+			// the FileType property of the resource to Text instead of Binary...
 
-		private IEnumerable<TableTheme> LoadUserThemes()
+			var sysThemes = JsonConvert.DeserializeObject<List<TableTheme>>(Resx.DefaultTableThemes);
+
+			var keeperCats = new SettingsProvider()
+				.GetCollection("TableThemes")
+				.Get("categories", string.Empty);
+
+			if (string.IsNullOrWhiteSpace(keeperCats))
+			{
+				return sysThemes;
+			}
+
+			var allKnownCats = new string[] { "WC", "WCH", "CC", "CCH", "CCHH", "M" };
+			var keepers = keeperCats.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+			foreach (var known in allKnownCats.Where(cat => !keepers.Contains(cat)))
+			{
+				sysThemes.RemoveAll(t => t.Category == known);
+			}
+
+			return sysThemes;
+		}
+
+
+		private static IEnumerable<TableTheme> LoadUserThemes()
 		{
 			var path = Path.Combine(PathHelper.GetAppDataPath(), UserFileName);
 

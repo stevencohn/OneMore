@@ -97,6 +97,18 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		/// <summary>
+		/// Classifies the entry as one of WC/white-color, WCH/white-color-with-header,
+		/// CC/color-color, CCH/color-color-with-header, CCH/color-color-with-both-headers,
+		/// or M/multi-color
+		/// </summary>
+		public string Category
+		{
+			get;
+			set;
+		}
+
+
 		// styles are applied in this order of the properties below
 		// where lower styles override upper styles
 
