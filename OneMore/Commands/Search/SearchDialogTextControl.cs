@@ -596,8 +596,16 @@ namespace River.OneMoreAddIn.Commands
 			// so the lazy XLinq query is evaluated while we own the XDocument.
 			var paragraphs = page.BodyOutlines
 				.Descendants(ns + "OE")
-				.Where(e => e.Elements(ns + "T").Any())
 				.ToList();
+
+			if (!includeTocBox.Checked)
+			{
+				paragraphs = paragraphs.Where(e => e.Elements(ns + "T").Any()
+					&& !e.AncestorsAndSelf(ns + "OE")
+						.Any(a => a.Elements(ns + "Meta")
+							.Any(m => m.Attribute("name")?.Value == "omToc")))
+				.ToList();
+			}
 
 			if (paragraphs.Count == 0)
 			{

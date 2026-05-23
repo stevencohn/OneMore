@@ -4602,6 +4602,10 @@ Modifiziert nach
 Vorher geändert</value>
     <comment>combobox</comment>
   </data>
+  <data name="SearchDialogTextControl_includeToxBox.Text" xml:space="preserve">
+    <value>Suchen Sie nach Text im Inhaltsverzeichnis</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
     <value>Geben Sie die Suchkriterien ein, einschließlich und, oder nicht, Zitate und Klammern</value>
     <comment>label</comment>

@@ -11393,6 +11393,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search text in table of contents.
+        /// </summary>
+        internal static string SearchDialogTextControl_includeToxBox_Text {
+            get {
+                return ResourceManager.GetString("SearchDialogTextControl_includeToxBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter the search criteria, optionally including AND, OR, NOT, quotes and parenthesis.
         /// </summary>
         internal static string SearchDialogTextControl_introLabel_Text {

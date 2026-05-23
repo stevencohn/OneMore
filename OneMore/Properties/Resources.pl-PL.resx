@@ -4607,6 +4607,10 @@ Zmodyfikowany po
 Zmodyfikowane wcześniej</value>
     <comment>combobox</comment>
   </data>
+  <data name="SearchDialogTextControl_includeToxBox.Text" xml:space="preserve">
+    <value>Wyszukaj tekst w spisie treści</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
     <value>Wprowadź kryteria wyszukiwania, opcjonalnie, w tym i, lub nie, cytaty i nawiasy</value>
     <comment>label</comment>
