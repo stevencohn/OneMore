@@ -4610,6 +4610,10 @@ ISO-code then comma then language name</comment>
 前に変更されました</value>
     <comment>combobox</comment>
   </data>
+  <data name="SearchDialogTextControl_includeTocBox.Text" xml:space="preserve">
+    <value>目次内のテキストを検索する</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
     <value>検索条件を入力します。</value>
     <comment>label</comment>
@@ -4727,10 +4731,6 @@ ISO-code then comma then language name</comment>
   <data name="SettingsDialog_Text" xml:space="preserve">
     <value>OneMoreの設定</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="SettingsFilename" xml:space="preserve">
-    <value>Settings.xml</value>
-    <comment>SKIP, filename</comment>
   </data>
   <data name="ShowXmlDialog.Text" xml:space="preserve">
     <value>OneMore XML</value>
@@ -5115,6 +5115,46 @@ ISO-code then comma then language name</comment>
   <data name="TableTheme_Screentip" xml:space="preserve">
     <value>OneMore 表テーマ {0}</value>
     <comment>Screentip for table theme gallery tiles</comment>
+  </data>
+  <data name="TableThemesSheet_clearLink.Text" xml:space="preserve">
+    <value>すべてクリア</value>
+    <comment>link label</comment>
+  </data>
+  <data name="TableThemesSheet_introBox.Text" xml:space="preserve">
+    <value>リボン上で利用可能な事前構築されたテーブル テーマのリストをカスタマイズします。</value>
+    <comment>label</comment>
+  </data>
+  <data name="TableThemesSheet_selectLink.Text" xml:space="preserve">
+    <value>すべて選択</value>
+    <comment>link label</comment>
+  </data>
+  <data name="TableThemesSheet_showCCBox.Text" xml:space="preserve">
+    <value>色と色の行テーマを表示</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="TableThemesSheet_showCCHBox.Text" xml:space="preserve">
+    <value>ヘッダーのカラーテーマを使用して色と色の行を表示する</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="TableThemesSheet_showCCHHBox.Text" xml:space="preserve">
+    <value>両方のヘッダー カラー テーマを使用して色と色の行を表示します</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="TableThemesSheet_showMBox.Text" xml:space="preserve">
+    <value>複数色の行テーマを表示する</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="TableThemesSheet_showWCBox.Text" xml:space="preserve">
+    <value>白色の行テーマを表示する</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="TableThemesSheet_showWCHBox.Text" xml:space="preserve">
+    <value>ヘッダーの色のテーマを使用して白色の行を表示します</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="TableThemesSheet_Title" xml:space="preserve">
+    <value>テーブルのテーマ</value>
+    <comment>settings dialog</comment>
   </data>
   <data name="TabOneMore_Label" xml:space="preserve">
     <value>ワンモア</value>

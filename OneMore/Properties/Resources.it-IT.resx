@@ -4608,6 +4608,10 @@ Modificato dopo
 Modificato prima</value>
     <comment>combobox</comment>
   </data>
+  <data name="SearchDialogTextControl_includeTocBox.Text" xml:space="preserve">
+    <value>Cerca il testo nel sommario</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
     <value>Inserisci i criteri di ricerca, includendo facoltativamente AND, OR, NOT, virgolette e parentesi</value>
     <comment>label</comment>
@@ -4725,10 +4729,6 @@ I motori di ricerca verranno visualizzati nel menu contestuale della pagina, far
   <data name="SettingsDialog_Text" xml:space="preserve">
     <value>Impostazioni OneMore</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="SettingsFilename" xml:space="preserve">
-    <value>Impostazioni.xml</value>
-    <comment>SKIP, filename</comment>
   </data>
   <data name="ShowXmlDialog.Text" xml:space="preserve">
     <value>Un altro XML</value>
@@ -5113,6 +5113,46 @@ Invertire</value>
   <data name="TableTheme_Screentip" xml:space="preserve">
     <value>Tema tavolo OneMore {0}</value>
     <comment>Screentip for table theme gallery tiles</comment>
+  </data>
+  <data name="TableThemesSheet_clearLink.Text" xml:space="preserve">
+    <value>Cancella tutto</value>
+    <comment>link label</comment>
+  </data>
+  <data name="TableThemesSheet_introBox.Text" xml:space="preserve">
+    <value>Personalizza l'elenco dei temi delle tabelle predefinite disponibili sulla barra multifunzione.</value>
+    <comment>label</comment>
+  </data>
+  <data name="TableThemesSheet_selectLink.Text" xml:space="preserve">
+    <value>Seleziona tutto</value>
+    <comment>link label</comment>
+  </data>
+  <data name="TableThemesSheet_showCCBox.Text" xml:space="preserve">
+    <value>Mostra temi righe colore-colore</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="TableThemesSheet_showCCHBox.Text" xml:space="preserve">
+    <value>Mostra righe colore-colore con temi colore intestazione</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="TableThemesSheet_showCCHHBox.Text" xml:space="preserve">
+    <value>Mostra righe colore-colore con entrambi i temi colore intestazione</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="TableThemesSheet_showMBox.Text" xml:space="preserve">
+    <value>Mostra temi con righe multicolori</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="TableThemesSheet_showWCBox.Text" xml:space="preserve">
+    <value>Mostra temi con righe di colore bianco</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="TableThemesSheet_showWCHBox.Text" xml:space="preserve">
+    <value>Mostra righe di colore bianco con temi di colore dell'intestazione</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="TableThemesSheet_Title" xml:space="preserve">
+    <value>Temi della tavola</value>
+    <comment>settings dialog</comment>
   </data>
   <data name="TabOneMore_Label" xml:space="preserve">
     <value>Uno di più</value>

@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Collections.Generic;
 	using System.IO;
 	using System.Linq;
+	using River.OneMoreAddIn.Settings;
 	using Resx = Properties.Resources;
 
 
@@ -21,11 +22,14 @@ namespace River.OneMoreAddIn.Commands
 
 
 		public TableThemeProvider()
+			: this(false)
 		{
-			// Reminder that when adding a .json file into a .resx file, you need to change
-			// the FileType property of the resource to Text instead of Binary...
+		}
 
-			themes = JsonConvert.DeserializeObject<List<TableTheme>>(Resx.DefaultTableThemes);
+
+		public TableThemeProvider(bool unfiltered)
+		{
+			themes = LoadSystemThemes(unfiltered);
 
 			// first 'syscount' entires are system-defined default themes
 			syscount = themes.Count;
@@ -34,7 +38,49 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private IEnumerable<TableTheme> LoadUserThemes()
+		private static List<TableTheme> LoadSystemThemes(bool unfiltered)
+		{
+			string[] keepers = null;
+
+			var collection = new SettingsProvider().GetCollection("TableThemesSheet");
+			if (collection.Count > 0)
+			{
+				var categories = collection.Get<string>("categories", null);
+				if (categories is not null)
+				{
+					keepers = categories.
+						Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+				}
+			}
+
+			if (keepers?.Length == 0)
+			{
+				return new List<TableTheme>();
+			}
+
+			// Reminder that when adding a .json file into a .resx file, you need to change
+			// the FileType property of the resource to Text instead of Binary...
+
+			var sthemes = JsonConvert.DeserializeObject<List<TableTheme>>(Resx.DefaultTableThemes);
+
+			if (unfiltered || keepers is null)
+			{
+				return sthemes;
+			}
+
+			var drops = new string[] { "WC", "WCH", "CC", "CCH", "CCHH", "M" }
+				.Where(c => !keepers.Contains(c));
+
+			foreach (var drop in drops)
+			{
+				sthemes.RemoveAll(t => t.Category == drop);
+			}
+
+			return sthemes;
+		}
+
+
+		private static IEnumerable<TableTheme> LoadUserThemes()
 		{
 			var path = Path.Combine(PathHelper.GetAppDataPath(), UserFileName);
 
@@ -58,7 +104,7 @@ namespace River.OneMoreAddIn.Commands
 		/// <summary>
 		/// Gets the total number of system-defined and user-defined themes.
 		/// </summary>
-		public int Count => themes.Count;
+		public int Count => themes is not null ? themes.Count : 0;
 
 
 		/// <summary>

@@ -4602,6 +4602,10 @@ Modifiziert nach
 Vorher geändert</value>
     <comment>combobox</comment>
   </data>
+  <data name="SearchDialogTextControl_includeTocBox.Text" xml:space="preserve">
+    <value>Suchen Sie nach Text im Inhaltsverzeichnis</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
     <value>Geben Sie die Suchkriterien ein, einschließlich und, oder nicht, Zitate und Klammern</value>
     <comment>label</comment>
@@ -4719,10 +4723,6 @@ Suchmaschinen werden im Seit-Kontextmenü mit der rechten Maustaste angezeigt.</
   <data name="SettingsDialog_Text" xml:space="preserve">
     <value>OneMore-Einstellungen</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="SettingsFilename" xml:space="preserve">
-    <value>Settings.xml</value>
-    <comment>FILENAME</comment>
   </data>
   <data name="ShowXmlDialog.Text" xml:space="preserve">
     <value>OneMore XML</value>
@@ -5106,6 +5106,46 @@ Umkehren</value>
   <data name="TableTheme_Screentip" xml:space="preserve">
     <value>OneMore-Tabellendesign {0}</value>
     <comment>Screentip for table theme gallery tiles</comment>
+  </data>
+  <data name="TableThemesSheet_clearLink.Text" xml:space="preserve">
+    <value>Alles löschen</value>
+    <comment>link label</comment>
+  </data>
+  <data name="TableThemesSheet_introBox.Text" xml:space="preserve">
+    <value>Passen Sie die Liste der verfügbaren vorgefertigten Tabellenthemen im Menüband an.</value>
+    <comment>label</comment>
+  </data>
+  <data name="TableThemesSheet_selectLink.Text" xml:space="preserve">
+    <value>Alles auswählen</value>
+    <comment>link label</comment>
+  </data>
+  <data name="TableThemesSheet_showCCBox.Text" xml:space="preserve">
+    <value>Farbzeilenthemen anzeigen</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="TableThemesSheet_showCCHBox.Text" xml:space="preserve">
+    <value>Zeigen Sie farbige Zeilen mit Kopfzeilenfarbthemen an</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="TableThemesSheet_showCCHHBox.Text" xml:space="preserve">
+    <value>Zeigen Sie farbige Zeilen mit beiden Farbthemen für die Kopfzeile an</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="TableThemesSheet_showMBox.Text" xml:space="preserve">
+    <value>Mehrfarbige Zeilenthemen anzeigen</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="TableThemesSheet_showWCBox.Text" xml:space="preserve">
+    <value>Zeigt Themen mit weißen Zeilen an</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="TableThemesSheet_showWCHBox.Text" xml:space="preserve">
+    <value>Zeigen Sie weiße Zeilen mit Kopfzeilenfarbthemen an</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="TableThemesSheet_Title" xml:space="preserve">
+    <value>Tischthemen</value>
+    <comment>settings dialog</comment>
   </data>
   <data name="TabOneMore_Label" xml:space="preserve">
     <value>OneMore</value>

@@ -4617,6 +4617,10 @@ Modifié après
 Modifié avant</value>
     <comment>combobox</comment>
   </data>
+  <data name="SearchDialogTextControl_includeTocBox.Text" xml:space="preserve">
+    <value>Rechercher du texte dans la table des matières</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
     <value>Entrez les critères de recherche, incluant éventuellement et, ou non, les citations et les parenthèses</value>
     <comment>label</comment>
@@ -4734,10 +4738,6 @@ Les moteurs de recherche apparaîtront dans le menu du contexte de la page, cliq
   <data name="SettingsDialog_Text" xml:space="preserve">
     <value>Paramètres OneMore</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="SettingsFilename" xml:space="preserve">
-    <value>Settings.xml</value>
-    <comment>FILENAME</comment>
   </data>
   <data name="ShowXmlDialog.Text" xml:space="preserve">
     <value>OneMore XML</value>
@@ -5121,6 +5121,46 @@ Inverser</value>
   <data name="TableTheme_Screentip" xml:space="preserve">
     <value>Thème de tableau OneMore {0}</value>
     <comment>Screentip for table theme gallery tiles</comment>
+  </data>
+  <data name="TableThemesSheet_clearLink.Text" xml:space="preserve">
+    <value>Tout effacer</value>
+    <comment>link label</comment>
+  </data>
+  <data name="TableThemesSheet_introBox.Text" xml:space="preserve">
+    <value>Personnalisez la liste des thèmes de tableau prédéfinis disponibles sur le ruban.</value>
+    <comment>label</comment>
+  </data>
+  <data name="TableThemesSheet_selectLink.Text" xml:space="preserve">
+    <value>Tout sélectionner</value>
+    <comment>link label</comment>
+  </data>
+  <data name="TableThemesSheet_showCCBox.Text" xml:space="preserve">
+    <value>Afficher les thèmes des lignes couleur-couleur</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="TableThemesSheet_showCCHBox.Text" xml:space="preserve">
+    <value>Afficher les lignes couleur avec des thèmes de couleurs d'en-tête</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="TableThemesSheet_showCCHHBox.Text" xml:space="preserve">
+    <value>Afficher les lignes couleur avec les deux thèmes de couleurs d'en-tête</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="TableThemesSheet_showMBox.Text" xml:space="preserve">
+    <value>Afficher les thèmes de lignes multicolores</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="TableThemesSheet_showWCBox.Text" xml:space="preserve">
+    <value>Afficher les thèmes de lignes de couleur blanche</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="TableThemesSheet_showWCHBox.Text" xml:space="preserve">
+    <value>Afficher les lignes de couleur blanche avec des thèmes de couleurs d'en-tête</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="TableThemesSheet_Title" xml:space="preserve">
+    <value>Thèmes de table</value>
+    <comment>settings dialog</comment>
   </data>
   <data name="TabOneMore_Label" xml:space="preserve">
     <value>OneMore</value>

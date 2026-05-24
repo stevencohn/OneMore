@@ -4607,6 +4607,10 @@ Zmodyfikowany po
 Zmodyfikowane wcześniej</value>
     <comment>combobox</comment>
   </data>
+  <data name="SearchDialogTextControl_includeTocBox.Text" xml:space="preserve">
+    <value>Wyszukaj tekst w spisie treści</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
     <value>Wprowadź kryteria wyszukiwania, opcjonalnie, w tym i, lub nie, cytaty i nawiasy</value>
     <comment>label</comment>
@@ -4724,10 +4728,6 @@ Wyszukiwarki pojawią się w menu kontekstowym strony, kliknij prawym przyciskie
   <data name="SettingsDialog_Text" xml:space="preserve">
     <value>Ustawienia OneMore.</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="SettingsFilename" xml:space="preserve">
-    <value>Settings.xml</value>
-    <comment>SKIP, filename</comment>
   </data>
   <data name="ShowXmlDialog.Text" xml:space="preserve">
     <value>OneMore XML.</value>
@@ -5112,6 +5112,46 @@ Odwracać</value>
   <data name="TableTheme_Screentip" xml:space="preserve">
     <value>Motyw tabeli OneMore {0}</value>
     <comment>Screentip for table theme gallery tiles</comment>
+  </data>
+  <data name="TableThemesSheet_clearLink.Text" xml:space="preserve">
+    <value>Wyczyść wszystko</value>
+    <comment>link label</comment>
+  </data>
+  <data name="TableThemesSheet_introBox.Text" xml:space="preserve">
+    <value>Dostosuj listę dostępnych gotowych motywów tabel na wstążce.</value>
+    <comment>label</comment>
+  </data>
+  <data name="TableThemesSheet_selectLink.Text" xml:space="preserve">
+    <value>Zaznacz wszystko</value>
+    <comment>link label</comment>
+  </data>
+  <data name="TableThemesSheet_showCCBox.Text" xml:space="preserve">
+    <value>Pokaż motywy kolorowych wierszy</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="TableThemesSheet_showCCHBox.Text" xml:space="preserve">
+    <value>Pokaż wiersze typu kolor-kolor z motywami kolorów nagłówka</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="TableThemesSheet_showCCHHBox.Text" xml:space="preserve">
+    <value>Pokaż wiersze typu kolor-kolor z obydwoma motywami kolorów nagłówka</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="TableThemesSheet_showMBox.Text" xml:space="preserve">
+    <value>Pokaż wielokolorowe motywy wierszy</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="TableThemesSheet_showWCBox.Text" xml:space="preserve">
+    <value>Pokaż motywy wierszy w kolorze białym</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="TableThemesSheet_showWCHBox.Text" xml:space="preserve">
+    <value>Pokaż wiersze w kolorze białym z motywami kolorów nagłówka</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="TableThemesSheet_Title" xml:space="preserve">
+    <value>Motywy stołu</value>
+    <comment>settings dialog</comment>
   </data>
   <data name="TabOneMore_Label" xml:space="preserve">
     <value>Jeszcze jeden</value>

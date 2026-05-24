@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2022 Steven M Cohn.  All rights reserved.
+// Copyright © 2022 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 #pragma warning disable CS3001      // Type is not CLS-compliant
@@ -57,11 +57,9 @@ namespace River.OneMoreAddIn
 
 			}).Result;
 
-
 			if (tableGalleryBackground != background)
 			{
 				tableGalleryBackground = background;
-				//logger.WriteLine($"GetTableGalleryItemCount({control.Id}) background:{tableGalleryBackground}");
 				ribbon.Invalidate();
 			}
 

@@ -45,15 +45,16 @@ namespace River.OneMoreAddIn.Commands
 			this.progressBar = new System.Windows.Forms.ProgressBar();
 			this.morePanel2 = new River.OneMoreAddIn.UI.MorePanel();
 			this.optionsPanel = new River.OneMoreAddIn.UI.MorePanel();
-			this.dateSelector = new UI.MoreComboBox();
+			this.dateSelector = new River.OneMoreAddIn.UI.MoreComboBox();
 			this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
 			this.regBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.matchBox = new River.OneMoreAddIn.UI.MoreCheckBox();
-			this.scopeBox = new UI.MoreComboBox();
+			this.scopeBox = new River.OneMoreAddIn.UI.MoreComboBox();
 			this.resultsHeaderPanel = new River.OneMoreAddIn.UI.MorePanel();
 			this.selectAllLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.barLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.clearAllLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
+			this.includeTocBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.morePanel1.SuspendLayout();
 			this.morePanel2.SuspendLayout();
 			this.optionsPanel.SuspendLayout();
@@ -300,6 +301,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.optionsPanel.BottomBorderColor = System.Drawing.SystemColors.ActiveBorder;
 			this.optionsPanel.BottomBorderSize = 0;
+			this.optionsPanel.Controls.Add(this.includeTocBox);
 			this.optionsPanel.Controls.Add(this.dateSelector);
 			this.optionsPanel.Controls.Add(this.dateTimePicker);
 			this.optionsPanel.Controls.Add(this.regBox);
@@ -331,17 +333,19 @@ namespace River.OneMoreAddIn.Commands
             "Created before",
             "Modified after",
             "Modified before"});
-			this.dateSelector.Location = new System.Drawing.Point(58, 103);
+			this.dateSelector.Location = new System.Drawing.Point(275, 44);
 			this.dateSelector.Name = "dateSelector";
-			this.dateSelector.Size = new System.Drawing.Size(234, 28);
+			this.dateSelector.Size = new System.Drawing.Size(234, 27);
 			this.dateSelector.TabIndex = 5;
+			this.dateSelector.ThemedBack = null;
+			this.dateSelector.ThemedFore = null;
 			this.dateSelector.SelectedIndexChanged += new System.EventHandler(this.ChangeDateSelector);
 			// 
 			// dateTimePicker
 			// 
 			this.dateTimePicker.Enabled = false;
 			this.dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-			this.dateTimePicker.Location = new System.Drawing.Point(298, 103);
+			this.dateTimePicker.Location = new System.Drawing.Point(516, 44);
 			this.dateTimePicker.MaxDate = new System.DateTime(3000, 12, 31, 0, 0, 0, 0);
 			this.dateTimePicker.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
 			this.dateTimePicker.Name = "dateTimePicker";
@@ -392,8 +396,10 @@ namespace River.OneMoreAddIn.Commands
             "On this page"});
 			this.scopeBox.Location = new System.Drawing.Point(516, 9);
 			this.scopeBox.Name = "scopeBox";
-			this.scopeBox.Size = new System.Drawing.Size(183, 28);
+			this.scopeBox.Size = new System.Drawing.Size(183, 27);
 			this.scopeBox.TabIndex = 1;
+			this.scopeBox.ThemedBack = null;
+			this.scopeBox.ThemedFore = null;
 			this.scopeBox.SelectedIndexChanged += new System.EventHandler(this.ChangeScope);
 			// 
 			// resultsHeaderPanel
@@ -470,6 +476,22 @@ namespace River.OneMoreAddIn.Commands
 			this.clearAllLink.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
 			this.clearAllLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ClearSelection);
 			// 
+			// includeTocBox
+			// 
+			this.includeTocBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.includeTocBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.includeTocBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.includeTocBox.Location = new System.Drawing.Point(58, 101);
+			this.includeTocBox.Margin = new System.Windows.Forms.Padding(4, 1, 4, 3);
+			this.includeTocBox.Name = "includeTocBox";
+			this.includeTocBox.Size = new System.Drawing.Size(261, 25);
+			this.includeTocBox.StylizeImage = false;
+			this.includeTocBox.TabIndex = 12;
+			this.includeTocBox.Text = "Search text in table of contents";
+			this.includeTocBox.ThemedBack = null;
+			this.includeTocBox.ThemedFore = null;
+			this.includeTocBox.UseVisualStyleBackColor = true;
+			// 
 			// SearchDialogTextControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -522,5 +544,6 @@ namespace River.OneMoreAddIn.Commands
 		private UI.MoreButton nextButton;
 		private UI.MoreComboBox dateSelector;
 		private System.Windows.Forms.DateTimePicker dateTimePicker;
+		private UI.MoreCheckBox includeTocBox;
 	}
 }

@@ -29,6 +29,8 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
+			text = text.StripInvalidXmlChars();
+
 			await using var one = new OneNote(out var page, out var ns);
 			PageNamespace.Set(ns);
 
