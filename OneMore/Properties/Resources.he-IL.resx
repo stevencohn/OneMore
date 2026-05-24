@@ -5541,6 +5541,9 @@ ISO-code then comma then language name</comment>
   <data name="word_Page" xml:space="preserve">
     <value>עמוד</value>
   </data>
+  <data name="word_Paragraphs" xml:space="preserve">
+    <value>פסקאות</value>
+  </data>
   <data name="word_PercentSymbol" xml:space="preserve">
     <value>יַקרָן</value>
   </data>
@@ -5656,8 +5659,16 @@ ISO-code then comma then language name</comment>
     <value>סה"כ מילים בעמוד: {0}</value>
     <comment>message box</comment>
   </data>
+  <data name="WordCountCommand_Paragraphs" xml:space="preserve">
+    <value>סה"כ פסקאות בדף: {0}</value>
+    <comment>message box</comment>
+  </data>
   <data name="WordCountCommand_Selected" xml:space="preserve">
     <value>סה"כ מילים שנבחרו: {0}</value>
+    <comment>message box</comment>
+  </data>
+  <data name="WordCountCommand_SelectedParagraphs" xml:space="preserve">
+    <value>סה"כ פסקאות בבחירה: {0}</value>
     <comment>message box</comment>
   </data>
   <data name="WordCounts_Notebook" xml:space="preserve">

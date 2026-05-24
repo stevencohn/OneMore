@@ -5537,6 +5537,9 @@ Danke schön!</value>
   <data name="word_Page" xml:space="preserve">
     <value>Buchseite</value>
   </data>
+  <data name="word_Paragraphs" xml:space="preserve">
+    <value>Absätze</value>
+  </data>
   <data name="word_PercentSymbol" xml:space="preserve">
     <value>%</value>
   </data>
@@ -5652,8 +5655,16 @@ Danke schön!</value>
     <value>Gesamtzahl der Wörter auf Seite: {0}</value>
     <comment>message box</comment>
   </data>
+  <data name="WordCountCommand_Paragraphs" xml:space="preserve">
+    <value>Gesamtzahl der Absätze auf der Seite: {0}</value>
+    <comment>message box</comment>
+  </data>
   <data name="WordCountCommand_Selected" xml:space="preserve">
     <value>Gesamtzahl der ausgewählten Wörter: {0}</value>
+    <comment>message box</comment>
+  </data>
+  <data name="WordCountCommand_SelectedParagraphs" xml:space="preserve">
+    <value>Gesamtzahl der Absätze in der Auswahl: {0}</value>
     <comment>message box</comment>
   </data>
   <data name="WordCounts_Notebook" xml:space="preserve">
