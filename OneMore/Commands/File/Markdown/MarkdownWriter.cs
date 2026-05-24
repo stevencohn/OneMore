@@ -135,7 +135,6 @@ namespace River.OneMoreAddIn.Commands
 
 				page.Root.Elements(ns + "Outline")
 					.Elements(ns + "OEChildren")
-					.Elements()
 					.ForEach(e => Write(e));
 
 				// page level Images outside of any Outline
