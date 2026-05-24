@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
+	using River.OneMoreAddIn.Styles;
 	using River.OneMoreAddIn.UI;
 	using System.Collections.Generic;
 	using System.IO;
@@ -78,7 +79,7 @@ namespace River.OneMoreAddIn.Commands
 			logger.Verbose(text);
 
 			var title = editor.AllContent
-				? $"<p style=\"font-family:Calibri;font-size:20pt\">{page.Title}</p>"
+				? $"<p style=\"font-family:{StyleBase.DefaultFontFamily};font-size:20pt\">{page.Title}</p>"
 				: string.Empty;
 
 			var filepath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
