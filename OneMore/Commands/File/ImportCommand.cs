@@ -682,6 +682,7 @@ namespace River.OneMoreAddIn.Commands
 
 					converter = new MarkdownConverter(page);
 					converter.RewriteHeadings();
+					converter.RewriteTodo();
 
 					logger.WriteLine($"updating...");
 					logger.WriteLine(page.Root);
