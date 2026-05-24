@@ -13787,6 +13787,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Paragraphs.
+        /// </summary>
+        internal static string word_Paragraphs {
+            get {
+                return ResourceManager.GetString("word_Paragraphs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to %.
         /// </summary>
         internal static string word_PercentSymbol {
@@ -14129,11 +14138,29 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Total paragraphs on page: {0}.
+        /// </summary>
+        internal static string WordCountCommand_Paragraphs {
+            get {
+                return ResourceManager.GetString("WordCountCommand_Paragraphs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Total words selected: {0}.
         /// </summary>
         internal static string WordCountCommand_Selected {
             get {
                 return ResourceManager.GetString("WordCountCommand_Selected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total paragraphs in selection: {0}.
+        /// </summary>
+        internal static string WordCountCommand_SelectedParagraphs {
+            get {
+                return ResourceManager.GetString("WordCountCommand_SelectedParagraphs", resourceCulture);
             }
         }
         
@@ -14147,7 +14174,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Total words in notebook across {0} pages.
+        ///   Looks up a localized string similar to Total in notebook across {0} pages.
         /// </summary>
         internal static string WordCounts_NotebookTotal {
             get {
@@ -14165,7 +14192,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Total words in section across {0} pages.
+        ///   Looks up a localized string similar to Total in section across {0} pages.
         /// </summary>
         internal static string WordCounts_SectionTotal {
             get {
