@@ -32,6 +32,7 @@ namespace River.OneMoreAddIn.Commands
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SearchDialog));
 			this.introLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.indexButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.moveButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.copyButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.findLabel = new River.OneMoreAddIn.UI.MoreLabel();
@@ -114,6 +115,27 @@ namespace River.OneMoreAddIn.Commands
 			this.moveButton.UseVisualStyleBackColor = true;
 			this.moveButton.Visible = false;
 			this.moveButton.Click += new System.EventHandler(this.MovePressed);
+			//
+			// indexButton
+			//
+			this.indexButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.indexButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.indexButton.Enabled = false;
+			this.indexButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.indexButton.ImageOver = null;
+			this.indexButton.Location = new System.Drawing.Point(303, 16);
+			this.indexButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 15);
+			this.indexButton.Name = "indexButton";
+			this.indexButton.ShowBorder = true;
+			this.indexButton.Size = new System.Drawing.Size(112, 35);
+			this.indexButton.StylizeImage = false;
+			this.indexButton.TabIndex = 1;
+			this.indexButton.Text = "Index";
+			this.indexButton.ThemedBack = null;
+			this.indexButton.ThemedFore = null;
+			this.indexButton.UseVisualStyleBackColor = true;
+			this.indexButton.Visible = false;
+			this.indexButton.Click += new System.EventHandler(this.IndexPressed);
 			//
 			// copyButton
 			//
@@ -205,6 +227,7 @@ namespace River.OneMoreAddIn.Commands
 			this.morePanel1.Controls.Add(this.nextButton);
 			this.morePanel1.Controls.Add(this.pageLabel);
 			this.morePanel1.Controls.Add(this.progressBar);
+			this.morePanel1.Controls.Add(this.indexButton);
 			this.morePanel1.Controls.Add(this.copyButton);
 			this.morePanel1.Controls.Add(this.moveButton);
 			this.morePanel1.Controls.Add(this.cancelButton);
@@ -528,6 +551,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private UI.MoreLabel introLabel;
 		private UI.MoreButton cancelButton;
+		private UI.MoreButton indexButton;
 		private UI.MoreButton moveButton;
 		private UI.MoreButton copyButton;
 		private UI.MoreLabel findLabel;

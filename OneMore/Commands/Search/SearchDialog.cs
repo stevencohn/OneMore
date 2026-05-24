@@ -24,6 +24,14 @@ namespace River.OneMoreAddIn.Commands
 
 	internal partial class SearchDialog : MoreForm
 	{
+		public enum Commands
+		{
+			Index,
+			Copy,
+			Move
+		}
+
+
 
 		private sealed class SearchHit
 		{
@@ -57,6 +65,7 @@ namespace River.OneMoreAddIn.Commands
 					"matchBox",
 					"regBox",
 					"includeTocBox",
+					"indexButton=word_Index",
 					"moveButton=word_Move",
 					"copyButton=word_Copy",
 					"cancelButton=word_Cancel",
@@ -93,8 +102,11 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public bool CopySelections { get; private set; }
+		public Commands Command { get; private set; }
 
+		public string Query { get; private set; }
+
+		public IEnumerable<CardModel> SelectedCards { get; private set; }
 
 		public List<string> SelectedPages { get; private set; }
 
@@ -111,14 +123,25 @@ namespace River.OneMoreAddIn.Commands
 		private void OnCheckedChanged(object sender, EventArgs e)
 		{
 			var hasChecked = resultsView.CheckedCount > 0;
+			indexButton.Enabled = hasChecked;
 			moveButton.Enabled = hasChecked;
 			copyButton.Enabled = hasChecked;
 		}
 
 
+		private void IndexPressed(object sender, EventArgs e)
+		{
+			Command = Commands.Index;
+			Query = findBox.Text;
+			SelectedCards = resultsView.GetCheckedCards();
+			DialogResult = DialogResult.OK;
+			Close();
+		}
+
+
 		private void MovePressed(object sender, EventArgs e)
 		{
-			CopySelections = false;
+			Command = Commands.Move;
 			SelectedPages = resultsView.GetCheckedPageIds().ToList();
 			DialogResult = DialogResult.OK;
 			Close();
@@ -127,7 +150,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void CopyPressed(object sender, EventArgs e)
 		{
-			CopySelections = true;
+			Command = Commands.Copy;
 			SelectedPages = resultsView.GetCheckedPageIds().ToList();
 			DialogResult = DialogResult.OK;
 			Close();
@@ -341,7 +364,7 @@ namespace River.OneMoreAddIn.Commands
 
 			// only show nav buttons if there is at least one navigable hit
 			nextButton.Visible = prevButton.Visible = resultsView.HasHits;
-			moveButton.Visible = copyButton.Visible = resultsView.HasHits;
+			indexButton.Visible = moveButton.Visible = copyButton.Visible = resultsView.HasHits;
 			resultsHeaderPanel.Visible = resultsView.HasHits;
 		}
 
@@ -353,6 +376,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			resultsView.Clear();
 			resultsHeaderPanel.Visible = false;
+			indexButton.Enabled = false;
 			moveButton.Enabled = false;
 			copyButton.Enabled = false;
 		}

@@ -11360,6 +11360,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search Results.
+        /// </summary>
+        internal static string SearchCommand_indexTitle {
+            get {
+                return ResourceManager.GetString("SearchCommand_indexTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to In this notebook
         ///In this section
         ///On this page.
