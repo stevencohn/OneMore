@@ -363,6 +363,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// dateSelector
 			// 
+			this.dateSelector.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.dateSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.dateSelector.Enabled = false;
 			this.dateSelector.FormattingEnabled = true;
@@ -372,7 +373,7 @@ namespace River.OneMoreAddIn.Commands
             "Created before",
             "Modified after",
             "Modified before"});
-			this.dateSelector.Location = new System.Drawing.Point(275, 44);
+			this.dateSelector.Location = new System.Drawing.Point(585, 44);
 			this.dateSelector.Name = "dateSelector";
 			this.dateSelector.Size = new System.Drawing.Size(234, 27);
 			this.dateSelector.TabIndex = 6;
@@ -382,9 +383,10 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// dateTimePicker
 			// 
+			this.dateTimePicker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.dateTimePicker.Enabled = false;
 			this.dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-			this.dateTimePicker.Location = new System.Drawing.Point(516, 44);
+			this.dateTimePicker.Location = new System.Drawing.Point(826, 44);
 			this.dateTimePicker.MaxDate = new System.DateTime(3000, 12, 31, 0, 0, 0, 0);
 			this.dateTimePicker.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
 			this.dateTimePicker.Name = "dateTimePicker";
@@ -531,7 +533,7 @@ namespace River.OneMoreAddIn.Commands
 			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
-			this.MinimumSize = new System.Drawing.Size(720, 391);
+			this.MinimumSize = new System.Drawing.Size(800, 400);
 			this.Name = "SearchDialog";
 			this.Padding = new System.Windows.Forms.Padding(15, 15, 15, 10);
 			this.Text = "Search";
