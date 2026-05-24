@@ -70,8 +70,9 @@ namespace River.OneMoreAddIn.Commands
 
 			var text = reader.ReadTextFrom(paragraphs, range.Scope != SelectionScope.Range);
 
-			// solves the ``` end of code block being on a new line, which markdown doesn't like
-			text = Regex.Replace(text, @"<br>([\n\r]+)", "$1");
+			// solves the ``` end of code block being on a new line, which markdown doesn't like;
+			// also strips trailing <br> when selection ends at the fence (ReadTextFrom strips EOL)
+			text = Regex.Replace(text, @"<br>([\n\r]+|$)", "$1");
 
 			logger.Verbose("preview raw text:");
 			logger.Verbose(text);
