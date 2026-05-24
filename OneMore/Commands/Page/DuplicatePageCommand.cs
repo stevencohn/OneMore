@@ -24,53 +24,80 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			// need All detail to copy images and Ink
-			await using var one = new OneNote(out var page, out var ns, OneNote.PageDetail.All);
-			var originalId = page.PageId;
-			var sectionId = one.CurrentSectionId;
+			// capture page and section IDs before handing off to background thread
+			await using var ctx = new OneNote();
+			var originalId = ctx.CurrentPageId;
+			var sectionId = ctx.CurrentSectionId;
 
-			// create a new page with new ID and update its title
-			one.CreatePage(sectionId, out var newId);
-
-			// set the page ID to the new page's ID
-			page.Root.Attribute("ID").Value = newId;
-
-			// ensure unique OneMore page ID
-			if (page.GetMetaContent(MetaNames.PageID) is not null)
+			var progress = new UI.ProgressDialog(async (dialog, token) =>
 			{
-				page.SetMeta(MetaNames.PageID, Guid.NewGuid().ToString("N"));
-			}
+				dialog.SetMaximum(4);
 
-			// remove all objectID values and let OneNote generate new IDs
-			page.Root.Descendants().Attributes("objectID").Remove();
-			page = new Page(page.Root); // reparse to refresh PageId
+				// need All detail to copy images and Ink
+				dialog.SetMessage("Getting page content...");
+				await using var one = new OneNote();
+				var page = await one.GetPage(originalId, OneNote.PageDetail.All);
+				dialog.Increment();
 
-			var section = await one.GetSection(sectionId);
+				if (token.IsCancellationRequested) { dialog.Close(); return; }
 
-			var editor = new SectionEditor(section);
+				dialog.SetMessage("Creating duplicate page...");
 
-			// restore Title if it's hidden; the Interop API doesn't let us delete Title!
-			if (page.Title is null)
-			{
-				page.SetTitle(page.Root.Attribute("name").Value);
-			}
+				// create a new page with new ID and update its title
+				one.CreatePage(sectionId, out var newId);
 
-			editor.SetUniquePageTitle(page);
+				// set the page ID to the new page's ID
+				page.Root.Attribute("ID").Value = newId;
 
-			await one.Update(page);
+				// ensure unique OneMore page ID
+				if (page.GetMetaContent(MetaNames.PageID) is not null)
+				{
+					page.SetMeta(MetaNames.PageID, Guid.NewGuid().ToString("N"));
+				}
 
-			// FOLLOWING DOESN'T WORK; INTEROP API DOESN'T LET US HIDE (DELETE) Title
-			//if (hiddenTitle)
-			//{
-			//	page = await one.GetPage(page.PageId);
-			//	page.Root.Elements(ns + "Title").Remove();
-			//	await one.Update(page);
-			//}
+				// remove all objectID values and let OneNote generate new IDs
+				page.Root.Descendants().Attributes("objectID").Remove();
+				page = new Page(page.Root); // reparse to refresh PageId
 
-			if (editor.MovePageAfterAnchor(page.PageId, originalId))
-			{
-				one.UpdateHierarchy(section);
-			}
+				var section = await one.GetSection(sectionId);
+				var editor = new SectionEditor(section);
+
+				// restore Title if it's hidden; the Interop API doesn't let us delete Title!
+				if (page.Title is null)
+				{
+					page.SetTitle(page.Root.Attribute("name").Value);
+				}
+
+				editor.SetUniquePageTitle(page);
+				dialog.Increment();
+
+				if (token.IsCancellationRequested) { dialog.Close(); return; }
+
+				dialog.SetMessage("Uploading duplicate page...");
+				await one.Update(page);
+				dialog.Increment();
+
+				// FOLLOWING DOESN'T WORK; INTEROP API DOESN'T LET US HIDE (DELETE) Title
+				//if (hiddenTitle)
+				//{
+				//	page = await one.GetPage(page.PageId);
+				//	page.Root.Elements(ns + "Title").Remove();
+				//	await one.Update(page);
+				//}
+
+				if (token.IsCancellationRequested) { dialog.Close(); return; }
+
+				dialog.SetMessage("Reorganizing section...");
+				if (editor.MovePageAfterAnchor(page.PageId, originalId))
+				{
+					one.UpdateHierarchy(section);
+				}
+
+				dialog.Increment();
+				dialog.Close();
+			});
+
+			progress.RunModeless();
 		}
 	}
 }
