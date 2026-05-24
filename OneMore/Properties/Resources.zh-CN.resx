@@ -4593,6 +4593,10 @@ ISO-code then comma then language name</comment>
     <value>用。。。来代替:</value>
     <comment>label</comment>
   </data>
+  <data name="SearchCommand_indexTitle" xml:space="preserve">
+    <value>搜索结果</value>
+    <comment>page title</comment>
+  </data>
   <data name="SearchDialogText_scopeOptions" xml:space="preserve">
     <value>在此笔记本中
 在这个部分

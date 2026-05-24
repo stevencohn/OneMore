@@ -4584,6 +4584,10 @@ Alle Notizbücher</value>
     <value>Ersetzen mit:</value>
     <comment>label</comment>
   </data>
+  <data name="SearchCommand_indexTitle" xml:space="preserve">
+    <value>Suchergebnisse</value>
+    <comment>page title</comment>
+  </data>
   <data name="SearchDialogText_scopeOptions" xml:space="preserve">
     <value>In diesem Notebook
 In diesem Abschnitt

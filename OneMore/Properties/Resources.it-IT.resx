@@ -4590,6 +4590,10 @@ Tutti i quaderni</value>
     <value>Sostituisci con:</value>
     <comment>label</comment>
   </data>
+  <data name="SearchCommand_indexTitle" xml:space="preserve">
+    <value>Risultati della ricerca</value>
+    <comment>page title</comment>
+  </data>
   <data name="SearchDialogText_scopeOptions" xml:space="preserve">
     <value>In questo quaderno
 In questa sezione
