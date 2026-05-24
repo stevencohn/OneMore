@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using Markdig;
 	using Markdig.Renderers;
 	using Markdig.Renderers.Html;
+	using Markdig.Renderers.Html.Inlines;
 	using System;
 
 
@@ -37,6 +38,20 @@ namespace River.OneMoreAddIn.Commands
 				{
 					htmlRenderer.ObjectRenderers.Remove(defaultHR);
 					htmlRenderer.ObjectRenderers.AddIfNotAlready(new OneMoreDigRenderer());
+				}
+
+				var defaultCR = htmlRenderer.ObjectRenderers.FindExact<CodeBlockRenderer>();
+				if (defaultCR != null)
+				{
+					htmlRenderer.ObjectRenderers.Remove(defaultCR);
+					htmlRenderer.ObjectRenderers.AddIfNotAlready(new OneMoreDigCodeRenderer());
+				}
+
+				var defaultICR = htmlRenderer.ObjectRenderers.FindExact<CodeInlineRenderer>();
+				if (defaultICR != null)
+				{
+					htmlRenderer.ObjectRenderers.Remove(defaultICR);
+					htmlRenderer.ObjectRenderers.AddIfNotAlready(new OneMoreDigInlineCodeRenderer());
 				}
 			}
 		}

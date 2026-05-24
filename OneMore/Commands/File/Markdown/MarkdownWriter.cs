@@ -503,6 +503,8 @@ namespace River.OneMoreAddIn.Commands
 				if (att != null)
 				{
 					var style = new Style(att.Value);
+					if (style.FontFamily?.IndexOf("Consolas", StringComparison.OrdinalIgnoreCase) >= 0)
+						text = $"`{text}`";
 					if (style.IsStrikethrough) text = $"~~{text}~~";
 					if (style.IsItalic) text = $"*{text}*";
 					if (style.IsBold) text = $"**{text}**";

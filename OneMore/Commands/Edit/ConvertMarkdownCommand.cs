@@ -98,6 +98,7 @@ namespace River.OneMoreAddIn.Commands
 				converter
 					.RewriteHeadings(touched)
 					.RewriteTodo(touched)
+					.RewriteCode(touched)
 					.SpaceOutParagraphs(touched, 12);
 
 				await one.Update(page);
