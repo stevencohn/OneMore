@@ -5542,6 +5542,9 @@ Puede habilitar o deshabilitar la telemetría en cualquier momento desde el cuad
   <data name="word_Page" xml:space="preserve">
     <value>Página</value>
   </data>
+  <data name="word_Paragraphs" xml:space="preserve">
+    <value>Párrafos</value>
+  </data>
   <data name="word_PercentSymbol" xml:space="preserve">
     <value>%</value>
   </data>
@@ -5657,8 +5660,16 @@ Puede habilitar o deshabilitar la telemetría en cualquier momento desde el cuad
     <value>Total de palabras en la página: {0}</value>
     <comment>message box</comment>
   </data>
+  <data name="WordCountCommand_Paragraphs" xml:space="preserve">
+    <value>Total de párrafos en la página: {0}</value>
+    <comment>message box</comment>
+  </data>
   <data name="WordCountCommand_Selected" xml:space="preserve">
     <value>Total de palabras seleccionadas: {0}</value>
+    <comment>message box</comment>
+  </data>
+  <data name="WordCountCommand_SelectedParagraphs" xml:space="preserve">
+    <value>Total de párrafos en la selección: {0}</value>
     <comment>message box</comment>
   </data>
   <data name="WordCounts_Notebook" xml:space="preserve">

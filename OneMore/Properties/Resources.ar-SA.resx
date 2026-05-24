@@ -5554,6 +5554,9 @@ ISO-code then comma then language name</comment>
   <data name="word_Page" xml:space="preserve">
     <value>صفحة</value>
   </data>
+  <data name="word_Paragraphs" xml:space="preserve">
+    <value>الفقرات</value>
+  </data>
   <data name="word_PercentSymbol" xml:space="preserve">
     <value>٪</value>
   </data>
@@ -5669,8 +5672,16 @@ ISO-code then comma then language name</comment>
     <value>إجمالي الكلمات في الصفحة: {0}</value>
     <comment>message box</comment>
   </data>
+  <data name="WordCountCommand_Paragraphs" xml:space="preserve">
+    <value>إجمالي الفقرات في الصفحة: {0}</value>
+    <comment>message box</comment>
+  </data>
   <data name="WordCountCommand_Selected" xml:space="preserve">
     <value>إجمالي الكلمات المحددة: {0}</value>
+    <comment>message box</comment>
+  </data>
+  <data name="WordCountCommand_SelectedParagraphs" xml:space="preserve">
+    <value>إجمالي الفقرات المحددة: {0}</value>
     <comment>message box</comment>
   </data>
   <data name="WordCounts_Notebook" xml:space="preserve">
