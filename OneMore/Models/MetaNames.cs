@@ -45,6 +45,9 @@ namespace River.OneMoreAddIn.Models
 		// page is a hashtag index page
 		public static readonly string TagIndex = "omTagIndex";
 
+		// page is a search results index page
+		public static readonly string SearchIndex = "omSearchIndex";
+
 		// word count report for section or notebook
 		public static readonly string WordCount = "omWordCounts";
 	}

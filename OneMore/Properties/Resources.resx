@@ -4622,6 +4622,10 @@ All notebooks</value>
     <value>Replace with:</value>
     <comment>label</comment>
   </data>
+  <data name="SearchCommand_indexTitle" xml:space="preserve">
+    <value>Search Results</value>
+    <comment>page title</comment>
+  </data>
   <data name="SearchDialogText_scopeOptions" xml:space="preserve">
     <value>In this notebook
 In this section

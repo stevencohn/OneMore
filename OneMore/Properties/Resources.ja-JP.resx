@@ -4592,6 +4592,10 @@ ISO-code then comma then language name</comment>
     <value>置換後:</value>
     <comment>label</comment>
   </data>
+  <data name="SearchCommand_indexTitle" xml:space="preserve">
+    <value>検索結果</value>
+    <comment>page title</comment>
+  </data>
   <data name="SearchDialogText_scopeOptions" xml:space="preserve">
     <value>このノートブックで
 このセクションで

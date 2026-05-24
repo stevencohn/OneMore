@@ -89,6 +89,10 @@ namespace River.OneMoreAddIn.Commands
 			cards.Where(c => c.IsChecked && c.PageId != null).Select(c => c.PageId).ToList();
 
 
+		public IReadOnlyList<CardModel> GetCheckedCards() =>
+			cards.Where(c => c.IsChecked && c.PageId != null).ToList();
+
+
 		public void CheckAll()
 		{
 			foreach (var card in cards.Where(c => c.Title != null && c.PageId != null))
