@@ -57,8 +57,8 @@
             Do not shrink larger images
             Do no enlarge smaller images</source>
         <preferred>调整所有图像的大小
-            放大所有图像以达到最大图像的尺寸
-            缩小所有的图像以达到小图像尺寸</preferred>
+            不缩小较大的图像
+            不放大较小的图像</preferred>
     </hint>
     <hint name="AdjustImagesDialog_noImages">
         <source>No images were found on this page.
@@ -213,7 +213,7 @@
     <hint name="BiLinkCommand_Marked">
         <source>Marked "{0}" as the anchor. Now select the target text and finish the bi-directional
             link</source>
-        <preferred>将“{0}”标记为起始锚点。</preferred>
+        <preferred>将”{0}”标记为起始锚点。现在请选择目标文本以完成双向链接。</preferred>
     </hint>
     <hint name="BiLinkCommand_NoTarget">
         <source>Select a word or phrase from one paragraph</source>
