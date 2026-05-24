@@ -74,12 +74,16 @@ namespace River.OneMoreAddIn.Commands
 		/// page as a template for tag and style references.
 		/// </summary>
 		/// <param name="content"></param>
-		public async Task Copy(XElement content)
+		/// <param name="includeTitle">True to prepend the page title as an H1 heading</param>
+		public async Task Copy(XElement content, bool includeTitle = true)
 		{
 			using var stream = new MemoryStream();
 			using (writer = new StreamWriter(stream))
 			{
-				await writer.WriteLineAsync($"# {page.Title}");
+				if (includeTitle)
+				{
+					await writer.WriteLineAsync($"# {page.Title}");
+				}
 
 				if (content.Name.LocalName == "Page")
 				{
