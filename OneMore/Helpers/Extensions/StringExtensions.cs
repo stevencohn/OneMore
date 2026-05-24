@@ -356,6 +356,20 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// OneMore Extension >> Remove characters that are invalid in XML 1.0, such as vertical
+		/// tab (0x0B), that would cause ArgumentException when serializing CDATA sections.
+		/// Legal XML chars: #x9, #xA, #xD, #x20–#xD7FF, #xE000–#xFFFD.
+		/// </summary>
+		private static readonly Regex invalidXmlCharPattern =
+			new Regex(@"[^\x09\x0A\x0D\x20-퟿-�]", RegexOptions.Compiled);
+
+		public static string StripInvalidXmlChars(this string s)
+		{
+			return s == null ? null : invalidXmlCharPattern.Replace(s, string.Empty);
+		}
+
+
+		/// <summary>
 		/// OneMore Extension >> Build an XML wrapper with the specified content, ensuring the
 		/// content is propertly formed XML
 		/// </summary>
