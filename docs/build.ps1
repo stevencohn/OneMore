@@ -9,7 +9,7 @@ The path to the OneMoreWiki.zip file
 
 [CmdletBinding(SupportsShouldProcess = $true)]
 param (
-    [string] $ZipFile,
+    [string] $ZipFile = '.\OneMore Wiki.zip',
 	[switch] $Compare
 )
 
