@@ -4587,6 +4587,10 @@ ISO-code then comma then language name</comment>
     <value>להחליף ב:</value>
     <comment>label</comment>
   </data>
+  <data name="SearchCommand_indexTitle" xml:space="preserve">
+    <value>תוצאות חיפוש</value>
+    <comment>page title</comment>
+  </data>
   <data name="SearchDialogText_scopeOptions" xml:space="preserve">
     <value>במחברת זו
 בחלק זה

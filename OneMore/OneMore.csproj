@@ -263,13 +263,6 @@
     <Compile Include="Commands\Reminders\CleanRemindersCommand.cs" />
     <Compile Include="Commands\Search\CardHit.cs" />
     <Compile Include="Commands\Search\CardModel.cs" />
-    <Compile Include="Commands\Search\SearchCloseEventArgs.cs" />
-    <Compile Include="Commands\Search\SearchDialogTextControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Commands\Search\SearchDialogTextControl.Designer.cs">
-      <DependentUpon>SearchDialogTextControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="Commands\Search\SearchGroupControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1297,9 +1290,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\References\BiLinkDialog.resx">
       <DependentUpon>BiLinkDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Commands\Search\SearchDialogTextControl.resx">
-      <DependentUpon>SearchDialogTextControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Settings\TableThemesSheet.resx">
       <DependentUpon>TableThemesSheet.cs</DependentUpon>

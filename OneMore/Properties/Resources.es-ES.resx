@@ -4588,6 +4588,10 @@ Todos los cuadernos</value>
     <value>Reemplazar con:</value>
     <comment>label</comment>
   </data>
+  <data name="SearchCommand_indexTitle" xml:space="preserve">
+    <value>Resultados de la búsqueda</value>
+    <comment>page title</comment>
+  </data>
   <data name="SearchDialogText_scopeOptions" xml:space="preserve">
     <value>En este cuaderno
 En esta sección

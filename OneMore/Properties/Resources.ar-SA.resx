@@ -4600,6 +4600,10 @@ ISO-code then comma then language name</comment>
     <value>استبدل ب:</value>
     <comment>label</comment>
   </data>
+  <data name="SearchCommand_indexTitle" xml:space="preserve">
+    <value>نتائج البحث</value>
+    <comment>page title</comment>
+  </data>
   <data name="SearchDialogText_scopeOptions" xml:space="preserve">
     <value>في هذا الكمبيوتر الدفتري
 في هذا القسم

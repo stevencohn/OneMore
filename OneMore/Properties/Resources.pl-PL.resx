@@ -4589,6 +4589,10 @@ Wszystkie notesy</value>
     <value>Zamienić:</value>
     <comment>label</comment>
   </data>
+  <data name="SearchCommand_indexTitle" xml:space="preserve">
+    <value>Wyniki wyszukiwania</value>
+    <comment>page title</comment>
+  </data>
   <data name="SearchDialogText_scopeOptions" xml:space="preserve">
     <value>W tym notatniku
 W tej sekcji

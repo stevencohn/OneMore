@@ -108,6 +108,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{6A346706
 		packers\chocolatey\tools\VERIFICATION.txt = packers\chocolatey\tools\VERIFICATION.txt
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".claude", ".claude", "{9FE52F5B-7C02-4501-85B0-A68E692E161A}"
+	ProjectSection(SolutionItems) = preProject
+		.claude\settings.local.json = .claude\settings.local.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM64 = Debug|ARM64
@@ -193,6 +198,7 @@ Global
 		{06C4CB95-3744-44A4-9F5A-201F9909EA13} = {2679BE09-8144-4B5B-957E-D463F00FA66E}
 		{51C92C04-B6EF-4DF3-B832-BBF4F92AD6E9} = {06C4CB95-3744-44A4-9F5A-201F9909EA13}
 		{6A346706-764C-40DA-AFFC-BFB22B310BF5} = {51C92C04-B6EF-4DF3-B832-BBF4F92AD6E9}
+		{9FE52F5B-7C02-4501-85B0-A68E692E161A} = {2679BE09-8144-4B5B-957E-D463F00FA66E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {19E5943B-AB7E-4164-98B6-0C88B01BFABE}
