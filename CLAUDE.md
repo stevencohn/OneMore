@@ -93,6 +93,11 @@ Read `ONENOTE.EXE`'s PE header directly when you need OneNote's architecture.
   read files or perform basic research and discovery operations. Proceed as if
   you have full permission for read-only commands.
 
+- **Translations:** when working with resx files, you may update
+  Properties\Resources.resx and Properties\Resources.Designer.cs, but do not touch
+  or make any changes at any time to any Resources.xx-XX file, unless explicitly
+  told otherwise.
+
 ## Where to read more (don't duplicate here)
 
 ### General local documentation
@@ -106,7 +111,8 @@ Read `ONENOTE.EXE`'s PE header directly when you need OneNote's architecture.
 ### Architecture and design docs
 - See pages under https://onemoreaddin.com/developers
 - Specifically:
-   - [TechNote - Interop](https://onemoreaddin.com/developers/TechNote%20-%20Interop.htm)
    - [TechNote - COM Surrogate](https://onemoreaddin.com/developers/TechNote%20-%20COM%20Surrogate.htm)
    - [TechNote - Command Framework](https://onemoreaddin.com/developers/Design%20-%20Command%20Framework.htm)
+   - [TechNote - Editing Text](https://onemoreaddin.com/developers/TechNote%20-%20Editing%20Text.htm)
+   - [TechNote - Interop](https://onemoreaddin.com/developers/TechNote%20-%20Interop.htm)
    - [TechNote - Styles](https://onemoreaddin.com/developers/TechNote%20-%20Styles.htm)
