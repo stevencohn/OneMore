@@ -20,11 +20,19 @@ namespace River.OneMoreAddIn.Commands
 				BaseUrl = new Uri($"{Path.GetDirectoryName(path)}/")
 			};
 
-			var pipeline = new MarkdownPipelineBuilder()
+			var builder = new MarkdownPipelineBuilder()
 				.UseAdvancedExtensions()
 				.UseOneMoreExtensions()
-				.UseWikilinks()
-				.Build();
+				.UseWikilinks();
+
+			// Remove the TaskList extension so "- [ ]" and "- [x]" are rendered as plain
+			// list items with literal "[ ]"/"[x]" text. If TaskList is active it converts
+			// these to <input type="checkbox"> which OneNote strips, losing the checkbox
+			// information before MarkdownConverter.RewriteTodo() can act on it.
+			builder.Extensions.RemoveAll(
+				e => e.GetType().Name == "TaskListExtension");
+
+			var pipeline = builder.Build();
 
 			pipeline.Setup(renderer);
 
