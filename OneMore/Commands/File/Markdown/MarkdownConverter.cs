@@ -55,6 +55,18 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
+		/// Tags current lines with To Do tags if beginning with [ ] or [x] in all Outlines
+		/// </summary>
+		public void RewriteTodo()
+		{
+			foreach (var outline in page.BodyOutlines)
+			{
+				RewriteTodo(outline.Descendants(ns + "OE"));
+			}
+		}
+
+
+		/// <summary>
 		/// Applies standard OneNote styling all recognizable headings in the given Outline
 		/// </summary>
 		public MarkdownConverter RewriteHeadings(IEnumerable<XElement> paragraphs)
