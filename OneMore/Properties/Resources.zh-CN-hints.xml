@@ -50,7 +50,7 @@
     </hint>
     <hint name="AdjustImagesDialog_imageSizeLabel.Text">
         <source>Image size</source>
-        <preferred>文件尺寸</preferred>
+        <preferred>图像尺寸</preferred>
     </hint>
     <hint name="AdjustImagesDialog_limitsBox.Text">
         <source>Resize all images
