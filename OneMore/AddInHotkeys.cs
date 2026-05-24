@@ -39,15 +39,12 @@ namespace River.OneMoreAddIn
 					Command = (CommandAttribute)m.Attributes[0]
 				});
 
-			// an awful hack to avoid a conflict with Italian keyboard (FIGS and likely UK) that
-			// use AltGr as Ctrl+Alt. This means users pressing AltGr+OemPlus to get a square
-			// bracket would instead end up increasing the font size of the page when they didn't
-			// mean to! So here we only register these hot keys for the US keyboard input layout.
+			// On non-US keyboards (e.g. Italian, UK) AltGr is Ctrl+Alt, so Ctrl+Alt+OemPlus
+			// conflicts with AltGr+= which produces a square bracket on those layouts.
+			// We skip registration of any OemPlus-based hotkey on non-US locales below,
+			// but only for the default binding — if the user has configured a different key
+			// we honor that choice regardless of locale.
 			var locale = System.Threading.Thread.CurrentThread.CurrentCulture.KeyboardLayoutId;
-			if (locale != en_US_Locale)
-			{
-				methods = methods.Where(m => m.Method.Name != nameof(IncreaseFontSizeCmd));
-			}
 
 			if (!methods.Any())
 			{
@@ -87,6 +84,12 @@ namespace River.OneMoreAddIn
 							hotkey = new Hotkey(keys);
 						}
 					}
+				}
+
+				// Skip OemPlus-based bindings on non-US keyboards to avoid AltGr conflict
+				if (locale != en_US_Locale && hotkey?.Keys == Keys.Oemplus)
+				{
+					hotkey = null;
 				}
 
 				if (hotkey != null && hotkey.Keys != Keys.None)
