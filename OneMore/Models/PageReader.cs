@@ -648,6 +648,12 @@ namespace River.OneMoreAddIn.Models
 					}
 				}
 			}
+			else if (ParagraphDivider is not null)
+			{
+				// preserve blank paragraphs as empty lines so markdown section separators
+				// (e.g. "---" thematic breaks, code fences) parse correctly
+				builder.AppendLine();
+			}
 
 			var children = paragraph
 				.Elements(ns + "OEChildren")
