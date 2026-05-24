@@ -283,7 +283,7 @@ namespace River.OneMoreAddIn.Commands
 
 			ClearResults();
 			nextButton.Visible = prevButton.Visible = false;
-			moveButton.Visible = copyButton.Visible = false;
+			moveButton.Visible = copyButton.Visible = indexButton.Visible = false;
 
 			// Build the regex once for the entire search; all scope methods share it
 			var finder = new TextMatchBuilder(regBox.Checked, matchBox.Checked)
