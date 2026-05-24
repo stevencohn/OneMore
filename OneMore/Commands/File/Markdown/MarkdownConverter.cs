@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Styles;
+	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text.RegularExpressions;
@@ -189,6 +190,50 @@ namespace River.OneMoreAddIn.Commands
 						}
 					}
 				}
+			}
+
+			return this;
+		}
+
+
+		/// <summary>
+		/// Applies the Code quickstyle to all paragraphs with Consolas font in all Outlines
+		/// </summary>
+		public void RewriteCode()
+		{
+			foreach (var outline in page.BodyOutlines)
+			{
+				RewriteCode(outline.Descendants(ns + "OE"));
+			}
+		}
+
+
+		/// <summary>
+		/// Applies the Code quickstyle to paragraphs with Consolas font in the given collection
+		/// </summary>
+		public MarkdownConverter RewriteCode(IEnumerable<XElement> paragraphs)
+		{
+			var codeParagraphs = paragraphs
+				.Where(e => e.Elements(ns + "T").Any())
+				.Select(e => new
+				{
+					Element = e,
+					Style = new Style(analyzer.CollectFrom(e.Elements(ns + "T").First(), true))
+				})
+				.Where(c => c.Style.FontFamily?.IndexOf("Consolas", StringComparison.OrdinalIgnoreCase) >= 0)
+				.ToList();
+
+			if (!codeParagraphs.Any())
+			{
+				return this;
+			}
+
+			var quick = page.GetQuickStyle(StandardStyles.Code);
+
+			foreach (var para in codeParagraphs)
+			{
+				para.Element.Attributes().Where(a => a.Name == "style").Remove();
+				para.Element.SetAttributeValue("quickStyleIndex", quick.Index);
 			}
 
 			return this;
