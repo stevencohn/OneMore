@@ -170,6 +170,20 @@ namespace River.OneMoreAddIn.Commands
 
 					applied = true;
 				}
+				else if (name != "code")
+				{
+					// No custom theme style matched this QuickStyleDef. Sync font to the
+					// current OneNote default so pages created under an old default font
+					// render correctly after the user changes their default font.
+					quick.Attribute("font").Value = StyleBase.DefaultFontFamily;
+					if (name == "p")
+					{
+						quick.Attribute("fontSize").Value =
+							StyleBase.DefaultFontSize.ToString("0.0", CultureInfo.InvariantCulture);
+					}
+
+					applied = true;
+				}
 
 				var index = quick.Attribute("index").Value;
 
