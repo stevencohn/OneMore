@@ -1440,6 +1440,10 @@ This page</value>
     <value>Disable the hashtag service. This will also disable hashtag searching.</value>
     <comment>checkbox</comment>
   </data>
+  <data name="HashtagSheet_doubledBox.Text" xml:space="preserve">
+    <value>Recognize only double "##" prefix hashtags</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="HashtagSheet_filterBox.Text" xml:space="preserve">
     <value>Treat HTML Hex colors and C# and C++ directives as hashtags</value>
     <comment>checkbox</comment>

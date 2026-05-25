@@ -1436,6 +1436,10 @@ Questa pagina</value>
     <value>Disabilita il servizio hashtag. Ciò disabiliterà anche la ricerca degli hashtag.</value>
     <comment>checkbox</comment>
   </data>
+  <data name="HashtagSheet_doubledBox.Text" xml:space="preserve">
+    <value>Riconoscere solo gli hashtag con prefisso doppio "##".</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="HashtagSheet_filterBox.Text" xml:space="preserve">
     <value>Tratta i colori esadecimali HTML e le direttive C# e C++ come hashtag</value>
     <comment>checkbox</comment>

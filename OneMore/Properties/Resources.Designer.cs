@@ -3756,6 +3756,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Recognize only double &quot;##&quot; prefix hashtags.
+        /// </summary>
+        internal static string HashtagSheet_doubledBox_Text {
+            get {
+                return ResourceManager.GetString("HashtagSheet_doubledBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Treat HTML Hex colors and C# and C++ directives as hashtags.
         /// </summary>
         internal static string HashtagSheet_filterBox_Text {

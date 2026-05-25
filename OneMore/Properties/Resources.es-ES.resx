@@ -1431,6 +1431,10 @@ esta pagina</value>
     <value>Deshabilite el servicio de hashtag. Esto también deshabilitará la búsqueda de hashtags.</value>
     <comment>checkbox</comment>
   </data>
+  <data name="HashtagSheet_doubledBox.Text" xml:space="preserve">
+    <value>Reconocer solo hashtags con prefijo doble "##"</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="HashtagSheet_filterBox.Text" xml:space="preserve">
     <value>Trate los colores HTML hexadecimal y las directivas C# y C++ como hashtags</value>
     <comment>checkbox</comment>
