@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
+	using River.OneMoreAddIn.Styles;
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
@@ -151,6 +152,11 @@ namespace River.OneMoreAddIn.Commands
 
 				cell.SetContent(content);
 
+				if (addTitle)
+				{
+					ApplyCodeStyle(page, content);
+				}
+
 				var shading = DetermineShading(page, content);
 				if (shading is not null)
 				{
@@ -260,6 +266,49 @@ namespace River.OneMoreAddIn.Commands
 					),
 				new Paragraph(string.Empty)
 				);
+		}
+
+
+		private void ApplyCodeStyle(Page page, XElement content)
+		{
+			var styles = new ThemeProvider().Theme.GetStyles();
+			var codeStyle = styles.FirstOrDefault(s => s.IsCode)
+				?? styles.SingleOrDefault(s => s.Name.ToLower() == "code")
+				?? styles.SingleOrDefault(s => s.Name.ToLower() == "source code");
+
+			if (codeStyle is null)
+			{
+				codeStyle = new Style(StandardStyles.Code.GetDefaults())
+				{
+					ApplyColors = false
+				};
+			}
+
+			var quick = page.GetQuickStyle(StandardStyles.Code);
+			var quicks = quick.Index.ToString();
+			var stylizer = new Stylizer(codeStyle);
+			var css = codeStyle.ToCss();
+
+			foreach (var paragraph in content.Descendants(ns + "OE")
+				.Where(e => e.Attribute("quickStyleIndex")?.Value != quicks))
+			{
+				// Gray: remove default gray formatting but preserve explicit colors (syntax highlighting)
+				stylizer.Clear(paragraph, Stylizer.Clearing.Gray, deep: false);
+
+				paragraph.SetAttributeValue("quickStyleIndex", quick.Index);
+
+				var attr = paragraph.Attribute("style");
+				if (attr is null)
+					paragraph.Add(new XAttribute("style", css));
+				else
+					attr.Value = css;
+
+				paragraph.SetAttributeValue("spaceBefore", codeStyle.SpaceBefore);
+				paragraph.SetAttributeValue("spaceAfter", codeStyle.SpaceAfter);
+
+				if (codeStyle.Ignored)
+					paragraph.SetAttributeValue("lang", "yo");
+			}
 		}
 
 
