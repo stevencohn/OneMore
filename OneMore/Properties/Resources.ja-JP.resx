@@ -4816,12 +4816,16 @@ ISO-code then comma then language name</comment>
     <value>テキストを折り返す</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SnippetsSheet_codeStyleBox.Text" xml:space="preserve">
+    <value>コード ボックスのコンテンツには常に「コード」スタイルを適用します</value>
+    <comment>label</comment>
+  </data>
   <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
     <value>スニペット "{0}" を削除</value>
     <comment>question</comment>
   </data>
   <data name="SnippetsSheet_introBox.Text" xml:space="preserve">
-    <value>スニペットの管理</value>
+    <value>オプションとマイ スニペットを管理する</value>
     <comment>label</comment>
   </data>
   <data name="SortDialog.Text" xml:space="preserve">

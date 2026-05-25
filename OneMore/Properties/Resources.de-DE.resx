@@ -4808,12 +4808,16 @@ Bist du dir sicher, dass du weitermachen willst?</value>
     <value>Zeilenumbruch</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SnippetsSheet_codeStyleBox.Text" xml:space="preserve">
+    <value>Wenden Sie immer den „Code“-Stil auf den Inhalt der Codebox an</value>
+    <comment>label</comment>
+  </data>
   <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
     <value>Snippet "{0}" löschen</value>
     <comment>question</comment>
   </data>
   <data name="SnippetsSheet_introBox.Text" xml:space="preserve">
-    <value>Verwalten Sie meine Ausschnitte</value>
+    <value>Optionen und „Meine Snippets“ verwalten</value>
     <comment>label</comment>
   </data>
   <data name="SortDialog.Text" xml:space="preserve">

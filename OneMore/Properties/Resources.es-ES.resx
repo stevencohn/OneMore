@@ -4812,12 +4812,16 @@ Estás seguro de que quieres continuar?</value>
     <value>Ajustar texto</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SnippetsSheet_codeStyleBox.Text" xml:space="preserve">
+    <value>Aplique siempre el estilo "código" al contenido del cuadro de código</value>
+    <comment>label</comment>
+  </data>
   <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
     <value>Eliminar el fragmento "{0}"</value>
     <comment>question</comment>
   </data>
   <data name="SnippetsSheet_introBox.Text" xml:space="preserve">
-    <value>Administre mis fragmentos</value>
+    <value>Administrar opciones y Mis fragmentos</value>
     <comment>label</comment>
   </data>
   <data name="SortDialog.Text" xml:space="preserve">

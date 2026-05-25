@@ -4811,12 +4811,16 @@ ISO-code then comma then language name</comment>
     <value>גלישת טקסט</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SnippetsSheet_codeStyleBox.Text" xml:space="preserve">
+    <value>החל תמיד סגנון "קוד" על תוכן Code Box</value>
+    <comment>label</comment>
+  </data>
   <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
     <value>מחק את קטע "{0}"</value>
     <comment>question</comment>
   </data>
   <data name="SnippetsSheet_introBox.Text" xml:space="preserve">
-    <value>נהל את הקטעים שלי</value>
+    <value>נהל את האפשרויות ואת הקטעים שלי</value>
     <comment>label</comment>
   </data>
   <data name="SortDialog.Text" xml:space="preserve">

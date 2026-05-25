@@ -4824,12 +4824,16 @@ ISO-code then comma then language name</comment>
     <value>دوران النص</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SnippetsSheet_codeStyleBox.Text" xml:space="preserve">
+    <value>قم دائمًا بتطبيق نمط "الكود" على محتوى Code Box</value>
+    <comment>label</comment>
+  </data>
   <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
     <value>حذف المقتطف "{0}"</value>
     <comment>question</comment>
   </data>
   <data name="SnippetsSheet_introBox.Text" xml:space="preserve">
-    <value>إدارة المقتطفات الخاصة بي</value>
+    <value>إدارة الخيارات والمقتطفات الخاصة بي</value>
     <comment>label</comment>
   </data>
   <data name="SortDialog.Text" xml:space="preserve">

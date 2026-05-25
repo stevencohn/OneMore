@@ -4823,12 +4823,16 @@ Des modifications incorrectes peuvent entraîner la perte de données.
     <value>Texte enveloppant</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SnippetsSheet_codeStyleBox.Text" xml:space="preserve">
+    <value>Appliquez toujours le style « code » au contenu de la Code Box</value>
+    <comment>label</comment>
+  </data>
   <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
     <value>Supprimer l'extrait "{0}"</value>
     <comment>question</comment>
   </data>
   <data name="SnippetsSheet_introBox.Text" xml:space="preserve">
-    <value>Gérer mes extraits</value>
+    <value>Gérer les options et Mes extraits</value>
     <comment>label</comment>
   </data>
   <data name="SortDialog.Text" xml:space="preserve">

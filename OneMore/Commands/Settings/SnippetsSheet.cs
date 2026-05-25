@@ -44,12 +44,20 @@ namespace River.OneMoreAddIn.Settings
 				Localize(new string[]
 				{
 					"introBox",
+					"codeStyleBox",
 					"renameButton=word_Rename",
 					"deleteButton=word_Delete"
 				});
 
 				nameColumn.HeaderText = Resx.word_Name;
 			}
+
+			// options
+
+			var settings = provider.GetCollection(Name);
+			codeStyleBox.Checked = settings.Get("applyStyle", false);
+
+			// update my styles gridview
 
 			gridView.AutoGenerateColumns = false;
 			gridView.Columns[0].DataPropertyName = "Name";
@@ -115,8 +123,15 @@ namespace River.OneMoreAddIn.Settings
 
 		public override bool CollectSettings()
 		{
+			var settings = provider.GetCollection(Name);
+
+			updated = codeStyleBox.Checked
+				? settings.Add("applyStyle", true) || updated
+				: settings.Remove("applyStyle") || updated;
+
 			if (updated)
 			{
+				provider.SetCollection(settings);
 				ribbon.InvalidateControl("ribFavoritesMenu");
 			}
 
