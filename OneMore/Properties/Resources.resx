@@ -2005,10 +2005,6 @@ Do you want to refresh the existing page?</value>
     <value>Numbering page {0}</value>
     <comment>progress status dialog</comment>
   </data>
-  <data name="NumberLinesCommand_NoSelection" xml:space="preserve">
-    <value>Select the lines to number and try again.</value>
-    <comment>message</comment>
-  </data>
   <data name="NumberPagesDialog.Text" xml:space="preserve">
     <value>Page Numbering</value>
     <comment>dialog title</comment>
@@ -4018,6 +4014,14 @@ Help Tab</value>
   <data name="ribRemoveFootnoteButton_Screentip" xml:space="preserve">
     <value>Remove footnote (Ctrl + Shift + F)</value>
     <comment>ribbon references</comment>
+  </data>
+  <data name="ribRemoveIndentsButton_Label" xml:space="preserve">
+    <value>Remove Indents</value>
+    <comment>ribbon clean</comment>
+  </data>
+  <data name="ribRemoveIndentsButton_Screentip" xml:space="preserve">
+    <value>Remove indentation from selected content</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveInkButton_Label" xml:space="preserve">
     <value>Remove Ink</value>

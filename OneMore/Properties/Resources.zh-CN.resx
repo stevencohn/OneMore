@@ -1246,7 +1246,8 @@ OneNote 文件 (*.one)</value>
             单元格：A1，A2，... ZZZ999
             单元格范围：A1：A22
             相对单元格范围：A1:cell(0,-1)</value>
-  <comment>!EDIT</comment></data>
+    <comment>!EDIT</comment>
+  </data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>选定的单元格：</value>
     <comment>label</comment>
@@ -2005,10 +2006,6 @@ OneNote 文件 (*.one)</value>
   <data name="NumberingPage_Message" xml:space="preserve">
     <value>编号页{0}</value>
     <comment>progress status dialog</comment>
-  </data>
-  <data name="NumberLinesCommand_NoSelection" xml:space="preserve">
-    <value>选择要编号的行并重试。</value>
-    <comment>message</comment>
   </data>
   <data name="NumberPagesDialog.Text" xml:space="preserve">
     <value>页码</value>
@@ -3999,6 +3996,14 @@ ISO-code then comma then language name</comment>
     <value>删除脚注（Ctrl + Shift + F）</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
+  <data name="ribRemoveIndentsButton_Label" xml:space="preserve">
+    <value>删除缩进</value>
+    <comment>ribbon clean</comment>
+  </data>
+  <data name="ribRemoveIndentsButton_Screentip" xml:space="preserve">
+    <value>删除所选内容的缩进</value>
+    <comment>ribbon clean</comment>
+  </data>
   <data name="ribRemoveInkButton_Label" xml:space="preserve">
     <value>去除墨水</value>
     <comment>ribbon item</comment>
@@ -5207,14 +5212,16 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="TelemetryDialog_titleLabel.Text" xml:space="preserve">
     <value>帮助改进{0}</value>
-  <comment>!EDIT</comment></data>
+    <comment>!EDIT</comment>
+  </data>
   <data name="TelemetryDialog_whyBox.Text" xml:space="preserve">
     <value>请考虑启用匿名遥测以帮助我们改进{0}。 遥测记录使用了哪些命令、基本环境详细信息以及每次 OneNote 重新启动时重置的仅会话 ID。 这些信息有助于我们了解哪些功能最重要以及如何使用插件。 不会收集任何个人或识别数据，仅收集完全匿名的使用事件。
 
 您可以随时从 {0} 设置对话框启用或禁用遥测。
 
 谢谢你！</value>
-  <comment>!EDIT</comment></data>
+    <comment>!EDIT</comment>
+  </data>
   <data name="TelemetryDialog_yesButton.Text" xml:space="preserve">
     <value>是的，我会帮忙的！启用遥测</value>
   </data>

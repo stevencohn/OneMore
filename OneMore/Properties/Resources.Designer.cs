@@ -1421,11 +1421,33 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ctxRemoveEmptyButton_Label", resourceCulture);
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Remove Paragraph Spacing.
-        /// </summary>
-        internal static string ctxRemoveSpacingButton_Label {
+
+		/// <summary>
+		///   Looks up a localized string similar to Remove Indents.
+		/// </summary>
+		internal static string ribRemoveIndentsButton_Label
+		{
+			get
+			{
+				return ResourceManager.GetString("ribRemoveIndentsButton_Label", resourceCulture);
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized string similar to Remove indentation from selected content.
+		/// </summary>
+		internal static string ribRemoveIndentsButton_Screentip
+		{
+			get
+			{
+				return ResourceManager.GetString("ribRemoveIndentsButton_Screentip", resourceCulture);
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized string similar to Remove Paragraph Spacing.
+		/// </summary>
+		internal static string ctxRemoveSpacingButton_Label {
             get {
                 return ResourceManager.GetString("ctxRemoveSpacingButton_Label", resourceCulture);
             }

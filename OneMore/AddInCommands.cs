@@ -775,6 +775,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<RemoveEmptyCommand>();
 
 
+		[Command("ribRemoveIndentsButton_Label", Keys.None, "ribCleanMenu")]
+		public async Task RemoveIndentsCmd(IRibbonControl control)
+			=> await factory.Run<RemoveIndentsCommand>();
+
+
 		[Command("ribRemoveFootnoteButton_Label", Keys.Control | Keys.Shift | Keys.F, "ribReferencesMenu")]
 		public async Task RemoveFootnoteCmd(IRibbonControl control)
 			=> await factory.Run<RemoveFootnoteCommand>();

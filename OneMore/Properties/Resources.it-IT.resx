@@ -117,7 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="AboutDialog.Text" xml:space="preserve">
     <value>Componente aggiuntivo OneMore</value>
     <comment>dialog title bar</comment>
@@ -2000,10 +1999,6 @@ Vuoi aggiornare la pagina esistente?</value>
   <data name="NumberingPage_Message" xml:space="preserve">
     <value>Numerazione pagina {0}</value>
     <comment>progress status dialog</comment>
-  </data>
-  <data name="NumberLinesCommand_NoSelection" xml:space="preserve">
-    <value>Selezionare le righe da numerare e riprovare.</value>
-    <comment>message</comment>
   </data>
   <data name="NumberPagesDialog.Text" xml:space="preserve">
     <value>Numerazione delle pagine</value>
@@ -3991,6 +3986,14 @@ Scheda Aiuto</value>
     <value>Rimuovi nota a piè di pagina (Ctrl + Maiusc + F)</value>
     <comment>ribbon references</comment>
   </data>
+  <data name="ribRemoveIndentsButton_Label" xml:space="preserve">
+    <value>Rimuovi rientri</value>
+    <comment>ribbon clean</comment>
+  </data>
+  <data name="ribRemoveIndentsButton_Screentip" xml:space="preserve">
+    <value>Rimuovi il rientro dal contenuto selezionato</value>
+    <comment>ribbon clean</comment>
+  </data>
   <data name="ribRemoveInkButton_Label" xml:space="preserve">
     <value>Rimuovi inchiostro</value>
     <comment>ribbon clean</comment>
@@ -5197,14 +5200,16 @@ Invertire</value>
   </data>
   <data name="TelemetryDialog_titleLabel.Text" xml:space="preserve">
     <value>Aiutaci a migliorare {0}</value>
-  <comment>!EDIT</comment></data>
+    <comment>!EDIT</comment>
+  </data>
   <data name="TelemetryDialog_whyBox.Text" xml:space="preserve">
     <value>Ti invitiamo a considerare l'attivazione della telemetria anonima per aiutarci a migliorare {0}. La telemetria registra i comandi utilizzati, i dettagli dell'ambiente di base e un ID solo sessione che viene reimpostato a ogni riavvio di OneNote. Queste informazioni ci aiutano a capire quali funzionalità sono più importanti e come viene utilizzato il componente aggiuntivo. Non vengono mai raccolti dati personali o identificativi, ma solo eventi di utilizzo completamente anonimi.
 
 Puoi abilitare o disabilitare la telemetria in qualsiasi momento dalla finestra di dialogo Impostazioni {0}.
 
 Grazie!</value>
-  <comment>!EDIT</comment></data>
+    <comment>!EDIT</comment>
+  </data>
   <data name="TelemetryDialog_yesButton.Text" xml:space="preserve">
     <value>Sì, ti aiuterò! Abilita la telemetria</value>
   </data>
@@ -5714,6 +5719,7 @@ Grazie!</value>
     <value>Le parole contano</value>
     <comment>page title</comment>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="sponsor_dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Commands\Tools\sponsor-dark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

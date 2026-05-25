@@ -117,7 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="AboutDialog.Text" xml:space="preserve">
     <value>מעשן תוספות</value>
     <comment>dialog title bar</comment>
@@ -1241,7 +1240,8 @@ Total Row Font
 הפניה לתאים: A1, A2, ... ZZZ999
 טווח תאים: A1: A22
 טווחים יחסית: A1: תא (0, -1)</value>
-  <comment>!EDIT</comment></data>
+    <comment>!EDIT</comment>
+  </data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>תאים שנבחרו:</value>
     <comment>label</comment>
@@ -2000,10 +2000,6 @@ Total Row Font
   <data name="NumberingPage_Message" xml:space="preserve">
     <value>דף מספור {0}</value>
     <comment>progress status dialog</comment>
-  </data>
-  <data name="NumberLinesCommand_NoSelection" xml:space="preserve">
-    <value>בחר את השורות למספר ונסה שוב.</value>
-    <comment>message</comment>
   </data>
   <data name="NumberPagesDialog.Text" xml:space="preserve">
     <value>מספור עמודים</value>
@@ -3990,6 +3986,14 @@ ISO-code then comma then language name</comment>
     <value>הסר הערת שוליים (Ctrl + Shift + F)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
+  <data name="ribRemoveIndentsButton_Label" xml:space="preserve">
+    <value>הסר כניסות</value>
+    <comment>ribbon clean</comment>
+  </data>
+  <data name="ribRemoveIndentsButton_Screentip" xml:space="preserve">
+    <value>הסר הזחה מהתוכן שנבחר</value>
+    <comment>ribbon clean</comment>
+  </data>
   <data name="ribRemoveInkButton_Label" xml:space="preserve">
     <value>הסר דיו</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -5194,14 +5198,16 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="TelemetryDialog_titleLabel.Text" xml:space="preserve">
     <value>עזור לשפר את {0}</value>
-  <comment>!EDIT</comment></data>
+    <comment>!EDIT</comment>
+  </data>
   <data name="TelemetryDialog_whyBox.Text" xml:space="preserve">
     <value>אנא שקול להפעיל טלמטריה אנונימית כדי לעזור לנו לשפר את {0}. הטלמטריה מתעדת באילו פקודות נעשה שימוש, פרטי סביבה בסיסיים ומזהה הפעלה בלבד שמתאפס בכל פעם מחדש של OneNote. מידע זה עוזר לנו להבין אילו תכונות חשובות ביותר וכיצד נעשה שימוש בתוסף. לעולם לא נאספים נתונים אישיים או מזהים - רק אירועי שימוש אנונימיים לחלוטין.
 
 אתה יכול להפעיל או להשבית טלמטריה בכל עת מתיבת הדו-שיח {0} הגדרות.
 
 תודה לך!</value>
-  <comment>!EDIT</comment></data>
+    <comment>!EDIT</comment>
+  </data>
   <data name="TelemetryDialog_yesButton.Text" xml:space="preserve">
     <value>כן, אני אעזור! אפשר טלמטריה</value>
   </data>

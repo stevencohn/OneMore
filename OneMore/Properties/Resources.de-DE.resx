@@ -117,7 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="AboutDialog.Text" xml:space="preserve">
     <value>Onemore-Add-In-Raucher</value>
     <comment>dialog title bar</comment>
@@ -1236,7 +1235,8 @@ Variablen: E, PHI, PI, Tao, Tabellen, Tabllerows
 Zellreferenz: A1, A2, ... Zzz999
 Zellbereich: A1: A22
 Verwandte Bereiche: A1: Zelle (0, -1)</value>
-  <comment>!EDIT</comment></data>
+    <comment>!EDIT</comment>
+  </data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>Ausgewählte Zellen:</value>
     <comment>label</comment>
@@ -1995,10 +1995,6 @@ Möchten Sie die bestehende Seite aktualisieren?</value>
   <data name="NumberingPage_Message" xml:space="preserve">
     <value>Nummerierungsseite {0}</value>
     <comment>progress status dialog</comment>
-  </data>
-  <data name="NumberLinesCommand_NoSelection" xml:space="preserve">
-    <value>Wählen Sie die zu nummerierenden Zeilen aus und versuchen Sie es erneut.</value>
-    <comment>message</comment>
   </data>
   <data name="NumberPagesDialog.Text" xml:space="preserve">
     <value>Seitennummerierung</value>
@@ -3985,6 +3981,14 @@ Registerkarte „Hilfe“.</value>
     <value>Fußnote entfernen (Strg + Umschalt + F)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
+  <data name="ribRemoveIndentsButton_Label" xml:space="preserve">
+    <value>Einzüge entfernen</value>
+    <comment>ribbon clean</comment>
+  </data>
+  <data name="ribRemoveIndentsButton_Screentip" xml:space="preserve">
+    <value>Einrückung vom ausgewählten Inhalt entfernen</value>
+    <comment>ribbon clean</comment>
+  </data>
   <data name="ribRemoveInkButton_Label" xml:space="preserve">
     <value>Tinte entfernen</value>
     <comment>ribbon item</comment>
@@ -5190,14 +5194,16 @@ Umkehren</value>
   </data>
   <data name="TelemetryDialog_titleLabel.Text" xml:space="preserve">
     <value>Helfen Sie mit, {0} zu verbessern</value>
-  <comment>!EDIT</comment></data>
+    <comment>!EDIT</comment>
+  </data>
   <data name="TelemetryDialog_whyBox.Text" xml:space="preserve">
     <value>Bitte erwägen Sie die Aktivierung anonymer Telemetrie, um uns bei der Verbesserung von {0} zu helfen. Telemetrie zeichnet auf, welche Befehle verwendet werden, grundlegende Umgebungsdetails und eine reine Sitzungs-ID, die bei jedem Neustart von OneNote zurückgesetzt wird. Diese Informationen helfen uns zu verstehen, welche Funktionen am wichtigsten sind und wie das Add-In verwendet wird. Es werden niemals personenbezogene oder identifizierende Daten erfasst, sondern nur völlig anonyme Nutzungsereignisse.
 
 Sie können die Telemetrie jederzeit über das Dialogfeld „Einstellungen“ {0} aktivieren oder deaktivieren.
 
 Danke schön!</value>
-  <comment>!EDIT</comment></data>
+    <comment>!EDIT</comment>
+  </data>
   <data name="TelemetryDialog_yesButton.Text" xml:space="preserve">
     <value>Ja, ich helfe! Telemetrie aktivieren</value>
   </data>

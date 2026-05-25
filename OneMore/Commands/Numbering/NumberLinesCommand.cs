@@ -56,7 +56,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (range.Scope == SelectionScope.TextCursor)
 			{
-				ShowInfo(Resx.NumberLinesCommand_NoSelection);
+				ShowInfo(Resx.Error_SelectContent);
 				return;
 			}
 
