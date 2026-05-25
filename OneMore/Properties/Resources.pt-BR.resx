@@ -4812,12 +4812,16 @@ Você tem certeza que quer continuar?</value>
     <value>Quebrar texto</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SnippetsSheet_codeStyleBox.Text" xml:space="preserve">
+    <value>Sempre aplique o estilo "código" ao conteúdo da Code Box</value>
+    <comment>label</comment>
+  </data>
   <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
     <value>Excluir snippet "{0}"</value>
     <comment>question</comment>
   </data>
   <data name="SnippetsSheet_introBox.Text" xml:space="preserve">
-    <value>Gerencie meus trechos</value>
+    <value>Gerenciar opções e Meus Snippets</value>
     <comment>label</comment>
   </data>
   <data name="SortDialog.Text" xml:space="preserve">

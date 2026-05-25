@@ -4850,12 +4850,16 @@ Are you sure you want to continue?</value>
     <value>Wrap text</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SnippetsSheet_codeStyleBox.Text" xml:space="preserve">
+    <value>Always apply "code" style to Code Box content</value>
+    <comment>label</comment>
+  </data>
   <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
     <value>Delete snippet "{0}"</value>
     <comment>question</comment>
   </data>
   <data name="SnippetsSheet_introBox.Text" xml:space="preserve">
-    <value>Manage my snippets</value>
+    <value>Manage options and My Snippets</value>
     <comment>label</comment>
   </data>
   <data name="SortDialog.Text" xml:space="preserve">

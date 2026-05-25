@@ -11888,6 +11888,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Always apply &quot;code&quot; style to Code Box content.
+        /// </summary>
+        internal static string SnippetsSheet_codeStyleBox_Text {
+            get {
+                return ResourceManager.GetString("SnippetsSheet_codeStyleBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete snippet &quot;{0}&quot;.
         /// </summary>
         internal static string SnippetsSheet_ConfirmDelete {
@@ -11897,7 +11906,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Manage my snippets.
+        ///   Looks up a localized string similar to Manage options and My Snippets.
         /// </summary>
         internal static string SnippetsSheet_introBox_Text {
             get {

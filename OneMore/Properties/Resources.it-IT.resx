@@ -4814,12 +4814,16 @@ Sei sicuro di voler continuare?</value>
     <value>Avvolgi il testo</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SnippetsSheet_codeStyleBox.Text" xml:space="preserve">
+    <value>Applica sempre lo stile "codice" al contenuto della casella codice</value>
+    <comment>label</comment>
+  </data>
   <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
     <value>Elimina lo snippet "{0}"</value>
     <comment>question</comment>
   </data>
   <data name="SnippetsSheet_introBox.Text" xml:space="preserve">
-    <value>Gestisci i miei frammenti</value>
+    <value>Gestisci le opzioni e i miei frammenti</value>
     <comment>label</comment>
   </data>
   <data name="SortDialog.Text" xml:space="preserve">

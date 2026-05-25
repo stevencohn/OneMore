@@ -4812,12 +4812,16 @@ Weet je zeker dat je door wilt gaan?</value>
     <value>Omloop tekst</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SnippetsSheet_codeStyleBox.Text" xml:space="preserve">
+    <value>Pas altijd de 'code'-stijl toe op Code Box-inhoud</value>
+    <comment>label</comment>
+  </data>
   <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
     <value>Fragment "{0}" verwijderen</value>
     <comment>question</comment>
   </data>
   <data name="SnippetsSheet_introBox.Text" xml:space="preserve">
-    <value>Beheer mijn fragmenten</value>
+    <value>Beheer opties en Mijn fragmenten</value>
     <comment>label</comment>
   </data>
   <data name="SortDialog.Text" xml:space="preserve">

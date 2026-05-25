@@ -4824,6 +4824,10 @@ ISO-code then comma then language name</comment>
     <value>自动换行</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SnippetsSheet_codeStyleBox.Text" xml:space="preserve">
+    <value>始终将“代码”样式应用于代码框内容</value>
+    <comment>label</comment>
+  </data>
   <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
     <value>删除片段“{0}”</value>
     <comment>question</comment>

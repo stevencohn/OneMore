@@ -4813,12 +4813,16 @@ Jesteś pewien, że chcesz kontynuować?</value>
     <value>Owiń tekst</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SnippetsSheet_codeStyleBox.Text" xml:space="preserve">
+    <value>Zawsze stosuj styl „kodu” do zawartości Code Box</value>
+    <comment>label</comment>
+  </data>
   <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
     <value>Usuń fragment "{0}"</value>
     <comment>question</comment>
   </data>
   <data name="SnippetsSheet_introBox.Text" xml:space="preserve">
-    <value>Zarządzaj moimi fragmentami</value>
+    <value>Zarządzaj opcjami i Moimi fragmentami</value>
     <comment>label</comment>
   </data>
   <data name="SortDialog.Text" xml:space="preserve">

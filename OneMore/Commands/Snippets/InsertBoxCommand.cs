@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
+	using River.OneMoreAddIn.Settings;
 	using River.OneMoreAddIn.Styles;
 	using System;
 	using System.Collections.Generic;
@@ -154,7 +155,12 @@ namespace River.OneMoreAddIn.Commands
 
 				if (addTitle)
 				{
-					ApplyCodeStyle(page, content);
+					if (new SettingsProvider()
+						.GetCollection(nameof(SnippetsSheet))
+						.Get("applyStyle", false))
+					{
+						ApplyCodeStyle(page, content);
+					}
 				}
 
 				var shading = DetermineShading(page, content);
