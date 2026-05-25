@@ -19,6 +19,8 @@ namespace River.OneMoreAddIn.Commands
 	/// by attempting to match standard styles with custom styles. For example, it will apply
 	/// custom-heading-1 to all standard-heading-1 content. This is done by applying the styles
 	/// directly to the QuickStyleDefs declarations.
+	/// If text is selected, applies matching theme styles inline only to the selected paragraphs
+	/// rather than re-styling the whole page.
 	/// </summary>
 	internal class ApplyStylesCommand : Command
 	{
@@ -48,21 +50,33 @@ namespace River.OneMoreAddIn.Commands
 		{
 			await using var one = new OneNote(out page, out ns);
 
-			// apply theme page color..
+			var hasSelection = page.Root
+				.Descendants(ns + "T")
+				.Any(e => e.Attributes("selected").Any(a => a.Value == "all"));
 
 			var changed = false;
-			if (!string.IsNullOrWhiteSpace(theme.Color))
+
+			if (hasSelection)
 			{
-				var cmd = new PageColorCommand();
-				cmd.SetLogger(logger);
-				changed = cmd.UpdatePageColor(page, theme.Color);
+				// selection mode: apply theme styles only to selected paragraphs inline;
+				// do not change the page background color
+				changed = ApplyToSelectedParagraphs();
 			}
-
-			// apply theme styles...
-
-			if (ApplyThemeStyles())
+			else
 			{
-				changed = true;
+				// whole-page mode: existing behavior unchanged
+
+				if (!string.IsNullOrWhiteSpace(theme.Color))
+				{
+					var cmd = new PageColorCommand();
+					cmd.SetLogger(logger);
+					changed = cmd.UpdatePageColor(page, theme.Color);
+				}
+
+				if (ApplyThemeStyles())
+				{
+					changed = true;
+				}
 			}
 
 			if (changed)
@@ -418,6 +432,145 @@ namespace River.OneMoreAddIn.Commands
 			else if (color != null)
 			{
 				element.Add(new XAttribute("style", $"color:{MediumBlue}"));
+			}
+		}
+
+
+		private bool ApplyToSelectedParagraphs()
+		{
+			var styles = theme.GetStyles();
+
+			// spaceBetween applies only to "p" paragraphs (mirrors ApplyStyles logic)
+			string normalSpacing = null;
+			if (FindStyle(styles, "p") is Style normalStyle &&
+				double.TryParse(normalStyle.Spacing,
+					NumberStyles.Any, CultureInfo.InvariantCulture, out var spc) && spc > 0.0)
+			{
+				normalSpacing = normalStyle.Spacing;
+			}
+
+			// index -> name lookup for all QuickStyleDefs on the page
+			var quickDefs = page.Root
+				.Elements(ns + "QuickStyleDef")
+				.ToDictionary(
+					q => q.Attribute("index").Value,
+					q => q.Attribute("name").Value);
+
+			// selected OEs = parents of selected T elements, deduplicated
+			var selectedOEs = page.Root
+				.Descendants(ns + "T")
+				.Where(t => t.Attributes("selected").Any(a => a.Value == "all"))
+				.Select(t => t.Parent)
+				.Distinct()
+				.ToList();
+
+			if (!selectedOEs.Any())
+			{
+				return false;
+			}
+
+			var applied = false;
+
+			foreach (var oe in selectedOEs)
+			{
+				// skip guarded paragraphs (same guards as ClearInlineStyles / SetSpacing)
+				var meta = oe.Element(ns + "Meta");
+				if (meta is not null)
+				{
+					var metaName = meta.Attribute("name")?.Value ?? string.Empty;
+					if (metaName.StartsWith("omfootnote") ||
+						metaName.StartsWith(MetaNames.TaggingBank) ||
+						(metaName == Style.HintMeta &&
+						 meta.Attribute("content")?.Value == "skip"))
+					{
+						continue;
+					}
+				}
+
+				// resolve QuickStyleDef name for this OE; default "p" if absent
+				var qsiAttr = oe.Attribute("quickStyleIndex");
+				var quickName = "p";
+				if (qsiAttr is not null &&
+					quickDefs.TryGetValue(qsiAttr.Value, out var resolvedName))
+				{
+					quickName = resolvedName;
+				}
+
+				var style = FindStyle(styles, quickName);
+				if (style is null)
+				{
+					continue;
+				}
+
+				// clearing mode mirrors ApplyStyles()
+				var clearing =
+					style.IsCode || !style.ApplyColors
+						? Stylizer.Clearing.Gray
+						: quickName == "p"
+							? Stylizer.Clearing.Gray
+							: Stylizer.Clearing.All;
+
+				stylizer.Clear(oe, clearing, deep: false);
+
+				// apply theme style CSS inline to the OE
+				var css = style.ToCss();
+				var attr = oe.Attribute("style");
+				if (attr is null)
+				{
+					oe.Add(new XAttribute("style", css));
+				}
+				else if (!style.ApplyColors)
+				{
+					// preserve existing colors; only update non-color properties
+					var merged = new Style(style) { ApplyColors = true };
+					merged.MergeColors(new Style(attr.Value));
+					attr.Value = merged.ToCss();
+				}
+				else
+				{
+					attr.Value = css;
+				}
+
+				// paragraph spacing
+				oe.SetAttributeValue("spaceBefore", style.SpaceBefore);
+				oe.SetAttributeValue("spaceAfter", style.SpaceAfter);
+				if (quickName == "p" && normalSpacing is not null)
+				{
+					oe.SetAttributeValue("spaceBetween", normalSpacing);
+				}
+
+				// list bullet/number inline colors
+				ApplyToListItem(oe, style);
+
+				applied = true;
+			}
+
+			return applied;
+		}
+
+
+		private void ApplyToListItem(XElement oe, Style style)
+		{
+			var item = oe.Elements(ns + "List").Elements()
+				.FirstOrDefault(e =>
+					e.Name.LocalName == "Bullet" ||
+					e.Name.LocalName == "Number");
+
+			if (item is null)
+			{
+				return;
+			}
+
+			if (style.ApplyColors)
+			{
+				item.SetAttributeValue("fontColor", style.Color);
+			}
+
+			item.SetAttributeValue("fontSize", style.FontSize);
+
+			if (item.Name.LocalName == "Number")
+			{
+				item.SetAttributeValue("font", style.FontFamily);
 			}
 		}
 	}
