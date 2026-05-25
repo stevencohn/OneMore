@@ -449,11 +449,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Properties\Resources1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Ribbon\AddInRibbon.cs" />
     <Compile Include="Ribbon\AddInRibbonStyleGallery.cs" />
     <Compile Include="Colorizer\Colorizer.cs" />
