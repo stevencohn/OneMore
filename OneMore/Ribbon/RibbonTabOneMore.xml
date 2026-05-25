@@ -764,6 +764,12 @@
         getScreentip="GetRibbonScreentip"
         onAction="SortListCmd"/>
       <button
+        id="ribNumberLinesButton"
+        imageMso="LineNumbersMenu"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="NumberLinesCmd"/>
+      <button
         id="ribNumberSectionsButton"
         imageMso="LineNumbersMenu"
         getLabel="GetRibbonLabel"

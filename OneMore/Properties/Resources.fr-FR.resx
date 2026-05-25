@@ -2004,6 +2004,10 @@ Voulez-vous actualiser la page existante ?</value>
     <value>Page de numérotation {0}</value>
     <comment>progress status dialog</comment>
   </data>
+  <data name="NumberLinesCommand_NoSelection" xml:space="preserve">
+    <value>Sélectionnez les lignes à numéroter et réessayez.</value>
+    <comment>message</comment>
+  </data>
   <data name="NumberPagesDialog.Text" xml:space="preserve">
     <value>Numérotation des pages</value>
     <comment>dialog title</comment>
@@ -3703,6 +3707,14 @@ Onglet Aide</value>
   <data name="ribNumberingMenu_Label" xml:space="preserve">
     <value>Numérotage</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribNumberLinesButton_Label" xml:space="preserve">
+    <value>Droites numériques</value>
+    <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribNumberLinesButton_Screentip" xml:space="preserve">
+    <value>Ajouter les numéros de ligne au texte sélectionné</value>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribNumberPagesButton_Label" xml:space="preserve">
     <value>Nombre de pages</value>

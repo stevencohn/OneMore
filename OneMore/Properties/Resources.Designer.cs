@@ -5411,7 +5411,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("NumberingPage_Message", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Select the lines to number and try again.
+        /// </summary>
+        internal static string NumberLinesCommand_NoSelection {
+            get {
+                return ResourceManager.GetString("NumberLinesCommand_NoSelection", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Remove/cleanup existing numbering.
         /// </summary>
@@ -9341,6 +9350,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribNumberingMenu_Label {
             get {
                 return ResourceManager.GetString("ribNumberingMenu_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number Lines.
+        /// </summary>
+        internal static string ribNumberLinesButton_Label {
+            get {
+                return ResourceManager.GetString("ribNumberLinesButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add line numbers selected text.
+        /// </summary>
+        internal static string ribNumberLinesButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribNumberLinesButton_Screentip", resourceCulture);
             }
         }
         

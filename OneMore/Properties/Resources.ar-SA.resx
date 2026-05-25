@@ -2004,6 +2004,10 @@
     <value>صفحة الترقيم {0}</value>
     <comment>progress status dialog</comment>
   </data>
+  <data name="NumberLinesCommand_NoSelection" xml:space="preserve">
+    <value>حدد الأسطر المراد ترقيمها وحاول مرة أخرى.</value>
+    <comment>message</comment>
+  </data>
   <data name="NumberPagesDialog.Text" xml:space="preserve">
     <value>ترقيم الصفحات</value>
     <comment>dialog title</comment>
@@ -3704,6 +3708,14 @@ ISO-code then comma then language name</comment>
   <data name="ribNumberingMenu_Label" xml:space="preserve">
     <value>الترقيم</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribNumberLinesButton_Label" xml:space="preserve">
+    <value>خطوط الأعداد</value>
+    <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribNumberLinesButton_Screentip" xml:space="preserve">
+    <value>إضافة أرقام الأسطر النص المحدد</value>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribNumberPagesButton_Label" xml:space="preserve">
     <value>عدد الصفحات</value>

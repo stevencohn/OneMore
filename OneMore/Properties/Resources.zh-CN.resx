@@ -2006,6 +2006,10 @@ OneNote 文件 (*.one)</value>
     <value>编号页{0}</value>
     <comment>progress status dialog</comment>
   </data>
+  <data name="NumberLinesCommand_NoSelection" xml:space="preserve">
+    <value>选择要编号的行并重试。</value>
+    <comment>message</comment>
+  </data>
   <data name="NumberPagesDialog.Text" xml:space="preserve">
     <value>页码</value>
     <comment>dialog title</comment>
@@ -3708,6 +3712,14 @@ ISO-code then comma then language name</comment>
   <data name="ribNumberingMenu_Label" xml:space="preserve">
     <value>编号</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribNumberLinesButton_Label" xml:space="preserve">
+    <value>数轴</value>
+    <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribNumberLinesButton_Screentip" xml:space="preserve">
+    <value>添加所选文本的行号</value>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribNumberPagesButton_Label" xml:space="preserve">
     <value>页面编号</value>

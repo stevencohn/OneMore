@@ -628,6 +628,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<WordCountCommand>(OneNote.Scope.Sections);
 
 
+		[Command("ribNumberLinesButton_Label", Keys.None, "ribNumberingMenu")]
+		public async Task NumberLinesCmd(IRibbonControl control)
+			=> await factory.Run<NumberLinesCommand>();
+
+
 		[Command("ribNumberPagesButton_Label", Keys.None, "ribNumberingMenu")]
 		public async Task NumberPagesCmd(IRibbonControl control)
 			=> await factory.Run<NumberPagesCommand>();

@@ -81,17 +81,22 @@ Read `ONENOTE.EXE`'s PE header directly when you need OneNote's architecture.
 
 ## Conventions and norms
 
+- **Prompting:** While in Planning mode, do not prompt to ask permission to
+  read files or perform basic research and discovery operations. Proceed as if
+  you have full permission for read-only commands.
+
 - **Issues / PRs:** use the `gh` CLI. Default repo is `stevencohn/OneMore`
   (e.g. `gh issue view 2017 --repo stevencohn/OneMore --comments`).
 - **Commits are GPG-signed.** See `.github/pull_request_template.md`.
 
 - **Branching:** `main` is protected. Use feature branches named like
   `1234-calendar-integration`, where the prefix `1234-` is the GitHub issue number 
-  for the work in that branch. Open a PR from that branch to `main` when ready.
-  
-- **Prompting:** While in Planning mode, do not prompt to ask permission to
-  read files or perform basic research and discovery operations. Proceed as if
-  you have full permission for read-only commands.
+  for the work in that branch.
+
+- Do not commit changes until use has a chance to manually review and asks to commit.
+
+- When asked to open a PR, take the name of the branch, remove hyphens, and use that
+  as the title of the PR.
 
 - **Translations:** when working with resx files, you may update
   Properties\Resources.resx and Properties\Resources.Designer.cs, but do not touch

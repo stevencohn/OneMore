@@ -1996,6 +1996,10 @@ Möchten Sie die bestehende Seite aktualisieren?</value>
     <value>Nummerierungsseite {0}</value>
     <comment>progress status dialog</comment>
   </data>
+  <data name="NumberLinesCommand_NoSelection" xml:space="preserve">
+    <value>Wählen Sie die zu nummerierenden Zeilen aus und versuchen Sie es erneut.</value>
+    <comment>message</comment>
+  </data>
   <data name="NumberPagesDialog.Text" xml:space="preserve">
     <value>Seitennummerierung</value>
     <comment>dialog title</comment>
@@ -3694,6 +3698,14 @@ Registerkarte „Hilfe“.</value>
   <data name="ribNumberingMenu_Label" xml:space="preserve">
     <value>Nummerierung</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribNumberLinesButton_Label" xml:space="preserve">
+    <value>Zahlenlinien</value>
+    <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribNumberLinesButton_Screentip" xml:space="preserve">
+    <value>Zeilennummern zum ausgewählten Text hinzufügen</value>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribNumberPagesButton_Label" xml:space="preserve">
     <value>Anzahl Seiten</value>

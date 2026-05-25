@@ -1996,6 +1996,10 @@ Cuadrado Marrón</value>
     <value>Página de numeración {0}</value>
     <comment>progress status dialog</comment>
   </data>
+  <data name="NumberLinesCommand_NoSelection" xml:space="preserve">
+    <value>Seleccione las líneas a numerar y vuelva a intentarlo.</value>
+    <comment>message</comment>
+  </data>
   <data name="NumberPagesDialog.Text" xml:space="preserve">
     <value>Numeración de páginas</value>
     <comment>dialog title</comment>
@@ -3692,6 +3696,14 @@ Pestaña Ayuda</value>
   <data name="ribNumberingMenu_Label" xml:space="preserve">
     <value>Numeración</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribNumberLinesButton_Label" xml:space="preserve">
+    <value>Rectas numéricas</value>
+    <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribNumberLinesButton_Screentip" xml:space="preserve">
+    <value>Agregar números de línea al texto seleccionado</value>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribNumberPagesButton_Label" xml:space="preserve">
     <value>Páginas de números</value>
