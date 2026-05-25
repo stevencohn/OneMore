@@ -54,6 +54,7 @@ namespace River.OneMoreAddIn.Commands
 			var builder = new StringBuilder();
 
 			var parts = Tokenize(query);
+			var notFlag = false;
 			for (int i = 0; i < parts.Count; i++)
 			{
 				var part = parts[i].Trim().ToUpper();
@@ -66,14 +67,29 @@ namespace River.OneMoreAddIn.Commands
 				{
 					builder.Append("OR ");
 				}
-				else if (part == "(" || part == ")")
+				else if (part == "NOT")
 				{
-					builder.Append($"{part} ");
+					notFlag = true;
+				}
+				else if (part == "(")
+				{
+					if (notFlag)
+					{
+						builder.Append("NOT ");
+						notFlag = false;
+					}
+					builder.Append("( ");
+				}
+				else if (part == ")")
+				{
+					builder.Append(") ");
 				}
 				else
 				{
 					var op = caseSensitive ? "GLOB" : "LIKE";
-					builder.Append(@$"{fieldRef} {op} '{parts[i]}'");
+					var notOp = notFlag ? "NOT " : string.Empty;
+					notFlag = false;
+					builder.Append(@$"{fieldRef} {notOp}{op} '{parts[i]}'");
 					if (i < parts.Count - 1)
 					{
 						builder.Append(" ");
@@ -183,11 +199,13 @@ namespace River.OneMoreAddIn.Commands
 		public Regex GetMatchingPattern(string parsed)
 		{
 			var pattern = string.Empty;
-			var matches = Regex.Matches(parsed, @"'([^']+)'");
+			var matches = Regex.Matches(parsed, @"(?<not>NOT )?(?:LIKE|GLOB) '([^']+)'");
 			foreach (Match match in matches)
 			{
+				if (match.Groups["not"].Success) continue;
+
 				var wildcard = caseSensitive ? "*" : "%";
-				var value = match.Groups[1].Value.Replace(wildcard, string.Empty);
+				var value = match.Groups[2].Value.Replace(wildcard, string.Empty);
 
 				// ignore "%" wildcard, from user input "*"
 				if (value.Length > 0)

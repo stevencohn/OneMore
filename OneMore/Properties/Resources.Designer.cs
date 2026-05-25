@@ -1421,33 +1421,11 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ctxRemoveEmptyButton_Label", resourceCulture);
             }
         }
-
-		/// <summary>
-		///   Looks up a localized string similar to Remove Indents.
-		/// </summary>
-		internal static string ribRemoveIndentsButton_Label
-		{
-			get
-			{
-				return ResourceManager.GetString("ribRemoveIndentsButton_Label", resourceCulture);
-			}
-		}
-
-		/// <summary>
-		///   Looks up a localized string similar to Remove indentation from selected content.
-		/// </summary>
-		internal static string ribRemoveIndentsButton_Screentip
-		{
-			get
-			{
-				return ResourceManager.GetString("ribRemoveIndentsButton_Screentip", resourceCulture);
-			}
-		}
-
-		/// <summary>
-		///   Looks up a localized string similar to Remove Paragraph Spacing.
-		/// </summary>
-		internal static string ctxRemoveSpacingButton_Label {
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove Paragraph Spacing.
+        /// </summary>
+        internal static string ctxRemoveSpacingButton_Label {
             get {
                 return ResourceManager.GetString("ctxRemoveSpacingButton_Label", resourceCulture);
             }
@@ -3557,7 +3535,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Type any part of one or more hashtags. Wildcards are implied unless a tag is ended with a period. Parenthesis and logical operators are allowed..
+        ///   Looks up a localized string similar to Type any part of one or more hashtags. Wildcards are implied unless a tag is ended with a period. Parenthesis and logical operators (AND, OR, NOT) are allowed..
         /// </summary>
         internal static string HashtagDialog_introLabel_Text {
             get {
@@ -5433,16 +5411,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("NumberingPage_Message", resourceCulture);
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Select the lines to number and try again.
-        /// </summary>
-        internal static string NumberLinesCommand_NoSelection {
-            get {
-                return ResourceManager.GetString("NumberLinesCommand_NoSelection", resourceCulture);
-            }
-        }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Remove/cleanup existing numbering.
         /// </summary>
@@ -10020,6 +9989,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribRemoveFootnoteButton_Screentip {
             get {
                 return ResourceManager.GetString("ribRemoveFootnoteButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove Indents.
+        /// </summary>
+        internal static string ribRemoveIndentsButton_Label {
+            get {
+                return ResourceManager.GetString("ribRemoveIndentsButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove indentation from selected content.
+        /// </summary>
+        internal static string ribRemoveIndentsButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribRemoveIndentsButton_Screentip", resourceCulture);
             }
         }
         
