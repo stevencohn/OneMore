@@ -636,10 +636,16 @@ namespace River.OneMoreAddIn.Commands
 
 			if (!includeTocBox.Checked)
 			{
-				paragraphs = paragraphs.Where(e => e.Elements(ns + "T").Any()
+				paragraphs = paragraphs.Where(e =>
+					// allow all paragraphs except the TOC
+					(e.Elements(ns + "T").Any()
 					&& !e.AncestorsAndSelf(ns + "OE")
 						.Any(a => a.Elements(ns + "Meta")
-							.Any(m => m.Attribute("name")?.Value == "omToc")))
+							.Any(m => m.Attribute("name")?.Value == "omToc"))
+					) ||
+					// always allow attachments
+					e.Elements(ns + "InsertedFile").Any()
+				)
 				.ToList();
 			}
 
@@ -686,16 +692,31 @@ namespace River.OneMoreAddIn.Commands
 			{
 				// custom cleaner regex adds filter for "&#nnn;" escapes, instead of TextValue
 				//
-				//
 				// NOTE, instead of ignoring escape sequences, use WebUtility.HtmlDecode(input);
 				//
-				//
+
 				var line = cleaner.Replace(e.Value, string.Empty).Trim();
 				if (line.Length > 0)
 				{
 					text = $"{text}{line} ";
 				}
 			});
+
+			if (text.Length == 0)
+			{
+				paragraph.Elements(ns + "InsertedFile").ForEach(e => // would only be one
+				{
+					if (e.Attribute("pathSource")?.Value is string pathSource)
+					{
+						text = $"{text} {pathSource}";
+					}
+
+					if (e.Attribute("preferredName")?.Value is string preferredName)
+					{
+						text = $"{text} {preferredName}";
+					}
+				});
+			}
 
 			return text.Trim();
 		}
