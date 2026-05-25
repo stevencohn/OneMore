@@ -305,41 +305,37 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ApplyToLists(IEnumerable<Style> styles)
 		{
-			var style = styles.SingleOrDefault(s =>
+			var quickDefs = page.Root.Elements(ns + "QuickStyleDef").ToList();
+
+			var normalStyle = styles.SingleOrDefault(s =>
 				s.Name.ToLower() == "normal" ||
 				s.Name.ToLower() == "body" ||
-				s.Name.ToLower() == "p");
+				s.Name.ToLower() == "p")
+				?? new Style { Color = page.GetBestTextColor().ToRGBHtml() };
 
-			style ??= new Style
+			Style StyleFor(XElement listItem)
 			{
-				Color = page.GetBestTextColor().ToRGBHtml()
-			};
-
-			var elements = page.Root.Descendants(ns + "Bullet");
-			if (elements?.Any() == true)
-			{
-				ApplyToListItems(elements, style, false);
+				var qsi = listItem.Parent?.Parent?.Attribute("quickStyleIndex")?.Value;
+				if (qsi == null) return normalStyle;
+				var quickName = quickDefs
+					.FirstOrDefault(q => q.Attribute("index")?.Value == qsi)
+					?.Attribute("name")?.Value;
+				return quickName != null ? (FindStyle(styles, quickName) ?? normalStyle) : normalStyle;
 			}
 
-			elements = page.Root.Descendants(ns + "Number");
-			if (elements?.Any() == true)
+			foreach (var element in page.Root.Descendants(ns + "Bullet").ToList())
 			{
-				ApplyToListItems(elements, style, true);
+				var s = StyleFor(element);
+				element.SetAttributeValue("fontColor", s.Color);
+				element.SetAttributeValue("fontSize", s.FontSize);
 			}
-		}
 
-
-		private static void ApplyToListItems(IEnumerable<XElement> elements, Style style, bool withFamily)
-		{
-			foreach (var element in elements)
+			foreach (var element in page.Root.Descendants(ns + "Number").ToList())
 			{
-				element.SetAttributeValue("fontColor", style.Color);
-				element.SetAttributeValue("fontSize", style.FontSize);
-
-				if (withFamily)
-				{
-					element.SetAttributeValue("font", style.FontFamily);
-				}
+				var s = StyleFor(element);
+				element.SetAttributeValue("fontColor", s.Color);
+				element.SetAttributeValue("fontSize", s.FontSize);
+				element.SetAttributeValue("font", s.FontFamily);
 			}
 		}
 
