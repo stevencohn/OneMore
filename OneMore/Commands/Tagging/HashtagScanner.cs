@@ -57,7 +57,8 @@ namespace River.OneMoreAddIn.Commands
 
 			factory = new HashtagPageSannerFactory(
 				GetStyleTemplate(),
-				settings.Get<bool>("unfiltered"));
+				settings.Get<bool>("unfiltered"),
+				settings.Get<bool>("doubled"));
 
 			Stats = new Statistics();
 

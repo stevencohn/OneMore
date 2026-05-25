@@ -33,6 +33,7 @@ namespace River.OneMoreAddIn.Settings
 					"styleLabel",
 					"styleBox",
 					"filterBox",
+					"doubledBox",
 					"scheduleLink",
 					"warningBox",
 					"disabledBox"
@@ -77,6 +78,7 @@ namespace River.OneMoreAddIn.Settings
 			}
 
 			filterBox.Checked = settings.Get<bool>("unfiltered");
+			doubledBox.Checked = settings.Get<bool>("doubled");
 
 			if (provider.GetCollection("GeneralSheet").Get("experimental", false))
 			{
@@ -120,6 +122,10 @@ namespace River.OneMoreAddIn.Settings
 			updated = filterBox.Checked
 				? settings.Add("unfiltered", true) || updated
 				: settings.Remove("unfiltered") || updated;
+
+			updated = doubledBox.Checked
+				? settings.Add("doubled", true) || updated
+				: settings.Remove("doubled") || updated;
 
 			updated = disabledBox.Checked
 				? settings.Add("disabled", true) || updated

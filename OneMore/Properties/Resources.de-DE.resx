@@ -1431,6 +1431,10 @@ Diese Seite</value>
     <value>Deaktivieren Sie den Hashtag-Dienst. Dadurch wird auch die Hashtag-Suche deaktiviert.</value>
     <comment>checkbox</comment>
   </data>
+  <data name="HashtagSheet_doubledBox.Text" xml:space="preserve">
+    <value>Erkennen Sie nur doppelte „##“-Präfix-Hashtags</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="HashtagSheet_filterBox.Text" xml:space="preserve">
     <value>Behandeln Sie HTML-Hex-Farben sowie C#- und C++-Anweisungen als Hashtags</value>
     <comment>checkbox</comment>

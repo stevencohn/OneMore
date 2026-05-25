@@ -1436,6 +1436,10 @@ Total Row Font
     <value>השבת את שירות ההאשטאג. זה גם ישבית את חיפוש ההאשטאג.</value>
     <comment>checkbox</comment>
   </data>
+  <data name="HashtagSheet_doubledBox.Text" xml:space="preserve">
+    <value>זהה רק תגי hashtag כפולים של קידומת "##".</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="HashtagSheet_filterBox.Text" xml:space="preserve">
     <value>התייחס לצבעי HTML Hex ולהנחיות C# ו-C++ כאל תגי hashtag</value>
     <comment>checkbox</comment>

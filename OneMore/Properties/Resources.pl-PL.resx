@@ -1436,6 +1436,10 @@ Ta strona</value>
     <value>Wyłącz usługę hashtagów. Spowoduje to również wyłączenie wyszukiwania hashtagów.</value>
     <comment>checkbox</comment>
   </data>
+  <data name="HashtagSheet_doubledBox.Text" xml:space="preserve">
+    <value>Rozpoznawaj tylko hashtagi z podwójnym przedrostkiem „##”.</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="HashtagSheet_filterBox.Text" xml:space="preserve">
     <value>Traktuj kolory HTML Hex oraz dyrektywy C# i C++ jako hashtagi</value>
     <comment>checkbox</comment>
