@@ -2001,6 +2001,10 @@ Total Row Font
     <value>דף מספור {0}</value>
     <comment>progress status dialog</comment>
   </data>
+  <data name="NumberLinesCommand_NoSelection" xml:space="preserve">
+    <value>בחר את השורות למספר ונסה שוב.</value>
+    <comment>message</comment>
+  </data>
   <data name="NumberPagesDialog.Text" xml:space="preserve">
     <value>מספור עמודים</value>
     <comment>dialog title</comment>
@@ -3699,6 +3703,14 @@ ISO-code then comma then language name</comment>
   <data name="ribNumberingMenu_Label" xml:space="preserve">
     <value>סִפְרוּר</value>
     <comment>Ribbon OneMore menu item NODUP</comment>
+  </data>
+  <data name="ribNumberLinesButton_Label" xml:space="preserve">
+    <value>שורות מספר</value>
+    <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribNumberLinesButton_Screentip" xml:space="preserve">
+    <value>הוסף מספרי שורות טקסט שנבחר</value>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribNumberPagesButton_Label" xml:space="preserve">
     <value>מספר עמודים</value>

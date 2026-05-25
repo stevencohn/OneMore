@@ -213,6 +213,7 @@
     <Compile Include="Commands\Images\Diagrams\KrokiDiagramProvider.cs" />
     <Compile Include="Commands\Images\SelectInkCommand.cs" />
     <Compile Include="Commands\Navigator\NextUnreadPageCommand.cs" />
+    <Compile Include="Commands\Numbering\NumberLinesCommand.cs" />
     <Compile Include="Commands\Page\DuplicateLineCommand.cs" />
     <Compile Include="Commands\Edit\PreviewMarkdownCommand.cs" />
     <Compile Include="Commands\File\FileQuickNotesCommand.cs" />

@@ -2003,6 +2003,10 @@ OneNoteファイル (*.one)</value>
     <value>ページ番号付け {0}</value>
     <comment>progress status dialog</comment>
   </data>
+  <data name="NumberLinesCommand_NoSelection" xml:space="preserve">
+    <value>番号を付ける行を選択して、再試行してください。</value>
+    <comment>message</comment>
+  </data>
   <data name="NumberPagesDialog.Text" xml:space="preserve">
     <value>ページ番号付け</value>
     <comment>dialog title</comment>
@@ -3701,6 +3705,14 @@ ISO-code then comma then language name</comment>
   <data name="ribNumberingMenu_Label" xml:space="preserve">
     <value>番号付け</value>
     <comment>ribbon menu NODUP</comment>
+  </data>
+  <data name="ribNumberLinesButton_Label" xml:space="preserve">
+    <value>数直線</value>
+    <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribNumberLinesButton_Screentip" xml:space="preserve">
+    <value>選択したテキストに行番号を追加します</value>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribNumberPagesButton_Label" xml:space="preserve">
     <value>ページ番号</value>

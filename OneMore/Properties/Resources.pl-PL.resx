@@ -2001,6 +2001,10 @@ Czy chcesz odświeżyć istniejącą stronę?</value>
     <value>Numeracja strony {0}</value>
     <comment>progress status dialog</comment>
   </data>
+  <data name="NumberLinesCommand_NoSelection" xml:space="preserve">
+    <value>Wybierz linie do ponumerowania i spróbuj ponownie.</value>
+    <comment>message</comment>
+  </data>
   <data name="NumberPagesDialog.Text" xml:space="preserve">
     <value>Numeracja stron.</value>
     <comment>dialog title</comment>
@@ -3693,6 +3697,14 @@ Zakładka Pomoc</value>
   <data name="ribNumberingMenu_Label" xml:space="preserve">
     <value>Numeracja</value>
     <comment>Ribbon OneMore menu item NODUP</comment>
+  </data>
+  <data name="ribNumberLinesButton_Label" xml:space="preserve">
+    <value>Linie liczbowe</value>
+    <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribNumberLinesButton_Screentip" xml:space="preserve">
+    <value>Dodaj numery linii zaznaczonego tekstu</value>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribNumberPagesButton_Label" xml:space="preserve">
     <value>Strony liczbowe.</value>

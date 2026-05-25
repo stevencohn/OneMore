@@ -2001,6 +2001,10 @@ Wilt u de bestaande pagina vernieuwen?</value>
     <value>Nummeringspagina {0}</value>
     <comment>progress status dialog</comment>
   </data>
+  <data name="NumberLinesCommand_NoSelection" xml:space="preserve">
+    <value>Selecteer de lijnen die u wilt nummeren en probeer het opnieuw.</value>
+    <comment>message</comment>
+  </data>
   <data name="NumberPagesDialog.Text" xml:space="preserve">
     <value>Paginanummering</value>
     <comment>dialog title</comment>
@@ -3692,6 +3696,14 @@ Tabblad Help</value>
   <data name="ribNumberingMenu_Label" xml:space="preserve">
     <value>Nummering</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribNumberLinesButton_Label" xml:space="preserve">
+    <value>Cijferlijnen</value>
+    <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribNumberLinesButton_Screentip" xml:space="preserve">
+    <value>Voeg regelnummers geselecteerde tekst toe</value>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribNumberPagesButton_Label" xml:space="preserve">
     <value>Aantal pagina's</value>

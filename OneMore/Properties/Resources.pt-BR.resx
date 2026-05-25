@@ -2001,6 +2001,10 @@ Deseja atualizar a página existente?</value>
     <value>Página de numeração {0}</value>
     <comment>progress status dialog</comment>
   </data>
+  <data name="NumberLinesCommand_NoSelection" xml:space="preserve">
+    <value>Selecione as linhas a serem numeradas e tente novamente.</value>
+    <comment>message</comment>
+  </data>
   <data name="NumberPagesDialog.Text" xml:space="preserve">
     <value>Numeração de Página</value>
     <comment>dialog title</comment>
@@ -3692,6 +3696,14 @@ Guia Ajuda</value>
   <data name="ribNumberingMenu_Label" xml:space="preserve">
     <value>Numeração</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribNumberLinesButton_Label" xml:space="preserve">
+    <value>Linhas Numéricas</value>
+    <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribNumberLinesButton_Screentip" xml:space="preserve">
+    <value>Adicionar números de linha ao texto selecionado</value>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribNumberPagesButton_Label" xml:space="preserve">
     <value>Numerar páginas</value>

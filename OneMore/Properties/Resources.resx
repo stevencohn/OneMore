@@ -2005,6 +2005,10 @@ Do you want to refresh the existing page?</value>
     <value>Numbering page {0}</value>
     <comment>progress status dialog</comment>
   </data>
+  <data name="NumberLinesCommand_NoSelection" xml:space="preserve">
+    <value>Select the lines to number and try again.</value>
+    <comment>message</comment>
+  </data>
   <data name="NumberPagesDialog.Text" xml:space="preserve">
     <value>Page Numbering</value>
     <comment>dialog title</comment>
@@ -3727,6 +3731,14 @@ Help Tab</value>
   <data name="ribNumberingMenu_Label" xml:space="preserve">
     <value>Numbering</value>
     <comment>ribbon menu NODUP</comment>
+  </data>
+  <data name="ribNumberLinesButton_Label" xml:space="preserve">
+    <value>Number Lines</value>
+    <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribNumberLinesButton_Screentip" xml:space="preserve">
+    <value>Add line numbers selected text</value>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribNumberPagesButton_Label" xml:space="preserve">
     <value>Number Pages</value>
