@@ -1,6 +1,9 @@
 ﻿//************************************************************************************************
-// Copyright © 2016 Steven M Cohn.  All rights reserved.
+// Copyright © 2016 Steven M Cohn. All rights reserved.
 //************************************************************************************************
+
+#pragma warning disable S1192   // use const               
+#pragma warning disable S125    // remove commented code                            
 
 namespace River.OneMoreAddIn.Commands
 {
@@ -129,12 +132,11 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			string spacing = null;
-			if (FindStyle(styles, "p") is Style normal)
+			if (FindStyle(styles, "p") is Style normal &&
+				double.TryParse(
+					normal.Spacing, NumberStyles.Any, CultureInfo.InvariantCulture, out var spc) && spc > 0.0)
 			{
-				if (double.TryParse(normal.Spacing, NumberStyles.Any, CultureInfo.InvariantCulture, out var spc) && spc > 0.0)
-				{
-					spacing = normal.Spacing;
-				}
+				spacing = normal.Spacing;
 			}
 
 			var applied = false;
@@ -150,6 +152,7 @@ namespace River.OneMoreAddIn.Commands
 				if (style is not null)
 				{
 					//logger.WriteLine(
+
 					//	$"~ name:{quick.Attribute("name").Value} style:{style.Name}");
 
 					// could use QuickStyleDef class here but this is faster
