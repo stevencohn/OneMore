@@ -117,7 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="AboutDialog.Text" xml:space="preserve">
     <value>Onemoreアドイン喫煙者</value>
     <comment>dialog title bar</comment>
@@ -1243,7 +1242,8 @@ OneNoteファイル (*.one)</value>
 セル参照：A1、A2、... ZZZ999
 セル範囲：A1：A22
 相対範囲：A1：セル（0、-1）</value>
-  <comment>!EDIT</comment></data>
+    <comment>!EDIT</comment>
+  </data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>選択されたセル:</value>
     <comment>label</comment>
@@ -2002,10 +2002,6 @@ OneNoteファイル (*.one)</value>
   <data name="NumberingPage_Message" xml:space="preserve">
     <value>ページ番号付け {0}</value>
     <comment>progress status dialog</comment>
-  </data>
-  <data name="NumberLinesCommand_NoSelection" xml:space="preserve">
-    <value>番号を付ける行を選択して、再試行してください。</value>
-    <comment>message</comment>
   </data>
   <data name="NumberPagesDialog.Text" xml:space="preserve">
     <value>ページ番号付け</value>
@@ -3993,6 +3989,14 @@ ISO-code then comma then language name</comment>
     <value>脚注を削除 (Ctrl + Shift + F)</value>
     <comment>ribbon references</comment>
   </data>
+  <data name="ribRemoveIndentsButton_Label" xml:space="preserve">
+    <value>インデントを削除する</value>
+    <comment>ribbon clean</comment>
+  </data>
+  <data name="ribRemoveIndentsButton_Screentip" xml:space="preserve">
+    <value>選択したコンテンツからインデントを削除します</value>
+    <comment>ribbon clean</comment>
+  </data>
   <data name="ribRemoveInkButton_Label" xml:space="preserve">
     <value>インクの削除</value>
     <comment>ribbon clean</comment>
@@ -5199,14 +5203,16 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="TelemetryDialog_titleLabel.Text" xml:space="preserve">
     <value>{0}の改善にご協力ください</value>
-  <comment>!EDIT</comment></data>
+    <comment>!EDIT</comment>
+  </data>
   <data name="TelemetryDialog_whyBox.Text" xml:space="preserve">
     <value>{0} の改善に役立てるため、匿名テレメトリを有効にすることを検討してください。 テレメトリは、使用されたコマンド、基本的な環境の詳細、および OneNote が再起動されるたびにリセットされるセッション専用 ID を記録します。 この情報は、どの機能が最も重要か、またアドインがどのように使用されるかを理解するのに役立ちます。 個人データや個人を特定するデータは決して収集されず、完全に匿名の使用イベントのみが収集されます。
 
 {0} [設定] ダイアログからいつでもテレメトリを有効または無効にできます。
 
 ありがとう！</value>
-  <comment>!EDIT</comment></data>
+    <comment>!EDIT</comment>
+  </data>
   <data name="TelemetryDialog_yesButton.Text" xml:space="preserve">
     <value>はい、お手伝いします！テレメトリを有効にする</value>
   </data>
@@ -5716,6 +5722,7 @@ ISO-code then comma then language name</comment>
     <value>単語数</value>
     <comment>page title</comment>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="sponsor_dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Commands\Tools\sponsor-dark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

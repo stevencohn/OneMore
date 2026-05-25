@@ -117,7 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="AboutDialog.Text" xml:space="preserve">
     <value>Onemore suplemento fumante</value>
     <comment>dialog title bar</comment>
@@ -1241,7 +1240,8 @@ Variáveis: E, Phi, Pi, Tao, Tabels, Tablerows
 Referência de células: A1, A2, ... ZZZ999
 Faixa de células: A1: A22
 Intervalos relativos: a1: célula (0, -1)</value>
-  <comment>!EDIT</comment></data>
+    <comment>!EDIT</comment>
+  </data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>Células selecionadas:</value>
     <comment>label</comment>
@@ -2000,10 +2000,6 @@ Deseja atualizar a página existente?</value>
   <data name="NumberingPage_Message" xml:space="preserve">
     <value>Página de numeração {0}</value>
     <comment>progress status dialog</comment>
-  </data>
-  <data name="NumberLinesCommand_NoSelection" xml:space="preserve">
-    <value>Selecione as linhas a serem numeradas e tente novamente.</value>
-    <comment>message</comment>
   </data>
   <data name="NumberPagesDialog.Text" xml:space="preserve">
     <value>Numeração de Página</value>
@@ -2978,7 +2974,8 @@ Guia Ajuda</value>
   </data>
   <data name="ribClearTableShadingButton_Label" xml:space="preserve">
     <value>Limpar todos os estilos de mesa</value>
-  <comment>ribbon item</comment></data>
+    <comment>ribbon item</comment>
+  </data>
   <data name="ribClearTableShadingButton_Screentip" xml:space="preserve">
     <value>Redefinir o sombreamento em todas as células da tabela atual</value>
     <comment>ribbon table styles</comment>
@@ -3005,7 +3002,8 @@ Guia Ajuda</value>
   </data>
   <data name="ribCommandPaletteButton_Label" xml:space="preserve">
     <value>Paleta de comandos</value>
-  <comment>ribbon item</comment></data>
+    <comment>ribbon item</comment>
+  </data>
   <data name="ribCommandPaletteButton_Screentip" xml:space="preserve">
     <value>Abra a janela Paleta de comandos</value>
     <comment>ribbon main</comment>
@@ -3571,8 +3569,9 @@ Guia Ajuda</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribLinkReferencesButton_Label" xml:space="preserve">
-    Mapa de referências para esta página
-  <comment>ribbon button</comment></data>
+    <value>Mapa de referências para esta página</value>
+    <comment>ribbon button</comment>
+  </data>
   <data name="ribLinkReferencesButton_Screentip" xml:space="preserve">
     <value>Gere links bidirecionais para esta página com base em seu título</value>
     <comment>ribbon references</comment>
@@ -3828,14 +3827,6 @@ Guia Ajuda</value>
     <value>Colar e manter apenas o texto</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="ribPasteTextButton_Label" xml:space="preserve">
-    <value>Colar e manter apenas o texto</value>
-    <comment>ribbon item</comment>
-  </data>
-  <data name="ribPasteTextButton_Screentip" xml:space="preserve">
-    <value>Cole e mantenha apenas o texto (Ctrl + Shift + V)</value>
-    <comment>ribbon item</comment>
-  </data>
   <data name="ribPasteTextButton_Screentip" xml:space="preserve">
     <value>Cole e mantenha apenas o texto (Ctrl + Shift + V)</value>
     <comment>ribbon item</comment>
@@ -3990,6 +3981,14 @@ Guia Ajuda</value>
   <data name="ribRemoveFootnoteButton_Screentip" xml:space="preserve">
     <value>Remover nota de rodapé (Ctrl + Shift + F)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribRemoveIndentsButton_Label" xml:space="preserve">
+    <value>Remover recuos</value>
+    <comment>ribbon clean</comment>
+  </data>
+  <data name="ribRemoveIndentsButton_Screentip" xml:space="preserve">
+    <value>Remover recuo do conteúdo selecionado</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveInkButton_Label" xml:space="preserve">
     <value>Remover tinta</value>
@@ -5195,14 +5194,16 @@ Invertido</value>
   </data>
   <data name="TelemetryDialog_titleLabel.Text" xml:space="preserve">
     <value>Ajude a melhorar {0}</value>
-  <comment>!EDIT</comment></data>
+    <comment>!EDIT</comment>
+  </data>
   <data name="TelemetryDialog_whyBox.Text" xml:space="preserve">
     <value>Considere ativar a telemetria anônima para nos ajudar a melhorar {0}. A telemetria registra quais comandos são usados, detalhes básicos do ambiente e um ID somente de sessão que é redefinido sempre que o OneNote é reiniciado. Essas informações nos ajudam a entender quais recursos são mais importantes e como o suplemento é usado. Nenhum dado pessoal ou de identificação é coletado – apenas eventos de uso totalmente anônimos.
 
 Você pode ativar ou desativar a telemetria a qualquer momento na caixa de diálogo {0} Configurações.
 
 Obrigado!</value>
-  <comment>!EDIT</comment></data>
+    <comment>!EDIT</comment>
+  </data>
   <data name="TelemetryDialog_yesButton.Text" xml:space="preserve">
     <value>Sim, vou ajudar! Habilitar telemetria</value>
   </data>
