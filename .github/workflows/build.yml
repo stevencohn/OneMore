@@ -1,10 +1,6 @@
 name: Build
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
   workflow_dispatch:
 
 jobs:
@@ -12,45 +8,22 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: GuillaumeFalourd/setup-windows10-sdk-action@v1
-        with:
-          sdk-version: 19041
+      - uses: actions/checkout@v4
 
-      #- name: Setup MSBuild
-      #  uses: microsoft/setup-msbuild@v1
       - name: Setup devenv
         uses: seanmiddleditch/gha-setup-vsdevenv@master
-
-      - name: Install VSIX
-        shell: powershell
-        run: .\install-vsix.ps1
+        # TODO: pin to a commit SHA for supply-chain safety, e.g.:
+        # uses: seanmiddleditch/gha-setup-vsdevenv@<sha>
 
       - name: Setup NuGet
-        uses: NuGet/setup-nuget@v1.0.5
-
-      #- name: Setup VSTest
-      #  uses: darenm/Setup-VSTest@v1
-
-      - name: Navigate to Workspace
-        run: cd $GITHUB_WORKSPACE
-
-      - name: Restore Packages
-        run: nuget restore OneMore.sln
-
-      #- name: Build Solution
-      #  run: |
-      #    msbuild.exe Sandbox.sln /p:platform="Any CPU" /p:configuration="Release"
-
-      #- name: Run Tests
-      #  run: vstest.console.exe .\tests\Sandbox.Tests\bin\Release\Sandbox.Tests.dll
+        uses: NuGet/setup-nuget@v2
 
       - name: Build solution
-        shell: powershell
-        run: .\build.ps1
+        shell: pwsh
+        run: .\build.ps1 -Architecture x64
 
-      #- name: Upload installer
-      #  uses: actions/upload-artifact@v2
-      #  with:
-      #    name: installer
-      #    path: %temp%\onemore_v_x64.msi
+      - name: Upload installer
+        uses: actions/upload-artifact@v4
+        with:
+          name: OneMore-x64-installer
+          path: ${{ env.USERPROFILE }}\Downloads\OneMore_*_Setupx64.msi
