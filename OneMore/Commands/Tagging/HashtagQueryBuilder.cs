@@ -54,20 +54,27 @@ namespace River.OneMoreAddIn.Commands
 			var builder = new StringBuilder();
 
 			var parts = Tokenize(query);
+			var count = parts.Count;
 			var notFlag = false;
-			for (int i = 0; i < parts.Count; i++)
+			for (int i = 0; i < count; i++)
 			{
 				var part = parts[i].Trim().ToUpper();
 
-				if (part == "AND" || part == "&&")
+				// operators at the start (no left operand) or end (no right operand) are
+				// demoted to raw search text rather than treated as boolean operators
+				var isBoundaryOp =
+					(i == 0 && (part == "AND" || part == "&&" || part == "OR" || part == "||")) ||
+					(i == count - 1 && (part == "AND" || part == "&&" || part == "OR" || part == "||" || part == "NOT"));
+
+				if (!isBoundaryOp && (part == "AND" || part == "&&"))
 				{
 					builder.Append("AND ");
 				}
-				else if (part == "OR" || part == "||")
+				else if (!isBoundaryOp && (part == "OR" || part == "||"))
 				{
 					builder.Append("OR ");
 				}
-				else if (part == "NOT")
+				else if (!isBoundaryOp && part == "NOT")
 				{
 					notFlag = true;
 				}
@@ -90,11 +97,18 @@ namespace River.OneMoreAddIn.Commands
 					var notOp = notFlag ? "NOT " : string.Empty;
 					notFlag = false;
 					builder.Append(@$"{fieldRef} {notOp}{op} '{parts[i]}'");
-					if (i < parts.Count - 1)
+					if (i < count - 1)
 					{
 						builder.Append(" ");
 						var next = parts[i + 1].Trim().ToUpper();
-						if (next != "AND" && next != "&&" && next != "OR" && next != "||" && next != ")")
+						// treat next token as operator only if it isn't a boundary-demoted operator
+						var nextIsBoundaryOp = i + 1 == count - 1 &&
+							(next == "AND" || next == "&&" || next == "OR" || next == "||" || next == "NOT");
+						if (!nextIsBoundaryOp && (next == "AND" || next == "&&" || next == "OR" || next == "||" || next == ")"))
+						{
+							// next is a real operator; no implicit AND needed
+						}
+						else
 						{
 							builder.Append("AND ");
 						}
