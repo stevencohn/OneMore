@@ -8,22 +8,20 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
 
       - name: Setup devenv
-        uses: seanmiddleditch/gha-setup-vsdevenv@master
-        # TODO: pin to a commit SHA for supply-chain safety, e.g.:
-        # uses: seanmiddleditch/gha-setup-vsdevenv@<sha>
+        uses: seanmiddleditch/gha-setup-vsdevenv@cf96bf5b227cac6af28c04c4a4e69286ea444163 # master
 
       - name: Setup NuGet
-        uses: NuGet/setup-nuget@v2
+        uses: NuGet/setup-nuget@d105a947828025cd7a980103c35ba2bfae586d0f # v2
 
       - name: Build solution
         shell: pwsh
         run: .\build.ps1 -Architecture x64
 
       - name: Upload installer
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: OneMore-x64-installer
           path: ${{ env.USERPROFILE }}\Downloads\OneMore_*_Setupx64.msi
