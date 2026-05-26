@@ -68,37 +68,43 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
-				var updated = false;
+				var count = 0;
 				if (foreSelected.Any() && dialog.ApplyForeground)
 				{
 					Stylize(foreSelected, dialog.Style);
-					updated = true;
+					count++;
 				}
 
 				if (backSelected.Any() && dialog.ApplyBackground)
 				{
 					Stylize(backSelected, dialog.Style);
-					updated = true;
+					count++;
 				}
 
-				if (!updated)
+				if (count > 0)
+				{
+					logger.WriteLine($"updated {count} selected images");
+				}
+				else
 				{
 					if (foreElements.Any() && dialog.ApplyForeground)
 					{
 						Stylize(foreElements, dialog.Style);
-						updated = true;
+						count++;
 					}
 
 					if (backElements.Any() && dialog.ApplyBackground)
 					{
 						Stylize(backElements, dialog.Style);
-						updated = true;
+						count++;
 					}
+
+					logger.WriteLine($"updated all images ({count})");
 				}
 
-				if (updated)
+				if (count > 0)
 				{
-					await one.Update(page);
+					await one.Update(page, force: true);
 				}
 			}
 			finally
