@@ -72,6 +72,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 		.github\workflows\pages.yml = .github\workflows\pages.yml
 		.github\workflows\pr-issue-comment-on-merge.yml = .github\workflows\pr-issue-comment-on-merge.yml
 		.github\workflows\pr-issue-link.yml = .github\workflows\pr-issue-link.yml
+		.github\workflows\README.md = .github\workflows\README.md
 		.github\workflows\winget-releaser.yml = .github\workflows\winget-releaser.yml
 	EndProjectSection
 EndProject
