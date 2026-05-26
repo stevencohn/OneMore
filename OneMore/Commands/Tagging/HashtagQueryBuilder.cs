@@ -54,31 +54,61 @@ namespace River.OneMoreAddIn.Commands
 			var builder = new StringBuilder();
 
 			var parts = Tokenize(query);
-			for (int i = 0; i < parts.Count; i++)
+			var count = parts.Count;
+			var notFlag = false;
+			for (int i = 0; i < count; i++)
 			{
 				var part = parts[i].Trim().ToUpper();
 
-				if (part == "AND" || part == "&&")
+				// operators at the start (no left operand) or end (no right operand) are
+				// demoted to raw search text rather than treated as boolean operators
+				var isBoundaryOp =
+					(i == 0 && (part == "AND" || part == "&&" || part == "OR" || part == "||")) ||
+					(i == count - 1 && (part == "AND" || part == "&&" || part == "OR" || part == "||" || part == "NOT"));
+
+				if (!isBoundaryOp && (part == "AND" || part == "&&"))
 				{
 					builder.Append("AND ");
 				}
-				else if (part == "OR" || part == "||")
+				else if (!isBoundaryOp && (part == "OR" || part == "||"))
 				{
 					builder.Append("OR ");
 				}
-				else if (part == "(" || part == ")")
+				else if (!isBoundaryOp && part == "NOT")
 				{
-					builder.Append($"{part} ");
+					notFlag = true;
+				}
+				else if (part == "(")
+				{
+					if (notFlag)
+					{
+						builder.Append("NOT ");
+						notFlag = false;
+					}
+					builder.Append("( ");
+				}
+				else if (part == ")")
+				{
+					builder.Append(") ");
 				}
 				else
 				{
 					var op = caseSensitive ? "GLOB" : "LIKE";
-					builder.Append(@$"{fieldRef} {op} '{parts[i]}'");
-					if (i < parts.Count - 1)
+					var notOp = notFlag ? "NOT " : string.Empty;
+					notFlag = false;
+					builder.Append(@$"{fieldRef} {notOp}{op} '{parts[i]}'");
+					if (i < count - 1)
 					{
 						builder.Append(" ");
 						var next = parts[i + 1].Trim().ToUpper();
-						if (next != "AND" && next != "&&" && next != "OR" && next != "||" && next != ")")
+						// treat next token as operator only if it isn't a boundary-demoted operator
+						var nextIsBoundaryOp = i + 1 == count - 1 &&
+							(next == "AND" || next == "&&" || next == "OR" || next == "||" || next == "NOT");
+						if (!nextIsBoundaryOp && (next == "AND" || next == "&&" || next == "OR" || next == "||" || next == ")"))
+						{
+							// next is a real operator; no implicit AND needed
+						}
+						else
 						{
 							builder.Append("AND ");
 						}
@@ -183,11 +213,13 @@ namespace River.OneMoreAddIn.Commands
 		public Regex GetMatchingPattern(string parsed)
 		{
 			var pattern = string.Empty;
-			var matches = Regex.Matches(parsed, @"'([^']+)'");
+			var matches = Regex.Matches(parsed, @"(?<not>NOT )?(?:LIKE|GLOB) '([^']+)'");
 			foreach (Match match in matches)
 			{
+				if (match.Groups["not"].Success) continue;
+
 				var wildcard = caseSensitive ? "*" : "%";
-				var value = match.Groups[1].Value.Replace(wildcard, string.Empty);
+				var value = match.Groups[2].Value.Replace(wildcard, string.Empty);
 
 				// ignore "%" wildcard, from user input "*"
 				if (value.Length > 0)

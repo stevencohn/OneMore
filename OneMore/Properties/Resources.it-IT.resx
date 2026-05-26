@@ -1346,7 +1346,7 @@ La ricerca degli hashtag non sarà disponibile finché questa non sarà completa
     <comment>context menu item</comment>
   </data>
   <data name="HashtagDialog_introLabel.Text" xml:space="preserve">
-    <value>Digita qualsiasi parte di uno o più hashtag. I caratteri jolly sono impliciti a meno che un tag non termini con un punto. Sono consentite parentesi e operatori logici.</value>
+    <value>Digita qualsiasi parte di uno o più hashtag. I caratteri jolly sono impliciti a meno che un tag non termini con un punto. Sono consentite parentesi e operatori logici (AND, OR, NOT).</value>
     <comment>label</comment>
   </data>
   <data name="HashtagDialog_lastScanLabel" xml:space="preserve">
@@ -1434,6 +1434,10 @@ Questa pagina</value>
   </data>
   <data name="HashtagSheet_disabledBox.Text" xml:space="preserve">
     <value>Disabilita il servizio hashtag. Ciò disabiliterà anche la ricerca degli hashtag.</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="HashtagSheet_doubledBox.Text" xml:space="preserve">
+    <value>Riconoscere solo gli hashtag con prefisso doppio "##".</value>
     <comment>checkbox</comment>
   </data>
   <data name="HashtagSheet_filterBox.Text" xml:space="preserve">
@@ -3696,6 +3700,14 @@ Scheda Aiuto</value>
     <value>Numerazione</value>
     <comment>ribbon menu NODUP</comment>
   </data>
+  <data name="ribNumberLinesButton_Label" xml:space="preserve">
+    <value>Linee numeriche</value>
+    <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribNumberLinesButton_Screentip" xml:space="preserve">
+    <value>Aggiungi i numeri di riga al testo selezionato</value>
+    <comment>ribbon numbering</comment>
+  </data>
   <data name="ribNumberPagesButton_Label" xml:space="preserve">
     <value>Numero di pagine</value>
     <comment>ribbon numbering</comment>
@@ -3974,6 +3986,14 @@ Scheda Aiuto</value>
   <data name="ribRemoveFootnoteButton_Screentip" xml:space="preserve">
     <value>Rimuovi nota a piè di pagina (Ctrl + Maiusc + F)</value>
     <comment>ribbon references</comment>
+  </data>
+  <data name="ribRemoveIndentsButton_Label" xml:space="preserve">
+    <value>Rimuovi rientri</value>
+    <comment>ribbon clean</comment>
+  </data>
+  <data name="ribRemoveIndentsButton_Screentip" xml:space="preserve">
+    <value>Rimuovi il rientro dal contenuto selezionato</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveInkButton_Label" xml:space="preserve">
     <value>Rimuovi inchiostro</value>
@@ -4810,12 +4830,16 @@ Sei sicuro di voler continuare?</value>
     <value>Avvolgi il testo</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SnippetsSheet_codeStyleBox.Text" xml:space="preserve">
+    <value>Applica sempre lo stile "codice" al contenuto della casella codice</value>
+    <comment>label</comment>
+  </data>
   <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
     <value>Elimina lo snippet "{0}"</value>
     <comment>question</comment>
   </data>
   <data name="SnippetsSheet_introBox.Text" xml:space="preserve">
-    <value>Gestisci i miei frammenti</value>
+    <value>Gestisci le opzioni e i miei frammenti</value>
     <comment>label</comment>
   </data>
   <data name="SortDialog.Text" xml:space="preserve">
@@ -5177,14 +5201,16 @@ Invertire</value>
   </data>
   <data name="TelemetryDialog_titleLabel.Text" xml:space="preserve">
     <value>Aiutaci a migliorare {0}</value>
-  <comment>!EDIT</comment></data>
+    <comment>!EDIT</comment>
+  </data>
   <data name="TelemetryDialog_whyBox.Text" xml:space="preserve">
     <value>Ti invitiamo a considerare l'attivazione della telemetria anonima per aiutarci a migliorare {0}. La telemetria registra i comandi utilizzati, i dettagli dell'ambiente di base e un ID solo sessione che viene reimpostato a ogni riavvio di OneNote. Queste informazioni ci aiutano a capire quali funzionalità sono più importanti e come viene utilizzato il componente aggiuntivo. Non vengono mai raccolti dati personali o identificativi, ma solo eventi di utilizzo completamente anonimi.
 
 Puoi abilitare o disabilitare la telemetria in qualsiasi momento dalla finestra di dialogo Impostazioni {0}.
 
 Grazie!</value>
-  <comment>!EDIT</comment></data>
+    <comment>!EDIT</comment>
+  </data>
   <data name="TelemetryDialog_yesButton.Text" xml:space="preserve">
     <value>Sì, ti aiuterò! Abilita la telemetria</value>
   </data>
@@ -5544,6 +5570,9 @@ Grazie!</value>
   <data name="word_Page" xml:space="preserve">
     <value>Pagina</value>
   </data>
+  <data name="word_Paragraphs" xml:space="preserve">
+    <value>Paragrafi</value>
+  </data>
   <data name="word_PercentSymbol" xml:space="preserve">
     <value>%</value>
   </data>
@@ -5659,8 +5688,16 @@ Grazie!</value>
     <value>Parole totali nella pagina: {0}</value>
     <comment>message box</comment>
   </data>
+  <data name="WordCountCommand_Paragraphs" xml:space="preserve">
+    <value>Paragrafi totali nella pagina: {0}</value>
+    <comment>message box</comment>
+  </data>
   <data name="WordCountCommand_Selected" xml:space="preserve">
     <value>Totale parole selezionate: {0}</value>
+    <comment>message box</comment>
+  </data>
+  <data name="WordCountCommand_SelectedParagraphs" xml:space="preserve">
+    <value>Paragrafi totali nella selezione: {0}</value>
     <comment>message box</comment>
   </data>
   <data name="WordCounts_Notebook" xml:space="preserve">

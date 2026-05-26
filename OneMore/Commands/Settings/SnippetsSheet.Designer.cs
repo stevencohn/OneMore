@@ -29,14 +29,17 @@
 		private void InitializeComponent()
 		{
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-			this.gridView = new UI.MoreDataGridView();
+			this.gridView = new River.OneMoreAddIn.UI.MoreDataGridView();
 			this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.introBox = new River.OneMoreAddIn.UI.MoreMultilineLabel();
 			this.toolStrip = new River.OneMoreAddIn.UI.MoreToolStrip();
 			this.renameButton = new River.OneMoreAddIn.UI.MoreMenuItem();
 			this.deleteButton = new River.OneMoreAddIn.UI.MoreMenuItem();
+			this.optionsPanel = new River.OneMoreAddIn.UI.MorePanel();
+			this.codeStyleBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			((System.ComponentModel.ISupportInitialize)(this.gridView)).BeginInit();
 			this.toolStrip.SuspendLayout();
+			this.optionsPanel.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// gridView
@@ -49,15 +52,17 @@
             this.nameColumn});
 			this.gridView.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.gridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-			this.gridView.Location = new System.Drawing.Point(10, 103);
+			this.gridView.Location = new System.Drawing.Point(10, 190);
 			this.gridView.MultiSelect = false;
 			this.gridView.Name = "gridView";
 			this.gridView.RowHeadersVisible = false;
 			this.gridView.RowHeadersWidth = 30;
 			this.gridView.RowTemplate.Height = 28;
 			this.gridView.ShowEditingIcon = false;
-			this.gridView.Size = new System.Drawing.Size(780, 388);
+			this.gridView.Size = new System.Drawing.Size(780, 301);
 			this.gridView.TabIndex = 2;
+			this.gridView.ThemedBack = null;
+			this.gridView.ThemedFore = null;
 			// 
 			// nameColumn
 			// 
@@ -77,7 +82,7 @@
 			this.introBox.Padding = new System.Windows.Forms.Padding(0, 0, 0, 36);
 			this.introBox.Size = new System.Drawing.Size(780, 56);
 			this.introBox.TabIndex = 0;
-			this.introBox.Text = "Manage my snippets";
+			this.introBox.Text = "Manage option and My Snippets";
 			this.introBox.ThemedBack = "ControlLightLight";
 			this.introBox.ThemedFore = null;
 			// 
@@ -89,10 +94,10 @@
 			this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.renameButton,
             this.deleteButton});
-			this.toolStrip.Location = new System.Drawing.Point(10, 65);
+			this.toolStrip.Location = new System.Drawing.Point(10, 161);
 			this.toolStrip.Name = "toolStrip";
 			this.toolStrip.Padding = new System.Windows.Forms.Padding(0, 0, 3, 0);
-			this.toolStrip.Size = new System.Drawing.Size(780, 38);
+			this.toolStrip.Size = new System.Drawing.Size(780, 29);
 			this.toolStrip.Stretch = true;
 			this.toolStrip.TabIndex = 4;
 			this.toolStrip.Text = "Tool Strip";
@@ -103,7 +108,7 @@
 			this.renameButton.Image = global::River.OneMoreAddIn.Properties.Resources.m_Rename;
 			this.renameButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.renameButton.Name = "renameButton";
-			this.renameButton.Size = new System.Drawing.Size(115, 38);
+			this.renameButton.Size = new System.Drawing.Size(109, 29);
 			this.renameButton.Text = "Rename";
 			this.renameButton.Click += new System.EventHandler(this.RenameItem);
 			// 
@@ -113,9 +118,39 @@
 			this.deleteButton.Image = global::River.OneMoreAddIn.Properties.Resources.m_Delete;
 			this.deleteButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.deleteButton.Name = "deleteButton";
-			this.deleteButton.Size = new System.Drawing.Size(102, 38);
+			this.deleteButton.Size = new System.Drawing.Size(96, 29);
 			this.deleteButton.Text = "Delete";
 			this.deleteButton.Click += new System.EventHandler(this.DeleteItem);
+			// 
+			// optionsPanel
+			// 
+			this.optionsPanel.BottomBorderColor = System.Drawing.SystemColors.ActiveBorder;
+			this.optionsPanel.BottomBorderSize = 2;
+			this.optionsPanel.Controls.Add(this.codeStyleBox);
+			this.optionsPanel.Dock = System.Windows.Forms.DockStyle.Top;
+			this.optionsPanel.Location = new System.Drawing.Point(10, 65);
+			this.optionsPanel.Name = "optionsPanel";
+			this.optionsPanel.Size = new System.Drawing.Size(780, 96);
+			this.optionsPanel.TabIndex = 5;
+			this.optionsPanel.ThemedBack = null;
+			this.optionsPanel.ThemedFore = null;
+			this.optionsPanel.TopBorderColor = System.Drawing.SystemColors.Control;
+			this.optionsPanel.TopBorderSize = 0;
+			// 
+			// codeStyleBox
+			// 
+			this.codeStyleBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.codeStyleBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.codeStyleBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.codeStyleBox.Location = new System.Drawing.Point(18, 19);
+			this.codeStyleBox.Name = "codeStyleBox";
+			this.codeStyleBox.Size = new System.Drawing.Size(375, 25);
+			this.codeStyleBox.StylizeImage = false;
+			this.codeStyleBox.TabIndex = 0;
+			this.codeStyleBox.Text = "Always apply \"code\" style to Code Box content";
+			this.codeStyleBox.ThemedBack = null;
+			this.codeStyleBox.ThemedFore = null;
+			this.codeStyleBox.UseVisualStyleBackColor = false;
 			// 
 			// SnippetsSheet
 			// 
@@ -124,6 +159,7 @@
 			this.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.Controls.Add(this.gridView);
 			this.Controls.Add(this.toolStrip);
+			this.Controls.Add(this.optionsPanel);
 			this.Controls.Add(this.introBox);
 			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -134,6 +170,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.gridView)).EndInit();
 			this.toolStrip.ResumeLayout(false);
 			this.toolStrip.PerformLayout();
+			this.optionsPanel.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -147,5 +184,7 @@
 		private UI.MoreMultilineLabel introBox;
 		private UI.MoreMenuItem renameButton;
 		private System.Windows.Forms.DataGridViewTextBoxColumn nameColumn;
+		private UI.MorePanel optionsPanel;
+		private UI.MoreCheckBox codeStyleBox;
 	}
 }

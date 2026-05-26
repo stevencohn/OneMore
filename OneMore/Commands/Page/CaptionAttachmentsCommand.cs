@@ -60,6 +60,17 @@ namespace River.OneMoreAddIn.Commands
 
 				file.Attribute("selected")?.Remove();
 
+				// floating InsertedFiles (printout attachments) are direct Page children with
+				// Position/Size children; remove those before the LINQ clone is made so the
+				// clone inside the OE is clean (Position/Size are invalid inside an OE context)
+				var posElement = file.Element(ns + "Position");
+				var isFloating = file.Parent.Name.LocalName == "Page";
+				if (isFloating)
+				{
+					posElement?.Remove(); // detached; reused for Outline positioning below
+					file.Element(ns + "Size")?.Remove();
+				}
+
 				var table = new Table(ns);
 				table.AddColumn(0f); // OneNote will set width accordingly
 
@@ -88,7 +99,31 @@ namespace River.OneMoreAddIn.Commands
 				var style = GetStyle();
 				new Stylizer(style).ApplyStyle(cdata);
 
-				file.ReplaceWith(table.Root);
+				if (isFloating)
+				{
+					// OneNote doesn't remove the original page-level object during UpdatePageContent;
+					// force deletion by objectID first (same pattern as AddCaptionCommand)
+					var fileId = file.Attribute("objectID")?.Value;
+					if (fileId != null)
+					{
+						one.DeleteContent(page.PageId, fileId);
+					}
+
+					// wrap the table in an Outline positioned where the original attachment was
+					var outline = new XElement(ns + "Outline",
+						posElement ?? new XElement(ns + "Position",
+							new XAttribute("x", "36.0"),
+							new XAttribute("y", "36.0"),
+							new XAttribute("z", "1")),
+						new XElement(ns + "OEChildren",
+							new XElement(ns + "OE", table.Root)));
+
+					file.ReplaceWith(outline);
+				}
+				else
+				{
+					file.ReplaceWith(table.Root);
+				}
 
 				updated = true;
 			}

@@ -1243,7 +1243,8 @@ OneNoteファイル (*.one)</value>
 セル参照：A1、A2、... ZZZ999
 セル範囲：A1：A22
 相対範囲：A1：セル（0、-1）</value>
-  <comment>!EDIT</comment></data>
+    <comment>!EDIT</comment>
+  </data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>選択されたセル:</value>
     <comment>label</comment>
@@ -1348,7 +1349,7 @@ OneNoteファイル (*.one)</value>
     <comment>context menu item</comment>
   </data>
   <data name="HashtagDialog_introLabel.Text" xml:space="preserve">
-    <value>1つ以上のハッシュタグの一部を入力してください。タグがピリオドで終わっていない限り、ワイルドカードが暗黙的に使われます。括弧や論理演算子も許可されています。</value>
+    <value>1 つ以上のハッシュタグの任意の部分を入力します。タグがピリオドで終わっていない限り、ワイルドカードが暗黙的に使用されます。括弧と論理演算子 (AND、OR、NOT) を使用できます。</value>
     <comment>label</comment>
   </data>
   <data name="HashtagDialog_lastScanLabel" xml:space="preserve">
@@ -1436,6 +1437,10 @@ OneNoteファイル (*.one)</value>
   </data>
   <data name="HashtagSheet_disabledBox.Text" xml:space="preserve">
     <value>ハッシュタグスキャンサービスを無効にします。これにより、ハッシュタグ検索も無効になります。</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="HashtagSheet_doubledBox.Text" xml:space="preserve">
+    <value>二重「##」プレフィックスのハッシュタグのみを認識します</value>
     <comment>checkbox</comment>
   </data>
   <data name="HashtagSheet_filterBox.Text" xml:space="preserve">
@@ -3698,6 +3703,14 @@ ISO-code then comma then language name</comment>
     <value>番号付け</value>
     <comment>ribbon menu NODUP</comment>
   </data>
+  <data name="ribNumberLinesButton_Label" xml:space="preserve">
+    <value>数直線</value>
+    <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribNumberLinesButton_Screentip" xml:space="preserve">
+    <value>選択したテキストに行番号を追加します</value>
+    <comment>ribbon numbering</comment>
+  </data>
   <data name="ribNumberPagesButton_Label" xml:space="preserve">
     <value>ページ番号</value>
     <comment>ribbon numbering</comment>
@@ -3976,6 +3989,14 @@ ISO-code then comma then language name</comment>
   <data name="ribRemoveFootnoteButton_Screentip" xml:space="preserve">
     <value>脚注を削除 (Ctrl + Shift + F)</value>
     <comment>ribbon references</comment>
+  </data>
+  <data name="ribRemoveIndentsButton_Label" xml:space="preserve">
+    <value>インデントを削除する</value>
+    <comment>ribbon clean</comment>
+  </data>
+  <data name="ribRemoveIndentsButton_Screentip" xml:space="preserve">
+    <value>選択したコンテンツからインデントを削除します</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveInkButton_Label" xml:space="preserve">
     <value>インクの削除</value>
@@ -4812,12 +4833,16 @@ ISO-code then comma then language name</comment>
     <value>テキストを折り返す</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SnippetsSheet_codeStyleBox.Text" xml:space="preserve">
+    <value>コード ボックスのコンテンツには常に「コード」スタイルを適用します</value>
+    <comment>label</comment>
+  </data>
   <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
     <value>スニペット "{0}" を削除</value>
     <comment>question</comment>
   </data>
   <data name="SnippetsSheet_introBox.Text" xml:space="preserve">
-    <value>スニペットの管理</value>
+    <value>オプションとマイ スニペットを管理する</value>
     <comment>label</comment>
   </data>
   <data name="SortDialog.Text" xml:space="preserve">
@@ -5179,14 +5204,16 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="TelemetryDialog_titleLabel.Text" xml:space="preserve">
     <value>{0}の改善にご協力ください</value>
-  <comment>!EDIT</comment></data>
+    <comment>!EDIT</comment>
+  </data>
   <data name="TelemetryDialog_whyBox.Text" xml:space="preserve">
     <value>{0} の改善に役立てるため、匿名テレメトリを有効にすることを検討してください。 テレメトリは、使用されたコマンド、基本的な環境の詳細、および OneNote が再起動されるたびにリセットされるセッション専用 ID を記録します。 この情報は、どの機能が最も重要か、またアドインがどのように使用されるかを理解するのに役立ちます。 個人データや個人を特定するデータは決して収集されず、完全に匿名の使用イベントのみが収集されます。
 
 {0} [設定] ダイアログからいつでもテレメトリを有効または無効にできます。
 
 ありがとう！</value>
-  <comment>!EDIT</comment></data>
+    <comment>!EDIT</comment>
+  </data>
   <data name="TelemetryDialog_yesButton.Text" xml:space="preserve">
     <value>はい、お手伝いします！テレメトリを有効にする</value>
   </data>
@@ -5546,6 +5573,9 @@ ISO-code then comma then language name</comment>
   <data name="word_Page" xml:space="preserve">
     <value>ページ</value>
   </data>
+  <data name="word_Paragraphs" xml:space="preserve">
+    <value>段落</value>
+  </data>
   <data name="word_PercentSymbol" xml:space="preserve">
     <value>%</value>
   </data>
@@ -5661,8 +5691,16 @@ ISO-code then comma then language name</comment>
     <value>ページの合計単語数: {0}</value>
     <comment>message box</comment>
   </data>
+  <data name="WordCountCommand_Paragraphs" xml:space="preserve">
+    <value>ページ上の合計段落数: {0}</value>
+    <comment>message box</comment>
+  </data>
   <data name="WordCountCommand_Selected" xml:space="preserve">
     <value>選択した単語の合計: {0}</value>
+    <comment>message box</comment>
+  </data>
+  <data name="WordCountCommand_SelectedParagraphs" xml:space="preserve">
+    <value>選択範囲内の合計段落数: {0}</value>
     <comment>message box</comment>
   </data>
   <data name="WordCounts_Notebook" xml:space="preserve">

@@ -74,12 +74,16 @@ namespace River.OneMoreAddIn.Commands
 		/// page as a template for tag and style references.
 		/// </summary>
 		/// <param name="content"></param>
-		public async Task Copy(XElement content)
+		/// <param name="includeTitle">True to prepend the page title as an H1 heading</param>
+		public async Task Copy(XElement content, bool includeTitle = true)
 		{
 			using var stream = new MemoryStream();
 			using (writer = new StreamWriter(stream))
 			{
-				await writer.WriteLineAsync($"# {page.Title}");
+				if (includeTitle)
+				{
+					await writer.WriteLineAsync($"# {page.Title}");
+				}
 
 				if (content.Name.LocalName == "Page")
 				{
@@ -135,7 +139,6 @@ namespace River.OneMoreAddIn.Commands
 
 				page.Root.Elements(ns + "Outline")
 					.Elements(ns + "OEChildren")
-					.Elements()
 					.ForEach(e => Write(e));
 
 				// page level Images outside of any Outline
@@ -152,7 +155,7 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		/// <param name="container">typically an OEChildren with elements and OEChildren</param>
 		/// <param name="prefix">prefix used to indent markdown lines</param>
@@ -168,13 +171,28 @@ namespace River.OneMoreAddIn.Commands
 
 			logger.Debug($"Write({container.Name.LocalName}, prefix:[{prefix}], depth:{depth}, contained:{contained})");
 
-			foreach (var element in container.Elements())
+			// For OE containers: ensure the List element (bullet/number marker) is processed
+			// before any Tag elements so output order is "- [x] text" not "[x] - text"
+			IEnumerable<XElement> children = container.Elements();
+			if (container.Name.LocalName == "OE"
+				&& container.Elements(ns + "List").Any()
+				&& container.Elements(ns + "Tag").Any())
 			{
+				var listElem = container.Element(ns + "List");
+				children = children
+					.Where(e => !ReferenceEquals(e, listElem))
+					.Prepend(listElem);
+			}
+
+			var elements = children.ToList();
+			for (int ei = 0; ei < elements.Count; ei++)
+			{
+				var element = elements[ei];
 				var n = element.Name.LocalName;
 				var m = $"- [prefix:[{prefix}] depth:{depth} start:{startOfLine} contained:{contained} element {n}";
 				logger.Debug(n == "T" ? $"{m} [{element.Value}]" : m);
 
-				switch (element.Name.LocalName)
+				switch (n)
 				{
 					case "OEChildren":
 						Write(element, $"{Indent}{prefix}", depth + 1, contained);
@@ -182,6 +200,28 @@ namespace River.OneMoreAddIn.Commands
 
 					case "OE":
 						{
+							// Detect a run of consecutive code-block OEs and emit as a fenced block
+							if (IsCodeBlockOE(element))
+							{
+								var codeLines = new List<XElement> { element };
+								while (ei + 1 < elements.Count
+									&& elements[ei + 1].Name.LocalName == "OE"
+									&& IsCodeBlockOE(elements[ei + 1]))
+								{
+									ei++;
+									codeLines.Add(elements[ei]);
+								}
+
+								if (!contained) writer.WriteLine();
+								writer.WriteLine("```");
+								foreach (var codeLine in codeLines)
+								{
+									writer.WriteLine(GetCodeText(codeLine));
+								}
+								writer.WriteLine("```");
+								break;
+							}
+
 							if (!contained) // not in table cell
 							{
 								writer.WriteLine("  ");
@@ -205,17 +245,20 @@ namespace River.OneMoreAddIn.Commands
 
 					case "Tag":
 						{
-							// should always be startOfLine
 							var context = DetectQuickStyle(element);
-							if (context is not null)
+							// Only write line prefix at start of line; when a List element has already
+							// been processed first (Tag+List reordering above), the list marker wrote
+							// the prefix so we must not write it again.
+							if (startOfLine)
 							{
-								Stylize(depth > 0
-									? prefix /*new String(Quote[0], depth)*/
-									: string.Empty);
-							}
-							else
-							{
-								writer.Write(prefix);
+								if (context is not null)
+								{
+									Stylize(depth > 0 ? prefix : string.Empty);
+								}
+								else
+								{
+									writer.Write(prefix);
+								}
 							}
 
 							WriteTag(element);
@@ -235,7 +278,7 @@ namespace River.OneMoreAddIn.Commands
 							if (context is not null)
 							{
 								Stylize(depth > 0 && startOfLine
-									? prefix /*new String(Quote[0], depth)*/
+									? prefix
 									: string.Empty);
 
 								startOfLine = false;
@@ -296,6 +339,35 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			logger.Debug("out");
+		}
+
+
+		private bool IsCodeBlockOE(XElement oe)
+		{
+			// Check the OE itself then its parent (OEChildren) for a code quickstyle.
+			// Only OE-level code style indicates a standalone code block; a code style
+			// on an inner T is inline code handled by DetectQuickStyle in the T case.
+			if (!oe.GetAttributeValue("quickStyleIndex", out int index, -1))
+			{
+				if (oe.Parent == null
+					|| !oe.Parent.GetAttributeValue("quickStyleIndex", out index, -1))
+				{
+					return false;
+				}
+			}
+
+			var quick = quickStyles.FirstOrDefault(q => q.Index == index);
+			return quick?.Name?.ToLower().Contains("code") == true;
+		}
+
+
+		private string GetCodeText(XElement oe)
+		{
+			// Return plain text content of a code-block OE, stripping any HTML span tags
+			// that may be present (e.g., syntax-highlighting colors).
+			var cdata = oe.Elements(ns + "T").FirstOrDefault()?.GetCData();
+			if (cdata == null) return string.Empty;
+			return cdata.GetWrapper().Value.TrimEnd();
 		}
 
 
@@ -409,10 +481,20 @@ namespace River.OneMoreAddIn.Commands
 		{
 			cdata.Value = cdata.Value
 				.Replace("<br>", "  ") // usually followed by NL so leave it there
-				.Replace("[", "\\[")   // escape to prevent confusion with md links
 				.TrimEnd();
 
 			var wrapper = cdata.GetWrapper();
+
+			// Escape markdown-significant characters in text nodes only, before span and
+			// anchor processing so href attribute values are never inadvertently escaped.
+			// New XText nodes created by anchor replacement below are not revisited.
+			foreach (var textNode in wrapper.DescendantNodes().OfType<XText>().ToList())
+			{
+				textNode.Value = textNode.Value
+					.Replace("[", "\\[")
+					.Replace("|", "\\|");
+			}
+
 			foreach (var span in wrapper.Descendants("span").ToList())
 			{
 				var text = span.Value;
@@ -420,15 +502,20 @@ namespace River.OneMoreAddIn.Commands
 				// span might only have a lang attribute
 				if (att != null)
 				{
-					var style = new Style(span.Attribute("style").Value);
+					var style = new Style(att.Value);
+					if (style.FontFamily?.IndexOf("Consolas", StringComparison.OrdinalIgnoreCase) >= 0)
+						text = $"`{text}`";
 					if (style.IsStrikethrough) text = $"~~{text}~~";
 					if (style.IsItalic) text = $"*{text}*";
 					if (style.IsBold) text = $"**{text}**";
+					if (style.IsUnderline) text = $"<u>{text}</u>";
+					if (style.IsSuperscript) text = $"<sup>{text}</sup>";
+					if (style.IsSubscript) text = $"<sub>{text}</sub>";
 				}
 				span.ReplaceWith(new XText(text));
 			}
 
-			foreach (var anchor in wrapper.Elements("a"))
+			foreach (var anchor in wrapper.Elements("a").ToList())
 			{
 				var href = anchor.Attribute("href")?.Value;
 				if (!string.IsNullOrEmpty(href))
@@ -445,10 +532,9 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			// escape directives
+			// escape remaining directives (| and [ already escaped in text nodes above)
 			var raw = wrapper.GetInnerXml()
-				.Replace("&lt;", "\\<")
-				.Replace("|", "\\|");
+				.Replace("&lt;", "\\<");
 
 			if (startOfLine && raw.Length > 0 && raw.StartsWith("#"))
 			{

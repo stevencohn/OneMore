@@ -30,9 +30,10 @@ namespace River.OneMoreAddIn.Styles
 			var style = new QuickStyleDef
 			{
 				Name = key.ToName(),
-				FontFamily = "Calibri",
-				FontSize = "11.0",
-				Color = "#000000"
+				FontFamily = StyleBase.DefaultFontFamily, // "Calibri",
+				FontSize = StyleBase.DefaultFontSize.ToString("#.0"), // "11.0",
+				Color = "#000000",
+				StyleType = StyleType.Paragraph
 			};
 
 			switch (key)
@@ -90,8 +91,7 @@ namespace River.OneMoreAddIn.Styles
 					break;
 
 				case StandardStyles.Code:
-					// this FontFamily is a customization
-					style.FontFamily = "Consolas";
+					style.FontFamily = StyleBase.DefaultCodeFamily;
 					style.Ignored = true;
 					break;
 			}

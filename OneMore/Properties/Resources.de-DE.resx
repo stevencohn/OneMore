@@ -117,7 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="AboutDialog.Text" xml:space="preserve">
     <value>Onemore-Add-In-Raucher</value>
     <comment>dialog title bar</comment>
@@ -1236,7 +1235,8 @@ Variablen: E, PHI, PI, Tao, Tabellen, Tabllerows
 Zellreferenz: A1, A2, ... Zzz999
 Zellbereich: A1: A22
 Verwandte Bereiche: A1: Zelle (0, -1)</value>
-  <comment>!EDIT</comment></data>
+    <comment>!EDIT</comment>
+  </data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>Ausgewählte Zellen:</value>
     <comment>label</comment>
@@ -1341,7 +1341,7 @@ Die Suche nach Hashtags ist erst möglich, wenn dies abgeschlossen ist.</value>
     <comment>context menu item</comment>
   </data>
   <data name="HashtagDialog_introLabel.Text" xml:space="preserve">
-    <value>Geben Sie einen beliebigen Teil eines oder mehrerer Hashtags ein. Platzhalter sind impliziert, es sei denn, ein Tag endet mit einem Punkt. Klammern und logische Operatoren sind zulässig.</value>
+    <value>Geben Sie einen beliebigen Teil eines oder mehrerer Hashtags ein. Platzhalter sind impliziert, es sei denn, ein Tag endet mit einem Punkt. Klammern und logische Operatoren (AND, OR, NOT) sind zulässig.</value>
     <comment>label</comment>
   </data>
   <data name="HashtagDialog_lastScanLabel" xml:space="preserve">
@@ -1429,6 +1429,10 @@ Diese Seite</value>
   </data>
   <data name="HashtagSheet_disabledBox.Text" xml:space="preserve">
     <value>Deaktivieren Sie den Hashtag-Dienst. Dadurch wird auch die Hashtag-Suche deaktiviert.</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="HashtagSheet_doubledBox.Text" xml:space="preserve">
+    <value>Erkennen Sie nur doppelte „##“-Präfix-Hashtags</value>
     <comment>checkbox</comment>
   </data>
   <data name="HashtagSheet_filterBox.Text" xml:space="preserve">
@@ -3691,6 +3695,14 @@ Registerkarte „Hilfe“.</value>
     <value>Nummerierung</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="ribNumberLinesButton_Label" xml:space="preserve">
+    <value>Zahlenlinien</value>
+    <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribNumberLinesButton_Screentip" xml:space="preserve">
+    <value>Zeilennummern zum ausgewählten Text hinzufügen</value>
+    <comment>ribbon numbering</comment>
+  </data>
   <data name="ribNumberPagesButton_Label" xml:space="preserve">
     <value>Anzahl Seiten</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -3968,6 +3980,14 @@ Registerkarte „Hilfe“.</value>
   <data name="ribRemoveFootnoteButton_Screentip" xml:space="preserve">
     <value>Fußnote entfernen (Strg + Umschalt + F)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribRemoveIndentsButton_Label" xml:space="preserve">
+    <value>Einzüge entfernen</value>
+    <comment>ribbon clean</comment>
+  </data>
+  <data name="ribRemoveIndentsButton_Screentip" xml:space="preserve">
+    <value>Einrückung vom ausgewählten Inhalt entfernen</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveInkButton_Label" xml:space="preserve">
     <value>Tinte entfernen</value>
@@ -4804,12 +4824,16 @@ Bist du dir sicher, dass du weitermachen willst?</value>
     <value>Zeilenumbruch</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SnippetsSheet_codeStyleBox.Text" xml:space="preserve">
+    <value>Wenden Sie immer den „Code“-Stil auf den Inhalt der Codebox an</value>
+    <comment>label</comment>
+  </data>
   <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
     <value>Snippet "{0}" löschen</value>
     <comment>question</comment>
   </data>
   <data name="SnippetsSheet_introBox.Text" xml:space="preserve">
-    <value>Verwalten Sie meine Ausschnitte</value>
+    <value>Optionen und „Meine Snippets“ verwalten</value>
     <comment>label</comment>
   </data>
   <data name="SortDialog.Text" xml:space="preserve">
@@ -5170,14 +5194,16 @@ Umkehren</value>
   </data>
   <data name="TelemetryDialog_titleLabel.Text" xml:space="preserve">
     <value>Helfen Sie mit, {0} zu verbessern</value>
-  <comment>!EDIT</comment></data>
+    <comment>!EDIT</comment>
+  </data>
   <data name="TelemetryDialog_whyBox.Text" xml:space="preserve">
     <value>Bitte erwägen Sie die Aktivierung anonymer Telemetrie, um uns bei der Verbesserung von {0} zu helfen. Telemetrie zeichnet auf, welche Befehle verwendet werden, grundlegende Umgebungsdetails und eine reine Sitzungs-ID, die bei jedem Neustart von OneNote zurückgesetzt wird. Diese Informationen helfen uns zu verstehen, welche Funktionen am wichtigsten sind und wie das Add-In verwendet wird. Es werden niemals personenbezogene oder identifizierende Daten erfasst, sondern nur völlig anonyme Nutzungsereignisse.
 
 Sie können die Telemetrie jederzeit über das Dialogfeld „Einstellungen“ {0} aktivieren oder deaktivieren.
 
 Danke schön!</value>
-  <comment>!EDIT</comment></data>
+    <comment>!EDIT</comment>
+  </data>
   <data name="TelemetryDialog_yesButton.Text" xml:space="preserve">
     <value>Ja, ich helfe! Telemetrie aktivieren</value>
   </data>
@@ -5537,6 +5563,9 @@ Danke schön!</value>
   <data name="word_Page" xml:space="preserve">
     <value>Buchseite</value>
   </data>
+  <data name="word_Paragraphs" xml:space="preserve">
+    <value>Absätze</value>
+  </data>
   <data name="word_PercentSymbol" xml:space="preserve">
     <value>%</value>
   </data>
@@ -5652,8 +5681,16 @@ Danke schön!</value>
     <value>Gesamtzahl der Wörter auf Seite: {0}</value>
     <comment>message box</comment>
   </data>
+  <data name="WordCountCommand_Paragraphs" xml:space="preserve">
+    <value>Gesamtzahl der Absätze auf der Seite: {0}</value>
+    <comment>message box</comment>
+  </data>
   <data name="WordCountCommand_Selected" xml:space="preserve">
     <value>Gesamtzahl der ausgewählten Wörter: {0}</value>
+    <comment>message box</comment>
+  </data>
+  <data name="WordCountCommand_SelectedParagraphs" xml:space="preserve">
+    <value>Gesamtzahl der Absätze in der Auswahl: {0}</value>
     <comment>message box</comment>
   </data>
   <data name="WordCounts_Notebook" xml:space="preserve">

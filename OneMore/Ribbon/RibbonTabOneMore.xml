@@ -454,17 +454,23 @@
         getScreentip="GetRibbonScreentip"
         onAction="RemoveDuplicatesCmd"/>
       <button
-        id="ribRemoveInkButton"
-        imageMso="InkDeleteAllInk"
-        getLabel="GetRibbonLabel"
-        getScreentip="GetRibbonScreentip"
-        onAction="RemoveInkCmd"/>
-      <button
         id="ribRemoveEmptyButton"
         imageMso="RecordsDeleteRecord"
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
         onAction="RemoveEmptyCmd"/>
+      <button
+        id="ribRemoveIndentsButton"
+        imageMso="IndentDecrease"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="RemoveIndentsCmd"/>
+      <button
+        id="ribRemoveInkButton"
+        imageMso="InkDeleteAllInk"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="RemoveInkCmd"/>
       <button
         id="ribRemoveSpacingButton"
         imageMso="ParagraphSpacingDecrease"
@@ -763,6 +769,12 @@
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
         onAction="SortListCmd"/>
+      <button
+        id="ribNumberLinesButton"
+        imageMso="LineNumbersMenu"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="NumberLinesCmd"/>
       <button
         id="ribNumberSectionsButton"
         imageMso="LineNumbersMenu"

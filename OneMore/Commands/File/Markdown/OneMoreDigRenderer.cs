@@ -7,22 +7,30 @@ namespace River.OneMoreAddIn.Commands
 	using Markdig.Renderers;
 	using Markdig.Renderers.Html;
 	using Markdig.Syntax;
-
+	using River.OneMoreAddIn.Styles;
 
 	internal class OneMoreDigRenderer : HtmlObjectRenderer<HeadingBlock>
 	{
-		private static readonly string[] styles = {
-			"font-family:Calibri;font-size:16pt;color:#1e4e79",
-			"font-family:Calibri;font-size:14pt;color:#2e75b5",
-			"font-family:Calibri;font-size:12pt;color:#5b9bd5",
-			"font-family:Calibri;font-size:12pt;color:#5b9bd5;font-style:italic",
-			"font-family:Calibri;font-size:11pt;color:#2e75b5",
-			"font-family:Calibri;font-size:11pt;color:#2e75b5;font-style:italic"
-		};
+		private static readonly string[] styles = MakeStyles();
 
 
 		public OneMoreDigRenderer()
 		{
+		}
+
+
+		private static string[] MakeStyles()
+		{
+			var fam = StyleBase.DefaultFontFamily;
+
+			return new string[] {
+				$"font-family:{fam};font-size:16pt;color:#1e4e79",
+				$"font-family:{fam};font-size:14pt;color:#2e75b5",
+				$"font-family:{fam};font-size:12pt;color:#5b9bd5",
+				$"font-family:{fam};font-size:12pt;color:#5b9bd5;font-style:italic",
+				$"font-family:{fam};font-size:11pt;color:#2e75b5",
+				$"font-family:{fam};font-size:11pt;color:#2e75b5;font-style:italic"
+			};
 		}
 
 

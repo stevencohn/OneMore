@@ -117,7 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="AboutDialog.Text" xml:space="preserve">
     <value>מעשן תוספות</value>
     <comment>dialog title bar</comment>
@@ -1241,7 +1240,8 @@ Total Row Font
 הפניה לתאים: A1, A2, ... ZZZ999
 טווח תאים: A1: A22
 טווחים יחסית: A1: תא (0, -1)</value>
-  <comment>!EDIT</comment></data>
+    <comment>!EDIT</comment>
+  </data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>תאים שנבחרו:</value>
     <comment>label</comment>
@@ -1346,7 +1346,7 @@ Total Row Font
     <comment>context menu item</comment>
   </data>
   <data name="HashtagDialog_introLabel.Text" xml:space="preserve">
-    <value>הקלד כל חלק מהאשטאג אחד או יותר. תווים כלליים משתמעים אלא אם כן תג מסתיים בנקודה. מותר להשתמש בסוגריים ואופרטורים לוגיים.</value>
+    <value>הקלד כל חלק מהאשטאג אחד או יותר. תווים כלליים משתמעים אלא אם כן תג מסתיים בנקודה. מותר להשתמש בסוגריים ואופרטורים לוגיים (AND, OR, NOT).</value>
     <comment>label</comment>
   </data>
   <data name="HashtagDialog_lastScanLabel" xml:space="preserve">
@@ -1434,6 +1434,10 @@ Total Row Font
   </data>
   <data name="HashtagSheet_disabledBox.Text" xml:space="preserve">
     <value>השבת את שירות ההאשטאג. זה גם ישבית את חיפוש ההאשטאג.</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="HashtagSheet_doubledBox.Text" xml:space="preserve">
+    <value>זהה רק תגי hashtag כפולים של קידומת "##".</value>
     <comment>checkbox</comment>
   </data>
   <data name="HashtagSheet_filterBox.Text" xml:space="preserve">
@@ -3696,6 +3700,14 @@ ISO-code then comma then language name</comment>
     <value>סִפְרוּר</value>
     <comment>Ribbon OneMore menu item NODUP</comment>
   </data>
+  <data name="ribNumberLinesButton_Label" xml:space="preserve">
+    <value>שורות מספר</value>
+    <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribNumberLinesButton_Screentip" xml:space="preserve">
+    <value>הוסף מספרי שורות טקסט שנבחר</value>
+    <comment>ribbon numbering</comment>
+  </data>
   <data name="ribNumberPagesButton_Label" xml:space="preserve">
     <value>מספר עמודים</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -3973,6 +3985,14 @@ ISO-code then comma then language name</comment>
   <data name="ribRemoveFootnoteButton_Screentip" xml:space="preserve">
     <value>הסר הערת שוליים (Ctrl + Shift + F)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribRemoveIndentsButton_Label" xml:space="preserve">
+    <value>הסר כניסות</value>
+    <comment>ribbon clean</comment>
+  </data>
+  <data name="ribRemoveIndentsButton_Screentip" xml:space="preserve">
+    <value>הסר הזחה מהתוכן שנבחר</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveInkButton_Label" xml:space="preserve">
     <value>הסר דיו</value>
@@ -4807,12 +4827,16 @@ ISO-code then comma then language name</comment>
     <value>גלישת טקסט</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SnippetsSheet_codeStyleBox.Text" xml:space="preserve">
+    <value>החל תמיד סגנון "קוד" על תוכן Code Box</value>
+    <comment>label</comment>
+  </data>
   <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
     <value>מחק את קטע "{0}"</value>
     <comment>question</comment>
   </data>
   <data name="SnippetsSheet_introBox.Text" xml:space="preserve">
-    <value>נהל את הקטעים שלי</value>
+    <value>נהל את האפשרויות ואת הקטעים שלי</value>
     <comment>label</comment>
   </data>
   <data name="SortDialog.Text" xml:space="preserve">
@@ -5174,14 +5198,16 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="TelemetryDialog_titleLabel.Text" xml:space="preserve">
     <value>עזור לשפר את {0}</value>
-  <comment>!EDIT</comment></data>
+    <comment>!EDIT</comment>
+  </data>
   <data name="TelemetryDialog_whyBox.Text" xml:space="preserve">
     <value>אנא שקול להפעיל טלמטריה אנונימית כדי לעזור לנו לשפר את {0}. הטלמטריה מתעדת באילו פקודות נעשה שימוש, פרטי סביבה בסיסיים ומזהה הפעלה בלבד שמתאפס בכל פעם מחדש של OneNote. מידע זה עוזר לנו להבין אילו תכונות חשובות ביותר וכיצד נעשה שימוש בתוסף. לעולם לא נאספים נתונים אישיים או מזהים - רק אירועי שימוש אנונימיים לחלוטין.
 
 אתה יכול להפעיל או להשבית טלמטריה בכל עת מתיבת הדו-שיח {0} הגדרות.
 
 תודה לך!</value>
-  <comment>!EDIT</comment></data>
+    <comment>!EDIT</comment>
+  </data>
   <data name="TelemetryDialog_yesButton.Text" xml:space="preserve">
     <value>כן, אני אעזור! אפשר טלמטריה</value>
   </data>
@@ -5541,6 +5567,9 @@ ISO-code then comma then language name</comment>
   <data name="word_Page" xml:space="preserve">
     <value>עמוד</value>
   </data>
+  <data name="word_Paragraphs" xml:space="preserve">
+    <value>פסקאות</value>
+  </data>
   <data name="word_PercentSymbol" xml:space="preserve">
     <value>יַקרָן</value>
   </data>
@@ -5656,8 +5685,16 @@ ISO-code then comma then language name</comment>
     <value>סה"כ מילים בעמוד: {0}</value>
     <comment>message box</comment>
   </data>
+  <data name="WordCountCommand_Paragraphs" xml:space="preserve">
+    <value>סה"כ פסקאות בדף: {0}</value>
+    <comment>message box</comment>
+  </data>
   <data name="WordCountCommand_Selected" xml:space="preserve">
     <value>סה"כ מילים שנבחרו: {0}</value>
+    <comment>message box</comment>
+  </data>
+  <data name="WordCountCommand_SelectedParagraphs" xml:space="preserve">
+    <value>סה"כ פסקאות בבחירה: {0}</value>
     <comment>message box</comment>
   </data>
   <data name="WordCounts_Notebook" xml:space="preserve">

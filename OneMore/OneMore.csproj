@@ -172,6 +172,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddInCommands.cs" />
+    <Compile Include="Commands\Clean\RemoveIndentsCommand.cs" />
     <Compile Include="Commands\Edit\ChooseColorizerCommand.cs" />
     <Compile Include="Commands\Edit\ColorizeDialog.cs">
       <SubType>Form</SubType>
@@ -182,6 +183,7 @@
     <Compile Include="Commands\Edit\ConvertMarkdownCommand.cs" />
     <Compile Include="Commands\Edit\CopyAsTextCommand.cs" />
     <Compile Include="Commands\Edit\RecolorInkCommand.cs" />
+    <Compile Include="Commands\File\Markdown\OneMoreDigCodeRenderer.cs" />
     <Compile Include="Commands\File\OpenFolderDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -212,6 +214,7 @@
     <Compile Include="Commands\Images\Diagrams\KrokiDiagramProvider.cs" />
     <Compile Include="Commands\Images\SelectInkCommand.cs" />
     <Compile Include="Commands\Navigator\NextUnreadPageCommand.cs" />
+    <Compile Include="Commands\Numbering\NumberLinesCommand.cs" />
     <Compile Include="Commands\Page\DuplicateLineCommand.cs" />
     <Compile Include="Commands\Edit\PreviewMarkdownCommand.cs" />
     <Compile Include="Commands\File\FileQuickNotesCommand.cs" />

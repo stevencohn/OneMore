@@ -1,6 +1,9 @@
 ﻿//************************************************************************************************
-// Copyright © 2016 Steven M Cohn.  All rights reserved.
+// Copyright © 2016 Steven M Cohn. All rights reserved.
 //************************************************************************************************
+
+#pragma warning disable S1192   // use const               
+#pragma warning disable S125    // remove commented code                            
 
 namespace River.OneMoreAddIn.Commands
 {
@@ -19,6 +22,8 @@ namespace River.OneMoreAddIn.Commands
 	/// by attempting to match standard styles with custom styles. For example, it will apply
 	/// custom-heading-1 to all standard-heading-1 content. This is done by applying the styles
 	/// directly to the QuickStyleDefs declarations.
+	/// If text is selected, applies matching theme styles inline only to the selected paragraphs
+	/// rather than re-styling the whole page.
 	/// </summary>
 	internal class ApplyStylesCommand : Command
 	{
@@ -48,21 +53,33 @@ namespace River.OneMoreAddIn.Commands
 		{
 			await using var one = new OneNote(out page, out ns);
 
-			// apply theme page color..
+			var hasSelection = page.Root
+				.Descendants(ns + "T")
+				.Any(e => e.Attributes("selected").Any(a => a.Value == "all"));
 
 			var changed = false;
-			if (!string.IsNullOrWhiteSpace(theme.Color))
+
+			if (hasSelection)
 			{
-				var cmd = new PageColorCommand();
-				cmd.SetLogger(logger);
-				changed = cmd.UpdatePageColor(page, theme.Color);
+				// selection mode: apply theme styles only to selected paragraphs inline;
+				// do not change the page background color
+				changed = ApplyToSelectedParagraphs();
 			}
-
-			// apply theme styles...
-
-			if (ApplyThemeStyles())
+			else
 			{
-				changed = true;
+				// whole-page mode: existing behavior unchanged
+
+				if (!string.IsNullOrWhiteSpace(theme.Color))
+				{
+					var cmd = new PageColorCommand();
+					cmd.SetLogger(logger);
+					changed = cmd.UpdatePageColor(page, theme.Color);
+				}
+
+				if (ApplyThemeStyles())
+				{
+					changed = true;
+				}
 			}
 
 			if (changed)
@@ -115,12 +132,11 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			string spacing = null;
-			if (FindStyle(styles, "p") is Style normal)
+			if (FindStyle(styles, "p") is Style normal &&
+				double.TryParse(
+					normal.Spacing, NumberStyles.Any, CultureInfo.InvariantCulture, out var spc) && spc > 0.0)
 			{
-				if (double.TryParse(normal.Spacing, NumberStyles.Any, CultureInfo.InvariantCulture, out var spc) && spc > 0.0)
-				{
-					spacing = normal.Spacing;
-				}
+				spacing = normal.Spacing;
 			}
 
 			var applied = false;
@@ -136,6 +152,7 @@ namespace River.OneMoreAddIn.Commands
 				if (style is not null)
 				{
 					//logger.WriteLine(
+
 					//	$"~ name:{quick.Attribute("name").Value} style:{style.Name}");
 
 					// could use QuickStyleDef class here but this is faster
@@ -167,6 +184,20 @@ namespace River.OneMoreAddIn.Commands
 					quick.SetAttributeValue("underline", style.IsUnderline.ToString().ToLower());
 
 					quick.Attribute("fontSize").Value = style.FontSize;
+
+					applied = true;
+				}
+				else if (name != "code")
+				{
+					// No custom theme style matched this QuickStyleDef. Sync font to the
+					// current OneNote default so pages created under an old default font
+					// render correctly after the user changes their default font.
+					quick.Attribute("font").Value = StyleBase.DefaultFontFamily;
+					if (name == "p")
+					{
+						quick.Attribute("fontSize").Value =
+							StyleBase.DefaultFontSize.ToString("0.0", CultureInfo.InvariantCulture);
+					}
 
 					applied = true;
 				}
@@ -305,41 +336,37 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ApplyToLists(IEnumerable<Style> styles)
 		{
-			var style = styles.SingleOrDefault(s =>
+			var quickDefs = page.Root.Elements(ns + "QuickStyleDef").ToList();
+
+			var normalStyle = styles.SingleOrDefault(s =>
 				s.Name.ToLower() == "normal" ||
 				s.Name.ToLower() == "body" ||
-				s.Name.ToLower() == "p");
+				s.Name.ToLower() == "p")
+				?? new Style { Color = page.GetBestTextColor().ToRGBHtml() };
 
-			style ??= new Style
+			Style StyleFor(XElement listItem)
 			{
-				Color = page.GetBestTextColor().ToRGBHtml()
-			};
-
-			var elements = page.Root.Descendants(ns + "Bullet");
-			if (elements?.Any() == true)
-			{
-				ApplyToListItems(elements, style, false);
+				var qsi = listItem.Parent?.Parent?.Attribute("quickStyleIndex")?.Value;
+				if (qsi == null) return normalStyle;
+				var quickName = quickDefs
+					.FirstOrDefault(q => q.Attribute("index")?.Value == qsi)
+					?.Attribute("name")?.Value;
+				return quickName != null ? (FindStyle(styles, quickName) ?? normalStyle) : normalStyle;
 			}
 
-			elements = page.Root.Descendants(ns + "Number");
-			if (elements?.Any() == true)
+			foreach (var element in page.Root.Descendants(ns + "Bullet").ToList())
 			{
-				ApplyToListItems(elements, style, true);
+				var s = StyleFor(element);
+				element.SetAttributeValue("fontColor", s.Color);
+				element.SetAttributeValue("fontSize", s.FontSize);
 			}
-		}
 
-
-		private static void ApplyToListItems(IEnumerable<XElement> elements, Style style, bool withFamily)
-		{
-			foreach (var element in elements)
+			foreach (var element in page.Root.Descendants(ns + "Number").ToList())
 			{
-				element.SetAttributeValue("fontColor", style.Color);
-				element.SetAttributeValue("fontSize", style.FontSize);
-
-				if (withFamily)
-				{
-					element.SetAttributeValue("font", style.FontFamily);
-				}
+				var s = StyleFor(element);
+				element.SetAttributeValue("fontColor", s.Color);
+				element.SetAttributeValue("fontSize", s.FontSize);
+				element.SetAttributeValue("font", s.FontFamily);
 			}
 		}
 
@@ -408,6 +435,145 @@ namespace River.OneMoreAddIn.Commands
 			else if (color != null)
 			{
 				element.Add(new XAttribute("style", $"color:{MediumBlue}"));
+			}
+		}
+
+
+		private bool ApplyToSelectedParagraphs()
+		{
+			var styles = theme.GetStyles();
+
+			// spaceBetween applies only to "p" paragraphs (mirrors ApplyStyles logic)
+			string normalSpacing = null;
+			if (FindStyle(styles, "p") is Style normalStyle &&
+				double.TryParse(normalStyle.Spacing,
+					NumberStyles.Any, CultureInfo.InvariantCulture, out var spc) && spc > 0.0)
+			{
+				normalSpacing = normalStyle.Spacing;
+			}
+
+			// index -> name lookup for all QuickStyleDefs on the page
+			var quickDefs = page.Root
+				.Elements(ns + "QuickStyleDef")
+				.ToDictionary(
+					q => q.Attribute("index").Value,
+					q => q.Attribute("name").Value);
+
+			// selected OEs = parents of selected T elements, deduplicated
+			var selectedOEs = page.Root
+				.Descendants(ns + "T")
+				.Where(t => t.Attributes("selected").Any(a => a.Value == "all"))
+				.Select(t => t.Parent)
+				.Distinct()
+				.ToList();
+
+			if (!selectedOEs.Any())
+			{
+				return false;
+			}
+
+			var applied = false;
+
+			foreach (var oe in selectedOEs)
+			{
+				// skip guarded paragraphs (same guards as ClearInlineStyles / SetSpacing)
+				var meta = oe.Element(ns + "Meta");
+				if (meta is not null)
+				{
+					var metaName = meta.Attribute("name")?.Value ?? string.Empty;
+					if (metaName.StartsWith("omfootnote") ||
+						metaName.StartsWith(MetaNames.TaggingBank) ||
+						(metaName == Style.HintMeta &&
+						 meta.Attribute("content")?.Value == "skip"))
+					{
+						continue;
+					}
+				}
+
+				// resolve QuickStyleDef name for this OE; default "p" if absent
+				var qsiAttr = oe.Attribute("quickStyleIndex");
+				var quickName = "p";
+				if (qsiAttr is not null &&
+					quickDefs.TryGetValue(qsiAttr.Value, out var resolvedName))
+				{
+					quickName = resolvedName;
+				}
+
+				var style = FindStyle(styles, quickName);
+				if (style is null)
+				{
+					continue;
+				}
+
+				// clearing mode mirrors ApplyStyles()
+				var clearing =
+					style.IsCode || !style.ApplyColors
+						? Stylizer.Clearing.Gray
+						: quickName == "p"
+							? Stylizer.Clearing.Gray
+							: Stylizer.Clearing.All;
+
+				stylizer.Clear(oe, clearing, deep: false);
+
+				// apply theme style CSS inline to the OE
+				var css = style.ToCss();
+				var attr = oe.Attribute("style");
+				if (attr is null)
+				{
+					oe.Add(new XAttribute("style", css));
+				}
+				else if (!style.ApplyColors)
+				{
+					// preserve existing colors; only update non-color properties
+					var merged = new Style(style) { ApplyColors = true };
+					merged.MergeColors(new Style(attr.Value));
+					attr.Value = merged.ToCss();
+				}
+				else
+				{
+					attr.Value = css;
+				}
+
+				// paragraph spacing
+				oe.SetAttributeValue("spaceBefore", style.SpaceBefore);
+				oe.SetAttributeValue("spaceAfter", style.SpaceAfter);
+				if (quickName == "p" && normalSpacing is not null)
+				{
+					oe.SetAttributeValue("spaceBetween", normalSpacing);
+				}
+
+				// list bullet/number inline colors
+				ApplyToListItem(oe, style);
+
+				applied = true;
+			}
+
+			return applied;
+		}
+
+
+		private void ApplyToListItem(XElement oe, Style style)
+		{
+			var item = oe.Elements(ns + "List").Elements()
+				.FirstOrDefault(e =>
+					e.Name.LocalName == "Bullet" ||
+					e.Name.LocalName == "Number");
+
+			if (item is null)
+			{
+				return;
+			}
+
+			if (style.ApplyColors)
+			{
+				item.SetAttributeValue("fontColor", style.Color);
+			}
+
+			item.SetAttributeValue("fontSize", style.FontSize);
+
+			if (item.Name.LocalName == "Number")
+			{
+				item.SetAttributeValue("font", style.FontFamily);
 			}
 		}
 	}

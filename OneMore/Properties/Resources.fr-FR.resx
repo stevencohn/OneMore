@@ -117,7 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="AboutDialog.Text" xml:space="preserve">
     <value>Complément OneMore</value>
     <comment>dialog title bar</comment>
@@ -1244,7 +1243,8 @@ Variables : E, Phi, Pi, Tao, Tablecols, Tablerows
 Référence cellulaire : A1, A2, ... ZZZ999
 Plage cellulaire : A1: A22
 Plages relatives : a1: cellule (0, -1)</value>
-  <comment>!EDIT</comment></data>
+    <comment>!EDIT</comment>
+  </data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>Cellules sélectionnées :</value>
     <comment>label</comment>
@@ -1349,7 +1349,7 @@ La recherche de hashtags n'est pas disponible tant qu'elle n'est pas terminée.<
     <comment>context menu item</comment>
   </data>
   <data name="HashtagDialog_introLabel.Text" xml:space="preserve">
-    <value>Tapez n’importe quelle partie d’un ou plusieurs hashtags. Les caractères génériques sont implicites, sauf si une balise se termine par un point. Les parenthèses et les opérateurs logiques sont autorisés.</value>
+    <value>Tapez n'importe quelle partie d'un ou plusieurs hashtags. Les caractères génériques sont implicites, sauf si une balise se termine par un point. Les parenthèses et les opérateurs logiques (AND, OR, NOT) sont autorisés.</value>
     <comment>label</comment>
   </data>
   <data name="HashtagDialog_lastScanLabel" xml:space="preserve">
@@ -1437,6 +1437,10 @@ Cette page</value>
   </data>
   <data name="HashtagSheet_disabledBox.Text" xml:space="preserve">
     <value>Désactivez le service hashtag. Cela désactivera également la recherche par hashtag.</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="HashtagSheet_doubledBox.Text" xml:space="preserve">
+    <value>Reconnaître uniquement les hashtags à double préfixe "##"</value>
     <comment>checkbox</comment>
   </data>
   <data name="HashtagSheet_filterBox.Text" xml:space="preserve">
@@ -2981,7 +2985,8 @@ Onglet Aide</value>
   </data>
   <data name="ribClearTableShadingButton_Label" xml:space="preserve">
     <value>Effacer tous les styles de tableau</value>
-  <comment>ribbon item</comment></data>
+    <comment>ribbon item</comment>
+  </data>
   <data name="ribClearTableShadingButton_Screentip" xml:space="preserve">
     <value>Réinitialiser l'ombrage dans toutes les cellules du tableau actuel</value>
     <comment>ribbon table styles</comment>
@@ -3008,7 +3013,8 @@ Onglet Aide</value>
   </data>
   <data name="ribCommandPaletteButton_Label" xml:space="preserve">
     <value>Palette de commandes</value>
-  <comment>ribbon item</comment></data>
+    <comment>ribbon item</comment>
+  </data>
   <data name="ribCommandPaletteButton_Screentip" xml:space="preserve">
     <value>Ouvrir la fenêtre de la palette de commandes</value>
     <comment>ribbon main</comment>
@@ -3575,7 +3581,8 @@ Onglet Aide</value>
   </data>
   <data name="ribLinkReferencesButton_Label" xml:space="preserve">
     <value>Lier les références à cette page</value>
-  <comment>ribbon button</comment></data>
+    <comment>ribbon button</comment>
+  </data>
   <data name="ribLinkReferencesButton_Screentip" xml:space="preserve">
     <value>Générer des liens bidirectionnels vers cette page en fonction de son titre</value>
     <comment>ribbon references</comment>
@@ -3700,6 +3707,14 @@ Onglet Aide</value>
     <value>Numérotage</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="ribNumberLinesButton_Label" xml:space="preserve">
+    <value>Droites numériques</value>
+    <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribNumberLinesButton_Screentip" xml:space="preserve">
+    <value>Ajouter les numéros de ligne au texte sélectionné</value>
+    <comment>ribbon numbering</comment>
+  </data>
   <data name="ribNumberPagesButton_Label" xml:space="preserve">
     <value>Nombre de pages</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -3821,14 +3836,6 @@ Onglet Aide</value>
   </data>
   <data name="ribPasteTextButton_Label" xml:space="preserve">
     <value>Coller et garder le texte seulement</value>
-    <comment>ribbon item</comment>
-  </data>
-  <data name="ribPasteTextButton_Label" xml:space="preserve">
-    <value>Coller et garder le texte seulement</value>
-    <comment>ribbon item</comment>
-  </data>
-  <data name="ribPasteTextButton_Screentip" xml:space="preserve">
-    <value>Coller et garder le texte uniquement (Ctrl + Maj + V)</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribPasteTextButton_Screentip" xml:space="preserve">
@@ -3985,6 +3992,14 @@ Onglet Aide</value>
   <data name="ribRemoveFootnoteButton_Screentip" xml:space="preserve">
     <value>Supprimer la note de bas de page (Ctrl + Maj + F)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribRemoveIndentsButton_Label" xml:space="preserve">
+    <value>Supprimer les retraits</value>
+    <comment>ribbon clean</comment>
+  </data>
+  <data name="ribRemoveIndentsButton_Screentip" xml:space="preserve">
+    <value>Supprimer l'indentation du contenu sélectionné</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveInkButton_Label" xml:space="preserve">
     <value>Supprimer l'encre</value>
@@ -4819,12 +4834,16 @@ Des modifications incorrectes peuvent entraîner la perte de données.
     <value>Texte enveloppant</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SnippetsSheet_codeStyleBox.Text" xml:space="preserve">
+    <value>Appliquez toujours le style « code » au contenu de la Code Box</value>
+    <comment>label</comment>
+  </data>
   <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
     <value>Supprimer l'extrait "{0}"</value>
     <comment>question</comment>
   </data>
   <data name="SnippetsSheet_introBox.Text" xml:space="preserve">
-    <value>Gérer mes extraits</value>
+    <value>Gérer les options et Mes extraits</value>
     <comment>label</comment>
   </data>
   <data name="SortDialog.Text" xml:space="preserve">
@@ -5185,14 +5204,16 @@ Inverser</value>
   </data>
   <data name="TelemetryDialog_titleLabel.Text" xml:space="preserve">
     <value>Aidez-nous à améliorer {0}</value>
-  <comment>!EDIT</comment></data>
+    <comment>!EDIT</comment>
+  </data>
   <data name="TelemetryDialog_whyBox.Text" xml:space="preserve">
     <value>Veuillez envisager d'activer la télémétrie anonyme pour nous aider à améliorer {0}. La télémétrie enregistre les commandes utilisées, les détails de base de l'environnement et un ID de session uniquement qui se réinitialise à chaque redémarrage de OneNote. Ces informations nous aident à comprendre quelles fonctionnalités sont les plus importantes et comment le complément est utilisé. Aucune donnée personnelle ou d'identification n'est jamais collectée, uniquement des événements d'utilisation totalement anonymes.
 
 Vous pouvez activer ou désactiver la télémétrie à tout moment à partir de la boîte de dialogue Paramètres {0}.
 
 Merci!</value>
-  <comment>!EDIT</comment></data>
+    <comment>!EDIT</comment>
+  </data>
   <data name="TelemetryDialog_yesButton.Text" xml:space="preserve">
     <value>Oui, je vais aider ! Activer la télémétrie</value>
   </data>
@@ -5552,6 +5573,9 @@ Merci!</value>
   <data name="word_Page" xml:space="preserve">
     <value>Page</value>
   </data>
+  <data name="word_Paragraphs" xml:space="preserve">
+    <value>Paragraphes</value>
+  </data>
   <data name="word_PercentSymbol" xml:space="preserve">
     <value>%</value>
   </data>
@@ -5667,8 +5691,16 @@ Merci!</value>
     <value>Nombre total de mots sur la page : {0}</value>
     <comment>message box</comment>
   </data>
+  <data name="WordCountCommand_Paragraphs" xml:space="preserve">
+    <value>Nombre total de paragraphes sur la page : {0}</value>
+    <comment>message box</comment>
+  </data>
   <data name="WordCountCommand_Selected" xml:space="preserve">
     <value>Nombre total de mots sélectionnés : {0}</value>
+    <comment>message box</comment>
+  </data>
+  <data name="WordCountCommand_SelectedParagraphs" xml:space="preserve">
+    <value>Total des paragraphes sélectionnés : {0}</value>
     <comment>message box</comment>
   </data>
   <data name="WordCounts_Notebook" xml:space="preserve">

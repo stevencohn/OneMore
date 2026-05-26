@@ -117,7 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="AboutDialog.Text" xml:space="preserve">
     <value>OneMore الوظيفة الإضافية المدخن</value>
     <comment>dialog title bar</comment>
@@ -1244,7 +1243,8 @@
 مرجع الخلية: A1 ، A2 ، ... zzz999
 نطاق الخلية: A1: A22
 النطاقات النسبية: A1: Cell (0 ، -1)</value>
-  <comment>!EDIT</comment></data>
+    <comment>!EDIT</comment>
+  </data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>الخلايا المحددة:</value>
     <comment>label</comment>
@@ -1349,7 +1349,7 @@
     <comment>context menu item</comment>
   </data>
   <data name="HashtagDialog_introLabel.Text" xml:space="preserve">
-    <value>اكتب أي جزء من هاشتاج واحد أو أكثر. يتم تضمين أحرف البدل ما لم تنتهي العلامة بنقطة. يُسمح بالأقواس والعوامل المنطقية.</value>
+    <value>اكتب أي جزء من هاشتاج واحد أو أكثر. يتم تضمين أحرف البدل ما لم تنتهي العلامة بنقطة. يُسمح بالأقواس والعوامل المنطقية (AND، OR، NOT).</value>
     <comment>label</comment>
   </data>
   <data name="HashtagDialog_lastScanLabel" xml:space="preserve">
@@ -1437,6 +1437,10 @@
   </data>
   <data name="HashtagSheet_disabledBox.Text" xml:space="preserve">
     <value>تعطيل خدمة الهاشتاج. سيؤدي هذا أيضًا إلى تعطيل البحث عن الهاشتاج.</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="HashtagSheet_doubledBox.Text" xml:space="preserve">
+    <value>التعرف على علامات التصنيف المزدوجة البادئة "##" فقط</value>
     <comment>checkbox</comment>
   </data>
   <data name="HashtagSheet_filterBox.Text" xml:space="preserve">
@@ -2981,7 +2985,8 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="ribClearTableShadingButton_Label" xml:space="preserve">
     <value>مسح كافة أنماط الجدول</value>
-  <comment>ribbon item</comment></data>
+    <comment>ribbon item</comment>
+  </data>
   <data name="ribClearTableShadingButton_Screentip" xml:space="preserve">
     <value>إعادة تعيين التظليل في كل الخلايا في الجدول الحالي</value>
     <comment>ribbon table styles</comment>
@@ -3008,7 +3013,8 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="ribCommandPaletteButton_Label" xml:space="preserve">
     <value>لوحة القيادة</value>
-  <comment>ribbon item</comment></data>
+    <comment>ribbon item</comment>
+  </data>
   <data name="ribCommandPaletteButton_Screentip" xml:space="preserve">
     <value>افتح نافذة لوحة الأوامر</value>
     <comment>ribbon main</comment>
@@ -3701,6 +3707,14 @@ ISO-code then comma then language name</comment>
     <value>الترقيم</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="ribNumberLinesButton_Label" xml:space="preserve">
+    <value>خطوط الأعداد</value>
+    <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribNumberLinesButton_Screentip" xml:space="preserve">
+    <value>إضافة أرقام الأسطر النص المحدد</value>
+    <comment>ribbon numbering</comment>
+  </data>
   <data name="ribNumberPagesButton_Label" xml:space="preserve">
     <value>عدد الصفحات</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -3822,14 +3836,6 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="ribPasteTextButton_Label" xml:space="preserve">
     <value>لصق والحفاظ على النص فقط</value>
-    <comment>ribbon item</comment>
-  </data>
-  <data name="ribPasteTextButton_Label" xml:space="preserve">
-    <value>لصق والحفاظ على النص فقط</value>
-    <comment>ribbon item</comment>
-  </data>
-  <data name="ribPasteTextButton_Screentip" xml:space="preserve">
-    <value>لصق والحفاظ على النص فقط (CTRL + SHIFT + V)</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribPasteTextButton_Screentip" xml:space="preserve">
@@ -3986,6 +3992,14 @@ ISO-code then comma then language name</comment>
   <data name="ribRemoveFootnoteButton_Screentip" xml:space="preserve">
     <value>إزالة الحاشية السفلية (Ctrl + Shift + F)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribRemoveIndentsButton_Label" xml:space="preserve">
+    <value>إزالة المسافات البادئة</value>
+    <comment>ribbon clean</comment>
+  </data>
+  <data name="ribRemoveIndentsButton_Screentip" xml:space="preserve">
+    <value>إزالة المسافة البادئة من المحتوى المحدد</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveInkButton_Label" xml:space="preserve">
     <value>إزالة الحبر</value>
@@ -4820,12 +4834,16 @@ ISO-code then comma then language name</comment>
     <value>دوران النص</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SnippetsSheet_codeStyleBox.Text" xml:space="preserve">
+    <value>قم دائمًا بتطبيق نمط "الكود" على محتوى Code Box</value>
+    <comment>label</comment>
+  </data>
   <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
     <value>حذف المقتطف "{0}"</value>
     <comment>question</comment>
   </data>
   <data name="SnippetsSheet_introBox.Text" xml:space="preserve">
-    <value>إدارة المقتطفات الخاصة بي</value>
+    <value>إدارة الخيارات والمقتطفات الخاصة بي</value>
     <comment>label</comment>
   </data>
   <data name="SortDialog.Text" xml:space="preserve">
@@ -5187,14 +5205,16 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="TelemetryDialog_titleLabel.Text" xml:space="preserve">
     <value>ساعد في تحسين {0}</value>
-  <comment>!EDIT</comment></data>
+    <comment>!EDIT</comment>
+  </data>
   <data name="TelemetryDialog_whyBox.Text" xml:space="preserve">
     <value>يرجى النظر في تمكين القياس عن بعد المجهول لمساعدتنا في تحسين {0}. يسجل القياس عن بعد الأوامر المستخدمة وتفاصيل البيئة الأساسية ومعرف الجلسة فقط الذي تتم إعادة تعيينه في كل مرة يتم فيها إعادة تشغيل OneNote. تساعدنا هذه المعلومات على فهم الميزات الأكثر أهمية وكيفية استخدام الوظيفة الإضافية. لا يتم جمع أي بيانات شخصية أو تعريفية على الإطلاق - فقط أحداث الاستخدام المجهولة بالكامل.
 
 يمكنك تمكين القياس عن بعد أو تعطيله في أي وقت من مربع حوار الإعدادات {0}.
 
 شكرًا لك!</value>
-  <comment>!EDIT</comment></data>
+    <comment>!EDIT</comment>
+  </data>
   <data name="TelemetryDialog_yesButton.Text" xml:space="preserve">
     <value>نعم، سوف أساعد! تمكين القياس عن بعد</value>
   </data>
@@ -5554,6 +5574,9 @@ ISO-code then comma then language name</comment>
   <data name="word_Page" xml:space="preserve">
     <value>صفحة</value>
   </data>
+  <data name="word_Paragraphs" xml:space="preserve">
+    <value>الفقرات</value>
+  </data>
   <data name="word_PercentSymbol" xml:space="preserve">
     <value>٪</value>
   </data>
@@ -5669,8 +5692,16 @@ ISO-code then comma then language name</comment>
     <value>إجمالي الكلمات في الصفحة: {0}</value>
     <comment>message box</comment>
   </data>
+  <data name="WordCountCommand_Paragraphs" xml:space="preserve">
+    <value>إجمالي الفقرات في الصفحة: {0}</value>
+    <comment>message box</comment>
+  </data>
   <data name="WordCountCommand_Selected" xml:space="preserve">
     <value>إجمالي الكلمات المحددة: {0}</value>
+    <comment>message box</comment>
+  </data>
+  <data name="WordCountCommand_SelectedParagraphs" xml:space="preserve">
+    <value>إجمالي الفقرات المحددة: {0}</value>
     <comment>message box</comment>
   </data>
   <data name="WordCounts_Notebook" xml:space="preserve">

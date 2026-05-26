@@ -628,6 +628,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<WordCountCommand>(OneNote.Scope.Sections);
 
 
+		[Command("ribNumberLinesButton_Label", Keys.None, "ribNumberingMenu")]
+		public async Task NumberLinesCmd(IRibbonControl control)
+			=> await factory.Run<NumberLinesCommand>();
+
+
 		[Command("ribNumberPagesButton_Label", Keys.None, "ribNumberingMenu")]
 		public async Task NumberPagesCmd(IRibbonControl control)
 			=> await factory.Run<NumberPagesCommand>();
@@ -768,6 +773,11 @@ namespace River.OneMoreAddIn
 		[Command("ribRemoveEmptyButton_Label", Keys.None, "ribCleanMenu")]
 		public async Task RemoveEmptyCmd(IRibbonControl control)
 			=> await factory.Run<RemoveEmptyCommand>();
+
+
+		[Command("ribRemoveIndentsButton_Label", Keys.None, "ribCleanMenu")]
+		public async Task RemoveIndentsCmd(IRibbonControl control)
+			=> await factory.Run<RemoveIndentsCommand>();
 
 
 		[Command("ribRemoveFootnoteButton_Label", Keys.Control | Keys.Shift | Keys.F, "ribReferencesMenu")]

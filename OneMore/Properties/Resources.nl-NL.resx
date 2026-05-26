@@ -117,7 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="AboutDialog.Text" xml:space="preserve">
     <value>Onemore add-in roker</value>
     <comment>dialog title bar</comment>
@@ -1241,7 +1240,8 @@ Variabelen: E, PHI, PI, Tao, Tablecols, Tablerows
 Celreferentie: A1, A2, ... ZZZ999
 Celbereik: A1: A22
 Relatieve bereiken: A1: Cell (0, -1)</value>
-  <comment>!EDIT</comment></data>
+    <comment>!EDIT</comment>
+  </data>
   <data name="FormulaDialog_selectedLabel.Text" xml:space="preserve">
     <value>Geselecteerde cellen:</value>
     <comment>label</comment>
@@ -1346,7 +1346,7 @@ Zoeken naar hashtags is pas beschikbaar als dit is voltooid.</value>
     <comment>context menu item</comment>
   </data>
   <data name="HashtagDialog_introLabel.Text" xml:space="preserve">
-    <value>Typ een deel van een of meer hashtags. Wildcards worden geïmpliceerd, tenzij een tag wordt afgesloten met een punt. Haakjes en logische operatoren zijn toegestaan.</value>
+    <value>Typ een deel van een of meer hashtags. Wildcards worden geïmpliceerd, tenzij een tag wordt afgesloten met een punt. Haakjes en logische operatoren (AND, OR, NOT) zijn toegestaan.</value>
     <comment>label</comment>
   </data>
   <data name="HashtagDialog_lastScanLabel" xml:space="preserve">
@@ -1434,6 +1434,10 @@ Deze pagina</value>
   </data>
   <data name="HashtagSheet_disabledBox.Text" xml:space="preserve">
     <value>Schakel de hashtag-service uit. Hiermee wordt ook het zoeken naar hashtags uitgeschakeld.</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="HashtagSheet_doubledBox.Text" xml:space="preserve">
+    <value>Herken alleen hashtags met dubbele "##"-voorvoegsels</value>
     <comment>checkbox</comment>
   </data>
   <data name="HashtagSheet_filterBox.Text" xml:space="preserve">
@@ -2970,7 +2974,8 @@ Tabblad Help</value>
   </data>
   <data name="ribClearTableShadingButton_Label" xml:space="preserve">
     <value>Wis alle tafelstyling</value>
-  <comment>ribbon item</comment></data>
+    <comment>ribbon item</comment>
+  </data>
   <data name="ribClearTableShadingButton_Screentip" xml:space="preserve">
     <value>Herstel de arcering in alle cellen in de huidige tabel</value>
     <comment>ribbon table styles</comment>
@@ -2997,7 +3002,8 @@ Tabblad Help</value>
   </data>
   <data name="ribCommandPaletteButton_Label" xml:space="preserve">
     <value>Commando palet</value>
-  <comment>ribbon item</comment></data>
+    <comment>ribbon item</comment>
+  </data>
   <data name="ribCommandPaletteButton_Screentip" xml:space="preserve">
     <value>Open het opdrachtpaletvenster</value>
     <comment>ribbon main</comment>
@@ -3563,8 +3569,9 @@ Tabblad Help</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribLinkReferencesButton_Label" xml:space="preserve">
-    Kaartverwijzingen naar deze pagina
-  <comment>ribbon button</comment></data>
+    <value>Kaartverwijzingen naar deze pagina</value>
+    <comment>ribbon button</comment>
+  </data>
   <data name="ribLinkReferencesButton_Screentip" xml:space="preserve">
     <value>Genereer bidirectionele links naar deze pagina op basis van de titel</value>
     <comment>ribbon references</comment>
@@ -3689,6 +3696,14 @@ Tabblad Help</value>
     <value>Nummering</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="ribNumberLinesButton_Label" xml:space="preserve">
+    <value>Cijferlijnen</value>
+    <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribNumberLinesButton_Screentip" xml:space="preserve">
+    <value>Voeg regelnummers geselecteerde tekst toe</value>
+    <comment>ribbon numbering</comment>
+  </data>
   <data name="ribNumberPagesButton_Label" xml:space="preserve">
     <value>Aantal pagina's</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -3810,14 +3825,6 @@ Tabblad Help</value>
   </data>
   <data name="ribPasteTextButton_Label" xml:space="preserve">
     <value>Plakken en blijf alleen tekst</value>
-    <comment>ribbon item</comment>
-  </data>
-  <data name="ribPasteTextButton_Label" xml:space="preserve">
-    <value>Plakken en blijf alleen tekst</value>
-    <comment>ribbon item</comment>
-  </data>
-  <data name="ribPasteTextButton_Screentip" xml:space="preserve">
-    <value>Plakken en blijf alleen tekst (Ctrl + Shift + V)</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribPasteTextButton_Screentip" xml:space="preserve">
@@ -3974,6 +3981,14 @@ Tabblad Help</value>
   <data name="ribRemoveFootnoteButton_Screentip" xml:space="preserve">
     <value>Voetnoot verwijderen (Ctrl + Shift + F)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribRemoveIndentsButton_Label" xml:space="preserve">
+    <value>Inspringingen verwijderen</value>
+    <comment>ribbon clean</comment>
+  </data>
+  <data name="ribRemoveIndentsButton_Screentip" xml:space="preserve">
+    <value>Verwijder de inspringing van geselecteerde inhoud</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveInkButton_Label" xml:space="preserve">
     <value>Inkt verwijderen</value>
@@ -4808,12 +4823,16 @@ Weet je zeker dat je door wilt gaan?</value>
     <value>Omloop tekst</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SnippetsSheet_codeStyleBox.Text" xml:space="preserve">
+    <value>Pas altijd de 'code'-stijl toe op Code Box-inhoud</value>
+    <comment>label</comment>
+  </data>
   <data name="SnippetsSheet_ConfirmDelete" xml:space="preserve">
     <value>Fragment "{0}" verwijderen</value>
     <comment>question</comment>
   </data>
   <data name="SnippetsSheet_introBox.Text" xml:space="preserve">
-    <value>Beheer mijn fragmenten</value>
+    <value>Beheer opties en Mijn fragmenten</value>
     <comment>label</comment>
   </data>
   <data name="SortDialog.Text" xml:space="preserve">
@@ -5175,14 +5194,16 @@ Omkeren</value>
   </data>
   <data name="TelemetryDialog_titleLabel.Text" xml:space="preserve">
     <value>Help {0} verbeteren</value>
-  <comment>!EDIT</comment></data>
+    <comment>!EDIT</comment>
+  </data>
   <data name="TelemetryDialog_whyBox.Text" xml:space="preserve">
     <value>Overweeg om anonieme telemetrie in te schakelen om ons te helpen {0} te verbeteren. Telemetrie registreert welke opdrachten worden gebruikt, basisomgevingsgegevens en een sessie-ID die elke keer opnieuw wordt ingesteld wanneer OneNote opnieuw wordt opgestart. Deze informatie helpt ons te begrijpen welke functies het belangrijkst zijn en hoe de invoegtoepassing wordt gebruikt. Er worden nooit persoonlijke of identificerende gegevens verzameld, alleen volledig anonieme gebruiksgebeurtenissen.
 
 U kunt telemetrie op elk gewenst moment in- of uitschakelen via het dialoogvenster {0} Instellingen.
 
 Bedankt!</value>
-  <comment>!EDIT</comment></data>
+    <comment>!EDIT</comment>
+  </data>
   <data name="TelemetryDialog_yesButton.Text" xml:space="preserve">
     <value>Ja, ik help! Schakel telemetrie in</value>
   </data>
@@ -5542,6 +5563,9 @@ Bedankt!</value>
   <data name="word_Page" xml:space="preserve">
     <value>Bladzijde</value>
   </data>
+  <data name="word_Paragraphs" xml:space="preserve">
+    <value>Paragrafen</value>
+  </data>
   <data name="word_PercentSymbol" xml:space="preserve">
     <value>Vermogend</value>
   </data>
@@ -5657,8 +5681,16 @@ Bedankt!</value>
     <value>Totaal aantal woorden op pagina: {0}</value>
     <comment>message box</comment>
   </data>
+  <data name="WordCountCommand_Paragraphs" xml:space="preserve">
+    <value>Totaal aantal alinea's op pagina: {0}</value>
+    <comment>message box</comment>
+  </data>
   <data name="WordCountCommand_Selected" xml:space="preserve">
     <value>Totaal aantal geselecteerde woorden: {0}</value>
+    <comment>message box</comment>
+  </data>
+  <data name="WordCountCommand_SelectedParagraphs" xml:space="preserve">
+    <value>Totaal aantal alinea's in selectie: {0}</value>
     <comment>message box</comment>
   </data>
   <data name="WordCounts_Notebook" xml:space="preserve">

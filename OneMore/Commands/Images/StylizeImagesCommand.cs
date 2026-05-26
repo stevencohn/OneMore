@@ -68,36 +68,41 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
-				var updated = false;
+				var count = 0;
 				if (foreSelected.Any() && dialog.ApplyForeground)
 				{
 					Stylize(foreSelected, dialog.Style);
-					updated = true;
+					count += foreSelected.Count;
+					logger.WriteLine($"updated {foreSelected.Count} selected foreground images");
 				}
 
 				if (backSelected.Any() && dialog.ApplyBackground)
 				{
 					Stylize(backSelected, dialog.Style);
-					updated = true;
+					count += backSelected.Count;
+					logger.WriteLine($"updated {backSelected.Count} selected background images");
 				}
 
-				if (!updated)
+				if (count == 0)
 				{
 					if (foreElements.Any() && dialog.ApplyForeground)
 					{
 						Stylize(foreElements, dialog.Style);
-						updated = true;
+						count += foreElements.Count;
+						logger.WriteLine($"updated {foreElements.Count} foreground images");
 					}
 
 					if (backElements.Any() && dialog.ApplyBackground)
 					{
 						Stylize(backElements, dialog.Style);
-						updated = true;
+						count += backElements.Count;
+						logger.WriteLine($"updated {backElements.Count} background images");
 					}
 				}
 
-				if (updated)
+				if (count > 0)
 				{
+					logger.WriteLine($"updating {count} total images");
 					await one.Update(page);
 				}
 			}
@@ -114,6 +119,12 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (var element in elements)
 			{
+				// printout images have XPS-linking attributes that prevent OneNote from
+				// accepting rewritten pixel data; remove them to allow stylization
+				element.Attributes("xpsFileIndex").Remove();
+				element.Attributes("originalPageNumber").Remove();
+				element.Attributes("isPrintOut").Remove();
+
 				editor.Apply(new OneImage(element));
 			}
 		}

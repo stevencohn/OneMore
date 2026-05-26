@@ -3535,7 +3535,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Type any part of one or more hashtags. Wildcards are implied unless a tag is ended with a period. Parenthesis and logical operators are allowed..
+        ///   Looks up a localized string similar to Type any part of one or more hashtags. Wildcards are implied unless a tag is ended with a period. Parenthesis and logical operators (AND, OR, NOT) are allowed..
         /// </summary>
         internal static string HashtagDialog_introLabel_Text {
             get {
@@ -3752,6 +3752,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string HashtagSheet_disabledBox_Text {
             get {
                 return ResourceManager.GetString("HashtagSheet_disabledBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recognize only double &quot;##&quot; prefix hashtags.
+        /// </summary>
+        internal static string HashtagSheet_doubledBox_Text {
+            get {
+                return ResourceManager.GetString("HashtagSheet_doubledBox.Text", resourceCulture);
             }
         }
         
@@ -9336,6 +9345,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number Lines.
+        /// </summary>
+        internal static string ribNumberLinesButton_Label {
+            get {
+                return ResourceManager.GetString("ribNumberLinesButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add line numbers selected text.
+        /// </summary>
+        internal static string ribNumberLinesButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribNumberLinesButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Number Pages.
         /// </summary>
         internal static string ribNumberPagesButton_Label {
@@ -9962,6 +9989,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribRemoveFootnoteButton_Screentip {
             get {
                 return ResourceManager.GetString("ribRemoveFootnoteButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove Indents.
+        /// </summary>
+        internal static string ribRemoveIndentsButton_Label {
+            get {
+                return ResourceManager.GetString("ribRemoveIndentsButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove indentation from selected content.
+        /// </summary>
+        internal static string ribRemoveIndentsButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribRemoveIndentsButton_Screentip", resourceCulture);
             }
         }
         
@@ -11879,6 +11924,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Always apply &quot;code&quot; style to Code Box content.
+        /// </summary>
+        internal static string SnippetsSheet_codeStyleBox_Text {
+            get {
+                return ResourceManager.GetString("SnippetsSheet_codeStyleBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete snippet &quot;{0}&quot;.
         /// </summary>
         internal static string SnippetsSheet_ConfirmDelete {
@@ -11888,7 +11942,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Manage my snippets.
+        ///   Looks up a localized string similar to Manage options and My Snippets.
         /// </summary>
         internal static string SnippetsSheet_introBox_Text {
             get {
@@ -13787,6 +13841,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Paragraphs.
+        /// </summary>
+        internal static string word_Paragraphs {
+            get {
+                return ResourceManager.GetString("word_Paragraphs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to %.
         /// </summary>
         internal static string word_PercentSymbol {
@@ -14129,11 +14192,29 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Total paragraphs on page: {0}.
+        /// </summary>
+        internal static string WordCountCommand_Paragraphs {
+            get {
+                return ResourceManager.GetString("WordCountCommand_Paragraphs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Total words selected: {0}.
         /// </summary>
         internal static string WordCountCommand_Selected {
             get {
                 return ResourceManager.GetString("WordCountCommand_Selected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total paragraphs in selection: {0}.
+        /// </summary>
+        internal static string WordCountCommand_SelectedParagraphs {
+            get {
+                return ResourceManager.GetString("WordCountCommand_SelectedParagraphs", resourceCulture);
             }
         }
         
@@ -14147,7 +14228,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Total words in notebook across {0} pages.
+        ///   Looks up a localized string similar to Total in notebook across {0} pages.
         /// </summary>
         internal static string WordCounts_NotebookTotal {
             get {
@@ -14165,7 +14246,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Total words in section across {0} pages.
+        ///   Looks up a localized string similar to Total in section across {0} pages.
         /// </summary>
         internal static string WordCounts_SectionTotal {
             get {
