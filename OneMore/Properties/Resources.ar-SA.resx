@@ -5350,12 +5350,20 @@ ISO-code then comma then language name</comment>
     <value>تم حظره بواسطة النقر للتشغيل</value>
     <comment>title</comment>
   </data>
+  <data name="UpdateGuardDialog_acceptLink.Text" xml:space="preserve">
+    <value>اقبل المخاطرة واستمر في التحديث</value>
+    <comment>linklable</comment>
+  </data>
   <data name="UpdateGuardDialog_browseLink.Text" xml:space="preserve">
     <value>افتح صفحة التنزيل في متصفحك</value>
     <comment>link label</comment>
   </data>
   <data name="UpdateGuardDialog_messageBox.Text" xml:space="preserve">
     <value>يتم تشغيل OneNote ضمن المحاكاة الافتراضية للتشغيل الفوري. لا يمكنك تحديث OneMore باستخدام مربع الحوار هذا. أغلق OneNote، وقم بتنزيل برنامج تثبيت OneMore، وقم بتشغيل برنامج التثبيت يدويًا.</value>
+  </data>
+  <data name="UpdateGuardDialog_warningLabel.Text" xml:space="preserve">
+    <value>أريد أن أحاول على أي حال. أوافق على المخاطرة المتمثلة في أن C2R قد يتسبب في إعادة تشغيل OneNote تلقائيًا إذا كانت هناك مهام مزامنة معلقة وقد يفشل التحديث بسبب ذلك.</value>
+    <comment>label</comment>
   </data>
   <data name="VariablesSheet_deleteVariable" xml:space="preserve">
     <value>حذف المتغير {0}؟</value>

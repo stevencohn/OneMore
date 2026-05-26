@@ -111,15 +111,16 @@ namespace River.OneMoreAddIn.Commands
 				var module = processes[0].MainModule.FileName.ToLower();
 				if (module.Contains("microsoft office\\root\\office"))
 				{
+					DialogResult result = DialogResult.Abort;
 					if (requested)
 					{
 						using var dialog = new UpdateGuardDialog();
-						dialog.ShowDialog(owner);
+						result = dialog.ShowDialog(owner);
 					}
 
 					logger.WriteLine("guarded by click-to-run, aborting update");
 
-					return true;
+					return result != DialogResult.OK;
 				}
 			}
 

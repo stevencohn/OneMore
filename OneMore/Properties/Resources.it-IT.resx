@@ -5346,12 +5346,20 @@ Grazie!</value>
     <value>Bloccato da Click-to-run</value>
     <comment>title</comment>
   </data>
+  <data name="UpdateGuardDialog_acceptLink.Text" xml:space="preserve">
+    <value>Accetta il rischio e continua ad aggiornare</value>
+    <comment>linklable</comment>
+  </data>
   <data name="UpdateGuardDialog_browseLink.Text" xml:space="preserve">
     <value>Apri la pagina di download nel tuo browser</value>
     <comment>link label</comment>
   </data>
   <data name="UpdateGuardDialog_messageBox.Text" xml:space="preserve">
     <value>OneNote è in esecuzione con la virtualizzazione a portata di clic. Non è possibile aggiornare OneMore utilizzando questa finestra di dialogo. Chiudi OneNote, scarica il programma di installazione di OneMore ed esegui il programma di installazione manualmente.</value>
+  </data>
+  <data name="UpdateGuardDialog_warningLabel.Text" xml:space="preserve">
+    <value>Voglio provarci comunque. Accetto il rischio che C2R possa causare il riavvio automatico di OneNote se sono presenti attività di sincronizzazione in sospeso e l'aggiornamento potrebbe non riuscire a causa di ciò.</value>
+    <comment>label</comment>
   </data>
   <data name="VariablesSheet_deleteVariable" xml:space="preserve">
     <value>Eliminare la variabile {0}?</value>

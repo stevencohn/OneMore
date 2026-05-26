@@ -13174,6 +13174,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Accept the risk and continue updating.
+        /// </summary>
+        internal static string UpdateGuardDialog_acceptLink_Text {
+            get {
+                return ResourceManager.GetString("UpdateGuardDialog_acceptLink.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Open the download page in your browser.
         /// </summary>
         internal static string UpdateGuardDialog_browseLink_Text {
@@ -13197,6 +13206,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string UpdateGuardDialog_Text {
             get {
                 return ResourceManager.GetString("UpdateGuardDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I want to try anyway. I accept the risk that C2R may cause OneNote auto-restart if there are outstanding sync tasks and the update may fail because of that..
+        /// </summary>
+        internal static string UpdateGuardDialog_warningLabel_Text {
+            get {
+                return ResourceManager.GetString("UpdateGuardDialog_warningLabel.Text", resourceCulture);
             }
         }
         

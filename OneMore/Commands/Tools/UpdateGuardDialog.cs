@@ -22,7 +22,9 @@ namespace River.OneMoreAddIn.Commands
 				{
 					"messageBox",
 					"browseLink",
-					"okButton=word_OK"
+					"warningLabel",
+					"acceptLink",
+					"cancelButton=word_Cancel"
 				});
 			}
 
@@ -33,6 +35,13 @@ namespace River.OneMoreAddIn.Commands
 		private void BrowseReleases(object sender, LinkLabelLinkClickedEventArgs e)
 		{
 			System.Diagnostics.Process.Start($"{Resx.OneMore_GitHub}/releases/latest");
+			DialogResult = DialogResult.Abort;
+			Close();
+		}
+
+		private void AcceptTheRisk(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			DialogResult = DialogResult.OK;
 			Close();
 		}
 	}

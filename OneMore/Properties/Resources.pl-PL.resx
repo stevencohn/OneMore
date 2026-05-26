@@ -5339,12 +5339,20 @@ Dziękuję!</value>
     <value>Zablokowane przez opcję „kliknij, aby uruchomić”.</value>
     <comment>title</comment>
   </data>
+  <data name="UpdateGuardDialog_acceptLink.Text" xml:space="preserve">
+    <value>Zaakceptuj ryzyko i kontynuuj aktualizację</value>
+    <comment>linklable</comment>
+  </data>
   <data name="UpdateGuardDialog_browseLink.Text" xml:space="preserve">
     <value>Otwórz stronę pobierania w przeglądarce</value>
     <comment>link label</comment>
   </data>
   <data name="UpdateGuardDialog_messageBox.Text" xml:space="preserve">
     <value>Program OneNote działa w ramach wirtualizacji typu „kliknij, aby uruchomić”. Za pomocą tego okna dialogowego nie można zaktualizować OneMore. Zamknij program OneNote, pobierz instalator OneMore i uruchom go ręcznie.</value>
+  </data>
+  <data name="UpdateGuardDialog_warningLabel.Text" xml:space="preserve">
+    <value>I tak chcę spróbować. Akceptuję ryzyko, że C2R może spowodować automatyczne ponowne uruchomienie programu OneNote, jeśli istnieją zaległe zadania synchronizacji, przez co aktualizacja może się nie powieść.</value>
+    <comment>label</comment>
   </data>
   <data name="VariablesSheet_deleteVariable" xml:space="preserve">
     <value>Usuń zmienną {0}?</value>
