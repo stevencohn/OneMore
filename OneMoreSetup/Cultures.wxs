@@ -36,22 +36,12 @@
         <File Source="..\OneMore\bin\$(var.Configuration)\fr-FR\OneMoreTray.resources.dll" KeyPath="yes" />
       </Component>
 
-      <!-- he -->
-      <Component Id="SatelliteHe" Directory="CultureHe">
-        <File Source="..\OneMore\bin\$(var.Configuration)\he\System.Runtime.WindowsRuntime.resources.dll" KeyPath="yes" />
-      </Component>
-
       <!-- he-IL -->
       <Component Id="SatelliteHeIl" Directory="CultureHeIl">
         <File Source="..\OneMore\bin\$(var.Configuration)\he-IL\River.OneMoreAddIn.resources.dll" KeyPath="yes" />
       </Component>
       <Component Id="SatelliteHeIlT" Directory="CultureHeIl">
         <File Source="..\OneMore\bin\$(var.Configuration)\he-IL\OneMoreTray.resources.dll" KeyPath="yes" />
-      </Component>
-
-      <!-- it -->
-      <Component Id="SatelliteIt" Directory="CultureIt">
-        <File Source="..\OneMore\bin\$(var.Configuration)\it\System.Runtime.WindowsRuntime.resources.dll" KeyPath="yes" />
       </Component>
 
       <!-- it-IT -->
@@ -99,10 +89,6 @@
         <File Source="..\OneMore\bin\$(var.Configuration)\zh-CN\OneMoreTray.resources.dll" KeyPath="yes" />
       </Component>
 
-      <!-- zh-Hans -->
-      <Component Id="SatelliteZhHans" Directory="CultureZhHans">
-        <File Source="..\OneMore\bin\$(var.Configuration)\zh-Hans\System.Runtime.WindowsRuntime.resources.dll" KeyPath="yes" />
-      </Component>
     </ComponentGroup>
   </Fragment>
 
