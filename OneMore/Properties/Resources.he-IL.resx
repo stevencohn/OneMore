@@ -1346,7 +1346,7 @@ Total Row Font
     <comment>context menu item</comment>
   </data>
   <data name="HashtagDialog_introLabel.Text" xml:space="preserve">
-    <value>הקלד כל חלק מהאשטאג אחד או יותר. תווים כלליים משתמעים אלא אם כן תג מסתיים בנקודה. מותר להשתמש בסוגריים ואופרטורים לוגיים.</value>
+    <value>הקלד כל חלק מהאשטאג אחד או יותר. תווים כלליים משתמעים אלא אם כן תג מסתיים בנקודה. מותר להשתמש בסוגריים ואופרטורים לוגיים (AND, OR, NOT).</value>
     <comment>label</comment>
   </data>
   <data name="HashtagDialog_lastScanLabel" xml:space="preserve">
