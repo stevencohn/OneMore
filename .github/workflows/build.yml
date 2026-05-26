@@ -21,14 +21,17 @@ jobs:
         run: .\build.ps1 -Architecture x64
 
       - name: Stage installer
+        id: stage
         shell: pwsh
         run: |
           $msi = Get-ChildItem "$env:USERPROFILE\Downloads\OneMore_*_Setupx64.msi" | Select-Object -First 1
           if (-not $msi) { throw "MSI not found in $env:USERPROFILE\Downloads" }
           Move-Item $msi.FullName $msi.Name
+          $version = $msi.BaseName -replace '^OneMore_(.+)_Setupx64$', '$1'
+          echo "version=$version" >> $env:GITHUB_OUTPUT
 
       - name: Upload installer
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
-          name: OneMore-x64-installer
+          name: OneMore-${{ steps.stage.outputs.version }}-x64
           path: OneMore_*_Setupx64.msi
