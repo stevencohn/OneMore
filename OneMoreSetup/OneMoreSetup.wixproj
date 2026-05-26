@@ -11,6 +11,8 @@
     <!-- ICE38/ICE64: perMachine package intentionally installs to %APPDATA% for user themes.
          Active Setup propagates them to each user profile on login. -->
     <SuppressIces>ICE38;ICE60;ICE64;ICE91</SuppressIces>
+    <!-- Accept the WiX v7 OSMF EULA for open-source use (satisfies WIX7015 in CI). -->
+    <AcceptEula>wix7</AcceptEula>
   </PropertyGroup>
 
   <ItemGroup>
