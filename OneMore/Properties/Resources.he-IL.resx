@@ -5343,12 +5343,20 @@ ISO-code then comma then language name</comment>
     <value>חסום על ידי קליק להרצה</value>
     <comment>title</comment>
   </data>
+  <data name="UpdateGuardDialog_acceptLink.Text" xml:space="preserve">
+    <value>קבל את הסיכון והמשך לעדכן</value>
+    <comment>linklable</comment>
+  </data>
   <data name="UpdateGuardDialog_browseLink.Text" xml:space="preserve">
     <value>פתח את דף ההורדה בדפדפן שלך</value>
     <comment>link label</comment>
   </data>
   <data name="UpdateGuardDialog_messageBox.Text" xml:space="preserve">
     <value>OneNote פועל תחת וירטואליזציה של קליק להפעלה. אינך יכול לעדכן את OneMore באמצעות דו-שיח זה. סגור את OneNote, הורד את מתקין OneMore והפעל את המתקין באופן ידני.</value>
+  </data>
+  <data name="UpdateGuardDialog_warningLabel.Text" xml:space="preserve">
+    <value>אני רוצה לנסות בכל מקרה. אני מקבל את הסיכון ש-C2R עלול לגרום להפעלה מחדש אוטומטית של OneNote אם קיימות משימות סנכרון מתקיימות והעדכון עלול להיכשל בשל כך.</value>
+    <comment>label</comment>
   </data>
   <data name="VariablesSheet_deleteVariable" xml:space="preserve">
     <value>למחוק משתנה {0}?</value>
