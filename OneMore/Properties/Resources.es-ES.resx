@@ -5350,7 +5350,7 @@ Puede habilitar o deshabilitar la telemetría en cualquier momento desde el cuad
     <value>OneNote se ejecuta bajo virtualización Hacer clic y ejecutar. No puede actualizar OneMore usando este cuadro de diálogo. Cierre OneNote, descargue el instalador de OneMore y ejecútelo manualmente.</value>
   </data>
   <data name="UpdateGuardDialog_warningLabel.Text" xml:space="preserve">
-    <value>Quiero intentarlo de todos modos. Acepto el riesgo de que C2R pueda causar que OneNote se reinicie automáticamente si hay tareas de sincronización pendientes y la actualización pueda fallar debido a eso.</value>
+    <value>Quiero intentarlo de todos modos. Acepto el riesgo de que C2R pueda hacer que OneNote se reinicie automáticamente si hay tareas de sincronización pendientes y la actualización pueda fallar debido a eso.</value>
     <comment>label</comment>
   </data>
   <data name="VariablesSheet_deleteVariable" xml:space="preserve">
