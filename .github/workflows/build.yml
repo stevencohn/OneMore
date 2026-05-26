@@ -20,8 +20,15 @@ jobs:
         shell: pwsh
         run: .\build.ps1 -Architecture x64
 
+      - name: Stage installer
+        shell: pwsh
+        run: |
+          $msi = Get-ChildItem "$env:USERPROFILE\Downloads\OneMore_*_Setupx64.msi" | Select-Object -First 1
+          if (-not $msi) { throw "MSI not found in $env:USERPROFILE\Downloads" }
+          Move-Item $msi.FullName $msi.Name
+
       - name: Upload installer
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: OneMore-x64-installer
-          path: ${{ env.USERPROFILE }}\Downloads\OneMore_*_Setupx64.msi
+          path: OneMore_*_Setupx64.msi
