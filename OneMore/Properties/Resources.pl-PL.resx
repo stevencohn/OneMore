@@ -5351,7 +5351,7 @@ Dziękuję!</value>
     <value>Program OneNote działa w ramach wirtualizacji typu „kliknij, aby uruchomić”. Za pomocą tego okna dialogowego nie można zaktualizować OneMore. Zamknij program OneNote, pobierz instalator OneMore i uruchom go ręcznie.</value>
   </data>
   <data name="UpdateGuardDialog_warningLabel.Text" xml:space="preserve">
-    <value>I tak chcę spróbować. Akceptuję ryzyko, że C2R może spowodować automatyczne ponowne uruchomienie programu OneNote, jeśli istnieją zaległe zadania synchronizacji, przez co aktualizacja może się nie powieść.</value>
+    <value>I tak chcę spróbować. Akceptuję ryzyko, że C2R może spowodować automatyczne ponowne uruchomienie programu OneNote, jeśli istnieją zaległe zadania synchronizacji, co może skutkować niepowodzeniem aktualizacji.</value>
     <comment>label</comment>
   </data>
   <data name="VariablesSheet_deleteVariable" xml:space="preserve">

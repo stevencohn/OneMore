@@ -5369,7 +5369,7 @@ ISO-code then comma then language name</comment>
     <value>OneNote 在即点即用虚拟化下运行。您无法使用此对话框更新 OneMore。关闭 OneNote，下载 OneMore 安装程序并手动运行安装程序。</value>
   </data>
   <data name="UpdateGuardDialog_warningLabel.Text" xml:space="preserve">
-    <value>无论如何我想尝试一下。我接受如果有未完成的同步任务，C2R 可能会导致 OneNote 自动重启的风险，并且更新可能因此失败。</value>
+    <value>无论如何我想尝试一下。我接受这样的风险：如果存在未完成的同步任务，C2R 可能会导致 OneNote 自动重新启动，并且更新可能会因此失败。</value>
     <comment>label</comment>
   </data>
   <data name="VariablesSheet_deleteVariable" xml:space="preserve">

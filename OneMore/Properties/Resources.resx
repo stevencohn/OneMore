@@ -5400,7 +5400,7 @@ Thank you!</value>
     <value>OneNote is running under Click-to-Run virtualization. You cannot update OneMore using this dialog. Close OneNote, download the OneMore installer and run the installer manually.</value>
   </data>
   <data name="UpdateGuardDialog_warningLabel.Text" xml:space="preserve">
-    <value>I want to try anyway. I accept the risk that C2R may cause OneNote auto-restart if there are outstanding sync tasks and the update may fail because of that.</value>
+    <value>I want to try anyway. I accept the risk that C2R may cause OneNote to auto-restart if there are outstanding sync tasks and the update may fail because of that.</value>
     <comment>label</comment>
   </data>
   <data name="VariablesSheet_deleteVariable" xml:space="preserve">

@@ -5351,7 +5351,7 @@ Danke schön!</value>
     <value>OneNote läuft unter Click-to-Run-Virtualisierung. Sie können OneMore nicht über diesen Dialog aktualisieren. Schließen Sie OneNote, laden Sie das OneMore-Installationsprogramm herunter und führen Sie das Installationsprogramm manuell aus.</value>
   </data>
   <data name="UpdateGuardDialog_warningLabel.Text" xml:space="preserve">
-    <value>Ich möchte es trotzdem versuchen. Ich akzeptiere das Risiko, dass C2R bei ausstehenden Synchronisierungsaufgaben zu einem automatischen Neustart von OneNote führt und das Update dadurch fehlschlägt.</value>
+    <value>Ich möchte es trotzdem versuchen. Ich akzeptiere das Risiko, dass C2R dazu führen kann, dass OneNote bei ausstehenden Synchronisierungsaufgaben automatisch neu gestartet wird und das Update dadurch fehlschlägt.</value>
     <comment>label</comment>
   </data>
   <data name="VariablesSheet_deleteVariable" xml:space="preserve">

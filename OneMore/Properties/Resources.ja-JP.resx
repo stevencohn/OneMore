@@ -5361,7 +5361,7 @@ ISO-code then comma then language name</comment>
     <value>OneNote はクイック実行仮想化で実行されています。このダイアログを使用して OneMore を更新することはできません。 OneNote を閉じ、OneMore インストーラーをダウンロードし、インストーラーを手動で実行します。</value>
   </data>
   <data name="UpdateGuardDialog_warningLabel.Text" xml:space="preserve">
-    <value>とにかく試してみたい。未処理の同期タスクがある場合、C2R が OneNote の自動再起動を引き起こし、それが原因で更新が失敗する可能性があるというリスクを受け入れます。</value>
+    <value>とにかく試してみたい。未処理の同期タスクがある場合、C2R によって OneNote が自動再起動され、それが原因で更新が失敗する可能性があるというリスクを受け入れます。</value>
     <comment>label</comment>
   </data>
   <data name="VariablesSheet_deleteVariable" xml:space="preserve">

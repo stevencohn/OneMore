@@ -13210,7 +13210,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to I want to try anyway. I accept the risk that C2R may cause OneNote auto-restart if there are outstanding sync tasks and the update may fail because of that..
+        ///   Looks up a localized string similar to I want to try anyway. I accept the risk that C2R may cause OneNote to auto-restart if there are outstanding sync tasks and the update may fail because of that..
         /// </summary>
         internal static string UpdateGuardDialog_warningLabel_Text {
             get {
