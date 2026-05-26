@@ -3,7 +3,7 @@
 Build OneMore full installer kit for the specified architecture, or default project builds.
 
 .PARAMETER Architecture
-Builds the installer kit for the specifies architecture: x86 (default), x64, ARM64, All, or x.
+Builds the installer kit for the specifies architecture: x86, x64 (default), ARM64, All, or x.
 'x' is a shorthand for building x86 and x64, without the ARM64 build.
 
 .PARAMETER Clean
@@ -41,7 +41,7 @@ Copyright © 2016 Steven M Cohn. All rights reserved.
 [CmdletBinding(SupportsShouldProcess = $true)]
 param (
 	[ValidateSet('x86','x64','ARM64','All', 'x')]
-	[string] $Architecture = 'x86',
+	[string] $Architecture = 'x64',
 
 	[ValidateScript({ Test-Path $_ -PathType Leaf })]
 	[string] $Detect,
