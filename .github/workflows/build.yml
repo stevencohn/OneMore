@@ -2,10 +2,17 @@ name: Build
 
 on:
   workflow_dispatch:
+    inputs:
+      beta:
+        description: 'Beta number (e.g. 1 for 7.1.0-beta.1)'
+        required: true
+        type: number
 
 jobs:
   build:
     runs-on: windows-latest
+    permissions:
+      contents: write
 
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
@@ -35,3 +42,14 @@ jobs:
         with:
           name: OneMore-${{ steps.stage.outputs.version }}-x64
           path: OneMore_*_Setupx64.msi
+
+      - name: Create release
+        shell: pwsh
+        run: |
+          $tag = "${{ steps.stage.outputs.version }}-beta.${{ inputs.beta }}"
+          gh release create $tag OneMore_*_Setupx64.msi `
+            --title "OneMore $tag" `
+            --generate-notes `
+            --prerelease
+        env:
+          GH_TOKEN: ${{ github.token }}
