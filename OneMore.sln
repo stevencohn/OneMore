@@ -68,6 +68,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{5771E974-F302-4CB6-86B8-B57C74C07709}"
 	ProjectSection(SolutionItems) = preProject
 		.github\workflows\build.yml = .github\workflows\build.yml
+		.github\workflows\cleanup.yml = .github\workflows\cleanup.yml
 		.github\workflows\pr-issue-comment-on-merge.yml = .github\workflows\pr-issue-comment-on-merge.yml
 		.github\workflows\pr-issue-link.yml = .github\workflows\pr-issue-link.yml
 		.github\workflows\winget-releaser.yml = .github\workflows\winget-releaser.yml
