@@ -6,6 +6,7 @@
 
 namespace OneMoreCli
 {
+	using River.OneMoreAddIn;
 	using River.OneMoreAddIn.Cli;
 	using System;
 	using System.Collections.Generic;
@@ -37,7 +38,7 @@ namespace OneMoreCli
 	/// </summary>
 	internal class Program
 	{
-		private static readonly string Separator = new string('─', 60);
+		private static readonly string Separator = new('─', 60);
 
 
 		static async Task Main(string[] args)
@@ -46,14 +47,14 @@ namespace OneMoreCli
 
 			var commands = DiscoverCommands();
 
-			// ── Command-line mode ─────────────────────────────────────────────────
+			// Command-line mode - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 			if (args.Length > 0)
 			{
 				Environment.ExitCode = await RunCommandLine(args, commands) ? 0 : 1;
 				return;
 			}
 
-			// ── Interactive mode ──────────────────────────────────────────────────
+			// Interactive mode - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 			Console.Title = "OneMore CLI";
 			WriteBanner();
 
@@ -92,7 +93,7 @@ namespace OneMoreCli
 					catch (Exception exc)
 					{
 						Console.WriteLine();
-						WriteError(exc.Message);
+						WriteError(exc);
 					}
 				}
 
@@ -109,9 +110,9 @@ namespace OneMoreCli
 		}
 
 
-		// ══════════════════════════════════════════════════════════════════════════
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 		// Command-line mode
-		// ══════════════════════════════════════════════════════════════════════════
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
 
 		/// <summary>
 		/// Handles non-interactive invocation:
@@ -182,7 +183,7 @@ namespace OneMoreCli
 			}
 			catch (Exception exc)
 			{
-				WriteError(exc.Message);
+				WriteError(exc);
 				return false;
 			}
 		}
@@ -241,9 +242,9 @@ namespace OneMoreCli
 		}
 
 
-		// ══════════════════════════════════════════════════════════════════════════
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 		// Help output
-		// ══════════════════════════════════════════════════════════════════════════
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 		private static void ShowHelp(List<ICliCommand> commands)
 		{
@@ -345,9 +346,9 @@ namespace OneMoreCli
 		}
 
 
-		// ══════════════════════════════════════════════════════════════════════════
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 		// Discovery
-		// ══════════════════════════════════════════════════════════════════════════
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 		/// <summary>
 		/// Finds all non-abstract types in <c>River.OneMoreAddIn.dll</c> that implement
@@ -400,9 +401,9 @@ namespace OneMoreCli
 		}
 
 
-		// ══════════════════════════════════════════════════════════════════════════
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 		// Interactive command selection
-		// ══════════════════════════════════════════════════════════════════════════
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
 
 		/// <summary>
 		/// Displays the command menu and returns the user's selection,
@@ -442,9 +443,9 @@ namespace OneMoreCli
 		}
 
 
-		// ══════════════════════════════════════════════════════════════════════════
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 		// Parameter collection  (shared by both modes)
-		// ══════════════════════════════════════════════════════════════════════════
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 		/// <summary>
 		/// Builds a <see cref="CliParameterSet"/> for <paramref name="command"/>.
@@ -490,7 +491,7 @@ namespace OneMoreCli
 
 			foreach (var parameter in definition)
 			{
-				// ── Value was supplied on the command line ─────────────────────────
+				// Value was supplied on the command line - - - - - - - - - - - - -
 				if (supplied != null && supplied.TryGetValue(parameter.Name, out var raw))
 				{
 					if (!TryConvert(raw, parameter.DataType, out var converted, out var convertError))
@@ -509,7 +510,7 @@ namespace OneMoreCli
 					continue;
 				}
 
-				// ── Not supplied and optional → use default ────────────────────────
+				// Not supplied and optional → use default - - - - - - - - - - - - - - - - - - - -
 				if (!parameter.Required)
 				{
 					if (parameter.DefaultValue != null)
@@ -517,7 +518,7 @@ namespace OneMoreCli
 					continue;
 				}
 
-				// ── Required and not supplied → prompt interactively ───────────────
+				// Required and not supplied → prompt interactively - - - - - - - - - - - - - - -
 				if (!interactive)
 				{
 					Console.WriteLine();
@@ -546,7 +547,7 @@ namespace OneMoreCli
 
 			while (true)
 			{
-				// ── Enum: render a numbered sub-list ──────────────────────────────
+				// Enum: render a numbered sub-list - - - - - - - - - - - - - - - - - - - - - - -
 
 				if (parameter.Constraint is EnumConstraint enumConstraint)
 				{
@@ -565,7 +566,7 @@ namespace OneMoreCli
 				}
 				else
 				{
-					// ── All other types ───────────────────────────────────────────
+					// All other types - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 					var qualifier = parameter.Required ? string.Empty : ", optional";
 					Console.ForegroundColor = ConsoleColor.Yellow;
@@ -628,9 +629,9 @@ namespace OneMoreCli
 		}
 
 
-		// ══════════════════════════════════════════════════════════════════════════
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 		// Type conversion
-		// ══════════════════════════════════════════════════════════════════════════
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 		private static bool TryConvert(
 			string raw, Type targetType, out object result, out string errorMessage)
@@ -681,15 +682,15 @@ namespace OneMoreCli
 		}
 
 
-		// ══════════════════════════════════════════════════════════════════════════
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 		// Console helpers
-		// ══════════════════════════════════════════════════════════════════════════
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 		private static void WriteBanner()
 		{
 			Console.ForegroundColor = ConsoleColor.Cyan;
 			Console.WriteLine();
-			Console.WriteLine("  ╔= = = = = = = = = = = = = = = = = ╗");
+			Console.WriteLine("  ╔══════════════════════════════════╗");
 			Console.WriteLine("  ║       OneMore CLI Runner         ║");
 			Console.WriteLine("  ╚══════════════════════════════════╝");
 			Console.WriteLine();
@@ -708,6 +709,13 @@ namespace OneMoreCli
 			Console.ForegroundColor = ConsoleColor.Yellow;
 			Console.WriteLine(message);
 			Console.ResetColor();
+		}
+
+		private static void WriteError(Exception exc)
+		{
+			// ignore assembly load exceptions
+			if (exc is System.IO.FileLoadException) { return; }
+			WriteError(exc.FormatDetails());
 		}
 
 		private static void WriteError(string message)

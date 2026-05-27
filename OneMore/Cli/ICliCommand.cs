@@ -6,6 +6,30 @@ namespace River.OneMoreAddIn.Cli
 {
 	using System.Threading.Tasks;
 
+
+	/*
+	internal sealed class MyCommand : ICliCommand
+	{
+		public string CommandName => "MyCommand";
+		public string Description  => "Does something useful.";
+
+		public CliParameterDefinition DefineParameters() => new CliParameterDefinition()
+			.AddString ("inputPath",  "Source file to process",  required: true)
+			.AddEnum   ("mode",       "Processing mode",
+						new[] { "Fast", "Thorough" },           defaultValue: "Fast")
+			.AddInteger("retries",    "Max retry attempts",
+						minimum: 0, maximum: 10,                required: false, defaultValue: 3);
+
+		public async Task CLIExecute(CliParameterSet parameters)
+		{
+			var path    = parameters.Get<string>("inputPath");
+			var mode    = parameters.Get<string>("mode");
+			var retries = parameters.Get<int>("retries");
+			// ...
+		}
+	}
+	*/
+
 	/// <summary>
 	/// Implemented by command classes that can be discovered and driven by a CLI host.
 	/// The host calls <see cref="DefineParameters"/> to learn what inputs are needed,

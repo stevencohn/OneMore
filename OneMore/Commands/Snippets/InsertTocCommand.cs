@@ -10,12 +10,13 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
+	using River.OneMoreAddIn.Cli;
 
 
 	[CommandService]
-	internal class InsertTocCommand : Command
+	internal class InsertTocCommand : Command, ICliCommand
 	{
-		private static bool commandIsActive	= false;
+		private static bool commandIsActive = false;
 
 
 		public InsertTocCommand()
@@ -171,5 +172,30 @@ namespace River.OneMoreAddIn.Commands
 				logger.WriteLine($"error executing {nameof(InsertTocCommand)}", exc);
 			}
 		}
+
+
+		#region CLI Implementation
+
+		public string CommandName => "InsertToc";
+
+
+		public string Description => "Inserts a table of contents into the current page";
+
+
+		public CliParameterDefinition DefineParameters() =>
+			new CliParameterDefinition()
+			.AddString("notebook", "Name of notebook to process", required: true)
+			.AddString("section", "Path of section to process", required: true)
+			.AddString("page", "Name of page to process", required: false)
+			.AddBoolean("refresh", "Refresh section TOC instead of building");
+
+
+		public Task CLIExecute(CliParameterSet parameters)
+		{
+			var refresh = parameters.Get<bool>("refresh");
+
+			return CliCommandFactory.Make().Run<InsertTocCommand>(refresh);
+		}
+		#endregion CLI Implementation
 	}
 }
