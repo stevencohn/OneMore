@@ -10,12 +10,15 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
+	using River.OneMoreAddIn.Cli;
 
 
 	[CommandService]
-	internal class InsertTocCommand : Command
+	internal class InsertTocCommand : Command, ICliPageCommand
 	{
-		private static bool commandIsActive	= false;
+		private static bool commandIsActive = false;
+
+		private string pageId;
 
 
 		public InsertTocCommand()
@@ -23,11 +26,49 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		#region CLI Implementation
+
+		public string CommandName => "InsertToc";
+
+
+		public string Description => "Inserts a table of contents into the current page";
+
+
+		public CliParameterDefinition DefineParameters() =>
+			new CliParameterDefinition()
+			.AddString("notebook", "Name of notebook to process", required: true)
+			.AddString("section", "Path of section to process", required: true)
+			.AddString("page", "Name of page to process", required: false)
+			.AddBoolean("refresh", "Refresh section TOC instead of building");
+
+		#endregion CLI Implementation
+
+
 		public override async Task Execute(params object[] args)
 		{
 			if (args.Length > 0 && args[0] is string refresh && refresh.StartsWith("refresh"))
 			{
 				await Refresh(new TocParameters(args.Cast<string>()));
+				return;
+			}
+
+			if (runningFromCli)
+			{
+				var cliParams = args.Length > 0 ? args[0] as CliParameterSet : null;
+				var doRefresh = cliParams?.Get<bool>("refresh") ?? false;
+				pageId = cliParams?.Get<string>("pageId");
+
+				// TODO: navigate to pageId and generate TOC for that specific page
+				// For now, fall back to the current page context
+				var tocParams = await CollectParameterDefaults(pageId);
+				if (doRefresh)
+				{
+					await Refresh(tocParams);
+				}
+				else
+				{
+					await Build(tocParams);
+				}
 				return;
 			}
 
@@ -66,7 +107,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			else
 			{
-				generator = new PageTocGenerator(parameters);
+				generator = new PageTocGenerator(parameters, pageId);
 			}
 
 			try
@@ -80,12 +121,16 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private static async Task<TocParameters> CollectParameterDefaults()
+		private static async Task<TocParameters> CollectParameterDefaults(string pageId = null)
 		{
 			var parameters = new TocParameters();
 
-			await using var one = new OneNote();
-			var page = await one.GetPage(OneNote.PageDetail.Basic);
+			using var one = new OneNote();
+
+			var page = pageId is null
+				? await one.GetPage(OneNote.PageDetail.Basic)
+				: await one.GetPage(pageId, OneNote.PageDetail.Basic);
+
 			var ns = page.Namespace;
 
 			var meta = page.BodyOutlines

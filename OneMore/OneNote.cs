@@ -932,6 +932,125 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Finds the IDs of pages matching a full hierarchy path, e.g. "Notebook/Section/Page"
+		/// or "Notebook/SectionGroup/Section/Page". A leading slash is tolerated and ignored.
+		/// The final segment may be an asterisk (*) to return all pages in the resolved section.
+		/// </summary>
+		/// <param name="path">
+		/// Slash-separated path with at least three segments: notebook name, one or more
+		/// section-group/section names, and the page name (or * for all pages) as the final segment.
+		/// </param>
+		/// <returns>
+		/// An array of matching page IDs; empty if no match is found or the path is invalid.
+		/// </returns>
+		public async Task<string[]> FindPagesByPath(string path)
+		{
+			if (string.IsNullOrWhiteSpace(path))
+			{
+				return Array.Empty<string>();
+			}
+
+			var parts = path.Trim().Trim('/').Split('/');
+			if (parts.Length < 3)
+			{
+				return Array.Empty<string>();
+			}
+
+			// load notebook stubs (name + ID, no children).
+			// When called early in the process lifetime the OneNote COM server may still be
+			// initialising and return a valid but empty hierarchy; retry a few times to let it
+			// finish before giving up.
+			var notebooks = await GetNotebooks();
+			for (int attempt = 1; attempt < 4 && (notebooks == null || !notebooks.HasElements); attempt++)
+			{
+				await Task.Delay(500 * attempt);
+				notebooks = await GetNotebooks();
+			}
+
+			if (notebooks == null || !notebooks.HasElements)
+			{
+				return Array.Empty<string>();
+			}
+
+			var ns = GetNamespace(notebooks);
+
+			var notebook = notebooks
+				.Elements(ns + "Notebook")
+				.FirstOrDefault(n => string.Equals(
+					n.Attribute("name")?.Value, parts[0],
+					StringComparison.InvariantCultureIgnoreCase));
+
+			if (notebook == null)
+			{
+				return Array.Empty<string>();
+			}
+
+			var notebookId = notebook.Attribute("ID").Value;
+
+			// Load the notebook's section structure (no pages yet — lighter call than hsPages).
+			var notebookSections = await GetNotebook(notebookId, Scope.Sections);
+			for (int attempt = 1; attempt < 4 && (notebookSections == null || !notebookSections.HasElements); attempt++)
+			{
+				await Task.Delay(500 * attempt);
+				notebookSections = await GetNotebook(notebookId, Scope.Sections);
+			}
+
+			if (notebookSections == null || !notebookSections.HasElements)
+			{
+				return Array.Empty<string>();
+			}
+
+			// Walk every middle segment (section groups or sections) through the section tree.
+			XElement node = notebookSections;
+			for (int i = 1; i < parts.Length - 1; i++)
+			{
+				node = node
+					.Elements()
+					.FirstOrDefault(e =>
+						(e.Name.LocalName == "Section" || e.Name.LocalName == "SectionGroup") &&
+						string.Equals(
+							e.Attribute("name")?.Value, parts[i],
+							StringComparison.InvariantCultureIgnoreCase));
+
+				if (node == null)
+				{
+					return Array.Empty<string>();
+				}
+			}
+
+			// node is now the target Section element — load its pages as a separate targeted call.
+			var sectionId = node.Attribute("ID")?.Value;
+			if (string.IsNullOrEmpty(sectionId))
+			{
+				return Array.Empty<string>();
+			}
+
+			var section = await GetSection(sectionId);
+			if (section == null)
+			{
+				return Array.Empty<string>();
+			}
+
+			// final segment: wildcard returns all pages; named segment filters to one match
+			var pageName = parts[parts.Length - 1];
+			var sectionNs = GetNamespace(section);
+			var pages = section.Elements(sectionNs + "Page");
+
+			if (pageName != "*")
+			{
+				pages = pages.Where(p => string.Equals(
+					p.Attribute("name")?.Value, pageName,
+					StringComparison.InvariantCultureIgnoreCase));
+			}
+
+			return pages
+				.Select(p => p.Attribute("ID")?.Value)
+				.Where(id => id != null)
+				.ToArray();
+		}
+
+
+		/// <summary>
 		/// Gest the current section and its child page hierarchy
 		/// </summary>
 		/// <returns>A Section element with Page children</returns>

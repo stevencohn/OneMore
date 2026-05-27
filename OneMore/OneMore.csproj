@@ -177,6 +177,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddInCommands.cs" />
+    <Compile Include="Cli\CliCommandFactory.cs" />
+    <Compile Include="Cli\CliConstraint.cs" />
+    <Compile Include="Cli\CliParameter.cs" />
+    <Compile Include="Cli\CliParameterDefinition.cs" />
+    <Compile Include="Cli\CliParameterSet.cs" />
+    <Compile Include="Cli\ICliCommand.cs" />
+    <Compile Include="Cli\ICliPageCommand.cs" />
     <Compile Include="Commands\Clean\RemoveIndentsCommand.cs" />
     <Compile Include="Commands\Edit\ChooseColorizerCommand.cs" />
     <Compile Include="Commands\Edit\ColorizeDialog.cs">

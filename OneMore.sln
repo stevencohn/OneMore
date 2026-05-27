@@ -92,6 +92,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reference", "Reference", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneMoreTray", "OneMoreTray\OneMoreTray.csproj", "{383ABB76-4F97-4C78-AC59-BC851AA15B5A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneMoreCli", "OneMoreCli\OneMoreCli.csproj", "{EC9687BC-A329-44E1-9E47-FD1DDA7C0258}"
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "packers", "packers", "{06C4CB95-3744-44A4-9F5A-201F9909EA13}"
 	ProjectSection(SolutionItems) = preProject
 		packers\prepare.ps1 = packers\prepare.ps1
@@ -186,6 +188,18 @@ Global
 		{383ABB76-4F97-4C78-AC59-BC851AA15B5A}.Release|x64.Build.0 = Release|Any CPU
 		{383ABB76-4F97-4C78-AC59-BC851AA15B5A}.Release|x86.ActiveCfg = Release|Any CPU
 		{383ABB76-4F97-4C78-AC59-BC851AA15B5A}.Release|x86.Build.0 = Release|Any CPU
+		{EC9687BC-A329-44E1-9E47-FD1DDA7C0258}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{EC9687BC-A329-44E1-9E47-FD1DDA7C0258}.Debug|ARM64.Build.0 = Debug|ARM64
+		{EC9687BC-A329-44E1-9E47-FD1DDA7C0258}.Debug|x64.ActiveCfg = Debug|x64
+		{EC9687BC-A329-44E1-9E47-FD1DDA7C0258}.Debug|x64.Build.0 = Debug|x64
+		{EC9687BC-A329-44E1-9E47-FD1DDA7C0258}.Debug|x86.ActiveCfg = Debug|AnyCPU
+		{EC9687BC-A329-44E1-9E47-FD1DDA7C0258}.Debug|x86.Build.0 = Debug|AnyCPU
+		{EC9687BC-A329-44E1-9E47-FD1DDA7C0258}.Release|ARM64.ActiveCfg = Release|ARM64
+		{EC9687BC-A329-44E1-9E47-FD1DDA7C0258}.Release|ARM64.Build.0 = Release|ARM64
+		{EC9687BC-A329-44E1-9E47-FD1DDA7C0258}.Release|x64.ActiveCfg = Release|Any CPU
+		{EC9687BC-A329-44E1-9E47-FD1DDA7C0258}.Release|x64.Build.0 = Release|Any CPU
+		{EC9687BC-A329-44E1-9E47-FD1DDA7C0258}.Release|x86.ActiveCfg = Release|Any CPU
+		{EC9687BC-A329-44E1-9E47-FD1DDA7C0258}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

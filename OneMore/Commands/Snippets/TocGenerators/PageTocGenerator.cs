@@ -45,13 +45,15 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 
 		private Page page;
 		private XNamespace ns;
+		private string pageId;
 		private int todoIndex = -1;
 		private List<string> todos;
 
 
-		public PageTocGenerator(TocParameters parameters)
+		public PageTocGenerator(TocParameters parameters, string pageId = null)
 			: base(parameters)
 		{
+			this.pageId = pageId;
 		}
 
 
@@ -63,7 +65,10 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 
 		public override async Task<bool> Build()
 		{
-			await using var one = new OneNote(out page, out ns);
+			await using var one = new OneNote();
+
+			page = pageId is null ? await one.GetPage() : await one.GetPage(pageId);
+			ns = page.Namespace;
 
 			var headings = CollectHeadings(one, out var titleID);
 			if (!headings.Any())
@@ -177,7 +182,7 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 			titleID = null;
 
 			// must have a body outline
-			if (page.BodyOutlines.Elements(ns + "OEChildren").FirstOrDefault() is null)
+			if (page.BodyOutlines?.Elements(ns + "OEChildren").FirstOrDefault() is null)
 			{
 				return new();
 			}
