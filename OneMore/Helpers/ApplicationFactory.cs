@@ -30,11 +30,6 @@ namespace River.OneMoreAddIn
 			int retries = 0;
 			var logger = Logger.Current;
 
-			// Note: Microsoft 365 Click-to-Run OneNote does NOT register in the Windows Running
-			// Object Table (ROT). Marshal.GetActiveObject("OneNote.Application") therefore
-			// always fails for C2R installations; creating a new Application() instance is
-			// the only supported activation path for out-of-process callers.
-
 			try
 			{
 				while (retries < 3)
