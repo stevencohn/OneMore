@@ -11,7 +11,10 @@ namespace River.OneMoreAddIn.Cli
 		public static CommandFactory Make()
 		{
 			var trash = new List<System.IDisposable>();
-			return new CommandFactory(Logger.Current, null, trash);
+
+			return new CommandFactory(
+				Logger.Current, null, trash,
+				runningFromCli: true);
 		}
 	}
 }

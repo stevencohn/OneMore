@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2022 Steven M Cohn.  All rights reserved.
+// Copyright © 2022 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -8,13 +8,14 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using River.OneMoreAddIn.Cli;
 
-	internal class OpenLogCommand : Command, Cli.ICliCommand
+	internal class OpenLogCommand : Command, ICliCommand
 	{
 		public OpenLogCommand()
 		{
 			// prevent replay
 			IsCancelled = true;
 		}
+
 
 		public override async Task Execute(params object[] args)
 		{
@@ -31,17 +32,15 @@ namespace River.OneMoreAddIn.Commands
 
 		public string CommandName => "OpenLog";
 
+
 		public string Description => "Opens the log file in the default text editor";
 
-		public Task CLIExecute(CliParameterSet parameters)
-		{
-			return CliCommandFactory.Make().Run<OpenLogCommand>();
-		}
 
-		public CliParameterDefinition DefineParameters()
-		{
-			return new CliParameterDefinition();
-		}
+		public CliParameterDefinition DefineParameters() => new();
+
+
+		public Task CLIExecute(CliParameterSet parameters) =>
+			CliCommandFactory.Make().Run<OpenLogCommand>();
 
 		#endregion CLI Implementation
 	}

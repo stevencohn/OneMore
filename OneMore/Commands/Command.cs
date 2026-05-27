@@ -26,6 +26,7 @@ namespace River.OneMoreAddIn
 		protected IWin32Window owner;
 		protected CommandFactory factory;
 		protected List<IDisposable> trash;
+		protected bool runningFromCli;
 
 
 		/// <summary>
@@ -74,6 +75,11 @@ namespace River.OneMoreAddIn
 
 
 		// Setters used by CommandFactory...
+
+		public void RunFromCli()
+		{
+			runningFromCli = true;
+		}
 
 		public Command SetFactory(CommandFactory value)
 		{

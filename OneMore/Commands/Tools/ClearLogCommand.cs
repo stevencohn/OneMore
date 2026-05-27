@@ -4,13 +4,14 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Cli;
 	using System.IO;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using Resx = Properties.Resources;
 
 
-	internal class ClearLogCommand : Command
+	internal class ClearLogCommand : Command, ICliCommand
 	{
 		public ClearLogCommand()
 		{
@@ -23,15 +24,17 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (File.Exists(logger.LogPath))
 			{
-				var result = UI.MoreMessageBox.Show(owner,
-					Resx.ClearLog_Message, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+				var result = runningFromCli
+					? DialogResult.Yes
+					: UI.MoreMessageBox.Show(owner,
+						Resx.ClearLog_Message, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
 				if (result == DialogResult.Yes)
 				{
 					((Logger)logger).Clear();
 				}
 			}
-			else
+			else if (!runningFromCli)
 			{
 				UI.MoreMessageBox.Show(owner,
 					Resx.ClearLog_NoneMessage, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -39,5 +42,25 @@ namespace River.OneMoreAddIn.Commands
 
 			await Task.Yield();
 		}
+
+
+		#region CLI Implementation
+
+		public string CommandName => "ClearLog";
+
+
+		public string Description => "Clears the log file";
+
+
+
+		public CliParameterDefinition DefineParameters() => new();
+
+
+		public Task CLIExecute(CliParameterSet parameters)
+		{
+			return CliCommandFactory.Make().Run<ClearLogCommand>();
+		}
+
+		#endregion CLI Implementation
 	}
 }

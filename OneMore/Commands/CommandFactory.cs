@@ -22,6 +22,7 @@ namespace River.OneMoreAddIn
 		private readonly ILogger logger;
 		private readonly IRibbonUI ribbon;
 		private readonly List<IDisposable> trash;
+		private bool runningFromCli;
 
 
 		/// <summary>
@@ -36,6 +37,14 @@ namespace River.OneMoreAddIn
 			this.logger = logger;
 			this.ribbon = ribbon;
 			this.trash = trash;
+		}
+
+
+		public CommandFactory(
+			ILogger logger, IRibbonUI ribbon, List<IDisposable> trash, bool runningFromCli)
+			: this(logger, ribbon, trash)
+		{
+			this.runningFromCli = runningFromCli;
 		}
 
 
@@ -75,6 +84,10 @@ namespace River.OneMoreAddIn
 		public async Task<Command> Run<T>(params object[] args) where T : Command, new()
 		{
 			var command = new T();
+			if (runningFromCli)
+			{
+				command.RunFromCli();
+			}
 
 			// this extra Task.Run was added to "fix" a problem where batched File/Import was not
 			// working correctly, although it worked fine from the command palette and Replay...
