@@ -8,8 +8,8 @@ namespace River.OneMoreAddIn.Cli
 	using System.Collections.Generic;
 
 	/// <summary>
-	/// A named, typed value bag populated by the CLI host and passed to
-	/// <see cref="ICliCommand.CLIExecute"/>.
+	/// A named, typed value bag populated by the CLI host and passed as <c>args[0]</c>
+	/// to the command's <c>Execute</c> method when <c>runningFromCli</c> is true.
 	/// <para>
 	/// The host calls <see cref="Set"/> for each parameter after the user has supplied
 	/// a valid value. The command implementation reads those values via <see cref="Get{T}"/>
@@ -38,7 +38,7 @@ namespace River.OneMoreAddIn.Cli
 			values[name] = value;
 		}
 
-		// read by the command in CLIExecute - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		// read by the command in Execute when runningFromCli is true - - - - - - - - - - - - - - -
 
 		/// <summary>
 		/// Returns the value of the named parameter converted to <typeparamref name="T"/>.
@@ -87,5 +87,12 @@ namespace River.OneMoreAddIn.Cli
 		/// Returns <c>true</c> if a value has been set for the named parameter.
 		/// </summary>
 		public bool Contains(string name) => values.ContainsKey(name);
+
+
+		/// <summary>
+		/// Returns the names of all parameters that have been set.
+		/// Used by the CLI pipe client to serialise parameters into the request URI.
+		/// </summary>
+		internal IEnumerable<string> Keys => values.Keys;
 	}
 }

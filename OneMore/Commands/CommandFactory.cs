@@ -83,7 +83,13 @@ namespace River.OneMoreAddIn
 		/// <returns>Task</returns>
 		public async Task<Command> Run<T>(params object[] args) where T : Command, new()
 		{
-			var command = new T();
+			return await Run(typeof(T), args);
+		}
+
+
+		public async Task<Command> Run(Type commandType, params object[] args)
+		{
+			var command = (Command)Activator.CreateInstance(commandType);
 			if (runningFromCli)
 			{
 				command.RunFromCli();

@@ -38,10 +38,6 @@ namespace River.OneMoreAddIn.Commands
 
 		public CliParameterDefinition DefineParameters() => new();
 
-
-		public Task CLIExecute(CliParameterSet parameters) =>
-			CliCommandFactory.Make().Run<OpenLogCommand>();
-
 		#endregion CLI Implementation
 	}
 }

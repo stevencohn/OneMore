@@ -6,14 +6,19 @@
 
 namespace OneMoreCli
 {
+	using Microsoft.Win32;
 	using River.OneMoreAddIn;
 	using River.OneMoreAddIn.Cli;
 	using System;
 	using System.Collections.Generic;
 	using System.ComponentModel;
 	using System.Globalization;
+	using System.IO;
+	using System.IO.Pipes;
 	using System.Linq;
 	using System.Reflection;
+	using System.Text;
+	using System.Threading;
 	using System.Threading.Tasks;
 
 
@@ -86,7 +91,7 @@ namespace OneMoreCli
 
 					try
 					{
-						await command.CLIExecute(parameters);
+						await RunCommand(command, parameters);
 						Console.WriteLine();
 						WriteSuccess("Command completed successfully.");
 					}
@@ -178,7 +183,7 @@ namespace OneMoreCli
 
 			try
 			{
-				await command.CLIExecute(parameters);
+				await RunCommand(command, parameters);
 				return true;
 			}
 			catch (Exception exc)
@@ -186,6 +191,186 @@ namespace OneMoreCli
 				WriteError(exc);
 				return false;
 			}
+		}
+
+
+		/// <summary>
+		/// Dispatches a command with its collected parameters.
+		/// <para>
+		/// First attempts to delegate to the running OneMore add-in via its named pipe
+		/// (<c>onemorecli://</c> protocol). This is the preferred path when OneNote is already
+		/// open because the add-in has a live, properly initialised COM connection.
+		/// </para>
+		/// <para>
+		/// Falls back to direct COM activation when the add-in pipe is unavailable (i.e. OneNote
+		/// is not running). For <see cref="ICliPageCommand"/> implementations the path is then
+		/// resolved locally and the command is invoked once per page.
+		/// </para>
+		/// </summary>
+		private static async Task RunCommand(ICliCommand command, CliParameterSet parameters)
+		{
+			// Preferred path: delegate to the running add-in via the named pipe
+			if (await TryRunViaAddin(command, parameters))
+				return;
+
+			// Fallback: direct COM (OneNote is not running; new Application() starts it fresh)
+			if (command is ICliPageCommand)
+			{
+				parameters.TryGet<string>("notebook", out var notebook);
+				parameters.TryGet<string>("section", out var section);
+				var hasPage = parameters.TryGet<string>("page", out var page);
+
+				if (string.IsNullOrWhiteSpace(notebook) || string.IsNullOrWhiteSpace(section))
+				{
+					throw new InvalidOperationException(
+						$"{command.CommandName} requires 'notebook' and 'section' parameters.");
+				}
+
+				var path = string.Concat(
+					notebook, "/", section, "/",
+					hasPage && !string.IsNullOrWhiteSpace(page) ? page : "*");
+
+				using var one = new OneNote();
+				var pageIds = await one.FindPagesByPath(path);
+
+				if (pageIds.Length == 0)
+				{
+					WriteWarning($"No pages found at path: {path}");
+					return;
+				}
+
+				foreach (var pageId in pageIds)
+				{
+					parameters.Set("pageId", pageId);
+					await CliCommandFactory.Make().Run(command.GetType(), parameters);
+				}
+			}
+			else
+			{
+				await CliCommandFactory.Make().Run(command.GetType(), parameters);
+			}
+		}
+
+
+		/// <summary>
+		/// Tries to run the command by sending a <c>onemorecli://</c> request to the named pipe
+		/// exposed by the running OneMore add-in. Returns <c>true</c> on success, <c>false</c>
+		/// when the pipe is unavailable (add-in/OneNote not running) so the caller can fall back
+		/// to direct COM activation.
+		/// </summary>
+		private static async Task<bool> TryRunViaAddin(ICliCommand command, CliParameterSet parameters)
+		{
+			var pipeName = GetPipeName();
+			if (string.IsNullOrEmpty(pipeName))
+				return false;
+
+			NamedPipeClientStream pipe = null;
+			try
+			{
+				pipe = new NamedPipeClientStream(".", pipeName, PipeDirection.InOut, PipeOptions.Asynchronous);
+
+				// Short connect timeout: if the add-in isn't listening we fall back immediately
+				await Task.Run(() => pipe.Connect(500));
+
+				// Send request
+				var uri = BuildCliUri($"{command.CommandName}Command", parameters);
+				var requestBytes = Encoding.UTF8.GetBytes(uri);
+				await pipe.WriteAsync(requestBytes, 0, requestBytes.Length);
+				await pipe.FlushAsync();
+
+				// Read response — server writes then disconnects, so read until EOF / IOException
+				var sb = new StringBuilder();
+				var buffer = new byte[512];
+				using var cts = new CancellationTokenSource(TimeSpan.FromMinutes(5));
+				try
+				{
+					int n;
+					while ((n = await pipe.ReadAsync(buffer, 0, buffer.Length, cts.Token)) > 0)
+					{
+						sb.Append(Encoding.UTF8.GetString(buffer, 0, n));
+					}
+				}
+				catch (IOException)
+				{
+					// Server disconnected after writing response — normal end of stream
+				}
+				catch (OperationCanceledException)
+				{
+					throw new TimeoutException("The add-in did not respond within 5 minutes.");
+				}
+
+				var response = sb.ToString().Trim('\0').Trim();
+
+				if (response.StartsWith("ERR:", StringComparison.OrdinalIgnoreCase))
+					throw new Exception(response.Substring(4));
+
+				// "OK" or any non-error response → success
+				return true;
+			}
+			catch (TimeoutException)
+			{
+				// pipe.Connect timed out → add-in not running
+				return false;
+			}
+			catch (IOException)
+			{
+				// pipe not found or broken before we could use it → add-in not running
+				return false;
+			}
+			finally
+			{
+				pipe?.Dispose();
+			}
+		}
+
+
+		/// <summary>
+		/// Reads the named pipe name from the registry key written by the OneMore installer.
+		/// Returns <c>null</c> if the key is absent (add-in not installed or registry inaccessible).
+		/// </summary>
+		private static string GetPipeName()
+		{
+			try
+			{
+				using var key = Registry.ClassesRoot.OpenSubKey(@"River.OneMoreAddIn\CLSID", false);
+				return key?.GetValue(string.Empty) as string;
+			}
+			catch
+			{
+				return null;
+			}
+		}
+
+
+		/// <summary>
+		/// Serialises <paramref name="commandName"/> and <paramref name="parameters"/> into a
+		/// <c>onemorecli://CommandName?key=value&amp;…</c> URI string for the add-in pipe.
+		/// Values are percent-encoded with <see cref="Uri.EscapeDataString"/>.
+		/// The injected <c>pageId</c> key is excluded — the server side resolves pages itself.
+		/// </summary>
+		private static string BuildCliUri(string commandName, CliParameterSet parameters)
+		{
+			var sb = new StringBuilder("onemorecli://");
+			sb.Append(commandName);
+
+			var first = true;
+			foreach (var key in parameters.Keys)
+			{
+				// pageId is resolved server-side; don't forward it
+				if (key.Equals("pageId", StringComparison.OrdinalIgnoreCase))
+					continue;
+
+				if (parameters.TryGet<object>(key, out var value))
+				{
+					sb.Append(first ? '?' : '&');
+					sb.Append(Uri.EscapeDataString(key));
+					sb.Append('=');
+					sb.Append(Uri.EscapeDataString(value?.ToString() ?? string.Empty));
+					first = false;
+				}
+			}
+
+			return sb.ToString();
 		}
 
 
@@ -220,7 +405,7 @@ namespace OneMoreCli
 				if (eqIndex >= 0)
 				{
 					var name  = nameAndValue.Substring(0, eqIndex);
-					var value = nameAndValue.Substring(eqIndex + 1);
+					var value = StripSurroundingQuotes(nameAndValue.Substring(eqIndex + 1));
 					parsed[name] = value;
 					continue;
 				}
@@ -229,7 +414,21 @@ namespace OneMoreCli
 				var paramName = nameAndValue;
 				if (i + 1 < args.Length && !args[i + 1].StartsWith("-"))
 				{
-					parsed[paramName] = args[++i];
+					var value = args[++i];
+
+					// Shells that don't treat single quotes as string delimiters (e.g. cmd.exe)
+					// split 'multi word value' into separate tokens. Reassemble them here.
+					if (value.Length > 0 && (value[0] == '\'' || value[0] == '"'))
+					{
+						var quote = value[0];
+						while (!(value.Length > 1 && value[value.Length - 1] == quote)
+							&& i + 1 < args.Length)
+						{
+							value += ' ' + args[++i];
+						}
+					}
+
+					parsed[paramName] = StripSurroundingQuotes(value);
 				}
 				else
 				{
@@ -239,6 +438,24 @@ namespace OneMoreCli
 			}
 
 			return true;
+		}
+
+
+		/// <summary>
+		/// Removes a matched pair of surrounding single or double quotes from a value token,
+		/// e.g. <c>'hello world'</c> → <c>hello world</c>. Returns the original string if
+		/// no surrounding quotes are present.
+		/// </summary>
+		private static string StripSurroundingQuotes(string value)
+		{
+			if (value.Length >= 2
+				&& ((value[0] == '\'' && value[value.Length - 1] == '\'')
+					|| (value[0] == '"' && value[value.Length - 1] == '"')))
+			{
+				return value.Substring(1, value.Length - 2);
+			}
+
+			return value;
 		}
 
 

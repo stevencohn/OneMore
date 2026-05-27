@@ -4,11 +4,10 @@
 
 namespace River.OneMoreAddIn.Cli
 {
-	using System.Threading.Tasks;
 
 
 	/*
-	internal sealed class MyCommand : ICliCommand
+	internal sealed class MyCommand : Command, ICliCommand
 	{
 		public string CommandName => "MyCommand";
 		public string Description  => "Does something useful.";
@@ -20,12 +19,19 @@ namespace River.OneMoreAddIn.Cli
 			.AddInteger("retries",    "Max retry attempts",
 						minimum: 0, maximum: 10,                required: false, defaultValue: 3);
 
-		public async Task CLIExecute(CliParameterSet parameters)
+		public override async Task Execute(params object[] args)
 		{
-			var path    = parameters.Get<string>("inputPath");
-			var mode    = parameters.Get<string>("mode");
-			var retries = parameters.Get<int>("retries");
-			// ...
+			if (runningFromCli)
+			{
+				var parameters = args.Length > 0 ? args[0] as CliParameterSet : null;
+				var path    = parameters?.Get<string>("inputPath");
+				var mode    = parameters?.Get<string>("mode");
+				var retries = parameters?.Get<int>("retries") ?? 0;
+				// ...
+				return;
+			}
+
+			// ribbon execution path
 		}
 	}
 	*/
@@ -34,11 +40,14 @@ namespace River.OneMoreAddIn.Cli
 	/// Implemented by command classes that can be discovered and driven by a CLI host.
 	/// The host calls <see cref="DefineParameters"/> to learn what inputs are needed,
 	/// prompts the user for each, validates values against declared constraints, then
-	/// calls <see cref="CLIExecute"/> with a fully populated <see cref="CliParameterSet"/>.
+	/// invokes the command through <see cref="CommandFactory"/> which injects the standard
+	/// protected fields and passes the populated <see cref="CliParameterSet"/> as
+	/// <c>args[0]</c> to <c>Execute</c>.
 	/// <para>
-	/// CLI commands are standalone classes; they do not extend the ribbon <c>Command</c>
-	/// base class and are not wired to the AddIn ribbon. Discovery is performed at runtime
-	/// via reflection over all types in the assembly that implement this interface.
+	/// CLI commands extend the ribbon <c>Command</c> base class and implement this interface.
+	/// Inside <c>Execute</c> use the <c>runningFromCli</c> guard to branch between the CLI
+	/// and ribbon code paths. Discovery is performed at runtime via reflection over all types
+	/// in the assembly that implement this interface.
 	/// </para>
 	/// </summary>
 	public interface ICliCommand
@@ -59,15 +68,5 @@ namespace River.OneMoreAddIn.Cli
 		/// Called once by the CLI host before it begins prompting the user.
 		/// </summary>
 		CliParameterDefinition DefineParameters();
-
-		/// <summary>
-		/// Executes the command using fully validated, typed parameter values
-		/// collected by the CLI host.
-		/// </summary>
-		/// <param name="parameters">
-		/// A value bag populated by the host. Each parameter declared in
-		/// <see cref="DefineParameters"/> will be present and valid.
-		/// </param>
-		Task CLIExecute(CliParameterSet parameters);
 	}
 }

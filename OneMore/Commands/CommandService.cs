@@ -1,11 +1,13 @@
-﻿//************************************************************************************************
+//************************************************************************************************
 // Copyright © 2021 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn
 {
 	using Microsoft.Win32;
+	using River.OneMoreAddIn.Cli;
 	using System;
+	using System.Collections.Generic;
 	using System.IO.Pipes;
 	using System.Linq;
 	using System.Security.AccessControl;
@@ -19,12 +21,15 @@ namespace River.OneMoreAddIn
 
 	/// <summary>
 	/// Listener for commands sent from OneMoreProtocolhandler through named pipe.
+	/// Also handles CLI commands sent from OneMoreCli.exe via the same pipe using
+	/// the <c>onemorecli://</c> protocol prefix, returning a response to the caller.
 	/// </summary>
 	internal class CommandService : Loggable
 	{
-		private const int MaxBytes = 512;
+		private const int MaxBytes = 4096;
 		private const int ReadTimeoutSeconds = 5;
 		private const string Protocol = "onemore://";
+		private const string CliProtocol = "onemorecli://";
 		private const string KeyPath = @"River.OneMoreAddIn\CLSID";
 
 		// action flows into Type.GetType, which accepts assembly-qualified names
@@ -102,25 +107,49 @@ namespace River.OneMoreAddIn
 						data = Encoding.UTF8.GetString(buffer, 0, buffer.Length).Trim((char)0);
 						//logger.WriteLine($"pipe received [{data}]");
 
-						// clean up server so we can create a new one for next connection
-						server.Disconnect();
-						server.Close();
-
-						if (!string.IsNullOrEmpty(data) && data.StartsWith(Protocol))
+						if (!string.IsNullOrEmpty(data) && data.StartsWith(CliProtocol))
 						{
-							// isolate work into its own thread so any uncaught exceptions
-							// won't tip over the service thread...
-
-							var worker = new Thread(async () => await InvokeCommand(data))
-							{
-								Name = $"{nameof(CommandService)}WorkerThread"
-							};
-
-							worker.SetApartmentState(ApartmentState.STA);
-							worker.IsBackground = true;
-							worker.Start();
-
+							// CLI request: process synchronously so we can write the response
+							// back before disconnecting. The server pipe stays open until the
+							// response is flushed and drained.
 							errors = 0;
+							try
+							{
+								await InvokeCliCommand(data, server);
+							}
+							catch (Exception exc)
+							{
+								logger.WriteLine("error handling CLI command", exc);
+								try { await WriteCliResponse(server, $"ERR:{exc.Message}"); }
+								catch { /* best effort */ }
+							}
+
+							server.Disconnect();
+							server.Close();
+						}
+						else
+						{
+							// Existing onemore:// protocol: disconnect immediately then fire
+							// a worker thread (fire-and-forget, no response).
+							server.Disconnect();
+							server.Close();
+
+							if (!string.IsNullOrEmpty(data) && data.StartsWith(Protocol))
+							{
+								// isolate work into its own thread so any uncaught exceptions
+								// won't tip over the service thread...
+
+								var worker = new Thread(async () => await InvokeCommand(data))
+								{
+									Name = $"{nameof(CommandService)}WorkerThread"
+								};
+
+								worker.SetApartmentState(ApartmentState.STA);
+								worker.IsBackground = true;
+								worker.Start();
+
+								errors = 0;
+							}
 						}
 					}
 					catch (Exception exc)
@@ -153,8 +182,11 @@ namespace River.OneMoreAddIn
 			security.SetOwner(user);
 			security.SetGroup(user);
 
+			// InOut so CLI callers (PipeDirection.InOut) can read the response.
+			// The existing OneMoreProtocolHandler client uses PipeDirection.Out and
+			// never reads, so the direction change is backward-compatible.
 			return new NamedPipeServerStream(
-				pipe, PipeDirection.In, 1,
+				pipe, PipeDirection.InOut, 1,
 				PipeTransmissionMode.Byte, PipeOptions.Asynchronous,
 				MaxBytes, MaxBytes, security);
 		}
@@ -204,6 +236,114 @@ namespace River.OneMoreAddIn
 			{
 				logger.WriteLine("error invoking command", exc);
 			}
+		}
+
+
+		/// <summary>
+		/// Handles a <c>onemorecli://CommandName?param1=value1&amp;param2=value2</c> request
+		/// from OneMoreCli.exe. Resolves pages via <see cref="OneNote.FindPagesByPath"/> for
+		/// <see cref="ICliPageCommand"/> implementations, then runs the command once per page.
+		/// Writes <c>OK</c> or <c>ERR:message</c> back through <paramref name="pipe"/> before
+		/// returning.
+		/// </summary>
+		private async Task InvokeCliCommand(string data, NamedPipeServerStream pipe)
+		{
+			// Strip protocol prefix and split on '?'
+			var body = data.Substring(CliProtocol.Length);
+			var qIndex = body.IndexOf('?');
+			var commandName = qIndex >= 0 ? body.Substring(0, qIndex) : body;
+			var queryString = qIndex >= 0 ? body.Substring(qIndex + 1) : string.Empty;
+
+			if (!ActionPattern.IsMatch(commandName))
+			{
+				await WriteCliResponse(pipe, $"ERR:Invalid command name '{commandName}'");
+				return;
+			}
+
+			var typeName = $"River.OneMoreAddIn.Commands.{commandName}";
+			var commandType = Type.GetType(typeName, false);
+			if (commandType == null)
+			{
+				await WriteCliResponse(pipe, $"ERR:Unknown command '{commandName}'");
+				return;
+			}
+
+			// Build CliParameterSet from URL query string.
+			// Values are URL-encoded strings; the command reads them via TryGet<T>() which
+			// uses Convert.ChangeType, so "true"→bool, "42"→int, etc. all work correctly.
+			var parameters = new CliParameterSet();
+			if (!string.IsNullOrEmpty(queryString))
+			{
+				foreach (var pair in queryString.Split('&'))
+				{
+					var eqIdx = pair.IndexOf('=');
+					if (eqIdx > 0)
+					{
+						var name = HttpUtility.UrlDecode(pair.Substring(0, eqIdx));
+						var value = HttpUtility.UrlDecode(pair.Substring(eqIdx + 1));
+						parameters.Set(name, value);
+					}
+				}
+			}
+
+			var cliFactory = new CommandFactory(
+				logger, ribbon: null, new List<IDisposable>(), runningFromCli: true);
+
+			try
+			{
+				if (typeof(ICliPageCommand).IsAssignableFrom(commandType))
+				{
+					parameters.TryGet<string>("notebook", out var notebook);
+					parameters.TryGet<string>("section", out var section);
+					var hasPage = parameters.TryGet<string>("page", out var page);
+
+					if (string.IsNullOrWhiteSpace(notebook) || string.IsNullOrWhiteSpace(section))
+					{
+						await WriteCliResponse(pipe,
+							$"ERR:{commandName} requires 'notebook' and 'section' parameters");
+						return;
+					}
+
+					var path = string.Concat(
+						notebook, "/", section, "/",
+						hasPage && !string.IsNullOrWhiteSpace(page) ? page : "*");
+
+					using var one = new OneNote();
+					var pageIds = await one.FindPagesByPath(path);
+
+					if (pageIds.Length == 0)
+					{
+						await WriteCliResponse(pipe, $"ERR:No pages found at path: {path}");
+						return;
+					}
+
+					foreach (var pageId in pageIds)
+					{
+						parameters.Set("pageId", pageId);
+						await cliFactory.Run(commandType, parameters);
+					}
+				}
+				else
+				{
+					await cliFactory.Run(commandType, parameters);
+				}
+
+				await WriteCliResponse(pipe, "OK");
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"error executing CLI command '{commandName}'", exc);
+				await WriteCliResponse(pipe, $"ERR:{exc.Message}");
+			}
+		}
+
+
+		private static async Task WriteCliResponse(NamedPipeServerStream pipe, string response)
+		{
+			var bytes = Encoding.UTF8.GetBytes(response);
+			await pipe.WriteAsync(bytes, 0, bytes.Length);
+			await pipe.FlushAsync();
+			pipe.WaitForPipeDrain();
 		}
 	}
 }
