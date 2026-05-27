@@ -6,16 +6,15 @@ namespace River.OneMoreAddIn.Commands
 {
 	using System.IO;
 	using System.Threading.Tasks;
+	using River.OneMoreAddIn.Cli;
 
-
-	internal class OpenLogCommand : Command
+	internal class OpenLogCommand : Command, Cli.ICliCommand
 	{
 		public OpenLogCommand()
 		{
 			// prevent replay
 			IsCancelled = true;
 		}
-
 
 		public override async Task Execute(params object[] args)
 		{
@@ -26,5 +25,26 @@ namespace River.OneMoreAddIn.Commands
 
 			await Task.Yield();
 		}
+
+
+		#region CLI Implementation
+
+		public string CommandName => "OpenLog";
+
+		public string Description => "Opens the log file in the default text editor";
+
+		public Task CLIExecute(CliParameterSet parameters)
+		{
+			var trash = new System.Collections.Generic.List<System.IDisposable>();
+			var factory = new CommandFactory(Logger.Current, null, trash);
+			return factory.Run<OpenLogCommand>();
+		}
+
+		public CliParameterDefinition DefineParameters()
+		{
+			return new CliParameterDefinition();
+		}
+
+		#endregion CLI Implementation
 	}
 }
