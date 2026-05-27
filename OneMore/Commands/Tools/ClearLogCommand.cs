@@ -20,6 +20,20 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		#region CLI Implementation
+
+		public string CommandName => "ClearLog";
+
+
+		public string Description => "Clears the log file";
+
+
+
+		public CliParameterDefinition DefineParameters() => new();
+
+		#endregion CLI Implementation
+
+
 		public override async Task Execute(params object[] args)
 		{
 			if (File.Exists(logger.LogPath))
@@ -42,19 +56,5 @@ namespace River.OneMoreAddIn.Commands
 
 			await Task.Yield();
 		}
-
-
-		#region CLI Implementation
-
-		public string CommandName => "ClearLog";
-
-
-		public string Description => "Clears the log file";
-
-
-
-		public CliParameterDefinition DefineParameters() => new();
-
-		#endregion CLI Implementation
 	}
 }

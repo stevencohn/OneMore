@@ -26,6 +26,24 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		#region CLI Implementation
+
+		public string CommandName => "InsertToc";
+
+
+		public string Description => "Inserts a table of contents into the current page";
+
+
+		public CliParameterDefinition DefineParameters() =>
+			new CliParameterDefinition()
+			.AddString("notebook", "Name of notebook to process", required: true)
+			.AddString("section", "Path of section to process", required: true)
+			.AddString("page", "Name of page to process", required: false)
+			.AddBoolean("refresh", "Refresh section TOC instead of building");
+
+		#endregion CLI Implementation
+
+
 		public override async Task Execute(params object[] args)
 		{
 			if (args.Length > 0 && args[0] is string refresh && refresh.StartsWith("refresh"))
@@ -198,23 +216,5 @@ namespace River.OneMoreAddIn.Commands
 				logger.WriteLine($"error executing {nameof(InsertTocCommand)}", exc);
 			}
 		}
-
-
-		#region CLI Implementation
-
-		public string CommandName => "InsertToc";
-
-
-		public string Description => "Inserts a table of contents into the current page";
-
-
-		public CliParameterDefinition DefineParameters() =>
-			new CliParameterDefinition()
-			.AddString("notebook", "Name of notebook to process", required: true)
-			.AddString("section", "Path of section to process", required: true)
-			.AddString("page", "Name of page to process", required: false)
-			.AddBoolean("refresh", "Refresh section TOC instead of building");
-
-		#endregion CLI Implementation
 	}
 }

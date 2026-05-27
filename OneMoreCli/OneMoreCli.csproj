@@ -82,6 +82,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddinBridge.cs" />
+    <Compile Include="ArgParser.cs" />
+    <Compile Include="CliConsole.cs" />
+    <Compile Include="CommandDiscovery.cs" />
+    <Compile Include="InteractiveRunner.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

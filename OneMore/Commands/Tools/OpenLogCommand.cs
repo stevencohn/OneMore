@@ -17,17 +17,6 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public override async Task Execute(params object[] args)
-		{
-			if (File.Exists(logger.LogPath))
-			{
-				System.Diagnostics.Process.Start(logger.LogPath);
-			}
-
-			await Task.Yield();
-		}
-
-
 		#region CLI Implementation
 
 		public string CommandName => "OpenLog";
@@ -39,5 +28,16 @@ namespace River.OneMoreAddIn.Commands
 		public CliParameterDefinition DefineParameters() => new();
 
 		#endregion CLI Implementation
+
+
+		public override async Task Execute(params object[] args)
+		{
+			if (File.Exists(logger.LogPath))
+			{
+				System.Diagnostics.Process.Start(logger.LogPath);
+			}
+
+			await Task.Yield();
+		}
 	}
 }
