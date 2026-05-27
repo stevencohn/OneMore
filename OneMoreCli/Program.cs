@@ -203,10 +203,18 @@ namespace OneMoreCli
 				parameters.TryGet<string>("section", out var section);
 				var hasPage = parameters.TryGet<string>("page", out var page);
 
-				if (string.IsNullOrWhiteSpace(notebook) || string.IsNullOrWhiteSpace(section))
+				if (string.IsNullOrWhiteSpace(notebook))
 				{
 					throw new InvalidOperationException(
-						$"{command.CommandName} requires 'notebook' and 'section' parameters.");
+						$"{command.CommandName} requires a 'notebook' parameter.");
+				}
+
+				// When section is absent the command handles its own traversal
+				// (e.g. ExportCommand iterates all sections and creates subfolders).
+				if (string.IsNullOrWhiteSpace(section))
+				{
+					await CliCommandFactory.Make().Run(command.GetType(), parameters);
+					return;
 				}
 
 				var path = string.Concat(

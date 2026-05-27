@@ -297,30 +297,39 @@ namespace River.OneMoreAddIn
 					parameters.TryGet<string>("section", out var section);
 					var hasPage = parameters.TryGet<string>("page", out var page);
 
-					if (string.IsNullOrWhiteSpace(notebook) || string.IsNullOrWhiteSpace(section))
+					if (string.IsNullOrWhiteSpace(notebook))
 					{
 						await WriteCliResponse(pipe,
-							$"ERR:{commandName} requires 'notebook' and 'section' parameters");
+							$"ERR:{commandName} requires a 'notebook' parameter");
 						return;
 					}
 
-					var path = string.Concat(
-						notebook, "/", section, "/",
-						hasPage && !string.IsNullOrWhiteSpace(page) ? page : "*");
-
-					using var one = new OneNote();
-					var pageIds = await one.FindPagesByPath(path);
-
-					if (pageIds.Length == 0)
+					// When section is absent the command handles its own traversal
+					// (e.g. ExportCommand iterates all sections and creates subfolders).
+					if (string.IsNullOrWhiteSpace(section))
 					{
-						await WriteCliResponse(pipe, $"ERR:No pages found at path: {path}");
-						return;
-					}
-
-					foreach (var pageId in pageIds)
-					{
-						parameters.Set("pageId", pageId);
 						await cliFactory.Run(commandType, parameters);
+					}
+					else
+					{
+						var path = string.Concat(
+							notebook, "/", section, "/",
+							hasPage && !string.IsNullOrWhiteSpace(page) ? page : "*");
+
+						using var one = new OneNote();
+						var pageIds = await one.FindPagesByPath(path);
+
+						if (pageIds.Length == 0)
+						{
+							await WriteCliResponse(pipe, $"ERR:No pages found at path: {path}");
+							return;
+						}
+
+						foreach (var pageId in pageIds)
+						{
+							parameters.Set("pageId", pageId);
+							await cliFactory.Run(commandType, parameters);
+						}
 					}
 				}
 				else

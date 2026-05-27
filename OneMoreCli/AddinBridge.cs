@@ -45,8 +45,12 @@ namespace OneMoreCli
 				// Short connect timeout: if the add-in isn't listening we fall back immediately
 				await Task.Run(() => pipe.Connect(500));
 
+				var commandName = command.CommandName.EndsWith("Command", StringComparison.OrdinalIgnoreCase)
+					? command.CommandName
+					: $"{command.CommandName}Command";
+
 				// Send request
-				var uri = BuildUri(command.CommandName, parameters);
+				var uri = BuildUri(commandName, parameters);
 				var requestBytes = Encoding.UTF8.GetBytes(uri);
 				await pipe.WriteAsync(requestBytes, 0, requestBytes.Length);
 				await pipe.FlushAsync();
