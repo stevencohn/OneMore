@@ -35,9 +35,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public Task CLIExecute(CliParameterSet parameters)
 		{
-			var trash = new System.Collections.Generic.List<System.IDisposable>();
-			var factory = new CommandFactory(Logger.Current, null, trash);
-			return factory.Run<OpenLogCommand>();
+			return CliCommandFactory.Make().Run<OpenLogCommand>();
 		}
 
 		public CliParameterDefinition DefineParameters()
