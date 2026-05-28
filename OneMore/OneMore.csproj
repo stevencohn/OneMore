@@ -285,6 +285,7 @@
     <Compile Include="Commands\Reminders\CleanRemindersCommand.cs" />
     <Compile Include="Commands\Search\CardHit.cs" />
     <Compile Include="Commands\Search\CardModel.cs" />
+    <Compile Include="Commands\Search\SearchEngine.cs" />
     <Compile Include="Commands\Search\SearchGroupControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1368,6 +1369,7 @@
     <None Include="Colorizer\Languages\rust.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Commands\Search\CLAUDE.md" />
     <None Include="Commands\Snippets\Emoji\Emojis.json" />
     <None Include="Colorizer\Languages\golang.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
