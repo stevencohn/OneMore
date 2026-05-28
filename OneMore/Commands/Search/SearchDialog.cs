@@ -11,14 +11,11 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
-	using System.Globalization;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Threading;
 	using System.Threading.Tasks;
-	using System.Web;
 	using System.Windows.Forms;
-	using System.Xml.Linq;
 	using Resx = Properties.Resources;
 
 
@@ -32,22 +29,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-
-		private sealed class SearchHit
-		{
-			public string PlainText { get; set; }
-			public string ObjectId { get; set; }
-		}
-
-
-		//private const int CreatedAfter = 1;
-		private const int CreatedBefore = 2;
-		private const int UpdatedAfter = 3;
-		private const int UpdatedBefore = 4;
-
-		private readonly Regex cleaner;
 		private CancellationTokenSource source;
-		private bool grouping;
 
 
 		public SearchDialog()
@@ -87,14 +69,6 @@ namespace River.OneMoreAddIn.Commands
 
 			DefaultControl = findBox;
 			ElevatedWithOneNote = true;
-
-			// pattern to remove SPAN|A elements and &#nn; escaped characters
-			//
-			// NOTE, instead of ignoring escape sequences, use WebUtility.HtmlDecode(input);
-			//
-			cleaner = new Regex(
-				@"(?:<\s*(?:span|a)[^>]*?>)|(?:</(?:span|a)>)|(?:&#\d+;)",
-				RegexOptions.Compiled);
 
 			resultsView.CardActivated += OnCardActivated;
 			resultsView.HitActivated += OnHitActivated;
@@ -300,37 +274,39 @@ namespace River.OneMoreAddIn.Commands
 			// which under the dllhost surrogate can take down OneNote
 			try
 			{
-				await using var one = new OneNote();
+				source = new CancellationTokenSource();
 
-				// search by scope...
+				var options = new SearchOptions
+				{
+					IncludeToc = includeTocBox.Checked,
+					DateFilter = (DateFilterMode)dateSelector.SelectedIndex,
+					DateValue = dateTimePicker.Value.Date
+				};
+
+				void OnTotal(int count) => SetupProgressBar(count);
+				void OnPage(string name) { progressBar.Increment(1); pageLabel.Text = name; }
+				void OnFound(string pageId, string groupTitle, string color, IList<SearchHit> hits)
+					=> AddPageResults(pageId, groupTitle, color, hits);
+
+				var engine = new SearchEngine(options, source.Token, OnTotal, OnPage, OnFound);
+
+				await using var one = new OneNote();
 
 				if (scopeBox.SelectedIndex == 0)
 				{
-					await SearchNotebook(one, finder);
+					await engine.SearchNotebook(one, finder);
 				}
 				else if (scopeBox.SelectedIndex == 1)
 				{
-					grouping = true;
 					var section = await one.GetSection();
-					var ns = one.GetNamespace(section);
-
-					if (dateSelector.SelectedIndex > 0)
-					{
-						FilterPagesByDate(section, ns);
-					}
-
-					SetupProgressBar(section.Descendants(ns + "Page").Count());
-					await SearchSection(one, section, finder);
+					await engine.SearchSection(one, section, finder);
 				}
 				else
 				{
 					logger.StartClock();
-					grouping = false;
-
 					var page = await one.GetPage(one.CurrentPageId, OneNote.PageDetail.Basic);
 					logger.WriteTime("loaded page", keepRunning: true);
-
-					await SearchPage(page, finder);
+					await engine.SearchPage(page, finder);
 					logger.WriteTime("search complete");
 				}
 			}
@@ -476,249 +452,11 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-		// Search pipeline
-
-		private void FilterPagesByDate(XElement parent, XNamespace ns)
-		{
-			var field = "dateTime";
-			var after = true;
-
-			switch (dateSelector.SelectedIndex)
-			{
-				case CreatedBefore:
-					after = false;
-					break;
-
-				case UpdatedAfter:
-					field = "lastModifiedTime";
-					break;
-
-				case UpdatedBefore:
-					field = "lastModifiedTime";
-					after = false;
-					break;
-			}
-
-			var date = dateTimePicker.Value.Date;
-
-			var pages = parent.Descendants(ns + "Page").ToList();
-			foreach (var page in pages)
-			{
-				var value = DateTime.Parse(
-					page.Attribute(field).Value, CultureInfo.InvariantCulture).ToLocalTime().Date;
-
-				// note: these comparisons are inverted because we Remove() non-matches
-				if ((after && value < date) || (!after && value > date))
-				{
-					page.Remove();
-				}
-			}
-		}
-
-
-		private async Task SearchNotebook(OneNote one, Regex finder)
-		{
-			grouping = true;
-
-			var notebook = await one.GetNotebook(OneNote.Scope.Pages);
-			var ns = one.GetNamespace(notebook);
-
-			if (dateSelector.SelectedIndex > 0)
-			{
-				FilterPagesByDate(notebook, ns);
-			}
-
-			SetupProgressBar(notebook.Descendants(ns + "Page").Count());
-			await TraverseSections(notebook, string.Empty);
-
-			// decending recursive section traversal
-			async Task TraverseSections(XElement parent, string path)
-			{
-				var sections = parent.Elements(ns + "Section").Where(e =>
-					e.Attribute("isRecycleBin") is null &&
-					e.Attribute("isInRecycleBin") is null);
-
-				foreach (var section in sections)
-				{
-					if (source.IsCancellationRequested) break;
-					await Task.Yield();
-					await SearchSection(one, section, finder);
-				}
-
-				var sectionGroups = parent.Elements(ns + "SectionGroup")
-					.Where(e => e.Attribute("isRecycleBin") is null);
-
-				foreach (var group in sectionGroups)
-				{
-					if (source.IsCancellationRequested) break;
-					await Task.Yield();
-
-					var groupName = group.Attribute("name").Value;
-					path = path.Length == 0 ? groupName : $"{path}/{groupName}";
-
-					await TraverseSections(group, path);
-				}
-			}
-		}
-
-
 		private void SetupProgressBar(int count)
 		{
 			progressBar.Visible = true;
 			progressBar.Maximum = count;
 			progressBar.Value = 0;
-			source = new CancellationTokenSource();
-		}
-
-
-		private async Task SearchSection(OneNote one, XElement section, Regex finder)
-		{
-			var ns = one.GetNamespace(section);
-			var sectionId = section.Attribute("ID").Value;
-			var info = await one.GetSectionInfo(sectionId);
-
-			var pageIds = section.Elements(ns + "Page")
-				.Select(e => e.Attribute("ID").Value)
-				.ToList();
-
-			foreach (var pageId in pageIds)
-			{
-				if (source.IsCancellationRequested) break;
-				await Task.Yield();
-
-				progressBar.Increment(1);
-
-				var page = await one.GetPage(pageId, OneNote.PageDetail.Basic);
-				var pageName = page.Root.Attribute("name").Value;
-
-				if (grouping)
-				{
-					pageLabel.Text = pageName;
-				}
-
-				var hits = await SearchPageBody(page, finder);
-
-				// skip adding results if cancelled mid-page
-				if (source.IsCancellationRequested) break;
-
-				if (hits.Any())
-				{
-					AddPageResults(
-						pageId,
-						grouping ? $"{info.Path}/{pageName}" : null,
-						info.Color,
-						hits);
-				}
-			}
-		}
-
-
-		private async Task SearchPage(Page page, Regex finder)
-		{
-			var hits = await SearchPageBody(page, finder);
-			if (hits.Any())
-			{
-				AddPageResults(page.PageId, null, null, hits);
-			}
-		}
-
-
-		private async Task<IList<SearchHit>> SearchPageBody(Page page, Regex finder)
-		{
-			var ns = page.Namespace;
-
-			// Materialize paragraphs on the UI thread before going to the thread pool,
-			// so the lazy XLinq query is evaluated while we own the XDocument.
-			var paragraphs = page.BodyOutlines
-				.Descendants(ns + "OE")
-				.ToList();
-
-			if (!includeTocBox.Checked)
-			{
-				paragraphs = paragraphs.Where(e =>
-					// allow all paragraphs except the TOC
-					(e.Elements(ns + "T").Any()
-					&& !e.AncestorsAndSelf(ns + "OE")
-						.Any(a => a.Elements(ns + "Meta")
-							.Any(m => m.Attribute("name")?.Value == "omToc"))
-					) ||
-					// always allow attachments
-					e.Elements(ns + "InsertedFile").Any()
-				)
-				.ToList();
-			}
-
-			if (paragraphs.Count == 0)
-			{
-				return Array.Empty<SearchHit>();
-			}
-
-			var token = source?.Token ?? CancellationToken.None;
-
-			// Text extraction and regex matching on a background thread — pure XLinq, no COM.
-			// IsCancellationRequested is checked without throwing to avoid propagating
-			// OperationCanceledException through the async void Search() call chain.
-			var matched = await Task.Run(() =>
-			{
-				var hits = new List<(string objectId, string text)>();
-				foreach (var paragraph in paragraphs)
-				{
-					if (token.IsCancellationRequested) break;
-
-					var text = GetRawText(paragraph, ns);
-					if (text.Length > 0 && finder.IsMatch(text))
-					{
-						hits.Add((paragraph.Attribute("objectID").Value, text));
-					}
-				}
-				return hits;
-			});
-
-			// Hyperlinks are resolved lazily at navigation time (one.NavigateTo(pageId, objectId))
-			// so no COM round-trip is needed here per hit.
-			return matched.Select(m => new SearchHit
-			{
-				PlainText = HttpUtility.HtmlDecode(m.text),
-				ObjectId  = m.objectId
-			}).ToList();
-		}
-
-
-		private string GetRawText(XElement paragraph, XNamespace ns)
-		{
-			var text = string.Empty;
-			paragraph.Elements(ns + "T").ForEach(e =>
-			{
-				// custom cleaner regex adds filter for "&#nnn;" escapes, instead of TextValue
-				//
-				// NOTE, instead of ignoring escape sequences, use WebUtility.HtmlDecode(input);
-				//
-
-				var line = cleaner.Replace(e.Value, string.Empty).Trim();
-				if (line.Length > 0)
-				{
-					text = $"{text}{line} ";
-				}
-			});
-
-			if (text.Length == 0)
-			{
-				paragraph.Elements(ns + "InsertedFile").ForEach(e => // would only be one
-				{
-					if (e.Attribute("pathSource")?.Value is string pathSource)
-					{
-						text = $"{text} {pathSource}";
-					}
-
-					if (e.Attribute("preferredName")?.Value is string preferredName)
-					{
-						text = $"{text} {preferredName}";
-					}
-				});
-			}
-
-			return text.Trim();
 		}
 	}
 }
