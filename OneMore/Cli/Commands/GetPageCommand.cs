@@ -45,9 +45,9 @@ namespace River.OneMoreAddIn.Commands
 
 			if (cliParams != null)
 			{
-				cliParams.TryGet<string>("notebook", out notebookName);
-				cliParams.TryGet<string>("section", out sectionPath);
-				cliParams.TryGet<string>("page", out pageName);
+				cliParams.TryGet("notebook", out notebookName);
+				cliParams.TryGet("section", out sectionPath);
+				cliParams.TryGet("page", out pageName);
 			}
 
 			await using var one = new OneNote();

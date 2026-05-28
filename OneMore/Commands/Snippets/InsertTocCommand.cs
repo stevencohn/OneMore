@@ -38,7 +38,7 @@ namespace River.OneMoreAddIn.Commands
 			new CliParameterDefinition()
 			.AddString("notebook", "Name of notebook to process", required: true)
 			.AddString("section", "Path of section to process", required: true)
-			.AddString("page", "Name of page to process", required: false)
+			.AddString("page", "Name of page to process", required: true)
 			.AddBoolean("refresh", "Refresh section TOC instead of building");
 
 		#endregion CLI Implementation
@@ -58,8 +58,6 @@ namespace River.OneMoreAddIn.Commands
 				var doRefresh = cliParams?.Get<bool>("refresh") ?? false;
 				pageId = cliParams?.Get<string>("pageId");
 
-				// TODO: navigate to pageId and generate TOC for that specific page
-				// For now, fall back to the current page context
 				var tocParams = await CollectParameterDefaults(pageId);
 				if (doRefresh)
 				{

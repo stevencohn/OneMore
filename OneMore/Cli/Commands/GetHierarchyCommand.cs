@@ -48,8 +48,8 @@ namespace River.OneMoreAddIn.Commands
 
 			if (cliParams != null)
 			{
-				cliParams.TryGet<string>("notebook", out notebookName);
-				cliParams.TryGet<string>("section", out sectionPath);
+				cliParams.TryGet("notebook", out notebookName);
+				cliParams.TryGet("section", out sectionPath);
 			}
 
 			var hasNotebook = !string.IsNullOrEmpty(notebookName);
