@@ -47,13 +47,13 @@ namespace River.OneMoreAddIn.Commands
 				token,
 				async (count) =>
 				{
-					progress.SetMaximum(count);
-					progress.SetMessage($"Scanning {count} page references");
+					progress?.SetMaximum(count);
+					progress?.SetMessage($"Scanning {count} page references");
 					await Task.Yield();
 				},
 				async () =>
 				{
-					progress.Increment();
+					progress?.Increment();
 					await Task.Yield();
 				});
 		}

@@ -141,7 +141,7 @@ namespace River.OneMoreAddIn.Commands
 					path = root.Attribute("name").Value;
 				}
 
-				var full = $"{fullPath}/{path}";
+				var full = string.IsNullOrEmpty(fullPath) ? path : $"{fullPath}/{path}";
 
 				foreach (var element in root.Elements())
 				{

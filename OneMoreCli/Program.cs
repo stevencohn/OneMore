@@ -196,6 +196,19 @@ namespace OneMoreCli
 			if (await AddinBridge.TryRun(command, parameters))
 				return;
 
+			// ICliInteractiveCommand signals that the command needs OneNote running as a
+			// full UI process. Some APIs (e.g. Publish) are unavailable against the
+			// headless COM server that `new Application()` would otherwise activate.
+			if (command is ICliInteractiveCommand)
+			{
+				if (!await OneNoteLauncher.EnsureRunning())
+				{
+					CliConsole.WriteError(
+						$"{command.CommandName} requires interactive OneNote but it could not be launched");
+					return;
+				}
+			}
+
 			// Fallback: direct COM (OneNote is not running; new Application() starts it fresh)
 			if (command is ICliPageCommand)
 			{
