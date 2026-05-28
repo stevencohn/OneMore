@@ -40,6 +40,14 @@ namespace River.OneMoreAddIn
 		 */
 		public const string Version = "7.0.1";
 
+		public const string BuildTag =
+#if BETA
+		" Beta"
+#else
+		""
+#endif
+		;
+
 		public const string Product = "OneMore";
 
 		public const string Configuration =
