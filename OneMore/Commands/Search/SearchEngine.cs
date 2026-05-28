@@ -73,6 +73,12 @@ namespace River.OneMoreAddIn.Commands
 		public async Task SearchNotebook(OneNote one, Regex finder)
 		{
 			var notebook = await one.GetNotebook(OneNote.Scope.Pages);
+			await SearchNotebook(one, notebook, finder);
+		}
+
+
+		public async Task SearchNotebook(OneNote one, XElement notebook, Regex finder)
+		{
 			var ns = one.GetNamespace(notebook);
 
 			if (options.DateFilter != DateFilterMode.None)
