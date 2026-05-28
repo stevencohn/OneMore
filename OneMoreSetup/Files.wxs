@@ -18,6 +18,11 @@
         <File Source="..\OneMore\bin\$(var.Configuration)\OneMoreCalendar.exe.config" />
       </Component>
 
+      <Component Id="OneMoreCliExe">
+        <File Source="..\OneMore\bin\$(var.Configuration)\OneMoreCli.exe" KeyPath="yes" />
+        <File Source="..\OneMore\bin\$(var.Configuration)\OneMoreCli.exe.config" />
+      </Component>
+
       <Component Id="ProtocolHandlerExe">
         <File Source="..\OneMore\bin\$(var.Configuration)\OneMoreProtocolHandler.exe" KeyPath="yes" />
         <File Source="..\OneMore\bin\$(var.Configuration)\OneMoreProtocolHandler.exe.config" />
