@@ -187,6 +187,7 @@
     <Compile Include="Cli\CliParameterSet.cs" />
     <Compile Include="Cli\Commands\GetHierarchyCommand.cs" />
     <Compile Include="Cli\Commands\GetPageCommand.cs" />
+    <Compile Include="Cli\Commands\PutPageCommand.cs" />
     <Compile Include="Cli\ICliCommand.cs" />
     <Compile Include="Cli\ICliPageCommand.cs" />
     <Compile Include="Commands\Clean\RemoveIndentsCommand.cs" />
