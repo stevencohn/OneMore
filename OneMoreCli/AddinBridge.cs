@@ -81,7 +81,10 @@ namespace OneMoreCli
 				if (response.StartsWith("ERR:", StringComparison.OrdinalIgnoreCase))
 					throw new Exception(response.Substring(4));
 
-				// "OK" or any non-error response → success
+				if (response.StartsWith("OUTPUT:", StringComparison.OrdinalIgnoreCase))
+					Console.Write(response.Substring(7));
+
+				// "OK" or "OUTPUT:..." → success
 				return true;
 			}
 			catch (TimeoutException)

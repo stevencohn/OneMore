@@ -1674,7 +1674,12 @@ namespace River.OneMoreAddIn
 		/// <param name="builder"></param>
 		public void ReportWindowDiagnostics(ILogger logger)
 		{
-			var win = onenote.Windows.CurrentWindow;
+			var win = onenote.Windows?.CurrentWindow;
+			if (win is null)
+			{
+				logger.WriteLine("No current window");
+				return;
+			}
 
 			logger.WriteLine($"CurrentNotebookId: {win.CurrentNotebookId}");
 			logger.WriteLine($"CurrentPageId....: {win.CurrentPageId}");

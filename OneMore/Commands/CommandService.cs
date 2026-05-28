@@ -289,6 +289,8 @@ namespace River.OneMoreAddIn
 			var cliFactory = new CommandFactory(
 				logger, ribbon: null, new List<IDisposable>(), runningFromCli: true);
 
+			Command result = null;
+
 			try
 			{
 				if (typeof(ICliPageCommand).IsAssignableFrom(commandType))
@@ -334,10 +336,12 @@ namespace River.OneMoreAddIn
 				}
 				else
 				{
-					await cliFactory.Run(commandType, parameters);
+					result = await cliFactory.Run(commandType, parameters);
 				}
 
-				await WriteCliResponse(pipe, "OK");
+				var output = result?.CliOutput;
+				await WriteCliResponse(pipe,
+					string.IsNullOrEmpty(output) ? "OK" : "OUTPUT:" + output);
 			}
 			catch (Exception exc)
 			{

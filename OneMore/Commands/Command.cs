@@ -40,6 +40,17 @@ namespace River.OneMoreAddIn
 		}
 
 
+		/// <summary>
+		/// Text output produced by a CLI command; populated during Execute and read by
+		/// CommandService to return through the named pipe to the CLI console process.
+		/// </summary>
+		public string CliOutput
+		{
+			get;
+			protected set;
+		}
+
+
 		/*
 		 * Inheritors MUST override Execute...
 		 */
