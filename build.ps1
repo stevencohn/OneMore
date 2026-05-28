@@ -228,7 +228,9 @@ Begin
 		NugetRestore 'OneMoreCalendar'
 		BuildProject 'OneMoreCalendar'
 
+		NugetRestore 'OneMoreCli'
 		BuildProject 'OneMoreCli'
+
 		BuildProject 'OneMoreProtocolHandler'
 		BuildProject 'OneMoreSetupActions'
 
