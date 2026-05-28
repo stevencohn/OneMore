@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="WixToolset.Sdk/7.0.0">
+
+  <PropertyGroup>
+    <OutputType>Bundle</OutputType>
+    <Platform Condition="'$(Platform)' == ''">x64</Platform>
+    <Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
+    <ProductVersion Condition="'$(ProductVersion)' == ''">7.0.1</ProductVersion>
+    <OutputName>OneMore_$(ProductVersion)_Setup$(Platform)</OutputName>
+    <OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
+    <DefineConstants>ProductVersion=$(ProductVersion)</DefineConstants>
+    <!-- Accept the WiX v7 OSMF EULA for open-source use (satisfies WIX7015 in CI). -->
+    <AcceptEula>wix7</AcceptEula>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="WixToolset.Bal.wixext" Version="7.0.*" />
+  </ItemGroup>
+
+</Project>

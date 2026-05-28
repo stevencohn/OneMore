@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs"
+     xmlns:bal="http://wixtoolset.org/schemas/v4/wxs/bal">
+
+  <!--
+    ArchFlag mirrors the same casing fix in OneMoreSetup/Product.wxs:
+    sys.BUILDARCH is lowercase (arm64), but the MSI filename uses ARM64.
+  -->
+  <?define ArchFlag = $(sys.BUILDARCH) ?>
+  <?if $(sys.BUILDARCH) = arm64 ?>
+    <?undef ArchFlag ?>
+    <?define ArchFlag = ARM64 ?>
+  <?endif ?>
+
+  <Bundle Name="OneMore Add-in"
+          Version="$(var.ProductVersion)"
+          Manufacturer="River"
+          UpgradeCode="{BC32678A-CE28-476B-9A12-181EF4523358}">
+
+    <BootstrapperApplication>
+      <bal:WixStandardBootstrapperApplication
+        Theme="rtfLicense"
+        LicenseFile="..\OneMoreSetup\Resources\license.rtf"
+        LogoFile="..\OneMore\Properties\Images\Logo.ico" />
+    </BootstrapperApplication>
+
+    <Chain>
+      <MsiPackage
+        SourceFile="..\OneMoreSetup\bin\$(var.ArchFlag)\$(var.Configuration)\OneMore_$(var.ProductVersion)_Setup$(var.ArchFlag).msi" />
+    </Chain>
+
+  </Bundle>
+</Wix>

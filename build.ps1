@@ -432,6 +432,30 @@ Begin
 				$msi = Get-ChildItem "bin\$Architecture\Debug\OneMore_*.msi" | Select-Object -First 1
 				if ($msi)
 				{
+					# Build Burn bundle (.exe) while the MSI is still in its output location;
+					# Bundle.wxs resolves the MSI via a relative path from OneMoreBundle/.
+					$bundleExe = $null
+					Push-Location ..\OneMoreBundle
+					try
+					{
+						$bundleCmd = "& '$msbuild' OneMoreBundle.wixproj" +
+							" /Restore" +
+							" /p:Platform=$Architecture" +
+							" /p:Configuration=Debug" +
+							" /p:ProductVersion=$ver" +
+							" /nologo /m"
+						Write-Host $bundleCmd -ForegroundColor DarkGray
+						Invoke-Expression $bundleCmd
+						if ($LASTEXITCODE -eq 0)
+						{
+							$bundleExe = Get-ChildItem "bin\$Architecture\Debug\OneMore_*.exe" | Select-Object -First 1
+						}
+					}
+					finally
+					{
+						Pop-Location
+					}
+
 					# move msi to Downloads for safe-keeping and to allow next Platform build
 					$dest = "$home\Downloads\OneMore_${ver}_Setup${Architecture}.msi"
 					Move-Item $msi $dest -Force -Confirm:$false
@@ -442,6 +466,21 @@ Begin
 						$sum = (checksum -t sha256 $dest)
 						Write-Host "... $Architecture checksum: $sum" -ForegroundColor DarkYellow
 						$script:checksums += "$Architecture checksum: $sum"
+					}
+
+					# move bundle to Downloads
+					if ($bundleExe)
+					{
+						$exeDest = "$home\Downloads\OneMore_${ver}_Setup${Architecture}.exe"
+						Move-Item $bundleExe $exeDest -Force -Confirm:$false
+						Write-Host "... $Architecture bundle moved to $exeDest" -ForegroundColor DarkYellow
+
+						if (Get-Command checksum -ErrorAction SilentlyContinue)
+						{
+							$sum = (checksum -t sha256 $exeDest)
+							Write-Host "... $Architecture bundle checksum: $sum" -ForegroundColor DarkYellow
+							$script:checksums += "$Architecture bundle checksum: $sum"
+						}
 					}
 				}
 			}
