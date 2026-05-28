@@ -41,6 +41,8 @@ jobs:
           $msi = Get-ChildItem "$env:USERPROFILE\Downloads\OneMore_*_Setupx64.msi" | Select-Object -First 1
           if (-not $msi) { throw "MSI not found in $env:USERPROFILE\Downloads" }
           Move-Item $msi.FullName $msi.Name
+          $exe = Get-ChildItem "$env:USERPROFILE\Downloads\OneMore_*_Setupx64.exe" | Select-Object -First 1
+          if ($exe) { Move-Item $exe.FullName $exe.Name }
           $version = $msi.BaseName -replace '^OneMore_(.+)_Setupx64$', '$1'
           echo "version=$version" >> $env:GITHUB_OUTPUT
 
@@ -48,14 +50,14 @@ jobs:
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: OneMore-${{ steps.stage.outputs.version }}-x64
-          path: OneMore_*_Setupx64.msi
+          path: OneMore_*_Setupx64.*
 
       - name: Create release
         shell: pwsh
         run: |
           $tag = "${{ steps.stage.outputs.version }}-beta.${{ inputs.beta }}"
           $notes = "_This is a preview of what's to come. These changes have not yet been fully tested and no guarantee is provided. Be cautious using this build against your production notebooks. But if you're curious and willing to give it a try, please send feedback by opening a ticket. Thanks!_`n`n"
-          gh release create $tag OneMore_*_Setupx64.msi `
+          gh release create $tag OneMore_*_Setupx64.exe OneMore_*_Setupx64.msi `
             --title "OneMore $tag" `
             --notes $notes `
             --generate-notes `
