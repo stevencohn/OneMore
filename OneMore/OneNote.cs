@@ -1051,6 +1051,69 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Returns the section ID for a notebook-qualified section path such as
+		/// "notebook/section" or "notebook/group/section".  Returns null if not found.
+		/// </summary>
+		public async Task<string> FindSectionIdByPath(string notebookName, string sectionPath)
+		{
+			if (string.IsNullOrWhiteSpace(notebookName) || string.IsNullOrWhiteSpace(sectionPath))
+				return null;
+
+			var notebooks = await GetNotebooks();
+			for (int attempt = 1; attempt < 4 && (notebooks == null || !notebooks.HasElements); attempt++)
+			{
+				await Task.Delay(500 * attempt);
+				notebooks = await GetNotebooks();
+			}
+
+			if (notebooks == null || !notebooks.HasElements)
+				return null;
+
+			var ns = GetNamespace(notebooks);
+
+			var notebook = notebooks
+				.Elements(ns + "Notebook")
+				.FirstOrDefault(n => string.Equals(
+					n.Attribute("name")?.Value, notebookName,
+					StringComparison.InvariantCultureIgnoreCase));
+
+			if (notebook == null)
+				return null;
+
+			var notebookId = notebook.Attribute("ID").Value;
+
+			var notebookSections = await GetNotebook(notebookId, Scope.Sections);
+			for (int attempt = 1; attempt < 4 && (notebookSections == null || !notebookSections.HasElements); attempt++)
+			{
+				await Task.Delay(500 * attempt);
+				notebookSections = await GetNotebook(notebookId, Scope.Sections);
+			}
+
+			if (notebookSections == null || !notebookSections.HasElements)
+				return null;
+
+			var parts = sectionPath.Trim('/').Split('/');
+			XElement node = notebookSections;
+
+			foreach (var part in parts)
+			{
+				node = node
+					.Elements()
+					.FirstOrDefault(e =>
+						(e.Name.LocalName == "Section" || e.Name.LocalName == "SectionGroup") &&
+						string.Equals(
+							e.Attribute("name")?.Value, part,
+							StringComparison.InvariantCultureIgnoreCase));
+
+				if (node == null)
+					return null;
+			}
+
+			return node?.Attribute("ID")?.Value;
+		}
+
+
+		/// <summary>
 		/// Gest the current section and its child page hierarchy
 		/// </summary>
 		/// <returns>A Section element with Page children</returns>
@@ -1239,7 +1302,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public static bool ValidateSchema(XElement root)
+		public static bool ValidateSchema(XElement root, List<string> errors = null)
 		{
 			var document = new XDocument(root);
 			var ns = root.GetNamespaceOfPrefix(OneNote.Prefix);
@@ -1282,6 +1345,7 @@ namespace River.OneMoreAddIn
 				}
 
 				Logger.Current.WriteLine("schema error, unrecognized");
+				errors?.Add(e.Exception?.FormatDetails() ?? "Unrecognized schema validation error");
 				valid = false;
 			}
 			// uncomment this parameter to collect schema validation info for GetSchemaInfo()
