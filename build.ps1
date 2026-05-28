@@ -219,7 +219,7 @@ Begin
 
 	function BuildFast
 	{
-		Write-Host "`n... fast build with default configs" -ForegroundColor Cyan
+		Write-Host "`n... fast build with default configs ($Architecture)" -ForegroundColor Cyan
 
 		NugetRestore 'OneMore'
 		BuildProject 'OneMore'
@@ -266,7 +266,7 @@ Begin
 			Remove-Item .\Debug\*.* -Force -Confirm:$false
 		}
 
-		$cmd = ". '$devenv' .\$name.csproj /project $name /projectconfig 'Debug|AnyCPU' /build"
+		$cmd = ". '$devenv' .\$name.csproj /project $name /projectconfig 'Debug|$Architecture' /build"
 		write-Host $cmd -ForegroundColor DarkGray
 		Invoke-Expression $cmd
 
