@@ -31,7 +31,7 @@ namespace River.OneMoreAddIn.Commands
 			this.factory = factory;
 
 			versionLabel.Text = string.Format(Resx.AboutDialog_versionLabel_Text,
-				AssemblyInfo.Version, GetOneNoteVersion());
+				AssemblyInfo.Version + AssemblyInfo.BuildTag, GetOneNoteVersion());
 
 			copyLabel.Text = string.Format(Resx.AboutDialog_copyLabel_Text, DateTime.Now.Year);
 

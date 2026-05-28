@@ -6,6 +6,9 @@ Build OneMore full installer kit for the specified architecture, or default proj
 Builds the installer kit for the specifies architecture: x86, x64 (default), ARM64, All, or x.
 'x' is a shorthand for building x86 and x64, without the ARM64 build.
 
+.PARAMETER Beta
+Flags this as a beta version of the installer kit.
+
 .PARAMETER Clean
 Clean all projects in the solution, removing all bin and obj directories.
 No build is performed. This is a standalone command that executes and exits.
@@ -46,6 +49,7 @@ param (
 	[ValidateScript({ Test-Path $_ -PathType Leaf })]
 	[string] $Detect,
 
+	[switch] $Beta,
 	[switch] $Clean,
 	[switch] $Fast,
 	[switch] $Kit,
@@ -465,6 +469,8 @@ Process
 	if (-not (FindVisualStudio)) { return }
 
 	if ($Detect) { DetectArchitecture $Detect; return }
+
+	if ($Beta) { $env:Beta = 'true' } else { Remove-Item env:Beta -ErrorAction SilentlyContinue }
 
 	if (OneNoteRunning) { return }
 

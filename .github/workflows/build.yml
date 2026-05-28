@@ -3,6 +3,11 @@ name: Build
 on:
   workflow_dispatch:
     inputs:
+      beta_build:
+        description: 'Mark as beta build (shows Beta in About box)'
+        required: false
+        type: boolean
+        default: false
       beta:
         description: 'Beta number (e.g. 1 for 7.1.0-beta.1)'
         required: true
@@ -25,7 +30,9 @@ jobs:
 
       - name: Build solution
         shell: pwsh
-        run: .\build.ps1 -Architecture x64
+        run: |
+          $beta = '${{ inputs.beta_build }}' -eq 'true' ? '-Beta' : ''
+          Invoke-Expression ".\build.ps1 -Architecture x64 $beta"
 
       - name: Stage installer
         id: stage
