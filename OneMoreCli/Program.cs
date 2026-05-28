@@ -238,7 +238,12 @@ namespace OneMoreCli
 			}
 			else
 			{
-				await CliCommandFactory.Make().Run(command.GetType(), parameters);
+				var result = await CliCommandFactory.Make().Run(command.GetType(), parameters);
+				var output = result?.CliOutput;
+				if (!string.IsNullOrEmpty(output))
+				{
+					Console.Write(output);
+				}
 			}
 		}
 	}
