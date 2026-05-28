@@ -189,6 +189,7 @@
     <Compile Include="Cli\Commands\GetPageCommand.cs" />
     <Compile Include="Cli\Commands\PutPageCommand.cs" />
     <Compile Include="Cli\ICliCommand.cs" />
+    <Compile Include="Cli\ICliInteractiveCommand.cs" />
     <Compile Include="Cli\ICliPageCommand.cs" />
     <Compile Include="Commands\Clean\RemoveIndentsCommand.cs" />
     <Compile Include="Commands\Edit\ChooseColorizerCommand.cs" />

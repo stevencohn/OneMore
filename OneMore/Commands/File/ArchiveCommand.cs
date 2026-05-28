@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Cli;
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.UI;
 	using System;
@@ -25,7 +26,7 @@ namespace River.OneMoreAddIn.Commands
 	/// the archive so the archive can stand on its own as a working directory of HTML files with
 	/// live hyperlinks.
 	/// </summary>
-	internal class ArchiveCommand : Command
+	internal class ArchiveCommand : Command, ICliInteractiveCommand
 	{
 		private const string OrderFile = "__File_Order.txt";
 
@@ -48,8 +49,32 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		#region CLI Implementation
+
+		public string CommandName => "Archive";
+
+
+		public string Description => "Archive a notebook or section to a zip file";
+
+
+		public CliParameterDefinition DefineParameters() =>
+			new CliParameterDefinition()
+			.AddString("notebook", "Name of the notebook to archive", required: true)
+			.AddString("section", "Path of section to archive; omit to archive the entire notebook",
+				required: false)
+			.AddString("outfile", "Path and filename of the output zip file", required: true);
+
+		#endregion CLI Implementation
+
+
 		public override async Task Execute(params object[] args)
 		{
+			if (runningFromCli)
+			{
+				await ExecuteCli(args[0] as CliParameterSet);
+				return;
+			}
+
 			var scope = args[0] as string;
 
 			await using (one = new OneNote())
@@ -97,6 +122,163 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			logger.WriteLine("done");
+		}
+
+
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+		private async Task ExecuteCli(CliParameterSet cliParams)
+		{
+			cliParams.TryGet("notebook", out string notebookName);
+			cliParams.TryGet("section", out string sectionPath);
+			cliParams.TryGet("outfile", out string outFilePath);
+
+			await using (one = new OneNote())
+			{
+				bookScope = string.IsNullOrEmpty(sectionPath);
+
+				var notebooks = await one.GetNotebooks(OneNote.Scope.Notebooks);
+				for (int attempt = 1; attempt < 4 && (notebooks == null || !notebooks.HasElements); attempt++)
+				{
+					await Task.Delay(500 * attempt);
+					notebooks = await one.GetNotebooks(OneNote.Scope.Notebooks);
+				}
+
+				if (notebooks == null)
+				{
+					CliOutput = "Cannot connect to OneNote";
+					return;
+				}
+
+				var ns = one.GetNamespace(notebooks);
+				var notebookEl = notebooks
+					.Elements(ns + "Notebook")
+					.FirstOrDefault(n => string.Equals(
+						n.Attribute("name")?.Value, notebookName,
+						StringComparison.InvariantCultureIgnoreCase));
+
+				if (notebookEl == null)
+				{
+					CliOutput = $"Notebook not found: {notebookName}";
+					return;
+				}
+
+				if (bookScope)
+				{
+					hierarchy = await one.GetNotebook(
+						notebookEl.Attribute("ID").Value, OneNote.Scope.Pages);
+				}
+				else
+				{
+					var notebookTree = await one.GetNotebook(
+						notebookEl.Attribute("ID").Value, OneNote.Scope.Sections);
+
+					if (notebookTree == null)
+					{
+						CliOutput = $"Cannot load notebook: {notebookName}";
+						return;
+					}
+
+					var node = notebookTree;
+					var parts = sectionPath.Split(new[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
+
+					foreach (var part in parts)
+					{
+						node = node.Elements().FirstOrDefault(e =>
+							(e.Name.LocalName == "Section" || e.Name.LocalName == "SectionGroup") &&
+							string.Equals(e.Attribute("name")?.Value, part,
+								StringComparison.InvariantCultureIgnoreCase));
+
+						if (node == null)
+						{
+							CliOutput = $"Section not found: {sectionPath}";
+							return;
+						}
+					}
+
+					var sectionId = node.Attribute("ID")?.Value;
+					if (string.IsNullOrEmpty(sectionId))
+					{
+						CliOutput = $"Section not found: {sectionPath}";
+						return;
+					}
+
+					hierarchy = await one.GetSection(sectionId);
+				}
+
+				if (hierarchy == null)
+				{
+					CliOutput = bookScope
+						? $"Cannot load notebook: {notebookName}"
+						: $"Cannot load section: {sectionPath}";
+					return;
+				}
+
+				var hns = one.GetNamespace(hierarchy);
+				totalCount = hierarchy.Descendants(hns + "Page").Count();
+				if (totalCount == 0)
+				{
+					CliOutput = "No pages found";
+					return;
+				}
+
+				zipPath = outFilePath;
+
+				var dir = Path.GetDirectoryName(zipPath);
+				if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir))
+				{
+					CliOutput = $"Output directory does not exist: {dir}";
+					return;
+				}
+
+				logger.Start();
+				logger.StartClock();
+
+				archivist = new Archivist(one, zipPath);
+
+				// Always use Notebooks scope in CLI: Sections/Pages scope inside
+				// HyperlinkProvider asks for the "current notebook" via GetNotebook(Pages),
+				// which doesn't exist outside the OneNote UI context. Notebooks scope walks
+				// all notebooks — slower than the ribbon path's narrowed scope, but produces
+				// a superset map that still resolves every link in the archived pages.
+				await archivist.BuildHyperlinkMap(
+					OneNote.Scope.Notebooks,
+					null,
+					CancellationToken.None);
+
+				var t = Path.GetRandomFileName();
+				tempdir = Path.Combine(Path.GetTempPath(), Path.GetFileNameWithoutExtension(t));
+				PathHelper.EnsurePathExists(tempdir);
+				logger.WriteLine($"building archive {zipPath}");
+
+				try
+				{
+					using var stream = new FileStream(zipPath, FileMode.Create);
+					using (archive = new ZipArchive(stream, ZipArchiveMode.Create))
+					{
+						await Archive(null, hierarchy, hierarchy.Attribute("name").Value.Trim());
+					}
+
+					CliOutput = $"Archived {pageCount} of {totalCount} pages to {zipPath}";
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine("cannot create archive", exc);
+					CliOutput = $"Error: {exc.Message}";
+				}
+
+				try
+				{
+					Directory.Delete(tempdir, true);
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine($"cannot delete {tempdir}", exc);
+				}
+
+				logger.WriteTime("archive complete");
+				logger.End();
+			}
 		}
 
 
@@ -178,7 +360,7 @@ namespace River.OneMoreAddIn.Commands
 		private string ChooseLocation(string name)
 		{
 			string path;
-			using (var dialog = new OpenFileDialog
+			using (var dialog = new System.Windows.Forms.OpenFileDialog
 			{
 				AddExtension = true,
 				CheckFileExists = false,
@@ -222,8 +404,8 @@ namespace River.OneMoreAddIn.Commands
 					var page = await one.GetPage(
 						element.Attribute("ID").Value, OneNote.PageDetail.BinaryData);
 
-					progress.SetMessage($"Archiving {page.Title ?? Resx.phrase_QuickNote}");
-					progress.Increment();
+					progress?.SetMessage($"Archiving {page.Title ?? Resx.phrase_QuickNote}");
+					progress?.Increment();
 
 					var name = await ArchivePage(element, page, path);
 					if (name is not null)
