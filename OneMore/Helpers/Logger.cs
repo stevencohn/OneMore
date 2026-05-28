@@ -39,7 +39,7 @@ namespace River.OneMoreAddIn
 		private Stopwatch clock;
 
 
-		private Logger()
+		protected Logger()
 		{
 			using var process = Process.GetCurrentProcess();
 			stdio = process.ProcessName.StartsWith("LINQPad");
@@ -365,7 +365,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public void WriteLine()
+		public virtual void WriteLine()
 		{
 			if (EnsureWriter())
 			{
@@ -381,7 +381,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public void WriteLine(string message)
+		public virtual void WriteLine(string message)
 		{
 			if (EnsureWriter())
 			{

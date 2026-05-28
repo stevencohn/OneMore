@@ -11,8 +11,11 @@ namespace River.OneMoreAddIn.Commands
 	using System.Runtime.InteropServices;
 	using System.Text;
 	using System.Threading.Tasks;
+	using River.OneMoreAddIn.Cli;
+	using System.Xml.Linq;
 
-	internal class DiagnosticsCommand : Command
+
+	internal class DiagnosticsCommand : Command, ICliCommand
 	{
 		public DiagnosticsCommand()
 		{
@@ -21,11 +24,68 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		#region CLI Implementation
+
+		public string CommandName => "Diagnostics";
+
+
+		public string Description => "Dump diagnostic information about OneNote and OneMore";
+
+
+		public CliParameterDefinition DefineParameters() => new();
+
+
+		private sealed class CliLogger : Logger
+		{
+			private readonly StringBuilder buffer;
+
+			public CliLogger(StringBuilder buffer)
+			{
+				this.buffer = buffer;
+			}
+
+			public override void WriteLine()
+			{
+				buffer.AppendLine();
+				Console.WriteLine();
+			}
+
+			public override void WriteLine(string message)
+			{
+				buffer.AppendLine(message);
+				Console.WriteLine(message);
+			}
+		}
+
+		#endregion CLI Implementation
+
+
 		public override async Task Execute(params object[] args)
 		{
-			logger.StartDiagnostic();
-			logger.WriteLine("Diagnostics.Execute()");
-			logger.WriteLine(new string('-', 80));
+			System.Text.StringBuilder cliBuffer = null;
+			ILogger log;
+			if (runningFromCli)
+			{
+				cliBuffer = new StringBuilder();
+				log = new CliLogger(cliBuffer);
+			}
+			else
+			{
+				log = logger;
+			}
+
+			log.StartDiagnostic();
+
+			if (runningFromCli)
+			{
+				log.WriteLine();
+			}
+			else
+			{
+				log.WriteLine("Diagnostics.Execute()");
+			}
+
+			log.WriteLine(new string('-', 80));
 
 			var processes = Process.GetProcessesByName("ONENOTE");
 			var moduledesc = "unknown";
@@ -40,77 +100,103 @@ namespace River.OneMoreAddIn.Commands
 			var adloc = ad.Location;
 			var adarc = ad.GetName().ProcessorArchitecture;
 
-			logger.WriteLine($"Windows...: {GetWindowsProductName()}");
-			logger.WriteLine($"ONENOTE...: {moduledesc}");
-			logger.WriteLine($"Addin path: {adloc}, {adarc}");
-			logger.WriteLine($"Data path.: {PathHelper.GetAppDataPath()}");
-			logger.WriteLine($"Log path..: {logger.LogPath}");
-			logger.WriteLine();
+			log.WriteLine($"Windows...: {GetWindowsProductName()}");
+			log.WriteLine($"ONENOTE...: {moduledesc}");
+			log.WriteLine($"Addin path: {adloc}, {adarc}");
+			log.WriteLine($"Data path.: {PathHelper.GetAppDataPath()}");
+			log.WriteLine($"Log path..: {log.LogPath}");
+			log.WriteLine();
 
 			await using var one = new OneNote();
 
 			var (backupFolder, defaultFolder, unfiledFolder) = one.GetFolders();
-			logger.WriteLine($"Default path: {defaultFolder}");
-			logger.WriteLine($"Backup  path: {backupFolder}");
-			logger.WriteLine($"Unfiled path: {unfiledFolder}");
-			logger.WriteLine();
+			log.WriteLine($"Default path: {defaultFolder}");
+			log.WriteLine($"Backup  path: {backupFolder}");
+			log.WriteLine($"Unfiled path: {unfiledFolder}");
+			log.WriteLine();
 
 			var info = await one.GetPageInfo();
-			logger.WriteLine($"Page name: {info.Name}");
-			logger.WriteLine($"Page path: {info.Path}");
-			logger.WriteLine($"Page link: {info.Link}");
-			logger.WriteLine();
-
-			info = await one.GetSectionInfo();
-			logger.WriteLine($"Section name: {info.Name}");
-			logger.WriteLine($"Section path: {info.Path}");
-			logger.WriteLine($"Section link: {info.Link}");
-			logger.WriteLine();
-
-			var notebook = await one.GetNotebook();
-			if (notebook == null || notebook.Attribute("name") == null)
+			if (info is not null)
 			{
-				logger.WriteLine($"Notebook name: << error getting current notebook >>");
+				log.WriteLine($"Page name: {info.Name}");
+				log.WriteLine($"Page path: {info.Path}");
+				log.WriteLine($"Page link: {info.Link}");
+				log.WriteLine();
 			}
 			else
 			{
-				var notebookId = one.CurrentNotebookId;
-				logger.WriteLine($"Notebook name: {notebook.Attribute("name").Value}");
-				logger.WriteLine($"Notebook link: {one.GetHyperlink(notebookId, null)}");
+				log.WriteLine($"runningFromCli: {runningFromCli}");
+				log.WriteLine($"- PageInfo not found");
 			}
-			logger.WriteLine();
 
-			one.ReportWindowDiagnostics(logger);
+			info = await one.GetSectionInfo();
+			if (info is not null)
+			{
+				log.WriteLine($"Section name: {info.Name}");
+				log.WriteLine($"Section path: {info.Path}");
+				log.WriteLine($"Section link: {info.Link}");
+				log.WriteLine();
+			}
+			else
+			{
+				log.WriteLine("- SectionInfo not found");
+			}
 
-			logger.WriteLine();
+			var notebook = await one.GetNotebook();
+			if (notebook is not null)
+			{
+				var notebookId = one.CurrentNotebookId;
+				log.WriteLine($"Notebook name: {notebook.Attribute("name")?.Value}");
+				log.WriteLine($"Notebook link: {one.GetHyperlink(notebookId, null)}");
+			}
+			else
+			{
+				log.WriteLine("- NotebookInfo not found");
+			}
+			log.WriteLine();
+
+			one.ReportWindowDiagnostics(log);
+
+			log.WriteLine();
 
 			var page = await one.GetPage();
-			var pageColor = page.GetPageColor(out _, out _);
+			if (page != null)
+			{
+				var pageColor = page.GetPageColor(out _, out _);
 
-			logger.WriteLine($"Page background: {pageColor.ToRGBHtml()}");
-			logger.WriteLine($"Page brightness: {pageColor.GetBrightness()}");
-			logger.WriteLine($"Page bestText..: {page.GetBestTextColor().ToRGBHtml()}");
-			logger.WriteLine($"Page is dark...: {pageColor.IsDark()}");
+				log.WriteLine($"Page background: {pageColor.ToRGBHtml()}");
+				log.WriteLine($"Page brightness: {pageColor.GetBrightness()}");
+				log.WriteLine($"Page bestText..: {page.GetBestTextColor().ToRGBHtml()}");
+				log.WriteLine($"Page is dark...: {pageColor.IsDark()}");
+			}
 
 			(float dpiX, float dpiY) = UI.Scaling.GetDpiValues();
-			logger.WriteLine($"Screen DPI.....: horizontal/X:{dpiX} vertical/Y:{dpiY}");
+			log.WriteLine($"Screen DPI.....: horizontal/X:{dpiX} vertical/Y:{dpiY}");
 
 			(float scalingX, float scalingY) = UI.Scaling.GetScalingFactors();
-			logger.WriteLine($"Scaling factors: horizontal/X:{scalingX} vertical/Y:{scalingY}");
+			log.WriteLine($"Scaling factors: horizontal/X:{scalingX} vertical/Y:{scalingY}");
 
 			var magic = new UI.Scaling(100f, 100f);
-			logger.WriteLine($"Magic scaling..: ScalingX:{magic.ScalingX} ScalingY:{magic.ScalingY}");
+			log.WriteLine($"Magic scaling..: ScalingX:{magic.ScalingX} ScalingY:{magic.ScalingY}");
 
-			await RemindCommand.ReportDiagnostics(logger);
-			RemindScheduler.ReportDiagnostics(logger);
+			await RemindCommand.ReportDiagnostics(log);
+			RemindScheduler.ReportDiagnostics(log);
 
-			logger.WriteLine(new string('-', 80));
+			log.WriteLine(new string('-', 80));
 
-			using var dialog = new DiagnosticsDialog(logger.LogPath);
-			dialog.ShowDialog(owner);
+			if (!runningFromCli)
+			{
+				using var dialog = new DiagnosticsDialog(logger.LogPath);
+				dialog.ShowDialog(owner);
+			}
 
 			// turn headers back on
-			logger.End();
+			log.End();
+
+			if (runningFromCli)
+			{
+				CliOutput = cliBuffer.ToString();
+			}
 
 			await Task.Yield();
 		}

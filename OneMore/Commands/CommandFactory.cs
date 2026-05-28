@@ -166,8 +166,11 @@ namespace River.OneMoreAddIn
 				logger.WriteLine(exc);
 				logger.WriteLine();
 
-				MoreMessageBox.ShowErrorWithLogLink(
-					owner, string.Format(Resx.Command_ErrorMsg, type.Name));
+				if (!runningFromCli)
+				{
+					MoreMessageBox.ShowErrorWithLogLink(
+						owner, string.Format(Resx.Command_ErrorMsg, type.Name));
+				}
 			}
 		}
 #pragma warning restore CS4014 // ignore call not awaited

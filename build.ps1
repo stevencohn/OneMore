@@ -142,6 +142,7 @@ Begin
 		if ($pushpop) { Push-Location .. }
 		CleanProject 'OneMore'
 		CleanProject 'OneMoreCalendar'
+		CleanProject 'OneMoreCli'
 		CleanProject 'OneMoreProtocolHandler'
 		CleanProject 'OneMoreSetup'
 		CleanProject 'OneMoreSetupActions'
@@ -227,8 +228,8 @@ Begin
 		NugetRestore 'OneMoreCalendar'
 		BuildProject 'OneMoreCalendar'
 
+		BuildProject 'OneMoreCli'
 		BuildProject 'OneMoreProtocolHandler'
-
 		BuildProject 'OneMoreSetupActions'
 
 		ReportArchitectures
@@ -297,6 +298,7 @@ Begin
 		NugetRestore 'OneMore'
 		NugetRestore 'OneMoreTray'
 		NugetRestore 'OneMoreCalendar'
+		NugetRestore 'OneMoreCli'
 	}
 
 	function BuildSolution
@@ -356,6 +358,7 @@ Begin
 		Write-Host "... OneMore: $arc" -ForegroundColor DarkGray
 
 		ReportModuleArchitecture 'OneMoreCalendar'
+		ReportModuleArchitecture 'OneMoreCli'
 		ReportModuleArchitecture 'OneMoreProtocolHandler'
 		ReportModuleArchitecture 'OneMoreSetupActions'
 		ReportModuleArchitecture 'OneMoreTray'

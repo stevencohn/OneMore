@@ -281,6 +281,11 @@ namespace River.OneMoreAddIn.Commands
 		{
 			await using var one = new OneNote(out var spage, out var sns);
 
+			if (spage is null)
+			{
+				return;
+			}
+
 			logger.WriteLine();
 			logger.WriteLine($"Reminders on current page ({spage.Title})");
 			var reminders = new ReminderSerializer().LoadReminders(spage);
