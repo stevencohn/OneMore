@@ -51,6 +51,7 @@ param (
 
 	[switch] $Beta,
 	[switch] $Clean,
+	[switch] $EchoLog,
 	[switch] $Fast,
 	[switch] $Kit,
 	[switch] $Main,
@@ -320,14 +321,26 @@ Begin
 			return $false
 		}
 
-		Write-Host "& '$msbuild' .\OneMore.sln /p:Configuration=Debug /p:Platform=$Architecture /m /nologo" -ForegroundColor DarkGray
+		# RUNNER_TEMP is set by GitHub Actions; locally falls back to TEMP
+		$log = Join-Path ($env:RUNNER_TEMP ?? $env:TEMP) 'OneMoreBuild.log'
 
-		# Pipe to Write-Host so msbuild output appears in the log but doesn't
-		# pollute this function's pipeline return value
-		& $msbuild .\OneMore.sln `
-			/p:Configuration=Debug `
-			/p:Platform=$Architecture `
-			/m /nologo | Write-Host
+		Write-Host "& '$msbuild' .\OneMore.sln /p:Configuration=Debug /p:Platform=$Architecture /m /nologo" -ForegroundColor DarkGray
+		Write-Host "... build log: $log" -ForegroundColor DarkGray
+
+		if ($EchoLog)
+		{
+			& $msbuild .\OneMore.sln `
+				/p:Configuration=Debug `
+				/p:Platform=$Architecture `
+				/m /nologo | Tee-Object -FilePath $log | Write-Host
+		}
+		else
+		{
+			& $msbuild .\OneMore.sln `
+				/p:Configuration=Debug `
+				/p:Platform=$Architecture `
+				/m /nologo | Out-File -FilePath $log
+		}
 
 		$exitCode = $LASTEXITCODE
 		$color = $exitCode -eq 0 ? 'Green' : 'Red'

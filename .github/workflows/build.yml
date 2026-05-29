@@ -12,6 +12,11 @@ on:
         description: 'Beta number (e.g. 1 for 7.1.0-beta.1)'
         required: true
         type: number
+      output_build_log:
+        description: 'Output build log to console'
+        required: false
+        type: boolean
+        default: false
 
 jobs:
   build:
@@ -32,7 +37,16 @@ jobs:
         shell: pwsh
         run: |
           $beta = '${{ inputs.beta_build }}' -eq 'true' ? '-Beta' : ''
-          Invoke-Expression ".\build.ps1 -Architecture x64 $beta"
+          $echoLog = '${{ inputs.output_build_log }}' -eq 'true' ? '-EchoLog' : ''
+          Invoke-Expression ".\build.ps1 -Architecture x64 $beta $echoLog"
+
+      - name: Upload build log
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: OneMoreBuild-log
+          path: ${{ runner.temp }}\OneMoreBuild.log
+          if-no-files-found: warn
 
       - name: Stage installer
         id: stage
