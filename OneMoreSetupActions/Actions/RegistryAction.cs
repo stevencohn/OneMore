@@ -92,14 +92,31 @@ namespace OneMoreSetupActions
 
 
 		/// <summary>
-		/// Maps a .reg-format hive name (e.g. HKEY_LOCAL_MACHINE) to the corresponding
-		/// RegistryKey, defaulting to CurrentUser for anything unrecognised.
+		/// Returns Registry64 on a 64-bit OS so that registry writes bypass WOW64
+		/// redirection when this process runs as 32-bit (x86-package MSI custom actions
+		/// always run as 32-bit on 64-bit Windows). HKCU has no 32/64 split.
 		/// </summary>
-		private static RegistryKey ResolveHive(string hiveName)
+		private static RegistryView ViewFor(RegistryHive hive) =>
+			hive != RegistryHive.CurrentUser && Environment.Is64BitOperatingSystem
+				? RegistryView.Registry64
+				: RegistryView.Default;
+
+
+		/// <summary>
+		/// Resolves a .reg-format hive name to a (RegistryHive, keyPath) pair.
+		/// HKEY_CLASSES_ROOT is mapped to HKLM\SOFTWARE\Classes so writes land in the
+		/// machine-wide hive rather than the per-user merged view.
+		/// </summary>
+		private static (RegistryHive hive, string keyPath) ResolveHiveAndPath(
+			string hiveName, string keyName)
 		{
-			if (hiveName.EndsWith("ROOT")) return Registry.ClassesRoot;
-			if (hiveName.EndsWith("MACHINE")) return Registry.LocalMachine;
-			return Registry.CurrentUser;
+			if (hiveName.EndsWith("ROOT"))
+				return (RegistryHive.LocalMachine, @"SOFTWARE\Classes\" + keyName);
+
+			if (hiveName.EndsWith("MACHINE"))
+				return (RegistryHive.LocalMachine, keyName);
+
+			return (RegistryHive.CurrentUser, keyName);
 		}
 
 
@@ -110,23 +127,21 @@ namespace OneMoreSetupActions
 		private RegistryKey OpenOrCreateKey(string line)
 		{
 			var raw = line.Trim('[', ']');
+			var sep = raw.IndexOf('\\');
+			var hiveName = raw.Substring(0, sep);
+			var (hive, keyPath) = ResolveHiveAndPath(hiveName, raw.Substring(sep + 1));
 
-			// extract hive name, ending up with something like "HKEY_CLASSES_ROOT"
-			var hiveName = raw.Substring(0, raw.IndexOf('\\'));
-			var hive = ResolveHive(hiveName);
+			using var baseKey = RegistryKey.OpenBaseKey(hive, ViewFor(hive));
 
-			// extract key path, ending up with something like "Software\OneMore"
-			var keyName = raw.Substring(raw.IndexOf('\\') + 1);
-
-			var key = hive.OpenSubKey(keyName, RegistryKeyPermissionCheck.ReadWriteSubTree);
+			var key = baseKey.OpenSubKey(keyPath, RegistryKeyPermissionCheck.ReadWriteSubTree);
 			if (key is null)
 			{
-				logger.WriteLine($"creating key: {hive.Name}\\{keyName}");
-				key = hive.CreateSubKey(keyName, RegistryKeyPermissionCheck.ReadWriteSubTree);
+				logger.WriteLine($"creating key: {hiveName}\\{keyPath}");
+				key = baseKey.CreateSubKey(keyPath, RegistryKeyPermissionCheck.ReadWriteSubTree);
 			}
 			else
 			{
-				logger.WriteLine($"opened key: {hive.Name}\\{keyName}");
+				logger.WriteLine($"opened key: {hiveName}\\{keyPath}");
 			}
 
 			return key;
@@ -201,12 +216,13 @@ namespace OneMoreSetupActions
 						var raw = line.Trim('[', ']');
 						if (marker is null || !raw.StartsWith(marker))
 						{
-							var hiveName = raw.Substring(0, raw.IndexOf('\\'));
-							var hive = ResolveHive(hiveName);
-							var keyName = raw.Substring(raw.IndexOf('\\') + 1);
+							var sep = raw.IndexOf('\\');
+							var hiveName = raw.Substring(0, sep);
+							var (hive, keyPath) = ResolveHiveAndPath(hiveName, raw.Substring(sep + 1));
 
 							logger.WriteLine($"deleting tree: {raw}");
-							hive.DeleteSubKeyTree(keyName, false);
+							using var baseKey = RegistryKey.OpenBaseKey(hive, ViewFor(hive));
+							baseKey.DeleteSubKeyTree(keyPath, false);
 
 							// remember for next pass; only need to delete root of subtree
 							marker = raw;
