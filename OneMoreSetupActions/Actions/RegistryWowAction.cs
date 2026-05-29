@@ -63,24 +63,37 @@ namespace OneMoreSetupActions
 		 * key needed to be cloned to WOW6432Node\CLSID and that could be done directly.
 		 */
 		/// <summary>
-		/// Copies the OneMore CLSID branch from HKCR\CLSID to HKCR\WOW6432Node\CLSID so
-		/// both 32-bit and 64-bit OneNote on the same machine can activate the add-in.
+		/// Copies the OneMore CLSID branch from HKLM\SOFTWARE\Classes\CLSID to
+		/// HKLM\SOFTWARE\WOW6432Node\Classes\CLSID so 32-bit OneNote can activate the add-in.
+		/// Uses Registry64 explicitly so this works when the process is 32-bit (x86 MSI).
 		/// </summary>
 		private int RegisterWow()
 		{
 			logger.WriteLine($"step {stepper.Step()}: cloning CLSID");
-			using (var source = Registry.ClassesRoot.OpenSubKey(
-				$@"CLSID\{RegistryHelper.OneMoreID}",
-				RegistryKeyPermissionCheck.ReadSubTree, RegistryHelper.ReadRights))
+
+			var view = Environment.Is64BitOperatingSystem ? RegistryView.Registry64 : RegistryView.Default;
+
+			using var lm = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, view);
+			using var source = lm.OpenSubKey(
+				$@"SOFTWARE\Classes\CLSID\{RegistryHelper.OneMoreID}",
+				RegistryKeyPermissionCheck.ReadSubTree, RegistryHelper.ReadRights);
+
+			if (source != null)
 			{
-				if (source != null)
+				using var target = lm.OpenSubKey(@"SOFTWARE\WOW6432Node\Classes\CLSID", true);
+				if (target != null)
 				{
-					using (var target = Registry.ClassesRoot.OpenSubKey(@"WOW6432Node\CLSID", true))
-					{
-						logger.WriteLine($"step {stepper.Step()}: copying from {source.Name} to {target.Name}");
-						source.CopyTo(target);
-					}
+					logger.WriteLine($"step {stepper.Step()}: copying from {source.Name} to {target.Name}");
+					source.CopyTo(target);
 				}
+				else
+				{
+					logger.WriteLine($"step {stepper.Step()}: WOW6432Node\\Classes\\CLSID not accessible");
+				}
+			}
+			else
+			{
+				logger.WriteLine($"source CLSID\\{RegistryHelper.OneMoreID} not found");
 			}
 
 			return SUCCESS;
@@ -108,22 +121,26 @@ namespace OneMoreSetupActions
 
 
 		/// <summary>
-		/// Deletes the OneMore CLSID entry from HKCR\WOW6432Node\CLSID.
+		/// Deletes the OneMore CLSID entry from HKLM\SOFTWARE\WOW6432Node\Classes\CLSID.
+		/// Uses Registry64 explicitly so this works when the process is 32-bit (x86 MSI).
 		/// </summary>
 		private int UnregisterWow()
 		{
 			logger.WriteLine($"step {stepper.Step()}: deleting CLSID clone");
-			using (var key = Registry.ClassesRoot.OpenSubKey(@"WOW6432Node\CLSID", true))
+
+			var view = Environment.Is64BitOperatingSystem ? RegistryView.Registry64 : RegistryView.Default;
+
+			using var lm = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, view);
+			using var key = lm.OpenSubKey(@"SOFTWARE\WOW6432Node\Classes\CLSID", true);
+
+			if (key != null)
 			{
-				if (key != null)
-				{
-					key.DeleteSubKeyTree(RegistryHelper.OneMoreID, false);
-					key.DeleteSubKey(RegistryHelper.OneMoreID, false);
-				}
-				else
-				{
-					logger.WriteLine("CLSID key not found");
-				}
+				key.DeleteSubKeyTree(RegistryHelper.OneMoreID, false);
+				key.DeleteSubKey(RegistryHelper.OneMoreID, false);
+			}
+			else
+			{
+				logger.WriteLine("CLSID key not found");
 			}
 
 			return SUCCESS;
