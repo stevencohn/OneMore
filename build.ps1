@@ -17,6 +17,10 @@ No build is performed. This is a standalone command that executes and exits.
 Detect and report the targeted CPU architecture of the specified DLL or EXE file.
 This is a standalone command that executes and exits.
 
+.PARAMETER EchoLog
+When building with MSBuild, echo the build log to the console in addition to writing it to a
+file. This is useful for debugging build issues.
+
 .PARAMETER Fast
 Build just the .csproj projects using default parameters: OneMore, OneMorCalendar, 
 OneMoreProtocolHandler, OneMoreSetupActions, and OneMoreTray.
@@ -51,6 +55,7 @@ param (
 
 	[switch] $Beta,
 	[switch] $Clean,
+	[switch] $EchoLog,
 	[switch] $Fast,
 	[switch] $Kit,
 	[switch] $Main,
@@ -312,36 +317,40 @@ Begin
 		Write-Host "`n... building $Architecture solution" -ForegroundColor Cyan
 		Write-Host
 
-		SetBuildVerbosity 4
-
-		try
+		$vsRoot = Split-Path -Parent (Split-Path -Parent $script:ideroot)
+		$msbuild = Join-Path $vsRoot 'MSBuild\Current\Bin\MSBuild.exe'
+		if (-not (Test-Path $msbuild))
 		{
-			$log = "$($env:TEMP)\OneMoreBuild.log"
-			if (Test-Path $log) { Remove-Item $log -Force -Confirm:$false }
-
-			$cmd = ". '$devenv' .\OneMore.sln /build 'Debug|$Architecture' /out '$log'"
-			Write-Host $cmd -ForegroundColor DarkGray
-			Invoke-Expression $cmd
-		}
-		finally
-		{
-			SetBuildVerbosity 1
+			Write-Host "... MSBuild not found at $msbuild" -ForegroundColor Red
+			return $false
 		}
 
-		$succeeded = 0;
-		$failed = 1
+		# RUNNER_TEMP is set by GitHub Actions; locally falls back to TEMP
+		$tempdir = $env:RUNNER_TEMP ?? $env:TEMP
+		$log = Join-Path $tempdir 'OneMoreBuild.log'
 
-		Get-Content $env:TEMP\OneMoreBuild.log -ErrorAction SilentlyContinue | `
-			where { $_ -match '== Build: (\d+) succeeded, (\d+) failed'} | `
-			select -last 1 | `
-			foreach {
-				$succeeded = $matches[1]
-				$failed = $matches[2]
-				$color = $failed -eq 0 ? 'Green' : 'Red'
-				write-Host "`n... build completed: $succeeded succeeded, $failed failed" -ForegroundColor $color
-			}
+		Write-Host "& '$msbuild' .\OneMore.sln /p:Configuration=Debug /p:Platform=$Architecture /m /nologo" -ForegroundColor DarkGray
+		Write-Host "... build log: $log" -ForegroundColor DarkGray
 
-		return [bool]($succeeded -gt 0 -and $failed -eq 0)
+		if ($EchoLog)
+		{
+			& $msbuild .\OneMore.sln `
+				/p:Configuration=Debug `
+				/p:Platform=$Architecture `
+				/m /nologo | Tee-Object -FilePath $log | Write-Host
+		}
+		else
+		{
+			& $msbuild .\OneMore.sln `
+				/p:Configuration=Debug `
+				/p:Platform=$Architecture `
+				/m /nologo | Out-File -FilePath $log
+		}
+
+		$exitCode = $LASTEXITCODE
+		$color = $exitCode -eq 0 ? 'Green' : 'Red'
+		Write-Host "`n... msbuild exit code: $exitCode" -ForegroundColor $color
+		return $exitCode -eq 0
 	}
 
 	function SetBuildVerbosity
