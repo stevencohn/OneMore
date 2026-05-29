@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Web;
+	using System.Windows.Forms;
 	using System.Xml.Linq;
 	using Resx = Properties.Resources;
 
@@ -35,7 +36,8 @@ namespace River.OneMoreAddIn.Commands
 					"scopeLabel=word_Scope",
 					"scopeBox",
 					"rawBox",
-					"okButton=word_OK",
+					"replaceButton",
+					"replaceAllButton",
 					"cancelButton=word_Cancel"
 				});
 			}
@@ -95,6 +97,8 @@ namespace River.OneMoreAddIn.Commands
 		public XElement RawXml { get; private set; }
 
 		public OneNote.Scope Scope { get; private set; } = OneNote.Scope.Self;
+
+		public bool StepwiseMode => DialogResult == DialogResult.Yes;
 
 		public string WithText => withBox.Text;
 
@@ -159,22 +163,33 @@ namespace River.OneMoreAddIn.Commands
 						withStatusLabel.Text = string.Empty;
 					}
 
-					okButton.Enabled = whatBox.Text.Length > 0;
+					var hasText = whatBox.Text.Length > 0;
+					replaceAllButton.Enabled = hasText;
+					UpdateReplaceButtonState(hasText);
 				}
 				catch (Exception exc)
 				{
 					logger.WriteLine(text, exc);
 					whatStatusLabel.Text = exc.Message;
 					withStatusLabel.Text = string.Empty;
-					okButton.Enabled = false;
+					replaceAllButton.Enabled = false;
+					replaceButton.Enabled = false;
 				}
 			}
 			else
 			{
 				whatStatusLabel.Text = string.Empty;
 				withStatusLabel.Text = string.Empty;
-				okButton.Enabled = whatBox.Text.Length > 0;
+				var hasText = whatBox.Text.Length > 0;
+				replaceAllButton.Enabled = hasText;
+				UpdateReplaceButtonState(hasText);
 			}
+		}
+
+
+		private void UpdateReplaceButtonState(bool hasText)
+		{
+			replaceButton.Enabled = hasText && Scope == OneNote.Scope.Self;
 		}
 
 
@@ -249,6 +264,8 @@ namespace River.OneMoreAddIn.Commands
 				3 => OneNote.Scope.Notebooks,
 				_ => OneNote.Scope.Self
 			};
+
+			UpdateReplaceButtonState(replaceAllButton.Enabled);
 		}
 	}
 }

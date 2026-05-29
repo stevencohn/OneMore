@@ -4571,6 +4571,10 @@ Sei sicuro di voler eseguire la scansione adesso?</value>
     <value>Taccuini selezionati...</value>
     <comment>radio</comment>
   </data>
+  <data name="SearchAndReplaceCommand_NoMatches" xml:space="preserve">
+    <value>Nessuna corrispondenza trovata in questa pagina.</value>
+    <comment>message box</comment>
+  </data>
   <data name="SearchAndReplaceCommand_Results" xml:space="preserve">
     <value>Sostituite {0} corrispondenze su {1} pagine</value>
     <comment>message box</comment>
@@ -4586,6 +4590,14 @@ Sei sicuro di voler eseguire la scansione adesso?</value>
   <data name="SearchAndReplaceDialog_regBox.Text" xml:space="preserve">
     <value>Utilizza le espressioni regolari</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="SearchAndReplaceDialog_replaceAllButton.Text" xml:space="preserve">
+    <value>Sostituisci tutto</value>
+    <comment>button</comment>
+  </data>
+  <data name="SearchAndReplaceDialog_replaceButton.Text" xml:space="preserve">
+    <value>Sostituisci Avanti</value>
+    <comment>button</comment>
   </data>
   <data name="SearchAndReplaceDialog_scopBox" xml:space="preserve">
     <value>Questa pagina
@@ -4610,21 +4622,27 @@ Tutti i quaderni</value>
     <value>Sostituisci con:</value>
     <comment>label</comment>
   </data>
+  <data name="SearchAndReplaceSessionDialog_replaceAllButton.Text" xml:space="preserve">
+    <value>Sostituisci tutto</value>
+    <comment>button</comment>
+  </data>
+  <data name="SearchAndReplaceSessionDialog_statusLabel.Text" xml:space="preserve">
+    <value>Corrispondenza {0} di {1} — «{2}»</value>
+    <comment>status label</comment>
+  </data>
+  <data name="SearchAndReplaceSessionDialog_Text" xml:space="preserve">
+    <value>Cerca e sostituisci</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="SearchCommand_indexTitle" xml:space="preserve">
     <value>Risultati della ricerca</value>
     <comment>page title</comment>
   </data>
-  <data name="SearchDialogText_scopeOptions" xml:space="preserve">
-    <value>In questo quaderno
-In questa sezione
-In questa pagina</value>
-    <comment>combobox</comment>
-  </data>
-  <data name="SearchDialogTextControl_clearAllLink.Text" xml:space="preserve">
+  <data name="SearchDialog_clearAllLink.Text" xml:space="preserve">
     <value>Cancella selezione</value>
     <comment>link</comment>
   </data>
-  <data name="SearchDialogTextControl_dateOptions" xml:space="preserve">
+  <data name="SearchDialog_dateOptions" xml:space="preserve">
     <value>Qualsiasi data
 Creato dopo
 Creato prima
@@ -4632,25 +4650,31 @@ Modificato dopo
 Modificato prima</value>
     <comment>combobox</comment>
   </data>
-  <data name="SearchDialogTextControl_includeTocBox.Text" xml:space="preserve">
-    <value>Cerca il testo nel sommario</value>
+  <data name="SearchDialog_includeTocBox.Text" xml:space="preserve">
+    <value>Cerca testo nel sommario</value>
     <comment>checkbox</comment>
   </data>
-  <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
+  <data name="SearchDialog_introLabel.Text" xml:space="preserve">
     <value>Inserisci i criteri di ricerca, includendo facoltativamente AND, OR, NOT, virgolette e parentesi</value>
     <comment>label</comment>
   </data>
-  <data name="SearchDialogTextControl_matchBox.Text" xml:space="preserve">
+  <data name="SearchDialog_matchBox.Text" xml:space="preserve">
     <value>Caso di corrispondenza</value>
     <comment>checkbox</comment>
   </data>
-  <data name="SearchDialogTextControl_regBox.Text" xml:space="preserve">
+  <data name="SearchDialog_regBox.Text" xml:space="preserve">
     <value>Utilizza le espressioni regolari</value>
     <comment>checkbox</comment>
   </data>
-  <data name="SearchDialogTextControl_selectAllLink.Text" xml:space="preserve">
+  <data name="SearchDialog_selectAllLink.Text" xml:space="preserve">
     <value>Seleziona tutto</value>
     <comment>link</comment>
+  </data>
+  <data name="SearchDialogText_scopeOptions" xml:space="preserve">
+    <value>In questo quaderno
+In questa sezione
+In questa pagina</value>
+    <comment>combobox</comment>
   </data>
   <data name="SearchEngineDialog_deleteLabel.Text" xml:space="preserve">
     <value>Eliminare:</value>
@@ -5608,6 +5632,9 @@ Grazie!</value>
   <data name="word_Rename" xml:space="preserve">
     <value>Rinominare</value>
   </data>
+  <data name="word_Replace" xml:space="preserve">
+    <value>Sostituire</value>
+  </data>
   <data name="word_Reset" xml:space="preserve">
     <value>Reset</value>
   </data>
@@ -5634,6 +5661,9 @@ Grazie!</value>
   </data>
   <data name="word_Silenced" xml:space="preserve">
     <value>Tacere</value>
+  </data>
+  <data name="word_Skip" xml:space="preserve">
+    <value>Saltare</value>
   </data>
   <data name="word_Snippets" xml:space="preserve">
     <value>Snippet</value>

@@ -4564,6 +4564,10 @@ Czy na pewno chcesz teraz uruchomić skanowanie?</value>
     <value>Wybrane notebooki ...</value>
     <comment>radio</comment>
   </data>
+  <data name="SearchAndReplaceCommand_NoMatches" xml:space="preserve">
+    <value>Na tej stronie nie znaleziono żadnych dopasowań.</value>
+    <comment>message box</comment>
+  </data>
   <data name="SearchAndReplaceCommand_Results" xml:space="preserve">
     <value>Zastąpiono dopasowania {0} na stronach {1}</value>
     <comment>message box</comment>
@@ -4579,6 +4583,14 @@ Czy na pewno chcesz teraz uruchomić skanowanie?</value>
   <data name="SearchAndReplaceDialog_regBox.Text" xml:space="preserve">
     <value>Używaj wyrażeń regularnych</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="SearchAndReplaceDialog_replaceAllButton.Text" xml:space="preserve">
+    <value>Zamień wszystko</value>
+    <comment>button</comment>
+  </data>
+  <data name="SearchAndReplaceDialog_replaceButton.Text" xml:space="preserve">
+    <value>Zamień Dalej</value>
+    <comment>button</comment>
   </data>
   <data name="SearchAndReplaceDialog_scopBox" xml:space="preserve">
     <value>Ta strona
@@ -4603,47 +4615,59 @@ Wszystkie notesy</value>
     <value>Zamienić:</value>
     <comment>label</comment>
   </data>
+  <data name="SearchAndReplaceSessionDialog_replaceAllButton.Text" xml:space="preserve">
+    <value>Zamień wszystko</value>
+    <comment>button</comment>
+  </data>
+  <data name="SearchAndReplaceSessionDialog_statusLabel.Text" xml:space="preserve">
+    <value>Dopasuj {0} z {1} — «{2}»</value>
+    <comment>status label</comment>
+  </data>
+  <data name="SearchAndReplaceSessionDialog_Text" xml:space="preserve">
+    <value>Wyszukaj i zamień</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="SearchCommand_indexTitle" xml:space="preserve">
     <value>Wyniki wyszukiwania</value>
     <comment>page title</comment>
+  </data>
+  <data name="SearchDialog_clearAllLink.Text" xml:space="preserve">
+    <value>Wyczyść wybór</value>
+    <comment>link</comment>
+  </data>
+  <data name="SearchDialog_dateOptions" xml:space="preserve">
+    <value>Dowolna data
+Stworzony po
+Stworzony wcześniej
+Zmodyfikowano po
+Zmodyfikowany wcześniej</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="SearchDialog_includeTocBox.Text" xml:space="preserve">
+    <value>Wyszukaj tekst w spisie treści</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SearchDialog_introLabel.Text" xml:space="preserve">
+    <value>Wprowadź kryteria wyszukiwania, opcjonalnie uwzględniając AND, OR, NOT, cudzysłowy i nawiasy</value>
+    <comment>label</comment>
+  </data>
+  <data name="SearchDialog_matchBox.Text" xml:space="preserve">
+    <value>Sprawa dopasowania</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SearchDialog_regBox.Text" xml:space="preserve">
+    <value>Używaj wyrażeń regularnych</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SearchDialog_selectAllLink.Text" xml:space="preserve">
+    <value>Zaznacz wszystko</value>
+    <comment>link</comment>
   </data>
   <data name="SearchDialogText_scopeOptions" xml:space="preserve">
     <value>W tym notatniku
 W tej sekcji
 Na tej stronie</value>
     <comment>combobox</comment>
-  </data>
-  <data name="SearchDialogTextControl_clearAllLink.Text" xml:space="preserve">
-    <value>Wyczyść wybór</value>
-    <comment>link</comment>
-  </data>
-  <data name="SearchDialogTextControl_dateOptions" xml:space="preserve">
-    <value>Dowolna data
-Stworzony po
-Utworzony wcześniej
-Zmodyfikowany po
-Zmodyfikowane wcześniej</value>
-    <comment>combobox</comment>
-  </data>
-  <data name="SearchDialogTextControl_includeTocBox.Text" xml:space="preserve">
-    <value>Wyszukaj tekst w spisie treści</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
-    <value>Wprowadź kryteria wyszukiwania, opcjonalnie, w tym i, lub nie, cytaty i nawiasy</value>
-    <comment>label</comment>
-  </data>
-  <data name="SearchDialogTextControl_matchBox.Text" xml:space="preserve">
-    <value>Przypadek dopasowania</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="SearchDialogTextControl_regBox.Text" xml:space="preserve">
-    <value>Użyj wyrażeń regularnych</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="SearchDialogTextControl_selectAllLink.Text" xml:space="preserve">
-    <value>Zaznacz wszystko</value>
-    <comment>link</comment>
   </data>
   <data name="SearchEngineDialog_deleteLabel.Text" xml:space="preserve">
     <value>Usuwać:</value>
@@ -5601,6 +5625,9 @@ Dziękuję!</value>
   <data name="word_Rename" xml:space="preserve">
     <value>Przemianować</value>
   </data>
+  <data name="word_Replace" xml:space="preserve">
+    <value>Zastępować</value>
+  </data>
   <data name="word_Reset" xml:space="preserve">
     <value>Resetowanie</value>
   </data>
@@ -5627,6 +5654,9 @@ Dziękuję!</value>
   </data>
   <data name="word_Silenced" xml:space="preserve">
     <value>Uciszony</value>
+  </data>
+  <data name="word_Skip" xml:space="preserve">
+    <value>Pominąć</value>
   </data>
   <data name="word_Snippets" xml:space="preserve">
     <value>Fragmenty</value>
