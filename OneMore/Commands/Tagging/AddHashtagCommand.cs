@@ -94,6 +94,8 @@ namespace River.OneMoreAddIn.Commands
 			if (AddTagsToBank(page, tags))
 			{
 				await one.Update(page);
+
+				logger.WriteLine($"AddHashtagCommand: added tags to page: {page.Title}");
 			}
 		}
 

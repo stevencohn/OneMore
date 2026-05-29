@@ -97,6 +97,8 @@ namespace River.OneMoreAddIn.Commands
 			if (changed)
 			{
 				await one.Update(page);
+
+				logger.Verbose($"RemoveHashtagCommand: updated page: {page.Title}");
 			}
 		}
 
