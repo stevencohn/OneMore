@@ -17,6 +17,10 @@ No build is performed. This is a standalone command that executes and exits.
 Detect and report the targeted CPU architecture of the specified DLL or EXE file.
 This is a standalone command that executes and exits.
 
+.PARAMETER EchoLog
+When building with MSBuild, echo the build log to the console in addition to writing it to a
+file. This is useful for debugging build issues.
+
 .PARAMETER Fast
 Build just the .csproj projects using default parameters: OneMore, OneMorCalendar, 
 OneMoreProtocolHandler, OneMoreSetupActions, and OneMoreTray.
@@ -322,7 +326,8 @@ Begin
 		}
 
 		# RUNNER_TEMP is set by GitHub Actions; locally falls back to TEMP
-		$log = Join-Path ($env:RUNNER_TEMP ?? $env:TEMP) 'OneMoreBuild.log'
+		$tempdir = $env:RUNNER_TEMP ?? $env:TEMP
+		$log = Join-Path $tempdir 'OneMoreBuild.log'
 
 		Write-Host "& '$msbuild' .\OneMore.sln /p:Configuration=Debug /p:Platform=$Architecture /m /nologo" -ForegroundColor DarkGray
 		Write-Host "... build log: $log" -ForegroundColor DarkGray
