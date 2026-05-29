@@ -4596,7 +4596,7 @@ ISO-code then comma then language name</comment>
     <value>החלף את הבא</value>
     <comment>button</comment>
   </data>
-  <data name="SearchAndReplaceDialog_scopBox" xml:space="preserve">
+  <data name="SearchAndReplaceDialog_scopeBox.Text" xml:space="preserve">
     <value>הדף הזה
 הסעיף הזה
 המחברת הזו

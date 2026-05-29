@@ -4606,7 +4606,7 @@ ISO-code then comma then language name</comment>
     <value>替换下一个</value>
     <comment>button</comment>
   </data>
-  <data name="SearchAndReplaceDialog_scopBox" xml:space="preserve">
+  <data name="SearchAndReplaceDialog_scopeBox.Text" xml:space="preserve">
     <value>此页面
             此分区
             此笔记本

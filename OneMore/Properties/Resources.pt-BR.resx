@@ -4592,7 +4592,7 @@ Tem certeza de que deseja executar a verificação agora</value>
     <value>Substituir próximo</value>
     <comment>button</comment>
   </data>
-  <data name="SearchAndReplaceDialog_scopBox" xml:space="preserve">
+  <data name="SearchAndReplaceDialog_scopeBox.Text" xml:space="preserve">
     <value>Esta página
 Esta seção
 Este caderno

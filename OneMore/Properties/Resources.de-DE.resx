@@ -4593,7 +4593,7 @@ Sind Sie sicher, dass Sie den Scan jetzt ausführen möchten?</value>
     <value>Ersetzen Sie als Nächstes</value>
     <comment>button</comment>
   </data>
-  <data name="SearchAndReplaceDialog_scopBox" xml:space="preserve">
+  <data name="SearchAndReplaceDialog_scopeBox.Text" xml:space="preserve">
     <value>Diese Seite
 Dieser Abschnitt
 Dieses Notizbuch

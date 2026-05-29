@@ -4599,7 +4599,7 @@ Sei sicuro di voler eseguire la scansione adesso?</value>
     <value>Sostituisci Avanti</value>
     <comment>button</comment>
   </data>
-  <data name="SearchAndReplaceDialog_scopBox" xml:space="preserve">
+  <data name="SearchAndReplaceDialog_scopeBox.Text" xml:space="preserve">
     <value>Questa pagina
 Questa sezione
 Questo quaderno

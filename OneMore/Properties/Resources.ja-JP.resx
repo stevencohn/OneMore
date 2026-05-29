@@ -4602,7 +4602,7 @@ ISO-code then comma then language name</comment>
     <value>次を置換</value>
     <comment>button</comment>
   </data>
-  <data name="SearchAndReplaceDialog_scopBox" xml:space="preserve">
+  <data name="SearchAndReplaceDialog_scopeBox.Text" xml:space="preserve">
     <value>このページ
 このセクション
 このノート

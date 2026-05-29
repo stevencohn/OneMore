@@ -11389,9 +11389,9 @@ namespace River.OneMoreAddIn.Properties {
         ///This notebook
         ///All notebooks.
         /// </summary>
-        internal static string SearchAndReplaceDialog_scopBox {
+        internal static string SearchAndReplaceDialog_scopeBox {
             get {
-                return ResourceManager.GetString("SearchAndReplaceDialog_scopBox", resourceCulture);
+                return ResourceManager.GetString("SearchAndReplaceDialog_scopeBox", resourceCulture);
             }
         }
         

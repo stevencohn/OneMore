@@ -4592,7 +4592,7 @@ Czy na pewno chcesz teraz uruchomić skanowanie?</value>
     <value>Zamień Dalej</value>
     <comment>button</comment>
   </data>
-  <data name="SearchAndReplaceDialog_scopBox" xml:space="preserve">
+  <data name="SearchAndReplaceDialog_scopeBox.Text" xml:space="preserve">
     <value>Ta strona
 Ta sekcja
 Ten notatnik

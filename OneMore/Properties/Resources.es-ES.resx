@@ -4591,7 +4591,7 @@ En blanco y negro</value>
     <value>Reemplazar siguiente</value>
     <comment>button</comment>
   </data>
-  <data name="SearchAndReplaceDialog_scopBox" xml:space="preserve">
+  <data name="SearchAndReplaceDialog_scopeBox.Text" xml:space="preserve">
     <value>esta pagina
 Esta sección
 este cuaderno

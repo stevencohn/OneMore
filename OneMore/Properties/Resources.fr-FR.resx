@@ -4603,7 +4603,7 @@ Noir et blanc</value>
     <value>Remplacer suivant</value>
     <comment>button</comment>
   </data>
-  <data name="SearchAndReplaceDialog_scopBox" xml:space="preserve">
+  <data name="SearchAndReplaceDialog_scopeBox.Text" xml:space="preserve">
     <value>Cette page
 Cette section
 Ce notebook
