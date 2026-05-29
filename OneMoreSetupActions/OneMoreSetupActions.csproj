@@ -53,7 +53,7 @@
     <OutputPath>..\OneMore\bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <LangVersion>9.0</LangVersion>
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
@@ -62,7 +62,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <LangVersion>9.0</LangVersion>
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
