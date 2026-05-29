@@ -314,24 +314,36 @@ Begin
 
 		SetBuildVerbosity 4
 
+		$log = "$($env:TEMP)\OneMoreBuild.log"
+
 		try
 		{
-			$log = "$($env:TEMP)\OneMoreBuild.log"
 			if (Test-Path $log) { Remove-Item $log -Force -Confirm:$false }
 
 			$cmd = ". '$devenv' .\OneMore.sln /build 'Debug|$Architecture' /out '$log'"
 			Write-Host $cmd -ForegroundColor DarkGray
 			Invoke-Expression $cmd
+			Write-Host "... devenv exit code: $LASTEXITCODE" -ForegroundColor DarkGray
 		}
 		finally
 		{
 			SetBuildVerbosity 1
 		}
 
+		$logContent = Get-Content $log -ErrorAction SilentlyContinue
+		if (-not $logContent)
+		{
+			Write-Host "`n... build log is empty or missing: $log" -ForegroundColor Red
+			return $false
+		}
+
+		Write-Host "`n... build log" -ForegroundColor DarkGray
+		$logContent | Write-Host
+
 		$succeeded = 0;
 		$failed = 1
 
-		Get-Content $env:TEMP\OneMoreBuild.log -ErrorAction SilentlyContinue | `
+		$logContent | `
 			where { $_ -match '== Build: (\d+) succeeded, (\d+) failed'} | `
 			select -last 1 | `
 			foreach {
