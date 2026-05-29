@@ -34,6 +34,26 @@ jobs:
           $beta = '${{ inputs.beta_build }}' -eq 'true' ? '-Beta' : ''
           Invoke-Expression ".\build.ps1 -Architecture x64 $beta"
 
+      - name: Dump build log
+        if: always()
+        shell: pwsh
+        run: |
+          $log = "$env:TEMP\OneMoreBuild.log"
+          if (Test-Path $log) {
+            Write-Host "========== OneMoreBuild.log =========="
+            Get-Content $log | Write-Host
+          } else {
+            Write-Host "OneMoreBuild.log not found at $log"
+          }
+
+      - name: Upload build log
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: OneMoreBuild-log
+          path: ${{ runner.temp }}\OneMoreBuild.log
+          if-no-files-found: warn
+
       - name: Stage installer
         id: stage
         shell: pwsh
