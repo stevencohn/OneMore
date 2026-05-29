@@ -65,17 +65,66 @@ namespace River.OneMoreAddIn
 		/// <summary>
 		/// Special handler to load third-party DLL references from nugets like GTranslate
 		/// which for some reason aren't found using the default path traversal.
+		/// Also handles satellite resource assemblies by searching culture subdirectories,
+		/// including same-language siblings so zh-CHS/zh-Hans fallbacks find zh-CN resources.
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="args"></param>
 		/// <returns></returns>
 		private System.Reflection.Assembly CustomAssemblyResolve(object sender, ResolveEventArgs args)
 		{
+			var asmName = new System.Reflection.AssemblyName(args.Name);
+
+			if (asmName.Name.EndsWith(".resources"))
+			{
+				// Satellite resource assemblies live in culture subdirectories, not the root bin dir.
+				// Walk the culture parent chain first (zh-CN → zh-Hans → zh), then scan any
+				// sibling directory sharing the same two-letter language code (handles zh-CHS → zh-CN).
+				var binDir = Path.GetDirectoryName(
+					new Uri(System.Reflection.Assembly.GetExecutingAssembly().CodeBase).LocalPath);
+
+				var culture = asmName.CultureInfo;
+				while (culture != null && culture != CultureInfo.InvariantCulture)
+				{
+					var p = Path.Combine(binDir, culture.Name, asmName.Name + ".dll");
+					if (File.Exists(p))
+					{
+						try { return System.Reflection.Assembly.LoadFrom(p); } catch { }
+					}
+
+					culture = culture.Parent;
+				}
+
+				var twoLetter = asmName.CultureInfo?.TwoLetterISOLanguageName;
+				if (twoLetter != null)
+				{
+					foreach (var dir in Directory.GetDirectories(binDir))
+					{
+						try
+						{
+							var folderCulture = CultureInfo.GetCultureInfo(
+								Path.GetFileName(dir));
+
+							if (folderCulture.TwoLetterISOLanguageName != twoLetter) continue;
+
+							var p = Path.Combine(dir, asmName.Name + ".dll");
+							if (File.Exists(p))
+							{
+								try { return System.Reflection.Assembly.LoadFrom(p); } catch { }
+							}
+						}
+						catch { /* unrecognized culture dir name, skip */ }
+					}
+				}
+
+				return null;
+			}
+
 			logger.Debug($"AssemblyResolve of '{args.Name}'");
 
 			var path = new Uri(Path.Combine(
 				Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase),
-				args.Name.Substring(0, args.Name.IndexOf(',')) + ".dll"
+				asmName.Name + ".dll"
 				)).LocalPath;
 
 			try
