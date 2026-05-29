@@ -4578,6 +4578,10 @@ ISO-code then comma then language name</comment>
     <value>选定的笔记本...</value>
     <comment>radio</comment>
   </data>
+  <data name="SearchAndReplaceCommand_NoMatches" xml:space="preserve">
+    <value>在此页面上找不到匹配项。</value>
+    <comment>message box</comment>
+  </data>
   <data name="SearchAndReplaceCommand_Results" xml:space="preserve">
     <value>替换了 {1} 页上的 {0} 个匹配项</value>
     <comment>message box</comment>
@@ -4594,7 +4598,15 @@ ISO-code then comma then language name</comment>
     <value>使用正则表达式</value>
     <comment>checkbox</comment>
   </data>
-  <data name="SearchAndReplaceDialog_scopBox" xml:space="preserve">
+  <data name="SearchAndReplaceDialog_replaceAllButton.Text" xml:space="preserve">
+    <value>全部替换</value>
+    <comment>button</comment>
+  </data>
+  <data name="SearchAndReplaceDialog_replaceButton.Text" xml:space="preserve">
+    <value>替换下一个</value>
+    <comment>button</comment>
+  </data>
+  <data name="SearchAndReplaceDialog_scopeBox.Text" xml:space="preserve">
     <value>此页面
             此分区
             此笔记本
@@ -4617,47 +4629,59 @@ ISO-code then comma then language name</comment>
     <value>用。。。来代替:</value>
     <comment>label</comment>
   </data>
+  <data name="SearchAndReplaceSessionDialog_replaceAllButton.Text" xml:space="preserve">
+    <value>全部替换</value>
+    <comment>button</comment>
+  </data>
+  <data name="SearchAndReplaceSessionDialog_statusLabel.Text" xml:space="preserve">
+    <value>匹配第 {0} 个，共 {1} 个 — «{2}»</value>
+    <comment>status label</comment>
+  </data>
+  <data name="SearchAndReplaceSessionDialog_Text" xml:space="preserve">
+    <value>搜索和替换</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="SearchCommand_indexTitle" xml:space="preserve">
     <value>搜索结果</value>
     <comment>page title</comment>
+  </data>
+  <data name="SearchDialog_clearAllLink.Text" xml:space="preserve">
+    <value>清除选择</value>
+    <comment>link</comment>
+  </data>
+  <data name="SearchDialog_dateOptions" xml:space="preserve">
+    <value>任何日期
+创建于之后
+之前创建过
+修改后
+之前修改过</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="SearchDialog_includeTocBox.Text" xml:space="preserve">
+    <value>在目录中搜索文本</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SearchDialog_introLabel.Text" xml:space="preserve">
+    <value>输入搜索条件，可以选择包含 AND、OR、NOT、引号和括号</value>
+    <comment>label</comment>
+  </data>
+  <data name="SearchDialog_matchBox.Text" xml:space="preserve">
+    <value>火柴盒</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SearchDialog_regBox.Text" xml:space="preserve">
+    <value>使用正则表达式</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SearchDialog_selectAllLink.Text" xml:space="preserve">
+    <value>选择全部</value>
+    <comment>link</comment>
   </data>
   <data name="SearchDialogText_scopeOptions" xml:space="preserve">
     <value>在此笔记本中
             在此分区中
             在此页面上</value>
     <comment>combobox</comment>
-  </data>
-  <data name="SearchDialogTextControl_clearAllLink.Text" xml:space="preserve">
-    <value>清除选择</value>
-    <comment>link</comment>
-  </data>
-  <data name="SearchDialogTextControl_dateOptions" xml:space="preserve">
-    <value>任何日期
-创建之后
-创建之前
-经过修改
-修改之前</value>
-    <comment>combobox</comment>
-  </data>
-  <data name="SearchDialogTextControl_includeTocBox.Text" xml:space="preserve">
-    <value>在目录中搜索文本</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
-    <value>输入搜索标准，可选地包括和或不包括引号和括号</value>
-    <comment>label</comment>
-  </data>
-  <data name="SearchDialogTextControl_matchBox.Text" xml:space="preserve">
-    <value>匹配案例</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="SearchDialogTextControl_regBox.Text" xml:space="preserve">
-    <value>使用正则表达式</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="SearchDialogTextControl_selectAllLink.Text" xml:space="preserve">
-    <value>选择全部</value>
-    <comment>link</comment>
   </data>
   <data name="SearchEngineDialog_deleteLabel.Text" xml:space="preserve">
     <value>删除：</value>
@@ -5619,6 +5643,9 @@ ISO-code then comma then language name</comment>
   <data name="word_Rename" xml:space="preserve">
     <value>重命名</value>
   </data>
+  <data name="word_Replace" xml:space="preserve">
+    <value>代替</value>
+  </data>
   <data name="word_Reset" xml:space="preserve">
     <value>重置</value>
   </data>
@@ -5645,6 +5672,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Silenced" xml:space="preserve">
     <value>沉默</value>
+  </data>
+  <data name="word_Skip" xml:space="preserve">
+    <value>跳过</value>
   </data>
   <data name="word_Snippets" xml:space="preserve">
     <value>片段</value>

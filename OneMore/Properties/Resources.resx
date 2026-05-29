@@ -4603,6 +4603,10 @@ Are you sure you want to run the scan now</value>
     <value>Selected notebooks...</value>
     <comment>radio</comment>
   </data>
+  <data name="SearchAndReplaceCommand_NoMatches" xml:space="preserve">
+    <value>No matches found on this page.</value>
+    <comment>message box</comment>
+  </data>
   <data name="SearchAndReplaceCommand_Results" xml:space="preserve">
     <value>Replaced {0} matches on {1} pages</value>
     <comment>message box</comment>
@@ -4619,7 +4623,15 @@ Are you sure you want to run the scan now</value>
     <value>Use regular expressions</value>
     <comment>checkbox</comment>
   </data>
-  <data name="SearchAndReplaceDialog_scopBox" xml:space="preserve">
+  <data name="SearchAndReplaceDialog_replaceAllButton.Text" xml:space="preserve">
+    <value>Replace All</value>
+    <comment>button</comment>
+  </data>
+  <data name="SearchAndReplaceDialog_replaceButton.Text" xml:space="preserve">
+    <value>Replace Next</value>
+    <comment>button</comment>
+  </data>
+  <data name="SearchAndReplaceDialog_scopeBox.Text" xml:space="preserve">
     <value>This page
 This section
 This notebook
@@ -4642,21 +4654,27 @@ All notebooks</value>
     <value>Replace with:</value>
     <comment>label</comment>
   </data>
+  <data name="SearchAndReplaceSessionDialog_replaceAllButton.Text" xml:space="preserve">
+    <value>Replace All</value>
+    <comment>button</comment>
+  </data>
+  <data name="SearchAndReplaceSessionDialog_statusLabel.Text" xml:space="preserve">
+    <value>Match {0} of {1} — «{2}»</value>
+    <comment>status label</comment>
+  </data>
+  <data name="SearchAndReplaceSessionDialog_Text" xml:space="preserve">
+    <value>Search and Replace</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="SearchCommand_indexTitle" xml:space="preserve">
     <value>Search Results</value>
     <comment>page title</comment>
   </data>
-  <data name="SearchDialogText_scopeOptions" xml:space="preserve">
-    <value>In this notebook
-In this section
-On this page</value>
-    <comment>combobox</comment>
-  </data>
-  <data name="SearchDialogTextControl_clearAllLink.Text" xml:space="preserve">
+  <data name="SearchDialog_clearAllLink.Text" xml:space="preserve">
     <value>Clear selection</value>
     <comment>link</comment>
   </data>
-  <data name="SearchDialogTextControl_dateOptions" xml:space="preserve">
+  <data name="SearchDialog_dateOptions" xml:space="preserve">
     <value>Any date
 Created after
 Created before
@@ -4664,25 +4682,31 @@ Modified after
 Modified before</value>
     <comment>combobox</comment>
   </data>
-  <data name="SearchDialogTextControl_includeTocBox.Text" xml:space="preserve">
+  <data name="SearchDialog_includeTocBox.Text" xml:space="preserve">
     <value>Search text in table of contents</value>
     <comment>checkbox</comment>
   </data>
-  <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
+  <data name="SearchDialog_introLabel.Text" xml:space="preserve">
     <value>Enter the search criteria, optionally including AND, OR, NOT, quotes and parenthesis</value>
     <comment>label</comment>
   </data>
-  <data name="SearchDialogTextControl_matchBox.Text" xml:space="preserve">
+  <data name="SearchDialog_matchBox.Text" xml:space="preserve">
     <value>Match case</value>
     <comment>checkbox</comment>
   </data>
-  <data name="SearchDialogTextControl_regBox.Text" xml:space="preserve">
+  <data name="SearchDialog_regBox.Text" xml:space="preserve">
     <value>Use regular expressions</value>
     <comment>checkbox</comment>
   </data>
-  <data name="SearchDialogTextControl_selectAllLink.Text" xml:space="preserve">
+  <data name="SearchDialog_selectAllLink.Text" xml:space="preserve">
     <value>Select all</value>
     <comment>link</comment>
+  </data>
+  <data name="SearchDialogText_scopeOptions" xml:space="preserve">
+    <value>In this notebook
+In this section
+On this page</value>
+    <comment>combobox</comment>
   </data>
   <data name="SearchEngineDialog_deleteLabel.Text" xml:space="preserve">
     <value>Delete:</value>
@@ -5650,6 +5674,9 @@ Thank you!</value>
   <data name="word_Rename" xml:space="preserve">
     <value>Rename</value>
   </data>
+  <data name="word_Replace" xml:space="preserve">
+    <value>Replace</value>
+  </data>
   <data name="word_Reset" xml:space="preserve">
     <value>Reset</value>
   </data>
@@ -5676,6 +5703,9 @@ Thank you!</value>
   </data>
   <data name="word_Silenced" xml:space="preserve">
     <value>Silenced</value>
+  </data>
+  <data name="word_Skip" xml:space="preserve">
+    <value>Skip</value>
   </data>
   <data name="word_Snippets" xml:space="preserve">
     <value>Snippets</value>

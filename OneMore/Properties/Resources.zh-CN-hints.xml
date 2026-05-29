@@ -1765,7 +1765,7 @@
         <source>This page</source>
         <preferred>此页面</preferred>
     </hint>
-    <hint name="SearchAndReplaceDialog_scopBox">
+    <hint name="SearchAndReplaceDialog_scopeBox.Text">
         <source>This page
             This section
             This notebook

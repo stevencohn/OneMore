@@ -500,7 +500,7 @@ Après le dernier groupe</preferred>
     <source>Selected notebooks...</source>
     <preferred>Notes de notebooks sélectionnés ...</preferred>
   </data>
-  <data name="SearchAndReplaceDialog_scopBox">
+  <data name="SearchAndReplaceDialog_scopeBox.Text">
     <source>This page
 This section
 This notebook

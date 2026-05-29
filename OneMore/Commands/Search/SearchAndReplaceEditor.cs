@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
 	using System;
+	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Xml.Linq;
@@ -77,6 +78,9 @@ namespace River.OneMoreAddIn.Commands
 
 		public string SearchPattern { get; private set; }
 
+
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+		// Global search and replace
 
 		/// <summary>
 		/// Search selected content on the given page and replace matches with the
@@ -339,6 +343,109 @@ namespace River.OneMoreAddIn.Commands
 			{
 				var cdata = run.GetCData();
 				cdata.Value = $"{cdata.Value}&nbsp;";
+			}
+		}
+
+
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+		// Interactive session search and replace
+
+		/// <summary>
+		/// Finds all matches on the given page and returns them in document order.
+		/// Used by the step-through replacement session.
+		/// </summary>
+		public List<MatchInfo> FindAllMatches(Page page)
+		{
+			var results = new List<MatchInfo>();
+
+			var range = new SelectionRange(page);
+			var runs = range.GetSelections(defaulToAnytIfNoRange: true);
+			foreach (var run in runs)
+			{
+				CollectMatches(run, results);
+			}
+
+			return results;
+		}
+
+
+		// Collect all regex matches within a single T element, appending to results
+		private void CollectMatches(XElement element, List<MatchInfo> results)
+		{
+			var cdata = element.GetCData();
+			if (cdata.Value.Length == 0) return;
+
+			var wrapper = cdata.GetWrapper();
+			var rawtext = wrapper.Value.Replace(' ', ' ');
+
+			var matches = regex.Matches(rawtext);
+			if (matches.Count == 0) return;
+
+			var oe = element.Parent;
+			while (oe != null && oe.Name.LocalName != "OE")
+			{
+				oe = oe.Parent;
+			}
+			var objectId = oe?.Attribute("objectID")?.Value ?? string.Empty;
+
+			foreach (Match m in matches)
+			{
+				results.Add(new MatchInfo
+				{
+					TElement = element,
+					StartIndex = m.Index,
+					Length = m.Length,
+					MatchedText = m.Value,
+					ParagraphObjectId = objectId
+				});
+			}
+		}
+
+
+		/// <summary>
+		/// Replaces a single match as described by the given MatchInfo, modifying the T element
+		/// in place. Rewrites the CDATA of the T element after replacement.
+		/// </summary>
+		public void ReplaceMatch(MatchInfo match)
+		{
+			var cdata = match.TElement.GetCData();
+			if (cdata.Value.Length == 0) return;
+
+			var wrapper = cdata.GetWrapper();
+			var rawtext = wrapper.Value.Replace(' ', ' ');
+
+			var matches = regex.Matches(rawtext);
+
+			for (var i = 0; i < matches.Count; i++)
+			{
+				var m = matches[i];
+				if (m.Index != match.StartIndex || m.Length != match.Length) continue;
+
+				if (m.Groups.Count == 1)
+				{
+					Replace(wrapper, m.Index, m.Length,
+						stringValue: replacementString,
+						elementValue: replacementElement);
+				}
+				else if (m.Groups.Count > 1)
+				{
+					if (replacementElement != null)
+					{
+						var xml = ExpandSubstitutions(m,
+							replacementElement.ToString(SaveOptions.DisableFormatting));
+
+						Replace(wrapper, m.Groups[1].Index, m.Groups[1].Length,
+							elementValue: XElement.Parse(xml));
+					}
+					else
+					{
+						Replace(wrapper, m.Groups[1].Index, m.Groups[1].Length,
+							stringValue: ExpandSubstitutions(m, replacementString));
+					}
+				}
+
+				cdata.Value = wrapper.GetInnerXml();
+				break;
 			}
 		}
 	}

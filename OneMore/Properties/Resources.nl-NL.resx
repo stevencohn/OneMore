@@ -4564,6 +4564,10 @@ Weet u zeker dat u de scan nu wilt uitvoeren?</value>
     <value>Geselecteerde notebooks ...</value>
     <comment>radio</comment>
   </data>
+  <data name="SearchAndReplaceCommand_NoMatches" xml:space="preserve">
+    <value>Er zijn geen overeenkomsten gevonden op deze pagina.</value>
+    <comment>message box</comment>
+  </data>
   <data name="SearchAndReplaceCommand_Results" xml:space="preserve">
     <value>{0} overeenkomsten op {1} pagina's vervangen</value>
     <comment>message box</comment>
@@ -4580,7 +4584,15 @@ Weet u zeker dat u de scan nu wilt uitvoeren?</value>
     <value>Gebruik reguliere expressies</value>
     <comment>checkbox</comment>
   </data>
-  <data name="SearchAndReplaceDialog_scopBox" xml:space="preserve">
+  <data name="SearchAndReplaceDialog_replaceAllButton.Text" xml:space="preserve">
+    <value>Vervang alles</value>
+    <comment>button</comment>
+  </data>
+  <data name="SearchAndReplaceDialog_replaceButton.Text" xml:space="preserve">
+    <value>Vervang Volgende</value>
+    <comment>button</comment>
+  </data>
+  <data name="SearchAndReplaceDialog_scopeBox.Text" xml:space="preserve">
     <value>Deze pagina
 Deze sectie
 Dit notitieboekje
@@ -4603,47 +4615,59 @@ Alle notitieboekjes</value>
     <value>Vervangen door:</value>
     <comment>label</comment>
   </data>
+  <data name="SearchAndReplaceSessionDialog_replaceAllButton.Text" xml:space="preserve">
+    <value>Vervang alles</value>
+    <comment>button</comment>
+  </data>
+  <data name="SearchAndReplaceSessionDialog_statusLabel.Text" xml:space="preserve">
+    <value>Wedstrijd {0} van {1} — «{2}»</value>
+    <comment>status label</comment>
+  </data>
+  <data name="SearchAndReplaceSessionDialog_Text" xml:space="preserve">
+    <value>Zoeken en vervangen</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="SearchCommand_indexTitle" xml:space="preserve">
     <value>Zoekresultaten</value>
     <comment>page title</comment>
+  </data>
+  <data name="SearchDialog_clearAllLink.Text" xml:space="preserve">
+    <value>Duidelijke selectie</value>
+    <comment>link</comment>
+  </data>
+  <data name="SearchDialog_dateOptions" xml:space="preserve">
+    <value>Elke datum
+Gemaakt na
+Eerder gemaakt
+Gewijzigd na
+Eerder aangepast</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="SearchDialog_includeTocBox.Text" xml:space="preserve">
+    <value>Zoek tekst in de inhoudsopgave</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SearchDialog_introLabel.Text" xml:space="preserve">
+    <value>Voer de zoekcriteria in, eventueel inclusief AND, OR, NOT, aanhalingstekens en haakjes</value>
+    <comment>label</comment>
+  </data>
+  <data name="SearchDialog_matchBox.Text" xml:space="preserve">
+    <value>Match geval</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SearchDialog_regBox.Text" xml:space="preserve">
+    <value>Gebruik reguliere expressies</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="SearchDialog_selectAllLink.Text" xml:space="preserve">
+    <value>Selecteer alles</value>
+    <comment>link</comment>
   </data>
   <data name="SearchDialogText_scopeOptions" xml:space="preserve">
     <value>In dit notitieboekje
 In deze sectie
 Op deze pagina</value>
     <comment>combobox</comment>
-  </data>
-  <data name="SearchDialogTextControl_clearAllLink.Text" xml:space="preserve">
-    <value>Duidelijke selectie</value>
-    <comment>link</comment>
-  </data>
-  <data name="SearchDialogTextControl_dateOptions" xml:space="preserve">
-    <value>Elke datum
-Gemaakt na
-Eerder gemaakt
-Aangepast na
-Gewijzigd eerder</value>
-    <comment>combobox</comment>
-  </data>
-  <data name="SearchDialogTextControl_includeTocBox.Text" xml:space="preserve">
-    <value>Zoek tekst in de inhoudsopgave</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="SearchDialogTextControl_introLabel.Text" xml:space="preserve">
-    <value>Voer de zoekcriteria in, optioneel inclusief en, of, niet, citaten en haakjes</value>
-    <comment>label</comment>
-  </data>
-  <data name="SearchDialogTextControl_matchBox.Text" xml:space="preserve">
-    <value>Match case</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="SearchDialogTextControl_regBox.Text" xml:space="preserve">
-    <value>Gebruik reguliere uitdrukkingen</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="SearchDialogTextControl_selectAllLink.Text" xml:space="preserve">
-    <value>Selecteer alles</value>
-    <comment>link</comment>
   </data>
   <data name="SearchEngineDialog_deleteLabel.Text" xml:space="preserve">
     <value>Verwijderen:</value>
@@ -5601,6 +5625,9 @@ Bedankt!</value>
   <data name="word_Rename" xml:space="preserve">
     <value>Hernoemen</value>
   </data>
+  <data name="word_Replace" xml:space="preserve">
+    <value>Vervangen</value>
+  </data>
   <data name="word_Reset" xml:space="preserve">
     <value>Resetten</value>
   </data>
@@ -5627,6 +5654,9 @@ Bedankt!</value>
   </data>
   <data name="word_Silenced" xml:space="preserve">
     <value>tot zwijgen gebracht</value>
+  </data>
+  <data name="word_Skip" xml:space="preserve">
+    <value>Overslaan</value>
   </data>
   <data name="word_Snippets" xml:space="preserve">
     <value>Fragmenten</value>

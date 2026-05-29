@@ -11321,6 +11321,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No matches found on this page..
+        /// </summary>
+        internal static string SearchAndReplaceCommand_NoMatches {
+            get {
+                return ResourceManager.GetString("SearchAndReplaceCommand_NoMatches", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Replaced {0} matches on {1} pages.
         /// </summary>
         internal static string SearchAndReplaceCommand_Results {
@@ -11357,14 +11366,32 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Replace All.
+        /// </summary>
+        internal static string SearchAndReplaceDialog_replaceAllButton_Text {
+            get {
+                return ResourceManager.GetString("SearchAndReplaceDialog_replaceAllButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Replace Next.
+        /// </summary>
+        internal static string SearchAndReplaceDialog_replaceButton_Text {
+            get {
+                return ResourceManager.GetString("SearchAndReplaceDialog_replaceButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This page
         ///This section
         ///This notebook
         ///All notebooks.
         /// </summary>
-        internal static string SearchAndReplaceDialog_scopBox {
+        internal static string SearchAndReplaceDialog_scopeBox {
             get {
-                return ResourceManager.GetString("SearchAndReplaceDialog_scopBox", resourceCulture);
+                return ResourceManager.GetString("SearchAndReplaceDialog_scopeBox", resourceCulture);
             }
         }
         
@@ -11405,11 +11432,105 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Replace All.
+        /// </summary>
+        internal static string SearchAndReplaceSessionDialog_replaceAllButton_Text {
+            get {
+                return ResourceManager.GetString("SearchAndReplaceSessionDialog_replaceAllButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Match {0} of {1} — «{2}».
+        /// </summary>
+        internal static string SearchAndReplaceSessionDialog_statusLabel_Text {
+            get {
+                return ResourceManager.GetString("SearchAndReplaceSessionDialog_statusLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search and Replace.
+        /// </summary>
+        internal static string SearchAndReplaceSessionDialog_Text {
+            get {
+                return ResourceManager.GetString("SearchAndReplaceSessionDialog_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search Results.
         /// </summary>
         internal static string SearchCommand_indexTitle {
             get {
                 return ResourceManager.GetString("SearchCommand_indexTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear selection.
+        /// </summary>
+        internal static string SearchDialog_clearAllLink_Text {
+            get {
+                return ResourceManager.GetString("SearchDialog_clearAllLink.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Any date
+        ///Created after
+        ///Created before
+        ///Modified after
+        ///Modified before.
+        /// </summary>
+        internal static string SearchDialog_dateOptions {
+            get {
+                return ResourceManager.GetString("SearchDialog_dateOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search text in table of contents.
+        /// </summary>
+        internal static string SearchDialog_includeTocBox_Text {
+            get {
+                return ResourceManager.GetString("SearchDialog_includeTocBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter the search criteria, optionally including AND, OR, NOT, quotes and parenthesis.
+        /// </summary>
+        internal static string SearchDialog_introLabel_Text {
+            get {
+                return ResourceManager.GetString("SearchDialog_introLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Match case.
+        /// </summary>
+        internal static string SearchDialog_matchBox_Text {
+            get {
+                return ResourceManager.GetString("SearchDialog_matchBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use regular expressions.
+        /// </summary>
+        internal static string SearchDialog_regBox_Text {
+            get {
+                return ResourceManager.GetString("SearchDialog_regBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select all.
+        /// </summary>
+        internal static string SearchDialog_selectAllLink_Text {
+            get {
+                return ResourceManager.GetString("SearchDialog_selectAllLink.Text", resourceCulture);
             }
         }
         
@@ -11421,73 +11542,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string SearchDialogText_scopeOptions {
             get {
                 return ResourceManager.GetString("SearchDialogText_scopeOptions", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Clear selection.
-        /// </summary>
-        internal static string SearchDialogTextControl_clearAllLink_Text {
-            get {
-                return ResourceManager.GetString("SearchDialogTextControl_clearAllLink.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Any date
-        ///Created after
-        ///Created before
-        ///Modified after
-        ///Modified before.
-        /// </summary>
-        internal static string SearchDialogTextControl_dateOptions {
-            get {
-                return ResourceManager.GetString("SearchDialogTextControl_dateOptions", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Search text in table of contents.
-        /// </summary>
-        internal static string SearchDialogTextControl_includeTocBox_Text {
-            get {
-                return ResourceManager.GetString("SearchDialogTextControl_includeTocBox.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Enter the search criteria, optionally including AND, OR, NOT, quotes and parenthesis.
-        /// </summary>
-        internal static string SearchDialogTextControl_introLabel_Text {
-            get {
-                return ResourceManager.GetString("SearchDialogTextControl_introLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Match case.
-        /// </summary>
-        internal static string SearchDialogTextControl_matchBox_Text {
-            get {
-                return ResourceManager.GetString("SearchDialogTextControl_matchBox.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Use regular expressions.
-        /// </summary>
-        internal static string SearchDialogTextControl_regBox_Text {
-            get {
-                return ResourceManager.GetString("SearchDialogTextControl_regBox.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select all.
-        /// </summary>
-        internal static string SearchDialogTextControl_selectAllLink_Text {
-            get {
-                return ResourceManager.GetString("SearchDialogTextControl_selectAllLink.Text", resourceCulture);
             }
         }
         
@@ -13949,6 +14003,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Replace.
+        /// </summary>
+        internal static string word_Replace {
+            get {
+                return ResourceManager.GetString("word_Replace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reset.
         /// </summary>
         internal static string word_Reset {
@@ -14026,6 +14089,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_Silenced {
             get {
                 return ResourceManager.GetString("word_Silenced", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Skip.
+        /// </summary>
+        internal static string word_Skip {
+            get {
+                return ResourceManager.GetString("word_Skip", resourceCulture);
             }
         }
         
