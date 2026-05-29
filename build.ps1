@@ -314,7 +314,9 @@ Begin
 
 		SetBuildVerbosity 4
 
-		$log = "$($env:TEMP)\OneMoreBuild.log"
+		# RUNNER_TEMP avoids 8.3 short-name paths (e.g. RUNNER~1) that break devenv /out
+		$tempDir = $env:RUNNER_TEMP ?? $env:TEMP
+		$log = Join-Path $tempDir 'OneMoreBuild.log'
 
 		try
 		{
@@ -322,7 +324,7 @@ Begin
 
 			$cmd = ". '$devenv' .\OneMore.sln /build 'Debug|$Architecture' /out '$log'"
 			Write-Host $cmd -ForegroundColor DarkGray
-			Invoke-Expression $cmd
+			$null = Invoke-Expression $cmd  # suppress stdout; it would pollute the function's return value
 			Write-Host "... devenv exit code: $LASTEXITCODE" -ForegroundColor DarkGray
 		}
 		finally

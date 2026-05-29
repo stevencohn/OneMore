@@ -34,19 +34,6 @@ jobs:
           $beta = '${{ inputs.beta_build }}' -eq 'true' ? '-Beta' : ''
           Invoke-Expression ".\build.ps1 -Architecture x64 $beta"
 
-      - name: Upload build log
-        if: always()
-        shell: pwsh
-        run: |
-          $src = "$env:TEMP\OneMoreBuild.log"
-          $dst = "${{ runner.temp }}\OneMoreBuild.log"
-          if (Test-Path $src) {
-            Copy-Item $src $dst
-            Write-Host "Build log copied to $dst"
-          } else {
-            Write-Host "No build log found at $src"
-          }
-
       - name: Upload build log artifact
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
