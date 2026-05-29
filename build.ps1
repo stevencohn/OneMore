@@ -312,50 +312,27 @@ Begin
 		Write-Host "`n... building $Architecture solution" -ForegroundColor Cyan
 		Write-Host
 
-		SetBuildVerbosity 4
-
-		# RUNNER_TEMP avoids 8.3 short-name paths (e.g. RUNNER~1) that break devenv /out
-		$tempDir = $env:RUNNER_TEMP ?? $env:TEMP
-		$log = Join-Path $tempDir 'OneMoreBuild.log'
-
-		try
+		$vsRoot = Split-Path -Parent (Split-Path -Parent $script:ideroot)
+		$msbuild = Join-Path $vsRoot 'MSBuild\Current\Bin\MSBuild.exe'
+		if (-not (Test-Path $msbuild))
 		{
-			if (Test-Path $log) { Remove-Item $log -Force -Confirm:$false }
-
-			$cmd = ". '$devenv' .\OneMore.sln /build 'Debug|$Architecture' /out '$log'"
-			Write-Host $cmd -ForegroundColor DarkGray
-			$null = Invoke-Expression $cmd  # suppress stdout; it would pollute the function's return value
-			Write-Host "... devenv exit code: $LASTEXITCODE" -ForegroundColor DarkGray
-		}
-		finally
-		{
-			SetBuildVerbosity 1
-		}
-
-		$logContent = Get-Content $log -ErrorAction SilentlyContinue
-		if (-not $logContent)
-		{
-			Write-Host "`n... build log is empty or missing: $log" -ForegroundColor Red
+			Write-Host "... MSBuild not found at $msbuild" -ForegroundColor Red
 			return $false
 		}
 
-		Write-Host "`n... build log" -ForegroundColor DarkGray
-		$logContent | Write-Host
+		Write-Host "& '$msbuild' .\OneMore.sln /p:Configuration=Debug /p:Platform=$Architecture /m /nologo" -ForegroundColor DarkGray
 
-		$succeeded = 0;
-		$failed = 1
+		# Pipe to Write-Host so msbuild output appears in the log but doesn't
+		# pollute this function's pipeline return value
+		& $msbuild .\OneMore.sln `
+			/p:Configuration=Debug `
+			/p:Platform=$Architecture `
+			/m /nologo | Write-Host
 
-		$logContent | `
-			where { $_ -match '== Build: (\d+) succeeded, (\d+) failed'} | `
-			select -last 1 | `
-			foreach {
-				$succeeded = $matches[1]
-				$failed = $matches[2]
-				$color = $failed -eq 0 ? 'Green' : 'Red'
-				write-Host "`n... build completed: $succeeded succeeded, $failed failed" -ForegroundColor $color
-			}
-
-		return [bool]($succeeded -gt 0 -and $failed -eq 0)
+		$exitCode = $LASTEXITCODE
+		$color = $exitCode -eq 0 ? 'Green' : 'Red'
+		Write-Host "`n... msbuild exit code: $exitCode" -ForegroundColor $color
+		return $exitCode -eq 0
 	}
 
 	function SetBuildVerbosity
