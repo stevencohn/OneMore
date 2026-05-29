@@ -32,6 +32,25 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		#region CLI Implementation
+
+		public string CommandName => "Export";
+
+		public string Description => "Export pages to a folder in the specified format";
+
+		public CliParameterDefinition DefineParameters() =>
+			new CliParameterDefinition()
+			.AddString("notebook", "Name of notebook to process", required: true)
+			.AddString("section", "Path of section to process (omit for all sections)", required: false)
+			.AddString("page", "Name of page to process (omit or * for all pages in section)", required: false)
+			.AddString("outpath", "Output folder path", required: true)
+			.AddEnum("format", "Export format",
+				new[] { "HTML", "PDF", "Word", "XML", "Markdown", "OneNote" },
+				required: true);
+
+		#endregion CLI Implementation
+
+
 		public override async Task Execute(params object[] args)
 		{
 			if (runningFromCli)
@@ -392,24 +411,5 @@ namespace River.OneMoreAddIn.Commands
 			provider.SetCollection(settings);
 			provider.Save();
 		}
-
-
-		#region CLI Implementation
-
-		public string CommandName => "Export";
-
-		public string Description => "Exports pages to a folder in the specified format";
-
-		public CliParameterDefinition DefineParameters() =>
-			new CliParameterDefinition()
-			.AddString("notebook", "Name of notebook to process", required: true)
-			.AddString("section", "Path of section to process (omit for all sections)", required: false)
-			.AddString("page", "Name of page to process (omit or * for all pages in section)", required: false)
-			.AddString("outpath", "Output folder path", required: true)
-			.AddEnum(  "format", "Export format",
-				new[] { "HTML", "PDF", "Word", "XML", "Markdown", "OneNote" },
-				required: true);
-
-		#endregion CLI Implementation
 	}
 }

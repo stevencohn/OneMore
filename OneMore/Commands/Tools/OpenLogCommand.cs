@@ -22,7 +22,7 @@ namespace River.OneMoreAddIn.Commands
 		public string CommandName => "OpenLog";
 
 
-		public string Description => "Opens the log file in the default text editor";
+		public string Description => "Open the log file in the default text editor";
 
 
 		public CliParameterDefinition DefineParameters() => new();

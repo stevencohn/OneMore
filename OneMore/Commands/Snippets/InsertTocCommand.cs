@@ -31,7 +31,7 @@ namespace River.OneMoreAddIn.Commands
 		public string CommandName => "InsertToc";
 
 
-		public string Description => "Inserts a table of contents into the current page";
+		public string Description => "Insert a table of contents into the current page";
 
 
 		public CliParameterDefinition DefineParameters() =>

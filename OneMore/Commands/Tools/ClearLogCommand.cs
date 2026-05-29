@@ -25,7 +25,7 @@ namespace River.OneMoreAddIn.Commands
 		public string CommandName => "ClearLog";
 
 
-		public string Description => "Clears the log file";
+		public string Description => "Clear the log file";
 
 
 
