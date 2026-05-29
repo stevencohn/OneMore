@@ -298,6 +298,8 @@
     <Compile Include="Commands\Settings\TableThemesSheet.Designer.cs">
       <DependentUpon>TableThemesSheet.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Tagging\AddHashtagCommand.cs" />
+    <Compile Include="Commands\Tagging\RemoveHashtagCommand.cs" />
     <Compile Include="Commands\Tagging\SearchHashtagsCommand.cs" />
     <Compile Include="Commands\Tools\ShowContainersCommand.cs" />
     <Compile Include="Commands\Search\TextMatchBuilder.cs" />

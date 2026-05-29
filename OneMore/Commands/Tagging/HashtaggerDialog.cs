@@ -123,7 +123,7 @@ namespace River.OneMoreAddIn.Commands
 
 			recentLoaded = true;
 		}
-
+			
 
 		private void LoadCommon()
 		{
