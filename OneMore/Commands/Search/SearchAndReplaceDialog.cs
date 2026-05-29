@@ -190,6 +190,10 @@ namespace River.OneMoreAddIn.Commands
 		private void UpdateReplaceButtonState(bool hasText)
 		{
 			replaceButton.Enabled = hasText && Scope == OneNote.Scope.Self;
+
+			AcceptButton = replaceButton.Enabled && Scope == OneNote.Scope.Self
+				? replaceButton
+				: replaceAllButton;
 		}
 
 
