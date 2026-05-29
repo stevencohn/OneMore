@@ -138,7 +138,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>taskkill /fi "pid gt 0" /im ONENOTE.exe /t
-taskkill /fi "pid gt 0" /im OneMoreTray.exe /t</PreBuildEvent>
+    <PreBuildEvent>pwsh -NonInteractive -NoProfile -ExecutionPolicy Bypass -File "$(ProjectDir)..\stop.ps1" -Close</PreBuildEvent>
   </PropertyGroup>
 </Project>
