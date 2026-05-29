@@ -1955,7 +1955,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>taskkill /fi "pid gt 0" /im ONENOTE.exe /t</PreBuildEvent>
+    <PreBuildEvent>pwsh -NonInteractive -NoProfile -ExecutionPolicy Bypass -File "$(ProjectDir)..\stop.ps1" -Close</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

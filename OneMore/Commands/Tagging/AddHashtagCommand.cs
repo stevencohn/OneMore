@@ -95,7 +95,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				await one.Update(page);
 
-				logger.WriteLine($"AddHashtagCommand: added tags to page: {page.Title}");
+				logger.Verbose($"AddHashtagCommand: added tags to page: {page.Title}");
 			}
 		}
 

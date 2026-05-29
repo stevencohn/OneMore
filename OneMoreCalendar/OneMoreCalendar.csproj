@@ -245,6 +245,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>taskkill /fi "pid gt 0" /im OneMoreCalendar.exe</PreBuildEvent>
+    <PreBuildEvent>pwsh -NonInteractive -NoProfile -ExecutionPolicy Bypass -File "$(ProjectDir)..\stop.ps1" -Close</PreBuildEvent>
   </PropertyGroup>
 </Project>
