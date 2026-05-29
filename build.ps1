@@ -13,6 +13,9 @@ Flags this as a beta version of the installer kit.
 Clean all projects in the solution, removing all bin and obj directories.
 No build is performed. This is a standalone command that executes and exits.
 
+.PARAMETER DetailedLog
+Enable verbose logging for MSBuild. This is useful for debugging build issues.
+
 .PARAMETER Detect
 Detect and report the targeted CPU architecture of the specified DLL or EXE file.
 This is a standalone command that executes and exits.
@@ -38,9 +41,6 @@ calendar, protocol handler, and setup actions projects. This is a debugging opti
 When building All architectures, pause between each architecture build to allow examination
 of output and configuration of vdproj. This is a debugging option.
 
-.PARAMETER VLog
-Enable verbose logging for MSBuild. This is useful for debugging build issues.
-
 .COPYRIGHT
 Copyright © 2016 Steven M Cohn. All rights reserved.
 #>
@@ -60,7 +60,7 @@ param (
 	[switch] $Kit,
 	[switch] $Main,
 	[switch] $Stepped,
-	[switch] $VLog
+	[switch] $DetailedLog
 	)
 
 Begin
@@ -329,7 +329,8 @@ Begin
 		$tempdir = $env:RUNNER_TEMP ?? $env:TEMP
 		$log = Join-Path $tempdir 'OneMoreBuild.log'
 
-		Write-Host "& '$msbuild' .\OneMore.sln /p:Configuration=Debug /p:Platform=$Architecture /m /nologo" -ForegroundColor DarkGray
+		$verbosity = $DetailedLog ? 'detailed' : 'minimal'
+		Write-Host "& '$msbuild' .\OneMore.sln /p:Configuration=Debug /p:Platform=$Architecture /m /nologo /verbosity:$verbosity" -ForegroundColor DarkGray
 		Write-Host "... build log: $log" -ForegroundColor DarkGray
 
 		if ($EchoLog)
@@ -337,33 +338,20 @@ Begin
 			& $msbuild .\OneMore.sln `
 				/p:Configuration=Debug `
 				/p:Platform=$Architecture `
-				/m /nologo | Tee-Object -FilePath $log | Write-Host
+				/m /nologo /verbosity:$verbosity | Tee-Object -FilePath $log | Write-Host
 		}
 		else
 		{
 			& $msbuild .\OneMore.sln `
 				/p:Configuration=Debug `
 				/p:Platform=$Architecture `
-				/m /nologo | Out-File -FilePath $log
+				/m /nologo /verbosity:$verbosity | Out-File -FilePath $log
 		}
 
 		$exitCode = $LASTEXITCODE
 		$color = $exitCode -eq 0 ? 'Green' : 'Red'
 		Write-Host "`n... msbuild exit code: $exitCode" -ForegroundColor $color
 		return $exitCode -eq 0
-	}
-
-	function SetBuildVerbosity
-	{
-		param($level)
-		if ($VLog)
-		{
-			$desc = $level -eq 4 ? 'enabling' : 'disabling'
-			Write-Host "... $desc MSBuild verbose logging" -ForegroundColor DarkYellow
-			$cmd = ". '$vsregedit' set local HKCU General MSBuildLoggerVerbosity dword $level`n | Out-Null"
-			write-Host $cmd -ForegroundColor DarkGray
-			Invoke-Expression $cmd
-		}
 	}
 
 	function ReportArchitectures
