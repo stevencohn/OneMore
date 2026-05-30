@@ -7,8 +7,10 @@ namespace OneMoreCli
 	using River.OneMoreAddIn;
 	using River.OneMoreAddIn.Cli;
 	using System;
+	using System.Collections.Generic;
 	using System.Linq;
 	using System.Threading.Tasks;
+	using System.Xml.Linq;
 
 
 	/// <summary>
@@ -222,11 +224,9 @@ namespace OneMoreCli
 						$"{command.CommandName} requires a 'notebook' parameter.");
 				}
 
-				// When section is absent the command handles its own traversal
-				// (e.g. ExportCommand iterates all sections and creates subfolders).
 				if (string.IsNullOrWhiteSpace(section))
 				{
-					await CliCommandFactory.Make().Run(command.GetType(), parameters);
+					await RunForNotebook(command, parameters, notebook);
 					return;
 				}
 
@@ -256,6 +256,91 @@ namespace OneMoreCli
 				if (!string.IsNullOrEmpty(output))
 				{
 					Console.Write(output);
+				}
+			}
+		}
+
+
+		/// <summary>
+		/// Iterates every page in every section of the named notebook and runs the command
+		/// once per page. Used when section is not specified for an <see cref="ICliPageCommand"/>.
+		/// </summary>
+		private static async Task RunForNotebook(
+			ICliCommand command, CliParameterSet parameters, string notebookName)
+		{
+			using var one = new OneNote();
+
+			var notebooks = await one.GetNotebooks();
+			if (notebooks == null || !notebooks.HasElements)
+			{
+				CliConsole.WriteWarning("No notebooks found.");
+				return;
+			}
+
+			var ns = one.GetNamespace(notebooks);
+			var notebook = notebooks.Elements(ns + "Notebook")
+				.FirstOrDefault(n => string.Equals(
+					n.Attribute("name")?.Value, notebookName,
+					StringComparison.InvariantCultureIgnoreCase));
+
+			if (notebook == null)
+			{
+				CliConsole.WriteWarning($"Notebook not found: '{notebookName}'");
+				return;
+			}
+
+			var notebookId = notebook.Attribute("ID").Value;
+			var notebookSections = await one.GetNotebook(notebookId, OneNote.Scope.Sections);
+			if (notebookSections == null)
+			{
+				CliConsole.WriteWarning($"Could not load sections for notebook: '{notebookName}'");
+				return;
+			}
+
+			var sectionIds = new List<string>();
+			CollectSectionIds(notebookSections, sectionIds);
+
+			if (sectionIds.Count == 0)
+			{
+				CliConsole.WriteWarning($"No sections found in notebook: '{notebookName}'");
+				return;
+			}
+
+			foreach (var sectionId in sectionIds)
+			{
+				var section = await one.GetSection(sectionId);
+				if (section == null) continue;
+
+				var pageNs = one.GetNamespace(section);
+				var pageIds = section.Elements(pageNs + "Page")
+					.Select(p => p.Attribute("ID")?.Value)
+					.Where(id => id != null)
+					.ToArray();
+
+				foreach (var pageId in pageIds)
+				{
+					parameters.Set("pageId", pageId);
+					await CliCommandFactory.Make().Run(command.GetType(), parameters);
+				}
+			}
+		}
+
+
+		private static void CollectSectionIds(XElement node, List<string> ids)
+		{
+			foreach (var element in node.Elements())
+			{
+				var localName = element.Name.LocalName;
+				if (localName == "Section"
+					&& element.Attribute("isRecycleBin")?.Value != "true")
+				{
+					var id = element.Attribute("ID")?.Value;
+					if (id != null) ids.Add(id);
+				}
+				else if (localName == "SectionGroup"
+					&& element.Attribute("isRecycleBin")?.Value != "true")
+				{
+					CollectSectionIds(element, ids);
 				}
 			}
 		}

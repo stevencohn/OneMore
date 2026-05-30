@@ -1,4 +1,4 @@
-﻿//************************************************************************************************
+//************************************************************************************************
 // Copyright © 2021 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
@@ -6,6 +6,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Cli;
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Styles;
 	using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace River.OneMoreAddIn.Commands
 	/// Clear the background color or table cell shading of the selected text and reset the
 	/// text color to add contrast with page background.
 	/// </summary>
-	internal class ClearBackgroundCommand : Command
+	internal class ClearBackgroundCommand : Command, ICliPageCommand
 	{
 		private XNamespace ns;
 		private Page page;
@@ -34,9 +35,42 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		#region CLI Implementation
+
+		public string CommandName => "ClearBackground";
+
+		public string Description => "Clear background color from text and table cells on a page";
+
+		public CliParameterDefinition DefineParameters() =>
+			new CliParameterDefinition()
+			.AddString("notebook", "Name of notebook", required: true)
+			.AddString("section", "Path of section", required: false)
+			.AddString("page", "Name of page", required: false);
+
+		#endregion CLI Implementation
+
+
 		public override async Task Execute(params object[] args)
 		{
-			await using var one = new OneNote(out page, out ns);
+			var cliParams = args.Length > 0 ? args[0] as CliParameterSet : null;
+			if (cliParams != null)
+			{
+				cliParams.TryGet("pageId", out string pageId);
+				if (string.IsNullOrWhiteSpace(pageId)) { return; }
+				await using var one = new OneNote();
+				page = await one.GetPage(pageId, OneNote.PageDetail.All);
+				ns = page.Namespace;
+				await Run(one);
+				return;
+			}
+
+			await using var ribbon = new OneNote(out page, out ns);
+			await Run(ribbon);
+		}
+
+
+		private async Task Run(OneNote one)
+		{
 			pageColor = page.GetPageColor(out var _, out var _);
 			pcolor = page.GetQuickStyle(StandardStyles.Normal).Color;
 

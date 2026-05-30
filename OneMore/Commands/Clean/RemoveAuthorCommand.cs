@@ -1,9 +1,10 @@
-﻿//************************************************************************************************
+//************************************************************************************************
 // Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Cli;
 	using River.OneMoreAddIn.Models;
 	using System.Linq;
 	using System.Threading.Tasks;
@@ -13,18 +14,49 @@ namespace River.OneMoreAddIn.Commands
 	/// Removes "Authored by" annotations from a page, also removing related
 	/// attributes from all content on the page
 	/// </summary>
-	internal class RemoveAuthorsCommand : Command
+	internal class RemoveAuthorsCommand : Command, ICliPageCommand
 	{
 		public RemoveAuthorsCommand()
 		{
 		}
 
 
+		#region CLI Implementation
+
+		public string CommandName => "RemoveAuthors";
+
+		public string Description => "Remove author annotations and editedBy attributes from a page";
+
+		public CliParameterDefinition DefineParameters() =>
+			new CliParameterDefinition()
+			.AddString("notebook", "Name of notebook", required: true)
+			.AddString("section", "Path of section", required: false)
+			.AddString("page", "Name of page", required: false);
+
+		#endregion CLI Implementation
+
+
 		public override async Task Execute(params object[] args)
 		{
-			await using var one = new OneNote(out var page, out var ns);
-			logger.StartClock();
+			var cliParams = args.Length > 0 ? args[0] as CliParameterSet : null;
+			if (cliParams != null)
+			{
+				cliParams.TryGet("pageId", out string pageId);
+				if (string.IsNullOrWhiteSpace(pageId)) { return; }
+				await using var one = new OneNote();
+				var page = await one.GetPage(pageId, OneNote.PageDetail.All);
+				await Run(one, page);
+				return;
+			}
 
+			await using var ribbon = new OneNote(out var rpage, out var _);
+			logger.StartClock();
+			await Run(ribbon, rpage);
+		}
+
+
+		private async Task Run(OneNote one, Page page)
+		{
 			var count = 0;
 
 			// these are all the elements that might have editedByAttributes

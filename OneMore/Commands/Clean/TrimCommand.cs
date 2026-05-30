@@ -1,9 +1,10 @@
-﻿//************************************************************************************************
+//************************************************************************************************
 // Copyright © 2019 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Cli;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
@@ -14,23 +15,58 @@ namespace River.OneMoreAddIn.Commands
 	/// <summary>
 	/// Trims trailing whitespace from selected text or all text on the page
 	/// </summary>
-	internal class TrimCommand : Command
+	internal class TrimCommand : Command, ICliPageCommand
 	{
 		public TrimCommand()
 		{
 		}
 
 
+		#region CLI Implementation
+
+		public string CommandName => "Trim";
+
+		public string Description => "Trim leading or trailing whitespace from page text";
+
+		public CliParameterDefinition DefineParameters() =>
+			new CliParameterDefinition()
+			.AddString("notebook", "Name of notebook", required: true)
+			.AddString("section", "Path of section", required: false)
+			.AddString("page", "Name of page", required: false)
+			.AddBoolean("leading", "Trim leading whitespace; default trims trailing whitespace",
+				required: false, defaultValue: false);
+
+		#endregion CLI Implementation
+
+
 		public override async Task Execute(params object[] args)
 		{
-			var leading = (bool)args[0];
+			var cliParams = args.Length > 0 ? args[0] as CliParameterSet : null;
+			if (cliParams != null)
+			{
+				cliParams.TryGet("pageId", out string pageId);
+				if (string.IsNullOrWhiteSpace(pageId)) { return; }
+				cliParams.TryGet("leading", out bool leading);
+
+				await using var one = new OneNote();
+				var page = await one.GetPage(pageId, OneNote.PageDetail.All);
+				await Run(one, page, leading);
+				return;
+			}
+
+			var ribbonLeading = (bool)args[0];
+			await using var ribbon = new OneNote(out var rpage, out _);
+			await Run(ribbon, rpage, ribbonLeading);
+		}
+
+
+		private async Task Run(OneNote one, Models.Page page, bool leading)
+		{
 			int count = 0;
 
 			var regex = leading
 				? new Regex(@"^([\s]|&#160;|&nbsp;)+", RegexOptions.Multiline)
 				: new Regex(@"([\s]|&#160;|&nbsp;)+$", RegexOptions.Multiline);
-
-			await using var one = new OneNote(out var page, out _);
 
 			var range = new Models.SelectionRange(page);
 			var runs = range.GetSelections(defaulToAnytIfNoRange: true);

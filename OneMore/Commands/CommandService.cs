@@ -17,6 +17,7 @@ namespace River.OneMoreAddIn
 	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Web;
+	using System.Xml.Linq;
 
 
 	/// <summary>
@@ -306,11 +307,9 @@ namespace River.OneMoreAddIn
 						return;
 					}
 
-					// When section is absent the command handles its own traversal
-					// (e.g. ExportCommand iterates all sections and creates subfolders).
 					if (string.IsNullOrWhiteSpace(section))
 					{
-						await cliFactory.Run(commandType, parameters);
+						await InvokeCliCommandForNotebook(cliFactory, commandType, parameters, notebook);
 					}
 					else
 					{
@@ -347,6 +346,83 @@ namespace River.OneMoreAddIn
 			{
 				logger.WriteLine($"error executing CLI command '{commandName}'", exc);
 				await WriteCliResponse(pipe, $"ERR:{exc.Message}");
+			}
+		}
+
+
+		/// <summary>
+		/// Iterates every page in every section of the named notebook and runs the command
+		/// once per page. Used when section is not specified for an <see cref="ICliPageCommand"/>.
+		/// </summary>
+		private static async Task InvokeCliCommandForNotebook(
+			CommandFactory cliFactory, Type commandType,
+			CliParameterSet parameters, string notebookName)
+		{
+			using var one = new OneNote();
+
+			var notebooks = await one.GetNotebooks();
+			if (notebooks == null || !notebooks.HasElements)
+			{
+				return;
+			}
+
+			var ns = one.GetNamespace(notebooks);
+			var notebook = notebooks.Elements(ns + "Notebook")
+				.FirstOrDefault(n => string.Equals(
+					n.Attribute("name")?.Value, notebookName,
+					StringComparison.InvariantCultureIgnoreCase));
+
+			if (notebook == null)
+			{
+				return;
+			}
+
+			var notebookId = notebook.Attribute("ID").Value;
+			var notebookSections = await one.GetNotebook(notebookId, OneNote.Scope.Sections);
+			if (notebookSections == null)
+			{
+				return;
+			}
+
+			var sectionIds = new List<string>();
+			CollectSectionIds(notebookSections, sectionIds);
+
+			foreach (var sectionId in sectionIds)
+			{
+				var section = await one.GetSection(sectionId);
+				if (section == null) continue;
+
+				var pageNs = one.GetNamespace(section);
+				var pageIds = section.Elements(pageNs + "Page")
+					.Select(p => p.Attribute("ID")?.Value)
+					.Where(id => id != null)
+					.ToArray();
+
+				foreach (var pageId in pageIds)
+				{
+					parameters.Set("pageId", pageId);
+					await cliFactory.Run(commandType, parameters);
+				}
+			}
+		}
+
+
+		private static void CollectSectionIds(XElement node, List<string> ids)
+		{
+			foreach (var element in node.Elements())
+			{
+				var localName = element.Name.LocalName;
+				if (localName == "Section"
+					&& element.Attribute("isRecycleBin")?.Value != "true")
+				{
+					var id = element.Attribute("ID")?.Value;
+					if (id != null) ids.Add(id);
+				}
+				else if (localName == "SectionGroup"
+					&& element.Attribute("isRecycleBin")?.Value != "true")
+				{
+					CollectSectionIds(element, ids);
+				}
 			}
 		}
 

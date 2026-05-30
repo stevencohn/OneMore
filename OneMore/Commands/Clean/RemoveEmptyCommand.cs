@@ -1,9 +1,10 @@
-﻿//************************************************************************************************
+//************************************************************************************************
 // Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Cli;
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Styles;
 	using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace River.OneMoreAddIn.Commands
 	/// Collapse multiple consecutive empty lines into a single empty line. Also removes empty
 	/// headers, custom and standard.
 	/// </summary>
-	internal class RemoveEmptyCommand : Command
+	internal class RemoveEmptyCommand : Command, ICliPageCommand
 	{
 		private static bool commandIsActive = false;
 
@@ -34,8 +35,44 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		#region CLI Implementation
+
+		public string CommandName => "RemoveEmpty";
+
+		public string Description => "Collapse consecutive empty lines; optionally remove all empty lines";
+
+		public CliParameterDefinition DefineParameters() =>
+			new CliParameterDefinition()
+			.AddString("notebook", "Name of notebook", required: true)
+			.AddString("section", "Path of section", required: false)
+			.AddString("page", "Name of page", required: false)
+			.AddBoolean("all", "Remove all empty lines instead of keeping one between paragraphs",
+				required: false, defaultValue: false);
+
+		#endregion CLI Implementation
+
+
 		public override async Task Execute(params object[] args)
 		{
+			var cliParams = args.Length > 0 ? args[0] as CliParameterSet : null;
+			if (cliParams != null)
+			{
+				cliParams.TryGet("pageId", out string pageId);
+				if (string.IsNullOrWhiteSpace(pageId)) { return; }
+				cliParams.TryGet("all", out bool cliAll);
+				all = cliAll;
+
+				await using var one = new OneNote();
+				page = await one.GetPage(pageId, OneNote.PageDetail.All);
+				ns = page.Namespace;
+
+				var range = new Models.SelectionRange(page);
+				runs = range.GetSelections(defaulToAnytIfNoRange: true);
+
+				await Run(one);
+				return;
+			}
+
 			if (commandIsActive) { return; }
 			commandIsActive = true;
 
@@ -61,17 +98,7 @@ namespace River.OneMoreAddIn.Commands
 				runs = range.GetSelections(defaulToAnytIfNoRange: true);
 				logger.WriteLine($"found {runs.Count()} runs, scope={range.Scope}");
 
-				var modified = OutdentEmptyLines();
-				modified = CollapseEmptyLines() || modified;
-				modified = IndentEmptyLines() || modified;
-
-				logger.WriteTime("saving", true);
-
-				if (modified)
-				{
-					await one.Update(page);
-					logger.WriteTime("saved");
-				}
+				await Run(one);
 			}
 			finally
 			{
@@ -80,11 +107,27 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private async Task Run(OneNote one)
+		{
+			var modified = OutdentEmptyLines();
+			modified = CollapseEmptyLines() || modified;
+			modified = IndentEmptyLines() || modified;
+
+			logger.WriteTime("saving", true);
+
+			if (modified)
+			{
+				await one.Update(page);
+				logger.WriteTime("saved");
+			}
+		}
+
+
 		private bool OutdentEmptyLines()
 		{
 			/* Outdent empty indented lines so we can then easily check if there are consecutive
 			 * empty lines that need to be collapse. An indended paragraph pattern is:
-			 * 
+			 *
 			 * <OEChildren>
 			 *   <OE>
 			 *     <OEChildren> indented OE...
@@ -218,7 +261,7 @@ namespace River.OneMoreAddIn.Commands
 			/* Indent outdented empty lines so "section" or related paragraphs can be collapsed
 			 * together under a shared heading. The pattern is as follows, where the empty T is
 			 * left outdented from para2 but should be indented to the same level:
-			 * 
+			 *
 			 * <OE>
 			 *   <OEChildren>...</>
 			 * </OE>
@@ -228,9 +271,9 @@ namespace River.OneMoreAddIn.Commands
 			 *     para2
 			 *   </OEChildren>
 			 * </OE>
-			 * 
+			 *
 			 * This needs to be "flattened" to:
-			 * 
+			 *
 			 * <OE>
 			 *   <OEChildren>...</>
 			 *   <OEChildren><OE><T> -empty- </T></OE></>

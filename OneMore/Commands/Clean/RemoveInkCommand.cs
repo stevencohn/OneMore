@@ -1,9 +1,10 @@
-﻿//************************************************************************************************
+//************************************************************************************************
 // Copyright © 2021 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Cli;
 	using River.OneMoreAddIn.Models;
 	using System.Linq;
 	using System.Threading.Tasks;
@@ -13,7 +14,7 @@ namespace River.OneMoreAddIn.Commands
 	/// <summary>
 	/// Removes all ink drawings and annotations from the current page.
 	/// </summary>
-	internal class RemoveInkCommand : Command
+	internal class RemoveInkCommand : Command, ICliPageCommand
 	{
 		private readonly PageSchema schema;
 		private Page page;
@@ -26,10 +27,42 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		#region CLI Implementation
+
+		public string CommandName => "RemoveInk";
+
+		public string Description => "Remove all ink drawings and annotations from a page";
+
+		public CliParameterDefinition DefineParameters() =>
+			new CliParameterDefinition()
+			.AddString("notebook", "Name of notebook", required: true)
+			.AddString("section", "Path of section", required: false)
+			.AddString("page", "Name of page", required: false);
+
+		#endregion CLI Implementation
+
+
 		public override async Task Execute(params object[] args)
 		{
-			await using var one = new OneNote(out page, out ns);
+			var cliParams = args.Length > 0 ? args[0] as CliParameterSet : null;
+			if (cliParams != null)
+			{
+				cliParams.TryGet("pageId", out string pageId);
+				if (string.IsNullOrWhiteSpace(pageId)) { return; }
+				await using var one = new OneNote();
+				page = await one.GetPage(pageId, OneNote.PageDetail.All);
+				ns = page.Namespace;
+				await Run(one);
+				return;
+			}
 
+			await using var ribbon = new OneNote(out page, out ns);
+			await Run(ribbon);
+		}
+
+
+		private async Task Run(OneNote one)
+		{
 			PageNamespace.Set(ns);
 
 			var ink = page.Root.Descendants(ns + "InkDrawing");
