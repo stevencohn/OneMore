@@ -236,7 +236,7 @@ Begin
     function SetAppID
     {
         WriteTitle 'AppID'
-        $0 = 'Registry::HKEY_CLASSES_ROOT\River.OneMoreAddIn.1\CLSID'
+        $0 = "Registry::HKEY_CLASSES_ROOT\AppID\$guid"
         EnsurePath $0
         Set-ItemProperty $0 -Name 'DllSurrogate' -Type String -Value ''
         WriteOK $0
