@@ -1,9 +1,10 @@
 ﻿//************************************************************************************************
-// Copyright © 2021 Steven M Cohn.  All rights reserved.
+// Copyright © 2021 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Cli;
 	using River.OneMoreAddIn.Styles;
 	using System.IO;
 	using System.Linq;
@@ -15,7 +16,7 @@ namespace River.OneMoreAddIn.Commands
 	/// <summary>
 	/// Load custom styles from a specified file and update the style gallery
 	/// </summary>
-	internal class LoadStylesCommand : Command
+	internal class LoadStylesCommand : Command, ICliCommand
 	{
 		public LoadStylesCommand()
 		{
@@ -24,14 +25,35 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		public string CommandName => "LoadStyles";
+		public string Description => "Load a style theme by name";
+
+		public CliParameterDefinition DefineParameters() =>
+			new CliParameterDefinition()
+			.AddString("theme", "Name of the theme to load, e.g. Oranges", required: true);
+
+
 		public override async Task Execute(params object[] args)
 		{
-			var theme = LoadTheme();
-			if (theme != null)
+			var cliParams = args.Length > 0 ? args[0] as CliParameterSet : null;
+			if (cliParams != null)
 			{
-				ThemeProvider.RecordTheme(theme.Key);
+				cliParams.TryGet("theme", out string key);
+				if (!string.IsNullOrWhiteSpace(key))
+				{
+					var theme = ApplyTheme(key);
+					if (theme != null)
+						logger.WriteLine($"loaded theme {theme.Key}");
+				}
 
-				logger.WriteLine($"loaded theme {theme.Key}");
+				await Task.Yield();
+				return;
+			}
+
+			var ribbonTheme = LoadTheme();
+			if (ribbonTheme != null)
+			{
+				logger.WriteLine($"loaded theme {ribbonTheme.Key}");
 				ribbon.Invalidate();
 			}
 
@@ -65,19 +87,24 @@ namespace River.OneMoreAddIn.Commands
 				return null;
 			}
 
-			var provider = new ThemeProvider(dialog.FileName);
+			var theme = ApplyTheme(dialog.FileName);
+			if (theme is null)
+				ShowError(Resx.LoadStyleTheme_errorLoading);
+
+			return theme;
+		}
+
+
+		private Theme ApplyTheme(string key)
+		{
+			var provider = new ThemeProvider(key);
 			var theme = provider.Theme;
-			if (theme is not null)
+			if (theme?.GetStyles().Count > 0)
 			{
-				var styles = theme.GetStyles();
-				if (styles.Count > 0)
-				{
-					ThemeProvider.RecordTheme(theme.Key);
-					return theme;
-				}
+				ThemeProvider.RecordTheme(theme.Key);
+				return theme;
 			}
 
-			ShowError(Resx.LoadStyleTheme_errorLoading);
 			return null;
 		}
 	}

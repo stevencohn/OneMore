@@ -7,6 +7,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Cli;
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Styles;
 	using System.Collections.Generic;
@@ -25,7 +26,7 @@ namespace River.OneMoreAddIn.Commands
 	/// If text is selected, applies matching theme styles inline only to the selected paragraphs
 	/// rather than re-styling the whole page.
 	/// </summary>
-	internal class ApplyStylesCommand : Command
+	internal class ApplyStylesCommand : Command, ICliPageCommand
 	{
 
 		private const string MediumBlue = "#5B9BD5";
@@ -44,6 +45,20 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		#region ICliCommand
+
+		public string CommandName => "ApplyStyles";
+		public string Description => "Apply the current style theme to one or more pages";
+
+		public CliParameterDefinition DefineParameters() =>
+			new CliParameterDefinition()
+			.AddString("notebook", "Name of notebook", required: true)
+			.AddString("section", "Path of section", required: false)
+			.AddString("page", "Name of page", required: false);
+
+		#endregion ICliCommand
+
+
 		/// <summary>
 		/// Invoked from Custom Styles/Apply Styles to Page command
 		/// </summary>
@@ -51,39 +66,44 @@ namespace River.OneMoreAddIn.Commands
 		/// <returns></returns>
 		public override async Task Execute(params object[] args)
 		{
+			var cliParams = args.Length > 0 ? args[0] as CliParameterSet : null;
+			if (cliParams != null)
+			{
+				await ExecuteAsCli(cliParams);
+				return;
+			}
+
 			await using var one = new OneNote(out page, out ns);
 
 			var hasSelection = page.Root
 				.Descendants(ns + "T")
 				.Any(e => e.Attributes("selected").Any(a => a.Value == "all"));
 
-			var changed = false;
-
-			if (hasSelection)
-			{
-				// selection mode: apply theme styles only to selected paragraphs inline;
-				// do not change the page background color
-				changed = ApplyToSelectedParagraphs();
-			}
-			else
-			{
-				// whole-page mode: existing behavior unchanged
-
-				if (!string.IsNullOrWhiteSpace(theme.Color))
-				{
-					var cmd = new PageColorCommand();
-					cmd.SetLogger(logger);
-					changed = cmd.UpdatePageColor(page, theme.Color);
-				}
-
-				if (ApplyThemeStyles())
-				{
-					changed = true;
-				}
-			}
+			// selection mode: apply theme styles only to selected paragraphs inline;
+			// do not change the page background color
+			var changed = hasSelection
+				? ApplyToSelectedParagraphs()
+				: ApplyToPage();
 
 			if (changed)
 			{
+				await one.Update(page);
+			}
+		}
+
+
+		private async Task ExecuteAsCli(CliParameterSet cliParams)
+		{
+			cliParams.TryGet("pageId", out string pageId);
+			if (string.IsNullOrWhiteSpace(pageId)) return;
+
+			await using var one = new OneNote();
+			page = await one.GetPage(pageId, OneNote.PageDetail.All);
+			ns = page.Namespace;
+
+			if (ApplyToPage())
+			{
+				logger.Verbose($"applied styles to page: {page.Title}");
 				await one.Update(page);
 			}
 		}
@@ -99,6 +119,26 @@ namespace River.OneMoreAddIn.Commands
 			this.page = page;
 			ns = page.Namespace;
 			ApplyThemeStyles();
+		}
+
+
+		private bool ApplyToPage()
+		{
+			var changed = false;
+
+			if (!string.IsNullOrWhiteSpace(theme.Color))
+			{
+				var cmd = new PageColorCommand();
+				cmd.SetLogger(logger);
+				changed = cmd.UpdatePageColor(page, theme.Color);
+			}
+
+			if (ApplyThemeStyles())
+			{
+				changed = true;
+			}
+
+			return changed;
 		}
 
 
