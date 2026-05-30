@@ -352,7 +352,18 @@ Begin
         $bytes = [byte[]]::new($sd.BinaryLength)
         $sd.GetBinaryForm($bytes, 0)
         $0 = "Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Classes\AppID\$guid"
+        EnsurePath $0
         Set-ItemProperty $0 -Name 'LaunchPermission' -Value $bytes -Type Binary
+        WriteOK $0
+        return $true
+    }
+
+    function SetEventLogSource
+    {
+        WriteTitle 'EventLog Source'
+        $0 = 'Registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\EventLog\Application\OneMore'
+        EnsurePath $0
+        Set-ItemProperty $0 -Name 'TypesSupported' -Type DWord -Value 7
         WriteOK $0
         return $true
     }
@@ -398,6 +409,7 @@ Process
     $ok = SetRoot
     $ok = SetAppID
     $ok = SetLaunchPermission
+    $ok = SetEventLogSource
     $ok = SetProtocolHandler
     $ok = SetCLSID
 

@@ -143,8 +143,36 @@ Begin
         if ($ok) { $ok = (HasValue $0 'DllSurrogate' '') }
         if ($ok) { $dllSurrogate = $lastValue }
         if ($ok) { WriteOK $0 } else { WriteBad $0 }
-
         WriteValue "DllSurrogate = $dllSurrogate"
+
+        # LaunchPermission is REG_BINARY — decode to SDDL for human-readable output.
+        # Absence means COM surrogate launch will be denied for non-admin users on ARM64
+        # (DCOM default is more restrictive than on x64).
+        if ($ok)
+        {
+            if (HasProperty $0 'LaunchPermission')
+            {
+                try
+                {
+                    $lpBytes = (Get-ItemPropertyValue -Path $0 -Name 'LaunchPermission')
+                    $sd = [System.Security.AccessControl.RawSecurityDescriptor]::new($lpBytes, 0)
+                    $sddl = $sd.GetSddlForm([System.Security.AccessControl.AccessControlSections]::All)
+                    if ($sddl -eq 'O:BAG:BAD:(A;;CCDCSW;;;AU)(A;;CCDCSW;;;SY)(A;;CCDCSW;;;BA)') {
+                        WriteValue "LaunchPermission = $sddl"
+                    } else {
+                        WriteBad "LaunchPermission = (unexpected SDDL: $sddl)"
+                    }
+                }
+                catch
+                {
+                    WriteValue "LaunchPermission = (could not decode: $($_.Exception.Message))"
+                }
+            }
+            else
+            {
+                WriteBad 'LaunchPermission missing (ARM64 non-admin loads will fail)'
+            }
+        }
     }
 
     function CheckRoot
@@ -369,6 +397,21 @@ Begin
         if ($ok) { WriteOK $0 } else { WriteBad $0 }
     }
 
+    function CheckEventLogSource
+    {
+        WriteTitle 'EventLog Source'
+        $0 = 'Registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\EventLog\Application\OneMore'
+        $ok = (HasKey $0)
+        if ($ok) { $ok = (HasValue $0 'TypesSupported' '7') }
+        if ($ok) { $typesSupported = $lastValue }
+        if ($ok) { 
+            WriteOK $0
+            WriteValue "TypesSupported = $typesSupported"
+        } else {
+            WriteBad $0
+        }
+    }
+
     function CheckWebView2
     {
         WriteTitle 'WebView2'
@@ -439,6 +482,7 @@ Process
 
     CheckMachine
     CheckUser
+    CheckEventLogSource
     CheckWebView2
 }
 End
