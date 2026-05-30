@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Cli;
 	using System.Linq;
 	using System.Threading;
 	using System.Threading.Tasks;
@@ -11,20 +12,55 @@ namespace River.OneMoreAddIn.Commands
 
 
 	#region Wrappers
-	internal class DisableSpellCheckCommand : ProofingCommand
+	internal class DisableSpellCheckCommand : ProofingCommand, ICliPageCommand
 	{
 		public DisableSpellCheckCommand() : base() { }
-		public override Task Execute(params object[] args)
+
+		public string CommandName => "DisableSpellCheck";
+		public string Description => "Disable spell checking on one or more pages";
+
+		public CliParameterDefinition DefineParameters() =>
+			new CliParameterDefinition()
+			.AddString("notebook", "Name of notebook", required: true)
+			.AddString("section", "Path of section", required: false)
+			.AddString("page", "Name of page", required: false);
+
+		public override async Task Execute(params object[] args)
 		{
-			return base.Execute(ProofingCommand.NoLang);
+			var cliParams = args.Length > 0 ? args[0] as CliParameterSet : null;
+			if (cliParams != null)
+			{
+				await ExecuteOnPage(cliParams, ProofingCommand.NoLang);
+				return;
+			}
+
+			await base.Execute(ProofingCommand.NoLang);
 		}
 	}
-	internal class EnableSpellCheckCommand : ProofingCommand
+
+	internal class EnableSpellCheckCommand : ProofingCommand, ICliPageCommand
 	{
 		public EnableSpellCheckCommand() : base() { }
-		public override Task Execute(params object[] args)
+
+		public string CommandName => "EnableSpellCheck";
+		public string Description => "Enable spell checking on one or more pages";
+
+		public CliParameterDefinition DefineParameters() =>
+			new CliParameterDefinition()
+			.AddString("notebook", "Name of notebook", required: true)
+			.AddString("section", "Path of section", required: false)
+			.AddString("page", "Name of page", required: false);
+
+		public override async Task Execute(params object[] args)
 		{
-			return base.Execute(Thread.CurrentThread.CurrentUICulture.Name);
+			var cliParams = args.Length > 0 ? args[0] as CliParameterSet : null;
+			if (cliParams != null)
+			{
+				await ExecuteOnPage(cliParams, Thread.CurrentThread.CurrentUICulture.Name);
+				return;
+			}
+
+			await base.Execute(Thread.CurrentThread.CurrentUICulture.Name);
 		}
 	}
 	#endregion Wrappers
@@ -106,27 +142,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (!partial)
 			{
-				// remove all occurances of the "lang=" attribute across the entire page
-				page.Root.DescendantsAndSelf()
-					.Where(e => e.Name.LocalName != "OCRData")
-					.Attributes("lang")
-					.Remove();
-
-				// remove all occurances of the "lang=" attribute within all CDATA
-				page.Root.Descendants(ns + "T").ForEach(e =>
-				{
-					var wrapper = e.GetCData().GetWrapper();
-					var atts = wrapper.Descendants().Attributes("lang");
-					if (atts.Any())
-					{
-						atts.Remove();
-						e.Value = wrapper.GetInnerXml();
-					}
-				});
-
-				// set lang for entire page
-				page.Root.Add(new XAttribute("lang", cultureName));
-				page.Root.Element(ns + "Title")?.Add(new XAttribute("lang", cultureName));
+				ApplyLanguageToPage(page.Root, ns, cultureName);
 			}
 
 			await one.Update(page, true);
@@ -134,6 +150,46 @@ namespace River.OneMoreAddIn.Commands
 			var area = partial ? "selection" : "full page";
 			var abled = cultureName == NoLang ? "disabled" : "enabled";
 			logger.WriteTime($"spell check {abled} for {cultureName} on {area}");
+		}
+
+
+		protected async Task ExecuteOnPage(CliParameterSet cliParams, string cultureName)
+		{
+			cliParams.TryGet("pageId", out string pageId);
+			if (string.IsNullOrWhiteSpace(pageId)) return;
+
+			await using var one = new OneNote();
+			var page = await one.GetPage(pageId, OneNote.PageDetail.All);
+			var ns = page.Namespace;
+
+			ApplyLanguageToPage(page.Root, ns, cultureName);
+			await one.Update(page, true);
+
+			var abled = cultureName == NoLang ? "disabled" : "enabled";
+			logger.Verbose($"spell check {abled} on page: {page.Title}");
+		}
+
+
+		private static void ApplyLanguageToPage(XElement root, XNamespace ns, string cultureName)
+		{
+			root.DescendantsAndSelf()
+				.Where(e => e.Name.LocalName != "OCRData")
+				.Attributes("lang")
+				.Remove();
+
+			root.Descendants(ns + "T").ForEach(e =>
+			{
+				var wrapper = e.GetCData().GetWrapper();
+				var atts = wrapper.Descendants().Attributes("lang");
+				if (atts.Any())
+				{
+					atts.Remove();
+					e.Value = wrapper.GetInnerXml();
+				}
+			});
+
+			root.Add(new XAttribute("lang", cultureName));
+			root.Element(ns + "Title")?.Add(new XAttribute("lang", cultureName));
 		}
 	}
 }
