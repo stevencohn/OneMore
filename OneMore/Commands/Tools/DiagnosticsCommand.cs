@@ -1,18 +1,17 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
 {
-	using Microsoft.Win32;
 	using System;
 	using System.Diagnostics;
 	using System.Reflection;
 	using System.Runtime.InteropServices;
 	using System.Text;
 	using System.Threading.Tasks;
+	using Microsoft.Win32;
 	using River.OneMoreAddIn.Cli;
-	using System.Xml.Linq;
 
 
 	internal class DiagnosticsCommand : Command, ICliCommand
@@ -47,13 +46,11 @@ namespace River.OneMoreAddIn.Commands
 			public override void WriteLine()
 			{
 				buffer.AppendLine();
-				Console.WriteLine();
 			}
 
 			public override void WriteLine(string message)
 			{
 				buffer.AppendLine(message);
-				Console.WriteLine(message);
 			}
 		}
 
