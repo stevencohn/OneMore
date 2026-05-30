@@ -7,6 +7,7 @@ namespace OneMoreSetupActions
 	using Microsoft.Win32;
 	using System;
 	using System.Runtime.InteropServices;
+	using System.Security.AccessControl;
 	using System.Text.RegularExpressions;
 
 
@@ -70,7 +71,71 @@ namespace OneMoreSetupActions
 				key?.Dispose();
 			}
 
+			SetLaunchPermission();
+
 			return SUCCESS;
+		}
+
+
+		/// <summary>
+		/// Sets the DCOM LaunchPermission on the OneMore AppID so that non-admin users can launch
+		/// the COM surrogate on ARM64 Windows.
+		/// <para>
+		/// On ARM64 Windows the machine-wide DCOM default launch security is more restrictive than
+		/// on x64: it does not include BUILTIN\Users in the local-launch grant. Without an explicit
+		/// LaunchPermission on the AppID, COM silently refuses to start dllhost.exe for non-admin
+		/// sessions and the add-in never loads. This override grants Authenticated Users local
+		/// launch and local activate rights, matching the permissive default that x64 Windows
+		/// provides out of the box. The fix is harmless on x64 — it simply makes the existing
+		/// implicit grant explicit.
+		/// </para>
+		/// <para>
+		/// COM access-right bits used in the DACL (0x0b = 11):
+		///   COM_RIGHTS_EXECUTE        0x1 — connect
+		///   COM_RIGHTS_EXECUTE_LOCAL  0x2 — local launch
+		///   COM_RIGHTS_ACTIVATE_LOCAL 0x8 — local activate
+		/// </para>
+		/// </summary>
+		private void SetLaunchPermission()
+		{
+			logger.WriteLine($"step {stepper.Step()}: setting AppID LaunchPermission");
+
+			try
+			{
+				// O:BA  owner = Administrators
+				// G:BA  primary group = Administrators
+				// D:    DACL — three ACEs:
+				//   AU = Authenticated Users (all valid accounts, covers non-admin users)
+				//   SY = SYSTEM
+				//   BA = Built-in Administrators
+				const string sddl = "O:BAG:BAD:(A;;0x0b;;;AU)(A;;0x0b;;;SY)(A;;0x0b;;;BA)";
+
+				var sd = new RawSecurityDescriptor(sddl);
+				var bytes = new byte[sd.BinaryLength];
+				sd.GetBinaryForm(bytes, 0);
+
+				using var baseKey = RegistryKey.OpenBaseKey(
+					RegistryHive.LocalMachine, RegistryView.Registry64);
+
+				using var key = baseKey.OpenSubKey(
+					@"SOFTWARE\Classes\AppID\" + RegistryHelper.OneMoreID,
+					RegistryKeyPermissionCheck.ReadWriteSubTree);
+
+				if (key is not null)
+				{
+					key.SetValue("LaunchPermission", bytes, RegistryValueKind.Binary);
+					logger.WriteLine("LaunchPermission set (Authenticated Users: local launch + activate)");
+				}
+				else
+				{
+					logger.WriteLine("AppID key not found; LaunchPermission not set");
+				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error setting LaunchPermission");
+				logger.WriteLine(exc);
+			}
 		}
 
 
