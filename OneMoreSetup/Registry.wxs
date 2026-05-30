@@ -168,6 +168,22 @@
       </Component>
 
       <!--
+        HKLM: EventLog source — pre-registers the "OneMore" source so that
+        EventLog.WriteEntry succeeds for non-admin processes (dllhost.exe running
+        the add-in at medium integrity). Without this, the first write attempt from a
+        non-elevated process tries to create the source in HKLM, throws SecurityException,
+        and masks the underlying error entirely.
+      -->
+      <Component Id="RegEventLogSource">
+        <RegistryKey Root="HKLM"
+                     Key="SYSTEM\CurrentControlSet\Services\EventLog\Application\OneMore"
+                     ForceCreateOnInstall="yes"
+                     ForceDeleteOnUninstall="yes">
+          <RegistryValue Name="TypesSupported" Value="7" Type="integer" KeyPath="yes" />
+        </RegistryKey>
+      </Component>
+
+      <!--
         HKLM: Active Setup — triggers per-user repair on next logon.
         Permanent="yes" preserves this key after uninstall (matches vdproj DeleteAtUninstall=FALSE).
       -->
