@@ -1,9 +1,11 @@
-﻿//************************************************************************************************
+//************************************************************************************************
 // Copyright © 2022 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Cli;
+	using River.OneMoreAddIn.Models;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
@@ -12,7 +14,7 @@ namespace River.OneMoreAddIn.Commands
 	/// <summary>
 	/// Restores the auto-sizing behavior of manually resized cotnainers on the page
 	/// </summary>
-	internal class RestoreAutosizeCommand : Command
+	internal class RestoreAutosizeCommand : Command, ICliPageCommand
 	{
 		private readonly int MaxWidth = 600;
 
@@ -22,10 +24,41 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		#region CLI Implementation
+
+		public string CommandName => "RestoreAutosize";
+
+		public string Description => "Restore auto-sizing behavior of manually resized containers";
+
+		public CliParameterDefinition DefineParameters() =>
+			new CliParameterDefinition()
+			.AddString("notebook", "Name of notebook", required: true)
+			.AddString("section", "Path of section", required: false)
+			.AddString("page", "Name of page", required: false);
+
+		#endregion CLI Implementation
+
+
 		public override async Task Execute(params object[] args)
 		{
-			await using var one = new OneNote(out var page, out var ns);
+			var cliParams = args.Length > 0 ? args[0] as CliParameterSet : null;
+			if (cliParams != null)
+			{
+				cliParams.TryGet("pageId", out string pageId);
+				if (string.IsNullOrWhiteSpace(pageId)) { return; }
+				await using var one = new OneNote();
+				var page = await one.GetPage(pageId, OneNote.PageDetail.All);
+				await Run(one, page, page.Namespace);
+				return;
+			}
 
+			await using var ribbon = new OneNote(out var rpage, out var rns);
+			await Run(ribbon, rpage, rns);
+		}
+
+
+		private async Task Run(OneNote one, Page page, XNamespace ns)
+		{
 			var sizes = page.Root.Descendants(ns + "Outline")
 				.Elements(ns + "Size")
 				.Where(e =>

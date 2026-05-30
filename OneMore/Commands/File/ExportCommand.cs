@@ -71,16 +71,21 @@ namespace River.OneMoreAddIn.Commands
 				var ext = GetExtForFormat(format);
 				if (ext == null) return;
 
+				// pageId is always injected by the CLI framework (once per resolved page)
+				cliParams.TryGet<string>("pageId", out pageId);
+				await using var cliOne = new OneNote();
+
 				if (string.IsNullOrWhiteSpace(section))
 				{
-					// Notebook-level: iterate all sections, one subfolder per section
-					await ExportNotebookCli(notebook, outpath, format, ext);
+					// Notebook-level: framework iterates all pages; group output by section subfolder
+					var pageInfo = await cliOne.GetPageInfo(pageId);
+					var sectInfo = await cliOne.GetSectionInfo(pageInfo.SectionId);
+					var sectionFolder = Path.Combine(outpath, PathHelper.CleanFileName(sectInfo.Name));
+					Directory.CreateDirectory(sectionFolder);
+					await ExportOneCli(pageId, cliOne, sectionFolder, format, ext);
 				}
 				else
 				{
-					// Single page: pageId injected by the CLI framework
-					cliParams.TryGet<string>("pageId", out pageId);
-					await using var cliOne = new OneNote();
 					await ExportOneCli(pageId, cliOne, outpath, format, ext);
 				}
 				return;
@@ -323,83 +328,6 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			logger.WriteLine($"exported '{title}' → {filename}");
-		}
-
-
-		/// <summary>
-		/// Exports every page in every section of <paramref name="notebook"/> to
-		/// <paramref name="outpath"/>, creating one subfolder per section.
-		/// Section groups are flattened — each leaf Section gets its own subfolder
-		/// regardless of nesting depth.
-		/// </summary>
-		private async Task ExportNotebookCli(
-			string notebook, string outpath, OneNote.ExportFormat format, string ext)
-		{
-			await using var one = new OneNote();
-
-			// Locate the notebook by name
-			var notebooks = await one.GetNotebooks();
-			var ns = one.GetNamespace(notebooks);
-
-			var notebookElement = notebooks
-				.Elements(ns + "Notebook")
-				.FirstOrDefault(e => string.Equals(
-					e.Attribute("name")?.Value, notebook,
-					StringComparison.InvariantCultureIgnoreCase));
-
-			if (notebookElement == null)
-			{
-				logger.WriteLine($"notebook not found: {notebook}");
-				return;
-			}
-
-			var notebookId = notebookElement.Attribute("ID")?.Value;
-
-			// Load the section tree (Sections + SectionGroups, no pages yet)
-			var notebookXml = await one.GetNotebook(notebookId, OneNote.Scope.Sections);
-			if (notebookXml == null || !notebookXml.HasElements)
-			{
-				logger.WriteLine($"no sections found in notebook: {notebook}");
-				return;
-			}
-
-			ns = one.GetNamespace(notebookXml);
-
-			// All leaf Section elements — Descendants flattens any SectionGroup nesting
-			var sections = notebookXml
-				.Descendants(ns + "Section")
-				.Where(s => s.Attribute("isRecycleBin")?.Value != "true"
-						 && s.Ancestors(ns + "SectionGroup")
-						     .All(g => g.Attribute("isRecycleBin")?.Value != "true"))
-				.ToList();
-
-			foreach (var sectionElement in sections)
-			{
-				var sectionName = sectionElement.Attribute("name")?.Value ?? "Untitled";
-				var sectionId   = sectionElement.Attribute("ID")?.Value;
-				if (string.IsNullOrEmpty(sectionId)) continue;
-
-				// One subfolder per section, cleaned of any illegal filename characters
-				var sectionFolder = Path.Combine(outpath, PathHelper.CleanFileName(sectionName));
-				Directory.CreateDirectory(sectionFolder);
-
-				var sectionXml = await one.GetSection(sectionId);
-				if (sectionXml == null) continue;
-
-				var sectionNs = one.GetNamespace(sectionXml);
-				var pageIds = sectionXml
-					.Elements(sectionNs + "Page")
-					.Select(e => e.Attribute("ID")?.Value)
-					.Where(id => id != null)
-					.ToList();
-
-				logger.WriteLine($"exporting {pageIds.Count} page(s) from section '{sectionName}'");
-
-				foreach (var pid in pageIds)
-				{
-					await ExportOneCli(pid, one, sectionFolder, format, ext);
-				}
-			}
 		}
 
 

@@ -1,13 +1,16 @@
-﻿//************************************************************************************************
+//************************************************************************************************
 // Copyright © 2020 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Cli;
+	using River.OneMoreAddIn.Models;
 	using System.Globalization;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
+	using System.Xml.Linq;
 	using Resx = Properties.Resources;
 
 
@@ -15,18 +18,49 @@ namespace River.OneMoreAddIn.Commands
 	/// Removes citations that OneNote auto-generates when you paste screen clipping and parts
 	/// of Web pages into OneNote, for example From <https://www....
 	/// </summary>
-	internal class RemoveCitationsCommand : Command
+	internal class RemoveCitationsCommand : Command, ICliPageCommand
 	{
 		public RemoveCitationsCommand()
 		{
 		}
 
 
+		#region CLI Implementation
+
+		public string CommandName => "RemoveCitations";
+
+		public string Description => "Remove auto-generated web clipping citations from a page";
+
+		public CliParameterDefinition DefineParameters() =>
+			new CliParameterDefinition()
+			.AddString("notebook", "Name of notebook", required: true)
+			.AddString("section", "Path of section", required: false)
+			.AddString("page", "Name of page", required: false);
+
+		#endregion CLI Implementation
+
+
 		public override async Task Execute(params object[] args)
 		{
-			await using var one = new OneNote(out var page, out var ns);
-			logger.StartClock();
+			var cliParams = args.Length > 0 ? args[0] as CliParameterSet : null;
+			if (cliParams != null)
+			{
+				cliParams.TryGet("pageId", out string pageId);
+				if (string.IsNullOrWhiteSpace(pageId)) { return; }
+				await using var one = new OneNote();
+				var page = await one.GetPage(pageId, OneNote.PageDetail.All);
+				await Run(one, page, page.Namespace);
+				return;
+			}
 
+			await using var ribbon = new OneNote(out var rpage, out var rns);
+			logger.StartClock();
+			await Run(ribbon, rpage, rns);
+		}
+
+
+		private async Task Run(OneNote one, Page page, XNamespace ns)
+		{
 			var style = page.GetQuickStyles()
 				.Find(s => s.Name == "cite");
 
