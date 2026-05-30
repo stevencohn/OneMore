@@ -337,6 +337,26 @@ Begin
         return $true
     }
 
+    function SetLaunchPermission
+    {
+        # ARM64 Windows restricts COM surrogate launch to admins by default; without an explicit
+        # LaunchPermission on the AppID, dllhost.exe cannot be started by a normal user and the
+        # add-in silently fails to load. This sets the same descriptor that the MSI installer
+        # writes via RegistryAction so that developer-mode setups (setregistry -reset) also get it.
+        #
+        # COM_RIGHTS_EXECUTE(0x1) | COM_RIGHTS_EXECUTE_LOCAL(0x2) | COM_RIGHTS_ACTIVATE_LOCAL(0x8) = 0x0b
+        # Principals: AU = Authenticated Users, SY = SYSTEM, BA = Administrators
+        WriteTitle 'LaunchPermission'
+        $sddl = 'O:BAG:BAD:(A;;0x0b;;;AU)(A;;0x0b;;;SY)(A;;0x0b;;;BA)'
+        $sd = [System.Security.AccessControl.RawSecurityDescriptor]::new($sddl)
+        $bytes = [byte[]]::new($sd.BinaryLength)
+        $sd.GetBinaryForm($bytes, 0)
+        $0 = "Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Classes\AppID\$guid"
+        Set-ItemProperty $0 -Name 'LaunchPermission' -Value $bytes -Type Binary
+        WriteOK $0
+        return $true
+    }
+
     function SetUser
     {
         WriteTitle 'User'
@@ -377,6 +397,7 @@ Process
 
     $ok = SetRoot
     $ok = SetAppID
+    $ok = SetLaunchPermission
     $ok = SetProtocolHandler
     $ok = SetCLSID
 
