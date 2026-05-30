@@ -32,12 +32,14 @@ function Get-ReleasesAsync {
 
     $response = $client.GetAsync($url).GetAwaiter().GetResult()
 
-    if ($response.IsSuccessStatusCode) {
+    if ($response.IsSuccessStatusCode)
+    {
         $now = Get-Date
         $json = $response.Content.ReadAsStringAsync().GetAwaiter().GetResult()
         $dom = $json | ConvertFrom-Json
 
-        foreach ($rel in $dom) {
+        foreach ($rel in $dom)
+        {
             $published = [datetime]$rel.published_at
 
             $release = [Release]::new()
@@ -48,25 +50,21 @@ function Get-ReleasesAsync {
 
             $now = $published
 
-            foreach ($asset in $rel.assets) {
+            foreach ($asset in $rel.assets)
+            {
                 $name = $asset.name
 
-                if ($name -match "ARM") {
-                    $release.DownloadsArm = $asset.download_count
-                }
-                elseif ($name -match "64") {
-                    $release.Downloads64 = $asset.download_count
-                }
-                else {
-                    $release.Downloads86 = $asset.download_count
-                }
+                if ($name -match "ARM") { $release.DownloadsArm = $asset.download_count }
+                elseif ($name -match "64") { $release.Downloads64 = $asset.download_count }
+                else { $release.Downloads86 = $asset.download_count }
             }
 
             $Releases.Add($release)
             $count++
         }
     }
-    else {
+    else
+    {
         Write-Warning "Status code: $($response.StatusCode)"
     }
 
@@ -78,12 +76,15 @@ $releases = [System.Collections.Generic.List[Release]]::new()
 
 $useSinglePage = $true
 
-if ($useSinglePage) {
+if ($useSinglePage) 
+{
     Get-ReleasesAsync -Releases $releases -Page 1 -PerPage 20 | Out-Null
 }
-else {
+else
+{
     $page = 1
-    while (Get-ReleasesAsync -Releases $releases -Page $page -PerPage 100) {
+    while (Get-ReleasesAsync -Releases $releases -Page $page -PerPage 100)
+    {
         $page++
     }
     Write-Host "`nUse the Results panel Export menu to export to Excel"
