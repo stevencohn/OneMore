@@ -28,6 +28,23 @@
                      ForceCreateOnInstall="yes"
                      ForceDeleteOnUninstall="yes">
           <RegistryValue Name="DllSurrogate" Value="" Type="string" KeyPath="yes" />
+          <!--
+            LaunchPermission: self-relative SECURITY_DESCRIPTOR granting local launch and
+            local activate to Authenticated Users, SYSTEM, and Administrators.
+
+            On ARM64 Windows the machine-wide DCOM default launch security is more restrictive
+            than on x64 and does not include BUILTIN\Users in the local-launch grant. Without
+            an explicit LaunchPermission here, COM refuses to start dllhost.exe for non-admin
+            sessions and the add-in never loads. This value overrides that default and is
+            harmless on x64 — it simply makes the implicit grant explicit.
+
+            SDDL: O:BAG:BAD:(A;;0x0b;;;AU)(A;;0x0b;;;SY)(A;;0x0b;;;BA)
+              0x0b = COM_RIGHTS_EXECUTE(1) | COM_RIGHTS_EXECUTE_LOCAL(2) | COM_RIGHTS_ACTIVATE_LOCAL(8)
+              AU = Authenticated Users, SY = SYSTEM, BA = Built-in Administrators
+          -->
+          <RegistryValue Name="LaunchPermission"
+                         Value="010004801400000024000000000000003400000001020000000000052000000020020000010200000000000520000000200200000200480003000000000014000b00000001010000000000050b000000000014000b000000010100000000000512000000000018000b00000001020000000000052000000020020000"
+                         Type="binary" />
         </RegistryKey>
       </Component>
 
