@@ -31,6 +31,7 @@ namespace River.OneMoreAddIn.Commands
 					"pageRadio",
 					"topBox",
 					"rightAlignBox",
+					"todoLabel",
 					"locationLabel",
 					"locationBox",
 					"styleLabel",
@@ -148,6 +149,7 @@ namespace River.OneMoreAddIn.Commands
 				notebookRadio.Checked = false;
 				topBox.Enabled = true;
 				rightAlignBox.Enabled = topBox.Checked;
+				todoBox.Enabled = true;
 				locationBox.Enabled = true;
 				styleBox.Enabled = true;
 				levelsBox.Enabled = true;
@@ -163,6 +165,7 @@ namespace River.OneMoreAddIn.Commands
 				notebookRadio.Checked = false;
 				topBox.Enabled = pagesBox.Enabled = false;
 				rightAlignBox.Enabled = false;
+				todoBox.Enabled = false;
 				locationBox.Enabled = false;
 				styleBox.Enabled = false;
 				levelsBox.Enabled = false;
@@ -177,6 +180,7 @@ namespace River.OneMoreAddIn.Commands
 				sectionRadio.Checked = false;
 				topBox.Enabled = false;
 				rightAlignBox.Enabled = false;
+				todoBox.Enabled = false;
 				locationBox.Enabled = false;
 				styleBox.Enabled = false;
 				levelsBox.Enabled = false;

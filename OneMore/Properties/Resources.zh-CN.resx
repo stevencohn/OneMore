@@ -1815,6 +1815,10 @@ OneNote 文件 (*.one)</value>
 布朗广场</value>
     <comment>combobox</comment>
   </data>
+  <data name="InsertTocDialog_todoLabel.Text" xml:space="preserve">
+    <value>马克·托多标题</value>
+    <comment>label</comment>
+  </data>
   <data name="InsertTocDialog_topBox.Text" xml:space="preserve">
     <value>为每个页面标题添加跳转链接</value>
     <comment>checkbox</comment>

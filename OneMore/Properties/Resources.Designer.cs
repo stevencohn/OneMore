@@ -4607,6 +4607,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mark Todo Headings.
+        /// </summary>
+        internal static string InsertTocDialog_todoLabel_Text {
+            get {
+                return ResourceManager.GetString("InsertTocDialog_todoLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add link to each heading to jump to top of page.
         /// </summary>
         internal static string InsertTocDialog_topBox_Text {
