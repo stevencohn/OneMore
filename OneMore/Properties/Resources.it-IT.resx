@@ -1809,6 +1809,10 @@ Quadrato Viola
 Quadrato Marrone</value>
     <comment>combobox</comment>
   </data>
+  <data name="InsertTocDialog_todoLabel.Text" xml:space="preserve">
+    <value>Segna i titoli di Todo</value>
+    <comment>label</comment>
+  </data>
   <data name="InsertTocDialog_topBox.Text" xml:space="preserve">
     <value>Aggiungi un collegamento a ciascuna intestazione per passare alla parte superiore della pagina</value>
     <comment>checkbox</comment>
