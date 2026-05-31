@@ -11389,9 +11389,9 @@ namespace River.OneMoreAddIn.Properties {
         ///This notebook
         ///All notebooks.
         /// </summary>
-        internal static string SearchAndReplaceDialog_scopeBox {
+        internal static string SearchAndReplaceDialog_scopeBox_Text {
             get {
-                return ResourceManager.GetString("SearchAndReplaceDialog_scopeBox", resourceCulture);
+                return ResourceManager.GetString("SearchAndReplaceDialog_scopeBox.Text", resourceCulture);
             }
         }
         
@@ -12555,7 +12555,8 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Character - words in paragraph
         ///Paragraph - entire paragraph
-        ///Heading - include in TOC.
+        ///Heading - include in TOC
+        ///Page title - page title paragraph.
         /// </summary>
         internal static string StyleDialog_styleTypeBox_Items {
             get {

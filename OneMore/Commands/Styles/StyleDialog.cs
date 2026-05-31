@@ -533,6 +533,13 @@ namespace River.OneMoreAddIn.Commands
 						spacingSpinner.Enabled = true;
 						isCodeBox.Enabled = isCodeBox.Checked = false;
 						break;
+
+					case StyleType.PageTitle:
+						spaceAfterSpinner.Enabled = true;
+						spaceBeforeSpinner.Enabled = true;
+						spacingSpinner.Enabled = true;
+						isCodeBox.Enabled = isCodeBox.Checked = false;
+						break;
 				}
 			}
 		}

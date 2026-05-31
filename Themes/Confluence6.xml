@@ -6,7 +6,7 @@
   <Style index="3" name="Heading 4" font="Arial" fontSize="10" bold="true" fontColor="#ff333333" spaceBefore="12" spaceAfter="0" styleType="Heading" />
   <Style index="4" name="Heading 5" font="Arial" fontSize="10" bold="true" fontColor="#ff707070" spaceBefore="12" spaceAfter="0" styleType="Heading" />
   <Style index="5" name="Heading 6" font="Arial" fontSize="9" bold="true" fontColor="#ff707070" spaceBefore="12" spaceAfter="0" styleType="Heading" />
-  <Style index="6" name="Page Title" font="Calibri Light" fontSize="20" fontColor="#ff464646" spaceBefore="0" spaceAfter="14" styleType="Paragraph" />
+  <Style index="6" name="Page Title" font="Calibri Light" fontSize="20" fontColor="#ff464646" spaceBefore="0" spaceAfter="14" styleType="PageTitle" />
   <Style index="7" name="Citation" font="Calibri" fontSize="9" fontColor="#ff595959" spaceBefore="0" spaceAfter="0" styleType="Paragraph" />
   <Style index="8" name="Quote" font="Arial" fontSize="10" italic="true" fontColor="#ff7F7F7F" spaceBefore="0" spaceAfter="0" styleType="Paragraph" />
   <Style index="9" name="Code" font="Calibri" fontSize="10" fontColor="#ff333333" spaceBefore="0" spaceAfter="0" styleType="Paragraph" isCode="true" />
