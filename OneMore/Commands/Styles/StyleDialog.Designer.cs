@@ -31,18 +31,18 @@
 		{
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StyleDialog));
-			this.sizeBox = new UI.MoreComboBox();
-			this.beforeLabel = new UI.MoreLabel();
-			this.afterLabel = new UI.MoreLabel();
-			this.nameLabel = new UI.MoreLabel();
+			this.sizeBox = new River.OneMoreAddIn.UI.MoreComboBox();
+			this.beforeLabel = new River.OneMoreAddIn.UI.MoreLabel();
+			this.afterLabel = new River.OneMoreAddIn.UI.MoreLabel();
+			this.nameLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.nameBox = new River.OneMoreAddIn.UI.MoreTextBox();
-			this.fontLabel = new UI.MoreLabel();
+			this.fontLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.spaceBeforeSpinner = new System.Windows.Forms.NumericUpDown();
 			this.spaceAfterSpinner = new System.Windows.Forms.NumericUpDown();
 			this.previewBox = new System.Windows.Forms.PictureBox();
 			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
-			this.namesBox = new UI.MoreComboBox();
+			this.namesBox = new River.OneMoreAddIn.UI.MoreComboBox();
 			this.bodyPanel = new System.Windows.Forms.Panel();
 			this.styleTools = new River.OneMoreAddIn.UI.MoreToolStrip();
 			this.renameButton = new River.OneMoreAddIn.UI.MoreMenuItem();
@@ -64,10 +64,10 @@
 			this.pageColorLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.darkBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.pageColorBox = new River.OneMoreAddIn.UI.MoreCheckBox();
-			this.spacingLabel = new UI.MoreLabel();
+			this.spacingLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.spacingSpinner = new System.Windows.Forms.NumericUpDown();
-			this.styleTypeLabel = new UI.MoreLabel();
-			this.styleTypeBox = new UI.MoreComboBox();
+			this.styleTypeLabel = new River.OneMoreAddIn.UI.MoreLabel();
+			this.styleTypeBox = new River.OneMoreAddIn.UI.MoreComboBox();
 			this.applyColorsBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.isCodeBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.familyBox = new River.OneMoreAddIn.UI.FontComboBox();
@@ -114,8 +114,10 @@
             "26"});
 			this.sizeBox.Location = new System.Drawing.Point(539, 123);
 			this.sizeBox.Name = "sizeBox";
-			this.sizeBox.Size = new System.Drawing.Size(104, 33);
+			this.sizeBox.Size = new System.Drawing.Size(104, 32);
 			this.sizeBox.TabIndex = 3;
+			this.sizeBox.ThemedBack = null;
+			this.sizeBox.ThemedFore = null;
 			this.sizeBox.SelectedIndexChanged += new System.EventHandler(this.ChangeFontSize);
 			this.sizeBox.Enter += new System.EventHandler(this.SetActiveFocus);
 			// 
@@ -127,6 +129,8 @@
 			this.beforeLabel.Size = new System.Drawing.Size(111, 20);
 			this.beforeLabel.TabIndex = 6;
 			this.beforeLabel.Text = "Space Before:";
+			this.beforeLabel.ThemedBack = null;
+			this.beforeLabel.ThemedFore = null;
 			this.tooltip.SetToolTip(this.beforeLabel, "Spacing before a paragraph");
 			// 
 			// afterLabel
@@ -137,6 +141,8 @@
 			this.afterLabel.Size = new System.Drawing.Size(98, 20);
 			this.afterLabel.TabIndex = 7;
 			this.afterLabel.Text = "Space After:";
+			this.afterLabel.ThemedBack = null;
+			this.afterLabel.ThemedFore = null;
 			this.tooltip.SetToolTip(this.afterLabel, "Spacing after a paragraph");
 			// 
 			// nameLabel
@@ -147,6 +153,8 @@
 			this.nameLabel.Size = new System.Drawing.Size(94, 20);
 			this.nameLabel.TabIndex = 8;
 			this.nameLabel.Text = "Style Name:";
+			this.nameLabel.ThemedBack = null;
+			this.nameLabel.ThemedFore = null;
 			this.tooltip.SetToolTip(this.nameLabel, "Must be unique");
 			// 
 			// nameBox
@@ -173,6 +181,8 @@
 			this.fontLabel.Size = new System.Drawing.Size(46, 20);
 			this.fontLabel.TabIndex = 10;
 			this.fontLabel.Text = "Font:";
+			this.fontLabel.ThemedBack = null;
+			this.fontLabel.ThemedFore = null;
 			// 
 			// spaceBeforeSpinner
 			// 
@@ -252,8 +262,10 @@
 			this.namesBox.FormattingEnabled = true;
 			this.namesBox.Location = new System.Drawing.Point(18, 633);
 			this.namesBox.Name = "namesBox";
-			this.namesBox.Size = new System.Drawing.Size(121, 33);
+			this.namesBox.Size = new System.Drawing.Size(121, 32);
 			this.namesBox.TabIndex = 10;
+			this.namesBox.ThemedBack = null;
+			this.namesBox.ThemedFore = null;
 			this.namesBox.Visible = false;
 			this.namesBox.SelectedIndexChanged += new System.EventHandler(this.ChangeStyleListSelection);
 			// 
@@ -581,6 +593,8 @@
 			this.spacingLabel.Size = new System.Drawing.Size(71, 20);
 			this.spacingLabel.TabIndex = 29;
 			this.spacingLabel.Text = "Spacing:";
+			this.spacingLabel.ThemedBack = null;
+			this.spacingLabel.ThemedFore = null;
 			this.tooltip.SetToolTip(this.spacingLabel, "Spacing between lines in a paragraph");
 			// 
 			// spacingSpinner
@@ -601,6 +615,8 @@
 			this.styleTypeLabel.Size = new System.Drawing.Size(86, 20);
 			this.styleTypeLabel.TabIndex = 27;
 			this.styleTypeLabel.Text = "Style Type:";
+			this.styleTypeLabel.ThemedBack = null;
+			this.styleTypeLabel.ThemedFore = null;
 			this.tooltip.SetToolTip(this.styleTypeLabel, "Determines the scope of text affected by this style");
 			// 
 			// styleTypeBox
@@ -611,14 +627,19 @@
 			this.styleTypeBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.styleTypeBox.FormattingEnabled = true;
 			this.styleTypeBox.Items.AddRange(new object[] {
-            "Character - words in paragraph",
+            "Heading - included in TOC",
+            "Page title - page title paragraph",
+            "Citation - reference paragraph",
+            "Quote - quoted text paragraph",
+            "Code - code block paragraph",
             "Paragraph - entire paragraph",
-            "Heading - include in TOC",
-            "Page title - page title paragraph"});
+            "Character - words in paragraph"});
 			this.styleTypeBox.Location = new System.Drawing.Point(169, 77);
 			this.styleTypeBox.Name = "styleTypeBox";
-			this.styleTypeBox.Size = new System.Drawing.Size(473, 33);
+			this.styleTypeBox.Size = new System.Drawing.Size(473, 32);
 			this.styleTypeBox.TabIndex = 1;
+			this.styleTypeBox.ThemedBack = null;
+			this.styleTypeBox.ThemedFore = null;
 			this.styleTypeBox.SelectedIndexChanged += new System.EventHandler(this.ChangeStyleType);
 			// 
 			// applyColorsBox
@@ -646,7 +667,7 @@
 			this.isCodeBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.isCodeBox.Location = new System.Drawing.Point(169, 244);
 			this.isCodeBox.Name = "isCodeBox";
-			this.isCodeBox.Size = new System.Drawing.Size(188, 25);
+			this.isCodeBox.Size = new System.Drawing.Size(207, 25);
 			this.isCodeBox.StylizeImage = false;
 			this.isCodeBox.TabIndex = 7;
 			this.isCodeBox.Text = "Source code paragraph";
