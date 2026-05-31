@@ -29,6 +29,22 @@ namespace River.OneMoreAddIn.Styles
 		/// <summary>
 		/// Special type of Paragraph that applies to page titles when applying themes
 		/// </summary>
-		PageTitle
+		PageTitle,
+
+		/// <summary>
+		/// Special type of Paragraph that is included when generating a bibliography
+		/// or works cited list
+		/// </summary>
+		Citation,
+
+		/// <summary>
+		/// Special type of Paragraph that applies to quote text when applying themes
+		/// </summary>
+		Quote,
+
+		/// <summary>
+		/// Special type of Paragraph that applies to code text when applying themes
+		/// </summary>
+		Code
 	}
 }

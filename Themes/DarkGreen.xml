@@ -7,12 +7,13 @@
   <Style index="4" name="Heading 5" font="Segoe UI" fontColor="#02853C" fontSize="12.0" spaceBefore="8.0" spaceAfter="0.0" applyColors="true" styleType="Heading" />
   <Style index="5" name="Heading 6" font="Segoe UI" fontColor="#02853C" fontSize="12.0" spaceBefore="8.0" spaceAfter="0.0" applyColors="true" styleType="Heading" />
   <Style index="6" name="Page Title" font="Calibri Light" fontColor="#FFFFFF" fontSize="20.0" spaceBefore="0.0" spaceAfter="14.0" applyColors="true" styleType="PageTitle" />
-  <Style index="7" name="Citation" font="Segoe UI" fontColor="#B2B089" fontSize="9.0" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Paragraph" />
-  <Style index="8" name="Quote" font="Segoe UI" fontColor="#B2B089" fontSize="11.0" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Paragraph" />
-  <Style index="9" name="Code" font="Consolas" fontColor="#FFFFFF" fontSize="10.0" spaceBefore="0.0" spaceAfter="0.0" applyColors="false" styleType="Paragraph" isCode="true" />
-  <Style index="10" name="Normal" font="Segoe UI" fontColor="#EEEEEE" fontSize="11.0" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Paragraph" />
-  <Style index="11" name="Strong" font="Segoe UI" fontColor="#FFFFFF" fontSize="11.0" bold="true" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Character" />
-  <Style index="12" name="Emphasis" font="Segoe UI" fontColor="#33AA00" fontSize="11.0" bold="true" italic="true" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Character" />
-  <Style index="13" name="Intense Emphasis" font="Segoe UI" fontColor="#FF0000" fontSize="11.0" bold="true" italic="true" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Character" />
-  <Style index="14" name="Subtle Emphasis" font="Segoe UI" fontColor="#5E6C84" fontSize="11.0" italic="true" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Character" />
+  <Style index="7" name="Citation" font="Segoe UI" fontColor="#B2B089" fontSize="9.0" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Citation" />
+  <Style index="8" name="Quote" font="Segoe UI" fontColor="#B2B089" fontSize="11.0" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Quote" />
+  <Style index="9" name="Code" font="Consolas" fontColor="#FFFFFF" fontSize="10.0" spaceBefore="0.0" spaceAfter="0.0" applyColors="false" styleType="Code" isCode="true" />
+  <Style index="10" name="Inline Code" font="Lucida Console" fontColor="#FFFFFF" highlightColor="#F1F1F1" fontSize="9.0" spaceBefore="0.0" spaceAfter="0.0" spacing="0.0" applyColors="true" styleType="Character" />
+  <Style index="11" name="Normal" font="Segoe UI" fontColor="#EEEEEE" fontSize="11.0" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Paragraph" />
+  <Style index="12" name="Strong" font="Segoe UI" fontColor="#FFFFFF" fontSize="11.0" bold="true" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Character" />
+  <Style index="13" name="Emphasis" font="Segoe UI" fontColor="#33AA00" fontSize="11.0" bold="true" italic="true" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Character" />
+  <Style index="14" name="Intense Emphasis" font="Segoe UI" fontColor="#FF0000" fontSize="11.0" bold="true" italic="true" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Character" />
+  <Style index="15" name="Subtle Emphasis" font="Segoe UI" fontColor="#5E6C84" fontSize="11.0" italic="true" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Character" />
 </Theme>

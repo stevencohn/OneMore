@@ -12565,7 +12565,9 @@ namespace River.OneMoreAddIn.Properties {
         ///   Looks up a localized string similar to Character - words in paragraph
         ///Paragraph - entire paragraph
         ///Heading - include in TOC
-        ///Page title - page title paragraph.
+        ///Page title - page title paragraph
+        ///Citation - reference paragraph
+        ///Quote - quoted text paragraph.
         /// </summary>
         internal static string StyleDialog_styleTypeBox_Items {
             get {

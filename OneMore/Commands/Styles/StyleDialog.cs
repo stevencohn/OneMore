@@ -528,13 +528,9 @@ namespace River.OneMoreAddIn.Commands
 						break;
 
 					case StyleType.Heading:
-						spaceAfterSpinner.Enabled = true;
-						spaceBeforeSpinner.Enabled = true;
-						spacingSpinner.Enabled = true;
-						isCodeBox.Enabled = isCodeBox.Checked = false;
-						break;
-
 					case StyleType.PageTitle:
+					case StyleType.Citation:
+					case StyleType.Quote:
 						spaceAfterSpinner.Enabled = true;
 						spaceBeforeSpinner.Enabled = true;
 						spacingSpinner.Enabled = true;

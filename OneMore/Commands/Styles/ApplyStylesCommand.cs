@@ -350,12 +350,14 @@ namespace River.OneMoreAddIn.Commands
 					break;
 
 				case "cite":
-					style = styles.SingleOrDefault(s => s.Name.ToLower() == "citation")
+					style = styles.FirstOrDefault(s => s.StyleType == StyleType.Citation)
+						?? styles.SingleOrDefault(s => s.Name.ToLower() == "citation")
 						?? styles.SingleOrDefault(s => s.Name.ToLower() == "cite");
 					break;
 
 				case "blockquote":
-					style = styles.SingleOrDefault(s => s.Name.ToLower() == "quote")
+					style = styles.FirstOrDefault(s => s.StyleType == StyleType.Quote)
+						?? styles.SingleOrDefault(s => s.Name.ToLower() == "quote")
 						?? styles.SingleOrDefault(s => s.Name.ToLower() == "quotation")
 						?? styles.SingleOrDefault(s => s.Name.ToLower() == "blockquote");
 					break;

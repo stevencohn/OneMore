@@ -5147,7 +5147,9 @@ Notebooks</value>
     <value>Character - words in paragraph
 Paragraph - entire paragraph
 Heading - include in TOC
-Page title - page title paragraph</value>
+Page title - page title paragraph
+Citation - reference paragraph
+Quote - quoted text paragraph</value>
     <comment>combobox</comment>
   </data>
   <data name="StyleDialog_styleTypeLabel.Text" xml:space="preserve">
