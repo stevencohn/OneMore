@@ -105,6 +105,8 @@ Read `ONENOTE.EXE`'s PE header directly when you need OneNote's architecture.
   But do not touch or make any changes at any time to any Resources.xx-XX file, unless
   explicitly told otherwise.
 
+- **C# Coding Style:** always use curly braces for if-else blocks, even if they are one-liners.
+
 ## Where to read more
 
 ### General local documentation
