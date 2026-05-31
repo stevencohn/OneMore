@@ -6,7 +6,7 @@
   <Style index="3" name="Heading 4" font="Segoe UI" fontColor="#5E6C84" fontSize="14.0" spaceBefore="12.0" spaceAfter="0.0" applyColors="true" styleType="Heading" />
   <Style index="4" name="Heading 5" font="Segoe UI" fontColor="#151515" fontSize="14.0" spaceBefore="10.0" spaceAfter="0.0" applyColors="true" styleType="Heading" />
   <Style index="5" name="Heading 6" font="Segoe UI" fontColor="#151515" fontSize="12.0" spaceBefore="10.0" spaceAfter="0.0" applyColors="true" styleType="Heading" />
-  <Style index="6" name="Page Title" font="Calibri Light" fontColor="#151515" fontSize="20.0" spaceBefore="0.0" spaceAfter="14.0" applyColors="true" styleType="Paragraph" />
+  <Style index="6" name="Page Title" font="Calibri Light" fontColor="#151515" fontSize="20.0" spaceBefore="0.0" spaceAfter="14.0" applyColors="true" styleType="PageTitle" />
   <Style index="7" name="Citation" font="Segoe UI" fontColor="#5E6C84" fontSize="9.0" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Paragraph" />
   <Style index="8" name="Quote" font="Segoe UI" fontColor="#5E6C84" fontSize="11.0" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Paragraph" />
   <Style index="9" name="Code" font="Consolas" fontColor="#FFFFFF" fontSize="10.0" spaceBefore="0.0" spaceAfter="0.0" applyColors="false" styleType="Paragraph" isCode="true" />

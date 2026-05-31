@@ -6,7 +6,7 @@
   <Style index="3" name="Heading 4" font="Calibri Light" fontColor="#C85A14" fontSize="14.0" spaceBefore="12.0" spaceAfter="0.0" spacing="0.0" applyColors="true" styleType="Heading" />
   <Style index="4" name="Heading 5" font="Calibri Light" fontColor="#AC510D" fontSize="12.0" italic="true" spaceBefore="10.0" spaceAfter="0.0" spacing="0.0" applyColors="true" styleType="Heading" />
   <Style index="5" name="Heading 6" font="Calibri Light" fontColor="#E67832" fontSize="12.0" italic="true" spaceBefore="10.0" spaceAfter="0.0" spacing="0.0" applyColors="true" styleType="Heading" />
-  <Style index="6" name="Page Title" font="Calibri Light" fontColor="#FFFFFF" fontSize="20.0" spaceBefore="0.0" spaceAfter="14.0" spacing="0.0" applyColors="true" styleType="Paragraph" />
+  <Style index="6" name="Page Title" font="Calibri Light" fontColor="#FFFFFF" fontSize="20.0" spaceBefore="0.0" spaceAfter="14.0" spacing="0.0" applyColors="true" styleType="PageTitle" />
   <Style index="7" name="Citation" font="Calibri" fontColor="#F3F3F3" fontSize="9.0" spaceBefore="0.0" spaceAfter="0.0" spacing="0.0" applyColors="true" styleType="Paragraph" />
   <Style index="8" name="Quote" font="Calibri" fontColor="#A5A5A5" fontSize="11.0" italic="true" spaceBefore="0.0" spaceAfter="0.0" spacing="0.0" applyColors="true" styleType="Paragraph" />
   <Style index="9" name="Code" font="Lucida Console" fontColor="#F3F3F3" fontSize="9.0" spaceBefore="0.0" spaceAfter="0.0" spacing="0.0" applyColors="true" styleType="Paragraph" isCode="true" />

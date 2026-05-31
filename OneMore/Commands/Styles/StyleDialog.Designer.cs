@@ -613,7 +613,8 @@
 			this.styleTypeBox.Items.AddRange(new object[] {
             "Character - words in paragraph",
             "Paragraph - entire paragraph",
-            "Heading - include in TOC"});
+            "Heading - include in TOC",
+            "Page title - page title paragraph"});
 			this.styleTypeBox.Location = new System.Drawing.Point(169, 77);
 			this.styleTypeBox.Name = "styleTypeBox";
 			this.styleTypeBox.Size = new System.Drawing.Size(473, 33);

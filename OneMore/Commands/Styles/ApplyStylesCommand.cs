@@ -75,9 +75,9 @@ namespace River.OneMoreAddIn.Commands
 
 			await using var one = new OneNote(out page, out ns);
 
-			var hasSelection = page.Root
-				.Descendants(ns + "T")
-				.Any(e => e.Attributes("selected").Any(a => a.Value == "all"));
+			var range = new SelectionRange(page);
+			_ = range.GetSelections();
+			var hasSelection = range.Scope != SelectionScope.TextCursor;
 
 			// selection mode: apply theme styles only to selected paragraphs inline;
 			// do not change the page background color
@@ -145,7 +145,9 @@ namespace River.OneMoreAddIn.Commands
 		private bool ApplyThemeStyles()
 		{
 			var styles = theme.GetStyles();
-			if (ApplyStyles(styles))
+			var changed = ApplyStyles(styles);
+
+			if (changed)
 			{
 				// lists require some inline styling
 				ApplyToLists(styles);
@@ -155,11 +157,84 @@ namespace River.OneMoreAddIn.Commands
 					// hyperlinks require some inline styling
 					ApplyToHyperlinks();
 				}
-
-				return true;
 			}
 
-			return false;
+			if (ApplyToTitle(styles))
+			{
+				changed = true;
+			}
+
+			return changed;
+		}
+
+
+		private bool ApplyToTitle(List<Style> styles)
+		{
+			var style = styles.FirstOrDefault(s => s.StyleType == StyleType.PageTitle)
+				?? FindStyle(styles, "PageTitle");
+
+			if (style is null)
+			{
+				return false;
+			}
+
+			var title = page.Root.Element(ns + "Title");
+			if (title is null)
+			{
+				return false;
+			}
+
+			var oe = title.Element(ns + "OE");
+			if (oe is null)
+			{
+				return false;
+			}
+
+			// find the page's PageTitle QuickStyleDef; create one if the page doesn't have it
+			var quick = page.Root.Elements(ns + "QuickStyleDef")
+				.FirstOrDefault(q => q.Attribute("name")?.Value == "PageTitle");
+
+			if (quick is null)
+			{
+				var qsd = page.GetQuickStyle(StandardStyles.PageTitle);
+				quick = page.Root.Elements(ns + "QuickStyleDef")
+					.FirstOrDefault(q => q.Attribute("index")?.Value == qsd.Index.ToString());
+			}
+
+			if (quick is not null)
+			{
+				quick.SetAttributeValue("font", style.FontFamily);
+				quick.SetAttributeValue("fontSize", style.FontSize);
+				quick.SetAttributeValue("spaceBefore", style.SpaceBefore);
+				quick.SetAttributeValue("spaceAfter", style.SpaceAfter);
+				quick.SetAttributeValue("italic", style.IsItalic.ToString().ToLower());
+				quick.SetAttributeValue("bold", style.IsBold.ToString().ToLower());
+				quick.SetAttributeValue("underline", style.IsUnderline.ToString().ToLower());
+
+				if (style.ApplyColors)
+				{
+					quick.SetAttributeValue("fontColor", style.Color);
+					quick.SetAttributeValue("highlightColor", style.Highlight);
+				}
+
+				// keep the title OE pointing at this QuickStyleDef
+				oe.SetAttributeValue("quickStyleIndex", quick.Attribute("index").Value);
+			}
+
+			// clear any inline overrides on the title OE and re-apply from the theme style
+			stylizer.Clear(oe, Stylizer.Clearing.All);
+
+			var css = style.ToCss();
+			var attr = oe.Attribute("style");
+			if (attr is null)
+				oe.Add(new XAttribute("style", css));
+			else
+				attr.Value = css;
+
+			oe.SetAttributeValue("spaceBefore", style.SpaceBefore);
+			oe.SetAttributeValue("spaceAfter", style.SpaceAfter);
+
+			return true;
 		}
 
 
@@ -296,7 +371,8 @@ namespace River.OneMoreAddIn.Commands
 					break;
 
 				case "PageTitle":
-					style = styles.SingleOrDefault(s => s.Name.ToLower() == "page title")
+					style = styles.FirstOrDefault(s => s.StyleType == StyleType.PageTitle)
+						?? styles.SingleOrDefault(s => s.Name.ToLower() == "page title")
 						?? styles.SingleOrDefault(s => s.Name.ToLower() == "pagetitle")
 						?? styles.SingleOrDefault(s => s.Name.ToLower() == "title");
 					break;

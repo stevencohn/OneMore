@@ -5142,7 +5142,8 @@ Notebooks</value>
   <data name="StyleDialog_styleTypeBox_Items" xml:space="preserve">
     <value>Character - words in paragraph
 Paragraph - entire paragraph
-Heading - include in TOC</value>
+Heading - include in TOC
+Page title - page title paragraph</value>
     <comment>combobox</comment>
   </data>
   <data name="StyleDialog_styleTypeLabel.Text" xml:space="preserve">
