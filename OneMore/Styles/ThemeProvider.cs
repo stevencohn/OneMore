@@ -3,11 +3,13 @@
 //************************************************************************************************
 
 #pragma warning disable S1117 // Local variables should not shadow class fields
+#pragma warning disable S3267 // use Linq instead of loops
 
 namespace River.OneMoreAddIn.Styles
 {
 	using River.OneMoreAddIn.Settings;
 	using System;
+	using System.Collections.Generic;
 	using System.IO;
 	using System.Linq;
 	using System.Text.RegularExpressions;
@@ -37,6 +39,7 @@ namespace River.OneMoreAddIn.Styles
 			{
 				// load by key in expected appdata paths
 				theme = Load(key);
+				UpgradeStyles(theme);
 				return;
 			}
 
@@ -48,6 +51,77 @@ namespace River.OneMoreAddIn.Styles
 
 
 		public Theme Theme => theme;
+
+
+		private static void UpgradeStyles(Theme theme)
+		{
+			var aliases = BuildUpgradeAliases();
+			var styles = theme.GetStyles();
+			foreach (var style in styles)
+			{
+				if (style.StyleType != StyleType.Paragraph)
+				{
+					continue;
+				}
+
+				var name = style.Name.ToLower().Trim();
+				if (aliases.TryGetValue(name, out var upgrade))
+				{
+					style.StyleType = upgrade;
+					theme.ReplaceStyle(style);
+					Logger.Current.WriteLine(
+						$"upgraded style {style.Name} to {style.StyleType}");
+				}
+			}
+		}
+
+
+		private static Dictionary<string, StyleType> BuildUpgradeAliases()
+		{
+			var map = new Dictionary<string, StyleType>(StringComparer.OrdinalIgnoreCase);
+
+			// English aliases seeded first so they win any collision with localized names
+			foreach (var a in new[] { "citation", "cite", "ref", "reference" })
+			{
+				map[a] = StyleType.Citation;
+			}
+
+			foreach (var a in new[] { "quote", "quotation", "block quote", "blockquote",
+				"pull quote", "pullquote", "excerpt", "epigraph" })
+			{
+				if (!map.ContainsKey(a)) map[a] = StyleType.Quote;
+			}
+
+			foreach (var a in new[] { "code", "source code", "code block", "codeblock",
+				"pre", "preformatted", "verbatim", "snippet" })
+			{
+				if (!map.ContainsKey(a)) map[a] = StyleType.Code;
+			}
+
+			// Extract localized short names from the current culture's resource string.
+			// Items follow styleTypeOrder: index 2=Citation, 3=Quote, 4=Code.
+			// Separators vary by locale: " - " (EN), " – " (DE), ": " (IT), etc.
+			var separatorPattern = new Regex(@"\s*[-–—:].*$");
+			var items = Resx.StyleDialog_styleTypeBox_Items.Split('\n');
+
+			void AddLocalized(int index, StyleType type)
+			{
+				if (index < items.Length)
+				{
+					var shortName = separatorPattern.Replace(items[index], "").ToLower().Trim();
+					if (!string.IsNullOrEmpty(shortName) && !map.ContainsKey(shortName))
+					{
+						map[shortName] = type;
+					}
+				}
+			}
+
+			AddLocalized(2, StyleType.Citation);
+			AddLocalized(3, StyleType.Quote);
+			AddLocalized(4, StyleType.Code);
+
+			return map;
+		}
 
 
 		private static string GetSavedKey()

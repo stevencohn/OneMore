@@ -5111,9 +5111,13 @@ ISO-code then comma then language name</comment>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_styleTypeBox_Items" xml:space="preserve">
-    <value>文字 - 段落内の単語
+    <value>見出し - 目次に含まれます
+ページタイトル - ページタイトル段落
+引用 - 参照段落
+引用 - 引用されたテキストの段落
+コード - コードブロックの段落
 段落 - 段落全体
-見出し - TOCに含める</value>
+文字 - 段落内の単語</value>
     <comment>combobox</comment>
   </data>
   <data name="StyleDialog_styleTypeLabel.Text" xml:space="preserve">

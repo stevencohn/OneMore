@@ -5100,9 +5100,13 @@ Cuadernos</value>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_styleTypeBox_Items" xml:space="preserve">
-    <value>Carácter - palabras en párrafo
+    <value>Título - incluido en TOC
+Título de la página - párrafo del título de la página
+Cita - párrafo de referencia
+Cita - párrafo de texto citado
+Código - párrafo de bloque de código
 Párrafo - párrafo completo
-Encabezado - incluir en TOC</value>
+Carácter - palabras en el párrafo</value>
     <comment>combobox</comment>
   </data>
   <data name="StyleDialog_styleTypeLabel.Text" xml:space="preserve">

@@ -5105,9 +5105,13 @@ ISO-code then comma then language name</comment>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_styleTypeBox_Items" xml:space="preserve">
-    <value>אופי - מילים בפסקה
+    <value>כותרת - כלולה ב-TOC
+כותרת עמוד - פסקה של כותרת עמוד
+ציטוט - פסקת התייחסות
+ציטוט - פיסקת טקסט מצוטטת
+קוד - פסקה בלוק קוד
 פסקה - פסקה שלמה
-כותרת - כלול ב- TOC</value>
+דמות - מילים בפסקה</value>
     <comment>combobox</comment>
   </data>
   <data name="StyleDialog_styleTypeLabel.Text" xml:space="preserve">

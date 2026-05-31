@@ -5101,9 +5101,13 @@ cadernos</value>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_styleTypeBox_Items" xml:space="preserve">
-    <value>Caráter - palavras no parágrafo
+    <value>Título - incluído no sumário
+Título da página - parágrafo do título da página
+Citação - parágrafo de referência
+Citação - parágrafo de texto citado
+Código - parágrafo do bloco de código
 Parágrafo - parágrafo inteiro
-Título - incluir no TOC</value>
+Personagem - palavras no parágrafo</value>
     <comment>combobox</comment>
   </data>
   <data name="StyleDialog_styleTypeLabel.Text" xml:space="preserve">

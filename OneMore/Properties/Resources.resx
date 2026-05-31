@@ -5151,7 +5151,7 @@ Quote - quoted text paragraph
 Code - code block paragraph
 Paragraph - entire paragraph
 Character - words in paragraph</value>
-    <comment>combobox !EDIT</comment>
+    <comment>combobox</comment>
   </data>
   <data name="StyleDialog_styleTypeLabel.Text" xml:space="preserve">
     <value>Style Type:</value>
