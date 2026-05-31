@@ -5101,9 +5101,13 @@ Notatniki</value>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_styleTypeBox_Items" xml:space="preserve">
-    <value>Znak - słowa w akapicie
-Ustęp - cały akapit
-Kierunek - dołącz w TOC</value>
+    <value>Nagłówek — zawarty w spisie treści
+Tytuł strony - akapit tytułu strony
+Cytat – akapit odsyłający
+Cytat – cytowany akapit tekstu
+Kod - akapit bloku kodu
+Akapit — cały akapit
+Znak - słowa w akapicie</value>
     <comment>combobox</comment>
   </data>
   <data name="StyleDialog_styleTypeLabel.Text" xml:space="preserve">

@@ -5108,9 +5108,13 @@ Taccuini</value>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_styleTypeBox_Items" xml:space="preserve">
-    <value>Carattere: parole nel paragrafo
+    <value>Intestazione: inclusa nel sommario
+Titolo della pagina: paragrafo del titolo della pagina
+Citazione - paragrafo di riferimento
+Citazione: paragrafo di testo citato
+Codice: paragrafo del blocco di codice
 Paragrafo: intero paragrafo
-Intestazione: includi nel sommario</value>
+Carattere: parole nel paragrafo</value>
     <comment>combobox</comment>
   </data>
   <data name="StyleDialog_styleTypeLabel.Text" xml:space="preserve">

@@ -5101,9 +5101,13 @@ Notizbücher</value>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_styleTypeBox_Items" xml:space="preserve">
-    <value>Zeichen - Wörter im Absatz
-Absatz - ganzer Absatz
-Überschrift - in Inhaltsverzeichnis aufnehmen</value>
+    <value>Überschrift – im Inhaltsverzeichnis enthalten
+Seitentitel – Seitentitelabsatz
+Zitat – Referenzabsatz
+Zitat – zitierter Textabsatz
+Code – Codeblock-Absatz
+Absatz – ganzer Absatz
+Zeichen – Wörter im Absatz</value>
     <comment>combobox</comment>
   </data>
   <data name="StyleDialog_styleTypeLabel.Text" xml:space="preserve">

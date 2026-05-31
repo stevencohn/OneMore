@@ -5111,9 +5111,13 @@ Des notebooks</value>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_styleTypeBox_Items" xml:space="preserve">
-    <value>Caractère - mots dans le paragraphe
+    <value>Titre - inclus dans la table des matières
+Titre de la page - paragraphe du titre de la page
+Citation - paragraphe de référence
+Citation - paragraphe de texte cité
+Code - paragraphe de bloc de code
 Paragraphe - paragraphe entier
-Titre - inclure dans la table des matières</value>
+Caractère - mots dans le paragraphe</value>
     <comment>combobox</comment>
   </data>
   <data name="StyleDialog_styleTypeLabel.Text" xml:space="preserve">

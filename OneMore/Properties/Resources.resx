@@ -5144,10 +5144,13 @@ Notebooks</value>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_styleTypeBox_Items" xml:space="preserve">
-    <value>Character - words in paragraph
+    <value>Heading - included in TOC
+Page title - page title paragraph
+Citation - reference paragraph
+Quote - quoted text paragraph
+Code - code block paragraph
 Paragraph - entire paragraph
-Heading - include in TOC
-Page title - page title paragraph</value>
+Character - words in paragraph</value>
     <comment>combobox</comment>
   </data>
   <data name="StyleDialog_styleTypeLabel.Text" xml:space="preserve">

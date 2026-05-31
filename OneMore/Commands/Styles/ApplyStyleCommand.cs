@@ -19,6 +19,8 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class ApplyStyleCommand : Command
 	{
+		private const string QuickStyleAttribute = "quickStyleIndex";
+
 		private Page page;
 		private XNamespace ns;
 		private Stylizer stylizer;
@@ -311,35 +313,39 @@ namespace River.OneMoreAddIn.Commands
 
 		private void SetQuickStyle(Page page, XElement element, Style style)
 		{
-			if (style.IsCode)
+			void SetQuickStyle(StandardStyles key)
 			{
-				// bind the paragraph to OneNote's "code" quickstyle so OneNote
-				// (and Apply Styles to Page) recognize it as code regardless
-				// of what it was before — heading, normal, cite, quote, etc.
-
-				var quick = page.GetQuickStyle(StandardStyles.Code);
-				var attr = element.Attribute("quickStyleIndex");
+				var quick = page.GetQuickStyle(key);
+				var attr = element.Attribute(QuickStyleAttribute);
 				if (attr is null)
 				{
-					element.Add(new XAttribute("quickStyleIndex", quick.Index));
+					element.Add(new XAttribute(QuickStyleAttribute, quick.Index));
 				}
 				else
 				{
 					attr.Value = quick.Index.ToString();
 				}
 			}
+
+			if (style.IsCode || style.StyleType == StyleType.Code)
+			{
+				// bind the paragraph to OneNote's "code" quickstyle so OneNote
+				// (and Apply Styles to Page) recognize it as code regardless
+				// of what it was before — heading, normal, cite, quote, etc.
+
+				SetQuickStyle(StandardStyles.Code);
+			}
 			else if (style.StyleType == StyleType.PageTitle)
 			{
-				var quick = page.GetQuickStyle(StandardStyles.PageTitle);
-				var attr = element.Attribute("quickStyleIndex");
-				if (attr is null)
-				{
-					element.Add(new XAttribute("quickStyleIndex", quick.Index));
-				}
-				else
-				{
-					attr.Value = quick.Index.ToString();
-				}
+				SetQuickStyle(StandardStyles.PageTitle);
+			}
+			else if (style.StyleType == StyleType.Citation)
+			{
+				SetQuickStyle(StandardStyles.Citation);
+			}
+			else if (style.StyleType == StyleType.Quote)
+			{
+				SetQuickStyle(StandardStyles.Quote);
 			}
 			else if (style.StyleType == StyleType.Heading &&
 				// must be in heading range h1=0..h6=5
@@ -347,23 +353,14 @@ namespace River.OneMoreAddIn.Commands
 			{
 				// force override quick style to correct heading index...
 
-				var quick = page.GetQuickStyle((StandardStyles)style.Index);
-				var attr = element.Attribute("quickStyleIndex");
-				if (attr is null)
-				{
-					element.Add(new XAttribute("quickStyleIndex", quick.Index));
-				}
-				else
-				{
-					attr.Value = quick.Index.ToString();
-				}
+				SetQuickStyle((StandardStyles)style.Index);
 			}
 			else
 			{
 				// force to normal quickstyle only if currently heading...
 				// do not override quote, cite, etc with normal.
 
-				var attr = element.Attribute("quickStyleIndex");
+				var attr = element.Attribute(QuickStyleAttribute);
 				if (attr is not null)
 				{
 					if (int.TryParse(attr.Value, out var index))

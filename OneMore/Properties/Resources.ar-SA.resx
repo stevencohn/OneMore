@@ -5112,9 +5112,13 @@ ISO-code then comma then language name</comment>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_styleTypeBox_Items" xml:space="preserve">
-    <value>حرف - كلمات في الفقرة
-فقرة - فقرة كاملة
-العنوان - تضمين في جدول المحتويات</value>
+    <value>العنوان - متضمن في جدول المحتويات
+عنوان الصفحة - فقرة عنوان الصفحة
+الاقتباس - الفقرة المرجعية
+اقتباس - فقرة نصية مقتبسة
+الكود - فقرة كتلة الكود
+الفقرة - الفقرة بأكملها
+الحرف - الكلمات في الفقرة</value>
     <comment>combobox</comment>
   </data>
   <data name="StyleDialog_styleTypeLabel.Text" xml:space="preserve">

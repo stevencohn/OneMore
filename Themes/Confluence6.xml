@@ -7,12 +7,13 @@
   <Style index="4" name="Heading 5" font="Arial" fontSize="10" bold="true" fontColor="#ff707070" spaceBefore="12" spaceAfter="0" styleType="Heading" />
   <Style index="5" name="Heading 6" font="Arial" fontSize="9" bold="true" fontColor="#ff707070" spaceBefore="12" spaceAfter="0" styleType="Heading" />
   <Style index="6" name="Page Title" font="Calibri Light" fontSize="20" fontColor="#ff464646" spaceBefore="0" spaceAfter="14" styleType="PageTitle" />
-  <Style index="7" name="Citation" font="Calibri" fontSize="9" fontColor="#ff595959" spaceBefore="0" spaceAfter="0" styleType="Paragraph" />
-  <Style index="8" name="Quote" font="Arial" fontSize="10" italic="true" fontColor="#ff7F7F7F" spaceBefore="0" spaceAfter="0" styleType="Paragraph" />
-  <Style index="9" name="Code" font="Calibri" fontSize="10" fontColor="#ff333333" spaceBefore="0" spaceAfter="0" styleType="Paragraph" isCode="true" />
-  <Style index="10" name="Normal" font="Arial" fontSize="10" fontColor="#ff333333" spaceBefore="6" spaceAfter="0" styleType="Paragraph" />
-  <Style index="11" name="Strong" font="Arial" fontSize="10" bold="true" fontColor="#ff333333" spaceBefore="0" spaceAfter="0" styleType="Character" />
-  <Style index="12" name="Emphasis" font="Arial" fontSize="10" bold="true" italic="true" fontColor="#ff5B9BD5" spaceBefore="0" spaceAfter="0" styleType="Character" />
-  <Style index="13" name="Intense Emphasis" font="Arial" fontSize="10" bold="true" italic="true" fontColor="#ffC00000" spaceBefore="0" spaceAfter="0" styleType="Character" />
-  <Style index="14" name="Subtle Emphasis" font="Arial" fontSize="10" bold="true" italic="true" fontColor="#ffA5A5A5" spaceBefore="0" spaceAfter="0" styleType="Character" />
+  <Style index="7" name="Citation" font="Calibri" fontSize="9" fontColor="#ff595959" spaceBefore="0" spaceAfter="0" styleType="Citation" />
+  <Style index="8" name="Quote" font="Arial" fontSize="10" italic="true" fontColor="#ff7F7F7F" spaceBefore="0" spaceAfter="0" styleType="Quote" />
+  <Style index="9" name="Code" font="Calibri" fontSize="10" fontColor="#ff333333" spaceBefore="0" spaceAfter="0" styleType="Code" isCode="true" />
+  <Style index="10" name="Inline Code" font="Lucida Console" fontColor="#000000" highlightColor="#F1F1F1" fontSize="9.0" spaceBefore="0.0" spaceAfter="0.0" spacing="0.0" applyColors="true" styleType="Character" />
+  <Style index="11" name="Normal" font="Arial" fontSize="10" fontColor="#ff333333" spaceBefore="6" spaceAfter="0" styleType="Paragraph" />
+  <Style index="12" name="Strong" font="Arial" fontSize="10" bold="true" fontColor="#ff333333" spaceBefore="0" spaceAfter="0" styleType="Character" />
+  <Style index="13" name="Emphasis" font="Arial" fontSize="10" bold="true" italic="true" fontColor="#ff5B9BD5" spaceBefore="0" spaceAfter="0" styleType="Character" />
+  <Style index="14" name="Intense Emphasis" font="Arial" fontSize="10" bold="true" italic="true" fontColor="#ffC00000" spaceBefore="0" spaceAfter="0" styleType="Character" />
+  <Style index="15" name="Subtle Emphasis" font="Arial" fontSize="10" bold="true" italic="true" fontColor="#ffA5A5A5" spaceBefore="0" spaceAfter="0" styleType="Character" />
 </Theme>

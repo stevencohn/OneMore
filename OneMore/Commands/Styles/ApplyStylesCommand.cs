@@ -288,7 +288,7 @@ namespace River.OneMoreAddIn.Commands
 					// user's syntax-highlighting (or any custom fontColor on the
 					// QuickStyleDef) is preserved; other styles honor their own
 					// ApplyColors setting
-					if (style.ApplyColors && !style.IsCode)
+					if (style.ApplyColors && !(style.IsCode || style.StyleType == StyleType.Code))
 					{
 						quick.SetAttributeValue("fontColor", style.Color);
 						quick.SetAttributeValue("highlightColor", style.Highlight);
@@ -324,11 +324,10 @@ namespace River.OneMoreAddIn.Commands
 				// the historic behavior: Gray-clear normal "p" paragraphs (to keep
 				// deliberate accents) and All-clear everything else
 				var clearing =
-					style is not null && (style.IsCode || !style.ApplyColors)
+					style is not null && 
+					(style.IsCode || style.StyleType == StyleType.Code || !style.ApplyColors)
 						? Stylizer.Clearing.Gray
-						: name == "p"
-							? Stylizer.Clearing.Gray
-							: Stylizer.Clearing.All;
+						: name == "p" ? Stylizer.Clearing.Gray : Stylizer.Clearing.All;
 
 				ClearInlineStyles(index, clearing);
 			}
@@ -350,12 +349,14 @@ namespace River.OneMoreAddIn.Commands
 					break;
 
 				case "cite":
-					style = styles.SingleOrDefault(s => s.Name.ToLower() == "citation")
+					style = styles.FirstOrDefault(s => s.StyleType == StyleType.Citation)
+						?? styles.SingleOrDefault(s => s.Name.ToLower() == "citation")
 						?? styles.SingleOrDefault(s => s.Name.ToLower() == "cite");
 					break;
 
 				case "blockquote":
-					style = styles.SingleOrDefault(s => s.Name.ToLower() == "quote")
+					style = styles.FirstOrDefault(s => s.StyleType == StyleType.Quote)
+						?? styles.SingleOrDefault(s => s.Name.ToLower() == "quote")
 						?? styles.SingleOrDefault(s => s.Name.ToLower() == "quotation")
 						?? styles.SingleOrDefault(s => s.Name.ToLower() == "blockquote");
 					break;
@@ -366,6 +367,7 @@ namespace River.OneMoreAddIn.Commands
 					// and fall back to conventional names so themes that haven't
 					// been resaved yet still resolve
 					style = styles.FirstOrDefault(s => s.IsCode)
+						?? styles.FirstOrDefault(s => s.StyleType == StyleType.Code)
 						?? styles.SingleOrDefault(s => s.Name.ToLower() == "code")
 						?? styles.SingleOrDefault(s => s.Name.ToLower() == "source code");
 					break;

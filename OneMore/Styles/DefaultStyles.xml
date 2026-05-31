@@ -6,12 +6,14 @@
   <Style index="3" name="Heading 4" font="Calibri Light" fontColor="#C85A14" fontSize="14.0" spaceBefore="12.0" spaceAfter="0.0" applyColors="true" styleType="Heading" />
   <Style index="4" name="Heading 5" font="Calibri Light" fontColor="#823D0A" fontSize="12.0" italic="true" spaceBefore="10.0" spaceAfter="0.0" applyColors="true" styleType="Heading" />
   <Style index="5" name="Heading 6" font="Calibri Light" fontColor="#E67832" fontSize="12.0" italic="true" spaceBefore="10.0" spaceAfter="0.0" applyColors="true" styleType="Heading" />
-w  <Style index="7" name="Citation" font="Calibri" fontColor="#595959" fontSize="9.0" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Paragraph" />
-  <Style index="8" name="Quote" font="Calibri" fontColor="#595959" fontSize="11.0" italic="true" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Paragraph" />
-  <Style index="9" name="Code" font="Lucida Console" fontColor="Black" fontSize="9.0" spaceBefore="0.0" spaceAfter="0.0" applyColors="false" styleType="Paragraph" ignored="true" isCode="true" />
-  <Style index="10" name="Normal" font="Calibri" fontColor="Black" fontSize="11.0" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Paragraph" />
-  <Style index="11" name="Strong" font="Calibri" fontColor="Black" fontSize="11.0" bold="true" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Character" />
-  <Style index="12" name="Emphasis" font="Calibri" fontColor="#4F81BD" fontSize="11.0" bold="true" italic="true" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Character" />
-  <Style index="13" name="Intense Emphasis" font="Calibri" fontColor="#C0504D" fontSize="11.0" bold="true" italic="true" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Character" />
-  <Style index="14" name="Subtle Emphasis" font="Calibri" fontColor="Gray" fontSize="11.0" italic="true" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Character" />
+  <Style index="6" name="Page Title" font="Calibri Light" fontColor="#000000" fontSize="20.0" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="PageTitle" />
+  <Style index="7" name="Citation" font="Calibri" fontColor="#595959" fontSize="9.0" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Citation" />
+  <Style index="8" name="Quote" font="Calibri" fontColor="#595959" fontSize="11.0" italic="true" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Quote" />
+  <Style index="9" name="Code" font="Lucida Console" fontColor="Black" fontSize="9.0" spaceBefore="0.0" spaceAfter="0.0" applyColors="false" styleType="Code" ignored="true" isCode="true" />
+  <Style index="10" name="Inline Code" font="Lucida Console" fontColor="#000000" highlightColor="#F1F1F1" fontSize="9.0" spaceBefore="0.0" spaceAfter="0.0" spacing="0.0" applyColors="true" styleType="Character" />
+  <Style index="11" name="Normal" font="Calibri" fontColor="Black" fontSize="11.0" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Paragraph" />
+  <Style index="12" name="Strong" font="Calibri" fontColor="Black" fontSize="11.0" bold="true" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Character" />
+  <Style index="13" name="Emphasis" font="Calibri" fontColor="#4F81BD" fontSize="11.0" bold="true" italic="true" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Character" />
+  <Style index="14" name="Intense Emphasis" font="Calibri" fontColor="#C0504D" fontSize="11.0" bold="true" italic="true" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Character" />
+  <Style index="15" name="Subtle Emphasis" font="Calibri" fontColor="Gray" fontSize="11.0" italic="true" spaceBefore="0.0" spaceAfter="0.0" applyColors="true" styleType="Character" />
 </Theme>

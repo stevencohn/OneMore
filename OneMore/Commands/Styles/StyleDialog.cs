@@ -26,6 +26,17 @@ namespace River.OneMoreAddIn.Commands
 
 	internal partial class StyleDialog : MoreForm
 	{
+		private static readonly StyleType[] styleTypeOrder =
+		{
+			StyleType.Heading,
+			StyleType.PageTitle,
+			StyleType.Citation,
+			StyleType.Quote,
+			StyleType.Code,
+			StyleType.Paragraph,
+			StyleType.Character,
+		};
+
 		private Color pageColor;
 		private readonly Color originalColor;
 		private readonly bool darkMode;
@@ -167,7 +178,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			styleTypeBox.SelectedIndex = (int)StyleType.Paragraph;
+			styleTypeBox.SelectedIndex = Array.IndexOf(styleTypeOrder, StyleType.Paragraph);
 			familyBox.SelectedIndex = familyBox.Items.IndexOf(StyleBase.DefaultFontFamily);
 			sizeBox.SelectedIndex = sizeBox.Items.IndexOf(StyleBase.DefaultFontSize.ToString());
 			spaceAfterSpinner.Value = 0;
@@ -299,7 +310,7 @@ namespace River.OneMoreAddIn.Commands
 			// nameBox may not be visible but oh well
 			nameBox.Text = selection.Name;
 
-			styleTypeBox.SelectedIndex = (int)selection.StyleType;
+			styleTypeBox.SelectedIndex = Array.IndexOf(styleTypeOrder, selection.StyleType);
 			familyBox.Text = selection.FontFamily;
 
 			// normalize number to remove ".0"
@@ -508,7 +519,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				if (eventing)
 				{
-					selection.StyleType = (StyleType)styleTypeBox.SelectedIndex;
+					selection.StyleType = styleTypeOrder[styleTypeBox.SelectedIndex];
 				}
 
 				switch (selection.StyleType)
@@ -528,17 +539,21 @@ namespace River.OneMoreAddIn.Commands
 						break;
 
 					case StyleType.Heading:
+					case StyleType.PageTitle:
+					case StyleType.Citation:
+					case StyleType.Quote:
 						spaceAfterSpinner.Enabled = true;
 						spaceBeforeSpinner.Enabled = true;
 						spacingSpinner.Enabled = true;
 						isCodeBox.Enabled = isCodeBox.Checked = false;
 						break;
 
-					case StyleType.PageTitle:
+					case StyleType.Code:
 						spaceAfterSpinner.Enabled = true;
 						spaceBeforeSpinner.Enabled = true;
 						spacingSpinner.Enabled = true;
-						isCodeBox.Enabled = isCodeBox.Checked = false;
+						isCodeBox.Enabled = true;
+						isCodeBox.Checked = true;
 						break;
 				}
 			}

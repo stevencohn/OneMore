@@ -5101,9 +5101,13 @@ Notitieboekjes</value>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_styleTypeBox_Items" xml:space="preserve">
-    <value>Karakter - woorden in alinea
+    <value>Kop - opgenomen in inhoudsopgave
+Paginatitel - paginatitelparagraaf
+Citaat - referentieparagraaf
+Citaat - geciteerde tekstparagraaf
+Code - codeblokparagraaf
 Paragraaf - hele paragraaf
-Kop - opnemen in inhoudsopgave</value>
+Karakter - woorden in alinea</value>
     <comment>combobox</comment>
   </data>
   <data name="StyleDialog_styleTypeLabel.Text" xml:space="preserve">
