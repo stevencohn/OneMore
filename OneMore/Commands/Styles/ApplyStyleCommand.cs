@@ -328,6 +328,19 @@ namespace River.OneMoreAddIn.Commands
 					attr.Value = quick.Index.ToString();
 				}
 			}
+			else if (style.StyleType == StyleType.PageTitle)
+			{
+				var quick = page.GetQuickStyle(StandardStyles.PageTitle);
+				var attr = element.Attribute("quickStyleIndex");
+				if (attr is null)
+				{
+					element.Add(new XAttribute("quickStyleIndex", quick.Index));
+				}
+				else
+				{
+					attr.Value = quick.Index.ToString();
+				}
+			}
 			else if (style.StyleType == StyleType.Heading &&
 				// must be in heading range h1=0..h6=5
 				style.Index < 6)
