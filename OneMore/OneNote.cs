@@ -304,6 +304,11 @@ namespace River.OneMoreAddIn
 				{
 					return window is null ? fallback : reader(window);
 				}
+				catch (COMException exc)
+				{
+					logger.WriteLine($"cannot read Window property ({exc.ErrorCode:X})", exc);
+					return fallback;
+				}
 				finally
 				{
 					if (window is not null && Marshal.IsComObject(window))

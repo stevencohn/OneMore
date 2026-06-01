@@ -613,6 +613,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to OneNote does not have an active section. Please open a section and try again.
+        /// </summary>
+        internal static string ArchiveCommand_noContext {
+            get {
+                return ResourceManager.GetString("ArchiveCommand_noContext", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Directory does not exist.
         /// </summary>
         internal static string ArchiveCommand_noDirectory {

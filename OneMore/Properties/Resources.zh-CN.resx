@@ -357,6 +357,10 @@
     <value>{0} 页（共 {1} 页）已存档至 {2}</value>
     <comment>message</comment>
   </data>
+  <data name="ArchiveCommand_noContext" xml:space="preserve">
+    <value>OneNote 没有活动部分。请打开一个部分并重试。</value>
+    <comment>message</comment>
+  </data>
   <data name="ArchiveCommand_noDirectory" xml:space="preserve">
     <value>文件路径不存在</value>
     <comment>message</comment>

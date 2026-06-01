@@ -353,6 +353,10 @@ Invertido</value>
     <value>{0} de {1} páginas arquivadas em {2}</value>
     <comment>message</comment>
   </data>
+  <data name="ArchiveCommand_noContext" xml:space="preserve">
+    <value>O OneNote não possui uma seção ativa. Abra uma seção e tente novamente.</value>
+    <comment>message</comment>
+  </data>
   <data name="ArchiveCommand_noDirectory" xml:space="preserve">
     <value>Diretório não existe</value>
     <comment>message</comment>

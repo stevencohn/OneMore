@@ -149,10 +149,9 @@ Add a `<Compile>` entry to `OneMoreTests/OneMoreTests.csproj` in the same
 
 ## Step 6 — Build and run
 
-Build with:
+Build with PowerShell script at root of project:
 ```
-$msbuild = "C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Current\Bin\MSBuild.exe"
-& $msbuild OneMoreTests\OneMoreTests.csproj /p:Configuration=Debug /p:Platform=x64 /t:Build /p:BuildProjectReferences=false /v:minimal
+.\build.ps1 -fast
 ```
 
 Run with:

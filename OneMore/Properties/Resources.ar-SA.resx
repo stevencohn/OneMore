@@ -356,6 +356,10 @@
     <value>تمت أرشفة {0} من {1} صفحة إلى {2}</value>
     <comment>message</comment>
   </data>
+  <data name="ArchiveCommand_noContext" xml:space="preserve">
+    <value>لا يحتوي OneNote على قسم نشط. يرجى فتح القسم والمحاولة مرة أخرى.</value>
+    <comment>message</comment>
+  </data>
   <data name="ArchiveCommand_noDirectory" xml:space="preserve">
     <value>الدليل غير موجود</value>
     <comment>message</comment>
