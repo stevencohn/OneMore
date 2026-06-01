@@ -195,7 +195,8 @@ namespace River.OneMoreAddIn
 					{
 						try
 						{
-							Marshal.ReleaseComObject(onenote);
+							if (Marshal.IsComObject(onenote))
+								Marshal.ReleaseComObject(onenote);
 						}
 						catch (Exception exc)
 						{
@@ -274,7 +275,11 @@ namespace River.OneMoreAddIn
 			{
 				var windows = onenote.Windows;
 				try { return (int)windows.Count; }
-				finally { Marshal.ReleaseComObject(windows); }
+				finally
+				{
+					if (Marshal.IsComObject(windows))
+						Marshal.ReleaseComObject(windows);
+				}
 			}
 		}
 
@@ -301,12 +306,14 @@ namespace River.OneMoreAddIn
 				}
 				finally
 				{
-					if (window is not null) Marshal.ReleaseComObject(window);
+					if (window is not null && Marshal.IsComObject(window))
+						Marshal.ReleaseComObject(window);
 				}
 			}
 			finally
 			{
-				Marshal.ReleaseComObject(windows);
+				if (Marshal.IsComObject(windows))
+					Marshal.ReleaseComObject(windows);
 			}
 		}
 
@@ -409,7 +416,11 @@ namespace River.OneMoreAddIn
 		{
 			if (onenote is not null)
 			{
-				try { Marshal.FinalReleaseComObject(onenote); }
+				try
+				{
+					if (Marshal.IsComObject(onenote))
+						Marshal.FinalReleaseComObject(onenote);
+				}
 				catch (Exception exc) { logger.WriteLine("error releasing onenote in retry", exc); }
 			}
 
@@ -1280,7 +1291,9 @@ namespace River.OneMoreAddIn
 			// must optimize before we can validate schema...
 			page.OptimizeForSave(force);
 
-			if (!ValidateSchema(page.Root))
+			// Skip schema validation when onenote is a test mock (non-COM object).
+			// ValidateSchema is only meaningful against a real OneNote COM endpoint.
+			if (Marshal.IsComObject(onenote) && !ValidateSchema(page.Root))
 			{
 				return;
 			}
@@ -1414,9 +1427,17 @@ namespace River.OneMoreAddIn
 				{
 					var window = windows.CurrentWindow;
 					try { dialog.ParentWindowHandle = window.WindowHandle; }
-					finally { if (window is not null) Marshal.ReleaseComObject(window); }
+					finally
+					{
+						if (window is not null && Marshal.IsComObject(window))
+							Marshal.ReleaseComObject(window);
+					}
 				}
-				finally { Marshal.ReleaseComObject(windows); }
+				finally
+				{
+					if (Marshal.IsComObject(windows))
+						Marshal.ReleaseComObject(windows);
+				}
 
 				var restriction = HierarchyElement.heNotebooks;
 

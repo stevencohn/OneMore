@@ -5,6 +5,7 @@
 using System;
 using System.Reflection;
 using System.Resources;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("OneMore Add-in for OneNote")]
@@ -24,10 +25,11 @@ using System.Runtime.InteropServices;
 [assembly: NeutralResourcesLanguage("en-US", UltimateResourceFallbackLocation.MainAssembly)]
 
 // To use, open LINQPad and set Preferences/Advanced "Allows LINPAad to access internals"...
-[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("LINQPadQuery")]
-[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("OneMoreCalendar")]
-[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("OneMoreCli")]
-[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("OneMoreTray")]
+[assembly: InternalsVisibleTo("LINQPadQuery")]
+[assembly: InternalsVisibleTo("OneMoreCalendar")]
+[assembly: InternalsVisibleTo("OneMoreCli")]
+[assembly: InternalsVisibleTo("OneMoreTests")]
+[assembly: InternalsVisibleTo("OneMoreTray")]
 
 
 namespace River.OneMoreAddIn
