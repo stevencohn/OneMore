@@ -41,6 +41,11 @@ calendar, protocol handler, and setup actions projects. This is a debugging opti
 When building All architectures, pause between each architecture build to allow examination
 of output and configuration of vdproj. This is a debugging option.
 
+.PARAMETER Test
+Run the OneMoreTests automation tests using vstest.console.exe. The test assembly must
+already be built (run -Fast or a full build first). This is a standalone command that
+executes and exits.
+
 .COPYRIGHT
 Copyright © 2016 Steven M Cohn. All rights reserved.
 #>
@@ -60,6 +65,7 @@ param (
 	[switch] $Kit,
 	[switch] $Main,
 	[switch] $Stepped,
+	[switch] $Test,
 	[switch] $DetailedLog
 	)
 
@@ -219,6 +225,42 @@ Begin
 		}
 	}
 
+
+	function RunTests
+	{
+		Write-Host "`n... running OneMore tests" -ForegroundColor Cyan
+
+		$testDll = '.\OneMoreTests\bin\Debug\OneMoreTests.dll'
+		if (-not (Test-Path $testDll))
+		{
+			Write-Host "... test assembly not found at $testDll; run a build first" -ForegroundColor Red
+			return $false
+		}
+
+		$vstest = Join-Path $script:ideroot 'Extensions\TestPlatform\vstest.console.exe'
+		if (-not (Test-Path $vstest))
+		{
+			Write-Host "... vstest.console.exe not found at $vstest" -ForegroundColor Red
+			return $false
+		}
+
+		$tempdir = $env:RUNNER_TEMP ?? $env:TEMP
+		$trx = Join-Path $tempdir 'OneMoreTests.trx'
+
+		$vstestArgs = @(
+			$testDll,
+			'/Platform:x64',
+			'/Logger:trx;LogFileName=OneMoreTests.trx',
+			"/ResultsDirectory:$tempdir"
+		)
+		Write-Host "... & '$vstest' $vstestArgs" -ForegroundColor DarkGray
+		& $vstest @vstestArgs
+
+		$exitCode = $LASTEXITCODE
+		$color = $exitCode -eq 0 ? 'Green' : 'Red'
+		Write-Host "`n... vstest exit code: $exitCode" -ForegroundColor $color
+		return $exitCode -eq 0
+	}
 
 	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 	# Fast...
@@ -510,6 +552,8 @@ Process
 	if (-not (FindVisualStudio)) { return }
 
 	if ($Detect) { DetectArchitecture $Detect; return }
+
+	if ($Test) { if (-not (RunTests)) { exit 1 }; return }
 
 	if ($Beta) { $env:Beta = 'true' } else { Remove-Item env:Beta -ErrorAction SilentlyContinue }
 

@@ -17,6 +17,11 @@ on:
         required: false
         type: boolean
         default: false
+      run_tests:
+        description: 'Run automation tests after building'
+        required: false
+        type: boolean
+        default: false
 
 jobs:
   build:
@@ -46,6 +51,19 @@ jobs:
         with:
           name: OneMoreBuild-log
           path: ${{ runner.temp }}\OneMoreBuild.log
+          if-no-files-found: warn
+
+      - name: Run tests
+        if: inputs.run_tests
+        shell: pwsh
+        run: .\build.ps1 -Test
+
+      - name: Upload test results
+        if: always() && inputs.run_tests
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: OneMoreTests-results
+          path: ${{ runner.temp }}\OneMoreTests.trx
           if-no-files-found: warn
 
       - name: Stage installer
