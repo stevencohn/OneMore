@@ -356,6 +356,10 @@ Invertir</value>
     <value>{0} de {1} páginas archivadas en {2}</value>
     <comment>message</comment>
   </data>
+  <data name="ArchiveCommand_noContext" xml:space="preserve">
+    <value>OneNote no tiene una sección activa. Abre una sección e inténtalo de nuevo.</value>
+    <comment>message</comment>
+  </data>
   <data name="ArchiveCommand_noDirectory" xml:space="preserve">
     <value>El directorio no existe</value>
     <comment>message</comment>

@@ -358,6 +358,10 @@ Invert</value>
     <value>{0} of {1} pages archived to {2}</value>
     <comment>message</comment>
   </data>
+  <data name="ArchiveCommand_noContext" xml:space="preserve">
+    <value>OneNote does not have an active section. Please open a section and try again.</value>
+    <comment>message</comment>
+  </data>
   <data name="ArchiveCommand_noDirectory" xml:space="preserve">
     <value>Directory does not exist</value>
     <comment>message</comment>
