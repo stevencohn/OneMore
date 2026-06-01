@@ -1,6 +1,7 @@
 <#
 .SYNOPSIS
-Stop the OneMore add-in dllhost process and then the OneNote process
+Stop the OneMore add-in dllhost process and then the OneNote process,
+being intentionally aggressive to wipe out the processes.
 
 .COPYRIGHT
 Copyright © 2016 Steven M Cohn. All rights reserved.
@@ -84,8 +85,6 @@ Process
 	$script:verboseColor = $PSStyle.Formatting.Verbose
 	$PSStyle.Formatting.Verbose = $PSStyle.Foreground.BrightBlack
 
-    ObliterateDllHost
-
     if ($Close)
     {
         foreach ($name in @('OneMoreCalendar', 'OneMoreTray', 'ONENOTE'))
@@ -97,6 +96,8 @@ Process
     Assassinate 'OneMoreCalendar.exe'
     Assassinate 'OneMoreTray.exe'
     Assassinate 'ONENOTE.EXE'
+
+    ObliterateDllHost
 }
 End
 {

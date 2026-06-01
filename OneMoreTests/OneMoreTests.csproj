@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="Builders\HierarchyBuilder.cs" />
     <Compile Include="Builders\PageBuilder.cs" />
+    <Compile Include="Commands\Edit\AlterSizeCommandTests.cs" />
     <Compile Include="Commands\Edit\HighlightCommandTests.cs" />
     <Compile Include="MockApplication.cs" />
     <Compile Include="TestBase.cs" />
@@ -72,9 +73,6 @@
     <PackageReference Include="MSTest.TestFramework">
       <Version>3.8.3</Version>
     </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="CLAUDE.md" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

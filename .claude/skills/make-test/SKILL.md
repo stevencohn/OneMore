@@ -10,8 +10,8 @@ translate it into one or more MSTest unit test methods in the OneMoreTests proje
 Extract the following from the spec text:
 
 **Command identity**
-- Look for a "More/<Category>/<Name>" reference or a keyboard shortcut label.
-- Map the display name to a C# class name: "Increase Font Size" → `IncreaseFontSizeCommand`.
+- Command category and name will be in the spec file, e.g. Commands/Edit/AlterSizeCommand.
+- Map the name to a C# class name: AlterSizeCommand → `IncreaseFontSizeCommand.cs`.
 - Identify the category folder: "More/Edit/..." → `Commands/Edit/`.
 - If there are two paired commands (increase/decrease, add/remove), plan tests for both.
 
@@ -47,6 +47,10 @@ Read the implementation to understand:
 - Whether it forces a full page update (`one.Update(page, force: true)`), which means
   `GetUpdatedPage` will always return a result when the page has matching content.
 
+- Confirm that the command can be run through its Execute method without UI intervention.
+  If not, terminate the task and report that the test cannot be automated.
+  Instruct the user to refactor the command to separate the logic into a testable method that can 
+  be called from Execute.
 ---
 
 ## Step 3 — Design the test cases
@@ -67,7 +71,9 @@ Add or remove cases based on what the spec actually says.
 
 Create `OneMoreTests/Commands/<Category>/<CommandName>Tests.cs`.
 
-Follow the exact pattern of `OneMoreTests/Commands/Edit/HighlightCommandTests.cs`:
+Follow the exact pattern of `OneMoreTests/Commands/Edit/HighlightCommandTests.cs`
+and paste the test spec in the comment block above the class declaration for reference.
+
 
 ```csharp
 namespace River.OneMoreAddIn.Tests.Commands.<Category>
@@ -77,6 +83,10 @@ namespace River.OneMoreAddIn.Tests.Commands.<Category>
     using River.OneMoreAddIn.Tests.Builders;
     using System.Threading.Tasks;
     using System.Xml.Linq;
+
+    /*
+     * <paste test spec here>
+     */
 
     [TestClass]
     public class <CommandName>Tests : TestBase
