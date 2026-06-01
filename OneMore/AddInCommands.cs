@@ -111,18 +111,24 @@ namespace River.OneMoreAddIn
 		public async Task ApplyStyleCmd(IRibbonControl control, string selectedId, int selectedIndex)
 			=> await factory.Run<ApplyStyleCommand>(selectedIndex);
 
+
+		[Command("ribApplyStylesButton_Label", Keys.Control | Keys.Alt | Keys.S)]
 		public async Task ApplyStylesCmd(IRibbonControl control)
 			=> await factory.Run<ApplyStylesCommand>();
+
 
 		public async Task ApplyTableThemeCmd(IRibbonControl control, string selectedId, int selectedIndex)
 			=> await factory.Run<ApplyTableThemeCommand>(selectedIndex);
 
+
 		public async Task ArchiveCmd(IRibbonControl control)
 			=> await factory.Run<ArchiveCommand>(control.Tag); // tag=scope
+
 
 		[Command("ribArrangeContainersButton_Label", Keys.Control | Keys.Alt | Keys.A, "ribPageMenu")]
 		public async Task ArrangeContainersCmd(IRibbonControl control)
 			=> await factory.Run<ArrangeContainersCommand>();
+
 
 		public async Task BreakingCmd(IRibbonControl control)
 			=> await factory.Run<BreakingCommand>();
