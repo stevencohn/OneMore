@@ -3,6 +3,11 @@
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <LangVersion>9.0</LangVersion>
+    <!-- Demote version-conflict warnings to messages. MSTest 3.x pulls in old transitive
+         dependencies (System.Reflection.Metadata 1.6, System.Collections.Immutable 1.5)
+         that conflict with the newer copies in OneMore/bin. Tests pass fine; the runtime
+         resolves to the higher version. Binding redirects in App.config handle runtime. -->
+    <MSBuildWarningsAsMessages>MSB3277</MSBuildWarningsAsMessages>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
