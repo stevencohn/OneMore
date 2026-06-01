@@ -218,7 +218,7 @@ namespace River.OneMoreAddIn.Commands
 				.Select(e => new
 				{
 					Element = e,
-					Style = new Style(analyzer.CollectFrom(e.Elements(ns + "T").First(), true))
+					Style = new Style(analyzer.CollectFrom(e))
 				})
 				.Where(c => c.Style.FontFamily?.IndexOf("Consolas", StringComparison.OrdinalIgnoreCase) >= 0)
 				.ToList();
@@ -234,6 +234,65 @@ namespace River.OneMoreAddIn.Commands
 			{
 				para.Element.Attributes().Where(a => a.Name == "style").Remove();
 				para.Element.SetAttributeValue("quickStyleIndex", quick.Index);
+			}
+
+			return this;
+		}
+
+
+		/// <summary>
+		/// Applies standard Lucida Console 9pt styling to all inline code spans
+		/// (backtick-delimited) in all Outlines on the page
+		/// </summary>
+		public void RewriteInlineCode()
+		{
+			foreach (var outline in page.BodyOutlines)
+			{
+				RewriteInlineCode(outline.Descendants(ns + "OE"));
+			}
+		}
+
+
+		/// <summary>
+		/// Applies standard Lucida Console 9pt styling to inline code spans
+		/// (backtick-delimited) in the given paragraph collection
+		/// </summary>
+		public MarkdownConverter RewriteInlineCode(IEnumerable<XElement> paragraphs)
+		{
+			var css = $"font-family:'{StyleBase.DefaultCodeFamily}';font-size:9.0pt";
+
+			foreach (var para in paragraphs.Where(e => e.Elements(ns + "T").Any()))
+			{
+				foreach (var run in para.Elements(ns + "T"))
+				{
+					var cdata = run.GetCData();
+					if (cdata == null ||
+						cdata.Value.IndexOf("font-family:Consolas",
+							StringComparison.OrdinalIgnoreCase) < 0)
+					{
+						continue;
+					}
+
+					var wrapper = cdata.GetWrapper();
+					var updated = false;
+
+					foreach (var span in wrapper.Descendants("span").ToList())
+					{
+						var attr = span.Attribute("style")?.Value;
+						if (attr != null &&
+							attr.IndexOf("font-family:Consolas",
+								StringComparison.OrdinalIgnoreCase) >= 0)
+						{
+							span.SetAttributeValue("style", css);
+							updated = true;
+						}
+					}
+
+					if (updated)
+					{
+						cdata.Value = wrapper.GetInnerXml();
+					}
+				}
 			}
 
 			return this;

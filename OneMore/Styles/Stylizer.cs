@@ -252,7 +252,7 @@ namespace River.OneMoreAddIn.Styles
 				var wrapper = cdata.GetWrapper();
 				if (Clear(wrapper, clearing))
 				{
-					cdata.Value = wrapper.ToString(SaveOptions.DisableFormatting);
+					cdata.Value = wrapper.GetInnerXml();
 					cleared = true;
 				}
 			}
