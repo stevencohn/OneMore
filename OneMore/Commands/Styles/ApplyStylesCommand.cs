@@ -54,6 +54,13 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		internal ApplyStylesCommand(Theme theme)
+		{
+			stylizer = new Stylizer(new Style());
+			this.theme = theme;
+		}
+
+
 		#region ICliCommand
 
 		public string CommandName => "ApplyStyles";
@@ -155,6 +162,10 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var styles = theme.GetStyles();
 
+			// collect monospace Normal paragraphs while their OE-level font is still intact,
+			// before ApplyStyles/ClearInlineStyles strips it
+			var monoTargets = CollectMonospaceNormalOEs();
+
 			// mark inline code spans BEFORE ClearInlineStyles strips their font-family
 			MarkInlineCodeSpans(styles);
 
@@ -179,6 +190,12 @@ namespace River.OneMoreAddIn.Commands
 
 			// re-apply inline code style after ClearInlineStyles has run
 			if (RestoreInlineCodeSpans(styles))
+			{
+				changed = true;
+			}
+
+			// promote pre-collected monospace Normal paragraphs to the code style
+			if (ApplyToMonospaceNormalParagraphs(styles, monoTargets))
 			{
 				changed = true;
 			}
@@ -582,6 +599,150 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		/// <summary>
+		/// Returns true when the OE uses a monospace font (either at the OE level via its
+		/// style attribute, or explicitly on every content-bearing inline span) and no span
+		/// overrides that with a non-monospace font-family.
+		/// </summary>
+		private bool IsAllMonospaceParagraph(XElement oe)
+		{
+			// Primary check: monospace font-family set on the OE element itself
+			var oeStyle = oe.Attribute("style")?.Value;
+			var oeMonospace = oeStyle != null && HasMonospaceFont(oeStyle);
+
+			var runs = oe.Elements(ns + "T").ToList();
+			if (!runs.Any()) return false;
+
+			var hasContent = false;
+			foreach (var run in runs)
+			{
+				var cdata = run.GetCData();
+				if (cdata == null) continue;
+
+				var value = cdata.Value;
+				var plainText = Regex.Replace(value, "<[^>]+>", string.Empty).Trim();
+				if (string.IsNullOrEmpty(plainText)) continue;
+
+				hasContent = true;
+
+				var wrapper = cdata.GetWrapper();
+
+				if (oeMonospace)
+				{
+					// OE sets monospace; any inline span that explicitly overrides to a
+					// non-monospace font-family disqualifies the paragraph
+					foreach (var span in wrapper.Descendants("span"))
+					{
+						var spanStyle = span.Attribute("style")?.Value;
+						if (spanStyle != null &&
+							spanStyle.IndexOf("font-family:", StringComparison.OrdinalIgnoreCase) >= 0 &&
+							!HasMonospaceFont(spanStyle))
+						{
+							return false;
+						}
+					}
+				}
+				else
+				{
+					// No OE-level monospace; every piece of content must be explicitly in a
+					// monospace span — no bare text, no non-monospace font-family
+					if (value.IndexOf("font-family:", StringComparison.OrdinalIgnoreCase) < 0)
+					{
+						return false;
+					}
+
+					if (wrapper.Nodes().OfType<XText>().Any(t => !string.IsNullOrWhiteSpace(t.Value)))
+					{
+						return false;
+					}
+
+					foreach (var span in wrapper.Descendants("span"))
+					{
+						var spanStyle = span.Attribute("style")?.Value;
+						if (spanStyle != null &&
+							spanStyle.IndexOf("font-family:", StringComparison.OrdinalIgnoreCase) >= 0 &&
+							!HasMonospaceFont(spanStyle))
+						{
+							return false;
+						}
+					}
+				}
+			}
+
+			return hasContent;
+		}
+
+
+		/// <summary>
+		/// Scans for Normal ("p") paragraphs whose OE-level style sets a monospace font,
+		/// collecting them before ApplyStyles/ClearInlineStyles strips that font.
+		/// </summary>
+		private List<XElement> CollectMonospaceNormalOEs()
+		{
+			// collect all "p" QuickStyleDef indices; also include OEs with no quickStyleIndex
+			var pIndices = page.Root.Elements(ns + "QuickStyleDef")
+				.Where(q => q.Attribute("name")?.Value == "p")
+				.Select(q => q.Attribute("index")?.Value)
+				.Where(v => v != null)
+				.ToHashSet();
+
+			return page.Root
+				.Elements(ns + "Outline")
+				.Descendants(ns + "OE")
+				.Where(oe =>
+				{
+					var idx = oe.Attribute("quickStyleIndex")?.Value;
+					return (idx == null || pIndices.Contains(idx)) && IsAllMonospaceParagraph(oe);
+				})
+				.ToList();
+		}
+
+
+		/// <summary>
+		/// Promotes pre-collected monospace Normal paragraphs to the code QuickStyleDef,
+		/// applying the theme's custom code style when one exists or falling back to the
+		/// built-in Code QuickStyleDef. Respects ApplyColors: when false, inline colors
+		/// already preserved by Gray-clearing are kept; when true they are overwritten.
+		/// </summary>
+		private bool ApplyToMonospaceNormalParagraphs(List<Style> styles, List<XElement> targets)
+		{
+			if (!targets.Any()) return false;
+
+			var codeStyle = FindStyle(styles, "code");
+			var codeQsd = page.GetQuickStyle(StandardStyles.Code);
+			var codeIndex = codeQsd.Index.ToString();
+
+			foreach (var oe in targets)
+			{
+				oe.SetAttributeValue("quickStyleIndex", codeIndex);
+
+				if (codeStyle != null)
+				{
+					var attr = oe.Attribute("style");
+					string css;
+					if (codeStyle.ApplyColors)
+					{
+						css = codeStyle.ToCss();
+					}
+					else
+					{
+						var merged = new Style(codeStyle) { ApplyColors = true };
+						if (attr != null) merged.MergeColors(new Style(attr.Value));
+						css = merged.ToCss();
+					}
+
+					if (attr == null) oe.Add(new XAttribute("style", css));
+					else attr.Value = css;
+
+					oe.SetAttributeValue("spaceBefore", codeStyle.SpaceBefore);
+					oe.SetAttributeValue("spaceAfter", codeStyle.SpaceAfter);
+				}
+			}
+
+			return true;
+		}
+
+
 		private static bool HasMonospaceFont(string css)
 		{
 			// extract font-family value from the CSS string and check against the known set
@@ -769,9 +930,31 @@ namespace River.OneMoreAddIn.Commands
 					continue;
 				}
 
+				// Detect Normal paragraphs whose text is entirely monospace → treat as code
+				if (quickName == "p" && IsAllMonospaceParagraph(oe))
+				{
+					var codeStyle = FindStyle(styles, "code");
+					var codeQsd = page.GetQuickStyle(StandardStyles.Code);
+					oe.SetAttributeValue("quickStyleIndex", codeQsd.Index.ToString());
+
+					if (codeStyle != null)
+					{
+						style = codeStyle;
+						quickName = "code";
+					}
+					else
+					{
+						// built-in code fallback: reassign QuickStyleDef and Gray-clear so
+						// the code QSD font takes effect (colors are preserved)
+						stylizer.Clear(oe, Stylizer.Clearing.Gray, deep: false);
+						applied = true;
+						continue;
+					}
+				}
+
 				// clearing mode mirrors ApplyStyles()
 				var clearing =
-					style.IsCode || !style.ApplyColors
+					style.IsCode || style.StyleType == StyleType.Code || !style.ApplyColors
 						? Stylizer.Clearing.Gray
 						: quickName == "p"
 							? Stylizer.Clearing.Gray
