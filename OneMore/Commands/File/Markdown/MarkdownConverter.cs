@@ -218,7 +218,7 @@ namespace River.OneMoreAddIn.Commands
 				.Select(e => new
 				{
 					Element = e,
-					Style = new Style(analyzer.CollectFrom(e.Elements(ns + "T").First(), true))
+					Style = new Style(analyzer.CollectFrom(e))
 				})
 				.Where(c => c.Style.FontFamily?.IndexOf("Consolas", StringComparison.OrdinalIgnoreCase) >= 0)
 				.ToList();
