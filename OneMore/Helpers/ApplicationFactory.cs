@@ -18,6 +18,7 @@ namespace River.OneMoreAddIn
 	internal static class ApplicationFactory
 	{
 		private static Type type = null;
+		private static IApplication singleton = null;
 
 
 		/// <summary>
@@ -36,9 +37,10 @@ namespace River.OneMoreAddIn
 				{
 					try
 					{
-						app = type == null
-							? new Application()
-							: Activator.CreateInstance(type) as IApplication;
+						app = singleton
+							?? (type == null
+								? new Application()
+								: Activator.CreateInstance(type) as IApplication);
 
 						if (retries > 0)
 						{
@@ -74,6 +76,16 @@ namespace River.OneMoreAddIn
 		public static void RegisterApplication(Type type)
 		{
 			ApplicationFactory.type = type;
+		}
+
+
+		/// <summary>
+		/// Registers an existing IApplication instance, e.g. a mock for unit testing
+		/// </summary>
+		/// <param name="instance">The instance to use, or null to clear</param>
+		public static void RegisterApplication(IApplication instance)
+		{
+			ApplicationFactory.singleton = instance;
 		}
 	}
 }
