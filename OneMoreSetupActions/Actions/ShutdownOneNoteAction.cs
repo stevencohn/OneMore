@@ -1,4 +1,4 @@
-﻿//************************************************************************************************
+//************************************************************************************************
 // Copyright © 2022 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
@@ -20,6 +20,8 @@ namespace OneMoreSetupActions
 	{
 		private const string OneNoteName = "ONENOTE";
 		private const string DllHostName = "dllhost";
+		private const string OneMoreCalendarName = "OneMoreCalendar";
+		private const string OneMoreTrayName = "OneMoreTray";
 
 
 		public ShutdownOneNoteAction(Logger logger, Stepper stepper)
@@ -29,17 +31,27 @@ namespace OneMoreSetupActions
 
 
 		/// <summary>
-		/// Stops the C2R service, shuts down the COM surrogate host and OneNote.
+		/// Shuts down companion processes, closes OneNote, then kills the COM surrogate host
+		/// (retried once on failure).
 		/// </summary>
 		public override int Install()
 		{
 			logger.WriteLine();
 			logger.WriteLine("ShutdownOneNoteAction.Install ---");
 
-			var status = StopHost();
-			if (status == SUCCESS)
+			var status = FAILURE;
+			var tries = 0;
+
+			while (status == FAILURE && tries < 2)
 			{
+				StopCompanions();
 				status = StopOneNote();
+				if (status == SUCCESS)
+				{
+					status = StopHost();
+				}
+
+				tries++;
 			}
 
 			return status;
@@ -47,7 +59,7 @@ namespace OneMoreSetupActions
 
 
 		/// <summary>
-		/// Stops the C2R service, shuts down the COM surrogate host and OneNote
+		/// Shuts down companion processes, closes OneNote, then kills the COM surrogate host
 		/// (retried once on failure).
 		/// </summary>
 		public override int Uninstall()
@@ -60,16 +72,99 @@ namespace OneMoreSetupActions
 
 			while (status == FAILURE && tries < 2)
 			{
-				status = StopHost();
+				StopCompanions();
+				status = StopOneNote();
 				if (status == SUCCESS)
 				{
-					status = StopOneNote();
+					status = StopHost();
 				}
 
 				tries++;
 			}
 
 			return status;
+		}
+
+
+		/// <summary>
+		/// Gracefully closes OneMoreCalendar and OneMoreTray if running. Non-fatal — companions
+		/// may simply not be running.
+		/// </summary>
+		private void StopCompanions()
+		{
+			StopProcess(OneMoreCalendarName);
+			StopProcess(OneMoreTrayName);
+		}
+
+
+		/// <summary>
+		/// Attempts a graceful close of the named process, falling back to a hard kill after
+		/// 5 seconds. Failures are logged but not surfaced — companion shutdown is non-fatal.
+		/// </summary>
+		private void StopProcess(string name)
+		{
+			try
+			{
+				using var process = Process.GetProcessesByName(name).FirstOrDefault();
+				if (process == null)
+				{
+					logger.WriteLine($"{name} process not found");
+					return;
+				}
+
+				logger.WriteLine($"stopping process {name}, pid {process.Id}");
+				process.CloseMainWindow();
+				if (!process.WaitForExit(5000))
+				{
+					logger.WriteLine($"{name} did not close gracefully, killing");
+					process.Kill();
+					process.WaitForExit(3000);
+				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"failed to stop {name}");
+				logger.WriteLine(exc);
+			}
+		}
+
+
+		/// <summary>
+		/// Closes ONENOTE.EXE gracefully (CloseMainWindow), falling back to a hard kill after
+		/// 5 seconds. OneNote must be stopped before dllhost so it cannot respawn the surrogate.
+		/// </summary>
+		private int StopOneNote()
+		{
+			using var process = Process.GetProcessesByName(OneNoteName).FirstOrDefault();
+			if (process == null)
+			{
+				logger.WriteLine($"{OneNoteName} process not found");
+				return SUCCESS;
+			}
+
+			logger.WriteLine($"stopping process {OneNoteName}, pid {process.Id}");
+			process.CloseMainWindow();
+			if (!process.WaitForExit(5000))
+			{
+				logger.WriteLine($"{OneNoteName} did not close gracefully, killing");
+				process.Kill();
+			}
+
+			if (!process.WaitForExit(3000))
+			{
+				logger.WriteLine($"failed to stop {OneNoteName}");
+				return FAILURE;
+			}
+
+			using var verify = Process.GetProcessesByName(OneNoteName).FirstOrDefault();
+			if (verify == null)
+			{
+				logger.WriteLine($"{OneNoteName} process termination confirmed");
+				return SUCCESS;
+			}
+
+			logger.WriteLine($"{OneNoteName} still running after termination");
+			return FAILURE;
 		}
 
 
@@ -136,9 +231,8 @@ namespace OneMoreSetupActions
 
 
 		/// <summary>
-		/// Attempts a graceful close of the given process, falling back to a hard kill after
-		/// 5 seconds. Returns true if the process is gone, including if it had already exited
-		/// (ArgumentException from GetProcessById is treated as success, not an error).
+		/// Hard-kills the given dllhost process. dllhost has no main window so CloseMainWindow
+		/// is skipped. Returns true if the process is gone, including if it had already exited.
 		/// </summary>
 		private bool KillHostProcess(int pid)
 		{
@@ -146,13 +240,7 @@ namespace OneMoreSetupActions
 			{
 				using var process = Process.GetProcessById(pid);
 				logger.WriteLine($"stopping process {DllHostName}, pid {pid}");
-
-				process.CloseMainWindow();
-				if (!process.WaitForExit(5000))
-				{
-					logger.WriteLine($"{DllHostName} did not close gracefully, killing");
-					process.Kill();
-				}
+				process.Kill();
 
 				if (process.WaitForExit(3000))
 				{
@@ -201,53 +289,6 @@ namespace OneMoreSetupActions
 				logger.WriteLine(exc);
 				return FAILURE;
 			}
-		}
-
-
-		/// <summary>
-		/// Kills the ONENOTE.EXE process and verifies it has exited.
-		/// </summary>
-		private int StopOneNote()
-		{
-			var status = SUCCESS;
-			var killed = false;
-
-			using (var process = Process.GetProcessesByName(OneNoteName).FirstOrDefault())
-			{
-				if (process == null)
-				{
-					logger.WriteLine($"{OneNoteName} process not found");
-				}
-				else
-				{
-					logger.WriteLine($"stopping process {OneNoteName}, pid {process.Id}");
-					process.Kill();
-					killed = true;
-
-					if (!process.WaitForExit(3000))
-					{
-						status = FAILURE;
-					}
-				}
-			}
-
-			if (killed && status == SUCCESS)
-			{
-				using (var process = Process.GetProcessesByName(OneNoteName).FirstOrDefault())
-				{
-					if (process == null)
-					{
-						logger.WriteLine($"{OneNoteName} process termination confirmed");
-					}
-					else
-					{
-						logger.WriteLine($"{OneNoteName} process still running after 3 seconds");
-						status = FAILURE;
-					}
-				}
-			}
-
-			return status;
 		}
 	}
 }
