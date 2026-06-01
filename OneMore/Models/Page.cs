@@ -584,7 +584,7 @@ namespace River.OneMoreAddIn.Models
 
 			black = Office.IsBlackThemeEnabled();
 
-			var color = Root.Element(Namespace + "PageSettings").Attribute("color")?.Value;
+			var color = Root.Element(Namespace + "PageSettings")?.Attribute("color")?.Value;
 			if (string.IsNullOrEmpty(color) || color == "automatic")
 			{
 				automatic = true;
