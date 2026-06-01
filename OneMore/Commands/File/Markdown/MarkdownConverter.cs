@@ -321,14 +321,40 @@ namespace River.OneMoreAddIn.Commands
 		public MarkdownConverter SpaceOutParagraphs(
 			IEnumerable<XElement> paragraphs, float spaceAfter)
 		{
+			static bool IsCodeParagraph(XElement element, string codeIndex)
+			{
+				return element.Attribute("quickStyleIndex")?.Value == codeIndex;
+			}
+
 			var after = $"{spaceAfter:0.0}";
 
-			var last = paragraphs.Last();
+			var paraList = paragraphs.ToList();
+			if (!paraList.Any())
+			{
+				return this;
+			}
 
-			var list = paragraphs
+			var last = paraList.Last();
+
+			var codeIndex = page.GetQuickStyle(StandardStyles.Code).Index.ToString();
+
+			// code paragraphs immediately followed by another code paragraph are interior
+			// lines of a fenced block and must not introduce spacing between them
+			var innerCodeParagraphs = new HashSet<XElement>();
+			for (var i = 0; i < paraList.Count - 1; i++)
+			{
+				if (IsCodeParagraph(paraList[i], codeIndex) && IsCodeParagraph(paraList[i + 1], codeIndex))
+				{
+					innerCodeParagraphs.Add(paraList[i]);
+				}
+			}
+
+			var list = paraList
 				.Where(e =>
 					// not the last paragraph in the Outline
 					e != last &&
+					// not an interior line of a code block
+					!innerCodeParagraphs.Contains(e) &&
 					// any paragraph that is not a List
 					((e.NextNode is not null && !e.Elements(ns + "List").Any()) ||
 					// any last item in a List
@@ -339,6 +365,11 @@ namespace River.OneMoreAddIn.Commands
 			foreach (var item in list)
 			{
 				item.SetAttributeValue("spaceAfter", after);
+			}
+
+			foreach (var item in innerCodeParagraphs)
+			{
+				item.SetAttributeValue("spaceAfter", "0.0");
 			}
 
 			return this;
