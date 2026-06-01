@@ -25,7 +25,7 @@ namespace River.OneMoreAddIn.Settings
 			InitializeComponent();
 
 			Name = nameof(TableThemesSheet);
-			Title = Resx.word_Plugins;
+			Title = Resx.TableThemesSheet_Title;
 
 			if (NeedsLocalizing())
 			{
