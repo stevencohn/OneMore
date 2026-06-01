@@ -354,6 +354,10 @@
     <value>{1} ページ中 {0} ページが {2} にアーカイブされました</value>
     <comment>message</comment>
   </data>
+  <data name="ArchiveCommand_noContext" xml:space="preserve">
+    <value>OneNote にはアクティブなセクションがありません。セクションを開いて再試行してください。</value>
+    <comment>message</comment>
+  </data>
   <data name="ArchiveCommand_noDirectory" xml:space="preserve">
     <value>ディレクトリが存在しません</value>
     <comment>message</comment>
