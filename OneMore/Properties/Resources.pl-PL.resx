@@ -353,6 +353,10 @@ Odwracać</value>
     <value>{0} z {1} stron zarchiwizowanych w {2}</value>
     <comment>message</comment>
   </data>
+  <data name="ArchiveCommand_noContext" xml:space="preserve">
+    <value>Program OneNote nie ma aktywnej sekcji. Otwórz sekcję i spróbuj ponownie.</value>
+    <comment>message</comment>
+  </data>
   <data name="ArchiveCommand_noDirectory" xml:space="preserve">
     <value>Katalog nie istnieje</value>
     <comment>message</comment>

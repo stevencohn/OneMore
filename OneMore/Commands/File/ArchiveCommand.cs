@@ -83,15 +83,40 @@ namespace River.OneMoreAddIn.Commands
 
 				if (bookScope)
 				{
-					string id = scope == "notebook"
-						? one.CurrentNotebookId
-						: one.GetParent(one.CurrentSectionId);
+					string id;
+					if (scope == "notebook")
+					{
+						id = one.CurrentNotebookId;
+					}
+					else
+					{
+						var sectionId = one.CurrentSectionId;
+						if (string.IsNullOrEmpty(sectionId))
+						{
+							ShowError(Resx.ArchiveCommand_noContext);
+							return;
+						}
+						id = one.GetParent(sectionId);
+					}
+
+					if (string.IsNullOrEmpty(id))
+					{
+						ShowError(Resx.ArchiveCommand_noContext);
+						return;
+					}
 
 					hierarchy = await one.GetNotebook(id, OneNote.Scope.Pages);
 				}
 				else
 				{
-					hierarchy = await one.GetSection(one.CurrentSectionId);
+					var sectionId = one.CurrentSectionId;
+					if (string.IsNullOrEmpty(sectionId))
+					{
+						ShowError(Resx.ArchiveCommand_noContext);
+						return;
+					}
+
+					hierarchy = await one.GetSection(sectionId);
 				}
 
 				var ns = one.GetNamespace(hierarchy);

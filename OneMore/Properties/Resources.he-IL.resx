@@ -353,6 +353,10 @@
     <value>{0} מתוך {1} דפים הועברו לארכיון אל {2}</value>
     <comment>message</comment>
   </data>
+  <data name="ArchiveCommand_noContext" xml:space="preserve">
+    <value>ל-OneNote אין קטע פעיל. פתח קטע ונסה שוב.</value>
+    <comment>message</comment>
+  </data>
   <data name="ArchiveCommand_noDirectory" xml:space="preserve">
     <value>ספרייה לא קיימת</value>
     <comment>message</comment>

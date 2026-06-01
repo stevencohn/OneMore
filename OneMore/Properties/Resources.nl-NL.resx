@@ -353,6 +353,10 @@ Omkeren</value>
     <value>{0} van {1} pagina's gearchiveerd op {2}</value>
     <comment>message</comment>
   </data>
+  <data name="ArchiveCommand_noContext" xml:space="preserve">
+    <value>OneNote heeft geen actieve sectie. Open een sectie en probeer het opnieuw.</value>
+    <comment>message</comment>
+  </data>
   <data name="ArchiveCommand_noDirectory" xml:space="preserve">
     <value>Directory bestaat niet</value>
     <comment>message</comment>

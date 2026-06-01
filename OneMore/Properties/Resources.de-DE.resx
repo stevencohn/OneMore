@@ -356,6 +356,10 @@ Umkehren</value>
     <value>{0} von {1} Seiten archiviert auf {2}</value>
     <comment>message</comment>
   </data>
+  <data name="ArchiveCommand_noContext" xml:space="preserve">
+    <value>OneNote verfügt über keinen aktiven Abschnitt. Bitte öffnen Sie einen Abschnitt und versuchen Sie es erneut.</value>
+    <comment>message</comment>
+  </data>
   <data name="ArchiveCommand_noDirectory" xml:space="preserve">
     <value>Verzeichnis existiert nicht</value>
     <comment>message</comment>
