@@ -13,6 +13,18 @@ namespace River.OneMoreAddIn.Tests.Commands.Edit
 	using System.Xml;
 	using System.Xml.Linq;
 
+	/*
+	 * Test Protocol
+	 * Commands/Edit/HighlightCommand
+	 * 
+	 * Uses a rotating array of colors to highlight selected text
+	 *
+	 * 	1. Select a run of text
+	 * 	2. Edit/Rotating Highlighter
+	 * 	3. Confirm text is highlighted and note color
+	 * 	4. Select a run of text
+	 * 	5. Confirm text is highlighted in a different color
+	 */
 
 	[TestClass]
 	public class HighlightCommandTests : TestBase

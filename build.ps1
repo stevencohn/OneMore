@@ -155,6 +155,7 @@ Begin
 		CleanProject 'OneMoreProtocolHandler'
 		CleanProject 'OneMoreSetup'
 		CleanProject 'OneMoreSetupActions'
+		CleanProject 'OneMoreTests'
 		CleanProject 'OneMoreTray'
 		if ($pushpop) { Pop-Location }
 	}
@@ -243,6 +244,9 @@ Begin
 		BuildProject 'OneMoreProtocolHandler'
 		BuildProject 'OneMoreSetupActions'
 
+		NugetRestore 'OneMoreTests'
+		BuildProject 'OneMoreTests'
+
 		ReportArchitectures
 	}
 
@@ -310,6 +314,7 @@ Begin
 		NugetRestore 'OneMoreTray'
 		NugetRestore 'OneMoreCalendar'
 		NugetRestore 'OneMoreCli'
+		NugetRestore 'OneMoreTests'
 	}
 
 	function BuildSolution

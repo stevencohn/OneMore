@@ -1,5 +1,5 @@
 //************************************************************************************************
-// Copyright © 2026 Steven M Cohn.  All rights reserved.
+// Copyright © 2026 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Tests.Builders
