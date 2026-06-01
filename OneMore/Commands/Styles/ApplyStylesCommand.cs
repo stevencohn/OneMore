@@ -10,6 +10,7 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.Cli;
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Styles;
+	using System;
 	using System.Collections.Generic;
 	using System.Globalization;
 	using System.Linq;
@@ -30,6 +31,14 @@ namespace River.OneMoreAddIn.Commands
 	{
 
 		private const string MediumBlue = "#5B9BD5";
+
+		private static readonly HashSet<string> MonospaceFonts =
+			new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+			{
+				"Consolas", "Courier", "Courier New", StyleBase.DefaultCodeFamily,
+				"Monaco", "Cascadia Code", "Fira Code", "Fira Mono",
+				"Source Code Pro", "Inconsolata", "Hack", "DejaVu Sans Mono"
+			};
 
 		private Page page;
 		private XNamespace ns;
@@ -145,6 +154,10 @@ namespace River.OneMoreAddIn.Commands
 		private bool ApplyThemeStyles()
 		{
 			var styles = theme.GetStyles();
+
+			// mark inline code spans BEFORE ClearInlineStyles strips their font-family
+			MarkInlineCodeSpans(styles);
+
 			var changed = ApplyStyles(styles);
 
 			if (changed)
@@ -160,6 +173,12 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			if (ApplyToTitle(styles))
+			{
+				changed = true;
+			}
+
+			// re-apply inline code style after ClearInlineStyles has run
+			if (RestoreInlineCodeSpans(styles))
 			{
 				changed = true;
 			}
@@ -449,6 +468,133 @@ namespace River.OneMoreAddIn.Commands
 					stylizer.Clear(element, clearing);
 				}
 			}
+		}
+
+
+		private static bool IsMonospaceFont(string fontFamily)
+		{
+			if (string.IsNullOrEmpty(fontFamily)) return false;
+			foreach (var font in fontFamily.Split(','))
+			{
+				if (MonospaceFonts.Contains(font.Trim().Trim('\'', '"'))) return true;
+			}
+			return false;
+		}
+
+
+		private HashSet<string> GetCodeQuickStyleIndices()
+		{
+			return page.Root.Elements(ns + "QuickStyleDef")
+				.Where(q => q.Attribute("name")?.Value == "code")
+				.Select(q => q.Attribute("index")?.Value)
+				.Where(v => v != null)
+				.ToHashSet();
+		}
+
+
+		/// <summary>
+		/// Marks monospace-font spans in non-Code paragraphs with an omcode attribute so they
+		/// can be re-styled after ClearInlineStyles strips their font-family
+		/// </summary>
+		private void MarkInlineCodeSpans(List<Style> styles)
+		{
+			var codeIndices = GetCodeQuickStyleIndices();
+
+			var paragraphs = page.Root
+				.Elements(ns + "Outline")
+				.Descendants(ns + "OE")
+				.Where(oe =>
+				{
+					var idx = oe.Attribute("quickStyleIndex")?.Value;
+					return idx == null || !codeIndices.Contains(idx);
+				});
+
+			foreach (var para in paragraphs)
+			{
+				foreach (var run in para.Elements(ns + "T"))
+				{
+					var cdata = run.GetCData();
+					if (cdata == null ||
+						cdata.Value.IndexOf("font-family:", StringComparison.OrdinalIgnoreCase) < 0)
+					{
+						continue;
+					}
+
+					var wrapper = cdata.GetWrapper();
+					var marked = false;
+
+					foreach (var span in wrapper.Descendants("span").ToList())
+					{
+						var attr = span.Attribute("style")?.Value;
+						if (attr != null && HasMonospaceFont(attr))
+						{
+							span.SetAttributeValue("omcode", "1");
+							marked = true;
+						}
+					}
+
+					if (marked)
+					{
+						cdata.Value = wrapper.GetInnerXml();
+					}
+				}
+			}
+		}
+
+
+		/// <summary>
+		/// Finds spans marked by MarkInlineCodeSpans and applies the theme's Character-type
+		/// monospace style, or the standard Lucida Console 9pt default if none exists
+		/// </summary>
+		private bool RestoreInlineCodeSpans(List<Style> styles)
+		{
+			var inlineStyle = styles.FirstOrDefault(s =>
+				s.StyleType == StyleType.Character &&
+				IsMonospaceFont(s.FontFamily));
+
+			var css = inlineStyle?.ToCss()
+				?? $"font-family:'{StyleBase.DefaultCodeFamily}';font-size:9.0pt";
+			var updated = false;
+
+			foreach (var cdata in page.Root.DescendantNodes()
+				.OfType<XCData>()
+				.Where(c => c.Value.Contains("omcode")).ToList())
+			{
+				var wrapper = cdata.GetWrapper();
+				var spanUpdated = false;
+
+				foreach (var span in wrapper.Descendants("span")
+					.Where(s => s.Attribute("omcode")?.Value == "1").ToList())
+				{
+					span.Attribute("omcode").Remove();
+					span.SetAttributeValue("style", css);
+					spanUpdated = true;
+				}
+
+				if (spanUpdated)
+				{
+					cdata.Value = wrapper.GetInnerXml();
+					updated = true;
+				}
+			}
+
+			return updated;
+		}
+
+
+		private static bool HasMonospaceFont(string css)
+		{
+			// extract font-family value from the CSS string and check against the known set
+			var idx = css.IndexOf("font-family:", StringComparison.OrdinalIgnoreCase);
+			if (idx < 0) return false;
+
+			var start = idx + "font-family:".Length;
+			var end = css.IndexOf(';', start);
+			var fontValue = end >= 0
+				? css.Substring(start, end - start)
+				: css.Substring(start);
+
+			return IsMonospaceFont(fontValue);
 		}
 
 

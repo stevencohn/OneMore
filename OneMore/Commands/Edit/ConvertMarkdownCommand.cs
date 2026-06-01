@@ -99,6 +99,7 @@ namespace River.OneMoreAddIn.Commands
 					.RewriteHeadings(touched)
 					.RewriteTodo(touched)
 					.RewriteCode(touched)
+					.RewriteInlineCode(touched)
 					.SpaceOutParagraphs(touched, 12);
 
 				await one.Update(page);
