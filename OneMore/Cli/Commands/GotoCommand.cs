@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.Cli;
 
 
+	[CommandService]
 	internal class GotoCommand : Command, ICliInteractiveCommand
 	{
 		public GotoCommand()
@@ -36,15 +37,20 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			var cliParams = args.Length > 0 ? args[0] as CliParameterSet : null;
-
 			string pageId = null;
 			var objectId = string.Empty;
 
-			if (cliParams != null)
+			if (args.Length > 0 && args[0] is CliParameterSet cliParams)
 			{
+				// CLI path: args[0] is a CliParameterSet
 				cliParams.TryGet("pageId", out pageId);
 				cliParams.TryGet("objectId", out objectId);
+			}
+			else if (args.Length > 0 && args[0] is string)
+			{
+				// Protocol path: onemore://GotoCommand/<pageId>[/<objectId>]
+				pageId = args[0] as string;
+				objectId = args.Length > 1 ? args[1] as string ?? string.Empty : string.Empty;
 			}
 
 			if (string.IsNullOrWhiteSpace(pageId))
