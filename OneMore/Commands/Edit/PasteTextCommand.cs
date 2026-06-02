@@ -32,6 +32,11 @@ namespace River.OneMoreAddIn.Commands
 			text = text.StripInvalidXmlChars();
 
 			await using var one = new OneNote(out var page, out var ns);
+			if (page is null)
+			{
+				return;
+			}
+
 			PageNamespace.Set(ns);
 
 			var elements = page.Root.Descendants(ns + "T")
@@ -56,21 +61,24 @@ namespace River.OneMoreAddIn.Commands
 					lines = lines.Take(lines.Length - 1).ToArray();
 				}
 
-				XElement first = null;
-				for (var i = lines.Length - 1; i >= 0; i--)
+				if (editor.Anchor is not null)
 				{
-					var run = new XElement(ns + "T", new XCData(lines[i]));
-					first ??= run;
+					XElement first = null;
+					for (var i = lines.Length - 1; i >= 0; i--)
+					{
+						var run = new XElement(ns + "T", new XCData(lines[i]));
+						first ??= run;
 
-					editor.InsertAtAnchor(run);
+						editor.InsertAtAnchor(run);
+					}
+
+					// position insertion cursor after last line...
+					editor.Deselect();
+					first?.AddAfterSelf(
+						new XElement(ns + "T",
+							new XAttribute("selected", "all"),
+							new XCData(string.Empty)));
 				}
-
-				// position insertion cursor after last line...
-				editor.Deselect();
-				first?.AddAfterSelf(
-					new XElement(ns + "T",
-						new XAttribute("selected", "all"),
-						new XCData(string.Empty)));
 			}
 			else
 			{
