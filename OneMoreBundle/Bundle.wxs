@@ -5,11 +5,24 @@
   <!--
     ArchFlag mirrors the same casing fix in OneMoreSetup/Product.wxs:
     sys.BUILDARCH is lowercase (arm64), but the MSI filename uses ARM64.
+
+    MsiArchFlag controls which MSI the bundle embeds:
+    - Standard ARM64 build: ARM64 bundle wraps ARM64 MSI (MixedArch=false).
+    - ARM64x64 mixed build: ARM64 bundle wraps x64 MSI (MixedArch=true).
+      ARM64EC Office (Office on ARM64 Windows) requires x64 OneMore because
+      dllhost.exe (the COM surrogate) runs as x64 in that configuration.
   -->
   <?define ArchFlag = $(sys.BUILDARCH) ?>
+  <?define MsiArchFlag = $(sys.BUILDARCH) ?>
   <?if $(sys.BUILDARCH) = arm64 ?>
     <?undef ArchFlag ?>
     <?define ArchFlag = ARM64 ?>
+    <?undef MsiArchFlag ?>
+    <?if $(var.MixedArch) = true ?>
+      <?define MsiArchFlag = x64 ?>
+    <?else ?>
+      <?define MsiArchFlag = ARM64 ?>
+    <?endif ?>
   <?endif ?>
 
   <Bundle Name="OneMore Add-in"
@@ -26,7 +39,7 @@
 
     <Chain>
       <MsiPackage
-        SourceFile="..\OneMoreSetup\bin\$(var.ArchFlag)\$(var.Configuration)\OneMore_$(var.ProductVersion)_Setup$(var.ArchFlag).msi" />
+        SourceFile="..\OneMoreSetup\bin\$(var.MsiArchFlag)\$(var.Configuration)\OneMore_$(var.ProductVersion)_Setup$(var.MsiArchFlag).msi" />
     </Chain>
 
   </Bundle>
