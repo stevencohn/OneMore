@@ -20,6 +20,12 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (renderer.EnableHtmlForInline)
 			{
+				// Label.Text and Link.Text are null when CheckClosing never ran (unclosed [[)
+				if (obj.Label.Text is null || obj.Link.Text is null || renderer.BaseUrl is null)
+				{
+					return;
+				}
+
 				var label = obj.Label.Text.Substring(obj.Label.Start, obj.Label.Length);
 				label = Path.Combine(
 					Path.GetDirectoryName(label),
