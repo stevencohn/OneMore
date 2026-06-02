@@ -209,8 +209,7 @@ namespace River.OneMoreAddIn
 						{
 							Clipboard.SetDataObject(data, true, RetryTimes, RetryDelay);
 						}
-						catch (COMException ex)
-							when (ex.ErrorCode == CLIPBRD_E_CANT_OPEN)
+						catch (ExternalException ex)
 						{
 							success = false;
 							logger.WriteLine(
@@ -275,8 +274,7 @@ namespace River.OneMoreAddIn
 						Clipboard.SetDataObject(data, true, RetryTimes, RetryDelay);
 						//Win.Clipboard.SetText(text, Win.TextDataFormat.Html);
 					}
-					catch (COMException ex)
-						when (ex.ErrorCode == CLIPBRD_E_CANT_OPEN)
+					catch (ExternalException ex)
 					{
 						success = false;
 						logger.WriteLine(
@@ -315,8 +313,7 @@ namespace River.OneMoreAddIn
 						Clipboard.SetDataObject(data, true, RetryTimes, RetryDelay);
 						//Win.Clipboard.SetText(text, Win.TextDataFormat.Text);
 					}
-					catch (COMException ex)
-						when (ex.ErrorCode == CLIPBRD_E_CANT_OPEN)
+					catch (ExternalException ex)
 					{
 						success = false;
 						logger.WriteLine(

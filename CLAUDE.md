@@ -30,7 +30,7 @@ to reuse existing binaries and just build the installer.
 | `-Main` | Build only the main OneMore add-in project. |
 | `-VLog` | Verbose MSBuild logging. |
 
-CI: `.github/workflows/build.yml` runs `build.ps1` on `windows-latest`.
+CI: `.github/workflows/build.yml` runs `build.ps1` on `windows-2025-vs2026`.
 
 ## Project topology (from `OneMore.sln`)
 
@@ -40,6 +40,7 @@ CI: `.github/workflows/build.yml` runs `build.ps1` on `windows-latest`.
 | `OneMoreSetup` | WiX (.wixproj) | Builds the installer (MSI + Burn bootstrapper) |
 | `OneMoreSetupActions` | Console .exe (.csproj) | Custom actions runner (bitness check, etc.) — see `OneMoreSetupActions/CLAUDE.md` |
 | `OneMoreCalendar` | .csproj | Calendar feature |
+| `OneMoreTests` | .csproj | Unit tests for OneMore commands |
 | `OneMoreTray` | .csproj | System-tray companion |
 | `OneMoreProtocolHandler` | .csproj | `onemore://` URL handler |
 
@@ -81,12 +82,6 @@ Read `ONENOTE.EXE`'s PE header directly when you need OneNote's architecture.
 
 ## Conventions and norms
 
-- **Prompting:** While in Planning mode, do not prompt to ask permission to
-  read files or perform basic research and discovery operations. Proceed as if
-  you have full permission for read-only commands.
-
-- **Shell:** prefer PowerShell over bash.
-
 - **Issues / PRs:** use the `gh` CLI. Default repo is `stevencohn/OneMore`
   (e.g. `gh issue view 2017 --repo stevencohn/OneMore --comments`).
 - **Commits are GPG-signed.** See `.github/pull_request_template.md`.
@@ -95,8 +90,6 @@ Read `ONENOTE.EXE`'s PE header directly when you need OneNote's architecture.
   `1234-calendar-integration`, where the prefix `1234-` is the GitHub issue number 
   for the work in that branch.
 
-- **Commits:** Do not commit changes until use has a chance to manually review and asks to commit.
-
 - **PRs:** When asked to open a PR, take the name of the branch, replace hyphens with spaces, and use that
   as the title of the PR.
 
@@ -104,8 +97,6 @@ Read `ONENOTE.EXE`'s PE header directly when you need OneNote's architecture.
   Properties\Resources.resx and Properties\Resources.Designer.cs, keeping them in sync.
   But do not touch or make any changes at any time to any Resources.xx-XX file, unless
   explicitly told otherwise.
-
-- **C# Coding Style:** always use curly braces for if-else blocks, even if they are one-liners.
 
 ## Where to read more
 
