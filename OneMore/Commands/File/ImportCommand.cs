@@ -528,6 +528,13 @@ namespace River.OneMoreAddIn.Commands
 					Scaling.GetScalingFactors().Item1)
 			};
 
+			if (token.IsCancellationRequested)
+			{
+				await using var one = new OneNote();
+				one.DeleteHierarchy(page.PageId);
+				return false;
+			}
+
 			try
 			{
 				for (int i = 0; i < doc.PageCount; i++)
@@ -562,6 +569,13 @@ namespace River.OneMoreAddIn.Commands
 			catch (Exception exc)
 			{
 				logger.WriteLine($"error rasterizing pdf {filepath}", exc);
+				return false;
+			}
+
+			if (token.IsCancellationRequested)
+			{
+				await using var one = new OneNote();
+				one.DeleteHierarchy(page.PageId);
 				return false;
 			}
 
