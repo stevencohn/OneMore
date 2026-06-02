@@ -42,10 +42,13 @@ namespace River.OneMoreAddIn
 		{
 			this.one = one;
 			page = Task.Run(async () => { return await one.GetPage(); }).Result;
-			ns = page.Namespace;
-			PageNamespace.Set(ns);
 
-			dark = page.GetPageColor(out _, out _).GetBrightness() < 0.5;
+			if (page is not null)
+			{
+				ns = page.Namespace;
+				PageNamespace.Set(ns);
+				dark = page.GetPageColor(out _, out _).GetBrightness() < 0.5;
+			}
 		}
 
 
@@ -55,6 +58,11 @@ namespace River.OneMoreAddIn
 		/// <returns>True if the cursor is positioned in the body of the page</returns>
 		public bool ValidContext()
 		{
+			if (page is null)
+			{
+				return false;
+			}
+
 			if (!page.ConfirmBodyContext())
 			{
 				MoreMessageBox.ShowError(one.Window, Resx.Error_BodyContext);
@@ -313,6 +321,7 @@ namespace River.OneMoreAddIn
 				.Where(e =>
 					e.Attribute("name").Value.Equals(FootnoteMeta) &&
 					e.Attribute("content").Value.Equals(label))
+				.Where(e => e.Parent.Attribute("objectID") is not null)
 				.Select(e => e.Parent.Attribute("objectID").Value)
 				.FirstOrDefault();
 
