@@ -36,7 +36,7 @@ namespace River.OneMoreAddIn.Commands
 
 			await using var one = new OneNote(out var page, out _);
 
-			if (!page.ConfirmBodyContext())
+			if (page is null || !page.ConfirmBodyContext())
 			{
 				ShowError(Resx.Error_BodyContext);
 				return;
