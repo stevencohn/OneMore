@@ -346,7 +346,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public void Write(string message)
+		public virtual void Write(string message)
 		{
 			if (EnsureWriter())
 			{

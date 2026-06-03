@@ -5,12 +5,15 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using System;
+	using System.Collections.Generic;
 	using System.Diagnostics;
+	using System.Linq;
 	using System.Reflection;
 	using System.Runtime.InteropServices;
 	using System.Text;
 	using System.Threading.Tasks;
 	using Microsoft.Win32;
+	using Newtonsoft.Json;
 	using River.OneMoreAddIn.Cli;
 
 
@@ -31,7 +34,11 @@ namespace River.OneMoreAddIn.Commands
 		public string Description => "Dump diagnostic information about OneNote and OneMore";
 
 
-		public CliParameterDefinition DefineParameters() => new();
+		public CliParameterDefinition DefineParameters() =>
+			new CliParameterDefinition()
+				.AddBoolean("windows",
+					"Return structured JSON describing all open OneNote windows",
+					required: false, defaultValue: false);
 
 
 		private sealed class CliLogger : Logger
@@ -41,6 +48,11 @@ namespace River.OneMoreAddIn.Commands
 			public CliLogger(StringBuilder buffer)
 			{
 				this.buffer = buffer;
+			}
+
+			public override void Write(string message)
+			{
+				buffer.Append(message);
 			}
 
 			public override void WriteLine()
@@ -59,6 +71,13 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
+			var cliParams = args.Length > 0 ? args[0] as CliParameterSet : null;
+			var windowsOnly = false;
+			if (cliParams != null)
+			{
+				cliParams.TryGet("windows", out windowsOnly);
+			}
+
 			System.Text.StringBuilder cliBuffer = null;
 			ILogger log;
 			if (runningFromCli)
@@ -152,7 +171,16 @@ namespace River.OneMoreAddIn.Commands
 			}
 			log.WriteLine();
 
-			one.ReportWindowDiagnostics(log);
+			var windowJson = await one.CollectWindowDiagnostics();
+
+			if (runningFromCli && windowsOnly)
+			{
+				CliOutput = windowJson;
+				await Task.Yield();
+				return;
+			}
+
+			WriteWindowDiagnostics(log, windowJson);
 
 			log.WriteLine();
 
@@ -196,6 +224,54 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			await Task.Yield();
+		}
+
+
+		private static void WriteWindowDiagnostics(ILogger log, string json)
+		{
+			var windows = JsonConvert.DeserializeObject<List<Models.WindowInfo>>(json);
+			if (windows is null || windows.Count == 0)
+			{
+				log.WriteLine("No windows");
+				return;
+			}
+
+			var current = windows.FirstOrDefault(w => w.IsCurrent);
+			if (current is null)
+			{
+				log.WriteLine("No current window");
+			}
+			else
+			{
+				log.WriteLine("Current Window");
+				log.WriteLine($"- CurrentNotebookId: {current.CurrentNotebookId}");
+				log.WriteLine($"- CurrentPageId....: {current.CurrentPageId}");
+				log.WriteLine($"- CurrentSectionId.: {current.CurrentSectionId}");
+				log.WriteLine($"- CurrentSecGrpId..: {current.CurrentSectionGroupId}");
+				log.WriteLine($"- DockedLocation...: {current.DockedLocation}");
+				log.WriteLine($"- IsFullPageView...: {current.IsFullPageView}");
+				log.WriteLine($"- IsSideNote.......: {current.IsSideNote}");
+				log.WriteLine($"- PID, TID, Handle.: {current.ProcessId}, {current.ThreadId}, {current.WindowHandle}");
+
+				var b = current.Bounds;
+				log.WriteLine($"- bounds...........: {b.Left},{b.Top},{b.Right},{b.Bottom}");
+			}
+
+			log.WriteLine();
+
+			var others = windows.Where(w => !w.IsCurrent).ToList();
+			if (others.Any())
+			{
+				log.WriteLine($"Other Windows ({others.Count})");
+				foreach (var w in others)
+				{
+					log.Write(w.Active ? "*" : "-");
+					log.Write($" window PID:{w.ProcessId}, TID:{w.ThreadId}");
+					log.Write($" handle:{w.WindowHandle}");
+					var wb = w.Bounds;
+					log.WriteLine($" bounds:{wb.Left},{wb.Top},{wb.Right},{wb.Bottom}");
+				}
+			}
 		}
 
 

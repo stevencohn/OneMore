@@ -11,6 +11,7 @@
 namespace River.OneMoreAddIn
 {
 	using Microsoft.Office.Interop.OneNote;
+	using Newtonsoft.Json;
 	using River.OneMoreAddIn.Models;
 	using System;
 	using System.Collections.Generic;
@@ -1759,49 +1760,62 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Special helper for DiagnosticsCommand
+		/// Special helper for DiagnosticsCommand; returns a JSON array of all open OneNote
+		/// windows. The current window is identified by IsCurrent=true and carries additional
+		/// properties (notebook/page/section IDs, docked location, etc.).
 		/// </summary>
-		/// <param name="builder"></param>
-		public void ReportWindowDiagnostics(ILogger logger)
+		public async Task<string> CollectWindowDiagnostics()
 		{
-			var win = onenote.Windows?.CurrentWindow;
-			if (win is null)
+			var windows = new List<Models.WindowInfo>();
+
+			var currentWindow = onenote.Windows?.CurrentWindow;
+			var currentHandle = currentWindow?.WindowHandle ?? 0;
+
+			var e = onenote.Windows?.GetEnumerator();
+			if (e is not null)
 			{
-				logger.WriteLine("No current window");
-				return;
+				var bounds = new Native.Rectangle();
+				while (e.MoveNext())
+				{
+					var window = e.Current as Window;
+					var threadId = Native.GetWindowThreadProcessId(
+						(IntPtr)window.WindowHandle, out var processId);
+
+					Native.GetWindowRect((IntPtr)window.WindowHandle, ref bounds);
+
+					var isCurrent = window.WindowHandle == currentHandle;
+					var info = new Models.WindowInfo
+					{
+						IsCurrent = isCurrent,
+						Active = window.Active,
+						ProcessId = processId,
+						ThreadId = threadId,
+						WindowHandle = $"{window.WindowHandle:x}",
+						Bounds = new Models.BoundsInfo
+						{
+							Left = bounds.Left,
+							Top = bounds.Top,
+							Right = bounds.Right,
+							Bottom = bounds.Bottom
+						}
+					};
+
+					var hierarchy = GetPageHierarchyInfo(window.CurrentPageId);
+
+					info.CurrentNotebookId = window.CurrentNotebookId;
+					info.CurrentPageId = window.CurrentPageId;
+					info.CurrentSectionId = window.CurrentSectionId;
+					info.CurrentSectionGroupId = window.CurrentSectionGroupId;
+					info.CurrentPage = hierarchy.Path;
+					info.DockedLocation = window.DockedLocation.ToString();
+					info.IsFullPageView = window.FullPageView;
+					info.IsSideNote = window.SideNote;
+
+					windows.Add(info);
+				}
 			}
 
-			logger.WriteLine($"CurrentNotebookId: {win.CurrentNotebookId}");
-			logger.WriteLine($"CurrentPageId....: {win.CurrentPageId}");
-			logger.WriteLine($"CurrentSectionId.: {win.CurrentSectionId}");
-			logger.WriteLine($"CurrentSecGrpId..: {win.CurrentSectionGroupId}");
-			logger.WriteLine($"DockedLocation...: {win.DockedLocation}");
-			logger.WriteLine($"IsFullPageView...: {win.FullPageView}");
-			logger.WriteLine($"IsSideNote.......: {win.SideNote}");
-
-			var bounds = new Native.Rectangle();
-			Native.GetWindowRect((IntPtr)win.WindowHandle, ref bounds);
-			logger.WriteLine($"bounds...........: {bounds.Left},{bounds.Top},{bounds.Right},{bounds.Bottom}");
-
-			logger.WriteLine();
-
-			logger.WriteLine($"Windows ({onenote.Windows.Count})");
-
-			var e = onenote.Windows.GetEnumerator();
-			while (e.MoveNext())
-			{
-				var window = e.Current as Window;
-
-				var threadId = Native.GetWindowThreadProcessId(
-					(IntPtr)window.WindowHandle, out var processId);
-
-				logger.Write(window.Active ? "*" : "-");
-				logger.Write($" window PID:{processId}, TID:{threadId}");
-				logger.Write($" handle:{window.WindowHandle:x}");
-
-				Native.GetWindowRect((IntPtr)window.WindowHandle, ref bounds);
-				logger.WriteLine($" bounds:{bounds.Left},{bounds.Top},{bounds.Right},{bounds.Bottom}");
-			}
+			return JsonConvert.SerializeObject(windows, Newtonsoft.Json.Formatting.Indented);
 		}
 	}
 }
