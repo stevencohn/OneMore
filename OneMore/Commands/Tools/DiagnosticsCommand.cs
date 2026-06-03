@@ -118,7 +118,7 @@ namespace River.OneMoreAddIn.Commands
 
 			log.WriteLine($"Windows...: {GetWindowsProductName()}");
 			log.WriteLine($"ONENOTE...: {moduledesc}");
-			log.WriteLine($"Addin path: {adloc}, {adarc}");
+			log.WriteLine($"Addin path: {adloc}, {adarc}, Version {AssemblyInfo.Version}");
 			log.WriteLine($"Data path.: {PathHelper.GetAppDataPath()}");
 			log.WriteLine($"Log path..: {log.LogPath}");
 			log.WriteLine();

@@ -129,9 +129,9 @@ namespace OneMoreCli
 		{
 			Console.ForegroundColor = ConsoleColor.Cyan;
 			Console.WriteLine();
-			Console.WriteLine("  ╔══════════════════════════════════╗");
-			Console.WriteLine("  ║       OneMore CLI Runner         ║");
-			Console.WriteLine("  ╚══════════════════════════════════╝");
+			Console.WriteLine("  ╔═══════════════════════════════════════╗");
+			Console.WriteLine($"  ║       OneMore {AssemblyInfo.Version} CLI Runner        ║");
+			Console.WriteLine("  ╚═══════════════════════════════════════╝");
 			Console.WriteLine();
 			Console.ResetColor();
 		}
