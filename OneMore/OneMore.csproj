@@ -1230,6 +1230,7 @@
     <Compile Include="UI\WindowElevator.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Models\WindowDiagnosticsInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Colorizer\Languages\bash.png">
