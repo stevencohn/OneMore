@@ -4697,6 +4697,14 @@ ISO-code then comma then language name</comment>
     <value>大文字と小文字を区別する</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SearchDialog_menuOpenInNew" xml:space="preserve">
+    <value>新しいウィンドウで開く</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="SearchDialog_menuShowInCurrent" xml:space="preserve">
+    <value>現在のウィンドウに表示</value>
+    <comment>context menu item</comment>
+  </data>
   <data name="SearchDialog_regBox.Text" xml:space="preserve">
     <value>正規表現を使用する</value>
     <comment>checkbox</comment>

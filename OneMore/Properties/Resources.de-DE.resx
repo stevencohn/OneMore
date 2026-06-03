@@ -4688,6 +4688,14 @@ Vorher geändert</value>
     <value>Streichholzetui</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SearchDialog_menuOpenInNew" xml:space="preserve">
+    <value>In neuem Fenster öffnen</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="SearchDialog_menuShowInCurrent" xml:space="preserve">
+    <value>Im aktuellen Fenster anzeigen</value>
+    <comment>context menu item</comment>
+  </data>
   <data name="SearchDialog_regBox.Text" xml:space="preserve">
     <value>Verwenden Sie reguläre Ausdrücke</value>
     <comment>checkbox</comment>

@@ -4698,6 +4698,14 @@ ISO-code then comma then language name</comment>
     <value>حالة المباراة</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SearchDialog_menuOpenInNew" xml:space="preserve">
+    <value>فتح في نافذة جديدة</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="SearchDialog_menuShowInCurrent" xml:space="preserve">
+    <value>عرض في النافذة الحالية</value>
+    <comment>context menu item</comment>
+  </data>
   <data name="SearchDialog_regBox.Text" xml:space="preserve">
     <value>استخدم التعبيرات العادية</value>
     <comment>checkbox</comment>

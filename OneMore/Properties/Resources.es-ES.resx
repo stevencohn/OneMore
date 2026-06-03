@@ -4686,6 +4686,14 @@ Modificado antes</value>
     <value>caso de partido</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SearchDialog_menuOpenInNew" xml:space="preserve">
+    <value>Abrir en ventana nueva</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="SearchDialog_menuShowInCurrent" xml:space="preserve">
+    <value>Mostrar en la ventana actual</value>
+    <comment>context menu item</comment>
+  </data>
   <data name="SearchDialog_regBox.Text" xml:space="preserve">
     <value>Usa expresiones regulares</value>
     <comment>checkbox</comment>

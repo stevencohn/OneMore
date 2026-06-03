@@ -4687,6 +4687,14 @@ Modificado antes</value>
     <value>Caso de correspondência</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SearchDialog_menuOpenInNew" xml:space="preserve">
+    <value>Abrir em uma nova janela</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="SearchDialog_menuShowInCurrent" xml:space="preserve">
+    <value>Mostrar na janela atual</value>
+    <comment>context menu item</comment>
+  </data>
   <data name="SearchDialog_regBox.Text" xml:space="preserve">
     <value>Use expressões regulares</value>
     <comment>checkbox</comment>

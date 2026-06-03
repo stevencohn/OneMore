@@ -391,13 +391,13 @@ namespace River.OneMoreAddIn.Commands
 
 		private async void OnCardActivated(object sender, NavigateCardEventArgs e)
 		{
-			await NavigateTo(e.PageId, string.Empty);
+			await NavigateTo(e.PageId, string.Empty, e.NewWindow);
 		}
 
 
 		private async void OnHitActivated(object sender, NavigateHitEventArgs e)
 		{
-			await NavigateTo(e.PageId, e.ObjectId);
+			await NavigateTo(e.PageId, e.ObjectId, e.NewWindow);
 		}
 
 
@@ -445,10 +445,21 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private static async Task NavigateTo(string pageId, string objectId = "")
+		private static async Task NavigateTo(string pageId, string objectId = "", bool newWindow = false)
 		{
 			await using var one = new OneNote();
-			await one.NavigateTo(pageId, objectId);
+			if (newWindow)
+			{
+				var uri = one.GetHyperlink(pageId, objectId);
+				if (uri != null)
+				{
+					await one.NavigateTo(uri, newWindow: true);
+				}
+			}
+			else
+			{
+				await one.NavigateTo(pageId, objectId);
+			}
 		}
 
 
