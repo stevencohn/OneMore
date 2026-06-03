@@ -22,7 +22,7 @@ namespace River.OneMoreAddIn
 		private readonly ILogger logger;
 		private readonly IRibbonUI ribbon;
 		private readonly List<IDisposable> trash;
-		private bool runningFromCli;
+		private readonly bool runningFromCli;
 
 
 		/// <summary>
@@ -113,20 +113,10 @@ namespace River.OneMoreAddIn
 		}
 
 
-#pragma warning disable CS4014 // ignore call not awaited
 		private async Task Run(string note, Command command, params object[] args)
 		{
 			var type = command.GetType();
 			logger.Start($"{note} command {type.Name}");
-
-			if (AddIn.Telemetry)
-			{
-				_ = Task.Run(() =>
-				{
-					// do not await
-					TelemetryClient.LogEvent(type.Name, string.Empty);
-				});
-			}
 
 			// need to rediscover active OneNote window for each command instantiation
 			// otherwise closing the primary or last-used active window will leave owner
@@ -140,9 +130,25 @@ namespace River.OneMoreAddIn
 				.SetOwner(owner)
 				.SetTrash(trash);
 
+			var eventName = runningFromCli ? $"{type.Name.Replace("Command", "CLI")}" : type.Name;
+
 			try
 			{
+				// run synchronously; see comment below
+				var telemetryTask = AddIn.Telemetry
+					? TelemetryClient.LogEvent(eventName, string.Empty)
+					: null;
+
 				await command.Execute(args);
+
+				// In the add-in path the process is long-lived so fire-and-forget is fine.
+				// In the CLI path the process exits immediately after Execute returns, so we
+				// must ensure telemetry completes before unwinding.
+				if (runningFromCli && telemetryTask is not null)
+				{
+					try { await telemetryTask; }
+					catch (Exception tex) { logger.WriteLine($"telemetry error: {tex.Message}"); }
+				}
 
 				logger.End();
 			}
@@ -154,11 +160,12 @@ namespace River.OneMoreAddIn
 
 				if (AddIn.Telemetry)
 				{
-					_ = Task.Run(() =>
+					var telemetryTask = TelemetryClient.LogException(eventName, msg, exc);
+					if (runningFromCli)
 					{
-						// do not await
-						TelemetryClient.LogException(type.Name, msg, exc);
-					});
+						try { await telemetryTask; }
+						catch (Exception tex) { logger.WriteLine($"telemetry error: {tex.Message}"); }
+					}
 				}
 
 				logger.End();
@@ -169,11 +176,10 @@ namespace River.OneMoreAddIn
 				if (!runningFromCli)
 				{
 					MoreMessageBox.ShowErrorWithLogLink(
-						owner, string.Format(Resx.Command_ErrorMsg, type.Name));
+						owner, string.Format(Resx.Command_ErrorMsg, eventName));
 				}
 			}
 		}
-#pragma warning restore CS4014 // ignore call not awaited
 
 
 		/// <summary>

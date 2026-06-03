@@ -86,6 +86,7 @@ namespace River.OneMoreAddIn
 						string data = null;
 
 						using var server = CreateSecuredPipe();
+
 						//logger.WriteLine($"command pipe started {pipe}");
 						await server.WaitForConnectionAsync();
 
