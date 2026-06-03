@@ -130,7 +130,13 @@ namespace River.OneMoreAddIn
 				.SetOwner(owner)
 				.SetTrash(trash);
 
-			var eventName = runningFromCli ? $"{type.Name.Replace("Command", "CLI")}" : type.Name;
+			var eventName = type.Name;
+			if (runningFromCli)
+			{
+				eventName = eventName.EndsWith("Command")
+					? $"{eventName.Replace("Command", "CLI")}"
+					: $"{eventName}CLI";
+			}
 
 			try
 			{
