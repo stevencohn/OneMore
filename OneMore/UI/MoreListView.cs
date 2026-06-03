@@ -260,6 +260,12 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
+		public void EnableContextMenuBubbling()
+		{
+			router.Register(this, Items, "MouseUp");
+		}
+
+
 		/// <summary>
 		/// Returns a collection of all hosted T objects from the list view.
 		/// </summary>

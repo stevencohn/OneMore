@@ -5320,6 +5320,60 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add to Reading List.
+        /// </summary>
+        internal static string NavigatorWindow_menuAddToList {
+            get {
+                return ResourceManager.GetString("NavigatorWindow_menuAddToList", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Copy to Clipboard.
+        /// </summary>
+        internal static string NavigatorWindow_menuCopy {
+            get {
+                return ResourceManager.GetString("NavigatorWindow_menuCopy", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        internal static string NavigatorWindow_menuDelete {
+            get {
+                return ResourceManager.GetString("NavigatorWindow_menuDelete", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Move Down.
+        /// </summary>
+        internal static string NavigatorWindow_menuMoveDown {
+            get {
+                return ResourceManager.GetString("NavigatorWindow_menuMoveDown", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Move Up.
+        /// </summary>
+        internal static string NavigatorWindow_menuMoveUp {
+            get {
+                return ResourceManager.GetString("NavigatorWindow_menuMoveUp", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Open in New Window.
+        /// </summary>
+        internal static string NavigatorWindow_menuOpenInNew {
+            get {
+                return ResourceManager.GetString("NavigatorWindow_menuOpenInNew", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Add selected items to My Reading List.
         /// </summary>
         internal static string NavigatorWindow_pinButton_Tooltip {

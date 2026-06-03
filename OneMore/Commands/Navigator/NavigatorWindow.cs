@@ -2,6 +2,8 @@
 // Copyright © 2023 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
+#pragma warning disable S125
+
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Helpers.Extensions;
@@ -108,6 +110,9 @@ namespace River.OneMoreAddIn.Commands
 			downButton.Rescale();
 			copyPinnedButton.Rescale();
 			copyHistoryButton.Rescale();
+
+			pinnedBox.MouseUp += ShowPinnedContextMenu;
+			historyBox.MouseUp += ShowHistoryContextMenu;
 		}
 
 
@@ -652,6 +657,7 @@ namespace River.OneMoreAddIn.Commands
 
 			pinnedBox.EndUpdate();
 			pinnedBox.EnableItemEventBubbling();
+			pinnedBox.EnableContextMenuBubbling();
 		}
 
 		#region Pin control
@@ -869,6 +875,7 @@ namespace River.OneMoreAddIn.Commands
 			historyBox.Items[0].Selected = true;
 			historyBox.EndUpdate();
 			historyBox.EnableItemEventBubbling();
+			historyBox.EnableContextMenuBubbling();
 		}
 
 
@@ -959,6 +966,95 @@ namespace River.OneMoreAddIn.Commands
 				{
 					item.Selected = true;
 				}
+			}
+		}
+
+
+		private void ShowPinnedContextMenu(object sender, MouseEventArgs e)
+		{
+			if (e.Button != MouseButtons.Right || pinnedBox.Items.Count == 0)
+			{
+				return;
+			}
+
+			var clientPt = pinnedBox.PointToClient(Cursor.Position);
+			var item = pinnedBox.GetItemAt(clientPt.X, clientPt.Y);
+			if (item != null && !item.Selected)
+			{
+				pinnedBox.SelectedItems.Clear();
+				item.Selected = true;
+			}
+
+			if (pinnedBox.SelectedItems.Count == 0)
+			{
+				return;
+			}
+
+			var menu = new MoreContextMenuStrip();
+			menu.Items.Add(new MoreMenuItem(Resx.NavigatorWindow_menuMoveUp, null, MoveUpOnClick));
+			menu.Items.Add(new MoreMenuItem(Resx.NavigatorWindow_menuMoveDown, null, MoveDownOnClick));
+			menu.Items.Add(new MoreMenuItem(Resx.NavigatorWindow_menuCopy, null,
+				(s, ev) => CopyLinks(copyPinnedButton, ev)));
+			var openItem = new MoreMenuItem(Resx.NavigatorWindow_menuOpenInNew, null, OpenInNewWindow);
+			openItem.Enabled = pinnedBox.SelectedItems.Count == 1;
+			menu.Items.Add(openItem);
+			menu.Items.Add(new ToolStripSeparator());
+			menu.Items.Add(new MoreMenuItem(Resx.NavigatorWindow_menuDelete, null, UnpinOnClick));
+			menu.Show(Cursor.Position);
+		}
+
+
+		private void ShowHistoryContextMenu(object sender, MouseEventArgs e)
+		{
+			if (e.Button != MouseButtons.Right || historyBox.Items.Count == 0)
+			{
+				return;
+			}
+
+			var clientPt = historyBox.PointToClient(Cursor.Position);
+			var item = historyBox.GetItemAt(clientPt.X, clientPt.Y);
+			if (item != null && !item.Selected)
+			{
+				historyBox.SelectedItems.Clear();
+				item.Selected = true;
+			}
+
+			if (historyBox.SelectedItems.Count == 0)
+			{
+				return;
+			}
+
+			var menu = new MoreContextMenuStrip();
+			menu.Items.Add(new MoreMenuItem(Resx.NavigatorWindow_menuAddToList, null, PinOnClick));
+			menu.Items.Add(new MoreMenuItem(Resx.NavigatorWindow_menuCopy, null,
+				(s, ev) => CopyLinks(copyHistoryButton, ev)));
+			var openItem = new MoreMenuItem(Resx.NavigatorWindow_menuOpenInNew, null, OpenInNewWindow);
+			openItem.Enabled = historyBox.SelectedItems.Count == 1;
+			menu.Items.Add(openItem);
+			menu.Items.Add(new ToolStripSeparator());
+			menu.Items.Add(new MoreMenuItem(Resx.NavigatorWindow_menuDelete, null, DeleteHistoryRecords));
+			menu.Show(Cursor.Position);
+		}
+
+
+		private async void OpenInNewWindow(object sender, EventArgs e)
+		{
+			var box = pinnedBox.SelectedItems.Count > 0 ? pinnedBox : historyBox;
+			if (box.SelectedItems.Count != 1)
+			{
+				return;
+			}
+
+			if (box.SelectedItems[0] is IMoreHostItem host && host.Tag is HistoryRecord record)
+			{
+				await using var one = new OneNote();
+				one.NavigateTo(record.Link, true);
+
+				//System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+				//{
+				//	FileName = record.Link,
+				//	UseShellExecute = true
+				//});
 			}
 		}
 
