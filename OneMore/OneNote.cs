@@ -1593,13 +1593,13 @@ namespace River.OneMoreAddIn
 		/// Forces OneNote to jump to the specified object, onenote Uri, or Web Uri
 		/// </summary>
 		/// <param name="uri">A pageId, sectionId, notebookId, onenote:URL, or Web URL</param>
-		public async Task<bool> NavigateTo(string uri)
+		public async Task<bool> NavigateTo(string uri, bool newWindow = false)
 		{
 			if (uri.StartsWith("onenote:") || uri.StartsWith("http"))
 			{
 				return await InvokeWithRetry(() =>
 				{
-					onenote.NavigateToUrl(uri);
+					onenote.NavigateToUrl(uri, newWindow);
 				});
 			}
 			else

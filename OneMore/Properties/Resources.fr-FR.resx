@@ -1977,6 +1977,30 @@ Voulez-vous actualiser la page existante ?</value>
     <value>Déplacer les éléments sélectionnés vers le bas</value>
     <comment>tooltip</comment>
   </data>
+  <data name="NavigatorWindow_menuAddToList" xml:space="preserve">
+    <value>Ajouter à la liste de lecture</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="NavigatorWindow_menuCopy" xml:space="preserve">
+    <value>Copier dans le Presse-papiers</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="NavigatorWindow_menuDelete" xml:space="preserve">
+    <value>Supprimer</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="NavigatorWindow_menuMoveDown" xml:space="preserve">
+    <value>Descendre</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="NavigatorWindow_menuMoveUp" xml:space="preserve">
+    <value>Monter</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="NavigatorWindow_menuOpenInNew" xml:space="preserve">
+    <value>Ouvrir dans une nouvelle fenêtre</value>
+    <comment>context menu item</comment>
+  </data>
   <data name="NavigatorWindow_pinButton_Tooltip" xml:space="preserve">
     <value>Ajouter les éléments sélectionnés à Ma liste de lecture</value>
     <comment>tooltip</comment>

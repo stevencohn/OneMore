@@ -1974,6 +1974,30 @@ Total Row Font
     <value>הזז את הפריטים שנבחרו למטה</value>
     <comment>tooltip</comment>
   </data>
+  <data name="NavigatorWindow_menuAddToList" xml:space="preserve">
+    <value>הוסף לרשימת קריאה</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="NavigatorWindow_menuCopy" xml:space="preserve">
+    <value>העתק ללוח</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="NavigatorWindow_menuDelete" xml:space="preserve">
+    <value>לִמְחוֹק</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="NavigatorWindow_menuMoveDown" xml:space="preserve">
+    <value>לזוז למטה</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="NavigatorWindow_menuMoveUp" xml:space="preserve">
+    <value>לזוז למעלה</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="NavigatorWindow_menuOpenInNew" xml:space="preserve">
+    <value>פתח בחלון חדש</value>
+    <comment>context menu item</comment>
+  </data>
   <data name="NavigatorWindow_pinButton_Tooltip" xml:space="preserve">
     <value>הוסף פריטים נבחרים לרשימת הקריאה שלי</value>
     <comment>tooltip</comment>

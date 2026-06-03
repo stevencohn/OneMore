@@ -1969,6 +1969,30 @@ Möchten Sie die bestehende Seite aktualisieren?</value>
     <value>Ausgewählte Elemente nach unten verschieben</value>
     <comment>tooltip</comment>
   </data>
+  <data name="NavigatorWindow_menuAddToList" xml:space="preserve">
+    <value>Zur Leseliste hinzufügen</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="NavigatorWindow_menuCopy" xml:space="preserve">
+    <value>In die Zwischenablage kopieren</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="NavigatorWindow_menuDelete" xml:space="preserve">
+    <value>Löschen</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="NavigatorWindow_menuMoveDown" xml:space="preserve">
+    <value>Nach unten bewegen</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="NavigatorWindow_menuMoveUp" xml:space="preserve">
+    <value>Nach oben bewegen</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="NavigatorWindow_menuOpenInNew" xml:space="preserve">
+    <value>In neuem Fenster öffnen</value>
+    <comment>context menu item</comment>
+  </data>
   <data name="NavigatorWindow_pinButton_Tooltip" xml:space="preserve">
     <value>Ausgewählte Elemente zu Meine Leseliste hinzufügen</value>
     <comment>tooltip</comment>

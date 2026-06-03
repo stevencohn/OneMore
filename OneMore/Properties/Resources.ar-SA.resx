@@ -1977,6 +1977,30 @@
     <value>نقل العناصر المحددة لأسفل</value>
     <comment>tooltip</comment>
   </data>
+  <data name="NavigatorWindow_menuAddToList" xml:space="preserve">
+    <value>أضف إلى قائمة القراءة</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="NavigatorWindow_menuCopy" xml:space="preserve">
+    <value>نسخ إلى الحافظة</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="NavigatorWindow_menuDelete" xml:space="preserve">
+    <value>يمسح</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="NavigatorWindow_menuMoveDown" xml:space="preserve">
+    <value>تحرك للأسفل</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="NavigatorWindow_menuMoveUp" xml:space="preserve">
+    <value>تحرك لأعلى</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="NavigatorWindow_menuOpenInNew" xml:space="preserve">
+    <value>فتح في نافذة جديدة</value>
+    <comment>context menu item</comment>
+  </data>
   <data name="NavigatorWindow_pinButton_Tooltip" xml:space="preserve">
     <value>إضافة العناصر المحددة إلى قائمة القراءة الخاصة بي</value>
     <comment>tooltip</comment>

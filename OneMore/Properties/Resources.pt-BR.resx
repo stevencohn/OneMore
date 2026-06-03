@@ -1974,6 +1974,30 @@ Deseja atualizar a página existente?</value>
     <value>Mover itens selecionados para baixo</value>
     <comment>tooltip</comment>
   </data>
+  <data name="NavigatorWindow_menuAddToList" xml:space="preserve">
+    <value>Adicionar à lista de leitura</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="NavigatorWindow_menuCopy" xml:space="preserve">
+    <value>Copiar para a área de transferência</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="NavigatorWindow_menuDelete" xml:space="preserve">
+    <value>Excluir</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="NavigatorWindow_menuMoveDown" xml:space="preserve">
+    <value>Mover para baixo</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="NavigatorWindow_menuMoveUp" xml:space="preserve">
+    <value>Subir</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="NavigatorWindow_menuOpenInNew" xml:space="preserve">
+    <value>Abrir em uma nova janela</value>
+    <comment>context menu item</comment>
+  </data>
   <data name="NavigatorWindow_pinButton_Tooltip" xml:space="preserve">
     <value>Adicionar itens selecionados à minha lista de leitura</value>
     <comment>tooltip</comment>

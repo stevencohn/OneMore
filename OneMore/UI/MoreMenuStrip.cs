@@ -18,7 +18,7 @@ namespace River.OneMoreAddIn.UI
 	{
 		public MoreMenuStrip()
 		{
-			Renderer = new CustomRenderer(new ThemedColorTable());
+			Renderer = new MoreMenuRenderer(new ThemedColorTable());
 		}
 
 
@@ -27,44 +27,71 @@ namespace River.OneMoreAddIn.UI
 			AutoSize = false;
 			ImageScalingSize = SystemInformation.SmallIconSize;
 		}
+	}
 
 
-		private sealed class CustomRenderer : ToolStripProfessionalRenderer
+	/// <summary>
+	/// A ContextMenuStrip that provides a themed view, matching MoreMenuStrip styling
+	/// </summary>
+	internal class MoreContextMenuStrip : ContextMenuStrip
+	{
+		public MoreContextMenuStrip()
 		{
-			private readonly Color menuBarColor;
-			private readonly Color menuTextColor;
-
-			public CustomRenderer(ProfessionalColorTable colorTable)
-				: base(colorTable)
-			{
-				var manager = ThemeManager.Instance;
-				menuBarColor = manager.GetColor("MenuBar");
-				menuTextColor = manager.GetColor("MenuText");
-			}
-
-			protected override void OnRenderToolStripBackground(ToolStripRenderEventArgs e)
-			{
-				e.ToolStrip.BackColor = menuBarColor;
-				base.OnRenderToolStripBackground(e);
-			}
-			protected override void OnRenderDropDownButtonBackground(ToolStripItemRenderEventArgs e)
-			{
-				e.Item.BackColor = Color.Green;
-				base.OnRenderDropDownButtonBackground(e);
-			}
-
-			protected override void OnRenderItemText(ToolStripItemTextRenderEventArgs e)
-			{
-				e.TextColor = menuTextColor;
-				base.OnRenderItemText(e);
-			}
+			Renderer = new MoreMenuRenderer(new ThemedColorTable());
+		}
+	}
 
 
-			protected override void OnRenderArrow(ToolStripArrowRenderEventArgs e)
+	internal class MoreMenuRenderer : ToolStripProfessionalRenderer
+	{
+		private readonly Color menuBarColor;
+		private readonly Color menuHighlightColor;
+		private readonly Color menuTextColor;
+
+		public MoreMenuRenderer(ProfessionalColorTable colorTable)
+			: base(colorTable)
+		{
+			var manager = ThemeManager.Instance;
+			menuBarColor = manager.GetColor("MenuBar");
+			menuHighlightColor = manager.GetColor("MenuHighlight");
+			menuTextColor = manager.GetColor("MenuText");
+		}
+
+		protected override void OnRenderToolStripBackground(ToolStripRenderEventArgs e)
+		{
+			e.ToolStrip.BackColor = menuBarColor;
+			base.OnRenderToolStripBackground(e);
+		}
+
+		protected override void OnRenderMenuItemBackground(ToolStripItemRenderEventArgs e)
+		{
+			if (e.Item.Selected && e.Item.Enabled)
 			{
-				e.ArrowColor = menuTextColor;
-				base.OnRenderArrow(e);
+				using var brush = new SolidBrush(menuHighlightColor);
+				e.Graphics.FillRectangle(brush, new Rectangle(Point.Empty, e.Item.Size));
 			}
+			else
+			{
+				base.OnRenderMenuItemBackground(e);
+			}
+		}
+
+		protected override void OnRenderDropDownButtonBackground(ToolStripItemRenderEventArgs e)
+		{
+			e.Item.BackColor = Color.Green;
+			base.OnRenderDropDownButtonBackground(e);
+		}
+
+		protected override void OnRenderItemText(ToolStripItemTextRenderEventArgs e)
+		{
+			e.TextColor = menuTextColor;
+			base.OnRenderItemText(e);
+		}
+
+		protected override void OnRenderArrow(ToolStripArrowRenderEventArgs e)
+		{
+			e.ArrowColor = menuTextColor;
+			base.OnRenderArrow(e);
 		}
 	}
 
