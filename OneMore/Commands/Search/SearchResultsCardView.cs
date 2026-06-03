@@ -11,6 +11,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Drawing;
 	using System.Linq;
 	using System.Windows.Forms;
+	using Resx = Properties.Resources;
 
 
 	/// <summary>
@@ -449,6 +450,7 @@ namespace River.OneMoreAddIn.Commands
 		protected override void OnMouseClick(MouseEventArgs e)
 		{
 			base.OnMouseClick(e);
+			if (e.Button != MouseButtons.Left) return;
 			var hit = HitTest(e.Location);
 			if (hit == null) return;
 
@@ -513,6 +515,63 @@ namespace River.OneMoreAddIn.Commands
 				InvalidateHitRegion(hoverCard, hoverHit);
 				hoverCard = hoverHit = -1;
 			}
+		}
+
+
+		protected override void OnMouseUp(MouseEventArgs e)
+		{
+			base.OnMouseUp(e);
+			if (e.Button != MouseButtons.Right) return;
+
+			var hit = HitTest(e.Location);
+			if (hit == null) return;
+
+			var card = cards[hit.Value.CardIndex];
+			bool isCard;
+			string pageId, objectId;
+
+			if (hit.Value.HitIndex == -1 && card.PageId != null)
+			{
+				isCard = true;
+				pageId = card.PageId;
+				objectId = string.Empty;
+			}
+			else if (hit.Value.HitIndex >= 0)
+			{
+				isCard = false;
+				var h = card.Hits[hit.Value.HitIndex];
+				pageId = h.PageId;
+				objectId = h.ObjectId;
+			}
+			else
+			{
+				return;
+			}
+
+			var menu = new MoreContextMenuStrip();
+			menu.Items.Add(new MoreMenuItem(Resx.SearchDialog_menuShowInCurrent, null, (s, ev) =>
+			{
+				if (isCard)
+				{
+					CardActivated?.Invoke(this, new NavigateCardEventArgs(pageId));
+				}
+				else
+				{
+					HitActivated?.Invoke(this, new NavigateHitEventArgs(pageId, objectId));
+				}
+			}));
+			menu.Items.Add(new MoreMenuItem(Resx.SearchDialog_menuOpenInNew, null, (s, ev) =>
+			{
+				if (isCard)
+				{
+					CardActivated?.Invoke(this, new NavigateCardEventArgs(pageId, newWindow: true));
+				}
+				else
+				{
+					HitActivated?.Invoke(this, new NavigateHitEventArgs(pageId, objectId, newWindow: true));
+				}
+			}));
+			menu.Show(Cursor.Position);
 		}
 
 
@@ -685,19 +744,26 @@ namespace River.OneMoreAddIn.Commands
 
 	internal sealed class NavigateCardEventArgs : EventArgs
 	{
-		public NavigateCardEventArgs(string pageId) { PageId = pageId; }
+		public NavigateCardEventArgs(string pageId, bool newWindow = false)
+		{
+			PageId = pageId;
+			NewWindow = newWindow;
+		}
 		public string PageId { get; }
+		public bool NewWindow { get; }
 	}
 
 
 	internal sealed class NavigateHitEventArgs : EventArgs
 	{
-		public NavigateHitEventArgs(string pageId, string objectId)
+		public NavigateHitEventArgs(string pageId, string objectId, bool newWindow = false)
 		{
 			PageId   = pageId;
 			ObjectId = objectId;
+			NewWindow = newWindow;
 		}
 		public string PageId   { get; }
 		public string ObjectId { get; }
+		public bool NewWindow { get; }
 	}
 }

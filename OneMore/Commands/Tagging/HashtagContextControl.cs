@@ -57,6 +57,7 @@ namespace River.OneMoreAddIn.Commands
 			pageLink.HoverColor = hoverColor;
 			tooltip.SetToolTip(pageLink, Resx.HashtagContext_jumpTip);
 			pageLink.Enabled = item.Available;
+			pageLink.MouseUp += (s, e) => ShowResultMenu(e, item.PageID, oid);
 
 			// LastModified...
 
@@ -97,6 +98,8 @@ namespace River.OneMoreAddIn.Commands
 				link.MouseLeave += (s, e) => UpdateCheckboxVisibility();
 				link.LinkClicked += NavigateTo;
 				link.Links.Add(0, link.Text.Length, (item.PageID, snippet.ObjectID));
+				var snippetObjectId = snippet.ObjectID;
+				link.MouseUp += (s, e) => ShowResultMenu(e, item.PageID, snippetObjectId);
 
 				var date = DateTime
 					.Parse(snippet.LastModified, CultureInfo.InvariantCulture)
@@ -197,6 +200,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private async void NavigateTo(object sender, LinkLabelLinkClickedEventArgs e)
 		{
+			if (e.Button != MouseButtons.Left) return;
 			if (e.Link.LinkData == null)
 			{
 				Logger.Current.WriteLine("linkData is empty");
@@ -217,6 +221,34 @@ namespace River.OneMoreAddIn.Commands
 				Logger.Current.WriteLine(
 					"linkData is bad, possible broken reference to page object", exc);
 			}
+		}
+
+
+		private void ShowResultMenu(MouseEventArgs e, string pageId, string objectId)
+		{
+			if (e.Button != MouseButtons.Right) return;
+
+			var menu = new MoreContextMenuStrip();
+			menu.Items.Add(new MoreMenuItem(Resx.SearchDialog_menuShowInCurrent, null,
+				async (s, ev) =>
+				{
+					var success = await new OneNote().NavigateTo(pageId, objectId);
+					if (!success)
+					{
+						MoreMessageBox.ShowError(this, Resx.HashtagDialog_badLink);
+					}
+				}));
+			menu.Items.Add(new MoreMenuItem(Resx.SearchDialog_menuOpenInNew, null,
+				async (s, ev) =>
+				{
+					await using var one = new OneNote();
+					var uri = one.GetHyperlink(pageId, objectId);
+					if (uri != null)
+					{
+						await one.NavigateTo(uri, newWindow: true);
+					}
+				}));
+			menu.Show(Cursor.Position);
 		}
 	}
 }

@@ -4687,6 +4687,14 @@ Zmodyfikowany wcześniej</value>
     <value>Sprawa dopasowania</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SearchDialog_menuOpenInNew" xml:space="preserve">
+    <value>Otwórz w nowym oknie</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="SearchDialog_menuShowInCurrent" xml:space="preserve">
+    <value>Pokaż w bieżącym oknie</value>
+    <comment>context menu item</comment>
+  </data>
   <data name="SearchDialog_regBox.Text" xml:space="preserve">
     <value>Używaj wyrażeń regularnych</value>
     <comment>checkbox</comment>

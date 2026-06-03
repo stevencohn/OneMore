@@ -11547,7 +11547,25 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("SearchDialog_clearAllLink.Text", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Open in New Window.
+        /// </summary>
+        internal static string SearchDialog_menuOpenInNew {
+            get {
+                return ResourceManager.GetString("SearchDialog_menuOpenInNew", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Show in Current Window.
+        /// </summary>
+        internal static string SearchDialog_menuShowInCurrent {
+            get {
+                return ResourceManager.GetString("SearchDialog_menuShowInCurrent", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Any date
         ///Created after

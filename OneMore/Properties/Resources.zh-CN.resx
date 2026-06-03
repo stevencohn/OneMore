@@ -4701,6 +4701,14 @@ ISO-code then comma then language name</comment>
     <value>火柴盒</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SearchDialog_menuOpenInNew" xml:space="preserve">
+    <value>在新窗口中打开</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="SearchDialog_menuShowInCurrent" xml:space="preserve">
+    <value>在当前窗口中显示</value>
+    <comment>context menu item</comment>
+  </data>
   <data name="SearchDialog_regBox.Text" xml:space="preserve">
     <value>使用正则表达式</value>
     <comment>checkbox</comment>

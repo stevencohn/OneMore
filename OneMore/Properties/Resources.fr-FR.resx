@@ -4698,6 +4698,14 @@ Modifié avant</value>
     <value>Étui de correspondance</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SearchDialog_menuOpenInNew" xml:space="preserve">
+    <value>Ouvrir dans une nouvelle fenêtre</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="SearchDialog_menuShowInCurrent" xml:space="preserve">
+    <value>Afficher dans la fenêtre actuelle</value>
+    <comment>context menu item</comment>
+  </data>
   <data name="SearchDialog_regBox.Text" xml:space="preserve">
     <value>Utiliser des expressions régulières</value>
     <comment>checkbox</comment>

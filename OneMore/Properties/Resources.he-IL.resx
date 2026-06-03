@@ -4691,6 +4691,14 @@ ISO-code then comma then language name</comment>
     <value>מארז התאמה</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SearchDialog_menuOpenInNew" xml:space="preserve">
+    <value>פתח בחלון חדש</value>
+    <comment>context menu item</comment>
+  </data>
+  <data name="SearchDialog_menuShowInCurrent" xml:space="preserve">
+    <value>הצג בחלון נוכחי</value>
+    <comment>context menu item</comment>
+  </data>
   <data name="SearchDialog_regBox.Text" xml:space="preserve">
     <value>השתמש בביטויים רגולריים</value>
     <comment>checkbox</comment>
