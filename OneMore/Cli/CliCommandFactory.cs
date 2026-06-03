@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Cli
 {
+	using River.OneMoreAddIn.Settings;
 	using System.Collections.Generic;
 
 	internal static class CliCommandFactory
@@ -11,6 +12,9 @@ namespace River.OneMoreAddIn.Cli
 		public static CommandFactory Make()
 		{
 			var trash = new List<System.IDisposable>();
+
+			var settings = new SettingsProvider().GetCollection(nameof(GeneralSheet));
+			AddIn.Telemetry = settings.Get("telemetry", false);
 
 			return new CommandFactory(
 				Logger.Current, null, trash,

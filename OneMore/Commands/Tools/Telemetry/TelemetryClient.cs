@@ -2,7 +2,9 @@
 // Copyright © 2026 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
-#pragma warning disable CS8632 // ignore nullable reference types
+#pragma warning disable S125    // ignore commented-out code                                
+#pragma warning disable S6418   // ignore embedded API key                             
+#pragma warning disable CS8632	// ignore nullable reference types
 
 //#define DIAG
 
@@ -23,9 +25,12 @@ namespace River.OneMoreAddIn
 
 		private static readonly string ApiKey = "F3J9FKPYsX7gypXLaBQmITRu5DCoIe77x8jgV4m0";
 
-		// cached for each new session (OneNote process lifetime)
-		public static readonly TelemetryEvent Template =
-			Helpers.SessionLogger.MakeTelemetryTemplate();
+		// cached for each new session (OneNote process lifetime);
+		// lazy so CLI processes that start OneNote via COM don't cache a null before it launches
+		private static TelemetryEvent template;
+
+		public static TelemetryEvent Template => 
+			template ??= Helpers.SessionLogger.MakeTelemetryTemplate();
 
 
 		#region Schema classes

@@ -161,20 +161,21 @@ namespace River.OneMoreAddIn.Helpers
 		/// </returns>
 		public static TelemetryClient.TelemetryEvent MakeTelemetryTemplate()
 		{
+			string oneArc = null;
+			string oneVer = null;
 			var hostproc = Process.GetProcessesByName("ONENOTE");
-			if (hostproc.Length == 0) { return null; }
-			string oneArc;
-			string oneVer;
-			try
+			if (hostproc.Length > 0)
 			{
-				var module = hostproc[0].MainModule;
-				oneArc = GetAssemblyArchitecture(module.FileName);
-				oneVer = module.FileVersionInfo.ProductVersion;
-			}
-			catch (Exception exc)
-			{
-				Logger.Current.WriteLine("error reading OneNote.exe header", exc);
-				return null;
+				try
+				{
+					var module = hostproc[0].MainModule;
+					oneArc = GetAssemblyArchitecture(module.FileName);
+					oneVer = module.FileVersionInfo.ProductVersion;
+				}
+				catch (Exception exc)
+				{
+					Logger.Current.WriteLine("error reading OneNote.exe header", exc);
+				}
 			}
 
 			// collect...
