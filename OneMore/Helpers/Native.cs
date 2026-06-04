@@ -250,6 +250,18 @@ namespace River.OneMoreAddIn
 			string pszExtra, [Out] StringBuilder pszOut, ref uint pcchOut);
 
 
+		// https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-attachthreadinput
+		[DllImport("user32.dll")]
+		[return: MarshalAs(UnmanagedType.Bool)]
+		public static extern bool AttachThreadInput(uint idAttach, uint idAttachTo, bool fAttach);
+
+
+		// https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-bringwindowtotop
+		[DllImport("user32.dll")]
+		[return: MarshalAs(UnmanagedType.Bool)]
+		public static extern bool BringWindowToTop(IntPtr hWnd);
+
+
 		// https://learn.microsoft.com/en-us/windows/win32/api/shlwapi/nf-shlwapi-colorhlstorgb
 		[DllImport("shlwapi.dll")]
 		public static extern int ColorHLSToRGB(int H, int L, int S);
@@ -264,6 +276,11 @@ namespace River.OneMoreAddIn
 		[DllImport("user32.dll", SetLastError = true)]
 		[return: MarshalAs(UnmanagedType.Bool)]
 		public static extern bool DestroyCursor(IntPtr hCursor);
+
+
+		// https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-getcurrentthreadid
+		[DllImport("kernel32.dll")]
+		public static extern uint GetCurrentThreadId();
 
 
 		// https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getcursorpos

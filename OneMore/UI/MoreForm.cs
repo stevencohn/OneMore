@@ -381,23 +381,34 @@ namespace River.OneMoreAddIn.UI
 
 			//logger.WriteLine($"elevating [{Text}]");
 
-			// a bunch of hocus-pocus to force the form to the foreground...
-
-			//IntPtr HWND_TOPMOST = new(-1);
-			//Native.SetWindowPos(Handle, HWND_TOPMOST, 0, 0, 0, 0,
-			//	Native.SWP_NOMOVE | Native.SWP_NOSIZE);
-
-			//var location = Location;
-
-			//Native.SetForegroundWindow(Handle);
 			if (modeless)
 			{
 				BringToFront();
 			}
 
-			//Location = location;
+			// Temporarily share the input queue with the foreground thread so that
+			// SetForegroundWindow succeeds regardless of which process has foreground rights.
+			// This is needed because OneMore runs in dllhost.exe (COM surrogate), not ONENOTE.EXE,
+			// and by the time dialogs are shown the original COM call / WM_HOTKEY rights are gone.
+			var foreground = Native.GetForegroundWindow();
+			if (!IsDisposed && IsHandleCreated && foreground != IntPtr.Zero && foreground != Handle)
+			{
+				uint foregroundThread = Native.GetWindowThreadProcessId(foreground, out _);
+				uint currentThread = Native.GetCurrentThreadId();
 
-			// this is the trick needed to elevate a dialog to TopMost
+				bool attached = foregroundThread != currentThread &&
+					Native.AttachThreadInput(foregroundThread, currentThread, true);
+
+				Native.SetForegroundWindow(Handle);
+				Native.BringWindowToTop(Handle);
+
+				if (attached)
+				{
+					Native.AttachThreadInput(foregroundThread, currentThread, false);
+				}
+			}
+
+			// TopMost toggle ensures the window appears above OneNote in z-order
 			TopMost = false;
 			TopMost = true;
 			TopMost = keepTop;
