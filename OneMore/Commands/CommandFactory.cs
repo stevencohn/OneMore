@@ -5,11 +5,13 @@
 namespace River.OneMoreAddIn
 {
 	using Microsoft.Office.Core;
+	using River.OneMoreAddIn.Cli;
 	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Reflection;
+	using System.Text;
 	using System.Threading.Tasks;
 	using Resx = Properties.Resources;
 
@@ -124,8 +126,18 @@ namespace River.OneMoreAddIn
 			await using var one = new OneNote();
 			var owner = one.OwnerWindow;
 
+			StringBuilder cliBuffer = null;
+			CliLogger cliLog = null;
+			if (runningFromCli)
+			{
+				cliBuffer = new StringBuilder();
+				cliLog = new CliLogger(cliBuffer);
+				Logger.SetMirror(cliLog);
+			}
+
 			command.SetFactory(this)
 				.SetLogger(logger)
+				.SetCliLogger(cliLog)
 				.SetRibbon(ribbon)
 				.SetOwner(owner)
 				.SetTrash(trash);
@@ -175,15 +187,28 @@ namespace River.OneMoreAddIn
 				}
 
 				logger.End();
-				logger.WriteLine(msg);
-				logger.WriteLine(exc);
+				logger.WriteLine(msg, exc);
 				logger.WriteLine();
+
+				if (runningFromCli)
+				{
+					command.CliOutput = $"{msg}{Environment.NewLine}{exc.FormatDetails()}";
+				}
 
 				if (!runningFromCli)
 				{
 					MoreMessageBox.ShowErrorWithLogLink(
 						owner, string.Format(Resx.Command_ErrorMsg, eventName));
 				}
+			}
+
+			Logger.SetMirror(null);
+
+			// if running from CLI and the command didn't set CliOutput itself (e.g. exception
+			// path), harvest anything written to the cliLogger buffer
+			if (cliLog != null && string.IsNullOrEmpty(command.CliOutput) && cliBuffer.Length > 0)
+			{
+				command.CliOutput = cliBuffer.ToString();
 			}
 		}
 

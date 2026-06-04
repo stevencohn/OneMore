@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn
 {
 	using Microsoft.Office.Core;
+	using River.OneMoreAddIn.Cli;
 	using System;
 	using System.Collections.Generic;
 	using System.Threading.Tasks;
@@ -22,6 +23,7 @@ namespace River.OneMoreAddIn
 		// commands are injected with logger, ribbon, owner window, and the tash collector...
 
 		protected ILogger logger;
+		protected CliLogger cliLogger;
 		protected IRibbonUI ribbon;
 		protected IWin32Window owner;
 		protected CommandFactory factory;
@@ -47,7 +49,7 @@ namespace River.OneMoreAddIn
 		public string CliOutput
 		{
 			get;
-			protected set;
+			internal set;
 		}
 
 
@@ -101,6 +103,13 @@ namespace River.OneMoreAddIn
 		public Command SetLogger(ILogger value)
 		{
 			logger = value;
+			return this;
+		}
+
+
+		public Command SetCliLogger(CliLogger value)
+		{
+			cliLogger = value;
 			return this;
 		}
 

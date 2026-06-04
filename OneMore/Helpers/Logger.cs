@@ -27,6 +27,9 @@ namespace River.OneMoreAddIn
 		private static bool designMode;
 		private static string appname = "OneMore";
 
+		private static readonly AsyncLocal<ILogger> mirror = new();
+		[ThreadStatic] private static bool mirrorGuard;
+
 		private readonly bool stdio;
 		private bool debug;
 		private bool verbose;
@@ -252,6 +255,16 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Sets a secondary logger that receives exception writes mirrored from this logger.
+		/// Pass null to clear. Used by CommandFactory to route CLI exception output.
+		/// </summary>
+		public static void SetMirror(ILogger value)
+		{
+			mirror.Value = value;
+		}
+
+
+		/// <summary>
 		/// Directly set verbose/debug logging flags, for use by GeneralSettings.
 		/// Consumer needs explict cast to Logger class
 		/// </summary>
@@ -405,7 +418,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public void WriteLine(Exception exc)
+		public virtual void WriteLine(Exception exc)
 		{
 			if (EnsureWriter())
 			{
@@ -426,6 +439,13 @@ namespace River.OneMoreAddIn
 
 				isNewline = true;
 			}
+
+			if (!mirrorGuard)
+			{
+				mirrorGuard = true;
+				try { mirror.Value?.WriteLine(exc); }
+				finally { mirrorGuard = false; }
+			}
 		}
 
 
@@ -435,10 +455,17 @@ namespace River.OneMoreAddIn
 
 			var wh = writeHeader;
 			writeHeader = false;
-
-			WriteLine(exc);
-
+			mirrorGuard = true;    // suppress mirror inside the composed call below
+			WriteLine(exc);        // file only
+			mirrorGuard = false;
 			writeHeader = wh;
+
+			var m = mirror.Value;
+			if (m != null)
+			{
+				m.WriteLine(message);
+				m.WriteLine(exc);
+			}
 		}
 
 
