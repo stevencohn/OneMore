@@ -1,4 +1,4 @@
-﻿//************************************************************************************************
+//************************************************************************************************
 // Copyright © 2021 Steven M Cohn.  All rights reserved.
 //************************************************************************************************
 
@@ -51,6 +51,13 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
+			// clear any pre-existing selection state before marking matches
+			page.Root
+				.Elements(ns + "Outline")
+				.Descendants(ns + "T")
+				.Attributes("selected")
+				.Remove();
+
 			var runs = page.Root
 				.Elements(ns + "Outline")
 				.Descendants(ns + "T").ToList();
@@ -68,143 +75,89 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		// merge text cursor so we don't have to treat it as a special case
 		private bool NormalizeTextCursor(Page page, StyleAnalyzer analyzer)
 		{
 			var range = new SelectionRange(page);
-			var cursor = range.GetSelection();
 
-			if (range.Scope != SelectionScope.TextCursor)
+			// allowNonEmpty preserves Run scope; default false would corrupt Scope to None
+			var cursor = range.GetSelection(allowNonEmpty: true);
+
+			// valid scopes that need no cursor normalization
+			if (range.Scope == SelectionScope.SpecialCursor ||
+				range.Scope == SelectionScope.Run ||
+				range.Scope == SelectionScope.Range)
+			{
+				return true;
+			}
+
+			if (range.Scope != SelectionScope.TextCursor || cursor == null)
 			{
 				return false;
 			}
 
-			if (range.Scope == SelectionScope.SpecialCursor)
-			{
-				// positioned over a hyperlink or MathML equation
-				return true;
-			}
-
-			if (cursor.PreviousNode is XElement prev &&
-				cursor.NextNode is XElement next)
+			// Rejoin the T elements that OneNote split when the cursor was placed,
+			// so the full run is treated as one unit by AnalyzeRun. Only merge when the
+			// styles at the join boundary actually match; otherwise leave them split.
+			if (cursor.PreviousNode is XElement prev && prev.Name.LocalName == "T" &&
+				cursor.NextNode is XElement next && next.Name.LocalName == "T")
 			{
 				var prevData = prev.GetCData();
 				var nextData = next.GetCData();
-				var prevWrap = prevData.GetWrapper();
-				var nextWrap = nextData.GetWrapper();
 
-				if (prevWrap.Nodes().Last() is XElement prevSpan &&
-					nextWrap.Nodes().First() is XElement nextSpan)
+				if (prevData != null && nextData != null)
 				{
-					// examine the last node from Prev and the first node from Next
-					// to compare their styles and if they match then combine them
-					var prevStyle = analyzer.CollectStyleFrom(prevSpan);
-					var nextStyle = analyzer.CollectStyleFrom(nextSpan);
-					if (prevStyle.Equals(nextStyle))
+					var prevWrap = prevData.GetWrapper();
+					var nextWrap = nextData.GetWrapper();
+
+					if (prevWrap.Nodes().LastOrDefault() is XElement prevSpan &&
+						nextWrap.Nodes().FirstOrDefault() is XElement nextSpan)
 					{
-						// pull only the first node from Next and append it to Prev
-						// then remove that first node from Next and append the remaining nodes
-						// to retain their own stylings; finally remove Next altogether below...
-
-						logger.WriteLine($"combining-0 '{prevSpan.Value}' and '{nextSpan.Value}'");
-						prevSpan.Value = $"{prevSpan.Value}{nextSpan.Value}";
-						nextSpan.Remove();
-						prevWrap.Add(nextWrap.Nodes());
-						prevData.Value = prevWrap.GetInnerXml(singleQuote: true);
+						// Both boundaries are spans: merge if their styles match
+						var prevSpanStyle = analyzer.CollectStyleFrom(prevSpan);
+						var nextSpanStyle = analyzer.CollectStyleFrom(nextSpan);
+						if (prevSpanStyle.Equals(nextSpanStyle))
+						{
+							prevSpan.Value = $"{prevSpan.Value}{nextSpan.Value}";
+							nextSpan.Remove();
+							prevWrap.Add(nextWrap.Nodes());
+							prevData.Value = prevWrap.GetInnerXml(singleQuote: true);
+							next.Remove();
+						}
 					}
-					else
+					else if (prevWrap.Nodes().LastOrDefault() is XText &&
+						nextWrap.Nodes().FirstOrDefault() is XText)
 					{
-						var prevValue = MakeStylizedSpan(
-							prevData, prevWrap.Nodes().Last() as XElement, analyzer.CollectStyleFrom(prev));
-
-						var nextValue = MakeStylizedSpan(
-							nextData, nextWrap.Nodes().First() as XElement, analyzer.CollectStyleFrom(next));
-
-						logger.WriteLine($"combining-1 '{prevValue}' and '{nextValue}'");
-						prevData.Value = CombineSpans(prevValue, nextValue);
+						// Both boundaries are plain text: merge if T-level styles match
+						var prevStyle = analyzer.CollectStyleFrom(prev);
+						var nextStyle = analyzer.CollectStyleFrom(next);
+						if (prevStyle.Equals(nextStyle))
+						{
+							prevData.Value = $"{prevData.Value}{nextData.Value}";
+							next.Remove();
+						}
 					}
+					// Mixed boundary (span + plain or plain + span): leave separate
 				}
-				else
-				{
-					var prevValue = MakeStylizedSpan(
-						prevData, prevWrap.Nodes().Last() as XElement, analyzer.CollectStyleFrom(prev));
-
-					var nextValue = MakeStylizedSpan(
-						nextData, nextWrap.Nodes().First() as XElement, analyzer.CollectStyleFrom(next));
-
-					logger.WriteLine($"combining-2 '{prevValue}' and '{nextValue}'");
-					prevData.Value = CombineSpans(prevValue, nextValue);
-				}
-
-				next.Remove();
 			}
 
-			var parent = cursor.Parent;
 			cursor.Remove();
-
-			logger.WriteLine($"updated parent\n{parent.ToString(SaveOptions.None)}");
-
 			return true;
 		}
 
 
-		private string MakeStylizedSpan(XCData data, XElement edge, Style parentStyle)
-		{
-			if (edge != null)
-			{
-				return data.Value;
-			}
-
-			var css = string.Empty;
-			if (!string.IsNullOrEmpty(parentStyle.FontFamily))
-			{
-				css = $"font-family:{parentStyle.FontFamily}";
-			}
-
-			if (!string.IsNullOrEmpty(parentStyle.FontSize))
-			{
-				css = $"{css};font-size:{parentStyle.FontSize}pt";
-			}
-
-			if (!string.IsNullOrEmpty(parentStyle.Color))
-			{
-				css = $"{css};color:{parentStyle.Color}";
-			}
-
-			return $"<span style='{css}'>{data.Value}</span>";
-		}
-
-
-		private string CombineSpans(string span1, string span2)
-		{
-			if (span1.StartsWith("<span") && span2.StartsWith("<span"))
-			{
-				var wrap1 = new XCData(span1).GetWrapper();
-				var wrap2 = new XCData(span2).GetWrapper();
-
-				if (wrap1.Attribute("style") is XAttribute attr1 &&
-					wrap2.Attribute("style") is XAttribute attr2)
-				{
-					if (attr1.Value == attr2.Value)
-					{
-						wrap1.Value = $"{wrap1.Value}{wrap2.Value}";
-						return wrap1.ToString(SaveOptions.DisableFormatting);
-					}
-				}
-			}
-
-			return $"{span1}{span2}";
-		}
-
-
-
 		private void AnalyzeRun(XElement run, Style style)
 		{
+			var cdata = run.GetCData();
+			if (cdata == null || cdata.IsEmpty())
+			{
+				return;
+			}
+
 			var runProps = analyzer.CollectFrom(run);
 			var runStyle = new Style(runProps);
 			var textMatches = style.Equals(runStyle);
 
-			if (run.GetCData() is XCData cdata && cdata.Value.Contains("<span"))
+			if (cdata.Value.Contains("<span"))
 			{
 				if (run.Attribute("selected") is XAttribute attr)
 				{
