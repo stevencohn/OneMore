@@ -1337,6 +1337,10 @@ Wyszukiwanie hashtagów nie jest możliwe, dopóki nie zostanie zakończone.</va
     <value>wszystkie tagi</value>
     <comment>text</comment>
   </data>
+  <data name="HashtagDialog_allTagsBox.Text" xml:space="preserve">
+    <value>Pokaż wszystkie powiązane tagi na każdej stronie</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="HashtagDialog_badLink" xml:space="preserve">
     <value>Nie można przejść do tej strony. Być może został usunięty</value>
     <comment>info message</comment>

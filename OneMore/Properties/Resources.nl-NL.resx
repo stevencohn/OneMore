@@ -1337,6 +1337,10 @@ Zoeken naar hashtags is pas beschikbaar als dit is voltooid.</value>
     <value>alle labels</value>
     <comment>text</comment>
   </data>
+  <data name="HashtagDialog_allTagsBox.Text" xml:space="preserve">
+    <value>Toon alle gerelateerde tags op elke pagina</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="HashtagDialog_badLink" xml:space="preserve">
     <value>Kan niet naar deze pagina navigeren. Mogelijk is deze verwijderd</value>
     <comment>info message</comment>

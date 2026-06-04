@@ -613,14 +613,14 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to OneNote does not have an active section. Please open a section and try again.
+        ///   Looks up a localized string similar to OneNote does not have an active section. Please open a section and try again..
         /// </summary>
         internal static string ArchiveCommand_noContext {
             get {
                 return ResourceManager.GetString("ArchiveCommand_noContext", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Directory does not exist.
         /// </summary>
@@ -3517,6 +3517,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show all related tags on each page.
+        /// </summary>
+        internal static string HashtagDialog_allTagsBox_Text {
+            get {
+                return ResourceManager.GetString("HashtagDialog_allTagsBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot navigate to this page. It may have been deleted.
         /// </summary>
         internal static string HashtagDialog_badLink {
@@ -5327,7 +5336,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("NavigatorWindow_menuAddToList", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Copy to Clipboard.
         /// </summary>
@@ -5336,7 +5345,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("NavigatorWindow_menuCopy", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
@@ -5345,7 +5354,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("NavigatorWindow_menuDelete", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Move Down.
         /// </summary>
@@ -5354,7 +5363,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("NavigatorWindow_menuMoveDown", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Move Up.
         /// </summary>
@@ -5363,7 +5372,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("NavigatorWindow_menuMoveUp", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Open in New Window.
         /// </summary>
@@ -5372,7 +5381,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("NavigatorWindow_menuOpenInNew", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Add selected items to My Reading List.
         /// </summary>
@@ -11547,25 +11556,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("SearchDialog_clearAllLink.Text", resourceCulture);
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Open in New Window.
-        /// </summary>
-        internal static string SearchDialog_menuOpenInNew {
-            get {
-                return ResourceManager.GetString("SearchDialog_menuOpenInNew", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Show in Current Window.
-        /// </summary>
-        internal static string SearchDialog_menuShowInCurrent {
-            get {
-                return ResourceManager.GetString("SearchDialog_menuShowInCurrent", resourceCulture);
-            }
-        }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Any date
         ///Created after
@@ -11603,6 +11594,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string SearchDialog_matchBox_Text {
             get {
                 return ResourceManager.GetString("SearchDialog_matchBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open in New Window.
+        /// </summary>
+        internal static string SearchDialog_menuOpenInNew {
+            get {
+                return ResourceManager.GetString("SearchDialog_menuOpenInNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show in Current Window.
+        /// </summary>
+        internal static string SearchDialog_menuShowInCurrent {
+            get {
+                return ResourceManager.GetString("SearchDialog_menuShowInCurrent", resourceCulture);
             }
         }
         

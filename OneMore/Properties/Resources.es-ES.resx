@@ -1332,6 +1332,10 @@ La búsqueda de hashtags no estará disponible hasta que se complete.</value>
     <value>todas las etiquetas</value>
     <comment>text</comment>
   </data>
+  <data name="HashtagDialog_allTagsBox.Text" xml:space="preserve">
+    <value>Mostrar todas las etiquetas relacionadas en cada página</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="HashtagDialog_badLink" xml:space="preserve">
     <value>No se puede navegar a esta página. Puede haber sido borrada</value>
     <comment>info message</comment>

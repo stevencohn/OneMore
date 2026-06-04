@@ -37,7 +37,9 @@ namespace River.OneMoreAddIn.Commands
 			.AddString("page", "Name of page to search; requires section parameter",
 				required: false)
 			.AddString("query", "Hashtag search criteria (supports AND, OR, NOT, * wildcard)",
-				required: true);
+				required: true)
+			.AddBoolean("allTags", "Include all tags on each page in addition to query-matching tags",
+				required: false, defaultValue: false);
 
 
 		public override async Task Execute(params object[] args)
@@ -48,6 +50,7 @@ namespace River.OneMoreAddIn.Commands
 			cliParams.TryGet("section", out string sectionPath);
 			cliParams.TryGet("page", out string pageName);
 			cliParams.TryGet("query", out string queryText);
+			cliParams.TryGet("allTags", out bool allTags);
 
 			if (!HashtagProvider.CatalogExists())
 			{
@@ -169,7 +172,10 @@ namespace River.OneMoreAddIn.Commands
 			// query the hashtag database
 
 			var provider = new HashtagProvider();
-			var tags = provider.SearchTags(queryText, caseSensitive: false, out _,
+			var tags = provider.SearchTags(queryText, 
+				caseSensitive: false,
+				allTags: allTags, 
+				parsed: out _,
 				notebookID: notebookID,
 				sectionID: sectionID);
 

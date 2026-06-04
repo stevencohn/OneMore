@@ -48,6 +48,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					"introLabel",
 					"scopeBox",
+					"allTagsBox",
 					"checkAllLink",
 					"uncheckAllLink",
 					"scanButton",
@@ -249,12 +250,13 @@ namespace River.OneMoreAddIn.Commands
 			string parsed;
 			var cs = sensitiveBox.Checked;
 
+			var allTags = allTagsBox.Checked;
 			var tags = scopeBox.SelectedIndex switch
 			{
-				1 => provider.SearchTags(where, cs, out parsed, notebookID: one.CurrentNotebookId),
-				2 => provider.SearchTags(where, cs, out parsed, sectionID: one.CurrentSectionId),
-				3 => provider.SearchTags(where, cs, out parsed, moreID: moreID),
-				_ => provider.SearchTags(where, cs, out parsed)
+				1 => provider.SearchTags(where, cs, allTags, out parsed, notebookID: one.CurrentNotebookId),
+				2 => provider.SearchTags(where, cs, allTags, out parsed, sectionID: one.CurrentSectionId),
+				3 => provider.SearchTags(where, cs, allTags, out parsed, moreID: moreID),
+				_ => provider.SearchTags(where, cs, allTags, out parsed)
 			};
 
 			if (!ShowOfflineNotebooks)

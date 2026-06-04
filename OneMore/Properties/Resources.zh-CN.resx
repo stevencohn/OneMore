@@ -1343,6 +1343,10 @@ OneNote 文件 (*.one)</value>
     <value>所有标签</value>
     <comment>text</comment>
   </data>
+  <data name="HashtagDialog_allTagsBox.Text" xml:space="preserve">
+    <value>在每个页面上显示所有相关标签</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="HashtagDialog_badLink" xml:space="preserve">
     <value>无法跳转到此页面。此页面可能已被删除</value>
     <comment>info message</comment>

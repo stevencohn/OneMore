@@ -1337,6 +1337,10 @@ La ricerca degli hashtag non sarà disponibile finché questa non sarà completa
     <value>tutti i tag</value>
     <comment>text</comment>
   </data>
+  <data name="HashtagDialog_allTagsBox.Text" xml:space="preserve">
+    <value>Mostra tutti i tag correlati su ogni pagina</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="HashtagDialog_badLink" xml:space="preserve">
     <value>Impossibile accedere a questa pagina. Potrebbe essere stato cancellato</value>
     <comment>info message</comment>

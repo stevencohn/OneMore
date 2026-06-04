@@ -846,7 +846,7 @@ namespace River.OneMoreAddIn.Commands
 		/// <param name="criteria">The user-entered search criteria, optional wildcards</param>
 		/// <returns>A collection of Hashtags</returns>
 		public Hashtags SearchTags(
-			string criteria, bool caseSensitive,
+			string criteria, bool caseSensitive, bool allTags,
 			out string parsed,
 			string notebookID = null, string sectionID = null, string moreID = null)
 		{
@@ -875,9 +875,17 @@ namespace River.OneMoreAddIn.Commands
 				parameters.Add(new("nid", notebookID));
 			}
 
-			builder.Append("JOIN page_hashtags g ON g.moreID = p.moreID ");
+			HashtagQueryBuilder query;
+			if (allTags)
+			{
+				builder.Append("JOIN page_hashtags g ON g.moreID = p.moreID ");
+				query = new HashtagQueryBuilder("g.tags", caseSensitive);
+			}
+			else
+			{
+				query = new HashtagQueryBuilder("t.tag", caseSensitive);
+			}
 
-			var query = new HashtagQueryBuilder("g.tags", caseSensitive);
 			var where = query.BuildFormattedWhereClause(criteria, out parsed);
 			builder.Append(where);
 
