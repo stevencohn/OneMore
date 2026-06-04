@@ -1340,6 +1340,10 @@
     <value>جميع العلامات</value>
     <comment>text</comment>
   </data>
+  <data name="HashtagDialog_allTagsBox.Text" xml:space="preserve">
+    <value>إظهار جميع العلامات ذات الصلة في كل صفحة</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="HashtagDialog_badLink" xml:space="preserve">
     <value>لا يمكن الانتقال إلى هذه الصفحة. قد تم حذفه</value>
     <comment>info message</comment>

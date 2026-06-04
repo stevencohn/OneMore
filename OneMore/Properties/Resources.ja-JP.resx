@@ -1340,6 +1340,10 @@ OneNoteファイル (*.one)</value>
     <value>すべてのタグ</value>
     <comment>text</comment>
   </data>
+  <data name="HashtagDialog_allTagsBox.Text" xml:space="preserve">
+    <value>各ページに関連するタグをすべて表示します</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="HashtagDialog_badLink" xml:space="preserve">
     <value>このページにナビゲートできません。削除された可能性があります</value>
     <comment>info message</comment>

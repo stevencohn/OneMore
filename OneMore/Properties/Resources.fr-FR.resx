@@ -1340,6 +1340,10 @@ La recherche de hashtags n'est pas disponible tant qu'elle n'est pas terminée.<
     <value>toutes les balises</value>
     <comment>text</comment>
   </data>
+  <data name="HashtagDialog_allTagsBox.Text" xml:space="preserve">
+    <value>Afficher toutes les balises associées sur chaque page</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="HashtagDialog_badLink" xml:space="preserve">
     <value>Impossible d'accéder à cette page. Il a peut-être été supprimé</value>
     <comment>info message</comment>

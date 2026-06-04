@@ -33,18 +33,19 @@
 			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.contextPanel = new System.Windows.Forms.FlowLayoutPanel();
 			this.topPanel = new River.OneMoreAddIn.UI.MorePanel();
+			this.allTagsBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.sensitiveBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.menuButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.barLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.checkAllLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.uncheckAllLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
-			this.scopeBox = new UI.MoreComboBox();
+			this.scopeBox = new River.OneMoreAddIn.UI.MoreComboBox();
 			this.searchButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.tagBox = new River.OneMoreAddIn.UI.MoreTextBox();
 			this.introBox = new River.OneMoreAddIn.UI.MoreMultilineLabel();
 			this.controlPanel = new System.Windows.Forms.Panel();
 			this.scanLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
-			this.lastScanLabel = new UI.MoreLabel();
+			this.lastScanLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.indexButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.copyButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.moveButton = new River.OneMoreAddIn.UI.MoreButton();
@@ -82,10 +83,10 @@
 			this.contextPanel.AutoScroll = true;
 			this.contextPanel.BackColor = System.Drawing.SystemColors.AppWorkspace;
 			this.contextPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.contextPanel.Location = new System.Drawing.Point(0, 143);
+			this.contextPanel.Location = new System.Drawing.Point(0, 172);
 			this.contextPanel.Name = "contextPanel";
 			this.contextPanel.Padding = new System.Windows.Forms.Padding(6);
-			this.contextPanel.Size = new System.Drawing.Size(988, 641);
+			this.contextPanel.Size = new System.Drawing.Size(988, 612);
 			this.contextPanel.TabIndex = 7;
 			// 
 			// topPanel
@@ -93,6 +94,7 @@
 			this.topPanel.BackColor = System.Drawing.SystemColors.Control;
 			this.topPanel.BottomBorderColor = System.Drawing.SystemColors.WindowFrame;
 			this.topPanel.BottomBorderSize = 1;
+			this.topPanel.Controls.Add(this.allTagsBox);
 			this.topPanel.Controls.Add(this.sensitiveBox);
 			this.topPanel.Controls.Add(this.menuButton);
 			this.topPanel.Controls.Add(this.barLabel);
@@ -106,12 +108,27 @@
 			this.topPanel.Margin = new System.Windows.Forms.Padding(0);
 			this.topPanel.Name = "topPanel";
 			this.topPanel.Padding = new System.Windows.Forms.Padding(10);
-			this.topPanel.Size = new System.Drawing.Size(988, 81);
+			this.topPanel.Size = new System.Drawing.Size(988, 110);
 			this.topPanel.TabIndex = 8;
 			this.topPanel.ThemedBack = null;
 			this.topPanel.ThemedFore = null;
 			this.topPanel.TopBorderColor = System.Drawing.SystemColors.Control;
 			this.topPanel.TopBorderSize = 0;
+			// 
+			// allTagsBox
+			// 
+			this.allTagsBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.allTagsBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.allTagsBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.allTagsBox.Location = new System.Drawing.Point(41, 59);
+			this.allTagsBox.Name = "allTagsBox";
+			this.allTagsBox.Size = new System.Drawing.Size(282, 20);
+			this.allTagsBox.StylizeImage = false;
+			this.allTagsBox.TabIndex = 9;
+			this.allTagsBox.Text = "Show all related tags on each page";
+			this.allTagsBox.ThemedBack = null;
+			this.allTagsBox.ThemedFore = null;
+			this.allTagsBox.UseVisualStyleBackColor = false;
 			// 
 			// sensitiveBox
 			// 
@@ -156,9 +173,9 @@
 			// 
 			// barLabel
 			// 
-			this.barLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.barLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.barLabel.AutoSize = true;
-			this.barLabel.Location = new System.Drawing.Point(808, 51);
+			this.barLabel.Location = new System.Drawing.Point(808, 80);
 			this.barLabel.Name = "barLabel";
 			this.barLabel.Size = new System.Drawing.Size(14, 20);
 			this.barLabel.TabIndex = 7;
@@ -169,13 +186,14 @@
 			// checkAllLink
 			// 
 			this.checkAllLink.ActiveLinkColor = System.Drawing.Color.Orchid;
-			this.checkAllLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.checkAllLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.checkAllLink.AutoSize = true;
 			this.checkAllLink.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.checkAllLink.HoverColor = System.Drawing.Color.MediumOrchid;
 			this.checkAllLink.LinkColor = System.Drawing.Color.MediumOrchid;
-			this.checkAllLink.Location = new System.Drawing.Point(729, 51);
+			this.checkAllLink.Location = new System.Drawing.Point(729, 80);
 			this.checkAllLink.Name = "checkAllLink";
+			this.checkAllLink.Selected = false;
 			this.checkAllLink.Size = new System.Drawing.Size(73, 20);
 			this.checkAllLink.StrictColors = false;
 			this.checkAllLink.TabIndex = 2;
@@ -189,13 +207,14 @@
 			// uncheckAllLink
 			// 
 			this.uncheckAllLink.ActiveLinkColor = System.Drawing.Color.Orchid;
-			this.uncheckAllLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.uncheckAllLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.uncheckAllLink.AutoSize = true;
 			this.uncheckAllLink.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.uncheckAllLink.HoverColor = System.Drawing.Color.MediumOrchid;
 			this.uncheckAllLink.LinkColor = System.Drawing.Color.MediumOrchid;
-			this.uncheckAllLink.Location = new System.Drawing.Point(828, 51);
+			this.uncheckAllLink.Location = new System.Drawing.Point(828, 80);
 			this.uncheckAllLink.Name = "uncheckAllLink";
+			this.uncheckAllLink.Selected = false;
 			this.uncheckAllLink.Size = new System.Drawing.Size(91, 20);
 			this.uncheckAllLink.StrictColors = false;
 			this.uncheckAllLink.TabIndex = 3;
@@ -218,8 +237,10 @@
             "This page"});
 			this.scopeBox.Location = new System.Drawing.Point(655, 12);
 			this.scopeBox.Name = "scopeBox";
-			this.scopeBox.Size = new System.Drawing.Size(196, 28);
+			this.scopeBox.Size = new System.Drawing.Size(196, 27);
 			this.scopeBox.TabIndex = 4;
+			this.scopeBox.ThemedBack = null;
+			this.scopeBox.ThemedFore = null;
 			this.scopeBox.SelectedIndexChanged += new System.EventHandler(this.DoPopulateTags);
 			// 
 			// searchButton
@@ -250,7 +271,7 @@
 			this.tagBox.Location = new System.Drawing.Point(41, 12);
 			this.tagBox.Name = "tagBox";
 			this.tagBox.ProcessEnterKey = false;
-			this.tagBox.Size = new System.Drawing.Size(565, 28);
+			this.tagBox.Size = new System.Drawing.Size(565, 21);
 			this.tagBox.TabIndex = 0;
 			this.tagBox.ThemedBack = null;
 			this.tagBox.ThemedFore = null;
@@ -292,6 +313,7 @@
 			this.scanLink.LinkColor = System.Drawing.Color.MediumOrchid;
 			this.scanLink.Location = new System.Drawing.Point(121, 19);
 			this.scanLink.Name = "scanLink";
+			this.scanLink.Selected = false;
 			this.scanLink.Size = new System.Drawing.Size(336, 20);
 			this.scanLink.StrictColors = false;
 			this.scanLink.TabIndex = 11;
@@ -311,6 +333,8 @@
 			this.lastScanLabel.Size = new System.Drawing.Size(82, 20);
 			this.lastScanLabel.TabIndex = 10;
 			this.lastScanLabel.Text = "Last scan:";
+			this.lastScanLabel.ThemedBack = null;
+			this.lastScanLabel.ThemedFore = null;
 			// 
 			// indexButton
 			// 
@@ -383,20 +407,20 @@
             this.scheduleButton,
             this.offlineNotebooksButton});
 			this.contextMenu.Name = "contextMenu";
-			this.contextMenu.Size = new System.Drawing.Size(282, 100);
+			this.contextMenu.Size = new System.Drawing.Size(208, 94);
 			this.contextMenu.Opened += new System.EventHandler(this.PrepareContextMenu);
 			// 
 			// scanButton
 			// 
 			this.scanButton.Name = "scanButton";
-			this.scanButton.Size = new System.Drawing.Size(281, 32);
+			this.scanButton.Size = new System.Drawing.Size(207, 30);
 			this.scanButton.Text = "Scan Now";
 			this.scanButton.Click += new System.EventHandler(this.ScanNow);
 			// 
 			// scheduleButton
 			// 
 			this.scheduleButton.Name = "scheduleButton";
-			this.scheduleButton.Size = new System.Drawing.Size(281, 32);
+			this.scheduleButton.Size = new System.Drawing.Size(207, 30);
 			this.scheduleButton.Text = "Schedule Scan";
 			this.scheduleButton.Click += new System.EventHandler(this.DoScheduleScan);
 			// 
@@ -404,7 +428,7 @@
 			// 
 			this.offlineNotebooksButton.Image = global::River.OneMoreAddIn.Properties.Resources.e_CheckMark;
 			this.offlineNotebooksButton.Name = "offlineNotebooksButton";
-			this.offlineNotebooksButton.Size = new System.Drawing.Size(281, 32);
+			this.offlineNotebooksButton.Size = new System.Drawing.Size(207, 30);
 			this.offlineNotebooksButton.Text = "Hide Offline Notebooks";
 			this.offlineNotebooksButton.Click += new System.EventHandler(this.ToggleOfflineNotebooks);
 			// 
@@ -459,5 +483,6 @@
 		private System.Windows.Forms.ToolTip tooltip;
 		private UI.MoreCheckBox sensitiveBox;
 		private UI.MoreLinkLabel scanLink;
+		private UI.MoreCheckBox allTagsBox;
 	}
 }

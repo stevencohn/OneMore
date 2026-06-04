@@ -1337,6 +1337,10 @@ Total Row Font
     <value>כל התגים</value>
     <comment>text</comment>
   </data>
+  <data name="HashtagDialog_allTagsBox.Text" xml:space="preserve">
+    <value>הצג את כל התגים הקשורים בכל עמוד</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="HashtagDialog_badLink" xml:space="preserve">
     <value>לא ניתן לנווט לדף זה. ייתכן שהוא נמחק</value>
     <comment>info message</comment>

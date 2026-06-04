@@ -1332,6 +1332,10 @@ Die Suche nach Hashtags ist erst möglich, wenn dies abgeschlossen ist.</value>
     <value>alle Tags</value>
     <comment>text</comment>
   </data>
+  <data name="HashtagDialog_allTagsBox.Text" xml:space="preserve">
+    <value>Alle zugehörigen Tags auf jeder Seite anzeigen</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="HashtagDialog_badLink" xml:space="preserve">
     <value>Die Navigation zu dieser Seite ist nicht möglich. Möglicherweise wurde es gelöscht</value>
     <comment>info message</comment>
