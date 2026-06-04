@@ -30,8 +30,14 @@ tag, and formatting them in the same style as the previous release.
    - Updated: `* Updated [noun phrase] [description], [#NNNN](https://github.com/stevencohn/OneMore/issues/NNNN)`
    - Fixed:   `* Fixed an issue where [description], [#NNNN](https://github.com/stevencohn/OneMore/issues/NNNN)`
 
+   IMPORTANT: The issue reference MUST be a Markdown hyperlink in the form `[#NNNN](URL)` —
+   the `#NNNN` text in square brackets followed immediately by the URL in parentheses, with no
+   space between them. Never write a bare `#NNNN` or a raw URL on a separate line.
+
 7. Output all Added items first, then Updated, then Fixed — as a flat bullet list
-   under `## What's New` with no sub-headers between categories.
+   under `## What's New` with no sub-headers between categories. Wrap the entire
+   output in a fenced code block (``` ``` ```) so the raw markdown is visible and
+   can be copied without the chat interface rendering the links.
 
 ## Style Reference (from v7.0.0 release notes)
 
