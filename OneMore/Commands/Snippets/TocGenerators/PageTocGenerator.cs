@@ -70,7 +70,9 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 			page = pageId is null ? await one.GetPage() : await one.GetPage(pageId);
 			ns = page.Namespace;
 
-			var headings = CollectHeadings(one, out var titleID);
+			var secondary = parameters.Any(p => p.Equals("secondary"));
+
+			var headings = CollectHeadings(one, secondary, out var titleID);
 			if (!headings.Any())
 			{
 				await ClearToC(one);
@@ -132,6 +134,7 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 			if (parameters.Contains("over")) segments = $"{segments}/over";
 			if (todo is not null) segments = $"{segments}/{todo}";
 			if (level is not null) segments = $"{segments}/{level}";
+			if (secondary) segments = $"{segments}/secondary";
 
 			table[0][0].SetContent(MakeTitle(page, segments));
 			table[1][0].SetContent(content);
@@ -175,7 +178,7 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 		}
 
 
-		private List<Heading> CollectHeadings(OneNote one, out string titleID)
+		private List<Heading> CollectHeadings(OneNote one, bool secondary, out string titleID)
 		{
 			// check that there are headings on the page...
 
@@ -188,7 +191,7 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 			}
 
 			// must have headings
-			var headings = page.GetHeadings(one);
+			var headings = page.GetHeadings(one, secondary: secondary);
 			if (!headings.Any())
 			{
 				return headings;

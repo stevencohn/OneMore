@@ -1781,6 +1781,10 @@ Total Row Font
     <value>יישר ימינה קישור לראש הדף</value>
     <comment>checkbox</comment>
   </data>
+  <data name="InsertTocDialog_secondaryBox.Text" xml:space="preserve">
+    <value>כלול כותרות מטבלאות ורשימות</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="InsertTocDialog_sectionRadio.Text" xml:space="preserve">
     <value>דף חדש עם אינדקס של דפים בחלק זה</value>
     <comment>radio</comment>

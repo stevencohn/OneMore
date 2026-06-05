@@ -1781,6 +1781,10 @@ Bij de huidige cursor</value>
     <value>Link bovenaan de pagina rechts uitlijnen</value>
     <comment>checkbox</comment>
   </data>
+  <data name="InsertTocDialog_secondaryBox.Text" xml:space="preserve">
+    <value>Voeg koppen uit tabellen en lijsten toe</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="InsertTocDialog_sectionRadio.Text" xml:space="preserve">
     <value>Nieuwe pagina met index van pagina's in deze sectie</value>
     <comment>radio</comment>

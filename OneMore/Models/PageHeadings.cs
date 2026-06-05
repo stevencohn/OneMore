@@ -37,8 +37,13 @@ namespace River.OneMoreAddIn.Models
 		/// True to lookup hyperlinks and set the Link property for each heading.
 		/// Use false when deferring the lookup for performance, such as Navigator
 		/// </param>
+		/// <param name="secondary">
+		/// True to include secondary headings - headings that are in a list or table cell.
+		/// These are often used for layout and may not be intended for TOC inclusion, so default
+		/// to true (backwards compatibility) but allow false for more strict TOC generation.
+		/// </param>
 		/// <returns></returns>
-		public List<Heading> GetHeadings(OneNote one, bool linked = true)
+		public List<Heading> GetHeadings(OneNote one, bool linked = true, bool secondary = true)
 		{
 			quickStyles = GetQuickStyles();
 
@@ -94,7 +99,11 @@ namespace River.OneMoreAddIn.Models
 						var style = quickStyles
 							.Find(s => s.StyleType == StyleType.Heading && s.Index == quickStyleIndex);
 
-						if (style != null)
+						if (style is not null &&
+							(secondary ||
+								(!block.Ancestors(Namespace + "Cell").Any() &&
+								 !block.Elements(Namespace + "List").Any()))
+							)
 						{
 							// found standard heading
 							heading = new Heading
@@ -116,7 +125,11 @@ namespace River.OneMoreAddIn.Models
 						// custom heading?
 						var style = FindCustomStyle(block);
 
-						if (style != null)
+						if (style is not null &&
+							(secondary ||
+								(!block.Ancestors(Namespace + "Cell").Any() &&
+								 !block.Elements(Namespace + "List").Any()))
+							)
 						{
 							// found standard heading
 							heading = new Heading

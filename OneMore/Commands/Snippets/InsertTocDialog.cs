@@ -31,6 +31,7 @@ namespace River.OneMoreAddIn.Commands
 					"pageRadio",
 					"topBox",
 					"rightAlignBox",
+					"secondaryBox",
 					"todoLabel",
 					"locationLabel",
 					"locationBox",
@@ -106,6 +107,7 @@ namespace River.OneMoreAddIn.Commands
 				pageRadio.Checked = true;
 				topBox.Checked = parameters.Contains("links");
 				rightAlignBox.Checked = parameters.Contains("align");
+				secondaryBox.Checked = parameters.Contains("secondary");
 
 				if (parameters.Contains("here")) locationBox.SelectedIndex = 2;
 				else if (parameters.Contains("over")) locationBox.SelectedIndex = 1;
@@ -149,6 +151,7 @@ namespace River.OneMoreAddIn.Commands
 				notebookRadio.Checked = false;
 				topBox.Enabled = true;
 				rightAlignBox.Enabled = topBox.Checked;
+				secondaryBox.Enabled = true;
 				todoBox.Enabled = true;
 				locationBox.Enabled = true;
 				styleBox.Enabled = true;
@@ -165,6 +168,7 @@ namespace River.OneMoreAddIn.Commands
 				notebookRadio.Checked = false;
 				topBox.Enabled = pagesBox.Enabled = false;
 				rightAlignBox.Enabled = false;
+				secondaryBox.Enabled = false;
 				todoBox.Enabled = false;
 				locationBox.Enabled = false;
 				styleBox.Enabled = false;
@@ -180,6 +184,7 @@ namespace River.OneMoreAddIn.Commands
 				sectionRadio.Checked = false;
 				topBox.Enabled = false;
 				rightAlignBox.Enabled = false;
+				secondaryBox.Enabled = false;
 				todoBox.Enabled = false;
 				locationBox.Enabled = false;
 				styleBox.Enabled = false;
@@ -230,6 +235,7 @@ namespace River.OneMoreAddIn.Commands
 				parameters.Add($"level{levelsBox.Value}");
 				if (topBox.Checked) parameters.Add("links");
 				if (rightAlignBox.Checked) parameters.Add("align");
+				if (secondaryBox.Checked) parameters.Add("secondary");
 
 				if (locationBox.SelectedIndex == 2) parameters.Add("here");
 				else if (locationBox.SelectedIndex == 1) parameters.Add("over");

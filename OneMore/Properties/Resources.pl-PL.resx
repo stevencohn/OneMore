@@ -1781,6 +1781,10 @@ Przy bieżącym kursorze</value>
     <value>Prawo-wyrównaj do góry Link</value>
     <comment>checkbox</comment>
   </data>
+  <data name="InsertTocDialog_secondaryBox.Text" xml:space="preserve">
+    <value>Dołącz nagłówki z tabel i list</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="InsertTocDialog_sectionRadio.Text" xml:space="preserve">
     <value>Nowa strona z indeksem stron w tym dziale</value>
     <comment>radio</comment>

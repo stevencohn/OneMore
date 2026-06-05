@@ -66,6 +66,7 @@
     <Compile Include="Commands\Styles\ApplyStylesCommandTests.cs" />
     <Compile Include="Commands\Edit\ConvertMarkdownCommandTests.cs" />
     <Compile Include="Commands\Edit\HighlightCommandTests.cs" />
+    <Compile Include="Commands\Snippets\InsertTocCommandTests.cs" />
     <Compile Include="MockApplication.cs" />
     <Compile Include="TestBase.cs" />
   </ItemGroup>

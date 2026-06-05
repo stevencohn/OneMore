@@ -1784,6 +1784,10 @@
     <value>محاذاة لليمين أعلى ارتباط الصفحة</value>
     <comment>checkbox</comment>
   </data>
+  <data name="InsertTocDialog_secondaryBox.Text" xml:space="preserve">
+    <value>تضمين العناوين من الجداول والقوائم</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="InsertTocDialog_sectionRadio.Text" xml:space="preserve">
     <value>صفحة جديدة مع فهرس الصفحات في هذا القسم</value>
     <comment>radio</comment>

@@ -1785,6 +1785,10 @@ At current cursor</value>
     <value>Right-align top of page link</value>
     <comment>checkbox</comment>
   </data>
+  <data name="InsertTocDialog_secondaryBox.Text" xml:space="preserve">
+    <value>Include headings from tables and lists</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="InsertTocDialog_sectionRadio.Text" xml:space="preserve">
     <value>New page with index of pages in this section</value>
     <comment>radio</comment>
