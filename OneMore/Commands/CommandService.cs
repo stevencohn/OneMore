@@ -292,6 +292,7 @@ namespace River.OneMoreAddIn
 				logger, ribbon: null, new List<IDisposable>(), runningFromCli: true);
 
 			Command result = null;
+			string pageOutput = null;
 
 			try
 			{
@@ -310,7 +311,7 @@ namespace River.OneMoreAddIn
 
 					if (string.IsNullOrWhiteSpace(section))
 					{
-						await InvokeCliCommandForNotebook(cliFactory, commandType, parameters, notebook);
+						pageOutput = await InvokeCliCommandForNotebook(cliFactory, commandType, parameters, notebook);
 					}
 					else
 					{
@@ -327,11 +328,17 @@ namespace River.OneMoreAddIn
 							return;
 						}
 
+						var outputs = new StringBuilder();
 						foreach (var pageId in pageIds)
 						{
 							parameters.Set("pageId", pageId);
-							await cliFactory.Run(commandType, parameters);
+							var r = await cliFactory.Run(commandType, parameters);
+							if (!string.IsNullOrEmpty(r?.CliOutput))
+							{
+								outputs.AppendLine(r.CliOutput);
+							}
 						}
+						pageOutput = outputs.Length > 0 ? outputs.ToString() : null;
 					}
 				}
 				else
@@ -339,7 +346,7 @@ namespace River.OneMoreAddIn
 					result = await cliFactory.Run(commandType, parameters);
 				}
 
-				var output = result?.CliOutput;
+				var output = result?.CliOutput ?? pageOutput;
 				await WriteCliResponse(pipe,
 					string.IsNullOrEmpty(output) ? "OK" : "OUTPUT:" + output);
 			}
@@ -354,8 +361,9 @@ namespace River.OneMoreAddIn
 		/// <summary>
 		/// Iterates every page in every section of the named notebook and runs the command
 		/// once per page. Used when section is not specified for an <see cref="ICliPageCommand"/>.
+		/// Returns any non-empty CliOutput accumulated across all page runs.
 		/// </summary>
-		private static async Task InvokeCliCommandForNotebook(
+		private static async Task<string> InvokeCliCommandForNotebook(
 			CommandFactory cliFactory, Type commandType,
 			CliParameterSet parameters, string notebookName)
 		{
@@ -364,7 +372,7 @@ namespace River.OneMoreAddIn
 			var notebooks = await one.GetNotebooks();
 			if (notebooks == null || !notebooks.HasElements)
 			{
-				return;
+				return null;
 			}
 
 			var ns = one.GetNamespace(notebooks);
@@ -375,19 +383,20 @@ namespace River.OneMoreAddIn
 
 			if (notebook == null)
 			{
-				return;
+				return null;
 			}
 
 			var notebookId = notebook.Attribute("ID").Value;
 			var notebookSections = await one.GetNotebook(notebookId, OneNote.Scope.Sections);
 			if (notebookSections == null)
 			{
-				return;
+				return null;
 			}
 
 			var sectionIds = new List<string>();
 			CollectSectionIds(notebookSections, sectionIds);
 
+			var outputs = new StringBuilder();
 			foreach (var sectionId in sectionIds)
 			{
 				var section = await one.GetSection(sectionId);
@@ -402,9 +411,15 @@ namespace River.OneMoreAddIn
 				foreach (var pageId in pageIds)
 				{
 					parameters.Set("pageId", pageId);
-					await cliFactory.Run(commandType, parameters);
+					var r = await cliFactory.Run(commandType, parameters);
+					if (!string.IsNullOrEmpty(r?.CliOutput))
+					{
+						outputs.AppendLine(r.CliOutput);
+					}
 				}
 			}
+
+			return outputs.Length > 0 ? outputs.ToString() : null;
 		}
 
 

@@ -246,7 +246,9 @@ namespace OneMoreCli
 				foreach (var pageId in pageIds)
 				{
 					parameters.Set("pageId", pageId);
-					await CliCommandFactory.Make().Run(command.GetType(), parameters);
+					var r = await CliCommandFactory.Make().Run(command.GetType(), parameters);
+					if (!string.IsNullOrEmpty(r?.CliOutput))
+						Console.Write(r.CliOutput);
 				}
 			}
 			else
@@ -320,7 +322,9 @@ namespace OneMoreCli
 				foreach (var pageId in pageIds)
 				{
 					parameters.Set("pageId", pageId);
-					await CliCommandFactory.Make().Run(command.GetType(), parameters);
+					var r = await CliCommandFactory.Make().Run(command.GetType(), parameters);
+					if (!string.IsNullOrEmpty(r?.CliOutput))
+						Console.Write(r.CliOutput);
 				}
 			}
 		}

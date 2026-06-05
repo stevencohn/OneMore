@@ -40,32 +40,6 @@ namespace River.OneMoreAddIn.Commands
 					"Return structured JSON describing all open OneNote windows",
 					required: false, defaultValue: false);
 
-
-		private sealed class CliLogger : Logger
-		{
-			private readonly StringBuilder buffer;
-
-			public CliLogger(StringBuilder buffer)
-			{
-				this.buffer = buffer;
-			}
-
-			public override void Write(string message)
-			{
-				buffer.Append(message);
-			}
-
-			public override void WriteLine()
-			{
-				buffer.AppendLine();
-			}
-
-			public override void WriteLine(string message)
-			{
-				buffer.AppendLine(message);
-			}
-		}
-
 		#endregion CLI Implementation
 
 
@@ -78,7 +52,7 @@ namespace River.OneMoreAddIn.Commands
 				cliParams.TryGet("windows", out windowsOnly);
 			}
 
-			System.Text.StringBuilder cliBuffer = null;
+			StringBuilder cliBuffer = null;
 			ILogger log;
 			if (runningFromCli)
 			{

@@ -182,6 +182,7 @@
     <Compile Include="AddInCommands.cs" />
     <Compile Include="Cli\CliCommandFactory.cs" />
     <Compile Include="Cli\CliConstraint.cs" />
+    <Compile Include="Cli\CliLogger.cs" />
     <Compile Include="Cli\CliParameter.cs" />
     <Compile Include="Cli\CliParameterDefinition.cs" />
     <Compile Include="Cli\CliParameterSet.cs" />
