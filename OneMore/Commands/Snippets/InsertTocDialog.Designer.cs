@@ -98,11 +98,12 @@
 			// 
 			// pageRadio
 			// 
+			this.pageRadio.AutoSize = true;
 			this.pageRadio.Checked = true;
 			this.pageRadio.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.pageRadio.Location = new System.Drawing.Point(8, 43);
 			this.pageRadio.Name = "pageRadio";
-			this.pageRadio.Size = new System.Drawing.Size(300, 25);
+			this.pageRadio.Size = new System.Drawing.Size(292, 24);
 			this.pageRadio.TabIndex = 0;
 			this.pageRadio.TabStop = true;
 			this.pageRadio.Text = "Insert table of headings on this page";
@@ -111,11 +112,12 @@
 			// 
 			// sectionRadio
 			// 
+			this.sectionRadio.AutoSize = true;
 			this.sectionRadio.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.sectionRadio.Location = new System.Drawing.Point(8, 49);
 			this.sectionRadio.Margin = new System.Windows.Forms.Padding(3, 25, 3, 3);
 			this.sectionRadio.Name = "sectionRadio";
-			this.sectionRadio.Size = new System.Drawing.Size(359, 25);
+			this.sectionRadio.Size = new System.Drawing.Size(344, 24);
 			this.sectionRadio.TabIndex = 0;
 			this.sectionRadio.Text = "New page with index of pages in this section";
 			this.sectionRadio.UseVisualStyleBackColor = true;
@@ -123,13 +125,14 @@
 			// 
 			// topBox
 			// 
+			this.topBox.AutoSize = true;
 			this.topBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.topBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.topBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.topBox.Location = new System.Drawing.Point(34, 77);
 			this.topBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
 			this.topBox.Name = "topBox";
-			this.topBox.Size = new System.Drawing.Size(378, 25);
+			this.topBox.Size = new System.Drawing.Size(368, 24);
 			this.topBox.StylizeImage = false;
 			this.topBox.TabIndex = 1;
 			this.topBox.Text = "Add link to each heading to jump to top of page";
@@ -140,11 +143,12 @@
 			// 
 			// notebookRadio
 			// 
+			this.notebookRadio.AutoSize = true;
 			this.notebookRadio.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.notebookRadio.Location = new System.Drawing.Point(8, 49);
 			this.notebookRadio.Margin = new System.Windows.Forms.Padding(3, 25, 3, 3);
 			this.notebookRadio.Name = "notebookRadio";
-			this.notebookRadio.Size = new System.Drawing.Size(390, 25);
+			this.notebookRadio.Size = new System.Drawing.Size(375, 24);
 			this.notebookRadio.TabIndex = 0;
 			this.notebookRadio.Text = "New page with index of sections in this notebook";
 			this.notebookRadio.UseVisualStyleBackColor = true;
@@ -152,6 +156,7 @@
 			// 
 			// pagesBox
 			// 
+			this.pagesBox.AutoSize = true;
 			this.pagesBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.pagesBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.pagesBox.Enabled = false;
@@ -159,7 +164,7 @@
 			this.pagesBox.Location = new System.Drawing.Point(34, 83);
 			this.pagesBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
 			this.pagesBox.Name = "pagesBox";
-			this.pagesBox.Size = new System.Drawing.Size(252, 25);
+			this.pagesBox.Size = new System.Drawing.Size(245, 24);
 			this.pagesBox.StylizeImage = false;
 			this.pagesBox.TabIndex = 1;
 			this.pagesBox.Text = "Include pages in each section";
@@ -170,13 +175,14 @@
 			// 
 			// rightAlignBox
 			// 
+			this.rightAlignBox.AutoSize = true;
 			this.rightAlignBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.rightAlignBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.rightAlignBox.Enabled = false;
 			this.rightAlignBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.rightAlignBox.Location = new System.Drawing.Point(34, 108);
+			this.rightAlignBox.Location = new System.Drawing.Point(34, 107);
 			this.rightAlignBox.Name = "rightAlignBox";
-			this.rightAlignBox.Size = new System.Drawing.Size(230, 25);
+			this.rightAlignBox.Size = new System.Drawing.Size(223, 24);
 			this.rightAlignBox.StylizeImage = false;
 			this.rightAlignBox.TabIndex = 2;
 			this.rightAlignBox.Text = "Right-align top of page link";
@@ -186,6 +192,7 @@
 			// 
 			// sectionPagePreviewBox
 			// 
+			this.sectionPagePreviewBox.AutoSize = true;
 			this.sectionPagePreviewBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.sectionPagePreviewBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.sectionPagePreviewBox.Enabled = false;
@@ -193,7 +200,7 @@
 			this.sectionPagePreviewBox.Location = new System.Drawing.Point(34, 83);
 			this.sectionPagePreviewBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
 			this.sectionPagePreviewBox.Name = "sectionPagePreviewBox";
-			this.sectionPagePreviewBox.Size = new System.Drawing.Size(280, 25);
+			this.sectionPagePreviewBox.Size = new System.Drawing.Size(271, 24);
 			this.sectionPagePreviewBox.StylizeImage = false;
 			this.sectionPagePreviewBox.TabIndex = 1;
 			this.sectionPagePreviewBox.Text = "Include text preview of each page";
@@ -203,13 +210,14 @@
 			// 
 			// notebookPagePreviewBox
 			// 
+			this.notebookPagePreviewBox.AutoSize = true;
 			this.notebookPagePreviewBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.notebookPagePreviewBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.notebookPagePreviewBox.Enabled = false;
 			this.notebookPagePreviewBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.notebookPagePreviewBox.Location = new System.Drawing.Point(34, 114);
 			this.notebookPagePreviewBox.Name = "notebookPagePreviewBox";
-			this.notebookPagePreviewBox.Size = new System.Drawing.Size(280, 25);
+			this.notebookPagePreviewBox.Size = new System.Drawing.Size(271, 24);
 			this.notebookPagePreviewBox.StylizeImage = false;
 			this.notebookPagePreviewBox.TabIndex = 2;
 			this.notebookPagePreviewBox.Text = "Include text preview of each page";
@@ -225,7 +233,7 @@
             "At top of page",
             "At top of page, overlayed",
             "At current cursor"});
-			this.locationBox.Location = new System.Drawing.Point(284, 212);
+			this.locationBox.Location = new System.Drawing.Point(284, 214);
 			this.locationBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
 			this.locationBox.Name = "locationBox";
 			this.locationBox.Size = new System.Drawing.Size(251, 27);
@@ -236,7 +244,7 @@
 			// locationLabel
 			// 
 			this.locationLabel.AutoSize = true;
-			this.locationLabel.Location = new System.Drawing.Point(30, 215);
+			this.locationLabel.Location = new System.Drawing.Point(30, 217);
 			this.locationLabel.Name = "locationLabel";
 			this.locationLabel.Size = new System.Drawing.Size(115, 20);
 			this.locationLabel.TabIndex = 6;
@@ -247,7 +255,7 @@
 			// styleLabel
 			// 
 			this.styleLabel.AutoSize = true;
-			this.styleLabel.Location = new System.Drawing.Point(30, 247);
+			this.styleLabel.Location = new System.Drawing.Point(30, 249);
 			this.styleLabel.Name = "styleLabel";
 			this.styleLabel.Size = new System.Drawing.Size(77, 20);
 			this.styleLabel.TabIndex = 8;
@@ -268,7 +276,7 @@
             "Custom Heading 1",
             "Custom Heading 2",
             "Custom Heading 3"});
-			this.styleBox.Location = new System.Drawing.Point(284, 247);
+			this.styleBox.Location = new System.Drawing.Point(284, 249);
 			this.styleBox.Name = "styleBox";
 			this.styleBox.Size = new System.Drawing.Size(251, 27);
 			this.styleBox.TabIndex = 9;
@@ -296,13 +304,14 @@
 			// 
 			// notebookTimeBox
 			// 
+			this.notebookTimeBox.AutoSize = true;
 			this.notebookTimeBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.notebookTimeBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.notebookTimeBox.Enabled = false;
 			this.notebookTimeBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.notebookTimeBox.Location = new System.Drawing.Point(34, 145);
 			this.notebookTimeBox.Name = "notebookTimeBox";
-			this.notebookTimeBox.Size = new System.Drawing.Size(280, 25);
+			this.notebookTimeBox.Size = new System.Drawing.Size(229, 24);
 			this.notebookTimeBox.StylizeImage = false;
 			this.notebookTimeBox.TabIndex = 3;
 			this.notebookTimeBox.Text = "Update page date and time";
@@ -330,6 +339,7 @@
 			// 
 			// sectionTimeBox
 			// 
+			this.sectionTimeBox.AutoSize = true;
 			this.sectionTimeBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.sectionTimeBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.sectionTimeBox.Enabled = false;
@@ -337,7 +347,7 @@
 			this.sectionTimeBox.Location = new System.Drawing.Point(34, 117);
 			this.sectionTimeBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
 			this.sectionTimeBox.Name = "sectionTimeBox";
-			this.sectionTimeBox.Size = new System.Drawing.Size(280, 25);
+			this.sectionTimeBox.Size = new System.Drawing.Size(229, 24);
 			this.sectionTimeBox.StylizeImage = false;
 			this.sectionTimeBox.TabIndex = 2;
 			this.sectionTimeBox.Text = "Update page date and time";
@@ -374,12 +384,13 @@
 			// 
 			// secondaryBox
 			// 
+			this.secondaryBox.AutoSize = true;
 			this.secondaryBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.secondaryBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.secondaryBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.secondaryBox.Location = new System.Drawing.Point(34, 131);
+			this.secondaryBox.Location = new System.Drawing.Point(34, 137);
 			this.secondaryBox.Name = "secondaryBox";
-			this.secondaryBox.Size = new System.Drawing.Size(554, 38);
+			this.secondaryBox.Size = new System.Drawing.Size(301, 24);
 			this.secondaryBox.StylizeImage = false;
 			this.secondaryBox.TabIndex = 3;
 			this.secondaryBox.Text = "Include headings from tables and lists";
@@ -390,7 +401,7 @@
 			// todoLabel
 			// 
 			this.todoLabel.AutoSize = true;
-			this.todoLabel.Location = new System.Drawing.Point(30, 178);
+			this.todoLabel.Location = new System.Drawing.Point(30, 180);
 			this.todoLabel.Name = "todoLabel";
 			this.todoLabel.Size = new System.Drawing.Size(153, 20);
 			this.todoLabel.TabIndex = 4;
@@ -403,7 +414,7 @@
 			this.todoBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.todoBox.FormattingEnabled = true;
 			this.todoBox.ItemHeight = 24;
-			this.todoBox.Location = new System.Drawing.Point(284, 175);
+			this.todoBox.Location = new System.Drawing.Point(284, 177);
 			this.todoBox.Name = "todoBox";
 			this.todoBox.Size = new System.Drawing.Size(251, 30);
 			this.todoBox.TabIndex = 5;
@@ -413,7 +424,7 @@
 			// levelsLabel
 			// 
 			this.levelsLabel.AutoSize = true;
-			this.levelsLabel.Location = new System.Drawing.Point(30, 283);
+			this.levelsLabel.Location = new System.Drawing.Point(30, 285);
 			this.levelsLabel.Name = "levelsLabel";
 			this.levelsLabel.Size = new System.Drawing.Size(98, 20);
 			this.levelsLabel.TabIndex = 10;
@@ -423,7 +434,7 @@
 			// 
 			// levelsBox
 			// 
-			this.levelsBox.Location = new System.Drawing.Point(284, 281);
+			this.levelsBox.Location = new System.Drawing.Point(284, 283);
 			this.levelsBox.Maximum = new decimal(new int[] {
             6,
             0,
@@ -469,7 +480,9 @@
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Table of Contents";
 			this.notebookGroup.ResumeLayout(false);
+			this.notebookGroup.PerformLayout();
 			this.sectionGroup.ResumeLayout(false);
+			this.sectionGroup.PerformLayout();
 			this.pageGroup.ResumeLayout(false);
 			this.pageGroup.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.levelsBox)).EndInit();
