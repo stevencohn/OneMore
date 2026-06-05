@@ -2104,6 +2104,10 @@ Nie możesz otworzyć folderu notebooka przechowywanego na OneDrive.</value>
     <value>Usuń tagi.</value>
     <comment>checkbox</comment>
   </data>
+  <data name="OutlineDialog_secondaryBox.Text" xml:space="preserve">
+    <value>Dołącz nagłówki z tabel i list</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="OutlineDialog_tagLabel.Text" xml:space="preserve">
     <value>Etykietka:</value>
     <comment>label</comment>

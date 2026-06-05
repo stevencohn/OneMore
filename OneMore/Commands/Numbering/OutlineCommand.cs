@@ -50,7 +50,7 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
-				headings = page.GetHeadings(one);
+				headings = page.GetHeadings(one, secondary: dialog.Secondary);
 				if (dialog.CleanupNumbering)
 				{
 					RemoveOutlineNumbering();

@@ -2115,6 +2115,10 @@
     <value>إزالة العلامات</value>
     <comment>checkbox</comment>
   </data>
+  <data name="OutlineDialog_secondaryBox.Text" xml:space="preserve">
+    <value>تضمين العناوين من الجداول والقوائم</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="OutlineDialog_tagLabel.Text" xml:space="preserve">
     <value>بطاقة شعار:</value>
     <comment>label</comment>

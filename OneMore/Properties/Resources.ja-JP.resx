@@ -2107,6 +2107,10 @@ OneDriveに保存されているノートブックのフォルダーを開くこ
     <value>タグを削除</value>
     <comment>checkbox</comment>
   </data>
+  <data name="OutlineDialog_secondaryBox.Text" xml:space="preserve">
+    <value>表やリストの見出しを含める</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="OutlineDialog_tagLabel.Text" xml:space="preserve">
     <value>タグ:</value>
     <comment>label</comment>

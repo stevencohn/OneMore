@@ -36,6 +36,7 @@ namespace River.OneMoreAddIn.Commands
 					"alphaRadio=word_Alphanumeric",
 					"numRadio=word_Numeric",
 					"cleanBox",
+					"secondaryBox",
 					"indentationsGroup",
 					"indentBox",
 					"indentTagBox",
@@ -64,6 +65,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 
 				cleanBox.Checked = settings.Get<bool>("cleanupNumbering");
+				secondaryBox.Checked = settings.Get<bool>("secondary");
 				indentBox.Checked = settings.Get<bool>("indent");
 
 				indentTagBox.Checked = settings.Get<bool>("indentTagged");
@@ -93,6 +95,8 @@ namespace River.OneMoreAddIn.Commands
 
 		public bool CleanupNumbering => cleanBox.Checked;
 
+		public bool Secondary => secondaryBox.Checked;
+
 		public bool Indent => indentBox.Checked;
 
 		public bool IndentTagged => indentTagBox.Checked;
@@ -116,6 +120,7 @@ namespace River.OneMoreAddIn.Commands
 				alphaRadio.Checked = true;
 				numRadio.Checked = false;
 				cleanBox.Checked = false;
+				secondaryBox.Checked = false;
 				indentBox.Checked = false;
 				indentTagBox.Checked = false;
 				removeTagsBox.Checked = false;
@@ -144,13 +149,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void cleanBox_CheckedChanged(object sender, EventArgs e)
-		{
-			SetOK();
-		}
-
-
-		private void indentBox_CheckedChanged(object sender, EventArgs e)
+		private void box_CheckedChanged(object sender, EventArgs e)
 		{
 			SetOK();
 		}
@@ -208,6 +207,7 @@ namespace River.OneMoreAddIn.Commands
 			settings.Add("alphaNumbering", AlphaNumbering);
 			settings.Add("numericNumbering", NumericNumbering);
 			settings.Add("cleanupNumbering", CleanupNumbering);
+			settings.Add("secondary", Secondary);
 			settings.Add("indent", Indent);
 			settings.Add("indentTagged", IndentTagged);
 			settings.Add("removeTags", RemoveTags);
