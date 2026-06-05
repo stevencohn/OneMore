@@ -1,6 +1,6 @@
 ﻿namespace River.OneMoreAddIn.Commands
 {
-	partial class HashtagErrorControl
+	partial class SearchErrorControl
 	{
 		/// <summary> 
 		/// Required designer variable.
