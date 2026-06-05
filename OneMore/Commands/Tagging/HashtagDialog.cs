@@ -144,7 +144,7 @@ namespace River.OneMoreAddIn.Commands
 					.Where(e => e.Attribute("isRecycleBin") is null)
 					.Select(e => e.Attribute("ID").Value);
 
-				var provider = new HashtagProvider();
+				using var provider = new HashtagProvider();
 				var known = provider.ReadKnownNotebooks();
 
 				if (bookIDs.Any(e => !known.Contains(e)))
@@ -158,7 +158,8 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ShowScanTimes()
 		{
-			var scan = new HashtagProvider().ReadScanTime();
+			using var provider = new HashtagProvider();
+			var scan = provider.ReadScanTime();
 			var lastScanTime = DateTime.Parse(scan, CultureInfo.InvariantCulture);
 			var lastScan = lastScanTime.ToShortTimeString();
 
@@ -181,7 +182,7 @@ namespace River.OneMoreAddIn.Commands
 		private async Task PopulateTags(object sender, EventArgs e)
 		{
 			await using var one = new OneNote();
-			var provider = new HashtagProvider();
+			using var provider = new HashtagProvider();
 
 			var names = scopeBox.SelectedIndex switch
 			{
@@ -246,7 +247,7 @@ namespace River.OneMoreAddIn.Commands
 			var loadedBookIDs = (await one.GetNotebooks()).Elements()
 				.Select(e => e.Attribute("ID").Value).ToList();
 
-			var provider = new HashtagProvider();
+			using var provider = new HashtagProvider();
 			string parsed;
 			var cs = sensitiveBox.Checked;
 
@@ -489,7 +490,8 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ShowMenu(object sender, EventArgs e)
 		{
-			var scanTime = new HashtagProvider().ReadScanTime();
+			using var provider = new HashtagProvider();
+			var scanTime = provider.ReadScanTime();
 
 			if (scanTime.CompareTo(T0) > 0)
 			{

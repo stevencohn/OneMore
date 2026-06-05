@@ -2,8 +2,6 @@
 // Copyright © 2023 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
-#pragma warning disable S1133 // Deprecated code should be removed
-
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Properties;
@@ -113,9 +111,6 @@ namespace River.OneMoreAddIn.Commands
 				return count;
 			}
 
-			var path = Path.Combine(
-				PathHelper.GetAppDataPath(), Resources.DatabaseFilename);
-
 			if (!File.Exists(path))
 			{
 				return true;
@@ -128,7 +123,8 @@ namespace River.OneMoreAddIn.Commands
 				.AsEnumerable()
 				.Select(d => pattern.Match(d))
 				.Where(m => m.Success)
-				.Select(m => (m.Groups[1].Value, m.Groups[2].Value));
+				.Select(m => (m.Groups[1].Value, m.Groups[2].Value))
+				.ToList();
 
 			if (!entities.Any())
 			{
@@ -158,9 +154,10 @@ namespace River.OneMoreAddIn.Commands
 				count += Drop("table", list.Select(e => e.Item2).ToList());
 			}
 
-			if (count != entities.Count())
+			if (count != entities.Count(e => e.Item1 == "VIEW" || e.Item1 == "INDEX" || e.Item1 == "TABLE"))
 			{
 				logger.WriteLine("error dropping hashtag catalog, see errors above");
+				transaction.Rollback();
 				return false;
 			}
 
@@ -223,6 +220,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
+				transaction.Rollback();
 				logger.WriteLine("error building db", exc);
 				throw;
 			}
@@ -519,121 +517,69 @@ namespace River.OneMoreAddIn.Commands
 			// HashSet for O(1) membership vs O(n) List.Contains
 			var knownSet = new HashSet<string>(knownIDs, StringComparer.Ordinal);
 
+			// Phase 1: identify phantoms without holding a write transaction
 			using var cmd = con.CreateCommand();
 			cmd.CommandType = CommandType.Text;
 			cmd.CommandText = "SELECT moreID, pageID FROM hashtag_page WHERE sectionID = @sid";
 			cmd.Parameters.AddWithValue("@sid", sectionID);
 
-			using var tagcmd = con.CreateCommand();
-			tagcmd.CommandType = CommandType.Text;
-			tagcmd.CommandText =
-				"DELETE FROM hashtag WHERE moreID IN " +
-				"(SELECT DISTINCT moreID FROM hashtag_page WHERE pageID = @pid)";
-			tagcmd.Parameters.Add("@pid", DbType.String);
-
-			using var pagcmd = con.CreateCommand();
-			pagcmd.CommandType = CommandType.Text;
-			pagcmd.CommandText = "DELETE FROM hashtag_page WHERE pageID = @pid";
-			pagcmd.Parameters.Add("@pid", DbType.String);
-
-			using var transaction = con.BeginTransaction();
-			var count = 0;
-
-			try
+			var phantomIDs = new List<string>();
+			using (var reader = cmd.ExecuteReader())
 			{
-				using var reader = cmd.ExecuteReader();
 				while (reader.Read())
 				{
 					var pageID = reader.GetString(1);
 					if (!knownSet.Contains(pageID))
 					{
-						tagcmd.Parameters["@pid"].Value = pageID;
-						tagcmd.ExecuteNonQuery();
-
-						pagcmd.Parameters["@pid"].Value = pageID;
-						pagcmd.ExecuteNonQuery();
-						count++;
+						phantomIDs.Add(pageID);
 					}
 				}
+			}
 
-				if (count > 0)
-				{
-					transaction.Commit();
-					logger.WriteLine($"deleted {count} phantom pages from {sectionPath}");
-				}
+			if (phantomIDs.Count == 0)
+			{
+				return;
+			}
+
+			// Phase 2: two batch DELETEs — 2 round-trips regardless of N
+			var paramNames = string.Join(",",
+				Enumerable.Range(0, phantomIDs.Count).Select(i => $"@p{i}"));
+
+			using var tagcmd = con.CreateCommand();
+			tagcmd.CommandType = CommandType.Text;
+			tagcmd.CommandText =
+				"DELETE FROM hashtag WHERE moreID IN " +
+				$"(SELECT DISTINCT moreID FROM hashtag_page WHERE pageID IN ({paramNames}))";
+
+			using var pagcmd = con.CreateCommand();
+			pagcmd.CommandType = CommandType.Text;
+			pagcmd.CommandText = $"DELETE FROM hashtag_page WHERE pageID IN ({paramNames})";
+
+			// SQLite's default SQLITE_MAX_VARIABLE_NUMBER is 32766. Even a pathological section with
+			// "hundreds" of stale pages is well within that limit. No chunking is needed.
+
+			for (var i = 0; i < phantomIDs.Count; i++)
+			{
+				tagcmd.Parameters.AddWithValue($"@p{i}", phantomIDs[i]);
+				pagcmd.Parameters.AddWithValue($"@p{i}", phantomIDs[i]);
+			}
+
+			// PRAGMA foreign_keys is not enabled in DatabaseProvider.cs, so cascade delete does
+			// not fire automatically.Deleting hashtag rows before hashtag_page rows(the current
+			// order) must be preserved.          
+				
+			using var transaction = con.BeginTransaction();
+			try
+			{
+				tagcmd.ExecuteNonQuery();
+				pagcmd.ExecuteNonQuery();
+				transaction.Commit();
+				logger.WriteLine($"deleted {phantomIDs.Count} phantom pages from {sectionPath}");
 			}
 			catch (Exception exc)
 			{
 				transaction.Rollback();
 				logger.WriteLine("error deleting phantom pages", exc);
-			}
-		}
-
-
-		/// <summary>
-		/// Deletes the specified tags
-		/// </summary>
-		/// <param name="tags">A collection of Hashtags</param>
-		[Obsolete("Was used as part of original tag resolution logic")]
-		public void DeleteTags(Hashtags tags)
-		{
-			using var cmd = con.CreateCommand();
-			cmd.CommandText = "DELETE FROM hashtag WHERE tag = @t AND moreID = @m";
-			cmd.CommandType = CommandType.Text;
-			cmd.Parameters.Add("@t", DbType.String);
-			cmd.Parameters.Add("@m", DbType.String);
-
-			using var transaction = con.BeginTransaction();
-			foreach (var tag in tags)
-			{
-				logger.Verbose($"deleting tag {tag.Tag}");
-
-				cmd.Parameters["@t"].Value = tag.Tag;
-				cmd.Parameters["@m"].Value = tag.MoreID;
-
-				try
-				{
-					cmd.ExecuteNonQuery();
-				}
-				catch (Exception exc)
-				{
-					logger.WriteLine($"error deleting tag {tag.Tag} on {tag.MoreID}", exc);
-				}
-			}
-
-			try
-			{
-				transaction.Commit();
-
-				CleanupPages();
-			}
-			catch (Exception exc)
-			{
-				logger.WriteLine("error deleting tags", exc);
-			}
-		}
-
-
-		private void CleanupPages()
-		{
-			// as tags are deleted from a page, that page may be left dangling in the
-			// hashtag_page table; this cleans up those orphaned records
-
-			using var cmd = con.CreateCommand();
-			cmd.CommandType = CommandType.Text;
-			cmd.CommandText = "DELETE FROM hashtag_page WHERE moreID IN (" +
-				"SELECT P.moreID " +
-				"FROM hashtag_page P " +
-				"LEFT OUTER JOIN hashtag T " +
-				"ON T.moreID = P.moreID WHERE T.tag IS NULL)";
-
-			try
-			{
-				cmd.ExecuteNonQuery();
-			}
-			catch (Exception exc)
-			{
-				ReportError("error cleaning up pages", cmd, exc);
 			}
 		}
 
@@ -820,7 +766,8 @@ namespace River.OneMoreAddIn.Commands
 				cmd.Parameters.AddWithValue("@nid", notebookID);
 			}
 
-			sql = $"{sql} ORDER BY 1";
+			// Note, no need to ORDER BY here because we're going to .OrderBy() below...
+
 			cmd.CommandText = sql;
 
 			try
@@ -894,7 +841,7 @@ namespace River.OneMoreAddIn.Commands
 
 			logger.Verbose(sql);
 
-			var tags = ReadTags(sql, parameters.ToArray());
+			var tags = ReadTags(sql, parameters.ToArray(), includeSnippetCols: true);
 
 			// don't highlight everything, otherwise there's no use!
 			if (criteria != "*" && criteria != "%")
@@ -911,7 +858,8 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private Hashtags ReadTags(string sql, SQLiteParameter[] parameters = null)
+		private Hashtags ReadTags(
+			string sql, SQLiteParameter[] parameters = null, bool includeSnippetCols = false)
 		{
 			var tags = new Hashtags();
 			using var cmd = con.CreateCommand();
@@ -939,7 +887,7 @@ namespace River.OneMoreAddIn.Commands
 						LastModified = reader.GetString(7)
 					};
 
-					if (reader.FieldCount > 7 && sql.Contains("snippet"))
+					if (includeSnippetCols)
 					{
 						tag.Snippet = reader[8] is DBNull ? null : reader.GetString(8);
 						tag.DocumentOrder = reader[9] is DBNull ? 0 : reader.GetInt32(9);
@@ -1040,6 +988,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
+				transaction.Rollback();
 				ReportError("error updating snippets", cmd, exc);
 			}
 		}
@@ -1150,7 +1099,7 @@ namespace River.OneMoreAddIn.Commands
 		/// Records the given tags.
 		/// </summary>
 		/// <param name="tags">A collection of Hashtags</param>
-		public void WriteTags(string pageID, Hashtags tags)
+		public bool WriteTags(string pageID, Hashtags tags)
 		{
 			using var transaction = con.BeginTransaction();
 
@@ -1172,7 +1121,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				transaction.Rollback();
 				logger.WriteLine($"error deleting tags {pageID}", exc);
-				return;
+				return false;
 			}
 
 			// now add (re-add) newly discovered tags for page, reestablishing doc order...
@@ -1214,11 +1163,11 @@ namespace River.OneMoreAddIn.Commands
 						logger.WriteLine($"error Snippet=[{tag.Snippet}]");
 						logger.WriteLine($"error lastModified=[{tag.LastModified}]");
 						logger.WriteLine(exc);
+						transaction.Rollback();
+						return false;
 					}
 				}
 			}
-
-			CleanupPages();
 
 			try
 			{
@@ -1226,7 +1175,36 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
+				transaction.Rollback();
 				ReportError("error writing tags", cmd, exc);
+				return false;
+			}
+
+			CleanupPages();
+			return true;
+		}
+
+
+		private void CleanupPages()
+		{
+			// as tags are deleted from a page, that page may be left dangling in the
+			// hashtag_page table; this cleans up those orphaned records
+
+			using var cmd = con.CreateCommand();
+			cmd.CommandType = CommandType.Text;
+			cmd.CommandText = "DELETE FROM hashtag_page WHERE moreID IN (" +
+				"SELECT P.moreID " +
+				"FROM hashtag_page P " +
+				"LEFT OUTER JOIN hashtag T " +
+				"ON T.moreID = P.moreID WHERE T.tag IS NULL)";
+
+			try
+			{
+				cmd.ExecuteNonQuery();
+			}
+			catch (Exception exc)
+			{
+				ReportError("error cleaning up pages", cmd, exc);
 			}
 		}
 	}

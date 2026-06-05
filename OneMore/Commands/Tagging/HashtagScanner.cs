@@ -1,6 +1,8 @@
-﻿//************************************************************************************************
+//************************************************************************************************
 // Copyright © 2023 Steven M Cohn. All rights reserved.
 //************************************************************************************************
+
+#pragma warning disable S125
 
 namespace River.OneMoreAddIn.Commands
 {
@@ -284,6 +286,7 @@ namespace River.OneMoreAddIn.Commands
 			OneNote one, XElement parent, string notebookID, string path, bool forceThru,
 			CancellationToken token = default)
 		{
+
 			//logger.Verbose($"scanning parent {path}, forceThru={forceThru}");
 
 			int dirtyPages = 0;
@@ -459,8 +462,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				// much simpler to purge old and rewrite new, even if that means recreating a
 				// few copied records. should scale without issue into the many tens-of-tags
-				provider.WriteTags(pageID, candidates);
-				dirtyPage = true;
+				dirtyPage = provider.WriteTags(pageID, candidates);
 
 				Stats.Tags += updated.Count + discovered.Count;
 			}
@@ -478,8 +480,6 @@ namespace River.OneMoreAddIn.Commands
 
 				// TODO: could track moreID+pageID to determine if REPLACE is needed; but then
 				// need to read that info first as well; see where the design goes...
-
-				// TODO: should this be wrapped in a tx along with the above statements?
 
 				provider.WritePageInfo(
 					scanner.MoreID, pageID, titleID, notebookID, sectionID, path, title);
