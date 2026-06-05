@@ -77,11 +77,25 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public bool Active => (
-			State == ScanningState.Ready ||
-			State == ScanningState.Rebuilding ||
-			State == ScanningState.Scanning
-			) && Process.GetProcessesByName(TrayName).Any();
+		public bool Active
+		{
+			get
+			{
+				try
+				{
+					return (
+						State == ScanningState.Ready ||
+						State == ScanningState.Rebuilding ||
+						State == ScanningState.Scanning
+						) && Process.GetProcessesByName(TrayName).Any();
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine("error checking for active tray process", exc);
+					return false;
+				}
+			}
+		}
 
 
 		public string[] Notebooks
@@ -115,14 +129,22 @@ namespace River.OneMoreAddIn.Commands
 		/// <returns></returns>
 		public async Task Activate()
 		{
-			var process = Process.GetProcessesByName(TrayName).FirstOrDefault();
-			if (process != null)
+			const int maxAttempts = 3;
+			for (var attempt = 1; attempt <= maxAttempts; attempt++)
 			{
+				Process process = null;
 				try
 				{
-					logger.WriteLine($"stopping {TrayName}");
+					process = Process.GetProcessesByName(TrayName).FirstOrDefault();
+					if (process is null)
+					{
+						break;
+					}
+
+					logger.WriteLine($"stopping {TrayName} (attempt {attempt}/{maxAttempts})");
 					process.Kill();
-					await process.WaitForExitAsync();
+					using var cts = new System.Threading.CancellationTokenSource(5000);
+					await process.WaitForExitAsync(cts.Token);
 				}
 				catch (Exception exc)
 				{
@@ -130,11 +152,28 @@ namespace River.OneMoreAddIn.Commands
 				}
 				finally
 				{
-					process.Dispose();
+					process?.Dispose();
 				}
 			}
 
-			SaveSchedule();
+			try
+			{
+				if (Process.GetProcessesByName(TrayName).Any())
+				{
+					logger.WriteLine($"could not stop {TrayName}; aborting activation");
+					return;
+				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"error checking for {TrayName} process; aborting activation", exc);
+				return;
+			}
+
+			if (!SaveSchedule())
+			{
+				return;
+			}
 
 			var dir = new Uri(
 				Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase)).LocalPath;
@@ -167,6 +206,12 @@ namespace River.OneMoreAddIn.Commands
 				WorkingDirectory = dir
 			});
 
+			if (proc is null)
+			{
+				logger.WriteLine($"failed to start {TrayName} process");
+				return;
+			}
+
 			logger.WriteLine($"started {TrayName} process {proc.Id}");
 		}
 
@@ -194,7 +239,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				schedule.State = HashtagProvider.CatalogExists()
 					? ScanningState.Ready
-					: ScanningState.None;
+					: ScanningState.PendingRebuild;
 			}
 			else
 			{
@@ -215,7 +260,14 @@ namespace River.OneMoreAddIn.Commands
 
 			try
 			{
-				var json = File.ReadAllText(filePath);
+				// do not use  File.ReadAllText here to avoid sharing violation if tray is
+				// currently writing to the file; instead open
+
+				using var stream = new FileStream(
+					filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+
+				using var reader = new StreamReader(stream);
+				var json = reader.ReadToEnd();
 
 				return JsonConvert.DeserializeObject<Schedule>(json, new JsonSerializerSettings
 				{
@@ -231,7 +283,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public void SaveSchedule()
+		public bool SaveSchedule()
 		{
 			try
 			{
@@ -242,11 +294,21 @@ namespace River.OneMoreAddIn.Commands
 						Formatting = Formatting.Indented
 					});
 
-				File.WriteAllText(filePath, json);
+				// do not use  File.ReadAllText here to avoid sharing violation if tray is
+				// currently writing to the file; instead open
+
+				using var stream = new FileStream(
+					filePath, FileMode.Create, FileAccess.Write, FileShare.ReadWrite);
+
+				stream.SetLength(0);
+				using var writer = new StreamWriter(stream);
+				writer.Write(json);
+				return true;
 			}
 			catch (Exception exc)
 			{
 				logger.WriteLine($"error writing scan schedule to {filePath}", exc);
+				return false;
 			}
 		}
 	}
