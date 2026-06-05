@@ -45,6 +45,7 @@
 			this.indentTagBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.indentBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.tooltip = new System.Windows.Forms.ToolTip(this.components);
+			this.secondaryBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.indentationsGroup.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -56,7 +57,7 @@
 			this.okButton.Enabled = false;
 			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
-			this.okButton.Location = new System.Drawing.Point(257, 429);
+			this.okButton.Location = new System.Drawing.Point(257, 449);
 			this.okButton.Name = "okButton";
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
@@ -75,7 +76,7 @@
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
-			this.cancelButton.Location = new System.Drawing.Point(363, 429);
+			this.cancelButton.Location = new System.Drawing.Point(363, 449);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
@@ -101,7 +102,7 @@
 			this.cleanBox.ThemedBack = null;
 			this.cleanBox.ThemedFore = null;
 			this.cleanBox.UseVisualStyleBackColor = true;
-			this.cleanBox.CheckedChanged += new System.EventHandler(this.cleanBox_CheckedChanged);
+			this.cleanBox.CheckedChanged += new System.EventHandler(this.box_CheckedChanged);
 			// 
 			// alphaDemoBox
 			// 
@@ -180,7 +181,7 @@
 			this.indentationsGroup.Controls.Add(this.tagButton);
 			this.indentationsGroup.Controls.Add(this.indentTagBox);
 			this.indentationsGroup.Controls.Add(this.indentBox);
-			this.indentationsGroup.Location = new System.Drawing.Point(18, 234);
+			this.indentationsGroup.Location = new System.Drawing.Point(18, 259);
 			this.indentationsGroup.Name = "indentationsGroup";
 			this.indentationsGroup.ShowOnlyTopEdge = true;
 			this.indentationsGroup.Size = new System.Drawing.Size(446, 160);
@@ -268,7 +269,23 @@
 			this.indentBox.ThemedBack = null;
 			this.indentBox.ThemedFore = null;
 			this.indentBox.UseVisualStyleBackColor = true;
-			this.indentBox.CheckedChanged += new System.EventHandler(this.indentBox_CheckedChanged);
+			this.indentBox.CheckedChanged += new System.EventHandler(this.box_CheckedChanged);
+			// 
+			// secondaryBox
+			// 
+			this.secondaryBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.secondaryBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.secondaryBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.secondaryBox.Location = new System.Drawing.Point(24, 204);
+			this.secondaryBox.Name = "secondaryBox";
+			this.secondaryBox.Size = new System.Drawing.Size(311, 25);
+			this.secondaryBox.StylizeImage = false;
+			this.secondaryBox.TabIndex = 16;
+			this.secondaryBox.Text = "Include headings from tables and lists";
+			this.secondaryBox.ThemedBack = null;
+			this.secondaryBox.ThemedFore = null;
+			this.secondaryBox.UseVisualStyleBackColor = true;
+			this.secondaryBox.CheckedChanged += new System.EventHandler(this.box_CheckedChanged);
 			// 
 			// OutlineDialog
 			// 
@@ -277,7 +294,8 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(482, 480);
+			this.ClientSize = new System.Drawing.Size(482, 500);
+			this.Controls.Add(this.secondaryBox);
 			this.Controls.Add(this.cleanBox);
 			this.Controls.Add(this.indentationsGroup);
 			this.Controls.Add(this.alphaDemoBox);
@@ -320,5 +338,6 @@
 		private UI.MoreButton tagButton;
 		private UI.MoreCheckBox removeTagsBox;
 		private System.Windows.Forms.ToolTip tooltip;
+		private UI.MoreCheckBox secondaryBox;
 	}
 }

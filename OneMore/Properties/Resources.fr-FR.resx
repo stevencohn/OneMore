@@ -2115,6 +2115,10 @@ Vous ne pouvez pas ouvrir le dossier d'un cahier stocké sur OneDrive.</value>
     <value>Supprimer les balises</value>
     <comment>checkbox</comment>
   </data>
+  <data name="OutlineDialog_secondaryBox.Text" xml:space="preserve">
+    <value>Inclure les titres des tableaux et des listes</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="OutlineDialog_tagLabel.Text" xml:space="preserve">
     <value>Balise :</value>
     <comment>label</comment>

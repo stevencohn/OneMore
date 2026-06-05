@@ -2103,6 +2103,10 @@ Sie können den Ordner eines auf OneDrive gespeicherten Notizbuchs nicht öffnen
     <value>Tags entfernen</value>
     <comment>checkbox</comment>
   </data>
+  <data name="OutlineDialog_secondaryBox.Text" xml:space="preserve">
+    <value>Fügen Sie Überschriften aus Tabellen und Listen ein</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="OutlineDialog_tagLabel.Text" xml:space="preserve">
     <value>Etikett:</value>
     <comment>label</comment>

@@ -2128,6 +2128,10 @@ You cannot open the folder of a notebook stored on OneDrive.</value>
     <value>Remove tags</value>
     <comment>checkbox</comment>
   </data>
+  <data name="OutlineDialog_secondaryBox.Text" xml:space="preserve">
+    <value>Include headings from tables and lists</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="OutlineDialog_tagLabel.Text" xml:space="preserve">
     <value>Tag:</value>
     <comment>label</comment>

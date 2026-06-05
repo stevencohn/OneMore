@@ -2104,6 +2104,10 @@ Total Row Font
     <value>הסר תגים</value>
     <comment>checkbox</comment>
   </data>
+  <data name="OutlineDialog_secondaryBox.Text" xml:space="preserve">
+    <value>כלול כותרות מטבלאות ורשימות</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="OutlineDialog_tagLabel.Text" xml:space="preserve">
     <value>תָג:</value>
     <comment>label</comment>

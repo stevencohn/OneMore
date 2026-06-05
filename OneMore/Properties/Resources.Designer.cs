@@ -5694,6 +5694,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Include headings from tables and lists.
+        /// </summary>
+        internal static string OutlineDialog_secondaryBox_Text {
+            get {
+                return ResourceManager.GetString("OutlineDialog_secondaryBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tag:.
         /// </summary>
         internal static string OutlineDialog_tagLabel_Text {

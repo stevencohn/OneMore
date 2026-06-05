@@ -2107,6 +2107,10 @@ No puede abrir la carpeta de un cuaderno almacenado en OneDrive.</value>
     <value>Quitar etiquetas</value>
     <comment>checkbox</comment>
   </data>
+  <data name="OutlineDialog_secondaryBox.Text" xml:space="preserve">
+    <value>Incluir títulos de tablas y listas.</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="OutlineDialog_tagLabel.Text" xml:space="preserve">
     <value>Etiqueta:</value>
     <comment>label</comment>

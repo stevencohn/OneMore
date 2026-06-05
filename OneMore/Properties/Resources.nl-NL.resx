@@ -2104,6 +2104,10 @@ U kunt de map niet openen van een notebook dat is opgeslagen op OneDrive.</value
     <value>Verwijder tags</value>
     <comment>checkbox</comment>
   </data>
+  <data name="OutlineDialog_secondaryBox.Text" xml:space="preserve">
+    <value>Voeg koppen uit tabellen en lijsten toe</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="OutlineDialog_tagLabel.Text" xml:space="preserve">
     <value>Label:</value>
     <comment>label</comment>

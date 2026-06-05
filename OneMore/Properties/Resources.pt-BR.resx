@@ -2104,6 +2104,10 @@ Você não pode abrir a pasta de um caderno armazenado no OneDrive.</value>
     <value>Remover tags</value>
     <comment>checkbox</comment>
   </data>
+  <data name="OutlineDialog_secondaryBox.Text" xml:space="preserve">
+    <value>Incluir títulos de tabelas e listas</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="OutlineDialog_tagLabel.Text" xml:space="preserve">
     <value>Tag:</value>
     <comment>label</comment>
