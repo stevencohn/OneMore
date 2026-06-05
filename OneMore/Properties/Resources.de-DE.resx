@@ -1776,6 +1776,10 @@ Am aktuellen Cursor</value>
     <value>Link zum Seitenanfang rechtsbündig ausrichten</value>
     <comment>checkbox</comment>
   </data>
+  <data name="InsertTocDialog_secondaryBox.Text" xml:space="preserve">
+    <value>Fügen Sie Überschriften aus Tabellen und Listen ein</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="InsertTocDialog_sectionRadio.Text" xml:space="preserve">
     <value>Neue Seite mit Seitenindex in diesem Abschnitt</value>
     <comment>radio</comment>

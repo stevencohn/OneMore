@@ -48,10 +48,11 @@
 			this.sectionGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.sectionTimeBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.pageGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
+			this.secondaryBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.todoLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.todoBox = new River.OneMoreAddIn.UI.MoreComboBox();
 			this.levelsLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.levelsBox = new River.OneMoreAddIn.UI.MoreNumericUpDown();
-			this.todoLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.notebookGroup.SuspendLayout();
 			this.sectionGroup.SuspendLayout();
 			this.pageGroup.SuspendLayout();
@@ -65,7 +66,7 @@
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
-			this.okButton.Location = new System.Drawing.Point(371, 707);
+			this.okButton.Location = new System.Drawing.Point(371, 742);
 			this.okButton.Name = "okButton";
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(120, 38);
@@ -84,7 +85,7 @@
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
-			this.cancelButton.Location = new System.Drawing.Point(497, 707);
+			this.cancelButton.Location = new System.Drawing.Point(497, 742);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(120, 38);
@@ -224,7 +225,7 @@
             "At top of page",
             "At top of page, overlayed",
             "At current cursor"});
-			this.locationBox.Location = new System.Drawing.Point(284, 180);
+			this.locationBox.Location = new System.Drawing.Point(284, 212);
 			this.locationBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
 			this.locationBox.Name = "locationBox";
 			this.locationBox.Size = new System.Drawing.Size(251, 27);
@@ -235,7 +236,7 @@
 			// locationLabel
 			// 
 			this.locationLabel.AutoSize = true;
-			this.locationLabel.Location = new System.Drawing.Point(30, 183);
+			this.locationLabel.Location = new System.Drawing.Point(30, 215);
 			this.locationLabel.Name = "locationLabel";
 			this.locationLabel.Size = new System.Drawing.Size(115, 20);
 			this.locationLabel.TabIndex = 11;
@@ -246,7 +247,7 @@
 			// styleLabel
 			// 
 			this.styleLabel.AutoSize = true;
-			this.styleLabel.Location = new System.Drawing.Point(30, 215);
+			this.styleLabel.Location = new System.Drawing.Point(30, 247);
 			this.styleLabel.Name = "styleLabel";
 			this.styleLabel.Size = new System.Drawing.Size(77, 20);
 			this.styleLabel.TabIndex = 12;
@@ -267,7 +268,7 @@
             "Custom Heading 1",
             "Custom Heading 2",
             "Custom Heading 3"});
-			this.styleBox.Location = new System.Drawing.Point(284, 215);
+			this.styleBox.Location = new System.Drawing.Point(284, 247);
 			this.styleBox.Name = "styleBox";
 			this.styleBox.Size = new System.Drawing.Size(251, 27);
 			this.styleBox.TabIndex = 6;
@@ -282,7 +283,7 @@
 			this.notebookGroup.Controls.Add(this.notebookRadio);
 			this.notebookGroup.Controls.Add(this.pagesBox);
 			this.notebookGroup.Controls.Add(this.notebookPagePreviewBox);
-			this.notebookGroup.Location = new System.Drawing.Point(23, 502);
+			this.notebookGroup.Location = new System.Drawing.Point(23, 534);
 			this.notebookGroup.Name = "notebookGroup";
 			this.notebookGroup.Padding = new System.Windows.Forms.Padding(5, 5, 3, 3);
 			this.notebookGroup.ShowOnlyTopEdge = true;
@@ -316,7 +317,7 @@
 			this.sectionGroup.Controls.Add(this.sectionTimeBox);
 			this.sectionGroup.Controls.Add(this.sectionRadio);
 			this.sectionGroup.Controls.Add(this.sectionPagePreviewBox);
-			this.sectionGroup.Location = new System.Drawing.Point(23, 332);
+			this.sectionGroup.Location = new System.Drawing.Point(23, 363);
 			this.sectionGroup.Name = "sectionGroup";
 			this.sectionGroup.Padding = new System.Windows.Forms.Padding(5, 5, 3, 3);
 			this.sectionGroup.ShowOnlyTopEdge = true;
@@ -348,6 +349,7 @@
 			// 
 			this.pageGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.pageGroup.Controls.Add(this.secondaryBox);
 			this.pageGroup.Controls.Add(this.todoLabel);
 			this.pageGroup.Controls.Add(this.todoBox);
 			this.pageGroup.Controls.Add(this.levelsLabel);
@@ -363,19 +365,45 @@
 			this.pageGroup.Name = "pageGroup";
 			this.pageGroup.Padding = new System.Windows.Forms.Padding(5, 5, 3, 3);
 			this.pageGroup.ShowOnlyTopEdge = true;
-			this.pageGroup.Size = new System.Drawing.Size(594, 298);
+			this.pageGroup.Size = new System.Drawing.Size(594, 329);
 			this.pageGroup.TabIndex = 15;
 			this.pageGroup.TabStop = false;
 			this.pageGroup.Text = "Page";
 			this.pageGroup.ThemedBorder = null;
 			this.pageGroup.ThemedFore = null;
 			// 
+			// secondaryBox
+			// 
+			this.secondaryBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.secondaryBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.secondaryBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.secondaryBox.Location = new System.Drawing.Point(34, 131);
+			this.secondaryBox.Name = "secondaryBox";
+			this.secondaryBox.Size = new System.Drawing.Size(554, 38);
+			this.secondaryBox.StylizeImage = false;
+			this.secondaryBox.TabIndex = 18;
+			this.secondaryBox.Text = "Include headings from tables and lists";
+			this.secondaryBox.ThemedBack = null;
+			this.secondaryBox.ThemedFore = null;
+			this.secondaryBox.UseVisualStyleBackColor = true;
+			// 
+			// todoLabel
+			// 
+			this.todoLabel.AutoSize = true;
+			this.todoLabel.Location = new System.Drawing.Point(30, 178);
+			this.todoLabel.Name = "todoLabel";
+			this.todoLabel.Size = new System.Drawing.Size(153, 20);
+			this.todoLabel.TabIndex = 17;
+			this.todoLabel.Text = "Mark Todo headings";
+			this.todoLabel.ThemedBack = null;
+			this.todoLabel.ThemedFore = null;
+			// 
 			// todoBox
 			// 
 			this.todoBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.todoBox.FormattingEnabled = true;
 			this.todoBox.ItemHeight = 24;
-			this.todoBox.Location = new System.Drawing.Point(284, 143);
+			this.todoBox.Location = new System.Drawing.Point(284, 175);
 			this.todoBox.Name = "todoBox";
 			this.todoBox.Size = new System.Drawing.Size(251, 30);
 			this.todoBox.TabIndex = 16;
@@ -385,7 +413,7 @@
 			// levelsLabel
 			// 
 			this.levelsLabel.AutoSize = true;
-			this.levelsLabel.Location = new System.Drawing.Point(30, 251);
+			this.levelsLabel.Location = new System.Drawing.Point(30, 283);
 			this.levelsLabel.Name = "levelsLabel";
 			this.levelsLabel.Size = new System.Drawing.Size(98, 20);
 			this.levelsLabel.TabIndex = 14;
@@ -395,7 +423,7 @@
 			// 
 			// levelsBox
 			// 
-			this.levelsBox.Location = new System.Drawing.Point(284, 249);
+			this.levelsBox.Location = new System.Drawing.Point(284, 281);
 			this.levelsBox.Maximum = new decimal(new int[] {
             6,
             0,
@@ -417,17 +445,6 @@
             0,
             0});
 			// 
-			// todoLabel
-			// 
-			this.todoLabel.AutoSize = true;
-			this.todoLabel.Location = new System.Drawing.Point(30, 146);
-			this.todoLabel.Name = "todoLabel";
-			this.todoLabel.Size = new System.Drawing.Size(153, 20);
-			this.todoLabel.TabIndex = 17;
-			this.todoLabel.Text = "Mark Todo headings";
-			this.todoLabel.ThemedBack = null;
-			this.todoLabel.ThemedFore = null;
-			// 
 			// InsertTocDialog
 			// 
 			this.AcceptButton = this.okButton;
@@ -435,7 +452,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(629, 757);
+			this.ClientSize = new System.Drawing.Size(629, 792);
 			this.Controls.Add(this.pageGroup);
 			this.Controls.Add(this.sectionGroup);
 			this.Controls.Add(this.notebookGroup);
@@ -485,5 +502,6 @@
 		private UI.MoreCheckBox sectionTimeBox;
 		private UI.MoreComboBox todoBox;
 		private UI.MoreLabel todoLabel;
+		private UI.MoreCheckBox secondaryBox;
 	}
 }

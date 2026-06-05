@@ -1787,6 +1787,10 @@ OneNote 文件 (*.one)</value>
     <value>页面链接右对齐显示</value>
     <comment>checkbox</comment>
   </data>
+  <data name="InsertTocDialog_secondaryBox.Text" xml:space="preserve">
+    <value>包括表格和列表中的标题</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="InsertTocDialog_sectionRadio.Text" xml:space="preserve">
     <value>插入到新页面，包含此分区的页面目录</value>
     <comment>radio</comment>

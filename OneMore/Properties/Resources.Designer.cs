@@ -4564,6 +4564,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Include headings from tables and lists.
+        /// </summary>
+        internal static string InsertTocDialog_secondaryBox_Text {
+            get {
+                return ResourceManager.GetString("InsertTocDialog_secondaryBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New page with index of pages in this section.
         /// </summary>
         internal static string InsertTocDialog_sectionRadio_Text {

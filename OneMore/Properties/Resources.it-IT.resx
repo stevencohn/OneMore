@@ -1781,6 +1781,10 @@ Al cursore corrente</value>
     <value>Collegamento della parte superiore della pagina allineato a destra</value>
     <comment>checkbox</comment>
   </data>
+  <data name="InsertTocDialog_secondaryBox.Text" xml:space="preserve">
+    <value>Includere intestazioni di tabelle ed elenchi</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="InsertTocDialog_sectionRadio.Text" xml:space="preserve">
     <value>Nuova pagina con indice delle pagine di questa sezione</value>
     <comment>radio</comment>

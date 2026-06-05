@@ -1781,6 +1781,10 @@ No cursor atual</value>
     <value>Alinhar à direita o link da parte superior da página</value>
     <comment>checkbox</comment>
   </data>
+  <data name="InsertTocDialog_secondaryBox.Text" xml:space="preserve">
+    <value>Incluir títulos de tabelas e listas</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="InsertTocDialog_sectionRadio.Text" xml:space="preserve">
     <value>Nova página com índice de páginas nesta seção</value>
     <comment>radio</comment>

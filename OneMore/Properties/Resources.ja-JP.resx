@@ -1784,6 +1784,10 @@ OneNoteファイル (*.one)</value>
     <value>見出しに追加するページの上部へのリンクを右揃え</value>
     <comment>checkbox</comment>
   </data>
+  <data name="InsertTocDialog_secondaryBox.Text" xml:space="preserve">
+    <value>表やリストの見出しを含める</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="InsertTocDialog_sectionRadio.Text" xml:space="preserve">
     <value>このセクション内ページの目次を新しいページに作成</value>
     <comment>radio</comment>

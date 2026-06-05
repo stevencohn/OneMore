@@ -1784,6 +1784,10 @@ Au curseur actuel</value>
     <value>Alignement à droite du lien en haut de page</value>
     <comment>checkbox</comment>
   </data>
+  <data name="InsertTocDialog_secondaryBox.Text" xml:space="preserve">
+    <value>Inclure les titres des tableaux et des listes</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="InsertTocDialog_sectionRadio.Text" xml:space="preserve">
     <value>Nouvelle page avec index des pages de cette section</value>
     <comment>radio</comment>
