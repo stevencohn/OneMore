@@ -1048,7 +1048,7 @@ namespace River.OneMoreAddIn.Commands
 			if (box.SelectedItems[0] is IMoreHostItem host && host.Tag is HistoryRecord record)
 			{
 				await using var one = new OneNote();
-				one.NavigateTo(record.Link, true);
+				await one.NavigateTo(record.Link, true);
 
 				//System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
 				//{
