@@ -316,7 +316,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			else
 			{
-				var control = new HashtagErrorControl(
+				var control = new SearchErrorControl(
 					Resx.HashtagDialog_noResults, experimental ? parsed : null)
 				{
 					Width = width

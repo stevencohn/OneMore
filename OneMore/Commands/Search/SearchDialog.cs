@@ -2,12 +2,8 @@
 // Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
-#pragma warning disable S125 // ignore commented out code
-
 namespace River.OneMoreAddIn.Commands
 {
-	using River.OneMoreAddIn.Models;
-	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
@@ -16,6 +12,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
+	using River.OneMoreAddIn.UI;
 	using Resx = Properties.Resources;
 
 
@@ -30,6 +27,8 @@ namespace River.OneMoreAddIn.Commands
 
 
 		private CancellationTokenSource source;
+		private SearchErrorControl errorControl;
+		private Regex lastFinder;
 
 
 		public SearchDialog()
@@ -270,6 +269,8 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
+			lastFinder = finder;
+
 			// async void must not let exceptions escape to the SynchronizationContext,
 			// which under the dllhost surrogate can take down OneNote
 			try
@@ -342,6 +343,25 @@ namespace River.OneMoreAddIn.Commands
 			nextButton.Visible = prevButton.Visible = resultsView.HasHits;
 			indexButton.Visible = moveButton.Visible = copyButton.Visible = resultsView.HasHits;
 			resultsHeaderPanel.Visible = resultsView.HasHits;
+
+			if (!resultsView.HasHits && lastFinder != null)
+			{
+				ShowNoResultsCard();
+			}
+		}
+
+
+		private void ShowNoResultsCard()
+		{
+			errorControl = new SearchErrorControl("No results found", lastFinder.ToString())
+			{
+				Width = resultsView.Width - 20,
+				Location = new Point(resultsView.Left + 10, resultsView.Top + 10),
+				Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right
+			};
+
+			Controls.Add(errorControl);
+			errorControl.BringToFront();
 		}
 
 
@@ -350,6 +370,13 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ClearResults()
 		{
+			if (errorControl != null)
+			{
+				Controls.Remove(errorControl);
+				errorControl.Dispose();
+				errorControl = null;
+			}
+
 			resultsView.Clear();
 			resultsHeaderPanel.Visible = false;
 			indexButton.Enabled = false;

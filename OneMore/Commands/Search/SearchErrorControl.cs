@@ -11,18 +11,18 @@ namespace River.OneMoreAddIn.Commands
 	using System.Windows.Forms;
 
 
-	internal partial class HashtagErrorControl : MoreUserControl
+	internal partial class SearchErrorControl : MoreUserControl
 	{
 		private int radius = 5;
 
-		public HashtagErrorControl()
+		public SearchErrorControl()
 		{
 			InitializeComponent();
 			Radius = radius;
 		}
 
 
-		public HashtagErrorControl(string message, string notes)
+		public SearchErrorControl(string message, string notes)
 			: this()
 		{
 			messageBox.Text = message;

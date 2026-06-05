@@ -412,11 +412,11 @@
     <Compile Include="Commands\Tagging\HashtagDialog.Designer.cs">
       <DependentUpon>HashtagDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\Tagging\HashtagErrorControl.cs">
+    <Compile Include="Commands\Search\SearchErrorControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Commands\Tagging\HashtagErrorControl.Designer.cs">
-      <DependentUpon>HashtagErrorControl.cs</DependentUpon>
+    <Compile Include="Commands\Search\SearchErrorControl.Designer.cs">
+      <DependentUpon>SearchErrorControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Tagging\HashtagScheduler.cs" />
     <Compile Include="Commands\Tagging\HashtagPageScanner.cs" />
@@ -1705,8 +1705,8 @@
       <DependentUpon>HashtagDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Commands\Tagging\HashtagErrorControl.resx">
-      <DependentUpon>HashtagErrorControl.cs</DependentUpon>
+    <EmbeddedResource Include="Commands\Search\SearchErrorControl.resx">
+      <DependentUpon>SearchErrorControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.he-IL.resx">
       <SubType>Designer</SubType>
