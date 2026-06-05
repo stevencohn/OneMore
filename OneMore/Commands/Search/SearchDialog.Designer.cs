@@ -69,7 +69,7 @@ namespace River.OneMoreAddIn.Commands
 			this.introLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 15);
 			this.introLabel.Name = "introLabel";
 			this.introLabel.Size = new System.Drawing.Size(603, 20);
-			this.introLabel.TabIndex = 9;
+			this.introLabel.TabIndex = 0;
 			this.introLabel.Text = "Enter the search criteria, optionally including AND, OR, NOT, quotes and parenthe" +
     "sis\r\n";
 			this.introLabel.ThemedBack = null;
@@ -165,7 +165,7 @@ namespace River.OneMoreAddIn.Commands
 			this.findLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.findLabel.Name = "findLabel";
 			this.findLabel.Size = new System.Drawing.Size(40, 20);
-			this.findLabel.TabIndex = 11;
+			this.findLabel.TabIndex = 0;
 			this.findLabel.Text = "Find";
 			this.findLabel.ThemedBack = null;
 			this.findLabel.ThemedFore = null;
@@ -180,7 +180,7 @@ namespace River.OneMoreAddIn.Commands
 			this.findBox.Name = "findBox";
 			this.findBox.ProcessEnterKey = false;
 			this.findBox.Size = new System.Drawing.Size(761, 26);
-			this.findBox.TabIndex = 0;
+			this.findBox.TabIndex = 1;
 			this.findBox.ThemedBack = null;
 			this.findBox.ThemedFore = null;
 			this.findBox.TextChanged += new System.EventHandler(this.ChangedText);
@@ -200,7 +200,7 @@ namespace River.OneMoreAddIn.Commands
 			this.searchButton.ShowBorder = true;
 			this.searchButton.Size = new System.Drawing.Size(68, 32);
 			this.searchButton.StylizeImage = true;
-			this.searchButton.TabIndex = 2;
+			this.searchButton.TabIndex = 3;
 			this.searchButton.ThemedBack = null;
 			this.searchButton.ThemedFore = null;
 			this.searchButton.UseVisualStyleBackColor = true;
@@ -215,7 +215,7 @@ namespace River.OneMoreAddIn.Commands
 			this.resultsView.Location = new System.Drawing.Point(15, 237);
 			this.resultsView.Name = "resultsView";
 			this.resultsView.Size = new System.Drawing.Size(1092, 410);
-			this.resultsView.TabIndex = 0;
+			this.resultsView.TabIndex = 3;
 			this.resultsView.TabStop = false;
 			this.resultsView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.HandleNavKey);
 			// 
@@ -236,7 +236,7 @@ namespace River.OneMoreAddIn.Commands
 			this.morePanel1.Name = "morePanel1";
 			this.morePanel1.Padding = new System.Windows.Forms.Padding(3);
 			this.morePanel1.Size = new System.Drawing.Size(1092, 66);
-			this.morePanel1.TabIndex = 1;
+			this.morePanel1.TabIndex = 4;
 			this.morePanel1.ThemedBack = null;
 			this.morePanel1.ThemedFore = null;
 			this.morePanel1.TopBorderColor = System.Drawing.SystemColors.Control;
@@ -314,7 +314,7 @@ namespace River.OneMoreAddIn.Commands
 			this.morePanel2.Name = "morePanel2";
 			this.morePanel2.Padding = new System.Windows.Forms.Padding(3);
 			this.morePanel2.Size = new System.Drawing.Size(1092, 46);
-			this.morePanel2.TabIndex = 13;
+			this.morePanel2.TabIndex = 0;
 			this.morePanel2.ThemedBack = null;
 			this.morePanel2.ThemedFore = null;
 			this.morePanel2.TopBorderColor = System.Drawing.SystemColors.Control;
@@ -339,7 +339,7 @@ namespace River.OneMoreAddIn.Commands
 			this.optionsPanel.Name = "optionsPanel";
 			this.optionsPanel.Padding = new System.Windows.Forms.Padding(3);
 			this.optionsPanel.Size = new System.Drawing.Size(1092, 146);
-			this.optionsPanel.TabIndex = 0;
+			this.optionsPanel.TabIndex = 1;
 			this.optionsPanel.ThemedBack = null;
 			this.optionsPanel.ThemedFore = null;
 			this.optionsPanel.TopBorderColor = System.Drawing.SystemColors.Control;
@@ -355,7 +355,7 @@ namespace River.OneMoreAddIn.Commands
 			this.includeTocBox.Name = "includeTocBox";
 			this.includeTocBox.Size = new System.Drawing.Size(261, 25);
 			this.includeTocBox.StylizeImage = false;
-			this.includeTocBox.TabIndex = 5;
+			this.includeTocBox.TabIndex = 6;
 			this.includeTocBox.Text = "Search text in table of contents";
 			this.includeTocBox.ThemedBack = null;
 			this.includeTocBox.ThemedFore = null;
@@ -376,7 +376,7 @@ namespace River.OneMoreAddIn.Commands
 			this.dateSelector.Location = new System.Drawing.Point(585, 44);
 			this.dateSelector.Name = "dateSelector";
 			this.dateSelector.Size = new System.Drawing.Size(234, 27);
-			this.dateSelector.TabIndex = 6;
+			this.dateSelector.TabIndex = 7;
 			this.dateSelector.ThemedBack = null;
 			this.dateSelector.ThemedFore = null;
 			this.dateSelector.SelectedIndexChanged += new System.EventHandler(this.ChangeDateSelector);
@@ -391,7 +391,7 @@ namespace River.OneMoreAddIn.Commands
 			this.dateTimePicker.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
 			this.dateTimePicker.Name = "dateTimePicker";
 			this.dateTimePicker.Size = new System.Drawing.Size(183, 26);
-			this.dateTimePicker.TabIndex = 7;
+			this.dateTimePicker.TabIndex = 8;
 			// 
 			// regBox
 			// 
@@ -403,7 +403,7 @@ namespace River.OneMoreAddIn.Commands
 			this.regBox.Name = "regBox";
 			this.regBox.Size = new System.Drawing.Size(213, 25);
 			this.regBox.StylizeImage = false;
-			this.regBox.TabIndex = 4;
+			this.regBox.TabIndex = 5;
 			this.regBox.Text = "Use regular expressions";
 			this.regBox.ThemedBack = null;
 			this.regBox.ThemedFore = null;
@@ -420,7 +420,7 @@ namespace River.OneMoreAddIn.Commands
 			this.matchBox.Name = "matchBox";
 			this.matchBox.Size = new System.Drawing.Size(119, 25);
 			this.matchBox.StylizeImage = false;
-			this.matchBox.TabIndex = 3;
+			this.matchBox.TabIndex = 4;
 			this.matchBox.Text = "Match case";
 			this.matchBox.ThemedBack = null;
 			this.matchBox.ThemedFore = null;
@@ -438,7 +438,7 @@ namespace River.OneMoreAddIn.Commands
 			this.scopeBox.Location = new System.Drawing.Point(826, 9);
 			this.scopeBox.Name = "scopeBox";
 			this.scopeBox.Size = new System.Drawing.Size(183, 27);
-			this.scopeBox.TabIndex = 1;
+			this.scopeBox.TabIndex = 2;
 			this.scopeBox.ThemedBack = null;
 			this.scopeBox.ThemedFore = null;
 			this.scopeBox.SelectedIndexChanged += new System.EventHandler(this.ChangeScope);
@@ -456,7 +456,7 @@ namespace River.OneMoreAddIn.Commands
 			this.resultsHeaderPanel.Name = "resultsHeaderPanel";
 			this.resultsHeaderPanel.Padding = new System.Windows.Forms.Padding(3);
 			this.resultsHeaderPanel.Size = new System.Drawing.Size(1092, 30);
-			this.resultsHeaderPanel.TabIndex = 14;
+			this.resultsHeaderPanel.TabIndex = 2;
 			this.resultsHeaderPanel.ThemedBack = null;
 			this.resultsHeaderPanel.ThemedFore = null;
 			this.resultsHeaderPanel.TopBorderColor = System.Drawing.SystemColors.Control;

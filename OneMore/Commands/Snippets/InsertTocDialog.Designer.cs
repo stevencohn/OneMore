@@ -71,7 +71,7 @@
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(120, 38);
 			this.okButton.StylizeImage = false;
-			this.okButton.TabIndex = 0;
+			this.okButton.TabIndex = 3;
 			this.okButton.Text = "OK";
 			this.okButton.ThemedBack = null;
 			this.okButton.ThemedFore = null;
@@ -90,7 +90,7 @@
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(120, 38);
 			this.cancelButton.StylizeImage = false;
-			this.cancelButton.TabIndex = 1;
+			this.cancelButton.TabIndex = 4;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.ThemedBack = null;
 			this.cancelButton.ThemedFore = null;
@@ -103,7 +103,7 @@
 			this.pageRadio.Location = new System.Drawing.Point(8, 43);
 			this.pageRadio.Name = "pageRadio";
 			this.pageRadio.Size = new System.Drawing.Size(300, 25);
-			this.pageRadio.TabIndex = 2;
+			this.pageRadio.TabIndex = 0;
 			this.pageRadio.TabStop = true;
 			this.pageRadio.Text = "Insert table of headings on this page";
 			this.pageRadio.UseVisualStyleBackColor = true;
@@ -116,7 +116,7 @@
 			this.sectionRadio.Margin = new System.Windows.Forms.Padding(3, 25, 3, 3);
 			this.sectionRadio.Name = "sectionRadio";
 			this.sectionRadio.Size = new System.Drawing.Size(359, 25);
-			this.sectionRadio.TabIndex = 7;
+			this.sectionRadio.TabIndex = 0;
 			this.sectionRadio.Text = "New page with index of pages in this section";
 			this.sectionRadio.UseVisualStyleBackColor = true;
 			this.sectionRadio.CheckedChanged += new System.EventHandler(this.ChangeScopeRadioSelection);
@@ -131,7 +131,7 @@
 			this.topBox.Name = "topBox";
 			this.topBox.Size = new System.Drawing.Size(378, 25);
 			this.topBox.StylizeImage = false;
-			this.topBox.TabIndex = 3;
+			this.topBox.TabIndex = 1;
 			this.topBox.Text = "Add link to each heading to jump to top of page";
 			this.topBox.ThemedBack = null;
 			this.topBox.ThemedFore = null;
@@ -145,7 +145,7 @@
 			this.notebookRadio.Margin = new System.Windows.Forms.Padding(3, 25, 3, 3);
 			this.notebookRadio.Name = "notebookRadio";
 			this.notebookRadio.Size = new System.Drawing.Size(390, 25);
-			this.notebookRadio.TabIndex = 9;
+			this.notebookRadio.TabIndex = 0;
 			this.notebookRadio.Text = "New page with index of sections in this notebook";
 			this.notebookRadio.UseVisualStyleBackColor = true;
 			this.notebookRadio.CheckedChanged += new System.EventHandler(this.ChangeScopeRadioSelection);
@@ -161,7 +161,7 @@
 			this.pagesBox.Name = "pagesBox";
 			this.pagesBox.Size = new System.Drawing.Size(252, 25);
 			this.pagesBox.StylizeImage = false;
-			this.pagesBox.TabIndex = 10;
+			this.pagesBox.TabIndex = 1;
 			this.pagesBox.Text = "Include pages in each section";
 			this.pagesBox.ThemedBack = null;
 			this.pagesBox.ThemedFore = null;
@@ -178,7 +178,7 @@
 			this.rightAlignBox.Name = "rightAlignBox";
 			this.rightAlignBox.Size = new System.Drawing.Size(230, 25);
 			this.rightAlignBox.StylizeImage = false;
-			this.rightAlignBox.TabIndex = 4;
+			this.rightAlignBox.TabIndex = 2;
 			this.rightAlignBox.Text = "Right-align top of page link";
 			this.rightAlignBox.ThemedBack = null;
 			this.rightAlignBox.ThemedFore = null;
@@ -195,7 +195,7 @@
 			this.sectionPagePreviewBox.Name = "sectionPagePreviewBox";
 			this.sectionPagePreviewBox.Size = new System.Drawing.Size(280, 25);
 			this.sectionPagePreviewBox.StylizeImage = false;
-			this.sectionPagePreviewBox.TabIndex = 8;
+			this.sectionPagePreviewBox.TabIndex = 1;
 			this.sectionPagePreviewBox.Text = "Include text preview of each page";
 			this.sectionPagePreviewBox.ThemedBack = null;
 			this.sectionPagePreviewBox.ThemedFore = null;
@@ -211,7 +211,7 @@
 			this.notebookPagePreviewBox.Name = "notebookPagePreviewBox";
 			this.notebookPagePreviewBox.Size = new System.Drawing.Size(280, 25);
 			this.notebookPagePreviewBox.StylizeImage = false;
-			this.notebookPagePreviewBox.TabIndex = 11;
+			this.notebookPagePreviewBox.TabIndex = 2;
 			this.notebookPagePreviewBox.Text = "Include text preview of each page";
 			this.notebookPagePreviewBox.ThemedBack = null;
 			this.notebookPagePreviewBox.ThemedFore = null;
@@ -229,7 +229,7 @@
 			this.locationBox.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
 			this.locationBox.Name = "locationBox";
 			this.locationBox.Size = new System.Drawing.Size(251, 27);
-			this.locationBox.TabIndex = 5;
+			this.locationBox.TabIndex = 7;
 			this.locationBox.ThemedBack = null;
 			this.locationBox.ThemedFore = null;
 			// 
@@ -239,7 +239,7 @@
 			this.locationLabel.Location = new System.Drawing.Point(30, 215);
 			this.locationLabel.Name = "locationLabel";
 			this.locationLabel.Size = new System.Drawing.Size(115, 20);
-			this.locationLabel.TabIndex = 11;
+			this.locationLabel.TabIndex = 6;
 			this.locationLabel.Text = "Insert Location";
 			this.locationLabel.ThemedBack = null;
 			this.locationLabel.ThemedFore = null;
@@ -250,7 +250,7 @@
 			this.styleLabel.Location = new System.Drawing.Point(30, 247);
 			this.styleLabel.Name = "styleLabel";
 			this.styleLabel.Size = new System.Drawing.Size(77, 20);
-			this.styleLabel.TabIndex = 12;
+			this.styleLabel.TabIndex = 8;
 			this.styleLabel.Text = "Title Style";
 			this.styleLabel.ThemedBack = null;
 			this.styleLabel.ThemedFore = null;
@@ -271,7 +271,7 @@
 			this.styleBox.Location = new System.Drawing.Point(284, 247);
 			this.styleBox.Name = "styleBox";
 			this.styleBox.Size = new System.Drawing.Size(251, 27);
-			this.styleBox.TabIndex = 6;
+			this.styleBox.TabIndex = 9;
 			this.styleBox.ThemedBack = null;
 			this.styleBox.ThemedFore = null;
 			// 
@@ -288,7 +288,7 @@
 			this.notebookGroup.Padding = new System.Windows.Forms.Padding(5, 5, 3, 3);
 			this.notebookGroup.ShowOnlyTopEdge = true;
 			this.notebookGroup.Size = new System.Drawing.Size(594, 186);
-			this.notebookGroup.TabIndex = 13;
+			this.notebookGroup.TabIndex = 2;
 			this.notebookGroup.TabStop = false;
 			this.notebookGroup.Text = "Notebook";
 			this.notebookGroup.ThemedBorder = null;
@@ -304,7 +304,7 @@
 			this.notebookTimeBox.Name = "notebookTimeBox";
 			this.notebookTimeBox.Size = new System.Drawing.Size(280, 25);
 			this.notebookTimeBox.StylizeImage = false;
-			this.notebookTimeBox.TabIndex = 12;
+			this.notebookTimeBox.TabIndex = 3;
 			this.notebookTimeBox.Text = "Update page date and time";
 			this.notebookTimeBox.ThemedBack = null;
 			this.notebookTimeBox.ThemedFore = null;
@@ -322,7 +322,7 @@
 			this.sectionGroup.Padding = new System.Windows.Forms.Padding(5, 5, 3, 3);
 			this.sectionGroup.ShowOnlyTopEdge = true;
 			this.sectionGroup.Size = new System.Drawing.Size(594, 164);
-			this.sectionGroup.TabIndex = 14;
+			this.sectionGroup.TabIndex = 1;
 			this.sectionGroup.TabStop = false;
 			this.sectionGroup.Text = "Section";
 			this.sectionGroup.ThemedBorder = null;
@@ -339,7 +339,7 @@
 			this.sectionTimeBox.Name = "sectionTimeBox";
 			this.sectionTimeBox.Size = new System.Drawing.Size(280, 25);
 			this.sectionTimeBox.StylizeImage = false;
-			this.sectionTimeBox.TabIndex = 9;
+			this.sectionTimeBox.TabIndex = 2;
 			this.sectionTimeBox.Text = "Update page date and time";
 			this.sectionTimeBox.ThemedBack = null;
 			this.sectionTimeBox.ThemedFore = null;
@@ -366,7 +366,7 @@
 			this.pageGroup.Padding = new System.Windows.Forms.Padding(5, 5, 3, 3);
 			this.pageGroup.ShowOnlyTopEdge = true;
 			this.pageGroup.Size = new System.Drawing.Size(594, 329);
-			this.pageGroup.TabIndex = 15;
+			this.pageGroup.TabIndex = 0;
 			this.pageGroup.TabStop = false;
 			this.pageGroup.Text = "Page";
 			this.pageGroup.ThemedBorder = null;
@@ -381,7 +381,7 @@
 			this.secondaryBox.Name = "secondaryBox";
 			this.secondaryBox.Size = new System.Drawing.Size(554, 38);
 			this.secondaryBox.StylizeImage = false;
-			this.secondaryBox.TabIndex = 18;
+			this.secondaryBox.TabIndex = 3;
 			this.secondaryBox.Text = "Include headings from tables and lists";
 			this.secondaryBox.ThemedBack = null;
 			this.secondaryBox.ThemedFore = null;
@@ -393,7 +393,7 @@
 			this.todoLabel.Location = new System.Drawing.Point(30, 178);
 			this.todoLabel.Name = "todoLabel";
 			this.todoLabel.Size = new System.Drawing.Size(153, 20);
-			this.todoLabel.TabIndex = 17;
+			this.todoLabel.TabIndex = 4;
 			this.todoLabel.Text = "Mark Todo headings";
 			this.todoLabel.ThemedBack = null;
 			this.todoLabel.ThemedFore = null;
@@ -406,7 +406,7 @@
 			this.todoBox.Location = new System.Drawing.Point(284, 175);
 			this.todoBox.Name = "todoBox";
 			this.todoBox.Size = new System.Drawing.Size(251, 30);
-			this.todoBox.TabIndex = 16;
+			this.todoBox.TabIndex = 5;
 			this.todoBox.ThemedBack = null;
 			this.todoBox.ThemedFore = null;
 			// 
@@ -416,7 +416,7 @@
 			this.levelsLabel.Location = new System.Drawing.Point(30, 283);
 			this.levelsLabel.Name = "levelsLabel";
 			this.levelsLabel.Size = new System.Drawing.Size(98, 20);
-			this.levelsLabel.TabIndex = 14;
+			this.levelsLabel.TabIndex = 10;
 			this.levelsLabel.Text = "Show Levels";
 			this.levelsLabel.ThemedBack = null;
 			this.levelsLabel.ThemedFore = null;
@@ -436,7 +436,7 @@
             0});
 			this.levelsBox.Name = "levelsBox";
 			this.levelsBox.Size = new System.Drawing.Size(96, 26);
-			this.levelsBox.TabIndex = 13;
+			this.levelsBox.TabIndex = 11;
 			this.levelsBox.ThemedBack = null;
 			this.levelsBox.ThemedFore = "ControlText";
 			this.levelsBox.Value = new decimal(new int[] {
