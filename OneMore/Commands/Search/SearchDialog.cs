@@ -201,6 +201,18 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+		{
+			if (keyData == Keys.Escape)
+			{
+				Nevermind(this, EventArgs.Empty);
+				return true;
+			}
+
+			return base.ProcessCmdKey(ref msg, keyData);
+		}
+
+
 		private void SearchOnKeydown(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode == Keys.Enter &&
