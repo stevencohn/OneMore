@@ -597,8 +597,8 @@ Process
 			Build 'ARM64'
 		}
 
-		Build 'x64'
 		Build 'x86'
+		Build 'x64'
 
 		ReportChecksums
 	}
