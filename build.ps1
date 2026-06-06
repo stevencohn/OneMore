@@ -484,50 +484,54 @@ Begin
 
 			Invoke-Expression $cmd
 
-			# only burn the bundle for ARM64...
-			# this could change in the future to solve permission issues writing to TEMP!
-			# see https://github.com/stevencohn/OneMore/issues/2124
-
-			if ($LASTEXITCODE -eq 0 -and $Architecture -eq 'ARM64')
+			if ($LASTEXITCODE -eq 0)
 			{
 				$msi = Get-ChildItem "bin\$msiArch\Debug\OneMore_*.msi" | Select-Object -First 1
 				if ($msi)
 				{
-					# Build Burn bundle (.exe) while the MSI is still in its output location;
-					# Bundle.wxs resolves the MSI via a relative path from OneMoreBundle/.
 					$bundleExe = $null
-					Push-Location ..\OneMoreBundle
-					try
+					if  ($Architecture -eq 'ARM64')
 					{
-						$bundleCmd = "& '$msbuild' OneMoreBundle.wixproj" +
-							" /Restore" +
-							" /p:Platform=$bundleArch" +
-							" /p:Configuration=Debug" +
-							" /p:ProductVersion=$ver"
+						# only burn the bundle for ARM64...
+						# this could change in the future to solve permission issues writing to TEMP!
+						# see https://github.com/stevencohn/OneMore/issues/2124
 
-						# ARM64: signal Bundle.wxs to reference the x64 MSI instead of ARM64
-						if ($Architecture -eq 'ARM64')
+						# Build Burn bundle (.exe) while the MSI is still in its output location;
+						# Bundle.wxs resolves the MSI via a relative path from OneMoreBundle/.
+
+						Push-Location ..\OneMoreBundle
+						try
 						{
-							$bundleCmd += " /p:MixedBundle=true"
+							$bundleCmd = "& '$msbuild' OneMoreBundle.wixproj" +
+								" /Restore" +
+								" /p:Platform=$bundleArch" +
+								" /p:Configuration=Debug" +
+								" /p:ProductVersion=$ver"
+
+							# ARM64: signal Bundle.wxs to reference the x64 MSI instead of ARM64
+							if ($Architecture -eq 'ARM64')
+							{
+								$bundleCmd += " /p:MixedBundle=true"
+							}
+
+							$bundleCmd += " /nologo /m"
+							Write-Host $bundleCmd -ForegroundColor DarkGray
+							Invoke-Expression $bundleCmd
+							if ($LASTEXITCODE -eq 0)
+							{
+								$bundleExe = Get-ChildItem "bin\$bundleArch\Debug\OneMore_*.exe" | Select-Object -First 1
+							}
 						}
-
-						$bundleCmd += " /nologo /m"
-						Write-Host $bundleCmd -ForegroundColor DarkGray
-						Invoke-Expression $bundleCmd
-						if ($LASTEXITCODE -eq 0)
+						finally
 						{
-							$bundleExe = Get-ChildItem "bin\$bundleArch\Debug\OneMore_*.exe" | Select-Object -First 1
+							Pop-Location
 						}
 					}
-					finally
+					else
 					{
-						Pop-Location
-					}
+						# ARM64: MSI is x64 content embedded in the ARM64 bundle; don't distribute
+						# the MSI separately (the bundle EXE is the distributable for this variant).
 
-					# ARM64: MSI is x64 content embedded in the ARM64 bundle; don't distribute
-					# the MSI separately (the bundle EXE is the distributable for this variant).
-					if ($Architecture -ne 'ARM64')
-					{
 						$dest = "$home\Downloads\OneMore_${ver}_Setup${Architecture}.msi"
 						Move-Item $msi $dest -Force -Confirm:$false
 						Write-Host "... $Architecture MSI moved to $dest" -ForegroundColor DarkYellow
@@ -535,8 +539,8 @@ Begin
 						if (Get-Command checksum -ErrorAction SilentlyContinue)
 						{
 							$sum = (checksum -t sha256 $dest)
-							Write-Host "... $Architecture checksum: $sum" -ForegroundColor DarkYellow
-							$script:checksums += "$Architecture checksum: $sum"
+							Write-Host "... $Architecture = $sum" -ForegroundColor DarkYellow
+							$script:checksums += "$Architecture = $sum"
 						}
 					}
 
@@ -551,8 +555,8 @@ Begin
 						if (Get-Command checksum -ErrorAction SilentlyContinue)
 						{
 							$sum = (checksum -t sha256 $exeDest)
-							Write-Host "... $Architecture bundle checksum: $sum" -ForegroundColor DarkYellow
-							$script:checksums += "$Architecture bundle checksum: $sum"
+							Write-Host "... $Architecture bundle = $sum" -ForegroundColor DarkYellow
+							$script:checksums += "$Architecture bundle = $sum"
 						}
 					}
 				}
@@ -569,7 +573,7 @@ Begin
 		if ($script:checksums.Count -gt 0)
 		{
 			Write-Host "`n... checksums" -ForegroundColor Cyan
-			$script:checksums | foreach { Write-Host "... $_" -ForegroundColor DarkYellow }
+			$script:checksums | foreach { Write-Host $_ -ForegroundColor DarkYellow }
 		}
 	}
 }
