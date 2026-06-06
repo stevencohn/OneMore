@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2021 Steven M Cohn.  All rights reserved.
+// Copyright © 2021 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace OneMoreCalendar
@@ -99,9 +99,9 @@ namespace OneMoreCalendar
 			get
 			{
 				var element = root.Elements("theme").FirstOrDefault();
-				if (element != null)
+				if (element is not null && Enum.TryParse<ThemeMode>(element.Value, out var mode))
 				{
-					return (ThemeMode)Enum.Parse(typeof(ThemeMode), element.Value);
+					return mode;
 				}
 
 				return ThemeMode.System;

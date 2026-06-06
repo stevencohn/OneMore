@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2021 Steven M Cohn.  All rights reserved.
+// Copyright © 2021 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace OneMoreCalendar
@@ -11,9 +11,9 @@ namespace OneMoreCalendar
 	{
 		public Notebook(XElement element)
 		{
-			Color = element.Attribute("color").Value;
-			ID = element.Attribute("ID").Value;
-			Name = element.Attribute("name").Value;
+			Color = element.Attribute("color")?.Value ?? string.Empty;
+			ID = element.Attribute("ID")?.Value ?? string.Empty;
+			Name = element.Attribute("name")?.Value ?? string.Empty;
 		}
 
 
