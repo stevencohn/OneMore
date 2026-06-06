@@ -189,7 +189,7 @@ namespace OneMoreCalendar
 		{
 			contentPanel.Controls.Clear();
 
-			if (detailView == null)
+			if (detailView is null)
 			{
 				detailView = new DetailView
 				{
@@ -253,13 +253,9 @@ namespace OneMoreCalendar
 
 
 		private SnapshotForm snapForm;
-		private void SnappedPage(object sender, CalendarSnapshotEventArgs e)
+		private async void SnappedPage(object sender, CalendarSnapshotEventArgs e)
 		{
-			var path = Task.Run(async () =>
-			{
-				return await new OneNoteProvider().Export(e.Page.PageID);
-			}
-			).Result;
+			var path = await new OneNoteProvider().Export(e.Page.PageID);
 
 			Logger.Current.WriteLine($"exported page '{e.Page.Title}' to {path}");
 
@@ -277,7 +273,7 @@ namespace OneMoreCalendar
 
 		private void DeactivateSnap(object sender, EventArgs e)
 		{
-			if (snapForm != null)
+			if (snapForm is not null)
 			{
 				var path = snapForm.Path;
 				snapForm.Dispose();
@@ -303,7 +299,7 @@ namespace OneMoreCalendar
 
 		private void ShowPageStatus(object sender, CalendarPageEventArgs e)
 		{
-			if (e.Page != null)
+			if (e.Page is not null)
 			{
 				statusLabel.Text = $"{e.Page.Path} > {e.Page.Title}";
 				statusCreatedLabel.Text = $"Created: {e.Page.Created.ToShortFriendlyString()}";

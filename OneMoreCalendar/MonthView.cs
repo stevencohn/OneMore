@@ -663,7 +663,7 @@ namespace OneMoreCalendar
 
 					foreach (var page in empties)
 					{
-						if (page.Hyperlink.StartsWith("onenote:https:"))
+						if (page.Hyperlink is not null && page.Hyperlink.StartsWith("onenote:https:"))
 						{
 							// hyperlink is correct, just strip onenote: part
 							page.Hyperlink = page.Hyperlink.Substring(8);

@@ -58,18 +58,19 @@ namespace OneMoreCalendar
 		/// <returns>The original image with modified pixels</returns>
 		public static Bitmap MapColor(this Bitmap original, Color newColor)
 		{
+			var result = new Bitmap(original.Width, original.Height);
 			for (int x = 0; x < original.Width; x++)
 			{
 				for (int y = 0; y < original.Height; y++)
 				{
-					original.SetPixel(x, y,
+					result.SetPixel(x, y,
 						Color.FromArgb(
 							original.GetPixel(x, y).A,
 							newColor.R, newColor.G, newColor.B));
 				}
 			}
 
-			return original;
+			return result;
 		}
 	}
 }
