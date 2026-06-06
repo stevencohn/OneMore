@@ -182,18 +182,32 @@ namespace River.OneMoreAddIn
 				IntPtr hWinEventHook, uint eventType, IntPtr hwnd,
 				int idObject, int idChild, uint dwEventThread, uint dwmsEventTime)
 			{
-				Native.GetWindowThreadProcessId(Native.GetForegroundWindow(), out var pid);
-				//Logger.Current.WriteLine($"hotkey event:{eventType} pid:{pid} thread:{dwEventThread}");
+				//Logger.Current.WriteLine($"hotkey event:{eventType} hwnd:{hwnd} thread:{dwEventThread}");
+
+				if (eventType == Native.EVENT_SYSTEM_MINIMIZESTART)
+				{
+					// hwnd is the window being minimized; unregister if it belongs to OneNote
+					Native.GetWindowThreadProcessId(hwnd, out var hwndPid);
+					if (hwndPid == oneNotePID && registered && registeredKeys.Count > 0)
+					{
+						//Logger.Current.WriteLine("hotkey unregistering (minimize)");
+						registeredKeys.ForEach(k => Native.UnregisterHotKey(mhandle, k.Id));
+						registered = false;
+					}
+
+					return;
+				}
 
 				if (eventType == Native.EVENT_SYSTEM_FOREGROUND ||
-					eventType == Native.EVENT_SYSTEM_MINIMIZESTART ||
 					eventType == Native.EVENT_SYSTEM_MINIMIZEEND)
 				{
-					// threadId is the OneNote.exe process main UI thread
-					// msgThreadId is the dllhost.exe process thread hosting this MessageWindow
-					// Both are needed because threadId will be current when switching back to
-					// OneNote.exe from another app; while msgThreadId will be current when
-					// opening a OneMore dialog such as "Search and Replace"
+					// Use hwnd rather than GetForegroundWindow() to avoid a TOCTOU race:
+					// WINEVENT_OUTOFCONTEXT posts the callback asynchronously, so by the time
+					// we run, GetForegroundWindow() may no longer match the window that fired
+					// the event. hwnd carries the state at event-generation time.
+					// - FOREGROUND: hwnd is the window gaining focus
+					// - MINIMIZEEND: hwnd is the window being restored (OneNote)
+					Native.GetWindowThreadProcessId(hwnd, out var pid);
 
 					if (pid == oneNotePID)
 					{
@@ -210,7 +224,7 @@ namespace River.OneMoreAddIn
 					{
 						if (registered && registeredKeys.Count > 0)
 						{
-							//Logger.Current.WriteLine("hotkey uregistering");
+							//Logger.Current.WriteLine("hotkey unregistering");
 							registeredKeys.ForEach(k =>
 								Native.UnregisterHotKey(mhandle, k.Id));
 
