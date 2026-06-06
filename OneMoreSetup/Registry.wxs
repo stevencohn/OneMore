@@ -62,7 +62,7 @@
                      ForceCreateOnInstall="yes">
           <RegistryValue Value="mscoree.dll" Type="string" />
           <RegistryValue Name="ThreadingModel" Value="Both" Type="string" />
-          <RegistryValue Name="CodeBase" Value="[#OneMoreAddInDll]" Type="string" />
+          <RegistryValue Name="CodeBase" Value="[INSTALLDIR]River.OneMoreAddIn.dll" Type="string" />
           <RegistryValue Name="Class" Value="River.OneMoreAddIn.AddIn" Type="string" />
           <RegistryValue Name="RuntimeVersion" Value="v4.0.30319" Type="string" />
           <RegistryValue Name="Assembly" Value="River.OneMoreAddIn, Version=$(var.ProductVersion), Culture=neutral, PublicKeyToken=null" Type="string" />
@@ -71,7 +71,7 @@
                      Key="CLSID\{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}\InprocServer32\$(var.ProductVersion)"
                      ForceCreateOnInstall="yes">
           <RegistryValue Name="Assembly" Value="River.OneMoreAddIn, Version=$(var.ProductVersion), Culture=neutral, PublicKeyToken=null" Type="string" />
-          <RegistryValue Name="CodeBase" Value="[#OneMoreAddInDll]" Type="string" />
+          <RegistryValue Name="CodeBase" Value="[INSTALLDIR]River.OneMoreAddIn.dll" Type="string" />
           <RegistryValue Name="RuntimeVersion" Value="v4.0.30319" Type="string" />
           <RegistryValue Name="Class" Value="River.OneMoreAddIn.AddIn" Type="string" />
         </RegistryKey>

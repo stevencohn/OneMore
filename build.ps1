@@ -484,7 +484,11 @@ Begin
 
 			Invoke-Expression $cmd
 
-			if ($LASTEXITCODE -eq 0)
+			# only burn the bundle for ARM64...
+			# this could change in the future to solve permission issues writing to TEMP!
+			# see https://github.com/stevencohn/OneMore/issues/2124
+
+			if ($LASTEXITCODE -eq 0 -and $Architecture -eq 'ARM64')
 			{
 				$msi = Get-ChildItem "bin\$msiArch\Debug\OneMore_*.msi" | Select-Object -First 1
 				if ($msi)
