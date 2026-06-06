@@ -98,10 +98,18 @@ P {
   line-height: 125% !important;
 }
 
+P:has(> code) {
+  line-height: 100% !important;
+}
+
 TD P {
   margin-top: 0px !important;
   margin-bottom: 0px !important;
   line-height: var(--font-size) !important;
+}
+
+TD P:has(> code) {
+  line-height: 100% !important;
 }
 
 cite {
