@@ -28,6 +28,6 @@ jobs:
           count=0
           for id in $ids; do
             gh api --method DELETE "repos/${{ github.repository }}/actions/runs/$id"
-            ((count++))
+            count=$(( count + 1 ))
           done
           echo "Deleted $count runs for $key"
