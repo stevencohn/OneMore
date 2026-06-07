@@ -39,7 +39,7 @@
     },
     {
       // "key" : 123
-      "pattern": "(\".*?\")\\s*:\\s*(-?[0-9]{1,}(?:\\.[0-9]{1,})?)",
+      "pattern": "(\"[^\"]*\")\\s*:\\s*(-?[0-9]{1,}(?:\\.[0-9]{1,})?)",
       "captures": [
         "JsonKey",
         "Number"
@@ -47,7 +47,7 @@
     },
     {
       // "key" : "value"
-      "pattern": "(\".*?\")\\s*:\\s*(\".*?\")",
+      "pattern": "(\"[^\"]*\")\\s*:\\s*(\"[^\"]*\")",
       "captures": [
         "JsonKey",
         "String"
@@ -55,7 +55,7 @@
     },
     {
       // "key" : [
-      "pattern": "(\".*?\")\\s*:\\s*(\\[)",
+      "pattern": "(\"[^\"]*\")\\s*:\\s*(\\[)",
       "captures": [
         "JsonKey",
         "Keyword"
@@ -63,15 +63,22 @@
     },
     {
       // "key" : true | false | null
-      "pattern": "(\".*?\")\\s*:\\s*(true|false|null)\\b",
+      "pattern": "(\"[^\"]*\")\\s*:\\s*(true|false|null)\\b",
       "captures": [
         "JsonKey",
         "Keyword"
       ]
     },
     {
+      // "key" : { (key whose value is an object — no value captured on same line)
+      "pattern": "(\"[^\"]*\")\\s*:",
+      "captures": [
+        "JsonKey"
+      ]
+    },
+    {
       // "string"
-      "pattern": "(\".*?\")",
+      "pattern": "(\"[^\"]*\")",
       "captures": [
         "String"
       ]
