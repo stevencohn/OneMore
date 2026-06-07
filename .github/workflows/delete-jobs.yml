@@ -1,0 +1,33 @@
+name: Delete Workflow Runs
+
+on:
+  workflow_dispatch:
+    inputs:
+      workflow_key:
+        description: 'Workflow key (e.g. pr-issue-comment-on-merge)'
+        required: true
+        type: string
+
+jobs:
+  delete:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+
+    steps:
+      - name: Delete all runs for workflow
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          key="${{ inputs.workflow_key }}"
+          [[ "$key" != *.yml ]] && key="${key}.yml"
+
+          ids=$(gh api "repos/${{ github.repository }}/actions/workflows/$key/runs" \
+            --paginate --jq '.workflow_runs[].id')
+
+          count=0
+          for id in $ids; do
+            gh api --method DELETE "repos/${{ github.repository }}/actions/runs/$id"
+            ((count++))
+          done
+          echo "Deleted $count runs for $key"
