@@ -11,7 +11,7 @@
 
 .offcanvas-body {
     width: 300px;
-    margin-top: 100px;
+    margin-top: 20px;
     background-color: #EBE5E1;
 }
 
@@ -61,7 +61,25 @@
 #sidebar {
     min-width: 300px;
     max-width: 300px;
-    min-height: 100vh;
+}
+
+body.sidebar-layout #sidebar {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 300px;
+    height: calc(100vh - 60px);
+    overflow-y: auto;
+}
+
+body.sidebar-layout #content {
+    position: fixed;
+    top: 60px;
+    left: 300px;
+    right: 0;
+    bottom: 0;
+    overflow-y: auto;
+    padding: 20px 30px;
 }
 
 @media (max-width: 768px) {
