@@ -35,7 +35,9 @@ namespace OneMoreCli
 		{
 			var pipeName = GetPipeName();
 			if (string.IsNullOrEmpty(pipeName))
+			{
 				return false;
+			}
 
 			NamedPipeClientStream pipe = null;
 			try

@@ -196,7 +196,9 @@ namespace OneMoreCli
 		{
 			// Preferred path: delegate to the running add-in via the named pipe
 			if (await AddinBridge.TryRun(command, parameters))
+			{
 				return;
+			}
 
 			// ICliInteractiveCommand signals that the command needs OneNote running as a
 			// full UI process. Some APIs (e.g. Publish) are unavailable against the

@@ -493,19 +493,18 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			var tpath = string.IsNullOrEmpty(path) ? tempdir : Path.Combine(tempdir, path);
-			var filename = PathHelper.GetUniqueQualifiedFileName(tpath, ref name, ".htm");
-
-			if (filename is not null)
+			var tempPath = string.IsNullOrEmpty(path) ? tempdir : Path.Combine(tempdir, path);
+			var filename = PathHelper.GetUniqueQualifiedFileName(tempPath, name, ".htm");
+			if (filename is null)
 			{
-				filename = await archivist.ExportHTML(page, filename, path, bookScope);
-				await ArchiveAssets(Path.GetDirectoryName(filename), path);
-				pageCount++;
-				return name;
+				logger.WriteLine($"archive path too long [{tempPath}\\{name}.htm]");
+				return null;
 			}
 
-			logger.WriteLine($"archive path too long [{tpath}\\{name}.htm]");
-			return null;
+			filename = await archivist.ExportHTML(page, filename, path, bookScope);
+			await ArchiveAssets(Path.GetDirectoryName(filename), path);
+			pageCount++;
+			return name;
 		}
 
 
