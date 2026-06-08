@@ -254,6 +254,7 @@ namespace River.OneMoreAddIn.Commands
 			OneNote one, Models.Page page, string path, string ext, bool useUnderscores)
 		{
 			const string Untitled = " Untitled Page";
+			const int MaxTitleName = 40;
 
 			// (-2) to account for path separators, one for path\ and one for section\
 			var maxLength = PathHelper.MAX_PATH - path.Length - ext.Length - 2;
@@ -271,6 +272,11 @@ namespace River.OneMoreAddIn.Commands
 							t.GetCData()?.GetWrapper().Value.Trim().Length > 0))?
 					.TextValue(true)
 					.Trim();
+			}
+
+			if (!string.IsNullOrWhiteSpace(title) && title.Length > MaxTitleName)
+			{
+				title = title.Substring(0, MaxTitleName).Trim();
 			}
 
 			// third chance, default to "<section> Untitled Page"
