@@ -2,6 +2,8 @@
 // Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
+#pragma warning disable S2696
+
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Cli;
@@ -12,6 +14,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
+	using System.Xml.Linq;
 	using Resx = Properties.Resources;
 
 
@@ -53,10 +56,13 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
+			if (commandIsActive) { return; }
+			commandIsActive = true;
+
 			if (runningFromCli)
 			{
 				var cliParams = args.Length > 0 ? args[0] as CliParameterSet : null;
-				var notebook  = cliParams?.Get<string>("notebook");
+				//var notebook  = cliParams?.Get<string>("notebook");
 				cliParams.TryGet<string>("section", out var section);    // optional
 				var outpath   = cliParams?.Get<string>("outpath");
 				var formatStr = cliParams?.Get<string>("format");
@@ -72,7 +78,7 @@ namespace River.OneMoreAddIn.Commands
 				if (ext == null) return;
 
 				// pageId is always injected by the CLI framework (once per resolved page)
-				cliParams.TryGet<string>("pageId", out pageId);
+				cliParams.TryGet("pageId", out pageId);
 				await using var cliOne = new OneNote();
 
 				if (string.IsNullOrWhiteSpace(section))
@@ -90,9 +96,6 @@ namespace River.OneMoreAddIn.Commands
 				}
 				return;
 			}
-
-			if (commandIsActive) { return; }
-			commandIsActive = true;
 
 			try
 			{
@@ -187,24 +190,12 @@ namespace River.OneMoreAddIn.Commands
 						quickCount++;
 					}
 
-					var title = page.Title.Trim();
-
-					if (title.Length == 0)
+					var title = await GetBestTitle(one, page, path, ext, useUnderscores);
+					if (!string.IsNullOrWhiteSpace(title))
 					{
-						var pageinfo = await one.GetPageInfo(pageID);
-						var sectinfo = await one.GetSectionInfo(pageinfo.SectionId);
-						title = $"{PathHelper.CleanFileName(sectinfo.Name)} Untitled Page";
-					}
+						// cleaned, sized, and ready go; now make sure it's unique!
+						var filename = PathHelper.GetUniqueQualifiedFileName(path, title, ext);
 
-					if (useUnderscores)
-					{
-						title = title.Replace(' ', '_');
-					}
-
-					// cleaned, sized, and ready go!
-					var filename = PathHelper.GetUniqueQualifiedFileName(path, ref title, ext);
-					if (filename is not null)
-					{
 						progress.SetMessage(filename);
 						progress.Increment();
 
@@ -243,9 +234,65 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			SaveDefaultPath(path);
+			if (savedCount > 0)
+			{
+				SaveDefaultPath(path);
+				ShowMessage(string.Format(Resx.SaveAsMany_Success, savedCount, pageIDs.Count, path));
+			}
+		}
 
-			ShowMessage(string.Format(Resx.SaveAsMany_Success, savedCount, pageIDs.Count, path));
+
+		private static async Task<string> GetBestTitle(
+			OneNote one, Models.Page page, string path, string ext, bool useUnderscores)
+		{
+			const string Untitled = " Untitled Page";
+
+			// (-2) to account for path separators, one for path\ and one for section\
+			var maxLength = PathHelper.MAX_PATH - path.Length - ext.Length - 2;
+
+			// first chance, use the page title
+			var title = page.Title?.Trim() ?? string.Empty;
+
+			// second chance, use page content, like OneNote does when title is empty
+			if (string.IsNullOrWhiteSpace(title))
+			{
+				title = page.BodyOutlines
+					.Descendants(page.Namespace + "OE")
+					.FirstOrDefault(e =>
+						e.Elements(page.Namespace + "T").Any(t =>
+							t.GetCData()?.GetWrapper().Value.Trim().Length > 0))?
+					.TextValue(true)
+					.Trim();
+			}
+
+			// third chance, default to "<section> Untitled Page"
+			if (string.IsNullOrWhiteSpace(title))
+			{
+				var pageInfo = await one.GetPageInfo(page.PageId);
+				var sectInfo = await one.GetSectionInfo(pageInfo.SectionId);
+				var secName = PathHelper.CleanFileName(sectInfo.Name);
+				if (path.Length + 1 + secName.Length + Untitled.Length + ext.Length > maxLength)
+				{
+					// shrink section name rather than Untitled part
+					secName = secName.Substring(0, maxLength - Untitled.Length).Trim();
+				}
+
+				title = $"{secName}{Untitled}";
+			}
+			else if (path.Length + 1 + title.Length + ext.Length > maxLength)
+			{
+				// shrink title and keep room for (counter) if needed
+				title = title.Substring(0, maxLength).Trim();
+			}
+
+			title = PathHelper.CleanFileName(title);
+
+			if (useUnderscores)
+			{
+				title = title.Replace(' ', '_');
+			}
+
+			return title;
 		}
 
 
@@ -279,34 +326,9 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var page = await one.GetPage(pageId, OneNote.PageDetail.BinaryData);
 
-			if (page.Title == null)
-			{
-				page.SetTitle(Resx.phrase_QuickNote);
-			}
-
-			var title = page.Title?.Trim() ?? string.Empty;
-
-			if (title.Length == 0)
-			{
-				var pageInfo = await one.GetPageInfo(pageId);
-				var sectInfo = await one.GetSectionInfo(pageInfo.SectionId);
-				title = $"{PathHelper.CleanFileName(sectInfo.Name)} Untitled Page";
-			}
-
-			// CLI always overwrites existing files — no numbered variants.
-			// Use the full MAX_PATH budget (no ÷2) since the CLI never creates attachment subfolders.
-			title = PathHelper.CleanFileName(title);
-			var maxName = PathHelper.MAX_PATH - path.Length - ext.Length - 1;
-			if (maxName <= PathHelper.MIN_NAME)
-			{
-				logger.WriteLine($"export path too long [{path}\\{title}{ext}]");
-				return;
-			}
-			if (title.Length > maxName)
-			{
-				title = title.Substring(0, maxName).Trim();
-			}
-			var filename = Path.Combine(path, title + ext);
+			var title = await GetBestTitle(one, page, path, ext, true);
+			// cleaned, sized, and ready go; now make sure it's unique!
+			var filename = PathHelper.GetUniqueQualifiedFileName(path, title, ext);
 
 			var archivist = new Archivist(one);
 

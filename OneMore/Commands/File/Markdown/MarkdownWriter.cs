@@ -135,7 +135,10 @@ namespace River.OneMoreAddIn.Commands
 			{
 				saveAttachments = true;
 
-				writer.WriteLine($"# {page.Title}");
+				if (page.Title?.Length > 0)
+				{
+					writer.WriteLine($"# {page.Title}");
+				}
 
 				page.Root.Elements(ns + "Outline")
 					.Elements(ns + "OEChildren")

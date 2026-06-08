@@ -17,10 +17,14 @@ namespace River.OneMoreAddIn
 	/// </remarks>
 	internal static class PathHelper
 	{
+		// unique qualifier appended to filename: " (123)"
+		public const int COUNTER_WIDTH = 6;
+
 		// in Windows this should be 260 but OneNote.Export further restricts it to 239
-		public const int MAX_PATH = 239;
-		// shortest filename, allowing 3 chars plus counter " (123)"
-		public const int MIN_NAME = 9;
+		public const int MAX_PATH = 239 - COUNTER_WIDTH;
+
+		// shortest filename, allowing 3 chars plus counter
+		public const int MIN_NAME = 3 + COUNTER_WIDTH;
 
 		//private const string LongKey = @"SYSTEM\CurrentControlSet\Control\FileSystem\LongPathsEnabled";
 
@@ -69,8 +73,7 @@ namespace River.OneMoreAddIn
 		/// <param name="name"></param>
 		/// <param name="ext"></param>
 		/// <returns></returns>
-		public static string GetUniqueQualifiedFileName(
-			string path, ref string name, string ext)
+		public static string GetUniqueQualifiedFileName(string path, string name, string ext)
 		{
 			// max length of FileNameWithoutExt is half the width of MAX_PATH minus the length
 			// of the root path (+1 for path separator). Half because the name is used again
@@ -108,7 +111,6 @@ namespace River.OneMoreAddIn
 				full = Path.Combine(path, $"{nameCounter}{ext}");
 			}
 
-			name = nameCounter;
 			return full;
 		}
 
