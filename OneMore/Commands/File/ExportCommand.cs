@@ -61,40 +61,48 @@ namespace River.OneMoreAddIn.Commands
 
 			if (runningFromCli)
 			{
-				var cliParams = args.Length > 0 ? args[0] as CliParameterSet : null;
-				//var notebook  = cliParams?.Get<string>("notebook");
-				cliParams.TryGet<string>("section", out var section);    // optional
-				var outpath   = cliParams?.Get<string>("outpath");
-				var formatStr = cliParams?.Get<string>("format");
-
-				if (!Enum.TryParse<OneNote.ExportFormat>(
-					formatStr, ignoreCase: true, out var format))
+				try
 				{
-					logger.WriteLine($"unknown export format: {formatStr}");
+					var cliParams = args.Length > 0 ? args[0] as CliParameterSet : null;
+					//var notebook  = cliParams?.Get<string>("notebook");
+					cliParams.TryGet<string>("section", out var section);    // optional
+					var outpath = cliParams?.Get<string>("outpath");
+					var formatStr = cliParams?.Get<string>("format");
+
+					if (!Enum.TryParse<OneNote.ExportFormat>(
+						formatStr, ignoreCase: true, out var format))
+					{
+						logger.WriteLine($"unknown export format: {formatStr}");
+						return;
+					}
+
+					var ext = GetExtForFormat(format);
+					if (ext == null) return;
+
+					// pageId is always injected by the CLI framework (once per resolved page)
+					cliParams.TryGet("pageId", out pageId);
+					await using var cliOne = new OneNote();
+
+					if (string.IsNullOrWhiteSpace(section))
+					{
+						// Notebook-level: framework iterates all pages; group output by section subfolder
+						var pageInfo = await cliOne.GetPageInfo(pageId);
+						var sectInfo = await cliOne.GetSectionInfo(pageInfo.SectionId);
+						var sectionFolder = Path.Combine(outpath, PathHelper.CleanFileName(sectInfo.Name));
+						Directory.CreateDirectory(sectionFolder);
+						await ExportOneCli(pageId, cliOne, sectionFolder, format, ext);
+					}
+					else
+					{
+						await ExportOneCli(pageId, cliOne, outpath, format, ext);
+					}
+
 					return;
 				}
-
-				var ext = GetExtForFormat(format);
-				if (ext == null) return;
-
-				// pageId is always injected by the CLI framework (once per resolved page)
-				cliParams.TryGet("pageId", out pageId);
-				await using var cliOne = new OneNote();
-
-				if (string.IsNullOrWhiteSpace(section))
+				finally
 				{
-					// Notebook-level: framework iterates all pages; group output by section subfolder
-					var pageInfo = await cliOne.GetPageInfo(pageId);
-					var sectInfo = await cliOne.GetSectionInfo(pageInfo.SectionId);
-					var sectionFolder = Path.Combine(outpath, PathHelper.CleanFileName(sectInfo.Name));
-					Directory.CreateDirectory(sectionFolder);
-					await ExportOneCli(pageId, cliOne, sectionFolder, format, ext);
+					commandIsActive = false;
 				}
-				else
-				{
-					await ExportOneCli(pageId, cliOne, outpath, format, ext);
-				}
-				return;
 			}
 
 			try
