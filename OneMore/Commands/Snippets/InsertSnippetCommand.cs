@@ -98,7 +98,7 @@ namespace River.OneMoreAddIn.Commands
 				var success = await clippy.SetHtml(snippet);
 				if (success)
 				{
-					await ClipboardProvider.Paste(true);
+					await ClipboardProvider.Paste();
 				}
 				else
 				{

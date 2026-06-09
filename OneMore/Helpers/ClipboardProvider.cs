@@ -155,18 +155,25 @@ namespace River.OneMoreAddIn
 
 		/// <summary>
 		/// Initiates a paste operation by emitting a Ctrl+V keypress and delays the current
-		/// thread so that Windows and the active application have time to complete the paste
+		/// thread so that Windows and the active application have time to complete the paste.
+		/// Releases any held Shift or Alt modifier keys first so that hotkey-triggered callers
+		/// don't accidentally send Ctrl+Shift+V or Ctrl+Alt+V instead of plain Ctrl+V.
 		/// </summary>
-		/// <param name="delayBefore">
-		/// Adds a delay prior to the paste for cases where we need to wait for preceding
-		/// operations to stabilize
-		/// </param>
 		/// <returns></returns>
-		public static async Task Paste(bool delayBefore = false)
+		public static async Task Paste()
 		{
-			if (delayBefore)
+			// Release held modifier keys before simulating Ctrl+V. When invoked via a hotkey
+			// (e.g. Ctrl+Shift+V), the modifier keys are still physically down and would cause
+			// Windows to intercept the simulated Ctrl+V as the original hotkey sequence again.
+			var mods = Control.ModifierKeys;
+			if (mods.HasFlag(Keys.Shift))
 			{
-				await Task.Delay(200);
+				new InputSimulator().Keyboard.KeyUp(VirtualKeyCode.SHIFT);
+			}
+
+			if (mods.HasFlag(Keys.Alt))
+			{
+				new InputSimulator().Keyboard.KeyUp(VirtualKeyCode.MENU);
 			}
 
 			new InputSimulator().Keyboard
