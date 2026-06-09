@@ -56,9 +56,9 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal abstract class DiagramCommand : Command
 	{
-		private string keyword;
-		private string errorMessage;
-		private IDiagramProvider provider;
+		protected string keyword;
+		protected string errorMessage;
+		protected IDiagramProvider provider;
 
 
 		protected DiagramCommand(string keyword)
@@ -338,7 +338,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private byte[] RenderDiagram(string text)
+		protected virtual byte[] RenderDiagram(string text)
 		{
 			text = Regex.Replace(text, @"<br>([\n\r]+)", "$1");
 			text = Regex.Replace(text, @"<a\b[^>]*>(.*?)</a>", "$1");

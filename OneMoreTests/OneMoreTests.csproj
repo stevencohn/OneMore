@@ -62,6 +62,7 @@
     <Compile Include="Builders\HierarchyBuilder.cs" />
     <Compile Include="Builders\PageBuilder.cs" />
     <Compile Include="Commands\Clean\ClearBackgroundCommandTests.cs" />
+    <Compile Include="Commands\Images\DiagramCommandTests.cs" />
     <Compile Include="Commands\Clean\RemoveAuthorsCommandTests.cs" />
     <Compile Include="Commands\Edit\AlterSizeCommandTests.cs" />
     <Compile Include="Commands\References\FootnoteCommandTests.cs" />
