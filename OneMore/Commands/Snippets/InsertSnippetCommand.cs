@@ -171,6 +171,12 @@ namespace River.OneMoreAddIn.Commands
 				await ClipboardProvider.Copy();
 
 				var html = await ClipboardProvider.GetHtml();
+				if (html is null)
+				{
+					logger.WriteLine("error reading clipboard HTML after copy");
+					return snippet;
+				}
+
 				html = ClipboardProvider.UnwrapHtml(html);
 
 				snippet = snippet.ReplaceIgnoreCase(BodyTag, html);

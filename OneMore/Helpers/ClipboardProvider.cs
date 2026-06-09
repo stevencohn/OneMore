@@ -116,6 +116,11 @@ namespace River.OneMoreAddIn
 			return await SingleThreaded.Invoke(() =>
 			{
 				var data = Win.Clipboard.GetDataObject();
+				if (data is null)
+				{
+					return null;
+				}
+
 				var formats = data.GetFormats();
 				var format = formats.FirstOrDefault(f => f.Contains("PNG"));
 				format ??= formats.FirstOrDefault(f => f.Contains("JPG") || f.Contains("JPEG"));
@@ -216,10 +221,12 @@ namespace River.OneMoreAddIn
 								"error in RestoreState; clipboard possibly locked by another application", ex);
 						}
 					}
+
+					stash.Clear();
+					stashedImage = null;
 				}
 			});
 
-			stash.Clear();
 			return success;
 		}
 
@@ -365,9 +372,10 @@ namespace River.OneMoreAddIn
 					{
 						stashedImage = Win.Clipboard.GetImage();
 					}
-					catch
+					catch (Exception exc)
 					{
 						stashedImage = null;
+						logger.WriteLine("error stashing clipboard image", exc);
 					}
 				}
 
@@ -418,10 +426,10 @@ namespace River.OneMoreAddIn
 			// file now to properly calculate offsets
 			var body = Regex.Replace(html, @"(?<!\r)\n", "\r\n");
 
-			var index = html.IndexOf(StartFragmentLine);
+			var index = body.IndexOf(StartFragmentLine);
 			if (index > 0)
 			{
-				head = html.Substring(0, index).Trim();
+				head = body.Substring(0, index).Trim();
 				body = body.Substring(index + StartFragmentLine.Length).Trim();
 			}
 			else
@@ -451,7 +459,7 @@ namespace River.OneMoreAddIn
 			var headLen = Encoding.UTF8.GetByteCount(head) + NLCount;
 
 			builder.AppendLine(StartFragmentLine);
-			var startFragment = startHtml + headLen + StartFragmentLine.Length;
+			var startFragment = startHtml + headLen + StartFragmentLine.Length + NLCount;
 
 			builder.AppendLine(body);
 			var bodyLen = Encoding.UTF8.GetByteCount(body) + NLCount;
