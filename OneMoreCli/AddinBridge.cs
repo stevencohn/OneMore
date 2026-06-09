@@ -128,7 +128,6 @@ namespace OneMoreCli
 		/// Serialises <paramref name="commandName"/> and <paramref name="parameters"/> into a
 		/// <c>onemorecli://CommandName?key=value&amp;…</c> URI string for the add-in pipe.
 		/// Values are percent-encoded with <see cref="Uri.EscapeDataString"/>.
-		/// The injected <c>pageId</c> key is excluded — the server side resolves pages itself.
 		/// </summary>
 		public static string BuildUri(string commandName, CliParameterSet parameters)
 		{
@@ -138,10 +137,6 @@ namespace OneMoreCli
 			var first = true;
 			foreach (var key in parameters.Keys)
 			{
-				// pageId is resolved server-side; don't forward it
-				if (key.Equals("pageId", StringComparison.OrdinalIgnoreCase))
-					continue;
-
 				if (parameters.TryGet<object>(key, out var value))
 				{
 					sb.Append(first ? '?' : '&');
