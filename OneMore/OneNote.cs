@@ -994,7 +994,7 @@ namespace River.OneMoreAddIn
 			var notebook = notebooks
 				.Elements(ns + "Notebook")
 				.FirstOrDefault(n => string.Equals(
-					n.Attribute("name")?.Value, parts[0],
+					n.Attribute("name")?.Value, parts[0].Trim(),
 					StringComparison.InvariantCultureIgnoreCase));
 
 			if (notebook == null)
@@ -1026,7 +1026,7 @@ namespace River.OneMoreAddIn
 					.FirstOrDefault(e =>
 						(e.Name.LocalName == "Section" || e.Name.LocalName == "SectionGroup") &&
 						string.Equals(
-							e.Attribute("name")?.Value, parts[i],
+							e.Attribute("name")?.Value, parts[i].Trim(),
 							StringComparison.InvariantCultureIgnoreCase));
 
 				if (node == null)
@@ -1056,7 +1056,7 @@ namespace River.OneMoreAddIn
 			if (pageName != "*")
 			{
 				pages = pages.Where(p => string.Equals(
-					p.Attribute("name")?.Value, pageName,
+					p.Attribute("name")?.Value?.Trim(), pageName.Trim(),
 					StringComparison.InvariantCultureIgnoreCase));
 			}
 
