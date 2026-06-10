@@ -832,6 +832,86 @@
     <value>自定义表格样式</value>
     <comment>dialog</comment>
   </data>
+  <data name="EmbedCommand_EmbeddedFrom" xml:space="preserve">
+    <value>嵌入自 {0}</value>
+    <comment>link</comment>
+  </data>
+  <data name="EmbedCommand_NoClipboardPage" xml:space="preserve">
+    <value>找不到链接的页面。确保源笔记本在 OneNote 中打开。</value>
+    <comment>message box</comment>
+  </data>
+  <data name="EmbedCommand_NoContent" xml:space="preserve">
+    <value>源页面不包含指定标签内的内容</value>
+    <comment>message box</comment>
+  </data>
+  <data name="EmbedCommand_NoParagraph" xml:space="preserve">
+    <value>在源页面中找不到链接的段落</value>
+    <comment>message box</comment>
+  </data>
+  <data name="EmbedCommand_NoSource" xml:space="preserve">
+    <value>源内容不再可用</value>
+    <comment>message box</comment>
+  </data>
+  <data name="EmbedCommand_Select" xml:space="preserve">
+    <value>选择页面</value>
+    <comment>quickdialog title</comment>
+  </data>
+  <data name="EmbedCommand_SelectIntro" xml:space="preserve">
+    <value>选择要从中嵌入内容的页面</value>
+    <comment>quickdialog intro</comment>
+  </data>
+  <data name="EmbedDialog_beginTagLabel.Text" xml:space="preserve">
+    <value>开始标签</value>
+    <comment>label</comment>
+  </data>
+  <data name="EmbedDialog_endTagLabel.Text" xml:space="preserve">
+    <value>结束标签</value>
+    <comment>label</comment>
+  </data>
+  <data name="EmbedDialog_formattedRadio.Text" xml:space="preserve">
+    <value>格式化内容</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="EmbedDialog_indentCheck.Text" xml:space="preserve">
+    <value>缩进内容</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="EmbedDialog_noteLabel_After" xml:space="preserve">
+    <value>标记后的内容：{0}</value>
+    <comment>embed note, begin tag only</comment>
+  </data>
+  <data name="EmbedDialog_noteLabel_Before" xml:space="preserve">
+    <value>标签之前的内容：{0}</value>
+    <comment>embed note, end tag only</comment>
+  </data>
+  <data name="EmbedDialog_noteLabel_Between" xml:space="preserve">
+    <value>标签之间的内容：{0} 和 {1}</value>
+    <comment>embed note, both tags specified</comment>
+  </data>
+  <data name="EmbedDialog_noteLabel_FullPage" xml:space="preserve">
+    <value>整页</value>
+    <comment>embed note, no tags specified</comment>
+  </data>
+  <data name="EmbedDialog_plaintextRadio.Text" xml:space="preserve">
+    <value>纯文本</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="EmbedDialog_styleBox.Text" xml:space="preserve">
+    <value>普通的
+斜体
+灰色的
+引用
+引文</value>
+    <comment>style options, one per line</comment>
+  </data>
+  <data name="EmbedDialog_styleLabel.Text" xml:space="preserve">
+    <value>文字样式：</value>
+    <comment>label</comment>
+  </data>
+  <data name="EmbedDialog_Title" xml:space="preserve">
+    <value>嵌入选项</value>
+    <comment>dialog</comment>
+  </data>
   <data name="EmbedSubpageCommand_NoContent" xml:space="preserve">
     <value>源页面不包含任何内容</value>
     <comment>message box</comment>
@@ -3269,6 +3349,14 @@ ISO-code then comma then language name</comment>
   <data name="ribEditTableThemesButton_Screentip" xml:space="preserve">
     <value>编辑自定义自定义表格样式</value>
     <comment>ribbon table styles</comment>
+  </data>
+  <data name="ribEmbedButton_Label" xml:space="preserve">
+    <value>嵌入</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribEmbedButton_Screentip" xml:space="preserve">
+    <value>将另一个页面的内容嵌入到当前页面</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribEmbedSubpageButton_Label" xml:space="preserve">
     <value>嵌入页面</value>
@@ -5733,6 +5821,10 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Sort" xml:space="preserve">
     <value>排序</value>
+  </data>
+  <data name="word_Source" xml:space="preserve">
+    <value>来源</value>
+    <comment>word</comment>
   </data>
   <data name="word_Start" xml:space="preserve">
     <value>开始</value>

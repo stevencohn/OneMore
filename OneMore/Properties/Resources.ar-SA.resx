@@ -831,6 +831,86 @@
     <value>أنماط الجدول المخصصة</value>
     <comment>dialog</comment>
   </data>
+  <data name="EmbedCommand_EmbeddedFrom" xml:space="preserve">
+    <value>مضمن من {0}</value>
+    <comment>link</comment>
+  </data>
+  <data name="EmbedCommand_NoClipboardPage" xml:space="preserve">
+    <value>لا يمكن العثور على الصفحة المرتبطة. تأكد من أن دفتر الملاحظات المصدر مفتوح في OneNote.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="EmbedCommand_NoContent" xml:space="preserve">
+    <value>لا تحتوي صفحة المصدر على أي محتوى ضمن العلامات المحددة</value>
+    <comment>message box</comment>
+  </data>
+  <data name="EmbedCommand_NoParagraph" xml:space="preserve">
+    <value>لا يمكن العثور على الفقرة المرتبطة في الصفحة المصدر</value>
+    <comment>message box</comment>
+  </data>
+  <data name="EmbedCommand_NoSource" xml:space="preserve">
+    <value>المحتوى المصدر لم يعد متاحا</value>
+    <comment>message box</comment>
+  </data>
+  <data name="EmbedCommand_Select" xml:space="preserve">
+    <value>حدد الصفحة</value>
+    <comment>quickdialog title</comment>
+  </data>
+  <data name="EmbedCommand_SelectIntro" xml:space="preserve">
+    <value>حدد الصفحة المراد تضمين المحتوى منها</value>
+    <comment>quickdialog intro</comment>
+  </data>
+  <data name="EmbedDialog_beginTagLabel.Text" xml:space="preserve">
+    <value>علامة البدء</value>
+    <comment>label</comment>
+  </data>
+  <data name="EmbedDialog_endTagLabel.Text" xml:space="preserve">
+    <value>علامة النهاية</value>
+    <comment>label</comment>
+  </data>
+  <data name="EmbedDialog_formattedRadio.Text" xml:space="preserve">
+    <value>محتوى منسق</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="EmbedDialog_indentCheck.Text" xml:space="preserve">
+    <value>محتوى المسافة البادئة</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="EmbedDialog_noteLabel_After" xml:space="preserve">
+    <value>المحتوى بعد العلامة: {0}</value>
+    <comment>embed note, begin tag only</comment>
+  </data>
+  <data name="EmbedDialog_noteLabel_Before" xml:space="preserve">
+    <value>المحتوى قبل العلامة: {0}</value>
+    <comment>embed note, end tag only</comment>
+  </data>
+  <data name="EmbedDialog_noteLabel_Between" xml:space="preserve">
+    <value>المحتوى بين العلامتين: {0} و{1}</value>
+    <comment>embed note, both tags specified</comment>
+  </data>
+  <data name="EmbedDialog_noteLabel_FullPage" xml:space="preserve">
+    <value>صفحة كاملة</value>
+    <comment>embed note, no tags specified</comment>
+  </data>
+  <data name="EmbedDialog_plaintextRadio.Text" xml:space="preserve">
+    <value>نص عادي</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="EmbedDialog_styleBox.Text" xml:space="preserve">
+    <value>طبيعي
+مائل
+رمادي
+يقتبس
+الاقتباس</value>
+    <comment>style options, one per line</comment>
+  </data>
+  <data name="EmbedDialog_styleLabel.Text" xml:space="preserve">
+    <value>نمط النص:</value>
+    <comment>label</comment>
+  </data>
+  <data name="EmbedDialog_Title" xml:space="preserve">
+    <value>خيارات التضمين</value>
+    <comment>dialog</comment>
+  </data>
   <data name="EmbedSubpageCommand_NoContent" xml:space="preserve">
     <value>الصفحة المصدر لا تحتوي على محتوى</value>
     <comment>message box</comment>
@@ -3266,6 +3346,14 @@ ISO-code then comma then language name</comment>
   <data name="ribEditTableThemesButton_Screentip" xml:space="preserve">
     <value>تحرير أنماط الجدول المخصصة</value>
     <comment>ribbon table styles</comment>
+  </data>
+  <data name="ribEmbedButton_Label" xml:space="preserve">
+    <value>تضمين</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribEmbedButton_Screentip" xml:space="preserve">
+    <value>تضمين محتوى من صفحة أخرى في الصفحة الحالية</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribEmbedSubpageButton_Label" xml:space="preserve">
     <value>تضمين الصفحة</value>
@@ -5730,6 +5818,10 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Sort" xml:space="preserve">
     <value>نوع</value>
+  </data>
+  <data name="word_Source" xml:space="preserve">
+    <value>مصدر</value>
+    <comment>word</comment>
   </data>
   <data name="word_Start" xml:space="preserve">
     <value>يبدأ</value>

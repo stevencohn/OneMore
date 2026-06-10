@@ -1,0 +1,779 @@
+//************************************************************************************************
+// Copyright © 2026 Steven M Cohn. All rights reserved.
+//************************************************************************************************
+
+namespace River.OneMoreAddIn.Commands
+{
+	using OneMoreAddIn.Models;
+	using System;
+	using System.Collections.Generic;
+	using System.Linq;
+	using System.Text.RegularExpressions;
+	using System.Threading;
+	using System.Threading.Tasks;
+	using System.Windows.Forms;
+	using System.Xml.Linq;
+	using Resx = Properties.Resources;
+
+
+	/// <summary>
+	/// Embeds the body of a page, or a delimited section of a page, into the current page
+	/// with a Refresh link to resynchronize the content from the source.
+	/// </summary>
+	/// <remarks>
+	/// The embedded content is wrapped in a single-cell table with a visible border.
+	/// A Refresh link in the upper right of the cell allows the user to resync changes.
+	/// The source page (and optional objectId for paragraph linking) is identified either
+	/// from a OneNote URI on the clipboard or via the SelectLocation dialog.
+	/// Begin/end tag strings may be used to embed only a slice of the source page.
+	/// </remarks>
+	[CommandService]
+	internal class EmbedCommand : Command
+	{
+		private const string EmbedMetaName = "omEmbed";
+		private const string EmbedHeaderMeta = "omEmbedHeader";
+
+		// Placeholder for empty optional URL path segments in the refresh link.
+		// InvokeCommand splits on '/' with RemoveEmptyEntries, so a truly empty segment
+		// would collapse and shift every subsequent positional arg by one. Using this
+		// sentinel keeps the slot present; Execute decodes it back to empty string.
+		private const string EmptySegment = "\x01";
+
+
+		private sealed class SourceInfo
+		{
+			public IEnumerable<XElement> Snippets;
+			public string SourceId;
+			public Page Page;
+			public Outline Outline;
+			public string XmlObjectId;  // XML objectID attribute of the OE; null for page-mode embeds
+		}
+
+
+		private OneNote one;
+		private Page page;
+		private XNamespace ns;
+
+
+		public EmbedCommand()
+		{
+		}
+
+
+		// InvokeCommand applies HttpUtility.UrlDecode before handing args to Execute,
+		// so args are already decoded; Uri.UnescapeDataString is a harmless second pass.
+		// Replace EmptySegment sentinel with empty string so callers see a clean value.
+		private static string Decode(string raw) =>
+			Uri.UnescapeDataString(raw ?? string.Empty) is var v && v == EmptySegment
+				? string.Empty
+				: v;
+
+
+		public override async Task Execute(params object[] args)
+		{
+			if (args.Length > 0 && args[0] is string s && s == "refresh")
+			{
+				logger = Logger.Current;
+
+				var sourceId = args.Length > 1 ? args[1] as string : null;
+				var objectId = args.Length > 2
+					? Decode(args[2] as string)
+					: string.Empty;
+				var linkId = args.Length > 3 ? args[3] as string : null;
+				var beginTag = args.Length > 4
+					? Decode(args[4] as string)
+					: string.Empty;
+				var endTag = args.Length > 5
+					? Decode(args[5] as string)
+					: string.Empty;
+				var format = args.Length > 6
+					&& int.TryParse(args[6] as string, out var fi)
+					? (EmbedFormat)fi
+					: EmbedFormat.Formatted;
+				var style = args.Length > 7
+					&& int.TryParse(args[7] as string, out var si)
+					? (EmbedStyle)si
+					: EmbedStyle.Normal;
+
+				await UpdateContent(sourceId, objectId, linkId, beginTag, endTag, format, style);
+				IsCancelled = true;
+				return;
+			}
+
+			await EmbedContent();
+		}
+
+
+		// ========================================================================================
+		// Embed...
+
+		private async Task EmbedContent()
+		{
+			// check clipboard for a OneNote URI (from Copy Link to Page/Paragraph)
+			var clip = await ClipboardProvider.GetText();
+			if (!string.IsNullOrEmpty(clip))
+			{
+				var pageMatch = Regex.Match(clip, @"page-id=(\{[^}]+\})&");
+				if (pageMatch.Success)
+				{
+					await EmbedFromClipboard(clip, null);
+					return;
+				}
+			}
+
+			await using var o = new OneNote();
+			o.SelectLocation(
+				Resx.EmbedCommand_Select,
+				Resx.EmbedCommand_SelectIntro,
+				OneNote.Scope.Pages,
+				async (sid) => await Callback(sid, null));
+		}
+
+
+		private async Task EmbedFromClipboard(string clipUri, string objectId)
+		{
+			string sourceId = null;
+			string sourceName = null;
+			XElement container = null;
+
+			// Phase 1: pre-dialog — resolve source page, load current page, find insert point.
+			// Disposed before the dialog opens so its COM proxy cannot affect Phase 2.
+			await using (var o = new OneNote())
+			{
+				page = await o.GetPage();
+				if (page is null)
+				{
+					return;
+				}
+
+				ns = page?.Namespace;
+
+				try
+				{
+					// Remote (OneDrive) notebooks place two lines on the clipboard; the
+					// onenote: URI we need is always the last onenote: line.
+					var lines = clipUri.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+					var uriLine = (lines.LastOrDefault(l =>
+						l.TrimStart().StartsWith("onenote:", StringComparison.OrdinalIgnoreCase))
+						?? clipUri).Trim();
+
+					var link = OneNoteLinkParser.Parse(uriLine);
+
+					logger.WriteLine($"embed source: notebook=[{link.NotebookName}] " +
+						$"section=[{link.SectionName}] page=[{link.PageName}] " +
+						$"pageId=[{link.PageId}] objectId=[{link.ObjectId}] isLocal=[{link.IsLocal}]");
+
+					var pathParts = new List<string> { link.NotebookName };
+					pathParts.AddRange(link.SectionGroups);
+					pathParts.Add(link.SectionName);
+					pathParts.Add(link.PageName);
+
+					var joinedPath = string.Join("/", pathParts);
+
+					var pageIds = await o.FindPagesByPath(joinedPath);
+					sourceId = pageIds.FirstOrDefault();
+					if (sourceId != null)
+					{
+						sourceName = o.GetHierarchyNode(sourceId)?.Name ?? link.PageName;
+
+						logger.WriteLine(
+							$"found source page: {sourceName} ({sourceId}) " +
+							$"at path [{joinedPath}]");
+					}
+					else
+					{
+						logger.WriteLine($"page not found at path [{joinedPath}]");
+					}
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine("error resolving clipboard URI to page", exc);
+				}
+
+				if (string.IsNullOrEmpty(sourceId))
+				{
+					ShowError(Resx.EmbedCommand_NoClipboardPage);
+					return;
+				}
+
+				container = FindContainer();
+			}
+
+			if (container is null)
+			{
+				ShowError(Resx.Error_BodyContext);
+				return;
+			}
+
+			if (!ShowEmbedDialog(sourceName,
+				out var beginTag, out var endTag, out var format, out var style, out var indent))
+			{
+				return;
+			}
+
+			// Phase 2: post-dialog — fresh instance; no COM history from Phase 1 map building.
+			await using (one = new OneNote())
+			{
+				await Embed(sourceId, null, beginTag, endTag, format, style, indent, container);
+			}
+		}
+
+
+		private async Task Callback(string sourceId, string objectId)
+		{
+			if (string.IsNullOrEmpty(sourceId))
+			{
+				return;
+			}
+
+			string sourceName;
+			XElement container;
+
+			// Phase 1: pre-dialog — load current page and resolve source name.
+			await using (var o = new OneNote())
+			{
+				page = await o.GetPage();
+				ns = page?.Namespace;
+
+				if (page is null)
+				{
+					return;
+				}
+
+				sourceName = o.GetHierarchyNode(sourceId)?.Name ?? sourceId;
+				container = FindContainer();
+			}
+
+			if (container is null)
+			{
+				ShowError(Resx.Error_BodyContext);
+				return;
+			}
+
+			if (!ShowEmbedDialog(sourceName,
+				out var beginTag, out var endTag, out var format, out var style, out var indent))
+			{
+				return;
+			}
+
+			// Phase 2: post-dialog — fresh instance for source extraction and page update.
+			await using (one = new OneNote())
+			{
+				await Embed(sourceId, objectId, beginTag, endTag, format, style, indent, container);
+			}
+		}
+
+
+		private XElement FindContainer()
+		{
+			page.EnsureContentContainer();
+			return page.Root.Elements(ns + "Outline")
+				.Descendants(ns + "T")
+				.Where(e => e.Attribute("selected")?.Value == "all")
+				.Ancestors(ns + "OEChildren")
+				.FirstOrDefault();
+		}
+
+
+		private bool ShowEmbedDialog(
+			string sourceName,
+			out string beginTag, out string endTag,
+			out EmbedFormat format, out EmbedStyle style,
+			out bool indent)
+		{
+			using var dialog = new EmbedDialog(sourceName, page.Title);
+			if (dialog.ShowDialog(owner) != DialogResult.OK)
+			{
+				beginTag = endTag = null;
+				format = default;
+				style = default;
+				indent = false;
+				return false;
+			}
+
+			beginTag = dialog.BeginTag;
+			endTag = dialog.EndTag;
+			format = dialog.Format;
+			style = dialog.Style;
+			indent = dialog.Indent;
+			return true;
+		}
+
+
+		private async Task Embed(
+			string sourceId, string objectId,
+			string beginTag, string endTag,
+			EmbedFormat format, EmbedStyle style,
+			bool indent,
+			XElement container)
+		{
+			var source = await GetSource(sourceId, objectId, null, beginTag, endTag);
+			if (source is null || !source.Snippets.Any())
+			{
+				return;
+			}
+
+			var table = new Table(ns, 1, 1) { BordersVisible = true };
+
+			// if cursor is inside a table, inherit its width; otherwise use source outline width
+			XElement hostCell = container.Parent;
+			while (hostCell != null && hostCell.Name.LocalName != "Cell")
+			{
+				hostCell = hostCell.Parent;
+			}
+
+			if (hostCell is null)
+			{
+				var width = source.Outline?.GetWidth() ?? 0;
+				table.SetColumnWidth(0, width == 0 ? 500 : width);
+			}
+
+			try
+			{
+				await FillCell(table[0][0], source, beginTag, endTag, format, style);
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error in FillCell", exc);
+				return;
+			}
+
+			try
+			{
+				var editor = new PageEditor(page);
+				var inner = new Paragraph(
+					new Meta(EmbedMetaName, sourceId),
+					table.Root
+					);
+
+				editor.AddNextParagraph(indent
+					? new Paragraph(new XElement(ns + "OEChildren", inner))
+					: inner);
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error adding embed paragraph", exc);
+			}
+
+			await one.Update(page);
+		}
+
+
+		private async Task FillCell(
+			TableCell cell, SourceInfo source,
+			string beginTag, string endTag,
+			EmbedFormat format, EmbedStyle style)
+		{
+			var link = await one.GetHyperlinkWithRetry(source.Page.PageId,
+				source.XmlObjectId ?? string.Empty);
+
+			if (link is null)
+			{
+				throw new InvalidOperationException("unable to get hyperlink for source page");
+			}
+
+			var match = Regex.Match(link, @"page-id=({[^}]+?})");
+			var linkId = match.Success ? match.Groups[1].Value : string.Empty;
+
+			var mapper = new TagMapper(page);
+			mapper.MergeTagDefsFrom(source.Page);
+
+			var quickmap = page.MergeQuickStyles(source.Page);
+			var citationIndex = page.GetQuickStyle(Styles.StandardStyles.Citation).Index;
+
+			var encodedObjectId = Uri.EscapeDataString(source.XmlObjectId ?? EmptySegment);
+			var encodedBeginTag = Uri.EscapeDataString(string.IsNullOrEmpty(beginTag) ? EmptySegment : beginTag);
+			var encodedEndTag = Uri.EscapeDataString(string.IsNullOrEmpty(endTag) ? EmptySegment : endTag);
+
+			var refreshUrl =
+				$"onemore://EmbedCommand/refresh/{source.Page.PageId}/" +
+				$"{encodedObjectId}/{linkId}/" +
+				$"{encodedBeginTag}/{encodedEndTag}/" +
+				$"{(int)format}/{(int)style}";
+
+			var from = string.Format(Resx.EmbedCommand_EmbeddedFrom, source.Page.Title);
+
+			var text =
+				$"<a href=\"{link}\">{from}</a> | <a " +
+				$"href=\"{refreshUrl}\">{Resx.word_Refresh}</a>";
+
+			var header = new Paragraph(text)
+				.SetQuickStyle(citationIndex)
+				.SetStyle("font-style:italic")
+				.SetAlignment("right");
+
+			header.AddFirst(new Meta(EmbedHeaderMeta, "1"));
+
+			cell.SetContent(new XElement(ns + "OEChildren", header));
+
+			var snippets = format == EmbedFormat.PlainText
+				? ToPlainText(source.Snippets, style)
+				: source.Snippets;
+
+			foreach (var snippet in snippets)
+			{
+				if (format == EmbedFormat.Formatted)
+				{
+					page.ApplyStyleMapping(quickmap, snippet);
+					mapper.RemapTags(snippet);
+				}
+
+				cell.Root.Add(snippet);
+			}
+		}
+
+
+		private async Task<SourceInfo> GetSource(
+			string sourceId, string objectId, string linkId,
+			string beginTag, string endTag)
+		{
+			var source = await one.GetPage(sourceId, OneNote.PageDetail.BinaryData);
+			if (source is null)
+			{
+				if (linkId is null)
+				{
+					return null;
+				}
+
+				logger.WriteLine("recovering from GetPage by mapping to hyperlink");
+
+				using var token = new CancellationTokenSource();
+				var map = await new HyperlinkProvider(one)
+					.BuildHyperlinkMap(OneNote.Scope.Sections, token.Token,
+						async (count) => { await Task.Yield(); },
+						async () => { await Task.Yield(); });
+
+				if (map.ContainsKey(linkId))
+				{
+					sourceId = map[linkId].PageID;
+					source = await one.GetPage(sourceId, OneNote.PageDetail.BinaryData);
+				}
+
+				if (source is null)
+				{
+					ShowError(Resx.EmbedCommand_NoSource);
+					return null;
+				}
+			}
+
+			// Paragraph mode: try a direct XML objectID lookup (new refresh URLs store the
+			// internal objectID attribute); fall back to URI-format mapping for older embeds.
+			if (!string.IsNullOrEmpty(objectId))
+			{
+				var sns = source.Namespace;
+				PageNamespace.Set(sns);
+
+				var oe = source.Root.Descendants(sns + "OE")
+					.FirstOrDefault(e =>
+						e.Attribute("objectID")?.Value == objectId &&
+						e.Descendants(sns + "T").Any())
+					?? await FindParagraphOE(source, objectId);
+
+				if (oe is null)
+				{
+					logger.WriteLine($"paragraph OE not found; objectId=[{objectId}]");
+					ShowError(Resx.EmbedCommand_NoParagraph);
+					return null;
+				}
+
+				var oeOutlineRoot = oe.Ancestors(sns + "Outline").FirstOrDefault()
+					?? source.BodyOutlines.FirstOrDefault();
+
+				return new SourceInfo
+				{
+					Snippets = new[] { new XElement(ns + "OEChildren", new XElement(oe)) },
+					SourceId = sourceId,
+					Page = source,
+					Outline = oeOutlineRoot != null ? new Outline(oeOutlineRoot) : null,
+					XmlObjectId = oe.Attribute("objectID")?.Value
+				};
+			}
+
+			var outRoot = source.BodyOutlines.FirstOrDefault();
+			if (outRoot is null)
+			{
+				var schema = new PageSchema();
+				var child = source.Root.Elements()
+					.FirstOrDefault(e => e.Name.LocalName.In(schema.OeContent));
+
+				if (child is not null)
+				{
+					child.Attribute("omHash")?.Remove();
+					outRoot = new XElement(ns + "Outline",
+						new XElement(ns + "OEChildren",
+							new XElement(ns + "OE", child)));
+				}
+			}
+
+			if (outRoot is null)
+			{
+				ShowError(Resx.EmbedCommand_NoContent);
+				return null;
+			}
+
+			PageNamespace.Set(ns);
+			var outline = new Outline(outRoot);
+
+			IEnumerable<XElement> snippets;
+
+			if (!string.IsNullOrEmpty(beginTag) || !string.IsNullOrEmpty(endTag))
+			{
+				var oeChildren = outline.Elements(ns + "OEChildren").FirstOrDefault();
+				if (oeChildren is null)
+				{
+					ShowError(Resx.EmbedCommand_NoContent);
+					return null;
+				}
+
+				snippets = ExtractTaggedContent(oeChildren, beginTag, endTag);
+				if (snippets is null)
+				{
+					ShowError(Resx.EmbedCommand_NoContent);
+					return null;
+				}
+			}
+			else
+			{
+				snippets = outline.Elements(ns + "OEChildren");
+			}
+
+			if (!snippets.Any())
+			{
+				ShowError(Resx.EmbedCommand_NoContent);
+				return null;
+			}
+
+			return new SourceInfo
+			{
+				Snippets = snippets,
+				SourceId = sourceId,
+				Page = source,
+				Outline = outline
+			};
+		}
+
+
+		/// <summary>
+		/// Finds the OE element in the source page whose URI-format object-id (as generated
+		/// by GetObjectHyperlink) matches the clipboard's object-id. The clipboard format
+		/// differs from the page XML objectID attribute format; mapping through the API is
+		/// the only reliable way to resolve the correspondence.
+		/// </summary>
+		private async Task<XElement> FindParagraphOE(Page source, string clipObjectId)
+		{
+			var sns = source.Namespace;
+
+			foreach (var oe in source.Root.Descendants(sns + "OE")
+				.Where(e => e.Attribute("objectID") != null))
+			{
+				var xmlId = oe.Attribute("objectID").Value;
+				var link = await one.GetObjectHyperlink(source.PageId, xmlId);
+				if (string.IsNullOrEmpty(link)) continue;
+
+				var m = Regex.Match(link, @"object-id=((?:\{[^}]+\})+)");
+				if (!m.Success) continue;
+
+				if (m.Groups[1].Value.Equals(clipObjectId, StringComparison.OrdinalIgnoreCase))
+				{
+					return oe;
+				}
+			}
+
+			return null;
+		}
+
+
+		private IEnumerable<XElement> ExtractTaggedContent(
+			XElement oeChildren, string beginTag, string endTag)
+		{
+			var oes = oeChildren.Elements(ns + "OE").ToList();
+
+			var startIdx = 0;
+			if (!string.IsNullOrEmpty(beginTag))
+			{
+				var found = FindTagIndex(oes, beginTag, 0);
+				if (found < 0)
+				{
+					return null;
+				}
+
+				startIdx = found + 1; // skip the begin-tag paragraph itself
+			}
+
+			var endIdx = oes.Count - 1;
+			if (!string.IsNullOrEmpty(endTag))
+			{
+				var found = FindTagIndex(oes, endTag, startIdx);
+				if (found < 0)
+				{
+					return null;
+				}
+
+				endIdx = found - 1; // skip the end-tag paragraph itself
+			}
+
+			if (endIdx < startIdx)
+			{
+				return null;
+			}
+
+			var filtered = new XElement(oeChildren.Name);
+			foreach (var attr in oeChildren.Attributes())
+			{
+				filtered.Add(new XAttribute(attr));
+			}
+
+			for (var i = startIdx; i <= endIdx; i++)
+			{
+				filtered.Add(new XElement(oes[i]));
+			}
+
+			return new[] { filtered };
+		}
+
+
+		private static int FindTagIndex(List<XElement> oes, string tag, int startFrom)
+		{
+			for (var i = startFrom; i < oes.Count; i++)
+			{
+				var text = oes[i].TextValue(stripHtml: true);
+				if (text.IndexOf(tag, StringComparison.OrdinalIgnoreCase) >= 0)
+				{
+					return i;
+				}
+			}
+
+			return -1;
+		}
+
+
+		private IEnumerable<XElement> ToPlainText(
+			IEnumerable<XElement> snippets, EmbedStyle style)
+		{
+			var quoteIndex = -1;
+			var citationIndex = -1;
+
+			if (style == EmbedStyle.Quote)
+			{
+				quoteIndex = page.GetQuickStyle(Styles.StandardStyles.Quote).Index;
+			}
+			else if (style == EmbedStyle.Citation)
+			{
+				citationIndex = page.GetQuickStyle(Styles.StandardStyles.Citation).Index;
+			}
+
+			var result = new List<XElement>();
+			foreach (var snippet in snippets)
+			{
+				var newSnippet = new XElement(ns + "OEChildren");
+				CollectPlainParagraphs(snippet, newSnippet, style, quoteIndex, citationIndex);
+				if (newSnippet.HasElements)
+				{
+					result.Add(newSnippet);
+				}
+			}
+
+			return result;
+		}
+
+
+		private void CollectPlainParagraphs(
+			XElement container, XElement target,
+			EmbedStyle style, int quoteIndex, int citationIndex)
+		{
+			foreach (var oe in container.Elements(ns + "OE"))
+			{
+				// only process OEs that have direct T content
+				if (oe.Elements(ns + "T").Any())
+				{
+					var rawText = string.Concat(
+						oe.Elements(ns + "T").Select(t => t.TextValue(stripHtml: true)));
+
+					if (!string.IsNullOrWhiteSpace(rawText))
+					{
+						var para = new Paragraph(rawText.Trim());
+
+						switch (style)
+						{
+							case EmbedStyle.Italic:
+								para.SetStyle("font-style:italic");
+								break;
+							case EmbedStyle.Gray:
+								para.SetStyle("color:#595959");
+								break;
+							case EmbedStyle.Quote when quoteIndex >= 0:
+								para.SetQuickStyle(quoteIndex);
+								break;
+							case EmbedStyle.Citation when citationIndex >= 0:
+								para.SetQuickStyle(citationIndex);
+								break;
+						}
+
+						target.Add(para);
+					}
+				}
+
+				// recurse into nested OEChildren
+				foreach (var children in oe.Elements(ns + "OEChildren"))
+				{
+					CollectPlainParagraphs(children, target, style, quoteIndex, citationIndex);
+				}
+			}
+		}
+
+
+		// ========================================================================================
+		// Update...
+
+		private async Task UpdateContent(
+			string sourceId, string objectId, string linkId,
+			string beginTag, string endTag,
+			EmbedFormat format, EmbedStyle style)
+		{
+			await using (one = new OneNote(out page, out ns))
+			{
+				var metas = page.Root.Descendants(ns + "Meta")
+					.Where(e => e.Attribute("name").Value == EmbedMetaName);
+
+				if (!string.IsNullOrEmpty(sourceId))
+				{
+					metas = metas.Where(e => e.Attribute("content").Value == sourceId);
+				}
+
+				if (!metas.Any())
+				{
+					ShowError(Resx.EmbedCommand_NoSource);
+					return;
+				}
+
+				var updated = false;
+				foreach (var meta in metas.ToList())
+				{
+					var tableRoot = meta.ElementsAfterSelf(ns + "Table").FirstOrDefault();
+					if (tableRoot is null)
+					{
+						continue;
+					}
+
+					var currentSourceId = meta.Attribute("content").Value;
+					var source = await GetSource(currentSourceId, objectId, linkId, beginTag, endTag);
+					if (source is null || !source.Snippets.Any())
+					{
+						ShowError(Resx.EmbedCommand_NoSource);
+						return;
+					}
+
+					var table = new Table(tableRoot);
+					await FillCell(table[0][0], source, beginTag, endTag, format, style);
+
+					updated = true;
+				}
+
+				if (updated)
+				{
+					await one.Update(page);
+				}
+			}
+		}
+	}
+}

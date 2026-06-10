@@ -2294,6 +2294,181 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Embedded from {0}.
+        /// </summary>
+        internal static string EmbedCommand_EmbeddedFrom {
+            get {
+                return ResourceManager.GetString("EmbedCommand_EmbeddedFrom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot find the linked page. Ensure the source notebook is open in OneNote..
+        /// </summary>
+        internal static string EmbedCommand_NoClipboardPage {
+            get {
+                return ResourceManager.GetString("EmbedCommand_NoClipboardPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Source page contains no content within the specified tags.
+        /// </summary>
+        internal static string EmbedCommand_NoContent {
+            get {
+                return ResourceManager.GetString("EmbedCommand_NoContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot find the linked paragraph in the source page.
+        /// </summary>
+        internal static string EmbedCommand_NoParagraph {
+            get {
+                return ResourceManager.GetString("EmbedCommand_NoParagraph", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The source content is no longer available.
+        /// </summary>
+        internal static string EmbedCommand_NoSource {
+            get {
+                return ResourceManager.GetString("EmbedCommand_NoSource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Page.
+        /// </summary>
+        internal static string EmbedCommand_Select {
+            get {
+                return ResourceManager.GetString("EmbedCommand_Select", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select the page to embed content from.
+        /// </summary>
+        internal static string EmbedCommand_SelectIntro {
+            get {
+                return ResourceManager.GetString("EmbedCommand_SelectIntro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Begin tag.
+        /// </summary>
+        internal static string EmbedDialog_beginTagLabel_Text {
+            get {
+                return ResourceManager.GetString("EmbedDialog_beginTagLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End tag.
+        /// </summary>
+        internal static string EmbedDialog_endTagLabel_Text {
+            get {
+                return ResourceManager.GetString("EmbedDialog_endTagLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Formatted content.
+        /// </summary>
+        internal static string EmbedDialog_formattedRadio_Text {
+            get {
+                return ResourceManager.GetString("EmbedDialog_formattedRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Indent content.
+        /// </summary>
+        internal static string EmbedDialog_indentCheck_Text {
+            get {
+                return ResourceManager.GetString("EmbedDialog_indentCheck.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Content after tag: {0}.
+        /// </summary>
+        internal static string EmbedDialog_noteLabel_After {
+            get {
+                return ResourceManager.GetString("EmbedDialog_noteLabel_After", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Content before tag: {0}.
+        /// </summary>
+        internal static string EmbedDialog_noteLabel_Before {
+            get {
+                return ResourceManager.GetString("EmbedDialog_noteLabel_Before", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Content between tags: {0} and {1}.
+        /// </summary>
+        internal static string EmbedDialog_noteLabel_Between {
+            get {
+                return ResourceManager.GetString("EmbedDialog_noteLabel_Between", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Full page.
+        /// </summary>
+        internal static string EmbedDialog_noteLabel_FullPage {
+            get {
+                return ResourceManager.GetString("EmbedDialog_noteLabel_FullPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Plain text.
+        /// </summary>
+        internal static string EmbedDialog_plaintextRadio_Text {
+            get {
+                return ResourceManager.GetString("EmbedDialog_plaintextRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Normal
+        ///Italic
+        ///Gray
+        ///Quote
+        ///Citation.
+        /// </summary>
+        internal static string EmbedDialog_styleBox_Text {
+            get {
+                return ResourceManager.GetString("EmbedDialog_styleBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text style:.
+        /// </summary>
+        internal static string EmbedDialog_styleLabel_Text {
+            get {
+                return ResourceManager.GetString("EmbedDialog_styleLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Embed Options.
+        /// </summary>
+        internal static string EmbedDialog_Title {
+            get {
+                return ResourceManager.GetString("EmbedDialog_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Source page contains no content.
         /// </summary>
         internal static string EmbedSubpageCommand_NoContent {
@@ -8325,6 +8500,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Embed.
+        /// </summary>
+        internal static string ribEmbedButton_Label {
+            get {
+                return ResourceManager.GetString("ribEmbedButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Embed content from another page into the current page.
+        /// </summary>
+        internal static string ribEmbedButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribEmbedButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Embed Page.
         /// </summary>
         internal static string ribEmbedSubpageButton_Label {
@@ -14237,6 +14430,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_Sort {
             get {
                 return ResourceManager.GetString("word_Sort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Source.
+        /// </summary>
+        internal static string word_Source {
+            get {
+                return ResourceManager.GetString("word_Source", resourceCulture);
             }
         }
         

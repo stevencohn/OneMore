@@ -282,6 +282,12 @@
     <Compile Include="Commands\References\BiLinkDialog.Designer.cs">
       <DependentUpon>BiLinkDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\References\EmbedDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\References\EmbedDialog.Designer.cs">
+      <DependentUpon>EmbedDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\References\CheckUrlsCommand.cs" />
     <Compile Include="Commands\References\HyperlinkProvider.cs" />
     <Compile Include="Commands\Reminders\CleanRemindersCommand.cs" />
@@ -459,6 +465,7 @@
     <Compile Include="Helpers\Extensions\ScreenExtensions.cs" />
     <Compile Include="Helpers\Heatmap.cs" />
     <Compile Include="Commands\Tagging\HashtagNotebook.cs" />
+    <Compile Include="Helpers\OneNoteLinkParser.cs" />
     <Compile Include="Helpers\SessionLogger.cs" />
     <Compile Include="Commands\Tools\Telemetry\TelemetryClient.cs" />
     <Compile Include="Models\OneImage.cs" />
@@ -651,6 +658,7 @@
       <DependentUpon>KeyboardSheet.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Snippets\InsertBreadcrumbCommand.cs" />
+    <Compile Include="Commands\References\EmbedCommand.cs" />
     <Compile Include="Commands\References\EmbedSubpageCommand.cs" />
     <Compile Include="Ribbon\RibbonPosiition.cs" />
     <Compile Include="UI\EventRouter.cs" />
@@ -1326,6 +1334,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\References\BiLinkDialog.resx">
       <DependentUpon>BiLinkDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\References\EmbedDialog.resx">
+      <DependentUpon>EmbedDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Search\SearchAndReplaceSessionDialog.resx">
       <DependentUpon>SearchAndReplaceSessionDialog.cs</DependentUpon>

@@ -728,17 +728,11 @@
           getScreentip="GetRibbonScreentip"
           onAction="FinishBiLinkCmd"/>
         <button
-          id="ribEmbedSubpageButton"
-          imageMso="MasterDocumentCreateSubdocument"
+          id="ribEmbedButton"
+          imageMso="MasterDocumentMergeSubdocuments"
           getLabel="GetRibbonLabel"
           getScreentip="GetRibbonScreentip"
-          onAction="EmbedSubpageCmd"/>
-        <button
-          id="ribUpdateSubpageButton"
-          imageMso="MasterDocumentInsertSubdocument"
-          getLabel="GetRibbonLabel"
-          getScreentip="GetRibbonScreentip"
-          onAction="UpdateSubpageCmd"/>
+          onAction="EmbedCmd"/>
         <button
           id="ribInsertQRButton"
           getLabel="GetRibbonLabel"

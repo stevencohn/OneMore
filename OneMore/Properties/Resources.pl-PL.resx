@@ -828,6 +828,86 @@ Czcionka ostatniej kolumny</value>
     <value>Niestandardowe style tabel</value>
     <comment>dialog</comment>
   </data>
+  <data name="EmbedCommand_EmbeddedFrom" xml:space="preserve">
+    <value>Osadzone z {0}</value>
+    <comment>link</comment>
+  </data>
+  <data name="EmbedCommand_NoClipboardPage" xml:space="preserve">
+    <value>Nie można znaleźć powiązanej strony. Upewnij się, że notes źródłowy jest otwarty w programie OneNote.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="EmbedCommand_NoContent" xml:space="preserve">
+    <value>Strona źródłowa nie zawiera treści w określonych tagach</value>
+    <comment>message box</comment>
+  </data>
+  <data name="EmbedCommand_NoParagraph" xml:space="preserve">
+    <value>Nie można znaleźć powiązanego akapitu na stronie źródłowej</value>
+    <comment>message box</comment>
+  </data>
+  <data name="EmbedCommand_NoSource" xml:space="preserve">
+    <value>Treść źródłowa nie jest już dostępna</value>
+    <comment>message box</comment>
+  </data>
+  <data name="EmbedCommand_Select" xml:space="preserve">
+    <value>Wybierz opcję Strona</value>
+    <comment>quickdialog title</comment>
+  </data>
+  <data name="EmbedCommand_SelectIntro" xml:space="preserve">
+    <value>Wybierz stronę, z której chcesz osadzić treść</value>
+    <comment>quickdialog intro</comment>
+  </data>
+  <data name="EmbedDialog_beginTagLabel.Text" xml:space="preserve">
+    <value>Rozpocznij tag</value>
+    <comment>label</comment>
+  </data>
+  <data name="EmbedDialog_endTagLabel.Text" xml:space="preserve">
+    <value>Etykieta końcowa</value>
+    <comment>label</comment>
+  </data>
+  <data name="EmbedDialog_formattedRadio.Text" xml:space="preserve">
+    <value>Sformatowana treść</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="EmbedDialog_indentCheck.Text" xml:space="preserve">
+    <value>Treść wcięcia</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="EmbedDialog_noteLabel_After" xml:space="preserve">
+    <value>Treść po tagu: {0}</value>
+    <comment>embed note, begin tag only</comment>
+  </data>
+  <data name="EmbedDialog_noteLabel_Before" xml:space="preserve">
+    <value>Treść przed tagiem: {0}</value>
+    <comment>embed note, end tag only</comment>
+  </data>
+  <data name="EmbedDialog_noteLabel_Between" xml:space="preserve">
+    <value>Treść pomiędzy tagami: {0} i {1}</value>
+    <comment>embed note, both tags specified</comment>
+  </data>
+  <data name="EmbedDialog_noteLabel_FullPage" xml:space="preserve">
+    <value>Pełna strona</value>
+    <comment>embed note, no tags specified</comment>
+  </data>
+  <data name="EmbedDialog_plaintextRadio.Text" xml:space="preserve">
+    <value>Zwykły tekst</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="EmbedDialog_styleBox.Text" xml:space="preserve">
+    <value>Normalna
+italski
+Szary
+Cytat
+Cytat</value>
+    <comment>style options, one per line</comment>
+  </data>
+  <data name="EmbedDialog_styleLabel.Text" xml:space="preserve">
+    <value>Styl tekstu:</value>
+    <comment>label</comment>
+  </data>
+  <data name="EmbedDialog_Title" xml:space="preserve">
+    <value>Opcje osadzania</value>
+    <comment>dialog</comment>
+  </data>
   <data name="EmbedSubpageCommand_NoContent" xml:space="preserve">
     <value>Strona źródłowa nie zawiera treści</value>
     <comment>message box</comment>
@@ -3255,6 +3335,14 @@ Zakładka Pomoc</value>
   <data name="ribEditTableThemesButton_Screentip" xml:space="preserve">
     <value>Edytuj niestandardowe niestandardowe style tabeli</value>
     <comment>ribbon table styles</comment>
+  </data>
+  <data name="ribEmbedButton_Label" xml:space="preserve">
+    <value>Osadzać</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribEmbedButton_Screentip" xml:space="preserve">
+    <value>Osadzaj treść z innej strony na bieżącej stronie</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribEmbedSubpageButton_Label" xml:space="preserve">
     <value>Umieść stronę</value>
@@ -5719,6 +5807,10 @@ Dziękuję!</value>
   </data>
   <data name="word_Sort" xml:space="preserve">
     <value>Sortować</value>
+  </data>
+  <data name="word_Source" xml:space="preserve">
+    <value>Źródło</value>
+    <comment>word</comment>
   </data>
   <data name="word_Start" xml:space="preserve">
     <value>Początek</value>

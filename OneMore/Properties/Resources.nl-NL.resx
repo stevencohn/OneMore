@@ -828,6 +828,86 @@ Lettertype laatste kolom</value>
     <value>Aangepaste tabelstijlen</value>
     <comment>dialog</comment>
   </data>
+  <data name="EmbedCommand_EmbeddedFrom" xml:space="preserve">
+    <value>Ingesloten vanaf {0}</value>
+    <comment>link</comment>
+  </data>
+  <data name="EmbedCommand_NoClipboardPage" xml:space="preserve">
+    <value>Kan de gekoppelde pagina niet vinden. Zorg ervoor dat het bronnotitieblok geopend is in OneNote.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="EmbedCommand_NoContent" xml:space="preserve">
+    <value>Bronpagina bevat geen inhoud binnen de opgegeven tags</value>
+    <comment>message box</comment>
+  </data>
+  <data name="EmbedCommand_NoParagraph" xml:space="preserve">
+    <value>Kan de gekoppelde alinea niet vinden op de bronpagina</value>
+    <comment>message box</comment>
+  </data>
+  <data name="EmbedCommand_NoSource" xml:space="preserve">
+    <value>De broninhoud is niet langer beschikbaar</value>
+    <comment>message box</comment>
+  </data>
+  <data name="EmbedCommand_Select" xml:space="preserve">
+    <value>Selecteer Pagina</value>
+    <comment>quickdialog title</comment>
+  </data>
+  <data name="EmbedCommand_SelectIntro" xml:space="preserve">
+    <value>Selecteer de pagina waarvan u inhoud wilt insluiten</value>
+    <comment>quickdialog intro</comment>
+  </data>
+  <data name="EmbedDialog_beginTagLabel.Text" xml:space="preserve">
+    <value>Begin met taggen</value>
+    <comment>label</comment>
+  </data>
+  <data name="EmbedDialog_endTagLabel.Text" xml:space="preserve">
+    <value>Eindtag</value>
+    <comment>label</comment>
+  </data>
+  <data name="EmbedDialog_formattedRadio.Text" xml:space="preserve">
+    <value>Opgemaakte inhoud</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="EmbedDialog_indentCheck.Text" xml:space="preserve">
+    <value>Inhoud inspringen</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="EmbedDialog_noteLabel_After" xml:space="preserve">
+    <value>Inhoud na tag: {0}</value>
+    <comment>embed note, begin tag only</comment>
+  </data>
+  <data name="EmbedDialog_noteLabel_Before" xml:space="preserve">
+    <value>Inhoud vóór tag: {0}</value>
+    <comment>embed note, end tag only</comment>
+  </data>
+  <data name="EmbedDialog_noteLabel_Between" xml:space="preserve">
+    <value>Inhoud tussen tags: {0} en {1}</value>
+    <comment>embed note, both tags specified</comment>
+  </data>
+  <data name="EmbedDialog_noteLabel_FullPage" xml:space="preserve">
+    <value>Volledige pagina</value>
+    <comment>embed note, no tags specified</comment>
+  </data>
+  <data name="EmbedDialog_plaintextRadio.Text" xml:space="preserve">
+    <value>Platte tekst</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="EmbedDialog_styleBox.Text" xml:space="preserve">
+    <value>Normaal
+Cursief
+Grijs
+Citaat
+Citaat</value>
+    <comment>style options, one per line</comment>
+  </data>
+  <data name="EmbedDialog_styleLabel.Text" xml:space="preserve">
+    <value>Tekststijl:</value>
+    <comment>label</comment>
+  </data>
+  <data name="EmbedDialog_Title" xml:space="preserve">
+    <value>Opties voor insluiten</value>
+    <comment>dialog</comment>
+  </data>
   <data name="EmbedSubpageCommand_NoContent" xml:space="preserve">
     <value>Bronpagina bevat geen inhoud</value>
     <comment>message box</comment>
@@ -3255,6 +3335,14 @@ Tabblad Help</value>
   <data name="ribEditTableThemesButton_Screentip" xml:space="preserve">
     <value>Bewerk aangepaste aangepaste tabelstijlen</value>
     <comment>ribbon table styles</comment>
+  </data>
+  <data name="ribEmbedButton_Label" xml:space="preserve">
+    <value>Insluiten</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribEmbedButton_Screentip" xml:space="preserve">
+    <value>Sluit inhoud van een andere pagina in op de huidige pagina</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribEmbedSubpageButton_Label" xml:space="preserve">
     <value>Pagina insluiten</value>
@@ -5719,6 +5807,10 @@ Bedankt!</value>
   </data>
   <data name="word_Sort" xml:space="preserve">
     <value>Soort</value>
+  </data>
+  <data name="word_Source" xml:space="preserve">
+    <value>Bron</value>
+    <comment>word</comment>
   </data>
   <data name="word_Start" xml:space="preserve">
     <value>Begin</value>

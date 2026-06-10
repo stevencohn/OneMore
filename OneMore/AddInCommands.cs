@@ -330,9 +330,9 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<EditTableThemesCommand>();
 
 
-		[Command("ribEmbedSubpageButton_Label", Keys.None, "ribReferencesMenu")]
-		public async Task EmbedSubpageCmd(IRibbonControl control)
-			=> await factory.Run<EmbedSubpageCommand>(false);
+		[Command("ribEmbedButton_Label", Keys.None, "ribReferencesMenu")]
+		public async Task EmbedCmd(IRibbonControl control)
+			=> await factory.Run<EmbedCommand>();
 
 
 		[Command("ribEnableSpellCheckButton_Label", Keys.None, "ribEditMenu")]
@@ -1061,11 +1061,6 @@ namespace River.OneMoreAddIn
 		[Command("ribUpdatePageTimeButton_Label", Keys.None, "ribPageMenu")]
 		public async Task UpdatePageTimeCmd(IRibbonControl control)
 			=> await factory.Run<UpdatePageTimeCommand>(true);
-
-
-		[Command("ribUpdateSubpageButton_Label", Keys.None, "ribReferencesMenu")]
-		public async Task UpdateSubpageCmd(IRibbonControl control)
-			=> await factory.Run<EmbedSubpageCommand>(true);
 
 
 		[Command("ribUppercaseButton_Label", Keys.Control | Keys.Alt | Keys.Shift | Keys.U, "ribEditMenu")]

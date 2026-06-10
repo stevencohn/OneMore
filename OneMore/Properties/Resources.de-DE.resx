@@ -823,6 +823,86 @@ Schriftart der letzten Spalte</value>
     <value>Benutzerdefinierte Tabellenstile</value>
     <comment>dialog</comment>
   </data>
+  <data name="EmbedCommand_EmbeddedFrom" xml:space="preserve">
+    <value>Eingebettet von {0}</value>
+    <comment>link</comment>
+  </data>
+  <data name="EmbedCommand_NoClipboardPage" xml:space="preserve">
+    <value>Die verlinkte Seite kann nicht gefunden werden. Stellen Sie sicher, dass das Quellnotizbuch in OneNote geöffnet ist.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="EmbedCommand_NoContent" xml:space="preserve">
+    <value>Die Quellseite enthält keinen Inhalt innerhalb der angegebenen Tags</value>
+    <comment>message box</comment>
+  </data>
+  <data name="EmbedCommand_NoParagraph" xml:space="preserve">
+    <value>Der verlinkte Absatz kann auf der Quellseite nicht gefunden werden</value>
+    <comment>message box</comment>
+  </data>
+  <data name="EmbedCommand_NoSource" xml:space="preserve">
+    <value>Der Quellinhalt ist nicht mehr verfügbar</value>
+    <comment>message box</comment>
+  </data>
+  <data name="EmbedCommand_Select" xml:space="preserve">
+    <value>Wählen Sie Seite aus</value>
+    <comment>quickdialog title</comment>
+  </data>
+  <data name="EmbedCommand_SelectIntro" xml:space="preserve">
+    <value>Wählen Sie die Seite aus, von der Sie Inhalte einbetten möchten</value>
+    <comment>quickdialog intro</comment>
+  </data>
+  <data name="EmbedDialog_beginTagLabel.Text" xml:space="preserve">
+    <value>Tag beginnen</value>
+    <comment>label</comment>
+  </data>
+  <data name="EmbedDialog_endTagLabel.Text" xml:space="preserve">
+    <value>End-Tag</value>
+    <comment>label</comment>
+  </data>
+  <data name="EmbedDialog_formattedRadio.Text" xml:space="preserve">
+    <value>Formatierter Inhalt</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="EmbedDialog_indentCheck.Text" xml:space="preserve">
+    <value>Inhalt einrücken</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="EmbedDialog_noteLabel_After" xml:space="preserve">
+    <value>Inhalt nach Tag: {0}</value>
+    <comment>embed note, begin tag only</comment>
+  </data>
+  <data name="EmbedDialog_noteLabel_Before" xml:space="preserve">
+    <value>Inhalt vor dem Tag: {0}</value>
+    <comment>embed note, end tag only</comment>
+  </data>
+  <data name="EmbedDialog_noteLabel_Between" xml:space="preserve">
+    <value>Inhalt zwischen den Tags: {0} und {1}</value>
+    <comment>embed note, both tags specified</comment>
+  </data>
+  <data name="EmbedDialog_noteLabel_FullPage" xml:space="preserve">
+    <value>Ganze Seite</value>
+    <comment>embed note, no tags specified</comment>
+  </data>
+  <data name="EmbedDialog_plaintextRadio.Text" xml:space="preserve">
+    <value>Klartext</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="EmbedDialog_styleBox.Text" xml:space="preserve">
+    <value>Normal
+Kursiv
+Grau
+Zitat
+Zitat</value>
+    <comment>style options, one per line</comment>
+  </data>
+  <data name="EmbedDialog_styleLabel.Text" xml:space="preserve">
+    <value>Textstil:</value>
+    <comment>label</comment>
+  </data>
+  <data name="EmbedDialog_Title" xml:space="preserve">
+    <value>Einbettungsoptionen</value>
+    <comment>dialog</comment>
+  </data>
   <data name="EmbedSubpageCommand_NoContent" xml:space="preserve">
     <value>Quellseite enthält keinen Inhalt</value>
     <comment>message box</comment>
@@ -3254,6 +3334,14 @@ Registerkarte „Hilfe“.</value>
   <data name="ribEditTableThemesButton_Screentip" xml:space="preserve">
     <value>Bearbeitet benutzerdefinierte benutzerdefinierte Tabellenstile</value>
     <comment>ribbon table styles</comment>
+  </data>
+  <data name="ribEmbedButton_Label" xml:space="preserve">
+    <value>Einbetten</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribEmbedButton_Screentip" xml:space="preserve">
+    <value>Betten Sie Inhalte von einer anderen Seite in die aktuelle Seite ein</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribEmbedSubpageButton_Label" xml:space="preserve">
     <value>Seite einbetten</value>
@@ -5719,6 +5807,10 @@ Danke schön!</value>
   </data>
   <data name="word_Sort" xml:space="preserve">
     <value>Sortieren</value>
+  </data>
+  <data name="word_Source" xml:space="preserve">
+    <value>Quelle</value>
+    <comment>word</comment>
   </data>
   <data name="word_Start" xml:space="preserve">
     <value>Start</value>
