@@ -139,6 +139,12 @@ namespace River.OneMoreAddIn
 
 		protected void ShowError(string message)
 		{
+			if (runningFromCli)
+			{
+				logger?.WriteLine($"error: {message}");
+				return;
+			}
+
 			UI.MoreMessageBox.ShowError(owner, message);
 		}
 

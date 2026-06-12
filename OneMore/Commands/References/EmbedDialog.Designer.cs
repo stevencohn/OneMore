@@ -55,7 +55,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.sourceLabel.AutoSize = true;
 			this.sourceLabel.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.sourceLabel.Location = new System.Drawing.Point(15, 18);
+			this.sourceLabel.Location = new System.Drawing.Point(15, 23);
 			this.sourceLabel.Name = "sourceLabel";
 			this.sourceLabel.Size = new System.Drawing.Size(60, 20);
 			this.sourceLabel.TabIndex = 0;
@@ -67,7 +67,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.sourceNameLabel.AutoEllipsis = true;
 			this.sourceNameLabel.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.sourceNameLabel.Location = new System.Drawing.Point(130, 18);
+			this.sourceNameLabel.Location = new System.Drawing.Point(130, 23);
 			this.sourceNameLabel.Name = "sourceNameLabel";
 			this.sourceNameLabel.Size = new System.Drawing.Size(512, 20);
 			this.sourceNameLabel.TabIndex = 1;
@@ -78,7 +78,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.targetLabel.AutoSize = true;
 			this.targetLabel.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.targetLabel.Location = new System.Drawing.Point(15, 45);
+			this.targetLabel.Location = new System.Drawing.Point(15, 50);
 			this.targetLabel.Name = "targetLabel";
 			this.targetLabel.Size = new System.Drawing.Size(55, 20);
 			this.targetLabel.TabIndex = 2;
@@ -90,7 +90,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.targetNameLabel.AutoEllipsis = true;
 			this.targetNameLabel.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.targetNameLabel.Location = new System.Drawing.Point(130, 45);
+			this.targetNameLabel.Location = new System.Drawing.Point(130, 50);
 			this.targetNameLabel.Name = "targetNameLabel";
 			this.targetNameLabel.Size = new System.Drawing.Size(512, 20);
 			this.targetNameLabel.TabIndex = 3;
@@ -101,7 +101,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.beginTagLabel.AutoSize = true;
 			this.beginTagLabel.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.beginTagLabel.Location = new System.Drawing.Point(15, 85);
+			this.beginTagLabel.Location = new System.Drawing.Point(15, 90);
 			this.beginTagLabel.Name = "beginTagLabel";
 			this.beginTagLabel.Size = new System.Drawing.Size(77, 20);
 			this.beginTagLabel.TabIndex = 4;
@@ -112,7 +112,7 @@ namespace River.OneMoreAddIn.Commands
 			// beginTagBox
 			// 
 			this.beginTagBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.beginTagBox.Location = new System.Drawing.Point(130, 82);
+			this.beginTagBox.Location = new System.Drawing.Point(130, 87);
 			this.beginTagBox.Name = "beginTagBox";
 			this.beginTagBox.ProcessEnterKey = false;
 			this.beginTagBox.Size = new System.Drawing.Size(400, 26);
@@ -125,7 +125,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.endTagLabel.AutoSize = true;
 			this.endTagLabel.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.endTagLabel.Location = new System.Drawing.Point(15, 120);
+			this.endTagLabel.Location = new System.Drawing.Point(15, 125);
 			this.endTagLabel.Name = "endTagLabel";
 			this.endTagLabel.Size = new System.Drawing.Size(65, 20);
 			this.endTagLabel.TabIndex = 6;
@@ -136,7 +136,7 @@ namespace River.OneMoreAddIn.Commands
 			// endTagBox
 			// 
 			this.endTagBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.endTagBox.Location = new System.Drawing.Point(130, 117);
+			this.endTagBox.Location = new System.Drawing.Point(130, 122);
 			this.endTagBox.Name = "endTagBox";
 			this.endTagBox.ProcessEnterKey = false;
 			this.endTagBox.Size = new System.Drawing.Size(400, 26);
@@ -149,7 +149,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.formatLabel.AutoSize = true;
 			this.formatLabel.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.formatLabel.Location = new System.Drawing.Point(15, 245);
+			this.formatLabel.Location = new System.Drawing.Point(15, 256);
 			this.formatLabel.Name = "formatLabel";
 			this.formatLabel.Size = new System.Drawing.Size(60, 20);
 			this.formatLabel.TabIndex = 8;
@@ -162,7 +162,7 @@ namespace River.OneMoreAddIn.Commands
 			this.formattedRadio.Checked = true;
 			this.formattedRadio.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.formattedRadio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.formattedRadio.Location = new System.Drawing.Point(130, 243);
+			this.formattedRadio.Location = new System.Drawing.Point(130, 254);
 			this.formattedRadio.Name = "formattedRadio";
 			this.formattedRadio.Size = new System.Drawing.Size(230, 25);
 			this.formattedRadio.TabIndex = 9;
@@ -175,7 +175,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.plaintextRadio.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.plaintextRadio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.plaintextRadio.Location = new System.Drawing.Point(130, 277);
+			this.plaintextRadio.Location = new System.Drawing.Point(130, 288);
 			this.plaintextRadio.Name = "plaintextRadio";
 			this.plaintextRadio.Size = new System.Drawing.Size(150, 25);
 			this.plaintextRadio.TabIndex = 10;
@@ -187,7 +187,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.stylePanel.Controls.Add(this.styleLabel);
 			this.stylePanel.Controls.Add(this.styleBox);
-			this.stylePanel.Location = new System.Drawing.Point(156, 308);
+			this.stylePanel.Location = new System.Drawing.Point(156, 319);
 			this.stylePanel.Name = "stylePanel";
 			this.stylePanel.Size = new System.Drawing.Size(394, 38);
 			this.stylePanel.TabIndex = 11;
@@ -227,7 +227,7 @@ namespace River.OneMoreAddIn.Commands
 			this.indentCheck.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.indentCheck.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.indentCheck.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.indentCheck.Location = new System.Drawing.Point(130, 201);
+			this.indentCheck.Location = new System.Drawing.Point(130, 206);
 			this.indentCheck.Name = "indentCheck";
 			this.indentCheck.Size = new System.Drawing.Size(200, 25);
 			this.indentCheck.StylizeImage = false;
@@ -244,7 +244,7 @@ namespace River.OneMoreAddIn.Commands
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
-			this.okButton.Location = new System.Drawing.Point(411, 370);
+			this.okButton.Location = new System.Drawing.Point(411, 392);
 			this.okButton.Name = "okButton";
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(112, 35);
@@ -262,7 +262,7 @@ namespace River.OneMoreAddIn.Commands
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
-			this.cancelButton.Location = new System.Drawing.Point(533, 370);
+			this.cancelButton.Location = new System.Drawing.Point(533, 392);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(112, 35);
@@ -277,7 +277,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.noteLabel.AutoEllipsis = true;
 			this.noteLabel.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.noteLabel.Location = new System.Drawing.Point(133, 157);
+			this.noteLabel.Location = new System.Drawing.Point(133, 162);
 			this.noteLabel.Name = "noteLabel";
 			this.noteLabel.Size = new System.Drawing.Size(512, 20);
 			this.noteLabel.TabIndex = 17;
@@ -292,7 +292,7 @@ namespace River.OneMoreAddIn.Commands
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(660, 420);
+			this.ClientSize = new System.Drawing.Size(660, 442);
 			this.Controls.Add(this.noteLabel);
 			this.Controls.Add(this.cancelButton);
 			this.Controls.Add(this.okButton);

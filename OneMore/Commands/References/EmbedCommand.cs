@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using OneMoreAddIn.Models;
+	using River.OneMoreAddIn.Cli;
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
@@ -28,7 +29,7 @@ namespace River.OneMoreAddIn.Commands
 	/// Begin/end tag strings may be used to embed only a slice of the source page.
 	/// </remarks>
 	[CommandService]
-	internal class EmbedCommand : Command
+	internal class EmbedCommand : Command, ICliPageCommand
 	{
 		private const string EmbedMetaName = "omEmbed";
 		private const string EmbedHeaderMeta = "omEmbedHeader";
@@ -50,6 +51,18 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private sealed class RefreshParams
+		{
+			public string SourceId;
+			public string ObjectId;
+			public string LinkId;
+			public string BeginTag;
+			public string EndTag;
+			public EmbedFormat Format;
+			public EmbedStyle Style;
+		}
+
+
 		private OneNote one;
 		private Page page;
 		private XNamespace ns;
@@ -58,6 +71,24 @@ namespace River.OneMoreAddIn.Commands
 		public EmbedCommand()
 		{
 		}
+
+
+		#region CLI Implementation
+
+		public string CommandName => "Embed";
+
+		public string Description => "Refresh all embedded page content within the specified scope";
+
+		public CliParameterDefinition DefineParameters() =>
+			new CliParameterDefinition()
+			.AddString("notebook", "Name of the notebook", required: true)
+			.AddString("section", "Path of the section; omit for all sections", required: false)
+			.AddString("page", "Name of the page; omit for all pages", required: false)
+			.AddBoolean("refresh",
+				"Must be true to confirm refreshing embedded content",
+				required: true, defaultValue: false);
+
+		#endregion CLI Implementation
 
 
 		// InvokeCommand applies HttpUtility.UrlDecode before handing args to Execute,
@@ -71,6 +102,22 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
+			if (args.Length > 0 && args[0] is CliParameterSet cliParams)
+			{
+				cliParams.TryGet("pageId", out string pageId);
+				if (string.IsNullOrWhiteSpace(pageId)) { return; }
+
+				cliParams.TryGet("refresh", out bool doRefresh);
+				if (!doRefresh)
+				{
+					logger.WriteLine("--refresh must be 'true' to refresh embedded content");
+					return;
+				}
+
+				await RefreshPageEmbeds(pageId);
+				return;
+			}
+
 			if (args.Length > 0 && args[0] is string s && s == "refresh")
 			{
 				logger = Logger.Current;
@@ -525,7 +572,7 @@ namespace River.OneMoreAddIn.Commands
 					return null;
 				}
 
-				snippets = ExtractTaggedContent(oeChildren, beginTag, endTag);
+				snippets = ExtractTaggedContent(ns, oeChildren, beginTag, endTag);
 				if (snippets is null)
 				{
 					ShowError(Resx.EmbedCommand_NoContent);
@@ -583,8 +630,8 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private IEnumerable<XElement> ExtractTaggedContent(
-			XElement oeChildren, string beginTag, string endTag)
+		internal static IEnumerable<XElement> ExtractTaggedContent(
+			XNamespace ns, XElement oeChildren, string beginTag, string endTag)
 		{
 			var oes = oeChildren.Elements(ns + "OE").ToList();
 
@@ -632,7 +679,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private static int FindTagIndex(List<XElement> oes, string tag, int startFrom)
+		internal static int FindTagIndex(List<XElement> oes, string tag, int startFrom)
 		{
 			for (var i = startFrom; i < oes.Count; i++)
 			{
@@ -724,6 +771,113 @@ namespace River.OneMoreAddIn.Commands
 
 		// ========================================================================================
 		// Update...
+
+		private async Task RefreshPageEmbeds(string pageId)
+		{
+			await using (one = new OneNote())
+			{
+				var targetPage = await one.GetPage(pageId, OneNote.PageDetail.BinaryData);
+				if (targetPage is null) { return; }
+
+				page = targetPage;
+				ns = page.Namespace;
+
+				var metas = page.Root.Descendants(ns + "Meta")
+					.Where(e => e.Attribute("name")?.Value == EmbedMetaName)
+					.ToList();
+
+				if (!metas.Any())
+				{
+					logger.WriteLine($"no embedded content found on page [{page.Title}]");
+					return;
+				}
+
+				var updated = false;
+				foreach (var meta in metas)
+				{
+					var tableRoot = meta.ElementsAfterSelf(ns + "Table").FirstOrDefault();
+					if (tableRoot is null) { continue; }
+
+					var refreshUrl = FindRefreshUrl(tableRoot);
+					if (refreshUrl is null)
+					{
+						logger.WriteLine("embed table found but Refresh URL could not be located");
+						continue;
+					}
+
+					var p = ParseRefreshUrl(refreshUrl);
+					if (p is null)
+					{
+						logger.WriteLine($"unrecognized refresh URL format: {refreshUrl}");
+						continue;
+					}
+
+					logger.WriteLine($"refreshing embed from source [{p.SourceId}]");
+
+					try
+					{
+						var source = await GetSource(p.SourceId, p.ObjectId, p.LinkId, p.BeginTag, p.EndTag);
+						if (source is null || !source.Snippets.Any()) { continue; }
+
+						var table = new Table(tableRoot);
+						await FillCell(table[0][0], source, p.BeginTag, p.EndTag, p.Format, p.Style);
+						updated = true;
+					}
+					catch (Exception exc)
+					{
+						logger.WriteLine($"error refreshing embed from source [{p.SourceId}]", exc);
+					}
+				}
+
+				if (updated)
+				{
+					await one.Update(page);
+					logger.WriteLine($"updated page [{page.Title}]");
+				}
+			}
+		}
+
+
+		private string FindRefreshUrl(XElement tableRoot)
+		{
+			var headerOE = tableRoot.Descendants(ns + "Meta")
+				.FirstOrDefault(e => e.Attribute("name")?.Value == EmbedHeaderMeta)
+				?.Parent;
+
+			if (headerOE is null) { return null; }
+
+			var cdata = headerOE.Elements(ns + "T")
+				.Select(t => t.FirstNode as XCData)
+				.FirstOrDefault(cd => cd != null);
+
+			if (cdata is null) { return null; }
+
+			var match = Regex.Match(cdata.Value,
+				@"href=""(onemore://EmbedCommand/refresh/[^""]+)""");
+			return match.Success ? match.Groups[1].Value : null;
+		}
+
+
+		private static RefreshParams ParseRefreshUrl(string url)
+		{
+			const string prefix = "onemore://EmbedCommand/refresh/";
+			if (!url.StartsWith(prefix, StringComparison.OrdinalIgnoreCase)) { return null; }
+
+			var parts = url.Substring(prefix.Length).Split('/');
+			if (parts.Length < 7) { return null; }
+
+			return new RefreshParams
+			{
+				SourceId = parts[0],
+				ObjectId = Decode(parts[1]),
+				LinkId   = parts[2],
+				BeginTag = Decode(parts[3]),
+				EndTag   = Decode(parts[4]),
+				Format   = int.TryParse(parts[5], out var fi) ? (EmbedFormat)fi : EmbedFormat.Formatted,
+				Style    = int.TryParse(parts[6], out var si) ? (EmbedStyle)si : EmbedStyle.Normal
+			};
+		}
+
 
 		private async Task UpdateContent(
 			string sourceId, string objectId, string linkId,
