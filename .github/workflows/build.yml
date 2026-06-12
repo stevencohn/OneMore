@@ -89,14 +89,12 @@ jobs:
         run: |
           $tag = "${{ steps.stage.outputs.version }}-beta.${{ inputs.beta }}"
           $notes = "_This is a preview of what's to come. These changes have not yet been fully tested and no guarantee is provided. Be cautious using this build against your production notebooks. But if you're curious and willing to give it a try, please send feedback by opening a ticket. Thanks!_`n`n"
-          $msi = Get-ChildItem "OneMore_*_Setupx64.msi" | Select-Object -First 1 -ExpandProperty Name
+          $msi = Get-ChildItem "OneMore_*_Setupx64.msi" | Select-Object -First 1 -ExpandProperty FullName
           if (-not $msi) { throw "MSI not found in working directory" }
-          $exe = Get-ChildItem "OneMore_*_Setupx64.exe" -ErrorAction SilentlyContinue | Select-Object -First 1 -ExpandProperty Name
-          $files = if ($exe) { @($exe, $msi) } else { @($msi) }
-          gh release create $tag @files `
-            --title "OneMore $tag" `
-            --notes $notes `
-            --generate-notes `
-            --prerelease
+          $exe = Get-ChildItem "OneMore_*_Setupx64.exe" -ErrorAction SilentlyContinue | Select-Object -First 1 -ExpandProperty FullName
+          $ghArgs = @('release', 'create', $tag, $msi)
+          if ($exe) { $ghArgs += $exe }
+          $ghArgs += @('--title', "OneMore $tag", '--notes', $notes, '--generate-notes', '--prerelease')
+          & gh @ghArgs
         env:
           GH_TOKEN: ${{ github.token }}
