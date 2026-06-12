@@ -23,6 +23,6 @@ namespace OneMoreCli
 {
 	internal static class AssemblyInfo
 	{
-		public const string Version = "7.1.0";
+		public const string Version = "7.1.1";
 	}
 }

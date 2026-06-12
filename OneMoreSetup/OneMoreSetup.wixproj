@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Platform Condition="'$(Platform)' == ''">x86</Platform>
     <Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
-    <ProductVersion Condition="'$(ProductVersion)' == ''">7.1.0</ProductVersion>
+    <ProductVersion Condition="'$(ProductVersion)' == ''">7.1.1</ProductVersion>
     <OutputName>OneMore_$(ProductVersion)_Setup$(Platform)</OutputName>
     <OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
     <DefineConstants>ProductVersion=$(ProductVersion)</DefineConstants>
