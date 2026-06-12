@@ -640,6 +640,55 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Gets a onenote:hyperlink to the specified page, retrying on COM failure.
+		/// Use this instead of GetHyperlink when calling in a loop (e.g. bulk map building)
+		/// where a stale RCW would otherwise silently drop entries.
+		/// If objectId is supplied and fails (e.g. the clipboard object-id GUID may not match
+		/// the page-content objectID format), falls back to the page-level link automatically.
+		/// </summary>
+		internal async Task<string> GetHyperlinkWithRetry(string pageId, string objectId)
+		{
+			string hyperlink = null;
+
+			await InvokeWithRetry(() =>
+			{
+				onenote.GetHyperlinkToObject(pageId,
+					string.IsNullOrEmpty(objectId) ? string.Empty : objectId,
+					out hyperlink);
+			});
+
+			if (hyperlink is null && !string.IsNullOrEmpty(objectId))
+			{
+				// Object-specific call failed (ID format mismatch or object missing);
+				// fall back to page-level link with a fresh retry cycle.
+				await InvokeWithRetry(() =>
+				{
+					onenote.GetHyperlinkToObject(pageId, string.Empty, out hyperlink);
+				});
+			}
+
+			return hyperlink?.SafeUrlEncode();
+		}
+
+
+		/// <summary>
+		/// Gets a onenote:hyperlink for a specific object on a page using the page XML
+		/// objectID (attribute format). Uses COM retry but no page-level fallback, so
+		/// null means the object could not be linked. Used to map XML objectIDs to their
+		/// URI form for reverse-lookup of clipboard paragraph links.
+		/// </summary>
+		internal async Task<string> GetObjectHyperlink(string pageId, string objectId)
+		{
+			string hyperlink = null;
+			await InvokeWithRetry(() =>
+			{
+				onenote.GetHyperlinkToObject(pageId, objectId, out hyperlink);
+			});
+			return hyperlink?.SafeUrlEncode();
+		}
+
+
+		/// <summary>
 		/// Gets a Web hyperlink to an object on the specified hierarchy object
 		/// </summary>
 		/// <param name="hierarchyID">The ID of a notebook, section, or page</param>
@@ -1049,15 +1098,31 @@ namespace River.OneMoreAddIn
 			}
 
 			// final segment: wildcard returns all pages; named segment filters to one match
-			var pageName = parts[parts.Length - 1];
+			var pageName = parts[parts.Length - 1].Trim();
 			var sectionNs = GetNamespace(section);
 			var pages = section.Elements(sectionNs + "Page");
 
 			if (pageName != "*")
 			{
-				pages = pages.Where(p => string.Equals(
-					p.Attribute("name")?.Value?.Trim(), pageName.Trim(),
-					StringComparison.InvariantCultureIgnoreCase));
+				if (pageName.Contains('?'))
+				{
+					// '?' may be a lossy substitution for a non-ASCII character in the
+					// clipboard URI (e.g. ✓ encoded to ? by Windows). Treat each '?' as
+					// a single-character wildcard so the match still succeeds.
+					var pattern = "^" + Regex.Escape(pageName).Replace(@"\?", ".") + "$";
+					pages = pages.Where(p =>
+					{
+						var name = p.Attribute("name")?.Value?.Trim() ?? string.Empty;
+						return Regex.IsMatch(name, pattern,
+							RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+					});
+				}
+				else
+				{
+					pages = pages.Where(p => string.Equals(
+						p.Attribute("name")?.Value?.Trim(), pageName,
+						StringComparison.InvariantCultureIgnoreCase));
+				}
 			}
 
 			return pages

@@ -152,23 +152,26 @@ namespace River.OneMoreAddIn.Commands
 
 					var ID = element.Attribute("ID").Value;
 					var name = element.Attribute("name").Value;
-					var link = one.GetHyperlink(ID, string.Empty);
-					var hyperId = GetHyperKey(link, out var sectionID);
-
-					if (hyperId != null && !hyperlinks.ContainsKey(hyperId))
+					var link = await one.GetHyperlinkWithRetry(ID, string.Empty);
+					if (link is not null)
 					{
-						//logger.WriteLine($"MAP path:{path} fullpath:{full} name:{name}");
-						hyperlinks.Add(hyperId,
-							new HyperlinkInfo
-							{
-								PageID = ID,
-								SectionID = sectionID,
-								HyperID = hyperId,
-								Name = name,
-								Path = path,
-								FullPath = full,
-								Uri = link
-							});
+						var hyperId = GetHyperKey(link, out var sectionID);
+
+						if (hyperId != null && !hyperlinks.ContainsKey(hyperId))
+						{
+							//logger.WriteLine($"MAP path:{path} fullpath:{full} name:{name}");
+							hyperlinks.Add(hyperId,
+								new HyperlinkInfo
+								{
+									PageID = ID,
+									SectionID = sectionID,
+									HyperID = hyperId,
+									Name = name,
+									Path = path,
+									FullPath = full,
+									Uri = link
+								});
+						}
 					}
 
 					if (stepCallback != null)
