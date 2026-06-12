@@ -222,7 +222,14 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 
 				var currentVersion = new Version(InstalledVersion);
 				var releaseVersion = new Version(plainver);
-				IsUpToDate = currentVersion >= releaseVersion;
+
+				// semver: a prerelease build is superseded by the corresponding stable release
+				// (7.1.1-beta < 7.1.1); guard on !release.prerelease so beta-vs-beta still uses >=
+				var isInstalledPrerelease = !string.IsNullOrEmpty(AssemblyInfo.BuildTag);
+
+				IsUpToDate = (isInstalledPrerelease && !release.prerelease)
+					? currentVersion > releaseVersion
+					: currentVersion >= releaseVersion;
 
 				// check if this version is skipped...
 				var collection = new Settings.SettingsProvider().GetCollection(nameof(Settings.GeneralSheet));
