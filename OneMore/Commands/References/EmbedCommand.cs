@@ -428,13 +428,15 @@ namespace River.OneMoreAddIn.Commands
 			var quickmap = page.MergeQuickStyles(source.Page);
 			var citationIndex = page.GetQuickStyle(Styles.StandardStyles.Citation).Index;
 
+			var encodedSourceId = Uri.EscapeDataString(source.Page.PageId);
 			var encodedObjectId = Uri.EscapeDataString(source.XmlObjectId ?? EmptySegment);
+			var encodedLinkId   = Uri.EscapeDataString(linkId);
 			var encodedBeginTag = Uri.EscapeDataString(string.IsNullOrEmpty(beginTag) ? EmptySegment : beginTag);
 			var encodedEndTag = Uri.EscapeDataString(string.IsNullOrEmpty(endTag) ? EmptySegment : endTag);
 
 			var refreshUrl =
-				$"onemore://EmbedCommand/refresh/{source.Page.PageId}/" +
-				$"{encodedObjectId}/{linkId}/" +
+				$"onemore://EmbedCommand/refresh/{encodedSourceId}/" +
+				$"{encodedObjectId}/{encodedLinkId}/" +
 				$"{encodedBeginTag}/{encodedEndTag}/" +
 				$"{(int)format}/{(int)style}";
 
@@ -868,9 +870,9 @@ namespace River.OneMoreAddIn.Commands
 
 			return new RefreshParams
 			{
-				SourceId = parts[0],
+				SourceId = Decode(parts[0]),
 				ObjectId = Decode(parts[1]),
-				LinkId   = parts[2],
+				LinkId   = Decode(parts[2]),
 				BeginTag = Decode(parts[3]),
 				EndTag   = Decode(parts[4]),
 				Format   = int.TryParse(parts[5], out var fi) ? (EmbedFormat)fi : EmbedFormat.Formatted,
