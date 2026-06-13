@@ -730,15 +730,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Could not mark anchor point. Select a word or phrase from one paragraph. See log file for details..
-        /// </summary>
-        internal static string BiLinkCommand_BadAnchor {
-            get {
-                return ResourceManager.GetString("BiLinkCommand_BadAnchor", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Could not create bi-directional link. {0}.
         /// </summary>
         internal static string BiLinkCommand_BadTarget {
@@ -766,15 +757,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Marked &quot;{0}&quot; as the anchor. Now select the target text and finish the bi-directional link.
-        /// </summary>
-        internal static string BiLinkCommand_Marked {
-            get {
-                return ResourceManager.GetString("BiLinkCommand_Marked", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Starting anchor not yet marked. Select the start of the bi-directional link..
         /// </summary>
         internal static string BiLinkCommand_NoAnchor {
@@ -789,6 +771,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string BiLinkCommand_NoTarget {
             get {
                 return ResourceManager.GetString("BiLinkCommand_NoTarget", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Place the text cursor in a word or phrase to create a bookmark.
+        /// </summary>
+        internal static string BookmarkCommand_Invalid {
+            get {
+                return ResourceManager.GetString("BookmarkCommand_Invalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bookmarked &quot;{0}&quot;.
+        /// </summary>
+        internal static string BookmarkedDialog_Message {
+            get {
+                return ResourceManager.GetString("BookmarkedDialog_Message", resourceCulture);
             }
         }
         
@@ -969,15 +969,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ClearLog_NoneMessage {
             get {
                 return ResourceManager.GetString("ClearLog_NoneMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Confirm.
-        /// </summary>
-        internal static string ClearLog_Title {
-            get {
-                return ResourceManager.GetString("ClearLog_Title", resourceCulture);
             }
         }
         
@@ -7807,6 +7798,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bookmark Selection.
+        /// </summary>
+        internal static string ribBookmarkButton_Label {
+            get {
+                return ResourceManager.GetString("ribBookmarkButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change Sentence Spacing.
         /// </summary>
         internal static string ribBreakingButton_Label {
@@ -11033,15 +11033,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Start Bidirectional Link.
-        /// </summary>
-        internal static string ribStartBiLinkButton_Label {
-            get {
-                return ResourceManager.GetString("ribStartBiLinkButton_Label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Start bi-directional link.
         /// </summary>
         internal static string ribStartBiLinkButton_Screentip {
@@ -12633,15 +12624,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string StartupFailureMessage {
             get {
                 return ResourceManager.GetString("StartupFailureMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string String1 {
-            get {
-                return ResourceManager.GetString("String1", resourceCulture);
             }
         }
         

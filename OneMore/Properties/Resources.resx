@@ -410,10 +410,6 @@ Invert</value>
     <value>recently used</value>
     <comment>listview annotation</comment>
   </data>
-  <data name="BiLinkCommand_BadAnchor" xml:space="preserve">
-    <value>Could not mark anchor point. Select a word or phrase from one paragraph. See log file for details.</value>
-    <comment>message box</comment>
-  </data>
   <data name="BiLinkCommand_BadTarget" xml:space="preserve">
     <value>Could not create bi-directional link. {0}</value>
     <comment>message box</comment>
@@ -426,16 +422,20 @@ Invert</value>
     <value>Anchor cannot be found. Page or text has changed.</value>
     <comment>message box</comment>
   </data>
-  <data name="BiLinkCommand_Marked" xml:space="preserve">
-    <value>Marked "{0}" as the anchor. Now select the target text and finish the bi-directional link</value>
-    <comment>message box</comment>
-  </data>
   <data name="BiLinkCommand_NoAnchor" xml:space="preserve">
     <value>Starting anchor not yet marked. Select the start of the bi-directional link.</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_NoTarget" xml:space="preserve">
     <value>Select a word or phrase from one paragraph</value>
+    <comment>message box</comment>
+  </data>
+  <data name="BookmarkCommand_Invalid" xml:space="preserve">
+    <value>Place the text cursor in a word or phrase to create a bookmark</value>
+    <comment>message box</comment>
+  </data>
+  <data name="BookmarkedDialog_Message" xml:space="preserve">
+    <value>Bookmarked "{0}"</value>
     <comment>message box</comment>
   </data>
   <data name="BreakingDialog_oneButton.Text" xml:space="preserve">
@@ -517,10 +517,6 @@ Invert</value>
   <data name="ClearLog_NoneMessage" xml:space="preserve">
     <value>No log file is available</value>
     <comment>message box message</comment>
-  </data>
-  <data name="ClearLog_Title" xml:space="preserve">
-    <value>Confirm</value>
-    <comment>message box title</comment>
   </data>
   <data name="Clipboard_locked" xml:space="preserve">
     <value>Cannot copy at this time. The clipboard is locked.</value>
@@ -3061,6 +3057,10 @@ Help Tab</value>
     <value>Ribbon Bar</value>
     <comment>settings dialog</comment>
   </data>
+  <data name="ribBookmarkButton_Label" xml:space="preserve">
+    <value>Bookmark Selection</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribBreakingButton_Label" xml:space="preserve">
     <value>Change Sentence Spacing</value>
     <comment>ribbon clean NODUP</comment>
@@ -4475,10 +4475,6 @@ Help Tab</value>
     <value>Reposition background images top to bottom</value>
     <comment>ribbon images</comment>
   </data>
-  <data name="ribStartBiLinkButton_Label" xml:space="preserve">
-    <value>Start Bidirectional Link</value>
-    <comment>ribbon references</comment>
-  </data>
   <data name="ribStartBiLinkButton_Screentip" xml:space="preserve">
     <value>Start bi-directional link</value>
     <comment>ribbon references</comment>
@@ -5178,9 +5174,6 @@ Notebooks</value>
   <data name="StartupFailureMessage" xml:space="preserve">
     <value>OneMore failed to connect to OneNote, see log file for exception details</value>
     <comment>message box</comment>
-  </data>
-  <data name="String1" xml:space="preserve">
-    <value />
   </data>
   <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
     <value>Space After:</value>

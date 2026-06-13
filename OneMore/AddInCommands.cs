@@ -1003,9 +1003,9 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<StackBackgroundImagesCommand>();
 
 
-		[Command("ribStartBiLinkButton_Label", Keys.None, "ribReferencesMenu")]
-		public async Task StartBiLinkCmd(IRibbonControl control)
-			=> await factory.Run<BiLinkCommand>("mark");
+		[Command("ribBookmarkButton_Label", Keys.None, "ribReferencesMenu")]
+		public async Task BookmarkCmd(IRibbonControl control)
+			=> await factory.Run<BookmarkCommand>("mark");
 
 
 		[Command("ribStartTimerButton_Label", Keys.Alt | Keys.F2)]

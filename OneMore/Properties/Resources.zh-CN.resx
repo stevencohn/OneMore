@@ -409,10 +409,6 @@
     <value>最近使用</value>
     <comment>listview annotation</comment>
   </data>
-  <data name="BiLinkCommand_BadAnchor" xml:space="preserve">
-    <value>无法标记锚点。请选择至少一个单词或文字作为锚点。请参阅日志文件以获取详细信息</value>
-    <comment>message box</comment>
-  </data>
   <data name="BiLinkCommand_BadTarget" xml:space="preserve">
     <value>无法创建双向链接。 </value>
     <comment>message box</comment>
@@ -425,16 +421,20 @@
     <value>找不到锚点。</value>
     <comment>message box</comment>
   </data>
-  <data name="BiLinkCommand_Marked" xml:space="preserve">
-    <value>将”{0}”标记为起始锚点。现在请选择目标文本以完成双向链接。</value>
-    <comment>message box</comment>
-  </data>
   <data name="BiLinkCommand_NoAnchor" xml:space="preserve">
     <value>起始锚点尚未标记。</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_NoTarget" xml:space="preserve">
     <value>选择至少一个单词或文字作为锚点</value>
+    <comment>message box</comment>
+  </data>
+  <data name="BookmarkCommand_Invalid" xml:space="preserve">
+    <value>将文本光标放在单词或短语中以创建书签</value>
+    <comment>message box</comment>
+  </data>
+  <data name="BookmarkedDialog_Message" xml:space="preserve">
+    <value>已将“{0}”添加为书签</value>
     <comment>message box</comment>
   </data>
   <data name="BreakingDialog_oneButton.Text" xml:space="preserve">
@@ -516,10 +516,6 @@
   <data name="ClearLog_NoneMessage" xml:space="preserve">
     <value>没有可用的日志文件</value>
     <comment>message box message</comment>
-  </data>
-  <data name="ClearLog_Title" xml:space="preserve">
-    <value>确认</value>
-    <comment>message box title</comment>
   </data>
   <data name="Clipboard_locked" xml:space="preserve">
     <value>无法复制。剪贴板已锁定。</value>
@@ -3043,6 +3039,10 @@ ISO-code then comma then language name</comment>
     <value>外观</value>
     <comment>settings dialog</comment>
   </data>
+  <data name="ribBookmarkButton_Label" xml:space="preserve">
+    <value>书签选择</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribBreakingButton_Label" xml:space="preserve">
     <value>更改句子间距</value>
     <comment>clean menu item</comment>
@@ -4455,10 +4455,6 @@ ISO-code then comma then language name</comment>
     <value>重新调整背景图像位置以消除重叠和空隙</value>
     <comment>ribbon images</comment>
   </data>
-  <data name="ribStartBiLinkButton_Label" xml:space="preserve">
-    <value>启动双向链接</value>
-    <comment>ribbon item</comment>
-  </data>
   <data name="ribStartBiLinkButton_Screentip" xml:space="preserve">
     <value>开始双向链接</value>
     <comment>ribbon references</comment>
@@ -5153,9 +5149,6 @@ ISO-code then comma then language name</comment>
   <data name="StartupFailureMessage" xml:space="preserve">
     <value>OneMore无法连接到OneNote，请参阅日志文件以获取异常详细信息</value>
     <comment>message box</comment>
-  </data>
-  <data name="String1" xml:space="preserve">
-    <value />
   </data>
   <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
     <value>段后间距：</value>

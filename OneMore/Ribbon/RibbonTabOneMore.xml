@@ -936,11 +936,11 @@
         getScreentip="GetRibbonScreentip"
         onAction="CopyLinkToParagraphCmd"/>
       <button
-        id="ribStartBiLinkButton"
-        imageMso="PositionAbsoluteMarks"
+        id="ribBookmarkButton"
+        imageMso="BookmarkInsert"
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
-        onAction="StartBiLinkCmd"/>
+        onAction="BookmarkCmd"/>
       <button
         id="ribFinishBiLinkButton"
         imageMso="CircularReferences"

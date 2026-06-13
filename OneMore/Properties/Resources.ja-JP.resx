@@ -406,10 +406,6 @@
     <value>最近使用したもの</value>
     <comment>listview annotation</comment>
   </data>
-  <data name="BiLinkCommand_BadAnchor" xml:space="preserve">
-    <value>アンカーポイントをマークできませんでした。1つの段落から単語やフレーズを選択してください。詳細はログファイルをご確認ください。</value>
-    <comment>message box</comment>
-  </data>
   <data name="BiLinkCommand_BadTarget" xml:space="preserve">
     <value>双方向リンクを作成できませんでした。 {0}</value>
     <comment>message box</comment>
@@ -422,16 +418,20 @@
     <value>アンカーが見つかりません。ページまたはテキストが変更された可能性があります。</value>
     <comment>message box</comment>
   </data>
-  <data name="BiLinkCommand_Marked" xml:space="preserve">
-    <value>「{0}」をアンカーとしてマークしました。次にターゲットテキストを選択し、双方向リンクを完了してください。</value>
-    <comment>message box</comment>
-  </data>
   <data name="BiLinkCommand_NoAnchor" xml:space="preserve">
     <value>開始アンカーがまだマークされていません。双方向リンクの開始点を選択してください。</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_NoTarget" xml:space="preserve">
     <value>1つの段落から単語やフレーズを選択してください。</value>
+    <comment>message box</comment>
+  </data>
+  <data name="BookmarkCommand_Invalid" xml:space="preserve">
+    <value>ブックマークを作成するには、単語または語句にテキスト カーソルを置きます。</value>
+    <comment>message box</comment>
+  </data>
+  <data name="BookmarkedDialog_Message" xml:space="preserve">
+    <value>「{0}」をブックマークしました</value>
     <comment>message box</comment>
   </data>
   <data name="BreakingDialog_oneButton.Text" xml:space="preserve">
@@ -513,10 +513,6 @@
   <data name="ClearLog_NoneMessage" xml:space="preserve">
     <value>ログファイルは利用できません。</value>
     <comment>message box message</comment>
-  </data>
-  <data name="ClearLog_Title" xml:space="preserve">
-    <value>確認</value>
-    <comment>message box title</comment>
   </data>
   <data name="Clipboard_locked" xml:space="preserve">
     <value>現在コピーできません。クリップボードがロックされています。</value>
@@ -3036,6 +3032,10 @@ ISO-code then comma then language name</comment>
     <value>リボン</value>
     <comment>settings dialog</comment>
   </data>
+  <data name="ribBookmarkButton_Label" xml:space="preserve">
+    <value>ブックマークの選択</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribBreakingButton_Label" xml:space="preserve">
     <value>文の間隔の変更</value>
     <comment>ribbon clean NODUP</comment>
@@ -4450,10 +4450,6 @@ ISO-code then comma then language name</comment>
     <value>重なった画像を立てに並べる</value>
     <comment>ribbon images</comment>
   </data>
-  <data name="ribStartBiLinkButton_Label" xml:space="preserve">
-    <value>双方向リンクの開始</value>
-    <comment>ribbon references</comment>
-  </data>
   <data name="ribStartBiLinkButton_Screentip" xml:space="preserve">
     <value>双方向リンクを開始する</value>
     <comment>ribbon references</comment>
@@ -5145,9 +5141,6 @@ ISO-code then comma then language name</comment>
   <data name="StartupFailureMessage" xml:space="preserve">
     <value>OneMoreはOneNoteに接続できませんでした。ログファイルで例外の詳細を確認してください</value>
     <comment>message box</comment>
-  </data>
-  <data name="String1" xml:space="preserve">
-    <value />
   </data>
   <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
     <value>後ろスペース:</value>
