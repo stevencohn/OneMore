@@ -53,7 +53,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				if (!await MarkAnchor(one))
 				{
-					ShowError(Resx.BiLinkCommand_BadAnchor);
+					ShowError(Resx.BookmarkCommand_Invalid);
 					return;
 				}
 

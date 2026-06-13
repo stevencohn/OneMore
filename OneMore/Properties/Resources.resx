@@ -410,8 +410,8 @@ Invert</value>
     <value>recently used</value>
     <comment>listview annotation</comment>
   </data>
-  <data name="BiLinkCommand_BadAnchor" xml:space="preserve">
-    <value>Could not mark anchor point. Select a word or phrase from one paragraph. See log file for details.</value>
+  <data name="BookmarkCommand_Invalid" xml:space="preserve">
+    <value>Place the text cursor in a word or phrase to create a bookmark</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_BadTarget" xml:space="preserve">

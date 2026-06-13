@@ -730,15 +730,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Could not mark anchor point. Select a word or phrase from one paragraph. See log file for details..
-        /// </summary>
-        internal static string BiLinkCommand_BadAnchor {
-            get {
-                return ResourceManager.GetString("BiLinkCommand_BadAnchor", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Could not create bi-directional link. {0}.
         /// </summary>
         internal static string BiLinkCommand_BadTarget {
@@ -789,6 +780,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string BiLinkCommand_NoTarget {
             get {
                 return ResourceManager.GetString("BiLinkCommand_NoTarget", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Place the text cursor in a word or phrase to create a bookmark.
+        /// </summary>
+        internal static string BookmarkCommand_Invalid {
+            get {
+                return ResourceManager.GetString("BookmarkCommand_Invalid", resourceCulture);
             }
         }
         

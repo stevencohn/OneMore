@@ -282,6 +282,7 @@
     <Compile Include="Commands\References\BiLinkDialog.Designer.cs">
       <DependentUpon>BiLinkDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\References\BookmarkCommand.cs" />
     <Compile Include="Commands\References\EmbedDialog.cs">
       <SubType>Form</SubType>
     </Compile>
