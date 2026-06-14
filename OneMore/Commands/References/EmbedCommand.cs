@@ -158,7 +158,8 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (BookmarkCommand.Bookmark is not null)
 			{
-				var bookmark = BookmarkCommand.Bookmark;
+				await EmbedFromBookmark(BookmarkCommand.Bookmark);
+				return;
 			}
 
 			// check clipboard for a OneNote URI (from Copy Link to Page/Paragraph)
@@ -179,6 +180,52 @@ namespace River.OneMoreAddIn.Commands
 				Resx.EmbedCommand_SelectIntro,
 				OneNote.Scope.Pages,
 				async (sid) => await Callback(sid, null));
+		}
+
+
+		private async Task EmbedFromBookmark(Bookmark bookmark)
+		{
+			string sourceName;
+			XElement container;
+
+			// Phase 1: pre-dialog — load current page and resolve source name.
+			await using (var o = new OneNote())
+			{
+				page = await o.GetPage();
+				ns = page?.Namespace;
+				if (page is null)
+				{
+					return;
+				}
+
+				sourceName = o.GetHierarchyNode(bookmark.PageId)?.Name ?? bookmark.PageId;
+				container = FindContainer();
+			}
+
+			if (container is null)
+			{
+				ShowError(Resx.Error_BodyContext);
+				return;
+			}
+
+			var paragraphText = bookmark.Range.Root.TextValue(stripHtml: true);
+			if (!ShowEmbedDialog(sourceName,
+				out _, out _,
+				out var format, out var style, out var indent,
+				paragraphText))
+			{
+				return;
+			}
+
+			// Phase 2: post-dialog — fresh instance for source extraction and page update.
+			await using (one = new OneNote())
+			{
+				await Embed(bookmark.PageId, bookmark.ObjectId,
+					string.Empty, string.Empty,
+					format, style, indent, container);
+			}
+
+			BookmarkCommand.Clear();
 		}
 
 
@@ -331,9 +378,10 @@ namespace River.OneMoreAddIn.Commands
 			string sourceName,
 			out string beginTag, out string endTag,
 			out EmbedFormat format, out EmbedStyle style,
-			out bool indent)
+			out bool indent,
+			string bookmarkText = null)
 		{
-			using var dialog = new EmbedDialog(sourceName, page.Title);
+			using var dialog = new EmbedDialog(sourceName, page.Title, bookmarkText);
 			if (dialog.ShowDialog(owner) != DialogResult.OK)
 			{
 				beginTag = endTag = null;
