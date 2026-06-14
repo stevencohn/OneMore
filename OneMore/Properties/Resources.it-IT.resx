@@ -278,17 +278,9 @@ Invertire</value>
     <value>&lt;span style='font-style:italic'&gt;Cache non trovata; la posizione probabilmente è cambiata nelle opzioni di OneNote&lt;/span&gt;</value>
     <comment>status</comment>
   </data>
-  <data name="AnalyzeCommand_NoOrphans" xml:space="preserve">
-    <value>&lt;span style='font-style:italic'&gt;Nessuna directory di backup orfana rilevata&lt;/span&gt;</value>
-    <comment>status</comment>
-  </data>
   <data name="AnalyzeCommand_OpenSections" xml:space="preserve">
     <value>Sezioni aperte</value>
     <comment>SKIP notebook name</comment>
-  </data>
-  <data name="AnalyzeCommand_OrphanSummary" xml:space="preserve">
-    <value>Gli orfani sono cartelle di backup di taccuini che non vengono più aperti in OneNote. Se non vengono più utilizzati e hai verificato che sono obsoleti, puoi rimuoverli in sicurezza.</value>
-    <comment>summary text</comment>
   </data>
   <data name="AnalyzeCommand_PageSummary" xml:space="preserve">
     <value>Si tratta di un'analisi dettagliata di ciascuna pagina che mostra la dimensione totale della rappresentazione XML interna e la dimensione di ciascuna immagine e file allegato. Le immagini vengono visualizzate sia nelle dimensioni XML "BinHex" che nelle dimensioni Bitmap native. I file vengono visualizzati insieme alla quantità di spazio che consumano su disco.</value>
@@ -448,10 +440,6 @@ Invertire</value>
   </data>
   <data name="Calculator_ErrInvalidCountifParams" xml:space="preserve">
     <value>La funzione countif richiede due parametri</value>
-    <comment>error</comment>
-  </data>
-  <data name="Calculator_ErrInvalidFnParamCount" xml:space="preserve">
-    <value>La funzione {0} deve avere due parametri</value>
     <comment>error</comment>
   </data>
   <data name="Calculator_ErrInvalidFnParamType" xml:space="preserve">
@@ -1280,10 +1268,6 @@ File OneNote (*.one)</value>
     <value>Adatta griglia al testo</value>
     <comment>dialog title</comment>
   </data>
-  <data name="FormulaCommand_Exception" xml:space="preserve">
-    <value>{0} (colonna {1})</value>
-    <comment>exception message</comment>
-  </data>
   <data name="FormulaCommand_Linear" xml:space="preserve">
     <value>Le celle selezionate devono trovarsi nella stessa riga o nella stessa colonna</value>
     <comment>warning message</comment>
@@ -1543,10 +1527,6 @@ Questa pagina</value>
   <data name="HashtagSheet_prescheduled" xml:space="preserve">
     <value>È pianificata una scansione per {0}. Utilizza le opzioni seguenti per modificarlo o premi Annulla per mantenere la pianificazione corrente.</value>
   </data>
-  <data name="HashtagSheet_resetTooltip" xml:space="preserve">
-    <value>Avanzato: reimposta il flag di aggiornamento</value>
-    <comment>tooltip</comment>
-  </data>
   <data name="HashtagSheet_scanNotebooks" xml:space="preserve">
     <value>Pianifica una scansione incrementale dei tuoi taccuini appena aggiunti</value>
   </data>
@@ -1563,10 +1543,6 @@ Sfondo giallo</value>
   <data name="HashtagSheet_styleLabel.Text" xml:space="preserve">
     <value>Applica uno stile personalizzato</value>
     <comment>label</comment>
-  </data>
-  <data name="HashtagSheet_upgradeLink.Text" xml:space="preserve">
-    <value>Aggiorna i tag della pagina agli hashtag in linea</value>
-    <comment>link</comment>
   </data>
   <data name="HashtagSheet_warningLabel.Text" xml:space="preserve">
     <value>Dovrebbe essere utilizzato dopo aver aggiunto o rimosso uno o più taccuini. Si consiglia di pianificare le ricostruzioni dopo l'orario di lavoro, ad esempio a mezzanotte.</value>
@@ -3034,7 +3010,7 @@ Scheda Aiuto</value>
     <comment>settings dialog</comment>
   </data>
   <data name="ribBookmarkButton_Label" xml:space="preserve">
-    <value>Selezione dei segnalibri</value>
+    <value>Segnalibro</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribBreakingButton_Label" xml:space="preserve">
@@ -3429,8 +3405,8 @@ Scheda Aiuto</value>
     <comment>ribbon references NODUP</comment>
   </data>
   <data name="ribFinishBiLinkButton_Label" xml:space="preserve">
-    <value>Completa il collegamento bidirezionale</value>
-    <comment>ribbon references </comment>
+    <value>Collegamento bidirezionale al segnalibro</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribFinishBiLinkButton_Screentip" xml:space="preserve">
     <value>Termina il collegamento tra l'ancora e la posizione corrente</value>
@@ -4816,45 +4792,17 @@ In questa sezione
 In questa pagina</value>
     <comment>combobox</comment>
   </data>
-  <data name="SearchEngineDialog_deleteLabel.Text" xml:space="preserve">
-    <value>Eliminare:</value>
-    <comment>delete label NODUP</comment>
-  </data>
-  <data name="SearchEngineDialog_DeleteMessage" xml:space="preserve">
+  <data name="SearchEngineSheet_DeleteMessage" xml:space="preserve">
     <value>Eliminare {0}?</value>
     <comment>delete confirmation message</comment>
-  </data>
-  <data name="SearchEngineDialog_downButton.Text" xml:space="preserve">
-    <value>Spostati giù</value>
-    <comment>down buttom</comment>
-  </data>
-  <data name="SearchEngineDialog_iconColumn.HeaderText" xml:space="preserve">
-    <value>Icona</value>
-    <comment>icon col</comment>
-  </data>
-  <data name="SearchEngineDialog_introLabel.Text" xml:space="preserve">
-    <value>I modelli URL devono contenere un token di sostituzione della stringa, come &amp;q={0}</value>
-    <comment>intro label</comment>
-  </data>
-  <data name="SearchEngineDialog_refreshButton.Text" xml:space="preserve">
-    <value>Aggiorna le icone</value>
-    <comment>refresh button</comment>
-  </data>
-  <data name="SearchEngineDialog_Text" xml:space="preserve">
-    <value>Motori di ricerca</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="SearchEngineDialog_upButton.Text" xml:space="preserve">
-    <value>Vai su</value>
-    <comment>up buttom</comment>
-  </data>
-  <data name="SearchEngineDialog_urlColumn.HeaderText" xml:space="preserve">
-    <value>Modello URL</value>
-    <comment>url col</comment>
   </data>
   <data name="SearchEngineSheet_downButton.Text" xml:space="preserve">
     <value>Spostati giù</value>
     <comment>button</comment>
+  </data>
+  <data name="SearchEngineSheet_iconColumn.HeaderText" xml:space="preserve">
+    <value>Icona</value>
+    <comment>icon col</comment>
   </data>
   <data name="SearchEngineSheet_introBox.Text" xml:space="preserve">
     <value>I modelli URL devono contenere un token di sostituzione della stringa, come &amp;q={0}
@@ -4862,9 +4810,21 @@ In questa pagina</value>
 I motori di ricerca verranno visualizzati nel menu contestuale della pagina, fare clic con il tasto destro.</value>
     <comment>label</comment>
   </data>
+  <data name="SearchEngineSheet_refreshButton.Text" xml:space="preserve">
+    <value>Aggiorna le icone</value>
+    <comment>refresh button</comment>
+  </data>
+  <data name="SearchEngineSheet_Text" xml:space="preserve">
+    <value>Motori di ricerca</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="SearchEngineSheet_upButton.Text" xml:space="preserve">
     <value>Vai su</value>
     <comment>button</comment>
+  </data>
+  <data name="SearchEngineSheet_urlColumn.HeaderText" xml:space="preserve">
+    <value>Modello URL</value>
+    <comment>url col</comment>
   </data>
   <data name="SearchQF_DescriptionCopy" xml:space="preserve">
     <value>Scegli la posizione in cui copiare le pagine selezionate</value>
@@ -5467,14 +5427,6 @@ Grazie!</value>
     <value>OneMore è aggiornato</value>
     <comment>panel title</comment>
   </data>
-  <data name="UpdateDialog_lastUpdatedLabel.Text" xml:space="preserve">
-    <value>Ultimo aggiornamento:</value>
-    <comment>label</comment>
-  </data>
-  <data name="UpdateDialog_releaseDateLabel.Text" xml:space="preserve">
-    <value>Data di rilascio:</value>
-    <comment>label</comment>
-  </data>
   <data name="UpdateDialog_releaseNotesLink.Text" xml:space="preserve">
     <value>Note sulla versione</value>
     <comment>link</comment>
@@ -5491,9 +5443,17 @@ Grazie!</value>
     <value>Aggiornamento OneMore disponibile</value>
     <comment>panel title</comment>
   </data>
+  <data name="UpdateDialog_upLastUpdatedLabel.Text" xml:space="preserve">
+    <value>Ultimo aggiornamento:</value>
+    <comment>label</comment>
+  </data>
   <data name="UpdateDialog_upOKButton.Text" xml:space="preserve">
     <value>Aggiornamento</value>
     <comment>button</comment>
+  </data>
+  <data name="UpdateDialog_upReleaseDateLabel.Text" xml:space="preserve">
+    <value>Data di rilascio:</value>
+    <comment>label</comment>
   </data>
   <data name="UpdateDialog_upSkipButton.Text" xml:space="preserve">
     <value>Saltare</value>
@@ -5556,9 +5516,6 @@ Grazie!</value>
   </data>
   <data name="word_Actual" xml:space="preserve">
     <value>Reale</value>
-  </data>
-  <data name="word_Add" xml:space="preserve">
-    <value>Aggiungere</value>
   </data>
   <data name="word_Alias" xml:space="preserve">
     <value>Alias</value>
@@ -5665,9 +5622,6 @@ Grazie!</value>
   <data name="word_Go" xml:space="preserve">
     <value>Andare</value>
   </data>
-  <data name="word_Grayscale" xml:space="preserve">
-    <value>Scala di grigi</value>
-  </data>
   <data name="word_Hashtags" xml:space="preserve">
     <value>Hashtag</value>
   </data>
@@ -5683,20 +5637,11 @@ Grazie!</value>
   <data name="word_Index" xml:space="preserve">
     <value>parola_Indice</value>
   </data>
-  <data name="word_Information" xml:space="preserve">
-    <value>Informazioni</value>
-  </data>
-  <data name="word_Keyboard" xml:space="preserve">
-    <value>Tastiera</value>
-  </data>
   <data name="word_Language" xml:space="preserve">
     <value>Lingua</value>
   </data>
   <data name="word_Length" xml:space="preserve">
     <value>Lunghezza</value>
-  </data>
-  <data name="word_Limit" xml:space="preserve">
-    <value>Limite</value>
   </data>
   <data name="word_Minutes" xml:space="preserve">
     <value>Minuti</value>
@@ -5721,12 +5666,6 @@ Grazie!</value>
   </data>
   <data name="word_Notebooks" xml:space="preserve">
     <value>Taccuini</value>
-  </data>
-  <data name="word_Notes" xml:space="preserve">
-    <value>Note</value>
-  </data>
-  <data name="word_Numbering" xml:space="preserve">
-    <value>Numerazione</value>
   </data>
   <data name="word_Numeric" xml:space="preserve">
     <value>Numerico</value>
@@ -5834,23 +5773,14 @@ Grazie!</value>
   <data name="word_Stylize" xml:space="preserve">
     <value>Stilizzare</value>
   </data>
-  <data name="word_Suggestions" xml:space="preserve">
-    <value>Suggerimenti</value>
-  </data>
   <data name="word_Target" xml:space="preserve">
     <value>Bersaglio</value>
   </data>
   <data name="word_Text" xml:space="preserve">
     <value>Testo</value>
   </data>
-  <data name="word_Total" xml:space="preserve">
-    <value>Totale</value>
-  </data>
   <data name="word_Value" xml:space="preserve">
     <value>Valore</value>
-  </data>
-  <data name="word_Warning" xml:space="preserve">
-    <value>Avvertimento</value>
   </data>
   <data name="word_Width" xml:space="preserve">
     <value>Larghezza</value>

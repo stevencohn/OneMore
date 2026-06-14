@@ -37,7 +37,7 @@ namespace River.OneMoreAddIn.Settings
 			InitializeComponent();
 
 			Name = "SearchEngineSheet";
-			Title = Resx.SearchEngineDialog_Text;
+			Title = Resx.SearchEngineSheet_Text;
 
 			if (NeedsLocalizing())
 			{
@@ -50,9 +50,9 @@ namespace River.OneMoreAddIn.Settings
 					"deleteButton=word_Delete"
 				});
 
-				iconColumn.HeaderText = Resx.SearchEngineDialog_iconColumn_HeaderText;
+				iconColumn.HeaderText = Resx.SearchEngineSheet_iconColumn_HeaderText;
 				nameColumn.HeaderText = Resx.word_Name;
-				urlColumn.HeaderText = Resx.SearchEngineDialog_urlColumn_HeaderText;
+				urlColumn.HeaderText = Resx.SearchEngineSheet_urlColumn_HeaderText;
 			}
 
 			gridView.AutoGenerateColumns = false;
@@ -207,7 +207,7 @@ namespace River.OneMoreAddIn.Settings
 			var engine = engines[rowIndex];
 
 			var result = UI.MoreMessageBox.Show(this,
-				string.Format(Resx.SearchEngineDialog_DeleteMessage, engine.Name),
+				string.Format(Resx.SearchEngineSheet_DeleteMessage, engine.Name),
 				MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
 			if (result != DialogResult.Yes)

@@ -32,8 +32,9 @@ namespace River.OneMoreAddIn.Commands
 					"folderLabel=word_Folder",
 					"formatLabel=word_Format",
 					"formatBox",
-					"underBox",
 					"attachmentsBox",
+					"embeddedBox",
+					"underBox",
 					"okButton=word_OK",
 					"cancelButton=word_Cancel"
 				});

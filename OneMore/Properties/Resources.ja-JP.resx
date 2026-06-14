@@ -278,17 +278,9 @@
     <value>&lt;span style='font-style:italic'&gt;キャッシュが見つかりません。場所がOneNoteのオプションで変更された可能性があります。&lt;/span&gt;</value>
     <comment>status</comment>
   </data>
-  <data name="AnalyzeCommand_NoOrphans" xml:space="preserve">
-    <value>&lt;span style='font-style:italic'&gt;孤立したバックアップディレクトリは見つかりませんでした。&lt;/span&gt;</value>
-    <comment>status</comment>
-  </data>
   <data name="AnalyzeCommand_OpenSections" xml:space="preserve">
     <value>Open Sections</value>
     <comment>SKIP notebook name</comment>
-  </data>
-  <data name="AnalyzeCommand_OrphanSummary" xml:space="preserve">
-    <value>孤立したフォルダは、OneNoteで開かれていないノートブックのバックアップフォルダです。もう使用していない場合や、不要であることを確認した場合は、安全に削除することができます。</value>
-    <comment>summary text</comment>
   </data>
   <data name="AnalyzeCommand_PageSummary" xml:space="preserve">
     <value>これは、各ページの詳細な内訳であり、内部XML表現の合計サイズおよび各画像やファイル添付のサイズを示しています。画像は「BinHex」XMLサイズとネイティブのビットマップサイズの両方で表示されます。ファイルはディスク上で消費する容量とともに表示されます。</value>
@@ -448,10 +440,6 @@
   </data>
   <data name="Calculator_ErrInvalidCountifParams" xml:space="preserve">
     <value>countif 関数には 2 つのパラメータが必要です</value>
-    <comment>error</comment>
-  </data>
-  <data name="Calculator_ErrInvalidFnParamCount" xml:space="preserve">
-    <value>{0} 関数には 2 つのパラメータが必要です</value>
     <comment>error</comment>
   </data>
   <data name="Calculator_ErrInvalidFnParamType" xml:space="preserve">
@@ -1282,10 +1270,6 @@ OneNoteファイル (*.one)</value>
     <value>グリッドをテキストに合わせる</value>
     <comment>dialog title</comment>
   </data>
-  <data name="FormulaCommand_Exception" xml:space="preserve">
-    <value>{0} (列 {1})</value>
-    <comment>exception message</comment>
-  </data>
   <data name="FormulaCommand_Linear" xml:space="preserve">
     <value>選択されたセルは同じ行または同じ列にある必要があります</value>
     <comment>warning message</comment>
@@ -1546,10 +1530,6 @@ OneNoteファイル (*.one)</value>
   <data name="HashtagSheet_prescheduled" xml:space="preserve">
     <value>スキャンが {0} に予定されています。このスケジュールを変更するには、以下のオプションを使用するか、現在のスケジュールを保持するにはキャンセルを押してください。</value>
   </data>
-  <data name="HashtagSheet_resetTooltip" xml:space="preserve">
-    <value>高度: アップグレードフラグをリセット</value>
-    <comment>tooltip</comment>
-  </data>
   <data name="HashtagSheet_scanNotebooks" xml:space="preserve">
     <value>新しく追加されたノートブックのインクリメンタルスキャンをスケジュール</value>
   </data>
@@ -1566,10 +1546,6 @@ OneNoteファイル (*.one)</value>
   <data name="HashtagSheet_styleLabel.Text" xml:space="preserve">
     <value>カスタムスタイルを適用</value>
     <comment>label</comment>
-  </data>
-  <data name="HashtagSheet_upgradeLink.Text" xml:space="preserve">
-    <value>ページタグをインラインハッシュタグにアップグレード</value>
-    <comment>link</comment>
   </data>
   <data name="HashtagSheet_warningLabel.Text" xml:space="preserve">
     <value>1つ以上のノートブックを追加または削除した後に使用する必要があります。アップグレードは、夜間（例: 真夜中など）にスケジュールすることをお勧めします。</value>
@@ -3037,7 +3013,7 @@ ISO-code then comma then language name</comment>
     <comment>settings dialog</comment>
   </data>
   <data name="ribBookmarkButton_Label" xml:space="preserve">
-    <value>ブックマークの選択</value>
+    <value>ブックマーク</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribBreakingButton_Label" xml:space="preserve">
@@ -3432,8 +3408,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon references NODUP</comment>
   </data>
   <data name="ribFinishBiLinkButton_Label" xml:space="preserve">
-    <value>双方向リンクの終了</value>
-    <comment>ribbon references </comment>
+    <value>ブックマークへの双方向リンク</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribFinishBiLinkButton_Screentip" xml:space="preserve">
     <value>アンカーと現在の位置の間のリンクを終了する</value>
@@ -4819,45 +4795,17 @@ ISO-code then comma then language name</comment>
 このページで</value>
     <comment>combobox</comment>
   </data>
-  <data name="SearchEngineDialog_deleteLabel.Text" xml:space="preserve">
-    <value>消去：</value>
-    <comment>delete label NODUP</comment>
-  </data>
-  <data name="SearchEngineDialog_DeleteMessage" xml:space="preserve">
-    <value>{0} を削除しますか?</value>
+  <data name="SearchEngineSheet_DeleteMessage" xml:space="preserve">
+    <value>{0}を削除しますか?</value>
     <comment>delete confirmation message</comment>
-  </data>
-  <data name="SearchEngineDialog_downButton.Text" xml:space="preserve">
-    <value>下に移動</value>
-    <comment>down buttom</comment>
-  </data>
-  <data name="SearchEngineDialog_iconColumn.HeaderText" xml:space="preserve">
-    <value>アイコン</value>
-    <comment>icon col</comment>
-  </data>
-  <data name="SearchEngineDialog_introLabel.Text" xml:space="preserve">
-    <value>URLパターンには &amp;q={0} のような文字列置換トークンを含める必要があります</value>
-    <comment>intro label</comment>
-  </data>
-  <data name="SearchEngineDialog_refreshButton.Text" xml:space="preserve">
-    <value>アイコンを更新</value>
-    <comment>refresh button</comment>
-  </data>
-  <data name="SearchEngineDialog_Text" xml:space="preserve">
-    <value>検索エンジン</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="SearchEngineDialog_upButton.Text" xml:space="preserve">
-    <value>上に移動</value>
-    <comment>up buttom</comment>
-  </data>
-  <data name="SearchEngineDialog_urlColumn.HeaderText" xml:space="preserve">
-    <value>URLパターン</value>
-    <comment>url col</comment>
   </data>
   <data name="SearchEngineSheet_downButton.Text" xml:space="preserve">
     <value>下に移動</value>
     <comment>button</comment>
+  </data>
+  <data name="SearchEngineSheet_iconColumn.HeaderText" xml:space="preserve">
+    <value>アイコン</value>
+    <comment>icon col</comment>
   </data>
   <data name="SearchEngineSheet_introBox.Text" xml:space="preserve">
     <value>URLパターンには &amp;q={0} のような文字列置換トークンを含める必要があります
@@ -4865,9 +4813,21 @@ ISO-code then comma then language name</comment>
 検索エンジンは右クリックで表示されるページコンテキストメニューに表示されます。</value>
     <comment>label</comment>
   </data>
+  <data name="SearchEngineSheet_refreshButton.Text" xml:space="preserve">
+    <value>アイコンを更新する</value>
+    <comment>refresh button</comment>
+  </data>
+  <data name="SearchEngineSheet_Text" xml:space="preserve">
+    <value>検索エンジン</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="SearchEngineSheet_upButton.Text" xml:space="preserve">
     <value>上に移動</value>
     <comment>button</comment>
+  </data>
+  <data name="SearchEngineSheet_urlColumn.HeaderText" xml:space="preserve">
+    <value>URLパターン</value>
+    <comment>url col</comment>
   </data>
   <data name="SearchQF_DescriptionCopy" xml:space="preserve">
     <value>選択したページをコピーする場所を選択</value>
@@ -5470,14 +5430,6 @@ ISO-code then comma then language name</comment>
     <value>OneMoreは最新です</value>
     <comment>panel title</comment>
   </data>
-  <data name="UpdateDialog_lastUpdatedLabel.Text" xml:space="preserve">
-    <value>最終更新日:</value>
-    <comment>label</comment>
-  </data>
-  <data name="UpdateDialog_releaseDateLabel.Text" xml:space="preserve">
-    <value>リリース日:</value>
-    <comment>label</comment>
-  </data>
   <data name="UpdateDialog_releaseNotesLink.Text" xml:space="preserve">
     <value>リリースノート</value>
     <comment>link</comment>
@@ -5494,9 +5446,17 @@ ISO-code then comma then language name</comment>
     <value>OneMoreのアップデートが利用可能です</value>
     <comment>panel title</comment>
   </data>
+  <data name="UpdateDialog_upLastUpdatedLabel.Text" xml:space="preserve">
+    <value>最終更新日:</value>
+    <comment>label</comment>
+  </data>
   <data name="UpdateDialog_upOKButton.Text" xml:space="preserve">
     <value>アップデート</value>
     <comment>button</comment>
+  </data>
+  <data name="UpdateDialog_upReleaseDateLabel.Text" xml:space="preserve">
+    <value>発売日：</value>
+    <comment>label</comment>
   </data>
   <data name="UpdateDialog_upSkipButton.Text" xml:space="preserve">
     <value>スキップ</value>
@@ -5559,9 +5519,6 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Actual" xml:space="preserve">
     <value>実績</value>
-  </data>
-  <data name="word_Add" xml:space="preserve">
-    <value>追加</value>
   </data>
   <data name="word_Alias" xml:space="preserve">
     <value>エイリアス</value>
@@ -5668,9 +5625,6 @@ ISO-code then comma then language name</comment>
   <data name="word_Go" xml:space="preserve">
     <value>移動</value>
   </data>
-  <data name="word_Grayscale" xml:space="preserve">
-    <value>グレースケール</value>
-  </data>
   <data name="word_Hashtags" xml:space="preserve">
     <value>ハッシュタグ</value>
   </data>
@@ -5686,20 +5640,11 @@ ISO-code then comma then language name</comment>
   <data name="word_Index" xml:space="preserve">
     <value>インデックス</value>
   </data>
-  <data name="word_Information" xml:space="preserve">
-    <value>情報</value>
-  </data>
-  <data name="word_Keyboard" xml:space="preserve">
-    <value>キーボード</value>
-  </data>
   <data name="word_Language" xml:space="preserve">
     <value>言語</value>
   </data>
   <data name="word_Length" xml:space="preserve">
     <value>長さ</value>
-  </data>
-  <data name="word_Limit" xml:space="preserve">
-    <value>制限</value>
   </data>
   <data name="word_Minutes" xml:space="preserve">
     <value>分</value>
@@ -5724,12 +5669,6 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Notebooks" xml:space="preserve">
     <value>ノートブック</value>
-  </data>
-  <data name="word_Notes" xml:space="preserve">
-    <value>ノート</value>
-  </data>
-  <data name="word_Numbering" xml:space="preserve">
-    <value>番号付け</value>
   </data>
   <data name="word_Numeric" xml:space="preserve">
     <value>数値</value>
@@ -5837,23 +5776,14 @@ ISO-code then comma then language name</comment>
   <data name="word_Stylize" xml:space="preserve">
     <value>スタイライズ</value>
   </data>
-  <data name="word_Suggestions" xml:space="preserve">
-    <value>提案</value>
-  </data>
   <data name="word_Target" xml:space="preserve">
     <value>ターゲット</value>
   </data>
   <data name="word_Text" xml:space="preserve">
     <value>テキスト</value>
   </data>
-  <data name="word_Total" xml:space="preserve">
-    <value>合計</value>
-  </data>
   <data name="word_Value" xml:space="preserve">
     <value>価値</value>
-  </data>
-  <data name="word_Warning" xml:space="preserve">
-    <value>警告</value>
   </data>
   <data name="word_Width" xml:space="preserve">
     <value>幅</value>

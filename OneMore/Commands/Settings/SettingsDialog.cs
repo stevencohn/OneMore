@@ -73,7 +73,7 @@ namespace River.OneMoreAddIn.Settings
 				navTree.Nodes["pluginsNode"].Text = Resx.word_Plugins;
 				navTree.Nodes["quickNotesNode"].Text = Resx.QuickNotesSheet_Title;
 				navTree.Nodes["ribbonNode"].Text = Resx.RibbonBarSheet_Title;
-				navTree.Nodes["searchNode"].Text = Resx.SearchEngineDialog_Text;
+				navTree.Nodes["searchNode"].Text = Resx.SearchEngineSheet_Text;
 				navTree.Nodes["snippetsNode"].Text = Resx.word_Snippets;
 				navTree.Nodes["tableThemesNode"].Text = Resx.TableThemesSheet_Title;
 				navTree.Nodes["variablesNode"].Text = Resx.VariablesSheet_Title;

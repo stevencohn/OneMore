@@ -280,17 +280,9 @@
     <value>&amp;lt;span style = 'font-style: italic'&amp;gt; لم يتم العثور على ذاكرة التخزين المؤقت ؛ </value>
     <comment>status</comment>
   </data>
-  <data name="AnalyzeCommand_NoOrphans" xml:space="preserve">
-    <value>&amp;lt;span style = 'font-style: italic'&amp;gt; لم يتم اكتشاف أدلة احتياطية معزولة &amp;lt;/ span&amp;gt;</value>
-    <comment>status</comment>
-  </data>
   <data name="AnalyzeCommand_OpenSections" xml:space="preserve">
     <value>الأقسام المفتوحة</value>
     <comment>SKIP notebook name</comment>
-  </data>
-  <data name="AnalyzeCommand_OrphanSummary" xml:space="preserve">
-    <value>الأيتام عبارة عن مجلدات نسخ احتياطي لدفاتر الملاحظات التي لم تعد مفتوحة في OneNote. </value>
-    <comment>summary text</comment>
   </data>
   <data name="AnalyzeCommand_PageSummary" xml:space="preserve">
     <value>هذا هو توزيع مفصل لكل صفحة يوضح الحجم الإجمالي لتمثيل XML الداخلي وحجم كل صورة وملف مرفق. </value>
@@ -450,10 +442,6 @@
   </data>
   <data name="Calculator_ErrInvalidCountifParams" xml:space="preserve">
     <value>تتطلب الدالة countif معلمتين</value>
-    <comment>error</comment>
-  </data>
-  <data name="Calculator_ErrInvalidFnParamCount" xml:space="preserve">
-    <value>يجب أن تحتوي الدالة {0} على معلمتين</value>
     <comment>error</comment>
   </data>
   <data name="Calculator_ErrInvalidFnParamType" xml:space="preserve">
@@ -1282,10 +1270,6 @@
     <value>احتواء الشبكة على النص</value>
     <comment>dialog title</comment>
   </data>
-  <data name="FormulaCommand_Exception" xml:space="preserve">
-    <value>{0} (العمود {1})</value>
-    <comment>exception message</comment>
-  </data>
   <data name="FormulaCommand_Linear" xml:space="preserve">
     <value>يجب أن تكون الخلايا المحددة في نفس الصف أو في نفس العمود</value>
     <comment>warning message</comment>
@@ -1546,10 +1530,6 @@
   <data name="HashtagSheet_prescheduled" xml:space="preserve">
     <value>تمت جدولة عملية الفحص لـ {0}. استخدم الخيارات أدناه لتغيير هذا أو اضغط على إلغاء للاحتفاظ بالجدول الحالي.</value>
   </data>
-  <data name="HashtagSheet_resetTooltip" xml:space="preserve">
-    <value>متقدم: إعادة تعيين علامة الترقية</value>
-    <comment>tooltip</comment>
-  </data>
   <data name="HashtagSheet_scanNotebooks" xml:space="preserve">
     <value>قم بجدولة فحص متزايد لدفاتر الملاحظات المضافة حديثًا</value>
   </data>
@@ -1566,10 +1546,6 @@
   <data name="HashtagSheet_styleLabel.Text" xml:space="preserve">
     <value>تطبيق نمط مخصص</value>
     <comment>label</comment>
-  </data>
-  <data name="HashtagSheet_upgradeLink.Text" xml:space="preserve">
-    <value>ترقية علامات الصفحة إلى علامات التصنيف المضمنة</value>
-    <comment>link</comment>
   </data>
   <data name="HashtagSheet_warningLabel.Text" xml:space="preserve">
     <value>يجب استخدام هذا بعد إضافة أو إزالة دفتر واحد أو أكثر من دفاتر الملاحظات. يوصى بجدولة إعادة البناء بعد ساعات ، مثل منتصف الليل.</value>
@@ -3041,7 +3017,7 @@ ISO-code then comma then language name</comment>
     <comment>settings dialog</comment>
   </data>
   <data name="ribBookmarkButton_Label" xml:space="preserve">
-    <value>اختيار الإشارة المرجعية</value>
+    <value>إشارة مرجعية</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribBreakingButton_Label" xml:space="preserve">
@@ -3436,8 +3412,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon references NODUP</comment>
   </data>
   <data name="ribFinishBiLinkButton_Label" xml:space="preserve">
-    <value>قم بإنهاء الارتباط ثنائي الاتجاه</value>
-    <comment>ribbon item</comment>
+    <value>رابط ثنائي الاتجاه إلى الإشارة المرجعية</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribFinishBiLinkButton_Screentip" xml:space="preserve">
     <value>إنهاء الارتباط بين المرساة والموقع الحالي</value>
@@ -4820,45 +4796,17 @@ ISO-code then comma then language name</comment>
 في هذه الصفحة</value>
     <comment>combobox</comment>
   </data>
-  <data name="SearchEngineDialog_deleteLabel.Text" xml:space="preserve">
-    <value>يمسح:</value>
-    <comment>delete label NODUP</comment>
-  </data>
-  <data name="SearchEngineDialog_DeleteMessage" xml:space="preserve">
-    <value>حذف {0}؟</value>
+  <data name="SearchEngineSheet_DeleteMessage" xml:space="preserve">
+    <value>هل تريد حذف {0}؟</value>
     <comment>delete confirmation message</comment>
-  </data>
-  <data name="SearchEngineDialog_downButton.Text" xml:space="preserve">
-    <value>تحرك لأسفل</value>
-    <comment>down buttom</comment>
-  </data>
-  <data name="SearchEngineDialog_iconColumn.HeaderText" xml:space="preserve">
-    <value>أيقونة</value>
-    <comment>icon col</comment>
-  </data>
-  <data name="SearchEngineDialog_introLabel.Text" xml:space="preserve">
-    <value>يجب أن تحتوي أنماط عناوين URL على رمز مميز لاستبدال السلسلة ، مثل &amp;q={0}</value>
-    <comment>intro label</comment>
-  </data>
-  <data name="SearchEngineDialog_refreshButton.Text" xml:space="preserve">
-    <value>تحديث الرموز</value>
-    <comment>refresh button</comment>
-  </data>
-  <data name="SearchEngineDialog_Text" xml:space="preserve">
-    <value>محركات البحث</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="SearchEngineDialog_upButton.Text" xml:space="preserve">
-    <value>تحرك</value>
-    <comment>up buttom</comment>
-  </data>
-  <data name="SearchEngineDialog_urlColumn.HeaderText" xml:space="preserve">
-    <value>نمط URL</value>
-    <comment>url col</comment>
   </data>
   <data name="SearchEngineSheet_downButton.Text" xml:space="preserve">
     <value>تحرك لأسفل</value>
     <comment>button</comment>
+  </data>
+  <data name="SearchEngineSheet_iconColumn.HeaderText" xml:space="preserve">
+    <value>رمز</value>
+    <comment>icon col</comment>
   </data>
   <data name="SearchEngineSheet_introBox.Text" xml:space="preserve">
     <value>يجب أن تحتوي أنماط عنوان URL على رمز استبدال السلسلة ، مثل &amp; q = {0}
@@ -4866,9 +4814,21 @@ ISO-code then comma then language name</comment>
 ستظهر محركات البحث في قائمة سياق الصفحة ، النقر بزر الماوس الأيمن.</value>
     <comment>label</comment>
   </data>
+  <data name="SearchEngineSheet_refreshButton.Text" xml:space="preserve">
+    <value>تحديث الرموز</value>
+    <comment>refresh button</comment>
+  </data>
+  <data name="SearchEngineSheet_Text" xml:space="preserve">
+    <value>محركات البحث</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="SearchEngineSheet_upButton.Text" xml:space="preserve">
     <value>تحرك</value>
     <comment>button</comment>
+  </data>
+  <data name="SearchEngineSheet_urlColumn.HeaderText" xml:space="preserve">
+    <value>نمط عنوان URL</value>
+    <comment>url col</comment>
   </data>
   <data name="SearchQF_DescriptionCopy" xml:space="preserve">
     <value>اختر الموقع حيث يجب نسخ الصفحات المحددة</value>
@@ -5471,14 +5431,6 @@ ISO-code then comma then language name</comment>
     <value>OneMore محدث</value>
     <comment>panel title</comment>
   </data>
-  <data name="UpdateDialog_lastUpdatedLabel.Text" xml:space="preserve">
-    <value>التحديث الاخير:</value>
-    <comment>label</comment>
-  </data>
-  <data name="UpdateDialog_releaseDateLabel.Text" xml:space="preserve">
-    <value>تاريخ النشر:</value>
-    <comment>label</comment>
-  </data>
   <data name="UpdateDialog_releaseNotesLink.Text" xml:space="preserve">
     <value>ملاحظات الإصدار</value>
     <comment>link</comment>
@@ -5495,9 +5447,17 @@ ISO-code then comma then language name</comment>
     <value>يتوفر تحديث OneMore</value>
     <comment>panel title</comment>
   </data>
+  <data name="UpdateDialog_upLastUpdatedLabel.Text" xml:space="preserve">
+    <value>آخر تحديث:</value>
+    <comment>label</comment>
+  </data>
   <data name="UpdateDialog_upOKButton.Text" xml:space="preserve">
     <value>تحديث</value>
     <comment>button</comment>
+  </data>
+  <data name="UpdateDialog_upReleaseDateLabel.Text" xml:space="preserve">
+    <value>تاريخ الافراج عنه:</value>
+    <comment>label</comment>
   </data>
   <data name="UpdateDialog_upSkipButton.Text" xml:space="preserve">
     <value>يتخطى</value>
@@ -5560,9 +5520,6 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Actual" xml:space="preserve">
     <value>فعلي</value>
-  </data>
-  <data name="word_Add" xml:space="preserve">
-    <value>يضيف</value>
   </data>
   <data name="word_Alias" xml:space="preserve">
     <value>الاسم المستعار</value>
@@ -5669,9 +5626,6 @@ ISO-code then comma then language name</comment>
   <data name="word_Go" xml:space="preserve">
     <value>يذهب</value>
   </data>
-  <data name="word_Grayscale" xml:space="preserve">
-    <value>رمادي</value>
-  </data>
   <data name="word_Hashtags" xml:space="preserve">
     <value>علامات التصنيف</value>
   </data>
@@ -5687,20 +5641,11 @@ ISO-code then comma then language name</comment>
   <data name="word_Index" xml:space="preserve">
     <value>word_Index</value>
   </data>
-  <data name="word_Information" xml:space="preserve">
-    <value>معلومة</value>
-  </data>
-  <data name="word_Keyboard" xml:space="preserve">
-    <value>لوحة المفاتيح</value>
-  </data>
   <data name="word_Language" xml:space="preserve">
     <value>لغة</value>
   </data>
   <data name="word_Length" xml:space="preserve">
     <value>طول</value>
-  </data>
-  <data name="word_Limit" xml:space="preserve">
-    <value>حد</value>
   </data>
   <data name="word_Minutes" xml:space="preserve">
     <value>دقائق</value>
@@ -5725,12 +5670,6 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Notebooks" xml:space="preserve">
     <value>دفاتر الملاحظات</value>
-  </data>
-  <data name="word_Notes" xml:space="preserve">
-    <value>ملحوظات</value>
-  </data>
-  <data name="word_Numbering" xml:space="preserve">
-    <value>الترقيم</value>
   </data>
   <data name="word_Numeric" xml:space="preserve">
     <value>رقمي</value>
@@ -5838,23 +5777,14 @@ ISO-code then comma then language name</comment>
   <data name="word_Stylize" xml:space="preserve">
     <value>أسلب</value>
   </data>
-  <data name="word_Suggestions" xml:space="preserve">
-    <value>اقتراحات</value>
-  </data>
   <data name="word_Target" xml:space="preserve">
     <value>استهداف</value>
   </data>
   <data name="word_Text" xml:space="preserve">
     <value>نص</value>
   </data>
-  <data name="word_Total" xml:space="preserve">
-    <value>مجموع</value>
-  </data>
   <data name="word_Value" xml:space="preserve">
     <value>قيمة</value>
-  </data>
-  <data name="word_Warning" xml:space="preserve">
-    <value>تحذير</value>
   </data>
   <data name="word_Width" xml:space="preserve">
     <value>عرض</value>

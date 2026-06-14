@@ -602,7 +602,7 @@ Vergrößere kleinere Bilder nicht</preferred>
     <source>Enter one or more keywords, "quoted phrases", and use uppercase AND and OR</source>
     <preferred>Gib ein oder mehrere Schlüsselwörter, \"Phrasen in Anführungszeichen\", ein und verwende UND und ODER in Großbuchstaben</preferred>
   </hint>
-  <hint name="SearchEngineDialog_upButton.Text">
+  <hint name="SearchEngineSheet_upButton.Text">
     <source>Move up</source>
     <preferred>Nach oben</preferred>
   </hint>

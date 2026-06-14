@@ -35,7 +35,7 @@ namespace River.OneMoreAddIn.Settings
 					"filterBox",
 					"doubledBox",
 					"scheduleLink",
-					"warningBox",
+					"warningLabel",
 					"disabledBox"
 				});
 			}

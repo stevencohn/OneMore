@@ -280,17 +280,9 @@ Invertir</value>
     <value>&amp;lt;span style = 'font-style: italic'&amp;gt; Caché no encontrado; </value>
     <comment>status</comment>
   </data>
-  <data name="AnalyzeCommand_NoOrphans" xml:space="preserve">
-    <value>&amp;lt;span style = 'font-style: italic'&amp;gt; No se descubrieron directorios de respaldo huérfanos &amp;lt;/span&amp;gt;</value>
-    <comment>status</comment>
-  </data>
   <data name="AnalyzeCommand_OpenSections" xml:space="preserve">
     <value>Secciones abiertas</value>
     <comment>SKIP notebook name</comment>
-  </data>
-  <data name="AnalyzeCommand_OrphanSummary" xml:space="preserve">
-    <value>Los huérfanos son carpetas de respaldo de cuadernos que ya no se abren en OneNote. </value>
-    <comment>summary text</comment>
   </data>
   <data name="AnalyzeCommand_PageSummary" xml:space="preserve">
     <value>Este es un desglose detallado de cada página que muestra el tamaño total de la representación XML interna y el tamaño de cada imagen y archivo adjunto. </value>
@@ -450,10 +442,6 @@ Invertir</value>
   </data>
   <data name="Calculator_ErrInvalidCountifParams" xml:space="preserve">
     <value>La función countif requiere dos parámetros</value>
-    <comment>error</comment>
-  </data>
-  <data name="Calculator_ErrInvalidFnParamCount" xml:space="preserve">
-    <value>La función {0} debe tener dos parámetros</value>
     <comment>error</comment>
   </data>
   <data name="Calculator_ErrInvalidFnParamType" xml:space="preserve">
@@ -1274,10 +1262,6 @@ Archivo de OneNote (* .one)</value>
     <value>Ajustar cuadrícula al texto</value>
     <comment>dialog title</comment>
   </data>
-  <data name="FormulaCommand_Exception" xml:space="preserve">
-    <value>{0} (columna {1})</value>
-    <comment>exception message</comment>
-  </data>
   <data name="FormulaCommand_Linear" xml:space="preserve">
     <value>Las celdas seleccionadas deben estar en la misma fila o en la misma columna</value>
     <comment>warning message</comment>
@@ -1538,10 +1522,6 @@ esta pagina</value>
   <data name="HashtagSheet_prescheduled" xml:space="preserve">
     <value>Hay un análisis programado para {0}. Utilice las opciones siguientes para cambiar esto o presione Cancelar para mantener el horario actual.</value>
   </data>
-  <data name="HashtagSheet_resetTooltip" xml:space="preserve">
-    <value>Avanzado: restablecer el indicador de actualización</value>
-    <comment>tooltip</comment>
-  </data>
   <data name="HashtagSheet_scanNotebooks" xml:space="preserve">
     <value>Programe un análisis incremental de sus cuadernos recién agregados</value>
   </data>
@@ -1558,10 +1538,6 @@ Fondo amarillo</value>
   <data name="HashtagSheet_styleLabel.Text" xml:space="preserve">
     <value>Aplicar estilo personalizado</value>
     <comment>label</comment>
-  </data>
-  <data name="HashtagSheet_upgradeLink.Text" xml:space="preserve">
-    <value>Actualice las etiquetas de la página a hashtags en línea</value>
-    <comment>link</comment>
   </data>
   <data name="HashtagSheet_warningLabel.Text" xml:space="preserve">
     <value>Esto debe usarse después de agregar o eliminar uno o más cuadernos. Se recomienda programar las reconstrucciones fuera del horario de atención, como la medianoche.</value>
@@ -3029,7 +3005,7 @@ Pestaña Ayuda</value>
     <comment>settings dialog</comment>
   </data>
   <data name="ribBookmarkButton_Label" xml:space="preserve">
-    <value>Selección de marcadores</value>
+    <value>Marcador</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribBreakingButton_Label" xml:space="preserve">
@@ -3424,8 +3400,8 @@ Pestaña Ayuda</value>
     <comment>ribbon references NODUP</comment>
   </data>
   <data name="ribFinishBiLinkButton_Label" xml:space="preserve">
-    <value>Finalizar enlace bidireccional</value>
-    <comment>ribbon item</comment>
+    <value>Enlace bidireccional al marcador</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribFinishBiLinkButton_Screentip" xml:space="preserve">
     <value>Terminar el enlace entre el ancla y la ubicación actual</value>
@@ -4808,45 +4784,17 @@ En esta sección
 En esta página</value>
     <comment>combobox</comment>
   </data>
-  <data name="SearchEngineDialog_deleteLabel.Text" xml:space="preserve">
-    <value>Borrar:</value>
-    <comment>delete label NODUP</comment>
-  </data>
-  <data name="SearchEngineDialog_DeleteMessage" xml:space="preserve">
+  <data name="SearchEngineSheet_DeleteMessage" xml:space="preserve">
     <value>¿Eliminar {0}?</value>
     <comment>delete confirmation message</comment>
-  </data>
-  <data name="SearchEngineDialog_downButton.Text" xml:space="preserve">
-    <value>Mover hacia abajo</value>
-    <comment>down buttom</comment>
-  </data>
-  <data name="SearchEngineDialog_iconColumn.HeaderText" xml:space="preserve">
-    <value>Icono</value>
-    <comment>icon col</comment>
-  </data>
-  <data name="SearchEngineDialog_introLabel.Text" xml:space="preserve">
-    <value>Los patrones de URL deben contener un token de reemplazo de cadena, como &amp;q={0}</value>
-    <comment>intro label</comment>
-  </data>
-  <data name="SearchEngineDialog_refreshButton.Text" xml:space="preserve">
-    <value>Actualizar iconos</value>
-    <comment>refresh button</comment>
-  </data>
-  <data name="SearchEngineDialog_Text" xml:space="preserve">
-    <value>Los motores de búsqueda</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="SearchEngineDialog_upButton.Text" xml:space="preserve">
-    <value>Ascender</value>
-    <comment>up buttom</comment>
-  </data>
-  <data name="SearchEngineDialog_urlColumn.HeaderText" xml:space="preserve">
-    <value>Patrón de URL</value>
-    <comment>url col</comment>
   </data>
   <data name="SearchEngineSheet_downButton.Text" xml:space="preserve">
     <value>Mover hacia abajo</value>
     <comment>button</comment>
+  </data>
+  <data name="SearchEngineSheet_iconColumn.HeaderText" xml:space="preserve">
+    <value>Icono</value>
+    <comment>icon col</comment>
   </data>
   <data name="SearchEngineSheet_introBox.Text" xml:space="preserve">
     <value>Los patrones de URL deben contener un token de reemplazo de cadena, como &amp; q = {0}
@@ -4854,9 +4802,21 @@ En esta página</value>
 Los motores de búsqueda aparecerán en el menú contextual de la página, haga clic con el botón derecho.</value>
     <comment>label</comment>
   </data>
+  <data name="SearchEngineSheet_refreshButton.Text" xml:space="preserve">
+    <value>Actualizar iconos</value>
+    <comment>refresh button</comment>
+  </data>
+  <data name="SearchEngineSheet_Text" xml:space="preserve">
+    <value>Motores de búsqueda</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="SearchEngineSheet_upButton.Text" xml:space="preserve">
     <value>Ascender</value>
     <comment>button</comment>
+  </data>
+  <data name="SearchEngineSheet_urlColumn.HeaderText" xml:space="preserve">
+    <value>Patrón de URL</value>
+    <comment>url col</comment>
   </data>
   <data name="SearchQF_DescriptionCopy" xml:space="preserve">
     <value>Elija la ubicación donde se deben copiar las páginas seleccionadas</value>
@@ -5459,14 +5419,6 @@ Puede habilitar o deshabilitar la telemetría en cualquier momento desde el cuad
     <value>OneMore está actualizado</value>
     <comment>panel title</comment>
   </data>
-  <data name="UpdateDialog_lastUpdatedLabel.Text" xml:space="preserve">
-    <value>Última actualización:</value>
-    <comment>label</comment>
-  </data>
-  <data name="UpdateDialog_releaseDateLabel.Text" xml:space="preserve">
-    <value>Fecha de lanzamiento:</value>
-    <comment>label</comment>
-  </data>
   <data name="UpdateDialog_releaseNotesLink.Text" xml:space="preserve">
     <value>Notas de lanzamiento</value>
     <comment>link</comment>
@@ -5483,9 +5435,17 @@ Puede habilitar o deshabilitar la telemetría en cualquier momento desde el cuad
     <value>Actualización OneMore disponible</value>
     <comment>panel title</comment>
   </data>
+  <data name="UpdateDialog_upLastUpdatedLabel.Text" xml:space="preserve">
+    <value>Última actualización:</value>
+    <comment>label</comment>
+  </data>
   <data name="UpdateDialog_upOKButton.Text" xml:space="preserve">
     <value>Actualizar</value>
     <comment>button</comment>
+  </data>
+  <data name="UpdateDialog_upReleaseDateLabel.Text" xml:space="preserve">
+    <value>Fecha de lanzamiento:</value>
+    <comment>label</comment>
   </data>
   <data name="UpdateDialog_upSkipButton.Text" xml:space="preserve">
     <value>Saltar</value>
@@ -5548,9 +5508,6 @@ Puede habilitar o deshabilitar la telemetría en cualquier momento desde el cuad
   </data>
   <data name="word_Actual" xml:space="preserve">
     <value>Real</value>
-  </data>
-  <data name="word_Add" xml:space="preserve">
-    <value>Agregar</value>
   </data>
   <data name="word_Alias" xml:space="preserve">
     <value>Alias</value>
@@ -5657,9 +5614,6 @@ Puede habilitar o deshabilitar la telemetría en cualquier momento desde el cuad
   <data name="word_Go" xml:space="preserve">
     <value>Vamos</value>
   </data>
-  <data name="word_Grayscale" xml:space="preserve">
-    <value>escala de grises</value>
-  </data>
   <data name="word_Hashtags" xml:space="preserve">
     <value>Etiquetas</value>
   </data>
@@ -5675,20 +5629,11 @@ Puede habilitar o deshabilitar la telemetría en cualquier momento desde el cuad
   <data name="word_Index" xml:space="preserve">
     <value>índice_palabra</value>
   </data>
-  <data name="word_Information" xml:space="preserve">
-    <value>Información</value>
-  </data>
-  <data name="word_Keyboard" xml:space="preserve">
-    <value>Teclado</value>
-  </data>
   <data name="word_Language" xml:space="preserve">
     <value>Idioma</value>
   </data>
   <data name="word_Length" xml:space="preserve">
     <value>Longitud</value>
-  </data>
-  <data name="word_Limit" xml:space="preserve">
-    <value>Límite</value>
   </data>
   <data name="word_Minutes" xml:space="preserve">
     <value>Minutos</value>
@@ -5713,12 +5658,6 @@ Puede habilitar o deshabilitar la telemetría en cualquier momento desde el cuad
   </data>
   <data name="word_Notebooks" xml:space="preserve">
     <value>Cuadernos</value>
-  </data>
-  <data name="word_Notes" xml:space="preserve">
-    <value>notas</value>
-  </data>
-  <data name="word_Numbering" xml:space="preserve">
-    <value>Numeración</value>
   </data>
   <data name="word_Numeric" xml:space="preserve">
     <value>Numérico</value>
@@ -5826,23 +5765,14 @@ Puede habilitar o deshabilitar la telemetría en cualquier momento desde el cuad
   <data name="word_Stylize" xml:space="preserve">
     <value>Estilizar</value>
   </data>
-  <data name="word_Suggestions" xml:space="preserve">
-    <value>Sugerencias</value>
-  </data>
   <data name="word_Target" xml:space="preserve">
     <value>Objetivo</value>
   </data>
   <data name="word_Text" xml:space="preserve">
     <value>Texto</value>
   </data>
-  <data name="word_Total" xml:space="preserve">
-    <value>Total</value>
-  </data>
   <data name="word_Value" xml:space="preserve">
     <value>Valor</value>
-  </data>
-  <data name="word_Warning" xml:space="preserve">
-    <value>Advertencia</value>
   </data>
   <data name="word_Width" xml:space="preserve">
     <value>Ancho</value>

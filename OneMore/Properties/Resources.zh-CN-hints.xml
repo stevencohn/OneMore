@@ -1783,11 +1783,11 @@
             在此分区中
             在此页面上</preferred>
     </hint>
-    <hint name="SearchEngineDialog_refreshButton.Text">
+    <hint name="SearchEngineSheet_refreshButton.Text">
         <source>Refresh icons</source>
         <preferred>更新图标</preferred>
     </hint>
-    <hint name="SearchEngineDialog_Text">
+    <hint name="SearchEngineSheet_Text">
         <source>Search Engines</source>
         <preferred>自定义网络搜索</preferred>
     </hint>

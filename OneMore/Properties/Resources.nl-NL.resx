@@ -277,17 +277,9 @@ Omkeren</value>
     <value>&amp;lt;span style='font-style:italic'&amp;gt;Cache niet gevonden; </value>
     <comment>status</comment>
   </data>
-  <data name="AnalyzeCommand_NoOrphans" xml:space="preserve">
-    <value>&amp;lt;span style='font-style:italic'&amp;gt;Geen verweesde back-upmappen ontdekt&amp;lt;/span&amp;gt;</value>
-    <comment>status</comment>
-  </data>
   <data name="AnalyzeCommand_OpenSections" xml:space="preserve">
     <value>Secties openen</value>
     <comment>SKIP notebook name</comment>
-  </data>
-  <data name="AnalyzeCommand_OrphanSummary" xml:space="preserve">
-    <value>Weeskinderen zijn back-upmappen van notitieblokken die niet meer worden geopend in OneNote. </value>
-    <comment>summary text</comment>
   </data>
   <data name="AnalyzeCommand_PageSummary" xml:space="preserve">
     <value>Dit is een gedetailleerd overzicht van elke pagina met de totale grootte van de interne XML-representatie en de grootte van elke afbeelding en bestandsbijlage. </value>
@@ -447,10 +439,6 @@ Omkeren</value>
   </data>
   <data name="Calculator_ErrInvalidCountifParams" xml:space="preserve">
     <value>De countif-functie vereist twee parameters</value>
-    <comment>error</comment>
-  </data>
-  <data name="Calculator_ErrInvalidFnParamCount" xml:space="preserve">
-    <value>De functie {0} moet twee parameters hebben</value>
     <comment>error</comment>
   </data>
   <data name="Calculator_ErrInvalidFnParamType" xml:space="preserve">
@@ -1279,10 +1267,6 @@ OneNote-bestand (*.one)</value>
     <value>Raster aanpassen aan tekst</value>
     <comment>dialog title</comment>
   </data>
-  <data name="FormulaCommand_Exception" xml:space="preserve">
-    <value>{0} (kolom {1})</value>
-    <comment>exception message</comment>
-  </data>
   <data name="FormulaCommand_Linear" xml:space="preserve">
     <value>Geselecteerde cellen moeten in dezelfde rij of in dezelfde kolom staan</value>
     <comment>warning message</comment>
@@ -1543,10 +1527,6 @@ Deze pagina</value>
   <data name="HashtagSheet_prescheduled" xml:space="preserve">
     <value>Er is een scan gepland voor {0}. Gebruik de onderstaande opties om dit te wijzigen of druk op Annuleren om het huidige schema te behouden.</value>
   </data>
-  <data name="HashtagSheet_resetTooltip" xml:space="preserve">
-    <value>Geavanceerd: Reset de upgradevlag</value>
-    <comment>tooltip</comment>
-  </data>
   <data name="HashtagSheet_scanNotebooks" xml:space="preserve">
     <value>Plan een incrementele scan van uw nieuw toegevoegde notitieboekjes</value>
   </data>
@@ -1563,10 +1543,6 @@ Gele achtergrond</value>
   <data name="HashtagSheet_styleLabel.Text" xml:space="preserve">
     <value>Aangepaste stijl toepassen</value>
     <comment>label</comment>
-  </data>
-  <data name="HashtagSheet_upgradeLink.Text" xml:space="preserve">
-    <value>Upgrade paginatags naar inline hashtags</value>
-    <comment>link</comment>
   </data>
   <data name="HashtagSheet_warningLabel.Text" xml:space="preserve">
     <value>Dit moet worden gebruikt na het toevoegen of verwijderen van een of meer notebooks. Het wordt aanbevolen om wederopbouw na uur te plannen, zoals middernacht.</value>
@@ -3030,7 +3006,7 @@ Tabblad Help</value>
     <comment>settings dialog</comment>
   </data>
   <data name="ribBookmarkButton_Label" xml:space="preserve">
-    <value>Bladwijzerselectie</value>
+    <value>Bladwijzer</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribBreakingButton_Label" xml:space="preserve">
@@ -3425,8 +3401,8 @@ Tabblad Help</value>
     <comment>ribbon references NODUP</comment>
   </data>
   <data name="ribFinishBiLinkButton_Label" xml:space="preserve">
-    <value>Bidirectionele link voltooien</value>
-    <comment>ribbon item</comment>
+    <value>Tweerichtingslink naar bladwijzer</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribFinishBiLinkButton_Screentip" xml:space="preserve">
     <value>Voltooi de koppeling tussen anker en huidige locatie</value>
@@ -4809,45 +4785,17 @@ In deze sectie
 Op deze pagina</value>
     <comment>combobox</comment>
   </data>
-  <data name="SearchEngineDialog_deleteLabel.Text" xml:space="preserve">
-    <value>Verwijderen:</value>
-    <comment>delete label NODUP</comment>
-  </data>
-  <data name="SearchEngineDialog_DeleteMessage" xml:space="preserve">
+  <data name="SearchEngineSheet_DeleteMessage" xml:space="preserve">
     <value>{0} verwijderen?</value>
     <comment>delete confirmation message</comment>
-  </data>
-  <data name="SearchEngineDialog_downButton.Text" xml:space="preserve">
-    <value>Naar beneden verplaatsen</value>
-    <comment>down buttom</comment>
-  </data>
-  <data name="SearchEngineDialog_iconColumn.HeaderText" xml:space="preserve">
-    <value>Icoon</value>
-    <comment>icon col</comment>
-  </data>
-  <data name="SearchEngineDialog_introLabel.Text" xml:space="preserve">
-    <value>URL-patronen moeten een tekenreeksvervangingstoken bevatten, zoals &amp;q={0}</value>
-    <comment>intro label</comment>
-  </data>
-  <data name="SearchEngineDialog_refreshButton.Text" xml:space="preserve">
-    <value>Vernieuw pictogrammen</value>
-    <comment>refresh button</comment>
-  </data>
-  <data name="SearchEngineDialog_Text" xml:space="preserve">
-    <value>Zoekmachines</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="SearchEngineDialog_upButton.Text" xml:space="preserve">
-    <value>Ga naar boven</value>
-    <comment>up buttom</comment>
-  </data>
-  <data name="SearchEngineDialog_urlColumn.HeaderText" xml:space="preserve">
-    <value>URL-patroon</value>
-    <comment>url col</comment>
   </data>
   <data name="SearchEngineSheet_downButton.Text" xml:space="preserve">
     <value>Naar beneden verplaatsen</value>
     <comment>button</comment>
+  </data>
+  <data name="SearchEngineSheet_iconColumn.HeaderText" xml:space="preserve">
+    <value>Icon</value>
+    <comment>icon col</comment>
   </data>
   <data name="SearchEngineSheet_introBox.Text" xml:space="preserve">
     <value>URL -patronen moeten een stringvervangingstoken bevatten, zoals &amp; q = {0}
@@ -4855,9 +4803,21 @@ Op deze pagina</value>
 Zoekmachines verschijnen in het pagina Pagina contextmenu, klik met de rechtermuisknop.</value>
     <comment>label</comment>
   </data>
+  <data name="SearchEngineSheet_refreshButton.Text" xml:space="preserve">
+    <value>Pictogrammen vernieuwen</value>
+    <comment>refresh button</comment>
+  </data>
+  <data name="SearchEngineSheet_Text" xml:space="preserve">
+    <value>Zoekmachines</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="SearchEngineSheet_upButton.Text" xml:space="preserve">
     <value>Ga naar boven</value>
     <comment>button</comment>
+  </data>
+  <data name="SearchEngineSheet_urlColumn.HeaderText" xml:space="preserve">
+    <value>URL-patroon</value>
+    <comment>url col</comment>
   </data>
   <data name="SearchQF_DescriptionCopy" xml:space="preserve">
     <value>Kies de locatie waar geselecteerde pagina's moeten worden gekopieerd</value>
@@ -5460,14 +5420,6 @@ Bedankt!</value>
     <value>OneMore is up-to-date</value>
     <comment>panel title</comment>
   </data>
-  <data name="UpdateDialog_lastUpdatedLabel.Text" xml:space="preserve">
-    <value>Laatst bijgewerkt:</value>
-    <comment>label</comment>
-  </data>
-  <data name="UpdateDialog_releaseDateLabel.Text" xml:space="preserve">
-    <value>Datum van publicatie:</value>
-    <comment>label</comment>
-  </data>
   <data name="UpdateDialog_releaseNotesLink.Text" xml:space="preserve">
     <value>Release-opmerkingen</value>
     <comment>link</comment>
@@ -5484,9 +5436,17 @@ Bedankt!</value>
     <value>OneMore-update beschikbaar</value>
     <comment>panel title</comment>
   </data>
+  <data name="UpdateDialog_upLastUpdatedLabel.Text" xml:space="preserve">
+    <value>Laatst bijgewerkt:</value>
+    <comment>label</comment>
+  </data>
   <data name="UpdateDialog_upOKButton.Text" xml:space="preserve">
     <value>Update</value>
     <comment>button</comment>
+  </data>
+  <data name="UpdateDialog_upReleaseDateLabel.Text" xml:space="preserve">
+    <value>Releasedatum:</value>
+    <comment>label</comment>
   </data>
   <data name="UpdateDialog_upSkipButton.Text" xml:space="preserve">
     <value>Overslaan</value>
@@ -5549,9 +5509,6 @@ Bedankt!</value>
   </data>
   <data name="word_Actual" xml:space="preserve">
     <value>Werkelijk</value>
-  </data>
-  <data name="word_Add" xml:space="preserve">
-    <value>Toevoegen</value>
   </data>
   <data name="word_Alias" xml:space="preserve">
     <value>Alias</value>
@@ -5658,9 +5615,6 @@ Bedankt!</value>
   <data name="word_Go" xml:space="preserve">
     <value>Gaan</value>
   </data>
-  <data name="word_Grayscale" xml:space="preserve">
-    <value>grijswaarden</value>
-  </data>
   <data name="word_Hashtags" xml:space="preserve">
     <value>Hashtags</value>
   </data>
@@ -5676,20 +5630,11 @@ Bedankt!</value>
   <data name="word_Index" xml:space="preserve">
     <value>woord_Index</value>
   </data>
-  <data name="word_Information" xml:space="preserve">
-    <value>Informatie</value>
-  </data>
-  <data name="word_Keyboard" xml:space="preserve">
-    <value>Toetsenbord</value>
-  </data>
   <data name="word_Language" xml:space="preserve">
     <value>Taal</value>
   </data>
   <data name="word_Length" xml:space="preserve">
     <value>Lengte</value>
-  </data>
-  <data name="word_Limit" xml:space="preserve">
-    <value>Begrenzing</value>
   </data>
   <data name="word_Minutes" xml:space="preserve">
     <value>Minuten</value>
@@ -5714,12 +5659,6 @@ Bedankt!</value>
   </data>
   <data name="word_Notebooks" xml:space="preserve">
     <value>Notitieboekjes</value>
-  </data>
-  <data name="word_Notes" xml:space="preserve">
-    <value>Notities</value>
-  </data>
-  <data name="word_Numbering" xml:space="preserve">
-    <value>Nummering</value>
   </data>
   <data name="word_Numeric" xml:space="preserve">
     <value>Numeriek</value>
@@ -5827,23 +5766,14 @@ Bedankt!</value>
   <data name="word_Stylize" xml:space="preserve">
     <value>Stileren</value>
   </data>
-  <data name="word_Suggestions" xml:space="preserve">
-    <value>Suggesties</value>
-  </data>
   <data name="word_Target" xml:space="preserve">
     <value>Doelwit</value>
   </data>
   <data name="word_Text" xml:space="preserve">
     <value>Tekst</value>
   </data>
-  <data name="word_Total" xml:space="preserve">
-    <value>Totaal</value>
-  </data>
   <data name="word_Value" xml:space="preserve">
     <value>Waarde</value>
-  </data>
-  <data name="word_Warning" xml:space="preserve">
-    <value>Waarschuwing</value>
   </data>
   <data name="word_Width" xml:space="preserve">
     <value>Breedte</value>

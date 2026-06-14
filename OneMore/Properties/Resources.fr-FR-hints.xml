@@ -510,7 +510,7 @@ Cette section
 Ce notebook
 Tous les notebooks</preferred>
   </data>
-  <data name="SearchEngineDialog_DeleteMessage">
+  <data name="SearchEngineSheet_DeleteMessage">
     <source>Delete {0}?</source>
     <preferred>Supprimer {0} ?</preferred>
   </data>

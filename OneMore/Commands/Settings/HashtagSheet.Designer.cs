@@ -45,7 +45,6 @@ namespace River.OneMoreAddIn.Settings
 			this.delayBox = new System.Windows.Forms.NumericUpDown();
 			this.msLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.layoutPanel = new System.Windows.Forms.Panel();
-			this.tooltip = new System.Windows.Forms.ToolTip(this.components);
 			this.doubledBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			((System.ComponentModel.ISupportInitialize)(this.intervalBox)).BeginInit();
 			this.advancedGroup.SuspendLayout();
@@ -327,7 +326,6 @@ namespace River.OneMoreAddIn.Settings
 		private System.Windows.Forms.Panel layoutPanel;
 		private UI.MoreMultilineLabel warningLabel;
 		private UI.MoreLinkLabel scheduleLink;
-		private System.Windows.Forms.ToolTip tooltip;
 		private UI.MoreCheckBox doubledBox;
 	}
 }

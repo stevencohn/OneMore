@@ -15,7 +15,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (NeedsLocalizing())
 			{
-				Text = Resx.MapDialog_Text;
+				Text = Resx.LinkDialog_Text;
 
 				Localize(new string[]
 				{

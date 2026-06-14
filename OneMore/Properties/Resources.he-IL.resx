@@ -277,17 +277,9 @@
     <value>&lt;span style='font-style:italic'&gt;מטמון לא נמצא; המיקום כנראה השתנה באפשרויות OneNote&lt;/span&gt;</value>
     <comment>status</comment>
   </data>
-  <data name="AnalyzeCommand_NoOrphans" xml:space="preserve">
-    <value>&lt;span style='font-style:italic'&gt;לא התגלו ספריות גיבוי מיותמות&lt;/span&gt;</value>
-    <comment>status</comment>
-  </data>
   <data name="AnalyzeCommand_OpenSections" xml:space="preserve">
     <value>Open Sections</value>
     <comment>SKIP notebook name</comment>
-  </data>
-  <data name="AnalyzeCommand_OrphanSummary" xml:space="preserve">
-    <value>יתומים הם תיקיות גיבוי של מחברות שאינן נפתחות עוד ב-OneNote. אם הם אינם בשימוש עוד, ואישרת שהם מיושנים, ניתן להסיר אותם בבטחה.</value>
-    <comment>summary text</comment>
   </data>
   <data name="AnalyzeCommand_PageSummary" xml:space="preserve">
     <value>זהו פירוט מפורט של כל עמוד המציג את הגודל הכולל של ייצוג ה-XML הפנימי ואת הגודל של כל תמונה וקובץ מצורף. התמונות מוצגות הן בגדלי XML "BinHex" והן בגדלים מקוריים של Bitmap. הקבצים מוצגים יחד עם כמות השטח שהם צורכים בדיסק.</value>
@@ -447,10 +439,6 @@
   </data>
   <data name="Calculator_ErrInvalidCountifParams" xml:space="preserve">
     <value>הפונקציה countif דורשת שני פרמטרים</value>
-    <comment>error</comment>
-  </data>
-  <data name="Calculator_ErrInvalidFnParamCount" xml:space="preserve">
-    <value>הפונקציה {0} חייבת להיות בעלת שני פרמטרים</value>
     <comment>error</comment>
   </data>
   <data name="Calculator_ErrInvalidFnParamType" xml:space="preserve">
@@ -1279,10 +1267,6 @@ Total Row Font
     <value>התאם רשת לטקסט</value>
     <comment>dialog title</comment>
   </data>
-  <data name="FormulaCommand_Exception" xml:space="preserve">
-    <value>{0} (עמודה {1})</value>
-    <comment>exception message</comment>
-  </data>
   <data name="FormulaCommand_Linear" xml:space="preserve">
     <value>התאים שנבחרו חייבים להיות באותה שורה או באותה עמודה</value>
     <comment>warning message</comment>
@@ -1543,10 +1527,6 @@ Total Row Font
   <data name="HashtagSheet_prescheduled" xml:space="preserve">
     <value>סריקה מתוכננת ל-{0}. השתמש באפשרויות למטה כדי לשנות זאת או לחץ על ביטול כדי לשמור על לוח הזמנים הנוכחי.</value>
   </data>
-  <data name="HashtagSheet_resetTooltip" xml:space="preserve">
-    <value>מתקדם: אפס את דגל השדרוג</value>
-    <comment>tooltip</comment>
-  </data>
   <data name="HashtagSheet_scanNotebooks" xml:space="preserve">
     <value>תזמן סריקה מצטברת של המחברות החדשות שנוספו</value>
   </data>
@@ -1563,10 +1543,6 @@ Total Row Font
   <data name="HashtagSheet_styleLabel.Text" xml:space="preserve">
     <value>החל סגנון מותאם אישית</value>
     <comment>label</comment>
-  </data>
-  <data name="HashtagSheet_upgradeLink.Text" xml:space="preserve">
-    <value>שדרג את תגי העמוד להאשטאגים מוטבעים</value>
-    <comment>link</comment>
   </data>
   <data name="HashtagSheet_warningLabel.Text" xml:space="preserve">
     <value>יש להשתמש בזה לאחר הוספת או הסרת מחברת אחת או יותר. מומלץ לתאם מחדש את הבנייה מחדש לאחר שעות העבודה, כמו חצות.</value>
@@ -3034,7 +3010,7 @@ ISO-code then comma then language name</comment>
     <comment>settings dialog</comment>
   </data>
   <data name="ribBookmarkButton_Label" xml:space="preserve">
-    <value>בחירת סימניות</value>
+    <value>סימניה</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribBreakingButton_Label" xml:space="preserve">
@@ -3429,8 +3405,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon references NODUP</comment>
   </data>
   <data name="ribFinishBiLinkButton_Label" xml:space="preserve">
-    <value>סיים קישור דו-כיווני</value>
-    <comment>ribbon item</comment>
+    <value>קישור דו-כיווני לסימנייה</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribFinishBiLinkButton_Screentip" xml:space="preserve">
     <value>סיום קישור בין עוגן למיקום הנוכחי</value>
@@ -4813,45 +4789,17 @@ ISO-code then comma then language name</comment>
 בדף זה</value>
     <comment>combobox</comment>
   </data>
-  <data name="SearchEngineDialog_deleteLabel.Text" xml:space="preserve">
-    <value>לִמְחוֹק:</value>
-    <comment>delete label NODUP</comment>
-  </data>
-  <data name="SearchEngineDialog_DeleteMessage" xml:space="preserve">
-    <value>למחוק {0}?</value>
+  <data name="SearchEngineSheet_DeleteMessage" xml:space="preserve">
+    <value>למחוק את {0}?</value>
     <comment>delete confirmation message</comment>
-  </data>
-  <data name="SearchEngineDialog_downButton.Text" xml:space="preserve">
-    <value>לרדת</value>
-    <comment>down buttom</comment>
-  </data>
-  <data name="SearchEngineDialog_iconColumn.HeaderText" xml:space="preserve">
-    <value>אייקון</value>
-    <comment>icon col</comment>
-  </data>
-  <data name="SearchEngineDialog_introLabel.Text" xml:space="preserve">
-    <value>דפוסי URL חייבים להכיל אסימון להחלפת מחרוזת, כגון &amp; q = {0}</value>
-    <comment>intro label</comment>
-  </data>
-  <data name="SearchEngineDialog_refreshButton.Text" xml:space="preserve">
-    <value>רענון סמלי</value>
-    <comment>refresh button</comment>
-  </data>
-  <data name="SearchEngineDialog_Text" xml:space="preserve">
-    <value>מנועי חיפוש</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="SearchEngineDialog_upButton.Text" xml:space="preserve">
-    <value>לזוז למעלה</value>
-    <comment>up buttom</comment>
-  </data>
-  <data name="SearchEngineDialog_urlColumn.HeaderText" xml:space="preserve">
-    <value>דפוס כתובת אתר</value>
-    <comment>url col</comment>
   </data>
   <data name="SearchEngineSheet_downButton.Text" xml:space="preserve">
     <value>לרדת</value>
     <comment>button</comment>
+  </data>
+  <data name="SearchEngineSheet_iconColumn.HeaderText" xml:space="preserve">
+    <value>סמל</value>
+    <comment>icon col</comment>
   </data>
   <data name="SearchEngineSheet_introBox.Text" xml:space="preserve">
     <value>דפוסי URL חייבים להכיל אסימון להחלפת מחרוזת, כגון &amp; q = {0}
@@ -4859,9 +4807,21 @@ ISO-code then comma then language name</comment>
 מנועי חיפוש יופיעו בתפריט ההקשר של הדף, לחץ באמצעות לחצן העכבר הימני.</value>
     <comment>label</comment>
   </data>
+  <data name="SearchEngineSheet_refreshButton.Text" xml:space="preserve">
+    <value>רענן סמלים</value>
+    <comment>refresh button</comment>
+  </data>
+  <data name="SearchEngineSheet_Text" xml:space="preserve">
+    <value>מנועי חיפוש</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="SearchEngineSheet_upButton.Text" xml:space="preserve">
     <value>לזוז למעלה</value>
     <comment>button</comment>
+  </data>
+  <data name="SearchEngineSheet_urlColumn.HeaderText" xml:space="preserve">
+    <value>דפוס כתובת אתר</value>
+    <comment>url col</comment>
   </data>
   <data name="SearchQF_DescriptionCopy" xml:space="preserve">
     <value>בחר את המיקום בו יש להעתיק דפים שנבחרו</value>
@@ -5464,14 +5424,6 @@ ISO-code then comma then language name</comment>
     <value>OneMore מעודכן</value>
     <comment>panel title</comment>
   </data>
-  <data name="UpdateDialog_lastUpdatedLabel.Text" xml:space="preserve">
-    <value>עודכן לאחרונה:</value>
-    <comment>label</comment>
-  </data>
-  <data name="UpdateDialog_releaseDateLabel.Text" xml:space="preserve">
-    <value>תאריך הוצאה:</value>
-    <comment>label</comment>
-  </data>
   <data name="UpdateDialog_releaseNotesLink.Text" xml:space="preserve">
     <value>מכתבי שחרור</value>
     <comment>link</comment>
@@ -5488,9 +5440,17 @@ ISO-code then comma then language name</comment>
     <value>עדכון OneMore זמין</value>
     <comment>panel title</comment>
   </data>
+  <data name="UpdateDialog_upLastUpdatedLabel.Text" xml:space="preserve">
+    <value>עודכן לאחרונה:</value>
+    <comment>label</comment>
+  </data>
   <data name="UpdateDialog_upOKButton.Text" xml:space="preserve">
     <value>עדכון</value>
     <comment>button</comment>
+  </data>
+  <data name="UpdateDialog_upReleaseDateLabel.Text" xml:space="preserve">
+    <value>תאריך יציאה:</value>
+    <comment>label</comment>
   </data>
   <data name="UpdateDialog_upSkipButton.Text" xml:space="preserve">
     <value>לְדַלֵג</value>
@@ -5553,9 +5513,6 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Actual" xml:space="preserve">
     <value>מַמָשִׁי</value>
-  </data>
-  <data name="word_Add" xml:space="preserve">
-    <value>לְהוֹסִיף</value>
   </data>
   <data name="word_Alias" xml:space="preserve">
     <value>כינוי</value>
@@ -5662,9 +5619,6 @@ ISO-code then comma then language name</comment>
   <data name="word_Go" xml:space="preserve">
     <value>ללכת</value>
   </data>
-  <data name="word_Grayscale" xml:space="preserve">
-    <value>גווני אפור</value>
-  </data>
   <data name="word_Hashtags" xml:space="preserve">
     <value>Hashtags</value>
   </data>
@@ -5680,20 +5634,11 @@ ISO-code then comma then language name</comment>
   <data name="word_Index" xml:space="preserve">
     <value>word_Index</value>
   </data>
-  <data name="word_Information" xml:space="preserve">
-    <value>מֵידָע</value>
-  </data>
-  <data name="word_Keyboard" xml:space="preserve">
-    <value>מקלדת</value>
-  </data>
   <data name="word_Language" xml:space="preserve">
     <value>שפה</value>
   </data>
   <data name="word_Length" xml:space="preserve">
     <value>מֶשֶׁך</value>
-  </data>
-  <data name="word_Limit" xml:space="preserve">
-    <value>לְהַגבִּיל</value>
   </data>
   <data name="word_Minutes" xml:space="preserve">
     <value>דקות</value>
@@ -5718,12 +5663,6 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Notebooks" xml:space="preserve">
     <value>מחברות</value>
-  </data>
-  <data name="word_Notes" xml:space="preserve">
-    <value>הערות</value>
-  </data>
-  <data name="word_Numbering" xml:space="preserve">
-    <value>סִפְרוּר</value>
   </data>
   <data name="word_Numeric" xml:space="preserve">
     <value>מספרי</value>
@@ -5831,23 +5770,14 @@ ISO-code then comma then language name</comment>
   <data name="word_Stylize" xml:space="preserve">
     <value>לְסַגְנֵן</value>
   </data>
-  <data name="word_Suggestions" xml:space="preserve">
-    <value>הצעות</value>
-  </data>
   <data name="word_Target" xml:space="preserve">
     <value>יַעַד</value>
   </data>
   <data name="word_Text" xml:space="preserve">
     <value>טֶקסט</value>
   </data>
-  <data name="word_Total" xml:space="preserve">
-    <value>סה"כ</value>
-  </data>
   <data name="word_Value" xml:space="preserve">
     <value>עֵרֶך</value>
-  </data>
-  <data name="word_Warning" xml:space="preserve">
-    <value>אַזהָרָה</value>
   </data>
   <data name="word_Width" xml:space="preserve">
     <value>רוֹחַב</value>

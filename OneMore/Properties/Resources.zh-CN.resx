@@ -280,17 +280,9 @@
     <value>&lt;span style='font-style:italic'&gt;缓存未找到；缓存路径可能已经更改&lt;/span&gt;</value>
     <comment>status</comment>
   </data>
-  <data name="AnalyzeCommand_NoOrphans" xml:space="preserve">
-    <value>&amp;lt;span style='font-style:italic'&amp;gt;未发现孤立的备份目录&amp;lt;/span&amp;gt;</value>
-    <comment>status</comment>
-  </data>
   <data name="AnalyzeCommand_OpenSections" xml:space="preserve">
     <value>已打开的分区</value>
     <comment>SKIP notebook name</comment>
-  </data>
-  <data name="AnalyzeCommand_OrphanSummary" xml:space="preserve">
-    <value>孤立文件是 OneNote 中不再打开的笔记本的备份文件夹。如果它们不再使用，并且您已确认它们已过时，则可以删除它们。</value>
-    <comment>summary text</comment>
   </data>
   <data name="AnalyzeCommand_PageSummary" xml:space="preserve">
     <value>这是每页的详细记录，显示了内部 XML 文件的总大小以及每个图像和文件附件的大小。图像以“BinHex”XML 大小和原生 Bitmap 大小显示，文件显示它们在磁盘上占用的空间量。</value>
@@ -451,10 +443,6 @@
   </data>
   <data name="Calculator_ErrInvalidCountifParams" xml:space="preserve">
     <value>countif函数需要两个参数</value>
-    <comment>error</comment>
-  </data>
-  <data name="Calculator_ErrInvalidFnParamCount" xml:space="preserve">
-    <value>{0} 函数必须有两个参数</value>
     <comment>error</comment>
   </data>
   <data name="Calculator_ErrInvalidFnParamType" xml:space="preserve">
@@ -1283,10 +1271,6 @@ OneNote 文件 (*.one)</value>
     <value>调整单元格以适应文本</value>
     <comment>dialog title</comment>
   </data>
-  <data name="FormulaCommand_Exception" xml:space="preserve">
-    <value>{0}（第{1}列）</value>
-    <comment>exception message</comment>
-  </data>
   <data name="FormulaCommand_Linear" xml:space="preserve">
     <value>所选单元格必须在同一行或同一列中</value>
     <comment>warning message</comment>
@@ -1549,10 +1533,6 @@ OneNote 文件 (*.one)</value>
   <data name="HashtagSheet_prescheduled" xml:space="preserve">
     <value>计划于 {0} 进行扫描。使用以下选项更改此设置或按“取消”保留当前计划。</value>
   </data>
-  <data name="HashtagSheet_resetTooltip" xml:space="preserve">
-    <value>高级：重置升级标志</value>
-    <comment>tooltip</comment>
-  </data>
   <data name="HashtagSheet_scanNotebooks" xml:space="preserve">
     <value>添加对新添加的笔记本进行增量扫描的计划</value>
   </data>
@@ -1569,10 +1549,6 @@ OneNote 文件 (*.one)</value>
   <data name="HashtagSheet_styleLabel.Text" xml:space="preserve">
     <value>标签使用的样式</value>
     <comment>label</comment>
-  </data>
-  <data name="HashtagSheet_upgradeLink.Text" xml:space="preserve">
-    <value>将页面标签转换为主题标签</value>
-    <comment>link</comment>
   </data>
   <data name="HashtagSheet_warningLabel.Text" xml:space="preserve">
     <value>在添加或删除一个或多个笔记本电脑后应使用此功能。 建议在下班后（例如午夜）安排重建。</value>
@@ -3044,7 +3020,7 @@ ISO-code then comma then language name</comment>
     <comment>settings dialog</comment>
   </data>
   <data name="ribBookmarkButton_Label" xml:space="preserve">
-    <value>书签选择</value>
+    <value>书签</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribBreakingButton_Label" xml:space="preserve">
@@ -3439,8 +3415,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon references NODUP</comment>
   </data>
   <data name="ribFinishBiLinkButton_Label" xml:space="preserve">
-    <value>完成双向链接</value>
-    <comment>ribbon item</comment>
+    <value>书签的双向链接</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribFinishBiLinkButton_Screentip" xml:space="preserve">
     <value>完成锚点和当前位置之间的链接</value>
@@ -4823,45 +4799,17 @@ ISO-code then comma then language name</comment>
             在此页面上</value>
     <comment>combobox</comment>
   </data>
-  <data name="SearchEngineDialog_deleteLabel.Text" xml:space="preserve">
-    <value>删除：</value>
-    <comment>delete label NODUP</comment>
-  </data>
-  <data name="SearchEngineDialog_DeleteMessage" xml:space="preserve">
+  <data name="SearchEngineSheet_DeleteMessage" xml:space="preserve">
     <value>删除{0}？</value>
     <comment>delete confirmation message</comment>
-  </data>
-  <data name="SearchEngineDialog_downButton.Text" xml:space="preserve">
-    <value>下移</value>
-    <comment>down buttom</comment>
-  </data>
-  <data name="SearchEngineDialog_iconColumn.HeaderText" xml:space="preserve">
-    <value>图标</value>
-    <comment>icon col</comment>
-  </data>
-  <data name="SearchEngineDialog_introLabel.Text" xml:space="preserve">
-    <value>网址格式必须包含字符串替换令牌，例如＆q = {0}</value>
-    <comment>intro label</comment>
-  </data>
-  <data name="SearchEngineDialog_refreshButton.Text" xml:space="preserve">
-    <value>更新图标</value>
-    <comment>refresh button</comment>
-  </data>
-  <data name="SearchEngineDialog_Text" xml:space="preserve">
-    <value>自定义网络搜索</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="SearchEngineDialog_upButton.Text" xml:space="preserve">
-    <value>提升</value>
-    <comment>up buttom</comment>
-  </data>
-  <data name="SearchEngineDialog_urlColumn.HeaderText" xml:space="preserve">
-    <value>网址格式</value>
-    <comment>url col</comment>
   </data>
   <data name="SearchEngineSheet_downButton.Text" xml:space="preserve">
     <value>下移</value>
     <comment>button</comment>
+  </data>
+  <data name="SearchEngineSheet_iconColumn.HeaderText" xml:space="preserve">
+    <value>图标</value>
+    <comment>icon col</comment>
   </data>
   <data name="SearchEngineSheet_introBox.Text" xml:space="preserve">
     <value>设置的网址格式中必须包含一个字符串更换令牌，例如＆q = {0}
@@ -4869,9 +4817,21 @@ ISO-code then comma then language name</comment>
             搜索引擎将出现在页面右键的弹出“上下文菜单”中。</value>
     <comment>label</comment>
   </data>
+  <data name="SearchEngineSheet_refreshButton.Text" xml:space="preserve">
+    <value>更新图标</value>
+    <comment>refresh button</comment>
+  </data>
+  <data name="SearchEngineSheet_Text" xml:space="preserve">
+    <value>自定义网络搜索</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="SearchEngineSheet_upButton.Text" xml:space="preserve">
     <value>上移</value>
     <comment>button</comment>
+  </data>
+  <data name="SearchEngineSheet_urlColumn.HeaderText" xml:space="preserve">
+    <value>网址模式</value>
+    <comment>url col</comment>
   </data>
   <data name="SearchQF_DescriptionCopy" xml:space="preserve">
     <value>选择应该复制所选页面的位置</value>
@@ -5474,14 +5434,6 @@ ISO-code then comma then language name</comment>
     <value>OneMore 是最新的</value>
     <comment>panel title</comment>
   </data>
-  <data name="UpdateDialog_lastUpdatedLabel.Text" xml:space="preserve">
-    <value>最近更新时间：</value>
-    <comment>label</comment>
-  </data>
-  <data name="UpdateDialog_releaseDateLabel.Text" xml:space="preserve">
-    <value>发布日期：</value>
-    <comment>label</comment>
-  </data>
   <data name="UpdateDialog_releaseNotesLink.Text" xml:space="preserve">
     <value>发行说明</value>
     <comment>link</comment>
@@ -5498,9 +5450,17 @@ ISO-code then comma then language name</comment>
     <value>OneMore 更新可用</value>
     <comment>panel title</comment>
   </data>
+  <data name="UpdateDialog_upLastUpdatedLabel.Text" xml:space="preserve">
+    <value>最后更新：</value>
+    <comment>label</comment>
+  </data>
   <data name="UpdateDialog_upOKButton.Text" xml:space="preserve">
     <value>更新</value>
     <comment>button</comment>
+  </data>
+  <data name="UpdateDialog_upReleaseDateLabel.Text" xml:space="preserve">
+    <value>发布日期：</value>
+    <comment>label</comment>
   </data>
   <data name="UpdateDialog_upSkipButton.Text" xml:space="preserve">
     <value>跳过</value>
@@ -5563,9 +5523,6 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Actual" xml:space="preserve">
     <value>实际的</value>
-  </data>
-  <data name="word_Add" xml:space="preserve">
-    <value>添加</value>
   </data>
   <data name="word_Alias" xml:space="preserve">
     <value>别名</value>
@@ -5672,9 +5629,6 @@ ISO-code then comma then language name</comment>
   <data name="word_Go" xml:space="preserve">
     <value>跳转到</value>
   </data>
-  <data name="word_Grayscale" xml:space="preserve">
-    <value>灰度</value>
-  </data>
   <data name="word_Hashtags" xml:space="preserve">
     <value>标签</value>
   </data>
@@ -5690,20 +5644,11 @@ ISO-code then comma then language name</comment>
   <data name="word_Index" xml:space="preserve">
     <value>词索引</value>
   </data>
-  <data name="word_Information" xml:space="preserve">
-    <value>信息</value>
-  </data>
-  <data name="word_Keyboard" xml:space="preserve">
-    <value>键盘</value>
-  </data>
   <data name="word_Language" xml:space="preserve">
     <value>语言</value>
   </data>
   <data name="word_Length" xml:space="preserve">
     <value>长度</value>
-  </data>
-  <data name="word_Limit" xml:space="preserve">
-    <value>限制</value>
   </data>
   <data name="word_Minutes" xml:space="preserve">
     <value>分钟</value>
@@ -5728,12 +5673,6 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Notebooks" xml:space="preserve">
     <value>笔记本</value>
-  </data>
-  <data name="word_Notes" xml:space="preserve">
-    <value>笔记</value>
-  </data>
-  <data name="word_Numbering" xml:space="preserve">
-    <value>编号</value>
   </data>
   <data name="word_Numeric" xml:space="preserve">
     <value>数字</value>
@@ -5841,23 +5780,14 @@ ISO-code then comma then language name</comment>
   <data name="word_Stylize" xml:space="preserve">
     <value>调整风格</value>
   </data>
-  <data name="word_Suggestions" xml:space="preserve">
-    <value>建议</value>
-  </data>
   <data name="word_Target" xml:space="preserve">
     <value>目标</value>
   </data>
   <data name="word_Text" xml:space="preserve">
     <value>文本</value>
   </data>
-  <data name="word_Total" xml:space="preserve">
-    <value>总计</value>
-  </data>
   <data name="word_Value" xml:space="preserve">
     <value>值</value>
-  </data>
-  <data name="word_Warning" xml:space="preserve">
-    <value>警告</value>
   </data>
   <data name="word_Width" xml:space="preserve">
     <value>宽度</value>
