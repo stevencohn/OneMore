@@ -1133,10 +1133,6 @@ Citation</value>
     <value>Text focus must be in the body of the page</value>
     <comment>error message box</comment>
   </data>
-  <data name="Error_CursorContext" xml:space="preserve">
-    <value>Position the cursor in the body of the page without selecting a range of text</value>
-    <comment>error message box</comment>
-  </data>
   <data name="Error_NoAttachments" xml:space="preserve">
     <value>No attachments found on page</value>
   </data>
@@ -1467,10 +1463,6 @@ This page</value>
   <data name="HashtagDialog_uncheckAllLink.Text" xml:space="preserve">
     <value>Uncheck all</value>
     <comment>link label</comment>
-  </data>
-  <data name="HashtaggerDialog.Text" xml:space="preserve">
-    <value>Hashtags</value>
-    <comment>dialog title</comment>
   </data>
   <data name="HashtaggerDialog_bankBox.Text" xml:space="preserve">
     <value>Add to tag bank at top of page</value>
@@ -3354,14 +3346,6 @@ Help Tab</value>
   </data>
   <data name="ribEmbedButton_Screentip" xml:space="preserve">
     <value>Embed content from another page into the current page</value>
-    <comment>ribbon references</comment>
-  </data>
-  <data name="ribEmbedSubpageButton_Label" xml:space="preserve">
-    <value>Embed Page</value>
-    <comment>ribbon references</comment>
-  </data>
-  <data name="ribEmbedSubpageButton_Screentip" xml:space="preserve">
-    <value>Embed content of another page into the current page</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribEnableSpellCheckButton_Label" xml:space="preserve">

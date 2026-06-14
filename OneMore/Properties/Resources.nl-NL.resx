@@ -1128,10 +1128,6 @@ Citaat</value>
     <value>De tekstfocus moet zich in de hoofdtekst van de pagina bevinden</value>
     <comment>error message box</comment>
   </data>
-  <data name="Error_CursorContext" xml:space="preserve">
-    <value>Plaats de cursor in het lichaam van de pagina zonder een reeks tekst te selecteren</value>
-    <comment>error message box</comment>
-  </data>
   <data name="Error_NoAttachments" xml:space="preserve">
     <value>Geen bijlagen gevonden op pagina</value>
   </data>
@@ -1463,10 +1459,6 @@ Deze pagina</value>
   <data name="HashtagDialog_uncheckAllLink.Text" xml:space="preserve">
     <value>Schakel alles uit</value>
     <comment>link label</comment>
-  </data>
-  <data name="HashtaggerDialog.Text" xml:space="preserve">
-    <value>Hashtags</value>
-    <comment>dialog title</comment>
   </data>
   <data name="HashtaggerDialog_bankBox.Text" xml:space="preserve">
     <value>Voeg toe aan tagbank bovenaan de pagina</value>
@@ -3323,14 +3315,6 @@ Tabblad Help</value>
   <data name="ribEmbedButton_Screentip" xml:space="preserve">
     <value>Sluit inhoud van een andere pagina in op de huidige pagina</value>
     <comment>ribbon references</comment>
-  </data>
-  <data name="ribEmbedSubpageButton_Label" xml:space="preserve">
-    <value>Pagina insluiten</value>
-    <comment>ribbon item</comment>
-  </data>
-  <data name="ribEmbedSubpageButton_Screentip" xml:space="preserve">
-    <value>Inhoud van een andere pagina insluiten in de huidige pagina</value>
-    <comment>ribbon item screentip</comment>
   </data>
   <data name="ribEnableSpellCheckButton_Label" xml:space="preserve">
     <value>Spellingcontrole inschakelen</value>

@@ -3017,15 +3017,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Position the cursor in the body of the page without selecting a range of text.
-        /// </summary>
-        internal static string Error_CursorContext {
-            get {
-                return ResourceManager.GetString("Error_CursorContext", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to No attachments found on page.
         /// </summary>
         internal static string Error_NoAttachments {
@@ -3880,15 +3871,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string HashtaggerDialog_tagsLabel_Text {
             get {
                 return ResourceManager.GetString("HashtaggerDialog_tagsLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Hashtags.
-        /// </summary>
-        internal static string HashtaggerDialog_Text {
-            get {
-                return ResourceManager.GetString("HashtaggerDialog.Text", resourceCulture);
             }
         }
         
@@ -8469,24 +8451,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribEmbedButton_Screentip {
             get {
                 return ResourceManager.GetString("ribEmbedButton_Screentip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Embed Page.
-        /// </summary>
-        internal static string ribEmbedSubpageButton_Label {
-            get {
-                return ResourceManager.GetString("ribEmbedSubpageButton_Label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Embed content of another page into the current page.
-        /// </summary>
-        internal static string ribEmbedSubpageButton_Screentip {
-            get {
-                return ResourceManager.GetString("ribEmbedSubpageButton_Screentip", resourceCulture);
             }
         }
         

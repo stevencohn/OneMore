@@ -47,6 +47,32 @@ foreach ($file in $csFiles) {
     }
 }
 
+# Ribbon controls: labels and screentips are resolved dynamically via
+# ReadString("{id}_Label") / ReadString("{id}_Screentip") in AddinRibbon.cs,
+# so if the bare control id appears in a ribbon XML file, mark both suffixed
+# variants as found without requiring the literal suffixed string to appear.
+foreach ($key in $keys) {
+    $prop = ($key -split '\.')[0]
+    if ($prop -match '^(.+)_(Label|Screentip)$') {
+        $root = $Matches[1]
+        $inXml = $xmlContent -match [regex]::Escape($root)
+        $inCs  = ($root -match '^rib[a-zA-Z]+Button$') -and ($csContent -match [regex]::Escape($root))
+        # GetRibbonLabel/GetRibbonScreentip convert ctx/cts/ctg/pcm/pcs/bar/ct2
+        # prefixes to rib at runtime, so ctxFooButton in XML resolves ribFooButton_Label
+        if (-not $inXml -and $root -match '^rib([a-zA-Z]+)$') {
+            $stem = $Matches[1]
+            foreach ($alt in 'ctx','cts','ctg','pcm','pcs','bar','ct2') {
+                if ($xmlContent -match [regex]::Escape("${alt}${stem}")) {
+                    $inXml = $true; break
+                }
+            }
+        }
+        if ($inXml -or $inCs) {
+            $null = $found.Add($prop)
+        }
+    }
+}
+
 # Any found _Label implies its _Screentip counterpart is also considered found.
 # Any found e_* (emoji icon) implies its Emoji_* resource is also considered found.
 $implied = [System.Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal)

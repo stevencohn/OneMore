@@ -1131,10 +1131,6 @@
     <value>يجب أن يكون تركيز النص في نص الصفحة</value>
     <comment>error message box</comment>
   </data>
-  <data name="Error_CursorContext" xml:space="preserve">
-    <value>ضع المؤشر في جسم الصفحة دون تحديد مجموعة من النص</value>
-    <comment>error message box</comment>
-  </data>
   <data name="Error_NoAttachments" xml:space="preserve">
     <value>لم يتم العثور على المرفقات في الصفحة</value>
   </data>
@@ -1466,10 +1462,6 @@
   <data name="HashtagDialog_uncheckAllLink.Text" xml:space="preserve">
     <value>الغاءالكل</value>
     <comment>link label</comment>
-  </data>
-  <data name="HashtaggerDialog.Text" xml:space="preserve">
-    <value>علامات التصنيف</value>
-    <comment>dialog title</comment>
   </data>
   <data name="HashtaggerDialog_bankBox.Text" xml:space="preserve">
     <value>أضف إلى بنك العلامات في أعلى الصفحة</value>
@@ -3334,14 +3326,6 @@ ISO-code then comma then language name</comment>
   <data name="ribEmbedButton_Screentip" xml:space="preserve">
     <value>تضمين محتوى من صفحة أخرى في الصفحة الحالية</value>
     <comment>ribbon references</comment>
-  </data>
-  <data name="ribEmbedSubpageButton_Label" xml:space="preserve">
-    <value>تضمين الصفحة</value>
-    <comment>ribbon item</comment>
-  </data>
-  <data name="ribEmbedSubpageButton_Screentip" xml:space="preserve">
-    <value>تضمين محتوى صفحة أخرى في الصفحة الحالية</value>
-    <comment>ribbon item screentip</comment>
   </data>
   <data name="ribEnableSpellCheckButton_Label" xml:space="preserve">
     <value>تمكين التدقيق الإملائي</value>

@@ -1123,10 +1123,6 @@ Zitat</value>
     <value>Der Textfokus muss im Hauptteil der Seite liegen</value>
     <comment>error message box</comment>
   </data>
-  <data name="Error_CursorContext" xml:space="preserve">
-    <value>Positioniere den Cursor im Körper der Seite, ohne einen Textbereich auszuwählen</value>
-    <comment>error message box</comment>
-  </data>
   <data name="Error_NoAttachments" xml:space="preserve">
     <value>Keine Anhänge auf der Seite gefunden</value>
   </data>
@@ -1458,10 +1454,6 @@ Diese Seite</value>
   <data name="HashtagDialog_uncheckAllLink.Text" xml:space="preserve">
     <value>Alle deaktivieren</value>
     <comment>link label</comment>
-  </data>
-  <data name="HashtaggerDialog.Text" xml:space="preserve">
-    <value>Hashtags</value>
-    <comment>dialog title</comment>
   </data>
   <data name="HashtaggerDialog_bankBox.Text" xml:space="preserve">
     <value>Zur Tag-Datenbank oben auf der Seite hinzufügen</value>
@@ -3322,14 +3314,6 @@ Registerkarte „Hilfe“.</value>
   <data name="ribEmbedButton_Screentip" xml:space="preserve">
     <value>Betten Sie Inhalte von einer anderen Seite in die aktuelle Seite ein</value>
     <comment>ribbon references</comment>
-  </data>
-  <data name="ribEmbedSubpageButton_Label" xml:space="preserve">
-    <value>Seite einbetten</value>
-    <comment>ribbon item</comment>
-  </data>
-  <data name="ribEmbedSubpageButton_Screentip" xml:space="preserve">
-    <value>Inhalte einer anderen Seite in die aktuelle Seite einbetten</value>
-    <comment>ribbon item screentip</comment>
   </data>
   <data name="ribEnableSpellCheckButton_Label" xml:space="preserve">
     <value>Rechtschreibprüfung aktivieren</value>

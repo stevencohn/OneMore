@@ -42,7 +42,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (NeedsLocalizing())
 			{
-				Text = Resx.HashtagDialog_Title;
+				Text = Resx.word_Hashtags;
 
 				Localize(new string[]
 				{

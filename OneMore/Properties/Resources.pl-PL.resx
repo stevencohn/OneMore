@@ -1128,10 +1128,6 @@ Cytat</value>
     <value>Skupienie tekstu musi znajdować się w ciele strony</value>
     <comment>error message box</comment>
   </data>
-  <data name="Error_CursorContext" xml:space="preserve">
-    <value>Ustaw kursor w treści strony bez wyboru zakresu tekstu</value>
-    <comment>error message box</comment>
-  </data>
   <data name="Error_NoAttachments" xml:space="preserve">
     <value>Nie znaleziono załączników na stronie</value>
   </data>
@@ -1463,10 +1459,6 @@ Ta strona</value>
   <data name="HashtagDialog_uncheckAllLink.Text" xml:space="preserve">
     <value>Odznacz wszystkie</value>
     <comment>link label</comment>
-  </data>
-  <data name="HashtaggerDialog.Text" xml:space="preserve">
-    <value>Hashtagi</value>
-    <comment>dialog title</comment>
   </data>
   <data name="HashtaggerDialog_bankBox.Text" xml:space="preserve">
     <value>Dodaj do banku tagów na górze strony</value>
@@ -3323,14 +3315,6 @@ Zakładka Pomoc</value>
   <data name="ribEmbedButton_Screentip" xml:space="preserve">
     <value>Osadzaj treść z innej strony na bieżącej stronie</value>
     <comment>ribbon references</comment>
-  </data>
-  <data name="ribEmbedSubpageButton_Label" xml:space="preserve">
-    <value>Umieść stronę</value>
-    <comment>ribbon item</comment>
-  </data>
-  <data name="ribEmbedSubpageButton_Screentip" xml:space="preserve">
-    <value>Umieść zawartość innej strony na bieżącą stronę</value>
-    <comment>ribbon item screentip</comment>
   </data>
   <data name="ribEnableSpellCheckButton_Label" xml:space="preserve">
     <value>Włącz sprawdzanie pisowni</value>

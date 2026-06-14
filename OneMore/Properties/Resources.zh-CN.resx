@@ -1132,10 +1132,6 @@
     <value>文字焦点必须激活在页面的正文文本中</value>
     <comment>error message box</comment>
   </data>
-  <data name="Error_CursorContext" xml:space="preserve">
-    <value>将光标放置在页面正文中，而无需选择一串文本</value>
-    <comment>error message box</comment>
-  </data>
   <data name="Error_NoAttachments" xml:space="preserve">
     <value>页面上没有找到附件</value>
   </data>
@@ -1469,10 +1465,6 @@ OneNote 文件 (*.one)</value>
   <data name="HashtagDialog_uncheckAllLink.Text" xml:space="preserve">
     <value>全部取消勾选</value>
     <comment>link label</comment>
-  </data>
-  <data name="HashtaggerDialog.Text" xml:space="preserve">
-    <value>标签</value>
-    <comment>dialog title</comment>
   </data>
   <data name="HashtaggerDialog_bankBox.Text" xml:space="preserve">
     <value>添加到页面顶部的标签容器</value>
@@ -3337,14 +3329,6 @@ ISO-code then comma then language name</comment>
   <data name="ribEmbedButton_Screentip" xml:space="preserve">
     <value>将另一个页面的内容嵌入到当前页面</value>
     <comment>ribbon references</comment>
-  </data>
-  <data name="ribEmbedSubpageButton_Label" xml:space="preserve">
-    <value>嵌入页面</value>
-    <comment>ribbon item</comment>
-  </data>
-  <data name="ribEmbedSubpageButton_Screentip" xml:space="preserve">
-    <value>将另一个页面的内容嵌入到当前页面</value>
-    <comment>ribbon item screentip</comment>
   </data>
   <data name="ribEnableSpellCheckButton_Label" xml:space="preserve">
     <value>启用拼写检查</value>

@@ -1128,10 +1128,6 @@ Citação</value>
     <value>O foco do texto deve estar no corpo da página</value>
     <comment>error message box</comment>
   </data>
-  <data name="Error_CursorContext" xml:space="preserve">
-    <value>Posicione o cursor no corpo da página sem selecionar uma variedade de texto</value>
-    <comment>error message box</comment>
-  </data>
   <data name="Error_NoAttachments" xml:space="preserve">
     <value>Nenhum anexos encontrados na página</value>
   </data>
@@ -1463,10 +1459,6 @@ Esta página</value>
   <data name="HashtagDialog_uncheckAllLink.Text" xml:space="preserve">
     <value>Desmarcar todos</value>
     <comment>link label</comment>
-  </data>
-  <data name="HashtaggerDialog.Text" xml:space="preserve">
-    <value>Hashtags</value>
-    <comment>dialog title</comment>
   </data>
   <data name="HashtaggerDialog_bankBox.Text" xml:space="preserve">
     <value>Adicionar ao banco de tags no topo da página</value>
@@ -3323,14 +3315,6 @@ Guia Ajuda</value>
   <data name="ribEmbedButton_Screentip" xml:space="preserve">
     <value>Incorporar conteúdo de outra página na página atual</value>
     <comment>ribbon references</comment>
-  </data>
-  <data name="ribEmbedSubpageButton_Label" xml:space="preserve">
-    <value>Página de incorporação</value>
-    <comment>ribbon item</comment>
-  </data>
-  <data name="ribEmbedSubpageButton_Screentip" xml:space="preserve">
-    <value>Incorporar conteúdo de outra página na página atual</value>
-    <comment>ribbon item screentip</comment>
   </data>
   <data name="ribEnableSpellCheckButton_Label" xml:space="preserve">
     <value>Ativar verificação ortográfica</value>

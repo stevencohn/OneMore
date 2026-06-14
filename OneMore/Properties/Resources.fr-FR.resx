@@ -1131,10 +1131,6 @@ Citation</value>
     <value>Le focus du texte doit être dans le corps de la page</value>
     <comment>error message box</comment>
   </data>
-  <data name="Error_CursorContext" xml:space="preserve">
-    <value>Positionnez le curseur dans le corps de la page sans sélectionner une gamme de texte</value>
-    <comment>error message box</comment>
-  </data>
   <data name="Error_NoAttachments" xml:space="preserve">
     <value>Aucun attachement trouvé à la page</value>
   </data>
@@ -1466,10 +1462,6 @@ Cette page</value>
   <data name="HashtagDialog_uncheckAllLink.Text" xml:space="preserve">
     <value>Tout décocher</value>
     <comment>link label</comment>
-  </data>
-  <data name="HashtaggerDialog.Text" xml:space="preserve">
-    <value>Hashtags</value>
-    <comment>dialog title</comment>
   </data>
   <data name="HashtaggerDialog_bankBox.Text" xml:space="preserve">
     <value>Ajouter à la banque de balises en haut de la page</value>
@@ -3334,14 +3326,6 @@ Onglet Aide</value>
   <data name="ribEmbedButton_Screentip" xml:space="preserve">
     <value>Intégrer le contenu d'une autre page dans la page actuelle</value>
     <comment>ribbon references</comment>
-  </data>
-  <data name="ribEmbedSubpageButton_Label" xml:space="preserve">
-    <value>Intégrer la page</value>
-    <comment>ribbon item</comment>
-  </data>
-  <data name="ribEmbedSubpageButton_Screentip" xml:space="preserve">
-    <value>Intégrer le contenu d'une autre page dans la page actuelle</value>
-    <comment>ribbon item screentip</comment>
   </data>
   <data name="ribEnableSpellCheckButton_Label" xml:space="preserve">
     <value>Activer la vérification orthographique</value>

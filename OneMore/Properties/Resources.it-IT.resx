@@ -1129,10 +1129,6 @@ Citazione</value>
     <value>Il focus del testo deve essere nel corpo della pagina</value>
     <comment>error message box</comment>
   </data>
-  <data name="Error_CursorContext" xml:space="preserve">
-    <value>Posiziona il cursore nel corpo della pagina senza selezionare un intervallo di testo</value>
-    <comment>error message box</comment>
-  </data>
   <data name="Error_NoAttachments" xml:space="preserve">
     <value>Nessun allegato trovato nella pagina</value>
   </data>
@@ -1463,10 +1459,6 @@ Questa pagina</value>
   <data name="HashtagDialog_uncheckAllLink.Text" xml:space="preserve">
     <value>Deseleziona tutto</value>
     <comment>link label</comment>
-  </data>
-  <data name="HashtaggerDialog.Text" xml:space="preserve">
-    <value>Hashtag</value>
-    <comment>dialog title</comment>
   </data>
   <data name="HashtaggerDialog_bankBox.Text" xml:space="preserve">
     <value>Aggiungi alla banca dei tag nella parte superiore della pagina</value>
@@ -3326,14 +3318,6 @@ Scheda Aiuto</value>
   </data>
   <data name="ribEmbedButton_Screentip" xml:space="preserve">
     <value>Incorpora contenuto da un'altra pagina nella pagina corrente</value>
-    <comment>ribbon references</comment>
-  </data>
-  <data name="ribEmbedSubpageButton_Label" xml:space="preserve">
-    <value>Incorpora pagina</value>
-    <comment>ribbon references</comment>
-  </data>
-  <data name="ribEmbedSubpageButton_Screentip" xml:space="preserve">
-    <value>Incorpora il contenuto di un'altra pagina nella pagina corrente</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribEnableSpellCheckButton_Label" xml:space="preserve">

@@ -1128,10 +1128,6 @@ Total Row Font
     <value>מיקוד הטקסט חייב להיות בגוף הדף</value>
     <comment>error message box</comment>
   </data>
-  <data name="Error_CursorContext" xml:space="preserve">
-    <value>מקם את הסמן בגוף העמוד מבלי לבחור טווח טקסט</value>
-    <comment>error message box</comment>
-  </data>
   <data name="Error_NoAttachments" xml:space="preserve">
     <value>לא נמצאו קבצים מצורפים בדף</value>
   </data>
@@ -1463,10 +1459,6 @@ Total Row Font
   <data name="HashtagDialog_uncheckAllLink.Text" xml:space="preserve">
     <value>בטל את הסימון של הכל</value>
     <comment>link label</comment>
-  </data>
-  <data name="HashtaggerDialog.Text" xml:space="preserve">
-    <value>Hashtags</value>
-    <comment>dialog title</comment>
   </data>
   <data name="HashtaggerDialog_bankBox.Text" xml:space="preserve">
     <value>הוסף לבנק התגים בראש הדף</value>
@@ -3327,14 +3319,6 @@ ISO-code then comma then language name</comment>
   <data name="ribEmbedButton_Screentip" xml:space="preserve">
     <value>הטמע תוכן מדף אחר בדף הנוכחי</value>
     <comment>ribbon references</comment>
-  </data>
-  <data name="ribEmbedSubpageButton_Label" xml:space="preserve">
-    <value>הטמע עמוד</value>
-    <comment>ribbon item</comment>
-  </data>
-  <data name="ribEmbedSubpageButton_Screentip" xml:space="preserve">
-    <value>הטמע תוכן של דף אחר בדף הנוכחי</value>
-    <comment>ribbon item screentip</comment>
   </data>
   <data name="ribEnableSpellCheckButton_Label" xml:space="preserve">
     <value>אפשר בדיקת איות</value>
