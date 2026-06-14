@@ -730,7 +730,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Could not create bi-directional link. {0}.
+        ///   Looks up a localized string similar to Could not create a two-way link. {0}.
         /// </summary>
         internal static string BiLinkCommand_BadTarget {
             get {
@@ -748,7 +748,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Anchor cannot be found. Page or text has changed..
+        ///   Looks up a localized string similar to Bookmark not found. Page or text has changed..
         /// </summary>
         internal static string BiLinkCommand_LostAnchor {
             get {
@@ -757,7 +757,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Starting anchor not yet marked. Select the start of the bi-directional link..
+        ///   Looks up a localized string similar to Bookmark not yet set. Select the start of the two-way link..
         /// </summary>
         internal static string BiLinkCommand_NoAnchor {
             get {

@@ -406,7 +406,7 @@ Odwracać</value>
     <comment>listview annotation</comment>
   </data>
   <data name="BiLinkCommand_BadTarget" xml:space="preserve">
-    <value>Nie mógł utworzyć linku dwukierunkowego. {0}</value>
+    <value>Nie można utworzyć łącza dwukierunkowego. {0}</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_Circular" xml:space="preserve">
@@ -414,11 +414,11 @@ Odwracać</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_LostAnchor" xml:space="preserve">
-    <value>Nie można znaleźć kotwicy. Strona lub tekst się zmienił.</value>
+    <value>Nie znaleziono zakładki. Strona lub tekst uległy zmianie.</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_NoAnchor" xml:space="preserve">
-    <value>Uruchamianie kotwicy nie jest jeszcze oznaczone. Wybierz początek linku dwukierunkowego.</value>
+    <value>Zakładka nie jest jeszcze ustawiona. Wybierz początek łącza dwukierunkowego.</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_NoTarget" xml:space="preserve">

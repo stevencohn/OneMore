@@ -415,11 +415,11 @@
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_LostAnchor" xml:space="preserve">
-    <value>アンカーが見つかりません。ページまたはテキストが変更された可能性があります。</value>
+    <value>ブックマークが見つかりません。ページまたはテキストが変更されました。</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_NoAnchor" xml:space="preserve">
-    <value>開始アンカーがまだマークされていません。双方向リンクの開始点を選択してください。</value>
+    <value>ブックマークはまだ設定されていません。双方向リンクの開始点を選択します。</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_NoTarget" xml:space="preserve">

@@ -415,11 +415,11 @@ Invertire</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_LostAnchor" xml:space="preserve">
-    <value>Impossibile trovare l'ancora. La pagina o il testo sono cambiati.</value>
+    <value>Segnalibro non trovato. La pagina o il testo sono cambiati.</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_NoAnchor" xml:space="preserve">
-    <value>Ancoraggio di partenza non ancora segnato. Selezionare l'inizio del collegamento bidirezionale.</value>
+    <value>Segnalibro non ancora impostato. Selezionare l'inizio del collegamento bidirezionale.</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_NoTarget" xml:space="preserve">

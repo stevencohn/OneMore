@@ -409,7 +409,7 @@ Inverser</value>
     <comment>listview annotation</comment>
   </data>
   <data name="BiLinkCommand_BadTarget" xml:space="preserve">
-    <value>Impossible de créer un lien bidirectionnel. </value>
+    <value>Impossible de créer un lien bidirectionnel. {0}</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_Circular" xml:space="preserve">
@@ -417,11 +417,11 @@ Inverser</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_LostAnchor" xml:space="preserve">
-    <value>L'ancre est introuvable. </value>
+    <value>Signet introuvable. La page ou le texte a changé.</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_NoAnchor" xml:space="preserve">
-    <value>Ancre de départ pas encore marquée. </value>
+    <value>Le signet n'est pas encore défini. Sélectionnez le début du lien bidirectionnel.</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_NoTarget" xml:space="preserve">

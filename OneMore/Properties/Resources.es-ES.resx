@@ -409,7 +409,7 @@ Invertir</value>
     <comment>listview annotation</comment>
   </data>
   <data name="BiLinkCommand_BadTarget" xml:space="preserve">
-    <value>No se pudo crear el enlace bidireccional. </value>
+    <value>No se pudo crear un enlace bidireccional. {0}</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_Circular" xml:space="preserve">
@@ -417,11 +417,11 @@ Invertir</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_LostAnchor" xml:space="preserve">
-    <value>No se puede encontrar el ancla. </value>
+    <value>Marcador no encontrado. La página o el texto han cambiado.</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_NoAnchor" xml:space="preserve">
-    <value>Ancla de salida aún no marcada. </value>
+    <value>Marcador aún no establecido. Seleccione el inicio del enlace bidireccional.</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_NoTarget" xml:space="preserve">

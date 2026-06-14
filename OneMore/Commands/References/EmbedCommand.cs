@@ -156,6 +156,11 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task EmbedContent()
 		{
+			if (BookmarkCommand.Bookmark is not null)
+			{
+				var bookmark = BookmarkCommand.Bookmark;
+			}
+
 			// check clipboard for a OneNote URI (from Copy Link to Page/Paragraph)
 			var clip = await ClipboardProvider.GetText();
 			if (!string.IsNullOrEmpty(clip))

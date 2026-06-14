@@ -414,11 +414,11 @@
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_LostAnchor" xml:space="preserve">
-    <value>לא ניתן למצוא עוגן. הדף או הטקסט השתנו.</value>
+    <value>הסימניה לא נמצאה. הדף או הטקסט השתנו.</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_NoAnchor" xml:space="preserve">
-    <value>עוגן התחלה עדיין לא סומן. בחר את ההתחלה של הקישור הדו-כיווני.</value>
+    <value>עדיין לא הוגדרה סימניה. בחר את ההתחלה של הקישור הדו-כיווני.</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_NoTarget" xml:space="preserve">
