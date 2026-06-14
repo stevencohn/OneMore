@@ -856,6 +856,10 @@ Fonte da última coluna</value>
     <value>Etiqueta inicial</value>
     <comment>label</comment>
   </data>
+  <data name="EmbedDialog_bookmarkLabel.Text" xml:space="preserve">
+    <value>Marcador</value>
+    <comment>label</comment>
+  </data>
   <data name="EmbedDialog_endTagLabel.Text" xml:space="preserve">
     <value>Etiqueta final</value>
     <comment>label</comment>

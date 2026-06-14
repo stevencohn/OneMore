@@ -859,6 +859,10 @@
     <value>علامة البدء</value>
     <comment>label</comment>
   </data>
+  <data name="EmbedDialog_bookmarkLabel.Text" xml:space="preserve">
+    <value>إشارة مرجعية</value>
+    <comment>label</comment>
+  </data>
   <data name="EmbedDialog_endTagLabel.Text" xml:space="preserve">
     <value>علامة النهاية</value>
     <comment>label</comment>

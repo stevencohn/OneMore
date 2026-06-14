@@ -2357,6 +2357,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bookmark.
+        /// </summary>
+        internal static string EmbedDialog_bookmarkLabel_Text {
+            get {
+                return ResourceManager.GetString("EmbedDialog_bookmarkLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to End tag.
         /// </summary>
         internal static string EmbedDialog_endTagLabel_Text {

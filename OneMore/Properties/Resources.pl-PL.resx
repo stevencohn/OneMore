@@ -856,6 +856,10 @@ Czcionka ostatniej kolumny</value>
     <value>Rozpocznij tag</value>
     <comment>label</comment>
   </data>
+  <data name="EmbedDialog_bookmarkLabel.Text" xml:space="preserve">
+    <value>Zakładka w książce</value>
+    <comment>label</comment>
+  </data>
   <data name="EmbedDialog_endTagLabel.Text" xml:space="preserve">
     <value>Etykieta końcowa</value>
     <comment>label</comment>

@@ -859,6 +859,10 @@ Police de la dernière colonne</value>
     <value>Balise de début</value>
     <comment>label</comment>
   </data>
+  <data name="EmbedDialog_bookmarkLabel.Text" xml:space="preserve">
+    <value>Marque-page</value>
+    <comment>label</comment>
+  </data>
   <data name="EmbedDialog_endTagLabel.Text" xml:space="preserve">
     <value>Balise de fin</value>
     <comment>label</comment>

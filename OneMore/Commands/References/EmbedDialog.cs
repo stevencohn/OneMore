@@ -50,6 +50,7 @@ namespace River.OneMoreAddIn.Commands
 					"targetLabel=word_Target",
 					"beginTagLabel",
 					"endTagLabel",
+					"bookmarkLabel",
 					"formatLabel=word_Format",
 					"formattedRadio",
 					"plaintextRadio",

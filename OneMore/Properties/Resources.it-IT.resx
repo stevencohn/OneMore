@@ -857,6 +857,10 @@ Carattere dell'ultima colonna</value>
     <value>Inizia tag</value>
     <comment>label</comment>
   </data>
+  <data name="EmbedDialog_bookmarkLabel.Text" xml:space="preserve">
+    <value>Segnalibro</value>
+    <comment>label</comment>
+  </data>
   <data name="EmbedDialog_endTagLabel.Text" xml:space="preserve">
     <value>Etichetta finale</value>
     <comment>label</comment>

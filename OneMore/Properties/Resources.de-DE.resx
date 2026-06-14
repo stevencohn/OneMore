@@ -851,6 +851,10 @@ Schriftart der letzten Spalte</value>
     <value>Tag beginnen</value>
     <comment>label</comment>
   </data>
+  <data name="EmbedDialog_bookmarkLabel.Text" xml:space="preserve">
+    <value>Lesezeichen</value>
+    <comment>label</comment>
+  </data>
   <data name="EmbedDialog_endTagLabel.Text" xml:space="preserve">
     <value>End-Tag</value>
     <comment>label</comment>

@@ -859,6 +859,10 @@
     <value>タグの開始</value>
     <comment>label</comment>
   </data>
+  <data name="EmbedDialog_bookmarkLabel.Text" xml:space="preserve">
+    <value>ブックマーク</value>
+    <comment>label</comment>
+  </data>
   <data name="EmbedDialog_endTagLabel.Text" xml:space="preserve">
     <value>終了タグ</value>
     <comment>label</comment>
