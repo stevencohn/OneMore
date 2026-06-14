@@ -38,6 +38,8 @@ namespace River.OneMoreAddIn.Commands
 			this.beginTagBox = new River.OneMoreAddIn.UI.MoreTextBox();
 			this.endTagLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.endTagBox = new River.OneMoreAddIn.UI.MoreTextBox();
+			this.bookmarkLabel = new River.OneMoreAddIn.UI.MoreLabel();
+			this.bookmarkTextLabel = new River.OneMoreAddIn.UI.MoreRichLabel();
 			this.formatLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.formattedRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.plaintextRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
@@ -144,9 +146,36 @@ namespace River.OneMoreAddIn.Commands
 			this.endTagBox.ThemedBack = null;
 			this.endTagBox.ThemedFore = null;
 			this.endTagBox.TextChanged += new System.EventHandler(this.SetNote);
-			// 
+			//
+			// bookmarkLabel
+			//
+			this.bookmarkLabel.AutoSize = true;
+			this.bookmarkLabel.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.bookmarkLabel.Location = new System.Drawing.Point(15, 90);
+			this.bookmarkLabel.Name = "bookmarkLabel";
+			this.bookmarkLabel.Size = new System.Drawing.Size(80, 20);
+			this.bookmarkLabel.TabIndex = 18;
+			this.bookmarkLabel.Text = "Bookmark";
+			this.bookmarkLabel.ThemedBack = null;
+			this.bookmarkLabel.ThemedFore = null;
+			this.bookmarkLabel.Visible = false;
+			//
+			// bookmarkTextLabel
+			//
+			this.bookmarkTextLabel.BackColor = System.Drawing.SystemColors.ControlLight;
+			this.bookmarkTextLabel.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.bookmarkTextLabel.Cursor = System.Windows.Forms.Cursors.Default;
+			this.bookmarkTextLabel.Location = new System.Drawing.Point(130, 87);
+			this.bookmarkTextLabel.Name = "bookmarkTextLabel";
+			this.bookmarkTextLabel.ReadOnly = true;
+			this.bookmarkTextLabel.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+			this.bookmarkTextLabel.Size = new System.Drawing.Size(512, 26);
+			this.bookmarkTextLabel.TabIndex = 19;
+			this.bookmarkTextLabel.TabStop = false;
+			this.bookmarkTextLabel.Visible = false;
+			//
 			// formatLabel
-			// 
+			//
 			this.formatLabel.AutoSize = true;
 			this.formatLabel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.formatLabel.Location = new System.Drawing.Point(15, 256);
@@ -294,6 +323,8 @@ namespace River.OneMoreAddIn.Commands
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(660, 442);
 			this.Controls.Add(this.noteLabel);
+			this.Controls.Add(this.bookmarkTextLabel);
+			this.Controls.Add(this.bookmarkLabel);
 			this.Controls.Add(this.cancelButton);
 			this.Controls.Add(this.okButton);
 			this.Controls.Add(this.indentCheck);
@@ -345,5 +376,7 @@ namespace River.OneMoreAddIn.Commands
 		private UI.MoreButton okButton;
 		private UI.MoreButton cancelButton;
 		private MoreLabel noteLabel;
+		private UI.MoreLabel bookmarkLabel;
+		private UI.MoreRichLabel bookmarkTextLabel;
 	}
 }

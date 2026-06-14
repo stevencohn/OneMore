@@ -405,12 +405,8 @@ Odwracać</value>
     <value>ostatnio używane</value>
     <comment>listview annotation</comment>
   </data>
-  <data name="BiLinkCommand_BadAnchor" xml:space="preserve">
-    <value>Nie mógł oznaczyć punktu kotwiczenia. Wybierz słowo lub frazę z jednego akapitu. Szczegółowe informacje można znaleźć w pliku dziennika.</value>
-    <comment>message box</comment>
-  </data>
   <data name="BiLinkCommand_BadTarget" xml:space="preserve">
-    <value>Nie mógł utworzyć linku dwukierunkowego. {0}</value>
+    <value>Nie można utworzyć łącza dwukierunkowego. {0}</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_Circular" xml:space="preserve">
@@ -418,19 +414,23 @@ Odwracać</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_LostAnchor" xml:space="preserve">
-    <value>Nie można znaleźć kotwicy. Strona lub tekst się zmienił.</value>
-    <comment>message box</comment>
-  </data>
-  <data name="BiLinkCommand_Marked" xml:space="preserve">
-    <value>Oznaczone "{0}" jako kotwica. Teraz wybierz tekst docelowy i zakończ link dwukierunkowy</value>
+    <value>Nie znaleziono zakładki. Strona lub tekst uległy zmianie.</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_NoAnchor" xml:space="preserve">
-    <value>Uruchamianie kotwicy nie jest jeszcze oznaczone. Wybierz początek linku dwukierunkowego.</value>
+    <value>Zakładka nie jest jeszcze ustawiona. Wybierz początek łącza dwukierunkowego.</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_NoTarget" xml:space="preserve">
     <value>Wybierz słowo lub frazę z jednego akapitu</value>
+    <comment>message box</comment>
+  </data>
+  <data name="BookmarkCommand_Invalid" xml:space="preserve">
+    <value>Umieść kursor tekstowy na słowie lub frazie, aby utworzyć zakładkę</value>
+    <comment>message box</comment>
+  </data>
+  <data name="BookmarkedDialog_Message" xml:space="preserve">
+    <value>Dodano do zakładek „{0}”</value>
     <comment>message box</comment>
   </data>
   <data name="BreakingDialog_oneButton.Text" xml:space="preserve">
@@ -512,10 +512,6 @@ Odwracać</value>
   <data name="ClearLog_NoneMessage" xml:space="preserve">
     <value>Nie jest dostępny plik dziennika</value>
     <comment>message box message</comment>
-  </data>
-  <data name="ClearLog_Title" xml:space="preserve">
-    <value>Potwierdzać</value>
-    <comment>message box title</comment>
   </data>
   <data name="Clipboard_locked" xml:space="preserve">
     <value>W tej chwili nie można skopiować. Schowek jest zablokowany.</value>
@@ -858,6 +854,10 @@ Czcionka ostatniej kolumny</value>
   </data>
   <data name="EmbedDialog_beginTagLabel.Text" xml:space="preserve">
     <value>Rozpocznij tag</value>
+    <comment>label</comment>
+  </data>
+  <data name="EmbedDialog_bookmarkLabel.Text" xml:space="preserve">
+    <value>Zakładka w książce</value>
     <comment>label</comment>
   </data>
   <data name="EmbedDialog_endTagLabel.Text" xml:space="preserve">
@@ -3029,6 +3029,10 @@ Zakładka Pomoc</value>
     <value>pasek wstążki</value>
     <comment>settings dialog</comment>
   </data>
+  <data name="ribBookmarkButton_Label" xml:space="preserve">
+    <value>Wybór zakładek</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribBreakingButton_Label" xml:space="preserve">
     <value>Zmień rozstaw zdania</value>
     <comment>clean menu item NODUP</comment>
@@ -4441,10 +4445,6 @@ Zakładka Pomoc</value>
     <value>Zmień położenie obrazów tła z góry na dół</value>
     <comment>ribbon images</comment>
   </data>
-  <data name="ribStartBiLinkButton_Label" xml:space="preserve">
-    <value>Rozpocznij połączenie dwukierunkowe.</value>
-    <comment>ribbon item</comment>
-  </data>
   <data name="ribStartBiLinkButton_Screentip" xml:space="preserve">
     <value>Uruchom łącze dwukierunkowe</value>
     <comment>ribbon references</comment>
@@ -5135,9 +5135,6 @@ Notatniki</value>
   <data name="StartupFailureMessage" xml:space="preserve">
     <value>Onemore nie udało się połączyć z OneNote, zobacz plik dziennika dla szczegółów wyjątków</value>
     <comment>message box</comment>
-  </data>
-  <data name="String1" xml:space="preserve">
-    <value />
   </data>
   <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
     <value>Przestrzeń po:</value>

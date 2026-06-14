@@ -6,33 +6,22 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using River.OneMoreAddIn.Models;
-	using River.OneMoreAddIn.Settings;
 	using System.Linq;
 	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
+	using River.OneMoreAddIn.Models;
 	using Hap = HtmlAgilityPack;
 	using Resx = Properties.Resources;
 
 
 	/// <summary>
 	/// Create a bi-directional link between two selected words or phrases, either across pages
-	/// or on the same page. This is invoked as two commands, the first to mark the first word
-	/// or phrase and the second to select and create the link with the second words or phrase.
+	/// or on the same page. This is done in two steps, first setting a Bookmark and then
+	/// finishing it with this command to link between the bookmark and the second word or phrase.
 	/// </summary>
 	internal class BiLinkCommand : Command
 	{
-		public const string SettingsName = "bilink";
-
-		// TODO: consider moving these to a global state cache that can be pruned
-		// rather than holding on to them indefinitely as statics....
-
-		private static string anchorPageId;
-		private static string anchorId;
-		private static SelectionRange anchor;
-
-		private string anchorText;
 		private string error;
 
 
@@ -44,111 +33,50 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			// anchor/link sub-commands cannot be repeated
-			IsCancelled = true;
+			if (BookmarkCommand.Bookmark is null)
+			{
+				ShowError(Resx.BiLinkCommand_NoAnchor);
+				return;
+			}
 
+			if (!await CreateLinks())
+			{
+				ShowError(string.Format(Resx.BiLinkCommand_BadTarget, error));
+				return;
+			}
+
+			BookmarkCommand.Clear();
+		}
+
+
+		private async Task<bool> CreateLinks()
+		{
 			await using var one = new OneNote();
 
-			if ((args[0] is string cmd) && (cmd == "mark"))
-			{
-				if (!await MarkAnchor(one))
-				{
-					ShowError(Resx.BiLinkCommand_BadAnchor);
-					return;
-				}
-
-				var settings = new SettingsProvider().GetCollection(SettingsName);
-				if (!settings.Get("hideStartMessage", false))
-				{
-					using var dialog = new BiLinkDialog();
-					if (anchorText.Length > 20)
-					{
-						anchorText = $"{anchorText.Substring(0, 20)}...";
-					}
-
-					dialog.SetAnchorText(anchorText);
-					dialog.ShowDialog(owner);
-				}
-			}
-			else
-			{
-				if (string.IsNullOrEmpty(anchorPageId))
-				{
-					ShowError(Resx.BiLinkCommand_NoAnchor);
-					return;
-				}
-
-				if (!await CreateLinks(one))
-				{
-					ShowError(string.Format(Resx.BiLinkCommand_BadTarget, error));
-					return;
-				}
-
-				// reset
-				anchorPageId = null;
-				anchorId = null;
-				anchor = null;
-			}
-		}
-
-
-		private async Task<bool> MarkAnchor(OneNote one)
-		{
-			var page = await one.GetPage();
-			var range = new SelectionRange(page);
-
-			// get selected runs but preserve cursor if there is one so we can edit from it later
-			var run = range.GetSelection(true);
-			if (run is null)
-			{
-				logger.WriteLine("no selected content");
-				return false;
-			}
-
-			// anchor is the surrounding OE
-			anchor = new SelectionRange(run.Parent);
-
-			anchorId = anchor.ObjectId;
-			if (string.IsNullOrEmpty(anchorId))
-			{
-				logger.WriteLine("missing objectID");
-				anchor = null;
-				return false;
-			}
-
-			anchorPageId = one.CurrentPageId;
-			anchorText = new PageEditor(page).GetSelectedText();
-
-			logger.WriteLine($"anchored to {anchorId}");
-
-			return true;
-		}
-
-
-		private async Task<bool> CreateLinks(OneNote one)
-		{
 			// - - - - anchor...
 
-			var anchorPage = await one.GetPage(anchorPageId);
+			var bookmark = BookmarkCommand.Bookmark;
+
+			var anchorPage = await one.GetPage(bookmark.PageId);
 			if (anchorPage is null)
 			{
-				logger.WriteLine($"lost anchor page {anchorPageId}");
+				logger.WriteLine($"lost anchor page {bookmark.PageId}");
 				error = Resx.BiLinkCommand_LostAnchor;
 				return false;
 			}
 
 			var candidate = anchorPage.Root.Descendants()
-				.FirstOrDefault(e => e.Attributes("objectID").Any(a => a.Value == anchorId));
+				.FirstOrDefault(e => e.Attributes("objectID").Any(a => a.Value == bookmark.ObjectId));
 
 			if (candidate is null)
 			{
-				logger.WriteLine($"lost anchor paragraph {anchorId}");
+				logger.WriteLine($"lost anchor paragraph {bookmark.ObjectId}");
 				error = Resx.BiLinkCommand_LostAnchor;
 				return false;
 			}
 
 			// ensure anchor selection hasn't changed and is still selected!
-			if (AnchorModified(candidate, anchor.Root))
+			if (AnchorModified(candidate, bookmark.Range.Root))
 			{
 				logger.WriteLine($"anchor paragraph may have changed");
 				error = Resx.BiLinkCommand_LostAnchor;
@@ -158,8 +86,8 @@ namespace River.OneMoreAddIn.Commands
 			// - - - - target...
 
 			Page targetPage = anchorPage;
-			var targetPageId = anchorPageId;
-			if (one.CurrentPageId != anchorPageId)
+			var targetPageId = bookmark.PageId;
+			if (one.CurrentPageId != bookmark.PageId)
 			{
 				targetPage = await one.GetPage();
 				targetPageId = targetPage.PageId;
@@ -176,7 +104,7 @@ namespace River.OneMoreAddIn.Commands
 
 			var target = new SelectionRange(targetRun.Parent);
 			var targetId = target.ObjectId;
-			if (anchorId == targetId)
+			if (bookmark.ObjectId == targetId)
 			{
 				logger.WriteLine("cannot link a phrase to itself");
 				error = Resx.BiLinkCommand_Circular;
@@ -188,16 +116,16 @@ namespace River.OneMoreAddIn.Commands
 			// anchorPageId -> anchorPage -> anchorId -> anchor
 			// targetPageId -> targetPage -> targetId -> target
 
-			var anchorLink = one.GetHyperlink(anchorPageId, anchorId);
+			var anchorLink = one.GetHyperlink(bookmark.PageId, bookmark.ObjectId);
 			var targetLink = one.GetHyperlink(targetPageId, targetId);
 
-			ApplyHyperlink(anchorPage, anchor, targetLink);
+			ApplyHyperlink(anchorPage, bookmark.Range, targetLink);
 			ApplyHyperlink(targetPage, target, anchorLink);
 
-			candidate.ReplaceAttributes(anchor.Root.Attributes());
-			candidate.ReplaceNodes(anchor.Root.Nodes());
+			candidate.ReplaceAttributes(bookmark.Range.Root.Attributes());
+			candidate.ReplaceNodes(bookmark.Range.Root.Nodes());
 
-			if (targetPageId == anchorPageId)
+			if (targetPageId == bookmark.PageId)
 			{
 				// avoid invalid selection by leaving only partials without an all
 				candidate.DescendantsAndSelf().Attributes("selected").Remove();
@@ -220,7 +148,7 @@ namespace River.OneMoreAddIn.Commands
 #endif
 			await one.Update(targetPage);
 
-			if (targetPageId != anchorPageId)
+			if (targetPageId != bookmark.PageId)
 			{
 				// avoid invalid selection by leaving only partials without an all
 				anchorPage.Root.DescendantsAndSelf().Attributes("selected").Remove();

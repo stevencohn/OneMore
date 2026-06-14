@@ -15,14 +15,30 @@ namespace River.OneMoreAddIn.Commands
 
 	internal partial class EmbedDialog : MoreForm
 	{
-		public EmbedDialog(string sourceName, string targetName)
+		public EmbedDialog(string sourceName, string targetName, string bookmarkText = null)
 		{
 			InitializeComponent();
 
 			sourceNameLabel.Text = sourceName;
 			targetNameLabel.Text = targetName;
 
-			SetNote(null, null);
+			if (bookmarkText != null)
+			{
+				beginTagLabel.Visible = false;
+				beginTagBox.Visible = false;
+				endTagLabel.Visible = false;
+				endTagBox.Visible = false;
+				noteLabel.Visible = false;
+				bookmarkLabel.Visible = true;
+				bookmarkTextLabel.Text = bookmarkText.Length > 50
+					? bookmarkText.Substring(0, 50) + "..."
+					: bookmarkText;
+				bookmarkTextLabel.Visible = true;
+			}
+			else
+			{
+				SetNote(null, null);
+			}
 
 			if (NeedsLocalizing())
 			{
@@ -34,6 +50,7 @@ namespace River.OneMoreAddIn.Commands
 					"targetLabel=word_Target",
 					"beginTagLabel",
 					"endTagLabel",
+					"bookmarkLabel",
 					"formatLabel=word_Format",
 					"formattedRadio",
 					"plaintextRadio",

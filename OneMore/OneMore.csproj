@@ -276,12 +276,13 @@
     <Compile Include="Commands\Page\MovePageCommand.cs" />
     <Compile Include="Commands\Page\UpdatePageTimeCommand.cs" />
     <Compile Include="Commands\Page\ViewInBrowserCommand.cs" />
-    <Compile Include="Commands\References\BiLinkDialog.cs">
+    <Compile Include="Commands\References\BookmarkedDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Commands\References\BiLinkDialog.Designer.cs">
-      <DependentUpon>BiLinkDialog.cs</DependentUpon>
+    <Compile Include="Commands\References\BookmarkedDialog.Designer.cs">
+      <DependentUpon>BookmarkedDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\References\BookmarkCommand.cs" />
     <Compile Include="Commands\References\EmbedDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1332,8 +1333,8 @@
     <EmbeddedResource Include="Commands\File\Scan\ScanDialog.resx">
       <DependentUpon>ScanDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Commands\References\BiLinkDialog.resx">
-      <DependentUpon>BiLinkDialog.cs</DependentUpon>
+    <EmbeddedResource Include="Commands\References\BookmarkedDialog.resx">
+      <DependentUpon>BookmarkedDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\References\EmbedDialog.resx">
       <DependentUpon>EmbedDialog.cs</DependentUpon>

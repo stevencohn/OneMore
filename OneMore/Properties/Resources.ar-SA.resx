@@ -408,12 +408,8 @@
     <value>مستخدم حديثا</value>
     <comment>listview annotation</comment>
   </data>
-  <data name="BiLinkCommand_BadAnchor" xml:space="preserve">
-    <value>لا يمكن وضع علامة على نقطة الارتساء. </value>
-    <comment>message box</comment>
-  </data>
   <data name="BiLinkCommand_BadTarget" xml:space="preserve">
-    <value>تعذر إنشاء ارتباط ثنائي الاتجاه. </value>
+    <value>تعذر إنشاء رابط ثنائي الاتجاه. {0}</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_Circular" xml:space="preserve">
@@ -421,19 +417,23 @@
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_LostAnchor" xml:space="preserve">
-    <value>لا يمكن العثور على المرساة. </value>
-    <comment>message box</comment>
-  </data>
-  <data name="BiLinkCommand_Marked" xml:space="preserve">
-    <value>تم وضع علامة "{0}" على أنها نقطة الارتساء. </value>
+    <value>لم يتم العثور على الإشارة المرجعية. لقد تغيرت الصفحة أو النص.</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_NoAnchor" xml:space="preserve">
-    <value>مرساة البدء لم يتم وضع علامة عليها بعد. </value>
+    <value>لم يتم تعيين الإشارة المرجعية بعد. حدد بداية الارتباط ثنائي الاتجاه.</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_NoTarget" xml:space="preserve">
     <value>حدد كلمة أو عبارة من فقرة واحدة</value>
+    <comment>message box</comment>
+  </data>
+  <data name="BookmarkCommand_Invalid" xml:space="preserve">
+    <value>ضع مؤشر النص في كلمة أو عبارة لإنشاء إشارة مرجعية</value>
+    <comment>message box</comment>
+  </data>
+  <data name="BookmarkedDialog_Message" xml:space="preserve">
+    <value>تم وضع إشارة مرجعية على "{0}"</value>
     <comment>message box</comment>
   </data>
   <data name="BreakingDialog_oneButton.Text" xml:space="preserve">
@@ -515,10 +515,6 @@
   <data name="ClearLog_NoneMessage" xml:space="preserve">
     <value>لا يوجد ملف سجل متاح</value>
     <comment>message box message</comment>
-  </data>
-  <data name="ClearLog_Title" xml:space="preserve">
-    <value>تؤكد</value>
-    <comment>message box title</comment>
   </data>
   <data name="Clipboard_locked" xml:space="preserve">
     <value>لا يمكن النسخ في هذا الوقت. الحافظة مقفلة.</value>
@@ -861,6 +857,10 @@
   </data>
   <data name="EmbedDialog_beginTagLabel.Text" xml:space="preserve">
     <value>علامة البدء</value>
+    <comment>label</comment>
+  </data>
+  <data name="EmbedDialog_bookmarkLabel.Text" xml:space="preserve">
+    <value>إشارة مرجعية</value>
     <comment>label</comment>
   </data>
   <data name="EmbedDialog_endTagLabel.Text" xml:space="preserve">
@@ -3040,6 +3040,10 @@ ISO-code then comma then language name</comment>
     <value>شريط الشريط</value>
     <comment>settings dialog</comment>
   </data>
+  <data name="ribBookmarkButton_Label" xml:space="preserve">
+    <value>اختيار الإشارة المرجعية</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribBreakingButton_Label" xml:space="preserve">
     <value>تغيير تباعد الجمل</value>
     <comment>clean menu item</comment>
@@ -4452,10 +4456,6 @@ ISO-code then comma then language name</comment>
     <value>تغيير موضع صور الخلفية من أعلى إلى أسفل</value>
     <comment>ribbon images</comment>
   </data>
-  <data name="ribStartBiLinkButton_Label" xml:space="preserve">
-    <value>ابدأ رابط ثنائي الاتجاه</value>
-    <comment>ribbon item</comment>
-  </data>
   <data name="ribStartBiLinkButton_Screentip" xml:space="preserve">
     <value>ابدأ ارتباط ثنائي الاتجاه</value>
     <comment>ribbon references</comment>
@@ -5146,9 +5146,6 @@ ISO-code then comma then language name</comment>
   <data name="StartupFailureMessage" xml:space="preserve">
     <value>فشل OneMore في الاتصال بـ OneNote ، راجع ملف السجل للحصول على تفاصيل الاستثناء</value>
     <comment>message box</comment>
-  </data>
-  <data name="String1" xml:space="preserve">
-    <value />
   </data>
   <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
     <value>مسافة بعد:</value>

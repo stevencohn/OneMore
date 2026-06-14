@@ -405,12 +405,8 @@ Omkeren</value>
     <value>laatst gebruikt</value>
     <comment>listview annotation</comment>
   </data>
-  <data name="BiLinkCommand_BadAnchor" xml:space="preserve">
-    <value>Kan ankerpunt niet markeren. </value>
-    <comment>message box</comment>
-  </data>
   <data name="BiLinkCommand_BadTarget" xml:space="preserve">
-    <value>Kan geen bidirectionele link maken. </value>
+    <value>Kan geen tweerichtingskoppeling maken. {0}</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_Circular" xml:space="preserve">
@@ -418,19 +414,23 @@ Omkeren</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_LostAnchor" xml:space="preserve">
-    <value>Anker kan niet worden gevonden. </value>
-    <comment>message box</comment>
-  </data>
-  <data name="BiLinkCommand_Marked" xml:space="preserve">
-    <value>Gemarkeerd met "{0}" als het anker. </value>
+    <value>Bladwijzer niet gevonden. Pagina of tekst is gewijzigd.</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_NoAnchor" xml:space="preserve">
-    <value>Startanker nog niet gemarkeerd. </value>
+    <value>Bladwijzer nog niet ingesteld. Selecteer het begin van de tweerichtingskoppeling.</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_NoTarget" xml:space="preserve">
     <value>Selecteer een woord of zin uit één alinea</value>
+    <comment>message box</comment>
+  </data>
+  <data name="BookmarkCommand_Invalid" xml:space="preserve">
+    <value>Plaats de tekstcursor in een woord of zin om een ​​bladwijzer te maken</value>
+    <comment>message box</comment>
+  </data>
+  <data name="BookmarkedDialog_Message" xml:space="preserve">
+    <value>Favoriet gemaakt voor '{0}'</value>
     <comment>message box</comment>
   </data>
   <data name="BreakingDialog_oneButton.Text" xml:space="preserve">
@@ -512,10 +512,6 @@ Omkeren</value>
   <data name="ClearLog_NoneMessage" xml:space="preserve">
     <value>Er is geen logboekbestand beschikbaar</value>
     <comment>message box message</comment>
-  </data>
-  <data name="ClearLog_Title" xml:space="preserve">
-    <value>Bevestigen</value>
-    <comment>message box title</comment>
   </data>
   <data name="Clipboard_locked" xml:space="preserve">
     <value>Kan momenteel niet kopiëren. Het klembord is vergrendeld.</value>
@@ -858,6 +854,10 @@ Lettertype laatste kolom</value>
   </data>
   <data name="EmbedDialog_beginTagLabel.Text" xml:space="preserve">
     <value>Begin met taggen</value>
+    <comment>label</comment>
+  </data>
+  <data name="EmbedDialog_bookmarkLabel.Text" xml:space="preserve">
+    <value>Bladwijzer</value>
     <comment>label</comment>
   </data>
   <data name="EmbedDialog_endTagLabel.Text" xml:space="preserve">
@@ -3029,6 +3029,10 @@ Tabblad Help</value>
     <value>Lint Bar</value>
     <comment>settings dialog</comment>
   </data>
+  <data name="ribBookmarkButton_Label" xml:space="preserve">
+    <value>Bladwijzerselectie</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribBreakingButton_Label" xml:space="preserve">
     <value>Wijzig de regelafstand</value>
     <comment>clean menu item</comment>
@@ -4441,10 +4445,6 @@ Tabblad Help</value>
     <value>Verplaats achtergrondafbeeldingen van boven naar beneden</value>
     <comment>ribbon images</comment>
   </data>
-  <data name="ribStartBiLinkButton_Label" xml:space="preserve">
-    <value>Bidirectionele koppeling starten</value>
-    <comment>ribbon item</comment>
-  </data>
   <data name="ribStartBiLinkButton_Screentip" xml:space="preserve">
     <value>Bidirectionele koppeling starten</value>
     <comment>ribbon references</comment>
@@ -5135,9 +5135,6 @@ Notitieboekjes</value>
   <data name="StartupFailureMessage" xml:space="preserve">
     <value>OneMore kon geen verbinding maken met OneNote, zie logbestand voor details over uitzonderingen</value>
     <comment>message box</comment>
-  </data>
-  <data name="String1" xml:space="preserve">
-    <value />
   </data>
   <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
     <value>Ruimte na:</value>

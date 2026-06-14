@@ -408,12 +408,8 @@ Invertir</value>
     <value>recientemente usado</value>
     <comment>listview annotation</comment>
   </data>
-  <data name="BiLinkCommand_BadAnchor" xml:space="preserve">
-    <value>No se pudo marcar el punto de anclaje. </value>
-    <comment>message box</comment>
-  </data>
   <data name="BiLinkCommand_BadTarget" xml:space="preserve">
-    <value>No se pudo crear el enlace bidireccional. </value>
+    <value>No se pudo crear un enlace bidireccional. {0}</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_Circular" xml:space="preserve">
@@ -421,19 +417,23 @@ Invertir</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_LostAnchor" xml:space="preserve">
-    <value>No se puede encontrar el ancla. </value>
-    <comment>message box</comment>
-  </data>
-  <data name="BiLinkCommand_Marked" xml:space="preserve">
-    <value>Marcado "{0}" como ancla. </value>
+    <value>Marcador no encontrado. La página o el texto han cambiado.</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_NoAnchor" xml:space="preserve">
-    <value>Ancla de salida aún no marcada. </value>
+    <value>Marcador aún no establecido. Seleccione el inicio del enlace bidireccional.</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_NoTarget" xml:space="preserve">
     <value>Seleccione una palabra o frase de un párrafo</value>
+    <comment>message box</comment>
+  </data>
+  <data name="BookmarkCommand_Invalid" xml:space="preserve">
+    <value>Coloque el cursor de texto en una palabra o frase para crear un marcador</value>
+    <comment>message box</comment>
+  </data>
+  <data name="BookmarkedDialog_Message" xml:space="preserve">
+    <value>Marcado como "{0}"</value>
     <comment>message box</comment>
   </data>
   <data name="BreakingDialog_oneButton.Text" xml:space="preserve">
@@ -515,10 +515,6 @@ Invertir</value>
   <data name="ClearLog_NoneMessage" xml:space="preserve">
     <value>No hay ningún archivo de registro disponible</value>
     <comment>message box message</comment>
-  </data>
-  <data name="ClearLog_Title" xml:space="preserve">
-    <value>Confirmar</value>
-    <comment>message box title</comment>
   </data>
   <data name="Clipboard_locked" xml:space="preserve">
     <value>No se puede copiar en este momento. El portapapeles está bloqueado.</value>
@@ -853,6 +849,10 @@ Fuente de la última columna</value>
   </data>
   <data name="EmbedDialog_beginTagLabel.Text" xml:space="preserve">
     <value>Etiqueta de inicio</value>
+    <comment>label</comment>
+  </data>
+  <data name="EmbedDialog_bookmarkLabel.Text" xml:space="preserve">
+    <value>Marcador</value>
     <comment>label</comment>
   </data>
   <data name="EmbedDialog_endTagLabel.Text" xml:space="preserve">
@@ -3028,6 +3028,10 @@ Pestaña Ayuda</value>
     <value>Barra de la cinta</value>
     <comment>settings dialog</comment>
   </data>
+  <data name="ribBookmarkButton_Label" xml:space="preserve">
+    <value>Selección de marcadores</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribBreakingButton_Label" xml:space="preserve">
     <value>Cambiar el espaciado de las oraciones</value>
     <comment>clean menu item</comment>
@@ -4440,10 +4444,6 @@ Pestaña Ayuda</value>
     <value>Reposicionar las imágenes de fondo de arriba a abajo</value>
     <comment>ribbon images</comment>
   </data>
-  <data name="ribStartBiLinkButton_Label" xml:space="preserve">
-    <value>Iniciar enlace bidireccional</value>
-    <comment>ribbon item</comment>
-  </data>
   <data name="ribStartBiLinkButton_Screentip" xml:space="preserve">
     <value>Iniciar enlace bidireccional</value>
     <comment>ribbon references</comment>
@@ -5134,9 +5134,6 @@ Cuadernos</value>
   <data name="StartupFailureMessage" xml:space="preserve">
     <value>OneMore no pudo conectarse a OneNote, consulte el archivo de registro para obtener detalles de la excepción</value>
     <comment>message box</comment>
-  </data>
-  <data name="String1" xml:space="preserve">
-    <value />
   </data>
   <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
     <value>Espacio después:</value>

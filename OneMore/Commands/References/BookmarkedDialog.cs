@@ -11,10 +11,10 @@ namespace River.OneMoreAddIn.Commands
 	using Resx = Properties.Resources;
 
 
-	internal partial class BiLinkDialog : MoreForm
+	internal partial class BookmarkedDialog : MoreForm
 	{
 
-		public BiLinkDialog()
+		public BookmarkedDialog()
 		{
 			InitializeComponent();
 
@@ -33,21 +33,27 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public void SetAnchorText(string text)
+		public BookmarkedDialog(string text, string note = null)
+			: this()
 		{
-			text = string.Format(Resx.BiLinkCommand_Marked, text);
+			var message = string.Format(Resx.BookmarkedDialog_Message, text);
+
+			if (note is not null)
+			{
+				message = $"{message}\n{note}";
+			}
 
 			var size = TextRenderer.MeasureText(
-				text, messageBox.Font, messageBox.Size, TextFormatFlags.NoClipping);
+				message, messageBox.Font, messageBox.Size, TextFormatFlags.NoClipping);
 
-			// leave a little room (is this good?)
+			// leave a little room (is this the correct way?)
 			var preferred = size.Height + messageBox.Font.Height;
 			if (preferred > messageBox.Height)
 			{
 				Height += preferred - messageBox.Height;
 			}
 
-			messageBox.Text = text;
+			messageBox.Text = message;
 		}
 
 
@@ -84,8 +90,8 @@ namespace River.OneMoreAddIn.Commands
 			if (hideBox.Checked)
 			{
 				var settings = new SettingsProvider();
-				var collection = settings.GetCollection(BiLinkCommand.SettingsName);
-				collection.Add("hideStartMessage", true);
+				var collection = settings.GetCollection(BookmarkCommand.CollectionName);
+				collection.Add(BookmarkCommand.SettingName, true);
 				settings.SetCollection(collection);
 				settings.Save();
 			}

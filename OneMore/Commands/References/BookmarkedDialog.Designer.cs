@@ -2,7 +2,7 @@
 {
 	using River.OneMoreAddIn.UI;
 
-	partial class BiLinkDialog
+	partial class BookmarkedDialog
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -30,7 +30,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BiLinkDialog));
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BookmarkedDialog));
 			this.topPanel = new System.Windows.Forms.Panel();
 			this.hideBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.messageBox = new River.OneMoreAddIn.UI.MoreRichLabel();
@@ -89,8 +89,7 @@
 			this.messageBox.Size = new System.Drawing.Size(677, 84);
 			this.messageBox.TabIndex = 1;
 			this.messageBox.TabStop = false;
-			this.messageBox.Text = "Marked the anchor. Now select the target text and finish the bi-directional link." +
-    "";
+			this.messageBox.Text = "Bookmark created.";
 			this.messageBox.SelectionChanged += new System.EventHandler(this.HideSelection);
 			// 
 			// iconBox
@@ -133,7 +132,7 @@
 			this.buttonPanel.Size = new System.Drawing.Size(816, 61);
 			this.buttonPanel.TabIndex = 3;
 			// 
-			// BiLinkDialog
+			// BookmarkedDialog
 			// 
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -146,7 +145,7 @@
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
-			this.Name = "BiLinkDialog";
+			this.Name = "BookmarkedDialog";
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "OneMore";

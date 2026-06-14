@@ -408,12 +408,8 @@ Inverser</value>
     <value>utilisé récemment</value>
     <comment>listview annotation</comment>
   </data>
-  <data name="BiLinkCommand_BadAnchor" xml:space="preserve">
-    <value>Impossible de marquer le point d'ancrage. </value>
-    <comment>message box</comment>
-  </data>
   <data name="BiLinkCommand_BadTarget" xml:space="preserve">
-    <value>Impossible de créer un lien bidirectionnel. </value>
+    <value>Impossible de créer un lien bidirectionnel. {0}</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_Circular" xml:space="preserve">
@@ -421,19 +417,23 @@ Inverser</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_LostAnchor" xml:space="preserve">
-    <value>L'ancre est introuvable. </value>
-    <comment>message box</comment>
-  </data>
-  <data name="BiLinkCommand_Marked" xml:space="preserve">
-    <value>Marqué "{0}" comme ancre. </value>
+    <value>Signet introuvable. La page ou le texte a changé.</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_NoAnchor" xml:space="preserve">
-    <value>Ancre de départ pas encore marquée. </value>
+    <value>Le signet n'est pas encore défini. Sélectionnez le début du lien bidirectionnel.</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_NoTarget" xml:space="preserve">
     <value>Sélectionnez un mot ou une phrase dans un paragraphe</value>
+    <comment>message box</comment>
+  </data>
+  <data name="BookmarkCommand_Invalid" xml:space="preserve">
+    <value>Placez le curseur de texte dans un mot ou une phrase pour créer un signet</value>
+    <comment>message box</comment>
+  </data>
+  <data name="BookmarkedDialog_Message" xml:space="preserve">
+    <value>Ajouté "{0}" aux favoris</value>
     <comment>message box</comment>
   </data>
   <data name="BreakingDialog_oneButton.Text" xml:space="preserve">
@@ -515,10 +515,6 @@ Inverser</value>
   <data name="ClearLog_NoneMessage" xml:space="preserve">
     <value>Aucun fichier journal n'est disponible</value>
     <comment>message box message</comment>
-  </data>
-  <data name="ClearLog_Title" xml:space="preserve">
-    <value>Confirmer</value>
-    <comment>message box title</comment>
   </data>
   <data name="Clipboard_locked" xml:space="preserve">
     <value>Impossible de copier pour le moment. Le presse-papiers est verrouillé.</value>
@@ -861,6 +857,10 @@ Police de la dernière colonne</value>
   </data>
   <data name="EmbedDialog_beginTagLabel.Text" xml:space="preserve">
     <value>Balise de début</value>
+    <comment>label</comment>
+  </data>
+  <data name="EmbedDialog_bookmarkLabel.Text" xml:space="preserve">
+    <value>Marque-page</value>
     <comment>label</comment>
   </data>
   <data name="EmbedDialog_endTagLabel.Text" xml:space="preserve">
@@ -3040,6 +3040,10 @@ Onglet Aide</value>
     <value>Barre de ruban</value>
     <comment>settings dialog</comment>
   </data>
+  <data name="ribBookmarkButton_Label" xml:space="preserve">
+    <value>Sélection de signets</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribBreakingButton_Label" xml:space="preserve">
     <value>Modifier l'espacement des phrases</value>
     <comment>clean menu item</comment>
@@ -4452,10 +4456,6 @@ Onglet Aide</value>
     <value>Repositionner les images d'arrière-plan de haut en bas</value>
     <comment>ribbon images</comment>
   </data>
-  <data name="ribStartBiLinkButton_Label" xml:space="preserve">
-    <value>Démarrer le lien bidirectionnel</value>
-    <comment>ribbon item</comment>
-  </data>
   <data name="ribStartBiLinkButton_Screentip" xml:space="preserve">
     <value>Démarrer un lien bidirectionnel</value>
     <comment>ribbon references</comment>
@@ -5145,9 +5145,6 @@ Des notebooks</value>
   <data name="StartupFailureMessage" xml:space="preserve">
     <value>OneMore n'a pas réussi à se connecter à OneNote, consultez le fichier journal pour les détails de l'exception</value>
     <comment>message box</comment>
-  </data>
-  <data name="String1" xml:space="preserve">
-    <value />
   </data>
   <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
     <value>Espace après :</value>

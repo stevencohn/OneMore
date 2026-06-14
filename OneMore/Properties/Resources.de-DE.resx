@@ -408,12 +408,8 @@ Umkehren</value>
     <value>kürzlich verwendet</value>
     <comment>listview annotation</comment>
   </data>
-  <data name="BiLinkCommand_BadAnchor" xml:space="preserve">
-    <value>Ankerpunkt konnte nicht markiert werden. </value>
-    <comment>message box</comment>
-  </data>
   <data name="BiLinkCommand_BadTarget" xml:space="preserve">
-    <value>Bidirektionaler Link konnte nicht erstellt werden. </value>
+    <value>Es konnte keine bidirektionale Verbindung erstellt werden. {0}</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_Circular" xml:space="preserve">
@@ -421,19 +417,23 @@ Umkehren</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_LostAnchor" xml:space="preserve">
-    <value>Anker kann nicht gefunden werden. </value>
-    <comment>message box</comment>
-  </data>
-  <data name="BiLinkCommand_Marked" xml:space="preserve">
-    <value>Als Anker markiert "{0}". </value>
+    <value>Lesezeichen nicht gefunden. Seite oder Text haben sich geändert.</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_NoAnchor" xml:space="preserve">
-    <value>Startanker noch nicht markiert. </value>
+    <value>Lesezeichen noch nicht gesetzt. Wählen Sie den Anfang der bidirektionalen Verbindung aus.</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_NoTarget" xml:space="preserve">
     <value>Wähle ein Wort oder einen Satz aus einem Absatz</value>
+    <comment>message box</comment>
+  </data>
+  <data name="BookmarkCommand_Invalid" xml:space="preserve">
+    <value>Platzieren Sie den Textcursor in einem Wort oder einer Phrase, um ein Lesezeichen zu erstellen</value>
+    <comment>message box</comment>
+  </data>
+  <data name="BookmarkedDialog_Message" xml:space="preserve">
+    <value>Mit Lesezeichen versehen „{0}“</value>
     <comment>message box</comment>
   </data>
   <data name="BreakingDialog_oneButton.Text" xml:space="preserve">
@@ -515,10 +515,6 @@ Umkehren</value>
   <data name="ClearLog_NoneMessage" xml:space="preserve">
     <value>Es ist keine Protokolldatei verfügbar</value>
     <comment>message box message</comment>
-  </data>
-  <data name="ClearLog_Title" xml:space="preserve">
-    <value>Bestätigen</value>
-    <comment>message box title</comment>
   </data>
   <data name="Clipboard_locked" xml:space="preserve">
     <value>Das Kopieren ist derzeit nicht möglich. Die Zwischenablage ist gesperrt.</value>
@@ -853,6 +849,10 @@ Schriftart der letzten Spalte</value>
   </data>
   <data name="EmbedDialog_beginTagLabel.Text" xml:space="preserve">
     <value>Tag beginnen</value>
+    <comment>label</comment>
+  </data>
+  <data name="EmbedDialog_bookmarkLabel.Text" xml:space="preserve">
+    <value>Lesezeichen</value>
     <comment>label</comment>
   </data>
   <data name="EmbedDialog_endTagLabel.Text" xml:space="preserve">
@@ -3028,6 +3028,10 @@ Registerkarte „Hilfe“.</value>
     <value>Bandmass</value>
     <comment>settings dialog</comment>
   </data>
+  <data name="ribBookmarkButton_Label" xml:space="preserve">
+    <value>Lesezeichenauswahl</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribBreakingButton_Label" xml:space="preserve">
     <value>Satzabstand ändern</value>
     <comment>clean menu item</comment>
@@ -4441,10 +4445,6 @@ Registerkarte „Hilfe“.</value>
     <value>Positionieren Sie Hintergrundbilder von oben nach unten neu</value>
     <comment>ribbon images</comment>
   </data>
-  <data name="ribStartBiLinkButton_Label" xml:space="preserve">
-    <value>Bidirektionale Verbindung starten</value>
-    <comment>ribbon item</comment>
-  </data>
   <data name="ribStartBiLinkButton_Screentip" xml:space="preserve">
     <value>Bidirektionale Verbindung starten</value>
     <comment>ribbon references</comment>
@@ -5135,9 +5135,6 @@ Notizbücher</value>
   <data name="StartupFailureMessage" xml:space="preserve">
     <value>OneMore konnte keine Verbindung zu OneNote herstellen. Ausnahmedetails finden Sie in der Protokolldatei</value>
     <comment>message box</comment>
-  </data>
-  <data name="String1" xml:space="preserve">
-    <value />
   </data>
   <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
     <value>Leerzeichen nach:</value>

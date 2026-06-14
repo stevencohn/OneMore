@@ -406,10 +406,6 @@ Invertire</value>
     <value>usato di recente</value>
     <comment>listview annotation</comment>
   </data>
-  <data name="BiLinkCommand_BadAnchor" xml:space="preserve">
-    <value>Impossibile contrassegnare il punto di ancoraggio. Seleziona una parola o una frase da un paragrafo. Per i dettagli vedere il file di registro.</value>
-    <comment>message box</comment>
-  </data>
   <data name="BiLinkCommand_BadTarget" xml:space="preserve">
     <value>Impossibile creare un collegamento bidirezionale. {0}</value>
     <comment>message box</comment>
@@ -419,19 +415,23 @@ Invertire</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_LostAnchor" xml:space="preserve">
-    <value>Impossibile trovare l'ancora. La pagina o il testo sono cambiati.</value>
-    <comment>message box</comment>
-  </data>
-  <data name="BiLinkCommand_Marked" xml:space="preserve">
-    <value>Contrassegnato "{0}" come ancoraggio. Ora seleziona il testo di destinazione e completa il collegamento bidirezionale</value>
+    <value>Segnalibro non trovato. La pagina o il testo sono cambiati.</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_NoAnchor" xml:space="preserve">
-    <value>Ancoraggio di partenza non ancora segnato. Selezionare l'inizio del collegamento bidirezionale.</value>
+    <value>Segnalibro non ancora impostato. Selezionare l'inizio del collegamento bidirezionale.</value>
     <comment>message box</comment>
   </data>
   <data name="BiLinkCommand_NoTarget" xml:space="preserve">
     <value>Seleziona una parola o una frase da un paragrafo</value>
+    <comment>message box</comment>
+  </data>
+  <data name="BookmarkCommand_Invalid" xml:space="preserve">
+    <value>Posiziona il cursore del testo in una parola o frase per creare un segnalibro</value>
+    <comment>message box</comment>
+  </data>
+  <data name="BookmarkedDialog_Message" xml:space="preserve">
+    <value>Aggiunto "{0}" ai segnalibri</value>
     <comment>message box</comment>
   </data>
   <data name="BreakingDialog_oneButton.Text" xml:space="preserve">
@@ -513,10 +513,6 @@ Invertire</value>
   <data name="ClearLog_NoneMessage" xml:space="preserve">
     <value>Nessun file di registro è disponibile</value>
     <comment>message box message</comment>
-  </data>
-  <data name="ClearLog_Title" xml:space="preserve">
-    <value>Confermare</value>
-    <comment>message box title</comment>
   </data>
   <data name="Clipboard_locked" xml:space="preserve">
     <value>Impossibile copiare in questo momento. Gli appunti sono bloccati.</value>
@@ -859,6 +855,10 @@ Carattere dell'ultima colonna</value>
   </data>
   <data name="EmbedDialog_beginTagLabel.Text" xml:space="preserve">
     <value>Inizia tag</value>
+    <comment>label</comment>
+  </data>
+  <data name="EmbedDialog_bookmarkLabel.Text" xml:space="preserve">
+    <value>Segnalibro</value>
     <comment>label</comment>
   </data>
   <data name="EmbedDialog_endTagLabel.Text" xml:space="preserve">
@@ -3033,6 +3033,10 @@ Scheda Aiuto</value>
     <value>Barra a nastro</value>
     <comment>settings dialog</comment>
   </data>
+  <data name="ribBookmarkButton_Label" xml:space="preserve">
+    <value>Selezione dei segnalibri</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribBreakingButton_Label" xml:space="preserve">
     <value>Modifica la spaziatura delle frasi</value>
     <comment>ribbon clean NODUP</comment>
@@ -4447,10 +4451,6 @@ Scheda Aiuto</value>
     <value>Riposiziona le immagini di sfondo dall'alto verso il basso</value>
     <comment>ribbon images</comment>
   </data>
-  <data name="ribStartBiLinkButton_Label" xml:space="preserve">
-    <value>Avvia collegamento bidirezionale</value>
-    <comment>ribbon references</comment>
-  </data>
   <data name="ribStartBiLinkButton_Screentip" xml:space="preserve">
     <value>Avvia il collegamento bidirezionale</value>
     <comment>ribbon references</comment>
@@ -5142,9 +5142,6 @@ Taccuini</value>
   <data name="StartupFailureMessage" xml:space="preserve">
     <value>OneMore non è riuscito a connettersi a OneNote, vedere il file di registro per i dettagli sull'eccezione</value>
     <comment>message box</comment>
-  </data>
-  <data name="String1" xml:space="preserve">
-    <value />
   </data>
   <data name="StyleDialog_afterLabel.Text" xml:space="preserve">
     <value>Spazio dopo:</value>
