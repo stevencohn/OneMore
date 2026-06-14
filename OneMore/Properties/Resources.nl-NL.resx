@@ -1927,10 +1927,6 @@ Wilt u de bestaande pagina vernieuwen?</value>
     <value>Gelinkte referenties</value>
     <comment>title text</comment>
   </data>
-  <data name="LinkReferencesCommand_noref" xml:space="preserve">
-    <value>Geen referenties gevonden. </value>
-    <comment>message</comment>
-  </data>
   <data name="LoadStyleTheme_errorLoading" xml:space="preserve">
     <value>Kan bestand niet laden of bestand is leeg</value>
   </data>
@@ -1962,15 +1958,11 @@ Wilt u de bestaande pagina vernieuwen?</value>
     <value>Er zijn geen pagina's geselecteerd om te verplaatsen</value>
     <comment>error message</comment>
   </data>
-  <data name="NameStyleDialog_errorLabel.Text" xml:space="preserve">
+  <data name="RenameDialog_errorLabel.Text" xml:space="preserve">
     <value>Naam bestaat. Kies een andere naam.</value>
     <comment>label</comment>
   </data>
-  <data name="NameStyleDialog_nameLabel.Text" xml:space="preserve">
-    <value>Stijl naam</value>
-    <comment>label</comment>
-  </data>
-  <data name="NameStyleDialog_RenameStyle" xml:space="preserve">
+  <data name="RenameDialog_renameStyle" xml:space="preserve">
     <value>Hernoemstijl</value>
     <comment>dialog title</comment>
   </data>

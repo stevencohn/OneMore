@@ -1933,10 +1933,6 @@ OneNote 文件 (*.one)</value>
     <value>链接参考</value>
     <comment>title text</comment>
   </data>
-  <data name="LinkReferencesCommand_noref" xml:space="preserve">
-    <value>没有找到参考。</value>
-    <comment>message</comment>
-  </data>
   <data name="LoadStyleTheme_errorLoading" xml:space="preserve">
     <value>无法加载文件或文件为空</value>
   </data>
@@ -1968,15 +1964,11 @@ OneNote 文件 (*.one)</value>
     <value>没有选择要移动的页面</value>
     <comment>error message</comment>
   </data>
-  <data name="NameStyleDialog_errorLabel.Text" xml:space="preserve">
+  <data name="RenameDialog_errorLabel.Text" xml:space="preserve">
     <value>名称存在。选择不同的名称。</value>
     <comment>label</comment>
   </data>
-  <data name="NameStyleDialog_nameLabel.Text" xml:space="preserve">
-    <value>样式名称</value>
-    <comment>label</comment>
-  </data>
-  <data name="NameStyleDialog_RenameStyle" xml:space="preserve">
+  <data name="RenameDialog_renameStyle" xml:space="preserve">
     <value>重命名风格</value>
     <comment>dialog title</comment>
   </data>

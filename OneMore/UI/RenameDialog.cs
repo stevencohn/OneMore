@@ -49,7 +49,7 @@ namespace River.OneMoreAddIn.UI
 			set
 			{
 				Text = value
-					? Resx.NameStyleDialog_RenameStyle
+					? Resx.RenameDialog_renameStyle
 					: Resx.phrase_NewStyle;
 			}
 		}

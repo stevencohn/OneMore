@@ -4907,15 +4907,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No references found. Consider enabling the option to include unindexed pages.
-        /// </summary>
-        internal static string LinkReferencesCommand_noref {
-            get {
-                return ResourceManager.GetString("LinkReferencesCommand_noref", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Cannot load file or file is empty.
         /// </summary>
         internal static string LoadStyleTheme_errorLoading {
@@ -5284,33 +5275,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string MovePageCommand_noPages {
             get {
                 return ResourceManager.GetString("MovePageCommand_noPages", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Name exists. Choose a different name..
-        /// </summary>
-        internal static string NameStyleDialog_errorLabel_Text {
-            get {
-                return ResourceManager.GetString("NameStyleDialog_errorLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Style Name.
-        /// </summary>
-        internal static string NameStyleDialog_nameLabel_Text {
-            get {
-                return ResourceManager.GetString("NameStyleDialog_nameLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Rename Style.
-        /// </summary>
-        internal static string NameStyleDialog_RenameStyle {
-            get {
-                return ResourceManager.GetString("NameStyleDialog_RenameStyle", resourceCulture);
             }
         }
         
@@ -7135,6 +7099,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string RemovingPageNumber_Message {
             get {
                 return ResourceManager.GetString("RemovingPageNumber_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name exists. Choose a different name..
+        /// </summary>
+        internal static string RenameDialog_errorLabel_Text {
+            get {
+                return ResourceManager.GetString("RenameDialog_errorLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rename Style.
+        /// </summary>
+        internal static string RenameDialog_renameStyle {
+            get {
+                return ResourceManager.GetString("RenameDialog_renameStyle", resourceCulture);
             }
         }
         

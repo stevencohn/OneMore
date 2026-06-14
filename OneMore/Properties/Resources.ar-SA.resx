@@ -1930,10 +1930,6 @@
     <value>المراجع المرتبطة</value>
     <comment>title text</comment>
   </data>
-  <data name="LinkReferencesCommand_noref" xml:space="preserve">
-    <value>لم يتم العثور على مراجع. </value>
-    <comment>message</comment>
-  </data>
   <data name="LoadStyleTheme_errorLoading" xml:space="preserve">
     <value>لا يمكن تحميل الملف أو الملف فارغ</value>
   </data>
@@ -1965,15 +1961,11 @@
     <value>لا توجد صفحات محددة لنقلها</value>
     <comment>error message</comment>
   </data>
-  <data name="NameStyleDialog_errorLabel.Text" xml:space="preserve">
+  <data name="RenameDialog_errorLabel.Text" xml:space="preserve">
     <value>الاسم موجود. اختر اسمًا مختلفًا.</value>
     <comment>label</comment>
   </data>
-  <data name="NameStyleDialog_nameLabel.Text" xml:space="preserve">
-    <value>اسم النمط</value>
-    <comment>label</comment>
-  </data>
-  <data name="NameStyleDialog_RenameStyle" xml:space="preserve">
+  <data name="RenameDialog_renameStyle" xml:space="preserve">
     <value>إعادة تسمية نمط</value>
     <comment>dialog title</comment>
   </data>

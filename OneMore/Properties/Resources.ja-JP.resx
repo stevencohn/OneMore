@@ -1930,10 +1930,6 @@ OneNoteファイル (*.one)</value>
     <value>リンク参照</value>
     <comment>title text</comment>
   </data>
-  <data name="LinkReferencesCommand_noref" xml:space="preserve">
-    <value>参照が見つかりませんでした。未索引ページを含めるオプションを有効にすることを検討してください</value>
-    <comment>message</comment>
-  </data>
   <data name="LoadStyleTheme_errorLoading" xml:space="preserve">
     <value>ファイルを読み込めないか、ファイルが空です</value>
   </data>
@@ -1965,15 +1961,11 @@ OneNoteファイル (*.one)</value>
     <value>移動するページが選択されていません</value>
     <comment>error message</comment>
   </data>
-  <data name="NameStyleDialog_errorLabel.Text" xml:space="preserve">
+  <data name="RenameDialog_errorLabel.Text" xml:space="preserve">
     <value>名前が存在します。異なる名前を選択してください。</value>
     <comment>label</comment>
   </data>
-  <data name="NameStyleDialog_nameLabel.Text" xml:space="preserve">
-    <value>スタイル名</value>
-    <comment>label</comment>
-  </data>
-  <data name="NameStyleDialog_RenameStyle" xml:space="preserve">
+  <data name="RenameDialog_renameStyle" xml:space="preserve">
     <value>スタイルをリネーム</value>
     <comment>dialog title</comment>
   </data>

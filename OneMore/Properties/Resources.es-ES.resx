@@ -1922,10 +1922,6 @@ Cuadrado Marrón</value>
     <value>Referencias vinculadas</value>
     <comment>title text</comment>
   </data>
-  <data name="LinkReferencesCommand_noref" xml:space="preserve">
-    <value>No se encontraron referencias. </value>
-    <comment>message</comment>
-  </data>
   <data name="LoadStyleTheme_errorLoading" xml:space="preserve">
     <value>No se puede cargar el archivo o el archivo está vacío</value>
   </data>
@@ -1957,15 +1953,11 @@ Cuadrado Marrón</value>
     <value>No hay páginas seleccionadas para mover</value>
     <comment>error message</comment>
   </data>
-  <data name="NameStyleDialog_errorLabel.Text" xml:space="preserve">
+  <data name="RenameDialog_errorLabel.Text" xml:space="preserve">
     <value>El nombre existe. Elija un nombre diferente.</value>
     <comment>label</comment>
   </data>
-  <data name="NameStyleDialog_nameLabel.Text" xml:space="preserve">
-    <value>Nombre de estilo</value>
-    <comment>label</comment>
-  </data>
-  <data name="NameStyleDialog_RenameStyle" xml:space="preserve">
+  <data name="RenameDialog_renameStyle" xml:space="preserve">
     <value>Estilo de cambio de nombre</value>
     <comment>dialog title</comment>
   </data>

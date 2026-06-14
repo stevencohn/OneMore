@@ -168,7 +168,7 @@
     <source>Include a synopsis of each page</source>
     <preferred>Füge eine Zusammenfassung jeder Seite hinzu</preferred>
   </hint>
-  <hint name="NameStyleDialog_errorLabel.Text">
+  <hint name="RenameDialog_errorLabel.Text">
     <source>Name exists. Choose a different name.</source>
     <preferred>Name existiert. Wähle einen anderen Namen.</preferred>
   </hint>

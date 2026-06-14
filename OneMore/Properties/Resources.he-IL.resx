@@ -1927,10 +1927,6 @@ Total Row Font
     <value>הפניות מקושרות</value>
     <comment>title text</comment>
   </data>
-  <data name="LinkReferencesCommand_noref" xml:space="preserve">
-    <value>לא נמצאו הפניות. שקול להפעיל את האפשרות לכלול דפים לא נוספו לאינדקס</value>
-    <comment>message</comment>
-  </data>
   <data name="LoadStyleTheme_errorLoading" xml:space="preserve">
     <value>לא ניתן לטעון את הקובץ או שהקובץ ריק</value>
   </data>
@@ -1962,15 +1958,11 @@ Total Row Font
     <value>לא נבחרו דפים להזזה</value>
     <comment>error message</comment>
   </data>
-  <data name="NameStyleDialog_errorLabel.Text" xml:space="preserve">
+  <data name="RenameDialog_errorLabel.Text" xml:space="preserve">
     <value>שם קיים. בחר שם אחר.</value>
     <comment>label</comment>
   </data>
-  <data name="NameStyleDialog_nameLabel.Text" xml:space="preserve">
-    <value>שם סגנון</value>
-    <comment>label</comment>
-  </data>
-  <data name="NameStyleDialog_RenameStyle" xml:space="preserve">
+  <data name="RenameDialog_renameStyle" xml:space="preserve">
     <value>שנה את שם הסגנון</value>
     <comment>dialog title</comment>
   </data>

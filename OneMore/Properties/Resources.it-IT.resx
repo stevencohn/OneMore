@@ -1927,10 +1927,6 @@ Vuoi aggiornare la pagina esistente?</value>
     <value>Riferimenti collegati</value>
     <comment>title text</comment>
   </data>
-  <data name="LinkReferencesCommand_noref" xml:space="preserve">
-    <value>Nessun riferimento trovato. Valuta la possibilità di abilitare l'opzione per includere pagine non indicizzate</value>
-    <comment>message</comment>
-  </data>
   <data name="LoadStyleTheme_errorLoading" xml:space="preserve">
     <value>Impossibile caricare il file oppure il file è vuoto</value>
   </data>
@@ -1962,15 +1958,11 @@ Vuoi aggiornare la pagina esistente?</value>
     <value>Non ci sono pagine selezionate da spostare</value>
     <comment>error message</comment>
   </data>
-  <data name="NameStyleDialog_errorLabel.Text" xml:space="preserve">
+  <data name="RenameDialog_errorLabel.Text" xml:space="preserve">
     <value>Il nome esiste. Scegli un nome diverso.</value>
     <comment>label</comment>
   </data>
-  <data name="NameStyleDialog_nameLabel.Text" xml:space="preserve">
-    <value>Nome dello stile</value>
-    <comment>label</comment>
-  </data>
-  <data name="NameStyleDialog_RenameStyle" xml:space="preserve">
+  <data name="RenameDialog_renameStyle" xml:space="preserve">
     <value>Rinomina stile</value>
     <comment>dialog title</comment>
   </data>

@@ -1,12 +1,12 @@
 ﻿//************************************************************************************************
-// Copyright © 2021 Steven M Cohn.  All rights reserved.
+// Copyright © 2021 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
 {
 	using System;
 	using System.Windows.Forms;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	internal partial class RemindDialog : UI.MoreForm
@@ -25,6 +25,7 @@ namespace River.OneMoreAddIn.Commands
 
 				Localize(new string[]
 				{
+					"tagLabel",
 					"subjectLabel",
 					"startDateLabel",
 					"startedLabel=word_Started",

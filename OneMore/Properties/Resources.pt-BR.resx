@@ -1927,10 +1927,6 @@ Deseja atualizar a página existente?</value>
     <value>Referências Ligadas</value>
     <comment>title text</comment>
   </data>
-  <data name="LinkReferencesCommand_noref" xml:space="preserve">
-    <value>Nenhuma referência encontrada. </value>
-    <comment>message</comment>
-  </data>
   <data name="LoadStyleTheme_errorLoading" xml:space="preserve">
     <value>Não é possível carregar o arquivo ou o arquivo está vazio</value>
   </data>
@@ -1962,15 +1958,11 @@ Deseja atualizar a página existente?</value>
     <value>Não há páginas selecionadas para mover</value>
     <comment>error message</comment>
   </data>
-  <data name="NameStyleDialog_errorLabel.Text" xml:space="preserve">
+  <data name="RenameDialog_errorLabel.Text" xml:space="preserve">
     <value>Nome existe. Escolha um nome diferente.</value>
     <comment>label</comment>
   </data>
-  <data name="NameStyleDialog_nameLabel.Text" xml:space="preserve">
-    <value>Nome do estilo</value>
-    <comment>label</comment>
-  </data>
-  <data name="NameStyleDialog_RenameStyle" xml:space="preserve">
+  <data name="RenameDialog_renameStyle" xml:space="preserve">
     <value>Renomeie o estilo</value>
     <comment>dialog title</comment>
   </data>

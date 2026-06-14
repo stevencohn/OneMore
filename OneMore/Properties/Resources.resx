@@ -1931,10 +1931,6 @@ Do you want to refresh the existing page?</value>
     <value>Linked References</value>
     <comment>title text</comment>
   </data>
-  <data name="LinkReferencesCommand_noref" xml:space="preserve">
-    <value>No references found. Consider enabling the option to include unindexed pages</value>
-    <comment>message</comment>
-  </data>
   <data name="LoadStyleTheme_errorLoading" xml:space="preserve">
     <value>Cannot load file or file is empty</value>
   </data>
@@ -1966,15 +1962,11 @@ Do you want to refresh the existing page?</value>
     <value>There are no pages selected to move</value>
     <comment>error message</comment>
   </data>
-  <data name="NameStyleDialog_errorLabel.Text" xml:space="preserve">
+  <data name="RenameDialog_errorLabel.Text" xml:space="preserve">
     <value>Name exists. Choose a different name.</value>
     <comment>label</comment>
   </data>
-  <data name="NameStyleDialog_nameLabel.Text" xml:space="preserve">
-    <value>Style Name</value>
-    <comment>label</comment>
-  </data>
-  <data name="NameStyleDialog_RenameStyle" xml:space="preserve">
+  <data name="RenameDialog_renameStyle" xml:space="preserve">
     <value>Rename Style</value>
     <comment>dialog title</comment>
   </data>
