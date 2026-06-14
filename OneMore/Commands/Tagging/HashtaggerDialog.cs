@@ -31,7 +31,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (NeedsLocalizing())
 			{
-				Text = Resx.HashtaggerDialog_Text;
+				Text = Resx.word_Hashtags;
 
 				Localize(new string[]
 				{
