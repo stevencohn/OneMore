@@ -89,7 +89,7 @@ Begin
                 $p = [System.IO.Path]::GetFullPath($basePath + $matches[1].ToString())
                 if (($p.ToString() -ne $netpath) -or $forceBase)
                 {
-                    $winpath = $netpath.Replace($env:windir, '$(windir)')
+                    $winpath = $netpath -ireplace [regex]::Escape($env:SystemRoot), '$$(windir)'
                     WriteOK "updating$dry .NET Framework path: $winpath"
                     $lines[$i] = $line.Replace($matches[1], $winpath)
                     $handled = $true
