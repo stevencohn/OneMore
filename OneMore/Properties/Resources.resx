@@ -1962,14 +1962,6 @@ Do you want to refresh the existing page?</value>
     <value>There are no pages selected to move</value>
     <comment>error message</comment>
   </data>
-  <data name="RenameDialog_errorLabel.Text" xml:space="preserve">
-    <value>Name exists. Choose a different name.</value>
-    <comment>label</comment>
-  </data>
-  <data name="RenameDialog_renameStyle" xml:space="preserve">
-    <value>Rename Style</value>
-    <comment>dialog title</comment>
-  </data>
   <data name="NavigatorSheet_corrallBox.Text" xml:space="preserve">
     <value>Restrict the Navigator window to the active screen</value>
     <comment>checkbox</comment>
@@ -2780,6 +2772,14 @@ Select No to keep one empty line between paragraphs</value>
   <data name="RemovingPageNumber_Message" xml:space="preserve">
     <value>Removing number from page {0}</value>
     <comment>progress status dialog</comment>
+  </data>
+  <data name="RenameDialog_errorLabel.Text" xml:space="preserve">
+    <value>Name exists. Choose a different name.</value>
+    <comment>label</comment>
+  </data>
+  <data name="RenameDialog_renameStyle" xml:space="preserve">
+    <value>Rename Style</value>
+    <comment>dialog title</comment>
   </data>
   <data name="ReorderDialog.Text" xml:space="preserve">
     <value>Reorder Styles</value>
