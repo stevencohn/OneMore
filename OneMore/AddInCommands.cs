@@ -4,12 +4,12 @@
 
 #pragma warning disable CS3001      // Type is not CLS-compliant
 #pragma warning disable IDE0060     // remove unused parameter
-#pragma warning disable S1135       // Track uses of "TODO" tags
 
 namespace River.OneMoreAddIn
 {
 	using Microsoft.Office.Core;
 	using River.OneMoreAddIn.Commands;
+	using River.OneMoreAddIn.Commands.Favorites;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 
@@ -24,20 +24,14 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<AddCaptionCommand>();
 
 
-		[IgnorePalette]
+		[Command("ribAddFavoritePageButton_Label", Keys.None, "ribFavoritesMenu")]
 		public async Task AddFavoritePageCmd(IRibbonControl control)
-		{
-			await using var provider = new FavoritesProvider(ribbon);
-			await provider.AddFavorite();
-		}
+			=> await factory.Run<AddFavoritePageCommand>();
 
 
-		[IgnorePalette]
+		[Command("ribAddFavoriteSectionButton_Label", Keys.None, "ribFavoritesMenu")]
 		public async Task AddFavoriteSectionCmd(IRibbonControl control)
-		{
-			await using var provider = new FavoritesProvider(ribbon);
-			await provider.AddFavorite(true);
-		}
+			=> await factory.Run<AddFavoriteSectionCommand>();
 
 
 		[Command("ribAddFootnoteButton_Label", Keys.Control | Keys.Alt | Keys.F, "ribReferencesMenu")]

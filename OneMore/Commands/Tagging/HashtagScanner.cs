@@ -407,8 +407,7 @@ namespace River.OneMoreAddIn.Commands
 				return false;
 			}
 
-			// avoid defect https://github.com/stevencohn/OneMore/issues/1268
-			// GetPage throws generic COM exception and returns null...
+			// avoids defect #1268: GetPage throws generic COM exception and returns null...
 			if (page is null)
 			{
 				logger.WriteLine($"skipping null page {pageID} '{path}'");

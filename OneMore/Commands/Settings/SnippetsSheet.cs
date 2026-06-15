@@ -132,7 +132,7 @@ namespace River.OneMoreAddIn.Settings
 			if (updated)
 			{
 				provider.SetCollection(settings);
-				ribbon.InvalidateControl("ribFavoritesMenu");
+				ribbon.InvalidateControl(Commands.Favorites.FavoritesMenu.MenuID);
 			}
 
 			return false;

@@ -10,8 +10,6 @@ namespace River.OneMoreAddIn.Commands.Favorites
 	using System.Drawing;
 	using System.Linq;
 	using System.Windows.Forms;
-	using Favorite = FavoritesProvider.Favorite;
-	using FavoriteStatus = FavoritesProvider.FavoriteStatus;
 	using Resx = Properties.Resources;
 
 
@@ -56,13 +54,13 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		{
 			//Native.SwitchToThisWindow(Handle, false);
 
-			await using var provider = new FavoritesProvider(ribbon);
-			var favorites = provider.LoadFavorites();
+			using var provider = new FavoritesProvider();
+			var collection = provider.ReadFavorites();
 
 			gridView.AutoGenerateColumns = false;
 			gridView.Columns[0].DataPropertyName = "Name";
 			gridView.Columns[1].DataPropertyName = "Location";
-			gridView.DataSource = new BindingList<Favorite>(favorites);
+			gridView.DataSource = new BindingList<Favorite>(collection.Items);
 		}
 
 
@@ -441,7 +439,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 			Favorite favorite = null;
 			while (index < source.Count && favorite == null)
 			{
-				if (source[index].ObjectID == info.PageId)
+				if (source[index].PageID == info.PageId)
 				{
 					favorite = source[index];
 				}
@@ -453,11 +451,12 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 			if (favorite == null)
 			{
-				await AddIn.Self.AddFavoritePageCmd(null);
+				var cmd = new AddFavoriteCommand();
+				await cmd.Execute(one.CurrentNotebookId, one.CurrentSectionId, one.CurrentPageId);
 
-				await using var provider = new FavoritesProvider(ribbon);
-				var favorites = provider.LoadFavorites();
-				source.Add(favorites[favorites.Count - 1]);
+				using var provider = new FavoritesProvider();
+				var collection = provider.ReadFavorites();
+				source.Add(collection.Items[collection.Items.Count - 1]);
 				MoveBottom();
 			}
 			else
@@ -510,11 +509,13 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 		private async void CheckFavorites(object sender, EventArgs e)
 		{
-			await using var provider = new FavoritesProvider(ribbon);
-
 			var list = ((BindingList<Favorite>)gridView.DataSource).ToList();
-			await provider.ValidateFavorites(list);
-			gridView.DataSource = new BindingList<Favorite>(list);
+
+			await using var checker = new FavoritesChecker(logger);
+			if (await checker.ValidateFavorites(list))
+			{
+				gridView.DataSource = new BindingList<Favorite>(list);
+			}
 		}
 
 
@@ -528,9 +529,9 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 		private async void SortFavorites(object sender, EventArgs e)
 		{
-			await using var provider = new FavoritesProvider(ribbon);
-			var list = provider.SortFavorites();
-			gridView.DataSource = new BindingList<Favorite>(list);
+			//var provider = new FavoritesProvider();
+			//var list = provider.SortFavorites();
+			//gridView.DataSource = new BindingList<Favorite>(list);
 		}
 	}
 }
