@@ -627,6 +627,12 @@ Inverser</value>
     <value>Impossible de copier un dossier dans lui-même ou dans l'un de ses enfants</value>
     <comment>error message</comment>
   </data>
+  <data name="CopyLinkCommand_multiWindowWarning" xml:space="preserve">
+    <value>Cette page est ouverte dans plusieurs fenêtres ; la sélection n'est peut-être pas correcte.
+
+Voulez-vous continuer ?</value>
+    <comment>warning message</comment>
+  </data>
   <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">
     <value>Aucun lien hypertexte trouvé dans la plage</value>
     <comment>message box</comment>
@@ -1961,14 +1967,6 @@ Voulez-vous actualiser la page existante ?</value>
     <value>Il n'y a aucune page sélectionnée à déplacer</value>
     <comment>error message</comment>
   </data>
-  <data name="RenameDialog_errorLabel.Text" xml:space="preserve">
-    <value>Le nom existe. Choisissez un nom différent.</value>
-    <comment>label</comment>
-  </data>
-  <data name="RenameDialog_renameStyle" xml:space="preserve">
-    <value>Renommer Style</value>
-    <comment>dialog title</comment>
-  </data>
   <data name="NavigatorSheet_corrallBox.Text" xml:space="preserve">
     <value>Restreindre la fenêtre du navigateur à l'écran actif</value>
     <comment>checkbox</comment>
@@ -2759,6 +2757,14 @@ Sélectionnez Non pour conserver une ligne vide entre les paragraphes</value>
   <data name="RemovingPageNumber_Message" xml:space="preserve">
     <value>Suppression du numéro de la page {0}</value>
     <comment>progress status dialog</comment>
+  </data>
+  <data name="RenameDialog_errorLabel.Text" xml:space="preserve">
+    <value>Le nom existe. Choisissez un nom différent.</value>
+    <comment>label</comment>
+  </data>
+  <data name="RenameDialog_renameStyle" xml:space="preserve">
+    <value>Renommer Style</value>
+    <comment>dialog title</comment>
   </data>
   <data name="ReorderDialog.Text" xml:space="preserve">
     <value>Réorganiser les styles</value>

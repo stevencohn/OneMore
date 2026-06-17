@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn
 	using System.Text;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
+	using River.OneMoreAddIn.UI;
 	using Resx = Properties.Resources;
 	using Win = System.Windows;
 
@@ -55,6 +56,22 @@ namespace River.OneMoreAddIn
 
 			if (specific)
 			{
+				// guard against page viewed in multiple OneNote windows...
+
+				var windows = one.GetWindows();
+				if (windows.Count(w => w.CurrentPageId == page.PageId) > 1)
+				{
+					var result = MoreMessageBox
+						.ShowQuestion(owner, Resx.CopyLinkCommand_multiWindowWarning);
+
+					if (result != Win.Forms.DialogResult.Yes)
+					{
+						return;
+					}
+				}
+
+				// capture link to paragraph...
+
 				var selected = page.BodyOutlines
 					.Descendants(ns + "OE")
 					.LastOrDefault(e => e.Attributes().Any(a => a.Name == "selected"));

@@ -624,6 +624,12 @@
     <value>לא ניתן להעתיק תיקיה לעצמה או לאחד מהילדים שלה</value>
     <comment>error message</comment>
   </data>
+  <data name="CopyLinkCommand_multiWindowWarning" xml:space="preserve">
+    <value>דף זה פתוח במספר חלונות; ייתכן שהבחירה אינה נכונה.
+
+האם אתה רוצה להמשיך?</value>
+    <comment>warning message</comment>
+  </data>
   <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">
     <value>לא נמצאו היפר-קישורים בטווח</value>
     <comment>message box</comment>
@@ -1958,14 +1964,6 @@ Total Row Font
     <value>לא נבחרו דפים להזזה</value>
     <comment>error message</comment>
   </data>
-  <data name="RenameDialog_errorLabel.Text" xml:space="preserve">
-    <value>שם קיים. בחר שם אחר.</value>
-    <comment>label</comment>
-  </data>
-  <data name="RenameDialog_renameStyle" xml:space="preserve">
-    <value>שנה את שם הסגנון</value>
-    <comment>dialog title</comment>
-  </data>
   <data name="NavigatorSheet_corrallBox.Text" xml:space="preserve">
     <value>הגבל את חלון הניווט למסך הפעיל</value>
     <comment>checkbox</comment>
@@ -2752,6 +2750,14 @@ ISO-code then comma then language name</comment>
   <data name="RemovingPageNumber_Message" xml:space="preserve">
     <value>מסיר את המספר מהדף {0}</value>
     <comment>progress status dialog</comment>
+  </data>
+  <data name="RenameDialog_errorLabel.Text" xml:space="preserve">
+    <value>שם קיים. בחר שם אחר.</value>
+    <comment>label</comment>
+  </data>
+  <data name="RenameDialog_renameStyle" xml:space="preserve">
+    <value>שנה את שם הסגנון</value>
+    <comment>dialog title</comment>
   </data>
   <data name="ReorderDialog.Text" xml:space="preserve">
     <value>סדר מחדש סגנונות</value>

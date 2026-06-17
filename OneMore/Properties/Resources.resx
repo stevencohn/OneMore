@@ -629,6 +629,12 @@ Invert</value>
     <value>Cannot copy a folder into itself or one of its children</value>
     <comment>error message</comment>
   </data>
+  <data name="CopyLinkCommand_multiWindowWarning" xml:space="preserve">
+    <value>This page is open in multiple windows; the selection may not be correct.
+
+Do you want to continue?</value>
+    <comment>warning message</comment>
+  </data>
   <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">
     <value>No hyperlinks found in range</value>
     <comment>message box</comment>
@@ -6206,11 +6212,11 @@ Thank you!</value>
   <data name="m_Underline" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Menu\m_Underline.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Emojis" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Commands\Snippets\Emoji\Emojis.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
   <data name="FavoritesDB" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Commands\Favorites\FavoritesDB.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="Emojis" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Commands\Snippets\Emoji\Emojis.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="InfoBoxThemes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\commands\snippets\infoboxthemes.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>

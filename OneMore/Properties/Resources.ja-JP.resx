@@ -627,6 +627,12 @@
     <value>フォルダーを自分自身またはその子フォルダーにコピーすることはできません</value>
     <comment>error message</comment>
   </data>
+  <data name="CopyLinkCommand_multiWindowWarning" xml:space="preserve">
+    <value>このページは複数のウィンドウで開かれます。選択が正しくない可能性があります。
+
+続けますか?</value>
+    <comment>warning message</comment>
+  </data>
   <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">
     <value>範囲内にハイパーリンクが見つかりませんでした</value>
     <comment>message box</comment>
@@ -1961,14 +1967,6 @@ OneNoteファイル (*.one)</value>
     <value>移動するページが選択されていません</value>
     <comment>error message</comment>
   </data>
-  <data name="RenameDialog_errorLabel.Text" xml:space="preserve">
-    <value>名前が存在します。異なる名前を選択してください。</value>
-    <comment>label</comment>
-  </data>
-  <data name="RenameDialog_renameStyle" xml:space="preserve">
-    <value>スタイルをリネーム</value>
-    <comment>dialog title</comment>
-  </data>
   <data name="NavigatorSheet_corrallBox.Text" xml:space="preserve">
     <value>ナビゲーターウィンドウをアクティブな画面に制限</value>
     <comment>checkbox</comment>
@@ -2755,6 +2753,14 @@ ISO-code then comma then language name</comment>
   <data name="RemovingPageNumber_Message" xml:space="preserve">
     <value>ページ {0} から番号を削除</value>
     <comment>progress status dialog</comment>
+  </data>
+  <data name="RenameDialog_errorLabel.Text" xml:space="preserve">
+    <value>名前が存在します。異なる名前を選択してください。</value>
+    <comment>label</comment>
+  </data>
+  <data name="RenameDialog_renameStyle" xml:space="preserve">
+    <value>スタイルをリネーム</value>
+    <comment>dialog title</comment>
   </data>
   <data name="ReorderDialog.Text" xml:space="preserve">
     <value>スタイルの並べ替え</value>
