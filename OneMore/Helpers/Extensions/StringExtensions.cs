@@ -356,6 +356,25 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// OneMore Extension >> Remove icon and symbol characters from the beginning of a
+		/// string. This can be used when needing a sortable string regardless of decorations.
+		/// </summary>
+		/// <param name="input">Any Unicode string.</param>
+		/// <returns>The string without leading icons and symbols.</returns>
+		public static string TrimLeadingIcons(this string input)
+		{
+			int i = 0;
+			while (i < input.Length && 
+				char.GetUnicodeCategory(input[i]) == UnicodeCategory.OtherSymbol)
+			{
+				i += char.IsSurrogatePair(input, i) ? 2 : 1;  // advance by 1 or 2 chars
+			}
+
+			return input.Substring(i);
+		}
+
+
+		/// <summary>
 		/// OneMore Extension >> Remove characters that are invalid in XML 1.0, such as vertical
 		/// tab (0x0B), that would cause ArgumentException when serializing CDATA sections.
 		/// Legal XML chars: #x9, #xA, #xD, #x20–#xD7FF, #xE000–#xFFFD.

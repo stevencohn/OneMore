@@ -56,6 +56,27 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				return;
 			}
 
+			// are they alphabetical or custom sorted?
+
+			var custom = false;
+			if (favs.Count > 1)
+			{
+				var previous = favs[0].Name;
+				for (var i = 1; i < favs.Count; i++)
+				{
+					// we're going backwards so compare < 0
+					if (favs[i].Name.CompareTo(previous) < 0)
+					{
+						custom = true;
+						break;
+					}
+
+					previous = favs[i].Name;
+				}
+			}
+
+			// migrate...
+
 			var count = 0;
 
 			foreach (var fav in favs)
@@ -67,7 +88,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 					Uri = fav.Uri,
 					NotebookID = fav.NotebookID,
 					SectionID = fav.ObjectID,
-					SortOrder = fav.Index
+					SortOrder = custom ? fav.Index : 0
 				};
 
 				if (favorite.Uri.Contains("page-id"))
@@ -86,6 +107,38 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		}
 
 
+		/// <summary>
+		/// Deletes the specified favorite.
+		/// </summary>
+		/// <param name="favoriteID">The ID of the favorite record to delete.</param>
+		/// <returns>True if successful</returns>
+		public bool DeleteFavorite(int favoriteID)
+		{
+			using var cmd = con.CreateCommand();
+			cmd.CommandType = CommandType.Text;
+			cmd.Parameters.AddWithValue("@id", favoriteID);
+			cmd.CommandText = "DELETE FROM favorite WHERE favoriteID = @id";
+
+			try
+			{
+				cmd.ExecuteNonQuery();
+				logger.WriteLine($"delete favorite {favoriteID}");
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"error deleting favorite {favoriteID}", exc);
+				return false;
+			}
+
+			return true;
+		}
+
+
+		/// <summary>
+		/// Read the full collection of favorites. The collection consists of top-level
+		/// folder and favorites. Folders contain favorites but do not contain other folders.
+		/// </summary>
+		/// <returns>A FavoritesCollection representing the entire favorites data set.</returns>
 		public FavoritesCollection ReadFavorites()
 		{
 			var collection = new FavoritesCollection();

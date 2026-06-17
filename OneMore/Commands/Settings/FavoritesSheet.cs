@@ -22,7 +22,7 @@ namespace River.OneMoreAddIn.Settings
 		private readonly IRibbonUI ribbon;
 		private readonly bool shortcuts;
 		private BindingList<Favorite> favorites;
-		private Task validator;
+		private Task validation;
 		private bool updated = false;
 
 
@@ -68,7 +68,7 @@ namespace River.OneMoreAddIn.Settings
 
 			// capture Task so it can be completed later in RowEnter
 			await using var checker = new FavoritesChecker(logger);
-			validator = checker.ValidateFavorites(collection.Items);
+			validation = checker.InvalidFavorites(collection.Items);
 
 			favorites = new BindingList<Favorite>(collection.Items);
 
@@ -81,13 +81,13 @@ namespace River.OneMoreAddIn.Settings
 			// executed once (by unsetting 'validator') to update the data source binding
 			// after validation is completed
 
-			if (validator is not null)
+			if (validation is not null)
 			{
 				try
 				{
-					if (!(validator.IsCompleted || validator.IsFaulted || validator.IsCanceled))
+					if (!(validation.IsCompleted || validation.IsFaulted || validation.IsCanceled))
 					{
-						await Task.WhenAll(validator);
+						await Task.WhenAll(validation);
 					}
 				}
 				catch (Exception exc)
@@ -95,7 +95,7 @@ namespace River.OneMoreAddIn.Settings
 					logger.WriteLine($"error awaiting in {nameof(FinishValidationOnRowEnter)}", exc);
 				}
 
-				validator = null;
+				validation = null;
 
 				try
 				{
@@ -111,7 +111,7 @@ namespace River.OneMoreAddIn.Settings
 
 		private void FormatCell(object sender, DataGridViewCellFormattingEventArgs e)
 		{
-			if (gridView.Rows[e.RowIndex].DataBoundItem is FileFavorite favorite)
+			if (gridView.Rows[e.RowIndex].DataBoundItem is Favorite favorite)
 			{
 				if (favorite.Status == FavoriteStatus.Unknown)
 				{
@@ -163,9 +163,15 @@ namespace River.OneMoreAddIn.Settings
 			if (result != DialogResult.Yes)
 				return;
 
+			using var provider = new FavoritesProvider();
+
 			for (int i = gridView.SelectedRows.Count - 1; i >= 0; i--)
 			{
-				favorites.RemoveAt(gridView.SelectedRows[i].Index);
+				var index = gridView.SelectedRows[i].Index;
+				if (provider.DeleteFavorite(favorites[index].ID))
+				{
+					favorites.RemoveAt(index);
+				}
 			}
 
 			gridView.ClearSelection();

@@ -512,7 +512,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 			var list = ((BindingList<Favorite>)gridView.DataSource).ToList();
 
 			await using var checker = new FavoritesChecker(logger);
-			if (await checker.ValidateFavorites(list))
+			if (await checker.InvalidFavorites(list))
 			{
 				gridView.DataSource = new BindingList<Favorite>(list);
 			}

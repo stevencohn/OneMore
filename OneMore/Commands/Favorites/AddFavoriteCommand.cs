@@ -73,7 +73,6 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				: await one.GetPageInfo(favorite.PageID);
 
 			favorite.Name = info.Name;
-			favorite.Alias = info.Name;
 			favorite.Location = info.Path;
 			favorite.Uri = info.Link;
 
