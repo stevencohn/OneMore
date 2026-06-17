@@ -157,6 +157,14 @@
     <value>Afbeelding heeft al een bijschrift</value>
     <comment>info message</comment>
   </data>
+  <data name="AddFavoriteCommand_duplicate" xml:space="preserve">
+    <value>Deze favoriet bestaat al</value>
+    <comment>error message</comment>
+  </data>
+  <data name="AddFavoriteCommand_error" xml:space="preserve">
+    <value>Kan favoriet niet opslaan</value>
+    <comment>error message</comment>
+  </data>
   <data name="AddFormulaCommand_Calculated" xml:space="preserve">
     <value>Berekend</value>
     <comment>tag name</comment>
@@ -623,6 +631,12 @@ Omkeren</value>
   <data name="CopyFolderCommand_InvalidTarget" xml:space="preserve">
     <value>Kan een map niet naar zichzelf of een van de onderliggende mappen kopiëren</value>
     <comment>error message</comment>
+  </data>
+  <data name="CopyLinkCommand_multiWindowWarning" xml:space="preserve">
+    <value>Deze pagina is in meerdere vensters geopend; de selectie is mogelijk niet correct.
+
+Wil je doorgaan?</value>
+    <comment>warning message</comment>
   </data>
   <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">
     <value>Geen hyperlinks gevonden in het bereik</value>
@@ -1198,6 +1212,26 @@ OneNote-bestand (*.one)</value>
   <data name="FavoritesFilename" xml:space="preserve">
     <value>Favorites.xml</value>
     <comment>SKIP, filename</comment>
+  </data>
+  <data name="FavoritesManagerControl_deleteConfirmMultiple" xml:space="preserve">
+    <value>{0} items verwijderen?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="FavoritesManagerControl_emptyFolderHint" xml:space="preserve">
+    <value>Leeg - sleep favorieten hierheen</value>
+    <comment>list view hint text</comment>
+  </data>
+  <data name="FavoritesManagerControl_newFolder" xml:space="preserve">
+    <value>Nieuwe map</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="FavoritesManagerControl_renameFavorite" xml:space="preserve">
+    <value>Naam favoriet wijzigen</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="FavoritesManagerControl_renameFolder" xml:space="preserve">
+    <value>Hernoem map</value>
+    <comment>dialog title</comment>
   </data>
   <data name="FavoritesSheet_DeleteMessage" xml:space="preserve">
     <value>{0} verwijderen?</value>
@@ -1938,6 +1972,14 @@ Wilt u de bestaande pagina vernieuwen?</value>
     <value>Laad stijlthema</value>
     <comment>OpenFileDialog title</comment>
   </data>
+  <data name="ManageFavoritesDialog_discard" xml:space="preserve">
+    <value>Niet-opgeslagen wijzigingen verwijderen?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ManageFavoritesDialog_Text" xml:space="preserve">
+    <value>Beheer favorieten</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="MapDialog_groupBox.Text" xml:space="preserve">
     <value>Pagina's in</value>
     <comment>group box</comment>
@@ -1957,14 +1999,6 @@ Wilt u de bestaande pagina vernieuwen?</value>
   <data name="MovePageCommand_noPages" xml:space="preserve">
     <value>Er zijn geen pagina's geselecteerd om te verplaatsen</value>
     <comment>error message</comment>
-  </data>
-  <data name="RenameDialog_errorLabel.Text" xml:space="preserve">
-    <value>Naam bestaat. Kies een andere naam.</value>
-    <comment>label</comment>
-  </data>
-  <data name="RenameDialog_renameStyle" xml:space="preserve">
-    <value>Hernoemstijl</value>
-    <comment>dialog title</comment>
   </data>
   <data name="NavigatorSheet_corrallBox.Text" xml:space="preserve">
     <value>Beperk het Navigator-venster tot het actieve scherm</value>
@@ -2749,6 +2783,18 @@ Selecteer NO om één lege regel tussen paragrafen te behouden</value>
     <value>Nummer verwijderen van pagina {0}</value>
     <comment>progress status dialog</comment>
   </data>
+  <data name="RenameDialog_errorLabel.Text" xml:space="preserve">
+    <value>Naam bestaat. Kies een andere naam.</value>
+    <comment>label</comment>
+  </data>
+  <data name="RenameDialog_renameStyle" xml:space="preserve">
+    <value>Hernoemstijl</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="RenameFavoriteDialog_originalNameLabel" xml:space="preserve">
+    <value>Oorspronkelijke naam: {0}</value>
+    <comment>label format string</comment>
+  </data>
   <data name="ReorderDialog.Text" xml:space="preserve">
     <value>Stijlen opnieuw ordenen</value>
     <comment>dialog title</comment>
@@ -2817,16 +2863,16 @@ Selecteer NO om één lege regel tussen paragrafen te behouden</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribAddFootnoteButton_Screentip" xml:space="preserve">
-    <value>Voetnoot toevoegen (Ctrl + Alt + F)</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
+    <value>Voeg een nieuwe voetnoot toe vanaf de huidige positie</value>
+    <comment>ribbon references NODUP</comment>
   </data>
   <data name="ribAddFormulaButton_Label" xml:space="preserve">
     <value>Formule toevoegen</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribAddFormulaButton_Screentip" xml:space="preserve">
-    <value>Formule toevoegen/bewerken in geselecteerde tabelcellen (F5)</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
+    <value>Voeg een formule toe of bewerk deze in geselecteerde tabelcellen</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribAddTagBankButton_Label" xml:space="preserve">
     <value>Tagbank toevoegen</value>
@@ -3225,8 +3271,8 @@ Tabblad Help</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribDecreaseFontSizeButton_Screentip" xml:space="preserve">
-    <value>Lettergrootte van pagina verkleinen (Ctrl + Alt + Min)</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <value>Verklein de lettergrootte van de pagina</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribDeleteFormulaButton_Label" xml:space="preserve">
     <value>Formule verwijderen</value>
@@ -3369,8 +3415,8 @@ Tabblad Help</value>
     <comment>ribbon</comment>
   </data>
   <data name="ribFillDownButton_Screentip" xml:space="preserve">
-    <value>Opvullen (Ctrl + D)</value>
-    <comment>ribbon</comment>
+    <value>Vul de volgorde naar beneden in geselecteerde kolommen</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribFindHashtagsButton_Label" xml:space="preserve">
     <value>Zoek hashtags</value>
@@ -3465,8 +3511,8 @@ Tabblad Help</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribIncreaseFontSizeButton_Screentip" xml:space="preserve">
-    <value>Vergroot de lettergrootte van de pagina (Ctrl + Alt + Plus)</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <value>Vergroot de lettergrootte van de pagina</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribInsertBlueStatusButton_Label" xml:space="preserve">
     <value>Blauwe status</value>
@@ -3505,7 +3551,7 @@ Tabblad Help</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertCodeBoxButton_Screentip" xml:space="preserve">
-    <value>Voeg een codevak in (F6), waarin de geselecteerde inhoud wordt omwikkeld</value>
+    <value>Voeg een codevak in en omloop de geselecteerde inhoud</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertDateButton_Label" xml:space="preserve">
@@ -3513,8 +3559,8 @@ Tabblad Help</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribInsertDateButton_Screentip" xml:space="preserve">
-    <value>Voeg de huidige datum in (Ctrl + Shift + D)</value>
-    <comment>ribbon</comment>
+    <value>Voer de huidige datum in</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertDateTimeButton_Label" xml:space="preserve">
     <value>Sorteerbare datum met de tijd</value>
@@ -4234,8 +4280,8 @@ Tabblad Help</value>
     <comment>ribbon search</comment>
   </data>
   <data name="ribSearchButton_Screentip" xml:space="preserve">
-    <value>Zoek pagina's op trefwoorden en kopieer / ga naar een andere sectie (Alt + F)</value>
-    <comment>ribbon item</comment>
+    <value>Zoek pagina's op trefwoorden en kopieer/verplaats naar een andere sectie</value>
+    <comment>ribbon search</comment>
   </data>
   <data name="ribSearchHashtagsButton_Label" xml:space="preserve">
     <value>Zoek hashtags</value>
@@ -4314,8 +4360,8 @@ Tabblad Help</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribShowXmlButton_Screentip" xml:space="preserve">
-    <value>Toon XML van hiërarchie en huidige pagina (Ctrl + Shift + Alt + X)</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <value>Toon XML van de hiërarchie en de huidige pagina</value>
+    <comment>ribbon extras</comment>
   </data>
   <data name="ribShutdownTimerButton_Label" xml:space="preserve">
     <value>Stop-timer</value>
@@ -4505,8 +4551,8 @@ Tabblad Help</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribUppercaseButton_Screentip" xml:space="preserve">
-    <value>Tekst converteren naar hoofdletters (Ctrl + Shift + Alt + U)</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <value>Converteer tekst naar hoofdletters</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribViewNotebookInBrowserButton_Label" xml:space="preserve">
     <value>Bekijk notitieboekje in de browser</value>
@@ -5686,6 +5732,9 @@ Bedankt!</value>
   </data>
   <data name="word_Reset" xml:space="preserve">
     <value>Resetten</value>
+  </data>
+  <data name="word_Revert" xml:space="preserve">
+    <value>Terugdraaien</value>
   </data>
   <data name="word_Saturation" xml:space="preserve">
     <value>Verzadiging</value>

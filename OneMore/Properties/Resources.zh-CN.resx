@@ -157,6 +157,14 @@
     <value>图片说明已存在</value>
     <comment>info message</comment>
   </data>
+  <data name="AddFavoriteCommand_duplicate" xml:space="preserve">
+    <value>此收藏夹已存在</value>
+    <comment>error message</comment>
+  </data>
+  <data name="AddFavoriteCommand_error" xml:space="preserve">
+    <value>无法保存收藏夹</value>
+    <comment>error message</comment>
+  </data>
   <data name="AddFormulaCommand_Calculated" xml:space="preserve">
     <value>公式计算完成</value>
     <comment>tag name</comment>
@@ -627,6 +635,12 @@
   <data name="CopyFolderCommand_InvalidTarget" xml:space="preserve">
     <value>无法将文件夹复制到其自身或其子级之一</value>
     <comment>error message</comment>
+  </data>
+  <data name="CopyLinkCommand_multiWindowWarning" xml:space="preserve">
+    <value>该页面在多个窗口中打开；选择可能不正确。
+
+您想继续吗？</value>
+    <comment>warning message</comment>
   </data>
   <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">
     <value>范围内没有发现超链接</value>
@@ -1202,6 +1216,26 @@ OneNote 文件 (*.one)</value>
   <data name="FavoritesFilename" xml:space="preserve">
     <value>Favorites.xml</value>
     <comment>FILENAME</comment>
+  </data>
+  <data name="FavoritesManagerControl_deleteConfirmMultiple" xml:space="preserve">
+    <value>删除 {0} 项？</value>
+    <comment>message box</comment>
+  </data>
+  <data name="FavoritesManagerControl_emptyFolderHint" xml:space="preserve">
+    <value>空 - 将收藏夹拖到此处</value>
+    <comment>list view hint text</comment>
+  </data>
+  <data name="FavoritesManagerControl_newFolder" xml:space="preserve">
+    <value>新建文件夹</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="FavoritesManagerControl_renameFavorite" xml:space="preserve">
+    <value>重命名收藏夹</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="FavoritesManagerControl_renameFolder" xml:space="preserve">
+    <value>重命名文件夹</value>
+    <comment>dialog title</comment>
   </data>
   <data name="FavoritesSheet_DeleteMessage" xml:space="preserve">
     <value>删除{0}？</value>
@@ -1944,6 +1978,14 @@ OneNote 文件 (*.one)</value>
     <value>加载样式主题</value>
     <comment>OpenFileDialog title</comment>
   </data>
+  <data name="ManageFavoritesDialog_discard" xml:space="preserve">
+    <value>放弃未保存的更改？</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ManageFavoritesDialog_Text" xml:space="preserve">
+    <value>管理收藏夹</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="MapDialog_groupBox.Text" xml:space="preserve">
     <value>内页</value>
     <comment>group box</comment>
@@ -1963,14 +2005,6 @@ OneNote 文件 (*.one)</value>
   <data name="MovePageCommand_noPages" xml:space="preserve">
     <value>没有选择要移动的页面</value>
     <comment>error message</comment>
-  </data>
-  <data name="RenameDialog_errorLabel.Text" xml:space="preserve">
-    <value>名称存在。选择不同的名称。</value>
-    <comment>label</comment>
-  </data>
-  <data name="RenameDialog_renameStyle" xml:space="preserve">
-    <value>重命名风格</value>
-    <comment>dialog title</comment>
   </data>
   <data name="NavigatorSheet_corrallBox.Text" xml:space="preserve">
     <value>导航器窗口仅显示当前活动Onenote窗口的内容</value>
@@ -2763,6 +2797,18 @@ ISO-code then comma then language name</comment>
     <value>从页面{0}中删除号码</value>
     <comment>progress status dialog</comment>
   </data>
+  <data name="RenameDialog_errorLabel.Text" xml:space="preserve">
+    <value>名称存在。选择不同的名称。</value>
+    <comment>label</comment>
+  </data>
+  <data name="RenameDialog_renameStyle" xml:space="preserve">
+    <value>重命名风格</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="RenameFavoriteDialog_originalNameLabel" xml:space="preserve">
+    <value>原名：{0}</value>
+    <comment>label format string</comment>
+  </data>
   <data name="ReorderDialog.Text" xml:space="preserve">
     <value>重新排序样式</value>
     <comment>dialog title</comment>
@@ -2831,16 +2877,16 @@ ISO-code then comma then language name</comment>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribAddFootnoteButton_Screentip" xml:space="preserve">
-    <value>添加脚注（Ctrl + Alt + F）</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
+    <value>从当前位置添加新脚注</value>
+    <comment>ribbon references NODUP</comment>
   </data>
   <data name="ribAddFormulaButton_Label" xml:space="preserve">
     <value>添加公式</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribAddFormulaButton_Screentip" xml:space="preserve">
-    <value>在选定的表格单元格中添加/编辑公式（F5）</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
+    <value>在选定的表格单元格中添加或编辑公式</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribAddTagBankButton_Label" xml:space="preserve">
     <value>添加标签容器</value>
@@ -3239,8 +3285,8 @@ ISO-code then comma then language name</comment>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribDecreaseFontSizeButton_Screentip" xml:space="preserve">
-    <value>缩小页面字体大小 (Ctrl + Alt + Minus)</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <value>减小页面字体大小</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribDeleteFormulaButton_Label" xml:space="preserve">
     <value>删除公式</value>
@@ -3384,7 +3430,7 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="ribFillDownButton_Screentip" xml:space="preserve">
     <value>对所选的表格区域，每一列向下填充数字序列</value>
-    <comment>ribbon</comment>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribFindHashtagsButton_Label" xml:space="preserve">
     <value>搜索标签</value>
@@ -3480,7 +3526,7 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="ribIncreaseFontSizeButton_Screentip" xml:space="preserve">
     <value>放大页面字体大小 (Ctrl + Alt + Plus)</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribInsertBlueStatusButton_Label" xml:space="preserve">
     <value>状态标签：蓝色</value>
@@ -3528,7 +3574,7 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="ribInsertDateButton_Screentip" xml:space="preserve">
     <value>插入当前日期：年-月-日格式（Ctrl + Shift + D）</value>
-    <comment>ribbon</comment>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertDateTimeButton_Label" xml:space="preserve">
     <value>当前时间+日期（可排序）</value>
@@ -4248,8 +4294,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon search</comment>
   </data>
   <data name="ribSearchButton_Screentip" xml:space="preserve">
-    <value>在页面上搜索关键字，然后将其复制/移动到另一部分（Alt + F）</value>
-    <comment>ribbon item</comment>
+    <value>搜索页面关键字并复制/移动到另一个部分</value>
+    <comment>ribbon search</comment>
   </data>
   <data name="ribSearchHashtagsButton_Label" xml:space="preserve">
     <value>搜索标签</value>
@@ -4328,8 +4374,8 @@ ISO-code then comma then language name</comment>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribShowXmlButton_Screentip" xml:space="preserve">
-    <value>显示层次结构和当前页面的XML (Ctrl + Shift + Alt + X)</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <value>显示层次结构和当前页面的 XML</value>
+    <comment>ribbon extras</comment>
   </data>
   <data name="ribShutdownTimerButton_Label" xml:space="preserve">
     <value>停止计时器</value>
@@ -4519,8 +4565,8 @@ ISO-code then comma then language name</comment>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribUppercaseButton_Screentip" xml:space="preserve">
-    <value>将文本转换为大写 (Ctrl + Shift + Alt + U)</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <value>将文本转换为大写</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribViewNotebookInBrowserButton_Label" xml:space="preserve">
     <value>在浏览器中查看笔记本</value>
@@ -5700,6 +5746,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Reset" xml:space="preserve">
     <value>重置</value>
+  </data>
+  <data name="word_Revert" xml:space="preserve">
+    <value>恢复</value>
   </data>
   <data name="word_Saturation" xml:space="preserve">
     <value>饱和度</value>

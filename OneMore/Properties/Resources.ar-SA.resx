@@ -157,6 +157,14 @@
     <value>الصورة لديها بالفعل تسمية توضيحية</value>
     <comment>info message</comment>
   </data>
+  <data name="AddFavoriteCommand_duplicate" xml:space="preserve">
+    <value>هذه المفضلة موجودة بالفعل</value>
+    <comment>error message</comment>
+  </data>
+  <data name="AddFavoriteCommand_error" xml:space="preserve">
+    <value>لا يمكن حفظ المفضلة</value>
+    <comment>error message</comment>
+  </data>
   <data name="AddFormulaCommand_Calculated" xml:space="preserve">
     <value>محسوب</value>
     <comment>tag name</comment>
@@ -626,6 +634,12 @@
   <data name="CopyFolderCommand_InvalidTarget" xml:space="preserve">
     <value>لا يمكن نسخ مجلد إلى نفسه أو إلى أحد توابعه</value>
     <comment>error message</comment>
+  </data>
+  <data name="CopyLinkCommand_multiWindowWarning" xml:space="preserve">
+    <value>هذه الصفحة مفتوحة في نوافذ متعددة؛ قد لا يكون الاختيار صحيحا.
+
+هل تريد الاستمرار؟</value>
+    <comment>warning message</comment>
   </data>
   <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">
     <value>لا ارتباطات تشعبية موجودة في النطاق</value>
@@ -1201,6 +1215,26 @@
   <data name="FavoritesFilename" xml:space="preserve">
     <value>Favorites.xml</value>
     <comment>FILENAME</comment>
+  </data>
+  <data name="FavoritesManagerControl_deleteConfirmMultiple" xml:space="preserve">
+    <value>هل تريد حذف {0} عنصر؟</value>
+    <comment>message box</comment>
+  </data>
+  <data name="FavoritesManagerControl_emptyFolderHint" xml:space="preserve">
+    <value>فارغ - اسحب المفضلة هنا</value>
+    <comment>list view hint text</comment>
+  </data>
+  <data name="FavoritesManagerControl_newFolder" xml:space="preserve">
+    <value>مجلد جديد</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="FavoritesManagerControl_renameFavorite" xml:space="preserve">
+    <value>إعادة تسمية المفضلة</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="FavoritesManagerControl_renameFolder" xml:space="preserve">
+    <value>إعادة تسمية المجلد</value>
+    <comment>dialog title</comment>
   </data>
   <data name="FavoritesSheet_DeleteMessage" xml:space="preserve">
     <value>حذف {0}؟</value>
@@ -1941,6 +1975,14 @@
     <value>تحميل نمط النمط</value>
     <comment>OpenFileDialog title</comment>
   </data>
+  <data name="ManageFavoritesDialog_discard" xml:space="preserve">
+    <value>هل تريد تجاهل التغييرات غير المحفوظة؟</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ManageFavoritesDialog_Text" xml:space="preserve">
+    <value>إدارة المفضلة</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="MapDialog_groupBox.Text" xml:space="preserve">
     <value>الصفحات بتنسيق</value>
     <comment>group box</comment>
@@ -1960,14 +2002,6 @@
   <data name="MovePageCommand_noPages" xml:space="preserve">
     <value>لا توجد صفحات محددة لنقلها</value>
     <comment>error message</comment>
-  </data>
-  <data name="RenameDialog_errorLabel.Text" xml:space="preserve">
-    <value>الاسم موجود. اختر اسمًا مختلفًا.</value>
-    <comment>label</comment>
-  </data>
-  <data name="RenameDialog_renameStyle" xml:space="preserve">
-    <value>إعادة تسمية نمط</value>
-    <comment>dialog title</comment>
   </data>
   <data name="NavigatorSheet_corrallBox.Text" xml:space="preserve">
     <value>قصر نافذة المستكشف على الشاشة النشطة</value>
@@ -2760,6 +2794,18 @@ ISO-code then comma then language name</comment>
     <value>إزالة الرقم من الصفحة {0}</value>
     <comment>progress status dialog</comment>
   </data>
+  <data name="RenameDialog_errorLabel.Text" xml:space="preserve">
+    <value>الاسم موجود. اختر اسمًا مختلفًا.</value>
+    <comment>label</comment>
+  </data>
+  <data name="RenameDialog_renameStyle" xml:space="preserve">
+    <value>إعادة تسمية نمط</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="RenameFavoriteDialog_originalNameLabel" xml:space="preserve">
+    <value>الاسم الأصلي: {0}</value>
+    <comment>label format string</comment>
+  </data>
   <data name="ReorderDialog.Text" xml:space="preserve">
     <value>إعادة ترتيب الأنماط</value>
     <comment>dialog title</comment>
@@ -2828,16 +2874,16 @@ ISO-code then comma then language name</comment>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribAddFootnoteButton_Screentip" xml:space="preserve">
-    <value>إضافة حاشية سفلية (Ctrl + Alt + F)</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
+    <value>أضف حاشية سفلية جديدة من الموضع الحالي</value>
+    <comment>ribbon references NODUP</comment>
   </data>
   <data name="ribAddFormulaButton_Label" xml:space="preserve">
     <value>أضف الصيغة</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribAddFormulaButton_Screentip" xml:space="preserve">
-    <value>إضافة / تحرير الصيغة في خلايا الجدول المحددة (F5)</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
+    <value>إضافة صيغة أو تحريرها في خلايا الجدول المحددة</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribAddTagBankButton_Label" xml:space="preserve">
     <value>إضافة علامة البنك</value>
@@ -3236,8 +3282,8 @@ ISO-code then comma then language name</comment>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribDecreaseFontSizeButton_Screentip" xml:space="preserve">
-    <value>تصغير حجم خط الصفحة (Ctrl + Alt + علامة ناقص)</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <value>تقليل حجم خط الصفحة</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribDeleteFormulaButton_Label" xml:space="preserve">
     <value>حذف الصيغة</value>
@@ -3380,8 +3426,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon</comment>
   </data>
   <data name="ribFillDownButton_Screentip" xml:space="preserve">
-    <value>ملء لأسفل (Ctrl + D)</value>
-    <comment>ribbon</comment>
+    <value>ملء التسلسل أسفل الأعمدة المحددة</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribFindHashtagsButton_Label" xml:space="preserve">
     <value>البحث في الوسوم</value>
@@ -3476,8 +3522,8 @@ ISO-code then comma then language name</comment>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribIncreaseFontSizeButton_Screentip" xml:space="preserve">
-    <value>تكبير حجم خط الصفحة (Ctrl + Alt + Plus)</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <value>زيادة حجم خط الصفحة</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribInsertBlueStatusButton_Label" xml:space="preserve">
     <value>الحالة الزرقاء</value>
@@ -3516,7 +3562,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertCodeBoxButton_Screentip" xml:space="preserve">
-    <value>أدخل مربع رمز (F6) ، مع التفاف المحتوى المحدد</value>
+    <value>قم بإدراج مربع التعليمات البرمجية، مع التفاف المحتوى المحدد</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertDateButton_Label" xml:space="preserve">
@@ -3524,8 +3570,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon item</comment>
   </data>
   <data name="ribInsertDateButton_Screentip" xml:space="preserve">
-    <value>أدخل التاريخ الحالي (Ctrl + Shift + D)</value>
-    <comment>ribbon</comment>
+    <value>أدخل التاريخ الحالي</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertDateTimeButton_Label" xml:space="preserve">
     <value>تاريخ فرز مع مرور الوقت</value>
@@ -4245,8 +4291,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon search</comment>
   </data>
   <data name="ribSearchButton_Screentip" xml:space="preserve">
-    <value>صفحات البحث عن الكلمات الرئيسية ونسخ / نقل إلى قسم آخر (Alt + F)</value>
-    <comment>ribbon item</comment>
+    <value>ابحث في الصفحات عن الكلمات الرئيسية وانسخ/انقل إلى قسم آخر</value>
+    <comment>ribbon search</comment>
   </data>
   <data name="ribSearchHashtagsButton_Label" xml:space="preserve">
     <value>البحث في الوسوم</value>
@@ -4325,8 +4371,8 @@ ISO-code then comma then language name</comment>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribShowXmlButton_Screentip" xml:space="preserve">
-    <value>إظهار XML للتسلسل الهرمي والصفحة الحالية (Ctrl + Shift + Alt + X)</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <value>إظهار XML للتسلسل الهرمي والصفحة الحالية</value>
+    <comment>ribbon extras</comment>
   </data>
   <data name="ribShutdownTimerButton_Label" xml:space="preserve">
     <value>إيقاف الموقت</value>
@@ -4516,8 +4562,8 @@ ISO-code then comma then language name</comment>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribUppercaseButton_Screentip" xml:space="preserve">
-    <value>تحويل النص إلى أحرف كبيرة (Ctrl + Shift + Alt + U)</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <value>تحويل النص إلى أحرف كبيرة</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribViewNotebookInBrowserButton_Label" xml:space="preserve">
     <value>عرض دفتر الملاحظات في المتصفح</value>
@@ -5697,6 +5743,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Reset" xml:space="preserve">
     <value>إعادة ضبط</value>
+  </data>
+  <data name="word_Revert" xml:space="preserve">
+    <value>يرجع</value>
   </data>
   <data name="word_Saturation" xml:space="preserve">
     <value>التشبع</value>

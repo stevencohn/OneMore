@@ -173,6 +173,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This favorite already exists.
+        /// </summary>
+        internal static string AddFavoriteCommand_duplicate {
+            get {
+                return ResourceManager.GetString("AddFavoriteCommand_duplicate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not save favorite.
+        /// </summary>
+        internal static string AddFavoriteCommand_error {
+            get {
+                return ResourceManager.GetString("AddFavoriteCommand_error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Calculated.
         /// </summary>
         internal static string AddFormulaCommand_Calculated {
@@ -1221,6 +1239,17 @@ namespace River.OneMoreAddIn.Properties {
         internal static string CopyFolderCommand_InvalidTarget {
             get {
                 return ResourceManager.GetString("CopyFolderCommand_InvalidTarget", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This page is open in multiple windows; the selection may not be correct.
+        ///
+        ///Do you want to continue?.
+        /// </summary>
+        internal static string CopyLinkCommand_multiWindowWarning {
+            get {
+                return ResourceManager.GetString("CopyLinkCommand_multiWindowWarning", resourceCulture);
             }
         }
         
@@ -3159,23 +3188,9 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CREATE TABLE IF NOT EXISTS favorites_folder (
-        ///    folderID  INTEGER PRIMARY KEY AUTOINCREMENT,
-        ///    name      TEXT NOT NULL,
-        ///    UNIQUE(name)
-        ///);
-        ///
-        ///CREATE TABLE IF NOT EXISTS favorite (
-        ///    favoriteID  INTEGER PRIMARY KEY AUTOINCREMENT,
-        ///    folderID    INTEGER REFERENCES favorites_folder(folderID) ON DELETE CASCADE,
-        ///    name        TEXT NOT NULL,
-        ///    alias       TEXT,
-        ///    path        TEXT,
-        ///    hyperlink   TEXT NOT NULL,
-        ///    notebookID  TEXT NOT NULL,
-        ///    sectionID   TEXT,
-        ///    pageID      TEXT,
-        /// [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to CREATE TABLE IF NOT EXISTS favorites_folder (folderID INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, UNIQUE(name));
+        ///CREATE TABLE IF NOT EXISTS favorite (favoriteID INTEGER PRIMARY KEY AUTOINCREMENT, folderID INTEGER REFERENCES favorites_folder(folderID) ON DELETE CASCADE, name TEXT NOT NULL, alias TEXT, location TEXT, uri TEXT NOT NULL, notebookID TEXT NOT NULL, sectionID TEXT NOT NULL, pageID TEXT, sortOrder INTEGER NOT NULL DEFAULT 0);
+        ///CREATE INDEX IF NOT EXISTS idx_favorites_folder ON Favorite( [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string FavoritesDB {
             get {
@@ -3216,6 +3231,51 @@ namespace River.OneMoreAddIn.Properties {
         internal static string FavoritesFilename {
             get {
                 return ResourceManager.GetString("FavoritesFilename", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete {0} items?.
+        /// </summary>
+        internal static string FavoritesManagerControl_deleteConfirmMultiple {
+            get {
+                return ResourceManager.GetString("FavoritesManagerControl_deleteConfirmMultiple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Empty - drag favorites here.
+        /// </summary>
+        internal static string FavoritesManagerControl_emptyFolderHint {
+            get {
+                return ResourceManager.GetString("FavoritesManagerControl_emptyFolderHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Folder.
+        /// </summary>
+        internal static string FavoritesManagerControl_newFolder {
+            get {
+                return ResourceManager.GetString("FavoritesManagerControl_newFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rename Favorite.
+        /// </summary>
+        internal static string FavoritesManagerControl_renameFavorite {
+            get {
+                return ResourceManager.GetString("FavoritesManagerControl_renameFavorite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rename Folder.
+        /// </summary>
+        internal static string FavoritesManagerControl_renameFolder {
+            get {
+                return ResourceManager.GetString("FavoritesManagerControl_renameFolder", resourceCulture);
             }
         }
         
@@ -5259,6 +5319,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Discard unsaved changes?.
+        /// </summary>
+        internal static string ManageFavoritesDialog_discard {
+            get {
+                return ResourceManager.GetString("ManageFavoritesDialog_discard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage Favorites.
+        /// </summary>
+        internal static string ManageFavoritesDialog_Text {
+            get {
+                return ResourceManager.GetString("ManageFavoritesDialog_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pages in.
         /// </summary>
         internal static string MapDialog_groupBox_Text {
@@ -7144,7 +7222,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("RenameDialog_renameStyle", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Original Name: {0}.
+        /// </summary>
+        internal static string RenameFavoriteDialog_originalNameLabel {
+            get {
+                return ResourceManager.GetString("RenameFavoriteDialog_originalNameLabel", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Reorder how styles appear in the gallery. Also changes the order of headings in a TOC.
         /// </summary>
@@ -7299,7 +7386,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add new footnote from current position (Ctrl + Alt + F).
+        ///   Looks up a localized string similar to Add new footnote from current position.
         /// </summary>
         internal static string ribAddFootnoteButton_Screentip {
             get {
@@ -7317,7 +7404,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add or edit a formula in selected table cells (F5).
+        ///   Looks up a localized string similar to Add or edit a formula in selected table cells.
         /// </summary>
         internal static string ribAddFormulaButton_Screentip {
             get {
@@ -8273,7 +8360,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Decrease page font size (Ctrl + Alt + Minus).
+        ///   Looks up a localized string similar to Decrease page font size.
         /// </summary>
         internal static string ribDecreaseFontSizeButton_Screentip {
             get {
@@ -8597,7 +8684,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fill sequence down selected columns (Ctrl + D).
+        ///   Looks up a localized string similar to Fill sequence down selected columns.
         /// </summary>
         internal static string ribFillDownButton_Screentip {
             get {
@@ -8813,7 +8900,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Increase page font size (Ctrl + Alt + Plus).
+        ///   Looks up a localized string similar to Increase page font size.
         /// </summary>
         internal static string ribIncreaseFontSizeButton_Screentip {
             get {
@@ -8903,7 +8990,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Insert a code box (F6), wrapping selected content.
+        ///   Looks up a localized string similar to Insert a code box, wrapping selected content.
         /// </summary>
         internal static string ribInsertCodeBoxButton_Screentip {
             get {
@@ -8921,7 +9008,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Insert the current date (Ctrl + Shift + D).
+        ///   Looks up a localized string similar to Insert the current date.
         /// </summary>
         internal static string ribInsertDateButton_Screentip {
             get {
@@ -10580,7 +10667,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Search pages for keywords and copy/move to another section (Alt + F).
+        ///   Looks up a localized string similar to Search pages for keywords and copy/move to another section.
         /// </summary>
         internal static string ribSearchButton_Screentip {
             get {
@@ -10770,7 +10857,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Show XML of hierarchy and current page (Ctrl + Shift + Alt + X).
+        ///   Looks up a localized string similar to Show XML of hierarchy and current page.
         /// </summary>
         internal static string ribShowXmlButton_Screentip {
             get {
@@ -11202,7 +11289,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Convert text to uppercase (Ctrl + Shift + Alt + U).
+        ///   Looks up a localized string similar to Convert text to uppercase.
         /// </summary>
         internal static string ribUppercaseButton_Screentip {
             get {
@@ -14142,7 +14229,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("word_Reset", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Revert.
+        /// </summary>
+        internal static string word_Revert {
+            get {
+                return ResourceManager.GetString("word_Revert", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Saturation.
         /// </summary>

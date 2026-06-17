@@ -364,8 +364,8 @@ namespace River.OneMoreAddIn
 		public static string TrimLeadingIcons(this string input)
 		{
 			int i = 0;
-			while (i < input.Length && 
-				char.GetUnicodeCategory(input[i]) == UnicodeCategory.OtherSymbol)
+			while (i < input.Length &&
+				char.GetUnicodeCategory(input, i) == UnicodeCategory.OtherSymbol)
 			{
 				i += char.IsSurrogatePair(input, i) ? 2 : 1;  // advance by 1 or 2 chars
 			}

@@ -998,6 +998,66 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Return diagnostic information for each open OneNote window, including the
+		/// visible notebook, section, page, and the screen bounds of the window.
+		/// </summary>
+		/// <returns></returns>
+		public List<WindowInfo> GetWindows()
+		{
+			var windows = new List<WindowInfo>();
+
+			var currentWindow = onenote.Windows?.CurrentWindow;
+			var currentHandle = currentWindow?.WindowHandle ?? 0;
+
+			var e = onenote.Windows?.GetEnumerator();
+			if (e is not null)
+			{
+				var bounds = new Native.Rectangle();
+				while (e.MoveNext())
+				{
+					var window = e.Current as Window;
+					var threadId = Native.GetWindowThreadProcessId(
+						(IntPtr)window.WindowHandle, out var processId);
+
+					Native.GetWindowRect((IntPtr)window.WindowHandle, ref bounds);
+
+					var isCurrent = window.WindowHandle == currentHandle;
+					var info = new WindowInfo
+					{
+						IsCurrent = isCurrent,
+						Active = window.Active,
+						ProcessId = processId,
+						ThreadId = threadId,
+						WindowHandle = $"{window.WindowHandle:x}",
+						Bounds = new BoundsInfo
+						{
+							Left = bounds.Left,
+							Top = bounds.Top,
+							Right = bounds.Right,
+							Bottom = bounds.Bottom
+						}
+					};
+
+					var hierarchy = GetPageHierarchyInfo(window.CurrentPageId);
+
+					info.CurrentNotebookId = window.CurrentNotebookId;
+					info.CurrentPageId = window.CurrentPageId;
+					info.CurrentSectionId = window.CurrentSectionId;
+					info.CurrentSectionGroupId = window.CurrentSectionGroupId;
+					info.CurrentPage = hierarchy.Path;
+					info.DockedLocation = window.DockedLocation.ToString();
+					info.IsFullPageView = window.FullPageView;
+					info.IsSideNote = window.SideNote;
+
+					windows.Add(info);
+				}
+			}
+
+			return windows;
+		}
+
+
+		/// <summary>
 		/// Finds the IDs of pages matching a full hierarchy path, e.g. "Notebook/Section/Page"
 		/// or "Notebook/SectionGroup/Section/Page". A leading slash is tolerated and ignored.
 		/// The final segment may be an asterisk (*) to return all pages in the resolved section.
@@ -1831,55 +1891,7 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		public async Task<string> CollectWindowDiagnostics()
 		{
-			var windows = new List<Models.WindowInfo>();
-
-			var currentWindow = onenote.Windows?.CurrentWindow;
-			var currentHandle = currentWindow?.WindowHandle ?? 0;
-
-			var e = onenote.Windows?.GetEnumerator();
-			if (e is not null)
-			{
-				var bounds = new Native.Rectangle();
-				while (e.MoveNext())
-				{
-					var window = e.Current as Window;
-					var threadId = Native.GetWindowThreadProcessId(
-						(IntPtr)window.WindowHandle, out var processId);
-
-					Native.GetWindowRect((IntPtr)window.WindowHandle, ref bounds);
-
-					var isCurrent = window.WindowHandle == currentHandle;
-					var info = new Models.WindowInfo
-					{
-						IsCurrent = isCurrent,
-						Active = window.Active,
-						ProcessId = processId,
-						ThreadId = threadId,
-						WindowHandle = $"{window.WindowHandle:x}",
-						Bounds = new Models.BoundsInfo
-						{
-							Left = bounds.Left,
-							Top = bounds.Top,
-							Right = bounds.Right,
-							Bottom = bounds.Bottom
-						}
-					};
-
-					var hierarchy = GetPageHierarchyInfo(window.CurrentPageId);
-
-					info.CurrentNotebookId = window.CurrentNotebookId;
-					info.CurrentPageId = window.CurrentPageId;
-					info.CurrentSectionId = window.CurrentSectionId;
-					info.CurrentSectionGroupId = window.CurrentSectionGroupId;
-					info.CurrentPage = hierarchy.Path;
-					info.DockedLocation = window.DockedLocation.ToString();
-					info.IsFullPageView = window.FullPageView;
-					info.IsSideNote = window.SideNote;
-
-					windows.Add(info);
-				}
-			}
-
+			var windows = GetWindows();
 			return JsonConvert.SerializeObject(windows, Newtonsoft.Json.Formatting.Indented);
 		}
 	}

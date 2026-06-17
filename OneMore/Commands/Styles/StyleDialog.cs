@@ -797,7 +797,7 @@ namespace River.OneMoreAddIn.Commands
 
 			namesBox.Items.Add(new GraphicStyle(new Style
 			{
-				Name = dialog.StyleName,
+				Name = dialog.Value,
 				Index = index
 			},
 			false));
@@ -838,7 +838,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			style.Name = dialog.StyleName;
+			style.Name = dialog.Value;
 			index = namesBox.SelectedIndex;
 			namesBox.Items.RemoveAt(index);
 			namesBox.Items.Insert(index, style);

@@ -19,6 +19,7 @@ namespace River.OneMoreAddIn.Tests
 	{
 		private readonly Dictionary<string, string> pages = new();
 		private string hierarchyXml;
+		private readonly Dictionary<string, string> hierarchyById = new();
 		private readonly MockWindows windows;
 
 		public string CurrentPageId { get; set; } = "page-1";
@@ -41,6 +42,14 @@ namespace River.OneMoreAddIn.Tests
 			pages.TryGetValue(pageId, out var xml) ? xml : null;
 
 		public void SetHierarchyXml(string xml) => hierarchyXml = xml;
+
+		/// <summary>
+		/// Registers hierarchy XML to return for a specific start node ID, for tests that
+		/// need GetHierarchy to return different shapes for different node IDs (e.g. a
+		/// notebooks list for the empty/root ID and a single notebook for a specific ID).
+		/// Falls back to the default hierarchy XML for unregistered IDs.
+		/// </summary>
+		public void SetHierarchyXml(string id, string xml) => hierarchyById[id ?? string.Empty] = xml;
 
 
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
@@ -119,14 +128,17 @@ namespace River.OneMoreAddIn.Tests
 			string bstrStartNodeID, HierarchyScope hsScope,
 			out string pbstrHierarchyXmlOut, XMLSchema xsSchema)
 		{
-			pbstrHierarchyXmlOut = hierarchyXml;
+			pbstrHierarchyXmlOut = ResolveHierarchyXml(bstrStartNodeID);
 		}
 
 		public void GetHierarchy(
 			string bstrStartNodeID, HierarchyScope hsScope, out string pbstrHierarchyXmlOut)
 		{
-			pbstrHierarchyXmlOut = hierarchyXml;
+			pbstrHierarchyXmlOut = ResolveHierarchyXml(bstrStartNodeID);
 		}
+
+		private string ResolveHierarchyXml(string startNodeId) =>
+			hierarchyById.TryGetValue(startNodeId ?? string.Empty, out var xml) ? xml : hierarchyXml;
 
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

@@ -120,7 +120,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 			if (notebook is not null &&
 				notebook.Descendants()
-					.First(e => e.Attribute("ID")?.Value == targetID) is XElement node)
+					.FirstOrDefault(e => e.Attribute("ID")?.Value == targetID) is XElement node)
 			{
 				favorite.Status = FavoriteStatus.Known;
 

@@ -12,6 +12,9 @@ namespace River.OneMoreAddIn.Commands.Favorites
 	using Resx = Properties.Resources;
 
 
+	/// <summary>
+	/// Obsolete, Ribbon XML model
+	/// </summary>
 	internal sealed class FileFavorite
 	{
 		public int Index { get; set; }
@@ -25,6 +28,9 @@ namespace River.OneMoreAddIn.Commands.Favorites
 	}
 
 
+	/// <summary>
+	/// Obsolete, Ribbon XML file reader
+	/// </summary>
 	internal sealed class FavoritesFileProvider : Loggable
 	{
 
@@ -35,6 +41,15 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		public FavoritesFileProvider()
 		{
 			path = Path.Combine(PathHelper.GetAppDataPath(), Resx.FavoritesFilename);
+		}
+
+
+		/// <summary>
+		/// Test-only constructor allowing the favorites file path to be overridden.
+		/// </summary>
+		internal FavoritesFileProvider(string path)
+		{
+			this.path = path;
 		}
 
 

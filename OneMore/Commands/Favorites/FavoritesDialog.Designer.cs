@@ -30,7 +30,7 @@
 		{
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FavoritesDialog));
-			this.gridView = new UI.MoreDataGridView();
+			this.gridView = new River.OneMoreAddIn.UI.MoreDataGridView();
 			this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.locationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.buttonPanel = new System.Windows.Forms.Panel();
@@ -42,8 +42,6 @@
 			this.searchLabel = new System.Windows.Forms.Label();
 			this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.addButton = new System.Windows.Forms.ToolStripMenuItem();
-			this.checkButton = new System.Windows.Forms.ToolStripMenuItem();
-			this.sortByNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.manageButton = new System.Windows.Forms.ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.gridView)).BeginInit();
 			this.buttonPanel.SuspendLayout();
@@ -73,6 +71,8 @@
 			this.gridView.ShowEditingIcon = false;
 			this.gridView.Size = new System.Drawing.Size(778, 410);
 			this.gridView.TabIndex = 0;
+			this.gridView.ThemedBack = null;
+			this.gridView.ThemedFore = null;
 			this.gridView.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ChooseByDoubleClick);
 			this.gridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.ValidateOnCellFormatting);
 			this.gridView.GotFocus += new System.EventHandler(this.RefocusOnGotFocus);
@@ -117,6 +117,7 @@
 			this.goButton.Name = "goButton";
 			this.goButton.ShowBorder = true;
 			this.goButton.Size = new System.Drawing.Size(120, 38);
+			this.goButton.StylizeImage = false;
 			this.goButton.TabIndex = 0;
 			this.goButton.Text = "Go";
 			this.goButton.ThemedBack = null;
@@ -135,6 +136,7 @@
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(120, 38);
+			this.cancelButton.StylizeImage = false;
 			this.cancelButton.TabIndex = 1;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.ThemedBack = null;
@@ -168,6 +170,7 @@
 			this.menuButton.Name = "menuButton";
 			this.menuButton.ShowBorder = false;
 			this.menuButton.Size = new System.Drawing.Size(50, 38);
+			this.menuButton.StylizeImage = false;
 			this.menuButton.TabIndex = 1;
 			this.menuButton.Text = "•••";
 			this.menuButton.ThemedBack = null;
@@ -183,6 +186,7 @@
 			this.searchBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.searchBox.Location = new System.Drawing.Point(138, 18);
 			this.searchBox.Name = "searchBox";
+			this.searchBox.ProcessEnterKey = false;
 			this.searchBox.Size = new System.Drawing.Size(566, 28);
 			this.searchBox.TabIndex = 0;
 			this.searchBox.ThemedBack = null;
@@ -203,41 +207,23 @@
 			this.contextMenu.ImageScalingSize = new System.Drawing.Size(24, 24);
 			this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addButton,
-            this.checkButton,
-            this.sortByNameToolStripMenuItem,
             this.manageButton});
 			this.contextMenu.Name = "contextMenu";
-			this.contextMenu.Size = new System.Drawing.Size(233, 132);
+			this.contextMenu.Size = new System.Drawing.Size(249, 101);
 			// 
 			// addButton
 			// 
 			this.addButton.Image = global::River.OneMoreAddIn.Properties.Resources.e_Journal;
 			this.addButton.Name = "addButton";
-			this.addButton.Size = new System.Drawing.Size(232, 32);
+			this.addButton.Size = new System.Drawing.Size(248, 32);
 			this.addButton.Text = "Add Current Page";
 			this.addButton.Click += new System.EventHandler(this.AddCurrentPage);
-			// 
-			// checkButton
-			// 
-			this.checkButton.Image = global::River.OneMoreAddIn.Properties.Resources.e_CheckMark;
-			this.checkButton.Name = "checkButton";
-			this.checkButton.Size = new System.Drawing.Size(232, 32);
-			this.checkButton.Text = "Check Favorites";
-			this.checkButton.Click += new System.EventHandler(this.CheckFavorites);
-			// 
-			// sortByNameToolStripMenuItem
-			// 
-			this.sortByNameToolStripMenuItem.Image = global::River.OneMoreAddIn.Properties.Resources.DownArrow;
-			this.sortByNameToolStripMenuItem.Name = "sortByNameToolStripMenuItem";
-			this.sortByNameToolStripMenuItem.Size = new System.Drawing.Size(232, 32);
-			this.sortByNameToolStripMenuItem.Text = "Sort By Name";
-			this.sortByNameToolStripMenuItem.Click += new System.EventHandler(this.SortFavorites);
 			// 
 			// manageButton
 			// 
 			this.manageButton.Image = global::River.OneMoreAddIn.Properties.Resources.e_Hammer;
 			this.manageButton.Name = "manageButton";
-			this.manageButton.Size = new System.Drawing.Size(232, 32);
+			this.manageButton.Size = new System.Drawing.Size(248, 32);
 			this.manageButton.Text = "Manage Favorites";
 			this.manageButton.Click += new System.EventHandler(this.ManageFavorites);
 			// 
@@ -283,9 +269,7 @@
 		private System.Windows.Forms.Label searchLabel;
 		private UI.MoreButton menuButton;
 		private System.Windows.Forms.ContextMenuStrip contextMenu;
-		private System.Windows.Forms.ToolStripMenuItem checkButton;
 		private System.Windows.Forms.ToolStripMenuItem manageButton;
 		private System.Windows.Forms.ToolStripMenuItem addButton;
-		private System.Windows.Forms.ToolStripMenuItem sortByNameToolStripMenuItem;
 	}
 }

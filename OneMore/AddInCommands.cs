@@ -24,7 +24,7 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<AddCaptionCommand>();
 
 
-		[Command("ribAddFavoritePageButton_Label", Keys.None, "ribFavoritesMenu")]
+		[Command("ribAddFavoritePageButton_Label", Keys.Control | Keys.Shift | Keys.A, "ribFavoritesMenu")]
 		public async Task AddFavoritePageCmd(IRibbonControl control)
 			=> await factory.Run<AddFavoritePageCommand>();
 
@@ -563,6 +563,7 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<LoadStylesCommand>();
 
 
+		[Command("ribManageFavoritesButton_Label", Keys.Control | Keys.Alt | Keys.Shift | Keys.F, "ribFavoritesMenu")]
 		public async Task ManageFavoritesCmd(IRibbonControl control)
 			=> await factory.Run<ManageFavoritesCommand>(ribbon);
 

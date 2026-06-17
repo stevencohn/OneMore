@@ -35,7 +35,7 @@ namespace River.OneMoreAddIn.Commands
 			this.combo = new UI.MoreComboBox();
 			this.nameLabel = new UI.MoreLabel();
 			this.elementsGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
-			this.elementsBox = new River.OneMoreAddIn.UI.MoreListView();
+			this.elementsBox = new River.OneMoreAddIn.UI.MoreListViewEx();
 			this.resetButtonPanel = new System.Windows.Forms.Panel();
 			this.resetButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.previewGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
@@ -65,7 +65,7 @@ namespace River.OneMoreAddIn.Commands
 			this.defaultFontButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.selectedFontLabel = new UI.MoreLabel();
 			this.resetFontButton = new River.OneMoreAddIn.UI.MoreButton();
-			this.colorFontsBox = new River.OneMoreAddIn.UI.MoreListView();
+			this.colorFontsBox = new River.OneMoreAddIn.UI.MoreListViewEx();
 			this.bottomPanel = new System.Windows.Forms.Panel();
 			this.button1 = new River.OneMoreAddIn.UI.MoreButton();
 			this.elementsGroup.SuspendLayout();
@@ -652,7 +652,7 @@ namespace River.OneMoreAddIn.Commands
 		private UI.MoreComboBox combo;
 		private UI.MoreLabel nameLabel;
 		private UI.MoreGroupBox elementsGroup;
-		private River.OneMoreAddIn.UI.MoreListView elementsBox;
+		private River.OneMoreAddIn.UI.MoreListViewEx elementsBox;
 		private UI.MoreGroupBox previewGroup;
 		private River.OneMoreAddIn.UI.MoreToolStrip toolstrip;
 		private UI.MoreMenuItem deleteButton;
@@ -676,7 +676,7 @@ namespace River.OneMoreAddIn.Commands
 		private UI.MoreSplitButton colorButton;
 		private UI.MoreMenuItem defaultBlackToolStripMenuItem;
 		private UI.MoreButton resetFontButton;
-		private UI.MoreListView colorFontsBox;
+		private UI.MoreListViewEx colorFontsBox;
 		private UI.MoreGroupBox fontsGroup;
 		private UI.MoreButton button1;
 		private UI.MoreGroupBox fontElementsGroup;

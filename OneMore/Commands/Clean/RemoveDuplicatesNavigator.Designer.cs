@@ -30,7 +30,7 @@
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RemoveDuplicatesNavigator));
 			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
-			this.view = new River.OneMoreAddIn.UI.MoreListView();
+			this.view = new River.OneMoreAddIn.UI.MoreListViewEx();
 			this.SuspendLayout();
 			// 
 			// cancelButton
@@ -88,6 +88,6 @@
 
 		#endregion
 		private UI.MoreButton cancelButton;
-		private UI.MoreListView view;
+		private UI.MoreListViewEx view;
 	}
 }

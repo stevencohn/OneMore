@@ -4,9 +4,9 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using Microsoft.Office.Core;
-	using River.OneMoreAddIn.Settings;
+	using River.OneMoreAddIn.Commands.Favorites;
 	using System.Threading.Tasks;
+	using System.Windows.Forms;
 
 	internal class ManageFavoritesCommand : Command
 	{
@@ -17,9 +17,11 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using var dialog = new SettingsDialog(args[0] as IRibbonUI);
-			dialog.ActivateSheet(SettingsDialog.Sheets.Favorites);
-			dialog.ShowDialog(owner);
+			using var dialog = new ManageFavoritesDialog();
+			if (dialog.ShowDialog(owner) == DialogResult.OK)
+			{
+				ribbon?.InvalidateControl(FavoritesMenu.MenuID);
+			}
 
 			await Task.Yield();
 		}

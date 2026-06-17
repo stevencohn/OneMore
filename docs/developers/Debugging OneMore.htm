@@ -146,6 +146,8 @@
 <li><a id="technote---com-registration" href="TechNote - COM Registration.htm">TechNote - COM Registration</a></li>
 <li><a id="technote---com-surrogate" href="TechNote - COM Surrogate.htm">TechNote - COM Surrogate</a></li>
 <li><a id="technote---editing-text" href="TechNote - Editing Text.htm">TechNote - Editing Text</a></li>
+<li><a id="technote---favorites" href="TechNote - Favorites.htm">TechNote - Favorites</a></li>
+<li><a id="technote---hyperlinks" href="TechNote - Hyperlinks.htm">TechNote - Hyperlinks</a></li>
 <li><a id="technote---interop" href="TechNote - Interop.htm">TechNote - Interop</a></li>
 <li><a id="technote---styles" href="TechNote - Styles.htm">TechNote - Styles</a></li>
 <li><a id="technote---window-focus" href="TechNote - Window Focus.htm">TechNote - Window Focus</a></li>
@@ -158,36 +160,36 @@
     <!-- Page Content -->
     <div id="content">
       <DIV style="DIRECTION: ltr">
-<DIV style="WIDTH: 8.398in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0in">
-<DIV style="WIDTH: 2.864in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0.021in">
+<DIV style="WIDTH: 8.415in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0in">
+<DIV style="WIDTH: 2.881in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0.021in">
 <P lang=yo style='FONT-SIZE: 20pt; FONT-FAMILY: "Calibri Light"; MARGIN: 0in'>Debugging OneMore</P></DIV>
-<DIV style="WIDTH: 2.422in; MARGIN-TOP: 0.042in; DIRECTION: ltr; MARGIN-LEFT: 0.021in">
+<DIV style="WIDTH: 2.456in; MARGIN-TOP: 0.038in; DIRECTION: ltr; MARGIN-LEFT: 0.021in">
 <P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">Sunday, February 19, 2023</P>
 <P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">9:40 AM</P></DIV>
-<DIV style="WIDTH: 8.398in; MARGIN-TOP: 0.434in; DIRECTION: ltr; MARGIN-LEFT: 0in">
+<DIV style="WIDTH: 8.415in; MARGIN-TOP: 0.43in; DIRECTION: ltr; MARGIN-LEFT: 0in">
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">There are two ways to attach the Visual Studio debugger to OneMore. You can either force a break point or attach to a running instance.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Inject A Debugger Break Point</H1>
-<P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">The first is to&nbsp;instrument&nbsp;the source code by adding a call to the </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>Debugger.Launch</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> method where you want to start the debugger</SPAN></P>
+<P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">The first is to&nbsp;instrument&nbsp;the source code by adding a call to the </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #ecf5ff'>Debugger.Launch</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> method where you want to start the debugger</SPAN></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<P lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; COLOR: #172b4d; MARGIN: 0in 0in 0in 0.375in'><SPAN style="BACKGROUND: #e8e8e8">System.Diagnostics.Debugger.Launch();</SPAN></P>
+<P lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in 0in 0in 0.375in'><SPAN style="BACKGROUND: #ecf5ff">System.Diagnostics.Debugger.Launch();</SPAN></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">This will cause Visual Studio to launch the&nbsp;<SPAN style="FONT-STYLE: italic">Attach Debugger</SPAN>&nbsp;dialog. This is most useful when you already have the OneMore solution open in Visual Studio so you can attach using that VS instance with all of the source code and symbols ready to go.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">If the <SPAN style="FONT-STYLE: italic">Attach Debugger</SPAN> dialog does not appear and instead a new instance of VS is opened then&nbsp;<A href="https://docs.microsoft.com/en-us/visualstudio/debugger/debug-using-the-just-in-time-debugger">check this out from Microsoft about the Just in Time Debugger settings</A>.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Attach to A Running Instance</H1>
-<P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Alternatively, you can attach the Visual Studio debugger directly to the running OneMore process. OneMore runs in a process named </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>dllhost</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, of which there are many. There are two ways to identify which instance is the OneMore process.</SPAN></P>
+<P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Alternatively, you can attach the Visual Studio debugger directly to the running OneMore process. OneMore runs in a process named </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #ecf5ff'>dllhost</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, of which there are many. There are two ways to identify which instance is the OneMore process.</SPAN></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <H3 lang=yo style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; COLOR: #5b9bd5; MARGIN: 0in">Use the Log File</H3>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Look in the OneMore log file. The process ID is stated in the first line of each session in the log; this is the line beginning with "Starting dllhost".</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<P lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in 0in 0in 0.375in'><SPAN style="BACKGROUND: #e9e9e9">Starting dllhost 19712, ...</SPAN></P>
+<P lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in 0in 0in 0.375in'><SPAN style="BACKGROUND: #ecf5ff">Starting dllhost 19712, ...</SPAN></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <H3 lang=yo style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; COLOR: #5b9bd5; MARGIN: 0in">Use Task Manager</H3>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Open Task Manager and add the column named "Command Line". Look for the dllhost process with this command line</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<P lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; COLOR: #172b4d; MARGIN: 0in 0in 0in 0.375in'><SPAN style="BACKGROUND: #e8e8e8">C:\WINDOWS\system32\DllHost.exe /Processid:{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}</SPAN></P>
+<P lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in 0in 0in 0.375in'><SPAN style="BACKGROUND: #ecf5ff">C:\WINDOWS\system32\DllHost.exe /Processid:{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}</SPAN></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in 0in 0in 0.375in">&nbsp;</P>
 <H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Terminate A Running Instance</H1>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">There are times when the COM Surrogate process will not release resources, causing it to hang and remain in-process even if OneNote is stopped. You can terminate this process, dllhost, in one of two ways.</P>
@@ -195,7 +197,7 @@
 <H3 lang=yo style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; COLOR: #5b9bd5; MARGIN: 0in">Use the Process ID</H3>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">As mentioned above, the process ID is reported in the first line of each session in the log file. Stop the process from Task Manager or use the taskkill command</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<P lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; COLOR: #172b4d; MARGIN: 0in 0in 0in 0.375in'><SPAN style="BACKGROUND: #e8e8e8">taskkill /pid &lt;pid&gt; /f</SPAN></P>
+<P lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in 0in 0in 0.375in'><SPAN style="BACKGROUND: #ecf5ff">taskkill /pid &lt;pid&gt; /f</SPAN></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <H3 lang=yo style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; COLOR: #5b9bd5; MARGIN: 0in">Use the stop.ps1 Script</H3>
 <P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">An easier solution is to use the provided </SPAN><SPAN style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #f1f1f1'>stop</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> script to forcefully terminate the dllhost process and OneNote. This is located in the OneMore solution directory. Run this from an administrative PowerShell window</SPAN></P>

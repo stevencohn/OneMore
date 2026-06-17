@@ -44,14 +44,15 @@
 			this.okButton.Enabled = false;
 			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
-			this.okButton.Location = new System.Drawing.Point(344, 100);
+			this.okButton.Location = new System.Drawing.Point(398, 97);
 			this.okButton.Name = "okButton";
-			this.okButton.ThemedBack = null;
-			this.okButton.ThemedFore = null;
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(116, 38);
+			this.okButton.StylizeImage = false;
 			this.okButton.TabIndex = 11;
 			this.okButton.Text = "OK";
+			this.okButton.ThemedBack = null;
+			this.okButton.ThemedFore = null;
 			this.okButton.UseVisualStyleBackColor = true;
 			// 
 			// cancelButton
@@ -61,14 +62,15 @@
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
-			this.cancelButton.Location = new System.Drawing.Point(464, 100);
+			this.cancelButton.Location = new System.Drawing.Point(518, 97);
 			this.cancelButton.Name = "cancelButton";
-			this.cancelButton.ThemedBack = null;
-			this.cancelButton.ThemedFore = null;
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(116, 38);
+			this.cancelButton.StylizeImage = false;
 			this.cancelButton.TabIndex = 12;
 			this.cancelButton.Text = "Cancel";
+			this.cancelButton.ThemedBack = null;
+			this.cancelButton.ThemedFore = null;
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
 			// nameLabel
@@ -87,10 +89,11 @@
 			this.nameBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.nameBox.Location = new System.Drawing.Point(118, 23);
 			this.nameBox.Name = "nameBox";
+			this.nameBox.ProcessEnterKey = false;
+			this.nameBox.Size = new System.Drawing.Size(516, 26);
+			this.nameBox.TabIndex = 14;
 			this.nameBox.ThemedBack = null;
 			this.nameBox.ThemedFore = null;
-			this.nameBox.Size = new System.Drawing.Size(462, 26);
-			this.nameBox.TabIndex = 14;
 			this.nameBox.TextChanged += new System.EventHandler(this.NameBoxTextChanged);
 			// 
 			// errorLabel
@@ -100,11 +103,11 @@
 			this.errorLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.errorLabel.Location = new System.Drawing.Point(114, 52);
 			this.errorLabel.Name = "errorLabel";
-			this.errorLabel.ThemedBack = "ControlLightLight";
-			this.errorLabel.ThemedFore = "ErrorText";
 			this.errorLabel.Size = new System.Drawing.Size(282, 20);
 			this.errorLabel.TabIndex = 15;
 			this.errorLabel.Text = "Name exists. Choose a different name.";
+			this.errorLabel.ThemedBack = "ControlLightLight";
+			this.errorLabel.ThemedFore = "ErrorText";
 			this.errorLabel.Visible = false;
 			// 
 			// RenameDialog
@@ -114,13 +117,14 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(592, 150);
+			this.ClientSize = new System.Drawing.Size(650, 150);
 			this.Controls.Add(this.errorLabel);
 			this.Controls.Add(this.nameBox);
 			this.Controls.Add(this.nameLabel);
 			this.Controls.Add(this.okButton);
 			this.Controls.Add(this.cancelButton);
 			this.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;

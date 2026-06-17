@@ -24,6 +24,7 @@ namespace River.OneMoreAddIn.UI
 			Renderer = new CustomRenderer(new ThemedColorTable());
 		}
 
+
 		void ILoadControl.OnLoad()
 		{
 			AutoSize = false;
@@ -65,7 +66,13 @@ namespace River.OneMoreAddIn.UI
 
 			protected override void OnRenderToolStripBackground(ToolStripRenderEventArgs e)
 			{
-				e.ToolStrip.BackColor = ThemeManager.Instance.GetColor("MenuBar");
+				// Never explicitly assign BackColor at design time: the VS designer would bake
+				// the (always-light) snapshot into the consumer's InitializeComponent the next
+				// time its Designer.cs is opened and saved.
+				if (!ThemeManager.IsDesignTime)
+				{
+					e.ToolStrip.BackColor = ThemeManager.Instance.GetColor("MenuBar");
+				}
 				base.OnRenderToolStripBackground(e);
 			}
 

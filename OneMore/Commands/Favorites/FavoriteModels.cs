@@ -54,7 +54,9 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		public string Name { get; set; }
 
 		/// <summary>
-		/// User supplied friendly name or alias of the favorite. Defaults to the name.
+		/// User supplied friendly name or alias of the favorite, or null if the user has
+		/// not overridden the name. Callers that display this value should fall back to
+		/// Name, e.g. "favorite.Alias ?? favorite.Name".
 		/// </summary>
 		public string Alias { get; set; }
 

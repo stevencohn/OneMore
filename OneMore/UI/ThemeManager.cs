@@ -67,6 +67,20 @@ namespace River.OneMoreAddIn.UI
 		public static ThemeManager Instance => instance ??= new ThemeManager();
 
 
+		/// <summary>
+		/// Gets a value indicating whether code is currently running inside the VS designer.
+		/// Use this to skip explicit BackColor/ForeColor assignments at design time instead of
+		/// relying on ShouldSerializeXxx/ResetXxx overrides - confirmed (via a standalone
+		/// TypeDescriptor test against .NET Framework) that those conventions are NOT honored
+		/// for Control.BackColor/ForeColor on a subclass, regardless of accessibility, so an
+		/// explicit assignment always gets baked into the consumer's InitializeComponent the
+		/// next time its Designer.cs is opened and saved, no matter how it's guarded.
+		/// </summary>
+		public static bool IsDesignTime =>
+			LicenseManager.UsageMode == LicenseUsageMode.Designtime ||
+			System.Diagnostics.Process.GetCurrentProcess().ProcessName == "devenv";
+
+
 		[JsonIgnore]
 		public Color ButtonBack => Colors[nameof(ButtonBack)];
 		[JsonIgnore]
@@ -157,15 +171,11 @@ namespace River.OneMoreAddIn.UI
 				}
 			}
 
-			var designMode =
-				LicenseManager.UsageMode == LicenseUsageMode.Designtime ||
-				System.Diagnostics.Process.GetCurrentProcess().ProcessName == "devenv";
-
 			var mode = modeIndex >= 0
 				? (ThemeMode)modeIndex
 				: new SettingsProvider().Theme;
 
-			DarkMode = !designMode &&
+			DarkMode = !IsDesignTime &&
 				(mode == ThemeMode.Dark ||
 				(mode == ThemeMode.System && Office.IsBlackThemeEnabled(true)));
 
@@ -222,6 +232,13 @@ namespace River.OneMoreAddIn.UI
 
 		private void Colorize(Control control)
 		{
+			if (IsDesignTime)
+			{
+				// never explicitly assign BackColor/ForeColor at design time, otherwise the
+				// VS designer bakes the (always-light) snapshot into InitializeComponent
+				return;
+			}
+
 			if (control is ListView ||
 				control is MenuStrip ||
 				(control is ToolStrip && control is not StatusStrip))

@@ -27,15 +27,30 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		/// <returns></returns>
 		public static XElement LoadMenu()
 		{
-			var root = MakeMenuRoot();
-
 			using var provider = new FavoritesProvider();
 			var collection = provider.ReadFavorites();
+
+			var showShortcuts = new Settings.SettingsProvider()
+				.GetCollection(nameof(Settings.FavoritesSheet))?
+				.Get<bool>("kbdshorts") == true;
+
+			return BuildMenu(collection, showShortcuts);
+		}
+
+
+		/// <summary>
+		/// Builds the ribbon XML for the given favorites collection. Pure XML construction,
+		/// no I/O, so this is the entry point for unit tests.
+		/// </summary>
+		internal static XElement BuildMenu(FavoritesCollection collection, bool showShortcuts)
+		{
+			var root = MakeMenuRoot();
 
 			foreach (var folder in collection.Folders)
 			{
 				var menu = new XElement(ns + "menu",
 					new XAttribute("id", $"omFavoritesFolder{folder.FolderID}"),
+					new XAttribute("imageMso", "Folder"),
 					new XAttribute("label", Chop(folder.Name))
 					);
 
@@ -52,7 +67,10 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				root.Add(MakeButton(favorite));
 			}
 
-			AddKeyboardShortcutsButton(root);
+			if (showShortcuts)
+			{
+				AddKeyboardShortcutsButton(root);
+			}
 
 			return root;
 		}
@@ -97,7 +115,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				new XAttribute("id", $"omFavorite{favorite.ID}"),
 				new XAttribute("onAction", GotoAction),
 				new XAttribute("imageMso", imageMso),
-				new XAttribute("label", Chop(favorite.Alias)),
+				new XAttribute("label", Chop(favorite.Alias ?? favorite.Name)),
 				new XAttribute("tag", favorite.Uri),
 				new XAttribute("screentip", favorite.Location)
 				);
@@ -106,19 +124,12 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 		private static void AddKeyboardShortcutsButton(XElement root)
 		{
-			var addButton = new Settings.SettingsProvider()
-				.GetCollection(nameof(Settings.FavoritesSheet))?
-				.Get<bool>("kbdshorts") == true;
-
-			if (addButton)
-			{
-				root.Add(new XElement(ns + "button",
-					new XAttribute("id", KbdShortcutsId),
-					new XAttribute("label", Resx.ribShowKeyboardShortcutsButton_Label),
-					new XAttribute("imageMso", "AdpPrimaryKey"),
-					new XAttribute("onAction", "ShowKeyboardShortcutsCmd")
-					));
-			}
+			root.Add(new XElement(ns + "button",
+				new XAttribute("id", KbdShortcutsId),
+				new XAttribute("label", Resx.ribShowKeyboardShortcutsButton_Label),
+				new XAttribute("imageMso", "AdpPrimaryKey"),
+				new XAttribute("onAction", "ShowKeyboardShortcutsCmd")
+				));
 		}
 
 

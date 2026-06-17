@@ -157,6 +157,14 @@
     <value>L'image a déjà une légende</value>
     <comment>info message</comment>
   </data>
+  <data name="AddFavoriteCommand_duplicate" xml:space="preserve">
+    <value>Ce favori existe déjà</value>
+    <comment>error message</comment>
+  </data>
+  <data name="AddFavoriteCommand_error" xml:space="preserve">
+    <value>Impossible d'enregistrer le favori</value>
+    <comment>error message</comment>
+  </data>
   <data name="AddFormulaCommand_Calculated" xml:space="preserve">
     <value>Calculé</value>
     <comment>tag name</comment>
@@ -626,6 +634,12 @@ Inverser</value>
   <data name="CopyFolderCommand_InvalidTarget" xml:space="preserve">
     <value>Impossible de copier un dossier dans lui-même ou dans l'un de ses enfants</value>
     <comment>error message</comment>
+  </data>
+  <data name="CopyLinkCommand_multiWindowWarning" xml:space="preserve">
+    <value>Cette page est ouverte dans plusieurs fenêtres ; la sélection n'est peut-être pas correcte.
+
+Voulez-vous continuer ?</value>
+    <comment>warning message</comment>
   </data>
   <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">
     <value>Aucun lien hypertexte trouvé dans la plage</value>
@@ -1201,6 +1215,26 @@ Fichier OneNote (*.one)</value>
   <data name="FavoritesFilename" xml:space="preserve">
     <value>Favorites.xml</value>
     <comment>FILENAME</comment>
+  </data>
+  <data name="FavoritesManagerControl_deleteConfirmMultiple" xml:space="preserve">
+    <value>Supprimer {0} éléments ?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="FavoritesManagerControl_emptyFolderHint" xml:space="preserve">
+    <value>Vide - faites glisser les favoris ici</value>
+    <comment>list view hint text</comment>
+  </data>
+  <data name="FavoritesManagerControl_newFolder" xml:space="preserve">
+    <value>Nouveau dossier</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="FavoritesManagerControl_renameFavorite" xml:space="preserve">
+    <value>Renommer le favori</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="FavoritesManagerControl_renameFolder" xml:space="preserve">
+    <value>Renommer le dossier</value>
+    <comment>dialog title</comment>
   </data>
   <data name="FavoritesSheet_DeleteMessage" xml:space="preserve">
     <value>Supprimer {0} ?</value>
@@ -1941,6 +1975,14 @@ Voulez-vous actualiser la page existante ?</value>
     <value>Charger le thème de style</value>
     <comment>OpenFileDialog title</comment>
   </data>
+  <data name="ManageFavoritesDialog_discard" xml:space="preserve">
+    <value>Supprimer les modifications non enregistrées ?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ManageFavoritesDialog_Text" xml:space="preserve">
+    <value>Gérer les favoris</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="MapDialog_groupBox.Text" xml:space="preserve">
     <value>Pages dans</value>
     <comment>group box</comment>
@@ -1960,14 +2002,6 @@ Voulez-vous actualiser la page existante ?</value>
   <data name="MovePageCommand_noPages" xml:space="preserve">
     <value>Il n'y a aucune page sélectionnée à déplacer</value>
     <comment>error message</comment>
-  </data>
-  <data name="RenameDialog_errorLabel.Text" xml:space="preserve">
-    <value>Le nom existe. Choisissez un nom différent.</value>
-    <comment>label</comment>
-  </data>
-  <data name="RenameDialog_renameStyle" xml:space="preserve">
-    <value>Renommer Style</value>
-    <comment>dialog title</comment>
   </data>
   <data name="NavigatorSheet_corrallBox.Text" xml:space="preserve">
     <value>Restreindre la fenêtre du navigateur à l'écran actif</value>
@@ -2760,6 +2794,18 @@ Sélectionnez Non pour conserver une ligne vide entre les paragraphes</value>
     <value>Suppression du numéro de la page {0}</value>
     <comment>progress status dialog</comment>
   </data>
+  <data name="RenameDialog_errorLabel.Text" xml:space="preserve">
+    <value>Le nom existe. Choisissez un nom différent.</value>
+    <comment>label</comment>
+  </data>
+  <data name="RenameDialog_renameStyle" xml:space="preserve">
+    <value>Renommer Style</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="RenameFavoriteDialog_originalNameLabel" xml:space="preserve">
+    <value>Nom d'origine : {0}</value>
+    <comment>label format string</comment>
+  </data>
   <data name="ReorderDialog.Text" xml:space="preserve">
     <value>Réorganiser les styles</value>
     <comment>dialog title</comment>
@@ -2828,16 +2874,16 @@ Sélectionnez Non pour conserver une ligne vide entre les paragraphes</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribAddFootnoteButton_Screentip" xml:space="preserve">
-    <value>Ajouter une note de bas de page (Ctrl + Alt + F)</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
+    <value>Ajouter une nouvelle note de bas de page à partir de la position actuelle</value>
+    <comment>ribbon references NODUP</comment>
   </data>
   <data name="ribAddFormulaButton_Label" xml:space="preserve">
     <value>Ajouter une formule</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribAddFormulaButton_Screentip" xml:space="preserve">
-    <value>Ajouter / modifier une formule dans les cellules sélectionnées du tableau (F5)</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
+    <value>Ajouter ou modifier une formule dans les cellules du tableau sélectionnées</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribAddTagBankButton_Label" xml:space="preserve">
     <value>Ajouter une banque de balises</value>
@@ -3237,7 +3283,7 @@ Onglet Aide</value>
   </data>
   <data name="ribDecreaseFontSizeButton_Screentip" xml:space="preserve">
     <value>Diminuer la taille de la police de la page (Ctrl + Alt + Maj)</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribDeleteFormulaButton_Label" xml:space="preserve">
     <value>Supprimer la formule</value>
@@ -3380,8 +3426,8 @@ Onglet Aide</value>
     <comment>ribbon</comment>
   </data>
   <data name="ribFillDownButton_Screentip" xml:space="preserve">
-    <value>Remplir vers le bas (Ctrl + D)</value>
-    <comment>ribbon</comment>
+    <value>Remplir la séquence dans les colonnes sélectionnées</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribFindHashtagsButton_Label" xml:space="preserve">
     <value>Rechercher des hashtags</value>
@@ -3476,8 +3522,8 @@ Onglet Aide</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribIncreaseFontSizeButton_Screentip" xml:space="preserve">
-    <value>Augmenter la taille de la police de la page (Ctrl + Alt + Plus)</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <value>Augmenter la taille de la police de la page</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribInsertBlueStatusButton_Label" xml:space="preserve">
     <value>Statut bleu</value>
@@ -3516,7 +3562,7 @@ Onglet Aide</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertCodeBoxButton_Screentip" xml:space="preserve">
-    <value>Insérer une zone de code (F6), enveloppant le contenu sélectionné</value>
+    <value>Insérer une zone de code, encapsulant le contenu sélectionné</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertDateButton_Label" xml:space="preserve">
@@ -3524,8 +3570,8 @@ Onglet Aide</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribInsertDateButton_Screentip" xml:space="preserve">
-    <value>Insérer la date actuelle (Ctrl + Maj + D)</value>
-    <comment>ribbon</comment>
+    <value>Insérer la date actuelle</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertDateTimeButton_Label" xml:space="preserve">
     <value>Date de tri avec le temps</value>
@@ -4245,8 +4291,8 @@ Onglet Aide</value>
     <comment>ribbon search</comment>
   </data>
   <data name="ribSearchButton_Screentip" xml:space="preserve">
-    <value>Rechercher dans les pages des mots-clés et copier / déplacer vers une autre section (Alt + F)</value>
-    <comment>ribbon item</comment>
+    <value>Rechercher des pages par mots-clés et copier/déplacer vers une autre section</value>
+    <comment>ribbon search</comment>
   </data>
   <data name="ribSearchHashtagsButton_Label" xml:space="preserve">
     <value>Rechercher des hashtags</value>
@@ -4325,8 +4371,8 @@ Onglet Aide</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribShowXmlButton_Screentip" xml:space="preserve">
-    <value>Afficher le XML de la hiérarchie et de la page actuelle (Ctrl + Maj + Alt + X)</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <value>Afficher le XML de la hiérarchie et de la page actuelle</value>
+    <comment>ribbon extras</comment>
   </data>
   <data name="ribShutdownTimerButton_Label" xml:space="preserve">
     <value>Arrêter la minuterie</value>
@@ -4516,8 +4562,8 @@ Onglet Aide</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribUppercaseButton_Screentip" xml:space="preserve">
-    <value>Convertir le texte en majuscules (Ctrl + Maj + Alt + U)</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <value>Convertir le texte en majuscule</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribViewNotebookInBrowserButton_Label" xml:space="preserve">
     <value>Afficher le notebook dans le navigateur</value>
@@ -5696,6 +5742,9 @@ Merci!</value>
   </data>
   <data name="word_Reset" xml:space="preserve">
     <value>Réinitialiser</value>
+  </data>
+  <data name="word_Revert" xml:space="preserve">
+    <value>Revenir</value>
   </data>
   <data name="word_Saturation" xml:space="preserve">
     <value>Saturation</value>
