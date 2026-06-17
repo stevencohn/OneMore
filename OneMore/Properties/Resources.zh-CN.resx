@@ -628,6 +628,12 @@
     <value>无法将文件夹复制到其自身或其子级之一</value>
     <comment>error message</comment>
   </data>
+  <data name="CopyLinkCommand_multiWindowWarning" xml:space="preserve">
+    <value>该页面在多个窗口中打开；选择可能不正确。
+
+您想继续吗？</value>
+    <comment>warning message</comment>
+  </data>
   <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">
     <value>范围内没有发现超链接</value>
     <comment>message box</comment>
@@ -1964,14 +1970,6 @@ OneNote 文件 (*.one)</value>
     <value>没有选择要移动的页面</value>
     <comment>error message</comment>
   </data>
-  <data name="RenameDialog_errorLabel.Text" xml:space="preserve">
-    <value>名称存在。选择不同的名称。</value>
-    <comment>label</comment>
-  </data>
-  <data name="RenameDialog_renameStyle" xml:space="preserve">
-    <value>重命名风格</value>
-    <comment>dialog title</comment>
-  </data>
   <data name="NavigatorSheet_corrallBox.Text" xml:space="preserve">
     <value>导航器窗口仅显示当前活动Onenote窗口的内容</value>
     <comment>checkbox</comment>
@@ -2762,6 +2760,14 @@ ISO-code then comma then language name</comment>
   <data name="RemovingPageNumber_Message" xml:space="preserve">
     <value>从页面{0}中删除号码</value>
     <comment>progress status dialog</comment>
+  </data>
+  <data name="RenameDialog_errorLabel.Text" xml:space="preserve">
+    <value>名称存在。选择不同的名称。</value>
+    <comment>label</comment>
+  </data>
+  <data name="RenameDialog_renameStyle" xml:space="preserve">
+    <value>重命名风格</value>
+    <comment>dialog title</comment>
   </data>
   <data name="ReorderDialog.Text" xml:space="preserve">
     <value>重新排序样式</value>

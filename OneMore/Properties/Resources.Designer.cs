@@ -1225,6 +1225,17 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This page is open in multiple windows; the selection may not be correct.
+        ///
+        ///Do you want to continue?.
+        /// </summary>
+        internal static string CopyLinkCommand_multiWindowWarning {
+            get {
+                return ResourceManager.GetString("CopyLinkCommand_multiWindowWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No hyperlinks found in range.
         /// </summary>
         internal static string CrawlWebCommand_NoHyperlinks {
@@ -3159,23 +3170,9 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CREATE TABLE IF NOT EXISTS favorites_folder (
-        ///    folderID  INTEGER PRIMARY KEY AUTOINCREMENT,
-        ///    name      TEXT NOT NULL,
-        ///    UNIQUE(name)
-        ///);
-        ///
-        ///CREATE TABLE IF NOT EXISTS favorite (
-        ///    favoriteID  INTEGER PRIMARY KEY AUTOINCREMENT,
-        ///    folderID    INTEGER REFERENCES favorites_folder(folderID) ON DELETE CASCADE,
-        ///    name        TEXT NOT NULL,
-        ///    alias       TEXT,
-        ///    path        TEXT,
-        ///    hyperlink   TEXT NOT NULL,
-        ///    notebookID  TEXT NOT NULL,
-        ///    sectionID   TEXT,
-        ///    pageID      TEXT,
-        /// [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to CREATE TABLE IF NOT EXISTS favorites_folder (folderID INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, UNIQUE(name));
+        ///CREATE TABLE IF NOT EXISTS favorite (favoriteID INTEGER PRIMARY KEY AUTOINCREMENT, folderID INTEGER REFERENCES favorites_folder(folderID) ON DELETE CASCADE, name TEXT NOT NULL, alias TEXT, location TEXT, uri TEXT NOT NULL, notebookID TEXT NOT NULL, sectionID TEXT NOT NULL, pageID TEXT, sortOrder INTEGER NOT NULL DEFAULT 0);
+        ///CREATE INDEX IF NOT EXISTS idx_favorites_folder ON Favorite( [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string FavoritesDB {
             get {
