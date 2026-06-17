@@ -12,8 +12,7 @@ namespace River.OneMoreAddIn.Settings
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
-	using Favorite = FavoritesProvider.Favorite;
-	using FavoriteStatus = FavoritesProvider.FavoriteStatus;
+	using Commands.Favorites;
 	using Resx = Properties.Resources;
 
 
@@ -64,13 +63,14 @@ namespace River.OneMoreAddIn.Settings
 			(_, float scaleY) = UI.Scaling.GetScalingFactors();
 			gridView.RowTemplate.Height = (int)(16 * scaleY);
 
-			await using var provider = new FavoritesProvider(ribbon);
-			var list = provider.LoadFavorites();
+			using var provider = new FavoritesProvider();
+			var collection = provider.ReadFavorites();
 
 			// capture Task so it can be completed later in RowEnter
-			validator = provider.ValidateFavorites(list);
+			await using var checker = new FavoritesChecker(logger);
+			validator = checker.ValidateFavorites(collection.Items);
 
-			favorites = new BindingList<Favorite>(list);
+			favorites = new BindingList<Favorite>(collection.Items);
 
 			gridView.DataSource = favorites;
 		}
@@ -111,7 +111,7 @@ namespace River.OneMoreAddIn.Settings
 
 		private void FormatCell(object sender, DataGridViewCellFormattingEventArgs e)
 		{
-			if (gridView.Rows[e.RowIndex].DataBoundItem is Favorite favorite)
+			if (gridView.Rows[e.RowIndex].DataBoundItem is FileFavorite favorite)
 			{
 				if (favorite.Status == FavoriteStatus.Unknown)
 				{
@@ -215,14 +215,14 @@ namespace River.OneMoreAddIn.Settings
 
 			provider.SetCollection(settings);
 
-			// the actual favorites are stored in a separate file...
+			// favorites are stored in the DB...
 
 			// if nothing was deleted then check if they reordered
 			if (!updated)
 			{
 				for (int i = 0; i < favorites.Count; i++)
 				{
-					if (favorites[i].Index != i)
+					if (favorites[i].SortOrder != i)
 					{
 						updated = true;
 						break;
@@ -230,24 +230,24 @@ namespace River.OneMoreAddIn.Settings
 				}
 			}
 
-			if (updated)
-			{
-				var root = FavoritesProvider.MakeMenuRoot();
-				foreach (var favorite in favorites)
-				{
-					root.Add(favorite.Root);
-				}
+			//if (updated)
+			//{
+			//	var root = FavoritesMenu.LoadMenu();
+			//	foreach (var favorite in favorites)
+			//	{
+			//		root.Add(favorite.Root);
+			//	}
 
-				Task.Run(async () =>
-				{
-					await using var provider = new FavoritesProvider(ribbon);
-					provider.SaveFavorites(root);
-				});
-			}
-			else if (shortcuts != shortcutsBox.Checked)
-			{
-				ribbon.InvalidateControl("ribFavoritesMenu");
-			}
+			//	Task.Run(async () =>
+			//	{
+			//		var provider = new FavoritesProvider();
+			//		//provider.WriteFavorite(root);
+			//	});
+			//}
+			//else if (shortcuts != shortcutsBox.Checked)
+			//{
+			//	ribbon.InvalidateControl(FavoritesMenu.MenuID);
+			//}
 
 			return false;
 		}

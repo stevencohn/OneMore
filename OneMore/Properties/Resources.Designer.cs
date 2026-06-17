@@ -3159,6 +3159,31 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CREATE TABLE IF NOT EXISTS favorites_folder (
+        ///    folderID  INTEGER PRIMARY KEY AUTOINCREMENT,
+        ///    name      TEXT NOT NULL,
+        ///    UNIQUE(name)
+        ///);
+        ///
+        ///CREATE TABLE IF NOT EXISTS favorite (
+        ///    favoriteID  INTEGER PRIMARY KEY AUTOINCREMENT,
+        ///    folderID    INTEGER REFERENCES favorites_folder(folderID) ON DELETE CASCADE,
+        ///    name        TEXT NOT NULL,
+        ///    alias       TEXT,
+        ///    path        TEXT,
+        ///    hyperlink   TEXT NOT NULL,
+        ///    notebookID  TEXT NOT NULL,
+        ///    sectionID   TEXT,
+        ///    pageID      TEXT,
+        /// [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string FavoritesDB {
+            get {
+                return ResourceManager.GetString("FavoritesDB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Current Page.
         /// </summary>
         internal static string FavoritesDialog_addButton_Text {

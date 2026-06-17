@@ -174,7 +174,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="UIAutomationClient" />
     <Reference Include="Windows">
-<HintPath>C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.26100.0\Windows.winmd</HintPath>
+      <HintPath>C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.26100.0\Windows.winmd</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
@@ -204,6 +204,11 @@
     <Compile Include="Commands\Edit\ConvertMarkdownCommand.cs" />
     <Compile Include="Commands\Edit\CopyAsTextCommand.cs" />
     <Compile Include="Commands\Edit\RecolorInkCommand.cs" />
+    <Compile Include="Commands\Favorites\FavoriteModels.cs" />
+    <Compile Include="Commands\Favorites\AddFavoriteCommand.cs" />
+    <Compile Include="Commands\Favorites\FavoritesChecker.cs" />
+    <Compile Include="Commands\Favorites\FavoritesMenu.cs" />
+    <Compile Include="Commands\Favorites\FavoritesProvider.cs" />
     <Compile Include="Commands\File\Markdown\OneMoreDigCodeRenderer.cs" />
     <Compile Include="Commands\File\OpenFolderDialog.cs">
       <SubType>Form</SubType>
@@ -1206,7 +1211,7 @@
     <Compile Include="Styles\StyleBase.cs" />
     <Compile Include="Styles\StyleRecord.cs" />
     <Compile Include="Styles\StyleType.cs" />
-    <Compile Include="Commands\Favorites\FavoritesProvider.cs" />
+    <Compile Include="Commands\Favorites\FavoritesFileProvider.cs" />
     <Compile Include="Helpers\Logger.cs" />
     <Compile Include="Helpers\ReadOnlyStream.cs" />
     <Compile Include="AddIn.cs" />
@@ -1318,6 +1323,7 @@
     <Content Include="Colorizer\Languages\yaml.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Commands\Favorites\FavoritesDB.sql" />
     <Content Include="Commands\Navigator\Images\Copy-20.png" />
     <Content Include="Commands\Navigator\Images\Garbage-Closed-20.png" />
     <Content Include="Commands\Navigator\Images\Reload-20.png" />

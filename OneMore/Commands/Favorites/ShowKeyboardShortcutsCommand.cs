@@ -1,12 +1,11 @@
 ﻿//************************************************************************************************
-// Copyright © 2020 Steven M Cohn.  All rights reserved.
+// Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
-
-#pragma warning disable S1075 // URIs should not be hardcoded
 
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
+	using River.OneMoreAddIn.Properties;
 	using River.OneMoreAddIn.UI;
 	using System;
 	using System.IO;
@@ -19,14 +18,14 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class ShowKeyboardShortcutsCommand : Command
 	{
-		private const string TemplateUrl =
-			"https://github.com/stevencohn/OneMore/raw/main/Templates/OneNote_Keyboard_Shortcuts.zip";
+		private readonly string TemplateUrl;
 
 		private OneNote one;
 
 
 		public ShowKeyboardShortcutsCommand()
 		{
+			TemplateUrl = $"{Resources.OneMore_GitHub}/raw/main/Templates/OneNote_Keyboard_Shortcuts.zip";
 		}
 
 
@@ -34,7 +33,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (!HttpClientFactory.IsNetworkAvailable())
 			{
-				ShowInfo(Properties.Resources.NetwordConnectionUnavailable);
+				ShowInfo(Resources.NetwordConnectionUnavailable);
 				return;
 			}
 

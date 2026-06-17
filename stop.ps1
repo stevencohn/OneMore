@@ -27,7 +27,7 @@ Begin
         if ($processId)
         {
             Write-Host "... stopping $name" -Fore DarkYellow
-            Write-Verbose "taskkill /fi "pid gt 0" /im $name /t /f"
+            Write-Verbose "taskkill /fi ""pid gt 0"" /im $name /t /f"
             taskkill /fi "pid gt 0" /im $name /t /f
         }
         elseif (!$Close)

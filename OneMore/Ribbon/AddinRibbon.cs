@@ -9,12 +9,6 @@
 
 namespace River.OneMoreAddIn
 {
-	using Microsoft.Office.Core;
-	using River.OneMoreAddIn.Commands;
-	using River.OneMoreAddIn.Helpers.Office;
-	using River.OneMoreAddIn.Ribbon;
-	using River.OneMoreAddIn.Settings;
-	using River.OneMoreAddIn.Styles;
 	using System;
 	using System.Diagnostics;
 	using System.Drawing;
@@ -22,8 +16,14 @@ namespace River.OneMoreAddIn
 	using System.IO;
 	using System.Linq;
 	using System.Runtime.InteropServices.ComTypes;
-	using System.Threading.Tasks;
 	using System.Xml.Linq;
+	using Microsoft.Office.Core;
+	using River.OneMoreAddIn.Commands;
+	using River.OneMoreAddIn.Commands.Favorites;
+	using River.OneMoreAddIn.Helpers.Office;
+	using River.OneMoreAddIn.Ribbon;
+	using River.OneMoreAddIn.Settings;
+	using River.OneMoreAddIn.Styles;
 	using Resx = Properties.Resources;
 
 
@@ -503,13 +503,7 @@ namespace River.OneMoreAddIn
 			System.Threading.Thread.CurrentThread.CurrentCulture = AddIn.Culture;
 			System.Threading.Thread.CurrentThread.CurrentUICulture = AddIn.Culture;
 
-			return Task.Run(async () =>
-			{
-				await using var provider = new FavoritesProvider(ribbon);
-				var favorites = provider.LoadFavoritesMenu();
-				return favorites.ToString(SaveOptions.DisableFormatting);
-
-			}).Result;
+			return FavoritesMenu.LoadMenu().ToString(SaveOptions.DisableFormatting);
 		}
 
 
