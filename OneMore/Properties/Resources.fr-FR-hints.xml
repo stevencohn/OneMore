@@ -90,7 +90,7 @@ Fichier OneNote (*.one)</preferred>
     <source>Page not found; it may have been renamed or moved</source>
     <preferred>Page non trouvée ; il a peut-être été renommé ou déplacé</preferred>
   </hint>
-  <hint name="FavoritesSheet_DeleteMessage">
+  <hint name="ManageFavorites_DeleteMessage">
     <source>Delete {0}?</source>
     <preferred>Supprimer {0} ?</preferred>
   </hint>

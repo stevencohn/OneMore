@@ -1193,6 +1193,22 @@ OneNote 文件 (*.one)</value>
     <value>将文件名中的空格替换为下划线</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ExportFavoritesCommand_error" xml:space="preserve">
+    <value>导出收藏夹时出错</value>
+    <comment>message</comment>
+  </data>
+  <data name="ExportFavoritesCommand_exported" xml:space="preserve">
+    <value>{0} 个收藏夹导出到 {1}</value>
+    <comment>message</comment>
+  </data>
+  <data name="ExportFavoritesCommand_OpenFileFilter" xml:space="preserve">
+    <value>JSON 文件 (*.json)|*.json</value>
+    <comment>export dialog</comment>
+  </data>
+  <data name="ExportFavoritesCommand_OpenFileTitle" xml:space="preserve">
+    <value>导出收藏夹</value>
+    <comment>export dialog title</comment>
+  </data>
   <data name="Favorites_suspect" xml:space="preserve">
     <value>找不到页面；可能已重命名或被删除</value>
     <comment>tooltip</comment>
@@ -1217,33 +1233,25 @@ OneNote 文件 (*.one)</value>
     <value>Favorites.xml</value>
     <comment>FILENAME</comment>
   </data>
-  <data name="FavoritesManagerControl_deleteConfirmMultiple" xml:space="preserve">
-    <value>删除 {0} 项？</value>
-    <comment>message box</comment>
-  </data>
-  <data name="FavoritesManagerControl_emptyFolderHint" xml:space="preserve">
-    <value>空 - 将收藏夹拖到此处</value>
-    <comment>list view hint text</comment>
-  </data>
-  <data name="FavoritesManagerControl_newFolder" xml:space="preserve">
-    <value>新建文件夹</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="FavoritesManagerControl_renameFavorite" xml:space="preserve">
-    <value>重命名收藏夹</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="FavoritesManagerControl_renameFolder" xml:space="preserve">
-    <value>重命名文件夹</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="FavoritesSheet_DeleteMessage" xml:space="preserve">
-    <value>删除{0}？</value>
+  <data name="FavoritesSheet_confirmDrop" xml:space="preserve">
+    <value>您确定要删除所有收藏夹数据吗？</value>
     <comment>settings</comment>
   </data>
-  <data name="FavoritesSheet_locationColumn.HeaderText" xml:space="preserve">
-    <value>引用笔记路径</value>
-    <comment>settings table column header</comment>
+  <data name="FavoritesSheet_dropLabel.Text" xml:space="preserve">
+    <value>从本地 OneMore.db 数据库中删除所有收藏夹数据。 仅当要删除整个收藏夹集合并重新导入旧的收藏夹.xml 文件时才使用此选项。</value>
+    <comment>settings</comment>
+  </data>
+  <data name="FavoritesSheet_dropLink.Text" xml:space="preserve">
+    <value>从数据库中删除收藏夹架构</value>
+    <comment>settings</comment>
+  </data>
+  <data name="FavoritesSheet_dropped" xml:space="preserve">
+    <value>删除收藏夹数据并使用Favorites.xml（如果存在）刷新</value>
+    <comment>settings</comment>
+  </data>
+  <data name="FavoritesSheet_introBox.Text" xml:space="preserve">
+    <value>收藏夹的自定义选项</value>
+    <comment>settings</comment>
   </data>
   <data name="FavoritesSheet_shortcutsBox.Text" xml:space="preserve">
     <value>启用快捷键页面生成功能</value>
@@ -1687,6 +1695,22 @@ OneNote 文件 (*.one)</value>
     <value>Word导入选项</value>
     <comment>group box</comment>
   </data>
+  <data name="ImportFavoritesCommand_error" xml:space="preserve">
+    <value>导入收藏夹时出错</value>
+    <comment>message</comment>
+  </data>
+  <data name="ImportFavoritesCommand_imported" xml:space="preserve">
+    <value>已导入 {0} 个收藏夹（共 {1} 个）</value>
+    <comment>message</comment>
+  </data>
+  <data name="ImportFavoritesCommand_OpenFileFilter" xml:space="preserve">
+    <value>JSON 文件 (*.json)|*.json</value>
+    <comment>import dialog</comment>
+  </data>
+  <data name="ImportFavoritesCommand_OpenFileTitle" xml:space="preserve">
+    <value>导入收藏夹</value>
+    <comment>import dialog title</comment>
+  </data>
   <data name="ImportOutlookTasksDialog.Text" xml:space="preserve">
     <value>从 Outlook 导入任务</value>
     <comment>dialog title</comment>
@@ -1978,6 +2002,38 @@ OneNote 文件 (*.one)</value>
     <value>加载样式主题</value>
     <comment>OpenFileDialog title</comment>
   </data>
+  <data name="ManageFavorites_DeleteMessage" xml:space="preserve">
+    <value>删除{0}？</value>
+    <comment>settings</comment>
+  </data>
+  <data name="ManageFavoritesControl_emptyFolderHint" xml:space="preserve">
+    <value>空 - 将收藏夹拖到此处</value>
+    <comment>list view hint text</comment>
+  </data>
+  <data name="ManageFavoritesControl_export" xml:space="preserve">
+    <value>导出收藏夹</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageFavoritesControl_import" xml:space="preserve">
+    <value>导入收藏夹</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageFavoritesControl_newFolder" xml:space="preserve">
+    <value>新建文件夹</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ManageFavoritesControl_renameFavorite" xml:space="preserve">
+    <value>重命名收藏夹</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ManageFavoritesControl_renameFolder" xml:space="preserve">
+    <value>重命名文件夹</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ManageFavoritesControl_sort" xml:space="preserve">
+    <value>对当前文件夹进行排序</value>
+    <comment>toolbar button</comment>
+  </data>
   <data name="ManageFavoritesDialog_discard" xml:space="preserve">
     <value>放弃未保存的更改？</value>
     <comment>message box</comment>
@@ -1985,6 +2041,14 @@ OneNote 文件 (*.one)</value>
   <data name="ManageFavoritesDialog_Text" xml:space="preserve">
     <value>管理收藏夹</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="ManageFavoritesrControl_deleteConfirmMultiple" xml:space="preserve">
+    <value>删除 {0} 项？</value>
+    <comment>message box</comment>
+  </data>
+  <data name="MangeFavoritesControl_locationColumn.HeaderText" xml:space="preserve">
+    <value>引用笔记路径</value>
+    <comment>settings table column header</comment>
   </data>
   <data name="MapDialog_groupBox.Text" xml:space="preserve">
     <value>内页</value>
@@ -3396,6 +3460,14 @@ ISO-code then comma then language name</comment>
     <value>将页面导出为HTML，PDF，Word或XML</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="ribExportFavoritesButton_Label" xml:space="preserve">
+    <value>导出收藏夹</value>
+    <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribExportFavoritesButton_Screentip" xml:space="preserve">
+    <value>将所有收藏夹导出到 JSON 文件</value>
+    <comment>ribbon favorites</comment>
+  </data>
   <data name="ribExtrasMenu_Label" xml:space="preserve">
     <value>更多功能</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
@@ -3503,6 +3575,14 @@ ISO-code then comma then language name</comment>
   <data name="ribImportButton_Screentip" xml:space="preserve">
     <value>导入文件</value>
     <comment>ribbon file NODUP</comment>
+  </data>
+  <data name="ribImportFavoritesButton_Label" xml:space="preserve">
+    <value>导入收藏夹</value>
+    <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribImportFavoritesButton_Screentip" xml:space="preserve">
+    <value>从 JSON 文件导入所有收藏夹</value>
+    <comment>ribbon favorites</comment>
   </data>
   <data name="ribImportOutlookTasksButton_Label" xml:space="preserve">
     <value>从 Outlook 导入任务</value>

@@ -45,6 +45,9 @@ namespace River.OneMoreAddIn.Commands.Favorites
 			this.deleteButton = new River.OneMoreAddIn.UI.MoreMenuItem();
 			this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
 			this.checkButton = new River.OneMoreAddIn.UI.MoreMenuItem();
+			this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+			this.importButton = new River.OneMoreAddIn.UI.MoreMenuItem();
+			this.exportButton = new River.OneMoreAddIn.UI.MoreMenuItem();
 			this.itemContextMenu = new River.OneMoreAddIn.UI.MoreContextMenuStrip();
 			this.renameMenuItem = new River.OneMoreAddIn.UI.MoreMenuItem();
 			this.components.Add(this.itemContextMenu);
@@ -93,7 +96,10 @@ namespace River.OneMoreAddIn.Commands.Favorites
             this.toolStripSeparator3,
             this.deleteButton,
             this.toolStripSeparator4,
-            this.checkButton});
+            this.checkButton,
+            this.toolStripSeparator6,
+            this.importButton,
+            this.exportButton});
 			this.toolStrip.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip.Name = "toolStrip";
 			this.toolStrip.Size = new System.Drawing.Size(778, 29);
@@ -187,6 +193,29 @@ namespace River.OneMoreAddIn.Commands.Favorites
 			this.checkButton.ToolTipText = "Check favorites";
 			this.checkButton.Click += new System.EventHandler(this.CheckFavorites);
 			//
+			// toolStripSeparator6
+			//
+			this.toolStripSeparator6.Name = "toolStripSeparator6";
+			this.toolStripSeparator6.Size = new System.Drawing.Size(6, 29);
+			//
+			// importButton
+			//
+			this.importButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.importButton.Image = global::River.OneMoreAddIn.Properties.Resources.m_Import;
+			this.importButton.Name = "importButton";
+			this.importButton.Size = new System.Drawing.Size(40, 29);
+			this.importButton.ToolTipText = "Import favorites";
+			this.importButton.Click += new System.EventHandler(this.ImportFavorites);
+			//
+			// exportButton
+			//
+			this.exportButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.exportButton.Image = global::River.OneMoreAddIn.Properties.Resources.m_Export;
+			this.exportButton.Name = "exportButton";
+			this.exportButton.Size = new System.Drawing.Size(40, 29);
+			this.exportButton.ToolTipText = "Export favorites";
+			this.exportButton.Click += new System.EventHandler(this.ExportFavorites);
+			//
 			// itemContextMenu
 			//
 			this.itemContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -233,6 +262,9 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		private River.OneMoreAddIn.UI.MoreMenuItem deleteButton;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
 		private River.OneMoreAddIn.UI.MoreMenuItem checkButton;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+		private River.OneMoreAddIn.UI.MoreMenuItem importButton;
+		private River.OneMoreAddIn.UI.MoreMenuItem exportButton;
 		private River.OneMoreAddIn.UI.MoreContextMenuStrip itemContextMenu;
 		private River.OneMoreAddIn.UI.MoreMenuItem renameMenuItem;
 	}

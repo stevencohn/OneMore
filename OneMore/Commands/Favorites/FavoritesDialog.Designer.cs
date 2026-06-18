@@ -30,9 +30,9 @@
 		{
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FavoritesDialog));
-			this.gridView = new River.OneMoreAddIn.UI.MoreDataGridView();
-			this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.locationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.listView = new River.OneMoreAddIn.UI.MoreListView();
+			this.nameColumn = new System.Windows.Forms.ColumnHeader();
+			this.locationColumn = new System.Windows.Forms.ColumnHeader();
 			this.buttonPanel = new System.Windows.Forms.Panel();
 			this.goButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
@@ -43,55 +43,35 @@
 			this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.addButton = new System.Windows.Forms.ToolStripMenuItem();
 			this.manageButton = new System.Windows.Forms.ToolStripMenuItem();
-			((System.ComponentModel.ISupportInitialize)(this.gridView)).BeginInit();
 			this.buttonPanel.SuspendLayout();
 			this.searchPanel.SuspendLayout();
 			this.contextMenu.SuspendLayout();
 			this.SuspendLayout();
-			// 
-			// gridView
-			// 
-			this.gridView.AllowUserToAddRows = false;
-			this.gridView.AllowUserToDeleteRows = false;
-			this.gridView.AllowUserToResizeRows = false;
-			this.gridView.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-			this.gridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.gridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.gridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+			//
+			// listView
+			//
+			this.listView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.nameColumn,
             this.locationColumn});
-			this.gridView.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.gridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-			this.gridView.Location = new System.Drawing.Point(0, 74);
-			this.gridView.MultiSelect = false;
-			this.gridView.Name = "gridView";
-			this.gridView.RowHeadersVisible = false;
-			this.gridView.RowHeadersWidth = 30;
-			this.gridView.RowTemplate.Height = 28;
-			this.gridView.ShowEditingIcon = false;
-			this.gridView.Size = new System.Drawing.Size(778, 410);
-			this.gridView.TabIndex = 0;
-			this.gridView.ThemedBack = null;
-			this.gridView.ThemedFore = null;
-			this.gridView.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ChooseByDoubleClick);
-			this.gridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.ValidateOnCellFormatting);
-			this.gridView.GotFocus += new System.EventHandler(this.RefocusOnGotFocus);
-			this.gridView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ChooseByKeyboard);
-			// 
+			this.listView.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.listView.Location = new System.Drawing.Point(0, 74);
+			this.listView.MultiSelect = false;
+			this.listView.Name = "listView";
+			this.listView.Size = new System.Drawing.Size(778, 410);
+			this.listView.TabIndex = 0;
+			this.listView.DoubleClick += new System.EventHandler(this.ChooseByDoubleClick);
+			this.listView.GotFocus += new System.EventHandler(this.RefocusOnGotFocus);
+			this.listView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ChooseByKeyboard);
+			//
 			// nameColumn
-			// 
-			this.nameColumn.HeaderText = "Name";
-			this.nameColumn.MinimumWidth = 100;
+			//
 			this.nameColumn.Name = "nameColumn";
-			this.nameColumn.Width = 250;
-			// 
+			this.nameColumn.Text = "Name";
+			//
 			// locationColumn
-			// 
-			this.locationColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.locationColumn.FillWeight = 1000F;
-			this.locationColumn.HeaderText = "Location";
-			this.locationColumn.MinimumWidth = 8;
+			//
 			this.locationColumn.Name = "locationColumn";
+			this.locationColumn.Text = "Location";
 			// 
 			// buttonPanel
 			// 
@@ -234,7 +214,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(778, 544);
-			this.Controls.Add(this.gridView);
+			this.Controls.Add(this.listView);
 			this.Controls.Add(this.searchPanel);
 			this.Controls.Add(this.buttonPanel);
 			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -248,7 +228,6 @@
 			this.Text = "Favorites";
 			this.Activated += new System.EventHandler(this.FocusOnActivated);
 			this.Load += new System.EventHandler(this.BindOnLoad);
-			((System.ComponentModel.ISupportInitialize)(this.gridView)).EndInit();
 			this.buttonPanel.ResumeLayout(false);
 			this.searchPanel.ResumeLayout(false);
 			this.searchPanel.PerformLayout();
@@ -258,9 +237,9 @@
 		}
 		#endregion
 
-		private UI.MoreDataGridView gridView;
-		private System.Windows.Forms.DataGridViewTextBoxColumn nameColumn;
-		private System.Windows.Forms.DataGridViewTextBoxColumn locationColumn;
+		private UI.MoreListView listView;
+		private System.Windows.Forms.ColumnHeader nameColumn;
+		private System.Windows.Forms.ColumnHeader locationColumn;
 		private System.Windows.Forms.Panel buttonPanel;
 		private UI.MoreButton goButton;
 		private UI.MoreButton cancelButton;
