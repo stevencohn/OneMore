@@ -147,6 +147,11 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		}
 
 		/// <summary>
+		/// Version of this data model schema. Used for upgrade paths in the future.
+		/// </summary>
+		public int SchemaVersion { get; set; } = 1;
+
+		/// <summary>
 		/// The folder on the Favorites menu.
 		/// </summary>
 		public List<FavoritesFolder> Folders { get; set; }
