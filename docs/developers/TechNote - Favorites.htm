@@ -217,6 +217,17 @@
 <P lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; COLOR: #2e75b5; MARGIN: 0in'>&nbsp;</P>
 <P lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'><SPAN style="COLOR: #2e75b5">CREATE UNIQUE INDEX IF NOT EXISTS</SPAN><SPAN style="COLOR: black"> idx_favorite_alias_root<BR><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </SPAN></SPAN><SPAN style="COLOR: #2e75b5">ON</SPAN><SPAN style="COLOR: black"> Favorite(alias)<BR><SPAN style="mso-spacerun: yes">&nbsp;</SPAN></SPAN><SPAN style="COLOR: #2e75b5">WHERE</SPAN><SPAN style="COLOR: black"> folderID </SPAN><SPAN style="COLOR: #2e75b5">IS NULL AND</SPAN><SPAN style="COLOR: black"> alias </SPAN><SPAN style="COLOR: #2e75b5">IS NOT NULL</SPAN><SPAN style="COLOR: black">;</SPAN></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; COLOR: #00b050; MARGIN: 0in'>-- Enforce uniqueness for individual favorites, whether it targets a page, section, </P>
+<P lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; COLOR: #00b050; MARGIN: 0in'>-- or section group</P>
+<P lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; COLOR: #00b050; MARGIN: 0in'>&nbsp;</P>
+<P lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'><SPAN style="COLOR: #2e75b5">CREATE UNIQUE INDEX IF NOT EXISTS</SPAN><SPAN style="COLOR: black"> idx_favorite_target_page</SPAN></P>
+<P lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'><SPAN style="COLOR: black"><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </SPAN></SPAN><SPAN style="COLOR: #2e75b5">ON</SPAN><SPAN style="COLOR: black"> favorite(notebookID, sectionID, pageID)</SPAN></P>
+<P lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'><SPAN style="COLOR: black"><SPAN style="mso-spacerun: yes">&nbsp;</SPAN></SPAN><SPAN style="COLOR: #2e75b5">WHERE</SPAN><SPAN style="COLOR: black"> pageID </SPAN><SPAN style="COLOR: #2e75b5">IS NOT NULL</SPAN><SPAN style="COLOR: black">;</SPAN></P>
+<P lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in'>&nbsp;</P>
+<P lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'><SPAN style="COLOR: #2e75b5">CREATE UNIQUE INDEX IF NOT EXISTS</SPAN><SPAN style="COLOR: black"> idx_favorite_target_section</SPAN></P>
+<P lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'><SPAN style="COLOR: black"><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </SPAN></SPAN><SPAN style="COLOR: #2e75b5">ON</SPAN><SPAN style="COLOR: black"> favorite(notebookID, sectionID)</SPAN></P>
+<P lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'><SPAN style="COLOR: black"><SPAN style="mso-spacerun: yes">&nbsp; </SPAN></SPAN><SPAN style="COLOR: #2e75b5">WHERE</SPAN><SPAN style="COLOR: black"> pageID </SPAN><SPAN style="COLOR: #2e75b5">IS NULL</SPAN><SPAN style="COLOR: black">;</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P><CITE lang=yo style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">#omwiki #omdeveloper #omtechnote</CITE></P>
 <P><CITE lang=yo style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">&nbsp;</CITE></P>

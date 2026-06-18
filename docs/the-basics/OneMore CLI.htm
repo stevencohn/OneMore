@@ -292,6 +292,13 @@
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in 0in 0in 0.375in">When notebook and section are specified, the specified page or all pages in that section are exported to the output path.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in 0in 0in 0.375in">When only notebook is specified, a subfolder is created for each section containing its exported pages.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H3 lang=yo style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; COLOR: #5b9bd5; MARGIN: 0in">ExportFavorites</H3>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Export entire favorites collection to a JSON file.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P><CODE lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: #7f7f7f">PS&gt; </SPAN><SPAN style="COLOR: black">onemore exportfavorites --file &lt;string&gt;</SPAN></CODE></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in 0in 0in 0.375in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in 0in 0in 0.375in">Where --file specifies the path of the JSON file to create.</P>
+<P><CODE lang=yo style='FONT-SIZE: 11.5pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in'>&nbsp;</CODE></P>
 <H3 lang=yo style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; COLOR: #5b9bd5; MARGIN: 0in">GetHierarchy</H3>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Get the hierarchy of notebooks, sections, and pages as an XML hierarchy fragment. The XML is written to stdout or can be piped to an output file of your choosing, e.g., … | Out-File foo.xml.</P>
 <H3 lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: #5b9bd5; MARGIN: 0in">&nbsp;</H3>
@@ -332,6 +339,15 @@
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in 0in 0in 0.375in">&nbsp;</P>
 <P><CODE lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in 0in 0in 0.375in'>onemore://GotoCommand/&lt;pageId&gt;[/objectId]</CODE></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H3 lang=yo style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; COLOR: #5b9bd5; MARGIN: 0in">ImportFavorites</H3>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Import favorites from a JSON file and merge into your existing favorites collection.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P><CODE lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: #7f7f7f">PS&gt; </SPAN><SPAN style="COLOR: black">onemore importfavorites --file &lt;string&gt;</SPAN></CODE></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in 0in 0in 0.375in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in 0in 0in 0.375in">Where --file specifies the path of the JSON file to read.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in 0in 0in 0.375in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in 0in 0in 0.375in">Existing favorites are not touched. Duplicates folders and favorites are not allowed, so any duplicates are ignored.</P>
+<P><CODE lang=yo style='FONT-SIZE: 11.5pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in'>&nbsp;</CODE></P>
 <H3 lang=yo style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; COLOR: #5b9bd5; MARGIN: 0in">InsertToc</H3>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Insert or update a table of contents in the specified page</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
