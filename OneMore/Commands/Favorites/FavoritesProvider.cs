@@ -408,8 +408,8 @@ ORDER BY folderName NULLS LAST, sortOrder, name;
 		/// </summary>
 		/// <param name="favorite">A Favorite to save</param>
 		/// <param name="duplicate">
-		/// True if the write failed because a favorite already exists for the same
-		/// notebookID, sectionID, and pageID
+		/// True if the write failed because a favorite already exists for the same pageID,
+		/// or, for section/section-group favorites, the same sectionID
 		/// </param>
 		/// <returns>True if successful</returns>
 		public bool WriteFavorite(Favorite favorite, out bool duplicate)

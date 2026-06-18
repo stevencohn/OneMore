@@ -3,5 +3,5 @@ CREATE TABLE IF NOT EXISTS favorite (favoriteID INTEGER PRIMARY KEY AUTOINCREMEN
 CREATE INDEX IF NOT EXISTS idx_favorites_folder ON Favorite(folderID);
 CREATE UNIQUE INDEX IF NOT EXISTS idx_favorite_alias_per_folder ON Favorite(folderID, alias) WHERE folderID IS NOT NULL AND alias IS NOT NULL;
 CREATE UNIQUE INDEX IF NOT EXISTS idx_favorite_alias_root ON Favorite(alias) WHERE folderID IS NULL AND alias IS NOT NULL;
-CREATE UNIQUE INDEX IF NOT EXISTS idx_favorite_target_page ON favorite(notebookID, sectionID, pageID) WHERE pageID IS NOT NULL;
-CREATE UNIQUE INDEX IF NOT EXISTS idx_favorite_target_section ON favorite(notebookID, sectionID) WHERE pageID IS NULL;
+CREATE UNIQUE INDEX IF NOT EXISTS idx_favorite_target_page ON favorite(pageID) WHERE pageID IS NOT NULL;
+CREATE UNIQUE INDEX IF NOT EXISTS idx_favorite_target_section ON favorite(sectionID) WHERE pageID IS NULL;

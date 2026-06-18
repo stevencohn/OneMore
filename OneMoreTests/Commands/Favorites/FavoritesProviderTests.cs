@@ -225,6 +225,75 @@ namespace River.OneMoreAddIn.Tests.Commands.Favorites
 
 
 		[TestMethod]
+		public void WriteFavorite_SamePageDifferentNotebookAndSection_StillTreatedAsDuplicate()
+		{
+			// pageID alone identifies a page favorite; notebookID/sectionID may legitimately
+			// differ (e.g. stale metadata) but should not bypass duplicate detection
+			using var provider = new FavoritesProvider(connection);
+
+			var written1 = provider.WriteFavorite(new Favorite
+			{
+				Name = "Page1",
+				Location = "Notebook1/Section1/Page1",
+				Uri = "onenote:#Page1",
+				NotebookID = "nb-1",
+				SectionID = "sec-1",
+				PageID = "page-1"
+			});
+
+			Assert.IsTrue(written1, "first write should succeed");
+
+			var written2 = provider.WriteFavorite(new Favorite
+			{
+				Name = "Page1",
+				Location = "Notebook2/Section2/Page1",
+				Uri = "onenote:#Page1",
+				NotebookID = "nb-2",
+				SectionID = "sec-2",
+				PageID = "page-1"
+			}, out var duplicate);
+
+			Assert.IsFalse(written2, "same pageID under a different notebook/section should fail to write");
+			Assert.IsTrue(duplicate, "failure should be reported as a duplicate");
+			Assert.AreEqual(1, provider.ReadFavorites().Items.Count);
+		}
+
+
+		[TestMethod]
+		public void WriteFavorite_SameSectionDifferentNotebook_StillTreatedAsDuplicate()
+		{
+			// sectionID alone identifies a section/section-group favorite when pageID is null
+			using var provider = new FavoritesProvider(connection);
+
+			var written1 = provider.WriteFavorite(new Favorite
+			{
+				Name = "Section1",
+				Location = "Notebook1/Section1",
+				Uri = "onenote:#Section1",
+				NotebookID = "nb-1",
+				SectionID = "sec-1",
+				PageID = null
+			});
+
+			Assert.IsTrue(written1, "first write should succeed");
+
+			var written2 = provider.WriteFavorite(new Favorite
+			{
+				Name = "Section1",
+				Location = "Notebook2/Section1",
+				Uri = "onenote:#Section1",
+				NotebookID = "nb-2",
+				SectionID = "sec-1",
+				PageID = null
+			}, out var duplicate);
+
+			Assert.IsFalse(written2, "same sectionID under a different notebook should fail to write");
+			Assert.IsTrue(duplicate, "failure should be reported as a duplicate");
+			Assert.AreEqual(1, provider.ReadFavorites().Items.Count);
+		}
+
+
+		[TestMethod]
 		public void CreateFolder_ReturnsID_ReadableViaReadFavorites()
 		{
 			using var provider = new FavoritesProvider(connection);
