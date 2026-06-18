@@ -1192,6 +1192,22 @@ OneNoteファイル (*.one)</value>
     <value>ファイル名のスペースをアンダースコアに置き換える</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ExportFavoritesCommand_error" xml:space="preserve">
+    <value>お気に入りのエクスポートでエラーが発生しました</value>
+    <comment>message</comment>
+  </data>
+  <data name="ExportFavoritesCommand_exported" xml:space="preserve">
+    <value>{0} 個のお気に入りが {1} にエクスポートされました</value>
+    <comment>message</comment>
+  </data>
+  <data name="ExportFavoritesCommand_OpenFileFilter" xml:space="preserve">
+    <value>JSON ファイル (*.json)|*.json</value>
+    <comment>export dialog</comment>
+  </data>
+  <data name="ExportFavoritesCommand_OpenFileTitle" xml:space="preserve">
+    <value>お気に入りをエクスポート</value>
+    <comment>export dialog title</comment>
+  </data>
   <data name="Favorites_suspect" xml:space="preserve">
     <value>ページが見つかりません。名前が変更されたか移動された可能性があります</value>
     <comment>tooltip</comment>
@@ -1216,33 +1232,25 @@ OneNoteファイル (*.one)</value>
     <value>Favorites.xml</value>
     <comment>SKIP, filename</comment>
   </data>
-  <data name="FavoritesManagerControl_deleteConfirmMultiple" xml:space="preserve">
-    <value>{0} 個のアイテムを削除しますか?</value>
-    <comment>message box</comment>
-  </data>
-  <data name="FavoritesManagerControl_emptyFolderHint" xml:space="preserve">
-    <value>空 - お気に入りをここにドラッグします</value>
-    <comment>list view hint text</comment>
-  </data>
-  <data name="FavoritesManagerControl_newFolder" xml:space="preserve">
-    <value>新しいフォルダー</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="FavoritesManagerControl_renameFavorite" xml:space="preserve">
-    <value>お気に入りの名前を変更する</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="FavoritesManagerControl_renameFolder" xml:space="preserve">
-    <value>フォルダー名の変更</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="FavoritesSheet_DeleteMessage" xml:space="preserve">
-    <value>{0} を削除しますか？</value>
+  <data name="FavoritesSheet_confirmDrop" xml:space="preserve">
+    <value>すべてのお気に入りデータを削除してもよろしいですか?</value>
     <comment>settings</comment>
   </data>
-  <data name="FavoritesSheet_locationColumn.HeaderText" xml:space="preserve">
-    <value>ロケーション</value>
-    <comment>settings table column header</comment>
+  <data name="FavoritesSheet_dropLabel.Text" xml:space="preserve">
+    <value>ローカルの OneMore.db データベースからすべてのお気に入りデータを削除します。 これは、お気に入りコレクション全体を消去し、古い Favorites.xml ファイルを再インポートする場合にのみ使用します。</value>
+    <comment>settings</comment>
+  </data>
+  <data name="FavoritesSheet_dropLink.Text" xml:space="preserve">
+    <value>データベースからお気に入りスキーマを削除します。</value>
+    <comment>settings</comment>
+  </data>
+  <data name="FavoritesSheet_dropped" xml:space="preserve">
+    <value>お気に入りデータは削除され、Favorites.xml が存在する場合は更新されます。</value>
+    <comment>settings</comment>
+  </data>
+  <data name="FavoritesSheet_introBox.Text" xml:space="preserve">
+    <value>お気に入りのカスタム オプション</value>
+    <comment>settings</comment>
   </data>
   <data name="FavoritesSheet_shortcutsBox.Text" xml:space="preserve">
     <value>キーボードショートカットページへの参照を含める</value>
@@ -1684,6 +1692,22 @@ OneNoteファイル (*.one)</value>
     <value>Wordオプション</value>
     <comment>group box</comment>
   </data>
+  <data name="ImportFavoritesCommand_error" xml:space="preserve">
+    <value>お気に入りのインポートでエラーが発生しました</value>
+    <comment>message</comment>
+  </data>
+  <data name="ImportFavoritesCommand_imported" xml:space="preserve">
+    <value>{1} 件中 {0} 件のお気に入りをインポートしました</value>
+    <comment>message</comment>
+  </data>
+  <data name="ImportFavoritesCommand_OpenFileFilter" xml:space="preserve">
+    <value>JSON ファイル (*.json)|*.json</value>
+    <comment>import dialog</comment>
+  </data>
+  <data name="ImportFavoritesCommand_OpenFileTitle" xml:space="preserve">
+    <value>お気に入りをインポート</value>
+    <comment>import dialog title</comment>
+  </data>
   <data name="ImportOutlookTasksDialog.Text" xml:space="preserve">
     <value>Outlookからのタスクをインポート</value>
     <comment>dialog title</comment>
@@ -1975,6 +1999,38 @@ OneNoteファイル (*.one)</value>
     <value>スタイルを読み込む</value>
     <comment>OpenFileDialog title</comment>
   </data>
+  <data name="ManageFavorites_DeleteMessage" xml:space="preserve">
+    <value>{0} を削除しますか？</value>
+    <comment>settings</comment>
+  </data>
+  <data name="ManageFavoritesControl_emptyFolderHint" xml:space="preserve">
+    <value>空 - お気に入りをここにドラッグします</value>
+    <comment>list view hint text</comment>
+  </data>
+  <data name="ManageFavoritesControl_export" xml:space="preserve">
+    <value>お気に入りをエクスポート</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageFavoritesControl_import" xml:space="preserve">
+    <value>お気に入りをインポート</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageFavoritesControl_newFolder" xml:space="preserve">
+    <value>新しいフォルダー</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ManageFavoritesControl_renameFavorite" xml:space="preserve">
+    <value>お気に入りの名前を変更する</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ManageFavoritesControl_renameFolder" xml:space="preserve">
+    <value>フォルダー名の変更</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ManageFavoritesControl_sort" xml:space="preserve">
+    <value>現在のフォルダーを並べ替える</value>
+    <comment>toolbar button</comment>
+  </data>
   <data name="ManageFavoritesDialog_discard" xml:space="preserve">
     <value>保存されていない変更を破棄しますか?</value>
     <comment>message box</comment>
@@ -1982,6 +2038,14 @@ OneNoteファイル (*.one)</value>
   <data name="ManageFavoritesDialog_Text" xml:space="preserve">
     <value>お気に入りの管理</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="ManageFavoritesrControl_deleteConfirmMultiple" xml:space="preserve">
+    <value>{0} 個のアイテムを削除しますか?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="MangeFavoritesControl_locationColumn.HeaderText" xml:space="preserve">
+    <value>ロケーション</value>
+    <comment>settings table column header</comment>
   </data>
   <data name="MapDialog_groupBox.Text" xml:space="preserve">
     <value>ページ内</value>
@@ -3389,6 +3453,14 @@ ISO-code then comma then language name</comment>
     <value>ページを HTML、PDF、Word、または XML としてエクスポートする</value>
     <comment>ribbon file</comment>
   </data>
+  <data name="ribExportFavoritesButton_Label" xml:space="preserve">
+    <value>お気に入りをエクスポート</value>
+    <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribExportFavoritesButton_Screentip" xml:space="preserve">
+    <value>すべてのお気に入りを JSON ファイルにエクスポートします</value>
+    <comment>ribbon favorites</comment>
+  </data>
   <data name="ribExtrasMenu_Label" xml:space="preserve">
     <value>エクストラ</value>
     <comment>ribbon menu</comment>
@@ -3496,6 +3568,14 @@ ISO-code then comma then language name</comment>
   <data name="ribImportButton_Screentip" xml:space="preserve">
     <value>ファイルをインポートする</value>
     <comment>ribbon file NODUP</comment>
+  </data>
+  <data name="ribImportFavoritesButton_Label" xml:space="preserve">
+    <value>お気に入りをインポート</value>
+    <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribImportFavoritesButton_Screentip" xml:space="preserve">
+    <value>JSON ファイルからすべてのお気に入りをインポートする</value>
+    <comment>ribbon favorites</comment>
   </data>
   <data name="ribImportOutlookTasksButton_Label" xml:space="preserve">
     <value>Outlookからタスクをインポート</value>

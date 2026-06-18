@@ -97,6 +97,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		/// <summary>
 		/// The Verified status of the favorite.
 		/// </summary>
+		[Newtonsoft.Json.JsonIgnore]
 		public FavoriteStatus Status { get; set; }
 	}
 

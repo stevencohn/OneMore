@@ -1192,6 +1192,22 @@
     <value>استبدل المسافات في اسم الملف بشرطات سفلية</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ExportFavoritesCommand_error" xml:space="preserve">
+    <value>حدث خطأ أثناء تصدير المفضلة</value>
+    <comment>message</comment>
+  </data>
+  <data name="ExportFavoritesCommand_exported" xml:space="preserve">
+    <value>تم تصدير {0} المفضلة إلى {1}</value>
+    <comment>message</comment>
+  </data>
+  <data name="ExportFavoritesCommand_OpenFileFilter" xml:space="preserve">
+    <value>ملف JSON (*.json)|*.json</value>
+    <comment>export dialog</comment>
+  </data>
+  <data name="ExportFavoritesCommand_OpenFileTitle" xml:space="preserve">
+    <value>تصدير المفضلة</value>
+    <comment>export dialog title</comment>
+  </data>
   <data name="Favorites_suspect" xml:space="preserve">
     <value>الصفحة غير موجودة؛ ربما تمت إعادة تسميته أو نقله</value>
     <comment>tooltip</comment>
@@ -1216,33 +1232,25 @@
     <value>Favorites.xml</value>
     <comment>FILENAME</comment>
   </data>
-  <data name="FavoritesManagerControl_deleteConfirmMultiple" xml:space="preserve">
-    <value>هل تريد حذف {0} عنصر؟</value>
-    <comment>message box</comment>
-  </data>
-  <data name="FavoritesManagerControl_emptyFolderHint" xml:space="preserve">
-    <value>فارغ - اسحب المفضلة هنا</value>
-    <comment>list view hint text</comment>
-  </data>
-  <data name="FavoritesManagerControl_newFolder" xml:space="preserve">
-    <value>مجلد جديد</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="FavoritesManagerControl_renameFavorite" xml:space="preserve">
-    <value>إعادة تسمية المفضلة</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="FavoritesManagerControl_renameFolder" xml:space="preserve">
-    <value>إعادة تسمية المجلد</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="FavoritesSheet_DeleteMessage" xml:space="preserve">
-    <value>حذف {0}؟</value>
+  <data name="FavoritesSheet_confirmDrop" xml:space="preserve">
+    <value>هل أنت متأكد أنك تريد حذف كافة البيانات المفضلة؟</value>
     <comment>settings</comment>
   </data>
-  <data name="FavoritesSheet_locationColumn.HeaderText" xml:space="preserve">
-    <value>موقعك</value>
-    <comment>settings table column header</comment>
+  <data name="FavoritesSheet_dropLabel.Text" xml:space="preserve">
+    <value>احذف كافة بيانات المفضلة من قاعدة بيانات OneMore.db المحلية. استخدم هذا فقط إذا كنت تريد مسح مجموعة المفضلة بأكملها وإعادة استيراد ملف Favorites.xml القديم.</value>
+    <comment>settings</comment>
+  </data>
+  <data name="FavoritesSheet_dropLink.Text" xml:space="preserve">
+    <value>قم بإسقاط مخطط المفضلة من قاعدة البيانات</value>
+    <comment>settings</comment>
+  </data>
+  <data name="FavoritesSheet_dropped" xml:space="preserve">
+    <value>يتم حذف بيانات المفضلة وتحديثها باستخدام Favorites.xml إذا كانت موجودة</value>
+    <comment>settings</comment>
+  </data>
+  <data name="FavoritesSheet_introBox.Text" xml:space="preserve">
+    <value>خيارات مخصصة للمفضلة</value>
+    <comment>settings</comment>
   </data>
   <data name="FavoritesSheet_shortcutsBox.Text" xml:space="preserve">
     <value>قم بتضمين إشارة إلى صفحة اختصارات لوحة المفاتيح</value>
@@ -1684,6 +1692,22 @@
     <value>خيارات Word</value>
     <comment>group box</comment>
   </data>
+  <data name="ImportFavoritesCommand_error" xml:space="preserve">
+    <value>حدث خطأ أثناء استيراد المفضلة</value>
+    <comment>message</comment>
+  </data>
+  <data name="ImportFavoritesCommand_imported" xml:space="preserve">
+    <value>تم استيراد {0} من {1} المفضلة</value>
+    <comment>message</comment>
+  </data>
+  <data name="ImportFavoritesCommand_OpenFileFilter" xml:space="preserve">
+    <value>ملف JSON (*.json)|*.json</value>
+    <comment>import dialog</comment>
+  </data>
+  <data name="ImportFavoritesCommand_OpenFileTitle" xml:space="preserve">
+    <value>استيراد المفضلة</value>
+    <comment>import dialog title</comment>
+  </data>
   <data name="ImportOutlookTasksDialog.Text" xml:space="preserve">
     <value>مهام الاستيراد من Outlook</value>
     <comment>dialog title</comment>
@@ -1975,6 +1999,38 @@
     <value>تحميل نمط النمط</value>
     <comment>OpenFileDialog title</comment>
   </data>
+  <data name="ManageFavorites_DeleteMessage" xml:space="preserve">
+    <value>حذف {0}؟</value>
+    <comment>settings</comment>
+  </data>
+  <data name="ManageFavoritesControl_emptyFolderHint" xml:space="preserve">
+    <value>فارغ - اسحب المفضلة هنا</value>
+    <comment>list view hint text</comment>
+  </data>
+  <data name="ManageFavoritesControl_export" xml:space="preserve">
+    <value>تصدير المفضلة</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageFavoritesControl_import" xml:space="preserve">
+    <value>استيراد المفضلة</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageFavoritesControl_newFolder" xml:space="preserve">
+    <value>مجلد جديد</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ManageFavoritesControl_renameFavorite" xml:space="preserve">
+    <value>إعادة تسمية المفضلة</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ManageFavoritesControl_renameFolder" xml:space="preserve">
+    <value>إعادة تسمية المجلد</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ManageFavoritesControl_sort" xml:space="preserve">
+    <value>فرز المجلد الحالي</value>
+    <comment>toolbar button</comment>
+  </data>
   <data name="ManageFavoritesDialog_discard" xml:space="preserve">
     <value>هل تريد تجاهل التغييرات غير المحفوظة؟</value>
     <comment>message box</comment>
@@ -1982,6 +2038,14 @@
   <data name="ManageFavoritesDialog_Text" xml:space="preserve">
     <value>إدارة المفضلة</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="ManageFavoritesrControl_deleteConfirmMultiple" xml:space="preserve">
+    <value>هل تريد حذف {0} عنصر؟</value>
+    <comment>message box</comment>
+  </data>
+  <data name="MangeFavoritesControl_locationColumn.HeaderText" xml:space="preserve">
+    <value>موقعك</value>
+    <comment>settings table column header</comment>
   </data>
   <data name="MapDialog_groupBox.Text" xml:space="preserve">
     <value>الصفحات بتنسيق</value>
@@ -3393,6 +3457,14 @@ ISO-code then comma then language name</comment>
     <value>تصدير الصفحة (الصفحات) بتنسيق HTML أو PDF أو Word أو XML</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="ribExportFavoritesButton_Label" xml:space="preserve">
+    <value>تصدير المفضلة</value>
+    <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribExportFavoritesButton_Screentip" xml:space="preserve">
+    <value>تصدير كافة المفضلة إلى ملف JSON</value>
+    <comment>ribbon favorites</comment>
+  </data>
   <data name="ribExtrasMenu_Label" xml:space="preserve">
     <value>إضافات</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
@@ -3500,6 +3572,14 @@ ISO-code then comma then language name</comment>
   <data name="ribImportButton_Screentip" xml:space="preserve">
     <value>قم باستيراد ملف</value>
     <comment>ribbon file NODUP</comment>
+  </data>
+  <data name="ribImportFavoritesButton_Label" xml:space="preserve">
+    <value>استيراد المفضلة</value>
+    <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribImportFavoritesButton_Screentip" xml:space="preserve">
+    <value>استيراد كافة المفضلة من ملف JSON</value>
+    <comment>ribbon favorites</comment>
   </data>
   <data name="ribImportOutlookTasksButton_Label" xml:space="preserve">
     <value>استيراد المهام من Outlook</value>

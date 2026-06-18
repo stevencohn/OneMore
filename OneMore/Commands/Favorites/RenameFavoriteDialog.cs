@@ -30,7 +30,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 			this.siblingNames = siblingNames;
 			this.originalName = originalName;
 
-			Text = Resx.FavoritesManagerControl_renameFavorite;
+			Text = Resx.ManageFavoritesControl_renameFavorite;
 			originalNameLabel.Text = string.Format(Resx.RenameFavoriteDialog_originalNameLabel, originalName);
 			nameBox.Text = currentValue;
 

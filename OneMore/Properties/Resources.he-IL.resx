@@ -1189,6 +1189,22 @@ Total Row Font
     <value>החלף רווחים בשם הקובץ בקווים תחתונים</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ExportFavoritesCommand_error" xml:space="preserve">
+    <value>שגיאה בייצוא מועדפים</value>
+    <comment>message</comment>
+  </data>
+  <data name="ExportFavoritesCommand_exported" xml:space="preserve">
+    <value>{0} מועדפים יוצאו אל {1}</value>
+    <comment>message</comment>
+  </data>
+  <data name="ExportFavoritesCommand_OpenFileFilter" xml:space="preserve">
+    <value>קובץ JSON (*.json)|*.json</value>
+    <comment>export dialog</comment>
+  </data>
+  <data name="ExportFavoritesCommand_OpenFileTitle" xml:space="preserve">
+    <value>ייצא מועדפים</value>
+    <comment>export dialog title</comment>
+  </data>
   <data name="Favorites_suspect" xml:space="preserve">
     <value>הדף לא נמצא; ייתכן ששמו שונה או הועבר</value>
     <comment>tooltip</comment>
@@ -1213,33 +1229,25 @@ Total Row Font
     <value>Favorites.xml</value>
     <comment>SKIP, filename</comment>
   </data>
-  <data name="FavoritesManagerControl_deleteConfirmMultiple" xml:space="preserve">
-    <value>למחוק {0} פריטים?</value>
-    <comment>message box</comment>
-  </data>
-  <data name="FavoritesManagerControl_emptyFolderHint" xml:space="preserve">
-    <value>ריק - גרור מועדפים לכאן</value>
-    <comment>list view hint text</comment>
-  </data>
-  <data name="FavoritesManagerControl_newFolder" xml:space="preserve">
-    <value>תיקיה חדשה</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="FavoritesManagerControl_renameFavorite" xml:space="preserve">
-    <value>שנה את שם המועדף</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="FavoritesManagerControl_renameFolder" xml:space="preserve">
-    <value>שנה את שם התיקיה</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="FavoritesSheet_DeleteMessage" xml:space="preserve">
-    <value>למחוק את {0}?</value>
+  <data name="FavoritesSheet_confirmDrop" xml:space="preserve">
+    <value>האם אתה בטוח שברצונך למחוק את כל נתוני המועדפים?</value>
     <comment>settings</comment>
   </data>
-  <data name="FavoritesSheet_locationColumn.HeaderText" xml:space="preserve">
-    <value>מקום</value>
-    <comment>settings table column header</comment>
+  <data name="FavoritesSheet_dropLabel.Text" xml:space="preserve">
+    <value>מחק את כל נתוני המועדפים ממסד הנתונים המקומי של OneMore.db. השתמש בזה רק אם למחוק את כל אוסף המועדפים ולייבא מחדש קובץ Favorites.xml ישן.</value>
+    <comment>settings</comment>
+  </data>
+  <data name="FavoritesSheet_dropLink.Text" xml:space="preserve">
+    <value>שחרר את סכימת המועדפים ממסד הנתונים</value>
+    <comment>settings</comment>
+  </data>
+  <data name="FavoritesSheet_dropped" xml:space="preserve">
+    <value>נתוני מועדפים נמחקים ומרעננים עם Favorites.xml אם הם קיימים</value>
+    <comment>settings</comment>
+  </data>
+  <data name="FavoritesSheet_introBox.Text" xml:space="preserve">
+    <value>אפשרויות מותאמות אישית עבור מועדפים</value>
+    <comment>settings</comment>
   </data>
   <data name="FavoritesSheet_shortcutsBox.Text" xml:space="preserve">
     <value>כלול הפניה לדף מקשי הקיצור</value>
@@ -1681,6 +1689,22 @@ Total Row Font
     <value>אפשרויות מילים</value>
     <comment>group box</comment>
   </data>
+  <data name="ImportFavoritesCommand_error" xml:space="preserve">
+    <value>שגיאה בייבוא ​​מועדפים</value>
+    <comment>message</comment>
+  </data>
+  <data name="ImportFavoritesCommand_imported" xml:space="preserve">
+    <value>{0} מתוך {1} מועדפים יובאו</value>
+    <comment>message</comment>
+  </data>
+  <data name="ImportFavoritesCommand_OpenFileFilter" xml:space="preserve">
+    <value>קובץ JSON (*.json)|*.json</value>
+    <comment>import dialog</comment>
+  </data>
+  <data name="ImportFavoritesCommand_OpenFileTitle" xml:space="preserve">
+    <value>ייבוא ​​מועדפים</value>
+    <comment>import dialog title</comment>
+  </data>
   <data name="ImportOutlookTasksDialog.Text" xml:space="preserve">
     <value>ייבוא ​​משימות מ- Outlook</value>
     <comment>dialog title</comment>
@@ -1972,6 +1996,38 @@ Total Row Font
     <value>טען ערכת נושא בסגנון</value>
     <comment>OpenFileDialog title</comment>
   </data>
+  <data name="ManageFavorites_DeleteMessage" xml:space="preserve">
+    <value>למחוק את {0}?</value>
+    <comment>settings</comment>
+  </data>
+  <data name="ManageFavoritesControl_emptyFolderHint" xml:space="preserve">
+    <value>ריק - גרור מועדפים לכאן</value>
+    <comment>list view hint text</comment>
+  </data>
+  <data name="ManageFavoritesControl_export" xml:space="preserve">
+    <value>ייצא מועדפים</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageFavoritesControl_import" xml:space="preserve">
+    <value>ייבוא ​​מועדפים</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageFavoritesControl_newFolder" xml:space="preserve">
+    <value>תיקיה חדשה</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ManageFavoritesControl_renameFavorite" xml:space="preserve">
+    <value>שנה את שם המועדף</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ManageFavoritesControl_renameFolder" xml:space="preserve">
+    <value>שנה את שם התיקיה</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ManageFavoritesControl_sort" xml:space="preserve">
+    <value>מיין את התיקייה הנוכחית</value>
+    <comment>toolbar button</comment>
+  </data>
   <data name="ManageFavoritesDialog_discard" xml:space="preserve">
     <value>למחוק שינויים שלא נשמרו?</value>
     <comment>message box</comment>
@@ -1979,6 +2035,14 @@ Total Row Font
   <data name="ManageFavoritesDialog_Text" xml:space="preserve">
     <value>נהל מועדפים</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="ManageFavoritesrControl_deleteConfirmMultiple" xml:space="preserve">
+    <value>למחוק {0} פריטים?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="MangeFavoritesControl_locationColumn.HeaderText" xml:space="preserve">
+    <value>מקום</value>
+    <comment>settings table column header</comment>
   </data>
   <data name="MapDialog_groupBox.Text" xml:space="preserve">
     <value>דפים ב</value>
@@ -3386,6 +3450,14 @@ ISO-code then comma then language name</comment>
     <value>ייצוא דפים כ-HTML, PDF, Word או XML</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="ribExportFavoritesButton_Label" xml:space="preserve">
+    <value>ייצא מועדפים</value>
+    <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribExportFavoritesButton_Screentip" xml:space="preserve">
+    <value>ייצא את כל המועדפים לקובץ JSON</value>
+    <comment>ribbon favorites</comment>
+  </data>
   <data name="ribExtrasMenu_Label" xml:space="preserve">
     <value>תוספות</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
@@ -3493,6 +3565,14 @@ ISO-code then comma then language name</comment>
   <data name="ribImportButton_Screentip" xml:space="preserve">
     <value>ייבא קובץ</value>
     <comment>ribbon file NODUP</comment>
+  </data>
+  <data name="ribImportFavoritesButton_Label" xml:space="preserve">
+    <value>ייבוא ​​מועדפים</value>
+    <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribImportFavoritesButton_Screentip" xml:space="preserve">
+    <value>ייבא את כל המועדפים מקובץ JSON</value>
+    <comment>ribbon favorites</comment>
   </data>
   <data name="ribImportOutlookTasksButton_Label" xml:space="preserve">
     <value>ייבוא ​​משימות מ- Outlook</value>

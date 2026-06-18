@@ -462,7 +462,7 @@
         <source>Page no longer found; it may have been deleted</source>
         <preferred>找不到页面；可能已重命名或被删除</preferred>
     </hint>
-    <hint name="FavoritesSheet_locationColumn.HeaderText">
+    <hint name="MangeFavoritesControl_locationColumn.HeaderText">
         <source>Location</source>
         <preferred>引用笔记路径</preferred>
     </hint>

@@ -3160,6 +3160,42 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error exporting favorites.
+        /// </summary>
+        internal static string ExportFavoritesCommand_error {
+            get {
+                return ResourceManager.GetString("ExportFavoritesCommand_error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} favorites exported to {1}.
+        /// </summary>
+        internal static string ExportFavoritesCommand_exported {
+            get {
+                return ResourceManager.GetString("ExportFavoritesCommand_exported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to JSON File (*.json)|*.json.
+        /// </summary>
+        internal static string ExportFavoritesCommand_OpenFileFilter {
+            get {
+                return ResourceManager.GetString("ExportFavoritesCommand_OpenFileFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export Favorites.
+        /// </summary>
+        internal static string ExportFavoritesCommand_OpenFileTitle {
+            get {
+                return ResourceManager.GetString("ExportFavoritesCommand_OpenFileTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Favorites {
@@ -3235,65 +3271,47 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Delete {0} items?.
+        ///   Looks up a localized string similar to Are you sure you want to delete all Favorites data?.
         /// </summary>
-        internal static string FavoritesManagerControl_deleteConfirmMultiple {
+        internal static string FavoritesSheet_confirmDrop {
             get {
-                return ResourceManager.GetString("FavoritesManagerControl_deleteConfirmMultiple", resourceCulture);
+                return ResourceManager.GetString("FavoritesSheet_confirmDrop", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Empty - drag favorites here.
+        ///   Looks up a localized string similar to Delete all Favorites data from your local OneMore.db database. Use this only if to erase the entire Favorites collection and reimport an old Favorites.xml file..
         /// </summary>
-        internal static string FavoritesManagerControl_emptyFolderHint {
+        internal static string FavoritesSheet_dropLabel_Text {
             get {
-                return ResourceManager.GetString("FavoritesManagerControl_emptyFolderHint", resourceCulture);
+                return ResourceManager.GetString("FavoritesSheet_dropLabel.Text", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New Folder.
+        ///   Looks up a localized string similar to Drop the Favorites schema from the database.
         /// </summary>
-        internal static string FavoritesManagerControl_newFolder {
+        internal static string FavoritesSheet_dropLink_Text {
             get {
-                return ResourceManager.GetString("FavoritesManagerControl_newFolder", resourceCulture);
+                return ResourceManager.GetString("FavoritesSheet_dropLink.Text", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rename Favorite.
+        ///   Looks up a localized string similar to Favorites data delete and refreshed with Favorites.xml if it exists.
         /// </summary>
-        internal static string FavoritesManagerControl_renameFavorite {
+        internal static string FavoritesSheet_dropped {
             get {
-                return ResourceManager.GetString("FavoritesManagerControl_renameFavorite", resourceCulture);
+                return ResourceManager.GetString("FavoritesSheet_dropped", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rename Folder.
+        ///   Looks up a localized string similar to Custom options for Favorites.
         /// </summary>
-        internal static string FavoritesManagerControl_renameFolder {
+        internal static string FavoritesSheet_introBox_Text {
             get {
-                return ResourceManager.GetString("FavoritesManagerControl_renameFolder", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Delete {0}?.
-        /// </summary>
-        internal static string FavoritesSheet_DeleteMessage {
-            get {
-                return ResourceManager.GetString("FavoritesSheet_DeleteMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Location.
-        /// </summary>
-        internal static string FavoritesSheet_locationColumn_HeaderText {
-            get {
-                return ResourceManager.GetString("FavoritesSheet_locationColumn.HeaderText", resourceCulture);
+                return ResourceManager.GetString("FavoritesSheet_introBox.Text", resourceCulture);
             }
         }
         
@@ -4315,6 +4333,42 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error importing favorites.
+        /// </summary>
+        internal static string ImportFavoritesCommand_error {
+            get {
+                return ResourceManager.GetString("ImportFavoritesCommand_error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} of {1} favorites imported.
+        /// </summary>
+        internal static string ImportFavoritesCommand_imported {
+            get {
+                return ResourceManager.GetString("ImportFavoritesCommand_imported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to JSON File (*.json)|*.json.
+        /// </summary>
+        internal static string ImportFavoritesCommand_OpenFileFilter {
+            get {
+                return ResourceManager.GetString("ImportFavoritesCommand_OpenFileFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import Favorites.
+        /// </summary>
+        internal static string ImportFavoritesCommand_OpenFileTitle {
+            get {
+                return ResourceManager.GetString("ImportFavoritesCommand_OpenFileTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Choose an entire folder or individual tasks to import from Outlook into OneNote. Disabled items indicate tasks already linked to OneNote.
         /// </summary>
         internal static string ImportOutlookTasksDialog_introBox_Text {
@@ -5071,6 +5125,16 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap m_Export {
+            get {
+                object obj = ResourceManager.GetObject("m_Export", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap m_FileOpen {
             get {
                 object obj = ResourceManager.GetObject("m_FileOpen", resourceCulture);
@@ -5124,6 +5188,16 @@ namespace River.OneMoreAddIn.Properties {
         internal static System.Drawing.Bitmap m_Highlighter {
             get {
                 object obj = ResourceManager.GetObject("m_Highlighter", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap m_Import {
+            get {
+                object obj = ResourceManager.GetObject("m_Import", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -5319,6 +5393,78 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete {0}?.
+        /// </summary>
+        internal static string ManageFavorites_DeleteMessage {
+            get {
+                return ResourceManager.GetString("ManageFavorites_DeleteMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Empty - drag favorites here.
+        /// </summary>
+        internal static string ManageFavoritesControl_emptyFolderHint {
+            get {
+                return ResourceManager.GetString("ManageFavoritesControl_emptyFolderHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export Favorites.
+        /// </summary>
+        internal static string ManageFavoritesControl_export {
+            get {
+                return ResourceManager.GetString("ManageFavoritesControl_export", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import Favorites.
+        /// </summary>
+        internal static string ManageFavoritesControl_import {
+            get {
+                return ResourceManager.GetString("ManageFavoritesControl_import", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Folder.
+        /// </summary>
+        internal static string ManageFavoritesControl_newFolder {
+            get {
+                return ResourceManager.GetString("ManageFavoritesControl_newFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rename Favorite.
+        /// </summary>
+        internal static string ManageFavoritesControl_renameFavorite {
+            get {
+                return ResourceManager.GetString("ManageFavoritesControl_renameFavorite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rename Folder.
+        /// </summary>
+        internal static string ManageFavoritesControl_renameFolder {
+            get {
+                return ResourceManager.GetString("ManageFavoritesControl_renameFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sort current folder.
+        /// </summary>
+        internal static string ManageFavoritesControl_sort {
+            get {
+                return ResourceManager.GetString("ManageFavoritesControl_sort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Discard unsaved changes?.
         /// </summary>
         internal static string ManageFavoritesDialog_discard {
@@ -5333,6 +5479,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ManageFavoritesDialog_Text {
             get {
                 return ResourceManager.GetString("ManageFavoritesDialog_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete {0} items?.
+        /// </summary>
+        internal static string ManageFavoritesrControl_deleteConfirmMultiple {
+            get {
+                return ResourceManager.GetString("ManageFavoritesrControl_deleteConfirmMultiple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Location.
+        /// </summary>
+        internal static string MangeFavoritesControl_locationColumn_HeaderText {
+            get {
+                return ResourceManager.GetString("MangeFavoritesControl_locationColumn.HeaderText", resourceCulture);
             }
         }
         
@@ -7222,7 +7386,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("RenameDialog_renameStyle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Original Name: {0}.
         /// </summary>
@@ -7231,7 +7395,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("RenameFavoriteDialog_originalNameLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Reorder how styles appear in the gallery. Also changes the order of headings in a TOC.
         /// </summary>
@@ -8612,6 +8776,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Export Favorites.
+        /// </summary>
+        internal static string ribExportFavoritesButton_Label {
+            get {
+                return ResourceManager.GetString("ribExportFavoritesButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export all favorites to a JSON file.
+        /// </summary>
+        internal static string ribExportFavoritesButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribExportFavoritesButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Extras.
         /// </summary>
         internal static string ribExtrasMenu_Label {
@@ -8851,6 +9033,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribImportButton_Screentip {
             get {
                 return ResourceManager.GetString("ribImportButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import Favorites.
+        /// </summary>
+        internal static string ribImportFavoritesButton_Label {
+            get {
+                return ResourceManager.GetString("ribImportFavoritesButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import all favorites from a JSON file.
+        /// </summary>
+        internal static string ribImportFavoritesButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribImportFavoritesButton_Screentip", resourceCulture);
             }
         }
         
@@ -14229,7 +14429,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("word_Reset", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Revert.
         /// </summary>
@@ -14238,7 +14438,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("word_Revert", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Saturation.
         /// </summary>

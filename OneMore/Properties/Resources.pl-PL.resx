@@ -1189,6 +1189,22 @@ Plik OneNote (* .o)</value>
     <value>Zastąp spacje w nazwie pliku podkreśleniami</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ExportFavoritesCommand_error" xml:space="preserve">
+    <value>Błąd podczas eksportowania ulubionych</value>
+    <comment>message</comment>
+  </data>
+  <data name="ExportFavoritesCommand_exported" xml:space="preserve">
+    <value>{0} ulubionych wyeksportowanych do {1}</value>
+    <comment>message</comment>
+  </data>
+  <data name="ExportFavoritesCommand_OpenFileFilter" xml:space="preserve">
+    <value>Plik JSON (*.json)|*.json</value>
+    <comment>export dialog</comment>
+  </data>
+  <data name="ExportFavoritesCommand_OpenFileTitle" xml:space="preserve">
+    <value>Eksportuj ulubione</value>
+    <comment>export dialog title</comment>
+  </data>
   <data name="Favorites_suspect" xml:space="preserve">
     <value>Strona nie znaleziona; mogła zostać zmieniona lub przeniesiona</value>
     <comment>tooltip</comment>
@@ -1213,33 +1229,25 @@ Plik OneNote (* .o)</value>
     <value>Favorites.xml</value>
     <comment>SKIP, filename</comment>
   </data>
-  <data name="FavoritesManagerControl_deleteConfirmMultiple" xml:space="preserve">
-    <value>Usunąć {0} elementy?</value>
-    <comment>message box</comment>
-  </data>
-  <data name="FavoritesManagerControl_emptyFolderHint" xml:space="preserve">
-    <value>Puste — przeciągnij tutaj ulubione</value>
-    <comment>list view hint text</comment>
-  </data>
-  <data name="FavoritesManagerControl_newFolder" xml:space="preserve">
-    <value>Nowy folder</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="FavoritesManagerControl_renameFavorite" xml:space="preserve">
-    <value>Zmień nazwę ulubionego</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="FavoritesManagerControl_renameFolder" xml:space="preserve">
-    <value>Zmień nazwę folderu</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="FavoritesSheet_DeleteMessage" xml:space="preserve">
-    <value>Usuń {0}?</value>
+  <data name="FavoritesSheet_confirmDrop" xml:space="preserve">
+    <value>Czy na pewno chcesz usunąć wszystkie dane z Ulubionych?</value>
     <comment>settings</comment>
   </data>
-  <data name="FavoritesSheet_locationColumn.HeaderText" xml:space="preserve">
-    <value>Lokalizacja</value>
-    <comment>settings table column header</comment>
+  <data name="FavoritesSheet_dropLabel.Text" xml:space="preserve">
+    <value>Usuń wszystkie dane Ulubionych z lokalnej bazy danych OneMore.db. Użyj tej opcji tylko wtedy, gdy chcesz usunąć całą kolekcję Ulubione i ponownie zaimportować stary plik Ulubione.xml.</value>
+    <comment>settings</comment>
+  </data>
+  <data name="FavoritesSheet_dropLink.Text" xml:space="preserve">
+    <value>Usuń schemat Ulubione z bazy danych</value>
+    <comment>settings</comment>
+  </data>
+  <data name="FavoritesSheet_dropped" xml:space="preserve">
+    <value>Dane ulubionych są usuwane i odświeżane za pomocą pliku Favourites.xml, jeśli istnieje</value>
+    <comment>settings</comment>
+  </data>
+  <data name="FavoritesSheet_introBox.Text" xml:space="preserve">
+    <value>Niestandardowe opcje Ulubionych</value>
+    <comment>settings</comment>
   </data>
   <data name="FavoritesSheet_shortcutsBox.Text" xml:space="preserve">
     <value>Dołącz odwołanie do skrótów klawiaturowych</value>
@@ -1681,6 +1689,22 @@ Czerwony pierwszy plan
     <value>Opcje słowa</value>
     <comment>group box</comment>
   </data>
+  <data name="ImportFavoritesCommand_error" xml:space="preserve">
+    <value>Błąd podczas importowania ulubionych</value>
+    <comment>message</comment>
+  </data>
+  <data name="ImportFavoritesCommand_imported" xml:space="preserve">
+    <value>Zaimportowano {0} z {1} ulubionych</value>
+    <comment>message</comment>
+  </data>
+  <data name="ImportFavoritesCommand_OpenFileFilter" xml:space="preserve">
+    <value>Plik JSON (*.json)|*.json</value>
+    <comment>import dialog</comment>
+  </data>
+  <data name="ImportFavoritesCommand_OpenFileTitle" xml:space="preserve">
+    <value>Importuj ulubione</value>
+    <comment>import dialog title</comment>
+  </data>
   <data name="ImportOutlookTasksDialog.Text" xml:space="preserve">
     <value>Importuj zadania z programu Outlook</value>
     <comment>dialog title</comment>
@@ -1972,6 +1996,38 @@ Czy chcesz odświeżyć istniejącą stronę?</value>
     <value>Załaduj motyw stylu</value>
     <comment>OpenFileDialog title</comment>
   </data>
+  <data name="ManageFavorites_DeleteMessage" xml:space="preserve">
+    <value>Usuń {0}?</value>
+    <comment>settings</comment>
+  </data>
+  <data name="ManageFavoritesControl_emptyFolderHint" xml:space="preserve">
+    <value>Puste — przeciągnij tutaj ulubione</value>
+    <comment>list view hint text</comment>
+  </data>
+  <data name="ManageFavoritesControl_export" xml:space="preserve">
+    <value>Eksportuj ulubione</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageFavoritesControl_import" xml:space="preserve">
+    <value>Importuj ulubione</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageFavoritesControl_newFolder" xml:space="preserve">
+    <value>Nowy folder</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ManageFavoritesControl_renameFavorite" xml:space="preserve">
+    <value>Zmień nazwę ulubionego</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ManageFavoritesControl_renameFolder" xml:space="preserve">
+    <value>Zmień nazwę folderu</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ManageFavoritesControl_sort" xml:space="preserve">
+    <value>Sortuj bieżący folder</value>
+    <comment>toolbar button</comment>
+  </data>
   <data name="ManageFavoritesDialog_discard" xml:space="preserve">
     <value>Odrzucić niezapisane zmiany?</value>
     <comment>message box</comment>
@@ -1979,6 +2035,14 @@ Czy chcesz odświeżyć istniejącą stronę?</value>
   <data name="ManageFavoritesDialog_Text" xml:space="preserve">
     <value>Zarządzaj ulubionymi</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="ManageFavoritesrControl_deleteConfirmMultiple" xml:space="preserve">
+    <value>Usunąć {0} elementy?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="MangeFavoritesControl_locationColumn.HeaderText" xml:space="preserve">
+    <value>Lokalizacja</value>
+    <comment>settings table column header</comment>
   </data>
   <data name="MapDialog_groupBox.Text" xml:space="preserve">
     <value>Strony in.</value>
@@ -3382,6 +3446,14 @@ Zakładka Pomoc</value>
     <value>Eksportuj stronę (y) jako HTML, PDF, Word lub XML</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
+  <data name="ribExportFavoritesButton_Label" xml:space="preserve">
+    <value>Eksportuj ulubione</value>
+    <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribExportFavoritesButton_Screentip" xml:space="preserve">
+    <value>Eksportuj wszystkie ulubione do pliku JSON</value>
+    <comment>ribbon favorites</comment>
+  </data>
   <data name="ribExtrasMenu_Label" xml:space="preserve">
     <value>Dodatki</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
@@ -3489,6 +3561,14 @@ Zakładka Pomoc</value>
   <data name="ribImportButton_Screentip" xml:space="preserve">
     <value>Importuj plik</value>
     <comment>ribbon file NODUP</comment>
+  </data>
+  <data name="ribImportFavoritesButton_Label" xml:space="preserve">
+    <value>Importuj ulubione</value>
+    <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribImportFavoritesButton_Screentip" xml:space="preserve">
+    <value>Zaimportuj wszystkie ulubione z pliku JSON</value>
+    <comment>ribbon favorites</comment>
   </data>
   <data name="ribImportOutlookTasksButton_Label" xml:space="preserve">
     <value>Importuj zadania z programu Outlook</value>

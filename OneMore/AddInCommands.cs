@@ -349,6 +349,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<ExportCommand>();
 
 
+		[Command("ribExportFavoritesButton_Label", Keys.None, "ribFavoritesMenu")]
+		public async Task ExportFavoritesCmd(IRibbonControl control)
+			=> await factory.Run<ExportFavoritesCommand>();
+
+
 		[Command("ribFileQuickNotesButton_Label", Keys.None)]
 		public async Task FileQuickNotesCmd(IRibbonControl control)
 			=> await factory.Run<FileQuickNotesCommand>();
@@ -417,6 +422,11 @@ namespace River.OneMoreAddIn
 		[Command("ribImportWebButton_Label", Keys.None)]
 		public async Task ImportWebCmd(IRibbonControl control)
 			=> await factory.Run<ImportWebCommand>();
+
+
+		[Command("ribImportFavoritesButton_Label", Keys.None, "ribFavoritesMenu")]
+		public async Task ImportFavoritesCmd(IRibbonControl control)
+			=> await factory.Run<ImportFavoritesCommand>();
 
 
 		[Command("ribImportOutlookTasksButton_Label", Keys.None, "ribRemindersMenu")]

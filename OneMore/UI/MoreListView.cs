@@ -117,6 +117,12 @@ namespace River.OneMoreAddIn.UI
 			HideSelection = false;
 			OwnerDraw = true;
 
+			// prevent flickering, especially while dragging an item
+			SetStyle(
+				ControlStyles.DoubleBuffer |
+				ControlStyles.OptimizedDoubleBuffer |
+				ControlStyles.AllPaintingInWmPaint, true);
+
 			// Never explicitly assign BackColor at design time: the VS designer would bake
 			// the (always-light) snapshot into the consumer's InitializeComponent the next
 			// time its Designer.cs is opened and saved (ShouldSerializeBackColor/ResetBackColor

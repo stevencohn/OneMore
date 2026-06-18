@@ -1,12 +1,13 @@
-﻿//************************************************************************************************
+//************************************************************************************************
 // Copyright © 2022 Steven M Cohn. All Rights Reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands.Favorites
 {
+	using River.OneMoreAddIn.UI;
 	using System;
-	using System.ComponentModel;
 	using System.Drawing;
+	using System.Linq;
 	using System.Windows.Forms;
 	using Microsoft.Office.Core;
 	using Resx = Properties.Resources;
@@ -14,7 +15,20 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 	internal partial class FavoritesDialog : UI.MoreForm
 	{
+		/// <summary>
+		/// Marks a row that represents a folder rather than a favorite.
+		/// </summary>
+		private sealed class FolderRow
+		{
+			public int FolderID { get; set; }
+			public string Name { get; set; }
+		}
+
+
+		private const int FavoriteIndent = 20;
+
 		private readonly IRibbonUI ribbon;
+		private FavoritesCollection collection;
 
 
 		public FavoritesDialog()
@@ -34,9 +48,12 @@ namespace River.OneMoreAddIn.Commands.Favorites
 					"cancelButton=word_Cancel"
 				});
 
-				nameColumn.HeaderText = Resx.word_Name;
-				locationColumn.HeaderText = Resx.FavoritesSheet_locationColumn_HeaderText;
+				nameColumn.Text = Resx.word_Name;
+				locationColumn.Text = Resx.MangeFavoritesControl_locationColumn_HeaderText;
 			}
+
+			listView.SetColumnProportions(0.4f, 0.6f);
+			listView.GetCellStyle = GetCellStyle;
 
 			DefaultControl = searchBox;
 		}
@@ -50,15 +67,10 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 		private async void BindOnLoad(object sender, EventArgs e)
 		{
-			//Native.SwitchToThisWindow(Handle, false);
-
 			using var provider = new FavoritesProvider();
-			var collection = provider.ReadFavorites();
+			collection = provider.ReadFavorites();
 
-			gridView.AutoGenerateColumns = false;
-			gridView.Columns[0].DataPropertyName = "Name";
-			gridView.Columns[1].DataPropertyName = "Location";
-			gridView.DataSource = new BindingList<Favorite>(collection.Items);
+			Populate(string.Empty);
 		}
 
 
@@ -74,82 +86,140 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		public string Uri { get; private set; }
 
 
-		private void ValidateOnCellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+		private static MoreListView.CellStyle GetCellStyle(ListViewItem item, int columnIndex)
 		{
-			if (gridView.Rows[e.RowIndex].DataBoundItem is Favorite favorite)
+			if (item.Tag is Favorite favorite)
 			{
-				if (favorite.Status == FavoriteStatus.Unknown)
-				{
-					gridView.Rows[e.RowIndex].Cells[e.ColumnIndex].ToolTipText =
-						Resx.Favorites_unknown;
+				var indent = columnIndex == 0 && favorite.FolderID != 0 ? FavoriteIndent : 0;
+				return new MoreListView.CellStyle(indent, false);
+			}
 
-					e.CellStyle.ForeColor = manager.GetColor("ErrorText");
-					e.FormattingApplied = true;
+			return MoreListView.CellStyle.Default;
+		}
+
+
+		/// <summary>
+		/// Rebuilds the list from the in-memory collection, showing only favorites matching
+		/// the given filter text (or all favorites when the filter is too short) and only the
+		/// folders that still have at least one matching favorite.
+		/// </summary>
+		private void Populate(string filterText)
+		{
+			var text = filterText.Trim();
+			var filtering = text.Length > 1;
+
+			listView.BeginUpdate();
+			listView.Items.Clear();
+
+			foreach (var folder in collection.Folders)
+			{
+				var matches = filtering
+					? folder.Items.Where(f => Matches(f, text)).ToList()
+					: folder.Items;
+
+				if (matches.Count == 0)
+				{
+					continue;
 				}
-				else if (favorite.Status == FavoriteStatus.Suspect)
-				{
-					gridView.Rows[e.RowIndex].Cells[e.ColumnIndex].ToolTipText =
-						Resx.Favorites_suspect;
 
-					e.CellStyle.BackColor = manager.GetColor("Info");
-					e.CellStyle.ForeColor = manager.GetColor("InfoText");
-					e.FormattingApplied = true;
+				AddFolderRow(folder.FolderID, folder.Name);
+
+				foreach (var favorite in matches)
+				{
+					AddFavoriteRow(favorite);
 				}
 			}
+
+			var rootMatches = filtering
+				? collection.Items.Where(f => Matches(f, text)).ToList()
+				: collection.Items;
+
+			foreach (var favorite in rootMatches)
+			{
+				AddFavoriteRow(favorite);
+			}
+
+			listView.EndUpdate();
+		}
+
+
+		private static bool Matches(Favorite favorite, string text)
+		{
+			return (favorite.Alias ?? favorite.Name).ContainsICIC(text) ||
+				favorite.Location.ContainsICIC(text);
+		}
+
+
+		private void AddFolderRow(int folderID, string name)
+		{
+			var item = new ListViewItem(name)
+			{
+				Tag = new FolderRow { FolderID = folderID, Name = name },
+				Font = new Font(listView.Font, FontStyle.Bold)
+			};
+
+			item.SubItems.Add(string.Empty);
+			listView.Items.Add(item);
+		}
+
+
+		private void AddFavoriteRow(Favorite favorite)
+		{
+			var item = new ListViewItem(favorite.Alias ?? favorite.Name) { Tag = favorite };
+			item.SubItems.Add(favorite.Location);
+			listView.Items.Add(item);
 		}
 
 
 		private void FilterRowOnKeyUp(object sender, KeyEventArgs e)
 		{
-			if (gridView.Rows.Count == 0)
+			if (listView.Items.Count > 0)
 			{
-				return;
-			}
+				switch (e.KeyCode)
+				{
+					case Keys.Down:
+						e.Handled = SelectNextRow();
+						break;
 
-			switch (e.KeyCode)
-			{
-				case Keys.Down:
-					e.Handled = SelectNextRow();
-					break;
+					case Keys.Up:
+						e.Handled = SelectPreviousRow();
+						break;
 
-				case Keys.Up:
-					e.Handled = SelectPreviousRow();
-					break;
+					case Keys.PageDown:
+						e.Handled = MovePageDown();
+						break;
 
-				case Keys.PageDown:
-					e.Handled = MovePageDown();
-					break;
+					case Keys.PageUp:
+						e.Handled = MovePageUp();
+						break;
 
-				case Keys.PageUp:
-					e.Handled = MovePageUp();
-					break;
+					case Keys.Home:
+						if (e.Modifiers == 0)
+						{
+							e.Handled = MoveTop();
+						}
+						break;
 
-				case Keys.Home:
-					if (e.Modifiers == 0)
-					{
-						e.Handled = MoveTop();
-					}
-					break;
+					case Keys.End:
+						if (e.Modifiers == 0)
+						{
+							e.Handled = MoveBottom();
+						}
+						break;
 
-				case Keys.End:
-					if (e.Modifiers == 0)
-					{
-						e.Handled = MoveBottom();
-					}
-					break;
+					case Keys.Left:
+					case Keys.Right:
+						if (e.Modifiers == 0)
+						{
+							e.Handled = true;
+						}
+						break;
+				}
 
-				case Keys.Left:
-				case Keys.Right:
-					if (e.Modifiers == 0)
-					{
-						e.Handled = true;
-					}
-					break;
-			}
-
-			if (e.Handled)
-			{
-				return;
+				if (e.Handled)
+				{
+					return;
+				}
 			}
 
 			if (Char.IsControl((char)e.KeyValue) &&
@@ -159,223 +229,199 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				return;
 			}
 
-			// filter list based on search text...
+			// filter list based on search text; preserve the selected favorite by ID since
+			// rebuilding the list invalidates row indices
 
-			var text = searchBox.Text.Trim();
+			var selectedID = listView.SelectedItems.Count > 0 &&
+				listView.SelectedItems[0].Tag is Favorite selected
+					? selected.ID
+					: (int?)null;
 
-			var selected = gridView.SelectedCells.Count > 0
-				? gridView.SelectedCells[0].RowIndex
-				: -1;
+			Populate(searchBox.Text);
 
-			// must suspend currency manager in order to hide selected or remaining rows
-			var mgr = (CurrencyManager)BindingContext[gridView.DataSource];
-			mgr.SuspendBinding();
-
-			if (text.Length > 2)
+			var index = selectedID.HasValue ? IndexOfFavorite(selectedID.Value) : -1;
+			if (index < 0)
 			{
-				foreach (DataGridViewRow row in gridView.Rows)
-				{
-					if (row.Cells[0].Value.ToString().ContainsICIC(text) ||
-						row.Cells[1].Value.ToString().ContainsICIC(text))
-					{
-						row.Visible = true;
-					}
-					else
-					{
-						row.Cells[0].Selected = row.Cells[1].Selected = false;
-						row.Selected = false;
-						row.Visible = false;
-					}
-				}
-			}
-			else
-			{
-				foreach (DataGridViewRow row in gridView.Rows)
-				{
-					row.Visible = true;
-				}
+				index = FirstFavoriteIndex();
 			}
 
-			mgr.ResumeBinding();
-
-			// ensure there is a selection...
-
-			if (selected < 0 || text.Length < 3)
+			if (index >= 0)
 			{
-				// previously was no selection, this should force first visible
-				var first = gridView.Rows.GetFirstRow(DataGridViewElementStates.Visible);
-				if (first >= 0)
-				{
-					gridView.Rows[first].Cells[0].Selected = true;
-				}
-			}
-			else
-			{
-				// find visible row above starting position
-				selected = gridView.Rows.GetPreviousRow(selected, DataGridViewElementStates.Visible);
-				if (selected < 0)
-				{
-					selected = gridView.Rows.GetFirstRow(DataGridViewElementStates.Visible);
-				}
-
-				if (selected >= 0)
-				{
-					gridView.Rows[selected].Cells[0].Selected = true;
-				}
+				listView.Items[index].Selected = true;
+				listView.Items[index].EnsureVisible();
 			}
 
 			e.Handled = true;
 		}
 
 
+		private int IndexOfFavorite(int id)
+		{
+			for (var i = 0; i < listView.Items.Count; i++)
+			{
+				if (listView.Items[i].Tag is Favorite favorite && favorite.ID == id)
+				{
+					return i;
+				}
+			}
+
+			return -1;
+		}
+
+
+		/// <summary>
+		/// Scans from start in the given direction (1 or -1), skipping folder rows, and
+		/// returns the index of the next favorite row, or -1 if there isn't one.
+		/// </summary>
+		private int AdjacentFavoriteIndex(int start, int direction)
+		{
+			var i = start;
+			do
+			{
+				i += direction;
+			}
+			while (i >= 0 && i < listView.Items.Count && listView.Items[i].Tag is not Favorite);
+
+			return i >= 0 && i < listView.Items.Count ? i : -1;
+		}
+
+
+		private int FirstFavoriteIndex()
+		{
+			return AdjacentFavoriteIndex(-1, 1);
+		}
+
+
+		private int LastFavoriteIndex()
+		{
+			return AdjacentFavoriteIndex(listView.Items.Count, -1);
+		}
+
+
+		private int PageSize()
+		{
+			if (listView.Items.Count == 0)
+			{
+				return 1;
+			}
+
+			var rowHeight = listView.Items[0].Bounds.Height;
+			return rowHeight > 0 ? Math.Max(1, listView.ClientSize.Height / rowHeight) : 1;
+		}
+
+
+		private void SelectRow(int index)
+		{
+			listView.Items[index].Selected = true;
+			listView.Items[index].EnsureVisible();
+			ShowText();
+		}
+
+
 		private void ShowText()
 		{
-			searchBox.Text = (string)gridView.SelectedCells[0].Value;
+			searchBox.Text = listView.SelectedItems[0].Text;
 			searchBox.Select(searchBox.Text.Length, 0);
 		}
 
 
 		private bool MoveBottom()
 		{
-			if (gridView.Rows.Count == 0)
+			var index = LastFavoriteIndex();
+			if (index < 0)
 			{
-				return true;
+				return false;
 			}
 
-			var index = gridView.Rows.GetLastRow(DataGridViewElementStates.Visible);
-			if (index >= 0)
-			{
-				gridView.Rows[index].Cells[0].Selected = true;
-				ShowText();
-				return true;
-			}
-
-			return false;
+			SelectRow(index);
+			return true;
 		}
 
 
 		private bool MoveTop()
 		{
-			if (gridView.Rows.Count == 0)
+			var index = FirstFavoriteIndex();
+			if (index < 0)
 			{
-				return true;
+				return false;
 			}
 
-			var index = gridView.Rows.GetFirstRow(DataGridViewElementStates.Visible);
-			if (index >= 0)
-			{
-				gridView.Rows[index].Cells[0].Selected = true;
-				ShowText();
-				return true;
-			}
-
-			return false;
+			SelectRow(index);
+			return true;
 		}
 
 
 		private bool MovePageDown()
 		{
-			if (gridView.Rows.Count == 0)
+			if (listView.SelectedItems.Count == 0)
 			{
-				return true;
+				return MoveTop();
 			}
 
-			if (gridView.SelectedCells.Count == 0)
-			{
-				var first = gridView.Rows.GetFirstRow(DataGridViewElementStates.Visible);
-				gridView.Rows[first].Cells[0].Selected = true;
-				ShowText();
-			}
-			else
-			{
-				var displayed = gridView.DisplayedRowCount(true);
-				var index = gridView.SelectedCells[0].RowIndex;
+			var displayed = PageSize();
+			var index = listView.SelectedItems[0].Index;
 
-				while (displayed >= 0 && index > 0 && index < gridView.Rows.Count)
+			while (displayed > 0)
+			{
+				var next = AdjacentFavoriteIndex(index, 1);
+				if (next < 0)
 				{
-					index = gridView.Rows.GetNextRow(index, DataGridViewElementStates.Visible);
-					displayed--;
+					break;
 				}
 
-				if (index < 0 || index > gridView.Rows.Count)
-				{
-					index = gridView.Rows.GetLastRow(DataGridViewElementStates.Visible);
-				}
-
-				gridView.Rows[index].Cells[0].Selected = true;
-				ShowText();
+				index = next;
+				displayed--;
 			}
 
+			SelectRow(index);
 			return true;
 		}
 
 
 		private bool MovePageUp()
 		{
-			if (gridView.Rows.Count == 0)
+			if (listView.SelectedItems.Count == 0)
 			{
-				return true;
+				return MoveTop();
 			}
 
-			if (gridView.SelectedCells.Count == 0)
-			{
-				var first = gridView.Rows.GetFirstRow(DataGridViewElementStates.Visible);
-				gridView.Rows[first].Cells[0].Selected = true;
-				ShowText();
-			}
-			else
-			{
-				var displayed = gridView.DisplayedRowCount(true);
-				var index = gridView.SelectedCells[0].RowIndex;
+			var displayed = PageSize();
+			var index = listView.SelectedItems[0].Index;
 
-				while (displayed >= 0 && index >= 0)
+			while (displayed > 0)
+			{
+				var previous = AdjacentFavoriteIndex(index, -1);
+				if (previous < 0)
 				{
-					index = gridView.Rows.GetPreviousRow(index, DataGridViewElementStates.Visible);
-					displayed--;
+					break;
 				}
 
-				if (index < 0)
-				{
-					index = gridView.Rows.GetFirstRow(DataGridViewElementStates.Visible);
-				}
-
-				gridView.Rows[index].Cells[0].Selected = true;
-				ShowText();
+				index = previous;
+				displayed--;
 			}
 
+			SelectRow(index);
 			return true;
 		}
 
 
 		private bool SelectNextRow()
 		{
-			if (gridView.SelectedCells.Count == 0)
+			if (listView.SelectedItems.Count == 0)
 			{
-				var first = gridView.Rows.GetFirstRow(DataGridViewElementStates.Visible);
-				if (first >= 0)
-				{
-					gridView.Rows[first].Cells[0].Selected = true;
-					ShowText();
-				}
-
-				return true;
+				return MoveTop();
 			}
 
-			var start = gridView.SelectedCells[0].RowIndex;
-			var index = gridView.Rows.GetNextRow(start, DataGridViewElementStates.Visible);
-			if (index > 0)
+			var start = listView.SelectedItems[0].Index;
+			var index = AdjacentFavoriteIndex(start, 1);
+			if (index < 0)
 			{
-				gridView.Rows[index].Cells[0].Selected = true;
-				ShowText();
+				index = AdjacentFavoriteIndex(start, -1);
 			}
-			else
+
+			if (index >= 0)
 			{
-				index = gridView.Rows.GetPreviousRow(start, DataGridViewElementStates.Visible);
-				if (index >= 0)
-				{
-					gridView.Rows[index].Cells[0].Selected = true;
-					ShowText();
-				}
+				SelectRow(index);
 			}
 
 			return true;
@@ -384,33 +430,21 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 		private bool SelectPreviousRow()
 		{
-			if (gridView.SelectedCells.Count == 0)
+			if (listView.SelectedItems.Count == 0)
 			{
-				var first = gridView.Rows.GetFirstRow(DataGridViewElementStates.Visible);
-				if (first >= 0)
-				{
-					gridView.Rows[first].Cells[0].Selected = true;
-					ShowText();
-				}
-
-				return true;
+				return MoveTop();
 			}
 
-			var start = gridView.SelectedCells[0].RowIndex;
-			var index = gridView.Rows.GetPreviousRow(start, DataGridViewElementStates.Visible);
+			var start = listView.SelectedItems[0].Index;
+			var index = AdjacentFavoriteIndex(start, -1);
+			if (index < 0)
+			{
+				index = AdjacentFavoriteIndex(start, 1);
+			}
+
 			if (index >= 0)
 			{
-				gridView.Rows[index].Cells[0].Selected = true;
-				ShowText();
-			}
-			else
-			{
-				index = gridView.Rows.GetNextRow(start, DataGridViewElementStates.Visible);
-				if (index > 0)
-				{
-					gridView.Rows[index].Cells[0].Selected = true;
-					ShowText();
-				}
+				SelectRow(index);
 			}
 
 			return true;
@@ -432,20 +466,9 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				return;
 			}
 
-			var source = gridView.DataSource as BindingList<Favorite>;
-			var index = 0;
-			Favorite favorite = null;
-			while (index < source.Count && favorite == null)
-			{
-				if (source[index].PageID == info.PageId)
-				{
-					favorite = source[index];
-				}
-				else
-				{
-					index++;
-				}
-			}
+			var favorite = collection.Folders.SelectMany(f => f.Items)
+				.Concat(collection.Items)
+				.FirstOrDefault(f => f.PageID == info.PageId);
 
 			if (favorite == null)
 			{
@@ -453,34 +476,47 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				await cmd.Execute(one.CurrentNotebookId, one.CurrentSectionId, one.CurrentPageId);
 
 				using var provider = new FavoritesProvider();
-				var collection = provider.ReadFavorites();
-				source.Add(collection.Items[collection.Items.Count - 1]);
-				MoveBottom();
+				collection = provider.ReadFavorites();
+
+				favorite = collection.Folders.SelectMany(f => f.Items)
+					.Concat(collection.Items)
+					.FirstOrDefault(f => f.PageID == info.PageId);
 			}
-			else
+
+			searchBox.Clear();
+			Populate(string.Empty);
+
+			if (favorite != null)
 			{
-				gridView.Rows[index].Cells[0].Selected = true;
-				ShowText();
+				var index = IndexOfFavorite(favorite.ID);
+				if (index >= 0)
+				{
+					SelectRow(index);
+				}
 			}
 		}
 
 
 		private void ChooseByClick(object sender, EventArgs e)
 		{
-			if (gridView.SelectedCells.Count == 0)
+			if (listView.SelectedItems.Count == 0 ||
+				listView.SelectedItems[0].Tag is not Favorite favorite)
+			{
 				return;
+			}
 
-			int rowIndex = gridView.SelectedCells[0].RowIndex;
-			var favorites = (BindingList<Favorite>)gridView.DataSource;
-			if (rowIndex > favorites.Count)
-				return;
-
-			Uri = favorites[rowIndex].Uri;
+			Uri = favorite.Uri;
 		}
 
 
-		private void ChooseByDoubleClick(object sender, DataGridViewCellEventArgs e)
+		private void ChooseByDoubleClick(object sender, EventArgs e)
 		{
+			if (listView.SelectedItems.Count == 0 ||
+				listView.SelectedItems[0].Tag is not Favorite)
+			{
+				return;
+			}
+
 			ChooseByClick(null, null);
 			DialogResult = DialogResult.OK;
 			Close();
@@ -489,12 +525,20 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 		private void ChooseByKeyboard(object sender, KeyEventArgs e)
 		{
-			if (e.KeyCode == Keys.Enter)
+			if (e.KeyCode != Keys.Enter)
 			{
-				ChooseByClick(null, null);
-				DialogResult = DialogResult.OK;
-				Close();
+				return;
 			}
+
+			if (listView.SelectedItems.Count == 0 ||
+				listView.SelectedItems[0].Tag is not Favorite)
+			{
+				return;
+			}
+
+			ChooseByClick(null, null);
+			DialogResult = DialogResult.OK;
+			Close();
 		}
 
 		private void ShowMenu(object sender, EventArgs e)

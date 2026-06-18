@@ -46,12 +46,21 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		{
 			InitializeComponent();
 
-			nameColumn.Text = Resx.word_Name;
-			locationColumn.Text = Resx.FavoritesSheet_locationColumn_HeaderText;
-			newFolderButton.ToolTipText = Resx.FavoritesManagerControl_newFolder;
-			deleteButton.ToolTipText = Resx.word_Delete;
-			renameButton.ToolTipText = Resx.FavoritesManagerControl_renameFavorite;
-			renameMenuItem.Text = Resx.FavoritesManagerControl_renameFavorite;
+			if (NeedsLocalizing())
+			{
+				nameColumn.Text = Resx.word_Name;
+				locationColumn.Text = Resx.MangeFavoritesControl_locationColumn_HeaderText;
+				sortButton.ToolTipText = Resx.ManageFavoritesControl_sort;
+				upButton.ToolTipText = Resx.NavigatorWindow_menuMoveUp;
+				downButton.ToolTipText = Resx.NavigatorWindow_menuMoveDown;
+				newFolderButton.ToolTipText = Resx.ManageFavoritesControl_newFolder;
+				deleteButton.ToolTipText = Resx.word_Delete;
+				renameButton.ToolTipText = Resx.ManageFavoritesControl_renameFavorite;
+				renameMenuItem.Text = Resx.ManageFavoritesControl_renameFavorite;
+				checkButton.ToolTipText = Resx.FavoritesDialog_checkButton_Text;
+				importButton.ToolTipText = Resx.ManageFavoritesControl_import;
+				exportButton.ToolTipText = Resx.ManageFavoritesControl_export;
+			}
 
 			listView.SetColumnProportions(0.4f, 0.6f);
 			listView.CanDragItem = item => item.Tag is Favorite;
@@ -208,12 +217,38 @@ namespace River.OneMoreAddIn.Commands.Favorites
 			}
 
 			if (columnIndex == 1 && item.SubItems.Count > 1 &&
-				item.SubItems[1].Text == Resx.FavoritesManagerControl_emptyFolderHint)
+				item.SubItems[1].Text == Resx.ManageFavoritesControl_emptyFolderHint)
 			{
 				return new MoreListView.CellStyle(0, true);
 			}
 
 			return MoreListView.CellStyle.Default;
+		}
+
+
+		private async void ImportFavorites(object sender, EventArgs e)
+		{
+			if (IsDirty() && MoreMessageBox.Show(this, Resx.ManageFavoritesDialog_discard,
+				MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+			{
+				return;
+			}
+
+			var command = new ImportFavoritesCommand();
+			command.SetLogger(Logger.Current);
+			command.SetOwner(this);
+			await command.Execute();
+
+			LoadFavorites();
+		}
+
+
+		private async void ExportFavorites(object sender, EventArgs e)
+		{
+			var command = new ExportFavoritesCommand();
+			command.SetLogger(Logger.Current);
+			command.SetOwner(this);
+			await command.Execute();
 		}
 
 
@@ -331,7 +366,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				{
 					item.SubItems[1].Text = favoriteCountByFolder.ContainsKey(row.FolderID)
 						? string.Empty
-						: Resx.FavoritesManagerControl_emptyFolderHint;
+						: Resx.ManageFavoritesControl_emptyFolderHint;
 				}
 			}
 		}
@@ -504,7 +539,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				.Select(i => ((FolderRow)i.Tag).Name);
 
 			using var dialog = new RenameDialog(existingNames, string.Empty,
-				createTitle: Resx.FavoritesManagerControl_newFolder,
+				createTitle: Resx.ManageFavoritesControl_newFolder,
 				label: Resx.word_Name);
 
 			if (dialog.ShowDialog(this) != DialogResult.OK)
@@ -539,9 +574,9 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				.ToList();
 
 			var message = folderRows.Count == 0 && favoriteRows.Count == 1
-				? string.Format(Resx.FavoritesSheet_DeleteMessage,
+				? string.Format(Resx.ManageFavorites_DeleteMessage,
 					((Favorite)favoriteRows[0].Tag).Alias ?? ((Favorite)favoriteRows[0].Tag).Name)
-				: string.Format(Resx.FavoritesManagerControl_deleteConfirmMultiple,
+				: string.Format(Resx.ManageFavoritesrControl_deleteConfirmMultiple,
 					folderRows.Count + favoriteRows.Count);
 
 			if (MoreMessageBox.Show(this, message, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
@@ -639,8 +674,8 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				.Select(i => ((FolderRow)i.Tag).Name);
 
 			using var dialog = new RenameDialog(siblingNames, folder.Name,
-				createTitle: Resx.FavoritesManagerControl_renameFolder,
-				renameTitle: Resx.FavoritesManagerControl_renameFolder,
+				createTitle: Resx.ManageFavoritesControl_renameFolder,
+				renameTitle: Resx.ManageFavoritesControl_renameFolder,
 				label: Resx.word_Name)
 			{
 				Rename = true

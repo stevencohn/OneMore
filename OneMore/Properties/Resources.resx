@@ -446,6 +446,10 @@ Invert</value>
     <value>Change Sentence Spacing</value>
     <comment>dialog title</comment>
   </data>
+  <data name="BreakingDialog_Text" xml:space="preserve">
+    <value>Change Sentence Spacing</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="BreakingDialog_twoButton.Text" xml:space="preserve">
     <value>Two spaces between sentences</value>
     <comment>radio</comment>
@@ -1194,6 +1198,22 @@ OneNote File (*.one)</value>
     <value>Replace spaces in the file name with underscores</value>
     <comment>checkbox</comment>
   </data>
+  <data name="ExportFavoritesCommand_error" xml:space="preserve">
+    <value>Error exporting favorites</value>
+    <comment>message</comment>
+  </data>
+  <data name="ExportFavoritesCommand_exported" xml:space="preserve">
+    <value>{0} favorites exported to {1}</value>
+    <comment>message</comment>
+  </data>
+  <data name="ExportFavoritesCommand_OpenFileFilter" xml:space="preserve">
+    <value>JSON File (*.json)|*.json</value>
+    <comment>export dialog</comment>
+  </data>
+  <data name="ExportFavoritesCommand_OpenFileTitle" xml:space="preserve">
+    <value>Export Favorites</value>
+    <comment>export dialog title</comment>
+  </data>
   <data name="Favorites_suspect" xml:space="preserve">
     <value>Page not found; it may have been renamed or moved</value>
     <comment>tooltip</comment>
@@ -1218,33 +1238,25 @@ OneNote File (*.one)</value>
     <value>Favorites.xml</value>
     <comment>!SKIP, filename</comment>
   </data>
-  <data name="FavoritesManagerControl_deleteConfirmMultiple" xml:space="preserve">
-    <value>Delete {0} items?</value>
-    <comment>message box</comment>
-  </data>
-  <data name="FavoritesManagerControl_emptyFolderHint" xml:space="preserve">
-    <value>Empty - drag favorites here</value>
-    <comment>list view hint text</comment>
-  </data>
-  <data name="FavoritesManagerControl_newFolder" xml:space="preserve">
-    <value>New Folder</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="FavoritesManagerControl_renameFavorite" xml:space="preserve">
-    <value>Rename Favorite</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="FavoritesManagerControl_renameFolder" xml:space="preserve">
-    <value>Rename Folder</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="FavoritesSheet_DeleteMessage" xml:space="preserve">
-    <value>Delete {0}?</value>
+  <data name="FavoritesSheet_confirmDrop" xml:space="preserve">
+    <value>Are you sure you want to delete all Favorites data?</value>
     <comment>settings</comment>
   </data>
-  <data name="FavoritesSheet_locationColumn.HeaderText" xml:space="preserve">
-    <value>Location</value>
-    <comment>settings table column header</comment>
+  <data name="FavoritesSheet_dropLabel.Text" xml:space="preserve">
+    <value>Delete all Favorites data from your local OneMore.db database. Use this only if to erase the entire Favorites collection and reimport an old Favorites.xml file.</value>
+    <comment>settings</comment>
+  </data>
+  <data name="FavoritesSheet_dropLink.Text" xml:space="preserve">
+    <value>Drop the Favorites schema from the database</value>
+    <comment>settings</comment>
+  </data>
+  <data name="FavoritesSheet_dropped" xml:space="preserve">
+    <value>Favorites data delete and refreshed with Favorites.xml if it exists</value>
+    <comment>settings</comment>
+  </data>
+  <data name="FavoritesSheet_introBox.Text" xml:space="preserve">
+    <value>Custom options for Favorites</value>
+    <comment>settings</comment>
   </data>
   <data name="FavoritesSheet_shortcutsBox.Text" xml:space="preserve">
     <value>Include reference to keyboard shortcuts page</value>
@@ -1685,6 +1697,22 @@ Yellow Background</value>
     <value>Word Options</value>
     <comment>group box</comment>
   </data>
+  <data name="ImportFavoritesCommand_error" xml:space="preserve">
+    <value>Error importing favorites</value>
+    <comment>message</comment>
+  </data>
+  <data name="ImportFavoritesCommand_imported" xml:space="preserve">
+    <value>{0} of {1} favorites imported</value>
+    <comment>message</comment>
+  </data>
+  <data name="ImportFavoritesCommand_OpenFileFilter" xml:space="preserve">
+    <value>JSON File (*.json)|*.json</value>
+    <comment>import dialog</comment>
+  </data>
+  <data name="ImportFavoritesCommand_OpenFileTitle" xml:space="preserve">
+    <value>Import Favorites</value>
+    <comment>import dialog title</comment>
+  </data>
   <data name="ImportOutlookTasksDialog.Text" xml:space="preserve">
     <value>Import Tasks from Outlook</value>
     <comment>dialog title</comment>
@@ -1976,6 +2004,38 @@ Do you want to refresh the existing page?</value>
     <value>Load Styles</value>
     <comment>OpenFileDialog title</comment>
   </data>
+  <data name="ManageFavorites_DeleteMessage" xml:space="preserve">
+    <value>Delete {0}?</value>
+    <comment>settings</comment>
+  </data>
+  <data name="ManageFavoritesControl_emptyFolderHint" xml:space="preserve">
+    <value>Empty - drag favorites here</value>
+    <comment>list view hint text</comment>
+  </data>
+  <data name="ManageFavoritesControl_export" xml:space="preserve">
+    <value>Export Favorites</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageFavoritesControl_import" xml:space="preserve">
+    <value>Import Favorites</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageFavoritesControl_newFolder" xml:space="preserve">
+    <value>New Folder</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageFavoritesControl_renameFavorite" xml:space="preserve">
+    <value>Rename Favorite</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageFavoritesControl_renameFolder" xml:space="preserve">
+    <value>Rename Folder</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageFavoritesControl_sort" xml:space="preserve">
+    <value>Sort current folder</value>
+    <comment>toolbar button</comment>
+  </data>
   <data name="ManageFavoritesDialog_discard" xml:space="preserve">
     <value>Discard unsaved changes?</value>
     <comment>message box</comment>
@@ -1983,6 +2043,14 @@ Do you want to refresh the existing page?</value>
   <data name="ManageFavoritesDialog_Text" xml:space="preserve">
     <value>Manage Favorites</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="ManageFavoritesrControl_deleteConfirmMultiple" xml:space="preserve">
+    <value>Delete {0} items?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="MangeFavoritesControl_locationColumn.HeaderText" xml:space="preserve">
+    <value>Location</value>
+    <comment>settings table column header</comment>
   </data>
   <data name="MapDialog_groupBox.Text" xml:space="preserve">
     <value>Pages in</value>
@@ -3414,6 +3482,14 @@ Help Tab</value>
     <value>Export page(s) as HTML, PDF, Word or XML</value>
     <comment>ribbon file</comment>
   </data>
+  <data name="ribExportFavoritesButton_Label" xml:space="preserve">
+    <value>Export Favorites</value>
+    <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribExportFavoritesButton_Screentip" xml:space="preserve">
+    <value>Export all favorites to a JSON file</value>
+    <comment>ribbon favorites</comment>
+  </data>
   <data name="ribExtrasMenu_Label" xml:space="preserve">
     <value>Extras</value>
     <comment>ribbon menu</comment>
@@ -3521,6 +3597,14 @@ Help Tab</value>
   <data name="ribImportButton_Screentip" xml:space="preserve">
     <value>Import a file</value>
     <comment>ribbon file NODUP</comment>
+  </data>
+  <data name="ribImportFavoritesButton_Label" xml:space="preserve">
+    <value>Import Favorites</value>
+    <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribImportFavoritesButton_Screentip" xml:space="preserve">
+    <value>Import all favorites from a JSON file</value>
+    <comment>ribbon favorites</comment>
   </data>
   <data name="ribImportOutlookTasksButton_Label" xml:space="preserve">
     <value>Import Tasks from Outlook</value>
@@ -6180,6 +6264,9 @@ Thank you!</value>
   <data name="m_Delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Menu\m_Delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="m_Export" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Menu\m_Export.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="m_FileOpen" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Menu\m_FileOpen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -6197,6 +6284,9 @@ Thank you!</value>
   </data>
   <data name="m_Highlighter" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Menu\m_Highlighter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="m_Import" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Menu\m_Import.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="m_Italic" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Menu\m_Italic.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
