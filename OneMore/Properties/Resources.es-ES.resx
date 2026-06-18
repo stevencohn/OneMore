@@ -157,6 +157,14 @@
     <value>La imagen ya tiene un título</value>
     <comment>info message</comment>
   </data>
+  <data name="AddFavoriteCommand_duplicate" xml:space="preserve">
+    <value>Esta favorita ya existe</value>
+    <comment>error message</comment>
+  </data>
+  <data name="AddFavoriteCommand_error" xml:space="preserve">
+    <value>No se pudo guardar la favorita</value>
+    <comment>error message</comment>
+  </data>
   <data name="AddFormulaCommand_Calculated" xml:space="preserve">
     <value>Calculado</value>
     <comment>tag name</comment>
@@ -1200,6 +1208,26 @@ Archivo de OneNote (* .one)</value>
     <value>Favoritos.xml</value>
     <comment>FILENAME</comment>
   </data>
+  <data name="FavoritesManagerControl_deleteConfirmMultiple" xml:space="preserve">
+    <value>¿Eliminar {0} elementos?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="FavoritesManagerControl_emptyFolderHint" xml:space="preserve">
+    <value>Vacío: arrastre favoritos aquí</value>
+    <comment>list view hint text</comment>
+  </data>
+  <data name="FavoritesManagerControl_newFolder" xml:space="preserve">
+    <value>Nueva carpeta</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="FavoritesManagerControl_renameFavorite" xml:space="preserve">
+    <value>Cambiar nombre de favorito</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="FavoritesManagerControl_renameFolder" xml:space="preserve">
+    <value>Cambiar nombre de carpeta</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="FavoritesSheet_DeleteMessage" xml:space="preserve">
     <value>¿Eliminar {0}?</value>
     <comment>settings</comment>
@@ -1938,6 +1966,14 @@ Cuadrado Marrón</value>
   <data name="LoadStyleTheme_Title" xml:space="preserve">
     <value>Tema de estilo de carga</value>
     <comment>OpenFileDialog title</comment>
+  </data>
+  <data name="ManageFavoritesDialog_discard" xml:space="preserve">
+    <value>¿Descartar los cambios no guardados?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ManageFavoritesDialog_Text" xml:space="preserve">
+    <value>Administrar favoritos</value>
+    <comment>dialog title</comment>
   </data>
   <data name="MapDialog_groupBox.Text" xml:space="preserve">
     <value>Páginas en</value>
@@ -2754,6 +2790,10 @@ Seleccione No para mantener una línea vacía entre los párrafos</value>
     <value>Estilo de cambio de nombre</value>
     <comment>dialog title</comment>
   </data>
+  <data name="RenameFavoriteDialog_originalNameLabel" xml:space="preserve">
+    <value>Nombre original: {0}</value>
+    <comment>label format string</comment>
+  </data>
   <data name="ReorderDialog.Text" xml:space="preserve">
     <value>Reordenar estilos</value>
     <comment>dialog title</comment>
@@ -2822,16 +2862,16 @@ Seleccione No para mantener una línea vacía entre los párrafos</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
   <data name="ribAddFootnoteButton_Screentip" xml:space="preserve">
-    <value>Agregar nota al pie (Ctrl + Alt + F)</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
+    <value>Agregar nueva nota al pie desde la posición actual</value>
+    <comment>ribbon references NODUP</comment>
   </data>
   <data name="ribAddFormulaButton_Label" xml:space="preserve">
     <value>Agregar fórmula</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
   </data>
   <data name="ribAddFormulaButton_Screentip" xml:space="preserve">
-    <value>Agregar / editar fórmula en celdas de tabla seleccionadas (F5)</value>
-    <comment>Ribbon OneMore menu item, Formula...</comment>
+    <value>Agregar o editar una fórmula en celdas de tabla seleccionadas</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribAddTagBankButton_Label" xml:space="preserve">
     <value>Agregar banco de etiquetas</value>
@@ -3230,8 +3270,8 @@ Pestaña Ayuda</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribDecreaseFontSizeButton_Screentip" xml:space="preserve">
-    <value>Reducir el tamaño de fuente de la página (Ctrl + Alt + Menos)</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <value>Disminuir el tamaño de fuente de la página</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribDeleteFormulaButton_Label" xml:space="preserve">
     <value>Eliminar fórmula</value>
@@ -3374,8 +3414,8 @@ Pestaña Ayuda</value>
     <comment>ribbon</comment>
   </data>
   <data name="ribFillDownButton_Screentip" xml:space="preserve">
-    <value>Rellenar (Ctrl + D)</value>
-    <comment>ribbon</comment>
+    <value>Completar la secuencia en las columnas seleccionadas</value>
+    <comment>ribbon table</comment>
   </data>
   <data name="ribFindHashtagsButton_Label" xml:space="preserve">
     <value>Buscar hashtags</value>
@@ -3470,8 +3510,8 @@ Pestaña Ayuda</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribIncreaseFontSizeButton_Screentip" xml:space="preserve">
-    <value>Aumentar el tamaño de fuente de la página (Ctrl + Alt + Más)</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <value>Aumentar el tamaño de fuente de la página</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribInsertBlueStatusButton_Label" xml:space="preserve">
     <value>Estado azul</value>
@@ -3510,7 +3550,7 @@ Pestaña Ayuda</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertCodeBoxButton_Screentip" xml:space="preserve">
-    <value>Insertar un cuadro de código (F6), envolviendo el contenido seleccionado</value>
+    <value>Insertar un cuadro de código, envolviendo el contenido seleccionado</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertDateButton_Label" xml:space="preserve">
@@ -3518,8 +3558,8 @@ Pestaña Ayuda</value>
     <comment>ribbon item</comment>
   </data>
   <data name="ribInsertDateButton_Screentip" xml:space="preserve">
-    <value>Insertar la fecha actual (Ctrl + Shift + D)</value>
-    <comment>ribbon</comment>
+    <value>Insertar la fecha actual</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertDateTimeButton_Label" xml:space="preserve">
     <value>Fecha ordenable con la hora</value>
@@ -4239,8 +4279,8 @@ Pestaña Ayuda</value>
     <comment>ribbon search</comment>
   </data>
   <data name="ribSearchButton_Screentip" xml:space="preserve">
-    <value>Buscar páginas por palabras clave y copiar/mover a otra sección (Alt + F)</value>
-    <comment>ribbon item</comment>
+    <value>Buscar páginas para palabras clave y copiar/mover a otra sección</value>
+    <comment>ribbon search</comment>
   </data>
   <data name="ribSearchHashtagsButton_Label" xml:space="preserve">
     <value>Buscar hashtags</value>
@@ -4319,8 +4359,8 @@ Pestaña Ayuda</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribShowXmlButton_Screentip" xml:space="preserve">
-    <value>Mostrar XML de jerarquía y página actual (Ctrl + Shift + Alt + X)</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <value>Mostrar XML de jerarquía y página actual</value>
+    <comment>ribbon extras</comment>
   </data>
   <data name="ribShutdownTimerButton_Label" xml:space="preserve">
     <value>Detener el temporizador</value>
@@ -4510,8 +4550,8 @@ Pestaña Ayuda</value>
     <comment>Ribbon OneMore menu item</comment>
   </data>
   <data name="ribUppercaseButton_Screentip" xml:space="preserve">
-    <value>Convertir texto a mayúsculas (Ctrl + Shift + Alt + U)</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <value>Convertir texto a mayúsculas</value>
+    <comment>ribbon edit</comment>
   </data>
   <data name="ribViewNotebookInBrowserButton_Label" xml:space="preserve">
     <value>Ver cuaderno en el navegador</value>
@@ -5691,6 +5731,9 @@ Puede habilitar o deshabilitar la telemetría en cualquier momento desde el cuad
   </data>
   <data name="word_Reset" xml:space="preserve">
     <value>Reiniciar</value>
+  </data>
+  <data name="word_Revert" xml:space="preserve">
+    <value>Revertir</value>
   </data>
   <data name="word_Saturation" xml:space="preserve">
     <value>Saturación</value>

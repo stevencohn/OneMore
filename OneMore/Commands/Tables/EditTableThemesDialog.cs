@@ -45,7 +45,7 @@ namespace River.OneMoreAddIn.Commands
 			private readonly PictureBox picture;
 			private readonly Image image;
 
-			public Swatch(MoreListView view)
+			public Swatch(MoreListViewEx view)
 			{
 				image = new Bitmap((int)(24 * xScaling), (int)(16 * yScaling));
 
@@ -733,7 +733,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			themes[combo.SelectedIndex].Name = dialog.StyleName;
+			themes[combo.SelectedIndex].Name = dialog.Value;
 
 			reorganizing = true;
 			SortThemes();

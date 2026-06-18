@@ -43,6 +43,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Drawing" />
@@ -71,6 +72,10 @@
     <Compile Include="Commands\Edit\ConvertMarkdownCommandTests.cs" />
     <Compile Include="Commands\Edit\HighlightCommandTests.cs" />
     <Compile Include="Commands\Snippets\InsertTocCommandTests.cs" />
+    <Compile Include="Commands\Favorites\FavoritesCheckerTests.cs" />
+    <Compile Include="Commands\Favorites\FavoritesFileProviderTests.cs" />
+    <Compile Include="Commands\Favorites\FavoritesMenuTests.cs" />
+    <Compile Include="Commands\Favorites\FavoritesProviderTests.cs" />
     <Compile Include="MockApplication.cs" />
     <Compile Include="TestBase.cs" />
   </ItemGroup>

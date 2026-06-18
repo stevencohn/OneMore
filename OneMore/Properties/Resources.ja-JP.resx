@@ -158,6 +158,14 @@
     <value>画像にはすでにキャプションが付いています。</value>
     <comment>info message</comment>
   </data>
+  <data name="AddFavoriteCommand_duplicate" xml:space="preserve">
+    <value>このお気に入りはすでに存在します</value>
+    <comment>error message</comment>
+  </data>
+  <data name="AddFavoriteCommand_error" xml:space="preserve">
+    <value>お気に入りを保存できませんでした</value>
+    <comment>error message</comment>
+  </data>
   <data name="AddFormulaCommand_Calculated" xml:space="preserve">
     <value>Calculated</value>
     <comment>tag name</comment>
@@ -1208,6 +1216,26 @@ OneNoteファイル (*.one)</value>
     <value>Favorites.xml</value>
     <comment>SKIP, filename</comment>
   </data>
+  <data name="FavoritesManagerControl_deleteConfirmMultiple" xml:space="preserve">
+    <value>{0} 個のアイテムを削除しますか?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="FavoritesManagerControl_emptyFolderHint" xml:space="preserve">
+    <value>空 - お気に入りをここにドラッグします</value>
+    <comment>list view hint text</comment>
+  </data>
+  <data name="FavoritesManagerControl_newFolder" xml:space="preserve">
+    <value>新しいフォルダー</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="FavoritesManagerControl_renameFavorite" xml:space="preserve">
+    <value>お気に入りの名前を変更する</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="FavoritesManagerControl_renameFolder" xml:space="preserve">
+    <value>フォルダー名の変更</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="FavoritesSheet_DeleteMessage" xml:space="preserve">
     <value>{0} を削除しますか？</value>
     <comment>settings</comment>
@@ -1946,6 +1974,14 @@ OneNoteファイル (*.one)</value>
   <data name="LoadStyleTheme_Title" xml:space="preserve">
     <value>スタイルを読み込む</value>
     <comment>OpenFileDialog title</comment>
+  </data>
+  <data name="ManageFavoritesDialog_discard" xml:space="preserve">
+    <value>保存されていない変更を破棄しますか?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ManageFavoritesDialog_Text" xml:space="preserve">
+    <value>お気に入りの管理</value>
+    <comment>dialog title</comment>
   </data>
   <data name="MapDialog_groupBox.Text" xml:space="preserve">
     <value>ページ内</value>
@@ -2762,6 +2798,10 @@ ISO-code then comma then language name</comment>
     <value>スタイルをリネーム</value>
     <comment>dialog title</comment>
   </data>
+  <data name="RenameFavoriteDialog_originalNameLabel" xml:space="preserve">
+    <value>元の名前: {0}</value>
+    <comment>label format string</comment>
+  </data>
   <data name="ReorderDialog.Text" xml:space="preserve">
     <value>スタイルの並べ替え</value>
     <comment>dialog title</comment>
@@ -2830,7 +2870,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon references NODUP</comment>
   </data>
   <data name="ribAddFootnoteButton_Screentip" xml:space="preserve">
-    <value>現在の位置から新しい脚注を追加 (Ctrl + Alt + F)</value>
+    <value>現在の位置から新しい脚注を追加</value>
     <comment>ribbon references NODUP</comment>
   </data>
   <data name="ribAddFormulaButton_Label" xml:space="preserve">
@@ -2838,7 +2878,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon table</comment>
   </data>
   <data name="ribAddFormulaButton_Screentip" xml:space="preserve">
-    <value>選択したセルに数式を追加または編集 (F5)</value>
+    <value>選択した表のセルで数式を追加または編集する</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribAddTagBankButton_Label" xml:space="preserve">
@@ -3238,7 +3278,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribDecreaseFontSizeButton_Screentip" xml:space="preserve">
-    <value>ページのフォントサイズを小さくする (Ctrl + Alt + Minus)</value>
+    <value>ページのフォントサイズを小さくする</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribDeleteFormulaButton_Label" xml:space="preserve">
@@ -3382,7 +3422,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon table</comment>
   </data>
   <data name="ribFillDownButton_Screentip" xml:space="preserve">
-    <value>選択した列に順序を埋める (Ctrl + D)</value>
+    <value>選択した列の下のシーケンスを埋める</value>
     <comment>ribbon table</comment>
   </data>
   <data name="ribFindHashtagsButton_Label" xml:space="preserve">
@@ -3478,7 +3518,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribIncreaseFontSizeButton_Screentip" xml:space="preserve">
-    <value>ページのフォントサイズを大きくする (Ctrl + Alt + Plus)</value>
+    <value>ページのフォントサイズを大きくする</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribInsertBlueStatusButton_Label" xml:space="preserve">
@@ -3518,7 +3558,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertCodeBoxButton_Screentip" xml:space="preserve">
-    <value>コードボックスを挿入、または選択した内容をコードボックス化する (F6)</value>
+    <value>コードボックスを挿入し、選択したコンテンツを折り返します</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertDateButton_Label" xml:space="preserve">
@@ -3526,7 +3566,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertDateButton_Screentip" xml:space="preserve">
-    <value>現在の日付を挿入する (Ctrl + Shift + D)</value>
+    <value>現在の日付を挿入します</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertDateTimeButton_Label" xml:space="preserve">
@@ -4249,7 +4289,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon search</comment>
   </data>
   <data name="ribSearchButton_Screentip" xml:space="preserve">
-    <value>キーワードを検索して別のセクションにコピー/移動 (Alt + F)</value>
+    <value>ページでキーワードを検索し、別のセクションにコピー/移動します</value>
     <comment>ribbon search</comment>
   </data>
   <data name="ribSearchHashtagsButton_Label" xml:space="preserve">
@@ -4329,7 +4369,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon extras</comment>
   </data>
   <data name="ribShowXmlButton_Screentip" xml:space="preserve">
-    <value>階層と現在のページのXMLを表示 (Ctrl + Shift + Alt + X)</value>
+    <value>階層と現在のページの XML を表示</value>
     <comment>ribbon extras</comment>
   </data>
   <data name="ribShutdownTimerButton_Label" xml:space="preserve">
@@ -4521,7 +4561,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon edit NODUP</comment>
   </data>
   <data name="ribUppercaseButton_Screentip" xml:space="preserve">
-    <value>テキストを大文字に変換 (Ctrl + Shift + Alt + U)</value>
+    <value>テキストを大文字に変換する</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribViewNotebookInBrowserButton_Label" xml:space="preserve">
@@ -5702,6 +5742,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Reset" xml:space="preserve">
     <value>リセット</value>
+  </data>
+  <data name="word_Revert" xml:space="preserve">
+    <value>元に戻す</value>
   </data>
   <data name="word_Saturation" xml:space="preserve">
     <value>彩度</value>

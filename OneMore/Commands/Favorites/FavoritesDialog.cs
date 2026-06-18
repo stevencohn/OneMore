@@ -4,12 +4,11 @@
 
 namespace River.OneMoreAddIn.Commands.Favorites
 {
-	using Microsoft.Office.Core;
 	using System;
 	using System.ComponentModel;
 	using System.Drawing;
-	using System.Linq;
 	using System.Windows.Forms;
+	using Microsoft.Office.Core;
 	using Resx = Properties.Resources;
 
 
@@ -29,7 +28,6 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				Localize(new string[]
 				{
 					"addButton",
-					"checkButton",
 					"manageButton",
 					"searchLabel=word_Search",
 					"goButton=word_Go",
@@ -507,31 +505,11 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		}
 
 
-		private async void CheckFavorites(object sender, EventArgs e)
-		{
-			var list = ((BindingList<Favorite>)gridView.DataSource).ToList();
-
-			await using var checker = new FavoritesChecker(logger);
-			if (await checker.ValidateFavorites(list))
-			{
-				gridView.DataSource = new BindingList<Favorite>(list);
-			}
-		}
-
-
 		private void ManageFavorites(object sender, EventArgs e)
 		{
 			Manage = true;
 			DialogResult = DialogResult.OK;
 			Close();
-		}
-
-
-		private async void SortFavorites(object sender, EventArgs e)
-		{
-			//var provider = new FavoritesProvider();
-			//var list = provider.SortFavorites();
-			//gridView.DataSource = new BindingList<Favorite>(list);
 		}
 	}
 }

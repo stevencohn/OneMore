@@ -1,1168 +1,447 @@
-﻿//************************************************************************************************
-// Copyright © 2022 Steven M Cohn. All rights reserved.
+//************************************************************************************************
+// Copyright © 2026 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.UI
 {
 	using System;
-	using System.Collections;
-	using System.Collections.Generic;
 	using System.ComponentModel;
-	using System.Diagnostics;
 	using System.Drawing;
 	using System.Linq;
-	using System.Runtime.InteropServices;
 	using System.Windows.Forms;
 
 
 	/// <summary>
-	/// A ListView in Detail mode that can host a user control in each cell of grid.
+	/// A plain owner-drawn ListView with OneMore theming (header and selection colors,
+	/// correct in both Light and Dark mode), fill-to-width columns, and manual (non-OLE)
+	/// drag/drop reordering with a live insertion-line indicator.
 	/// </summary>
+	/// <remarks>
+	/// Unlike MoreListView, this never hosts a child control per cell - it only customizes
+	/// painting (DrawSubItem), so input handling (click, double-click, multi-select) stays
+	/// fully native, and it has none of MoreListView's "a row with no hosted control never
+	/// gets painted" failure mode. Its drag/drop is implemented via plain mouse tracking
+	/// rather than AllowDrop/DoDragDrop (OLE), which requires an STA thread; this add-in's
+	/// COM surrogate runs in MTA (see docs\developers\TechNote - COM Surrogate.htm), so a
+	/// mouse-tracked drag avoids that requirement entirely.
+	/// </remarks>
 	internal class MoreListView : ListView
 	{
-		#region Private types
-
-		private sealed class HostedControl
+		/// <summary>
+		/// Per-cell rendering overrides returned by GetCellStyle.
+		/// </summary>
+		public readonly struct CellStyle
 		{
-			// the hosting item/subitem
-			public IMoreHostItem Host { get; private set; }
-			// column index of this item/subitem
-			public int ColumnIndex { get; private set; }
-			// the hosted user control
-			public Control Control { get; private set; }
-			public HostedControl(
-				IMoreHostItem host, IMoreHostItem item, Control control, int columnIndex)
+			public static readonly CellStyle Default = new(0, false, null);
+
+			public CellStyle(int indent, bool muted, string foreColorKey = null)
 			{
-				Host = host;
-				Control = control;
-				// commandeer Tag to point back up to hosting item
-				control.Tag = item;
-				ColumnIndex = columnIndex;
+				Indent = indent;
+				Muted = muted;
+				ForeColorKey = foreColorKey;
 			}
+
+			/// <summary>
+			/// Extra left padding, in pixels, used to visually nest a row under another.
+			/// </summary>
+			public int Indent { get; }
+
+			/// <summary>
+			/// True to render this cell's text in a muted (gray, italic) style, e.g. for
+			/// placeholder/hint text.
+			/// </summary>
+			public bool Muted { get; }
+
+			/// <summary>
+			/// Optional ThemeManager color key overriding the normal/muted foreground color,
+			/// e.g. "ErrorText". Ignored while the row is selected.
+			/// </summary>
+			public string ForeColorKey { get; }
 		}
 
+
 		/// <summary>
-		/// For internal use only.
+		/// Raised after an item has been moved via drag/drop, once the ListView's own
+		/// Items collection has already been updated to reflect the new position.
 		/// </summary>
-		public sealed class RegistrationEventArgs
+		public sealed class ItemMovedEventArgs : EventArgs
 		{
-			public IMoreHostItem Item { get; private set; }
-			public Control Control { get; private set; }
-			public int ColumnIndex { get; private set; }
-			public RegistrationEventArgs(IMoreHostItem item, Control control, int columnIndex)
+			public ItemMovedEventArgs(ListViewItem item, ListViewItem precedingItem, bool movedToEnd)
 			{
 				Item = item;
-				Control = control;
-				ColumnIndex = columnIndex;
+				PrecedingItem = precedingItem;
+				MovedToEnd = movedToEnd;
 			}
+
+			/// <summary>
+			/// The item that was moved.
+			/// </summary>
+			public ListViewItem Item { get; }
+
+			/// <summary>
+			/// The item now immediately preceding the moved item, or null if it is now the
+			/// first item in the list.
+			/// </summary>
+			public ListViewItem PrecedingItem { get; }
+
+			/// <summary>
+			/// True if the item was dropped into the empty space below the last row, rather
+			/// than next to a specific item. Kept distinct from inspecting PrecedingItem
+			/// because "dropped below everything" should mean a fixed, unambiguous target
+			/// (e.g. root) regardless of what row happens to be last.
+			/// </summary>
+			public bool MovedToEnd { get; }
 		}
 
-		/// <summary>
-		/// For internal use only.
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		public delegate void RegistrationEventHandler(IMoreHostItem sender, RegistrationEventArgs e);
 
-		#endregion Private types
+		private const int MinimumColumnWidth = 50;
 
+		private readonly ThemeManager manager;
+		private float[] columnProportions;
+		private bool resizingColumns;
 
-		private const string UpGlyph = "△"; // ▲
-		private const string DnGlyph = "▽"; // ▼
-
-		private bool allowItemReorder;
-		private SolidBrush sortedBrush;
-		private SolidBrush highBackBrush;
-		private SolidBrush highForeBrush;
-		private readonly List<HostedControl> hostedControls;
-		private readonly EventRouter router;
+		// manual (non-OLE) drag/drop state
+		private bool isDragging;
+		private ListViewItem dragItem;
+		private Point dragStartPoint;
+		private int insertionIndex = -1;
+		private bool insertAtEnd;
 
 
-		/// <summary>
-		/// Initialize a new (readonly) detail list view with default selection styling.
-		/// </summary>
 		public MoreListView()
 		{
+			manager = ThemeManager.Instance;
+
 			View = View.Details;
-
-			router = new EventRouter();
-			hostedControls = new List<HostedControl>();
-			highBackBrush = new SolidBrush(ColorTranslator.FromHtml("#D7C1FF"));
-			highForeBrush = new SolidBrush(SystemColors.HighlightText);
-			sortedBrush = new SolidBrush(BackColor);
-
-			// TODO: ?
 			FullRowSelect = true;
+			HideSelection = false;
+			OwnerDraw = true;
 
-			// prevent flickering
-			SetStyle(
-				ControlStyles.DoubleBuffer |
-				ControlStyles.OptimizedDoubleBuffer |
-				ControlStyles.AllPaintingInWmPaint, true);
+			// Never explicitly assign BackColor at design time: the VS designer would bake
+			// the (always-light) snapshot into the consumer's InitializeComponent the next
+			// time its Designer.cs is opened and saved (ShouldSerializeBackColor/ResetBackColor
+			// are NOT honored for Control.BackColor on a subclass, confirmed empirically).
+			if (!ThemeManager.IsDesignTime)
+			{
+				BackColor = manager.GetColor("ListView");
+			}
 
-			var (_, yScaling) = UI.Scaling.GetScalingFactors();
-			RowHeight = (int)(16 * yScaling);
-
-			Click += RouteClick;
-
-			router.Register(this, "Click");
+			DrawColumnHeader += OnDrawColumnHeader;
+			DrawItem += OnDrawItem;
+			DrawSubItem += OnDrawSubItem;
+			Resize += (s, e) => ResizeColumns();
+			ColumnWidthChanged += OnColumnWidthChanged;
+			MouseDown += OnMouseDown;
+			MouseMove += OnMouseMove;
+			MouseUp += OnMouseUp;
 		}
 
-		protected override void Dispose(bool disposing)
+
+		/// <summary>
+		/// .NET's ListView never forwards BackColor to the native control, so owner-drawing
+		/// only colors the rows themselves; the blank area below the last item is otherwise
+		/// left painted with the OS default (white). LVM_SETBKCOLOR fixes that fill.
+		/// </summary>
+		protected override void OnHandleCreated(EventArgs e)
 		{
-			base.Dispose(disposing);
-			if (disposing)
+			base.OnHandleCreated(e);
+			Native.SendMessage(Handle, Native.LVM_SETBKCOLOR, 0, ColorTranslator.ToWin32(BackColor));
+		}
+
+
+		protected override void OnBackColorChanged(EventArgs e)
+		{
+			base.OnBackColorChanged(e);
+			if (IsHandleCreated)
 			{
-				if (hostedControls is not null && hostedControls.Any())
-				{
-					foreach (var control in hostedControls)
-					{
-						control.Control?.Dispose();
-					}
-
-					hostedControls.Clear();
-				}
-
-				router.Dispose();
-				highBackBrush.Dispose();
-				highForeBrush.Dispose();
-				sortedBrush.Dispose();
+				Native.SendMessage(Handle, Native.LVM_SETBKCOLOR, 0, ColorTranslator.ToWin32(BackColor));
 			}
 		}
 
 
 		/// <summary>
-		/// Gets or sets whether items can be reordered using drag and drop.
+		/// Gets or sets a callback that supplies per-cell rendering overrides (indent,
+		/// muted styling). When null, every cell renders with CellStyle.Default.
 		/// </summary>
-		[Category("Behavior")]
-		[Description("Specifies whether items can be reordered using drag and drop")]
-		public bool AllowItemReorder
-		{
-			get => allowItemReorder;
+		[Browsable(false)]
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		public Func<ListViewItem, int, CellStyle> GetCellStyle { get; set; }
 
-			set
+
+		/// <summary>
+		/// Gets or sets a predicate determining whether the given item can be dragged.
+		/// When null, no item is draggable.
+		/// </summary>
+		[Browsable(false)]
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		public Func<ListViewItem, bool> CanDragItem { get; set; }
+
+
+		/// <summary>
+		/// Gets or sets a predicate determining whether the given item is an "anchor" row
+		/// (e.g. a group header) that cannot itself be reordered and onto which a drop
+		/// always means "insert immediately after this row", regardless of where within
+		/// the row the cursor is. When null, no item is treated as an anchor.
+		/// </summary>
+		[Browsable(false)]
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		public Func<ListViewItem, bool> IsInsertionAnchor { get; set; }
+
+
+		/// <summary>
+		/// Raised after a drag/drop reorder completes.
+		/// </summary>
+		public event EventHandler<ItemMovedEventArgs> ItemMoved;
+
+
+		/// <summary>
+		/// Sets the proportional width of each column (e.g. 0.4f, 0.6f for a 40/60 split)
+		/// and immediately applies it. The values don't need to sum to 1; only their
+		/// relative magnitude matters. Must be called after all columns have been added.
+		/// </summary>
+		public void SetColumnProportions(params float[] proportions)
+		{
+			columnProportions = proportions;
+			ResizeColumns();
+		}
+
+
+		private void ResizeColumns()
+		{
+			var width = ClientSize.Width;
+			if (width <= 0 || columnProportions == null || Columns.Count != columnProportions.Length)
 			{
-				allowItemReorder = value;
-				if (value)
-				{
-					MouseDown += RouteMouseDown;
-					DragDrop += RouteDragDrop;
-
-					router.Register(this, "MouseDown");
-					router.Register(this, "DragDrop");
-				}
-			}
-		}
-
-
-		/// <summary>
-		/// Gets or set the padding around hosted controls in each cell of the list view.
-		/// </summary>
-		[Category("Appearance")]
-		[Description("The padding around hosted controls")]
-		public int ControlPadding { get; set; } = 2;
-
-
-		/// <summary>
-		/// Gets or sets the background fill color of selected rows
-		/// </summary>
-		public Color HighlightBackground
-		{
-			get => highBackBrush.Color;
-			set => highBackBrush = new SolidBrush(value);
-		}
-
-
-		/// <summary>
-		/// Gets or sets the foreground color of selected rows
-		/// </summary>
-		public Color HighlightForeground
-		{
-			get => highForeBrush.Color;
-			set => highForeBrush = new SolidBrush(value);
-		}
-
-
-		/// <summary>
-		/// Sets the row height in Details view
-		/// This property appears in the Visual Studio Form Designer
-		/// </summary>
-		[Category("Appearance")]
-		[Description("Sets height of rows in Details view, in pixels")]
-		public int RowHeight { get; set; }
-
-
-		/// <summary>
-		/// Gets or set the background fill color of cells in the sorted column.
-		/// </summary>
-		public Color SortedBackground
-		{
-			get => sortedBrush.Color;
-			set => sortedBrush = new SolidBrush(value);
-		}
-
-
-		/// <summary>
-		/// Creates a new item with a hosted user control.
-		/// </summary>
-		/// <param name="control">The control to display in the first column of the item</param>
-		/// <returns>The newly created item, already added to the list view</returns>
-		public MoreHostedListViewItem AddHostedItem(Control control)
-		{
-			return AddHostedItem(string.Empty, control);
-		}
-
-
-		/// <summary>
-		/// Creates a new item displaying standard text and optionally with a hosted control;
-		/// the control will supercede the text.
-		/// </summary>
-		/// <param name="text">The text to display in the item.</param>
-		/// <param name="control">The user control to host in the item</param>
-		/// <returns>The newly created item, already added to the list view.</returns>
-		public MoreHostedListViewItem AddHostedItem(string text, Control control = null)
-		{
-			var item = new MoreHostedListViewItem(text, control);
-			item.Registering += new RegistrationEventHandler(RegisterHostedControl);
-			Items.Add(item);
-
-			if (control != null)
-			{
-				RegisterHostedControl(item, new RegistrationEventArgs(item, control, 0));
-			}
-
-			return item;
-		}
-
-
-		private void RegisterHostedControl(IMoreHostItem subitem, RegistrationEventArgs e)
-		{
-			if (InvokeRequired)
-			{
-				Invoke(new Action(() => { RegisterHostedControl(subitem, e); }));
 				return;
 			}
 
-			hostedControls.Add(new HostedControl(subitem, e.Item, e.Control, e.ColumnIndex));
-			Controls.Add(e.Control);
-		}
-
-
-		public void EnableItemEventBubbling()
-		{
-			router.Register(this, Items, "Click");
-
-			if (allowItemReorder)
+			var total = columnProportions.Sum();
+			if (total <= 0)
 			{
-				router.Register(this, Items, "MouseDown");
-				router.Register(this, Items, "DragDrop");
+				return;
 			}
-		}
 
+			resizingColumns = true;
 
-		public void EnableContextMenuBubbling()
-		{
-			router.Register(this, Items, "MouseUp");
-		}
-
-
-		/// <summary>
-		/// Returns a collection of all hosted T objects from the list view.
-		/// </summary>
-		/// <typeparam name="T"></typeparam>
-		/// <returns></returns>
-		public IEnumerable<T> GetAllItems<T>()
-		{
-			for (int i = 0; i < Items.Count; i++)
+			var used = 0;
+			for (var i = 0; i < columnProportions.Length - 1; i++)
 			{
-				if (Items[i] is MoreHostedListViewItem item &&
-					item.Control is T thing)
-				{
-					yield return thing;
-				}
+				var columnWidth = (int)(width * (columnProportions[i] / total));
+				Columns[i].Width = columnWidth;
+				used += columnWidth;
 			}
+
+			Columns[columnProportions.Length - 1].Width = Math.Max(MinimumColumnWidth, width - used);
+
+			resizingColumns = false;
 		}
 
 
 		/// <summary>
-		/// Returns a collection of selected T objects from the list view.
+		/// Keeps all columns summing to the full client width whenever the user drags a
+		/// column divider: the last column is recalculated to fill whatever's left, so
+		/// there's never a gap or overflow after it.
 		/// </summary>
-		/// <typeparam name="T"></typeparam>
-		/// <returns></returns>
-		public IEnumerable<T> GetSelectedItems<T>()
+		private void OnColumnWidthChanged(object sender, ColumnWidthChangedEventArgs e)
 		{
-			if (SelectedItems.Count == 0)
+			if (resizingColumns || e.ColumnIndex == Columns.Count - 1)
 			{
-				yield return default;
+				return;
 			}
 
-			for (int i = 0; i < SelectedItems.Count; i++)
+			var width = ClientSize.Width;
+			if (width <= 0)
 			{
-				if (SelectedItems[i] is MoreHostedListViewItem item &&
-					item.Control is T thing)
-				{
-					yield return thing;
-				}
+				return;
 			}
+
+			var used = 0;
+			for (var i = 0; i < Columns.Count - 1; i++)
+			{
+				used += Columns[i].Width;
+			}
+
+			resizingColumns = true;
+			Columns[Columns.Count - 1].Width = Math.Max(MinimumColumnWidth, width - used);
+			resizingColumns = false;
 		}
 
 
-		/// <summary>
-		/// Select the specified item if it is not already selected. If it is not selected
-		/// then other selected items will be deselected before this item is selected.
-		/// </summary>
-		/// <param name="item">The item to select</param>
-		/// <remarks>
-		/// This should be used when you want to programmaticaly for a selection of the
-		/// row when the user interacts with a hosted control, like a Button or LinkLabel
-		/// which would not normally select that row automatically.
-		/// </remarks>
-		public void SelectIf(ListViewItem item)
+		private void OnDrawColumnHeader(object sender, DrawListViewColumnHeaderEventArgs e)
 		{
-			if (!item.Selected)
-			{
-				SelectedItems.Clear();
-				item.Selected = true;
-			}
-		}
+			using var backBrush = new SolidBrush(manager.GetColor("ControlDarkDark"));
+			e.Graphics.FillRectangle(backBrush, e.Bounds);
 
-		#region Routed events
-		private void RouteClick(object sender, EventArgs e)
-		{
-			var point = PointToClient(Control.MousePosition);
-			var item = GetItemAt(point.X, point.Y);
-			if (item != null)
-			{
-				SelectImplicitly(item);
-			}
+			var bounds = e.Bounds;
+			bounds.X += 4;
+
+			TextRenderer.DrawText(e.Graphics, e.Header.Text, e.Font, bounds,
+				manager.GetColor("DarkText"),
+				TextFormatFlags.VerticalCenter | TextFormatFlags.Left | TextFormatFlags.NoPrefix);
 		}
 
 
-		private void SelectImplicitly(ListViewItem item)
+		private void OnDrawItem(object sender, DrawListViewItemEventArgs e)
 		{
-			if (ModifierKeys.HasFlag(Keys.Control))
+			// no-op; OnDrawSubItem (below) handles all rendering for every column
+		}
+
+
+		private void OnDrawSubItem(object sender, DrawListViewSubItemEventArgs e)
+		{
+			var selected = e.Item.Selected;
+			var style = GetCellStyle?.Invoke(e.Item, e.ColumnIndex) ?? CellStyle.Default;
+
+			using (var backBrush = new SolidBrush(manager.GetColor(selected ? "Highlight" : "ListView")))
 			{
-				// ctlr-click individuals
-				item.Selected = !item.Selected;
-				if (item.Selected)
-				{
-					FocusedItem = item;
-				}
+				e.Graphics.FillRectangle(backBrush, e.Bounds);
 			}
-			else if (ModifierKeys.HasFlag(Keys.Shift))
+
+			var foreColor = selected
+				? manager.GetColor("HighlightText")
+				: style.ForeColorKey != null
+					? manager.GetColor(style.ForeColorKey)
+					: style.Muted ? manager.GetColor("GrayText") : manager.GetColor("ControlText");
+
+			var bounds = e.Bounds;
+			if (style.Indent > 0)
 			{
-				// shift-click range
-				if (SelectedIndices.Count > 0)
-				{
-					if (SelectedIndices[0] == item.Index)
-					{
-						item.Selected = true;
-						FocusedItem = item;
-					}
-					else
-					{
-						(int first, int last) = SelectedIndices[0] < item.Index
-							? (SelectedIndices[0], item.Index)
-							: (item.Index, SelectedIndices[SelectedIndices.Count - 1]);
+				bounds.X += style.Indent;
+				bounds.Width -= style.Indent;
+			}
 
-						BeginUpdate();
-						SelectedItems.Clear();
-						for (var i = first; i <= last; i++)
-						{
-							Items[i].Selected = true;
-						}
+			const TextFormatFlags flags =
+				TextFormatFlags.EndEllipsis | TextFormatFlags.VerticalCenter | TextFormatFlags.NoPrefix;
 
-						FocusedItem = SelectedItems[first];
-						EndUpdate();
-					}
-				}
-				else
-				{
-					item.Selected = true;
-					FocusedItem = item;
-				}
+			if (style.Muted)
+			{
+				using var italic = new Font(e.Item.Font, FontStyle.Italic);
+				TextRenderer.DrawText(e.Graphics, e.SubItem.Text, italic, bounds, foreColor, flags);
 			}
 			else
 			{
-				// single-click
-				BeginUpdate();
-				SelectedItems.Clear();
-				item.Selected = !item.Selected;
-				if (item.Selected)
-				{
-					FocusedItem = item;
-				}
-				EndUpdate();
+				TextRenderer.DrawText(e.Graphics, e.SubItem.Text, e.Item.Font, bounds, foreColor, flags);
 			}
 
-			Focus();
-		}
-
-
-		private void RouteMouseDown(object sender, MouseEventArgs e)
-		{
-			Logger.Current.Verbose($"drag start for {sender.GetType().FullName}");
-			DoDragDrop(sender, DragDropEffects.Move);
-		}
-
-
-		private void RouteDragDrop(object sender, DragEventArgs e)
-		{
-			Logger.Current.Verbose($"drop");
-		}
-		#endregion Routed events
-
-		#region Overrides
-
-		protected override CreateParams CreateParams
-		{
-			get
+			if (isDragging)
 			{
-				var p = base.CreateParams;
-				p.Style |= Native.LVS_OWNERDRAWFIXED;
-				return p;
-			}
-		}
-
-
-		protected override void OnColumnClick(ColumnClickEventArgs e)
-		{
-			base.OnColumnClick(e);
-			if (Columns[e.Column] is MoreColumnHeader column && column.Sortable)
-			{
-				// clear glyph from another sorted column
-				if (column.SortOrder == SortOrder.None)
+				using var lineBrush = new SolidBrush(manager.GetColor("Highlight"));
+				if (e.ItemIndex == insertionIndex)
 				{
-					foreach (var header in Columns)
-					{
-						if (header is MoreColumnHeader mch)
-						{
-							if (mch.SortOrder != SortOrder.None)
-							{
-								mch.SortOrder = SortOrder.None;
-								mch.Text = mch.Title;
-							}
-						}
-					}
+					e.Graphics.FillRectangle(lineBrush, e.Bounds.Left, e.Bounds.Top, e.Bounds.Width, 2);
 				}
-
-				// show/hide glyph in this column
-				if (column.SortOrder == SortOrder.None)
+				else if (insertAtEnd && e.ItemIndex == Items.Count - 1)
 				{
-					column.SortOrder = Sorting = SortOrder.Ascending;
-					column.Text = $"{column.Title} {UpGlyph}";
-				}
-				else if (column.SortOrder == SortOrder.Ascending)
-				{
-					column.SortOrder = Sorting = SortOrder.Descending;
-					column.Text = $"{column.Title} {DnGlyph}";
-				}
-				else
-				{
-					column.SortOrder = Sorting = SortOrder.None;
-					column.Text = column.Title;
-				}
-
-				// sort
-				if (e.Column == 0)
-				{
-					ListViewItemSorter = Items[0] is IMoreHostedValue
-						? new ItemValueComparer(Sorting)
-						: new ItemTextComparer(Sorting);
-				}
-				else
-				{
-					ListViewItemSorter = Items[0].SubItems[e.Column] is IMoreHostedValue
-						? new SubItemValueComparer(e.Column, Sorting)
-						: new SubItemTextComparer(e.Column, Sorting);
+					e.Graphics.FillRectangle(lineBrush, e.Bounds.Left, e.Bounds.Bottom - 2, e.Bounds.Width, 2);
 				}
 			}
 		}
 
 
-		protected override void OnColumnWidthChanging(ColumnWidthChangingEventArgs e)
+		private void OnMouseDown(object sender, MouseEventArgs e)
 		{
-			if (e.NewWidth < 50)
-			{
-				e.NewWidth = 50;
-				e.Cancel = true;
-			}
-
-			base.OnColumnWidthChanging(e);
-		}
-
-
-		protected override void OnMouseDown(MouseEventArgs e)
-		{
-			// ensure left of clicked subitem is visible (TODO: R-t-L languages?)
-			var test = HitTest(e.X, e.Y);
-			if (test.SubItem != null)
-			{
-				if (test.SubItem.Bounds.Left < 0)
-				{
-					Native.SendMessage(Handle, Native.LVM_SCROLL, test.SubItem.Bounds.Left, 0);
-				}
-			}
-		}
-
-
-		protected override void OnItemSelectionChanged(ListViewItemSelectionChangedEventArgs e)
-		{
-			base.OnItemSelectionChanged(e);
-			if (e.Item is IMoreHostItem host && host.Control is IChameleon item)
-			{
-				if (e.IsSelected)
-				{
-					item.ApplyBackground(highBackBrush.Color);
-				}
-				else
-				{
-					item.ResetBackground();
-				}
-			}
-		}
-
-
-		protected override void WndProc(ref Message m)
-		{
-			// WM_MEASUREITEM and WM_DRAWITEM are sent to the parent control rather than to the
-			// ListView itself. They come here as WM_REFLECT + WM_MEASUREITEM and
-			// WM_REFLECT + WM_DRAWITEM. They are sent from Control.WmOwnerDraw() to
-			// Control.ReflectMessageInternal()
-
-			// called when the ListView becomes visible
-			if (m.Msg == Native.WM_SHOWWINDOW)
-			{
-				Debug.Assert(View == View.Details, "MoreListView supports only Details view");
-				Debug.Assert(!OwnerDraw, "Do not set OwnerDraw=true in MoreListView");
-			}
-			// called once when the ListView is created, but only in Details view
-			else if (m.Msg == Native.WM_REFLECT + Native.WM_MEASUREITEM)
-			{
-				// overwrite itemHeight, the fifth integer in MeasureItemStruct
-				Marshal.WriteInt32(m.LParam + 4 * sizeof(int), RowHeight);
-				m.Result = (IntPtr)1;
-			}
-			// called for each ListViewItem to be drawn
-			else if (m.Msg == Native.WM_REFLECT + Native.WM_DRAWITEM)
-			{
-				PaintItem(ref m);
-			}
-			else if (m.Msg == Native.WM_PAINT)
-			{
-				BoundHostedControls();
-			}
-			else if (
-				m.Msg == Native.WM_HSCROLL ||
-				m.Msg == Native.WM_VSCROLL ||
-				m.Msg == Native.WM_MOUSEWHEEL)
-			{
-				Focus();
-			}
-
-			base.WndProc(ref m);
-		}
-
-
-		private void PaintItem(ref Message m)
-		{
-			var draw = (Native.DrawItemStruct)m.GetLParam(typeof(Native.DrawItemStruct));
-			var item = Items[draw.itemID];
-
-			if (!item.SubItems.Cast<object>().Any(e => e is IMoreHostItem mhi && mhi.Control != null))
-			{
-				//Logger.Current.Verbose($"PaintItem {draw.itemID} unhosted");
-				return;
-			}
-
-			//Logger.Current.Verbose($"PaintItem {draw.itemID}...");
-
-			using var g = Graphics.FromHdc(draw.hDC);
-
-			var backColor = item.BackColor;
-			if (item.Selected)
-			{
-				backColor = highBackBrush.Color;
-			}
-			else if (!Enabled)
-			{
-				backColor = SystemColors.Control;
-			}
-
-			// erase the background of the entire row
-			using var backBrush = new SolidBrush(backColor);
-			g.FillRectangle(backBrush, item.Bounds);
-
-			for (int i = 0; i < item.SubItems.Count; i++)
-			{
-				var subitem = item.SubItems[i];
-
-				//Logger.Current.Verbose($".. subitem {i} subitem.text=[{subitem.Text}] " +
-				//	$"hosted={subitem is IMoreHostItem hx && hx.Control != null}");
-
-				if (string.IsNullOrWhiteSpace(subitem.Text))
-				{
-					// nothing to see here
-					continue;
-				}
-
-				if (subitem is IMoreHostItem host && host.Control != null)
-				{
-					// presume hosted control overlays text, is prioritized over text
-					continue;
-				}
-
-				// SubItems[0].Bounds contains the entire row, rather than the first column only
-				var bounds = (i > 0) ? subitem.Bounds : item.GetBounds(ItemBoundsPortion.Label);
-
-				// can use item.ForeColor instead of subitem.ForeColor to
-				// get the same behaviour as without OwnerDraw
-				var foreColor = subitem.ForeColor;
-				if (!Enabled)
-				{
-					foreColor = SystemColors.ControlText;
-				}
-				else if (item.Selected)
-				{
-					foreColor = HighlightForeground;
-				}
-
-				var flags = TextFormatFlags.NoPrefix | TextFormatFlags.EndEllipsis |
-					TextFormatFlags.VerticalCenter | TextFormatFlags.SingleLine;
-
-				switch (Columns[i].TextAlign)
-				{
-					case HorizontalAlignment.Center: flags |= TextFormatFlags.HorizontalCenter; break;
-					case HorizontalAlignment.Right: flags |= TextFormatFlags.Right; break;
-				}
-
-				TextRenderer.DrawText(g, subitem.Text, subitem.Font, bounds, foreColor, flags);
-			}
-		}
-
-
-		private void BoundHostedControls()
-		{
-			//Logger.Current.Verbose($"PaintHostedControls [{Name}]");
-
-			foreach (var hosted in hostedControls)
-			{
-				var bounds = hosted.Host.Bounds;
-
-				var header = Columns[hosted.ColumnIndex] as MoreColumnHeader;
-				if (header != null)
-					bounds.Width = header.Width;
-
-				// is control within viewing client rectangle
-				// could be <0 if scrolled up or >0 if scrolled down out of sight
-				if (bounds.Y >= 0 && bounds.Y < ClientRectangle.Height)
-				{
-					//Logger.Current.Verbose($".. header visible name={header?.Name}");
-
-					hosted.Control.Visible = true;
-					if (header != null && header.AutoSizeItems)
-					{
-						hosted.Control.Bounds = new Rectangle(
-							bounds.X + ControlPadding,
-							bounds.Y + ControlPadding,
-							bounds.Width - (2 * ControlPadding),
-							bounds.Height - (2 * ControlPadding));
-
-						//var text = hosted.Control is HistoryControl hist ? hist.Text : string.Empty;
-						//Logger.Current.Verbose($".. bounds={hosted.Control.Bounds} client={ClientRectangle} [{text}]");
-					}
-					else
-					{
-						var x = bounds.X + ControlPadding;
-						if (hosted.Host.Alignment == ContentAlignment.BottomCenter ||
-							hosted.Host.Alignment == ContentAlignment.MiddleCenter ||
-							hosted.Host.Alignment == ContentAlignment.TopCenter)
-						{
-							x += (bounds.Width - hosted.Control.Width) / 2;
-						}
-						else if (
-							hosted.Host.Alignment == ContentAlignment.BottomRight ||
-							hosted.Host.Alignment == ContentAlignment.MiddleRight ||
-							hosted.Host.Alignment == ContentAlignment.TopRight)
-						{
-							x = bounds.X + bounds.Width - ControlPadding - hosted.Control.Width;
-						}
-
-						hosted.Control.Location = new Point(x, bounds.Y + ControlPadding);
-
-						//var text = hosted.Control is HistoryControl hist ? hist.Text : string.Empty;
-						//Logger.Current.Verbose($".. headless bounds={hosted.Control.Bounds} client={ClientRectangle} [{text}]");
-					}
-				}
-				else
-				{
-					//Logger.Current.Verbose($".. header invisible");
-					hosted.Control.Visible = false;
-				}
-			}
-		}
-		#endregion Overrides
-
-		#region DragDrop Overrides
-		protected override void OnItemDrag(ItemDragEventArgs e)
-		{
-			base.OnItemDrag(e);
-			if (!allowItemReorder)
+			if (e.Button != MouseButtons.Left)
 			{
 				return;
 			}
 
-			DoDragDrop(nameof(MoreListView), DragDropEffects.Move);
+			var hit = HitTest(e.Location);
+			dragItem = hit.Item != null && (CanDragItem?.Invoke(hit.Item) ?? false) ? hit.Item : null;
+			dragStartPoint = e.Location;
 		}
 
 
-		protected override void OnDragOver(DragEventArgs drgevent)
+		private void OnMouseMove(object sender, MouseEventArgs e)
 		{
-			if (!allowItemReorder)
+			if (dragItem == null || e.Button != MouseButtons.Left)
 			{
-				drgevent.Effect = DragDropEffects.None;
 				return;
 			}
 
-			if (!drgevent.Data.GetDataPresent(DataFormats.Text))
+			if (!isDragging)
 			{
-				drgevent.Effect = DragDropEffects.None;
-				return;
-			}
-
-			var cp = PointToClient(new Point(drgevent.X, drgevent.Y));
-			var hoverItem = GetItemAt(cp.X, cp.Y);
-			if (hoverItem == null)
-			{
-				drgevent.Effect = DragDropEffects.None;
-				return;
-			}
-
-			foreach (ListViewItem moveItem in SelectedItems)
-			{
-				if (moveItem.Index == hoverItem.Index)
+				var size = SystemInformation.DragSize;
+				if (Math.Abs(e.X - dragStartPoint.X) < size.Width &&
+					Math.Abs(e.Y - dragStartPoint.Y) < size.Height)
 				{
-					drgevent.Effect = DragDropEffects.None;
-					hoverItem.EnsureVisible();
 					return;
 				}
+
+				isDragging = true;
+				Cursor = Cursors.Hand;
 			}
 
-			base.OnDragOver(drgevent);
-			var text = (string)drgevent.Data.GetData(typeof(string));
-			if (text.CompareTo(nameof(MoreListView)) == 0)
-			{
-				drgevent.Effect = DragDropEffects.Move;
-				hoverItem.EnsureVisible();
-			}
-			else
-			{
-				drgevent.Effect = DragDropEffects.None;
-			}
+			ComputeInsertionPoint(e.Location);
+			Invalidate();
 		}
 
 
-		protected override void OnDragDrop(DragEventArgs drgevent)
+		private void OnMouseUp(object sender, MouseEventArgs e)
 		{
-			base.OnDragDrop(drgevent);
-			if (!allowItemReorder)
+			if (isDragging)
 			{
-				return;
+				PerformDrop();
 			}
 
-			if (SelectedItems.Count == 0)
-			{
-				return;
-			}
-
-			var cp = PointToClient(new Point(drgevent.X, drgevent.Y));
-			var dragToItem = GetItemAt(cp.X, cp.Y);
-			if (dragToItem == null)
-			{
-				return;
-			}
-
-			var dropIndex = dragToItem.Index;
-			if (dropIndex > SelectedItems[0].Index)
-			{
-				dropIndex++;
-			}
-
-			var insertItems = new ArrayList(SelectedItems.Count);
-			foreach (ListViewItem item in SelectedItems)
-			{
-				insertItems.Add(item.Clone());
-			}
-
-			for (int i = insertItems.Count - 1; i >= 0; i--)
-			{
-				ListViewItem insertItem = (ListViewItem)insertItems[i];
-				Items.Insert(dropIndex, insertItem);
-			}
-
-			foreach (ListViewItem removeItem in SelectedItems)
-			{
-				Items.Remove(removeItem);
-			}
+			isDragging = false;
+			dragItem = null;
+			insertionIndex = -1;
+			insertAtEnd = false;
+			Cursor = Cursors.Default;
+			Invalidate();
 		}
 
 
-		protected override void OnDragEnter(DragEventArgs drgevent)
+		private void ComputeInsertionPoint(Point point)
 		{
-			base.OnDragEnter(drgevent);
-			if (!allowItemReorder)
-			{
-				drgevent.Effect = DragDropEffects.None;
-				return;
-			}
+			insertAtEnd = false;
+			insertionIndex = -1;
 
-			if (!drgevent.Data.GetDataPresent(DataFormats.Text))
+			var hit = HitTest(point);
+			if (hit.Item == null)
 			{
-				drgevent.Effect = DragDropEffects.None;
-				return;
-			}
-
-			base.OnDragEnter(drgevent);
-			var text = (string)drgevent.Data.GetData(typeof(string));
-			if (text.CompareTo(nameof(MoreListView)) == 0)
-			{
-				drgevent.Effect = DragDropEffects.Move;
-			}
-			else
-			{
-				drgevent.Effect = DragDropEffects.None;
-			}
-		}
-		#endregion DragDrop Overrides
-
-		#region Comparers
-		private abstract class ComparerBase : IComparer
-		{
-			protected SortOrder Order { get; set; } = SortOrder.Ascending;
-			protected abstract string GetValueOf(object obj);
-			public int Compare(object x, object y)
-			{
-				var xvalue = GetValueOf(x);
-				var yvalue = GetValueOf(y);
-				int result;
-				if (Decimal.TryParse(xvalue, out decimal xnum) &&
-					Decimal.TryParse(yvalue, out decimal ynum))
+				var lastItem = Items.Count > 0 ? Items[Items.Count - 1] : null;
+				if (lastItem != null && point.Y >= lastItem.Bounds.Bottom)
 				{
-					result = Decimal.Compare(xnum, ynum);
-				}
-				else if (DateTime.TryParse(xvalue, out DateTime xdate) &&
-					DateTime.TryParse(yvalue, out DateTime ydate))
-				{
-					result = DateTime.Compare(xdate, ydate);
-				}
-				else
-				{
-					result = String.Compare(xvalue, yvalue);
+					insertionIndex = Items.Count;
+					insertAtEnd = true;
 				}
 
-				return Order == SortOrder.Descending ? -result : result;
+				return;
 			}
-		}
-		private sealed class ItemTextComparer : ComparerBase
-		{
-			public ItemTextComparer()
-				: this(SortOrder.Ascending)
+
+			if (IsInsertionAnchor?.Invoke(hit.Item) ?? false)
 			{
+				// anchor rows are never reordered; dropping anywhere on one always means
+				// "become its first child"
+				insertionIndex = hit.Item.Index + 1;
+				return;
 			}
 
-			public ItemTextComparer(SortOrder order)
+			var midY = hit.Item.Bounds.Top + (hit.Item.Bounds.Height / 2);
+			insertionIndex = point.Y < midY ? hit.Item.Index : hit.Item.Index + 1;
+		}
+
+
+		private void PerformDrop()
+		{
+			if (insertionIndex < 0 || dragItem == null)
 			{
-				Order = order;
+				return;
 			}
 
-			protected override string GetValueOf(object obj) => ((ListViewItem)obj).Text;
+			var precedingItem = !insertAtEnd && insertionIndex > 0 ? Items[insertionIndex - 1] : null;
+
+			var originalIndex = dragItem.Index;
+			var adjustedIndex = insertionIndex > originalIndex ? insertionIndex - 1 : insertionIndex;
+
+			BeginUpdate();
+			Items.Remove(dragItem);
+			Items.Insert(adjustedIndex, dragItem);
+			EndUpdate();
+
+			dragItem.Selected = true;
+
+			ItemMoved?.Invoke(this, new ItemMovedEventArgs(dragItem, precedingItem, insertAtEnd));
 		}
-		private sealed class ItemValueComparer : ComparerBase
-		{
-			public ItemValueComparer()
-				: this(SortOrder.Ascending)
-			{
-			}
-
-			public ItemValueComparer(SortOrder order)
-			{
-				Order = order;
-			}
-
-			protected override string GetValueOf(object obj) => ((IMoreHostedValue)obj).Value;
-		}
-		private sealed class SubItemTextComparer : ComparerBase
-		{
-			private readonly int index;
-			public SubItemTextComparer()
-				: this(0, SortOrder.Ascending)
-			{
-			}
-
-			public SubItemTextComparer(int col, SortOrder order)
-			{
-				index = col;
-				Order = order;
-			}
-
-			protected override string GetValueOf(object obj) =>
-				((ListViewItem)obj).SubItems[index].Text;
-		}
-		private sealed class SubItemValueComparer : ComparerBase
-		{
-			private readonly int index;
-			public SubItemValueComparer()
-				: this(0, SortOrder.Ascending)
-			{
-			}
-
-			public SubItemValueComparer(int col, SortOrder order)
-			{
-				index = col;
-				Order = order;
-			}
-
-			protected override string GetValueOf(object obj) =>
-				((IMoreHostedValue)((ListViewItem)obj).SubItems[index]).Value;
-
-		}
-		#endregion Comparers
-	}
-
-
-	//===========================================================================================
-	// Supporting classes
-	//===========================================================================================
-
-	/// <summary>
-	/// Declares the members that must be implemented by a hosted control to support
-	/// value retrieval. For example, a ProgressBar would expose its Value property as
-	/// ImoreHostedValue.Value.
-	/// </summary>
-	internal interface IMoreHostedValue
-	{
-		string Value { get; }
-	}
-
-
-	/// <summary>
-	/// Provides callback methods for MoreHostedListViewItem implementors to react when an item
-	/// is selected or deselected, so that it can change the backcolor of itself as needed.
-	/// </summary>
-	internal interface IChameleon
-	{
-		void ApplyBackground(Color color);
-		void ResetBackground();
-	}
-
-
-	/// <summary>
-	/// Base class provided common members inherited by custom column headers. Inheritors
-	/// may extend this with their own "templating" information such as a list of images
-	/// to display in a drop-down ComboBox.
-	/// </summary>
-	/// <typeparam name="T">The value type represented by items in this column</typeparam>
-	internal class MoreColumnHeader<T> : ColumnHeader
-	{
-		public MoreColumnHeader()
-		{
-		}
-
-		public MoreColumnHeader(T value)
-			: this()
-		{
-			Value = value;
-			Text = value.ToString();
-			Title = Text;
-		}
-
-		public MoreColumnHeader(T value, int width)
-			: this(value)
-		{
-			Width = width;
-		}
-
-		/// <summary>
-		/// Gets or sets whether values in this column are resized according to the column width.
-		/// </summary>
-		public bool AutoSizeItems { get; set; }
-
-		/// <summary>
-		/// Gets or sets whether this column can be sorted by clicking its header.
-		/// </summary>
-		public bool Sortable { get; set; } = false;
-
-		/// <summary>
-		/// The current sort state of the column.
-		/// </summary>
-		public SortOrder SortOrder { get; set; }
-
-		/// <summary>
-		/// The display title of the column; this is the normal Text value without a
-		/// sorting glyph.
-		/// </summary>
-		public string Title { get; private set; }
-
-		/// <summary>
-		/// TBD
-		/// </summary>
-		public T Value { get; private set; }
-	}
-
-
-	/// <summary>
-	/// The standard text based column header.
-	/// </summary>
-	internal class MoreColumnHeader : MoreColumnHeader<string>
-	{
-		public MoreColumnHeader()
-			: base()
-		{
-		}
-
-		public MoreColumnHeader(string value)
-			: base(value)
-		{
-		}
-
-		public MoreColumnHeader(string value, int width)
-			: base(value, width)
-		{
-		}
-	}
-
-
-	/// <summary>
-	/// Common interface shared between items and subitems to make it easier for the
-	/// main MoreListView class to handle both equally.
-	/// </summary>
-	internal interface IMoreHostItem
-	{
-		ContentAlignment Alignment { get; }
-
-		Rectangle Bounds { get; }
-
-		Control Control { get; }
-
-		object Tag { get; }
-
-		string Text { get; }
-	}
-
-
-	/// <summary>
-	/// An item or row added to the list view and supports hosted controls.
-	/// </summary>
-	internal class MoreHostedListViewItem : ListViewItem, IMoreHostItem
-	{
-		public MoreHostedListViewItem()
-			: base()
-		{
-		}
-
-		public MoreHostedListViewItem(string text, Control control)
-			: base(text)
-		{
-			Control = control;
-		}
-
-		/// <summary>
-		/// Adds a new subitem to this item with standard display text.
-		/// </summary>
-		/// <param name="text">Display text of the subitem</param>
-		/// <returns>The new subitem, already added to the item's SubItems collection.</returns>
-		public MoreHostedListViewSubItem AddHostedSubItem(string text)
-		{
-			return AddHostedSubItem(text, null);
-		}
-
-		/// <summary>
-		/// Adds a new subitem to this item with a given hosted control and no text.
-		/// </summary>
-		/// <param name="control">The control to host in the subitem</param>
-		/// <returns>The new subitem, already added to the item's SubItems collection</returns>
-		public MoreHostedListViewSubItem AddHostedSubItem(Control control)
-		{
-			return AddHostedSubItem(String.Empty, control);
-		}
-
-		/// <summary>
-		/// Adds a new subitem to this item with a given hosted control.
-		/// </summary>
-		/// <param name="text">Display text of the subitem. Will be ignored if control is given.</param>
-		/// <param name="control">The control to host in the subitem</param>
-		/// <returns>The new subitem, already added to the item's SubItems collection</returns>
-		public MoreHostedListViewSubItem AddHostedSubItem(string text, Control control)
-		{
-			var subitem = new MoreHostedListViewSubItem(this, text, control);
-			if (control != null && Registering != null)
-			{
-				Registering(subitem,
-					new MoreListView.RegistrationEventArgs(this, control, SubItems.Count));
-			}
-			SubItems.Add(subitem);
-			return subitem;
-		}
-
-		/// <summary>
-		/// For internal use only.
-		/// </summary>
-		public event MoreListView.RegistrationEventHandler Registering;
-
-		/// <summary>
-		/// Gets or set the alignment of the control in the item.
-		/// </summary>
-		public ContentAlignment Alignment { get; set; }
-
-		/// <summary>
-		/// Gets the control hosted by this item.
-		/// </summary>
-		public Control Control { get; private set; }
-	}
-
-
-	/// <summary>
-	/// A subitem of a ListView item that supports hosted controls.
-	/// </summary>
-	internal class MoreHostedListViewSubItem : ListViewItem.ListViewSubItem, IMoreHostItem
-	{
-		public MoreHostedListViewSubItem()
-			: base()
-		{
-		}
-
-		public MoreHostedListViewSubItem(ListViewItem owner, string text)
-			: base(owner, text)
-		{
-		}
-
-		public MoreHostedListViewSubItem(
-			ListViewItem owner, string text, Color foreColor, Color backColor, Font font)
-			: base(owner, text, foreColor, backColor, font)
-		{
-		}
-
-		public MoreHostedListViewSubItem(ListViewItem owner, string text, Control control)
-			: this(owner, text)
-		{
-			Control = control;
-		}
-
-		public MoreHostedListViewSubItem(ListViewItem owner, string text, Control control,
-			Color foreColor, Color backColor, Font font)
-			: base(owner, text, foreColor, backColor, font)
-		{
-			Control = control;
-		}
-
-		/// <summary>
-		/// Gets or set the alignment of the control in the subitem.
-		/// </summary>
-		public ContentAlignment Alignment { get; set; }
-
-		/// <summary>
-		/// Gets the control hosted by this subitem.
-		/// </summary>
-		public Control Control { get; private set; }
 	}
 }

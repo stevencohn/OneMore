@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 	using System.Linq;
 	using System.Threading.Tasks;
 	using River.OneMoreAddIn.UI;
+	using Resx = Properties.Resources;
 
 
 	#region Wrappers
@@ -77,13 +78,17 @@ namespace River.OneMoreAddIn.Commands.Favorites
 			favorite.Uri = info.Link;
 
 			var provider = new FavoritesProvider();
-			if (provider.WriteFavorite(favorite))
+			if (provider.WriteFavorite(favorite, out var duplicate))
 			{
 				ribbon?.InvalidateControl(FavoritesMenu.MenuID);
 			}
+			else if (duplicate)
+			{
+				MoreMessageBox.ShowError(owner, Resx.AddFavoriteCommand_duplicate);
+			}
 			else
 			{
-				MoreMessageBox.ShowError(owner, "Could not save favorite");
+				MoreMessageBox.ShowError(owner, Resx.AddFavoriteCommand_error);
 			}
 		}
 	}

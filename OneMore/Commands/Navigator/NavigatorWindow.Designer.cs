@@ -45,7 +45,7 @@
 			this.refreshButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.pageHeadLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.subContainer = new System.Windows.Forms.SplitContainer();
-			this.pinnedBox = new River.OneMoreAddIn.UI.MoreListView();
+			this.pinnedBox = new River.OneMoreAddIn.UI.MoreListViewEx();
 			this.pinnedHeadPanel = new River.OneMoreAddIn.UI.MorePanel();
 			this.pinnedToolPanel = new System.Windows.Forms.Panel();
 			this.copyPinnedButton = new River.OneMoreAddIn.UI.MoreButton();
@@ -53,7 +53,7 @@
 			this.unpinButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.downButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.pinnedHeadLabel = new River.OneMoreAddIn.UI.MoreLabel();
-			this.historyBox = new River.OneMoreAddIn.UI.MoreListView();
+			this.historyBox = new River.OneMoreAddIn.UI.MoreListViewEx();
 			this.historyHeadPanel = new River.OneMoreAddIn.UI.MorePanel();
 			this.historyToolPanel = new System.Windows.Forms.Panel();
 			this.deleteHistoryButton = new River.OneMoreAddIn.UI.MoreButton();
@@ -580,8 +580,8 @@
 		private River.OneMoreAddIn.UI.MoreLabel pageHeadLabel;
 		private River.OneMoreAddIn.UI.MoreLabel pinnedHeadLabel;
 		private River.OneMoreAddIn.UI.MoreLabel historyHeadLabel;
-		private River.OneMoreAddIn.UI.MoreListView pinnedBox;
-		private River.OneMoreAddIn.UI.MoreListView historyBox;
+		private River.OneMoreAddIn.UI.MoreListViewEx pinnedBox;
+		private River.OneMoreAddIn.UI.MoreListViewEx historyBox;
 		private River.OneMoreAddIn.UI.MoreFlowLayoutPanel pageBox;
 		private River.OneMoreAddIn.UI.MoreButton pinButton;
 		private River.OneMoreAddIn.UI.MoreButton unpinButton;

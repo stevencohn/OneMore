@@ -526,6 +526,24 @@
     <Compile Include="Commands\Favorites\FavoritesDialog.Designer.cs">
       <DependentUpon>FavoritesDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Favorites\MangeFavoritesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Commands\Favorites\MangeFavoritesControl.Designer.cs">
+      <DependentUpon>MangeFavoritesControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commands\Favorites\ManageFavoritesDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Favorites\ManageFavoritesDialog.Designer.cs">
+      <DependentUpon>ManageFavoritesDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commands\Favorites\RenameFavoriteDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Favorites\RenameFavoriteDialog.Designer.cs">
+      <DependentUpon>RenameFavoriteDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\File\CrawlHyperlink.cs" />
     <Compile Include="Commands\File\CrawlWebPageCommand.cs" />
     <Compile Include="Commands\File\CrawlWebPageDialog.cs">
@@ -974,6 +992,9 @@
     <Compile Include="UI\MoreAutoCompleteList.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="UI\MoreListViewEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UI\MoreListView.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -1332,6 +1353,9 @@
     <Content Include="Commands\Navigator\Images\Swap-Up-20.png" />
     <Content Include="Commands\Tables\Formulas\VariablesDB.sql" />
     <Content Include="Commands\Tagging\HashtagsDB.sql" />
+    <EmbeddedResource Include="Commands\Favorites\ManageFavoritesDialog.resx">
+      <DependentUpon>ManageFavoritesDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Commands\File\OpenFolderDialog.resx">
       <DependentUpon>OpenFolderDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -1641,6 +1665,13 @@
     <EmbeddedResource Include="Commands\Favorites\FavoritesDialog.resx">
       <DependentUpon>FavoritesDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Favorites\RenameFavoriteDialog.resx">
+      <DependentUpon>RenameFavoriteDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Favorites\MangeFavoritesControl.resx">
+      <DependentUpon>MangeFavoritesControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\File\CrawlWebPageDialog.resx">
       <DependentUpon>CrawlWebPageDialog.cs</DependentUpon>

@@ -13,6 +13,8 @@ namespace River.OneMoreAddIn.UI
 	internal partial class RenameDialog : UI.MoreForm
 	{
 		private readonly IEnumerable<string> names;
+		private readonly string createTitle;
+		private readonly string renameTitle;
 
 
 		public RenameDialog()
@@ -34,11 +36,21 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
-		public RenameDialog(IEnumerable<string> names, string name)
+		public RenameDialog(IEnumerable<string> names, string name,
+			string createTitle = null, string renameTitle = null, string label = null)
 			: this()
 		{
 			this.names = names;
+			this.createTitle = createTitle ?? Resx.phrase_NewStyle;
+			this.renameTitle = renameTitle ?? Resx.RenameDialog_renameStyle;
+
+			Text = this.createTitle;
 			nameBox.Text = name;
+
+			if (label is not null)
+			{
+				nameLabel.Text = label;
+			}
 		}
 
 
@@ -48,14 +60,12 @@ namespace River.OneMoreAddIn.UI
 
 			set
 			{
-				Text = value
-					? Resx.RenameDialog_renameStyle
-					: Resx.phrase_NewStyle;
+				Text = value ? renameTitle : createTitle;
 			}
 		}
 
 
-		public string StyleName => nameBox.Text;
+		public string Value => nameBox.Text;
 
 
 		private void DialogLoad(object sender, EventArgs e)

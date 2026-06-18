@@ -59,8 +59,10 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		/// patch the favorite with an updated ID.
 		/// </summary>
 		/// <param name="favorites">List of favorites to validate</param>
-		/// <returns></returns>
-		public async Task<bool> ValidateFavorites(List<Favorite> favorites)
+		/// <returns>
+		/// Returns True if any invalid favorites are discovered.
+		/// </returns>
+		public async Task<bool> InvalidFavorites(List<Favorite> favorites)
 		{
 			one ??= new OneNote();
 			notebooks ??= new Notebooks();
@@ -84,22 +86,6 @@ namespace River.OneMoreAddIn.Commands.Favorites
 			}
 
 			return updated;
-
-			//if (updated)
-			//{
-			//	logger.WriteLine("saving updated favorites!");
-			//	var root = FavoritesFileProvider.MakeMenuRoot();
-			//	foreach (var favorite in favorites)
-			//	{
-			//		root.Add(favorite.Root);
-			//	}
-
-			//	SaveFavorites(root);
-			//}
-			//else
-			//{
-			//	logger.WriteLine("favorites check OK");
-			//}
 		}
 
 
@@ -134,7 +120,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 			if (notebook is not null &&
 				notebook.Descendants()
-					.First(e => e.Attribute("ID")?.Value == targetID) is XElement node)
+					.FirstOrDefault(e => e.Attribute("ID")?.Value == targetID) is XElement node)
 			{
 				favorite.Status = FavoriteStatus.Known;
 

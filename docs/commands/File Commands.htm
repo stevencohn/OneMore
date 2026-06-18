@@ -131,7 +131,7 @@
 <li><a id="edit-commands" href="Edit Commands.htm">Edit Commands</a></li>
 <li><a id="favorites-commands" href="Favorites Commands.htm">Favorites Commands</a></li>
 <li><a id="file-commands" href="File Commands.htm">File Commands</a></li>
-<li><a id="-_-plugins" href="-_ Plugins.htm">-_ Plugins</a></li>
+<li><a id="→-plugins" href="→ Plugins.htm">→ Plugins</a></li>
 <li><a id="hashtag-commands" href="Hashtag Commands.htm">Hashtag Commands</a></li>
 <li><a id="image-commands" href="Image Commands.htm">Image Commands</a></li>
 <li><a id="my-styles-commands" href="My Styles Commands.htm">My Styles Commands</a></li>
@@ -142,7 +142,7 @@
 <li><a id="search-commands" href="Search Commands.htm">Search Commands</a></li>
 <li><a id="snippets-commands" href="Snippets Commands.htm">Snippets Commands</a></li>
 <li><a id="table-commands" href="Table Commands.htm">Table Commands</a></li>
-<li><a id="-_-tables-and-calculations" href="-_ Tables and Calculations.htm">-_ Tables and Calculations</a></li>
+<li><a id="→-tables-and-calculations" href="→ Tables and Calculations.htm">→ Tables and Calculations</a></li>
 <li><a id="table-style-commands" href="Table Style Commands.htm">Table Style Commands</a></li>
 <li><a id="extra-commands" href="Extra Commands.htm">Extra Commands</a></li>
           </ul>
@@ -154,12 +154,12 @@
     <div id="content">
       <DIV style="DIRECTION: ltr">
 <DIV style="WIDTH: 8.715in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0in">
-<DIV style="WIDTH: 2.245in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0in">
+<DIV style="WIDTH: 2.262in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0in">
 <P lang=yo style='FONT-SIZE: 20pt; FONT-FAMILY: "Calibri Light"; MARGIN: 0in'>File Commands</P></DIV>
-<DIV style="WIDTH: 2.413in; MARGIN-TOP: 0.042in; DIRECTION: ltr; MARGIN-LEFT: 0in">
+<DIV style="WIDTH: 2.448in; MARGIN-TOP: 0.038in; DIRECTION: ltr; MARGIN-LEFT: 0in">
 <P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">Sunday, February 19, 2023</P>
 <P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">5:58 PM</P></DIV>
-<DIV style="WIDTH: 8.715in; MARGIN-TOP: 0.427in; DIRECTION: ltr; MARGIN-LEFT: 0in">
+<DIV style="WIDTH: 8.715in; MARGIN-TOP: 0.424in; DIRECTION: ltr; MARGIN-LEFT: 0in">
 <H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Archive</H1>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: gray; MARGIN: 0in"><SPAN style="FONT-STYLE: italic">Available only by right-clicking a section or notebook</SPAN></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Creates a zip file of all pages in the section or notebook, including all images and file attachments on each page. Also fixes the hyperlinks between pages within the context of the archive so the archive can stand on its own as a working directory of HTML files with live hyperlinks.</P>
@@ -172,12 +172,28 @@
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Note also that there is a difference between an .mht file and an .htm files, where the former has mime-type headers and footers that are not normally present in an HTML file.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H3 lang=yo style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; COLOR: #5b9bd5; MARGIN: 0in">File Naming for Exported Pages</H3>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">As pages are exported into their individual files (except for Word), the following steps are taken to properly give each file a unique name. OneMore takes the first one it finds that is not empty:</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<OL style="FONT-SIZE: 11.5pt; MARGIN-BOTTOM: 0in; FONT-FAMILY: Calibri; unicode-bidi: embed; MARGIN-TOP: 0in; FONT-WEIGHT: normal; DIRECTION: ltr; FONT-STYLE: normal" type=1>
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px" value=1><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: normal; FONT-STYLE: normal">Page title</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">First run of text/first paragraph. Could be a Heading or Normal paragraph, up to 40 characters, but also truncated to fit full path within the max OneNote file path length of 239.</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Fabricate a filename like "</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-STYLE: italic">sectionName</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">_Untitle_Page". In this case, the page likely has only images or ink.</SPAN> </LI></OL>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Export is a non-destructive operation, meaning it will not overwrite files. Whether files already exist in the output directory, or there are multiple pages with the same final name, a counter will be appended to differentiate duplicate filenames, e.g.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<UL style="MARGIN-BOTTOM: 0in; unicode-bidi: embed; MARGIN-TOP: 0in; DIRECTION: ltr" type=disc>
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; COLOR: black'>C:\data\foo.md</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; COLOR: black'>C:\data\foo (1).md</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; COLOR: black'>C:\data\foo (2).md</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">...</SPAN> </LI></UL>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Import</H1>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Import Word (.docx), PowerPoint (.pptx), Markdown (.md), OneNote (.one), or XML (.xml) by either appending content to the current page or creating a new page. Additionally, for PowerPoint, each slide can be imported into its own page so you could use OneNote as a PowerPoint presenter by entering full screen mode and using Ctrl-PgDn to move to the next slide.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P style="MARGIN: 0in 0in 0in 0.375in"><IMG alt="Import Dialog" src="File%20Commands_files/image001.png" width=407 height=253></P>
 <P lang=yo style="FONT-SIZE: 12pt; MARGIN-BOTTOM: 12pt; FONT-FAMILY: Calibri; MARGIN-TOP: 0pt">&nbsp;</P>
-<P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">You can import multiple Word, PowerPoint, or Markdown files by using a wildcard in the name, for example&nbsp;</SPAN><SPAN style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e8e8e8; COLOR: #172b4d'>C:\docs\January*.md</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">. Each file will be imported as a separate page; the&nbsp;Append&nbsp;option is not available when importing using wildcards.</SPAN></P>
+<P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">You can import multiple Word, PowerPoint, or Markdown files by using a wildcard in the name, for example&nbsp;</SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #ecf5ff'>C:\docs\January*.md</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">. Each file will be imported as a separate page; the&nbsp;Append&nbsp;option is not available when importing using wildcards.</SPAN></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Import Hyperlinks</H1>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Discovers all external hyperlinks on the current page, presents a dialog from which you can select one or more link to import. Each hyperlink is imported as a separate page.</P>
