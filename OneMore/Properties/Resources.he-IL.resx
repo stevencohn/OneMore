@@ -1234,7 +1234,7 @@ Total Row Font
     <comment>settings</comment>
   </data>
   <data name="FavoritesSheet_dropLabel.Text" xml:space="preserve">
-    <value>מחק את כל נתוני המועדפים ממסד הנתונים המקומי של OneMore.db. השתמש בזה רק אם למחוק את כל אוסף המועדפים ולייבא מחדש קובץ Favorites.xml ישן.</value>
+    <value>מחק את כל נתוני המועדפים ממסד הנתונים המקומי של OneMore.db. השתמש בזה רק כדי למחוק את כל אוסף המועדפים ולייבא מחדש קובץ Favorites.xml ישן.</value>
     <comment>settings</comment>
   </data>
   <data name="FavoritesSheet_dropLink.Text" xml:space="preserve">

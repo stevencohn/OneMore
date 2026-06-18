@@ -1229,7 +1229,7 @@ Archivo de OneNote (* .one)</value>
     <comment>settings</comment>
   </data>
   <data name="FavoritesSheet_dropLabel.Text" xml:space="preserve">
-    <value>Elimine todos los datos de Favoritos de su base de datos local OneMore.db. Úselo solo si desea borrar toda la colección de Favoritos y volver a importar un archivo antiguo de Favoritos.xml.</value>
+    <value>Elimine todos los datos de Favoritos de su base de datos local OneMore.db. Utilícelo sólo para borrar toda la colección de Favoritos y volver a importar un archivo antiguo de Favoritos.xml.</value>
     <comment>settings</comment>
   </data>
   <data name="FavoritesSheet_dropLink.Text" xml:space="preserve">

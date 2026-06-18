@@ -1237,7 +1237,7 @@
     <comment>settings</comment>
   </data>
   <data name="FavoritesSheet_dropLabel.Text" xml:space="preserve">
-    <value>احذف كافة بيانات المفضلة من قاعدة بيانات OneMore.db المحلية. استخدم هذا فقط إذا كنت تريد مسح مجموعة المفضلة بأكملها وإعادة استيراد ملف Favorites.xml القديم.</value>
+    <value>احذف كافة بيانات المفضلة من قاعدة بيانات OneMore.db المحلية. استخدم هذا فقط لمسح مجموعة المفضلة بأكملها وإعادة استيراد ملف Favorites.xml القديم.</value>
     <comment>settings</comment>
   </data>
   <data name="FavoritesSheet_dropLink.Text" xml:space="preserve">

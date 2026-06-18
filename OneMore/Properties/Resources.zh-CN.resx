@@ -1238,7 +1238,7 @@ OneNote 文件 (*.one)</value>
     <comment>settings</comment>
   </data>
   <data name="FavoritesSheet_dropLabel.Text" xml:space="preserve">
-    <value>从本地 OneMore.db 数据库中删除所有收藏夹数据。 仅当要删除整个收藏夹集合并重新导入旧的收藏夹.xml 文件时才使用此选项。</value>
+    <value>从本地 OneMore.db 数据库中删除所有收藏夹数据。 仅使用此选项来删除整个收藏夹集合并重新导入旧的收藏夹.xml 文件。</value>
     <comment>settings</comment>
   </data>
   <data name="FavoritesSheet_dropLink.Text" xml:space="preserve">

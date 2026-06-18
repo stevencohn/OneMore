@@ -1234,7 +1234,7 @@ Arquivo OneNote (* .one)</value>
     <comment>settings</comment>
   </data>
   <data name="FavoritesSheet_dropLabel.Text" xml:space="preserve">
-    <value>Exclua todos os dados de Favoritos do banco de dados OneMore.db local. Use isto apenas para apagar toda a coleção de Favoritos e reimportar um arquivo Favorites.xml antigo.</value>
+    <value>Exclua todos os dados de Favoritos do banco de dados OneMore.db local. Use isso apenas para apagar toda a coleção de Favoritos e reimportar um arquivo Favorites.xml antigo.</value>
     <comment>settings</comment>
   </data>
   <data name="FavoritesSheet_dropLink.Text" xml:space="preserve">

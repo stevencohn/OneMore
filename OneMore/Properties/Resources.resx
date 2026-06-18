@@ -1243,7 +1243,7 @@ OneNote File (*.one)</value>
     <comment>settings</comment>
   </data>
   <data name="FavoritesSheet_dropLabel.Text" xml:space="preserve">
-    <value>Delete all Favorites data from your local OneMore.db database. Use this only if to erase the entire Favorites collection and reimport an old Favorites.xml file.</value>
+    <value>Delete all Favorites data from your local OneMore.db database. Use this only to erase the entire Favorites collection and reimport an old Favorites.xml file.</value>
     <comment>settings</comment>
   </data>
   <data name="FavoritesSheet_dropLink.Text" xml:space="preserve">

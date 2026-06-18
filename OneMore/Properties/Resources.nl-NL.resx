@@ -1234,7 +1234,7 @@ OneNote-bestand (*.one)</value>
     <comment>settings</comment>
   </data>
   <data name="FavoritesSheet_dropLabel.Text" xml:space="preserve">
-    <value>Verwijder alle Favorietengegevens uit uw lokale OneMore.db-database. Gebruik dit alleen als u de volledige verzameling Favorieten wilt wissen en een oud Favorites.xml-bestand opnieuw wilt importeren.</value>
+    <value>Verwijder alle Favorietengegevens uit uw lokale OneMore.db-database. Gebruik dit alleen om de gehele Favorietenverzameling te wissen en een oud Favorites.xml-bestand opnieuw te importeren.</value>
     <comment>settings</comment>
   </data>
   <data name="FavoritesSheet_dropLink.Text" xml:space="preserve">

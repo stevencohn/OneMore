@@ -82,9 +82,7 @@
 			this.dropLabel.Name = "dropLabel";
 			this.dropLabel.Size = new System.Drawing.Size(756, 100);
 			this.dropLabel.TabIndex = 3;
-			this.dropLabel.Text = "Delete all Favorites data from your local OneMore.db database. Use this only if t" +
-    "o erase the entire Favorites collection and reimport an old Favorites.xml file." +
-    "";
+			this.dropLabel.Text = "Delete all Favorites data from your local OneMore.db database. Use this only to erase the entire Favorites collection and reimport an old Favorites.xml file.";
 			this.dropLabel.ThemedBack = null;
 			this.dropLabel.ThemedFore = null;
 			// 
@@ -149,6 +147,7 @@
 		}
 
 		#endregion
+
 		private UI.MoreGroupBox optionsBox;
 		private UI.MoreCheckBox shortcutsBox;
 		private System.Windows.Forms.Panel layoutPanel;

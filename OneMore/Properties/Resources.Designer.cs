@@ -3280,7 +3280,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Delete all Favorites data from your local OneMore.db database. Use this only if to erase the entire Favorites collection and reimport an old Favorites.xml file..
+        ///   Looks up a localized string similar to Delete all Favorites data from your local OneMore.db database. Use this only to erase the entire Favorites collection and reimport an old Favorites.xml file..
         /// </summary>
         internal static string FavoritesSheet_dropLabel_Text {
             get {
