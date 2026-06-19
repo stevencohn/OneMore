@@ -361,10 +361,11 @@ ORDER BY folderName NULLS LAST, sortOrder, name;
 			cmd.CommandType = CommandType.Text;
 
 			cmd.CommandText =
-				"UPDATE favorite SET alias = @a, folderID = @f, sortOrder = @o " +
+				"UPDATE favorite SET name = @n, alias = @a, folderID = @f, sortOrder = @o " +
 				"WHERE favoriteID = @id";
 
 			cmd.Parameters.Clear();
+			cmd.Parameters.Add("@n", DbType.String);
 			cmd.Parameters.Add("@a", DbType.String);
 			cmd.Parameters.Add("@f", DbType.Int32);
 			cmd.Parameters.Add("@o", DbType.Int32);
@@ -372,6 +373,7 @@ ORDER BY folderName NULLS LAST, sortOrder, name;
 
 			object alias = string.IsNullOrWhiteSpace(favorite.Alias) ? DBNull.Value : favorite.Alias;
 
+			cmd.Parameters["@n"].Value = favorite.Name;
 			cmd.Parameters["@a"].Value = alias;
 			cmd.Parameters["@f"].Value = favorite.FolderID;
 			cmd.Parameters["@o"].Value = favorite.SortOrder;

@@ -62,11 +62,29 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		/// <returns>
 		/// Returns True if any invalid favorites are discovered.
 		/// </returns>
-		public async Task<bool> InvalidFavorites(List<Favorite> favorites)
+		public async Task<bool> InvalidFavorites(FavoritesCollection collection)
 		{
 			one ??= new OneNote();
 			notebooks ??= new Notebooks();
 
+			var updated = false;
+
+			foreach (var folder in collection.Folders)
+			{
+				if (folder.Items.Any())
+				{
+					updated |= await InvalidFavorites(folder.Items);
+				}
+			}
+
+			updated |= await InvalidFavorites(collection.Items);
+
+			return updated;
+		}
+
+
+		private async Task<bool> InvalidFavorites(List<Favorite> favorites)
+		{
 			var updated = false;
 
 			foreach (var favorite in favorites)
@@ -128,6 +146,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				if (favorite.Name != name)
 				{
 					// auto-correct page/section name
+					logger.WriteLine($"patching favorite name from '{favorite.Name}' to '{name}'");
 					favorite.Name = name;
 					return true;
 				}
