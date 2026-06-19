@@ -14188,6 +14188,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Information.
+        /// </summary>
+        internal static string word_Information {
+            get {
+                return ResourceManager.GetString("word_Information", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
         internal static string word_Language {
@@ -14274,6 +14283,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_Notebooks {
             get {
                 return ResourceManager.GetString("word_Notebooks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notes.
+        /// </summary>
+        internal static string word_Notes {
+            get {
+                return ResourceManager.GetString("word_Notes", resourceCulture);
             }
         }
         
@@ -14625,6 +14643,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_Value {
             get {
                 return ResourceManager.GetString("word_Value", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warning.
+        /// </summary>
+        internal static string word_Warning {
+            get {
+                return ResourceManager.GetString("word_Warning", resourceCulture);
             }
         }
         

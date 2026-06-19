@@ -5736,6 +5736,9 @@ ISO-code then comma then language name</comment>
   <data name="word_Index" xml:space="preserve">
     <value>word_Index</value>
   </data>
+  <data name="word_Information" xml:space="preserve">
+    <value>מֵידָע</value>
+  </data>
   <data name="word_Language" xml:space="preserve">
     <value>שפה</value>
   </data>
@@ -5765,6 +5768,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Notebooks" xml:space="preserve">
     <value>מחברות</value>
+  </data>
+  <data name="word_Notes" xml:space="preserve">
+    <value>הערות</value>
   </data>
   <data name="word_Numeric" xml:space="preserve">
     <value>מספרי</value>
@@ -5883,6 +5889,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Value" xml:space="preserve">
     <value>עֵרֶך</value>
+  </data>
+  <data name="word_Warning" xml:space="preserve">
+    <value>אַזהָרָה</value>
   </data>
   <data name="word_Width" xml:space="preserve">
     <value>רוֹחַב</value>

@@ -5732,6 +5732,9 @@ Danke schön!</value>
   <data name="word_Index" xml:space="preserve">
     <value>word_Index</value>
   </data>
+  <data name="word_Information" xml:space="preserve">
+    <value>Information</value>
+  </data>
   <data name="word_Language" xml:space="preserve">
     <value>Sprache</value>
   </data>
@@ -5761,6 +5764,9 @@ Danke schön!</value>
   </data>
   <data name="word_Notebooks" xml:space="preserve">
     <value>Notizbücher</value>
+  </data>
+  <data name="word_Notes" xml:space="preserve">
+    <value>Notizen</value>
   </data>
   <data name="word_Numeric" xml:space="preserve">
     <value>Numerisch</value>
@@ -5879,6 +5885,9 @@ Danke schön!</value>
   </data>
   <data name="word_Value" xml:space="preserve">
     <value>Wert</value>
+  </data>
+  <data name="word_Warning" xml:space="preserve">
+    <value>Warnung</value>
   </data>
   <data name="word_Width" xml:space="preserve">
     <value>Breite</value>

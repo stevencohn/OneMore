@@ -5743,6 +5743,9 @@ ISO-code then comma then language name</comment>
   <data name="word_Index" xml:space="preserve">
     <value>word_Index</value>
   </data>
+  <data name="word_Information" xml:space="preserve">
+    <value>معلومة</value>
+  </data>
   <data name="word_Language" xml:space="preserve">
     <value>لغة</value>
   </data>
@@ -5772,6 +5775,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Notebooks" xml:space="preserve">
     <value>دفاتر الملاحظات</value>
+  </data>
+  <data name="word_Notes" xml:space="preserve">
+    <value>ملحوظات</value>
   </data>
   <data name="word_Numeric" xml:space="preserve">
     <value>رقمي</value>
@@ -5890,6 +5896,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Value" xml:space="preserve">
     <value>قيمة</value>
+  </data>
+  <data name="word_Warning" xml:space="preserve">
+    <value>تحذير</value>
   </data>
   <data name="word_Width" xml:space="preserve">
     <value>عرض</value>

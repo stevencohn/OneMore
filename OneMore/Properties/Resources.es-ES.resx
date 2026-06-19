@@ -5731,6 +5731,9 @@ Puede habilitar o deshabilitar la telemetría en cualquier momento desde el cuad
   <data name="word_Index" xml:space="preserve">
     <value>índice_palabra</value>
   </data>
+  <data name="word_Information" xml:space="preserve">
+    <value>Información</value>
+  </data>
   <data name="word_Language" xml:space="preserve">
     <value>Idioma</value>
   </data>
@@ -5760,6 +5763,9 @@ Puede habilitar o deshabilitar la telemetría en cualquier momento desde el cuad
   </data>
   <data name="word_Notebooks" xml:space="preserve">
     <value>Cuadernos</value>
+  </data>
+  <data name="word_Notes" xml:space="preserve">
+    <value>Notas</value>
   </data>
   <data name="word_Numeric" xml:space="preserve">
     <value>Numérico</value>
@@ -5878,6 +5884,9 @@ Puede habilitar o deshabilitar la telemetría en cualquier momento desde el cuad
   </data>
   <data name="word_Value" xml:space="preserve">
     <value>Valor</value>
+  </data>
+  <data name="word_Warning" xml:space="preserve">
+    <value>Advertencia</value>
   </data>
   <data name="word_Width" xml:space="preserve">
     <value>Ancho</value>

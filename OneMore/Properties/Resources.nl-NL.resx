@@ -5732,6 +5732,9 @@ Bedankt!</value>
   <data name="word_Index" xml:space="preserve">
     <value>woord_Index</value>
   </data>
+  <data name="word_Information" xml:space="preserve">
+    <value>Informatie</value>
+  </data>
   <data name="word_Language" xml:space="preserve">
     <value>Taal</value>
   </data>
@@ -5761,6 +5764,9 @@ Bedankt!</value>
   </data>
   <data name="word_Notebooks" xml:space="preserve">
     <value>Notitieboekjes</value>
+  </data>
+  <data name="word_Notes" xml:space="preserve">
+    <value>Opmerkingen</value>
   </data>
   <data name="word_Numeric" xml:space="preserve">
     <value>Numeriek</value>
@@ -5879,6 +5885,9 @@ Bedankt!</value>
   </data>
   <data name="word_Value" xml:space="preserve">
     <value>Waarde</value>
+  </data>
+  <data name="word_Warning" xml:space="preserve">
+    <value>Waarschuwing</value>
   </data>
   <data name="word_Width" xml:space="preserve">
     <value>Breedte</value>

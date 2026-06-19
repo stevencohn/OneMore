@@ -5746,6 +5746,9 @@ ISO-code then comma then language name</comment>
   <data name="word_Index" xml:space="preserve">
     <value>词索引</value>
   </data>
+  <data name="word_Information" xml:space="preserve">
+    <value>信息</value>
+  </data>
   <data name="word_Language" xml:space="preserve">
     <value>语言</value>
   </data>
@@ -5775,6 +5778,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Notebooks" xml:space="preserve">
     <value>笔记本</value>
+  </data>
+  <data name="word_Notes" xml:space="preserve">
+    <value>笔记</value>
   </data>
   <data name="word_Numeric" xml:space="preserve">
     <value>数字</value>
@@ -5893,6 +5899,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Value" xml:space="preserve">
     <value>值</value>
+  </data>
+  <data name="word_Warning" xml:space="preserve">
+    <value>警告</value>
   </data>
   <data name="word_Width" xml:space="preserve">
     <value>宽度</value>
