@@ -8092,15 +8092,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Choose Favorite.
-        /// </summary>
-        internal static string ribChooseFavoriteButton_Label {
-            get {
-                return ResourceManager.GetString("ribChooseFavoriteButton_Label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Clean.
         /// </summary>
         internal static string ribCleanMenu_Label {
@@ -8799,6 +8790,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribExtrasMenu_Label {
             get {
                 return ResourceManager.GetString("ribExtrasMenu_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose Favorite.
+        /// </summary>
+        internal static string ribFavoritesButton_Label {
+            get {
+                return ResourceManager.GetString("ribFavoritesButton_Label", resourceCulture);
             }
         }
         
@@ -11041,9 +11041,9 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized string similar to OneNote Keyboard Shortcuts.
         /// </summary>
-        internal static string ribShowKeyboardShortcutsButton_Label {
+        internal static string ribShowKeyMapsPageButton_Label {
             get {
-                return ResourceManager.GetString("ribShowKeyboardShortcutsButton_Label", resourceCulture);
+                return ResourceManager.GetString("ribShowKeyMapsPageButton_Label", resourceCulture);
             }
         }
         

@@ -148,9 +148,10 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<CheckUrlsCommand>(true);
 
 
-		[Command("ribChooseFavoriteButton_Label", Keys.Alt | Keys.F)]
-		public async Task ChooseFavoriteCmd(IRibbonControl control)
-			=> await factory.Run<GotoFavoriteCommand>(null);
+		// opens the Favorites dialog (Choose Favorites)
+		[Command("ribFavoritesButton_Label", Keys.Alt | Keys.F)]
+		public async Task FavoritesCmd(IRibbonControl control)
+			=> await factory.Run<FavoritesCommand>(null);
 
 
 		[Command("ribCleanRemindersButton_Label", Keys.None, "ribRemindersMenu")]
@@ -384,8 +385,10 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<GetImagesCommand>(true);
 
 
+		// this is the internal favorites hook for the Ribbon and the FavoritesDialog action,
+		// not directly accessible to the user
 		public async Task GotoFavoriteCmd(IRibbonControl control)
-			=> await factory.Run<GotoFavoriteCommand>(control.Tag); //tag=pageid
+			=> await factory.Run<FavoritesCommand>(control.Tag); //tag=pageid
 
 
 		[Command("ribHashtaggerButton_Label", Keys.Alt | Keys.T, "ribSearchMenu")]
@@ -952,8 +955,8 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<ShowContainersCommand>();
 
 
-		public async Task ShowKeyboardShortcutsCmd(IRibbonControl control)
-			=> await factory.Run<ShowKeyboardShortcutsCommand>();
+		public async Task ShowKeyMapsPageCmd(IRibbonControl control)
+			=> await factory.Run<ShowKeyMapsPageCommand>();
 
 
 		[Command("ribShowXmlButton_Label", Keys.Control | Keys.Alt | Keys.Shift | Keys.X)]

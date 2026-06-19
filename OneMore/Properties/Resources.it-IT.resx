@@ -3147,7 +3147,7 @@ Scheda Aiuto</value>
     <value>Colora</value>
     <comment>ribbon edit NODUP</comment>
   </data>
-  <data name="ribChooseFavoriteButton_Label" xml:space="preserve">
+  <data name="ribFavoritesButton_Label" xml:space="preserve">
     <value>Scegli preferito</value>
   </data>
   <data name="ribCleanMenu_Label" xml:space="preserve">
@@ -4437,7 +4437,7 @@ Scheda Aiuto</value>
     <value>Attiva/disattiva l'opzione Mostra contenitori di note</value>
     <comment>ribbon extras</comment>
   </data>
-  <data name="ribShowKeyboardShortcutsButton_Label" xml:space="preserve">
+  <data name="ribShowKeyMapsPageButton_Label" xml:space="preserve">
     <value>Scorciatoie da tastiera di OneNote</value>
     <comment>ribbon favorites</comment>
   </data>

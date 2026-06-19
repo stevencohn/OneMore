@@ -286,7 +286,7 @@ Vergrößere kleinere Bilder nicht</preferred>
     <source>Add a caption to each attachment on the page</source>
     <preferred>Fügt jedem Anhang auf der Seite eine Beschriftung hinzu</preferred>
   </hint>
-  <hint name="ribChooseFavoriteButton_Label">
+  <hint name="ribFavoritesButton_Label">
     <source>Choose Favorite</source>
     <preferred>Favorit wählen</preferred>
   </hint>
