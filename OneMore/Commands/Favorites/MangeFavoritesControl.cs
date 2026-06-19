@@ -43,6 +43,13 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		private bool isDirtyFromCheck;
 
 
+		/// <summary>
+		/// Raised after CheckFavorites completes a check, whether or not any favorites
+		/// were found to be invalid.
+		/// </summary>
+		public event EventHandler FavoritesChecked;
+
+
 		public MangeFavoritesControl()
 		{
 			InitializeComponent();
@@ -274,6 +281,8 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				LoadFavorites(collection);
 				isDirtyFromCheck = true;
 			}
+
+			FavoritesChecked?.Invoke(this, EventArgs.Empty);
 		}
 
 
