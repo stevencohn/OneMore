@@ -16,14 +16,14 @@ namespace River.OneMoreAddIn.Commands
 	using System.Xml.Linq;
 
 
-	internal class ShowKeyboardShortcutsCommand : Command
+	internal class ShowKeyMapsPageCommand : Command
 	{
 		private readonly string TemplateUrl;
 
 		private OneNote one;
 
 
-		public ShowKeyboardShortcutsCommand()
+		public ShowKeyMapsPageCommand()
 		{
 			TemplateUrl = $"{Resources.OneMore_GitHub}/raw/main/Templates/OneNote_Keyboard_Shortcuts.zip";
 		}

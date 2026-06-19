@@ -3143,7 +3143,7 @@ Zakładka Pomoc</value>
     <value>Pokoloruj</value>
     <comment>ribbon edit</comment>
   </data>
-  <data name="ribChooseFavoriteButton_Label" xml:space="preserve">
+  <data name="ribFavoritesButton_Label" xml:space="preserve">
     <value>Wybierz Ulubione</value>
   </data>
   <data name="ribCleanMenu_Label" xml:space="preserve">
@@ -4431,7 +4431,7 @@ Zakładka Pomoc</value>
     <value>Przełącz opcję Pokaż kontenery notatek</value>
     <comment>ribbon extras</comment>
   </data>
-  <data name="ribShowKeyboardShortcutsButton_Label" xml:space="preserve">
+  <data name="ribShowKeyMapsPageButton_Label" xml:space="preserve">
     <value>Skróty klawiaturowe programu OneNote</value>
     <comment>favorite</comment>
   </data>

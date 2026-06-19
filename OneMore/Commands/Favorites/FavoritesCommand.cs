@@ -10,12 +10,12 @@ namespace River.OneMoreAddIn.Commands
 	using System.Windows.Forms;
 
 
-	internal class GotoFavoriteCommand : Command
+	internal class FavoritesCommand : Command
 	{
 		private static bool commandIsActive = false;
 
 
-		public GotoFavoriteCommand()
+		public FavoritesCommand()
 		{
 			// do not write to MRU
 			IsCancelled = true;

@@ -18,7 +18,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		private static readonly XNamespace ns = "http://schemas.microsoft.com/office/2009/07/customui";
 		private static readonly string AddButtonId = "omAddFavoriteButton";
 		private static readonly string ManageButtonId = "omManageFavoritesButton";
-		private static readonly string KbdShortcutsId = "omShowKeyboardShortcutsButton";
+		private static readonly string KbdShortcutsId = "omShowKeyMapsPageButton";
 
 
 		/// <summary>
@@ -126,9 +126,9 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		{
 			root.Add(new XElement(ns + "button",
 				new XAttribute("id", KbdShortcutsId),
-				new XAttribute("label", Resx.ribShowKeyboardShortcutsButton_Label),
+				new XAttribute("label", Resx.ribShowKeyMapsPageButton_Label),
 				new XAttribute("imageMso", "AdpPrimaryKey"),
-				new XAttribute("onAction", "ShowKeyboardShortcutsCmd")
+				new XAttribute("onAction", "ShowKeyMapsPageCmd")
 				));
 		}
 

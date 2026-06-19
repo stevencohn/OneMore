@@ -3142,7 +3142,7 @@ Registerkarte „Hilfe“.</value>
     <value>Einfärben</value>
     <comment>ribbon edit</comment>
   </data>
-  <data name="ribChooseFavoriteButton_Label" xml:space="preserve">
+  <data name="ribFavoritesButton_Label" xml:space="preserve">
     <value>Favorit wählen</value>
   </data>
   <data name="ribCleanMenu_Label" xml:space="preserve">
@@ -4431,7 +4431,7 @@ Registerkarte „Hilfe“.</value>
     <value>Schalten Sie die Option „Notizcontainer anzeigen“ um</value>
     <comment>ribbon extras</comment>
   </data>
-  <data name="ribShowKeyboardShortcutsButton_Label" xml:space="preserve">
+  <data name="ribShowKeyMapsPageButton_Label" xml:space="preserve">
     <value>OneNote-Tastenkombinationen</value>
     <comment>favorite</comment>
   </data>

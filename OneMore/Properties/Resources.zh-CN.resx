@@ -3157,7 +3157,7 @@ ISO-code then comma then language name</comment>
     <value>着色</value>
     <comment>ribbon edit</comment>
   </data>
-  <data name="ribChooseFavoriteButton_Label" xml:space="preserve">
+  <data name="ribFavoritesButton_Label" xml:space="preserve">
     <value>选择收藏夹</value>
   </data>
   <data name="ribCleanMenu_Label" xml:space="preserve">
@@ -4445,7 +4445,7 @@ ISO-code then comma then language name</comment>
     <value>Toggle 显示注释容器选项</value>
     <comment>ribbon extras</comment>
   </data>
-  <data name="ribShowKeyboardShortcutsButton_Label" xml:space="preserve">
+  <data name="ribShowKeyMapsPageButton_Label" xml:space="preserve">
     <value>OneNote 键盘快捷键</value>
     <comment>favorite</comment>
   </data>

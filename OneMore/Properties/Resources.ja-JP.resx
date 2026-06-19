@@ -3150,7 +3150,7 @@ ISO-code then comma then language name</comment>
     <value>コードハイライト</value>
     <comment>ribbon edit NODUP</comment>
   </data>
-  <data name="ribChooseFavoriteButton_Label" xml:space="preserve">
+  <data name="ribFavoritesButton_Label" xml:space="preserve">
     <value>お気に入りを選択</value>
   </data>
   <data name="ribCleanMenu_Label" xml:space="preserve">
@@ -4440,7 +4440,7 @@ ISO-code then comma then language name</comment>
     <value>Toggle ノートコンテナの表示オプション</value>
     <comment>ribbon extras</comment>
   </data>
-  <data name="ribShowKeyboardShortcutsButton_Label" xml:space="preserve">
+  <data name="ribShowKeyMapsPageButton_Label" xml:space="preserve">
     <value>OneNoteのショートカットキー</value>
     <comment>ribbon favorites</comment>
   </data>

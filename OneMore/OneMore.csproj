@@ -782,7 +782,7 @@
     <Compile Include="Commands\Page\SplitDialog.Designer.cs">
       <DependentUpon>SplitDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\Favorites\ShowKeyboardShortcutsCommand.cs" />
+    <Compile Include="Commands\Favorites\ShowKeyMapsPageCommand.cs" />
     <Compile Include="Commands\References\InsertQRCommand.cs" />
     <Compile Include="Commands\Tables\Formulas\Formula.cs" />
     <Compile Include="Commands\References\RefreshFootnotesCommand.cs" />
@@ -1083,7 +1083,7 @@
     <Compile Include="Commands\Snippets\InsertStatusCommand.cs" />
     <Compile Include="Commands\Snippets\InsertTocCommand.cs" />
     <Compile Include="Commands\References\NameUrlsCommand.cs" />
-    <Compile Include="Commands\Favorites\GotoFavoriteCommand.cs" />
+    <Compile Include="Commands\Favorites\FavoritesCommand.cs" />
     <Compile Include="Commands\Edit\ProofingCommand.cs" />
     <Compile Include="Commands\Edit\PasteRtfCommand.cs" />
     <Compile Include="Commands\References\RemoveFootnoteCommand.cs" />
