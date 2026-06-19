@@ -388,6 +388,20 @@ namespace River.OneMoreAddIn
 		public static extern bool SetProcessDPIAware();
 
 
+		// https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setprocessdpiawarenesscontext
+		[DllImport("user32.dll")]
+		public static extern bool SetProcessDpiAwarenessContext(IntPtr dpiContext);
+
+		public static readonly IntPtr DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2 = new IntPtr(-4);
+
+
+		// https://learn.microsoft.com/en-us/windows/win32/api/shellscalingapi/nf-shellscalingapi-setprocessdpiawareness
+		[DllImport("shcore.dll")]
+		public static extern int SetProcessDpiAwareness(int value);
+
+		public const int PROCESS_PER_MONITOR_DPI_AWARE = 2;
+
+
 		// https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setwindowpos
 		[DllImport("user32.dll")]
 		public static extern bool SetWindowPos(
