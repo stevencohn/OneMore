@@ -31,6 +31,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageFavoritesDialog));
 			this.managerControl = new River.OneMoreAddIn.Commands.Favorites.MangeFavoritesControl();
 			this.buttonPanel = new System.Windows.Forms.Panel();
+			this.noteLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.buttonPanel.SuspendLayout();
@@ -47,6 +48,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 			// buttonPanel
 			// 
 			this.buttonPanel.BackColor = System.Drawing.SystemColors.ControlLight;
+			this.buttonPanel.Controls.Add(this.noteLabel);
 			this.buttonPanel.Controls.Add(this.okButton);
 			this.buttonPanel.Controls.Add(this.cancelButton);
 			this.buttonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -56,6 +58,18 @@ namespace River.OneMoreAddIn.Commands.Favorites
 			this.buttonPanel.Padding = new System.Windows.Forms.Padding(8);
 			this.buttonPanel.Size = new System.Drawing.Size(928, 60);
 			this.buttonPanel.TabIndex = 1;
+			// 
+			// noteLabel
+			// 
+			this.noteLabel.AutoSize = true;
+			this.noteLabel.Location = new System.Drawing.Point(33, 20);
+			this.noteLabel.Name = "noteLabel";
+			this.noteLabel.Size = new System.Drawing.Size(132, 20);
+			this.noteLabel.TabIndex = 2;
+			this.noteLabel.Text = "Check completed";
+			this.noteLabel.ThemedBack = null;
+			this.noteLabel.ThemedFore = null;
+			this.noteLabel.Visible = false;
 			// 
 			// okButton
 			// 
@@ -113,6 +127,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ConfirmClosing);
 			this.Load += new System.EventHandler(this.BindOnLoad);
 			this.buttonPanel.ResumeLayout(false);
+			this.buttonPanel.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -122,5 +137,6 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		private System.Windows.Forms.Panel buttonPanel;
 		private UI.MoreButton okButton;
 		private UI.MoreButton cancelButton;
+		private UI.MoreLabel noteLabel;
 	}
 }
