@@ -60,6 +60,8 @@ namespace River.OneMoreAddIn
 		public const int SW_RESTORE = 9;
 		public const uint SWP_NOSIZE = 0x0001;
 		public const uint SWP_NOMOVE = 0x0002;
+		public const uint SWP_NOZORDER = 0x0004;
+		public const uint SWP_NOACTIVATE = 0x0010;
 
 		public const int TVIF_STATE = 0x8;
 		public const int TVIS_STATEIMAGEMASK = 0xF000;
@@ -241,6 +243,9 @@ namespace River.OneMoreAddIn
 			int idObject, int idChild, uint dwEventThread, uint dwmsEventTime);
 
 
+		public delegate bool EnumWindowsProc(IntPtr hWnd, IntPtr lParam);
+
+
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 		// Functions...
 
@@ -277,6 +282,13 @@ namespace River.OneMoreAddIn
 		[DllImport("user32.dll", SetLastError = true)]
 		[return: MarshalAs(UnmanagedType.Bool)]
 		public static extern bool DestroyCursor(IntPtr hCursor);
+
+
+		// https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-enumwindows
+		// Enumerates top-level windows in Z-order, front (topmost) to back.
+		[DllImport("user32.dll")]
+		[return: MarshalAs(UnmanagedType.Bool)]
+		public static extern bool EnumWindows(EnumWindowsProc lpEnumFunc, IntPtr lParam);
 
 
 		// https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-getcurrentthreadid
@@ -395,6 +407,52 @@ namespace River.OneMoreAddIn
 		public static readonly IntPtr DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2 = new IntPtr(-4);
 
 
+		// https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setthreaddpiawarenesscontext
+		[DllImport("user32.dll")]
+		public static extern IntPtr SetThreadDpiAwarenessContext(IntPtr dpiContext);
+
+
+		/// <summary>
+		/// Forces the calling thread into a specific DPI awareness context for the duration
+		/// of a using block, then restores whatever context was previously in effect. Use
+		/// this around GetWindowRect/SetWindowPos/Screen.* calls that must see real physical
+		/// pixels regardless of the process's ambient DPI awareness, which (e.g. inside the
+		/// shared dllhost.exe COM surrogate) is not always reliably per-monitor-aware.
+		/// </summary>
+		internal readonly struct ThreadDpiAwarenessScope : IDisposable
+		{
+			private readonly IntPtr previous;
+
+			public ThreadDpiAwarenessScope(IntPtr context)
+			{
+				try
+				{
+					previous = SetThreadDpiAwarenessContext(context);
+				}
+				catch (EntryPointNotFoundException)
+				{
+					// Windows older than 10 1607; nothing to restore
+					previous = IntPtr.Zero;
+				}
+			}
+
+			public void Dispose()
+			{
+				if (previous != IntPtr.Zero)
+				{
+					try
+					{
+						SetThreadDpiAwarenessContext(previous);
+					}
+					catch (EntryPointNotFoundException)
+					{
+						// can't happen if the constructor succeeded, but stay defensive
+					}
+				}
+			}
+		}
+
+
 		// https://learn.microsoft.com/en-us/windows/win32/api/shellscalingapi/nf-shellscalingapi-setprocessdpiawareness
 		[DllImport("shcore.dll")]
 		public static extern int SetProcessDpiAwareness(int value);
@@ -403,7 +461,7 @@ namespace River.OneMoreAddIn
 
 
 		// https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setwindowpos
-		[DllImport("user32.dll")]
+		[DllImport("user32.dll", SetLastError = true)]
 		public static extern bool SetWindowPos(
 			IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
 

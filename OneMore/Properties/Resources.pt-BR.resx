@@ -1205,6 +1205,22 @@ Arquivo OneNote (* .one)</value>
     <value>Exportar favoritos</value>
     <comment>export dialog title</comment>
   </data>
+  <data name="ExportLayoutsCommand_error" xml:space="preserve">
+    <value>Erro ao exportar layouts</value>
+    <comment>message</comment>
+  </data>
+  <data name="ExportLayoutsCommand_exported" xml:space="preserve">
+    <value>{0} janelas exportadas para {1}</value>
+    <comment>message</comment>
+  </data>
+  <data name="ExportLayoutsCommand_OpenFileFilter" xml:space="preserve">
+    <value>Arquivo JSON (*.json)|*.json</value>
+    <comment>export dialog</comment>
+  </data>
+  <data name="ExportLayoutsCommand_OpenFileTitle" xml:space="preserve">
+    <value>Exportar layouts</value>
+    <comment>export dialog title</comment>
+  </data>
   <data name="Favorites_suspect" xml:space="preserve">
     <value>Página não encontrada; pode ter sido renomeado ou movido</value>
     <comment>tooltip</comment>
@@ -1705,6 +1721,22 @@ Fundo Amarelo</value>
     <value>Importar favoritos</value>
     <comment>import dialog title</comment>
   </data>
+  <data name="ImportLayoutsCommand_error" xml:space="preserve">
+    <value>Erro ao importar layouts</value>
+    <comment>message</comment>
+  </data>
+  <data name="ImportLayoutsCommand_imported" xml:space="preserve">
+    <value>{0} de {1} janelas de layout importadas</value>
+    <comment>message</comment>
+  </data>
+  <data name="ImportLayoutsCommand_OpenFileFilter" xml:space="preserve">
+    <value>Arquivo JSON (*.json)|*.json</value>
+    <comment>import dialog</comment>
+  </data>
+  <data name="ImportLayoutsCommand_OpenFileTitle" xml:space="preserve">
+    <value>Importar layouts</value>
+    <comment>import dialog title</comment>
+  </data>
   <data name="ImportOutlookTasksDialog.Text" xml:space="preserve">
     <value>Importar tarefas do Outlook</value>
     <comment>dialog title</comment>
@@ -2028,17 +2060,65 @@ Deseja atualizar a página existente?</value>
     <value>Classificar pasta atual</value>
     <comment>toolbar button</comment>
   </data>
-  <data name="ManageFavoritesDialog_discard" xml:space="preserve">
-    <value>Descartar alterações não salvas?</value>
-    <comment>message box</comment>
-  </data>
-  <data name="ManageFavoritesDialog_Text" xml:space="preserve">
-    <value>Gerenciar Favoritos</value>
-    <comment>dialog title</comment>
-  </data>
   <data name="ManageFavoritesrControl_deleteConfirmMultiple" xml:space="preserve">
     <value>Excluir {0} itens?</value>
     <comment>message box</comment>
+  </data>
+  <data name="ManageLayouts_DeleteMessage" xml:space="preserve">
+    <value>Excluir {0}?</value>
+    <comment>settings</comment>
+  </data>
+  <data name="ManageLayoutsControl_captureLayout" xml:space="preserve">
+    <value>Layout de captura</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_check" xml:space="preserve">
+    <value>Verifique os layouts</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_deleteConfirmMultiple" xml:space="preserve">
+    <value>Excluir {0} itens?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ManageLayoutsControl_emptyLayoutHint" xml:space="preserve">
+    <value>Vazio - arraste as janelas aqui</value>
+    <comment>list view hint text</comment>
+  </data>
+  <data name="ManageLayoutsControl_export" xml:space="preserve">
+    <value>Exportar layouts</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_import" xml:space="preserve">
+    <value>Importar layouts</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_locationColumn.HeaderText" xml:space="preserve">
+    <value>Localização</value>
+    <comment>settings table column header</comment>
+  </data>
+  <data name="ManageLayoutsControl_renameLayout" xml:space="preserve">
+    <value>Renomear layout</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_renameWindow" xml:space="preserve">
+    <value>Renomear janela</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_restore" xml:space="preserve">
+    <value>Restaurar layout</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_sort" xml:space="preserve">
+    <value>Classificar layout atual</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageWorkspaceDialog_discard" xml:space="preserve">
+    <value>Descartar alterações não salvas?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ManageWorkspaceDialog_Text" xml:space="preserve">
+    <value>Espaço de trabalho</value>
+    <comment>dialog title</comment>
   </data>
   <data name="MangeFavoritesControl_locationColumn.HeaderText" xml:space="preserve">
     <value>Localização</value>
@@ -2281,6 +2361,10 @@ Diferido</value>
   <data name="OutlookTaskReport_Week" xml:space="preserve">
     <value>Semana {0}</value>
     <comment>report</comment>
+  </data>
+  <data name="PageAliasDialog_originalNameLabel" xml:space="preserve">
+    <value>Nome original: {0}</value>
+    <comment>label format string</comment>
   </data>
   <data name="PageColorDialog.Text" xml:space="preserve">
     <value>Cor da Página</value>
@@ -2855,10 +2939,6 @@ Selecione Não para manter uma linha vazia entre os parágrafos</value>
     <value>Renomeie o estilo</value>
     <comment>dialog title</comment>
   </data>
-  <data name="RenameFavoriteDialog_originalNameLabel" xml:space="preserve">
-    <value>Nome original: {0}</value>
-    <comment>label format string</comment>
-  </data>
   <data name="ReorderDialog.Text" xml:space="preserve">
     <value>Reordenar estilos</value>
     <comment>dialog title</comment>
@@ -2889,6 +2969,10 @@ Selecione Não para manter uma linha vazia entre os parágrafos</value>
   <data name="ReportRemindersReuseDialog_Text" xml:space="preserve">
     <value>Velho ou novo</value>
     <comment>title</comment>
+  </data>
+  <data name="RestoreLayoutCommand_notFound" xml:space="preserve">
+    <value>O layout '{0}' não foi encontrado.</value>
+    <comment>message box</comment>
   </data>
   <data name="ribAboutButton_Label" xml:space="preserve">
     <value>Sobre OneMore</value>
@@ -3142,9 +3226,6 @@ Guia Ajuda</value>
   <data name="ribChooseColorizerButton_Label" xml:space="preserve">
     <value>colorir</value>
     <comment>ribbon edit</comment>
-  </data>
-  <data name="ribFavoritesButton_Label" xml:space="preserve">
-    <value>Escolha favorito</value>
   </data>
   <data name="ribCleanMenu_Label" xml:space="preserve">
     <value>Limpar \ limpo</value>
@@ -3454,9 +3535,20 @@ Guia Ajuda</value>
     <value>Exporte todos os favoritos para um arquivo JSON</value>
     <comment>ribbon favorites</comment>
   </data>
+  <data name="ribExportLayoutsButton_Label" xml:space="preserve">
+    <value>Exportar layouts</value>
+    <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribExportLayoutsButton_Screentip" xml:space="preserve">
+    <value>Exporte todos os layouts para um arquivo JSON</value>
+    <comment>ribbon favorites</comment>
+  </data>
   <data name="ribExtrasMenu_Label" xml:space="preserve">
     <value>Extras</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribFavoritesButton_Label" xml:space="preserve">
+    <value>Escolha favorito</value>
   </data>
   <data name="ribFavoritesMenu_Label" xml:space="preserve">
     <value>Favoritos</value>
@@ -3568,6 +3660,14 @@ Guia Ajuda</value>
   </data>
   <data name="ribImportFavoritesButton_Screentip" xml:space="preserve">
     <value>Importe todos os favoritos de um arquivo JSON</value>
+    <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribImportLayoutsButton_Label" xml:space="preserve">
+    <value>Importar layouts</value>
+    <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribImportLayoutsButton_Screentip" xml:space="preserve">
+    <value>Importe todos os layouts de um arquivo JSON</value>
     <comment>ribbon favorites</comment>
   </data>
   <data name="ribImportOutlookTasksButton_Label" xml:space="preserve">
@@ -4674,6 +4774,18 @@ Guia Ajuda</value>
     <value>Salvou {0} de {1} páginas em {2}</value>
     <comment>save many message</comment>
   </data>
+  <data name="SaveLayoutCommand_error" xml:space="preserve">
+    <value>Não foi possível salvar o layout.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="SaveLayoutCommand_noWindows" xml:space="preserve">
+    <value>Não há janelas abertas do OneNote para salvar.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="SaveLayoutCommand_Text" xml:space="preserve">
+    <value>Salvar layout</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="SaveSnippet_NeedSelection" xml:space="preserve">
     <value>Selecione o conteúdo para salvar como um novo snippet</value>
     <comment>error message</comment>
@@ -5737,6 +5849,9 @@ Obrigado!</value>
   </data>
   <data name="word_Language" xml:space="preserve">
     <value>Linguagem</value>
+  </data>
+  <data name="word_Layouts" xml:space="preserve">
+    <value>Layouts</value>
   </data>
   <data name="word_Length" xml:space="preserve">
     <value>Comprimento</value>

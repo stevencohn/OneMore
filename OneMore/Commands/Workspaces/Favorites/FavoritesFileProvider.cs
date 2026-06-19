@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands.Favorites
 {
+	using River.OneMoreAddIn.Commands.Workspaces;
 	using System;
 	using System.Collections.Generic;
 	using System.IO;
@@ -23,7 +24,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		public string Uri { get; set; }
 		public string NotebookID { get; set; }
 		public string ObjectID { get; set; }
-		public FavoriteStatus Status { get; set; }
+		public TargetStatus Status { get; set; }
 		public XElement Root { get; set; }
 	}
 

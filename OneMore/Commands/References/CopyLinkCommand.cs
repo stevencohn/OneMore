@@ -58,7 +58,7 @@ namespace River.OneMoreAddIn
 			{
 				// guard against page viewed in multiple OneNote windows...
 
-				var windows = one.GetWindows();
+				var windows = await one.GetWindows();
 				if (windows.Count(w => w.CurrentPageId == page.PageId) > 1)
 				{
 					var result = MoreMessageBox

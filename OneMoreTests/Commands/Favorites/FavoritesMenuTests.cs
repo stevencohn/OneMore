@@ -133,7 +133,7 @@ namespace River.OneMoreAddIn.Tests.Commands.Favorites
 			var root = FavoritesMenu.BuildMenu(new FavoritesCollection(), showShortcuts: true);
 
 			var button = root.Elements(Ns + "button")
-				.FirstOrDefault(b => (string)b.Attribute("onAction") == "ShowKeyboardShortcutsCmd");
+				.FirstOrDefault(b => (string)b.Attribute("onAction") == "ShowKeyMapsPageCmd");
 
 			Assert.IsNotNull(button);
 		}

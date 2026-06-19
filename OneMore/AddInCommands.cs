@@ -10,6 +10,7 @@ namespace River.OneMoreAddIn
 	using Microsoft.Office.Core;
 	using River.OneMoreAddIn.Commands;
 	using River.OneMoreAddIn.Commands.Favorites;
+	using River.OneMoreAddIn.Commands.Layouts;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 
@@ -355,6 +356,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<ExportFavoritesCommand>();
 
 
+		[Command("ribExportLayoutsButton_Label", Keys.None, "ribFavoritesMenu")]
+		public async Task ExportLayoutsCmd(IRibbonControl control)
+			=> await factory.Run<ExportLayoutsCommand>();
+
+
 		[Command("ribFileQuickNotesButton_Label", Keys.None)]
 		public async Task FileQuickNotesCmd(IRibbonControl control)
 			=> await factory.Run<FileQuickNotesCommand>();
@@ -430,6 +436,11 @@ namespace River.OneMoreAddIn
 		[Command("ribImportFavoritesButton_Label", Keys.None, "ribFavoritesMenu")]
 		public async Task ImportFavoritesCmd(IRibbonControl control)
 			=> await factory.Run<ImportFavoritesCommand>();
+
+
+		[Command("ribImportLayoutsButton_Label", Keys.None, "ribFavoritesMenu")]
+		public async Task ImportLayoutsCmd(IRibbonControl control)
+			=> await factory.Run<ImportLayoutsCommand>();
 
 
 		[Command("ribImportOutlookTasksButton_Label", Keys.None, "ribRemindersMenu")]
@@ -858,6 +869,11 @@ namespace River.OneMoreAddIn
 		public async Task RestoreCollapsedCmd(IRibbonControl control)
 			=> await factory.Run<ExpandoCommand>(Expando.Restore);
 
+
+		[Command("ribRestoreLayoutButton_Label", Keys.None, "ribFavoritesMenu")]
+		public async Task RestoreLayoutCmd(IRibbonControl control)
+			=> await factory.Run<RestoreLayoutCommand>();
+
 		public async Task RunPluginCmd(IRibbonControl control)
 			=> await factory.Run<RunPluginCommand>(control?.Tag); // tag=plugin
 
@@ -865,6 +881,11 @@ namespace River.OneMoreAddIn
 		[Command("ribSaveCollapsedButton_Label", Keys.None, "ribPageMenu")]
 		public async Task SaveCollapsedCmd(IRibbonControl control)
 			=> await factory.Run<ExpandoCommand>(Expando.Save);
+
+
+		[Command("ribSaveLayoutButton_Label", Keys.None, "ribFavoritesMenu")]
+		public async Task SaveLayoutCmd(IRibbonControl control)
+			=> await factory.Run<SaveLayoutCommand>();
 
 
 		[Command("ribSaveSnippetButton_Label", Keys.None, "ribSnippetsMenu")]

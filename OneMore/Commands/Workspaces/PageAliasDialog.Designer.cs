@@ -1,6 +1,6 @@
-namespace River.OneMoreAddIn.Commands.Favorites
+namespace River.OneMoreAddIn.Commands.Workspaces
 {
-	partial class RenameFavoriteDialog
+	partial class PageAliasDialog
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -28,7 +28,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RenameFavoriteDialog));
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PageAliasDialog));
 			this.originalNameLabel = new System.Windows.Forms.Label();
 			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
@@ -137,9 +137,9 @@ namespace River.OneMoreAddIn.Commands.Favorites
 			this.errorLabel.ThemedBack = "ControlLightLight";
 			this.errorLabel.ThemedFore = "ErrorText";
 			this.errorLabel.Visible = false;
-			// 
-			// RenameFavoriteDialog
-			// 
+			//
+			// PageAliasDialog
+			//
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -158,10 +158,10 @@ namespace River.OneMoreAddIn.Commands.Favorites
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
-			this.Name = "RenameFavoriteDialog";
+			this.Name = "PageAliasDialog";
 			this.Padding = new System.Windows.Forms.Padding(20, 20, 0, 0);
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "Rename Favorite";
+			this.Text = "Rename";
 			this.Activated += new System.EventHandler(this.DialogLoad);
 			this.ResumeLayout(false);
 			this.PerformLayout();

@@ -1208,6 +1208,22 @@ Fichier OneNote (*.one)</value>
     <value>Exporter les favoris</value>
     <comment>export dialog title</comment>
   </data>
+  <data name="ExportLayoutsCommand_error" xml:space="preserve">
+    <value>Erreur lors de l'exportation des mises en page</value>
+    <comment>message</comment>
+  </data>
+  <data name="ExportLayoutsCommand_exported" xml:space="preserve">
+    <value>{0} fenêtres exportées vers {1}</value>
+    <comment>message</comment>
+  </data>
+  <data name="ExportLayoutsCommand_OpenFileFilter" xml:space="preserve">
+    <value>Fichier JSON (*.json)|*.json</value>
+    <comment>export dialog</comment>
+  </data>
+  <data name="ExportLayoutsCommand_OpenFileTitle" xml:space="preserve">
+    <value>Exporter les mises en page</value>
+    <comment>export dialog title</comment>
+  </data>
   <data name="Favorites_suspect" xml:space="preserve">
     <value>Page non trouvée ; il a peut-être été renommé ou déplacé</value>
     <comment>tooltip</comment>
@@ -1708,6 +1724,22 @@ Fond jaune</value>
     <value>Importer les favoris</value>
     <comment>import dialog title</comment>
   </data>
+  <data name="ImportLayoutsCommand_error" xml:space="preserve">
+    <value>Erreur lors de l'importation des mises en page</value>
+    <comment>message</comment>
+  </data>
+  <data name="ImportLayoutsCommand_imported" xml:space="preserve">
+    <value>{0} des {1} fenêtres de mise en page importées</value>
+    <comment>message</comment>
+  </data>
+  <data name="ImportLayoutsCommand_OpenFileFilter" xml:space="preserve">
+    <value>Fichier JSON (*.json)|*.json</value>
+    <comment>import dialog</comment>
+  </data>
+  <data name="ImportLayoutsCommand_OpenFileTitle" xml:space="preserve">
+    <value>Importer des mises en page</value>
+    <comment>import dialog title</comment>
+  </data>
   <data name="ImportOutlookTasksDialog.Text" xml:space="preserve">
     <value>Importer des tâches depuis Outlook</value>
     <comment>dialog title</comment>
@@ -2031,17 +2063,65 @@ Voulez-vous actualiser la page existante ?</value>
     <value>Trier le dossier actuel</value>
     <comment>toolbar button</comment>
   </data>
-  <data name="ManageFavoritesDialog_discard" xml:space="preserve">
-    <value>Supprimer les modifications non enregistrées ?</value>
-    <comment>message box</comment>
-  </data>
-  <data name="ManageFavoritesDialog_Text" xml:space="preserve">
-    <value>Gérer les favoris</value>
-    <comment>dialog title</comment>
-  </data>
   <data name="ManageFavoritesrControl_deleteConfirmMultiple" xml:space="preserve">
     <value>Supprimer {0} éléments ?</value>
     <comment>message box</comment>
+  </data>
+  <data name="ManageLayouts_DeleteMessage" xml:space="preserve">
+    <value>Supprimer {0} ?</value>
+    <comment>settings</comment>
+  </data>
+  <data name="ManageLayoutsControl_captureLayout" xml:space="preserve">
+    <value>Disposition de capture</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_check" xml:space="preserve">
+    <value>Vérifier les mises en page</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_deleteConfirmMultiple" xml:space="preserve">
+    <value>Supprimer {0} éléments ?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ManageLayoutsControl_emptyLayoutHint" xml:space="preserve">
+    <value>Vide - faites glisser les fenêtres ici</value>
+    <comment>list view hint text</comment>
+  </data>
+  <data name="ManageLayoutsControl_export" xml:space="preserve">
+    <value>Exporter les mises en page</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_import" xml:space="preserve">
+    <value>Importer des mises en page</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_locationColumn.HeaderText" xml:space="preserve">
+    <value>Emplacement</value>
+    <comment>settings table column header</comment>
+  </data>
+  <data name="ManageLayoutsControl_renameLayout" xml:space="preserve">
+    <value>Renommer la mise en page</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_renameWindow" xml:space="preserve">
+    <value>Renommer la fenêtre</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_restore" xml:space="preserve">
+    <value>Restaurer la mise en page</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_sort" xml:space="preserve">
+    <value>Trier la mise en page actuelle</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageWorkspaceDialog_discard" xml:space="preserve">
+    <value>Supprimer les modifications non enregistrées ?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ManageWorkspaceDialog_Text" xml:space="preserve">
+    <value>Espace de travail</value>
+    <comment>dialog title</comment>
   </data>
   <data name="MangeFavoritesControl_locationColumn.HeaderText" xml:space="preserve">
     <value>Emplacement</value>
@@ -2292,6 +2372,10 @@ Différé</value>
   <data name="OutlookTaskReport_Week" xml:space="preserve">
     <value>Semaine {0}</value>
     <comment>report</comment>
+  </data>
+  <data name="PageAliasDialog_originalNameLabel" xml:space="preserve">
+    <value>Nom d'origine : {0}</value>
+    <comment>label format string</comment>
   </data>
   <data name="PageColorDialog.Text" xml:space="preserve">
     <value>Couleur de la page</value>
@@ -2866,10 +2950,6 @@ Sélectionnez Non pour conserver une ligne vide entre les paragraphes</value>
     <value>Renommer Style</value>
     <comment>dialog title</comment>
   </data>
-  <data name="RenameFavoriteDialog_originalNameLabel" xml:space="preserve">
-    <value>Nom d'origine : {0}</value>
-    <comment>label format string</comment>
-  </data>
   <data name="ReorderDialog.Text" xml:space="preserve">
     <value>Réorganiser les styles</value>
     <comment>dialog title</comment>
@@ -2900,6 +2980,10 @@ Sélectionnez Non pour conserver une ligne vide entre les paragraphes</value>
   <data name="ReportRemindersReuseDialog_Text" xml:space="preserve">
     <value>Ancien ou nouveau</value>
     <comment>title</comment>
+  </data>
+  <data name="RestoreLayoutCommand_notFound" xml:space="preserve">
+    <value>La mise en page « {0} » est introuvable.</value>
+    <comment>message box</comment>
   </data>
   <data name="ribAboutButton_Label" xml:space="preserve">
     <value>À propos de OneMore</value>
@@ -3153,9 +3237,6 @@ Onglet Aide</value>
   <data name="ribChooseColorizerButton_Label" xml:space="preserve">
     <value>Coloriser</value>
     <comment>ribbon edit</comment>
-  </data>
-  <data name="ribFavoritesButton_Label" xml:space="preserve">
-    <value>Choisissez favori</value>
   </data>
   <data name="ribCleanMenu_Label" xml:space="preserve">
     <value>Nettoyer</value>
@@ -3465,9 +3546,20 @@ Onglet Aide</value>
     <value>Exporter tous les favoris vers un fichier JSON</value>
     <comment>ribbon favorites</comment>
   </data>
+  <data name="ribExportLayoutsButton_Label" xml:space="preserve">
+    <value>Exporter les mises en page</value>
+    <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribExportLayoutsButton_Screentip" xml:space="preserve">
+    <value>Exporter toutes les mises en page vers un fichier JSON</value>
+    <comment>ribbon favorites</comment>
+  </data>
   <data name="ribExtrasMenu_Label" xml:space="preserve">
     <value>Suppléments</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribFavoritesButton_Label" xml:space="preserve">
+    <value>Choisissez favori</value>
   </data>
   <data name="ribFavoritesMenu_Label" xml:space="preserve">
     <value>Favoris</value>
@@ -3579,6 +3671,14 @@ Onglet Aide</value>
   </data>
   <data name="ribImportFavoritesButton_Screentip" xml:space="preserve">
     <value>Importer tous les favoris à partir d'un fichier JSON</value>
+    <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribImportLayoutsButton_Label" xml:space="preserve">
+    <value>Importer des mises en page</value>
+    <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribImportLayoutsButton_Screentip" xml:space="preserve">
+    <value>Importer toutes les mises en page à partir d'un fichier JSON</value>
     <comment>ribbon favorites</comment>
   </data>
   <data name="ribImportOutlookTasksButton_Label" xml:space="preserve">
@@ -4685,6 +4785,18 @@ Onglet Aide</value>
     <value>{0} pages sur {1} enregistrées dans {2}</value>
     <comment>save many message</comment>
   </data>
+  <data name="SaveLayoutCommand_error" xml:space="preserve">
+    <value>Impossible d'enregistrer la mise en page.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="SaveLayoutCommand_noWindows" xml:space="preserve">
+    <value>Il n’y a aucune fenêtre OneNote ouverte à enregistrer.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="SaveLayoutCommand_Text" xml:space="preserve">
+    <value>Enregistrer la mise en page</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="SaveSnippet_NeedSelection" xml:space="preserve">
     <value>Sélectionnez le contenu à enregistrer en tant que nouvel extrait de code</value>
     <comment>error message</comment>
@@ -5747,6 +5859,9 @@ Merci!</value>
   </data>
   <data name="word_Language" xml:space="preserve">
     <value>Langue</value>
+  </data>
+  <data name="word_Layouts" xml:space="preserve">
+    <value>Mises en page</value>
   </data>
   <data name="word_Length" xml:space="preserve">
     <value>Longueur</value>

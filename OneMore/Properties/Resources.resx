@@ -1214,6 +1214,22 @@ OneNote File (*.one)</value>
     <value>Export Favorites</value>
     <comment>export dialog title</comment>
   </data>
+  <data name="ExportLayoutsCommand_error" xml:space="preserve">
+    <value>Error exporting layouts</value>
+    <comment>message</comment>
+  </data>
+  <data name="ExportLayoutsCommand_exported" xml:space="preserve">
+    <value>{0} windows exported to {1}</value>
+    <comment>message</comment>
+  </data>
+  <data name="ExportLayoutsCommand_OpenFileFilter" xml:space="preserve">
+    <value>JSON File (*.json)|*.json</value>
+    <comment>export dialog</comment>
+  </data>
+  <data name="ExportLayoutsCommand_OpenFileTitle" xml:space="preserve">
+    <value>Export Layouts</value>
+    <comment>export dialog title</comment>
+  </data>
   <data name="Favorites_suspect" xml:space="preserve">
     <value>Page not found; it may have been renamed or moved</value>
     <comment>tooltip</comment>
@@ -1713,6 +1729,22 @@ Yellow Background</value>
     <value>Import Favorites</value>
     <comment>import dialog title</comment>
   </data>
+  <data name="ImportLayoutsCommand_error" xml:space="preserve">
+    <value>Error importing layouts</value>
+    <comment>message</comment>
+  </data>
+  <data name="ImportLayoutsCommand_imported" xml:space="preserve">
+    <value>{0} of {1} layout windows imported</value>
+    <comment>message</comment>
+  </data>
+  <data name="ImportLayoutsCommand_OpenFileFilter" xml:space="preserve">
+    <value>JSON File (*.json)|*.json</value>
+    <comment>import dialog</comment>
+  </data>
+  <data name="ImportLayoutsCommand_OpenFileTitle" xml:space="preserve">
+    <value>Import Layouts</value>
+    <comment>import dialog title</comment>
+  </data>
   <data name="ImportOutlookTasksDialog.Text" xml:space="preserve">
     <value>Import Tasks from Outlook</value>
     <comment>dialog title</comment>
@@ -2036,17 +2068,65 @@ Do you want to refresh the existing page?</value>
     <value>Sort current folder</value>
     <comment>toolbar button</comment>
   </data>
-  <data name="ManageFavoritesDialog_discard" xml:space="preserve">
-    <value>Discard unsaved changes?</value>
-    <comment>message box</comment>
-  </data>
-  <data name="ManageFavoritesDialog_Text" xml:space="preserve">
-    <value>Manage Favorites</value>
-    <comment>dialog title</comment>
-  </data>
   <data name="ManageFavoritesrControl_deleteConfirmMultiple" xml:space="preserve">
     <value>Delete {0} items?</value>
     <comment>message box</comment>
+  </data>
+  <data name="ManageLayouts_DeleteMessage" xml:space="preserve">
+    <value>Delete {0}?</value>
+    <comment>settings</comment>
+  </data>
+  <data name="ManageLayoutsControl_captureLayout" xml:space="preserve">
+    <value>Capture Layout</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_check" xml:space="preserve">
+    <value>Check Layouts</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_deleteConfirmMultiple" xml:space="preserve">
+    <value>Delete {0} items?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ManageLayoutsControl_emptyLayoutHint" xml:space="preserve">
+    <value>Empty - drag windows here</value>
+    <comment>list view hint text</comment>
+  </data>
+  <data name="ManageLayoutsControl_export" xml:space="preserve">
+    <value>Export Layouts</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_import" xml:space="preserve">
+    <value>Import Layouts</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_locationColumn.HeaderText" xml:space="preserve">
+    <value>Location</value>
+    <comment>settings table column header</comment>
+  </data>
+  <data name="ManageLayoutsControl_renameLayout" xml:space="preserve">
+    <value>Rename Layout</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_renameWindow" xml:space="preserve">
+    <value>Rename Window</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_restore" xml:space="preserve">
+    <value>Restore Layout</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_sort" xml:space="preserve">
+    <value>Sort current layout</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageWorkspaceDialog_discard" xml:space="preserve">
+    <value>Discard unsaved changes?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ManageWorkspaceDialog_Text" xml:space="preserve">
+    <value>Workspace</value>
+    <comment>dialog title</comment>
   </data>
   <data name="MangeFavoritesControl_locationColumn.HeaderText" xml:space="preserve">
     <value>Location</value>
@@ -2309,6 +2389,10 @@ Deferred</value>
   <data name="OutlookTaskReport_Week" xml:space="preserve">
     <value>Week {0}</value>
     <comment>report</comment>
+  </data>
+  <data name="PageAliasDialog_originalNameLabel" xml:space="preserve">
+    <value>Original Name: {0}</value>
+    <comment>label format string</comment>
   </data>
   <data name="PageColorDialog.Text" xml:space="preserve">
     <value>Page Color</value>
@@ -2891,10 +2975,6 @@ Select No to keep one empty line between paragraphs</value>
     <value>Rename Style</value>
     <comment>dialog title</comment>
   </data>
-  <data name="RenameFavoriteDialog_originalNameLabel" xml:space="preserve">
-    <value>Original Name: {0}</value>
-    <comment>label format string</comment>
-  </data>
   <data name="ReorderDialog.Text" xml:space="preserve">
     <value>Reorder Styles</value>
     <comment>dialog title</comment>
@@ -2925,6 +3005,10 @@ Select No to keep one empty line between paragraphs</value>
   <data name="ReportRemindersReuseDialog_Text" xml:space="preserve">
     <value>Old or New</value>
     <comment>title</comment>
+  </data>
+  <data name="RestoreLayoutCommand_notFound" xml:space="preserve">
+    <value>Layout '{0}' was not found.</value>
+    <comment>message box</comment>
   </data>
   <data name="ribAboutButton_Label" xml:space="preserve">
     <value>About OneMore</value>
@@ -3487,6 +3571,14 @@ Help Tab</value>
     <value>Export all favorites to a JSON file</value>
     <comment>ribbon favorites</comment>
   </data>
+  <data name="ribExportLayoutsButton_Label" xml:space="preserve">
+    <value>Export Layouts</value>
+    <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribExportLayoutsButton_Screentip" xml:space="preserve">
+    <value>Export all layouts to a JSON file</value>
+    <comment>ribbon favorites</comment>
+  </data>
   <data name="ribExtrasMenu_Label" xml:space="preserve">
     <value>Extras</value>
     <comment>ribbon menu</comment>
@@ -3604,6 +3696,14 @@ Help Tab</value>
   </data>
   <data name="ribImportFavoritesButton_Screentip" xml:space="preserve">
     <value>Import all favorites from a JSON file</value>
+    <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribImportLayoutsButton_Label" xml:space="preserve">
+    <value>Import Layouts</value>
+    <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribImportLayoutsButton_Screentip" xml:space="preserve">
+    <value>Import all layouts from a JSON file</value>
     <comment>ribbon favorites</comment>
   </data>
   <data name="ribImportOutlookTasksButton_Label" xml:space="preserve">
@@ -4713,6 +4813,18 @@ Help Tab</value>
     <value>Saved {0} of {1} pages to {2}</value>
     <comment>save many message</comment>
   </data>
+  <data name="SaveLayoutCommand_error" xml:space="preserve">
+    <value>Could not save the layout.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="SaveLayoutCommand_noWindows" xml:space="preserve">
+    <value>There are no open OneNote windows to save.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="SaveLayoutCommand_Text" xml:space="preserve">
+    <value>Save Layout</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="SaveSnippet_NeedSelection" xml:space="preserve">
     <value>Select content to save as a new snippet</value>
     <comment>error message</comment>
@@ -5803,6 +5915,9 @@ Thank you!</value>
   <data name="word_Language" xml:space="preserve">
     <value>Language</value>
   </data>
+  <data name="word_Layouts" xml:space="preserve">
+    <value>Layouts</value>
+  </data>
   <data name="word_Length" xml:space="preserve">
     <value>Length</value>
   </data>
@@ -6300,6 +6415,9 @@ Thank you!</value>
   <data name="m_Italic" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Menu\m_Italic.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="m_Layout" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Menu\m_Layout.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="m_MoveDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Menu\m_MoveDown.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -6308,6 +6426,9 @@ Thank you!</value>
   </data>
   <data name="m_NewStyle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Menu\m_NewStyle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="m_Play" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Menu\m_Play.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="m_Refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Menu\m_Refresh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -6354,9 +6475,6 @@ Thank you!</value>
   <data name="m_Underline" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Menu\m_Underline.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="FavoritesDB" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Commands\Favorites\FavoritesDB.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
   <data name="Emojis" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Commands\Snippets\Emoji\Emojis.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
@@ -6368,6 +6486,12 @@ Thank you!</value>
   </data>
   <data name="HashtagsDB" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Commands\Tagging\HashtagsDB.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="FavoritesDB" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Commands\Workspaces\Favorites\FavoritesDB.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="LayoutsDB" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Commands\Workspaces\Layouts\LayoutsDB.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="DefaultTableThemes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ribbon\defaulttablethemes.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>

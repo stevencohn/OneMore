@@ -2,10 +2,11 @@
 // Copyright © 2026 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn.Tests.Commands.Favorites
+namespace River.OneMoreAddIn.Tests.Commands.Workspaces
 {
 	using Microsoft.VisualStudio.TestTools.UnitTesting;
 	using River.OneMoreAddIn.Commands.Favorites;
+	using River.OneMoreAddIn.Commands.Workspaces;
 	using River.OneMoreAddIn.Tests.Builders;
 	using System.Collections.Generic;
 	using System.Linq;
@@ -14,7 +15,7 @@ namespace River.OneMoreAddIn.Tests.Commands.Favorites
 
 
 	[TestClass]
-	public class FavoritesCheckerTests : TestBase
+	public class PageCheckerTests : TestBase
 	{
 		[TestMethod]
 		public async Task InvalidFavorites_ValidIds_NameUnchanged_MarksKnownNoUpdate()
@@ -31,11 +32,15 @@ namespace River.OneMoreAddIn.Tests.Commands.Favorites
 				Name = "Page1", Location = "Notebook1/Section1/Page1"
 			};
 
-			await using var checker = new FavoritesChecker(Logger.Current);
-			var updated = await checker.InvalidFavorites(new List<Favorite> { favorite });
+			await using var checker = new TargetChecker(Logger.Current);
+
+			var collection = new FavoritesCollection();
+			collection.Items.Add(favorite);
+
+			var updated = await checker.InvalidFavorites(collection);
 
 			Assert.IsFalse(updated);
-			Assert.AreEqual(FavoriteStatus.Known, favorite.Status);
+			Assert.AreEqual(TargetStatus.Known, favorite.Status);
 			Assert.AreEqual("Page1", favorite.Name);
 		}
 
@@ -55,11 +60,15 @@ namespace River.OneMoreAddIn.Tests.Commands.Favorites
 				Name = "OldPageName", Location = "Notebook1/Section1/OldPageName"
 			};
 
-			await using var checker = new FavoritesChecker(Logger.Current);
-			var updated = await checker.InvalidFavorites(new List<Favorite> { favorite });
+			await using var checker = new TargetChecker(Logger.Current);
+
+			var collection = new FavoritesCollection();
+			collection.Items.Add(favorite);
+
+			var updated = await checker.InvalidFavorites(collection);
 
 			Assert.IsTrue(updated);
-			Assert.AreEqual(FavoriteStatus.Known, favorite.Status);
+			Assert.AreEqual(TargetStatus.Known, favorite.Status);
 			Assert.AreEqual("NewPageName", favorite.Name);
 		}
 
@@ -92,11 +101,15 @@ namespace River.OneMoreAddIn.Tests.Commands.Favorites
 				Name = "Section1", Location = "Notebook1/section1"
 			};
 
-			await using var checker = new FavoritesChecker(Logger.Current);
-			var updated = await checker.InvalidFavorites(new List<Favorite> { favorite });
+			await using var checker = new TargetChecker(Logger.Current);
+
+			var collection = new FavoritesCollection();
+			collection.Items.Add(favorite);
+
+			var updated = await checker.InvalidFavorites(collection);
 
 			Assert.IsTrue(updated);
-			Assert.AreEqual(FavoriteStatus.Known, favorite.Status);
+			Assert.AreEqual(TargetStatus.Known, favorite.Status);
 			Assert.AreEqual("nb-1", favorite.NotebookID);
 			Assert.AreEqual("sec-1", favorite.SectionID);
 			Assert.IsNull(favorite.PageID);
@@ -118,11 +131,15 @@ namespace River.OneMoreAddIn.Tests.Commands.Favorites
 				Name = "Section1", Location = "NoSuchNotebook/Section1"
 			};
 
-			await using var checker = new FavoritesChecker(Logger.Current);
-			var updated = await checker.InvalidFavorites(new List<Favorite> { favorite });
+			await using var checker = new TargetChecker(Logger.Current);
+
+			var collection = new FavoritesCollection();
+			collection.Items.Add(favorite);
+
+			var updated = await checker.InvalidFavorites(collection);
 
 			Assert.IsFalse(updated);
-			Assert.AreEqual(FavoriteStatus.Suspect, favorite.Status);
+			Assert.AreEqual(TargetStatus.Suspect, favorite.Status);
 		}
 
 
@@ -137,11 +154,15 @@ namespace River.OneMoreAddIn.Tests.Commands.Favorites
 				Name = "Section1", Location = "JustOneSegment"
 			};
 
-			await using var checker = new FavoritesChecker(Logger.Current);
-			var updated = await checker.InvalidFavorites(new List<Favorite> { favorite });
+			await using var checker = new TargetChecker(Logger.Current);
+
+			var collection = new FavoritesCollection();
+			collection.Items.Add(favorite);
+
+			var updated = await checker.InvalidFavorites(collection);
 
 			Assert.IsFalse(updated);
-			Assert.AreEqual(FavoriteStatus.Suspect, favorite.Status);
+			Assert.AreEqual(TargetStatus.Suspect, favorite.Status);
 		}
 	}
 }

@@ -3196,6 +3196,42 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error exporting layouts.
+        /// </summary>
+        internal static string ExportLayoutsCommand_error {
+            get {
+                return ResourceManager.GetString("ExportLayoutsCommand_error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} windows exported to {1}.
+        /// </summary>
+        internal static string ExportLayoutsCommand_exported {
+            get {
+                return ResourceManager.GetString("ExportLayoutsCommand_exported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to JSON File (*.json)|*.json.
+        /// </summary>
+        internal static string ExportLayoutsCommand_OpenFileFilter {
+            get {
+                return ResourceManager.GetString("ExportLayoutsCommand_OpenFileFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export Layouts.
+        /// </summary>
+        internal static string ExportLayoutsCommand_OpenFileTitle {
+            get {
+                return ResourceManager.GetString("ExportLayoutsCommand_OpenFileTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Favorites {
@@ -4369,6 +4405,42 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error importing layouts.
+        /// </summary>
+        internal static string ImportLayoutsCommand_error {
+            get {
+                return ResourceManager.GetString("ImportLayoutsCommand_error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} of {1} layout windows imported.
+        /// </summary>
+        internal static string ImportLayoutsCommand_imported {
+            get {
+                return ResourceManager.GetString("ImportLayoutsCommand_imported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to JSON File (*.json)|*.json.
+        /// </summary>
+        internal static string ImportLayoutsCommand_OpenFileFilter {
+            get {
+                return ResourceManager.GetString("ImportLayoutsCommand_OpenFileFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import Layouts.
+        /// </summary>
+        internal static string ImportLayoutsCommand_OpenFileTitle {
+            get {
+                return ResourceManager.GetString("ImportLayoutsCommand_OpenFileTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Choose an entire folder or individual tasks to import from Outlook into OneNote. Disabled items indicate tasks already linked to OneNote.
         /// </summary>
         internal static string ImportOutlookTasksDialog_introBox_Text {
@@ -4983,6 +5055,16 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CREATE TABLE IF NOT EXISTS layout (layoutID INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, UNIQUE (name));
+        ///CREATE TABLE IF NOT EXISTS layout_window (windowID INTEGER PRIMARY KEY AUTOINCREMENT, layoutID INTEGER NOT NULL REFERENCES layout (layoutID) ON DELETE CASCADE, name TEXT NOT NULL, alias TEXT, location TEXT, uri TEXT NOT NULL, notebookID TEXT NOT NULL, sectionID TEXT NOT NULL, pageID TEXT NOT NULL, zOrder INTEGER NOT NULL DEFAULT 0, device TEXT, winLeft INTEGER, winTop INTEGER, winRight INTEGER [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string LayoutsDB {
+            get {
+                return ResourceManager.GetString("LayoutsDB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {
         ///  &quot;DarkMode&quot;: false,
         ///  &quot;Colors&quot;: {
@@ -5215,6 +5297,16 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap m_Layout {
+            get {
+                object obj = ResourceManager.GetObject("m_Layout", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap m_MoveDown {
             get {
                 object obj = ResourceManager.GetObject("m_MoveDown", resourceCulture);
@@ -5241,7 +5333,17 @@ namespace River.OneMoreAddIn.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap m_Play {
+            get {
+                object obj = ResourceManager.GetObject("m_Play", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
@@ -5465,29 +5567,137 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Discard unsaved changes?.
+        ///   Looks up a localized string similar to Delete {0} items?.
         /// </summary>
-        internal static string ManageFavoritesDialog_discard {
+        internal static string ManageFavoritesrControl_deleteConfirmMultiple {
             get {
-                return ResourceManager.GetString("ManageFavoritesDialog_discard", resourceCulture);
+                return ResourceManager.GetString("ManageFavoritesrControl_deleteConfirmMultiple", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Manage Favorites.
+        ///   Looks up a localized string similar to Delete {0}?.
         /// </summary>
-        internal static string ManageFavoritesDialog_Text {
+        internal static string ManageLayouts_DeleteMessage {
             get {
-                return ResourceManager.GetString("ManageFavoritesDialog_Text", resourceCulture);
+                return ResourceManager.GetString("ManageLayouts_DeleteMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Capture Layout.
+        /// </summary>
+        internal static string ManageLayoutsControl_captureLayout {
+            get {
+                return ResourceManager.GetString("ManageLayoutsControl_captureLayout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check Layouts.
+        /// </summary>
+        internal static string ManageLayoutsControl_check {
+            get {
+                return ResourceManager.GetString("ManageLayoutsControl_check", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Delete {0} items?.
         /// </summary>
-        internal static string ManageFavoritesrControl_deleteConfirmMultiple {
+        internal static string ManageLayoutsControl_deleteConfirmMultiple {
             get {
-                return ResourceManager.GetString("ManageFavoritesrControl_deleteConfirmMultiple", resourceCulture);
+                return ResourceManager.GetString("ManageLayoutsControl_deleteConfirmMultiple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Empty - drag windows here.
+        /// </summary>
+        internal static string ManageLayoutsControl_emptyLayoutHint {
+            get {
+                return ResourceManager.GetString("ManageLayoutsControl_emptyLayoutHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export Layouts.
+        /// </summary>
+        internal static string ManageLayoutsControl_export {
+            get {
+                return ResourceManager.GetString("ManageLayoutsControl_export", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import Layouts.
+        /// </summary>
+        internal static string ManageLayoutsControl_import {
+            get {
+                return ResourceManager.GetString("ManageLayoutsControl_import", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Location.
+        /// </summary>
+        internal static string ManageLayoutsControl_locationColumn_HeaderText {
+            get {
+                return ResourceManager.GetString("ManageLayoutsControl_locationColumn.HeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rename Layout.
+        /// </summary>
+        internal static string ManageLayoutsControl_renameLayout {
+            get {
+                return ResourceManager.GetString("ManageLayoutsControl_renameLayout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rename Window.
+        /// </summary>
+        internal static string ManageLayoutsControl_renameWindow {
+            get {
+                return ResourceManager.GetString("ManageLayoutsControl_renameWindow", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Restore Layout.
+        /// </summary>
+        internal static string ManageLayoutsControl_restore {
+            get {
+                return ResourceManager.GetString("ManageLayoutsControl_restore", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Sort current layout.
+        /// </summary>
+        internal static string ManageLayoutsControl_sort {
+            get {
+                return ResourceManager.GetString("ManageLayoutsControl_sort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Discard unsaved changes?.
+        /// </summary>
+        internal static string ManageWorkspaceDialog_discard {
+            get {
+                return ResourceManager.GetString("ManageWorkspaceDialog_discard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Workspace.
+        /// </summary>
+        internal static string ManageWorkspaceDialog_Text {
+            get {
+                return ResourceManager.GetString("ManageWorkspaceDialog_Text", resourceCulture);
             }
         }
         
@@ -6118,6 +6328,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string OutlookTaskReport_Week {
             get {
                 return ResourceManager.GetString("OutlookTaskReport_Week", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Original Name: {0}.
+        /// </summary>
+        internal static string PageAliasDialog_originalNameLabel {
+            get {
+                return ResourceManager.GetString("PageAliasDialog_originalNameLabel", resourceCulture);
             }
         }
         
@@ -7388,15 +7607,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Original Name: {0}.
-        /// </summary>
-        internal static string RenameFavoriteDialog_originalNameLabel {
-            get {
-                return ResourceManager.GetString("RenameFavoriteDialog_originalNameLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Reorder how styles appear in the gallery. Also changes the order of headings in a TOC.
         /// </summary>
         internal static string ReorderDialog_label_Text {
@@ -7465,6 +7675,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ReportRemindersReuseDialog_Text {
             get {
                 return ResourceManager.GetString("ReportRemindersReuseDialog_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Layout &apos;{0}&apos; was not found..
+        /// </summary>
+        internal static string RestoreLayoutCommand_notFound {
+            get {
+                return ResourceManager.GetString("RestoreLayoutCommand_notFound", resourceCulture);
             }
         }
         
@@ -8785,6 +9004,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Export Layouts.
+        /// </summary>
+        internal static string ribExportLayoutsButton_Label {
+            get {
+                return ResourceManager.GetString("ribExportLayoutsButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export all layouts to a JSON file.
+        /// </summary>
+        internal static string ribExportLayoutsButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribExportLayoutsButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Extras.
         /// </summary>
         internal static string ribExtrasMenu_Label {
@@ -9051,6 +9288,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribImportFavoritesButton_Screentip {
             get {
                 return ResourceManager.GetString("ribImportFavoritesButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import Layouts.
+        /// </summary>
+        internal static string ribImportLayoutsButton_Label {
+            get {
+                return ResourceManager.GetString("ribImportLayoutsButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import all layouts from a JSON file.
+        /// </summary>
+        internal static string ribImportLayoutsButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribImportLayoutsButton_Screentip", resourceCulture);
             }
         }
         
@@ -11584,6 +11839,33 @@ namespace River.OneMoreAddIn.Properties {
         internal static string SaveAsMany_Success {
             get {
                 return ResourceManager.GetString("SaveAsMany_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not save the layout..
+        /// </summary>
+        internal static string SaveLayoutCommand_error {
+            get {
+                return ResourceManager.GetString("SaveLayoutCommand_error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are no open OneNote windows to save..
+        /// </summary>
+        internal static string SaveLayoutCommand_noWindows {
+            get {
+                return ResourceManager.GetString("SaveLayoutCommand_noWindows", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save Layout.
+        /// </summary>
+        internal static string SaveLayoutCommand_Text {
+            get {
+                return ResourceManager.GetString("SaveLayoutCommand_Text", resourceCulture);
             }
         }
         
@@ -14202,6 +14484,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string word_Language {
             get {
                 return ResourceManager.GetString("word_Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Layouts.
+        /// </summary>
+        internal static string word_Layouts {
+            get {
+                return ResourceManager.GetString("word_Layouts", resourceCulture);
             }
         }
         

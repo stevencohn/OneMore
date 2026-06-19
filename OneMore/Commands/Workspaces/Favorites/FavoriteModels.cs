@@ -4,38 +4,14 @@
 
 namespace River.OneMoreAddIn.Commands.Favorites
 {
+	using River.OneMoreAddIn.Commands.Workspaces;
 	using System.Collections.Generic;
-
-
-	/// <summary>
-	/// The ephemeral status of a Favorite after verification
-	/// </summary>
-	internal enum FavoriteStatus
-	{
-		/// <summary>
-		/// Found by notebookID + objectID, high confidence that this is the same favorite
-		/// as originally bookmarked
-		/// </summary>
-		Known,
-
-		/// <summary>
-		/// Not found by notebookID + objectID but found by path, screentip, or other 
-		/// heuristic, low/medium confidence
-		/// </summary>
-		Suspect,
-
-		/// <summary>
-		/// Not found by notebookID + objectID or by any heuristic, zero confidence but at least
-		/// has notebookID + objectID
-		/// </summary>
-		Unknown
-	}
 
 
 	/// <summary>
 	/// A single Favorite
 	/// </summary>
-	internal sealed class Favorite
+	internal sealed class Favorite : ITargetReference
 	{
 		/// <summary>
 		/// Database ID of this favorite, used for updates and deletes.
@@ -98,7 +74,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		/// The Verified status of the favorite.
 		/// </summary>
 		[Newtonsoft.Json.JsonIgnore]
-		public FavoriteStatus Status { get; set; }
+		public TargetStatus Status { get; set; }
 	}
 
 

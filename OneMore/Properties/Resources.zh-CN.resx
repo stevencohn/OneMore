@@ -1209,6 +1209,22 @@ OneNote 文件 (*.one)</value>
     <value>导出收藏夹</value>
     <comment>export dialog title</comment>
   </data>
+  <data name="ExportLayoutsCommand_error" xml:space="preserve">
+    <value>导出布局时出错</value>
+    <comment>message</comment>
+  </data>
+  <data name="ExportLayoutsCommand_exported" xml:space="preserve">
+    <value>{0} 个窗口导出到 {1}</value>
+    <comment>message</comment>
+  </data>
+  <data name="ExportLayoutsCommand_OpenFileFilter" xml:space="preserve">
+    <value>JSON 文件 (*.json)|*.json</value>
+    <comment>export dialog</comment>
+  </data>
+  <data name="ExportLayoutsCommand_OpenFileTitle" xml:space="preserve">
+    <value>导出布局</value>
+    <comment>export dialog title</comment>
+  </data>
   <data name="Favorites_suspect" xml:space="preserve">
     <value>找不到页面；可能已重命名或被删除</value>
     <comment>tooltip</comment>
@@ -1711,6 +1727,22 @@ OneNote 文件 (*.one)</value>
     <value>导入收藏夹</value>
     <comment>import dialog title</comment>
   </data>
+  <data name="ImportLayoutsCommand_error" xml:space="preserve">
+    <value>导入布局时出错</value>
+    <comment>message</comment>
+  </data>
+  <data name="ImportLayoutsCommand_imported" xml:space="preserve">
+    <value>已导入 {0} 个布局窗口（共 {1} 个）</value>
+    <comment>message</comment>
+  </data>
+  <data name="ImportLayoutsCommand_OpenFileFilter" xml:space="preserve">
+    <value>JSON 文件 (*.json)|*.json</value>
+    <comment>import dialog</comment>
+  </data>
+  <data name="ImportLayoutsCommand_OpenFileTitle" xml:space="preserve">
+    <value>导入布局</value>
+    <comment>import dialog title</comment>
+  </data>
   <data name="ImportOutlookTasksDialog.Text" xml:space="preserve">
     <value>从 Outlook 导入任务</value>
     <comment>dialog title</comment>
@@ -2034,17 +2066,65 @@ OneNote 文件 (*.one)</value>
     <value>对当前文件夹进行排序</value>
     <comment>toolbar button</comment>
   </data>
-  <data name="ManageFavoritesDialog_discard" xml:space="preserve">
-    <value>放弃未保存的更改？</value>
-    <comment>message box</comment>
-  </data>
-  <data name="ManageFavoritesDialog_Text" xml:space="preserve">
-    <value>管理收藏夹</value>
-    <comment>dialog title</comment>
-  </data>
   <data name="ManageFavoritesrControl_deleteConfirmMultiple" xml:space="preserve">
     <value>删除 {0} 项？</value>
     <comment>message box</comment>
+  </data>
+  <data name="ManageLayouts_DeleteMessage" xml:space="preserve">
+    <value>删除{0}？</value>
+    <comment>settings</comment>
+  </data>
+  <data name="ManageLayoutsControl_captureLayout" xml:space="preserve">
+    <value>捕获布局</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_check" xml:space="preserve">
+    <value>检查布局</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_deleteConfirmMultiple" xml:space="preserve">
+    <value>删除 {0} 项？</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ManageLayoutsControl_emptyLayoutHint" xml:space="preserve">
+    <value>空 - 将窗口拖到此处</value>
+    <comment>list view hint text</comment>
+  </data>
+  <data name="ManageLayoutsControl_export" xml:space="preserve">
+    <value>导出布局</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_import" xml:space="preserve">
+    <value>导入布局</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_locationColumn.HeaderText" xml:space="preserve">
+    <value>地点</value>
+    <comment>settings table column header</comment>
+  </data>
+  <data name="ManageLayoutsControl_renameLayout" xml:space="preserve">
+    <value>重命名布局</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_renameWindow" xml:space="preserve">
+    <value>重命名窗口</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_restore" xml:space="preserve">
+    <value>恢复布局</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_sort" xml:space="preserve">
+    <value>对当前布局进行排序</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageWorkspaceDialog_discard" xml:space="preserve">
+    <value>放弃未保存的更改？</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ManageWorkspaceDialog_Text" xml:space="preserve">
+    <value>工作空间</value>
+    <comment>dialog title</comment>
   </data>
   <data name="MangeFavoritesControl_locationColumn.HeaderText" xml:space="preserve">
     <value>引用笔记路径</value>
@@ -2295,6 +2375,10 @@ OneNote 文件 (*.one)</value>
   <data name="OutlookTaskReport_Week" xml:space="preserve">
     <value>{0} 周</value>
     <comment>report</comment>
+  </data>
+  <data name="PageAliasDialog_originalNameLabel" xml:space="preserve">
+    <value>原名：{0}</value>
+    <comment>label format string</comment>
   </data>
   <data name="PageColorDialog.Text" xml:space="preserve">
     <value>页面颜色</value>
@@ -2869,10 +2953,6 @@ ISO-code then comma then language name</comment>
     <value>重命名风格</value>
     <comment>dialog title</comment>
   </data>
-  <data name="RenameFavoriteDialog_originalNameLabel" xml:space="preserve">
-    <value>原名：{0}</value>
-    <comment>label format string</comment>
-  </data>
   <data name="ReorderDialog.Text" xml:space="preserve">
     <value>重新排序样式</value>
     <comment>dialog title</comment>
@@ -2903,6 +2983,10 @@ ISO-code then comma then language name</comment>
   <data name="ReportRemindersReuseDialog_Text" xml:space="preserve">
     <value>旧的或新的</value>
     <comment>title</comment>
+  </data>
+  <data name="RestoreLayoutCommand_notFound" xml:space="preserve">
+    <value>未找到布局“{0}”。</value>
+    <comment>message box</comment>
   </data>
   <data name="ribAboutButton_Label" xml:space="preserve">
     <value>关于OneMore</value>
@@ -3156,9 +3240,6 @@ ISO-code then comma then language name</comment>
   <data name="ribChooseColorizerButton_Label" xml:space="preserve">
     <value>着色</value>
     <comment>ribbon edit</comment>
-  </data>
-  <data name="ribFavoritesButton_Label" xml:space="preserve">
-    <value>选择收藏夹</value>
   </data>
   <data name="ribCleanMenu_Label" xml:space="preserve">
     <value>清理</value>
@@ -3468,9 +3549,20 @@ ISO-code then comma then language name</comment>
     <value>将所有收藏夹导出到 JSON 文件</value>
     <comment>ribbon favorites</comment>
   </data>
+  <data name="ribExportLayoutsButton_Label" xml:space="preserve">
+    <value>导出布局</value>
+    <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribExportLayoutsButton_Screentip" xml:space="preserve">
+    <value>将所有布局导出到 JSON 文件</value>
+    <comment>ribbon favorites</comment>
+  </data>
   <data name="ribExtrasMenu_Label" xml:space="preserve">
     <value>更多功能</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribFavoritesButton_Label" xml:space="preserve">
+    <value>选择收藏夹</value>
   </data>
   <data name="ribFavoritesMenu_Label" xml:space="preserve">
     <value>收藏夹</value>
@@ -3582,6 +3674,14 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="ribImportFavoritesButton_Screentip" xml:space="preserve">
     <value>从 JSON 文件导入所有收藏夹</value>
+    <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribImportLayoutsButton_Label" xml:space="preserve">
+    <value>导入布局</value>
+    <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribImportLayoutsButton_Screentip" xml:space="preserve">
+    <value>从 JSON 文件导入所有布局</value>
     <comment>ribbon favorites</comment>
   </data>
   <data name="ribImportOutlookTasksButton_Label" xml:space="preserve">
@@ -4688,6 +4788,18 @@ ISO-code then comma then language name</comment>
     <value>已将 {0} 页（共 {1} 页）保存到 {2}</value>
     <comment>save many message</comment>
   </data>
+  <data name="SaveLayoutCommand_error" xml:space="preserve">
+    <value>无法保存布局。</value>
+    <comment>message box</comment>
+  </data>
+  <data name="SaveLayoutCommand_noWindows" xml:space="preserve">
+    <value>没有打开的 OneNote 窗口可以保存。</value>
+    <comment>message box</comment>
+  </data>
+  <data name="SaveLayoutCommand_Text" xml:space="preserve">
+    <value>保存布局</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="SaveSnippet_NeedSelection" xml:space="preserve">
     <value>选择内容另存为新片段</value>
     <comment>error message</comment>
@@ -5751,6 +5863,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Language" xml:space="preserve">
     <value>语言</value>
+  </data>
+  <data name="word_Layouts" xml:space="preserve">
+    <value>布局</value>
   </data>
   <data name="word_Length" xml:space="preserve">
     <value>长度</value>

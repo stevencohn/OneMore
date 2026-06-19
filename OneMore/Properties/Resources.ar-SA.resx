@@ -1208,6 +1208,22 @@
     <value>تصدير المفضلة</value>
     <comment>export dialog title</comment>
   </data>
+  <data name="ExportLayoutsCommand_error" xml:space="preserve">
+    <value>حدث خطأ أثناء تصدير التخطيطات</value>
+    <comment>message</comment>
+  </data>
+  <data name="ExportLayoutsCommand_exported" xml:space="preserve">
+    <value>تم تصدير {0} نوافذ إلى {1}</value>
+    <comment>message</comment>
+  </data>
+  <data name="ExportLayoutsCommand_OpenFileFilter" xml:space="preserve">
+    <value>ملف JSON (*.json)|*.json</value>
+    <comment>export dialog</comment>
+  </data>
+  <data name="ExportLayoutsCommand_OpenFileTitle" xml:space="preserve">
+    <value>تخطيطات التصدير</value>
+    <comment>export dialog title</comment>
+  </data>
   <data name="Favorites_suspect" xml:space="preserve">
     <value>الصفحة غير موجودة؛ ربما تمت إعادة تسميته أو نقله</value>
     <comment>tooltip</comment>
@@ -1708,6 +1724,22 @@
     <value>استيراد المفضلة</value>
     <comment>import dialog title</comment>
   </data>
+  <data name="ImportLayoutsCommand_error" xml:space="preserve">
+    <value>حدث خطأ أثناء استيراد التخطيطات</value>
+    <comment>message</comment>
+  </data>
+  <data name="ImportLayoutsCommand_imported" xml:space="preserve">
+    <value>تم استيراد {0} من {1} نافذة تخطيط</value>
+    <comment>message</comment>
+  </data>
+  <data name="ImportLayoutsCommand_OpenFileFilter" xml:space="preserve">
+    <value>ملف JSON (*.json)|*.json</value>
+    <comment>import dialog</comment>
+  </data>
+  <data name="ImportLayoutsCommand_OpenFileTitle" xml:space="preserve">
+    <value>استيراد التخطيطات</value>
+    <comment>import dialog title</comment>
+  </data>
   <data name="ImportOutlookTasksDialog.Text" xml:space="preserve">
     <value>مهام الاستيراد من Outlook</value>
     <comment>dialog title</comment>
@@ -2031,17 +2063,65 @@
     <value>فرز المجلد الحالي</value>
     <comment>toolbar button</comment>
   </data>
-  <data name="ManageFavoritesDialog_discard" xml:space="preserve">
-    <value>هل تريد تجاهل التغييرات غير المحفوظة؟</value>
-    <comment>message box</comment>
-  </data>
-  <data name="ManageFavoritesDialog_Text" xml:space="preserve">
-    <value>إدارة المفضلة</value>
-    <comment>dialog title</comment>
-  </data>
   <data name="ManageFavoritesrControl_deleteConfirmMultiple" xml:space="preserve">
     <value>هل تريد حذف {0} عنصر؟</value>
     <comment>message box</comment>
+  </data>
+  <data name="ManageLayouts_DeleteMessage" xml:space="preserve">
+    <value>هل تريد حذف {0}؟</value>
+    <comment>settings</comment>
+  </data>
+  <data name="ManageLayoutsControl_captureLayout" xml:space="preserve">
+    <value>تخطيط الالتقاط</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_check" xml:space="preserve">
+    <value>تحقق من التخطيطات</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_deleteConfirmMultiple" xml:space="preserve">
+    <value>هل تريد حذف {0} عنصر؟</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ManageLayoutsControl_emptyLayoutHint" xml:space="preserve">
+    <value>فارغ - اسحب النوافذ هنا</value>
+    <comment>list view hint text</comment>
+  </data>
+  <data name="ManageLayoutsControl_export" xml:space="preserve">
+    <value>تخطيطات التصدير</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_import" xml:space="preserve">
+    <value>استيراد التخطيطات</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_locationColumn.HeaderText" xml:space="preserve">
+    <value>موقع</value>
+    <comment>settings table column header</comment>
+  </data>
+  <data name="ManageLayoutsControl_renameLayout" xml:space="preserve">
+    <value>إعادة تسمية التخطيط</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_renameWindow" xml:space="preserve">
+    <value>إعادة تسمية النافذة</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_restore" xml:space="preserve">
+    <value>استعادة التخطيط</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_sort" xml:space="preserve">
+    <value>فرز التخطيط الحالي</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageWorkspaceDialog_discard" xml:space="preserve">
+    <value>هل تريد تجاهل التغييرات غير المحفوظة؟</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ManageWorkspaceDialog_Text" xml:space="preserve">
+    <value>مساحة العمل</value>
+    <comment>dialog title</comment>
   </data>
   <data name="MangeFavoritesControl_locationColumn.HeaderText" xml:space="preserve">
     <value>موقعك</value>
@@ -2292,6 +2372,10 @@
   <data name="OutlookTaskReport_Week" xml:space="preserve">
     <value>الأسبوع {0}</value>
     <comment>report</comment>
+  </data>
+  <data name="PageAliasDialog_originalNameLabel" xml:space="preserve">
+    <value>الاسم الأصلي: {0}</value>
+    <comment>label format string</comment>
   </data>
   <data name="PageColorDialog.Text" xml:space="preserve">
     <value>لون الصفحة</value>
@@ -2866,10 +2950,6 @@ ISO-code then comma then language name</comment>
     <value>إعادة تسمية نمط</value>
     <comment>dialog title</comment>
   </data>
-  <data name="RenameFavoriteDialog_originalNameLabel" xml:space="preserve">
-    <value>الاسم الأصلي: {0}</value>
-    <comment>label format string</comment>
-  </data>
   <data name="ReorderDialog.Text" xml:space="preserve">
     <value>إعادة ترتيب الأنماط</value>
     <comment>dialog title</comment>
@@ -2900,6 +2980,10 @@ ISO-code then comma then language name</comment>
   <data name="ReportRemindersReuseDialog_Text" xml:space="preserve">
     <value>قديم أو جديد</value>
     <comment>title</comment>
+  </data>
+  <data name="RestoreLayoutCommand_notFound" xml:space="preserve">
+    <value>لم يتم العثور على التخطيط '{0}'.</value>
+    <comment>message box</comment>
   </data>
   <data name="ribAboutButton_Label" xml:space="preserve">
     <value>حول OneMore</value>
@@ -3153,9 +3237,6 @@ ISO-code then comma then language name</comment>
   <data name="ribChooseColorizerButton_Label" xml:space="preserve">
     <value>تلوين</value>
     <comment>ribbon edit</comment>
-  </data>
-  <data name="ribFavoritesButton_Label" xml:space="preserve">
-    <value>اختر المفضلة</value>
   </data>
   <data name="ribCleanMenu_Label" xml:space="preserve">
     <value>نظيف</value>
@@ -3465,9 +3546,20 @@ ISO-code then comma then language name</comment>
     <value>تصدير كافة المفضلة إلى ملف JSON</value>
     <comment>ribbon favorites</comment>
   </data>
+  <data name="ribExportLayoutsButton_Label" xml:space="preserve">
+    <value>تخطيطات التصدير</value>
+    <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribExportLayoutsButton_Screentip" xml:space="preserve">
+    <value>تصدير كافة التخطيطات إلى ملف JSON</value>
+    <comment>ribbon favorites</comment>
+  </data>
   <data name="ribExtrasMenu_Label" xml:space="preserve">
     <value>إضافات</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribFavoritesButton_Label" xml:space="preserve">
+    <value>اختر المفضلة</value>
   </data>
   <data name="ribFavoritesMenu_Label" xml:space="preserve">
     <value>المفضلة</value>
@@ -3579,6 +3671,14 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="ribImportFavoritesButton_Screentip" xml:space="preserve">
     <value>استيراد كافة المفضلة من ملف JSON</value>
+    <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribImportLayoutsButton_Label" xml:space="preserve">
+    <value>استيراد التخطيطات</value>
+    <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribImportLayoutsButton_Screentip" xml:space="preserve">
+    <value>استيراد كافة التخطيطات من ملف JSON</value>
     <comment>ribbon favorites</comment>
   </data>
   <data name="ribImportOutlookTasksButton_Label" xml:space="preserve">
@@ -4685,6 +4785,18 @@ ISO-code then comma then language name</comment>
     <value>تم حفظ {0} من {1} صفحة في {2}</value>
     <comment>save many message</comment>
   </data>
+  <data name="SaveLayoutCommand_error" xml:space="preserve">
+    <value>لا يمكن حفظ التخطيط.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="SaveLayoutCommand_noWindows" xml:space="preserve">
+    <value>لا توجد نوافذ OneNote مفتوحة للحفظ.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="SaveLayoutCommand_Text" xml:space="preserve">
+    <value>حفظ التخطيط</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="SaveSnippet_NeedSelection" xml:space="preserve">
     <value>حدد المحتوى المراد حفظه كمقتطف جديد</value>
     <comment>error message</comment>
@@ -5748,6 +5860,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Language" xml:space="preserve">
     <value>لغة</value>
+  </data>
+  <data name="word_Layouts" xml:space="preserve">
+    <value>التخطيطات</value>
   </data>
   <data name="word_Length" xml:space="preserve">
     <value>طول</value>

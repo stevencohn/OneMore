@@ -517,7 +517,21 @@ namespace River.OneMoreAddIn
 		/// <returns>The bounds expressed as a Rectangle</returns>
 		public System.Drawing.Rectangle GetCurrentMainWindowBounds()
 		{
-			var handle = WithCurrentWindow(w => (IntPtr)w.WindowHandle, IntPtr.Zero);
+			var handle = GetTopLevelWindow(WithCurrentWindow(w => (IntPtr)w.WindowHandle, IntPtr.Zero));
+
+			var r = new Native.Rectangle();
+			Native.GetWindowRect(handle, ref r);
+			return new System.Drawing.Rectangle(r.Left, r.Top, r.Right - r.Left, r.Bottom - r.Top);
+		}
+
+
+		/// <summary>
+		/// The OneNote COM Window.WindowHandle is not guaranteed to be the top-level frame -
+		/// it can be an inner pane - so GetWindowRect/SetWindowPos/ShowWindow against it can
+		/// silently affect the wrong window. Walk up GetParent until there is no parent left.
+		/// </summary>
+		private static IntPtr GetTopLevelWindow(IntPtr handle)
+		{
 			var parent = handle;
 			while (parent != IntPtr.Zero)
 			{
@@ -528,9 +542,7 @@ namespace River.OneMoreAddIn
 				}
 			}
 
-			var r = new Native.Rectangle();
-			Native.GetWindowRect(handle, ref r);
-			return new System.Drawing.Rectangle(r.Left, r.Top, r.Right - r.Left, r.Bottom - r.Top);
+			return handle;
 		}
 
 
@@ -1002,7 +1014,7 @@ namespace River.OneMoreAddIn
 		/// visible notebook, section, page, and the screen bounds of the window.
 		/// </summary>
 		/// <returns></returns>
-		public List<WindowInfo> GetWindows()
+		public async Task<List<WindowInfo>> GetWindows()
 		{
 			var windows = new List<WindowInfo>();
 
@@ -1016,19 +1028,44 @@ namespace River.OneMoreAddIn
 				while (e.MoveNext())
 				{
 					var window = e.Current as Window;
-					var threadId = Native.GetWindowThreadProcessId(
-						(IntPtr)window.WindowHandle, out var processId);
+					var rawHandle = (IntPtr)window.WindowHandle;
+					var topHandle = GetTopLevelWindow(rawHandle);
 
-					Native.GetWindowRect((IntPtr)window.WindowHandle, ref bounds);
+					logger.WriteLine(rawHandle == topHandle
+						? $"GetWindows: handle {rawHandle.ToInt64():x} has no parent (already top-level)"
+						: $"GetWindows: handle {rawHandle.ToInt64():x} walked up to top-level {topHandle.ToInt64():x}");
 
+					uint threadId;
+					uint processId;
+
+					// GetWindowRect must see real physical pixels regardless of this
+					// process's ambient DPI awareness, which isn't always reliably
+					// per-monitor-aware; scoped tightly since this can't span an await
+					// without risking a thread hop invalidating the per-thread context
+					using (new Native.ThreadDpiAwarenessScope(
+						Native.DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2))
+					{
+						threadId = Native.GetWindowThreadProcessId(topHandle, out processId);
+						Native.GetWindowRect(topHandle, ref bounds);
+					}
 					var isCurrent = window.WindowHandle == currentHandle;
+					var page = await GetPageInfo(window.CurrentPageId);
+
 					var info = new WindowInfo
 					{
 						IsCurrent = isCurrent,
+						CurrentNotebookId = window.CurrentNotebookId,
+						CurrentPageId = window.CurrentPageId,
+						CurrentSectionId = window.CurrentSectionId,
+						CurrentSectionGroupId = window.CurrentSectionGroupId,
+						CurrentPage = $"{page.Path}/{page.Name}",
+						DockedLocation = window.DockedLocation.ToString(),
+						IsFullPageView = window.FullPageView,
+						IsSideNote = window.SideNote,
 						Active = window.Active,
 						ProcessId = processId,
 						ThreadId = threadId,
-						WindowHandle = $"{window.WindowHandle:x}",
+						WindowHandle = $"{topHandle.ToInt64():x}",
 						Bounds = new BoundsInfo
 						{
 							Left = bounds.Left,
@@ -1037,17 +1074,6 @@ namespace River.OneMoreAddIn
 							Bottom = bounds.Bottom
 						}
 					};
-
-					var hierarchy = GetPageHierarchyInfo(window.CurrentPageId);
-
-					info.CurrentNotebookId = window.CurrentNotebookId;
-					info.CurrentPageId = window.CurrentPageId;
-					info.CurrentSectionId = window.CurrentSectionId;
-					info.CurrentSectionGroupId = window.CurrentSectionGroupId;
-					info.CurrentPage = hierarchy.Path;
-					info.DockedLocation = window.DockedLocation.ToString();
-					info.IsFullPageView = window.FullPageView;
-					info.IsSideNote = window.SideNote;
 
 					windows.Add(info);
 				}
@@ -1891,7 +1917,7 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		public async Task<string> CollectWindowDiagnostics()
 		{
-			var windows = GetWindows();
+			var windows = await GetWindows();
 			return JsonConvert.SerializeObject(windows, Newtonsoft.Json.Formatting.Indented);
 		}
 	}

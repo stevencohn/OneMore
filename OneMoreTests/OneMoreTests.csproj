@@ -72,10 +72,10 @@
     <Compile Include="Commands\Edit\ConvertMarkdownCommandTests.cs" />
     <Compile Include="Commands\Edit\HighlightCommandTests.cs" />
     <Compile Include="Commands\Snippets\InsertTocCommandTests.cs" />
-    <Compile Include="Commands\Favorites\FavoritesCheckerTests.cs" />
     <Compile Include="Commands\Favorites\FavoritesFileProviderTests.cs" />
     <Compile Include="Commands\Favorites\FavoritesMenuTests.cs" />
     <Compile Include="Commands\Favorites\FavoritesProviderTests.cs" />
+    <Compile Include="Commands\Workspaces\PageCheckerTests.cs" />
     <Compile Include="MockApplication.cs" />
     <Compile Include="TestBase.cs" />
   </ItemGroup>

@@ -1208,6 +1208,22 @@ OneNoteファイル (*.one)</value>
     <value>お気に入りをエクスポート</value>
     <comment>export dialog title</comment>
   </data>
+  <data name="ExportLayoutsCommand_error" xml:space="preserve">
+    <value>レイアウトのエクスポート中にエラーが発生しました</value>
+    <comment>message</comment>
+  </data>
+  <data name="ExportLayoutsCommand_exported" xml:space="preserve">
+    <value>{0} 個のウィンドウが {1} にエクスポートされました</value>
+    <comment>message</comment>
+  </data>
+  <data name="ExportLayoutsCommand_OpenFileFilter" xml:space="preserve">
+    <value>JSON ファイル (*.json)|*.json</value>
+    <comment>export dialog</comment>
+  </data>
+  <data name="ExportLayoutsCommand_OpenFileTitle" xml:space="preserve">
+    <value>レイアウトのエクスポート</value>
+    <comment>export dialog title</comment>
+  </data>
   <data name="Favorites_suspect" xml:space="preserve">
     <value>ページが見つかりません。名前が変更されたか移動された可能性があります</value>
     <comment>tooltip</comment>
@@ -1708,6 +1724,22 @@ OneNoteファイル (*.one)</value>
     <value>お気に入りをインポート</value>
     <comment>import dialog title</comment>
   </data>
+  <data name="ImportLayoutsCommand_error" xml:space="preserve">
+    <value>レイアウトのインポート中にエラーが発生しました</value>
+    <comment>message</comment>
+  </data>
+  <data name="ImportLayoutsCommand_imported" xml:space="preserve">
+    <value>{1} 個中 {0} 個のレイアウト ウィンドウがインポートされました</value>
+    <comment>message</comment>
+  </data>
+  <data name="ImportLayoutsCommand_OpenFileFilter" xml:space="preserve">
+    <value>JSON ファイル (*.json)|*.json</value>
+    <comment>import dialog</comment>
+  </data>
+  <data name="ImportLayoutsCommand_OpenFileTitle" xml:space="preserve">
+    <value>レイアウトのインポート</value>
+    <comment>import dialog title</comment>
+  </data>
   <data name="ImportOutlookTasksDialog.Text" xml:space="preserve">
     <value>Outlookからのタスクをインポート</value>
     <comment>dialog title</comment>
@@ -2031,17 +2063,65 @@ OneNoteファイル (*.one)</value>
     <value>現在のフォルダーを並べ替える</value>
     <comment>toolbar button</comment>
   </data>
-  <data name="ManageFavoritesDialog_discard" xml:space="preserve">
-    <value>保存されていない変更を破棄しますか?</value>
-    <comment>message box</comment>
-  </data>
-  <data name="ManageFavoritesDialog_Text" xml:space="preserve">
-    <value>お気に入りの管理</value>
-    <comment>dialog title</comment>
-  </data>
   <data name="ManageFavoritesrControl_deleteConfirmMultiple" xml:space="preserve">
     <value>{0} 個のアイテムを削除しますか?</value>
     <comment>message box</comment>
+  </data>
+  <data name="ManageLayouts_DeleteMessage" xml:space="preserve">
+    <value>{0}を削除しますか?</value>
+    <comment>settings</comment>
+  </data>
+  <data name="ManageLayoutsControl_captureLayout" xml:space="preserve">
+    <value>キャプチャレイアウト</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_check" xml:space="preserve">
+    <value>レイアウトを確認する</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_deleteConfirmMultiple" xml:space="preserve">
+    <value>{0} 個のアイテムを削除しますか?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ManageLayoutsControl_emptyLayoutHint" xml:space="preserve">
+    <value>空 - ウィンドウをここにドラッグします</value>
+    <comment>list view hint text</comment>
+  </data>
+  <data name="ManageLayoutsControl_export" xml:space="preserve">
+    <value>レイアウトのエクスポート</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_import" xml:space="preserve">
+    <value>レイアウトのインポート</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_locationColumn.HeaderText" xml:space="preserve">
+    <value>位置</value>
+    <comment>settings table column header</comment>
+  </data>
+  <data name="ManageLayoutsControl_renameLayout" xml:space="preserve">
+    <value>レイアウト名の変更</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_renameWindow" xml:space="preserve">
+    <value>ウィンドウの名前を変更</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_restore" xml:space="preserve">
+    <value>レイアウトの復元</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_sort" xml:space="preserve">
+    <value>現在のレイアウトを並べ替える</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageWorkspaceDialog_discard" xml:space="preserve">
+    <value>保存されていない変更を破棄しますか?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ManageWorkspaceDialog_Text" xml:space="preserve">
+    <value>ワークスペース</value>
+    <comment>dialog title</comment>
   </data>
   <data name="MangeFavoritesControl_locationColumn.HeaderText" xml:space="preserve">
     <value>ロケーション</value>
@@ -2284,6 +2364,10 @@ OneDriveに保存されているノートブックのフォルダーを開くこ
   <data name="OutlookTaskReport_Week" xml:space="preserve">
     <value>週 {0}</value>
     <comment>report</comment>
+  </data>
+  <data name="PageAliasDialog_originalNameLabel" xml:space="preserve">
+    <value>元の名前: {0}</value>
+    <comment>label format string</comment>
   </data>
   <data name="PageColorDialog.Text" xml:space="preserve">
     <value>ページカラー</value>
@@ -2862,10 +2946,6 @@ ISO-code then comma then language name</comment>
     <value>スタイルをリネーム</value>
     <comment>dialog title</comment>
   </data>
-  <data name="RenameFavoriteDialog_originalNameLabel" xml:space="preserve">
-    <value>元の名前: {0}</value>
-    <comment>label format string</comment>
-  </data>
   <data name="ReorderDialog.Text" xml:space="preserve">
     <value>スタイルの並べ替え</value>
     <comment>dialog title</comment>
@@ -2896,6 +2976,10 @@ ISO-code then comma then language name</comment>
   <data name="ReportRemindersReuseDialog_Text" xml:space="preserve">
     <value>旧もしくは新</value>
     <comment>title</comment>
+  </data>
+  <data name="RestoreLayoutCommand_notFound" xml:space="preserve">
+    <value>レイアウト '{0}' が見つかりませんでした。</value>
+    <comment>message box</comment>
   </data>
   <data name="ribAboutButton_Label" xml:space="preserve">
     <value>OneMoreについて</value>
@@ -3149,9 +3233,6 @@ ISO-code then comma then language name</comment>
   <data name="ribChooseColorizerButton_Label" xml:space="preserve">
     <value>コードハイライト</value>
     <comment>ribbon edit NODUP</comment>
-  </data>
-  <data name="ribFavoritesButton_Label" xml:space="preserve">
-    <value>お気に入りを選択</value>
   </data>
   <data name="ribCleanMenu_Label" xml:space="preserve">
     <value>クリーン</value>
@@ -3461,9 +3542,20 @@ ISO-code then comma then language name</comment>
     <value>すべてのお気に入りを JSON ファイルにエクスポートします</value>
     <comment>ribbon favorites</comment>
   </data>
+  <data name="ribExportLayoutsButton_Label" xml:space="preserve">
+    <value>レイアウトのエクスポート</value>
+    <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribExportLayoutsButton_Screentip" xml:space="preserve">
+    <value>すべてのレイアウトを JSON ファイルにエクスポートする</value>
+    <comment>ribbon favorites</comment>
+  </data>
   <data name="ribExtrasMenu_Label" xml:space="preserve">
     <value>エクストラ</value>
     <comment>ribbon menu</comment>
+  </data>
+  <data name="ribFavoritesButton_Label" xml:space="preserve">
+    <value>お気に入りを選択</value>
   </data>
   <data name="ribFavoritesMenu_Label" xml:space="preserve">
     <value>お気に入り</value>
@@ -3575,6 +3667,14 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="ribImportFavoritesButton_Screentip" xml:space="preserve">
     <value>JSON ファイルからすべてのお気に入りをインポートする</value>
+    <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribImportLayoutsButton_Label" xml:space="preserve">
+    <value>レイアウトのインポート</value>
+    <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribImportLayoutsButton_Screentip" xml:space="preserve">
+    <value>JSON ファイルからすべてのレイアウトをインポートする</value>
     <comment>ribbon favorites</comment>
   </data>
   <data name="ribImportOutlookTasksButton_Label" xml:space="preserve">
@@ -4684,6 +4784,18 @@ ISO-code then comma then language name</comment>
     <value>{1} ページ中 {0} ページを {2} に保存しました</value>
     <comment>save many message</comment>
   </data>
+  <data name="SaveLayoutCommand_error" xml:space="preserve">
+    <value>レイアウトを保存できませんでした。</value>
+    <comment>message box</comment>
+  </data>
+  <data name="SaveLayoutCommand_noWindows" xml:space="preserve">
+    <value>保存できる開いている OneNote ウィンドウがありません。</value>
+    <comment>message box</comment>
+  </data>
+  <data name="SaveLayoutCommand_Text" xml:space="preserve">
+    <value>レイアウトの保存</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="SaveSnippet_NeedSelection" xml:space="preserve">
     <value>新しいスニペットとして保存する内容を選択してください</value>
     <comment>error message</comment>
@@ -5747,6 +5859,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Language" xml:space="preserve">
     <value>言語</value>
+  </data>
+  <data name="word_Layouts" xml:space="preserve">
+    <value>レイアウト</value>
   </data>
   <data name="word_Length" xml:space="preserve">
     <value>長さ</value>
