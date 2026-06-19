@@ -40,6 +40,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		private List<(int FolderID, string Name)> originalFolders = new();
 		private List<(int ID, int FolderID, string Alias, int Position)> originalFavorites = new();
 		private int nextSentinelFolderID = -1;
+		private bool isDirtyFromCheck;
 
 
 		public MangeFavoritesControl()
@@ -77,6 +78,12 @@ namespace River.OneMoreAddIn.Commands.Favorites
 			using var provider = new FavoritesProvider();
 			var collection = provider.ReadFavorites();
 
+			LoadFavorites(collection);
+		}
+
+
+		private void LoadFavorites(FavoritesCollection collection)
+		{
 			listView.BeginUpdate();
 			listView.Items.Clear();
 
@@ -108,7 +115,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		/// </summary>
 		public bool IsDirty()
 		{
-			if (deletedFavoriteIDs.Count > 0 || deletedFolderIDs.Count > 0)
+			if (deletedFavoriteIDs.Count > 0 || deletedFolderIDs.Count > 0 || isDirtyFromCheck)
 			{
 				return true;
 			}
@@ -254,20 +261,54 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 		private async void CheckFavorites(object sender, EventArgs e)
 		{
-			var favorites = listView.Items.Cast<ListViewItem>()
-				.Select(i => i.Tag)
-				.OfType<Favorite>()
-				.ToList();
-
-			if (favorites.Count == 0)
+			if (!listView.Items.Cast<ListViewItem>().Any(i => i.Tag is Favorite))
 			{
 				return;
 			}
 
-			await using var checker = new FavoritesChecker(Logger.Current);
-			await checker.InvalidFavorites(favorites);
+			var collection = RebuildCollection();
 
-			listView.Invalidate();
+			await using var checker = new FavoritesChecker(Logger.Current);
+			if (await checker.InvalidFavorites(collection))
+			{
+				LoadFavorites(collection);
+				isDirtyFromCheck = true;
+			}
+		}
+
+
+		/// <summary>
+		/// Reconstructs a FavoritesCollection from the favorites/folders currently shown in
+		/// the listview, reusing the same Favorite/FolderRow instances so in-place edits made
+		/// by the caller (e.g. FavoritesChecker) are reflected immediately in the listview.
+		/// </summary>
+		private FavoritesCollection RebuildCollection()
+		{
+			var collection = new FavoritesCollection();
+			var folders = new Dictionary<int, FavoritesFolder>();
+
+			foreach (ListViewItem item in listView.Items)
+			{
+				if (item.Tag is FolderRow row)
+				{
+					var folder = new FavoritesFolder { FolderID = row.FolderID, Name = row.Name };
+					collection.Folders.Add(folder);
+					folders[row.FolderID] = folder;
+				}
+				else if (item.Tag is Favorite favorite)
+				{
+					if (favorite.FolderID != 0 && folders.TryGetValue(favorite.FolderID, out var folder))
+					{
+						folder.Items.Add(favorite);
+					}
+					else
+					{
+						collection.Items.Add(favorite);
+					}
+				}
+			}
+
+			return collection;
 		}
 
 
