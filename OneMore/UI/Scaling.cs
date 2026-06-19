@@ -156,11 +156,64 @@ namespace River.OneMoreAddIn.UI
 
 			if (unprepared)
 			{
-				Native.SetProcessDPIAware();
+				EnablePerMonitorDpiAwareness();
+
+				// Documented escape hatch for code that cannot rely on the app.config
+				// EnableWindowsFormsHighDpiAutoResizing appSetting; must run before any
+				// Form/Control is constructed, which is guaranteed since this is the
+				// first statement executed by AddIn()'s constructor.
+				AppContext.SetSwitch(
+					"Switch.System.Windows.Forms.EnableWindowsFormsHighDpiAutoResizing", true);
+
 				Application.EnableVisualStyles();
 				Application.SetCompatibleTextRenderingDefault(false);
 				unprepared = false;
 			}
+		}
+
+
+		/// <summary>
+		/// OneMore is COM-activated into the generic dllhost.exe surrogate rather than
+		/// run as its own process, so the declarative DpiAwareness setting in App.config
+		/// and the dpiAware entry in app.manifest are never read by Windows; only a live
+		/// API call made inside the actual host process takes effect. Try the modern
+		/// per-monitor APIs first, falling back through older Windows versions down to
+		/// the legacy System DPI Aware call.
+		/// </summary>
+		private static void EnablePerMonitorDpiAwareness()
+		{
+			try
+			{
+				if (Native.SetProcessDpiAwarenessContext(
+					Native.DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2))
+				{
+					Logger.Current.WriteLine(
+						"DPI awareness: PerMonitorV2 (SetProcessDpiAwarenessContext)");
+					return;
+				}
+			}
+			catch (EntryPointNotFoundException)
+			{
+				// Windows older than 10 1703; fall through
+			}
+
+			try
+			{
+				if (Native.SetProcessDpiAwareness(Native.PROCESS_PER_MONITOR_DPI_AWARE) == 0)
+				{
+					Logger.Current.WriteLine(
+						"DPI awareness: PerMonitor (SetProcessDpiAwareness)");
+					return;
+				}
+			}
+			catch (EntryPointNotFoundException)
+			{
+				// Windows older than 8.1; fall through
+			}
+
+			Native.SetProcessDPIAware();
+			Logger.Current.WriteLine(
+				"DPI awareness: System (legacy SetProcessDPIAware fallback)");
 		}
 	}
 }

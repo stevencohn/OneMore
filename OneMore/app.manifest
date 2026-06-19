@@ -46,10 +46,15 @@
   </compatibility>
 
   <!-- Indicates that the application is DPI-aware and will not be automatically scaled by Windows at higher
-       DPIs. Windows Presentation Foundation (WPF) applications are automatically DPI-aware and do not need 
-       to opt in. Windows Forms applications targeting .NET Framework 4.6 that opt into this setting, should 
+       DPIs. Windows Presentation Foundation (WPF) applications are automatically DPI-aware and do not need
+       to opt in. Windows Forms applications targeting .NET Framework 4.6 that opt into this setting, should
        also set the 'EnableWindowsFormsHighDpiAutoResizing' setting to 'true' in their app.config.
-       "true/pm" enables Per-Monitor DPI Awareness, which is ideal for WinForms. -->
+       "true/pm" enables Per-Monitor DPI Awareness, which is ideal for WinForms.
+
+       NOTE: this entry would have no effect even if uncommented. OneMore is COM-activated
+       into the generic dllhost.exe surrogate rather than run as its own process, so this
+       manifest is never consulted by Windows for process DPI awareness. Per-monitor DPI
+       awareness is instead enabled at runtime in UI\Scaling.PrepareUI(). -->
   <!--
   <application xmlns="urn:schemas-microsoft-com:asm.v3">
     <windowsSettings>
