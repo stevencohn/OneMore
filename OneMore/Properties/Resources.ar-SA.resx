@@ -3921,6 +3921,10 @@ ISO-code then comma then language name</comment>
     <value>إدارة المفضلة</value>
     <comment>favorites menu command</comment>
   </data>
+  <data name="ribManageLayoutsButton_Label" xml:space="preserve">
+    <value>إدارة تخطيطات النافذة</value>
+    <comment>extras menu command NODUP</comment>
+  </data>
   <data name="ribManagePluginsButton_Label" xml:space="preserve">
     <value>إدارة الإضافات المحفوظة</value>
     <comment>favorites button</comment>

@@ -3917,6 +3917,10 @@ ISO-code then comma then language name</comment>
     <value>お気に入りの管理</value>
     <comment>favorites menu command NODUP</comment>
   </data>
+  <data name="ribManageLayoutsButton_Label" xml:space="preserve">
+    <value>ウィンドウレイアウトの管理</value>
+    <comment>extras menu command NODUP</comment>
+  </data>
   <data name="ribManagePluginsButton_Label" xml:space="preserve">
     <value>保存したプラグインの管理</value>
     <comment>ribbon favorites</comment>

@@ -3914,6 +3914,10 @@ Scheda Aiuto</value>
     <value>Gestisci preferiti</value>
     <comment>favorites menu command NODUP</comment>
   </data>
+  <data name="ribManageLayoutsButton_Label" xml:space="preserve">
+    <value>Gestisci i layout delle finestre</value>
+    <comment>extras menu command NODUP</comment>
+  </data>
   <data name="ribManagePluginsButton_Label" xml:space="preserve">
     <value>Gestisci i plugin salvati</value>
     <comment>ribbon favorites</comment>

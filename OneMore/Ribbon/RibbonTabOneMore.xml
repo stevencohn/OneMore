@@ -165,6 +165,20 @@
         getScreentip="GetRibbonScreentip"
         onAction="InsertEmojiCmd"/>
       <button
+        id="ribInsertInfoBoxButton"
+        imageMso="Info"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="InsertInfoBoxCmd"
+        keytip="IB"/>
+      <button
+        id="ribInsertTextBoxButton"
+        imageMso="TextBoxInsert"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="InsertTextBoxCmd"
+        keytip="TB"/>
+      <button
         id="ribInsertWarnBoxButton"
         getImage="GetRibbonImageByID"
         getLabel="GetRibbonLabel"
@@ -176,6 +190,43 @@
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
         onAction="InsertExpandCmd"/>
+      <menu
+        id="ribStatusMenu"
+        getLabel="GetRibbonLabel"
+        imageMso="AppointmentColorDialog"
+        showImage ="true"
+        keytip="ST">
+        <button
+          id="ribInsertGrayStatusButton"
+          imageMso="AppointmentColor4"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="InsertGrayStatusCmd"/>
+        <button
+          id="ribInsertRedStatusButton"
+          imageMso="AppointmentColor1"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="InsertRedStatusCmd"/>
+        <button
+          id="ribInsertYellowStatusButton"
+          imageMso="AppointmentColor10"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="InsertYellowStatusCmd"/>
+        <button
+          id="ribInsertGreenStatusButton"
+          imageMso="AppointmentColor3"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="InsertGreenStatusCmd"/>
+        <button
+          id="ribInsertBlueStatusButton"
+          imageMso="AppointmentColor2"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="InsertBlueStatusCmd"/>
+      </menu>
     </menu>
     <button
       id="ribInsertTocButton"
@@ -194,22 +245,6 @@
       size="normal"
       keytip="CB"/>
     <button
-      id="ribInsertTextBoxButton"
-      imageMso="TextBoxInsert"
-      getLabel="GetRibbonLabel"
-      getScreentip="GetRibbonScreentip"
-      onAction="InsertTextBoxCmd"
-      size="normal"
-      keytip="TB"/>
-    <button
-      id="ribInsertInfoBoxButton"
-      imageMso="Info"
-      getLabel="GetRibbonLabel"
-      getScreentip="GetRibbonScreentip"
-      onAction="InsertInfoBoxCmd"
-      size="normal"
-      keytip="IB"/>
-    <button
       id="ribInsertNoteBoxButton"
       getImage="GetRibbonImageByID"
       getLabel="GetRibbonLabel"
@@ -217,44 +252,6 @@
       onAction="InsertNoteBoxCmd"
       size="normal"
       keytip="NB"/>
-    <menu 
-      id="ribStatusMenu" 
-      getLabel="GetRibbonLabel" 
-      imageMso="AppointmentColorDialog" 
-      showImage ="true"
-      size="normal"
-      keytip="ST">
-      <button
-        id="ribInsertGrayStatusButton"
-        imageMso="AppointmentColor4"
-        getLabel="GetRibbonLabel"
-        getScreentip="GetRibbonScreentip"
-        onAction="InsertGrayStatusCmd"/>
-      <button
-        id="ribInsertRedStatusButton"
-        imageMso="AppointmentColor1"
-        getLabel="GetRibbonLabel"
-        getScreentip="GetRibbonScreentip"
-        onAction="InsertRedStatusCmd"/>
-      <button
-        id="ribInsertYellowStatusButton"
-        imageMso="AppointmentColor10"
-        getLabel="GetRibbonLabel"
-        getScreentip="GetRibbonScreentip"
-        onAction="InsertYellowStatusCmd"/>
-      <button
-        id="ribInsertGreenStatusButton"
-        imageMso="AppointmentColor3"
-        getLabel="GetRibbonLabel"
-        getScreentip="GetRibbonScreentip"
-        onAction="InsertGreenStatusCmd"/>
-      <button
-        id="ribInsertBlueStatusButton"
-        imageMso="AppointmentColor2"
-        getLabel="GetRibbonLabel"
-        getScreentip="GetRibbonScreentip"
-        onAction="InsertBlueStatusCmd"/>
-    </menu>
     <dynamicMenu
       id="ribCustomSnippetsMenu"
       getLabel="GetRibbonLabel"
@@ -1101,6 +1098,12 @@
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
         onAction="ShowContainersCmd"/>
+      <button
+        id="ribManageLayoutsButton"
+        imageMso="WindowsCascade"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="ManageLayoutsCmd"/>
     </menu>
     <separator id="sepShowXml"/>
     <button

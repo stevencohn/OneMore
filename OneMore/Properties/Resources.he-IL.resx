@@ -3914,6 +3914,10 @@ ISO-code then comma then language name</comment>
     <value>נהל מועדפים</value>
     <comment>favorites menu command</comment>
   </data>
+  <data name="ribManageLayoutsButton_Label" xml:space="preserve">
+    <value>נהל פריסות חלונות</value>
+    <comment>extras menu command NODUP</comment>
+  </data>
   <data name="ribManagePluginsButton_Label" xml:space="preserve">
     <value>נהל תוספים שמורים</value>
     <comment>favorites button</comment>

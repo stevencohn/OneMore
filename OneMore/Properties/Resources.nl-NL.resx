@@ -3910,6 +3910,10 @@ Tabblad Help</value>
     <value>Favorieten beheren</value>
     <comment>favorites menu command</comment>
   </data>
+  <data name="ribManageLayoutsButton_Label" xml:space="preserve">
+    <value>Beheer vensterindelingen</value>
+    <comment>extras menu command NODUP</comment>
+  </data>
   <data name="ribManagePluginsButton_Label" xml:space="preserve">
     <value>Beheer opgeslagen plug-ins</value>
     <comment>favorites button</comment>

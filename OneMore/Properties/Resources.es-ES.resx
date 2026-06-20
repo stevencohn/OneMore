@@ -3909,6 +3909,10 @@ Pestaña Ayuda</value>
     <value>Administrar favoritos</value>
     <comment>favorites menu command</comment>
   </data>
+  <data name="ribManageLayoutsButton_Label" xml:space="preserve">
+    <value>Administrar diseños de ventanas</value>
+    <comment>extras menu command NODUP</comment>
+  </data>
   <data name="ribManagePluginsButton_Label" xml:space="preserve">
     <value>Administrar complementos guardados</value>
     <comment>favorites button</comment>
