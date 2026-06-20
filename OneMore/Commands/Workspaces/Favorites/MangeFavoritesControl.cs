@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands.Favorites
 {
+	using River.OneMoreAddIn.Commands.Workspaces;
 	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 
 	/// <summary>
-	/// Hosted by ManageFavoritesDialog. Lets the user organize favorites into folders,
+	/// Hosted by ManageWorkspaceDialog. Lets the user organize favorites into folders,
 	/// reorder them, rename their displayed alias, and delete favorites and folders. All
 	/// edits are staged in memory; nothing is written to the database until Save() is
 	/// called by the hosting dialog's OK handler.
@@ -223,7 +224,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 			{
 				var indent = columnIndex == 0 && favorite.FolderID != 0 ? FavoriteIndent : 0;
 				var foreColorKey =
-					favorite.Status is FavoriteStatus.Suspect or FavoriteStatus.Unknown
+					favorite.Status is TargetStatus.Suspect or TargetStatus.Unknown
 						? "ErrorText"
 						: null;
 
@@ -242,7 +243,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 		private async void ImportFavorites(object sender, EventArgs e)
 		{
-			if (IsDirty() && MoreMessageBox.Show(this, Resx.ManageFavoritesDialog_discard,
+			if (IsDirty() && MoreMessageBox.Show(this, Resx.ManageWorkspaceDialog_discard,
 				MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
 			{
 				return;
@@ -275,7 +276,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 			var collection = RebuildCollection();
 
-			await using var checker = new FavoritesChecker(Logger.Current);
+			await using var checker = new TargetChecker(Logger.Current);
 			if (await checker.InvalidFavorites(collection))
 			{
 				LoadFavorites(collection);
@@ -289,7 +290,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		/// <summary>
 		/// Reconstructs a FavoritesCollection from the favorites/folders currently shown in
 		/// the listview, reusing the same Favorite/FolderRow instances so in-place edits made
-		/// by the caller (e.g. FavoritesChecker) are reflected immediately in the listview.
+		/// by the caller (e.g. TargetChecker) are reflected immediately in the listview.
 		/// </summary>
 		private FavoritesCollection RebuildCollection()
 		{
@@ -704,8 +705,8 @@ namespace River.OneMoreAddIn.Commands.Favorites
 					other.FolderID == favorite.FolderID)
 				.Select(i => ((Favorite)i.Tag).Alias ?? ((Favorite)i.Tag).Name);
 
-			using var dialog = new RenameFavoriteDialog(
-				siblingNames, favorite.Name, favorite.Alias ?? favorite.Name);
+			using var dialog = new PageAliasDialog(siblingNames, favorite.Name,
+				favorite.Alias ?? favorite.Name, Resx.ManageFavoritesControl_renameFavorite);
 
 			if (dialog.ShowDialog(this) != DialogResult.OK)
 			{

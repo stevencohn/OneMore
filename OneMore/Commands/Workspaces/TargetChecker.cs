@@ -1,9 +1,11 @@
-﻿//************************************************************************************************
+//************************************************************************************************
 // Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn.Commands.Favorites
+namespace River.OneMoreAddIn.Commands.Workspaces
 {
+	using River.OneMoreAddIn.Commands.Favorites;
+	using River.OneMoreAddIn.Commands.Layouts;
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
@@ -13,12 +15,12 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 
 	/// <summary>
-	/// Validate the target URI for each favorite.
+	/// Validate the target URI for each page reference - a Favorite or a LayoutWindow.
 	/// </summary>
 	/// <remarks>
 	/// This class needs to stay async so it works seemlessly with the UI
 	/// </remarks>
-	internal class FavoritesChecker : IAsyncDisposable
+	internal class TargetChecker : IAsyncDisposable
 	{
 		private sealed class Notebooks : Dictionary<string, XElement> { }
 
@@ -30,7 +32,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		private XElement rootbooks;
 
 
-		public FavoritesChecker(ILogger logger)
+		public TargetChecker(ILogger logger)
 		{
 			this.logger = logger;
 		}
@@ -58,48 +60,46 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		/// are not reachable, confirm if the Location/Screentip/path is reachable and, if so,
 		/// patch the favorite with an updated ID.
 		/// </summary>
-		/// <param name="favorites">List of favorites to validate</param>
+		/// <param name="collection">The favorites to validate</param>
 		/// <returns>
 		/// Returns True if any invalid favorites are discovered.
 		/// </returns>
 		public async Task<bool> InvalidFavorites(FavoritesCollection collection)
 		{
-			one ??= new OneNote();
-			notebooks ??= new Notebooks();
-
 			var updated = false;
 
 			foreach (var folder in collection.Folders)
 			{
 				if (folder.Items.Any())
 				{
-					updated |= await InvalidFavorites(folder.Items);
+					updated |= await InvalidReferences(folder.Items);
 				}
 			}
 
-			updated |= await InvalidFavorites(collection.Items);
+			updated |= await InvalidReferences(collection.Items);
 
 			return updated;
 		}
 
 
-		private async Task<bool> InvalidFavorites(List<Favorite> favorites)
+		/// <summary>
+		/// Confirm that each window of each layout exists and is reachable by ID. For those
+		/// that are not reachable, confirm if the Location/Screentip/path is reachable and,
+		/// if so, patch the window with an updated ID.
+		/// </summary>
+		/// <param name="collection">The layouts to validate</param>
+		/// <returns>
+		/// Returns True if any invalid layout windows are discovered.
+		/// </returns>
+		public async Task<bool> InvalidLayoutWindow(LayoutsCollection collection)
 		{
 			var updated = false;
 
-			foreach (var favorite in favorites)
+			foreach (var layout in collection.Layouts)
 			{
-				if (!string.IsNullOrWhiteSpace(favorite.NotebookID) &&
-					!string.IsNullOrWhiteSpace(favorite.SectionID))
+				if (layout.Windows.Any())
 				{
-					updated = await ConfirmByID(notebooks, favorite) || updated;
-				}
-
-				// ConfirmByID would only return either Known or Unknown
-				if (favorite.Status == FavoriteStatus.Unknown)
-				{
-					// infer from location and update ID
-					updated = await ConfirmByLocation(notebooks, favorite) || updated;
+					updated |= await InvalidReferences(layout.Windows);
 				}
 			}
 
@@ -107,74 +107,101 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		}
 
 
-		private async Task<bool> ConfirmByID(Notebooks notebooks, Favorite favorite)
+		private async Task<bool> InvalidReferences(IEnumerable<ITargetReference> references)
+		{
+			one ??= new OneNote();
+			notebooks ??= new Notebooks();
+
+			var updated = false;
+
+			foreach (var reference in references)
+			{
+				if (!string.IsNullOrWhiteSpace(reference.NotebookID) &&
+					!string.IsNullOrWhiteSpace(reference.SectionID))
+				{
+					updated = await ConfirmByID(notebooks, reference) || updated;
+				}
+
+				// ConfirmByID would only return either Known or Unknown
+				if (reference.Status == TargetStatus.Unknown)
+				{
+					// infer from location and update ID
+					updated = await ConfirmByLocation(notebooks, reference) || updated;
+				}
+			}
+
+			return updated;
+		}
+
+
+		private async Task<bool> ConfirmByID(Notebooks notebooks, ITargetReference reference)
 		{
 			XElement notebook = null;
-			if (notebooks.ContainsKey(favorite.NotebookID))
+			if (notebooks.ContainsKey(reference.NotebookID))
 			{
-				notebook = notebooks[favorite.NotebookID];
+				notebook = notebooks[reference.NotebookID];
 			}
 			else
 			{
 				try
 				{
-					notebook = await one.GetNotebook(favorite.NotebookID, OneNote.Scope.Pages);
+					notebook = await one.GetNotebook(reference.NotebookID, OneNote.Scope.Pages);
 					if (notebook is not null)
 					{
-						notebooks.Add(favorite.NotebookID, notebook);
+						notebooks.Add(reference.NotebookID, notebook);
 					}
 				}
 				catch (COMException exc) when ((uint)exc.ErrorCode == ErrorCodes.hrObjectMissing)
 				{
-					logger.WriteLine($"broken link to favorite notebook {favorite.Location}");
+					logger.WriteLine($"broken link to notebook {reference.Location}");
 				}
 				catch (Exception exc)
 				{
-					logger.WriteLine($"could not fetch favorite notebook {favorite.Location}", exc);
+					logger.WriteLine($"could not fetch notebook {reference.Location}", exc);
 				}
 			}
 
-			var targetID = favorite.PageID ?? favorite.SectionID;
+			var targetID = reference.PageID ?? reference.SectionID;
 
 			if (notebook is not null &&
 				notebook.Descendants()
 					.FirstOrDefault(e => e.Attribute("ID")?.Value == targetID) is XElement node)
 			{
-				favorite.Status = FavoriteStatus.Known;
+				reference.Status = TargetStatus.Known;
 
 				var name = node.Attribute("name").Value;
-				if (favorite.Name != name)
+				if (reference.Name != name)
 				{
 					// auto-correct page/section name
-					logger.WriteLine($"patching favorite name from '{favorite.Name}' to '{name}'");
-					favorite.Name = name;
+					logger.WriteLine($"patching name from '{reference.Name}' to '{name}'");
+					reference.Name = name;
 					return true;
 				}
 			}
 			else
 			{
-				logger.WriteLine($"broken link to favorite notebook {favorite.Location}");
-				favorite.Status = FavoriteStatus.Unknown;
+				logger.WriteLine($"broken link to notebook {reference.Location}");
+				reference.Status = TargetStatus.Unknown;
 			}
 
 			return false;
 		}
 
 
-		private async Task<bool> ConfirmByLocation(Notebooks notebooks, Favorite favorite)
+		private async Task<bool> ConfirmByLocation(Notebooks notebooks, ITargetReference reference)
 		{
-			bool Broken(Favorite favorite)
+			bool Broken(ITargetReference reference)
 			{
-				logger.WriteLine($"broken favorite {favorite.Location} [{favorite.Name}]");
-				favorite.Status = FavoriteStatus.Suspect;
+				logger.WriteLine($"broken reference {reference.Location} [{reference.Name}]");
+				reference.Status = TargetStatus.Suspect;
 				return false;
 			}
 
-			var parts = favorite.Location.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
+			var parts = reference.Location.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
 			if (parts.Length < 2)
 			{
 				// must be at least: /notebook/section
-				return Broken(favorite);
+				return Broken(reference);
 			}
 
 			// match and cache notebook...
@@ -191,7 +218,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 				if (book is null)
 				{
-					return Broken(favorite);
+					return Broken(reference);
 				}
 
 				var id = book.Attribute("ID").Value;
@@ -213,7 +240,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 			if (parts.Length == 0)
 			{
-				return Broken(favorite);
+				return Broken(reference);
 			}
 
 			var node = notebook;
@@ -231,10 +258,10 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 			if (node is null)
 			{
-				return Broken(favorite);
+				return Broken(reference);
 			}
 
-			favorite.Status = FavoriteStatus.Known;
+			reference.Status = TargetStatus.Known;
 
 			// resolve and path...
 
@@ -254,15 +281,15 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				pageID = null;
 			}
 
-			if (favorite.NotebookID != notebookID ||
-				favorite.SectionID != sectionID ||
-				favorite.PageID != pageID)
+			if (reference.NotebookID != notebookID ||
+				reference.SectionID != sectionID ||
+				reference.PageID != pageID)
 			{
-				logger.WriteLine($"patching favorite IDs {favorite.Location}");
+				logger.WriteLine($"patching IDs {reference.Location}");
 
-				favorite.NotebookID = notebookID;
-				favorite.SectionID = sectionID;
-				favorite.PageID = pageID;
+				reference.NotebookID = notebookID;
+				reference.SectionID = sectionID;
+				reference.PageID = pageID;
 
 				return true;
 			}

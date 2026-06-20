@@ -2,7 +2,7 @@
 // Copyright © 2026 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn.Commands.Favorites
+namespace River.OneMoreAddIn.Commands.Workspaces
 {
 	using System;
 	using System.Drawing;
@@ -13,10 +13,21 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 
 	/// <summary>
-	/// Thin dialog wrapper around FavoritesManagerControl. Owns OK/Cancel; the control owns
-	/// all favorites/folder editing logic and the in-memory staging of changes.
+	/// Which tab should be active when ManageWorkspaceDialog is shown.
 	/// </summary>
-	internal partial class ManageFavoritesDialog : UI.MoreForm
+	internal enum WorkspaceTab
+	{
+		Favorites,
+		Layouts
+	}
+
+
+	/// <summary>
+	/// Thin dialog wrapper hosting the Favorites and Layouts managers as tabs. Owns
+	/// OK/Cancel; each tab's control owns its own editing logic and in-memory staging of
+	/// changes.
+	/// </summary>
+	internal partial class ManageWorkspaceDialog : UI.MoreForm
 	{
 		private const int NoteVisibleMilliseconds = 2400;
 		private const int NoteFadeSteps = 20;
@@ -26,29 +37,44 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		private CancellationTokenSource noteAnimationCancellation;
 
 
-		public ManageFavoritesDialog()
+		public ManageWorkspaceDialog()
 		{
 			InitializeComponent();
 
 			if (NeedsLocalizing())
 			{
-				Text = Resx.ManageFavoritesDialog_Text;
+				Text = Resx.ManageWorkspaceDialog_Text;
 
 				Localize(new string[]
 				{
 					"okButton=word_OK",
-					"cancelButton=word_Cancel"
+					"cancelButton=word_Cancel",
+					"favoritesTab=word_Favorites",
+					"layoutsTab=word_Layouts"
 				});
 			}
 
-			DefaultControl = managerControl;
 			managerControl.FavoritesChecked += ShowCheckCompletedNote;
+			layoutsControl.LayoutsChecked += ShowCheckCompletedNote;
 		}
+
+
+		/// <summary>
+		/// The tab to make active when the dialog is shown. Set by the caller, before
+		/// ShowDialog, based on how the dialog was invoked.
+		/// </summary>
+		public WorkspaceTab ActiveTab { get; set; } = WorkspaceTab.Favorites;
 
 
 		private void BindOnLoad(object sender, EventArgs e)
 		{
 			managerControl.LoadFavorites();
+			layoutsControl.LoadLayouts();
+
+			var index = ActiveTab == WorkspaceTab.Layouts ? 1 : 0;
+			tabs.SelectedIndex = index;
+			DefaultControl = index == 1 ? (Control)layoutsControl : managerControl;
+
 			noteForeColor = noteLabel.ForeColor;
 		}
 
@@ -100,6 +126,12 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				return;
 			}
 
+			if (!layoutsControl.Save())
+			{
+				UI.MoreMessageBox.ShowError(this, "Could not save layouts");
+				return;
+			}
+
 			DialogResult = DialogResult.OK;
 			Close();
 		}
@@ -114,13 +146,11 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				return;
 			}
 
-			if (managerControl.IsDirty())
-			{
-				if (UI.MoreMessageBox.Show(this, Resx.ManageFavoritesDialog_discard,
+			if ((managerControl.IsDirty() || layoutsControl.IsDirty()) &&
+				UI.MoreMessageBox.Show(this, Resx.ManageWorkspaceDialog_discard,
 					MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-				{
-					e.Cancel = true;
-				}
+			{
+				e.Cancel = true;
 			}
 		}
 	}

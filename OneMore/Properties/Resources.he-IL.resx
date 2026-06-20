@@ -1205,6 +1205,22 @@ Total Row Font
     <value>ייצא מועדפים</value>
     <comment>export dialog title</comment>
   </data>
+  <data name="ExportLayoutsCommand_error" xml:space="preserve">
+    <value>שגיאה בייצוא פריסות</value>
+    <comment>message</comment>
+  </data>
+  <data name="ExportLayoutsCommand_exported" xml:space="preserve">
+    <value>{0} חלונות יוצאו אל {1}</value>
+    <comment>message</comment>
+  </data>
+  <data name="ExportLayoutsCommand_OpenFileFilter" xml:space="preserve">
+    <value>קובץ JSON (*.json)|*.json</value>
+    <comment>export dialog</comment>
+  </data>
+  <data name="ExportLayoutsCommand_OpenFileTitle" xml:space="preserve">
+    <value>ייצוא פריסות</value>
+    <comment>export dialog title</comment>
+  </data>
   <data name="Favorites_suspect" xml:space="preserve">
     <value>הדף לא נמצא; ייתכן ששמו שונה או הועבר</value>
     <comment>tooltip</comment>
@@ -1705,6 +1721,22 @@ Total Row Font
     <value>ייבוא ​​מועדפים</value>
     <comment>import dialog title</comment>
   </data>
+  <data name="ImportLayoutsCommand_error" xml:space="preserve">
+    <value>שגיאה בייבוא ​​פריסות</value>
+    <comment>message</comment>
+  </data>
+  <data name="ImportLayoutsCommand_imported" xml:space="preserve">
+    <value>{0} מתוך {1} חלונות פריסה יובאו</value>
+    <comment>message</comment>
+  </data>
+  <data name="ImportLayoutsCommand_OpenFileFilter" xml:space="preserve">
+    <value>קובץ JSON (*.json)|*.json</value>
+    <comment>import dialog</comment>
+  </data>
+  <data name="ImportLayoutsCommand_OpenFileTitle" xml:space="preserve">
+    <value>ייבוא ​​פריסות</value>
+    <comment>import dialog title</comment>
+  </data>
   <data name="ImportOutlookTasksDialog.Text" xml:space="preserve">
     <value>ייבוא ​​משימות מ- Outlook</value>
     <comment>dialog title</comment>
@@ -2028,17 +2060,65 @@ Total Row Font
     <value>מיין את התיקייה הנוכחית</value>
     <comment>toolbar button</comment>
   </data>
-  <data name="ManageFavoritesDialog_discard" xml:space="preserve">
-    <value>למחוק שינויים שלא נשמרו?</value>
-    <comment>message box</comment>
-  </data>
-  <data name="ManageFavoritesDialog_Text" xml:space="preserve">
-    <value>נהל מועדפים</value>
-    <comment>dialog title</comment>
-  </data>
   <data name="ManageFavoritesrControl_deleteConfirmMultiple" xml:space="preserve">
     <value>למחוק {0} פריטים?</value>
     <comment>message box</comment>
+  </data>
+  <data name="ManageLayouts_DeleteMessage" xml:space="preserve">
+    <value>למחוק את {0}?</value>
+    <comment>settings</comment>
+  </data>
+  <data name="ManageLayoutsControl_captureLayout" xml:space="preserve">
+    <value>לכידת פריסת</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_check" xml:space="preserve">
+    <value>בדוק פריסות</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_deleteConfirmMultiple" xml:space="preserve">
+    <value>למחוק {0} פריטים?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ManageLayoutsControl_emptyLayoutHint" xml:space="preserve">
+    <value>ריק - גרור חלונות לכאן</value>
+    <comment>list view hint text</comment>
+  </data>
+  <data name="ManageLayoutsControl_export" xml:space="preserve">
+    <value>ייצוא פריסות</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_import" xml:space="preserve">
+    <value>ייבוא ​​פריסות</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_locationColumn.HeaderText" xml:space="preserve">
+    <value>מִקוּם</value>
+    <comment>settings table column header</comment>
+  </data>
+  <data name="ManageLayoutsControl_renameLayout" xml:space="preserve">
+    <value>שנה שם פריסה</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_renameWindow" xml:space="preserve">
+    <value>שנה את שם החלון</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_restore" xml:space="preserve">
+    <value>שחזר פריסה</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_sort" xml:space="preserve">
+    <value>מיין את הפריסה הנוכחית</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageWorkspaceDialog_discard" xml:space="preserve">
+    <value>למחוק שינויים שלא נשמרו?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ManageWorkspaceDialog_Text" xml:space="preserve">
+    <value>סביבת עבודה</value>
+    <comment>dialog title</comment>
   </data>
   <data name="MangeFavoritesControl_locationColumn.HeaderText" xml:space="preserve">
     <value>מקום</value>
@@ -2281,6 +2361,10 @@ Total Row Font
   <data name="OutlookTaskReport_Week" xml:space="preserve">
     <value>שבוע {0}</value>
     <comment>report</comment>
+  </data>
+  <data name="PageAliasDialog_originalNameLabel" xml:space="preserve">
+    <value>שם מקורי: {0}</value>
+    <comment>label format string</comment>
   </data>
   <data name="PageColorDialog.Text" xml:space="preserve">
     <value>צבע עמוד</value>
@@ -2859,10 +2943,6 @@ ISO-code then comma then language name</comment>
     <value>שנה את שם הסגנון</value>
     <comment>dialog title</comment>
   </data>
-  <data name="RenameFavoriteDialog_originalNameLabel" xml:space="preserve">
-    <value>שם מקורי: {0}</value>
-    <comment>label format string</comment>
-  </data>
   <data name="ReorderDialog.Text" xml:space="preserve">
     <value>סדר מחדש סגנונות</value>
     <comment>dialog title</comment>
@@ -2893,6 +2973,10 @@ ISO-code then comma then language name</comment>
   <data name="ReportRemindersReuseDialog_Text" xml:space="preserve">
     <value>ישן או חדש</value>
     <comment>title</comment>
+  </data>
+  <data name="RestoreLayoutCommand_notFound" xml:space="preserve">
+    <value>הפריסה '{0}' לא נמצאה.</value>
+    <comment>message box</comment>
   </data>
   <data name="ribAboutButton_Label" xml:space="preserve">
     <value>על OneMore</value>
@@ -3146,9 +3230,6 @@ ISO-code then comma then language name</comment>
   <data name="ribChooseColorizerButton_Label" xml:space="preserve">
     <value>צבע</value>
     <comment>ribbon edit</comment>
-  </data>
-  <data name="ribFavoritesButton_Label" xml:space="preserve">
-    <value>בחר מועדף</value>
   </data>
   <data name="ribCleanMenu_Label" xml:space="preserve">
     <value>לְנַקוֹת</value>
@@ -3458,9 +3539,20 @@ ISO-code then comma then language name</comment>
     <value>ייצא את כל המועדפים לקובץ JSON</value>
     <comment>ribbon favorites</comment>
   </data>
+  <data name="ribExportLayoutsButton_Label" xml:space="preserve">
+    <value>ייצוא פריסות</value>
+    <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribExportLayoutsButton_Screentip" xml:space="preserve">
+    <value>ייצא את כל הפריסות לקובץ JSON</value>
+    <comment>ribbon favorites</comment>
+  </data>
   <data name="ribExtrasMenu_Label" xml:space="preserve">
     <value>תוספות</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribFavoritesButton_Label" xml:space="preserve">
+    <value>בחר מועדף</value>
   </data>
   <data name="ribFavoritesMenu_Label" xml:space="preserve">
     <value>מועדפים</value>
@@ -3572,6 +3664,14 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="ribImportFavoritesButton_Screentip" xml:space="preserve">
     <value>ייבא את כל המועדפים מקובץ JSON</value>
+    <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribImportLayoutsButton_Label" xml:space="preserve">
+    <value>ייבוא ​​פריסות</value>
+    <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribImportLayoutsButton_Screentip" xml:space="preserve">
+    <value>ייבא את כל הפריסות מקובץ JSON</value>
     <comment>ribbon favorites</comment>
   </data>
   <data name="ribImportOutlookTasksButton_Label" xml:space="preserve">
@@ -4678,6 +4778,18 @@ ISO-code then comma then language name</comment>
     <value>שמר {0} מתוך {1} דפים ב-{2}</value>
     <comment>save many message</comment>
   </data>
+  <data name="SaveLayoutCommand_error" xml:space="preserve">
+    <value>לא ניתן לשמור את הפריסה.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="SaveLayoutCommand_noWindows" xml:space="preserve">
+    <value>אין חלונות OneNote פתוחים לשמירה.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="SaveLayoutCommand_Text" xml:space="preserve">
+    <value>שמור פריסה</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="SaveSnippet_NeedSelection" xml:space="preserve">
     <value>בחר תוכן לשמירה כקטע קוד חדש</value>
     <comment>error message</comment>
@@ -5741,6 +5853,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Language" xml:space="preserve">
     <value>שפה</value>
+  </data>
+  <data name="word_Layouts" xml:space="preserve">
+    <value>פריסות</value>
   </data>
   <data name="word_Length" xml:space="preserve">
     <value>מֶשֶׁך</value>

@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Commands.Favorites;
+	using River.OneMoreAddIn.Commands.Workspaces;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 
@@ -17,7 +18,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			using var dialog = new ManageFavoritesDialog();
+			using var dialog = new ManageWorkspaceDialog { ActiveTab = WorkspaceTab.Favorites };
 			if (dialog.ShowDialog(owner) == DialogResult.OK)
 			{
 				ribbon?.InvalidateControl(FavoritesMenu.MenuID);

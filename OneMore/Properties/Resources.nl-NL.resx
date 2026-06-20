@@ -1205,6 +1205,22 @@ OneNote-bestand (*.one)</value>
     <value>Favorieten exporteren</value>
     <comment>export dialog title</comment>
   </data>
+  <data name="ExportLayoutsCommand_error" xml:space="preserve">
+    <value>Fout bij het exporteren van lay-outs</value>
+    <comment>message</comment>
+  </data>
+  <data name="ExportLayoutsCommand_exported" xml:space="preserve">
+    <value>{0} vensters geëxporteerd naar {1}</value>
+    <comment>message</comment>
+  </data>
+  <data name="ExportLayoutsCommand_OpenFileFilter" xml:space="preserve">
+    <value>JSON-bestand (*.json)|*.json</value>
+    <comment>export dialog</comment>
+  </data>
+  <data name="ExportLayoutsCommand_OpenFileTitle" xml:space="preserve">
+    <value>Lay-outs exporteren</value>
+    <comment>export dialog title</comment>
+  </data>
   <data name="Favorites_suspect" xml:space="preserve">
     <value>Pagina niet gevonden; het kan zijn hernoemd of verplaatst</value>
     <comment>tooltip</comment>
@@ -1705,6 +1721,22 @@ Gele achtergrond</value>
     <value>Favorieten importeren</value>
     <comment>import dialog title</comment>
   </data>
+  <data name="ImportLayoutsCommand_error" xml:space="preserve">
+    <value>Fout bij het importeren van lay-outs</value>
+    <comment>message</comment>
+  </data>
+  <data name="ImportLayoutsCommand_imported" xml:space="preserve">
+    <value>{0} van {1} lay-outvensters geïmporteerd</value>
+    <comment>message</comment>
+  </data>
+  <data name="ImportLayoutsCommand_OpenFileFilter" xml:space="preserve">
+    <value>JSON-bestand (*.json)|*.json</value>
+    <comment>import dialog</comment>
+  </data>
+  <data name="ImportLayoutsCommand_OpenFileTitle" xml:space="preserve">
+    <value>Lay-outs importeren</value>
+    <comment>import dialog title</comment>
+  </data>
   <data name="ImportOutlookTasksDialog.Text" xml:space="preserve">
     <value>Taken importeren vanuit Outlook</value>
     <comment>dialog title</comment>
@@ -2028,17 +2060,65 @@ Wilt u de bestaande pagina vernieuwen?</value>
     <value>Sorteer de huidige map</value>
     <comment>toolbar button</comment>
   </data>
-  <data name="ManageFavoritesDialog_discard" xml:space="preserve">
-    <value>Niet-opgeslagen wijzigingen verwijderen?</value>
-    <comment>message box</comment>
-  </data>
-  <data name="ManageFavoritesDialog_Text" xml:space="preserve">
-    <value>Beheer favorieten</value>
-    <comment>dialog title</comment>
-  </data>
   <data name="ManageFavoritesrControl_deleteConfirmMultiple" xml:space="preserve">
     <value>{0} items verwijderen?</value>
     <comment>message box</comment>
+  </data>
+  <data name="ManageLayouts_DeleteMessage" xml:space="preserve">
+    <value>{0} verwijderen?</value>
+    <comment>settings</comment>
+  </data>
+  <data name="ManageLayoutsControl_captureLayout" xml:space="preserve">
+    <value>Lay-out vastleggen</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_check" xml:space="preserve">
+    <value>Controleer lay-outs</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_deleteConfirmMultiple" xml:space="preserve">
+    <value>{0} items verwijderen?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ManageLayoutsControl_emptyLayoutHint" xml:space="preserve">
+    <value>Leeg - sleep vensters hierheen</value>
+    <comment>list view hint text</comment>
+  </data>
+  <data name="ManageLayoutsControl_export" xml:space="preserve">
+    <value>Lay-outs exporteren</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_import" xml:space="preserve">
+    <value>Lay-outs importeren</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_locationColumn.HeaderText" xml:space="preserve">
+    <value>Locatie</value>
+    <comment>settings table column header</comment>
+  </data>
+  <data name="ManageLayoutsControl_renameLayout" xml:space="preserve">
+    <value>Naam van lay-out wijzigen</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_renameWindow" xml:space="preserve">
+    <value>Venster hernoemen</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_restore" xml:space="preserve">
+    <value>Herstel lay-out</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageLayoutsControl_sort" xml:space="preserve">
+    <value>Sorteer de huidige lay-out</value>
+    <comment>toolbar button</comment>
+  </data>
+  <data name="ManageWorkspaceDialog_discard" xml:space="preserve">
+    <value>Niet-opgeslagen wijzigingen verwijderen?</value>
+    <comment>message box</comment>
+  </data>
+  <data name="ManageWorkspaceDialog_Text" xml:space="preserve">
+    <value>Werkruimte</value>
+    <comment>dialog title</comment>
   </data>
   <data name="MangeFavoritesControl_locationColumn.HeaderText" xml:space="preserve">
     <value>Plaats</value>
@@ -2281,6 +2361,10 @@ Verschoven</value>
   <data name="OutlookTaskReport_Week" xml:space="preserve">
     <value>week {0}</value>
     <comment>report</comment>
+  </data>
+  <data name="PageAliasDialog_originalNameLabel" xml:space="preserve">
+    <value>Oorspronkelijke naam: {0}</value>
+    <comment>label format string</comment>
   </data>
   <data name="PageColorDialog.Text" xml:space="preserve">
     <value>Paginakleur</value>
@@ -2855,10 +2939,6 @@ Selecteer NO om één lege regel tussen paragrafen te behouden</value>
     <value>Hernoemstijl</value>
     <comment>dialog title</comment>
   </data>
-  <data name="RenameFavoriteDialog_originalNameLabel" xml:space="preserve">
-    <value>Oorspronkelijke naam: {0}</value>
-    <comment>label format string</comment>
-  </data>
   <data name="ReorderDialog.Text" xml:space="preserve">
     <value>Stijlen opnieuw ordenen</value>
     <comment>dialog title</comment>
@@ -2889,6 +2969,10 @@ Selecteer NO om één lege regel tussen paragrafen te behouden</value>
   <data name="ReportRemindersReuseDialog_Text" xml:space="preserve">
     <value>Oud of nieuw</value>
     <comment>title</comment>
+  </data>
+  <data name="RestoreLayoutCommand_notFound" xml:space="preserve">
+    <value>Lay-out '{0}' is niet gevonden.</value>
+    <comment>message box</comment>
   </data>
   <data name="ribAboutButton_Label" xml:space="preserve">
     <value>Over OneMore</value>
@@ -3142,9 +3226,6 @@ Tabblad Help</value>
   <data name="ribChooseColorizerButton_Label" xml:space="preserve">
     <value>Inkleuren</value>
     <comment>ribbon edit</comment>
-  </data>
-  <data name="ribFavoritesButton_Label" xml:space="preserve">
-    <value>Kies Favoriet</value>
   </data>
   <data name="ribCleanMenu_Label" xml:space="preserve">
     <value>Schoon</value>
@@ -3454,9 +3535,20 @@ Tabblad Help</value>
     <value>Exporteer alle favorieten naar een JSON-bestand</value>
     <comment>ribbon favorites</comment>
   </data>
+  <data name="ribExportLayoutsButton_Label" xml:space="preserve">
+    <value>Lay-outs exporteren</value>
+    <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribExportLayoutsButton_Screentip" xml:space="preserve">
+    <value>Exporteer alle lay-outs naar een JSON-bestand</value>
+    <comment>ribbon favorites</comment>
+  </data>
   <data name="ribExtrasMenu_Label" xml:space="preserve">
     <value>Extra's</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
+  </data>
+  <data name="ribFavoritesButton_Label" xml:space="preserve">
+    <value>Kies Favoriet</value>
   </data>
   <data name="ribFavoritesMenu_Label" xml:space="preserve">
     <value>Favorieten</value>
@@ -3568,6 +3660,14 @@ Tabblad Help</value>
   </data>
   <data name="ribImportFavoritesButton_Screentip" xml:space="preserve">
     <value>Importeer alle favorieten uit een JSON-bestand</value>
+    <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribImportLayoutsButton_Label" xml:space="preserve">
+    <value>Lay-outs importeren</value>
+    <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribImportLayoutsButton_Screentip" xml:space="preserve">
+    <value>Importeer alle lay-outs uit een JSON-bestand</value>
     <comment>ribbon favorites</comment>
   </data>
   <data name="ribImportOutlookTasksButton_Label" xml:space="preserve">
@@ -4674,6 +4774,18 @@ Tabblad Help</value>
     <value>{0} van {1} pagina's opgeslagen in {2}</value>
     <comment>save many message</comment>
   </data>
+  <data name="SaveLayoutCommand_error" xml:space="preserve">
+    <value>Kan de lay-out niet opslaan.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="SaveLayoutCommand_noWindows" xml:space="preserve">
+    <value>Er zijn geen geopende OneNote-vensters om op te slaan.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="SaveLayoutCommand_Text" xml:space="preserve">
+    <value>Lay-out opslaan</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="SaveSnippet_NeedSelection" xml:space="preserve">
     <value>Selecteer inhoud om op te slaan als een nieuw fragment</value>
     <comment>error message</comment>
@@ -5737,6 +5849,9 @@ Bedankt!</value>
   </data>
   <data name="word_Language" xml:space="preserve">
     <value>Taal</value>
+  </data>
+  <data name="word_Layouts" xml:space="preserve">
+    <value>Indelingen</value>
   </data>
   <data name="word_Length" xml:space="preserve">
     <value>Lengte</value>
