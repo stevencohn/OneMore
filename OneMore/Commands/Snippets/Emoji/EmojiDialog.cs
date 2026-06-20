@@ -1,4 +1,4 @@
-﻿//************************************************************************************************
+//************************************************************************************************
 // Copyright © 2016 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
@@ -10,21 +10,30 @@ namespace River.OneMoreAddIn.Commands
 	using System.Collections.Generic;
 	using System.Drawing;
 	using System.Linq;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using Resx = Properties.Resources;
 
 
 	/// <summary>
-	/// 
+	///
 	/// </summary>
 	/// <remarks>
-	/// Disposables taken care of in OnClosed.
+	/// Disposables taken care of in OnClosed. Has two views, a curated List (named emojis,
+	/// one image+name per row) and a Grid (every codepoint the installed Segoe UI Emoji
+	/// font supports across the full Unicode range, images only, no names); both support
+	/// multi-select, and selections made in either view are preserved across both.
 	/// </remarks>
 
 	internal partial class EmojiDialog : UI.MoreForm
 	{
+		private const int IconSize = 24;
+		private const int GridIconSize = 48;
+
 		private readonly Emojis emojis;
-		private readonly List<int> selections;
+		private readonly List<Emoji> listSelections;
+		private readonly List<Emoji> gridSelections;
+		private UnicodeEmojis unicodeEmojis;
 
 
 		public EmojiDialog()
@@ -39,25 +48,89 @@ namespace River.OneMoreAddIn.Commands
 				{
 					"introLabel",
 					"okButton=word_OK",
-					"cancelButton=word_Cancel"
+					"cancelButton=word_Cancel",
+					"generalBox",
+					"smileysBox",
+					"peopleBox",
+					"animalsBox",
+					"foodBox",
+					"travelBox",
+					"activitiesBox",
+					"objectsBox",
+					"symbolsBox",
+					"flagsBox"
 				});
 			}
 
-			// must be defined before initializing SelectedIndex
-			selections = new();
+			// must be defined before initializing the selected item
+			listSelections = new();
+			gridSelections = new();
 
 			emojis = new Emojis();
-			emojis.LoadImages();
 
-			emojiBox.ItemHeight = 26;
-			emojiBox.Items.AddRange(emojis.GetNames());
-			emojiBox.SelectedIndex = 0;
+			// the D3D11/Direct2D device must be created on this (UI) thread; touching the
+			// singleton here, before the background scan below ever calls into the shared
+			// IDWriteFactory from another thread, guarantees that's where it happens
+			_ = ColorGlyphRenderer.Instance;
+
+			// forces a tall enough row to comfortably fit the rendered icon; ListView has
+			// no direct RowHeight property, so this is the standard WinForms workaround
+			emojiBox.SmallImageList = new ImageList { ImageSize = new Size(1, IconSize + 2) };
+			emojiBox.GetCellImage = GetListCellImage;
+
+			var names = emojis.GetNames();
+			emojiBox.BeginUpdate();
+			for (var i = 0; i < names.Length; i++)
+			{
+				emojiBox.Items.Add(new ListViewItem(names[i]) { Tag = emojis[i] });
+			}
+			emojiBox.EndUpdate();
+
+			emojiBox.SetColumnProportions(1f);
+
+			if (emojiBox.Items.Count > 0)
+			{
+				emojiBox.Items[0].Selected = true;
+				emojiBox.Items[0].Focused = true;
+			}
+
+			gridBox.LargeImageList = new ImageList { ImageSize = new Size(GridIconSize + 8, GridIconSize + 8) };
+			gridBox.GetItemImage = GetGridItemImage;
+
+			// building the grid (cheap, but population of a few thousand items still costs
+			// something) runs in the background so the dialog opens immediately on the
+			// List tab; the Grid tab populates whenever it's ready, even if the user has
+			// already switched to it
+			_ = LoadGridAsync();
+		}
+
+
+		private async Task LoadGridAsync()
+		{
+			try
+			{
+				var loaded = await Task.Run(() => new UnicodeEmojis());
+
+				if (IsDisposed || Disposing)
+				{
+					loaded.Dispose();
+					return;
+				}
+
+				unicodeEmojis = loaded;
+				ApplyGridFilter();
+			}
+			catch (Exception exc)
+			{
+				Logger.Current.WriteLine("error loading emoji grid", exc);
+			}
 		}
 
 
 		protected override void OnClosed(EventArgs e)
 		{
 			emojis.Dispose();
+			unicodeEmojis?.Dispose();
 		}
 
 		private void OK(object sender, EventArgs e)
@@ -73,67 +146,71 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
-		/// Gets collection of user selected emojis
+		/// Gets collection of user selected emojis, from either or both views
 		/// </summary>
 		/// <returns>A collection of IEmoji</returns>
 		public IEnumerable<IEmoji> GetEmojis()
 		{
 			// pre-dispose images so caller doesn't have to
 			emojis.Dispose();
+			unicodeEmojis?.Dispose();
 
-			foreach (int index in selections)
+			foreach (var emoji in listSelections.Concat(gridSelections))
 			{
-				yield return emojis[index];
+				yield return emoji;
 			}
 		}
 
 
-		private void MeasureIconItemSIze(object sender, MeasureItemEventArgs e)
+		// supplies MoreListView with the dynamically rendered, theme-aware icon for a row;
+		// re-invoked on every paint so the icon's pre-filled background always matches
+		// whatever MoreListView itself is about to fill behind it (selected or not)
+		private Image GetListCellImage(ListViewItem item, int columnIndex)
 		{
-			e.ItemHeight = 26;
-		}
-
-
-		private void DrawIconItem(object sender, DrawItemEventArgs e)
-		{
-			if (DialogResult == DialogResult.OK)
+			if (DialogResult == DialogResult.OK || item.Tag is not Emoji emoji)
 			{
 				// double-click exit
-				return;
+				return null;
 			}
 
-			Brush brush;
+			return RenderEmojiIcon(emoji, item.Selected, IconSize);
+		}
 
-			if ((e.State & (DrawItemState.Selected | DrawItemState.Focus)) > 0)
+
+		// supplies MoreIconListView with the dynamically rendered, theme-aware icon for a
+		// grid cell; same rationale as GetListCellImage
+		private Image GetGridItemImage(ListViewItem item)
+		{
+			if (DialogResult == DialogResult.OK || item.Tag is not Emoji emoji)
 			{
-				e.Graphics.FillRectangle(SystemBrushes.HotTrack, e.Bounds);
-				brush = SystemBrushes.HighlightText;
-			}
-			else
-			{
-				e.Graphics.FillRectangle(SystemBrushes.Window, e.Bounds);
-				brush = SystemBrushes.ControlText;
+				// double-click exit
+				return null;
 			}
 
+			return RenderEmojiIcon(emoji, item.Selected, GridIconSize);
+		}
+
+
+		private Image RenderEmojiIcon(Emoji emoji, bool selected, int sizePx)
+		{
 			try
 			{
-				e.Graphics.DrawImage(emojis[e.Index].Image, new Rectangle
-				{
-					X = e.Bounds.Location.X + 5,
-					Y = e.Bounds.Location.Y + 1,
-					Width = e.Bounds.Height - 2,
-					Height = e.Bounds.Height - 2
-				});
+				var manager = UI.ThemeManager.Instance;
 
-				e.Graphics.DrawString(
-					emojis[e.Index].Name, DefaultFont, brush,
-					e.Bounds.Location.X + 40, e.Bounds.Location.Y + 1);
+				var background = manager.GetColor(selected ? "Highlight" : "ListView");
+				var fallbackColor = emoji.Color is null
+					? manager.GetColor(selected ? "HighlightText" : "ControlText")
+					: ColorTranslator.FromHtml(emoji.Color);
+
+				return emoji.GetImage(selected, sizePx, background, fallbackColor);
 			}
 			catch
 			{
 				// closing?
+				return null;
 			}
 		}
+
 
 		private void DoubleClickItem(object sender, EventArgs e)
 		{
@@ -142,17 +219,174 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void DoSelectedIndexChanged(object sender, EventArgs e)
+		// grows the dialog to comfortably fit the grid the first time it's shown; never
+		// shrinks it back down when returning to the List tab
+		private void DoTabSelected(object sender, EventArgs e)
 		{
-			if (emojiBox.SelectedIndex > -1)
+			if (tabs.SelectedTab != gridTab)
 			{
-				// maintains a list of selection in the order in which they are selected...
-				// with one caveat: doesn't know when a user drags across multiple items
-				// with the mouse bottom-up
-
-				selections.AddRange(emojiBox.SelectedIndices.OfType<int>().Except(selections));
-				selections.RemoveRange(0, selections.Count - emojiBox.SelectedItems.Count);
+				return;
 			}
+
+			var width = Math.Max(Width, 1000);
+			var height = Math.Max(Height, 900);
+
+			if (width != Width || height != Height)
+			{
+				// recenter dialog horizontally
+				Left = ((Left + width) / 2) - (width / 2);
+
+				Size = new Size(width, height);
+			}
+		}
+
+
+		private void DoListSelectionChanged(object sender, EventArgs e)
+		{
+			UpdateSelections(emojiBox, listSelections);
+		}
+
+
+		private void DoGridSelectionChanged(object sender, EventArgs e)
+		{
+			UpdateSelections(gridBox, gridSelections);
+		}
+
+
+		// maintains a list of selections in the order in which they were selected... with
+		// one caveat: doesn't know when a user drags across multiple items with the mouse
+		// bottom-up
+		private static void UpdateSelections(ListView box, List<Emoji> selections)
+		{
+			if (box.SelectedIndices.Count > 0)
+			{
+				var current = box.SelectedItems.Cast<ListViewItem>().Select(i => (Emoji)i.Tag).ToList();
+				selections.AddRange(current.Except(selections));
+				selections.RemoveRange(0, selections.Count - current.Count);
+			}
+		}
+
+
+		// "General" covers any font-supported glyph that isn't part of one of Unicode's
+		// named emoji groups (Emoji.Category is null for those); it's not a real key in
+		// EmojiCategories.json, just the catch-all bucket this dialog presents
+		private const string GeneralCategory = "General";
+
+
+		private void DoCategoryFilterChanged(object sender, EventArgs e)
+		{
+			if (sender is UI.MoreCheckBox box && !box.Checked && GetCheckedCategories().Count == 0)
+			{
+				// keep at least one category checked; re-checking here re-enters this
+				// handler synchronously (Checked is already true by the time the nested
+				// call runs), which applies the filter normally, so just bail afterward
+				box.Checked = true;
+				return;
+			}
+
+			ApplyGridFilter();
+		}
+
+
+		private HashSet<string> GetCheckedCategories()
+		{
+			var checkedCategories = new HashSet<string>();
+
+			if (generalBox.Checked)
+			{
+				checkedCategories.Add(GeneralCategory);
+			}
+
+			if (smileysBox.Checked)
+			{
+				checkedCategories.Add("Smileys & Emotion");
+			}
+
+			if (peopleBox.Checked)
+			{
+				checkedCategories.Add("People & Body");
+			}
+
+			if (animalsBox.Checked)
+			{
+				checkedCategories.Add("Animals & Nature");
+			}
+
+			if (foodBox.Checked)
+			{
+				checkedCategories.Add("Food & Drink");
+			}
+
+			if (travelBox.Checked)
+			{
+				checkedCategories.Add("Travel & Places");
+			}
+
+			if (activitiesBox.Checked)
+			{
+				checkedCategories.Add("Activities");
+			}
+
+			if (objectsBox.Checked)
+			{
+				checkedCategories.Add("Objects");
+			}
+
+			if (symbolsBox.Checked)
+			{
+				checkedCategories.Add("Symbols");
+			}
+
+			if (flagsBox.Checked)
+			{
+				checkedCategories.Add("Flags");
+			}
+
+			return checkedCategories;
+		}
+
+
+		// rebuilds gridBox.Items from the full unicodeEmojis set, keeping only the emoji
+		// whose category checkbox is checked. ListView has no per-item Visible flag, so
+		// filtering means clearing and re-adding rather than hiding.
+		private void ApplyGridFilter()
+		{
+			if (unicodeEmojis is null)
+			{
+				// background load not finished yet; the eventual LoadGridAsync completion
+				// calls this again once it's ready, applying whatever is checked by then
+				return;
+			}
+
+			var checkedCategories = GetCheckedCategories();
+
+			// detach while rebuilding: Items.Clear()/re-add would otherwise fire
+			// SelectedIndexChanged as items are implicitly deselected, and UpdateSelections
+			// would then trim gridSelections down to only what's currently visible,
+			// silently dropping selections that are merely hidden by this filter
+			gridBox.SelectedIndexChanged -= DoGridSelectionChanged;
+
+			gridBox.BeginUpdate();
+			gridBox.Items.Clear();
+			for (var i = 0; i < unicodeEmojis.Count; i++)
+			{
+				var emoji = unicodeEmojis[i];
+				if (!checkedCategories.Contains(emoji.Category ?? GeneralCategory))
+				{
+					continue;
+				}
+
+				var item = new ListViewItem(string.Empty) { Tag = emoji };
+				if (gridSelections.Contains(emoji))
+				{
+					item.Selected = true;
+				}
+
+				gridBox.Items.Add(item);
+			}
+			gridBox.EndUpdate();
+
+			gridBox.SelectedIndexChanged += DoGridSelectionChanged;
 		}
 	}
 }

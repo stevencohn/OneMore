@@ -175,6 +175,18 @@ namespace River.OneMoreAddIn.UI
 
 
 		/// <summary>
+		/// Gets or sets a callback that supplies an optional leading icon to draw at the
+		/// start of a cell, before its text, shifting the text right to make room. When
+		/// null, or when the callback returns null for a given cell, no icon is drawn.
+		/// Unlike SmallImageList/ImageIndex, this is invoked on every paint, so it can
+		/// return a different image depending on the item's current Selected state.
+		/// </summary>
+		[Browsable(false)]
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		public Func<ListViewItem, int, Image> GetCellImage { get; set; }
+
+
+		/// <summary>
 		/// Gets or sets a predicate determining whether the given item can be dragged.
 		/// When null, no item is draggable.
 		/// </summary>
@@ -313,6 +325,16 @@ namespace River.OneMoreAddIn.UI
 			{
 				bounds.X += style.Indent;
 				bounds.Width -= style.Indent;
+			}
+
+			var image = GetCellImage?.Invoke(e.Item, e.ColumnIndex);
+			if (image != null)
+			{
+				e.Graphics.DrawImage(image, bounds.X + 2, bounds.Top + ((bounds.Height - image.Height) / 2));
+
+				var advance = image.Width + 6;
+				bounds.X += advance;
+				bounds.Width -= advance;
 			}
 
 			const TextFormatFlags flags =

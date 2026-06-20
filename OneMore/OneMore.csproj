@@ -327,6 +327,7 @@
       <DependentUpon>VariablesSheet.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Snippets\Emoji\Emojis.cs" />
+    <Compile Include="Commands\Snippets\Emoji\ColorGlyphRenderer.cs" />
     <Compile Include="Commands\Settings\ColorizerSheet.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1019,6 +1020,9 @@
     <Compile Include="UI\MoreListView.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="UI\MoreIconListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UI\MoreMessageBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1450,6 +1454,7 @@
     </None>
     <None Include="Commands\Search\CLAUDE.md" />
     <None Include="Commands\Snippets\Emoji\Emojis.json" />
+    <None Include="Commands\Snippets\Emoji\EmojiCategories.json" />
     <None Include="Colorizer\Languages\golang.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -1514,55 +1519,10 @@
     <EmbeddedResource Include="Commands\Tools\sponsor-dark.png" />
     <Content Include="Commands\Tools\Telemetry\TLogo.png" />
     <Content Include="Commands\Workspaces\Layouts\LayoutsDB.sql" />
-    <Content Include="Properties\Emoji\e_Architecture.png" />
-    <Content Include="Properties\Emoji\e_Automobile.png" />
-    <Content Include="Properties\Emoji\e_BallotBox.png" />
-    <Content Include="Properties\Emoji\e_Bell.png" />
-    <Content Include="Properties\Emoji\e_Bullet.png" />
-    <Content Include="Properties\Emoji\e_Calendar.png" />
-    <Content Include="Properties\Emoji\e_Camera.png" />
     <Content Include="Properties\Emoji\e_CheckMark.png" />
-    <Content Include="Properties\Emoji\e_Circle.png" />
-    <Content Include="Properties\Emoji\e_Clipboard.png" />
-    <Content Include="Properties\Emoji\e_Cloud.png" />
-    <Content Include="Properties\Emoji\e_Copyright.png" />
-    <Content Include="Properties\Emoji\e_Cross.png" />
-    <Content Include="Properties\Emoji\e_Cycling.png" />
-    <Content Include="Properties\Emoji\e_Delta.png" />
-    <Content Include="Properties\Emoji\e_Envelope.png" />
-    <Content Include="Properties\Emoji\e_Eyes.png" />
-    <Content Include="Properties\Emoji\e_Family.png" />
-    <Content Include="Properties\Emoji\e_Financial.png" />
-    <Content Include="Properties\Emoji\e_Flag.png" />
-    <Content Include="Properties\Emoji\e_Folder.png" />
-    <Content Include="Properties\Emoji\e_Globe.png" />
     <Content Include="Properties\Emoji\e_Hammer.png" />
-    <Content Include="Properties\Emoji\e_Heart.png" />
-    <Content Include="Properties\Emoji\e_Interrobang.png" />
     <Content Include="Properties\Emoji\e_Journal.png" />
-    <Content Include="Properties\Emoji\e_LeftwardsArrow.png" />
-    <Content Include="Properties\Emoji\e_Lock.png" />
-    <Content Include="Properties\Emoji\e_Memo.png" />
-    <Content Include="Properties\Emoji\e_Passwords.png" />
-    <Content Include="Properties\Emoji\e_Pencil.png" />
-    <Content Include="Properties\Emoji\e_Pushpin.png" />
-    <Content Include="Properties\Emoji\e_Recycle.png" />
-    <Content Include="Properties\Emoji\e_RightwardsArrow.png" />
-    <Content Include="Properties\Emoji\e_Section.png" />
-    <Content Include="Properties\Emoji\e_Shazam.png" />
     <Content Include="Properties\Emoji\e_Smiley.png" />
-    <Content Include="Properties\Emoji\e_Software.png" />
-    <Content Include="Properties\Emoji\e_Sports.png" />
-    <Content Include="Properties\Emoji\e_SportsEU.png" />
-    <Content Include="Properties\Emoji\e_Star.png" />
-    <Content Include="Properties\Emoji\e_Summary.png" />
-    <Content Include="Properties\Emoji\e_Tasks.png" />
-    <Content Include="Properties\Emoji\e_Tools.png" />
-    <Content Include="Properties\Emoji\e_Travel.png" />
-    <Content Include="Properties\Emoji\e_Video.png" />
-    <Content Include="Properties\Emoji\e_Warning.png" />
-    <Content Include="Properties\Emoji\e_Watch.png" />
-    <Content Include="Properties\Emoji\e_XMark.png" />
     <Content Include="Properties\Images\CustomStyles.png" />
     <Content Include="Properties\Images\DarkCustomStyles.png" />
     <Content Include="Properties\Images\DarkFavorites.png" />
@@ -2024,6 +1984,15 @@
     </PackageReference>
     <PackageReference Include="System.Threading.Tasks.Extensions">
       <Version>4.5.4</Version>
+    </PackageReference>
+    <PackageReference Include="Vortice.Direct2D1">
+      <Version>1.9.143</Version>
+    </PackageReference>
+    <PackageReference Include="Vortice.Direct3D11">
+      <Version>1.9.143</Version>
+    </PackageReference>
+    <PackageReference Include="Vortice.DXGI">
+      <Version>1.9.143</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
