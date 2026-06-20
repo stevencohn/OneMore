@@ -3921,6 +3921,10 @@ Onglet Aide</value>
     <value>Gérer les favoris</value>
     <comment>favorites menu command</comment>
   </data>
+  <data name="ribManageLayoutsButton_Label" xml:space="preserve">
+    <value>Gérer la disposition des fenêtres</value>
+    <comment>extras menu command NODUP</comment>
+  </data>
   <data name="ribManagePluginsButton_Label" xml:space="preserve">
     <value>Gérer les plugins enregistrés</value>
     <comment>favorites button</comment>

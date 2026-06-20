@@ -7,12 +7,12 @@
 
 namespace River.OneMoreAddIn
 {
+	using System.Threading.Tasks;
+	using System.Windows.Forms;
 	using Microsoft.Office.Core;
 	using River.OneMoreAddIn.Commands;
 	using River.OneMoreAddIn.Commands.Favorites;
-	using River.OneMoreAddIn.Commands.Layouts;
-	using System.Threading.Tasks;
-	using System.Windows.Forms;
+	using River.OneMoreAddIn.Commands.Workspaces;
 
 	public partial class AddIn
 	{
@@ -589,7 +589,13 @@ namespace River.OneMoreAddIn
 
 		[Command("ribManageFavoritesButton_Label", Keys.Control | Keys.Alt | Keys.Shift | Keys.F, "ribFavoritesMenu")]
 		public async Task ManageFavoritesCmd(IRibbonControl control)
-			=> await factory.Run<ManageFavoritesCommand>(ribbon);
+			=> await factory.Run<ManageWorkspaceCommand>(WorkspaceTab.Favorites);
+
+
+		[Command("ribManageLayoutsButton_Label", Keys.None, "ribFavoritesMenu")]
+		public async Task ManageLayoutsCmd(IRibbonControl control)
+			=> await factory.Run<ManageWorkspaceCommand>(WorkspaceTab.Layouts);
+
 
 		public async Task ManagePluginsCmd(IRibbonControl control)
 			=> await factory.Run<ManagePluginsCommand>(ribbon);

@@ -820,7 +820,7 @@
       <DependentUpon>PluginsSheet.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Snippets\InsertDateCommand.cs" />
-    <Compile Include="Commands\Workspaces\Favorites\ManageFavoritesCommand.cs" />
+    <Compile Include="Commands\Workspaces\ManageWorkspaceCommand.cs" />
     <Compile Include="Commands\Snippets\InsertSnippetCommand.cs" />
     <Compile Include="Commands\Snippets\ManageSnippetsCommand.cs" />
     <Compile Include="Commands\Snippets\SaveSnippetCommand.cs" />

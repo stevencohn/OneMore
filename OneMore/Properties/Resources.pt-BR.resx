@@ -3910,6 +3910,10 @@ Guia Ajuda</value>
     <value>Gerenciar favoritos</value>
     <comment>favorites menu command</comment>
   </data>
+  <data name="ribManageLayoutsButton_Label" xml:space="preserve">
+    <value>Gerenciar layouts de janelas</value>
+    <comment>extras menu command NODUP</comment>
+  </data>
   <data name="ribManagePluginsButton_Label" xml:space="preserve">
     <value>Gerenciar plug-ins salvos</value>
     <comment>favorites button</comment>

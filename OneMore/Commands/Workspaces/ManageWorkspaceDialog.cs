@@ -56,6 +56,7 @@ namespace River.OneMoreAddIn.Commands.Workspaces
 
 			managerControl.FavoritesChecked += ShowCheckCompletedNote;
 			layoutsControl.LayoutsChecked += ShowCheckCompletedNote;
+			layoutsControl.RestoreRequested += RequestRestoreOnClose;
 		}
 
 
@@ -64,6 +65,15 @@ namespace River.OneMoreAddIn.Commands.Workspaces
 		/// ShowDialog, based on how the dialog was invoked.
 		/// </summary>
 		public WorkspaceTab ActiveTab { get; set; } = WorkspaceTab.Favorites;
+
+
+		/// <summary>
+		/// The name of the layout to restore once this dialog has closed, or null if the user
+		/// didn't request one. Restoring can open new OneNote windows, which requires OneNote's
+		/// main window to not be disabled by this dialog being shown modally - so the caller
+		/// must check this only after ShowDialog returns, never while the dialog is still open.
+		/// </summary>
+		public string RestoreLayoutName { get; private set; }
 
 
 		private void BindOnLoad(object sender, EventArgs e)
@@ -134,6 +144,22 @@ namespace River.OneMoreAddIn.Commands.Workspaces
 
 			DialogResult = DialogResult.OK;
 			Close();
+		}
+
+
+		/// <summary>
+		/// Closes the dialog exactly like OK (saving pending edits first), then - only if that
+		/// save/close actually succeeded - remembers the requested layout so the caller can
+		/// restore it after ShowDialog returns and OneNote's window is no longer disabled.
+		/// </summary>
+		private void RequestRestoreOnClose(object sender, string name)
+		{
+			OK(sender, EventArgs.Empty);
+
+			if (DialogResult == DialogResult.OK)
+			{
+				RestoreLayoutName = name;
+			}
 		}
 
 

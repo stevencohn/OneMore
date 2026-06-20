@@ -3910,6 +3910,10 @@ Zakładka Pomoc</value>
     <value>Zarządzaj ulubionymi</value>
     <comment>favorites menu command</comment>
   </data>
+  <data name="ribManageLayoutsButton_Label" xml:space="preserve">
+    <value>Zarządzaj układami okien</value>
+    <comment>extras menu command NODUP</comment>
+  </data>
   <data name="ribManagePluginsButton_Label" xml:space="preserve">
     <value>Zarządzaj zapisanymi wtyczkami</value>
     <comment>favorites button</comment>

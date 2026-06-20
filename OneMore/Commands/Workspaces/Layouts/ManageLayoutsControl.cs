@@ -51,6 +51,17 @@ namespace River.OneMoreAddIn.Commands.Layouts
 		public event EventHandler LayoutsChecked;
 
 
+		/// <summary>
+		/// Raised when the user clicks Restore Layout, carrying the selected layout's name.
+		/// Restoring can open new OneNote windows, which requires OneNote's main window to
+		/// not be disabled by this control's hosting dialog being shown modally - so this
+		/// control only requests the restore; the hosting dialog closes itself first (saving
+		/// pending edits, like OK) and the restore actually runs only once the dialog (and
+		/// its modal hold on OneNote's window) is gone.
+		/// </summary>
+		public event EventHandler<string> RestoreRequested;
+
+
 		public ManageLayoutsControl()
 		{
 			InitializeComponent();
@@ -677,11 +688,11 @@ namespace River.OneMoreAddIn.Commands.Layouts
 
 
 		/// <summary>
-		/// Restores the selected layout using the normal restore behavior (RestoreLayoutCommand)
-		/// - non-destructively opens any windows that aren't already open, and re-stacks and
-		/// repositions every window belonging to the layout.
+		/// Requests that the selected layout be restored. The actual restore (which can open
+		/// new OneNote windows and therefore can't run while this control's hosting dialog is
+		/// modal) is deferred to whoever is listening for RestoreRequested.
 		/// </summary>
-		private async void RestoreLayout(object sender, EventArgs e)
+		private void RestoreLayout(object sender, EventArgs e)
 		{
 			var item = GetSingleSelectedLayoutItem();
 			if (item == null)
@@ -689,12 +700,7 @@ namespace River.OneMoreAddIn.Commands.Layouts
 				return;
 			}
 
-			var name = ((LayoutRow)item.Tag).Name;
-
-			var command = new RestoreLayoutCommand();
-			command.SetLogger(Logger.Current);
-			command.SetOwner(this);
-			await command.Execute(name);
+			RestoreRequested?.Invoke(this, ((LayoutRow)item.Tag).Name);
 		}
 
 

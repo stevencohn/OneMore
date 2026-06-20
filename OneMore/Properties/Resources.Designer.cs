@@ -5333,7 +5333,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
@@ -5343,7 +5343,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
@@ -5664,7 +5664,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ManageLayoutsControl_renameWindow", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Restore Layout.
         /// </summary>
@@ -5673,7 +5673,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ManageLayoutsControl_restore", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Sort current layout.
         /// </summary>
@@ -9866,6 +9866,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribManageFavoritesButton_Label {
             get {
                 return ResourceManager.GetString("ribManageFavoritesButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage Window Layouts.
+        /// </summary>
+        internal static string ribManageLayoutsButton_Label {
+            get {
+                return ResourceManager.GetString("ribManageLayoutsButton_Label", resourceCulture);
             }
         }
         

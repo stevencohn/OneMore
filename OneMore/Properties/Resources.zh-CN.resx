@@ -3924,6 +3924,10 @@ ISO-code then comma then language name</comment>
     <value>管理收藏夹</value>
     <comment>favorites menu command</comment>
   </data>
+  <data name="ribManageLayoutsButton_Label" xml:space="preserve">
+    <value>管理窗口布局</value>
+    <comment>extras menu command NODUP</comment>
+  </data>
   <data name="ribManagePluginsButton_Label" xml:space="preserve">
     <value>管理已保存的插件</value>
     <comment>favorites button</comment>

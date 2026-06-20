@@ -3946,6 +3946,10 @@ Help Tab</value>
     <value>Manage Favorites</value>
     <comment>favorites menu command NODUP</comment>
   </data>
+  <data name="ribManageLayoutsButton_Label" xml:space="preserve">
+    <value>Manage Window Layouts</value>
+    <comment>extras menu command NODUP</comment>
+  </data>
   <data name="ribManagePluginsButton_Label" xml:space="preserve">
     <value>Manage Saved Plugins</value>
     <comment>ribbon favorites</comment>

@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Commands.Favorites;
+	using River.OneMoreAddIn.Commands.Workspaces;
 	using System;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
@@ -41,7 +42,7 @@ namespace River.OneMoreAddIn.Commands
 
 					if (dialog.Manage)
 					{
-						await factory.Run<ManageFavoritesCommand>(ribbon);
+						await factory.Run<ManageWorkspaceCommand>(WorkspaceTab.Favorites);
 						return;
 					}
 
