@@ -1129,9 +1129,49 @@ Citación</value>
     <value>Insertar emojis</value>
     <comment>dialog title</comment>
   </data>
+  <data name="EmojiDialog_activitiesBox.Text" xml:space="preserve">
+    <value>Actividades</value>
+    <comment>emoji category</comment>
+  </data>
+  <data name="EmojiDialog_animalsBox.Text" xml:space="preserve">
+    <value>Animales y naturaleza</value>
+    <comment>emoji category</comment>
+  </data>
+  <data name="EmojiDialog_flagsBox.Text" xml:space="preserve">
+    <value>Banderas</value>
+    <comment>emoji category</comment>
+  </data>
+  <data name="EmojiDialog_foodBox.Text" xml:space="preserve">
+    <value>Comida y bebida</value>
+    <comment>emoji category</comment>
+  </data>
+  <data name="EmojiDialog_generalBox.Text" xml:space="preserve">
+    <value>General</value>
+    <comment>emoji category</comment>
+  </data>
   <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
     <value>Seleccione uno o más emojis para insertar</value>
     <comment>instructions</comment>
+  </data>
+  <data name="EmojiDialog_objectsBox.Text" xml:space="preserve">
+    <value>Objetos</value>
+    <comment>emoji category</comment>
+  </data>
+  <data name="EmojiDialog_peopleBox.Text" xml:space="preserve">
+    <value>Personas y cuerpo</value>
+    <comment>emoji category</comment>
+  </data>
+  <data name="EmojiDialog_smileysBox.Text" xml:space="preserve">
+    <value>Emoticonos y emociones</value>
+    <comment>emoji category</comment>
+  </data>
+  <data name="EmojiDialog_symbolsBox.Text" xml:space="preserve">
+    <value>Símbolos</value>
+    <comment>emoji category</comment>
+  </data>
+  <data name="EmojiDialog_travelBox.Text" xml:space="preserve">
+    <value>Viajes y lugares</value>
+    <comment>emoji category</comment>
   </data>
   <data name="Error_BodyContext" xml:space="preserve">
     <value>El foco del texto debe estar en el cuerpo de la página</value>
