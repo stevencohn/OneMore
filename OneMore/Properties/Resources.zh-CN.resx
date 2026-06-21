@@ -3094,7 +3094,7 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="ribAdjustImagesButton_Label" xml:space="preserve">
     <value>图像大小与样式调整</value>
-    <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribAdjustImagesButton_Screentip" xml:space="preserve">
     <value>调整所选图像的大小与样式</value>

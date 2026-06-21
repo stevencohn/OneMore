@@ -3078,8 +3078,8 @@ Wähle Nein, um eine leere Zeile zwischen den Absätzen zu halten</value>
     <comment>ribbon search</comment>
   </data>
   <data name="ribAdjustImagesButton_Label" xml:space="preserve">
-    <value>Größe ändern und anpassen</value>
-    <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
+    <value>Bilder bearbeiten</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribAdjustImagesButton_Screentip" xml:space="preserve">
     <value>Ändern Sie die Größe und passen Sie ausgewählte Bilder an</value>

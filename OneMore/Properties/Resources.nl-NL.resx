@@ -3079,8 +3079,8 @@ Selecteer NO om één lege regel tussen paragrafen te behouden</value>
     <comment>ribbon search</comment>
   </data>
   <data name="ribAdjustImagesButton_Label" xml:space="preserve">
-    <value>Formaat wijzigen en aanpassen</value>
-    <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
+    <value>Afbeeldingen bewerken</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribAdjustImagesButton_Screentip" xml:space="preserve">
     <value>Formaat wijzigen en geselecteerde afbeeldingen aanpassen</value>
