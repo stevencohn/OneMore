@@ -1708,7 +1708,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
@@ -1718,7 +1718,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
@@ -1728,7 +1728,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
@@ -1738,7 +1738,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Colors.
         /// </summary>
@@ -2516,68 +2516,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select on or more emojis to insert.
+        ///   Looks up a localized string similar to {
+        ///  &quot;Smileys &amp; Emotion&quot;: [128512,128515,128516,128513,128518,128517,129315,128514,128578,128579,129760,128521,128522,128519,129392,128525,129321,128536,128535,9786,128538,128537,129394,128523,128539,128540,129322,128541,129297,129303,129325,129762,129763,129323,129300,129761,129296,129320,128528,128529,128566,129765,128527,128530,128580,128556,129317,129768,128524,128532,128554,129316,128564,129769,128567,129298,129301,129314,129326,129319,129397,129398,129396,128565,129327,129312,129395,129400,128526,1292 [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string EmojiDialog_introLabel_Text {
+        internal static string EmojiCategories {
             get {
-                return ResourceManager.GetString("EmojiDialog_introLabel.Text", resourceCulture);
+                return ResourceManager.GetString("EmojiCategories", resourceCulture);
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized string similar to General.
-        /// </summary>
-        internal static string EmojiDialog_generalLink_Text {
-            get {
-                return ResourceManager.GetString("EmojiDialog_generalLink.Text", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Smileys &amp; Emotion.
-        /// </summary>
-        internal static string EmojiDialog_smileysLink_Text {
-            get {
-                return ResourceManager.GetString("EmojiDialog_smileysLink.Text", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to People &amp; Body.
-        /// </summary>
-        internal static string EmojiDialog_peopleLink_Text {
-            get {
-                return ResourceManager.GetString("EmojiDialog_peopleLink.Text", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Animals &amp; Nature.
-        /// </summary>
-        internal static string EmojiDialog_animalsLink_Text {
-            get {
-                return ResourceManager.GetString("EmojiDialog_animalsLink.Text", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Food &amp; Drink.
-        /// </summary>
-        internal static string EmojiDialog_foodLink_Text {
-            get {
-                return ResourceManager.GetString("EmojiDialog_foodLink.Text", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Travel &amp; Places.
-        /// </summary>
-        internal static string EmojiDialog_travelLink_Text {
-            get {
-                return ResourceManager.GetString("EmojiDialog_travelLink.Text", resourceCulture);
-            }
-        }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Activities.
         /// </summary>
@@ -2586,25 +2533,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("EmojiDialog_activitiesLink.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
-        ///   Looks up a localized string similar to Objects.
+        ///   Looks up a localized string similar to Animals &amp;&amp; Nature.
         /// </summary>
-        internal static string EmojiDialog_objectsLink_Text {
+        internal static string EmojiDialog_animalsLink_Text {
             get {
-                return ResourceManager.GetString("EmojiDialog_objectsLink.Text", resourceCulture);
+                return ResourceManager.GetString("EmojiDialog_animalsLink.Text", resourceCulture);
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Symbols.
-        /// </summary>
-        internal static string EmojiDialog_symbolsLink_Text {
-            get {
-                return ResourceManager.GetString("EmojiDialog_symbolsLink.Text", resourceCulture);
-            }
-        }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Flags.
         /// </summary>
@@ -2613,13 +2551,103 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("EmojiDialog_flagsLink.Text", resourceCulture);
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Food &amp;&amp; Drink.
+        /// </summary>
+        internal static string EmojiDialog_foodLink_Text {
+            get {
+                return ResourceManager.GetString("EmojiDialog_foodLink.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to General.
+        /// </summary>
+        internal static string EmojiDialog_generalLink_Text {
+            get {
+                return ResourceManager.GetString("EmojiDialog_generalLink.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Palette.
+        /// </summary>
+        internal static string EmojiDialog_gridTab_Text {
+            get {
+                return ResourceManager.GetString("EmojiDialog_gridTab.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select on or more emojis to insert.
+        /// </summary>
+        internal static string EmojiDialog_introLabel_Text {
+            get {
+                return ResourceManager.GetString("EmojiDialog_introLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quick Pick.
+        /// </summary>
+        internal static string EmojiDialog_listTab_Text {
+            get {
+                return ResourceManager.GetString("EmojiDialog_listTab.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Objects.
+        /// </summary>
+        internal static string EmojiDialog_objectsLink_Text {
+            get {
+                return ResourceManager.GetString("EmojiDialog_objectsLink.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to People &amp;&amp; Body.
+        /// </summary>
+        internal static string EmojiDialog_peopleLink_Text {
+            get {
+                return ResourceManager.GetString("EmojiDialog_peopleLink.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Smileys &amp;&amp; Emotion.
+        /// </summary>
+        internal static string EmojiDialog_smileysLink_Text {
+            get {
+                return ResourceManager.GetString("EmojiDialog_smileysLink.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Symbols.
+        /// </summary>
+        internal static string EmojiDialog_symbolsLink_Text {
+            get {
+                return ResourceManager.GetString("EmojiDialog_symbolsLink.Text", resourceCulture);
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Insert Emojis.
         /// </summary>
         internal static string EmojiDialog_Text {
             get {
                 return ResourceManager.GetString("EmojiDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Travel &amp;&amp; Places.
+        /// </summary>
+        internal static string EmojiDialog_travelLink_Text {
+            get {
+                return ResourceManager.GetString("EmojiDialog_travelLink.Text", resourceCulture);
             }
         }
         
@@ -2665,18 +2693,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("Emojis", resourceCulture);
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized string similar to &quot;{
-        ///  &quot;Smileys &amp; Emotion&quot;: [...]
-        ///    [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string EmojiCategories {
-            get {
-                return ResourceManager.GetString("EmojiCategories", resourceCulture);
-            }
-        }
-
+        
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>

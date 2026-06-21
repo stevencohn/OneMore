@@ -13,9 +13,10 @@ namespace River.OneMoreAddIn.UI
 	internal class MoreTabControl : TabControl
 	{
 		private const int Airgap = 4;
-		private const int DefaultTabHeight = 25;
+		private const int DefaultTabHeight = 32;
 		private const int IndicatorSize = 3;
 		private readonly ThemeManager manager;
+		private int tabHeight = DefaultTabHeight;
 
 
 		public MoreTabControl()
@@ -27,7 +28,8 @@ namespace River.OneMoreAddIn.UI
 
 			Alignment = TabAlignment.Top;
 			Margin = new Padding(0);
-			Padding = new Point(0, 0);
+			Padding = new Point(8, 6);
+			ItemSize = new Size(ItemSize.Width, tabHeight);
 
 			manager = ThemeManager.Instance;
 		}
@@ -67,6 +69,19 @@ namespace River.OneMoreAddIn.UI
 		 Description("Inactive tab foreground"), DefaultValue(typeof(string), "ControlText")]
 		public string InactiveTabFore { get; set; } = "ControlText";
 
+
+		[Category("More"),
+		 Description("Tab height"), DefaultValue(DefaultTabHeight)]
+		public int TabHeight
+		{
+			get => tabHeight;
+			set
+			{
+				tabHeight = value;
+				ItemSize = new Size(ItemSize.Width, value);
+				Invalidate();
+			}
+		}
 
 
 		protected override CreateParams CreateParams
@@ -157,19 +172,19 @@ namespace River.OneMoreAddIn.UI
 
 					e.Graphics.DrawString(page.Text, Font, fore,
 						(bounds.X + 2 + ImageList.ImageSize.Width) + 3,
-						(bounds.Height - size.Height) - 3,
+						(bounds.Height - size.Height) / 2f,
 						format);
 				}
 				else
 				{
 					e.Graphics.DrawString(page.Text, Font, fore,
 						bounds.X + 2 + (bounds.Width - size.Width) / 2f,
-						(bounds.Height - size.Height) - 3,
+						(bounds.Height - size.Height) / 2f,
 						format);
 				}
 			}
 
-			top = top == 0 ? DefaultTabHeight - 2 : top - 2;
+			top = top == 0 ? TabHeight - 2 : top - 2;
 			using var pen = new Pen(manager.GetColor(Border), 2);
 
 			// outline: left, bottom, right

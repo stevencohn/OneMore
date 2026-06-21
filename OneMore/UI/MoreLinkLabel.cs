@@ -189,6 +189,13 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
+		/// <summary>
+		/// Suppresses the dotted keyboard-focus rectangle while this link is the active item
+		/// in a nav-style list; the accent bar drawn in OnPaint already conveys that state.
+		/// </summary>
+		protected override bool ShowFocusCues => active ? false : base.ShowFocusCues;
+
+
 		protected override void OnPaint(PaintEventArgs e)
 		{
 			base.OnPaint(e);

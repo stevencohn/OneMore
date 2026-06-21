@@ -1134,47 +1134,55 @@ Cytat</value>
     <value>Wstaw emotikony</value>
     <comment>dialog title</comment>
   </data>
-  <data name="EmojiDialog_activitiesBox.Text" xml:space="preserve">
+  <data name="EmojiDialog_activitiesLink.Text" xml:space="preserve">
     <value>Działania</value>
     <comment>emoji category</comment>
   </data>
-  <data name="EmojiDialog_animalsBox.Text" xml:space="preserve">
+  <data name="EmojiDialog_animalsLink.Text" xml:space="preserve">
     <value>Zwierzęta i przyroda</value>
     <comment>emoji category</comment>
   </data>
-  <data name="EmojiDialog_flagsBox.Text" xml:space="preserve">
+  <data name="EmojiDialog_flagsLink.Text" xml:space="preserve">
     <value>Flagi</value>
     <comment>emoji category</comment>
   </data>
-  <data name="EmojiDialog_foodBox.Text" xml:space="preserve">
+  <data name="EmojiDialog_foodLink.Text" xml:space="preserve">
     <value>Jedzenie i napoje</value>
     <comment>emoji category</comment>
   </data>
-  <data name="EmojiDialog_generalBox.Text" xml:space="preserve">
+  <data name="EmojiDialog_generalLink.Text" xml:space="preserve">
     <value>Ogólny</value>
     <comment>emoji category</comment>
+  </data>
+  <data name="EmojiDialog_gridTab.Text" xml:space="preserve">
+    <value>Paleta</value>
+    <comment>tag</comment>
   </data>
   <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
     <value>Wybierz co najmniej jeden emoji, który chcesz wstawić</value>
     <comment>instructions</comment>
   </data>
-  <data name="EmojiDialog_objectsBox.Text" xml:space="preserve">
+  <data name="EmojiDialog_listTab.Text" xml:space="preserve">
+    <value>Szybki wybór</value>
+    <comment>tab</comment>
+  </data>
+  <data name="EmojiDialog_objectsLink.Text" xml:space="preserve">
     <value>Obiekty</value>
     <comment>emoji category</comment>
   </data>
-  <data name="EmojiDialog_peopleBox.Text" xml:space="preserve">
+  <data name="EmojiDialog_peopleLink.Text" xml:space="preserve">
     <value>Ludzie i ciało</value>
     <comment>emoji category</comment>
   </data>
-  <data name="EmojiDialog_smileysBox.Text" xml:space="preserve">
+  <data name="EmojiDialog_smileysLink.Text" xml:space="preserve">
     <value>Buźki i emocje</value>
     <comment>emoji category</comment>
   </data>
-  <data name="EmojiDialog_symbolsBox.Text" xml:space="preserve">
+  <data name="EmojiDialog_symbolsLink.Text" xml:space="preserve">
     <value>Symbolika</value>
     <comment>emoji category</comment>
   </data>
-  <data name="EmojiDialog_travelBox.Text" xml:space="preserve">
+  <data name="EmojiDialog_travelLink.Text" xml:space="preserve">
     <value>Podróże i miejsca</value>
     <comment>emoji category</comment>
   </data>

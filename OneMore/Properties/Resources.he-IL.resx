@@ -1134,47 +1134,55 @@ Total Row Font
     <value>הכנס אמוג'י</value>
     <comment>dialog title</comment>
   </data>
-  <data name="EmojiDialog_activitiesBox.Text" xml:space="preserve">
+  <data name="EmojiDialog_activitiesLink.Text" xml:space="preserve">
     <value>פעילויות</value>
     <comment>emoji category</comment>
   </data>
-  <data name="EmojiDialog_animalsBox.Text" xml:space="preserve">
+  <data name="EmojiDialog_animalsLink.Text" xml:space="preserve">
     <value>בעלי חיים וטבע</value>
     <comment>emoji category</comment>
   </data>
-  <data name="EmojiDialog_flagsBox.Text" xml:space="preserve">
+  <data name="EmojiDialog_flagsLink.Text" xml:space="preserve">
     <value>דגלים</value>
     <comment>emoji category</comment>
   </data>
-  <data name="EmojiDialog_foodBox.Text" xml:space="preserve">
+  <data name="EmojiDialog_foodLink.Text" xml:space="preserve">
     <value>אוכל ושתייה</value>
     <comment>emoji category</comment>
   </data>
-  <data name="EmojiDialog_generalBox.Text" xml:space="preserve">
+  <data name="EmojiDialog_generalLink.Text" xml:space="preserve">
     <value>כְּלָלִי</value>
     <comment>emoji category</comment>
+  </data>
+  <data name="EmojiDialog_gridTab.Text" xml:space="preserve">
+    <value>לוּחַ הַצְבָעִים</value>
+    <comment>tag</comment>
   </data>
   <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
     <value>בחר באימוג'י או יותר להוספה</value>
     <comment>instructions</comment>
   </data>
-  <data name="EmojiDialog_objectsBox.Text" xml:space="preserve">
+  <data name="EmojiDialog_listTab.Text" xml:space="preserve">
+    <value>בחירה מהירה</value>
+    <comment>tab</comment>
+  </data>
+  <data name="EmojiDialog_objectsLink.Text" xml:space="preserve">
     <value>חפצים</value>
     <comment>emoji category</comment>
   </data>
-  <data name="EmojiDialog_peopleBox.Text" xml:space="preserve">
+  <data name="EmojiDialog_peopleLink.Text" xml:space="preserve">
     <value>אנשים וגוף</value>
     <comment>emoji category</comment>
   </data>
-  <data name="EmojiDialog_smileysBox.Text" xml:space="preserve">
+  <data name="EmojiDialog_smileysLink.Text" xml:space="preserve">
     <value>סמיילי ורגש</value>
     <comment>emoji category</comment>
   </data>
-  <data name="EmojiDialog_symbolsBox.Text" xml:space="preserve">
+  <data name="EmojiDialog_symbolsLink.Text" xml:space="preserve">
     <value>סמלים</value>
     <comment>emoji category</comment>
   </data>
-  <data name="EmojiDialog_travelBox.Text" xml:space="preserve">
+  <data name="EmojiDialog_travelLink.Text" xml:space="preserve">
     <value>נסיעות ומקומות</value>
     <comment>emoji category</comment>
   </data>
