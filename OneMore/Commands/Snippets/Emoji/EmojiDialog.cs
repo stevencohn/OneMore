@@ -234,7 +234,7 @@ namespace River.OneMoreAddIn.Commands
 			if (width != Width || height != Height)
 			{
 				// recenter dialog horizontally
-				Left = ((Left + width) / 2) - (width / 2);
+				Left = (Left + (Width / 2)) - (width / 2);
 
 				Size = new Size(width, height);
 			}
