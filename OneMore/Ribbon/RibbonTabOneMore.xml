@@ -165,12 +165,12 @@
         getScreentip="GetRibbonScreentip"
         onAction="InsertEmojiCmd"/>
       <button
-        id="ribInsertInfoBoxButton"
-        imageMso="Info"
+        id="ribInsertNoteBoxButton"
+        getImage="GetRibbonImageByID"
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
-        onAction="InsertInfoBoxCmd"
-        keytip="IB"/>
+        onAction="InsertNoteBoxCmd"
+        keytip="NB"/>
       <button
         id="ribInsertTextBoxButton"
         imageMso="TextBoxInsert"
@@ -245,13 +245,13 @@
       size="normal"
       keytip="CB"/>
     <button
-      id="ribInsertNoteBoxButton"
-      getImage="GetRibbonImageByID"
+      id="ribInsertInfoBoxButton"
+      imageMso="Info"
       getLabel="GetRibbonLabel"
       getScreentip="GetRibbonScreentip"
-      onAction="InsertNoteBoxCmd"
+      onAction="InsertInfoBoxCmd"
       size="normal"
-      keytip="NB"/>
+      keytip="IB"/>
     <dynamicMenu
       id="ribCustomSnippetsMenu"
       getLabel="GetRibbonLabel"
@@ -419,6 +419,47 @@
   </group>
 
   <group id="ribOneMoreEvenMoreGroup" getLabel="GetRibbonLabel" getImage="GetOneMoreRibbonImage">
+    <splitButton id="ribImagesSplitButton" size="large">
+      <button
+        id="ribAdjustImagesButton"
+        imageMso="PictureStylesGallery"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="AdjustImagesCmd"/>
+      <menu id="ribImagesSplitMenu">
+        <button
+          id="ribAddCaptionButton"
+          imageMso="CaptionInsert"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="AddCaptionCmd"/>
+        <button
+          id="ribCompressImagesButton"
+          imageMso="PictureCompress"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="CompressImagesCmd"/>
+        <button
+          id="ribCropImageButton"
+          imageMso="PictureCrop"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="CropImageCmd"/>
+        <button
+          id="ribOpenImageWithButton"
+          imageMso="PictureInsertFromFile"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="OpenImageWithCmd"/>
+        <button
+          id="ribStylizeImagesButton"
+          imageMso="GroupPictureStyles"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="StylizeImagesCmd"/>
+      </menu>
+    </splitButton>
+    <separator id="sepImageSplit"/>
     <menu id="ribCleanMenu" getLabel="GetRibbonLabel" imageMso="Clear" showImage="true" keytip="CL">
       <button
         id="ribBreakingButton"
@@ -681,30 +722,6 @@
     </menu>
     <menu id="ribImagesMenu" getLabel="GetRibbonLabel" imageMso="ObjectPictureFill" showImage="true" keytip="IM">
       <button
-        id="ribAddCaptionButton"
-        imageMso="CaptionInsert"
-        getLabel="GetRibbonLabel"
-        getScreentip="GetRibbonScreentip"
-        onAction="AddCaptionCmd"/>
-      <button
-        id="ribCompressImagesButton"
-        imageMso="DrawingCanvasFit"
-        getLabel="GetRibbonLabel"
-        getScreentip="GetRibbonScreentip"
-        onAction="CompressImagesCmd"/>
-      <button
-        id="ribCropImageButton"
-        imageMso="PictureCrop"
-        getLabel="GetRibbonLabel"
-        getScreentip="GetRibbonScreentip"
-        onAction="CropImageCmd"/>
-      <button
-        id="ribOpenImageWithButton"
-        imageMso="PictureInsertFromFile"
-        getLabel="GetRibbonLabel"
-        getScreentip="GetRibbonScreentip"
-        onAction="OpenImageWithCmd"/>
-      <button
         id="ribMermaidButton"
         imageMso="CreateDiagram"
         getLabel="GetRibbonLabel"
@@ -718,16 +735,10 @@
         onAction="PlantUmlCmd"/>
       <button
         id="ribPasteImageButton"
-        imageMso="PasteSpecialDialog"
+        imageMso="PasteAsPictureMenu"
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
         onAction="PasteImageCmd"/>
-      <button
-        id="ribAdjustImagesButton"
-        imageMso="GroupPictureCompress"
-        getLabel="GetRibbonLabel"
-        getScreentip="GetRibbonScreentip"
-        onAction="AdjustImagesCmd"/>
       <button
         id="ribSelectImagesButton"
         imageMso="AdpDiagramArrangeSelection"
@@ -740,12 +751,6 @@
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
         onAction="SelectInkCmd"/>
-      <button
-        id="ribStylizeImagesButton"
-        imageMso="GroupPictureStyles"
-        getLabel="GetRibbonLabel"
-        getScreentip="GetRibbonScreentip"
-        onAction="StylizeImagesCmd"/>
       <button
         id="ribStackBackgroundImagesButton"
         imageMso="GroupBorder"

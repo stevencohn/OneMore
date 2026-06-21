@@ -3090,8 +3090,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon search</comment>
   </data>
   <data name="ribAdjustImagesButton_Label" xml:space="preserve">
-    <value>تغيير حجم وتعديل</value>
-    <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
+    <value>تحرير الصور</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribAdjustImagesButton_Screentip" xml:space="preserve">
     <value>تغيير حجم الصور المحددة وضبطها</value>

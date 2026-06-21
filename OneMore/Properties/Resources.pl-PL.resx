@@ -3079,8 +3079,8 @@ Wybierz Nie, aby zachować jedną pustą linię między akapitami</value>
     <comment>ribbon search</comment>
   </data>
   <data name="ribAdjustImagesButton_Label" xml:space="preserve">
-    <value>Zmień rozmiar i dostosuj</value>
-    <comment>Ribbon OneMore menu item, Resize selected image(s)</comment>
+    <value>Edytuj obrazy</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribAdjustImagesButton_Screentip" xml:space="preserve">
     <value>Zmień rozmiar i dostosuj wybrane obrazy</value>
