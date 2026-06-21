@@ -1702,223 +1702,13 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap e_Architecture {
-            get {
-                object obj = ResourceManager.GetObject("e_Architecture", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap e_Automobile {
-            get {
-                object obj = ResourceManager.GetObject("e_Automobile", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap e_BallotBox {
-            get {
-                object obj = ResourceManager.GetObject("e_BallotBox", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap e_Bell {
-            get {
-                object obj = ResourceManager.GetObject("e_Bell", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap e_Bullet {
-            get {
-                object obj = ResourceManager.GetObject("e_Bullet", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap e_Calendar {
-            get {
-                object obj = ResourceManager.GetObject("e_Calendar", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap e_Camera {
-            get {
-                object obj = ResourceManager.GetObject("e_Camera", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap e_CheckMark {
             get {
                 object obj = ResourceManager.GetObject("e_CheckMark", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap e_Circle {
-            get {
-                object obj = ResourceManager.GetObject("e_Circle", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap e_Clipboard {
-            get {
-                object obj = ResourceManager.GetObject("e_Clipboard", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap e_Cloud {
-            get {
-                object obj = ResourceManager.GetObject("e_Cloud", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap e_Copyright {
-            get {
-                object obj = ResourceManager.GetObject("e_Copyright", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap e_Cross {
-            get {
-                object obj = ResourceManager.GetObject("e_Cross", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap e_Cycling {
-            get {
-                object obj = ResourceManager.GetObject("e_Cycling", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap e_Delta {
-            get {
-                object obj = ResourceManager.GetObject("e_Delta", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap e_Envelope {
-            get {
-                object obj = ResourceManager.GetObject("e_Envelope", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap e_Eyes {
-            get {
-                object obj = ResourceManager.GetObject("e_Eyes", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap e_Family {
-            get {
-                object obj = ResourceManager.GetObject("e_Family", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap e_Financial {
-            get {
-                object obj = ResourceManager.GetObject("e_Financial", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap e_Flag {
-            get {
-                object obj = ResourceManager.GetObject("e_Flag", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap e_Folder {
-            get {
-                object obj = ResourceManager.GetObject("e_Folder", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap e_Globe {
-            get {
-                object obj = ResourceManager.GetObject("e_Globe", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
+
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
@@ -1928,27 +1718,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap e_Heart {
-            get {
-                object obj = ResourceManager.GetObject("e_Heart", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap e_Interrobang {
-            get {
-                object obj = ResourceManager.GetObject("e_Interrobang", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
+
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
@@ -1958,107 +1728,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap e_LeftwardsArrow {
-            get {
-                object obj = ResourceManager.GetObject("e_LeftwardsArrow", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap e_Lock {
-            get {
-                object obj = ResourceManager.GetObject("e_Lock", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap e_Memo {
-            get {
-                object obj = ResourceManager.GetObject("e_Memo", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap e_Passwords {
-            get {
-                object obj = ResourceManager.GetObject("e_Passwords", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap e_Pencil {
-            get {
-                object obj = ResourceManager.GetObject("e_Pencil", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap e_Pushpin {
-            get {
-                object obj = ResourceManager.GetObject("e_Pushpin", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap e_Recycle {
-            get {
-                object obj = ResourceManager.GetObject("e_Recycle", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap e_RightwardsArrow {
-            get {
-                object obj = ResourceManager.GetObject("e_RightwardsArrow", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap e_Section {
-            get {
-                object obj = ResourceManager.GetObject("e_Section", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap e_Shazam {
-            get {
-                object obj = ResourceManager.GetObject("e_Shazam", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
+
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
@@ -2068,127 +1738,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap e_Software {
-            get {
-                object obj = ResourceManager.GetObject("e_Software", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap e_Sports {
-            get {
-                object obj = ResourceManager.GetObject("e_Sports", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap e_SportsEU {
-            get {
-                object obj = ResourceManager.GetObject("e_SportsEU", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap e_Star {
-            get {
-                object obj = ResourceManager.GetObject("e_Star", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap e_Summary {
-            get {
-                object obj = ResourceManager.GetObject("e_Summary", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap e_Tasks {
-            get {
-                object obj = ResourceManager.GetObject("e_Tasks", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap e_Tools {
-            get {
-                object obj = ResourceManager.GetObject("e_Tools", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap e_Travel {
-            get {
-                object obj = ResourceManager.GetObject("e_Travel", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap e_Video {
-            get {
-                object obj = ResourceManager.GetObject("e_Video", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap e_Warning {
-            get {
-                object obj = ResourceManager.GetObject("e_Warning", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap e_Watch {
-            get {
-                object obj = ResourceManager.GetObject("e_Watch", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap e_XMark {
-            get {
-                object obj = ResourceManager.GetObject("e_XMark", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Colors.
         /// </summary>
@@ -2973,7 +2523,97 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("EmojiDialog_introLabel.Text", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to General.
+        /// </summary>
+        internal static string EmojiDialog_generalBox_Text {
+            get {
+                return ResourceManager.GetString("EmojiDialog_generalBox.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Smileys &amp; Emotion.
+        /// </summary>
+        internal static string EmojiDialog_smileysBox_Text {
+            get {
+                return ResourceManager.GetString("EmojiDialog_smileysBox.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to People &amp; Body.
+        /// </summary>
+        internal static string EmojiDialog_peopleBox_Text {
+            get {
+                return ResourceManager.GetString("EmojiDialog_peopleBox.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Animals &amp; Nature.
+        /// </summary>
+        internal static string EmojiDialog_animalsBox_Text {
+            get {
+                return ResourceManager.GetString("EmojiDialog_animalsBox.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Food &amp; Drink.
+        /// </summary>
+        internal static string EmojiDialog_foodBox_Text {
+            get {
+                return ResourceManager.GetString("EmojiDialog_foodBox.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Travel &amp; Places.
+        /// </summary>
+        internal static string EmojiDialog_travelBox_Text {
+            get {
+                return ResourceManager.GetString("EmojiDialog_travelBox.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Activities.
+        /// </summary>
+        internal static string EmojiDialog_activitiesBox_Text {
+            get {
+                return ResourceManager.GetString("EmojiDialog_activitiesBox.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Objects.
+        /// </summary>
+        internal static string EmojiDialog_objectsBox_Text {
+            get {
+                return ResourceManager.GetString("EmojiDialog_objectsBox.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Symbols.
+        /// </summary>
+        internal static string EmojiDialog_symbolsBox_Text {
+            get {
+                return ResourceManager.GetString("EmojiDialog_symbolsBox.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Flags.
+        /// </summary>
+        internal static string EmojiDialog_flagsBox_Text {
+            get {
+                return ResourceManager.GetString("EmojiDialog_flagsBox.Text", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Insert Emojis.
         /// </summary>
@@ -3025,7 +2665,18 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("Emojis", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;{
+        ///  &quot;Smileys &amp; Emotion&quot;: [...]
+        ///    [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string EmojiCategories {
+            get {
+                return ResourceManager.GetString("EmojiCategories", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
