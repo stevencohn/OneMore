@@ -1143,23 +1143,23 @@ Citation</value>
     <value>Insert Emojis</value>
     <comment>dialog title</comment>
   </data>
-  <data name="EmojiDialog_activitiesBox.Text" xml:space="preserve">
+  <data name="EmojiDialog_activitiesLink.Text" xml:space="preserve">
     <value>Activities</value>
     <comment>emoji category</comment>
   </data>
-  <data name="EmojiDialog_animalsBox.Text" xml:space="preserve">
+  <data name="EmojiDialog_animalsLink.Text" xml:space="preserve">
     <value>Animals &amp;&amp; Nature</value>
     <comment>emoji category</comment>
   </data>
-  <data name="EmojiDialog_flagsBox.Text" xml:space="preserve">
+  <data name="EmojiDialog_flagsLink.Text" xml:space="preserve">
     <value>Flags</value>
     <comment>emoji category</comment>
   </data>
-  <data name="EmojiDialog_foodBox.Text" xml:space="preserve">
+  <data name="EmojiDialog_foodLink.Text" xml:space="preserve">
     <value>Food &amp;&amp; Drink</value>
     <comment>emoji category</comment>
   </data>
-  <data name="EmojiDialog_generalBox.Text" xml:space="preserve">
+  <data name="EmojiDialog_generalLink.Text" xml:space="preserve">
     <value>General</value>
     <comment>emoji category</comment>
   </data>
@@ -1167,23 +1167,23 @@ Citation</value>
     <value>Select on or more emojis to insert</value>
     <comment>instructions</comment>
   </data>
-  <data name="EmojiDialog_objectsBox.Text" xml:space="preserve">
+  <data name="EmojiDialog_objectsLink.Text" xml:space="preserve">
     <value>Objects</value>
     <comment>emoji category</comment>
   </data>
-  <data name="EmojiDialog_peopleBox.Text" xml:space="preserve">
+  <data name="EmojiDialog_peopleLink.Text" xml:space="preserve">
     <value>People &amp;&amp; Body</value>
     <comment>emoji category</comment>
   </data>
-  <data name="EmojiDialog_smileysBox.Text" xml:space="preserve">
+  <data name="EmojiDialog_smileysLink.Text" xml:space="preserve">
     <value>Smileys &amp;&amp; Emotion</value>
     <comment>emoji category</comment>
   </data>
-  <data name="EmojiDialog_symbolsBox.Text" xml:space="preserve">
+  <data name="EmojiDialog_symbolsLink.Text" xml:space="preserve">
     <value>Symbols</value>
     <comment>emoji category</comment>
   </data>
-  <data name="EmojiDialog_travelBox.Text" xml:space="preserve">
+  <data name="EmojiDialog_travelLink.Text" xml:space="preserve">
     <value>Travel &amp;&amp; Places</value>
     <comment>emoji category</comment>
   </data>

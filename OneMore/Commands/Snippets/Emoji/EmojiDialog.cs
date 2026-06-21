@@ -33,7 +33,9 @@ namespace River.OneMoreAddIn.Commands
 		private readonly Emojis emojis;
 		private readonly List<Emoji> listSelections;
 		private readonly List<Emoji> gridSelections;
+		private readonly Dictionary<string, ListViewItem> categoryStartItems = new();
 		private UnicodeEmojis unicodeEmojis;
+		private UI.MoreLinkLabel activeCategoryLink;
 
 
 		public EmojiDialog()
@@ -49,16 +51,16 @@ namespace River.OneMoreAddIn.Commands
 					"introLabel",
 					"okButton=word_OK",
 					"cancelButton=word_Cancel",
-					"generalBox",
-					"smileysBox",
-					"peopleBox",
-					"animalsBox",
-					"foodBox",
-					"travelBox",
-					"activitiesBox",
-					"objectsBox",
-					"symbolsBox",
-					"flagsBox"
+					"generalLink",
+					"smileysLink",
+					"peopleLink",
+					"animalsLink",
+					"foodLink",
+					"travelLink",
+					"activitiesLink",
+					"objectsLink",
+					"symbolsLink",
+					"flagsLink"
 				});
 			}
 
@@ -97,6 +99,10 @@ namespace River.OneMoreAddIn.Commands
 			gridBox.LargeImageList = new ImageList { ImageSize = new Size(GridIconSize + 8, GridIconSize + 8) };
 			gridBox.GetItemImage = GetGridItemImage;
 
+			// generalLink.Active=true is set in the designer to match the grid's initial
+			// scroll position (top, i.e. General); keep this field in sync with it
+			activeCategoryLink = generalLink;
+
 			// building the grid (cheap, but population of a few thousand items still costs
 			// something) runs in the background so the dialog opens immediately on the
 			// List tab; the Grid tab populates whenever it's ready, even if the user has
@@ -124,7 +130,7 @@ namespace River.OneMoreAddIn.Commands
 				// to its final dimensions - see the comment there for why that matters
 				if (tabs.SelectedTab == gridTab)
 				{
-					ApplyGridFilter();
+					PopulateGrid();
 				}
 			}
 			catch (Exception exc)
@@ -235,7 +241,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			var width = Math.Max(Width, 1000);
+			var width = Math.Max(Width, 1180);
 			var height = Math.Max(Height, 900);
 
 			if (width != Width || height != Height)
@@ -251,11 +257,10 @@ namespace River.OneMoreAddIn.Commands
 			// them earlier - while this tab wasn't yet selected and the dialog was still
 			// at its small initial size - left clicks and scrolling silently out of sync
 			// with what was actually drawn. Populating here instead, after the resize
-			// above and only once this tab is actually showing, is the same recipe that
-			// already fixed it for category toggles: rebuild Items while the tab is live.
+			// above and only once this tab is actually showing, avoids that entirely.
 			if (unicodeEmojis != null && gridBox.Items.Count == 0)
 			{
-				ApplyGridFilter();
+				PopulateGrid();
 			}
 		}
 
@@ -291,121 +296,86 @@ namespace River.OneMoreAddIn.Commands
 		// EmojiCategories.json, just the catch-all bucket this dialog presents
 		private const string GeneralCategory = "General";
 
-
-		private void DoCategoryFilterChanged(object sender, EventArgs e)
+		// fixed display order for the category links in categoryPanel, and the order
+		// their emoji are grouped into within gridBox
+		private static readonly string[] CategoryOrder =
 		{
-			if (sender is UI.MoreCheckBox box && !box.Checked && GetCheckedCategories().Count == 0)
+			GeneralCategory,
+			"Smileys & Emotion",
+			"People & Body",
+			"Animals & Nature",
+			"Food & Drink",
+			"Travel & Places",
+			"Activities",
+			"Objects",
+			"Symbols",
+			"Flags"
+		};
+
+
+		// scrolls gridBox so the clicked category's first item lands at the top of the
+		// viewport; ListView.TopItem only supports Details/List view, so for a LargeIcon
+		// view like gridBox, the scroll delta is computed directly from the item's
+		// current bounds (already relative to the current scroll position) instead
+		private void DoCategoryLinkClicked(object sender, EventArgs e)
+		{
+			if (sender is not UI.MoreLinkLabel link ||
+				!categoryStartItems.TryGetValue((string)link.Tag, out var item))
 			{
-				// keep at least one category checked; re-checking here re-enters this
-				// handler synchronously (Checked is already true by the time the nested
-				// call runs), which applies the filter normally, so just bail afterward
-				box.Checked = true;
 				return;
 			}
 
-			ApplyGridFilter();
+			activeCategoryLink.Active = false;
+			link.Active = true;
+			activeCategoryLink = link;
+
+			var dy = item.Bounds.Top;
+			if (dy != 0)
+			{
+				Native.SendMessage(gridBox.Handle, Native.LVM_SCROLL, 0, dy);
+			}
 		}
 
 
-		private HashSet<string> GetCheckedCategories()
-		{
-			var checkedCategories = new HashSet<string>();
-
-			if (generalBox.Checked)
-			{
-				checkedCategories.Add(GeneralCategory);
-			}
-
-			if (smileysBox.Checked)
-			{
-				checkedCategories.Add("Smileys & Emotion");
-			}
-
-			if (peopleBox.Checked)
-			{
-				checkedCategories.Add("People & Body");
-			}
-
-			if (animalsBox.Checked)
-			{
-				checkedCategories.Add("Animals & Nature");
-			}
-
-			if (foodBox.Checked)
-			{
-				checkedCategories.Add("Food & Drink");
-			}
-
-			if (travelBox.Checked)
-			{
-				checkedCategories.Add("Travel & Places");
-			}
-
-			if (activitiesBox.Checked)
-			{
-				checkedCategories.Add("Activities");
-			}
-
-			if (objectsBox.Checked)
-			{
-				checkedCategories.Add("Objects");
-			}
-
-			if (symbolsBox.Checked)
-			{
-				checkedCategories.Add("Symbols");
-			}
-
-			if (flagsBox.Checked)
-			{
-				checkedCategories.Add("Flags");
-			}
-
-			return checkedCategories;
-		}
-
-
-		// rebuilds gridBox.Items from the full unicodeEmojis set, keeping only the emoji
-		// whose category checkbox is checked. ListView has no per-item Visible flag, so
-		// filtering means clearing and re-adding rather than hiding.
-		private void ApplyGridFilter()
+		// groups every emoji in unicodeEmojis into gridBox by category - General first,
+		// then the 9 Unicode groups in CategoryOrder - so each category link has one
+		// contiguous section to scroll to; unicodeEmojis is already codepoint-sorted, so
+		// a single bucketing pass preserves that order within each category. Runs exactly
+		// once, only the first time the Grid tab is shown (see DoTabSelected and
+		// LoadGridAsync), so there's never anything selected yet to preserve through
+		// this build.
+		private void PopulateGrid()
 		{
 			if (unicodeEmojis is null)
 			{
 				// background load not finished yet; the eventual LoadGridAsync completion
-				// calls this again once it's ready, applying whatever is checked by then
+				// calls this again once it's ready
 				return;
 			}
 
-			var checkedCategories = GetCheckedCategories();
-
-			// detach while rebuilding: Items.Clear()/re-add would otherwise fire
-			// SelectedIndexChanged as items are implicitly deselected, and UpdateSelections
-			// would then trim gridSelections down to only what's currently visible,
-			// silently dropping selections that are merely hidden by this filter
-			gridBox.SelectedIndexChanged -= DoGridSelectionChanged;
-
-			gridBox.BeginUpdate();
-			gridBox.Items.Clear();
+			var buckets = CategoryOrder.ToDictionary(c => c, c => new List<Emoji>());
 			for (var i = 0; i < unicodeEmojis.Count; i++)
 			{
 				var emoji = unicodeEmojis[i];
-				if (!checkedCategories.Contains(emoji.Category ?? GeneralCategory))
-				{
-					continue;
-				}
+				buckets[emoji.Category ?? GeneralCategory].Add(emoji);
+			}
 
-				var item = new ListViewItem(string.Empty) { Tag = emoji };
-				if (gridSelections.Contains(emoji))
+			gridBox.BeginUpdate();
+			foreach (var category in CategoryOrder)
+			{
+				var bucket = buckets[category];
+				for (var i = 0; i < bucket.Count; i++)
 				{
-					item.Selected = true;
-				}
+					var item = new ListViewItem(string.Empty) { Tag = bucket[i] };
+					gridBox.Items.Add(item);
 
-				gridBox.Items.Add(item);
+					if (i == 0)
+					{
+						categoryStartItems[category] = item;
+					}
+				}
 			}
 			gridBox.EndUpdate();
-
-			gridBox.SelectedIndexChanged += DoGridSelectionChanged;
 		}
 	}
 }

@@ -37,16 +37,16 @@ namespace River.OneMoreAddIn.Commands
 			this.nameColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.gridTab = new System.Windows.Forms.TabPage();
 			this.categoryPanel = new River.OneMoreAddIn.UI.MorePanel();
-			this.generalBox = new River.OneMoreAddIn.UI.MoreCheckBox();
-			this.smileysBox = new River.OneMoreAddIn.UI.MoreCheckBox();
-			this.peopleBox = new River.OneMoreAddIn.UI.MoreCheckBox();
-			this.animalsBox = new River.OneMoreAddIn.UI.MoreCheckBox();
-			this.foodBox = new River.OneMoreAddIn.UI.MoreCheckBox();
-			this.travelBox = new River.OneMoreAddIn.UI.MoreCheckBox();
-			this.activitiesBox = new River.OneMoreAddIn.UI.MoreCheckBox();
-			this.objectsBox = new River.OneMoreAddIn.UI.MoreCheckBox();
-			this.symbolsBox = new River.OneMoreAddIn.UI.MoreCheckBox();
-			this.flagsBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.generalLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
+			this.smileysLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
+			this.peopleLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
+			this.animalsLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
+			this.foodLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
+			this.travelLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
+			this.activitiesLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
+			this.objectsLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
+			this.symbolsLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
+			this.flagsLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.gridBox = new River.OneMoreAddIn.UI.MoreIconListView();
 			this.introLabel = new System.Windows.Forms.Label();
 			this.tabs.SuspendLayout();
@@ -155,16 +155,16 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.categoryPanel.BottomBorderColor = System.Drawing.SystemColors.ActiveBorder;
 			this.categoryPanel.BottomBorderSize = 0;
-			this.categoryPanel.Controls.Add(this.generalBox);
-			this.categoryPanel.Controls.Add(this.smileysBox);
-			this.categoryPanel.Controls.Add(this.peopleBox);
-			this.categoryPanel.Controls.Add(this.animalsBox);
-			this.categoryPanel.Controls.Add(this.foodBox);
-			this.categoryPanel.Controls.Add(this.travelBox);
-			this.categoryPanel.Controls.Add(this.activitiesBox);
-			this.categoryPanel.Controls.Add(this.objectsBox);
-			this.categoryPanel.Controls.Add(this.symbolsBox);
-			this.categoryPanel.Controls.Add(this.flagsBox);
+			this.categoryPanel.Controls.Add(this.generalLink);
+			this.categoryPanel.Controls.Add(this.smileysLink);
+			this.categoryPanel.Controls.Add(this.peopleLink);
+			this.categoryPanel.Controls.Add(this.animalsLink);
+			this.categoryPanel.Controls.Add(this.foodLink);
+			this.categoryPanel.Controls.Add(this.travelLink);
+			this.categoryPanel.Controls.Add(this.activitiesLink);
+			this.categoryPanel.Controls.Add(this.objectsLink);
+			this.categoryPanel.Controls.Add(this.symbolsLink);
+			this.categoryPanel.Controls.Add(this.flagsLink);
 			this.categoryPanel.Dock = System.Windows.Forms.DockStyle.Left;
 			this.categoryPanel.Location = new System.Drawing.Point(0, 0);
 			this.categoryPanel.Name = "categoryPanel";
@@ -175,186 +175,177 @@ namespace River.OneMoreAddIn.Commands
 			this.categoryPanel.TopBorderColor = System.Drawing.SystemColors.Control;
 			this.categoryPanel.TopBorderSize = 0;
 			// 
-			// generalBox
-			// 
-			this.generalBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
-			this.generalBox.Checked = true;
-			this.generalBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.generalBox.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.generalBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.generalBox.Location = new System.Drawing.Point(8, 10);
-			this.generalBox.Name = "generalBox";
-			this.generalBox.Size = new System.Drawing.Size(155, 25);
-			this.generalBox.StylizeImage = false;
-			this.generalBox.TabIndex = 0;
-			this.generalBox.Text = "General";
-			this.generalBox.ThemedBack = null;
-			this.generalBox.ThemedFore = null;
-			this.generalBox.UseVisualStyleBackColor = true;
-			this.generalBox.CheckedChanged += new System.EventHandler(this.DoCategoryFilterChanged);
-			// 
-			// smileysBox
-			// 
-			this.smileysBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
-			this.smileysBox.Checked = true;
-			this.smileysBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.smileysBox.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.smileysBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.smileysBox.Location = new System.Drawing.Point(8, 40);
-			this.smileysBox.Name = "smileysBox";
-			this.smileysBox.Size = new System.Drawing.Size(185, 25);
-			this.smileysBox.StylizeImage = false;
-			this.smileysBox.TabIndex = 1;
-			this.smileysBox.Text = "Smileys && Emotion";
-			this.smileysBox.ThemedBack = null;
-			this.smileysBox.ThemedFore = null;
-			this.smileysBox.UseVisualStyleBackColor = true;
-			this.smileysBox.CheckedChanged += new System.EventHandler(this.DoCategoryFilterChanged);
-			// 
-			// peopleBox
-			// 
-			this.peopleBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
-			this.peopleBox.Checked = true;
-			this.peopleBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.peopleBox.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.peopleBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.peopleBox.Location = new System.Drawing.Point(8, 70);
-			this.peopleBox.Name = "peopleBox";
-			this.peopleBox.Size = new System.Drawing.Size(155, 25);
-			this.peopleBox.StylizeImage = false;
-			this.peopleBox.TabIndex = 2;
-			this.peopleBox.Text = "People && Body";
-			this.peopleBox.ThemedBack = null;
-			this.peopleBox.ThemedFore = null;
-			this.peopleBox.UseVisualStyleBackColor = true;
-			this.peopleBox.CheckedChanged += new System.EventHandler(this.DoCategoryFilterChanged);
-			// 
-			// animalsBox
-			// 
-			this.animalsBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
-			this.animalsBox.Checked = true;
-			this.animalsBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.animalsBox.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.animalsBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.animalsBox.Location = new System.Drawing.Point(8, 100);
-			this.animalsBox.Name = "animalsBox";
-			this.animalsBox.Size = new System.Drawing.Size(174, 25);
-			this.animalsBox.StylizeImage = false;
-			this.animalsBox.TabIndex = 3;
-			this.animalsBox.Text = "Animals && Nature";
-			this.animalsBox.ThemedBack = null;
-			this.animalsBox.ThemedFore = null;
-			this.animalsBox.UseVisualStyleBackColor = true;
-			this.animalsBox.CheckedChanged += new System.EventHandler(this.DoCategoryFilterChanged);
-			// 
-			// foodBox
-			// 
-			this.foodBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
-			this.foodBox.Checked = true;
-			this.foodBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.foodBox.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.foodBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.foodBox.Location = new System.Drawing.Point(8, 130);
-			this.foodBox.Name = "foodBox";
-			this.foodBox.Size = new System.Drawing.Size(155, 25);
-			this.foodBox.StylizeImage = false;
-			this.foodBox.TabIndex = 4;
-			this.foodBox.Text = "Food && Drink";
-			this.foodBox.ThemedBack = null;
-			this.foodBox.ThemedFore = null;
-			this.foodBox.UseVisualStyleBackColor = true;
-			this.foodBox.CheckedChanged += new System.EventHandler(this.DoCategoryFilterChanged);
-			// 
-			// travelBox
-			// 
-			this.travelBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
-			this.travelBox.Checked = true;
-			this.travelBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.travelBox.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.travelBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.travelBox.Location = new System.Drawing.Point(8, 160);
-			this.travelBox.Name = "travelBox";
-			this.travelBox.Size = new System.Drawing.Size(162, 25);
-			this.travelBox.StylizeImage = false;
-			this.travelBox.TabIndex = 5;
-			this.travelBox.Text = "Travel && Places";
-			this.travelBox.ThemedBack = null;
-			this.travelBox.ThemedFore = null;
-			this.travelBox.UseVisualStyleBackColor = true;
-			this.travelBox.CheckedChanged += new System.EventHandler(this.DoCategoryFilterChanged);
-			// 
-			// activitiesBox
-			// 
-			this.activitiesBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
-			this.activitiesBox.Checked = true;
-			this.activitiesBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.activitiesBox.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.activitiesBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.activitiesBox.Location = new System.Drawing.Point(8, 190);
-			this.activitiesBox.Name = "activitiesBox";
-			this.activitiesBox.Size = new System.Drawing.Size(155, 25);
-			this.activitiesBox.StylizeImage = false;
-			this.activitiesBox.TabIndex = 6;
-			this.activitiesBox.Text = "Activities";
-			this.activitiesBox.ThemedBack = null;
-			this.activitiesBox.ThemedFore = null;
-			this.activitiesBox.UseVisualStyleBackColor = true;
-			this.activitiesBox.CheckedChanged += new System.EventHandler(this.DoCategoryFilterChanged);
-			// 
-			// objectsBox
-			// 
-			this.objectsBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
-			this.objectsBox.Checked = true;
-			this.objectsBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.objectsBox.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.objectsBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.objectsBox.Location = new System.Drawing.Point(8, 220);
-			this.objectsBox.Name = "objectsBox";
-			this.objectsBox.Size = new System.Drawing.Size(155, 25);
-			this.objectsBox.StylizeImage = false;
-			this.objectsBox.TabIndex = 7;
-			this.objectsBox.Text = "Objects";
-			this.objectsBox.ThemedBack = null;
-			this.objectsBox.ThemedFore = null;
-			this.objectsBox.UseVisualStyleBackColor = true;
-			this.objectsBox.CheckedChanged += new System.EventHandler(this.DoCategoryFilterChanged);
-			// 
-			// symbolsBox
-			// 
-			this.symbolsBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
-			this.symbolsBox.Checked = true;
-			this.symbolsBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.symbolsBox.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.symbolsBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.symbolsBox.Location = new System.Drawing.Point(8, 250);
-			this.symbolsBox.Name = "symbolsBox";
-			this.symbolsBox.Size = new System.Drawing.Size(155, 25);
-			this.symbolsBox.StylizeImage = false;
-			this.symbolsBox.TabIndex = 8;
-			this.symbolsBox.Text = "Symbols";
-			this.symbolsBox.ThemedBack = null;
-			this.symbolsBox.ThemedFore = null;
-			this.symbolsBox.UseVisualStyleBackColor = true;
-			this.symbolsBox.CheckedChanged += new System.EventHandler(this.DoCategoryFilterChanged);
-			// 
-			// flagsBox
-			// 
-			this.flagsBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
-			this.flagsBox.Checked = true;
-			this.flagsBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.flagsBox.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.flagsBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.flagsBox.Location = new System.Drawing.Point(8, 280);
-			this.flagsBox.Name = "flagsBox";
-			this.flagsBox.Size = new System.Drawing.Size(155, 25);
-			this.flagsBox.StylizeImage = false;
-			this.flagsBox.TabIndex = 9;
-			this.flagsBox.Text = "Flags";
-			this.flagsBox.ThemedBack = null;
-			this.flagsBox.ThemedFore = null;
-			this.flagsBox.UseVisualStyleBackColor = true;
-			this.flagsBox.CheckedChanged += new System.EventHandler(this.DoCategoryFilterChanged);
-			// 
+			// generalLink
+			//
+			this.generalLink.Active = true;
+			this.generalLink.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+			this.generalLink.AutoSize = false;
+			this.generalLink.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+			this.generalLink.Location = new System.Drawing.Point(8, 10);
+			this.generalLink.Name = "generalLink";
+			this.generalLink.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
+			this.generalLink.Size = new System.Drawing.Size(184, 20);
+			this.generalLink.TabIndex = 0;
+			this.generalLink.TabStop = true;
+			this.generalLink.Tag = "General";
+			this.generalLink.Text = "General";
+			this.generalLink.ThemedBack = null;
+			this.generalLink.ThemedFore = null;
+			this.generalLink.Click += new System.EventHandler(this.DoCategoryLinkClicked);
+			//
+			// smileysLink
+			//
+			this.smileysLink.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+			this.smileysLink.AutoSize = false;
+			this.smileysLink.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+			this.smileysLink.Location = new System.Drawing.Point(8, 40);
+			this.smileysLink.Name = "smileysLink";
+			this.smileysLink.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
+			this.smileysLink.Size = new System.Drawing.Size(184, 20);
+			this.smileysLink.TabIndex = 1;
+			this.smileysLink.TabStop = true;
+			this.smileysLink.Tag = "Smileys & Emotion";
+			this.smileysLink.Text = "Smileys && Emotion";
+			this.smileysLink.ThemedBack = null;
+			this.smileysLink.ThemedFore = null;
+			this.smileysLink.Click += new System.EventHandler(this.DoCategoryLinkClicked);
+			//
+			// peopleLink
+			//
+			this.peopleLink.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+			this.peopleLink.AutoSize = false;
+			this.peopleLink.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+			this.peopleLink.Location = new System.Drawing.Point(8, 70);
+			this.peopleLink.Name = "peopleLink";
+			this.peopleLink.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
+			this.peopleLink.Size = new System.Drawing.Size(184, 20);
+			this.peopleLink.TabIndex = 2;
+			this.peopleLink.TabStop = true;
+			this.peopleLink.Tag = "People & Body";
+			this.peopleLink.Text = "People && Body";
+			this.peopleLink.ThemedBack = null;
+			this.peopleLink.ThemedFore = null;
+			this.peopleLink.Click += new System.EventHandler(this.DoCategoryLinkClicked);
+			//
+			// animalsLink
+			//
+			this.animalsLink.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+			this.animalsLink.AutoSize = false;
+			this.animalsLink.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+			this.animalsLink.Location = new System.Drawing.Point(8, 100);
+			this.animalsLink.Name = "animalsLink";
+			this.animalsLink.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
+			this.animalsLink.Size = new System.Drawing.Size(184, 20);
+			this.animalsLink.TabIndex = 3;
+			this.animalsLink.TabStop = true;
+			this.animalsLink.Tag = "Animals & Nature";
+			this.animalsLink.Text = "Animals && Nature";
+			this.animalsLink.ThemedBack = null;
+			this.animalsLink.ThemedFore = null;
+			this.animalsLink.Click += new System.EventHandler(this.DoCategoryLinkClicked);
+			//
+			// foodLink
+			//
+			this.foodLink.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+			this.foodLink.AutoSize = false;
+			this.foodLink.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+			this.foodLink.Location = new System.Drawing.Point(8, 130);
+			this.foodLink.Name = "foodLink";
+			this.foodLink.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
+			this.foodLink.Size = new System.Drawing.Size(184, 20);
+			this.foodLink.TabIndex = 4;
+			this.foodLink.TabStop = true;
+			this.foodLink.Tag = "Food & Drink";
+			this.foodLink.Text = "Food && Drink";
+			this.foodLink.ThemedBack = null;
+			this.foodLink.ThemedFore = null;
+			this.foodLink.Click += new System.EventHandler(this.DoCategoryLinkClicked);
+			//
+			// travelLink
+			//
+			this.travelLink.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+			this.travelLink.AutoSize = false;
+			this.travelLink.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+			this.travelLink.Location = new System.Drawing.Point(8, 160);
+			this.travelLink.Name = "travelLink";
+			this.travelLink.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
+			this.travelLink.Size = new System.Drawing.Size(184, 20);
+			this.travelLink.TabIndex = 5;
+			this.travelLink.TabStop = true;
+			this.travelLink.Tag = "Travel & Places";
+			this.travelLink.Text = "Travel && Places";
+			this.travelLink.ThemedBack = null;
+			this.travelLink.ThemedFore = null;
+			this.travelLink.Click += new System.EventHandler(this.DoCategoryLinkClicked);
+			//
+			// activitiesLink
+			//
+			this.activitiesLink.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+			this.activitiesLink.AutoSize = false;
+			this.activitiesLink.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+			this.activitiesLink.Location = new System.Drawing.Point(8, 190);
+			this.activitiesLink.Name = "activitiesLink";
+			this.activitiesLink.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
+			this.activitiesLink.Size = new System.Drawing.Size(184, 20);
+			this.activitiesLink.TabIndex = 6;
+			this.activitiesLink.TabStop = true;
+			this.activitiesLink.Tag = "Activities";
+			this.activitiesLink.Text = "Activities";
+			this.activitiesLink.ThemedBack = null;
+			this.activitiesLink.ThemedFore = null;
+			this.activitiesLink.Click += new System.EventHandler(this.DoCategoryLinkClicked);
+			//
+			// objectsLink
+			//
+			this.objectsLink.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+			this.objectsLink.AutoSize = false;
+			this.objectsLink.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+			this.objectsLink.Location = new System.Drawing.Point(8, 220);
+			this.objectsLink.Name = "objectsLink";
+			this.objectsLink.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
+			this.objectsLink.Size = new System.Drawing.Size(184, 20);
+			this.objectsLink.TabIndex = 7;
+			this.objectsLink.TabStop = true;
+			this.objectsLink.Tag = "Objects";
+			this.objectsLink.Text = "Objects";
+			this.objectsLink.ThemedBack = null;
+			this.objectsLink.ThemedFore = null;
+			this.objectsLink.Click += new System.EventHandler(this.DoCategoryLinkClicked);
+			//
+			// symbolsLink
+			//
+			this.symbolsLink.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+			this.symbolsLink.AutoSize = false;
+			this.symbolsLink.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+			this.symbolsLink.Location = new System.Drawing.Point(8, 250);
+			this.symbolsLink.Name = "symbolsLink";
+			this.symbolsLink.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
+			this.symbolsLink.Size = new System.Drawing.Size(184, 20);
+			this.symbolsLink.TabIndex = 8;
+			this.symbolsLink.TabStop = true;
+			this.symbolsLink.Tag = "Symbols";
+			this.symbolsLink.Text = "Symbols";
+			this.symbolsLink.ThemedBack = null;
+			this.symbolsLink.ThemedFore = null;
+			this.symbolsLink.Click += new System.EventHandler(this.DoCategoryLinkClicked);
+			//
+			// flagsLink
+			//
+			this.flagsLink.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+			this.flagsLink.AutoSize = false;
+			this.flagsLink.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+			this.flagsLink.Location = new System.Drawing.Point(8, 280);
+			this.flagsLink.Name = "flagsLink";
+			this.flagsLink.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
+			this.flagsLink.Size = new System.Drawing.Size(184, 20);
+			this.flagsLink.TabIndex = 9;
+			this.flagsLink.TabStop = true;
+			this.flagsLink.Tag = "Flags";
+			this.flagsLink.Text = "Flags";
+			this.flagsLink.ThemedBack = null;
+			this.flagsLink.ThemedFore = null;
+			this.flagsLink.Click += new System.EventHandler(this.DoCategoryLinkClicked);
+			//
 			// gridBox
 			// 
 			this.gridBox.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -417,16 +408,16 @@ namespace River.OneMoreAddIn.Commands
 		private System.Windows.Forms.TabPage gridTab;
 		private UI.MoreIconListView gridBox;
 		private UI.MorePanel categoryPanel;
-		private UI.MoreCheckBox generalBox;
-		private UI.MoreCheckBox smileysBox;
-		private UI.MoreCheckBox peopleBox;
-		private UI.MoreCheckBox animalsBox;
-		private UI.MoreCheckBox foodBox;
-		private UI.MoreCheckBox travelBox;
-		private UI.MoreCheckBox activitiesBox;
-		private UI.MoreCheckBox objectsBox;
-		private UI.MoreCheckBox symbolsBox;
-		private UI.MoreCheckBox flagsBox;
+		private UI.MoreLinkLabel generalLink;
+		private UI.MoreLinkLabel smileysLink;
+		private UI.MoreLinkLabel peopleLink;
+		private UI.MoreLinkLabel animalsLink;
+		private UI.MoreLinkLabel foodLink;
+		private UI.MoreLinkLabel travelLink;
+		private UI.MoreLinkLabel activitiesLink;
+		private UI.MoreLinkLabel objectsLink;
+		private UI.MoreLinkLabel symbolsLink;
+		private UI.MoreLinkLabel flagsLink;
 		private System.Windows.Forms.Label introLabel;
 	}
 }
