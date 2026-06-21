@@ -51,6 +51,8 @@ namespace River.OneMoreAddIn.Commands
 					"introLabel",
 					"okButton=word_OK",
 					"cancelButton=word_Cancel",
+					"listTab",
+					"gridTab",
 					"generalLink",
 					"smileysLink",
 					"peopleLink",

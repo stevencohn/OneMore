@@ -116,7 +116,7 @@ namespace River.OneMoreAddIn.Commands
 			this.listTab.Name = "listTab";
 			this.listTab.Size = new System.Drawing.Size(364, 595);
 			this.listTab.TabIndex = 0;
-			this.listTab.Text = "List";
+			this.listTab.Text = "Quick Pick";
 			// 
 			// emojiBox
 			// 
@@ -149,7 +149,7 @@ namespace River.OneMoreAddIn.Commands
 			this.gridTab.Name = "gridTab";
 			this.gridTab.Size = new System.Drawing.Size(364, 595);
 			this.gridTab.TabIndex = 1;
-			this.gridTab.Text = "Grid";
+			this.gridTab.Text = "Palette";
 			// 
 			// categoryPanel
 			// 

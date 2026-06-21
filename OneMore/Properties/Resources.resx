@@ -1163,9 +1163,17 @@ Citation</value>
     <value>General</value>
     <comment>emoji category</comment>
   </data>
+  <data name="EmojiDialog_gridTab.Text" xml:space="preserve">
+    <value>Palette</value>
+    <comment>tag</comment>
+  </data>
   <data name="EmojiDialog_introLabel.Text" xml:space="preserve">
     <value>Select on or more emojis to insert</value>
     <comment>instructions</comment>
+  </data>
+  <data name="EmojiDialog_listTab.Text" xml:space="preserve">
+    <value>Quick Pick</value>
+    <comment>tab</comment>
   </data>
   <data name="EmojiDialog_objectsLink.Text" xml:space="preserve">
     <value>Objects</value>
