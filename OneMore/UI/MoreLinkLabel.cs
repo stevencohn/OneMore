@@ -15,10 +15,13 @@ namespace River.OneMoreAddIn.UI
 	/// </summary>
 	internal class MoreLinkLabel : LinkLabel, ILoadControl
 	{
+		private const int BarWidth = 3;
+
 		private readonly IntPtr hcursor;
 		private Color back;
-		private Color fore;
+		private Color themedLinkColor;
 		private bool selected;
+		private bool active;
 		private LinkLabelLinkClickedEventHandler linkClicked;
 
 
@@ -26,7 +29,6 @@ namespace River.OneMoreAddIn.UI
 		{
 			Cursor = Cursors.Hand;
 			hcursor = Native.LoadCursor(IntPtr.Zero, Native.IDC_HAND);
-			fore = Color.Empty;
 
 			ActiveLinkColor = Color.MediumOrchid;
 			LinkColor = Color.MediumOrchid;
@@ -85,6 +87,29 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
+		/// <summary>
+		/// Gets or sets whether this link is the current "active" item in a vertical list
+		/// of nav-style links, drawn with an accent bar along its left edge instead of the
+		/// full-row highlight that <see cref="Selected"/> uses. Active items keep the normal
+		/// themed hyperlink color; inactive items render in plain ControlText instead, so
+		/// only the active item reads as a link. Reserve left padding (e.g. Padding.Left =
+		/// 8) on the control so the bar doesn't overlap the text.
+		/// </summary>
+		public bool Active
+		{
+			get => active;
+			set
+			{
+				if (active != value)
+				{
+					active = value;
+					ApplyRestingColor();
+					Invalidate();
+				}
+			}
+		}
+
+
 		public bool StrictColors { get; set; }
 
 
@@ -124,13 +149,12 @@ namespace River.OneMoreAddIn.UI
 			{
 				var manager = ThemeManager.Instance;
 
-				var foreColor = !string.IsNullOrWhiteSpace(ThemedFore)
+				themedLinkColor = !string.IsNullOrWhiteSpace(ThemedFore)
 					? manager.GetColor(ThemedFore)
 					: manager.GetColor("LinkColor");
 
-				LinkColor = foreColor;
-				ActiveLinkColor = foreColor;
 				HoverColor = manager.GetColor("HoverColor");
+				ApplyRestingColor();
 
 				BackColor = back = !string.IsNullOrWhiteSpace(ThemedBack)
 					? manager.GetColor(ThemedBack)
@@ -139,15 +163,21 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
+		/// <summary>
+		/// Applies the not-hovered text color: the normal themed hyperlink color when this
+		/// is the active item in a nav-style list (see Active), otherwise plain ControlText.
+		/// Hovering always shows HoverColor regardless of Active.
+		/// </summary>
+		private void ApplyRestingColor()
+		{
+			var color = active ? themedLinkColor : ThemeManager.Instance.GetColor("ControlText");
+			LinkColor = VisitedLinkColor = ActiveLinkColor = color;
+		}
+
+
 		protected override void OnMouseEnter(EventArgs e)
 		{
 			base.OnMouseEnter(e);
-
-			if (fore == Color.Empty)
-			{
-				fore = LinkColor;
-			}
-
 			LinkColor = VisitedLinkColor = HoverColor;
 		}
 
@@ -155,7 +185,19 @@ namespace River.OneMoreAddIn.UI
 		protected override void OnMouseLeave(EventArgs e)
 		{
 			base.OnMouseLeave(e);
-			LinkColor = VisitedLinkColor = fore;
+			ApplyRestingColor();
+		}
+
+
+		protected override void OnPaint(PaintEventArgs e)
+		{
+			base.OnPaint(e);
+
+			if (active)
+			{
+				using var brush = new SolidBrush(ThemeManager.Instance.GetColor("Highlight"));
+				e.Graphics.FillRectangle(brush, 0, 0, BarWidth, Height);
+			}
 		}
 
 

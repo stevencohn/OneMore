@@ -2527,90 +2527,90 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized string similar to General.
         /// </summary>
-        internal static string EmojiDialog_generalBox_Text {
+        internal static string EmojiDialog_generalLink_Text {
             get {
-                return ResourceManager.GetString("EmojiDialog_generalBox.Text", resourceCulture);
+                return ResourceManager.GetString("EmojiDialog_generalLink.Text", resourceCulture);
             }
         }
 
         /// <summary>
         ///   Looks up a localized string similar to Smileys &amp; Emotion.
         /// </summary>
-        internal static string EmojiDialog_smileysBox_Text {
+        internal static string EmojiDialog_smileysLink_Text {
             get {
-                return ResourceManager.GetString("EmojiDialog_smileysBox.Text", resourceCulture);
+                return ResourceManager.GetString("EmojiDialog_smileysLink.Text", resourceCulture);
             }
         }
 
         /// <summary>
         ///   Looks up a localized string similar to People &amp; Body.
         /// </summary>
-        internal static string EmojiDialog_peopleBox_Text {
+        internal static string EmojiDialog_peopleLink_Text {
             get {
-                return ResourceManager.GetString("EmojiDialog_peopleBox.Text", resourceCulture);
+                return ResourceManager.GetString("EmojiDialog_peopleLink.Text", resourceCulture);
             }
         }
 
         /// <summary>
         ///   Looks up a localized string similar to Animals &amp; Nature.
         /// </summary>
-        internal static string EmojiDialog_animalsBox_Text {
+        internal static string EmojiDialog_animalsLink_Text {
             get {
-                return ResourceManager.GetString("EmojiDialog_animalsBox.Text", resourceCulture);
+                return ResourceManager.GetString("EmojiDialog_animalsLink.Text", resourceCulture);
             }
         }
 
         /// <summary>
         ///   Looks up a localized string similar to Food &amp; Drink.
         /// </summary>
-        internal static string EmojiDialog_foodBox_Text {
+        internal static string EmojiDialog_foodLink_Text {
             get {
-                return ResourceManager.GetString("EmojiDialog_foodBox.Text", resourceCulture);
+                return ResourceManager.GetString("EmojiDialog_foodLink.Text", resourceCulture);
             }
         }
 
         /// <summary>
         ///   Looks up a localized string similar to Travel &amp; Places.
         /// </summary>
-        internal static string EmojiDialog_travelBox_Text {
+        internal static string EmojiDialog_travelLink_Text {
             get {
-                return ResourceManager.GetString("EmojiDialog_travelBox.Text", resourceCulture);
+                return ResourceManager.GetString("EmojiDialog_travelLink.Text", resourceCulture);
             }
         }
 
         /// <summary>
         ///   Looks up a localized string similar to Activities.
         /// </summary>
-        internal static string EmojiDialog_activitiesBox_Text {
+        internal static string EmojiDialog_activitiesLink_Text {
             get {
-                return ResourceManager.GetString("EmojiDialog_activitiesBox.Text", resourceCulture);
+                return ResourceManager.GetString("EmojiDialog_activitiesLink.Text", resourceCulture);
             }
         }
 
         /// <summary>
         ///   Looks up a localized string similar to Objects.
         /// </summary>
-        internal static string EmojiDialog_objectsBox_Text {
+        internal static string EmojiDialog_objectsLink_Text {
             get {
-                return ResourceManager.GetString("EmojiDialog_objectsBox.Text", resourceCulture);
+                return ResourceManager.GetString("EmojiDialog_objectsLink.Text", resourceCulture);
             }
         }
 
         /// <summary>
         ///   Looks up a localized string similar to Symbols.
         /// </summary>
-        internal static string EmojiDialog_symbolsBox_Text {
+        internal static string EmojiDialog_symbolsLink_Text {
             get {
-                return ResourceManager.GetString("EmojiDialog_symbolsBox.Text", resourceCulture);
+                return ResourceManager.GetString("EmojiDialog_symbolsLink.Text", resourceCulture);
             }
         }
 
         /// <summary>
         ///   Looks up a localized string similar to Flags.
         /// </summary>
-        internal static string EmojiDialog_flagsBox_Text {
+        internal static string EmojiDialog_flagsLink_Text {
             get {
-                return ResourceManager.GetString("EmojiDialog_flagsBox.Text", resourceCulture);
+                return ResourceManager.GetString("EmojiDialog_flagsLink.Text", resourceCulture);
             }
         }
 
