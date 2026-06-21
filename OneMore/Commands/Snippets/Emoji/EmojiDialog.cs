@@ -118,7 +118,14 @@ namespace River.OneMoreAddIn.Commands
 				}
 
 				unicodeEmojis = loaded;
-				ApplyGridFilter();
+
+				// don't populate gridBox yet if the user hasn't switched to the Grid tab;
+				// DoTabSelected populates it instead, once it's actually visible and sized
+				// to its final dimensions - see the comment there for why that matters
+				if (tabs.SelectedTab == gridTab)
+				{
+					ApplyGridFilter();
+				}
 			}
 			catch (Exception exc)
 			{
@@ -237,6 +244,18 @@ namespace River.OneMoreAddIn.Commands
 				Left = (Left + (Width / 2)) - (width / 2);
 
 				Size = new Size(width, height);
+			}
+
+			// gridBox's native LargeIcon layout (hit-testing, scroll extents) gets baked
+			// in based on the size and visibility it had when items were added. Adding
+			// them earlier - while this tab wasn't yet selected and the dialog was still
+			// at its small initial size - left clicks and scrolling silently out of sync
+			// with what was actually drawn. Populating here instead, after the resize
+			// above and only once this tab is actually showing, is the same recipe that
+			// already fixed it for category toggles: rebuild Items while the tab is live.
+			if (unicodeEmojis != null && gridBox.Items.Count == 0)
+			{
+				ApplyGridFilter();
 			}
 		}
 
