@@ -288,7 +288,8 @@ namespace River.OneMoreAddIn.Commands
 				if (path.Length + 1 + secName.Length + Untitled.Length + ext.Length > maxLength)
 				{
 					// shrink section name rather than Untitled part
-					secName = secName.Substring(0, maxLength - Untitled.Length).Trim();
+					var secLength = Math.Max(0, Math.Min(maxLength - Untitled.Length, secName.Length));
+					secName = secName.Substring(0, secLength).Trim();
 				}
 
 				title = $"{secName}{Untitled}";
@@ -296,7 +297,8 @@ namespace River.OneMoreAddIn.Commands
 			else if (path.Length + 1 + title.Length + ext.Length > maxLength)
 			{
 				// shrink title and keep room for (counter) if needed
-				title = title.Substring(0, maxLength).Trim();
+				var titLength = Math.Max(0, Math.Min(maxLength, title.Length));
+				title = title.Substring(0, titLength).Trim();
 			}
 
 			title = PathHelper.CleanFileName(title);
