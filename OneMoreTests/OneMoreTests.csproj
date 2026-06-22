@@ -76,7 +76,9 @@
     <Compile Include="Commands\Favorites\FavoritesMenuTests.cs" />
     <Compile Include="Commands\Favorites\FavoritesProviderTests.cs" />
     <Compile Include="Commands\Workspaces\PageCheckerTests.cs" />
+    <Compile Include="Helpers\PathHelperTests.cs" />
     <Compile Include="MockApplication.cs" />
+    <Compile Include="OneNoteTests.cs" />
     <Compile Include="TestBase.cs" />
   </ItemGroup>
   <ItemGroup>
