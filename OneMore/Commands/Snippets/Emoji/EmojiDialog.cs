@@ -34,6 +34,7 @@ namespace River.OneMoreAddIn.Commands
 		private readonly List<Emoji> listSelections;
 		private readonly List<Emoji> gridSelections;
 		private readonly Dictionary<string, ListViewItem> categoryStartItems = new();
+		private int quickWidth;
 		private UnicodeEmojis unicodeEmojis;
 		private UI.MoreLinkLabel activeCategoryLink;
 
@@ -110,6 +111,11 @@ namespace River.OneMoreAddIn.Commands
 			// List tab; the Grid tab populates whenever it's ready, even if the user has
 			// already switched to it
 			_ = LoadGridAsync();
+		}
+
+		private void EmojiDialog_Shown(object sender, System.EventArgs e)
+		{
+			quickWidth = Width;
 		}
 
 
@@ -240,6 +246,8 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (tabs.SelectedTab != gridTab)
 			{
+				Left = (Left + (Width / 2)) - (quickWidth / 2);
+				Width = quickWidth;
 				return;
 			}
 

@@ -398,6 +398,7 @@ namespace River.OneMoreAddIn.Commands
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Insert Emojis";
+			this.Shown += EmojiDialog_Shown;
 			this.tabs.ResumeLayout(false);
 			this.listTab.ResumeLayout(false);
 			this.gridTab.ResumeLayout(false);
