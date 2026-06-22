@@ -19,8 +19,8 @@ namespace OneMoreCli
 	internal static class InteractiveRunner
 	{
 		/// <summary>
-		/// Displays the command menu and returns the user's selection,
-		/// or <c>null</c> if the user chooses to quit.
+		/// Displays the command menu and returns the user's selection — by list number or by
+		/// command name — or <c>null</c> if the user chooses to quit.
 		/// </summary>
 		public static ICliCommand PromptForCommand(List<ICliCommand> commands)
 		{
@@ -39,7 +39,7 @@ namespace OneMoreCli
 				}
 
 				Console.WriteLine();
-				Console.Write("Select a command (or Q to quit): ");
+				Console.Write("Select a command by number or name (or Q to quit): ");
 				var input = Console.ReadLine()?.Trim() ?? string.Empty;
 
 				if (string.IsNullOrEmpty(input)
@@ -50,7 +50,12 @@ namespace OneMoreCli
 				if (int.TryParse(input, out var choice) && choice >= 1 && choice <= commands.Count)
 					return commands[choice - 1];
 
-				CliConsole.WriteWarning("Invalid selection — enter a number from the list.");
+				var byName = commands.FirstOrDefault(c =>
+					c.CommandName.Equals(input, StringComparison.OrdinalIgnoreCase));
+				if (byName != null)
+					return byName;
+
+				CliConsole.WriteWarning("Invalid selection — enter a number or name from the list.");
 				Console.WriteLine();
 			}
 		}
@@ -62,10 +67,13 @@ namespace OneMoreCli
 		/// For each parameter in the command's definition:
 		/// <list type="bullet">
 		///   <item>If a value was pre-supplied via <paramref name="supplied"/>, it is
-		///         validated and used directly; an invalid value is an error (not re-prompted)
-		///         in command-line mode.</item>
-		///   <item>If not supplied and required, the user is prompted interactively.</item>
-		///   <item>If not supplied and optional, the parameter's default value is used.</item>
+		///         validated and used directly; an invalid value is an error (not re-prompted).</item>
+		///   <item>Otherwise, if the command needs interactive prompting at all — either because
+		///         it was launched from a blank slate (<paramref name="supplied"/> is <c>null</c>)
+		///         or because at least one required parameter is still missing — the user is
+		///         walked through every remaining parameter, required <i>and</i> optional.</item>
+		///   <item>Otherwise (all required parameters already satisfied), any remaining optional
+		///         parameter silently takes its default value with no prompt.</item>
 		/// </list>
 		/// </para>
 		/// </summary>
@@ -86,8 +94,13 @@ namespace OneMoreCli
 			if (!definition.Any())
 				return new CliParameterSet();
 
-			var interactive = supplied == null;
-			if (interactive)
+			var interactiveOrigin = supplied == null;
+			supplied ??= new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+
+			var needsInteraction = interactiveOrigin
+				|| definition.Any(p => p.Required && !supplied.ContainsKey(p.Name));
+
+			if (needsInteraction)
 			{
 				Console.ForegroundColor = ConsoleColor.White;
 				Console.WriteLine($"Parameters for {command.CommandName}:");
@@ -101,7 +114,7 @@ namespace OneMoreCli
 			foreach (var parameter in definition)
 			{
 				// Value was supplied on the command line - - - - - - - - - - - - -
-				if (supplied != null && supplied.TryGetValue(parameter.Name, out var raw))
+				if (supplied.TryGetValue(parameter.Name, out var raw))
 				{
 					if (!TryConvert(raw, parameter.DataType, out var converted, out var convertError))
 					{
@@ -119,16 +132,16 @@ namespace OneMoreCli
 					continue;
 				}
 
-				// Not supplied and optional → use default - - - - - - - - - - - - - - - - - - - -
-				if (!parameter.Required)
+				// Not supplied, and the command doesn't need interaction → use default - - - -
+				if (!needsInteraction)
 				{
 					if (parameter.DefaultValue != null)
 						set.Set(parameter.Name, parameter.DefaultValue);
 					continue;
 				}
 
-				// Required and not supplied → prompt interactively - - - - - - - - - - - - - - -
-				if (!interactive)
+				// Not supplied, walking the user through this command's parameters - - - - - -
+				if (!interactiveOrigin && parameter.Required)
 				{
 					Console.WriteLine();
 					CliConsole.WriteInfo($"Required parameter '--{parameter.Name}' was not provided.");
@@ -172,6 +185,21 @@ namespace OneMoreCli
 						: string.Empty;
 
 					Console.Write($"  Choice 1–{enumConstraint.Values.Count}{defaultHint}: ");
+				}
+				else if (parameter.DataType == typeof(bool))
+				{
+					// Switch: Y/N prompt with the default capitalized - - - - - - - - - - - - - -
+
+					Console.ForegroundColor = ConsoleColor.Yellow;
+					Console.Write($"  {parameter.Name}");
+					Console.ResetColor();
+					Console.Write($"  —  {parameter.Description}");
+
+					var hint = "y/n";
+					if (!parameter.Required && parameter.DefaultValue is bool defaultBool)
+						hint = defaultBool ? "Y/n" : "y/N";
+
+					Console.Write($"  [{hint}]: ");
 				}
 				else
 				{
