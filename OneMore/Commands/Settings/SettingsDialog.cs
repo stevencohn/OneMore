@@ -123,8 +123,8 @@ namespace River.OneMoreAddIn.Settings
 		// fit its own text regardless of DPI.
 		private void LayoutNavLinks()
 		{
-			var rowHeight = navLinks[0].Font.Height + 6;
-			var gap = rowHeight / 3;
+			var rowHeight = navLinks[0].Font.Height + 2;
+			var gap = rowHeight / 2;
 			var y = navLinks[0].Top;
 
 			foreach (var link in navLinks)
