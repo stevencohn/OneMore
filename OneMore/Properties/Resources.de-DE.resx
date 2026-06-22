@@ -677,6 +677,14 @@ Möchten Sie fortfahren?</value>
     <value>Eine Namensliste wurde auf der Seite nicht gefunden</value>
     <comment>message box</comment>
   </data>
+  <data name="CreatePagesDialog.Text" xml:space="preserve">
+    <value>Seiten erstellen</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="CreatePagesDialog_linksBox.Text" xml:space="preserve">
+    <value>Erstellen Sie bidirektionale Links zwischen der Liste und neuen Seiten</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="CropImage_oneImage" xml:space="preserve">
     <value>Wähle ein Bild zum Zuschneiden aus</value>
     <comment>Crop command error message</comment>

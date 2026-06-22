@@ -585,6 +585,12 @@
     </Compile>
     <Compile Include="Commands\Page\CaptionAttachmentsCommand.cs" />
     <Compile Include="Commands\Page\CreatePagesCommand.cs" />
+    <Compile Include="Commands\Page\CreatePagesDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Page\CreatePagesDialog.Designer.cs">
+      <DependentUpon>CreatePagesDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Page\ExpandoCommand.cs" />
     <Compile Include="Commands\Edit\HighlightCommand.cs" />
     <Compile Include="Commands\Edit\InvertSelectionCommand.cs" />
@@ -1378,6 +1384,9 @@
     <Content Include="Commands\Navigator\Images\Swap-Up-20.png" />
     <Content Include="Commands\Tables\Formulas\VariablesDB.sql" />
     <Content Include="Commands\Tagging\HashtagsDB.sql" />
+    <EmbeddedResource Include="Commands\Page\CreatePagesDialog.resx">
+      <DependentUpon>CreatePagesDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Commands\Workspaces\ManageWorkspaceDialog.resx">
       <DependentUpon>ManageWorkspaceDialog.cs</DependentUpon>
     </EmbeddedResource>

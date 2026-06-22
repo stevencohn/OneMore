@@ -675,6 +675,14 @@ Vuoi continuare?</value>
     <value>Non è stato trovato un elenco di nomi nella pagina</value>
     <comment>message box</comment>
   </data>
+  <data name="CreatePagesDialog.Text" xml:space="preserve">
+    <value>Crea pagine</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="CreatePagesDialog_linksBox.Text" xml:space="preserve">
+    <value>Crea collegamenti bidirezionali tra l'elenco e le nuove pagine</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="CropImage_oneImage" xml:space="preserve">
     <value>Seleziona un'immagine da ritagliare</value>
     <comment>Crop command error message</comment>

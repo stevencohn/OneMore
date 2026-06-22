@@ -678,6 +678,14 @@
     <value>请选择包含页面名的表格区域</value>
     <comment>message box</comment>
   </data>
+  <data name="CreatePagesDialog.Text" xml:space="preserve">
+    <value>创建页面</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="CreatePagesDialog_linksBox.Text" xml:space="preserve">
+    <value>在列表和新页面之间创建双向链接</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="CropImage_oneImage" xml:space="preserve">
     <value>选择一张图像进行裁剪</value>
     <comment>Crop command error message</comment>

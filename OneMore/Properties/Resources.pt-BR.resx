@@ -674,6 +674,14 @@ Você quer continuar?</value>
     <value>Uma lista de nomes não foi encontrada na página</value>
     <comment>message box</comment>
   </data>
+  <data name="CreatePagesDialog.Text" xml:space="preserve">
+    <value>Criar páginas</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="CreatePagesDialog_linksBox.Text" xml:space="preserve">
+    <value>Crie links bidirecionais entre a lista e as novas páginas</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="CropImage_oneImage" xml:space="preserve">
     <value>Selecione uma imagem para cortar</value>
     <comment>Crop command error message</comment>

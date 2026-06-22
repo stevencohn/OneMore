@@ -674,6 +674,14 @@ Czy chcesz kontynuować?</value>
     <value>Na stronie nie znaleziono listy nazwisk</value>
     <comment>message box</comment>
   </data>
+  <data name="CreatePagesDialog.Text" xml:space="preserve">
+    <value>Twórz strony</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="CreatePagesDialog_linksBox.Text" xml:space="preserve">
+    <value>Utwórz dwukierunkowe łącza między listą a nowymi stronami</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="CropImage_oneImage" xml:space="preserve">
     <value>Wybierz jeden obraz do uprawy</value>
     <comment>Crop command error message</comment>

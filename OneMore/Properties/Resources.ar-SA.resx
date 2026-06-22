@@ -677,6 +677,14 @@
     <value>لم يتم العثور على قائمة الأسماء على الصفحة</value>
     <comment>message box</comment>
   </data>
+  <data name="CreatePagesDialog.Text" xml:space="preserve">
+    <value>إنشاء الصفحات</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="CreatePagesDialog_linksBox.Text" xml:space="preserve">
+    <value>قم بإنشاء روابط ثنائية الاتجاه بين القائمة والصفحات الجديدة</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="CropImage_oneImage" xml:space="preserve">
     <value>حدد صورة واحدة لقصها</value>
     <comment>Crop command error message</comment>

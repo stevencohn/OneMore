@@ -1333,7 +1333,25 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("CreatePagesCommand_NoNamesFound", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Create Pages.
+        /// </summary>
+        internal static string CreatePagesDialog_Text {
+            get {
+                return ResourceManager.GetString("CreatePagesDialog.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Create two-way links between the list and new pages.
+        /// </summary>
+        internal static string CreatePagesDialog_linksBox_Text {
+            get {
+                return ResourceManager.GetString("CreatePagesDialog_linksBox.Text", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Select one image to crop.
         /// </summary>
