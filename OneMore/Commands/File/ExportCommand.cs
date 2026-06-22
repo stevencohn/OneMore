@@ -85,10 +85,14 @@ namespace River.OneMoreAddIn.Commands
 
 					if (string.IsNullOrWhiteSpace(section))
 					{
-						// Notebook-level: framework iterates all pages; group output by section subfolder
+						// Notebook-level: framework iterates all pages; rebuild each page's full
+						// section-group ancestry so same-named sections in different groups
+						// don't collide into a single folder
 						var pageInfo = await cliOne.GetPageInfo(pageId);
 						var sectInfo = await cliOne.GetSectionInfo(pageInfo.SectionId);
-						var sectionFolder = Path.Combine(outpath, PathHelper.CleanFileName(sectInfo.Name));
+						var sectionFolder = PathHelper.BuildSectionFolderPath(
+							outpath, sectInfo.SectionGroups, sectInfo.Name);
+
 						Directory.CreateDirectory(sectionFolder);
 						await ExportOneCli(pageId, cliOne, sectionFolder, format, ext);
 					}

@@ -95,6 +95,7 @@ namespace River.OneMoreAddIn
 			public string Color;        // node color
 			public int Size;            // size in bytes of page
 			public long Visited;        // last time visited in ms
+			public List<string> SectionGroups = new();  // ancestor section group names, outermost first
 		}
 
 		public class HierarchyNode
@@ -1363,6 +1364,11 @@ namespace River.OneMoreAddIn
 
 				if (n != null)
 					builder.Insert(0, $"/{n}");
+
+				if (x.Name.LocalName == "SectionGroup" && n != null)
+				{
+					info.SectionGroups.Insert(0, n);
+				}
 
 				id = GetParent(id);
 			}

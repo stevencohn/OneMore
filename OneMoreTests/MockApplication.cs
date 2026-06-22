@@ -20,6 +20,7 @@ namespace River.OneMoreAddIn.Tests
 		private readonly Dictionary<string, string> pages = new();
 		private string hierarchyXml;
 		private readonly Dictionary<string, string> hierarchyById = new();
+		private readonly Dictionary<string, string> parentById = new();
 		private readonly MockWindows windows;
 
 		public string CurrentPageId { get; set; } = "page-1";
@@ -50,6 +51,14 @@ namespace River.OneMoreAddIn.Tests
 		/// Falls back to the default hierarchy XML for unregistered IDs.
 		/// </summary>
 		public void SetHierarchyXml(string id, string xml) => hierarchyById[id ?? string.Empty] = xml;
+
+		/// <summary>
+		/// Registers the parent ID that GetHierarchyParent should return for the given
+		/// child ID, for tests that exercise upward hierarchy walks (e.g. section group
+		/// ancestry). Unregistered IDs resolve to no parent, same as the default no-op.
+		/// </summary>
+		public void SetHierarchyParent(string id, string parentId) =>
+			parentById[id ?? string.Empty] = parentId;
 
 
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
@@ -182,7 +191,9 @@ namespace River.OneMoreAddIn.Tests
 
 		public void GetHierarchyParent(string bstrObjectID, out string pbstrParentID)
 		{
-			pbstrParentID = string.Empty;
+			pbstrParentID = parentById.TryGetValue(bstrObjectID ?? string.Empty, out var parentId)
+				? parentId
+				: string.Empty;
 		}
 
 		public void GetBinaryPageContent(string bstrPageID, string bstrCallbackID,

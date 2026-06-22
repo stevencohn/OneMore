@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn
 {
 	using System;
+	using System.Collections.Generic;
 	using System.IO;
 	using System.Text.RegularExpressions;
 
@@ -47,6 +48,28 @@ namespace River.OneMoreAddIn
 			return string.Join("_",
 				name.Split(invalidFileChars, StringSplitOptions.RemoveEmptyEntries))
 				.TrimEnd('.');
+		}
+
+
+		/// <summary>
+		/// Builds the folder path for a section based on its position in the notebook
+		/// hierarchy: each ancestor section group becomes a "[name]" folder and the section
+		/// itself becomes a "(name)" folder, nested beneath the given root.
+		/// </summary>
+		/// <param name="root">The root export folder</param>
+		/// <param name="sectionGroups">Ancestor section group names, outermost first</param>
+		/// <param name="sectionName">The name of the section</param>
+		/// <returns>The full nested folder path</returns>
+		public static string BuildSectionFolderPath(
+			string root, IEnumerable<string> sectionGroups, string sectionName)
+		{
+			var path = root;
+			foreach (var group in sectionGroups)
+			{
+				path = Path.Combine(path, $"[{CleanFileName(group)}]");
+			}
+
+			return Path.Combine(path, $"({CleanFileName(sectionName)})");
 		}
 
 
