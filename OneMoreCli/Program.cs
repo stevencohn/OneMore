@@ -321,6 +321,14 @@ namespace OneMoreCli
 					.Where(id => id != null)
 					.ToArray();
 
+				if (pageIds.Length == 0) continue;
+
+				var sectionName = section.Attribute("name")?.Value;
+				if (!string.IsNullOrEmpty(sectionName))
+				{
+					CliConsole.WriteDetail($"section: {sectionName}");
+				}
+
 				foreach (var pageId in pageIds)
 				{
 					parameters.Set("pageId", pageId);

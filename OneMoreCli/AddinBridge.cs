@@ -57,8 +57,12 @@ namespace OneMoreCli
 				await pipe.WriteAsync(requestBytes, 0, requestBytes.Length);
 				await pipe.FlushAsync();
 
-				// Read response — server writes then disconnects, so read until EOF / IOException
+				// Read response — server writes then disconnects, so read until EOF / IOException.
+				// Before the final OK/ERR/OUTPUT payload, the server may interleave "PROGRESS:<name>\n"
+				// lines as each section starts; print those immediately instead of waiting for EOF.
 				var sb = new StringBuilder();
+				var pending = new StringBuilder();
+				var inFinal = false;
 				var buffer = new byte[512];
 				using var cts = new CancellationTokenSource(TimeSpan.FromMinutes(5));
 				try
@@ -66,7 +70,35 @@ namespace OneMoreCli
 					int n;
 					while ((n = await pipe.ReadAsync(buffer, 0, buffer.Length, cts.Token)) > 0)
 					{
-						sb.Append(Encoding.UTF8.GetString(buffer, 0, n));
+						var text = Encoding.UTF8.GetString(buffer, 0, n);
+						if (inFinal)
+						{
+							sb.Append(text);
+							continue;
+						}
+
+						pending.Append(text);
+						int idx;
+						while (!inFinal && (idx = pending.ToString().IndexOf('\n')) >= 0)
+						{
+							var line = pending.ToString(0, idx);
+							pending.Remove(0, idx + 1);
+
+							if (line.StartsWith("PROGRESS:", StringComparison.OrdinalIgnoreCase))
+							{
+								CliConsole.WriteInfo($"section: {line.Substring("PROGRESS:".Length)}");
+							}
+							else
+							{
+								sb.Append(line);
+								inFinal = true;
+							}
+						}
+					}
+
+					if (!inFinal && pending.Length > 0)
+					{
+						sb.Append(pending.ToString());
 					}
 				}
 				catch (IOException)

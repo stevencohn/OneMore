@@ -164,6 +164,13 @@ namespace OneMoreCli
 			Console.ResetColor();
 		}
 
+		public static void WriteDetail(string message)
+		{
+			Console.ForegroundColor = ConsoleColor.DarkGray;
+			Console.WriteLine(message);
+			Console.ResetColor();
+		}
+
 		public static void WriteInfo(string message)
 		{
 			Console.ForegroundColor = ConsoleColor.Gray;
