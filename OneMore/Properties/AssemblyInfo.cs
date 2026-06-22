@@ -36,10 +36,6 @@ namespace River.OneMoreAddIn
 {
 	internal static class AssemblyInfo
 	{
-		/*
-		 * NOTE - also update the version in the Setup project
-		 * by clicking on the Setup project node in VS and update its properties
-		 */
 		public const string Version = "7.1.1";
 
 		public const string BuildTag =
