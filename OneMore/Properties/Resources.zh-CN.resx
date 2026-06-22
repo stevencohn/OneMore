@@ -3410,19 +3410,19 @@ ISO-code then comma then language name</comment>
     <comment>context menu item</comment>
   </data>
   <data name="ribCopyLinkToPageButton_Label" xml:space="preserve">
-    <value>复制链接到页面</value>
-    <comment>ribbon item</comment>
+    <value>将路径链接复制到页面</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribCopyLinkToPageButton_Screentip" xml:space="preserve">
-    <value>将超链接复制到当前页面</value>
+    <value>复制当前页面的路径超链接</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribCopyLinkToParagraphButton_Label" xml:space="preserve">
-    <value>复制链接到段落</value>
-    <comment>ribbon item</comment>
+    <value>将路径链接复制到段落</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribCopyLinkToParagraphButton_Screentip" xml:space="preserve">
-    <value>将超链接复制到当前段落</value>
+    <value>将路径超链接复制到当前段落</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribCopyPageContentButton_Label" xml:space="preserve">

@@ -3396,19 +3396,19 @@ Zakładka Pomoc</value>
     <comment>context menu item</comment>
   </data>
   <data name="ribCopyLinkToPageButton_Label" xml:space="preserve">
-    <value>Skopiuj link do strony</value>
-    <comment>ribbon item</comment>
+    <value>Skopiuj łącze ścieżki do strony</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribCopyLinkToPageButton_Screentip" xml:space="preserve">
-    <value>Skopiuj hiperłącze do bieżącej strony</value>
+    <value>Skopiuj hiperłącze ścieżki do bieżącej strony</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribCopyLinkToParagraphButton_Label" xml:space="preserve">
-    <value>Skopiuj link do akapitu</value>
-    <comment>ribbon item</comment>
+    <value>Skopiuj łącze ścieżki do akapitu</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribCopyLinkToParagraphButton_Screentip" xml:space="preserve">
-    <value>Skopiuj hiperłącze do bieżącego akapitu</value>
+    <value>Skopiuj hiperłącze ścieżki do bieżącego akapitu</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribCopyPageContentButton_Label" xml:space="preserve">

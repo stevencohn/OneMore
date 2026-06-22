@@ -3403,19 +3403,19 @@ ISO-code then comma then language name</comment>
     <comment>section context menu</comment>
   </data>
   <data name="ribCopyLinkToPageButton_Label" xml:space="preserve">
-    <value>ページへのリンクのコピー</value>
+    <value>ページへのパスリンクをコピー</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribCopyLinkToPageButton_Screentip" xml:space="preserve">
-    <value>現在のページへのハイパーリンクをコピーする</value>
+    <value>現在のページへのパスのハイパーリンクをコピーします</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribCopyLinkToParagraphButton_Label" xml:space="preserve">
-    <value>段落へのリンクのコピー</value>
+    <value>パスリンクを段落にコピー</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribCopyLinkToParagraphButton_Screentip" xml:space="preserve">
-    <value>現在の段落へのハイパーリンクをコピーする</value>
+    <value>現在の段落へのパスのハイパーリンクをコピーします。</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribCopyPageContentButton_Label" xml:space="preserve">

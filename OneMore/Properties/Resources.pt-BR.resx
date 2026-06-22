@@ -3396,19 +3396,19 @@ Guia Ajuda</value>
     <comment>context menu item</comment>
   </data>
   <data name="ribCopyLinkToPageButton_Label" xml:space="preserve">
-    <value>Copie o link para a página</value>
-    <comment>ribbon item</comment>
+    <value>Copiar link do caminho para a página</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribCopyLinkToPageButton_Screentip" xml:space="preserve">
-    <value>Copiar um hiperlink para a página atual</value>
+    <value>Copie um hiperlink de caminho para a página atual</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribCopyLinkToParagraphButton_Label" xml:space="preserve">
-    <value>Copie o link para o parágrafo</value>
-    <comment>ribbon item</comment>
+    <value>Copiar link do caminho para o parágrafo</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribCopyLinkToParagraphButton_Screentip" xml:space="preserve">
-    <value>Copiar um hiperlink para o parágrafo atual</value>
+    <value>Copie um hiperlink de caminho para o parágrafo atual</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribCopyPageContentButton_Label" xml:space="preserve">

@@ -3407,19 +3407,19 @@ ISO-code then comma then language name</comment>
     <comment>context menu item</comment>
   </data>
   <data name="ribCopyLinkToPageButton_Label" xml:space="preserve">
-    <value>نسخ الرابط إلى الصفحة</value>
-    <comment>ribbon item</comment>
+    <value>انسخ رابط المسار إلى الصفحة</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribCopyLinkToPageButton_Screentip" xml:space="preserve">
-    <value>انسخ ارتباطًا تشعبيًا إلى الصفحة الحالية</value>
+    <value>انسخ الرابط التشعبي للمسار إلى الصفحة الحالية</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribCopyLinkToParagraphButton_Label" xml:space="preserve">
-    <value>نسخ الرابط إلى الفقرة</value>
-    <comment>ribbon item</comment>
+    <value>نسخ رابط المسار إلى الفقرة</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribCopyLinkToParagraphButton_Screentip" xml:space="preserve">
-    <value>انسخ ارتباطًا تشعبيًا إلى الفقرة الحالية</value>
+    <value>انسخ الرابط التشعبي للمسار إلى الفقرة الحالية</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribCopyPageContentButton_Label" xml:space="preserve">
