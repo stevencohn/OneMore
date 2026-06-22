@@ -311,7 +311,7 @@ namespace River.OneMoreAddIn
 
 					if (string.IsNullOrWhiteSpace(section))
 					{
-						pageOutput = await InvokeCliCommandForNotebook(cliFactory, commandType, parameters, notebook);
+						pageOutput = await InvokeCliCommandForNotebook(cliFactory, commandType, parameters, notebook, pipe);
 					}
 					else
 					{
@@ -361,11 +361,13 @@ namespace River.OneMoreAddIn
 		/// <summary>
 		/// Iterates every page in every section of the named notebook and runs the command
 		/// once per page. Used when section is not specified for an <see cref="ICliPageCommand"/>.
+		/// Writes a <c>PROGRESS:</c> line through <paramref name="pipe"/> as each section starts
+		/// so the CLI client can report progress while the notebook is still being processed.
 		/// Returns any non-empty CliOutput accumulated across all page runs.
 		/// </summary>
 		private static async Task<string> InvokeCliCommandForNotebook(
 			CommandFactory cliFactory, Type commandType,
-			CliParameterSet parameters, string notebookName)
+			CliParameterSet parameters, string notebookName, NamedPipeServerStream pipe)
 		{
 			using var one = new OneNote();
 
@@ -407,6 +409,14 @@ namespace River.OneMoreAddIn
 					.Select(p => p.Attribute("ID")?.Value)
 					.Where(id => id != null)
 					.ToArray();
+
+				if (pageIds.Length == 0) continue;
+
+				var sectionName = section.Attribute("name")?.Value;
+				if (!string.IsNullOrEmpty(sectionName))
+				{
+					await WriteCliResponse(pipe, $"PROGRESS:{sectionName}\n");
+				}
 
 				foreach (var pageId in pageIds)
 				{
