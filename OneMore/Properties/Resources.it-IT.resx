@@ -3400,19 +3400,19 @@ Scheda Aiuto</value>
     <comment>section context menu</comment>
   </data>
   <data name="ribCopyLinkToPageButton_Label" xml:space="preserve">
-    <value>Copia il collegamento alla pagina</value>
+    <value>Copia il collegamento del percorso alla pagina</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribCopyLinkToPageButton_Screentip" xml:space="preserve">
-    <value>Copia un collegamento ipertestuale alla pagina corrente</value>
+    <value>Copia un collegamento ipertestuale del percorso alla pagina corrente</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribCopyLinkToParagraphButton_Label" xml:space="preserve">
-    <value>Copia collegamento al paragrafo</value>
+    <value>Copia il collegamento del percorso al paragrafo</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribCopyLinkToParagraphButton_Screentip" xml:space="preserve">
-    <value>Copia un collegamento ipertestuale al paragrafo corrente</value>
+    <value>Copia un collegamento ipertestuale del percorso al paragrafo corrente</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribCopyPageContentButton_Label" xml:space="preserve">

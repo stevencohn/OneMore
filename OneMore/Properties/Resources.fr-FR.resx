@@ -3407,19 +3407,19 @@ Onglet Aide</value>
     <comment>context menu item</comment>
   </data>
   <data name="ribCopyLinkToPageButton_Label" xml:space="preserve">
-    <value>Copier le lien vers la page</value>
-    <comment>ribbon item</comment>
+    <value>Copier le lien du chemin vers la page</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribCopyLinkToPageButton_Screentip" xml:space="preserve">
-    <value>Copier un lien hypertexte vers la page actuelle</value>
+    <value>Copier un lien hypertexte de chemin vers la page actuelle</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribCopyLinkToParagraphButton_Label" xml:space="preserve">
-    <value>Copier le lien vers le paragraphe</value>
-    <comment>ribbon item</comment>
+    <value>Copier le lien du chemin vers le paragraphe</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribCopyLinkToParagraphButton_Screentip" xml:space="preserve">
-    <value>Copier un lien hypertexte vers le paragraphe courant</value>
+    <value>Copier un lien hypertexte de chemin vers le paragraphe actuel</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribCopyPageContentButton_Label" xml:space="preserve">

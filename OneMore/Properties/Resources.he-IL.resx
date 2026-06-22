@@ -3400,19 +3400,19 @@ ISO-code then comma then language name</comment>
     <comment>context menu item</comment>
   </data>
   <data name="ribCopyLinkToPageButton_Label" xml:space="preserve">
-    <value>העתק קישור לעמוד</value>
-    <comment>ribbon item</comment>
+    <value>העתק את הנתיב קישור לדף</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribCopyLinkToPageButton_Screentip" xml:space="preserve">
-    <value>העתק היפר -קישור לדף הנוכחי</value>
+    <value>העתק היפר-קישור של נתיב לדף הנוכחי</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribCopyLinkToParagraphButton_Label" xml:space="preserve">
-    <value>העתק קישור לפסקה</value>
-    <comment>ribbon item</comment>
+    <value>העתק את הנתיב קישור לפסקה</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribCopyLinkToParagraphButton_Screentip" xml:space="preserve">
-    <value>העתק היפר -קישור לפסקה הנוכחית</value>
+    <value>העתק היפר-קישור של נתיב לפסקה הנוכחית</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribCopyPageContentButton_Label" xml:space="preserve">

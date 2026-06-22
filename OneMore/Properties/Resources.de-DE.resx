@@ -3395,16 +3395,16 @@ Registerkarte „Hilfe“.</value>
     <comment>context menu item</comment>
   </data>
   <data name="ribCopyLinkToPageButton_Label" xml:space="preserve">
-    <value>Link zu Seite kopieren</value>
-    <comment>ribbon item</comment>
+    <value>Pfadlink zur Seite kopieren</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribCopyLinkToPageButton_Screentip" xml:space="preserve">
-    <value>Kopieren Sie einen Hyperlink zur aktuellen Seite</value>
+    <value>Kopieren Sie einen Pfad-Hyperlink auf die aktuelle Seite</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribCopyLinkToParagraphButton_Label" xml:space="preserve">
-    <value>Link zu Absatz kopieren</value>
-    <comment>ribbon item</comment>
+    <value>Pfadlink zum Absatz kopieren</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribCopyLinkToParagraphButton_Screentip" xml:space="preserve">
     <value>Kopiert einen Hyperlink zum aktuellen Absatz</value>

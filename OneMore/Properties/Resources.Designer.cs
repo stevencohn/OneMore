@@ -8249,7 +8249,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Copy Link to Page.
+        ///   Looks up a localized string similar to Copy Path Link to Page.
         /// </summary>
         internal static string ribCopyLinkToPageButton_Label {
             get {
@@ -8258,7 +8258,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Copy a hyperlink to the current page.
+        ///   Looks up a localized string similar to Copy a path hyperlink to the current page.
         /// </summary>
         internal static string ribCopyLinkToPageButton_Screentip {
             get {
@@ -8267,7 +8267,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Copy Link to Paragraph.
+        ///   Looks up a localized string similar to Copy Path Link to Paragraph.
         /// </summary>
         internal static string ribCopyLinkToParagraphButton_Label {
             get {
@@ -8276,7 +8276,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Copy a hyperlink to the current paragraph.
+        ///   Looks up a localized string similar to Copy a path hyperlink to the current paragraph.
         /// </summary>
         internal static string ribCopyLinkToParagraphButton_Screentip {
             get {
