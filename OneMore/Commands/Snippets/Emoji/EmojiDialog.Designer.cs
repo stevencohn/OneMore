@@ -183,6 +183,7 @@ namespace River.OneMoreAddIn.Commands
 			this.generalLink.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
 			this.generalLink.Location = new System.Drawing.Point(8, 10);
 			this.generalLink.Name = "generalLink";
+			this.generalLink.NavMode = true;
 			this.generalLink.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
 			this.generalLink.Size = new System.Drawing.Size(184, 20);
 			this.generalLink.TabIndex = 0;
@@ -200,6 +201,7 @@ namespace River.OneMoreAddIn.Commands
 			this.smileysLink.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
 			this.smileysLink.Location = new System.Drawing.Point(8, 40);
 			this.smileysLink.Name = "smileysLink";
+			this.smileysLink.NavMode = true;
 			this.smileysLink.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
 			this.smileysLink.Size = new System.Drawing.Size(184, 20);
 			this.smileysLink.TabIndex = 1;
@@ -217,6 +219,7 @@ namespace River.OneMoreAddIn.Commands
 			this.peopleLink.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
 			this.peopleLink.Location = new System.Drawing.Point(8, 70);
 			this.peopleLink.Name = "peopleLink";
+			this.peopleLink.NavMode = true;
 			this.peopleLink.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
 			this.peopleLink.Size = new System.Drawing.Size(184, 20);
 			this.peopleLink.TabIndex = 2;
@@ -234,6 +237,7 @@ namespace River.OneMoreAddIn.Commands
 			this.animalsLink.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
 			this.animalsLink.Location = new System.Drawing.Point(8, 100);
 			this.animalsLink.Name = "animalsLink";
+			this.animalsLink.NavMode = true;
 			this.animalsLink.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
 			this.animalsLink.Size = new System.Drawing.Size(184, 20);
 			this.animalsLink.TabIndex = 3;
@@ -251,6 +255,7 @@ namespace River.OneMoreAddIn.Commands
 			this.foodLink.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
 			this.foodLink.Location = new System.Drawing.Point(8, 130);
 			this.foodLink.Name = "foodLink";
+			this.foodLink.NavMode = true;
 			this.foodLink.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
 			this.foodLink.Size = new System.Drawing.Size(184, 20);
 			this.foodLink.TabIndex = 4;
@@ -268,6 +273,7 @@ namespace River.OneMoreAddIn.Commands
 			this.travelLink.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
 			this.travelLink.Location = new System.Drawing.Point(8, 160);
 			this.travelLink.Name = "travelLink";
+			this.travelLink.NavMode = true;
 			this.travelLink.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
 			this.travelLink.Size = new System.Drawing.Size(184, 20);
 			this.travelLink.TabIndex = 5;
@@ -285,6 +291,7 @@ namespace River.OneMoreAddIn.Commands
 			this.activitiesLink.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
 			this.activitiesLink.Location = new System.Drawing.Point(8, 190);
 			this.activitiesLink.Name = "activitiesLink";
+			this.activitiesLink.NavMode = true;
 			this.activitiesLink.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
 			this.activitiesLink.Size = new System.Drawing.Size(184, 20);
 			this.activitiesLink.TabIndex = 6;
@@ -302,6 +309,7 @@ namespace River.OneMoreAddIn.Commands
 			this.objectsLink.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
 			this.objectsLink.Location = new System.Drawing.Point(8, 220);
 			this.objectsLink.Name = "objectsLink";
+			this.objectsLink.NavMode = true;
 			this.objectsLink.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
 			this.objectsLink.Size = new System.Drawing.Size(184, 20);
 			this.objectsLink.TabIndex = 7;
@@ -319,6 +327,7 @@ namespace River.OneMoreAddIn.Commands
 			this.symbolsLink.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
 			this.symbolsLink.Location = new System.Drawing.Point(8, 250);
 			this.symbolsLink.Name = "symbolsLink";
+			this.symbolsLink.NavMode = true;
 			this.symbolsLink.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
 			this.symbolsLink.Size = new System.Drawing.Size(184, 20);
 			this.symbolsLink.TabIndex = 8;
@@ -336,6 +345,7 @@ namespace River.OneMoreAddIn.Commands
 			this.flagsLink.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
 			this.flagsLink.Location = new System.Drawing.Point(8, 280);
 			this.flagsLink.Name = "flagsLink";
+			this.flagsLink.NavMode = true;
 			this.flagsLink.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
 			this.flagsLink.Size = new System.Drawing.Size(184, 20);
 			this.flagsLink.TabIndex = 9;

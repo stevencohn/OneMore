@@ -22,6 +22,7 @@ namespace River.OneMoreAddIn.UI
 		private Color themedLinkColor;
 		private bool selected;
 		private bool active;
+		private bool navMode;
 		private LinkLabelLinkClickedEventHandler linkClicked;
 
 
@@ -88,12 +89,35 @@ namespace River.OneMoreAddIn.UI
 
 
 		/// <summary>
+		/// Gets or sets whether this control uses its secondary "nav-style" mode, in which
+		/// the <see cref="Active"/> property controls the fore color and accent bar instead
+		/// of the normal hyperlink colors. This is off by default, so a plain MoreLinkLabel
+		/// always shows the normal themed hyperlink/active-link colors regardless of Active.
+		/// Enable this for links that act as items in a vertical nav-style list.
+		/// </summary>
+		public bool NavMode
+		{
+			get => navMode;
+			set
+			{
+				if (navMode != value)
+				{
+					navMode = value;
+					ApplyRestingColor();
+					Invalidate();
+				}
+			}
+		}
+
+
+		/// <summary>
 		/// Gets or sets whether this link is the current "active" item in a vertical list
 		/// of nav-style links, drawn with an accent bar along its left edge instead of the
-		/// full-row highlight that <see cref="Selected"/> uses. Active items keep the normal
-		/// themed hyperlink color; inactive items render in plain ControlText instead, so
-		/// only the active item reads as a link. Reserve left padding (e.g. Padding.Left =
-		/// 8) on the control so the bar doesn't overlap the text.
+		/// full-row highlight that <see cref="Selected"/> uses. Only takes effect while
+		/// <see cref="NavMode"/> is enabled: the active item keeps the normal themed
+		/// hyperlink color while inactive items render in plain ControlText, so only the
+		/// active item reads as a link. Reserve left padding (e.g. Padding.Left = 8) on the
+		/// control so the bar doesn't overlap the text. Has no effect while NavMode is false.
 		/// </summary>
 		public bool Active
 		{
@@ -164,13 +188,17 @@ namespace River.OneMoreAddIn.UI
 
 
 		/// <summary>
-		/// Applies the not-hovered text color: the normal themed hyperlink color when this
-		/// is the active item in a nav-style list (see Active), otherwise plain ControlText.
-		/// Hovering always shows HoverColor regardless of Active.
+		/// Applies the not-hovered text color. While NavMode is enabled, this is the normal
+		/// themed hyperlink color when this is the active item (see Active), otherwise plain
+		/// ControlText. While NavMode is disabled, the normal themed hyperlink color always
+		/// applies. Hovering always shows HoverColor regardless of mode.
 		/// </summary>
 		private void ApplyRestingColor()
 		{
-			var color = active ? themedLinkColor : ThemeManager.Instance.GetColor("ControlText");
+			var color = navMode && !active
+				? ThemeManager.Instance.GetColor("ControlText")
+				: themedLinkColor;
+
 			LinkColor = VisitedLinkColor = ActiveLinkColor = color;
 		}
 
@@ -191,16 +219,33 @@ namespace River.OneMoreAddIn.UI
 
 		/// <summary>
 		/// Suppresses the dotted keyboard-focus rectangle while this link is the active item
-		/// in a nav-style list; the accent bar drawn in OnPaint already conveys that state.
+		/// in a nav-style list (NavMode enabled and Active true); the accent bar drawn in
+		/// OnPaint already conveys that state.
 		/// </summary>
-		protected override bool ShowFocusCues => active ? false : base.ShowFocusCues;
+		protected override bool ShowFocusCues => (navMode && active) ? false : base.ShowFocusCues;
+
+
+		/// <summary>
+		/// Claims Up/Down as input keys while NavMode is enabled so they're delivered to this
+		/// control as ordinary KeyDown events instead of being swallowed by dialog-key
+		/// navigation, letting a consumer move the active item in a vertical nav-style list.
+		/// </summary>
+		protected override bool IsInputKey(Keys keyData)
+		{
+			if (navMode && (keyData == Keys.Up || keyData == Keys.Down))
+			{
+				return true;
+			}
+
+			return base.IsInputKey(keyData);
+		}
 
 
 		protected override void OnPaint(PaintEventArgs e)
 		{
 			base.OnPaint(e);
 
-			if (active)
+			if (navMode && active)
 			{
 				using var brush = new SolidBrush(ThemeManager.Instance.GetColor("Highlight"));
 				e.Graphics.FillRectangle(brush, 0, 0, BarWidth, Height);
