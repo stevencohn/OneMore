@@ -1,5 +1,5 @@
-﻿//************************************************************************************************
-// Copyright © 2022 Steven M Cohn.  All rights reserved.
+//************************************************************************************************
+// Copyright © 2022 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.Models;
 	using System.Collections.Generic;
 	using System.Linq;
+	using System.Text;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
@@ -15,20 +16,22 @@ namespace River.OneMoreAddIn.Commands
 
 
 	/// <summary>
-	/// Generates pages in the current section from a list of page names where the list could 
-	/// be a bulleted list, a numbered list, a column from a table, the first column from an 
+	/// Generates pages in the current section from a list of page names where the list could
+	/// be a bulleted list, a numbered list, a column from a table, the first column from an
 	/// embedded spreadsheet, or OCR text from an embedded image.
 	/// </summary>
 	internal class CreatePagesCommand : Command
 	{
+		private const string RightArrow = "→";
+
 		private Page page;
 		private XNamespace ns;
-		private readonly List<string> names;
+		private readonly List<(string Name, XElement Source)> names;
 
 
 		public CreatePagesCommand()
 		{
-			names = new List<string>();
+			names = new List<(string Name, XElement Source)>();
 		}
 
 
@@ -50,10 +53,15 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			var msg = string.Format(Resx.CreatePagesCommand_CreatePages, names.Count);
-			if (UI.MoreMessageBox.ShowQuestion(owner, msg) != DialogResult.Yes)
+			bool createLinks;
+			using (var dialog = new CreatePagesDialog(names.Count))
 			{
-				return;
+				if (dialog.ShowDialog(owner) != DialogResult.OK)
+				{
+					return;
+				}
+
+				createLinks = dialog.CreateLinks;
 			}
 
 			var progress = new UI.ProgressDialog(async (self, token) =>
@@ -64,18 +72,29 @@ namespace River.OneMoreAddIn.Commands
 				var sectionId = one.CurrentSectionId;
 				self.SetMaximum(names.Count);
 
+				var crumbs = createLinks ? BuildCrumbs(one) : null;
+				var linkedSource = false;
+
 				try
 				{
-					foreach (var name in names)
+					foreach (var (name, source) in names)
 					{
 						if (!token.IsCancellationRequested)
 						{
 							self.SetMessage(name);
 
-							//await one.CreatePage(sectionId, name);
 							one.CreatePage(sectionId, out var pageId);
 							var newpage = await one.GetPage(pageId);
 							newpage.Title = name;
+
+							if (createLinks && source != null &&
+								source.GetAttributeValue("objectID", out var objectId))
+							{
+								AddForwardLink(source, one.GetHyperlink(pageId, newpage.TitleID));
+								AddBacklink(newpage, crumbs, one.GetHyperlink(page.PageId, objectId), name);
+								linkedSource = true;
+							}
+
 							await one.Update(newpage);
 
 							self.Increment();
@@ -83,6 +102,11 @@ namespace River.OneMoreAddIn.Commands
 							// purposely slowing it down so UI can catch up, yuck
 							await Task.Delay(100);
 						}
+					}
+
+					if (linkedSource)
+					{
+						await one.Update(page);
 					}
 				}
 				finally
@@ -95,6 +119,66 @@ namespace River.OneMoreAddIn.Commands
 			});
 
 			progress.RunModeless();
+		}
+
+
+		private string BuildCrumbs(OneNote one)
+		{
+			var crumbs = new StringBuilder();
+
+			var id = one.GetParent(page.PageId);
+			while (!string.IsNullOrEmpty(id))
+			{
+				var node = one.GetHierarchyNode(id);
+				crumbs.Insert(0, $"{node.Name} {RightArrow} ");
+				id = one.GetParent(id);
+			}
+
+			crumbs.Append(page.Title);
+			return crumbs.ToString();
+		}
+
+
+		private IEnumerable<XElement> GetTextRuns(XElement source)
+		{
+			// a List item's T runs are direct children whereas a table Cell's content
+			// is nested under its first paragraph, Cell/OEChildren/OE/T...
+
+			var oe = source.Name.LocalName == "Cell"
+				? source.Elements(ns + "OEChildren").Elements(ns + "OE").FirstOrDefault()
+				: source;
+
+			return oe?.Elements(ns + "T") ?? Enumerable.Empty<XElement>();
+		}
+
+
+		private void AddForwardLink(XElement source, string link)
+		{
+			foreach (var run in GetTextRuns(source))
+			{
+				var cdata = run.GetCData();
+				if (cdata != null)
+				{
+					cdata.Value = $"<a href='{link}'>{cdata.Value}</a>";
+				}
+			}
+		}
+
+
+		private void AddBacklink(Page newpage, string crumbs, string link, string text)
+		{
+			if (text.Length > 20)
+			{
+				text = $"{text.Substring(0, 20)}...";
+			}
+
+			var fragment = $"<a href='{link}'>{crumbs} {RightArrow} <i>{text}</i></a>";
+
+			var newns = newpage.Namespace;
+			var index = newpage.GetQuickStyle(Styles.StandardStyles.Quote).Index;
+			var paragraph = new Paragraph(newns, fragment).SetQuickStyle(index);
+
+			newpage.EnsureContentContainer().AddFirst(paragraph, new Paragraph(newns));
 		}
 
 
@@ -160,7 +244,7 @@ namespace River.OneMoreAddIn.Commands
 			elements.ForEach(o =>
 			{
 				logger.WriteLine($"item: {o.TextValue()}");
-				names.Add(o.TextValue());
+				names.Add((o.TextValue(), o));
 			});
 		}
 
@@ -189,7 +273,7 @@ namespace River.OneMoreAddIn.Commands
 					(!onlySelected || (cell.Attribute("selected") != null)))
 				{
 					logger.WriteLine($"cell: {cell.TextValue()}");
-					names.Add(cell.TextValue());
+					names.Add((cell.TextValue(), cell));
 				}
 			});
 		}
@@ -215,8 +299,11 @@ namespace River.OneMoreAddIn.Commands
 			logger.WriteLine("excel");
 			using var excel = new Excel();
 			var list = excel.ExtractSimpleList(source);
-			list.ForEach(l => logger.WriteLine($"item: {l}"));
-			names.AddRange(list);
+			list.ForEach(l =>
+			{
+				logger.WriteLine($"item: {l}");
+				names.Add((l, null));
+			});
 		}
 
 
@@ -241,7 +328,7 @@ namespace River.OneMoreAddIn.Commands
 					t.TextValue().Split('\n').ForEach(s =>
 					{
 						logger.WriteLine($"ocr: {s}");
-						names.Add(s);
+						names.Add((s, null));
 					});
 				});
 		}

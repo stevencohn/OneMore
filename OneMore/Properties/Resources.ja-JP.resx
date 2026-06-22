@@ -677,6 +677,14 @@
     <value>ページに名前リストが見つかりませんでした</value>
     <comment>message box</comment>
   </data>
+  <data name="CreatePagesDialog.Text" xml:space="preserve">
+    <value>ページの作成</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="CreatePagesDialog_linksBox.Text" xml:space="preserve">
+    <value>リストと新しいページの間に双方向リンクを作成する</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="CropImage_oneImage" xml:space="preserve">
     <value>1 枚の画像を選択してトリミングしてください</value>
     <comment>Crop command error message</comment>

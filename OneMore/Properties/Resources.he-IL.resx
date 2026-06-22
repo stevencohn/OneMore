@@ -674,6 +674,14 @@
     <value>רשימת שמות לא נמצאה בדף</value>
     <comment>message box</comment>
   </data>
+  <data name="CreatePagesDialog.Text" xml:space="preserve">
+    <value>צור דפים</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="CreatePagesDialog_linksBox.Text" xml:space="preserve">
+    <value>צור קישורים דו-כיוונים בין הרשימה לדפים חדשים</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="CropImage_oneImage" xml:space="preserve">
     <value>בחר תמונה אחת לחתוך</value>
     <comment>Crop command error message</comment>

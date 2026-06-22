@@ -683,6 +683,14 @@ Do you want to continue?</value>
     <value>A name list was not found on the page</value>
     <comment>message box</comment>
   </data>
+  <data name="CreatePagesDialog.Text" xml:space="preserve">
+    <value>Create Pages</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="CreatePagesDialog_linksBox.Text" xml:space="preserve">
+    <value>Create two-way links between the list and new pages</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="CropImage_oneImage" xml:space="preserve">
     <value>Select one image to crop</value>
     <comment>Crop command error message</comment>

@@ -677,6 +677,14 @@ Invertir</value>
     <value>No se encontró una lista de nombres en la página.</value>
     <comment>message box</comment>
   </data>
+  <data name="CreatePagesDialog.Text" xml:space="preserve">
+    <value>Crear páginas</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="CreatePagesDialog_linksBox.Text" xml:space="preserve">
+    <value>Crear enlaces bidireccionales entre la lista y las páginas nuevas.</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="CropImage_oneImage" xml:space="preserve">
     <value>Seleccione una imagen para recortar</value>
     <comment>Crop command error message</comment>

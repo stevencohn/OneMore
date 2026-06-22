@@ -674,6 +674,14 @@ Wil je doorgaan?</value>
     <value>Er is geen namenlijst gevonden op de pagina</value>
     <comment>message box</comment>
   </data>
+  <data name="CreatePagesDialog.Text" xml:space="preserve">
+    <value>Pagina's maken</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="CreatePagesDialog_linksBox.Text" xml:space="preserve">
+    <value>Maak tweerichtingskoppelingen tussen de lijst en nieuwe pagina's</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="CropImage_oneImage" xml:space="preserve">
     <value>Selecteer een afbeelding om bij te snijden</value>
     <comment>Crop command error message</comment>
