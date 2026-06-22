@@ -41,6 +41,8 @@ namespace River.OneMoreAddIn.Settings
 		private readonly Dictionary<int, SheetBase> sheets;
 		private readonly SettingsProvider provider;
 		private readonly IRibbonUI ribbon;
+		private readonly UI.MoreLinkLabel[] navLinks;
+		private int activeIndex;
 		private bool restart;
 
 
@@ -58,33 +60,43 @@ namespace River.OneMoreAddIn.Settings
 					"cancelButton=word_Cancel"
 				});
 
-				navTree.Nodes["generalNode"].Text = Resx.GeneralSheet_Title;
-				navTree.Nodes["colorizerNode"].Text = Resx.ColorizerSheet_Title;
-				navTree.Nodes["colorsNode"].Text = Resx.ColorsSheet_Title;
-				navTree.Nodes["aliasNode"].Text = Resx.AliasSheet_Title;
-				navTree.Nodes["contextNode"].Text = Resx.ContextMenuSheet_Title;
-				navTree.Nodes["favoritesNode"].Text = Resx.word_Favorites;
-				navTree.Nodes["fileImportNode"].Text = Resx.FileImportSheet_Title;
-				navTree.Nodes["hashtagsNode"].Text = Resx.word_Hashtags;
-				navTree.Nodes["highlightNode"].Text = Resx.HighlightsSheet_Title;
-				navTree.Nodes["imagesNode"].Text = Resx.word_Images;
-				navTree.Nodes["keyboardNode"].Text = Resx.SettingsDialog_keyboardNode_Text;
-				navTree.Nodes["navigatorNode"].Text = Resx.word_Navigator;
-				navTree.Nodes["pluginsNode"].Text = Resx.word_Plugins;
-				navTree.Nodes["quickNotesNode"].Text = Resx.QuickNotesSheet_Title;
-				navTree.Nodes["ribbonNode"].Text = Resx.RibbonBarSheet_Title;
-				navTree.Nodes["searchNode"].Text = Resx.SearchEngineSheet_Text;
-				navTree.Nodes["snippetsNode"].Text = Resx.word_Snippets;
-				navTree.Nodes["tableThemesNode"].Text = Resx.TableThemesSheet_Title;
-				navTree.Nodes["variablesNode"].Text = Resx.VariablesSheet_Title;
+				generalLink.Text = Resx.GeneralSheet_Title;
+				colorizerLink.Text = Resx.ColorizerSheet_Title;
+				colorsLink.Text = Resx.ColorsSheet_Title;
+				aliasLink.Text = Resx.AliasSheet_Title;
+				contextLink.Text = Resx.ContextMenuSheet_Title;
+				favoritesLink.Text = Resx.word_Favorites;
+				fileImportLink.Text = Resx.FileImportSheet_Title;
+				hashtagsLink.Text = Resx.word_Hashtags;
+				highlightLink.Text = Resx.HighlightsSheet_Title;
+				imagesLink.Text = Resx.word_Images;
+				keyboardLink.Text = Resx.SettingsDialog_keyboardNode_Text;
+				navigatorLink.Text = Resx.word_Navigator;
+				pluginsLink.Text = Resx.word_Plugins;
+				quickNotesLink.Text = Resx.QuickNotesSheet_Title;
+				ribbonLink.Text = Resx.RibbonBarSheet_Title;
+				searchLink.Text = Resx.SearchEngineSheet_Text;
+				snippetsLink.Text = Resx.word_Snippets;
+				tableThemesLink.Text = Resx.TableThemesSheet_Title;
+				variablesLink.Text = Resx.VariablesSheet_Title;
 			}
 
 			this.ribbon = ribbon;
 			provider = new SettingsProvider();
 			sheets = new Dictionary<int, SheetBase>();
 
-			navTree.SelectedNode = navTree.Nodes[0];
-			navTree.Focus();
+			navLinks = new[]
+			{
+				generalLink, colorizerLink, colorsLink, aliasLink, contextLink,
+				favoritesLink, fileImportLink, hashtagsLink, highlightLink, imagesLink,
+				keyboardLink, navigatorLink, pluginsLink, quickNotesLink, ribbonLink,
+				searchLink, snippetsLink, tableThemesLink, variablesLink
+			};
+
+			activeIndex = 0;
+			navLinks[0].Active = true;
+			Navigate(0);
+			navLinks[0].Focus();
 
 			restart = false;
 		}
@@ -96,6 +108,31 @@ namespace River.OneMoreAddIn.Settings
 			// we would need to calculate them based on screen scaling
 			MinimumSize = new System.Drawing.Size(Width, Height);
 			FormBorderStyle = FormBorderStyle.Sizable;
+
+			LayoutNavLinks();
+		}
+
+
+		// the designer bakes each link's Height/Top as raw pixels authored at this
+		// dialog's design-time DPI (150%, see AutoScaleDimensions); WinForms rescales
+		// those pixel values for whatever DPI the dialog actually opens at, and the
+		// rounding in that conversion can leave a row a couple pixels shorter than its
+		// own (separately rescaled) font needs, clipping the bottom of the text - most
+		// visible on lower-DPI screens since that's a scale-down. Deriving the row
+		// height from the link's actual runtime Font instead keeps every row sized to
+		// fit its own text regardless of DPI.
+		private void LayoutNavLinks()
+		{
+			var rowHeight = navLinks[0].Font.Height + 2;
+			var gap = rowHeight / 2;
+			var y = navLinks[0].Top;
+
+			foreach (var link in navLinks)
+			{
+				link.Height = rowHeight;
+				link.Top = y;
+				y += rowHeight + gap;
+			}
 		}
 
 
@@ -105,24 +142,64 @@ namespace River.OneMoreAddIn.Settings
 		public void ActivateSheet(Sheets sheet)
 		{
 			var index = (int)sheet;
-			if (index > 0 && index < navTree.Nodes.Count)
+			if (index > 0 && index < navLinks.Length)
 			{
-				navTree.SelectedNode = navTree.Nodes[index];
+				ActivateLink(index);
 			}
 		}
 
 
-		private async void Navigate(object sender, TreeViewEventArgs e)
+		private void DoLinkClicked(object sender, EventArgs e)
+		{
+			if (sender is UI.MoreLinkLabel link && link.Tag is int index)
+			{
+				ActivateLink(index);
+			}
+		}
+
+
+		private void DoLinkKeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Down && activeIndex < navLinks.Length - 1)
+			{
+				ActivateLink(activeIndex + 1);
+				e.Handled = true;
+			}
+			else if (e.KeyCode == Keys.Up && activeIndex > 0)
+			{
+				ActivateLink(activeIndex - 1);
+				e.Handled = true;
+			}
+		}
+
+
+		private void ActivateLink(int index)
+		{
+			if (index == activeIndex)
+			{
+				return;
+			}
+
+			navLinks[activeIndex].Active = false;
+			navLinks[index].Active = true;
+			activeIndex = index;
+			navLinks[index].Focus();
+
+			Navigate(index);
+		}
+
+
+		private async void Navigate(int index)
 		{
 			SheetBase sheet;
 
-			if (sheets.ContainsKey(e.Node.Index))
+			if (sheets.ContainsKey(index))
 			{
-				sheet = sheets[e.Node.Index];
+				sheet = sheets[index];
 			}
 			else
 			{
-				sheet = e.Node.Index switch
+				sheet = index switch
 				{
 					0 => new GeneralSheet(provider),
 					1 => new ColorizerSheet(provider),
@@ -145,7 +222,7 @@ namespace River.OneMoreAddIn.Settings
 					_ => new VariablesSheet(provider)
 				};
 
-				sheets.Add(e.Node.Index, sheet);
+				sheets.Add(index, sheet);
 			}
 
 			headerLabel.Text = sheet.Title;
