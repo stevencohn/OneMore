@@ -18,6 +18,13 @@ namespace River.OneMoreAddIn.Tests
 		protected MockApplication Mock { get; private set; }
 
 
+		[AssemblyInitialize]
+		public static void AssemblyInit(TestContext context)
+		{
+			Logger.SetApplication("OneMore-UnitTests");
+		}
+
+
 		[TestInitialize]
 		public void Setup()
 		{
