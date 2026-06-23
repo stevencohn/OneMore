@@ -34,6 +34,7 @@ namespace River.OneMoreAddIn.Settings
 					"styleBox",
 					"filterBox",
 					"doubledBox",
+					"notifyBox",
 					"scheduleLink",
 					"warningLabel",
 					"disabledBox"
@@ -79,6 +80,7 @@ namespace River.OneMoreAddIn.Settings
 
 			filterBox.Checked = settings.Get<bool>("unfiltered");
 			doubledBox.Checked = settings.Get<bool>("doubled");
+			notifyBox.Checked = settings.Get<bool>("notify");
 
 			if (provider.GetCollection("GeneralSheet").Get("experimental", false))
 			{
@@ -115,6 +117,7 @@ namespace River.OneMoreAddIn.Settings
 			var settings = provider.GetCollection(Name);
 
 			var updated = settings.Add("interval", (int)intervalBox.Value);
+			var save = false;
 
 			updated = settings.Add("styleIndex", styleBox.SelectedIndex) || updated;
 			updated = settings.Add("styleName", styleBox.Text) || updated;
@@ -127,13 +130,17 @@ namespace River.OneMoreAddIn.Settings
 				? settings.Add("doubled", true) || updated
 				: settings.Remove("doubled") || updated;
 
+			save = notifyBox.Checked
+				? settings.Add("notify", true) || save
+				: settings.Remove("notify") || save;
+
 			updated = disabledBox.Checked
 				? settings.Add("disabled", true) || updated
 				: settings.Remove("disabled") || updated;
 
 			updated = settings.Add("delay", (int)delayBox.Value) || updated;
 
-			if (updated)
+			if (updated || save)
 			{
 				provider.SetCollection(settings);
 			}

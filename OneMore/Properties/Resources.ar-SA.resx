@@ -1488,10 +1488,22 @@
     <value>الصفحات الموسومة</value>
     <comment>page title</comment>
   </data>
+  <data name="HashtagCommand_scanComplete" xml:space="preserve">
+    <value>تم مسح {0} صفحة، وتم تحديث {1}، وتم العثور على {2} علامة تصنيف</value>
+    <comment>toast message</comment>
+  </data>
   <data name="HashtagCommand_scanning" xml:space="preserve">
     <value>يقوم OneMore حاليًا بإنشاء كتالوج الهاشتاج الخاص بك.
 
 البحث عن علامات التصنيف غير متاح حتى اكتمال ذلك.</value>
+  </data>
+  <data name="HashtagCommand_scanPageComplete" xml:space="preserve">
+    <value>تمت معالجة {0} علامة تصنيف في هذه الصفحة</value>
+    <comment>toast message</comment>
+  </data>
+  <data name="HashtagCommand_toastTitle" xml:space="preserve">
+    <value>علامات التصنيف OneMore</value>
+    <comment>toast header</comment>
   </data>
   <data name="HashtagCommand_waiting" xml:space="preserve">
     <value>تمت جدولة إنشاء كتالوج الهاشتاج الخاص بك في {0}. يمكنك تغيير هذا الجدول الزمني من تطبيق OneMore Tray.
@@ -1632,6 +1644,10 @@
   <data name="HashtagSheet_introBox.Text" xml:space="preserve">
     <value>تخصيص الخيارات المتقدمة لخدمة Hashtag Scanner</value>
     <comment>label</comment>
+  </data>
+  <data name="HashtagSheet_notifyBox.Text" xml:space="preserve">
+    <value>إظهار الإشعار المنبثق عند اكتمال الماسح الضوئي</value>
+    <comment>checkbox</comment>
   </data>
   <data name="HashtagSheet_prescheduled" xml:space="preserve">
     <value>تمت جدولة عملية الفحص لـ {0}. استخدم الخيارات أدناه لتغيير هذا أو اضغط على إلغاء للاحتفاظ بالجدول الحالي.</value>

@@ -1485,10 +1485,22 @@ Total Row Font
     <value>דפים מתויגים</value>
     <comment>page title</comment>
   </data>
+  <data name="HashtagCommand_scanComplete" xml:space="preserve">
+    <value>סרוק {0} דפים, עודכן {1}, נמצא {2} hashtags</value>
+    <comment>toast message</comment>
+  </data>
   <data name="HashtagCommand_scanning" xml:space="preserve">
     <value>OneMore יוצר כעת את קטלוג ההאשטאג שלך.
 
 חיפוש hashtags אינו זמין עד להשלמת פעולה זו.</value>
+  </data>
+  <data name="HashtagCommand_scanPageComplete" xml:space="preserve">
+    <value>עיבדו {0} hashtags בדף זה</value>
+    <comment>toast message</comment>
+  </data>
+  <data name="HashtagCommand_toastTitle" xml:space="preserve">
+    <value>OneMore Hashtags</value>
+    <comment>toast header</comment>
   </data>
   <data name="HashtagCommand_waiting" xml:space="preserve">
     <value>קטלוג ההאשטאג שלך מתוכנן להיווצר ב-{0}. אתה יכול לשנות את לוח הזמנים הזה מאפליקציית OneMore Tray.
@@ -1629,6 +1641,10 @@ Total Row Font
   <data name="HashtagSheet_introBox.Text" xml:space="preserve">
     <value>התאם אישית אפשרויות מתקדמות עבור שירות הסורק של Hashtag</value>
     <comment>label</comment>
+  </data>
+  <data name="HashtagSheet_notifyBox.Text" xml:space="preserve">
+    <value>הצג הודעה קופצת כאשר הסורק מסתיים</value>
+    <comment>checkbox</comment>
   </data>
   <data name="HashtagSheet_prescheduled" xml:space="preserve">
     <value>סריקה מתוכננת ל-{0}. השתמש באפשרויות למטה כדי לשנות זאת או לחץ על ביטול כדי לשמור על לוח הזמנים הנוכחי.</value>
