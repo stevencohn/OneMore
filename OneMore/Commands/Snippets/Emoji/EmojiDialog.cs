@@ -21,7 +21,8 @@ namespace River.OneMoreAddIn.Commands
 	/// <remarks>
 	/// Disposables taken care of in OnClosed. Has two views, a curated List (named emojis,
 	/// one image+name per row) and a Grid (every codepoint the installed Segoe UI Emoji
-	/// font supports across the full Unicode range, images only, no names); both support
+	/// font supports across the full Unicode range, each captioned with a name derived
+	/// from Unicode data and searchable via the box above the grid); both support
 	/// multi-select, and selections made in either view are preserved across both.
 	/// </remarks>
 
@@ -54,6 +55,7 @@ namespace River.OneMoreAddIn.Commands
 					"cancelButton=word_Cancel",
 					"listTab",
 					"gridTab",
+					"searchLabel=word_Search",
 					"generalLink",
 					"smileysLink",
 					"peopleLink",
@@ -101,6 +103,9 @@ namespace River.OneMoreAddIn.Commands
 
 			gridBox.LargeImageList = new ImageList { ImageSize = new Size(GridIconSize + 8, GridIconSize + 8) };
 			gridBox.GetItemImage = GetGridItemImage;
+			gridBox.GetItemLabel = GetGridItemLabel;
+
+			searchPanel.BackColor = UI.ThemeManager.Instance.GetColor("ControlLightLight");
 
 			// generalLink.Active=true is set in the designer to match the grid's initial
 			// scroll position (top, i.e. General); keep this field in sync with it
@@ -212,6 +217,11 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		// supplies MoreIconListView with the small caption to draw below a grid cell's icon
+		private string GetGridItemLabel(ListViewItem item) =>
+			item.Tag is Emoji emoji ? emoji.Name : null;
+
+
 		private Image RenderEmojiIcon(Emoji emoji, bool selected, int sizePx)
 		{
 			try
@@ -272,6 +282,8 @@ namespace River.OneMoreAddIn.Commands
 			{
 				PopulateGrid();
 			}
+
+			searchBox.Focus();
 		}
 
 
@@ -347,14 +359,27 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		// filters gridBox by name as the user types; only kicks in at 2+ characters so a
+		// single keystroke doesn't flash the grid down to near-nothing, but clearing the
+		// box back to empty always restores the full grid
+		private void FilterGridOnSearchChanged(object sender, EventArgs e)
+		{
+			var text = searchBox.Text;
+			if (text.Length == 0 || text.Length >= 2)
+			{
+				PopulateGrid(text);
+			}
+		}
+
+
 		// groups every emoji in unicodeEmojis into gridBox by category - General first,
 		// then the 9 Unicode groups in CategoryOrder - so each category link has one
 		// contiguous section to scroll to; unicodeEmojis is already codepoint-sorted, so
-		// a single bucketing pass preserves that order within each category. Runs exactly
-		// once, only the first time the Grid tab is shown (see DoTabSelected and
-		// LoadGridAsync), so there's never anything selected yet to preserve through
-		// this build.
-		private void PopulateGrid()
+		// a single bucketing pass preserves that order within each category. Called once
+		// the first time the Grid tab is shown (see DoTabSelected and LoadGridAsync), and
+		// again on every search box change to rebuild with a different filter - so unlike
+		// the first build, later calls may have selections to preserve.
+		private void PopulateGrid(string filter = null)
 		{
 			if (unicodeEmojis is null)
 			{
@@ -363,20 +388,31 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
+			gridBox.BeginUpdate();
+			gridBox.Items.Clear();
+			categoryStartItems.Clear();
+
 			var buckets = CategoryOrder.ToDictionary(c => c, c => new List<Emoji>());
 			for (var i = 0; i < unicodeEmojis.Count; i++)
 			{
 				var emoji = unicodeEmojis[i];
-				buckets[emoji.Category ?? GeneralCategory].Add(emoji);
+				if (string.IsNullOrEmpty(filter) || emoji.Name.ContainsICIC(filter))
+				{
+					buckets[emoji.Category ?? GeneralCategory].Add(emoji);
+				}
 			}
 
-			gridBox.BeginUpdate();
 			foreach (var category in CategoryOrder)
 			{
 				var bucket = buckets[category];
 				for (var i = 0; i < bucket.Count; i++)
 				{
-					var item = new ListViewItem(string.Empty) { Tag = bucket[i] };
+					var emoji = bucket[i];
+					var item = new ListViewItem(string.Empty)
+					{
+						Tag = emoji,
+						Selected = gridSelections.Contains(emoji)
+					};
 					gridBox.Items.Add(item);
 
 					if (i == 0)
