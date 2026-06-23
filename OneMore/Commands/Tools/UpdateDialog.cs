@@ -48,7 +48,7 @@ namespace River.OneMoreAddIn.Commands
 				AcceptButton = okButton;
 				CancelButton = okButton;
 
-				versionBox.Text = $"{info.InstalledVersion} ({info.InstalledArchitecture})";
+				versionBox.Text = $"{info.InstalledVersion}{AssemblyInfo.BuildTag} ({info.InstalledArchitecture})";
 				lastUpdatedBox.Text = FormatDate(info.InstalledDate);
 				url = info.InstalledUrl;
 			}
@@ -81,7 +81,7 @@ namespace River.OneMoreAddIn.Commands
 				upVersionBox.Text = info.UpdateVersion;
 				upDescriptionBox.Text = info.UpdateDescription;
 				upReleaseDateBox.Text = FormatDate(info.UpdateDate);
-				upCurrentVersionBox.Text = $"{info.InstalledVersion} ({info.InstalledArchitecture})";
+				upCurrentVersionBox.Text = $"{info.InstalledVersion}{AssemblyInfo.BuildTag} ({info.InstalledArchitecture})";
 				upLastUpdatedBox.Text = FormatDate(info.InstalledDate);
 				url = info.UpdateUrl;
 			}

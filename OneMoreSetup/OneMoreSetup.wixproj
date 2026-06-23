@@ -5,9 +5,11 @@
     <Platform Condition="'$(Platform)' == ''">x86</Platform>
     <Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
     <ProductVersion Condition="'$(ProductVersion)' == ''">7.1.1</ProductVersion>
+    <!-- BetaTag: human-readable suffix for the Package Name (e.g. " (Beta 3)"), set by build.ps1 -->
+    <BetaTag Condition="'$(BetaTag)' == ''"></BetaTag>
     <OutputName>OneMore_$(ProductVersion)_Setup$(Platform)</OutputName>
     <OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
-    <DefineConstants>ProductVersion=$(ProductVersion)</DefineConstants>
+    <DefineConstants>ProductVersion=$(ProductVersion);BetaTag=$(BetaTag)</DefineConstants>
     <!-- ICE38/ICE64: perMachine package intentionally installs to %APPDATA% for user themes.
          Active Setup propagates them to each user profile on login. -->
     <SuppressIces>ICE38;ICE60;ICE64;ICE91</SuppressIces>

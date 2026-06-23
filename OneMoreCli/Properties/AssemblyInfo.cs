@@ -18,11 +18,20 @@ using System.Runtime.InteropServices;
 
 [assembly: AssemblyVersion(OneMoreCli.AssemblyInfo.Version)]
 [assembly: AssemblyFileVersion(OneMoreCli.AssemblyInfo.Version)]
+[assembly: AssemblyInformationalVersion(OneMoreCli.AssemblyInfo.Version + OneMoreCli.AssemblyInfo.BuildTag)]
 
 namespace OneMoreCli
 {
 	internal static class AssemblyInfo
 	{
 		public const string Version = "7.1.1";
+
+		public const string BuildTag =
+#if BETA
+		" Beta"
+#else
+		""
+#endif
+		;
 	}
 }

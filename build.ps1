@@ -12,6 +12,11 @@ binaries (on-demand only; excluded from -All).
 .PARAMETER Beta
 Flags this as a beta version of the installer kit.
 
+.PARAMETER BetaNumber
+The beta build number, e.g. 3 for "7.1.1 (Beta 3)". Only meaningful together
+with -Beta; ignored otherwise. When omitted (or 0), beta builds fall back to
+the plain " Beta" tag with no number.
+
 .PARAMETER Clean
 Clean all projects in the solution, removing all bin and obj directories.
 No build is performed. This is a standalone command that executes and exits.
@@ -62,6 +67,8 @@ param (
 	[string] $Detect,
 
 	[switch] $Beta,
+	[ValidateRange(0,999)]
+	[int] $BetaNumber = 0,
 	[switch] $Clean,
 	[switch] $EchoLog,
 	[switch] $Fast,
@@ -76,6 +83,45 @@ Begin
 {
 	$script:guid = '{88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61}'
 	$script:checksums = @()
+
+	# AssemblyInfo.cs files carrying the "#if BETA ... \" Beta\" ..." BuildTag pattern;
+	# ApplyBetaTag/RestoreBetaTag temporarily substitute the beta number into these
+	# before compiling and restore the originals afterward so the working tree is
+	# never left modified.
+	$script:betaInfoFiles = @(
+		'OneMore\Properties\AssemblyInfo.cs',
+		'OneMoreTray\Properties\AssemblyInfo.cs',
+		'OneMoreCalendar\Properties\AssemblyInfo.cs',
+		'OneMoreProtocolHandler\Properties\AssemblyInfo.cs',
+		'OneMoreSetupActions\Properties\AssemblyInfo.cs',
+		'OneMoreCli\Properties\AssemblyInfo.cs'
+	)
+
+	function ApplyBetaTag
+	{
+		param([int] $Number)
+
+		$replacement = '" (Beta ' + $Number + ')"'
+		$script:betaBackup = @{}
+		foreach ($f in $script:betaInfoFiles)
+		{
+			$content = Get-Content -Raw $f
+			$script:betaBackup[$f] = $content
+			Set-Content -Path $f -Value $content.Replace('" Beta"', $replacement) -NoNewline
+		}
+	}
+
+	function RestoreBetaTag
+	{
+		if ($script:betaBackup)
+		{
+			foreach ($f in $script:betaBackup.Keys)
+			{
+				Set-Content -Path $f -Value $script:betaBackup[$f] -NoNewline
+			}
+			$script:betaBackup = $null
+		}
+	}
 
 	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 	# Helpers...
@@ -448,12 +494,19 @@ Begin
 			Write-Host "... $dllPath not found; run a solution build first" -ForegroundColor Red
 			return
 		}
-		$ver = (Get-Item $dllPath).VersionInfo.ProductVersion
+		# use FileVersion (always plain numeric), not ProductVersion: once a beta
+		# build sets AssemblyInformationalVersion, ProductVersion includes the
+		# "(Beta n)" tag, which WiX's numeric ProductVersion can't accept
+		$ver = (Get-Item $dllPath).VersionInfo.FileVersion
 		# Normalise x.y.z.w → x.y.z (strip revision component)
 		if ($ver -match '^(\d+\.\d+\.\d+)\.\d+$') { $ver = $matches[1] }
 		$script:productVersion = $ver
 
-		Write-Host "... building $Architecture kit for v$ver" -ForegroundColor Yellow
+		# human-readable beta tag for the installer's display name (e.g. " (Beta 3)");
+		# the numeric $ver above always stays plain major.minor.build for WiX/MSI
+		$betaTag = if ($Beta -and $BetaNumber -gt 0) { " (Beta $BetaNumber)" } else { '' }
+
+		Write-Host "... building $Architecture kit for v$ver$betaTag" -ForegroundColor Yellow
 
 		# Locate MSBuild from the VS installation found by FindVisualStudio
 		$vsRoot = Split-Path -Parent (Split-Path -Parent $script:ideroot)
@@ -472,6 +525,7 @@ Begin
 				" /p:Platform=$msiArch" +
 				" /p:Configuration=Debug" +
 				" /p:ProductVersion=$ver" +
+				" /p:BetaTag=`"$betaTag`"" +
 				" /nologo /m"
 
 			Write-Host $cmd -ForegroundColor DarkGray
@@ -506,7 +560,8 @@ Begin
 								" /Restore" +
 								" /p:Platform=$bundleArch" +
 								" /p:Configuration=Debug" +
-								" /p:ProductVersion=$ver"
+								" /p:ProductVersion=$ver" +
+								" /p:BetaTag=`"$betaTag`""
 
 							# ARM64: signal Bundle.wxs to reference the x64 MSI instead of ARM64
 							if ($Architecture -eq 'ARM64')
@@ -588,31 +643,46 @@ Process
 
 	if ($Test) { if (-not (RunTests)) { exit 1 }; return }
 
-	if ($Beta) { $env:Beta = 'true' } else { Remove-Item env:Beta -ErrorAction SilentlyContinue }
-
-	if (OneNoteRunning) { return }
-
-	if ($Clean) { CleanSolution; return }
-
-	if ($Fast) { BuildFast; return }
-
-	if ($Kit) { BuildKit; return }
-
-	if ($Architecture -eq 'All' -or $Architecture -eq 'x')
+	if ($Beta)
 	{
-		if ($Architecture -eq 'All')
-		{
-			Build 'ARM64'
-		}
-
-		Build 'x86'
-		Build 'x64'
-
-		ReportChecksums
+		$env:Beta = 'true'
+		if ($BetaNumber -gt 0) { ApplyBetaTag $BetaNumber }
 	}
 	else
 	{
-		Build $Architecture
+		Remove-Item env:Beta -ErrorAction SilentlyContinue
+	}
+
+	try
+	{
+		if (OneNoteRunning) { return }
+
+		if ($Clean) { CleanSolution; return }
+
+		if ($Fast) { BuildFast; return }
+
+		if ($Kit) { BuildKit; return }
+
+		if ($Architecture -eq 'All' -or $Architecture -eq 'x')
+		{
+			if ($Architecture -eq 'All')
+			{
+				Build 'ARM64'
+			}
+
+			Build 'x86'
+			Build 'x64'
+
+			ReportChecksums
+		}
+		else
+		{
+			Build $Architecture
+		}
+	}
+	finally
+	{
+		RestoreBetaTag
 	}
 }
 End

@@ -17,8 +17,7 @@ namespace OneMoreCalendar
 
 			sponsorButton.SetHandCursor();
 
-			// TODO: beta
-			versionLabel.Text = string.Format(versionLabel.Text, AssemblyInfo.Version);
+			versionLabel.Text = string.Format(versionLabel.Text, AssemblyInfo.Version + AssemblyInfo.BuildTag);
 			copyLabel.Text = string.Format(copyLabel.Text, DateTime.Now.Year);
 		}
 

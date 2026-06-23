@@ -41,7 +41,7 @@ jobs:
       - name: Build solution
         shell: pwsh
         run: |
-          $beta = '${{ inputs.beta_build }}' -eq 'true' ? '-Beta' : ''
+          $beta = '${{ inputs.beta_build }}' -eq 'true' ? "-Beta -BetaNumber ${{ inputs.beta }}" : ''
           $echoLog = '${{ inputs.output_build_log }}' -eq 'true' ? '-EchoLog' : ''
           Invoke-Expression ".\build.ps1 -Architecture x64 $beta $echoLog"
 

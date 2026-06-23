@@ -12,7 +12,7 @@
     <?define ArchFlag = ARM64 ?>
   <?endif ?>
 
-  <Package Name="OneMore Add-in"
+  <Package Name="OneMore Add-in$(var.BetaTag)"
            Language="1033"
            Version="$(var.ProductVersion)"
            Manufacturer="River"

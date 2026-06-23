@@ -211,7 +211,7 @@ namespace OneMoreSetupActions
 			// Registers this program as the handler for the onemore:// protocol
 
 			logger.WriteLine();
-			logger.WriteLine($"Register... version {AssemblyInfo.Version}");
+			logger.WriteLine($"Register... version {AssemblyInfo.Version}{AssemblyInfo.BuildTag}");
 
 			var status = new CheckOneNoteAction(logger, stepper).Install();
 			if (status != CustomAction.SUCCESS)
@@ -264,7 +264,7 @@ namespace OneMoreSetupActions
 		static int Uninstall()
 		{
 			logger.WriteLine();
-			logger.WriteLine($"Unregister... version {AssemblyInfo.Version}");
+			logger.WriteLine($"Unregister... version {AssemblyInfo.Version}{AssemblyInfo.BuildTag}");
 
 			try
 			{

@@ -19,6 +19,7 @@ using System.Runtime.InteropServices;
 
 [assembly: AssemblyVersion(OneMoreCalendar.AssemblyInfo.Version)]
 [assembly: AssemblyFileVersion(OneMoreCalendar.AssemblyInfo.Version)]
+[assembly: AssemblyInformationalVersion(OneMoreCalendar.AssemblyInfo.Version + OneMoreCalendar.AssemblyInfo.BuildTag)]
 
 // To use, open LINQPad and set Preferences/Advanced "Allows LINPAad to access internals"...
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("LINQPadQuery")]
@@ -28,5 +29,13 @@ namespace OneMoreCalendar
 	internal static class AssemblyInfo
 	{
 		public const string Version = "7.1.1";
+
+		public const string BuildTag =
+#if BETA
+		" Beta"
+#else
+		""
+#endif
+		;
 	}
 }

@@ -21,6 +21,7 @@ using System.Runtime.InteropServices;
 
 [assembly: AssemblyVersion(River.OneMoreAddIn.AssemblyInfo.Version)]
 [assembly: AssemblyFileVersion(River.OneMoreAddIn.AssemblyInfo.Version)]
+[assembly: AssemblyInformationalVersion(River.OneMoreAddIn.AssemblyInfo.Version + River.OneMoreAddIn.AssemblyInfo.BuildTag)]
 
 [assembly: NeutralResourcesLanguage("en-US", UltimateResourceFallbackLocation.MainAssembly)]
 

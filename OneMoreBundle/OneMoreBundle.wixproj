@@ -6,11 +6,13 @@
     <Platform Condition="'$(Platform)' == ''">x64</Platform>
     <Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
     <ProductVersion Condition="'$(ProductVersion)' == ''">7.0.1</ProductVersion>
+    <!-- BetaTag: human-readable suffix for the Bundle Name (e.g. " (Beta 3)"), set by build.ps1 -->
+    <BetaTag Condition="'$(BetaTag)' == ''"></BetaTag>
     <OutputName>OneMore_$(ProductVersion)_Setup$(Platform)</OutputName>
     <OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
     <!-- MixedBundle: set to true by build.ps1 for the ARM64x64 variant (ARM64 EXE, x64 MSI). -->
     <MixedBundle Condition="'$(MixedBundle)' == ''">false</MixedBundle>
-    <DefineConstants>ProductVersion=$(ProductVersion);MixedArch=$(MixedBundle)</DefineConstants>
+    <DefineConstants>ProductVersion=$(ProductVersion);MixedArch=$(MixedBundle);BetaTag=$(BetaTag)</DefineConstants>
     <!-- Accept the WiX v7 OSMF EULA for open-source use (satisfies WIX7015 in CI). -->
     <AcceptEula>wix7</AcceptEula>
   </PropertyGroup>

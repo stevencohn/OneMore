@@ -36,7 +36,7 @@ namespace River.OneMoreAddIn.Helpers
 			logger.Start(
 				$"Starting {process.ProcessName} {process.Id}, {cpu} Mhz, {uram}, " +
 				$"{thread.CurrentCulture.Name}/{thread.CurrentUICulture.Name}, " +
-				$"v{AssemblyInfo.Version} {arc}, " +
+				$"v{AssemblyInfo.Version}{AssemblyInfo.BuildTag} {arc}, " +
 				$"{DateTime.Now.ToString("yyyy-MM-dd HH:mm")} " +
 				$"[{TelemetryClient.Template.SessionId}]");
 
