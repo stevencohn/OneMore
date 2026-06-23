@@ -627,7 +627,7 @@
     <Compile Include="Commands\Page\FitGridToTextDialog.Designer.cs">
       <DependentUpon>FitGridToTextDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\References\BiLinkCommand.cs" />
+    <Compile Include="Commands\References\TwoWayLinkCommand.cs" />
     <Compile Include="Commands\References\CopyLinkCommand.cs" />
     <Compile Include="Commands\References\EmbedSubpageProxy.cs" />
     <Compile Include="Commands\References\LinkReferencesCommand.cs" />

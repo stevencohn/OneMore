@@ -3657,14 +3657,6 @@ Registerkarte „Hilfe“.</value>
     <value>Suchen Sie nach Hashtags</value>
     <comment>ribbon references NODUP</comment>
   </data>
-  <data name="ribFinishBiLinkButton_Label" xml:space="preserve">
-    <value>Zwei-Wege-Link zum Lesezeichen</value>
-    <comment>ribbon references</comment>
-  </data>
-  <data name="ribFinishBiLinkButton_Screentip" xml:space="preserve">
-    <value>Verbindung zwischen Anker und aktuellem Standort beenden</value>
-    <comment>ribbon references </comment>
-  </data>
   <data name="ribFitGridToTextButton_Label" xml:space="preserve">
     <value>Raster an Text anpassen</value>
     <comment>ribbon item</comment>
@@ -4778,6 +4770,22 @@ Registerkarte „Hilfe“.</value>
   <data name="ribTrimLeadingButton_Screentip" xml:space="preserve">
     <value>Entfernt führende Leerzeichen aus ausgewähltem Text</value>
     <comment>ribbon edit</comment>
+  </data>
+  <data name="ribTwoWayLinkButton_Label" xml:space="preserve">
+    <value>Zwei-Wege-Link zum Lesezeichen</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribTwoWayLinkButton_Screentip" xml:space="preserve">
+    <value>Verbindung zwischen Anker und aktuellem Standort beenden</value>
+    <comment>ribbon references </comment>
+  </data>
+  <data name="ribTwoWayPathButton_Label" xml:space="preserve">
+    <value>Zwei-Wege-Pfad zum Lesezeichen</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribTwoWayPathButton_Screentip" xml:space="preserve">
+    <value>Trennen Sie den Breakcrumb-Link zwischen Lesezeichen und aktuellem Standort</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribUnnameUrlsButton_Label" xml:space="preserve">
     <value>Ersetzen Sie URL-Titel durch Adressen</value>

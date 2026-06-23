@@ -3657,14 +3657,6 @@ Pestaña Ayuda</value>
     <value>Buscar hashtags</value>
     <comment>ribbon references NODUP</comment>
   </data>
-  <data name="ribFinishBiLinkButton_Label" xml:space="preserve">
-    <value>Enlace bidireccional al marcador</value>
-    <comment>ribbon references</comment>
-  </data>
-  <data name="ribFinishBiLinkButton_Screentip" xml:space="preserve">
-    <value>Terminar el enlace entre el ancla y la ubicación actual</value>
-    <comment>ribbon references </comment>
-  </data>
   <data name="ribFitGridToTextButton_Label" xml:space="preserve">
     <value>Ajustar cuadrícula al texto</value>
     <comment>ribbon item</comment>
@@ -4776,6 +4768,22 @@ Pestaña Ayuda</value>
   <data name="ribTrimLeadingButton_Screentip" xml:space="preserve">
     <value>Recortar los espacios en blanco iniciales del texto seleccionado</value>
     <comment>ribbon item tootp</comment>
+  </data>
+  <data name="ribTwoWayLinkButton_Label" xml:space="preserve">
+    <value>Enlace bidireccional al marcador</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribTwoWayLinkButton_Screentip" xml:space="preserve">
+    <value>Terminar el enlace entre el ancla y la ubicación actual</value>
+    <comment>ribbon references </comment>
+  </data>
+  <data name="ribTwoWayPathButton_Label" xml:space="preserve">
+    <value>Ruta bidireccional hacia el marcador</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribTwoWayPathButton_Screentip" xml:space="preserve">
+    <value>Finalizar el vínculo de separación entre el marcador y la ubicación actual</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribUnnameUrlsButton_Label" xml:space="preserve">
     <value>Reemplazar títulos de URL con direcciones</value>

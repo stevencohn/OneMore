@@ -3694,14 +3694,6 @@ Help Tab</value>
     <value>Search Hashtags</value>
     <comment>ribbon references NODUP</comment>
   </data>
-  <data name="ribFinishBiLinkButton_Label" xml:space="preserve">
-    <value>Two-Way Link to Bookmark</value>
-    <comment>ribbon references</comment>
-  </data>
-  <data name="ribFinishBiLinkButton_Screentip" xml:space="preserve">
-    <value>Finish link between anchor and current location</value>
-    <comment>ribbon references</comment>
-  </data>
   <data name="ribFitGridToTextButton_Label" xml:space="preserve">
     <value>Fit Grid to Text</value>
     <comment>ribbon page NODUP</comment>
@@ -4816,6 +4808,22 @@ Help Tab</value>
   <data name="ribTrimLeadingButton_Screentip" xml:space="preserve">
     <value>Trim leading whitespace from selected text</value>
     <comment>ribbon edit</comment>
+  </data>
+  <data name="ribTwoWayLinkButton_Label" xml:space="preserve">
+    <value>Two-Way Link to Bookmark</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribTwoWayLinkButton_Screentip" xml:space="preserve">
+    <value>Finish link between bookmark and current location</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribTwoWayPathButton_Label" xml:space="preserve">
+    <value>Two-Way Path to Bookmark</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribTwoWayPathButton_Screentip" xml:space="preserve">
+    <value>Finish breakcrumb link between bookmark and current location</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribUnnameUrlsButton_Label" xml:space="preserve">
     <value>Replace URL Titles with Addresses</value>

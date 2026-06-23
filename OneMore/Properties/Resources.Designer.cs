@@ -8843,24 +8843,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Two-Way Link to Bookmark.
-        /// </summary>
-        internal static string ribFinishBiLinkButton_Label {
-            get {
-                return ResourceManager.GetString("ribFinishBiLinkButton_Label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Finish link between anchor and current location.
-        /// </summary>
-        internal static string ribFinishBiLinkButton_Screentip {
-            get {
-                return ResourceManager.GetString("ribFinishBiLinkButton_Screentip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Fit Grid to Text.
         /// </summary>
         internal static string ribFitGridToTextButton_Label {
@@ -11408,6 +11390,42 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribTrimLeadingButton_Screentip {
             get {
                 return ResourceManager.GetString("ribTrimLeadingButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Two-Way Link to Bookmark.
+        /// </summary>
+        internal static string ribTwoWayLinkButton_Label {
+            get {
+                return ResourceManager.GetString("ribTwoWayLinkButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finish link between bookmark and current location.
+        /// </summary>
+        internal static string ribTwoWayLinkButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribTwoWayLinkButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Two-Way Path to Bookmark.
+        /// </summary>
+        internal static string ribTwoWayPathButton_Label {
+            get {
+                return ResourceManager.GetString("ribTwoWayPathButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finish breakcrumb link between bookmark and current location.
+        /// </summary>
+        internal static string ribTwoWayPathButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribTwoWayPathButton_Screentip", resourceCulture);
             }
         }
         

@@ -3658,14 +3658,6 @@ Zakładka Pomoc</value>
     <value>Szukaj hashtagów</value>
     <comment>ribbon references NODUP</comment>
   </data>
-  <data name="ribFinishBiLinkButton_Label" xml:space="preserve">
-    <value>Dwukierunkowy link do zakładki</value>
-    <comment>ribbon references</comment>
-  </data>
-  <data name="ribFinishBiLinkButton_Screentip" xml:space="preserve">
-    <value>Zakończ połączenie między kotwicą a bieżącą lokalizacją</value>
-    <comment>ribbon references </comment>
-  </data>
   <data name="ribFitGridToTextButton_Label" xml:space="preserve">
     <value>Dopasuj siatkę do tekstu</value>
     <comment>ribbon item</comment>
@@ -4777,6 +4769,22 @@ Zakładka Pomoc</value>
   <data name="ribTrimLeadingButton_Screentip" xml:space="preserve">
     <value>Wykończenia prowadzące białe znaki z wybranego tekstu</value>
     <comment>ribbon item tootp</comment>
+  </data>
+  <data name="ribTwoWayLinkButton_Label" xml:space="preserve">
+    <value>Dwukierunkowy link do zakładki</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribTwoWayLinkButton_Screentip" xml:space="preserve">
+    <value>Zakończ połączenie między kotwicą a bieżącą lokalizacją</value>
+    <comment>ribbon references </comment>
+  </data>
+  <data name="ribTwoWayPathButton_Label" xml:space="preserve">
+    <value>Dwukierunkowa ścieżka do zakładki</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribTwoWayPathButton_Screentip" xml:space="preserve">
+    <value>Zakończ łącze przerywające między zakładką a bieżącą lokalizacją</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribUnnameUrlsButton_Label" xml:space="preserve">
     <value>Zamień tytuły adresów URL na adresy</value>

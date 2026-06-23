@@ -3665,14 +3665,6 @@ ISO-code then comma then language name</comment>
     <value>ハッシュタグを検索</value>
     <comment>ribbon references NODUP</comment>
   </data>
-  <data name="ribFinishBiLinkButton_Label" xml:space="preserve">
-    <value>ブックマークへの双方向リンク</value>
-    <comment>ribbon references</comment>
-  </data>
-  <data name="ribFinishBiLinkButton_Screentip" xml:space="preserve">
-    <value>アンカーと現在の位置の間のリンクを終了する</value>
-    <comment>ribbon references </comment>
-  </data>
   <data name="ribFitGridToTextButton_Label" xml:space="preserve">
     <value>グリッドをテキストに合わせる</value>
     <comment>ribbon page NODUP</comment>
@@ -4787,6 +4779,22 @@ ISO-code then comma then language name</comment>
   <data name="ribTrimLeadingButton_Screentip" xml:space="preserve">
     <value>選択したテキストから先頭のホワイトスペースを削除する</value>
     <comment>ribbon edit</comment>
+  </data>
+  <data name="ribTwoWayLinkButton_Label" xml:space="preserve">
+    <value>ブックマークへの双方向リンク</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribTwoWayLinkButton_Screentip" xml:space="preserve">
+    <value>アンカーと現在の位置の間のリンクを終了する</value>
+    <comment>ribbon references </comment>
+  </data>
+  <data name="ribTwoWayPathButton_Label" xml:space="preserve">
+    <value>ブックマークへの双方向パス</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribTwoWayPathButton_Screentip" xml:space="preserve">
+    <value>ブックマークと現在の場所の間のブレーククラム リンクを終了します</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribUnnameUrlsButton_Label" xml:space="preserve">
     <value>URL タイトルをアドレスに置き換える</value>

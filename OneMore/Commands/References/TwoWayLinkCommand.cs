@@ -7,25 +7,30 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using System.Linq;
+	using System.Text;
 	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
+	using Microsoft.Office.Interop.OneNote;
 	using River.OneMoreAddIn.Models;
 	using Hap = HtmlAgilityPack;
 	using Resx = Properties.Resources;
 
 
 	/// <summary>
-	/// Create a bi-directional link between two selected words or phrases, either across pages
-	/// or on the same page. This is done in two steps, first setting a Bookmark and then
-	/// finishing it with this command to link between the bookmark and the second word or phrase.
+	/// Create a two-way sourceLink between two selected words or phrases, either across pages
+	/// or on the same sourcePage. This is done in two steps, first setting a Bookmark and then
+	/// finishing it with this command to sourceLink between the bookmark and the second word or phrase.
 	/// </summary>
-	internal class BiLinkCommand : Command
+	internal class TwoWayLinkCommand : Command
 	{
+		private const string RightArrow = "\u2192";
+
+		private bool isBreadcrumb;
 		private string error;
 
 
-		public BiLinkCommand()
+		public TwoWayLinkCommand()
 		{
 			IsCancelled = true;
 		}
@@ -33,6 +38,11 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
+			if (args.Length > 0 && args[0] is bool bc)
+			{
+				isBreadcrumb = bc;
+			}
+
 			if (BookmarkCommand.Bookmark is null)
 			{
 				ShowError(Resx.BiLinkCommand_NoAnchor);
@@ -76,7 +86,8 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			// ensure anchor selection hasn't changed and is still selected!
-			if (AnchorModified(candidate, bookmark.Range.Root))
+			// ... but we don't care when adding breadcrumb
+			if (!isBreadcrumb && AnchorModified(candidate, bookmark.Range.Root))
 			{
 				logger.WriteLine($"anchor paragraph may have changed");
 				error = Resx.BiLinkCommand_LostAnchor;
@@ -114,21 +125,32 @@ namespace River.OneMoreAddIn.Commands
 			// - - - - action...
 
 			// anchorPageId -> anchorPage -> anchorId -> anchor
-			// targetPageId -> targetPage -> targetId -> target
+			// targetPageId -> sourcePage -> targetId -> target
 
 			var anchorLink = one.GetHyperlink(bookmark.PageId, bookmark.ObjectId);
 			var targetLink = one.GetHyperlink(targetPageId, targetId);
 
-			ApplyHyperlink(anchorPage, bookmark.Range, targetLink);
-			ApplyHyperlink(targetPage, target, anchorLink);
-
-			candidate.ReplaceAttributes(bookmark.Range.Root.Attributes());
-			candidate.ReplaceNodes(bookmark.Range.Root.Nodes());
-
-			if (targetPageId == bookmark.PageId)
+			if (isBreadcrumb)
 			{
-				// avoid invalid selection by leaving only partials without an all
-				candidate.DescendantsAndSelf().Attributes("selected").Remove();
+				var trun = MakeCrumbRun(one, targetPage, targetLink, target.Root);
+				InjectBreadcrumb(anchorPage, new SelectionRange(candidate), trun);
+
+				var arun = MakeCrumbRun(one, anchorPage, anchorLink, candidate);
+				InjectBreadcrumb(targetPage, target, arun);
+			}
+			else
+			{
+				ApplyHyperlink(anchorPage, bookmark.Range, targetLink);
+				ApplyHyperlink(targetPage, target, anchorLink);
+
+				candidate.ReplaceAttributes(bookmark.Range.Root.Attributes());
+				candidate.ReplaceNodes(bookmark.Range.Root.Nodes());
+
+				if (targetPageId == bookmark.PageId)
+				{
+					// avoid invalid selection by leaving only partials without an all
+					candidate.DescendantsAndSelf().Attributes("selected").Remove();
+				}
 			}
 
 #if LOG
@@ -162,7 +184,7 @@ namespace River.OneMoreAddIn.Commands
 		private bool AnchorModified(XElement candidate, XElement anchor)
 		{
 			// special deep comparison, excluding the selected attributes to handle
-			// case where anchor is on the same page as the target element
+			// case where anchor is on the same sourcePage as the target element
 
 			var oldxml = MakeComparableXml(anchor);
 			var newxml = MakeComparableXml(candidate);
@@ -224,7 +246,57 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void ApplyHyperlink(Page page, SelectionRange range, string link)
+		private static string MakeCrumbRun(
+			OneNote one, Page sourcePage, string sourceLink, XElement paragraph)
+		{
+			// build hierarchy crumbs, mirroring CopyLinkCommand's "specific" link format:
+			// a single hyperlink wrapping plain-text crumbs, ending in an italicized
+			// snippet of the linked paragraph's text
+
+			var crumbs = new StringBuilder();
+			var id = one.GetParent(sourcePage.PageId);
+			while (!string.IsNullOrEmpty(id))
+			{
+				var node = one.GetHierarchyNode(id);
+				crumbs.Insert(0, $"{node.Name} {RightArrow} ");
+				id = one.GetParent(id);
+			}
+
+			crumbs.Append(sourcePage.Title);
+
+			var snippet = MakeSnippet(paragraph, sourcePage.Namespace);
+
+			return $"<a href={sourceLink}>{crumbs} {RightArrow} <i>{snippet}</i></a>";
+		}
+
+
+		private static string MakeSnippet(XElement paragraph, XNamespace ns)
+		{
+			// clone first; this paragraph is live in a page we're about to save, so it
+			// must not be mutated by stripping Images/OEChildren below
+
+			var clone = paragraph.Clone();
+			clone.Descendants(ns + "Image").Remove();
+			clone.Descendants(ns + "OEChildren").Remove();
+
+			var text = clone.TextValue();
+			return text.Length > 20 ? $"{text.Substring(0, 20)}..." : text;
+		}
+
+
+		private static void InjectBreadcrumb(Page targetPage, SelectionRange target, string run)
+		{
+			var oe = target.Root.AncestorsAndSelf(targetPage.Namespace + "OE").FirstOrDefault();
+			if (oe is not null)
+			{
+				var quick = targetPage.GetQuickStyle(Styles.StandardStyles.Citation);
+				var paragraph = new Paragraph(targetPage.Namespace, run).SetQuickStyle(quick.Index);
+				oe.AddAfterSelf(paragraph);
+			}
+		}
+
+
+		private static void ApplyHyperlink(Page page, SelectionRange range, string link)
 		{
 			var count = 0;
 

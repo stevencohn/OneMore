@@ -3669,14 +3669,6 @@ Onglet Aide</value>
     <value>Rechercher des hashtags</value>
     <comment>ribbon references NODUP</comment>
   </data>
-  <data name="ribFinishBiLinkButton_Label" xml:space="preserve">
-    <value>Lien bidirectionnel vers un signet</value>
-    <comment>ribbon references</comment>
-  </data>
-  <data name="ribFinishBiLinkButton_Screentip" xml:space="preserve">
-    <value>Terminer le lien entre l'ancre et l'emplacement actuel</value>
-    <comment>ribbon references </comment>
-  </data>
   <data name="ribFitGridToTextButton_Label" xml:space="preserve">
     <value>Ajuster la grille au texte</value>
     <comment>ribbon item</comment>
@@ -4788,6 +4780,22 @@ Onglet Aide</value>
   <data name="ribTrimLeadingButton_Screentip" xml:space="preserve">
     <value>Couper les espaces blancs de début du texte sélectionné</value>
     <comment>ribbon item tootp</comment>
+  </data>
+  <data name="ribTwoWayLinkButton_Label" xml:space="preserve">
+    <value>Lien bidirectionnel vers un signet</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribTwoWayLinkButton_Screentip" xml:space="preserve">
+    <value>Terminer le lien entre l'ancre et l'emplacement actuel</value>
+    <comment>ribbon references </comment>
+  </data>
+  <data name="ribTwoWayPathButton_Label" xml:space="preserve">
+    <value>Chemin bidirectionnel vers le signet</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribTwoWayPathButton_Screentip" xml:space="preserve">
+    <value>Terminer le lien de fil de rupture entre le signet et l'emplacement actuel</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribUnnameUrlsButton_Label" xml:space="preserve">
     <value>Remplacer les titres d'URL par des adresses</value>
