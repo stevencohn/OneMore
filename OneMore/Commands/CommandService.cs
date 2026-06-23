@@ -332,7 +332,7 @@ namespace River.OneMoreAddIn
 						foreach (var pageId in pageIds)
 						{
 							parameters.Set("pageId", pageId);
-							var r = await cliFactory.Run(commandType, parameters);
+							var r = await cliFactory.Run(commandType, parameters, one);
 							if (!string.IsNullOrEmpty(r?.CliOutput))
 							{
 								outputs.AppendLine(r.CliOutput);
@@ -421,7 +421,7 @@ namespace River.OneMoreAddIn
 				foreach (var pageId in pageIds)
 				{
 					parameters.Set("pageId", pageId);
-					var r = await cliFactory.Run(commandType, parameters);
+					var r = await cliFactory.Run(commandType, parameters, one);
 					if (!string.IsNullOrEmpty(r?.CliOutput))
 					{
 						outputs.AppendLine(r.CliOutput);

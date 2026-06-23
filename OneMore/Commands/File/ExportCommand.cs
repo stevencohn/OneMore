@@ -61,6 +61,15 @@ namespace River.OneMoreAddIn.Commands
 
 			if (runningFromCli)
 			{
+				// CommandService passes its own long-lived OneNote connection here when
+				// batching this command across many pages (notebook- or section-level
+				// export); reuse it instead of opening a fresh COM connection per page.
+				// We don't own that instance's lifetime, so never dispose it. If none was
+				// supplied, fall back to creating and disposing our own as before.
+				var suppliedOne = args.Length > 1 ? args[1] as OneNote : null;
+				var ownsOne = suppliedOne == null;
+				var cliOne = suppliedOne ?? new OneNote();
+
 				try
 				{
 					var cliParams = args.Length > 0 ? args[0] as CliParameterSet : null;
@@ -81,7 +90,6 @@ namespace River.OneMoreAddIn.Commands
 
 					// pageId is always injected by the CLI framework (once per resolved page)
 					cliParams.TryGet("pageId", out pageId);
-					await using var cliOne = new OneNote();
 
 					if (string.IsNullOrWhiteSpace(section))
 					{
@@ -105,6 +113,11 @@ namespace River.OneMoreAddIn.Commands
 				}
 				finally
 				{
+					if (ownsOne)
+					{
+						await cliOne.DisposeAsync();
+					}
+
 					commandIsActive = false;
 				}
 			}
