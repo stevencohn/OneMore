@@ -1480,10 +1480,22 @@ Oscuro</value>
     <value>Páginas etiquetadas</value>
     <comment>page title</comment>
   </data>
+  <data name="HashtagCommand_scanComplete" xml:space="preserve">
+    <value>Escaneé {0} páginas, actualicé {1}, encontré {2} hashtags</value>
+    <comment>toast message</comment>
+  </data>
   <data name="HashtagCommand_scanning" xml:space="preserve">
     <value>OneMore está creando actualmente su catálogo de hashtags.
 
 La búsqueda de hashtags no estará disponible hasta que se complete.</value>
+  </data>
+  <data name="HashtagCommand_scanPageComplete" xml:space="preserve">
+    <value>{0} hashtags procesados ​​en esta página</value>
+    <comment>toast message</comment>
+  </data>
+  <data name="HashtagCommand_toastTitle" xml:space="preserve">
+    <value>Uno más hashtags</value>
+    <comment>toast header</comment>
   </data>
   <data name="HashtagCommand_waiting" xml:space="preserve">
     <value>Está previsto que su catálogo de hashtags se cree el {0}. Puedes cambiar este horario desde la aplicación OneMore Tray.
@@ -1624,6 +1636,10 @@ esta pagina</value>
   <data name="HashtagSheet_introBox.Text" xml:space="preserve">
     <value>Personalice las opciones avanzadas para el servicio Hashtag Scanner</value>
     <comment>label</comment>
+  </data>
+  <data name="HashtagSheet_notifyBox.Text" xml:space="preserve">
+    <value>Mostrar notificación emergente cuando se complete el escáner</value>
+    <comment>checkbox</comment>
   </data>
   <data name="HashtagSheet_prescheduled" xml:space="preserve">
     <value>Hay un análisis programado para {0}. Utilice las opciones siguientes para cambiar esto o presione Cancelar para mantener el horario actual.</value>

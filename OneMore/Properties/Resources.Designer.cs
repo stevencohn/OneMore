@@ -1333,16 +1333,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("CreatePagesCommand_NoNamesFound", resourceCulture);
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Create Pages.
-        /// </summary>
-        internal static string CreatePagesDialog_Text {
-            get {
-                return ResourceManager.GetString("CreatePagesDialog.Text", resourceCulture);
-            }
-        }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Create two-way links between the list and new pages.
         /// </summary>
@@ -1351,7 +1342,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("CreatePagesDialog_linksBox.Text", resourceCulture);
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Pages.
+        /// </summary>
+        internal static string CreatePagesDialog_Text {
+            get {
+                return ResourceManager.GetString("CreatePagesDialog.Text", resourceCulture);
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Select one image to crop.
         /// </summary>
@@ -3423,6 +3423,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Scanned {0} pages, updated {1}, found {2} hashtags.
+        /// </summary>
+        internal static string HashtagCommand_scanComplete {
+            get {
+                return ResourceManager.GetString("HashtagCommand_scanComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OneMore is currently creating your hashtag catalog.
         ///
         ///Searching for hashtags is unavailable until this is completed..
@@ -3430,6 +3439,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string HashtagCommand_scanning {
             get {
                 return ResourceManager.GetString("HashtagCommand_scanning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Processed {0} hashtags on this page.
+        /// </summary>
+        internal static string HashtagCommand_scanPageComplete {
+            get {
+                return ResourceManager.GetString("HashtagCommand_scanPageComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OneMore Hashtags.
+        /// </summary>
+        internal static string HashtagCommand_toastTitle {
+            get {
+                return ResourceManager.GetString("HashtagCommand_toastTitle", resourceCulture);
             }
         }
         
@@ -3752,6 +3779,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string HashtagSheet_introBox_Text {
             get {
                 return ResourceManager.GetString("HashtagSheet_introBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show pop-up notification when scanner completes.
+        /// </summary>
+        internal static string HashtagSheet_notifyBox_Text {
+            get {
+                return ResourceManager.GetString("HashtagSheet_notifyBox.Text", resourceCulture);
             }
         }
         

@@ -1480,10 +1480,22 @@ Dunkel</value>
     <value>Mit Tags versehene Seiten</value>
     <comment>page title</comment>
   </data>
+  <data name="HashtagCommand_scanComplete" xml:space="preserve">
+    <value>{0} Seiten gescannt, {1} aktualisiert, {2} Hashtags gefunden</value>
+    <comment>toast message</comment>
+  </data>
   <data name="HashtagCommand_scanning" xml:space="preserve">
     <value>OneMore erstellt derzeit Ihren Hashtag-Katalog.
 
 Die Suche nach Hashtags ist erst möglich, wenn dies abgeschlossen ist.</value>
+  </data>
+  <data name="HashtagCommand_scanPageComplete" xml:space="preserve">
+    <value>{0} Hashtags auf dieser Seite verarbeitet</value>
+    <comment>toast message</comment>
+  </data>
+  <data name="HashtagCommand_toastTitle" xml:space="preserve">
+    <value>OneMore Hashtags</value>
+    <comment>toast header</comment>
   </data>
   <data name="HashtagCommand_waiting" xml:space="preserve">
     <value>Die Erstellung Ihres Hashtag-Katalogs ist für den {0} geplant. Sie können diesen Zeitplan über die OneMore Tray-Anwendung ändern.
@@ -1624,6 +1636,10 @@ Diese Seite</value>
   <data name="HashtagSheet_introBox.Text" xml:space="preserve">
     <value>Passen Sie erweiterte Optionen für den Hashtag-Scanner-Dienst an</value>
     <comment>label</comment>
+  </data>
+  <data name="HashtagSheet_notifyBox.Text" xml:space="preserve">
+    <value>Popup-Benachrichtigung anzeigen, wenn der Scanner abgeschlossen ist</value>
+    <comment>checkbox</comment>
   </data>
   <data name="HashtagSheet_prescheduled" xml:space="preserve">
     <value>Für {0} ist ein Scan geplant. Verwenden Sie die folgenden Optionen, um dies zu ändern, oder klicken Sie auf „Abbrechen“, um den aktuellen Zeitplan beizubehalten.</value>

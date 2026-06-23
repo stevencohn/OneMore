@@ -1491,10 +1491,22 @@ OneNote 文件 (*.one)</value>
     <value>标记页面</value>
     <comment>page title</comment>
   </data>
+  <data name="HashtagCommand_scanComplete" xml:space="preserve">
+    <value>扫描了 {0} 个页面，更新了 {1} 个，找到了 {2} 个主题标签</value>
+    <comment>toast message</comment>
+  </data>
   <data name="HashtagCommand_scanning" xml:space="preserve">
     <value>OneMore 当前正在创建您的主题标签目录。
 
 在完成此操作之前，无法搜索主题标签。</value>
+  </data>
+  <data name="HashtagCommand_scanPageComplete" xml:space="preserve">
+    <value>已处理此页面上的 {0} 个主题标签</value>
+    <comment>toast message</comment>
+  </data>
+  <data name="HashtagCommand_toastTitle" xml:space="preserve">
+    <value>一个更多的标签</value>
+    <comment>toast header</comment>
   </data>
   <data name="HashtagCommand_waiting" xml:space="preserve">
     <value>您的主题标签目录计划于 {0} 创建。您可以在任务栏中的 OneMore 应用程序更改此计划。
@@ -1635,6 +1647,10 @@ OneNote 文件 (*.one)</value>
   <data name="HashtagSheet_introBox.Text" xml:space="preserve">
     <value>设置标签扫描服务高级选项</value>
     <comment>label</comment>
+  </data>
+  <data name="HashtagSheet_notifyBox.Text" xml:space="preserve">
+    <value>扫描完成时显示弹出通知</value>
+    <comment>checkbox</comment>
   </data>
   <data name="HashtagSheet_prescheduled" xml:space="preserve">
     <value>计划于 {0} 进行扫描。使用以下选项更改此设置或按“取消”保留当前计划。</value>

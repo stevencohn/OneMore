@@ -29,7 +29,6 @@ namespace River.OneMoreAddIn.Settings
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
 			this.introBox = new River.OneMoreAddIn.UI.MoreMultilineLabel();
 			this.intervalLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.intervalBox = new System.Windows.Forms.NumericUpDown();
@@ -46,6 +45,7 @@ namespace River.OneMoreAddIn.Settings
 			this.msLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.layoutPanel = new System.Windows.Forms.Panel();
 			this.doubledBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.notifyBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			((System.ComponentModel.ISupportInitialize)(this.intervalBox)).BeginInit();
 			this.advancedGroup.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.delayBox)).BeginInit();
@@ -118,11 +118,11 @@ namespace River.OneMoreAddIn.Settings
 			this.advancedGroup.Controls.Add(this.warningLabel);
 			this.advancedGroup.Controls.Add(this.scheduleLink);
 			this.advancedGroup.Controls.Add(this.disabledBox);
-			this.advancedGroup.Location = new System.Drawing.Point(10, 249);
+			this.advancedGroup.Location = new System.Drawing.Point(10, 268);
 			this.advancedGroup.Name = "advancedGroup";
 			this.advancedGroup.Padding = new System.Windows.Forms.Padding(15, 3, 3, 3);
 			this.advancedGroup.ShowOnlyTopEdge = true;
-			this.advancedGroup.Size = new System.Drawing.Size(759, 216);
+			this.advancedGroup.Size = new System.Drawing.Size(759, 197);
 			this.advancedGroup.TabIndex = 6;
 			this.advancedGroup.TabStop = false;
 			this.advancedGroup.Text = "Advanced Options";
@@ -144,6 +144,7 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// scheduleLink
 			// 
+			this.scheduleLink.Active = false;
 			this.scheduleLink.ActiveLinkColor = System.Drawing.Color.MediumOrchid;
 			this.scheduleLink.AutoSize = true;
 			this.scheduleLink.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -151,6 +152,7 @@ namespace River.OneMoreAddIn.Settings
 			this.scheduleLink.LinkColor = System.Drawing.Color.MediumOrchid;
 			this.scheduleLink.Location = new System.Drawing.Point(18, 35);
 			this.scheduleLink.Name = "scheduleLink";
+			this.scheduleLink.NavMode = false;
 			this.scheduleLink.Selected = false;
 			this.scheduleLink.Size = new System.Drawing.Size(306, 20);
 			this.scheduleLink.StrictColors = false;
@@ -167,7 +169,7 @@ namespace River.OneMoreAddIn.Settings
 			this.disabledBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.disabledBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.disabledBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.disabledBox.Location = new System.Drawing.Point(18, 166);
+			this.disabledBox.Location = new System.Drawing.Point(18, 150);
 			this.disabledBox.Name = "disabledBox";
 			this.disabledBox.Size = new System.Drawing.Size(540, 25);
 			this.disabledBox.StylizeImage = false;
@@ -181,7 +183,7 @@ namespace River.OneMoreAddIn.Settings
 			// styleLabel
 			// 
 			this.styleLabel.AutoSize = true;
-			this.styleLabel.Location = new System.Drawing.Point(7, 170);
+			this.styleLabel.Location = new System.Drawing.Point(7, 197);
 			this.styleLabel.Name = "styleLabel";
 			this.styleLabel.Size = new System.Drawing.Size(140, 20);
 			this.styleLabel.TabIndex = 7;
@@ -197,7 +199,7 @@ namespace River.OneMoreAddIn.Settings
             "None",
             "Red Foreground",
             "Yellow Background"});
-			this.styleBox.Location = new System.Drawing.Point(304, 167);
+			this.styleBox.Location = new System.Drawing.Point(304, 194);
 			this.styleBox.Name = "styleBox";
 			this.styleBox.Size = new System.Drawing.Size(280, 27);
 			this.styleBox.TabIndex = 3;
@@ -255,6 +257,7 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// layoutPanel
 			// 
+			this.layoutPanel.Controls.Add(this.notifyBox);
 			this.layoutPanel.Controls.Add(this.doubledBox);
 			this.layoutPanel.Controls.Add(this.msLabel);
 			this.layoutPanel.Controls.Add(this.delayBox);
@@ -287,6 +290,21 @@ namespace River.OneMoreAddIn.Settings
 			this.doubledBox.ThemedBack = null;
 			this.doubledBox.ThemedFore = null;
 			this.doubledBox.UseVisualStyleBackColor = true;
+			// 
+			// notifyBox
+			// 
+			this.notifyBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.notifyBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.notifyBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.notifyBox.Location = new System.Drawing.Point(11, 149);
+			this.notifyBox.Name = "notifyBox";
+			this.notifyBox.Size = new System.Drawing.Size(497, 25);
+			this.notifyBox.StylizeImage = false;
+			this.notifyBox.TabIndex = 16;
+			this.notifyBox.Text = "Show pop-up notification when scanner completes";
+			this.notifyBox.ThemedBack = null;
+			this.notifyBox.ThemedFore = null;
+			this.notifyBox.UseVisualStyleBackColor = true;
 			// 
 			// HashtagSheet
 			// 
@@ -327,5 +345,6 @@ namespace River.OneMoreAddIn.Settings
 		private UI.MoreMultilineLabel warningLabel;
 		private UI.MoreLinkLabel scheduleLink;
 		private UI.MoreCheckBox doubledBox;
+		private UI.MoreCheckBox notifyBox;
 	}
 }
