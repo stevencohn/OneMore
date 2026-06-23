@@ -82,15 +82,18 @@ namespace OneMoreCli
 						while (!inFinal && (idx = pending.ToString().IndexOf('\n')) >= 0)
 						{
 							var line = pending.ToString(0, idx);
-							pending.Remove(0, idx + 1);
 
 							if (line.StartsWith("PROGRESS:", StringComparison.OrdinalIgnoreCase))
 							{
+								pending.Remove(0, idx + 1);
 								CliConsole.WriteInfo($"section: {line.Substring("PROGRESS:".Length)}");
 							}
 							else
 							{
-								sb.Append(line);
+								// final payload starts here; flush everything buffered so far
+								// (not just this first line) before switching to passthrough
+								sb.Append(pending.ToString());
+								pending.Clear();
 								inFinal = true;
 							}
 						}
