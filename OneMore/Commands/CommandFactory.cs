@@ -105,7 +105,10 @@ namespace River.OneMoreAddIn
 			{
 				await Run("Running", command, args);
 
-				if (!command.IsCancelled)
+				// CLI commands have no command-palette/replay UI surface, and may pass a
+				// shared OneNote connection through args for batched page operations; that
+				// can't round-trip through SaveToMRU's string-based serialization
+				if (!runningFromCli && !command.IsCancelled)
 				{
 					new CommandProvider().SaveToMRU(command, args);
 				}
@@ -120,11 +123,18 @@ namespace River.OneMoreAddIn
 			var type = command.GetType();
 			logger.Start($"{note} command {type.Name}");
 
-			// need to rediscover active OneNote window for each command instantiation
-			// otherwise closing the primary or last-used active window will leave owner
-			// set to an invalid window handle
-			await using var one = new OneNote();
-			var owner = one.OwnerWindow;
+			// CLI commands never show UI, so there's no owner window to discover; skip the
+			// throwaway OneNote() activation that exists solely to read OwnerWindow. This
+			// avoids unnecessary COM churn during batched CLI page operations.
+			System.Windows.Forms.IWin32Window owner = null;
+			if (!runningFromCli)
+			{
+				// need to rediscover active OneNote window for each command instantiation
+				// otherwise closing the primary or last-used active window will leave owner
+				// set to an invalid window handle
+				await using var one = new OneNote();
+				owner = one.OwnerWindow;
+			}
 
 			StringBuilder cliBuffer = null;
 			CliLogger cliLog = null;
