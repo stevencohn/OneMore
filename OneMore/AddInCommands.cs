@@ -125,6 +125,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<ArrangeContainersCommand>();
 
 
+		[Command("ribBookmarkButton_Label", Keys.None, "ribReferencesMenu")]
+		public async Task BookmarkCmd(IRibbonControl control)
+			=> await factory.Run<BookmarkCommand>("mark");
+
+
 		public async Task BreakingCmd(IRibbonControl control)
 			=> await factory.Run<BreakingCommand>();
 
@@ -374,11 +379,6 @@ namespace River.OneMoreAddIn
 		[Command("ribFillDownButton_Label", Keys.Control | Keys.D, "ribTableMenu")]
 		public async Task FillDownCmd(IRibbonControl control)
 			=> await factory.Run<FillDownCommand>();
-
-
-		[Command("ribFinishBiLinkButton_Label", Keys.None, "ribReferencesMenu")]
-		public async Task FinishBiLinkCmd(IRibbonControl control)
-			=> await factory.Run<BiLinkCommand>("link");
 
 
 		[Command("ribFitGridToTextButton_Label", Keys.None, "ribPageMenu")]
@@ -1038,11 +1038,6 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<StackBackgroundImagesCommand>();
 
 
-		[Command("ribBookmarkButton_Label", Keys.None, "ribReferencesMenu")]
-		public async Task BookmarkCmd(IRibbonControl control)
-			=> await factory.Run<BookmarkCommand>("mark");
-
-
 		[Command("ribStartTimerButton_Label", Keys.Alt | Keys.F2)]
 		public async Task StartTimerCmd(IRibbonControl control)
 			=> await factory.Run<TimerWindowCommand>();
@@ -1086,6 +1081,16 @@ namespace River.OneMoreAddIn
 		[Command("ribTrimLeadingButton_Label", Keys.None, "ribCleanMenu")]
 		public async Task TrimLeadingCmd(IRibbonControl control)
 			=> await factory.Run<TrimCommand>(true);
+
+
+		[Command("ribTwoWayLinkButton_Label", Keys.None, "ribReferencesMenu")]
+		public async Task TwoWayLinkCmd(IRibbonControl control)
+			=> await factory.Run<TwoWayLinkCommand>();
+
+
+		[Command("ribTwoWayPathButton_Label", Keys.None, "ribReferencesMenu")]
+		public async Task TwoWayPathCmd(IRibbonControl control)
+			=> await factory.Run<TwoWayLinkCommand>(true);
 
 
 		[Command("ribUnnameUrlsButton_Label", Keys.None, "ribReferencesMenu")]

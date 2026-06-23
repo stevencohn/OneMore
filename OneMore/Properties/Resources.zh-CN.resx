@@ -3672,14 +3672,6 @@ ISO-code then comma then language name</comment>
     <value>搜索标签</value>
     <comment>ribbon references NODUP</comment>
   </data>
-  <data name="ribFinishBiLinkButton_Label" xml:space="preserve">
-    <value>书签的双向链接</value>
-    <comment>ribbon references</comment>
-  </data>
-  <data name="ribFinishBiLinkButton_Screentip" xml:space="preserve">
-    <value>完成锚点和当前位置之间的链接</value>
-    <comment>ribbon references </comment>
-  </data>
   <data name="ribFitGridToTextButton_Label" xml:space="preserve">
     <value>使网格适合文本</value>
     <comment>ribbon item</comment>
@@ -4791,6 +4783,22 @@ ISO-code then comma then language name</comment>
   <data name="ribTrimLeadingButton_Screentip" xml:space="preserve">
     <value>删除所选文本开头的空格</value>
     <comment>ribbon item tootp</comment>
+  </data>
+  <data name="ribTwoWayLinkButton_Label" xml:space="preserve">
+    <value>书签的双向链接</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribTwoWayLinkButton_Screentip" xml:space="preserve">
+    <value>完成锚点和当前位置之间的链接</value>
+    <comment>ribbon references </comment>
+  </data>
+  <data name="ribTwoWayPathButton_Label" xml:space="preserve">
+    <value>书签的双向路径</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribTwoWayPathButton_Screentip" xml:space="preserve">
+    <value>完成书签和当前位置之间的断屑链接</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribUnnameUrlsButton_Label" xml:space="preserve">
     <value>将 URL 标题替换为地址</value>

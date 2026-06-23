@@ -3658,14 +3658,6 @@ Tabblad Help</value>
     <value>Zoek hashtags</value>
     <comment>ribbon references NODUP</comment>
   </data>
-  <data name="ribFinishBiLinkButton_Label" xml:space="preserve">
-    <value>Tweerichtingslink naar bladwijzer</value>
-    <comment>ribbon references</comment>
-  </data>
-  <data name="ribFinishBiLinkButton_Screentip" xml:space="preserve">
-    <value>Voltooi de koppeling tussen anker en huidige locatie</value>
-    <comment>ribbon references </comment>
-  </data>
   <data name="ribFitGridToTextButton_Label" xml:space="preserve">
     <value>Raster aanpassen aan tekst</value>
     <comment>ribbon item</comment>
@@ -4777,6 +4769,22 @@ Tabblad Help</value>
   <data name="ribTrimLeadingButton_Screentip" xml:space="preserve">
     <value>Snijd de witruimte voor uit de geselecteerde tekst</value>
     <comment>ribbon item tootp</comment>
+  </data>
+  <data name="ribTwoWayLinkButton_Label" xml:space="preserve">
+    <value>Tweerichtingslink naar bladwijzer</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribTwoWayLinkButton_Screentip" xml:space="preserve">
+    <value>Voltooi de koppeling tussen anker en huidige locatie</value>
+    <comment>ribbon references </comment>
+  </data>
+  <data name="ribTwoWayPathButton_Label" xml:space="preserve">
+    <value>Tweerichtingspad naar bladwijzer</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribTwoWayPathButton_Screentip" xml:space="preserve">
+    <value>Voltooi de breakcrumb-koppeling tussen bladwijzer en huidige locatie</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribUnnameUrlsButton_Label" xml:space="preserve">
     <value>Vervang URL-titels door adressen</value>

@@ -3669,14 +3669,6 @@ ISO-code then comma then language name</comment>
     <value>البحث في الوسوم</value>
     <comment>ribbon references NODUP</comment>
   </data>
-  <data name="ribFinishBiLinkButton_Label" xml:space="preserve">
-    <value>رابط ثنائي الاتجاه إلى الإشارة المرجعية</value>
-    <comment>ribbon references</comment>
-  </data>
-  <data name="ribFinishBiLinkButton_Screentip" xml:space="preserve">
-    <value>إنهاء الارتباط بين المرساة والموقع الحالي</value>
-    <comment>ribbon references </comment>
-  </data>
   <data name="ribFitGridToTextButton_Label" xml:space="preserve">
     <value>احتواء الشبكة على النص</value>
     <comment>ribbon item</comment>
@@ -4788,6 +4780,22 @@ ISO-code then comma then language name</comment>
   <data name="ribTrimLeadingButton_Screentip" xml:space="preserve">
     <value>اقتطاع المسافة البيضاء البادئة من النص المحدد</value>
     <comment>ribbon item tootp</comment>
+  </data>
+  <data name="ribTwoWayLinkButton_Label" xml:space="preserve">
+    <value>رابط ثنائي الاتجاه إلى الإشارة المرجعية</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribTwoWayLinkButton_Screentip" xml:space="preserve">
+    <value>إنهاء الارتباط بين المرساة والموقع الحالي</value>
+    <comment>ribbon references </comment>
+  </data>
+  <data name="ribTwoWayPathButton_Label" xml:space="preserve">
+    <value>مسار ذو اتجاهين إلى الإشارة المرجعية</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribTwoWayPathButton_Screentip" xml:space="preserve">
+    <value>قم بإنهاء الارتباط التفصيلي بين الإشارة المرجعية والموقع الحالي</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribUnnameUrlsButton_Label" xml:space="preserve">
     <value>استبدل عناوين URL بالعناوين</value>

@@ -3662,14 +3662,6 @@ Scheda Aiuto</value>
     <value>Cerca hashtag</value>
     <comment>ribbon references NODUP</comment>
   </data>
-  <data name="ribFinishBiLinkButton_Label" xml:space="preserve">
-    <value>Collegamento bidirezionale al segnalibro</value>
-    <comment>ribbon references</comment>
-  </data>
-  <data name="ribFinishBiLinkButton_Screentip" xml:space="preserve">
-    <value>Termina il collegamento tra l'ancora e la posizione corrente</value>
-    <comment>ribbon references </comment>
-  </data>
   <data name="ribFitGridToTextButton_Label" xml:space="preserve">
     <value>Adatta griglia al testo</value>
     <comment>ribbon page NODUP</comment>
@@ -4784,6 +4776,22 @@ Scheda Aiuto</value>
   <data name="ribTrimLeadingButton_Screentip" xml:space="preserve">
     <value>Taglia gli spazi bianchi iniziali dal testo selezionato</value>
     <comment>ribbon edit</comment>
+  </data>
+  <data name="ribTwoWayLinkButton_Label" xml:space="preserve">
+    <value>Collegamento bidirezionale al segnalibro</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribTwoWayLinkButton_Screentip" xml:space="preserve">
+    <value>Termina il collegamento tra l'ancora e la posizione corrente</value>
+    <comment>ribbon references </comment>
+  </data>
+  <data name="ribTwoWayPathButton_Label" xml:space="preserve">
+    <value>Percorso bidirezionale per aggiungere segnalibri</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribTwoWayPathButton_Screentip" xml:space="preserve">
+    <value>Termina il collegamento breakcrumb tra il segnalibro e la posizione corrente</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribUnnameUrlsButton_Label" xml:space="preserve">
     <value>Sostituisci i titoli degli URL con gli indirizzi</value>

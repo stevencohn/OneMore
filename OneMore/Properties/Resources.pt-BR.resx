@@ -3658,14 +3658,6 @@ Guia Ajuda</value>
     <value>Pesquisar hashtags</value>
     <comment>ribbon references NODUP</comment>
   </data>
-  <data name="ribFinishBiLinkButton_Label" xml:space="preserve">
-    <value>Link bidirecional para marcador</value>
-    <comment>ribbon references</comment>
-  </data>
-  <data name="ribFinishBiLinkButton_Screentip" xml:space="preserve">
-    <value>Concluir o vínculo entre a âncora e o local atual</value>
-    <comment>ribbon references </comment>
-  </data>
   <data name="ribFitGridToTextButton_Label" xml:space="preserve">
     <value>Ajustar grade ao texto</value>
     <comment>ribbon item</comment>
@@ -4777,6 +4769,22 @@ Guia Ajuda</value>
   <data name="ribTrimLeadingButton_Screentip" xml:space="preserve">
     <value>Cortar o espaço em branco inicial do texto selecionado</value>
     <comment>ribbon item tootp</comment>
+  </data>
+  <data name="ribTwoWayLinkButton_Label" xml:space="preserve">
+    <value>Link bidirecional para marcador</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribTwoWayLinkButton_Screentip" xml:space="preserve">
+    <value>Concluir o vínculo entre a âncora e o local atual</value>
+    <comment>ribbon references </comment>
+  </data>
+  <data name="ribTwoWayPathButton_Label" xml:space="preserve">
+    <value>Caminho bidirecional para marcar</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribTwoWayPathButton_Screentip" xml:space="preserve">
+    <value>Conclua o link breakcrumb entre o marcador e a localização atual</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribUnnameUrlsButton_Label" xml:space="preserve">
     <value>Substitua títulos de URL por endereços</value>

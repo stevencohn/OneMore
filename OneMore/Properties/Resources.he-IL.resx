@@ -3662,14 +3662,6 @@ ISO-code then comma then language name</comment>
     <value>חפש בהתגים</value>
     <comment>ribbon references NODUP</comment>
   </data>
-  <data name="ribFinishBiLinkButton_Label" xml:space="preserve">
-    <value>קישור דו-כיווני לסימנייה</value>
-    <comment>ribbon references</comment>
-  </data>
-  <data name="ribFinishBiLinkButton_Screentip" xml:space="preserve">
-    <value>סיום קישור בין עוגן למיקום הנוכחי</value>
-    <comment>ribbon references </comment>
-  </data>
   <data name="ribFitGridToTextButton_Label" xml:space="preserve">
     <value>התאם רשת לטקסט</value>
     <comment>ribbon item NODUP</comment>
@@ -4781,6 +4773,22 @@ ISO-code then comma then language name</comment>
   <data name="ribTrimLeadingButton_Screentip" xml:space="preserve">
     <value>חתוך את הרווח הלבן המוביל מהטקסט שנבחר</value>
     <comment>ribbon item tootp</comment>
+  </data>
+  <data name="ribTwoWayLinkButton_Label" xml:space="preserve">
+    <value>קישור דו-כיווני לסימנייה</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribTwoWayLinkButton_Screentip" xml:space="preserve">
+    <value>סיום קישור בין עוגן למיקום הנוכחי</value>
+    <comment>ribbon references </comment>
+  </data>
+  <data name="ribTwoWayPathButton_Label" xml:space="preserve">
+    <value>נתיב דו-כיווני לסימנייה</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribTwoWayPathButton_Screentip" xml:space="preserve">
+    <value>סיים את הקישור לשבור פירורים בין הסימניה למיקום הנוכחי</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribUnnameUrlsButton_Label" xml:space="preserve">
     <value>החלף כותרות של כתובות אתרים בכתובות</value>

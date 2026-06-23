@@ -944,11 +944,17 @@
         getScreentip="GetRibbonScreentip"
         onAction="BookmarkCmd"/>
       <button
-        id="ribFinishBiLinkButton"
+        id="ribTwoWayLinkButton"
         imageMso="CircularReferences"
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
-        onAction="FinishBiLinkCmd"/>
+        onAction="TwoWayLinkCmd"/>
+      <button
+        id="ribTwoWayPathButton"
+        imageMso="CircularReferences"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="TwoWayPathCmd"/>
       <button
         id="ribEmbedButton"
         imageMso="MasterDocumentMergeSubdocuments"
