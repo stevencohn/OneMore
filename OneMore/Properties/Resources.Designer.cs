@@ -2542,7 +2542,18 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("EmojiCategories", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to {&quot;169&quot;:&quot;copyright&quot;,&quot;174&quot;:&quot;registered&quot;,&quot;8252&quot;:&quot;double exclamation mark&quot;,&quot;8265&quot;:&quot;exclamation question mark&quot;,&quot;8482&quot;:&quot;trade mark&quot;,&quot;8505&quot;:&quot;i
+        ///  nformation&quot;,&quot;8596&quot;:&quot;left-right arrow&quot;,&quot;8597&quot;:&quot;up-down arrow&quot;,&quot;8598&quot;:&quot;up-left arrow&quot;,&quot;8599&quot;:&quot;up-right arrow&quot;,&quot;8600&quot;:
+        ///  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string EmojiNames {
+            get {
+                return ResourceManager.GetString("EmojiNames", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Activities.
         /// </summary>

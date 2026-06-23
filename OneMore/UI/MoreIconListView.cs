@@ -13,10 +13,11 @@ namespace River.OneMoreAddIn.UI
 	/// <summary>
 	/// A plain owner-drawn ListView in large-icon view, with OneMore theming (selection
 	/// colors, correct in both Light and Dark mode), used to show a flowing grid of
-	/// square images with no text.
+	/// square images, each optionally captioned with a small label below it.
 	/// </summary>
 	internal class MoreIconListView : ListView
 	{
+		private const int LabelPaddingTop = 2;
 		private readonly ThemeManager manager;
 
 
@@ -78,6 +79,18 @@ namespace River.OneMoreAddIn.UI
 		public Func<ListViewItem, Image> GetItemImage { get; set; }
 
 
+		/// <summary>
+		/// Gets or sets a callback that supplies a small caption to draw below the image
+		/// for a given item. When null, or when the callback returns null or empty for a
+		/// given item, no label is drawn. Deliberately separate from ListViewItem.Text,
+		/// which would make the native LargeIcon view re-measure tile layout based on
+		/// label content - see EmojiDialog.DoTabSelected for why that's fragile here.
+		/// </summary>
+		[Browsable(false)]
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		public Func<ListViewItem, string> GetItemLabel { get; set; }
+
+
 		private void OnDrawItem(object sender, DrawListViewItemEventArgs e)
 		{
 			var selected = e.Item.Selected;
@@ -87,12 +100,28 @@ namespace River.OneMoreAddIn.UI
 				e.Graphics.FillRectangle(backBrush, e.Bounds);
 			}
 
+			var imageBottom = e.Bounds.Top;
+
 			var image = GetItemImage?.Invoke(e.Item);
 			if (image != null)
 			{
-				e.Graphics.DrawImage(image,
-					e.Bounds.Left + ((e.Bounds.Width - image.Width) / 2),
-					e.Bounds.Top + ((e.Bounds.Height - image.Height) / 2));
+				var top = e.Bounds.Top + LabelPaddingTop;
+				e.Graphics.DrawImage(image, e.Bounds.Left + ((e.Bounds.Width - image.Width) / 2), top);
+				imageBottom = top + image.Height;
+			}
+
+			var label = GetItemLabel?.Invoke(e.Item);
+			if (!string.IsNullOrEmpty(label))
+			{
+				var labelBounds = new Rectangle(
+					e.Bounds.Left, imageBottom, e.Bounds.Width, e.Bounds.Bottom - imageBottom);
+
+				using var font = new Font(e.Item.Font.FontFamily, e.Item.Font.Size * 0.75f);
+				var foreColor = manager.GetColor(selected ? "HighlightText" : "GrayText");
+
+				TextRenderer.DrawText(e.Graphics, label, font, labelBounds, foreColor,
+					TextFormatFlags.HorizontalCenter | TextFormatFlags.Top |
+					TextFormatFlags.EndEllipsis | TextFormatFlags.NoPrefix);
 			}
 		}
 	}

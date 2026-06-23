@@ -8,8 +8,10 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
+	using System.Globalization;
 	using System.Linq;
 	using System.Text;
+	using System.Text.RegularExpressions;
 	using Resx = Properties.Resources;
 
 
@@ -25,8 +27,8 @@ namespace River.OneMoreAddIn.Commands
 	{
 		/// <summary>
 		/// Constructs an Emoji, either a curated entry (with a resID identifying its
-		/// localized name) or a bare glyph scanned from the full Unicode range (resID
-		/// null, no Name).
+		/// localized Name) or a bare glyph scanned from the full Unicode range (resID
+		/// null, Name derived from Unicode data instead - see EmojiNames).
 		/// </summary>
 		public Emoji(string glyph, string resID, string color = null)
 		{
@@ -50,9 +52,32 @@ namespace River.OneMoreAddIn.Commands
 			// single char or a single surrogate pair) for ConvertToUtf32 to be valid;
 			// multi-codepoint sequences (none exist in the curated list today, but
 			// don't assume that always holds) are left uncategorized
-			Category = glyph.Length == 1 || (glyph.Length == 2 && char.IsSurrogatePair(glyph, 0))
-				? EmojiCategories.GetCategory(char.ConvertToUtf32(glyph, 0))
-				: null;
+			if (glyph.Length == 1 || (glyph.Length == 2 && char.IsSurrogatePair(glyph, 0)))
+			{
+				var codepoint = char.ConvertToUtf32(glyph, 0);
+				Category = EmojiCategories.GetCategory(codepoint);
+
+				if (resID is null)
+				{
+					// bare glyphs scanned from the full Unicode range have no curated,
+					// localized Name; prefer the real per-codepoint CLDR short name, and
+					// fall back to the (much coarser) Unicode general category for the
+					// rare codepoint that data doesn't cover
+					var name = EmojiNames.GetName(codepoint);
+					Name = name is not null
+						? CultureInfo.CurrentCulture.TextInfo.ToTitleCase(name)
+						: SpaceWords(CharUnicodeInfo.GetUnicodeCategory(glyph, 0).ToString());
+				}
+			}
+		}
+
+
+		// inserts a space before each capital that follows a lowercase letter, turning
+		// a UnicodeCategory.ToString() like "OtherSymbol" into "Other Symbol"; the enum
+		// name is already per-word-capitalized so no further title-casing is needed
+		private static string SpaceWords(string pascalCase)
+		{
+			return Regex.Replace(pascalCase, "(?<=[a-z])(?=[A-Z])", " ");
 		}
 
 		#region Lifecycle
@@ -155,6 +180,35 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return result;
+		}
+	}
+
+
+	/// <summary>
+	/// Looks up the Unicode CLDR short name for a single codepoint (e.g. "red heart"),
+	/// derived from the same emoji-test.txt as EmojiCategories, since neither the Segoe
+	/// UI Emoji font nor any Windows API exposes per-glyph names.
+	/// </summary>
+	internal static class EmojiNames
+	{
+		private static IReadOnlyDictionary<int, string> map;
+
+
+		/// <summary>
+		/// Gets the short name for the given codepoint, or null if it isn't part of the
+		/// Unicode emoji name data.
+		/// </summary>
+		/// <param name="codepoint">The Unicode codepoint to look up</param>
+		/// <returns>A short, lowercase name, or null</returns>
+		public static string GetName(int codepoint)
+		{
+			return (map ??= Load()).TryGetValue(codepoint, out var name) ? name : null;
+		}
+
+
+		private static IReadOnlyDictionary<int, string> Load()
+		{
+			return JsonConvert.DeserializeObject<Dictionary<int, string>>(Resx.EmojiNames);
 		}
 	}
 

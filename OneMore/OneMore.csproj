@@ -1464,6 +1464,7 @@
     <None Include="Commands\Search\CLAUDE.md" />
     <None Include="Commands\Snippets\Emoji\Emojis.json" />
     <None Include="Commands\Snippets\Emoji\EmojiCategories.json" />
+    <None Include="Commands\Snippets\Emoji\EmojiNames.json" />
     <None Include="Colorizer\Languages\golang.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
