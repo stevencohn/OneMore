@@ -18,11 +18,20 @@ using System.Runtime.InteropServices;
 
 [assembly: AssemblyVersion(OneMoreProtocolHandler.AssemblyInfo.Version)]
 [assembly: AssemblyFileVersion(OneMoreProtocolHandler.AssemblyInfo.Version)]
+[assembly: AssemblyInformationalVersion(OneMoreProtocolHandler.AssemblyInfo.Version + OneMoreProtocolHandler.AssemblyInfo.BuildTag)]
 
 namespace OneMoreProtocolHandler
 {
 	internal static class AssemblyInfo
 	{
 		public const string Version = "7.1.1";
+
+		public const string BuildTag =
+#if BETA
+		" Beta"
+#else
+		""
+#endif
+		;
 	}
 }

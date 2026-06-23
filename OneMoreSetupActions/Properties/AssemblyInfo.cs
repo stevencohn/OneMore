@@ -18,6 +18,7 @@ using System.Runtime.InteropServices;
 
 [assembly: AssemblyVersion(OneMoreSetupActions.AssemblyInfo.Version)]
 [assembly: AssemblyFileVersion(OneMoreSetupActions.AssemblyInfo.Version)]
+[assembly: AssemblyInformationalVersion(OneMoreSetupActions.AssemblyInfo.Version + OneMoreSetupActions.AssemblyInfo.BuildTag)]
 
 namespace OneMoreSetupActions
 {
@@ -25,5 +26,13 @@ namespace OneMoreSetupActions
 	{
 		public const string ProductName = "OneMoreAddIn";
 		public const string Version = "7.1.1";
+
+		public const string BuildTag =
+#if BETA
+		" Beta"
+#else
+		""
+#endif
+		;
 	}
 }

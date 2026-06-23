@@ -25,7 +25,7 @@
     <?endif ?>
   <?endif ?>
 
-  <Bundle Name="OneMore Add-in"
+  <Bundle Name="OneMore Add-in$(var.BetaTag)"
           Version="$(var.ProductVersion)"
           Manufacturer="River"
           UpgradeCode="{BC32678A-CE28-476B-9A12-181EF4523358}">
