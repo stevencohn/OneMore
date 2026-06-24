@@ -4,13 +4,14 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Models;
 	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
-	using System.Xml.Linq;
 
 
 	/// <summary>
-	/// Removes all hyperlinks from the current page.
+	/// Removes hyperlinks from the selected range of text, or the entire page if
+	/// nothing is selected.
 	/// </summary>
 	internal class RemoveHyperlinksCommand : Command
 	{
@@ -33,9 +34,11 @@ namespace River.OneMoreAddIn.Commands
 				var regex = new Regex(@"<a\b[^>]*>(.*?)</a>",
 					RegexOptions.Singleline | RegexOptions.IgnoreCase);
 
-				await using var one = new OneNote(out var page, out var ns);
+				await using var one = new OneNote(out var page, out _);
 
-				var runs = page.BodyOutlines.Descendants(ns + "T");
+				var range = new SelectionRange(page);
+				var runs = range.GetSelections(defaulToAnytIfNoRange: true);
+
 				foreach (var run in runs)
 				{
 					var original = run.Value;
@@ -50,7 +53,7 @@ namespace River.OneMoreAddIn.Commands
 
 				if (count > 0)
 				{
-					logger.WriteLine($"removed {count} hyperlinks on page");
+					logger.WriteLine($"removed {count} hyperlinks");
 					await one.Update(page);
 				}
 			}
