@@ -58,6 +58,20 @@ namespace River.OneMoreAddIn.Cli
 			=> Add(new CliParameter(name, description, typeof(string), required, defaultValue));
 
 		/// <summary>
+		/// Adds a <see cref="string"/> parameter constrained to a syntactically valid
+		/// filesystem path (rejects illegal path characters, e.g. a stray quote left behind
+		/// by a command-line quoting mistake).
+		/// </summary>
+		public CliParameterDefinition AddPath(
+			string name,
+			string description,
+			bool required = true,
+			string defaultValue = null)
+			=> Add(new CliParameter(
+				name, description, typeof(string), required, defaultValue,
+				new PathConstraint()));
+
+		/// <summary>
 		/// Adds an <see cref="int"/> parameter constrained to
 		/// [<paramref name="minimum"/>, <paramref name="maximum"/>].
 		/// </summary>

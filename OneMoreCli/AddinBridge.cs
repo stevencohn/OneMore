@@ -31,7 +31,8 @@ namespace OneMoreCli
 		/// when the pipe is unavailable (add-in / OneNote not running) so the caller can fall back
 		/// to direct COM activation.
 		/// </summary>
-		public static async Task<bool> TryRun(ICliCommand command, CliParameterSet parameters)
+		public static async Task<bool> TryRun(
+			ICliCommand command, CliParameterSet parameters, CancellationToken cancellationToken)
 		{
 			var pipeName = GetPipeName();
 			if (string.IsNullOrEmpty(pipeName))
@@ -58,17 +59,21 @@ namespace OneMoreCli
 				await pipe.FlushAsync();
 
 				// Read response — server writes then disconnects, so read until EOF / IOException.
-				// Before the final OK/ERR/OUTPUT payload, the server may interleave "PROGRESS:<name>\n"
-				// lines as each section starts; print those immediately instead of waiting for EOF.
+				// Before the final OK/ERR/OUTPUT/CANCELLED payload, the server may interleave
+				// "PROGRESS:<name>\n" lines as each section starts; print those immediately
+				// instead of waiting for EOF.
 				var sb = new StringBuilder();
 				var pending = new StringBuilder();
 				var inFinal = false;
+				var cancelledByUser = false;
 				var buffer = new byte[512];
-				using var cts = new CancellationTokenSource(TimeSpan.FromMinutes(5));
+				using var timeoutCts = new CancellationTokenSource(TimeSpan.FromMinutes(5));
+				using var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(
+					timeoutCts.Token, cancellationToken);
 				try
 				{
 					int n;
-					while ((n = await pipe.ReadAsync(buffer, 0, buffer.Length, cts.Token)) > 0)
+					while ((n = await pipe.ReadAsync(buffer, 0, buffer.Length, linkedCts.Token)) > 0)
 					{
 						var text = Encoding.UTF8.GetString(buffer, 0, n);
 						if (inFinal)
@@ -108,6 +113,13 @@ namespace OneMoreCli
 				{
 					// Server disconnected after writing response — normal end of stream
 				}
+				catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
+				{
+					// user pressed Ctrl+C — tell the server, then give it a short grace
+					// period to stop the in-flight batch and report back before we move on
+					cancelledByUser = true;
+					await NotifyServerCancelled(pipe, sb);
+				}
 				catch (OperationCanceledException)
 				{
 					throw new TimeoutException("The add-in did not respond within 5 minutes.");
@@ -118,8 +130,27 @@ namespace OneMoreCli
 				if (response.StartsWith("ERR:", StringComparison.OrdinalIgnoreCase))
 					throw new Exception(response.Substring(4));
 
+				if (response.StartsWith("CANCELLED", StringComparison.OrdinalIgnoreCase))
+				{
+					var idx = response.IndexOf(':');
+					if (idx >= 0 && idx + 1 < response.Length)
+					{
+						Console.Write(response.Substring(idx + 1));
+					}
+
+					throw new OperationCanceledException("Cancelled by user.");
+				}
+
 				if (response.StartsWith("OUTPUT:", StringComparison.OrdinalIgnoreCase))
+				{
 					Console.Write(response.Substring(7));
+				}
+				else if (cancelledByUser && !response.Equals("OK", StringComparison.OrdinalIgnoreCase))
+				{
+					// cancelled, and the server never clearly acknowledged completion within
+					// the grace period — report cancellation rather than claiming success
+					throw new OperationCanceledException("Cancelled by user.");
+				}
 
 				// "OK" or "OUTPUT:..." → success
 				return true;
@@ -137,6 +168,44 @@ namespace OneMoreCli
 			finally
 			{
 				pipe?.Dispose();
+			}
+		}
+
+
+		/// <summary>
+		/// Best-effort notifies the server that the user wants to cancel by writing a short
+		/// marker to the still-open pipe (the server treats any inbound byte as a cancel
+		/// signal while a command is running), then waits up to 10 seconds for the server's
+		/// terminal response — likely a <c>CANCELLED:</c> payload once it stops the in-flight
+		/// batch — appending whatever arrives to <paramref name="sb"/>. Swallows all failures;
+		/// the caller proceeds either way once this returns.
+		/// </summary>
+		private static async Task NotifyServerCancelled(NamedPipeClientStream pipe, StringBuilder sb)
+		{
+			try
+			{
+				var marker = Encoding.UTF8.GetBytes("CANCEL");
+				await pipe.WriteAsync(marker, 0, marker.Length);
+				await pipe.FlushAsync();
+			}
+			catch
+			{
+				return;
+			}
+
+			try
+			{
+				using var graceCts = new CancellationTokenSource(TimeSpan.FromSeconds(10));
+				var buffer = new byte[512];
+				int n;
+				while ((n = await pipe.ReadAsync(buffer, 0, buffer.Length, graceCts.Token)) > 0)
+				{
+					sb.Append(Encoding.UTF8.GetString(buffer, 0, n));
+				}
+			}
+			catch
+			{
+				// give up waiting for the server's acknowledgement; caller proceeds anyway
 			}
 		}
 

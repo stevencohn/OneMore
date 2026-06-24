@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Cli
 {
 	using System;
 	using System.Collections.Generic;
+	using System.IO;
 	using System.Text.RegularExpressions;
 
 	/// <summary>
@@ -157,6 +158,52 @@ namespace River.OneMoreAddIn.Cli
 				? $"Value must match format: {Hint}."
 				: "Value does not match the required pattern.";
 			return false;
+		}
+	}
+
+	/// <summary>
+	/// Constrains a string parameter to a syntactically valid filesystem path. This catches
+	/// cases where shell or command-line quoting has gone wrong - e.g. a path quoted with a
+	/// trailing backslash, like <c>"C:\foo\"</c>, escapes the closing quote on Windows so
+	/// everything after it (including any subsequent <c>--param</c> arguments) is folded into
+	/// this value - leaving an illegal character such as a stray <c>"</c> in the path.
+	/// </summary>
+	public sealed class PathConstraint : CliConstraint
+	{
+		/// <inheritdoc/>
+		public override bool Validate(object value, out string errorMessage)
+		{
+			var path = value as string;
+
+			if (string.IsNullOrWhiteSpace(path))
+			{
+				errorMessage = "Path must not be empty.";
+				return false;
+			}
+
+			var invalid = path.IndexOfAny(Path.GetInvalidPathChars());
+			if (invalid >= 0)
+			{
+				errorMessage =
+					$"'{path}' is not a valid path; it contains an illegal '{path[invalid]}' " +
+					"character. If this path was quoted on the command line, make sure it " +
+					"doesn't end with a trailing backslash before the closing quote " +
+					"(use \"C:\\folder\" rather than \"C:\\folder\\\").";
+				return false;
+			}
+
+			try
+			{
+				Path.GetFullPath(path);
+			}
+			catch (Exception exc)
+			{
+				errorMessage = $"'{path}' is not a valid path: {exc.Message}";
+				return false;
+			}
+
+			errorMessage = null;
+			return true;
 		}
 	}
 }

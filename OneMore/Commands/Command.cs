@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn
 	using River.OneMoreAddIn.Cli;
 	using System;
 	using System.Collections.Generic;
+	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
@@ -53,6 +54,19 @@ namespace River.OneMoreAddIn
 		}
 
 
+		/// <summary>
+		/// Cancellation token for the command, set by CommandFactory before Execute is called.
+		/// Defaults to CancellationToken.None for commands run outside of a cancellable CLI
+		/// batch (ribbon, Replay, the legacy protocol handler). Commands that loop internally
+		/// over many items may check this between iterations to support cancellation.
+		/// </summary>
+		public CancellationToken Cancellation
+		{
+			get;
+			private set;
+		} = CancellationToken.None;
+
+
 		/*
 		 * Inheritors MUST override Execute...
 		 */
@@ -92,6 +106,12 @@ namespace River.OneMoreAddIn
 		public void RunFromCli()
 		{
 			runningFromCli = true;
+		}
+
+		public Command SetCancellation(CancellationToken value)
+		{
+			Cancellation = value;
+			return this;
 		}
 
 		public Command SetFactory(CommandFactory value)
