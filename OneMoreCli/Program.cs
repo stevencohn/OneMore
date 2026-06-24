@@ -9,6 +9,7 @@ namespace OneMoreCli
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
+	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
 
@@ -34,9 +35,32 @@ namespace OneMoreCli
 	/// </summary>
 	internal class Program
 	{
+		// the CancellationTokenSource for whichever command is currently running, if any;
+		// recreated fresh before each command run so a single CancelKeyPress handler can
+		// serve every command in an interactive session without leaking cancellation state
+		// from one run into the next
+		private static CancellationTokenSource currentCts;
+
+
 		static async Task Main(string[] args)
 		{
 			Console.OutputEncoding = System.Text.Encoding.UTF8;
+
+			Console.CancelKeyPress += (s, e) =>
+			{
+				var cts = currentCts;
+				if (cts == null || cts.IsCancellationRequested)
+				{
+					// no command running, or cancellation was already requested - let the
+					// default behavior terminate the process immediately (force-quit escape
+					// hatch for a second Ctrl+C, or a no-op kill if nothing is running)
+					return;
+				}
+
+				e.Cancel = true;
+				CliConsole.WriteWarning("Cancelling… (press Ctrl+C again to force quit)");
+				cts.Cancel();
+			};
 
 			var commands = CommandDiscovery.Discover();
 
@@ -77,16 +101,27 @@ namespace OneMoreCli
 					Console.WriteLine();
 					Console.WriteLine(CliConsole.Separator);
 
+					currentCts = new CancellationTokenSource();
 					try
 					{
-						await RunCommand(command, parameters);
+						await RunCommand(command, parameters, currentCts.Token);
 						Console.WriteLine();
 						CliConsole.WriteSuccess("Command completed successfully.");
+					}
+					catch (OperationCanceledException)
+					{
+						Console.WriteLine();
+						CliConsole.WriteInfo("Command cancelled.");
 					}
 					catch (Exception exc)
 					{
 						Console.WriteLine();
 						CliConsole.WriteError(exc);
+					}
+					finally
+					{
+						currentCts.Dispose();
+						currentCts = null;
 					}
 				}
 
@@ -166,15 +201,26 @@ namespace OneMoreCli
 				return false;
 			}
 
+			currentCts = new CancellationTokenSource();
 			try
 			{
-				await RunCommand(command, parameters);
+				await RunCommand(command, parameters, currentCts.Token);
 				return true;
+			}
+			catch (OperationCanceledException)
+			{
+				CliConsole.WriteInfo("Command cancelled.");
+				return false;
 			}
 			catch (Exception exc)
 			{
 				CliConsole.WriteError(exc);
 				return false;
+			}
+			finally
+			{
+				currentCts.Dispose();
+				currentCts = null;
 			}
 		}
 
@@ -192,10 +238,11 @@ namespace OneMoreCli
 		/// resolved locally and the command is invoked once per page.
 		/// </para>
 		/// </summary>
-		private static async Task RunCommand(ICliCommand command, CliParameterSet parameters)
+		private static async Task RunCommand(
+			ICliCommand command, CliParameterSet parameters, CancellationToken token)
 		{
 			// Preferred path: delegate to the running add-in via the named pipe
-			if (await AddinBridge.TryRun(command, parameters))
+			if (await AddinBridge.TryRun(command, parameters, token))
 			{
 				return;
 			}
@@ -228,7 +275,7 @@ namespace OneMoreCli
 
 				if (string.IsNullOrWhiteSpace(section))
 				{
-					await RunForNotebook(command, parameters, notebook);
+					await RunForNotebook(command, parameters, notebook, token);
 					return;
 				}
 
@@ -247,15 +294,17 @@ namespace OneMoreCli
 
 				foreach (var pageId in pageIds)
 				{
+					token.ThrowIfCancellationRequested();
+
 					parameters.Set("pageId", pageId);
-					var r = await CliCommandFactory.Make().Run(command.GetType(), parameters);
+					var r = await CliCommandFactory.Make().Run(command.GetType(), token, parameters);
 					if (!string.IsNullOrEmpty(r?.CliOutput))
 						Console.Write(r.CliOutput);
 				}
 			}
 			else
 			{
-				var result = await CliCommandFactory.Make().Run(command.GetType(), parameters);
+				var result = await CliCommandFactory.Make().Run(command.GetType(), token, parameters);
 				var output = result?.CliOutput;
 				if (!string.IsNullOrEmpty(output))
 				{
@@ -270,7 +319,8 @@ namespace OneMoreCli
 		/// once per page. Used when section is not specified for an <see cref="ICliPageCommand"/>.
 		/// </summary>
 		private static async Task RunForNotebook(
-			ICliCommand command, CliParameterSet parameters, string notebookName)
+			ICliCommand command, CliParameterSet parameters, string notebookName,
+			CancellationToken token)
 		{
 			using var one = new OneNote();
 
@@ -312,6 +362,8 @@ namespace OneMoreCli
 
 			foreach (var sectionId in sectionIds)
 			{
+				token.ThrowIfCancellationRequested();
+
 				var section = await one.GetSection(sectionId);
 				if (section == null) continue;
 
@@ -331,8 +383,10 @@ namespace OneMoreCli
 
 				foreach (var pageId in pageIds)
 				{
+					token.ThrowIfCancellationRequested();
+
 					parameters.Set("pageId", pageId);
-					var r = await CliCommandFactory.Make().Run(command.GetType(), parameters);
+					var r = await CliCommandFactory.Make().Run(command.GetType(), token, parameters);
 					if (!string.IsNullOrEmpty(r?.CliOutput))
 						Console.Write(r.CliOutput);
 				}

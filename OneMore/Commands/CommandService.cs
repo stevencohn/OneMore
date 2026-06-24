@@ -293,6 +293,23 @@ namespace River.OneMoreAddIn
 
 			Command result = null;
 			string pageOutput = null;
+			var cancelled = false;
+
+			// While the command runs, watch the pipe for any inbound activity; the client
+			// never sends anything after its initial request during normal operation, so
+			// any byte received (or a broken connection) means it wants to cancel or has
+			// gone away. cts.Token is checked between pages/sections below so a long batch
+			// can stop early instead of running to completion against an absent client.
+			using var cts = new CancellationTokenSource();
+			var watcher = WatchForClientCancellation(pipe, cts);
+
+			async Task StopWatcherAsync()
+			{
+				// cancel first so the watcher's pending read unwinds via OperationCanceledException
+				// rather than a raw IOException from the pipe being closed out from under it
+				cts.Cancel();
+				try { await watcher; } catch { /* watcher self-handles its own exceptions */ }
+			}
 
 			try
 			{
@@ -304,6 +321,7 @@ namespace River.OneMoreAddIn
 
 					if (string.IsNullOrWhiteSpace(notebook))
 					{
+						await StopWatcherAsync();
 						await WriteCliResponse(pipe,
 							$"ERR:{commandName} requires a 'notebook' parameter");
 						return;
@@ -311,7 +329,8 @@ namespace River.OneMoreAddIn
 
 					if (string.IsNullOrWhiteSpace(section))
 					{
-						pageOutput = await InvokeCliCommandForNotebook(cliFactory, commandType, parameters, notebook, pipe);
+						(pageOutput, cancelled) = await InvokeCliCommandForNotebook(
+							cliFactory, commandType, parameters, notebook, pipe, cts.Token);
 					}
 					else
 					{
@@ -324,6 +343,7 @@ namespace River.OneMoreAddIn
 
 						if (pageIds.Length == 0)
 						{
+							await StopWatcherAsync();
 							await WriteCliResponse(pipe, $"ERR:No pages found at path: {path}");
 							return;
 						}
@@ -331,8 +351,14 @@ namespace River.OneMoreAddIn
 						var outputs = new StringBuilder();
 						foreach (var pageId in pageIds)
 						{
+							if (cts.Token.IsCancellationRequested)
+							{
+								cancelled = true;
+								break;
+							}
+
 							parameters.Set("pageId", pageId);
-							var r = await cliFactory.Run(commandType, parameters, one);
+							var r = await cliFactory.Run(commandType, cts.Token, parameters, one);
 							if (!string.IsNullOrEmpty(r?.CliOutput))
 							{
 								outputs.AppendLine(r.CliOutput);
@@ -343,18 +369,27 @@ namespace River.OneMoreAddIn
 				}
 				else
 				{
+					// single-shot command; no iteration to checkpoint so cancellation
+					// can't be honored mid-call, only ever reported for the page loops above
 					result = await cliFactory.Run(commandType, parameters);
 				}
-
-				var output = result?.CliOutput ?? pageOutput;
-				await WriteCliResponse(pipe,
-					string.IsNullOrEmpty(output) ? "OK" : "OUTPUT:" + output);
 			}
 			catch (Exception exc)
 			{
+				await StopWatcherAsync();
 				logger.WriteLine($"error executing CLI command '{commandName}'", exc);
 				await WriteCliResponse(pipe, $"ERR:{exc.Message}");
+				return;
 			}
+
+			// stop watching and let its pending read unwind before writing the terminal
+			// response, so nothing else is reading from the pipe while we write to it
+			await StopWatcherAsync();
+
+			var output = result?.CliOutput ?? pageOutput;
+			await WriteCliResponse(pipe, cancelled
+				? (string.IsNullOrEmpty(output) ? "CANCELLED" : $"CANCELLED:{output}")
+				: (string.IsNullOrEmpty(output) ? "OK" : $"OUTPUT:{output}"));
 		}
 
 
@@ -363,18 +398,21 @@ namespace River.OneMoreAddIn
 		/// once per page. Used when section is not specified for an <see cref="ICliPageCommand"/>.
 		/// Writes a <c>PROGRESS:</c> line through <paramref name="pipe"/> as each section starts
 		/// so the CLI client can report progress while the notebook is still being processed.
-		/// Returns any non-empty CliOutput accumulated across all page runs.
+		/// Checks <paramref name="token"/> before each section and page and stops early if set.
+		/// Returns any non-empty CliOutput accumulated across all page runs, plus whether the
+		/// iteration stopped early due to cancellation.
 		/// </summary>
-		private static async Task<string> InvokeCliCommandForNotebook(
+		private static async Task<(string output, bool cancelled)> InvokeCliCommandForNotebook(
 			CommandFactory cliFactory, Type commandType,
-			CliParameterSet parameters, string notebookName, NamedPipeServerStream pipe)
+			CliParameterSet parameters, string notebookName, NamedPipeServerStream pipe,
+			CancellationToken token)
 		{
 			using var one = new OneNote();
 
 			var notebooks = await one.GetNotebooks();
 			if (notebooks == null || !notebooks.HasElements)
 			{
-				return null;
+				return (null, false);
 			}
 
 			var ns = one.GetNamespace(notebooks);
@@ -385,22 +423,30 @@ namespace River.OneMoreAddIn
 
 			if (notebook == null)
 			{
-				return null;
+				return (null, false);
 			}
 
 			var notebookId = notebook.Attribute("ID").Value;
 			var notebookSections = await one.GetNotebook(notebookId, OneNote.Scope.Sections);
 			if (notebookSections == null)
 			{
-				return null;
+				return (null, false);
 			}
 
 			var sectionIds = new List<string>();
 			CollectSectionIds(notebookSections, sectionIds);
 
 			var outputs = new StringBuilder();
+			var cancelled = false;
+
 			foreach (var sectionId in sectionIds)
 			{
+				if (token.IsCancellationRequested)
+				{
+					cancelled = true;
+					break;
+				}
+
 				var section = await one.GetSection(sectionId);
 				if (section == null) continue;
 
@@ -420,16 +466,53 @@ namespace River.OneMoreAddIn
 
 				foreach (var pageId in pageIds)
 				{
+					if (token.IsCancellationRequested)
+					{
+						cancelled = true;
+						break;
+					}
+
 					parameters.Set("pageId", pageId);
-					var r = await cliFactory.Run(commandType, parameters, one);
+					var r = await cliFactory.Run(commandType, token, parameters, one);
 					if (!string.IsNullOrEmpty(r?.CliOutput))
 					{
 						outputs.AppendLine(r.CliOutput);
 					}
 				}
+
+				if (cancelled) break;
 			}
 
-			return outputs.Length > 0 ? outputs.ToString() : null;
+			return (outputs.Length > 0 ? outputs.ToString() : null, cancelled);
+		}
+
+
+		/// <summary>
+		/// While a CLI command is executing, watches the pipe for any inbound activity from
+		/// the client. The client never sends anything after its initial request during
+		/// normal operation, so any completed read here — bytes received, EOF (0-length
+		/// read), or a fault because the connection broke — means the client wants to cancel
+		/// or has gone away; either way, cancels <paramref name="cts"/>. Exits quietly once
+		/// the caller cancels <paramref name="cts"/> itself to signal the command has finished.
+		/// </summary>
+		private static async Task WatchForClientCancellation(
+			NamedPipeServerStream pipe, CancellationTokenSource cts)
+		{
+			try
+			{
+				var buffer = new byte[16];
+				await pipe.ReadAsync(buffer, 0, buffer.Length, cts.Token);
+				cts.Cancel();
+			}
+			catch (OperationCanceledException)
+			{
+				// normal shutdown: the command finished and the caller already cancelled cts
+			}
+			catch
+			{
+				// pipe broke for some other reason (client vanished) - treat as a cancel request
+				try { cts.Cancel(); } catch { /* already cancelled/disposed */ }
+			}
 		}
 
 

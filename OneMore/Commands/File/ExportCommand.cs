@@ -46,7 +46,7 @@ namespace River.OneMoreAddIn.Commands
 			.AddString("notebook", "Name of notebook to process", required: true)
 			.AddString("section", "Path of section to process (omit for all sections)", required: false)
 			.AddString("page", "Name of page to process (omit or * for all pages in section)", required: false)
-			.AddString("outpath", "Output folder path", required: true)
+			.AddPath("outpath", "Output folder path", required: true)
 			.AddEnum("format", "Export format",
 				new[] { "HTML", "PDF", "Word", "XML", "Markdown", "OneNote" },
 				required: true);

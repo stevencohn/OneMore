@@ -12,6 +12,7 @@ namespace River.OneMoreAddIn
 	using System.Linq;
 	using System.Reflection;
 	using System.Text;
+	using System.Threading;
 	using System.Threading.Tasks;
 	using Resx = Properties.Resources;
 
@@ -92,6 +93,29 @@ namespace River.OneMoreAddIn
 		public async Task<Command> Run(Type commandType, params object[] args)
 		{
 			var command = (Command)Activator.CreateInstance(commandType);
+			return await RunCore(command, args);
+		}
+
+
+		/// <summary>
+		/// Instantiates and executes the specified command, making the given cancellation token
+		/// available to it via <see cref="Command.Cancellation"/>. Used by CommandService to
+		/// support cancelling a batched CLI page-iteration between pages/sections.
+		/// </summary>
+		/// <param name="commandType">The command type</param>
+		/// <param name="token">The cancellation token to inject into the command instance</param>
+		/// <param name="args">The argument list</param>
+		/// <returns>Task</returns>
+		public async Task<Command> Run(Type commandType, CancellationToken token, params object[] args)
+		{
+			var command = (Command)Activator.CreateInstance(commandType);
+			command.SetCancellation(token);
+			return await RunCore(command, args);
+		}
+
+
+		private async Task<Command> RunCore(Command command, object[] args)
+		{
 			if (runningFromCli)
 			{
 				command.RunFromCli();
