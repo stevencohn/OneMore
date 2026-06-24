@@ -205,6 +205,11 @@ namespace River.OneMoreAddIn.Commands
 				foreach (var pageID in pageIDs)
 				{
 					var page = await one.GetPage(pageID, OneNote.PageDetail.BinaryData);
+					if (page == null)
+					{
+						logger.WriteLine($"export skipped, page not found [{pageID}]");
+						continue;
+					}
 
 					if (page.Title == null)
 					{
@@ -358,6 +363,11 @@ namespace River.OneMoreAddIn.Commands
 			string pageId, OneNote one, string path, OneNote.ExportFormat format, string ext)
 		{
 			var page = await one.GetPage(pageId, OneNote.PageDetail.BinaryData);
+			if (page == null)
+			{
+				logger.WriteLine($"export skipped, page not found [{pageId}]");
+				return;
+			}
 
 			var title = await GetBestTitle(one, page, path, ext, true);
 			// cleaned, sized, and ready go; now make sure it's unique!
