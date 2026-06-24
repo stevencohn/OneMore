@@ -99,6 +99,13 @@ namespace River.OneMoreAddIn
 		private static async Task Log(
 			string eventType, string eventName, string message, string info)
 		{
+			// yield immediately so callers that don't await this task (the interactive
+			// add-in path) aren't blocked on the calling thread by IsNetworkAvailable()'s
+			// interface enumeration or first-call template construction below; without
+			// this, the method has no await until the fire-and-forget dispatch further
+			// down, so it would otherwise run fully synchronously on the caller's thread
+			await Task.Yield();
+
 			if (Template is null || !HttpClientFactory.IsNetworkAvailable())
 			{
 				return;
