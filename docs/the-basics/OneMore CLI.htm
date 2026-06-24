@@ -129,11 +129,13 @@
             <li><a id="basics" href="Basics.htm">Basics</a></li>
 <li><a id="command-palette" href="Command Palette.htm">Command Palette</a></li>
 <li><a id="quick-palette" href="Quick Palette.htm">Quick Palette</a></li>
+<li><a id="favorites" href="Favorites.htm">Favorites</a></li>
+<li><a id="layouts" href="Layouts.htm">Layouts</a></li>
 <li><a id="navigator" href="Navigator.htm">Navigator</a></li>
 <li><a id="onemore-calendar" href="OneMore Calendar.htm">OneMore Calendar</a></li>
 <li><a id="onemore-cli" href="OneMore CLI.htm">OneMore CLI</a></li>
 <li><a id="settings" href="Settings.htm">Settings</a></li>
-<li><a id="settings-and-favorites" href="Settings and Favorites.htm">Settings and Favorites</a></li>
+<li><a id="user-data" href="User Data.htm">User Data</a></li>
 <li><a id="onenote-qat" href="OneNote QAT.htm">OneNote QAT</a></li>
 <li><a id="onenote-keyboard-shortcuts" href="OneNote Keyboard Shortcuts.htm">OneNote Keyboard Shortcuts</a></li>
           </ul>
@@ -145,12 +147,12 @@
     <div id="content">
       <DIV style="DIRECTION: ltr">
 <DIV style="WIDTH: 8.743in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0in">
-<DIV style="WIDTH: 2.023in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0.075in">
+<DIV style="WIDTH: 2.006in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0.075in">
 <P lang=yo style='FONT-SIZE: 20pt; MARGIN-BOTTOM: 14pt; FONT-FAMILY: "Calibri Light"; MARGIN-TOP: 0pt; COLOR: #464646'>OneMore CLI</P></DIV>
-<DIV style="WIDTH: 2.306in; MARGIN-TOP: 0.038in; DIRECTION: ltr; MARGIN-LEFT: 0.075in">
+<DIV style="WIDTH: 2.272in; MARGIN-TOP: 0.042in; DIRECTION: ltr; MARGIN-LEFT: 0.075in">
 <P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">Thursday, May 28, 2026</P>
 <P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">7:57 AM</P></DIV>
-<DIV style="WIDTH: 8.743in; MARGIN-TOP: 0.424in; DIRECTION: ltr; MARGIN-LEFT: 0in">
+<DIV style="WIDTH: 8.743in; MARGIN-TOP: 0.427in; DIRECTION: ltr; MARGIN-LEFT: 0in">
 <P lang=yo style="FONT-SIZE: 11.5pt; MARGIN-BOTTOM: 12pt; MARGIN-TOP: 0pt"><SPAN style="FONT-FAMILY: Calibri">The OneMore CLI (</SPAN><SPAN style="FONT-FAMILY: Consolas">OneMoreCli.exe</SPAN><SPAN style="FONT-FAMILY: Calibri">) is a companion tool that exposes a selection of OneMore commands as a scriptable command-line executable. It is capable of running either alongside OneNote or even when OneNote is not running at all, presuming OneNote is installed and you have notebooks you can access.</SPAN></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">It can run interactively, prompting you for input. Or it can run with a full set of command line arguments making it suitable for use from PowerShell, batch files, or any other shell script. </P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
@@ -289,13 +291,21 @@
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in 0in 0in 0.375in">outpath specifies a folder to which the output file is written</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in 0in 0in 0.375in">format may be specified as one of: HTML, PDF, Word, XML, Markdown, or OneNote</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in 0in 0in 0.375in">&nbsp;</P>
-<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in 0in 0in 0.375in">When notebook and section are specified, the specified page or all pages in that section are exported to the output path.</P>
-<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in 0in 0in 0.375in">When only notebook is specified, a subfolder is created for each section containing its exported pages.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in 0in 0in 0.375in">When both notebook and section are specified, the specified page or all pages in that section are exported to the output path.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in 0in 0in 0.375in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in 0in 0in 0.375in">When only notebook is specified, a folder structure is created representing the section/section group hierarchy, where sections are named with parenthesis such as "(section)" and section groups are named with square brackets such as "[section-group]".</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <H3 lang=yo style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; COLOR: #5b9bd5; MARGIN: 0in">ExportFavorites</H3>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Export entire favorites collection to a JSON file.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P><CODE lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: #7f7f7f">PS&gt; </SPAN><SPAN style="COLOR: black">onemore exportfavorites --file &lt;string&gt;</SPAN></CODE></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in 0in 0in 0.375in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in 0in 0in 0.375in">Where --file specifies the path of the JSON file to create.</P>
+<P><CODE lang=yo style='FONT-SIZE: 11.5pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in'>&nbsp;</CODE></P>
+<H3 lang=yo style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; COLOR: #5b9bd5; MARGIN: 0in">ExportLayouts</H3>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Export entire layouts collection to a JSON file.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P><CODE lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: #7f7f7f">PS&gt; </SPAN><SPAN style="COLOR: black">onemore exportlayouts --file &lt;string&gt;</SPAN></CODE></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in 0in 0in 0.375in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in 0in 0in 0.375in">Where --file specifies the path of the JSON file to create.</P>
 <P><CODE lang=yo style='FONT-SIZE: 11.5pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in'>&nbsp;</CODE></P>
@@ -348,6 +358,15 @@
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in 0in 0in 0.375in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in 0in 0in 0.375in">Existing favorites are not touched. Duplicates folders and favorites are not allowed, so any duplicates are ignored.</P>
 <P><CODE lang=yo style='FONT-SIZE: 11.5pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in'>&nbsp;</CODE></P>
+<H3 lang=yo style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; COLOR: #5b9bd5; MARGIN: 0in">ImportLayouts</H3>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Import layouts from a JSON file and merge into your existing layouts collection.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P><CODE lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: #7f7f7f">PS&gt; </SPAN><SPAN style="COLOR: black">onemore importlayouts --file &lt;string&gt;</SPAN></CODE></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in 0in 0in 0.375in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in 0in 0in 0.375in">Where --file specifies the path of the JSON file to read.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in 0in 0in 0.375in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in 0in 0in 0.375in">Existing layouts with the same name will be rewritten.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <H3 lang=yo style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; COLOR: #5b9bd5; MARGIN: 0in">InsertToc</H3>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Insert or update a table of contents in the specified page</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
@@ -376,7 +395,7 @@
 <TR>
 <TD style="BORDER-LEFT-WIDTH: 0pt; BORDER-RIGHT-WIDTH: 0pt; WIDTH: 0.667in; VERTICAL-ALIGN: top; BORDER-BOTTOM-WIDTH: 0pt; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; PADDING-RIGHT: 3pt; BORDER-TOP-WIDTH: 0pt">
 <P lang=yo style='FONT-SIZE: 22pt; FONT-FAMILY: "Segoe UI Symbol"; COLOR: #e84c22; TEXT-ALIGN: center; MARGIN: 0in'><SPAN style="FONT-WEIGHT: bold">⚠</SPAN></P></TD>
-<TD style="BORDER-LEFT-WIDTH: 0pt; BORDER-RIGHT-WIDTH: 0pt; WIDTH: 7.456in; VERTICAL-ALIGN: top; BORDER-BOTTOM-WIDTH: 0pt; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; PADDING-RIGHT: 3pt; BORDER-TOP-WIDTH: 0pt">
+<TD style="BORDER-LEFT-WIDTH: 0pt; BORDER-RIGHT-WIDTH: 0pt; WIDTH: 7.438in; VERTICAL-ALIGN: top; BORDER-BOTTOM-WIDTH: 0pt; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; PADDING-RIGHT: 3pt; BORDER-TOP-WIDTH: 0pt">
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: #333333; MARGIN: 0in"><SPAN style="FONT-WEIGHT: bold">Warning</SPAN></P>
 <P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: #333333">PutPage will do exactly what it you tell it to do! If you use </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e5b9b7; COLOR: black'>--force</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: #333333"> and specify the wrong </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #e5b9b7; COLOR: #333333'>--page</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: #333333">, it will faithfully follow your command, possibly overwriting the wrong page and losing its data. Ensure you have the correct parameters and the correct page data. Unlike PutHierarchy, at least the blast radius is contained to one page!</SPAN></P></TD></TR></TBODY></TABLE></DIV></TD></TR></TBODY></TABLE></DIV>
 <P><CODE lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">&nbsp;</CODE></P>
@@ -398,7 +417,7 @@
 <H3 lang=yo style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; COLOR: #5b9bd5; MARGIN: 0in">RemoveEmpty</H3>
 <P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Collapse consecutive empty lines; optionally remove all empty lines from one or more pages</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<P><CODE lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: #7f7f7f">PS&gt;</SPAN><SPAN style="COLOR: black"> onemore removeempty --notebook &lt;string&gt; [--section &lt;string&gt;] [--page &lt;string&gt;] [--all &lt;yes/no&gt;]</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: #7f7f7f">PS&gt;</SPAN><SPAN style="COLOR: black"> onemore removeempty --notebook &lt;string&gt; [--section &lt;string&gt;] [--page &lt;string&gt;] [--all]</SPAN></CODE></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in 0in 0in 0.375in">Where all specifies removal of all empty lines instead of keeping one between paragraphs</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
@@ -426,6 +445,16 @@
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P><CODE lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: #7f7f7f">PS&gt;</SPAN><SPAN style="COLOR: black"> onemore restoreautosize --notebook &lt;string&gt; [--section &lt;string&gt;] [--page &lt;string&gt;]</SPAN></CODE></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H3 lang=yo style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; COLOR: #5b9bd5; MARGIN: 0in">RestoreLayout</H3>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Restore all windows of a named layout</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P><CODE lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: #7f7f7f">PS&gt;</SPAN><SPAN style="COLOR: black"> onemore restorelayout--name &lt;string&gt;</SPAN></CODE></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H3 lang=yo style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; COLOR: #5b9bd5; MARGIN: 0in">SaveLayout</H3>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Save all open OneNote windows as a named layout</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P><CODE lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: #7f7f7f">PS&gt;</SPAN><SPAN style="COLOR: black"> onemore savelayout--name &lt;string&gt;</SPAN></CODE></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <H3 lang=yo style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; COLOR: #5b9bd5; MARGIN: 0in">Search</H3>
 <P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in"><SPAN lang=en-US>Search for pages matching a query across a notebook, section, or page and return results as XML. </SPAN><SPAN lang=yo>The XML is written to stdout or can be piped to an output file of your choosing, e.g., … | Out-File foo.xml.</SPAN></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
@@ -436,7 +465,7 @@
 <H3 lang=yo style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; COLOR: #5b9bd5; MARGIN: 0in">SearchHashtags</H3>
 <P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Search for hashtags matching a query</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<P><CODE lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: #7f7f7f">PS&gt; </SPAN><SPAN style="COLOR: black">onemore searchhashtags [--notebook &lt;string&gt;] [--section &lt;string&gt;] [--page &lt;string&gt;] --query &lt;string&gt; --allTags</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: #7f7f7f">PS&gt; </SPAN><SPAN style="COLOR: black">onemore searchhashtags [--notebook &lt;string&gt;] [--section &lt;string&gt;] [--page &lt;string&gt;] --query &lt;string&gt; [--allTags]</SPAN></CODE></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in 0in 0in 0.375in"><SPAN lang=yo>query specifies the search query as described in </SPAN><A href="../commands/Hashtag Commands.htm"><SPAN lang=en-US>Hashtag Commands</SPAN></A><SPAN lang=yo>.</SPAN></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in 0in 0in 0.375in">allTags indicates that, for each page that matches the query, all paragraphs with any tags are reported</P>
@@ -451,7 +480,7 @@
 <H3 lang=yo style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; COLOR: #5b9bd5; MARGIN: 0in">Trim</H3>
 <P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Trim leading or trailing whitespace from page text</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<P><CODE lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: #7f7f7f">PS&gt;</SPAN><SPAN style="COLOR: black"> onemore trim --notebook &lt;string&gt; [--section &lt;string&gt;] [--page &lt;string&gt;] [--leading &lt;yes/no&gt;]</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: #7f7f7f">PS&gt;</SPAN><SPAN style="COLOR: black"> onemore trim --notebook &lt;string&gt; [--section &lt;string&gt;] [--page &lt;string&gt;] [--leading]</SPAN></CODE></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in 0in 0in 0.375in">Where leading specifies whether to trim leading whitespace or trailing whitespace; default trim trailing whitespace.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>

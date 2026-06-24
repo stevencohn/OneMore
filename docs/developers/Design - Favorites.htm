@@ -140,13 +140,14 @@
 <li><a id="references" href="References.htm">References</a></li>
 <li><a id="design---command-framework" href="Design - Command Framework.htm">Design - Command Framework</a></li>
 <li><a id="design---command-service" href="Design - Command Service.htm">Design - Command Service</a></li>
+<li><a id="design---favorites" href="Design - Favorites.htm">Design - Favorites</a></li>
 <li><a id="design---hashtags" href="Design - Hashtags.htm">Design - Hashtags</a></li>
 <li><a id="design---telemetry" href="Design - Telemetry.htm">Design - Telemetry</a></li>
+<li><a id="design---window-layouts" href="Design - Window Layouts.htm">Design - Window Layouts</a></li>
 <li><a id="technote---colors" href="TechNote - Colors.htm">TechNote - Colors</a></li>
 <li><a id="technote---com-registration" href="TechNote - COM Registration.htm">TechNote - COM Registration</a></li>
 <li><a id="technote---com-surrogate" href="TechNote - COM Surrogate.htm">TechNote - COM Surrogate</a></li>
 <li><a id="technote---editing-text" href="TechNote - Editing Text.htm">TechNote - Editing Text</a></li>
-<li><a id="technote---favorites" href="TechNote - Favorites.htm">TechNote - Favorites</a></li>
 <li><a id="technote---hyperlinks" href="TechNote - Hyperlinks.htm">TechNote - Hyperlinks</a></li>
 <li><a id="technote---interop" href="TechNote - Interop.htm">TechNote - Interop</a></li>
 <li><a id="technote---styles" href="TechNote - Styles.htm">TechNote - Styles</a></li>
@@ -161,12 +162,12 @@
     <div id="content">
       <DIV style="DIRECTION: ltr">
 <DIV style="WIDTH: 8.437in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0in">
-<DIV style="WIDTH: 2.866in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0in">
-<P lang=yo style='FONT-SIZE: 20pt; MARGIN-BOTTOM: 14pt; FONT-FAMILY: "Calibri Light"; MARGIN-TOP: 0pt; COLOR: #464646'>TechNote - Favorites</P></DIV>
-<DIV style="WIDTH: 2.336in; MARGIN-TOP: 0.038in; DIRECTION: ltr; MARGIN-LEFT: 0in">
+<DIV style="WIDTH: 2.513in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0in">
+<P lang=yo style='FONT-SIZE: 20pt; MARGIN-BOTTOM: 14pt; FONT-FAMILY: "Calibri Light"; MARGIN-TOP: 0pt; COLOR: #464646'>Design - Favorites</P></DIV>
+<DIV style="WIDTH: 2.301in; MARGIN-TOP: 0.042in; DIRECTION: ltr; MARGIN-LEFT: 0in">
 <P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">Tuesday, June 16, 2026</P>
 <P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">10:41 AM</P></DIV>
-<DIV style="WIDTH: 8.437in; MARGIN-TOP: 0.424in; DIRECTION: ltr; MARGIN-LEFT: 0in">
+<DIV style="WIDTH: 8.437in; MARGIN-TOP: 0.427in; DIRECTION: ltr; MARGIN-LEFT: 0in">
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">OneNote favorites are just like favorites in your Web browser: you save a page as a favorite, and then get to navigate back to that page at a later time by clicking that favorite.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Along the way, users have requested new features, including:</P>
@@ -179,14 +180,14 @@
 <LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Can be exported/imported across machines</SPAN> </LI></UL>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <H2 lang=yo style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Why Move to a Database?</H2>
-<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">In the initial implementation it was designed to store each favorite as a bit of Ribbon XML - very convenient, but ultimately fragile and limiting. There was always the lingering concern that the XML-based file was too tightly reliant on the OneNote ribbon schema, conflating data with metadata, muddying model-view-controller overlap, and could break with any new release of OneNote. So moving the data to a real storage model and abstracting the view-controller pieces was always a long-term goal.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">In the initial implementation it was designed to store each favorite as a bit of Ribbon XML - very convenient for programming, but ultimately fragile and limiting. There was always the lingering concern that the XML-based file was too tightly reliant on the OneNote ribbon schema, conflating data with metadata, muddying model-view-controller overlap, and could break with any new release of OneNote. So moving the data to a real storage model and abstracting the view-controller pieces was always a long-term goal.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">The requirement to organize into folders became the real tipping point to move favorites into the OneMore.db database, expanding its responsibility along with hashtags and table variables. </P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">To maintain simplicity in both design and use, folders are limited to root folders only. The Favorites ribbon drop-down menu can contain a list of favorites and a list of folders, and those folders can have only a list of favorites themselves. No folders of folders.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <H2 lang=yo style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Friendly Names</H2>
-<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">OneNote does not prevent creating two pages with the same name in a single section. To avoid the confusion, users are allowed to give friendly names to each favorite. The friendly name (alias) defaults to the actual page name until explicitly overridden.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">OneNote does not prevent creating two pages with the same name in a single section. To avoid the confusion when saved as favorites, users are allowed to give friendly names to each favorite. The friendly name (alias) defaults to the actual page name until explicitly overridden.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <H2 lang=yo style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Migration</H2>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">If a Favorites.xml files exists, OneMore migrates this immediately upon the first use of Favorites. Uses include: expanding the Favorites drop-down menu, opening the Favorites dialog, opening the Settings/Favorites sheet, and of course, adding the current page to the Favorites list.</P>

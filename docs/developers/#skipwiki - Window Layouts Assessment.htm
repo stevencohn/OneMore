@@ -1,0 +1,441 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=OneNote.File>
+<meta name=Generator content="Microsoft OneNote 15">
+<link id=Main-File rel=Main-File
+href="%23skipwiki%20-%20Window%20Layouts%20Assessment.htm">
+<link rel=File-List
+href="%23skipwiki%20-%20Window%20Layouts%20Assessment_files/filelist.xml">
+</head>
+
+<body lang=en-US style='font-family:Calibri;font-size:11.5pt'>
+
+<div style='direction:ltr;border-width:100%'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:8.4375in'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:5.0569in'>
+
+<p style='margin:0in;font-family:Calibri;font-size:20.0pt' lang=yo>#skipwiki -
+Window Layouts Assessment</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.0423in;margin-left:0in;width:2.168in'>
+
+<p style='margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676'>Sunday,
+June 21, 2026</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676'>8:39
+PM</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.4277in;margin-left:0in;width:8.4375in'>
+
+<h1 style='margin:0in;font-family:Calibri;font-size:16.0pt;color:#1E4E79'
+lang=yo>Assessment: Issue #2217 — Layouts vs. Favorites</h1>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
+
+<h2 style='margin:0in;font-family:Calibri;font-size:14.0pt;color:#2E75B5'
+lang=yo>Context</h2>
+
+<p style='margin:0in' lang=yo><span style='font-family:Calibri;font-size:11.5pt'>Issue
+</span><a href="https://github.com/stevencohn/OneMore/issues/2217"><span
+style='font-family:Calibri;font-size:11.5pt'>#2217</span></a><span
+style='font-family:Calibri;font-size:11.5pt'> started as a narrow CLI request (</span><span
+style='font-family:"Lucida Console";font-size:9.0pt'>goto</span><span
+style='font-family:Calibri;font-size:11.5pt'> should be able to target a
+specific OneNote window among several open ones, non-destructively). You
+broadened the issue body into a &quot;Layouts Management&quot; feature: Save
+Layout / Restore Layout commands, a Manage Layouts dialog, and </span><span
+style='font-family:"Lucida Console";font-size:9.0pt'>savelayout</span><span
+style='font-family:Calibri;font-size:11.5pt'>/</span><span style='font-family:
+"Lucida Console";font-size:9.0pt'>restorelayout</span><span style='font-family:
+Calibri;font-size:11.5pt'> CLI verbs. In a follow-up comment you flagged the
+real open question: a layout is fundamentally &quot;a folder of favorites,
+perhaps with window coordinates,&quot; and you'd &quot;almost considered adding
+to Favorites menu&quot; but worried it's &quot;technically a separate
+architectural concern&quot; that &quot;may add confusion to the Favorites
+menu.&quot;</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>This
+document is <span style='font-weight:bold'>analysis only</span> —
+pros/cons/alternatives for <span style='font-style:italic'>how to build Layouts
+relative to Favorites</span> — not an implementation plan. It's grounded in the
+actual Favorites schema/code and a Plan-agent critique of the alternatives
+below.</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
+
+<h2 style='margin:0in;font-family:Calibri;font-size:14.0pt;color:#2E75B5'
+lang=yo>Ground truth from the codebase</h2>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
+
+<p style='margin:0in' lang=yo><span style='font-weight:bold;font-family:Calibri;
+font-size:11.5pt'>Favorites today</span><span style='font-family:Calibri;
+font-size:11.5pt'> (</span><span style='font-family:"Lucida Console";
+font-size:9.0pt'>OneMore/Commands/Favorites/</span><span style='font-family:
+Calibri;font-size:11.5pt'>):</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=yo><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>Favorite</span><span
+     style='font-family:Calibri;font-size:11.5pt'> (FavoriteModels.cs:38): ID,
+     FolderID (0=root; </span><span style='font-weight:bold;font-family:Calibri;
+     font-size:11.5pt'>single-level</span><span style='font-family:Calibri;
+     font-size:11.5pt'> folders, no nesting), Name, Alias, Location (path
+     string), Uri, NotebookID, SectionID, PageID, SortOrder, runtime Status
+     (Known/Suspect/Unknown).</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=yo><span
+     style='font-family:Calibri;font-size:11.5pt'>Persisted in SQLite (</span><span
+     style='font-family:Consolas;font-size:11.5pt'>%AppData%\OneMore\OneMore.db</span><span
+     style='font-family:Calibri;font-size:11.5pt'>) via </span><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>FavoritesProvider :
+     DatabaseProvider</span><span style='font-family:Calibri;font-size:11.5pt'>.
+     Schema (</span><span style='font-family:"Lucida Console";font-size:9.0pt'>FavoritesDB.sql</span><span
+     style='font-family:Calibri;font-size:11.5pt'>):<br />
+          </span><span style='font-family:"Lucida Console";font-size:9.0pt'>CREATE
+     UNIQUE INDEX idx_favorite_target_page ON favorite(pageID) WHERE pageID IS
+     NOT NULL;<br />
+          CREATE UNIQUE INDEX idx_favorite_target_section ON
+     favorite(sectionID) WHERE pageID IS NULL;<br />
+          </span><span style='font-weight:bold;font-family:Calibri;font-size:
+     11.5pt'>A page (or section) can be referenced by at most one </span><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>favorite</span><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'> row in the
+     entire database — globally, not per-folder.</span><span style='font-family:
+     Calibri;font-size:11.5pt'> This is the single most important constraint
+     for this decision.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=yo><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>FavoritesChecker</span><span
+     style='font-family:Calibri;font-size:11.5pt'> does &quot;auto-path&quot;
+     repair (recent #2230): re-resolves stale IDs by walking the Location path,
+     patching the row in place. It implicitly assumes one row per page.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=yo><span
+     style='font-family:Calibri;font-size:11.5pt'>UI (</span><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>FavoritesDialog</span><span
+     style='font-family:Calibri;font-size:11.5pt'>, </span><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>ManageFavoritesDialog</span><span
+     style='font-family:Calibri;font-size:11.5pt'>/</span><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>MangeFavoritesControl</span><span
+     style='font-family:Calibri;font-size:11.5pt'>, </span><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>FavoritesMenu</span><span
+     style='font-family:Calibri;font-size:11.5pt'>) is built entirely around </span><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>one favorite
+     = one click = one navigate-in-current-window</span><span style='font-family:
+     Calibri;font-size:11.5pt'>. There is no &quot;restore everything in this
+     folder at once&quot; verb anywhere — folders are passive containers that
+     just expand on the ribbon menu.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=yo><span
+     style='font-family:Calibri;font-size:11.5pt'>No window-position/geometry
+     fields exist anywhere in the model.</span></li>
+</ul>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo><span
+style='font-weight:bold'>Multi-window / goto state</span>:</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=yo><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>OneNote.GetWindows()</span><span
+     style='font-family:Calibri;font-size:11.5pt'> already enumerates all open
+     OneNote COM windows — handle, process/thread ID, bounds (</span><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>Native.GetWindowRect</span><span
+     style='font-family:Calibri;font-size:11.5pt'>), current
+     notebook/section/page, active flag — but it's wired up for a diagnostics
+     command only.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=yo><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>GotoCommand</span><span
+     style='font-family:Calibri;font-size:11.5pt'> (</span><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>Cli/Commands/GotoCommand.cs:38</span><span
+     style='font-family:Calibri;font-size:11.5pt'>) just calls </span><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>onenote.NavigateTo(pageId,
+     objectId)</span><span style='font-family:Calibri;font-size:11.5pt'>
+     against whatever OneNote considers &quot;current.&quot; </span><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>It has no
+     concept of a target window at all</span><span style='font-family:Calibri;
+     font-size:11.5pt'> — this is exactly the gap the original issue reporter
+     hit, and it's unsolved today.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=yo><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>Native.SetWindowPos</span><span
+     style='font-family:Calibri;font-size:11.5pt'> exists as a P/Invoke but is
+     unused for repositioning.</span></li>
+</ul>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
+
+<p style='margin:0in' lang=yo><span style='font-weight:bold;font-family:Calibri;
+font-size:11.5pt'>Repo convention</span><span style='font-family:Calibri;
+font-size:11.5pt'>: every named user collection (Favorites, Hashtags,
+Variables) is SQLite-backed via its own bespoke </span><span style='font-family:
+"Lucida Console";font-size:9.0pt'>XProvider : DatabaseProvider</span><span
+style='font-family:Calibri;font-size:11.5pt'> and its own </span><span
+style='font-family:"Lucida Console";font-size:9.0pt'>.sql</span><span
+style='font-family:Calibri;font-size:11.5pt'> DDL. There is </span><span
+style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>no shared generic
+&quot;named folder of items&quot; abstraction</span><span style='font-family:
+Calibri;font-size:11.5pt'> anywhere — each feature rolls its own model from
+scratch. Snippets/Themes are flat-file, no folders at all.</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
+
+<h2 style='margin:0in;font-family:Calibri;font-size:14.0pt;color:#2E75B5'
+lang=yo>Alternatives</h2>
+
+<h3 style='margin:0in;font-family:Calibri;font-size:11.5pt;color:#5B9BD5'
+lang=yo>&nbsp;</h3>
+
+<h3 style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'
+lang=yo>Alt A — Extend Favorites (flag a folder as &quot;is a layout&quot;; add
+nullable window-bounds/index columns to favorite)</h3>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=yo><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>Pros</span><span
+     style='font-family:Calibri;font-size:11.5pt'>: Smallest apparent diff.
+     Reuses folder CRUD, ribbon menu plumbing, import/export, auto-path
+     checker.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=yo><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>Cons</span><span
+     style='font-family:Calibri;font-size:11.5pt'>: Collides head-on with </span><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>idx_favorite_target_page</span><span
+     style='font-family:Calibri;font-size:11.5pt'>. A layout's whole point is
+     that the </span><span style='font-style:italic;font-family:Calibri;
+     font-size:11.5pt'>same</span><span style='font-family:Calibri;font-size:
+     11.5pt'> page can legitimately appear in multiple layouts, or in a layout </span><span
+     style='font-style:italic;font-family:Calibri;font-size:11.5pt'>and</span><span
+     style='font-family:Calibri;font-size:11.5pt'> independently as a plain
+     favorite — the existing global uniqueness constraint forbids both.
+     Relaxing it changes a load-bearing invariant </span><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>FavoritesChecker</span><span
+     style='font-family:Calibri;font-size:11.5pt'> depends on, for a feature
+     that doesn't share its purpose (Favorites </span><span style='font-style:
+     italic;font-family:Calibri;font-size:11.5pt'>want</span><span
+     style='font-family:Calibri;font-size:11.5pt'> de-dupe; Layouts must not).
+     You'd also be bolting a new aggregate &quot;restore all&quot; verb onto a
+     UI model built entirely around per-item actions — a hidden mode where
+     &quot;some folders behave like lists, others trigger multi-window
+     restore.&quot;</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=yo><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>Verdict</span><span
+     style='font-family:Calibri;font-size:11.5pt'>: smallest apparent effort, </span><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>highest
+     actual risk</span><span style='font-family:Calibri;font-size:11.5pt'>. Not
+     recommended.</span></li>
+</ul>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
+
+<h3 style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'
+lang=yo>Alt B — Separate parallel feature (new layout/layout_window tables +
+LayoutsProvider, modeled on Favorites' folder/item split, own ribbon entry, own
+CLI verbs, no page-uniqueness constraint)</h3>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=yo><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>Pros</span><span
+     style='font-family:Calibri;font-size:11.5pt'>: Structurally correct — a
+     layout slot is allowed to repeat a page across layouts or alongside a
+     favorite, by design. Matches the only pattern this codebase actually uses
+     (every collection is its own bespoke provider — this isn't a deviation,
+     it's the house style). Fully isolated: cannot regress Favorites or its
+     checker logic. Each layout-window row carries exactly what a layout slot
+     needs (ordinal, page ref, optional bounds) without contaminating the
+     Favorite model with fields 95% of favorites never use.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=yo><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>Cons</span><span
+     style='font-family:Calibri;font-size:11.5pt'>: More net-new surface area —
+     new schema, provider, dialog, ribbon entry, CLI commands — though each has
+     a direct precedent to copy (Favorites itself, or Hashtags/Variables).</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=yo><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>Verdict</span><span
+     style='font-family:Calibri;font-size:11.5pt'>: medium effort, </span><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>lowest risk</span><span
+     style='font-family:Calibri;font-size:11.5pt'>. Recommended.</span></li>
+</ul>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
+
+<h3 style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'
+lang=yo>Alt C — Shared core schema (kind discriminator: favorite vs. layout,
+partial unique index scoped to kind='favorite'), separate UX on top</h3>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=yo><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>Pros</span><span
+     style='font-family:Calibri;font-size:11.5pt'>: Avoids duplicating the </span><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>CREATE TABLE</span><span
+     style='font-family:Calibri;font-size:11.5pt'>/folder-CRUD boilerplate;
+     theoretically lets a layout's pages be queried alongside favorites later.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=yo><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>Cons</span><span
+     style='font-family:Calibri;font-size:11.5pt'>: The two &quot;kinds&quot;
+     don't actually want the same shape — a layout slot needs an ordinal and no
+     alias/Location-repair semantics; a favorite needs alias/Location repair
+     and no ordinal. Force-fitting both into one row means either dead nullable
+     columns on each side or re-deriving kind-specific behavior in code anyway,
+     while paying for conditional constraints (</span><span style='font-family:
+     "Lucida Console";font-size:9.0pt'>WHERE kind='favorite'</span><span
+     style='font-family:Calibri;font-size:11.5pt'>) that every future schema
+     change to </span><span style='font-style:italic;font-family:Calibri;
+     font-size:11.5pt'>either</span><span style='font-family:Calibri;
+     font-size:11.5pt'> feature must now reason about. The codebase has zero
+     precedent for a shared generic collection abstraction — this would be the
+     first one, introduced to save roughly one </span><span style='font-family:
+     "Lucida Console";font-size:9.0pt'>CREATE TABLE</span><span
+     style='font-family:Calibri;font-size:11.5pt'> statement.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=yo><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>Verdict</span><span
+     style='font-family:Calibri;font-size:11.5pt'>: medium-high effort, medium
+     risk (mostly over-engineering risk, not regression risk). Architecturally
+     elegant on paper, worst fit for this codebase's actual conventions.</span></li>
+</ul>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
+
+<h3 style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'
+lang=yo>A 4th axis, not an alternative storage design: scope v1 to skip
+persisted window geometry</h3>
+
+<p style='margin:0in' lang=yo><span style='font-family:Calibri;font-size:11.5pt'>Your
+stated bar in the issue comments is &quot;non-destructive — open new windows,
+don't reopen an already-open page,&quot; not &quot;restore pixel-perfect window
+positions.&quot; If v1 drops bounds entirely, a layout-window row only needs </span><span
+style='font-family:"Lucida Console";font-size:9.0pt'>(layoutID, ordinal,
+pageID/sectionID, notebookID)</span><span style='font-family:Calibri;
+font-size:11.5pt'> — window </span><span style='font-style:italic;font-family:
+Calibri;font-size:11.5pt'>placement</span><span style='font-family:Calibri;
+font-size:11.5pt'> on restore becomes ephemeral runtime behavior (tile new
+windows reasonably) rather than persisted/replayed coordinates. This shrinks
+Alt B to a genuinely small schema and makes the A/B/C effort gap almost
+entirely about the Favorites-coupling question, not field count. Recommend
+treating persisted geometry as a v2 stretch goal regardless of which
+alternative you pick.</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
+
+<h2 style='margin:0in;font-family:Calibri;font-size:14.0pt;color:#2E75B5'
+lang=yo>Recommendation</h2>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo><span
+style='font-weight:bold'>Alt B</span>, scoped without persisted geometry for
+v1. It's the only option that doesn't touch Favorites' existing uniqueness
+invariant, fits the codebase's established &quot;one bespoke provider per
+feature&quot; convention exactly, and keeps the (already substantial)
+window-orchestration risk fully isolated from any Favorites regression risk.</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
+
+<h2 style='margin:0in;font-family:Calibri;font-size:14.0pt;color:#2E75B5'
+lang=yo>Answering your specific question: how to differentiate
+visually/conceptually</h2>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>Don't make
+folders-of-favorites double as layouts — conceptually a Favorite is &quot;a
+bookmark to one place,&quot; a Layout is &quot;a multi-window session
+snapshot,&quot; and overloading folders adds a hidden mode users won't expect.
+Concretely:</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=yo><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>Separate
+     ribbon entry point</span><span style='font-family:Calibri;font-size:11.5pt'>
+     (&quot;Layouts&quot; alongside &quot;Favorites&quot;), separate icon
+     (window/grid glyph vs. star/bookmark), separate verbs (Save Layout /
+     Restore Layout vs. Add Favorite / Goto Favorite).</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=yo><span
+     style='font-family:Calibri;font-size:11.5pt'>A </span><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>combined
+     &quot;Manage&quot; dialog with tabs</span><span style='font-family:Calibri;
+     font-size:11.5pt'> (Favorites | Layouts) is reasonable — both are just
+     CRUD-over-a-named-list UIs, so sharing the management surface reduces
+     dialog sprawl.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=yo><span
+     style='font-family:Calibri;font-size:11.5pt'>Keep the </span><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>restore/navigate
+     ribbon entry points distinct</span><span style='font-family:Calibri;
+     font-size:11.5pt'>, not merged into one menu — that's where real confusion
+     would happen, because the invocation semantics genuinely differ (single
+     navigate-in-place vs. multi-window orchestration), not because of visual
+     styling.</span></li>
+</ul>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
+
+<h2 style='margin:0in;font-family:Calibri;font-size:14.0pt;color:#2E75B5'
+lang=yo>Orthogonal (and likely larger) risk: window targeting itself</h2>
+
+<p style='margin:0in' lang=yo><span style='font-family:Calibri;font-size:11.5pt'>Solving
+&quot;match N desired pages against M open windows, open new windows for the
+rest, optionally reposition&quot; is real COM/Win32 orchestration work — </span><span
+style='font-family:"Lucida Console";font-size:9.0pt'>GotoCommand</span><span
+style='font-family:Calibri;font-size:11.5pt'> has no target-window concept
+today, and </span><span style='font-family:"Lucida Console";font-size:9.0pt'>OneNote.GetWindows()</span><span
+style='font-family:Calibri;font-size:11.5pt'> is wired for diagnostics only.
+This work is </span><span style='font-weight:bold;font-family:Calibri;
+font-size:11.5pt'>identical under Alt A, B, or C</span><span style='font-family:
+Calibri;font-size:11.5pt'> — the storage decision doesn't make it easier or
+harder. It should be scoped and risk-tracked as its own work item under #2217,
+and is plausibly the larger of the two risk areas in this issue, independent of
+the Favorites-vs-Layouts question.</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
+
+<h2 style='margin:0in;font-family:Calibri;font-size:14.0pt;color:#2E75B5'
+lang=yo>Open items you'll still need to decide (not blocking this assessment)</h2>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=yo><span
+     style='font-family:Calibri;font-size:11.5pt'>Ribbon placement (the issue
+     itself marks this TBD).</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=yo><span
+     style='font-family:Calibri;font-size:11.5pt'>Whether &quot;Restore
+     Layout&quot; should ever close/repurpose existing windows, or always be
+     strictly additive (your comment leans additive — &quot;open new windows...
+     don't reopen the same page twice&quot;).</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=yo><span
+     style='font-family:Calibri;font-size:11.5pt'>Whether layouts should be
+     importable/exportable like Favorites already are.</span></li>
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+
+<p style='margin:0in'>&nbsp;</p>
+
+<p style='text-align:left;margin:0in;font-family:Arial;font-size:9pt;
+color:#969696;direction:ltr'>Created with OneNote.</p>
+
+</div>
+
+</body>
+
+</html>
