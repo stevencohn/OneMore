@@ -239,11 +239,6 @@ namespace River.OneMoreAddIn.Commands
 
 				await scanner.Scan(token);
 
-				// release accumulated XElement trees and COM RCWs while the scanner is idle;
-				// doing this once per scan is safe and avoids gen-2 pressure during the next scan
-				GC.Collect(2, GCCollectionMode.Optimized);
-				GC.WaitForPendingFinalizers();
-
 				var s = scanner.Stats;
 				scanCount++;
 				scanTime += scanner.Stats.Time;
