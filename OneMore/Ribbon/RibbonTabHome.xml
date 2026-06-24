@@ -241,6 +241,12 @@
           getScreentip="GetRibbonScreentip"
           onAction="RemoveEmptyCmd"/>
         <button
+          id="ribRemoveHyperlinksButton"
+          imageMso="HyperlinkRemove"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="RemoveHyperlinksCmd"/>
+        <button
           id="ribRemoveIndentsButton"
           imageMso="IndentDecrease"
           getLabel="GetRibbonLabel"

@@ -4364,6 +4364,14 @@ Zakładka Pomoc</value>
     <value>Usuń przypis (Ctrl + Shift + F)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
+  <data name="ribRemoveHyperlinksButton_Label" xml:space="preserve">
+    <value>Usuń hiperłącza</value>
+    <comment>ribbon clean</comment>
+  </data>
+  <data name="ribRemoveHyperlinksButton_Screentip" xml:space="preserve">
+    <value>Usuń wszystkie hiperłącza ze strony</value>
+    <comment>ribbon clean</comment>
+  </data>
   <data name="ribRemoveIndentsButton_Label" xml:space="preserve">
     <value>Usuń wcięcia</value>
     <comment>ribbon clean</comment>

@@ -4364,6 +4364,14 @@ Tabblad Help</value>
     <value>Voetnoot verwijderen (Ctrl + Shift + F)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
+  <data name="ribRemoveHyperlinksButton_Label" xml:space="preserve">
+    <value>Hyperlinks verwijderen</value>
+    <comment>ribbon clean</comment>
+  </data>
+  <data name="ribRemoveHyperlinksButton_Screentip" xml:space="preserve">
+    <value>Verwijder alle hyperlinks van de pagina</value>
+    <comment>ribbon clean</comment>
+  </data>
   <data name="ribRemoveIndentsButton_Label" xml:space="preserve">
     <value>Inspringingen verwijderen</value>
     <comment>ribbon clean</comment>

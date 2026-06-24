@@ -4363,6 +4363,14 @@ Pestaña Ayuda</value>
     <value>Eliminar nota al pie (Ctrl + Shift + F)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
+  <data name="ribRemoveHyperlinksButton_Label" xml:space="preserve">
+    <value>Eliminar hipervínculos</value>
+    <comment>ribbon clean</comment>
+  </data>
+  <data name="ribRemoveHyperlinksButton_Screentip" xml:space="preserve">
+    <value>Eliminar todos los hipervínculos de la página</value>
+    <comment>ribbon clean</comment>
+  </data>
   <data name="ribRemoveIndentsButton_Label" xml:space="preserve">
     <value>Eliminar sangrías</value>
     <comment>ribbon clean</comment>

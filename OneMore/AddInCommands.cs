@@ -806,19 +806,24 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<RemoveEmptyCommand>();
 
 
-		[Command("ribRemoveIndentsButton_Label", Keys.None, "ribCleanMenu")]
-		public async Task RemoveIndentsCmd(IRibbonControl control)
-			=> await factory.Run<RemoveIndentsCommand>();
-
-
 		[Command("ribRemoveFootnoteButton_Label", Keys.Control | Keys.Shift | Keys.F, "ribReferencesMenu")]
 		public async Task RemoveFootnoteCmd(IRibbonControl control)
 			=> await factory.Run<RemoveFootnoteCommand>();
 
 
+		[Command("ribRemoveIndentsButton_Label", Keys.None, "ribCleanMenu")]
+		public async Task RemoveIndentsCmd(IRibbonControl control)
+			=> await factory.Run<RemoveIndentsCommand>();
+
+
 		[Command("ribRemoveInkButton_Label", Keys.None, "ribCleanMenu")]
 		public async Task RemoveInkCmd(IRibbonControl control)
 			=> await factory.Run<RemoveInkCommand>();
+
+
+		[Command("ribRemoveHyperlinksButton_Label", Keys.None, "ribCleanMenu")]
+		public async Task RemoveHyperlinksCmd(IRibbonControl control)
+			=> await factory.Run<RemoveHyperlinksCommand>();
 
 
 		[Command("ribRemovePageNumbersButton_Label", Keys.None, "ribNumberingMenu")]
