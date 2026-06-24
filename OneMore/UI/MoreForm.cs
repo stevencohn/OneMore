@@ -390,22 +390,31 @@ namespace River.OneMoreAddIn.UI
 			// SetForegroundWindow succeeds regardless of which process has foreground rights.
 			// This is needed because OneMore runs in dllhost.exe (COM surrogate), not ONENOTE.EXE,
 			// and by the time dialogs are shown the original COM call / WM_HOTKEY rights are gone.
-			var foreground = Native.GetForegroundWindow();
-			if (!IsDisposed && IsHandleCreated && foreground != IntPtr.Zero && foreground != Handle)
+			try
 			{
-				uint foregroundThread = Native.GetWindowThreadProcessId(foreground, out _);
-				uint currentThread = Native.GetCurrentThreadId();
-
-				bool attached = foregroundThread != currentThread &&
-					Native.AttachThreadInput(foregroundThread, currentThread, true);
-
-				Native.SetForegroundWindow(Handle);
-				Native.BringWindowToTop(Handle);
-
-				if (attached)
+				var foreground = Native.GetForegroundWindow();
+				if (!IsDisposed && IsHandleCreated && foreground != IntPtr.Zero && foreground != Handle)
 				{
-					Native.AttachThreadInput(foregroundThread, currentThread, false);
+					uint foregroundThread = Native.GetWindowThreadProcessId(foreground, out _);
+					uint currentThread = Native.GetCurrentThreadId();
+
+					bool attached = foregroundThread != currentThread &&
+						Native.AttachThreadInput(foregroundThread, currentThread, true);
+
+					Native.SetForegroundWindow(Handle);
+					Native.BringWindowToTop(Handle);
+
+					if (attached)
+					{
+						Native.AttachThreadInput(foregroundThread, currentThread, false);
+					}
 				}
+			}
+			catch (ObjectDisposedException)
+			{
+				// the dialog can close and dispose itself between the IsDisposed/IsHandleCreated
+				// checks above and the Handle access, racing with this call on another thread
+				return;
 			}
 
 			// TopMost toggle ensures the window appears above OneNote in z-order
