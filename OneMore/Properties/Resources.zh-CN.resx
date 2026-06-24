@@ -5518,9 +5518,13 @@ ISO-code then comma then language name</comment>
     <comment>button</comment>
   </data>
   <data name="StyleDialog_styleTypeBox_Items" xml:space="preserve">
-    <value>字符-段落中的文字
-            段落-整个段落
-            标题-整个页面</value>
+    <value>标题 - 包含在目录中
+页面标题-页面标题段落
+引文 - 参考段落
+引用 - 引用的文本段落
+Code——代码块段落
+段落 - 整个段落
+字符 - 段落中的单词</value>
     <comment>combobox</comment>
   </data>
   <data name="StyleDialog_styleTypeLabel.Text" xml:space="preserve">

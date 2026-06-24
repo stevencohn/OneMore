@@ -1946,14 +1946,6 @@
         <source>Reorder</source>
         <preferred>排序</preferred>
     </hint>
-    <hint name="StyleDialog_styleTypeBox_Items">
-        <source>Character - words in paragraph
-            Paragraph - entire paragraph
-            Heading - include in TOC</source>
-        <preferred>字符-段落中的文字
-            段落-整个段落
-            标题-整个页面</preferred>
-    </hint>
     <hint name="StyleDialog_Text">
         <source>My Styles</source>
         <preferred>自定义样式</preferred>
