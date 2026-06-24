@@ -4401,6 +4401,14 @@ Help Tab</value>
     <value>Remove footnote (Ctrl + Shift + F)</value>
     <comment>ribbon references</comment>
   </data>
+  <data name="ribRemoveHyperlinksButton_Label" xml:space="preserve">
+    <value>Remove Hyperlinks</value>
+    <comment>ribbon clean</comment>
+  </data>
+  <data name="ribRemoveHyperlinksButton_Screentip" xml:space="preserve">
+    <value>Remove all hyperlinks from page</value>
+    <comment>ribbon clean</comment>
+  </data>
   <data name="ribRemoveIndentsButton_Label" xml:space="preserve">
     <value>Remove Indents</value>
     <comment>ribbon clean</comment>

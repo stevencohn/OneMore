@@ -4375,6 +4375,14 @@ Onglet Aide</value>
     <value>Supprimer la note de bas de page (Ctrl + Maj + F)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
+  <data name="ribRemoveHyperlinksButton_Label" xml:space="preserve">
+    <value>Supprimer les hyperliens</value>
+    <comment>ribbon clean</comment>
+  </data>
+  <data name="ribRemoveHyperlinksButton_Screentip" xml:space="preserve">
+    <value>Supprimer tous les hyperliens de la page</value>
+    <comment>ribbon clean</comment>
+  </data>
   <data name="ribRemoveIndentsButton_Label" xml:space="preserve">
     <value>Supprimer les retraits</value>
     <comment>ribbon clean</comment>

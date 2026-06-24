@@ -4369,6 +4369,14 @@ Scheda Aiuto</value>
     <value>Rimuovi nota a piè di pagina (Ctrl + Maiusc + F)</value>
     <comment>ribbon references</comment>
   </data>
+  <data name="ribRemoveHyperlinksButton_Label" xml:space="preserve">
+    <value>Rimuovi collegamenti ipertestuali</value>
+    <comment>ribbon clean</comment>
+  </data>
+  <data name="ribRemoveHyperlinksButton_Screentip" xml:space="preserve">
+    <value>Rimuovi tutti i collegamenti ipertestuali dalla pagina</value>
+    <comment>ribbon clean</comment>
+  </data>
   <data name="ribRemoveIndentsButton_Label" xml:space="preserve">
     <value>Rimuovi rientri</value>
     <comment>ribbon clean</comment>

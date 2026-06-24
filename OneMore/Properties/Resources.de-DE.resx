@@ -4363,6 +4363,14 @@ Registerkarte „Hilfe“.</value>
     <value>Fußnote entfernen (Strg + Umschalt + F)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
+  <data name="ribRemoveHyperlinksButton_Label" xml:space="preserve">
+    <value>Hyperlinks entfernen</value>
+    <comment>ribbon clean</comment>
+  </data>
+  <data name="ribRemoveHyperlinksButton_Screentip" xml:space="preserve">
+    <value>Entfernen Sie alle Hyperlinks von der Seite</value>
+    <comment>ribbon clean</comment>
+  </data>
   <data name="ribRemoveIndentsButton_Label" xml:space="preserve">
     <value>Einzüge entfernen</value>
     <comment>ribbon clean</comment>

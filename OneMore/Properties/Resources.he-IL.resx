@@ -4368,6 +4368,14 @@ ISO-code then comma then language name</comment>
     <value>הסר הערת שוליים (Ctrl + Shift + F)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
+  <data name="ribRemoveHyperlinksButton_Label" xml:space="preserve">
+    <value>הסר היפר-קישורים</value>
+    <comment>ribbon clean</comment>
+  </data>
+  <data name="ribRemoveHyperlinksButton_Screentip" xml:space="preserve">
+    <value>הסר את כל ההיפר-קישורים מהדף</value>
+    <comment>ribbon clean</comment>
+  </data>
   <data name="ribRemoveIndentsButton_Label" xml:space="preserve">
     <value>הסר כניסות</value>
     <comment>ribbon clean</comment>

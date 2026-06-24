@@ -4375,6 +4375,14 @@ ISO-code then comma then language name</comment>
     <value>إزالة الحاشية السفلية (Ctrl + Shift + F)</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
   </data>
+  <data name="ribRemoveHyperlinksButton_Label" xml:space="preserve">
+    <value>إزالة الارتباطات التشعبية</value>
+    <comment>ribbon clean</comment>
+  </data>
+  <data name="ribRemoveHyperlinksButton_Screentip" xml:space="preserve">
+    <value>إزالة كافة الارتباطات التشعبية من الصفحة</value>
+    <comment>ribbon clean</comment>
+  </data>
   <data name="ribRemoveIndentsButton_Label" xml:space="preserve">
     <value>إزالة المسافات البادئة</value>
     <comment>ribbon clean</comment>

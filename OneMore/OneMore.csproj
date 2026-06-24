@@ -194,6 +194,7 @@
     <Compile Include="Cli\ICliInteractiveCommand.cs" />
     <Compile Include="Cli\ICliPageCommand.cs" />
     <Compile Include="Commands\Clean\RemoveIndentsCommand.cs" />
+    <Compile Include="Commands\Clean\RemoveHyperlinksCommand.cs" />
     <Compile Include="Commands\Edit\ChooseColorizerCommand.cs" />
     <Compile Include="Commands\Edit\ColorizeDialog.cs">
       <SubType>Form</SubType>

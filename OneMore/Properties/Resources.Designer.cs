@@ -2542,18 +2542,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("EmojiCategories", resourceCulture);
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized string similar to {&quot;169&quot;:&quot;copyright&quot;,&quot;174&quot;:&quot;registered&quot;,&quot;8252&quot;:&quot;double exclamation mark&quot;,&quot;8265&quot;:&quot;exclamation question mark&quot;,&quot;8482&quot;:&quot;trade mark&quot;,&quot;8505&quot;:&quot;i
-        ///  nformation&quot;,&quot;8596&quot;:&quot;left-right arrow&quot;,&quot;8597&quot;:&quot;up-down arrow&quot;,&quot;8598&quot;:&quot;up-left arrow&quot;,&quot;8599&quot;:&quot;up-right arrow&quot;,&quot;8600&quot;:
-        ///  [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string EmojiNames {
-            get {
-                return ResourceManager.GetString("EmojiNames", resourceCulture);
-            }
-        }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Activities.
         /// </summary>
@@ -2677,6 +2666,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string EmojiDialog_travelLink_Text {
             get {
                 return ResourceManager.GetString("EmojiDialog_travelLink.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {&quot;169&quot;:&quot;copyright&quot;,&quot;174&quot;:&quot;registered&quot;,&quot;8252&quot;:&quot;double exclamation mark&quot;,&quot;8265&quot;:&quot;exclamation question mark&quot;,&quot;8482&quot;:&quot;trade mark&quot;,&quot;8505&quot;:&quot;information&quot;,&quot;8596&quot;:&quot;left-right arrow&quot;,&quot;8597&quot;:&quot;up-down arrow&quot;,&quot;8598&quot;:&quot;up-left arrow&quot;,&quot;8599&quot;:&quot;up-right arrow&quot;,&quot;8600&quot;:&quot;down-right arrow&quot;,&quot;8601&quot;:&quot;down-left arrow&quot;,&quot;8617&quot;:&quot;right arrow curving left&quot;,&quot;8618&quot;:&quot;left arrow curving right&quot;,&quot;8986&quot;:&quot;watch&quot;,&quot;8987&quot;:&quot;hourglass done&quot;,&quot;9000&quot;:&quot;keyboard&quot;,&quot;9167&quot;:&quot;eject button&quot;,&quot;9193&quot;:&quot;fast-forward button&quot;,&quot;9194&quot;:&quot;fast reverse button&quot;,&quot;9195&quot;:&quot;fast  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string EmojiNames {
+            get {
+                return ResourceManager.GetString("EmojiNames", resourceCulture);
             }
         }
         
@@ -10473,6 +10471,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribRemoveFootnoteButton_Screentip {
             get {
                 return ResourceManager.GetString("ribRemoveFootnoteButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove Hyperlinks.
+        /// </summary>
+        internal static string ribRemoveHyperlinksButton_Label {
+            get {
+                return ResourceManager.GetString("ribRemoveHyperlinksButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove all hyperlinks from page.
+        /// </summary>
+        internal static string ribRemoveHyperlinksButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribRemoveHyperlinksButton_Screentip", resourceCulture);
             }
         }
         

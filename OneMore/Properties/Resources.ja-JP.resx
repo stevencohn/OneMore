@@ -4372,6 +4372,14 @@ ISO-code then comma then language name</comment>
     <value>脚注を削除 (Ctrl + Shift + F)</value>
     <comment>ribbon references</comment>
   </data>
+  <data name="ribRemoveHyperlinksButton_Label" xml:space="preserve">
+    <value>ハイパーリンクの削除</value>
+    <comment>ribbon clean</comment>
+  </data>
+  <data name="ribRemoveHyperlinksButton_Screentip" xml:space="preserve">
+    <value>ページからすべてのハイパーリンクを削除します</value>
+    <comment>ribbon clean</comment>
+  </data>
   <data name="ribRemoveIndentsButton_Label" xml:space="preserve">
     <value>インデントを削除する</value>
     <comment>ribbon clean</comment>
