@@ -256,8 +256,12 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (tabs.SelectedTab != gridTab)
 			{
-				Left = (Left + (Width / 2)) - (quickWidth / 2);
+				// Compute center before the resize, then resize, then read the actual
+				// resulting Width to set Left — avoids integer-division drift between
+				// quickWidth and the real post-resize pixel width
+				var centerX = Left + Width / 2;
 				Width = quickWidth;
+				Left = centerX - Width / 2;
 				return;
 			}
 
@@ -266,10 +270,9 @@ namespace River.OneMoreAddIn.Commands
 
 			if (width != Width || height != Height)
 			{
-				// recenter dialog horizontally
-				Left = (Left + (Width / 2)) - (width / 2);
-
+				var centerX = Left + Width / 2;
 				Size = new Size(width, height);
+				Left = centerX - Width / 2;
 			}
 
 			// gridBox's native LargeIcon layout (hit-testing, scroll extents) gets baked
