@@ -92,15 +92,20 @@ namespace River.OneMoreAddIn
 				var ccommands = provider.GetCollection(nameof(ContextMenuSheet));
 				var searchers = provider.GetCollection(nameof(SearchEngineSheet));
 
-				if (ccommands.Count == 0 && searchers.Count == 0)
-				{
-					return root.ToString(SaveOptions.DisableFormatting);
-				}
-
 				// construct context menu UI...
 
 				var menu = new XElement(ns + "contextMenu",
 					new XAttribute("idMso", "ContextMenuText"));
+
+				if (ccommands.Get<bool>("styles"))
+				{
+					AddStyleContextMenu(menu, ccommands);
+				}
+
+				if (ccommands.Count == 0 && searchers.Count == 0 && !menu.HasElements)
+				{
+					return root.ToString(SaveOptions.DisableFormatting);
+				}
 
 				if (ccommands.Count > 0)
 				{
@@ -316,6 +321,35 @@ namespace River.OneMoreAddIn
 					AddUsingTemplate(group, "ribHighlightFormulaButton", showLabel);
 					AddUsingTemplate(group, "ribRecalculateFormulaButton", showLabel);
 				}
+			}
+		}
+
+
+		private void AddStyleContextMenu(XElement menu, SettingsCollection ccommands)
+		{
+			if (!ccommands.Get("styles", false))
+			{
+				return;
+			}
+
+			var styles = new ThemeProvider().Theme?.GetStyles();
+			if (styles is not null && styles.Any())
+			{
+				menu.Add(new XElement(ns + "gallery",
+					new XAttribute("id", "ctxStyleGallery"),
+					new XAttribute("image", "CustomStyles"),
+					new XAttribute("label", "Styles"),
+					new XAttribute("columns", "1"),
+					new XAttribute("itemWidth", TileFactory.StyleMenuItem_TileWidth),
+					new XAttribute("itemHeight", TileFactory.StyleMenuItem_TileHeight),
+					new XAttribute("showItemLabel", "false"),
+					new XAttribute("getItemCount", "GetStyleGalleryItemCount"),
+					new XAttribute("getItemID", "GetStyleGalleryItemId"),
+					new XAttribute("getItemImage", "GetStyleMenuItemImage"),
+					new XAttribute("getItemScreentip", "GetStyleGalleryItemScreentip"),
+					new XAttribute("onAction", "ApplyStyleCmd"),
+					new XAttribute("insertBeforeMso", "Cut")
+					));
 			}
 		}
 

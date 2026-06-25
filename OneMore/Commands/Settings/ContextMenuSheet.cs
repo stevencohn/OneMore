@@ -6,11 +6,13 @@
 
 namespace River.OneMoreAddIn.Settings
 {
+	using River.OneMoreAddIn;
 	using River.OneMoreAddIn.Helpers.Office;
 	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
+	using System.Drawing.Drawing2D;
 	using System.Linq;
 	using System.Reflection;
 	using System.Windows.Forms;
@@ -22,6 +24,7 @@ namespace River.OneMoreAddIn.Settings
 	{
 		private const string ProofingResID = "ribProofingMenu_Label";
 		private const string ColorizeResID = "ribColorizeMenu_Label";
+		private const string StylesResID = "ctxStyleGallery_Label";
 
 		#region Private classes
 		private sealed class CtxMenu
@@ -41,146 +44,23 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
-		private sealed class MenuPanel : MoreFlowLayoutPanel
-		{
-			public MenuPanel()
-			{
-				FlowDirection = FlowDirection.LeftToRight;
-				AutoScroll = true;
-				WrapContents = true;
-			}
-
-
-			public Color MenuColor { get; set; }
-			public Color MenuTextColor { get; set; }
-			public Color ItemColor { get; set; }
-			public Color ItemTextColor { get; set; }
-
-
-			public void AddMenus(IEnumerable<CtxMenu> menus)
-			{
-				var width = 0;
-
-				SuspendLayout();
-				foreach (var menu in menus)
-				{
-					var mitem = new MenuItemPanel(menu) { BackColor = MenuColor };
-					mitem.Controls[0].ForeColor = MenuTextColor;
-
-					Controls.Add(mitem);
-
-					// menu items are not indented but want to have the same right-alignment
-					// as command items so add indent width into this calculation
-					var offset = mitem.Width + SystemInformation.MenuCheckSize.Width;
-					if (width < offset)
-					{
-						width = offset;
-					}
-
-					if (menu.ResID != ColorizeResID)
-					{
-						foreach (var command in menu.Commands)
-						{
-							var citem = new MenuItemPanel(command)
-							{
-								BackColor = ItemColor,
-								ForeColor = ItemTextColor
-							};
-
-							Controls.Add(citem);
-							if (width < citem.Width)
-							{
-								width = citem.Width;
-							}
-						}
-					}
-				}
-
-				// a little extra
-				width = Math.Min(width + 100, Parent.Width);
-
-				foreach (MenuItemPanel item in Controls)
-				{
-					SetFlowBreak(item, true);
-					item.Width = item.Indented ? width : width + SystemInformation.MenuCheckSize.Width;
-				}
-				ResumeLayout();
-			}
-
-
-			protected override void WndProc(ref Message m)
-			{
-				const int WM_MOUSEWHEEL = 0x020A;
-				const int WM_VSCROLL = 0x0115;
-
-				base.WndProc(ref m);
-
-				if (m.Msg == WM_MOUSEWHEEL ||
-					m.Msg == WM_VSCROLL)
-				{
-					foreach (Control control in Controls)
-					{
-						if (control.Visible)
-						{
-							control.Refresh();
-						}
-					}
-				}
-			}
-		}
-
-		private sealed class MenuItemPanel : Panel
-		{
-			private readonly UI.MoreCheckBox box;
-
-			public bool Checked
-			{
-				get => box.Checked;
-				set => box.Checked = value;
-			}
-
-
-			public bool Indented { get; private set; }
-
-
-			public MenuItemPanel(CtxMenu item)
-				: this(item.Name, item.ResID)
-			{
-			}
-
-
-			public MenuItemPanel(CtxMenuItem item)
-				: this(item.Name, item.ResID)
-			{
-				Margin = new Padding(SystemInformation.MenuCheckSize.Width, 1, 1, 0);
-				Indented = true;
-			}
-
-
-			private MenuItemPanel(string name, string resID)
-			{
-				name = Resx.ResourceManager.GetString(resID, AddIn.Culture) ?? name;
-
-				var textSize = TextRenderer.MeasureText(name, Font);
-				Height = textSize.Height + 6;
-
-				box = new UI.MoreCheckBox
-				{
-					Dock = DockStyle.Fill,
-					Padding = new Padding(4, 2, 10, 2),
-					Text = name
-				};
-
-				// track by ResID, settings
-				Tag = resID;
-
-				Controls.Add(box);
-			}
-		}
 		#endregion Private classes
 
 
-		private readonly MenuPanel menuPanel;
+		// pixel sizes for the owner-drawn checkbox glyph and the extra left padding used
+		// to visually nest a command row under its category
+		private const int GlyphSize = 14;
+		private const int ChildIndent = 24;
+
+
+		// cache of discovered command categories/commands; this is derived purely from
+		// reflection over AddIn plus resource strings, both fixed for the process lifetime
+		// (a UI language change requires an addin restart), so it only needs to be built once
+		private static List<CtxMenu> discoveredMenus;
+
+		private readonly MoreListView menuList;
+		private Image checkedGlyph;
+		private Image uncheckedGlyph;
 
 
 		public ContextMenuSheet(SettingsProvider provider) : base(provider)
@@ -198,94 +78,214 @@ namespace River.OneMoreAddIn.Settings
 				});
 			}
 
-			menuPanel = new MenuPanel
+			menuList = new MoreListView
 			{
-				Dock = DockStyle.Fill
+				Dock = DockStyle.Fill,
+				HeaderStyle = ColumnHeaderStyle.None,
+				MultiSelect = false,
+				GetCellStyle = GetRowStyle,
+				GetCellImage = GetRowGlyph,
+				// a subtle selection fill, rather than the strong system "Highlight" color,
+				// keeps each row's checkbox glyph and text clearly legible when clicked
+				SelectedBackColorKey = "LinkHighlight",
+				SelectedForeColorKey = "ControlText"
 			};
 
-			contentPanel.Controls.Add(menuPanel);
+			menuList.Columns.Add(string.Empty);
+			menuList.SetColumnProportions(1f);
+			menuList.MouseClick += OnRowClick;
+			menuList.KeyDown += OnRowKeyDown;
+
+			contentPanel.Controls.Add(menuList);
+
+			Disposed += (s, e) =>
+			{
+				checkedGlyph?.Dispose();
+				uncheckedGlyph?.Dispose();
+			};
 		}
 
 
 		protected override void OnLoad(EventArgs e)
 		{
-			// after ThemeManager is initialized
-			menuPanel.MenuColor = manager.GetColor("Control");
-			menuPanel.MenuTextColor = manager.GetColor("ActiveCaptionText");
-			menuPanel.ItemColor = manager.GetColor("ControlLightLight");
-			menuPanel.ItemTextColor = manager.GetColor("ControlText");
-			manager.InitializeTheme(menuPanel);
+			PopulateRows(CollectCommandMenus());
+			base.OnLoad(e);
+		}
 
-			var menus = CollectCommandMenus();
-			menuPanel.AddMenus(menus);
 
+		private void PopulateRows(IEnumerable<CtxMenu> menus)
+		{
 			var settings = provider.GetCollection(Name);
 			var items = settings.Get<XElement>("items");
 
-			foreach (MenuItemPanel item in menuPanel.Controls)
+			menuList.BeginUpdate();
+			menuList.Items.Clear();
+
+			foreach (var menu in menus)
 			{
-				if (item.Tag is string key)
+				menuList.Items.Add(MakeRow(menu.Name, menu.ResID, false, settings, items));
+
+				if (menu.ResID != ColorizeResID)
 				{
-					key = key.Replace("_Label", string.Empty);
-					if (items.Elements().Any(e => e.Value == key))
+					foreach (var command in menu.Commands)
 					{
-						item.Checked = true;
+						menuList.Items.Add(MakeRow(command.Name, command.ResID, true, settings, items));
 					}
 				}
 			}
 
-			base.OnLoad(e);
+			menuList.EndUpdate();
+		}
+
+
+		private static ListViewItem MakeRow(
+			string name, string resID, bool indented, SettingsCollection settings, XElement items)
+		{
+			var row = new ListViewItem(name)
+			{
+				Tag = resID,
+				IndentCount = indented ? 1 : 0
+			};
+
+			if (resID == StylesResID)
+			{
+				row.Checked = settings.Get("styles", false);
+			}
+			else
+			{
+				var key = resID.Replace("_Label", string.Empty);
+				row.Checked = items != null && items.Elements().Any(e => e.Value == key);
+			}
+
+			return row;
+		}
+
+
+		private void OnRowClick(object sender, MouseEventArgs e)
+		{
+			if (e.Button != MouseButtons.Left)
+			{
+				return;
+			}
+
+			var hit = menuList.HitTest(e.Location);
+			if (hit.Item != null)
+			{
+				hit.Item.Checked = !hit.Item.Checked;
+				menuList.Invalidate(hit.Item.Bounds);
+			}
+		}
+
+
+		private void OnRowKeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Space && menuList.SelectedItems.Count > 0)
+			{
+				var item = menuList.SelectedItems[0];
+				item.Checked = !item.Checked;
+				menuList.Invalidate(item.Bounds);
+				e.Handled = true;
+			}
+		}
+
+
+		private static MoreListView.CellStyle GetRowStyle(ListViewItem item, int column)
+		{
+			return new MoreListView.CellStyle(indent: item.IndentCount > 0 ? ChildIndent : 0, muted: false);
+		}
+
+
+		private Image GetRowGlyph(ListViewItem item, int column)
+		{
+			return item.Checked
+				? checkedGlyph ??= BuildGlyph(true)
+				: uncheckedGlyph ??= BuildGlyph(false);
+		}
+
+
+		private Image BuildGlyph(bool isChecked)
+		{
+			var bitmap = new Bitmap(GlyphSize, GlyphSize);
+			using var g = Graphics.FromImage(bitmap);
+			g.SmoothingMode = SmoothingMode.AntiAlias;
+
+			var boxColor = manager.GetColor("Highlight");
+			using var pen = new Pen(boxColor);
+			g.DrawRoundedRectangle(pen, new Rectangle(0, 0, GlyphSize - 1, GlyphSize - 1), 2);
+
+			if (isChecked)
+			{
+				using var fillBrush = new SolidBrush(boxColor);
+				g.FillRoundedRectangle(fillBrush, new Rectangle(2, 2, GlyphSize - 4, GlyphSize - 4), 2);
+			}
+
+			return bitmap;
 		}
 
 
 		private IEnumerable<CtxMenu> CollectCommandMenus()
 		{
-			var atype = typeof(CommandAttribute);
+			if (discoveredMenus == null)
+			{
+				var atype = typeof(CommandAttribute);
 
-			var menus = typeof(AddIn).GetMethods()
-				.Select(m => new
-				{
-					Method = m,
-					Attribute = (CommandAttribute)m.GetCustomAttribute(atype)
-				})
-				.Where(o =>
-					o.Method.Name.EndsWith("Cmd") &&
-					o.Attribute != null &&
-					!string.IsNullOrWhiteSpace(o.Attribute.Category)
-				)
-				.Select(o => new
-				{
-					o.Attribute.ResID,
-					CategoryResID = $"{o.Attribute.Category}_Label",
-					Name = Resx.ResourceManager.GetString(o.Attribute.ResID),
-					Category = Resx.ResourceManager.GetString($"{o.Attribute.Category}_Label")
-				})
-				.GroupBy(c => new { Name = c.Category, ResID = c.CategoryResID })
-				.Select(g => new CtxMenu
-				{
-					Name = string.Format(Resx.ContextMenuSheet_menu, g.Key.Name),
-					ResID = g.Key.ResID,
-					Commands = g.Select(c => new CtxMenuItem { Name = c.Name, ResID = c.ResID })
-						.OrderBy(c => c.Name)
-				})
-				.OrderBy(m => m.Name);
+				discoveredMenus = typeof(AddIn).GetMethods()
+					.Select(m => new
+					{
+						Method = m,
+						Attribute = (CommandAttribute)m.GetCustomAttribute(atype)
+					})
+					.Where(o =>
+						o.Method.Name.EndsWith("Cmd") &&
+						o.Attribute != null &&
+						!string.IsNullOrWhiteSpace(o.Attribute.Category)
+					)
+					.Select(o => new
+					{
+						o.Attribute.ResID,
+						CategoryResID = $"{o.Attribute.Category}_Label",
+						Name = Resx.ResourceManager.GetString(o.Attribute.ResID),
+						Category = Resx.ResourceManager.GetString($"{o.Attribute.Category}_Label")
+					})
+					.GroupBy(c => new { Name = c.Category, ResID = c.CategoryResID })
+					.Select(g => new CtxMenu
+					{
+						Name = string.Format(Resx.ContextMenuSheet_menu, g.Key.Name),
+						ResID = g.Key.ResID,
+						Commands = g.Select(c => new CtxMenuItem { Name = c.Name, ResID = c.ResID })
+							.OrderBy(c => c.Name)
+							.ToList()
+					})
+					.OrderBy(m => m.Name)
+					.ToList();
+			}
+
+			var list = new List<CtxMenu>(discoveredMenus);
 
 			// add Proofing Language menu
 			var codes = Office.GetEditingLanguages();
 			if (codes != null && codes.Length > 1)
 			{
-				var list = menus.ToList();
 				list.Add(new CtxMenu
 				{
 					Name = Resx.ResourceManager.GetString(ProofingResID),
 					ResID = ProofingResID,
 					Commands = new List<CtxMenuItem>()
 				});
-
-				menus = list.OrderBy(m => m.Name);
 			}
 
-			return menus;
+			// add Styles menu; this is not a discovered command since the Styles
+			// gallery is built directly into the context menu rather than cloned
+			// from a ribbon button or menu, so it must be injected here artificially
+
+			list.Add(new CtxMenu
+			{
+				Name = Resx.ResourceManager.GetString(StylesResID),
+				ResID = StylesResID,
+				Commands = new List<CtxMenuItem>()
+			});
+
+			return list.OrderBy(m => m.Name);
 		}
 
 
@@ -297,9 +297,20 @@ namespace River.OneMoreAddIn.Settings
 			var items = settings.Get<XElement>("items");
 			items ??= new XElement("items");
 
-			foreach (MenuItemPanel control in menuPanel.Controls)
+			foreach (ListViewItem control in menuList.Items)
 			{
-				var key = ((string)control.Tag).Replace("_Label", string.Empty);
+				var tag = (string)control.Tag;
+
+				if (tag == StylesResID)
+				{
+					updated = control.Checked
+						? settings.Add("styles", true) || updated
+						: settings.Remove("styles") || updated;
+
+					continue;
+				}
+
+				var key = tag.Replace("_Label", string.Empty);
 
 				if (control.Checked)
 				{

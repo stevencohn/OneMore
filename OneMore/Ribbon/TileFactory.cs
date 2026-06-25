@@ -13,6 +13,9 @@ namespace River.OneMoreAddIn
 
 	internal static class TileFactory
 	{
+		public const int StyleMenuItem_TileWidth = 180;
+		public const int StyleMenuItem_TileHeight = 28;
+
 
 		/// <summary>
 		/// Create a new image of a font style sample for use in the Custom Styles ribbon gallery
@@ -90,33 +93,74 @@ namespace River.OneMoreAddIn
 			g.DrawString("AaBbCc123", style.Font, brush, x, y);
 
 			return image.GetReadOnlyStream();
+		}
 
 
-			// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		/// <summary>
+		/// Create a new image of a style name, rendered in its own font, sized to fit a
+		/// single row of the Styles context menu gallery
+		/// </summary>
+		/// <param name="themeStyle">The Style whose name is to be rendered</param>
+		/// <param name="background">The background color of the given page</param>
+		/// <returns>A new Image instance</returns>
+		public static IStream MakeStyleMenuItem(Style themeStyle, Color background)
+		{
+			const int padding = 6;
 
-			static string FitText(
-				string text, int width, Graphics graphics, Font font, out Size size)
+			using var image = new Bitmap(StyleMenuItem_TileWidth, StyleMenuItem_TileHeight);
+			using var g = Graphics.FromImage(image);
+
+			g.Clear(background);
+
+			using var style = new GraphicStyle(themeStyle, true);
+
+			if (style.ApplyColors &&
+				!style.Background.IsEmpty &&
+				!style.Background.Equals(Color.Transparent))
 			{
-				var sizef = graphics.MeasureString(text, font);
-				if ((sizef.Width) > width)
+				using var backBrush = new SolidBrush(style.Background);
+				g.FillRectangle(backBrush, 0, 0, StyleMenuItem_TileWidth, StyleMenuItem_TileHeight);
+			}
+
+			var fore = style.ApplyColors
+				? style.Foreground
+				: background.GetBrightness() <= 0.5 ? Color.White : Color.Black;
+
+			using var brush = new SolidBrush(fore);
+
+			var name = FitText(style.Name, StyleMenuItem_TileWidth - (padding * 2), g, style.Font, out var nameSize);
+			var y = (StyleMenuItem_TileHeight - nameSize.Height) / 2f;
+
+			g.DrawString(name, style.Font, brush, padding, y);
+
+			return image.GetReadOnlyStream();
+		}
+
+
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+		private static string FitText(
+			string text, int width, Graphics graphics, Font font, out Size size)
+		{
+			var sizef = graphics.MeasureString(text, font);
+			if ((sizef.Width) > width)
+			{
+				text = text.Substring(0, text.Length - 1);
+				sizef = graphics.MeasureString(text + "...", font);
+
+				while (sizef.Width > width)
 				{
 					text = text.Substring(0, text.Length - 1);
+					if (text.Length <= 3) break;
+
 					sizef = graphics.MeasureString(text + "...", font);
-
-					while (sizef.Width > width)
-					{
-						text = text.Substring(0, text.Length - 1);
-						if (text.Length <= 3) break;
-
-						sizef = graphics.MeasureString(text + "...", font);
-					}
-
-					text += "...";
 				}
 
-				size = sizef.ToSize();
-				return text;
+				text += "...";
 			}
+
+			size = sizef.ToSize();
+			return text;
 		}
 
 
