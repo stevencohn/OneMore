@@ -97,9 +97,15 @@ namespace River.OneMoreAddIn
 				var menu = new XElement(ns + "contextMenu",
 					new XAttribute("idMso", "ContextMenuText"));
 
-				if (ccommands.Get<bool>("styles"))
+				// backward compat: old format stored styles as a boolean; if present and
+				// ctxStyleGallery is not yet in the ordered items list, add gallery here (old behavior)
+				if (ccommands.Get("styles", false))
 				{
-					AddStyleContextMenu(menu, ccommands);
+					var itemsEl = ccommands.Get<XElement>("items");
+					if (itemsEl == null || !itemsEl.Elements("item").Any(e => e.Value == "ctxStyleGallery"))
+					{
+						AddStyleContextMenu(menu);
+					}
 				}
 
 				if (ccommands.Count == 0 && searchers.Count == 0 && !menu.HasElements)
@@ -325,13 +331,8 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private void AddStyleContextMenu(XElement menu, SettingsCollection ccommands)
+		private void AddStyleContextMenu(XElement menu)
 		{
-			if (!ccommands.Get("styles", false))
-			{
-				return;
-			}
-
 			var styles = new ThemeProvider().Theme?.GetStyles();
 			if (styles is not null && styles.Any())
 			{
@@ -369,6 +370,13 @@ namespace River.OneMoreAddIn
 
 			foreach (var key in keys.Select(e => e.Value))
 			{
+				// special case: styles gallery is built dynamically, not cloned from the ribbon
+				if (key == "ctxStyleGallery")
+				{
+					AddStyleContextMenu(menu);
+					continue;
+				}
+
 				// special case to hide Proofing menu if language set is only 1; because it
 				// may have changed since last time user added this to the context menu
 				if (key == "ribProofingMenu")
