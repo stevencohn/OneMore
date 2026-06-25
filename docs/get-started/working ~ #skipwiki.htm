@@ -101,21 +101,29 @@ PM</p>
      href="https://github.com/stevencohn/OneMore/issues/2198"><span
      style='font-family:Calibri;font-size:11.5pt'>#2198</span></a></li>
  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>Added the Remove Hyperlinks
+     command to remove all hyperlinks from the current page, </span><a
+     href="https://github.com/stevencohn/OneMore/issues/2264"><span
+     style='font-family:Calibri;font-size:11.5pt'>#2264</span></a></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>Added the option to show the
+     Styles menu on the text context menu, </span><a
+     href="https://github.com/stevencohn/OneMore/issues/1030"><span
+     style='font-family:Calibri;font-size:11.5pt'>#1030</span></a></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>Renamed </span><span
+     style='font-style:italic;font-family:Calibri;font-size:11.5pt'>Copy Link
+     to… </span><span style='font-family:Calibri;font-size:11.5pt'>commands, to
+     </span><span style='font-style:italic;font-family:Calibri;font-size:11.5pt'>Copy
+     Path Link…</span><span style='font-family:Calibri;font-size:11.5pt'> to
+     clarify their breadcrumb-style output, </span><a
+     href="https://github.com/stevencohn/OneMore/issues/2246"><span
+     style='font-family:Calibri;font-size:11.5pt'>#2246</span></a></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
      style='font-family:Calibri;font-size:11.5pt'>Updated the Emoji dialog with
      a new tab showing the full Segoe UI Emoji glyph palette, </span><a
      href="https://github.com/stevencohn/OneMore/issues/2235"><span
      style='font-family:Calibri;font-size:11.5pt'>#2235</span></a></li>
- <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
-     style='font-family:Calibri;font-size:11.5pt'>Updated </span><span
-     style='font-style:italic;font-family:Calibri;font-size:11.5pt'>Copy Link
-     to Page</span><span style='font-family:Calibri;font-size:11.5pt'> and </span><span
-     style='font-style:italic;font-family:Calibri;font-size:11.5pt'>Paragraph</span><span
-     style='font-family:Calibri;font-size:11.5pt'> commands, to </span><span
-     style='font-style:italic;font-family:Calibri;font-size:11.5pt'>Copy Path
-     Link</span><span style='font-family:Calibri;font-size:11.5pt'> to clarify
-     their breadcrumb-style output, </span><a
-     href="https://github.com/stevencohn/OneMore/issues/2246"><span
-     style='font-family:Calibri;font-size:11.5pt'>#2246</span></a></li>
  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
      style='font-family:Calibri;font-size:11.5pt'>Updated the ribbon layout to
      elevate popular commands per anonymous telemetry data, </span><a
@@ -166,11 +174,6 @@ PM</p>
      href="https://github.com/stevencohn/OneMore/issues/2255"><span
      style='font-family:Calibri;font-size:11.5pt'>#2255</span></a></li>
  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
-     style='font-family:Calibri;font-size:11.5pt'>Fixed an issue where CLI
-     Export to markdown could throw opaque exceptions and truncate titles, </span><a
-     href="https://github.com/stevencohn/OneMore/issues/2243"><span
-     style='font-family:Calibri;font-size:11.5pt'>#2243</span></a></li>
- <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
      style='font-family:Calibri;font-size:11.5pt'>Fixed an issue where CLI Goto
      failed with a missing pageId parameter, </span><a
      href="https://github.com/stevencohn/OneMore/issues/2209"><span
@@ -182,26 +185,88 @@ PM</p>
      style='font-family:Calibri;font-size:11.5pt'>#2207</span></a></li>
  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
      style='font-family:Calibri;font-size:11.5pt'>Fixed an issue where CLI
+     Export to markdown could throw opaque exceptions and truncate titles, </span><a
+     href="https://github.com/stevencohn/OneMore/issues/2243"><span
+     style='font-family:Calibri;font-size:11.5pt'>#2243</span></a></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>Fixed an issue where CLI
      Export on multiple untitled pages would overwrite their Markdown files, </span><a
      href="https://github.com/stevencohn/OneMore/issues/2201"><span
      style='font-family:Calibri;font-size:11.5pt'>#2201</span></a></li>
  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
-     style='font-family:Calibri;font-size:11.5pt'>Fixed an issue where Copy
-     Link to Paragraph and the XML viewer could capture from the wrong OneNote
-     window, </span><a href="https://github.com/stevencohn/OneMore/issues/1563"><span
+     style='font-family:Calibri;font-size:11.5pt'>Fixed an issue where CLI
+     Export would fail silently due to invalid page context, </span><a
+     href="https://github.com/stevencohn/OneMore/issues/2262"><span
+     style='font-family:Calibri;font-size:11.5pt'>#2262</span></a></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>Fixed an issue where CLI
+     Export would fail due to an invalid path and could not be cancelled, </span><a
+     href="https://github.com/stevencohn/OneMore/issues/2277"><span
+     style='font-family:Calibri;font-size:11.5pt'>#2277</span></a></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>Fixed an issue where </span><span
+     style='font-style:italic;font-family:Calibri;font-size:11.5pt'>Copy Link
+     to…</span><span style='font-family:Calibri;font-size:11.5pt'> and the XML
+     viewer could capture from the wrong OneNote window, </span><a
+     href="https://github.com/stevencohn/OneMore/issues/1563"><span
      style='font-family:Calibri;font-size:11.5pt'>#1563</span></a></li>
  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
-     style='font-family:Calibri;font-size:11.5pt'><span
-     style='mso-spacerun:yes'> </span>Fixed an issue where highlight colors
-     were disrupted across lines when Colorizing JSON, </span><a
+     style='font-family:Calibri;font-size:11.5pt'>Fixed an issue where
+     highlight colors were disrupted across lines when Colorizing JSON, </span><a
      href="https://github.com/stevencohn/OneMore/commit/65b03d7526b123db7eb83a48ae2b45417415c0b1"><span
-     style='font-family:Calibri;font-size:11.5pt'>65b03d7</span></a><span
-     style='font-family:Calibri;font-size:11.5pt'> </span></li>
+     style='font-family:Calibri;font-size:11.5pt'>65b03d7</span></a></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>Fixed an issue where
+     Telemetry calls would cause the UI to pause for up to a second, </span><a
+     href="https://github.com/stevencohn/OneMore/issues/2266"><span
+     style='font-family:Calibri;font-size:11.5pt'>#2266</span></a></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>Fixed an issue where the
+     Hashtag scanner may cause UI slow-downs, </span><a
+     href="https://github.com/stevencohn/OneMore/issues/2268"><span
+     style='font-family:Calibri;font-size:11.5pt'>#2268</span></a></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>Fixed an issue where Edit
+     Styles may fail silently due to missing Chinese translations, </span><a
+     href="https://github.com/stevencohn/OneMore/issues/2270"><span
+     style='font-family:Calibri;font-size:11.5pt'>#2270</span></a></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>Fixed an issue where Convert
+     Markdown would fail silently due to invalid page context, </span><a
+     href="https://github.com/stevencohn/OneMore/issues/2272"><span
+     style='font-family:Calibri;font-size:11.5pt'>#2272</span></a></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>Fixed an issue where Search
+     would fail silently due to a COM dispose timing conflict, </span><a
+     href="https://github.com/stevencohn/OneMore/issues/2274"><span
+     style='font-family:Calibri;font-size:11.5pt'>#2274</span></a></li>
 </ul>
 
-<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>&nbsp;</p>
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+style='mso-spacerun:yes'>  </span></p>
 
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>The My Styles custom
+styles can now be shown as a sub-menu on the page body context menu.</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'><a
+href="https://onemoreaddin.com/">onemoreaddin.com</a> updated with docs - <a
+href="https://onemoreaddin.com/the-basics/Favorites.htm">Favorites</a>, <a
+href="https://onemoreaddin.com/the-basics/Layouts.htm">Layouts</a>, <a
+href="https://onemoreaddin.com/context-menus/Page%20Body%20Context%20Menu.htm">Page
+Body Context Menu</a>, <a
+href="https://onemoreaddin.com/the-basics/OneMore%20CLI.htm">OneMore CLI</a></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+style='mso-spacerun:yes'>  </span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+style='mso-spacerun:yes'> </span></p>
 
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Added folder
 support to Favorites, including automatic organization by notebook and section
@@ -233,15 +298,24 @@ command to insert and refresh partial content quoted live from another page,
 [#2198](https://github.com/stevencohn/OneMore/issues/2198)<span
 style='mso-spacerun:yes'>  </span></p>
 
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Added the Remove
+Hyperlinks command to remove all hyperlinks from the current page,
+[#2264](https://github.com/stevencohn/OneMore/issues/2264)<span
+style='mso-spacerun:yes'>  </span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Added the option
+to show the Styles menu on the text context menu,
+[#1030](https://github.com/stevencohn/OneMore/issues/1030)<span
+style='mso-spacerun:yes'>  </span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Renamed *Copy Link
+to… *commands, to *Copy Path Link…* to clarify their breadcrumb-style output,
+[#2246](https://github.com/stevencohn/OneMore/issues/2246)<span
+style='mso-spacerun:yes'>  </span></p>
+
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Updated the Emoji
 dialog with a new tab showing the full Segoe UI Emoji glyph palette,
 [#2235](https://github.com/stevencohn/OneMore/issues/2235)<span
-style='mso-spacerun:yes'>  </span></p>
-
-<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Updated *Copy Link
-to Page* and *Paragraph* commands, to *Copy Path Link* to clarify their
-breadcrumb-style output,
-[#2246](https://github.com/stevencohn/OneMore/issues/2246)<span
 style='mso-spacerun:yes'>  </span></p>
 
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Updated the ribbon
@@ -290,11 +364,6 @@ where CLI Diagnostics reported a truncated page path and omitted build numbers,
 style='mso-spacerun:yes'>  </span></p>
 
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Fixed an issue
-where CLI Export to markdown could throw opaque exceptions and truncate titles,
-[#2243](https://github.com/stevencohn/OneMore/issues/2243)<span
-style='mso-spacerun:yes'>  </span></p>
-
-<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Fixed an issue
 where CLI Goto failed with a missing pageId parameter,
 [#2209](https://github.com/stevencohn/OneMore/issues/2209)<span
 style='mso-spacerun:yes'>  </span></p>
@@ -305,17 +374,58 @@ where CLI GetPage failed to match a page name containing a trailing space,
 style='mso-spacerun:yes'>  </span></p>
 
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Fixed an issue
+where CLI Export to markdown could throw opaque exceptions and truncate titles,
+[#2243](https://github.com/stevencohn/OneMore/issues/2243)<span
+style='mso-spacerun:yes'>  </span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Fixed an issue
 where CLI Export on multiple untitled pages would overwrite their Markdown
 files, [#2201](https://github.com/stevencohn/OneMore/issues/2201)<span
 style='mso-spacerun:yes'>  </span></p>
 
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Fixed an issue
-where Copy Link to Paragraph and the XML viewer could capture from the wrong
-OneNote window, [#1563](https://github.com/stevencohn/OneMore/issues/1563)</p>
+where CLI Export would fail silently due to invalid page context,
+[#2262](https://github.com/stevencohn/OneMore/issues/2262)<span
+style='mso-spacerun:yes'>  </span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Fixed an issue
+where CLI Export would fail due to an invalid path and could not be cancelled,
+[#2277](https://github.com/stevencohn/OneMore/issues/2277)<span
+style='mso-spacerun:yes'>  </span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Fixed an issue
+where *Copy Link to…* and the XML viewer could capture from the wrong OneNote
+window, [#1563](https://github.com/stevencohn/OneMore/issues/1563)<span
+style='mso-spacerun:yes'>  </span></p>
 
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Fixed an issue
 where highlight colors were disrupted across lines when Colorizing JSON,
-[65b03d7](https://github.com/stevencohn/OneMore/commit/65b03d7526b123db7eb83a48ae2b45417415c0b1)</p>
+[65b03d7](https://github.com/stevencohn/OneMore/commit/65b03d7526b123db7eb83a48ae2b45417415c0b1)<span
+style='mso-spacerun:yes'>  </span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Fixed an issue
+where Telemetry calls would cause the UI to pause for up to a second,
+[#2266](https://github.com/stevencohn/OneMore/issues/2266)<span
+style='mso-spacerun:yes'>  </span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Fixed an issue
+where the Hashtag scanner may cause UI slow-downs,
+[#2268](https://github.com/stevencohn/OneMore/issues/2268)<span
+style='mso-spacerun:yes'>  </span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Fixed an issue
+where Edit Styles may fail silently due to missing Chinese translations,
+[#2270](https://github.com/stevencohn/OneMore/issues/2270)<span
+style='mso-spacerun:yes'>  </span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Fixed an issue
+where Convert Markdown would fail silently due to invalid page context,
+[#2272](https://github.com/stevencohn/OneMore/issues/2272)<span
+style='mso-spacerun:yes'>  </span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Fixed an issue
+where Search would fail silently due to a COM dispose timing conflict,
+[#2274](https://github.com/stevencohn/OneMore/issues/2274)</p>
 
 </div>
 
