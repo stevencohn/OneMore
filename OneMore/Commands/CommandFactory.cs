@@ -204,6 +204,12 @@ namespace River.OneMoreAddIn
 
 				logger.End();
 			}
+			catch (OperationCanceledException)
+			{
+				logger.End();
+				logger.WriteLine($"command {type.Name} cancelled by user");
+				throw;
+			}
 			catch (Exception exc)
 			{
 				// catch-all exception hander
@@ -235,8 +241,10 @@ namespace River.OneMoreAddIn
 						owner, string.Format(Resx.Command_ErrorMsg, eventName));
 				}
 			}
-
-			Logger.SetMirror(null);
+			finally
+			{
+				Logger.SetMirror(null);
+			}
 
 			// if running from CLI and the command didn't set CliOutput itself (e.g. exception
 			// path), harvest anything written to the cliLogger buffer
