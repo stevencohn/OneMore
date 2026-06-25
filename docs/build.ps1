@@ -23,6 +23,7 @@ Begin
     $script:sitemap = $null
     $script:smns = $null
     $script:writable = $true
+    $script:DevelopersTOC = $null
 
     function MakeSiteMap
     {
@@ -71,6 +72,12 @@ Begin
 
         $dir = Join-Path $ZipName $sectionName
         $toc, $first = MakeSectionTOC $sectionID $sectionName
+
+        if ($sectionID -eq 'developers')
+        {
+            # remember this TOC so we can also patch the hand-written telemetry/index.html sidebar
+            $script:DevelopersTOC = $toc
+        }
 
         Get-ChildItem $dir -File *.htm | foreach {
             if (-not ($skips -contains $_.FullName))
@@ -198,7 +205,29 @@ Begin
                 }
             } }
     }
-	
+
+    function UpdateTelemetrySidebar
+    {
+        param($toc)
+
+        $file = '.\telemetry\index.html'
+        if (-not (Test-Path $file))
+        {
+            Write-Host "$file not found; skipping telemetry sidebar update" -ForegroundColor Yellow
+            return
+        }
+
+        Write-Host 'updating telemetry sidebar from developers TOC' -ForegroundColor Blue
+
+        # telemetry/index.html lives outside the developers folder so hrefs must be rooted there
+        $items = $toc | foreach { $_ -replace 'href="', 'href="/developers/' }
+        $list = [string]::join("`n", $items)
+
+        $content = Get-Content -Path $file -Encoding utf8 -Raw
+        $updated = $content.Replace('~TOC~', $list)
+        $updated | Out-File $file -Encoding utf8 -Force -Confirm:$false
+    }
+
 	function CompareFolders
 	{
 		$here = (Get-Location).path
@@ -259,6 +288,11 @@ Process
             # move the new section folder up a level and rename
             Move-Item $dir ./$sectionID -Force -Confirm:$false
         }
+    }
+
+    if ($script:DevelopersTOC)
+    {
+        UpdateTelemetrySidebar $script:DevelopersTOC
     }
 
     Write-Host 'saving sitemap.xml'
