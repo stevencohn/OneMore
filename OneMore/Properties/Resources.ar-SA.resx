@@ -733,6 +733,10 @@
     <value>البحث والاستبدال</value>
     <comment>Context menu</comment>
   </data>
+  <data name="ctxStyleGallery_Label" xml:space="preserve">
+    <value>الأنماط</value>
+    <comment>Context menu NODUP</comment>
+  </data>
   <data name="ctxUppercaseButton_Label" xml:space="preserve">
     <value>إلى الحالة العليا</value>
     <comment>Context menu</comment>

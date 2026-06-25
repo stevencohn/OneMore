@@ -733,6 +733,10 @@
     <value>検索と置換</value>
     <comment>Context menu NODUP</comment>
   </data>
+  <data name="ctxStyleGallery_Label" xml:space="preserve">
+    <value>スタイル</value>
+    <comment>Context menu NODUP</comment>
+  </data>
   <data name="ctxUppercaseButton_Label" xml:space="preserve">
     <value>大文字に変換</value>
     <comment>Context menu NODUP</comment>

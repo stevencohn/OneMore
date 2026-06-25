@@ -734,6 +734,10 @@
     <value>搜索和替换</value>
     <comment>Context menu</comment>
   </data>
+  <data name="ctxStyleGallery_Label" xml:space="preserve">
+    <value>风格</value>
+    <comment>Context menu NODUP</comment>
+  </data>
   <data name="ctxUppercaseButton_Label" xml:space="preserve">
     <value>转为大写</value>
     <comment>Context menu</comment>

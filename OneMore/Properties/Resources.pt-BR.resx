@@ -730,6 +730,10 @@ Você quer continuar?</value>
     <value>Pesquisar e substituir</value>
     <comment>Context menu</comment>
   </data>
+  <data name="ctxStyleGallery_Label" xml:space="preserve">
+    <value>Estilos</value>
+    <comment>Context menu NODUP</comment>
+  </data>
   <data name="ctxUppercaseButton_Label" xml:space="preserve">
     <value>PARA MAIÚSCULAS</value>
     <comment>Context menu</comment>

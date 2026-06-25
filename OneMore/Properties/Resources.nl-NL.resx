@@ -730,6 +730,10 @@ Wil je doorgaan?</value>
     <value>Zoek en vervang</value>
     <comment>Context menu</comment>
   </data>
+  <data name="ctxStyleGallery_Label" xml:space="preserve">
+    <value>Stijlen</value>
+    <comment>Context menu NODUP</comment>
+  </data>
   <data name="ctxUppercaseButton_Label" xml:space="preserve">
     <value>In HOOFDLETTERS</value>
     <comment>Context menu</comment>

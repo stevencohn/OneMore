@@ -730,6 +730,10 @@
     <value>חפש והחלף</value>
     <comment>Context menu NODUP</comment>
   </data>
+  <data name="ctxStyleGallery_Label" xml:space="preserve">
+    <value>סגנונות</value>
+    <comment>Context menu NODUP</comment>
+  </data>
   <data name="ctxUppercaseButton_Label" xml:space="preserve">
     <value>לאותיות רישיות</value>
     <comment>Context menu NODUP</comment>

@@ -733,6 +733,10 @@ Möchten Sie fortfahren?</value>
     <value>Suchen und ersetzen</value>
     <comment>Context menu</comment>
   </data>
+  <data name="ctxStyleGallery_Label" xml:space="preserve">
+    <value>Stile</value>
+    <comment>Context menu NODUP</comment>
+  </data>
   <data name="ctxUppercaseButton_Label" xml:space="preserve">
     <value>Zum Großbuchstaben</value>
     <comment>Context menu</comment>

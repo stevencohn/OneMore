@@ -731,6 +731,10 @@ Vuoi continuare?</value>
     <value>Cerca e sostituisci</value>
     <comment>Context menu NODUP</comment>
   </data>
+  <data name="ctxStyleGallery_Label" xml:space="preserve">
+    <value>Stili</value>
+    <comment>Context menu NODUP</comment>
+  </data>
   <data name="ctxUppercaseButton_Label" xml:space="preserve">
     <value>In MAIUSCOLO</value>
     <comment>Context menu NODUP</comment>
