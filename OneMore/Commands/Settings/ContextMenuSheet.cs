@@ -1,4 +1,4 @@
-﻿//************************************************************************************************
+//************************************************************************************************
 // Copyright © 2020 Steven M Cohn. All Rights Reserved.
 //************************************************************************************************
 
@@ -59,6 +59,10 @@ namespace River.OneMoreAddIn.Settings
 		private static List<CtxMenu> discoveredMenus;
 
 		private readonly MoreListView menuList;
+		private readonly MoreListView orderList;
+		private MoreToolStripButton sortButton;
+		private MoreToolStripButton upButton;
+		private MoreToolStripButton downButton;
 		private Image checkedGlyph;
 		private Image uncheckedGlyph;
 
@@ -96,7 +100,76 @@ namespace River.OneMoreAddIn.Settings
 			menuList.MouseClick += OnRowClick;
 			menuList.KeyDown += OnRowKeyDown;
 
-			contentPanel.Controls.Add(menuList);
+			// right-side ordered list ─────────────────────────────────────────────────────────
+
+			orderList = new MoreListView
+			{
+				Dock = DockStyle.Fill,
+				HeaderStyle = ColumnHeaderStyle.None,
+				MultiSelect = false,
+				SelectedBackColorKey = "LinkHighlight",
+				SelectedForeColorKey = "ControlText"
+			};
+
+			orderList.Columns.Add(string.Empty);
+			orderList.SetColumnProportions(1f);
+			orderList.SelectedIndexChanged += OnOrderSelectionChanged;
+
+			sortButton = new MoreToolStripButton
+			{
+				DisplayStyle = ToolStripItemDisplayStyle.Image,
+				ImageTransparentColor = Color.Magenta,
+				Text = Resx.ribSortButton_Label,
+				Image = Resx.m_Sort
+			};
+			sortButton.Click += OnSortClick;
+
+			upButton = new MoreToolStripButton
+			{
+				DisplayStyle = ToolStripItemDisplayStyle.Image,
+				ImageTransparentColor = Color.Magenta,
+				Text = Resx.NavigatorWindow_menuMoveUp,
+				Image = Resx.m_MoveUp,
+				Enabled = false
+			};
+			upButton.Click += OnUpClick;
+
+			downButton = new MoreToolStripButton
+			{
+				DisplayStyle = ToolStripItemDisplayStyle.Image,
+				ImageTransparentColor = Color.Magenta,
+				Text = Resx.NavigatorWindow_menuMoveDown,
+				Image = Resx.m_MoveDown,
+				Enabled = false
+			};
+			downButton.Click += OnDownClick;
+
+			var orderToolbar = new MoreToolStrip();
+			orderToolbar.Items.AddRange(new ToolStripItem[] { sortButton, upButton, downButton });
+			orderToolbar.Dock = DockStyle.Top;
+
+			// right panel: toolbar pinned to top, list fills the rest
+			var orderPanel = new Panel { Dock = DockStyle.Fill, Padding = new Padding(8, 0, 0, 0) };
+			orderPanel.Controls.Add(orderList);
+			orderPanel.Controls.Add(orderToolbar);
+
+			// split the contentPanel into two columns
+			var splitLayout = new TableLayoutPanel
+			{
+				Dock = DockStyle.Fill,
+				ColumnCount = 2,
+				RowCount = 1,
+				Margin = Padding.Empty,
+				Padding = Padding.Empty,
+				CellBorderStyle = TableLayoutPanelCellBorderStyle.None
+			};
+			splitLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 55f));
+			splitLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 45f));
+			splitLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100f));
+			splitLayout.Controls.Add(menuList, 0, 0);
+			splitLayout.Controls.Add(orderPanel, 1, 0);
+
+			contentPanel.Controls.Add(splitLayout);
 
 			Disposed += (s, e) =>
 			{
@@ -135,6 +208,46 @@ namespace River.OneMoreAddIn.Settings
 			}
 
 			menuList.EndUpdate();
+
+			// populate orderList from saved items in saved order
+			orderList.BeginUpdate();
+			orderList.Items.Clear();
+
+			if (items != null)
+			{
+				foreach (var item in items.Elements())
+				{
+					var key = item.Value;
+					var matchingRow = menuList.Items.Cast<ListViewItem>()
+						.FirstOrDefault(r => ((string)r.Tag).Replace("_Label", string.Empty) == key);
+
+					if (matchingRow != null)
+					{
+						orderList.Items.Add(new ListViewItem(matchingRow.Text) { Tag = matchingRow.Tag });
+					}
+				}
+			}
+
+			// backward compat: styles was stored as a boolean, not in the items list
+			if (settings.Get("styles", false))
+			{
+				var stylesKey = StylesResID.Replace("_Label", string.Empty);
+				var alreadyListed = orderList.Items.Cast<ListViewItem>()
+					.Any(r => ((string)r.Tag).Replace("_Label", string.Empty) == stylesKey);
+
+				if (!alreadyListed)
+				{
+					var stylesRow = menuList.Items.Cast<ListViewItem>()
+						.FirstOrDefault(r => (string)r.Tag == StylesResID);
+
+					if (stylesRow != null)
+					{
+						orderList.Items.Add(new ListViewItem(stylesRow.Text) { Tag = stylesRow.Tag });
+					}
+				}
+			}
+
+			orderList.EndUpdate();
 		}
 
 
@@ -147,15 +260,10 @@ namespace River.OneMoreAddIn.Settings
 				IndentCount = indented ? 1 : 0
 			};
 
-			if (resID == StylesResID)
-			{
-				row.Checked = settings.Get("styles", false);
-			}
-			else
-			{
-				var key = resID.Replace("_Label", string.Empty);
-				row.Checked = items != null && items.Elements().Any(e => e.Value == key);
-			}
+			var key = resID.Replace("_Label", string.Empty);
+			// support both new format (key in items list) and old format (styles boolean)
+			row.Checked = (items != null && items.Elements().Any(e => e.Value == key))
+				|| (resID == StylesResID && settings.Get("styles", false));
 
 			return row;
 		}
@@ -173,6 +281,7 @@ namespace River.OneMoreAddIn.Settings
 			{
 				hit.Item.Checked = !hit.Item.Checked;
 				menuList.Invalidate(hit.Item.Bounds);
+				SyncOrderList(hit.Item);
 			}
 		}
 
@@ -184,8 +293,127 @@ namespace River.OneMoreAddIn.Settings
 				var item = menuList.SelectedItems[0];
 				item.Checked = !item.Checked;
 				menuList.Invalidate(item.Bounds);
+				SyncOrderList(item);
 				e.Handled = true;
 			}
+		}
+
+
+		private void SyncOrderList(ListViewItem menuItem)
+		{
+			var key = ((string)menuItem.Tag).Replace("_Label", string.Empty);
+
+			if (menuItem.Checked)
+			{
+				var alreadyListed = orderList.Items.Cast<ListViewItem>()
+					.Any(r => ((string)r.Tag).Replace("_Label", string.Empty) == key);
+
+				if (!alreadyListed)
+				{
+					orderList.Items.Add(new ListViewItem(menuItem.Text) { Tag = menuItem.Tag });
+				}
+			}
+			else
+			{
+				var orderItem = orderList.Items.Cast<ListViewItem>()
+					.FirstOrDefault(r => ((string)r.Tag).Replace("_Label", string.Empty) == key);
+
+				if (orderItem != null)
+				{
+					orderList.Items.Remove(orderItem);
+				}
+			}
+		}
+
+
+		private void OnOrderSelectionChanged(object sender, EventArgs e)
+		{
+			if (orderList.SelectedItems.Count == 0)
+			{
+				upButton.Enabled = false;
+				downButton.Enabled = false;
+				return;
+			}
+
+			var index = orderList.SelectedIndices[0];
+			upButton.Enabled = index > 0;
+			downButton.Enabled = index < orderList.Items.Count - 1;
+		}
+
+
+		private void OnSortClick(object sender, EventArgs e)
+		{
+			var sorted = orderList.Items.Cast<ListViewItem>()
+				.OrderBy(r => r.Text)
+				.ToList();
+
+			orderList.BeginUpdate();
+			orderList.Items.Clear();
+			foreach (var item in sorted)
+			{
+				orderList.Items.Add(new ListViewItem(item.Text) { Tag = item.Tag });
+			}
+			orderList.EndUpdate();
+		}
+
+
+		private void OnUpClick(object sender, EventArgs e)
+		{
+			if (orderList.SelectedItems.Count == 0)
+			{
+				return;
+			}
+
+			var selected = orderList.SelectedItems[0];
+			var index = selected.Index;
+			if (index <= 0)
+			{
+				return;
+			}
+
+			var text = selected.Text;
+			var tag = selected.Tag;
+
+			orderList.BeginUpdate();
+			orderList.Items.RemoveAt(index);
+			var moved = new ListViewItem(text) { Tag = tag };
+			orderList.Items.Insert(index - 1, moved);
+			moved.Selected = true;
+			orderList.EndUpdate();
+
+			moved.EnsureVisible();
+			upButton.Enabled = index - 1 > 0;
+			downButton.Enabled = true;
+		}
+
+
+		private void OnDownClick(object sender, EventArgs e)
+		{
+			if (orderList.SelectedItems.Count == 0)
+			{
+				return;
+			}
+
+			var selected = orderList.SelectedItems[0];
+			var index = selected.Index;
+			if (index >= orderList.Items.Count - 1)
+			{
+				return;
+			}
+
+			var text = selected.Text;
+			var tag = selected.Tag;
+
+			orderList.BeginUpdate();
+			orderList.Items.RemoveAt(index);
+			var moved = new ListViewItem(text) { Tag = tag };
+			orderList.Items.Insert(index + 1, moved);
+			moved.Selected = true;
+			orderList.EndUpdate();
+
+			moved.EnsureVisible();
+			upButton.Enabled = true;
+			downButton.Enabled = index + 1 < orderList.Items.Count - 1;
 		}
 
 
@@ -291,49 +519,32 @@ namespace River.OneMoreAddIn.Settings
 
 		public override bool CollectSettings()
 		{
-			var updated = false;
-
 			var settings = provider.GetCollection(Name);
-			var items = settings.Get<XElement>("items");
-			items ??= new XElement("items");
+			var existingItems = settings.Get<XElement>("items");
 
-			foreach (ListViewItem control in menuList.Items)
+			var newItems = new XElement("items");
+			foreach (ListViewItem orderItem in orderList.Items)
 			{
-				var tag = (string)control.Tag;
+				var key = ((string)orderItem.Tag).Replace("_Label", string.Empty);
+				newItems.Add(new XElement("item", key));
+			}
 
-				if (tag == StylesResID)
-				{
-					updated = control.Checked
-						? settings.Add("styles", true) || updated
-						: settings.Remove("styles") || updated;
+			var existingKeys = existingItems?.Elements().Select(e => e.Value).ToList()
+				?? new List<string>();
+			var newKeys = newItems.Elements().Select(e => e.Value).ToList();
 
-					continue;
-				}
+			var updated = !existingKeys.SequenceEqual(newKeys);
 
-				var key = tag.Replace("_Label", string.Empty);
-
-				if (control.Checked)
-				{
-					if (!items.Elements().Any(e => e.Value == key))
-					{
-						items.Add(new XElement("item", key));
-						updated = true;
-					}
-				}
-				else
-				{
-					var item = items.Elements().FirstOrDefault(e => e.Value == key);
-					if (item != null)
-					{
-						item.Remove();
-						updated = true;
-					}
-				}
+			// migrate old-style styles boolean into the items list
+			if (settings.Contains("styles"))
+			{
+				settings.Remove("styles");
+				updated = true;
 			}
 
 			if (updated)
 			{
-				settings.Add(items);
+				settings.Add(newItems);
 
 				if (settings.Count > 0)
 				{
@@ -382,11 +593,11 @@ namespace River.OneMoreAddIn.Settings
 			 * TODO: Temporary
 			 * Reader-makes-right to convert from indvidual elements like
 			 * Released with 5.8.3
-			 * 
+			 *
 			 *		<ribFooButton_Label>true</ribFooButton_Label>
-			 *	
+			 *
 			 * to a more XML-conforming list of items like
-			 * 
+			 *
 			 *		<items>
 			 *		  <item>ribFooButton_Label</item>
 			 *		  <item>ribBarButton_Label</item>
