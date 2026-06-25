@@ -1459,7 +1459,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ctxReplaceButton_Label", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Styles.
+        /// </summary>
+        internal static string ctxStyleGallery_Label {
+            get {
+                return ResourceManager.GetString("ctxStyleGallery_Label", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to To UPPERCASE.
         /// </summary>

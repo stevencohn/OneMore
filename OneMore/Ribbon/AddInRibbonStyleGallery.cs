@@ -107,6 +107,19 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Called by ribbon getItemImage for the Styles context menu gallery, for each
+		/// item only after invalidation
+		/// </summary>
+		/// <param name="control"></param>
+		/// <param name="itemIndex"></param>
+		/// <returns></returns>
+		public IStream GetStyleMenuItemImage(IRibbonControl control, int itemIndex)
+		{
+			return TileFactory.MakeStyleMenuItem(galleryTheme.GetStyle(itemIndex), galleryBack);
+		}
+
+
+		/// <summary>
 		/// Called by ribbon getItemScreentip, for each item only after invalidation
 		/// </summary>
 		/// <param name="control"></param>

@@ -175,6 +175,22 @@ namespace River.OneMoreAddIn.UI
 
 
 		/// <summary>
+		/// Gets or sets the ThemeManager color key used to fill the background of a
+		/// selected row. Defaults to "Highlight" (the normal, strong selection color);
+		/// override with something subtler, e.g. "LinkHighlight", when rows host their
+		/// own checkbox/icon glyphs that need to stay legible against the selection fill.
+		/// </summary>
+		public string SelectedBackColorKey { get; set; } = "Highlight";
+
+
+		/// <summary>
+		/// Gets or sets the ThemeManager color key used for a selected row's text.
+		/// Defaults to "HighlightText" (matching the default "Highlight" background).
+		/// </summary>
+		public string SelectedForeColorKey { get; set; } = "HighlightText";
+
+
+		/// <summary>
 		/// Gets or sets a callback that supplies an optional leading icon to draw at the
 		/// start of a cell, before its text, shifting the text right to make room. When
 		/// null, or when the callback returns null for a given cell, no icon is drawn.
@@ -309,13 +325,13 @@ namespace River.OneMoreAddIn.UI
 			var selected = e.Item.Selected;
 			var style = GetCellStyle?.Invoke(e.Item, e.ColumnIndex) ?? CellStyle.Default;
 
-			using (var backBrush = new SolidBrush(manager.GetColor(selected ? "Highlight" : "ListView")))
+			using (var backBrush = new SolidBrush(manager.GetColor(selected ? SelectedBackColorKey : "ListView")))
 			{
 				e.Graphics.FillRectangle(backBrush, e.Bounds);
 			}
 
 			var foreColor = selected
-				? manager.GetColor("HighlightText")
+				? manager.GetColor(SelectedForeColorKey)
 				: style.ForeColorKey != null
 					? manager.GetColor(style.ForeColorKey)
 					: style.Muted ? manager.GetColor("GrayText") : manager.GetColor("ControlText");
