@@ -4479,6 +4479,10 @@ Registerkarte „Hilfe“.</value>
     <value>Erweitert die Überschriften auf den zuletzt gespeicherten Zustand</value>
     <comment>ribbon page</comment>
   </data>
+  <data name="ribRestoreLayoutButton_Label" xml:space="preserve">
+    <value>Layout wiederherstellen</value>
+    <comment>ribbon favorites</comment>
+  </data>
   <data name="ribRunPluginButton_Label" xml:space="preserve">
     <value>Plugin ausführen</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -4494,6 +4498,10 @@ Registerkarte „Hilfe“.</value>
   <data name="ribSaveCollapsedButton_Screentip" xml:space="preserve">
     <value>Der eingeklappte Zustand aller Überschriften wurde gespeichert</value>
     <comment>ribbon page</comment>
+  </data>
+  <data name="ribSaveLayoutButton_Label" xml:space="preserve">
+    <value>Layout erfassen</value>
+    <comment>ribbon favorites</comment>
   </data>
   <data name="ribSaveSnippetButton_Label" xml:space="preserve">
     <value>Neues Snippet speichern</value>

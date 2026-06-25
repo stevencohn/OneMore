@@ -4479,6 +4479,10 @@ Zakładka Pomoc</value>
     <value>Rozwiń nagłówki do ostatnio zapisanego stanu</value>
     <comment>ribbon page</comment>
   </data>
+  <data name="ribRestoreLayoutButton_Label" xml:space="preserve">
+    <value>Przywróć układ</value>
+    <comment>ribbon favorites</comment>
+  </data>
   <data name="ribRunPluginButton_Label" xml:space="preserve">
     <value>Uruchom wtyczkę</value>
     <comment>Ribbon OneMore menu item NODUP</comment>
@@ -4494,6 +4498,10 @@ Zakładka Pomoc</value>
   <data name="ribSaveCollapsedButton_Screentip" xml:space="preserve">
     <value>Zapisano zwinięty stan wszystkich nagłówków</value>
     <comment>ribbon page</comment>
+  </data>
+  <data name="ribSaveLayoutButton_Label" xml:space="preserve">
+    <value>Układ przechwytywania</value>
+    <comment>ribbon favorites</comment>
   </data>
   <data name="ribSaveSnippetButton_Label" xml:space="preserve">
     <value>Zapisz nowy fragment</value>

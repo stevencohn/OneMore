@@ -4478,6 +4478,10 @@ Pestaña Ayuda</value>
     <value>Expandir encabezados al estado guardado recientemente</value>
     <comment>ribbon page</comment>
   </data>
+  <data name="ribRestoreLayoutButton_Label" xml:space="preserve">
+    <value>Restaurar diseño</value>
+    <comment>ribbon favorites</comment>
+  </data>
   <data name="ribRunPluginButton_Label" xml:space="preserve">
     <value>Ejecutar complemento</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -4493,6 +4497,10 @@ Pestaña Ayuda</value>
   <data name="ribSaveCollapsedButton_Screentip" xml:space="preserve">
     <value>Guardó el estado colapsado de todos los encabezados.</value>
     <comment>ribbon page</comment>
+  </data>
+  <data name="ribSaveLayoutButton_Label" xml:space="preserve">
+    <value>Diseño de captura</value>
+    <comment>ribbon favorites</comment>
   </data>
   <data name="ribSaveSnippetButton_Label" xml:space="preserve">
     <value>Guardar nuevo fragmento</value>

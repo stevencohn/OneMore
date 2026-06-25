@@ -4493,6 +4493,10 @@ ISO-code then comma then language name</comment>
     <value>将标题扩展到最近保存的状态</value>
     <comment>ribbon page</comment>
   </data>
+  <data name="ribRestoreLayoutButton_Label" xml:space="preserve">
+    <value>恢复布局</value>
+    <comment>ribbon favorites</comment>
+  </data>
   <data name="ribRunPluginButton_Label" xml:space="preserve">
     <value>运行插件</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -4508,6 +4512,10 @@ ISO-code then comma then language name</comment>
   <data name="ribSaveCollapsedButton_Screentip" xml:space="preserve">
     <value>保存所有标题的折叠状态</value>
     <comment>ribbon page</comment>
+  </data>
+  <data name="ribSaveLayoutButton_Label" xml:space="preserve">
+    <value>捕获布局</value>
+    <comment>ribbon favorites</comment>
   </data>
   <data name="ribSaveSnippetButton_Label" xml:space="preserve">
     <value>保存新片段</value>

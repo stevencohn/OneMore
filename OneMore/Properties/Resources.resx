@@ -4517,6 +4517,10 @@ Help Tab</value>
     <value>Expand headings to recently saved state</value>
     <comment>ribbon page</comment>
   </data>
+  <data name="ribRestoreLayoutButton_Label" xml:space="preserve">
+    <value>Restore layout</value>
+    <comment>ribbon favorites</comment>
+  </data>
   <data name="ribRunPluginButton_Label" xml:space="preserve">
     <value>Run Plugin</value>
     <comment>ribbon file NODUP</comment>
@@ -4532,6 +4536,10 @@ Help Tab</value>
   <data name="ribSaveCollapsedButton_Screentip" xml:space="preserve">
     <value>Saved the collapsed state of all headings</value>
     <comment>ribbon page</comment>
+  </data>
+  <data name="ribSaveLayoutButton_Label" xml:space="preserve">
+    <value>Capture layout</value>
+    <comment>ribbon favorites</comment>
   </data>
   <data name="ribSaveSnippetButton_Label" xml:space="preserve">
     <value>Save New Snippet</value>

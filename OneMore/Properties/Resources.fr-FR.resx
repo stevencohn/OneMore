@@ -4490,6 +4490,10 @@ Onglet Aide</value>
     <value>Développer les en-têtes jusqu'à l'état récemment enregistré</value>
     <comment>ribbon page</comment>
   </data>
+  <data name="ribRestoreLayoutButton_Label" xml:space="preserve">
+    <value>Restaurer la mise en page</value>
+    <comment>ribbon favorites</comment>
+  </data>
   <data name="ribRunPluginButton_Label" xml:space="preserve">
     <value>Exécuter le plugin</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -4505,6 +4509,10 @@ Onglet Aide</value>
   <data name="ribSaveCollapsedButton_Screentip" xml:space="preserve">
     <value>Enregistré l'état réduit de tous les titres</value>
     <comment>ribbon page</comment>
+  </data>
+  <data name="ribSaveLayoutButton_Label" xml:space="preserve">
+    <value>Mise en page de capture</value>
+    <comment>ribbon favorites</comment>
   </data>
   <data name="ribSaveSnippetButton_Label" xml:space="preserve">
     <value>Enregistrer le nouvel extrait</value>

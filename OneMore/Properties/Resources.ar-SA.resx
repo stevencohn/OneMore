@@ -4490,6 +4490,10 @@ ISO-code then comma then language name</comment>
     <value>قم بتوسيع العناوين إلى الحالة المحفوظة مؤخرًا</value>
     <comment>ribbon page</comment>
   </data>
+  <data name="ribRestoreLayoutButton_Label" xml:space="preserve">
+    <value>استعادة التخطيط</value>
+    <comment>ribbon favorites</comment>
+  </data>
   <data name="ribRunPluginButton_Label" xml:space="preserve">
     <value>تشغيل البرنامج المساعد</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -4505,6 +4509,10 @@ ISO-code then comma then language name</comment>
   <data name="ribSaveCollapsedButton_Screentip" xml:space="preserve">
     <value>تم حفظ الحالة المنهارة لجميع العناوين</value>
     <comment>ribbon page</comment>
+  </data>
+  <data name="ribSaveLayoutButton_Label" xml:space="preserve">
+    <value>التقاط التخطيط</value>
+    <comment>ribbon favorites</comment>
   </data>
   <data name="ribSaveSnippetButton_Label" xml:space="preserve">
     <value>حفظ المقتطف الجديد</value>

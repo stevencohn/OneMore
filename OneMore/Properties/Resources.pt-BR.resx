@@ -4479,6 +4479,10 @@ Guia Ajuda</value>
     <value>Expanda os títulos para o estado salvo recentemente</value>
     <comment>ribbon page</comment>
   </data>
+  <data name="ribRestoreLayoutButton_Label" xml:space="preserve">
+    <value>Restaurar layout</value>
+    <comment>ribbon favorites</comment>
+  </data>
   <data name="ribRunPluginButton_Label" xml:space="preserve">
     <value>Executar o Plugin</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -4494,6 +4498,10 @@ Guia Ajuda</value>
   <data name="ribSaveCollapsedButton_Screentip" xml:space="preserve">
     <value>Salvou o estado recolhido de todos os cabeçalhos</value>
     <comment>ribbon page</comment>
+  </data>
+  <data name="ribSaveLayoutButton_Label" xml:space="preserve">
+    <value>Layout de captura</value>
+    <comment>ribbon favorites</comment>
   </data>
   <data name="ribSaveSnippetButton_Label" xml:space="preserve">
     <value>Salvar novo trecho</value>

@@ -4479,6 +4479,10 @@ Tabblad Help</value>
     <value>Vouw koppen uit naar recent opgeslagen staat</value>
     <comment>ribbon page</comment>
   </data>
+  <data name="ribRestoreLayoutButton_Label" xml:space="preserve">
+    <value>Indeling herstellen</value>
+    <comment>ribbon favorites</comment>
+  </data>
   <data name="ribRunPluginButton_Label" xml:space="preserve">
     <value>Voer de plug-in uit</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -4494,6 +4498,10 @@ Tabblad Help</value>
   <data name="ribSaveCollapsedButton_Screentip" xml:space="preserve">
     <value>De samengevouwen status van alle koppen opgeslagen</value>
     <comment>ribbon page</comment>
+  </data>
+  <data name="ribSaveLayoutButton_Label" xml:space="preserve">
+    <value>Lay-out vastleggen</value>
+    <comment>ribbon favorites</comment>
   </data>
   <data name="ribSaveSnippetButton_Label" xml:space="preserve">
     <value>Sla nieuw fragment op</value>

@@ -4488,6 +4488,10 @@ ISO-code then comma then language name</comment>
     <value>最近保存された状態に見出しを展開</value>
     <comment>ribbon page</comment>
   </data>
+  <data name="ribRestoreLayoutButton_Label" xml:space="preserve">
+    <value>レイアウトを復元する</value>
+    <comment>ribbon favorites</comment>
+  </data>
   <data name="ribRunPluginButton_Label" xml:space="preserve">
     <value>プラグインの実行</value>
     <comment>ribbon file NODUP</comment>
@@ -4503,6 +4507,10 @@ ISO-code then comma then language name</comment>
   <data name="ribSaveCollapsedButton_Screentip" xml:space="preserve">
     <value>すべての見出しの折りたたみ状態を保存</value>
     <comment>ribbon page</comment>
+  </data>
+  <data name="ribSaveLayoutButton_Label" xml:space="preserve">
+    <value>キャプチャレイアウト</value>
+    <comment>ribbon favorites</comment>
   </data>
   <data name="ribSaveSnippetButton_Label" xml:space="preserve">
     <value>新しいスニペットの保存</value>

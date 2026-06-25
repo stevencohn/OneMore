@@ -1459,7 +1459,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ctxReplaceButton_Label", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Styles.
         /// </summary>
@@ -1468,7 +1468,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ctxStyleGallery_Label", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to To UPPERCASE.
         /// </summary>
@@ -10736,6 +10736,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Restore layout.
+        /// </summary>
+        internal static string ribRestoreLayoutButton_Label {
+            get {
+                return ResourceManager.GetString("ribRestoreLayoutButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Run Plugin.
         /// </summary>
         internal static string ribRunPluginButton_Label {
@@ -10768,6 +10777,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribSaveCollapsedButton_Screentip {
             get {
                 return ResourceManager.GetString("ribSaveCollapsedButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Capture layout.
+        /// </summary>
+        internal static string ribSaveLayoutButton_Label {
+            get {
+                return ResourceManager.GetString("ribSaveLayoutButton_Label", resourceCulture);
             }
         }
         

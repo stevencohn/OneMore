@@ -4483,6 +4483,10 @@ ISO-code then comma then language name</comment>
     <value>הרחב את הכותרות למדינה שנשמרה לאחרונה</value>
     <comment>ribbon page</comment>
   </data>
+  <data name="ribRestoreLayoutButton_Label" xml:space="preserve">
+    <value>שחזר פריסה</value>
+    <comment>ribbon favorites</comment>
+  </data>
   <data name="ribRunPluginButton_Label" xml:space="preserve">
     <value>הפעל פלאגין</value>
     <comment>Ribbon OneMore menu item NODUP</comment>
@@ -4498,6 +4502,10 @@ ISO-code then comma then language name</comment>
   <data name="ribSaveCollapsedButton_Screentip" xml:space="preserve">
     <value>הציל את המצב שהתמוטט של כל הכותרות</value>
     <comment>ribbon page</comment>
+  </data>
+  <data name="ribSaveLayoutButton_Label" xml:space="preserve">
+    <value>פריסת לכידה</value>
+    <comment>ribbon favorites</comment>
   </data>
   <data name="ribSaveSnippetButton_Label" xml:space="preserve">
     <value>שמור קטע קוד חדש</value>
