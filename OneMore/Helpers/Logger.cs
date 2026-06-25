@@ -534,7 +534,12 @@ namespace River.OneMoreAddIn
 					encodingWithFallback.EncoderFallback = EncoderFallback.ReplacementFallback;
 					encodingWithFallback.DecoderFallback = DecoderFallback.ReplacementFallback;
 
-					writer = new StreamWriter(LogPath, true, encodingWithFallback);
+					// FileShare.ReadWrite lets the add-in and the CLI process both append to
+					// the same file concurrently; the default StreamWriter ctor uses
+					// FileShare.Read, which blocks a second writer on the same file
+					writer = new StreamWriter(
+						new FileStream(LogPath, FileMode.Append, FileAccess.Write, FileShare.ReadWrite),
+						encodingWithFallback);
 				}
 				catch
 				{
