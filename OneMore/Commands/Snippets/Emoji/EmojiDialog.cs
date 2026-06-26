@@ -172,7 +172,7 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
-		/// Gets collection of user selected emojis, from either or both views
+		/// Gets collection of user selected emojis from the currently active tab only
 		/// </summary>
 		/// <returns>A collection of IEmoji</returns>
 		public IEnumerable<IEmoji> GetEmojis()
@@ -181,7 +181,8 @@ namespace River.OneMoreAddIn.Commands
 			emojis.Dispose();
 			unicodeEmojis?.Dispose();
 
-			foreach (var emoji in listSelections.Concat(gridSelections))
+			var selections = tabs.SelectedTab == gridTab ? gridSelections : listSelections;
+			foreach (var emoji in selections)
 			{
 				yield return emoji;
 			}
