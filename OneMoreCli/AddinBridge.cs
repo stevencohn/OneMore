@@ -41,12 +41,14 @@ namespace OneMoreCli
 			}
 
 			NamedPipeClientStream pipe = null;
+			var connected = false;
 			try
 			{
 				pipe = new NamedPipeClientStream(".", pipeName, PipeDirection.InOut, PipeOptions.Asynchronous);
 
 				// Short connect timeout: if the add-in isn't listening we fall back immediately
 				await Task.Run(() => pipe.Connect(500));
+				connected = true;
 
 				var commandName = command.CommandName.EndsWith("Command", StringComparison.OrdinalIgnoreCase)
 					? command.CommandName
@@ -160,11 +162,13 @@ namespace OneMoreCli
 				// pipe.Connect timed out → add-in not running
 				return false;
 			}
-			catch (IOException)
+			catch (IOException) when (!connected)
 			{
-				// pipe not found or broken before we could use it → add-in not running
+				// pipe not found or broken before we could connect → add-in not running
 				return false;
 			}
+			// IOException after a successful connection propagates: don't fall back to COM
+			// and risk processing pages that the add-in already handled
 			finally
 			{
 				pipe?.Dispose();
