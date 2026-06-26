@@ -44,8 +44,8 @@ namespace River.OneMoreAddIn.Settings
 			this.delayBox = new System.Windows.Forms.NumericUpDown();
 			this.msLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.layoutPanel = new System.Windows.Forms.Panel();
-			this.doubledBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.notifyBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.doubledBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			((System.ComponentModel.ISupportInitialize)(this.intervalBox)).BeginInit();
 			this.advancedGroup.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.delayBox)).BeginInit();
@@ -54,8 +54,9 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// introBox
 			// 
+			this.introBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.introBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
-			this.introBox.Dock = System.Windows.Forms.DockStyle.Top;
 			this.introBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.introBox.Location = new System.Drawing.Point(13, 8);
 			this.introBox.Name = "introBox";
@@ -257,6 +258,8 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// layoutPanel
 			// 
+			this.layoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.layoutPanel.Controls.Add(this.notifyBox);
 			this.layoutPanel.Controls.Add(this.doubledBox);
 			this.layoutPanel.Controls.Add(this.msLabel);
@@ -269,27 +272,11 @@ namespace River.OneMoreAddIn.Settings
 			this.layoutPanel.Controls.Add(this.minLabel);
 			this.layoutPanel.Controls.Add(this.intervalBox);
 			this.layoutPanel.Controls.Add(this.intervalLabel);
-			this.layoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.layoutPanel.Location = new System.Drawing.Point(13, 74);
 			this.layoutPanel.Margin = new System.Windows.Forms.Padding(0);
 			this.layoutPanel.Name = "layoutPanel";
 			this.layoutPanel.Size = new System.Drawing.Size(772, 476);
 			this.layoutPanel.TabIndex = 4;
-			// 
-			// doubledBox
-			// 
-			this.doubledBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
-			this.doubledBox.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.doubledBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.doubledBox.Location = new System.Drawing.Point(11, 118);
-			this.doubledBox.Name = "doubledBox";
-			this.doubledBox.Size = new System.Drawing.Size(497, 25);
-			this.doubledBox.StylizeImage = false;
-			this.doubledBox.TabIndex = 15;
-			this.doubledBox.Text = "Recognize only double \"##\" prefix hashtags";
-			this.doubledBox.ThemedBack = null;
-			this.doubledBox.ThemedFore = null;
-			this.doubledBox.UseVisualStyleBackColor = true;
 			// 
 			// notifyBox
 			// 
@@ -305,6 +292,21 @@ namespace River.OneMoreAddIn.Settings
 			this.notifyBox.ThemedBack = null;
 			this.notifyBox.ThemedFore = null;
 			this.notifyBox.UseVisualStyleBackColor = true;
+			// 
+			// doubledBox
+			// 
+			this.doubledBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.doubledBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.doubledBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.doubledBox.Location = new System.Drawing.Point(11, 118);
+			this.doubledBox.Name = "doubledBox";
+			this.doubledBox.Size = new System.Drawing.Size(497, 25);
+			this.doubledBox.StylizeImage = false;
+			this.doubledBox.TabIndex = 15;
+			this.doubledBox.Text = "Recognize only double \"##\" prefix hashtags";
+			this.doubledBox.ThemedBack = null;
+			this.doubledBox.ThemedFore = null;
+			this.doubledBox.UseVisualStyleBackColor = true;
 			// 
 			// HashtagSheet
 			// 
