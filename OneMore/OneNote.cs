@@ -1215,6 +1215,7 @@ namespace River.OneMoreAddIn
 			return pages
 				.Select(p => p.Attribute("ID")?.Value)
 				.Where(id => id != null)
+				.Distinct()
 				.ToArray();
 		}
 

@@ -91,14 +91,15 @@ namespace River.OneMoreAddIn
 						await server.WaitForConnectionAsync();
 
 						var buffer = new byte[MaxBytes];
+						var bytesRead = 0;
 
-						// pipe has maxNumberOfServerInstances = 1, so a client that
-						// connects but never writes would wedge the listener forever
+						// A client that connects but never writes would wedge the listener
+						// forever; the read timeout unblocks it and lets the loop continue.
 						using var cts = new CancellationTokenSource(
 							TimeSpan.FromSeconds(ReadTimeoutSeconds));
 						try
 						{
-							_ = await server.ReadAsync(buffer, 0, MaxBytes, cts.Token);
+							bytesRead = await server.ReadAsync(buffer, 0, MaxBytes, cts.Token);
 						}
 						catch (OperationCanceledException)
 						{
@@ -106,7 +107,7 @@ namespace River.OneMoreAddIn
 							continue;
 						}
 
-						data = Encoding.UTF8.GetString(buffer, 0, buffer.Length).Trim((char)0);
+						data = Encoding.UTF8.GetString(buffer, 0, bytesRead).Trim((char)0);
 						//logger.WriteLine($"pipe received [{data}]");
 
 						if (!string.IsNullOrEmpty(data) && data.StartsWith(CliProtocol))
@@ -301,14 +302,21 @@ namespace River.OneMoreAddIn
 			// gone away. cts.Token is checked between pages/sections below so a long batch
 			// can stop early instead of running to completion against an absent client.
 			using var cts = new CancellationTokenSource();
-			var watcher = WatchForClientCancellation(pipe, cts);
 
-			async Task StopWatcherAsync()
+			// fire-and-forget: runs concurrently for the life of this command and self-handles
+			// all exceptions; we never await it (see StopWatcher) so we don't keep a reference
+			_ = WatchForClientCancellation(pipe, cts);
+
+			void StopWatcher()
 			{
-				// cancel first so the watcher's pending read unwinds via OperationCanceledException
-				// rather than a raw IOException from the pipe being closed out from under it
+				// Signal the watcher to stop, but do NOT block awaiting its pending read.
+				// On .NET Framework, cancelling the token does not unblock an in-flight
+				// overlapped NamedPipeServerStream.ReadAsync, so awaiting the watcher here
+				// would hang until the client disconnects - which is exactly the multi-second
+				// CLI hang this avoids. The watcher's read is inbound and independent of our
+				// outbound response write; it faults and unwinds harmlessly when the listener
+				// loop disconnects/closes the pipe immediately after this command returns.
 				cts.Cancel();
-				try { await watcher; } catch { /* watcher self-handles its own exceptions */ }
 			}
 
 			try
@@ -321,7 +329,7 @@ namespace River.OneMoreAddIn
 
 					if (string.IsNullOrWhiteSpace(notebook))
 					{
-						await StopWatcherAsync();
+						StopWatcher();
 						await WriteCliResponse(pipe,
 							$"ERR:{commandName} requires a 'notebook' parameter");
 						return;
@@ -343,7 +351,7 @@ namespace River.OneMoreAddIn
 
 						if (pageIds.Length == 0)
 						{
-							await StopWatcherAsync();
+							StopWatcher();
 							await WriteCliResponse(pipe, $"ERR:No pages found at path: {path}");
 							return;
 						}
@@ -376,15 +384,15 @@ namespace River.OneMoreAddIn
 			}
 			catch (Exception exc)
 			{
-				await StopWatcherAsync();
+				StopWatcher();
 				logger.WriteLine($"error executing CLI command '{commandName}'", exc);
 				await WriteCliResponse(pipe, $"ERR:{exc.Message}");
 				return;
 			}
 
-			// stop watching and let its pending read unwind before writing the terminal
-			// response, so nothing else is reading from the pipe while we write to it
-			await StopWatcherAsync();
+			// stop watching for client cancellation; the response write below is outbound
+			// and safe to issue while the watcher's inbound read is still pending
+			StopWatcher();
 
 			var output = result?.CliOutput ?? pageOutput;
 			await WriteCliResponse(pipe, cancelled
@@ -410,6 +418,12 @@ namespace River.OneMoreAddIn
 			using var one = new OneNote();
 
 			var notebooks = await one.GetNotebooks();
+			for (int attempt = 1; attempt < 4 && (notebooks == null || !notebooks.HasElements); attempt++)
+			{
+				await Task.Delay(500 * attempt);
+				notebooks = await one.GetNotebooks();
+			}
+
 			if (notebooks == null || !notebooks.HasElements)
 			{
 				return (null, false);
@@ -428,7 +442,13 @@ namespace River.OneMoreAddIn
 
 			var notebookId = notebook.Attribute("ID").Value;
 			var notebookSections = await one.GetNotebook(notebookId, OneNote.Scope.Sections);
-			if (notebookSections == null)
+			for (int attempt = 1; attempt < 4 && (notebookSections == null || !notebookSections.HasElements); attempt++)
+			{
+				await Task.Delay(500 * attempt);
+				notebookSections = await one.GetNotebook(notebookId, OneNote.Scope.Sections);
+			}
+
+			if (notebookSections == null || !notebookSections.HasElements)
 			{
 				return (null, false);
 			}
@@ -454,6 +474,7 @@ namespace River.OneMoreAddIn
 				var pageIds = section.Elements(pageNs + "Page")
 					.Select(p => p.Attribute("ID")?.Value)
 					.Where(id => id != null)
+					.Distinct()
 					.ToArray();
 
 				if (pageIds.Length == 0) continue;
