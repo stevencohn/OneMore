@@ -69,7 +69,14 @@ namespace OneMoreCli
 				var inFinal = false;
 				var cancelledByUser = false;
 				var buffer = new byte[512];
-				using var timeoutCts = new CancellationTokenSource(TimeSpan.FromMinutes(5));
+
+				// Idle timeout, not a total-time cap: a large notebook export can legitimately
+				// run for many minutes, but the add-in streams PROGRESS lines as it goes, so we
+				// only give up if nothing at all arrives for this long. The deadline is reset
+				// after every read below. (A single fixed cap here would expire mid-export and,
+				// via the COM fallback, re-run the entire notebook - duplicating exported files.)
+				var idleTimeout = TimeSpan.FromMinutes(5);
+				using var timeoutCts = new CancellationTokenSource(idleTimeout);
 				using var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(
 					timeoutCts.Token, cancellationToken);
 				try
@@ -77,6 +84,9 @@ namespace OneMoreCli
 					int n;
 					while ((n = await pipe.ReadAsync(buffer, 0, buffer.Length, linkedCts.Token)) > 0)
 					{
+						// data arrived - the add-in is alive and working; reset the idle deadline
+						timeoutCts.CancelAfter(idleTimeout);
+
 						var text = Encoding.UTF8.GetString(buffer, 0, n);
 						if (inFinal)
 						{
@@ -124,7 +134,8 @@ namespace OneMoreCli
 				}
 				catch (OperationCanceledException)
 				{
-					throw new TimeoutException("The add-in did not respond within 5 minutes.");
+					throw new TimeoutException(
+						"The add-in stopped responding (no progress for 5 minutes).");
 				}
 
 				var response = sb.ToString().Trim('\0').Trim();
@@ -157,7 +168,7 @@ namespace OneMoreCli
 				// "OK" or "OUTPUT:..." → success
 				return true;
 			}
-			catch (TimeoutException)
+			catch (TimeoutException) when (!connected)
 			{
 				// pipe.Connect timed out → add-in not running
 				return false;
@@ -167,8 +178,10 @@ namespace OneMoreCli
 				// pipe not found or broken before we could connect → add-in not running
 				return false;
 			}
-			// IOException after a successful connection propagates: don't fall back to COM
-			// and risk processing pages that the add-in already handled
+			// Any failure AFTER a successful connection (IOException, the idle-timeout
+			// TimeoutException, etc.) propagates rather than returning false: the add-in
+			// already accepted and may have partly completed the command, so falling back to
+			// direct COM here would re-run it from scratch and duplicate its work.
 			finally
 			{
 				pipe?.Dispose();
