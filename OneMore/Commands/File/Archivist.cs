@@ -24,7 +24,6 @@ namespace River.OneMoreAddIn.Commands
 		private readonly string home;
 		private Dictionary<string, OneNote.HyperlinkInfo> map;
 
-
 		public Archivist(OneNote one) : this(one, null)
 		{
 		}
@@ -35,6 +34,9 @@ namespace River.OneMoreAddIn.Commands
 			this.one = one;
 			this.home = Path.GetDirectoryName(home);
 		}
+
+
+		public bool Interactive { get; set; } = true;
 
 
 		public async Task BuildHyperlinkMap(
@@ -105,8 +107,11 @@ namespace River.OneMoreAddIn.Commands
 				var fmt = format.ToString();
 				logger.WriteLine($"error publishig page as {fmt}", exc);
 
-				UI.MoreMessageBox.ShowError(null,
-					string.Format(Resx.SaveAs_Error, fmt) + "\n\n" + exc.Message);
+				if (Interactive)
+				{
+					UI.MoreMessageBox.ShowError(null,
+						string.Format(Resx.SaveAs_Error, fmt) + "\n\n" + exc.Message);
+				}
 
 				return false;
 			}
@@ -384,8 +389,11 @@ namespace River.OneMoreAddIn.Commands
 			catch (Exception exc)
 			{
 				logger.WriteLine("error publishig page as Markdown", exc);
-				UI.MoreMessageBox.ShowError(null,
-					string.Format(Resx.SaveAs_Error, "Markdown") + "\n\n" + exc.Message);
+				if (Interactive)
+				{
+					UI.MoreMessageBox.ShowError(null,
+						string.Format(Resx.SaveAs_Error, "Markdown") + "\n\n" + exc.Message);
+				}
 			}
 		}
 
@@ -420,8 +428,11 @@ namespace River.OneMoreAddIn.Commands
 			catch (Exception exc)
 			{
 				logger.WriteLine("error publishig page as XML", exc);
-				UI.MoreMessageBox.ShowError(null,
-					string.Format(Resx.SaveAs_Error, "XML") + "\n\n" + exc.Message);
+				if (Interactive)
+				{
+					UI.MoreMessageBox.ShowError(null,
+						string.Format(Resx.SaveAs_Error, "XML") + "\n\n" + exc.Message);
+				}
 			}
 		}
 

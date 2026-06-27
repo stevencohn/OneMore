@@ -380,7 +380,7 @@ namespace River.OneMoreAddIn
 		/// Legal XML chars: #x9, #xA, #xD, #x20–#xD7FF, #xE000–#xFFFD.
 		/// </summary>
 		private static readonly Regex invalidXmlCharPattern =
-			new Regex(@"[^\x09\x0A\x0D\x20-퟿-�]", RegexOptions.Compiled);
+			new(@"[^\x09\x0A\x0D\x20-퟿-�]", RegexOptions.Compiled);
 
 		public static string StripInvalidXmlChars(this string s)
 		{
@@ -416,6 +416,9 @@ namespace River.OneMoreAddIn
 			// quote unquote language attribute, e.g., lang=yo to lang="yo" (or two part en-US)
 			value = Regex.Replace(value, @"(\s)lang=([\w\-]+)([\s/>])", "$1lang=\"$2\"$3");
 
+			// remove &#N;/&#xN; entity refs whose code point is illegal in XML 1.0
+			value = StripInvalidXmlEntityRefs(value);
+
 			try
 			{
 				return XElement.Parse($"<{name}>{value}</{name}>", LoadOptions.PreserveWhitespace);
@@ -425,6 +428,31 @@ namespace River.OneMoreAddIn
 				Logger.Current.WriteLine($"error wrapping /{value}/");
 				throw;
 			}
+		}
+
+
+		// Matches &#N; (decimal) and &#xN; (hex) numeric character entity references
+		private static readonly Regex invalidXmlEntityRefPattern =
+			new(@"&#(\d+);|&#x([0-9a-fA-F]+);", RegexOptions.Compiled);
+
+		private static bool IsValidXmlCodePoint(int cp) =>
+			cp == 0x9 || cp == 0xA || cp == 0xD ||
+			(cp >= 0x20 && cp <= 0xD7FF) ||
+			(cp >= 0xE000 && cp <= 0xFFFD) ||
+			(cp >= 0x10000 && cp <= 0x10FFFF);
+
+		// strip &#N; / &#xN; entity refs whose code point is illegal in XML 1.0.
+		// these survive the &amp; escaping step in ToXmlWrapper and cause XElement.Parse to throw.
+		private static string StripInvalidXmlEntityRefs(string s)
+		{
+			return invalidXmlEntityRefPattern.Replace(s, m =>
+			{
+				var cp = m.Groups[1].Success
+					? int.Parse(m.Groups[1].Value)
+					: Convert.ToInt32(m.Groups[2].Value, 16);
+
+				return IsValidXmlCodePoint(cp) ? m.Value : string.Empty;
+			});
 		}
 
 

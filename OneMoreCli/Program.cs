@@ -266,6 +266,9 @@ namespace OneMoreCli
 			TelemetryClient.BeginCliSession(cliSessionId);
 			try
 			{
+				// resolve notebook nickname → canonical name before dispatching
+				await CliNotebookResolver.ResolveNotebookName(parameters);
+
 				if (command is ICliPageCommand)
 				{
 					parameters.TryGet<string>("notebook", out var notebook);

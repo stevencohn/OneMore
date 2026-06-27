@@ -373,7 +373,7 @@ namespace River.OneMoreAddIn.Commands
 			// cleaned, sized, and ready go; now make sure it's unique!
 			var filename = PathHelper.GetUniqueQualifiedFileName(path, title, ext);
 
-			var archivist = new Archivist(one);
+			var archivist = new Archivist(one) { Interactive = false };
 
 			if (format == OneNote.ExportFormat.HTML)
 			{
