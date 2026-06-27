@@ -29,8 +29,24 @@ namespace River.OneMoreAddIn
 		// lazy so CLI processes that start OneNote via COM don't cache a null before it launches
 		private static TelemetryEvent template;
 
-		public static TelemetryEvent Template => 
+		public static TelemetryEvent Template =>
 			template ??= Helpers.SessionLogger.MakeTelemetryTemplate();
+
+		// runtime-only CLI deduplication guard; never written to TelemetryEvent
+		private static string cliSessionId = null;
+		private static bool cliSessionFired = false;
+
+		internal static void BeginCliSession(string id)
+		{
+			cliSessionId = id;
+			cliSessionFired = false;
+		}
+
+		internal static void EndCliSession()
+		{
+			cliSessionId = null;
+			cliSessionFired = false;
+		}
 
 
 		#region Schema classes
@@ -105,6 +121,13 @@ namespace River.OneMoreAddIn
 			// this, the method has no await until the fire-and-forget dispatch further
 			// down, so it would otherwise run fully synchronously on the caller's thread
 			await Task.Yield();
+
+			// CLI page-iteration dedup: only fire once per CLI command invocation
+			if (cliSessionId != null)
+			{
+				if (cliSessionFired) return;
+				cliSessionFired = true;
+			}
 
 			if (Template is null || !HttpClientFactory.IsNetworkAvailable())
 			{

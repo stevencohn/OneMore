@@ -241,8 +241,10 @@ namespace OneMoreCli
 		private static async Task RunCommand(
 			ICliCommand command, CliParameterSet parameters, CancellationToken token)
 		{
+			var cliSessionId = Guid.NewGuid().ToString("N");
+
 			// Preferred path: delegate to the running add-in via the named pipe
-			if (await AddinBridge.TryRun(command, parameters, token))
+			if (await AddinBridge.TryRun(command, parameters, token, cliSessionId))
 			{
 				return;
 			}
@@ -261,53 +263,61 @@ namespace OneMoreCli
 			}
 
 			// Fallback: direct COM (OneNote is not running; new Application() starts it fresh)
-			if (command is ICliPageCommand)
+			TelemetryClient.BeginCliSession(cliSessionId);
+			try
 			{
-				parameters.TryGet<string>("notebook", out var notebook);
-				parameters.TryGet<string>("section", out var section);
-				var hasPage = parameters.TryGet<string>("page", out var page);
-
-				if (string.IsNullOrWhiteSpace(notebook))
+				if (command is ICliPageCommand)
 				{
-					throw new InvalidOperationException(
-						$"{command.CommandName} requires a 'notebook' parameter.");
+					parameters.TryGet<string>("notebook", out var notebook);
+					parameters.TryGet<string>("section", out var section);
+					var hasPage = parameters.TryGet<string>("page", out var page);
+
+					if (string.IsNullOrWhiteSpace(notebook))
+					{
+						throw new InvalidOperationException(
+							$"{command.CommandName} requires a 'notebook' parameter.");
+					}
+
+					if (string.IsNullOrWhiteSpace(section))
+					{
+						await RunForNotebook(command, parameters, notebook, token);
+						return;
+					}
+
+					var effectivePage = hasPage && !string.IsNullOrWhiteSpace(page) ? page : "*";
+
+					using var one = new OneNote();
+					var pageIds = await one.FindPagesByPath(notebook, section, effectivePage);
+
+					if (pageIds.Length == 0)
+					{
+						CliConsole.WriteWarning($"No pages found at path: {notebook}/{section}/{effectivePage}");
+						return;
+					}
+
+					foreach (var pageId in pageIds)
+					{
+						token.ThrowIfCancellationRequested();
+
+						parameters.Set("pageId", pageId);
+						var r = await CliCommandFactory.Make().Run(command.GetType(), token, parameters);
+						if (!string.IsNullOrEmpty(r?.CliOutput))
+							Console.Write(r.CliOutput);
+					}
 				}
-
-				if (string.IsNullOrWhiteSpace(section))
+				else
 				{
-					await RunForNotebook(command, parameters, notebook, token);
-					return;
-				}
-
-				var effectivePage = hasPage && !string.IsNullOrWhiteSpace(page) ? page : "*";
-
-				using var one = new OneNote();
-				var pageIds = await one.FindPagesByPath(notebook, section, effectivePage);
-
-				if (pageIds.Length == 0)
-				{
-					CliConsole.WriteWarning($"No pages found at path: {notebook}/{section}/{effectivePage}");
-					return;
-				}
-
-				foreach (var pageId in pageIds)
-				{
-					token.ThrowIfCancellationRequested();
-
-					parameters.Set("pageId", pageId);
-					var r = await CliCommandFactory.Make().Run(command.GetType(), token, parameters);
-					if (!string.IsNullOrEmpty(r?.CliOutput))
-						Console.Write(r.CliOutput);
+					var result = await CliCommandFactory.Make().Run(command.GetType(), token, parameters);
+					var output = result?.CliOutput;
+					if (!string.IsNullOrEmpty(output))
+					{
+						Console.Write(output);
+					}
 				}
 			}
-			else
+			finally
 			{
-				var result = await CliCommandFactory.Make().Run(command.GetType(), token, parameters);
-				var output = result?.CliOutput;
-				if (!string.IsNullOrEmpty(output))
-				{
-					Console.Write(output);
-				}
+				TelemetryClient.EndCliSession();
 			}
 		}
 

@@ -32,7 +32,8 @@ namespace OneMoreCli
 		/// to direct COM activation.
 		/// </summary>
 		public static async Task<bool> TryRun(
-			ICliCommand command, CliParameterSet parameters, CancellationToken cancellationToken)
+			ICliCommand command, CliParameterSet parameters, CancellationToken cancellationToken,
+			string cliSessionId = null)
 		{
 			var pipeName = GetPipeName();
 			if (string.IsNullOrEmpty(pipeName))
@@ -55,7 +56,7 @@ namespace OneMoreCli
 					: $"{command.CommandName}Command";
 
 				// Send request
-				var uri = BuildUri(commandName, parameters);
+				var uri = BuildUri(commandName, parameters, cliSessionId);
 				var requestBytes = Encoding.UTF8.GetBytes(uri);
 				await pipe.WriteAsync(requestBytes, 0, requestBytes.Length);
 				await pipe.FlushAsync();
@@ -250,7 +251,8 @@ namespace OneMoreCli
 		/// <c>onemorecli://CommandName?key=value&amp;…</c> URI string for the add-in pipe.
 		/// Values are percent-encoded with <see cref="Uri.EscapeDataString"/>.
 		/// </summary>
-		public static string BuildUri(string commandName, CliParameterSet parameters)
+		public static string BuildUri(
+			string commandName, CliParameterSet parameters, string cliSessionId = null)
 		{
 			var sb = new StringBuilder("onemorecli://");
 			sb.Append(commandName);
@@ -266,6 +268,13 @@ namespace OneMoreCli
 					sb.Append(Uri.EscapeDataString(value?.ToString() ?? string.Empty));
 					first = false;
 				}
+			}
+
+			if (!string.IsNullOrEmpty(cliSessionId))
+			{
+				sb.Append(first ? '?' : '&');
+				sb.Append("cliSessionId=");
+				sb.Append(Uri.EscapeDataString(cliSessionId));
 			}
 
 			return sb.ToString();
