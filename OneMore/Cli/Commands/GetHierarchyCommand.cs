@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using Newtonsoft.Json;
 	using System;
 	using System.Linq;
 	using System.Threading.Tasks;
@@ -31,6 +32,8 @@ namespace River.OneMoreAddIn.Commands
 
 		public CliParameterDefinition DefineParameters() =>
 			new CliParameterDefinition()
+			.AddBoolean("books", "Return all notebooks with properties only (no sections or pages)",
+				required: false, defaultValue: false)
 			.AddString("notebook", "Name of notebook", required: false)
 			.AddString("section", "Path of section", required: false);
 
@@ -43,13 +46,47 @@ namespace River.OneMoreAddIn.Commands
 
 			await using var one = new OneNote();
 
+			var booksOnly = false;
 			string notebookName = null;
 			string sectionPath = null;
 
 			if (cliParams != null)
 			{
+				cliParams.TryGet("books", out booksOnly);
 				cliParams.TryGet("notebook", out notebookName);
 				cliParams.TryGet("section", out sectionPath);
+			}
+
+			if (booksOnly)
+			{
+				var notebooks = await one.GetNotebooks(OneNote.Scope.Notebooks);
+				for (int attempt = 1; attempt < 4 && (notebooks == null || !notebooks.HasElements); attempt++)
+				{
+					await Task.Delay(500 * attempt);
+					notebooks = await one.GetNotebooks(OneNote.Scope.Notebooks);
+				}
+
+				if (notebooks != null)
+				{
+					var ns = one.GetNamespace(notebooks);
+					var list = notebooks
+						.Elements(ns + "Notebook")
+						.Select(n => n.Attributes()
+							.Where(a => a.Name.Namespace == XNamespace.None)
+							.ToDictionary(a => a.Name.LocalName, a => (object)a.Value))
+						.ToList();
+
+					CliOutput = JsonConvert.SerializeObject(
+						new { notebooks = list },
+						Formatting.Indented);
+				}
+				else
+				{
+					CliOutput = string.Empty;
+				}
+
+				await Task.Yield();
+				return;
 			}
 
 			var hasNotebook = !string.IsNullOrEmpty(notebookName);

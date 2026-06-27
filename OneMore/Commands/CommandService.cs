@@ -296,6 +296,9 @@ namespace River.OneMoreAddIn
 				TelemetryClient.BeginCliSession(cliSessionId);
 			}
 
+			// resolve notebook nickname → canonical name before dispatching
+			await Cli.CliNotebookResolver.ResolveNotebookName(parameters);
+
 			var cliFactory = new CommandFactory(
 				logger, ribbon: null, new List<IDisposable>(), runningFromCli: true);
 
