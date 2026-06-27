@@ -188,14 +188,11 @@ namespace OneMoreCalendar
 				var top = e.Bounds.Top + VPadding;
 				foreach (var page in day.Pages)
 				{
-					// predict width of page title
-					size = e.Graphics.MeasureString(page.Title, listbox.Font);
-
 					var color = page.IsDeleted ? gray : fore;
 
 					// section
-					e.Graphics.DrawString(page.Path,
-						listbox.Font, color, HeadWidth + 20, top, format);
+					var sectionBounds = new RectangleF(HeadWidth + 20, top, PathWidth, listbox.Font.Height);
+					e.Graphics.DrawString(page.Path, listbox.Font, color, sectionBounds, format);
 
 					// reminder
 					if (page.HasReminders)
@@ -205,12 +202,13 @@ namespace OneMoreCalendar
 					}
 
 					// title
-					var bounds = new Rectangle(
-						HeadWidth + PathWidth + BellWidth + 60, top, (int)size.Width + 2, (int)size.Height);
+					const int titleX = HeadWidth + PathWidth + BellWidth + 60;
+					var titleWidth = Math.Max(0, e.Bounds.Width - DateWidth * 2 - titleX);
+					var bounds = new Rectangle(titleX, top, titleWidth, listbox.Font.Height);
 
 					e.Graphics.DrawString(page.Title,
 						page.IsDeleted ? deletedFont : listbox.Font,
-						color, bounds, format);
+						color, (RectangleF)bounds, format);
 
 					page.Bounds = bounds;
 
@@ -222,7 +220,7 @@ namespace OneMoreCalendar
 					e.Graphics.DrawString(page.Modified.ToShortFriendlyString(),
 						listbox.Font, color, e.Bounds.Width - DateWidth, top);
 
-					top += (int)size.Height;
+					top += listbox.Font.Height;
 				}
 			}
 		}
