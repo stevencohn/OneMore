@@ -262,14 +262,10 @@ namespace River.OneMoreAddIn.Commands
 						$"section=[{link.SectionName}] page=[{link.PageName}] " +
 						$"pageId=[{link.PageId}] objectId=[{link.ObjectId}] isLocal=[{link.IsLocal}]");
 
-					var pathParts = new List<string> { link.NotebookName };
-					pathParts.AddRange(link.SectionGroups);
-					pathParts.Add(link.SectionName);
-					pathParts.Add(link.PageName);
+					var sectionParts = new List<string>(link.SectionGroups) { link.SectionName };
+					var sectionPath = string.Join("/", sectionParts);
 
-					var joinedPath = string.Join("/", pathParts);
-
-					var pageIds = await o.FindPagesByPath(joinedPath);
+					var pageIds = await o.FindPagesByPath(link.NotebookName, sectionPath, link.PageName);
 					sourceId = pageIds.FirstOrDefault();
 					if (sourceId != null)
 					{
@@ -277,11 +273,12 @@ namespace River.OneMoreAddIn.Commands
 
 						logger.WriteLine(
 							$"found source page: {sourceName} ({sourceId}) " +
-							$"at path [{joinedPath}]");
+							$"at path [{link.NotebookName}/{sectionPath}/{link.PageName}]");
 					}
 					else
 					{
-						logger.WriteLine($"page not found at path [{joinedPath}]");
+						logger.WriteLine(
+							$"page not found at path [{link.NotebookName}/{sectionPath}/{link.PageName}]");
 					}
 				}
 				catch (Exception exc)

@@ -93,8 +93,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			var path = string.Concat(notebookName, "/", sectionPath, "/", pageName);
-			var pageIds = await one.FindPagesByPath(path);
+			var pageIds = await one.FindPagesByPath(notebookName, sectionPath, pageName);
 
 			if (pageIds.Length == 0)
 			{

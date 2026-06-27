@@ -94,8 +94,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (!string.IsNullOrWhiteSpace(pageName))
 			{
-				var path = $"{notebookName}/{sectionPath}/{pageName}";
-				var pageIds = await one.FindPagesByPath(path);
+				var pageIds = await one.FindPagesByPath(notebookName, sectionPath, pageName);
 
 				if (pageIds.Length == 0)
 				{
@@ -115,7 +114,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 				else if (!force)
 				{
-					CliOutput = $"Page already exists; use --force to overwrite: {path}";
+					CliOutput = $"Page already exists; use --force to overwrite: {notebookName}/{sectionPath}/{pageName}";
 					await Task.Yield();
 					return;
 				}

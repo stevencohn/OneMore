@@ -342,17 +342,16 @@ namespace River.OneMoreAddIn
 					}
 					else
 					{
-						var path = string.Concat(
-							notebook, "/", section, "/",
-							hasPage && !string.IsNullOrWhiteSpace(page) ? page : "*");
+						var effectivePage = hasPage && !string.IsNullOrWhiteSpace(page) ? page : "*";
 
 						using var one = new OneNote();
-						var pageIds = await one.FindPagesByPath(path);
+						var pageIds = await one.FindPagesByPath(notebook, section, effectivePage);
 
 						if (pageIds.Length == 0)
 						{
 							StopWatcher();
-							await WriteCliResponse(pipe, $"ERR:No pages found at path: {path}");
+							await WriteCliResponse(pipe,
+								$"ERR:No pages found at path: {notebook}/{section}/{effectivePage}");
 							return;
 						}
 

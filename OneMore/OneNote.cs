@@ -1088,6 +1088,8 @@ namespace River.OneMoreAddIn
 		/// Finds the IDs of pages matching a full hierarchy path, e.g. "Notebook/Section/Page"
 		/// or "Notebook/SectionGroup/Section/Page". A leading slash is tolerated and ignored.
 		/// The final segment may be an asterisk (*) to return all pages in the resolved section.
+		/// Note: page names or notebook names that contain forward slashes cannot be expressed
+		/// in this combined form; use the three-parameter overload instead.
 		/// </summary>
 		/// <param name="path">
 		/// Slash-separated path with at least three segments: notebook name, one or more
@@ -1105,6 +1107,31 @@ namespace River.OneMoreAddIn
 
 			var parts = path.Trim().Trim('/').Split('/');
 			if (parts.Length < 3)
+			{
+				return Array.Empty<string>();
+			}
+
+			return await FindPagesByPath(
+				parts[0],
+				string.Join("/", parts.Skip(1).Take(parts.Length - 2)),
+				parts[parts.Length - 1]);
+		}
+
+
+		/// <summary>
+		/// Finds the IDs of pages in <paramref name="notebook"/> under the section identified by
+		/// <paramref name="sectionPath"/> whose name matches <paramref name="pageName"/>.
+		/// <paramref name="sectionPath"/> may use slashes to navigate section groups,
+		/// e.g. "Group/Section". <paramref name="pageName"/> is treated as a literal page name
+		/// and may itself contain forward slashes. Use <c>*</c> for <paramref name="pageName"/>
+		/// to return all pages in the section.
+		/// </summary>
+		/// <returns>
+		/// An array of matching page IDs; empty if no match is found or a parameter is invalid.
+		/// </returns>
+		public async Task<string[]> FindPagesByPath(string notebook, string sectionPath, string pageName)
+		{
+			if (string.IsNullOrWhiteSpace(notebook) || string.IsNullOrWhiteSpace(sectionPath))
 			{
 				return Array.Empty<string>();
 			}
@@ -1127,18 +1154,18 @@ namespace River.OneMoreAddIn
 
 			var ns = GetNamespace(notebooks);
 
-			var notebook = notebooks
+			var notebookElem = notebooks
 				.Elements(ns + "Notebook")
 				.FirstOrDefault(n => string.Equals(
-					n.Attribute("name")?.Value, parts[0].Trim(),
+					n.Attribute("name")?.Value, notebook.Trim(),
 					StringComparison.InvariantCultureIgnoreCase));
 
-			if (notebook == null)
+			if (notebookElem == null)
 			{
 				return Array.Empty<string>();
 			}
 
-			var notebookId = notebook.Attribute("ID").Value;
+			var notebookId = notebookElem.Attribute("ID").Value;
 
 			// Load the notebook's section structure (no pages yet — lighter call than hsPages).
 			var notebookSections = await GetNotebook(notebookId, Scope.Sections);
@@ -1153,16 +1180,18 @@ namespace River.OneMoreAddIn
 				return Array.Empty<string>();
 			}
 
-			// Walk every middle segment (section groups or sections) through the section tree.
+			// Walk every segment of the section path (section groups or sections) through the tree.
+			// sectionPath uses '/' as a group separator (intentional), not part of any name.
+			var sectionParts = sectionPath.Trim().Trim('/').Split('/');
 			XElement node = notebookSections;
-			for (int i = 1; i < parts.Length - 1; i++)
+			foreach (var part in sectionParts)
 			{
 				node = node
 					.Elements()
 					.FirstOrDefault(e =>
 						(e.Name.LocalName == "Section" || e.Name.LocalName == "SectionGroup") &&
 						string.Equals(
-							e.Attribute("name")?.Value, parts[i].Trim(),
+							e.Attribute("name")?.Value, part.Trim(),
 							StringComparison.InvariantCultureIgnoreCase));
 
 				if (node == null)
@@ -1184,19 +1213,20 @@ namespace River.OneMoreAddIn
 				return Array.Empty<string>();
 			}
 
-			// final segment: wildcard returns all pages; named segment filters to one match
-			var pageName = parts[parts.Length - 1].Trim();
+			// pageName is never split — it is used as-is so names containing '/' work correctly.
+			// Wildcard '*' returns all pages; otherwise filter to the named page.
+			var pageNameTrimmed = (pageName ?? "*").Trim();
 			var sectionNs = GetNamespace(section);
 			var pages = section.Elements(sectionNs + "Page");
 
-			if (pageName != "*")
+			if (pageNameTrimmed != "*")
 			{
-				if (pageName.Contains('?'))
+				if (pageNameTrimmed.Contains('?'))
 				{
 					// '?' may be a lossy substitution for a non-ASCII character in the
 					// clipboard URI (e.g. ✓ encoded to ? by Windows). Treat each '?' as
 					// a single-character wildcard so the match still succeeds.
-					var pattern = "^" + Regex.Escape(pageName).Replace(@"\?", ".") + "$";
+					var pattern = "^" + Regex.Escape(pageNameTrimmed).Replace(@"\?", ".") + "$";
 					pages = pages.Where(p =>
 					{
 						var name = p.Attribute("name")?.Value?.Trim() ?? string.Empty;
@@ -1207,7 +1237,7 @@ namespace River.OneMoreAddIn
 				else
 				{
 					pages = pages.Where(p => string.Equals(
-						p.Attribute("name")?.Value?.Trim(), pageName,
+						p.Attribute("name")?.Value?.Trim(), pageNameTrimmed,
 						StringComparison.InvariantCultureIgnoreCase));
 				}
 			}
