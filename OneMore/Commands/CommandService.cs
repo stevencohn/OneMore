@@ -289,6 +289,13 @@ namespace River.OneMoreAddIn
 				}
 			}
 
+			// activate per-invocation telemetry dedup if the CLI sent a session ID
+			if (parameters.TryGet<string>("cliSessionId", out var cliSessionId)
+				&& !string.IsNullOrEmpty(cliSessionId))
+			{
+				TelemetryClient.BeginCliSession(cliSessionId);
+			}
+
 			var cliFactory = new CommandFactory(
 				logger, ribbon: null, new List<IDisposable>(), runningFromCli: true);
 
@@ -387,6 +394,10 @@ namespace River.OneMoreAddIn
 				logger.WriteLine($"error executing CLI command '{commandName}'", exc);
 				await WriteCliResponse(pipe, $"ERR:{exc.Message}");
 				return;
+			}
+			finally
+			{
+				TelemetryClient.EndCliSession();
 			}
 
 			// stop watching for client cancellation; the response write below is outbound

@@ -5,6 +5,9 @@
 // mask this definition to debug raw markdown processing to ILogger instead of a file/folder
 #define WriteToDisk
 
+// unmask this definition to allow debug logging
+//#define DBGLOG
+
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
@@ -103,9 +106,11 @@ namespace River.OneMoreAddIn.Commands
 				using var reader = new StreamReader(stream);
 				var text = await reader.ReadToEndAsync();
 
+#if DBGLOG
 				logger.Debug("markdown - - - - - - - -");
 				logger.Debug(text);
 				logger.Debug("end markdown - - - - - -");
+#endif
 
 				var clippy = new ClipboardProvider();
 				var success = await clippy.SetText(text, true);
@@ -114,7 +119,9 @@ namespace River.OneMoreAddIn.Commands
 					MoreMessageBox.ShowError(null, Resx.Clipboard_locked);
 				}
 
+#if DBGLOG
 				logger.Debug("copied");
+#endif
 			}
 		}
 
@@ -172,8 +179,9 @@ namespace River.OneMoreAddIn.Commands
 			// Tag, List, and T, so startOfLine can be handled locally rather than recursively.
 			var startOfLine = true;
 
+#if DBGLOG
 			logger.Debug($"Write({container.Name.LocalName}, prefix:[{prefix}], depth:{depth}, contained:{contained})");
-
+#endif
 			// For OE containers: ensure the List element (bullet/number marker) is processed
 			// before any Tag elements so output order is "- [x] text" not "[x] - text"
 			IEnumerable<XElement> children = container.Elements();
@@ -193,8 +201,9 @@ namespace River.OneMoreAddIn.Commands
 				var element = elements[ei];
 				var n = element.Name.LocalName;
 				var m = $"- [prefix:[{prefix}] depth:{depth} start:{startOfLine} contained:{contained} element {n}";
+#if DBGLOG
 				logger.Debug(n == "T" ? $"{m} [{element.Value}]" : m);
-
+#endif
 				switch (n)
 				{
 					case "OEChildren":
@@ -341,7 +350,9 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
+#if DBGLOG
 			logger.Debug("out");
+#endif
 		}
 
 
@@ -544,7 +555,9 @@ namespace River.OneMoreAddIn.Commands
 				writer.Write("\\");
 			}
 
+#if DBGLOG
 			logger.Debug($"text [{raw}]");
+#endif
 			writer.Write(raw);
 		}
 
