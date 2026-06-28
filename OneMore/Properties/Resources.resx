@@ -2378,6 +2378,18 @@ Do you want to refresh the existing page?</value>
     <value>http://schemas.microsoft.com/office/onenote/2013/onenote</value>
     <comment>!SKIP</comment>
   </data>
+  <data name="OpenFolderCommand_duplicates" xml:space="preserve">
+    <value>Some section names were not modified to avoid duplicate names and preserve timestamp history or because they were locked</value>
+    <comment>message</comment>
+  </data>
+  <data name="OpenFolderCommand_error" xml:space="preserve">
+    <value>There was a problem loading or updating the notebook</value>
+    <comment>message</comment>
+  </data>
+  <data name="OpenFolderDialog_editBox.Text" xml:space="preserve">
+    <value>Remove timestamps from section names, e.g. (On 4-12-2025)</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="OpenFolderDialog_Text" xml:space="preserve">
     <value>Open Folder as Notebook</value>
     <comment>dialog title</comment>

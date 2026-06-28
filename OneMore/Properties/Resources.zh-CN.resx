@@ -2364,6 +2364,18 @@ OneNote 文件 (*.one)</value>
     <value>http://schemas.microsoft.com/office/onenote/2013/onenote</value>
     <comment>DO NOT TRANSLATE</comment>
   </data>
+  <data name="OpenFolderCommand_duplicates" xml:space="preserve">
+    <value>某些部分名称未修改以避免重复名称并保留时间戳历史记录或因为它们已被锁定</value>
+    <comment>message</comment>
+  </data>
+  <data name="OpenFolderCommand_error" xml:space="preserve">
+    <value>加载或更新笔记本时出现问题</value>
+    <comment>message</comment>
+  </data>
+  <data name="OpenFolderDialog_editBox.Text" xml:space="preserve">
+    <value>从部分名称中删除时间戳，例如（2025 年 4 月 12 日）</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="OpenFolderDialog_Text" xml:space="preserve">
     <value>打开文件夹作为笔记本</value>
     <comment>dialog title</comment>

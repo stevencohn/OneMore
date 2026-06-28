@@ -2350,6 +2350,18 @@ Total Row Font
   <data name="OneMoreTab_Label" xml:space="preserve">
     <value>עוד אחד</value>
   </data>
+  <data name="OpenFolderCommand_duplicates" xml:space="preserve">
+    <value>חלק משמות המדורים לא שונו כדי למנוע שמות כפולים ולשמור על היסטוריית חותמות זמן או בגלל שהם נעולים</value>
+    <comment>message</comment>
+  </data>
+  <data name="OpenFolderCommand_error" xml:space="preserve">
+    <value>הייתה בעיה בטעינה או עדכון של המחברת</value>
+    <comment>message</comment>
+  </data>
+  <data name="OpenFolderDialog_editBox.Text" xml:space="preserve">
+    <value>הסר חותמות זמן משמות המדורים, למשל. (בתאריך 4-12-2025)</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="OpenFolderDialog_Text" xml:space="preserve">
     <value>פתח את התיקיה כמחברת</value>
     <comment>dialog title</comment>

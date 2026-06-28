@@ -2350,6 +2350,18 @@ Vuoi aggiornare la pagina esistente?</value>
   <data name="OneMoreTab_Label" xml:space="preserve">
     <value>Uno di più</value>
   </data>
+  <data name="OpenFolderCommand_duplicates" xml:space="preserve">
+    <value>Alcuni nomi di sezione non sono stati modificati per evitare nomi duplicati e preservare la cronologia del timestamp o perché erano bloccati</value>
+    <comment>message</comment>
+  </data>
+  <data name="OpenFolderCommand_error" xml:space="preserve">
+    <value>Si è verificato un problema durante il caricamento o l'aggiornamento del notebook</value>
+    <comment>message</comment>
+  </data>
+  <data name="OpenFolderDialog_editBox.Text" xml:space="preserve">
+    <value>Rimuovi i timestamp dai nomi delle sezioni, ad es. (Il 4-12-2025)</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="OpenFolderDialog_Text" xml:space="preserve">
     <value>Apri la cartella come taccuino</value>
     <comment>dialog title</comment>

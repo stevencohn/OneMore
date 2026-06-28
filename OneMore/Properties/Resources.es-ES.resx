@@ -2353,6 +2353,18 @@ Cuadrado Marrón</value>
     <value>http://schemas.microsoft.com/office/onenote/2013/onenote</value>
     <comment>DO NOT TRANSLATE</comment>
   </data>
+  <data name="OpenFolderCommand_duplicates" xml:space="preserve">
+    <value>Algunos nombres de secciones no se modificaron para evitar nombres duplicados y preservar el historial de marcas de tiempo o porque estaban bloqueados.</value>
+    <comment>message</comment>
+  </data>
+  <data name="OpenFolderCommand_error" xml:space="preserve">
+    <value>Hubo un problema al cargar o actualizar el cuaderno.</value>
+    <comment>message</comment>
+  </data>
+  <data name="OpenFolderDialog_editBox.Text" xml:space="preserve">
+    <value>Elimine las marcas de tiempo de los nombres de las secciones, p. (El 4-12-2025)</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="OpenFolderDialog_Text" xml:space="preserve">
     <value>Abra la carpeta como portátil</value>
     <comment>dialog title</comment>
