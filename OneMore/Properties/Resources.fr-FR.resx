@@ -2361,6 +2361,18 @@ Voulez-vous actualiser la page existante ?</value>
     <value>http://schemas.microsoft.com/office/onenote/2013/onenote</value>
     <comment>DO NOT TRANSLATE</comment>
   </data>
+  <data name="OpenFolderCommand_duplicates" xml:space="preserve">
+    <value>Certains noms de sections n'ont pas été modifiés pour éviter les noms en double et préserver l'historique de l'horodatage ou parce qu'ils étaient verrouillés</value>
+    <comment>message</comment>
+  </data>
+  <data name="OpenFolderCommand_error" xml:space="preserve">
+    <value>Un problème est survenu lors du chargement ou de la mise à jour du notebook</value>
+    <comment>message</comment>
+  </data>
+  <data name="OpenFolderDialog_editBox.Text" xml:space="preserve">
+    <value>Supprimez les horodatages des noms de section, par ex. (Le 12/04/2025)</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="OpenFolderDialog_Text" xml:space="preserve">
     <value>Ouvrez le dossier en tant que cahier</value>
     <comment>dialog title</comment>

@@ -5878,6 +5878,33 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Some section names were not modified to avoid duplicate names and preserve timestamp history or because they were locked.
+        /// </summary>
+        internal static string OpenFolderCommand_duplicates {
+            get {
+                return ResourceManager.GetString("OpenFolderCommand_duplicates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There was a problem loading or updating the notebook.
+        /// </summary>
+        internal static string OpenFolderCommand_error {
+            get {
+                return ResourceManager.GetString("OpenFolderCommand_error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove timestamps from section names, e.g. (On 4-12-2025).
+        /// </summary>
+        internal static string OpenFolderDialog_editBox_Text {
+            get {
+                return ResourceManager.GetString("OpenFolderDialog_editBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Open Folder as Notebook.
         /// </summary>
         internal static string OpenFolderDialog_Text {

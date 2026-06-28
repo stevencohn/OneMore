@@ -2350,6 +2350,18 @@ Wilt u de bestaande pagina vernieuwen?</value>
   <data name="OneMoreTab_Label" xml:space="preserve">
     <value>Nog een</value>
   </data>
+  <data name="OpenFolderCommand_duplicates" xml:space="preserve">
+    <value>Sommige sectienamen zijn niet gewijzigd om dubbele namen te voorkomen en de tijdstempelgeschiedenis te behouden of omdat ze vergrendeld waren</value>
+    <comment>message</comment>
+  </data>
+  <data name="OpenFolderCommand_error" xml:space="preserve">
+    <value>Er is een probleem opgetreden bij het laden of bijwerken van de notebook</value>
+    <comment>message</comment>
+  </data>
+  <data name="OpenFolderDialog_editBox.Text" xml:space="preserve">
+    <value>Verwijder tijdstempels uit sectienamen, b.v. (Op 4-12-2025)</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="OpenFolderDialog_Text" xml:space="preserve">
     <value>Open de map als notitieboekje</value>
     <comment>dialog title</comment>

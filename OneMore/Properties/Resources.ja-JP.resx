@@ -2353,6 +2353,18 @@ OneNoteファイル (*.one)</value>
   <data name="OneMoreTab_Label" xml:space="preserve">
     <value>OneMore</value>
   </data>
+  <data name="OpenFolderCommand_duplicates" xml:space="preserve">
+    <value>一部のセクション名は、名前の重複を避けてタイムスタンプの履歴を保存するため、またはロックされていたために変更されませんでした。</value>
+    <comment>message</comment>
+  </data>
+  <data name="OpenFolderCommand_error" xml:space="preserve">
+    <value>ノートブックの読み込みまたは更新で問題が発生しました</value>
+    <comment>message</comment>
+  </data>
+  <data name="OpenFolderDialog_editBox.Text" xml:space="preserve">
+    <value>セクション名からタイムスタンプを削除します。 (2025 年 4 月 12 日)</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="OpenFolderDialog_Text" xml:space="preserve">
     <value>ノートブックとしてフォルダーを開きます</value>
     <comment>dialog title</comment>

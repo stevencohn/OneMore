@@ -2349,6 +2349,18 @@ Möchten Sie die bestehende Seite aktualisieren?</value>
     <value>http://schemas.microsoft.com/office/onenote/2013/onenote</value>
     <comment>DO NOT TRANSLATE</comment>
   </data>
+  <data name="OpenFolderCommand_duplicates" xml:space="preserve">
+    <value>Einige Abschnittsnamen wurden nicht geändert, um doppelte Namen zu vermeiden und den Zeitstempelverlauf beizubehalten, oder weil sie gesperrt waren</value>
+    <comment>message</comment>
+  </data>
+  <data name="OpenFolderCommand_error" xml:space="preserve">
+    <value>Beim Laden oder Aktualisieren des Notebooks ist ein Problem aufgetreten</value>
+    <comment>message</comment>
+  </data>
+  <data name="OpenFolderDialog_editBox.Text" xml:space="preserve">
+    <value>Entfernen Sie Zeitstempel aus Abschnittsnamen, z. B. (Am 4.12.2025)</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="OpenFolderDialog_Text" xml:space="preserve">
     <value>Öffnen Sie den Ordner als Notizbuch</value>
     <comment>dialog title</comment>

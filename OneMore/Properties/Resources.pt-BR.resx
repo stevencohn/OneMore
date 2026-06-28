@@ -2350,6 +2350,18 @@ Deseja atualizar a página existente?</value>
   <data name="OneMoreTab_Label" xml:space="preserve">
     <value>Mais um</value>
   </data>
+  <data name="OpenFolderCommand_duplicates" xml:space="preserve">
+    <value>Alguns nomes de seções não foram modificados para evitar nomes duplicados e preservar o histórico de carimbo de data/hora ou porque estavam bloqueados</value>
+    <comment>message</comment>
+  </data>
+  <data name="OpenFolderCommand_error" xml:space="preserve">
+    <value>Ocorreu um problema ao carregar ou atualizar o notebook</value>
+    <comment>message</comment>
+  </data>
+  <data name="OpenFolderDialog_editBox.Text" xml:space="preserve">
+    <value>Remova carimbos de data/hora dos nomes das seções, por exemplo. (Em 12/04/2025)</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="OpenFolderDialog_Text" xml:space="preserve">
     <value>Pasta aberta como caderno</value>
     <comment>dialog title</comment>

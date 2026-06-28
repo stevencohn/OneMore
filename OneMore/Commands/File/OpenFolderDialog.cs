@@ -14,6 +14,8 @@ namespace River.OneMoreAddIn.Commands
 
 	internal partial class OpenFolderDialog : UI.MoreForm
 	{
+		private readonly string backupFolder;
+
 
 		public OpenFolderDialog()
 		{
@@ -26,10 +28,14 @@ namespace River.OneMoreAddIn.Commands
 				Localize(new string[]
 				{
 					"folderLabel=word_Folder",
+					"editBox",
 					"okButton=word_OK",
 					"cancelButton=word_Cancel"
 				});
 			}
+
+			using var one = new OneNote();
+			(backupFolder, _, _) = one.GetFolders();
 
 			pathBox.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 		}
@@ -38,11 +44,29 @@ namespace River.OneMoreAddIn.Commands
 		public string FolderPath => pathBox.Text;
 
 
+		public bool RemoveTimestamps => editBox.Checked;
+
+
 		private void ChangePath(object sender, EventArgs e)
 		{
-			okButton.Enabled =
-				pathBox.Text.Trim().Length > 0 &&
-				System.IO.Directory.Exists(pathBox.Text);
+			var path = pathBox.Text.Trim();
+			var exists = path.Length > 0 && System.IO.Directory.Exists(path);
+
+			okButton.Enabled = exists;
+
+			if (exists &&
+				backupFolder != null &&
+				path.StartsWith(backupFolder, StringComparison.OrdinalIgnoreCase))
+			{
+				editBox.Checked = false;
+				editBox.Enabled = false;
+				okButton.Enabled = false;
+			}
+			else
+			{
+				editBox.Enabled = true;
+				okButton.Enabled = true;
+			}
 		}
 
 
@@ -57,7 +81,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					using var dialog = new FolderBrowserDialog()
 					{
-						Description = "Folder to open as a new notebook:",
+						Description = Resx.OpenFolderDialog_Text,
 						SelectedPath = path
 					};
 

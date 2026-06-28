@@ -2350,6 +2350,18 @@ Czy chcesz odświeżyć istniejącą stronę?</value>
   <data name="OneMoreTab_Label" xml:space="preserve">
     <value>Jeszcze jeden</value>
   </data>
+  <data name="OpenFolderCommand_duplicates" xml:space="preserve">
+    <value>Nazwy niektórych sekcji nie zostały zmodyfikowane, aby uniknąć duplikacji nazw i zachować historię sygnatur czasowych lub ponieważ były zablokowane</value>
+    <comment>message</comment>
+  </data>
+  <data name="OpenFolderCommand_error" xml:space="preserve">
+    <value>Wystąpił problem z ładowaniem lub aktualizacją notatnika</value>
+    <comment>message</comment>
+  </data>
+  <data name="OpenFolderDialog_editBox.Text" xml:space="preserve">
+    <value>Usuń znaczniki czasu z nazw sekcji, np. (W dniu 4-12-2025)</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="OpenFolderDialog_Text" xml:space="preserve">
     <value>Otwórz folder jako notatnik</value>
     <comment>dialog title</comment>

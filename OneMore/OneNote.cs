@@ -109,7 +109,7 @@ namespace River.OneMoreAddIn
 		public class HyperlinkInfo
 		{
 			public string PageID;       // pageID
-			public string SectionID;    // sectionID
+			public string SectionID;    // objectID
 			public string HyperID;      // hyperlink section-id or page-id
 			public string Name;         // section or page name
 			public string Path;         // relative path within current scope (section, notebook)
@@ -1814,19 +1814,19 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// 
+		/// Open a notebook folder, section group folder, or section .one file
 		/// </summary>
-		/// <param name="path"></param>
-		/// <returns></returns>
+		/// <param name="path">The physical path of the data to open.</param>
+		/// <returns>The ID of the notebook, section group, or section that was opened.</returns>
 		public async Task<string> OpenHierarchy(string path)
 		{
-			string sectionID = null;
+			string objectID = null;
 			await InvokeWithRetry(() =>
 			{
-				onenote.OpenHierarchy(path, null, out sectionID, CreateFileType.cftNotebook);
+				onenote.OpenHierarchy(path, null, out objectID, CreateFileType.cftNotebook);
 			});
 
-			return sectionID;
+			return objectID;
 		}
 
 

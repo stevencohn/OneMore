@@ -2361,6 +2361,18 @@
     <value>http://schemas.microsoft.com/office/onenote/2013/onenote</value>
     <comment>DO NOT TRANSLATE</comment>
   </data>
+  <data name="OpenFolderCommand_duplicates" xml:space="preserve">
+    <value>لم يتم تعديل بعض أسماء الأقسام لتجنب الأسماء المكررة والحفاظ على سجل الطوابع الزمنية أو لأنها كانت مقفلة</value>
+    <comment>message</comment>
+  </data>
+  <data name="OpenFolderCommand_error" xml:space="preserve">
+    <value>حدثت مشكلة أثناء تحميل دفتر الملاحظات أو تحديثه</value>
+    <comment>message</comment>
+  </data>
+  <data name="OpenFolderDialog_editBox.Text" xml:space="preserve">
+    <value>إزالة الطوابع الزمنية من أسماء الأقسام، على سبيل المثال. (بتاريخ 2025-12-4)</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="OpenFolderDialog_Text" xml:space="preserve">
     <value>فتح المجلد كدفتر ملاحظات</value>
     <comment>dialog title</comment>
