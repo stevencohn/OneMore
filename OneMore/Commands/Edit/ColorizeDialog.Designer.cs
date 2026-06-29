@@ -32,7 +32,7 @@
 			this.controlPanel = new System.Windows.Forms.Panel();
 			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.mainPanel = new System.Windows.Forms.Panel();
-			this.view = new System.Windows.Forms.ListView();
+			this.view = new River.OneMoreAddIn.UI.MoreListView();
 			this.nameColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.controlPanel.SuspendLayout();
 			this.mainPanel.SuspendLayout();
@@ -80,7 +80,6 @@
 			// 
 			// view
 			// 
-			this.view.BackColor = System.Drawing.SystemColors.Window;
 			this.view.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.nameColumn});
 			this.view.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -92,7 +91,6 @@
 			this.view.Name = "view";
 			this.view.Size = new System.Drawing.Size(353, 496);
 			this.view.TabIndex = 0;
-			this.view.UseCompatibleStateImageBehavior = false;
 			this.view.View = System.Windows.Forms.View.Details;
 			this.view.DoubleClick += new System.EventHandler(this.SelectOnDoubleClick);
 			this.view.KeyUp += new System.Windows.Forms.KeyEventHandler(this.CancelOnKeyUp);
@@ -128,7 +126,7 @@
 		private System.Windows.Forms.Panel controlPanel;
 		private UI.MoreButton okButton;
 		private System.Windows.Forms.Panel mainPanel;
-		private System.Windows.Forms.ListView view;
+		private River.OneMoreAddIn.UI.MoreListView view;
 		private System.Windows.Forms.ColumnHeader nameColumn;
 	}
 }

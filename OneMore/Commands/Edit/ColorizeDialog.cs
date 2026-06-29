@@ -18,6 +18,9 @@ namespace River.OneMoreAddIn.Commands
 
 	internal partial class ColorizeDialog : UI.MoreForm
 	{
+		private readonly Dictionary<string, Bitmap> languageImages = new();
+
+
 		public ColorizeDialog()
 		{
 			InitializeComponent();
@@ -33,18 +36,17 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			var languages = LoadFilteredLanguages();
-			var imageList = MakeImageList(languages);
+			LoadLanguageImages(languages);
 
-			view.SmallImageList = imageList;
+			view.SmallImageList = new ImageList { ImageSize = new Size(1, 18) };
+			view.GetCellImage = GetLanguageCellImage;
 
-			var index = 0;
 			foreach (var key in languages.Keys)
 			{
-				view.Items.Add(new ListViewItem(key, index++)
-				{
-					Tag = languages[key]
-				});
+				view.Items.Add(new ListViewItem(key) { Tag = languages[key] });
 			}
+
+			view.SetColumnProportions(1f);
 
 			if (view.Items.Count > 0)
 			{
@@ -78,10 +80,8 @@ namespace River.OneMoreAddIn.Commands
 			: view.SelectedItems[0].Tag as string;
 
 
-		private ImageList MakeImageList(IDictionary<string, string> languages)
+		private void LoadLanguageImages(IDictionary<string, string> languages)
 		{
-			var list = new ImageList();
-
 			foreach (var key in languages.Keys)
 			{
 				try
@@ -91,7 +91,15 @@ namespace River.OneMoreAddIn.Commands
 
 					if (File.Exists(path))
 					{
-						list.Images.Add((Bitmap)Image.FromFile(path));
+						using var original = Image.FromFile(path);
+						var scaled = new Bitmap(16, 16);
+						using (var g = Graphics.FromImage(scaled))
+						{
+							g.InterpolationMode =
+								System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+							g.DrawImage(original, 0, 0, 16, 16);
+						}
+						languageImages[key] = scaled;
 					}
 				}
 				catch (Exception exc)
@@ -99,15 +107,20 @@ namespace River.OneMoreAddIn.Commands
 					logger.WriteLine(exc);
 				}
 			}
-
-			return list;
 		}
 
 
-		protected override void OnLoad(EventArgs e)
+		private Image GetLanguageCellImage(ListViewItem item, int columnIndex) =>
+			languageImages.TryGetValue(item.Text, out var image) ? image : null;
+
+
+		protected override void OnClosed(EventArgs e)
 		{
-			base.OnLoad(e);
-			nameColumn.Width = view.ClientSize.Width;
+			foreach (var image in languageImages.Values)
+			{
+				image.Dispose();
+			}
+			languageImages.Clear();
 		}
 
 
