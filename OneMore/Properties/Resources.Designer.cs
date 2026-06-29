@@ -3461,6 +3461,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This notebook has been excluded from hashtag scanning.
+        /// </summary>
+        internal static string HashtagCommand_notebookExcluded {
+            get {
+                return ResourceManager.GetString("HashtagCommand_notebookExcluded", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Processed {0} hashtags on this page.
         /// </summary>
         internal static string HashtagCommand_scanPageComplete {
@@ -11901,6 +11910,42 @@ namespace River.OneMoreAddIn.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to No notebooks have been scanned yet. Run an initial hashtag scan first..
+        /// </summary>
+        internal static string NotebooksDialog_emptyLabel {
+            get {
+                return ResourceManager.GetString("NotebooksDialog_emptyLabel", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Select notebooks to include or exclude from hashtag scanning. ✔ identifies notebooks that have already been scanned..
+        /// </summary>
+        internal static string NotebooksDialog_infoLabel {
+            get {
+                return ResourceManager.GetString("NotebooksDialog_infoLabel", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to ✔.
+        /// </summary>
+        internal static string NotebooksDialog_scanned {
+            get {
+                return ResourceManager.GetString("NotebooksDialog_scanned", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Notebook Selection.
+        /// </summary>
+        internal static string NotebooksDialog_Title {
+            get {
+                return ResourceManager.GetString("NotebooksDialog_Title", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Schedule Hashtag Scanning.
         /// </summary>

@@ -96,6 +96,13 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
+		private void SelectNotebooks(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			using var dialog = new NotebooksDialog();
+			dialog.ShowDialog(this);
+		}
+
+
 		private async void ScheduleRebuild(object sender, LinkLabelLinkClickedEventArgs e)
 		{
 			var cmd = new HashtagScanCommand();

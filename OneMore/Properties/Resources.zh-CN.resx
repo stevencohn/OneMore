@@ -1495,6 +1495,9 @@ OneNote 文件 (*.one)</value>
     <value>标记页面</value>
     <comment>page title</comment>
   </data>
+  <data name="HashtagCommand_notebookExcluded" xml:space="preserve">
+    <value>该笔记本已被排除在主题标签扫描之外。要包含它，请打开“设置”并选择“主题标签”页面。</value>
+  </data>
   <data name="HashtagCommand_scanComplete" xml:space="preserve">
     <value>扫描了 {0} 个页面，更新了 {1} 个，找到了 {2} 个主题标签</value>
     <comment>toast message</comment>
@@ -1664,6 +1667,10 @@ OneNote 文件 (*.one)</value>
   </data>
   <data name="HashtagSheet_scheduleLink.Text" xml:space="preserve">
     <value>立即扫描或添加扫描计划</value>
+    <comment>link label</comment>
+  </data>
+  <data name="HashtagSheet_selectLink.Text" xml:space="preserve">
+    <value>选择要包含或跳过主题标签扫描的笔记本</value>
     <comment>link label</comment>
   </data>
   <data name="HashtagSheet_styleBox.Text" xml:space="preserve">
@@ -2336,6 +2343,22 @@ OneNote 文件 (*.one)</value>
   <data name="NextUnreadPageCommand_nomore" xml:space="preserve">
     <value>在该方向没有找到未读页面</value>
     <comment>message</comment>
+  </data>
+  <data name="NotebooksDialog_emptyLabel" xml:space="preserve">
+    <value>尚未扫描任何笔记本。首先运行初始主题标签扫描。</value>
+    <comment>label</comment>
+  </data>
+  <data name="NotebooksDialog_infoLabel" xml:space="preserve">
+    <value>选择要包含在主题标签扫描中或从主题标签扫描中排除的笔记本。 ✔ 识别已扫描的笔记本。</value>
+    <comment>label</comment>
+  </data>
+  <data name="NotebooksDialog_scanned" xml:space="preserve">
+    <value>✔</value>
+    <comment>suffix appended to notebook names that have been scanned</comment>
+  </data>
+  <data name="NotebooksDialog_Title" xml:space="preserve">
+    <value>笔记本选择</value>
+    <comment>dialog title</comment>
   </data>
   <data name="NumberingPage_Message" xml:space="preserve">
     <value>编号页{0}</value>

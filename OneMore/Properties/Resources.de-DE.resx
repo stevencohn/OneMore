@@ -1484,6 +1484,9 @@ Dunkel</value>
     <value>Mit Tags versehene Seiten</value>
     <comment>page title</comment>
   </data>
+  <data name="HashtagCommand_notebookExcluded" xml:space="preserve">
+    <value>Dieses Notizbuch wurde vom Hashtag-Scanning ausgeschlossen. Um es einzuschließen, öffnen Sie die Einstellungen und wählen Sie die Seite „Hashtags“ aus.</value>
+  </data>
   <data name="HashtagCommand_scanComplete" xml:space="preserve">
     <value>{0} Seiten gescannt, {1} aktualisiert, {2} Hashtags gefunden</value>
     <comment>toast message</comment>
@@ -1653,6 +1656,10 @@ Diese Seite</value>
   </data>
   <data name="HashtagSheet_scheduleLink.Text" xml:space="preserve">
     <value>Planen Sie jetzt das Hashtag -Scannen oder Scannen</value>
+    <comment>link label</comment>
+  </data>
+  <data name="HashtagSheet_selectLink.Text" xml:space="preserve">
+    <value>Wählen Sie Notizbücher aus, die beim Hashtag-Scannen einbezogen oder übersprungen werden sollen</value>
     <comment>link label</comment>
   </data>
   <data name="HashtagSheet_styleBox.Text" xml:space="preserve">
@@ -2325,6 +2332,22 @@ Möchten Sie die bestehende Seite aktualisieren?</value>
   <data name="NextUnreadPageCommand_nomore" xml:space="preserve">
     <value>In dieser Richtung wurden keine ungelesenen Seiten gefunden</value>
     <comment>message</comment>
+  </data>
+  <data name="NotebooksDialog_emptyLabel" xml:space="preserve">
+    <value>Es wurden noch keine Notizbücher gescannt. Führen Sie zunächst einen ersten Hashtag-Scan durch.</value>
+    <comment>label</comment>
+  </data>
+  <data name="NotebooksDialog_infoLabel" xml:space="preserve">
+    <value>Wählen Sie Notizbücher aus, die Sie in die Hashtag-Überprüfung einbeziehen oder davon ausschließen möchten. ✔ identifiziert bereits gescannte Notizbücher.</value>
+    <comment>label</comment>
+  </data>
+  <data name="NotebooksDialog_scanned" xml:space="preserve">
+    <value>✔</value>
+    <comment>suffix appended to notebook names that have been scanned</comment>
+  </data>
+  <data name="NotebooksDialog_Title" xml:space="preserve">
+    <value>Notebook-Auswahl</value>
+    <comment>dialog title</comment>
   </data>
   <data name="NumberingPage_Message" xml:space="preserve">
     <value>Nummerierungsseite {0}</value>

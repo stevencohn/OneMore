@@ -902,8 +902,10 @@ namespace River.OneMoreAddIn.Commands
 					}
 				}
 
-				cmd.CommandText = "REPLACE INTO hashtag_notebook " +
-					"(notebookID, name, lastModified) VALUES (@nid, @nam, @mod)";
+				cmd.CommandText =
+					"INSERT INTO hashtag_notebook (notebookID, name, included, lastModified) " +
+					"VALUES (@nid, @nam, 1, @mod) " +
+					"ON CONFLICT(notebookID) DO UPDATE SET name = @nam, lastModified = @mod";
 
 				cmd.Parameters.Clear();
 				cmd.Parameters.AddWithValue("@nid", notebookID);
@@ -924,14 +926,15 @@ namespace River.OneMoreAddIn.Commands
 		/// </summary>
 		/// <param name="notebookID"></param>
 		/// <param name="included"></param>
-		public void WriteNotebookInclusion(string notebookID, bool included)
+		public void WriteNotebookInclusion(string notebookID, string name, bool included)
 		{
 			using var cmd = con.CreateCommand();
-			cmd.CommandText = "REPLACE INTO hashtag_notebook " +
-				"(notebookID, name, lastModified) VALUES (@nid, @nam, @mod)";
-
-			cmd.Parameters.Clear();
+			cmd.CommandText =
+				"INSERT INTO hashtag_notebook (notebookID, name, included, lastModified) " +
+				"VALUES (@nid, @nam, @inc, '') " +
+				"ON CONFLICT(notebookID) DO UPDATE SET included = @inc";
 			cmd.Parameters.AddWithValue("@nid", notebookID);
+			cmd.Parameters.AddWithValue("@nam", name);
 			cmd.Parameters.AddWithValue("@inc", included ? 1 : 0);
 
 			try

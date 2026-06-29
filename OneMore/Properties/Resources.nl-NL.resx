@@ -1489,6 +1489,9 @@ Donker</value>
     <value>Getagde pagina's</value>
     <comment>page title</comment>
   </data>
+  <data name="HashtagCommand_notebookExcluded" xml:space="preserve">
+    <value>Dit notitieboekje is uitgesloten van het scannen van hashtags. Om het toe te voegen, opent u Instellingen en selecteert u de pagina Hashtags.</value>
+  </data>
   <data name="HashtagCommand_scanComplete" xml:space="preserve">
     <value>{0} pagina's gescand, {1} bijgewerkt, {2} hashtags gevonden</value>
     <comment>toast message</comment>
@@ -1658,6 +1661,10 @@ Deze pagina</value>
   </data>
   <data name="HashtagSheet_scheduleLink.Text" xml:space="preserve">
     <value>Plan hashtag scannen of scan nu</value>
+    <comment>link label</comment>
+  </data>
+  <data name="HashtagSheet_selectLink.Text" xml:space="preserve">
+    <value>Selecteer notitieboekjes die u wilt opnemen of overslaan bij het scannen van hashtags</value>
     <comment>link label</comment>
   </data>
   <data name="HashtagSheet_styleBox.Text" xml:space="preserve">
@@ -2330,6 +2337,22 @@ Wilt u de bestaande pagina vernieuwen?</value>
   <data name="NextUnreadPageCommand_nomore" xml:space="preserve">
     <value>Geen ongelezen pagina's gevonden in die richting</value>
     <comment>message</comment>
+  </data>
+  <data name="NotebooksDialog_emptyLabel" xml:space="preserve">
+    <value>Er zijn nog geen notitieboekjes gescand. Voer eerst een eerste hashtagscan uit.</value>
+    <comment>label</comment>
+  </data>
+  <data name="NotebooksDialog_infoLabel" xml:space="preserve">
+    <value>Selecteer notitieboekjes die u wilt opnemen of uitsluiten van het scannen van hashtags. ✔ identificeert notitieboekjes die al zijn gescand.</value>
+    <comment>label</comment>
+  </data>
+  <data name="NotebooksDialog_scanned" xml:space="preserve">
+    <value>✔</value>
+    <comment>suffix appended to notebook names that have been scanned</comment>
+  </data>
+  <data name="NotebooksDialog_Title" xml:space="preserve">
+    <value>Notitieboekselectie</value>
+    <comment>dialog title</comment>
   </data>
   <data name="NumberingPage_Message" xml:space="preserve">
     <value>Nummeringspagina {0}</value>

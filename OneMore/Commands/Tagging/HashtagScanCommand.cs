@@ -39,6 +39,19 @@ namespace River.OneMoreAddIn.Commands
 		public override async Task Execute(params object[] args)
 		{
 			using var one = new OneNote();
+
+			if (HashtagProvider.CatalogExists())
+			{
+				using var provider = new HashtagProvider();
+				var knownNotebooks = provider.ReadKnownNotebooks();
+				var known = knownNotebooks.Find(n => n.NotebookID == one.CurrentNotebookId);
+				if (known is not null && !known.Included)
+				{
+					ShowInfo(Resx.HashtagCommand_notebookExcluded);
+					return;
+				}
+			}
+
 			using var scanner = new HashtagScanner();
 
 			var section = await one.GetSectionInfo();

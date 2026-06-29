@@ -1492,6 +1492,9 @@ Sombre</value>
     <value>Pages marquées</value>
     <comment>page title</comment>
   </data>
+  <data name="HashtagCommand_notebookExcluded" xml:space="preserve">
+    <value>Ce bloc-notes a été exclu de l'analyse des hashtags. Pour l'inclure, ouvrez Paramètres et sélectionnez la page Hashtags.</value>
+  </data>
   <data name="HashtagCommand_scanComplete" xml:space="preserve">
     <value>{0} pages analysées, mises à jour {1}, trouvées {2} hashtags</value>
     <comment>toast message</comment>
@@ -1661,6 +1664,10 @@ Cette page</value>
   </data>
   <data name="HashtagSheet_scheduleLink.Text" xml:space="preserve">
     <value>Planifiez la numérisation ou la numérisation du hashtag maintenant</value>
+    <comment>link label</comment>
+  </data>
+  <data name="HashtagSheet_selectLink.Text" xml:space="preserve">
+    <value>Sélectionnez les blocs-notes à inclure ou à ignorer dans l'analyse des hashtags</value>
     <comment>link label</comment>
   </data>
   <data name="HashtagSheet_styleBox.Text" xml:space="preserve">
@@ -2333,6 +2340,22 @@ Voulez-vous actualiser la page existante ?</value>
   <data name="NextUnreadPageCommand_nomore" xml:space="preserve">
     <value>Aucune page non lue trouvée dans cette direction</value>
     <comment>message</comment>
+  </data>
+  <data name="NotebooksDialog_emptyLabel" xml:space="preserve">
+    <value>Aucun carnet n'a encore été analysé. Exécutez d’abord une première analyse de hashtag.</value>
+    <comment>label</comment>
+  </data>
+  <data name="NotebooksDialog_infoLabel" xml:space="preserve">
+    <value>Sélectionnez les blocs-notes à inclure ou à exclure de l'analyse des hashtags. ✔ identifie les cahiers déjà numérisés.</value>
+    <comment>label</comment>
+  </data>
+  <data name="NotebooksDialog_scanned" xml:space="preserve">
+    <value>✔</value>
+    <comment>suffix appended to notebook names that have been scanned</comment>
+  </data>
+  <data name="NotebooksDialog_Title" xml:space="preserve">
+    <value>Sélection de cahiers</value>
+    <comment>dialog title</comment>
   </data>
   <data name="NumberingPage_Message" xml:space="preserve">
     <value>Page de numérotation {0}</value>

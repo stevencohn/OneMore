@@ -181,6 +181,12 @@ namespace River.OneMoreAddIn.Commands
 
 					var known = knownNotebooks.Find(n => n.NotebookID == notebookID);
 
+					if (known is not null && !known.Included)
+					{
+						logger.Verbose($"skipping excluded notebook {notebookID} \"{name}\"");
+						continue;
+					}
+
 					// Filter on three levels...
 					//
 					// knownNotebooks

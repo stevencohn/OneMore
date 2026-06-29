@@ -1497,6 +1497,9 @@ Dark</value>
     <value>Tagged Pages</value>
     <comment>page title</comment>
   </data>
+  <data name="HashtagCommand_notebookExcluded" xml:space="preserve">
+    <value>This notebook has been excluded from hashtag scanning. To include it, open Settings and select the Hashtags page.</value>
+  </data>
   <data name="HashtagCommand_scanComplete" xml:space="preserve">
     <value>Scanned {0} pages, updated {1}, found {2} hashtags</value>
     <comment>toast message</comment>
@@ -2342,6 +2345,22 @@ Do you want to refresh the existing page?</value>
   <data name="NextUnreadPageCommand_nomore" xml:space="preserve">
     <value>No unread pages found in that direction</value>
     <comment>message</comment>
+  </data>
+  <data name="NotebooksDialog_emptyLabel" xml:space="preserve">
+    <value>No notebooks have been scanned yet. Run an initial hashtag scan first.</value>
+    <comment>label</comment>
+  </data>
+  <data name="NotebooksDialog_infoLabel" xml:space="preserve">
+    <value>Select notebooks to include or exclude from hashtag scanning. ✔ identifies notebooks that have already been scanned.</value>
+    <comment>label</comment>
+  </data>
+  <data name="NotebooksDialog_scanned" xml:space="preserve">
+    <value>✔</value>
+    <comment>suffix appended to notebook names that have been scanned</comment>
+  </data>
+  <data name="NotebooksDialog_Title" xml:space="preserve">
+    <value>Notebook Selection</value>
+    <comment>dialog title</comment>
   </data>
   <data name="NumberingPage_Message" xml:space="preserve">
     <value>Numbering page {0}</value>

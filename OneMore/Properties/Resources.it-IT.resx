@@ -1489,6 +1489,9 @@ Scuro</value>
     <value>Pagine contrassegnate</value>
     <comment>page title</comment>
   </data>
+  <data name="HashtagCommand_notebookExcluded" xml:space="preserve">
+    <value>Questo taccuino è stato escluso dalla scansione degli hashtag. Per includerlo, apri Impostazioni e seleziona la pagina Hashtag.</value>
+  </data>
   <data name="HashtagCommand_scanComplete" xml:space="preserve">
     <value>Scansionate {0} pagine, aggiornate {1}, trovati {2} hashtag</value>
     <comment>toast message</comment>
@@ -1658,6 +1661,10 @@ Questa pagina</value>
   </data>
   <data name="HashtagSheet_scheduleLink.Text" xml:space="preserve">
     <value>Pianifica la scansione degli hashtag o Scansiona ora</value>
+    <comment>link label</comment>
+  </data>
+  <data name="HashtagSheet_selectLink.Text" xml:space="preserve">
+    <value>Seleziona i taccuini da includere o saltare nella scansione degli hashtag</value>
     <comment>link label</comment>
   </data>
   <data name="HashtagSheet_styleBox.Text" xml:space="preserve">
@@ -2330,6 +2337,22 @@ Vuoi aggiornare la pagina esistente?</value>
   <data name="NextUnreadPageCommand_nomore" xml:space="preserve">
     <value>Nessuna pagina non letta trovata in quella direzione</value>
     <comment>message</comment>
+  </data>
+  <data name="NotebooksDialog_emptyLabel" xml:space="preserve">
+    <value>Nessun taccuino è stato ancora scansionato. Esegui prima una scansione iniziale dell'hashtag.</value>
+    <comment>label</comment>
+  </data>
+  <data name="NotebooksDialog_infoLabel" xml:space="preserve">
+    <value>Seleziona i taccuini da includere o escludere dalla scansione degli hashtag. ✔ identifica i taccuini che sono già stati scansionati.</value>
+    <comment>label</comment>
+  </data>
+  <data name="NotebooksDialog_scanned" xml:space="preserve">
+    <value>✔</value>
+    <comment>suffix appended to notebook names that have been scanned</comment>
+  </data>
+  <data name="NotebooksDialog_Title" xml:space="preserve">
+    <value>Selezione del taccuino</value>
+    <comment>dialog title</comment>
   </data>
   <data name="NumberingPage_Message" xml:space="preserve">
     <value>Numerazione pagina {0}</value>

@@ -1484,6 +1484,9 @@ Oscuro</value>
     <value>Páginas etiquetadas</value>
     <comment>page title</comment>
   </data>
+  <data name="HashtagCommand_notebookExcluded" xml:space="preserve">
+    <value>Este cuaderno ha sido excluido del escaneo de hashtags. Para incluirlo, abra Configuración y seleccione la página Hashtags.</value>
+  </data>
   <data name="HashtagCommand_scanComplete" xml:space="preserve">
     <value>Escaneé {0} páginas, actualicé {1}, encontré {2} hashtags</value>
     <comment>toast message</comment>
@@ -1653,6 +1656,10 @@ esta pagina</value>
   </data>
   <data name="HashtagSheet_scheduleLink.Text" xml:space="preserve">
     <value>Programe escaneo de hashtag o escaneo ahora</value>
+    <comment>link label</comment>
+  </data>
+  <data name="HashtagSheet_selectLink.Text" xml:space="preserve">
+    <value>Seleccione cuadernos para incluir u omitir en el escaneo de hashtags</value>
     <comment>link label</comment>
   </data>
   <data name="HashtagSheet_styleBox.Text" xml:space="preserve">
@@ -2325,6 +2332,22 @@ Cuadrado Marrón</value>
   <data name="NextUnreadPageCommand_nomore" xml:space="preserve">
     <value>No se encontraron páginas no leídas en esa dirección.</value>
     <comment>message</comment>
+  </data>
+  <data name="NotebooksDialog_emptyLabel" xml:space="preserve">
+    <value>Aún no se han escaneado cuadernos. Primero ejecute un escaneo inicial de hashtag.</value>
+    <comment>label</comment>
+  </data>
+  <data name="NotebooksDialog_infoLabel" xml:space="preserve">
+    <value>Seleccione cuadernos para incluirlos o excluirlos del escaneo de hashtags. ✔ identifica cuadernos que ya han sido escaneados.</value>
+    <comment>label</comment>
+  </data>
+  <data name="NotebooksDialog_scanned" xml:space="preserve">
+    <value>✔</value>
+    <comment>suffix appended to notebook names that have been scanned</comment>
+  </data>
+  <data name="NotebooksDialog_Title" xml:space="preserve">
+    <value>Selección de cuaderno</value>
+    <comment>dialog title</comment>
   </data>
   <data name="NumberingPage_Message" xml:space="preserve">
     <value>Página de numeración {0}</value>

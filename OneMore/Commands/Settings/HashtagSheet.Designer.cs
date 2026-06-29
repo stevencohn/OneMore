@@ -330,7 +330,8 @@ namespace River.OneMoreAddIn.Settings
 			this.selectLink.ThemedBack = null;
 			this.selectLink.ThemedFore = null;
 			this.selectLink.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
-			// 
+			this.selectLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.SelectNotebooks);
+			//
 			// HashtagSheet
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);

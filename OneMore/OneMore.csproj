@@ -348,6 +348,12 @@
     <Compile Include="Commands\Settings\HashtagSheet.Designer.cs">
       <DependentUpon>HashtagSheet.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Settings\NotebooksDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Settings\NotebooksDialog.Designer.cs">
+      <DependentUpon>NotebooksDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Settings\NavigatorSheet.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1391,6 +1397,9 @@
     <Content Include="Commands\Tagging\HashtagsDB.sql" />
     <EmbeddedResource Include="Commands\Page\CreatePagesDialog.resx">
       <DependentUpon>CreatePagesDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Settings\NotebooksDialog.resx">
+      <DependentUpon>NotebooksDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Workspaces\ManageWorkspaceDialog.resx">
       <DependentUpon>ManageWorkspaceDialog.cs</DependentUpon>
