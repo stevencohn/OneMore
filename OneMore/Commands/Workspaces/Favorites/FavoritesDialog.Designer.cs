@@ -59,6 +59,7 @@
 			this.listView.Name = "listView";
 			this.listView.Size = new System.Drawing.Size(778, 410);
 			this.listView.TabIndex = 0;
+			this.listView.Click += new System.EventHandler(this.ClickShowText);
 			this.listView.DoubleClick += new System.EventHandler(this.ChooseByDoubleClick);
 			this.listView.GotFocus += new System.EventHandler(this.RefocusOnGotFocus);
 			this.listView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ChooseByKeyboard);
