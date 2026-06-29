@@ -115,7 +115,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (success)
 			{
-				logger.Verbose(page.Root);
+				logger.Debug(page.Root);
 				await one.Update(page);
 			}
 			else

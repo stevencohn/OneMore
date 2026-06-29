@@ -96,6 +96,11 @@ namespace River.OneMoreAddIn.Commands
 			{
 				version = Upgrade3to4(con);
 			}
+
+			if (version == 4)
+			{
+				version = Upgrade4to5(con);
+			}
 		}
 
 
@@ -310,6 +315,56 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private int Upgrade4to5(SQLiteConnection con)
+		{
+			int version = 5;
+			logger.WriteLine($"upgrading hashtag catalog to version {version}");
+			logger.Start();
+
+			using var cmd = con.CreateCommand();
+			cmd.CommandType = CommandType.Text;
+
+			using var transaction = con.BeginTransaction();
+
+			try
+			{
+				logger.WriteLine("updating table hashtag_notebook");
+
+				cmd.CommandText =
+					"ALTER TABLE hashtag_notebook " +
+					"ADD COLUMN included INTEGER NOT NULL DEFAULT 1 CHECK(included IN(0, 1))";
+
+				cmd.ExecuteNonQuery();
+			}
+			catch (Exception exc)
+			{
+				transaction.Rollback();
+				logger.End();
+				logger.WriteLine("error updating table hashtag_notebook", exc);
+				return 0;
+			}
+
+			if (!UpgradeSchemaVersion(cmd, transaction, version))
+			{
+				return 0;
+			}
+
+			try
+			{
+				transaction.Commit();
+			}
+			catch (Exception exc)
+			{
+				logger.End();
+				logger.WriteLine($"error committing changes for version {version}", exc);
+				return 0;
+			}
+
+			logger.End();
+			return version;
+		}
+
+
 		private bool UpgradeSchemaVersion(
 			SQLiteCommand cmd, SQLiteTransaction transaction, int version)
 		{
@@ -448,7 +503,7 @@ namespace River.OneMoreAddIn.Commands
 
 			using var cmd = con.CreateCommand();
 
-			cmd.CommandText = "SELECT notebookID, name, lastModified FROM hashtag_notebook";
+			cmd.CommandText = "SELECT notebookID, name, included, lastModified FROM hashtag_notebook";
 
 			try
 			{
@@ -459,7 +514,8 @@ namespace River.OneMoreAddIn.Commands
 					{
 						NotebookID = reader.GetString(0),
 						Name = reader.GetString(1),
-						LastModified = reader.GetString(2)
+						Included = reader.GetInt32(2) == 1,
+						LastModified = reader.GetString(3)
 					});
 				}
 			}
@@ -846,8 +902,10 @@ namespace River.OneMoreAddIn.Commands
 					}
 				}
 
-				cmd.CommandText = "REPLACE INTO hashtag_notebook " +
-					"(notebookID, name, lastModified) VALUES (@nid, @nam, @mod)";
+				cmd.CommandText =
+					"INSERT INTO hashtag_notebook (notebookID, name, included, lastModified) " +
+					"VALUES (@nid, @nam, 1, @mod) " +
+					"ON CONFLICT(notebookID) DO UPDATE SET name = @nam, lastModified = @mod";
 
 				cmd.Parameters.Clear();
 				cmd.Parameters.AddWithValue("@nid", notebookID);
@@ -859,6 +917,33 @@ namespace River.OneMoreAddIn.Commands
 			catch (Exception exc)
 			{
 				ReportError("error writing notebook", cmd, exc);
+			}
+		}
+
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="notebookID"></param>
+		/// <param name="included"></param>
+		public void WriteNotebookInclusion(string notebookID, string name, bool included)
+		{
+			using var cmd = con.CreateCommand();
+			cmd.CommandText =
+				"INSERT INTO hashtag_notebook (notebookID, name, included, lastModified) " +
+				"VALUES (@nid, @nam, @inc, '') " +
+				"ON CONFLICT(notebookID) DO UPDATE SET included = @inc";
+			cmd.Parameters.AddWithValue("@nid", notebookID);
+			cmd.Parameters.AddWithValue("@nam", name);
+			cmd.Parameters.AddWithValue("@inc", included ? 1 : 0);
+
+			try
+			{
+				cmd.ExecuteNonQuery();
+			}
+			catch (Exception exc)
+			{
+				ReportError("error updating notebook", cmd, exc);
 			}
 		}
 

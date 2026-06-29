@@ -18,44 +18,7 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal partial class ScheduleScanDialog : MoreForm
 	{
-		#region Private classes
-		private sealed class NotebooksPanel : MoreFlowLayoutPanel
-		{
-			public NotebooksPanel()
-			{
-				FlowDirection = FlowDirection.TopDown;
-				AutoScroll = true;
-				WrapContents = false;
-			}
-
-
-			public event EventHandler SelectionsChanged;
-
-			public void AddNotebook(string name, string notebookID, bool isChecked)
-			{
-				var box = new MoreCheckBox
-				{
-					Checked = isChecked,
-					Padding = new Padding(4, 2, 10, 2),
-					Tag = notebookID,
-					Text = name,
-					Width = Width - SystemInformation.VerticalScrollBarWidth * 2
-				};
-
-				box.CheckedChanged += DoChangeSelections;
-
-				Controls.Add(box);
-			}
-
-			private void DoChangeSelections(object sender, EventArgs e)
-			{
-				SelectionsChanged?.Invoke(sender, e);
-			}
-		}
-		#endregion Private classes
-
-
-		private readonly NotebooksPanel booksFlow;
+		private readonly MoreCheckList booksList;
 		private List<string> scannedIDs;
 		private List<string> preferredIDs;
 
@@ -96,13 +59,19 @@ namespace River.OneMoreAddIn.Commands
 
 			if (showNotebooks)
 			{
-				booksFlow = new NotebooksPanel
+				booksList = new MoreCheckList
 				{
-					Dock = DockStyle.Fill
+					Dock = DockStyle.Fill,
+					HeaderStyle = ColumnHeaderStyle.None,
+					MultiSelect = false,
+					SelectedBackColorKey = "LinkHighlight",
+					SelectedForeColorKey = "ControlText"
 				};
 
-				booksFlow.SelectionsChanged += DoSelectionsChanged;
-				booksPanel.Controls.Add(booksFlow);
+				booksList.Columns.Add(string.Empty);
+				booksList.SetColumnProportions(1f);
+				booksList.CheckChanged += DoSelectionsChanged;
+				booksPanel.Controls.Add(booksList);
 				okButton.Enabled = false;
 			}
 			else
@@ -163,7 +132,7 @@ namespace River.OneMoreAddIn.Commands
 
 			AlignHyperlinks();
 
-			if (booksFlow is not null)
+			if (booksList is not null)
 			{
 				if (HashtagProvider.CatalogExists())
 				{
@@ -176,6 +145,7 @@ namespace River.OneMoreAddIn.Commands
 				var ns = one.GetNamespace(books);
 				var anyChecked = false;
 
+				booksList.BeginUpdate();
 				foreach (var book in books.Elements(ns + "Notebook"))
 				{
 					var id = book.Attribute("ID").Value;
@@ -192,13 +162,14 @@ namespace River.OneMoreAddIn.Commands
 						name = $"{name} ({Resx.ScheduleScanDialog_neverScanned})";
 					}
 
-					booksFlow.AddNotebook(name, id, isChecked);
+					booksList.Items.Add(new ListViewItem(name) { Tag = id, Checked = isChecked });
 
 					if (isChecked)
 					{
 						anyChecked = true;
 					}
 				}
+				booksList.EndUpdate();
 
 				okButton.Enabled = anyChecked;
 			}
@@ -214,9 +185,9 @@ namespace River.OneMoreAddIn.Commands
 		/// <returns>An array of notebook IDs</returns>
 		public string[] GetSelectedNotebooks()
 		{
-			return booksFlow is null
+			return booksList is null
 				? new string[0]
-				: booksFlow.Controls.Cast<MoreCheckBox>()
+				: booksList.Items.Cast<ListViewItem>()
 					.Where(c => c.Checked).Select(c => c.Tag.ToString()).ToArray();
 		}
 
@@ -252,9 +223,9 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void DoSelectionsChanged(object sender, EventArgs e)
+		private void DoSelectionsChanged(object sender, MoreCheckList.CheckChangedEventArgs e)
 		{
-			okButton.Enabled = booksFlow.Controls.Cast<MoreCheckBox>().Any(b => b.Checked);
+			okButton.Enabled = booksList.Items.Cast<ListViewItem>().Any(b => b.Checked);
 			FocusButtons();
 		}
 
@@ -276,28 +247,37 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ResetSelections(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			foreach (MoreCheckBox box in booksFlow.Controls)
+			foreach (ListViewItem item in booksList.Items)
 			{
-				box.Checked = !scannedIDs.Contains((string)box.Tag);
+				item.Checked = !scannedIDs.Contains((string)item.Tag);
 			}
+			booksList.Invalidate();
+			okButton.Enabled = booksList.Items.Cast<ListViewItem>().Any(b => b.Checked);
+			FocusButtons();
 		}
 
 
 		private void SelectAllNotebooks(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			foreach (MoreCheckBox box in booksFlow.Controls)
+			foreach (ListViewItem item in booksList.Items)
 			{
-				box.Checked = true;
+				item.Checked = true;
 			}
+			booksList.Invalidate();
+			okButton.Enabled = booksList.Items.Count > 0;
+			FocusButtons();
 		}
 
 
 		private void SelectNoneNotebooks(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			foreach (MoreCheckBox box in booksFlow.Controls)
+			foreach (ListViewItem item in booksList.Items)
 			{
-				box.Checked = false;
+				item.Checked = false;
 			}
+			booksList.Invalidate();
+			okButton.Enabled = false;
+			FocusButtons();
 		}
 
 

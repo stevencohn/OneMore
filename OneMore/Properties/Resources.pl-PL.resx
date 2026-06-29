@@ -1489,6 +1489,9 @@ Ciemny</value>
     <value>Oznaczone strony</value>
     <comment>page title</comment>
   </data>
+  <data name="HashtagCommand_notebookExcluded" xml:space="preserve">
+    <value>Ten notatnik został wykluczony ze skanowania hashtagów. Aby go uwzględnić, otwórz Ustawienia i wybierz stronę Hashtagi.</value>
+  </data>
   <data name="HashtagCommand_scanComplete" xml:space="preserve">
     <value>Przeskanowano strony: {0}, zaktualizowano: {1}, znaleziono hashtagi: {2}</value>
     <comment>toast message</comment>
@@ -1658,6 +1661,10 @@ Ta strona</value>
   </data>
   <data name="HashtagSheet_scheduleLink.Text" xml:space="preserve">
     <value>Zaplanuj skanowanie hashtagu lub skanuj teraz</value>
+    <comment>link label</comment>
+  </data>
+  <data name="HashtagSheet_selectLink.Text" xml:space="preserve">
+    <value>Wybierz notesy, które chcesz uwzględnić lub pominąć podczas skanowania hashtagów</value>
     <comment>link label</comment>
   </data>
   <data name="HashtagSheet_styleBox.Text" xml:space="preserve">
@@ -2330,6 +2337,22 @@ Czy chcesz odświeżyć istniejącą stronę?</value>
   <data name="NextUnreadPageCommand_nomore" xml:space="preserve">
     <value>Nie znaleziono nieprzeczytanych stron w tym kierunku</value>
     <comment>message</comment>
+  </data>
+  <data name="NotebooksDialog_emptyLabel" xml:space="preserve">
+    <value>Żaden notatnik nie został jeszcze przeskanowany. Najpierw przeprowadź wstępne skanowanie hashtagów.</value>
+    <comment>label</comment>
+  </data>
+  <data name="NotebooksDialog_infoLabel" xml:space="preserve">
+    <value>Wybierz notesy, które chcesz uwzględnić lub wykluczyć ze skanowania hashtagów. ✔ identyfikuje notesy, które zostały już zeskanowane.</value>
+    <comment>label</comment>
+  </data>
+  <data name="NotebooksDialog_scanned" xml:space="preserve">
+    <value>✔</value>
+    <comment>suffix appended to notebook names that have been scanned</comment>
+  </data>
+  <data name="NotebooksDialog_Title" xml:space="preserve">
+    <value>Wybór notebooka</value>
+    <comment>dialog title</comment>
   </data>
   <data name="NumberingPage_Message" xml:space="preserve">
     <value>Numeracja strony {0}</value>

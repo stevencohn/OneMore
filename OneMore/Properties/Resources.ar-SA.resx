@@ -1492,6 +1492,9 @@
     <value>الصفحات الموسومة</value>
     <comment>page title</comment>
   </data>
+  <data name="HashtagCommand_notebookExcluded" xml:space="preserve">
+    <value>لقد تم استبعاد هذا الكمبيوتر الدفتري من مسح الهاشتاج. لتضمينها، افتح الإعدادات وحدد صفحة علامات التصنيف.</value>
+  </data>
   <data name="HashtagCommand_scanComplete" xml:space="preserve">
     <value>تم مسح {0} صفحة، وتم تحديث {1}، وتم العثور على {2} علامة تصنيف</value>
     <comment>toast message</comment>
@@ -1661,6 +1664,10 @@
   </data>
   <data name="HashtagSheet_scheduleLink.Text" xml:space="preserve">
     <value>جدولة المسح الضوئي أو المسح الضوئي الآن</value>
+    <comment>link label</comment>
+  </data>
+  <data name="HashtagSheet_selectLink.Text" xml:space="preserve">
+    <value>حدد دفاتر الملاحظات لتضمينها أو تخطي مسح الهاشتاج فيها</value>
     <comment>link label</comment>
   </data>
   <data name="HashtagSheet_styleBox.Text" xml:space="preserve">
@@ -2333,6 +2340,22 @@
   <data name="NextUnreadPageCommand_nomore" xml:space="preserve">
     <value>لم يتم العثور على صفحات غير مقروءة في هذا الاتجاه</value>
     <comment>message</comment>
+  </data>
+  <data name="NotebooksDialog_emptyLabel" xml:space="preserve">
+    <value>لم يتم فحص أي دفاتر ملاحظات حتى الآن. قم بإجراء فحص أولي لعلامة التصنيف أولاً.</value>
+    <comment>label</comment>
+  </data>
+  <data name="NotebooksDialog_infoLabel" xml:space="preserve">
+    <value>حدد دفاتر الملاحظات لتضمينها أو استبعادها من مسح علامة التصنيف. ✔ يحدد دفاتر الملاحظات التي تم مسحها ضوئيًا بالفعل.</value>
+    <comment>label</comment>
+  </data>
+  <data name="NotebooksDialog_scanned" xml:space="preserve">
+    <value>✔</value>
+    <comment>suffix appended to notebook names that have been scanned</comment>
+  </data>
+  <data name="NotebooksDialog_Title" xml:space="preserve">
+    <value>اختيار دفتر الملاحظات</value>
+    <comment>dialog title</comment>
   </data>
   <data name="NumberingPage_Message" xml:space="preserve">
     <value>صفحة الترقيم {0}</value>

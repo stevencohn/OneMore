@@ -1489,6 +1489,9 @@ Total Row Font
     <value>דפים מתויגים</value>
     <comment>page title</comment>
   </data>
+  <data name="HashtagCommand_notebookExcluded" xml:space="preserve">
+    <value>מחברת זו לא נכללה מסריקת האשטאג. כדי לכלול אותו, פתח את 'הגדרות' ובחר בדף ה- hashtags.</value>
+  </data>
   <data name="HashtagCommand_scanComplete" xml:space="preserve">
     <value>סרוק {0} דפים, עודכן {1}, נמצא {2} hashtags</value>
     <comment>toast message</comment>
@@ -1658,6 +1661,10 @@ Total Row Font
   </data>
   <data name="HashtagSheet_scheduleLink.Text" xml:space="preserve">
     <value>קבעו את סריקת hashtag או סריקה עכשיו</value>
+    <comment>link label</comment>
+  </data>
+  <data name="HashtagSheet_selectLink.Text" xml:space="preserve">
+    <value>בחר מחברות לכלול או לדלג עליהן בסריקת האשטאג</value>
     <comment>link label</comment>
   </data>
   <data name="HashtagSheet_styleBox.Text" xml:space="preserve">
@@ -2330,6 +2337,22 @@ Total Row Font
   <data name="NextUnreadPageCommand_nomore" xml:space="preserve">
     <value>לא נמצאו דפים שלא נקראו בכיוון זה</value>
     <comment>message</comment>
+  </data>
+  <data name="NotebooksDialog_emptyLabel" xml:space="preserve">
+    <value>עדיין לא נסרקו מחברות. הפעל תחילה סריקת האשטאג ראשונית.</value>
+    <comment>label</comment>
+  </data>
+  <data name="NotebooksDialog_infoLabel" xml:space="preserve">
+    <value>בחר מחברות לכלול או לא לכלול בסריקת האשטאג. ✔ מזהה מחברות שכבר נסרקו.</value>
+    <comment>label</comment>
+  </data>
+  <data name="NotebooksDialog_scanned" xml:space="preserve">
+    <value>✔</value>
+    <comment>suffix appended to notebook names that have been scanned</comment>
+  </data>
+  <data name="NotebooksDialog_Title" xml:space="preserve">
+    <value>בחירת מחברת</value>
+    <comment>dialog title</comment>
   </data>
   <data name="NumberingPage_Message" xml:space="preserve">
     <value>דף מספור {0}</value>

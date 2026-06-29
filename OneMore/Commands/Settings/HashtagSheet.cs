@@ -35,6 +35,7 @@ namespace River.OneMoreAddIn.Settings
 					"filterBox",
 					"doubledBox",
 					"notifyBox",
+					"selectLink",
 					"scheduleLink",
 					"warningLabel",
 					"disabledBox"
@@ -92,6 +93,13 @@ namespace River.OneMoreAddIn.Settings
 				delayBox.Visible = false;
 				msLabel.Visible = false;
 			}
+		}
+
+
+		private void SelectNotebooks(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			using var dialog = new NotebooksDialog();
+			dialog.ShowDialog(this);
 		}
 
 

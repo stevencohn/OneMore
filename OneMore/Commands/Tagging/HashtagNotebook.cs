@@ -25,6 +25,12 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
+		/// Gets or sets a value indicating whether the notebook is included in hashtag scanning.
+		/// </summary>
+		public bool Included { get; set; }
+
+
+		/// <summary>
 		/// Gets or sets a value indicating the last known date when a hashtag
 		/// was discovered and recorded or delete in this notebook
 		/// </summary>

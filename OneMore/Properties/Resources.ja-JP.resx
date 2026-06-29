@@ -1492,6 +1492,9 @@ OneNoteファイル (*.one)</value>
     <value>タグ付きページ</value>
     <comment>page title</comment>
   </data>
+  <data name="HashtagCommand_notebookExcluded" xml:space="preserve">
+    <value>このノートブックはハッシュタグ スキャンから除外されました。これを含めるには、[設定] を開き、[ハッシュタグ] ページを選択します。</value>
+  </data>
   <data name="HashtagCommand_scanComplete" xml:space="preserve">
     <value>{0} ページをスキャンし、{1} を更新し、{2} 個のハッシュタグを見つけました</value>
     <comment>toast message</comment>
@@ -1661,6 +1664,10 @@ OneNoteファイル (*.one)</value>
   </data>
   <data name="HashtagSheet_scheduleLink.Text" xml:space="preserve">
     <value>ハッシュタグスキャンまたはスキャンを今すぐスケジュールします</value>
+    <comment>link label</comment>
+  </data>
+  <data name="HashtagSheet_selectLink.Text" xml:space="preserve">
+    <value>ハッシュタグ スキャンに含めるかスキップするノートブックを選択してください</value>
     <comment>link label</comment>
   </data>
   <data name="HashtagSheet_styleBox.Text" xml:space="preserve">
@@ -2333,6 +2340,22 @@ OneNoteファイル (*.one)</value>
   <data name="NextUnreadPageCommand_nomore" xml:space="preserve">
     <value>その方向に未読ページは見つかりませんでした</value>
     <comment>message</comment>
+  </data>
+  <data name="NotebooksDialog_emptyLabel" xml:space="preserve">
+    <value>まだスキャンされたノートブックはありません。最初に初期ハッシュタグ スキャンを実行します。</value>
+    <comment>label</comment>
+  </data>
+  <data name="NotebooksDialog_infoLabel" xml:space="preserve">
+    <value>ハッシュタグ スキャンに含める、またはハッシュタグ スキャンから除外するノートブックを選択します。 ✔ すでにスキャンされたノートブックを識別します。</value>
+    <comment>label</comment>
+  </data>
+  <data name="NotebooksDialog_scanned" xml:space="preserve">
+    <value>✔</value>
+    <comment>suffix appended to notebook names that have been scanned</comment>
+  </data>
+  <data name="NotebooksDialog_Title" xml:space="preserve">
+    <value>ノートブックの選択</value>
+    <comment>dialog title</comment>
   </data>
   <data name="NumberingPage_Message" xml:space="preserve">
     <value>ページ番号付け {0}</value>
