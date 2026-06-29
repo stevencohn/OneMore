@@ -29,6 +29,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 		private readonly IRibbonUI ribbon;
 		private FavoritesCollection collection;
+		private string _programmaticText = string.Empty;
 
 
 		public FavoritesDialog()
@@ -71,6 +72,13 @@ namespace River.OneMoreAddIn.Commands.Favorites
 			collection = provider.ReadFavorites();
 
 			Populate(string.Empty);
+
+			var index = FirstFavoriteIndex();
+			if (index >= 0)
+			{
+				listView.Items[index].Selected = true;
+				listView.Items[index].EnsureVisible();
+			}
 		}
 
 
@@ -105,6 +113,11 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		/// </summary>
 		private void Populate(string filterText)
 		{
+			if (collection == null)
+			{
+				return;
+			}
+
 			var text = filterText.Trim();
 			var filtering = text.Length > 1;
 
@@ -229,6 +242,17 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				return;
 			}
 
+			// A stale WM_KEYUP (no preceding WM_CHAR) leaves the text unchanged from what
+			// ShowText set — skip filtering. Once the user actually types, WM_CHAR changes
+			// the text first so this check passes and _programmaticText is cleared.
+			if (_programmaticText.Length > 0 && searchBox.Text == _programmaticText)
+			{
+				e.Handled = true;
+				return;
+			}
+
+			_programmaticText = string.Empty;
+
 			// filter list based on search text; preserve the selected favorite by ID since
 			// rebuilding the list invalidates row indices
 
@@ -320,7 +344,8 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 		private void ShowText()
 		{
-			searchBox.Text = listView.SelectedItems[0].Text;
+			_programmaticText = listView.SelectedItems[0].Text;
+			searchBox.Text = _programmaticText;
 			searchBox.Select(searchBox.Text.Length, 0);
 		}
 
@@ -412,13 +437,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				return MoveTop();
 			}
 
-			var start = listView.SelectedItems[0].Index;
-			var index = AdjacentFavoriteIndex(start, 1);
-			if (index < 0)
-			{
-				index = AdjacentFavoriteIndex(start, -1);
-			}
-
+			var index = AdjacentFavoriteIndex(listView.SelectedItems[0].Index, 1);
 			if (index >= 0)
 			{
 				SelectRow(index);
@@ -435,13 +454,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				return MoveTop();
 			}
 
-			var start = listView.SelectedItems[0].Index;
-			var index = AdjacentFavoriteIndex(start, -1);
-			if (index < 0)
-			{
-				index = AdjacentFavoriteIndex(start, 1);
-			}
-
+			var index = AdjacentFavoriteIndex(listView.SelectedItems[0].Index, -1);
 			if (index >= 0)
 			{
 				SelectRow(index);
@@ -493,6 +506,15 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				{
 					SelectRow(index);
 				}
+			}
+		}
+
+
+		private void ClickShowText(object sender, EventArgs e)
+		{
+			if (listView.SelectedItems.Count > 0 && listView.SelectedItems[0].Tag is Favorite)
+			{
+				ShowText();
 			}
 		}
 
