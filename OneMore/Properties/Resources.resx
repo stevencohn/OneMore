@@ -1668,6 +1668,10 @@ This page</value>
     <value>Schedule Hashtag Scanning or Scan Now</value>
     <comment>link label</comment>
   </data>
+  <data name="HashtagSheet_selectLink.Text" xml:space="preserve">
+    <value>Select notebooks to include or skip in hashtag scanning</value>
+    <comment>link label</comment>
+  </data>
   <data name="HashtagSheet_styleBox.Text" xml:space="preserve">
     <value>None
 Red Foreground

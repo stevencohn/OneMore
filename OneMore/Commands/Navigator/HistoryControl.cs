@@ -116,14 +116,7 @@ namespace River.OneMoreAddIn.Commands
 		public void ApplyTheme(ThemeManager manager)
 		{
 			picture.BackColor = BackColor;
-			link.BackColor = BackColor;
-
-			var color = manager.GetColor("LinkColor");
-			link.ForeColor = color;
-			link.LinkColor = color;
-			link.VisitedLinkColor = color;
-
-			link.HoverColor = manager.GetColor("HoverColor");
+			((ILoadControl)link).OnLoad();
 		}
 
 

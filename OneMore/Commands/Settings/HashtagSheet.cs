@@ -35,6 +35,7 @@ namespace River.OneMoreAddIn.Settings
 					"filterBox",
 					"doubledBox",
 					"notifyBox",
+					"selectLink",
 					"scheduleLink",
 					"warningLabel",
 					"disabledBox"

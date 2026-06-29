@@ -717,6 +717,9 @@
     <Compile Include="Ribbon\RibbonPosiition.cs" />
     <Compile Include="UI\EventRouter.cs" />
     <Compile Include="UI\ILoadControl.cs" />
+    <Compile Include="UI\MoreCheckList.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UI\MoreComboBox.cs">
       <SubType>Component</SubType>
     </Compile>

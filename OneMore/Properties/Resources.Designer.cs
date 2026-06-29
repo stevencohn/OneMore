@@ -3837,6 +3837,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select notebooks to include or skip in hashtag scanning.
+        /// </summary>
+        internal static string HashtagSheet_selectLink_Text {
+            get {
+                return ResourceManager.GetString("HashtagSheet_selectLink.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to None
         ///Red Foreground
         ///Yellow Background.

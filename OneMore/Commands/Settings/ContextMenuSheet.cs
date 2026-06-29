@@ -12,7 +12,6 @@ namespace River.OneMoreAddIn.Settings
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
-	using System.Drawing.Drawing2D;
 	using System.Linq;
 	using System.Reflection;
 	using System.Windows.Forms;
@@ -47,9 +46,7 @@ namespace River.OneMoreAddIn.Settings
 		#endregion Private classes
 
 
-		// pixel sizes for the owner-drawn checkbox glyph and the extra left padding used
-		// to visually nest a command row under its category
-		private const int GlyphSize = 14;
+		// extra left padding used to visually nest a command row under its category
 		private const int ChildIndent = 24;
 
 
@@ -58,13 +55,11 @@ namespace River.OneMoreAddIn.Settings
 		// (a UI language change requires an addin restart), so it only needs to be built once
 		private static List<CtxMenu> discoveredMenus;
 
-		private readonly MoreListView menuList;
+		private readonly MoreCheckList menuList;
 		private readonly MoreListView orderList;
 		private MoreToolStripButton sortButton;
 		private MoreToolStripButton upButton;
 		private MoreToolStripButton downButton;
-		private Image checkedGlyph;
-		private Image uncheckedGlyph;
 
 
 		public ContextMenuSheet(SettingsProvider provider) : base(provider)
@@ -82,13 +77,12 @@ namespace River.OneMoreAddIn.Settings
 				});
 			}
 
-			menuList = new MoreListView
+			menuList = new MoreCheckList
 			{
 				Dock = DockStyle.Fill,
 				HeaderStyle = ColumnHeaderStyle.None,
 				MultiSelect = false,
 				GetCellStyle = GetRowStyle,
-				GetCellImage = GetRowGlyph,
 				// a subtle selection fill, rather than the strong system "Highlight" color,
 				// keeps each row's checkbox glyph and text clearly legible when clicked
 				SelectedBackColorKey = "LinkHighlight",
@@ -97,8 +91,7 @@ namespace River.OneMoreAddIn.Settings
 
 			menuList.Columns.Add(string.Empty);
 			menuList.SetColumnProportions(1f);
-			menuList.MouseClick += OnRowClick;
-			menuList.KeyDown += OnRowKeyDown;
+			menuList.CheckChanged += OnMenuCheckChanged;
 
 			// right-side ordered list ─────────────────────────────────────────────────────────
 
@@ -170,12 +163,6 @@ namespace River.OneMoreAddIn.Settings
 			splitLayout.Controls.Add(orderPanel, 1, 0);
 
 			contentPanel.Controls.Add(splitLayout);
-
-			Disposed += (s, e) =>
-			{
-				checkedGlyph?.Dispose();
-				uncheckedGlyph?.Dispose();
-			};
 		}
 
 
@@ -269,33 +256,9 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
-		private void OnRowClick(object sender, MouseEventArgs e)
+		private void OnMenuCheckChanged(object sender, MoreCheckList.CheckChangedEventArgs e)
 		{
-			if (e.Button != MouseButtons.Left)
-			{
-				return;
-			}
-
-			var hit = menuList.HitTest(e.Location);
-			if (hit.Item != null)
-			{
-				hit.Item.Checked = !hit.Item.Checked;
-				menuList.Invalidate(hit.Item.Bounds);
-				SyncOrderList(hit.Item);
-			}
-		}
-
-
-		private void OnRowKeyDown(object sender, KeyEventArgs e)
-		{
-			if (e.KeyCode == Keys.Space && menuList.SelectedItems.Count > 0)
-			{
-				var item = menuList.SelectedItems[0];
-				item.Checked = !item.Checked;
-				menuList.Invalidate(item.Bounds);
-				SyncOrderList(item);
-				e.Handled = true;
-			}
+			SyncOrderList(e.Item);
 		}
 
 
@@ -420,34 +383,6 @@ namespace River.OneMoreAddIn.Settings
 		private static MoreListView.CellStyle GetRowStyle(ListViewItem item, int column)
 		{
 			return new MoreListView.CellStyle(indent: item.IndentCount > 0 ? ChildIndent : 0, muted: false);
-		}
-
-
-		private Image GetRowGlyph(ListViewItem item, int column)
-		{
-			return item.Checked
-				? checkedGlyph ??= BuildGlyph(true)
-				: uncheckedGlyph ??= BuildGlyph(false);
-		}
-
-
-		private Image BuildGlyph(bool isChecked)
-		{
-			var bitmap = new Bitmap(GlyphSize, GlyphSize);
-			using var g = Graphics.FromImage(bitmap);
-			g.SmoothingMode = SmoothingMode.AntiAlias;
-
-			var boxColor = manager.GetColor("Highlight");
-			using var pen = new Pen(boxColor);
-			g.DrawRoundedRectangle(pen, new Rectangle(0, 0, GlyphSize - 1, GlyphSize - 1), 2);
-
-			if (isChecked)
-			{
-				using var fillBrush = new SolidBrush(boxColor);
-				g.FillRoundedRectangle(fillBrush, new Rectangle(2, 2, GlyphSize - 4, GlyphSize - 4), 2);
-			}
-
-			return bitmap;
 		}
 
 
