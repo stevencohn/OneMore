@@ -296,6 +296,10 @@ namespace River.OneMoreAddIn.Commands.Layouts
 				LoadLayouts(collection);
 				isDirtyFromCheck = true;
 			}
+			else
+			{
+				listView.Invalidate();
+			}
 
 			LayoutsChecked?.Invoke(this, EventArgs.Empty);
 		}

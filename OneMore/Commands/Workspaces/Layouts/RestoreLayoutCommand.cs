@@ -61,7 +61,7 @@ namespace River.OneMoreAddIn.Commands
 				name = s;
 			}
 
-			if (string.IsNullOrWhiteSpace(name))
+			if (string.IsNullOrWhiteSpace(name) && runningFromCli)
 			{
 				CliOutput = "The --name argument is required.";
 				return;
@@ -70,8 +70,10 @@ namespace River.OneMoreAddIn.Commands
 			using var provider = new LayoutsProvider();
 			var collection = provider.ReadLayouts();
 
-			var layout = collection.Layouts.FirstOrDefault(l =>
-				l.Name.Equals(name, StringComparison.CurrentCultureIgnoreCase));
+			var layout = string.IsNullOrWhiteSpace(name)
+				? collection.Layouts.FirstOrDefault()
+				: collection.Layouts.FirstOrDefault(l =>
+					l.Name.Equals(name, StringComparison.CurrentCultureIgnoreCase));
 
 			if (layout is null || layout.Windows.Count == 0)
 			{
