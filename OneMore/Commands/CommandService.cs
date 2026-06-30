@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn
 	using River.OneMoreAddIn.Cli;
 	using System;
 	using System.Collections.Generic;
+	using System.IO;
 	using System.IO.Pipes;
 	using System.Linq;
 	using System.Security.AccessControl;
@@ -345,7 +346,13 @@ namespace River.OneMoreAddIn
 						return;
 					}
 
-					if (string.IsNullOrWhiteSpace(section))
+					parameters.TryGet<bool>("backup", out var isBackup);
+					if (isBackup && !hasPage)
+					{
+						(pageOutput, cancelled) = await InvokeCliBackupExport(
+							parameters, notebook, section, pipe, cts.Token);
+					}
+					else if (string.IsNullOrWhiteSpace(section))
 					{
 						(pageOutput, cancelled) = await InvokeCliCommandForNotebook(
 							cliFactory, commandType, parameters, notebook, pipe, cts.Token);
@@ -518,6 +525,139 @@ namespace River.OneMoreAddIn
 			}
 
 			return (outputs.Length > 0 ? outputs.ToString() : null, cancelled);
+		}
+
+
+		/// <summary>
+		/// Exports each section in the specified scope to its own <c>.one</c> file.
+		/// Used when the CLI <c>export</c> command is invoked with <c>--backup</c> and no
+		/// <c>--page</c>. When <paramref name="sectionPath"/> is non-empty, only that section
+		/// is exported; otherwise every section in the notebook is exported.
+		/// Section group ancestry is preserved as <c>[GroupName]</c> subdirectories under
+		/// <paramref name="parameters"/><c>.outpath</c>.
+		/// </summary>
+		private static async Task<(string output, bool cancelled)> InvokeCliBackupExport(
+			CliParameterSet parameters, string notebookName, string sectionPath,
+			NamedPipeServerStream pipe, CancellationToken token)
+		{
+			parameters.TryGet<string>("outpath", out var outpath);
+			if (string.IsNullOrWhiteSpace(outpath))
+			{
+				await WriteCliResponse(pipe, "ERR:export --backup requires an 'outpath' parameter");
+				return (null, false);
+			}
+
+			using var one = new OneNote();
+
+			var notebooks = await one.GetNotebooks();
+			if (notebooks == null)
+			{
+				await WriteCliResponse(pipe, "ERR:No notebooks found");
+				return (null, false);
+			}
+
+			var ns = one.GetNamespace(notebooks);
+			var notebook = notebooks.Elements(ns + "Notebook")
+				.FirstOrDefault(n => string.Equals(
+					n.Attribute("name")?.Value, notebookName,
+					StringComparison.InvariantCultureIgnoreCase));
+
+			if (notebook == null)
+			{
+				await WriteCliResponse(pipe, $"ERR:Notebook not found: '{notebookName}'");
+				return (null, false);
+			}
+
+			var notebookId = notebook.Attribute("ID").Value;
+			var notebookSections = await one.GetNotebook(notebookId, OneNote.Scope.Sections);
+			if (notebookSections == null)
+			{
+				await WriteCliResponse(pipe, $"ERR:Could not load sections for notebook: '{notebookName}'");
+				return (null, false);
+			}
+
+			var cancelled = false;
+
+			if (!string.IsNullOrWhiteSpace(sectionPath))
+			{
+				// Single-section backup
+				var sectionParts = sectionPath.Trim().Trim('/').Split('/');
+				XElement node = notebookSections;
+				foreach (var part in sectionParts)
+				{
+					node = node.Elements().FirstOrDefault(e =>
+						(e.Name.LocalName == "Section" || e.Name.LocalName == "SectionGroup") &&
+						string.Equals(e.Attribute("name")?.Value, part.Trim(),
+							StringComparison.InvariantCultureIgnoreCase));
+
+					if (node == null)
+					{
+						await WriteCliResponse(pipe, $"ERR:Section not found: '{sectionPath}'");
+						return (null, false);
+					}
+				}
+
+				if (node.Name.LocalName != "Section")
+				{
+					await WriteCliResponse(pipe,
+						$"ERR:'{sectionPath}' is a section group — specify a section within it");
+					return (null, false);
+				}
+
+				var sectionId = node.Attribute("ID")?.Value;
+				var sectInfo = await one.GetSectionInfo(sectionId);
+				if (sectInfo == null)
+				{
+					await WriteCliResponse(pipe, $"ERR:Could not read section info for '{sectionPath}'");
+					return (null, false);
+				}
+
+				PathHelper.EnsurePathExists(outpath);
+				var outFile = Path.Combine(outpath, PathHelper.CleanFileName(sectInfo.Name) + ".one");
+				if (File.Exists(outFile)) { File.Delete(outFile); }
+
+				await WriteCliResponse(pipe, $"PROGRESS:{sectInfo.Name}\n");
+				one.Export(sectionId, outFile, OneNote.ExportFormat.OneNote);
+			}
+			else
+			{
+				// All-sections backup
+				var sectionIds = new List<string>();
+				CollectSectionIds(notebookSections, sectionIds);
+
+				if (sectionIds.Count == 0)
+				{
+					await WriteCliResponse(pipe, $"ERR:No sections found in notebook: '{notebookName}'");
+					return (null, false);
+				}
+
+				foreach (var sectionId in sectionIds)
+				{
+					if (token.IsCancellationRequested)
+					{
+						cancelled = true;
+						break;
+					}
+
+					var sectInfo = await one.GetSectionInfo(sectionId);
+					if (sectInfo == null) { continue; }
+
+					var groupPath = outpath;
+					foreach (var group in sectInfo.SectionGroups)
+					{
+						groupPath = Path.Combine(groupPath, $"[{PathHelper.CleanFileName(group)}]");
+					}
+
+					PathHelper.EnsurePathExists(groupPath);
+					var outFile = Path.Combine(groupPath, PathHelper.CleanFileName(sectInfo.Name) + ".one");
+					if (File.Exists(outFile)) { File.Delete(outFile); }
+
+					await WriteCliResponse(pipe, $"PROGRESS:{sectInfo.Name}\n");
+					one.Export(sectionId, outFile, OneNote.ExportFormat.OneNote);
+				}
+			}
+
+			return (null, cancelled);
 		}
 
 

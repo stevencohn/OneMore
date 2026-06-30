@@ -8,6 +8,7 @@ namespace OneMoreCli
 	using River.OneMoreAddIn.Cli;
 	using System;
 	using System.Collections.Generic;
+	using System.IO;
 	using System.Linq;
 	using System.Threading;
 	using System.Threading.Tasks;
@@ -252,7 +253,19 @@ namespace OneMoreCli
 			// ICliInteractiveCommand signals that the command needs OneNote running as a
 			// full UI process. Some APIs (e.g. Publish) are unavailable against the
 			// headless COM server that `new Application()` would otherwise activate.
-			if (command is ICliInteractiveCommand)
+			// Backup export has the same requirement (uses Publish on section IDs).
+			// Both checks must happen here, before CliNotebookResolver, because the resolver
+			// activates a COM connection and a headless server started first would prevent
+			// a subsequent interactive launch from being picked up by new OneNote().
+			var needsInteractive = command is ICliInteractiveCommand;
+			if (!needsInteractive && command is ICliPageCommand)
+			{
+				parameters.TryGet<bool>("backup", out var isBackupMode);
+				var backupHasPage = parameters.TryGet<string>("page", out _);
+				needsInteractive = isBackupMode && !backupHasPage;
+			}
+
+			if (needsInteractive)
 			{
 				if (!await OneNoteLauncher.EnsureRunning())
 				{
@@ -279,6 +292,13 @@ namespace OneMoreCli
 					{
 						throw new InvalidOperationException(
 							$"{command.CommandName} requires a 'notebook' parameter.");
+					}
+
+					parameters.TryGet<bool>("backup", out var isBackup);
+					if (isBackup && !hasPage)
+					{
+						await RunBackupExport(parameters, notebook, section, token);
+						return;
 					}
 
 					if (string.IsNullOrWhiteSpace(section))
@@ -400,6 +420,130 @@ namespace OneMoreCli
 					var r = await CliCommandFactory.Make().Run(command.GetType(), token, parameters);
 					if (!string.IsNullOrEmpty(r?.CliOutput))
 						Console.Write(r.CliOutput);
+				}
+			}
+		}
+
+
+		/// <summary>
+		/// Exports each section in the specified scope to its own <c>.one</c> file.
+		/// Used when the CLI <c>export</c> command is invoked with <c>--backup</c> and no
+		/// <c>--page</c>. When <paramref name="sectionPath"/> is non-empty, only that section
+		/// is exported; otherwise every section in the notebook is exported.
+		/// Section group ancestry is preserved as <c>[GroupName]</c> subdirectories under
+		/// the <c>outpath</c> parameter value.
+		/// </summary>
+		private static async Task RunBackupExport(
+			CliParameterSet parameters, string notebookName, string sectionPath,
+			CancellationToken token)
+		{
+			parameters.TryGet<string>("outpath", out var outpath);
+			if (string.IsNullOrWhiteSpace(outpath))
+			{
+				CliConsole.WriteError("export --backup requires an 'outpath' parameter");
+				return;
+			}
+
+			using var one = new OneNote();
+
+			var notebooks = await one.GetNotebooks();
+			if (notebooks == null)
+			{
+				CliConsole.WriteWarning("No notebooks found.");
+				return;
+			}
+
+			var ns = one.GetNamespace(notebooks);
+			var notebook = notebooks.Elements(ns + "Notebook")
+				.FirstOrDefault(n => string.Equals(
+					n.Attribute("name")?.Value, notebookName,
+					StringComparison.InvariantCultureIgnoreCase));
+
+			if (notebook == null)
+			{
+				CliConsole.WriteWarning($"Notebook not found: '{notebookName}'");
+				return;
+			}
+
+			var notebookId = notebook.Attribute("ID").Value;
+			var notebookSections = await one.GetNotebook(notebookId, OneNote.Scope.Sections);
+			if (notebookSections == null)
+			{
+				CliConsole.WriteWarning($"Could not load sections for notebook: '{notebookName}'");
+				return;
+			}
+
+			if (!string.IsNullOrWhiteSpace(sectionPath))
+			{
+				// Single-section backup
+				var sectionParts = sectionPath.Trim().Trim('/').Split('/');
+				XElement node = notebookSections;
+				foreach (var part in sectionParts)
+				{
+					node = node.Elements().FirstOrDefault(e =>
+						(e.Name.LocalName == "Section" || e.Name.LocalName == "SectionGroup") &&
+						string.Equals(e.Attribute("name")?.Value, part.Trim(),
+							StringComparison.InvariantCultureIgnoreCase));
+
+					if (node == null)
+					{
+						CliConsole.WriteWarning($"Section not found: '{sectionPath}'");
+						return;
+					}
+				}
+
+				if (node.Name.LocalName != "Section")
+				{
+					CliConsole.WriteWarning($"'{sectionPath}' is a section group — specify a section within it");
+					return;
+				}
+
+				var sectionId = node.Attribute("ID")?.Value;
+				var sectInfo = await one.GetSectionInfo(sectionId);
+				if (sectInfo == null)
+				{
+					CliConsole.WriteWarning($"Could not read section info for '{sectionPath}'");
+					return;
+				}
+
+				PathHelper.EnsurePathExists(outpath);
+				var outFile = Path.Combine(outpath, PathHelper.CleanFileName(sectInfo.Name) + ".one");
+				if (File.Exists(outFile)) { File.Delete(outFile); }
+
+				CliConsole.WriteDetail($"section: {sectInfo.Name}");
+				one.Export(sectionId, outFile, OneNote.ExportFormat.OneNote);
+			}
+			else
+			{
+				// All-sections backup
+				var sectionIds = new List<string>();
+				CollectSectionIds(notebookSections, sectionIds);
+
+				if (sectionIds.Count == 0)
+				{
+					CliConsole.WriteWarning($"No sections found in notebook: '{notebookName}'");
+					return;
+				}
+
+				foreach (var sectionId in sectionIds)
+				{
+					token.ThrowIfCancellationRequested();
+
+					var sectInfo = await one.GetSectionInfo(sectionId);
+					if (sectInfo == null) { continue; }
+
+					var groupPath = outpath;
+					foreach (var group in sectInfo.SectionGroups)
+					{
+						groupPath = Path.Combine(groupPath, $"[{PathHelper.CleanFileName(group)}]");
+					}
+
+					PathHelper.EnsurePathExists(groupPath);
+					var outFile = Path.Combine(groupPath, PathHelper.CleanFileName(sectInfo.Name) + ".one");
+					if (File.Exists(outFile)) { File.Delete(outFile); }
+
+					CliConsole.WriteDetail($"section: {sectInfo.Name}");
+					one.Export(sectionId, outFile, OneNote.ExportFormat.OneNote);
 				}
 			}
 		}

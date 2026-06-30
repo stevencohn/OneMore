@@ -1712,19 +1712,19 @@ namespace River.OneMoreAddIn
 		/// <summary>
 		/// Exports the specified page to a file using the given format
 		/// </summary>
-		/// <param name="pageId">The page ID</param>
+		/// <param name="hierarchyId">The page, section, or notebook ID</param>
 		/// <param name="path">The output file path</param>
 		/// <param name="format">The format</param>
-		public bool Export(string pageId, string path, ExportFormat format)
+		public bool Export(string hierarchyId, string path, ExportFormat format)
 		{
 			try
 			{
-				onenote.Publish(pageId, path, (PublishFormat)format);
+				onenote.Publish(hierarchyId, path, (PublishFormat)format);
 				return true;
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine($"cannot publish page {pageId}", exc);
+				logger.WriteLine($"cannot publish {hierarchyId}", exc);
 				return false;
 			}
 		}
