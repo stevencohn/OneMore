@@ -31,18 +31,18 @@ namespace River.OneMoreAddIn.Settings
 		{
 			this.introBox = new River.OneMoreAddIn.UI.MoreMultilineLabel();
 			this.layoutPanel = new System.Windows.Forms.Panel();
-			this.barLabel = new UI.MoreLabel();
+			this.barLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.allLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.noneLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
-			this.langView = new System.Windows.Forms.ListView();
-			this.enabledLabel = new UI.MoreLabel();
+			this.langView = new River.OneMoreAddIn.UI.MoreListView();
+			this.enabledLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.family2Box = new River.OneMoreAddIn.UI.FontComboBox();
-			this.size2Box = new UI.MoreComboBox();
-			this.font2Label = new UI.MoreLabel();
+			this.size2Box = new River.OneMoreAddIn.UI.MoreComboBox();
+			this.font2Label = new River.OneMoreAddIn.UI.MoreLabel();
 			this.fixedBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.familyBox = new River.OneMoreAddIn.UI.FontComboBox();
-			this.sizeBox = new UI.MoreComboBox();
-			this.fontLabel = new UI.MoreLabel();
+			this.sizeBox = new River.OneMoreAddIn.UI.MoreComboBox();
+			this.fontLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.applyBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.layoutPanel.SuspendLayout();
 			this.SuspendLayout();
@@ -92,9 +92,12 @@ namespace River.OneMoreAddIn.Settings
 			this.barLabel.Size = new System.Drawing.Size(14, 20);
 			this.barLabel.TabIndex = 21;
 			this.barLabel.Text = "|";
+			this.barLabel.ThemedBack = null;
+			this.barLabel.ThemedFore = null;
 			// 
 			// allLink
 			// 
+			this.allLink.Active = false;
 			this.allLink.ActiveLinkColor = System.Drawing.Color.MediumOrchid;
 			this.allLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.allLink.AutoSize = true;
@@ -103,6 +106,7 @@ namespace River.OneMoreAddIn.Settings
 			this.allLink.LinkColor = System.Drawing.Color.MediumOrchid;
 			this.allLink.Location = new System.Drawing.Point(501, 217);
 			this.allLink.Name = "allLink";
+			this.allLink.NavMode = false;
 			this.allLink.Selected = false;
 			this.allLink.Size = new System.Drawing.Size(26, 20);
 			this.allLink.StrictColors = false;
@@ -116,6 +120,7 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			// noneLink
 			// 
+			this.noneLink.Active = false;
 			this.noneLink.ActiveLinkColor = System.Drawing.Color.MediumOrchid;
 			this.noneLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.noneLink.AutoSize = true;
@@ -124,6 +129,7 @@ namespace River.OneMoreAddIn.Settings
 			this.noneLink.LinkColor = System.Drawing.Color.MediumOrchid;
 			this.noneLink.Location = new System.Drawing.Point(553, 217);
 			this.noneLink.Name = "noneLink";
+			this.noneLink.NavMode = false;
 			this.noneLink.Selected = false;
 			this.noneLink.Size = new System.Drawing.Size(47, 20);
 			this.noneLink.StrictColors = false;
@@ -140,11 +146,14 @@ namespace River.OneMoreAddIn.Settings
 			this.langView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.langView.BackColor = System.Drawing.SystemColors.Window;
 			this.langView.CheckBoxes = true;
+			this.langView.FullRowSelect = true;
 			this.langView.HideSelection = false;
 			this.langView.Location = new System.Drawing.Point(10, 240);
 			this.langView.Name = "langView";
+			this.langView.OwnerDraw = true;
+			this.langView.SelectedBackColorKey = "LinkHighlight";
+			this.langView.SelectedForeColorKey = "ControlText";
 			this.langView.Size = new System.Drawing.Size(590, 173);
 			this.langView.TabIndex = 5;
 			this.langView.UseCompatibleStateImageBehavior = false;
@@ -158,6 +167,8 @@ namespace River.OneMoreAddIn.Settings
 			this.enabledLabel.Size = new System.Drawing.Size(146, 20);
 			this.enabledLabel.TabIndex = 17;
 			this.enabledLabel.Text = "Enabled languages";
+			this.enabledLabel.ThemedBack = null;
+			this.enabledLabel.ThemedFore = null;
 			// 
 			// family2Box
 			// 
@@ -196,8 +207,10 @@ namespace River.OneMoreAddIn.Settings
             "26"});
 			this.size2Box.Location = new System.Drawing.Point(496, 105);
 			this.size2Box.Name = "size2Box";
-			this.size2Box.Size = new System.Drawing.Size(104, 33);
+			this.size2Box.Size = new System.Drawing.Size(104, 32);
 			this.size2Box.TabIndex = 3;
+			this.size2Box.ThemedBack = null;
+			this.size2Box.ThemedFore = null;
 			// 
 			// font2Label
 			// 
@@ -207,6 +220,8 @@ namespace River.OneMoreAddIn.Settings
 			this.font2Label.Size = new System.Drawing.Size(85, 20);
 			this.font2Label.TabIndex = 14;
 			this.font2Label.Text = "Secondary";
+			this.font2Label.ThemedBack = null;
+			this.font2Label.ThemedFore = null;
 			// 
 			// fixedBox
 			// 
@@ -261,8 +276,10 @@ namespace River.OneMoreAddIn.Settings
             "26"});
 			this.sizeBox.Location = new System.Drawing.Point(496, 57);
 			this.sizeBox.Name = "sizeBox";
-			this.sizeBox.Size = new System.Drawing.Size(104, 33);
+			this.sizeBox.Size = new System.Drawing.Size(104, 32);
 			this.sizeBox.TabIndex = 1;
+			this.sizeBox.ThemedBack = null;
+			this.sizeBox.ThemedFore = null;
 			// 
 			// fontLabel
 			// 
@@ -272,6 +289,8 @@ namespace River.OneMoreAddIn.Settings
 			this.fontLabel.Size = new System.Drawing.Size(61, 20);
 			this.fontLabel.TabIndex = 13;
 			this.fontLabel.Text = "Primary";
+			this.fontLabel.ThemedBack = null;
+			this.fontLabel.ThemedFore = null;
 			// 
 			// applyBox
 			// 
@@ -317,7 +336,7 @@ namespace River.OneMoreAddIn.Settings
 		private UI.MoreComboBox size2Box;
 		private UI.MoreLabel font2Label;
 		private UI.FontComboBox family2Box;
-		private System.Windows.Forms.ListView langView;
+		private River.OneMoreAddIn.UI.MoreListView langView;
 		private UI.MoreLabel enabledLabel;
 		private UI.MoreLabel barLabel;
 		private UI.MoreLinkLabel allLink;

@@ -4,9 +4,11 @@
 
 namespace River.OneMoreAddIn.UI
 {
+	using River.OneMoreAddIn;
 	using System;
 	using System.ComponentModel;
 	using System.Drawing;
+	using System.Drawing.Drawing2D;
 	using System.Linq;
 	using System.Windows.Forms;
 
@@ -107,6 +109,10 @@ namespace River.OneMoreAddIn.UI
 		private int insertionIndex = -1;
 		private bool insertAtEnd;
 
+		// cached checkbox glyphs for non-Details (e.g. SmallIcon) owner-draw
+		private Image checkedSmallGlyph;
+		private Image uncheckedSmallGlyph;
+
 
 		public MoreListView()
 		{
@@ -130,6 +136,7 @@ namespace River.OneMoreAddIn.UI
 			if (!ThemeManager.IsDesignTime)
 			{
 				BackColor = manager.GetColor("ListView");
+				ForeColor = manager.GetColor("ControlText");
 			}
 
 			DrawColumnHeader += OnDrawColumnHeader;
@@ -140,6 +147,13 @@ namespace River.OneMoreAddIn.UI
 			MouseDown += OnMouseDown;
 			MouseMove += OnMouseMove;
 			MouseUp += OnMouseUp;
+			MouseClick += OnCheckboxMouseClick;
+			KeyDown += OnCheckboxKeyDown;
+			Disposed += (s, e) =>
+			{
+				checkedSmallGlyph?.Dispose();
+				uncheckedSmallGlyph?.Dispose();
+			};
 		}
 
 
@@ -163,6 +177,7 @@ namespace River.OneMoreAddIn.UI
 				Native.SendMessage(Handle, Native.LVM_SETBKCOLOR, 0, ColorTranslator.ToWin32(BackColor));
 			}
 		}
+
 
 
 		/// <summary>
@@ -314,9 +329,125 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
+		// With OwnerDraw = true and CheckBoxes = true, native NM_CLICK still toggles
+		// item.Checked when the user clicks the state-image area. Our handler covers
+		// clicks on the icon/text area (which NM_CLICK ignores) so any part of the item
+		// works as a toggle target. Skipping StateImage hits avoids a double-toggle.
+		private void OnCheckboxMouseClick(object sender, MouseEventArgs e)
+		{
+			if (!CheckBoxes || View == View.Details || e.Button != MouseButtons.Left)
+			{
+				return;
+			}
+
+			var hit = HitTest(e.Location);
+			if (hit.Item == null || hit.Location == ListViewHitTestLocations.StateImage)
+			{
+				return;
+			}
+
+			hit.Item.Checked = !hit.Item.Checked;
+			Invalidate(hit.Item.Bounds);
+		}
+
+
+		private void OnCheckboxKeyDown(object sender, KeyEventArgs e)
+		{
+			if (!CheckBoxes || View == View.Details ||
+				e.KeyCode != Keys.Space || SelectedItems.Count == 0)
+			{
+				return;
+			}
+
+			var item = SelectedItems[0];
+			item.Checked = !item.Checked;
+			Invalidate(item.Bounds);
+			e.Handled = true;
+		}
+
+
 		private void OnDrawItem(object sender, DrawListViewItemEventArgs e)
 		{
-			// no-op; OnDrawSubItem (below) handles all rendering for every column
+			if (View == View.Details)
+			{
+				// OnDrawSubItem handles all rendering in Details view
+				return;
+			}
+
+			DrawSmallIconItem(e);
+		}
+
+
+		private void DrawSmallIconItem(DrawListViewItemEventArgs e)
+		{
+			var selected = e.Item.Selected;
+
+			using (var backBrush = new SolidBrush(manager.GetColor(selected ? SelectedBackColorKey : "ListView")))
+			{
+				e.Graphics.FillRectangle(backBrush, e.Bounds);
+			}
+
+			var x = e.Bounds.Left;
+			var h = e.Bounds.Height;
+
+			// In SmallIcon view, GetBounds(Icon) reports the full content area (same as
+			// Entire), so we cannot use it to detect state-image space. Use the hardcoded
+			// 16 px slot that CheckBoxes=true allocates via the internal state-image list.
+			if (CheckBoxes)
+			{
+				const int StateSlot = 16;
+				var glyph = e.Item.Checked
+					? (checkedSmallGlyph ??= BuildSmallCheckGlyph(true))
+					: (uncheckedSmallGlyph ??= BuildSmallCheckGlyph(false));
+
+				e.Graphics.DrawImage(glyph,
+					x + (StateSlot - glyph.Width) / 2,
+					e.Bounds.Top + (h - glyph.Height) / 2);
+
+				x += StateSlot;
+			}
+
+			// Draw the item's image from SmallImageList.
+			if (SmallImageList != null && e.Item.ImageIndex >= 0 &&
+				e.Item.ImageIndex < SmallImageList.Images.Count)
+			{
+				var icon = SmallImageList.Images[e.Item.ImageIndex];
+				if (icon != null)
+				{
+					e.Graphics.DrawImage(icon, x, e.Bounds.Top + (h - icon.Height) / 2);
+					x += icon.Width + 2;
+				}
+			}
+
+			// Draw text in remaining width.
+			var foreColor = selected
+				? manager.GetColor(SelectedForeColorKey)
+				: manager.GetColor("ControlText");
+
+			var textBounds = new Rectangle(x, e.Bounds.Top, e.Bounds.Right - x, h);
+			TextRenderer.DrawText(e.Graphics, e.Item.Text, e.Item.Font, textBounds, foreColor,
+				TextFormatFlags.VerticalCenter | TextFormatFlags.Left | TextFormatFlags.NoPrefix);
+		}
+
+
+		private static Image BuildSmallCheckGlyph(bool isChecked)
+		{
+			const int size = 14;
+			var bitmap = new Bitmap(size, size);
+			using var g = Graphics.FromImage(bitmap);
+			g.SmoothingMode = SmoothingMode.AntiAlias;
+
+			var boxColor = ThemeManager.Instance.GetColor("Highlight");
+			using var pen = new Pen(boxColor);
+			g.DrawRoundedRectangle(pen, new Rectangle(0, 0, size - 1, size - 1), 2);
+
+			if (isChecked)
+			{
+				using var fill = new SolidBrush(boxColor);
+				g.FillRoundedRectangle(fill, new Rectangle(2, 2, size - 4, size - 4), 2);
+			}
+
+			return bitmap;
 		}
 
 

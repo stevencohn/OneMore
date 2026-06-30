@@ -19,6 +19,8 @@ namespace River.OneMoreAddIn
 		public const UInt32 LVM_FIRST = 0x1000;
 		public const UInt32 LVM_SETBKCOLOR = (LVM_FIRST + 1);
 		public const UInt32 LVM_SCROLL = (LVM_FIRST + 20);
+		public const UInt32 LVM_SETTEXTCOLOR = (LVM_FIRST + 36);    // 0x1024
+		public const UInt32 LVM_SETTEXTBKCOLOR = (LVM_FIRST + 38);  // 0x1026
 
 		public const int LVS_OWNERDRAWFIXED = 0x0400;
 
