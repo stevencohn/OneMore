@@ -273,12 +273,13 @@ ORDER BY layoutName, w.zOrder;
 			cmd.CommandType = CommandType.Text;
 
 			cmd.CommandText =
-				"UPDATE layout_window SET name = @n, alias = @a, layoutID = @f, zOrder = @o " +
+				"UPDATE layout_window SET name = @n, alias = @a, location = @l, layoutID = @f, zOrder = @o " +
 				"WHERE windowID = @id";
 
 			cmd.Parameters.Clear();
 			cmd.Parameters.Add("@n", DbType.String);
 			cmd.Parameters.Add("@a", DbType.String);
+			cmd.Parameters.Add("@l", DbType.String);
 			cmd.Parameters.Add("@f", DbType.Int32);
 			cmd.Parameters.Add("@o", DbType.Int32);
 			cmd.Parameters.Add("@id", DbType.Int32);
@@ -287,6 +288,7 @@ ORDER BY layoutName, w.zOrder;
 
 			cmd.Parameters["@n"].Value = window.Name;
 			cmd.Parameters["@a"].Value = alias;
+			cmd.Parameters["@l"].Value = window.Location;
 			cmd.Parameters["@f"].Value = window.LayoutID;
 			cmd.Parameters["@o"].Value = window.ZOrder;
 			cmd.Parameters["@id"].Value = window.ID;
