@@ -46,10 +46,11 @@ namespace River.OneMoreAddIn.Commands
 			.AddString("notebook", "Name of notebook to process", required: true)
 			.AddString("section", "Path of section to process (omit for all sections)", required: false)
 			.AddString("page", "Name of page to process (omit or * for all pages in section)", required: false)
+			.AddBoolean("backup", "Export each section as a .one backup file (ignores format)", required: false, defaultValue: false)
 			.AddPath("outpath", "Output folder path", required: true)
 			.AddEnum("format", "Export format",
 				new[] { "HTML", "PDF", "Word", "XML", "Markdown", "OneNote" },
-				required: true);
+				required: false, defaultValue: "OneNote");
 
 		#endregion CLI Implementation
 
@@ -76,7 +77,8 @@ namespace River.OneMoreAddIn.Commands
 					//var notebook  = cliParams?.Get<string>("notebook");
 					cliParams.TryGet<string>("section", out var section);    // optional
 					var outpath = cliParams?.Get<string>("outpath");
-					var formatStr = cliParams?.Get<string>("format");
+					cliParams.TryGet<string>("format", out var formatStr);
+					if (string.IsNullOrWhiteSpace(formatStr)) formatStr = "OneNote";
 
 					if (!Enum.TryParse<OneNote.ExportFormat>(
 						formatStr, ignoreCase: true, out var format))
