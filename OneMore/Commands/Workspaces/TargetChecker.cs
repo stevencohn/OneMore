@@ -172,9 +172,14 @@ namespace River.OneMoreAddIn.Commands.Workspaces
 				var name = node.Attribute("name").Value;
 				if (reference.Name != name)
 				{
-					// auto-correct page/section name
+					// auto-correct page/section name and its last Location segment
 					logger.WriteLine($"patching name from '{reference.Name}' to '{name}'");
 					reference.Name = name;
+					var lastSlash = reference.Location.LastIndexOf('/');
+					if (lastSlash >= 0)
+					{
+						reference.Location = reference.Location.Substring(0, lastSlash) + "/" + name;
+					}
 					return true;
 				}
 			}
