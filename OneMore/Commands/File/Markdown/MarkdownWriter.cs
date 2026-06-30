@@ -200,8 +200,8 @@ namespace River.OneMoreAddIn.Commands
 			{
 				var element = elements[ei];
 				var n = element.Name.LocalName;
-				var m = $"- [prefix:[{prefix}] depth:{depth} start:{startOfLine} contained:{contained} element {n}";
 #if DBGLOG
+				var m = $"- [prefix:[{prefix}] depth:{depth} start:{startOfLine} contained:{contained} element {n}";
 				logger.Debug(n == "T" ? $"{m} [{element.Value}]" : m);
 #endif
 				switch (n)
@@ -363,7 +363,7 @@ namespace River.OneMoreAddIn.Commands
 			// on an inner T is inline code handled by DetectQuickStyle in the T case.
 			if (!oe.GetAttributeValue("quickStyleIndex", out int index, -1))
 			{
-				if (oe.Parent == null
+				if (oe.Parent is null
 					|| !oe.Parent.GetAttributeValue("quickStyleIndex", out index, -1))
 				{
 					return false;
@@ -377,11 +377,15 @@ namespace River.OneMoreAddIn.Commands
 
 		private string GetCodeText(XElement oe)
 		{
-			// Return plain text content of a code-block OE, stripping any HTML span tags
-			// that may be present (e.g., syntax-highlighting colors).
-			var cdata = oe.Elements(ns + "T").FirstOrDefault()?.GetCData();
-			if (cdata == null) return string.Empty;
-			return cdata.GetWrapper().Value.TrimEnd();
+			// concatenate all T runs — a code OE can have multiple runs when
+			// syntax-highlighting or other formatting splits the CData across elements.
+			var runs = oe.Elements(ns + "T").ToList();
+			if (!runs.Any()) return string.Empty;
+			return string.Concat(runs.Select(t =>
+			{
+				var cdata = t.GetCData();
+				return cdata?.GetWrapper().Value ?? string.Empty;
+			})).TrimEnd();
 		}
 
 
@@ -404,8 +408,9 @@ namespace River.OneMoreAddIn.Commands
 					QuickStyleIndex = index
 				};
 
-				var quick = quickStyles.First(q => q.Index == index);
-				if (quick != null)
+				// FirstOrDefault so missing index returns null instead of throwing
+				var quick = quickStyles.FirstOrDefault(q => q.Index == index);
+				if (quick is not null)
 				{
 					var name = quick.Name.ToLower();
 
@@ -428,7 +433,8 @@ namespace River.OneMoreAddIn.Commands
 			writer.Write(prefix);
 			if (contexts.Count == 0) return;
 			var context = contexts.Peek();
-			var quick = quickStyles.First(q => q.Index == context.QuickStyleIndex);
+			var quick = quickStyles.FirstOrDefault(q => q.Index == context.QuickStyleIndex);
+			if (quick is null) return;
 			switch (quick.Name)
 			{
 				case "PageTitle":
@@ -466,7 +472,8 @@ namespace River.OneMoreAddIn.Commands
 				case 71:    // to do prio 2
 				case 94:    // discuss person a/b
 				case 95:    // discuss manager
-					var check = element.Attribute("completed").Value == "true" ? "x" : " ";
+					// guard against missing completed attribute
+					var check = element.Attribute("completed")?.Value == "true" ? "x" : " ";
 					writer.Write($"[{check}] ");
 					break;
 
@@ -506,7 +513,11 @@ namespace River.OneMoreAddIn.Commands
 			{
 				textNode.Value = textNode.Value
 					.Replace("[", "\\[")
-					.Replace("|", "\\|");
+					.Replace("|", "\\|")
+					.Replace("*", "\\*")
+					.Replace("_", "\\_")
+					.Replace("~", "\\~")
+					.Replace("`", "\\`");
 			}
 
 			foreach (var span in wrapper.Descendants("span").ToList())
@@ -514,7 +525,7 @@ namespace River.OneMoreAddIn.Commands
 				var text = span.Value;
 				var att = span.Attribute("style");
 				// span might only have a lang attribute
-				if (att != null)
+				if (att is not null)
 				{
 					var style = new Style(att.Value);
 					if (style.FontFamily?.IndexOf("Consolas", StringComparison.OrdinalIgnoreCase) >= 0)
@@ -636,9 +647,9 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
-				// this is a relative path that allows us to move the folder around
-				var uri = new Uri(target).AbsoluteUri;
-				writer.WriteLine($"[{name}]({uri})");
+				// use relative path (portable) to match image link behavior
+				var relPath = Path.Combine(attachmentFolder, name);
+				writer.WriteLine($"[{name}]({relPath})");
 			}
 			else
 			{

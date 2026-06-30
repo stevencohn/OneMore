@@ -27,9 +27,15 @@ namespace River.OneMoreAddIn.Commands
 				}
 
 				var label = obj.Label.Text.Substring(obj.Label.Start, obj.Label.Length);
-				label = Path.Combine(
-					Path.GetDirectoryName(label),
-					Path.GetFileNameWithoutExtension(label));
+				// only strip known markdown file extensions, not all dots in the label
+				var ext = Path.GetExtension(label);
+				if (ext.Equals(".md", StringComparison.OrdinalIgnoreCase) ||
+					ext.Equals(".markdown", StringComparison.OrdinalIgnoreCase))
+				{
+					label = Path.Combine(
+						Path.GetDirectoryName(label),
+						Path.GetFileNameWithoutExtension(label));
+				}
 
 				if (obj.IsImage)
 				{
@@ -53,7 +59,6 @@ namespace River.OneMoreAddIn.Commands
 					}
 
 					renderer.Write($"<img src=\"{src}\" alt=\"{label}\" />");
-					Logger.Current.WriteLine($"wrender<img> src=[{src}] alt=[{label}]");
 				}
 				else
 				{
@@ -66,8 +71,7 @@ namespace River.OneMoreAddIn.Commands
 						Path.Combine(renderer.BaseUrl.AbsolutePath, link))
 						.AbsoluteUri;
 
-					renderer.Write($"<a href=\"{href}\">{label}</a>");
-					Logger.Current.WriteLine($"wrender<a> href=[{href}] alt=[{label}]");
+					renderer.Write($"<a href=\"{href}\">{label}</a>"); // fix #7
 				}
 			}
 		}
