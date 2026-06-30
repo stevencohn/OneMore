@@ -2219,6 +2219,26 @@ Czy chcesz odświeżyć istniejącą stronę?</value>
     <value>Utwórz mapę stron</value>
     <comment>dialog title</comment>
   </data>
+  <data name="MarkdownSheet_blankBeforeHeadingsBox.Text" xml:space="preserve">
+    <value>Wstaw pustą linię przed nagłówkami</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="MarkdownSheet_gfmLineBreaksBox.Text" xml:space="preserve">
+    <value>Traktuj podziały pojedynczych wierszy jako podziały wierszy w formacie GitHub-Flavored Markdown</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="MarkdownSheet_introBox.Text" xml:space="preserve">
+    <value>Dostosuj sposób, w jaki Convert Markdown interpretuje podziały wierszy i odstępy między akapitami</value>
+    <comment>label</comment>
+  </data>
+  <data name="MarkdownSheet_singleSpacingBox.Text" xml:space="preserve">
+    <value>Zamiast dodawać dodatkową spację po każdym akapicie, używaj pojedynczych odstępów między akapitami</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="MarkdownSheet_Title" xml:space="preserve">
+    <value>Obniżka cen</value>
+    <comment>settings sheet</comment>
+  </data>
   <data name="MoreMessageBox_hideBox.Text" xml:space="preserve">
     <value>Ukryj tę wiadomość w przyszłości</value>
     <comment>checkbox</comment>

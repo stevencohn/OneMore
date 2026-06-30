@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
+	using River.OneMoreAddIn.Settings;
 	using River.OneMoreAddIn.Styles;
 	using River.OneMoreAddIn.UI;
 	using System.Collections.Generic;
@@ -82,8 +83,11 @@ namespace River.OneMoreAddIn.Commands
 				? $"<p style=\"font-family:{StyleBase.DefaultFontFamily};font-size:20pt\">{page.Title}</p>"
 				: string.Empty;
 
+			var gfmLineBreaks = new SettingsProvider()
+				.GetCollection(nameof(MarkdownSheet)).Get("gfmLineBreaks", false);
+
 			var filepath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-			var body = title + OneMoreDig.ConvertMarkdownToHtml(filepath, text);
+			var body = title + OneMoreDig.ConvertMarkdownToHtml(filepath, text, gfmLineBreaks);
 
 			filepath = Path.Combine(
 				Path.GetDirectoryName(filepath),

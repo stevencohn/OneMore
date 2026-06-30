@@ -2219,6 +2219,26 @@ Vuoi aggiornare la pagina esistente?</value>
     <value>Crea mappa pagina</value>
     <comment>dialog title</comment>
   </data>
+  <data name="MarkdownSheet_blankBeforeHeadingsBox.Text" xml:space="preserve">
+    <value>Inserisci una riga vuota prima delle intestazioni</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="MarkdownSheet_gfmLineBreaksBox.Text" xml:space="preserve">
+    <value>Tratta le interruzioni di riga singole come interruzioni di riga GitHub-Flavored Markdown</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="MarkdownSheet_introBox.Text" xml:space="preserve">
+    <value>Personalizza il modo in cui Convert Markdown interpreta le interruzioni di riga e la spaziatura dei paragrafi</value>
+    <comment>label</comment>
+  </data>
+  <data name="MarkdownSheet_singleSpacingBox.Text" xml:space="preserve">
+    <value>Utilizza la spaziatura a paragrafo singolo invece di aggiungere spazio aggiuntivo dopo ogni paragrafo</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="MarkdownSheet_Title" xml:space="preserve">
+    <value>Ribasso</value>
+    <comment>settings sheet</comment>
+  </data>
   <data name="MoreMessageBox_hideBox.Text" xml:space="preserve">
     <value>Nascondi questo messaggio in futuro</value>
     <comment>checkbox</comment>

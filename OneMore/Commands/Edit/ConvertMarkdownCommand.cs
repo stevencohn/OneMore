@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
+	using River.OneMoreAddIn.Settings;
 	using System.IO;
 	using System.Linq;
 	using System.Text.RegularExpressions;
@@ -38,6 +39,11 @@ namespace River.OneMoreAddIn.Commands
 				range.Scope == SelectionScope.SpecialCursor;
 
 			var editor = new PageEditor(page) { AllContent = allContent };
+
+			var markdownSettings = new SettingsProvider().GetCollection(nameof(MarkdownSheet));
+			var gfmLineBreaks = markdownSettings.Get("gfmLineBreaks", false);
+			var singleSpacing = markdownSettings.Get("singleSpacing", false);
+			var blankBeforeHeadings = markdownSettings.Get("blankBeforeHeadings", false);
 
 			var outlines = allContent
 				? page.BodyOutlines
@@ -74,7 +80,7 @@ namespace River.OneMoreAddIn.Commands
 				var text = reader.ReadTextFrom(paragraphs, allContent);
 				text = Regex.Replace(text, @"<br>([\n\r]+|$)", "$1");
 
-				var body = OneMoreDig.ConvertMarkdownToHtml(filepath, text);
+				var body = OneMoreDig.ConvertMarkdownToHtml(filepath, text, gfmLineBreaks);
 
 				editor.InsertAtAnchor(new XElement(ns + "HTMLBlock",
 					new XElement(ns + "Data",
@@ -101,11 +107,11 @@ namespace River.OneMoreAddIn.Commands
 				var converter = new MarkdownConverter(page);
 
 				converter
-					.RewriteHeadings(touched)
+					.RewriteHeadings(touched, blankBeforeHeadings)
 					.RewriteTodo(touched)
 					.RewriteCode(touched)
 					.RewriteInlineCode(touched)
-					.SpaceOutParagraphs(touched, 12);
+					.SpaceOutParagraphs(touched, singleSpacing ? 0f : 12f);
 
 				await one.Update(page);
 			}

@@ -3441,6 +3441,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This notebook has been excluded from hashtag scanning. To include it, open Settings and select the Hashtags page..
+        /// </summary>
+        internal static string HashtagCommand_notebookExcluded {
+            get {
+                return ResourceManager.GetString("HashtagCommand_notebookExcluded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Scanned {0} pages, updated {1}, found {2} hashtags.
         /// </summary>
         internal static string HashtagCommand_scanComplete {
@@ -3460,15 +3469,6 @@ namespace River.OneMoreAddIn.Properties {
             }
         }
         
-        /// <summary>
-        ///   Looks up a localized string similar to This notebook has been excluded from hashtag scanning.
-        /// </summary>
-        internal static string HashtagCommand_notebookExcluded {
-            get {
-                return ResourceManager.GetString("HashtagCommand_notebookExcluded", resourceCulture);
-            }
-        }
-
         /// <summary>
         ///   Looks up a localized string similar to Processed {0} hashtags on this page.
         /// </summary>
@@ -5496,6 +5496,51 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Insert a blank line before headings.
+        /// </summary>
+        internal static string MarkdownSheet_blankBeforeHeadingsBox_Text {
+            get {
+                return ResourceManager.GetString("MarkdownSheet_blankBeforeHeadingsBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Treat single line breaks as GitHub-Flavored Markdown line breaks.
+        /// </summary>
+        internal static string MarkdownSheet_gfmLineBreaksBox_Text {
+            get {
+                return ResourceManager.GetString("MarkdownSheet_gfmLineBreaksBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customize how Convert Markdown interprets line breaks and paragraph spacing.
+        /// </summary>
+        internal static string MarkdownSheet_introBox_Text {
+            get {
+                return ResourceManager.GetString("MarkdownSheet_introBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use single paragraph spacing instead of adding extra space after each paragraph.
+        /// </summary>
+        internal static string MarkdownSheet_singleSpacingBox_Text {
+            get {
+                return ResourceManager.GetString("MarkdownSheet_singleSpacingBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Markdown.
+        /// </summary>
+        internal static string MarkdownSheet_Title {
+            get {
+                return ResourceManager.GetString("MarkdownSheet_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hide this message in the future.
         /// </summary>
         internal static string MoreMessageBox_hideBox_Text {
@@ -5782,6 +5827,42 @@ namespace River.OneMoreAddIn.Properties {
             get {
                 object obj = ResourceManager.GetObject("NotebookMask", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No notebooks have been scanned yet. Run an initial hashtag scan first..
+        /// </summary>
+        internal static string NotebooksDialog_emptyLabel {
+            get {
+                return ResourceManager.GetString("NotebooksDialog_emptyLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select notebooks to include or exclude from hashtag scanning. ✔ identifies notebooks that have already been scanned..
+        /// </summary>
+        internal static string NotebooksDialog_infoLabel {
+            get {
+                return ResourceManager.GetString("NotebooksDialog_infoLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ✔.
+        /// </summary>
+        internal static string NotebooksDialog_scanned {
+            get {
+                return ResourceManager.GetString("NotebooksDialog_scanned", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notebook Selection.
+        /// </summary>
+        internal static string NotebooksDialog_Title {
+            get {
+                return ResourceManager.GetString("NotebooksDialog_Title", resourceCulture);
             }
         }
         
@@ -11910,42 +11991,6 @@ namespace River.OneMoreAddIn.Properties {
             }
         }
         
-        /// <summary>
-        ///   Looks up a localized string similar to No notebooks have been scanned yet. Run an initial hashtag scan first..
-        /// </summary>
-        internal static string NotebooksDialog_emptyLabel {
-            get {
-                return ResourceManager.GetString("NotebooksDialog_emptyLabel", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Select notebooks to include or exclude from hashtag scanning. ✔ identifies notebooks that have already been scanned..
-        /// </summary>
-        internal static string NotebooksDialog_infoLabel {
-            get {
-                return ResourceManager.GetString("NotebooksDialog_infoLabel", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to ✔.
-        /// </summary>
-        internal static string NotebooksDialog_scanned {
-            get {
-                return ResourceManager.GetString("NotebooksDialog_scanned", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Notebook Selection.
-        /// </summary>
-        internal static string NotebooksDialog_Title {
-            get {
-                return ResourceManager.GetString("NotebooksDialog_Title", resourceCulture);
-            }
-        }
-
         /// <summary>
         ///   Looks up a localized string similar to Schedule Hashtag Scanning.
         /// </summary>

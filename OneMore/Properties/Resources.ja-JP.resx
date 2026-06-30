@@ -2222,6 +2222,26 @@ OneNoteファイル (*.one)</value>
     <value>ページマップを作成</value>
     <comment>dialog title</comment>
   </data>
+  <data name="MarkdownSheet_blankBeforeHeadingsBox.Text" xml:space="preserve">
+    <value>見出しの前に空行を挿入する</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="MarkdownSheet_gfmLineBreaksBox.Text" xml:space="preserve">
+    <value>単一の改行を GitHub 風味の Markdown 改行として扱う</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="MarkdownSheet_introBox.Text" xml:space="preserve">
+    <value>Convert Markdown が改行と段落間隔を解釈する方法をカスタマイズする</value>
+    <comment>label</comment>
+  </data>
+  <data name="MarkdownSheet_singleSpacingBox.Text" xml:space="preserve">
+    <value>各段落の後に余分なスペースを追加するのではなく、単一の段落間隔を使用します。</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="MarkdownSheet_Title" xml:space="preserve">
+    <value>マークダウン</value>
+    <comment>settings sheet</comment>
+  </data>
   <data name="MoreMessageBox_hideBox.Text" xml:space="preserve">
     <value>今後このメッセージを非表示にします</value>
     <comment>checkbox</comment>

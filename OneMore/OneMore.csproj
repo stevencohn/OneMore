@@ -206,6 +206,12 @@
     <Compile Include="Commands\Edit\ConvertMarkdownCommand.cs" />
     <Compile Include="Commands\Edit\CopyAsTextCommand.cs" />
     <Compile Include="Commands\Edit\RecolorInkCommand.cs" />
+    <Compile Include="Commands\Settings\MarkdownSheet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Commands\Settings\MarkdownSheet.Designer.cs">
+      <DependentUpon>MarkdownSheet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Workspaces\Favorites\FavoriteModels.cs" />
     <Compile Include="Commands\Workspaces\Favorites\AddFavoriteCommand.cs" />
     <Compile Include="Commands\Workspaces\Favorites\ExportFavoritesCommand.cs" />
@@ -1397,6 +1403,9 @@
     <Content Include="Commands\Tagging\HashtagsDB.sql" />
     <EmbeddedResource Include="Commands\Page\CreatePagesDialog.resx">
       <DependentUpon>CreatePagesDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Settings\MarkdownSheet.resx">
+      <DependentUpon>MarkdownSheet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Settings\NotebooksDialog.resx">
       <DependentUpon>NotebooksDialog.cs</DependentUpon>

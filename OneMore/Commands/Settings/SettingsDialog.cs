@@ -28,6 +28,7 @@ namespace River.OneMoreAddIn.Settings
 			Highlight,
 			Images,
 			Keyboard,
+			Markdown,
 			Navigator,
 			Plugins,
 			QuickNotes,
@@ -71,6 +72,7 @@ namespace River.OneMoreAddIn.Settings
 				highlightLink.Text = Resx.HighlightsSheet_Title;
 				imagesLink.Text = Resx.word_Images;
 				keyboardLink.Text = Resx.SettingsDialog_keyboardNode_Text;
+				markdownLink.Text = Resx.MarkdownSheet_Title;
 				navigatorLink.Text = Resx.word_Navigator;
 				pluginsLink.Text = Resx.word_Plugins;
 				quickNotesLink.Text = Resx.QuickNotesSheet_Title;
@@ -89,7 +91,7 @@ namespace River.OneMoreAddIn.Settings
 			{
 				generalLink, colorizerLink, colorsLink, aliasLink, contextLink,
 				favoritesLink, fileImportLink, hashtagsLink, highlightLink, imagesLink,
-				keyboardLink, navigatorLink, pluginsLink, quickNotesLink, ribbonLink,
+				keyboardLink, markdownLink, navigatorLink, pluginsLink, quickNotesLink, ribbonLink,
 				searchLink, snippetsLink, tableThemesLink, variablesLink
 			};
 
@@ -222,13 +224,14 @@ namespace River.OneMoreAddIn.Settings
 					8 => new HighlightsSheet(provider),
 					9 => new ImagesSheet(provider),
 					10 => new KeyboardSheet(provider, ribbon),
-					11 => new NavigatorSheet(provider),
-					12 => await PluginsSheet.Create(provider, ribbon),
-					13 => new QuickNotesSheet(provider),
-					14 => new RibbonBarSheet(provider),
-					15 => new SearchEngineSheet(provider),
-					16 => new SnippetsSheet(provider, ribbon),
-					17 => new TableThemesSheet(provider, ribbon),
+					11 => new MarkdownSheet(provider),
+					12 => new NavigatorSheet(provider),
+					13 => await PluginsSheet.Create(provider, ribbon),
+					14 => new QuickNotesSheet(provider),
+					15 => new RibbonBarSheet(provider),
+					16 => new SearchEngineSheet(provider),
+					17 => new SnippetsSheet(provider, ribbon),
+					18 => new TableThemesSheet(provider, ribbon),
 					_ => new VariablesSheet(provider)
 				};
 

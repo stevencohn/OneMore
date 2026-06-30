@@ -2219,6 +2219,26 @@ Wilt u de bestaande pagina vernieuwen?</value>
     <value>Maak een paginakaart</value>
     <comment>dialog title</comment>
   </data>
+  <data name="MarkdownSheet_blankBeforeHeadingsBox.Text" xml:space="preserve">
+    <value>Voeg vóór de kopjes een lege regel in</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="MarkdownSheet_gfmLineBreaksBox.Text" xml:space="preserve">
+    <value>Behandel enkele regeleinden als Markdown-regeleinden met GitHub-smaak</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="MarkdownSheet_introBox.Text" xml:space="preserve">
+    <value>Pas aan hoe Convert Markdown regeleinden en alinea-afstanden interpreteert</value>
+    <comment>label</comment>
+  </data>
+  <data name="MarkdownSheet_singleSpacingBox.Text" xml:space="preserve">
+    <value>Gebruik een enkele alinea-afstand in plaats van extra ruimte toe te voegen na elke alinea</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="MarkdownSheet_Title" xml:space="preserve">
+    <value>Afwaardering</value>
+    <comment>settings sheet</comment>
+  </data>
   <data name="MoreMessageBox_hideBox.Text" xml:space="preserve">
     <value>Verberg dit bericht in de toekomst</value>
     <comment>checkbox</comment>

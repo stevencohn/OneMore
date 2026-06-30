@@ -2219,6 +2219,26 @@ Total Row Font
     <value>צור מפת עמוד</value>
     <comment>dialog title</comment>
   </data>
+  <data name="MarkdownSheet_blankBeforeHeadingsBox.Text" xml:space="preserve">
+    <value>הוסף שורה ריקה לפני הכותרות</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="MarkdownSheet_gfmLineBreaksBox.Text" xml:space="preserve">
+    <value>התייחסו להפסקות שורה בודדת כאל מעברי שורה בטעם GitHub</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="MarkdownSheet_introBox.Text" xml:space="preserve">
+    <value>התאם אישית כיצד Convert Markdown מפרש מעברי שורות ומרווח בין פסקאות</value>
+    <comment>label</comment>
+  </data>
+  <data name="MarkdownSheet_singleSpacingBox.Text" xml:space="preserve">
+    <value>השתמש במרווח פסקאות בודד במקום להוסיף רווח נוסף לאחר כל פסקה</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="MarkdownSheet_Title" xml:space="preserve">
+    <value>Markdown</value>
+    <comment>settings sheet</comment>
+  </data>
   <data name="MoreMessageBox_hideBox.Text" xml:space="preserve">
     <value>הסתר הודעה זו בעתיד</value>
     <comment>checkbox</comment>

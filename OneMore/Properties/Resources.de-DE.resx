@@ -2214,6 +2214,26 @@ Möchten Sie die bestehende Seite aktualisieren?</value>
     <value>Seitenzuordnung erstellen</value>
     <comment>dialog title</comment>
   </data>
+  <data name="MarkdownSheet_blankBeforeHeadingsBox.Text" xml:space="preserve">
+    <value>Fügen Sie vor Überschriften eine Leerzeile ein</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="MarkdownSheet_gfmLineBreaksBox.Text" xml:space="preserve">
+    <value>Behandeln Sie einzelne Zeilenumbrüche als GitHub-Flavored Markdown-Zeilenumbrüche</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="MarkdownSheet_introBox.Text" xml:space="preserve">
+    <value>Passen Sie an, wie Convert Markdown Zeilenumbrüche und Absatzabstände interpretiert</value>
+    <comment>label</comment>
+  </data>
+  <data name="MarkdownSheet_singleSpacingBox.Text" xml:space="preserve">
+    <value>Verwenden Sie einen einzelnen Absatzabstand, anstatt nach jedem Absatz zusätzlichen Platz einzufügen</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="MarkdownSheet_Title" xml:space="preserve">
+    <value>Abschlag</value>
+    <comment>settings sheet</comment>
+  </data>
   <data name="MoreMessageBox_hideBox.Text" xml:space="preserve">
     <value>Verstecken Sie diese Nachricht in Zukunft</value>
     <comment>checkbox</comment>

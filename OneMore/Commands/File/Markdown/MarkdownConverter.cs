@@ -70,7 +70,8 @@ namespace River.OneMoreAddIn.Commands
 		/// <summary>
 		/// Applies standard OneNote styling all recognizable headings in the given Outline
 		/// </summary>
-		public MarkdownConverter RewriteHeadings(IEnumerable<XElement> paragraphs)
+		public MarkdownConverter RewriteHeadings(
+			IEnumerable<XElement> paragraphs, bool blankBeforeHeadings = false)
 		{
 			var headings = paragraphs
 				// candidate headings imported from markdown should have exactly one text run
@@ -88,7 +89,9 @@ namespace River.OneMoreAddIn.Commands
 					return c;
 				})
 				// shouldn't happen but...
-				.Where(c => c.Key != null);
+				.Where(c => c.Key != null)
+				// materialize before mutating sibling structure below
+				.ToList();
 
 			foreach (var heading in headings)
 			{
@@ -109,6 +112,14 @@ namespace River.OneMoreAddIn.Commands
 						// set any additional css on text run such as italics
 						stylizer.ApplyStyle(e);
 					});
+
+				// give the heading some breathing room from the preceding paragraph,
+				// unless it's already the first paragraph in its outline
+				if (blankBeforeHeadings && heading.Element.PreviousNode is not null)
+				{
+					heading.Element.AddBeforeSelf(
+						new XElement(ns + "OE", new XElement(ns + "T", new XCData(string.Empty))));
+				}
 			}
 
 			return this;
