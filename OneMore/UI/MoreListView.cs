@@ -404,7 +404,7 @@ namespace River.OneMoreAddIn.UI
 					x + (StateSlot - glyph.Width) / 2,
 					e.Bounds.Top + (h - glyph.Height) / 2);
 
-				x += StateSlot;
+				x += StateSlot + 3;
 			}
 
 			// Draw the item's image from SmallImageList.

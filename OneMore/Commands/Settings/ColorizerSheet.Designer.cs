@@ -87,7 +87,7 @@ namespace River.OneMoreAddIn.Settings
 			// 
 			this.barLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.barLabel.AutoSize = true;
-			this.barLabel.Location = new System.Drawing.Point(533, 217);
+			this.barLabel.Location = new System.Drawing.Point(702, 207);
 			this.barLabel.Name = "barLabel";
 			this.barLabel.Size = new System.Drawing.Size(14, 20);
 			this.barLabel.TabIndex = 21;
@@ -104,7 +104,7 @@ namespace River.OneMoreAddIn.Settings
 			this.allLink.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.allLink.HoverColor = System.Drawing.Color.Orchid;
 			this.allLink.LinkColor = System.Drawing.Color.MediumOrchid;
-			this.allLink.Location = new System.Drawing.Point(501, 217);
+			this.allLink.Location = new System.Drawing.Point(670, 207);
 			this.allLink.Name = "allLink";
 			this.allLink.NavMode = false;
 			this.allLink.Selected = false;
@@ -127,7 +127,7 @@ namespace River.OneMoreAddIn.Settings
 			this.noneLink.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.noneLink.HoverColor = System.Drawing.Color.Orchid;
 			this.noneLink.LinkColor = System.Drawing.Color.MediumOrchid;
-			this.noneLink.Location = new System.Drawing.Point(553, 217);
+			this.noneLink.Location = new System.Drawing.Point(722, 207);
 			this.noneLink.Name = "noneLink";
 			this.noneLink.NavMode = false;
 			this.noneLink.Selected = false;
@@ -149,12 +149,12 @@ namespace River.OneMoreAddIn.Settings
 			this.langView.CheckBoxes = true;
 			this.langView.FullRowSelect = true;
 			this.langView.HideSelection = false;
-			this.langView.Location = new System.Drawing.Point(10, 240);
+			this.langView.Location = new System.Drawing.Point(10, 230);
 			this.langView.Name = "langView";
 			this.langView.OwnerDraw = true;
 			this.langView.SelectedBackColorKey = "LinkHighlight";
 			this.langView.SelectedForeColorKey = "ControlText";
-			this.langView.Size = new System.Drawing.Size(590, 173);
+			this.langView.Size = new System.Drawing.Size(759, 183);
 			this.langView.TabIndex = 5;
 			this.langView.UseCompatibleStateImageBehavior = false;
 			this.langView.View = System.Windows.Forms.View.SmallIcon;
@@ -162,7 +162,7 @@ namespace River.OneMoreAddIn.Settings
 			// enabledLabel
 			// 
 			this.enabledLabel.AutoSize = true;
-			this.enabledLabel.Location = new System.Drawing.Point(6, 217);
+			this.enabledLabel.Location = new System.Drawing.Point(6, 207);
 			this.enabledLabel.Name = "enabledLabel";
 			this.enabledLabel.Size = new System.Drawing.Size(146, 20);
 			this.enabledLabel.TabIndex = 17;
@@ -179,7 +179,7 @@ namespace River.OneMoreAddIn.Settings
 			this.family2Box.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.family2Box.FormattingEnabled = true;
 			this.family2Box.IntegralHeight = false;
-			this.family2Box.Location = new System.Drawing.Point(135, 106);
+			this.family2Box.Location = new System.Drawing.Point(135, 103);
 			this.family2Box.Name = "family2Box";
 			this.family2Box.Size = new System.Drawing.Size(355, 32);
 			this.family2Box.TabIndex = 2;
@@ -205,7 +205,7 @@ namespace River.OneMoreAddIn.Settings
             "22",
             "24",
             "26"});
-			this.size2Box.Location = new System.Drawing.Point(496, 105);
+			this.size2Box.Location = new System.Drawing.Point(496, 102);
 			this.size2Box.Name = "size2Box";
 			this.size2Box.Size = new System.Drawing.Size(104, 32);
 			this.size2Box.TabIndex = 3;
@@ -215,7 +215,7 @@ namespace River.OneMoreAddIn.Settings
 			// font2Label
 			// 
 			this.font2Label.AutoSize = true;
-			this.font2Label.Location = new System.Drawing.Point(6, 113);
+			this.font2Label.Location = new System.Drawing.Point(6, 109);
 			this.font2Label.Name = "font2Label";
 			this.font2Label.Size = new System.Drawing.Size(85, 20);
 			this.font2Label.TabIndex = 14;
@@ -228,7 +228,7 @@ namespace River.OneMoreAddIn.Settings
 			this.fixedBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.fixedBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.fixedBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.fixedBox.Location = new System.Drawing.Point(135, 167);
+			this.fixedBox.Location = new System.Drawing.Point(135, 158);
 			this.fixedBox.Name = "fixedBox";
 			this.fixedBox.Size = new System.Drawing.Size(235, 25);
 			this.fixedBox.StylizeImage = false;
