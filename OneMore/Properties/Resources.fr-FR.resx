@@ -2222,6 +2222,26 @@ Voulez-vous actualiser la page existante ?</value>
     <value>Créer un plan de page</value>
     <comment>dialog title</comment>
   </data>
+  <data name="MarkdownSheet_blankBeforeHeadingsBox.Text" xml:space="preserve">
+    <value>Insérer une ligne vide avant les titres</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="MarkdownSheet_gfmLineBreaksBox.Text" xml:space="preserve">
+    <value>Traitez les sauts de ligne uniques comme des sauts de ligne Markdown aromatisés à GitHub</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="MarkdownSheet_introBox.Text" xml:space="preserve">
+    <value>Personnalisez la façon dont Convert Markdown interprète les sauts de ligne et l'espacement des paragraphes</value>
+    <comment>label</comment>
+  </data>
+  <data name="MarkdownSheet_singleSpacingBox.Text" xml:space="preserve">
+    <value>Utilisez un espacement de paragraphe unique au lieu d'ajouter un espace supplémentaire après chaque paragraphe</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="MarkdownSheet_Title" xml:space="preserve">
+    <value>Réduction</value>
+    <comment>settings sheet</comment>
+  </data>
   <data name="MoreMessageBox_hideBox.Text" xml:space="preserve">
     <value>Masquer ce message à l'avenir</value>
     <comment>checkbox</comment>

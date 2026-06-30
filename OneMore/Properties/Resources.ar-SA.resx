@@ -2222,6 +2222,26 @@
     <value>إنشاء خريطة الصفحة</value>
     <comment>dialog title</comment>
   </data>
+  <data name="MarkdownSheet_blankBeforeHeadingsBox.Text" xml:space="preserve">
+    <value>أدخل سطرًا فارغًا قبل العناوين</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="MarkdownSheet_gfmLineBreaksBox.Text" xml:space="preserve">
+    <value>تعامل مع فواصل الأسطر المفردة على أنها فواصل أسطر GitHub-Flavored Markdown</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="MarkdownSheet_introBox.Text" xml:space="preserve">
+    <value>قم بتخصيص كيفية تفسير Convert Markdown لفواصل الأسطر وتباعد الفقرات</value>
+    <comment>label</comment>
+  </data>
+  <data name="MarkdownSheet_singleSpacingBox.Text" xml:space="preserve">
+    <value>استخدم تباعد فقرات واحد بدلاً من إضافة مسافة إضافية بعد كل فقرة</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="MarkdownSheet_Title" xml:space="preserve">
+    <value>تخفيض السعر</value>
+    <comment>settings sheet</comment>
+  </data>
   <data name="MoreMessageBox_hideBox.Text" xml:space="preserve">
     <value>إخفاء هذه الرسالة في المستقبل</value>
     <comment>checkbox</comment>

@@ -2214,6 +2214,26 @@ Cuadrado Marrón</value>
     <value>Crear mapa de página</value>
     <comment>dialog title</comment>
   </data>
+  <data name="MarkdownSheet_blankBeforeHeadingsBox.Text" xml:space="preserve">
+    <value>Insertar una línea en blanco antes de los títulos</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="MarkdownSheet_gfmLineBreaksBox.Text" xml:space="preserve">
+    <value>Trate los saltos de línea simples como saltos de línea Markdown con sabor a GitHub</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="MarkdownSheet_introBox.Text" xml:space="preserve">
+    <value>Personalice cómo Convert Markdown interpreta los saltos de línea y el espaciado de párrafos</value>
+    <comment>label</comment>
+  </data>
+  <data name="MarkdownSheet_singleSpacingBox.Text" xml:space="preserve">
+    <value>Utilice espaciado simple entre párrafos en lugar de agregar espacio adicional después de cada párrafo.</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="MarkdownSheet_Title" xml:space="preserve">
+    <value>Reducción</value>
+    <comment>settings sheet</comment>
+  </data>
   <data name="MoreMessageBox_hideBox.Text" xml:space="preserve">
     <value>Ocultar este mensaje en el futuro</value>
     <comment>checkbox</comment>

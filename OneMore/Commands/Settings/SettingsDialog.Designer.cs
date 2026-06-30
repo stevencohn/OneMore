@@ -47,6 +47,7 @@
 			this.highlightLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.imagesLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.keyboardLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
+			this.markdownLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.navigatorLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.pluginsLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.quickNotesLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
@@ -160,6 +161,7 @@
 			this.navPanel.Controls.Add(this.highlightLink);
 			this.navPanel.Controls.Add(this.imagesLink);
 			this.navPanel.Controls.Add(this.keyboardLink);
+			this.navPanel.Controls.Add(this.markdownLink);
 			this.navPanel.Controls.Add(this.navigatorLink);
 			this.navPanel.Controls.Add(this.pluginsLink);
 			this.navPanel.Controls.Add(this.quickNotesLink);
@@ -468,9 +470,36 @@
 			this.keyboardLink.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.keyboardLink.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DoLinkKeyDown);
 			this.keyboardLink.Click += new System.EventHandler(this.DoLinkClicked);
-			// 
+			//
+			// markdownLink
+			//
+			this.markdownLink.Active = false;
+			this.markdownLink.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.markdownLink.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.markdownLink.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.markdownLink.HoverColor = System.Drawing.Color.Orchid;
+			this.markdownLink.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+			this.markdownLink.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.markdownLink.Location = new System.Drawing.Point(8, 340);
+			this.markdownLink.Name = "markdownLink";
+			this.markdownLink.NavMode = true;
+			this.markdownLink.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
+			this.markdownLink.Selected = false;
+			this.markdownLink.Size = new System.Drawing.Size(256, 20);
+			this.markdownLink.StrictColors = false;
+			this.markdownLink.TabIndex = 11;
+			this.markdownLink.TabStop = true;
+			this.markdownLink.Tag = 11;
+			this.markdownLink.Text = "Markdown";
+			this.markdownLink.ThemedBack = null;
+			this.markdownLink.ThemedFore = null;
+			this.markdownLink.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.markdownLink.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DoLinkKeyDown);
+			this.markdownLink.Click += new System.EventHandler(this.DoLinkClicked);
+			//
 			// navigatorLink
-			// 
+			//
 			this.navigatorLink.Active = false;
 			this.navigatorLink.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.navigatorLink.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -486,9 +515,9 @@
 			this.navigatorLink.Selected = false;
 			this.navigatorLink.Size = new System.Drawing.Size(256, 20);
 			this.navigatorLink.StrictColors = false;
-			this.navigatorLink.TabIndex = 11;
+			this.navigatorLink.TabIndex = 12;
 			this.navigatorLink.TabStop = true;
-			this.navigatorLink.Tag = 11;
+			this.navigatorLink.Tag = 12;
 			this.navigatorLink.Text = "Navigator";
 			this.navigatorLink.ThemedBack = null;
 			this.navigatorLink.ThemedFore = null;
@@ -513,9 +542,9 @@
 			this.pluginsLink.Selected = false;
 			this.pluginsLink.Size = new System.Drawing.Size(256, 20);
 			this.pluginsLink.StrictColors = false;
-			this.pluginsLink.TabIndex = 12;
+			this.pluginsLink.TabIndex = 13;
 			this.pluginsLink.TabStop = true;
-			this.pluginsLink.Tag = 12;
+			this.pluginsLink.Tag = 13;
 			this.pluginsLink.Text = "Plugins";
 			this.pluginsLink.ThemedBack = null;
 			this.pluginsLink.ThemedFore = null;
@@ -540,9 +569,9 @@
 			this.quickNotesLink.Selected = false;
 			this.quickNotesLink.Size = new System.Drawing.Size(256, 20);
 			this.quickNotesLink.StrictColors = false;
-			this.quickNotesLink.TabIndex = 13;
+			this.quickNotesLink.TabIndex = 14;
 			this.quickNotesLink.TabStop = true;
-			this.quickNotesLink.Tag = 13;
+			this.quickNotesLink.Tag = 14;
 			this.quickNotesLink.Text = "Quick Notes";
 			this.quickNotesLink.ThemedBack = null;
 			this.quickNotesLink.ThemedFore = null;
@@ -567,9 +596,9 @@
 			this.ribbonLink.Selected = false;
 			this.ribbonLink.Size = new System.Drawing.Size(256, 20);
 			this.ribbonLink.StrictColors = false;
-			this.ribbonLink.TabIndex = 14;
+			this.ribbonLink.TabIndex = 15;
 			this.ribbonLink.TabStop = true;
-			this.ribbonLink.Tag = 14;
+			this.ribbonLink.Tag = 15;
 			this.ribbonLink.Text = "Ribbon Bar";
 			this.ribbonLink.ThemedBack = null;
 			this.ribbonLink.ThemedFore = null;
@@ -594,9 +623,9 @@
 			this.searchLink.Selected = false;
 			this.searchLink.Size = new System.Drawing.Size(256, 20);
 			this.searchLink.StrictColors = false;
-			this.searchLink.TabIndex = 15;
+			this.searchLink.TabIndex = 16;
 			this.searchLink.TabStop = true;
-			this.searchLink.Tag = 15;
+			this.searchLink.Tag = 16;
 			this.searchLink.Text = "Search Engines";
 			this.searchLink.ThemedBack = null;
 			this.searchLink.ThemedFore = null;
@@ -621,9 +650,9 @@
 			this.snippetsLink.Selected = false;
 			this.snippetsLink.Size = new System.Drawing.Size(256, 20);
 			this.snippetsLink.StrictColors = false;
-			this.snippetsLink.TabIndex = 16;
+			this.snippetsLink.TabIndex = 17;
 			this.snippetsLink.TabStop = true;
-			this.snippetsLink.Tag = 16;
+			this.snippetsLink.Tag = 17;
 			this.snippetsLink.Text = "Snippets";
 			this.snippetsLink.ThemedBack = null;
 			this.snippetsLink.ThemedFore = null;
@@ -648,9 +677,9 @@
 			this.tableThemesLink.Selected = false;
 			this.tableThemesLink.Size = new System.Drawing.Size(256, 20);
 			this.tableThemesLink.StrictColors = false;
-			this.tableThemesLink.TabIndex = 17;
+			this.tableThemesLink.TabIndex = 18;
 			this.tableThemesLink.TabStop = true;
-			this.tableThemesLink.Tag = 17;
+			this.tableThemesLink.Tag = 18;
 			this.tableThemesLink.Text = "Table Themes";
 			this.tableThemesLink.ThemedBack = null;
 			this.tableThemesLink.ThemedFore = null;
@@ -675,9 +704,9 @@
 			this.variablesLink.Selected = false;
 			this.variablesLink.Size = new System.Drawing.Size(256, 20);
 			this.variablesLink.StrictColors = false;
-			this.variablesLink.TabIndex = 18;
+			this.variablesLink.TabIndex = 19;
 			this.variablesLink.TabStop = true;
-			this.variablesLink.Tag = 18;
+			this.variablesLink.Tag = 19;
 			this.variablesLink.Text = "Variables";
 			this.variablesLink.ThemedBack = null;
 			this.variablesLink.ThemedFore = null;
@@ -734,6 +763,7 @@
 		private UI.MoreLinkLabel highlightLink;
 		private UI.MoreLinkLabel imagesLink;
 		private UI.MoreLinkLabel keyboardLink;
+		private UI.MoreLinkLabel markdownLink;
 		private UI.MoreLinkLabel navigatorLink;
 		private UI.MoreLinkLabel pluginsLink;
 		private UI.MoreLinkLabel quickNotesLink;

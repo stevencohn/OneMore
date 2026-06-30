@@ -2219,6 +2219,26 @@ Deseja atualizar a página existente?</value>
     <value>Criar mapa de página</value>
     <comment>dialog title</comment>
   </data>
+  <data name="MarkdownSheet_blankBeforeHeadingsBox.Text" xml:space="preserve">
+    <value>Insira uma linha em branco antes dos títulos</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="MarkdownSheet_gfmLineBreaksBox.Text" xml:space="preserve">
+    <value>Trate quebras de linha únicas como quebras de linha Markdown com sabor do GitHub</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="MarkdownSheet_introBox.Text" xml:space="preserve">
+    <value>Personalize como o Convert Markdown interpreta quebras de linha e espaçamento de parágrafo</value>
+    <comment>label</comment>
+  </data>
+  <data name="MarkdownSheet_singleSpacingBox.Text" xml:space="preserve">
+    <value>Use espaçamento de parágrafo único em vez de adicionar espaço extra após cada parágrafo</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="MarkdownSheet_Title" xml:space="preserve">
+    <value>Remarcação</value>
+    <comment>settings sheet</comment>
+  </data>
   <data name="MoreMessageBox_hideBox.Text" xml:space="preserve">
     <value>Ocultar esta mensagem no futuro</value>
     <comment>checkbox</comment>
