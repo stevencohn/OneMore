@@ -83,11 +83,14 @@ namespace River.OneMoreAddIn.Commands
 				? $"<p style=\"font-family:{StyleBase.DefaultFontFamily};font-size:20pt\">{page.Title}</p>"
 				: string.Empty;
 
-			var gfmLineBreaks = new SettingsProvider()
-				.GetCollection(nameof(MarkdownSheet)).Get("gfmLineBreaks", false);
+			var markdownSettings = new SettingsProvider().GetCollection(nameof(MarkdownSheet));
+			var gfmLineBreaks = markdownSettings.Get("gfmLineBreaks", false);
+			var singleSpacing = markdownSettings.Get("singleSpacing", false);
+			var blankBeforeHeadings = markdownSettings.Get("blankBeforeHeadings", false);
 
 			var filepath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-			var body = title + OneMoreDig.ConvertMarkdownToHtml(filepath, text, gfmLineBreaks);
+			var body = title + OneMoreDig.ConvertMarkdownToHtml(
+				filepath, text, gfmLineBreaks, singleSpacing, blankBeforeHeadings);
 
 			filepath = Path.Combine(
 				Path.GetDirectoryName(filepath),

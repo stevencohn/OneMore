@@ -6,16 +6,24 @@ namespace River.OneMoreAddIn.Commands
 {
 	using Markdig;
 	using Markdig.Renderers;
+	using Markdig.Syntax;
 	using System;
 	using System.IO;
+	using System.Linq;
 	using System.Text;
 	using System.Text.RegularExpressions;
 
 
 	internal static class OneMoreDig
 	{
+		// zero-width space; marks a paragraph that should collapse to a genuinely
+		// empty OneNote OE in MarkdownConverter.RewriteBlankLines
+		internal static readonly string BlankLineMarker = ((char)0x200B).ToString();
+
+
 		public static string ConvertMarkdownToHtml(
-			string path, string markdown, bool gfmLineBreaks = false)
+			string path, string markdown, bool gfmLineBreaks = false,
+			bool preserveBlankLines = false, bool blankBeforeHeadings = false)
 		{
 			markdown = IsolateCheckboxLines(markdown);
 
@@ -50,10 +58,71 @@ namespace River.OneMoreAddIn.Commands
 
 			var doc = Markdown.Parse(markdown, pipeline);
 
-			renderer.Render(doc);
+			if (preserveBlankLines)
+			{
+				RenderPreservingBlankLines(doc, markdown, renderer, writer, blankBeforeHeadings);
+			}
+			else
+			{
+				renderer.Render(doc);
+			}
+
 			writer.Flush();
 
 			return writer.ToString();
+		}
+
+
+		/// <summary>
+		/// Renders each top-level block individually, inserting an invisible marker
+		/// paragraph between adjacent Paragraph/Heading blocks whenever the source
+		/// markdown had a real blank line between them, so that a genuine blank OneNote
+		/// paragraph can be reconstructed later by MarkdownConverter.RewriteBlankLines.
+		/// </summary>
+		private static void RenderPreservingBlankLines(
+			MarkdownDocument doc, string markdown, HtmlRenderer renderer,
+			StringWriter writer, bool blankBeforeHeadings)
+		{
+			Block previous = null;
+
+			foreach (var block in doc)
+			{
+				if (previous is not null &&
+					IsSimpleBlock(previous) && IsSimpleBlock(block) &&
+					!(blankBeforeHeadings && block is HeadingBlock) &&
+					HasBlankLineBetween(markdown, previous, block))
+				{
+					writer.Write($"<p>{BlankLineMarker}</p>");
+				}
+
+				renderer.Render(block);
+				previous = block;
+			}
+		}
+
+
+		private static bool IsSimpleBlock(Block block)
+		{
+			return block is ParagraphBlock || block is HeadingBlock;
+		}
+
+
+		/// <summary>
+		/// Determines whether the source markdown had at least one blank line between
+		/// the given adjacent top-level blocks, based on their parsed source spans.
+		/// </summary>
+		private static bool HasBlankLineBetween(string markdown, Block previous, Block next)
+		{
+			var start = previous.Span.End + 1;
+			var end = next.Span.Start;
+
+			if (end <= start)
+			{
+				return false;
+			}
+
+			var gap = markdown.Substring(start, end - start);
+			return gap.Count(c => c == '\n') >= 2;
 		}
 
 
