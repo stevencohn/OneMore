@@ -43,9 +43,10 @@ namespace River.OneMoreAddIn.Commands
 
 		public CliParameterDefinition DefineParameters() =>
 			new CliParameterDefinition()
-			.AddString("notebook", "Name of notebook to process", required: true)
+			.AddString("notebook", "Name of notebook to process (omit when --pageId is used)", required: false)
 			.AddString("section", "Path of section to process (omit for all sections)", required: false)
 			.AddString("page", "Name of page to process (omit or * for all pages in section)", required: false)
+			.AddString("pageId", "Direct page ID, overrides --notebook / --section / --page", required: false)
 			.AddBoolean("backup", "Export each section as a .one backup file (ignores format)", required: false, defaultValue: false)
 			.AddPath("outpath", "Output folder path", required: true)
 			.AddEnum("format", "Export format",

@@ -334,61 +334,79 @@ namespace River.OneMoreAddIn
 			{
 				if (typeof(ICliPageCommand).IsAssignableFrom(commandType))
 				{
-					parameters.TryGet<string>("notebook", out var notebook);
-					parameters.TryGet<string>("section", out var section);
-					var hasPage = parameters.TryGet<string>("page", out var page);
-
-					if (string.IsNullOrWhiteSpace(notebook))
+					if (parameters.TryGet<string>("pageId", out var directPageId) &&
+						!string.IsNullOrWhiteSpace(directPageId))
 					{
-						StopWatcher();
-						await WriteCliResponse(pipe,
-							$"ERR:{commandName} requires a 'notebook' parameter");
-						return;
-					}
-
-					parameters.TryGet<bool>("backup", out var isBackup);
-					if (isBackup && !hasPage)
-					{
-						(pageOutput, cancelled) = await InvokeCliBackupExport(
-							parameters, notebook, section, pipe, cts.Token);
-					}
-					else if (string.IsNullOrWhiteSpace(section))
-					{
-						(pageOutput, cancelled) = await InvokeCliCommandForNotebook(
-							cliFactory, commandType, parameters, notebook, pipe, cts.Token);
-					}
-					else
-					{
-						var effectivePage = hasPage && !string.IsNullOrWhiteSpace(page) ? page : "*";
-
-						using var one = new OneNote();
-						var pageIds = await one.FindPagesByPath(notebook, section, effectivePage);
-
-						if (pageIds.Length == 0)
+						parameters.TryGet<bool>("backup", out var isBackupWithPageId);
+						if (isBackupWithPageId)
 						{
 							StopWatcher();
-							await WriteCliResponse(pipe,
-								$"ERR:No pages found at path: {notebook}/{section}/{effectivePage}");
+							await WriteCliResponse(pipe, "ERR:--pageId cannot be used with --backup");
 							return;
 						}
 
-						var outputs = new StringBuilder();
-						foreach (var pageId in pageIds)
+						using var one = new OneNote();
+						var r = await cliFactory.Run(commandType, cts.Token, parameters, one);
+						pageOutput = r?.CliOutput;
+					}
+					else
+					{
+						parameters.TryGet<string>("notebook", out var notebook);
+						parameters.TryGet<string>("section", out var section);
+						var hasPage = parameters.TryGet<string>("page", out var page);
+
+						if (string.IsNullOrWhiteSpace(notebook))
 						{
-							if (cts.Token.IsCancellationRequested)
+							StopWatcher();
+							await WriteCliResponse(pipe,
+								$"ERR:{commandName} requires a 'notebook' parameter");
+							return;
+						}
+
+						parameters.TryGet<bool>("backup", out var isBackup);
+						if (isBackup && !hasPage)
+						{
+							(pageOutput, cancelled) = await InvokeCliBackupExport(
+								parameters, notebook, section, pipe, cts.Token);
+						}
+						else if (string.IsNullOrWhiteSpace(section))
+						{
+							(pageOutput, cancelled) = await InvokeCliCommandForNotebook(
+								cliFactory, commandType, parameters, notebook, pipe, cts.Token);
+						}
+						else
+						{
+							var effectivePage = hasPage && !string.IsNullOrWhiteSpace(page) ? page : "*";
+
+							using var one = new OneNote();
+							var pageIds = await one.FindPagesByPath(notebook, section, effectivePage);
+
+							if (pageIds.Length == 0)
 							{
-								cancelled = true;
-								break;
+								StopWatcher();
+								await WriteCliResponse(pipe,
+									$"ERR:No pages found at path: {notebook}/{section}/{effectivePage}");
+								return;
 							}
 
-							parameters.Set("pageId", pageId);
-							var r = await cliFactory.Run(commandType, cts.Token, parameters, one);
-							if (!string.IsNullOrEmpty(r?.CliOutput))
+							var outputs = new StringBuilder();
+							foreach (var pageId in pageIds)
 							{
-								outputs.AppendLine(r.CliOutput);
+								if (cts.Token.IsCancellationRequested)
+								{
+									cancelled = true;
+									break;
+								}
+
+								parameters.Set("pageId", pageId);
+								var r = await cliFactory.Run(commandType, cts.Token, parameters, one);
+								if (!string.IsNullOrEmpty(r?.CliOutput))
+								{
+									outputs.AppendLine(r.CliOutput);
+								}
 							}
+							pageOutput = outputs.Length > 0 ? outputs.ToString() : null;
 						}
-						pageOutput = outputs.Length > 0 ? outputs.ToString() : null;
 					}
 				}
 				else

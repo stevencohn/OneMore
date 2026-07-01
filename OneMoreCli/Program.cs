@@ -262,7 +262,10 @@ namespace OneMoreCli
 			{
 				parameters.TryGet<bool>("backup", out var isBackupMode);
 				var backupHasPage = parameters.TryGet<string>("page", out _);
-				needsInteractive = isBackupMode && !backupHasPage;
+				var hasDirectPageId = parameters.TryGet<string>("pageId", out var directPid)
+					&& !string.IsNullOrWhiteSpace(directPid);
+
+				needsInteractive = isBackupMode && !backupHasPage && !hasDirectPageId;
 			}
 
 			if (needsInteractive)
@@ -284,6 +287,22 @@ namespace OneMoreCli
 
 				if (command is ICliPageCommand)
 				{
+					if (parameters.TryGet<string>("pageId", out var directPageId) &&
+						!string.IsNullOrWhiteSpace(directPageId))
+					{
+						parameters.TryGet<bool>("backup", out var isBackupWithPageId);
+						if (isBackupWithPageId)
+						{
+							CliConsole.WriteError("--pageId cannot be used with --backup");
+							return;
+						}
+
+						var r = await CliCommandFactory.Make().Run(command.GetType(), token, parameters);
+						if (!string.IsNullOrEmpty(r?.CliOutput))
+							Console.Write(r.CliOutput);
+						return;
+					}
+
 					parameters.TryGet<string>("notebook", out var notebook);
 					parameters.TryGet<string>("section", out var section);
 					var hasPage = parameters.TryGet<string>("page", out var page);
