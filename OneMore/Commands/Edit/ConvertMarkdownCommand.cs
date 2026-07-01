@@ -38,6 +38,14 @@ namespace River.OneMoreAddIn.Commands
 				range.Scope == SelectionScope.TextCursor ||
 				range.Scope == SelectionScope.SpecialCursor;
 
+			if (range.Scope == SelectionScope.TextCursor)
+			{
+				// a plain caret with no highlighted text splits its paragraph's text run
+				// into two runs around an empty CDATA[] marking the cursor position; undo
+				// that split so the paragraph isn't corrupted during extraction below
+				range.Deselect();
+			}
+
 			var editor = new PageEditor(page) { AllContent = allContent };
 
 			var markdownSettings = new SettingsProvider().GetCollection(nameof(MarkdownSheet));
@@ -80,7 +88,8 @@ namespace River.OneMoreAddIn.Commands
 				var text = reader.ReadTextFrom(paragraphs, allContent);
 				text = Regex.Replace(text, @"<br>([\n\r]+|$)", "$1");
 
-				var body = OneMoreDig.ConvertMarkdownToHtml(filepath, text, gfmLineBreaks);
+				var body = OneMoreDig.ConvertMarkdownToHtml(
+					filepath, text, gfmLineBreaks, singleSpacing, blankBeforeHeadings);
 
 				editor.InsertAtAnchor(new XElement(ns + "HTMLBlock",
 					new XElement(ns + "Data",
@@ -108,6 +117,7 @@ namespace River.OneMoreAddIn.Commands
 
 				converter
 					.RewriteHeadings(touched, blankBeforeHeadings)
+					.RewriteBlankLines(touched)
 					.RewriteTodo(touched)
 					.RewriteCode(touched)
 					.RewriteInlineCode(touched)
