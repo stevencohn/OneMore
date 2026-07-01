@@ -311,6 +311,49 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
+		/// Collapses marker paragraphs inserted by OneMoreDig.RenderPreservingBlankLines
+		/// (OneMoreDig.BlankLineMarker) into genuinely empty OneNote paragraphs, in all
+		/// Outlines on the page
+		/// </summary>
+		public void RewriteBlankLines()
+		{
+			foreach (var outline in page.BodyOutlines)
+			{
+				RewriteBlankLines(outline.Descendants(ns + "OE"));
+			}
+		}
+
+
+		/// <summary>
+		/// Collapses marker paragraphs inserted by OneMoreDig.RenderPreservingBlankLines
+		/// (OneMoreDig.BlankLineMarker) into genuinely empty OneNote paragraphs, in the
+		/// given paragraph collection
+		/// </summary>
+		public MarkdownConverter RewriteBlankLines(IEnumerable<XElement> paragraphs)
+		{
+			foreach (var paragraph in paragraphs)
+			{
+				var run = paragraph.Elements(ns + "T").FirstOrDefault();
+				if (run is null)
+				{
+					continue;
+				}
+
+				var cdata = run.GetCData();
+				var wrapper = cdata.GetWrapper();
+				if (wrapper.Nodes().Count() == 1 &&
+					wrapper.FirstNode is XText text &&
+					text.Value == OneMoreDig.BlankLineMarker)
+				{
+					cdata.Value = string.Empty;
+				}
+			}
+
+			return this;
+		}
+
+
+		/// <summary>
 		/// Adds OneNote paragraph spacing in all Outlines on the page
 		/// </summary>
 		/// <param name="spaceAfter"></param>
