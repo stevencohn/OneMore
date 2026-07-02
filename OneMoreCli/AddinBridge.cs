@@ -106,6 +106,11 @@ namespace OneMoreCli
 								pending.Remove(0, idx + 1);
 								CliConsole.WriteInfo($"section: {line.Substring("PROGRESS:".Length)}");
 							}
+							else if (line.StartsWith("HEARTBEAT", StringComparison.OrdinalIgnoreCase))
+							{
+								pending.Remove(0, idx + 1);
+								// idle timer already reset above on read; nothing to print
+							}
 							else
 							{
 								// final payload starts here; flush everything buffered so far

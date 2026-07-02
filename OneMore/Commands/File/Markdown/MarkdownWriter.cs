@@ -625,6 +625,8 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
+			name = PathHelper.CleanFileName(name);
+
 			if (saveAttachments)
 			{
 				var target = Path.Combine(attachmentPath, name);
