@@ -42,6 +42,7 @@ namespace River.OneMoreAddIn
 
 		private readonly string pipe;
 		private readonly CommandFactory factory;
+		private readonly SemaphoreSlim pipeWriteLock = new(1, 1);
 
 
 		public CommandService(CommandFactory factory)
@@ -390,21 +391,36 @@ namespace River.OneMoreAddIn
 							}
 
 							var outputs = new StringBuilder();
-							foreach (var pageId in pageIds)
-							{
-								if (cts.Token.IsCancellationRequested)
-								{
-									cancelled = true;
-									break;
-								}
 
-								parameters.Set("pageId", pageId);
-								var r = await cliFactory.Run(commandType, cts.Token, parameters, one);
-								if (!string.IsNullOrEmpty(r?.CliOutput))
+							// this loop writes nothing to the pipe until it completes, so the
+							// heartbeat keeps the CLI client's idle timeout from expiring on a
+							// large or slow section
+							using var heartbeatCts = CancellationTokenSource.CreateLinkedTokenSource(cts.Token);
+							var heartbeatTask = RunHeartbeat(pipe, heartbeatCts.Token);
+							try
+							{
+								foreach (var pageId in pageIds)
 								{
-									outputs.AppendLine(r.CliOutput);
+									if (cts.Token.IsCancellationRequested)
+									{
+										cancelled = true;
+										break;
+									}
+
+									parameters.Set("pageId", pageId);
+									var r = await cliFactory.Run(commandType, cts.Token, parameters, one);
+									if (!string.IsNullOrEmpty(r?.CliOutput))
+									{
+										outputs.AppendLine(r.CliOutput);
+									}
 								}
 							}
+							finally
+							{
+								heartbeatCts.Cancel();
+								await heartbeatTask;
+							}
+
 							pageOutput = outputs.Length > 0 ? outputs.ToString() : null;
 						}
 					}
@@ -448,7 +464,7 @@ namespace River.OneMoreAddIn
 		/// Returns any non-empty CliOutput accumulated across all page runs, plus whether the
 		/// iteration stopped early due to cancellation.
 		/// </summary>
-		private static async Task<(string output, bool cancelled)> InvokeCliCommandForNotebook(
+		private async Task<(string output, bool cancelled)> InvokeCliCommandForNotebook(
 			CommandFactory cliFactory, Type commandType,
 			CliParameterSet parameters, string notebookName, NamedPipeServerStream pipe,
 			CancellationToken token)
@@ -497,33 +513,14 @@ namespace River.OneMoreAddIn
 			var outputs = new StringBuilder();
 			var cancelled = false;
 
-			foreach (var sectionId in sectionIds)
+			// PROGRESS is only reported at section boundaries below, so a single large or
+			// slow section could otherwise leave the pipe silent long enough to trip the
+			// CLI client's idle timeout; the heartbeat keeps it alive in the meantime
+			using var heartbeatCts = CancellationTokenSource.CreateLinkedTokenSource(token);
+			var heartbeatTask = RunHeartbeat(pipe, heartbeatCts.Token);
+			try
 			{
-				if (token.IsCancellationRequested)
-				{
-					cancelled = true;
-					break;
-				}
-
-				var section = await one.GetSection(sectionId);
-				if (section == null) continue;
-
-				var pageNs = one.GetNamespace(section);
-				var pageIds = section.Elements(pageNs + "Page")
-					.Select(p => p.Attribute("ID")?.Value)
-					.Where(id => id != null)
-					.Distinct()
-					.ToArray();
-
-				if (pageIds.Length == 0) continue;
-
-				var sectionName = section.Attribute("name")?.Value;
-				if (!string.IsNullOrEmpty(sectionName))
-				{
-					await WriteCliResponse(pipe, $"PROGRESS:{sectionName}\n");
-				}
-
-				foreach (var pageId in pageIds)
+				foreach (var sectionId in sectionIds)
 				{
 					if (token.IsCancellationRequested)
 					{
@@ -531,15 +528,47 @@ namespace River.OneMoreAddIn
 						break;
 					}
 
-					parameters.Set("pageId", pageId);
-					var r = await cliFactory.Run(commandType, token, parameters, one);
-					if (!string.IsNullOrEmpty(r?.CliOutput))
-					{
-						outputs.AppendLine(r.CliOutput);
-					}
-				}
+					var section = await one.GetSection(sectionId);
+					if (section == null) continue;
 
-				if (cancelled) break;
+					var pageNs = one.GetNamespace(section);
+					var pageIds = section.Elements(pageNs + "Page")
+						.Select(p => p.Attribute("ID")?.Value)
+						.Where(id => id != null)
+						.Distinct()
+						.ToArray();
+
+					if (pageIds.Length == 0) continue;
+
+					var sectionName = section.Attribute("name")?.Value;
+					if (!string.IsNullOrEmpty(sectionName))
+					{
+						await WriteCliResponse(pipe, $"PROGRESS:{sectionName}\n");
+					}
+
+					foreach (var pageId in pageIds)
+					{
+						if (token.IsCancellationRequested)
+						{
+							cancelled = true;
+							break;
+						}
+
+						parameters.Set("pageId", pageId);
+						var r = await cliFactory.Run(commandType, token, parameters, one);
+						if (!string.IsNullOrEmpty(r?.CliOutput))
+						{
+							outputs.AppendLine(r.CliOutput);
+						}
+					}
+
+					if (cancelled) break;
+				}
+			}
+			finally
+			{
+				heartbeatCts.Cancel();
+				await heartbeatTask;
 			}
 
 			return (outputs.Length > 0 ? outputs.ToString() : null, cancelled);
@@ -554,7 +583,7 @@ namespace River.OneMoreAddIn
 		/// Section group ancestry is preserved as <c>[GroupName]</c> subdirectories under
 		/// <paramref name="parameters"/><c>.outpath</c>.
 		/// </summary>
-		private static async Task<(string output, bool cancelled)> InvokeCliBackupExport(
+		private async Task<(string output, bool cancelled)> InvokeCliBackupExport(
 			CliParameterSet parameters, string notebookName, string sectionPath,
 			NamedPipeServerStream pipe, CancellationToken token)
 		{
@@ -728,12 +757,48 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private static async Task WriteCliResponse(NamedPipeServerStream pipe, string response)
+		private async Task WriteCliResponse(NamedPipeServerStream pipe, string response)
 		{
-			var bytes = Encoding.UTF8.GetBytes(response);
-			await pipe.WriteAsync(bytes, 0, bytes.Length);
-			await pipe.FlushAsync();
-			pipe.WaitForPipeDrain();
+			await pipeWriteLock.WaitAsync();
+			try
+			{
+				var bytes = Encoding.UTF8.GetBytes(response);
+				await pipe.WriteAsync(bytes, 0, bytes.Length);
+				await pipe.FlushAsync();
+				pipe.WaitForPipeDrain();
+			}
+			finally
+			{
+				pipeWriteLock.Release();
+			}
+		}
+
+
+		/// <summary>
+		/// Periodically writes a lightweight HEARTBEAT line to the pipe while a long-running
+		/// page-iteration loop is in progress, so the CLI client's idle timeout doesn't expire
+		/// during a single section that takes longer than the idle window to process (e.g. many
+		/// pages, or one page with a large attachment) even though PROGRESS is only reported at
+		/// section boundaries. Runs until <paramref name="token"/> is cancelled by the caller.
+		/// </summary>
+		private async Task RunHeartbeat(NamedPipeServerStream pipe, CancellationToken token)
+		{
+			try
+			{
+				while (true)
+				{
+					await Task.Delay(TimeSpan.FromSeconds(60), token);
+					await WriteCliResponse(pipe, "HEARTBEAT\n");
+				}
+			}
+			catch (OperationCanceledException)
+			{
+				// normal: caller cancelled the linked token when its loop finished
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("heartbeat write failed", exc);
+			}
 		}
 	}
 }

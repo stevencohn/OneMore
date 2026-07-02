@@ -398,7 +398,7 @@ namespace River.OneMoreAddIn
 		{
 			// OneNote doesn't like &nbsp; inside CDATAs but &#160; is OK
 			// and is the same as \u00A0 but 1-byte
-			var value = s.Replace("&nbsp;", "&#160;");
+			var value = s.StripInvalidXmlChars().Replace("&nbsp;", "&#160;");
 
 			// escape any & that is not already part of a valid XML entity reference
 			// (e.g. "R&D", "Ben & Jerry's", or HTML entities like "&copy;") \u2014 anything

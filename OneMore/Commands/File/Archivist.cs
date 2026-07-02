@@ -324,7 +324,7 @@ namespace River.OneMoreAddIn.Commands
 					continue;
 				}
 
-				var target = Path.Combine(path, name);
+				var target = Path.Combine(path, PathHelper.CleanFileName(name));
 
 				try
 				{
@@ -473,7 +473,7 @@ namespace River.OneMoreAddIn.Commands
 				// preferredName is used as the output file name
 				if (!string.IsNullOrEmpty(name))
 				{
-					var target = Path.Combine(path, name);
+					var target = Path.Combine(path, PathHelper.CleanFileName(name));
 
 					try
 					{
