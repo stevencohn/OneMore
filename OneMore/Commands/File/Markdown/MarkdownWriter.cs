@@ -577,24 +577,41 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (saveAttachments)
 			{
-				var data = element.Element(ns + "Data");
-				var binhex = Convert.FromBase64String(data.Value);
+				imageCounter++;
 
-				using var stream = new MemoryStream(binhex, 0, binhex.Length);
-				using var image = Image.FromStream(stream);
-
-				var name = $"{attachmentFolder}_{++imageCounter}.png";
-				var filename = Path.Combine(attachmentPath, name);
-#if WriteToDisk
-				if (!Directory.Exists(attachmentPath))
+				try
 				{
-					Directory.CreateDirectory(attachmentPath);
-				}
+					var data = element.Element(ns + "Data");
+					var binhex = Convert.FromBase64String(data.Value);
 
-				image.Save(filename, ImageFormat.Png);
+					using var stream = new MemoryStream(binhex, 0, binhex.Length);
+					using var source = Image.FromStream(stream);
+
+					// non-raster images (e.g. Metafile/EMF) cannot be re-encoded directly
+					// as PNG through GDI+ and must first be rendered onto a real bitmap
+					using var image = source is Bitmap ? source : new Bitmap(source);
+
+					var name = $"{attachmentFolder}_{imageCounter}.png";
+					var filename = Path.Combine(attachmentPath, name);
+#if WriteToDisk
+					if (!Directory.Exists(attachmentPath))
+					{
+						Directory.CreateDirectory(attachmentPath);
+					}
+
+					image.Save(filename, ImageFormat.Png);
 #endif
-				var imgPath = Path.Combine(attachmentFolder, name);
-				writer.Write($"![Image-{imageCounter}]({imgPath})");
+					var imgPath = Path.Combine(attachmentFolder, name);
+					writer.Write($"![Image-{imageCounter}]({imgPath})");
+				}
+				catch (Exception exc)
+				{
+					element.GetAttributeValue("format", out var format, "?");
+					logger.WriteLine(
+						$"error saving image {imageCounter} (format:{format})", exc);
+
+					writer.Write($"(*Image:{imageCounter} could not be exported*)");
+				}
 			}
 			else
 			{
