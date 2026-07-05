@@ -173,6 +173,46 @@ para2";
 
 
 		[TestMethod]
+		public async Task ConvertMarkdown_CursorOnBlankLineBetweenParagraphs_PreservesParagraphBreak()
+		{
+			// Arrange: paragraph1, then a blank OE with the caret parked on it (empty
+			// selected T), then paragraph2. Regression test: JoinCursorContext used to
+			// unconditionally remove the caret's T, leaving a wholly-blank OE with no
+			// children at all; ExtractSelectedContent then dropped that childless OE
+			// entirely, erasing the blank-line separator and causing paragraph1 and
+			// paragraph2 to merge into a single markdown paragraph.
+			var blankOe = new XElement(Ns + "OE",
+				new XElement(Ns + "T",
+					new XAttribute("selected", "all"),
+					new XCData(string.Empty)));
+
+			var pageElement = new PageBuilder(PageId, "Blank Line Test")
+				.WithParagraph("paragraph1")
+				.WithElement(blankOe)
+				.WithParagraph("paragraph2")
+				.BuildElement();
+
+			SetupPage(PageId, AssignObjectIds(pageElement));
+
+			// Act
+			await WithLogger(new ConvertMarkdownCommand()).Execute();
+
+			// Assert
+			var updated = GetUpdatedPage(PageId);
+			Assert.IsNotNull(updated, "UpdatePageContent was never called");
+
+			var cdata = updated.Descendants(Ns + "HTMLBlock").FirstOrDefault()
+				?.Element(Ns + "Data")?.FirstNode as XCData;
+			Assert.IsNotNull(cdata, "Expected an HTMLBlock to be inserted");
+
+			var para1 = ExtractParagraphContaining(cdata.Value, "paragraph1");
+			Assert.IsFalse(para1.Contains("paragraph2"),
+				"The blank line between paragraph1 and paragraph2 must be preserved, " +
+				"keeping them as separate paragraphs rather than merging into one");
+		}
+
+
+		[TestMethod]
 		public async Task ConvertMarkdown_SelectedBlock_InsertsHtmlBlockForSelectionOnly()
 		{
 			// Arrange: one selected markdown paragraph (scope=Run → allContent=false) and
@@ -598,6 +638,210 @@ para2";
 		}
 
 
+		// The tests below exercise MarkdownConverter.RewriteTodo directly against
+		// hand-built OE shapes, since the mock cannot simulate OneNote's live
+		// HTMLBlock->OE expansion (see ConvertMarkdown_InlineCode_AppliesLucidaConsole).
+		// They lock in the swapped treatment: "- [ ] foo" (a real GFM task-list item,
+		// i.e. an OE with a List element) becomes a Todo-tagged paragraph, while a bare
+		// "[ ] foo" paragraph (no List) is left as literal text.
+
+		private static XElement BuildListOe(string objectId, string text)
+		{
+			return new XElement(Ns + "OE",
+				new XAttribute("objectID", objectId),
+				new XElement(Ns + "List",
+					new XElement(Ns + "Bullet", new XAttribute("bullet", "2"))),
+				new XElement(Ns + "T", new XCData(text)));
+		}
+
+
+		// PageBuilder round-trips content through ToString()/XElement.Parse() (matching
+		// how a live OneNote page is actually loaded), which produces new XElement
+		// instances distinct from the ones passed into WithElement — so assertions
+		// below look elements back up by objectID rather than by reference.
+
+		private static XElement FindOe(Page page, string objectId)
+		{
+			return page.Root.Descendants(Ns + "OE")
+				.Single(e => e.Attribute("objectID")?.Value == objectId);
+		}
+
+
+		// RewriteTodo strips objectID from converted paragraphs (so OneNote treats them
+		// as brand-new content rather than an edit to a paragraph it may still
+		// internally associate with list membership) — so tests that need to inspect a
+		// converted element must capture its reference *before* calling RewriteTodo,
+		// rather than looking it up afterward by objectID.
+
+		[TestMethod]
+		public void RewriteTodo_TaskListItem_Unchecked_ConvertsToTodoTagAndDropsBullet()
+		{
+			var page = new Page(XElement.Parse(
+				new PageBuilder("page-todo-1", "Todo Test")
+					.WithElement(BuildListOe("oe-1", "[ ] foo"))
+					.Build()));
+
+			var paragraphs = page.Root.Descendants(Ns + "OE").ToList();
+			var oe = paragraphs.Single(e => e.Attribute("objectID")?.Value == "oe-1");
+
+			new MarkdownConverter(page).RewriteTodo(paragraphs);
+
+			Assert.IsFalse(oe.Elements(Ns + "List").Any(),
+				"Expected the bullet (List) to be removed");
+			Assert.IsNull(oe.Attribute("objectID"),
+				"Expected objectID to be stripped so OneNote treats this as new content");
+
+			var tag = oe.Element(Ns + "Tag");
+			Assert.IsNotNull(tag, "Expected a Tag element to be added");
+			Assert.AreEqual("false", tag.Attribute("completed")?.Value);
+
+			var cdata = oe.Element(Ns + "T").FirstNode as XCData;
+			Assert.AreEqual(" foo", cdata.Value);
+
+			// no preceding paragraph existed, so an anchor must have been inserted
+			// and the item nested one level under it
+			var topChildren = page.Root.Element(Ns + "Outline").Element(Ns + "OEChildren");
+			var anchor = topChildren.Elements(Ns + "OE").Single();
+			Assert.AreNotSame(oe, anchor, "Expected a new anchor OE, distinct from the item");
+
+			var nested = anchor.Element(Ns + "OEChildren")?.Elements(Ns + "OE").SingleOrDefault();
+			Assert.AreSame(oe, nested, "Expected the item nested one level under the anchor");
+		}
+
+
+		[TestMethod]
+		public void RewriteTodo_TaskListItem_Checked_MarksTagCompleted()
+		{
+			var page = new Page(XElement.Parse(
+				new PageBuilder("page-todo-2", "Todo Test")
+					.WithElement(BuildListOe("oe-1", "[x] foo"))
+					.Build()));
+
+			var paragraphs = page.Root.Descendants(Ns + "OE").ToList();
+			var oe = paragraphs.Single(e => e.Attribute("objectID")?.Value == "oe-1");
+
+			new MarkdownConverter(page).RewriteTodo(paragraphs);
+
+			var tag = oe.Element(Ns + "Tag");
+			Assert.IsNotNull(tag);
+			Assert.AreEqual("true", tag.Attribute("completed")?.Value);
+		}
+
+
+		[TestMethod]
+		public void RewriteTodo_ConsecutiveTaskListItems_GroupUnderOneSharedAnchor()
+		{
+			var page = new Page(XElement.Parse(
+				new PageBuilder("page-todo-3", "Todo Test")
+					.WithElement(BuildListOe("oe-1", "[ ] one"))
+					.WithElement(BuildListOe("oe-2", "[x] two"))
+					.WithElement(BuildListOe("oe-3", "[ ] three"))
+					.Build()));
+
+			var paragraphs = page.Root.Descendants(Ns + "OE").ToList();
+			var items = new[] { "oe-1", "oe-2", "oe-3" }
+				.Select(id => paragraphs.Single(e => e.Attribute("objectID")?.Value == id))
+				.ToList();
+
+			new MarkdownConverter(page).RewriteTodo(paragraphs);
+
+			var topChildren = page.Root.Element(Ns + "Outline").Element(Ns + "OEChildren");
+			var anchor = topChildren.Elements(Ns + "OE").Single();
+
+			var nested = anchor.Element(Ns + "OEChildren")?.Elements(Ns + "OE").ToList();
+			Assert.IsNotNull(nested);
+			CollectionAssert.AreEqual(items, nested,
+				"Expected all three items as siblings under one shared anchor, not staircased");
+		}
+
+
+		[TestMethod]
+		public void RewriteTodo_AlreadyNestedTaskListItem_NotIndentedFurther()
+		{
+			// simulates a genuine markdown sub-list: the task item is already nested
+			// one level inside a parent OE's OEChildren before RewriteTodo runs
+			var nestedOe = BuildListOe("oe-child", "[x] nested");
+			var parentOe = new XElement(Ns + "OE",
+				new XAttribute("objectID", "oe-parent"),
+				new XElement(Ns + "T", new XCData("parent item")),
+				new XElement(Ns + "OEChildren", nestedOe));
+
+			var page = new Page(XElement.Parse(
+				new PageBuilder("page-todo-6", "Todo Test")
+					.WithElement(parentOe)
+					.Build()));
+
+			var paragraphs = page.Root.Descendants(Ns + "OE").ToList();
+			var oe = paragraphs.Single(e => e.Attribute("objectID")?.Value == "oe-child");
+			var parent = paragraphs.Single(e => e.Attribute("objectID")?.Value == "oe-parent");
+
+			new MarkdownConverter(page).RewriteTodo(paragraphs);
+
+			Assert.IsFalse(oe.Elements(Ns + "List").Any());
+			Assert.IsNotNull(oe.Element(Ns + "Tag"));
+
+			// still nested exactly one level under the same original parent, not
+			// wrapped in an additional, newly-created anchor
+			Assert.AreEqual(1, oe.Ancestors(Ns + "OE").Count());
+			Assert.AreSame(parent, oe.Ancestors(Ns + "OE").First());
+			CollectionAssert.Contains(
+				parent.Element(Ns + "OEChildren").Elements(Ns + "OE").ToList(), oe);
+		}
+
+
+		[TestMethod]
+		public void RewriteTodo_BareBracketParagraph_LeftAsLiteralText()
+		{
+			var page = new Page(XElement.Parse(
+				new PageBuilder("page-todo-4", "Todo Test")
+					.WithElement(new XElement(Ns + "OE",
+						new XAttribute("objectID", "oe-1"),
+						new XElement(Ns + "T", new XCData("[ ] foo"))))
+					.Build()));
+
+			new MarkdownConverter(page).RewriteTodo(page.Root.Descendants(Ns + "OE").ToList());
+
+			var oe = FindOe(page, "oe-1");
+
+			Assert.IsNull(oe.Element(Ns + "Tag"),
+				"A bare paragraph outside a list must not get a Todo tag");
+
+			var cdata = oe.Element(Ns + "T").FirstNode as XCData;
+			Assert.AreEqual("[ ] foo", cdata.Value,
+				"A bare paragraph outside a list must be left as literal text");
+		}
+
+
+		[TestMethod]
+		public void RewriteTodo_SpanWrappedListItemText_StillDetected()
+		{
+			var page = new Page(XElement.Parse(
+				new PageBuilder("page-todo-5", "Todo Test")
+					.WithElement(new XElement(Ns + "OE",
+						new XAttribute("objectID", "oe-1"),
+						new XElement(Ns + "List",
+							new XElement(Ns + "Bullet", new XAttribute("bullet", "2"))),
+						new XElement(Ns + "T",
+							new XCData("<span style=\"font-family:Calibri\">[x] foo</span>"))))
+					.Build()));
+
+			var paragraphs = page.Root.Descendants(Ns + "OE").ToList();
+			var oe = paragraphs.Single(e => e.Attribute("objectID")?.Value == "oe-1");
+
+			new MarkdownConverter(page).RewriteTodo(paragraphs);
+
+			Assert.IsFalse(oe.Elements(Ns + "List").Any());
+
+			var tag = oe.Element(Ns + "Tag");
+			Assert.IsNotNull(tag, "Expected span-wrapped list-item text to still be detected");
+			Assert.AreEqual("true", tag.Attribute("completed")?.Value);
+
+			var cdata = oe.Element(Ns + "T").FirstNode as XCData;
+			StringAssert.Contains(cdata.Value, "foo");
+			Assert.IsFalse(cdata.Value.Contains("[x]"));
+		}
+
+
 		private static string ConvertSample(string sample, bool gfmLineBreaks, bool singleSpacing)
 		{
 			var filepath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
@@ -651,11 +895,13 @@ para2";
 		}
 
 
-		// blank-line markers are written immediately before the block they precede, with
-		// no separator, so this checks for exact adjacency
+		// the marker writes its own trailing newline (so OneNote's HTML importer doesn't
+		// treat an immediately-following block, e.g. a list, as nested inside it), so
+		// tolerate whitespace between the marker and the block it precedes
 		private static bool HasMarkerBefore(string html, string tag)
 		{
-			return html.Contains($"<p>{OneMoreDig.BlankLineMarker}</p>{tag}");
+			return Regex.IsMatch(html,
+				Regex.Escape($"<p>{OneMoreDig.BlankLineMarker}</p>") + @"\s*" + Regex.Escape(tag));
 		}
 
 

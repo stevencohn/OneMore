@@ -167,43 +167,157 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
-		/// Tag current line with To Do tag if beginning with [ ] or [x]
+		/// Tags markdown task-list items (a bulleted/numbered OE beginning with [ ] or
+		/// [x]) with a To Do tag, dropping the bullet and indenting the paragraph one
+		/// level (unless it's already nested, e.g. a genuine markdown sub-list) to
+		/// preserve its visual position now that the bullet is gone. A bare "[ ] foo"/
+		/// "[x] foo" paragraph outside of a list is left as literal text, matching
+		/// CommonMark/GitHub, where task-list syntax only exists inside a list item.
 		/// All other :emojis: should be translated inline by Markdig
 		/// </summary>
 		/// <param name="paragraphs"></param>
 		public MarkdownConverter RewriteTodo(IEnumerable<XElement> paragraphs)
 		{
 			var boxpattern = new Regex(@"^\\?\[(?<x>x|\s)\]");
+			var converted = new List<XElement>();
 
-			foreach (var paragraph in paragraphs)
+			foreach (var paragraph in paragraphs.ToList())
 			{
-				var run = paragraph.Elements(ns + "T").FirstOrDefault();
-
-				if (run is not null)
+				var list = paragraph.Element(ns + "List");
+				if (list is null)
 				{
-					var cdata = run.GetCData();
-					var wrapper = cdata.GetWrapper();
-					if (wrapper.FirstNode is XText text)
-					{
-						var match = boxpattern.Match(text.Value);
-						if (match.Success)
-						{
-							text.Value = text.Value.Substring(match.Length);
-
-							// ensure TagDef exists
-							var index = page.AddTagDef("3", "To Do", 4);
-
-							// inject tag prior to run
-							run.AddBeforeSelf(new Tag(index, match.Groups["x"].Value == "x"));
-
-							// update run text
-							cdata.Value = wrapper.GetInnerXml();
-						}
-					}
+					continue;
 				}
+
+				var run = paragraph.Elements(ns + "T").FirstOrDefault();
+				if (run is null)
+				{
+					continue;
+				}
+
+				var cdata = run.GetCData();
+				var wrapper = cdata.GetWrapper();
+				var text = FindLeadingText(wrapper.FirstNode);
+				if (text is null)
+				{
+					continue;
+				}
+
+				var match = boxpattern.Match(text.Value);
+				if (!match.Success)
+				{
+					continue;
+				}
+
+				text.Value = text.Value.Substring(match.Length);
+
+				// ensure TagDef exists
+				var index = page.AddTagDef("3", "To Do", 4);
+
+				// inject tag prior to run
+				run.AddBeforeSelf(new Tag(index, match.Groups["x"].Value == "x"));
+
+				// update run text
+				cdata.Value = wrapper.GetInnerXml();
+
+				// drop the bullet; this is now a Todo paragraph, not a list item
+				list.Remove();
+
+				// force OneNote to treat this as brand-new content rather than an
+				// incremental edit to a paragraph it may still internally associate
+				// with list membership from the original import
+				paragraph.Attribute("objectID")?.Remove();
+
+				converted.Add(paragraph);
+			}
+
+			if (converted.Any())
+			{
+				IndentConvertedTodos(converted);
 			}
 
 			return this;
+		}
+
+
+		/// <summary>
+		/// Structurally indents each converted task-list paragraph one level, unless
+		/// it's already nested inside another OE (e.g. a genuine markdown sub-list),
+		/// to preserve its original visual left offset now that its bullet is gone.
+		/// Consecutive converted paragraphs are nested as siblings under a single
+		/// shared OEChildren rather than staircased under one another.
+		/// </summary>
+		private void IndentConvertedTodos(List<XElement> converted)
+		{
+			var remaining = new HashSet<XElement>(converted);
+
+			foreach (var oe in converted)
+			{
+				if (!remaining.Contains(oe))
+				{
+					// already absorbed into an earlier run
+					continue;
+				}
+
+				remaining.Remove(oe);
+
+				if (oe.Ancestors(ns + "OE").Any())
+				{
+					// already indented (e.g. a genuine markdown sub-list); leave as-is
+					continue;
+				}
+
+				var parent = oe.Parent;
+				var siblings = parent.Elements(ns + "OE").ToList();
+				var position = siblings.IndexOf(oe);
+
+				var run = new List<XElement> { oe };
+
+				var next = position + 1;
+				while (next < siblings.Count && remaining.Contains(siblings[next]) &&
+					!siblings[next].Ancestors(ns + "OE").Any())
+				{
+					run.Add(siblings[next]);
+					remaining.Remove(siblings[next]);
+					next++;
+				}
+
+				var anchor = position > 0 ? siblings[position - 1] : null;
+				if (anchor is null)
+				{
+					anchor = new XElement(ns + "OE", new XElement(ns + "T", new XCData(string.Empty)));
+					oe.AddBeforeSelf(anchor);
+				}
+
+				var children = anchor.Element(ns + "OEChildren");
+				if (children is null)
+				{
+					children = new XElement(ns + "OEChildren");
+					anchor.Add(children);
+				}
+
+				foreach (var item in run)
+				{
+					item.Remove();
+					children.Add(item);
+				}
+			}
+		}
+
+
+		/// <summary>
+		/// Finds the leading text node of a CDATA wrapper, whether it's a direct child
+		/// or nested inside a wrapping element such as a &lt;span&gt; carrying the run's
+		/// font/style (as OneNote's HTML import produces for list-item text).
+		/// </summary>
+		private static XText FindLeadingText(XNode node)
+		{
+			while (node is XElement element)
+			{
+				node = element.FirstNode;
+			}
+
+			return node as XText;
 		}
 
 
@@ -331,7 +445,7 @@ namespace River.OneMoreAddIn.Commands
 		/// </summary>
 		public MarkdownConverter RewriteBlankLines(IEnumerable<XElement> paragraphs)
 		{
-			foreach (var paragraph in paragraphs)
+			foreach (var paragraph in paragraphs.ToList())
 			{
 				var run = paragraph.Elements(ns + "T").FirstOrDefault();
 				if (run is null)
@@ -346,6 +460,23 @@ namespace River.OneMoreAddIn.Commands
 					text.Value == OneMoreDig.BlankLineMarker)
 				{
 					cdata.Value = string.Empty;
+
+					// OneNote's HTML importer sometimes nests the block immediately
+					// following this marker paragraph (e.g. a list) as its child instead
+					// of as its sibling; promote any such children back out to their
+					// correct flat position so later paragraph-only rewrites see them
+					var children = paragraph.Element(ns + "OEChildren");
+					if (children is not null)
+					{
+						var items = children.Elements().ToList();
+						foreach (var item in items)
+						{
+							item.Remove();
+						}
+
+						children.Remove();
+						paragraph.AddAfterSelf(items);
+					}
 				}
 			}
 

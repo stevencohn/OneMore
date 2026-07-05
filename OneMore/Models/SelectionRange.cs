@@ -111,10 +111,14 @@ namespace River.OneMoreAddIn.Models
 				run.Remove();
 				NormalizeRuns(prev.Parent);
 			}
-			else
+			else if (run.Parent.Elements().Count() > 1)
 			{
 				run.Remove();
 			}
+			// else run is the sole child of its OE - a blank line with the caret parked
+			// on it. Leave it in place; removing it would leave the OE with no children
+			// at all, causing callers such as ExtractSelectedContent to drop the entire
+			// paragraph, collapsing a blank-line separator between two other paragraphs.
 
 			//var cdata = run.GetCData();
 
