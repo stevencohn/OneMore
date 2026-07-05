@@ -59,5 +59,35 @@ namespace River.OneMoreAddIn.Tests.Helpers
 
 			Assert.AreEqual(expected, path);
 		}
+
+
+		[TestMethod]
+		public void IsValidPath_EmptyPath_ReturnsFalse()
+		{
+			var valid = PathHelper.IsValidPath(string.Empty, out var error);
+
+			Assert.IsFalse(valid);
+			Assert.IsNotNull(error);
+		}
+
+
+		[TestMethod]
+		public void IsValidPath_PathWithIllegalCharacter_ReturnsFalse()
+		{
+			var valid = PathHelper.IsValidPath("C:\\exports\\Bad\"Folder", out var error);
+
+			Assert.IsFalse(valid);
+			Assert.IsNotNull(error);
+		}
+
+
+		[TestMethod]
+		public void IsValidPath_WellFormedPath_ReturnsTrue()
+		{
+			var valid = PathHelper.IsValidPath(@"C:\exports\Folder", out var error);
+
+			Assert.IsTrue(valid);
+			Assert.IsNull(error);
+		}
 	}
 }

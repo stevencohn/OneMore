@@ -46,6 +46,9 @@ namespace River.OneMoreAddIn.Commands
 				? Resx.ExportDialog_groupBox_OneText
 				: string.Format(Resx.ExportDialog_groupBox_Text, pageCount);
 
+			errorLabel.Text = Resx.ExportDialog_invalidPath;
+			errorLabel.Visible = false;
+
 			pathBox.Text = LoadDefaultPath();
 			formatBox.SelectedIndex = 0;
 		}
@@ -99,7 +102,23 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ChangePath(object sender, EventArgs e)
 		{
-			okButton.Enabled = pathBox.Text.Trim().Length > 0;
+			var path = pathBox.Text.Trim();
+			if (path.Length == 0)
+			{
+				errorLabel.Visible = false;
+				okButton.Enabled = false;
+				return;
+			}
+
+			if (!PathHelper.IsValidPath(path, out _))
+			{
+				errorLabel.Visible = true;
+				okButton.Enabled = false;
+				return;
+			}
+
+			errorLabel.Visible = false;
+			okButton.Enabled = true;
 		}
 
 

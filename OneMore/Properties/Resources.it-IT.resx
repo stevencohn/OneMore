@@ -1242,6 +1242,10 @@ File OneNote (*.one)</value>
     <value>Esporta 1 pagina</value>
     <comment>group box title</comment>
   </data>
+  <data name="ExportDialog_invalidPath" xml:space="preserve">
+    <value>Il percorso della cartella contiene caratteri non validi</value>
+    <comment>error message</comment>
+  </data>
   <data name="ExportDialog_Text" xml:space="preserve">
     <value>Esporta pagine</value>
     <comment>dialog title</comment>

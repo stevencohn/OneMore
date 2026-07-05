@@ -29,10 +29,11 @@
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ExportDialog));
-			this.folderLabel = new UI.MoreLabel();
+			this.folderLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.pathBox = new River.OneMoreAddIn.UI.MoreTextBox();
-			this.formatLabel = new UI.MoreLabel();
-			this.formatBox = new UI.MoreComboBox();
+			this.errorLabel = new River.OneMoreAddIn.UI.MoreLabel();
+			this.formatLabel = new River.OneMoreAddIn.UI.MoreLabel();
+			this.formatBox = new River.OneMoreAddIn.UI.MoreComboBox();
 			this.groupBox = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.embeddedBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.underBox = new River.OneMoreAddIn.UI.MoreCheckBox();
@@ -52,6 +53,8 @@
 			this.folderLabel.Size = new System.Drawing.Size(54, 20);
 			this.folderLabel.TabIndex = 0;
 			this.folderLabel.Text = "Folder";
+			this.folderLabel.ThemedBack = null;
+			this.folderLabel.ThemedFore = null;
 			// 
 			// pathBox
 			// 
@@ -66,15 +69,30 @@
 			this.pathBox.ThemedFore = null;
 			this.pathBox.TextChanged += new System.EventHandler(this.ChangePath);
 			// 
+			// errorLabel
+			// 
+			this.errorLabel.AutoSize = true;
+			this.errorLabel.ForeColor = System.Drawing.Color.Maroon;
+			this.errorLabel.Location = new System.Drawing.Point(105, 71);
+			this.errorLabel.Name = "errorLabel";
+			this.errorLabel.Size = new System.Drawing.Size(276, 20);
+			this.errorLabel.TabIndex = 8;
+			this.errorLabel.Text = "Folder path contains illegal characters";
+			this.errorLabel.ThemedBack = null;
+			this.errorLabel.ThemedFore = "ErrorText";
+			this.errorLabel.Visible = false;
+			// 
 			// formatLabel
 			// 
 			this.formatLabel.AutoSize = true;
 			this.formatLabel.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.formatLabel.Location = new System.Drawing.Point(14, 83);
+			this.formatLabel.Location = new System.Drawing.Point(14, 111);
 			this.formatLabel.Name = "formatLabel";
 			this.formatLabel.Size = new System.Drawing.Size(60, 20);
 			this.formatLabel.TabIndex = 2;
 			this.formatLabel.Text = "Format";
+			this.formatLabel.ThemedBack = null;
+			this.formatLabel.ThemedFore = null;
 			// 
 			// formatBox
 			// 
@@ -88,10 +106,12 @@
             "XML File (*.xml)",
             "Markdown File (*.md)",
             "OneNote File (*.one)"});
-			this.formatBox.Location = new System.Drawing.Point(105, 80);
+			this.formatBox.Location = new System.Drawing.Point(105, 108);
 			this.formatBox.Name = "formatBox";
-			this.formatBox.Size = new System.Drawing.Size(250, 28);
+			this.formatBox.Size = new System.Drawing.Size(250, 27);
 			this.formatBox.TabIndex = 3;
+			this.formatBox.ThemedBack = null;
+			this.formatBox.ThemedFore = null;
 			this.formatBox.SelectedIndexChanged += new System.EventHandler(this.ChangeFormat);
 			// 
 			// groupBox
@@ -103,6 +123,7 @@
 			this.groupBox.Controls.Add(this.underBox);
 			this.groupBox.Controls.Add(this.attachmentsBox);
 			this.groupBox.Controls.Add(this.browseButton);
+			this.groupBox.Controls.Add(this.errorLabel);
 			this.groupBox.Controls.Add(this.pathBox);
 			this.groupBox.Controls.Add(this.folderLabel);
 			this.groupBox.Controls.Add(this.formatBox);
@@ -112,7 +133,7 @@
 			this.groupBox.Name = "groupBox";
 			this.groupBox.Padding = new System.Windows.Forms.Padding(10, 9, 10, 9);
 			this.groupBox.ShowOnlyTopEdge = true;
-			this.groupBox.Size = new System.Drawing.Size(679, 236);
+			this.groupBox.Size = new System.Drawing.Size(679, 288);
 			this.groupBox.TabIndex = 5;
 			this.groupBox.TabStop = false;
 			this.groupBox.Text = "Export 2 Pages";
@@ -125,7 +146,7 @@
 			this.embeddedBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.embeddedBox.Enabled = false;
 			this.embeddedBox.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.embeddedBox.Location = new System.Drawing.Point(105, 154);
+			this.embeddedBox.Location = new System.Drawing.Point(105, 199);
 			this.embeddedBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.embeddedBox.Name = "embeddedBox";
 			this.embeddedBox.Size = new System.Drawing.Size(182, 25);
@@ -141,7 +162,7 @@
 			this.underBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.underBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.underBox.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.underBox.Location = new System.Drawing.Point(105, 186);
+			this.underBox.Location = new System.Drawing.Point(105, 231);
 			this.underBox.Name = "underBox";
 			this.underBox.Size = new System.Drawing.Size(393, 25);
 			this.underBox.StylizeImage = false;
@@ -157,7 +178,7 @@
 			this.attachmentsBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.attachmentsBox.Enabled = false;
 			this.attachmentsBox.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.attachmentsBox.Location = new System.Drawing.Point(105, 120);
+			this.attachmentsBox.Location = new System.Drawing.Point(105, 143);
 			this.attachmentsBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.attachmentsBox.Name = "attachmentsBox";
 			this.attachmentsBox.Size = new System.Drawing.Size(183, 25);
@@ -193,7 +214,7 @@
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
-			this.cancelButton.Location = new System.Drawing.Point(599, 270);
+			this.cancelButton.Location = new System.Drawing.Point(599, 322);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
@@ -212,7 +233,7 @@
 			this.okButton.Enabled = false;
 			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
-			this.okButton.Location = new System.Drawing.Point(492, 270);
+			this.okButton.Location = new System.Drawing.Point(492, 322);
 			this.okButton.Name = "okButton";
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
@@ -230,7 +251,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(715, 327);
+			this.ClientSize = new System.Drawing.Size(715, 379);
 			this.Controls.Add(this.okButton);
 			this.Controls.Add(this.cancelButton);
 			this.Controls.Add(this.groupBox);
@@ -254,6 +275,7 @@
 
 		private UI.MoreLabel folderLabel;
 		private UI.MoreTextBox pathBox;
+		private UI.MoreLabel errorLabel;
 		private UI.MoreLabel formatLabel;
 		private UI.MoreComboBox formatBox;
 		private UI.MoreGroupBox groupBox;

@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Cli
 {
+	using River.OneMoreAddIn;
 	using System;
 	using System.Collections.Generic;
 	using System.IO;
@@ -171,39 +172,7 @@ namespace River.OneMoreAddIn.Cli
 	public sealed class PathConstraint : CliConstraint
 	{
 		/// <inheritdoc/>
-		public override bool Validate(object value, out string errorMessage)
-		{
-			var path = value as string;
-
-			if (string.IsNullOrWhiteSpace(path))
-			{
-				errorMessage = "Path must not be empty.";
-				return false;
-			}
-
-			var invalid = path.IndexOfAny(Path.GetInvalidPathChars());
-			if (invalid >= 0)
-			{
-				errorMessage =
-					$"'{path}' is not a valid path; it contains an illegal '{path[invalid]}' " +
-					"character. If this path was quoted on the command line, make sure it " +
-					"doesn't end with a trailing backslash before the closing quote " +
-					"(use \"C:\\folder\" rather than \"C:\\folder\\\").";
-				return false;
-			}
-
-			try
-			{
-				Path.GetFullPath(path);
-			}
-			catch (Exception exc)
-			{
-				errorMessage = $"'{path}' is not a valid path: {exc.Message}";
-				return false;
-			}
-
-			errorMessage = null;
-			return true;
-		}
+		public override bool Validate(object value, out string errorMessage) =>
+			PathHelper.IsValidPath(value as string, out errorMessage);
 	}
 }

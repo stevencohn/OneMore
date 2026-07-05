@@ -1236,6 +1236,10 @@ OneNote-Datei (*.one)</value>
     <value>1 Seite exportieren</value>
     <comment>group box title</comment>
   </data>
+  <data name="ExportDialog_invalidPath" xml:space="preserve">
+    <value>Der Ordnerpfad enthält ungültige Zeichen</value>
+    <comment>error message</comment>
+  </data>
   <data name="ExportDialog_Text" xml:space="preserve">
     <value>Seiten exportieren</value>
     <comment>dialog title</comment>

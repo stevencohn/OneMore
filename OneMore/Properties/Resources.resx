@@ -1250,6 +1250,10 @@ OneNote File (*.one)</value>
     <value>Export 1 Page</value>
     <comment>group box title</comment>
   </data>
+  <data name="ExportDialog_invalidPath" xml:space="preserve">
+    <value>Folder path contains illegal characters</value>
+    <comment>error message</comment>
+  </data>
   <data name="ExportDialog_Text" xml:space="preserve">
     <value>Export Pages</value>
     <comment>dialog title</comment>
