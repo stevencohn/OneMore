@@ -5366,6 +5366,14 @@ ISO-code then comma then language name</comment>
     <value>更新日</value>
     <comment>radio</comment>
   </data>
+  <data name="SortDialog_nameButton.Text" xml:space="preserve">
+    <value>名前、アルファベット順</value>
+    <comment>radio</comment>
+  </data>
+  <data name="SortDialog_naturalButton.Text" xml:space="preserve">
+    <value>名前、自然</value>
+    <comment>radio</comment>
+  </data>
   <data name="SortDialog_pinNotesBox.Text" xml:space="preserve">
     <value>ノートを上部に固定し
 クイックノートを下部に固定</value>

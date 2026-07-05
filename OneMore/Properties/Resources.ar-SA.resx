@@ -5367,6 +5367,14 @@ ISO-code then comma then language name</comment>
     <value>التاريخ عدل</value>
     <comment>radio</comment>
   </data>
+  <data name="SortDialog_nameButton.Text" xml:space="preserve">
+    <value>الاسم، أبجديا</value>
+    <comment>radio</comment>
+  </data>
+  <data name="SortDialog_naturalButton.Text" xml:space="preserve">
+    <value>الاسم، طبيعي</value>
+    <comment>radio</comment>
+  </data>
   <data name="SortDialog_pinNotesBox.Text" xml:space="preserve">
     <value>تثبيت الملاحظات في الأعلى و
 ملاحظات سريعة في الأسفل</value>

@@ -12739,6 +12739,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Name, alphabetical.
+        /// </summary>
+        internal static string SortDialog_nameButton_Text {
+            get {
+                return ResourceManager.GetString("SortDialog_nameButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name, natural.
+        /// </summary>
+        internal static string SortDialog_naturalButton_Text {
+            get {
+                return ResourceManager.GetString("SortDialog_naturalButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pin Notes to top and
         ///Quick Notes to bottom.
         /// </summary>

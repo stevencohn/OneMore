@@ -5360,6 +5360,14 @@ ISO-code then comma then language name</comment>
     <value>תאריך שונה</value>
     <comment>radio</comment>
   </data>
+  <data name="SortDialog_nameButton.Text" xml:space="preserve">
+    <value>שם, אלפביתי</value>
+    <comment>radio</comment>
+  </data>
+  <data name="SortDialog_naturalButton.Text" xml:space="preserve">
+    <value>שם, טבעי</value>
+    <comment>radio</comment>
+  </data>
   <data name="SortDialog_pinNotesBox.Text" xml:space="preserve">
     <value>הצמד הערות למעלה ו
 הערות מהירות למטה</value>

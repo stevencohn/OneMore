@@ -5374,6 +5374,14 @@ ISO-code then comma then language name</comment>
     <value>修改日期</value>
     <comment>radio</comment>
   </data>
+  <data name="SortDialog_nameButton.Text" xml:space="preserve">
+    <value>姓名，按字母顺序排列</value>
+    <comment>radio</comment>
+  </data>
+  <data name="SortDialog_naturalButton.Text" xml:space="preserve">
+    <value>名字，自然</value>
+    <comment>radio</comment>
+  </data>
   <data name="SortDialog_pinNotesBox.Text" xml:space="preserve">
     <value>将普通笔记固定在顶部
             并将快速笔记放在尾部</value>

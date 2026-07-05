@@ -2,8 +2,6 @@
 // Copyright © 2019 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
-#pragma warning disable S3241 // Methods should not return values that are never used
-
 namespace River.OneMoreAddIn.Commands
 {
 	using System;
@@ -30,6 +28,7 @@ namespace River.OneMoreAddIn.Commands
 		public enum SortBy
 		{
 			Name,
+			Natural,
 			Created,
 			Modified
 		}
@@ -113,7 +112,7 @@ namespace River.OneMoreAddIn.Commands
 				var ascending = dialog.Direction == SortDialog.Directions.Ascending;
 				logger.WriteLine($"sort scope:{dialog.Scope} sorting:{sorting} ascending:{ascending}");
 
-				if (sorting == SortBy.Name)
+				if (sorting == SortBy.Name || sorting == SortBy.Natural)
 				{
 					// create a pattern to match the sequence number at the start of the name
 					// e.g. "1 - Color", "2) Thing", "(3) Notes", "[4] Automobiles"
@@ -213,7 +212,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 				else if (pageLevel == level)
 				{
-					var page = sorting == SortBy.Name
+					var page = sorting is SortBy.Name or SortBy.Natural
 						? new PageNode(this, list[index])
 						: new PageNode(list[index]);
 
@@ -224,7 +223,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					var node = tree[tree.Count - 1];
 
-					var page = sorting == SortBy.Name
+					var page = sorting is SortBy.Name or SortBy.Natural
 						? new PageNode(this, list[index])
 						: new PageNode(list[index]);
 
@@ -264,6 +263,12 @@ namespace River.OneMoreAddIn.Commands
 				tree = ascending
 					? tree.OrderBy(t => t.Sequence).ThenBy(t => t.Text).ToList()
 					: tree.OrderByDescending(t => t.Sequence).ThenByDescending(t => t.Text).ToList();
+			}
+			else if (sorting == SortBy.Natural)
+			{
+				tree = ascending
+					? tree.OrderBy(t => t.Name, NaturalStringComparer.Instance).ToList()
+					: tree.OrderByDescending(t => t.Name, NaturalStringComparer.Instance).ToList();
 			}
 			else
 			{
@@ -381,6 +386,18 @@ namespace River.OneMoreAddIn.Commands
 						.ToList();
 				}
 			}
+			else if (sorting == SortBy.Natural)
+			{
+				// nickname is display name whereas name is the folder name
+
+				sections = ascending
+					? parent.Elements(ns + "Section")
+						.OrderBy(s => s.Attribute("name").Value, NaturalStringComparer.Instance)
+						.ToList()
+					: parent.Elements(ns + "Section")
+						.OrderByDescending(s => s.Attribute("name").Value, NaturalStringComparer.Instance)
+						.ToList();
+			}
 			else
 			{
 				if (ascending)
@@ -497,6 +514,16 @@ namespace River.OneMoreAddIn.Commands
 						.OrderByDescending(b => b.Sequence).ThenByDescending(b => b.Text)
 						.Select(b => b.Root);
 				}
+			}
+			else if (sorting == SortBy.Natural)
+			{
+				// nickname is display name whereas name is the folder name
+
+				books = ascending
+					? root.Elements(ns + "Notebook")
+						.OrderBy(b => b.Attribute("nickname").Value, NaturalStringComparer.Instance)
+					: root.Elements(ns + "Notebook")
+						.OrderByDescending(b => b.Attribute("nickname").Value, NaturalStringComparer.Instance);
 			}
 			else
 			{

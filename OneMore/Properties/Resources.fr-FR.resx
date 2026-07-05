@@ -5367,6 +5367,14 @@ Des modifications incorrectes peuvent entraîner la perte de données.
     <value>Date modifiée</value>
     <comment>radio</comment>
   </data>
+  <data name="SortDialog_nameButton.Text" xml:space="preserve">
+    <value>Nom, alphabétique</value>
+    <comment>radio</comment>
+  </data>
+  <data name="SortDialog_naturalButton.Text" xml:space="preserve">
+    <value>Nom, naturel</value>
+    <comment>radio</comment>
+  </data>
   <data name="SortDialog_pinNotesBox.Text" xml:space="preserve">
     <value>Épingler des notes en haut et\n</value>
     <comment>checkbox</comment>

@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using System;
 	using System.Windows.Forms;
+	using Settings;
 	using Resx = Properties.Resources;
 
 
@@ -36,7 +37,8 @@ namespace River.OneMoreAddIn.Commands
 				{
 					"scopeLabel",
 					"sortLabel",
-					"nameButton=word_Name",
+					"nameButton",
+					"naturalButton",
 					"createdButton",
 					"modifiedButton",
 					"directionLabel",
@@ -49,23 +51,37 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			scopeBox.SelectedIndex = 1;
-		}
 
-
-		public OneNote.Scope Scope
-		{
-			get
+			var collection = new SettingsProvider().GetCollection("SortDialog");
+			var sortby = collection.Get("sortby", SortCommand.SortBy.Name);
+			switch (sortby)
 			{
-				return scopeBox.SelectedIndex switch
-				{
-					0 => OneNote.Scope.Children,
-					1 => OneNote.Scope.Pages,
-					2 => OneNote.Scope.Sections,
-					3 => OneNote.Scope.SectionGroups,
-					_ => OneNote.Scope.Notebooks,
-				};
+				case SortCommand.SortBy.Name: nameButton.Checked = true; break;
+				case SortCommand.SortBy.Natural: naturalButton.Checked = true; break;
+				case SortCommand.SortBy.Created: createdButton.Checked = true; break;
+				default: modifiedButton.Checked = true; break;
+			}
+
+			if (collection.Get("direction", Directions.Ascending) == Directions.Ascending)
+			{
+				ascButton.Checked = true;
+			}
+			else
+			{
+				desButton.Checked = true;
 			}
 		}
+
+
+		public OneNote.Scope Scope =>
+			scopeBox.SelectedIndex switch
+			{
+				0 => OneNote.Scope.Children,
+				1 => OneNote.Scope.Pages,
+				2 => OneNote.Scope.Sections,
+				3 => OneNote.Scope.SectionGroups,
+				_ => OneNote.Scope.Notebooks,
+			};
 
 
 		public Directions Direction =>
@@ -76,11 +92,13 @@ namespace River.OneMoreAddIn.Commands
 
 
 		public SortCommand.SortBy Sorting =>
-			nameButton.Checked
-				? SortCommand.SortBy.Name
-				: (createdButton.Checked
-					? SortCommand.SortBy.Created
-					: SortCommand.SortBy.Modified);
+			true switch
+			{
+				_ when nameButton.Checked => SortCommand.SortBy.Name,
+				_ when naturalButton.Checked => SortCommand.SortBy.Natural,
+				_ when createdButton.Checked => SortCommand.SortBy.Created,
+				_ => SortCommand.SortBy.Modified
+			};
 
 
 		public void SetScope(OneNote.Scope scope)
@@ -102,6 +120,13 @@ namespace River.OneMoreAddIn.Commands
 		private void OK(object sender, EventArgs e)
 		{
 			DialogResult = DialogResult.OK;
+
+			var provider = new SettingsProvider();
+			var collection = provider.GetCollection("SortDialog");
+			collection.Add("sortby", Sorting.ToString());
+			collection.Add("direction", Direction.ToString());
+			provider.SetCollection(collection);
+			provider.Save();
 		}
 
 
