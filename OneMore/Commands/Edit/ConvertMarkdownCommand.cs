@@ -123,7 +123,9 @@ namespace River.OneMoreAddIn.Commands
 					.RewriteInlineCode(touched)
 					.SpaceOutParagraphs(touched, singleSpacing ? 0f : 12f);
 
-				await one.Update(page);
+				// force a full update: OptimizeForSave's omHash-based "unchanged, skip
+				// it" shortcut must not be allowed to discard these targeted edits
+				await one.Update(page, force: true);
 			}
 		}
 	}

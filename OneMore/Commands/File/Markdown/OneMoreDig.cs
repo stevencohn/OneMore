@@ -7,7 +7,6 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Collections.Generic;
 	using System.IO;
-	using System.Text;
 	using System.Text.RegularExpressions;
 	using Markdig;
 	using Markdig.Extensions.Tables;
@@ -26,7 +25,6 @@ namespace River.OneMoreAddIn.Commands
 			string path, string markdown, bool gfmLineBreaks = false,
 			bool preserveBlankLines = false, bool blankBeforeHeadings = false)
 		{
-			markdown = IsolateCheckboxLines(markdown);
 			markdown = IsolateBlockBoundaries(markdown, out var syntheticOffsets);
 
 			using var writer = new StringWriter();
@@ -41,9 +39,10 @@ namespace River.OneMoreAddIn.Commands
 				.UseWikilinks();
 
 			// Remove the TaskList extension so "- [ ]" and "- [x]" are rendered as plain
-			// list items with literal "[ ]"/"[x]" text. If TaskList is active it converts
-			// these to <input type="checkbox"> which OneNote strips, losing the checkbox
-			// information before MarkdownConverter.RewriteTodo() can act on it.
+			// list items with literal "[ ]"/"[x]" text, which MarkdownConverter.RewriteTodo
+			// detects and converts to a To Do tag. If TaskList is active it converts these
+			// to <input type="checkbox"> which OneNote strips, losing the checkbox
+			// information before RewriteTodo can act on it.
 			builder.Extensions.RemoveAll(
 				e => e.GetType().Name == "TaskListExtension");
 
@@ -96,7 +95,10 @@ namespace River.OneMoreAddIn.Commands
 					!(blankBeforeHeadings && block is HeadingBlock) &&
 					HasBlankLineBetween(markdown, previous, block, syntheticOffsets))
 				{
-					writer.Write($"<p>{BlankLineMarker}</p>");
+					// the trailing newline matters: without it, OneNote's HTML importer
+					// treats an immediately-following block (e.g. "<p>...</p><ul>") as
+					// nested inside this marker paragraph rather than as its sibling
+					writer.Write($"<p>{BlankLineMarker}</p>\n");
 				}
 
 				renderer.Render(block);
@@ -145,35 +147,6 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return count >= 2;
-		}
-
-
-		/// <summary>
-		/// Forces every "[ ]"/"[x]" checkbox-marker line into its own markdown paragraph
-		/// block, even when adjacent lines have no blank line between them. Without this,
-		/// CommonMark merges contiguous non-blank lines into a single paragraph, and
-		/// MarkdownConverter.RewriteTodo can only ever recognize the first checkbox in
-		/// that merged block.
-		/// </summary>
-		private static string IsolateCheckboxLines(string markdown)
-		{
-			var boxPattern = new Regex(@"^\\?\[(?:x|\s)\]");
-			var lines = markdown.Replace("\r\n", "\n").Split('\n');
-			var builder = new StringBuilder();
-
-			for (var i = 0; i < lines.Length; i++)
-			{
-				if (i > 0 &&
-					lines[i - 1].Length > 0 && lines[i].Length > 0 &&
-					(boxPattern.IsMatch(lines[i - 1]) || boxPattern.IsMatch(lines[i])))
-				{
-					builder.AppendLine();
-				}
-
-				builder.AppendLine(lines[i]);
-			}
-
-			return builder.ToString();
 		}
 
 
