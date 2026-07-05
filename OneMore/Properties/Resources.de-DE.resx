@@ -5357,6 +5357,14 @@ Bist du dir sicher, dass du weitermachen willst?</value>
     <value>Datum geändert</value>
     <comment>radio</comment>
   </data>
+  <data name="SortDialog_nameButton.Text" xml:space="preserve">
+    <value>Name, alphabetisch</value>
+    <comment>radio</comment>
+  </data>
+  <data name="SortDialog_naturalButton.Text" xml:space="preserve">
+    <value>Name, natürlich</value>
+    <comment>radio</comment>
+  </data>
   <data name="SortDialog_pinNotesBox.Text" xml:space="preserve">
     <value>Pin Notizen nach oben und\n</value>
     <comment>checkbox</comment>

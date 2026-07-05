@@ -5356,6 +5356,14 @@ Weet je zeker dat je door wilt gaan?</value>
     <value>Datum gewijzigd</value>
     <comment>radio</comment>
   </data>
+  <data name="SortDialog_nameButton.Text" xml:space="preserve">
+    <value>Naam, alfabetisch</value>
+    <comment>radio</comment>
+  </data>
+  <data name="SortDialog_naturalButton.Text" xml:space="preserve">
+    <value>Naam, natuurlijk</value>
+    <comment>radio</comment>
+  </data>
   <data name="SortDialog_pinNotesBox.Text" xml:space="preserve">
     <value>Pin Notes naar boven en
 Snelle notities onderaan</value>

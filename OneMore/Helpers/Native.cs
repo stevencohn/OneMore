@@ -478,8 +478,15 @@ namespace River.OneMoreAddIn
 		// https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-showwindow
 		[DllImport("user32.dll")]
 		public static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
-		
-		
+
+
+		// https://learn.microsoft.com/en-us/windows/win32/api/shlwapi/nf-shlwapi-strcmplogicalw
+		// Compares two strings using the same "natural" digit-run-aware algorithm that
+		// Windows Explorer uses to sort file names, e.g. "2" < "10", "0" < "00" < "000".
+		[DllImport("shlwapi.dll", CharSet = CharSet.Unicode)]
+		public static extern int StrCmpLogicalW(string psz1, string psz2);
+
+
 		// https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-switchtothiswindow
 		[DllImport("user32.dll", SetLastError = true)]
 		public static extern void SwitchToThisWindow(IntPtr hWnd, bool turnOn);
