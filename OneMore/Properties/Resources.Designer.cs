@@ -2844,7 +2844,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ExportDialog_groupBox.Text", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Folder path contains illegal characters.
+        /// </summary>
+        internal static string ExportDialog_invalidPath {
+            get {
+                return ResourceManager.GetString("ExportDialog_invalidPath", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Export Pages.
         /// </summary>

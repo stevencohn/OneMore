@@ -1245,6 +1245,10 @@ OneNote 文件 (*.one)</value>
     <value>导出1页</value>
     <comment>group box title</comment>
   </data>
+  <data name="ExportDialog_invalidPath" xml:space="preserve">
+    <value>文件夹路径包含非法字符</value>
+    <comment>error message</comment>
+  </data>
   <data name="ExportDialog_Text" xml:space="preserve">
     <value>导出页面</value>
     <comment>dialog title</comment>

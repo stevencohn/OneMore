@@ -139,6 +139,49 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Checks that the given path is syntactically valid, i.e. contains no illegal
+		/// characters and can be resolved by Path.GetFullPath.
+		/// </summary>
+		/// <param name="path">The path to validate</param>
+		/// <param name="errorMessage">
+		/// On failure, a human-readable description of the problem; otherwise null
+		/// </param>
+		/// <returns>True if the path is valid</returns>
+		public static bool IsValidPath(string path, out string errorMessage)
+		{
+			if (string.IsNullOrWhiteSpace(path))
+			{
+				errorMessage = "Path must not be empty.";
+				return false;
+			}
+
+			var invalid = path.IndexOfAny(Path.GetInvalidPathChars());
+			if (invalid >= 0)
+			{
+				errorMessage =
+					$"'{path}' is not a valid path; it contains an illegal '{path[invalid]}' " +
+					"character. If this path was quoted on the command line, make sure it " +
+					"doesn't end with a trailing backslash before the closing quote " +
+					"(use \"C:\\folder\" rather than \"C:\\folder\\\").";
+				return false;
+			}
+
+			try
+			{
+				Path.GetFullPath(path);
+			}
+			catch (Exception exc)
+			{
+				errorMessage = $"'{path}' is not a valid path: {exc.Message}";
+				return false;
+			}
+
+			errorMessage = null;
+			return true;
+		}
+
+
+		/// <summary>
 		/// Checks if the given paths exists and creates it if it is missing.
 		/// </summary>
 		/// <param name="path"></param>

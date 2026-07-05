@@ -1241,6 +1241,10 @@ Arquivo OneNote (* .one)</value>
     <value>Exportar 1 página</value>
     <comment>group box title</comment>
   </data>
+  <data name="ExportDialog_invalidPath" xml:space="preserve">
+    <value>O caminho da pasta contém caracteres ilegais</value>
+    <comment>error message</comment>
+  </data>
   <data name="ExportDialog_Text" xml:space="preserve">
     <value>Exportar páginas</value>
     <comment>dialog title</comment>

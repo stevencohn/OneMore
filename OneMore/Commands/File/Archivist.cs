@@ -228,6 +228,7 @@ namespace River.OneMoreAddIn.Commands
 
 						//logger.WriteLine();
 						var fpath = bookScope ? item.FullPath : item.FullPath.Substring(item.FullPath.IndexOf('/') + 1);
+						fpath = string.Join("/", fpath.Split('/').Select(PathHelper.CleanFileName));
 						//logger.WriteLine($"name {name} fpath:{fpath} FullPath:{item.FullPath}");
 
 						var absolute = new Uri(Path.Combine(home, Path.Combine(fpath, $"{name}.htm")));
