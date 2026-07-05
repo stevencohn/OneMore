@@ -33,6 +33,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Themes", "Themes", "{B33891
 		Themes\Orange.xml = Themes\Orange.xml
 		Themes\Red.xml = Themes\Red.xml
 		Themes\Standard.xml = Themes\Standard.xml
+		Themes\Word.xml = Themes\Word.xml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{9D56ACB1-3CDF-48EB-B786-4F924E899CE2}"

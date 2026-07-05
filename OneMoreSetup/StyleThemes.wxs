@@ -28,6 +28,9 @@
       <Component Id="ThemeStandard">
         <File Source="..\Themes\Standard.xml" KeyPath="yes" />
       </Component>
+      <Component Id="ThemeWord">
+        <File Source="..\Themes\Word.xml" KeyPath="yes" />
+      </Component>
     </ComponentGroup>
   </Fragment>
 

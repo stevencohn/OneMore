@@ -162,6 +162,12 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var styles = theme.GetStyles();
 
+			// promote "p" paragraphs whose inline style matches a heading theme style
+			// (e.g. content pasted from Word retains quickStyleIndex="p" but carries
+			// heading-like inline CSS) before ApplyStyles/ClearInlineStyles run, so the
+			// reassigned QuickStyleDef is picked up by the main styling pass below
+			var promoted = PromoteHeadingLikeNormalParagraphs(styles);
+
 			// collect monospace Normal paragraphs while their OE-level font is still intact,
 			// before ApplyStyles/ClearInlineStyles strips it
 			var monoTargets = CollectMonospaceNormalOEs();
@@ -170,6 +176,11 @@ namespace River.OneMoreAddIn.Commands
 			MarkInlineCodeSpans(styles);
 
 			var changed = ApplyStyles(styles);
+
+			if (promoted)
+			{
+				changed = true;
+			}
 
 			if (changed)
 			{
@@ -429,6 +440,107 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return style;
+		}
+
+
+		/// <summary>
+		/// Scans "p" (Normal) paragraphs whose OE-level inline style carries a font-family
+		/// and font-size matching one of the theme's Heading styles, and reassigns them to
+		/// the matching heading QuickStyleDef. This recovers content pasted from Word (or
+		/// other editors) that bakes heading appearance into inline CSS while leaving
+		/// quickStyleIndex pointing at the generic "p" QuickStyleDef.
+		/// </summary>
+		private bool PromoteHeadingLikeNormalParagraphs(List<Style> styles)
+		{
+			if (!styles.Any(s => s.StyleType == StyleType.Heading))
+			{
+				return false;
+			}
+
+			// collect all "p" QuickStyleDef indices; also include OEs with no quickStyleIndex
+			var pIndices = page.Root.Elements(ns + "QuickStyleDef")
+				.Where(q => q.Attribute("name")?.Value == "p")
+				.Select(q => q.Attribute("index")?.Value)
+				.Where(v => v != null)
+				.ToHashSet();
+
+			var paragraphs = page.Root
+				.Elements(ns + "Outline")
+				.Descendants(ns + "OE")
+				.Where(oe =>
+				{
+					var idx = oe.Attribute("quickStyleIndex")?.Value;
+					return (idx == null || pIndices.Contains(idx)) && oe.Attribute("style") != null;
+				})
+				.ToList();
+
+			var promoted = false;
+
+			foreach (var oe in paragraphs)
+			{
+				var headingStyle = FindMatchingHeadingStyle(styles, oe.Attribute("style").Value);
+				var standard = headingStyle is null ? null : ToHeadingStandard(headingStyle.Name);
+				if (standard is null)
+				{
+					continue;
+				}
+
+				var qsd = page.GetQuickStyle(standard.Value);
+				oe.SetAttributeValue("quickStyleIndex", qsd.Index.ToString());
+				promoted = true;
+			}
+
+			return promoted;
+		}
+
+
+		/// <summary>
+		/// Finds a theme Heading style whose font-family and font-size match the given
+		/// inline CSS, or null if the CSS doesn't declare both or none match.
+		/// </summary>
+		private static Style FindMatchingHeadingStyle(IEnumerable<Style> styles, string css)
+		{
+			if (string.IsNullOrWhiteSpace(css))
+			{
+				return null;
+			}
+
+			var inline = new Style(css, setDefaults: false);
+			if (string.IsNullOrEmpty(inline.FontFamily) ||
+				!double.TryParse(inline.FontSize, NumberStyles.Any, CultureInfo.InvariantCulture, out var inlineSize) ||
+				inlineSize <= 0)
+			{
+				return null;
+			}
+
+			return styles.FirstOrDefault(s =>
+				s.StyleType == StyleType.Heading &&
+				!string.IsNullOrEmpty(s.FontFamily) &&
+				s.FontFamily.Equals(inline.FontFamily, StringComparison.OrdinalIgnoreCase) &&
+				double.TryParse(s.FontSize, NumberStyles.Any, CultureInfo.InvariantCulture, out var size) &&
+				Math.Abs(size - inlineSize) < 0.05);
+		}
+
+
+		/// <summary>
+		/// Maps a theme Heading style's display name (e.g. "Heading 2") to its
+		/// corresponding StandardStyles.HeadingN value, or null if it can't be determined.
+		/// </summary>
+		private static StandardStyles? ToHeadingStandard(string styleName)
+		{
+			var match = Regex.Match(styleName ?? string.Empty, @"(\d)\s*$");
+			if (!match.Success)
+			{
+				return null;
+			}
+
+			var level = int.Parse(match.Groups[1].Value, CultureInfo.InvariantCulture);
+			if (level < 1 || level > 6)
+			{
+				return null;
+			}
+
+			return (StandardStyles)((int)StandardStyles.Heading1 + level - 1);
 		}
 
 
@@ -928,6 +1040,20 @@ namespace River.OneMoreAddIn.Commands
 				if (style is null)
 				{
 					continue;
+				}
+
+				// Detect Normal paragraphs whose inline style matches a heading theme style
+				if (quickName == "p")
+				{
+					var headingStyle = FindMatchingHeadingStyle(styles, oe.Attribute("style")?.Value);
+					var standard = headingStyle is null ? null : ToHeadingStandard(headingStyle.Name);
+					if (standard is not null)
+					{
+						var headingQsd = page.GetQuickStyle(standard.Value);
+						oe.SetAttributeValue("quickStyleIndex", headingQsd.Index.ToString());
+						style = headingStyle;
+						quickName = standard.Value.ToName();
+					}
 				}
 
 				// Detect Normal paragraphs whose text is entirely monospace → treat as code
