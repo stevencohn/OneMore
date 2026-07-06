@@ -52,57 +52,72 @@ namespace OneMoreSetupActions
 			logger.WriteLine();
 			logger.WriteLine("EdgeWebViewAction.Install ---");
 
-			var key = Registry.LocalMachine.OpenSubKey($"{ClientKey}\\{RuntimeId}");
-			if (key is not null)
-			{
-				logger.WriteLine("WebView2 Runtime is already installed");
-				return SUCCESS;
-			}
-
-			var bootstrap = Path.Combine(
-			Path.GetTempPath(),
-			Path.GetFileNameWithoutExtension(Path.GetRandomFileName()) + ".exe");
-
-			if (!IsNetworkAvailable())
-			{
-				logger.WriteLine("no internet connection; skipping WebView2 installation");
-				return SUCCESS;
-			}
-
-			if (!DownloadBootstrap(bootstrap))
-			{
-				logger.WriteLine("unable to download WebView2 bootstrap installer");
-				return FAILURE;
-			}
-
-			logger.WriteLine("running bootstrap");
-			Process.Start(bootstrap).WaitForExit();
-
-			while (true)
-			{
-				if (!Process.GetProcesses()
-					.Any(p => p.ProcessName.StartsWith("MicrosoftEdgeUpdate")))
-				{
-					logger.WriteLine("maybe done");
-					break;
-				}
-
-				logger.WriteLine("waiting for MicrosoftEdgeUpdate process to exit...");
-				Thread.Sleep(1000);
-			}
-
+			// WebView2 is optional (Windows 11 already has it); any failure here should be
+			// logged and treated as non-fatal rather than aborting the entire installation
 			try
 			{
-				logger.WriteLine("cleaning up bootstrap file");
-				File.Delete(bootstrap);
+				var key = Registry.LocalMachine.OpenSubKey($"{ClientKey}\\{RuntimeId}");
+				if (key is not null)
+				{
+					logger.WriteLine("WebView2 Runtime is already installed");
+					return SUCCESS;
+				}
+
+				var bootstrap = Path.Combine(
+				Path.GetTempPath(),
+				Path.GetFileNameWithoutExtension(Path.GetRandomFileName()) + ".exe");
+
+				if (!IsNetworkAvailable())
+				{
+					logger.WriteLine("no internet connection; skipping WebView2 installation");
+					return SUCCESS;
+				}
+
+				if (!DownloadBootstrap(bootstrap))
+				{
+					logger.WriteLine("unable to download WebView2 bootstrap installer");
+					return FAILURE;
+				}
+
+				logger.WriteLine("running bootstrap");
+				using (var process = Process.Start(bootstrap))
+				{
+					process.WaitForExit();
+				}
+
+				var deadline = DateTime.Now.AddMinutes(5);
+				while (DateTime.Now < deadline)
+				{
+					if (!Process.GetProcesses()
+						.Any(p => p.ProcessName.StartsWith("MicrosoftEdgeUpdate")))
+					{
+						logger.WriteLine("maybe done");
+						break;
+					}
+
+					logger.WriteLine("waiting for MicrosoftEdgeUpdate process to exit...");
+					Thread.Sleep(1000);
+				}
+
+				try
+				{
+					logger.WriteLine("cleaning up bootstrap file");
+					File.Delete(bootstrap);
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine("error deleting bootstrap");
+					logger.WriteLine(exc);
+				}
+
+				return SUCCESS;
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error deleting bootstrap");
+				logger.WriteLine("error installing WebView2 runtime; skipping");
 				logger.WriteLine(exc);
+				return FAILURE;
 			}
-
-			return SUCCESS;
 		}
 
 
@@ -126,7 +141,16 @@ namespace OneMoreSetupActions
 						if ((face.NetworkInterfaceType != NetworkInterfaceType.Tunnel) &&
 							(face.NetworkInterfaceType != NetworkInterfaceType.Loopback))
 						{
-							var statistics = face.GetIPv4Statistics();
+							IPv4InterfaceStatistics statistics;
+							try
+							{
+								statistics = face.GetIPv4Statistics();
+							}
+							catch (NetworkInformationException)
+							{
+								// IPv4 not enabled on this interface; skip it
+								continue;
+							}
 
 							// all testing seems to prove that once an interface comes online
 							// it has already accrued statistics for both received and sent...
@@ -150,18 +174,26 @@ namespace OneMoreSetupActions
 		/// </summary>
 		private bool DownloadBootstrap(string bootstrap)
 		{
-			using var client = new HttpClient();
-			using var response = client.GetAsync(new Uri(DownloadUrl, UriKind.Absolute)).Result;
-			if (response.IsSuccessStatusCode)
+			try
 			{
-				using var stream = new FileStream(bootstrap, FileMode.CreateNew);
-				response.Content.CopyToAsync(stream).Wait();
-				logger.WriteLine($"downloaded {bootstrap}");
-				return true;
+				using var client = new HttpClient();
+				using var response = client.GetAsync(new Uri(DownloadUrl, UriKind.Absolute)).Result;
+				if (response.IsSuccessStatusCode)
+				{
+					using var stream = new FileStream(bootstrap, FileMode.CreateNew);
+					response.Content.CopyToAsync(stream).Wait();
+					logger.WriteLine($"downloaded {bootstrap}");
+					return true;
+				}
+				else
+				{
+					logger.WriteLine($"download status code[{response.StatusCode}]");
+				}
 			}
-			else
+			catch (Exception exc)
 			{
-				logger.WriteLine($"download status code[{response.StatusCode}]");
+				logger.WriteLine("error downloading WebView2 bootstrap installer");
+				logger.WriteLine(exc);
 			}
 
 			return false;
@@ -176,35 +208,49 @@ namespace OneMoreSetupActions
 			logger.WriteLine();
 			logger.WriteLine("EdgeWebViewAction.Uninstall ---");
 
-			var key = Registry.LocalMachine.OpenSubKey($"{ClientKey}\\{RuntimeId}");
-			if (key is not null)
+			try
 			{
-				// "C:\Program Files (x86)\Microsoft\EdgeWebView\Application\96.0.1054.34\Installer\setup.exe"
-				//    --force-uninstall --uninstall --msedgewebview --system-level --verbose-logging
-
-				var command = key.GetValue("SilentUninstall") as string;
-				if (!string.IsNullOrEmpty(command))
+				var key = Registry.LocalMachine.OpenSubKey($"{ClientKey}\\{RuntimeId}");
+				if (key is not null)
 				{
-					var match = Regex.Match(command, "\"([^\"]*)\" (.*)");
-					if (match.Success)
-					{
-						logger.WriteLine($"command: {command}");
+					// "C:\Program Files (x86)\Microsoft\EdgeWebView\Application\96.0.1054.34\Installer\setup.exe"
+					//    --force-uninstall --uninstall --msedgewebview --system-level --verbose-logging
 
-						Process.Start(match.Groups[1].Value, match.Groups[2].Value).WaitForExit();
-						return SUCCESS;
+					var command = key.GetValue("SilentUninstall") as string;
+					if (!string.IsNullOrEmpty(command))
+					{
+						var match = Regex.Match(command, "\"([^\"]*)\" (.*)");
+						if (match.Success)
+						{
+							logger.WriteLine($"command: {command}");
+
+							using var process = Process.Start(match.Groups[1].Value, match.Groups[2].Value);
+							process.WaitForExit();
+							return SUCCESS;
+						}
+						else
+						{
+							logger.WriteLine($"unrecognized SilentUninstall command format: {command}");
+						}
+					}
+					else
+					{
+						logger.WriteLine("SilentUninstall key not found in Registry");
 					}
 				}
 				else
 				{
-					logger.WriteLine("SilentUninstall key not found in Registry");
+					logger.WriteLine("WebView client key not found in Registry");
 				}
-			}
-			else
-			{
-				logger.WriteLine("WebView client key not found in Registry");
-			}
 
-			return FAILURE;
+				return FAILURE;
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error uninstalling WebView2 runtime");
+				logger.WriteLine(exc);
+				return FAILURE;
+			}
 		}
 	}
 }
