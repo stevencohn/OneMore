@@ -3096,6 +3096,10 @@ ISO-code then comma then language name</comment>
   <data name="ReportRemindersDialog.Text" xml:space="preserve">
     <value>レポートスコープ</value>
   </data>
+  <data name="ReportRemindersDialog_groupByNotebookBox.Text" xml:space="preserve">
+    <value>ノートごとにリマインダーをグループ化する</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="ReportRemindersDialog_introLabel.Text" xml:space="preserve">
     <value>このスコープ内のリマインダーについてレポートを生成します</value>
     <comment>label</comment>

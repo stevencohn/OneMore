@@ -3089,6 +3089,10 @@ Wybierz Nie, aby zachować jedną pustą linię między akapitami</value>
   <data name="ReportRemindersDialog.Text" xml:space="preserve">
     <value>Zakres raportu</value>
   </data>
+  <data name="ReportRemindersDialog_groupByNotebookBox.Text" xml:space="preserve">
+    <value>Grupuj przypomnienia według notatnika</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="ReportRemindersDialog_introLabel.Text" xml:space="preserve">
     <value>Wygeneruj raport dla przypomnień w tym zakresie</value>
     <comment>label</comment>

@@ -3100,6 +3100,10 @@ Sélectionnez Non pour conserver une ligne vide entre les paragraphes</value>
   <data name="ReportRemindersDialog.Text" xml:space="preserve">
     <value>Portée du rapport</value>
   </data>
+  <data name="ReportRemindersDialog_groupByNotebookBox.Text" xml:space="preserve">
+    <value>Regrouper les rappels par carnet</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="ReportRemindersDialog_introLabel.Text" xml:space="preserve">
     <value>Générer un rapport pour les rappels dans cette portée</value>
     <comment>label</comment>

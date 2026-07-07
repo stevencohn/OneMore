@@ -3089,6 +3089,10 @@ Selecione Não para manter uma linha vazia entre os parágrafos</value>
   <data name="ReportRemindersDialog.Text" xml:space="preserve">
     <value>Escopo de relatório</value>
   </data>
+  <data name="ReportRemindersDialog_groupByNotebookBox.Text" xml:space="preserve">
+    <value>Lembretes de grupo por notebook</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="ReportRemindersDialog_introLabel.Text" xml:space="preserve">
     <value>Gerar relatório para lembretes neste escopo</value>
     <comment>label</comment>

@@ -3125,6 +3125,10 @@ Select No to keep one empty line between paragraphs</value>
   <data name="ReportRemindersDialog.Text" xml:space="preserve">
     <value>Report Scope</value>
   </data>
+  <data name="ReportRemindersDialog_groupByNotebookBox.Text" xml:space="preserve">
+    <value>Group reminders by notebook</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="ReportRemindersDialog_introLabel.Text" xml:space="preserve">
     <value>Generate report for reminders in this scope</value>
     <comment>label</comment>
