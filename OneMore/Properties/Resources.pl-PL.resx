@@ -1833,7 +1833,7 @@ Czerwony pierwszy plan
     <comment>dialog title</comment>
   </data>
   <data name="ImportOutlookTasksDialog_introBox.Text" xml:space="preserve">
-    <value>Wybierz cały folder lub indywidualne zadania, aby zaimportować z programu Outlook na OneNote. Elementy dla osób niepełnosprawnych wskazują zadania już związane z OneNote</value>
+    <value>Wybierz zadania, które chcesz zaimportować z Outlooka do OneNote. Wyłączone elementy wskazują zadania już połączone z programem OneNote</value>
     <comment>text box</comment>
   </data>
   <data name="ImportOutlookTasksDialog_listButton.Text" xml:space="preserve">
@@ -1851,10 +1851,6 @@ Czerwony pierwszy plan
   <data name="ImportOutlookTasksDialog_tableButton.Text" xml:space="preserve">
     <value>Wygeneruj tabelę szczegółów zadań</value>
     <comment>radio</comment>
-  </data>
-  <data name="ImportOutlookTasksDialog_warningBox.Text" xml:space="preserve">
-    <value>Zauważ, że onenote nie wiąże się całkowicie do zadania, które nie znajdują się w folderze zadań Outlook. Zadania z podfolderów pokazano na czerwono, wskazują, że ich flagi statusu nie będą aktualizować automatycznie po importowaniu.</value>
-    <comment>rich text box</comment>
   </data>
   <data name="ImportWebCommand_BadUrl" xml:space="preserve">
     <value>Nie znaleziono strony internetowej lub zwrócona pusta treść</value>

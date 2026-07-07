@@ -22,6 +22,8 @@ namespace River.OneMoreAddIn.UI
 
 		private Image checkedGlyph;
 		private Image uncheckedGlyph;
+		private Image checkedDisabledGlyph;
+		private Image uncheckedDisabledGlyph;
 
 
 		public sealed class CheckChangedEventArgs : EventArgs
@@ -38,6 +40,13 @@ namespace River.OneMoreAddIn.UI
 		public event EventHandler<CheckChangedEventArgs> CheckChanged;
 
 
+		/// <summary>
+		/// Gets or sets a predicate determining whether the given item's checkbox can be
+		/// toggled by the user. When null, every item can be toggled.
+		/// </summary>
+		public Func<ListViewItem, bool> CanToggleItem { get; set; }
+
+
 		public MoreCheckList()
 		{
 			GetCellImage = GetGlyph;
@@ -47,25 +56,36 @@ namespace River.OneMoreAddIn.UI
 			{
 				checkedGlyph?.Dispose();
 				uncheckedGlyph?.Dispose();
+				checkedDisabledGlyph?.Dispose();
+				uncheckedDisabledGlyph?.Dispose();
 			};
 		}
 
 
 		private Image GetGlyph(ListViewItem item, int column)
 		{
-			return item.Checked
-				? checkedGlyph ??= BuildGlyph(true)
-				: uncheckedGlyph ??= BuildGlyph(false);
+			var enabled = CanToggleItem?.Invoke(item) ?? true;
+
+			if (item.Checked)
+			{
+				return enabled
+					? checkedGlyph ??= BuildGlyph(true, true)
+					: checkedDisabledGlyph ??= BuildGlyph(true, false);
+			}
+
+			return enabled
+				? uncheckedGlyph ??= BuildGlyph(false, true)
+				: uncheckedDisabledGlyph ??= BuildGlyph(false, false);
 		}
 
 
-		private static Image BuildGlyph(bool isChecked)
+		private static Image BuildGlyph(bool isChecked, bool enabled)
 		{
 			var bitmap = new Bitmap(GlyphSize, GlyphSize);
 			using var g = Graphics.FromImage(bitmap);
 			g.SmoothingMode = SmoothingMode.AntiAlias;
 
-			var boxColor = ThemeManager.Instance.GetColor("Highlight");
+			var boxColor = ThemeManager.Instance.GetColor(enabled ? "Highlight" : "GrayText");
 			using var pen = new Pen(boxColor);
 			g.DrawRoundedRectangle(pen, new Rectangle(0, 0, GlyphSize - 1, GlyphSize - 1), 2);
 
@@ -87,7 +107,7 @@ namespace River.OneMoreAddIn.UI
 			}
 
 			var hit = HitTest(e.Location);
-			if (hit.Item != null)
+			if (hit.Item != null && (CanToggleItem?.Invoke(hit.Item) ?? true))
 			{
 				ToggleItem(hit.Item);
 			}
@@ -96,7 +116,8 @@ namespace River.OneMoreAddIn.UI
 
 		private void OnKeyDown(object sender, KeyEventArgs e)
 		{
-			if (e.KeyCode == Keys.Space && SelectedItems.Count > 0)
+			if (e.KeyCode == Keys.Space && SelectedItems.Count > 0 &&
+				(CanToggleItem?.Invoke(SelectedItems[0]) ?? true))
 			{
 				ToggleItem(SelectedItems[0]);
 				e.Handled = true;

@@ -1836,7 +1836,7 @@
     <comment>dialog title</comment>
   </data>
   <data name="ImportOutlookTasksDialog_introBox.Text" xml:space="preserve">
-    <value>اختر مجلدا كاملا أو مهام فردية للاستيراد من Outlook إلى OneNote. </value>
+    <value>اختر المهام المراد استيرادها من Outlook إلى OneNote. تشير العناصر المعطلة إلى المهام المرتبطة بالفعل بـ OneNote</value>
     <comment>text box</comment>
   </data>
   <data name="ImportOutlookTasksDialog_listButton.Text" xml:space="preserve">
@@ -1854,10 +1854,6 @@
   <data name="ImportOutlookTasksDialog_tableButton.Text" xml:space="preserve">
     <value>إنشاء جدول تفاصيل المهمة</value>
     <comment>radio</comment>
-  </data>
-  <data name="ImportOutlookTasksDialog_warningBox.Text" xml:space="preserve">
-    <value>لاحظ أن OneNote لا يرتبط بشكل كامل بالمهمة غير الموجودة في مجلد مهام Outlook. </value>
-    <comment>rich text box</comment>
   </data>
   <data name="ImportWebCommand_BadUrl" xml:space="preserve">
     <value>لم يتم العثور على صفحة الويب أو إرجاع محتوى فارغ</value>

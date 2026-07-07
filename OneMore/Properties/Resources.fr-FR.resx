@@ -1836,7 +1836,7 @@ Fond jaune</value>
     <comment>dialog title</comment>
   </data>
   <data name="ImportOutlookTasksDialog_introBox.Text" xml:space="preserve">
-    <value>Choisissez un dossier entier ou des tâches individuelles à importer d'Outlook dans OneNote. </value>
+    <value>Choisissez les tâches à importer d'Outlook vers OneNote. Les éléments désactivés indiquent des tâches déjà liées à OneNote</value>
     <comment>text box</comment>
   </data>
   <data name="ImportOutlookTasksDialog_listButton.Text" xml:space="preserve">
@@ -1854,10 +1854,6 @@ Fond jaune</value>
   <data name="ImportOutlookTasksDialog_tableButton.Text" xml:space="preserve">
     <value>Générer le tableau des détails de la tâche</value>
     <comment>radio</comment>
-  </data>
-  <data name="ImportOutlookTasksDialog_warningBox.Text" xml:space="preserve">
-    <value>Notez que OneNote ne se lie pas complètement aux tâches qui ne se trouvent pas dans le dossier Tâches Outlook. </value>
-    <comment>rich text box</comment>
   </data>
   <data name="ImportWebCommand_BadUrl" xml:space="preserve">
     <value>Page Web non trouvée ou contenu vide renvoyé</value>

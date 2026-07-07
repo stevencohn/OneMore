@@ -1841,7 +1841,7 @@ Yellow Background</value>
     <comment>dialog title</comment>
   </data>
   <data name="ImportOutlookTasksDialog_introBox.Text" xml:space="preserve">
-    <value>Choose an entire folder or individual tasks to import from Outlook into OneNote. Disabled items indicate tasks already linked to OneNote</value>
+    <value>Choose the tasks to import from Outlook into OneNote. Disabled items indicate tasks already linked to OneNote</value>
     <comment>text box</comment>
   </data>
   <data name="ImportOutlookTasksDialog_listButton.Text" xml:space="preserve">
@@ -1859,10 +1859,6 @@ Yellow Background</value>
   <data name="ImportOutlookTasksDialog_tableButton.Text" xml:space="preserve">
     <value>Generate task detail table</value>
     <comment>radio</comment>
-  </data>
-  <data name="ImportOutlookTasksDialog_warningBox.Text" xml:space="preserve">
-    <value>Note that OneNote does not bind completely to task that are not in the Outlook Tasks folder. Tasks from sub-folders are shown in red to indicate that their status flags will not update automatically after importing.</value>
-    <comment>rich text box</comment>
   </data>
   <data name="ImportWebCommand_BadUrl" xml:space="preserve">
     <value>Web page not found or returned empty content</value>

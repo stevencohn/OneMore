@@ -1833,7 +1833,7 @@ Total Row Font
     <comment>dialog title</comment>
   </data>
   <data name="ImportOutlookTasksDialog_introBox.Text" xml:space="preserve">
-    <value>בחר תיקיה שלמה או משימות בודדות לייבא מ-Outlook ל-OneNote. פריטים מושבתים מציינים משימות שכבר מקושרות ל-OneNote</value>
+    <value>בחר את המשימות לייבא מ-Outlook אל OneNote. פריטים מושבתים מציינים משימות שכבר מקושרות ל-OneNote</value>
     <comment>text box</comment>
   </data>
   <data name="ImportOutlookTasksDialog_listButton.Text" xml:space="preserve">
@@ -1851,10 +1851,6 @@ Total Row Font
   <data name="ImportOutlookTasksDialog_tableButton.Text" xml:space="preserve">
     <value>צור טבלת פירוט משימות</value>
     <comment>radio</comment>
-  </data>
-  <data name="ImportOutlookTasksDialog_warningBox.Text" xml:space="preserve">
-    <value>שים לב ש-OneNote אינו נקשר לחלוטין למשימה שאינה בתיקייה של Outlook Tasks. משימות מתיקיות משנה מוצגות באדום כדי לציין שדגלי הסטטוס שלהן לא יתעדכנו אוטומטית לאחר הייבוא.</value>
-    <comment>rich text box</comment>
   </data>
   <data name="ImportWebCommand_BadUrl" xml:space="preserve">
     <value>דף אינטרנט לא נמצא או שהחזיר תוכן ריק</value>
