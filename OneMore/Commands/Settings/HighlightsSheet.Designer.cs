@@ -28,11 +28,11 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HighlightsSheet));
 			this.introBox = new River.OneMoreAddIn.UI.MoreMultilineLabel();
 			this.normalRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.fadedRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.themesGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
+			this.extendBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.deepPicture = new System.Windows.Forms.PictureBox();
 			this.fadedPicture = new System.Windows.Forms.PictureBox();
 			this.normalPicture = new System.Windows.Forms.PictureBox();
@@ -63,7 +63,7 @@
 			// 
 			this.normalRadio.Checked = true;
 			this.normalRadio.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.normalRadio.Location = new System.Drawing.Point(18, 46);
+			this.normalRadio.Location = new System.Drawing.Point(18, 97);
 			this.normalRadio.Margin = new System.Windows.Forms.Padding(3, 3, 3, 12);
 			this.normalRadio.Name = "normalRadio";
 			this.normalRadio.Size = new System.Drawing.Size(79, 25);
@@ -75,7 +75,7 @@
 			// fadedRadio
 			// 
 			this.fadedRadio.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.fadedRadio.Location = new System.Drawing.Point(18, 104);
+			this.fadedRadio.Location = new System.Drawing.Point(18, 155);
 			this.fadedRadio.Margin = new System.Windows.Forms.Padding(3, 3, 3, 12);
 			this.fadedRadio.Name = "fadedRadio";
 			this.fadedRadio.Size = new System.Drawing.Size(82, 25);
@@ -87,6 +87,7 @@
 			// 
 			this.themesGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.themesGroup.Controls.Add(this.extendBox);
 			this.themesGroup.Controls.Add(this.deepPicture);
 			this.themesGroup.Controls.Add(this.fadedPicture);
 			this.themesGroup.Controls.Add(this.normalPicture);
@@ -97,20 +98,35 @@
 			this.themesGroup.Name = "themesGroup";
 			this.themesGroup.Padding = new System.Windows.Forms.Padding(15, 15, 3, 3);
 			this.themesGroup.ShowOnlyTopEdge = true;
-			this.themesGroup.Size = new System.Drawing.Size(774, 282);
+			this.themesGroup.Size = new System.Drawing.Size(774, 316);
 			this.themesGroup.TabIndex = 5;
 			this.themesGroup.TabStop = false;
 			this.themesGroup.Text = "Themes";
 			this.themesGroup.ThemedBorder = null;
 			this.themesGroup.ThemedFore = null;
 			// 
+			// extendBox
+			// 
+			this.extendBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.extendBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.extendBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.extendBox.Location = new System.Drawing.Point(148, 37);
+			this.extendBox.Name = "extendBox";
+			this.extendBox.Size = new System.Drawing.Size(207, 25);
+			this.extendBox.StylizeImage = false;
+			this.extendBox.TabIndex = 9;
+			this.extendBox.Text = "Enable extended colors";
+			this.extendBox.ThemedBack = null;
+			this.extendBox.ThemedFore = null;
+			this.extendBox.UseVisualStyleBackColor = false;
+			this.extendBox.CheckedChanged += new System.EventHandler(this.DrawSchemes);
+			// 
 			// deepPicture
 			// 
-			this.deepPicture.Image = ((System.Drawing.Image)(resources.GetObject("deepPicture.Image")));
-			this.deepPicture.Location = new System.Drawing.Point(148, 151);
+			this.deepPicture.Location = new System.Drawing.Point(148, 202);
 			this.deepPicture.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.deepPicture.Name = "deepPicture";
-			this.deepPicture.Size = new System.Drawing.Size(240, 42);
+			this.deepPicture.Size = new System.Drawing.Size(486, 42);
 			this.deepPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.deepPicture.TabIndex = 8;
 			this.deepPicture.TabStop = false;
@@ -118,11 +134,10 @@
 			// 
 			// fadedPicture
 			// 
-			this.fadedPicture.Image = ((System.Drawing.Image)(resources.GetObject("fadedPicture.Image")));
-			this.fadedPicture.Location = new System.Drawing.Point(148, 94);
+			this.fadedPicture.Location = new System.Drawing.Point(148, 145);
 			this.fadedPicture.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.fadedPicture.Name = "fadedPicture";
-			this.fadedPicture.Size = new System.Drawing.Size(240, 42);
+			this.fadedPicture.Size = new System.Drawing.Size(486, 42);
 			this.fadedPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.fadedPicture.TabIndex = 7;
 			this.fadedPicture.TabStop = false;
@@ -130,11 +145,10 @@
 			// 
 			// normalPicture
 			// 
-			this.normalPicture.Image = ((System.Drawing.Image)(resources.GetObject("normalPicture.Image")));
-			this.normalPicture.Location = new System.Drawing.Point(148, 37);
+			this.normalPicture.Location = new System.Drawing.Point(148, 88);
 			this.normalPicture.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.normalPicture.Name = "normalPicture";
-			this.normalPicture.Size = new System.Drawing.Size(240, 42);
+			this.normalPicture.Size = new System.Drawing.Size(486, 42);
 			this.normalPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.normalPicture.TabIndex = 6;
 			this.normalPicture.TabStop = false;
@@ -143,7 +157,7 @@
 			// deepRadio
 			// 
 			this.deepRadio.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.deepRadio.Location = new System.Drawing.Point(18, 161);
+			this.deepRadio.Location = new System.Drawing.Point(18, 212);
 			this.deepRadio.Margin = new System.Windows.Forms.Padding(3, 3, 3, 12);
 			this.deepRadio.Name = "deepRadio";
 			this.deepRadio.Size = new System.Drawing.Size(75, 25);
@@ -180,5 +194,6 @@
 		private System.Windows.Forms.PictureBox deepPicture;
 		private System.Windows.Forms.PictureBox fadedPicture;
 		private System.Windows.Forms.PictureBox normalPicture;
+		private UI.MoreCheckBox extendBox;
 	}
 }

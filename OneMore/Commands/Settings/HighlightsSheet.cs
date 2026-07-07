@@ -4,11 +4,21 @@
 
 namespace River.OneMoreAddIn.Settings
 {
+	using System.Drawing;
+	using System.Windows.Forms;
+	using River.OneMoreAddIn.Commands;
 	using Resx = Properties.Resources;
 
 
 	internal partial class HighlightsSheet : SheetBase
 	{
+		private const int BoxSpacing = 6;
+		private const int BoxSize = 37;
+		private const int BoxTop = 2;
+
+		private readonly HighlightColorSchemes schemes;
+
+
 		public HighlightsSheet(SettingsProvider provider) : base(provider)
 		{
 			InitializeComponent();
@@ -22,6 +32,7 @@ namespace River.OneMoreAddIn.Settings
 				{
 					"introBox",
 					"themesGroup",
+					"extendBox",
 					"normalRadio",
 					"fadedRadio",
 					"deepRadio"
@@ -38,6 +49,14 @@ namespace River.OneMoreAddIn.Settings
 			{
 				deepRadio.Checked = true;
 			}
+
+			schemes = new HighlightColorSchemes();
+
+			normalPicture.Paint += PaintScheme;
+			fadedPicture.Paint += PaintScheme;
+			deepPicture.Paint += PaintScheme;
+
+			extendBox.Checked = settings.Get<bool>("extended");
 		}
 
 
@@ -49,6 +68,15 @@ namespace River.OneMoreAddIn.Settings
 
 			var settings = provider.GetCollection(Name);
 			settings.Add("theme", theme);
+
+			if (extendBox.Checked)
+			{
+				settings.Add("extended", extendBox.Checked);
+			}
+			else
+			{
+				settings.Remove("extended");
+			}
 
 			provider.SetCollection(settings);
 
@@ -70,6 +98,64 @@ namespace River.OneMoreAddIn.Settings
 			else
 			{
 				normalRadio.Checked = true;
+			}
+		}
+
+		private void DrawSchemes(object sender, System.EventArgs e)
+		{
+			normalPicture.Invalidate();
+			fadedPicture.Invalidate();
+			deepPicture.Invalidate();
+		}
+
+
+		private void PaintScheme(object sender, PaintEventArgs e)
+		{
+			var picture = (PictureBox)sender;
+
+			var scheme = picture switch
+			{
+				var p when p == fadedPicture => schemes.GetScheme("Faded"),
+				var p when p == deepPicture => schemes.GetScheme("Deep"),
+				_ => schemes.GetScheme("Bright")
+			};
+
+
+			DrawScheme(e.Graphics, picture.BackColor, scheme, extendBox.Checked);
+		}
+
+
+		private static void DrawScheme(
+			Graphics g, Color backColor, HighlightColorScheme scheme, bool extended)
+		{
+			// LightGrayBorder = #E2E4E7
+
+			g.Clear(backColor);
+
+			int x = 0;
+			foreach (var color in scheme.Colors)
+			{
+				using (var brush = new SolidBrush(ColorTranslator.FromHtml(color)))
+				{
+					g.FillRectangle(brush, x, BoxTop, BoxSize, BoxSize);
+					g.DrawRectangle(Pens.LightGray, x, BoxTop, BoxSize - 1, BoxSize);
+				}
+
+				x += BoxSize + BoxSpacing;
+			}
+
+			if (extended)
+			{
+				foreach (var color in scheme.Extended)
+				{
+					using (var brush = new SolidBrush(ColorTranslator.FromHtml(color)))
+					{
+						g.FillRectangle(brush, x, BoxTop, BoxSize, BoxSize);
+						g.DrawRectangle(Pens.LightGray, x, BoxTop, BoxSize - 1, BoxSize);
+					}
+
+					x += BoxSize + BoxSpacing;
+				}
 			}
 		}
 	}

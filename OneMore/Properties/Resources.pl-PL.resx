@@ -1693,6 +1693,10 @@ Czerwony pierwszy plan
     <value>Głęboko</value>
     <comment>radio</comment>
   </data>
+  <data name="HighlightsSheet_extendBox.Text" xml:space="preserve">
+    <value>Włącz rozszerzone kolory</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="HighlightsSheet_fadedRadio.Text" xml:space="preserve">
     <value>Wyblakły</value>
     <comment>radio</comment>

@@ -1696,6 +1696,10 @@ Fond jaune</value>
     <value>Profond</value>
     <comment>radio</comment>
   </data>
+  <data name="HighlightsSheet_extendBox.Text" xml:space="preserve">
+    <value>Activer les couleurs étendues</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="HighlightsSheet_fadedRadio.Text" xml:space="preserve">
     <value>Délavé</value>
     <comment>radio</comment>

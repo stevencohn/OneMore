@@ -1693,6 +1693,10 @@ Gele achtergrond</value>
     <value>Diep</value>
     <comment>radio</comment>
   </data>
+  <data name="HighlightsSheet_extendBox.Text" xml:space="preserve">
+    <value>Schakel uitgebreide kleuren in</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="HighlightsSheet_fadedRadio.Text" xml:space="preserve">
     <value>Bleek</value>
     <comment>radio</comment>

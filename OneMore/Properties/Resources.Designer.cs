@@ -2844,7 +2844,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ExportDialog_groupBox.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Folder path contains illegal characters.
         /// </summary>
@@ -2853,7 +2853,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ExportDialog_invalidPath", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Export Pages.
         /// </summary>
@@ -3907,6 +3907,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string HighlightsSheet_deepRadio_Text {
             get {
                 return ResourceManager.GetString("HighlightsSheet_deepRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable extended colors.
+        /// </summary>
+        internal static string HighlightsSheet_extendBox_Text {
+            get {
+                return ResourceManager.GetString("HighlightsSheet_extendBox.Text", resourceCulture);
             }
         }
         
