@@ -8,6 +8,7 @@ namespace OneMoreCli
 	using River.OneMoreAddIn.Cli;
 	using System;
 	using System.Collections.Generic;
+	using System.IO;
 	using System.Linq;
 
 
@@ -28,7 +29,7 @@ namespace OneMoreCli
 			Console.WriteLine();
 			Console.WriteLine("Usage:");
 			Console.WriteLine("  OneMoreCli                           (interactive mode)");
-			Console.WriteLine("  OneMoreCli <command> [--param value …]");
+			Console.WriteLine("  OneMoreCli <command> [--param value …] [--output <file>]");
 			Console.WriteLine("  OneMoreCli <command> --help");
 			Console.WriteLine();
 
@@ -104,7 +105,13 @@ namespace OneMoreCli
 			Console.Write($"    OneMoreCli {command.CommandName}");
 			foreach (var token in required.Concat(optional))
 				Console.Write($" {token}");
+			Console.WriteLine(" [--output <file>]");
 			Console.WriteLine();
+			Console.WriteLine("  --output <file>");
+			Console.WriteLine(
+				"      Write output to a file instead of stdout. Avoids shell console-encoding " +
+				"corruption (e.g. non-ASCII characters) that can occur when piping output " +
+				"through PowerShell's Out-File or similar cmdlets.");
 			Console.WriteLine();
 		}
 
@@ -119,6 +126,52 @@ namespace OneMoreCli
 				FormatConstraint fc => fc.Hint != null ? $"[{fc.Hint}]" : null,
 				_                   => null
 			};
+		}
+
+
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+		// Output redirection
+
+		private static string outputFile;
+
+		/// <summary>
+		/// Redirects subsequent <see cref="WriteOutput"/> calls to the given file instead of
+		/// the console, truncating/creating it up front to match shell '>' redirection
+		/// semantics. Returns false (after reporting the error) if the path is invalid or
+		/// its directory could not be created.
+		/// </summary>
+		public static bool SetOutputFile(string path)
+		{
+			if (!PathHelper.IsValidPath(path, out var error))
+			{
+				WriteError(error);
+				return false;
+			}
+
+			var dir = Path.GetDirectoryName(Path.GetFullPath(path));
+			if (!string.IsNullOrEmpty(dir) && !PathHelper.EnsurePathExists(dir))
+			{
+				WriteError($"Could not create directory '{dir}'");
+				return false;
+			}
+
+			File.WriteAllText(path, string.Empty);
+			outputFile = path;
+			return true;
+		}
+
+		/// <summary>
+		/// Writes command output text, either to the console or, if <see cref="SetOutputFile"/>
+		/// was called, appended to that file.
+		/// </summary>
+		public static void WriteOutput(string text)
+		{
+			if (string.IsNullOrEmpty(text)) return;
+
+			if (outputFile == null)
+				Console.Write(text);
+			else
+				File.AppendAllText(outputFile, text);
 		}
 
 

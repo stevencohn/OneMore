@@ -154,7 +154,7 @@ namespace OneMoreCli
 					var idx = response.IndexOf(':');
 					if (idx >= 0 && idx + 1 < response.Length)
 					{
-						Console.Write(response.Substring(idx + 1));
+						CliConsole.WriteOutput(response.Substring(idx + 1));
 					}
 
 					throw new OperationCanceledException("Cancelled by user.");
@@ -162,7 +162,7 @@ namespace OneMoreCli
 
 				if (response.StartsWith("OUTPUT:", StringComparison.OrdinalIgnoreCase))
 				{
-					Console.Write(response.Substring(7));
+					CliConsole.WriteOutput(response.Substring(7));
 				}
 				else if (cancelledByUser && !response.Equals("OK", StringComparison.OrdinalIgnoreCase))
 				{
