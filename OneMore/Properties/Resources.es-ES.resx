@@ -1688,6 +1688,10 @@ Fondo amarillo</value>
     <value>Profundo</value>
     <comment>radio</comment>
   </data>
+  <data name="HighlightsSheet_extendBox.Text" xml:space="preserve">
+    <value>Habilitar colores extendidos</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="HighlightsSheet_fadedRadio.Text" xml:space="preserve">
     <value>Desteñido</value>
     <comment>radio</comment>

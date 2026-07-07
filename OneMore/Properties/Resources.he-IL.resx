@@ -1693,6 +1693,10 @@ Total Row Font
     <value>עָמוֹק</value>
     <comment>radio</comment>
   </data>
+  <data name="HighlightsSheet_extendBox.Text" xml:space="preserve">
+    <value>אפשר צבעים מורחבים</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="HighlightsSheet_fadedRadio.Text" xml:space="preserve">
     <value>דהה</value>
     <comment>radio</comment>
