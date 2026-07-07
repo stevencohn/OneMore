@@ -42,9 +42,6 @@
       </Component>
 
       <!-- Third-party and interop DLLs -->
-      <Component Id="AgaControlsDll">
-        <File Source="..\OneMore\bin\$(var.Configuration)\Aga.Controls.dll" KeyPath="yes" />
-      </Component>
       <Component Id="ChineseDll">
         <File Source="..\OneMore\bin\$(var.Configuration)\Chinese.dll" KeyPath="yes" />
       </Component>

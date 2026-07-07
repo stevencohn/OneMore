@@ -131,6 +131,11 @@ namespace River.OneMoreAddIn.Commands
 		{
 			okButton.Enabled = taskList.Items.Cast<ListViewItem>()
 				.Any(i => i.Checked && i.Tag is OutlookTask task && string.IsNullOrEmpty(task.OneNoteTaskID));
+
+			if (okButton.Enabled)
+			{
+				okButton.Focus();
+			}
 		}
 
 
