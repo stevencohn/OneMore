@@ -83,7 +83,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			// create a temp copy of the XML to validate against the schema, so we don't modify the original file
+			// create a temp copy of the XML to validate, so we don't modify the original file
 			var safePage = new Page(XElement.Parse(xml));
 			safePage.OptimizeForSave(true);
 
