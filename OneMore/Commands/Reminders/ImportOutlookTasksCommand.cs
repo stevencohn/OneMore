@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2021 Steven M Cohn.  All rights reserved.
+// Copyright © 2021 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -259,6 +259,32 @@ namespace River.OneMoreAddIn.Commands
 				// and disconnects the task from Outlook
 				row[0].SetContent(MakeTaskReference(task));
 			}
+			else
+			{
+				// ..although we can touch the categories citation paragraph below the OutlookTask
+				var children = row[0].GetContent();
+				if (children.Elements().Skip(1).FirstOrDefault() is XElement child &&
+					child.Name.LocalName == "OE")
+				{
+					if (child.Attribute("quickStyleIndex") is XAttribute att &&
+						int.TryParse(att.Value, out var index) &&
+						index == citeIndex)
+					{
+						if (string.IsNullOrWhiteSpace(task.Categories))
+						{
+							child.Remove();
+						}
+						else if (child.Element(ns + "T") is XElement run)
+						{
+							run.GetCData().Value = task.Categories;
+						}
+					}
+				}
+				else if (!string.IsNullOrWhiteSpace(task.Categories))
+				{
+					children.Add(new Paragraph(task.Categories).SetQuickStyle(citeIndex));
+				}
+			}
 
 			row[1].SetContent(statuses[(int)task.Status]);
 			if (task.Status == OutlookTaskStatus.Complete)
@@ -321,7 +347,7 @@ namespace River.OneMoreAddIn.Commands
 				subject = $"<span style='color:#7F7F7F'>{path}</span>{task.Subject}";
 			}
 
-			return new XElement(ns + "OE",
+			var element = new XElement(ns + "OE",
 				new XElement(ns + "OutlookTask",
 					new XAttribute("startDate", task.CreationTime.ToZuluString()),
 					new XAttribute("dueDate", task.DueDate.ToZuluString()),
@@ -331,6 +357,16 @@ namespace River.OneMoreAddIn.Commands
 					),
 				new XElement(ns + "T",
 					new XCData(subject))
+				);
+
+			if (string.IsNullOrWhiteSpace(task.Categories))
+			{
+				return element;
+			}
+
+			return new XElement(ns + "OEChildren",
+				element,
+				new Paragraph(task.Categories).SetQuickStyle(citeIndex)
 				);
 		}
 

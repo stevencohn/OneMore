@@ -33,16 +33,19 @@
 			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.introBox = new River.OneMoreAddIn.UI.MoreMultilineLabel();
-			this.warningBox = new River.OneMoreAddIn.UI.MoreRichLabel();
 			this.resetLabel = new River.OneMoreAddIn.UI.MoreLinkLabel();
-			this.imageList = new System.Windows.Forms.ImageList(this.components);
-			this.tree = new Aga.Controls.Tree.TreeViewAdv();
+			this.linksPanel = new System.Windows.Forms.Panel();
+			this.selectAllLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
+			this.sep1 = new River.OneMoreAddIn.UI.MoreLabel();
+			this.selectNoneLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
+			this.taskPanel = new System.Windows.Forms.Panel();
 			this.buttonPanel = new System.Windows.Forms.Panel();
 			this.tableButton = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.listButton = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.optionsPanel = new System.Windows.Forms.Panel();
 			this.resetInfoLabel = new System.Windows.Forms.Label();
 			this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+			this.linksPanel.SuspendLayout();
 			this.buttonPanel.SuspendLayout();
 			this.optionsPanel.SuspendLayout();
 			this.SuspendLayout();
@@ -89,24 +92,11 @@
 			this.introBox.Padding = new System.Windows.Forms.Padding(0, 0, 0, 12);
 			this.introBox.Size = new System.Drawing.Size(772, 61);
 			this.introBox.TabIndex = 0;
-			this.introBox.Text = "Choose an entire folder or individual tasks to import from Outlook into OneNote. " +
+			this.introBox.Text = "Choose the tasks to import from Outlook into OneNote. " +
     "Disabled items indicate tasks already linked to OneNote";
 			this.introBox.ThemedBack = "ControlLight";
 			this.introBox.ThemedFore = "ControlText";
-			// 
-			// warningBox
-			// 
-			this.warningBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.warningBox.Dock = System.Windows.Forms.DockStyle.Top;
-			this.warningBox.Location = new System.Drawing.Point(20, 81);
-			this.warningBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 12);
-			this.warningBox.Name = "warningBox";
-			this.warningBox.ReadOnly = true;
-			this.warningBox.Size = new System.Drawing.Size(772, 66);
-			this.warningBox.TabIndex = 0;
-			this.warningBox.TabStop = false;
-			this.warningBox.Text = resources.GetString("warningBox.Text");
-			// 
+			//
 			// resetLabel
 			// 
 			this.resetLabel.ActiveLinkColor = System.Drawing.Color.MediumOrchid;
@@ -128,41 +118,90 @@
         "his will reset orphaned tasks so they can be imported again.");
 			this.resetLabel.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
 			this.resetLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ResetOrphanedTasks);
-			// 
-			// imageList
-			// 
-			this.imageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList.ImageStream")));
-			this.imageList.TransparentColor = System.Drawing.Color.Transparent;
-			this.imageList.Images.SetKeyName(0, "FolderClose.png");
-			this.imageList.Images.SetKeyName(1, "FolderOpen.png");
-			this.imageList.Images.SetKeyName(2, "Task.png");
-			// 
-			// tree
-			// 
-			this.tree.AutoRowHeight = true;
-			this.tree.BackColor = System.Drawing.SystemColors.Window;
-			this.tree.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-			this.tree.ColumnHeaderHeight = 0;
-			this.tree.Cursor = System.Windows.Forms.Cursors.Default;
-			this.tree.DefaultToolTipProvider = null;
-			this.tree.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.tree.DragDropMarkColor = System.Drawing.Color.Black;
-			this.tree.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.tree.FullRowSelectActiveColor = System.Drawing.Color.Empty;
-			this.tree.FullRowSelectInactiveColor = System.Drawing.Color.Empty;
-			this.tree.LineColor = System.Drawing.SystemColors.ControlDark;
-			this.tree.LoadOnDemand = true;
-			this.tree.Location = new System.Drawing.Point(20, 147);
-			this.tree.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.tree.Model = null;
-			this.tree.Name = "tree";
-			this.tree.NodeFilter = null;
-			this.tree.SelectedNode = null;
-			this.tree.SelectionMode = Aga.Controls.Tree.TreeSelectionMode.MultiSameParent;
-			this.tree.ShowPerformance = false;
-			this.tree.Size = new System.Drawing.Size(772, 307);
-			this.tree.TabIndex = 0;
-			// 
+			//
+			// linksPanel
+			//
+			this.linksPanel.Controls.Add(this.selectNoneLink);
+			this.linksPanel.Controls.Add(this.sep1);
+			this.linksPanel.Controls.Add(this.selectAllLink);
+			this.linksPanel.Dock = System.Windows.Forms.DockStyle.Top;
+			this.linksPanel.Location = new System.Drawing.Point(20, 81);
+			this.linksPanel.Margin = new System.Windows.Forms.Padding(3, 3, 3, 12);
+			this.linksPanel.Name = "linksPanel";
+			this.linksPanel.Size = new System.Drawing.Size(772, 36);
+			this.linksPanel.TabIndex = 0;
+			//
+			// selectAllLink
+			//
+			this.selectAllLink.Active = false;
+			this.selectAllLink.ActiveLinkColor = System.Drawing.Color.DarkOrchid;
+			this.selectAllLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.selectAllLink.AutoSize = true;
+			this.selectAllLink.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.selectAllLink.HoverColor = System.Drawing.Color.MediumOrchid;
+			this.selectAllLink.LinkColor = System.Drawing.SystemColors.ControlDark;
+			this.selectAllLink.Location = new System.Drawing.Point(561, 8);
+			this.selectAllLink.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.selectAllLink.MaximumSize = new System.Drawing.Size(420, 0);
+			this.selectAllLink.Name = "selectAllLink";
+			this.selectAllLink.NavMode = false;
+			this.selectAllLink.Selected = false;
+			this.selectAllLink.Size = new System.Drawing.Size(75, 20);
+			this.selectAllLink.StrictColors = false;
+			this.selectAllLink.TabIndex = 1;
+			this.selectAllLink.TabStop = true;
+			this.selectAllLink.Text = "Select All";
+			this.selectAllLink.ThemedBack = null;
+			this.selectAllLink.ThemedFore = null;
+			this.selectAllLink.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
+			this.selectAllLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.SelectAllTasks);
+			//
+			// sep1
+			//
+			this.sep1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.sep1.AutoSize = true;
+			this.sep1.Location = new System.Drawing.Point(643, 8);
+			this.sep1.Name = "sep1";
+			this.sep1.Size = new System.Drawing.Size(14, 20);
+			this.sep1.TabIndex = 2;
+			this.sep1.Text = "|";
+			this.sep1.ThemedBack = null;
+			this.sep1.ThemedFore = null;
+			//
+			// selectNoneLink
+			//
+			this.selectNoneLink.Active = false;
+			this.selectNoneLink.ActiveLinkColor = System.Drawing.Color.DarkOrchid;
+			this.selectNoneLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.selectNoneLink.AutoSize = true;
+			this.selectNoneLink.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.selectNoneLink.HoverColor = System.Drawing.Color.MediumOrchid;
+			this.selectNoneLink.LinkColor = System.Drawing.SystemColors.ControlDark;
+			this.selectNoneLink.Location = new System.Drawing.Point(664, 8);
+			this.selectNoneLink.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.selectNoneLink.MaximumSize = new System.Drawing.Size(420, 0);
+			this.selectNoneLink.Name = "selectNoneLink";
+			this.selectNoneLink.NavMode = false;
+			this.selectNoneLink.Selected = false;
+			this.selectNoneLink.Size = new System.Drawing.Size(96, 20);
+			this.selectNoneLink.StrictColors = false;
+			this.selectNoneLink.TabIndex = 3;
+			this.selectNoneLink.TabStop = true;
+			this.selectNoneLink.Text = "Select None";
+			this.selectNoneLink.ThemedBack = null;
+			this.selectNoneLink.ThemedFore = null;
+			this.selectNoneLink.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
+			this.selectNoneLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.SelectNoneTasks);
+			//
+			// taskPanel
+			//
+			this.taskPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.taskPanel.Location = new System.Drawing.Point(20, 129);
+			this.taskPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.taskPanel.Name = "taskPanel";
+			this.taskPanel.Size = new System.Drawing.Size(772, 325);
+			this.taskPanel.TabIndex = 0;
+			//
 			// buttonPanel
 			// 
 			this.buttonPanel.Controls.Add(this.tableButton);
@@ -224,8 +263,8 @@
 			this.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(812, 603);
-			this.Controls.Add(this.tree);
-			this.Controls.Add(this.warningBox);
+			this.Controls.Add(this.taskPanel);
+			this.Controls.Add(this.linksPanel);
 			this.Controls.Add(this.introBox);
 			this.Controls.Add(this.buttonPanel);
 			this.Controls.Add(this.optionsPanel);
@@ -238,6 +277,8 @@
 			this.Padding = new System.Windows.Forms.Padding(20);
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Import Tasks from Outlook";
+			this.linksPanel.ResumeLayout(false);
+			this.linksPanel.PerformLayout();
 			this.buttonPanel.ResumeLayout(false);
 			this.optionsPanel.ResumeLayout(false);
 			this.optionsPanel.PerformLayout();
@@ -250,11 +291,13 @@
 		private UI.MoreButton okButton;
 		private UI.MoreButton cancelButton;
 		private UI.MoreMultilineLabel introBox;
-		private River.OneMoreAddIn.UI.MoreRichLabel warningBox;
 		private System.Windows.Forms.Panel optionsPanel;
 		private System.Windows.Forms.Panel buttonPanel;
-		private System.Windows.Forms.ImageList imageList;
-		private Aga.Controls.Tree.TreeViewAdv tree;
+		private System.Windows.Forms.Panel linksPanel;
+		private UI.MoreLinkLabel selectAllLink;
+		private UI.MoreLabel sep1;
+		private UI.MoreLinkLabel selectNoneLink;
+		private System.Windows.Forms.Panel taskPanel;
 		private UI.MoreRadioButton tableButton;
 		private UI.MoreRadioButton listButton;
 		private UI.MoreLinkLabel resetLabel;

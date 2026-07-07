@@ -1858,10 +1858,6 @@ OneNote 文件 (*.one)</value>
     <value>生成任务明细表</value>
     <comment>radio</comment>
   </data>
-  <data name="ImportOutlookTasksDialog_warningBox.Text" xml:space="preserve">
-    <value>请注意，OneNote 不会完全绑定到不在 Outlook 主任务文件夹中的任务。在Outlook子文件夹中的任务不会自动更新，并已用红色标出</value>
-    <comment>rich text box</comment>
-  </data>
   <data name="ImportWebCommand_BadUrl" xml:space="preserve">
     <value>未找到网页或返回空内容</value>
     <comment>error message</comment>

@@ -1,17 +1,12 @@
-﻿//************************************************************************************************
+//************************************************************************************************
 // Copyright © 2021 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
-#pragma warning disable S3267 // Loops should be simplified with "LINQ" expressions
-
 namespace River.OneMoreAddIn.Commands
 {
-	using Aga.Controls.Tree;
-	using Aga.Controls.Tree.NodeControls;
 	using River.OneMoreAddIn.Helpers.Office;
 	using System;
 	using System.Collections.Generic;
-	using System.Drawing;
 	using System.Linq;
 	using System.Threading;
 	using System.Threading.Tasks;
@@ -22,36 +17,9 @@ namespace River.OneMoreAddIn.Commands
 
 	internal partial class ImportOutlookTasksDialog : UI.MoreForm
 	{
-		private readonly TreeModel model;
+		private UI.MoreCheckList taskList;
 		private OneNote one;
 		private Outlook outlook;
-
-
-		#region class TaskNodeIcon
-		private sealed class TreeNodeIcon : NodeIcon
-		{
-			private readonly Image task;
-			private readonly Image opened;
-			private readonly Image closed;
-
-			public TreeNodeIcon()
-			{
-				task = Resx.Task;
-				opened = Resx.FolderOpen;
-				closed = Resx.FolderClose;
-			}
-
-			protected override Image GetIcon(TreeNodeAdv node)
-			{
-				if (node.Tag is Node subnode && subnode.Tag is OutlookTask)
-					return task;
-				else if (node.CanExpand && node.IsExpanded)
-					return opened;
-				else
-					return closed;
-			}
-		}
-		#endregion class TaskNodeIcon
 
 
 		public ImportOutlookTasksDialog()
@@ -65,7 +33,8 @@ namespace River.OneMoreAddIn.Commands
 				Localize(new string[]
 				{
 					"introBox",
-					"warningBox",
+					"selectAllLink=phrase_SelectAll",
+					"selectNoneLink=phrase_SelectNone",
 					"listButton",
 					"tableButton",
 					"okButton=word_OK",
@@ -76,190 +45,132 @@ namespace River.OneMoreAddIn.Commands
 			resetInfoLabel.Visible = false;
 			resetInfoLabel.Left = resetLabel.Left;
 
-			// prepare TreeViewAdv...
-
-			var nodeCheckBox = new NodeCheckBox
+			taskList = new UI.MoreCheckList
 			{
-				DataPropertyName = "CheckState",
-				EditEnabled = true,
-				LeftMargin = 0
+				Dock = DockStyle.Fill,
+				HeaderStyle = ColumnHeaderStyle.None,
+				MultiSelect = false,
+				SelectedBackColorKey = "LinkHighlight",
+				SelectedForeColorKey = "ControlText",
+				CanToggleItem = CanToggleTask,
+				GetCellStyle = GetTaskCellStyle
 			};
-			nodeCheckBox.CheckStateChanged += CheckStateChanged;
-			tree.NodeControls.Add(nodeCheckBox);
 
-			tree.NodeControls.Add(new TreeNodeIcon
-			{
-				LeftMargin = 1,
-				ScaleMode = ImageScaleMode.Clip
-			});
+			taskList.Columns.Add(string.Empty);
+			taskList.SetColumnProportions(1f);
+			taskList.CheckChanged += (s, e) => UpdateOkButtonState();
+			taskPanel.Controls.Add(taskList);
 
-			var treeNodeTextBox = new NodeTextBox
-			{
-				DataPropertyName = "Text",
-				LeftMargin = 3
-			};
-			treeNodeTextBox.DrawText += (sender, args) =>
-			{
-				if (args.Node.Level > 2)
-					args.TextColor = manager.GetColor("ErrorText");
-			};
-			tree.NodeControls.Add(treeNodeTextBox);
-
-			model = new TreeModel();
-			tree.Model = model;
+			okButton.Enabled = false;
 		}
 
 
 		public ImportOutlookTasksDialog(OutlookTaskFolders folders)
 			: this()
 		{
-			PopulateTree(folders);
-			tree.ExpandAll();
+			PopulateList(folders);
 		}
 
 
 		protected override void OnLoad(EventArgs e)
 		{
 			base.OnLoad(e);
-
-			warningBox.BackColor = manager.GetColor("Control");
-			var gray = manager.GetColor("GrayText");
-			warningBox.ForeColor = gray;
-
-			// customization only for English
-			warningBox.Clear();
-			warningBox.AppendText("Note that OneNote does not bind completely to tasks that " +
-				"are not in the Outlook Tasks folder. Tasks from sub-folders are shown ");
-			warningBox.AppendFormattedText("in red", manager.GetColor("ErrorText"));
-			warningBox.AppendFormattedText(" to indicate that their status flags will not update " +
-				"automatically after importing.", gray);
+			AlignLinks();
 		}
 
 
-		private void PopulateTree(OutlookTaskFolders folders, Node parent = null)
+		private void AlignLinks()
 		{
-			foreach (var folder in folders)
+			var noneSize = TextRenderer.MeasureText(selectNoneLink.Text, selectNoneLink.Font);
+			selectNoneLink.Left = linksPanel.Width - noneSize.Width;
+
+			var sepSize = TextRenderer.MeasureText(sep1.Text, sep1.Font);
+			sep1.Left = selectNoneLink.Left - selectNoneLink.Margin.Left - sepSize.Width - sep1.Margin.Right;
+
+			var allSize = TextRenderer.MeasureText(selectAllLink.Text, selectAllLink.Font);
+			selectAllLink.Left = sep1.Left - sep1.Margin.Left - allSize.Width - selectAllLink.Margin.Right;
+		}
+
+
+		private static bool CanToggleTask(ListViewItem item) =>
+			item.Tag is OutlookTask task && string.IsNullOrEmpty(task.OneNoteTaskID);
+
+
+		private static UI.MoreListView.CellStyle GetTaskCellStyle(ListViewItem item, int column) =>
+			item.Tag is OutlookTask task && !string.IsNullOrEmpty(task.OneNoteTaskID)
+				? new UI.MoreListView.CellStyle(0, false, "GrayText")
+				: UI.MoreListView.CellStyle.Default;
+
+
+		private void PopulateList(OutlookTaskFolders folders)
+		{
+			var root = folders.FirstOrDefault();
+			if (root == null)
 			{
-				var node = new Node(folder.Name)
-				{
-					Tag = folder
-				};
-
-				PopulateTree(folder.Folders, node);
-
-				foreach (var task in folder.Tasks)
-				{
-					var leaf = new Node(task.Subject)
-					{
-						Tag = task
-					};
-
-					if (!string.IsNullOrEmpty(task.OneNoteTaskID))
-					{
-						leaf.IsChecked = true;
-						leaf.IsEnabled = false;
-					}
-
-					node.Nodes.Add(leaf);
-				}
-
-				if (parent == null)
-				{
-					model.Nodes.Add(node);
-				}
-				else
-				{
-					parent.Nodes.Add(node);
-				}
+				return;
 			}
+
+			taskList.BeginUpdate();
+
+			foreach (var task in root.Tasks)
+			{
+				taskList.Items.Add(new ListViewItem(task.Subject)
+				{
+					Tag = task,
+					Checked = !string.IsNullOrEmpty(task.OneNoteTaskID)
+				});
+			}
+
+			taskList.EndUpdate();
+
+			UpdateOkButtonState();
+		}
+
+
+		private void UpdateOkButtonState()
+		{
+			okButton.Enabled = taskList.Items.Cast<ListViewItem>()
+				.Any(i => i.Checked && i.Tag is OutlookTask task && string.IsNullOrEmpty(task.OneNoteTaskID));
 		}
 
 
 		public IEnumerable<OutlookTask> SelectedTasks =>
-			GetSelectedTask(model.Root, new List<OutlookTask>());
+			taskList.Items.Cast<ListViewItem>()
+				.Where(i => i.Checked && i.Tag is OutlookTask task && string.IsNullOrEmpty(task.OneNoteTaskID))
+				.Select(i => (OutlookTask)i.Tag)
+				.ToList();
 
 
 		public bool ShowDetailedTable => tableButton.Checked;
 
 
-		private void CheckStateChanged(object sender, TreePathEventArgs e)
+		private void SelectAllTasks(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			if (tree.NodeControls.FirstOrDefault(c => c is NodeCheckBox) is NodeCheckBox box)
+			foreach (ListViewItem item in taskList.Items)
 			{
-				box.CheckStateChanged -= CheckStateChanged;
-
-				var node = model.FindNode(e.Path);
-				if (node != null)
+				if (item.Tag is OutlookTask task && string.IsNullOrEmpty(task.OneNoteTaskID))
 				{
-					if (node.Tag is OutlookTask)
-					{
-						CheckFolderState(node.Parent);
-					}
-					else if (node.Tag is OutlookTaskFolder)
-					{
-						if (node.CheckState != CheckState.Indeterminate)
-						{
-							node.Nodes
-								.Where(n => n.Tag is OutlookTask t && string.IsNullOrEmpty(t.OneNoteTaskID))
-								.ForEach(n => n.CheckState = node.CheckState);
-						}
-					}
+					item.Checked = true;
 				}
-
-				box.CheckStateChanged += CheckStateChanged;
 			}
+
+			taskList.Invalidate();
+			UpdateOkButtonState();
 		}
 
 
-		private void CheckFolderState(Node node)
+		private void SelectNoneTasks(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			var userChecked = 0;
-			var userUnchecked = 0;
-			foreach (var child in node.Nodes.Where(n =>
-				n.Tag is OutlookTask task && string.IsNullOrEmpty(task.OneNoteTaskID)))
+			foreach (ListViewItem item in taskList.Items)
 			{
-				if (child.IsChecked)
+				if (item.Tag is OutlookTask task && string.IsNullOrEmpty(task.OneNoteTaskID))
 				{
-					userChecked++;
-				}
-				else
-				{
-					userUnchecked++;
+					item.Checked = false;
 				}
 			}
 
-			if (userChecked > 0 && userUnchecked == 0)
-			{
-				node.IsChecked = true;
-			}
-			else if (userChecked == 0 && userUnchecked > 0)
-			{
-				node.IsChecked = false;
-			}
-			else
-			{
-				node.CheckState = CheckState.Indeterminate;
-			}
-		}
-
-
-		private IEnumerable<OutlookTask> GetSelectedTask(Node node, List<OutlookTask> tasks)
-		{
-			var t = node.Nodes.Where(n => n.Tag is OutlookTask task &&
-				string.IsNullOrEmpty(task.OneNoteTaskID) && n.IsChecked)
-				.Select(n => n.Tag as OutlookTask);
-
-			if (t.Any())
-			{
-				tasks.AddRange(t);
-			}
-
-			foreach (var child in node.Nodes.Where(n => n.Tag is OutlookTaskFolder))
-			{
-				GetSelectedTask(child, tasks);
-			}
-
-			return tasks;
+			taskList.Invalidate();
+			UpdateOkButtonState();
 		}
 
 
@@ -275,7 +186,12 @@ namespace River.OneMoreAddIn.Commands
 				var count = 0;
 				using (outlook = new Outlook())
 				{
-					count = await ResetOrphanedTasks(map, model.Root);
+					count = await ResetOrphanedTasks(map);
+				}
+
+				if (count > 0)
+				{
+					UpdateOkButtonState();
 				}
 
 				resetLabel.Visible = false;
@@ -288,50 +204,42 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task<int> ResetOrphanedTasks(Dictionary<string, HyperlinkInfo> map, Node node)
+		private async Task<int> ResetOrphanedTasks(Dictionary<string, HyperlinkInfo> map)
 		{
 			var count = 0;
-			var taskNodes = node.Nodes
-				.Where(n => n.Tag is OutlookTask task && !string.IsNullOrEmpty(task.OneNoteURL));
 
-			if (taskNodes.Any())
+			foreach (var item in taskList.Items.Cast<ListViewItem>())
 			{
-				foreach (var taskNode in taskNodes)
+				if (item.Tag is not OutlookTask task || string.IsNullOrEmpty(task.OneNoteURL))
 				{
-					var task = taskNode.Tag as OutlookTask;
-
-					var key = HyperlinkProvider.GetHyperKey(task.OneNoteURL, out _);
-					if (map.ContainsKey(key))
-					{
-						var page = await one.GetPage(map[key].PageID, PageDetail.Basic);
-						if (page == null)
-						{
-							ResetTask(taskNode, task);
-							count++;
-						}
-						else
-						{
-							if (!page.Root.Descendants(page.Namespace + "OutlookTask")
-								.Any(e => e.Attribute("guidTask").Value == task.OneNoteTaskID))
-							{
-								ResetTask(taskNode, task);
-								count++;
-							}
-						}
-					}
+					continue;
 				}
-			}
 
-			foreach (var child in node.Nodes.Where(n => n.Tag is OutlookTaskFolder))
-			{
-				count += await ResetOrphanedTasks(map, child);
+				var key = HyperlinkProvider.GetHyperKey(task.OneNoteURL, out _);
+				if (!map.ContainsKey(key))
+				{
+					continue;
+				}
+
+				var page = await one.GetPage(map[key].PageID, PageDetail.Basic);
+				if (page == null)
+				{
+					ResetTask(item, task);
+					count++;
+				}
+				else if (!page.Root.Descendants(page.Namespace + "OutlookTask")
+					.Any(x => x.Attribute("guidTask").Value == task.OneNoteTaskID))
+				{
+					ResetTask(item, task);
+					count++;
+				}
 			}
 
 			return count;
 		}
 
 
-		private void ResetTask(Node node, OutlookTask task)
+		private void ResetTask(ListViewItem item, OutlookTask task)
 		{
 			task.OneNoteTaskID = null;
 			task.OneNoteURL = null;
@@ -340,8 +248,8 @@ namespace River.OneMoreAddIn.Commands
 
 			outlook.SaveTask(task);
 
-			node.IsEnabled = true;
-			node.IsChecked = true;
+			item.Checked = true;
+			taskList.Invalidate(item.Bounds);
 		}
 	}
 }

@@ -1833,7 +1833,7 @@ Sfondo giallo</value>
     <comment>dialog title</comment>
   </data>
   <data name="ImportOutlookTasksDialog_introBox.Text" xml:space="preserve">
-    <value>Scegli un'intera cartella o singole attività da importare da Outlook in OneNote. Gli elementi disabilitati indicano attività già collegate a OneNote</value>
+    <value>Scegli le attività da importare da Outlook in OneNote. Gli elementi disabilitati indicano attività già collegate a OneNote</value>
     <comment>text box</comment>
   </data>
   <data name="ImportOutlookTasksDialog_listButton.Text" xml:space="preserve">
@@ -1851,10 +1851,6 @@ Sfondo giallo</value>
   <data name="ImportOutlookTasksDialog_tableButton.Text" xml:space="preserve">
     <value>Genera la tabella dei dettagli dell'attività</value>
     <comment>radio</comment>
-  </data>
-  <data name="ImportOutlookTasksDialog_warningBox.Text" xml:space="preserve">
-    <value>Tieni presente che OneNote non si lega completamente alle attività che non si trovano nella cartella Attività di Outlook. Le attività delle sottocartelle vengono visualizzate in rosso per indicare che i relativi contrassegni di stato non verranno aggiornati automaticamente dopo l'importazione.</value>
-    <comment>rich text box</comment>
   </data>
   <data name="ImportWebCommand_BadUrl" xml:space="preserve">
     <value>Pagina Web non trovata o restituito contenuto vuoto</value>

@@ -97,6 +97,7 @@ namespace River.OneMoreAddIn.Helpers.Office
 				{
 					Subject = item.Subject,
 					EntryID = item.EntryID,
+					Categories = item.Categories,
 					Complete = item.Complete,
 					CreationTime = item.CreationTime,
 					DateCompleted = item.DateCompleted,
