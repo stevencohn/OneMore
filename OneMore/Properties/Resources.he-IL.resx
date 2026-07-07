@@ -3093,6 +3093,10 @@ ISO-code then comma then language name</comment>
   <data name="ReportRemindersDialog.Text" xml:space="preserve">
     <value>היקף הדיווח</value>
   </data>
+  <data name="ReportRemindersDialog_groupByNotebookBox.Text" xml:space="preserve">
+    <value>קבץ תזכורות לפי מחברת</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="ReportRemindersDialog_introLabel.Text" xml:space="preserve">
     <value>צור דוח לתזכורות בהיקף זה</value>
     <comment>label</comment>

@@ -3093,6 +3093,10 @@ Selezionare No per mantenere una riga vuota tra i paragrafi</value>
   <data name="ReportRemindersDialog.Text" xml:space="preserve">
     <value>Ambito del rapporto</value>
   </data>
+  <data name="ReportRemindersDialog_groupByNotebookBox.Text" xml:space="preserve">
+    <value>Promemoria di gruppo per notebook</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="ReportRemindersDialog_introLabel.Text" xml:space="preserve">
     <value>Genera un report per i promemoria in questo ambito</value>
     <comment>label</comment>

@@ -3088,6 +3088,10 @@ Wähle Nein, um eine leere Zeile zwischen den Absätzen zu halten</value>
   <data name="ReportRemindersDialog.Text" xml:space="preserve">
     <value>Berichterstattung</value>
   </data>
+  <data name="ReportRemindersDialog_groupByNotebookBox.Text" xml:space="preserve">
+    <value>Gruppieren Sie Erinnerungen per Notizbuch</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="ReportRemindersDialog_introLabel.Text" xml:space="preserve">
     <value>Erstelle Bericht für Erinnerungen in diesem Bereich</value>
     <comment>label</comment>

@@ -24,6 +24,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			public XElement Meta;
 			public Reminder Reminder;
+			public string Notebook;
 			public string Path;
 			public int Year;
 			public int WoYear;
@@ -40,11 +41,13 @@ namespace River.OneMoreAddIn.Commands
 
 		private OneNote.Scope scope;
 		private bool showCompleted;
+		private bool groupByNotebook;
 		private OneNote one;
 		private Page page;
 		private XNamespace ns;
 		private XElement container;
 		private int heading2Index;
+		private int heading3Index;
 		private int citeIndex;
 
 		private readonly List<Item> active;
@@ -83,6 +86,13 @@ namespace River.OneMoreAddIn.Commands
 						showCompleted = true;
 					}
 
+					if (args.Length < 4 || args[3] is not string groupArg ||
+						!bool.TryParse(groupArg, out groupByNotebook))
+					{
+						// backwards-compatible with refresh links generated before this option existed
+						groupByNotebook = false;
+					}
+
 					if (!await CollectReminders(scope))
 					{
 						return;
@@ -103,6 +113,7 @@ namespace River.OneMoreAddIn.Commands
 
 					scope = dialog.Scope;
 					showCompleted = dialog.IncludeCompleted;
+					groupByNotebook = dialog.GroupByNotebook;
 
 					if (!await CollectReminders(scope))
 					{
@@ -133,13 +144,14 @@ namespace River.OneMoreAddIn.Commands
 
 				PageNamespace.Set(ns);
 				heading2Index = page.GetQuickStyle(Styles.StandardStyles.Heading2).Index;
+				heading3Index = page.GetQuickStyle(Styles.StandardStyles.Heading3).Index;
 				citeIndex = page.GetQuickStyle(Styles.StandardStyles.Citation).Index;
 				container = page.EnsureContentContainer();
 
 				var now = DateTime.Now.ToShortFriendlyString();
 				container.Add(
 					new Paragraph($"{Resx.ReminderReport_LastUpdated} {now} " +
-						$"(<a href=\"onemore://ReportRemindersCommand/refresh/{scope}/{showCompleted}\">{Resx.word_Refresh}</a>)"),
+						$"(<a href=\"onemore://ReportRemindersCommand/refresh/{scope}/{showCompleted}/{groupByNotebook}\">{Resx.word_Refresh}</a>)"),
 					new Paragraph(string.Empty)
 					);
 
@@ -204,10 +216,13 @@ namespace River.OneMoreAddIn.Commands
 			var serializer = new ReminderSerializer();
 			foreach (var meta in metas)
 			{
-				var path = meta.Ancestors().Reverse()
+				var names = meta.Ancestors().Reverse()
 					.Where(m => m.Attribute("name") != null)
 					.Select(m => m.Attribute("name").Value)
-					.Aggregate((a, b) => $"{a} > {b}");
+					.ToList();
+
+				var path = names.Aggregate((a, b) => $"{a} > {b}");
+				var notebook = names.First();
 
 				var reminders = serializer.DecodeContent(meta.Attribute("content").Value);
 				foreach (var reminder in reminders)
@@ -216,6 +231,7 @@ namespace River.OneMoreAddIn.Commands
 					{
 						Meta = meta,
 						Reminder = reminder,
+						Notebook = notebook,
 						Path = path,
 						Year = reminder.Due.Year,
 						WoYear = calendar.GetWeekOfYear(reminder.Due, weekRule, firstDay)
@@ -341,6 +357,23 @@ namespace River.OneMoreAddIn.Commands
 				new Paragraph(ns, string.Empty)
 				);
 
+			if (groupByNotebook)
+			{
+				foreach (var group in active.GroupBy(i => i.Notebook).OrderBy(g => g.Key))
+				{
+					container.Add(new Paragraph(group.Key).SetQuickStyle(heading3Index));
+					BuildActiveTable(group);
+				}
+			}
+			else
+			{
+				BuildActiveTable(active);
+			}
+		}
+
+
+		private void BuildActiveTable(IEnumerable<Item> items)
+		{
 			var table = new Table(ns, 1, 6)
 			{
 				HasHeaderRow = true,
@@ -365,7 +398,7 @@ namespace River.OneMoreAddIn.Commands
 
 			var now = DateTime.UtcNow;
 
-			foreach (var item in active
+			foreach (var item in items
 				.OrderBy(i => i.Year)
 				.ThenBy(i => i.WoYear)
 				.ThenByDescending(i => i.Reminder.Priority))
@@ -437,6 +470,23 @@ namespace River.OneMoreAddIn.Commands
 				new Paragraph(ns, string.Empty)
 				);
 
+			if (groupByNotebook)
+			{
+				foreach (var group in inactive.GroupBy(i => i.Notebook).OrderBy(g => g.Key))
+				{
+					container.Add(new Paragraph(group.Key).SetQuickStyle(heading3Index));
+					BuildInactiveTable(group);
+				}
+			}
+			else
+			{
+				BuildInactiveTable(inactive);
+			}
+		}
+
+
+		private void BuildInactiveTable(IEnumerable<Item> items)
+		{
 			var table = new Table(ns, 1, 5)
 			{
 				HasHeaderRow = true,
@@ -457,7 +507,7 @@ namespace River.OneMoreAddIn.Commands
 			row[3].SetContent(new Paragraph(Resx.word_Actual).SetStyle(HeaderCss));
 			row[4].SetContent(new Paragraph(Resx.RemindDialog_priorityLabel_Text).SetStyle(HeaderCss));
 
-			foreach (var item in inactive
+			foreach (var item in items
 				.OrderBy(i => i.Reminder.Status)
 				.ThenByDescending(i => i.Reminder.Completed)
 				.ThenByDescending(i => i.Reminder.Priority))
@@ -504,12 +554,18 @@ namespace River.OneMoreAddIn.Commands
 				? $"<a href='{uri}'>{item.Reminder.Subject}</a>"
 				: item.Reminder.Subject;
 
+			// when grouped by notebook, the notebook is already shown as a heading so
+			// omit it from the path to avoid repeating it on every row
+			var path = groupByNotebook && item.Path.StartsWith(item.Notebook + " > ")
+				? item.Path.Substring(item.Notebook.Length + 3)
+				: item.Path;
+
 			return new XElement(ns + "OEChildren",
 				new XElement(ns + "OE",
 					new Tag(index, item.Reminder.Status == ReminderStatus.Completed).SetEnabled(false),
 					new XElement(ns + "T", new XCData(text))
 					),
-				new Paragraph(item.Path).SetQuickStyle(citeIndex)
+				new Paragraph(path).SetQuickStyle(citeIndex)
 				);
 		}
 

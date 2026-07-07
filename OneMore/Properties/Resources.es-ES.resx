@@ -3088,6 +3088,10 @@ Seleccione No para mantener una línea vacía entre los párrafos</value>
   <data name="ReportRemindersDialog.Text" xml:space="preserve">
     <value>Alcance de informes</value>
   </data>
+  <data name="ReportRemindersDialog_groupByNotebookBox.Text" xml:space="preserve">
+    <value>Recordatorios grupales por libreta</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="ReportRemindersDialog_introLabel.Text" xml:space="preserve">
     <value>Genere un informe para recordatorios en este alcance</value>
     <comment>label</comment>

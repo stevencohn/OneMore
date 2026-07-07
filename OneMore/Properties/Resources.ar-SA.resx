@@ -3100,6 +3100,10 @@ ISO-code then comma then language name</comment>
   <data name="ReportRemindersDialog.Text" xml:space="preserve">
     <value>نطاق التقرير</value>
   </data>
+  <data name="ReportRemindersDialog_groupByNotebookBox.Text" xml:space="preserve">
+    <value>تذكيرات المجموعة عن طريق دفتر الملاحظات</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="ReportRemindersDialog_introLabel.Text" xml:space="preserve">
     <value>توليد تقرير للتذكير في هذا النطاق</value>
     <comment>label</comment>

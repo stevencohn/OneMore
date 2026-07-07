@@ -7525,7 +7525,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ReportRemindersDialog_showCompletedBox.Text", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Group reminders by notebook.
+        /// </summary>
+        internal static string ReportRemindersDialog_groupByNotebookBox_Text {
+            get {
+                return ResourceManager.GetString("ReportRemindersDialog_groupByNotebookBox.Text", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Report Scope.
         /// </summary>
