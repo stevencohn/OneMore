@@ -6,6 +6,7 @@ namespace OneMoreCli
 {
 	using System;
 	using System.Collections.Generic;
+	using System.Linq;
 
 
 	/// <summary>
@@ -21,6 +22,59 @@ namespace OneMoreCli
 			arg.Equals("--help", StringComparison.OrdinalIgnoreCase)
 			|| arg.Equals("-h", StringComparison.OrdinalIgnoreCase)
 			|| arg.Equals("/?", StringComparison.OrdinalIgnoreCase);
+
+
+		/// <summary>
+		/// Scans <paramref name="args"/> for a global <c>--name value</c> or <c>--name=value</c>
+		/// option, removes the matched token(s), and returns the value along with the
+		/// remaining args. Unlike <see cref="TryParse"/>, this can match the option anywhere
+		/// in the array, not just in a fixed position, since global options like
+		/// <c>--output</c> may appear before or after the command name.
+		/// </summary>
+		/// <returns>
+		/// <c>false</c> if the option was present but given no value; <c>true</c> otherwise
+		/// (including when the option was not found at all, in which case
+		/// <paramref name="value"/> is <c>null</c> and <paramref name="remaining"/> is
+		/// unchanged).
+		/// </returns>
+		public static bool ExtractGlobalOption(
+			string[] args, string name, out string value, out string[] remaining)
+		{
+			value = null;
+			remaining = args;
+
+			for (var i = 0; i < args.Length; i++)
+			{
+				var arg = args[i];
+				var nameAndValue = arg.TrimStart('-');
+
+				var eqIndex = nameAndValue.IndexOf('=');
+				var candidateName = eqIndex >= 0 ? nameAndValue.Substring(0, eqIndex) : nameAndValue;
+
+				if (!arg.StartsWith("-") || !candidateName.Equals(name, StringComparison.OrdinalIgnoreCase))
+				{
+					continue;
+				}
+
+				if (eqIndex >= 0)
+				{
+					value = StripSurroundingQuotes(nameAndValue.Substring(eqIndex + 1));
+					remaining = args.Where((_, idx) => idx != i).ToArray();
+					return true;
+				}
+
+				if (i + 1 >= args.Length)
+				{
+					return false;
+				}
+
+				value = StripSurroundingQuotes(args[i + 1]);
+				remaining = args.Where((_, idx) => idx != i && idx != i + 1).ToArray();
+				return true;
+			}
+
+			return true;
+		}
 
 
 		/// <summary>

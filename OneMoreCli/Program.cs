@@ -156,6 +156,25 @@ namespace OneMoreCli
 		/// <returns><c>true</c> on success; <c>false</c> on error.</returns>
 		private static async Task<bool> RunCommandLine(string[] args, System.Collections.Generic.List<ICliCommand> commands)
 		{
+			if (!ArgParser.ExtractGlobalOption(args, "output", out var outputPath, out args))
+			{
+				CliConsole.WriteError("--output requires a file path");
+				return false;
+			}
+
+			if (outputPath != null && !CliConsole.SetOutputFile(outputPath))
+			{
+				return false;
+			}
+
+			if (args.Length == 0)
+			{
+				CliConsole.WriteError("No command specified");
+				Console.WriteLine();
+				CliConsole.ShowHelp(commands);
+				return false;
+			}
+
 			var commandName = args[0];
 
 			// --help with no command → list all commands
@@ -298,8 +317,7 @@ namespace OneMoreCli
 						}
 
 						var r = await CliCommandFactory.Make().Run(command.GetType(), token, parameters);
-						if (!string.IsNullOrEmpty(r?.CliOutput))
-							Console.Write(r.CliOutput);
+						CliConsole.WriteOutput(r?.CliOutput);
 						return;
 					}
 
@@ -343,18 +361,13 @@ namespace OneMoreCli
 
 						parameters.Set("pageId", pageId);
 						var r = await CliCommandFactory.Make().Run(command.GetType(), token, parameters);
-						if (!string.IsNullOrEmpty(r?.CliOutput))
-							Console.Write(r.CliOutput);
+						CliConsole.WriteOutput(r?.CliOutput);
 					}
 				}
 				else
 				{
 					var result = await CliCommandFactory.Make().Run(command.GetType(), token, parameters);
-					var output = result?.CliOutput;
-					if (!string.IsNullOrEmpty(output))
-					{
-						Console.Write(output);
-					}
+					CliConsole.WriteOutput(result?.CliOutput);
 				}
 			}
 			finally
@@ -437,8 +450,7 @@ namespace OneMoreCli
 
 					parameters.Set("pageId", pageId);
 					var r = await CliCommandFactory.Make().Run(command.GetType(), token, parameters);
-					if (!string.IsNullOrEmpty(r?.CliOutput))
-						Console.Write(r.CliOutput);
+					CliConsole.WriteOutput(r?.CliOutput);
 				}
 			}
 		}
