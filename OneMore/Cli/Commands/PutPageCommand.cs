@@ -70,9 +70,11 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			XElement root;
+			string xml;
 			try
 			{
-				root = XElement.Parse(File.ReadAllText(infile));
+				xml = File.ReadAllText(infile);
+				root = XElement.Parse(xml);
 			}
 			catch (Exception exc)
 			{
@@ -81,9 +83,13 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
+			// create a temp copy of the XML to validate against the schema, so we don't modify the original file
+			var safePage = new Page(XElement.Parse(xml));
+			safePage.OptimizeForSave(true);
+
 			// validate schema before touching OneNote so errors surface cleanly
 			var errors = new List<string>();
-			if (!OneNote.ValidateSchema(root, errors))
+			if (!OneNote.ValidateSchema(safePage.Root, errors))
 			{
 				CliOutput = string.Join(Environment.NewLine, errors);
 				await Task.Yield();
