@@ -2,7 +2,7 @@
 // Copyright © 2024 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
+namespace River.OneMoreAddIn.Commands.Snippets.Toc.Generators
 {
 	using System.Collections.Generic;
 

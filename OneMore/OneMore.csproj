@@ -375,14 +375,14 @@
     <Compile Include="Commands\Settings\ImagesSheet.Designer.cs">
       <DependentUpon>ImagesSheet.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\Snippets\TocGenerators\HierarchyTocGenerator.cs" />
-    <Compile Include="Commands\Snippets\TocGenerators\NotebookTocGenerator.cs" />
-    <Compile Include="Commands\Snippets\TocGenerators\PageTocGenerator.cs" />
-    <Compile Include="Commands\Snippets\TocGenerators\SectionTocGenerator.cs" />
-    <Compile Include="Commands\Snippets\TocGenerators\TocCommon.cs" />
-    <Compile Include="Commands\Snippets\TocGenerators\TocGenerator.cs" />
-    <Compile Include="Commands\Snippets\TocGenerators\TocParameters.cs" />
-    <Compile Include="Commands\Snippets\TocGenerators\TocTitleStyles.cs" />
+    <Compile Include="Commands\Snippets\Toc\Generators\HierarchyTocGenerator.cs" />
+    <Compile Include="Commands\Snippets\Toc\Generators\NotebookTocGenerator.cs" />
+    <Compile Include="Commands\Snippets\Toc\Generators\PageTocGenerator.cs" />
+    <Compile Include="Commands\Snippets\Toc\Generators\SectionTocGenerator.cs" />
+    <Compile Include="Commands\Snippets\Toc\Generators\TocCommon.cs" />
+    <Compile Include="Commands\Snippets\Toc\Generators\TocGenerator.cs" />
+    <Compile Include="Commands\Snippets\Toc\Generators\TocParameters.cs" />
+    <Compile Include="Commands\Snippets\Toc\Generators\TocTitleStyles.cs" />
     <Compile Include="Commands\Styles\PageColorCommand.cs" />
     <Compile Include="Commands\Styles\PageColorDialog.cs">
       <SubType>Form</SubType>
@@ -1109,11 +1109,23 @@
     <Compile Include="Commands\Clean\ToggleDttmDialog.Designer.cs">
       <DependentUpon>ToggleDttmDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\Snippets\InsertTocDialog.cs">
+    <Compile Include="Commands\Snippets\Toc\InsertNotebookTocDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Commands\Snippets\InsertTocDialog.Designer.cs">
-      <DependentUpon>InsertTocDialog.cs</DependentUpon>
+    <Compile Include="Commands\Snippets\Toc\InsertNotebookTocDialog.Designer.cs">
+      <DependentUpon>InsertNotebookTocDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commands\Snippets\Toc\InsertPageTocDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Snippets\Toc\InsertPageTocDialog.Designer.cs">
+      <DependentUpon>InsertPageTocDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commands\Snippets\Toc\InsertSectionTocDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Snippets\Toc\InsertSectionTocDialog.Designer.cs">
+      <DependentUpon>InsertSectionTocDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\HierarchyNode.cs" />
     <Compile Include="UI\HierarchyView.cs">
@@ -1125,7 +1137,7 @@
     <Compile Include="Commands\Snippets\InsertInfoBoxCommand.cs" />
     <Compile Include="Commands\Snippets\InsertLineCommand.cs" />
     <Compile Include="Commands\Snippets\InsertStatusCommand.cs" />
-    <Compile Include="Commands\Snippets\InsertTocCommand.cs" />
+    <Compile Include="Commands\Snippets\Toc\InsertTocCommand.cs" />
     <Compile Include="Commands\References\NameUrlsCommand.cs" />
     <Compile Include="Commands\Workspaces\Favorites\FavoritesCommand.cs" />
     <Compile Include="Commands\Edit\ProofingCommand.cs" />
@@ -1911,8 +1923,14 @@
     <EmbeddedResource Include="Commands\Clean\ToggleDttmDialog.resx">
       <DependentUpon>ToggleDttmDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Commands\Snippets\InsertTocDialog.resx">
-      <DependentUpon>InsertTocDialog.cs</DependentUpon>
+    <EmbeddedResource Include="Commands\Snippets\Toc\InsertNotebookTocDialog.resx">
+      <DependentUpon>InsertNotebookTocDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Snippets\Toc\InsertPageTocDialog.resx">
+      <DependentUpon>InsertPageTocDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Snippets\Toc\InsertSectionTocDialog.resx">
+      <DependentUpon>InsertSectionTocDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.ar-SA.resx">
       <SubType>Designer</SubType>

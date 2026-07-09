@@ -1943,6 +1943,84 @@
     <value>خلايا تحول الحق</value>
     <comment>radio</comment>
   </data>
+  <data name="InsertNotebookTocDialog_pagesBox.Text" xml:space="preserve">
+    <value>تضمين صفحات في كل قسم</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertNotebookTocDialog_previewBox" xml:space="preserve">
+    <value>تضمين معاينة النص لكل صفحة</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertNotebookTocDialog_Text" xml:space="preserve">
+    <value>جدول القسم في دفتر الملاحظات</value>
+    <comment>radio</comment>
+  </data>
+  <data name="InsertNotebookTocDialog_timeBox" xml:space="preserve">
+    <value>تحديث تاريخ الصفحة والوقت</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertPageTocDialog_levelsLabel.Text" xml:space="preserve">
+    <value>إظهار المستويات</value>
+    <comment>label</comment>
+  </data>
+  <data name="InsertPageTocDialog_locationBox.Text" xml:space="preserve">
+    <value>في أعلى الصفحة
+في أعلى الصفحة، متراكب
+في المؤشر الحالي</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="InsertPageTocDialog_locationLabel.Text" xml:space="preserve">
+    <value>أدخل الموقع</value>
+    <comment>label</comment>
+  </data>
+  <data name="InsertPageTocDialog_rightAlignBox.Text" xml:space="preserve">
+    <value>محاذاة إلى اليمين أعلى رابط الصفحة</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertPageTocDialog_secondaryBox.Text" xml:space="preserve">
+    <value>تضمين العناوين من الجداول والقوائم</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertPageTocDialog_styleBox.Text" xml:space="preserve">
+    <value>عنوان الصفحة القياسية
+العنوان القياسي 1
+العنوان القياسي 2
+العنوان القياسي 3
+عنوان الصفحة المخصصة
+عنوان مخصص 1
+عنوان مخصص 2
+عنوان مخصص 3</value>
+    <comment>cobobox</comment>
+  </data>
+  <data name="InsertPageTocDialog_styleLabel.Text" xml:space="preserve">
+    <value>نمط العنوان</value>
+    <comment>label</comment>
+  </data>
+  <data name="InsertPageTocDialog_Text" xml:space="preserve">
+    <value>إدراج جدول المحتويات</value>
+    <comment>radio</comment>
+  </data>
+  <data name="InsertPageTocDialog_todoBox.Text" xml:space="preserve">
+    <value>لا أحد
+صندوق الاقتراع
+الدائرة الحمراء
+الساحة الحمراء
+الساحة الزرقاء
+ساحة البرتقال
+الساحة الصفراء
+الساحة الخضراء
+الساحة الأرجوانية
+ساحة براون</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="InsertPageTocDialog_todoLabel.Text" xml:space="preserve">
+    <value>مارك تودو العناوين</value>
+    <comment>label</comment>
+  </data>
+  <data name="InsertPageTocDialog_topBox.Text" xml:space="preserve">
+    <value>أضف رابطًا لكل عنوان للانتقال إلى أعلى الصفحة</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="InsertQRCommand_MaxLength" xml:space="preserve">
     <value>لا يمكن أن يتجاوز النص المحدد {0} حرفًا</value>
     <comment>message</comment>
@@ -1950,6 +2028,22 @@
   <data name="InsertQRCommand_NoSelection" xml:space="preserve">
     <value>حدد النص لعرضه كرمز QR جديد</value>
     <comment>message</comment>
+  </data>
+  <data name="InsertSectionTocDialog_headingsBox.Text" xml:space="preserve">
+    <value>قم بتضمين العناوين في كل صفحة</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertSectionTocDialog_previewBox" xml:space="preserve">
+    <value>تضمين معاينة النص لكل صفحة</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertSectionTocDialog_Text" xml:space="preserve">
+    <value>جدول الصفحات في القسم</value>
+    <comment>radio</comment>
+  </data>
+  <data name="InsertSectionTocDialog_timeBox" xml:space="preserve">
+    <value>تحديث تاريخ الصفحة والوقت</value>
+    <comment>checkbox</comment>
   </data>
   <data name="InsertSnippets_CouldNotLoad" xml:space="preserve">
     <value>لا يتم تحميل المقتطف على السحابة من "{0}"</value>
@@ -1974,88 +2068,6 @@
   <data name="InsertTocCommand_Top" xml:space="preserve">
     <value>أعلى الصفحة</value>
     <comment>hyperlink</comment>
-  </data>
-  <data name="InsertTocDialog_levelsLabel.Text" xml:space="preserve">
-    <value>إظهار المستويات</value>
-    <comment>label</comment>
-  </data>
-  <data name="InsertTocDialog_locationBox.Text" xml:space="preserve">
-    <value>في أعلى الصفحة
-في أعلى الصفحة، متراكب
-في المؤشر الحالي</value>
-    <comment>combobox</comment>
-  </data>
-  <data name="InsertTocDialog_locationLabel.Text" xml:space="preserve">
-    <value>أدخل الموقع</value>
-    <comment>label</comment>
-  </data>
-  <data name="InsertTocDialog_notebookRadio.Text" xml:space="preserve">
-    <value>صفحة جديدة تحتوي على فهرس الأقسام الموجودة في هذا الدفتر</value>
-    <comment>radio</comment>
-  </data>
-  <data name="InsertTocDialog_pageRadio.Text" xml:space="preserve">
-    <value>أدخل جدول العناوين في هذه الصفحة</value>
-    <comment>radio</comment>
-  </data>
-  <data name="InsertTocDialog_pagesBox.Text" xml:space="preserve">
-    <value>تضمين صفحات في كل قسم</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="InsertTocDialog_previewBox" xml:space="preserve">
-    <value>قم بتضمين معاينة النص لكل صفحة</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="InsertTocDialog_rightAlignBox.Text" xml:space="preserve">
-    <value>محاذاة لليمين أعلى ارتباط الصفحة</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="InsertTocDialog_secondaryBox.Text" xml:space="preserve">
-    <value>تضمين العناوين من الجداول والقوائم</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="InsertTocDialog_sectionRadio.Text" xml:space="preserve">
-    <value>صفحة جديدة مع فهرس الصفحات في هذا القسم</value>
-    <comment>radio</comment>
-  </data>
-  <data name="InsertTocDialog_styleBox.Text" xml:space="preserve">
-    <value>عنوان الصفحة القياسية
-العنوان القياسي 1
-العنوان القياسي 2
-العنوان القياسي 3
-عنوان الصفحة المخصصة
-عنوان مخصص 1
-عنوان مخصص 2
-عنوان مخصص 3</value>
-    <comment>cobobox</comment>
-  </data>
-  <data name="InsertTocDialog_styleLabel.Text" xml:space="preserve">
-    <value>نمط العنوان</value>
-    <comment>label</comment>
-  </data>
-  <data name="InsertTocDialog_timeBox" xml:space="preserve">
-    <value>تحديث تاريخ الصفحة والوقت</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="InsertTocDialog_todoBox.Text" xml:space="preserve">
-    <value>لا أحد
-صندوق الاقتراع
-الدائرة الحمراء
-الساحة الحمراء
-الساحة الزرقاء
-ساحة البرتقال
-الساحة الصفراء
-الساحة الخضراء
-الساحة الأرجوانية
-ساحة براون</value>
-    <comment>combobox</comment>
-  </data>
-  <data name="InsertTocDialog_todoLabel.Text" xml:space="preserve">
-    <value>مارك تودو العناوين</value>
-    <comment>label</comment>
-  </data>
-  <data name="InsertTocDialog_topBox.Text" xml:space="preserve">
-    <value>أضف ارتباطًا إلى كل عنوان للانتقال إلى أعلى الصفحة</value>
-    <comment>checkbox</comment>
   </data>
   <data name="InsertTocForNotebook_RefreshQuestion" xml:space="preserve">
     <value>هناك صفحة جدول المحتويات لهذا دفتر الملاحظات. يمكنك تحديث تلك الصفحة أو إنشاء صفحة جديدة.
@@ -3936,12 +3948,28 @@ ISO-code then comma then language name</comment>
     <value>أدخل مربع المعلومات</value>
     <comment>ribbon snippets</comment>
   </data>
+  <data name="ribInsertNotebookTocButton_Label" xml:space="preserve">
+    <value>جدول الأقسام في دفتر الملاحظات</value>
+    <comment>ribbon snippets NODUP</comment>
+  </data>
+  <data name="ribInsertNotebookTocButton_Screentip" xml:space="preserve">
+    <value>قم بإدراج جدول الأقسام لهذا دفتر الملاحظات</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribInsertNoteBoxButton_Label" xml:space="preserve">
     <value>صندوق الملاحظات</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertNoteBoxButton_Screentip" xml:space="preserve">
     <value>أدخل مربع ملاحظات</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertPageTocButton_Label" xml:space="preserve">
+    <value>جدول المحتويات</value>
+    <comment>ribbon snippets NODUP</comment>
+  </data>
+  <data name="ribInsertPageTocButton_Screentip" xml:space="preserve">
+    <value>قم بإدراج جدول محتويات العناوين في أعلى الصفحة</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertQRButton_Label" xml:space="preserve">
@@ -3958,6 +3986,14 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="ribInsertRedStatusButton_Screentip" xml:space="preserve">
     <value>أدخل تسمية الحالة الحمراء</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertSectionTocButton_Label" xml:space="preserve">
+    <value>جدول الصفحات في القسم</value>
+    <comment>ribbon snippets NODUP</comment>
+  </data>
+  <data name="ribInsertSectionTocButton_Screentip" xml:space="preserve">
+    <value>قم بإدراج جدول الصفحات لهذا القسم</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertSingleLineButton_Label" xml:space="preserve">
@@ -3983,14 +4019,6 @@ ISO-code then comma then language name</comment>
   <data name="ribInsertTimerButton_Screentip" xml:space="preserve">
     <value>أدخل قيمة المؤقت الحالي</value>
     <comment>ribbon extras</comment>
-  </data>
-  <data name="ribInsertTocButton_Label" xml:space="preserve">
-    <value>جدول المحتويات</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
-  </data>
-  <data name="ribInsertTocButton_Screentip" xml:space="preserve">
-    <value>أدخل جدول محتويات عناوين في أعلى الصفحة</value>
-    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertWarnBoxButton_Label" xml:space="preserve">
     <value>صندوق التحذير</value>

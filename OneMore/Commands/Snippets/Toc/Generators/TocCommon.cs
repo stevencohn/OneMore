@@ -4,7 +4,7 @@
 
 #pragma warning disable S1075 // URIs should not be hardcoded
 
-namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
+namespace River.OneMoreAddIn.Commands.Snippets.Toc.Generators
 {
 	internal static class Toc
 	{

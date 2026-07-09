@@ -2,7 +2,7 @@
 // Copyright © 2016 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
+namespace River.OneMoreAddIn.Commands.Snippets.Toc.Generators
 {
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Styles;
@@ -36,7 +36,9 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 			var notebook = await one.GetNotebook(OneNote.Scope.Pages);
 			var ns = notebook.GetNamespaceOfPrefix(OneNote.Prefix);
 
-			var pageID = notebook.Descendants(ns + "Page").Elements(ns + "Meta")
+			var pageID = notebook.Descendants(ns + "Page")
+				.Where(e => e.Attribute("isInRecycleBin") is null)
+				.Elements(ns + "Meta")
 				.Where(e =>
 					e.Attribute("name").Value == MetaNames.TableOfContents &&
 					e.Attribute("content").Value == "notebook")
@@ -78,6 +80,7 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 
 			// seeds the PrimaryTitle property
 			primaryTitle = notebook.Attribute("name").Value.Trim();
+			ownerPageId = page.PageId;
 
 			page.Title = string.Format(Resx.InsertTocCommand_TOCNotebook, primaryTitle);
 			cite = page.GetQuickStyle(StandardStyles.Citation);
@@ -108,7 +111,9 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 
 			// TOC contents...
 
-			var pageCount = notebook.Descendants(ns + "Page").Count();
+			var pageCount = notebook.Descendants(ns + "Page")
+				.Count(e => e.Attribute("isInRecycleBin") is null);
+
 			if (pageCount > MinProgress)
 			{
 				progress = new UI.ProgressDialog();
@@ -139,7 +144,8 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 		{
 			foreach (var element in elements)
 			{
-				var notBin = element.Attribute("isRecycleBin") is null;
+				var notBin = element.Attribute("isRecycleBin") is null &&
+					element.Attribute("isInRecycleBin") is null;
 
 				if (element.Name.LocalName == "SectionGroup" && notBin)
 				{
@@ -166,7 +172,8 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 
 					var link = one.GetHyperlink(element.Attribute("ID").Value, string.Empty);
 					var name = element.Attribute("name").Value;
-					var pages = element.Elements(ns + "Page");
+					var pages = element.Elements(ns + "Page")
+						.Where(e => e.Attribute("isInRecycleBin") is null);
 
 					if (withPages && pages.Any())
 					{

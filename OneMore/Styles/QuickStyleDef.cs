@@ -145,6 +145,36 @@ namespace River.OneMoreAddIn.Styles
 				element.Add(new XAttribute("highlightColor", Highlight));
 			}
 
+			if (IsBold)
+			{
+				element.Add(new XAttribute("bold", IsBold.ToString().ToLower()));
+			}
+
+			if (IsItalic)
+			{
+				element.Add(new XAttribute("italic", IsItalic.ToString().ToLower()));
+			}
+
+			if (IsUnderline)
+			{
+				element.Add(new XAttribute("underline", IsUnderline.ToString().ToLower()));
+			}
+
+			if (IsStrikethrough)
+			{
+				element.Add(new XAttribute("strikethrough", IsStrikethrough.ToString().ToLower()));
+			}
+
+			if (IsSuperscript)
+			{
+				element.Add(new XAttribute("superscript", IsSuperscript.ToString().ToLower()));
+			}
+
+			if (IsSubscript)
+			{
+				element.Add(new XAttribute("subscript", IsSubscript.ToString().ToLower()));
+			}
+
 			if (!string.IsNullOrEmpty(SpaceBefore))
 			{
 				element.Add(new XAttribute("spaceBefore", SpaceBefore));

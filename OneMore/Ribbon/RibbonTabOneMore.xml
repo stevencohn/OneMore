@@ -228,14 +228,28 @@
           onAction="InsertBlueStatusCmd"/>
       </menu>
     </menu>
-    <button
-      id="ribInsertTocButton"
-      imageMso="WordInsertTableOfContents2"
-      getLabel="GetRibbonLabel"
-      getScreentip="GetRibbonScreentip"
-      onAction="InsertTocCmd"
-      size="large"
-      keytip="TC"/>
+    <splitButton id="ribInsertTocSplitButton" size="large">
+      <button
+        id="ribInsertPageTocButton"
+        imageMso="WordInsertTableOfContents2"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="InsertPageTocCmd"/>
+      <menu id="ribInsertTocSplitMenu">
+        <button
+          id="ribInsertSectionTocButton"
+          imageMso="PictureInsertFromFile"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="InsertSectionTocCmd"/>
+        <button
+          id="ribInsertNotebookTocButton"
+          imageMso="GroupPictureStyles"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="InsertNotebookTocCmd"/>
+      </menu>
+    </splitButton>
     <button
       id="ribInsertCodeBoxButton"
       imageMso="CodeEdit"

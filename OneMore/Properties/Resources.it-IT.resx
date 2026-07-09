@@ -1940,6 +1940,84 @@ Sfondo giallo</value>
     <value>Sposta le celle a destra</value>
     <comment>radio</comment>
   </data>
+  <data name="InsertNotebookTocDialog_pagesBox.Text" xml:space="preserve">
+    <value>Includi pagine in ogni sezione</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertNotebookTocDialog_previewBox" xml:space="preserve">
+    <value>Includi l'anteprima del testo di ogni pagina</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertNotebookTocDialog_Text" xml:space="preserve">
+    <value>Tabella delle sezioni nel taccuino</value>
+    <comment>radio</comment>
+  </data>
+  <data name="InsertNotebookTocDialog_timeBox" xml:space="preserve">
+    <value>Aggiorna data e ora della pagina</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertPageTocDialog_levelsLabel.Text" xml:space="preserve">
+    <value>Mostra livelli</value>
+    <comment>label</comment>
+  </data>
+  <data name="InsertPageTocDialog_locationBox.Text" xml:space="preserve">
+    <value>In cima alla pagina
+In cima alla pagina, sovrapposto
+Al cursore corrente</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="InsertPageTocDialog_locationLabel.Text" xml:space="preserve">
+    <value>Inserisci posizione</value>
+    <comment>label</comment>
+  </data>
+  <data name="InsertPageTocDialog_rightAlignBox.Text" xml:space="preserve">
+    <value>Collegamento della parte superiore della pagina allineato a destra</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertPageTocDialog_secondaryBox.Text" xml:space="preserve">
+    <value>Includere intestazioni di tabelle ed elenchi</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertPageTocDialog_styleBox.Text" xml:space="preserve">
+    <value>Titolo della pagina standard
+Titolo standard 1
+Titolo standard 2
+Titolo standard 3
+Titolo della pagina personalizzata
+Intestazione personalizzata 1
+Intestazione personalizzata 2
+Intestazione personalizzata 3</value>
+    <comment>cobobox</comment>
+  </data>
+  <data name="InsertPageTocDialog_styleLabel.Text" xml:space="preserve">
+    <value>Stile del titolo</value>
+    <comment>label</comment>
+  </data>
+  <data name="InsertPageTocDialog_Text" xml:space="preserve">
+    <value>Inserisci il sommario</value>
+    <comment>radio</comment>
+  </data>
+  <data name="InsertPageTocDialog_todoBox.Text" xml:space="preserve">
+    <value>Nessuno
+Urne
+Cerchio Rosso
+Piazza Rossa
+Quadrato Blu
+Piazza Arancione
+Quadrato giallo
+Piazza Verde
+Quadrato Viola
+Quadrato Marrone</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="InsertPageTocDialog_todoLabel.Text" xml:space="preserve">
+    <value>Segna i titoli di Todo</value>
+    <comment>label</comment>
+  </data>
+  <data name="InsertPageTocDialog_topBox.Text" xml:space="preserve">
+    <value>Aggiungi un collegamento a ciascuna intestazione per passare alla parte superiore della pagina</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="InsertQRCommand_MaxLength" xml:space="preserve">
     <value>Il testo selezionato non può superare i {0} caratteri</value>
     <comment>message</comment>
@@ -1947,6 +2025,22 @@ Sfondo giallo</value>
   <data name="InsertQRCommand_NoSelection" xml:space="preserve">
     <value>Seleziona il testo da visualizzare come nuovo codice QR</value>
     <comment>message</comment>
+  </data>
+  <data name="InsertSectionTocDialog_headingsBox.Text" xml:space="preserve">
+    <value>Includi titoli in ogni pagina</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertSectionTocDialog_previewBox" xml:space="preserve">
+    <value>Includi l'anteprima del testo di ogni pagina</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertSectionTocDialog_Text" xml:space="preserve">
+    <value>Tabella delle pagine nella sezione</value>
+    <comment>radio</comment>
+  </data>
+  <data name="InsertSectionTocDialog_timeBox" xml:space="preserve">
+    <value>Aggiorna data e ora della pagina</value>
+    <comment>checkbox</comment>
   </data>
   <data name="InsertSnippets_CouldNotLoad" xml:space="preserve">
     <value>Impossibile caricare lo snippet da "{0}"</value>
@@ -1971,88 +2065,6 @@ Sfondo giallo</value>
   <data name="InsertTocCommand_Top" xml:space="preserve">
     <value>Inizio pagina</value>
     <comment>hyperlink</comment>
-  </data>
-  <data name="InsertTocDialog_levelsLabel.Text" xml:space="preserve">
-    <value>Mostra livelli</value>
-    <comment>label</comment>
-  </data>
-  <data name="InsertTocDialog_locationBox.Text" xml:space="preserve">
-    <value>In cima alla pagina
-In cima alla pagina, sovrapposto
-Al cursore corrente</value>
-    <comment>combobox</comment>
-  </data>
-  <data name="InsertTocDialog_locationLabel.Text" xml:space="preserve">
-    <value>Inserisci posizione</value>
-    <comment>label</comment>
-  </data>
-  <data name="InsertTocDialog_notebookRadio.Text" xml:space="preserve">
-    <value>Nuova pagina con indice delle sezioni di questo taccuino</value>
-    <comment>radio</comment>
-  </data>
-  <data name="InsertTocDialog_pageRadio.Text" xml:space="preserve">
-    <value>Inserisci la tabella delle intestazioni in questa pagina</value>
-    <comment>radio</comment>
-  </data>
-  <data name="InsertTocDialog_pagesBox.Text" xml:space="preserve">
-    <value>Includi pagine in ogni sezione</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="InsertTocDialog_previewBox" xml:space="preserve">
-    <value>Includi l'anteprima del testo di ogni pagina</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="InsertTocDialog_rightAlignBox.Text" xml:space="preserve">
-    <value>Collegamento della parte superiore della pagina allineato a destra</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="InsertTocDialog_secondaryBox.Text" xml:space="preserve">
-    <value>Includere intestazioni di tabelle ed elenchi</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="InsertTocDialog_sectionRadio.Text" xml:space="preserve">
-    <value>Nuova pagina con indice delle pagine di questa sezione</value>
-    <comment>radio</comment>
-  </data>
-  <data name="InsertTocDialog_styleBox.Text" xml:space="preserve">
-    <value>Titolo della pagina standard
-Titolo standard 1
-Titolo standard 2
-Titolo standard 3
-Titolo della pagina personalizzata
-Intestazione personalizzata 1
-Intestazione personalizzata 2
-Intestazione personalizzata 3</value>
-    <comment>cobobox</comment>
-  </data>
-  <data name="InsertTocDialog_styleLabel.Text" xml:space="preserve">
-    <value>Stile del titolo</value>
-    <comment>label</comment>
-  </data>
-  <data name="InsertTocDialog_timeBox" xml:space="preserve">
-    <value>Aggiorna data e ora della pagina</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="InsertTocDialog_todoBox.Text" xml:space="preserve">
-    <value>Nessuno
-Urne
-Cerchio Rosso
-Piazza Rossa
-Quadrato Blu
-Piazza Arancione
-Quadrato Giallo
-Piazza Verde
-Quadrato Viola
-Quadrato Marrone</value>
-    <comment>combobox</comment>
-  </data>
-  <data name="InsertTocDialog_todoLabel.Text" xml:space="preserve">
-    <value>Segna i titoli di Todo</value>
-    <comment>label</comment>
-  </data>
-  <data name="InsertTocDialog_topBox.Text" xml:space="preserve">
-    <value>Aggiungi un collegamento a ciascuna intestazione per passare alla parte superiore della pagina</value>
-    <comment>checkbox</comment>
   </data>
   <data name="InsertTocForNotebook_RefreshQuestion" xml:space="preserve">
     <value>C'è una pagina del sommario per questo taccuino. Puoi aggiornare quella pagina o crearne una nuova.
@@ -3929,12 +3941,28 @@ Scheda Aiuto</value>
     <value>Inserisci una casella informativa</value>
     <comment>ribbon snippets</comment>
   </data>
+  <data name="ribInsertNotebookTocButton_Label" xml:space="preserve">
+    <value>Tabella delle sezioni nel taccuino</value>
+    <comment>ribbon snippets NODUP</comment>
+  </data>
+  <data name="ribInsertNotebookTocButton_Screentip" xml:space="preserve">
+    <value>Inserisci una tabella di sezioni per questo taccuino</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribInsertNoteBoxButton_Label" xml:space="preserve">
     <value>Casella delle note</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertNoteBoxButton_Screentip" xml:space="preserve">
     <value>Inserisci una casella per le note</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertPageTocButton_Label" xml:space="preserve">
+    <value>Sommario</value>
+    <comment>ribbon snippets NODUP</comment>
+  </data>
+  <data name="ribInsertPageTocButton_Screentip" xml:space="preserve">
+    <value>Inserisci un sommario delle intestazioni nella parte superiore della pagina</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertQRButton_Label" xml:space="preserve">
@@ -3951,6 +3979,14 @@ Scheda Aiuto</value>
   </data>
   <data name="ribInsertRedStatusButton_Screentip" xml:space="preserve">
     <value>Inserisci un'etichetta di stato rossa</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertSectionTocButton_Label" xml:space="preserve">
+    <value>Tabella delle pagine nella sezione</value>
+    <comment>ribbon snippets NODUP</comment>
+  </data>
+  <data name="ribInsertSectionTocButton_Screentip" xml:space="preserve">
+    <value>Inserisci una tabella di pagine per questa sezione</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertSingleLineButton_Label" xml:space="preserve">
@@ -3976,14 +4012,6 @@ Scheda Aiuto</value>
   <data name="ribInsertTimerButton_Screentip" xml:space="preserve">
     <value>Inserire il valore del timer corrente</value>
     <comment>ribbon extras</comment>
-  </data>
-  <data name="ribInsertTocButton_Label" xml:space="preserve">
-    <value>Sommario</value>
-    <comment>ribbon snippets NODUP</comment>
-  </data>
-  <data name="ribInsertTocButton_Screentip" xml:space="preserve">
-    <value>Inserisci un sommario delle intestazioni nella parte superiore della pagina</value>
-    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertWarnBoxButton_Label" xml:space="preserve">
     <value>Casella di avvertenza</value>

@@ -4,7 +4,7 @@
 
 namespace River.OneMoreAddIn.Models
 {
-	using River.OneMoreAddIn.Commands.Snippets.TocGenerators;
+	using River.OneMoreAddIn.Commands.Snippets.Toc.Generators;
 	using River.OneMoreAddIn.Styles;
 	using System;
 	using System.Collections.Generic;

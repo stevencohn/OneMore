@@ -2,7 +2,7 @@
 // Copyright © 2016 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
+namespace River.OneMoreAddIn.Commands.Snippets.Toc.Generators
 {
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Styles;
@@ -35,7 +35,9 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 			var section = await one.GetSection();
 			var ns = section.GetNamespaceOfPrefix(OneNote.Prefix);
 
-			var pageID = section.Elements(ns + "Page").Elements(ns + "Meta")
+			var pageID = section.Elements(ns + "Page")
+				.Where(e => e.Attribute("isInRecycleBin") is null)
+				.Elements(ns + "Meta")
 				.Where(e =>
 					e.Attribute("name").Value == MetaNames.TableOfContents &&
 					e.Attribute("content").Value == "section")
@@ -74,9 +76,16 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 
 			// seeds the PrimaryTitle property
 			primaryTitle = section.Attribute("name").Value;
+			ownerPageId = page.PageId;
 
 			page.Title = string.Format(Resx.InsertTocCommand_TOCSections, section.Attribute("name").Value);
 			cite = page.GetQuickStyle(StandardStyles.Citation);
+
+			if (headingLevels > 0)
+			{
+				pageNameStyle = page.GetQuickStyle(StandardStyles.Heading3);
+				quoteStyle = page.GetQuickStyle(StandardStyles.Quote);
+			}
 
 			page.SetMeta(MetaNames.TableOfContents, "section");
 
@@ -88,6 +97,11 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 			{
 				page.Root.SetAttributeValue("dateTime", System.DateTime.Now.ToZuluString());
 				segments = $"{segments}/time";
+			}
+
+			if (parameters.FirstOrDefault(p => p.StartsWith("level")) is string level)
+			{
+				segments = $"{segments}/{level}";
 			}
 
 			var titleElement = MakeTitle(page, segments);
@@ -102,9 +116,11 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 
 			// TOC contents...
 
-			// don't include current page in TOC
+			// don't include current page or recycled pages in TOC
 			var elements = section.Elements(ns + "Page")
-				.Where(e => e.Name.LocalName == "Page" && e.Attribute("ID").Value != page.PageId)
+				.Where(e => e.Name.LocalName == "Page" &&
+					e.Attribute("ID").Value != page.PageId &&
+					e.Attribute("isInRecycleBin") is null)
 				.ToArray();
 
 			var index = 0;

@@ -2,14 +2,13 @@
 // Copyright © 2016 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
+namespace River.OneMoreAddIn.Commands.Snippets.Toc.Generators
 {
 	using River.OneMoreAddIn.Models;
 	using System;
 	using System.Collections.Generic;
 	using System.Globalization;
 	using System.Linq;
-	using System.Security;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
 	using Resx = Properties.Resources;
@@ -25,7 +24,7 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 
 		internal enum TocLocation
 		{
-			// values must match index of InsertTocDialog.locationBox items
+			// values must match index of InsertPageTocDialog.locationBox items
 			//
 			// At top of first outline
 			// At top of page, inserted
@@ -363,21 +362,6 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 		private void BuildHeadings(
 			XElement container, List<Heading> headings, ref int index, int level, bool dark)
 		{
-			static string CleanTitle(string text)
-			{
-				// Escape URI to handle special chars like '&'
-				// removes hyperlinks from the text of a heading so the TOC hyperlink can be applied
-				// clean up illegal directives; can be caused by using "Clip to OneNote" from Edge
-				var wrapper = new XCData(SecurityElement.Escape(text)).GetWrapper();
-				var links = wrapper.Elements("a").ToList();
-				foreach (var link in links)
-				{
-					link.ReplaceWith(link.Value);
-				}
-
-				return wrapper.ToString(SaveOptions.DisableFormatting);
-			}
-
 			while (index < headings.Count)
 			{
 				var heading = headings[index];
@@ -400,7 +384,7 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 					if (!string.IsNullOrEmpty(heading.Link))
 					{
 						var linkColor = dark ? " style='color:#5B9BD5'" : string.Empty;
-						var clean = CleanTitle(heading.Text);
+						var clean = CleanHeadingText(heading.Text);
 
 						text = $"<a href=\"{heading.Link}\"{linkColor}>{clean}</a>";
 					}
