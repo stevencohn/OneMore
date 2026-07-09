@@ -5,7 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.UI;
-	using Snippets.Toc.Generators;
+	using Snippets.Toc;
 	using System;
 	using System.Drawing;
 	using System.Windows.Forms;

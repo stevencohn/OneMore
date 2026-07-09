@@ -57,7 +57,7 @@ namespace River.OneMoreAddIn.Commands
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(120, 38);
 			this.okButton.StylizeImage = false;
-			this.okButton.TabIndex = 11;
+			this.okButton.TabIndex = 0;
 			this.okButton.Text = "OK";
 			this.okButton.ThemedBack = null;
 			this.okButton.ThemedFore = null;
@@ -76,7 +76,7 @@ namespace River.OneMoreAddIn.Commands
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(120, 38);
 			this.cancelButton.StylizeImage = false;
-			this.cancelButton.TabIndex = 12;
+			this.cancelButton.TabIndex = 1;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.ThemedBack = null;
 			this.cancelButton.ThemedFore = null;
@@ -91,7 +91,7 @@ namespace River.OneMoreAddIn.Commands
 			this.topBox.Name = "topBox";
 			this.topBox.Size = new System.Drawing.Size(378, 25);
 			this.topBox.StylizeImage = false;
-			this.topBox.TabIndex = 0;
+			this.topBox.TabIndex = 2;
 			this.topBox.Text = "Add link to each heading to jump to top of page";
 			this.topBox.ThemedBack = null;
 			this.topBox.ThemedFore = null;
@@ -108,7 +108,7 @@ namespace River.OneMoreAddIn.Commands
 			this.rightAlignBox.Name = "rightAlignBox";
 			this.rightAlignBox.Size = new System.Drawing.Size(230, 25);
 			this.rightAlignBox.StylizeImage = false;
-			this.rightAlignBox.TabIndex = 1;
+			this.rightAlignBox.TabIndex = 3;
 			this.rightAlignBox.Text = "Right-align top of page link";
 			this.rightAlignBox.ThemedBack = null;
 			this.rightAlignBox.ThemedFore = null;
@@ -123,7 +123,7 @@ namespace River.OneMoreAddIn.Commands
 			this.secondaryBox.Name = "secondaryBox";
 			this.secondaryBox.Size = new System.Drawing.Size(311, 25);
 			this.secondaryBox.StylizeImage = false;
-			this.secondaryBox.TabIndex = 2;
+			this.secondaryBox.TabIndex = 4;
 			this.secondaryBox.Text = "Include headings from tables and lists";
 			this.secondaryBox.ThemedBack = null;
 			this.secondaryBox.ThemedFore = null;
@@ -148,7 +148,7 @@ namespace River.OneMoreAddIn.Commands
 			this.todoBox.Location = new System.Drawing.Point(253, 142);
 			this.todoBox.Name = "todoBox";
 			this.todoBox.Size = new System.Drawing.Size(251, 30);
-			this.todoBox.TabIndex = 4;
+			this.todoBox.TabIndex = 5;
 			this.todoBox.ThemedBack = null;
 			this.todoBox.ThemedFore = null;
 			// 
@@ -205,7 +205,7 @@ namespace River.OneMoreAddIn.Commands
 			this.styleBox.Location = new System.Drawing.Point(253, 220);
 			this.styleBox.Name = "styleBox";
 			this.styleBox.Size = new System.Drawing.Size(251, 27);
-			this.styleBox.TabIndex = 8;
+			this.styleBox.TabIndex = 7;
 			this.styleBox.ThemedBack = null;
 			this.styleBox.ThemedFore = null;
 			// 
@@ -235,7 +235,7 @@ namespace River.OneMoreAddIn.Commands
             0});
 			this.levelsBox.Name = "levelsBox";
 			this.levelsBox.Size = new System.Drawing.Size(96, 26);
-			this.levelsBox.TabIndex = 10;
+			this.levelsBox.TabIndex = 8;
 			this.levelsBox.ThemedBack = null;
 			this.levelsBox.ThemedFore = "ControlText";
 			this.levelsBox.Value = new decimal(new int[] {
