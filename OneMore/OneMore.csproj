@@ -375,14 +375,14 @@
     <Compile Include="Commands\Settings\ImagesSheet.Designer.cs">
       <DependentUpon>ImagesSheet.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\Snippets\Toc\Generators\HierarchyTocGenerator.cs" />
-    <Compile Include="Commands\Snippets\Toc\Generators\NotebookTocGenerator.cs" />
-    <Compile Include="Commands\Snippets\Toc\Generators\PageTocGenerator.cs" />
-    <Compile Include="Commands\Snippets\Toc\Generators\SectionTocGenerator.cs" />
-    <Compile Include="Commands\Snippets\Toc\Generators\TocCommon.cs" />
-    <Compile Include="Commands\Snippets\Toc\Generators\TocGenerator.cs" />
-    <Compile Include="Commands\Snippets\Toc\Generators\TocParameters.cs" />
-    <Compile Include="Commands\Snippets\Toc\Generators\TocTitleStyles.cs" />
+    <Compile Include="Commands\Snippets\Toc\HierarchyTocGenerator.cs" />
+    <Compile Include="Commands\Snippets\Toc\NotebookTocGenerator.cs" />
+    <Compile Include="Commands\Snippets\Toc\PageTocGenerator.cs" />
+    <Compile Include="Commands\Snippets\Toc\SectionTocGenerator.cs" />
+    <Compile Include="Commands\Snippets\Toc\TocCommon.cs" />
+    <Compile Include="Commands\Snippets\Toc\TocGenerator.cs" />
+    <Compile Include="Commands\Snippets\Toc\TocParameters.cs" />
+    <Compile Include="Commands\Snippets\Toc\TocTitleStyles.cs" />
     <Compile Include="Commands\Styles\PageColorCommand.cs" />
     <Compile Include="Commands\Styles\PageColorDialog.cs">
       <SubType>Form</SubType>

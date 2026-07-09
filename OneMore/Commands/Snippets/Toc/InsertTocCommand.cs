@@ -6,7 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Cli;
 	using River.OneMoreAddIn.UI;
-	using Snippets.Toc.Generators;
+	using Snippets.Toc;
 	using System;
 	using System.Linq;
 	using System.Threading.Tasks;

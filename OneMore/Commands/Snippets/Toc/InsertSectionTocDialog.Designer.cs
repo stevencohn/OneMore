@@ -51,7 +51,7 @@ namespace River.OneMoreAddIn.Commands
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(120, 38);
 			this.okButton.StylizeImage = false;
-			this.okButton.TabIndex = 2;
+			this.okButton.TabIndex = 0;
 			this.okButton.Text = "OK";
 			this.okButton.ThemedBack = null;
 			this.okButton.ThemedFore = null;
@@ -70,7 +70,7 @@ namespace River.OneMoreAddIn.Commands
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(120, 38);
 			this.cancelButton.StylizeImage = false;
-			this.cancelButton.TabIndex = 3;
+			this.cancelButton.TabIndex = 1;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.ThemedBack = null;
 			this.cancelButton.ThemedFore = null;
@@ -85,7 +85,7 @@ namespace River.OneMoreAddIn.Commands
 			this.previewBox.Name = "previewBox";
 			this.previewBox.Size = new System.Drawing.Size(280, 25);
 			this.previewBox.StylizeImage = false;
-			this.previewBox.TabIndex = 0;
+			this.previewBox.TabIndex = 2;
 			this.previewBox.Text = "Include text preview of each page";
 			this.previewBox.ThemedBack = null;
 			this.previewBox.ThemedFore = null;
@@ -100,7 +100,7 @@ namespace River.OneMoreAddIn.Commands
 			this.timeBox.Name = "timeBox";
 			this.timeBox.Size = new System.Drawing.Size(233, 25);
 			this.timeBox.StylizeImage = false;
-			this.timeBox.TabIndex = 1;
+			this.timeBox.TabIndex = 3;
 			this.timeBox.Text = "Update page date and time";
 			this.timeBox.ThemedBack = null;
 			this.timeBox.ThemedFore = null;
@@ -149,7 +149,7 @@ namespace River.OneMoreAddIn.Commands
             0});
 			this.levelsBox.Name = "levelsBox";
 			this.levelsBox.Size = new System.Drawing.Size(96, 26);
-			this.levelsBox.TabIndex = 12;
+			this.levelsBox.TabIndex = 5;
 			this.levelsBox.ThemedBack = null;
 			this.levelsBox.ThemedFore = "ControlText";
 			this.levelsBox.Value = new decimal(new int[] {

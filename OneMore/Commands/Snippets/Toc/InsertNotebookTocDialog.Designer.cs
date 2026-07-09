@@ -48,7 +48,7 @@ namespace River.OneMoreAddIn.Commands
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(120, 38);
 			this.okButton.StylizeImage = false;
-			this.okButton.TabIndex = 3;
+			this.okButton.TabIndex = 0;
 			this.okButton.Text = "OK";
 			this.okButton.ThemedBack = null;
 			this.okButton.ThemedFore = null;
@@ -67,7 +67,7 @@ namespace River.OneMoreAddIn.Commands
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(120, 38);
 			this.cancelButton.StylizeImage = false;
-			this.cancelButton.TabIndex = 4;
+			this.cancelButton.TabIndex = 1;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.ThemedBack = null;
 			this.cancelButton.ThemedFore = null;
@@ -82,7 +82,7 @@ namespace River.OneMoreAddIn.Commands
 			this.pagesBox.Name = "pagesBox";
 			this.pagesBox.Size = new System.Drawing.Size(252, 25);
 			this.pagesBox.StylizeImage = false;
-			this.pagesBox.TabIndex = 0;
+			this.pagesBox.TabIndex = 2;
 			this.pagesBox.Text = "Include pages in each section";
 			this.pagesBox.ThemedBack = null;
 			this.pagesBox.ThemedFore = null;
@@ -99,7 +99,7 @@ namespace River.OneMoreAddIn.Commands
 			this.previewBox.Name = "previewBox";
 			this.previewBox.Size = new System.Drawing.Size(280, 25);
 			this.previewBox.StylizeImage = false;
-			this.previewBox.TabIndex = 1;
+			this.previewBox.TabIndex = 3;
 			this.previewBox.Text = "Include text preview of each page";
 			this.previewBox.ThemedBack = null;
 			this.previewBox.ThemedFore = null;
@@ -114,7 +114,7 @@ namespace River.OneMoreAddIn.Commands
 			this.timeBox.Name = "timeBox";
 			this.timeBox.Size = new System.Drawing.Size(233, 25);
 			this.timeBox.StylizeImage = false;
-			this.timeBox.TabIndex = 2;
+			this.timeBox.TabIndex = 4;
 			this.timeBox.Text = "Update page date and time";
 			this.timeBox.ThemedBack = null;
 			this.timeBox.ThemedFore = null;
