@@ -238,13 +238,13 @@
       <menu id="ribInsertTocSplitMenu">
         <button
           id="ribInsertSectionTocButton"
-          imageMso="PictureInsertFromFile"
+          imageMso="GroupWorkbookViews"
           getLabel="GetRibbonLabel"
           getScreentip="GetRibbonScreentip"
           onAction="InsertSectionTocCmd"/>
         <button
           id="ribInsertNotebookTocButton"
-          imageMso="GroupPictureStyles"
+          imageMso="FunctionsTextInsertGallery"
           getLabel="GetRibbonLabel"
           getScreentip="GetRibbonScreentip"
           onAction="InsertNotebookTocCmd"/>

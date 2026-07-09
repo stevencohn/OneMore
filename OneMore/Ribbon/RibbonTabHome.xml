@@ -151,11 +151,23 @@
         getScreentip="GetRibbonScreentip"
         onAction="InsertEmojiCmd"/>
       <button
-        id="ribInsertTocButton"
+        id="ribInsertPageTocButton"
         imageMso="WordInsertTableOfContents2"
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
-        onAction="InsertTocCmd"/>
+        onAction="InsertPageTocCmd"/>
+      <button
+        id="ribInsertSectionTocButton"
+        imageMso="GroupWorkbookViews"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="InsertSectionTocCmd"/>
+      <button
+        id="ribInsertNotebookTocButton"
+        imageMso="FunctionsTextInsertGallery"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="InsertNotebookTocCmd"/>
       <menuSeparator id="sepSnipBoxes" />
       <button
         id="ribInsertCodeBoxButton"
