@@ -1940,6 +1940,84 @@ Czerwony pierwszy plan
     <value>Komórki zmiany w prawo.</value>
     <comment>radio</comment>
   </data>
+  <data name="InsertNotebookTocDialog_pagesBox.Text" xml:space="preserve">
+    <value>Uwzględnij strony w każdej sekcji</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertNotebookTocDialog_previewBox" xml:space="preserve">
+    <value>Dołącz podgląd tekstu każdej strony</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertNotebookTocDialog_Text" xml:space="preserve">
+    <value>Spis sekcji w notatniku</value>
+    <comment>radio</comment>
+  </data>
+  <data name="InsertNotebookTocDialog_timeBox" xml:space="preserve">
+    <value>Zaktualizuj datę i godzinę strony</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertPageTocDialog_levelsLabel.Text" xml:space="preserve">
+    <value>Pokaż poziomy</value>
+    <comment>label</comment>
+  </data>
+  <data name="InsertPageTocDialog_locationBox.Text" xml:space="preserve">
+    <value>Na górze strony
+Na górze strony, nakładka
+Przy bieżącym kursorze</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="InsertPageTocDialog_locationLabel.Text" xml:space="preserve">
+    <value>Wstaw lokalizację</value>
+    <comment>label</comment>
+  </data>
+  <data name="InsertPageTocDialog_rightAlignBox.Text" xml:space="preserve">
+    <value>Wyrównaj do prawej strony łącze na górze strony</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertPageTocDialog_secondaryBox.Text" xml:space="preserve">
+    <value>Dołącz nagłówki z tabel i list</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertPageTocDialog_styleBox.Text" xml:space="preserve">
+    <value>Standardowy tytuł strony
+Standardowy nagłówek 1
+Standardowy nagłówek 2
+Standardowy nagłówek 3
+Niestandardowy tytuł strony
+Nagłówek niestandardowy 1
+Nagłówek niestandardowy 2
+Nagłówek niestandardowy 3</value>
+    <comment>cobobox</comment>
+  </data>
+  <data name="InsertPageTocDialog_styleLabel.Text" xml:space="preserve">
+    <value>Styl tytułu</value>
+    <comment>label</comment>
+  </data>
+  <data name="InsertPageTocDialog_Text" xml:space="preserve">
+    <value>Wstaw spis treści</value>
+    <comment>radio</comment>
+  </data>
+  <data name="InsertPageTocDialog_todoBox.Text" xml:space="preserve">
+    <value>Nic
+Urna do głosowania
+Czerwone kółko
+Plac Czerwony
+Niebieski Kwadrat
+Plac Pomarańczowy
+Żółty kwadrat
+Zielony Kwadrat
+Fioletowy kwadrat
+Brązowy Kwadrat</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="InsertPageTocDialog_todoLabel.Text" xml:space="preserve">
+    <value>Oznacz nagłówki zadań do wykonania</value>
+    <comment>label</comment>
+  </data>
+  <data name="InsertPageTocDialog_topBox.Text" xml:space="preserve">
+    <value>Dodaj link do każdego nagłówka, aby przejść na górę strony</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="InsertQRCommand_MaxLength" xml:space="preserve">
     <value>Wybrany tekst nie może przekroczyć znaków {0}</value>
     <comment>message</comment>
@@ -1947,6 +2025,22 @@ Czerwony pierwszy plan
   <data name="InsertQRCommand_NoSelection" xml:space="preserve">
     <value>Wybierz tekst, aby renderować jako nowy kod QR</value>
     <comment>message</comment>
+  </data>
+  <data name="InsertSectionTocDialog_headingsBox.Text" xml:space="preserve">
+    <value>Dołącz nagłówki na każdej stronie</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertSectionTocDialog_previewBox" xml:space="preserve">
+    <value>Dołącz podgląd tekstu każdej strony</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertSectionTocDialog_Text" xml:space="preserve">
+    <value>Spis stron w dziale</value>
+    <comment>radio</comment>
+  </data>
+  <data name="InsertSectionTocDialog_timeBox" xml:space="preserve">
+    <value>Zaktualizuj datę i godzinę strony</value>
+    <comment>checkbox</comment>
   </data>
   <data name="InsertSnippets_CouldNotLoad" xml:space="preserve">
     <value>Chmura nie ładuje fragmentu z "{0}"</value>
@@ -1971,88 +2065,6 @@ Czerwony pierwszy plan
   <data name="InsertTocCommand_Top" xml:space="preserve">
     <value>Na górze strony</value>
     <comment>hyperlink</comment>
-  </data>
-  <data name="InsertTocDialog_levelsLabel.Text" xml:space="preserve">
-    <value>Pokaż poziomy</value>
-    <comment>label</comment>
-  </data>
-  <data name="InsertTocDialog_locationBox.Text" xml:space="preserve">
-    <value>Na górze strony
-Na górze strony, nakładka
-Przy bieżącym kursorze</value>
-    <comment>combobox</comment>
-  </data>
-  <data name="InsertTocDialog_locationLabel.Text" xml:space="preserve">
-    <value>Wstaw lokalizację</value>
-    <comment>label</comment>
-  </data>
-  <data name="InsertTocDialog_notebookRadio.Text" xml:space="preserve">
-    <value>Nowa strona z indeksem działów w tym zeszycie</value>
-    <comment>radio</comment>
-  </data>
-  <data name="InsertTocDialog_pageRadio.Text" xml:space="preserve">
-    <value>Wstaw tabelę na tej stronie</value>
-    <comment>radio</comment>
-  </data>
-  <data name="InsertTocDialog_pagesBox.Text" xml:space="preserve">
-    <value>Dołącz strony w każdej sekcji</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="InsertTocDialog_previewBox" xml:space="preserve">
-    <value>Dołącz podgląd tekstu każdej strony</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="InsertTocDialog_rightAlignBox.Text" xml:space="preserve">
-    <value>Prawo-wyrównaj do góry Link</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="InsertTocDialog_secondaryBox.Text" xml:space="preserve">
-    <value>Dołącz nagłówki z tabel i list</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="InsertTocDialog_sectionRadio.Text" xml:space="preserve">
-    <value>Nowa strona z indeksem stron w tym dziale</value>
-    <comment>radio</comment>
-  </data>
-  <data name="InsertTocDialog_styleBox.Text" xml:space="preserve">
-    <value>Standardowy tytuł strony
-Standardowy nagłówek 1
-Standardowy nagłówek 2
-Standardowy nagłówek 3
-Niestandardowy tytuł strony
-Nagłówek niestandardowy 1
-Nagłówek niestandardowy 2
-Nagłówek niestandardowy 3</value>
-    <comment>cobobox</comment>
-  </data>
-  <data name="InsertTocDialog_styleLabel.Text" xml:space="preserve">
-    <value>Styl tytułu</value>
-    <comment>label</comment>
-  </data>
-  <data name="InsertTocDialog_timeBox" xml:space="preserve">
-    <value>Aktualizacja daty i godziny strony</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="InsertTocDialog_todoBox.Text" xml:space="preserve">
-    <value>Nic
-Urna do głosowania
-Czerwone kółko
-Plac Czerwony
-Niebieski Kwadrat
-Plac Pomarańczowy
-Żółty kwadrat
-Zielony Kwadrat
-Fioletowy kwadrat
-Brązowy Kwadrat</value>
-    <comment>combobox</comment>
-  </data>
-  <data name="InsertTocDialog_todoLabel.Text" xml:space="preserve">
-    <value>Oznacz nagłówki zadań do wykonania</value>
-    <comment>label</comment>
-  </data>
-  <data name="InsertTocDialog_topBox.Text" xml:space="preserve">
-    <value>Dodaj link do każdego nagłówku, aby przejść do góry strony</value>
-    <comment>checkbox</comment>
   </data>
   <data name="InsertTocForNotebook_RefreshQuestion" xml:space="preserve">
     <value>Dla tego notesu dostępna jest strona ze spisem treści. Możesz odświeżyć tę stronę lub utworzyć nową stronę.
@@ -3925,12 +3937,28 @@ Zakładka Pomoc</value>
     <value>Wstaw pole informacyjne</value>
     <comment>ribbon snippets</comment>
   </data>
+  <data name="ribInsertNotebookTocButton_Label" xml:space="preserve">
+    <value>Spis sekcji w notatniku</value>
+    <comment>ribbon snippets NODUP</comment>
+  </data>
+  <data name="ribInsertNotebookTocButton_Screentip" xml:space="preserve">
+    <value>Wstaw tabelę sekcji tego notatnika</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribInsertNoteBoxButton_Label" xml:space="preserve">
     <value>Pudełko na notatki</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertNoteBoxButton_Screentip" xml:space="preserve">
     <value>Wstaw pudełko na notatki</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertPageTocButton_Label" xml:space="preserve">
+    <value>Spis treści</value>
+    <comment>ribbon snippets NODUP</comment>
+  </data>
+  <data name="ribInsertPageTocButton_Screentip" xml:space="preserve">
+    <value>Wstaw spis treści nagłówków u góry strony</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertQRButton_Label" xml:space="preserve">
@@ -3947,6 +3975,14 @@ Zakładka Pomoc</value>
   </data>
   <data name="ribInsertRedStatusButton_Screentip" xml:space="preserve">
     <value>Wstaw czerwoną etykietę stanu</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertSectionTocButton_Label" xml:space="preserve">
+    <value>Spis stron w dziale</value>
+    <comment>ribbon snippets NODUP</comment>
+  </data>
+  <data name="ribInsertSectionTocButton_Screentip" xml:space="preserve">
+    <value>Wstaw spis stron dla tej sekcji</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertSingleLineButton_Label" xml:space="preserve">
@@ -3972,14 +4008,6 @@ Zakładka Pomoc</value>
   <data name="ribInsertTimerButton_Screentip" xml:space="preserve">
     <value>Wstaw aktualną wartość timera</value>
     <comment>ribbon extras</comment>
-  </data>
-  <data name="ribInsertTocButton_Label" xml:space="preserve">
-    <value>Spis treści</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
-  </data>
-  <data name="ribInsertTocButton_Screentip" xml:space="preserve">
-    <value>Wstaw spis treści nagłówków u góry strony</value>
-    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertWarnBoxButton_Label" xml:space="preserve">
     <value>Pole ostrzegawcze</value>

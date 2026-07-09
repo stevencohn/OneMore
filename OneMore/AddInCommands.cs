@@ -552,9 +552,19 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<TimerWindowCommand>(TimerWindow.CopyCmd);
 
 
-		[Command("ribInsertTocButton_Label", Keys.None, "ribSnippetsMenu")]
-		public async Task InsertTocCmd(IRibbonControl control)
-			=> await factory.Run<InsertTocCommand>();
+		[Command("ribInsertNotebookTocButton_Label", Keys.None, "ribSnippetsMenu")]
+		public async Task InsertNotebookTocCmd(IRibbonControl control)
+			=> await factory.Run<InsertTocCommand>("notebook");
+
+
+		[Command("ribInsertSectionTocButton_Label", Keys.None, "ribSnippetsMenu")]
+		public async Task InsertSectionTocCmd(IRibbonControl control)
+			=> await factory.Run<InsertTocCommand>("section");
+
+
+		[Command("ribInsertPageTocButton_Label", Keys.None, "ribSnippetsMenu")]
+		public async Task InsertPageTocCmd(IRibbonControl control)
+			=> await factory.Run<InsertTocCommand>("page");
 
 
 		[Command("ribInsertWarnBoxButton_Label", Keys.None, "ribSnippetsMenu")]

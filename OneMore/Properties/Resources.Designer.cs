@@ -4499,6 +4499,159 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Include pages in each section.
+        /// </summary>
+        internal static string InsertNotebookTocDialog_pagesBox_Text {
+            get {
+                return ResourceManager.GetString("InsertNotebookTocDialog_pagesBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Include text preview of each page.
+        /// </summary>
+        internal static string InsertNotebookTocDialog_previewBox {
+            get {
+                return ResourceManager.GetString("InsertNotebookTocDialog_previewBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Table of Section in Notebook.
+        /// </summary>
+        internal static string InsertNotebookTocDialog_Text {
+            get {
+                return ResourceManager.GetString("InsertNotebookTocDialog_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update page date and time.
+        /// </summary>
+        internal static string InsertNotebookTocDialog_timeBox {
+            get {
+                return ResourceManager.GetString("InsertNotebookTocDialog_timeBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Levels.
+        /// </summary>
+        internal static string InsertPageTocDialog_levelsLabel_Text {
+            get {
+                return ResourceManager.GetString("InsertPageTocDialog_levelsLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to At top of page
+        ///At top of page, overlayed
+        ///At current cursor.
+        /// </summary>
+        internal static string InsertPageTocDialog_locationBox_Text {
+            get {
+                return ResourceManager.GetString("InsertPageTocDialog_locationBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert Location.
+        /// </summary>
+        internal static string InsertPageTocDialog_locationLabel_Text {
+            get {
+                return ResourceManager.GetString("InsertPageTocDialog_locationLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Right-align top of page link.
+        /// </summary>
+        internal static string InsertPageTocDialog_rightAlignBox_Text {
+            get {
+                return ResourceManager.GetString("InsertPageTocDialog_rightAlignBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Include headings from tables and lists.
+        /// </summary>
+        internal static string InsertPageTocDialog_secondaryBox_Text {
+            get {
+                return ResourceManager.GetString("InsertPageTocDialog_secondaryBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Standard Page Title
+        ///Standard Heading 1
+        ///Standard Heading 2
+        ///Standard Heading 3
+        ///Custom Page Title
+        ///Custom Heading 1
+        ///Custom Heading 2
+        ///Custom Heading 3.
+        /// </summary>
+        internal static string InsertPageTocDialog_styleBox_Text {
+            get {
+                return ResourceManager.GetString("InsertPageTocDialog_styleBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title Style.
+        /// </summary>
+        internal static string InsertPageTocDialog_styleLabel_Text {
+            get {
+                return ResourceManager.GetString("InsertPageTocDialog_styleLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert Table of Contents.
+        /// </summary>
+        internal static string InsertPageTocDialog_Text {
+            get {
+                return ResourceManager.GetString("InsertPageTocDialog_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None
+        ///Ballot Box
+        ///Red Circle
+        ///Red Square
+        ///Blue Square
+        ///Orange Square
+        ///Yellow Square
+        ///Green Square
+        ///Purple Square
+        ///Brown Square.
+        /// </summary>
+        internal static string InsertPageTocDialog_todoBox_Text {
+            get {
+                return ResourceManager.GetString("InsertPageTocDialog_todoBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mark Todo Headings.
+        /// </summary>
+        internal static string InsertPageTocDialog_todoLabel_Text {
+            get {
+                return ResourceManager.GetString("InsertPageTocDialog_todoLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add link to each heading to jump to top of page.
+        /// </summary>
+        internal static string InsertPageTocDialog_topBox_Text {
+            get {
+                return ResourceManager.GetString("InsertPageTocDialog_topBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Selected text cannot exceed {0} characters.
         /// </summary>
         internal static string InsertQRCommand_MaxLength {
@@ -4513,6 +4666,42 @@ namespace River.OneMoreAddIn.Properties {
         internal static string InsertQRCommand_NoSelection {
             get {
                 return ResourceManager.GetString("InsertQRCommand_NoSelection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Include headings on each page.
+        /// </summary>
+        internal static string InsertSectionTocDialog_headingsBox_Text {
+            get {
+                return ResourceManager.GetString("InsertSectionTocDialog_headingsBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Include text preview of each page.
+        /// </summary>
+        internal static string InsertSectionTocDialog_previewBox {
+            get {
+                return ResourceManager.GetString("InsertSectionTocDialog_previewBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Table of Pages in Section.
+        /// </summary>
+        internal static string InsertSectionTocDialog_Text {
+            get {
+                return ResourceManager.GetString("InsertSectionTocDialog_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update page date and time.
+        /// </summary>
+        internal static string InsertSectionTocDialog_timeBox {
+            get {
+                return ResourceManager.GetString("InsertSectionTocDialog_timeBox", resourceCulture);
             }
         }
         
@@ -4567,168 +4756,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string InsertTocCommand_Top {
             get {
                 return ResourceManager.GetString("InsertTocCommand_Top", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Show Levels.
-        /// </summary>
-        internal static string InsertTocDialog_levelsLabel_Text {
-            get {
-                return ResourceManager.GetString("InsertTocDialog_levelsLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to At top of page
-        ///At top of page, overlayed
-        ///At current cursor.
-        /// </summary>
-        internal static string InsertTocDialog_locationBox_Text {
-            get {
-                return ResourceManager.GetString("InsertTocDialog_locationBox.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Insert Location.
-        /// </summary>
-        internal static string InsertTocDialog_locationLabel_Text {
-            get {
-                return ResourceManager.GetString("InsertTocDialog_locationLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to New page with index of sections in this notebook.
-        /// </summary>
-        internal static string InsertTocDialog_notebookRadio_Text {
-            get {
-                return ResourceManager.GetString("InsertTocDialog_notebookRadio.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Insert table of headings on this page.
-        /// </summary>
-        internal static string InsertTocDialog_pageRadio_Text {
-            get {
-                return ResourceManager.GetString("InsertTocDialog_pageRadio.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Include pages in each section.
-        /// </summary>
-        internal static string InsertTocDialog_pagesBox_Text {
-            get {
-                return ResourceManager.GetString("InsertTocDialog_pagesBox.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Include text preview of each page.
-        /// </summary>
-        internal static string InsertTocDialog_previewBox {
-            get {
-                return ResourceManager.GetString("InsertTocDialog_previewBox", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Right-align top of page link.
-        /// </summary>
-        internal static string InsertTocDialog_rightAlignBox_Text {
-            get {
-                return ResourceManager.GetString("InsertTocDialog_rightAlignBox.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Include headings from tables and lists.
-        /// </summary>
-        internal static string InsertTocDialog_secondaryBox_Text {
-            get {
-                return ResourceManager.GetString("InsertTocDialog_secondaryBox.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to New page with index of pages in this section.
-        /// </summary>
-        internal static string InsertTocDialog_sectionRadio_Text {
-            get {
-                return ResourceManager.GetString("InsertTocDialog_sectionRadio.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Standard Page Title
-        ///Standard Heading 1
-        ///Standard Heading 2
-        ///Standard Heading 3
-        ///Custom Page Title
-        ///Custom Heading 1
-        ///Custom Heading 2
-        ///Custom Heading 3.
-        /// </summary>
-        internal static string InsertTocDialog_styleBox_Text {
-            get {
-                return ResourceManager.GetString("InsertTocDialog_styleBox.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Title Style.
-        /// </summary>
-        internal static string InsertTocDialog_styleLabel_Text {
-            get {
-                return ResourceManager.GetString("InsertTocDialog_styleLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Update page date and time.
-        /// </summary>
-        internal static string InsertTocDialog_timeBox {
-            get {
-                return ResourceManager.GetString("InsertTocDialog_timeBox", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to None
-        ///Ballot Box
-        ///Red Circle
-        ///Red Square
-        ///Blue Square
-        ///Orange Square
-        ///Yellow Square
-        ///Green Square
-        ///Purple Square
-        ///Brown Square.
-        /// </summary>
-        internal static string InsertTocDialog_todoBox_Text {
-            get {
-                return ResourceManager.GetString("InsertTocDialog_todoBox.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Mark Todo Headings.
-        /// </summary>
-        internal static string InsertTocDialog_todoLabel_Text {
-            get {
-                return ResourceManager.GetString("InsertTocDialog_todoLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Add link to each heading to jump to top of page.
-        /// </summary>
-        internal static string InsertTocDialog_topBox_Text {
-            get {
-                return ResourceManager.GetString("InsertTocDialog_topBox.Text", resourceCulture);
             }
         }
         
@@ -9455,6 +9482,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Table of Sections in Notebook.
+        /// </summary>
+        internal static string ribInsertNotebookTocButton_Label {
+            get {
+                return ResourceManager.GetString("ribInsertNotebookTocButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert a table of sections for this notebook.
+        /// </summary>
+        internal static string ribInsertNotebookTocButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribInsertNotebookTocButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap ribInsertNoteBoxButton {
@@ -9479,6 +9524,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribInsertNoteBoxButton_Screentip {
             get {
                 return ResourceManager.GetString("ribInsertNoteBoxButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Table of Contents.
+        /// </summary>
+        internal static string ribInsertPageTocButton_Label {
+            get {
+                return ResourceManager.GetString("ribInsertPageTocButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert a headings table of contents at the top of the page.
+        /// </summary>
+        internal static string ribInsertPageTocButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribInsertPageTocButton_Screentip", resourceCulture);
             }
         }
         
@@ -9515,6 +9578,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribInsertRedStatusButton_Screentip {
             get {
                 return ResourceManager.GetString("ribInsertRedStatusButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Table of Pages in Section.
+        /// </summary>
+        internal static string ribInsertSectionTocButton_Label {
+            get {
+                return ResourceManager.GetString("ribInsertSectionTocButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert a table of pages for this section.
+        /// </summary>
+        internal static string ribInsertSectionTocButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribInsertSectionTocButton_Screentip", resourceCulture);
             }
         }
         
@@ -9569,24 +9650,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribInsertTimerButton_Screentip {
             get {
                 return ResourceManager.GetString("ribInsertTimerButton_Screentip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Table of Contents.
-        /// </summary>
-        internal static string ribInsertTocButton_Label {
-            get {
-                return ResourceManager.GetString("ribInsertTocButton_Label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Insert a headings table of contents at the top of the page.
-        /// </summary>
-        internal static string ribInsertTocButton_Screentip {
-            get {
-                return ResourceManager.GetString("ribInsertTocButton_Screentip", resourceCulture);
             }
         }
         

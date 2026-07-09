@@ -4,13 +4,14 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using Snippets.TocGenerators;
+	using River.OneMoreAddIn.Cli;
+	using River.OneMoreAddIn.UI;
+	using Snippets.Toc.Generators;
 	using System;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
-	using River.OneMoreAddIn.Cli;
 
 
 	[CommandService]
@@ -77,7 +78,15 @@ namespace River.OneMoreAddIn.Commands
 			{
 				var parameters = await CollectParameterDefaults();
 
-				using var dialog = new InsertTocDialog(parameters);
+				var scope = args.Length > 0 ? args[0] as string : null;
+
+				using MoreForm dialog = scope switch
+				{
+					"section" => new InsertSectionTocDialog(parameters),
+					"notebook" => new InsertNotebookTocDialog(parameters),
+					_ => new InsertPageTocDialog(parameters)
+				};
+
 				if (dialog.ShowDialog(owner) == DialogResult.Cancel)
 				{
 					return;

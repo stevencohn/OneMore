@@ -1943,6 +1943,84 @@ OneNoteファイル (*.one)</value>
     <value>セルを右にシフト</value>
     <comment>radio</comment>
   </data>
+  <data name="InsertNotebookTocDialog_pagesBox.Text" xml:space="preserve">
+    <value>各セクションにページを含める</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertNotebookTocDialog_previewBox" xml:space="preserve">
+    <value>各ページのテキストプレビューを含める</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertNotebookTocDialog_Text" xml:space="preserve">
+    <value>ノートブックのセクションの表</value>
+    <comment>radio</comment>
+  </data>
+  <data name="InsertNotebookTocDialog_timeBox" xml:space="preserve">
+    <value>ページの更新日時</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertPageTocDialog_levelsLabel.Text" xml:space="preserve">
+    <value>レベルを表示</value>
+    <comment>label</comment>
+  </data>
+  <data name="InsertPageTocDialog_locationBox.Text" xml:space="preserve">
+    <value>ページの先頭にある
+ページの上部にオーバーレイされます
+現在のカーソル位置</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="InsertPageTocDialog_locationLabel.Text" xml:space="preserve">
+    <value>場所を挿入</value>
+    <comment>label</comment>
+  </data>
+  <data name="InsertPageTocDialog_rightAlignBox.Text" xml:space="preserve">
+    <value>ページ上部のリンクを右揃えにする</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertPageTocDialog_secondaryBox.Text" xml:space="preserve">
+    <value>表やリストの見出しを含める</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertPageTocDialog_styleBox.Text" xml:space="preserve">
+    <value>標準ページタイトル
+標準見出し 1
+標準見出し 2
+標準見出し 3
+カスタムページタイトル
+カスタム見出し 1
+カスタム見出し 2
+カスタム見出し 3</value>
+    <comment>cobobox</comment>
+  </data>
+  <data name="InsertPageTocDialog_styleLabel.Text" xml:space="preserve">
+    <value>タイトルのスタイル</value>
+    <comment>label</comment>
+  </data>
+  <data name="InsertPageTocDialog_Text" xml:space="preserve">
+    <value>目次を挿入</value>
+    <comment>radio</comment>
+  </data>
+  <data name="InsertPageTocDialog_todoBox.Text" xml:space="preserve">
+    <value>なし
+投票箱
+赤い丸
+赤の広場
+ブルースクエア
+オレンジスクエア
+イエロースクエア
+グリーンスクエア
+パープルスクエア
+ブラウンスクエア</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="InsertPageTocDialog_todoLabel.Text" xml:space="preserve">
+    <value>Todo の見出しをマークする</value>
+    <comment>label</comment>
+  </data>
+  <data name="InsertPageTocDialog_topBox.Text" xml:space="preserve">
+    <value>各見出しにページの先頭にジャンプするリンクを追加します。</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="InsertQRCommand_MaxLength" xml:space="preserve">
     <value>選択したテキストは {0} 文字を超えてはなりません</value>
     <comment>message</comment>
@@ -1950,6 +2028,22 @@ OneNoteファイル (*.one)</value>
   <data name="InsertQRCommand_NoSelection" xml:space="preserve">
     <value>新しいQRコードとしてレンダリングするテキストを選択</value>
     <comment>message</comment>
+  </data>
+  <data name="InsertSectionTocDialog_headingsBox.Text" xml:space="preserve">
+    <value>各ページに見出しを含める</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertSectionTocDialog_previewBox" xml:space="preserve">
+    <value>各ページのテキストプレビューを含める</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertSectionTocDialog_Text" xml:space="preserve">
+    <value>セクションのページの表</value>
+    <comment>radio</comment>
+  </data>
+  <data name="InsertSectionTocDialog_timeBox" xml:space="preserve">
+    <value>ページの更新日時</value>
+    <comment>checkbox</comment>
   </data>
   <data name="InsertSnippets_CouldNotLoad" xml:space="preserve">
     <value>"{0}" からスニペットを読み込めませんでした</value>
@@ -1974,88 +2068,6 @@ OneNoteファイル (*.one)</value>
   <data name="InsertTocCommand_Top" xml:space="preserve">
     <value>ページの上部</value>
     <comment>hyperlink</comment>
-  </data>
-  <data name="InsertTocDialog_levelsLabel.Text" xml:space="preserve">
-    <value>レベルを表示</value>
-    <comment>label</comment>
-  </data>
-  <data name="InsertTocDialog_locationBox.Text" xml:space="preserve">
-    <value>ページの先頭にある
-ページの上部にオーバーレイされます
-現在のカーソル位置</value>
-    <comment>combobox</comment>
-  </data>
-  <data name="InsertTocDialog_locationLabel.Text" xml:space="preserve">
-    <value>場所を挿入</value>
-    <comment>label</comment>
-  </data>
-  <data name="InsertTocDialog_notebookRadio.Text" xml:space="preserve">
-    <value>このノートブック内セクションの目次を新しいページに作成</value>
-    <comment>radio</comment>
-  </data>
-  <data name="InsertTocDialog_pageRadio.Text" xml:space="preserve">
-    <value>このページの見出しの表を挿入</value>
-    <comment>radio</comment>
-  </data>
-  <data name="InsertTocDialog_pagesBox.Text" xml:space="preserve">
-    <value>各セクション内のページを含める</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="InsertTocDialog_previewBox" xml:space="preserve">
-    <value>各ページのテキストプレビューを含めます</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="InsertTocDialog_rightAlignBox.Text" xml:space="preserve">
-    <value>見出しに追加するページの上部へのリンクを右揃え</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="InsertTocDialog_secondaryBox.Text" xml:space="preserve">
-    <value>表やリストの見出しを含める</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="InsertTocDialog_sectionRadio.Text" xml:space="preserve">
-    <value>このセクション内ページの目次を新しいページに作成</value>
-    <comment>radio</comment>
-  </data>
-  <data name="InsertTocDialog_styleBox.Text" xml:space="preserve">
-    <value>標準ページタイトル
-標準見出し 1
-標準見出し 2
-標準見出し 3
-カスタムページタイトル
-カスタム見出し 1
-カスタム見出し 2
-カスタム見出し 3</value>
-    <comment>cobobox</comment>
-  </data>
-  <data name="InsertTocDialog_styleLabel.Text" xml:space="preserve">
-    <value>タイトルスタイル</value>
-    <comment>label</comment>
-  </data>
-  <data name="InsertTocDialog_timeBox" xml:space="preserve">
-    <value>ページの日付と時刻を更新します</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="InsertTocDialog_todoBox.Text" xml:space="preserve">
-    <value>なし
-投票箱
-赤い丸
-赤の広場
-ブルースクエア
-オレンジスクエア
-イエロースクエア
-グリーンスクエア
-パープルスクエア
-ブラウンスクエア</value>
-    <comment>combobox</comment>
-  </data>
-  <data name="InsertTocDialog_todoLabel.Text" xml:space="preserve">
-    <value>Todo の見出しをマークする</value>
-    <comment>label</comment>
-  </data>
-  <data name="InsertTocDialog_topBox.Text" xml:space="preserve">
-    <value>見出しへのリンク・見出しからページ上部へのリンクを追加</value>
-    <comment>checkbox</comment>
   </data>
   <data name="InsertTocForNotebook_RefreshQuestion" xml:space="preserve">
     <value>このノートブックに目次ページがあります。既存のページを更新するか、新しいページを作成できます。
@@ -3932,12 +3944,28 @@ ISO-code then comma then language name</comment>
     <value>情報ボックスを挿入する</value>
     <comment>ribbon snippets</comment>
   </data>
+  <data name="ribInsertNotebookTocButton_Label" xml:space="preserve">
+    <value>ノートブックのセクションの表</value>
+    <comment>ribbon snippets NODUP</comment>
+  </data>
+  <data name="ribInsertNotebookTocButton_Screentip" xml:space="preserve">
+    <value>このノートブックのセクションの表を挿入します</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribInsertNoteBoxButton_Label" xml:space="preserve">
     <value>ノートボックス</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertNoteBoxButton_Screentip" xml:space="preserve">
     <value>ノートボックスを挿入する</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertPageTocButton_Label" xml:space="preserve">
+    <value>目次</value>
+    <comment>ribbon snippets NODUP</comment>
+  </data>
+  <data name="ribInsertPageTocButton_Screentip" xml:space="preserve">
+    <value>ページの上部に見出しの目次を挿入します。</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertQRButton_Label" xml:space="preserve">
@@ -3954,6 +3982,14 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="ribInsertRedStatusButton_Screentip" xml:space="preserve">
     <value>赤いステータスラベルを挿入する</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertSectionTocButton_Label" xml:space="preserve">
+    <value>セクションのページの表</value>
+    <comment>ribbon snippets NODUP</comment>
+  </data>
+  <data name="ribInsertSectionTocButton_Screentip" xml:space="preserve">
+    <value>このセクションのページの表を挿入します</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertSingleLineButton_Label" xml:space="preserve">
@@ -3979,14 +4015,6 @@ ISO-code then comma then language name</comment>
   <data name="ribInsertTimerButton_Screentip" xml:space="preserve">
     <value>現在のタイマー時間を挿入する</value>
     <comment>ribbon extras</comment>
-  </data>
-  <data name="ribInsertTocButton_Label" xml:space="preserve">
-    <value>目次</value>
-    <comment>ribbon snippets NODUP</comment>
-  </data>
-  <data name="ribInsertTocButton_Screentip" xml:space="preserve">
-    <value>ページ上部に見出しの目次を挿入する</value>
-    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertWarnBoxButton_Label" xml:space="preserve">
     <value>警告ボックス</value>

@@ -2,10 +2,11 @@
 // Copyright © 2016 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
+namespace River.OneMoreAddIn.Commands.Snippets.Toc.Generators
 {
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Styles;
+	using System.Collections.Generic;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
@@ -21,10 +22,14 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 
 		protected readonly bool withPages;
 		protected readonly bool withPreviews;
+		protected readonly int headingLevels;
 
 		protected OneNote one;
 		protected string primaryTitle;
+		protected string ownerPageId;
 		protected Style cite;
+		protected Style pageNameStyle;
+		protected Style quoteStyle;
 		protected UI.ProgressDialog progress;
 
 
@@ -33,6 +38,13 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 		{
 			withPages = parameters.Contains("pages");
 			withPreviews = parameters.Contains("preview");
+
+			if (parameters.FirstOrDefault(p => p.StartsWith("level")) is string level &&
+				int.TryParse(level.Substring(5), out var levels) &&
+				levels >= 1 && levels <= 6)
+			{
+				headingLevels = levels;
+			}
 		}
 
 
@@ -102,12 +114,38 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 				var pageLevel = int.Parse(element.Attribute("pageLevel").Value);
 				if (pageLevel > level)
 				{
-					var children = new XElement(PageNamespace.Value + "OEChildren");
+					// reuse an OEChildren already attached by AddPageHeadings below, if any,
+					// because an OE may only ever have a single OEChildren child
+					var lastOE = container.Elements().Last();
+					var children = lastOE.Elements(PageNamespace.Value + "OEChildren").FirstOrDefault();
+					var isNew = children is null;
+					if (isNew)
+					{
+						children = new XElement(PageNamespace.Value + "OEChildren");
+					}
+
 					index = await BuildSection(one, children, elements, index, pageLevel);
-					container.Elements().Last().Add(children);
+
+					if (isNew)
+					{
+						lastOE.Add(children);
+					}
 				}
 				else if (pageLevel == level)
 				{
+					// never list the TOC page itself, e.g. when refreshing an existing
+					// TOC whose own page is now part of the section/notebook hierarchy
+					if (pageID == ownerPageId)
+					{
+						if (progress is not null)
+						{
+							progress.Increment();
+						}
+
+						index++;
+						continue;
+					}
+
 					var link = one.GetHyperlink(pageID, string.Empty);
 					var name = element.Attribute("name").Value;
 
@@ -117,11 +155,30 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 						progress.Increment();
 					}
 
-					var text = withPreviews
-						? $"<a href=\"{link}\">{name}</a> {await MakePagePreview(one, pageID, css)}"
-						: $"<a href=\"{link}\">{name}</a>";
+					var label = $"<a href=\"{link}\">{name}</a>";
+					if (headingLevels > 0)
+					{
+						// scope bold to just the page name/link so it doesn't bleed into the
+						// (italic) preview span appended below
+						label = $"<span style='font-weight:bold'>{label}</span>";
+					}
 
-					container.Add(new Paragraph(text));
+					var text = withPreviews
+						? $"{label} {await MakePagePreview(one, pageID, css)}"
+						: label;
+
+					var paragraph = new Paragraph(text);
+					if (headingLevels > 0)
+					{
+						paragraph.SetQuickStyle(pageNameStyle.Index);
+					}
+
+					container.Add(paragraph);
+
+					if (headingLevels > 0)
+					{
+						await AddPageHeadings(one, container.Elements().Last(), pageID);
+					}
 
 					index++;
 				}
@@ -175,6 +232,64 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 			}
 
 			return $"<span style=\"{css}\">{LongDash} {preview}</span>";
+		}
+
+
+		private async Task AddPageHeadings(OneNote one, XElement pageOE, string pageID)
+		{
+			var page = await one.GetPage(pageID);
+
+			var headings = page.GetHeadings(one)
+				.Where(h => h.Level <= headingLevels).ToList();
+
+			if (headings.Count == 0)
+			{
+				return;
+			}
+
+			var children = new XElement(PageNamespace.Value + "OEChildren");
+			var index = 0;
+			BuildHeadingParagraphs(children, headings, ref index, headings.Min(h => h.Level));
+
+			pageOE.Add(children);
+		}
+
+
+		private void BuildHeadingParagraphs(
+			XElement container, List<Heading> headings, ref int index, int level)
+		{
+			while (index < headings.Count)
+			{
+				var heading = headings[index];
+
+				if (heading.Level > level)
+				{
+					var children = new XElement(PageNamespace.Value + "OEChildren");
+					BuildHeadingParagraphs(children, headings, ref index, heading.Level);
+					if (!container.Elements().Any())
+					{
+						container.Add(new Paragraph());
+					}
+
+					container.Elements().Last().Add(children);
+					index--;
+				}
+				else if (heading.Level == level)
+				{
+					var clean = CleanHeadingText(heading.Text);
+					var text = string.IsNullOrEmpty(heading.Link)
+						? clean
+						: $"<a href=\"{heading.Link}\">{clean}</a>";
+
+					container.Add(new Paragraph(text).SetQuickStyle(quoteStyle.Index));
+				}
+				else
+				{
+					break;
+				}
+
+				index++;
+			}
 		}
 
 

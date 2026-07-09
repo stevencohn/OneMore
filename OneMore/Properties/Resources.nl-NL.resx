@@ -1940,6 +1940,84 @@ Gele achtergrond</value>
     <value>Schuif cellen naar rechts</value>
     <comment>radio</comment>
   </data>
+  <data name="InsertNotebookTocDialog_pagesBox.Text" xml:space="preserve">
+    <value>Voeg pagina's toe aan elke sectie</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertNotebookTocDialog_previewBox" xml:space="preserve">
+    <value>Voeg een tekstvoorbeeld van elke pagina toe</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertNotebookTocDialog_Text" xml:space="preserve">
+    <value>Sectietabel in notitieboekje</value>
+    <comment>radio</comment>
+  </data>
+  <data name="InsertNotebookTocDialog_timeBox" xml:space="preserve">
+    <value>Update de datum en tijd van de pagina</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertPageTocDialog_levelsLabel.Text" xml:space="preserve">
+    <value>Niveaus weergeven</value>
+    <comment>label</comment>
+  </data>
+  <data name="InsertPageTocDialog_locationBox.Text" xml:space="preserve">
+    <value>Bovenaan de pagina
+Bovenaan de pagina, overlay
+Bij de huidige cursor</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="InsertPageTocDialog_locationLabel.Text" xml:space="preserve">
+    <value>Locatie invoegen</value>
+    <comment>label</comment>
+  </data>
+  <data name="InsertPageTocDialog_rightAlignBox.Text" xml:space="preserve">
+    <value>Link bovenaan de pagina rechts uitlijnen</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertPageTocDialog_secondaryBox.Text" xml:space="preserve">
+    <value>Voeg koppen uit tabellen en lijsten toe</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertPageTocDialog_styleBox.Text" xml:space="preserve">
+    <value>Standaard paginatitel
+Standaardkop 1
+Standaardkop 2
+Standaardkop 3
+Aangepaste paginatitel
+Aangepaste kop 1
+Aangepaste kop 2
+Aangepaste kop 3</value>
+    <comment>cobobox</comment>
+  </data>
+  <data name="InsertPageTocDialog_styleLabel.Text" xml:space="preserve">
+    <value>Titelstijl</value>
+    <comment>label</comment>
+  </data>
+  <data name="InsertPageTocDialog_Text" xml:space="preserve">
+    <value>Inhoudsopgave invoegen</value>
+    <comment>radio</comment>
+  </data>
+  <data name="InsertPageTocDialog_todoBox.Text" xml:space="preserve">
+    <value>Geen
+Stembus
+Rode Cirkel
+Rode Plein
+Blauw Vierkant
+Oranje Vierkant
+Geel Vierkant
+Groen Vierkant
+Paars Vierkant
+Bruin Vierkant</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="InsertPageTocDialog_todoLabel.Text" xml:space="preserve">
+    <value>Mark Todo-rubrieken</value>
+    <comment>label</comment>
+  </data>
+  <data name="InsertPageTocDialog_topBox.Text" xml:space="preserve">
+    <value>Voeg een link toe aan elke kop om naar de bovenkant van de pagina te gaan</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="InsertQRCommand_MaxLength" xml:space="preserve">
     <value>De geselecteerde tekst mag niet langer zijn dan {0} tekens</value>
     <comment>message</comment>
@@ -1947,6 +2025,22 @@ Gele achtergrond</value>
   <data name="InsertQRCommand_NoSelection" xml:space="preserve">
     <value>Selecteer tekst om weer te geven als een nieuwe QR-code</value>
     <comment>message</comment>
+  </data>
+  <data name="InsertSectionTocDialog_headingsBox.Text" xml:space="preserve">
+    <value>Voeg kopjes toe aan elke pagina</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertSectionTocDialog_previewBox" xml:space="preserve">
+    <value>Voeg een tekstvoorbeeld van elke pagina toe</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertSectionTocDialog_Text" xml:space="preserve">
+    <value>Tabel met pagina's in sectie</value>
+    <comment>radio</comment>
+  </data>
+  <data name="InsertSectionTocDialog_timeBox" xml:space="preserve">
+    <value>Update de datum en tijd van de pagina</value>
+    <comment>checkbox</comment>
   </data>
   <data name="InsertSnippets_CouldNotLoad" xml:space="preserve">
     <value>Cloud fragment van "{0}" niet laden</value>
@@ -1971,88 +2065,6 @@ Gele achtergrond</value>
   <data name="InsertTocCommand_Top" xml:space="preserve">
     <value>Bovenaan de pagina</value>
     <comment>hyperlink</comment>
-  </data>
-  <data name="InsertTocDialog_levelsLabel.Text" xml:space="preserve">
-    <value>Niveaus weergeven</value>
-    <comment>label</comment>
-  </data>
-  <data name="InsertTocDialog_locationBox.Text" xml:space="preserve">
-    <value>Bovenaan de pagina
-Bovenaan de pagina, overlay
-Bij de huidige cursor</value>
-    <comment>combobox</comment>
-  </data>
-  <data name="InsertTocDialog_locationLabel.Text" xml:space="preserve">
-    <value>Locatie invoegen</value>
-    <comment>label</comment>
-  </data>
-  <data name="InsertTocDialog_notebookRadio.Text" xml:space="preserve">
-    <value>Nieuwe pagina met index van secties in dit notitieboekje</value>
-    <comment>radio</comment>
-  </data>
-  <data name="InsertTocDialog_pageRadio.Text" xml:space="preserve">
-    <value>Voeg een tabel met koppen in op deze pagina</value>
-    <comment>radio</comment>
-  </data>
-  <data name="InsertTocDialog_pagesBox.Text" xml:space="preserve">
-    <value>Voeg pagina's toe aan elke sectie</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="InsertTocDialog_previewBox" xml:space="preserve">
-    <value>Voeg tekst preview van elke pagina toe</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="InsertTocDialog_rightAlignBox.Text" xml:space="preserve">
-    <value>Link bovenaan de pagina rechts uitlijnen</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="InsertTocDialog_secondaryBox.Text" xml:space="preserve">
-    <value>Voeg koppen uit tabellen en lijsten toe</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="InsertTocDialog_sectionRadio.Text" xml:space="preserve">
-    <value>Nieuwe pagina met index van pagina's in deze sectie</value>
-    <comment>radio</comment>
-  </data>
-  <data name="InsertTocDialog_styleBox.Text" xml:space="preserve">
-    <value>Standaard paginatitel
-Standaardkop 1
-Standaardkop 2
-Standaardkop 3
-Aangepaste paginatitel
-Aangepaste kop 1
-Aangepaste kop 2
-Aangepaste kop 3</value>
-    <comment>cobobox</comment>
-  </data>
-  <data name="InsertTocDialog_styleLabel.Text" xml:space="preserve">
-    <value>Titelstijl</value>
-    <comment>label</comment>
-  </data>
-  <data name="InsertTocDialog_timeBox" xml:space="preserve">
-    <value>Update pagina datum en tijd</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="InsertTocDialog_todoBox.Text" xml:space="preserve">
-    <value>Geen
-Stembus
-Rode Cirkel
-Rode Plein
-Blauw Vierkant
-Oranje Vierkant
-Geel Vierkant
-Groen Vierkant
-Paars Vierkant
-Bruin Vierkant</value>
-    <comment>combobox</comment>
-  </data>
-  <data name="InsertTocDialog_todoLabel.Text" xml:space="preserve">
-    <value>Mark Todo-rubrieken</value>
-    <comment>label</comment>
-  </data>
-  <data name="InsertTocDialog_topBox.Text" xml:space="preserve">
-    <value>Voeg een link toe aan elke kop om naar de bovenkant van de pagina te gaan</value>
-    <comment>checkbox</comment>
   </data>
   <data name="InsertTocForNotebook_RefreshQuestion" xml:space="preserve">
     <value>Er is een inhoudsopgave voor dit notitieboekje. U kunt die pagina vernieuwen of een nieuwe pagina maken.
@@ -3925,12 +3937,28 @@ Tabblad Help</value>
     <value>Plaats een informatievak</value>
     <comment>ribbon snippets</comment>
   </data>
+  <data name="ribInsertNotebookTocButton_Label" xml:space="preserve">
+    <value>Tabel met secties in Notebook</value>
+    <comment>ribbon snippets NODUP</comment>
+  </data>
+  <data name="ribInsertNotebookTocButton_Screentip" xml:space="preserve">
+    <value>Voeg een tabel met secties voor dit notitieboekje in</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribInsertNoteBoxButton_Label" xml:space="preserve">
     <value>Notities vak</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertNoteBoxButton_Screentip" xml:space="preserve">
     <value>Plaats een notitievak</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertPageTocButton_Label" xml:space="preserve">
+    <value>Inhoudsopgave</value>
+    <comment>ribbon snippets NODUP</comment>
+  </data>
+  <data name="ribInsertPageTocButton_Screentip" xml:space="preserve">
+    <value>Voeg bovenaan de pagina een inhoudsopgave met kopjes in</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertQRButton_Label" xml:space="preserve">
@@ -3947,6 +3975,14 @@ Tabblad Help</value>
   </data>
   <data name="ribInsertRedStatusButton_Screentip" xml:space="preserve">
     <value>Plaats een rood statuslabel</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertSectionTocButton_Label" xml:space="preserve">
+    <value>Tabel met pagina's in sectie</value>
+    <comment>ribbon snippets NODUP</comment>
+  </data>
+  <data name="ribInsertSectionTocButton_Screentip" xml:space="preserve">
+    <value>Voeg een tabel met pagina's in voor deze sectie</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertSingleLineButton_Label" xml:space="preserve">
@@ -3972,14 +4008,6 @@ Tabblad Help</value>
   <data name="ribInsertTimerButton_Screentip" xml:space="preserve">
     <value>Voer de huidige timerwaarde in</value>
     <comment>ribbon extras</comment>
-  </data>
-  <data name="ribInsertTocButton_Label" xml:space="preserve">
-    <value>Inhoudsopgave</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
-  </data>
-  <data name="ribInsertTocButton_Screentip" xml:space="preserve">
-    <value>Plaats een inhoudsopgave met koppen bovenaan de pagina</value>
-    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertWarnBoxButton_Label" xml:space="preserve">
     <value>Waarschuwingsdoos</value>

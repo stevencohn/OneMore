@@ -1935,6 +1935,84 @@ Gelber Hintergrund</value>
     <value>Verschiebe die Zellen nach rechts</value>
     <comment>radio</comment>
   </data>
+  <data name="InsertNotebookTocDialog_pagesBox.Text" xml:space="preserve">
+    <value>Fügen Sie Seiten in jeden Abschnitt ein</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertNotebookTocDialog_previewBox" xml:space="preserve">
+    <value>Fügen Sie eine Textvorschau jeder Seite hinzu</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertNotebookTocDialog_Text" xml:space="preserve">
+    <value>Abschnittstabelle im Notizbuch</value>
+    <comment>radio</comment>
+  </data>
+  <data name="InsertNotebookTocDialog_timeBox" xml:space="preserve">
+    <value>Datum und Uhrzeit der Seite aktualisieren</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertPageTocDialog_levelsLabel.Text" xml:space="preserve">
+    <value>Ebenen anzeigen</value>
+    <comment>label</comment>
+  </data>
+  <data name="InsertPageTocDialog_locationBox.Text" xml:space="preserve">
+    <value>Oben auf der Seite
+Oben auf der Seite, überlagert
+Am aktuellen Cursor</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="InsertPageTocDialog_locationLabel.Text" xml:space="preserve">
+    <value>Ort einfügen</value>
+    <comment>label</comment>
+  </data>
+  <data name="InsertPageTocDialog_rightAlignBox.Text" xml:space="preserve">
+    <value>Richten Sie den Link oben auf der Seite rechtsbündig aus</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertPageTocDialog_secondaryBox.Text" xml:space="preserve">
+    <value>Fügen Sie Überschriften aus Tabellen und Listen ein</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertPageTocDialog_styleBox.Text" xml:space="preserve">
+    <value>Standardseitentitel
+Standardüberschrift 1
+Standardüberschrift 2
+Standardüberschrift 3
+Benutzerdefinierter Seitentitel
+Benutzerdefinierte Überschrift 1
+Benutzerdefinierte Überschrift 2
+Benutzerdefinierte Überschrift 3</value>
+    <comment>cobobox</comment>
+  </data>
+  <data name="InsertPageTocDialog_styleLabel.Text" xml:space="preserve">
+    <value>Titelstil</value>
+    <comment>label</comment>
+  </data>
+  <data name="InsertPageTocDialog_Text" xml:space="preserve">
+    <value>Inhaltsverzeichnis einfügen</value>
+    <comment>radio</comment>
+  </data>
+  <data name="InsertPageTocDialog_todoBox.Text" xml:space="preserve">
+    <value>Keiner
+Urne
+Roter Kreis
+Roter Platz
+Blaues Quadrat
+Orangefarbenes Quadrat
+Gelbes Quadrat
+Grüner Platz
+Lila Quadrat
+Braunes Quadrat</value>
+    <comment>combobox</comment>
+  </data>
+  <data name="InsertPageTocDialog_todoLabel.Text" xml:space="preserve">
+    <value>Todo-Überschriften markieren</value>
+    <comment>label</comment>
+  </data>
+  <data name="InsertPageTocDialog_topBox.Text" xml:space="preserve">
+    <value>Fügen Sie zu jeder Überschrift einen Link hinzu, um zum Seitenanfang zu springen</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="InsertQRCommand_MaxLength" xml:space="preserve">
     <value>Der ausgewählte Text darf {0} Zeichen nicht überschreiten</value>
     <comment>message</comment>
@@ -1942,6 +2020,22 @@ Gelber Hintergrund</value>
   <data name="InsertQRCommand_NoSelection" xml:space="preserve">
     <value>Wähle den Text aus, der als neuer QR-Code gerendert werden soll</value>
     <comment>message</comment>
+  </data>
+  <data name="InsertSectionTocDialog_headingsBox.Text" xml:space="preserve">
+    <value>Fügen Sie auf jeder Seite Überschriften ein</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertSectionTocDialog_previewBox" xml:space="preserve">
+    <value>Fügen Sie eine Textvorschau jeder Seite hinzu</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="InsertSectionTocDialog_Text" xml:space="preserve">
+    <value>Seitenverzeichnis im Abschnitt</value>
+    <comment>radio</comment>
+  </data>
+  <data name="InsertSectionTocDialog_timeBox" xml:space="preserve">
+    <value>Datum und Uhrzeit der Seite aktualisieren</value>
+    <comment>checkbox</comment>
   </data>
   <data name="InsertSnippets_CouldNotLoad" xml:space="preserve">
     <value>Snippet konnte nicht aus "{0}" geladen werden</value>
@@ -1966,88 +2060,6 @@ Gelber Hintergrund</value>
   <data name="InsertTocCommand_Top" xml:space="preserve">
     <value>Seitenanfang</value>
     <comment>hyperlink</comment>
-  </data>
-  <data name="InsertTocDialog_levelsLabel.Text" xml:space="preserve">
-    <value>Ebenen anzeigen</value>
-    <comment>label</comment>
-  </data>
-  <data name="InsertTocDialog_locationBox.Text" xml:space="preserve">
-    <value>Oben auf der Seite
-Oben auf der Seite, überlagert
-Am aktuellen Cursor</value>
-    <comment>combobox</comment>
-  </data>
-  <data name="InsertTocDialog_locationLabel.Text" xml:space="preserve">
-    <value>Ort einfügen</value>
-    <comment>label</comment>
-  </data>
-  <data name="InsertTocDialog_notebookRadio.Text" xml:space="preserve">
-    <value>Neue Seite mit Index der Abschnitte in diesem Notizbuch</value>
-    <comment>radio</comment>
-  </data>
-  <data name="InsertTocDialog_pageRadio.Text" xml:space="preserve">
-    <value>Füge auf dieser Seite eine Tabelle mit Überschriften ein</value>
-    <comment>radio</comment>
-  </data>
-  <data name="InsertTocDialog_pagesBox.Text" xml:space="preserve">
-    <value>Füge Seiten in jeden Abschnitt ein</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="InsertTocDialog_previewBox" xml:space="preserve">
-    <value>Füge die Textvorschau der jeder Seite ein</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="InsertTocDialog_rightAlignBox.Text" xml:space="preserve">
-    <value>Link zum Seitenanfang rechtsbündig ausrichten</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="InsertTocDialog_secondaryBox.Text" xml:space="preserve">
-    <value>Fügen Sie Überschriften aus Tabellen und Listen ein</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="InsertTocDialog_sectionRadio.Text" xml:space="preserve">
-    <value>Neue Seite mit Seitenindex in diesem Abschnitt</value>
-    <comment>radio</comment>
-  </data>
-  <data name="InsertTocDialog_styleBox.Text" xml:space="preserve">
-    <value>Standardseitentitel
-Standardüberschrift 1
-Standardüberschrift 2
-Standardüberschrift 3
-Benutzerdefinierter Seitentitel
-Benutzerdefinierte Überschrift 1
-Benutzerdefinierte Überschrift 2
-Benutzerdefinierte Überschrift 3</value>
-    <comment>cobobox</comment>
-  </data>
-  <data name="InsertTocDialog_styleLabel.Text" xml:space="preserve">
-    <value>Titelstil</value>
-    <comment>label</comment>
-  </data>
-  <data name="InsertTocDialog_timeBox" xml:space="preserve">
-    <value>Datum und Uhrzeit des Seitens aktualisieren</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="InsertTocDialog_todoBox.Text" xml:space="preserve">
-    <value>Keiner
-Urne
-Roter Kreis
-Roter Platz
-Blaues Quadrat
-Orangefarbenes Quadrat
-Gelbes Quadrat
-Grüner Platz
-Lila Quadrat
-Braunes Quadrat</value>
-    <comment>combobox</comment>
-  </data>
-  <data name="InsertTocDialog_todoLabel.Text" xml:space="preserve">
-    <value>Todo-Überschriften markieren</value>
-    <comment>label</comment>
-  </data>
-  <data name="InsertTocDialog_topBox.Text" xml:space="preserve">
-    <value>Füge jeder Überschrift einen Link hinzu, um zum Seitenanfang zu springen</value>
-    <comment>checkbox</comment>
   </data>
   <data name="InsertTocForNotebook_RefreshQuestion" xml:space="preserve">
     <value>Für dieses Notizbuch gibt es eine Seite mit einem Inhaltsverzeichnis. Sie können diese Seite aktualisieren oder eine neue Seite erstellen.
@@ -3924,12 +3936,28 @@ Registerkarte „Hilfe“.</value>
     <value>Fügt einen Informationsblock ein</value>
     <comment>ribbon snippets</comment>
   </data>
+  <data name="ribInsertNotebookTocButton_Label" xml:space="preserve">
+    <value>Tabelle der Abschnitte im Notizbuch</value>
+    <comment>ribbon snippets NODUP</comment>
+  </data>
+  <data name="ribInsertNotebookTocButton_Screentip" xml:space="preserve">
+    <value>Fügen Sie eine Abschnittstabelle für dieses Notizbuch ein</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribInsertNoteBoxButton_Label" xml:space="preserve">
     <value>Notizenbox</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertNoteBoxButton_Screentip" xml:space="preserve">
     <value>Fügen Sie ein Notizfeld ein</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertPageTocButton_Label" xml:space="preserve">
+    <value>Inhaltsverzeichnis</value>
+    <comment>ribbon snippets NODUP</comment>
+  </data>
+  <data name="ribInsertPageTocButton_Screentip" xml:space="preserve">
+    <value>Fügen Sie oben auf der Seite ein Überschriften-Inhaltsverzeichnis ein</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertQRButton_Label" xml:space="preserve">
@@ -3946,6 +3974,14 @@ Registerkarte „Hilfe“.</value>
   </data>
   <data name="ribInsertRedStatusButton_Screentip" xml:space="preserve">
     <value>Fügt ein rotes Statuslabel ein</value>
+    <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertSectionTocButton_Label" xml:space="preserve">
+    <value>Seitenverzeichnis im Abschnitt</value>
+    <comment>ribbon snippets NODUP</comment>
+  </data>
+  <data name="ribInsertSectionTocButton_Screentip" xml:space="preserve">
+    <value>Fügen Sie für diesen Abschnitt ein Seitenverzeichnis ein</value>
     <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertSingleLineButton_Label" xml:space="preserve">
@@ -3971,14 +4007,6 @@ Registerkarte „Hilfe“.</value>
   <data name="ribInsertTimerButton_Screentip" xml:space="preserve">
     <value>Fügt den aktuellen Timerwert ein</value>
     <comment>ribbon extras</comment>
-  </data>
-  <data name="ribInsertTocButton_Label" xml:space="preserve">
-    <value>Inhaltsverzeichnis</value>
-    <comment>Ribbon OneMore menu item, Extras...</comment>
-  </data>
-  <data name="ribInsertTocButton_Screentip" xml:space="preserve">
-    <value>Fügt oben auf der Seite ein Inhaltsverzeichnis für Überschriften ein</value>
-    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertWarnBoxButton_Label" xml:space="preserve">
     <value>Warnbox</value>

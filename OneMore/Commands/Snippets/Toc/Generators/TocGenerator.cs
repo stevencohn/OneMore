@@ -2,12 +2,13 @@
 // Copyright © 2016 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
+namespace River.OneMoreAddIn.Commands.Snippets.Toc.Generators
 {
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Styles;
 	using System.Collections.Generic;
 	using System.Linq;
+	using System.Security;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
 	using Resx = Properties.Resources;
@@ -166,9 +167,31 @@ namespace River.OneMoreAddIn.Commands.Snippets.TocGenerators
 
 
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		/// <returns></returns>
 		public abstract Task<RefreshOption> RefreshExistingPage();
+
+
+		/// <summary>
+		/// Escape and strip embedded hyperlinks from heading text so it can be safely
+		/// wrapped in a new anchor tag.
+		/// </summary>
+		/// <param name="text">The raw heading text, possibly containing markup</param>
+		/// <returns>The cleaned text</returns>
+		protected static string CleanHeadingText(string text)
+		{
+			// Escape URI to handle special chars like '&'
+			// removes hyperlinks from the text of a heading so the TOC hyperlink can be applied
+			// clean up illegal directives; can be caused by using "Clip to OneNote" from Edge
+			var wrapper = new XCData(SecurityElement.Escape(text)).GetWrapper();
+			var links = wrapper.Elements("a").ToList();
+			foreach (var link in links)
+			{
+				link.ReplaceWith(link.Value);
+			}
+
+			return wrapper.ToString(SaveOptions.DisableFormatting);
+		}
 	}
 }
