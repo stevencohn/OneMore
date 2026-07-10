@@ -59,7 +59,15 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private static string NormalizeTags(string tags)
+		/// <summary>
+		/// Normalizes a space/tab-separated list of words into hashtags, adding a leading
+		/// '#' to any token that doesn't already have one. Exposed for reuse by other
+		/// commands (e.g. CreateJournalCommand) that need to tag pages they create directly
+		/// rather than through the CLI.
+		/// </summary>
+		/// <param name="tags">A space/tab-separated list of words, with or without '#'</param>
+		/// <returns>A space-separated list of hashtags, each prefixed with '#'</returns>
+		internal static string NormalizeTags(string tags)
 		{
 			var tokens = tags
 				.Split(new[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
@@ -82,7 +90,15 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private static bool AddTagsToBank(Page page, string tags)
+		/// <summary>
+		/// Adds the given (already-normalized) hashtags to the tag bank at the top of the
+		/// given page, creating the bank if it doesn't already exist. Exposed for reuse by
+		/// other commands (e.g. CreateJournalCommand).
+		/// </summary>
+		/// <param name="page">The page to update; not saved by this method</param>
+		/// <param name="tags">A space-separated list of hashtags, each prefixed with '#'</param>
+		/// <returns>True if the page was updated and should be saved</returns>
+		internal static bool AddTagsToBank(Page page, string tags)
 		{
 			var ns = page.Namespace;
 			var banker = new TagBankCommand();

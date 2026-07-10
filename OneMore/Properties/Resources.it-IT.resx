@@ -667,6 +667,98 @@ Vuoi continuare?</value>
     <value>Applica colonne di testo ai titoli delle pagine secondarie</value>
     <comment>checkbox</comment>
   </data>
+  <data name="CreateJournalCommand_cancelled" xml:space="preserve">
+    <value>Create {0} di {1} pagine di diario prima che l'operazione fosse annullata.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CreateJournalCommand_noNotebook" xml:space="preserve">
+    <value>Apri un taccuino prima di creare un diario</value>
+    <comment>error dialog</comment>
+  </data>
+  <data name="CreateJournalCommand_syncError" xml:space="preserve">
+    <value>OneMore non può creare pagine mentre OneNote è in fase di sincronizzazione. Riprova tra un attimo.</value>
+    <comment>error dialog</comment>
+  </data>
+  <data name="CreateJournalDialog.Text" xml:space="preserve">
+    <value>Crea diario</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="CreateJournalDialog_currentSectionRadio.Text" xml:space="preserve">
+    <value>Sezione attuale</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="CreateJournalDialog_dateFormatLabel.Text" xml:space="preserve">
+    <value>Formato data</value>
+    <comment>label</comment>
+  </data>
+  <data name="CreateJournalDialog_dayRangeLabel.Text" xml:space="preserve">
+    <value>Intervallo di giorni</value>
+    <comment>label</comment>
+  </data>
+  <data name="CreateJournalDialog_destinationLabel.Text" xml:space="preserve">
+    <value>Destinazione</value>
+    <comment>label</comment>
+  </data>
+  <data name="CreateJournalDialog_hashtagsLabel.Text" xml:space="preserve">
+    <value>Hashtag</value>
+    <comment>label</comment>
+  </data>
+  <data name="CreateJournalDialog_invalidSectionName" xml:space="preserve">
+    <value>Il nome contiene caratteri non validi o supera i 50 caratteri</value>
+    <comment>inline validation message</comment>
+  </data>
+  <data name="CreateJournalDialog_monthLabel.Text" xml:space="preserve">
+    <value>Mese</value>
+    <comment>label</comment>
+  </data>
+  <data name="CreateJournalDialog_newSectionRadio.Text" xml:space="preserve">
+    <value>Nuova sezione</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="CreateJournalDialog_previewCurrent" xml:space="preserve">
+    <value>Ciò creerà {0} pagine ({1}) nella sezione corrente.</value>
+    <comment>live preview label</comment>
+  </data>
+  <data name="CreateJournalDialog_previewNew" xml:space="preserve">
+    <value>Ciò creerà {0} pagine ({1}) in una nuova sezione denominata '{2}'.</value>
+    <comment>live preview label</comment>
+  </data>
+  <data name="CreateJournalDialog_sectionCollision" xml:space="preserve">
+    <value>Esiste già una sezione denominata '{0}'. Scegli un nome diverso o seleziona "Sezione corrente".</value>
+    <comment>inline validation message</comment>
+  </data>
+  <data name="CreateJournalDialog_sectionNameLabel.Text" xml:space="preserve">
+    <value>Nuovo nome della sezione</value>
+    <comment>label</comment>
+  </data>
+  <data name="CreateJournalDialog_titleLabel.Text" xml:space="preserve">
+    <value>Titolo</value>
+    <comment>label</comment>
+  </data>
+  <data name="CreateJournalDialog_titleLooksLikeDate" xml:space="preserve">
+    <value>Il titolo non può assomigliare a una data</value>
+    <comment>inline validation message</comment>
+  </data>
+  <data name="CreateJournalDialog_weekdaysOnly" xml:space="preserve">
+    <value>solo nei giorni feriali</value>
+    <comment>day range description used in live preview</comment>
+  </data>
+  <data name="CreateJournalDialog_weekdaysOnlyRadio.Text" xml:space="preserve">
+    <value>Solo nei giorni feriali</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="CreateJournalDialog_weekdaysWeekends" xml:space="preserve">
+    <value>giorni feriali e fine settimana</value>
+    <comment>day range description used in live preview</comment>
+  </data>
+  <data name="CreateJournalDialog_weekdaysWeekendsRadio.Text" xml:space="preserve">
+    <value>Giorni feriali e fine settimana</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="CreateJournalDialog_yearLabel.Text" xml:space="preserve">
+    <value>Anno</value>
+    <comment>label</comment>
+  </data>
   <data name="CreatePagesCommand_CreatePages" xml:space="preserve">
     <value>Desideri creare {0} pagine?</value>
     <comment>message box</comment>
@@ -3534,6 +3626,14 @@ Scheda Aiuto</value>
     <value>Importa collegamenti ipertestuali come nuove pagine</value>
     <comment>ribbon file</comment>
   </data>
+  <data name="ribCreateJournalButton_Label" xml:space="preserve">
+    <value>Crea diario</value>
+    <comment>ribbon snippets NODUP</comment>
+  </data>
+  <data name="ribCreateJournalButton_Screentip" xml:space="preserve">
+    <value>Genera un mese di pagine di diario datate</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribCreatePagesButton_Label" xml:space="preserve">
     <value>Crea pagine dall'elenco</value>
     <comment>ribbon page</comment>
@@ -5988,6 +6088,9 @@ Grazie!</value>
   <data name="word_Delete" xml:space="preserve">
     <value>Eliminare</value>
   </data>
+  <data name="word_Diary" xml:space="preserve">
+    <value>Diaria</value>
+  </data>
   <data name="word_Distance" xml:space="preserve">
     <value>Distanza</value>
   </data>
@@ -6056,6 +6159,9 @@ Grazie!</value>
   </data>
   <data name="word_Information" xml:space="preserve">
     <value>Informazioni</value>
+  </data>
+  <data name="word_Journal" xml:space="preserve">
+    <value>Diaria</value>
   </data>
   <data name="word_Language" xml:space="preserve">
     <value>Lingua</value>

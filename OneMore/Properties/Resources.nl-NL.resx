@@ -666,6 +666,98 @@ Wil je doorgaan?</value>
     <value>Tekstkolommen toepassen op titels van subpagina's</value>
     <comment>checkbox</comment>
   </data>
+  <data name="CreateJournalCommand_cancelled" xml:space="preserve">
+    <value>{0} van {1} journaalpagina's gemaakt voordat de bewerking werd geannuleerd.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CreateJournalCommand_noNotebook" xml:space="preserve">
+    <value>Open een notitieboekje voordat u een dagboek maakt</value>
+    <comment>error dialog</comment>
+  </data>
+  <data name="CreateJournalCommand_syncError" xml:space="preserve">
+    <value>OneMore kan geen pagina's maken terwijl OneNote aan het synchroniseren is. Probeer het zo nog eens.</value>
+    <comment>error dialog</comment>
+  </data>
+  <data name="CreateJournalDialog.Text" xml:space="preserve">
+    <value>Journaal maken</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="CreateJournalDialog_currentSectionRadio.Text" xml:space="preserve">
+    <value>Huidige sectie</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="CreateJournalDialog_dateFormatLabel.Text" xml:space="preserve">
+    <value>Datumformaat</value>
+    <comment>label</comment>
+  </data>
+  <data name="CreateJournalDialog_dayRangeLabel.Text" xml:space="preserve">
+    <value>Dagbereik</value>
+    <comment>label</comment>
+  </data>
+  <data name="CreateJournalDialog_destinationLabel.Text" xml:space="preserve">
+    <value>Bestemming</value>
+    <comment>label</comment>
+  </data>
+  <data name="CreateJournalDialog_hashtagsLabel.Text" xml:space="preserve">
+    <value>Hashtags</value>
+    <comment>label</comment>
+  </data>
+  <data name="CreateJournalDialog_invalidSectionName" xml:space="preserve">
+    <value>Naam bevat ongeldige tekens of bevat meer dan 50 tekens</value>
+    <comment>inline validation message</comment>
+  </data>
+  <data name="CreateJournalDialog_monthLabel.Text" xml:space="preserve">
+    <value>Maand</value>
+    <comment>label</comment>
+  </data>
+  <data name="CreateJournalDialog_newSectionRadio.Text" xml:space="preserve">
+    <value>Nieuwe sectie</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="CreateJournalDialog_previewCurrent" xml:space="preserve">
+    <value>Hierdoor worden er {0} pagina's ({1}) gemaakt in de huidige sectie.</value>
+    <comment>live preview label</comment>
+  </data>
+  <data name="CreateJournalDialog_previewNew" xml:space="preserve">
+    <value>Hierdoor worden {0} pagina's ({1}) gemaakt in een nieuwe sectie met de naam '{2}'.</value>
+    <comment>live preview label</comment>
+  </data>
+  <data name="CreateJournalDialog_sectionCollision" xml:space="preserve">
+    <value>Er bestaat al een sectie met de naam '{0}'. Kies een andere naam of selecteer 'Huidige sectie'.</value>
+    <comment>inline validation message</comment>
+  </data>
+  <data name="CreateJournalDialog_sectionNameLabel.Text" xml:space="preserve">
+    <value>Nieuwe sectienaam</value>
+    <comment>label</comment>
+  </data>
+  <data name="CreateJournalDialog_titleLabel.Text" xml:space="preserve">
+    <value>Titel</value>
+    <comment>label</comment>
+  </data>
+  <data name="CreateJournalDialog_titleLooksLikeDate" xml:space="preserve">
+    <value>Titel mag niet op een datum lijken</value>
+    <comment>inline validation message</comment>
+  </data>
+  <data name="CreateJournalDialog_weekdaysOnly" xml:space="preserve">
+    <value>alleen weekdagen</value>
+    <comment>day range description used in live preview</comment>
+  </data>
+  <data name="CreateJournalDialog_weekdaysOnlyRadio.Text" xml:space="preserve">
+    <value>Alleen weekdagen</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="CreateJournalDialog_weekdaysWeekends" xml:space="preserve">
+    <value>weekdagen en weekenden</value>
+    <comment>day range description used in live preview</comment>
+  </data>
+  <data name="CreateJournalDialog_weekdaysWeekendsRadio.Text" xml:space="preserve">
+    <value>Weekdagen en weekenden</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="CreateJournalDialog_yearLabel.Text" xml:space="preserve">
+    <value>Jaar</value>
+    <comment>label</comment>
+  </data>
   <data name="CreatePagesCommand_CreatePages" xml:space="preserve">
     <value>Wilt u {0} pagina's maken?</value>
     <comment>message box</comment>
@@ -3530,6 +3622,14 @@ Tabblad Help</value>
     <value>Importeer hyperlinks als nieuwe pagina's</value>
     <comment>ribbon file</comment>
   </data>
+  <data name="ribCreateJournalButton_Label" xml:space="preserve">
+    <value>Journaal maken</value>
+    <comment>ribbon snippets NODUP</comment>
+  </data>
+  <data name="ribCreateJournalButton_Screentip" xml:space="preserve">
+    <value>Genereer een maand met gedateerde dagboekpagina's</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribCreatePagesButton_Label" xml:space="preserve">
     <value>Pagina's maken van lijst</value>
     <comment>ribbon item</comment>
@@ -5981,6 +6081,9 @@ Bedankt!</value>
   <data name="word_Delete" xml:space="preserve">
     <value>Verwijderen</value>
   </data>
+  <data name="word_Diary" xml:space="preserve">
+    <value>Dagboek</value>
+  </data>
   <data name="word_Distance" xml:space="preserve">
     <value>Afstand</value>
   </data>
@@ -6049,6 +6152,9 @@ Bedankt!</value>
   </data>
   <data name="word_Information" xml:space="preserve">
     <value>Informatie</value>
+  </data>
+  <data name="word_Journal" xml:space="preserve">
+    <value>Tijdschrift</value>
   </data>
   <data name="word_Language" xml:space="preserve">
     <value>Taal</value>
