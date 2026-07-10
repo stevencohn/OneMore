@@ -290,6 +290,7 @@ __pycache__/
 *.xsd.cs
 
 OneNote_RecycleBin/
+specs/
 /docs/OneMore Wiki.zip
 *.clean.json
 *.clean.vdproj
