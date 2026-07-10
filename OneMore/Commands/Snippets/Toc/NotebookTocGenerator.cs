@@ -153,18 +153,24 @@ namespace River.OneMoreAddIn.Commands.Snippets.Toc
 
 					var name = element.Attribute("name").Value;
 
-					var indent = new XElement(ns + "OEChildren");
-
-					indent.Add(new XElement(ns + "OE",
+					var titleParagraph = new Paragraph(
 						new XElement(ns + "T",
 							// this is a Folder icon... but doesn't look great
 							// <span style='font-family:Segoe UI Emoji'>&#128194; </span>
-							new XCData($"<span style='font-weight:bold'>{name}</span>"))
-						));
+							new XCData($"<span style='font-weight:bold'>{name}</span>")));
 
+					var indent = new XElement(ns + "OEChildren");
 					await BuildSectionTree(one, ns, indent, element.Elements(), level + 1);
 
-					container.Add(new Paragraph(indent));
+					if (indent.HasElements)
+					{
+						titleParagraph.Add(indent);
+					}
+
+					// blank spacer and the group title are plain sibling OEs in the same
+					// container, so both sit at whatever indent level this recursion is at
+					container.Add(new Paragraph(string.Empty));
+					container.Add(titleParagraph);
 				}
 				else if (element.Name.LocalName == "Section" && notBin)
 				{
