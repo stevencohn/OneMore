@@ -1317,6 +1317,213 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Created {0} of {1} journal pages before the operation was cancelled..
+        /// </summary>
+        internal static string CreateJournalCommand_cancelled {
+            get {
+                return ResourceManager.GetString("CreateJournalCommand_cancelled", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Please open a notebook before creating a journal.
+        /// </summary>
+        internal static string CreateJournalCommand_noNotebook {
+            get {
+                return ResourceManager.GetString("CreateJournalCommand_noNotebook", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to OneMore can't create pages while OneNote is syncing. Try again in a moment..
+        /// </summary>
+        internal static string CreateJournalCommand_syncError {
+            get {
+                return ResourceManager.GetString("CreateJournalCommand_syncError", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Create Journal.
+        /// </summary>
+        internal static string CreateJournalDialog_Text {
+            get {
+                return ResourceManager.GetString("CreateJournalDialog.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Date format.
+        /// </summary>
+        internal static string CreateJournalDialog_dateFormatLabel_Text {
+            get {
+                return ResourceManager.GetString("CreateJournalDialog_dateFormatLabel.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Day range.
+        /// </summary>
+        internal static string CreateJournalDialog_dayRangeLabel_Text {
+            get {
+                return ResourceManager.GetString("CreateJournalDialog_dayRangeLabel.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Destination.
+        /// </summary>
+        internal static string CreateJournalDialog_destinationLabel_Text {
+            get {
+                return ResourceManager.GetString("CreateJournalDialog_destinationLabel.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Current section.
+        /// </summary>
+        internal static string CreateJournalDialog_currentSectionRadio_Text {
+            get {
+                return ResourceManager.GetString("CreateJournalDialog_currentSectionRadio.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Hashtags.
+        /// </summary>
+        internal static string CreateJournalDialog_hashtagsLabel_Text {
+            get {
+                return ResourceManager.GetString("CreateJournalDialog_hashtagsLabel.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Name contains invalid characters or exceeds 50 characters.
+        /// </summary>
+        internal static string CreateJournalDialog_invalidSectionName {
+            get {
+                return ResourceManager.GetString("CreateJournalDialog_invalidSectionName", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Month.
+        /// </summary>
+        internal static string CreateJournalDialog_monthLabel_Text {
+            get {
+                return ResourceManager.GetString("CreateJournalDialog_monthLabel.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to New section.
+        /// </summary>
+        internal static string CreateJournalDialog_newSectionRadio_Text {
+            get {
+                return ResourceManager.GetString("CreateJournalDialog_newSectionRadio.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to This will create {0} pages ({1}) in the current section..
+        /// </summary>
+        internal static string CreateJournalDialog_previewCurrent {
+            get {
+                return ResourceManager.GetString("CreateJournalDialog_previewCurrent", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to This will create {0} pages ({1}) in a new section named '{2}'..
+        /// </summary>
+        internal static string CreateJournalDialog_previewNew {
+            get {
+                return ResourceManager.GetString("CreateJournalDialog_previewNew", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to A section named '{0}' already exists. Choose a different name or select 'Current section'..
+        /// </summary>
+        internal static string CreateJournalDialog_sectionCollision {
+            get {
+                return ResourceManager.GetString("CreateJournalDialog_sectionCollision", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to New section name.
+        /// </summary>
+        internal static string CreateJournalDialog_sectionNameLabel_Text {
+            get {
+                return ResourceManager.GetString("CreateJournalDialog_sectionNameLabel.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Title.
+        /// </summary>
+        internal static string CreateJournalDialog_titleLabel_Text {
+            get {
+                return ResourceManager.GetString("CreateJournalDialog_titleLabel.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Title cannot look like a date.
+        /// </summary>
+        internal static string CreateJournalDialog_titleLooksLikeDate {
+            get {
+                return ResourceManager.GetString("CreateJournalDialog_titleLooksLikeDate", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to weekdays only.
+        /// </summary>
+        internal static string CreateJournalDialog_weekdaysOnly {
+            get {
+                return ResourceManager.GetString("CreateJournalDialog_weekdaysOnly", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Weekdays only.
+        /// </summary>
+        internal static string CreateJournalDialog_weekdaysOnlyRadio_Text {
+            get {
+                return ResourceManager.GetString("CreateJournalDialog_weekdaysOnlyRadio.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to weekdays and weekends.
+        /// </summary>
+        internal static string CreateJournalDialog_weekdaysWeekends {
+            get {
+                return ResourceManager.GetString("CreateJournalDialog_weekdaysWeekends", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Weekdays and weekends.
+        /// </summary>
+        internal static string CreateJournalDialog_weekdaysWeekendsRadio_Text {
+            get {
+                return ResourceManager.GetString("CreateJournalDialog_weekdaysWeekendsRadio.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Year.
+        /// </summary>
+        internal static string CreateJournalDialog_yearLabel_Text {
+            get {
+                return ResourceManager.GetString("CreateJournalDialog_yearLabel.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Would you like to create {0} pages?.
         /// </summary>
         internal static string CreatePagesCommand_CreatePages {
@@ -8564,6 +8771,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create Journal.
+        /// </summary>
+        internal static string ribCreateJournalButton_Label {
+            get {
+                return ResourceManager.GetString("ribCreateJournalButton_Label", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Generate a month of dated journal pages.
+        /// </summary>
+        internal static string ribCreateJournalButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribCreateJournalButton_Screentip", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Create Pages from List.
         /// </summary>
         internal static string ribCreatePagesButton_Label {
@@ -14298,7 +14523,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("word_Delete", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Diary.
+        /// </summary>
+        internal static string word_Diary {
+            get {
+                return ResourceManager.GetString("word_Diary", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Distance.
         /// </summary>
@@ -14505,7 +14739,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("word_Information", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Journal.
+        /// </summary>
+        internal static string word_Journal {
+            get {
+                return ResourceManager.GetString("word_Journal", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>

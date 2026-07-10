@@ -141,6 +141,12 @@
         getScreentip="GetRibbonScreentip"
         onAction="InsertCalendarCmd"/>
       <button
+        id="ribCreateJournalButton"
+        imageMso="NewJournalEntry"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="CreateJournalCmd"/>
+      <button
         id="ribInsertDoubleLineButton"
         image="DoubleLine"
         getLabel="GetRibbonLabel"

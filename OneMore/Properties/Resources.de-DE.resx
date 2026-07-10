@@ -669,6 +669,98 @@ Möchten Sie fortfahren?</value>
     <value>Wende Textspalten auf Unterseitentitel an</value>
     <comment>checkbox</comment>
   </data>
+  <data name="CreateJournalCommand_cancelled" xml:space="preserve">
+    <value>{0} von {1} Journalseiten wurden erstellt, bevor der Vorgang abgebrochen wurde.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CreateJournalCommand_noNotebook" xml:space="preserve">
+    <value>Bitte öffnen Sie ein Notizbuch, bevor Sie ein Tagebuch erstellen</value>
+    <comment>error dialog</comment>
+  </data>
+  <data name="CreateJournalCommand_syncError" xml:space="preserve">
+    <value>OneMore kann keine Seiten erstellen, während OneNote synchronisiert wird. Versuchen Sie es gleich noch einmal.</value>
+    <comment>error dialog</comment>
+  </data>
+  <data name="CreateJournalDialog.Text" xml:space="preserve">
+    <value>Tagebuch erstellen</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="CreateJournalDialog_currentSectionRadio.Text" xml:space="preserve">
+    <value>Aktueller Abschnitt</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="CreateJournalDialog_dateFormatLabel.Text" xml:space="preserve">
+    <value>Datumsformat</value>
+    <comment>label</comment>
+  </data>
+  <data name="CreateJournalDialog_dayRangeLabel.Text" xml:space="preserve">
+    <value>Tagesbereich</value>
+    <comment>label</comment>
+  </data>
+  <data name="CreateJournalDialog_destinationLabel.Text" xml:space="preserve">
+    <value>Ziel</value>
+    <comment>label</comment>
+  </data>
+  <data name="CreateJournalDialog_hashtagsLabel.Text" xml:space="preserve">
+    <value>Hashtags</value>
+    <comment>label</comment>
+  </data>
+  <data name="CreateJournalDialog_invalidSectionName" xml:space="preserve">
+    <value>Der Name enthält ungültige Zeichen oder ist länger als 50 Zeichen</value>
+    <comment>inline validation message</comment>
+  </data>
+  <data name="CreateJournalDialog_monthLabel.Text" xml:space="preserve">
+    <value>Monat</value>
+    <comment>label</comment>
+  </data>
+  <data name="CreateJournalDialog_newSectionRadio.Text" xml:space="preserve">
+    <value>Neuer Abschnitt</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="CreateJournalDialog_previewCurrent" xml:space="preserve">
+    <value>Dadurch werden {0} Seiten ({1}) im aktuellen Abschnitt erstellt.</value>
+    <comment>live preview label</comment>
+  </data>
+  <data name="CreateJournalDialog_previewNew" xml:space="preserve">
+    <value>Dadurch werden {0} Seiten ({1}) in einem neuen Abschnitt mit dem Namen „{2}“ erstellt.</value>
+    <comment>live preview label</comment>
+  </data>
+  <data name="CreateJournalDialog_sectionCollision" xml:space="preserve">
+    <value>Ein Abschnitt mit dem Namen „{0}“ ist bereits vorhanden. Wählen Sie einen anderen Namen oder wählen Sie „Aktueller Abschnitt“.</value>
+    <comment>inline validation message</comment>
+  </data>
+  <data name="CreateJournalDialog_sectionNameLabel.Text" xml:space="preserve">
+    <value>Neuer Abschnittsname</value>
+    <comment>label</comment>
+  </data>
+  <data name="CreateJournalDialog_titleLabel.Text" xml:space="preserve">
+    <value>Titel</value>
+    <comment>label</comment>
+  </data>
+  <data name="CreateJournalDialog_titleLooksLikeDate" xml:space="preserve">
+    <value>Der Titel darf nicht wie ein Datum aussehen</value>
+    <comment>inline validation message</comment>
+  </data>
+  <data name="CreateJournalDialog_weekdaysOnly" xml:space="preserve">
+    <value>Nur wochentags</value>
+    <comment>day range description used in live preview</comment>
+  </data>
+  <data name="CreateJournalDialog_weekdaysOnlyRadio.Text" xml:space="preserve">
+    <value>Nur wochentags</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="CreateJournalDialog_weekdaysWeekends" xml:space="preserve">
+    <value>Wochentage und Wochenenden</value>
+    <comment>day range description used in live preview</comment>
+  </data>
+  <data name="CreateJournalDialog_weekdaysWeekendsRadio.Text" xml:space="preserve">
+    <value>Wochentags und am Wochenende</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="CreateJournalDialog_yearLabel.Text" xml:space="preserve">
+    <value>Jahr</value>
+    <comment>label</comment>
+  </data>
   <data name="CreatePagesCommand_CreatePages" xml:space="preserve">
     <value>Sollen {0} Seiten erstellt werden?</value>
     <comment>message box</comment>
@@ -3529,6 +3621,14 @@ Registerkarte „Hilfe“.</value>
     <value>Hyperlinks als neue Seiten importieren</value>
     <comment>ribbon file</comment>
   </data>
+  <data name="ribCreateJournalButton_Label" xml:space="preserve">
+    <value>Tagebuch erstellen</value>
+    <comment>ribbon snippets NODUP</comment>
+  </data>
+  <data name="ribCreateJournalButton_Screentip" xml:space="preserve">
+    <value>Generieren Sie einen Monat lang datierte Tagebuchseiten</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribCreatePagesButton_Label" xml:space="preserve">
     <value>Seiten aus Liste erstellen</value>
     <comment>ribbon item</comment>
@@ -5981,6 +6081,9 @@ Danke schön!</value>
   <data name="word_Delete" xml:space="preserve">
     <value>Löschen</value>
   </data>
+  <data name="word_Diary" xml:space="preserve">
+    <value>Tagebuch</value>
+  </data>
   <data name="word_Distance" xml:space="preserve">
     <value>Distanz</value>
   </data>
@@ -6049,6 +6152,9 @@ Danke schön!</value>
   </data>
   <data name="word_Information" xml:space="preserve">
     <value>Information</value>
+  </data>
+  <data name="word_Journal" xml:space="preserve">
+    <value>Zeitschrift</value>
   </data>
   <data name="word_Language" xml:space="preserve">
     <value>Sprache</value>

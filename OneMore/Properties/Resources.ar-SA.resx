@@ -669,6 +669,98 @@
     <value>تطبيق أعمدة النص على عناوين الصفحات الفرعية</value>
     <comment>checkbox</comment>
   </data>
+  <data name="CreateJournalCommand_cancelled" xml:space="preserve">
+    <value>تم إنشاء {0} من {1} صفحة من صفحات دفتر اليومية قبل إلغاء العملية.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CreateJournalCommand_noNotebook" xml:space="preserve">
+    <value>يرجى فتح دفتر ملاحظات قبل إنشاء مجلة</value>
+    <comment>error dialog</comment>
+  </data>
+  <data name="CreateJournalCommand_syncError" xml:space="preserve">
+    <value>يتعذر على OneMore إنشاء صفحات أثناء مزامنة OneNote. حاول مرة أخرى بعد قليل.</value>
+    <comment>error dialog</comment>
+  </data>
+  <data name="CreateJournalDialog.Text" xml:space="preserve">
+    <value>إنشاء مجلة</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="CreateJournalDialog_currentSectionRadio.Text" xml:space="preserve">
+    <value>القسم الحالي</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="CreateJournalDialog_dateFormatLabel.Text" xml:space="preserve">
+    <value>تنسيق التاريخ</value>
+    <comment>label</comment>
+  </data>
+  <data name="CreateJournalDialog_dayRangeLabel.Text" xml:space="preserve">
+    <value>نطاق اليوم</value>
+    <comment>label</comment>
+  </data>
+  <data name="CreateJournalDialog_destinationLabel.Text" xml:space="preserve">
+    <value>وجهة</value>
+    <comment>label</comment>
+  </data>
+  <data name="CreateJournalDialog_hashtagsLabel.Text" xml:space="preserve">
+    <value>علامات التصنيف</value>
+    <comment>label</comment>
+  </data>
+  <data name="CreateJournalDialog_invalidSectionName" xml:space="preserve">
+    <value>يحتوي الاسم على أحرف غير صالحة أو يتجاوز 50 حرفًا</value>
+    <comment>inline validation message</comment>
+  </data>
+  <data name="CreateJournalDialog_monthLabel.Text" xml:space="preserve">
+    <value>شهر</value>
+    <comment>label</comment>
+  </data>
+  <data name="CreateJournalDialog_newSectionRadio.Text" xml:space="preserve">
+    <value>قسم جديد</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="CreateJournalDialog_previewCurrent" xml:space="preserve">
+    <value>سيؤدي هذا إلى إنشاء {0} صفحة ({1}) في القسم الحالي.</value>
+    <comment>live preview label</comment>
+  </data>
+  <data name="CreateJournalDialog_previewNew" xml:space="preserve">
+    <value>سيؤدي هذا إلى إنشاء {0} صفحة ({1}) في قسم جديد يسمى '{2}'.</value>
+    <comment>live preview label</comment>
+  </data>
+  <data name="CreateJournalDialog_sectionCollision" xml:space="preserve">
+    <value>يوجد قسم يسمى '{0}' بالفعل. اختر اسمًا مختلفًا أو حدد "القسم الحالي".</value>
+    <comment>inline validation message</comment>
+  </data>
+  <data name="CreateJournalDialog_sectionNameLabel.Text" xml:space="preserve">
+    <value>اسم القسم الجديد</value>
+    <comment>label</comment>
+  </data>
+  <data name="CreateJournalDialog_titleLabel.Text" xml:space="preserve">
+    <value>عنوان</value>
+    <comment>label</comment>
+  </data>
+  <data name="CreateJournalDialog_titleLooksLikeDate" xml:space="preserve">
+    <value>لا يمكن أن يبدو العنوان كتاريخ</value>
+    <comment>inline validation message</comment>
+  </data>
+  <data name="CreateJournalDialog_weekdaysOnly" xml:space="preserve">
+    <value>أيام الأسبوع فقط</value>
+    <comment>day range description used in live preview</comment>
+  </data>
+  <data name="CreateJournalDialog_weekdaysOnlyRadio.Text" xml:space="preserve">
+    <value>أيام الأسبوع فقط</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="CreateJournalDialog_weekdaysWeekends" xml:space="preserve">
+    <value>أيام الأسبوع وعطلات نهاية الأسبوع</value>
+    <comment>day range description used in live preview</comment>
+  </data>
+  <data name="CreateJournalDialog_weekdaysWeekendsRadio.Text" xml:space="preserve">
+    <value>أيام الأسبوع وعطلات نهاية الأسبوع</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="CreateJournalDialog_yearLabel.Text" xml:space="preserve">
+    <value>سنة</value>
+    <comment>label</comment>
+  </data>
   <data name="CreatePagesCommand_CreatePages" xml:space="preserve">
     <value>هل ترغب في إنشاء صفحات {0}؟</value>
     <comment>message box</comment>
@@ -3541,6 +3633,14 @@ ISO-code then comma then language name</comment>
     <value>استيراد الارتباطات التشعبية كصفحات جديدة</value>
     <comment>ribbon file</comment>
   </data>
+  <data name="ribCreateJournalButton_Label" xml:space="preserve">
+    <value>إنشاء مجلة</value>
+    <comment>ribbon snippets NODUP</comment>
+  </data>
+  <data name="ribCreateJournalButton_Screentip" xml:space="preserve">
+    <value>قم بإنشاء شهر من صفحات المجلة المؤرخة</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribCreatePagesButton_Label" xml:space="preserve">
     <value>قم بإنشاء صفحات من القائمة</value>
     <comment>ribbon item</comment>
@@ -5992,6 +6092,9 @@ ISO-code then comma then language name</comment>
   <data name="word_Delete" xml:space="preserve">
     <value>حذف</value>
   </data>
+  <data name="word_Diary" xml:space="preserve">
+    <value>مذكرة</value>
+  </data>
   <data name="word_Distance" xml:space="preserve">
     <value>مسافه: بعد</value>
   </data>
@@ -6060,6 +6163,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Information" xml:space="preserve">
     <value>معلومة</value>
+  </data>
+  <data name="word_Journal" xml:space="preserve">
+    <value>مجلة</value>
   </data>
   <data name="word_Language" xml:space="preserve">
     <value>لغة</value>

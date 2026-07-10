@@ -666,6 +666,98 @@
     <value>החל עמודות טקסט על כותרות עמודי משנה</value>
     <comment>checkbox</comment>
   </data>
+  <data name="CreateJournalCommand_cancelled" xml:space="preserve">
+    <value>נוצר {0} מתוך {1} דפי יומן לפני ביטול הפעולה.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="CreateJournalCommand_noNotebook" xml:space="preserve">
+    <value>אנא פתח מחברת לפני יצירת יומן</value>
+    <comment>error dialog</comment>
+  </data>
+  <data name="CreateJournalCommand_syncError" xml:space="preserve">
+    <value>OneMore לא יכול ליצור דפים בזמן ש-OneNote מסתנכרן. נסה שוב בעוד רגע.</value>
+    <comment>error dialog</comment>
+  </data>
+  <data name="CreateJournalDialog.Text" xml:space="preserve">
+    <value>צור יומן</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="CreateJournalDialog_currentSectionRadio.Text" xml:space="preserve">
+    <value>סעיף נוכחי</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="CreateJournalDialog_dateFormatLabel.Text" xml:space="preserve">
+    <value>פורמט תאריך</value>
+    <comment>label</comment>
+  </data>
+  <data name="CreateJournalDialog_dayRangeLabel.Text" xml:space="preserve">
+    <value>טווח ימים</value>
+    <comment>label</comment>
+  </data>
+  <data name="CreateJournalDialog_destinationLabel.Text" xml:space="preserve">
+    <value>יַעַד</value>
+    <comment>label</comment>
+  </data>
+  <data name="CreateJournalDialog_hashtagsLabel.Text" xml:space="preserve">
+    <value>Hashtags</value>
+    <comment>label</comment>
+  </data>
+  <data name="CreateJournalDialog_invalidSectionName" xml:space="preserve">
+    <value>השם מכיל תווים לא חוקיים או עולה על 50 תווים</value>
+    <comment>inline validation message</comment>
+  </data>
+  <data name="CreateJournalDialog_monthLabel.Text" xml:space="preserve">
+    <value>חוֹדֶשׁ</value>
+    <comment>label</comment>
+  </data>
+  <data name="CreateJournalDialog_newSectionRadio.Text" xml:space="preserve">
+    <value>מדור חדש</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="CreateJournalDialog_previewCurrent" xml:space="preserve">
+    <value>פעולה זו תיצור {0} דפים ({1}) בקטע הנוכחי.</value>
+    <comment>live preview label</comment>
+  </data>
+  <data name="CreateJournalDialog_previewNew" xml:space="preserve">
+    <value>פעולה זו תיצור {0} דפים ({1}) בקטע חדש בשם '{2}'.</value>
+    <comment>live preview label</comment>
+  </data>
+  <data name="CreateJournalDialog_sectionCollision" xml:space="preserve">
+    <value>קטע בשם '{0}' כבר קיים. בחר שם אחר או בחר 'קטע נוכחי'.</value>
+    <comment>inline validation message</comment>
+  </data>
+  <data name="CreateJournalDialog_sectionNameLabel.Text" xml:space="preserve">
+    <value>שם מדור חדש</value>
+    <comment>label</comment>
+  </data>
+  <data name="CreateJournalDialog_titleLabel.Text" xml:space="preserve">
+    <value>כּוֹתֶרֶת</value>
+    <comment>label</comment>
+  </data>
+  <data name="CreateJournalDialog_titleLooksLikeDate" xml:space="preserve">
+    <value>הכותרת לא יכולה להיראות כמו תאריך</value>
+    <comment>inline validation message</comment>
+  </data>
+  <data name="CreateJournalDialog_weekdaysOnly" xml:space="preserve">
+    <value>בימי חול בלבד</value>
+    <comment>day range description used in live preview</comment>
+  </data>
+  <data name="CreateJournalDialog_weekdaysOnlyRadio.Text" xml:space="preserve">
+    <value>בימי חול בלבד</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="CreateJournalDialog_weekdaysWeekends" xml:space="preserve">
+    <value>ימי חול וסופי שבוע</value>
+    <comment>day range description used in live preview</comment>
+  </data>
+  <data name="CreateJournalDialog_weekdaysWeekendsRadio.Text" xml:space="preserve">
+    <value>ימי חול וסופי שבוע</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="CreateJournalDialog_yearLabel.Text" xml:space="preserve">
+    <value>שָׁנָה</value>
+    <comment>label</comment>
+  </data>
   <data name="CreatePagesCommand_CreatePages" xml:space="preserve">
     <value>האם תרצה ליצור {0} דפים?</value>
     <comment>message box</comment>
@@ -3534,6 +3626,14 @@ ISO-code then comma then language name</comment>
     <value>ייבא היפר -קישורים כדפים חדשים</value>
     <comment>ribbon file</comment>
   </data>
+  <data name="ribCreateJournalButton_Label" xml:space="preserve">
+    <value>צור יומן</value>
+    <comment>ribbon snippets NODUP</comment>
+  </data>
+  <data name="ribCreateJournalButton_Screentip" xml:space="preserve">
+    <value>צור חודש של דפי יומן מתוארכים</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribCreatePagesButton_Label" xml:space="preserve">
     <value>צור דפים מתוך רשימה</value>
     <comment>ribbon item</comment>
@@ -5985,6 +6085,9 @@ ISO-code then comma then language name</comment>
   <data name="word_Delete" xml:space="preserve">
     <value>לִמְחוֹק</value>
   </data>
+  <data name="word_Diary" xml:space="preserve">
+    <value>יְוֹמָן</value>
+  </data>
   <data name="word_Distance" xml:space="preserve">
     <value>מֶרְחָק</value>
   </data>
@@ -6053,6 +6156,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Information" xml:space="preserve">
     <value>מֵידָע</value>
+  </data>
+  <data name="word_Journal" xml:space="preserve">
+    <value>כְּתַב הָעֵת</value>
   </data>
   <data name="word_Language" xml:space="preserve">
     <value>שפה</value>

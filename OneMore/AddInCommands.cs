@@ -473,6 +473,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<InsertCalendarCommand>();
 
 
+		[Command("ribCreateJournalButton_Label", Keys.None, "ribSnippetsMenu")]
+		public async Task CreateJournalCmd(IRibbonControl control)
+			=> await factory.Run<CreateJournalCommand>();
+
+
 		[Command("ribInsertCellsButton_Label", Keys.None, "ribTableMenu")]
 		public async Task InsertCellsCmd(IRibbonControl control)
 			=> await factory.Run<InsertCellsCommand>();

@@ -209,6 +209,13 @@
     <Compile Include="Commands\Settings\MarkdownSheet.Designer.cs">
       <DependentUpon>MarkdownSheet.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Snippets\CreateJournalCommand.cs" />
+    <Compile Include="Commands\Snippets\CreateJournalDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Snippets\CreateJournalDialog.Designer.cs">
+      <DependentUpon>CreateJournalDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Workspaces\Favorites\FavoriteModels.cs" />
     <Compile Include="Commands\Workspaces\Favorites\AddFavoriteCommand.cs" />
     <Compile Include="Commands\Workspaces\Favorites\ExportFavoritesCommand.cs" />
@@ -1836,6 +1843,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Snippets\InsertCalendarDialog.resx">
       <DependentUpon>InsertCalendarDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Snippets\CreateJournalDialog.resx">
+      <DependentUpon>CreateJournalDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Images\CropImageDialog.resx">
       <DependentUpon>CropImageDialog.cs</DependentUpon>
