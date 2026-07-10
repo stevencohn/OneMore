@@ -35,7 +35,7 @@ namespace River.OneMoreAddIn.UI
 
 			foreColor = ForeColor;
 			manager = ThemeManager.Instance;
-			boxSize = SystemInformation.MenuCheckSize.Width - 3;
+			boxSize = SystemInformation.MenuCheckSize.Width - 4;
 		}
 
 
@@ -130,7 +130,7 @@ namespace River.OneMoreAddIn.UI
 			using var brush = new SolidBrush(color);
 
 			var bounds = new Rectangle(boxSize + Spacing,
-					(pevent.ClipRectangle.Height - Size.Height) / 2,
+					(pevent.ClipRectangle.Height - Size.Height) / 2 + 2,
 					pevent.ClipRectangle.Width - (boxSize + Spacing),
 					Size.Height);
 
