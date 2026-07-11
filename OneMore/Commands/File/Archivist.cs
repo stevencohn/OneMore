@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.Models;
 	using System;
 	using System.Collections.Generic;
+	using System.Globalization;
 	using System.IO;
 	using System.Linq;
 	using System.Text;
@@ -146,6 +147,7 @@ namespace River.OneMoreAddIn.Commands
 					}
 
 					ArchiveAttachments(page, filename, path);
+					UpdatePageDates(page, filename);
 				}
 			}
 
@@ -360,6 +362,53 @@ namespace River.OneMoreAddIn.Commands
 				{
 					logger.WriteLine($"error writing {filename}", exc);
 				}
+			}
+		}
+
+		private void UpdatePageDates(Page page, string filename)
+		{
+			var text = File.ReadAllText(filename);
+
+			// the date/time stamp lines at the top of the page are styled with color #767676;
+			// the first such paragraph is the created date, the second is the created time
+			var matches = Regex.Matches(text,
+				@"<P[^>]*style=(['""])(?<style>[^'""]*COLOR:\s*#767676[^'""]*)\1[^>]*>.*?</P>",
+				RegexOptions.Singleline | RegexOptions.IgnoreCase);
+
+			if (matches.Count < 2)
+			{
+				return;
+			}
+
+			var dateMatch = matches[0];
+			var timeMatch = matches[1];
+
+			var created = DateTime.Parse(
+				page.Root.Attribute("dateTime").Value, CultureInfo.InvariantCulture)
+				.ToLocalTime();
+
+			var modified = DateTime.Parse(
+				page.Root.Attribute("lastModifiedTime").Value, CultureInfo.InvariantCulture)
+				.ToLocalTime();
+
+			var dateReplacement =
+				$"<P style=\"{dateMatch.Groups["style"].Value}\">{created:MMMM d, yyyy}</P>";
+
+			var timeReplacement = created.Date == modified.Date
+				? $"<P style=\"{timeMatch.Groups["style"].Value}\">&nbsp;</P>"
+				: $"<P style=\"{timeMatch.Groups["style"].Value}\">Last updated on {modified:MMMM d, yyyy}</P>";
+
+			// replace the later match first so the earlier match's index stays valid
+			text = text.Remove(timeMatch.Index, timeMatch.Length).Insert(timeMatch.Index, timeReplacement);
+			text = text.Remove(dateMatch.Index, dateMatch.Length).Insert(dateMatch.Index, dateReplacement);
+
+			try
+			{
+				File.WriteAllText(filename, text);
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"error writing {filename}", exc);
 			}
 		}
 
