@@ -218,6 +218,19 @@ namespace River.OneMoreAddIn.UI
 
 
 		/// <summary>
+		/// Gets or sets a callback that supplies an optional secondary line of text drawn
+		/// beneath a cell's primary text, in a smaller/muted font (e.g. an email address
+		/// under a contact's name). When null, or when the callback returns null for a
+		/// given cell, the cell renders as a single line, as usual. The row must be tall
+		/// enough to show both lines - see the SmallImageList height trick used elsewhere
+		/// to grow ListView.Details row height.
+		/// </summary>
+		[Browsable(false)]
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		public Func<ListViewItem, int, string> GetCellSubText { get; set; }
+
+
+		/// <summary>
 		/// Gets or sets a predicate determining whether the given item can be dragged.
 		/// When null, no item is draggable.
 		/// </summary>
@@ -487,7 +500,23 @@ namespace River.OneMoreAddIn.UI
 			const TextFormatFlags flags =
 				TextFormatFlags.EndEllipsis | TextFormatFlags.VerticalCenter | TextFormatFlags.NoPrefix;
 
-			if (style.Muted)
+			var subText = GetCellSubText?.Invoke(e.Item, e.ColumnIndex);
+			if (subText != null)
+			{
+				const TextFormatFlags topFlags =
+					TextFormatFlags.EndEllipsis | TextFormatFlags.Top | TextFormatFlags.NoPrefix;
+
+				var half = bounds.Height / 2;
+				var primaryBounds = new Rectangle(bounds.X, bounds.Y, bounds.Width, half);
+				var secondaryBounds = new Rectangle(bounds.X, bounds.Y + half, bounds.Width, bounds.Height - half);
+
+				TextRenderer.DrawText(e.Graphics, e.SubItem.Text, e.Item.Font, primaryBounds, foreColor, topFlags);
+
+				var subColor = selected ? foreColor : manager.GetColor("GrayText");
+				using var subFont = new Font(e.Item.Font.FontFamily, e.Item.Font.Size - 1f);
+				TextRenderer.DrawText(e.Graphics, subText, subFont, secondaryBounds, subColor, topFlags);
+			}
+			else if (style.Muted)
 			{
 				using var italic = new Font(e.Item.Font, FontStyle.Italic);
 				TextRenderer.DrawText(e.Graphics, e.SubItem.Text, italic, bounds, foreColor, flags);

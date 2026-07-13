@@ -1920,6 +1920,82 @@ Sfondo giallo</value>
     <value>Importa layout</value>
     <comment>import dialog title</comment>
   </data>
+  <data name="ImportOutlookContactsCommand_loadingCategories" xml:space="preserve">
+    <value>Caricamento delle categorie di Outlook...</value>
+    <comment>progress dialog message</comment>
+  </data>
+  <data name="ImportOutlookContactsCommand_loadingContacts" xml:space="preserve">
+    <value>Caricamento dei contatti di Outlook...</value>
+    <comment>progress dialog message</comment>
+  </data>
+  <data name="ImportOutlookContactsCommand_loadingFolders" xml:space="preserve">
+    <value>Caricamento delle cartelle dei contatti di Outlook...</value>
+    <comment>progress dialog message</comment>
+  </data>
+  <data name="ImportOutlookContactsCommand_outlookRequired" xml:space="preserve">
+    <value>Per utilizzare questo comando è necessario installare Outlook</value>
+    <comment>info message</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog.Text" xml:space="preserve">
+    <value>Importa contatti di Outlook</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_backButton.Text" xml:space="preserve">
+    <value>&lt; Indietro</value>
+    <comment>button</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_calculating" xml:space="preserve">
+    <value>Calcolo...</value>
+    <comment>caption shown while resolving per-contact folder/category data</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_categoryIntro" xml:space="preserve">
+    <value>Scegli quali categorie di Outlook includere.</value>
+    <comment>step 2 intro text</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_contactIntro" xml:space="preserve">
+    <value>{0} contatti corrispondono ai tuoi filtri. Scegli quale importare.</value>
+    <comment>step 3 intro text, {0} is a contact count</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_contactsCount" xml:space="preserve">
+    <value>{0} contatti</value>
+    <comment>folder/category row count suffix, {0} is a contact count</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_contactsSelected" xml:space="preserve">
+    <value>{0} di {1} contatti selezionati</value>
+    <comment>step 3 footer caption</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_folderIntro" xml:space="preserve">
+    <value>Scegli da quali cartelle di contatti di Outlook importare.</value>
+    <comment>step 1 intro text</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_importButton" xml:space="preserve">
+    <value>Importare</value>
+    <comment>primary button text, step 3 only</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_matchesSelection" xml:space="preserve">
+    <value>{0} contatti corrispondono alla tua selezione attuale</value>
+    <comment>step 1-2 footer caption, {0} is a contact count</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_nextButton" xml:space="preserve">
+    <value>Avanti &gt;</value>
+    <comment>primary button text, steps 1-2 only</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_stepCategories" xml:space="preserve">
+    <value>Categorie</value>
+    <comment>step indicator label</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_stepContacts" xml:space="preserve">
+    <value>Contatti</value>
+    <comment>step indicator label</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_stepFolders" xml:space="preserve">
+    <value>Cartelle</value>
+    <comment>step indicator label</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_uncategorized" xml:space="preserve">
+    <value>Senza categoria</value>
+    <comment>synthetic category representing contacts with no assigned category</comment>
+  </data>
   <data name="ImportOutlookTasksDialog.Text" xml:space="preserve">
     <value>Importa attività da Outlook</value>
     <comment>dialog title</comment>
@@ -3916,6 +3992,10 @@ Scheda Aiuto</value>
   <data name="ribImportLayoutsButton_Screentip" xml:space="preserve">
     <value>Importa tutti i layout da un file JSON</value>
     <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribImportOutlookContactsButton_Label" xml:space="preserve">
+    <value>Importa contatti da Outlook</value>
+    <comment>ribbon reminders NODUP</comment>
   </data>
   <data name="ribImportOutlookTasksButton_Label" xml:space="preserve">
     <value>Importa attività da Outlook</value>

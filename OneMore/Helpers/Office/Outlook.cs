@@ -1,16 +1,15 @@
 ﻿//************************************************************************************************
-// Copyright © 2021 Steven M Cohn.  All rights reserved.
+// Copyright © 2021 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Helpers.Office
 {
-	using Microsoft.Office.Interop.Outlook;
 	using System;
 	using System.Collections.Generic;
-	using System.Diagnostics;
 	using System.Globalization;
 	using System.Linq;
 	using System.Runtime.InteropServices;
+	using Microsoft.Office.Interop.Outlook;
 
 
 	/// <summary>
@@ -59,6 +58,99 @@ namespace River.OneMoreAddIn.Helpers.Office
 		{
 			Dispose(disposing: true);
 			GC.SuppressFinalize(this);
+		}
+
+
+		/// <summary>
+		/// Returns a list of all categories defined in the current Outlook session.
+		/// </summary>
+		/// <returns>An enumerable collection of OutlookCategory instances</returns>
+		public IEnumerable<OutlookCategory> GetCategories()
+		{
+			foreach (Category cat in outlook.Session.Categories)
+			{
+				yield return new OutlookCategory
+				{
+					Name = cat.Name,
+
+					// color is a string of the form olCategoryColor<name>
+					// so strip the "olCategoryColor" prefix to get the actual color name
+					ColorName = cat.Color.ToString().Substring(15)
+				};
+			}
+		}
+
+
+		/// <summary>
+		/// Returns a list of all contact folders defined in the current Outlook session.
+		/// </summary>
+		/// <returns>An enumerable collection of OutlookFolder instances</returns>
+		public IEnumerable<OutlookFolder> GetContactFolders()
+		{
+			var ns = outlook.GetNamespace("MAPI");
+			//Logger.Current.WriteLine($"default store: {ns.DefaultStore.DisplayName}");
+
+			// deleted Items folder path (language‑safe)
+			var deletedFolder = ns.GetDefaultFolder(OlDefaultFolders.olFolderDeletedItems);
+			var deletedFolderPath = deletedFolder.FolderPath;
+
+			foreach (Store store in ns.Stores)
+			{
+				if (store.GetRootFolder() is Folder root)
+				{
+					foreach (var folder in EnumerateFolders(root))
+					{
+						yield return new OutlookFolder(folder);
+					}
+				}
+			}
+
+			IEnumerable<Folder> EnumerateFolders(Folder folder)
+			{
+				// skip Deleted Items subtree
+				if (folder.FolderPath.StartsWith(deletedFolderPath, StringComparison.OrdinalIgnoreCase))
+				{
+					yield break;
+				}
+
+				// skip hidden folders
+				if (IsHidden(folder))
+				{
+					yield break;
+				}
+
+				// only real contact folders
+				if (folder.DefaultItemType == OlItemType.olContactItem &&
+					folder.DefaultMessageClass == "IPM.Contact")
+				{
+					yield return folder;
+				}
+
+				// recurse
+				foreach (Folder sub in folder.Folders)
+				{
+					foreach (var f in EnumerateFolders(sub))
+					{
+						yield return f;
+					}
+				}
+			}
+
+			bool IsHidden(Folder folder)
+			{
+				const string PR_ATTR_HIDDEN = "http://schemas.microsoft.com/mapi/proptag/0x10F4000B";
+
+				try
+				{
+					var pa = folder.PropertyAccessor;
+					var value = pa.GetProperty(PR_ATTR_HIDDEN);
+					return value is bool b && b;
+				}
+				catch
+				{
+					return false; // property not present → treat as visible
+				}
+			}
 		}
 
 

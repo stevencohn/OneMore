@@ -1920,6 +1920,82 @@ Czerwony pierwszy plan
     <value>Importuj układy</value>
     <comment>import dialog title</comment>
   </data>
+  <data name="ImportOutlookContactsCommand_loadingCategories" xml:space="preserve">
+    <value>Ładowanie kategorii Outlooka...</value>
+    <comment>progress dialog message</comment>
+  </data>
+  <data name="ImportOutlookContactsCommand_loadingContacts" xml:space="preserve">
+    <value>Ładowanie kontaktów programu Outlook...</value>
+    <comment>progress dialog message</comment>
+  </data>
+  <data name="ImportOutlookContactsCommand_loadingFolders" xml:space="preserve">
+    <value>Ładowanie folderów kontaktów programu Outlook...</value>
+    <comment>progress dialog message</comment>
+  </data>
+  <data name="ImportOutlookContactsCommand_outlookRequired" xml:space="preserve">
+    <value>Aby móc korzystać z tego polecenia, musi być zainstalowany program Outlook</value>
+    <comment>info message</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog.Text" xml:space="preserve">
+    <value>Importuj kontakty programu Outlook</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_backButton.Text" xml:space="preserve">
+    <value>&lt; Powrót</value>
+    <comment>button</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_calculating" xml:space="preserve">
+    <value>Obliczenie...</value>
+    <comment>caption shown while resolving per-contact folder/category data</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_categoryIntro" xml:space="preserve">
+    <value>Wybierz, które kategorie programu Outlook mają zostać uwzględnione.</value>
+    <comment>step 2 intro text</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_contactIntro" xml:space="preserve">
+    <value>{0} kontaktów pasuje do Twoich filtrów. Wybierz, które chcesz zaimportować.</value>
+    <comment>step 3 intro text, {0} is a contact count</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_contactsCount" xml:space="preserve">
+    <value>{0} kontaktów</value>
+    <comment>folder/category row count suffix, {0} is a contact count</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_contactsSelected" xml:space="preserve">
+    <value>Wybrano {0} z {1} kontaktów</value>
+    <comment>step 3 footer caption</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_folderIntro" xml:space="preserve">
+    <value>Wybierz, z których folderów kontaktów programu Outlook chcesz importować.</value>
+    <comment>step 1 intro text</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_importButton" xml:space="preserve">
+    <value>Import</value>
+    <comment>primary button text, step 3 only</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_matchesSelection" xml:space="preserve">
+    <value>{0} kontaktów pasuje do Twojego bieżącego wyboru</value>
+    <comment>step 1-2 footer caption, {0} is a contact count</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_nextButton" xml:space="preserve">
+    <value>Dalej &gt;</value>
+    <comment>primary button text, steps 1-2 only</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_stepCategories" xml:space="preserve">
+    <value>Kategorie</value>
+    <comment>step indicator label</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_stepContacts" xml:space="preserve">
+    <value>Łączność</value>
+    <comment>step indicator label</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_stepFolders" xml:space="preserve">
+    <value>Lornetka składana</value>
+    <comment>step indicator label</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_uncategorized" xml:space="preserve">
+    <value>Bez kategorii</value>
+    <comment>synthetic category representing contacts with no assigned category</comment>
+  </data>
   <data name="ImportOutlookTasksDialog.Text" xml:space="preserve">
     <value>Importuj zadania z programu Outlook</value>
     <comment>dialog title</comment>
@@ -3912,6 +3988,10 @@ Zakładka Pomoc</value>
   <data name="ribImportLayoutsButton_Screentip" xml:space="preserve">
     <value>Zaimportuj wszystkie układy z pliku JSON</value>
     <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribImportOutlookContactsButton_Label" xml:space="preserve">
+    <value>Importuj kontakty z Outlooka</value>
+    <comment>ribbon reminders NODUP</comment>
   </data>
   <data name="ribImportOutlookTasksButton_Label" xml:space="preserve">
     <value>Importuj zadania z programu Outlook</value>

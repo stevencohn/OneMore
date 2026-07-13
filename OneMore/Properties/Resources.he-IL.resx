@@ -1920,6 +1920,82 @@ Total Row Font
     <value>ייבוא ​​פריסות</value>
     <comment>import dialog title</comment>
   </data>
+  <data name="ImportOutlookContactsCommand_loadingCategories" xml:space="preserve">
+    <value>טוען קטגוריות של Outlook...</value>
+    <comment>progress dialog message</comment>
+  </data>
+  <data name="ImportOutlookContactsCommand_loadingContacts" xml:space="preserve">
+    <value>טוען אנשי קשר של Outlook...</value>
+    <comment>progress dialog message</comment>
+  </data>
+  <data name="ImportOutlookContactsCommand_loadingFolders" xml:space="preserve">
+    <value>טוען תיקיות אנשי קשר של Outlook...</value>
+    <comment>progress dialog message</comment>
+  </data>
+  <data name="ImportOutlookContactsCommand_outlookRequired" xml:space="preserve">
+    <value>יש להתקין את Outlook כדי להשתמש בפקודה זו</value>
+    <comment>info message</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog.Text" xml:space="preserve">
+    <value>ייבא אנשי קשר של Outlook</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_backButton.Text" xml:space="preserve">
+    <value>&lt; חזרה</value>
+    <comment>button</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_calculating" xml:space="preserve">
+    <value>מחשב...</value>
+    <comment>caption shown while resolving per-contact folder/category data</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_categoryIntro" xml:space="preserve">
+    <value>בחר אילו קטגוריות של Outlook לכלול.</value>
+    <comment>step 2 intro text</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_contactIntro" xml:space="preserve">
+    <value>{0} אנשי קשר תואמים את המסננים שלך. בחר איזה לייבא.</value>
+    <comment>step 3 intro text, {0} is a contact count</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_contactsCount" xml:space="preserve">
+    <value>{0} אנשי קשר</value>
+    <comment>folder/category row count suffix, {0} is a contact count</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_contactsSelected" xml:space="preserve">
+    <value>נבחרו {0} מתוך {1} אנשי קשר</value>
+    <comment>step 3 footer caption</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_folderIntro" xml:space="preserve">
+    <value>בחר מאילו תיקיות אנשי קשר של Outlook לייבא.</value>
+    <comment>step 1 intro text</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_importButton" xml:space="preserve">
+    <value>יְבוּא</value>
+    <comment>primary button text, step 3 only</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_matchesSelection" xml:space="preserve">
+    <value>{0} אנשי קשר תואמים את הבחירה הנוכחית שלך</value>
+    <comment>step 1-2 footer caption, {0} is a contact count</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_nextButton" xml:space="preserve">
+    <value>הבא &gt;</value>
+    <comment>primary button text, steps 1-2 only</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_stepCategories" xml:space="preserve">
+    <value>קטגוריות</value>
+    <comment>step indicator label</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_stepContacts" xml:space="preserve">
+    <value>אנשי קשר</value>
+    <comment>step indicator label</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_stepFolders" xml:space="preserve">
+    <value>תיקיות</value>
+    <comment>step indicator label</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_uncategorized" xml:space="preserve">
+    <value>לא מסווג</value>
+    <comment>synthetic category representing contacts with no assigned category</comment>
+  </data>
   <data name="ImportOutlookTasksDialog.Text" xml:space="preserve">
     <value>ייבוא ​​משימות מ- Outlook</value>
     <comment>dialog title</comment>
@@ -3916,6 +3992,10 @@ ISO-code then comma then language name</comment>
   <data name="ribImportLayoutsButton_Screentip" xml:space="preserve">
     <value>ייבא את כל הפריסות מקובץ JSON</value>
     <comment>ribbon favorites</comment>
+  </data>
+  <data name="ribImportOutlookContactsButton_Label" xml:space="preserve">
+    <value>ייבא אנשי קשר מ-Outlook</value>
+    <comment>ribbon reminders NODUP</comment>
   </data>
   <data name="ribImportOutlookTasksButton_Label" xml:space="preserve">
     <value>ייבוא ​​משימות מ- Outlook</value>

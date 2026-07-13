@@ -443,6 +443,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<ImportLayoutsCommand>();
 
 
+		[Command("ribImportOutlookContactsButton_Label", Keys.None, "ribRemindersMenu")]
+		public async Task ImportOutlookContactsCmd(IRibbonControl control)
+			=> await factory.Run<ImportOutlookContactsCommand>();
+
+
 		[Command("ribImportOutlookTasksButton_Label", Keys.None, "ribRemindersMenu")]
 		public async Task ImportOutlookTasksCmd(IRibbonControl control)
 			=> await factory.Run<ImportOutlookTasksCommand>();

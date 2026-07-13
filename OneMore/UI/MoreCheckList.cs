@@ -64,6 +64,12 @@ namespace River.OneMoreAddIn.UI
 
 		private Image GetGlyph(ListViewItem item, int column)
 		{
+			// only the first column gets a checkbox glyph; other columns are plain data
+			if (column != 0)
+			{
+				return null;
+			}
+
 			var enabled = CanToggleItem?.Invoke(item) ?? true;
 
 			if (item.Checked)
