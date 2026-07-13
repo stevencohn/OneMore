@@ -51,9 +51,15 @@ namespace River.OneMoreAddIn.Commands
 
 		private void PopulateTodoBox()
 		{
-			var list = new ImageList
+			(_, float scaleY) = Scaling.GetScalingFactors();
+			var iconSize = (int)(16 * scaleY);
+
+			// strip is a fixed 24x24-per-icon native asset; slice at its native size
+			// and rescale each icon below, since AddStrip requires the strip width
+			// to be an exact multiple of ImageSize.Width
+			using var list = new ImageList
 			{
-				ImageSize = new Size(24, 24),           // the size of each icon in the strip
+				ImageSize = new Size(24, 24),
 				ColorDepth = ColorDepth.Depth32Bit,     // preserve alpha/transparency
 			};
 
@@ -62,14 +68,27 @@ namespace River.OneMoreAddIn.Commands
 				new string[] { Environment.NewLine },
 				StringSplitOptions.RemoveEmptyEntries);
 
+			todoBox.ItemHeight = iconSize;
+
 			// add None item
 			todoBox.Items.Add(new MoreComboBox.ComboItem(lines[0]));
 
 			for (var i = 1; i < lines.Length; i++)
 			{
 				// offset Image index -1 from lines Index because we already used "None" at [0]
-				todoBox.Items.Add(new MoreComboBox.ComboItem(lines[i], list.Images[i - 1]));
+				var icon = ScaleIcon(list.Images[i - 1], iconSize);
+				todoBox.Items.Add(new MoreComboBox.ComboItem(lines[i], icon));
 			}
+		}
+
+
+		private static Bitmap ScaleIcon(Image source, int size)
+		{
+			var bitmap = new Bitmap(size, size);
+			using var g = Graphics.FromImage(bitmap);
+			g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+			g.DrawImage(source, 0, 0, size, size);
+			return bitmap;
 		}
 
 
