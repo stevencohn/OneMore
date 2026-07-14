@@ -291,6 +291,7 @@ __pycache__/
 
 OneNote_RecycleBin/
 specs/
+design_handoff_*/
 /docs/OneMore Wiki.zip
 *.clean.json
 *.clean.vdproj

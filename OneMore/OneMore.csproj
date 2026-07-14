@@ -203,6 +203,13 @@
     <Compile Include="Commands\Edit\ConvertMarkdownCommand.cs" />
     <Compile Include="Commands\Edit\CopyAsTextCommand.cs" />
     <Compile Include="Commands\Edit\RecolorInkCommand.cs" />
+    <Compile Include="Commands\Office\ImportOutlookContactsCommand.cs" />
+    <Compile Include="Commands\Office\ImportOutlookContactsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Office\ImportOutlookContactsDialog.Designer.cs">
+      <DependentUpon>ImportOutlookContactsDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Settings\MarkdownSheet.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -500,6 +507,9 @@
     <Compile Include="Helpers\Heatmap.cs" />
     <Compile Include="Commands\Tagging\HashtagNotebook.cs" />
     <Compile Include="Helpers\NaturalStringComparer.cs" />
+    <Compile Include="Helpers\Office\Models\OutlookCategory.cs" />
+    <Compile Include="Helpers\Office\Models\OutlookContact.cs" />
+    <Compile Include="Helpers\Office\Models\OutlookFolder.cs" />
     <Compile Include="Helpers\OneNoteLinkParser.cs" />
     <Compile Include="Helpers\SessionLogger.cs" />
     <Compile Include="Commands\Tools\Telemetry\TelemetryClient.cs" />
@@ -623,14 +633,14 @@
     <Compile Include="Commands\Numbering\SortListDialog.Designer.cs">
       <DependentUpon>SortListDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\Extras\TimerWindowCommand.cs" />
-    <Compile Include="Commands\Extras\TimerWindow.cs">
+    <Compile Include="Commands\Tools\TimerWindowCommand.cs" />
+    <Compile Include="Commands\Tools\TimerWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Commands\Extras\TimerWindow.Designer.cs">
+    <Compile Include="Commands\Tools\TimerWindow.Designer.cs">
       <DependentUpon>TimerWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\Extras\DateStampCommand.cs" />
+    <Compile Include="Commands\Tools\DateStampCommand.cs" />
     <Compile Include="Commands\File\CopyFolderCommand.cs" />
     <Compile Include="Commands\File\ImportWebCommand.cs" />
     <Compile Include="Commands\File\ImportWebDialog.cs">
@@ -666,11 +676,11 @@
     <Compile Include="Commands\References\RefreshPageLinksCommand.cs" />
     <Compile Include="Commands\Reminders\CompleteReminderCommand.cs" />
     <Compile Include="Commands\Reminders\DeleteReminderCommand.cs" />
-    <Compile Include="Commands\Reminders\ImportOutlookTasksCommand.cs" />
-    <Compile Include="Commands\Reminders\ImportOutlookTasksDialog.cs">
+    <Compile Include="Commands\Office\ImportOutlookTasksCommand.cs" />
+    <Compile Include="Commands\Office\ImportOutlookTasksDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Commands\Reminders\ImportOutlookTasksDialog.Designer.cs">
+    <Compile Include="Commands\Office\ImportOutlookTasksDialog.Designer.cs">
       <DependentUpon>ImportOutlookTasksDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Reminders\RemindScheduler.cs" />
@@ -735,6 +745,12 @@
     <Compile Include="UI\EventRouter.cs" />
     <Compile Include="UI\ILoadControl.cs" />
     <Compile Include="UI\MoreCheckList.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\MoreCheckListPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\MoreStepIndicator.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="UI\MoreComboBox.cs">
@@ -888,7 +904,7 @@
     <Compile Include="Commands\File\AnalyzeDialog.Designer.cs">
       <DependentUpon>AnalyzeDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\Extras\SectionColorCommand.cs" />
+    <Compile Include="Commands\Tools\SectionColorCommand.cs" />
     <Compile Include="Commands\Tools\CalendarCommand.cs" />
     <Compile Include="Commands\Tools\CommandPaletteCommand.cs" />
     <Compile Include="Commands\Tools\CommandPaletteDialog.cs">
@@ -989,7 +1005,7 @@
     <Compile Include="Commands\References\AddFootnoteCommand.cs" />
     <Compile Include="Commands\Snippets\Emoji\InsertEmojiCommand.cs" />
     <Compile Include="Commands\Edit\AlterSizeCommand.cs" />
-    <Compile Include="Commands\Extras\CollapsePagesCommand.cs" />
+    <Compile Include="Commands\Tools\CollapsePagesCommand.cs" />
     <Compile Include="Commands\CommandFactory.cs" />
     <Compile Include="Commands\References\FootnoteEditor.cs" />
     <Compile Include="Commands\References\FootnoteReference.cs" />
@@ -1158,7 +1174,7 @@
     <Compile Include="Commands\Search\SearchAndReplaceEditor.cs" />
     <Compile Include="Commands\Search\Atoms\TextAtom.cs" />
     <Compile Include="Commands\Tools\AboutCommand.cs" />
-    <Compile Include="Commands\Extras\SortCommand.cs" />
+    <Compile Include="Commands\Tools\SortCommand.cs" />
     <Compile Include="Commands\Edit\ToCaseCommand.cs" />
     <Compile Include="Commands\Clean\TrimCommand.cs" />
     <Compile Include="Commands\Styles\ReorderDialog.cs">
@@ -1182,10 +1198,10 @@
     <Compile Include="Commands\Search\SearchAndReplaceSessionDialog.Designer.cs">
       <DependentUpon>SearchAndReplaceSessionDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\Extras\SortDialog.cs">
+    <Compile Include="Commands\Tools\SortDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Commands\Extras\SortDialog.Designer.cs">
+    <Compile Include="Commands\Tools\SortDialog.Designer.cs">
       <DependentUpon>SortDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\BasicColors.cs" />
@@ -1693,7 +1709,7 @@
     <EmbeddedResource Include="Commands\Numbering\SortListDialog.resx">
       <DependentUpon>SortListDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Commands\Extras\TimerWindow.resx">
+    <EmbeddedResource Include="Commands\Tools\TimerWindow.resx">
       <DependentUpon>TimerWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Workspaces\Favorites\FavoritesDialog.resx">
@@ -1739,8 +1755,11 @@
     <EmbeddedResource Include="Commands\References\RefreshPageLinksDialog.resx">
       <DependentUpon>RefreshPageLinksDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Commands\Reminders\ImportOutlookTasksDialog.resx">
+    <EmbeddedResource Include="Commands\Office\ImportOutlookTasksDialog.resx">
       <DependentUpon>ImportOutlookTasksDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Office\ImportOutlookContactsDialog.resx">
+      <DependentUpon>ImportOutlookContactsDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Reminders\RemindDialog.resx">
       <DependentUpon>RemindDialog.cs</DependentUpon>
@@ -1915,7 +1934,7 @@
     <EmbeddedResource Include="Commands\Search\SearchAndReplaceDialog.resx">
       <DependentUpon>SearchAndReplaceDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Commands\Extras\SortDialog.resx">
+    <EmbeddedResource Include="Commands\Tools\SortDialog.resx">
       <DependentUpon>SortDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Styles\StyleDialog.resx">
@@ -2063,6 +2082,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup Condition="'$(CI)' != 'true'">
     <PreBuildEvent>pwsh -NonInteractive -NoProfile -ExecutionPolicy Bypass -File "$(ProjectDir)..\stop.ps1" -Close</PreBuildEvent>

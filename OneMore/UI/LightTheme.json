@@ -56,6 +56,7 @@
     "MenuItemBorder": "#DA70D6",
     "MenuMargin": "#E3E3E3",
     "MenuSeparator": "#989898",
+    "SuccessFill": "#4C8A3B",
 
     "XmlComment": "Green",
     "XmlEditedBy": "CornflowerBlue",

@@ -273,7 +273,15 @@ namespace River.OneMoreAddIn.UI
 			var radius = g.DpiX.EstEquals(96) ? 2 : 4;
 			g.DrawRoundedRectangle(boxPen, new Rectangle(0, boxY, boxSize, boxSize), radius);
 
-			if (Checked)
+			if (CheckState == CheckState.Indeterminate)
+			{
+				// "some but not all" - a dash rather than a full check-fill
+				using var fillBrush = new SolidBrush(boxColor);
+				var dashHeight = Math.Max(2, boxSize / 6);
+				g.FillRoundedRectangle(fillBrush,
+					new Rectangle(3, boxY + ((boxSize - dashHeight) / 2), boxSize - 6, dashHeight), 1);
+			}
+			else if (Checked)
 			{
 				using var fillBrush = new SolidBrush(boxColor);
 				g.FillRoundedRectangle(fillBrush,

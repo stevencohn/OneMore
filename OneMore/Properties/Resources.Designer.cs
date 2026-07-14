@@ -1324,7 +1324,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("CreateJournalCommand_cancelled", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Please open a notebook before creating a journal.
         /// </summary>
@@ -1333,52 +1333,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("CreateJournalCommand_noNotebook", resourceCulture);
             }
         }
-
+        
         /// <summary>
-        ///   Looks up a localized string similar to OneMore can't create pages while OneNote is syncing. Try again in a moment..
+        ///   Looks up a localized string similar to OneMore can&apos;t create pages while OneNote is syncing. Try again in a moment..
         /// </summary>
         internal static string CreateJournalCommand_syncError {
             get {
                 return ResourceManager.GetString("CreateJournalCommand_syncError", resourceCulture);
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Create Journal.
-        /// </summary>
-        internal static string CreateJournalDialog_Text {
-            get {
-                return ResourceManager.GetString("CreateJournalDialog.Text", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Date format.
-        /// </summary>
-        internal static string CreateJournalDialog_dateFormatLabel_Text {
-            get {
-                return ResourceManager.GetString("CreateJournalDialog_dateFormatLabel.Text", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Day range.
-        /// </summary>
-        internal static string CreateJournalDialog_dayRangeLabel_Text {
-            get {
-                return ResourceManager.GetString("CreateJournalDialog_dayRangeLabel.Text", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Destination.
-        /// </summary>
-        internal static string CreateJournalDialog_destinationLabel_Text {
-            get {
-                return ResourceManager.GetString("CreateJournalDialog_destinationLabel.Text", resourceCulture);
-            }
-        }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Current section.
         /// </summary>
@@ -1387,7 +1351,34 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("CreateJournalDialog_currentSectionRadio.Text", resourceCulture);
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date format.
+        /// </summary>
+        internal static string CreateJournalDialog_dateFormatLabel_Text {
+            get {
+                return ResourceManager.GetString("CreateJournalDialog_dateFormatLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Day range.
+        /// </summary>
+        internal static string CreateJournalDialog_dayRangeLabel_Text {
+            get {
+                return ResourceManager.GetString("CreateJournalDialog_dayRangeLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Destination.
+        /// </summary>
+        internal static string CreateJournalDialog_destinationLabel_Text {
+            get {
+                return ResourceManager.GetString("CreateJournalDialog_destinationLabel.Text", resourceCulture);
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Hashtags.
         /// </summary>
@@ -1396,7 +1387,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("CreateJournalDialog_hashtagsLabel.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Name contains invalid characters or exceeds 50 characters.
         /// </summary>
@@ -1405,7 +1396,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("CreateJournalDialog_invalidSectionName", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Month.
         /// </summary>
@@ -1414,7 +1405,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("CreateJournalDialog_monthLabel.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to New section.
         /// </summary>
@@ -1423,7 +1414,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("CreateJournalDialog_newSectionRadio.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to This will create {0} pages ({1}) in the current section..
         /// </summary>
@@ -1432,25 +1423,25 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("CreateJournalDialog_previewCurrent", resourceCulture);
             }
         }
-
+        
         /// <summary>
-        ///   Looks up a localized string similar to This will create {0} pages ({1}) in a new section named '{2}'..
+        ///   Looks up a localized string similar to This will create {0} pages ({1}) in a new section named &apos;{2}&apos;..
         /// </summary>
         internal static string CreateJournalDialog_previewNew {
             get {
                 return ResourceManager.GetString("CreateJournalDialog_previewNew", resourceCulture);
             }
         }
-
+        
         /// <summary>
-        ///   Looks up a localized string similar to A section named '{0}' already exists. Choose a different name or select 'Current section'..
+        ///   Looks up a localized string similar to A section named &apos;{0}&apos; already exists. Choose a different name or select &apos;Current section&apos;..
         /// </summary>
         internal static string CreateJournalDialog_sectionCollision {
             get {
                 return ResourceManager.GetString("CreateJournalDialog_sectionCollision", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to New section name.
         /// </summary>
@@ -1459,7 +1450,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("CreateJournalDialog_sectionNameLabel.Text", resourceCulture);
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Journal.
+        /// </summary>
+        internal static string CreateJournalDialog_Text {
+            get {
+                return ResourceManager.GetString("CreateJournalDialog.Text", resourceCulture);
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Title.
         /// </summary>
@@ -1468,7 +1468,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("CreateJournalDialog_titleLabel.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Title cannot look like a date.
         /// </summary>
@@ -1477,7 +1477,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("CreateJournalDialog_titleLooksLikeDate", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to weekdays only.
         /// </summary>
@@ -1486,7 +1486,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("CreateJournalDialog_weekdaysOnly", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Weekdays only.
         /// </summary>
@@ -1495,7 +1495,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("CreateJournalDialog_weekdaysOnlyRadio.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to weekdays and weekends.
         /// </summary>
@@ -1504,7 +1504,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("CreateJournalDialog_weekdaysWeekends", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Weekdays and weekends.
         /// </summary>
@@ -1513,7 +1513,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("CreateJournalDialog_weekdaysWeekendsRadio.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Year.
         /// </summary>
@@ -1522,7 +1522,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("CreateJournalDialog_yearLabel.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Would you like to create {0} pages?.
         /// </summary>
@@ -4422,7 +4422,178 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportLayoutsCommand_OpenFileTitle", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Loading Outlook categories....
+        /// </summary>
+        internal static string ImportOutlookContactsCommand_loadingCategories {
+            get {
+                return ResourceManager.GetString("ImportOutlookContactsCommand_loadingCategories", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Loading Outlook contacts....
+        /// </summary>
+        internal static string ImportOutlookContactsCommand_loadingContacts {
+            get {
+                return ResourceManager.GetString("ImportOutlookContactsCommand_loadingContacts", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Loading Outlook contact folders....
+        /// </summary>
+        internal static string ImportOutlookContactsCommand_loadingFolders {
+            get {
+                return ResourceManager.GetString("ImportOutlookContactsCommand_loadingFolders", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Outlook must be installed to use this command.
+        /// </summary>
+        internal static string ImportOutlookContactsCommand_outlookRequired {
+            get {
+                return ResourceManager.GetString("ImportOutlookContactsCommand_outlookRequired", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Import Outlook Contacts.
+        /// </summary>
+        internal static string ImportOutlookContactsDialog_Text {
+            get {
+                return ResourceManager.GetString("ImportOutlookContactsDialog.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to &lt; Back.
+        /// </summary>
+        internal static string ImportOutlookContactsDialog_backButton_Text {
+            get {
+                return ResourceManager.GetString("ImportOutlookContactsDialog_backButton.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Calculating....
+        /// </summary>
+        internal static string ImportOutlookContactsDialog_calculating {
+            get {
+                return ResourceManager.GetString("ImportOutlookContactsDialog_calculating", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Choose which Outlook categories to include..
+        /// </summary>
+        internal static string ImportOutlookContactsDialog_categoryIntro {
+            get {
+                return ResourceManager.GetString("ImportOutlookContactsDialog_categoryIntro", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to {0} contacts match your filters. Choose which to import..
+        /// </summary>
+        internal static string ImportOutlookContactsDialog_contactIntro {
+            get {
+                return ResourceManager.GetString("ImportOutlookContactsDialog_contactIntro", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to {0} contacts.
+        /// </summary>
+        internal static string ImportOutlookContactsDialog_contactsCount {
+            get {
+                return ResourceManager.GetString("ImportOutlookContactsDialog_contactsCount", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to {0} of {1} contacts selected.
+        /// </summary>
+        internal static string ImportOutlookContactsDialog_contactsSelected {
+            get {
+                return ResourceManager.GetString("ImportOutlookContactsDialog_contactsSelected", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Choose which Outlook contact folders to import from..
+        /// </summary>
+        internal static string ImportOutlookContactsDialog_folderIntro {
+            get {
+                return ResourceManager.GetString("ImportOutlookContactsDialog_folderIntro", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Import.
+        /// </summary>
+        internal static string ImportOutlookContactsDialog_importButton {
+            get {
+                return ResourceManager.GetString("ImportOutlookContactsDialog_importButton", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to {0} contacts match your current selection.
+        /// </summary>
+        internal static string ImportOutlookContactsDialog_matchesSelection {
+            get {
+                return ResourceManager.GetString("ImportOutlookContactsDialog_matchesSelection", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Next &gt;.
+        /// </summary>
+        internal static string ImportOutlookContactsDialog_nextButton {
+            get {
+                return ResourceManager.GetString("ImportOutlookContactsDialog_nextButton", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Categories.
+        /// </summary>
+        internal static string ImportOutlookContactsDialog_stepCategories {
+            get {
+                return ResourceManager.GetString("ImportOutlookContactsDialog_stepCategories", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Contacts.
+        /// </summary>
+        internal static string ImportOutlookContactsDialog_stepContacts {
+            get {
+                return ResourceManager.GetString("ImportOutlookContactsDialog_stepContacts", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Folders.
+        /// </summary>
+        internal static string ImportOutlookContactsDialog_stepFolders {
+            get {
+                return ResourceManager.GetString("ImportOutlookContactsDialog_stepFolders", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Uncategorized.
+        /// </summary>
+        internal static string ImportOutlookContactsDialog_uncategorized {
+            get {
+                return ResourceManager.GetString("ImportOutlookContactsDialog_uncategorized", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Choose the tasks to import from Outlook into OneNote. Disabled items indicate tasks already linked to OneNote.
         /// </summary>
@@ -8778,7 +8949,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribCreateJournalButton_Label", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Generate a month of dated journal pages.
         /// </summary>
@@ -8787,7 +8958,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribCreateJournalButton_Screentip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Create Pages from List.
         /// </summary>
@@ -9424,6 +9595,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribImportLayoutsButton_Screentip {
             get {
                 return ResourceManager.GetString("ribImportLayoutsButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import Contacts from Outlook.
+        /// </summary>
+        internal static string ribImportOutlookContactsButton_Label {
+            get {
+                return ResourceManager.GetString("ribImportOutlookContactsButton_Label", resourceCulture);
             }
         }
         
@@ -14523,7 +14703,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("word_Delete", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Diary.
         /// </summary>
@@ -14532,7 +14712,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("word_Diary", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Distance.
         /// </summary>
@@ -14739,7 +14919,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("word_Information", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Journal.
         /// </summary>
@@ -14748,7 +14928,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("word_Journal", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
