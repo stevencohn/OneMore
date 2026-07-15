@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2021 Steven M Cohn.  All rights reserved.
+// Copyright © 2021 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Models
@@ -19,6 +19,13 @@ namespace River.OneMoreAddIn.Models
 			: this(ns)
 		{
 			Add(bullets);
+		}
+
+
+		public ContentList(params XElement[] elements)
+			: this(PageNamespace.Value)
+		{
+			Add(elements);
 		}
 	}
 }
