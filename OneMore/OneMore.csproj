@@ -521,6 +521,7 @@
     <Compile Include="Models\PageSchema.cs" />
     <Compile Include="Models\SectionEditor.cs" />
     <Compile Include="Models\TagMapper.cs" />
+    <Compile Include="Models\TextRun.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
