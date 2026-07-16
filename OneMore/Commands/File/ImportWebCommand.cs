@@ -239,46 +239,11 @@ namespace River.OneMoreAddIn.Commands
 			logger.End();
 		}
 
-		private async Task<Page> CreatePage(OneNote one, Page parent, string title)
+		private static async Task<Page> CreatePage(OneNote one, Page parent, string title)
 		{
-			var section = await one.GetSection();
-			var sectionId = section.Attribute("ID").Value;
-
-			one.CreatePage(sectionId, out var pageId);
-			var page = await one.GetPage(pageId);
-
-			if (parent != null)
-			{
-				// get current section again after new page is created
-				section = await one.GetSection();
-
-				var parentElement = section.Elements(parent.Namespace + "Page")
-					.First(e => e.Attribute("ID").Value == parent.PageId);
-
-				var childElement = section.Elements(parent.Namespace + "Page")
-					.First(e => e.Attribute("ID").Value == pageId);
-
-				if (childElement != parentElement.NextNode)
-				{
-					// move new page immediately after its original in the section
-					childElement.Remove();
-					parentElement.AddAfterSelf(childElement);
-				}
-
-				parentElement.GetAttributeValue("pageLevel", out var level, 1);
-				var pageLevel = (level + 1).ToString();
-
-				// must set level on the hierarchy entry and on the page itself
-				childElement.SetAttributeValue("pageLevel", pageLevel);
-				page.Root.SetAttributeValue("pageLevel", pageLevel);
-
-				one.UpdateHierarchy(section);
-			}
-
-			await one.NavigateTo(pageId);
-
-			page.Title = title;
-			return page;
+			var child = await one.CreateChildPage(parent, title);
+			await one.NavigateTo(child.PageId);
+			return child;
 		}
 
 		#endregion ImportAsImages

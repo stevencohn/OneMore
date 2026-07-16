@@ -8,7 +8,7 @@ namespace River.OneMoreAddIn.Models
 	using System.Xml.Linq;
 
 
-	internal class Paragraph : XElement
+	internal class Paragraph : StylizedElement<Paragraph>
 	{
 		public Paragraph(string text)
 			: this(PageNamespace.Value, text)
@@ -54,7 +54,6 @@ namespace River.OneMoreAddIn.Models
 			return this;
 		}
 
-
 		public Paragraph SetMeta(string name, string content)
 		{
 			var meta = new XElement(PageNamespace.Value + "Meta",
@@ -95,9 +94,21 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
-		public Paragraph SetStyle(string style)
+		/// <summary>
+		/// Applies the given css to this paragraph's own style attribute, merging it into any
+		/// existing style or overwriting it entirely.
+		/// </summary>
+		/// <param name="css">A single "property:value;" pair, or a full style string</param>
+		/// <param name="merge">
+		/// True to merge css into the existing style, preserving other properties;
+		/// false to overwrite the existing style entirely
+		/// </param>
+		/// <returns></returns>
+		protected override Paragraph ApplyStyle(string css, bool merge)
 		{
-			SetAttributeValue("style", style);
+			SetAttributeValue("style",
+				merge ? MergeCss(Attribute("style")?.Value, css) : css);
+
 			return this;
 		}
 	}

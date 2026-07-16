@@ -203,6 +203,8 @@
     <Compile Include="Commands\Edit\ConvertMarkdownCommand.cs" />
     <Compile Include="Commands\Edit\CopyAsTextCommand.cs" />
     <Compile Include="Commands\Edit\RecolorInkCommand.cs" />
+    <Compile Include="Commands\Office\ContactGenerator.cs" />
+    <Compile Include="Commands\Office\ContactListGenerator.cs" />
     <Compile Include="Commands\Office\ImportOutlookContactsCommand.cs" />
     <Compile Include="Commands\Office\ImportOutlookContactsDialog.cs">
       <SubType>Form</SubType>
@@ -959,6 +961,7 @@
     <Compile Include="Models\Paragraph.cs" />
     <Compile Include="Models\SelectionRange.cs" />
     <Compile Include="Models\SelectionScope.cs" />
+    <Compile Include="Models\StylizedElement.cs" />
     <Compile Include="Models\Tag.cs" />
     <Compile Include="Models\TagDef.cs" />
     <Compile Include="Ribbon\AddInRibbonTableGallery.cs" />
