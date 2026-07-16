@@ -1939,6 +1939,10 @@
     <value>يجب تثبيت Outlook لاستخدام هذا الأمر</value>
     <comment>info message</comment>
   </data>
+  <data name="ImportOutlookContactsCommand_reportNotFound" xml:space="preserve">
+    <value>لم يتم العثور على تقرير جهات اتصال Outlook. ربما تم حذفه</value>
+    <comment>info message</comment>
+  </data>
   <data name="ImportOutlookContactsDialog.Text" xml:space="preserve">
     <value>استيراد جهات اتصال Outlook</value>
     <comment>dialog title</comment>

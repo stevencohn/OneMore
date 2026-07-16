@@ -1936,6 +1936,10 @@ Total Row Font
     <value>יש להתקין את Outlook כדי להשתמש בפקודה זו</value>
     <comment>info message</comment>
   </data>
+  <data name="ImportOutlookContactsCommand_reportNotFound" xml:space="preserve">
+    <value>דוח אנשי הקשר של Outlook לא נמצא. ייתכן שהוא נמחק</value>
+    <comment>info message</comment>
+  </data>
   <data name="ImportOutlookContactsDialog.Text" xml:space="preserve">
     <value>ייבא אנשי קשר של Outlook</value>
     <comment>dialog title</comment>

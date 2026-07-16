@@ -1939,6 +1939,10 @@ Fond jaune</value>
     <value>Outlook doit être installé pour utiliser cette commande</value>
     <comment>info message</comment>
   </data>
+  <data name="ImportOutlookContactsCommand_reportNotFound" xml:space="preserve">
+    <value>Rapport de contacts Outlook introuvable. Il a peut-être été supprimé</value>
+    <comment>info message</comment>
+  </data>
   <data name="ImportOutlookContactsDialog.Text" xml:space="preserve">
     <value>Importer des contacts Outlook</value>
     <comment>dialog title</comment>

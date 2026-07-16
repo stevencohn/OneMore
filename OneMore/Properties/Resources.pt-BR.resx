@@ -1936,6 +1936,10 @@ Fundo Amarelo</value>
     <value>O Outlook deve estar instalado para usar este comando</value>
     <comment>info message</comment>
   </data>
+  <data name="ImportOutlookContactsCommand_reportNotFound" xml:space="preserve">
+    <value>Relatório de contatos do Outlook não encontrado. Pode ter sido excluído</value>
+    <comment>info message</comment>
+  </data>
   <data name="ImportOutlookContactsDialog.Text" xml:space="preserve">
     <value>Importar contatos do Outlook</value>
     <comment>dialog title</comment>

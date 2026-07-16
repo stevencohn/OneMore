@@ -20,6 +20,10 @@ namespace River.OneMoreAddIn.Commands
 	[CommandService]
 	internal class ImportOutlookContactsCommand : Command
 	{
+		private const string TableMeta = "omOutlookContacts";
+		private const string RefreshMeta = "omOutlookContactsRefresh";
+		private const string ContactMeta = "omOutlookContact";
+
 		private const string ControlRowShading = "#C5E0B3";
 		private const string OddRowShading = "#F2F2F2";
 		private const string HeaderRowShading = "#1E4E79";
@@ -50,7 +54,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (args.Length > 1 && args[0] is string refreshArg && refreshArg == "refresh")
 			{
-				//await UpdateReport(args[1] as string);
+				await UpdateReport(args[1] as string);
 				return;
 			}
 
@@ -137,6 +141,9 @@ namespace River.OneMoreAddIn.Commands
 			PageNamespace.Set(ns);
 			var editor = new PageEditor(page);
 
+			var guid = Guid.NewGuid().ToString("b").ToUpper();
+			var nowf = DateTime.Now.ToShortFriendlyString();
+
 			var controlTable = new Table(ns, 1, 3)
 			{
 				HasHeaderRow = true
@@ -149,9 +156,90 @@ namespace River.OneMoreAddIn.Commands
 			var row = controlTable[0];
 			row.SetShading(ControlRowShading);
 			row[0].SetContent(new Paragraph(string.Empty));
-			row[1].SetContent(new Paragraph(Resx.word_Refresh).SetAlignment("right"));
+			row[1].SetContent(new Paragraph(
+				$"{Resx.ReminderReport_LastUpdated} {nowf} " +
+				$"(<a href=\"onemore://ImportOutlookContactsCommand/refresh/{guid}\">{Resx.word_Refresh}</a>)")
+				.SetAlignment("right")
+				.SetMeta(RefreshMeta, guid));
 			row[2].SetContent(new Paragraph(string.Empty));
 
+			var table = BuildDataTable(contacts);
+
+			editor.AddNextParagraph(
+				new Paragraph(controlTable.Root),
+				new Paragraph(table.Root).SetMeta(TableMeta, guid)
+				);
+
+			await one.Update(page);
+		}
+
+
+		private async Task UpdateReport(string guid)
+		{
+			if (string.IsNullOrEmpty(guid))
+			{
+				return;
+			}
+
+			await using (one = new OneNote(out page, out ns, OneNote.PageDetail.Basic))
+			{
+				PageNamespace.Set(ns);
+
+				var meta = page.Root.Descendants(ns + "Meta")
+					.FirstOrDefault(e =>
+						e.Attribute("name").Value == TableMeta &&
+						e.Attribute("content").Value == guid &&
+						e.Parent.Elements(ns + "Table").Any());
+
+				if (meta == null)
+				{
+					ShowInfo(Resx.ImportOutlookContactsCommand_reportNotFound);
+					return;
+				}
+
+				var tableElement = meta.Parent.Elements(ns + "Table").First();
+
+				var ids = tableElement.Descendants(ns + "Meta")
+					.Where(e => e.Attribute("name").Value == ContactMeta)
+					.Select(e => e.Attribute("content").Value)
+					// ref by list so they're not disposed when we discard the old table
+					.ToList();
+
+				if (ids.Count == 0)
+				{
+					ShowInfo(Resx.ImportOutlookContactsCommand_reportNotFound);
+					return;
+				}
+
+				using var outlook = new Outlook();
+				var contacts = outlook.LoadContactsByID(ids).ToList();
+
+				var table = BuildDataTable(contacts);
+				tableElement.ReplaceWith(table.Root);
+
+				// update "Last updated..." line...
+
+				var stamp = page.Root.Descendants(ns + "Meta")
+					.Where(e =>
+						e.Attribute("name").Value == RefreshMeta &&
+						e.Attribute("content").Value == guid)
+					.Select(e => e.Parent.Elements(ns + "T").FirstOrDefault())
+					.FirstOrDefault();
+
+				if (stamp != null)
+				{
+					stamp.GetCData().Value =
+						$"{Resx.ReminderReport_LastUpdated} {DateTime.Now.ToShortFriendlyString()} " +
+						$"(<a href=\"onemore://ImportOutlookContactsCommand/refresh/{guid}\">{Resx.word_Refresh}</a>)";
+				}
+
+				await one.Update(page);
+			}
+		}
+
+
+		private Table BuildDataTable(IEnumerable<OutlookContact> contacts)
+		{
 			var table = new Table(ns, 1, 7)
 			{
 				HasHeaderRow = true
@@ -165,7 +253,7 @@ namespace River.OneMoreAddIn.Commands
 			table.SetColumnWidth(5, 100);
 			table.SetColumnWidth(6, 150);
 
-			row = table[0];
+			var row = table[0];
 			PopulateHeader(row);
 
 			var shaded = false;
@@ -186,12 +274,7 @@ namespace River.OneMoreAddIn.Commands
 				shaded = !shaded;
 			}
 
-			editor.AddNextParagraph(
-				new Paragraph(controlTable.Root),
-				new Paragraph(table.Root)
-				);
-
-			await one.Update(page);
+			return table;
 		}
 
 
@@ -238,6 +321,7 @@ namespace River.OneMoreAddIn.Commands
 			row[0].SetContent(new Paragraph(ContactGlyph)
 				.SetStyle("font-family:'Segoe UI Symbol';font-size:24.0pt;color:#0070C0")
 				.SetAlignment("center")
+				.SetMeta(ContactMeta, contact.EntryID)
 				);
 
 			row[1].SetContent(new ContentList(

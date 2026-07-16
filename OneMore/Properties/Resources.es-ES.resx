@@ -1931,6 +1931,10 @@ Fondo amarillo</value>
     <value>Outlook debe estar instalado para usar este comando</value>
     <comment>info message</comment>
   </data>
+  <data name="ImportOutlookContactsCommand_reportNotFound" xml:space="preserve">
+    <value>Informe de contactos de Outlook no encontrado. Puede que haya sido eliminado</value>
+    <comment>info message</comment>
+  </data>
   <data name="ImportOutlookContactsDialog.Text" xml:space="preserve">
     <value>Importar contactos de Outlook</value>
     <comment>dialog title</comment>

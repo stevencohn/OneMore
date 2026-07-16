@@ -4460,6 +4460,15 @@ namespace River.OneMoreAddIn.Properties {
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Outlook contacts report not found. It may have been deleted.
+        /// </summary>
+        internal static string ImportOutlookContactsCommand_reportNotFound {
+            get {
+                return ResourceManager.GetString("ImportOutlookContactsCommand_reportNotFound", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Import Outlook Contacts.
         /// </summary>
         internal static string ImportOutlookContactsDialog_Text {
