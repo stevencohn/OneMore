@@ -1936,6 +1936,10 @@ Gele achtergrond</value>
     <value>Outlook moet geïnstalleerd zijn om deze opdracht te kunnen gebruiken</value>
     <comment>info message</comment>
   </data>
+  <data name="ImportOutlookContactsCommand_reportNotFound" xml:space="preserve">
+    <value>Outlook-contactenrapport niet gevonden. Mogelijk is deze verwijderd</value>
+    <comment>info message</comment>
+  </data>
   <data name="ImportOutlookContactsDialog.Text" xml:space="preserve">
     <value>Outlook-contactpersonen importeren</value>
     <comment>dialog title</comment>

@@ -1931,6 +1931,10 @@ Gelber Hintergrund</value>
     <value>Um diesen Befehl verwenden zu können, muss Outlook installiert sein</value>
     <comment>info message</comment>
   </data>
+  <data name="ImportOutlookContactsCommand_reportNotFound" xml:space="preserve">
+    <value>Outlook-Kontaktbericht nicht gefunden. Möglicherweise wurde es gelöscht</value>
+    <comment>info message</comment>
+  </data>
   <data name="ImportOutlookContactsDialog.Text" xml:space="preserve">
     <value>Importieren Sie Outlook-Kontakte</value>
     <comment>dialog title</comment>

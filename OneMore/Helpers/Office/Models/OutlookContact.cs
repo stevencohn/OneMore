@@ -21,6 +21,9 @@ namespace River.OneMoreAddIn.Helpers.Office
 		public ContactItem Contact => contact;
 
 
+		public string EntryID => contact.EntryID;
+
+
 		public string FirstName
 		{
 			get => contact.FirstName;

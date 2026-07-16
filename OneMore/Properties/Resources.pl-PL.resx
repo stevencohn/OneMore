@@ -1936,6 +1936,10 @@ Czerwony pierwszy plan
     <value>Aby móc korzystać z tego polecenia, musi być zainstalowany program Outlook</value>
     <comment>info message</comment>
   </data>
+  <data name="ImportOutlookContactsCommand_reportNotFound" xml:space="preserve">
+    <value>Nie znaleziono raportu o kontaktach programu Outlook. Być może został usunięty</value>
+    <comment>info message</comment>
+  </data>
   <data name="ImportOutlookContactsDialog.Text" xml:space="preserve">
     <value>Importuj kontakty programu Outlook</value>
     <comment>dialog title</comment>

@@ -1936,6 +1936,10 @@ Sfondo giallo</value>
     <value>Per utilizzare questo comando è necessario installare Outlook</value>
     <comment>info message</comment>
   </data>
+  <data name="ImportOutlookContactsCommand_reportNotFound" xml:space="preserve">
+    <value>Rapporto sui contatti di Outlook non trovato. Potrebbe essere stato cancellato</value>
+    <comment>info message</comment>
+  </data>
   <data name="ImportOutlookContactsDialog.Text" xml:space="preserve">
     <value>Importa contatti di Outlook</value>
     <comment>dialog title</comment>

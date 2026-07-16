@@ -1942,6 +1942,10 @@ OneNote 文件 (*.one)</value>
     <value>必须安装 Outlook 才能使用此命令</value>
     <comment>info message</comment>
   </data>
+  <data name="ImportOutlookContactsCommand_reportNotFound" xml:space="preserve">
+    <value>未找到 Outlook 联系人报告。可能已被删除</value>
+    <comment>info message</comment>
+  </data>
   <data name="ImportOutlookContactsDialog.Text" xml:space="preserve">
     <value>导入 Outlook 联系人</value>
     <comment>dialog title</comment>

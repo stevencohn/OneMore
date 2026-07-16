@@ -155,6 +155,24 @@ namespace River.OneMoreAddIn.Helpers.Office
 
 
 		/// <summary>
+		/// Loads specific contacts by their Outlook EntryID, used to refresh a previously
+		/// generated contacts report without re-enumerating every contact folder.
+		/// </summary>
+		/// <param name="contactIDs">The EntryIDs of the contacts to load</param>
+		/// <returns>An enumerable collection of OutlookContact instances</returns>
+		public IEnumerable<OutlookContact> LoadContactsByID(IEnumerable<string> contactIDs)
+		{
+			foreach (var id in contactIDs)
+			{
+				if (outlook.Session.GetItemFromID(id) is ContactItem item)
+				{
+					yield return new OutlookContact(item);
+				}
+			}
+		}
+
+
+		/// <summary>
 		/// Builds a hierarchy of task folders populated with their tasks
 		/// </summary>
 		/// <returns></returns>
