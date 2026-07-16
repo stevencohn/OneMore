@@ -4487,6 +4487,24 @@ namespace River.OneMoreAddIn.Properties {
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Both - show both personal and business details.
+        /// </summary>
+        internal static string ImportOutlookContactsDialog_bothRadio_Text {
+            get {
+                return ResourceManager.GetString("ImportOutlookContactsDialog_bothRadio.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Business - show only Business details.
+        /// </summary>
+        internal static string ImportOutlookContactsDialog_businessRadio_Text {
+            get {
+                return ResourceManager.GetString("ImportOutlookContactsDialog_businessRadio.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Calculating....
         /// </summary>
         internal static string ImportOutlookContactsDialog_calculating {
@@ -4501,6 +4519,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ImportOutlookContactsDialog_categoryIntro {
             get {
                 return ResourceManager.GetString("ImportOutlookContactsDialog_categoryIntro", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Company name.
+        /// </summary>
+        internal static string ImportOutlookContactsDialog_companyRadio_Text {
+            get {
+                return ResourceManager.GetString("ImportOutlookContactsDialog_companyRadio.Text", resourceCulture);
             }
         }
 
@@ -4532,6 +4559,15 @@ namespace River.OneMoreAddIn.Properties {
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to First name.
+        /// </summary>
+        internal static string ImportOutlookContactsDialog_firstNameRadio_Text {
+            get {
+                return ResourceManager.GetString("ImportOutlookContactsDialog_firstNameRadio.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Choose which Outlook contact folders to import from..
         /// </summary>
         internal static string ImportOutlookContactsDialog_folderIntro {
@@ -4550,6 +4586,15 @@ namespace River.OneMoreAddIn.Properties {
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Last name.
+        /// </summary>
+        internal static string ImportOutlookContactsDialog_lastNameRadio_Text {
+            get {
+                return ResourceManager.GetString("ImportOutlookContactsDialog_lastNameRadio.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to {0} contacts match your current selection.
         /// </summary>
         internal static string ImportOutlookContactsDialog_matchesSelection {
@@ -4564,6 +4609,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ImportOutlookContactsDialog_nextButton {
             get {
                 return ResourceManager.GetString("ImportOutlookContactsDialog_nextButton", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Personal - show only Personal/Home details.
+        /// </summary>
+        internal static string ImportOutlookContactsDialog_personalRadio_Text {
+            get {
+                return ResourceManager.GetString("ImportOutlookContactsDialog_personalRadio.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Sort by.
+        /// </summary>
+        internal static string ImportOutlookContactsDialog_sortGroupBox_Text {
+            get {
+                return ResourceManager.GetString("ImportOutlookContactsDialog_sortGroupBox.Text", resourceCulture);
             }
         }
 
@@ -4591,6 +4654,24 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ImportOutlookContactsDialog_stepFolders {
             get {
                 return ResourceManager.GetString("ImportOutlookContactsDialog_stepFolders", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Options.
+        /// </summary>
+        internal static string ImportOutlookContactsDialog_stepOptions {
+            get {
+                return ResourceManager.GetString("ImportOutlookContactsDialog_stepOptions", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Template.
+        /// </summary>
+        internal static string ImportOutlookContactsDialog_templateGroupBox_Text {
+            get {
+                return ResourceManager.GetString("ImportOutlookContactsDialog_templateGroupBox.Text", resourceCulture);
             }
         }
 
