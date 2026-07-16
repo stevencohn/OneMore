@@ -16,11 +16,33 @@ namespace River.OneMoreAddIn.Commands
 
 
 	/// <summary>
-	/// A 3-step wizard (Folders -> Categories -> Contacts) that lets the user narrow
-	/// down which Outlook contacts to import into OneNote.
+	/// A 4-step wizard (Folders -> Categories -> Contacts -> Options) that lets the user
+	/// narrow down which Outlook contacts to import into OneNote and choose import
+	/// options.
 	/// </summary>
 	internal partial class ImportOutlookContactsDialog : UI.MoreForm
 	{
+		/// <summary>
+		/// The contact template to apply to imported contacts.
+		/// </summary>
+		public enum TemplateOption
+		{
+			Personal,
+			Business,
+			Both
+		}
+
+
+		/// <summary>
+		/// The field by which imported contacts should be sorted.
+		/// </summary>
+		public enum SortByOption
+		{
+			LastName,
+			FirstName,
+			Company
+		}
+
 		// synthetic category representing contacts with no assigned category at all;
 		// always shown first in the category list, ahead of Outlook's real categories
 		private static string UncategorizedName => Resx.ImportOutlookContactsDialog_uncategorized;
@@ -95,7 +117,15 @@ namespace River.OneMoreAddIn.Commands
 				Localize(new[]
 				{
 					"backButton",
-					"cancelButton=word_Cancel"
+					"cancelButton=word_Cancel",
+					"templateGroupBox",
+					"personalRadio",
+					"businessRadio",
+					"bothRadio",
+					"sortGroupBox",
+					"lastNameRadio",
+					"firstNameRadio",
+					"companyRadio"
 				});
 			}
 
@@ -151,6 +181,30 @@ namespace River.OneMoreAddIn.Commands
 			contactChecklist.List.Items.Cast<ListViewItem>()
 				.Where(i => i.Checked)
 				.Select(i => (OutlookContact)i.Tag);
+
+
+		/// <summary>
+		/// Gets the template the user chose on the Options step.
+		/// </summary>
+		public TemplateOption Template =>
+			true switch
+			{
+				_ when personalRadio.Checked => TemplateOption.Personal,
+				_ when businessRadio.Checked => TemplateOption.Business,
+				_ => TemplateOption.Both
+			};
+
+
+		/// <summary>
+		/// Gets the sort field the user chose on the Options step.
+		/// </summary>
+		public SortByOption SortBy =>
+			true switch
+			{
+				_ when firstNameRadio.Checked => SortByOption.FirstName,
+				_ when companyRadio.Checked => SortByOption.Company,
+				_ => SortByOption.LastName
+			};
 
 
 		private static (UI.MoreMultilineLabel Intro, UI.MoreCheckListPanel Checklist) BuildStep(
@@ -448,10 +502,11 @@ namespace River.OneMoreAddIn.Commands
 			folderPanel.Visible = step == 1;
 			categoryPanel.Visible = step == 2;
 			contactPanel.Visible = step == 3;
+			optionsPanel.Visible = step == 4;
 
 			stepIndicator.CurrentStep = step;
 			backButton.Enabled = step > 1;
-			nextButton.Text = step == 3
+			nextButton.Text = step == 4
 				? Resx.ImportOutlookContactsDialog_importButton
 				: Resx.ImportOutlookContactsDialog_nextButton;
 
@@ -464,7 +519,12 @@ namespace River.OneMoreAddIn.Commands
 				RebuildContactList();
 			}
 
-			UpdateSelectionCount();
+			// step 4 has no checklist to report a running count for
+			if (step != 4)
+			{
+				UpdateSelectionCount();
+			}
+
 			UpdatePrimaryButtonState();
 		}
 
@@ -476,6 +536,7 @@ namespace River.OneMoreAddIn.Commands
 				1 => folderChecklist.List.Items.Cast<ListViewItem>().Any(i => i.Checked),
 				2 => categoryChecklist.List.Items.Cast<ListViewItem>().Any(i => i.Checked),
 				3 => contactChecklist.List.Items.Cast<ListViewItem>().Any(i => i.Checked),
+				4 => true,
 				_ => true
 			};
 		}
@@ -492,7 +553,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void NextButton_Click(object sender, EventArgs e)
 		{
-			if (currentStep < 3)
+			if (currentStep < 4)
 			{
 				GoToStep(currentStep + 1);
 				return;

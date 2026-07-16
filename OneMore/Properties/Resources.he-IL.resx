@@ -1948,6 +1948,14 @@ Total Row Font
     <value>&lt; חזרה</value>
     <comment>button</comment>
   </data>
+  <data name="ImportOutlookContactsDialog_bothRadio.Text" xml:space="preserve">
+    <value>שניהם - הצג פרטים אישיים ועסקיים כאחד</value>
+    <comment>radio, step 4 Template option, default</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_businessRadio.Text" xml:space="preserve">
+    <value>עסק - הצג רק פרטי עסק</value>
+    <comment>radio, step 4 Template option</comment>
+  </data>
   <data name="ImportOutlookContactsDialog_calculating" xml:space="preserve">
     <value>מחשב...</value>
     <comment>caption shown while resolving per-contact folder/category data</comment>
@@ -1955,6 +1963,10 @@ Total Row Font
   <data name="ImportOutlookContactsDialog_categoryIntro" xml:space="preserve">
     <value>בחר אילו קטגוריות של Outlook לכלול.</value>
     <comment>step 2 intro text</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_companyRadio.Text" xml:space="preserve">
+    <value>שם החברה</value>
+    <comment>radio, step 4 Sort by option</comment>
   </data>
   <data name="ImportOutlookContactsDialog_contactIntro" xml:space="preserve">
     <value>{0} אנשי קשר תואמים את המסננים שלך. בחר איזה לייבא.</value>
@@ -1968,6 +1980,10 @@ Total Row Font
     <value>נבחרו {0} מתוך {1} אנשי קשר</value>
     <comment>step 3 footer caption</comment>
   </data>
+  <data name="ImportOutlookContactsDialog_firstNameRadio.Text" xml:space="preserve">
+    <value>שֵׁם פְּרַטִי</value>
+    <comment>radio, step 4 Sort by option</comment>
+  </data>
   <data name="ImportOutlookContactsDialog_folderIntro" xml:space="preserve">
     <value>בחר מאילו תיקיות אנשי קשר של Outlook לייבא.</value>
     <comment>step 1 intro text</comment>
@@ -1976,6 +1992,10 @@ Total Row Font
     <value>יְבוּא</value>
     <comment>primary button text, step 3 only</comment>
   </data>
+  <data name="ImportOutlookContactsDialog_lastNameRadio.Text" xml:space="preserve">
+    <value>שֵׁם מִשׁפָּחָה</value>
+    <comment>radio, step 4 Sort by option, default</comment>
+  </data>
   <data name="ImportOutlookContactsDialog_matchesSelection" xml:space="preserve">
     <value>{0} אנשי קשר תואמים את הבחירה הנוכחית שלך</value>
     <comment>step 1-2 footer caption, {0} is a contact count</comment>
@@ -1983,6 +2003,14 @@ Total Row Font
   <data name="ImportOutlookContactsDialog_nextButton" xml:space="preserve">
     <value>הבא &gt;</value>
     <comment>primary button text, steps 1-2 only</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_personalRadio.Text" xml:space="preserve">
+    <value>אישי - הצג רק פרטים אישיים/ביתיים</value>
+    <comment>radio, step 4 Template option</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_sortGroupBox.Text" xml:space="preserve">
+    <value>מיין לפי</value>
+    <comment>group, step 4</comment>
   </data>
   <data name="ImportOutlookContactsDialog_stepCategories" xml:space="preserve">
     <value>קטגוריות</value>
@@ -1995,6 +2023,14 @@ Total Row Font
   <data name="ImportOutlookContactsDialog_stepFolders" xml:space="preserve">
     <value>תיקיות</value>
     <comment>step indicator label</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_stepOptions" xml:space="preserve">
+    <value>אפשרויות</value>
+    <comment>step indicator label</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_templateGroupBox.Text" xml:space="preserve">
+    <value>תבנית</value>
+    <comment>group, step 4</comment>
   </data>
   <data name="ImportOutlookContactsDialog_uncategorized" xml:space="preserve">
     <value>לא מסווג</value>

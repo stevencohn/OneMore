@@ -30,6 +30,8 @@ namespace River.OneMoreAddIn.Commands
 		private const string ContactGlyph = "\ue2af"; // "Contact" glyph in Segoe UI Symbol
 		private const string ArrowGlyph = "\u2197"; // "NE Arrow" glyph in Segoe UI Symbol
 
+		private const string RefreshUri = "onemore://ImportOutlookContactsCommand/refresh";
+
 		private readonly Regex emailPattern;
 
 
@@ -54,7 +56,14 @@ namespace River.OneMoreAddIn.Commands
 
 			if (args.Length > 1 && args[0] is string refreshArg && refreshArg == "refresh")
 			{
-				await UpdateReport(args[1] as string);
+				var guid = args[1] as string;
+				var atemp = ImportOutlookContactsDialog.TemplateOption.Both;
+				var asort = ImportOutlookContactsDialog.SortByOption.LastName;
+
+				Enum.TryParse(args[2] as string, out atemp);
+				Enum.TryParse(args[3] as string, out asort);
+
+				await UpdateReport(args[1] as string, atemp, asort);
 				return;
 			}
 
@@ -111,11 +120,14 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
+			var template = dialog.Template;
+			var sortBy = dialog.SortBy;
+
 			// import...
 
 			await using (one = new OneNote(out page, out ns))
 			{
-				await GenerateReport(selected);
+				await GenerateReport(selected, template, sortBy);
 			}
 		}
 
@@ -136,7 +148,10 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task GenerateReport(IEnumerable<OutlookContact> contacts)
+		private async Task GenerateReport(
+			IEnumerable<OutlookContact> contacts,
+			ImportOutlookContactsDialog.TemplateOption template,
+			ImportOutlookContactsDialog.SortByOption sortBy)
 		{
 			PageNamespace.Set(ns);
 			var editor = new PageEditor(page);
@@ -149,8 +164,10 @@ namespace River.OneMoreAddIn.Commands
 				HasHeaderRow = true
 			};
 
+			var personal = template == ImportOutlookContactsDialog.TemplateOption.Personal;
+
 			controlTable.SetColumnWidth(0, 70);
-			controlTable.SetColumnWidth(1, 680);
+			controlTable.SetColumnWidth(1, personal ? 525 : 680);
 			controlTable.SetColumnWidth(2, 40);
 
 			var row = controlTable[0];
@@ -158,12 +175,12 @@ namespace River.OneMoreAddIn.Commands
 			row[0].SetContent(new Paragraph(string.Empty));
 			row[1].SetContent(new Paragraph(
 				$"{Resx.ReminderReport_LastUpdated} {nowf} " +
-				$"(<a href=\"onemore://ImportOutlookContactsCommand/refresh/{guid}\">{Resx.word_Refresh}</a>)")
+				$"(<a href=\"{RefreshUri}/{guid}/{template}/{sortBy}\">{Resx.word_Refresh}</a>)")
 				.SetAlignment("right")
 				.SetMeta(RefreshMeta, guid));
 			row[2].SetContent(new Paragraph(string.Empty));
 
-			var table = BuildDataTable(contacts);
+			var table = BuildDataTable(contacts, template, sortBy);
 
 			editor.AddNextParagraph(
 				new Paragraph(controlTable.Root),
@@ -174,7 +191,9 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task UpdateReport(string guid)
+		private async Task UpdateReport(string guid,
+			ImportOutlookContactsDialog.TemplateOption template,
+			ImportOutlookContactsDialog.SortByOption sortBy)
 		{
 			if (string.IsNullOrEmpty(guid))
 			{
@@ -214,7 +233,7 @@ namespace River.OneMoreAddIn.Commands
 				using var outlook = new Outlook();
 				var contacts = outlook.LoadContactsByID(ids).ToList();
 
-				var table = BuildDataTable(contacts);
+				var table = BuildDataTable(contacts, template, sortBy);
 				tableElement.ReplaceWith(table.Root);
 
 				// update "Last updated..." line...
@@ -230,7 +249,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					stamp.GetCData().Value =
 						$"{Resx.ReminderReport_LastUpdated} {DateTime.Now.ToShortFriendlyString()} " +
-						$"(<a href=\"onemore://ImportOutlookContactsCommand/refresh/{guid}\">{Resx.word_Refresh}</a>)";
+						$"(<a href=\"{RefreshUri}/{guid}/{template}/{sortBy}\">{Resx.word_Refresh}</a>)";
 				}
 
 				await one.Update(page);
@@ -238,29 +257,50 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private Table BuildDataTable(IEnumerable<OutlookContact> contacts)
+		private Table BuildDataTable(
+			IEnumerable<OutlookContact> contacts,
+			ImportOutlookContactsDialog.TemplateOption template,
+			ImportOutlookContactsDialog.SortByOption sortBy)
 		{
-			var table = new Table(ns, 1, 7)
+			var personal = template == ImportOutlookContactsDialog.TemplateOption.Personal;
+
+			var table = new Table(ns, 1, personal ? 6 : 7)
 			{
 				HasHeaderRow = true
 			};
 
-			table.SetColumnWidth(0, 45);
-			table.SetColumnWidth(1, 90);
-			table.SetColumnWidth(2, 85);
-			table.SetColumnWidth(3, 150);
-			table.SetColumnWidth(4, 150);
-			table.SetColumnWidth(5, 100);
-			table.SetColumnWidth(6, 150);
+			int i = 0;
+			table.SetColumnWidth(i++, 45);
+			table.SetColumnWidth(i++, 90);
+			table.SetColumnWidth(i++, 85);
+
+			if (!personal)
+			{
+				table.SetColumnWidth(i++, 150);
+			}
+
+			table.SetColumnWidth(i++, 150);
+			table.SetColumnWidth(i++, 100);
+			table.SetColumnWidth(i++, 150);
 
 			var row = table[0];
-			PopulateHeader(row);
+			PopulateHeader(row, personal);
 
 			var shaded = false;
 
-			foreach (var contact in contacts
-				.OrderBy(t => t.FirstName)
-				.ThenBy(t => t.LastName))
+			var list = sortBy switch
+			{
+				ImportOutlookContactsDialog.SortByOption.FirstName =>
+					contacts.OrderBy(t => t.FirstName).ThenBy(t => t.LastName).ToList(),
+
+				ImportOutlookContactsDialog.SortByOption.Company =>
+					contacts.OrderBy(t => t.CompanyName)
+					.ThenBy(t => t.LastName).ThenBy(t => t.FirstName).ToList(),
+
+				_ => contacts.OrderBy(t => t.LastName).ThenBy(t => t.FirstName).ToList()
+			};
+
+			foreach (var contact in list)
 			{
 				row = table.AddRow();
 
@@ -269,7 +309,7 @@ namespace River.OneMoreAddIn.Commands
 					row.SetShading(OddRowShading);
 				}
 
-				PopulateRow(row, contact);
+				PopulateRow(row, contact, personal);
 
 				shaded = !shaded;
 			}
@@ -278,75 +318,84 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private static void PopulateHeader(TableRow row)
+		private static void PopulateHeader(TableRow row, bool personal)
 		{
 			const string css = "color:#DEEBF6;font-weight:bold";
 
 			row.SetShading(HeaderRowShading);
+			var i = 0;
 
-			row[0].SetContent(new ContentList(
+			row[i++].SetContent(new ContentList(
 				new Paragraph(string.Empty).SetStyle("font-size:8.0pt"),
 				new Paragraph(ArrowGlyph).SetStyle($"font-size:16.0pt;{css}").SetAlignment("center"),
 				new Paragraph(string.Empty)
 				));
 
-			row[1].SetContent(new ContentList(
+			row[i++].SetContent(new ContentList(
 				new Paragraph(string.Empty),
 				new Paragraph("First Name").SetStyle(css)));
 
-			row[2].SetContent(new ContentList(
+			row[i++].SetContent(new ContentList(
 				new Paragraph(string.Empty),
 				new Paragraph("Last Name").SetStyle(css)));
 
-			row[3].SetContent(new ContentList(
-				new Paragraph(string.Empty),
-				new Paragraph("Company/Title").SetStyle(css)));
+			if (!personal)
+			{
+				row[i++].SetContent(new ContentList(
+					new Paragraph(string.Empty),
+					new Paragraph("Company/Title").SetStyle(css)));
+			}
 
-			row[4].SetContent(new ContentList(
+			row[i++].SetContent(new ContentList(
 				new Paragraph(string.Empty),
 				new Paragraph("Email").SetStyle(css)));
 
-			row[5].SetContent(new ContentList(
+			row[i++].SetContent(new ContentList(
 				new Paragraph(string.Empty),
 				new Paragraph("Phone").SetStyle(css)));
 
-			row[6].SetContent(new ContentList(
+			row[i++].SetContent(new ContentList(
 				new Paragraph(string.Empty),
 				new Paragraph("Address").SetStyle(css)));
 		}
 
 
-		private void PopulateRow(TableRow row, OutlookContact contact)
+		private void PopulateRow(TableRow row, OutlookContact contact, bool personal)
 		{
-			row[0].SetContent(new Paragraph(ContactGlyph)
+			var i = 0;
+			row[i++].SetContent(new Paragraph(ContactGlyph)
 				.SetStyle("font-family:'Segoe UI Symbol';font-size:24.0pt;color:#0070C0")
 				.SetAlignment("center")
 				.SetMeta(ContactMeta, contact.EntryID)
 				);
 
-			row[1].SetContent(new ContentList(
+			row[i++].SetContent(new ContentList(
 				new Paragraph(contact.FirstName ?? string.Empty).SetStyle("font-weight:bold")));
 
-			row[2].SetContent(
+			row[i++].SetContent(
 				new Paragraph(contact.LastName ?? string.Empty).SetStyle("font-weight:bold"));
 
+			ContentList content;
+
 			// Company/Title
+			if (!personal)
+			{
+				content = new ContentList();
+				if (!string.IsNullOrWhiteSpace(contact.CompanyName))
+				{
+					content.Add(new Paragraph(contact.CompanyName));
+				}
+				if (!string.IsNullOrWhiteSpace(contact.Title))
+				{
+					content.Add(new Paragraph(contact.Title).SetStyle("font-style:italic"));
+				}
+				if (!content.HasElements)
+				{
+					content.Add(new Paragraph(string.Empty));
+				}
 
-			var content = new ContentList();
-			if (!string.IsNullOrWhiteSpace(contact.CompanyName))
-			{
-				content.Add(new Paragraph(contact.CompanyName));
+				row[i++].SetContent(content);
 			}
-			if (!string.IsNullOrWhiteSpace(contact.Title))
-			{
-				content.Add(new Paragraph(contact.Title).SetStyle("font-style:italic"));
-			}
-			if (!content.HasElements)
-			{
-				content.Add(new Paragraph(string.Empty));
-			}
-
-			row[3].SetContent(content);
 
 			// Emails
 
@@ -368,7 +417,7 @@ namespace River.OneMoreAddIn.Commands
 				content.Add(new Paragraph(string.Empty));
 			}
 
-			row[4].SetContent(content);
+			row[i++].SetContent(content);
 
 			// Phones
 
@@ -386,14 +435,14 @@ namespace River.OneMoreAddIn.Commands
 				content.Add(new Paragraph(string.Empty));
 			}
 
-			row[5].SetContent(content);
+			row[i++].SetContent(content);
 
 			// Address
 
 			content = new ContentList();
-			content.Add(new Paragraph(new TextRun(MakeBestAddress(contact))));
+			content.Add(new Paragraph(new TextRun(MakeBestAddress(contact, personal))));
 
-			row[6].SetContent(content);
+			row[i++].SetContent(content);
 		}
 
 
@@ -415,40 +464,13 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private static string MakeBestAddress(OutlookContact contact)
+		private static string MakeBestAddress(OutlookContact contact, bool personal)
 		{
 			string BR = "<br>" + Environment.NewLine;
 
 			var address = string.Empty;
 
-			if (!string.IsNullOrWhiteSpace(contact.BusinessAddressStreet) ||
-				!string.IsNullOrWhiteSpace(contact.BusinessAddressCity) ||
-				!string.IsNullOrWhiteSpace(contact.BusinessAddressState) ||
-				!string.IsNullOrWhiteSpace(contact.BusinessAddressPostalCode) ||
-				!string.IsNullOrWhiteSpace(contact.BusinessAddressCountry))
-			{
-				if (!string.IsNullOrWhiteSpace(contact.BusinessAddressCity))
-				{
-					address += contact.BusinessAddressCity + ", ";
-				}
-				if (!string.IsNullOrWhiteSpace(contact.BusinessAddressState))
-				{
-					address += contact.BusinessAddressState + " ";
-				}
-				if (!string.IsNullOrWhiteSpace(contact.BusinessAddressPostalCode))
-				{
-					address += contact.BusinessAddressPostalCode + BR;
-				}
-				if (!string.IsNullOrWhiteSpace(contact.BusinessAddressCountry))
-				{
-					address += contact.BusinessAddressCountry;
-				}
-				if (!string.IsNullOrWhiteSpace(contact.BusinessAddressStreet))
-				{
-					address = contact.BusinessAddressStreet + BR + address;
-				}
-			}
-			else if (!string.IsNullOrWhiteSpace(contact.HomeAddressStreet) ||
+			if (!string.IsNullOrWhiteSpace(contact.HomeAddressStreet) ||
 				!string.IsNullOrWhiteSpace(contact.HomeAddressCity) ||
 				!string.IsNullOrWhiteSpace(contact.HomeAddressState) ||
 				!string.IsNullOrWhiteSpace(contact.HomeAddressPostalCode) ||
@@ -473,6 +495,35 @@ namespace River.OneMoreAddIn.Commands
 				if (!string.IsNullOrWhiteSpace(contact.HomeAddressStreet))
 				{
 					address = contact.HomeAddressStreet + BR + address;
+				}
+			}
+
+			if (string.IsNullOrWhiteSpace(address) && (
+				!string.IsNullOrWhiteSpace(contact.BusinessAddressStreet) ||
+				!string.IsNullOrWhiteSpace(contact.BusinessAddressCity) ||
+				!string.IsNullOrWhiteSpace(contact.BusinessAddressState) ||
+				!string.IsNullOrWhiteSpace(contact.BusinessAddressPostalCode) ||
+				!string.IsNullOrWhiteSpace(contact.BusinessAddressCountry)))
+			{
+				if (!string.IsNullOrWhiteSpace(contact.BusinessAddressCity))
+				{
+					address += contact.BusinessAddressCity + ", ";
+				}
+				if (!string.IsNullOrWhiteSpace(contact.BusinessAddressState))
+				{
+					address += contact.BusinessAddressState + " ";
+				}
+				if (!string.IsNullOrWhiteSpace(contact.BusinessAddressPostalCode))
+				{
+					address += contact.BusinessAddressPostalCode + BR;
+				}
+				if (!string.IsNullOrWhiteSpace(contact.BusinessAddressCountry))
+				{
+					address += contact.BusinessAddressCountry;
+				}
+				if (!string.IsNullOrWhiteSpace(contact.BusinessAddressStreet))
+				{
+					address = contact.BusinessAddressStreet + BR + address;
 				}
 			}
 

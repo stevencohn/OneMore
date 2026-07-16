@@ -8,6 +8,19 @@ namespace River.OneMoreAddIn.Models
 	using System.Xml.Linq;
 
 
+	/// <summary>
+	/// Wraps the one:T element in a OneNote page, which contains all or some of the text
+	/// of a paragraph. Use this to specify raw CDATA text and apply styles to it, such as bold or 
+	/// italic.
+	/// </summary>
+	/// <remarks>
+	/// Use this to construct a Paragraph with multiple runs of text, each with its own style. For 
+	/// example, you can create a paragraph that contains a run of bold text followed by a run of 
+	/// italic text, and then append them together with a soft line break in between.
+	/// 
+	/// This preserved raw CDATA text, whereas Paragraph(text) escapes any HTML characters in the 
+	/// text. If you want to include HTML tags in your text (e.g., <span>), use this instead.
+	/// </remarks>
 	internal class TextRun : XElement
 	{
 		public TextRun(string text)
@@ -25,19 +38,6 @@ namespace River.OneMoreAddIn.Models
 		public TextRun(XNamespace ns, XCData data)
 			: base(ns + "T", data)
 		{
-		}
-
-
-		public TextRun(params XObject[] nodes)
-			: this(PageNamespace.Value, nodes)
-		{
-		}
-
-
-		public TextRun(XNamespace ns, params XObject[] nodes)
-			: base(ns + "OE")
-		{
-			Add(nodes);
 		}
 
 

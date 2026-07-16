@@ -1951,6 +1951,14 @@
     <value>&lt; العودة</value>
     <comment>button</comment>
   </data>
+  <data name="ImportOutlookContactsDialog_bothRadio.Text" xml:space="preserve">
+    <value>كلاهما - إظهار التفاصيل الشخصية والتجارية</value>
+    <comment>radio, step 4 Template option, default</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_businessRadio.Text" xml:space="preserve">
+    <value>الأعمال - عرض تفاصيل الأعمال فقط</value>
+    <comment>radio, step 4 Template option</comment>
+  </data>
   <data name="ImportOutlookContactsDialog_calculating" xml:space="preserve">
     <value>جارٍ الحساب...</value>
     <comment>caption shown while resolving per-contact folder/category data</comment>
@@ -1958,6 +1966,10 @@
   <data name="ImportOutlookContactsDialog_categoryIntro" xml:space="preserve">
     <value>اختر فئات Outlook التي تريد تضمينها.</value>
     <comment>step 2 intro text</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_companyRadio.Text" xml:space="preserve">
+    <value>اسم الشركة</value>
+    <comment>radio, step 4 Sort by option</comment>
   </data>
   <data name="ImportOutlookContactsDialog_contactIntro" xml:space="preserve">
     <value>{0} جهة اتصال تطابق عوامل التصفية الخاصة بك. اختر ما تريد استيراده.</value>
@@ -1971,6 +1983,10 @@
     <value>تم تحديد {0} من {1} جهة اتصال</value>
     <comment>step 3 footer caption</comment>
   </data>
+  <data name="ImportOutlookContactsDialog_firstNameRadio.Text" xml:space="preserve">
+    <value>الاسم الأول</value>
+    <comment>radio, step 4 Sort by option</comment>
+  </data>
   <data name="ImportOutlookContactsDialog_folderIntro" xml:space="preserve">
     <value>اختر مجلدات جهات اتصال Outlook التي تريد الاستيراد منها.</value>
     <comment>step 1 intro text</comment>
@@ -1979,6 +1995,10 @@
     <value>يستورد</value>
     <comment>primary button text, step 3 only</comment>
   </data>
+  <data name="ImportOutlookContactsDialog_lastNameRadio.Text" xml:space="preserve">
+    <value>اسم العائلة</value>
+    <comment>radio, step 4 Sort by option, default</comment>
+  </data>
   <data name="ImportOutlookContactsDialog_matchesSelection" xml:space="preserve">
     <value>{0} جهة اتصال تطابق اختيارك الحالي</value>
     <comment>step 1-2 footer caption, {0} is a contact count</comment>
@@ -1986,6 +2006,14 @@
   <data name="ImportOutlookContactsDialog_nextButton" xml:space="preserve">
     <value>التالي &gt;</value>
     <comment>primary button text, steps 1-2 only</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_personalRadio.Text" xml:space="preserve">
+    <value>شخصي - إظهار التفاصيل الشخصية/المنزلية فقط</value>
+    <comment>radio, step 4 Template option</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_sortGroupBox.Text" xml:space="preserve">
+    <value>الترتيب حسب</value>
+    <comment>group, step 4</comment>
   </data>
   <data name="ImportOutlookContactsDialog_stepCategories" xml:space="preserve">
     <value>فئات</value>
@@ -1998,6 +2026,14 @@
   <data name="ImportOutlookContactsDialog_stepFolders" xml:space="preserve">
     <value>المجلدات</value>
     <comment>step indicator label</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_stepOptions" xml:space="preserve">
+    <value>خيارات</value>
+    <comment>step indicator label</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_templateGroupBox.Text" xml:space="preserve">
+    <value>نموذج</value>
+    <comment>group, step 4</comment>
   </data>
   <data name="ImportOutlookContactsDialog_uncategorized" xml:space="preserve">
     <value>غير مصنف</value>

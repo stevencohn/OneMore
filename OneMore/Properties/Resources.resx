@@ -1956,6 +1956,14 @@ Yellow Background</value>
     <value>&lt; Back</value>
     <comment>button</comment>
   </data>
+  <data name="ImportOutlookContactsDialog_bothRadio.Text" xml:space="preserve">
+    <value>Both - show both personal and business details</value>
+    <comment>radio, step 4 Template option, default</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_businessRadio.Text" xml:space="preserve">
+    <value>Business - show only Business details</value>
+    <comment>radio, step 4 Template option</comment>
+  </data>
   <data name="ImportOutlookContactsDialog_calculating" xml:space="preserve">
     <value>Calculating...</value>
     <comment>caption shown while resolving per-contact folder/category data</comment>
@@ -1963,6 +1971,10 @@ Yellow Background</value>
   <data name="ImportOutlookContactsDialog_categoryIntro" xml:space="preserve">
     <value>Choose which Outlook categories to include.</value>
     <comment>step 2 intro text</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_companyRadio.Text" xml:space="preserve">
+    <value>Company name</value>
+    <comment>radio, step 4 Sort by option</comment>
   </data>
   <data name="ImportOutlookContactsDialog_contactIntro" xml:space="preserve">
     <value>{0} contacts match your filters. Choose which to import.</value>
@@ -1976,13 +1988,21 @@ Yellow Background</value>
     <value>{0} of {1} contacts selected</value>
     <comment>step 3 footer caption</comment>
   </data>
+  <data name="ImportOutlookContactsDialog_firstNameRadio.Text" xml:space="preserve">
+    <value>First name</value>
+    <comment>radio, step 4 Sort by option</comment>
+  </data>
   <data name="ImportOutlookContactsDialog_folderIntro" xml:space="preserve">
     <value>Choose which Outlook contact folders to import from.</value>
     <comment>step 1 intro text</comment>
   </data>
   <data name="ImportOutlookContactsDialog_importButton" xml:space="preserve">
     <value>Import</value>
-    <comment>primary button text, step 3 only</comment>
+    <comment>primary button text, step 4 only</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_lastNameRadio.Text" xml:space="preserve">
+    <value>Last name</value>
+    <comment>radio, step 4 Sort by option, default</comment>
   </data>
   <data name="ImportOutlookContactsDialog_matchesSelection" xml:space="preserve">
     <value>{0} contacts match your current selection</value>
@@ -1990,7 +2010,15 @@ Yellow Background</value>
   </data>
   <data name="ImportOutlookContactsDialog_nextButton" xml:space="preserve">
     <value>Next &gt;</value>
-    <comment>primary button text, steps 1-2 only</comment>
+    <comment>primary button text, steps 1-3 only</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_personalRadio.Text" xml:space="preserve">
+    <value>Personal - show only Personal/Home details</value>
+    <comment>radio, step 4 Template option</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_sortGroupBox.Text" xml:space="preserve">
+    <value>Sort by</value>
+    <comment>group, step 4</comment>
   </data>
   <data name="ImportOutlookContactsDialog_stepCategories" xml:space="preserve">
     <value>Categories</value>
@@ -2003,6 +2031,14 @@ Yellow Background</value>
   <data name="ImportOutlookContactsDialog_stepFolders" xml:space="preserve">
     <value>Folders</value>
     <comment>step indicator label</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_stepOptions" xml:space="preserve">
+    <value>Options</value>
+    <comment>step indicator label</comment>
+  </data>
+  <data name="ImportOutlookContactsDialog_templateGroupBox.Text" xml:space="preserve">
+    <value>Template</value>
+    <comment>group, step 4</comment>
   </data>
   <data name="ImportOutlookContactsDialog_uncategorized" xml:space="preserve">
     <value>Uncategorized</value>
