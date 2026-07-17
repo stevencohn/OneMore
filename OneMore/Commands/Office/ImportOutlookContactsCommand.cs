@@ -17,6 +17,7 @@ namespace River.OneMoreAddIn.Commands
 	[CommandService]
 	internal class ImportOutlookContactsCommand : Command
 	{
+
 		public override async Task Execute(params object[] args)
 		{
 			if (!Office.IsInstalled("Outlook"))
@@ -110,8 +111,10 @@ namespace River.OneMoreAddIn.Commands
 				else
 				{
 					var ordered = ContactListGenerator.SortContacts(selected, sortBy);
-					ordered.Reverse(); // CreateChildPage always inserts right after the parent,
-									   // so reverse-inserting yields ascending sortBy order
+
+					// CreateChildPage always inserts right after the parent,
+					// so reverse-inserting yields ascending sortBy order
+					ordered.Reverse();
 
 					foreach (var contact in ordered)
 					{

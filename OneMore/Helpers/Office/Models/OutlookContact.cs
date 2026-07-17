@@ -4,9 +4,10 @@
 
 namespace River.OneMoreAddIn.Helpers.Office
 {
-	using System;
 	using Microsoft.Office.Interop.Outlook;
-
+	using System;
+	using System.Drawing;
+	using System.IO;
 
 	internal class OutlookContact
 	{
@@ -22,6 +23,9 @@ namespace River.OneMoreAddIn.Helpers.Office
 
 
 		public string EntryID => contact.EntryID;
+
+
+		//public string Folder => ((MAPIFolder)contact.Parent).Name;
 
 
 		public string FirstName
@@ -69,14 +73,38 @@ namespace River.OneMoreAddIn.Helpers.Office
 
 		public string Email1Address
 		{
-			get => contact.Email1Address;
-			set { contact.Email1Address = value; }
+			get => contact.Email1AddressType == "SMTP" ? contact.Email1Address : null;
+			set
+			{
+				if (contact.Email1AddressType is null || contact.Email1AddressType == "SMTP")
+				{
+					contact.Email1Address = value;
+				}
+			}
 		}
 
 		public string Email2Address
 		{
-			get => contact.Email2Address;
-			set { contact.Email2Address = value; }
+			get => contact.Email2AddressType == "SMTP" ? contact.Email2Address : null;
+			set
+			{
+				if (contact.Email2AddressType is null || contact.Email2AddressType == "SMTP")
+				{
+					contact.Email2Address = value;
+				}
+			}
+		}
+
+		public string Email3Address
+		{
+			get => contact.Email3AddressType == "SMTP" ? contact.Email3Address : null;
+			set
+			{
+				if (contact.Email3AddressType is null || contact.Email3AddressType == "SMTP")
+				{
+					contact.Email3Address = value;
+				}
+			}
 		}
 
 		public string BusinessTelephoneNumber
@@ -181,6 +209,30 @@ namespace River.OneMoreAddIn.Helpers.Office
 		{
 			get => contact.Body;
 			set { contact.Body = value; }
+		}
+
+
+		public Image Picture
+		{
+			get
+			{
+				if (contact.HasPicture)
+				{
+					foreach (Attachment att in contact.Attachments)
+					{
+						// well-known picture attachment filename
+						if (att.FileName.Equals(
+							"ContactPicture.jpg", StringComparison.OrdinalIgnoreCase))
+						{
+							var path = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+							att.SaveAsFile(path);
+							return Image.FromFile(path);
+						}
+					}
+				}
+
+				return null;
+			}
 		}
 
 
