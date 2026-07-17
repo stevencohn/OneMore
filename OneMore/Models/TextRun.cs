@@ -21,7 +21,7 @@ namespace River.OneMoreAddIn.Models
 	/// This preserved raw CDATA text, whereas Paragraph(text) escapes any HTML characters in the 
 	/// text. If you want to include HTML tags in your text (e.g., <span>), use this instead.
 	/// </remarks>
-	internal class TextRun : XElement
+	internal class TextRun : StylizedElement<TextRun>
 	{
 		public TextRun(string text)
 			: this(PageNamespace.Value, text)
@@ -56,39 +56,6 @@ namespace River.OneMoreAddIn.Models
 
 
 		/// <summary>
-		/// Sets the text run to bold by adding or updating a <span style="font-weight:bold;" />
-		/// element to the existing style.
-		/// </summary>
-		/// <returns></returns>
-		public TextRun SetBold()
-		{
-			return ApplyStyle("font-weight:bold;", merge: true);
-		}
-
-
-		/// <summary>
-		/// Sets the text run to italic by adding or updating a <span style="font-style:italic;" />
-		/// </summary>
-		/// <returns></returns>
-		public TextRun SetItalic()
-		{
-			return ApplyStyle("font-style:italic;", merge: true);
-		}
-
-
-		/// <summary>
-		/// Sets the text run style by adding or overwriting <span style="..." /> with the given
-		/// css. This will override any existing style attributes.
-		/// </summary>
-		/// <param name="css"></param>
-		/// <returns></returns>
-		public TextRun SetStyle(string css)
-		{
-			return ApplyStyle(css, merge: false);
-		}
-
-
-		/// <summary>
 		/// Applies the given css property to the run's CDATA span, merging it into any
 		/// existing style or overwriting it entirely.
 		/// </summary>
@@ -98,7 +65,7 @@ namespace River.OneMoreAddIn.Models
 		/// false to overwrite the existing style entirely
 		/// </param>
 		/// <returns></returns>
-		private TextRun ApplyStyle(string css, bool merge)
+		protected override TextRun ApplyStyle(string css, bool merge)
 		{
 			var cdata = this.GetCData();
 			if (cdata is null)
@@ -152,29 +119,6 @@ namespace River.OneMoreAddIn.Models
 			span.Add(nodes);
 			wrapper.Add(span);
 			return span;
-		}
-
-
-		/// <summary>
-		/// Adds or updates the given css property within an existing style string,
-		/// leaving all other properties untouched.
-		/// </summary>
-		/// <param name="existing">The existing style string, possibly null or empty</param>
-		/// <param name="property">A single "property:value;" pair to merge in</param>
-		/// <returns>The merged style string</returns>
-		private static string MergeCss(string existing, string property)
-		{
-			var key = property.Split(':')[0].Trim();
-
-			var properties = (existing ?? string.Empty)
-				.Split(';')
-				.Select(p => p.Trim())
-				.Where(p => p.Length > 0 && !p.StartsWith($"{key}:"))
-				.ToList();
-
-			properties.Add(property.TrimEnd(';'));
-
-			return $"{string.Join(";", properties)};";
 		}
 	}
 }

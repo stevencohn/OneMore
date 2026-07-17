@@ -589,7 +589,7 @@ namespace River.OneMoreAddIn.Commands
 				: contactCategoryNames.Contains(category.Name, StringComparer.OrdinalIgnoreCase);
 
 
-		private static string GetContactDisplayName(OutlookContact contact)
+		internal static string GetContactDisplayName(OutlookContact contact)
 		{
 			var name = $"{contact.FirstName} {contact.LastName}".Trim();
 			if (!string.IsNullOrWhiteSpace(name))

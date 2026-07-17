@@ -450,6 +450,53 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Create a new child page of the given parent page.
+		/// </summary>
+		/// <param name="parent"></param>
+		/// <param name="title"></param>
+		/// <returns></returns>
+		public async Task<Page> CreateChildPage(Page parent, string title)
+		{
+			var section = await GetSection();
+			var sectionId = section.Attribute("ID").Value;
+
+			CreatePage(sectionId, out var pageId);
+			var page = await GetPage(pageId);
+
+			if (parent != null)
+			{
+				// get current section again after new page is created
+				section = await GetSection();
+
+				var parentElement = section.Elements(parent.Namespace + "Page")
+					.First(e => e.Attribute("ID").Value == parent.PageId);
+
+				var childElement = section.Elements(parent.Namespace + "Page")
+					.First(e => e.Attribute("ID").Value == pageId);
+
+				if (childElement != parentElement.NextNode)
+				{
+					// move new page immediately after its original in the section
+					childElement.Remove();
+					parentElement.AddAfterSelf(childElement);
+				}
+
+				parentElement.GetAttributeValue("pageLevel", out var level, 1);
+				var pageLevel = (level + 1).ToString();
+
+				// must set level on the hierarchy entry and on the page itself
+				childElement.SetAttributeValue("pageLevel", pageLevel);
+				page.Root.SetAttributeValue("pageLevel", pageLevel);
+
+				UpdateHierarchy(section);
+			}
+
+			page.Title = title;
+			return page;
+		}
+
+
+		/// <summary>
 		/// Create a new section in the current notebook immediately after the open section
 		/// </summary>
 		/// <param name="name">The name of the new section</param>

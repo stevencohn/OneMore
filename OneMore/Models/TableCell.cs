@@ -121,9 +121,9 @@ namespace River.OneMoreAddIn.Models
 		/// Adds the given table as the content of this cell.
 		/// </summary>
 		/// <param name="table">The table to add</param>
-		public void SetContent(Table table)
+		public TableCell SetContent(Table table)
 		{
-			SetContent(table.Root);
+			return SetContent(table.Root);
 		}
 
 
@@ -133,7 +133,7 @@ namespace River.OneMoreAddIn.Models
 		/// </summary>
 		/// <param name="template">The cell to use as a template</param>
 		/// <param name="text">The value to set as the contents</param>
-		public void SetContent(TableCell template, string text)
+		public TableCell SetContent(TableCell template, string text)
 		{
 			if (template.Root.GetAttributeValue("shadingColor", out var shading) && shading != null)
 			{
@@ -149,7 +149,7 @@ namespace River.OneMoreAddIn.Models
 			if (content == null)
 			{
 				SetContent(text);
-				return;
+				return this;
 			}
 
 			// clone so the template can be reused untouched
@@ -161,7 +161,7 @@ namespace River.OneMoreAddIn.Models
 			if (run == null)
 			{
 				SetContent(text);
-				return;
+				return this;
 			}
 
 			var cdata = run.GetCData();
@@ -182,6 +182,7 @@ namespace River.OneMoreAddIn.Models
 
 			content.Descendants(ns + "OE").First().ReplaceNodes(run);
 			SetContent(content);
+			return this;
 		}
 
 
@@ -189,9 +190,9 @@ namespace River.OneMoreAddIn.Models
 		/// Adds the given text as the content of this cell.
 		/// </summary>
 		/// <param name="text">The text to add</param>
-		public void SetContent(string text)
+		public TableCell SetContent(string text)
 		{
-			SetContent(new XElement(ns + "T", new XCData(text)));
+			return SetContent(new XElement(ns + "T", new XCData(text)));
 		}
 
 
@@ -199,7 +200,7 @@ namespace River.OneMoreAddIn.Models
 		/// Sets the contents of the cell to the given content
 		/// </summary>
 		/// <param name="content"></param>
-		public void SetContent(XElement content)
+		public TableCell SetContent(XElement content)
 		{
 			// ensure the content is properly wrapped, while preserving existing
 			// elements such as Meta that might have formula details
@@ -213,7 +214,7 @@ namespace River.OneMoreAddIn.Models
 				else
 					oec.ReplaceWith(content);
 
-				return;
+				return this;
 			}
 			else if (oec == null)
 			{
@@ -229,7 +230,7 @@ namespace River.OneMoreAddIn.Models
 				else
 					oe.ReplaceWith(content);
 
-				return;
+				return this;
 			}
 			else if (oe == null)
 			{
@@ -245,6 +246,8 @@ namespace River.OneMoreAddIn.Models
 			}
 
 			oe.Add(content);
+
+			return this;
 		}
 
 
@@ -253,7 +256,7 @@ namespace River.OneMoreAddIn.Models
 		/// </summary>
 		/// <param name="name">The meta name</param>
 		/// <param name="value">The meta value</param>
-		public void SetMeta(string name, string value)
+		public TableCell SetMeta(string name, string value)
 		{
 			if (GetText() == null)
 			{
@@ -282,10 +285,19 @@ namespace River.OneMoreAddIn.Models
 			{
 				element.SetAttributeValue("content", value);
 			}
+
+			return this;
 		}
 
 
-		public void SetTag(string index)
+		public TableCell SetShading(string color)
+		{
+			ShadingColor = color;
+			return this;
+		}
+
+
+		public TableCell SetTag(string index)
 		{
 			//<one:Tag index="0" completed="true" disabled="false" />
 
@@ -312,6 +324,8 @@ namespace River.OneMoreAddIn.Models
 				if (lastMedia is null) parent.AddFirst(tag);
 				else lastMedia.AddAfterSelf(tag);
 			}
+
+			return this;
 		}
 
 

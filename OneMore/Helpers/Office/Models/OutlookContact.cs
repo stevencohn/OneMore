@@ -60,6 +60,13 @@ namespace River.OneMoreAddIn.Helpers.Office
 			set { contact.Title = value; }
 		}
 
+
+		public string CustomerID
+		{
+			get => contact.CustomerID;
+			set { contact.CustomerID = value; }
+		}
+
 		public string Email1Address
 		{
 			get => contact.Email1Address;
@@ -161,5 +168,25 @@ namespace River.OneMoreAddIn.Helpers.Office
 			get => contact.Anniversary;
 			set { contact.Anniversary = value; }
 		}
+
+
+		public string Categories
+		{
+			get => contact.Categories;
+			set { contact.Categories = value; }
+		}
+
+
+		public string Body
+		{
+			get => contact.Body;
+			set { contact.Body = value; }
+		}
+
+
+		/// <summary>
+		/// Gets or sets the URI of the individual contact details subpage.
+		/// </summary>
+		public string PageUri { get; set; }
 	}
 }
