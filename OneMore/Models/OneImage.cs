@@ -34,6 +34,24 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
+		public OneImage(Image image, XNamespace ns)
+		{
+			this.ns = ns;
+
+			size = new XElement(ns + "Size",
+				new XAttribute("width", $"{image.Width}.0"),
+				new XAttribute("height", $"{image.Height}.0"),
+				new XAttribute("isSetByUser", "true"));
+
+			root = new XElement(ns + "Image",
+				size,
+				new XElement(ns + "Data")
+				);
+
+			WriteImage(image);
+		}
+
+
 		public static implicit operator XElement(OneImage e) => e.root;
 		public static explicit operator OneImage(XElement e) => new(e);
 
