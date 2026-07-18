@@ -298,9 +298,9 @@ namespace River.OneMoreAddIn.Commands
 				{
 					content.Add(new Paragraph(contact.CompanyName));
 				}
-				if (!string.IsNullOrWhiteSpace(contact.Title))
+				if (!string.IsNullOrWhiteSpace(contact.JobTitle))
 				{
-					content.Add(new Paragraph(contact.Title).SetStyle("font-style:italic"));
+					content.Add(new Paragraph(contact.JobTitle).SetStyle("font-style:italic"));
 				}
 				if (!content.HasElements)
 				{

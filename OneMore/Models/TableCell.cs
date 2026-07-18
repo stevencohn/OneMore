@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Models
 {
+	using System.Collections.Generic;
 	using System.Linq;
 	using System.Xml.Linq;
 
@@ -89,6 +90,19 @@ namespace River.OneMoreAddIn.Models
 			}
 
 			return new XCData(text).GetWrapper().Value;
+		}
+
+
+		/// <summary>
+		/// Gets the raw text of each OE paragraph in this cell, one entry per line
+		/// </summary>
+		/// <returns>A collection of plain-text lines, in paragraph order</returns>
+		public IEnumerable<string> GetTextLines()
+		{
+			return Root.Elements(ns + "OEChildren")
+				.Elements(ns + "OE")
+				.Elements(ns + "T")
+				.Select(t => new XCData(t.Value).GetWrapper().Value);
 		}
 
 
