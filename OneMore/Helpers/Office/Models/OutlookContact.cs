@@ -75,10 +75,10 @@ namespace River.OneMoreAddIn.Helpers.Office
 			set { contact.Department = value; }
 		}
 
-		public string Title
+		public string JobTitle
 		{
-			get => contact.Title;
-			set { contact.Title = value; }
+			get => contact.JobTitle;
+			set { contact.JobTitle = value; }
 		}
 
 

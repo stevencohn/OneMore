@@ -2717,6 +2717,10 @@ You cannot open the folder of a notebook stored on OneDrive.</value>
     <value>Tag:</value>
     <comment>label</comment>
   </data>
+  <data name="OutlookContactCommand_saveWarnings" xml:space="preserve">
+    <value>The contact was saved but these values could not be validated and were left unchanged: {0}</value>
+    <comment>info message, {0} is a comma-separated list of field labels</comment>
+  </data>
   <data name="OutlookTaskReport_DateDue" xml:space="preserve">
     <value>Due/Completed</value>
     <comment>report</comment>

@@ -6644,6 +6644,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The contact was saved but these values could not be validated and were left unchanged: {0}.
+        /// </summary>
+        internal static string OutlookContactCommand_saveWarnings {
+            get {
+                return ResourceManager.GetString("OutlookContactCommand_saveWarnings", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Due/Completed.
         /// </summary>
         internal static string OutlookTaskReport_DateDue {

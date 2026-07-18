@@ -28,9 +28,15 @@ namespace River.OneMoreAddIn.Commands
 
 					await Refresh(args);
 				}
-				else if (action == "save")
+				else if (action == "save" && args.Length > 2)
 				{
-					logger.WriteLine("save");
+					if (!Office.IsInstalled("Outlook"))
+					{
+						ShowInfo(Resx.ImportOutlookContactsCommand_outlookRequired);
+						return;
+					}
+
+					await Save(args);
 				}
 			}
 
@@ -48,6 +54,19 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			await new ContactGenerator().UpdateReport(guid, template);
+		}
+
+
+		private static async Task Save(object[] args)
+		{
+			var guid = args[1] as string;
+
+			if (!Enum.TryParse(args[2] as string, out ContactTemplateOption template))
+			{
+				template = ContactTemplateOption.Both;
+			}
+
+			await new ContactGenerator().SaveReport(guid, template);
 		}
 	}
 }
