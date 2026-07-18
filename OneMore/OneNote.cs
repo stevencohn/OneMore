@@ -497,6 +497,67 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Creates multiple new child pages of the given parent page in a single batch.
+		/// Equivalent to calling CreateChildPage once per title, but the section hierarchy
+		/// is only re-fetched and re-written once for the whole batch instead of once per
+		/// page, avoiding O(n) full-hierarchy round trips when creating many pages at once
+		/// (e.g. bulk import). Each page is inserted immediately after the parent, so - as
+		/// with CreateChildPage - callers wanting ascending title order must reverse their
+		/// input first.
+		/// </summary>
+		/// <param name="parent">The page to become the parent of every new page</param>
+		/// <param name="titles">The title of each new child page to create, in insertion order</param>
+		/// <returns>The newly created pages, in the same order as titles</returns>
+		public async Task<List<Page>> CreateChildPages(Page parent, IEnumerable<string> titles)
+		{
+			var section = await GetSection();
+			var sectionId = section.Attribute("ID").Value;
+
+			var pages = new List<Page>();
+			foreach (var title in titles)
+			{
+				CreatePage(sectionId, out var pageId);
+				var page = await GetPage(pageId);
+				page.Title = title;
+				pages.Add(page);
+			}
+
+			if (parent != null && pages.Count > 0)
+			{
+				// get current section again now that every new page has been created
+				section = await GetSection();
+
+				var parentElement = section.Elements(parent.Namespace + "Page")
+					.First(e => e.Attribute("ID").Value == parent.PageId);
+
+				parentElement.GetAttributeValue("pageLevel", out var level, 1);
+				var pageLevel = (level + 1).ToString();
+
+				foreach (var page in pages)
+				{
+					var childElement = section.Elements(parent.Namespace + "Page")
+						.First(e => e.Attribute("ID").Value == page.PageId);
+
+					if (childElement != parentElement.NextNode)
+					{
+						// move new page immediately after its parent in the section
+						childElement.Remove();
+						parentElement.AddAfterSelf(childElement);
+					}
+
+					// must set level on the hierarchy entry and on the page itself
+					childElement.SetAttributeValue("pageLevel", pageLevel);
+					page.Root.SetAttributeValue("pageLevel", pageLevel);
+				}
+
+				UpdateHierarchy(section);
+			}
+
+			return pages;
+		}
+
+
+		/// <summary>
 		/// Create a new section in the current notebook immediately after the open section
 		/// </summary>
 		/// <param name="name">The name of the new section</param>

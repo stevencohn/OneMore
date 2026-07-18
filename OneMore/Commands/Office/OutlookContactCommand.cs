@@ -18,7 +18,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (args.Length > 1 && args[0] is string action)
 			{
-				if (action == "refresh")
+				if (action == "refresh" && args.Length > 2)
 				{
 					if (!Office.IsInstalled("Outlook"))
 					{
@@ -42,9 +42,9 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var guid = args[1] as string;
 
-			if (!Enum.TryParse(args[2] as string, out ImportOutlookContactsDialog.TemplateOption template))
+			if (!Enum.TryParse(args[2] as string, out ContactTemplateOption template))
 			{
-				template = ImportOutlookContactsDialog.TemplateOption.Both;
+				template = ContactTemplateOption.Both;
 			}
 
 			await new ContactGenerator().UpdateReport(guid, template);

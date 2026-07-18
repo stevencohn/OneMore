@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
+	using System.Runtime.InteropServices;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using River.OneMoreAddIn.Helpers.Office;
@@ -26,18 +27,18 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			if (args.Length > 1 && args[0] is string refreshArg && refreshArg == "refresh")
+			if (args.Length > 3 && args[0] is string refreshArg && refreshArg == "refresh")
 			{
 				var guid = args[1] as string;
 
-				if (!Enum.TryParse(args[2] as string, out ImportOutlookContactsDialog.TemplateOption atemp))
+				if (!Enum.TryParse(args[2] as string, out ContactTemplateOption atemp))
 				{
-					atemp = ImportOutlookContactsDialog.TemplateOption.Both;
+					atemp = ContactTemplateOption.Both;
 				}
 
-				if (!Enum.TryParse(args[3] as string, out ImportOutlookContactsDialog.SortByOption asort))
+				if (!Enum.TryParse(args[3] as string, out ContactSortByOption asort))
 				{
-					asort = ImportOutlookContactsDialog.SortByOption.LastName;
+					asort = ContactSortByOption.LastName;
 				}
 
 				await new ContactListGenerator().UpdateReport(guid, atemp, asort);
@@ -102,34 +103,34 @@ namespace River.OneMoreAddIn.Commands
 
 			// import...
 
-			await using (var one = new OneNote(out var page, out _))
+			var ordered = ContactListGenerator.SortContacts(selected, sortBy);
+
+			// CreateChildPages always inserts right after the parent,
+			// so reverse-inserting yields ascending sortBy order
+			ordered.Reverse();
+
+			await using var one = new OneNote();
+
+			var listPage = await one.CreateChildPage(null, Resx.ImportOutlookContactsCommand_pageTitle);
+
+			var titles = ordered.Select(ImportOutlookContactsDialog.GetContactDisplayName).ToList();
+			var children = await one.CreateChildPages(listPage, titles);
+
+			for (var i = 0; i < ordered.Count; i++)
 			{
-				if (page is null)
-				{
-					logger.WriteLine("could not load current page; skipping contact subpages");
-				}
-				else
-				{
-					var ordered = ContactListGenerator.SortContacts(selected, sortBy);
+				var contact = ordered[i];
+				var child = children[i];
 
-					// CreateChildPage always inserts right after the parent,
-					// so reverse-inserting yields ascending sortBy order
-					ordered.Reverse();
+				new ContactGenerator().GenerateReport(child, contact, template, categories);
+				await one.Update(child);
 
-					foreach (var contact in ordered)
-					{
-						var title = ImportOutlookContactsDialog.GetContactDisplayName(contact);
-						var child = await one.CreateChildPage(page, title);
-
-						new ContactGenerator().GenerateReport(child, contact, template, categories);
-						await one.Update(child);
-
-						contact.PageUri = await one.GetHyperlinkWithRetry(child.PageId, string.Empty);
-					}
-				}
+				contact.PageUri = await one.GetHyperlinkWithRetry(child.PageId, string.Empty);
 			}
 
-			await new ContactListGenerator().GenerateReport(selected, template, sortBy);
+			new ContactListGenerator().GenerateReport(listPage, selected, template, sortBy);
+			await one.Update(listPage);
+
+			await one.NavigateTo(listPage.PageId);
 		}
 
 
@@ -138,12 +139,25 @@ namespace River.OneMoreAddIn.Commands
 		{
 			foreach (var folder in folders)
 			{
-				foreach (var item in folder.Folder.Items)
+				var items = folder.Folder.Items;
+				try
 				{
-					if (item is OLK.ContactItem contact)
+					foreach (var item in items)
 					{
-						yield return new OutlookContact(contact);
+						if (item is OLK.ContactItem contact)
+						{
+							// ownership transfers to the wrapping OutlookContact
+							yield return new OutlookContact(contact);
+						}
+						else
+						{
+							Marshal.ReleaseComObject(item);
+						}
 					}
+				}
+				finally
+				{
+					Marshal.ReleaseComObject(items);
 				}
 			}
 		}

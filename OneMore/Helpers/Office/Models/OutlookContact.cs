@@ -8,14 +8,31 @@ namespace River.OneMoreAddIn.Helpers.Office
 	using System;
 	using System.Drawing;
 	using System.IO;
+	using System.Runtime.InteropServices;
 
-	internal class OutlookContact
+	internal class OutlookContact : IDisposable
 	{
 		private readonly ContactItem contact;
+		private bool disposed;
 
 		public OutlookContact(ContactItem contact)
 		{
 			this.contact = contact;
+		}
+
+
+		/// <summary>
+		/// Releases the wrapped Outlook ContactItem COM object.
+		/// </summary>
+		public void Dispose()
+		{
+			if (disposed)
+			{
+				return;
+			}
+
+			Marshal.ReleaseComObject(contact);
+			disposed = true;
 		}
 
 
@@ -218,16 +235,31 @@ namespace River.OneMoreAddIn.Helpers.Office
 			{
 				if (contact.HasPicture)
 				{
-					foreach (Attachment att in contact.Attachments)
+					var attachments = contact.Attachments;
+					try
 					{
-						// well-known picture attachment filename
-						if (att.FileName.Equals(
-							"ContactPicture.jpg", StringComparison.OrdinalIgnoreCase))
+						foreach (Attachment att in attachments)
 						{
-							var path = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-							att.SaveAsFile(path);
-							return Image.FromFile(path);
+							try
+							{
+								// well-known picture attachment filename
+								if (att.FileName.Equals(
+									"ContactPicture.jpg", StringComparison.OrdinalIgnoreCase))
+								{
+									var path = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+									att.SaveAsFile(path);
+									return Image.FromFile(path);
+								}
+							}
+							finally
+							{
+								Marshal.ReleaseComObject(att);
+							}
 						}
+					}
+					finally
+					{
+						Marshal.ReleaseComObject(attachments);
 					}
 				}
 
