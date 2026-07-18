@@ -4424,6 +4424,51 @@ namespace River.OneMoreAddIn.Properties {
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Address.
+        /// </summary>
+        internal static string ImportOutlookContactsCommand_address {
+            get {
+                return ResourceManager.GetString("ImportOutlookContactsCommand_address", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Company/Title.
+        /// </summary>
+        internal static string ImportOutlookContactsCommand_companyTitle {
+            get {
+                return ResourceManager.GetString("ImportOutlookContactsCommand_companyTitle", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        internal static string ImportOutlookContactsCommand_email {
+            get {
+                return ResourceManager.GetString("ImportOutlookContactsCommand_email", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to First Name.
+        /// </summary>
+        internal static string ImportOutlookContactsCommand_firstName {
+            get {
+                return ResourceManager.GetString("ImportOutlookContactsCommand_firstName", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Last Name.
+        /// </summary>
+        internal static string ImportOutlookContactsCommand_lastName {
+            get {
+                return ResourceManager.GetString("ImportOutlookContactsCommand_lastName", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Loading Outlook categories....
         /// </summary>
         internal static string ImportOutlookContactsCommand_loadingCategories {
@@ -4465,6 +4510,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ImportOutlookContactsCommand_pageTitle {
             get {
                 return ResourceManager.GetString("ImportOutlookContactsCommand_pageTitle", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Phone.
+        /// </summary>
+        internal static string ImportOutlookContactsCommand_phone {
+            get {
+                return ResourceManager.GetString("ImportOutlookContactsCommand_phone", resourceCulture);
             }
         }
 
@@ -6644,11 +6698,227 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Anniversary.
+        /// </summary>
+        internal static string OutlookContactCommand_anniversary {
+            get {
+                return ResourceManager.GetString("OutlookContactCommand_anniversary", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Birthday.
+        /// </summary>
+        internal static string OutlookContactCommand_birthday {
+            get {
+                return ResourceManager.GetString("OutlookContactCommand_birthday", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Business.
+        /// </summary>
+        internal static string OutlookContactCommand_business {
+            get {
+                return ResourceManager.GetString("OutlookContactCommand_business", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Categories.
+        /// </summary>
+        internal static string OutlookContactCommand_categories {
+            get {
+                return ResourceManager.GetString("OutlookContactCommand_categories", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to City.
+        /// </summary>
+        internal static string OutlookContactCommand_city {
+            get {
+                return ResourceManager.GetString("OutlookContactCommand_city", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Company.
+        /// </summary>
+        internal static string OutlookContactCommand_company {
+            get {
+                return ResourceManager.GetString("OutlookContactCommand_company", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Country/Region.
+        /// </summary>
+        internal static string OutlookContactCommand_countryRegion {
+            get {
+                return ResourceManager.GetString("OutlookContactCommand_countryRegion", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Customer ID.
+        /// </summary>
+        internal static string OutlookContactCommand_customerID {
+            get {
+                return ResourceManager.GetString("OutlookContactCommand_customerID", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Department.
+        /// </summary>
+        internal static string OutlookContactCommand_department {
+            get {
+                return ResourceManager.GetString("OutlookContactCommand_department", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Email 1.
+        /// </summary>
+        internal static string OutlookContactCommand_email1 {
+            get {
+                return ResourceManager.GetString("OutlookContactCommand_email1", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Email 2.
+        /// </summary>
+        internal static string OutlookContactCommand_email2 {
+            get {
+                return ResourceManager.GetString("OutlookContactCommand_email2", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Email 3.
+        /// </summary>
+        internal static string OutlookContactCommand_email3 {
+            get {
+                return ResourceManager.GetString("OutlookContactCommand_email3", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to First.
+        /// </summary>
+        internal static string OutlookContactCommand_first {
+            get {
+                return ResourceManager.GetString("OutlookContactCommand_first", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Job Title.
+        /// </summary>
+        internal static string OutlookContactCommand_jobTitle {
+            get {
+                return ResourceManager.GetString("OutlookContactCommand_jobTitle", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Last.
+        /// </summary>
+        internal static string OutlookContactCommand_last {
+            get {
+                return ResourceManager.GetString("OutlookContactCommand_last", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Middle.
+        /// </summary>
+        internal static string OutlookContactCommand_middle {
+            get {
+                return ResourceManager.GetString("OutlookContactCommand_middle", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Mobile.
+        /// </summary>
+        internal static string OutlookContactCommand_mobile {
+            get {
+                return ResourceManager.GetString("OutlookContactCommand_mobile", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to N/A.
+        /// </summary>
+        internal static string OutlookContactCommand_notApplicable {
+            get {
+                return ResourceManager.GetString("OutlookContactCommand_notApplicable", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Open in Outlook.
+        /// </summary>
+        internal static string OutlookContactCommand_openInOutlook {
+            get {
+                return ResourceManager.GetString("OutlookContactCommand_openInOutlook", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Personal.
+        /// </summary>
+        internal static string OutlookContactCommand_personal {
+            get {
+                return ResourceManager.GetString("OutlookContactCommand_personal", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to The contact was saved but these values could not be validated and were left unchanged: {0}.
         /// </summary>
         internal static string OutlookContactCommand_saveWarnings {
             get {
                 return ResourceManager.GetString("OutlookContactCommand_saveWarnings", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to State/Province.
+        /// </summary>
+        internal static string OutlookContactCommand_stateProvince {
+            get {
+                return ResourceManager.GetString("OutlookContactCommand_stateProvince", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Street.
+        /// </summary>
+        internal static string OutlookContactCommand_street {
+            get {
+                return ResourceManager.GetString("OutlookContactCommand_street", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Telephone.
+        /// </summary>
+        internal static string OutlookContactCommand_telephone {
+            get {
+                return ResourceManager.GetString("OutlookContactCommand_telephone", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to ZIP/Postal.
+        /// </summary>
+        internal static string OutlookContactCommand_zipPostal {
+            get {
+                return ResourceManager.GetString("OutlookContactCommand_zipPostal", resourceCulture);
             }
         }
 
