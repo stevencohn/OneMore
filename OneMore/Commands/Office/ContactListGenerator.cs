@@ -80,8 +80,8 @@ namespace River.OneMoreAddIn.Commands
 			row.SetShading(ControlRowShading);
 			row[0].SetContent(new Paragraph(string.Empty));
 			row[1].SetContent(new Paragraph(
-				$"{Resx.ReminderReport_LastUpdated} {nowf} " +
-				$"(<a href=\"{RefreshUri}/{guid}/{template}/{sortBy}\">{Resx.word_Refresh}</a>)")
+				$"{Resx.ReminderReport_LastUpdated} {nowf} | " +
+				$"<a href=\"{RefreshUri}/{guid}/{template}/{sortBy}\">{Resx.word_Refresh}</a>")
 				.SetAlignment("right")
 				.SetMeta(RefreshMeta, guid));
 			row[2].SetContent(new Paragraph(string.Empty));
@@ -329,6 +329,12 @@ namespace River.OneMoreAddIn.Commands
 				content.Add(new Paragraph(new TextRun(e)));
 			}
 
+			e = MakeEmailLink(contact.Email3Address);
+			if (e is not null)
+			{
+				content.Add(new Paragraph(new TextRun(e)));
+			}
+
 			if (content.HasElements)
 			{
 				row[i++].SetContent(content);
@@ -386,7 +392,7 @@ namespace River.OneMoreAddIn.Commands
 			if (match.Success)
 			{
 				email = match.Groups[1].Value;
-				return $"<a href=\"{email}\">{email}</a>";
+				return $"<a href=\"mailto:{email}\">{email}</a>";
 			}
 
 			return null;

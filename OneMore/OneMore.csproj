@@ -212,6 +212,7 @@
     <Compile Include="Commands\Office\ImportOutlookContactsDialog.Designer.cs">
       <DependentUpon>ImportOutlookContactsDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Office\OutlookContactCommand.cs" />
     <Compile Include="Commands\Settings\MarkdownSheet.cs">
       <SubType>UserControl</SubType>
     </Compile>
