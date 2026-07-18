@@ -340,13 +340,13 @@ namespace River.OneMoreAddIn.Commands
 				case "Department": contact.Department = value; break;
 				case "CustomerID": contact.CustomerID = value; break;
 
-				case "Email1Address": SetIfValidEmail(v => contact.Email1Address = v, value, "Email 1", warnings); break;
-				case "Email2Address": SetIfValidEmail(v => contact.Email2Address = v, value, "Email 2", warnings); break;
-				case "Email3Address": SetIfValidEmail(v => contact.Email3Address = v, value, "Email 3", warnings); break;
+				case "Email1Address": SetIfValidEmail(v => contact.Email1Address = v, value, Resx.OutlookContactCommand_email1, warnings); break;
+				case "Email2Address": SetIfValidEmail(v => contact.Email2Address = v, value, Resx.OutlookContactCommand_email2, warnings); break;
+				case "Email3Address": SetIfValidEmail(v => contact.Email3Address = v, value, Resx.OutlookContactCommand_email3, warnings); break;
 
-				case "HomeTelephoneNumber": SetIfValidPhone(v => contact.HomeTelephoneNumber = v, value, "Telephone", warnings); break;
-				case "BusinessTelephoneNumber": SetIfValidPhone(v => contact.BusinessTelephoneNumber = v, value, "Telephone", warnings); break;
-				case "MobileTelephoneNumber": SetIfValidPhone(v => contact.MobileTelephoneNumber = v, value, "Mobile", warnings); break;
+				case "HomeTelephoneNumber": SetIfValidPhone(v => contact.HomeTelephoneNumber = v, value, Resx.OutlookContactCommand_telephone, warnings); break;
+				case "BusinessTelephoneNumber": SetIfValidPhone(v => contact.BusinessTelephoneNumber = v, value, Resx.OutlookContactCommand_telephone, warnings); break;
+				case "MobileTelephoneNumber": SetIfValidPhone(v => contact.MobileTelephoneNumber = v, value, Resx.OutlookContactCommand_mobile, warnings); break;
 
 				case "HomeAddressStreet": contact.HomeAddressStreet = value; break;
 				case "HomeAddressCity": contact.HomeAddressCity = value; break;
@@ -360,8 +360,8 @@ namespace River.OneMoreAddIn.Commands
 				case "BusinessAddressPostalCode": contact.BusinessAddressPostalCode = value; break;
 				case "BusinessAddressCountry": contact.BusinessAddressCountry = value; break;
 
-				case "Birthday": SetIfValidDate(v => contact.Birthday = v, value, contact.Birthday, "Birthday", warnings); break;
-				case "Anniversary": SetIfValidDate(v => contact.Anniversary = v, value, contact.Anniversary, "Anniversary", warnings); break;
+				case "Birthday": SetIfValidDate(v => contact.Birthday = v, value, contact.Birthday, Resx.OutlookContactCommand_birthday, warnings); break;
+				case "Anniversary": SetIfValidDate(v => contact.Anniversary = v, value, contact.Anniversary, Resx.OutlookContactCommand_anniversary, warnings); break;
 			}
 		}
 
@@ -518,9 +518,9 @@ namespace River.OneMoreAddIn.Commands
 			var nowf = DateTime.Now.ToShortFriendlyString();
 			var updated = $"{Resx.ReminderReport_LastUpdated} {nowf}";
 			// seems like folder should always be Contacts regardless of contact's actual .Folder
-			var openin = $"<a href=\"onenote:outlook?folder=Contacts&amp;entryid={contact.EntryID}\">Open in Outlook</a>";
+			var openin = $"<a href=\"onenote:outlook?folder=Contacts&amp;entryid={contact.EntryID}\">{Resx.OutlookContactCommand_openInOutlook}</a>";
 			var refresh = $"<a href=\"{RefreshUri}/{guid}/{template}\">{Resx.word_Refresh}</a>";
-			var save = $"<a href=\"{SaveUri}/{guid}/{template}\">Save</a>";
+			var save = $"<a href=\"{SaveUri}/{guid}/{template}\">{Resx.word_Save}</a>";
 
 			return $"{updated} | {openin} | {refresh} | {save}";
 		}
@@ -665,16 +665,16 @@ namespace River.OneMoreAddIn.Commands
 			table.SetColumnWidth(0, 120);
 			table.SetColumnWidth(1, 505);
 
-			WriteField(table[0], "First", new Paragraph(contact.FirstName ?? string.Empty).SetBold(), "FirstName");
-			WriteField(table[1], "Middle", new Paragraph(contact.MiddleName ?? string.Empty).SetBold(), "MiddleName");
-			WriteField(table[2], "Last", new Paragraph(contact.LastName ?? string.Empty).SetBold(), "LastName");
+			WriteField(table[0], Resx.OutlookContactCommand_first, new Paragraph(contact.FirstName ?? string.Empty).SetBold(), "FirstName");
+			WriteField(table[1], Resx.OutlookContactCommand_middle, new Paragraph(contact.MiddleName ?? string.Empty).SetBold(), "MiddleName");
+			WriteField(table[2], Resx.OutlookContactCommand_last, new Paragraph(contact.LastName ?? string.Empty).SetBold(), "LastName");
 
 			if (!personal)
 			{
-				WriteField(table[3], "Job Title", contact.JobTitle, "JobTitle");
-				WriteField(table[4], "Company", contact.CompanyName, "CompanyName");
-				WriteField(table[5], "Department", contact.Department, "Department");
-				WriteField(table[6], "Customer ID", contact.CustomerID, "CustomerID");
+				WriteField(table[3], Resx.OutlookContactCommand_jobTitle, contact.JobTitle, "JobTitle");
+				WriteField(table[4], Resx.OutlookContactCommand_company, contact.CompanyName, "CompanyName");
+				WriteField(table[5], Resx.OutlookContactCommand_department, contact.Department, "Department");
+				WriteField(table[6], Resx.OutlookContactCommand_customerID, contact.CustomerID, "CustomerID");
 			}
 
 			return table;
@@ -692,9 +692,9 @@ namespace River.OneMoreAddIn.Commands
 			table.SetColumnWidth(0, 120);
 			table.SetColumnWidth(1, 505);
 
-			FillValue(contact.Email1Address, 0, "Email 1", "Email1Address");
-			FillValue(contact.Email2Address, 1, "Email 2", "Email2Address");
-			FillValue(contact.Email3Address, 2, "Email 3", "Email3Address");
+			FillValue(contact.Email1Address, 0, Resx.OutlookContactCommand_email1, "Email1Address");
+			FillValue(contact.Email2Address, 1, Resx.OutlookContactCommand_email2, "Email2Address");
+			FillValue(contact.Email3Address, 2, Resx.OutlookContactCommand_email3, "Email3Address");
 
 			return table;
 
@@ -734,8 +734,8 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			var label = template == ContactTemplateOption.Business
-				? "Business"
-				: "Personal";
+				? Resx.OutlookContactCommand_business
+				: Resx.OutlookContactCommand_personal;
 
 			table[0].SetShading(DeetsHeaderShading);
 			table[0][0].SetMeta(TemplateMeta, template.ToString());
@@ -743,7 +743,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (both)
 			{
-				table[0][2].SetContent(new Paragraph("Business").SetItalic());
+				table[0][2].SetContent(new Paragraph(Resx.OutlookContactCommand_business).SetItalic());
 			}
 
 			for (int i = 1; i < 8; i++)
@@ -753,13 +753,13 @@ namespace River.OneMoreAddIn.Commands
 
 			// field names are generic (no Home/Business prefix); omTemplate on (0,0)
 			// tells the save operation which value column(s) map to which contact property
-			SetLabel(table[1][0], "Telephone", "TelephoneNumber");
-			SetLabel(table[2][0], "Mobile", "MobileTelephoneNumber");
-			SetLabel(table[3][0], "Street", "AddressStreet");
-			SetLabel(table[4][0], "City", "AddressCity");
-			SetLabel(table[5][0], "State/Province", "AddressState");
-			SetLabel(table[6][0], "ZIP/Postal", "AddressPostalCode");
-			SetLabel(table[7][0], "Country/Region", "AddressCountry");
+			SetLabel(table[1][0], Resx.OutlookContactCommand_telephone, "TelephoneNumber");
+			SetLabel(table[2][0], Resx.OutlookContactCommand_mobile, "MobileTelephoneNumber");
+			SetLabel(table[3][0], Resx.OutlookContactCommand_street, "AddressStreet");
+			SetLabel(table[4][0], Resx.OutlookContactCommand_city, "AddressCity");
+			SetLabel(table[5][0], Resx.OutlookContactCommand_stateProvince, "AddressState");
+			SetLabel(table[6][0], Resx.OutlookContactCommand_zipPostal, "AddressPostalCode");
+			SetLabel(table[7][0], Resx.OutlookContactCommand_countryRegion, "AddressCountry");
 
 			if (template == ContactTemplateOption.Personal || both)
 			{
@@ -785,7 +785,7 @@ namespace River.OneMoreAddIn.Commands
 				else
 				{
 					table[2][c].SetShading(ValueShading);
-					table[2][c].SetContent(new Paragraph("N/A")
+					table[2][c].SetContent(new Paragraph(Resx.OutlookContactCommand_notApplicable)
 						.SetStyle("font-size:8.0pt;color:#7F7F7F"));
 				}
 
@@ -818,13 +818,13 @@ namespace River.OneMoreAddIn.Commands
 				? contact.Birthday.ToString("MMMM d")
 				: string.Empty;
 
-			WriteField(table[0], "Birthday", birthday, "Birthday");
+			WriteField(table[0], Resx.OutlookContactCommand_birthday, birthday, "Birthday");
 
 			var anniversary = contact.Anniversary.Year < 4500
 				? contact.Anniversary.ToString("MMMM d")
 				: string.Empty;
 
-			WriteField(table[1], "Anniversary", anniversary, "Anniversary");
+			WriteField(table[1], Resx.OutlookContactCommand_anniversary, anniversary, "Anniversary");
 
 			return table;
 		}
@@ -838,7 +838,7 @@ namespace River.OneMoreAddIn.Commands
 			table[1][0]
 				.SetShading(GrayShading)
 				.SetContent(new ContentList(
-					new Paragraph("Categories").SetBold().SetItalic().SetMeta(FieldMeta, "Categories"),
+					new Paragraph(Resx.OutlookContactCommand_categories).SetBold().SetItalic().SetMeta(FieldMeta, "Categories"),
 					new Paragraph(string.Empty)
 					));
 
@@ -876,7 +876,7 @@ namespace River.OneMoreAddIn.Commands
 			table[2][0]
 				.SetShading(LabelShading)
 				.SetContent(new ContentList(
-					new Paragraph("Notes").SetBold().SetItalic().SetMeta(FieldMeta, "Body"),
+					new Paragraph(Resx.word_Notes).SetBold().SetItalic().SetMeta(FieldMeta, "Body"),
 					new Paragraph(string.Empty)
 					));
 

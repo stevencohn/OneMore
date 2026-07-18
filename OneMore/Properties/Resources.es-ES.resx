@@ -1915,6 +1915,26 @@ Fondo amarillo</value>
     <value>Importar diseños</value>
     <comment>import dialog title</comment>
   </data>
+  <data name="ImportOutlookContactsCommand_address" xml:space="preserve">
+    <value>DIRECCIÓN</value>
+    <comment>report column heading</comment>
+  </data>
+  <data name="ImportOutlookContactsCommand_companyTitle" xml:space="preserve">
+    <value>Empresa/Título</value>
+    <comment>report column heading</comment>
+  </data>
+  <data name="ImportOutlookContactsCommand_email" xml:space="preserve">
+    <value>Correo electrónico</value>
+    <comment>report column heading</comment>
+  </data>
+  <data name="ImportOutlookContactsCommand_firstName" xml:space="preserve">
+    <value>Nombre de pila</value>
+    <comment>report column heading</comment>
+  </data>
+  <data name="ImportOutlookContactsCommand_lastName" xml:space="preserve">
+    <value>Apellido</value>
+    <comment>report column heading</comment>
+  </data>
   <data name="ImportOutlookContactsCommand_loadingCategories" xml:space="preserve">
     <value>Cargando categorías de Outlook...</value>
     <comment>progress dialog message</comment>
@@ -1930,6 +1950,14 @@ Fondo amarillo</value>
   <data name="ImportOutlookContactsCommand_outlookRequired" xml:space="preserve">
     <value>Outlook debe estar instalado para usar este comando</value>
     <comment>info message</comment>
+  </data>
+  <data name="ImportOutlookContactsCommand_pageTitle" xml:space="preserve">
+    <value>Contactos de Outlook</value>
+    <comment>page title</comment>
+  </data>
+  <data name="ImportOutlookContactsCommand_phone" xml:space="preserve">
+    <value>Teléfono</value>
+    <comment>report column heading</comment>
   </data>
   <data name="ImportOutlookContactsCommand_reportNotFound" xml:space="preserve">
     <value>Informe de contactos de Outlook no encontrado. Puede que haya sido eliminado</value>
@@ -2687,6 +2715,106 @@ No puede abrir la carpeta de un cuaderno almacenado en OneDrive.</value>
   <data name="OutlineDialog_tagLabel.Text" xml:space="preserve">
     <value>Etiqueta:</value>
     <comment>label</comment>
+  </data>
+  <data name="OutlookContactCommand_anniversary" xml:space="preserve">
+    <value>Aniversario</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_birthday" xml:space="preserve">
+    <value>Cumpleaños</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_business" xml:space="preserve">
+    <value>Negocio</value>
+    <comment>report column heading</comment>
+  </data>
+  <data name="OutlookContactCommand_categories" xml:space="preserve">
+    <value>Categorías</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_city" xml:space="preserve">
+    <value>Ciudad</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_company" xml:space="preserve">
+    <value>Compañía</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_countryRegion" xml:space="preserve">
+    <value>País/Región</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_customerID" xml:space="preserve">
+    <value>ID de cliente</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_department" xml:space="preserve">
+    <value>Departamento</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_email1" xml:space="preserve">
+    <value>Correo electrónico 1</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_email2" xml:space="preserve">
+    <value>Correo electrónico 2</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_email3" xml:space="preserve">
+    <value>Correo electrónico 3</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_first" xml:space="preserve">
+    <value>Primero</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_jobTitle" xml:space="preserve">
+    <value>Título profesional</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_last" xml:space="preserve">
+    <value>Último</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_middle" xml:space="preserve">
+    <value>Medio</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_mobile" xml:space="preserve">
+    <value>Móvil</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_notApplicable" xml:space="preserve">
+    <value>N / A</value>
+    <comment>report value placeholder</comment>
+  </data>
+  <data name="OutlookContactCommand_openInOutlook" xml:space="preserve">
+    <value>Abrir en Outlook</value>
+    <comment>report link text</comment>
+  </data>
+  <data name="OutlookContactCommand_personal" xml:space="preserve">
+    <value>Personal</value>
+    <comment>report column heading</comment>
+  </data>
+  <data name="OutlookContactCommand_saveWarnings" xml:space="preserve">
+    <value>El contacto se guardó pero estos valores no se pudieron validar y no se modificaron: {0}</value>
+    <comment>info message, {0} is a comma-separated list of field labels</comment>
+  </data>
+  <data name="OutlookContactCommand_stateProvince" xml:space="preserve">
+    <value>Estado/Provincia</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_street" xml:space="preserve">
+    <value>Calle</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_telephone" xml:space="preserve">
+    <value>Teléfono</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_zipPostal" xml:space="preserve">
+    <value>Código postal/correo postal</value>
+    <comment>report field label</comment>
   </data>
   <data name="OutlookTaskReport_DateDue" xml:space="preserve">
     <value>Vencido / Completado</value>

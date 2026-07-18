@@ -1920,6 +1920,26 @@ Total Row Font
     <value>ייבוא ​​פריסות</value>
     <comment>import dialog title</comment>
   </data>
+  <data name="ImportOutlookContactsCommand_address" xml:space="preserve">
+    <value>כְּתוֹבֶת</value>
+    <comment>report column heading</comment>
+  </data>
+  <data name="ImportOutlookContactsCommand_companyTitle" xml:space="preserve">
+    <value>חברה/תואר</value>
+    <comment>report column heading</comment>
+  </data>
+  <data name="ImportOutlookContactsCommand_email" xml:space="preserve">
+    <value>אֶלֶקטרוֹנִי</value>
+    <comment>report column heading</comment>
+  </data>
+  <data name="ImportOutlookContactsCommand_firstName" xml:space="preserve">
+    <value>שֵׁם פְּרַטִי</value>
+    <comment>report column heading</comment>
+  </data>
+  <data name="ImportOutlookContactsCommand_lastName" xml:space="preserve">
+    <value>שֵׁם מִשׁפָּחָה</value>
+    <comment>report column heading</comment>
+  </data>
   <data name="ImportOutlookContactsCommand_loadingCategories" xml:space="preserve">
     <value>טוען קטגוריות של Outlook...</value>
     <comment>progress dialog message</comment>
@@ -1935,6 +1955,14 @@ Total Row Font
   <data name="ImportOutlookContactsCommand_outlookRequired" xml:space="preserve">
     <value>יש להתקין את Outlook כדי להשתמש בפקודה זו</value>
     <comment>info message</comment>
+  </data>
+  <data name="ImportOutlookContactsCommand_pageTitle" xml:space="preserve">
+    <value>אנשי קשר של Outlook</value>
+    <comment>page title</comment>
+  </data>
+  <data name="ImportOutlookContactsCommand_phone" xml:space="preserve">
+    <value>טֵלֵפוֹן</value>
+    <comment>report column heading</comment>
   </data>
   <data name="ImportOutlookContactsCommand_reportNotFound" xml:space="preserve">
     <value>דוח אנשי הקשר של Outlook לא נמצא. ייתכן שהוא נמחק</value>
@@ -2684,6 +2712,106 @@ Total Row Font
   <data name="OutlineDialog_tagLabel.Text" xml:space="preserve">
     <value>תָג:</value>
     <comment>label</comment>
+  </data>
+  <data name="OutlookContactCommand_anniversary" xml:space="preserve">
+    <value>יוֹם הַשָׁנָה</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_birthday" xml:space="preserve">
+    <value>יוֹם הוּלֶדֶת</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_business" xml:space="preserve">
+    <value>עֵסֶק</value>
+    <comment>report column heading</comment>
+  </data>
+  <data name="OutlookContactCommand_categories" xml:space="preserve">
+    <value>קטגוריות</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_city" xml:space="preserve">
+    <value>עִיר</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_company" xml:space="preserve">
+    <value>חֶברָה</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_countryRegion" xml:space="preserve">
+    <value>מדינה/אזור</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_customerID" xml:space="preserve">
+    <value>זיהוי לקוח</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_department" xml:space="preserve">
+    <value>מַחלָקָה</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_email1" xml:space="preserve">
+    <value>דוא"ל 1</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_email2" xml:space="preserve">
+    <value>דוא"ל 2</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_email3" xml:space="preserve">
+    <value>דוא"ל 3</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_first" xml:space="preserve">
+    <value>רֵאשִׁית</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_jobTitle" xml:space="preserve">
+    <value>תואר עבודה</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_last" xml:space="preserve">
+    <value>אַחֲרוֹן</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_middle" xml:space="preserve">
+    <value>אֶמצַע</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_mobile" xml:space="preserve">
+    <value>נייד</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_notApplicable" xml:space="preserve">
+    <value>לא</value>
+    <comment>report value placeholder</comment>
+  </data>
+  <data name="OutlookContactCommand_openInOutlook" xml:space="preserve">
+    <value>פתח באאוטלוק</value>
+    <comment>report link text</comment>
+  </data>
+  <data name="OutlookContactCommand_personal" xml:space="preserve">
+    <value>אִישִׁי</value>
+    <comment>report column heading</comment>
+  </data>
+  <data name="OutlookContactCommand_saveWarnings" xml:space="preserve">
+    <value>איש הקשר נשמר אך לא ניתן היה לאמת את הערכים הללו והם נותרו ללא שינוי: {0}</value>
+    <comment>info message, {0} is a comma-separated list of field labels</comment>
+  </data>
+  <data name="OutlookContactCommand_stateProvince" xml:space="preserve">
+    <value>מדינה/מחוז</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_street" xml:space="preserve">
+    <value>רְחוֹב</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_telephone" xml:space="preserve">
+    <value>טֵלֵפוֹן</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_zipPostal" xml:space="preserve">
+    <value>ZIP/דואר</value>
+    <comment>report field label</comment>
   </data>
   <data name="OutlookTaskReport_DateDue" xml:space="preserve">
     <value>מועד/הושלם</value>

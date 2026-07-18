@@ -1923,6 +1923,26 @@ OneNoteファイル (*.one)</value>
     <value>レイアウトのインポート</value>
     <comment>import dialog title</comment>
   </data>
+  <data name="ImportOutlookContactsCommand_address" xml:space="preserve">
+    <value>住所</value>
+    <comment>report column heading</comment>
+  </data>
+  <data name="ImportOutlookContactsCommand_companyTitle" xml:space="preserve">
+    <value>会社名・役職名</value>
+    <comment>report column heading</comment>
+  </data>
+  <data name="ImportOutlookContactsCommand_email" xml:space="preserve">
+    <value>電子メール</value>
+    <comment>report column heading</comment>
+  </data>
+  <data name="ImportOutlookContactsCommand_firstName" xml:space="preserve">
+    <value>ファーストネーム</value>
+    <comment>report column heading</comment>
+  </data>
+  <data name="ImportOutlookContactsCommand_lastName" xml:space="preserve">
+    <value>苗字</value>
+    <comment>report column heading</comment>
+  </data>
   <data name="ImportOutlookContactsCommand_loadingCategories" xml:space="preserve">
     <value>Outlook カテゴリを読み込んでいます...</value>
     <comment>progress dialog message</comment>
@@ -1938,6 +1958,14 @@ OneNoteファイル (*.one)</value>
   <data name="ImportOutlookContactsCommand_outlookRequired" xml:space="preserve">
     <value>このコマンドを使用するには Outlook がインストールされている必要があります</value>
     <comment>info message</comment>
+  </data>
+  <data name="ImportOutlookContactsCommand_pageTitle" xml:space="preserve">
+    <value>Outlook の連絡先</value>
+    <comment>page title</comment>
+  </data>
+  <data name="ImportOutlookContactsCommand_phone" xml:space="preserve">
+    <value>電話</value>
+    <comment>report column heading</comment>
   </data>
   <data name="ImportOutlookContactsCommand_reportNotFound" xml:space="preserve">
     <value>Outlook の連絡先レポートが見つかりません。削除された可能性があります</value>
@@ -2687,6 +2715,106 @@ OneDriveに保存されているノートブックのフォルダーを開くこ
   <data name="OutlineDialog_tagLabel.Text" xml:space="preserve">
     <value>タグ:</value>
     <comment>label</comment>
+  </data>
+  <data name="OutlookContactCommand_anniversary" xml:space="preserve">
+    <value>周年</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_birthday" xml:space="preserve">
+    <value>誕生日</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_business" xml:space="preserve">
+    <value>仕事</value>
+    <comment>report column heading</comment>
+  </data>
+  <data name="OutlookContactCommand_categories" xml:space="preserve">
+    <value>カテゴリー</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_city" xml:space="preserve">
+    <value>市</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_company" xml:space="preserve">
+    <value>会社</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_countryRegion" xml:space="preserve">
+    <value>国/地域</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_customerID" xml:space="preserve">
+    <value>顧客ID</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_department" xml:space="preserve">
+    <value>部門</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_email1" xml:space="preserve">
+    <value>メール1</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_email2" xml:space="preserve">
+    <value>メール 2</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_email3" xml:space="preserve">
+    <value>メール 3</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_first" xml:space="preserve">
+    <value>初め</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_jobTitle" xml:space="preserve">
+    <value>役職</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_last" xml:space="preserve">
+    <value>最後</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_middle" xml:space="preserve">
+    <value>真ん中</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_mobile" xml:space="preserve">
+    <value>携帯</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_notApplicable" xml:space="preserve">
+    <value>該当なし</value>
+    <comment>report value placeholder</comment>
+  </data>
+  <data name="OutlookContactCommand_openInOutlook" xml:space="preserve">
+    <value>Outlook で開く</value>
+    <comment>report link text</comment>
+  </data>
+  <data name="OutlookContactCommand_personal" xml:space="preserve">
+    <value>個人的</value>
+    <comment>report column heading</comment>
+  </data>
+  <data name="OutlookContactCommand_saveWarnings" xml:space="preserve">
+    <value>連絡先は保存されましたが、これらの値は検証できず、変更されないままになりました: {0}</value>
+    <comment>info message, {0} is a comma-separated list of field labels</comment>
+  </data>
+  <data name="OutlookContactCommand_stateProvince" xml:space="preserve">
+    <value>州/県</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_street" xml:space="preserve">
+    <value>通り</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_telephone" xml:space="preserve">
+    <value>電話</value>
+    <comment>report field label</comment>
+  </data>
+  <data name="OutlookContactCommand_zipPostal" xml:space="preserve">
+    <value>郵便番号</value>
+    <comment>report field label</comment>
   </data>
   <data name="OutlookTaskReport_DateDue" xml:space="preserve">
     <value>期日/完了</value>

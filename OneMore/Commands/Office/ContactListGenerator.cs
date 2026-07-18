@@ -242,30 +242,30 @@ namespace River.OneMoreAddIn.Commands
 
 			row[i++].SetContent(new ContentList(
 				new Paragraph(string.Empty),
-				new Paragraph("First Name").SetStyle(css)));
+				new Paragraph(Resx.ImportOutlookContactsCommand_firstName).SetStyle(css)));
 
 			row[i++].SetContent(new ContentList(
 				new Paragraph(string.Empty),
-				new Paragraph("Last Name").SetStyle(css)));
+				new Paragraph(Resx.ImportOutlookContactsCommand_lastName).SetStyle(css)));
 
 			if (!personal)
 			{
 				row[i++].SetContent(new ContentList(
 					new Paragraph(string.Empty),
-					new Paragraph("Company/Title").SetStyle(css)));
+					new Paragraph(Resx.ImportOutlookContactsCommand_companyTitle).SetStyle(css)));
 			}
 
 			row[i++].SetContent(new ContentList(
 				new Paragraph(string.Empty),
-				new Paragraph("Email").SetStyle(css)));
+				new Paragraph(Resx.ImportOutlookContactsCommand_email).SetStyle(css)));
 
 			row[i++].SetContent(new ContentList(
 				new Paragraph(string.Empty),
-				new Paragraph("Phone").SetStyle(css)));
+				new Paragraph(Resx.ImportOutlookContactsCommand_phone).SetStyle(css)));
 
 			row[i].SetContent(new ContentList(
 				new Paragraph(string.Empty),
-				new Paragraph("Address").SetStyle(css)));
+				new Paragraph(Resx.ImportOutlookContactsCommand_address).SetStyle(css)));
 		}
 
 
