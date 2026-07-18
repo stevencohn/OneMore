@@ -1944,6 +1944,10 @@ Yellow Background</value>
     <value>Outlook must be installed to use this command</value>
     <comment>info message</comment>
   </data>
+  <data name="ImportOutlookContactsCommand_pageTitle" xml:space="preserve">
+    <value>Outlook Contacts</value>
+    <comment>page title</comment>
+  </data>
   <data name="ImportOutlookContactsCommand_reportNotFound" xml:space="preserve">
     <value>Outlook contacts report not found. It may have been deleted</value>
     <comment>info message</comment>

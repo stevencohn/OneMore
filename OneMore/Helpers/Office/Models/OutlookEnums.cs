@@ -29,4 +29,26 @@ namespace River.OneMoreAddIn.Helpers.Office
 		Waiting = OlTaskStatus.olTaskWaiting,
 		Deferred = OlTaskStatus.olTaskDeferred
 	}
+
+
+	/// <summary>
+	/// The contact template to apply to imported contacts.
+	/// </summary>
+	internal enum ContactTemplateOption
+	{
+		Personal,
+		Business,
+		Both
+	}
+
+
+	/// <summary>
+	/// The field by which imported contacts should be sorted.
+	/// </summary>
+	internal enum ContactSortByOption
+	{
+		LastName,
+		FirstName,
+		Company
+	}
 }

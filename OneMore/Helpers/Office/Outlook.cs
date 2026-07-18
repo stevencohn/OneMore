@@ -67,16 +67,26 @@ namespace River.OneMoreAddIn.Helpers.Office
 		/// <returns>An enumerable collection of OutlookCategory instances</returns>
 		public IEnumerable<OutlookCategory> GetCategories()
 		{
-			foreach (Category cat in outlook.Session.Categories)
+			var categories = outlook.Session.Categories;
+			try
 			{
-				yield return new OutlookCategory
+				foreach (Category cat in categories)
 				{
-					Name = cat.Name,
+					yield return new OutlookCategory
+					{
+						Name = cat.Name,
 
-					// color is a string of the form olCategoryColor<name>
-					// so strip the "olCategoryColor" prefix to get the actual color name
-					ColorName = cat.Color.ToString().Substring(15)
-				};
+						// color is a string of the form olCategoryColor<name>
+						// so strip the "olCategoryColor" prefix to get the actual color name
+						ColorName = cat.Color.ToString().Substring(15)
+					};
+
+					Marshal.ReleaseComObject(cat);
+				}
+			}
+			finally
+			{
+				Marshal.ReleaseComObject(categories);
 			}
 		}
 
@@ -93,6 +103,7 @@ namespace River.OneMoreAddIn.Helpers.Office
 			// deleted Items folder path (language‑safe)
 			var deletedFolder = ns.GetDefaultFolder(OlDefaultFolders.olFolderDeletedItems);
 			var deletedFolderPath = deletedFolder.FolderPath;
+			Marshal.ReleaseComObject(deletedFolder);
 
 			foreach (Store store in ns.Stores)
 			{
@@ -103,6 +114,8 @@ namespace River.OneMoreAddIn.Helpers.Office
 						yield return new OutlookFolder(folder);
 					}
 				}
+
+				Marshal.ReleaseComObject(store);
 			}
 
 			IEnumerable<Folder> EnumerateFolders(Folder folder)
@@ -110,19 +123,25 @@ namespace River.OneMoreAddIn.Helpers.Office
 				// skip Deleted Items subtree
 				if (folder.FolderPath.StartsWith(deletedFolderPath, StringComparison.OrdinalIgnoreCase))
 				{
+					Marshal.ReleaseComObject(folder);
 					yield break;
 				}
 
 				// skip hidden folders
 				if (IsHidden(folder))
 				{
+					Marshal.ReleaseComObject(folder);
 					yield break;
 				}
 
 				// only real contact folders
-				if (folder.DefaultItemType == OlItemType.olContactItem &&
-					folder.DefaultMessageClass == "IPM.Contact")
+				var isContactFolder =
+					folder.DefaultItemType == OlItemType.olContactItem &&
+					folder.DefaultMessageClass == "IPM.Contact";
+
+				if (isContactFolder)
 				{
+					// ownership transfers to the wrapping OutlookFolder; released when that's disposed
 					yield return folder;
 				}
 
@@ -134,15 +153,20 @@ namespace River.OneMoreAddIn.Helpers.Office
 						yield return f;
 					}
 				}
+
+				if (!isContactFolder)
+				{
+					Marshal.ReleaseComObject(folder);
+				}
 			}
 
 			bool IsHidden(Folder folder)
 			{
 				const string PR_ATTR_HIDDEN = "http://schemas.microsoft.com/mapi/proptag/0x10F4000B";
 
+				var pa = folder.PropertyAccessor;
 				try
 				{
-					var pa = folder.PropertyAccessor;
 					var value = pa.GetProperty(PR_ATTR_HIDDEN);
 					return value is bool b && b;
 				}
@@ -150,7 +174,27 @@ namespace River.OneMoreAddIn.Helpers.Office
 				{
 					return false; // property not present → treat as visible
 				}
+				finally
+				{
+					Marshal.ReleaseComObject(pa);
+				}
 			}
+		}
+
+
+		/// <summary>
+		/// Load on specific contact by ID
+		/// </summary>
+		/// <param name="contactID"></param>
+		/// <returns></returns>
+		public OutlookContact LoadContact(string contactID)
+		{
+			if (outlook.Session.GetItemFromID(contactID) is ContactItem item)
+			{
+				return new OutlookContact(item);
+			}
+
+			return null;
 		}
 
 

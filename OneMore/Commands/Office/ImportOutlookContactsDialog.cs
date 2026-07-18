@@ -11,6 +11,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Drawing;
 	using System.Drawing.Drawing2D;
 	using System.Linq;
+	using System.Runtime.InteropServices;
 	using System.Windows.Forms;
 	using Resx = Properties.Resources;
 
@@ -22,27 +23,6 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal partial class ImportOutlookContactsDialog : UI.MoreForm
 	{
-		/// <summary>
-		/// The contact template to apply to imported contacts.
-		/// </summary>
-		public enum TemplateOption
-		{
-			Personal,
-			Business,
-			Both
-		}
-
-
-		/// <summary>
-		/// The field by which imported contacts should be sorted.
-		/// </summary>
-		public enum SortByOption
-		{
-			LastName,
-			FirstName,
-			Company
-		}
-
 		// synthetic category representing contacts with no assigned category at all;
 		// always shown first in the category list, ahead of Outlook's real categories
 		private static string UncategorizedName => Resx.ImportOutlookContactsDialog_uncategorized;
@@ -139,6 +119,20 @@ namespace River.OneMoreAddIn.Commands
 				{
 					image.Dispose();
 				}
+
+				// allContacts/allFolders are read throughout this dialog's lifetime and,
+				// for the caller's selected contacts, after it closes too (page generation,
+				// list report) - this only runs once the dialog itself is being disposed,
+				// which is after all of that has completed
+				foreach (var contact in allContacts)
+				{
+					contact.Dispose();
+				}
+
+				foreach (var folder in allFolders)
+				{
+					folder.Dispose();
+				}
 			};
 
 			(_, folderChecklist) = BuildStep(folderPanel, Resx.ImportOutlookContactsDialog_folderIntro);
@@ -186,24 +180,24 @@ namespace River.OneMoreAddIn.Commands
 		/// <summary>
 		/// Gets the template the user chose on the Options step.
 		/// </summary>
-		public TemplateOption Template =>
+		public ContactTemplateOption Template =>
 			true switch
 			{
-				_ when personalRadio.Checked => TemplateOption.Personal,
-				_ when businessRadio.Checked => TemplateOption.Business,
-				_ => TemplateOption.Both
+				_ when personalRadio.Checked => ContactTemplateOption.Personal,
+				_ when businessRadio.Checked => ContactTemplateOption.Business,
+				_ => ContactTemplateOption.Both
 			};
 
 
 		/// <summary>
 		/// Gets the sort field the user chose on the Options step.
 		/// </summary>
-		public SortByOption SortBy =>
+		public ContactSortByOption SortBy =>
 			true switch
 			{
-				_ when firstNameRadio.Checked => SortByOption.FirstName,
-				_ when companyRadio.Checked => SortByOption.Company,
-				_ => SortByOption.LastName
+				_ when firstNameRadio.Checked => ContactSortByOption.FirstName,
+				_ when companyRadio.Checked => ContactSortByOption.Company,
+				_ => ContactSortByOption.LastName
 			};
 
 
@@ -293,7 +287,9 @@ namespace River.OneMoreAddIn.Commands
 				// non-contact items (e.g. distribution lists) but that's an acceptable
 				// trade-off to avoid resolving every contact's folder up front just to
 				// show this screen.
-				var count = folder.Folder.Items.Count;
+				var items = folder.Folder.Items;
+				var count = items.Count;
+				Marshal.ReleaseComObject(items);
 
 				list.Items.Add(new ListViewItem(
 					new[] { folder.Name, string.Format(Resx.ImportOutlookContactsDialog_contactsCount, count) })
@@ -567,8 +563,17 @@ namespace River.OneMoreAddIn.Commands
 		private static string GetFolderEntryId(OutlookFolder folder) => folder.Folder.EntryID;
 
 
-		private static string GetContactFolderId(OutlookContact contact) =>
-			(contact.Contact.Parent as Folder)?.EntryID;
+		private static string GetContactFolderId(OutlookContact contact)
+		{
+			if (contact.Contact.Parent is not Folder parent)
+			{
+				return null;
+			}
+
+			var id = parent.EntryID;
+			Marshal.ReleaseComObject(parent);
+			return id;
+		}
 
 
 		private static string[] GetContactCategoryNames(OutlookContact contact) =>

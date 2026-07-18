@@ -13,8 +13,8 @@ namespace River.OneMoreAddIn.Commands
 	using System.Drawing;
 	using System.Drawing.Drawing2D;
 	using System.Drawing.Imaging;
-	using System.IO;
 	using System.Linq;
+	using System.Security;
 	using System.Text;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
@@ -25,6 +25,7 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private const string RefreshMeta = "omOutlookContactRefresh";
 		private const string TableMeta = "omOutlookContact";
+		private const string FieldMeta = "omField";
 
 		private const string ControlRowShading = "#C5E0B3";
 		private const string DeetsHeaderShading = "#9CC3E5";
@@ -50,7 +51,7 @@ namespace River.OneMoreAddIn.Commands
 		public void GenerateReport(
 			Page page,
 			OutlookContact contact,
-			ImportOutlookContactsDialog.TemplateOption template,
+			ContactTemplateOption template,
 			List<OutlookCategory> categories)
 		{
 			ns = page.Namespace;
@@ -79,7 +80,7 @@ namespace River.OneMoreAddIn.Commands
 		/// <param name="guid">The unique ID of the report to refresh</param>
 		/// <param name="template">The template style to apply</param>
 		public async Task UpdateReport(
-			string guid, ImportOutlookContactsDialog.TemplateOption template)
+			string guid, ContactTemplateOption template)
 		{
 			if (string.IsNullOrEmpty(guid))
 			{
@@ -89,11 +90,7 @@ namespace River.OneMoreAddIn.Commands
 			await using var one = new OneNote(out var page, out ns, OneNote.PageDetail.Basic);
 			PageNamespace.Set(ns);
 
-			var tableMeta = page.Root.Descendants(ns + "Meta")
-				.FirstOrDefault(e =>
-					e.Attribute("name").Value == TableMeta &&
-					e.Attribute("content").Value == guid &&
-					e.Parent.Elements(ns + "Table").Any());
+			var tableElement = ReportControlHelper.FindReportTable(page, ns, TableMeta, guid);
 
 			var stampMeta = page.Root.Descendants(ns + "Meta")
 				.FirstOrDefault(e =>
@@ -104,7 +101,7 @@ namespace River.OneMoreAddIn.Commands
 				.FirstOrDefault(e => e.Attribute("name").Value == "EntryID")
 				?.Attribute("content").Value;
 
-			if (tableMeta == null || string.IsNullOrEmpty(entryID))
+			if (tableElement == null || string.IsNullOrEmpty(entryID))
 			{
 				UI.MoreMessageBox.Show(one.OwnerWindow, Resx.ImportOutlookContactsCommand_reportNotFound);
 				return;
@@ -119,60 +116,53 @@ namespace River.OneMoreAddIn.Commands
 				categories = outlook.GetCategories().ToList();
 			}
 
-			var contact = contacts.FirstOrDefault();
-			if (contact == null)
+			try
 			{
-				UI.MoreMessageBox.Show(one.OwnerWindow, Resx.ImportOutlookContactsCommand_reportNotFound);
-				return;
+				var contact = contacts.FirstOrDefault();
+				if (contact == null)
+				{
+					UI.MoreMessageBox.Show(one.OwnerWindow, Resx.ImportOutlookContactsCommand_reportNotFound);
+					return;
+				}
+
+				var table = BuildDetailsTable(contact, template, categories);
+				tableElement.ReplaceWith(table.Root);
+
+				var stamp = stampMeta.Parent.Elements(ns + "T").FirstOrDefault();
+				if (stamp != null)
+				{
+					stamp.GetCData().Value = BuildControlLine(contact, template, guid);
+				}
+
+				await one.Update(page);
 			}
-
-			var tableElement = tableMeta.Parent.Elements(ns + "Table").First();
-			var table = BuildDetailsTable(contact, template, categories);
-			tableElement.ReplaceWith(table.Root);
-
-			var stamp = stampMeta.Parent.Elements(ns + "T").FirstOrDefault();
-			if (stamp != null)
+			finally
 			{
-				stamp.GetCData().Value = BuildControlLine(contact, template, guid);
+				foreach (var contact in contacts)
+				{
+					contact.Dispose();
+				}
 			}
-
-			await one.Update(page);
 		}
 
 
 		private Table BuildControlTable(
 			OutlookContact contact,
-			ImportOutlookContactsDialog.TemplateOption template,
+			ContactTemplateOption template,
 			string guid)
 		{
-			var table = new Table(ns, 1, 3)
-			{
-				HasHeaderRow = true
-			};
-
-			table.SetColumnWidth(0, 70);
-			table.SetColumnWidth(1, 605);
-			table.SetColumnWidth(2, 40);
-
-			var row = table[0];
-			row.SetShading(ControlRowShading);
-
-			row[0].SetContent(new Paragraph(string.Empty));
-
-			row[1].SetContent(new Paragraph(BuildControlLine(contact, template, guid))
+			var content = new Paragraph(BuildControlLine(contact, template, guid))
 				.SetAlignment("right")
 				.SetMeta("EntryID", contact.EntryID)
-				.SetMeta(RefreshMeta, guid));
+				.SetMeta(RefreshMeta, guid);
 
-			row[2].SetContent(new Paragraph(string.Empty));
-
-			return table;
+			return ReportControlHelper.BuildControlTable(ns, ControlRowShading, 70, 605, 40, content);
 		}
 
 
 		private static string BuildControlLine(
 			OutlookContact contact,
-			ImportOutlookContactsDialog.TemplateOption template,
+			ContactTemplateOption template,
 			string guid)
 		{
 			var nowf = DateTime.Now.ToShortFriendlyString();
@@ -188,7 +178,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private Table BuildDetailsTable(
 			OutlookContact contact,
-			ImportOutlookContactsDialog.TemplateOption template,
+			ContactTemplateOption template,
 			List<OutlookCategory> categories)
 		{
 			var table = new Table(ns, 3, 2)
@@ -207,7 +197,7 @@ namespace River.OneMoreAddIn.Commands
 			// details
 
 			var nameTable = BuildNameTable(
-				contact, template == ImportOutlookContactsDialog.TemplateOption.Personal);
+				contact, template == ContactTemplateOption.Personal);
 
 			var deetTable = BuildDeetsTable(contact, template);
 			var mailTable = BuildEmailTable(contact);
@@ -248,7 +238,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 
 				// create thumbnail with transparency
-				var output = new Bitmap(diameter, diameter, PixelFormat.Format32bppArgb);
+				using var output = new Bitmap(diameter, diameter, PixelFormat.Format32bppArgb);
 				using (var g = Graphics.FromImage(output))
 				{
 					g.SmoothingMode = SmoothingMode.AntiAlias;
@@ -284,6 +274,35 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private static void WriteField(
+			TableRow row, string label, string value, string name, int valCol = 1)
+		{
+			WriteField(row, label, new Paragraph(value ?? string.Empty), name, valCol);
+		}
+
+		private static void WriteField(
+			TableRow row, string label, Paragraph content, string name, int valCol = 1)
+		{
+			content.SetMeta(FieldMeta, name);
+
+			row[0]
+				.SetShading(LabelShading)
+				.SetContent(new Paragraph(label).SetItalic());
+
+			row[valCol]
+				.SetShading(ValueShading)
+				.SetContent(content);
+		}
+
+		private static void WriteField(TableCell cell, string value, string name)
+		{
+			var content = new Paragraph(value ?? string.Empty).SetMeta(FieldMeta, name);
+
+			cell.SetShading(ValueShading)
+				.SetContent(content);
+		}
+
+
 		private Table BuildNameTable(OutlookContact contact, bool personal)
 		{
 			var table = new Table(ns, personal ? 3 : 7, 2)
@@ -295,29 +314,16 @@ namespace River.OneMoreAddIn.Commands
 			table.SetColumnWidth(0, 120);
 			table.SetColumnWidth(1, 505);
 
-			for (int i = 0; i < table.RowCount; i++)
-			{
-				table[i][0].SetShading(LabelShading);
-				table[i][1].SetShading(ValueShading);
-			}
-
-			table[0][0].SetContent(new Paragraph("First").SetItalic());
-			table[0][1].SetContent(new Paragraph(contact.FirstName ?? string.Empty).SetBold());
-			table[1][0].SetContent(new Paragraph("Middle").SetItalic());
-			table[1][1].SetContent(new Paragraph(contact.MiddleName ?? string.Empty).SetBold());
-			table[2][0].SetContent(new Paragraph("Last").SetItalic());
-			table[2][1].SetContent(new Paragraph(contact.LastName ?? string.Empty).SetBold());
+			WriteField(table[0], "First", new Paragraph(contact.FirstName ?? string.Empty).SetBold(), "FirstName");
+			WriteField(table[1], "Middle", new Paragraph(contact.MiddleName ?? string.Empty).SetBold(), "MiddleName");
+			WriteField(table[2], "Last", new Paragraph(contact.LastName ?? string.Empty).SetBold(), "LastName");
 
 			if (!personal)
 			{
-				table[3][0].SetContent(new Paragraph("Title").SetItalic());
-				table[3][1].SetContent(new Paragraph(contact.Title ?? string.Empty));
-				table[4][0].SetContent(new Paragraph("Company").SetItalic());
-				table[4][1].SetContent(new Paragraph(contact.CompanyName ?? string.Empty));
-				table[5][0].SetContent(new Paragraph("Department").SetItalic());
-				table[5][1].SetContent(new Paragraph(contact.Department ?? string.Empty));
-				table[6][0].SetContent(new Paragraph("Customer ID").SetItalic());
-				table[6][1].SetContent(new Paragraph(contact.CustomerID ?? string.Empty));
+				WriteField(table[3], "Title", contact.Title, "Title");
+				WriteField(table[4], "Company", contact.CompanyName, "CompanyName");
+				WriteField(table[5], "Department", contact.Department, "Department");
+				WriteField(table[6], "Customer ID", contact.CustomerID, "CustomerID");
 			}
 
 			return table;
@@ -335,39 +341,34 @@ namespace River.OneMoreAddIn.Commands
 			table.SetColumnWidth(0, 120);
 			table.SetColumnWidth(1, 505);
 
-			for (int i = 0; i < table.RowCount; i++)
-			{
-				table[i][0].SetShading(LabelShading);
-				table[i][1].SetShading(ValueShading);
-			}
-
-			FillValue(contact.Email1Address, 0, "Email 1");
-			FillValue(contact.Email2Address, 1, "Email 2");
-			FillValue(contact.Email3Address, 2, "Email 3");
+			FillValue(contact.Email1Address, 0, "Email 1", "Email1Address");
+			FillValue(contact.Email2Address, 1, "Email 2", "Email2Address");
+			FillValue(contact.Email3Address, 2, "Email 3", "Email3Address");
 
 			return table;
 
-			void FillValue(string email, int r, string label)
+			void FillValue(string email, int r, string label, string name)
 			{
-				table[r][0].SetContent(new Paragraph(label).SetItalic());
+				table[r][0]
+					.SetShading(LabelShading)
+					.SetContent(new Paragraph(label).SetItalic());
 
-				if (string.IsNullOrWhiteSpace(email))
-				{
-					table[r][1].SetContent(new Paragraph(string.Empty));
-				}
-				else
-				{
-					table[r][1].SetContent(
-						new Paragraph(new TextRun($"<a href='mailto:{email}'>{email}</a>")));
-				}
+				table[r][1].SetShading(ValueShading);
+
+				var content = string.IsNullOrWhiteSpace(email)
+					? new Paragraph(string.Empty)
+					: new Paragraph(new TextRun($"<a href='mailto:{email}'>{email}</a>"));
+
+				table[r][1].SetContent(content.SetMeta(FieldMeta, name));
 			}
 		}
 
 
 		private Table BuildDeetsTable(
-			OutlookContact contact, ImportOutlookContactsDialog.TemplateOption template)
+			OutlookContact contact,
+			ContactTemplateOption template)
 		{
-			var both = template == ImportOutlookContactsDialog.TemplateOption.Both;
+			var both = template == ContactTemplateOption.Both;
 			var table = new Table(ns, 8, both ? 3 : 2)
 			{
 				HasHeaderRow = true,
@@ -381,7 +382,7 @@ namespace River.OneMoreAddIn.Commands
 				table.SetColumnWidth(2, 250);
 			}
 
-			var label = template == ImportOutlookContactsDialog.TemplateOption.Business
+			var label = template == ContactTemplateOption.Business
 				? "Business"
 				: "Personal";
 
@@ -393,14 +394,9 @@ namespace River.OneMoreAddIn.Commands
 				table[0][2].SetContent(new Paragraph("Business").SetItalic());
 			}
 
-			for (int i=1; i < 8; i++)
+			for (int i = 1; i < 8; i++)
 			{
 				table[i][0].ShadingColor = LabelShading;
-				table[i][1].ShadingColor = ValueShading;
-				if (both)
-				{
-					table[i][2].ShadingColor = ValueShading;
-				}
 			}
 
 			table[1][0].SetContent(new Paragraph("Telephone").SetItalic());
@@ -411,38 +407,39 @@ namespace River.OneMoreAddIn.Commands
 			table[6][0].SetContent(new Paragraph("ZIP/Postal").SetItalic());
 			table[7][0].SetContent(new Paragraph("Country/Region").SetItalic());
 
-			if (template == ImportOutlookContactsDialog.TemplateOption.Personal || both)
+			if (template == ContactTemplateOption.Personal || both)
 			{
-				table[1][1].SetContent(contact.HomeTelephoneNumber ?? string.Empty);
-				table[2][1].SetContent(contact.MobileTelephoneNumber ?? string.Empty);
-				table[3][1].SetContent(contact.HomeAddressStreet ?? string.Empty);
-				table[4][1].SetContent(contact.HomeAddressCity ?? string.Empty);
-				table[5][1].SetContent(contact.HomeAddressState ?? string.Empty);
-				table[6][1].SetContent(contact.HomeAddressPostalCode ?? string.Empty);
-				table[7][1].SetContent(contact.HomeAddressCountry ?? string.Empty);
+				WriteField(table[1][1], contact.HomeTelephoneNumber, "HomeTelephoneNumber");
+				WriteField(table[2][1], contact.MobileTelephoneNumber, "MobileTelephoneNumber");
+				WriteField(table[3][1], contact.HomeAddressStreet, "HomeAddressStreet");
+				WriteField(table[4][1], contact.HomeAddressCity, "HomeAddressCity");
+				WriteField(table[5][1], contact.HomeAddressState, "HomeAddressState");
+				WriteField(table[6][1], contact.HomeAddressPostalCode, "HomeAddressPostalCode");
+				WriteField(table[7][1], contact.HomeAddressCountry, "HomeAddressCountry");
 			}
 
-			if (template == ImportOutlookContactsDialog.TemplateOption.Business || both)
+			if (template == ContactTemplateOption.Business || both)
 			{
-				var c = template == ImportOutlookContactsDialog.TemplateOption.Business ? 1 : 2;
+				var c = template == ContactTemplateOption.Business ? 1 : 2;
 
-				table[1][c].SetContent(contact.BusinessTelephoneNumber ?? string.Empty);
+				WriteField(table[1][c], contact.BusinessTelephoneNumber, "BusinessTelephoneNumber");
 
-				if (template == ImportOutlookContactsDialog.TemplateOption.Business)
+				if (template == ContactTemplateOption.Business)
 				{
-					table[2][c].SetContent(contact.MobileTelephoneNumber ?? string.Empty);
+					WriteField(table[2][c], contact.MobileTelephoneNumber, "MobileTelephoneNumber");
 				}
 				else
 				{
+					table[2][c].SetShading(ValueShading);
 					table[2][c].SetContent(new Paragraph("N/A")
 						.SetStyle("font-size:8.0pt;color:#7F7F7F"));
 				}
 
-				table[3][c].SetContent(contact.BusinessAddressStreet ?? string.Empty);
-				table[4][c].SetContent(contact.BusinessAddressCity ?? string.Empty);
-				table[5][c].SetContent(contact.BusinessAddressState ?? string.Empty);
-				table[6][c].SetContent(contact.BusinessAddressPostalCode ?? string.Empty);
-				table[7][c].SetContent(contact.BusinessAddressCountry ?? string.Empty);
+				WriteField(table[3][c], contact.BusinessAddressStreet, "BusinessAddressStreet");
+				WriteField(table[4][c], contact.BusinessAddressCity, "BusinessAddressCity");
+				WriteField(table[5][c], contact.BusinessAddressState, "BusinessAddressState");
+				WriteField(table[6][c], contact.BusinessAddressPostalCode, "BusinessAddressPostalCode");
+				WriteField(table[7][c], contact.BusinessAddressCountry, "BusinessAddressCountry");
 			}
 
 			return table;
@@ -467,25 +464,13 @@ namespace River.OneMoreAddIn.Commands
 				? contact.Birthday.ToString("MMMM d")
 				: string.Empty;
 
-			table[0][0]
-				.SetShading(LabelShading)
-				.SetContent(new Paragraph("Birthday").SetItalic());
-
-			table[0][1]
-				.SetShading(ValueShading)
-				.SetContent(new Paragraph(birthday));
+			WriteField(table[0], "Birthday", birthday, "Birthday");
 
 			var anniversary = contact.Anniversary.Year < 4500
 				? contact.Anniversary.ToString("MMMM d")
 				: string.Empty;
 
-			table[1][0]
-				.SetShading(LabelShading)
-				.SetContent(new Paragraph("Anniversary").SetItalic());
-
-			table[1][1]
-				.SetShading(ValueShading)
-				.SetContent(new Paragraph(anniversary));
+			WriteField(table[1], "Anniversary", anniversary, "Anniversary");
 
 			return table;
 		}
@@ -518,14 +503,17 @@ namespace River.OneMoreAddIn.Commands
 				var egory = categories.FirstOrDefault(c => c.Name.EqualsICIC(cat));
 				if (egory is not null)
 				{
-					span.Append($"<span style='color:{egory.ColorName}'>{CategoryBar}</span>{cat} ");
+					span.Append(
+						$"<span style='color:{egory.ColorName}'>{CategoryBar}</span>{SecurityElement.Escape(cat)} ");
 				}
 			}
 
 			var run = span.ToString();
 			if (!string.IsNullOrWhiteSpace(run))
 			{
-				table[1][1].SetContent(new Paragraph(new TextRun(run)));
+				table[1][1]
+					.SetMeta(FieldMeta, "Categories")
+					.SetContent(new Paragraph(new TextRun(run)));
 			}
 		}
 
@@ -541,6 +529,7 @@ namespace River.OneMoreAddIn.Commands
 
 			table[2][1]
 				.SetShading(ValueShading)
+				.SetMeta(FieldMeta, "Body")
 				.SetContent(new ContentList(
 					new Paragraph(contact.Body ?? string.Empty),
 					new Paragraph(string.Empty)

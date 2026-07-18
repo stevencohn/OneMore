@@ -52,54 +52,46 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public async Task GenerateReport(
+		public void GenerateReport(
+			Page page,
 			IEnumerable<OutlookContact> contacts,
-			ImportOutlookContactsDialog.TemplateOption template,
-			ImportOutlookContactsDialog.SortByOption sortBy)
+			ContactTemplateOption template,
+			ContactSortByOption sortBy)
 		{
-			await using var one = new OneNote(out page, out ns);
-
+			this.page = page;
+			ns = page.Namespace;
 			PageNamespace.Set(ns);
-			var editor = new PageEditor(page);
 
 			var guid = Guid.NewGuid().ToString("b").ToUpper();
 			var nowf = DateTime.Now.ToShortFriendlyString();
 
-			var controlTable = new Table(ns, 1, 3)
-			{
-				HasHeaderRow = true
-			};
+			var personal = template == ContactTemplateOption.Personal;
 
-			var personal = template == ImportOutlookContactsDialog.TemplateOption.Personal;
-
-			controlTable.SetColumnWidth(0, 70);
-			controlTable.SetColumnWidth(1, personal ? 543 : 700);
-			controlTable.SetColumnWidth(2, 40);
-
-			var row = controlTable[0];
-			row.SetShading(ControlRowShading);
-			row[0].SetContent(new Paragraph(string.Empty));
-			row[1].SetContent(new Paragraph(
+			var content = new Paragraph(
 				$"{Resx.ReminderReport_LastUpdated} {nowf} | " +
 				$"<a href=\"{RefreshUri}/{guid}/{template}/{sortBy}\">{Resx.word_Refresh}</a>")
 				.SetAlignment("right")
-				.SetMeta(RefreshMeta, guid));
-			row[2].SetContent(new Paragraph(string.Empty));
+				.SetMeta(RefreshMeta, guid);
+
+			var controlTable = ReportControlHelper.BuildControlTable(
+				ns, ControlRowShading, 70, personal ? 543 : 700, 40, content);
 
 			var table = BuildDataTable(contacts, template, sortBy);
 
-			editor.AddNextParagraph(
+			// this is a brand-new page that has never been displayed, so it has no cursor/
+			// selection state for PageEditor.AddNextParagraph to anchor on; append directly
+			// to the page's content container instead
+			var container = page.EnsureContentContainer();
+			container.Add(
 				new Paragraph(controlTable.Root),
 				new Paragraph(table.Root).SetMeta(TableMeta, guid)
 				);
-
-			await one.Update(page);
 		}
 
 
 		public async Task UpdateReport(string guid,
-			ImportOutlookContactsDialog.TemplateOption template,
-			ImportOutlookContactsDialog.SortByOption sortBy)
+			ContactTemplateOption template,
+			ContactSortByOption sortBy)
 		{
 			if (string.IsNullOrEmpty(guid))
 			{
@@ -110,19 +102,13 @@ namespace River.OneMoreAddIn.Commands
 
 			PageNamespace.Set(ns);
 
-			var meta = page.Root.Descendants(ns + "Meta")
-				.FirstOrDefault(e =>
-					e.Attribute("name").Value == TableMeta &&
-					e.Attribute("content").Value == guid &&
-					e.Parent.Elements(ns + "Table").Any());
+			var tableElement = ReportControlHelper.FindReportTable(page, ns, TableMeta, guid);
 
-			if (meta == null)
+			if (tableElement == null)
 			{
 				UI.MoreMessageBox.Show(one.OwnerWindow, Resx.ImportOutlookContactsCommand_reportNotFound);
 				return;
 			}
-
-			var tableElement = meta.Parent.Elements(ns + "Table").First();
 
 			var ids = tableElement.Descendants(ns + "Meta")
 				.Where(e => e.Attribute("name").Value == ContactMeta)
@@ -139,39 +125,49 @@ namespace River.OneMoreAddIn.Commands
 			using var outlook = new Outlook();
 			var contacts = outlook.LoadContactsByID(ids).ToList();
 
-			var table = BuildDataTable(contacts, template, sortBy);
-			tableElement.ReplaceWith(table.Root);
-
-			// update "Last updated..." line...
-
-			var stamp = page.Root.Descendants(ns + "Meta")
-				.Where(e =>
-					e.Attribute("name").Value == RefreshMeta &&
-					e.Attribute("content").Value == guid)
-				.Select(e => e.Parent.Elements(ns + "T").FirstOrDefault())
-				.FirstOrDefault();
-
-			if (stamp != null)
+			try
 			{
-				stamp.GetCData().Value =
-					$"{Resx.ReminderReport_LastUpdated} {DateTime.Now.ToShortFriendlyString()} " +
-					$"(<a href=\"{RefreshUri}/{guid}/{template}/{sortBy}\">{Resx.word_Refresh}</a>)";
-			}
+				var table = BuildDataTable(contacts, template, sortBy);
+				tableElement.ReplaceWith(table.Root);
 
-			await one.Update(page);
+				// update "Last updated..." line...
+
+				var stamp = page.Root.Descendants(ns + "Meta")
+					.Where(e =>
+						e.Attribute("name").Value == RefreshMeta &&
+						e.Attribute("content").Value == guid)
+					.Select(e => e.Parent.Elements(ns + "T").FirstOrDefault())
+					.FirstOrDefault();
+
+				if (stamp != null)
+				{
+					stamp.GetCData().Value =
+						$"{Resx.ReminderReport_LastUpdated} {DateTime.Now.ToShortFriendlyString()} | " +
+						$"<a href=\"{RefreshUri}/{guid}/{template}/{sortBy}\">{Resx.word_Refresh}</a>";
+				}
+
+				await one.Update(page);
+			}
+			finally
+			{
+				foreach (var contact in contacts)
+				{
+					contact.Dispose();
+				}
+			}
 		}
 
 
 		internal static List<OutlookContact> SortContacts(
 			IEnumerable<OutlookContact> contacts,
-			ImportOutlookContactsDialog.SortByOption sortBy)
+			ContactSortByOption sortBy)
 		{
 			return sortBy switch
 			{
-				ImportOutlookContactsDialog.SortByOption.FirstName =>
+				ContactSortByOption.FirstName =>
 					contacts.OrderBy(t => t.FirstName).ThenBy(t => t.LastName).ToList(),
 
-				ImportOutlookContactsDialog.SortByOption.Company =>
+				ContactSortByOption.Company =>
 					contacts.OrderBy(t => t.CompanyName)
 					.ThenBy(t => t.LastName).ThenBy(t => t.FirstName).ToList(),
 
@@ -182,10 +178,10 @@ namespace River.OneMoreAddIn.Commands
 
 		private Table BuildDataTable(
 			IEnumerable<OutlookContact> contacts,
-			ImportOutlookContactsDialog.TemplateOption template,
-			ImportOutlookContactsDialog.SortByOption sortBy)
+			ContactTemplateOption template,
+			ContactSortByOption sortBy)
 		{
-			var personal = template == ImportOutlookContactsDialog.TemplateOption.Personal;
+			var personal = template == ContactTemplateOption.Personal;
 
 			var table = new Table(ns, 1, personal ? 6 : 7)
 			{
@@ -401,65 +397,53 @@ namespace River.OneMoreAddIn.Commands
 
 		private static string MakeBestAddress(OutlookContact contact)
 		{
+			var address = BuildAddress(
+				contact.HomeAddressStreet, contact.HomeAddressCity,
+				contact.HomeAddressState, contact.HomeAddressPostalCode, contact.HomeAddressCountry);
+
+			return string.IsNullOrWhiteSpace(address)
+				? BuildAddress(
+					contact.BusinessAddressStreet, contact.BusinessAddressCity,
+					contact.BusinessAddressState, contact.BusinessAddressPostalCode, contact.BusinessAddressCountry)
+				: address;
+		}
+
+
+		private static string BuildAddress(
+			string street, string city, string state, string postalCode, string country)
+		{
+			if (string.IsNullOrWhiteSpace(street) &&
+				string.IsNullOrWhiteSpace(city) &&
+				string.IsNullOrWhiteSpace(state) &&
+				string.IsNullOrWhiteSpace(postalCode) &&
+				string.IsNullOrWhiteSpace(country))
+			{
+				return string.Empty;
+			}
+
 			string BR = "<br>" + Environment.NewLine;
 
 			var address = string.Empty;
 
-			if (!string.IsNullOrWhiteSpace(contact.HomeAddressStreet) ||
-				!string.IsNullOrWhiteSpace(contact.HomeAddressCity) ||
-				!string.IsNullOrWhiteSpace(contact.HomeAddressState) ||
-				!string.IsNullOrWhiteSpace(contact.HomeAddressPostalCode) ||
-				!string.IsNullOrWhiteSpace(contact.HomeAddressCountry))
+			if (!string.IsNullOrWhiteSpace(city))
 			{
-				if (!string.IsNullOrWhiteSpace(contact.HomeAddressCity))
-				{
-					address += contact.HomeAddressCity + ", ";
-				}
-				if (!string.IsNullOrWhiteSpace(contact.HomeAddressState))
-				{
-					address += contact.HomeAddressState + " ";
-				}
-				if (!string.IsNullOrWhiteSpace(contact.HomeAddressPostalCode))
-				{
-					address += contact.HomeAddressPostalCode + BR;
-				}
-				if (!string.IsNullOrWhiteSpace(contact.HomeAddressCountry))
-				{
-					address += contact.HomeAddressCountry;
-				}
-				if (!string.IsNullOrWhiteSpace(contact.HomeAddressStreet))
-				{
-					address = contact.HomeAddressStreet + BR + address;
-				}
+				address += city + ", ";
 			}
-
-			if (string.IsNullOrWhiteSpace(address) && (
-				!string.IsNullOrWhiteSpace(contact.BusinessAddressStreet) ||
-				!string.IsNullOrWhiteSpace(contact.BusinessAddressCity) ||
-				!string.IsNullOrWhiteSpace(contact.BusinessAddressState) ||
-				!string.IsNullOrWhiteSpace(contact.BusinessAddressPostalCode) ||
-				!string.IsNullOrWhiteSpace(contact.BusinessAddressCountry)))
+			if (!string.IsNullOrWhiteSpace(state))
 			{
-				if (!string.IsNullOrWhiteSpace(contact.BusinessAddressCity))
-				{
-					address += contact.BusinessAddressCity + ", ";
-				}
-				if (!string.IsNullOrWhiteSpace(contact.BusinessAddressState))
-				{
-					address += contact.BusinessAddressState + " ";
-				}
-				if (!string.IsNullOrWhiteSpace(contact.BusinessAddressPostalCode))
-				{
-					address += contact.BusinessAddressPostalCode + BR;
-				}
-				if (!string.IsNullOrWhiteSpace(contact.BusinessAddressCountry))
-				{
-					address += contact.BusinessAddressCountry;
-				}
-				if (!string.IsNullOrWhiteSpace(contact.BusinessAddressStreet))
-				{
-					address = contact.BusinessAddressStreet + BR + address;
-				}
+				address += state + " ";
+			}
+			if (!string.IsNullOrWhiteSpace(postalCode))
+			{
+				address += postalCode + BR;
+			}
+			if (!string.IsNullOrWhiteSpace(country))
+			{
+				address += country;
+			}
+			if (!string.IsNullOrWhiteSpace(street))
+			{
+				address = street + BR + address;
 			}
 
 			return address;
