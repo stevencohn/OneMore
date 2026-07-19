@@ -4131,7 +4131,7 @@ Guia Ajuda</value>
   </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>Imagens</value>
-    <comment>Ribbon OneMore menu item, Images...</comment>
+    <comment>ribbon images NODUP</comment>
   </data>
   <data name="ribImportButton_Label" xml:space="preserve">
     <value>Importar</value>
@@ -4544,6 +4544,10 @@ Guia Ajuda</value>
   <data name="ribNumberSectionsButton_Screentip" xml:space="preserve">
     <value>Adicionar ou atualizar a numeração de todas as seções deste bloco de notas</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribOfficeMenu_Label" xml:space="preserve">
+    <value>Escritório</value>
+    <comment>menu NODUP</comment>
   </data>
   <data name="ribOneMoreBasicsGroup_Label" xml:space="preserve">
     <value>Noções básicas</value>

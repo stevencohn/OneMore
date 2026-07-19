@@ -4167,7 +4167,7 @@ Help Tab</value>
   </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>Images</value>
-    <comment>menu NODUP</comment>
+    <comment>ribbon images NODUP</comment>
   </data>
   <data name="ribImportButton_Label" xml:space="preserve">
     <value>Import</value>
@@ -4584,6 +4584,10 @@ Help Tab</value>
   <data name="ribNumberSectionsButton_Screentip" xml:space="preserve">
     <value>Add or update numbering of all sections in this notebook</value>
     <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribOfficeMenu_Label" xml:space="preserve">
+    <value>Office</value>
+    <comment>menu NODUP</comment>
   </data>
   <data name="ribOneMoreBasicsGroup_Label" xml:space="preserve">
     <value>Basics</value>

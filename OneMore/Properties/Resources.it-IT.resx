@@ -4135,7 +4135,7 @@ Scheda Aiuto</value>
   </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>Immagini</value>
-    <comment>menu NODUP</comment>
+    <comment>ribbon images NODUP</comment>
   </data>
   <data name="ribImportButton_Label" xml:space="preserve">
     <value>Importare</value>
@@ -4548,6 +4548,10 @@ Scheda Aiuto</value>
   <data name="ribNumberSectionsButton_Screentip" xml:space="preserve">
     <value>Aggiungi o aggiorna la numerazione di tutte le sezioni di questo taccuino</value>
     <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribOfficeMenu_Label" xml:space="preserve">
+    <value>Ufficio</value>
+    <comment>menu NODUP</comment>
   </data>
   <data name="ribOneMoreBasicsGroup_Label" xml:space="preserve">
     <value>Nozioni di base</value>

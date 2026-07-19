@@ -704,11 +704,11 @@
       </menu>
       <menu id="ribReferencesMenu" getLabel="GetRibbonLabel" imageMso="CrossReferenceInsert" showImage="true">
         <button
-        id="ribAddFootnoteButton"
-        imageMso="FootnoteInsert"
-        getLabel="GetRibbonLabel"
-        getScreentip="GetRibbonScreentip"
-        onAction="AddFootnoteCmd"/>
+          id="ribAddFootnoteButton"
+          imageMso="FootnoteInsert"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="AddFootnoteCmd"/>
         <button
           id="ribRemoveFootnoteButton"
           imageMso="RemoveCitation"
@@ -740,11 +740,17 @@
           getScreentip="GetRibbonScreentip"
           onAction="BookmarkCmd"/>
         <button
-          id="ribFinishBiLinkButton"
+          id="ribTwoWayLinkButton"
           imageMso="CircularReferences"
           getLabel="GetRibbonLabel"
           getScreentip="GetRibbonScreentip"
-          onAction="FinishBiLinkCmd"/>
+          onAction="TwoWayLinkCmd"/>
+        <button
+          id="ribTwoWayPathButton"
+          imageMso="CircularReferences"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="TwoWayPathCmd"/>
         <button
           id="ribEmbedButton"
           imageMso="MasterDocumentMergeSubdocuments"
@@ -831,6 +837,12 @@
           getLabel="GetRibbonLabel"
           getScreentip="GetRibbonScreentip"
           onAction="ReportRemindersCmd"/>
+        <button
+          id="ribImportOutlookContactsButton"
+          imageMso="NewContact"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="ImportOutlookContactsCmd"/>
         <button
           id="ribImportOutlookTasksButton"
           imageMso="ImportOutlook"

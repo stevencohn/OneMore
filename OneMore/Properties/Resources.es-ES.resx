@@ -4129,8 +4129,8 @@ Pestaña Ayuda</value>
     <comment>ribbon edit</comment>
   </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
-    <value>Imagenes</value>
-    <comment>Ribbon OneMore menu item, Images...</comment>
+    <value>Imágenes</value>
+    <comment>ribbon images NODUP</comment>
   </data>
   <data name="ribImportButton_Label" xml:space="preserve">
     <value>Importar</value>
@@ -4543,6 +4543,10 @@ Pestaña Ayuda</value>
   <data name="ribNumberSectionsButton_Screentip" xml:space="preserve">
     <value>Agregar o actualizar la numeración de todas las secciones de este cuaderno</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribOfficeMenu_Label" xml:space="preserve">
+    <value>Oficina</value>
+    <comment>menu NODUP</comment>
   </data>
   <data name="ribOneMoreBasicsGroup_Label" xml:space="preserve">
     <value>Lo esencial</value>

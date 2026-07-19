@@ -4131,7 +4131,7 @@ Zakładka Pomoc</value>
   </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>Obrazy</value>
-    <comment>Ribbon OneMore menu item, Images... NODUP</comment>
+    <comment>ribbon images NODUP</comment>
   </data>
   <data name="ribImportButton_Label" xml:space="preserve">
     <value>Import</value>
@@ -4544,6 +4544,10 @@ Zakładka Pomoc</value>
   <data name="ribNumberSectionsButton_Screentip" xml:space="preserve">
     <value>Dodaj lub zaktualizuj numerowanie wszystkich sekcji w tym notebooku</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribOfficeMenu_Label" xml:space="preserve">
+    <value>Biuro</value>
+    <comment>menu NODUP</comment>
   </data>
   <data name="ribOneMoreBasicsGroup_Label" xml:space="preserve">
     <value>Podstawy</value>

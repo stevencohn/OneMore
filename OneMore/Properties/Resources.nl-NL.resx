@@ -4131,7 +4131,7 @@ Tabblad Help</value>
   </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>Afbeeldingen</value>
-    <comment>Ribbon OneMore menu item, Images...</comment>
+    <comment>ribbon images NODUP</comment>
   </data>
   <data name="ribImportButton_Label" xml:space="preserve">
     <value>Importeren</value>
@@ -4544,6 +4544,10 @@ Tabblad Help</value>
   <data name="ribNumberSectionsButton_Screentip" xml:space="preserve">
     <value>Voeg de nummering van alle secties in dit notitieboek toe of werk deze bij</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribOfficeMenu_Label" xml:space="preserve">
+    <value>Kantoor</value>
+    <comment>menu NODUP</comment>
   </data>
   <data name="ribOneMoreBasicsGroup_Label" xml:space="preserve">
     <value>Basisprincipes</value>

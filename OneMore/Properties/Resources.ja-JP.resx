@@ -4138,7 +4138,7 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>画像</value>
-    <comment>menu NODUP</comment>
+    <comment>ribbon images NODUP</comment>
   </data>
   <data name="ribImportButton_Label" xml:space="preserve">
     <value>インポート</value>
@@ -4551,6 +4551,10 @@ ISO-code then comma then language name</comment>
   <data name="ribNumberSectionsButton_Screentip" xml:space="preserve">
     <value>このノートブックの全てのセクションに番号を追加または更新</value>
     <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribOfficeMenu_Label" xml:space="preserve">
+    <value>オフィス</value>
+    <comment>menu NODUP</comment>
   </data>
   <data name="ribOneMoreBasicsGroup_Label" xml:space="preserve">
     <value>基本</value>

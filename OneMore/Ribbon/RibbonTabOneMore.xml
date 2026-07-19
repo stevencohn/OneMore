@@ -466,11 +466,47 @@
           getScreentip="GetRibbonScreentip"
           onAction="CropImageCmd"/>
         <button
+          id="ribMermaidButton"
+          imageMso="CreateDiagram"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="MermaidCmd"/>
+        <button
+          id="ribPlantUmlButton"
+          imageMso="OrganizationChartInsert"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="PlantUmlCmd"/>
+        <button
+          id="ribPasteImageButton"
+          imageMso="PasteAsPictureMenu"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="PasteImageCmd"/>
+        <button
           id="ribOpenImageWithButton"
           imageMso="PictureInsertFromFile"
           getLabel="GetRibbonLabel"
           getScreentip="GetRibbonScreentip"
           onAction="OpenImageWithCmd"/>
+        <button
+          id="ribSelectImagesButton"
+          imageMso="AdpDiagramArrangeSelection"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="SelectImagesCmd"/>
+        <button
+          id="ribSelectInkButton"
+          imageMso="GroupShapes"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="SelectInkCmd"/>
+        <button
+          id="ribStackBackgroundImagesButton"
+          imageMso="GroupBorder"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="StackBackgroundImagesCmd"/>
         <button
           id="ribStylizeImagesButton"
           imageMso="GroupPictureStyles"
@@ -572,7 +608,6 @@
         getScreentip="GetRibbonScreentip"
         onAction="TrimLeadingCmd"/>
     </menu>
-
     <menu id="ribEditMenu" getLabel="GetRibbonLabel" imageMso="EditComposePage" showImage="true" keytip="ED">
       <button
         id="ribConvertMarkdownButton"
@@ -746,44 +781,6 @@
         imageMso="AddInsMenu"
         getContent="GetMyPluginsContent" />
     </menu>
-    <menu id="ribImagesMenu" getLabel="GetRibbonLabel" imageMso="ObjectPictureFill" showImage="true" keytip="IM">
-      <button
-        id="ribMermaidButton"
-        imageMso="CreateDiagram"
-        getLabel="GetRibbonLabel"
-        getScreentip="GetRibbonScreentip"
-        onAction="MermaidCmd"/>
-      <button
-        id="ribPlantUmlButton"
-        imageMso="OrganizationChartInsert"
-        getLabel="GetRibbonLabel"
-        getScreentip="GetRibbonScreentip"
-        onAction="PlantUmlCmd"/>
-      <button
-        id="ribPasteImageButton"
-        imageMso="PasteAsPictureMenu"
-        getLabel="GetRibbonLabel"
-        getScreentip="GetRibbonScreentip"
-        onAction="PasteImageCmd"/>
-      <button
-        id="ribSelectImagesButton"
-        imageMso="AdpDiagramArrangeSelection"
-        getLabel="GetRibbonLabel"
-        getScreentip="GetRibbonScreentip"
-        onAction="SelectImagesCmd"/>
-      <button
-        id="ribSelectInkButton"
-        imageMso="GroupShapes"
-        getLabel="GetRibbonLabel"
-        getScreentip="GetRibbonScreentip"
-        onAction="SelectInkCmd"/>
-      <button
-        id="ribStackBackgroundImagesButton"
-        imageMso="GroupBorder"
-        getLabel="GetRibbonLabel"
-        getScreentip="GetRibbonScreentip"
-        onAction="StackBackgroundImagesCmd"/>
-    </menu>
     <menu id="ribNumberingMenu" getLabel="GetRibbonLabel" imageMso="Numbering" showImage="true" keytip="NU">
       <button
         id="ribOutlineButton"
@@ -827,6 +824,20 @@
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
         onAction="RemovePageNumbersCmd"/>
+    </menu>
+    <menu id="ribOfficeMenu" getLabel="GetRibbonLabel" imageMso="FileCreateDocumentWorkspace" showImage="true" keytip="IO">
+      <button
+        id="ribImportOutlookContactsButton"
+        imageMso="NewContact"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="ImportOutlookContactsCmd"/>
+      <button
+        id="ribImportOutlookTasksButton"
+        imageMso="ImportOutlook"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="ImportOutlookTasksCmd"/>
     </menu>
     <menu id="ribPageMenu" getLabel="GetRibbonLabel" imageMso="PageOrientationPortrait" showImage="true" keytip="PG">
       <button
@@ -934,11 +945,11 @@
     </menu>
     <menu id="ribReferencesMenu" getLabel="GetRibbonLabel" imageMso="CrossReferenceInsert" showImage="true" keytip="RE">
       <button
-      id="ribAddFootnoteButton"
-      imageMso="FootnoteInsert"
-      getLabel="GetRibbonLabel"
-      getScreentip="GetRibbonScreentip"
-      onAction="AddFootnoteCmd"/>
+        id="ribAddFootnoteButton"
+        imageMso="FootnoteInsert"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="AddFootnoteCmd"/>
       <button
         id="ribRemoveFootnoteButton"
         imageMso="RemoveCitation"
@@ -1067,12 +1078,6 @@
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
         onAction="ReportRemindersCmd"/>
-      <button
-        id="ribImportOutlookTasksButton"
-        imageMso="ImportOutlook"
-        getLabel="GetRibbonLabel"
-        getScreentip="GetRibbonScreentip"
-        onAction="ImportOutlookTasksCmd"/>
       <button
         id="ribResetTasksButton"
         imageMso="FormFieldClear"

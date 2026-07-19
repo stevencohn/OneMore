@@ -4422,7 +4422,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportLayoutsCommand_OpenFileTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Address.
         /// </summary>
@@ -4431,7 +4431,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportOutlookContactsCommand_address", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Company/Title.
         /// </summary>
@@ -4440,7 +4440,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportOutlookContactsCommand_companyTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Email.
         /// </summary>
@@ -4449,7 +4449,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportOutlookContactsCommand_email", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to First Name.
         /// </summary>
@@ -4458,7 +4458,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportOutlookContactsCommand_firstName", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Last Name.
         /// </summary>
@@ -4467,7 +4467,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportOutlookContactsCommand_lastName", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Loading Outlook categories....
         /// </summary>
@@ -4476,7 +4476,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportOutlookContactsCommand_loadingCategories", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Loading Outlook contacts....
         /// </summary>
@@ -4485,7 +4485,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportOutlookContactsCommand_loadingContacts", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Loading Outlook contact folders....
         /// </summary>
@@ -4494,7 +4494,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportOutlookContactsCommand_loadingFolders", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Outlook must be installed to use this command.
         /// </summary>
@@ -4503,7 +4503,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportOutlookContactsCommand_outlookRequired", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Outlook Contacts.
         /// </summary>
@@ -4512,7 +4512,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportOutlookContactsCommand_pageTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Phone.
         /// </summary>
@@ -4521,7 +4521,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportOutlookContactsCommand_phone", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Outlook contacts report not found. It may have been deleted.
         /// </summary>
@@ -4530,16 +4530,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportOutlookContactsCommand_reportNotFound", resourceCulture);
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Import Outlook Contacts.
-        /// </summary>
-        internal static string ImportOutlookContactsDialog_Text {
-            get {
-                return ResourceManager.GetString("ImportOutlookContactsDialog.Text", resourceCulture);
-            }
-        }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to &lt; Back.
         /// </summary>
@@ -4548,7 +4539,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportOutlookContactsDialog_backButton.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Both - show both personal and business details.
         /// </summary>
@@ -4557,7 +4548,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportOutlookContactsDialog_bothRadio.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Business - show only Business details.
         /// </summary>
@@ -4566,7 +4557,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportOutlookContactsDialog_businessRadio.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Calculating....
         /// </summary>
@@ -4575,7 +4566,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportOutlookContactsDialog_calculating", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Choose which Outlook categories to include..
         /// </summary>
@@ -4584,7 +4575,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportOutlookContactsDialog_categoryIntro", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Company name.
         /// </summary>
@@ -4593,7 +4584,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportOutlookContactsDialog_companyRadio.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to {0} contacts match your filters. Choose which to import..
         /// </summary>
@@ -4602,7 +4593,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportOutlookContactsDialog_contactIntro", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to {0} contacts.
         /// </summary>
@@ -4611,7 +4602,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportOutlookContactsDialog_contactsCount", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to {0} of {1} contacts selected.
         /// </summary>
@@ -4620,7 +4611,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportOutlookContactsDialog_contactsSelected", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to First name.
         /// </summary>
@@ -4629,7 +4620,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportOutlookContactsDialog_firstNameRadio.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Choose which Outlook contact folders to import from..
         /// </summary>
@@ -4638,7 +4629,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportOutlookContactsDialog_folderIntro", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Import.
         /// </summary>
@@ -4647,7 +4638,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportOutlookContactsDialog_importButton", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Last name.
         /// </summary>
@@ -4656,7 +4647,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportOutlookContactsDialog_lastNameRadio.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to {0} contacts match your current selection.
         /// </summary>
@@ -4665,7 +4656,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportOutlookContactsDialog_matchesSelection", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Next &gt;.
         /// </summary>
@@ -4674,7 +4665,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportOutlookContactsDialog_nextButton", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Personal - show only Personal/Home details.
         /// </summary>
@@ -4683,7 +4674,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportOutlookContactsDialog_personalRadio.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Sort by.
         /// </summary>
@@ -4692,7 +4683,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportOutlookContactsDialog_sortGroupBox.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Categories.
         /// </summary>
@@ -4701,7 +4692,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportOutlookContactsDialog_stepCategories", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Contacts.
         /// </summary>
@@ -4710,7 +4701,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportOutlookContactsDialog_stepContacts", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Folders.
         /// </summary>
@@ -4719,7 +4710,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportOutlookContactsDialog_stepFolders", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Options.
         /// </summary>
@@ -4728,7 +4719,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportOutlookContactsDialog_stepOptions", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Template.
         /// </summary>
@@ -4737,7 +4728,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportOutlookContactsDialog_templateGroupBox.Text", resourceCulture);
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import Outlook Contacts.
+        /// </summary>
+        internal static string ImportOutlookContactsDialog_Text {
+            get {
+                return ResourceManager.GetString("ImportOutlookContactsDialog.Text", resourceCulture);
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Uncategorized.
         /// </summary>
@@ -4746,7 +4746,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportOutlookContactsDialog_uncategorized", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Choose the tasks to import from Outlook into OneNote. Disabled items indicate tasks already linked to OneNote.
         /// </summary>
@@ -6705,7 +6705,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("OutlookContactCommand_anniversary", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Birthday.
         /// </summary>
@@ -6714,7 +6714,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("OutlookContactCommand_birthday", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Business.
         /// </summary>
@@ -6723,7 +6723,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("OutlookContactCommand_business", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Categories.
         /// </summary>
@@ -6732,7 +6732,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("OutlookContactCommand_categories", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to City.
         /// </summary>
@@ -6741,7 +6741,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("OutlookContactCommand_city", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Company.
         /// </summary>
@@ -6750,7 +6750,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("OutlookContactCommand_company", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Country/Region.
         /// </summary>
@@ -6759,7 +6759,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("OutlookContactCommand_countryRegion", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Customer ID.
         /// </summary>
@@ -6768,7 +6768,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("OutlookContactCommand_customerID", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Department.
         /// </summary>
@@ -6777,7 +6777,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("OutlookContactCommand_department", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Email 1.
         /// </summary>
@@ -6786,7 +6786,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("OutlookContactCommand_email1", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Email 2.
         /// </summary>
@@ -6795,7 +6795,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("OutlookContactCommand_email2", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Email 3.
         /// </summary>
@@ -6804,7 +6804,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("OutlookContactCommand_email3", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to First.
         /// </summary>
@@ -6813,7 +6813,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("OutlookContactCommand_first", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Job Title.
         /// </summary>
@@ -6822,7 +6822,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("OutlookContactCommand_jobTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Last.
         /// </summary>
@@ -6831,7 +6831,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("OutlookContactCommand_last", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Middle.
         /// </summary>
@@ -6840,7 +6840,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("OutlookContactCommand_middle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Mobile.
         /// </summary>
@@ -6849,7 +6849,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("OutlookContactCommand_mobile", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to N/A.
         /// </summary>
@@ -6858,7 +6858,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("OutlookContactCommand_notApplicable", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Open in Outlook.
         /// </summary>
@@ -6867,7 +6867,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("OutlookContactCommand_openInOutlook", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Personal.
         /// </summary>
@@ -6876,7 +6876,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("OutlookContactCommand_personal", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to The contact was saved but these values could not be validated and were left unchanged: {0}.
         /// </summary>
@@ -6885,7 +6885,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("OutlookContactCommand_saveWarnings", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to State/Province.
         /// </summary>
@@ -6894,7 +6894,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("OutlookContactCommand_stateProvince", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Street.
         /// </summary>
@@ -6903,7 +6903,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("OutlookContactCommand_street", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Telephone.
         /// </summary>
@@ -6912,7 +6912,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("OutlookContactCommand_telephone", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to ZIP/Postal.
         /// </summary>
@@ -6921,7 +6921,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("OutlookContactCommand_zipPostal", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Due/Completed.
         /// </summary>
@@ -10876,6 +10876,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribNumberSectionsButton_Screentip {
             get {
                 return ResourceManager.GetString("ribNumberSectionsButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Office.
+        /// </summary>
+        internal static string ribOfficeMenu_Label {
+            get {
+                return ResourceManager.GetString("ribOfficeMenu_Label", resourceCulture);
             }
         }
         

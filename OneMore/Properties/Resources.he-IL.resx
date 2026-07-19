@@ -4135,7 +4135,7 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>תמונות</value>
-    <comment>Ribbon OneMore menu item, Images... NODUP</comment>
+    <comment>ribbon images NODUP</comment>
   </data>
   <data name="ribImportButton_Label" xml:space="preserve">
     <value>יְבוּא</value>
@@ -4548,6 +4548,10 @@ ISO-code then comma then language name</comment>
   <data name="ribNumberSectionsButton_Screentip" xml:space="preserve">
     <value>הוסף או עדכן את המספור של כל הסעיפים במחברת זו</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribOfficeMenu_Label" xml:space="preserve">
+    <value>מִשׂרָד</value>
+    <comment>menu NODUP</comment>
   </data>
   <data name="ribOneMoreBasicsGroup_Label" xml:space="preserve">
     <value>יסודות</value>

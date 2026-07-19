@@ -4142,7 +4142,7 @@ Onglet Aide</value>
   </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>Images</value>
-    <comment>Ribbon OneMore menu item, Images...</comment>
+    <comment>ribbon images NODUP</comment>
   </data>
   <data name="ribImportButton_Label" xml:space="preserve">
     <value>Importer</value>
@@ -4555,6 +4555,10 @@ Onglet Aide</value>
   <data name="ribNumberSectionsButton_Screentip" xml:space="preserve">
     <value>Ajouter ou mettre à jour la numérotation de toutes les sections de ce notebook</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribOfficeMenu_Label" xml:space="preserve">
+    <value>Bureau</value>
+    <comment>menu NODUP</comment>
   </data>
   <data name="ribOneMoreBasicsGroup_Label" xml:space="preserve">
     <value>Les bases</value>

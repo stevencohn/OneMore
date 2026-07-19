@@ -4145,7 +4145,7 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>图片</value>
-    <comment>Ribbon OneMore menu item, Images...</comment>
+    <comment>ribbon images NODUP</comment>
   </data>
   <data name="ribImportButton_Label" xml:space="preserve">
     <value>导入</value>
@@ -4558,6 +4558,10 @@ ISO-code then comma then language name</comment>
   <data name="ribNumberSectionsButton_Screentip" xml:space="preserve">
     <value>添加或更新此笔记本中所有分区的编号</value>
     <comment>Ribbon OneMore menu item</comment>
+  </data>
+  <data name="ribOfficeMenu_Label" xml:space="preserve">
+    <value>办公室</value>
+    <comment>menu NODUP</comment>
   </data>
   <data name="ribOneMoreBasicsGroup_Label" xml:space="preserve">
     <value>基础知识</value>
