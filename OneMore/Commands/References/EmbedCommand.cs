@@ -2,6 +2,8 @@
 // Copyright © 2026 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
+#pragma warning disable S107 // more than 7 params
+
 namespace River.OneMoreAddIn.Commands
 {
 	using OneMoreAddIn.Models;
@@ -27,6 +29,9 @@ namespace River.OneMoreAddIn.Commands
 	/// The source page (and optional objectId for paragraph linking) is identified either
 	/// from a OneNote URI on the clipboard or via the SelectLocation dialog.
 	/// Begin/end tag strings may be used to embed only a slice of the source page.
+	/// Tags are matched independently within each Outline on the source page; an outline
+	/// may contain multiple begin/end blocks, all of which are embedded, and a begin tag
+	/// with no matching end tag in the same outline runs to the end of that outline.
 	/// </remarks>
 	[CommandService]
 	internal class EmbedCommand : Command, ICliPageCommand
@@ -588,8 +593,8 @@ namespace River.OneMoreAddIn.Commands
 				};
 			}
 
-			var outRoot = source.BodyOutlines.FirstOrDefault();
-			if (outRoot is null)
+			var outlineRoots = source.BodyOutlines.ToList();
+			if (outlineRoots.Count == 0)
 			{
 				var schema = new PageSchema();
 				var child = source.Root.Elements()
@@ -598,42 +603,55 @@ namespace River.OneMoreAddIn.Commands
 				if (child is not null)
 				{
 					child.Attribute("omHash")?.Remove();
-					outRoot = new XElement(ns + "Outline",
+					outlineRoots.Add(new XElement(ns + "Outline",
 						new XElement(ns + "OEChildren",
-							new XElement(ns + "OE", child)));
+							new XElement(ns + "OE", child))));
 				}
 			}
 
-			if (outRoot is null)
+			if (outlineRoots.Count == 0)
 			{
 				ShowError(Resx.EmbedCommand_NoContent);
 				return null;
 			}
 
 			PageNamespace.Set(ns);
-			var outline = new Outline(outRoot);
+			var firstOutline = new Outline(outlineRoots[0]);
 
 			IEnumerable<XElement> snippets;
 
 			if (!string.IsNullOrEmpty(beginTag) || !string.IsNullOrEmpty(endTag))
 			{
-				var oeChildren = outline.Elements(ns + "OEChildren").FirstOrDefault();
-				if (oeChildren is null)
+				// each begin/end tag pair is scoped to its own outline; scan every
+				// outline independently and collect all of their blocks, in order
+				var collected = new List<XElement>();
+				foreach (var root in outlineRoots)
+				{
+					var outline = new Outline(root);
+					var oeChildren = outline.Elements(ns + "OEChildren").FirstOrDefault();
+					if (oeChildren is null)
+					{
+						continue;
+					}
+
+					var extracted = ExtractTaggedContent(ns, oeChildren, beginTag, endTag);
+					if (extracted is not null)
+					{
+						collected.AddRange(extracted);
+					}
+				}
+
+				if (collected.Count == 0)
 				{
 					ShowError(Resx.EmbedCommand_NoContent);
 					return null;
 				}
 
-				snippets = ExtractTaggedContent(ns, oeChildren, beginTag, endTag);
-				if (snippets is null)
-				{
-					ShowError(Resx.EmbedCommand_NoContent);
-					return null;
-				}
+				snippets = collected;
 			}
 			else
 			{
-				snippets = outline.Elements(ns + "OEChildren");
+				snippets = firstOutline.Elements(ns + "OEChildren");
 			}
 
 			if (!snippets.Any())
@@ -647,7 +665,7 @@ namespace River.OneMoreAddIn.Commands
 				Snippets = snippets,
 				SourceId = sourceId,
 				Page = source,
-				Outline = outline
+				Outline = firstOutline
 			};
 		}
 
@@ -682,40 +700,69 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		/// <summary>
+		/// Scans a single outline's top-level OE paragraphs for one or more begin/end
+		/// tag blocks. Multiple blocks in the same outline are all returned, in order.
+		/// A begin tag with no matching end tag in this outline runs to the end of the
+		/// outline; that also ends the scan since nothing remains after it.
+		/// </summary>
 		internal static IEnumerable<XElement> ExtractTaggedContent(
 			XNamespace ns, XElement oeChildren, string beginTag, string endTag)
 		{
 			var oes = oeChildren.Elements(ns + "OE").ToList();
+			var hasBegin = !string.IsNullOrEmpty(beginTag);
+			var hasEnd = !string.IsNullOrEmpty(endTag);
 
-			var startIdx = 0;
-			if (!string.IsNullOrEmpty(beginTag))
+			var blocks = new List<XElement>();
+			var cursor = 0;
+
+			while (cursor < oes.Count)
 			{
-				var found = FindTagIndex(oes, beginTag, 0);
-				if (found < 0)
+				var startIdx = cursor;
+				if (hasBegin)
 				{
-					return null;
+					var found = FindTagIndex(oes, beginTag, cursor);
+					if (found < 0)
+					{
+						break; // no more begin tags in this outline
+					}
+
+					startIdx = found + 1; // skip the begin-tag paragraph itself
 				}
 
-				startIdx = found + 1; // skip the begin-tag paragraph itself
-			}
-
-			var endIdx = oes.Count - 1;
-			if (!string.IsNullOrEmpty(endTag))
-			{
-				var found = FindTagIndex(oes, endTag, startIdx);
-				if (found < 0)
+				var endIdx = oes.Count - 1;
+				var resumeFrom = oes.Count;
+				if (hasEnd)
 				{
-					return null;
+					var found = FindTagIndex(oes, endTag, startIdx);
+					if (found >= 0)
+					{
+						endIdx = found - 1; // skip the end-tag paragraph itself
+						resumeFrom = found + 1;
+					}
+					// else: no matching end tag in this outline; run to the end
 				}
 
-				endIdx = found - 1; // skip the end-tag paragraph itself
+				if (endIdx >= startIdx)
+				{
+					blocks.Add(BuildTaggedBlock(oeChildren, oes, startIdx, endIdx));
+				}
+
+				if (!hasBegin || resumeFrom >= oes.Count)
+				{
+					break;
+				}
+
+				cursor = resumeFrom;
 			}
 
-			if (endIdx < startIdx)
-			{
-				return null;
-			}
+			return blocks.Count > 0 ? blocks : null;
+		}
 
+
+		private static XElement BuildTaggedBlock(
+			XElement oeChildren, List<XElement> oes, int startIdx, int endIdx)
+		{
 			var filtered = new XElement(oeChildren.Name);
 			foreach (var attr in oeChildren.Attributes())
 			{
@@ -727,7 +774,7 @@ namespace River.OneMoreAddIn.Commands
 				filtered.Add(new XElement(oes[i]));
 			}
 
-			return new[] { filtered };
+			return filtered;
 		}
 
 
