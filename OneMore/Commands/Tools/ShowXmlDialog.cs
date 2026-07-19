@@ -541,6 +541,17 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
+			// Meta
+			matches = Regex.Matches(box.Text, @"<one:Meta\b[^>]*?(?:/>|>.*?</one:Meta>)", RegexOptions.Singleline);
+			foreColor = manager.GetColor("XmlMeta");
+
+			foreach (Match m in matches)
+			{
+				box.SelectionStart = m.Index;
+				box.SelectionLength = m.Length;
+				box.SelectionColor = foreColor;
+			}
+
 			if (editedBy)
 			{
 				// author attributes

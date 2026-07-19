@@ -64,6 +64,7 @@
     "XmlHighlight": "Yellow",
     "XmlHighlightText": "#000000",
     "XmlMatch": "Silver",
+    "XmlMeta": "Purple",
     "XmlReadMode": "#F0F0F0",
     "XmlString": "Maroon",
     "XmlText": "ControlText",
