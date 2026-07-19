@@ -21,7 +21,8 @@ namespace River.OneMoreAddIn.Tests.Commands.References
 	 * These unit tests exercise the pure-XML extraction helpers directly:
 	 *
 	 *   FindTagIndex  — locates the first OE whose text contains a tag string
-	 *   ExtractTaggedContent — returns OEChildren containing only the OEs between two tags
+	 *   ExtractTaggedContent — returns OEChildren blocks for the OEs between two tags,
+	 *     scanning a single outline's paragraphs for one or more begin/end blocks
 	 *
 	 * Manual integration tests (require OneNote):
 	 *   1. Copy Link to Page for a source page; invoke Embed Page command.
@@ -30,6 +31,10 @@ namespace River.OneMoreAddIn.Tests.Commands.References
 	 *   4. Repeat with begin/end tags on the source page.
 	 *   5. Run: OneMoreCli Embed --notebook <n> --section <s> --refresh true
 	 *      Confirm each page in the section that has embeds is refreshed.
+	 *   6. Repeat with multiple begin/end blocks across multiple outlines on the source
+	 *      page; confirm all blocks are embedded, in outline and document order, and
+	 *      that an outline with a begin tag but no matching end tag embeds through the
+	 *      end of that outline.
 	 */
 
 	[TestClass]
@@ -150,13 +155,58 @@ namespace River.OneMoreAddIn.Tests.Commands.References
 
 
 		[TestMethod]
-		public void ExtractTaggedContent_MissingEndTag_ReturnsNull()
+		public void ExtractTaggedContent_BeginFoundEndMissing_RunsToEndOfOutline()
 		{
+			// Begin tag found but no matching end tag in this outline — the block
+			// runs from the begin tag to the end of the outline instead of failing.
 			var oeChildren = MakeOeChildren("START", "line1", "line2");
 
 			var result = EmbedCommand.ExtractTaggedContent(Ns, oeChildren, "START", "END");
 
-			Assert.IsNull(result);
+			Assert.IsNotNull(result);
+			var sliced = result.Single();
+			var texts = sliced.Elements(Ns + "OE")
+				.Select(oe => oe.Element(Ns + "T")?.Value)
+				.ToList();
+
+			CollectionAssert.AreEqual(new[] { "line1", "line2" }, texts);
+		}
+
+
+		[TestMethod]
+		public void ExtractTaggedContent_MultipleBeginEndPairs_ReturnsAllBlocks()
+		{
+			var oeChildren = MakeOeChildren(
+				"intro", "START", "a", "END", "mid", "START", "b", "END", "outro");
+
+			var result = EmbedCommand.ExtractTaggedContent(Ns, oeChildren, "START", "END");
+
+			Assert.IsNotNull(result);
+			var texts = result
+				.Select(block => string.Concat(block.Elements(Ns + "OE")
+					.Select(oe => oe.Element(Ns + "T")?.Value)))
+				.ToList();
+
+			CollectionAssert.AreEqual(new[] { "a", "b" }, texts);
+		}
+
+
+		[TestMethod]
+		public void ExtractTaggedContent_TrailingUnmatchedBegin_RunsToEndOfOutline()
+		{
+			// First block is closed by an END tag; the second begin tag has no
+			// matching end tag, so it runs to the end of the outline.
+			var oeChildren = MakeOeChildren("START", "a", "END", "mid", "START", "b");
+
+			var result = EmbedCommand.ExtractTaggedContent(Ns, oeChildren, "START", "END");
+
+			Assert.IsNotNull(result);
+			var texts = result
+				.Select(block => string.Concat(block.Elements(Ns + "OE")
+					.Select(oe => oe.Element(Ns + "T")?.Value)))
+				.ToList();
+
+			CollectionAssert.AreEqual(new[] { "a", "b" }, texts);
 		}
 
 
