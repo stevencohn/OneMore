@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn.Helpers.Office
 	using System.Collections.Generic;
 	using System.Globalization;
 	using System.Linq;
+	using System.Reflection;
 	using System.Runtime.InteropServices;
 	using Microsoft.Office.Interop.Outlook;
 
@@ -31,7 +32,47 @@ namespace River.OneMoreAddIn.Helpers.Office
 		/// </summary>
 		public Outlook()
 		{
-			outlook = new Application();
+			var logger = Logger.Current;
+			var retries = 0;
+
+			while (true)
+			{
+				try
+				{
+					outlook = new Application();
+
+					// NameSpace.Logon is a safe no-op when a session is already active (the
+					// common case where Outlook is already running and signed in), but when
+					// this is a cold start - e.g. classic Outlook isn't normally running
+					// because "New Outlook" is the user's default client - it blocks until
+					// the MAPI session is actually attached. Without this, the very first
+					// Session-dependent property access after a cold start can throw an
+					// obscure COMException because no session is established yet.
+					outlook.Session.Logon(Missing.Value, Missing.Value, true, true);
+
+					if (retries > 0)
+					{
+						logger.WriteLine($"Outlook logon completed successfully after {retries} retries");
+					}
+
+					return;
+				}
+				catch (COMException exc) when (retries < 5)
+				{
+					retries++;
+					var ms = 1000 * retries;
+
+					logger.WriteLine($"Outlook not ready, retrying logon in {ms}ms", exc);
+
+					if (outlook is not null)
+					{
+						Marshal.ReleaseComObject(outlook);
+						outlook = null;
+					}
+
+					System.Threading.Thread.Sleep(ms);
+				}
+			}
 		}
 
 
