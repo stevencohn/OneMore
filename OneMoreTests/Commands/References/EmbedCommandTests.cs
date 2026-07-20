@@ -20,7 +20,9 @@ namespace River.OneMoreAddIn.Tests.Commands.References
 	 *
 	 * These unit tests exercise the pure-XML extraction helpers directly:
 	 *
-	 *   FindTagIndex  — locates the first OE whose text contains a tag string
+	 *   FindTagIndex  — locates the first OE whose full text equals a tag string;
+	 *     tags must stand alone on their own paragraph, not appear inline within
+	 *     other text
 	 *   ExtractTaggedContent — returns OEChildren blocks for the OEs between two tags,
 	 *     scanning a single outline's paragraphs for one or more begin/end blocks
 	 *
@@ -75,12 +77,51 @@ namespace River.OneMoreAddIn.Tests.Commands.References
 		[TestMethod]
 		public void FindTagIndex_RespectsStartFrom()
 		{
-			// Two OEs contain the tag; startFrom skips the first.
-			var oes = MakeOes("START", "Middle", "START again");
+			// Two OEs exactly match the tag; startFrom skips the first.
+			var oes = MakeOes("START", "Middle", "START");
 
 			var idx = EmbedCommand.FindTagIndex(oes, "start", 1);
 
 			Assert.AreEqual(2, idx);
+		}
+
+
+		[TestMethod]
+		public void FindTagIndex_TagIsSubstringOfLongerWord_DoesNotMatch()
+		{
+			// Renaming a tag paragraph from "_begin" to "_begin2" must not still
+			// match a stale "_begin" tag carried in an old Refresh link.
+			var oes = MakeOes("Alpha", "_begin2", "Beta");
+
+			var idx = EmbedCommand.FindTagIndex(oes, "_begin", 0);
+
+			Assert.AreEqual(-1, idx);
+		}
+
+
+		[TestMethod]
+		public void FindTagIndex_TagEmbeddedInSentence_DoesNotMatch()
+		{
+			// Tags must stand alone on their own paragraph, not appear inline
+			// within other text.
+			var oes = MakeOes("Alpha", "note: _begin here", "Beta");
+
+			var idx = EmbedCommand.FindTagIndex(oes, "_begin", 0);
+
+			Assert.AreEqual(-1, idx);
+		}
+
+
+		[TestMethod]
+		public void FindTagIndex_TagWithSurroundingWhitespace_Matches()
+		{
+			// Incidental leading/trailing whitespace still counts as "alone
+			// on its own line."
+			var oes = MakeOes("Alpha", "  _begin  ", "Beta");
+
+			var idx = EmbedCommand.FindTagIndex(oes, "_begin", 0);
+
+			Assert.AreEqual(1, idx);
 		}
 
 
