@@ -780,10 +780,11 @@ namespace River.OneMoreAddIn.Commands
 
 		internal static int FindTagIndex(List<XElement> oes, string tag, int startFrom)
 		{
+			var trimmedTag = tag.Trim();
 			for (var i = startFrom; i < oes.Count; i++)
 			{
-				var text = oes[i].TextValue(stripHtml: true);
-				if (text.IndexOf(tag, StringComparison.OrdinalIgnoreCase) >= 0)
+				var text = oes[i].TextValue(stripHtml: true).Trim();
+				if (text.Equals(trimmedTag, StringComparison.OrdinalIgnoreCase))
 				{
 					return i;
 				}
