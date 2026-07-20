@@ -41,6 +41,8 @@ namespace River.OneMoreAddIn.Commands
 
 		private const string SpacerFontSize = "font-size:8.0pt";
 
+		private const string IndexGlyph = "≪"; // Much Less-Than Sign
+
 		private const string RefreshUri = "onemore://OutlookContactCommand/refresh";
 		private const string SaveUri = "onemore://OutlookContactCommand/save";
 
@@ -68,14 +70,15 @@ namespace River.OneMoreAddIn.Commands
 			Page page,
 			OutlookContact contact,
 			ContactTemplateOption template,
-			List<OutlookCategory> categories)
+			List<OutlookCategory> categories,
+			string indexUri)
 		{
 			ns = page.Namespace;
 			PageNamespace.Set(ns);
 
 			var guid = Guid.NewGuid().ToString("b").ToUpper();
 
-			var controlTable = BuildControlTable(contact, template, guid);
+			var controlTable = BuildControlTable(contact, template, guid, indexUri);
 			var table = BuildDetailsTable(contact, template, categories);
 
 			// this is a brand-new page that has never been displayed, so it has no cursor/
@@ -499,14 +502,19 @@ namespace River.OneMoreAddIn.Commands
 		private Table BuildControlTable(
 			OutlookContact contact,
 			ContactTemplateOption template,
-			string guid)
+			string guid,
+			string indexUri)
 		{
 			var content = new Paragraph(BuildControlLine(contact, template, guid))
 				.SetAlignment("right")
 				.SetMeta("EntryID", contact.EntryID)
 				.SetMeta(RefreshMeta, guid);
 
-			return ReportControlHelper.BuildControlTable(ns, ControlRowShading, 70, 605, 40, content);
+			var indexContent = new Paragraph($"{IndexGlyph} <a href=\"{indexUri}\">{Resx.word_Index}</a>")
+				.SetAlignment("center");
+
+			return ReportControlHelper.BuildControlTable(
+				ns, ControlRowShading, 70, 605, 40, content, indexContent);
 		}
 
 

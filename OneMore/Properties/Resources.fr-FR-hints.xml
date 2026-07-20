@@ -642,10 +642,6 @@ Des notebooks</preferred>
     <source>Font</source>
     <preferred>Police de caractères</preferred>
   </data>
-  <data name="word_Index">
-    <source>word_Index</source>
-    <preferred>Index</preferred>
-  </data>
   <data name="word_Notebook">
     <source>Notebook</source>
     <preferred>Notebook</preferred>

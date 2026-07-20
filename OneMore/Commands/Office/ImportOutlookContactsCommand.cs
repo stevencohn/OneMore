@@ -116,12 +116,14 @@ namespace River.OneMoreAddIn.Commands
 			var titles = ordered.Select(ImportOutlookContactsDialog.GetContactDisplayName).ToList();
 			var children = await one.CreateChildPages(listPage, titles);
 
+			var indexUri = await one.GetHyperlinkWithRetry(listPage.PageId, string.Empty);
+
 			for (var i = 0; i < ordered.Count; i++)
 			{
 				var contact = ordered[i];
 				var child = children[i];
 
-				new ContactGenerator().GenerateReport(child, contact, template, categories);
+				new ContactGenerator().GenerateReport(child, contact, template, categories, indexUri);
 				await one.Update(child);
 
 				contact.PageUri = await one.GetHyperlinkWithRetry(child.PageId, string.Empty);
