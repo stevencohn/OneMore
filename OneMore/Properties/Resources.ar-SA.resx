@@ -348,6 +348,10 @@
     <value>قد يستغرق التقرير دقائق</value>
     <comment>label</comment>
   </data>
+  <data name="ApplyConditionalFormatCommand_NoMatches" xml:space="preserve">
+    <value>لم يتم العثور على أي تطابقات في هذه الصفحة.</value>
+    <comment>message box</comment>
+  </data>
   <data name="ApplyTableTheme_SelectTable" xml:space="preserve">
     <value>حرك مؤشر النص إلى خلية جدول</value>
     <comment>message</comment>
@@ -606,6 +610,44 @@
   <data name="CommandPaletteDialog_introLabel.Text" xml:space="preserve">
     <value>اكتب أمرًا واضغط على Enter أو انقر فوق عنصر من القائمة</value>
     <comment>label</comment>
+  </data>
+  <data name="ConditionalFormatDialog_builtinRadio.Text" xml:space="preserve">
+    <value>نمط OneNote المدمج</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ConditionalFormatDialog_builtinStyles" xml:space="preserve">
+    <value>العنوان 1
+العنوان 2
+العنوان 3
+العنوان 4
+العنوان 5
+العنوان 6
+عنوان الصفحة
+الاقتباس
+يقتبس
+شفرة
+طبيعي</value>
+    <comment>combo box items, must match the order of the StandardStyles enum</comment>
+  </data>
+  <data name="ConditionalFormatDialog_customRadio.Text" xml:space="preserve">
+    <value>نمط OneMore مخصص</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ConditionalFormatDialog_hintLabel.Text" xml:space="preserve">
+    <value>تطبق أنماط الفقرة تنسيق الخط واللون الخاصين بها فقط على النص المطابق؛ لا يتم تحويل الفقرة التي تحتوي على هذا النمط.</value>
+    <comment>multiline label</comment>
+  </data>
+  <data name="ConditionalFormatDialog_patternLabel.Text" xml:space="preserve">
+    <value>التعبير العادي</value>
+    <comment>label</comment>
+  </data>
+  <data name="ConditionalFormatDialog_styleLabel.Text" xml:space="preserve">
+    <value>أسلوب</value>
+    <comment>label</comment>
+  </data>
+  <data name="ConditionalFormatDialog_Text" xml:space="preserve">
+    <value>تطبيق التنسيق الشرطي</value>
+    <comment>dialog title</comment>
   </data>
   <data name="ContextMenuSheet_introBox.Text" xml:space="preserve">
     <value>اختر أوامر لعرضها في قائمة سياق الصفحة. تتضمن عناصر القائمة جميع الأوامر في تلك القائمة. أعد تشغيل OneNote لمشاهدة التغييرات. إذا اخترت أحد خيارات "القائمة" مثل "قائمة التعديل" ، فستتم إضافتها كقائمة منبثقة وتتضمن جميع عناصر قائمة التحرير. ولكن إذا اخترت أحد العناصر الفرعية ، مثل "إلى الأحرف الصغيرة" ، فسيتم إضافة هذا العنصر كعنصر قائمة سياق المستوى الأعلى. إذا قمت بتحديد كليهما ، فسيتم عرض كلاهما ، وربما يتكرر العناصر.</value>
@@ -3543,6 +3585,14 @@ ISO-code then comma then language name</comment>
   <data name="ribAnalyzeButton_Screentip" xml:space="preserve">
     <value>قم بإنشاء تقرير عن التخزين المستخدم بواسطة القسم أو الكمبيوتر الدفتري</value>
     <comment>ribbon extras</comment>
+  </data>
+  <data name="ribApplyConditionalFormatButton_Label" xml:space="preserve">
+    <value>تطبيق التنسيق الشرطي</value>
+    <comment>ribbon styles</comment>
+  </data>
+  <data name="ribApplyConditionalFormatButton_Screentip" xml:space="preserve">
+    <value>قم بتطبيق نمط على النص الموجود في هذه الصفحة يطابق التعبير العادي</value>
+    <comment>ribbon styles</comment>
   </data>
   <data name="ribApplyStyle0Button_Label" xml:space="preserve">
     <value>تطبيق النمط 1</value>

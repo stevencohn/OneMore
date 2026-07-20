@@ -348,6 +348,10 @@ Inverser</value>
     <value>Le rapport peut prendre quelques minutes</value>
     <comment>label</comment>
   </data>
+  <data name="ApplyConditionalFormatCommand_NoMatches" xml:space="preserve">
+    <value>Aucune correspondance trouvée sur cette page.</value>
+    <comment>message box</comment>
+  </data>
   <data name="ApplyTableTheme_SelectTable" xml:space="preserve">
     <value>Déplacez le curseur de texte dans une cellule du tableau</value>
     <comment>message</comment>
@@ -606,6 +610,44 @@ Inverser</value>
   <data name="CommandPaletteDialog_introLabel.Text" xml:space="preserve">
     <value>Tapez une commande et appuyez sur Entrée ou cliquez sur un élément de la liste</value>
     <comment>label</comment>
+  </data>
+  <data name="ConditionalFormatDialog_builtinRadio.Text" xml:space="preserve">
+    <value>Style OneNote intégré</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ConditionalFormatDialog_builtinStyles" xml:space="preserve">
+    <value>Titre 1
+Titre 2
+Titre 3
+Titre 4
+Titre 5
+Rubrique 6
+Titre de la page
+Citation
+Citation
+Code
+Normale</value>
+    <comment>combo box items, must match the order of the StandardStyles enum</comment>
+  </data>
+  <data name="ConditionalFormatDialog_customRadio.Text" xml:space="preserve">
+    <value>Style OneMore personnalisé</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ConditionalFormatDialog_hintLabel.Text" xml:space="preserve">
+    <value>Les styles de paragraphe appliquent uniquement leur mise en forme de police et de couleur au texte correspondant ; le paragraphe conteneur n'est pas converti dans ce style.</value>
+    <comment>multiline label</comment>
+  </data>
+  <data name="ConditionalFormatDialog_patternLabel.Text" xml:space="preserve">
+    <value>Expression régulière</value>
+    <comment>label</comment>
+  </data>
+  <data name="ConditionalFormatDialog_styleLabel.Text" xml:space="preserve">
+    <value>Style</value>
+    <comment>label</comment>
+  </data>
+  <data name="ConditionalFormatDialog_Text" xml:space="preserve">
+    <value>Appliquer une mise en forme conditionnelle</value>
+    <comment>dialog title</comment>
   </data>
   <data name="ContextMenuSheet_introBox.Text" xml:space="preserve">
     <value>Choisissez les commandes à afficher dans le menu contextuel de la page. Les éléments de menu incluent toutes les commandes de ce menu. Redémarrez OneNote pour voir les modifications. Si vous choisissez l'une des options de "menu" telles que "Menu d'édition", celle-ci sera ajoutée en tant que menu déroulant et inclura tous les éléments du menu d'édition. Mais si vous choisissez l'un des sous-éléments, tels que "En minuscules", cet élément sera ajouté en tant qu'élément de menu contextuel de niveau supérieur. S'il vous arrive de sélectionner les deux, les deux seront affichés, probablement en double.</value>
@@ -3543,6 +3585,14 @@ Sélectionnez Non pour conserver une ligne vide entre les paragraphes</value>
   <data name="ribAnalyzeButton_Screentip" xml:space="preserve">
     <value>Générer un rapport de stockage utilisé par section ou notebook</value>
     <comment>ribbon extras</comment>
+  </data>
+  <data name="ribApplyConditionalFormatButton_Label" xml:space="preserve">
+    <value>Appliquer une mise en forme conditionnelle</value>
+    <comment>ribbon styles</comment>
+  </data>
+  <data name="ribApplyConditionalFormatButton_Screentip" xml:space="preserve">
+    <value>Appliquer un style au texte de cette page qui correspond à une expression régulière</value>
+    <comment>ribbon styles</comment>
   </data>
   <data name="ribApplyStyle0Button_Label" xml:space="preserve">
     <value>Appliquer le style 1</value>

@@ -1189,6 +1189,14 @@
     <Compile Include="Commands\Styles\ReorderDialog.Designer.cs">
       <DependentUpon>ReorderDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Styles\ConditionalFormatDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Styles\ConditionalFormatDialog.Designer.cs">
+      <DependentUpon>ConditionalFormatDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commands\Styles\ConditionalFormatEditor.cs" />
+    <Compile Include="Commands\Styles\ApplyConditionalFormatCommand.cs" />
     <Compile Include="UI\MoreToolStrip.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -1930,6 +1938,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Styles\ReorderDialog.resx">
       <DependentUpon>ReorderDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Styles\ConditionalFormatDialog.resx">
+      <DependentUpon>ConditionalFormatDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Images\AdjustImagesDialog.resx">
       <DependentUpon>AdjustImagesDialog.cs</DependentUpon>

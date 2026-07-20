@@ -595,6 +595,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No matches found on this page..
+        /// </summary>
+        internal static string ApplyConditionalFormatCommand_NoMatches {
+            get {
+                return ResourceManager.GetString("ApplyConditionalFormatCommand_NoMatches", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Move the text cursor into a table cell.
         /// </summary>
         internal static string ApplyTableTheme_SelectTable {
@@ -1176,6 +1185,79 @@ namespace River.OneMoreAddIn.Properties {
         internal static string CommandPaletteDialog_introLabel_Text {
             get {
                 return ResourceManager.GetString("CommandPaletteDialog_introLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Built-in OneNote style.
+        /// </summary>
+        internal static string ConditionalFormatDialog_builtinRadio_Text {
+            get {
+                return ResourceManager.GetString("ConditionalFormatDialog_builtinRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Heading 1
+        ///Heading 2
+        ///Heading 3
+        ///Heading 4
+        ///Heading 5
+        ///Heading 6
+        ///Page Title
+        ///Citation
+        ///Quote
+        ///Code
+        ///Normal.
+        /// </summary>
+        internal static string ConditionalFormatDialog_builtinStyles {
+            get {
+                return ResourceManager.GetString("ConditionalFormatDialog_builtinStyles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Custom OneMore style.
+        /// </summary>
+        internal static string ConditionalFormatDialog_customRadio_Text {
+            get {
+                return ResourceManager.GetString("ConditionalFormatDialog_customRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paragraph styles apply only their font and color formatting to matched text; the containing paragraph is not converted to that style..
+        /// </summary>
+        internal static string ConditionalFormatDialog_hintLabel_Text {
+            get {
+                return ResourceManager.GetString("ConditionalFormatDialog_hintLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Regular expression.
+        /// </summary>
+        internal static string ConditionalFormatDialog_patternLabel_Text {
+            get {
+                return ResourceManager.GetString("ConditionalFormatDialog_patternLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Style.
+        /// </summary>
+        internal static string ConditionalFormatDialog_styleLabel_Text {
+            get {
+                return ResourceManager.GetString("ConditionalFormatDialog_styleLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply Conditional Formatting.
+        /// </summary>
+        internal static string ConditionalFormatDialog_Text {
+            get {
+                return ResourceManager.GetString("ConditionalFormatDialog_Text", resourceCulture);
             }
         }
         
@@ -8517,6 +8599,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Apply Conditional Formatting.
+        /// </summary>
+        internal static string ribApplyConditionalFormatButton_Label {
+            get {
+                return ResourceManager.GetString("ribApplyConditionalFormatButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply a style to text on this page that matches a regular expression.
+        /// </summary>
+        internal static string ribApplyConditionalFormatButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribApplyConditionalFormatButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Apply Style 1.
         /// </summary>
         internal static string ribApplyStyle0Button_Label {
@@ -15290,7 +15390,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to word_Index.
+        ///   Looks up a localized string similar to Index.
         /// </summary>
         internal static string word_Index {
             get {

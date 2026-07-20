@@ -350,6 +350,10 @@ Invert</value>
     <value>Report may take minutes</value>
     <comment>label</comment>
   </data>
+  <data name="ApplyConditionalFormatCommand_NoMatches" xml:space="preserve">
+    <value>No matches found on this page.</value>
+    <comment>message box</comment>
+  </data>
   <data name="ApplyTableTheme_SelectTable" xml:space="preserve">
     <value>Move the text cursor into a table cell</value>
     <comment>message</comment>
@@ -612,6 +616,44 @@ Invert</value>
   <data name="CommandPaletteDialog_introLabel.Text" xml:space="preserve">
     <value>Type a command and press Enter or click and item from the list</value>
     <comment>label</comment>
+  </data>
+  <data name="ConditionalFormatDialog_builtinRadio.Text" xml:space="preserve">
+    <value>Built-in OneNote style</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ConditionalFormatDialog_builtinStyles" xml:space="preserve">
+    <value>Heading 1
+Heading 2
+Heading 3
+Heading 4
+Heading 5
+Heading 6
+Page Title
+Citation
+Quote
+Code
+Normal</value>
+    <comment>combo box items, must match the order of the StandardStyles enum</comment>
+  </data>
+  <data name="ConditionalFormatDialog_customRadio.Text" xml:space="preserve">
+    <value>Custom OneMore style</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ConditionalFormatDialog_hintLabel.Text" xml:space="preserve">
+    <value>Paragraph styles apply only their font and color formatting to matched text; the containing paragraph is not converted to that style.</value>
+    <comment>multiline label</comment>
+  </data>
+  <data name="ConditionalFormatDialog_patternLabel.Text" xml:space="preserve">
+    <value>Regular expression</value>
+    <comment>label</comment>
+  </data>
+  <data name="ConditionalFormatDialog_styleLabel.Text" xml:space="preserve">
+    <value>Style</value>
+    <comment>label</comment>
+  </data>
+  <data name="ConditionalFormatDialog_Text" xml:space="preserve">
+    <value>Apply Conditional Formatting</value>
+    <comment>dialog title</comment>
   </data>
   <data name="ContextMenuSheet_introBox.Text" xml:space="preserve">
     <value>Choose commands to display in the Page context menu. Menu items include all commands in that menu. Restart OneNote to see changes. If you choose one of the "menu" options such as "Edit Menu" then that will be added as a fly-out menu and include all Edit Menu items. But if you choose one of the sub-items, such as "To lowercase" then that item will be added as a top-level context menu item. If you happen to select both then both will be shown, possibly duplicating items.</value>
@@ -3568,6 +3610,14 @@ Select No to keep one empty line between paragraphs</value>
   <data name="ribAnalyzeButton_Screentip" xml:space="preserve">
     <value>Generate a report of storage used by section or notebook</value>
     <comment>ribbon extras</comment>
+  </data>
+  <data name="ribApplyConditionalFormatButton_Label" xml:space="preserve">
+    <value>Apply Conditional Formatting</value>
+    <comment>ribbon styles</comment>
+  </data>
+  <data name="ribApplyConditionalFormatButton_Screentip" xml:space="preserve">
+    <value>Apply a style to text on this page that matches a regular expression</value>
+    <comment>ribbon styles</comment>
   </data>
   <data name="ribApplyStyle0Button_Label" xml:space="preserve">
     <value>Apply Style 1</value>

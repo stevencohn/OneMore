@@ -345,6 +345,10 @@ Omkeren</value>
     <value>Rapportage kan minuten duren</value>
     <comment>label</comment>
   </data>
+  <data name="ApplyConditionalFormatCommand_NoMatches" xml:space="preserve">
+    <value>Er zijn geen overeenkomsten gevonden op deze pagina.</value>
+    <comment>message box</comment>
+  </data>
   <data name="ApplyTableTheme_SelectTable" xml:space="preserve">
     <value>Verplaats de tekstcursor naar een tabelcel</value>
     <comment>message</comment>
@@ -603,6 +607,44 @@ Omkeren</value>
   <data name="CommandPaletteDialog_introLabel.Text" xml:space="preserve">
     <value>Typ een opdracht en druk op Enter of klik op en item uit de lijst</value>
     <comment>label</comment>
+  </data>
+  <data name="ConditionalFormatDialog_builtinRadio.Text" xml:space="preserve">
+    <value>Ingebouwde OneNote-stijl</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ConditionalFormatDialog_builtinStyles" xml:space="preserve">
+    <value>Rubriek 1
+Rubriek 2
+Rubriek 3
+Rubriek 4
+Rubriek 5
+Rubriek 6
+Paginatitel
+Citaat
+Citaat
+Code
+Normaal</value>
+    <comment>combo box items, must match the order of the StandardStyles enum</comment>
+  </data>
+  <data name="ConditionalFormatDialog_customRadio.Text" xml:space="preserve">
+    <value>Aangepaste OneMore-stijl</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ConditionalFormatDialog_hintLabel.Text" xml:space="preserve">
+    <value>Alineastijlen passen alleen hun lettertype en kleuropmaak toe op overeenkomende tekst; de bevattende alinea wordt niet naar die stijl geconverteerd.</value>
+    <comment>multiline label</comment>
+  </data>
+  <data name="ConditionalFormatDialog_patternLabel.Text" xml:space="preserve">
+    <value>Reguliere expressie</value>
+    <comment>label</comment>
+  </data>
+  <data name="ConditionalFormatDialog_styleLabel.Text" xml:space="preserve">
+    <value>Stijl</value>
+    <comment>label</comment>
+  </data>
+  <data name="ConditionalFormatDialog_Text" xml:space="preserve">
+    <value>Voorwaardelijke opmaak toepassen</value>
+    <comment>dialog title</comment>
   </data>
   <data name="ContextMenuSheet_introBox.Text" xml:space="preserve">
     <value>Kies opdrachten om weer te geven in het contextmenu Pagina. Menu-items omvatten alle opdrachten in dat menu. Start OneNote opnieuw om de wijzigingen te zien. Als u een van de "menu"-opties kiest, zoals "Menu bewerken", dan wordt dat toegevoegd als een uitvouwmenu en bevat het alle items van het menu Bewerken. Maar als u een van de subitems kiest, zoals "Naar kleine letters", dan wordt dat item toegevoegd als een contextmenu-item op het hoogste niveau. Als u beide selecteert, worden beide weergegeven, mogelijk duplicerende items.</value>
@@ -3532,6 +3574,14 @@ Selecteer NO om één lege regel tussen paragrafen te behouden</value>
   <data name="ribAnalyzeButton_Screentip" xml:space="preserve">
     <value>Genereer een rapport van gebruikte opslagruimte per sectie of notitieblok</value>
     <comment>ribbon extras</comment>
+  </data>
+  <data name="ribApplyConditionalFormatButton_Label" xml:space="preserve">
+    <value>Voorwaardelijke opmaak toepassen</value>
+    <comment>ribbon styles</comment>
+  </data>
+  <data name="ribApplyConditionalFormatButton_Screentip" xml:space="preserve">
+    <value>Pas een stijl toe op de tekst op deze pagina die overeenkomt met een reguliere expressie</value>
+    <comment>ribbon styles</comment>
   </data>
   <data name="ribApplyStyle0Button_Label" xml:space="preserve">
     <value>Stijl 1 toepassen</value>

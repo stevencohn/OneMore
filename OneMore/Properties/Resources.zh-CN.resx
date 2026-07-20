@@ -349,6 +349,10 @@
     <value>报告生成可能需要几分钟</value>
     <comment>label</comment>
   </data>
+  <data name="ApplyConditionalFormatCommand_NoMatches" xml:space="preserve">
+    <value>在此页面上找不到匹配项。</value>
+    <comment>message box</comment>
+  </data>
   <data name="ApplyTableTheme_SelectTable" xml:space="preserve">
     <value>请对要设置的表格的单元格激活文本光标</value>
     <comment>message</comment>
@@ -607,6 +611,44 @@
   <data name="CommandPaletteDialog_introLabel.Text" xml:space="preserve">
     <value>键入命令并按 Enter 或单击列表中的项目</value>
     <comment>label</comment>
+  </data>
+  <data name="ConditionalFormatDialog_builtinRadio.Text" xml:space="preserve">
+    <value>内置OneNote风格</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ConditionalFormatDialog_builtinStyles" xml:space="preserve">
+    <value>标题 1
+标题 2
+标题 3
+标题 4
+标题 5
+标题 6
+页面标题
+引文
+引用
+代码
+普通的</value>
+    <comment>combo box items, must match the order of the StandardStyles enum</comment>
+  </data>
+  <data name="ConditionalFormatDialog_customRadio.Text" xml:space="preserve">
+    <value>定制 OneMore 风格</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ConditionalFormatDialog_hintLabel.Text" xml:space="preserve">
+    <value>段落样式仅将其字体和颜色格式应用于匹配的文本；包含的段落不会转换为该样式。</value>
+    <comment>multiline label</comment>
+  </data>
+  <data name="ConditionalFormatDialog_patternLabel.Text" xml:space="preserve">
+    <value>正则表达式</value>
+    <comment>label</comment>
+  </data>
+  <data name="ConditionalFormatDialog_styleLabel.Text" xml:space="preserve">
+    <value>风格</value>
+    <comment>label</comment>
+  </data>
+  <data name="ConditionalFormatDialog_Text" xml:space="preserve">
+    <value>应用条件格式</value>
+    <comment>dialog title</comment>
   </data>
   <data name="ContextMenuSheet_introBox.Text" xml:space="preserve">
     <value>选择要在页面中上下文菜单（右键菜单）中显示的命令。一级选项包含所有子选项。重新启动 OneNote 以查看更改。如果您选择一级选项，例如“编辑”菜单，那么它将作为弹出菜单添加并包括所有“编辑”子选项。如果您选择一级选项中的其中一个子项，例如“小写”，那么该项将单独添加到上下文菜单。如果您同时选择了两者，那么两者都会显示。</value>
@@ -3546,6 +3588,14 @@ ISO-code then comma then language name</comment>
   <data name="ribAnalyzeButton_Screentip" xml:space="preserve">
     <value>生成部分或笔记本使用的存储报告</value>
     <comment>ribbon extras</comment>
+  </data>
+  <data name="ribApplyConditionalFormatButton_Label" xml:space="preserve">
+    <value>应用条件格式</value>
+    <comment>ribbon styles</comment>
+  </data>
+  <data name="ribApplyConditionalFormatButton_Screentip" xml:space="preserve">
+    <value>将样式应用于此页面上与正则表达式匹配的文本</value>
+    <comment>ribbon styles</comment>
   </data>
   <data name="ribApplyStyle0Button_Label" xml:space="preserve">
     <value>应用样式 1</value>

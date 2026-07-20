@@ -58,6 +58,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<AnalyzeCommand>();
 
 
+		[Command("ribApplyConditionalFormatButton_Label", Keys.None)]
+		public async Task ApplyConditionalFormatCmd(IRibbonControl control)
+			=> await factory.Run<ApplyConditionalFormatCommand>();
+
+
 		[Command("ribApplyStyle0Button_Label", Keys.Control | Keys.Alt | Keys.Shift | Keys.D1)]
 		public async Task ApplyStyle0Cmd(IRibbonControl control)
 			=> await factory.Run<ApplyStyleCommand>(0);

@@ -80,10 +80,14 @@ namespace OneMoreCli
 					? "required"
 					: p.DefaultValue != null ? $"optional, default: {p.DefaultValue}" : "optional";
 
+				var isSwitch = p.DataType == typeof(bool);
+
 				Console.ForegroundColor = ConsoleColor.Yellow;
 				Console.Write($"    --{p.Name}");
 				Console.ResetColor();
-				Console.Write($"  <{FriendlyTypeName(p.DataType)}>  ({req})");
+				Console.Write(isSwitch
+					? $"  (switch)  ({req})"
+					: $"  <{FriendlyTypeName(p.DataType)}>  ({req})");
 
 				// Constraint annotation
 				var annotation = ConstraintAnnotation(p.Constraint);
@@ -92,14 +96,26 @@ namespace OneMoreCli
 
 				Console.WriteLine();
 				Console.WriteLine($"      {p.Description}");
+
+				if (isSwitch)
+				{
+					Console.WriteLine(
+						"      Switch argument: include --{0} by itself to enable it (like a " +
+						"PowerShell switch parameter); omit it to leave the default.", p.Name);
+				}
+
 				Console.WriteLine();
 			}
 
 			// Usage line
 			var required = definition.Where(p => p.Required)
-				.Select(p => $"--{p.Name} <{FriendlyTypeName(p.DataType)}>");
+				.Select(p => p.DataType == typeof(bool)
+					? $"--{p.Name}"
+					: $"--{p.Name} <{FriendlyTypeName(p.DataType)}>");
 			var optional = definition.Where(p => !p.Required)
-				.Select(p => $"[--{p.Name} <{FriendlyTypeName(p.DataType)}>]");
+				.Select(p => p.DataType == typeof(bool)
+					? $"[--{p.Name}]"
+					: $"[--{p.Name} <{FriendlyTypeName(p.DataType)}>]");
 
 			Console.WriteLine("  Usage:");
 			Console.Write($"    OneMoreCli {command.CommandName}");
