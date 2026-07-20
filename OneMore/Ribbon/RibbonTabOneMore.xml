@@ -398,6 +398,12 @@
           getScreentip="GetRibbonScreentip"
           onAction="OpenImageWithCmd"/>
         <button
+          id="ribRecolorInkButton"
+          imageMso="RecolorColorPicker"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="RecolorInkCmd"/>
+        <button
           id="ribSelectImagesButton"
           imageMso="AdpDiagramArrangeSelection"
           getLabel="GetRibbonLabel"
@@ -512,18 +518,6 @@
     </menu>
     <menu id="ribEditMenu" getLabel="GetRibbonLabel" imageMso="EditComposePage" showImage="true" keytip="ED">
       <button
-        id="ribConvertMarkdownButton"
-        imageMso="ReviewShowOrHideMarkup"
-        getLabel="GetRibbonLabel"
-        getScreentip="GetRibbonScreentip"
-        onAction="ConvertMarkdownCmd"/>
-      <button
-        id="ribCopyAsMarkdownButton"
-        imageMso="WatermarkGallery"
-        getLabel="GetRibbonLabel"
-        getScreentip="GetRibbonScreentip"
-        onAction="CopyAsMarkdownCmd"/>
-      <button
         id="ribCopyAsTextButton"
         imageMso="Copy"
         getLabel="GetRibbonLabel"
@@ -578,18 +572,6 @@
         getScreentip="GetRibbonScreentip"
         onAction="PasteRtfCmd"/>
       <button
-        id="ribPreviewMarkdownButton"
-        imageMso="ReviewShowMarkupMenu"
-        getLabel="GetRibbonLabel"
-        getScreentip="GetRibbonScreentip"
-        onAction="PreviewMarkdownCmd"/>
-      <button
-        id="ribRecolorInkButton"
-        imageMso="RecolorColorPicker"
-        getLabel="GetRibbonLabel"
-        getScreentip="GetRibbonScreentip"
-        onAction="RecolorInkCmd"/>
-      <button
         id="ribHighlightButton"
         imageMso="AppointmentColorDialog"
         getLabel="GetRibbonLabel"
@@ -601,6 +583,26 @@
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
         onAction="SelectStyleCmd"/>
+      <menuSeparator id="ribEditMenuMarkdown"/>
+      <button
+        id="ribConvertMarkdownButton"
+        imageMso="ReviewShowOrHideMarkup"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="ConvertMarkdownCmd"/>
+      <button
+        id="ribCopyAsMarkdownButton"
+        imageMso="WatermarkGallery"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="CopyAsMarkdownCmd"/>
+      <button
+        id="ribPreviewMarkdownButton"
+        imageMso="ReviewShowMarkupMenu"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="PreviewMarkdownCmd"/>
+      <menuSeparator id="ribEditMenuCase"/>
       <button
         id="ribLowercaseButton"
         imageMso="ChangeCase"
@@ -848,25 +850,6 @@
     </menu>
     <menu id="ribReferencesMenu" getLabel="GetRibbonLabel" imageMso="CrossReferenceInsert" showImage="true" keytip="RE">
       <button
-        id="ribAddFootnoteButton"
-        imageMso="FootnoteInsert"
-        getLabel="GetRibbonLabel"
-        getScreentip="GetRibbonScreentip"
-        onAction="AddFootnoteCmd"/>
-      <button
-        id="ribRemoveFootnoteButton"
-        imageMso="RemoveCitation"
-        getLabel="GetRibbonLabel"
-        getScreentip="GetRibbonScreentip"
-        onAction="RemoveFootnoteCmd"/>
-      <button
-        id="ribRefreshFootnotesButton"
-        imageMso="EditCitationButton"
-        getLabel="GetRibbonLabel"
-        getScreentip="GetRibbonScreentip"
-        onAction="RefreshFootnotesCmd"/>
-      <menuSeparator id="ribRefMenuBookmarks"/>
-      <button
         id="ribBookmarkButton"
         imageMso="BookmarkInsert"
         getLabel="GetRibbonLabel"
@@ -914,6 +897,25 @@
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
         onAction="TwoWayPathCmd"/>
+      <menuSeparator id="ribRefMenuFootnotes"/>
+      <button
+        id="ribAddFootnoteButton"
+        imageMso="FootnoteInsert"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="AddFootnoteCmd"/>
+      <button
+        id="ribRemoveFootnoteButton"
+        imageMso="RemoveCitation"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="RemoveFootnoteCmd"/>
+      <button
+        id="ribRefreshFootnotesButton"
+        imageMso="EditCitationButton"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="RefreshFootnotesCmd"/>
       <menuSeparator id="ribRefMenuUtilities"/>
       <button
         id="ribCheckUrlsButton"
@@ -940,17 +942,17 @@
         getScreentip="GetRibbonScreentip"
         onAction="GetImagesCmd"/>
       <button
-        id="ribInsertQRButton"
-        getLabel="GetRibbonLabel"
-        getScreentip="GetRibbonScreentip"
-        imageMso="BarcodeInsert"
-        onAction="InsertQRCmd"/>
-      <button
         id="ribMapButton"
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
         imageMso="CreateMap"
         onAction="MapCmd"/>
+      <button
+        id="ribInsertQRButton"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        imageMso="BarcodeInsert"
+        onAction="InsertQRCmd"/>
     </menu>
     <menu id="ribRemindersMenu" getLabel="GetRibbonLabel" imageMso="ReminderGallery" showImage="true" keytip="RM">
       <button
