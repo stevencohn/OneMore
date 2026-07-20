@@ -66,6 +66,12 @@
         imageMso="ApplyStylesPane"
         onAction="ApplyStylesCmd"/>
       <button
+        id="ribApplyConditionalFormatButton"
+        imageMso="FontConditionalFormatting"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="ApplyConditionalFormatCmd"/>
+      <button
         id="ribEditStylesButton"
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"

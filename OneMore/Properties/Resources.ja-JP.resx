@@ -346,6 +346,10 @@
     <value>レポートの作成には数分かかる場合があります。</value>
     <comment>label</comment>
   </data>
+  <data name="ApplyConditionalFormatCommand_NoMatches" xml:space="preserve">
+    <value>このページには一致するものが見つかりませんでした。</value>
+    <comment>message box</comment>
+  </data>
   <data name="ApplyTableTheme_SelectTable" xml:space="preserve">
     <value>テキストカーソルを表のセルに移動する</value>
     <comment>message</comment>
@@ -604,6 +608,44 @@
   <data name="CommandPaletteDialog_introLabel.Text" xml:space="preserve">
     <value>コマンドを入力して Enter キーを押すか、リストから項目をクリックしてください。</value>
     <comment>label</comment>
+  </data>
+  <data name="ConditionalFormatDialog_builtinRadio.Text" xml:space="preserve">
+    <value>組み込みの OneNote スタイル</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ConditionalFormatDialog_builtinStyles" xml:space="preserve">
+    <value>見出し1
+見出し2
+見出し 3
+見出し 4
+見出し 5
+見出し6
+ページタイトル
+引用
+引用
+コード
+普通</value>
+    <comment>combo box items, must match the order of the StandardStyles enum</comment>
+  </data>
+  <data name="ConditionalFormatDialog_customRadio.Text" xml:space="preserve">
+    <value>カスタム OneMore スタイル</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ConditionalFormatDialog_hintLabel.Text" xml:space="preserve">
+    <value>段落スタイルは、一致したテキストにそのフォントと色の書式設定のみを適用します。含まれている段落はそのスタイルに変換されません。</value>
+    <comment>multiline label</comment>
+  </data>
+  <data name="ConditionalFormatDialog_patternLabel.Text" xml:space="preserve">
+    <value>正規表現</value>
+    <comment>label</comment>
+  </data>
+  <data name="ConditionalFormatDialog_styleLabel.Text" xml:space="preserve">
+    <value>スタイル</value>
+    <comment>label</comment>
+  </data>
+  <data name="ConditionalFormatDialog_Text" xml:space="preserve">
+    <value>条件付き書式を適用する</value>
+    <comment>dialog title</comment>
   </data>
   <data name="ContextMenuSheet_introBox.Text" xml:space="preserve">
     <value>ページのコンテキストメニューに表示するコマンドを選択してください。変更を反映させるには、OneNoteを再起動する必要があります。
@@ -3539,6 +3581,14 @@ ISO-code then comma then language name</comment>
   <data name="ribAnalyzeButton_Screentip" xml:space="preserve">
     <value>セクションまたはノートブックによるストレージの使用状況を報告</value>
     <comment>ribbon extras</comment>
+  </data>
+  <data name="ribApplyConditionalFormatButton_Label" xml:space="preserve">
+    <value>条件付き書式を適用する</value>
+    <comment>ribbon styles</comment>
+  </data>
+  <data name="ribApplyConditionalFormatButton_Screentip" xml:space="preserve">
+    <value>正規表現に一致するこのページのテキストにスタイルを適用します</value>
+    <comment>ribbon styles</comment>
   </data>
   <data name="ribApplyStyle0Button_Label" xml:space="preserve">
     <value>スタイル 1 の適用</value>

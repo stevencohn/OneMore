@@ -345,6 +345,10 @@ Odwracać</value>
     <value>Raport może zająć kilka minut</value>
     <comment>label</comment>
   </data>
+  <data name="ApplyConditionalFormatCommand_NoMatches" xml:space="preserve">
+    <value>Na tej stronie nie znaleziono żadnych dopasowań.</value>
+    <comment>message box</comment>
+  </data>
   <data name="ApplyTableTheme_SelectTable" xml:space="preserve">
     <value>Przesuń kursor tekstowy do komórki tabeli</value>
     <comment>message</comment>
@@ -603,6 +607,44 @@ Odwracać</value>
   <data name="CommandPaletteDialog_introLabel.Text" xml:space="preserve">
     <value>Wpisz polecenie i naciśnij Enter lub kliknij i wybierz pozycję z listy</value>
     <comment>label</comment>
+  </data>
+  <data name="ConditionalFormatDialog_builtinRadio.Text" xml:space="preserve">
+    <value>Wbudowany styl OneNote</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ConditionalFormatDialog_builtinStyles" xml:space="preserve">
+    <value>Nagłówek 1
+Nagłówek 2
+Nagłówek 3
+Nagłówek 4
+Nagłówek 5
+Nagłówek 6
+Tytuł strony
+Cytat
+Cytat
+Kod
+Normalna</value>
+    <comment>combo box items, must match the order of the StandardStyles enum</comment>
+  </data>
+  <data name="ConditionalFormatDialog_customRadio.Text" xml:space="preserve">
+    <value>Niestandardowy styl OneMore</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ConditionalFormatDialog_hintLabel.Text" xml:space="preserve">
+    <value>Style akapitowe stosują do dopasowanego tekstu tylko czcionkę i formatowanie kolorów; zawierający akapit nie jest konwertowany na ten styl.</value>
+    <comment>multiline label</comment>
+  </data>
+  <data name="ConditionalFormatDialog_patternLabel.Text" xml:space="preserve">
+    <value>Wyrażenie regularne</value>
+    <comment>label</comment>
+  </data>
+  <data name="ConditionalFormatDialog_styleLabel.Text" xml:space="preserve">
+    <value>Styl</value>
+    <comment>label</comment>
+  </data>
+  <data name="ConditionalFormatDialog_Text" xml:space="preserve">
+    <value>Zastosuj formatowanie warunkowe</value>
+    <comment>dialog title</comment>
   </data>
   <data name="ContextMenuSheet_introBox.Text" xml:space="preserve">
     <value>Wybierz polecenia do wyświetlenia w menu kontekstowym strony. Pozycje menu obejmują wszystkie polecenia w tym menu. Uruchom ponownie program OneNote, aby zobaczyć zmiany. Jeśli wybierzesz jedną z opcji „menu”, taką jak „Edytuj menu”, zostanie ona dodana jako wysuwane menu i będzie zawierać wszystkie pozycje menu Edytuj. Ale jeśli wybierzesz jeden z elementów podrzędnych, na przykład „Na małe litery”, element ten zostanie dodany jako element menu kontekstowego najwyższego poziomu. Jeśli zdarzy ci się wybrać oba, oba zostaną pokazane, prawdopodobnie powielając elementy.</value>
@@ -3532,6 +3574,14 @@ Wybierz Nie, aby zachować jedną pustą linię między akapitami</value>
   <data name="ribAnalyzeButton_Screentip" xml:space="preserve">
     <value>Wygeneruj raport dotyczący pamięci używanej przez sekcję lub notatnik</value>
     <comment>ribbon extras</comment>
+  </data>
+  <data name="ribApplyConditionalFormatButton_Label" xml:space="preserve">
+    <value>Zastosuj formatowanie warunkowe</value>
+    <comment>ribbon styles</comment>
+  </data>
+  <data name="ribApplyConditionalFormatButton_Screentip" xml:space="preserve">
+    <value>Zastosuj do tekstu na tej stronie styl pasujący do wyrażenia regularnego</value>
+    <comment>ribbon styles</comment>
   </data>
   <data name="ribApplyStyle0Button_Label" xml:space="preserve">
     <value>Zastosuj styl 1</value>

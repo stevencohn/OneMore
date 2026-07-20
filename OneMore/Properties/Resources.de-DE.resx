@@ -348,6 +348,10 @@ Umkehren</value>
     <value>Der Bericht kann Minuten dauern</value>
     <comment>label</comment>
   </data>
+  <data name="ApplyConditionalFormatCommand_NoMatches" xml:space="preserve">
+    <value>Auf dieser Seite wurden keine Übereinstimmungen gefunden.</value>
+    <comment>message box</comment>
+  </data>
   <data name="ApplyTableTheme_SelectTable" xml:space="preserve">
     <value>Bewegen Sie den Textcursor in eine Tabellenzelle</value>
     <comment>message</comment>
@@ -606,6 +610,44 @@ Umkehren</value>
   <data name="CommandPaletteDialog_introLabel.Text" xml:space="preserve">
     <value>Gib einen Befehl ein und drücke die Eingabetaste oder klicke auf ein Element aus der Liste</value>
     <comment>label</comment>
+  </data>
+  <data name="ConditionalFormatDialog_builtinRadio.Text" xml:space="preserve">
+    <value>Integrierter OneNote-Stil</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ConditionalFormatDialog_builtinStyles" xml:space="preserve">
+    <value>Überschrift 1
+Überschrift 2
+Überschrift 3
+Überschrift 4
+Überschrift 5
+Überschrift 6
+Seitentitel
+Zitat
+Zitat
+Code
+Normal</value>
+    <comment>combo box items, must match the order of the StandardStyles enum</comment>
+  </data>
+  <data name="ConditionalFormatDialog_customRadio.Text" xml:space="preserve">
+    <value>Benutzerdefinierter OneMore-Stil</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ConditionalFormatDialog_hintLabel.Text" xml:space="preserve">
+    <value>Absatzstile wenden nur ihre Schriftart und Farbformatierung auf den übereinstimmenden Text an; Der enthaltende Absatz wird nicht in diesen Stil konvertiert.</value>
+    <comment>multiline label</comment>
+  </data>
+  <data name="ConditionalFormatDialog_patternLabel.Text" xml:space="preserve">
+    <value>Regulärer Ausdruck</value>
+    <comment>label</comment>
+  </data>
+  <data name="ConditionalFormatDialog_styleLabel.Text" xml:space="preserve">
+    <value>Stil</value>
+    <comment>label</comment>
+  </data>
+  <data name="ConditionalFormatDialog_Text" xml:space="preserve">
+    <value>Bedingte Formatierung anwenden</value>
+    <comment>dialog title</comment>
   </data>
   <data name="ContextMenuSheet_introBox.Text" xml:space="preserve">
     <value>Wähle Befehle aus, die im Kontextmenü Seite angezeigt werden sollen.</value>
@@ -3531,6 +3573,14 @@ Wähle Nein, um eine leere Zeile zwischen den Absätzen zu halten</value>
   <data name="ribAnalyzeButton_Screentip" xml:space="preserve">
     <value>Generieren Sie einen Bericht über den von Abschnitt oder Notizbuch verwendeten Speicher</value>
     <comment>ribbon extras</comment>
+  </data>
+  <data name="ribApplyConditionalFormatButton_Label" xml:space="preserve">
+    <value>Bedingte Formatierung anwenden</value>
+    <comment>ribbon styles</comment>
+  </data>
+  <data name="ribApplyConditionalFormatButton_Screentip" xml:space="preserve">
+    <value>Wenden Sie auf den Text auf dieser Seite einen Stil an, der einem regulären Ausdruck entspricht</value>
+    <comment>ribbon styles</comment>
   </data>
   <data name="ribApplyStyle0Button_Label" xml:space="preserve">
     <value>Stil 1 anwenden</value>

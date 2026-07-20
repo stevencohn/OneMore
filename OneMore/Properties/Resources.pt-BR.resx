@@ -345,6 +345,10 @@ Invertido</value>
     <value>Relatório pode levar minutos</value>
     <comment>label</comment>
   </data>
+  <data name="ApplyConditionalFormatCommand_NoMatches" xml:space="preserve">
+    <value>Nenhuma correspondência encontrada nesta página.</value>
+    <comment>message box</comment>
+  </data>
   <data name="ApplyTableTheme_SelectTable" xml:space="preserve">
     <value>Mova o cursor de texto para uma célula da tabela</value>
     <comment>message</comment>
@@ -603,6 +607,44 @@ Invertido</value>
   <data name="CommandPaletteDialog_introLabel.Text" xml:space="preserve">
     <value>Digite um comando e pressione Enter ou clique em um item da lista</value>
     <comment>label</comment>
+  </data>
+  <data name="ConditionalFormatDialog_builtinRadio.Text" xml:space="preserve">
+    <value>Estilo OneNote integrado</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ConditionalFormatDialog_builtinStyles" xml:space="preserve">
+    <value>Título 1
+Título 2
+Título 3
+Título 4
+Título 5
+Título 6
+Título da página
+Citação
+Citar
+Código
+Normal</value>
+    <comment>combo box items, must match the order of the StandardStyles enum</comment>
+  </data>
+  <data name="ConditionalFormatDialog_customRadio.Text" xml:space="preserve">
+    <value>Estilo OneMore personalizado</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ConditionalFormatDialog_hintLabel.Text" xml:space="preserve">
+    <value>Os estilos de parágrafo aplicam apenas a formatação de fonte e cor ao texto correspondente; o parágrafo que o contém não é convertido para esse estilo.</value>
+    <comment>multiline label</comment>
+  </data>
+  <data name="ConditionalFormatDialog_patternLabel.Text" xml:space="preserve">
+    <value>Expressão regular</value>
+    <comment>label</comment>
+  </data>
+  <data name="ConditionalFormatDialog_styleLabel.Text" xml:space="preserve">
+    <value>Estilo</value>
+    <comment>label</comment>
+  </data>
+  <data name="ConditionalFormatDialog_Text" xml:space="preserve">
+    <value>Aplicar formatação condicional</value>
+    <comment>dialog title</comment>
   </data>
   <data name="ContextMenuSheet_introBox.Text" xml:space="preserve">
     <value>Escolha os comandos a serem exibidos no menu de contexto da página. Os itens de menu incluem todos os comandos desse menu. Reinicie o OneNote para ver as alterações. Se você escolher uma das opções de "menu", como "Editar menu", isso será adicionado como um menu flutuante e incluirá todos os itens do menu Editar. Mas se você escolher um dos subitens, como "Para letras minúsculas", esse item será adicionado como um item de menu de contexto de nível superior. Se você selecionar ambos, ambos serão exibidos, possivelmente duplicando itens.</value>
@@ -3532,6 +3574,14 @@ Selecione Não para manter uma linha vazia entre os parágrafos</value>
   <data name="ribAnalyzeButton_Screentip" xml:space="preserve">
     <value>Gere um relatório de armazenamento usado por seção ou notebook</value>
     <comment>ribbon extras</comment>
+  </data>
+  <data name="ribApplyConditionalFormatButton_Label" xml:space="preserve">
+    <value>Aplicar formatação condicional</value>
+    <comment>ribbon styles</comment>
+  </data>
+  <data name="ribApplyConditionalFormatButton_Screentip" xml:space="preserve">
+    <value>Aplicar um estilo ao texto desta página que corresponda a uma expressão regular</value>
+    <comment>ribbon styles</comment>
   </data>
   <data name="ribApplyStyle0Button_Label" xml:space="preserve">
     <value>Aplicar estilo 1</value>

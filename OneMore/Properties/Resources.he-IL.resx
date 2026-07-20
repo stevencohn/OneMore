@@ -345,6 +345,10 @@
     <value>הדיווח עשוי להימשך דקות</value>
     <comment>label</comment>
   </data>
+  <data name="ApplyConditionalFormatCommand_NoMatches" xml:space="preserve">
+    <value>לא נמצאו התאמות בדף זה.</value>
+    <comment>message box</comment>
+  </data>
   <data name="ApplyTableTheme_SelectTable" xml:space="preserve">
     <value>הזז את סמן הטקסט לתוך תא טבלה</value>
     <comment>message</comment>
@@ -603,6 +607,44 @@
   <data name="CommandPaletteDialog_introLabel.Text" xml:space="preserve">
     <value>הקלד פקודה והקש Enter או לחץ על פריט מהרשימה</value>
     <comment>label</comment>
+  </data>
+  <data name="ConditionalFormatDialog_builtinRadio.Text" xml:space="preserve">
+    <value>סגנון OneNote מובנה</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ConditionalFormatDialog_builtinStyles" xml:space="preserve">
+    <value>כותרת 1
+כותרת 2
+כותרת 3
+כותרת 4
+כותרת 5
+כותרת 6
+כותרת העמוד
+צִיטָטָה
+לְצַטֵט
+קוד
+נוֹרמָלִי</value>
+    <comment>combo box items, must match the order of the StandardStyles enum</comment>
+  </data>
+  <data name="ConditionalFormatDialog_customRadio.Text" xml:space="preserve">
+    <value>סגנון OneMore מותאם אישית</value>
+    <comment>radio</comment>
+  </data>
+  <data name="ConditionalFormatDialog_hintLabel.Text" xml:space="preserve">
+    <value>סגנונות פסקה מחילים רק את עיצוב הגופן והצבע שלהם על טקסט מותאם; הפסקה המכילה אינה מומרת לסגנון זה.</value>
+    <comment>multiline label</comment>
+  </data>
+  <data name="ConditionalFormatDialog_patternLabel.Text" xml:space="preserve">
+    <value>ביטוי רגיל</value>
+    <comment>label</comment>
+  </data>
+  <data name="ConditionalFormatDialog_styleLabel.Text" xml:space="preserve">
+    <value>סִגְנוֹן</value>
+    <comment>label</comment>
+  </data>
+  <data name="ConditionalFormatDialog_Text" xml:space="preserve">
+    <value>החל עיצוב מותנה</value>
+    <comment>dialog title</comment>
   </data>
   <data name="ContextMenuSheet_introBox.Text" xml:space="preserve">
     <value>בחר פקודות להצגה בתפריט ההקשר של העמוד. פריטי התפריט כוללים את כל הפקודות בתפריט זה. הפעל מחדש את OneNote כדי לראות שינויים. אם תבחר באחת מאפשרויות ה"תפריט" כגון "תפריט עריכה", זה יתווסף כתפריט חלופי ויכלול את כל פריטי תפריט העריכה. אבל אם תבחר באחד מפריטי המשנה, כגון "לאותיות קטנות", הפריט הזה יתווסף כפריט בתפריט ההקשר ברמה העליונה. אם במקרה תבחר בשניהם, שניהם יוצגו, אולי ישכפל פריטים.</value>
@@ -3536,6 +3578,14 @@ ISO-code then comma then language name</comment>
   <data name="ribAnalyzeButton_Screentip" xml:space="preserve">
     <value>צור דוח אחסון המשמש את החלק או המחברת</value>
     <comment>ribbon extras</comment>
+  </data>
+  <data name="ribApplyConditionalFormatButton_Label" xml:space="preserve">
+    <value>החל עיצוב מותנה</value>
+    <comment>ribbon styles</comment>
+  </data>
+  <data name="ribApplyConditionalFormatButton_Screentip" xml:space="preserve">
+    <value>החל סגנון על טקסט בדף זה התואם לביטוי רגולרי</value>
+    <comment>ribbon styles</comment>
   </data>
   <data name="ribApplyStyle0Button_Label" xml:space="preserve">
     <value>החל סגנון 1</value>
