@@ -18,19 +18,23 @@ namespace River.OneMoreAddIn.Commands
 	internal static class ReportControlHelper
 	{
 		/// <summary>
-		/// Builds the standard 1x3 control-row table: an empty spacer cell, the given
-		/// content in the middle cell, and a trailing empty spacer cell.
+		/// Builds the standard 1x3 control-row table: a leading cell (empty spacer by
+		/// default), the given content in the middle cell, and a trailing empty
+		/// spacer cell.
 		/// </summary>
 		/// <param name="ns">The page namespace</param>
 		/// <param name="shading">The row's background shading color</param>
-		/// <param name="col0Width">Width of the leading spacer column</param>
+		/// <param name="col0Width">Width of the leading column</param>
 		/// <param name="col1Width">Width of the content column</param>
 		/// <param name="col2Width">Width of the trailing spacer column</param>
 		/// <param name="content">The paragraph to place in the middle cell</param>
+		/// <param name="col0Content">
+		/// The paragraph to place in the leading cell, or null for an empty spacer
+		/// </param>
 		/// <returns>The control-row Table</returns>
 		public static Table BuildControlTable(
 			XNamespace ns, string shading, int col0Width, int col1Width, int col2Width,
-			Paragraph content)
+			Paragraph content, Paragraph col0Content = null)
 		{
 			var table = new Table(ns, 1, 3)
 			{
@@ -43,7 +47,7 @@ namespace River.OneMoreAddIn.Commands
 
 			var row = table[0];
 			row.SetShading(shading);
-			row[0].SetContent(new Paragraph(string.Empty));
+			row[0].SetContent(col0Content ?? new Paragraph(string.Empty));
 			row[1].SetContent(content);
 			row[2].SetContent(new Paragraph(string.Empty));
 
