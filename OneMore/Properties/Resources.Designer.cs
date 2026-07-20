@@ -9923,7 +9923,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Import.
+        ///   Looks up a localized string similar to Import File.
         /// </summary>
         internal static string ribImportButton_Label {
             get {

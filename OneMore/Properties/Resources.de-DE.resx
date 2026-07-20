@@ -4133,8 +4133,8 @@ Registerkarte „Hilfe“.</value>
     <comment>ribbon images NODUP</comment>
   </data>
   <data name="ribImportButton_Label" xml:space="preserve">
-    <value>Importieren</value>
-    <comment>ribbon item</comment>
+    <value>Datei importieren</value>
+    <comment>ribbon file NODUP</comment>
   </data>
   <data name="ribImportButton_Screentip" xml:space="preserve">
     <value>Importiere eine Datei</value>

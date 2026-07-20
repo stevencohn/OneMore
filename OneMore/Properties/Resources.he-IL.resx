@@ -4138,8 +4138,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon images NODUP</comment>
   </data>
   <data name="ribImportButton_Label" xml:space="preserve">
-    <value>יְבוּא</value>
-    <comment>ribbon item NODUP</comment>
+    <value>ייבוא ​​קובץ</value>
+    <comment>ribbon file NODUP</comment>
   </data>
   <data name="ribImportButton_Screentip" xml:space="preserve">
     <value>ייבא קובץ</value>

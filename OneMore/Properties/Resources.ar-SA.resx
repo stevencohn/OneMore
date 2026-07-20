@@ -4145,8 +4145,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon images NODUP</comment>
   </data>
   <data name="ribImportButton_Label" xml:space="preserve">
-    <value>استيراد</value>
-    <comment>ribbon item</comment>
+    <value>ملف الاستيراد</value>
+    <comment>ribbon file NODUP</comment>
   </data>
   <data name="ribImportButton_Screentip" xml:space="preserve">
     <value>قم باستيراد ملف</value>

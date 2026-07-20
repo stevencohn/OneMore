@@ -4134,8 +4134,8 @@ Tabblad Help</value>
     <comment>ribbon images NODUP</comment>
   </data>
   <data name="ribImportButton_Label" xml:space="preserve">
-    <value>Importeren</value>
-    <comment>ribbon item</comment>
+    <value>Bestand importeren</value>
+    <comment>ribbon file NODUP</comment>
   </data>
   <data name="ribImportButton_Screentip" xml:space="preserve">
     <value>Importeer een bestand</value>

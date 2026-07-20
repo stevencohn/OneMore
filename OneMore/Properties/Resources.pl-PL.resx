@@ -4134,8 +4134,8 @@ Zakładka Pomoc</value>
     <comment>ribbon images NODUP</comment>
   </data>
   <data name="ribImportButton_Label" xml:space="preserve">
-    <value>Import</value>
-    <comment>ribbon item NODUP</comment>
+    <value>Importuj plik</value>
+    <comment>ribbon file NODUP</comment>
   </data>
   <data name="ribImportButton_Screentip" xml:space="preserve">
     <value>Importuj plik</value>

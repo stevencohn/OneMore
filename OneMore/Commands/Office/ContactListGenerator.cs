@@ -39,6 +39,9 @@ namespace River.OneMoreAddIn.Commands
 
 		private const string RefreshUri = "onemore://ImportOutlookContactsCommand/refresh";
 
+		private static readonly Regex HrefPattern =
+			new(@"<a\s+href=""([^""]+)""", RegexOptions.Compiled);
+
 		private readonly Regex emailPattern;
 
 		private Page page;
@@ -110,11 +113,22 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			var ids = tableElement.Descendants(ns + "Meta")
+			// capture each row's existing glyph hyperlink, keyed by EntryID, before the
+			// table is discarded; LoadContactsByID below returns fresh OutlookContact
+			// wrappers with no knowledge of the contact's OneNote sub-page
+			var links = tableElement.Descendants(ns + "Meta")
 				.Where(e => e.Attribute("name").Value == ContactMeta)
-				.Select(e => e.Attribute("content").Value)
-				// ref by list so they're not disposed when we discard the old table
-				.ToList();
+				.ToDictionary(
+					e => e.Attribute("content").Value,
+					e =>
+					{
+						var text = e.Parent.Elements(ns + "T").FirstOrDefault()?.GetCData().Value;
+						var match = text is null ? null : HrefPattern.Match(text);
+						return match?.Success == true ? match.Groups[1].Value : null;
+					});
+
+			// ref by list so they're not disposed when we discard the old table
+			var ids = links.Keys.ToList();
 
 			if (ids.Count == 0)
 			{
@@ -124,6 +138,14 @@ namespace River.OneMoreAddIn.Commands
 
 			using var outlook = new Outlook();
 			var contacts = outlook.LoadContactsByID(ids).ToList();
+
+			foreach (var contact in contacts)
+			{
+				if (links.TryGetValue(contact.EntryID, out var uri) && !string.IsNullOrEmpty(uri))
+				{
+					contact.PageUri = uri;
+				}
+			}
 
 			try
 			{

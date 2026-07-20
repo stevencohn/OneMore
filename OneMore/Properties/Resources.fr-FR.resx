@@ -4145,8 +4145,8 @@ Onglet Aide</value>
     <comment>ribbon images NODUP</comment>
   </data>
   <data name="ribImportButton_Label" xml:space="preserve">
-    <value>Importer</value>
-    <comment>ribbon item</comment>
+    <value>Importer un fichier</value>
+    <comment>ribbon file NODUP</comment>
   </data>
   <data name="ribImportButton_Screentip" xml:space="preserve">
     <value>Importer un fichier</value>
