@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Platform Condition="'$(Platform)' == ''">x86</Platform>
     <Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
-    <ProductVersion Condition="'$(ProductVersion)' == ''">7.2.0</ProductVersion>
+    <ProductVersion Condition="'$(ProductVersion)' == ''">7.3.0</ProductVersion>
     <!-- BetaTag: human-readable suffix for the Package Name (e.g. " (Beta 3)"), set by build.ps1 -->
     <BetaTag Condition="'$(BetaTag)' == ''"></BetaTag>
     <OutputName>OneMore_$(ProductVersion)_Setup$(Platform)</OutputName>

@@ -24,7 +24,7 @@ namespace OneMoreCli
 {
 	internal static class AssemblyInfo
 	{
-		public const string Version = "7.2.0";
+		public const string Version = "7.3.0";
 
 		public const string BuildTag =
 #if BETA
