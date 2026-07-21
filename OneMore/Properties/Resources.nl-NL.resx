@@ -908,6 +908,10 @@ Wil je doorgaan?</value>
     <value>Diagramtekst is ongeldig of kan geen verbinding vinden tussen tekst en afbeelding</value>
     <comment>error message</comment>
   </data>
+  <data name="DiagramCommand_Cancelled" xml:space="preserve">
+    <value>Het renderen van het diagram is geannuleerd of er is een time-out opgetreden</value>
+    <comment>error message</comment>
+  </data>
   <data name="DiagramCommand_EmptySelection" xml:space="preserve">
     <value>Lege selectie. Selecteer een geldig blok diagramtekst.</value>
     <comment>error message</comment>

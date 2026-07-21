@@ -912,6 +912,10 @@
     <value>示意图对象无效或无法找到示意图代码文本和图像之间的连接</value>
     <comment>error message</comment>
   </data>
+  <data name="DiagramCommand_Cancelled" xml:space="preserve">
+    <value>图表渲染已取消或超时</value>
+    <comment>error message</comment>
+  </data>
   <data name="DiagramCommand_EmptySelection" xml:space="preserve">
     <value>选择为空。请选择有效的示意图容器块。</value>
     <comment>error message</comment>

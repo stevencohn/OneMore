@@ -911,6 +911,10 @@
     <value>図のテキストが無効であるか、テキストと画像の間の接続が見つかりません。</value>
     <comment>error message</comment>
   </data>
+  <data name="DiagramCommand_Cancelled" xml:space="preserve">
+    <value>ダイアグラムのレンダリングがキャンセルされたか、タイムアウトになりました</value>
+    <comment>error message</comment>
+  </data>
   <data name="DiagramCommand_EmptySelection" xml:space="preserve">
     <value>空の選択範囲。図テキストの有効なブロックを選択します。</value>
     <comment>error message</comment>

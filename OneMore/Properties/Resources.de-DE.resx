@@ -907,6 +907,10 @@ Möchten Sie fortfahren?</value>
     <value>Der Diagrammtext ist entweder ungültig oder es kann keine Verbindung zwischen Text und Bild gefunden werden</value>
     <comment>error message</comment>
   </data>
+  <data name="DiagramCommand_Cancelled" xml:space="preserve">
+    <value>Das Rendern des Diagramms wurde abgebrochen oder es kam zu einer Zeitüberschreitung</value>
+    <comment>error message</comment>
+  </data>
   <data name="DiagramCommand_EmptySelection" xml:space="preserve">
     <value>Leere Auswahl. Wählen Sie einen gültigen Diagrammtextblock aus.</value>
     <comment>error message</comment>

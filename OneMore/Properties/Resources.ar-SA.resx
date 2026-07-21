@@ -911,6 +911,10 @@
     <value>نص الرسم التخطيطي إما غير صالح أو لا يمكن العثور على اتصال بين النص والصورة</value>
     <comment>error message</comment>
   </data>
+  <data name="DiagramCommand_Cancelled" xml:space="preserve">
+    <value>تم إلغاء عرض الرسم التخطيطي أو انتهت مهلته</value>
+    <comment>error message</comment>
+  </data>
   <data name="DiagramCommand_EmptySelection" xml:space="preserve">
     <value>اختيار فارغ. حدد كتلة صالحة من نص الرسم التخطيطي.</value>
     <comment>error message</comment>

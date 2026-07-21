@@ -907,6 +907,10 @@ Normal</value>
     <value>El texto del diagrama no es válido o no se puede encontrar la conexión entre el texto y la imagen.</value>
     <comment>error message</comment>
   </data>
+  <data name="DiagramCommand_Cancelled" xml:space="preserve">
+    <value>La representación del diagrama se canceló o se agotó el tiempo de espera</value>
+    <comment>error message</comment>
+  </data>
   <data name="DiagramCommand_EmptySelection" xml:space="preserve">
     <value>Selección vacía. Seleccione un bloque válido de texto de diagrama.</value>
     <comment>error message</comment>

@@ -909,6 +909,10 @@ Vuoi continuare?</value>
     <value>Il testo del diagramma non è valido oppure non è possibile trovare una connessione tra testo e immagine</value>
     <comment>error message</comment>
   </data>
+  <data name="DiagramCommand_Cancelled" xml:space="preserve">
+    <value>Il rendering del diagramma è stato annullato o è scaduto</value>
+    <comment>error message</comment>
+  </data>
   <data name="DiagramCommand_EmptySelection" xml:space="preserve">
     <value>Selezione vuota. Seleziona un blocco valido di testo del diagramma.</value>
     <comment>error message</comment>

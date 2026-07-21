@@ -393,7 +393,17 @@ namespace River.OneMoreAddIn.Commands
 					}
 				});
 
-			return result == DialogResult.OK ? bytes : new byte[0];
+			if (result != DialogResult.OK || bytes is null || bytes.Length == 0)
+			{
+				if (string.IsNullOrWhiteSpace(errorMessage))
+				{
+					errorMessage = Resx.DiagramCommand_Cancelled;
+				}
+
+				return new byte[0];
+			}
+
+			return bytes;
 		}
 
 
