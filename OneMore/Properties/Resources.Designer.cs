@@ -4900,7 +4900,63 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportWebCommand_BadUrl", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot load web page.
+        ///
+        ///{0}.
+        /// </summary>
+        internal static string ImportWebCommand_CannotLoad {
+            get {
+                return ResourceManager.GetString("ImportWebCommand_CannotLoad", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to use this command; Edge WebView2 is not installed.
+        /// </summary>
+        internal static string ImportWebCommand_EdgeNotInstalled {
+            get {
+                return ResourceManager.GetString("ImportWebCommand_EdgeNotInstalled", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Importing {0}....
+        /// </summary>
+        internal static string ImportWebCommand_Importing {
+            get {
+                return ResourceManager.GetString("ImportWebCommand_Importing", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Rasterizing image {0} of {1}.
+        /// </summary>
+        internal static string ImportWebCommand_RasterizingImage {
+            get {
+                return ResourceManager.GetString("ImportWebCommand_RasterizingImage", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Resolving images....
+        /// </summary>
+        internal static string ImportWebCommand_ResolvingImages {
+            get {
+                return ResourceManager.GetString("ImportWebCommand_ResolvingImages", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Updating page.
+        /// </summary>
+        internal static string ImportWebCommand_UpdatingPage {
+            get {
+                return ResourceManager.GetString("ImportWebCommand_UpdatingPage", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Address.
         /// </summary>

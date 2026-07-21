@@ -2141,6 +2141,32 @@
     <value>لم يتم العثور على صفحة الويب أو إرجاع محتوى فارغ</value>
     <comment>error message</comment>
   </data>
+  <data name="ImportWebCommand_CannotLoad" xml:space="preserve">
+    <value>لا يمكن تحميل صفحة الويب.
+
+{0}</value>
+    <comment>error message, {0} is the underlying error detail</comment>
+  </data>
+  <data name="ImportWebCommand_EdgeNotInstalled" xml:space="preserve">
+    <value>غير قادر على استخدام هذا الأمر؛ لم يتم تثبيت Edge WebView2</value>
+    <comment>error message</comment>
+  </data>
+  <data name="ImportWebCommand_Importing" xml:space="preserve">
+    <value>جارٍ استيراد {0}...</value>
+    <comment>progress message, {0} is the address being imported</comment>
+  </data>
+  <data name="ImportWebCommand_RasterizingImage" xml:space="preserve">
+    <value>تنقيط الصورة {0} من {1}</value>
+    <comment>progress message</comment>
+  </data>
+  <data name="ImportWebCommand_ResolvingImages" xml:space="preserve">
+    <value>حل الصور...</value>
+    <comment>progress message</comment>
+  </data>
+  <data name="ImportWebCommand_UpdatingPage" xml:space="preserve">
+    <value>جارٍ تحديث الصفحة</value>
+    <comment>progress message</comment>
+  </data>
   <data name="ImportWebDialog_addressLabel.Text" xml:space="preserve">
     <value>عنوان</value>
     <comment>label</comment>

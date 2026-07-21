@@ -2146,6 +2146,32 @@ Yellow Background</value>
     <value>Web page not found or returned empty content</value>
     <comment>error message</comment>
   </data>
+  <data name="ImportWebCommand_CannotLoad" xml:space="preserve">
+    <value>Cannot load web page.
+
+{0}</value>
+    <comment>error message, {0} is the underlying error detail</comment>
+  </data>
+  <data name="ImportWebCommand_EdgeNotInstalled" xml:space="preserve">
+    <value>Unable to use this command; Edge WebView2 is not installed</value>
+    <comment>error message</comment>
+  </data>
+  <data name="ImportWebCommand_Importing" xml:space="preserve">
+    <value>Importing {0}...</value>
+    <comment>progress message, {0} is the address being imported</comment>
+  </data>
+  <data name="ImportWebCommand_RasterizingImage" xml:space="preserve">
+    <value>Rasterizing image {0} of {1}</value>
+    <comment>progress message</comment>
+  </data>
+  <data name="ImportWebCommand_ResolvingImages" xml:space="preserve">
+    <value>Resolving images...</value>
+    <comment>progress message</comment>
+  </data>
+  <data name="ImportWebCommand_UpdatingPage" xml:space="preserve">
+    <value>Updating page</value>
+    <comment>progress message</comment>
+  </data>
   <data name="ImportWebDialog_addressLabel.Text" xml:space="preserve">
     <value>Address</value>
     <comment>label</comment>

@@ -2141,6 +2141,32 @@ Fond jaune</value>
     <value>Page Web non trouvée ou contenu vide renvoyé</value>
     <comment>error message</comment>
   </data>
+  <data name="ImportWebCommand_CannotLoad" xml:space="preserve">
+    <value>Impossible de charger la page Web.
+
+{0}</value>
+    <comment>error message, {0} is the underlying error detail</comment>
+  </data>
+  <data name="ImportWebCommand_EdgeNotInstalled" xml:space="preserve">
+    <value>Impossible d'utiliser cette commande ; Edge WebView2 n'est pas installé</value>
+    <comment>error message</comment>
+  </data>
+  <data name="ImportWebCommand_Importing" xml:space="preserve">
+    <value>Importation de {0}...</value>
+    <comment>progress message, {0} is the address being imported</comment>
+  </data>
+  <data name="ImportWebCommand_RasterizingImage" xml:space="preserve">
+    <value>Pixellisation de l'image {0} sur {1}</value>
+    <comment>progress message</comment>
+  </data>
+  <data name="ImportWebCommand_ResolvingImages" xml:space="preserve">
+    <value>Résolution des images...</value>
+    <comment>progress message</comment>
+  </data>
+  <data name="ImportWebCommand_UpdatingPage" xml:space="preserve">
+    <value>Mise à jour de la page</value>
+    <comment>progress message</comment>
+  </data>
   <data name="ImportWebDialog_addressLabel.Text" xml:space="preserve">
     <value>Adresse</value>
     <comment>label</comment>
