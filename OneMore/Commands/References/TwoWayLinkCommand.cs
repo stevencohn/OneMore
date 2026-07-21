@@ -335,9 +335,9 @@ namespace River.OneMoreAddIn.Commands
 			{
 				var cdata = selection.GetCData();
 
-				if (selection.PreviousNode is XElement prev)
+				if (selection.PreviousNode is XElement prev &&
+					prev.GetCData() is XCData cprev)
 				{
-					var cprev = prev.GetCData();
 					var wrapper = cprev.GetWrapper();
 					if (wrapper.LastNode is XElement node)
 					{
@@ -352,9 +352,9 @@ namespace River.OneMoreAddIn.Commands
 					}
 				}
 
-				if (selection.NextNode is XElement next)
+				if (selection.NextNode is XElement next &&
+					next.GetCData() is XCData cnext)
 				{
-					var cnext = next.GetCData();
 					var wrapper = cnext.GetWrapper();
 					if (wrapper.FirstNode is XElement node)
 					{
