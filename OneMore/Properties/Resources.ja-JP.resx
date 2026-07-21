@@ -1902,7 +1902,7 @@ OneNoteファイル (*.one)</value>
     <comment>label</comment>
   </data>
   <data name="ImportDialog_introLabel.Text" xml:space="preserve">
-    <value>Word、PowerPoint、OneNote、Markdown、またはXMLファイルを選択</value>
+    <value>Word、PowerPoint、OneNote、Markdown、Text、または XML ファイルを選択します</value>
     <comment>label</comment>
   </data>
   <data name="ImportDialog_notInstalledLabel.Text" xml:space="preserve">
@@ -1910,7 +1910,7 @@ OneNoteファイル (*.one)</value>
     <comment>label</comment>
   </data>
   <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
-    <value>全てのファイル (*.docx;*.pptx;*.pdf;*.md;*.one;*.xml)|*.docx;*.doc;*.pptx;*ppt;*.pdf;*.md;*.one;*.xml|Word files (*.docx)|*.docx|Powerpoint files (*.pptx)|*.pptx|PDF (*.pdf)|*.pdf|Markdown (*.md)|*.md|OneNote File (*.one)|*.one|OneMore Template files (*.xml)|*.xml</value>
+    <value>すべてのファイル (*.docx;*.pptx;*.pdf;*.md;*.one;*.txt;*.xml)|*.docx;*.doc;*.pptx;*ppt;*.pdf;*.md;*.one;*.txt;*.xml|Word ファイル (*.docx)|*.docx|Powerpoint ファイル (*.pptx)|*.pptx|PDF (*.pdf)|*.pdf|マークダウン (*.md)|*.md|OneNote ファイル (*.one)|*.one|テキスト ファイル (*.txt)|*.txt|OneMore テンプレート ファイル (*.xml)|*.xml</value>
     <comment>openfiledialog filter</comment>
   </data>
   <data name="ImportDialog_OpenFileTitle" xml:space="preserve">

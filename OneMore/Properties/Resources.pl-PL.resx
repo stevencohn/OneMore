@@ -1899,7 +1899,7 @@ Czerwony pierwszy plan
     <comment>label</comment>
   </data>
   <data name="ImportDialog_introLabel.Text" xml:space="preserve">
-    <value>Wybierz słowo, plik PowerPoint, OneNote, Markdown lub XML</value>
+    <value>Wybierz plik programu Word, PowerPoint, OneNote, Markdown, tekstowy lub XML</value>
     <comment>label</comment>
   </data>
   <data name="ImportDialog_notInstalledLabel.Text" xml:space="preserve">
@@ -1907,7 +1907,7 @@ Czerwony pierwszy plan
     <comment>label</comment>
   </data>
   <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
-    <value>Wszystkie pliki (*.docx;*.pptx;*.pdf;*.md;*.one;*.xml)|*.docx;*.doc;*.pptx;*ppt;*.pdf;*.md ;*.one;*.xml|Pliki Word (*.docx)|*.docx|Pliki PowerPoint (*.pptx)|*.pptx|PDF (*.pdf)|*.pdf|Markdown (*.md) |*.md|Plik OneNote (*.one)|*.one|Pliki szablonów OneMore (*.xml)|*.xml</value>
+    <value>Wszystkie pliki (*.docx;*.pptx;*.pdf;*.md;*.one;*.txt;*.xml)|*.docx;*.doc;*.pptx;*ppt;*.pdf;*.md;*.one;*.txt;*.xml|Pliki Worda (*.docx)|*.docx|Pliki Powerpointa (*.pptx)|*.pptx|PDF (*.pdf)|*.pdf|Markdown (*.md)|*.md|Plik OneNote (*.one)|*.one|Pliki tekstowe (*.txt)|*.txt|Pliki szablonów OneMore (*.xml)|*.xml</value>
     <comment>openfiledialog filter</comment>
   </data>
   <data name="ImportDialog_OpenFileTitle" xml:space="preserve">

@@ -1902,7 +1902,7 @@
     <comment>label</comment>
   </data>
   <data name="ImportDialog_introLabel.Text" xml:space="preserve">
-    <value>حدد ملف Word أو PowerPoint أو OneNote أو Markdown أو XML</value>
+    <value>حدد ملف Word أو PowerPoint أو OneNote أو Markdown أو Text أو XML</value>
     <comment>label</comment>
   </data>
   <data name="ImportDialog_notInstalledLabel.Text" xml:space="preserve">
@@ -1910,7 +1910,7 @@
     <comment>label</comment>
   </data>
   <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
-    <value>جميع الملفات (* .docx؛ *. pptx؛ *. pdf؛ *. md؛ *. one؛ *. xml) | * .docx؛ *. doc؛ *. pptx؛ * ppt؛ *. pdf؛ *. md ؛ *. one؛ *. xml | ملفات Word (* .docx) | * .docx | ملفات Powerpoint (* .pptx) | * .pptx | PDF (* .pdf) | * .pdf | Markdown (* .md) | * .md | OneNote File (* .one) | * .one | OneMore Template files (* .xml) | * .xml</value>
+    <value>كافة الملفات (*.docx;*.pptx;*.pdf;*.md;*.one;*.txt;*.xml)|*.docx;*.doc;*.pptx;*ppt;*.pdf;*.md;*.one;*.txt;*.xml|ملفات Word (*.docx)|*.docx|ملفات Powerpoint (*.pptx)|*.pptx|PDF (*.pdf)|*.pdf|Markdown (*.md)|*.md|ملف OneNote (*.one)|*.one|ملفات نصية (*.txt)|*.txt|ملفات قالب OneMore (*.xml)|*.xml</value>
     <comment>openfiledialog filter</comment>
   </data>
   <data name="ImportDialog_OpenFileTitle" xml:space="preserve">

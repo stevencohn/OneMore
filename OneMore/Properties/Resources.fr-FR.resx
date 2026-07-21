@@ -1902,7 +1902,7 @@ Fond jaune</value>
     <comment>label</comment>
   </data>
   <data name="ImportDialog_introLabel.Text" xml:space="preserve">
-    <value>Sélectionnez un fichier Word, PowerPoint, OneNote, Markdown ou XML</value>
+    <value>Sélectionnez un fichier Word, PowerPoint, OneNote, Markdown, Texte ou XML</value>
     <comment>label</comment>
   </data>
   <data name="ImportDialog_notInstalledLabel.Text" xml:space="preserve">
@@ -1910,7 +1910,7 @@ Fond jaune</value>
     <comment>label</comment>
   </data>
   <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
-    <value>Tous les fichiers (*.docx;*.pptx;*.pdf;*.md;*.one;*.xml)|*.docx;*.doc;*.pptx;*ppt;*.pdf;*.md ;*.one;*.xml|Fichiers Word (*.docx)|*.docx|Fichiers Powerpoint (*.pptx)|*.pptx|PDF (*.pdf)|*.pdf|Markdown (*.md) |*.md|Fichier OneNote (*.one)|*.one|Fichiers modèles OneMore (*.xml)|*.xml</value>
+    <value>Tous les fichiers (*.docx;*.pptx;*.pdf;*.md;*.one;*.txt;*.xml)|*.docx;*.doc;*.pptx;*ppt;*.pdf;*.md;*.one;*.txt;*.xml|Fichiers Word (*.docx)|*.docx|Fichiers Powerpoint (*.pptx)|*.pptx|PDF (*.pdf)|*.pdf|Markdown (*.md)|*.md|Fichier OneNote (*.one)|*.one|Fichiers texte (*.txt)|*.txt|Fichiers de modèle OneMore (*.xml)|*.xml</value>
     <comment>openfiledialog filter</comment>
   </data>
   <data name="ImportDialog_OpenFileTitle" xml:space="preserve">

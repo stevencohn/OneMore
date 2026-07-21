@@ -1899,7 +1899,7 @@ Total Row Font
     <comment>label</comment>
   </data>
   <data name="ImportDialog_introLabel.Text" xml:space="preserve">
-    <value>בחר קובץ Word, PowerPoint, OneNote, Markdown או XML</value>
+    <value>בחר קובץ Word, PowerPoint, OneNote, Markdown, טקסט או XML</value>
     <comment>label</comment>
   </data>
   <data name="ImportDialog_notInstalledLabel.Text" xml:space="preserve">
@@ -1907,7 +1907,7 @@ Total Row Font
     <comment>label</comment>
   </data>
   <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
-    <value>כל הקבצים (*.docx;*.pptx;*.pdf;*.md;*.one;*.xml)|*.docx;*.doc;*.pptx;*ppt;*.pdf;*.md ;*.one;*.xml|קובצי Word (*.docx)|*.docx|קובצי Powerpoint (*.pptx)|*.pptx|PDF (*.pdf)|*.pdf|Markdown (*.md) |*.md|קובץ OneNote (*.one)|*.one|קובצי תבנית OneMore (*.xml)|*.xml</value>
+    <value>כל הקבצים (*.docx;*.pptx;*.pdf;*.md;*.one;*.txt;*.xml)|*.docx;*.doc;*.pptx;*ppt;*.pdf;*.md;*.one;*.txt;*.xml|קבצי Word (*.docx)|*.docx|*.pptpoint files (*.docx|*.pptpoint files (*.pdf)|*.pdf|Markdown (*.md)|*.md|OneNote File (*.one)|*.one|קבצי טקסט (*.txt)|*.txt|קובצי OneMore Template (*.xml)|*.xml</value>
     <comment>openfiledialog filter</comment>
   </data>
   <data name="ImportDialog_OpenFileTitle" xml:space="preserve">
