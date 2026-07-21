@@ -91,6 +91,29 @@
         <File Source="..\OneMore\bin\$(var.Configuration)\stdole.dll" KeyPath="yes" />
       </Component>
 
+      <!-- Vortice/SharpGen — Direct2D emoji color-glyph rendering -->
+      <Component Id="VorticeDirect2D1Dll">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Vortice.Direct2D1.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="VorticeDirect3D11Dll">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Vortice.Direct3D11.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="VorticeDXGIDll">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Vortice.DXGI.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="VorticeDirectXDll">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Vortice.DirectX.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="VorticeMathematicsDll">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Vortice.Mathematics.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="SharpGenRuntimeDll">
+        <File Source="..\OneMore\bin\$(var.Configuration)\SharpGen.Runtime.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="SharpGenRuntimeCOMDll">
+        <File Source="..\OneMore\bin\$(var.Configuration)\SharpGen.Runtime.COM.dll" KeyPath="yes" />
+      </Component>
+
       <!-- .NET Standard/Core backport shims -->
       <Component Id="SystemBuffersDll">
         <File Source="..\OneMore\bin\$(var.Configuration)\System.Buffers.dll" KeyPath="yes" />
