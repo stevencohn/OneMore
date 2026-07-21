@@ -1967,7 +1967,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("DiagramCommand_broken", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Diagram rendering was cancelled or timed out.
+        /// </summary>
+        internal static string DiagramCommand_Cancelled {
+            get {
+                return ResourceManager.GetString("DiagramCommand_Cancelled", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Empty selection. Select a valid block of diagram text..
         /// </summary>

@@ -908,6 +908,10 @@
     <value>טקסט התרשים אינו חוקי או שאינו יכול למצוא קשר בין טקסט לתמונה</value>
     <comment>error message</comment>
   </data>
+  <data name="DiagramCommand_Cancelled" xml:space="preserve">
+    <value>עיבוד התרשים בוטל או פג הזמן הקצוב</value>
+    <comment>error message</comment>
+  </data>
   <data name="DiagramCommand_EmptySelection" xml:space="preserve">
     <value>בחירה ריקה. בחר בלוק חוקי של טקסט דיאגרמה.</value>
     <comment>error message</comment>

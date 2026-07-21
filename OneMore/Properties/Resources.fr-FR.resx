@@ -911,6 +911,10 @@ Voulez-vous continuer ?</value>
     <value>Le texte du diagramme n'est pas valide ou ne parvient pas à trouver de lien entre le texte et l'image.</value>
     <comment>error message</comment>
   </data>
+  <data name="DiagramCommand_Cancelled" xml:space="preserve">
+    <value>Le rendu du diagramme a été annulé ou a expiré</value>
+    <comment>error message</comment>
+  </data>
   <data name="DiagramCommand_EmptySelection" xml:space="preserve">
     <value>Sélection vide. Sélectionnez un bloc valide de texte de diagramme.</value>
     <comment>error message</comment>

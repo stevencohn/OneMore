@@ -917,6 +917,10 @@ Do you want to continue?</value>
     <value>Diagram text is either invalid or cannot find connection between text and image</value>
     <comment>error message</comment>
   </data>
+  <data name="DiagramCommand_Cancelled" xml:space="preserve">
+    <value>Diagram rendering was cancelled or timed out</value>
+    <comment>error message</comment>
+  </data>
   <data name="DiagramCommand_EmptySelection" xml:space="preserve">
     <value>Empty selection. Select a valid block of diagram text.</value>
     <comment>error message</comment>
