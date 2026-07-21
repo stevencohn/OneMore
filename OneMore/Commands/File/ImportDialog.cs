@@ -24,7 +24,8 @@ namespace River.OneMoreAddIn.Commands
 			Xml,
 			OneNote,
 			Markdown,
-			Pdf
+			Pdf,
+			Text
 		}
 
 		private enum PowerPointOptions
@@ -158,6 +159,15 @@ namespace River.OneMoreAddIn.Commands
 						notInstalledLabel.Visible = false;
 						okButton.Enabled = true;
 						Format = Formats.Markdown;
+						break;
+
+					case ".txt":
+						wordGroup.Visible = false;
+						powerGroup.Visible = false;
+						pdfGroup.Visible = false;
+						notInstalledLabel.Visible = false;
+						okButton.Enabled = true;
+						Format = Formats.Text;
 						break;
 
 					case ".pdf":

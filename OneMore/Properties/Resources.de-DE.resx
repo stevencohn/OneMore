@@ -1902,7 +1902,7 @@ Gelber Hintergrund</value>
     <comment>label</comment>
   </data>
   <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
-    <value>Alle Dateien (*.docx;*.pptx;*.pdf;*.md;*.one;*.xml)|*.docx;*.doc;*.pptx;*ppt;*.pdf;*.md ;*.one;*.xml|Word-Dateien (*.docx)|*.docx|Powerpoint-Dateien (*.pptx)|*.pptx|PDF (*.pdf)|*.pdf|Markdown (*.md) |*.md|OneNote-Datei (*.one)|*.one|OneMore-Vorlagendateien (*.xml)|*.xml</value>
+    <value>Alle Dateien (*.docx;*.pptx;*.pdf;*.md;*.one;*.txt;*.xml)|*.docx;*.doc;*.pptx;*ppt;*.pdf;*.md;*.one;*.txt;*.xml|Word-Dateien (*.docx)|*.docx|Powerpoint-Dateien (*.pptx)|*.pptx|PDF (*.pdf)|*.pdf|Markdown (*.md)|*.md|OneNote-Datei (*.one)|*.one|Textdateien (*.txt)|*.txt|OneMore-Vorlagendateien (*.xml)|*.xml</value>
     <comment>openfiledialog filter</comment>
   </data>
   <data name="ImportDialog_OpenFileTitle" xml:space="preserve">

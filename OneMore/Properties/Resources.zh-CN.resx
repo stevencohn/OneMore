@@ -1905,7 +1905,7 @@ OneNote 文件 (*.one)</value>
     <comment>label</comment>
   </data>
   <data name="ImportDialog_introLabel.Text" xml:space="preserve">
-    <value>选择 Word、PowerPoint、OneNote、Markdown 或 XML 文件</value>
+    <value>选择 Word、PowerPoint、OneNote、Markdown、文本或 XML 文件</value>
     <comment>label</comment>
   </data>
   <data name="ImportDialog_notInstalledLabel.Text" xml:space="preserve">
@@ -1913,7 +1913,7 @@ OneNote 文件 (*.one)</value>
     <comment>label</comment>
   </data>
   <data name="ImportDialog_OpenFileFilter" xml:space="preserve">
-    <value>所有文件(*.docx;*.pptx;*.pdf;*.md;*.one;*.xml)|*.docx;*.doc;*.pptx;*ppt;*.pdf;*.md ;*.one;*.xml|Word 文件 (*.docx)|*.docx|Powerpoint 文件 (*.pptx)|*.pptx|PDF (*.pdf)|*.pdf|Markdown (*.md) |*.md|OneNote 文件(*.one)|*.one|OneMore 模板文件(*.xml)|*.xml</value>
+    <value>所有文件 (*.docx;*.pptx;*.pdf;*.md;*.one;*.txt;*.xml)|*.docx;*.doc;*.pptx;*ppt;*.pdf;*.md;*.one;*.txt;*.xml|Word 文件 (*.docx)|*.docx|Powerpoint 文件 (*.pptx)|*.pptx|PDF (*.pdf)|*.pdf|Markdown (*.md)|*.md|OneNote 文件 (*.one)|*.one|文本文件 (*.txt)|*.txt|OneMore 模板文件 (*.xml)|*.xml</value>
     <comment>openfiledialog filter</comment>
   </data>
   <data name="ImportDialog_OpenFileTitle" xml:space="preserve">

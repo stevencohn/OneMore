@@ -21,15 +21,15 @@ namespace River.OneMoreAddIn.Commands
 
 
 	/// <summary>
-	/// Import Word (.docx), PowerPoint (.pptx), Markdown (.md), OneNote (.one), or XML (.xml) by
-	/// either appending content to the current page or creating a new page. Additionally, for
-	/// PowerPoint, each slide can be imported into its own page so you could use OneNote as a
-	/// PowerPoint presenter by entering full screen mode and using Ctrl-PgDn to move to the
-	/// next slide.
+	/// Import Word (.docx), PowerPoint (.pptx), Markdown (.md), OneNote (.one), Text (.txt), or
+	/// XML (.xml) by either appending content to the current page or creating a new page.
+	/// Additionally, for PowerPoint, each slide can be imported into its own page so you could
+	/// use OneNote as a PowerPoint presenter by entering full screen mode and using Ctrl-PgDn to
+	/// move to the next slide.
 	/// </summary>
 	/// <remarks>
-	/// You can import multiple Word, PowerPoint, or Markdown files by using a wildcard in the
-	/// name, for example C:\docs\January*.md.Each file will be imported as a separate page;
+	/// You can import multiple Word, PowerPoint, Markdown, or Text files by using a wildcard in
+	/// the name, for example C:\docs\January*.md.Each file will be imported as a separate page;
 	/// the Append option is not available when importing using wildcards.
 	/// </remarks>
 	internal class ImportCommand : Command
@@ -74,6 +74,10 @@ namespace River.OneMoreAddIn.Commands
 
 				case ImportDialog.Formats.Markdown:
 					await ImportMarkdown(dialog.FilePath);
+					break;
+
+				case ImportDialog.Formats.Text:
+					await ImportText(dialog.FilePath);
 					break;
 
 				case ImportDialog.Formats.Pdf:
@@ -707,6 +711,101 @@ namespace River.OneMoreAddIn.Commands
 
 					await one.NavigateTo(pageId);
 				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"error importing {filepath}", exc);
+				return false;
+			}
+
+			return true;
+		}
+
+
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+		// Text...
+
+		private async Task ImportText(string filepath)
+		{
+			logger.StartClock();
+
+			if (!PathHelper.HasWildFileName(filepath))
+			{
+				await ImportTextFile(filepath, default);
+				logger.WriteTime("text file imported");
+				return;
+			}
+
+			var files = Directory.GetFiles(Path.GetDirectoryName(filepath), Path.GetFileName(filepath));
+			var timeout = 10 + (files.Length * 3);
+
+			var good = 0;
+
+			var completed = RunWithProgress(timeout, filepath, async (token) =>
+			{
+				foreach (var file in files)
+				{
+					if (token.IsCancellationRequested)
+					{
+						break;
+					}
+
+					if (await ImportTextFile(file, token))
+					{
+						good++;
+					}
+				}
+
+				return !token.IsCancellationRequested;
+			});
+
+			if (completed)
+			{
+				logger.WriteTime($"imported {good} of {files.Length} text file(s)");
+			}
+			else
+			{
+				logger.WriteTime($"importing text files cancelled; {good} of {files.Length} completed");
+			}
+		}
+
+
+		private async Task<bool> ImportTextFile(string filepath, CancellationToken token)
+		{
+			try
+			{
+				progress?.SetMessage($"Importing {filepath}...");
+
+				logger.WriteLine($"importing text {filepath}");
+				var lines = File.ReadAllLines(filepath);
+
+				if (token != default && token.IsCancellationRequested)
+				{
+					logger.WriteLine("import text cancelled");
+					return false;
+				}
+
+				await using var one = new OneNote();
+				one.CreatePage(one.CurrentSectionId, out var pageId);
+
+				var page = await one.GetPage(pageId, OneNote.PageDetail.Basic);
+				var ns = page.Namespace;
+
+				page.Title = Path.GetFileNameWithoutExtension(filepath);
+
+				var container = page.EnsureContentContainer();
+
+				foreach (var line in lines)
+				{
+					// escape XML-significant characters so verbatim text such as "<tag>" or
+					// "A & B" is displayed literally rather than being interpreted as markup
+					// when OneNote parses the T element's CDATA content as HTML
+					var text = System.Web.HttpUtility.HtmlEncode(line.StripInvalidXmlChars());
+					container.Add(new Paragraph(ns, text));
+				}
+
+				await one.Update(page);
+				await one.NavigateTo(pageId);
 			}
 			catch (Exception exc)
 			{

@@ -261,7 +261,7 @@
 			this.introLabel.Name = "introLabel";
 			this.introLabel.Size = new System.Drawing.Size(433, 20);
 			this.introLabel.TabIndex = 9;
-			this.introLabel.Text = "Select a Word, PowerPoint, OneNote, Markdown, or XML file";
+			this.introLabel.Text = "Select a Word, PowerPoint, OneNote, Markdown, Text, or XML file";
 			// 
 			// notInstalledLabel
 			// 

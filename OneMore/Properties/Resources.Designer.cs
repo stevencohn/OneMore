@@ -1967,7 +1967,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("DiagramCommand_broken", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Diagram rendering was cancelled or timed out.
         /// </summary>
@@ -1976,7 +1976,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("DiagramCommand_Cancelled", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Empty selection. Select a valid block of diagram text..
         /// </summary>
@@ -4362,7 +4362,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select a Word, PowerPoint, OneNote, Markdown, or XML file.
+        ///   Looks up a localized string similar to Select a Word, PowerPoint, OneNote, Markdown, Text, or XML file.
         /// </summary>
         internal static string ImportDialog_introLabel_Text {
             get {
@@ -4380,7 +4380,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to All files (*.docx;*.pptx;*.pdf;*.md;*.one;*.xml)|*.docx;*.doc;*.pptx;*ppt;*.pdf;*.md;*.one;*.xml|Word files (*.docx)|*.docx|Powerpoint files (*.pptx)|*.pptx|PDF (*.pdf)|*.pdf|Markdown (*.md)|*.md|OneNote File (*.one)|*.one|OneMore Template files (*.xml)|*.xml.
+        ///   Looks up a localized string similar to All files (*.docx;*.pptx;*.pdf;*.md;*.one;*.txt;*.xml)|*.docx;*.doc;*.pptx;*ppt;*.pdf;*.md;*.one;*.txt;*.xml|Word files (*.docx)|*.docx|Powerpoint files (*.pptx)|*.pptx|PDF (*.pdf)|*.pdf|Markdown (*.md)|*.md|OneNote File (*.one)|*.one|Text files (*.txt)|*.txt|OneMore Template files (*.xml)|*.xml.
         /// </summary>
         internal static string ImportDialog_OpenFileFilter {
             get {
@@ -4900,7 +4900,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportWebCommand_BadUrl", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Cannot load web page.
         ///
@@ -4911,7 +4911,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportWebCommand_CannotLoad", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Unable to use this command; Edge WebView2 is not installed.
         /// </summary>
@@ -4920,7 +4920,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportWebCommand_EdgeNotInstalled", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Importing {0}....
         /// </summary>
@@ -4929,7 +4929,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportWebCommand_Importing", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Rasterizing image {0} of {1}.
         /// </summary>
@@ -4938,7 +4938,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportWebCommand_RasterizingImage", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Resolving images....
         /// </summary>
@@ -4947,7 +4947,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportWebCommand_ResolvingImages", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Updating page.
         /// </summary>
@@ -4956,7 +4956,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportWebCommand_UpdatingPage", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Address.
         /// </summary>
