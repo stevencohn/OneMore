@@ -22,14 +22,20 @@ namespace River.OneMoreAddIn.Commands
 	/// Word because Word counts things like URLs as a single word but OneMore separates the
 	/// individual words in the URL. For example, Word reports one word in
 	/// "https://github.com/OneMore" whereas OneMore counts it as four words.
+	/// Contractions and hyphenated compounds, e.g. "He's" or "one-two-three", are each counted
+	/// as a single word, matching Word's behavior.
 	/// </remarks>
 	internal class WordCountCommand : Command
 	{
 		private const string CJKPattern = @"\p{IsCJKUnifiedIdeographs}+";
+		private const string WordPattern = @"[\w]+(?:['’-][\w]+)*";
 
 		private const string HeaderShading = "#DEEBF6";
 		private const string Header2Shading = "#F2F2F2";
 		private const string HeaderCss = "font-family:'Segoe UI Light';font-size:10.0pt";
+
+		private static readonly Regex CJKRegex = new(CJKPattern);
+		private static readonly Regex WordRegex = new(WordPattern);
 
 		private OneNote one;
 		private XNamespace ns;
@@ -38,7 +44,6 @@ namespace River.OneMoreAddIn.Commands
 		private int grandTotalPages;
 		private int grandTotalParagraphs;
 		private int heading2Index;
-		private Regex regex;
 		private UI.ProgressDialog progress;
 
 
@@ -49,8 +54,6 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			regex = new Regex(CJKPattern);
-
 			await using (one = new OneNote())
 			{
 				scope = args.Length > 0 && args[0] is OneNote.Scope ascope
@@ -120,23 +123,7 @@ namespace River.OneMoreAddIn.Commands
 					var text = cdata.GetWrapper().Value.Trim();
 					if (text.Length > 0)
 					{
-						//logger.WriteLine($"counting '{text}'");
-
-						if (regex.IsMatch(text))
-						{
-							// count each CJK run via dictionary segmentation
-							foreach (Match m in regex.Matches(text))
-							{
-								count += ChineseTokenizer.SplitWords(m.Value).Count();
-							}
-							// count non-CJK content in the same run (Latin, numbers, etc.)
-							var nonCjk = regex.Replace(text, " ");
-							count += Regex.Matches(nonCjk, @"[\w]+").Count;
-						}
-						else
-						{
-							count += Regex.Matches(text, @"[\w]+").Count;
-						}
+						count += CountWords(text);
 					}
 				}
 			}
@@ -167,6 +154,36 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return (count, wholePage, paragraphs);
+		}
+
+
+		/// <summary>
+		/// Counts the words in a single run of text, treating internal apostrophes and hyphens
+		/// (e.g. "He's", "one-two-three") as part of a single word rather than as separators.
+		/// </summary>
+		internal static int CountWords(string text)
+		{
+			if (string.IsNullOrEmpty(text))
+			{
+				return 0;
+			}
+
+			if (CJKRegex.IsMatch(text))
+			{
+				var count = 0;
+
+				// count each CJK run via dictionary segmentation
+				foreach (Match m in CJKRegex.Matches(text))
+				{
+					count += ChineseTokenizer.SplitWords(m.Value).Count();
+				}
+
+				// count non-CJK content in the same run (Latin, numbers, etc.)
+				var nonCjk = CJKRegex.Replace(text, " ");
+				return count + WordRegex.Matches(nonCjk).Count;
+			}
+
+			return WordRegex.Matches(text).Count;
 		}
 
 
