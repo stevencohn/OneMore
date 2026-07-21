@@ -181,9 +181,12 @@ namespace River.OneMoreAddIn.Commands
 			// track running bottom as we add new outlines
 			var maxOffset = offset;
 
-			// find maximum z-offset
-			var z = page.Root.Elements(ns + "Outline").Elements(ns + "Position")
-				.Attributes("z").Max(a => int.Parse(a.Value)) + 1;
+			// find maximum z-offset; outlines that have never been manually
+			// repositioned have no Position element at all
+			var zAttributes = page.Root.Elements(ns + "Outline").Elements(ns + "Position")
+				.Attributes("z");
+
+			var z = (zAttributes.Any() ? zAttributes.Max(a => int.Parse(a.Value)) : 0) + 1;
 
 			// merge each of the subsequently selected pages into the active page
 
@@ -200,8 +203,10 @@ namespace River.OneMoreAddIn.Commands
 
 				var map = page.MergeQuickStyles(child);
 
-				var topOffset = outlines.Elements(ns + "Position")
-					.Min(p => double.Parse(p.Attribute("y").Value, CultureInfo.InvariantCulture));
+				var positions = outlines.Elements(ns + "Position");
+				var topOffset = positions.Any()
+					? positions.Min(p => double.Parse(p.Attribute("y").Value, CultureInfo.InvariantCulture))
+					: 0.0;
 
 				foreach (var outline in outlines)
 				{
