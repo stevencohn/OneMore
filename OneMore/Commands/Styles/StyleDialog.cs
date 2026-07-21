@@ -165,8 +165,21 @@ namespace River.OneMoreAddIn.Commands
 					"cancelButton=word_Cancel"
 				});
 
-				styleTypeBox.Items.Clear();
-				styleTypeBox.Items.AddRange(Resx.StyleDialog_styleTypeBox_Items.Split('\n'));
+				var localizedItems = Resx.StyleDialog_styleTypeBox_Items.Split('\n');
+				if (localizedItems.Length == styleTypeOrder.Length)
+				{
+					styleTypeBox.Items.Clear();
+					styleTypeBox.Items.AddRange(localizedItems);
+				}
+				else
+				{
+					// translation is out of sync with styleTypeOrder; fall back to the
+					// English designer items rather than crash on an out-of-range index
+					Logger.Current.WriteLine(
+						$"StyleDialog: styleTypeBox localization count mismatch for culture " +
+						$"{AddIn.Culture.Name} ({localizedItems.Length} vs {styleTypeOrder.Length} expected); " +
+						"using English fallback");
+				}
 			}
 
 			if (AddIn.Culture.NumberFormat.NumberDecimalSeparator != ".")
