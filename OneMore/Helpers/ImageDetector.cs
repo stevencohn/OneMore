@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn
 {
+	using System;
 	using System.IO;
 	using System.Text;
 
@@ -66,6 +67,14 @@ namespace River.OneMoreAddIn
 						return ImageSignature.JPG;
 					}
 				}
+
+				// SVG has no fixed binary magic number; it's XML text, optionally preceded
+				// by a BOM, an <?xml?> declaration, or a <!DOCTYPE> - so sniff for the <svg
+				// tag in the leading bytes instead
+				if (LooksLikeSvg(buffer, (int)stream.Length))
+				{
+					return ImageSignature.SVG;
+				}
 			}
 			catch
 			{
@@ -73,6 +82,34 @@ namespace River.OneMoreAddIn
 			}
 
 			return ImageSignature.Unknown;
+		}
+
+
+		private static bool LooksLikeSvg(byte[] buffer, int length)
+		{
+			var size = Math.Min(length, 1024);
+			if (size <= 0)
+			{
+				return false;
+			}
+
+			string text;
+			try
+			{
+				text = Encoding.UTF8.GetString(buffer, 0, size);
+			}
+			catch
+			{
+				return false;
+			}
+
+			const char Bom = (char)0xFEFF;
+			text = text.TrimStart(Bom, ' ', '\t', '\r', '\n');
+
+			return (text.StartsWith("<?xml", StringComparison.OrdinalIgnoreCase) ||
+					text.StartsWith("<!doctype svg", StringComparison.OrdinalIgnoreCase) ||
+					text.StartsWith("<svg", StringComparison.OrdinalIgnoreCase)) &&
+				text.IndexOf("<svg", StringComparison.OrdinalIgnoreCase) >= 0;
 		}
 	}
 }

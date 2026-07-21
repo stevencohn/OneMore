@@ -2141,6 +2141,32 @@ OneNoteファイル (*.one)</value>
     <value>Webページが見つからないか、空のコンテンツが返されました</value>
     <comment>error message</comment>
   </data>
+  <data name="ImportWebCommand_CannotLoad" xml:space="preserve">
+    <value>Web ページを読み込めません。
+
+{0}</value>
+    <comment>error message, {0} is the underlying error detail</comment>
+  </data>
+  <data name="ImportWebCommand_EdgeNotInstalled" xml:space="preserve">
+    <value>このコマンドは使用できません。 Edge WebView2がインストールされていません</value>
+    <comment>error message</comment>
+  </data>
+  <data name="ImportWebCommand_Importing" xml:space="preserve">
+    <value>{0} をインポートしています...</value>
+    <comment>progress message, {0} is the address being imported</comment>
+  </data>
+  <data name="ImportWebCommand_RasterizingImage" xml:space="preserve">
+    <value>{1} のイメージ {0} をラスタライズ中</value>
+    <comment>progress message</comment>
+  </data>
+  <data name="ImportWebCommand_ResolvingImages" xml:space="preserve">
+    <value>画像を解決中...</value>
+    <comment>progress message</comment>
+  </data>
+  <data name="ImportWebCommand_UpdatingPage" xml:space="preserve">
+    <value>ページを更新中</value>
+    <comment>progress message</comment>
+  </data>
   <data name="ImportWebDialog_addressLabel.Text" xml:space="preserve">
     <value>アドレス</value>
     <comment>label</comment>

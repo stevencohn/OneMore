@@ -11,6 +11,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Drawing;
 	using System.IO;
 	using System.Linq;
+	using System.Text;
 	using System.Text.RegularExpressions;
 	using System.Threading;
 	using System.Threading.Tasks;
@@ -76,7 +77,7 @@ namespace River.OneMoreAddIn.Commands
 				var key = Registry.LocalMachine.OpenSubKey($"{ClientKey}\\{RuntimeId}");
 				if (key == null)
 				{
-					ShowError("Unable to use this command; Edge WebView2 is not installed");
+					ShowError(Resx.ImportWebCommand_EdgeNotInstalled);
 					return;
 				}
 
@@ -131,7 +132,7 @@ namespace River.OneMoreAddIn.Commands
 			logger.StartClock();
 
 			progress.SetMaximum(4);
-			progress.SetMessage($"Importing {address}...");
+			progress.SetMessage(string.Format(Resx.ImportWebCommand_Importing, address));
 
 			var pdfFile = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
 
@@ -196,7 +197,7 @@ namespace River.OneMoreAddIn.Commands
 
 				for (int i = 0; i < doc.PageCount; i++)
 				{
-					progress.SetMessage($"Rasterizing image {i} of {doc.PageCount}");
+					progress.SetMessage(string.Format(Resx.ImportWebCommand_RasterizingImage, i, doc.PageCount));
 					progress.Increment();
 
 					//logger.WriteLine($"rasterizing page {i}");
@@ -223,7 +224,7 @@ namespace River.OneMoreAddIn.Commands
 					);
 				}
 
-				progress.SetMessage($"Updating page");
+				progress.SetMessage(Resx.ImportWebCommand_UpdatingPage);
 
 				await using (var one = new OneNote())
 				{
@@ -255,8 +256,13 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using (progress = new ProgressDialog(8))
 			{
-				progress.SetMessage($"Importing {address}...");
-				progress.ShowTimedDialog(ImportHtml);
+				progress.SetMessage(string.Format(Resx.ImportWebCommand_Importing, address));
+
+				// ShowDialogWithCancel (rather than ShowTimedDialog) keeps the dialog open for
+				// as long as ImportHtml is running instead of force-closing it once the timer
+				// reaches its maxSeconds tick count - pass 2 (patching images) can now take
+				// longer than a few seconds when a page has many distinct images to resolve
+				progress.ShowDialogWithCancel(ImportHtml);
 			}
 		}
 
@@ -362,6 +368,7 @@ namespace River.OneMoreAddIn.Commands
 
 				if (hasImages || hasAnchors)
 				{
+					progress.SetMessage(Resx.ImportWebCommand_ResolvingImages);
 					await PatchPage(page, one, hasImages, hasAnchors);
 				}
 			}
@@ -373,7 +380,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void Giveup(string msg)
 		{
-			ShowInfo($"Cannot load web page.\n\n{msg}");
+			ShowInfo(string.Format(Resx.ImportWebCommand_CannotLoad, msg));
 		}
 
 
@@ -550,7 +557,13 @@ namespace River.OneMoreAddIn.Commands
 				.Where(e => !string.IsNullOrEmpty(e.GetAttributeValue("src", string.Empty)))
 				.ToList();
 
-			if (images.Count == 0)
+			// inline <svg> markup (e.g. MathJax/KaTeX SVG output) has no src URL to download;
+			// OneNote strips raw <svg> elements just like <img>, so without this it silently
+			// disappears rather than becoming a broken link. Encode it as a data URI and route
+			// it through the same anchor trick so GetImagesCommand's second pass can rasterize it
+			var inlineSvgs = body.Descendants("svg").ToList();
+
+			if (images.Count == 0 && inlineSvgs.Count == 0)
 			{
 				replaced = false;
 				return doc;
@@ -573,6 +586,15 @@ namespace River.OneMoreAddIn.Commands
 					var anchor = Hap.HtmlNode.CreateNode($"<a href=\"{src}\">{src}</a>");
 					image.ParentNode.ReplaceChild(anchor, image);
 				}
+			}
+
+			foreach (var svg in inlineSvgs)
+			{
+				var bytes = Encoding.UTF8.GetBytes(svg.OuterHtml);
+				var dataUri = $"data:image/svg+xml;base64,{Convert.ToBase64String(bytes)}";
+
+				var anchor = Hap.HtmlNode.CreateNode($"<a href=\"{dataUri}\">{dataUri}</a>");
+				svg.ParentNode.ReplaceChild(anchor, svg);
 			}
 
 			replaced = true;
@@ -681,8 +703,10 @@ namespace River.OneMoreAddIn.Commands
 				// transform anchors to downloaded images...
 				logger.WriteLine("patching images");
 
+				// matches anchors created by ReplaceImagesWithAnchors: either the onemore-marked
+				// host trick used for <img src> references, or a data URI used for inline <svg>
 				var regex = new Regex(
-					@"<a\s+href=""[^:]+://(onemore\.)[^:]+://(onemore\.)",
+					@"<a\s+href=""(?:[^:]+://(onemore\.)[^:]+://(onemore\.)|data:image/svg\+xml;base64,)",
 					RegexOptions.Compiled);
 
 				// download and embed images

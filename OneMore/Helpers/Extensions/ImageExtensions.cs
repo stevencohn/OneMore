@@ -18,6 +18,7 @@ namespace River.OneMoreAddIn
 		GIF,
 		JPG,
 		PNG,
+		SVG,
 		TIFF
 	}
 
