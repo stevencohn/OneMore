@@ -1974,13 +1974,25 @@ Fundo Amarelo</value>
     <value>Empresa/Título</value>
     <comment>report column heading</comment>
   </data>
+  <data name="ImportOutlookContactsCommand_creatingPages" xml:space="preserve">
+    <value>Criando páginas de contato...</value>
+    <comment>progress dialog message</comment>
+  </data>
   <data name="ImportOutlookContactsCommand_email" xml:space="preserve">
     <value>E-mail</value>
     <comment>report column heading</comment>
   </data>
+  <data name="ImportOutlookContactsCommand_finalizing" xml:space="preserve">
+    <value>Finalizando...</value>
+    <comment>progress dialog message</comment>
+  </data>
   <data name="ImportOutlookContactsCommand_firstName" xml:space="preserve">
     <value>Primeiro nome</value>
     <comment>report column heading</comment>
+  </data>
+  <data name="ImportOutlookContactsCommand_importing" xml:space="preserve">
+    <value>Importando {0}...</value>
+    <comment>progress dialog message</comment>
   </data>
   <data name="ImportOutlookContactsCommand_lastName" xml:space="preserve">
     <value>Sobrenome</value>

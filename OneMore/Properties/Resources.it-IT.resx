@@ -1974,13 +1974,25 @@ Sfondo giallo</value>
     <value>Azienda/Titolo</value>
     <comment>report column heading</comment>
   </data>
+  <data name="ImportOutlookContactsCommand_creatingPages" xml:space="preserve">
+    <value>Creazione pagine di contatto...</value>
+    <comment>progress dialog message</comment>
+  </data>
   <data name="ImportOutlookContactsCommand_email" xml:space="preserve">
     <value>E-mail</value>
     <comment>report column heading</comment>
   </data>
+  <data name="ImportOutlookContactsCommand_finalizing" xml:space="preserve">
+    <value>Finalizzazione...</value>
+    <comment>progress dialog message</comment>
+  </data>
   <data name="ImportOutlookContactsCommand_firstName" xml:space="preserve">
     <value>Nome di battesimo</value>
     <comment>report column heading</comment>
+  </data>
+  <data name="ImportOutlookContactsCommand_importing" xml:space="preserve">
+    <value>Importazione di {0}...</value>
+    <comment>progress dialog message</comment>
   </data>
   <data name="ImportOutlookContactsCommand_lastName" xml:space="preserve">
     <value>Cognome</value>
