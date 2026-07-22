@@ -4,6 +4,12 @@
   <!-- Colorizer language definitions (json + png) installed to INSTALLDIR\Colorizer\Languages\ -->
   <Fragment>
     <ComponentGroup Id="ColorizerLanguages" Directory="COLORIZERLANGDIR">
+      <Component Id="LangArduinoJson">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\arduino.json" KeyPath="yes" />
+      </Component>
+      <Component Id="LangArduinoPng">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\arduino.png" KeyPath="yes" />
+      </Component>
       <Component Id="LangBashJson">
         <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\bash.json" KeyPath="yes" />
       </Component>
@@ -135,6 +141,12 @@
       </Component>
       <Component Id="LangVerilogPng">
         <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\verilog.png" KeyPath="yes" />
+      </Component>
+      <Component Id="LangVhdlJson">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\vhdl.json" KeyPath="yes" />
+      </Component>
+      <Component Id="LangVhdlPng">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\vhdl.png" KeyPath="yes" />
       </Component>
       <Component Id="LangWolframJson">
         <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\wolfram.json" KeyPath="yes" />
