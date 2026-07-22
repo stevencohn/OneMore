@@ -157,7 +157,7 @@ namespace River.OneMoreAddIn.Settings
 			this.langView.Size = new System.Drawing.Size(759, 183);
 			this.langView.TabIndex = 5;
 			this.langView.UseCompatibleStateImageBehavior = false;
-			this.langView.View = System.Windows.Forms.View.SmallIcon;
+			this.langView.View = System.Windows.Forms.View.List;
 			// 
 			// enabledLabel
 			// 

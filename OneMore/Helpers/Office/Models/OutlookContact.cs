@@ -247,8 +247,28 @@ namespace River.OneMoreAddIn.Helpers.Office
 									"ContactPicture.jpg", StringComparison.OrdinalIgnoreCase))
 								{
 									var path = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-									att.SaveAsFile(path);
-									return Image.FromFile(path);
+									try
+									{
+										att.SaveAsFile(path);
+										using var stream = new MemoryStream(File.ReadAllBytes(path));
+										using var loaded = Image.FromStream(stream);
+										return new Bitmap(loaded);
+									}
+									catch (System.Exception exc) 
+									when (exc is ArgumentException or OutOfMemoryException)
+									{
+										// picture attachment data from Outlook is occasionally
+										// corrupt/truncated; treat as if there's no picture rather
+										// than aborting the whole import
+										Logger.Current.WriteLine(
+											$"error reading contact picture for {contact.FullName}, {contact.EntryID}", exc);
+
+										return null;
+									}
+									finally
+									{
+										File.Delete(path);
+									}
 								}
 							}
 							finally

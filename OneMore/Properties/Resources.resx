@@ -1982,13 +1982,25 @@ Yellow Background</value>
     <value>Company/Title</value>
     <comment>report column heading</comment>
   </data>
+  <data name="ImportOutlookContactsCommand_creatingPages" xml:space="preserve">
+    <value>Creating contact pages...</value>
+    <comment>progress dialog message</comment>
+  </data>
   <data name="ImportOutlookContactsCommand_email" xml:space="preserve">
     <value>Email</value>
     <comment>report column heading</comment>
   </data>
+  <data name="ImportOutlookContactsCommand_finalizing" xml:space="preserve">
+    <value>Finalizing...</value>
+    <comment>progress dialog message</comment>
+  </data>
   <data name="ImportOutlookContactsCommand_firstName" xml:space="preserve">
     <value>First Name</value>
     <comment>report column heading</comment>
+  </data>
+  <data name="ImportOutlookContactsCommand_importing" xml:space="preserve">
+    <value>Importing {0}...</value>
+    <comment>progress dialog message</comment>
   </data>
   <data name="ImportOutlookContactsCommand_lastName" xml:space="preserve">
     <value>Last Name</value>

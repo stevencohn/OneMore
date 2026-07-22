@@ -4531,7 +4531,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportOutlookContactsCommand_companyTitle", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Creating contact pages....
+        /// </summary>
+        internal static string ImportOutlookContactsCommand_creatingPages {
+            get {
+                return ResourceManager.GetString("ImportOutlookContactsCommand_creatingPages", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Email.
         /// </summary>
@@ -4540,7 +4549,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportOutlookContactsCommand_email", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Finalizing....
+        /// </summary>
+        internal static string ImportOutlookContactsCommand_finalizing {
+            get {
+                return ResourceManager.GetString("ImportOutlookContactsCommand_finalizing", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to First Name.
         /// </summary>
@@ -4549,7 +4567,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportOutlookContactsCommand_firstName", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Importing {0}....
+        /// </summary>
+        internal static string ImportOutlookContactsCommand_importing {
+            get {
+                return ResourceManager.GetString("ImportOutlookContactsCommand_importing", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Last Name.
         /// </summary>

@@ -109,30 +109,67 @@ namespace River.OneMoreAddIn.Commands
 			// so reverse-inserting yields ascending sortBy order
 			ordered.Reverse();
 
-			await using var one = new OneNote();
-
-			var listPage = await one.CreateChildPage(null, Resx.ImportOutlookContactsCommand_pageTitle);
-
-			var titles = ordered.Select(ImportOutlookContactsDialog.GetContactDisplayName).ToList();
-			var children = await one.CreateChildPages(listPage, titles);
-
-			var indexUri = await one.GetHyperlinkWithRetry(listPage.PageId, string.Empty);
-
-			for (var i = 0; i < ordered.Count; i++)
+			// importing can take a minute or two for a large number of contacts, so run it
+			// through a cancelable progress dialog rather than blocking the UI silently
+			var importProgress = new UI.ProgressDialog(async (self, token) =>
 			{
-				var contact = ordered[i];
-				var child = children[i];
+				try
+				{
+					await using var one = new OneNote();
 
-				new ContactGenerator().GenerateReport(child, contact, template, categories, indexUri);
-				await one.Update(child);
+					self.SetMaximum(ordered.Count + 3);
 
-				contact.PageUri = await one.GetHyperlinkWithRetry(child.PageId, string.Empty);
-			}
+					self.SetMessage(Resx.ImportOutlookContactsCommand_creatingPages);
+					var listPage = await one.CreateChildPage(null, Resx.ImportOutlookContactsCommand_pageTitle);
+					self.Increment();
 
-			new ContactListGenerator().GenerateReport(listPage, selected, template, sortBy);
-			await one.Update(listPage);
+					var titles = ordered.Select(ImportOutlookContactsDialog.GetContactDisplayName).ToList();
+					var children = await one.CreateChildPages(listPage, titles);
+					self.Increment();
 
-			await one.NavigateTo(listPage.PageId);
+					var indexUri = await one.GetHyperlinkWithRetry(listPage.PageId, string.Empty);
+
+					for (var i = 0; i < ordered.Count; i++)
+					{
+						if (token.IsCancellationRequested)
+						{
+							return;
+						}
+
+						var contact = ordered[i];
+						var child = children[i];
+
+						self.SetMessage(string.Format(
+							Resx.ImportOutlookContactsCommand_importing,
+							ImportOutlookContactsDialog.GetContactDisplayName(contact)));
+
+						new ContactGenerator().GenerateReport(child, contact, template, categories, indexUri);
+						await one.Update(child);
+
+						contact.PageUri = await one.GetHyperlinkWithRetry(child.PageId, string.Empty);
+
+						self.Increment();
+					}
+
+					if (token.IsCancellationRequested)
+					{
+						return;
+					}
+
+					self.SetMessage(Resx.ImportOutlookContactsCommand_finalizing);
+					new ContactListGenerator().GenerateReport(listPage, selected, template, sortBy);
+					await one.Update(listPage);
+					self.Increment();
+
+					await one.NavigateTo(listPage.PageId);
+				}
+				finally
+				{
+					self.Close();
+				}
+			});
+
+			importProgress.RunModeless();
 		}
 
 
