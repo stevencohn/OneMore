@@ -1977,13 +1977,25 @@
     <value>الشركة/العنوان</value>
     <comment>report column heading</comment>
   </data>
+  <data name="ImportOutlookContactsCommand_creatingPages" xml:space="preserve">
+    <value>إنشاء صفحات اتصال...</value>
+    <comment>progress dialog message</comment>
+  </data>
   <data name="ImportOutlookContactsCommand_email" xml:space="preserve">
     <value>بريد إلكتروني</value>
     <comment>report column heading</comment>
   </data>
+  <data name="ImportOutlookContactsCommand_finalizing" xml:space="preserve">
+    <value>جارٍ الانتهاء...</value>
+    <comment>progress dialog message</comment>
+  </data>
   <data name="ImportOutlookContactsCommand_firstName" xml:space="preserve">
     <value>الاسم الأول</value>
     <comment>report column heading</comment>
+  </data>
+  <data name="ImportOutlookContactsCommand_importing" xml:space="preserve">
+    <value>جارٍ استيراد {0}...</value>
+    <comment>progress dialog message</comment>
   </data>
   <data name="ImportOutlookContactsCommand_lastName" xml:space="preserve">
     <value>اسم العائلة</value>

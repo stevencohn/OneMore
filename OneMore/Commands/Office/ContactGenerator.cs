@@ -602,7 +602,7 @@ namespace River.OneMoreAddIn.Commands
 					g.SmoothingMode = SmoothingMode.AntiAlias;
 
 					// centered circular mask
-					var circle = new GraphicsPath();
+					using var circle = new GraphicsPath();
 					circle.AddEllipse(0, 0, diameter, diameter);
 
 					// clip to circle
