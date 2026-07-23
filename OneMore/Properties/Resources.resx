@@ -5140,6 +5140,14 @@ Help Tab</value>
     <value>Search and Tag</value>
     <comment>ribbon menu</comment>
   </data>
+  <data name="ribSearchTitleButton_Label" xml:space="preserve">
+    <value>Search Titles</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribSearchTitleButton_Screentip" xml:space="preserve">
+    <value>Search page titles across a notebook and optionally index the results</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribSectionColorButton_Label" xml:space="preserve">
     <value>Customize Section Color</value>
     <comment>section Context menu</comment>
@@ -5746,6 +5754,34 @@ Search engines will appear in the page context menu, right-click.</value>
   <data name="SearchQF_Title" xml:space="preserve">
     <value>Select Location</value>
     <comment>QuickFiling title</comment>
+  </data>
+  <data name="SearchTitleCommand_indexTitle" xml:space="preserve">
+    <value>Title Search Results</value>
+    <comment>page title</comment>
+  </data>
+  <data name="SearchTitleDialog_clearAllLink.Text" xml:space="preserve">
+    <value>Clear selection</value>
+    <comment>link</comment>
+  </data>
+  <data name="SearchTitleDialog_introLabel.Text" xml:space="preserve">
+    <value>Enter a page title query. Prefix with "&gt;" to sort by most recently modified; use "nb:\name" to scope to a notebook ("nb:\*" for all), and "#tag" to filter by hashtag.</value>
+    <comment>label</comment>
+  </data>
+  <data name="SearchTitleDialog_noHashtagCatalog" xml:space="preserve">
+    <value>Hashtag search requires the hashtag catalog. Run a hashtag scan first.</value>
+    <comment>message</comment>
+  </data>
+  <data name="SearchTitleDialog_noResults" xml:space="preserve">
+    <value>No results found</value>
+    <comment>message</comment>
+  </data>
+  <data name="SearchTitleDialog_selectAllLink.Text" xml:space="preserve">
+    <value>Select all</value>
+    <comment>link</comment>
+  </data>
+  <data name="SearchTitleDialog_Text" xml:space="preserve">
+    <value>Search Page Titles</value>
+    <comment>dialog title</comment>
   </data>
   <data name="SectionColor_Title" xml:space="preserve">
     <value>Section Color</value>

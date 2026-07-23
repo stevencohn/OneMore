@@ -901,6 +901,12 @@
           getScreentip="GetRibbonScreentip"
           onAction="SearchHashtagsCmd"/>
         <button
+          id="ribSearchTitleButton"
+          imageMso="ControlTitle"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="SearchTitleCmd"/>
+        <button
           id="ribHashtaggerButton"
           image="Label"
           getLabel="GetRibbonLabel"

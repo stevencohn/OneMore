@@ -964,6 +964,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<SearchCommand>();
 
 
+		[Command("ribSearchTitleButton_Label", Keys.Alt | Keys.Oemplus, "ribSearchMenu")]
+		public async Task SearchTitleCmd(IRibbonControl control)
+			=> await factory.Run<SearchTitleCommand>();
+
+
 		// added to page context menu via Search Engine settings
 		public async Task SearchWebCmd(IRibbonControl control)
 			=> await factory.Run<SearchWebCommand>(control.Tag); // tag=engine

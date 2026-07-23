@@ -68,10 +68,17 @@ namespace River.OneMoreAddIn.Commands
 			if (commandIsActive) { return; }
 			commandIsActive = true;
 
-			try
+			// Cleanup runs from the RunModeless close callback rather than a finally block
+			// here, because RunModeless only blocks until the dialog closes when the calling
+			// thread has no message loop yet (e.g. a plain ribbon click, dispatched through
+			// CommandFactory's Task.Run wrapper). When invoked with a message loop already
+			// running on this thread (e.g. Replay, which calls Execute directly), RunModeless
+			// just Show()s the dialog and returns immediately — disposing it right here would
+			// close it before the user ever sees it.
+			dialog = new SearchDialog();
+			dialog.RunModeless(async (sender, e) =>
 			{
-				dialog = new SearchDialog();
-				dialog.RunModeless(async (sender, e) =>
+				try
 				{
 					if (sender is SearchDialog d && d.DialogResult == DialogResult.OK)
 					{
@@ -97,19 +104,24 @@ namespace River.OneMoreAddIn.Commands
 						await using var one = new OneNote();
 						one.SelectLocation(Resx.SearchQF_Title, desc, OneNote.Scope.Sections, Callback);
 					}
-				},
-				20);
+				}
+				finally
+				{
+					commandIsActive = false;
+					dialog?.Dispose();
+					dialog = null;
+				}
+			},
+			20);
 
-				dialog.Elevate(true);
-
-				await Task.Yield();
-			}
-			finally
+			// only reached immediately (dialog still open) when RunModeless didn't block;
+			// when it did block, the callback above already ran and cleared dialog
+			if (dialog != null)
 			{
-				commandIsActive = false;
-				dialog.Dispose();
-				dialog = null;
+				dialog.Elevate(true);
 			}
+
+			await Task.Yield();
 		}
 
 

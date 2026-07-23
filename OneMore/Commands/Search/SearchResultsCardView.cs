@@ -52,6 +52,7 @@ namespace River.OneMoreAddIn.Commands
 
 		// themed resources
 		private SolidBrush cardBackBrush;
+		private SolidBrush headerBackBrush;
 		private Pen borderPen;
 		private SolidBrush selectionBackBrush;
 		private Color titleFore;
@@ -81,6 +82,13 @@ namespace River.OneMoreAddIn.Commands
 
 
 		public bool HasHits => cards.Any(c => c.Hits.Count > 0);
+
+
+		/// <summary>
+		/// True if any card has been appended, regardless of whether it has hits. Useful for
+		/// title-only results (a card per page, no snippet hits) where HasHits is always false.
+		/// </summary>
+		public bool HasCards => cards.Count > 0;
 
 
 		public int CheckedCount => cards.Count(c => c.IsChecked && c.PageId != null);
@@ -139,6 +147,7 @@ namespace River.OneMoreAddIn.Commands
 			selectionFore    = manager.GetColor("HighlightText");
 			hoverFore        = manager.GetColor("HoverColor");
 			BackColor         = manager.GetColor("AppWorkspace");
+			headerBackBrush   = new SolidBrush(BackColor);
 			checkboxPen       = new Pen(manager.GetColor("Highlight"));
 			checkboxFillBrush = new SolidBrush(manager.GetColor("Highlight"));
 
@@ -154,6 +163,7 @@ namespace River.OneMoreAddIn.Commands
 		private void DisposeThemed()
 		{
 			cardBackBrush?.Dispose();    cardBackBrush = null;
+			headerBackBrush?.Dispose();  headerBackBrush = null;
 			borderPen?.Dispose();        borderPen = null;
 			selectionBackBrush?.Dispose();  selectionBackBrush = null;
 			checkboxPen?.Dispose();         checkboxPen = null;
@@ -285,8 +295,9 @@ namespace River.OneMoreAddIn.Commands
 			var screenTop = card.Y - scrollY;  // virtual → screen coordinate
 			var cardRect  = new Rectangle(cx, screenTop, cw, card.Height);
 
-			// Card body
-			g.FillRoundedRectangle(cardBackBrush, cardRect, CornerRadius);
+			// Card body — header rows blend into the surrounding background instead of
+			// looking like a navigable page card
+			g.FillRoundedRectangle(card.IsHeader ? headerBackBrush : cardBackBrush, cardRect, CornerRadius);
 
 			// Section-color swatch — inset from corners to stay within the rounded region
 			if (card.SectionColor != Color.Empty)

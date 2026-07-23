@@ -15,6 +15,7 @@ namespace River.OneMoreAddIn.Commands
 		public Color SectionColor { get; set; }
 		public List<CardHit> Hits { get; } = new List<CardHit>();
 		public bool IsChecked { get; set; }
+		public bool IsHeader { get; set; }       // true for a non-navigable group header row
 
 		// layout cache — computed by SearchResultsCardView.EnsureLayout
 		internal int Y;
