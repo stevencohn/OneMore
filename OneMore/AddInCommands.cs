@@ -612,9 +612,9 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<LoadStylesCommand>();
 
 
-		[Command("ribLogModifiedButton_Label", Keys.None)]
-		public async Task LogModifiedCmd(IRibbonControl control)
-			=> await factory.Run<LogModifiedCommand>();
+		[Command("ribIndexModifiedButton_Label", Keys.None)]
+		public async Task IndexModifiedCmd(IRibbonControl control)
+			=> await factory.Run<IndexModifiedCommand>();
 
 
 		[Command("ribManageFavoritesButton_Label", Keys.Control | Keys.Alt | Keys.Shift | Keys.F, "ribFavoritesMenu")]

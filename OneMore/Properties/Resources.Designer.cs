@@ -5039,6 +5039,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Open a section to report modified pages.
+        /// </summary>
+        internal static string IndexModifiedCommand_NoSection {
+            get {
+                return ResourceManager.GetString("IndexModifiedCommand_NoSection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} Modified Pages.
+        /// </summary>
+        internal static string IndexModifiedCommand_Title {
+            get {
+                return ResourceManager.GetString("IndexModifiedCommand_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {
         ///  &quot;info&quot;: {
         ///    &quot;shading&quot;: &quot;#DEEBF6&quot;,
@@ -5663,24 +5681,6 @@ namespace River.OneMoreAddIn.Properties {
             }
         }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Open a section to log modified pages.
-        /// </summary>
-        internal static string LogModifiedCommand_NoSection {
-            get {
-                return ResourceManager.GetString("LogModifiedCommand_NoSection", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to {0} Modified Pages.
-        /// </summary>
-        internal static string LogModifiedCommand_Title {
-            get {
-                return ResourceManager.GetString("LogModifiedCommand_Title", resourceCulture);
-            }
-        }
-
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
@@ -10250,6 +10250,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Index Modified.
+        /// </summary>
+        internal static string ribIndexModifiedButton_Label {
+            get {
+                return ResourceManager.GetString("ribIndexModifiedButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Blue Status.
         /// </summary>
         internal static string ribInsertBlueStatusButton_Label {
@@ -10761,15 +10770,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribLoadStylesButton_Screentip {
             get {
                 return ResourceManager.GetString("ribLoadStylesButton_Screentip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Log Modified.
-        /// </summary>
-        internal static string ribLogModifiedButton_Label {
-            get {
-                return ResourceManager.GetString("ribLogModifiedButton_Label", resourceCulture);
             }
         }
         
