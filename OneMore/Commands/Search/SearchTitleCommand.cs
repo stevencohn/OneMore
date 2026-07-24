@@ -41,11 +41,10 @@ namespace River.OneMoreAddIn.Commands
 		public CliParameterDefinition DefineParameters() =>
 			new CliParameterDefinition()
 			.AddString("query",
-				"Search terms; supports \">\" (sort by modified), \"nb:\\name\" " +
-				"(\"nb:\\*\" for all notebooks), and \"#hashtag\" filters",
+				"Search terms; supports \">\" (sort by modified) and \"#hashtag\" filters",
 				required: true)
 			.AddString("notebook",
-				"Name of the notebook to search; overrides any nb:\\ in the query, " +
+				"Name of the notebook to search; * for all notebooks, " +
 				"omit to search the current notebook",
 				required: false);
 
