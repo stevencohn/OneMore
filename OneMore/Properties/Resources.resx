@@ -2208,6 +2208,14 @@ Yellow Background</value>
     <value>Import Web Page</value>
     <comment>dialog title</comment>
   </data>
+  <data name="IndexModifiedCommand_NoSection" xml:space="preserve">
+    <value>Open a section to report modified pages</value>
+    <comment>message box</comment>
+  </data>
+  <data name="IndexModifiedCommand_Title" xml:space="preserve">
+    <value>{0} Modified Pages</value>
+    <comment>page title</comment>
+  </data>
   <data name="InsertBoxCommand_Code" xml:space="preserve">
     <value>Your code here...</value>
     <comment>text</comment>
@@ -2454,14 +2462,6 @@ Do you want to refresh the existing page?</value>
   <data name="LoadStyleTheme_Title" xml:space="preserve">
     <value>Load Styles</value>
     <comment>OpenFileDialog title</comment>
-  </data>
-  <data name="LogModifiedCommand_NoSection" xml:space="preserve">
-    <value>Open a section to log modified pages</value>
-    <comment>message box</comment>
-  </data>
-  <data name="LogModifiedCommand_Title" xml:space="preserve">
-    <value>{0} Modified Pages</value>
-    <comment>page title</comment>
   </data>
   <data name="ManageFavorites_DeleteMessage" xml:space="preserve">
     <value>Delete {0}?</value>
@@ -4321,6 +4321,10 @@ Help Tab</value>
     <value>Increase page font size</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribIndexModifiedButton_Label" xml:space="preserve">
+    <value>Index Modified</value>
+    <comment>command !EDIT</comment>
+  </data>
   <data name="ribInsertBlueStatusButton_Label" xml:space="preserve">
     <value>Blue Status</value>
     <comment>ribbon snippets</comment>
@@ -4544,10 +4548,6 @@ Help Tab</value>
   <data name="ribLoadStylesButton_Screentip" xml:space="preserve">
     <value>Load My Styles from a definition file</value>
     <comment>ribbon styles</comment>
-  </data>
-  <data name="ribLogModifiedButton_Label" xml:space="preserve">
-    <value>Log Modified</value>
-    <comment>command</comment>
   </data>
   <data name="ribLowercaseButton_Label" xml:space="preserve">
     <value>To lowercase</value>

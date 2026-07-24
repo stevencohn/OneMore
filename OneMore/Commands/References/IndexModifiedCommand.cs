@@ -19,9 +19,9 @@ namespace River.OneMoreAddIn.Commands
 	/// Finds all pages modified on a given date across all loaded notebooks and creates a new
 	/// page, in the specified notebook/section, listing hyperlinks to each of them.
 	/// </summary>
-	internal class LogModifiedCommand : Command, ICliCommand
+	internal class IndexModifiedCommand : Command, ICliCommand
 	{
-		public LogModifiedCommand()
+		public IndexModifiedCommand()
 		{
 			// prevent replay
 			IsCancelled = true;
@@ -30,7 +30,7 @@ namespace River.OneMoreAddIn.Commands
 
 		#region CLI Implementation
 
-		public string CommandName => "LogModified";
+		public string CommandName => "IndexModified";
 
 
 		public string Description =>
@@ -85,7 +85,7 @@ namespace River.OneMoreAddIn.Commands
 
 				if (string.IsNullOrEmpty(sectionId))
 				{
-					ShowError(Resx.LogModifiedCommand_NoSection);
+					ShowError(Resx.IndexModifiedCommand_NoSection);
 					return;
 				}
 			}
@@ -122,7 +122,7 @@ namespace River.OneMoreAddIn.Commands
 				.Where(p => p.id != null)
 				.ToList();
 
-			var title = string.Format(Resx.LogModifiedCommand_Title, $"{target:yyyy-MM-dd}");
+			var title = string.Format(Resx.IndexModifiedCommand_Title, $"{target:yyyy-MM-dd}");
 
 			if (matches.Count == 0)
 			{
