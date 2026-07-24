@@ -4531,7 +4531,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportOutlookContactsCommand_companyTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Creating contact pages....
         /// </summary>
@@ -4540,7 +4540,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportOutlookContactsCommand_creatingPages", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Email.
         /// </summary>
@@ -4549,7 +4549,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportOutlookContactsCommand_email", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Finalizing....
         /// </summary>
@@ -4558,7 +4558,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportOutlookContactsCommand_finalizing", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to First Name.
         /// </summary>
@@ -4567,7 +4567,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportOutlookContactsCommand_firstName", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Importing {0}....
         /// </summary>
@@ -4576,7 +4576,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportOutlookContactsCommand_importing", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Last Name.
         /// </summary>
@@ -12124,7 +12124,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribSearchMenu_Label", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Search Titles.
         /// </summary>
@@ -12133,7 +12133,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribSearchTitleButton_Label", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Search page titles across a notebook and optionally index the results.
         /// </summary>
@@ -12142,7 +12142,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribSearchTitleButton_Screentip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Customize Section Color.
         /// </summary>
@@ -13462,7 +13462,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("SearchQF_Title", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Title Search Results.
         /// </summary>
@@ -13471,7 +13471,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("SearchTitleCommand_indexTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Clear selection.
         /// </summary>
@@ -13480,16 +13480,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("SearchTitleDialog_clearAllLink.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
-        ///   Looks up a localized string similar to Enter a page title query..
+        ///   Looks up a localized string similar to Enter a page title query. Prefix with &quot;&gt;&quot; to sort by most recently modified; use &quot;\name&quot; to scope to a notebook (&quot;\*&quot; for all), and &quot;#tag&quot; to filter by hashtag..
         /// </summary>
         internal static string SearchTitleDialog_introLabel_Text {
             get {
                 return ResourceManager.GetString("SearchTitleDialog_introLabel.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Hashtag search requires the hashtag catalog. Run a hashtag scan first..
         /// </summary>
@@ -13498,7 +13498,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("SearchTitleDialog_noHashtagCatalog", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to No results found.
         /// </summary>
@@ -13507,7 +13507,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("SearchTitleDialog_noResults", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Select all.
         /// </summary>
@@ -13516,7 +13516,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("SearchTitleDialog_selectAllLink.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Search Page Titles.
         /// </summary>
@@ -13525,7 +13525,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("SearchTitleDialog_Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Section Color.
         /// </summary>

@@ -5098,6 +5098,14 @@ Guia Ajuda</value>
     <value>Pesquise e tag</value>
     <comment>ribbon menu item</comment>
   </data>
+  <data name="ribSearchTitleButton_Label" xml:space="preserve">
+    <value>Pesquisar títulos</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribSearchTitleButton_Screentip" xml:space="preserve">
+    <value>Pesquise títulos de páginas em um bloco de notas e, opcionalmente, indexe os resultados</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribSectionColorButton_Label" xml:space="preserve">
     <value>Personalizar a cor da seção</value>
     <comment>Context menu</comment>
@@ -5687,6 +5695,34 @@ Os mecanismos de pesquisa aparecerão no menu de contexto da página, clique com
   <data name="SearchQF_Title" xml:space="preserve">
     <value>Selecione a localização</value>
     <comment>QuickFiling title</comment>
+  </data>
+  <data name="SearchTitleCommand_indexTitle" xml:space="preserve">
+    <value>Resultados da pesquisa de título</value>
+    <comment>page title</comment>
+  </data>
+  <data name="SearchTitleDialog_clearAllLink.Text" xml:space="preserve">
+    <value>Limpar seleção</value>
+    <comment>link</comment>
+  </data>
+  <data name="SearchTitleDialog_introLabel.Text" xml:space="preserve">
+    <value>Insira uma consulta de título de página. Prefixe com "&gt;" para classificar pelos modificados mais recentemente; use "\name" para definir o escopo de um notebook ("\*" para todos) e "#tag" para filtrar por hashtag.</value>
+    <comment>label !EDIT</comment>
+  </data>
+  <data name="SearchTitleDialog_noHashtagCatalog" xml:space="preserve">
+    <value>A pesquisa de hashtag requer o catálogo de hashtag. Execute uma verificação de hashtag primeiro.</value>
+    <comment>message</comment>
+  </data>
+  <data name="SearchTitleDialog_noResults" xml:space="preserve">
+    <value>Nenhum resultado encontrado</value>
+    <comment>message</comment>
+  </data>
+  <data name="SearchTitleDialog_selectAllLink.Text" xml:space="preserve">
+    <value>Selecionar tudo</value>
+    <comment>link</comment>
+  </data>
+  <data name="SearchTitleDialog_Text" xml:space="preserve">
+    <value>Pesquisar títulos de páginas</value>
+    <comment>dialog title</comment>
   </data>
   <data name="SectionColor_Title" xml:space="preserve">
     <value>Cor da Seção</value>

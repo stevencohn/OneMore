@@ -5098,6 +5098,14 @@ Registerkarte „Hilfe“.</value>
     <value>Suche und Tag</value>
     <comment>ribbon menu item</comment>
   </data>
+  <data name="ribSearchTitleButton_Label" xml:space="preserve">
+    <value>Titel suchen</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribSearchTitleButton_Screentip" xml:space="preserve">
+    <value>Durchsuchen Sie Seitentitel in einem Notizbuch und indizieren Sie optional die Ergebnisse</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribSectionColorButton_Label" xml:space="preserve">
     <value>Abschnittsfarbe anpassen</value>
     <comment>Context menu</comment>
@@ -5688,6 +5696,34 @@ Suchmaschinen werden im Seit-Kontextmenü mit der rechten Maustaste angezeigt.</
   <data name="SearchQF_Title" xml:space="preserve">
     <value>Ort auswählen</value>
     <comment>QuickFiling title</comment>
+  </data>
+  <data name="SearchTitleCommand_indexTitle" xml:space="preserve">
+    <value>Ergebnisse der Titelsuche</value>
+    <comment>page title</comment>
+  </data>
+  <data name="SearchTitleDialog_clearAllLink.Text" xml:space="preserve">
+    <value>Klare Auswahl</value>
+    <comment>link</comment>
+  </data>
+  <data name="SearchTitleDialog_introLabel.Text" xml:space="preserve">
+    <value>Geben Sie eine Seitentitelabfrage ein. Stellen Sie „&gt;“ als Präfix voran, um nach der zuletzt geänderten Datei zu sortieren. Verwenden Sie „\name“, um den Bereich auf ein Notizbuch zu beschränken („\*“ für alle), und „#tag“, um nach Hashtag zu filtern.</value>
+    <comment>label !EDIT</comment>
+  </data>
+  <data name="SearchTitleDialog_noHashtagCatalog" xml:space="preserve">
+    <value>Für die Hashtag-Suche ist der Hashtag-Katalog erforderlich. Führen Sie zunächst einen Hashtag-Scan durch.</value>
+    <comment>message</comment>
+  </data>
+  <data name="SearchTitleDialog_noResults" xml:space="preserve">
+    <value>Keine Ergebnisse gefunden</value>
+    <comment>message</comment>
+  </data>
+  <data name="SearchTitleDialog_selectAllLink.Text" xml:space="preserve">
+    <value>Alles auswählen</value>
+    <comment>link</comment>
+  </data>
+  <data name="SearchTitleDialog_Text" xml:space="preserve">
+    <value>Seitentitel durchsuchen</value>
+    <comment>dialog title</comment>
   </data>
   <data name="SectionColor_Title" xml:space="preserve">
     <value>Abschnittsfarbe</value>

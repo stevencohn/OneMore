@@ -5112,6 +5112,14 @@ ISO-code then comma then language name</comment>
     <value>搜索和标签块</value>
     <comment>ribbon menu item</comment>
   </data>
+  <data name="ribSearchTitleButton_Label" xml:space="preserve">
+    <value>搜索标题</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribSearchTitleButton_Screentip" xml:space="preserve">
+    <value>在笔记本中搜索页面标题并可选择对结果建立索引</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribSectionColorButton_Label" xml:space="preserve">
     <value>自定义部分颜色</value>
     <comment>Context menu</comment>
@@ -5701,6 +5709,34 @@ ISO-code then comma then language name</comment>
   <data name="SearchQF_Title" xml:space="preserve">
     <value>选择位置</value>
     <comment>QuickFiling title</comment>
+  </data>
+  <data name="SearchTitleCommand_indexTitle" xml:space="preserve">
+    <value>标题搜索结果</value>
+    <comment>page title</comment>
+  </data>
+  <data name="SearchTitleDialog_clearAllLink.Text" xml:space="preserve">
+    <value>清除选择</value>
+    <comment>link</comment>
+  </data>
+  <data name="SearchTitleDialog_introLabel.Text" xml:space="preserve">
+    <value>输入页面标题查询。前缀为“&gt;”，可按最近修改的顺序排序；使用“\name”来确定笔记本的范围（“\*”用于所有笔记本），并使用“#tag”来按主题标签进行过滤。</value>
+    <comment>label !EDIT</comment>
+  </data>
+  <data name="SearchTitleDialog_noHashtagCatalog" xml:space="preserve">
+    <value>主题标签搜索需要主题标签目录。首先运行主题标签扫描。</value>
+    <comment>message</comment>
+  </data>
+  <data name="SearchTitleDialog_noResults" xml:space="preserve">
+    <value>没有找到结果</value>
+    <comment>message</comment>
+  </data>
+  <data name="SearchTitleDialog_selectAllLink.Text" xml:space="preserve">
+    <value>选择全部</value>
+    <comment>link</comment>
+  </data>
+  <data name="SearchTitleDialog_Text" xml:space="preserve">
+    <value>搜索页面标题</value>
+    <comment>dialog title</comment>
   </data>
   <data name="SectionColor_Title" xml:space="preserve">
     <value>截面颜色</value>

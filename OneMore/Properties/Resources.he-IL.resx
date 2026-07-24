@@ -5102,6 +5102,14 @@ ISO-code then comma then language name</comment>
     <value>חפש ותייג</value>
     <comment>ribbon menu item</comment>
   </data>
+  <data name="ribSearchTitleButton_Label" xml:space="preserve">
+    <value>חיפוש כותרות</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribSearchTitleButton_Screentip" xml:space="preserve">
+    <value>חפש כותרות דפים במחברת ואפשר להוסיף את התוצאות לאינדקס</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribSectionColorButton_Label" xml:space="preserve">
     <value>התאם אישית את צבע המדור</value>
     <comment>Context menu</comment>
@@ -5691,6 +5699,34 @@ ISO-code then comma then language name</comment>
   <data name="SearchQF_Title" xml:space="preserve">
     <value>תבחר מיקום</value>
     <comment>QuickFiling title</comment>
+  </data>
+  <data name="SearchTitleCommand_indexTitle" xml:space="preserve">
+    <value>תוצאות חיפוש של כותרת</value>
+    <comment>page title</comment>
+  </data>
+  <data name="SearchTitleDialog_clearAllLink.Text" xml:space="preserve">
+    <value>נקה בחירה</value>
+    <comment>link</comment>
+  </data>
+  <data name="SearchTitleDialog_introLabel.Text" xml:space="preserve">
+    <value>הזן שאילתת כותרת דף. קידומת עם "&gt;" כדי למיין לפי שהשתנה לאחרונה; השתמש ב-"\name" כדי להרחיב למחברת ("\*" עבור כולם), וב-"#tag" כדי לסנן לפי hashtag.</value>
+    <comment>label !EDIT</comment>
+  </data>
+  <data name="SearchTitleDialog_noHashtagCatalog" xml:space="preserve">
+    <value>חיפוש האשטאג דורש את קטלוג ההאשטאג. תחילה הפעל סריקת האשטאג.</value>
+    <comment>message</comment>
+  </data>
+  <data name="SearchTitleDialog_noResults" xml:space="preserve">
+    <value>לא נמצאו תוצאות</value>
+    <comment>message</comment>
+  </data>
+  <data name="SearchTitleDialog_selectAllLink.Text" xml:space="preserve">
+    <value>בחר הכל</value>
+    <comment>link</comment>
+  </data>
+  <data name="SearchTitleDialog_Text" xml:space="preserve">
+    <value>חיפוש כותרות דפים</value>
+    <comment>dialog title</comment>
   </data>
   <data name="SectionColor_Title" xml:space="preserve">
     <value>צבע קטע</value>

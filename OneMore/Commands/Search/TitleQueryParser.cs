@@ -21,8 +21,8 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
-		/// The notebook name (or partial name) extracted from an "nb:\&lt;name&gt;" token, "*"
-		/// if "nb:\*" was specified (search all notebooks), or null if no nb:\ token was present
+		/// The notebook name (or partial name) extracted from an "\&lt;name&gt;" token, "*"
+		/// if "\*" was specified (search all notebooks), or null if no "\" token was present
 		/// (search the current notebook).
 		/// </summary>
 		public string NotebookFilter { get; set; }
@@ -36,7 +36,7 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
-		/// Whatever remains of the query after stripping the sort token, nb:\ token, and
+		/// Whatever remains of the query after stripping the sort token, "\" notebook token, and
 		/// hashtag tokens. Passed to TextMatchBuilder to match against page names.
 		/// </summary>
 		public string TitleText { get; set; }
@@ -45,28 +45,30 @@ namespace River.OneMoreAddIn.Commands
 
 	/// <summary>
 	/// Parses the extended query syntax accepted by Search Page Titles: a ">" token, anywhere
-	/// in the query, to sort by most-recently-modified, an "nb:\&lt;name&gt;" (or "nb:\*") token
+	/// in the query, to sort by most-recently-modified, a "\&lt;name&gt;" (or "\*") token
 	/// to scope the search to one or more notebooks, and "#hashtag" tokens to additionally
 	/// filter by the hashtag catalog. Whatever remains is matched against page titles via
 	/// TextMatchBuilder.
 	/// </summary>
 	internal static class TitleQueryParser
 	{
+		// matches a "\" only at a word boundary (start of string or preceded by whitespace) so
+		// it can't be mistaken for a literal backslash embedded within title text (e.g. "a\b")
 		private static readonly Regex NotebookPattern = new Regex(
-			@"nb:\\(?:""(?<quoted>[^""]*)""|(?<bare>\S*))",
+			@"(?<!\S)\\(?:""(?<quoted>[^""]*)""|(?<bare>\S*))",
 			RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
 		private static readonly Regex HashtagPattern = new Regex(
 			@"(?<!\S)#\S+", RegexOptions.Compiled);
 
 		// matches a ">" only at a word boundary (start of string or preceded by whitespace) so
-		// it can appear anywhere in the query - ">foo nb:\*" or "nb:\* >foo" - without
+		// it can appear anywhere in the query - ">foo \*" or "\* >foo" - without
 		// mistaking a literal '>' embedded in a word (e.g. "a>b") for the sort flag
 		private static readonly Regex SortPattern = new Regex(
 			@"(?<!\S)>", RegexOptions.Compiled);
 
 		private static readonly Regex NotebookMarker = new Regex(
-			@"nb:\\", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+			@"(?<!\S)\\", RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
 		private static readonly Regex Whitespace = new Regex(@"\s+", RegexOptions.Compiled);
 
@@ -121,7 +123,7 @@ namespace River.OneMoreAddIn.Commands
 
 		/// <summary>
 		/// Counts the "significant" characters in a raw query string for type-ahead purposes.
-		/// The '#' and '>' characters and the literal "nb:\" marker are considered insignificant;
+		/// The '#' and '>' characters and the leading "\" notebook marker are considered insignificant;
 		/// every other non-whitespace character counts. Callers should run a live search once
 		/// this count exceeds 3.
 		/// </summary>

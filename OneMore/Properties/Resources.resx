@@ -5764,7 +5764,7 @@ Search engines will appear in the page context menu, right-click.</value>
     <comment>link</comment>
   </data>
   <data name="SearchTitleDialog_introLabel.Text" xml:space="preserve">
-    <value>Enter a page title query. Prefix with "&gt;" to sort by most recently modified; use "nb:\name" to scope to a notebook ("nb:\*" for all), and "#tag" to filter by hashtag.</value>
+    <value>Enter a page title query. Prefix with "&gt;" to sort by most recently modified; use "\name" to scope to a notebook ("\*" for all), and "#tag" to filter by hashtag.</value>
     <comment>label</comment>
   </data>
   <data name="SearchTitleDialog_noHashtagCatalog" xml:space="preserve">

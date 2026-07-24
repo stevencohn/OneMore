@@ -97,6 +97,7 @@ Read `ONENOTE.EXE`'s PE header directly when you need OneNote's architecture.
   Properties\Resources.resx and Properties\Resources.Designer.cs, keeping them in sync.
   But do not touch or make any changes at any time to any Resources.xx-XX file, unless
   explicitly told otherwise.
+  When modifying an existing resource string, append the token "!EDIT" to its comment field, preceded by a space, if that token isn't already present.
 
 ## Where to read more
 

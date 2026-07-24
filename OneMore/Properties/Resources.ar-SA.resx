@@ -5109,6 +5109,14 @@ ISO-code then comma then language name</comment>
     <value>البحث والعلامة</value>
     <comment>ribbon menu item</comment>
   </data>
+  <data name="ribSearchTitleButton_Label" xml:space="preserve">
+    <value>البحث في العناوين</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribSearchTitleButton_Screentip" xml:space="preserve">
+    <value>ابحث في عناوين الصفحات عبر دفتر ملاحظات وقم بفهرسة النتائج بشكل اختياري</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribSectionColorButton_Label" xml:space="preserve">
     <value>تخصيص لون القسم</value>
     <comment>Context menu</comment>
@@ -5698,6 +5706,34 @@ ISO-code then comma then language name</comment>
   <data name="SearchQF_Title" xml:space="preserve">
     <value>اختر موقعا</value>
     <comment>QuickFiling title</comment>
+  </data>
+  <data name="SearchTitleCommand_indexTitle" xml:space="preserve">
+    <value>نتائج البحث عن العنوان</value>
+    <comment>page title</comment>
+  </data>
+  <data name="SearchTitleDialog_clearAllLink.Text" xml:space="preserve">
+    <value>مسح التحديد</value>
+    <comment>link</comment>
+  </data>
+  <data name="SearchTitleDialog_introLabel.Text" xml:space="preserve">
+    <value>أدخل استعلام عنوان الصفحة. البادئة بـ "&gt;" للفرز حسب آخر تعديل؛ استخدم "\name" لتحديد نطاق دفتر الملاحظات ("\*" للجميع)، و"#tag" للتصفية حسب علامة التصنيف.</value>
+    <comment>label !EDIT</comment>
+  </data>
+  <data name="SearchTitleDialog_noHashtagCatalog" xml:space="preserve">
+    <value>يتطلب البحث عن الهاشتاج كتالوج الهاشتاج. قم بإجراء فحص الهاشتاج أولاً.</value>
+    <comment>message</comment>
+  </data>
+  <data name="SearchTitleDialog_noResults" xml:space="preserve">
+    <value>لم يتم العثور على نتائج</value>
+    <comment>message</comment>
+  </data>
+  <data name="SearchTitleDialog_selectAllLink.Text" xml:space="preserve">
+    <value>حدد الكل</value>
+    <comment>link</comment>
+  </data>
+  <data name="SearchTitleDialog_Text" xml:space="preserve">
+    <value>البحث في عناوين الصفحات</value>
+    <comment>dialog title</comment>
   </data>
   <data name="SectionColor_Title" xml:space="preserve">
     <value>لون القسم</value>
