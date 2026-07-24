@@ -5297,6 +5297,10 @@ Onglet Aide</value>
     <value>Recolorer les images en utilisant le style sélectionné</value>
     <comment>ribbon images</comment>
   </data>
+  <data name="ribSyncNotebooksButton_Label" xml:space="preserve">
+    <value>Synchroniser les blocs-notes</value>
+    <comment>command</comment>
+  </data>
   <data name="ribTableMenu_Label" xml:space="preserve">
     <value>Tableau</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>

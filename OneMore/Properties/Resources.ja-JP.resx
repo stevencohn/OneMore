@@ -5295,6 +5295,10 @@ ISO-code then comma then language name</comment>
     <value>選択したスタイルを使用して画像の色を変更</value>
     <comment>ribbon images</comment>
   </data>
+  <data name="ribSyncNotebooksButton_Label" xml:space="preserve">
+    <value>ノートブックを同期する</value>
+    <comment>command</comment>
+  </data>
   <data name="ribTableMenu_Label" xml:space="preserve">
     <value>表</value>
     <comment>ribbon menu</comment>

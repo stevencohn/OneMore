@@ -5297,6 +5297,10 @@ ISO-code then comma then language name</comment>
     <value>إعادة تلوين الصور باستخدام النمط المحدد</value>
     <comment>ribbon images</comment>
   </data>
+  <data name="ribSyncNotebooksButton_Label" xml:space="preserve">
+    <value>مزامنة دفاتر الملاحظات</value>
+    <comment>command</comment>
+  </data>
   <data name="ribTableMenu_Label" xml:space="preserve">
     <value>الطاولة</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>

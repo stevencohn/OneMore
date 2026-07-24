@@ -5328,6 +5328,10 @@ Help Tab</value>
     <value>Recolor images using selected style</value>
     <comment>ribbon images</comment>
   </data>
+  <data name="ribSyncNotebooksButton_Label" xml:space="preserve">
+    <value>Sync Notebooks</value>
+    <comment>command</comment>
+  </data>
   <data name="ribTableMenu_Label" xml:space="preserve">
     <value>Table</value>
     <comment>ribbon menu</comment>

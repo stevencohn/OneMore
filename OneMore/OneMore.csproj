@@ -227,6 +227,7 @@
     <Compile Include="Commands\Snippets\CreateJournalDialog.Designer.cs">
       <DependentUpon>CreateJournalDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Tools\SyncCommand.cs" />
     <Compile Include="Commands\Workspaces\Favorites\FavoriteModels.cs" />
     <Compile Include="Commands\Workspaces\Favorites\AddFavoriteCommand.cs" />
     <Compile Include="Commands\Workspaces\Favorites\ExportFavoritesCommand.cs" />

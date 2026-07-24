@@ -5292,6 +5292,10 @@ Scheda Aiuto</value>
     <value>Ricolora le immagini utilizzando lo stile selezionato</value>
     <comment>ribbon images</comment>
   </data>
+  <data name="ribSyncNotebooksButton_Label" xml:space="preserve">
+    <value>Sincronizza i taccuini</value>
+    <comment>command</comment>
+  </data>
   <data name="ribTableMenu_Label" xml:space="preserve">
     <value>Tavolo</value>
     <comment>ribbon menu</comment>

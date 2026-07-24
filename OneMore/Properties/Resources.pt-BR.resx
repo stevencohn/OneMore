@@ -5286,6 +5286,10 @@ Guia Ajuda</value>
     <value>Recolorir imagens usando o estilo selecionado</value>
     <comment>ribbon images</comment>
   </data>
+  <data name="ribSyncNotebooksButton_Label" xml:space="preserve">
+    <value>Sincronizar cadernos</value>
+    <comment>command</comment>
+  </data>
   <data name="ribTableMenu_Label" xml:space="preserve">
     <value>Mesa</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>

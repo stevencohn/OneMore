@@ -5300,6 +5300,10 @@ ISO-code then comma then language name</comment>
     <value>对所选图像使用选定的风格重新重色</value>
     <comment>ribbon images</comment>
   </data>
+  <data name="ribSyncNotebooksButton_Label" xml:space="preserve">
+    <value>同步笔记本</value>
+    <comment>command</comment>
+  </data>
   <data name="ribTableMenu_Label" xml:space="preserve">
     <value>表格</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
