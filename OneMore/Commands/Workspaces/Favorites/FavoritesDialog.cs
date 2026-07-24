@@ -44,6 +44,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				{
 					"addButton",
 					"manageButton",
+					"deleteButton=word_Delete",
 					"searchLabel=word_Search",
 					"goButton=word_Go",
 					"cancelButton=word_Cancel"
@@ -565,6 +566,10 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 		private void ShowMenu(object sender, EventArgs e)
 		{
+			deleteButton.Enabled =
+				listView.SelectedItems.Count > 0 &&
+				listView.SelectedItems[0].Tag is Favorite;
+
 			contextMenu.Show(menuButton, new Point(
 				-(contextMenu.Width - menuButton.Width),
 				menuButton.Height));
@@ -576,6 +581,51 @@ namespace River.OneMoreAddIn.Commands.Favorites
 			Manage = true;
 			DialogResult = DialogResult.OK;
 			Close();
+		}
+
+
+		private void DeleteFavorite(object sender, EventArgs e)
+		{
+			if (listView.SelectedItems.Count == 0 ||
+				listView.SelectedItems[0].Tag is not Favorite favorite)
+			{
+				return;
+			}
+
+			var message = string.Format(
+				Resx.ManageFavorites_DeleteMessage, favorite.Alias ?? favorite.Name);
+
+			if (MoreMessageBox.Show(this, message, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+				!= DialogResult.Yes)
+			{
+				return;
+			}
+
+			using var provider = new FavoritesProvider();
+			if (!provider.DeleteFavorite(favorite.ID))
+			{
+				return;
+			}
+
+			var folder = collection.Folders.FirstOrDefault(f => f.FolderID == favorite.FolderID);
+			if (folder != null)
+			{
+				folder.Items.Remove(favorite);
+			}
+			else
+			{
+				collection.Items.Remove(favorite);
+			}
+
+			searchBox.Clear();
+			Populate(string.Empty);
+
+			var index = FirstFavoriteIndex();
+			if (index >= 0)
+			{
+				listView.Items[index].Selected = true;
+				listView.Items[index].EnsureVisible();
+			}
 		}
 	}
 }

@@ -40,9 +40,12 @@
 			this.menuButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.searchBox = new River.OneMoreAddIn.UI.MoreTextBox();
 			this.searchLabel = new System.Windows.Forms.Label();
-			this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-			this.addButton = new System.Windows.Forms.ToolStripMenuItem();
-			this.manageButton = new System.Windows.Forms.ToolStripMenuItem();
+			this.contextMenu = new River.OneMoreAddIn.UI.MoreContextMenuStrip();
+			this.addButton = new River.OneMoreAddIn.UI.MoreMenuItem();
+			this.manageButton = new River.OneMoreAddIn.UI.MoreMenuItem();
+			this.deleteSeparator = new System.Windows.Forms.ToolStripSeparator();
+			this.deleteButton = new River.OneMoreAddIn.UI.MoreMenuItem();
+			this.components.Add(this.contextMenu);
 			this.buttonPanel.SuspendLayout();
 			this.searchPanel.SuspendLayout();
 			this.contextMenu.SuspendLayout();
@@ -188,26 +191,40 @@
 			this.contextMenu.ImageScalingSize = new System.Drawing.Size(24, 24);
 			this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addButton,
-            this.manageButton});
+            this.manageButton,
+            this.deleteSeparator,
+            this.deleteButton});
 			this.contextMenu.Name = "contextMenu";
 			this.contextMenu.Size = new System.Drawing.Size(249, 101);
-			// 
+			//
 			// addButton
-			// 
+			//
 			this.addButton.Image = global::River.OneMoreAddIn.Properties.Resources.e_Journal;
 			this.addButton.Name = "addButton";
 			this.addButton.Size = new System.Drawing.Size(248, 32);
 			this.addButton.Text = "Add Current Page";
 			this.addButton.Click += new System.EventHandler(this.AddCurrentPage);
-			// 
+			//
 			// manageButton
-			// 
+			//
 			this.manageButton.Image = global::River.OneMoreAddIn.Properties.Resources.e_Hammer;
 			this.manageButton.Name = "manageButton";
 			this.manageButton.Size = new System.Drawing.Size(248, 32);
 			this.manageButton.Text = "Manage Favorites";
 			this.manageButton.Click += new System.EventHandler(this.ManageFavorites);
-			// 
+			//
+			// deleteSeparator
+			//
+			this.deleteSeparator.Name = "deleteSeparator";
+			//
+			// deleteButton
+			//
+			this.deleteButton.Image = global::River.OneMoreAddIn.Properties.Resources.m_Delete;
+			this.deleteButton.Name = "deleteButton";
+			this.deleteButton.Size = new System.Drawing.Size(248, 32);
+			this.deleteButton.Text = "Delete";
+			this.deleteButton.Click += new System.EventHandler(this.DeleteFavorite);
+			//
 			// FavoritesDialog
 			// 
 			this.AcceptButton = this.goButton;
@@ -248,8 +265,10 @@
 		private UI.MoreTextBox searchBox;
 		private System.Windows.Forms.Label searchLabel;
 		private UI.MoreButton menuButton;
-		private System.Windows.Forms.ContextMenuStrip contextMenu;
-		private System.Windows.Forms.ToolStripMenuItem manageButton;
-		private System.Windows.Forms.ToolStripMenuItem addButton;
+		private UI.MoreContextMenuStrip contextMenu;
+		private UI.MoreMenuItem manageButton;
+		private UI.MoreMenuItem addButton;
+		private System.Windows.Forms.ToolStripSeparator deleteSeparator;
+		private UI.MoreMenuItem deleteButton;
 	}
 }
