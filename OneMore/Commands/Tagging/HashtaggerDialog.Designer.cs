@@ -47,9 +47,10 @@
 			this.menuButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.tagsBox = new River.OneMoreAddIn.UI.MoreMultilineLabel();
 			this.tagsLabel = new River.OneMoreAddIn.UI.MoreLabel();
-			this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-			this.showRecentMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.showCommonMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.contextMenu = new River.OneMoreAddIn.UI.MoreContextMenuStrip();
+			this.showRecentMenuItem = new River.OneMoreAddIn.UI.MoreMenuItem();
+			this.showCommonMenuItem = new River.OneMoreAddIn.UI.MoreMenuItem();
+			this.components.Add(this.contextMenu);
 			this.buttonPanel.SuspendLayout();
 			this.mainFlow.SuspendLayout();
 			this.recentGroup.SuspendLayout();
@@ -405,9 +406,9 @@
 		private UI.MoreLabel tagsLabel;
 		private UI.MoreMultilineLabel tagsBox;
 		private UI.MoreButton menuButton;
-		private System.Windows.Forms.ContextMenuStrip contextMenu;
-		private System.Windows.Forms.ToolStripMenuItem showRecentMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem showCommonMenuItem;
+		private UI.MoreContextMenuStrip contextMenu;
+		private UI.MoreMenuItem showRecentMenuItem;
+		private UI.MoreMenuItem showCommonMenuItem;
 		private UI.MoreCheckBox bankBox;
 		private UI.MoreLinkLabel clearLink;
 	}
