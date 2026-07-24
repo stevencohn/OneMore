@@ -2453,6 +2453,14 @@ OneNote 文件 (*.one)</value>
     <value>加载样式主题</value>
     <comment>OpenFileDialog title</comment>
   </data>
+  <data name="LogModifiedCommand_NoSection" xml:space="preserve">
+    <value>打开一个部分来记录修改的页面</value>
+    <comment>message box</comment>
+  </data>
+  <data name="LogModifiedCommand_Title" xml:space="preserve">
+    <value>{0} 个已修改的页面</value>
+    <comment>page title</comment>
+  </data>
   <data name="ManageFavorites_DeleteMessage" xml:space="preserve">
     <value>删除{0}？</value>
     <comment>settings</comment>
@@ -4510,6 +4518,10 @@ ISO-code then comma then language name</comment>
   <data name="ribLoadStylesButton_Screentip" xml:space="preserve">
     <value>从主题文件加载自定义样式</value>
     <comment>ribbon styles</comment>
+  </data>
+  <data name="ribLogModifiedButton_Label" xml:space="preserve">
+    <value>修改日志</value>
+    <comment>command</comment>
   </data>
   <data name="ribLowercaseButton_Label" xml:space="preserve">
     <value>转为小写</value>

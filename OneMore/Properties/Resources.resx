@@ -2455,6 +2455,14 @@ Do you want to refresh the existing page?</value>
     <value>Load Styles</value>
     <comment>OpenFileDialog title</comment>
   </data>
+  <data name="LogModifiedCommand_NoSection" xml:space="preserve">
+    <value>Open a section to log modified pages</value>
+    <comment>message box</comment>
+  </data>
+  <data name="LogModifiedCommand_Title" xml:space="preserve">
+    <value>{0} Modified Pages</value>
+    <comment>page title</comment>
+  </data>
   <data name="ManageFavorites_DeleteMessage" xml:space="preserve">
     <value>Delete {0}?</value>
     <comment>settings</comment>
@@ -4536,6 +4544,10 @@ Help Tab</value>
   <data name="ribLoadStylesButton_Screentip" xml:space="preserve">
     <value>Load My Styles from a definition file</value>
     <comment>ribbon styles</comment>
+  </data>
+  <data name="ribLogModifiedButton_Label" xml:space="preserve">
+    <value>Log Modified</value>
+    <comment>command</comment>
   </data>
   <data name="ribLowercaseButton_Label" xml:space="preserve">
     <value>To lowercase</value>

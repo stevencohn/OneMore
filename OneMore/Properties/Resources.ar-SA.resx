@@ -2450,6 +2450,14 @@
     <value>تحميل نمط النمط</value>
     <comment>OpenFileDialog title</comment>
   </data>
+  <data name="LogModifiedCommand_NoSection" xml:space="preserve">
+    <value>افتح قسمًا لتسجيل الصفحات المعدلة</value>
+    <comment>message box</comment>
+  </data>
+  <data name="LogModifiedCommand_Title" xml:space="preserve">
+    <value>{0} الصفحات المعدلة</value>
+    <comment>page title</comment>
+  </data>
   <data name="ManageFavorites_DeleteMessage" xml:space="preserve">
     <value>حذف {0}؟</value>
     <comment>settings</comment>
@@ -4507,6 +4515,10 @@ ISO-code then comma then language name</comment>
   <data name="ribLoadStylesButton_Screentip" xml:space="preserve">
     <value>تحميل أنماط مخصصة من ملف موضوع</value>
     <comment>ribbon styles</comment>
+  </data>
+  <data name="ribLogModifiedButton_Label" xml:space="preserve">
+    <value>تم تعديل السجل</value>
+    <comment>command</comment>
   </data>
   <data name="ribLowercaseButton_Label" xml:space="preserve">
     <value>لأحرف صغيرة</value>

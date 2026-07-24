@@ -2447,6 +2447,14 @@ Vuoi aggiornare la pagina esistente?</value>
     <value>Carica stili</value>
     <comment>OpenFileDialog title</comment>
   </data>
+  <data name="LogModifiedCommand_NoSection" xml:space="preserve">
+    <value>Apri una sezione per registrare le pagine modificate</value>
+    <comment>message box</comment>
+  </data>
+  <data name="LogModifiedCommand_Title" xml:space="preserve">
+    <value>{0} pagine modificate</value>
+    <comment>page title</comment>
+  </data>
   <data name="ManageFavorites_DeleteMessage" xml:space="preserve">
     <value>Eliminare {0}?</value>
     <comment>settings</comment>
@@ -4500,6 +4508,10 @@ Scheda Aiuto</value>
   <data name="ribLoadStylesButton_Screentip" xml:space="preserve">
     <value>Carica i miei stili da un file di definizione</value>
     <comment>ribbon styles</comment>
+  </data>
+  <data name="ribLogModifiedButton_Label" xml:space="preserve">
+    <value>Registro modificato</value>
+    <comment>command</comment>
   </data>
   <data name="ribLowercaseButton_Label" xml:space="preserve">
     <value>In minuscolo</value>

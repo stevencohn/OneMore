@@ -2450,6 +2450,14 @@ Voulez-vous actualiser la page existante ?</value>
     <value>Charger le thème de style</value>
     <comment>OpenFileDialog title</comment>
   </data>
+  <data name="LogModifiedCommand_NoSection" xml:space="preserve">
+    <value>Ouvrir une section pour enregistrer les pages modifiées</value>
+    <comment>message box</comment>
+  </data>
+  <data name="LogModifiedCommand_Title" xml:space="preserve">
+    <value>{0} Pages modifiées</value>
+    <comment>page title</comment>
+  </data>
   <data name="ManageFavorites_DeleteMessage" xml:space="preserve">
     <value>Supprimer {0} ?</value>
     <comment>settings</comment>
@@ -4507,6 +4515,10 @@ Onglet Aide</value>
   <data name="ribLoadStylesButton_Screentip" xml:space="preserve">
     <value>Charger des styles personnalisés à partir d'un fichier de thème</value>
     <comment>ribbon styles</comment>
+  </data>
+  <data name="ribLogModifiedButton_Label" xml:space="preserve">
+    <value>Journal modifié</value>
+    <comment>command</comment>
   </data>
   <data name="ribLowercaseButton_Label" xml:space="preserve">
     <value>En minuscules</value>
