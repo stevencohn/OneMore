@@ -2200,6 +2200,14 @@ Fundo Amarelo</value>
     <value>Importar página da web</value>
     <comment>dialog title</comment>
   </data>
+  <data name="IndexModifiedCommand_NoSection" xml:space="preserve">
+    <value>Abra uma seção para relatar páginas modificadas</value>
+    <comment>message box</comment>
+  </data>
+  <data name="IndexModifiedCommand_Title" xml:space="preserve">
+    <value>{0} Páginas modificadas</value>
+    <comment>page title</comment>
+  </data>
   <data name="InsertBoxCommand_Code" xml:space="preserve">
     <value>Seu código aqui...</value>
     <comment>text</comment>
@@ -2446,14 +2454,6 @@ Deseja atualizar a página existente?</value>
   <data name="LoadStyleTheme_Title" xml:space="preserve">
     <value>Carregar tema de estilo</value>
     <comment>OpenFileDialog title</comment>
-  </data>
-  <data name="LogModifiedCommand_NoSection" xml:space="preserve">
-    <value>Abra uma seção para registrar páginas modificadas</value>
-    <comment>message box</comment>
-  </data>
-  <data name="LogModifiedCommand_Title" xml:space="preserve">
-    <value>{0} Páginas modificadas</value>
-    <comment>page title</comment>
   </data>
   <data name="ManageFavorites_DeleteMessage" xml:space="preserve">
     <value>Excluir {0}?</value>
@@ -4285,6 +4285,10 @@ Guia Ajuda</value>
     <value>Aumentar o tamanho da fonte da página</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribIndexModifiedButton_Label" xml:space="preserve">
+    <value>Índice modificado</value>
+    <comment>command !EDIT</comment>
+  </data>
   <data name="ribInsertBlueStatusButton_Label" xml:space="preserve">
     <value>Status Azul</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
@@ -4504,10 +4508,6 @@ Guia Ajuda</value>
   <data name="ribLoadStylesButton_Screentip" xml:space="preserve">
     <value>Carregar estilos personalizados de um arquivo de tema</value>
     <comment>ribbon styles</comment>
-  </data>
-  <data name="ribLogModifiedButton_Label" xml:space="preserve">
-    <value>Registro modificado</value>
-    <comment>command</comment>
   </data>
   <data name="ribLowercaseButton_Label" xml:space="preserve">
     <value>Para minúsculas</value>

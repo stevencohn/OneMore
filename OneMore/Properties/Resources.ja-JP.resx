@@ -2203,6 +2203,14 @@ OneNoteファイル (*.one)</value>
     <value>Webページをインポート</value>
     <comment>dialog title</comment>
   </data>
+  <data name="IndexModifiedCommand_NoSection" xml:space="preserve">
+    <value>セクションを開いて変更されたページを報告する</value>
+    <comment>message box</comment>
+  </data>
+  <data name="IndexModifiedCommand_Title" xml:space="preserve">
+    <value>{0} ページが変更されました</value>
+    <comment>page title</comment>
+  </data>
   <data name="InsertBoxCommand_Code" xml:space="preserve">
     <value>あなたのコードはこちら...</value>
     <comment>text</comment>
@@ -2449,14 +2457,6 @@ OneNoteファイル (*.one)</value>
   <data name="LoadStyleTheme_Title" xml:space="preserve">
     <value>スタイルを読み込む</value>
     <comment>OpenFileDialog title</comment>
-  </data>
-  <data name="LogModifiedCommand_NoSection" xml:space="preserve">
-    <value>変更されたページを記録するセクションを開く</value>
-    <comment>message box</comment>
-  </data>
-  <data name="LogModifiedCommand_Title" xml:space="preserve">
-    <value>{0} ページが変更されました</value>
-    <comment>page title</comment>
   </data>
   <data name="ManageFavorites_DeleteMessage" xml:space="preserve">
     <value>{0} を削除しますか？</value>
@@ -4292,6 +4292,10 @@ ISO-code then comma then language name</comment>
     <value>ページのフォントサイズを大きくする</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribIndexModifiedButton_Label" xml:space="preserve">
+    <value>インデックスが変更されました</value>
+    <comment>command !EDIT</comment>
+  </data>
   <data name="ribInsertBlueStatusButton_Label" xml:space="preserve">
     <value>青いステータス</value>
     <comment>ribbon snippets</comment>
@@ -4511,10 +4515,6 @@ ISO-code then comma then language name</comment>
   <data name="ribLoadStylesButton_Screentip" xml:space="preserve">
     <value>定義ファイルから自分のスタイルを読み込み</value>
     <comment>ribbon styles</comment>
-  </data>
-  <data name="ribLogModifiedButton_Label" xml:space="preserve">
-    <value>ログが変更されました</value>
-    <comment>command</comment>
   </data>
   <data name="ribLowercaseButton_Label" xml:space="preserve">
     <value>小文字に変換</value>

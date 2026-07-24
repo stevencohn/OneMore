@@ -2195,6 +2195,14 @@ Fondo amarillo</value>
     <value>Importar página web</value>
     <comment>dialog title</comment>
   </data>
+  <data name="IndexModifiedCommand_NoSection" xml:space="preserve">
+    <value>Abrir una sección para informar páginas modificadas</value>
+    <comment>message box</comment>
+  </data>
+  <data name="IndexModifiedCommand_Title" xml:space="preserve">
+    <value>{0} páginas modificadas</value>
+    <comment>page title</comment>
+  </data>
   <data name="InsertBoxCommand_Code" xml:space="preserve">
     <value>Tu código aquí...</value>
     <comment>text</comment>
@@ -2441,14 +2449,6 @@ Cuadrado Marrón</value>
   <data name="LoadStyleTheme_Title" xml:space="preserve">
     <value>Tema de estilo de carga</value>
     <comment>OpenFileDialog title</comment>
-  </data>
-  <data name="LogModifiedCommand_NoSection" xml:space="preserve">
-    <value>Abra una sección para registrar páginas modificadas</value>
-    <comment>message box</comment>
-  </data>
-  <data name="LogModifiedCommand_Title" xml:space="preserve">
-    <value>{0} páginas modificadas</value>
-    <comment>page title</comment>
   </data>
   <data name="ManageFavorites_DeleteMessage" xml:space="preserve">
     <value>¿Eliminar {0}?</value>
@@ -4284,6 +4284,10 @@ Pestaña Ayuda</value>
     <value>Aumentar el tamaño de fuente de la página</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribIndexModifiedButton_Label" xml:space="preserve">
+    <value>Índice modificado</value>
+    <comment>command !EDIT</comment>
+  </data>
   <data name="ribInsertBlueStatusButton_Label" xml:space="preserve">
     <value>Estado azul</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
@@ -4503,10 +4507,6 @@ Pestaña Ayuda</value>
   <data name="ribLoadStylesButton_Screentip" xml:space="preserve">
     <value>Cargue estilos personalizados desde un archivo de tema</value>
     <comment>ribbon styles</comment>
-  </data>
-  <data name="ribLogModifiedButton_Label" xml:space="preserve">
-    <value>Registro modificado</value>
-    <comment>command</comment>
   </data>
   <data name="ribLowercaseButton_Label" xml:space="preserve">
     <value>A minúsculas</value>

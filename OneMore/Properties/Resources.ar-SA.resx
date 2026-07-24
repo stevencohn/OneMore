@@ -2203,6 +2203,14 @@
     <value>استيراد صفحة ويب</value>
     <comment>dialog title</comment>
   </data>
+  <data name="IndexModifiedCommand_NoSection" xml:space="preserve">
+    <value>افتح قسمًا للإبلاغ عن الصفحات المعدلة</value>
+    <comment>message box</comment>
+  </data>
+  <data name="IndexModifiedCommand_Title" xml:space="preserve">
+    <value>{0} الصفحات المعدلة</value>
+    <comment>page title</comment>
+  </data>
   <data name="InsertBoxCommand_Code" xml:space="preserve">
     <value>الكود الخاص بك هنا ...</value>
     <comment>text</comment>
@@ -2449,14 +2457,6 @@
   <data name="LoadStyleTheme_Title" xml:space="preserve">
     <value>تحميل نمط النمط</value>
     <comment>OpenFileDialog title</comment>
-  </data>
-  <data name="LogModifiedCommand_NoSection" xml:space="preserve">
-    <value>افتح قسمًا لتسجيل الصفحات المعدلة</value>
-    <comment>message box</comment>
-  </data>
-  <data name="LogModifiedCommand_Title" xml:space="preserve">
-    <value>{0} الصفحات المعدلة</value>
-    <comment>page title</comment>
   </data>
   <data name="ManageFavorites_DeleteMessage" xml:space="preserve">
     <value>حذف {0}؟</value>
@@ -4296,6 +4296,10 @@ ISO-code then comma then language name</comment>
     <value>زيادة حجم خط الصفحة</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribIndexModifiedButton_Label" xml:space="preserve">
+    <value>تم تعديل الفهرس</value>
+    <comment>command !EDIT</comment>
+  </data>
   <data name="ribInsertBlueStatusButton_Label" xml:space="preserve">
     <value>الحالة الزرقاء</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
@@ -4515,10 +4519,6 @@ ISO-code then comma then language name</comment>
   <data name="ribLoadStylesButton_Screentip" xml:space="preserve">
     <value>تحميل أنماط مخصصة من ملف موضوع</value>
     <comment>ribbon styles</comment>
-  </data>
-  <data name="ribLogModifiedButton_Label" xml:space="preserve">
-    <value>تم تعديل السجل</value>
-    <comment>command</comment>
   </data>
   <data name="ribLowercaseButton_Label" xml:space="preserve">
     <value>لأحرف صغيرة</value>

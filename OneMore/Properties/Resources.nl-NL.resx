@@ -2200,6 +2200,14 @@ Gele achtergrond</value>
     <value>Webpagina importeren</value>
     <comment>dialog title</comment>
   </data>
+  <data name="IndexModifiedCommand_NoSection" xml:space="preserve">
+    <value>Open een sectie om gewijzigde pagina's te rapporteren</value>
+    <comment>message box</comment>
+  </data>
+  <data name="IndexModifiedCommand_Title" xml:space="preserve">
+    <value>{0} Aangepaste pagina's</value>
+    <comment>page title</comment>
+  </data>
   <data name="InsertBoxCommand_Code" xml:space="preserve">
     <value>Uw code hier...</value>
     <comment>text</comment>
@@ -2446,14 +2454,6 @@ Wilt u de bestaande pagina vernieuwen?</value>
   <data name="LoadStyleTheme_Title" xml:space="preserve">
     <value>Laad stijlthema</value>
     <comment>OpenFileDialog title</comment>
-  </data>
-  <data name="LogModifiedCommand_NoSection" xml:space="preserve">
-    <value>Open een sectie om gewijzigde pagina's te loggen</value>
-    <comment>message box</comment>
-  </data>
-  <data name="LogModifiedCommand_Title" xml:space="preserve">
-    <value>{0} Aangepaste pagina's</value>
-    <comment>page title</comment>
   </data>
   <data name="ManageFavorites_DeleteMessage" xml:space="preserve">
     <value>{0} verwijderen?</value>
@@ -4285,6 +4285,10 @@ Tabblad Help</value>
     <value>Vergroot de lettergrootte van de pagina</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribIndexModifiedButton_Label" xml:space="preserve">
+    <value>Index gewijzigd</value>
+    <comment>command !EDIT</comment>
+  </data>
   <data name="ribInsertBlueStatusButton_Label" xml:space="preserve">
     <value>Blauwe status</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
@@ -4504,10 +4508,6 @@ Tabblad Help</value>
   <data name="ribLoadStylesButton_Screentip" xml:space="preserve">
     <value>Laad aangepaste stijlen vanuit een themabestand</value>
     <comment>ribbon styles</comment>
-  </data>
-  <data name="ribLogModifiedButton_Label" xml:space="preserve">
-    <value>Logboek gewijzigd</value>
-    <comment>command</comment>
   </data>
   <data name="ribLowercaseButton_Label" xml:space="preserve">
     <value>Kleine letters</value>

@@ -2200,6 +2200,14 @@ Czerwony pierwszy plan
     <value>Importuj stronę internetową.</value>
     <comment>dialog title</comment>
   </data>
+  <data name="IndexModifiedCommand_NoSection" xml:space="preserve">
+    <value>Otwórz sekcję, w której możesz zgłosić zmodyfikowane strony</value>
+    <comment>message box</comment>
+  </data>
+  <data name="IndexModifiedCommand_Title" xml:space="preserve">
+    <value>{0} Zmodyfikowane strony</value>
+    <comment>page title</comment>
+  </data>
   <data name="InsertBoxCommand_Code" xml:space="preserve">
     <value>Twój kod tutaj...</value>
     <comment>text</comment>
@@ -2446,14 +2454,6 @@ Czy chcesz odświeżyć istniejącą stronę?</value>
   <data name="LoadStyleTheme_Title" xml:space="preserve">
     <value>Załaduj motyw stylu</value>
     <comment>OpenFileDialog title</comment>
-  </data>
-  <data name="LogModifiedCommand_NoSection" xml:space="preserve">
-    <value>Otwórz sekcję, w której możesz rejestrować zmodyfikowane strony</value>
-    <comment>message box</comment>
-  </data>
-  <data name="LogModifiedCommand_Title" xml:space="preserve">
-    <value>{0} Zmodyfikowane strony</value>
-    <comment>page title</comment>
   </data>
   <data name="ManageFavorites_DeleteMessage" xml:space="preserve">
     <value>Usuń {0}?</value>
@@ -4285,6 +4285,10 @@ Zakładka Pomoc</value>
     <value>Zwiększ rozmiar czcionki na stronie</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribIndexModifiedButton_Label" xml:space="preserve">
+    <value>Indeks zmodyfikowany</value>
+    <comment>command !EDIT</comment>
+  </data>
   <data name="ribInsertBlueStatusButton_Label" xml:space="preserve">
     <value>Niebieski status</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
@@ -4504,10 +4508,6 @@ Zakładka Pomoc</value>
   <data name="ribLoadStylesButton_Screentip" xml:space="preserve">
     <value>Załaduj niestandardowe style z pliku motywu</value>
     <comment>ribbon styles</comment>
-  </data>
-  <data name="ribLogModifiedButton_Label" xml:space="preserve">
-    <value>Zmodyfikowano dziennik</value>
-    <comment>command</comment>
   </data>
   <data name="ribLowercaseButton_Label" xml:space="preserve">
     <value>Do małych liter</value>

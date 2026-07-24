@@ -2195,6 +2195,14 @@ Gelber Hintergrund</value>
     <value>Webseite importieren</value>
     <comment>dialog title</comment>
   </data>
+  <data name="IndexModifiedCommand_NoSection" xml:space="preserve">
+    <value>Öffnen Sie einen Abschnitt, um geänderte Seiten zu melden</value>
+    <comment>message box</comment>
+  </data>
+  <data name="IndexModifiedCommand_Title" xml:space="preserve">
+    <value>{0} Geänderte Seiten</value>
+    <comment>page title</comment>
+  </data>
   <data name="InsertBoxCommand_Code" xml:space="preserve">
     <value>Dein Code hier...</value>
     <comment>text</comment>
@@ -2441,14 +2449,6 @@ Möchten Sie die bestehende Seite aktualisieren?</value>
   <data name="LoadStyleTheme_Title" xml:space="preserve">
     <value>Style-Design laden</value>
     <comment>OpenFileDialog title</comment>
-  </data>
-  <data name="LogModifiedCommand_NoSection" xml:space="preserve">
-    <value>Öffnen Sie einen Abschnitt, um geänderte Seiten zu protokollieren</value>
-    <comment>message box</comment>
-  </data>
-  <data name="LogModifiedCommand_Title" xml:space="preserve">
-    <value>{0} Geänderte Seiten</value>
-    <comment>page title</comment>
   </data>
   <data name="ManageFavorites_DeleteMessage" xml:space="preserve">
     <value>{0} löschen?</value>
@@ -4284,6 +4284,10 @@ Registerkarte „Hilfe“.</value>
     <value>Erhöht die Schriftgröße der Seite (Strg + Alt + Plus).</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribIndexModifiedButton_Label" xml:space="preserve">
+    <value>Index geändert</value>
+    <comment>command !EDIT</comment>
+  </data>
   <data name="ribInsertBlueStatusButton_Label" xml:space="preserve">
     <value>Blauer Status</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
@@ -4503,10 +4507,6 @@ Registerkarte „Hilfe“.</value>
   <data name="ribLoadStylesButton_Screentip" xml:space="preserve">
     <value>Lädt benutzerdefinierte Stile aus einer Datei</value>
     <comment>ribbon styles</comment>
-  </data>
-  <data name="ribLogModifiedButton_Label" xml:space="preserve">
-    <value>Protokoll geändert</value>
-    <comment>command</comment>
   </data>
   <data name="ribLowercaseButton_Label" xml:space="preserve">
     <value>In Kleinbuchstaben</value>

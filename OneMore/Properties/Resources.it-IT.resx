@@ -2200,6 +2200,14 @@ Sfondo giallo</value>
     <value>Importa pagina Web</value>
     <comment>dialog title</comment>
   </data>
+  <data name="IndexModifiedCommand_NoSection" xml:space="preserve">
+    <value>Apri una sezione per segnalare le pagine modificate</value>
+    <comment>message box</comment>
+  </data>
+  <data name="IndexModifiedCommand_Title" xml:space="preserve">
+    <value>{0} pagine modificate</value>
+    <comment>page title</comment>
+  </data>
   <data name="InsertBoxCommand_Code" xml:space="preserve">
     <value>Il tuo codice qui...</value>
     <comment>text</comment>
@@ -2446,14 +2454,6 @@ Vuoi aggiornare la pagina esistente?</value>
   <data name="LoadStyleTheme_Title" xml:space="preserve">
     <value>Carica stili</value>
     <comment>OpenFileDialog title</comment>
-  </data>
-  <data name="LogModifiedCommand_NoSection" xml:space="preserve">
-    <value>Apri una sezione per registrare le pagine modificate</value>
-    <comment>message box</comment>
-  </data>
-  <data name="LogModifiedCommand_Title" xml:space="preserve">
-    <value>{0} pagine modificate</value>
-    <comment>page title</comment>
   </data>
   <data name="ManageFavorites_DeleteMessage" xml:space="preserve">
     <value>Eliminare {0}?</value>
@@ -4289,6 +4289,10 @@ Scheda Aiuto</value>
     <value>Aumenta la dimensione del carattere della pagina</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribIndexModifiedButton_Label" xml:space="preserve">
+    <value>Indice modificato</value>
+    <comment>command !EDIT</comment>
+  </data>
   <data name="ribInsertBlueStatusButton_Label" xml:space="preserve">
     <value>Stato blu</value>
     <comment>ribbon snippets</comment>
@@ -4508,10 +4512,6 @@ Scheda Aiuto</value>
   <data name="ribLoadStylesButton_Screentip" xml:space="preserve">
     <value>Carica i miei stili da un file di definizione</value>
     <comment>ribbon styles</comment>
-  </data>
-  <data name="ribLogModifiedButton_Label" xml:space="preserve">
-    <value>Registro modificato</value>
-    <comment>command</comment>
   </data>
   <data name="ribLowercaseButton_Label" xml:space="preserve">
     <value>In minuscolo</value>

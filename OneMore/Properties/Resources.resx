@@ -4323,7 +4323,7 @@ Help Tab</value>
   </data>
   <data name="ribIndexModifiedButton_Label" xml:space="preserve">
     <value>Index Modified</value>
-    <comment>command !EDIT</comment>
+    <comment>command</comment>
   </data>
   <data name="ribInsertBlueStatusButton_Label" xml:space="preserve">
     <value>Blue Status</value>

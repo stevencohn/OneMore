@@ -2206,6 +2206,14 @@ OneNote 文件 (*.one)</value>
     <value>导入网页</value>
     <comment>dialog title</comment>
   </data>
+  <data name="IndexModifiedCommand_NoSection" xml:space="preserve">
+    <value>打开一个部分来报告修改的页面</value>
+    <comment>message box</comment>
+  </data>
+  <data name="IndexModifiedCommand_Title" xml:space="preserve">
+    <value>{0} 个已修改的页面</value>
+    <comment>page title</comment>
+  </data>
   <data name="InsertBoxCommand_Code" xml:space="preserve">
     <value>在这里输入代码内容...</value>
     <comment>text</comment>
@@ -2452,14 +2460,6 @@ OneNote 文件 (*.one)</value>
   <data name="LoadStyleTheme_Title" xml:space="preserve">
     <value>加载样式主题</value>
     <comment>OpenFileDialog title</comment>
-  </data>
-  <data name="LogModifiedCommand_NoSection" xml:space="preserve">
-    <value>打开一个部分来记录修改的页面</value>
-    <comment>message box</comment>
-  </data>
-  <data name="LogModifiedCommand_Title" xml:space="preserve">
-    <value>{0} 个已修改的页面</value>
-    <comment>page title</comment>
   </data>
   <data name="ManageFavorites_DeleteMessage" xml:space="preserve">
     <value>删除{0}？</value>
@@ -4299,6 +4299,10 @@ ISO-code then comma then language name</comment>
     <value>放大页面字体大小 (Ctrl + Alt + Plus)</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribIndexModifiedButton_Label" xml:space="preserve">
+    <value>索引修改</value>
+    <comment>command !EDIT</comment>
+  </data>
   <data name="ribInsertBlueStatusButton_Label" xml:space="preserve">
     <value>状态标签：蓝色</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
@@ -4518,10 +4522,6 @@ ISO-code then comma then language name</comment>
   <data name="ribLoadStylesButton_Screentip" xml:space="preserve">
     <value>从主题文件加载自定义样式</value>
     <comment>ribbon styles</comment>
-  </data>
-  <data name="ribLogModifiedButton_Label" xml:space="preserve">
-    <value>修改日志</value>
-    <comment>command</comment>
   </data>
   <data name="ribLowercaseButton_Label" xml:space="preserve">
     <value>转为小写</value>
