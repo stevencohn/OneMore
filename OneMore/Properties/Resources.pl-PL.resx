@@ -5286,6 +5286,10 @@ Zakładka Pomoc</value>
     <value>Pokoloruj ponownie obrazy, używając wybranego stylu</value>
     <comment>ribbon images</comment>
   </data>
+  <data name="ribSyncNotebooksButton_Label" xml:space="preserve">
+    <value>Synchronizuj notesy</value>
+    <comment>command</comment>
+  </data>
   <data name="ribTableMenu_Label" xml:space="preserve">
     <value>Tabela</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>

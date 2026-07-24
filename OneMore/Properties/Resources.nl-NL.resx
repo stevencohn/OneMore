@@ -5286,6 +5286,10 @@ Tabblad Help</value>
     <value>Kleur afbeeldingen opnieuw met de geselecteerde stijl</value>
     <comment>ribbon images</comment>
   </data>
+  <data name="ribSyncNotebooksButton_Label" xml:space="preserve">
+    <value>Synchroniseer notitieboekjes</value>
+    <comment>command</comment>
+  </data>
   <data name="ribTableMenu_Label" xml:space="preserve">
     <value>Tafel</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>

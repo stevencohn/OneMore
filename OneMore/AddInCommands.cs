@@ -1088,6 +1088,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<StylizeImagesCommand>();
 
 
+		[Command("ribSyncNotebooksButton_Label", Keys.None)]
+		public async Task SyncNotebooksCmd(IRibbonControl control)
+			=> await factory.Run<SyncCommand>();
+
+
 		[Command("ribTextToTableButton_Label", Keys.None, "ribTableMenu")]
 		public async Task TextToTableCmd(IRibbonControl control)
 			=> await factory.Run<TextToTableCommand>();

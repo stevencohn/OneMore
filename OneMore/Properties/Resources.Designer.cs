@@ -12547,7 +12547,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribStylizeImagesButton_Screentip", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Sync Notebooks.
+        /// </summary>
+        internal static string ribSyncNotebooksButton_Label {
+            get {
+                return ResourceManager.GetString("ribSyncNotebooksButton_Label", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Table.
         /// </summary>

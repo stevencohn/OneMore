@@ -5290,6 +5290,10 @@ ISO-code then comma then language name</comment>
     <value>צבע מחדש תמונות באמצעות סגנון נבחר</value>
     <comment>ribbon images</comment>
   </data>
+  <data name="ribSyncNotebooksButton_Label" xml:space="preserve">
+    <value>סנכרון מחברות</value>
+    <comment>command</comment>
+  </data>
   <data name="ribTableMenu_Label" xml:space="preserve">
     <value>שולחן</value>
     <comment>Ribbon OneMore menu item, Formula...</comment>
