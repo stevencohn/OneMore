@@ -323,7 +323,7 @@ namespace River.OneMoreAddIn.Commands
 			// Title row
 			if (card.Title != null)
 			{
-				var isHovered = hoverCard == cardIndex && hoverHit == -1;
+				var isHovered = !card.IsPlainText && hoverCard == cardIndex && hoverHit == -1;
 				var fore      = isHovered ? hoverFore : titleFore;
 
 				// Checkbox glyph: visible when the card is hovered or already checked.
@@ -501,11 +501,13 @@ namespace River.OneMoreAddIn.Commands
 		{
 			base.OnMouseMove(e);
 			var hit = HitTest(e.Location);
+			var isPlainTitle = hit.HasValue && hit.Value.HitIndex == -1
+				&& cards[hit.Value.CardIndex].IsPlainText;
 
-			int newCard = hit?.CardIndex ?? -1;
-			int newHit  = hit?.HitIndex  ?? -1;
+			int newCard = (hit != null && !isPlainTitle) ? hit.Value.CardIndex : -1;
+			int newHit  = (hit != null && !isPlainTitle) ? hit.Value.HitIndex  : -1;
 
-			Cursor = hit != null ? Cursors.Hand : Cursors.Default;
+			Cursor = (hit != null && !isPlainTitle) ? Cursors.Hand : Cursors.Default;
 
 			if (newCard != hoverCard || newHit != hoverHit)
 			{

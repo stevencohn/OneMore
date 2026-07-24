@@ -225,7 +225,7 @@ namespace River.OneMoreAddIn.Commands
 
 						SearchTitleEngine.Sort(matches, query.SortByModified);
 
-						resultsView.AppendCard(new CardModel { Title = nb.Name, IsHeader = true });
+						resultsView.AppendCard(new CardModel { Title = nb.Name, IsHeader = true, IsPlainText = true });
 						foreach (var match in matches)
 						{
 							resultsView.AppendCard(ToCard(match));
