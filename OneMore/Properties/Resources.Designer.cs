@@ -5664,6 +5664,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Open a section to log modified pages.
+        /// </summary>
+        internal static string LogModifiedCommand_NoSection {
+            get {
+                return ResourceManager.GetString("LogModifiedCommand_NoSection", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to {0} Modified Pages.
+        /// </summary>
+        internal static string LogModifiedCommand_Title {
+            get {
+                return ResourceManager.GetString("LogModifiedCommand_Title", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Logo {
@@ -10747,6 +10765,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Log Modified.
+        /// </summary>
+        internal static string ribLogModifiedButton_Label {
+            get {
+                return ResourceManager.GetString("ribLogModifiedButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to To lowercase.
         /// </summary>
         internal static string ribLowercaseButton_Label {
@@ -12547,7 +12574,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribStylizeImagesButton_Screentip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Sync Notebooks.
         /// </summary>
@@ -12556,7 +12583,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribSyncNotebooksButton_Label", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Table.
         /// </summary>
