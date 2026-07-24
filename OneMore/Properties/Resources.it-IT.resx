@@ -5104,6 +5104,14 @@ Scheda Aiuto</value>
     <value>Cerca e tagga</value>
     <comment>ribbon menu</comment>
   </data>
+  <data name="ribSearchTitleButton_Label" xml:space="preserve">
+    <value>Cerca titoli</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribSearchTitleButton_Screentip" xml:space="preserve">
+    <value>Cerca i titoli delle pagine su un taccuino e, facoltativamente, indicizza i risultati</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribSectionColorButton_Label" xml:space="preserve">
     <value>Personalizza il colore della sezione</value>
     <comment>section Context menu</comment>
@@ -5694,6 +5702,34 @@ I motori di ricerca verranno visualizzati nel menu contestuale della pagina, far
   <data name="SearchQF_Title" xml:space="preserve">
     <value>Seleziona Posizione</value>
     <comment>QuickFiling title</comment>
+  </data>
+  <data name="SearchTitleCommand_indexTitle" xml:space="preserve">
+    <value>Risultati della ricerca del titolo</value>
+    <comment>page title</comment>
+  </data>
+  <data name="SearchTitleDialog_clearAllLink.Text" xml:space="preserve">
+    <value>Cancella selezione</value>
+    <comment>link</comment>
+  </data>
+  <data name="SearchTitleDialog_introLabel.Text" xml:space="preserve">
+    <value>Inserisci una query sul titolo della pagina. Prefisso con "&gt;" per ordinare in base all'ultima modifica; utilizzare "\name" per definire l'ambito di un notebook ("\*" per tutti) e "#tag" per filtrare in base all'hashtag.</value>
+    <comment>label !EDIT</comment>
+  </data>
+  <data name="SearchTitleDialog_noHashtagCatalog" xml:space="preserve">
+    <value>La ricerca degli hashtag richiede il catalogo degli hashtag. Esegui prima una scansione dell'hashtag.</value>
+    <comment>message</comment>
+  </data>
+  <data name="SearchTitleDialog_noResults" xml:space="preserve">
+    <value>Nessun risultato trovato</value>
+    <comment>message</comment>
+  </data>
+  <data name="SearchTitleDialog_selectAllLink.Text" xml:space="preserve">
+    <value>Seleziona tutto</value>
+    <comment>link</comment>
+  </data>
+  <data name="SearchTitleDialog_Text" xml:space="preserve">
+    <value>Cerca titoli di pagina</value>
+    <comment>dialog title</comment>
   </data>
   <data name="SectionColor_Title" xml:space="preserve">
     <value>Colore sezione</value>

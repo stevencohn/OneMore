@@ -35,7 +35,6 @@ namespace River.OneMoreAddIn.Commands
 			this.indexButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.findLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.findBox = new River.OneMoreAddIn.UI.MoreTextBox();
-			this.searchButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.resultsView = new River.OneMoreAddIn.Commands.SearchResultsCardView();
 			this.morePanel1 = new River.OneMoreAddIn.UI.MorePanel();
 			this.morePanel2 = new River.OneMoreAddIn.UI.MorePanel();
@@ -52,17 +51,15 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// introLabel
 			// 
-			this.introLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
 			this.introLabel.AutoSize = true;
-			this.introLabel.Location = new System.Drawing.Point(4, 3);
+			this.introLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.introLabel.Location = new System.Drawing.Point(3, 3);
 			this.introLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 15);
 			this.introLabel.Name = "introLabel";
-			this.introLabel.Size = new System.Drawing.Size(779, 71);
+			this.introLabel.Size = new System.Drawing.Size(784, 72);
 			this.introLabel.TabIndex = 0;
 			this.introLabel.Text = "Enter a page title query. Prefix with \">\" to sort by most recently modified; use " +
-    "\"nb:\\name\" to scope to a notebook (\"nb:\\*\" for all), and \"#tag\" to filter by has" +
-    "htag.";
+    "\"\\name\" to scope to a notebook (\"\\*\" for all), and \"#tag\" to filter by hashtag.";
 			this.introLabel.ThemedBack = null;
 			this.introLabel.ThemedFore = null;
 			// 
@@ -128,32 +125,12 @@ namespace River.OneMoreAddIn.Commands
 			this.findBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.findBox.Name = "findBox";
 			this.findBox.ProcessEnterKey = false;
-			this.findBox.Size = new System.Drawing.Size(658, 26);
+			this.findBox.Size = new System.Drawing.Size(677, 26);
 			this.findBox.TabIndex = 1;
 			this.findBox.ThemedBack = null;
 			this.findBox.ThemedFore = null;
 			this.findBox.TextChanged += new System.EventHandler(this.ChangedText);
 			this.findBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SearchOnKeydown);
-			// 
-			// searchButton
-			// 
-			this.searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.searchButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
-			this.searchButton.Enabled = false;
-			this.searchButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.searchButton.Image = global::River.OneMoreAddIn.Properties.Resources.m_Search;
-			this.searchButton.ImageOver = null;
-			this.searchButton.Location = new System.Drawing.Point(724, 9);
-			this.searchButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 15);
-			this.searchButton.Name = "searchButton";
-			this.searchButton.ShowBorder = true;
-			this.searchButton.Size = new System.Drawing.Size(68, 32);
-			this.searchButton.StylizeImage = true;
-			this.searchButton.TabIndex = 2;
-			this.searchButton.ThemedBack = null;
-			this.searchButton.ThemedFore = null;
-			this.searchButton.UseVisualStyleBackColor = true;
-			this.searchButton.Click += new System.EventHandler(this.Search);
 			// 
 			// resultsView
 			// 
@@ -207,7 +184,6 @@ namespace River.OneMoreAddIn.Commands
 			this.queryPanel.BottomBorderSize = 0;
 			this.queryPanel.Controls.Add(this.findBox);
 			this.queryPanel.Controls.Add(this.findLabel);
-			this.queryPanel.Controls.Add(this.searchButton);
 			this.queryPanel.Dock = System.Windows.Forms.DockStyle.Top;
 			this.queryPanel.Location = new System.Drawing.Point(15, 93);
 			this.queryPanel.Margin = new System.Windows.Forms.Padding(0);
@@ -336,7 +312,6 @@ namespace River.OneMoreAddIn.Commands
 		private UI.MoreButton indexButton;
 		private UI.MoreLabel findLabel;
 		private UI.MoreTextBox findBox;
-		private UI.MoreButton searchButton;
 		private SearchResultsCardView resultsView;
 		private UI.MorePanel morePanel1;
 		private UI.MorePanel morePanel2;

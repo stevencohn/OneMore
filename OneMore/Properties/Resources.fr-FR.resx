@@ -5109,6 +5109,14 @@ Onglet Aide</value>
     <value>Recherche et balise</value>
     <comment>ribbon menu item</comment>
   </data>
+  <data name="ribSearchTitleButton_Label" xml:space="preserve">
+    <value>Rechercher des titres</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribSearchTitleButton_Screentip" xml:space="preserve">
+    <value>Recherchez les titres des pages dans un bloc-notes et indexez éventuellement les résultats</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribSectionColorButton_Label" xml:space="preserve">
     <value>Personnaliser la couleur de la section</value>
     <comment>Context menu</comment>
@@ -5698,6 +5706,34 @@ Les moteurs de recherche apparaîtront dans le menu du contexte de la page, cliq
   <data name="SearchQF_Title" xml:space="preserve">
     <value>Sélectionnez l'emplacement</value>
     <comment>QuickFiling title</comment>
+  </data>
+  <data name="SearchTitleCommand_indexTitle" xml:space="preserve">
+    <value>Résultats de la recherche de titre</value>
+    <comment>page title</comment>
+  </data>
+  <data name="SearchTitleDialog_clearAllLink.Text" xml:space="preserve">
+    <value>Effacer la sélection</value>
+    <comment>link</comment>
+  </data>
+  <data name="SearchTitleDialog_introLabel.Text" xml:space="preserve">
+    <value>Saisissez une requête de titre de page. Préfixez avec « &gt; » pour trier selon les modifications les plus récentes ; utilisez "\name" pour accéder à un bloc-notes ("\*" pour tous) et "#tag" pour filtrer par hashtag.</value>
+    <comment>label !EDIT</comment>
+  </data>
+  <data name="SearchTitleDialog_noHashtagCatalog" xml:space="preserve">
+    <value>La recherche de hashtag nécessite le catalogue de hashtag. Exécutez d’abord une analyse de hashtag.</value>
+    <comment>message</comment>
+  </data>
+  <data name="SearchTitleDialog_noResults" xml:space="preserve">
+    <value>Aucun résultat trouvé</value>
+    <comment>message</comment>
+  </data>
+  <data name="SearchTitleDialog_selectAllLink.Text" xml:space="preserve">
+    <value>Tout sélectionner</value>
+    <comment>link</comment>
+  </data>
+  <data name="SearchTitleDialog_Text" xml:space="preserve">
+    <value>Titres de page de recherche</value>
+    <comment>dialog title</comment>
   </data>
   <data name="SectionColor_Title" xml:space="preserve">
     <value>Couleur de la section</value>

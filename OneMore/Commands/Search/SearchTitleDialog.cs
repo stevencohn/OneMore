@@ -97,7 +97,6 @@ namespace River.OneMoreAddIn.Commands
 		private void ChangedText(object sender, EventArgs e)
 		{
 			var text = findBox.Text;
-			searchButton.Enabled = text.Trim().Length > 0;
 
 			debounceTimer.Stop();
 
@@ -258,7 +257,7 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
-		/// Resolves the notebook(s) targeted by an "nb:\" filter (or the current notebook when
+		/// Resolves the notebook(s) targeted by a "\" filter (or the current notebook when
 		/// none was specified) to their cached Scope.Pages hierarchy trees, fetching and caching
 		/// any notebook not already in the cache. Subsequent searches against an already-cached
 		/// notebook require no COM calls at all.
