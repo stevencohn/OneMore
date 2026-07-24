@@ -326,6 +326,9 @@
     <Compile Include="Commands\Search\CardHit.cs" />
     <Compile Include="Commands\Search\CardModel.cs" />
     <Compile Include="Commands\Search\SearchEngine.cs" />
+    <Compile Include="Commands\Search\SearchTitleEngine.cs" />
+    <Compile Include="Commands\Search\SearchTitleCommand.cs" />
+    <Compile Include="Commands\Search\TitleQueryParser.cs" />
     <Compile Include="Commands\Search\SearchGroupControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -861,6 +864,12 @@
     </Compile>
     <Compile Include="Commands\Search\SearchDialog.Designer.cs">
       <DependentUpon>SearchDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commands\Search\SearchTitleDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Search\SearchTitleDialog.Designer.cs">
+      <DependentUpon>SearchTitleDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Search\SearchServices.cs" />
     <Compile Include="Commands\Settings\PluginsSheet.cs">
@@ -1868,6 +1877,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Search\SearchDialog.resx">
       <DependentUpon>SearchDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Search\SearchTitleDialog.resx">
+      <DependentUpon>SearchTitleDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\File\ImportDialog.resx">
       <DependentUpon>ImportDialog.cs</DependentUpon>

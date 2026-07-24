@@ -319,6 +319,12 @@
         getScreentip="GetRibbonScreentip"
         onAction="SearchAndReplaceCmd"/>
       <button
+        id="ribSearchTitleButton"
+        imageMso="ControlTitle"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="SearchTitleCmd"/>
+      <button
         id="ribAddTagBankButton"
         imageMso="DataFormAddRecord"
         getLabel="GetRibbonLabel"

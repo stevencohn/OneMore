@@ -19,10 +19,11 @@ namespace River.OneMoreAddIn.UI
 
 		private readonly IntPtr hcursor;
 		private Color back;
-		private Color themedLinkColor;
+		private Color restingColor;
 		private bool selected;
 		private bool active;
 		private bool navMode;
+		private bool applyingInternalColor;
 		private LinkLabelLinkClickedEventHandler linkClicked;
 
 
@@ -34,6 +35,28 @@ namespace River.OneMoreAddIn.UI
 			ActiveLinkColor = Color.MediumOrchid;
 			LinkColor = Color.MediumOrchid;
 			VisitedLinkColor = Color.MediumOrchid;
+		}
+
+
+		/// <summary>
+		/// Hides the base LinkColor property so every explicit assignment - whether from the
+		/// designer, a theme, or a caller supplying a StrictColors override - is remembered as
+		/// the color to restore after the mouse leaves. Without this, controls constructed
+		/// after their owning form's Load event (so ILoadControl.OnLoad never runs) or using
+		/// StrictColors would revert to the WinForms default blue instead of their intended
+		/// resting color once hovering ends.
+		/// </summary>
+		public new Color LinkColor
+		{
+			get => base.LinkColor;
+			set
+			{
+				base.LinkColor = value;
+				if (!applyingInternalColor)
+				{
+					restingColor = value;
+				}
+			}
 		}
 
 
@@ -173,7 +196,7 @@ namespace River.OneMoreAddIn.UI
 			{
 				var manager = ThemeManager.Instance;
 
-				themedLinkColor = !string.IsNullOrWhiteSpace(ThemedFore)
+				restingColor = !string.IsNullOrWhiteSpace(ThemedFore)
 					? manager.GetColor(ThemedFore)
 					: manager.GetColor("LinkColor");
 
@@ -197,16 +220,20 @@ namespace River.OneMoreAddIn.UI
 		{
 			var color = navMode && !active
 				? ThemeManager.Instance.GetColor("ControlText")
-				: themedLinkColor;
+				: restingColor;
 
+			applyingInternalColor = true;
 			LinkColor = VisitedLinkColor = ActiveLinkColor = color;
+			applyingInternalColor = false;
 		}
 
 
 		protected override void OnMouseEnter(EventArgs e)
 		{
 			base.OnMouseEnter(e);
+			applyingInternalColor = true;
 			LinkColor = VisitedLinkColor = HoverColor;
+			applyingInternalColor = false;
 		}
 
 

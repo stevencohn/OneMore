@@ -12124,7 +12124,25 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribSearchMenu_Label", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Search Titles.
+        /// </summary>
+        internal static string ribSearchTitleButton_Label {
+            get {
+                return ResourceManager.GetString("ribSearchTitleButton_Label", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Search page titles across a notebook and optionally index the results.
+        /// </summary>
+        internal static string ribSearchTitleButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribSearchTitleButton_Screentip", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Customize Section Color.
         /// </summary>
@@ -13444,7 +13462,70 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("SearchQF_Title", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Title Search Results.
+        /// </summary>
+        internal static string SearchTitleCommand_indexTitle {
+            get {
+                return ResourceManager.GetString("SearchTitleCommand_indexTitle", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Clear selection.
+        /// </summary>
+        internal static string SearchTitleDialog_clearAllLink_Text {
+            get {
+                return ResourceManager.GetString("SearchTitleDialog_clearAllLink.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Enter a page title query..
+        /// </summary>
+        internal static string SearchTitleDialog_introLabel_Text {
+            get {
+                return ResourceManager.GetString("SearchTitleDialog_introLabel.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Hashtag search requires the hashtag catalog. Run a hashtag scan first..
+        /// </summary>
+        internal static string SearchTitleDialog_noHashtagCatalog {
+            get {
+                return ResourceManager.GetString("SearchTitleDialog_noHashtagCatalog", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to No results found.
+        /// </summary>
+        internal static string SearchTitleDialog_noResults {
+            get {
+                return ResourceManager.GetString("SearchTitleDialog_noResults", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Select all.
+        /// </summary>
+        internal static string SearchTitleDialog_selectAllLink_Text {
+            get {
+                return ResourceManager.GetString("SearchTitleDialog_selectAllLink.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Search Page Titles.
+        /// </summary>
+        internal static string SearchTitleDialog_Text {
+            get {
+                return ResourceManager.GetString("SearchTitleDialog_Text", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Section Color.
         /// </summary>
