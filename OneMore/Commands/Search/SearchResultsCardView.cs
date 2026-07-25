@@ -25,6 +25,7 @@ namespace River.OneMoreAddIn.Commands
 		// visual constants
 		private const int CardMarginH = 8;   // horizontal gap between control edge and card
 		private const int SwatchWidth = 5;   // section-color stripe on the left edge of card
+		private const int SelectedSwatchWidth = 11;  // widened stripe for the keyboard-selected card
 		private const int CardPadX = 8;      // horizontal padding between swatch and text
 		private const int CardPadV = 5;      // vertical padding inside card (top and bottom)
 		private const int TitleRowH = 26;    // height of the page-title row
@@ -45,6 +46,7 @@ namespace River.OneMoreAddIn.Commands
 		// selection
 		private int selectedCard = -1;
 		private int selectedHit = -1;
+		private bool hasKeyboardFocus;
 
 		// hover
 		private int hoverCard = -1;
@@ -299,14 +301,23 @@ namespace River.OneMoreAddIn.Commands
 			// looking like a navigable page card
 			g.FillRoundedRectangle(card.IsHeader ? headerBackBrush : cardBackBrush, cardRect, CornerRadius);
 
-			// Section-color swatch — inset from corners to stay within the rounded region
-			if (card.SectionColor != Color.Empty)
+			// Section-color swatch — inset from corners to stay within the rounded region.
+			// A card with keyboard focus (whole-card selection, no focus rectangle) is
+			// indicated by doubling this bar's width instead; falls back to the themed
+			// highlight color when the card itself has no section color to widen.
+			var isSelectedCard = hasKeyboardFocus && cardIndex == selectedCard && selectedHit == -1;
+			var swatchColor = card.SectionColor != Color.Empty
+				? card.SectionColor
+				: (isSelectedCard ? manager.GetColor("Highlight") : Color.Empty);
+
+			if (swatchColor != Color.Empty)
 			{
+				var swatchWidth = isSelectedCard ? SelectedSwatchWidth : SwatchWidth;
 				var swatchRect = new Rectangle(
 					cx + 2, screenTop + CornerRadius,
-					SwatchWidth, card.Height - CornerRadius * 2);
+					swatchWidth, card.Height - CornerRadius * 2);
 
-				using var swatchBrush = new SolidBrush(card.SectionColor);
+				using var swatchBrush = new SolidBrush(swatchColor);
 				g.FillRectangle(swatchBrush, swatchRect);
 			}
 
@@ -591,6 +602,72 @@ namespace River.OneMoreAddIn.Commands
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 		// Keyboard navigation
 
+		/// <summary>
+		/// Claims arrow/paging keys as regular input so they reach OnKeyDown/KeyDown
+		/// instead of being consumed by the container's dialog-key focus-cycling (arrow
+		/// keys are treated as "dialog keys" by default and never reach KeyDown otherwise).
+		/// </summary>
+		protected override bool IsInputKey(Keys keyData)
+		{
+			switch (keyData & Keys.KeyCode)
+			{
+				case Keys.Up:
+				case Keys.Down:
+				case Keys.PageUp:
+				case Keys.PageDown:
+					return true;
+			}
+
+			return base.IsInputKey(keyData);
+		}
+
+
+		protected override void OnEnter(EventArgs e)
+		{
+			base.OnEnter(e);
+			hasKeyboardFocus = true;
+
+			// Tabbing into an empty selection selects the first navigable item so the
+			// keyboard-selection indicator is visible as soon as focus arrives.
+			if (selectedCard < 0 && cards.Count > 0)
+			{
+				SelectFirst();
+			}
+			else
+			{
+				InvalidateHitRegion(selectedCard, selectedHit);
+			}
+		}
+
+
+		protected override void OnLeave(EventArgs e)
+		{
+			base.OnLeave(e);
+			hasKeyboardFocus = false;
+
+			// Redraw the selection indicator at its normal (unfocused) width.
+			InvalidateHitRegion(selectedCard, selectedHit);
+		}
+
+
+		/// <summary>
+		/// Number of selectable units in a card: one per hit for a card with snippet hits
+		/// (SearchDialog), or the whole card as a single unit when it has no hits but is
+		/// itself navigable (SearchTitleDialog's title-only cards).
+		/// </summary>
+		private int UnitCount(int c) =>
+			cards[c].Hits.Count > 0 ? cards[c].Hits.Count : (cards[c].PageId != null ? 1 : 0);
+
+
+		/// <summary>
+		/// Maps a 0-based logical unit index within a card to the value stored in
+		/// selectedHit: the hit index itself for hit-based cards, or -1 (whole card
+		/// selected) for a title-only card.
+		/// </summary>
+		private int StoredHit(int c, int logicalIndex) =>
+			cards[c].Hits.Count > 0 ? logicalIndex : -1;
+
+
 		public void MoveSelection(int delta)
 		{
 			if (cards.Count == 0) return;
@@ -603,35 +680,79 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			int c = selectedCard;
-			int h = selectedHit;
+			int li = selectedHit < 0 ? 0 : selectedHit;
 
 			while (delta > 0)
 			{
-				h++;
-				if (h >= cards[c].Hits.Count)
+				li++;
+				if (li >= UnitCount(c))
 				{
 					c++;
-					while (c < cards.Count && cards[c].Hits.Count == 0) c++;
+					while (c < cards.Count && UnitCount(c) == 0) c++;
 					if (c >= cards.Count) return;
-					h = 0;
+					li = 0;
 				}
 				delta--;
 			}
 
 			while (delta < 0)
 			{
-				h--;
-				if (h < 0)
+				li--;
+				if (li < 0)
 				{
 					c--;
-					while (c >= 0 && cards[c].Hits.Count == 0) c--;
+					while (c >= 0 && UnitCount(c) == 0) c--;
 					if (c < 0) return;
-					h = cards[c].Hits.Count - 1;
+					li = UnitCount(c) - 1;
 				}
 				delta++;
 			}
 
-			SelectHit(c, h);
+			SelectHit(c, StoredHit(c, li));
+		}
+
+
+		/// <summary>
+		/// Moves the selection roughly one viewport height up or down, landing on the first
+		/// navigable card at or past that point - mirrors ListBox PageUp/PageDown behavior.
+		/// </summary>
+		public void MoveSelectionPage(int direction)
+		{
+			if (cards.Count == 0) return;
+
+			if (selectedCard < 0)
+			{
+				if (direction > 0) SelectFirst();
+				else SelectLast();
+				return;
+			}
+
+			EnsureLayout();
+
+			var targetY = cards[selectedCard].Y + direction * ClientSize.Height;
+			var best = -1;
+
+			if (direction > 0)
+			{
+				for (int c = selectedCard + 1; c < cards.Count; c++)
+				{
+					if (UnitCount(c) == 0) continue;
+					best = c;
+					if (cards[c].Y >= targetY) break;
+				}
+			}
+			else
+			{
+				for (int c = selectedCard - 1; c >= 0; c--)
+				{
+					if (UnitCount(c) == 0) continue;
+					best = c;
+					if (cards[c].Y <= targetY) break;
+				}
+			}
+
+			if (best < 0) return;
+			SelectHit(best, StoredHit(best, 0));
 		}
 
 
@@ -639,7 +760,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			for (int c = 0; c < cards.Count; c++)
 			{
-				if (cards[c].Hits.Count > 0) { SelectHit(c, 0); return; }
+				if (UnitCount(c) > 0) { SelectHit(c, StoredHit(c, 0)); return; }
 			}
 		}
 
@@ -648,7 +769,8 @@ namespace River.OneMoreAddIn.Commands
 		{
 			for (int c = cards.Count - 1; c >= 0; c--)
 			{
-				if (cards[c].Hits.Count > 0) { SelectHit(c, cards[c].Hits.Count - 1); return; }
+				var n = UnitCount(c);
+				if (n > 0) { SelectHit(c, StoredHit(c, n - 1)); return; }
 			}
 		}
 
@@ -668,22 +790,40 @@ namespace River.OneMoreAddIn.Commands
 
 		public (string pageId, string objectId)? GetSelectedTarget()
 		{
-			if (selectedCard < 0 || selectedHit < 0) return null;
-			var h = cards[selectedCard].Hits[selectedHit];
+			if (selectedCard < 0) return null;
+
+			var card = cards[selectedCard];
+			if (selectedHit < 0)
+			{
+				return card.PageId != null ? (card.PageId, string.Empty) : null;
+			}
+
+			var h = card.Hits[selectedHit];
 			return (h.PageId, h.ObjectId);
 		}
 
 
 		private void EnsureHitVisible(int cardIndex, int hitIndex)
 		{
-			if (cardIndex < 0 || hitIndex < 0) return;
+			if (cardIndex < 0) return;
 			EnsureLayout();
 
-			var card   = cards[cardIndex];
-			var hitTop = card.Y + CardPadV
-				+ (card.Title != null ? TitleRowH : 0)
-				+ hitIndex * HitRowH;
-			var hitBottom = hitTop + HitRowH;
+			var card = cards[cardIndex];
+			int hitTop, hitBottom;
+
+			if (hitIndex < 0)
+			{
+				// whole-card selection (title-only card) - keep the entire card in view
+				hitTop = card.Y;
+				hitBottom = card.Y + card.Height;
+			}
+			else
+			{
+				hitTop = card.Y + CardPadV
+					+ (card.Title != null ? TitleRowH : 0)
+					+ hitIndex * HitRowH;
+				hitBottom = hitTop + HitRowH;
+			}
 
 			var scrollY = -AutoScrollPosition.Y;
 			var clientH = ClientSize.Height;

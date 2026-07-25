@@ -53,6 +53,7 @@ namespace River.OneMoreAddIn.Commands
 
 			resultsView.CardActivated += OnCardActivated;
 			resultsView.CheckedChanged += OnCheckedChanged;
+			resultsView.KeyDown += HandleNavKey;
 
 			debounceTimer = new Timer { Interval = DebounceMilliseconds };
 			debounceTimer.Tick += DebounceTick;
@@ -443,6 +444,40 @@ namespace River.OneMoreAddIn.Commands
 		private async void OnCardActivated(object sender, NavigateCardEventArgs e)
 		{
 			await NavigateTo(e.PageId, e.NewWindow);
+		}
+
+
+		private async void HandleNavKey(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Down && e.Modifiers == Keys.None)
+			{
+				resultsView.MoveSelection(1);
+				e.Handled = true;
+			}
+			else if (e.KeyCode == Keys.Up && e.Modifiers == Keys.None)
+			{
+				resultsView.MoveSelection(-1);
+				e.Handled = true;
+			}
+			else if (e.KeyCode == Keys.PageDown && e.Modifiers == Keys.None)
+			{
+				resultsView.MoveSelectionPage(1);
+				e.Handled = true;
+			}
+			else if (e.KeyCode == Keys.PageUp && e.Modifiers == Keys.None)
+			{
+				resultsView.MoveSelectionPage(-1);
+				e.Handled = true;
+			}
+			else if (e.KeyCode == Keys.Enter && e.Modifiers == Keys.None)
+			{
+				var target = resultsView.GetSelectedTarget();
+				if (target.HasValue)
+				{
+					await NavigateTo(target.Value.pageId);
+				}
+				e.Handled = true;
+			}
 		}
 
 

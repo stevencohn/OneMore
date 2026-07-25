@@ -141,8 +141,8 @@ namespace River.OneMoreAddIn.Commands
 			this.resultsView.Location = new System.Drawing.Point(15, 169);
 			this.resultsView.Name = "resultsView";
 			this.resultsView.Size = new System.Drawing.Size(790, 321);
-			this.resultsView.TabIndex = 3;
-			this.resultsView.TabStop = false;
+			this.resultsView.TabIndex = 2;
+			this.resultsView.TabStop = true;
 			// 
 			// morePanel1
 			// 
@@ -209,7 +209,7 @@ namespace River.OneMoreAddIn.Commands
 			this.resultsHeaderPanel.Name = "resultsHeaderPanel";
 			this.resultsHeaderPanel.Padding = new System.Windows.Forms.Padding(3);
 			this.resultsHeaderPanel.Size = new System.Drawing.Size(790, 30);
-			this.resultsHeaderPanel.TabIndex = 2;
+			this.resultsHeaderPanel.TabIndex = 3;
 			this.resultsHeaderPanel.ThemedBack = null;
 			this.resultsHeaderPanel.ThemedFore = null;
 			this.resultsHeaderPanel.TopBorderColor = System.Drawing.SystemColors.Control;
