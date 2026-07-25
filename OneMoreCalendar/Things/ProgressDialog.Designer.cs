@@ -78,7 +78,7 @@ namespace OneMoreCalendar
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(568, 162);
+			this.ClientSize = new System.Drawing.Size(568, 177);
 			this.ControlBox = false;
 			this.Controls.Add(this.cancelButton);
 			this.Controls.Add(this.progressBar);
