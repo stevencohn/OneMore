@@ -12,6 +12,7 @@ namespace OneMoreCalendar
 	using System.IO;
 	using System.Linq;
 	using System.Runtime.InteropServices;
+	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
 
@@ -180,12 +181,30 @@ namespace OneMoreCalendar
 		/// Gets the onenote:hyperlink and Web hyperlink for each page.
 		/// </summary>
 		/// <param name="pages">A collection of CalendarPages</param>
+		/// <param name="token">
+		/// A token that, when canceled, stops the fetch after the current page completes
+		/// </param>
+		/// <param name="setMaximum">Called once, up front, with the total number of pages</param>
+		/// <param name="stepCallback">
+		/// Called after each page is processed, whether it succeeded or failed
+		/// </param>
 		/// <returns></returns>
-		public async Task GetPageLinks(List<CalendarPage> pages)
+		public async Task GetPageLinks(
+			List<CalendarPage> pages,
+			CancellationToken token = default,
+			Action<int> setMaximum = null,
+			Func<CalendarPage, Task> stepCallback = null)
 		{
+			setMaximum?.Invoke(pages.Count);
+
 			await using var one = new OneNote();
 			foreach (var page in pages)
 			{
+				if (token.IsCancellationRequested)
+				{
+					break;
+				}
+
 				try
 				{
 					page.Hyperlink = one.GetHyperlink(page.PageID, string.Empty);
@@ -195,6 +214,11 @@ namespace OneMoreCalendar
 				{
 					Logger.Current.WriteLine("error getting page hyperlinks", exc);
 					page.Hyperlink = null;
+				}
+
+				if (stepCallback != null)
+				{
+					await stepCallback(page);
 				}
 			}
 		}

@@ -123,6 +123,12 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Things\MouseState.cs" />
+    <Compile Include="Things\ProgressDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Things\ProgressDialog.Designer.cs">
+      <DependentUpon>ProgressDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="ICalendarView.cs" />
     <Compile Include="CalendarForm.cs">
       <SubType>Form</SubType>
@@ -204,6 +210,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SnapshotForm.resx">
       <DependentUpon>SnapshotForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Things\ProgressDialog.resx">
+      <DependentUpon>ProgressDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="YearsForm.resx">
       <DependentUpon>YearsForm.cs</DependentUpon>
