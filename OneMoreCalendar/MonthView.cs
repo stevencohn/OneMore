@@ -235,18 +235,18 @@ namespace OneMoreCalendar
 		}
 
 
-		private void ScrollDay(Hotspot spot)
+		private void ScrollDay(CalendarDay day, int direction)
 		{
-			var offset = spot.Day.ScrollOffset + (spot.Type == Hottype.Up ? -1 : 1);
-			if (offset < 0 || offset > spot.Day.Pages.Count - maxItems)
+			var offset = day.ScrollOffset + direction;
+			if (offset < 0 || offset > day.Pages.Count - maxItems)
 			{
 				return;
 			}
 
-			spot.Day.ScrollOffset = offset;
+			day.ScrollOffset = offset;
 
 			using var g = CreateGraphics();
-			PaintDay(g, spot.Day);
+			PaintDay(g, day);
 		}
 
 
@@ -789,7 +789,19 @@ namespace OneMoreCalendar
 		{
 			if (((MoreButton)sender).Tag is Hotspot spot)
 			{
-				ScrollDay(spot);
+				ScrollDay(spot.Day, spot.Type == Hottype.Up ? -1 : 1);
+			}
+		}
+
+
+		protected override void OnMouseWheel(MouseEventArgs e)
+		{
+			base.OnMouseWheel(e);
+
+			var day = days?.Find(d => d.Bounds.Contains(e.Location));
+			if (day is not null && (day.UpButton is not null || day.DownButton is not null))
+			{
+				ScrollDay(day, e.Delta < 0 ? 1 : -1);
 			}
 		}
 
