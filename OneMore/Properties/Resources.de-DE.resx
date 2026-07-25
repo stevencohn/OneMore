@@ -2373,6 +2373,10 @@ Braunes Quadrat</value>
     <value>Es gibt keine Überschriften auf dieser Seite</value>
     <comment>message</comment>
   </data>
+  <data name="InsertTocCommand_Saving" xml:space="preserve">
+    <value>Seite wird gespeichert...</value>
+    <comment>progress message</comment>
+  </data>
   <data name="InsertTocCommand_TOC" xml:space="preserve">
     <value>Inhaltsverzeichnis</value>
     <comment>page name</comment>

@@ -2381,6 +2381,10 @@ Carré Marron</value>
     <value>Il n'y a pas de titres sur cette page</value>
     <comment>message</comment>
   </data>
+  <data name="InsertTocCommand_Saving" xml:space="preserve">
+    <value>Sauvegarde de la page...</value>
+    <comment>progress message</comment>
+  </data>
   <data name="InsertTocCommand_TOC" xml:space="preserve">
     <value>Table des matières</value>
     <comment>page name</comment>

@@ -2378,6 +2378,10 @@ Brązowy Kwadrat</value>
     <value>Na tej stronie nie ma nagłówków</value>
     <comment>message</comment>
   </data>
+  <data name="InsertTocCommand_Saving" xml:space="preserve">
+    <value>Zapisywanie strony...</value>
+    <comment>progress message</comment>
+  </data>
   <data name="InsertTocCommand_TOC" xml:space="preserve">
     <value>Spis treści</value>
     <comment>page name</comment>

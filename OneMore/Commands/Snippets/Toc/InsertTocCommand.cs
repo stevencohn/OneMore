@@ -68,6 +68,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					await Build(tocParams);
 				}
+
 				return;
 			}
 

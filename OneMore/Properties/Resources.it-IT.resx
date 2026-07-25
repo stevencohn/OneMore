@@ -2378,6 +2378,10 @@ Quadrato Marrone</value>
     <value>Non ci sono intestazioni in questa pagina</value>
     <comment>message</comment>
   </data>
+  <data name="InsertTocCommand_Saving" xml:space="preserve">
+    <value>Salvataggio pagina...</value>
+    <comment>progress message</comment>
+  </data>
   <data name="InsertTocCommand_TOC" xml:space="preserve">
     <value>Sommario</value>
     <comment>page name</comment>

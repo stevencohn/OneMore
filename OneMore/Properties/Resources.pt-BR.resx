@@ -2378,6 +2378,10 @@ Quadrado Marrom</value>
     <value>Não há títulos nesta página</value>
     <comment>message</comment>
   </data>
+  <data name="InsertTocCommand_Saving" xml:space="preserve">
+    <value>Salvando página...</value>
+    <comment>progress message</comment>
+  </data>
   <data name="InsertTocCommand_TOC" xml:space="preserve">
     <value>Índice</value>
     <comment>page name</comment>
