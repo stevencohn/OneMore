@@ -5731,8 +5731,8 @@ ISO-code then comma then language name</comment>
     <comment>link</comment>
   </data>
   <data name="SearchTitleDialog_introLabel.Text" xml:space="preserve">
-    <value>ページ タイトルのクエリを入力します。最近変更された順に並べ替えるには、プレフィックス「&gt;」を付けます。スコープをノートブックにするには「\name」を使用し (すべての場合は「\*」)、ハッシュタグでフィルターするには「#tag」を使用します。</value>
-    <comment>label !EDIT</comment>
+    <value>ページ タイトルのクエリを入力します。デフォルトですべてのノートブックを検索します。一致するノートブックをスコープするには「\name」を使用し、現在のノートブックのみを指定するには「\\」を、ハッシュタグでフィルターするには「#tag」を使用します。最近変更された順に並べ替えるには、プレフィックス「&gt;」を付けます。</value>
+    <comment>label</comment>
   </data>
   <data name="SearchTitleDialog_noHashtagCatalog" xml:space="preserve">
     <value>ハッシュタグ検索にはハッシュタグカタログが必要です。最初にハッシュタグ スキャンを実行します。</value>

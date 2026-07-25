@@ -5732,8 +5732,8 @@ ISO-code then comma then language name</comment>
     <comment>link</comment>
   </data>
   <data name="SearchTitleDialog_introLabel.Text" xml:space="preserve">
-    <value>أدخل استعلام عنوان الصفحة. البادئة بـ "&gt;" للفرز حسب آخر تعديل؛ استخدم "\name" لتحديد نطاق دفتر الملاحظات ("\*" للجميع)، و"#tag" للتصفية حسب علامة التصنيف.</value>
-    <comment>label !EDIT</comment>
+    <value>أدخل استعلام عنوان الصفحة. يبحث في كافة دفاتر الملاحظات بشكل افتراضي. استخدم "\name" لتحديد نطاق دفتر الملاحظات المطابق، و"\\" لدفتر الملاحظات الحالي فقط، و"#tag" للتصفية حسب علامة التصنيف. البادئة بـ "&gt;" للفرز حسب آخر تعديل.</value>
+    <comment>label</comment>
   </data>
   <data name="SearchTitleDialog_noHashtagCatalog" xml:space="preserve">
     <value>يتطلب البحث عن الهاشتاج كتالوج الهاشتاج. قم بإجراء فحص الهاشتاج أولاً.</value>

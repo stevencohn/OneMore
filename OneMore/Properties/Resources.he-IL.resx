@@ -5725,8 +5725,8 @@ ISO-code then comma then language name</comment>
     <comment>link</comment>
   </data>
   <data name="SearchTitleDialog_introLabel.Text" xml:space="preserve">
-    <value>הזן שאילתת כותרת דף. קידומת עם "&gt;" כדי למיין לפי שהשתנה לאחרונה; השתמש ב-"\name" כדי להרחיב למחברת ("\*" עבור כולם), וב-"#tag" כדי לסנן לפי hashtag.</value>
-    <comment>label !EDIT</comment>
+    <value>הזן שאילתת כותרת דף. חיפוש בכל המחברות כברירת מחדל. השתמש ב-"\name" כדי להרחיב למחברת תואמת, "\\" למחברת הנוכחית בלבד וב-"#tag" כדי לסנן לפי hashtag. קידומת עם "&gt;" כדי למיין לפי שהשתנה לאחרונה.</value>
+    <comment>label</comment>
   </data>
   <data name="SearchTitleDialog_noHashtagCatalog" xml:space="preserve">
     <value>חיפוש האשטאג דורש את קטלוג ההאשטאג. תחילה הפעל סריקת האשטאג.</value>

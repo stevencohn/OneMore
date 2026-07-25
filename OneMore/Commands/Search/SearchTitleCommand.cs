@@ -44,8 +44,8 @@ namespace River.OneMoreAddIn.Commands
 				"Search terms; supports \">\" (sort by modified) and \"#hashtag\" filters",
 				required: true)
 			.AddString("notebook",
-				"Name of the notebook to search; * for all notebooks, " +
-				"omit to search the current notebook",
+				"Name of the notebook to search; * or omit to search all notebooks, " +
+				"\\ to search only the current notebook",
 				required: false);
 
 		#endregion CLI Implementation
@@ -219,11 +219,15 @@ namespace River.OneMoreAddIn.Commands
 			List<(string Id, string Name)> targets;
 			if (string.IsNullOrEmpty(notebookFilter))
 			{
-				targets = candidates.Where(n => n.Id == one.CurrentNotebookId).ToList();
+				targets = candidates;
 			}
 			else if (notebookFilter == "*")
 			{
 				targets = candidates;
+			}
+			else if (notebookFilter == "\\")
+			{
+				targets = candidates.Where(n => n.Id == one.CurrentNotebookId).ToList();
 			}
 			else
 			{

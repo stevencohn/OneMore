@@ -58,8 +58,9 @@ namespace River.OneMoreAddIn.Commands
 			this.introLabel.Name = "introLabel";
 			this.introLabel.Size = new System.Drawing.Size(784, 72);
 			this.introLabel.TabIndex = 0;
-			this.introLabel.Text = "Enter a page title query. Prefix with \">\" to sort by most recently modified; use " +
-    "\"\\name\" to scope to a notebook (\"\\*\" for all), and \"#tag\" to filter by hashtag.";
+			this.introLabel.Text = "Enter a page title query. Searches all notebooks by default. Use \"\\name\" to " +
+    "scope to a matching notebook, \"\\\\\" for the current notebook only, and \"#tag\" to filter by hashtag. " +
+    "Prefix with \">\" to sort by most recently modified.";
 			this.introLabel.ThemedBack = null;
 			this.introLabel.ThemedFore = null;
 			// 
