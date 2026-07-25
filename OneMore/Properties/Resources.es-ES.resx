@@ -2373,6 +2373,10 @@ Cuadrado Marrón</value>
     <value>No hay títulos en esta página.</value>
     <comment>message</comment>
   </data>
+  <data name="InsertTocCommand_Saving" xml:space="preserve">
+    <value>Guardando página...</value>
+    <comment>progress message</comment>
+  </data>
   <data name="InsertTocCommand_TOC" xml:space="preserve">
     <value>Tabla de contenido</value>
     <comment>page name</comment>

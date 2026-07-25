@@ -2381,6 +2381,10 @@
     <value>لا توجد عناوين في هذه الصفحة</value>
     <comment>message</comment>
   </data>
+  <data name="InsertTocCommand_Saving" xml:space="preserve">
+    <value>جارٍ حفظ الصفحة...</value>
+    <comment>progress message</comment>
+  </data>
   <data name="InsertTocCommand_TOC" xml:space="preserve">
     <value>جدول المحتويات</value>
     <comment>page name</comment>

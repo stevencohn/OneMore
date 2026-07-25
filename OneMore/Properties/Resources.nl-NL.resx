@@ -2378,6 +2378,10 @@ Bruin Vierkant</value>
     <value>Er zijn geen koppen op deze pagina</value>
     <comment>message</comment>
   </data>
+  <data name="InsertTocCommand_Saving" xml:space="preserve">
+    <value>Pagina opslaan...</value>
+    <comment>progress message</comment>
+  </data>
   <data name="InsertTocCommand_TOC" xml:space="preserve">
     <value>Inhoudsopgave</value>
     <comment>page name</comment>

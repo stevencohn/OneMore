@@ -5445,7 +5445,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("InsertTocCommand_NoHeadings", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Saving page....
+        /// </summary>
+        internal static string InsertTocCommand_Saving {
+            get {
+                return ResourceManager.GetString("InsertTocCommand_Saving", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Table of Contents.
         /// </summary>

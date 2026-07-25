@@ -2384,6 +2384,10 @@ OneNote 文件 (*.one)</value>
     <value>此页面上没有标题</value>
     <comment>message</comment>
   </data>
+  <data name="InsertTocCommand_Saving" xml:space="preserve">
+    <value>正在保存页面...</value>
+    <comment>progress message</comment>
+  </data>
   <data name="InsertTocCommand_TOC" xml:space="preserve">
     <value>目录</value>
     <comment>page name</comment>

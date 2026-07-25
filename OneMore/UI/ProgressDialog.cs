@@ -118,9 +118,9 @@ namespace River.OneMoreAddIn.UI
 		/// <param name="action"></param>
 		/// <returns></returns>
 		public DialogResult ShowDialogWithCancel(
-			Func<ProgressDialog, CancellationToken, Task<bool>> action)
+			Func<ProgressDialog, CancellationToken, Task<bool>> action, bool cancelable = true)
 		{
-			cancelButton.Visible = true;
+			cancelButton.Visible = cancelable;
 			(_, float factorY) = UI.Scaling.GetScalingFactors();
 			Height = (int)Math.Round(CancelHeight * factorY);
 
@@ -185,12 +185,12 @@ namespace River.OneMoreAddIn.UI
 		/// <param name="action">The callback method to invoke</param>
 		/// <returns></returns>
 		public DialogResult ShowTimedDialog(
-			Func<ProgressDialog, CancellationToken, Task<bool>> action)
+			Func<ProgressDialog, CancellationToken, Task<bool>> action, bool cancelable = true)
 		{
 			timer.Tick += Tick;
 			StartTimer();
 
-			return ShowDialogWithCancel(action);
+			return ShowDialogWithCancel(action, cancelable);
 		}
 
 

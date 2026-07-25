@@ -2381,6 +2381,10 @@ OneNoteファイル (*.one)</value>
     <value>このページに見出しがありません</value>
     <comment>message</comment>
   </data>
+  <data name="InsertTocCommand_Saving" xml:space="preserve">
+    <value>ページを保存しています...</value>
+    <comment>progress message</comment>
+  </data>
   <data name="InsertTocCommand_TOC" xml:space="preserve">
     <value>目次</value>
     <comment>page name</comment>
