@@ -5728,8 +5728,8 @@ I motori di ricerca verranno visualizzati nel menu contestuale della pagina, far
     <comment>link</comment>
   </data>
   <data name="SearchTitleDialog_introLabel.Text" xml:space="preserve">
-    <value>Inserisci una query sul titolo della pagina. Prefisso con "&gt;" per ordinare in base all'ultima modifica; utilizzare "\name" per definire l'ambito di un notebook ("\*" per tutti) e "#tag" per filtrare in base all'hashtag.</value>
-    <comment>label !EDIT</comment>
+    <value>Inserisci una query sul titolo della pagina. Per impostazione predefinita, esegue la ricerca in tutti i taccuini. Utilizzare "\name" per individuare un taccuino corrispondente, "\\" solo per il taccuino corrente e "#tag" per filtrare in base all'hashtag. Prefisso con "&gt;" per ordinare in base alla modifica più recente.</value>
+    <comment>label</comment>
   </data>
   <data name="SearchTitleDialog_noHashtagCatalog" xml:space="preserve">
     <value>La ricerca degli hashtag richiede il catalogo degli hashtag. Esegui prima una scansione dell'hashtag.</value>

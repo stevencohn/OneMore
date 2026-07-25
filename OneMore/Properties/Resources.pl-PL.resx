@@ -5721,8 +5721,8 @@ Wyszukiwarki pojawią się w menu kontekstowym strony, kliknij prawym przyciskie
     <comment>link</comment>
   </data>
   <data name="SearchTitleDialog_introLabel.Text" xml:space="preserve">
-    <value>Wprowadź zapytanie dotyczące tytułu strony. Przedrostek „&gt;”, aby sortować według ostatnio zmodyfikowanych; użyj „\name”, aby zawęzić zakres do notatnika („\*” dla wszystkich) i „#tag”, aby filtrować według hashtagu.</value>
-    <comment>label !EDIT</comment>
+    <value>Wprowadź zapytanie dotyczące tytułu strony. Domyślnie przeszukuje wszystkie notesy. Użyj „\name”, aby określić zakres pasującego notatnika, „\\ tylko dla bieżącego notatnika i „#tag”, aby filtrować według hashtagu. Przedrostek „&gt;”, aby sortować według ostatnio zmodyfikowanych.</value>
+    <comment>label</comment>
   </data>
   <data name="SearchTitleDialog_noHashtagCatalog" xml:space="preserve">
     <value>Wyszukiwanie hashtagów wymaga katalogu hashtagów. Najpierw przeprowadź skanowanie hashtagów.</value>

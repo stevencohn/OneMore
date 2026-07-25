@@ -5720,8 +5720,8 @@ Los motores de búsqueda aparecerán en el menú contextual de la página, haga 
     <comment>link</comment>
   </data>
   <data name="SearchTitleDialog_introLabel.Text" xml:space="preserve">
-    <value>Ingrese una consulta de título de página. Prefije "&gt;" para ordenar por las modificaciones más recientes; use "\name" para abarcar un cuaderno ("\*" para todos) y "#tag" para filtrar por hashtag.</value>
-    <comment>label !EDIT</comment>
+    <value>Ingrese una consulta de título de página. Busca en todos los cuadernos de forma predeterminada. Utilice "\name" para seleccionar un cuaderno coincidente, "\\" solo para el cuaderno actual y "#tag" para filtrar por hashtag. Prefije "&gt;" para ordenar por las modificaciones más recientes.</value>
+    <comment>label</comment>
   </data>
   <data name="SearchTitleDialog_noHashtagCatalog" xml:space="preserve">
     <value>La búsqueda de hashtags requiere el catálogo de hashtags. Primero ejecute un escaneo de hashtag.</value>

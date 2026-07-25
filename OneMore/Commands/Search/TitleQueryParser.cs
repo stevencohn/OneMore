@@ -22,8 +22,9 @@ namespace River.OneMoreAddIn.Commands
 
 		/// <summary>
 		/// The notebook name (or partial name) extracted from an "\&lt;name&gt;" token, "*"
-		/// if "\*" was specified (search all notebooks), or null if no "\" token was present
-		/// (search the current notebook).
+		/// if "\*" was specified, "\\" (a bare backslash with no name) to restrict to the
+		/// current notebook, or null if no "\" token was present (search all notebooks,
+		/// the default).
 		/// </summary>
 		public string NotebookFilter { get; set; }
 
@@ -45,8 +46,9 @@ namespace River.OneMoreAddIn.Commands
 
 	/// <summary>
 	/// Parses the extended query syntax accepted by Search Page Titles: a ">" token, anywhere
-	/// in the query, to sort by most-recently-modified, a "\&lt;name&gt;" (or "\*") token
-	/// to scope the search to one or more notebooks, and "#hashtag" tokens to additionally
+	/// in the query, to sort by most-recently-modified, a "\&lt;name&gt;" token to scope the
+	/// search to matching notebook(s) ("\*" for all notebooks, the default when no "\" token
+	/// is present; "\\" for just the current notebook), and "#hashtag" tokens to additionally
 	/// filter by the hashtag catalog. Whatever remains is matched against page titles via
 	/// TextMatchBuilder.
 	/// </summary>

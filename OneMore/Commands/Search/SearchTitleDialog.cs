@@ -258,10 +258,10 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
-		/// Resolves the notebook(s) targeted by a "\" filter (or the current notebook when
-		/// none was specified) to their cached Scope.Pages hierarchy trees, fetching and caching
-		/// any notebook not already in the cache. Subsequent searches against an already-cached
-		/// notebook require no COM calls at all.
+		/// Resolves the notebook(s) targeted by a "\" filter (or all notebooks when none was
+		/// specified; "\\" restricts to just the current notebook) to their cached Scope.Pages
+		/// hierarchy trees, fetching and caching any notebook not already in the cache.
+		/// Subsequent searches against an already-cached notebook require no COM calls at all.
 		/// </summary>
 		private async Task<List<(string Id, XElement Tree, string Name)>> ResolveNotebooksAsync(
 			OneNote one, string notebookFilter)
@@ -288,11 +288,15 @@ namespace River.OneMoreAddIn.Commands
 
 			if (string.IsNullOrEmpty(notebookFilter))
 			{
-				targets = notebookList.Where(n => n.Id == currentNotebookId);
+				targets = notebookList;
 			}
 			else if (notebookFilter == "*")
 			{
 				targets = notebookList;
+			}
+			else if (notebookFilter == "\\")
+			{
+				targets = notebookList.Where(n => n.Id == currentNotebookId);
 			}
 			else
 			{

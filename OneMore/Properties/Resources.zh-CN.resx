@@ -5735,8 +5735,8 @@ ISO-code then comma then language name</comment>
     <comment>link</comment>
   </data>
   <data name="SearchTitleDialog_introLabel.Text" xml:space="preserve">
-    <value>输入页面标题查询。前缀为“&gt;”，可按最近修改的顺序排序；使用“\name”来确定笔记本的范围（“\*”用于所有笔记本），并使用“#tag”来按主题标签进行过滤。</value>
-    <comment>label !EDIT</comment>
+    <value>输入页面标题查询。默认搜索所有笔记本。使用“\name”来限定匹配的笔记本，使用“\\”仅适用于当前笔记本，使用“#tag”按主题标签进行过滤。前缀为“&gt;”，可按最近修改的顺序排序。</value>
+    <comment>label</comment>
   </data>
   <data name="SearchTitleDialog_noHashtagCatalog" xml:space="preserve">
     <value>主题标签搜索需要主题标签目录。首先运行主题标签扫描。</value>
