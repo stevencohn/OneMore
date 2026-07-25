@@ -615,10 +615,33 @@ namespace River.OneMoreAddIn.Commands
 				case Keys.Down:
 				case Keys.PageUp:
 				case Keys.PageDown:
+				case Keys.Space:
 					return true;
 			}
 
 			return base.IsInputKey(keyData);
+		}
+
+
+		/// <summary>
+		/// Space toggles the checkbox of the currently selected card, mirroring a click
+		/// on its checkbox glyph.
+		/// </summary>
+		protected override void OnKeyDown(KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Space && e.Modifiers == Keys.None && selectedCard >= 0)
+			{
+				var card = cards[selectedCard];
+				if (card.PageId != null && card.Title != null)
+				{
+					card.IsChecked = !card.IsChecked;
+					InvalidateHitRegion(selectedCard, -1);
+					CheckedChanged?.Invoke(this, EventArgs.Empty);
+					e.Handled = true;
+				}
+			}
+
+			base.OnKeyDown(e);
 		}
 
 
