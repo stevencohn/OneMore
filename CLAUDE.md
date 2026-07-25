@@ -88,7 +88,7 @@ Read `ONENOTE.EXE`'s PE header directly when you need OneNote's architecture.
 
 - **Branching:** `main` is protected. Use feature branches named like
   `1234-calendar-integration`, where the prefix `1234-` is the GitHub issue number 
-  for the work in that branch.
+  for the work in that branch. If the current branch already has a `123-` prefix then use that rather than trying to create a new branch.
 
 - **PRs:** When asked to open a PR, take the name of the branch, replace hyphens with spaces, and use that
   as the title of the PR.
