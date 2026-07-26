@@ -528,7 +528,7 @@ namespace River.OneMoreAddIn.Commands
 				if (att is not null)
 				{
 					var style = new Style(att.Value);
-					if (style.FontFamily?.IndexOf("Consolas", StringComparison.OrdinalIgnoreCase) >= 0)
+					if (StyleBase.IsMonospaceFont(style.FontFamily))
 						text = $"`{text}`";
 					if (style.IsStrikethrough) text = $"~~{text}~~";
 					if (style.IsItalic) text = $"*{text}*";

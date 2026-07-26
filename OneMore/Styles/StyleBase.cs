@@ -9,8 +9,10 @@ namespace River.OneMoreAddIn.Styles
 {
 	using Microsoft.Win32;
 	using System;
+	using System.Collections.Generic;
 	using System.Drawing;
 	using System.Globalization;
+	using System.Linq;
 
 
 	/// <summary>
@@ -22,6 +24,14 @@ namespace River.OneMoreAddIn.Styles
 		public static readonly string Transparent = "Transparent";
 		public static readonly string DefaultCodeFamily = "Lucida Console";
 		public static readonly double DefaultCodeSize = 10.0;
+
+		public static readonly HashSet<string> MonospaceFonts =
+			new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+			{
+				"Consolas", "Courier", "Courier New", DefaultCodeFamily,
+				"Monaco", "Cascadia Code", "Cascadia Mono", "Fira Code", "Fira Mono",
+				"Source Code Pro", "Inconsolata", "Hack", "DejaVu Sans Mono"
+			};
 
 		private const string EditingKey = @"Software\Microsoft\Office\16.0\OneNote\Options\Editing";
 
@@ -118,6 +128,31 @@ namespace River.OneMoreAddIn.Styles
 		public static string DefaultFontFamily { get; private set; }
 
 		public static double DefaultFontSize { get; private set; }
+
+
+		/// <summary>
+		/// Determines whether the given font-family value refers to a known fixed-width font.
+		/// </summary>
+		/// <param name="fontFamily">A font-family value, optionally a comma-separated list</param>
+		/// <returns>True if any listed font matches or is a variant of a known monospace font</returns>
+		public static bool IsMonospaceFont(string fontFamily)
+		{
+			if (string.IsNullOrEmpty(fontFamily))
+			{
+				return false;
+			}
+
+			foreach (var font in fontFamily.Split(','))
+			{
+				var name = font.Trim().Trim('\'', '"');
+				if (MonospaceFonts.Any(m => name.StartsWith(m, StringComparison.OrdinalIgnoreCase)))
+				{
+					return true;
+				}
+			}
+
+			return false;
+		}
 
 
 		/// <summary>
