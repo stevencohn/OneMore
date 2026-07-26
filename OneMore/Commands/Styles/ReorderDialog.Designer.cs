@@ -30,7 +30,8 @@
 		{
 			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
-			this.listBox = new System.Windows.Forms.ListBox();
+			this.styleList = new River.OneMoreAddIn.UI.MoreListView();
+			this.nameColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.upButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.downButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.label = new System.Windows.Forms.Label();
@@ -69,26 +70,28 @@
 			this.cancelButton.ThemedBack = null;
 			this.cancelButton.ThemedFore = null;
 			this.cancelButton.UseVisualStyleBackColor = true;
-			// 
-			// listBox
-			// 
-			this.listBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			//
+			// styleList
+			//
+			this.styleList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
-			this.listBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
-			this.listBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-			this.listBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.listBox.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.listBox.FormattingEnabled = true;
-			this.listBox.ItemHeight = 22;
-			this.listBox.Location = new System.Drawing.Point(30, 88);
-			this.listBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 12);
-			this.listBox.Name = "listBox";
-			this.listBox.Size = new System.Drawing.Size(325, 400);
-			this.listBox.TabIndex = 2;
-			this.listBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.DrawItem);
-			this.listBox.MeasureItem += new System.Windows.Forms.MeasureItemEventHandler(this.MeasureItem);
-			this.listBox.SelectedIndexChanged += new System.EventHandler(this.ChangeSelection);
-			// 
+			this.styleList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.nameColumn});
+			this.styleList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.styleList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+			this.styleList.Location = new System.Drawing.Point(30, 88);
+			this.styleList.Margin = new System.Windows.Forms.Padding(3, 3, 3, 12);
+			this.styleList.MultiSelect = false;
+			this.styleList.Name = "styleList";
+			this.styleList.Size = new System.Drawing.Size(325, 400);
+			this.styleList.TabIndex = 2;
+			this.styleList.View = System.Windows.Forms.View.Details;
+			this.styleList.SelectedIndexChanged += new System.EventHandler(this.ChangeSelection);
+			//
+			// nameColumn
+			//
+			this.nameColumn.Width = 300;
+			//
 			// upButton
 			// 
 			this.upButton.AutoSize = true;
@@ -148,7 +151,7 @@
 			this.Controls.Add(this.label);
 			this.Controls.Add(this.downButton);
 			this.Controls.Add(this.upButton);
-			this.Controls.Add(this.listBox);
+			this.Controls.Add(this.styleList);
 			this.Controls.Add(this.cancelButton);
 			this.Controls.Add(this.okButton);
 			this.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -167,7 +170,8 @@
 
 		private UI.MoreButton okButton;
 		private UI.MoreButton cancelButton;
-		private System.Windows.Forms.ListBox listBox;
+		private UI.MoreListView styleList;
+		private System.Windows.Forms.ColumnHeader nameColumn;
 		private UI.MoreButton upButton;
 		private UI.MoreButton downButton;
 		private System.Windows.Forms.Label label;
