@@ -697,7 +697,7 @@ namespace OneMoreCalendar
 									// hyperlink is correct, just strip onenote: part
 									page.Hyperlink = page.Hyperlink.Substring(8);
 								}
-								else
+								else if (page.Hyperlink is not null)
 								{
 									var match = regex.Match(page.Hyperlink);
 									if (match.Success)
