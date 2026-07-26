@@ -272,6 +272,42 @@ Umkehren</value>
     <value>Befehlsaliase</value>
     <comment>sheet</comment>
   </data>
+  <data name="AlignContainersDialog.Text" xml:space="preserve">
+    <value>Behälter ausrichten</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="AlignContainersDialog_alignGroup.Text" xml:space="preserve">
+    <value>Ausrichtung</value>
+    <comment>group box title</comment>
+  </data>
+  <data name="AlignContainersDialog_allButton.Text" xml:space="preserve">
+    <value>Gilt für alle Container</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AlignContainersDialog_allLabel.Text" xml:space="preserve">
+    <value>Gilt für alle Container</value>
+    <comment>label</comment>
+  </data>
+  <data name="AlignContainersDialog_leftButton.Text" xml:space="preserve">
+    <value>Links</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AlignContainersDialog_overlapCheckBox.Text" xml:space="preserve">
+    <value>Überlappungen vermeiden</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="AlignContainersDialog_rightButton.Text" xml:space="preserve">
+    <value>Rechts</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AlignContainersDialog_selectedButton.Text" xml:space="preserve">
+    <value>Gilt für {0} ausgewählte Container</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AlignContainersDialog_topButton.Text" xml:space="preserve">
+    <value>Spitze</value>
+    <comment>radio</comment>
+  </data>
   <data name="AnalyzeCommand_CacheSummary" xml:space="preserve">
     <value>Der Cache ist ein internes Verzeichnis, das von OneNote verwaltet wird, um seine Leistung zu optimieren. </value>
     <comment>summary text</comment>

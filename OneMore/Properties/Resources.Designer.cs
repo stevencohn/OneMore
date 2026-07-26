@@ -422,7 +422,88 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("AliasSheet_Title", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Align Containers.
+        /// </summary>
+        internal static string AlignContainersDialog_Text {
+            get {
+                return ResourceManager.GetString("AlignContainersDialog.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Alignment.
+        /// </summary>
+        internal static string AlignContainersDialog_alignGroup_Text {
+            get {
+                return ResourceManager.GetString("AlignContainersDialog_alignGroup.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Applies to all containers.
+        /// </summary>
+        internal static string AlignContainersDialog_allButton_Text {
+            get {
+                return ResourceManager.GetString("AlignContainersDialog_allButton.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Applies to all containers.
+        /// </summary>
+        internal static string AlignContainersDialog_allLabel_Text {
+            get {
+                return ResourceManager.GetString("AlignContainersDialog_allLabel.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Left.
+        /// </summary>
+        internal static string AlignContainersDialog_leftButton_Text {
+            get {
+                return ResourceManager.GetString("AlignContainersDialog_leftButton.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Prevent overlaps.
+        /// </summary>
+        internal static string AlignContainersDialog_overlapCheckBox_Text {
+            get {
+                return ResourceManager.GetString("AlignContainersDialog_overlapCheckBox.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Right.
+        /// </summary>
+        internal static string AlignContainersDialog_rightButton_Text {
+            get {
+                return ResourceManager.GetString("AlignContainersDialog_rightButton.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Applies to {0} selected containers.
+        /// </summary>
+        internal static string AlignContainersDialog_selectedButton_Text {
+            get {
+                return ResourceManager.GetString("AlignContainersDialog_selectedButton.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Top.
+        /// </summary>
+        internal static string AlignContainersDialog_topButton_Text {
+            get {
+                return ResourceManager.GetString("AlignContainersDialog_topButton.Text", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to The cache is an internal directory managed by OneNote to optimize its performance. The recommendation is to avoid manually deleting the contents of the cache directory unless it becomes corrupted or hampers the operation of OneNote..
         /// </summary>

@@ -23,6 +23,7 @@ namespace River.OneMoreAddIn.Commands
 		private const double BottomMargin = 36.0;
 		private const double RightMargin = 20.0;
 		private const double TopMargin = 86.0;
+		private const double OverlapMargin = 40.0;
 
 		private static bool commandIsActive = false;
 
@@ -40,15 +41,26 @@ namespace River.OneMoreAddIn.Commands
 		public override async Task Execute(params object[] args)
 		{
 			if (commandIsActive) { return; }
-			commandIsActive = true;
 
 			try
 			{
+				commandIsActive = true;
+
 				await using var one = new OneNote(out page, out ns);
 
 				if (!page.Root.Elements(ns + "Outline").Any())
 				{
 					ShowInfo(Resx.ArrangeContainersCommand_noContainers);
+					return;
+				}
+
+				var selected = page.BodyOutlines
+					.Where(e => e.Attribute("selected") is XAttribute a && (a.Value == "all" || a.Value == "partial"))
+					.ToList();
+
+				if (selected.Count > 1)
+				{
+					await AlignSelected(one, selected);
 					return;
 				}
 
@@ -196,6 +208,108 @@ namespace River.OneMoreAddIn.Commands
 
 				xoffset += Math.Max(width, colwidth) + RightMargin;
 				col++;
+			}
+
+			return true;
+		}
+
+
+		private async Task AlignSelected(OneNote one, List<XElement> selected)
+		{
+			var allSelected = selected.Count == page.BodyOutlines.Count();
+
+			using var dialog = new AlignContainersDialog(selected.Count, allSelected);
+			if (dialog.ShowDialog(owner) != System.Windows.Forms.DialogResult.OK)
+			{
+				return;
+			}
+
+			var containers = dialog.ApplyToAll
+				? CollectContainers(page, ns).ToList()
+				: selected;
+
+			if (AlignContainers(containers, dialog.Alignment, dialog.PreventOverlaps))
+			{
+				await one.Update(page);
+			}
+			else
+			{
+				ShowInfo(Resx.ArrangeContainersCommand_noContainers);
+			}
+		}
+
+
+		// Aligns all but the anchor container to the anchor's edge. The anchor is the first
+		// container in document order, except for Right alignment where it's the widest
+		// container, so no other container's x can be pushed left of it. When preventOverlaps
+		// is set, the other containers are also spaced out along the axis that alignment does
+		// not lock, using each container's own size on that axis.
+		private bool AlignContainers(
+			List<XElement> containers, ContainerAlignment alignment, bool preventOverlaps)
+		{
+			if (containers.Count < 2)
+			{
+				return false;
+			}
+
+			// for Right, anchor on the widest container so no other container's computed x can
+			// ever go negative (ties favor whichever is first in document order)
+			var anchor = alignment == ContainerAlignment.Right
+				? containers.OrderByDescending(c => c.Element(ns + "Size").GetAttributeDouble("width")).First()
+				: containers[0];
+
+			var others = containers.Where(c => c != anchor).ToList();
+
+			var anchorPosition = anchor.Element(ns + "Position");
+			var anchorSize = anchor.Element(ns + "Size");
+			var anchorX = anchorPosition.GetAttributeDouble("x");
+			var anchorY = anchorPosition.GetAttributeDouble("y");
+			var anchorWidth = anchorSize.GetAttributeDouble("width");
+			var anchorHeight = anchorSize.GetAttributeDouble("height");
+
+			foreach (var container in others)
+			{
+				var position = container.Element(ns + "Position");
+
+				if (alignment == ContainerAlignment.Top)
+				{
+					position.SetAttributeValue("y", anchorY.ToString(CultureInfo.InvariantCulture));
+				}
+				else
+				{
+					var size = container.Element(ns + "Size");
+					var x = alignment == ContainerAlignment.Right
+						? anchorX + anchorWidth - size.GetAttributeDouble("width")
+						: anchorX;
+
+					position.SetAttributeValue("x", x.ToString(CultureInfo.InvariantCulture));
+				}
+			}
+
+			if (preventOverlaps)
+			{
+				if (alignment == ContainerAlignment.Top)
+				{
+					var xoffset = anchorX + anchorWidth + OverlapMargin;
+					foreach (var container in others)
+					{
+						var position = container.Element(ns + "Position");
+						var size = container.Element(ns + "Size");
+						position.SetAttributeValue("x", xoffset.ToString(CultureInfo.InvariantCulture));
+						xoffset += size.GetAttributeDouble("width") + OverlapMargin;
+					}
+				}
+				else
+				{
+					var yoffset = anchorY + anchorHeight + OverlapMargin;
+					foreach (var container in others)
+					{
+						var position = container.Element(ns + "Position");
+						var size = container.Element(ns + "Size");
+						position.SetAttributeValue("y", yoffset.ToString(CultureInfo.InvariantCulture));
+						yoffset += size.GetAttributeDouble("height") + OverlapMargin;
+					}
+				}
 			}
 
 			return true;
