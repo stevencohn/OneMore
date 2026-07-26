@@ -269,6 +269,42 @@ Invertido</value>
     <value>Aliases de comando</value>
     <comment>sheet</comment>
   </data>
+  <data name="AlignContainersDialog.Text" xml:space="preserve">
+    <value>Alinhar contêineres</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="AlignContainersDialog_alignGroup.Text" xml:space="preserve">
+    <value>Alinhamento</value>
+    <comment>group box title</comment>
+  </data>
+  <data name="AlignContainersDialog_allButton.Text" xml:space="preserve">
+    <value>Aplica-se a todos os contêineres</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AlignContainersDialog_allLabel.Text" xml:space="preserve">
+    <value>Aplica-se a todos os contêineres</value>
+    <comment>label</comment>
+  </data>
+  <data name="AlignContainersDialog_leftButton.Text" xml:space="preserve">
+    <value>Esquerda</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AlignContainersDialog_overlapCheckBox.Text" xml:space="preserve">
+    <value>Evite sobreposições</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="AlignContainersDialog_rightButton.Text" xml:space="preserve">
+    <value>Certo</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AlignContainersDialog_selectedButton.Text" xml:space="preserve">
+    <value>Aplica-se a {0} contêineres selecionados</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AlignContainersDialog_topButton.Text" xml:space="preserve">
+    <value>Principal</value>
+    <comment>radio</comment>
+  </data>
   <data name="AnalyzeCommand_CacheSummary" xml:space="preserve">
     <value>O cache é um diretório interno gerenciado pelo OneNote para otimizar seu desempenho. </value>
     <comment>summary text</comment>

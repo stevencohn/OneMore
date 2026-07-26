@@ -269,6 +269,42 @@ Odwracać</value>
     <value>Aliasy poleceń</value>
     <comment>sheet</comment>
   </data>
+  <data name="AlignContainersDialog.Text" xml:space="preserve">
+    <value>Wyrównaj kontenery</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="AlignContainersDialog_alignGroup.Text" xml:space="preserve">
+    <value>Wyrównanie</value>
+    <comment>group box title</comment>
+  </data>
+  <data name="AlignContainersDialog_allButton.Text" xml:space="preserve">
+    <value>Dotyczy wszystkich kontenerów</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AlignContainersDialog_allLabel.Text" xml:space="preserve">
+    <value>Dotyczy wszystkich kontenerów</value>
+    <comment>label</comment>
+  </data>
+  <data name="AlignContainersDialog_leftButton.Text" xml:space="preserve">
+    <value>Lewy</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AlignContainersDialog_overlapCheckBox.Text" xml:space="preserve">
+    <value>Zapobiegaj nakładaniu się</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="AlignContainersDialog_rightButton.Text" xml:space="preserve">
+    <value>Prawidłowy</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AlignContainersDialog_selectedButton.Text" xml:space="preserve">
+    <value>Dotyczy {0} wybranych kontenerów</value>
+    <comment>radio</comment>
+  </data>
+  <data name="AlignContainersDialog_topButton.Text" xml:space="preserve">
+    <value>Szczyt</value>
+    <comment>radio</comment>
+  </data>
   <data name="AnalyzeCommand_CacheSummary" xml:space="preserve">
     <value>Pamięć podręczna jest katalogiem wewnętrznym zarządzanym przez OneNote, aby zoptymalizować jego wydajność. Zaleceniem jest uniknięcie ręcznego usuwania zawartości katalogu pamięci podręcznej, chyba że zostanie uszkodzony lub utrudnia działanie OneNote.</value>
     <comment>summary text</comment>

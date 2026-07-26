@@ -614,6 +614,12 @@
       <DependentUpon>CrawlWebPageDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\File\EvernoteReader.cs" />
+    <Compile Include="Commands\Page\AlignContainersDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Page\AlignContainersDialog.Designer.cs">
+      <DependentUpon>AlignContainersDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Page\ArrangeContainersCommand.cs" />
     <Compile Include="Commands\File\Markdown\MarkdownWriter.cs" />
     <Compile Include="Commands\Page\ArrangeContainersDialog.cs">
@@ -1778,6 +1784,9 @@
     <EmbeddedResource Include="Commands\Navigator\NavigatorWindow.resx">
       <DependentUpon>NavigatorWindow.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Page\AlignContainersDialog.resx">
+      <DependentUpon>AlignContainersDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Page\ArrangeContainersDialog.resx">
       <DependentUpon>ArrangeContainersDialog.cs</DependentUpon>
