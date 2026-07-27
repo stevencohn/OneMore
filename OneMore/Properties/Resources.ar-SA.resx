@@ -1051,6 +1051,10 @@
     <value>إشارة مرجعية</value>
     <comment>label</comment>
   </data>
+  <data name="EmbedDialog_clearBookmarkLink.Text" xml:space="preserve">
+    <value>مسح المرجعية</value>
+    <comment>link</comment>
+  </data>
   <data name="EmbedDialog_endTagLabel.Text" xml:space="preserve">
     <value>علامة النهاية</value>
     <comment>label</comment>

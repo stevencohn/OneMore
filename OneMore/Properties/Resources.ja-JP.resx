@@ -1051,6 +1051,10 @@
     <value>ブックマーク</value>
     <comment>label</comment>
   </data>
+  <data name="EmbedDialog_clearBookmarkLink.Text" xml:space="preserve">
+    <value>ブックマークをクリアする</value>
+    <comment>link</comment>
+  </data>
   <data name="EmbedDialog_endTagLabel.Text" xml:space="preserve">
     <value>終了タグ</value>
     <comment>label</comment>

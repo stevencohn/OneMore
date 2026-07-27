@@ -2322,7 +2322,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("EmbedDialog_bookmarkLabel.Text", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Clear bookmark.
+        /// </summary>
+        internal static string EmbedDialog_clearBookmarkLink_Text {
+            get {
+                return ResourceManager.GetString("EmbedDialog_clearBookmarkLink.Text", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to End tag.
         /// </summary>

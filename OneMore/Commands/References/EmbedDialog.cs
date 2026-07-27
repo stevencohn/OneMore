@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using System;
+	using System.Windows.Forms;
 	using River.OneMoreAddIn.UI;
 	using Resx = Properties.Resources;
 
@@ -34,6 +35,7 @@ namespace River.OneMoreAddIn.Commands
 					? bookmarkText.Substring(0, 50) + "..."
 					: bookmarkText;
 				bookmarkTextLabel.Visible = true;
+				clearBookmarkLink.Visible = true;
 			}
 			else
 			{
@@ -51,6 +53,7 @@ namespace River.OneMoreAddIn.Commands
 					"beginTagLabel",
 					"endTagLabel",
 					"bookmarkLabel",
+					"clearBookmarkLink",
 					"formatLabel=word_Format",
 					"formattedRadio",
 					"plaintextRadio",
@@ -65,6 +68,9 @@ namespace River.OneMoreAddIn.Commands
 
 
 		public bool Indent => indentCheck.Checked;
+
+
+		public bool BookmarkCleared { get; private set; }
 
 
 		public string BeginTag => beginTagBox.Text.Trim();
@@ -83,6 +89,23 @@ namespace River.OneMoreAddIn.Commands
 		private void ToggleStyle(object sender, EventArgs e)
 		{
 			stylePanel.Visible = plaintextRadio.Checked;
+		}
+
+		private void ClearBookmark(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			BookmarkCleared = true;
+
+			bookmarkLabel.Visible = false;
+			bookmarkTextLabel.Visible = false;
+			clearBookmarkLink.Visible = false;
+
+			beginTagLabel.Visible = true;
+			beginTagBox.Visible = true;
+			endTagLabel.Visible = true;
+			endTagBox.Visible = true;
+			noteLabel.Visible = true;
+
+			SetNote(null, null);
 		}
 
 		private void SetNote(object sender, EventArgs e)

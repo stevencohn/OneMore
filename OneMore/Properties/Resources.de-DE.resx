@@ -1043,6 +1043,10 @@ Schriftart der letzten Spalte</value>
     <value>Lesezeichen</value>
     <comment>label</comment>
   </data>
+  <data name="EmbedDialog_clearBookmarkLink.Text" xml:space="preserve">
+    <value>Lesezeichen löschen</value>
+    <comment>link</comment>
+  </data>
   <data name="EmbedDialog_endTagLabel.Text" xml:space="preserve">
     <value>End-Tag</value>
     <comment>label</comment>

@@ -1057,6 +1057,10 @@ Last Column Font</value>
     <value>Bookmark</value>
     <comment>label</comment>
   </data>
+  <data name="EmbedDialog_clearBookmarkLink.Text" xml:space="preserve">
+    <value>Clear bookmark</value>
+    <comment>link</comment>
+  </data>
   <data name="EmbedDialog_endTagLabel.Text" xml:space="preserve">
     <value>End tag</value>
     <comment>label</comment>

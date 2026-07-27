@@ -1049,6 +1049,10 @@ Carattere dell'ultima colonna</value>
     <value>Segnalibro</value>
     <comment>label</comment>
   </data>
+  <data name="EmbedDialog_clearBookmarkLink.Text" xml:space="preserve">
+    <value>Cancella segnalibro</value>
+    <comment>link</comment>
+  </data>
   <data name="EmbedDialog_endTagLabel.Text" xml:space="preserve">
     <value>Etichetta finale</value>
     <comment>label</comment>

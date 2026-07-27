@@ -1048,6 +1048,10 @@ Lettertype laatste kolom</value>
     <value>Bladwijzer</value>
     <comment>label</comment>
   </data>
+  <data name="EmbedDialog_clearBookmarkLink.Text" xml:space="preserve">
+    <value>Duidelijke bladwijzer</value>
+    <comment>link</comment>
+  </data>
   <data name="EmbedDialog_endTagLabel.Text" xml:space="preserve">
     <value>Eindtag</value>
     <comment>label</comment>

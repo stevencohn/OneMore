@@ -213,11 +213,11 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			var paragraphText = bookmark.Range.Root.TextValue(stripHtml: true);
 			if (!ShowEmbedDialog(sourceName,
-				out _, out _,
+				out var beginTag, out var endTag,
 				out var format, out var style, out var indent,
-				paragraphText))
+				out var bookmarkCleared,
+				bookmark.Text))
 			{
 				return;
 			}
@@ -225,8 +225,9 @@ namespace River.OneMoreAddIn.Commands
 			// Phase 2: post-dialog — fresh instance for source extraction and page update.
 			await using (one = new OneNote())
 			{
-				await Embed(bookmark.PageId, bookmark.ObjectId,
-					string.Empty, string.Empty,
+				await Embed(bookmark.PageId, bookmarkCleared ? null : bookmark.ObjectId,
+					bookmarkCleared ? beginTag : string.Empty,
+					bookmarkCleared ? endTag : string.Empty,
 					format, style, indent, container);
 			}
 
@@ -307,7 +308,8 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			if (!ShowEmbedDialog(sourceName,
-				out var beginTag, out var endTag, out var format, out var style, out var indent))
+				out var beginTag, out var endTag, out var format, out var style, out var indent,
+				out _))
 			{
 				return;
 			}
@@ -352,7 +354,8 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			if (!ShowEmbedDialog(sourceName,
-				out var beginTag, out var endTag, out var format, out var style, out var indent))
+				out var beginTag, out var endTag, out var format, out var style, out var indent,
+				out _))
 			{
 				return;
 			}
@@ -381,6 +384,7 @@ namespace River.OneMoreAddIn.Commands
 			out string beginTag, out string endTag,
 			out EmbedFormat format, out EmbedStyle style,
 			out bool indent,
+			out bool bookmarkCleared,
 			string bookmarkText = null)
 		{
 			using var dialog = new EmbedDialog(sourceName, page.Title, bookmarkText);
@@ -390,6 +394,7 @@ namespace River.OneMoreAddIn.Commands
 				format = default;
 				style = default;
 				indent = false;
+				bookmarkCleared = false;
 				return false;
 			}
 
@@ -398,6 +403,7 @@ namespace River.OneMoreAddIn.Commands
 			format = dialog.Format;
 			style = dialog.Style;
 			indent = dialog.Indent;
+			bookmarkCleared = dialog.BookmarkCleared;
 			return true;
 		}
 

@@ -1051,6 +1051,10 @@ Police de la dernière colonne</value>
     <value>Marque-page</value>
     <comment>label</comment>
   </data>
+  <data name="EmbedDialog_clearBookmarkLink.Text" xml:space="preserve">
+    <value>Effacer le signet</value>
+    <comment>link</comment>
+  </data>
   <data name="EmbedDialog_endTagLabel.Text" xml:space="preserve">
     <value>Balise de fin</value>
     <comment>label</comment>

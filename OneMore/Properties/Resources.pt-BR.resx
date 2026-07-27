@@ -1048,6 +1048,10 @@ Fonte da última coluna</value>
     <value>Marcador</value>
     <comment>label</comment>
   </data>
+  <data name="EmbedDialog_clearBookmarkLink.Text" xml:space="preserve">
+    <value>Limpar marcador</value>
+    <comment>link</comment>
+  </data>
   <data name="EmbedDialog_endTagLabel.Text" xml:space="preserve">
     <value>Etiqueta final</value>
     <comment>label</comment>

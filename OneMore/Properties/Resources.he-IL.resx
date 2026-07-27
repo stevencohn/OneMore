@@ -1048,6 +1048,10 @@ Total Row Font
     <value>סימניה</value>
     <comment>label</comment>
   </data>
+  <data name="EmbedDialog_clearBookmarkLink.Text" xml:space="preserve">
+    <value>נקה סימניה</value>
+    <comment>link</comment>
+  </data>
   <data name="EmbedDialog_endTagLabel.Text" xml:space="preserve">
     <value>תג סיום</value>
     <comment>label</comment>
