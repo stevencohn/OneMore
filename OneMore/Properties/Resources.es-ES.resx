@@ -1043,10 +1043,6 @@ Fuente de la última columna</value>
     <value>Marcador</value>
     <comment>label</comment>
   </data>
-  <data name="EmbedDialog_clearBookmarkLink.Text" xml:space="preserve">
-    <value>Borrar marcador</value>
-    <comment>link</comment>
-  </data>
   <data name="EmbedDialog_endTagLabel.Text" xml:space="preserve">
     <value>Etiqueta final</value>
     <comment>label</comment>
@@ -1094,6 +1090,10 @@ Citación</value>
   <data name="EmbedDialog_Title" xml:space="preserve">
     <value>Opciones de inserción</value>
     <comment>dialog</comment>
+  </data>
+  <data name="EmbedDialog_useClipboardLink.Text" xml:space="preserve">
+    <value>Utilice el enlace en el portapapeles en su lugar</value>
+    <comment>link</comment>
   </data>
   <data name="EmbedSubpageCommand_NoContent" xml:space="preserve">
     <value>La página de origen no tiene contenido</value>

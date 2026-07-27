@@ -1048,10 +1048,6 @@ Czcionka ostatniej kolumny</value>
     <value>Zakładka w książce</value>
     <comment>label</comment>
   </data>
-  <data name="EmbedDialog_clearBookmarkLink.Text" xml:space="preserve">
-    <value>Wyczyść zakładkę</value>
-    <comment>link</comment>
-  </data>
   <data name="EmbedDialog_endTagLabel.Text" xml:space="preserve">
     <value>Etykieta końcowa</value>
     <comment>label</comment>
@@ -1099,6 +1095,10 @@ Cytat</value>
   <data name="EmbedDialog_Title" xml:space="preserve">
     <value>Opcje osadzania</value>
     <comment>dialog</comment>
+  </data>
+  <data name="EmbedDialog_useClipboardLink.Text" xml:space="preserve">
+    <value>Zamiast tego użyj linku w schowku</value>
+    <comment>link</comment>
   </data>
   <data name="EmbedSubpageCommand_NoContent" xml:space="preserve">
     <value>Strona źródłowa nie zawiera treści</value>

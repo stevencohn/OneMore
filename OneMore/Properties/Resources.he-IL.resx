@@ -1048,10 +1048,6 @@ Total Row Font
     <value>סימניה</value>
     <comment>label</comment>
   </data>
-  <data name="EmbedDialog_clearBookmarkLink.Text" xml:space="preserve">
-    <value>נקה סימניה</value>
-    <comment>link</comment>
-  </data>
   <data name="EmbedDialog_endTagLabel.Text" xml:space="preserve">
     <value>תג סיום</value>
     <comment>label</comment>
@@ -1099,6 +1095,10 @@ Total Row Font
   <data name="EmbedDialog_Title" xml:space="preserve">
     <value>אפשרויות הטמעה</value>
     <comment>dialog</comment>
+  </data>
+  <data name="EmbedDialog_useClipboardLink.Text" xml:space="preserve">
+    <value>השתמש בקישור בלוח במקום זאת</value>
+    <comment>link</comment>
   </data>
   <data name="EmbedSubpageCommand_NoContent" xml:space="preserve">
     <value>דף המקור אינו מכיל תוכן</value>

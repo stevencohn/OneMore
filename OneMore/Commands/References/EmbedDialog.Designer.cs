@@ -31,7 +31,7 @@ namespace River.OneMoreAddIn.Commands
 		private void InitializeComponent()
 		{
 			this.sourceLabel = new River.OneMoreAddIn.UI.MoreLabel();
-			this.sourceNameLabel = new River.OneMoreAddIn.UI.MoreLabel();
+			this.sourceNameLabel = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.targetLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.targetNameLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.beginTagLabel = new River.OneMoreAddIn.UI.MoreLabel();
@@ -40,7 +40,7 @@ namespace River.OneMoreAddIn.Commands
 			this.endTagBox = new River.OneMoreAddIn.UI.MoreTextBox();
 			this.bookmarkLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.bookmarkTextLabel = new River.OneMoreAddIn.UI.MoreRichLabel();
-			this.clearBookmarkLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
+			this.useClipboardLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.formatLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.formattedRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.plaintextRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
@@ -67,16 +67,23 @@ namespace River.OneMoreAddIn.Commands
 			this.sourceLabel.ThemedFore = null;
 			// 
 			// sourceNameLabel
-			// 
+			//
+			this.sourceNameLabel.ActiveLinkColor = System.Drawing.Color.DarkOrchid;
 			this.sourceNameLabel.AutoEllipsis = true;
+			this.sourceNameLabel.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.sourceNameLabel.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.sourceNameLabel.HoverColor = System.Drawing.Color.Orchid;
+			this.sourceNameLabel.LinkColor = System.Drawing.Color.MediumOrchid;
 			this.sourceNameLabel.Location = new System.Drawing.Point(130, 23);
 			this.sourceNameLabel.Name = "sourceNameLabel";
 			this.sourceNameLabel.Size = new System.Drawing.Size(512, 20);
+			this.sourceNameLabel.StrictColors = false;
 			this.sourceNameLabel.TabIndex = 1;
 			this.sourceNameLabel.ThemedBack = null;
 			this.sourceNameLabel.ThemedFore = null;
-			// 
+			this.sourceNameLabel.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
+			this.sourceNameLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.SourceNameLinkClicked);
+			//
 			// targetLabel
 			// 
 			this.targetLabel.AutoSize = true;
@@ -175,25 +182,25 @@ namespace River.OneMoreAddIn.Commands
 			this.bookmarkTextLabel.TabStop = false;
 			this.bookmarkTextLabel.Visible = false;
 			//
-			// clearBookmarkLink
+			// useClipboardLink
 			//
-			this.clearBookmarkLink.ActiveLinkColor = System.Drawing.Color.DarkOrchid;
-			this.clearBookmarkLink.AutoSize = true;
-			this.clearBookmarkLink.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.clearBookmarkLink.HoverColor = System.Drawing.Color.Orchid;
-			this.clearBookmarkLink.LinkColor = System.Drawing.Color.MediumOrchid;
-			this.clearBookmarkLink.Location = new System.Drawing.Point(130, 118);
-			this.clearBookmarkLink.Name = "clearBookmarkLink";
-			this.clearBookmarkLink.Size = new System.Drawing.Size(97, 20);
-			this.clearBookmarkLink.StrictColors = false;
-			this.clearBookmarkLink.TabIndex = 20;
-			this.clearBookmarkLink.TabStop = true;
-			this.clearBookmarkLink.Text = "Clear bookmark";
-			this.clearBookmarkLink.ThemedBack = null;
-			this.clearBookmarkLink.ThemedFore = null;
-			this.clearBookmarkLink.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
-			this.clearBookmarkLink.Visible = false;
-			this.clearBookmarkLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ClearBookmark);
+			this.useClipboardLink.ActiveLinkColor = System.Drawing.Color.DarkOrchid;
+			this.useClipboardLink.AutoSize = true;
+			this.useClipboardLink.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.useClipboardLink.HoverColor = System.Drawing.Color.Orchid;
+			this.useClipboardLink.LinkColor = System.Drawing.Color.MediumOrchid;
+			this.useClipboardLink.Location = new System.Drawing.Point(130, 118);
+			this.useClipboardLink.Name = "useClipboardLink";
+			this.useClipboardLink.Size = new System.Drawing.Size(97, 20);
+			this.useClipboardLink.StrictColors = false;
+			this.useClipboardLink.TabIndex = 20;
+			this.useClipboardLink.TabStop = true;
+			this.useClipboardLink.Text = "Use link on clipboard instead";
+			this.useClipboardLink.ThemedBack = null;
+			this.useClipboardLink.ThemedFore = null;
+			this.useClipboardLink.VisitedLinkColor = System.Drawing.Color.MediumOrchid;
+			this.useClipboardLink.Visible = false;
+			this.useClipboardLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.UseClipboardLink);
 			//
 			// formatLabel
 			//
@@ -344,7 +351,7 @@ namespace River.OneMoreAddIn.Commands
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(660, 442);
 			this.Controls.Add(this.noteLabel);
-			this.Controls.Add(this.clearBookmarkLink);
+			this.Controls.Add(this.useClipboardLink);
 			this.Controls.Add(this.bookmarkTextLabel);
 			this.Controls.Add(this.bookmarkLabel);
 			this.Controls.Add(this.cancelButton);
@@ -381,7 +388,7 @@ namespace River.OneMoreAddIn.Commands
 		#endregion
 
 		private UI.MoreLabel sourceLabel;
-		private UI.MoreLabel sourceNameLabel;
+		private UI.MoreLinkLabel sourceNameLabel;
 		private UI.MoreLabel targetLabel;
 		private UI.MoreLabel targetNameLabel;
 		private UI.MoreLabel beginTagLabel;
@@ -400,6 +407,6 @@ namespace River.OneMoreAddIn.Commands
 		private MoreLabel noteLabel;
 		private UI.MoreLabel bookmarkLabel;
 		private UI.MoreRichLabel bookmarkTextLabel;
-		private UI.MoreLinkLabel clearBookmarkLink;
+		private UI.MoreLinkLabel useClipboardLink;
 	}
 }

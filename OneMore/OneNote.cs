@@ -1715,7 +1715,8 @@ namespace River.OneMoreAddIn
 		/// <param name="scope"></param>
 		/// <param name="callback"></param>
 		public void SelectLocation(
-			string title, string description, Scope scope, SelectLocationCallback callback)
+			string title, string description, Scope scope, SelectLocationCallback callback,
+			bool leaf = false)
 		{
 			var dialog = onenote.QuickFiling();
 			try
@@ -1760,8 +1761,10 @@ namespace River.OneMoreAddIn
 						break;
 					case Scope.Pages:
 						dialog.TreeDepth = HierarchyElement.hePages;
-						restriction = HierarchyElement.heSectionGroups | HierarchyElement.heNotebooks |
-							HierarchyElement.heSections | HierarchyElement.hePages;
+						restriction = leaf
+							? HierarchyElement.hePages
+							: HierarchyElement.heSectionGroups | HierarchyElement.heNotebooks |
+							  HierarchyElement.heSections | HierarchyElement.hePages;
 						break;
 				}
 

@@ -1051,10 +1051,6 @@
     <value>إشارة مرجعية</value>
     <comment>label</comment>
   </data>
-  <data name="EmbedDialog_clearBookmarkLink.Text" xml:space="preserve">
-    <value>مسح المرجعية</value>
-    <comment>link</comment>
-  </data>
   <data name="EmbedDialog_endTagLabel.Text" xml:space="preserve">
     <value>علامة النهاية</value>
     <comment>label</comment>
@@ -1102,6 +1098,10 @@
   <data name="EmbedDialog_Title" xml:space="preserve">
     <value>خيارات التضمين</value>
     <comment>dialog</comment>
+  </data>
+  <data name="EmbedDialog_useClipboardLink.Text" xml:space="preserve">
+    <value>استخدم الرابط الموجود في الحافظة بدلاً من ذلك</value>
+    <comment>link</comment>
   </data>
   <data name="EmbedSubpageCommand_NoContent" xml:space="preserve">
     <value>الصفحة المصدر لا تحتوي على محتوى</value>

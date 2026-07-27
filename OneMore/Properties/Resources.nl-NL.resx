@@ -1048,10 +1048,6 @@ Lettertype laatste kolom</value>
     <value>Bladwijzer</value>
     <comment>label</comment>
   </data>
-  <data name="EmbedDialog_clearBookmarkLink.Text" xml:space="preserve">
-    <value>Duidelijke bladwijzer</value>
-    <comment>link</comment>
-  </data>
   <data name="EmbedDialog_endTagLabel.Text" xml:space="preserve">
     <value>Eindtag</value>
     <comment>label</comment>
@@ -1099,6 +1095,10 @@ Citaat</value>
   <data name="EmbedDialog_Title" xml:space="preserve">
     <value>Opties voor insluiten</value>
     <comment>dialog</comment>
+  </data>
+  <data name="EmbedDialog_useClipboardLink.Text" xml:space="preserve">
+    <value>Gebruik in plaats daarvan de link op het klembord</value>
+    <comment>link</comment>
   </data>
   <data name="EmbedSubpageCommand_NoContent" xml:space="preserve">
     <value>Bronpagina bevat geen inhoud</value>

@@ -1043,10 +1043,6 @@ Schriftart der letzten Spalte</value>
     <value>Lesezeichen</value>
     <comment>label</comment>
   </data>
-  <data name="EmbedDialog_clearBookmarkLink.Text" xml:space="preserve">
-    <value>Lesezeichen löschen</value>
-    <comment>link</comment>
-  </data>
   <data name="EmbedDialog_endTagLabel.Text" xml:space="preserve">
     <value>End-Tag</value>
     <comment>label</comment>
@@ -1094,6 +1090,10 @@ Zitat</value>
   <data name="EmbedDialog_Title" xml:space="preserve">
     <value>Einbettungsoptionen</value>
     <comment>dialog</comment>
+  </data>
+  <data name="EmbedDialog_useClipboardLink.Text" xml:space="preserve">
+    <value>Verwenden Sie stattdessen den Link in der Zwischenablage</value>
+    <comment>link</comment>
   </data>
   <data name="EmbedSubpageCommand_NoContent" xml:space="preserve">
     <value>Quellseite enthält keinen Inhalt</value>
