@@ -38,6 +38,7 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private const string EmbedMetaName = "omEmbed";
 		private const string EmbedHeaderMeta = "omEmbedHeader";
+		private const string RightArrow = "\u2192";
 
 		// Placeholder for empty optional URL path segments in the refresh link.
 		// InvokeCommand splits on '/' with RemoveEmptyEntries, so a truly empty segment
@@ -184,16 +185,20 @@ namespace River.OneMoreAddIn.Commands
 				Resx.EmbedCommand_Select,
 				Resx.EmbedCommand_SelectIntro,
 				OneNote.Scope.Pages,
-				async (sid) => await Callback(sid, null));
+				async (sid) => await Callback(sid, null),
+				leaf: true);
 		}
 
 
 		private async Task EmbedFromBookmark(Bookmark bookmark)
 		{
-			string sourceName;
+			string sourcePath;
+			string targetPath;
+			string clipboardSourceId = null;
+			string clipboardSourcePath = null;
 			XElement container;
 
-			// Phase 1: pre-dialog — load current page and resolve source name.
+			// Phase 1: pre-dialog — load current page and resolve source/target paths.
 			await using (var o = new OneNote())
 			{
 				page = await o.GetPage();
@@ -203,7 +208,20 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
-				sourceName = o.GetHierarchyNode(bookmark.PageId)?.Name ?? bookmark.PageId;
+				var sourceInfo = await o.GetPageInfo(bookmark.PageId);
+				sourcePath = FormatPath(sourceInfo?.Path) ?? bookmark.PageId;
+
+				var targetInfo = await o.GetPageInfo(page.PageId);
+				targetPath = FormatPath(targetInfo?.Path) ?? page.Title;
+
+				// speculatively resolve a clipboard link so the dialog can offer it as
+				// an alternative to the bookmark, without changing the priority order
+				var clip = await ClipboardProvider.GetText();
+				if (!string.IsNullOrEmpty(clip) && Regex.IsMatch(clip, @"page-id=(\{[^}]+\})&"))
+				{
+					(clipboardSourceId, clipboardSourcePath) = await ResolveClipboardPage(o, clip);
+				}
+
 				container = FindContainer();
 			}
 
@@ -213,20 +231,23 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			var paragraphText = bookmark.Range.Root.TextValue(stripHtml: true);
-			if (!ShowEmbedDialog(sourceName,
-				out _, out _,
+			if (!ShowEmbedDialog(sourcePath, targetPath,
+				out var beginTag, out var endTag,
 				out var format, out var style, out var indent,
-				paragraphText))
+				out var bookmarkCleared, out var overrideSourceId,
+				bookmark.Text, clipboardSourceId, clipboardSourcePath))
 			{
 				return;
 			}
 
+			var effectiveSourceId = overrideSourceId ?? bookmark.PageId;
+
 			// Phase 2: post-dialog — fresh instance for source extraction and page update.
 			await using (one = new OneNote())
 			{
-				await Embed(bookmark.PageId, bookmark.ObjectId,
-					string.Empty, string.Empty,
+				await Embed(effectiveSourceId, bookmarkCleared ? null : bookmark.ObjectId,
+					bookmarkCleared ? beginTag : string.Empty,
+					bookmarkCleared ? endTag : string.Empty,
 					format, style, indent, container);
 			}
 
@@ -236,8 +257,9 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task EmbedFromClipboard(string clipUri, string objectId)
 		{
-			string sourceId = null;
-			string sourceName = null;
+			string sourceId;
+			string sourcePath;
+			string targetPath;
 			XElement container = null;
 
 			// Phase 1: pre-dialog — resolve source page, load current page, find insert point.
@@ -252,50 +274,16 @@ namespace River.OneMoreAddIn.Commands
 
 				ns = page?.Namespace;
 
-				try
-				{
-					// Remote (OneDrive) notebooks place two lines on the clipboard; the
-					// onenote: URI we need is always the last onenote: line.
-					var lines = clipUri.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
-					var uriLine = (lines.LastOrDefault(l =>
-						l.TrimStart().StartsWith("onenote:", StringComparison.OrdinalIgnoreCase))
-						?? clipUri).Trim();
-
-					var link = OneNoteLinkParser.Parse(uriLine);
-
-					logger.WriteLine($"embed source: notebook=[{link.NotebookName}] " +
-						$"section=[{link.SectionName}] page=[{link.PageName}] " +
-						$"pageId=[{link.PageId}] objectId=[{link.ObjectId}] isLocal=[{link.IsLocal}]");
-
-					var sectionParts = new List<string>(link.SectionGroups) { link.SectionName };
-					var sectionPath = string.Join("/", sectionParts);
-
-					var pageIds = await o.FindPagesByPath(link.NotebookName, sectionPath, link.PageName);
-					sourceId = pageIds.FirstOrDefault();
-					if (sourceId != null)
-					{
-						sourceName = o.GetHierarchyNode(sourceId)?.Name ?? link.PageName;
-
-						logger.WriteLine(
-							$"found source page: {sourceName} ({sourceId}) " +
-							$"at path [{link.NotebookName}/{sectionPath}/{link.PageName}]");
-					}
-					else
-					{
-						logger.WriteLine(
-							$"page not found at path [{link.NotebookName}/{sectionPath}/{link.PageName}]");
-					}
-				}
-				catch (Exception exc)
-				{
-					logger.WriteLine("error resolving clipboard URI to page", exc);
-				}
+				(sourceId, sourcePath) = await ResolveClipboardPage(o, clipUri);
 
 				if (string.IsNullOrEmpty(sourceId))
 				{
 					ShowError(Resx.EmbedCommand_NoClipboardPage);
 					return;
 				}
+
+				var targetInfo = await o.GetPageInfo(page.PageId);
+				targetPath = FormatPath(targetInfo?.Path) ?? page.Title;
 
 				container = FindContainer();
 			}
@@ -306,16 +294,19 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			if (!ShowEmbedDialog(sourceName,
-				out var beginTag, out var endTag, out var format, out var style, out var indent))
+			if (!ShowEmbedDialog(sourcePath, targetPath,
+				out var beginTag, out var endTag, out var format, out var style, out var indent,
+				out _, out var overrideSourceId))
 			{
 				return;
 			}
 
+			var effectiveSourceId = overrideSourceId ?? sourceId;
+
 			// Phase 2: post-dialog — fresh instance; no COM history from Phase 1 map building.
 			await using (one = new OneNote())
 			{
-				await Embed(sourceId, null, beginTag, endTag, format, style, indent, container);
+				await Embed(effectiveSourceId, null, beginTag, endTag, format, style, indent, container);
 			}
 		}
 
@@ -327,10 +318,11 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			string sourceName;
+			string sourcePath;
+			string targetPath;
 			XElement container;
 
-			// Phase 1: pre-dialog — load current page and resolve source name.
+			// Phase 1: pre-dialog — load current page and resolve source/target paths.
 			await using (var o = new OneNote())
 			{
 				page = await o.GetPage();
@@ -341,7 +333,12 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
-				sourceName = o.GetHierarchyNode(sourceId)?.Name ?? sourceId;
+				var sourceInfo = await o.GetPageInfo(sourceId);
+				sourcePath = FormatPath(sourceInfo?.Path) ?? sourceId;
+
+				var targetInfo = await o.GetPageInfo(page.PageId);
+				targetPath = FormatPath(targetInfo?.Path) ?? page.Title;
+
 				container = FindContainer();
 			}
 
@@ -351,16 +348,20 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			if (!ShowEmbedDialog(sourceName,
-				out var beginTag, out var endTag, out var format, out var style, out var indent))
+			if (!ShowEmbedDialog(sourcePath, targetPath,
+				out var beginTag, out var endTag, out var format, out var style, out var indent,
+				out _, out var overrideSourceId))
 			{
 				return;
 			}
 
+			var effectiveSourceId = overrideSourceId ?? sourceId;
+			var effectiveObjectId = overrideSourceId is null ? objectId : null;
+
 			// Phase 2: post-dialog — fresh instance for source extraction and page update.
 			await using (one = new OneNote())
 			{
-				await Embed(sourceId, objectId, beginTag, endTag, format, style, indent, container);
+				await Embed(effectiveSourceId, effectiveObjectId, beginTag, endTag, format, style, indent, container);
 			}
 		}
 
@@ -376,20 +377,85 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		/// <summary>
+		/// Formats a HierarchyInfo.Path (slash-delimited, leading slash) as an
+		/// arrow-separated display path, e.g. "Notebook → Section → Page"
+		/// </summary>
+		internal static string FormatPath(string path) => path;
+			//string.IsNullOrEmpty(path) ? null : string.Join($" {RightArrow} ", path.TrimStart('/').Split('/'));
+
+
+		/// <summary>
+		/// Resolves a clipboard OneNote URI (e.g. from Copy Link to Page/Paragraph) to a
+		/// source page ID and its display path.
+		/// </summary>
+		private async Task<(string SourceId, string SourcePath)> ResolveClipboardPage(OneNote o, string clipUri)
+		{
+			try
+			{
+				// Remote (OneDrive) notebooks place two lines on the clipboard; the
+				// onenote: URI we need is always the last onenote: line.
+				var lines = clipUri.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+				var uriLine = (lines.LastOrDefault(l =>
+					l.TrimStart().StartsWith("onenote:", StringComparison.OrdinalIgnoreCase))
+					?? clipUri).Trim();
+
+				var link = OneNoteLinkParser.Parse(uriLine);
+
+				logger.WriteLine($"embed source: notebook=[{link.NotebookName}] " +
+					$"section=[{link.SectionName}] page=[{link.PageName}] " +
+					$"pageId=[{link.PageId}] objectId=[{link.ObjectId}] isLocal=[{link.IsLocal}]");
+
+				var sectionParts = new List<string>(link.SectionGroups) { link.SectionName };
+				var sectionPath = string.Join("/", sectionParts);
+
+				var pageIds = await o.FindPagesByPath(link.NotebookName, sectionPath, link.PageName);
+				var sourceId = pageIds.FirstOrDefault();
+				if (sourceId is null)
+				{
+					logger.WriteLine(
+						$"page not found at path [{link.NotebookName}/{sectionPath}/{link.PageName}]");
+
+					return (null, null);
+				}
+
+				var info = await o.GetPageInfo(sourceId);
+				var sourcePath = FormatPath(info?.Path) ?? link.PageName;
+
+				logger.WriteLine($"found source page: {sourcePath} ({sourceId})");
+
+				return (sourceId, sourcePath);
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error resolving clipboard URI to page", exc);
+				return (null, null);
+			}
+		}
+
+
 		private bool ShowEmbedDialog(
-			string sourceName,
+			string sourcePath, string targetPath,
 			out string beginTag, out string endTag,
 			out EmbedFormat format, out EmbedStyle style,
 			out bool indent,
-			string bookmarkText = null)
+			out bool bookmarkCleared,
+			out string overrideSourceId,
+			string bookmarkText = null,
+			string clipboardSourceId = null,
+			string clipboardSourcePath = null)
 		{
-			using var dialog = new EmbedDialog(sourceName, page.Title, bookmarkText);
+			using var dialog = new EmbedDialog(
+				sourcePath, targetPath, bookmarkText, clipboardSourceId, clipboardSourcePath);
+
 			if (dialog.ShowDialog(owner) != DialogResult.OK)
 			{
 				beginTag = endTag = null;
 				format = default;
 				style = default;
 				indent = false;
+				bookmarkCleared = false;
+				overrideSourceId = null;
 				return false;
 			}
 
@@ -398,6 +464,8 @@ namespace River.OneMoreAddIn.Commands
 			format = dialog.Format;
 			style = dialog.Style;
 			indent = dialog.Indent;
+			bookmarkCleared = dialog.BookmarkCleared;
+			overrideSourceId = dialog.OverrideSourceId;
 			return true;
 		}
 

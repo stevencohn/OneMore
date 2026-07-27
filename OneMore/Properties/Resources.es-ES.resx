@@ -1091,6 +1091,10 @@ Citación</value>
     <value>Opciones de inserción</value>
     <comment>dialog</comment>
   </data>
+  <data name="EmbedDialog_useClipboardLink.Text" xml:space="preserve">
+    <value>Utilice el enlace en el portapapeles en su lugar</value>
+    <comment>link</comment>
+  </data>
   <data name="EmbedSubpageCommand_NoContent" xml:space="preserve">
     <value>La página de origen no tiene contenido</value>
     <comment>message box</comment>

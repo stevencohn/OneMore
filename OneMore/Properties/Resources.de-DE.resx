@@ -1091,6 +1091,10 @@ Zitat</value>
     <value>Einbettungsoptionen</value>
     <comment>dialog</comment>
   </data>
+  <data name="EmbedDialog_useClipboardLink.Text" xml:space="preserve">
+    <value>Verwenden Sie stattdessen den Link in der Zwischenablage</value>
+    <comment>link</comment>
+  </data>
   <data name="EmbedSubpageCommand_NoContent" xml:space="preserve">
     <value>Quellseite enthält keinen Inhalt</value>
     <comment>message box</comment>

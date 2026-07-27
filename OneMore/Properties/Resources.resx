@@ -1105,6 +1105,10 @@ Citation</value>
     <value>Embed Options</value>
     <comment>dialog</comment>
   </data>
+  <data name="EmbedDialog_useClipboardLink.Text" xml:space="preserve">
+    <value>Use link on clipboard instead</value>
+    <comment>link</comment>
+  </data>
   <data name="EmbedSubpageCommand_NoContent" xml:space="preserve">
     <value>Source page contains no content</value>
     <comment>message box</comment>

@@ -1099,6 +1099,10 @@
     <value>埋め込みオプション</value>
     <comment>dialog</comment>
   </data>
+  <data name="EmbedDialog_useClipboardLink.Text" xml:space="preserve">
+    <value>代わりにクリップボード上のリンクを使用してください</value>
+    <comment>link</comment>
+  </data>
   <data name="EmbedSubpageCommand_NoContent" xml:space="preserve">
     <value>ソースページにはコンテンツがありません</value>
     <comment>message box</comment>

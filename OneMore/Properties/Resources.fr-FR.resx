@@ -1099,6 +1099,10 @@ Citation</value>
     <value>Options d'intégration</value>
     <comment>dialog</comment>
   </data>
+  <data name="EmbedDialog_useClipboardLink.Text" xml:space="preserve">
+    <value>Utilisez plutôt le lien dans le presse-papiers</value>
+    <comment>link</comment>
+  </data>
   <data name="EmbedSubpageCommand_NoContent" xml:space="preserve">
     <value>La page source ne contient aucun contenu</value>
     <comment>message box</comment>
