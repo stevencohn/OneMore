@@ -76,26 +76,31 @@ namespace River.OneMoreAddIn.Commands
 			// just Show()s the dialog and returns immediately — disposing it right here would
 			// close it before the user ever sees it.
 			dialog = new SearchTitleDialog();
-			dialog.RunModeless(async (sender, e) =>
+			dialog.RunModeless((sender, e) =>
 			{
-				try
-				{
-					if (sender is SearchTitleDialog d && d.DialogResult == DialogResult.OK)
-					{
-						query = d.Query;
-						selectedCards = d.SelectedCards;
+				var d = sender as SearchTitleDialog;
+				var indexRequested = d?.DialogResult == DialogResult.OK;
 
-						await using var one = new OneNote();
-						one.SelectLocation(
-							Resx.SearchQF_Title, Resx.SearchQF_DescriptionIndex,
-							OneNote.Scope.Sections, Callback);
-					}
-				}
-				finally
+				if (indexRequested)
 				{
-					commandIsActive = false;
-					dialog?.Dispose();
-					dialog = null;
+					query = d.Query;
+					selectedCards = d.SelectedCards;
+				}
+
+				// reset re-entry state synchronously, before kicking off SelectLocation below,
+				// so it can never be left stranded behind an async continuation that the modeless
+				// dialog's message loop exits before scheduling (which would leave commandIsActive
+				// stuck true and the dialog unable to reappear until OneNote is restarted)
+				commandIsActive = false;
+				dialog?.Dispose();
+				dialog = null;
+
+				if (indexRequested)
+				{
+					using var one = new OneNote();
+					one.SelectLocation(
+						Resx.SearchQF_Title, Resx.SearchQF_DescriptionIndex,
+						OneNote.Scope.Sections, Callback);
 				}
 			},
 			20);
@@ -136,40 +141,52 @@ namespace River.OneMoreAddIn.Commands
 		private async Task IndexSearchResults(string sectionId)
 		{
 			await using var one = new OneNote();
+			string parentId;
 
-			one.CreatePage(sectionId, out var parentId);
-			var parent = await one.GetPage(parentId);
-
-			var ns = parent.Namespace;
-			PageNamespace.Set(ns);
-
-			parent.Title = Resx.SearchTitleCommand_indexTitle;
-			parent.SetMeta(MetaNames.SearchIndex, "true");
-
-			var container = parent.EnsureContentContainer();
-
-			var h1Index = parent.GetQuickStyle(Styles.StandardStyles.Heading1).Index;
-			var todoIndex = parent.AddTagDef("3", "To Do", 4);
-
-			container.Add(new Paragraph(query).SetQuickStyle(h1Index));
-
-			var content = new XElement(ns + "OEChildren");
-			container.Add(new Paragraph(content));
-
-			foreach (var card in selectedCards.OrderBy(c => c.Title))
+			using (var progress = new UI.ProgressDialog())
 			{
-				var link = one.GetHyperlink(card.PageId, string.Empty);
+				progress.SetMaximum(selectedCards.Count());
+				progress.Show();
 
-				content.Add(new Paragraph(
-					new Tag(todoIndex, false),
-					new XElement(ns + "T",
-						new XCData($"<a href=\"{link}\">{WebUtility.HtmlEncode(card.Title)}</a>"))
-					));
+				one.CreatePage(sectionId, out parentId);
+				var parent = await one.GetPage(parentId);
+
+				var ns = parent.Namespace;
+				PageNamespace.Set(ns);
+
+				parent.Title = Resx.SearchTitleCommand_indexTitle;
+				parent.SetMeta(MetaNames.SearchIndex, "true");
+
+				var container = parent.EnsureContentContainer();
+
+				var h1Index = parent.GetQuickStyle(Styles.StandardStyles.Heading1).Index;
+				var todoIndex = parent.AddTagDef("3", "To Do", 4);
+
+				container.Add(new Paragraph(query).SetQuickStyle(h1Index));
+
+				var content = new XElement(ns + "OEChildren");
+				container.Add(new Paragraph(content));
+
+				foreach (var card in selectedCards.OrderBy(c => c.Title))
+				{
+					progress.SetMessage(card.Title);
+					progress.Increment();
+
+					var link = one.GetHyperlink(card.PageId, string.Empty);
+
+					content.Add(new Paragraph(
+						new Tag(todoIndex, false),
+						new XElement(ns + "T",
+							new XCData($"<a href=\"{link}\">{WebUtility.HtmlEncode(card.Title)}</a>"))
+						));
+				}
+
+				await one.Update(parent);
+				parentId = parent.PageId;
 			}
 
-			await one.Update(parent);
-
-			await one.NavigateTo(parent.PageId);
+			// navigate after progress dialog is closed otherwise it will hang!
+			await one.NavigateTo(parentId);
 		}
 
 
