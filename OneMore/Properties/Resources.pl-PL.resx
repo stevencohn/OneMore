@@ -1076,6 +1076,10 @@ Czcionka ostatniej kolumny</value>
     <value>Pełna strona</value>
     <comment>embed note, no tags specified</comment>
   </data>
+  <data name="EmbedDialog_paragraphLabel.Text" xml:space="preserve">
+    <value>Ustęp</value>
+    <comment>label</comment>
+  </data>
   <data name="EmbedDialog_plaintextRadio.Text" xml:space="preserve">
     <value>Zwykły tekst</value>
     <comment>radio button</comment>

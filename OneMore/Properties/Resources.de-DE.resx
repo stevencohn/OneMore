@@ -1071,6 +1071,10 @@ Schriftart der letzten Spalte</value>
     <value>Ganze Seite</value>
     <comment>embed note, no tags specified</comment>
   </data>
+  <data name="EmbedDialog_paragraphLabel.Text" xml:space="preserve">
+    <value>Absatz</value>
+    <comment>label</comment>
+  </data>
   <data name="EmbedDialog_plaintextRadio.Text" xml:space="preserve">
     <value>Klartext</value>
     <comment>radio button</comment>

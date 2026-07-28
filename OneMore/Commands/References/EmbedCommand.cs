@@ -175,7 +175,7 @@ namespace River.OneMoreAddIn.Commands
 				var pageMatch = Regex.Match(clip, @"page-id=(\{[^}]+\})&");
 				if (pageMatch.Success)
 				{
-					await EmbedFromClipboard(clip, null);
+					await EmbedFromClipboard(clip);
 					return;
 				}
 			}
@@ -192,10 +192,17 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task EmbedFromBookmark(Bookmark bookmark)
 		{
+			// consume the bookmark up front so it can never be replayed into a later,
+			// unrelated Embed invocation regardless of how this one ends (Cancel, an
+			// early failure, or a completed embed) — a bookmark is a one-shot cue
+			BookmarkCommand.Clear();
+
 			string sourcePath;
 			string targetPath;
 			string clipboardSourceId = null;
 			string clipboardSourcePath = null;
+			string clipboardObjectId = null;
+			string clipboardPreviewText = null;
 			XElement container;
 
 			// Phase 1: pre-dialog — load current page and resolve source/target paths.
@@ -219,7 +226,11 @@ namespace River.OneMoreAddIn.Commands
 				var clip = await ClipboardProvider.GetText();
 				if (!string.IsNullOrEmpty(clip) && Regex.IsMatch(clip, @"page-id=(\{[^}]+\})&"))
 				{
-					(clipboardSourceId, clipboardSourcePath) = await ResolveClipboardPage(o, clip);
+					(clipboardSourceId, clipboardSourcePath, clipboardObjectId) =
+						await ResolveClipboardPage(o, clip);
+
+					(clipboardObjectId, clipboardPreviewText) =
+						await ResolveClipboardObjectId(o, clipboardSourceId, clipboardObjectId);
 				}
 
 				container = FindContainer();
@@ -234,31 +245,53 @@ namespace River.OneMoreAddIn.Commands
 			if (!ShowEmbedDialog(sourcePath, targetPath,
 				out var beginTag, out var endTag,
 				out var format, out var style, out var indent,
-				out var bookmarkCleared, out var overrideSourceId,
-				bookmark.Text, clipboardSourceId, clipboardSourcePath))
+				out var overrideObjectId, out var overrideSourceId,
+				bookmark.Text, clipboardSourceId, clipboardSourcePath,
+				clipboardObjectId, clipboardPreviewText))
 			{
 				return;
 			}
 
 			var effectiveSourceId = overrideSourceId ?? bookmark.PageId;
 
+			string effectiveObjectId;
+			string effectiveBeginTag = string.Empty;
+			string effectiveEndTag = string.Empty;
+
+			if (overrideSourceId is null)
+			{
+				// no override — embed the original bookmarked paragraph
+				effectiveObjectId = bookmark.ObjectId;
+			}
+			else if (overrideObjectId is not null)
+			{
+				// overridden with another paragraph-level clipboard link
+				effectiveObjectId = overrideObjectId;
+			}
+			else
+			{
+				// overridden with a page-level source — fall back to tag mode
+				effectiveObjectId = null;
+				effectiveBeginTag = beginTag;
+				effectiveEndTag = endTag;
+			}
+
 			// Phase 2: post-dialog — fresh instance for source extraction and page update.
 			await using (one = new OneNote())
 			{
-				await Embed(effectiveSourceId, bookmarkCleared ? null : bookmark.ObjectId,
-					bookmarkCleared ? beginTag : string.Empty,
-					bookmarkCleared ? endTag : string.Empty,
+				await Embed(effectiveSourceId, effectiveObjectId,
+					effectiveBeginTag, effectiveEndTag,
 					format, style, indent, container);
 			}
-
-			BookmarkCommand.Clear();
 		}
 
 
-		private async Task EmbedFromClipboard(string clipUri, string objectId)
+		private async Task EmbedFromClipboard(string clipUri)
 		{
 			string sourceId;
 			string sourcePath;
+			string objectId;
+			string previewText = null;
 			string targetPath;
 			XElement container = null;
 
@@ -274,7 +307,7 @@ namespace River.OneMoreAddIn.Commands
 
 				ns = page?.Namespace;
 
-				(sourceId, sourcePath) = await ResolveClipboardPage(o, clipUri);
+				(sourceId, sourcePath, objectId) = await ResolveClipboardPage(o, clipUri);
 
 				if (string.IsNullOrEmpty(sourceId))
 				{
@@ -285,6 +318,8 @@ namespace River.OneMoreAddIn.Commands
 				var targetInfo = await o.GetPageInfo(page.PageId);
 				targetPath = FormatPath(targetInfo?.Path) ?? page.Title;
 
+				(objectId, previewText) = await ResolveClipboardObjectId(o, sourceId, objectId);
+
 				container = FindContainer();
 			}
 
@@ -294,19 +329,28 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
+			// a clipboard link with an object-id is a paragraph link; treat it like a
+			// bookmark by suppressing the begin/end tag prompt and previewing the target
+			var bookmarkText = !string.IsNullOrEmpty(objectId) ? (previewText ?? sourcePath) : null;
+
 			if (!ShowEmbedDialog(sourcePath, targetPath,
 				out var beginTag, out var endTag, out var format, out var style, out var indent,
-				out _, out var overrideSourceId))
+				out _, out var overrideSourceId,
+				bookmarkText, isBookmark: false))
 			{
 				return;
 			}
 
 			var effectiveSourceId = overrideSourceId ?? sourceId;
+			var effectiveObjectId = overrideSourceId is null ? objectId : null;
 
 			// Phase 2: post-dialog — fresh instance; no COM history from Phase 1 map building.
 			await using (one = new OneNote())
 			{
-				await Embed(effectiveSourceId, null, beginTag, endTag, format, style, indent, container);
+				await Embed(effectiveSourceId, effectiveObjectId,
+					string.IsNullOrEmpty(effectiveObjectId) ? beginTag : string.Empty,
+					string.IsNullOrEmpty(effectiveObjectId) ? endTag : string.Empty,
+					format, style, indent, container);
 			}
 		}
 
@@ -387,9 +431,10 @@ namespace River.OneMoreAddIn.Commands
 
 		/// <summary>
 		/// Resolves a clipboard OneNote URI (e.g. from Copy Link to Page/Paragraph) to a
-		/// source page ID and its display path.
+		/// source page ID, its display path, and its object-id (null for page-level links).
 		/// </summary>
-		private async Task<(string SourceId, string SourcePath)> ResolveClipboardPage(OneNote o, string clipUri)
+		private async Task<(string SourceId, string SourcePath, string ObjectId)> ResolveClipboardPage(
+			OneNote o, string clipUri)
 		{
 			try
 			{
@@ -416,20 +461,29 @@ namespace River.OneMoreAddIn.Commands
 					logger.WriteLine(
 						$"page not found at path [{link.NotebookName}/{sectionPath}/{link.PageName}]");
 
-					return (null, null);
+					return (null, null, null);
 				}
 
 				var info = await o.GetPageInfo(sourceId);
 				var sourcePath = FormatPath(info?.Path) ?? link.PageName;
 
+				// clipboard object-ids are in URI/brace format, distinct from the page
+				// XML objectID attribute format; FindParagraphOE bridges the two. The
+				// terminator is included since OneNote can reuse the same object-id GUID
+				// across distinct anchors (e.g. sibling footnote citations), disambiguated
+				// only by the terminator — see ExtractLinkAddress.
+				var objectId = link.ObjectId.HasValue
+					? $"{{{link.ObjectId.Value}}}::{link.LinkTerminator}"
+					: null;
+
 				logger.WriteLine($"found source page: {sourcePath} ({sourceId})");
 
-				return (sourceId, sourcePath);
+				return (sourceId, sourcePath, objectId);
 			}
 			catch (Exception exc)
 			{
 				logger.WriteLine("error resolving clipboard URI to page", exc);
-				return (null, null);
+				return (null, null, null);
 			}
 		}
 
@@ -439,14 +493,20 @@ namespace River.OneMoreAddIn.Commands
 			out string beginTag, out string endTag,
 			out EmbedFormat format, out EmbedStyle style,
 			out bool indent,
-			out bool bookmarkCleared,
+			out string overrideObjectId,
 			out string overrideSourceId,
 			string bookmarkText = null,
 			string clipboardSourceId = null,
-			string clipboardSourcePath = null)
+			string clipboardSourcePath = null,
+			string clipboardObjectId = null,
+			string clipboardPreviewText = null,
+			bool isBookmark = true)
 		{
 			using var dialog = new EmbedDialog(
-				sourcePath, targetPath, bookmarkText, clipboardSourceId, clipboardSourcePath);
+				sourcePath, targetPath, bookmarkText,
+				clipboardSourceId, clipboardSourcePath,
+				clipboardObjectId, clipboardPreviewText,
+				isBookmark);
 
 			if (dialog.ShowDialog(owner) != DialogResult.OK)
 			{
@@ -454,7 +514,7 @@ namespace River.OneMoreAddIn.Commands
 				format = default;
 				style = default;
 				indent = false;
-				bookmarkCleared = false;
+				overrideObjectId = null;
 				overrideSourceId = null;
 				return false;
 			}
@@ -464,7 +524,7 @@ namespace River.OneMoreAddIn.Commands
 			format = dialog.Format;
 			style = dialog.Style;
 			indent = dialog.Indent;
-			bookmarkCleared = dialog.BookmarkCleared;
+			overrideObjectId = dialog.OverrideObjectId;
 			overrideSourceId = dialog.OverrideSourceId;
 			return true;
 		}
@@ -639,7 +699,7 @@ namespace River.OneMoreAddIn.Commands
 					.FirstOrDefault(e =>
 						e.Attribute("objectID")?.Value == objectId &&
 						e.Descendants(sns + "T").Any())
-					?? await FindParagraphOE(source, objectId);
+					?? await FindParagraphOE(one, source, objectId);
 
 				if (oe is null)
 				{
@@ -744,27 +804,194 @@ namespace River.OneMoreAddIn.Commands
 		/// differs from the page XML objectID attribute format; mapping through the API is
 		/// the only reliable way to resolve the correspondence.
 		/// </summary>
-		private async Task<XElement> FindParagraphOE(Page source, string clipObjectId)
+		/// <remarks>
+		/// clipObjectId is the composite "{guid}::{terminator}" key built by
+		/// ResolveClipboardPage. The object-id GUID alone is not always unique — OneNote can
+		/// reuse the same GUID across multiple distinct anchors saved in the same batch (e.g.
+		/// sibling footnote citations), disambiguated by the terminator.
+		/// <para/>
+		/// The middle segment of an OE's own XML objectID attribute (e.g. the "45" in
+		/// "{1E1BC2E4-...}{45}{B0}") is a per-batch sequence number in decimal. The link
+		/// terminator GetObjectHyperlink/OneNote's native "Copy Link to Paragraph" return
+		/// for that same batch is that sequence number in hex — but when the cursor sits
+		/// mid-paragraph (splitting a T run), the terminator reflects the split point's own
+		/// (slightly higher) sequence number rather than the enclosing OE's, so an exact
+		/// terminator match never hits for such links. Instead, among candidates whose
+		/// re-derived object-id GUID matches the clipboard's, pick the one whose own
+		/// sequence number is the largest that does not exceed the clipboard terminator —
+		/// i.e. the nearest enclosing OE at or before the exact cursor position.
+		/// </remarks>
+		private async Task<XElement> FindParagraphOE(OneNote one, Page source, string clipObjectId)
 		{
+			var (clipGuid, clipTerminator) = SplitLinkAddress(clipObjectId);
+			int? clipSequence = clipTerminator is not null
+				? TryParseHex(clipTerminator)
+				: null;
+
 			var sns = source.Namespace;
+			XElement bestMatch = null;
+			int? bestSequence = null;
 
 			foreach (var oe in source.Root.Descendants(sns + "OE")
 				.Where(e => e.Attribute("objectID") != null))
 			{
 				var xmlId = oe.Attribute("objectID").Value;
 				var link = await one.GetObjectHyperlink(source.PageId, xmlId);
-				if (string.IsNullOrEmpty(link)) continue;
-
-				var m = Regex.Match(link, @"object-id=((?:\{[^}]+\})+)");
-				if (!m.Success) continue;
-
-				if (m.Groups[1].Value.Equals(clipObjectId, StringComparison.OrdinalIgnoreCase))
+				var address = ExtractLinkAddress(link);
+				if (address is null ||
+					!address.Value.ObjectId.Equals(clipGuid, StringComparison.OrdinalIgnoreCase))
 				{
-					return oe;
+					continue;
+				}
+
+				var ownSequence = ParseOwnSequence(xmlId);
+
+				if (clipSequence.HasValue && ownSequence.HasValue)
+				{
+					if (ownSequence.Value <= clipSequence.Value &&
+						(bestSequence is null || ownSequence.Value > bestSequence.Value))
+					{
+						bestMatch = oe;
+						bestSequence = ownSequence.Value;
+					}
+				}
+				else
+				{
+					// no sequence info to compare on either side; take the first GUID match
+					bestMatch ??= oe;
 				}
 			}
 
-			return null;
+			logger.WriteLine($"FindParagraphOE: clipGuid=[{clipGuid}] clipTerminator=[{clipTerminator}] " +
+				$"resolved xmlId=[{bestMatch?.Attribute("objectID")?.Value ?? "none"}]");
+
+			return bestMatch;
+		}
+
+
+		private static readonly Regex OwnSequencePattern =
+			new(@"^\{[^}]+\}\{(\d+)\}\{[^}]+\}$", RegexOptions.Compiled);
+
+		/// <summary>
+		/// Parses the decimal per-batch sequence number from the middle segment of an OE's
+		/// own XML objectID attribute (e.g. "45" from "{1E1BC2E4-...}{45}{B0}").
+		/// </summary>
+		private static int? ParseOwnSequence(string xmlObjectId)
+		{
+			var m = OwnSequencePattern.Match(xmlObjectId ?? string.Empty);
+			return m.Success && int.TryParse(m.Groups[1].Value, out var n) ? n : (int?)null;
+		}
+
+
+		private static int? TryParseHex(string value) =>
+			int.TryParse(value, System.Globalization.NumberStyles.HexNumber,
+				System.Globalization.CultureInfo.InvariantCulture, out var n) ? n : (int?)null;
+
+
+		private static readonly Regex ObjectIdAddressPattern =
+			new(@"object-id=((?:\{[^}]+\})+)&([A-Za-z0-9]+)", RegexOptions.Compiled);
+
+		/// <summary>
+		/// Extracts the object-id GUID and terminator from a onenote: hyperlink.
+		/// </summary>
+		private static (string ObjectId, string Terminator)? ExtractLinkAddress(string link)
+		{
+			if (string.IsNullOrEmpty(link))
+			{
+				return null;
+			}
+
+			var m = ObjectIdAddressPattern.Match(link);
+			return m.Success ? (m.Groups[1].Value, m.Groups[2].Value) : null;
+		}
+
+
+		/// <summary>
+		/// Splits a composite "{guid}::{terminator}" key, as built by ResolveClipboardPage,
+		/// back into its parts. Terminator is null if not present in the composite.
+		/// </summary>
+		private static (string ObjectId, string Terminator) SplitLinkAddress(string composite)
+		{
+			if (string.IsNullOrEmpty(composite))
+			{
+				return (composite, null);
+			}
+
+			var i = composite.IndexOf("::", StringComparison.Ordinal);
+			return i < 0
+				? (composite, null)
+				: (composite.Substring(0, i), composite.Substring(i + 2));
+		}
+
+
+		/// <summary>
+		/// Classifies a clipboard-sourced object-id and, for a genuine paragraph link,
+		/// fetches a best-effort preview of its text for dialog display.
+		/// </summary>
+		/// <remarks>
+		/// OneMore's own "Copy Link to Page" command (<see cref="CopyLinkCommand"/>) anchors
+		/// its hyperlink to the page's Title OE (<see cref="Page.TitleID"/>) since the OneNote
+		/// API requires an object anchor even for page-level links. That makes a Title link
+		/// indistinguishable from a real paragraph link at the URI level, so it must be
+		/// special-cased here and reported back as <c>null</c> (page-level), not inferred as
+		/// a paragraph embed. Returns (null, null) for a page-level link (no object-id, or an
+		/// object-id that resolves to the Title OE); otherwise returns the object-id unchanged
+		/// with a best-effort preview (null on any miss — <see cref="GetSource"/> remains the
+		/// authoritative resolver when the embed is actually performed).
+		/// <para/>
+		/// The Title check is done by resolving the winning OE first (via the same
+		/// GUID+sequence matching as any other paragraph) and only then comparing it against
+		/// Page.TitleID directly, rather than a standalone GUID-only pre-check. A page created
+		/// in a single editing session can assign the Title and every body OE the same batch
+		/// GUID, so a bare GUID-only pre-check would false-positive on any paragraph from that
+		/// page; resolving the specific OE first and comparing its own xmlId avoids that.
+		/// </remarks>
+		private async Task<(string ObjectId, string PreviewText)> ResolveClipboardObjectId(
+			OneNote o, string sourceId, string rawObjectId)
+		{
+			if (string.IsNullOrEmpty(rawObjectId))
+			{
+				return (null, null);
+			}
+
+			var source = await o.GetPage(sourceId, OneNote.PageDetail.BinaryData);
+			if (source is null)
+			{
+				return (rawObjectId, null);
+			}
+
+			var sns = source.Namespace;
+			PageNamespace.Set(sns);
+
+			var oe = source.Root.Descendants(sns + "OE")
+				.FirstOrDefault(e =>
+					e.Attribute("objectID")?.Value == rawObjectId &&
+					e.Descendants(sns + "T").Any())
+				?? await FindParagraphOE(o, source, rawObjectId);
+
+			if (oe is null)
+			{
+				logger.WriteLine($"clipboard object-id [{rawObjectId}] did not match any OE on source page");
+				return (rawObjectId, null);
+			}
+
+			if (!string.IsNullOrEmpty(source.TitleID) &&
+				oe.Attribute("objectID")?.Value == source.TitleID)
+			{
+				logger.WriteLine($"clipboard object-id [{rawObjectId}] resolves to Title OE; treating as page-level");
+				return (null, null);
+			}
+
+			var preview = oe.TextValue(stripHtml: true)?.Trim();
+			var xml = oe.ToString(SaveOptions.DisableFormatting);
+
+			logger.WriteLine(
+				$"clipboard object-id [{rawObjectId}] matched OE objectID=[{oe.Attribute("objectID")?.Value}] " +
+				$"childElements=[{string.Join(",", oe.Elements().Select(c => c.Name.LocalName))}] " +
+				$"textLength=[{preview?.Length ?? 0}] " +
+				$"xml=[{(xml.Length > 500 ? xml.Substring(0, 500) + "...(truncated)" : xml)}]");
+
+			return (rawObjectId, preview);
 		}
 
 

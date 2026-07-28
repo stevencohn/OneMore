@@ -2324,6 +2324,15 @@ namespace River.OneMoreAddIn.Properties {
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Paragraph.
+        /// </summary>
+        internal static string EmbedDialog_paragraphLabel_Text {
+            get {
+                return ResourceManager.GetString("EmbedDialog_paragraphLabel.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to End tag.
         /// </summary>
         internal static string EmbedDialog_endTagLabel_Text {

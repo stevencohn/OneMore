@@ -1076,6 +1076,10 @@ Fonte da última coluna</value>
     <value>Página inteira</value>
     <comment>embed note, no tags specified</comment>
   </data>
+  <data name="EmbedDialog_paragraphLabel.Text" xml:space="preserve">
+    <value>Parágrafo</value>
+    <comment>label</comment>
+  </data>
   <data name="EmbedDialog_plaintextRadio.Text" xml:space="preserve">
     <value>Texto simples</value>
     <comment>radio button</comment>

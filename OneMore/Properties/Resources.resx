@@ -1085,6 +1085,10 @@ Last Column Font</value>
     <value>Full page</value>
     <comment>embed note, no tags specified</comment>
   </data>
+  <data name="EmbedDialog_paragraphLabel.Text" xml:space="preserve">
+    <value>Paragraph</value>
+    <comment>label</comment>
+  </data>
   <data name="EmbedDialog_plaintextRadio.Text" xml:space="preserve">
     <value>Plain text</value>
     <comment>radio button</comment>

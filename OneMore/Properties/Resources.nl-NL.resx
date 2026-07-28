@@ -1076,6 +1076,10 @@ Lettertype laatste kolom</value>
     <value>Volledige pagina</value>
     <comment>embed note, no tags specified</comment>
   </data>
+  <data name="EmbedDialog_paragraphLabel.Text" xml:space="preserve">
+    <value>Paragraaf</value>
+    <comment>label</comment>
+  </data>
   <data name="EmbedDialog_plaintextRadio.Text" xml:space="preserve">
     <value>Platte tekst</value>
     <comment>radio button</comment>
