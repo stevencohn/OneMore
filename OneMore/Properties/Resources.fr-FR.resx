@@ -1079,6 +1079,10 @@ Police de la dernière colonne</value>
     <value>Pleine page</value>
     <comment>embed note, no tags specified</comment>
   </data>
+  <data name="EmbedDialog_paragraphLabel.Text" xml:space="preserve">
+    <value>Paragraphe</value>
+    <comment>label</comment>
+  </data>
   <data name="EmbedDialog_plaintextRadio.Text" xml:space="preserve">
     <value>Texte brut</value>
     <comment>radio button</comment>

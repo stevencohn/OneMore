@@ -1079,6 +1079,10 @@
     <value>صفحة كاملة</value>
     <comment>embed note, no tags specified</comment>
   </data>
+  <data name="EmbedDialog_paragraphLabel.Text" xml:space="preserve">
+    <value>فقرة</value>
+    <comment>label</comment>
+  </data>
   <data name="EmbedDialog_plaintextRadio.Text" xml:space="preserve">
     <value>نص عادي</value>
     <comment>radio button</comment>

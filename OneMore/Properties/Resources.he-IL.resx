@@ -1076,6 +1076,10 @@ Total Row Font
     <value>עמוד שלם</value>
     <comment>embed note, no tags specified</comment>
   </data>
+  <data name="EmbedDialog_paragraphLabel.Text" xml:space="preserve">
+    <value>סָעִיף</value>
+    <comment>label</comment>
+  </data>
   <data name="EmbedDialog_plaintextRadio.Text" xml:space="preserve">
     <value>טקסט רגיל</value>
     <comment>radio button</comment>

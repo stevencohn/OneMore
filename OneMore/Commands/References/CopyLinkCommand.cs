@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn
 	using System.Text;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
+	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.UI;
 	using Resx = Properties.Resources;
 	using Win = System.Windows;
@@ -70,11 +71,14 @@ namespace River.OneMoreAddIn
 					}
 				}
 
-				// capture link to paragraph...
-
-				var selected = page.BodyOutlines
-					.Descendants(ns + "OE")
-					.LastOrDefault(e => e.Attributes().Any(a => a.Name == "selected"));
+				// capture link to paragraph, anchored to the OE containing the cursor or
+				// selection. Scanning for any OE carrying a stale "selected" attribute
+				// (the previous approach) could return a paragraph left over from an
+				// earlier selection rather than the current cursor position; this mirrors
+				// BookmarkCommand's use of SelectionRange, which resolves the current
+				// cursor/selection scope explicitly rather than trusting leftover markers.
+				var run = new SelectionRange(page).GetSelection(true);
+				var selected = run?.Parent;
 
 				if (selected != null)
 				{
