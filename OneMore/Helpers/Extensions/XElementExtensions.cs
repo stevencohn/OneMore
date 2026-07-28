@@ -462,19 +462,23 @@ namespace River.OneMoreAddIn
 		{
 			if (stripHtml)
 			{
-				// this will work for CDATA that contain zero or more <span> elements
+				// this will work for CDATA that contain zero or more <span> or <a> elements
 				// regardless of XML validity; used to use cdata.GetWrapper() but that breaks!
 
-				var regex = new Regex(@"<\s*span[^>]*>(.*?)<\s*/\s*span>", RegexOptions.Compiled);
+				// concatenate raw CDATA first, then strip.
+				// Singleline so '.' also matches embedded newlines: OneNote wraps
+				// long tags (e.g. <a\nhref="..."> or <span\nstyle="...">) across lines within
+				// the CDATA, and the lazy content group must be able to cross that line break
+				// to reach the matching close tag.
+				var anchorRegex = new Regex(@"<\s*a\b[^>]*>(.*?)<\s*/\s*a\s*>",
+					RegexOptions.Compiled | RegexOptions.Singleline);
+				var spanRegex = new Regex(@"<\s*span[^>]*>(.*?)<\s*/\s*span>",
+					RegexOptions.Compiled | RegexOptions.Singleline);
 
-				var text = string.Empty;
-				foreach (var cdata in element.DescendantNodes().OfType<XCData>())
-				{
-					var parts = regex.Split(cdata.Value);
-					text = $"{text}{string.Join(string.Empty, parts)}";
-				}
+				var raw = string.Concat(
+					element.DescendantNodes().OfType<XCData>().Select(cdata => cdata.Value));
 
-				return text;
+				return spanRegex.Replace(anchorRegex.Replace(raw, "$1"), "$1");
 
 				/*
 				var regex = new Regex(@"<span\s+", RegexOptions.Compiled);

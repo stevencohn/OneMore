@@ -213,23 +213,42 @@ namespace River.OneMoreAddIn.Commands
 
 				if (notebooks.Count > 1)
 				{
-					foreach (var nb in notebooks
-						.OrderBy(n => n.Name, StringComparer.CurrentCultureIgnoreCase))
+					if (query.SortByModified)
 					{
-						var matches = SearchTitleEngine.SearchNotebook(
-							nb.Tree, nb.Name, finder, hashtagPageIds);
-
-						if (matches.Count == 0)
+						var all = new List<TitleSearchResult>();
+						foreach (var nb in notebooks)
 						{
-							continue;
+							all.AddRange(SearchTitleEngine.SearchNotebook(
+								nb.Tree, nb.Name, finder, hashtagPageIds));
 						}
 
-						SearchTitleEngine.Sort(matches, query.SortByModified);
+						SearchTitleEngine.Sort(all, sortByModified: true);
 
-						resultsView.AppendCard(new CardModel { Title = nb.Name, IsHeader = true, IsPlainText = true });
-						foreach (var match in matches)
+						foreach (var match in all)
 						{
 							resultsView.AppendCard(ToCard(match));
+						}
+					}
+					else
+					{
+						foreach (var nb in notebooks
+							.OrderBy(n => n.Name, StringComparer.CurrentCultureIgnoreCase))
+						{
+							var matches = SearchTitleEngine.SearchNotebook(
+								nb.Tree, nb.Name, finder, hashtagPageIds);
+
+							if (matches.Count == 0)
+							{
+								continue;
+							}
+
+							SearchTitleEngine.Sort(matches, sortByModified: false);
+
+							resultsView.AppendCard(new CardModel { Title = nb.Name, IsHeader = true, IsPlainText = true });
+							foreach (var match in matches)
+							{
+								resultsView.AppendCard(ToCard(match));
+							}
 						}
 					}
 				}

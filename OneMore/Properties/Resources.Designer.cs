@@ -2322,7 +2322,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("EmbedDialog_bookmarkLabel.Text", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to End tag.
         /// </summary>
@@ -2425,7 +2425,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("EmbedDialog_Title", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Use link on clipboard instead.
+        /// </summary>
+        internal static string EmbedDialog_useClipboardLink_Text {
+            get {
+                return ResourceManager.GetString("EmbedDialog_useClipboardLink.Text", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Source page contains no content.
         /// </summary>

@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using System;
+	using System.Windows.Forms;
 	using River.OneMoreAddIn.UI;
 	using Resx = Properties.Resources;
 
@@ -15,12 +16,21 @@ namespace River.OneMoreAddIn.Commands
 
 	internal partial class EmbedDialog : MoreForm
 	{
-		public EmbedDialog(string sourceName, string targetName, string bookmarkText = null)
+		private readonly string clipboardSourceId;
+		private readonly string clipboardSourcePath;
+
+
+		public EmbedDialog(
+			string sourcePath, string targetPath, string bookmarkText = null,
+			string clipboardSourceId = null, string clipboardSourcePath = null)
 		{
 			InitializeComponent();
 
-			sourceNameLabel.Text = sourceName;
-			targetNameLabel.Text = targetName;
+			this.clipboardSourceId = clipboardSourceId;
+			this.clipboardSourcePath = clipboardSourcePath;
+
+			sourceNameLabel.Text = sourcePath;
+			targetNameLabel.Text = targetPath;
 
 			if (bookmarkText != null)
 			{
@@ -34,6 +44,7 @@ namespace River.OneMoreAddIn.Commands
 					? bookmarkText.Substring(0, 50) + "..."
 					: bookmarkText;
 				bookmarkTextLabel.Visible = true;
+				useClipboardLink.Visible = clipboardSourceId != null;
 			}
 			else
 			{
@@ -51,6 +62,7 @@ namespace River.OneMoreAddIn.Commands
 					"beginTagLabel",
 					"endTagLabel",
 					"bookmarkLabel",
+					"useClipboardLink",
 					"formatLabel=word_Format",
 					"formattedRadio",
 					"plaintextRadio",
@@ -65,6 +77,12 @@ namespace River.OneMoreAddIn.Commands
 
 
 		public bool Indent => indentCheck.Checked;
+
+
+		public bool BookmarkCleared { get; private set; }
+
+
+		public string OverrideSourceId { get; private set; }
 
 
 		public string BeginTag => beginTagBox.Text.Trim();
@@ -83,6 +101,78 @@ namespace River.OneMoreAddIn.Commands
 		private void ToggleStyle(object sender, EventArgs e)
 		{
 			stylePanel.Visible = plaintextRadio.Checked;
+		}
+
+
+		private async void SourceNameLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			// The ribbon command thread is MTA; the native QuickFiling dialog (and its
+			// async OnDialogClosed callback) requires a genuine STA thread to avoid
+			// hanging the COM surrogate, so this must be routed through SingleThreaded,
+			// matching QuickNotesSheet.SelectNotebook.
+			await SingleThreaded.Invoke(async () =>
+			{
+				// SelectLocation shows the native QuickFiling dialog and returns immediately;
+				// this OneNote instance is only needed to launch it. The callback opens its
+				// own fresh instance.
+				await using var one = new OneNote();
+				one.SelectLocation(
+					Resx.EmbedCommand_Select,
+					Resx.EmbedCommand_SelectIntro,
+					OneNote.Scope.Pages,
+					async (sourceId) =>
+					{
+						if (string.IsNullOrEmpty(sourceId))
+						{
+							return;
+						}
+
+						await using var o = new OneNote();
+						var info = await o.GetPageInfo(sourceId);
+						var path = EmbedCommand.FormatPath(info?.Path) ?? sourceId;
+
+						ApplyOverrideSource(sourceId, path);
+					},
+					leaf: true);
+			});
+		}
+
+
+		private void UseClipboardLink(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			ApplyOverrideSource(clipboardSourceId, clipboardSourcePath);
+		}
+
+
+		private void ApplyOverrideSource(string sourceId, string sourcePath)
+		{
+			// the picker callback can arrive on the dedicated STA thread spun up by
+			// SingleThreaded rather than this dialog's own thread
+			if (InvokeRequired)
+			{
+				BeginInvoke(new Action(() => ApplyOverrideSource(sourceId, sourcePath)));
+				return;
+			}
+
+			OverrideSourceId = sourceId;
+			sourceNameLabel.Text = sourcePath;
+
+			if (bookmarkLabel.Visible)
+			{
+				BookmarkCleared = true;
+
+				bookmarkLabel.Visible = false;
+				bookmarkTextLabel.Visible = false;
+				useClipboardLink.Visible = false;
+
+				beginTagLabel.Visible = true;
+				beginTagBox.Visible = true;
+				endTagLabel.Visible = true;
+				endTagBox.Visible = true;
+				noteLabel.Visible = true;
+
+				SetNote(null, null);
+			}
 		}
 
 		private void SetNote(object sender, EventArgs e)

@@ -32,14 +32,6 @@ namespace River.OneMoreAddIn.Commands
 
 		private const string MediumBlue = "#5B9BD5";
 
-		private static readonly HashSet<string> MonospaceFonts =
-			new HashSet<string>(StringComparer.OrdinalIgnoreCase)
-			{
-				"Consolas", "Courier", "Courier New", StyleBase.DefaultCodeFamily,
-				"Monaco", "Cascadia Code", "Fira Code", "Fira Mono",
-				"Source Code Pro", "Inconsolata", "Hack", "DejaVu Sans Mono"
-			};
-
 		private Page page;
 		private XNamespace ns;
 		private readonly Theme theme;
@@ -600,17 +592,6 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private static bool IsMonospaceFont(string fontFamily)
-		{
-			if (string.IsNullOrEmpty(fontFamily)) return false;
-			foreach (var font in fontFamily.Split(','))
-			{
-				if (MonospaceFonts.Contains(font.Trim().Trim('\'', '"'))) return true;
-			}
-			return false;
-		}
-
-
 		private HashSet<string> GetCodeQuickStyleIndices()
 		{
 			return page.Root.Elements(ns + "QuickStyleDef")
@@ -679,7 +660,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var inlineStyle = styles.FirstOrDefault(s =>
 				s.StyleType == StyleType.Character &&
-				IsMonospaceFont(s.FontFamily));
+				StyleBase.IsMonospaceFont(s.FontFamily));
 
 			var css = inlineStyle?.ToCss()
 				?? $"font-family:'{StyleBase.DefaultCodeFamily}';font-size:9.0pt";
@@ -867,7 +848,7 @@ namespace River.OneMoreAddIn.Commands
 				? css.Substring(start, end - start)
 				: css.Substring(start);
 
-			return IsMonospaceFont(fontValue);
+			return StyleBase.IsMonospaceFont(fontValue);
 		}
 
 

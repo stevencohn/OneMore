@@ -1100,6 +1100,10 @@
     <value>嵌入选项</value>
     <comment>dialog</comment>
   </data>
+  <data name="EmbedDialog_useClipboardLink.Text" xml:space="preserve">
+    <value>使用剪贴板上的链接代替</value>
+    <comment>link</comment>
+  </data>
   <data name="EmbedSubpageCommand_NoContent" xml:space="preserve">
     <value>源页面不包含任何内容</value>
     <comment>message box</comment>

@@ -57,8 +57,10 @@ namespace River.OneMoreAddIn.Commands
 
 		private bool MakeBookmark(Page page)
 		{
-			bookmark = new Bookmark();
-			bookmark.Range = new SelectionRange(page);
+			bookmark = new Bookmark
+			{
+				Range = new SelectionRange(page)
+			};
 
 			// get selected runs but preserve cursor if there is one so we can edit from it later
 			var run = bookmark.Range.GetSelection(true);
@@ -81,9 +83,12 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			bookmark.PageId = page.PageId;
-			bookmark.Text = new PageEditor(page).GetSelectedText();
 
-			logger.WriteLine($"bookmarked {bookmark.ObjectId}");
+			// a bookmark always anchors to the whole paragraph (OE), not just the
+			// selection/cursor within it, so grab the paragraph's own cleaned text
+			bookmark.Text = bookmark.Range.Root.TextValue(stripHtml: true).Trim();
+
+			logger.WriteLine($"bookmarked {bookmark.ObjectId} ({bookmark.Text})");
 
 			return true;
 		}

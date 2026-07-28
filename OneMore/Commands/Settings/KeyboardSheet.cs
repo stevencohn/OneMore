@@ -246,6 +246,13 @@ namespace River.OneMoreAddIn.Settings
 			var element = new XElement(SettingsName);
 			for (int i = 0; i < map.Count; i++)
 			{
+				// Back is an explicit clear; never persist it so the command
+				// falls back to its hard-coded default on next load
+				if (map[i].Hotkey.Keys == Keys.Back)
+				{
+					continue;
+				}
+
 				if (!map[i].Hotkey.Equals(defaultMap[i].Hotkey))
 				{
 					element.Add(new XElement("command",

@@ -1096,6 +1096,10 @@ Total Row Font
     <value>אפשרויות הטמעה</value>
     <comment>dialog</comment>
   </data>
+  <data name="EmbedDialog_useClipboardLink.Text" xml:space="preserve">
+    <value>השתמש בקישור בלוח במקום זאת</value>
+    <comment>link</comment>
+  </data>
   <data name="EmbedSubpageCommand_NoContent" xml:space="preserve">
     <value>דף המקור אינו מכיל תוכן</value>
     <comment>message box</comment>

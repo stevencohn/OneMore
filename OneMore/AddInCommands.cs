@@ -969,7 +969,7 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<SearchCommand>();
 
 
-		[Command("ribSearchTitleButton_Label", Keys.Alt | Keys.Oemplus, "ribSearchMenu")]
+		[Command("ribSearchTitleButton_Label", Keys.Shift | Keys.Alt | Keys.OemPeriod, "ribSearchMenu")]
 		public async Task SearchTitleCmd(IRibbonControl control)
 			=> await factory.Run<SearchTitleCommand>();
 
