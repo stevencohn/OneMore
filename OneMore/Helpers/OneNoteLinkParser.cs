@@ -125,7 +125,10 @@ namespace River.OneMoreAddIn
 			RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
 
-		public static OneNoteLink Parse(string rawUri, string localNotebooksRoot = null)
+		public static OneNoteLink Parse(
+			string rawUri,
+			string localNotebooksRoot = null,
+			IEnumerable<(string Name, string Nickname)> knownNotebooks = null)
 		{
 			if (string.IsNullOrWhiteSpace(rawUri))
 				throw new ArgumentException("URI is empty.", nameof(rawUri));
@@ -161,7 +164,7 @@ namespace River.OneMoreAddIn
 			if (body.StartsWith("https://", StringComparison.OrdinalIgnoreCase) ||
 				body.StartsWith("http://", StringComparison.OrdinalIgnoreCase))
 			{
-				ParseRemotePath(body, result);
+				ParseRemotePath(body, result, knownNotebooks);
 			}
 			else
 			{
@@ -175,7 +178,9 @@ namespace River.OneMoreAddIn
 		// ---------------------------------------------------------------------------------------
 		// Remote path
 
-		private static void ParseRemotePath(string body, OneNoteLink result)
+		private static void ParseRemotePath(
+			string body, OneNoteLink result,
+			IEnumerable<(string Name, string Nickname)> knownNotebooks)
 		{
 			result.IsLocal = false;
 
@@ -192,23 +197,73 @@ namespace River.OneMoreAddIn
 			if (segments.Length < 3)
 				throw new FormatException("Remote OneNote path too short to contain a notebook.");
 
-			// Locate the notebook by finding the "Documents" segment (OneDrive personal:
-			// /{userid}/Documents/{notebook}/...; OneDrive for Business may have more prefix
-			// segments). Fall back to index 2 when no "Documents" segment is present.
-			int notebookIndex = 2;
-			for (int i = 0; i < segments.Length - 1; i++)
+			// Prefer matching a segment against a currently-open notebook's real name or
+			// nickname over guessing from URL text. This handles SharePoint personal-site
+			// paths like ".../Documents/Documents/OneNote Notebooks/MyNotebook/Section.one"
+			// where a literal "Documents" folder sits inside the document-library segment,
+			// which defeats the "first Documents wins" heuristic below.
+			int notebookIndex = -1;
+			string canonicalName = null;
+
+			if (knownNotebooks is not null)
 			{
-				if (segments[i].Equals("Documents", StringComparison.OrdinalIgnoreCase))
+				var notebooks = knownNotebooks as IList<(string Name, string Nickname)>
+					?? knownNotebooks.ToList();
+
+				var decoded = new string[segments.Length];
+				for (int i = 0; i < segments.Length - 1; i++)
 				{
-					notebookIndex = i + 1;
-					break;
+					decoded[i] = Decode(segments[i]);
+				}
+
+				// name first, then nickname — mirrors CliNotebookResolver.ResolveNotebookName
+				for (int i = 0; i < segments.Length - 1 && notebookIndex < 0; i++)
+				{
+					var match = notebooks.FirstOrDefault(n => string.Equals(
+						n.Name, decoded[i], StringComparison.OrdinalIgnoreCase));
+
+					if (match.Name is not null)
+					{
+						notebookIndex = i;
+						canonicalName = match.Name;
+					}
+				}
+
+				for (int i = 0; i < segments.Length - 1 && notebookIndex < 0; i++)
+				{
+					var match = notebooks.FirstOrDefault(n =>
+						!string.IsNullOrEmpty(n.Nickname) &&
+						string.Equals(n.Nickname, decoded[i], StringComparison.OrdinalIgnoreCase));
+
+					if (match.Name is not null)
+					{
+						notebookIndex = i;
+						canonicalName = match.Name;
+					}
+				}
+			}
+
+			if (notebookIndex < 0)
+			{
+				// Fall back: locate the notebook by finding the "Documents" segment (OneDrive
+				// personal: /{userid}/Documents/{notebook}/...; OneDrive for Business may have
+				// more prefix segments). Fall back to index 2 when no "Documents" segment is
+				// present.
+				notebookIndex = 2;
+				for (int i = 0; i < segments.Length - 1; i++)
+				{
+					if (segments[i].Equals("Documents", StringComparison.OrdinalIgnoreCase))
+					{
+						notebookIndex = i + 1;
+						break;
+					}
 				}
 			}
 
 			if (notebookIndex >= segments.Length)
 				throw new FormatException("Remote OneNote path too short to contain a notebook.");
 
-			result.NotebookName = Decode(segments[notebookIndex]);
+			result.NotebookName = canonicalName ?? Decode(segments[notebookIndex]);
 
 			for (int i = notebookIndex + 1; i < segments.Length - 1; i++)
 			{
