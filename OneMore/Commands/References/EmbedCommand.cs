@@ -445,7 +445,19 @@ namespace River.OneMoreAddIn.Commands
 					l.TrimStart().StartsWith("onenote:", StringComparison.OrdinalIgnoreCase))
 					?? clipUri).Trim();
 
-				var link = OneNoteLinkParser.Parse(uriLine);
+				// supply the live notebook name/nickname list so the parser can ground its
+				// notebook-segment guess in real data instead of URL-shape heuristics; see
+				// OneNoteLinkParser.ParseRemotePath
+				var notebooks = await o.GetNotebooks();
+				var knownNotebooks = notebooks is null
+					? null
+					: notebooks.Elements(o.GetNamespace(notebooks) + "Notebook")
+						.Select(n => (
+							Name: n.Attribute("name")?.Value,
+							Nickname: n.Attribute("nickname")?.Value))
+						.Where(n => !string.IsNullOrEmpty(n.Name));
+
+				var link = OneNoteLinkParser.Parse(uriLine, knownNotebooks: knownNotebooks);
 
 				logger.WriteLine($"embed source: notebook=[{link.NotebookName}] " +
 					$"section=[{link.SectionName}] page=[{link.PageName}] " +
