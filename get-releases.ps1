@@ -71,7 +71,11 @@ Begin
             {
                 if ($Released -and $rel.prerelease) { continue }
 
-                $published = [datetime]$rel.published_at
+                $published = [datetime]::Parse(
+                    $rel.published_at,
+                    [System.Globalization.CultureInfo]::InvariantCulture,
+                    [System.Globalization.DateTimeStyles]::RoundtripKind
+                ).ToLocalTime()
 
                 $release = [Release]::new()
                 $release.Tag        = $rel.tag_name
