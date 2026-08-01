@@ -165,8 +165,8 @@
 <DIV style="WIDTH: 3.507in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0.075in">
 <P lang=yo style='FONT-SIZE: 20pt; FONT-FAMILY: "Calibri Light"; MARGIN: 0in'>Design - Command Service</P></DIV>
 <DIV style="WIDTH: 2.216in; MARGIN-TOP: 0.042in; DIRECTION: ltr; MARGIN-LEFT: 0.075in">
-<P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">Friday, March 24, 2023</P>
-<P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">9:47 AM</P></DIV>
+<P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">March 24, 2023</P>
+<P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">Last updated on July 31, 2026</P></DIV>
 <DIV style="WIDTH: 8.802in; MARGIN-TOP: 0.427in; DIRECTION: ltr; MARGIN-LEFT: 0in">
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">OneNote doesn't share Word's ability to embed UI controls on a page. Sadly, this means that there is no way to create an interactive form or embed any UI controls that can affect page content or invoke actions or commands. But, there's a trick employed by OneMore to create the illusion of interactivity by embedding smart hyperlinks on a page that can indirectly invoke OneMore commands. For example, OneMore emits hyperlinks that let you refresh a table of contents, footnote references, or update a PlantUML drawing when you edit the associated UML, just like the one at the bottom of this page that updates the diagram here.</P>
 <P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
@@ -200,7 +200,7 @@
 <P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">[</SPAN><SPAN style="COLOR: #5b9bd5">HKEY_CLASSES_ROOT\onemore\shell\open\command</SPAN><SPAN style="COLOR: black">]</SPAN></P>
 <P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">@=</SPAN><SPAN style="COLOR: firebrick">"\"C:\\Program Files\\River\\OneMoreAddIn\\OneMoreProtocolHandler.exe\" %1 %2 %3 %4 %5"</SPAN></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Finally, we have to create a policy that tells Windows to trust the protocol scheme. Noticed that this is per-user. The key must end with the protocol name, including the colon character as demonstrated here.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Finally, we have to create a policy that tells Windows to trust the protocol scheme. Note that this is per-user. The key must end with the protocol name, including the colon character as demonstrated here.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">[</SPAN><SPAN style="COLOR: #5b9bd5">HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\Office\16.0\Common\Security\Trusted Protocols\All Applications\onemore:</SPAN><SPAN style="COLOR: black">]</SPAN></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
@@ -209,7 +209,7 @@
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in 0in 0in 0.375in'><SPAN style="BACKGROUND: #ecf5ff">onemore://PlantUmlCommand/object-id</SPAN></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Look at the <SPAN style="FONT-STYLE: italic">Extract</SPAN> URL below the image at the top of this page. It's the same as the <SPAN style="FONT-STYLE: italic">Refresh</SPAN> URL but with an additonal "extract" parameter. When this link is clicked, OneNote passes this to Windows, which looks up the onemore: schema in the Registry and determines its default handler, in this case, <A href="https://github.com/stevencohn/OneMore/tree/main/OneMoreProtocolHandler">the OneMoreProtocolHandler.exe application</A>. The entire URL is passed as the first parameter into this application.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Look at the <SPAN style="FONT-STYLE: italic">Extract</SPAN> URL below the image at the top of this page. It's the same as the <SPAN style="FONT-STYLE: italic">Refresh</SPAN> URL but with an additional "extract" parameter. When this link is clicked, OneNote passes this to Windows, which looks up the onemore: schema in the Registry and determines its default handler, in this case, <A href="https://github.com/stevencohn/OneMore/tree/main/OneMoreProtocolHandler">the OneMoreProtocolHandler.exe application</A>. The entire URL is passed as the first parameter into this application.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">The handler application is simple in concept: it sends a message to a service listening from within the OneMore <A href="TechNote - COM Surrogate.htm">COM Surrogate process</A>. The transport mechanism is a named pipe. The name of this pipe is derived from the default value on the registered protocol, in this case "URI:OneMore Protocol Handler".</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>

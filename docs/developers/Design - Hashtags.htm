@@ -165,8 +165,8 @@
 <DIV style="WIDTH: 2.509in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0.075in">
 <P lang=yo style='FONT-SIZE: 20pt; FONT-FAMILY: "Calibri Light"; COLOR: #464646; MARGIN: 0in'>Design - Hashtags</P></DIV>
 <DIV style="WIDTH: 2.54in; MARGIN-TOP: 0.042in; DIRECTION: ltr; MARGIN-LEFT: 0.075in">
-<P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">Sunday, September 10, 2023</P>
-<P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">7:51 AM</P></DIV>
+<P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">September 10, 2023</P>
+<P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">Last updated on July 31, 2026</P></DIV>
 <DIV style="WIDTH: 8.639in; MARGIN-TOP: 0.427in; DIRECTION: ltr; MARGIN-LEFT: 0in">
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">OneNote has a rudimentary tagging system that lets users apply one or more "tags" to a paragraph. Each tag is indicated by a unique icon. Users can customize the name, which shows up as a tooltip over the icon. Users can then list tags within a specified scope. However, the Find Tags function is merely a list of tags within the scope; there is no way to search for a specific tag icon or name. Also, the tag itself doesn't provide any context although the Find Tags feature pulls about the first 50 characters from the related paragraph. Many users have complained about the usefulness of this feature and its implementation.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
@@ -186,7 +186,7 @@
 <TD style="BORDER-LEFT-WIDTH: 0pt; BORDER-RIGHT-WIDTH: 0pt; WIDTH: 0.667in; VERTICAL-ALIGN: top; BORDER-BOTTOM-WIDTH: 0pt; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; PADDING-RIGHT: 3pt; BORDER-TOP-WIDTH: 0pt">
 <P lang=yo style='FONT-SIZE: 22pt; FONT-FAMILY: "Segoe UI Symbol"; COLOR: #5f497a; TEXT-ALIGN: center; MARGIN: 0in'><SPAN style="FONT-WEIGHT: bold">📓</SPAN></P></TD>
 <TD style="BORDER-LEFT-WIDTH: 0pt; BORDER-RIGHT-WIDTH: 0pt; WIDTH: 7.654in; VERTICAL-ALIGN: top; BORDER-BOTTOM-WIDTH: 0pt; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; PADDING-RIGHT: 3pt; BORDER-TOP-WIDTH: 0pt">
-<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: #333333; MARGIN: 0in"><SPAN style="FONT-WEIGHT: bold">The is the initial design</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: #333333; MARGIN: 0in"><SPAN style="FONT-WEIGHT: bold">This is the initial design</SPAN></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: #333333; MARGIN: 0in">This is the design log used to explore options prior to initial implementation. This design may not match the latest implementation as it evolves and improves.</P></TD></TR></TBODY></TABLE></DIV></TD></TR></TBODY></TABLE></DIV>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">A user can add one or more hashtags to their content, embedded within or in place of any text on a page.</P>
@@ -208,7 +208,7 @@
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Nested tags such as those in Obsidian. These ostensibly emulate a categorization hierarchy. OneNote implements this hierarchy as a structure of notebooks, sections, and section groups. So nested tags would be redundant in OneNote.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <H2 lang=yo style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Scanning</H2>
-<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Hashtags are discovered using a scanner class that enumerates notesbooks, sections, and pages. Each notebook and page has a lastModifiedTime attribute that we can use to compare against the time of the last scan to optimize each successive scan by skipping pages that haven't changed.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Hashtags are discovered using a scanner class that enumerates notebooks, sections, and pages. Each notebook and page has a lastModifiedTime attribute that we can use to compare against the time of the last scan to optimize each successive scan by skipping pages that haven't changed.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <DIV style="DIRECTION: ltr">
 <TABLE title="" style="BORDER-TOP: #a3a3a3 0pt solid; BORDER-RIGHT: #a3a3a3 0pt solid; BORDER-COLLAPSE: collapse; BORDER-BOTTOM: #a3a3a3 0pt solid; DIRECTION: ltr; BORDER-LEFT: #a3a3a3 0pt solid" cellSpacing=0 cellPadding=0 summary="" border=0 valign="top">
@@ -238,13 +238,13 @@
 <LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Not a realistic interactive experience</SPAN> </LI></UL>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <H4 lang=yo style="FONT-SIZE: 12pt; MARGIN: 0in"><SPAN style='FONT-FAMILY: "Segoe UI Emoji"; COLOR: #e84c22; FONT-STYLE: italic'>✗ </SPAN><SPAN style='FONT-FAMILY: "Segoe UI Emoji"; COLOR: #5b9bd5; FONT-STYLE: italic'>- </SPAN><SPAN style="FONT-FAMILY: Calibri; COLOR: #5b9bd5; FONT-STYLE: italic">Alternative 1 - Save to one:Meta</SPAN></H4>
-<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Create a top-level one:Meta entry on the page (name="omHashtags") making it discoverable using the onenote.FindMeta function. one:Meta max length is 262144 chars. Even if each hashtag is 25 characters, this leaves room for well over 10,000 hahstags on a single page (262144 / 25 = 10485.76)</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Create a top-level one:Meta entry on the page (name="omHashtags") making it discoverable using the onenote.FindMeta function. one:Meta max length is 262144 chars. Even if each hashtag is 25 characters, this leaves room for well over 10,000 hashtags on a single page (262144 / 25 = 10485.76)</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">The meta content could be of the form "##tag1,##tag2, … ,##tagn,"</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <UL style="MARGIN-BOTTOM: 0in; unicode-bidi: embed; MARGIN-TOP: 0in; DIRECTION: ltr" type=disc>
 <LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Each tag is fully specified, including its double-pound prefix</SPAN> 
-<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Tags are delimeted by a comma</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Tags are delimited by a comma</SPAN> 
 <LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">The last tag is also followed by a comma, making it easy to substring search for a complete hashtag name of the form "##name,"</SPAN> </LI></UL>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">There is no way to associate a tag with its paragraph. We could expand the scheme to include the paragraph object ID.</P>
@@ -277,12 +277,12 @@
 <LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Could become a performance bottleneck when the store grows over a certain size.</SPAN> 
 <LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Entire store needs to be read for each query and rewritten for every modification.</SPAN> 
 <LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">No built-in searching capabilities, other than LINQ.Where() or similar filtering; not indexed, not performant.</SPAN> 
-<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Although a user may have less than a couple of hundred tags, those could be duplicated across dozens of pages, quickly multiplying contextual referencing making the stored model quite large and combersome. One solution may be to normalize data into referrenced models but then we're starting to reinvent a DBMS.</SPAN> </LI></UL>
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Although a user may have less than a couple of hundred tags, those could be duplicated across dozens of pages, quickly multiplying contextual referencing making the stored model quite large and cumbersome. One solution may be to normalize data into referenced models but then we're starting to reinvent a DBMS.</SPAN> </LI></UL>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <H4 lang=yo style="FONT-SIZE: 12pt; MARGIN: 0in"><SPAN style='FONT-FAMILY: "Segoe UI Emoji"; COLOR: #70ad47; FONT-STYLE: italic'>✓ </SPAN><SPAN style='FONT-FAMILY: "Segoe UI Emoji"; COLOR: #5b9bd5; FONT-STYLE: italic'>- </SPAN><SPAN style="FONT-FAMILY: Calibri; COLOR: #5b9bd5; FONT-STYLE: italic">Alternative 3 - Save to Sqlite</SPAN></H4>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Record last scan date/time in a separate control table. Use this timestamp to compare against the lastModified timestamp of each page to know whether we need to rescan an updated page.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Record each hashtag on every page indvidiually. We can capture the hashtag and it's location on the page and when it was recorded. This provides contextual location of each hashtag when searching and displaying to user.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Record each hashtag on every page individiually. We can capture the hashtag and its location on the page and when it was recorded. This provides contextual location of each hashtag when searching and displaying to user.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <DIV style="DIRECTION: ltr">
 <TABLE title="" style="BORDER-TOP: #a3a3a3 0pt solid; BORDER-RIGHT: #a3a3a3 0pt solid; BORDER-COLLAPSE: collapse; BORDER-BOTTOM: #a3a3a3 0pt solid; DIRECTION: ltr; MARGIN-LEFT: 0.708in; BORDER-LEFT: #a3a3a3 0pt solid" cellSpacing=0 cellPadding=0 summary="" border=0 valign="top">
@@ -299,11 +299,11 @@
 <LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Contains exactly one row</SPAN> 
 <LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">scannerID is 0.</SPAN> 
 <LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">version is used to know when to upgrade the schema, currently set at 1.</SPAN> 
-<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">scanTime indicates the timestamp of the most recently compeleted scan. Used to compare against the lastModifiedTime of each page to know whether to scan its contents</SPAN> </LI></UL>
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">scanTime indicates the timestamp of the most recently completed scan. Used to compare against the lastModifiedTime of each page to know whether to scan its contents</SPAN> </LI></UL>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">hashtag Table</P>
 <UL style="MARGIN-BOTTOM: 0in; unicode-bidi: embed; MARGIN-TOP: 0in; DIRECTION: ltr" type=disc>
-<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Each row indicates the existence of at least one ocrrance of a named hashtag in a specified paragraph</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Each row indicates the existence of at least one occurrence of a named hashtag in a specified paragraph</SPAN> 
 <LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Paragraph is uniquely identified by its objectID (found on pageID)</SPAN> 
 <LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">snippet captures the context of the tag, including surrounding text</SPAN> 
 <LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">lastModified could be used to show the age of the hashtag - when it was first discovered</SPAN> </LI></UL>
@@ -333,7 +333,7 @@
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Introduce a tabbed interface to the window. The primary tab will display history navigation, secondary tab will display hashtag searching. Although users may not intuitively look here.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <H4 lang=yo style="FONT-SIZE: 12pt; MARGIN: 0in"><SPAN style='FONT-FAMILY: "Segoe UI Emoji"; COLOR: #e84c22; FONT-STYLE: italic'>✗ </SPAN><SPAN style='FONT-FAMILY: "Segoe UI Emoji"; COLOR: #5b9bd5; FONT-STYLE: italic'>- </SPAN><SPAN style="FONT-FAMILY: Calibri; COLOR: #5b9bd5; FONT-STYLE: italic">Alternative 2 - Integrate with Search and Find windows</SPAN></H4>
-<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Both the <SPAN style="FONT-STYLE: italic">Search and Copy/Move</SPAN> dialog and the <SPAN style="FONT-STYLE: italic">Find Tagged Pages</SPAN> dialog are appropriately relevant to also finding hashtags. Although they are burried beneath the Search menu, there is a more intuitive correlation. An additional "Find Hashtags" command could be added that opens/prefers one of these dialogs.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Both the <SPAN style="FONT-STYLE: italic">Search and Copy/Move</SPAN> dialog and the <SPAN style="FONT-STYLE: italic">Find Tagged Pages</SPAN> dialog are appropriately relevant to also finding hashtags. Although they are buried beneath the Search menu, there is a more intuitive correlation. An additional "Find Hashtags" command could be added that opens/prefers one of these dialogs.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Courier New"; COLOR: #b43512; MARGIN: 0in'>══════════════════════════════════════════════════════════════════════════════════════════════════</P>
