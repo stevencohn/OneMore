@@ -203,7 +203,7 @@
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Courier New"; COLOR: #43577c; MARGIN: 0in'>────────────────────────────────────────────────────────────────────────────────────────────────────</P>
-<H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Check OneNote Configuration</H1>
+<H1 lang=yo id=check-onenote-configuration style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Check OneNote Configuration</H1>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">The OneMore installer verifies OneNote settings in the Windows System Registry that are critical to the execution of add-ins like OneMore. This verification step can be run manually at any time by entering the following command line:</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P><CODE lang=yo style="FONT-SIZE: 10pt; FONT-FAMILY: Consolas; MARGIN: 0in 0in 0in 0.375in"><SPAN style="COLOR: #7f7f7f">PS&gt;</SPAN> .\OneMoreSetupActions.exe --install-checkonenote --x64</CODE></P>
@@ -259,7 +259,7 @@
 <H1 lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">&nbsp;</H1>
 <H1 lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">&nbsp;</H1>
 <P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Courier New"; COLOR: #43577c; MARGIN: 0in'>────────────────────────────────────────────────────────────────────────────────────────────────────</P>
-<H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Enable Advanced Installer Logging</H1>
+<H1 lang=yo id=enable-advanced-installer-logging style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Enable Advanced Installer Logging</H1>
 <P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">If the installer fails and the cause isn't clearly evident, run the installer from an administrative console using the following command. This will enable verbose logging and write to the log file named </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #ecf5ff'>onemore_setup.log</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">.</SPAN></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in 0in 0in 0.375in'><SPAN style="BACKGROUND: #ecf5ff">msiexec.exe /i OneMore_6.0.1_Setupx64.msi /Lvoicewarmupx onemore_setup.log</SPAN></P>
@@ -267,9 +267,9 @@
 <P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in"><A href="https://github.com/stevencohn/OneMore/issues/new?assignees=&amp;labels=bug%2C+unread&amp;projects=&amp;template=bug_report.md&amp;title="><SPAN lang=yo>Open a new ticket</SPAN></A><SPAN lang=yo> and attach the log file.</SPAN></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Courier New"; COLOR: #43577c; MARGIN: 0in'>────────────────────────────────────────────────────────────────────────────────────────────────────</P>
-<H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">OneNote Specific Problems</H1>
+<H1 lang=yo id=onenote-specific-problems style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">OneNote Specific Problems</H1>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">&nbsp;</P>
-<H2 lang=yo style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Search is Flaky</H2>
+<H2 lang=yo id=search-is-flaky style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Search is Flaky</H2>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">Some OneMore commands, such as the&nbsp;Link References&nbsp;command, use the internal search capabilities of OneNote. This is based on the Windows Search engine which indexes content on your computer. Sometimes it takes a while for the index to synchronize with recent changes in your notebooks. Sometimes it doesn't synchronize at all which means you don't find what you're looking for, or commands like&nbsp;Link References&nbsp;don't seem to work.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">To correct this, there are two possibilities. First, you can try rebuilding the Windows Search index for OneNote.</P>
@@ -289,7 +289,7 @@
 <LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px; COLOR: black"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Delete everything in this folder</SPAN> 
 <LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px; COLOR: black"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Open OneNote. It will reload all of your notebooks, sections, and pages. This will appear slow because it's rebuilding that cache folder.</SPAN> </LI></OL>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<H2 lang=yo style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Linked Paragraphs with Equations Causes Crash</H2>
+<H2 lang=yo id=linked-paragraphs-with-equations-causes-crash style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Linked Paragraphs with Equations Causes Crash</H2>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">OneNote lets you link one paragraph to another. However, if one of these paragraphs contains an equation, this will cause OneNote to crash when OneMore attempts to fetch the page contents. This includes the background Navigation service. There is nothing that can be done to resolve this. See command on <A href="https://github.com/stevencohn/OneMore/issues/1556">#1556</A></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>

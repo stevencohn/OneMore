@@ -431,6 +431,24 @@ namespace River.OneMoreAddIn
 		}
 
 
+		/// <summary>
+		/// OneMore Extension >> Convert text to a lowercase, hyphen-separated slug suitable
+		/// for use as an HTML id/anchor fragment.
+		/// </summary>
+		/// <param name="s"></param>
+		/// <returns>The slug, or an empty string if the input has no sluggable content</returns>
+		public static string ToSlug(this string s)
+		{
+			if (string.IsNullOrWhiteSpace(s))
+			{
+				return string.Empty;
+			}
+
+			var decoded = HttpUtility.HtmlDecode(s);
+			return Regex.Replace(decoded.ToLowerInvariant(), @"[^a-z0-9]+", "-").Trim('-');
+		}
+
+
 		// Matches &#N; (decimal) and &#xN; (hex) numeric character entity references
 		private static readonly Regex invalidXmlEntityRefPattern =
 			new(@"&#(\d+);|&#x([0-9a-fA-F]+);", RegexOptions.Compiled);

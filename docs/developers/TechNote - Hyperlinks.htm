@@ -172,7 +172,7 @@
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">But those hyperlinks are opaque - there is no publicly available documentation that explains how OneNote generates hyperlinks. Unfortunately, the IDs used in hyperlinks have no obvious correlation to the IDs provided by the OneNote COM API through </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #ecf5ff'>GetHierarchy</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> or </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #ecf5ff'>GetPageContent</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, making it impossible to reverse-engineer or map a hyperlink to the well-known XML metadata normally used. And worse, those URIs differ from the URIs returned by the </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #ecf5ff'>GetHyperlinkToObject</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> API.</SPAN></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<H2 lang=yo style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Two ID Namespaces</H2>
+<H2 lang=yo id=two-id-namespaces style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Two ID Namespaces</H2>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">The OneNote COM API maintains two distinct identifier spaces that don't have a documented transformation between them.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in"><SPAN style="FONT-STYLE: italic">Hierarchy/page XML IDs</SPAN> look like this:</P>
@@ -189,9 +189,9 @@
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Plain GUIDs in braces, no suffix. The IDs are in the same general GUID format but the suffixes present in the XML hierarchy IDs ({1}{B0}, long numeric strings) are stripped in the hyperlink representation. Microsoft has never documented the relationship between these two forms.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<H2 lang=yo style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Translation Techniques</H2>
+<H2 lang=yo id=translation-techniques style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Translation Techniques</H2>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<H3 lang=yo style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; COLOR: #5b9bd5; MARGIN: 0in">Forward Map (Heavy)</H3>
+<H3 lang=yo id=forward-map-heavy style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; COLOR: #5b9bd5; MARGIN: 0in">Forward Map (Heavy)</H3>
 <P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">OneMore has been using a forward map for a very long time. In this approach, we build a map by calling </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #ecf5ff'>GetHyperlinkToObject</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> on every object we care about within a defined scope and storing the association in an ephemeral cache.</SPAN></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <UL style="MARGIN-BOTTOM: 0in; unicode-bidi: embed; MARGIN-TOP: 0in; DIRECTION: ltr" type=disc>
@@ -202,10 +202,10 @@
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">This approach is generally reliable (if you can keep the COM connection stable for the lifetime of the probe phase). But it is also extremely expensive, long enough that users notice and have to wait while watching a progress bar slowly increment.</P>
 <P lang=yo style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<H3 lang=yo style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; COLOR: #5b9bd5; MARGIN: 0in">Navigation Cheat (Disruptive)</H3>
+<H3 lang=yo id=navigation-cheat-disruptive style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; COLOR: #5b9bd5; MARGIN: 0in">Navigation Cheat (Disruptive)</H3>
 <P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri">Given a hyperlink URI, you could use that to </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #ecf5ff'>NavigateTo</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> that target, read the relevant IDs, and then navigate back to the original location. This is slow, visually surprising, and not always practical when working with more than one URI.</SPAN></P>
 <P lang=yo style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<H3 lang=yo style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; COLOR: #5b9bd5; MARGIN: 0in">Targeted Lookup (Best, but with caveats!)</H3>
+<H3 lang=yo id=targeted-lookup-best-but-with-caveats style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; COLOR: #5b9bd5; MARGIN: 0in">Targeted Lookup (Best, but with caveats!)</H3>
 <P lang=yo style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; MARGIN: 0in">Hyperlink URIs have two forms - local and remote - and are generally consistent in their structure. </P>
 <P lang=yo style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; MARGIN: 0in">When the user right-clicks a paragraph in a notebook hosted in OneDrive and chooses <SPAN style="FONT-STYLE: italic">Copy Link to Paragraph</SPAN>, the clipboard will contain a Text entry with two lines that looks something like (modified)</P>
@@ -233,14 +233,14 @@
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Because the path prior to the notebook name may follow unknown patterns, it may be helpful to let the user specify one or more search paths in Settings as a fallback in case the .one file cannot be found simply by parsing. (TBD)</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<H2 lang=yo style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">OneNoteLinkParser</H2>
+<H2 lang=yo id=onenotelinkparser style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">OneNoteLinkParser</H2>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">This is what's implemented by the OneMore\Helpers\OneNoteLinkParser class. This is used to resolve hyperlink URIs to path names - notebook/section/page. </P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">If the URI stops at page-id then we have the page and can easily determine its page ID. This is the ideal case with no forward lookup needed at all.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">If the URI includes an object-id then we can open the page, and create a breaking forward lookup of objects on the page - iterate each and stop when we get to one that matches the URI. Forward lookup is scoped to a single page.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<H2 lang=yo style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">But…! What does this mean in practicality?</H2>
+<H2 lang=yo id=but-what-does-this-mean-in-practicality style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">But…! What does this mean in practicality?</H2>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Do not rely on<SPAN style="FONT-STYLE: italic"> Copy Link to Paragraph</SPAN> - that is a dead end.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Copy Link to Paragraph will return a hyperlink URI as you would expect. For every paragraph on the page, the URIs include a virtual section-id, page-id, and object-id and only differ by a trailing &amp;XX link terminator, such as the </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>&amp;2F</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> terminator below.</SPAN></P>

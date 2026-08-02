@@ -42,5 +42,30 @@ namespace River.OneMoreAddIn.Tests.Helpers.Extensions
 			Assert.IsFalse(element.Value.Contains((char)0x08));
 			Assert.AreEqual("some text with a backspace char", element.Value);
 		}
+
+
+		[TestMethod]
+		public void ToSlug_WithPlainText_LowercasesAndHyphenates()
+		{
+			Assert.AreEqual("breadcrumb", "Breadcrumb".ToSlug());
+			Assert.AreEqual("table-of-contents-page", "Table of Contents (Page)".ToSlug());
+		}
+
+
+		[TestMethod]
+		public void ToSlug_WithNbspOnlyText_ReturnsEmpty()
+		{
+			Assert.AreEqual(string.Empty, "&nbsp;".ToSlug());
+			Assert.AreEqual(string.Empty, "   ".ToSlug());
+			Assert.AreEqual(string.Empty, string.Empty.ToSlug());
+			Assert.AreEqual(string.Empty, ((string)null).ToSlug());
+		}
+
+
+		[TestMethod]
+		public void ToSlug_WithHtmlEntities_DecodesBeforeSlugging()
+		{
+			Assert.AreEqual("r-d", "R&amp;D".ToSlug());
+		}
 	}
 }
