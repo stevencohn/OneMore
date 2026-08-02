@@ -566,6 +566,40 @@ Invert</value>
     <value>Unable to restore clipboard state</value>
     <comment>message</comment>
   </data>
+  <data name="CollateTocCommand_indexTitle" xml:space="preserve">
+    <value>Table of Contents Index</value>
+    <comment>page title</comment>
+  </data>
+  <data name="CollateTocCommand_noPagesFound" xml:space="preserve">
+    <value>No pages were found in the selected notebooks with the specified hashtag(s).</value>
+    <comment>message</comment>
+  </data>
+  <data name="CollateTocCommand_replaceQuestion" xml:space="preserve">
+    <value>A collated table of contents index page already exists in this section.
+
+Do you want to replace its contents? Choose No to create a new page instead.</value>
+    <comment>question dialog</comment>
+  </data>
+  <data name="CollateTocDialog_hashtagLabel" xml:space="preserve">
+    <value>Hashtags</value>
+    <comment>label</comment>
+  </data>
+  <data name="CollateTocDialog_introLabel" xml:space="preserve">
+    <value>Select the notebooks to search and enter one or more hashtags. Pages tagged with at least one of the specified hashtags will have their tables of content collated into a single index page.</value>
+    <comment>label</comment>
+  </data>
+  <data name="CollateTocDialog_noHashtags" xml:space="preserve">
+    <value>Enter at least one hashtag.</value>
+    <comment>validation error</comment>
+  </data>
+  <data name="CollateTocDialog_noNotebooks" xml:space="preserve">
+    <value>Select at least one notebook.</value>
+    <comment>validation error</comment>
+  </data>
+  <data name="CollateTocDialog_Title" xml:space="preserve">
+    <value>Collate Tables of Content</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="ColorizeCommand_LanguageError" xml:space="preserve">
     <value>The language definition file for '{0}' could not be loaded. It may be malformed - see the log file for details.</value>
     <comment>messagebox (0 arg is language key)</comment>
@@ -3945,6 +3979,14 @@ Help Tab</value>
   <data name="ribCollapsePagesButton_Screentip" xml:space="preserve">
     <value>Collapse child pages in Page navigation panel</value>
     <comment>ribbon extras</comment>
+  </data>
+  <data name="ribCollateTocButton_Label" xml:space="preserve">
+    <value>Collate Tables of Content</value>
+    <comment>ribbon snippets NODUP</comment>
+  </data>
+  <data name="ribCollateTocButton_Screentip" xml:space="preserve">
+    <value>Collate all tables of content from selected notebooks into a single index page.</value>
+    <comment>ribbon snippets</comment>
   </data>
   <data name="ribColorizeMenu_Label" xml:space="preserve">
     <value>Colorize</value>
