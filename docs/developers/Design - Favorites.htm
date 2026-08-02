@@ -179,22 +179,22 @@
 <LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Can be managed from the Favorites dialog (add, delete, organize, validate)</SPAN> 
 <LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Can be exported/imported across machines</SPAN> </LI></UL>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<H2 lang=yo style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Why Move to a Database?</H2>
+<H2 lang=yo id=why-move-to-a-database style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Why Move to a Database?</H2>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">In the initial implementation it was designed to store each favorite as a bit of Ribbon XML - very convenient for programming, but ultimately fragile and limiting. There was always the lingering concern that the XML-based file was too tightly reliant on the OneNote ribbon schema, conflating data with metadata, muddying model-view-controller overlap, and could break with any new release of OneNote. So moving the data to a real storage model and abstracting the view-controller pieces was always a long-term goal.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">The requirement to organize into folders became the real tipping point to move favorites into the OneMore.db database, expanding its responsibility along with hashtags and table variables. </P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">To maintain simplicity in both design and use, folders are limited to root folders only. The Favorites ribbon drop-down menu can contain a list of favorites and a list of folders, and those folders can have only a list of favorites themselves. No folders of folders.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<H2 lang=yo style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Friendly Names</H2>
+<H2 lang=yo id=friendly-names style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Friendly Names</H2>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">OneNote does not prevent creating two pages with the same name in a single section. To avoid the confusion when saved as favorites, users are allowed to give friendly names to each favorite. The friendly name (alias) defaults to the actual page name until explicitly overridden.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<H2 lang=yo style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Migration</H2>
+<H2 lang=yo id=migration style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Migration</H2>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">If a Favorites.xml files exists, OneMore migrates this immediately upon the first use of Favorites. Uses include: expanding the Favorites drop-down menu, opening the Favorites dialog, opening the Settings/Favorites sheet, and of course, adding the current page to the Favorites list.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Once migrated, all subsequent uses will then only use the database.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<H2 lang=yo style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Database Schema</H2>
+<H2 lang=yo id=database-schema style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Database Schema</H2>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">These simple table definitions mirror the model classes in Commands\Favorites\Favorites.cs.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <DIV style="DIRECTION: ltr">

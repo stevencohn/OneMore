@@ -141,6 +141,8 @@ namespace River.OneMoreAddIn.Commands
 			{
 				if (await Export(page.PageId, filename, OneNote.ExportFormat.HTML))
 				{
+					InjectHeadingAnchors(filename);
+
 					if (map != null)
 					{
 						RewirePageLinks(page, filename, hpath, bookScope);
@@ -156,6 +158,81 @@ namespace River.OneMoreAddIn.Commands
 
 
 		#region ExportHtml
+
+		// matches exported <H1>..<H6> headings so an id/anchor can be injected; deliberately
+		// scoped to headings only (not every <P>) since that's the confirmed failure case and
+		// keeps slug collisions/markup bloat manageable across a large wiki
+		private static readonly Regex HeadingPattern = new(
+			@"<(?<tag>H[1-6])(?<attrs>\s[^>]*)?>(?<text>.*?)</\k<tag>>",
+			RegexOptions.Singleline | RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
+		/// <summary>
+		/// Injects a slug-based id attribute into every exported heading so that paragraph-level
+		/// onenote: links (see RewirePageLinks) have something to anchor to. OneNote's HTML
+		/// export does not preserve per-paragraph object IDs, so the slug is derived from the
+		/// heading's own text rather than any GUID.
+		/// </summary>
+		/// <param name="filename">The exported HTML file to patch in place</param>
+		private void InjectHeadingAnchors(string filename)
+		{
+			var text = File.ReadAllText(filename);
+			var updated = InjectHeadingAnchorsInHtml(text);
+
+			if (!string.Equals(text, updated, StringComparison.Ordinal))
+			{
+				try
+				{
+					File.WriteAllText(filename, updated);
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine($"error writing {filename}", exc);
+				}
+			}
+		}
+
+
+		/// <summary>
+		/// Pure text transform behind InjectHeadingAnchors(filename), split out for testability.
+		/// </summary>
+		internal static string InjectHeadingAnchorsInHtml(string html)
+		{
+			var counts = new Dictionary<string, int>();
+
+			return HeadingPattern.Replace(html, match =>
+			{
+				var attrs = match.Groups["attrs"].Value;
+				if (Regex.IsMatch(attrs, @"\bid\s*=", RegexOptions.IgnoreCase))
+				{
+					// defensive: OneNote export doesn't emit id attrs today, but don't clobber
+					// one if it ever does
+					return match.Value;
+				}
+
+				var raw = match.Groups["text"].Value;
+				var plain = raw.Contains('<') ? raw.ToXmlWrapper().Value : raw;
+				var slug = plain.ToSlug();
+				if (string.IsNullOrEmpty(slug))
+				{
+					return match.Value;
+				}
+
+				if (counts.TryGetValue(slug, out var n))
+				{
+					counts[slug] = ++n;
+					slug = $"{slug}-{n}";
+				}
+				else
+				{
+					counts[slug] = 1;
+				}
+
+				var tag = match.Groups["tag"].Value;
+				return $"<{tag} id=\"{slug}\"{attrs}>{raw}</{tag}>";
+			});
+		}
+
+
 		private void RewirePageLinks(Page page, string filename, string hpath, bool bookScope)
 		{
 			/*
@@ -182,9 +259,10 @@ namespace River.OneMoreAddIn.Commands
 			//  <u> = entire URI
 			//  <s> = section ID
 			//  <p> = page ID
+			//  <o> = object ID (present only for paragraph-level links)
 			//  <n> = page name
 			var matches = Regex.Matches(text,
-				@"<a\s+href=""(?<u>onenote:[^;]*?[#;]section-id=(?<s>{[^}]*?})(?:&amp;page-id=(?<p>{[^}]*?}))?[^""]*?)"">(?<n>.*?)</a>",
+				@"<a\s+href=""(?<u>onenote:[^;]*?[#;]section-id=(?<s>{[^}]*?})(?:&amp;page-id=(?<p>{[^}]*?}))?(?:&amp;object-id=(?<o>{[^}]*?}))?[^""]*?)"">(?<n>.*?)</a>",
 				RegexOptions.Singleline);
 
 			var updated = false;
@@ -219,13 +297,6 @@ namespace River.OneMoreAddIn.Commands
 
 					if (item != null)
 					{
-						//var name = groups["n"].Value;
-						//if (name.Contains('<'))
-						//{
-						//	// strip html from the name to get raw text
-						//	name = name.ToXmlWrapper().Value;
-						//}
-
 						var name = HttpUtility.UrlDecode(PathHelper.CleanFileName(item.Name));
 
 						//logger.WriteLine();
@@ -238,6 +309,24 @@ namespace River.OneMoreAddIn.Commands
 
 						var relative = HttpUtility.UrlDecode(pageUri.MakeRelativeUri(absolute).ToString());
 						//logger.WriteLine($"relative {relative}");
+
+						if (groups["o"].Success)
+						{
+							// paragraph-level link; try to resolve to the matching heading's
+							// anchor by slugging the link's own display text (object-id GUIDs
+							// cannot be correlated to exported HTML, see TechNote - Hyperlinks)
+							var linkText = groups["n"].Value;
+							if (linkText.Contains('<'))
+							{
+								linkText = linkText.ToXmlWrapper().Value;
+							}
+
+							var slug = linkText.ToSlug();
+							if (!string.IsNullOrEmpty(slug))
+							{
+								relative = $"{relative}#{slug}";
+							}
+						}
 
 						builder.Append(text.Substring(index, uri.Index - index));
 						builder.Append(relative);

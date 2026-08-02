@@ -170,7 +170,7 @@
 <DIV style="WIDTH: 8.502in; MARGIN-TOP: 0.427in; DIRECTION: ltr; MARGIN-LEFT: 0in">
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">While developing OneMore, I've found it useful to maintain a small set of scripts to automate common tasks and to create repeatable environments and configurations.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">build.ps1</H1>
+<H1 lang=yo id=build-ps1 style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">build.ps1</H1>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Its usage is described <A href="Building The Installer.htm">in detail here</A> but its general purpose is to automate building the installer for different architectures. The OneMore solution is set to build x86 by default. This script may temporarily modify the solution to build x64 or ARM64 as requested, builds, and then resets the configuration back to x86.</P>
 <H1 lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">&nbsp;</H1>
 <UL style="MARGIN-BOTTOM: 0in; unicode-bidi: embed; MARGIN-TOP: 0in; DIRECTION: ltr" type=disc>
@@ -181,7 +181,7 @@
 <LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #ecf5ff; COLOR: black'>.\build.ps1 ARM64</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">&nbsp;- builds just the ARM64 installer</SPAN> 
 <LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #ecf5ff; COLOR: black'>.\build.ps1 All</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">&nbsp;- builds the ARM64, x64, and x86 installers, leaving the x86 build in place for continued development</SPAN> </LI></UL>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">iq.ps1</H1>
+<H1 lang=yo id=iq-ps1 style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">iq.ps1</H1>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">This is the installation qualification script. It simply reads and reports the configuration from the System Registry and identifies any issues. Typical output of a correctly configured system looks like this: </P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <DIV style="DIRECTION: ltr">
@@ -233,7 +233,7 @@
 <P><CODE lang=yo style='FONT-SIZE: 8pt; FONT-FAMILY: "Lucida Console"; COLOR: #7f7f7f; MARGIN: 0in'>= version = 110.0.1587.63<BR>= location = C:\Program Files (x86)\Microsoft\EdgeWebView\Application</CODE></P>
 <P><CODE lang=yo style='FONT-SIZE: 8pt; FONT-FAMILY: "Lucida Console"; COLOR: white; MARGIN: 0in'>&nbsp;</CODE></P></TD></TR></TBODY></TABLE></DIV>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">setregistry.ps1</H1>
+<H1 lang=yo id=setregistry-ps1 style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">setregistry.ps1</H1>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">This is an easy way of configuring the COM registration paths in the Registry to point to your Visual Studio output folders rather than the installation path. </P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <OL style="FONT-SIZE: 11.5pt; MARGIN-BOTTOM: 0in; FONT-FAMILY: Calibri; unicode-bidi: embed; MARGIN-TOP: 0in; FONT-WEIGHT: normal; DIRECTION: ltr; FONT-STYLE: normal" type=1>
@@ -285,7 +285,7 @@
 <P><CODE lang=yo style='FONT-SIZE: 8pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'><SPAN style="COLOR: #8ae234">OK</SPAN><SPAN style="COLOR: white"> Registry::HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\Office\16.0\Common\Security\Trusted Protocols\All Applications\onemore:</SPAN></CODE></P>
 <P><CODE lang=yo style='FONT-SIZE: 8pt; FONT-FAMILY: "Lucida Console"; COLOR: white; MARGIN: 0in'>&nbsp;</CODE></P></TD></TR></TBODY></TABLE></DIV>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">setversion.ps1</H1>
+<H1 lang=yo id=setversion-ps1 style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">setversion.ps1</H1>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">There are a number of places that need to be touched every time OneMore is versioned to be released. This script automates that task by updating each of them with a specified version string. The usage is</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style='FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="FONT-SIZE: 9.5pt">PS C:\Github\OneMore&gt; </SPAN><SPAN style="FONT-SIZE: 9pt; BACKGROUND: #ecf5ff">.\setversion.ps1 5.8.1</SPAN></P>
@@ -300,12 +300,12 @@
 <LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">.\OneMoreProtocolHandler\Properties\AssemblyInfo.cs</SPAN> 
 <LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">.\OneMoreSetupActions\Properties\AssemblyInfo.cs</SPAN> </LI></UL>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">stop.ps1</H1>
+<H1 lang=yo id=stop-ps1 style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">stop.ps1</H1>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">In the event that OneMore or OneNote becomes unresponsive, or you think you've shutdown OneNote but the dllhost COM surrogate process remains, use this script to forcefully terminate these processes.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">This script specifically targets only <A href="TechNote - COM Surrogate.htm">the OneMore COM surrogate process</A> and the ONENOTE.exe process. No other processes will be affected.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">update-sdk.ps1</H1>
+<H1 lang=yo id=update-sdk-ps1 style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">update-sdk.ps1</H1>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Patches the OneMore.csproj file with your machine's path to the .NET Framework System.Runtime.WindowsRuntime assembly and the path and version of the Windows SDK Windows.winmd file. Read more about this on the developer's <A href="Setup.htm">Getting Started</A> page.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">If no changes are required, you'll see something like this</P>

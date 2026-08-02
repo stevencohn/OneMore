@@ -35,12 +35,12 @@ font-size:20.0pt;color:#464646' lang=yo>#skipwiki - Window Layouts Assessment</p
 
 <div style='direction:ltr;margin-top:.4277in;margin-left:0in;width:8.4375in'>
 
-<h1 style='margin:0in;font-family:Calibri;font-size:16.0pt;color:#1E4E79'
+<h1 id="assessment-issue-2217-layouts-vs-favorites" style='margin:0in;font-family:Calibri;font-size:16.0pt;color:#1E4E79'
 lang=yo>Assessment: Issue #2217 — Layouts vs. Favorites</h1>
 
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
 
-<h2 style='margin:0in;font-family:Calibri;font-size:14.0pt;color:#2E75B5'
+<h2 id="context" style='margin:0in;font-family:Calibri;font-size:14.0pt;color:#2E75B5'
 lang=yo>Context</h2>
 
 <p style='margin:0in' lang=yo><span style='font-family:Calibri;font-size:11.5pt'>Issue
@@ -73,7 +73,7 @@ below.</p>
 
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
 
-<h2 style='margin:0in;font-family:Calibri;font-size:14.0pt;color:#2E75B5'
+<h2 id="ground-truth-from-the-codebase" style='margin:0in;font-family:Calibri;font-size:14.0pt;color:#2E75B5'
 lang=yo>Ground truth from the codebase</h2>
 
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
@@ -193,13 +193,13 @@ scratch. Snippets/Themes are flat-file, no folders at all.</span></p>
 
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
 
-<h2 style='margin:0in;font-family:Calibri;font-size:14.0pt;color:#2E75B5'
+<h2 id="alternatives" style='margin:0in;font-family:Calibri;font-size:14.0pt;color:#2E75B5'
 lang=yo>Alternatives</h2>
 
 <h3 style='margin:0in;font-family:Calibri;font-size:11.5pt;color:#5B9BD5'
 lang=yo>&nbsp;</h3>
 
-<h3 style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'
+<h3 id="alt-a-extend-favorites-flag-a-folder-as-is-a-layout-add-nullable-window-bounds-index-columns-to-favorite" style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'
 lang=yo>Alt A — Extend Favorites (flag a folder as &quot;is a layout&quot;; add
 nullable window-bounds/index columns to favorite)</h3>
 
@@ -241,7 +241,7 @@ nullable window-bounds/index columns to favorite)</h3>
 
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
 
-<h3 style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'
+<h3 id="alt-b-separate-parallel-feature-new-layout-layout-window-tables-layoutsprovider-modeled-on-favorites-folder-item-split-own-ribbon-entry-own-cli-verbs-no-page-uniqueness-constraint" style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'
 lang=yo>Alt B — Separate parallel feature (new layout/layout_window tables +
 LayoutsProvider, modeled on Favorites' folder/item split, own ribbon entry, own
 CLI verbs, no page-uniqueness constraint)</h3>
@@ -272,7 +272,7 @@ CLI verbs, no page-uniqueness constraint)</h3>
 
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
 
-<h3 style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'
+<h3 id="alt-c-shared-core-schema-kind-discriminator-favorite-vs-layout-partial-unique-index-scoped-to-kind-favorite-separate-ux-on-top" style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'
 lang=yo>Alt C — Shared core schema (kind discriminator: favorite vs. layout,
 partial unique index scoped to kind='favorite'), separate UX on top</h3>
 
@@ -310,7 +310,7 @@ partial unique index scoped to kind='favorite'), separate UX on top</h3>
 
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
 
-<h3 style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'
+<h3 id="a-4th-axis-not-an-alternative-storage-design-scope-v1-to-skip-persisted-window-geometry" style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'
 lang=yo>A 4th axis, not an alternative storage design: scope v1 to skip
 persisted window geometry</h3>
 
@@ -331,7 +331,7 @@ alternative you pick.</span></p>
 
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
 
-<h2 style='margin:0in;font-family:Calibri;font-size:14.0pt;color:#2E75B5'
+<h2 id="recommendation" style='margin:0in;font-family:Calibri;font-size:14.0pt;color:#2E75B5'
 lang=yo>Recommendation</h2>
 
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo><span
@@ -343,7 +343,7 @@ window-orchestration risk fully isolated from any Favorites regression risk.</p>
 
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
 
-<h2 style='margin:0in;font-family:Calibri;font-size:14.0pt;color:#2E75B5'
+<h2 id="answering-your-specific-question-how-to-differentiate-visually-conceptually" style='margin:0in;font-family:Calibri;font-size:14.0pt;color:#2E75B5'
 lang=yo>Answering your specific question: how to differentiate
 visually/conceptually</h2>
 
@@ -382,7 +382,7 @@ Concretely:</p>
 
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
 
-<h2 style='margin:0in;font-family:Calibri;font-size:14.0pt;color:#2E75B5'
+<h2 id="orthogonal-and-likely-larger-risk-window-targeting-itself" style='margin:0in;font-family:Calibri;font-size:14.0pt;color:#2E75B5'
 lang=yo>Orthogonal (and likely larger) risk: window targeting itself</h2>
 
 <p style='margin:0in' lang=yo><span style='font-family:Calibri;font-size:11.5pt'>Solving
@@ -401,7 +401,7 @@ the Favorites-vs-Layouts question.</span></p>
 
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
 
-<h2 style='margin:0in;font-family:Calibri;font-size:14.0pt;color:#2E75B5'
+<h2 id="open-items-you-ll-still-need-to-decide-not-blocking-this-assessment" style='margin:0in;font-family:Calibri;font-size:14.0pt;color:#2E75B5'
 lang=yo>Open items you'll still need to decide (not blocking this assessment)</h2>
 
 <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;

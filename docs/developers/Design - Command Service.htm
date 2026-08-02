@@ -179,12 +179,12 @@
 <P lang=yo style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; TEXT-ALIGN: center; MARGIN: 0in"><SPAN style="FONT-WEIGHT: bold; COLOR: #5b9bd5">Trusted Protocol Activation (</SPAN><A href="onemore://PlantUmlCommand/0529cfddc7b94a099f57fc4216163499/extract"><SPAN style="FONT-WEIGHT: bold">Extract</SPAN></A><SPAN style="FONT-WEIGHT: bold; COLOR: #5b9bd5">)</SPAN></P></TD></TR></TBODY></TABLE></DIV>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">The Trusted Protocol Scheme</H1>
+<H1 lang=yo id=the-trusted-protocol-scheme style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">The Trusted Protocol Scheme</H1>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">This is done by registering a <SPAN style="FONT-STYLE: italic">trusted protocol</SPAN> as an indirection to initiate a Windows shell handler.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">In fact, you use shell handlers every day! When you double-click a file with a known file type, Windows opens a program associated with that file type. How does that happen? There is an entry in the Windows Registry for each known file type that specifies a program to handle shell commands such as <SPAN style="FONT-STYLE: italic">open</SPAN> and <SPAN style="FONT-STYLE: italic">print</SPAN>. OneMore leverages this to associate a handler for a custom URI protocol ("http" and "https" are URI protocols)</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<H2 lang=yo style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Trusted Protocol Registration</H2>
+<H2 lang=yo id=trusted-protocol-registration style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Trusted Protocol Registration</H2>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Registering a custom scheme protocol handler is demonstrated below, <A href="https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/platform-apis/aa767914(v=vs.85)?redirectedfrom=MSDN">as explained in this article</A>.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">The first entry declares the protocol. This key declares the "onemore" application; this key name is referenced below when creating the policy for the trusted protocol. The default value must begin with "URL:" and specifies a friendly name for the protocol scheme. The </SPAN><SPAN style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #f1f1f1'>URL Protocol</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> property is required and must be set to an empty string.</SPAN></P>
@@ -204,7 +204,7 @@
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">[</SPAN><SPAN style="COLOR: #5b9bd5">HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\Office\16.0\Common\Security\Trusted Protocols\All Applications\onemore:</SPAN><SPAN style="COLOR: black">]</SPAN></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">OneMore Protocol Handler</H1>
+<H1 lang=yo id=onemore-protocol-handler style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">OneMore Protocol Handler</H1>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Now we can embed URLs on a page similar to</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in 0in 0in 0.375in'><SPAN style="BACKGROUND: #ecf5ff">onemore://PlantUmlCommand/object-id</SPAN></P>
@@ -215,7 +215,7 @@
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">The named pipe is constructed such that only the logged in user can send messages, as explained below.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Command Service</H1>
+<H1 lang=yo id=command-service style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Command Service</H1>
 <P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">In our </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #ecf5ff'>OnStartupComplete </SPAN><A href="Design - Command Framework.htm"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">handler</SPAN></A><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, OneMore starts a number of services, one of which is implemented by the </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #ecf5ff'>CommandService</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> class. This class spins up a worker thread that listens on the secured named pipe.</SPAN></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">When a message is received, the incoming URI is parsed to extract the command name and any necessary parameters. Using the example above, the command name is "PlantUmlCommand" and the parameter is a unique object ID, </P>
@@ -226,7 +226,7 @@
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">The factory invokes the named command, passing in the provided parameters.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<H1 lang=yo style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Command args</H1>
+<H1 lang=yo id=command-args style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Command args</H1>
 <P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">All commands must implement the abstract </SPAN><SPAN style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #f1f1f1'>Execute</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> method declared in the base </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #ecf5ff'>Command</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> class. This method accepts an optional array of arguments. Normally, this list would be empty. However, commands that are indirectly re-entrant via the command service must interrogate the </SPAN><SPAN style='FONT-SIZE: 10pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #f1f1f1'>args</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> parameter and decide what to do next. For example, the PlantUmlCommand will redraw the image specified by the object ID parameter.</SPAN></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
