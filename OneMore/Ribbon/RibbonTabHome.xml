@@ -174,6 +174,12 @@
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
         onAction="InsertNotebookTocCmd"/>
+      <button
+        id="ribCollateTocButton"
+        imageMso="TableIndexes"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="CollateTocCmd"/>
       <menuSeparator id="sepSnipBoxes" />
       <button
         id="ribInsertCodeBoxButton"

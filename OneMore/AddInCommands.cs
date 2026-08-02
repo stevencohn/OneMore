@@ -567,6 +567,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<TimerWindowCommand>(TimerWindow.CopyCmd);
 
 
+		[Command("ribCollateTocButton_Label", Keys.None, "ribSnippetsMenu")]
+		public async Task CollateTocCmd(IRibbonControl control)
+			=> await factory.Run<CollateTocCommand>();
+
+
 		[Command("ribInsertNotebookTocButton_Label", Keys.None, "ribSnippetsMenu")]
 		public async Task InsertNotebookTocCmd(IRibbonControl control)
 			=> await factory.Run<InsertTocCommand>("notebook");

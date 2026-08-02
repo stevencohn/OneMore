@@ -1155,6 +1155,12 @@
     <Compile Include="Commands\Clean\ToggleDttmDialog.Designer.cs">
       <DependentUpon>ToggleDttmDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Snippets\Toc\CollateTocDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Snippets\Toc\CollateTocDialog.Designer.cs">
+      <DependentUpon>CollateTocDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Snippets\Toc\InsertNotebookTocDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1184,6 +1190,7 @@
     <Compile Include="Commands\Snippets\InsertLineCommand.cs" />
     <Compile Include="Commands\Snippets\InsertStatusCommand.cs" />
     <Compile Include="Commands\Snippets\Toc\InsertTocCommand.cs" />
+    <Compile Include="Commands\Snippets\Toc\CollateTocCommand.cs" />
     <Compile Include="Commands\References\NameUrlsCommand.cs" />
     <Compile Include="Commands\Workspaces\Favorites\FavoritesCommand.cs" />
     <Compile Include="Commands\Edit\ProofingCommand.cs" />
@@ -2003,6 +2010,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Clean\ToggleDttmDialog.resx">
       <DependentUpon>ToggleDttmDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Snippets\Toc\CollateTocDialog.resx">
+      <DependentUpon>CollateTocDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Snippets\Toc\InsertNotebookTocDialog.resx">
       <DependentUpon>InsertNotebookTocDialog.cs</DependentUpon>
