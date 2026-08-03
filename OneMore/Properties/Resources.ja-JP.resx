@@ -558,6 +558,40 @@
     <value>クリップボードの状態を復元できません。</value>
     <comment>message</comment>
   </data>
+  <data name="CollateTocCommand_indexTitle" xml:space="preserve">
+    <value>目次索引</value>
+    <comment>page title</comment>
+  </data>
+  <data name="CollateTocCommand_noPagesFound" xml:space="preserve">
+    <value>選択したノートブックには、指定されたハッシュタグを持つページが見つかりませんでした。</value>
+    <comment>message</comment>
+  </data>
+  <data name="CollateTocCommand_replaceQuestion" xml:space="preserve">
+    <value>このセクションには、照合された目次インデックス ページがすでに存在します。
+
+内容を置き換えますか?代わりに新しいページを作成するには、[いいえ] を選択します。</value>
+    <comment>question dialog</comment>
+  </data>
+  <data name="CollateTocDialog_hashtagLabel" xml:space="preserve">
+    <value>ハッシュタグ</value>
+    <comment>label</comment>
+  </data>
+  <data name="CollateTocDialog_introLabel" xml:space="preserve">
+    <value>検索するノートブックを選択し、1 つ以上のハッシュタグを入力します。指定されたハッシュタグの少なくとも 1 つでタグ付けされたページには、目次が 1 つのインデックス ページにまとめられます。</value>
+    <comment>label</comment>
+  </data>
+  <data name="CollateTocDialog_noHashtags" xml:space="preserve">
+    <value>少なくとも 1 つのハッシュタグを入力してください。</value>
+    <comment>validation error</comment>
+  </data>
+  <data name="CollateTocDialog_noNotebooks" xml:space="preserve">
+    <value>少なくとも 1 つのノートブックを選択します。</value>
+    <comment>validation error</comment>
+  </data>
+  <data name="CollateTocDialog_Title" xml:space="preserve">
+    <value>目次を照合する</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="ColorizeCommand_LanguageError" xml:space="preserve">
     <value>'{0}' の言語定義ファイルをロードできませんでした。形式が正しくない可能性があります。詳細については、ログ ファイルを参照してください。</value>
     <comment>messagebox (0 arg is language key)</comment>
@@ -1980,6 +2014,46 @@ OneNoteファイル (*.one)</value>
   <data name="ImportDialog_wordGroup.Text" xml:space="preserve">
     <value>Wordオプション</value>
     <comment>group box</comment>
+  </data>
+  <data name="ImportEvernoteCommand_Importing" xml:space="preserve">
+    <value>{0} をインポートしています...</value>
+    <comment>progress message, {0} is a note title</comment>
+  </data>
+  <data name="ImportEvernoteCommand_ReadError" xml:space="preserve">
+    <value>{0}を読み取れませんでした</value>
+    <comment>error message, {0} is a file path</comment>
+  </data>
+  <data name="ImportEvernoteDialog_abortCheckBox.Text" xml:space="preserve">
+    <value>暗号化されたコンテンツのプレースホルダーを挿入するのではなく、メモ全体をスキップします</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ImportEvernoteDialog_fileLabel.Text" xml:space="preserve">
+    <value>ファイル</value>
+    <comment>label</comment>
+  </data>
+  <data name="ImportEvernoteDialog_includeSubfoldersCheckBox.Text" xml:space="preserve">
+    <value>フォルダーが選択されている場合にサブフォルダーを含める</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ImportEvernoteDialog_introLabel.Text" xml:space="preserve">
+    <value>インポートする 1 つ以上の Evernote (.enex) エクスポート ファイルまたはフォルダーを選択します</value>
+    <comment>label !EDIT</comment>
+  </data>
+  <data name="ImportEvernoteDialog_OpenFileFilter" xml:space="preserve">
+    <value>Evernote エクスポート ファイル (*.enex)|*.enex</value>
+    <comment>openfiledialog filter</comment>
+  </data>
+  <data name="ImportEvernoteDialog_OpenFileTitle" xml:space="preserve">
+    <value>インポートする Evernote エクスポート ファイルを選択してください</value>
+    <comment>openfiledialog title !EDIT</comment>
+  </data>
+  <data name="ImportEvernoteDialog_OpenFolderTitle" xml:space="preserve">
+    <value>インポートする Evernote エクスポート ファイルのフォルダーを選択してください</value>
+    <comment>folderbrowserdialog title</comment>
+  </data>
+  <data name="ImportEvernoteDialog_Text" xml:space="preserve">
+    <value>Evernote をインポートする</value>
+    <comment>dialog title</comment>
   </data>
   <data name="ImportFavoritesCommand_error" xml:space="preserve">
     <value>お気に入りのインポートでエラーが発生しました</value>
@@ -3917,6 +3991,14 @@ ISO-code then comma then language name</comment>
     <value>ページナビゲーションパネル内の子ページを折りたたむ</value>
     <comment>ribbon extras</comment>
   </data>
+  <data name="ribCollateTocButton_Label" xml:space="preserve">
+    <value>目次を照合する</value>
+    <comment>ribbon snippets NODUP</comment>
+  </data>
+  <data name="ribCollateTocButton_Screentip" xml:space="preserve">
+    <value>選択したノートブックのすべての目次を 1 つのインデックス ページにまとめます。</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribColorizeMenu_Label" xml:space="preserve">
     <value>コードハイライト</value>
     <comment>ribbon edit NODUP</comment>
@@ -4294,6 +4376,14 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="ribImportButton_Screentip" xml:space="preserve">
     <value>ファイルをインポートする</value>
+    <comment>ribbon file NODUP</comment>
+  </data>
+  <data name="ribImportEvernoteButton_Label" xml:space="preserve">
+    <value>Evernote をインポートする</value>
+    <comment>ribbon file NODUP</comment>
+  </data>
+  <data name="ribImportEvernoteButton_Screentip" xml:space="preserve">
+    <value>Evernote (.enex) エクスポート ファイルからノートをインポートする</value>
     <comment>ribbon file NODUP</comment>
   </data>
   <data name="ribImportFavoritesButton_Label" xml:space="preserve">

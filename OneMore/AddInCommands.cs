@@ -438,6 +438,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<ImportWebCommand>();
 
 
+		[Command("ribImportEvernoteButton_Label", Keys.None)]
+		public async Task ImportEvernoteCmd(IRibbonControl control)
+			=> await factory.Run<ImportEvernoteCommand>();
+
+
 		[Command("ribImportFavoritesButton_Label", Keys.None, "ribFavoritesMenu")]
 		public async Task ImportFavoritesCmd(IRibbonControl control)
 			=> await factory.Run<ImportFavoritesCommand>();

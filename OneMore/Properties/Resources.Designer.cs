@@ -4614,7 +4614,97 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportDialog_wordGroup.Text", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Importing {0}....
+        /// </summary>
+        internal static string ImportEvernoteCommand_Importing {
+            get {
+                return ResourceManager.GetString("ImportEvernoteCommand_Importing", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Could not read {0}.
+        /// </summary>
+        internal static string ImportEvernoteCommand_ReadError {
+            get {
+                return ResourceManager.GetString("ImportEvernoteCommand_ReadError", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Skip the whole note instead of inserting a placeholder for encrypted content.
+        /// </summary>
+        internal static string ImportEvernoteDialog_abortCheckBox_Text {
+            get {
+                return ResourceManager.GetString("ImportEvernoteDialog_abortCheckBox.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to File.
+        /// </summary>
+        internal static string ImportEvernoteDialog_fileLabel_Text {
+            get {
+                return ResourceManager.GetString("ImportEvernoteDialog_fileLabel.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Include subfolders when a folder is selected.
+        /// </summary>
+        internal static string ImportEvernoteDialog_includeSubfoldersCheckBox_Text {
+            get {
+                return ResourceManager.GetString("ImportEvernoteDialog_includeSubfoldersCheckBox.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Select one or more Evernote (.enex) export files, or a folder, to import.
+        /// </summary>
+        internal static string ImportEvernoteDialog_introLabel_Text {
+            get {
+                return ResourceManager.GetString("ImportEvernoteDialog_introLabel.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Evernote export files (*.enex)|*.enex.
+        /// </summary>
+        internal static string ImportEvernoteDialog_OpenFileFilter {
+            get {
+                return ResourceManager.GetString("ImportEvernoteDialog_OpenFileFilter", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Choose Evernote export file(s) to import.
+        /// </summary>
+        internal static string ImportEvernoteDialog_OpenFileTitle {
+            get {
+                return ResourceManager.GetString("ImportEvernoteDialog_OpenFileTitle", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Choose a folder of Evernote export files to import.
+        /// </summary>
+        internal static string ImportEvernoteDialog_OpenFolderTitle {
+            get {
+                return ResourceManager.GetString("ImportEvernoteDialog_OpenFolderTitle", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Import Evernote.
+        /// </summary>
+        internal static string ImportEvernoteDialog_Text {
+            get {
+                return ResourceManager.GetString("ImportEvernoteDialog_Text", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Error importing favorites.
         /// </summary>
@@ -10349,7 +10439,25 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribImportButton_Screentip", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Import Evernote.
+        /// </summary>
+        internal static string ribImportEvernoteButton_Label {
+            get {
+                return ResourceManager.GetString("ribImportEvernoteButton_Label", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Import notes from an Evernote (.enex) export file.
+        /// </summary>
+        internal static string ribImportEvernoteButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribImportEvernoteButton_Screentip", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Import Favorites.
         /// </summary>

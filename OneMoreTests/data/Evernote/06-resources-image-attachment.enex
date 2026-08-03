@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE en-export SYSTEM "http://xml.evernote.com/pub/evernote-export4.dtd">
+<en-export export-date="20260803T120000Z" application="Evernote" version="10.98.1">
+<note>
+  <title>Design Review Notes</title>
+  <content><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?><!DOCTYPE en-note SYSTEM "http://xml.evernote.com/pub/enml2.dtd"><en-note><div>Whiteboard photo from the design review:</div><div><en-media type="image/png" hash="e44e7ecfec99356632c13cd3eaa3e250"/></div><div>Full write-up attached below:</div><div><en-media type="text/plain" hash="9f92692129bb73f1a57e1df9fbfc0f4a"/></div></en-note>]]></content>
+  <created>20260110T093000Z</created>
+  <updated>20260110T113000Z</updated>
+  <tag>design</tag>
+<resource>
+  <data encoding="base64">
+iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
+  </data>
+  <mime>image/png</mime>
+  <width>1</width>
+  <height>1</height>
+  <resource-attributes>
+    <file-name>diagram.png</file-name>
+  </resource-attributes>
+</resource>
+<resource>
+  <data encoding="base64">
+VGhpcyBpcyBhIHNhbXBsZSBhdHRhY2hlZCB0ZXh0IGZpbGUgdXNlZCBmb3IgdGVzdGluZy4K
+  </data>
+  <mime>text/plain</mime>
+  <resource-attributes>
+    <file-name>notes-attachment.txt</file-name>
+  </resource-attributes>
+</resource>
+</note>
+
+</en-export>
