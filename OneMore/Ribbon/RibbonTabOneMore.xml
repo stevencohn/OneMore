@@ -260,6 +260,12 @@
           getLabel="GetRibbonLabel"
           getScreentip="GetRibbonScreentip"
           onAction="InsertNotebookTocCmd"/>
+        <button
+          id="ribCollateTocButton"
+          imageMso="TableIndexes"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="CollateTocCmd"/>
       </menu>
     </splitButton>
     <button

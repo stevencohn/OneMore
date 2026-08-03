@@ -1072,6 +1072,80 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Table of Contents Index.
+        /// </summary>
+        internal static string CollateTocCommand_indexTitle {
+            get {
+                return ResourceManager.GetString("CollateTocCommand_indexTitle", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to No pages were found in the selected notebooks with the specified hashtag(s)..
+        /// </summary>
+        internal static string CollateTocCommand_noPagesFound {
+            get {
+                return ResourceManager.GetString("CollateTocCommand_noPagesFound", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to A collated table of contents index page already exists in this section.
+        ///
+        ///Do you want to replace its contents? Choose No to create a new page instead..
+        /// </summary>
+        internal static string CollateTocCommand_replaceQuestion {
+            get {
+                return ResourceManager.GetString("CollateTocCommand_replaceQuestion", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Hashtags.
+        /// </summary>
+        internal static string CollateTocDialog_hashtagLabel {
+            get {
+                return ResourceManager.GetString("CollateTocDialog_hashtagLabel", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Select the notebooks to search and enter one or more hashtags. Pages tagged with at least one of the specified hashtags will have their tables of content collated into a single index page..
+        /// </summary>
+        internal static string CollateTocDialog_introLabel {
+            get {
+                return ResourceManager.GetString("CollateTocDialog_introLabel", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Enter at least one hashtag..
+        /// </summary>
+        internal static string CollateTocDialog_noHashtags {
+            get {
+                return ResourceManager.GetString("CollateTocDialog_noHashtags", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Select at least one notebook..
+        /// </summary>
+        internal static string CollateTocDialog_noNotebooks {
+            get {
+                return ResourceManager.GetString("CollateTocDialog_noNotebooks", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Collate Tables of Content.
+        /// </summary>
+        internal static string CollateTocDialog_Title {
+            get {
+                return ResourceManager.GetString("CollateTocDialog_Title", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to The language definition file for &apos;{0}&apos; could not be loaded. It may be malformed - see the log file for details..
         /// </summary>
         internal static string ColorizeCommand_LanguageError {
@@ -9402,7 +9476,25 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribCollapsePagesButton_Screentip", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Collate Tables of Content.
+        /// </summary>
+        internal static string ribCollateTocButton_Label {
+            get {
+                return ResourceManager.GetString("ribCollateTocButton_Label", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Collate all tables of content from selected notebooks into a single index page..
+        /// </summary>
+        internal static string ribCollateTocButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribCollateTocButton_Screentip", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Colorize.
         /// </summary>
