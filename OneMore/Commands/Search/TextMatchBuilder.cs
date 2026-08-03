@@ -148,7 +148,7 @@ namespace River.OneMoreAddIn.Commands
 				else
 				{
 					// strip quotes if present
-					if (val.StartsWith("\"") && val.EndsWith("\""))
+					if (val.Length >= 2 && val.StartsWith("\"") && val.EndsWith("\""))
 					{
 						val = val.Substring(1, val.Length - 2);
 					}
