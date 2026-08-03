@@ -37,7 +37,7 @@ namespace River.OneMoreAddIn.Tests.Commands.File.Evernote
 
 
 		[TestMethod]
-		public void Convert_HashTags_EmitsLeadingHashtagLine()
+		public void Convert_HashTags_EmitsItalicLeadingLineFollowedByBlankLine()
 		{
 			var note = NoteWithContent("<div>content</div>");
 			note.Tags.Add("work");
@@ -46,10 +46,17 @@ namespace River.OneMoreAddIn.Tests.Commands.File.Evernote
 			var converter = new EnmlConverter(note, r => null, r => null);
 			var markdown = converter.Convert();
 
-			var firstLine = markdown.Split('\n')[0].Trim();
+			var lines = markdown.Replace("\r\n", "\n").Split('\n');
+			var firstLine = lines[0].Trim();
+
+			// wrapped in a single pair of asterisks so the whole line renders italic
+			Assert.IsTrue(firstLine.StartsWith("*") && firstLine.EndsWith("*"));
 			StringAssert.Contains(firstLine, "#work");
 			// leading digit forces a double-hash and spaces become hyphens
 			StringAssert.Contains(firstLine, "##2024-ideas");
+
+			// blank line separating the hashtag line from the note content
+			Assert.AreEqual(string.Empty, lines[1].Trim());
 		}
 
 

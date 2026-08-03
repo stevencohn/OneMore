@@ -92,7 +92,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (hashtags.Count > 0)
 			{
-				sb.AppendLine(string.Join(" ", hashtags));
+				sb.AppendLine($"*{string.Join(" ", hashtags)}*");
 				sb.AppendLine();
 			}
 
