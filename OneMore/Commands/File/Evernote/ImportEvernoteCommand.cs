@@ -310,7 +310,7 @@ namespace River.OneMoreAddIn.Commands
 			OneNote one, string sectionId, EvernoteNote note, string identity, string mdPath)
 		{
 			var text = File.ReadAllText(mdPath);
-			var body = OneMoreDig.ConvertMarkdownToHtml(mdPath, text);
+			var body = OneMoreDig.ConvertMarkdownToHtml(mdPath, text, preserveBlankLines: true);
 
 			if (string.IsNullOrEmpty(body))
 			{
@@ -338,6 +338,7 @@ namespace River.OneMoreAddIn.Commands
 			page = await one.GetPage(pageId, OneNote.PageDetail.Basic);
 			converter = new MarkdownConverter(page);
 			converter.RewriteHeadings();
+			converter.RewriteBlankLines();
 			converter.RewriteTodo();
 			converter.RewriteCode();
 			converter.RewriteInlineCode();
