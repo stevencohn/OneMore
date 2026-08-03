@@ -560,6 +560,40 @@ Umkehren</value>
     <value>Der Zustand der Zwischenablage kann nicht wiederhergestellt werden</value>
     <comment>message</comment>
   </data>
+  <data name="CollateTocCommand_indexTitle" xml:space="preserve">
+    <value>Inhaltsverzeichnis Index</value>
+    <comment>page title</comment>
+  </data>
+  <data name="CollateTocCommand_noPagesFound" xml:space="preserve">
+    <value>In den ausgewählten Notizbüchern wurden keine Seiten mit den angegebenen Hashtags gefunden.</value>
+    <comment>message</comment>
+  </data>
+  <data name="CollateTocCommand_replaceQuestion" xml:space="preserve">
+    <value>In diesem Abschnitt ist bereits eine Indexseite mit einem zusammengestellten Inhaltsverzeichnis vorhanden.
+
+Möchten Sie den Inhalt ersetzen? Wählen Sie Nein, um stattdessen eine neue Seite zu erstellen.</value>
+    <comment>question dialog</comment>
+  </data>
+  <data name="CollateTocDialog_hashtagLabel" xml:space="preserve">
+    <value>Hashtags</value>
+    <comment>label</comment>
+  </data>
+  <data name="CollateTocDialog_introLabel" xml:space="preserve">
+    <value>Wählen Sie die zu durchsuchenden Notizbücher aus und geben Sie einen oder mehrere Hashtags ein. Bei Seiten, die mit mindestens einem der angegebenen Hashtags getaggt sind, werden die Inhaltsverzeichnisse auf einer einzigen Indexseite zusammengefasst.</value>
+    <comment>label</comment>
+  </data>
+  <data name="CollateTocDialog_noHashtags" xml:space="preserve">
+    <value>Geben Sie mindestens einen Hashtag ein.</value>
+    <comment>validation error</comment>
+  </data>
+  <data name="CollateTocDialog_noNotebooks" xml:space="preserve">
+    <value>Wählen Sie mindestens ein Notizbuch aus.</value>
+    <comment>validation error</comment>
+  </data>
+  <data name="CollateTocDialog_Title" xml:space="preserve">
+    <value>Inhaltsverzeichnisse zusammenstellen</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="ColorizeCommand_LanguageError" xml:space="preserve">
     <value>Die Sprachdefinitionsdatei für „{0}“ konnte nicht geladen werden. Möglicherweise ist die Datei fehlerhaft. Weitere Informationen finden Sie in der Protokolldatei.</value>
     <comment>messagebox (0 arg is language key)</comment>
@@ -1972,6 +2006,46 @@ Gelber Hintergrund</value>
   <data name="ImportDialog_wordGroup.Text" xml:space="preserve">
     <value>Word-Optionen</value>
     <comment>group box</comment>
+  </data>
+  <data name="ImportEvernoteCommand_Importing" xml:space="preserve">
+    <value>{0} wird importiert...</value>
+    <comment>progress message, {0} is a note title</comment>
+  </data>
+  <data name="ImportEvernoteCommand_ReadError" xml:space="preserve">
+    <value>{0} konnte nicht gelesen werden</value>
+    <comment>error message, {0} is a file path</comment>
+  </data>
+  <data name="ImportEvernoteDialog_abortCheckBox.Text" xml:space="preserve">
+    <value>Überspringen Sie die gesamte Notiz, anstatt einen Platzhalter für verschlüsselte Inhalte einzufügen</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ImportEvernoteDialog_fileLabel.Text" xml:space="preserve">
+    <value>Datei</value>
+    <comment>label</comment>
+  </data>
+  <data name="ImportEvernoteDialog_includeSubfoldersCheckBox.Text" xml:space="preserve">
+    <value>Unterordner einbeziehen, wenn ein Ordner ausgewählt wird</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ImportEvernoteDialog_introLabel.Text" xml:space="preserve">
+    <value>Wählen Sie eine oder mehrere Evernote-Exportdateien (.enex) oder einen Ordner zum Importieren aus</value>
+    <comment>label !EDIT</comment>
+  </data>
+  <data name="ImportEvernoteDialog_OpenFileFilter" xml:space="preserve">
+    <value>Evernote-Exportdateien (*.enex)|*.enex</value>
+    <comment>openfiledialog filter</comment>
+  </data>
+  <data name="ImportEvernoteDialog_OpenFileTitle" xml:space="preserve">
+    <value>Wählen Sie die zu importierende(n) Evernote-Exportdatei(en) aus</value>
+    <comment>openfiledialog title !EDIT</comment>
+  </data>
+  <data name="ImportEvernoteDialog_OpenFolderTitle" xml:space="preserve">
+    <value>Wählen Sie einen Ordner mit Evernote-Exportdateien zum Importieren aus</value>
+    <comment>folderbrowserdialog title</comment>
+  </data>
+  <data name="ImportEvernoteDialog_Text" xml:space="preserve">
+    <value>Evernote importieren</value>
+    <comment>dialog title</comment>
   </data>
   <data name="ImportFavoritesCommand_error" xml:space="preserve">
     <value>Fehler beim Importieren der Favoriten</value>
@@ -3909,6 +3983,14 @@ Registerkarte „Hilfe“.</value>
     <value>Reduzieren Sie untergeordnete Seiten im Seitennavigationsfeld</value>
     <comment>ribbon extras</comment>
   </data>
+  <data name="ribCollateTocButton_Label" xml:space="preserve">
+    <value>Inhaltsverzeichnisse zusammenstellen</value>
+    <comment>ribbon snippets NODUP</comment>
+  </data>
+  <data name="ribCollateTocButton_Screentip" xml:space="preserve">
+    <value>Fassen Sie alle Inhaltsverzeichnisse ausgewählter Notizbücher auf einer einzigen Indexseite zusammen.</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribColorizeMenu_Label" xml:space="preserve">
     <value>Einfärben</value>
     <comment>ribbon item</comment>
@@ -4286,6 +4368,14 @@ Registerkarte „Hilfe“.</value>
   </data>
   <data name="ribImportButton_Screentip" xml:space="preserve">
     <value>Importiere eine Datei</value>
+    <comment>ribbon file NODUP</comment>
+  </data>
+  <data name="ribImportEvernoteButton_Label" xml:space="preserve">
+    <value>Evernote importieren</value>
+    <comment>ribbon file NODUP</comment>
+  </data>
+  <data name="ribImportEvernoteButton_Screentip" xml:space="preserve">
+    <value>Importieren Sie Notizen aus einer Evernote-Exportdatei (.enex).</value>
     <comment>ribbon file NODUP</comment>
   </data>
   <data name="ribImportFavoritesButton_Label" xml:space="preserve">

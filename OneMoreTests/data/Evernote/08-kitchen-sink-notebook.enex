@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE en-export SYSTEM "http://xml.evernote.com/pub/evernote-export4.dtd">
+<en-export export-date="20260803T120000Z" application="Evernote" version="10.98.1">
+<note>
+  <title>Meeting Notes 2026-01-05</title>
+  <content><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?><!DOCTYPE en-note SYSTEM "http://xml.evernote.com/pub/enml2.dtd"><en-note><div>Attendees: Sam, Priya, Deval</div><div><en-todo checked="true"/>Send follow-up doc</div><div><en-todo checked="false"/>Schedule next sync</div><div><en-media type="image/png" hash="e44e7ecfec99356632c13cd3eaa3e250"/></div></en-note>]]></content>
+  <created>20260105T090000Z</created>
+  <updated>20260105T101500Z</updated>
+  <tag>work</tag>
+  <tag>meetings</tag>
+<resource>
+  <data encoding="base64">
+iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=
+  </data>
+  <mime>image/png</mime>
+  <width>1</width>
+  <height>1</height>
+  <resource-attributes>
+    <file-name>sketch.png</file-name>
+  </resource-attributes>
+</resource>
+</note>
+<note>
+  <title>Recipe: Weeknight Stir Fry</title>
+  <content><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?><!DOCTYPE en-note SYSTEM "http://xml.evernote.com/pub/enml2.dtd"><en-note><div><b>Ingredients</b></div><div>- Chicken thigh</div><div>- Broccoli</div><div>- Soy sauce</div><div><b>Steps</b></div><div>1. Slice chicken.</div><div>2. Stir fry veg.</div></en-note>]]></content>
+  <created>20250620T190000Z</created>
+  <updated>20250620T193000Z</updated>
+  <tag>recipes</tag>
+  <tag>dinner</tag>
+</note>
+<note>
+  <title>Untitled Note</title>
+  <content><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?><!DOCTYPE en-note SYSTEM "http://xml.evernote.com/pub/enml2.dtd"><en-note><div><br/></div></en-note>]]></content>
+  <created>20260701T000000Z</created>
+</note>
+
+</en-export>

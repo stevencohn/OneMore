@@ -560,6 +560,40 @@ Invertir</value>
     <value>No se puede restaurar el estado del portapapeles</value>
     <comment>message</comment>
   </data>
+  <data name="CollateTocCommand_indexTitle" xml:space="preserve">
+    <value>Índice de contenidos</value>
+    <comment>page title</comment>
+  </data>
+  <data name="CollateTocCommand_noPagesFound" xml:space="preserve">
+    <value>No se encontraron páginas en los cuadernos seleccionados con los hashtags especificados.</value>
+    <comment>message</comment>
+  </data>
+  <data name="CollateTocCommand_replaceQuestion" xml:space="preserve">
+    <value>En esta sección ya existe una página de índice de tabla de contenido cotejada.
+
+¿Quieres reemplazar su contenido? Elija No para crear una nueva página.</value>
+    <comment>question dialog</comment>
+  </data>
+  <data name="CollateTocDialog_hashtagLabel" xml:space="preserve">
+    <value>Hashtags</value>
+    <comment>label</comment>
+  </data>
+  <data name="CollateTocDialog_introLabel" xml:space="preserve">
+    <value>Seleccione los cuadernos para buscar e ingrese uno o más hashtags. Las páginas etiquetadas con al menos uno de los hashtags especificados tendrán sus tablas de contenido recopiladas en una única página de índice.</value>
+    <comment>label</comment>
+  </data>
+  <data name="CollateTocDialog_noHashtags" xml:space="preserve">
+    <value>Ingrese al menos un hashtag.</value>
+    <comment>validation error</comment>
+  </data>
+  <data name="CollateTocDialog_noNotebooks" xml:space="preserve">
+    <value>Seleccione al menos un cuaderno.</value>
+    <comment>validation error</comment>
+  </data>
+  <data name="CollateTocDialog_Title" xml:space="preserve">
+    <value>Cotejar tablas de contenido</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="ColorizeCommand_LanguageError" xml:space="preserve">
     <value>No se pudo cargar el archivo de definición de idioma para '{0}'. Es posible que tenga un formato incorrecto; consulte el archivo de registro para obtener más detalles.</value>
     <comment>messagebox (0 arg is language key)</comment>
@@ -1972,6 +2006,46 @@ Fondo amarillo</value>
   <data name="ImportDialog_wordGroup.Text" xml:space="preserve">
     <value>Opciones de Word</value>
     <comment>group box</comment>
+  </data>
+  <data name="ImportEvernoteCommand_Importing" xml:space="preserve">
+    <value>Importando {0}....</value>
+    <comment>progress message, {0} is a note title</comment>
+  </data>
+  <data name="ImportEvernoteCommand_ReadError" xml:space="preserve">
+    <value>No se pudo leer {0}</value>
+    <comment>error message, {0} is a file path</comment>
+  </data>
+  <data name="ImportEvernoteDialog_abortCheckBox.Text" xml:space="preserve">
+    <value>Omita toda la nota en lugar de insertar un marcador de posición para contenido cifrado</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ImportEvernoteDialog_fileLabel.Text" xml:space="preserve">
+    <value>Archivo</value>
+    <comment>label</comment>
+  </data>
+  <data name="ImportEvernoteDialog_includeSubfoldersCheckBox.Text" xml:space="preserve">
+    <value>Incluir subcarpetas cuando se selecciona una carpeta</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ImportEvernoteDialog_introLabel.Text" xml:space="preserve">
+    <value>Seleccione uno o más archivos de exportación de Evernote (.enex), o una carpeta, para importar</value>
+    <comment>label !EDIT</comment>
+  </data>
+  <data name="ImportEvernoteDialog_OpenFileFilter" xml:space="preserve">
+    <value>Archivos de exportación de Evernote (*.enex)|*.enex</value>
+    <comment>openfiledialog filter</comment>
+  </data>
+  <data name="ImportEvernoteDialog_OpenFileTitle" xml:space="preserve">
+    <value>Elija los archivos de exportación de Evernote para importar</value>
+    <comment>openfiledialog title !EDIT</comment>
+  </data>
+  <data name="ImportEvernoteDialog_OpenFolderTitle" xml:space="preserve">
+    <value>Elija una carpeta de archivos de exportación de Evernote para importar</value>
+    <comment>folderbrowserdialog title</comment>
+  </data>
+  <data name="ImportEvernoteDialog_Text" xml:space="preserve">
+    <value>Importar Evernote</value>
+    <comment>dialog title</comment>
   </data>
   <data name="ImportFavoritesCommand_error" xml:space="preserve">
     <value>Error al importar favoritos</value>
@@ -3909,6 +3983,14 @@ Pestaña Ayuda</value>
     <value>Contraer páginas secundarias en el panel de navegación de la página</value>
     <comment>ribbon extras</comment>
   </data>
+  <data name="ribCollateTocButton_Label" xml:space="preserve">
+    <value>Cotejar tablas de contenido</value>
+    <comment>ribbon snippets NODUP</comment>
+  </data>
+  <data name="ribCollateTocButton_Screentip" xml:space="preserve">
+    <value>Recopile todas las tablas de contenido de cuadernos seleccionados en una única página de índice.</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribColorizeMenu_Label" xml:space="preserve">
     <value>Colorear</value>
     <comment>ribbon item</comment>
@@ -4286,6 +4368,14 @@ Pestaña Ayuda</value>
   </data>
   <data name="ribImportButton_Screentip" xml:space="preserve">
     <value>Importar un archivo</value>
+    <comment>ribbon file NODUP</comment>
+  </data>
+  <data name="ribImportEvernoteButton_Label" xml:space="preserve">
+    <value>Importar Evernote</value>
+    <comment>ribbon file NODUP</comment>
+  </data>
+  <data name="ribImportEvernoteButton_Screentip" xml:space="preserve">
+    <value>Importar notas desde un archivo de exportación de Evernote (.enex)</value>
     <comment>ribbon file NODUP</comment>
   </data>
   <data name="ribImportFavoritesButton_Label" xml:space="preserve">

@@ -660,6 +660,12 @@
         getScreentip="GetRibbonScreentip"
         onAction="ImportWebCmd"/>
       <button
+        id="ribImportEvernoteButton"
+        imageMso="ImportOutlook"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="ImportEvernoteCmd"/>
+      <button
         id="ribImportOutlookContactsButton"
         imageMso="NewContact"
         getLabel="GetRibbonLabel"

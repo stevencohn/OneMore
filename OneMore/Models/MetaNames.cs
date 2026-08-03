@@ -14,6 +14,9 @@ namespace River.OneMoreAddIn.Models
 		// data storage analysis report
 		public static readonly string AnalysisReport = "omAnalysisReport";
 
+		// stable identity key of the Evernote note this page was imported from, for dedup
+		public static readonly string EvernoteGuid = "omEvernoteGuid";
+
 		// keep track of rotating highlighter index
 		public static readonly string HighlightIndex = "omHighlightIndex";
 

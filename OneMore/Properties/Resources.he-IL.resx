@@ -557,6 +557,40 @@
     <value>לא ניתן לשחזר את מצב הלוח</value>
     <comment>message</comment>
   </data>
+  <data name="CollateTocCommand_indexTitle" xml:space="preserve">
+    <value>אינדקס תוכן עניינים</value>
+    <comment>page title</comment>
+  </data>
+  <data name="CollateTocCommand_noPagesFound" xml:space="preserve">
+    <value>לא נמצאו דפים במחברות שנבחרו עם ההאשטאג/ים שצוינו.</value>
+    <comment>message</comment>
+  </data>
+  <data name="CollateTocCommand_replaceQuestion" xml:space="preserve">
+    <value>דף אינדקס של תוכן עניינים מרוכז כבר קיים בסעיף זה.
+
+האם אתה רוצה להחליף את התוכן שלו? בחר לא כדי ליצור דף חדש במקום זאת.</value>
+    <comment>question dialog</comment>
+  </data>
+  <data name="CollateTocDialog_hashtagLabel" xml:space="preserve">
+    <value>Hashtags</value>
+    <comment>label</comment>
+  </data>
+  <data name="CollateTocDialog_introLabel" xml:space="preserve">
+    <value>בחר את המחברות לחיפוש והזן hashtag אחד או יותר. טבלאות התוכן שלהם יאוספו לדף אינדקס בודד עבור דפים המתויגים עם אחד מה-hashtags שצוינו לפחות.</value>
+    <comment>label</comment>
+  </data>
+  <data name="CollateTocDialog_noHashtags" xml:space="preserve">
+    <value>הזן לפחות האשטאג אחד.</value>
+    <comment>validation error</comment>
+  </data>
+  <data name="CollateTocDialog_noNotebooks" xml:space="preserve">
+    <value>בחר מחברת אחת לפחות.</value>
+    <comment>validation error</comment>
+  </data>
+  <data name="CollateTocDialog_Title" xml:space="preserve">
+    <value>אסוף טבלאות תוכן</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="ColorizeCommand_LanguageError" xml:space="preserve">
     <value>לא ניתן היה לטעון את קובץ הגדרת השפה עבור '{0}'. ייתכן שהוא פגום - עיין בקובץ היומן לפרטים.</value>
     <comment>messagebox (0 arg is language key)</comment>
@@ -1977,6 +2011,46 @@ Total Row Font
   <data name="ImportDialog_wordGroup.Text" xml:space="preserve">
     <value>אפשרויות מילים</value>
     <comment>group box</comment>
+  </data>
+  <data name="ImportEvernoteCommand_Importing" xml:space="preserve">
+    <value>מייבא את {0}...</value>
+    <comment>progress message, {0} is a note title</comment>
+  </data>
+  <data name="ImportEvernoteCommand_ReadError" xml:space="preserve">
+    <value>לא ניתן היה לקרוא את {0}</value>
+    <comment>error message, {0} is a file path</comment>
+  </data>
+  <data name="ImportEvernoteDialog_abortCheckBox.Text" xml:space="preserve">
+    <value>דלג על כל ההערה במקום להוסיף מציין מיקום לתוכן מוצפן</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ImportEvernoteDialog_fileLabel.Text" xml:space="preserve">
+    <value>קוֹבֶץ</value>
+    <comment>label</comment>
+  </data>
+  <data name="ImportEvernoteDialog_includeSubfoldersCheckBox.Text" xml:space="preserve">
+    <value>כלול תיקיות משנה כאשר נבחרת תיקיה</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ImportEvernoteDialog_introLabel.Text" xml:space="preserve">
+    <value>בחר קובץ ייצוא אחד או יותר של Evernote (.enex), או תיקיה, לייבוא</value>
+    <comment>label !EDIT</comment>
+  </data>
+  <data name="ImportEvernoteDialog_OpenFileFilter" xml:space="preserve">
+    <value>קבצי ייצוא של Evernote (*.enex)|*.enex</value>
+    <comment>openfiledialog filter</comment>
+  </data>
+  <data name="ImportEvernoteDialog_OpenFileTitle" xml:space="preserve">
+    <value>בחר/י קבצי ייצוא של Evernote לייבוא</value>
+    <comment>openfiledialog title !EDIT</comment>
+  </data>
+  <data name="ImportEvernoteDialog_OpenFolderTitle" xml:space="preserve">
+    <value>בחר תיקייה של קובצי ייצוא Evernote לייבוא</value>
+    <comment>folderbrowserdialog title</comment>
+  </data>
+  <data name="ImportEvernoteDialog_Text" xml:space="preserve">
+    <value>ייבוא ​​Evernote</value>
+    <comment>dialog title</comment>
   </data>
   <data name="ImportFavoritesCommand_error" xml:space="preserve">
     <value>שגיאה בייבוא ​​מועדפים</value>
@@ -3914,6 +3988,14 @@ ISO-code then comma then language name</comment>
     <value>דפי קריסת ילדים בלוח הניווט בעמודים</value>
     <comment>ribbon extras</comment>
   </data>
+  <data name="ribCollateTocButton_Label" xml:space="preserve">
+    <value>אסוף טבלאות תוכן</value>
+    <comment>ribbon snippets NODUP</comment>
+  </data>
+  <data name="ribCollateTocButton_Screentip" xml:space="preserve">
+    <value>אסוף את כל טבלאות התוכן מהמחברות שנבחרו לדף אינדקס יחיד.</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribColorizeMenu_Label" xml:space="preserve">
     <value>צבע</value>
     <comment>ribbon item</comment>
@@ -4291,6 +4373,14 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="ribImportButton_Screentip" xml:space="preserve">
     <value>ייבא קובץ</value>
+    <comment>ribbon file NODUP</comment>
+  </data>
+  <data name="ribImportEvernoteButton_Label" xml:space="preserve">
+    <value>ייבוא ​​Evernote</value>
+    <comment>ribbon file NODUP</comment>
+  </data>
+  <data name="ribImportEvernoteButton_Screentip" xml:space="preserve">
+    <value>ייבא הערות מקובץ ייצוא של Evernote (.enex).</value>
     <comment>ribbon file NODUP</comment>
   </data>
   <data name="ribImportFavoritesButton_Label" xml:space="preserve">

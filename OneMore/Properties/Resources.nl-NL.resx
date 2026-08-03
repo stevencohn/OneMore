@@ -557,6 +557,40 @@ Omkeren</value>
     <value>Kan de klembordstatus niet herstellen</value>
     <comment>message</comment>
   </data>
+  <data name="CollateTocCommand_indexTitle" xml:space="preserve">
+    <value>Inhoudsopgave Index</value>
+    <comment>page title</comment>
+  </data>
+  <data name="CollateTocCommand_noPagesFound" xml:space="preserve">
+    <value>Er zijn geen pagina's gevonden in de geselecteerde notitieboekjes met de opgegeven hashtag(s).</value>
+    <comment>message</comment>
+  </data>
+  <data name="CollateTocCommand_replaceQuestion" xml:space="preserve">
+    <value>Er bestaat al een indexpagina met een verzamelde inhoudsopgave in deze sectie.
+
+Wilt u de inhoud ervan vervangen? Kies Nee om in plaats daarvan een nieuwe pagina te maken.</value>
+    <comment>question dialog</comment>
+  </data>
+  <data name="CollateTocDialog_hashtagLabel" xml:space="preserve">
+    <value>Hashtags</value>
+    <comment>label</comment>
+  </data>
+  <data name="CollateTocDialog_introLabel" xml:space="preserve">
+    <value>Selecteer de notitieboekjes waarin u wilt zoeken en voer een of meer hashtags in. Van pagina's die zijn getagd met ten minste één van de opgegeven hashtags, worden de inhoudstabellen verzameld op één enkele indexpagina.</value>
+    <comment>label</comment>
+  </data>
+  <data name="CollateTocDialog_noHashtags" xml:space="preserve">
+    <value>Voer minimaal één hashtag in.</value>
+    <comment>validation error</comment>
+  </data>
+  <data name="CollateTocDialog_noNotebooks" xml:space="preserve">
+    <value>Selecteer ten minste één notitieblok.</value>
+    <comment>validation error</comment>
+  </data>
+  <data name="CollateTocDialog_Title" xml:space="preserve">
+    <value>Verzamel inhoudstabellen</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="ColorizeCommand_LanguageError" xml:space="preserve">
     <value>Het taaldefinitiebestand voor '{0}' kan niet worden geladen. Mogelijk is de indeling onjuist. Zie het logbestand voor meer informatie.</value>
     <comment>messagebox (0 arg is language key)</comment>
@@ -1977,6 +2011,46 @@ Gele achtergrond</value>
   <data name="ImportDialog_wordGroup.Text" xml:space="preserve">
     <value>Word-opties</value>
     <comment>group box</comment>
+  </data>
+  <data name="ImportEvernoteCommand_Importing" xml:space="preserve">
+    <value>{0} importeren...</value>
+    <comment>progress message, {0} is a note title</comment>
+  </data>
+  <data name="ImportEvernoteCommand_ReadError" xml:space="preserve">
+    <value>Kon {0} niet lezen</value>
+    <comment>error message, {0} is a file path</comment>
+  </data>
+  <data name="ImportEvernoteDialog_abortCheckBox.Text" xml:space="preserve">
+    <value>Sla de hele notitie over in plaats van een tijdelijke aanduiding in te voegen voor gecodeerde inhoud</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ImportEvernoteDialog_fileLabel.Text" xml:space="preserve">
+    <value>Bestand</value>
+    <comment>label</comment>
+  </data>
+  <data name="ImportEvernoteDialog_includeSubfoldersCheckBox.Text" xml:space="preserve">
+    <value>Voeg submappen toe wanneer een map is geselecteerd</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ImportEvernoteDialog_introLabel.Text" xml:space="preserve">
+    <value>Selecteer een of meer Evernote (.enex)-exportbestanden of een map om te importeren</value>
+    <comment>label !EDIT</comment>
+  </data>
+  <data name="ImportEvernoteDialog_OpenFileFilter" xml:space="preserve">
+    <value>Evernote-exportbestanden (*.enex)|*.enex</value>
+    <comment>openfiledialog filter</comment>
+  </data>
+  <data name="ImportEvernoteDialog_OpenFileTitle" xml:space="preserve">
+    <value>Kies Evernote-exportbestand(en) om te importeren</value>
+    <comment>openfiledialog title !EDIT</comment>
+  </data>
+  <data name="ImportEvernoteDialog_OpenFolderTitle" xml:space="preserve">
+    <value>Kies een map met Evernote-exportbestanden om te importeren</value>
+    <comment>folderbrowserdialog title</comment>
+  </data>
+  <data name="ImportEvernoteDialog_Text" xml:space="preserve">
+    <value>Importeer Evernote</value>
+    <comment>dialog title</comment>
   </data>
   <data name="ImportFavoritesCommand_error" xml:space="preserve">
     <value>Fout bij het importeren van favorieten</value>
@@ -3910,6 +3984,14 @@ Tabblad Help</value>
     <value>Vouw onderliggende pagina's samen in het paginanavigatievenster</value>
     <comment>ribbon extras</comment>
   </data>
+  <data name="ribCollateTocButton_Label" xml:space="preserve">
+    <value>Verzamel inhoudstabellen</value>
+    <comment>ribbon snippets NODUP</comment>
+  </data>
+  <data name="ribCollateTocButton_Screentip" xml:space="preserve">
+    <value>Verzamel alle inhoudstabellen van geselecteerde notitieboekjes op één indexpagina.</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribColorizeMenu_Label" xml:space="preserve">
     <value>Inkleuren</value>
     <comment>ribbon item</comment>
@@ -4287,6 +4369,14 @@ Tabblad Help</value>
   </data>
   <data name="ribImportButton_Screentip" xml:space="preserve">
     <value>Importeer een bestand</value>
+    <comment>ribbon file NODUP</comment>
+  </data>
+  <data name="ribImportEvernoteButton_Label" xml:space="preserve">
+    <value>Importeer Evernote</value>
+    <comment>ribbon file NODUP</comment>
+  </data>
+  <data name="ribImportEvernoteButton_Screentip" xml:space="preserve">
+    <value>Importeer notities uit een Evernote (.enex) exportbestand</value>
     <comment>ribbon file NODUP</comment>
   </data>
   <data name="ribImportFavoritesButton_Label" xml:space="preserve">

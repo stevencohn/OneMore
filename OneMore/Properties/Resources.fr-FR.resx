@@ -560,6 +560,40 @@ Inverser</value>
     <value>Impossible de restaurer l'état du presse-papiers</value>
     <comment>message</comment>
   </data>
+  <data name="CollateTocCommand_indexTitle" xml:space="preserve">
+    <value>Index de la table des matières</value>
+    <comment>page title</comment>
+  </data>
+  <data name="CollateTocCommand_noPagesFound" xml:space="preserve">
+    <value>Aucune page n'a été trouvée dans les blocs-notes sélectionnés avec le(s) hashtag(s) spécifié(s).</value>
+    <comment>message</comment>
+  </data>
+  <data name="CollateTocCommand_replaceQuestion" xml:space="preserve">
+    <value>Une page d'index de table des matières rassemblée existe déjà dans cette section.
+
+Voulez-vous remplacer son contenu ? Choisissez Non pour créer une nouvelle page à la place.</value>
+    <comment>question dialog</comment>
+  </data>
+  <data name="CollateTocDialog_hashtagLabel" xml:space="preserve">
+    <value>Hashtags</value>
+    <comment>label</comment>
+  </data>
+  <data name="CollateTocDialog_introLabel" xml:space="preserve">
+    <value>Sélectionnez les carnets à rechercher et saisissez un ou plusieurs hashtags. Les pages étiquetées avec au moins un des hashtags spécifiés verront leurs tables des matières rassemblées dans une seule page d'index.</value>
+    <comment>label</comment>
+  </data>
+  <data name="CollateTocDialog_noHashtags" xml:space="preserve">
+    <value>Entrez au moins un hashtag.</value>
+    <comment>validation error</comment>
+  </data>
+  <data name="CollateTocDialog_noNotebooks" xml:space="preserve">
+    <value>Sélectionnez au moins un bloc-notes.</value>
+    <comment>validation error</comment>
+  </data>
+  <data name="CollateTocDialog_Title" xml:space="preserve">
+    <value>Rassembler les tables des matières</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="ColorizeCommand_LanguageError" xml:space="preserve">
     <value>Le fichier de définition de langue pour « {0} » n'a pas pu être chargé. Il est peut-être mal formé – consultez le fichier journal pour plus de détails.</value>
     <comment>messagebox (0 arg is language key)</comment>
@@ -1980,6 +2014,46 @@ Fond jaune</value>
   <data name="ImportDialog_wordGroup.Text" xml:space="preserve">
     <value>Options Word</value>
     <comment>group box</comment>
+  </data>
+  <data name="ImportEvernoteCommand_Importing" xml:space="preserve">
+    <value>Importation de {0}...</value>
+    <comment>progress message, {0} is a note title</comment>
+  </data>
+  <data name="ImportEvernoteCommand_ReadError" xml:space="preserve">
+    <value>Impossible de lire {0}</value>
+    <comment>error message, {0} is a file path</comment>
+  </data>
+  <data name="ImportEvernoteDialog_abortCheckBox.Text" xml:space="preserve">
+    <value>Ignorer la note entière au lieu d'insérer un espace réservé pour le contenu crypté</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ImportEvernoteDialog_fileLabel.Text" xml:space="preserve">
+    <value>Déposer</value>
+    <comment>label</comment>
+  </data>
+  <data name="ImportEvernoteDialog_includeSubfoldersCheckBox.Text" xml:space="preserve">
+    <value>Inclure les sous-dossiers lorsqu'un dossier est sélectionné</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ImportEvernoteDialog_introLabel.Text" xml:space="preserve">
+    <value>Sélectionnez un ou plusieurs fichiers d'exportation Evernote (.enex), ou un dossier, à importer</value>
+    <comment>label !EDIT</comment>
+  </data>
+  <data name="ImportEvernoteDialog_OpenFileFilter" xml:space="preserve">
+    <value>Fichiers d'exportation Evernote (*.enex)|*.enex</value>
+    <comment>openfiledialog filter</comment>
+  </data>
+  <data name="ImportEvernoteDialog_OpenFileTitle" xml:space="preserve">
+    <value>Choisissez le(s) fichier(s) d'exportation Evernote à importer</value>
+    <comment>openfiledialog title !EDIT</comment>
+  </data>
+  <data name="ImportEvernoteDialog_OpenFolderTitle" xml:space="preserve">
+    <value>Choisissez un dossier de fichiers d'exportation Evernote à importer</value>
+    <comment>folderbrowserdialog title</comment>
+  </data>
+  <data name="ImportEvernoteDialog_Text" xml:space="preserve">
+    <value>Importer Evernote</value>
+    <comment>dialog title</comment>
   </data>
   <data name="ImportFavoritesCommand_error" xml:space="preserve">
     <value>Erreur lors de l'importation des favoris</value>
@@ -3921,6 +3995,14 @@ Onglet Aide</value>
     <value>Réduire les pages enfants dans le panneau de navigation de page</value>
     <comment>ribbon extras</comment>
   </data>
+  <data name="ribCollateTocButton_Label" xml:space="preserve">
+    <value>Rassembler les tables des matières</value>
+    <comment>ribbon snippets NODUP</comment>
+  </data>
+  <data name="ribCollateTocButton_Screentip" xml:space="preserve">
+    <value>Rassemblez toutes les tables des matières des blocs-notes sélectionnés dans une seule page d'index.</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribColorizeMenu_Label" xml:space="preserve">
     <value>Coloriser</value>
     <comment>ribbon item</comment>
@@ -4298,6 +4380,14 @@ Onglet Aide</value>
   </data>
   <data name="ribImportButton_Screentip" xml:space="preserve">
     <value>Importer un fichier</value>
+    <comment>ribbon file NODUP</comment>
+  </data>
+  <data name="ribImportEvernoteButton_Label" xml:space="preserve">
+    <value>Importer Evernote</value>
+    <comment>ribbon file NODUP</comment>
+  </data>
+  <data name="ribImportEvernoteButton_Screentip" xml:space="preserve">
+    <value>Importer des notes à partir d'un fichier d'exportation Evernote (.enex)</value>
     <comment>ribbon file NODUP</comment>
   </data>
   <data name="ribImportFavoritesButton_Label" xml:space="preserve">

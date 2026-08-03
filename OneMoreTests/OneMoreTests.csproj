@@ -68,6 +68,8 @@
     <Compile Include="Commands\Edit\AlterSizeCommandTests.cs" />
     <Compile Include="Commands\Edit\ColorizeCommandTests.cs" />
     <Compile Include="Commands\File\ArchivistTests.cs" />
+    <Compile Include="Commands\File\Evernote\EnexReaderTests.cs" />
+    <Compile Include="Commands\File\Evernote\EnmlConverterTests.cs" />
     <Compile Include="Commands\References\EmbedCommandTests.cs" />
     <Compile Include="Commands\References\FootnoteCommandTests.cs" />
     <Compile Include="Commands\Styles\ApplyStylesCommandTests.cs" />

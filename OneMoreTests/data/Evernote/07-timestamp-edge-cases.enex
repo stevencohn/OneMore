@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE en-export SYSTEM "http://xml.evernote.com/pub/evernote-export4.dtd">
+<en-export export-date="20260803T120000Z" application="Evernote" version="10.98.1">
+<note>
+  <title>Old Note, Never Modified</title>
+  <content><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?><!DOCTYPE en-note SYSTEM "http://xml.evernote.com/pub/enml2.dtd"><en-note><div>Created once, never touched since.</div></en-note>]]></content>
+  <created>19991231T235900Z</created>
+  <tag>archive</tag>
+</note>
+<note>
+  <title>Web Clip Example</title>
+  <content><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?><!DOCTYPE en-note SYSTEM "http://xml.evernote.com/pub/enml2.dtd"><en-note><div>Clipped article excerpt for reference.</div></en-note>]]></content>
+  <created>20260301T140000Z</created>
+  <updated>20260301T140000Z</updated>
+  <tag>clipped</tag>
+  <note-attributes>
+    <source-url>https://example.com/articles/some-article</source-url>
+    <author>Jane Reporter</author>
+  </note-attributes>
+</note>
+
+</en-export>

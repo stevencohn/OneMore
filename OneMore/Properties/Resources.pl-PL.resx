@@ -557,6 +557,40 @@ Odwracać</value>
     <value>Nie można przywrócić stanu schowka</value>
     <comment>message</comment>
   </data>
+  <data name="CollateTocCommand_indexTitle" xml:space="preserve">
+    <value>Spis treści Indeks</value>
+    <comment>page title</comment>
+  </data>
+  <data name="CollateTocCommand_noPagesFound" xml:space="preserve">
+    <value>W wybranych notatnikach nie znaleziono żadnych stron z określonymi hashtagami.</value>
+    <comment>message</comment>
+  </data>
+  <data name="CollateTocCommand_replaceQuestion" xml:space="preserve">
+    <value>W tej sekcji istnieje już strona indeksowa ze spisem treści.
+
+Czy chcesz zastąpić jego zawartość? Wybierz opcję Nie, aby zamiast tego utworzyć nową stronę.</value>
+    <comment>question dialog</comment>
+  </data>
+  <data name="CollateTocDialog_hashtagLabel" xml:space="preserve">
+    <value>Hashtagi</value>
+    <comment>label</comment>
+  </data>
+  <data name="CollateTocDialog_introLabel" xml:space="preserve">
+    <value>Wybierz notesy do przeszukania i wprowadź jeden lub więcej hashtagów. Strony oznaczone co najmniej jednym z określonych hashtagów będą miały spis treści zebrany na jednej stronie indeksu.</value>
+    <comment>label</comment>
+  </data>
+  <data name="CollateTocDialog_noHashtags" xml:space="preserve">
+    <value>Wpisz przynajmniej jeden hashtag.</value>
+    <comment>validation error</comment>
+  </data>
+  <data name="CollateTocDialog_noNotebooks" xml:space="preserve">
+    <value>Wybierz co najmniej jeden notatnik.</value>
+    <comment>validation error</comment>
+  </data>
+  <data name="CollateTocDialog_Title" xml:space="preserve">
+    <value>Zestawiaj spisy treści</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="ColorizeCommand_LanguageError" xml:space="preserve">
     <value>Nie można załadować pliku definicji języka dla '{0}'. Może być zniekształcony — szczegółowe informacje można znaleźć w pliku dziennika.</value>
     <comment>messagebox (0 arg is language key)</comment>
@@ -1977,6 +2011,46 @@ Czerwony pierwszy plan
   <data name="ImportDialog_wordGroup.Text" xml:space="preserve">
     <value>Opcje słowa</value>
     <comment>group box</comment>
+  </data>
+  <data name="ImportEvernoteCommand_Importing" xml:space="preserve">
+    <value>Importowanie {0}...</value>
+    <comment>progress message, {0} is a note title</comment>
+  </data>
+  <data name="ImportEvernoteCommand_ReadError" xml:space="preserve">
+    <value>Nie można przeczytać {0}</value>
+    <comment>error message, {0} is a file path</comment>
+  </data>
+  <data name="ImportEvernoteDialog_abortCheckBox.Text" xml:space="preserve">
+    <value>Pomiń całą notatkę zamiast wstawiać symbol zastępczy dla zaszyfrowanej treści</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ImportEvernoteDialog_fileLabel.Text" xml:space="preserve">
+    <value>Plik</value>
+    <comment>label</comment>
+  </data>
+  <data name="ImportEvernoteDialog_includeSubfoldersCheckBox.Text" xml:space="preserve">
+    <value>Dołącz podfoldery po wybraniu folderu</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="ImportEvernoteDialog_introLabel.Text" xml:space="preserve">
+    <value>Wybierz jeden lub więcej plików eksportu Evernote (.enex) lub folder do zaimportowania</value>
+    <comment>label !EDIT</comment>
+  </data>
+  <data name="ImportEvernoteDialog_OpenFileFilter" xml:space="preserve">
+    <value>Pliki eksportu Evernote (*.enex)|*.enex</value>
+    <comment>openfiledialog filter</comment>
+  </data>
+  <data name="ImportEvernoteDialog_OpenFileTitle" xml:space="preserve">
+    <value>Wybierz pliki eksportu Evernote do zaimportowania</value>
+    <comment>openfiledialog title !EDIT</comment>
+  </data>
+  <data name="ImportEvernoteDialog_OpenFolderTitle" xml:space="preserve">
+    <value>Wybierz folder plików eksportu Evernote do zaimportowania</value>
+    <comment>folderbrowserdialog title</comment>
+  </data>
+  <data name="ImportEvernoteDialog_Text" xml:space="preserve">
+    <value>Importuj Evernote</value>
+    <comment>dialog title</comment>
   </data>
   <data name="ImportFavoritesCommand_error" xml:space="preserve">
     <value>Błąd podczas importowania ulubionych</value>
@@ -3910,6 +3984,14 @@ Zakładka Pomoc</value>
     <value>Zwiń strony podrzędne w panelu nawigacyjnym strony</value>
     <comment>ribbon extras</comment>
   </data>
+  <data name="ribCollateTocButton_Label" xml:space="preserve">
+    <value>Zestawiaj spisy treści</value>
+    <comment>ribbon snippets NODUP</comment>
+  </data>
+  <data name="ribCollateTocButton_Screentip" xml:space="preserve">
+    <value>Zbierz wszystkie spisy treści z wybranych notatników na jednej stronie indeksu.</value>
+    <comment>ribbon snippets</comment>
+  </data>
   <data name="ribColorizeMenu_Label" xml:space="preserve">
     <value>Koloruj</value>
     <comment>ribbon item</comment>
@@ -4287,6 +4369,14 @@ Zakładka Pomoc</value>
   </data>
   <data name="ribImportButton_Screentip" xml:space="preserve">
     <value>Importuj plik</value>
+    <comment>ribbon file NODUP</comment>
+  </data>
+  <data name="ribImportEvernoteButton_Label" xml:space="preserve">
+    <value>Importuj Evernote</value>
+    <comment>ribbon file NODUP</comment>
+  </data>
+  <data name="ribImportEvernoteButton_Screentip" xml:space="preserve">
+    <value>Importuj notatki z pliku eksportu Evernote (.enex).</value>
     <comment>ribbon file NODUP</comment>
   </data>
   <data name="ribImportFavoritesButton_Label" xml:space="preserve">
