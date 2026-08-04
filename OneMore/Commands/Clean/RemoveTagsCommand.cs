@@ -12,8 +12,9 @@ namespace River.OneMoreAddIn.Commands
 
 
 	/// <summary>
-	/// Removes all tags from the current page, except from the tag bank and those
-	/// associated with reminders.
+	/// Removes tags from the current page, except from the tag bank and those associated
+	/// with reminders. If a range of content is selected then only tags within that range
+	/// are removed; otherwise all eligible tags on the page are removed.
 	/// </summary>
 	internal class RemoveTagsCommand : Command, ICliPageCommand
 	{
@@ -61,6 +62,30 @@ namespace River.OneMoreAddIn.Commands
 			if (!tags.Any())
 			{
 				return;
+			}
+
+			var range = new SelectionRange(page);
+			var selections = range.GetSelections(anyElement: true).ToList();
+
+			if (range.Scope == SelectionScope.Run ||
+				range.Scope == SelectionScope.Range ||
+				range.Scope == SelectionScope.Block)
+			{
+				// use the actual selected leaf elements (selected="all") to find their
+				// directly containing OE; do not rely on the "selected" attribute alone
+				// because OneNote also stamps ancestor OEs as selected="partial" when the
+				// selection lies within a nested, indented paragraph under their OEChildren
+				var selectedOEs = selections
+					.Select(e => e.Name.LocalName == "T" ? e.Parent : e)
+					.Where(e => e?.Name.LocalName == "OE")
+					.Distinct()
+					.ToList();
+
+				tags = tags.Where(t => selectedOEs.Contains(t.Parent)).ToList();
+				if (!tags.Any())
+				{
+					return;
+				}
 			}
 
 			var updated = false;
