@@ -181,13 +181,23 @@ namespace River.OneMoreAddIn.Commands.Snippets.Toc
 					var pages = element.Elements(ns + "Page")
 						.Where(e => e.Attribute("isInRecycleBin") is null);
 
+					XElement indent = null;
 					if (withPages && pages.Any())
 					{
-						var indent = new XElement(ns + "OEChildren");
-						var index = 0;
+						indent = new XElement(ns + "OEChildren");
+						_ = await BuildSection(one, indent, pages.ToArray(), 0, 1);
 
-						_ = await BuildSection(one, indent, pages.ToArray(), index, 1);
+						// BuildSection skips the TOC's own page, so if this section contains
+						// only that page, indent ends up empty; OneNote's schema rejects an
+						// empty OEChildren, so fall back to the plain paragraph form below
+						if (!indent.HasElements)
+						{
+							indent = null;
+						}
+					}
 
+					if (indent is not null)
+					{
 						container.Add(new Paragraph(
 							new XElement(ns + "T", new XCData($"§ <a href=\"{link}\">{name}</a>")),
 							indent));
