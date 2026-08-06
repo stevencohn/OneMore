@@ -109,6 +109,8 @@ namespace River.OneMoreAddIn.Commands
 							AdjustOutlinePositions(page, ns, horizontal, vertical);
 						}
 
+						AdjustOutlinePositions(page, ns, horizontal, vertical);
+
 						await one.Update(page);
 					}
 				}
