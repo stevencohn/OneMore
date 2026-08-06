@@ -1598,6 +1598,10 @@ File OneNote (*.one)</value>
     <value>Misurare</value>
     <comment>label</comment>
   </data>
+  <data name="FitGridToTextDialog_snapOutlinesBox.Text" xml:space="preserve">
+    <value>Aggancia i contorni alla griglia</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="FitGridToTextDialog_Text" xml:space="preserve">
     <value>Adatta griglia al testo</value>
     <comment>dialog title</comment>

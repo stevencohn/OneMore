@@ -1592,6 +1592,10 @@ Archivo de OneNote (* .one)</value>
     <value>Tamaño</value>
     <comment>label</comment>
   </data>
+  <data name="FitGridToTextDialog_snapOutlinesBox.Text" xml:space="preserve">
+    <value>Ajustar contornos a la cuadrícula</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="FitGridToTextDialog_Text" xml:space="preserve">
     <value>Ajustar cuadrícula al texto</value>
     <comment>dialog title</comment>

@@ -1600,6 +1600,10 @@ OneNoteファイル (*.one)</value>
     <value>サイズ</value>
     <comment>label</comment>
   </data>
+  <data name="FitGridToTextDialog_snapOutlinesBox.Text" xml:space="preserve">
+    <value>アウトラインをグリッドにスナップする</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="FitGridToTextDialog_Text" xml:space="preserve">
     <value>グリッドをテキストに合わせる</value>
     <comment>dialog title</comment>

@@ -1597,6 +1597,10 @@ OneNote-bestand (*.one)</value>
     <value>Maat</value>
     <comment>label</comment>
   </data>
+  <data name="FitGridToTextDialog_snapOutlinesBox.Text" xml:space="preserve">
+    <value>Plaats contouren op het raster</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="FitGridToTextDialog_Text" xml:space="preserve">
     <value>Raster aanpassen aan tekst</value>
     <comment>dialog title</comment>

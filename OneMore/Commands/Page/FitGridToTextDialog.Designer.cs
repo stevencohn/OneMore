@@ -36,6 +36,7 @@
 			this.sizeLabel = new System.Windows.Forms.Label();
 			this.sizeBox = new System.Windows.Forms.NumericUpDown();
 			this.recommendBox = new River.OneMoreAddIn.UI.MoreTextBox();
+			this.snapOutlinesBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			((System.ComponentModel.ISupportInitialize)(this.sizeBox)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -46,7 +47,7 @@
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
-			this.okButton.Location = new System.Drawing.Point(264, 204);
+			this.okButton.Location = new System.Drawing.Point(264, 241);
 			this.okButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.okButton.Name = "okButton";
 			this.okButton.ShowBorder = true;
@@ -65,7 +66,7 @@
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
-			this.cancelButton.Location = new System.Drawing.Point(385, 204);
+			this.cancelButton.Location = new System.Drawing.Point(385, 241);
 			this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.ShowBorder = true;
@@ -157,6 +158,21 @@
 			this.recommendBox.ThemedBack = "ControlLight";
 			this.recommendBox.ThemedFore = null;
 			// 
+			// snapOutlinesBox
+			// 
+			this.snapOutlinesBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.snapOutlinesBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.snapOutlinesBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.snapOutlinesBox.Location = new System.Drawing.Point(23, 181);
+			this.snapOutlinesBox.Name = "snapOutlinesBox";
+			this.snapOutlinesBox.Size = new System.Drawing.Size(185, 25);
+			this.snapOutlinesBox.StylizeImage = false;
+			this.snapOutlinesBox.TabIndex = 11;
+			this.snapOutlinesBox.Text = "Snap outlines to grid";
+			this.snapOutlinesBox.ThemedBack = null;
+			this.snapOutlinesBox.ThemedFore = null;
+			this.snapOutlinesBox.UseVisualStyleBackColor = false;
+			// 
 			// FitGridToTextDialog
 			// 
 			this.AcceptButton = this.okButton;
@@ -164,7 +180,8 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(509, 252);
+			this.ClientSize = new System.Drawing.Size(509, 289);
+			this.Controls.Add(this.snapOutlinesBox);
 			this.Controls.Add(this.recommendBox);
 			this.Controls.Add(this.sizeBox);
 			this.Controls.Add(this.sizeLabel);
@@ -196,5 +213,6 @@
 		private System.Windows.Forms.Label sizeLabel;
 		private System.Windows.Forms.NumericUpDown sizeBox;
 		private UI.MoreTextBox recommendBox;
+		private UI.MoreCheckBox snapOutlinesBox;
 	}
 }

@@ -1597,6 +1597,10 @@ Plik OneNote (* .o)</value>
     <value>Rozmiar</value>
     <comment>label</comment>
   </data>
+  <data name="FitGridToTextDialog_snapOutlinesBox.Text" xml:space="preserve">
+    <value>Przyciągaj kontury do siatki</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="FitGridToTextDialog_Text" xml:space="preserve">
     <value>Dopasuj siatkę do tekstu</value>
     <comment>dialog title</comment>

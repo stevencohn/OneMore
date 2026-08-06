@@ -1600,6 +1600,10 @@
     <value>مقاس</value>
     <comment>label</comment>
   </data>
+  <data name="FitGridToTextDialog_snapOutlinesBox.Text" xml:space="preserve">
+    <value>التقط الخطوط العريضة للشبكة</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="FitGridToTextDialog_Text" xml:space="preserve">
     <value>احتواء الشبكة على النص</value>
     <comment>dialog title</comment>

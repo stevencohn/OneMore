@@ -422,16 +422,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("AliasSheet_Title", resourceCulture);
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Align Containers.
-        /// </summary>
-        internal static string AlignContainersDialog_Text {
-            get {
-                return ResourceManager.GetString("AlignContainersDialog.Text", resourceCulture);
-            }
-        }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Alignment.
         /// </summary>
@@ -440,7 +431,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("AlignContainersDialog_alignGroup.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Applies to all containers.
         /// </summary>
@@ -449,7 +440,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("AlignContainersDialog_allButton.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Applies to all containers.
         /// </summary>
@@ -458,7 +449,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("AlignContainersDialog_allLabel.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Left.
         /// </summary>
@@ -467,7 +458,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("AlignContainersDialog_leftButton.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Prevent overlaps.
         /// </summary>
@@ -476,7 +467,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("AlignContainersDialog_overlapCheckBox.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Right.
         /// </summary>
@@ -485,7 +476,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("AlignContainersDialog_rightButton.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Applies to {0} selected containers.
         /// </summary>
@@ -494,7 +485,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("AlignContainersDialog_selectedButton.Text", resourceCulture);
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Align Containers.
+        /// </summary>
+        internal static string AlignContainersDialog_Text {
+            get {
+                return ResourceManager.GetString("AlignContainersDialog.Text", resourceCulture);
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Top.
         /// </summary>
@@ -503,7 +503,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("AlignContainersDialog_topButton.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to The cache is an internal directory managed by OneNote to optimize its performance. The recommendation is to avoid manually deleting the contents of the cache directory unless it becomes corrupted or hampers the operation of OneNote..
         /// </summary>
@@ -1079,7 +1079,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("CollateTocCommand_indexTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to No pages were found in the selected notebooks with the specified hashtag(s)..
         /// </summary>
@@ -1088,7 +1088,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("CollateTocCommand_noPagesFound", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to A collated table of contents index page already exists in this section.
         ///
@@ -1099,7 +1099,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("CollateTocCommand_replaceQuestion", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Hashtags.
         /// </summary>
@@ -1108,7 +1108,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("CollateTocDialog_hashtagLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Select the notebooks to search and enter one or more hashtags. Pages tagged with at least one of the specified hashtags will have their tables of content collated into a single index page..
         /// </summary>
@@ -1117,7 +1117,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("CollateTocDialog_introLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Enter at least one hashtag..
         /// </summary>
@@ -1126,7 +1126,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("CollateTocDialog_noHashtags", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Select at least one notebook..
         /// </summary>
@@ -1135,7 +1135,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("CollateTocDialog_noNotebooks", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Collate Tables of Content.
         /// </summary>
@@ -1144,7 +1144,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("CollateTocDialog_Title", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to The language definition file for &apos;{0}&apos; could not be loaded. It may be malformed - see the log file for details..
         /// </summary>
@@ -2396,16 +2396,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("EmbedDialog_bookmarkLabel.Text", resourceCulture);
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Paragraph.
-        /// </summary>
-        internal static string EmbedDialog_paragraphLabel_Text {
-            get {
-                return ResourceManager.GetString("EmbedDialog_paragraphLabel.Text", resourceCulture);
-            }
-        }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to End tag.
         /// </summary>
@@ -2470,6 +2461,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Paragraph.
+        /// </summary>
+        internal static string EmbedDialog_paragraphLabel_Text {
+            get {
+                return ResourceManager.GetString("EmbedDialog_paragraphLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Plain text.
         /// </summary>
         internal static string EmbedDialog_plaintextRadio_Text {
@@ -2508,7 +2508,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("EmbedDialog_Title", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Use link on clipboard instead.
         /// </summary>
@@ -2517,7 +2517,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("EmbedDialog_useClipboardLink.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Source page contains no content.
         /// </summary>
@@ -3653,6 +3653,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Snap outlines to grid.
+        /// </summary>
+        internal static string FitGridToTextDialog_snapOutlinesBox_Text {
+            get {
+                return ResourceManager.GetString("FitGridToTextDialog_snapOutlinesBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fit Grid to Text.
         /// </summary>
         internal static string FitGridToTextDialog_Text {
@@ -4614,7 +4623,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportDialog_wordGroup.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Importing {0}....
         /// </summary>
@@ -4623,7 +4632,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportEvernoteCommand_Importing", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Could not read {0}.
         /// </summary>
@@ -4632,7 +4641,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportEvernoteCommand_ReadError", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Skip the whole note instead of inserting a placeholder for encrypted content.
         /// </summary>
@@ -4641,7 +4650,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportEvernoteDialog_abortCheckBox.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to File.
         /// </summary>
@@ -4650,7 +4659,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportEvernoteDialog_fileLabel.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Include subfolders when a folder is selected.
         /// </summary>
@@ -4659,7 +4668,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportEvernoteDialog_includeSubfoldersCheckBox.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Select one or more Evernote (.enex) export files, or a folder, to import.
         /// </summary>
@@ -4668,7 +4677,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportEvernoteDialog_introLabel.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Evernote export files (*.enex)|*.enex.
         /// </summary>
@@ -4677,7 +4686,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportEvernoteDialog_OpenFileFilter", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Choose Evernote export file(s) to import.
         /// </summary>
@@ -4686,7 +4695,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportEvernoteDialog_OpenFileTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Choose a folder of Evernote export files to import.
         /// </summary>
@@ -4695,7 +4704,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportEvernoteDialog_OpenFolderTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Import Evernote.
         /// </summary>
@@ -4704,7 +4713,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ImportEvernoteDialog_Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Error importing favorites.
         /// </summary>
@@ -5708,7 +5717,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("InsertTocCommand_NoHeadings", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Saving page....
         /// </summary>
@@ -5717,7 +5726,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("InsertTocCommand_Saving", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Table of Contents.
         /// </summary>
@@ -9566,7 +9575,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribCollapsePagesButton_Screentip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Collate Tables of Content.
         /// </summary>
@@ -9575,7 +9584,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribCollateTocButton_Label", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Collate all tables of content from selected notebooks into a single index page..
         /// </summary>
@@ -9584,7 +9593,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribCollateTocButton_Screentip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Colorize.
         /// </summary>
@@ -10439,7 +10448,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribImportButton_Screentip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Import Evernote.
         /// </summary>
@@ -10448,7 +10457,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribImportEvernoteButton_Label", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Import notes from an Evernote (.enex) export file.
         /// </summary>
@@ -10457,7 +10466,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribImportEvernoteButton_Screentip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Import Favorites.
         /// </summary>
@@ -13826,7 +13835,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enter a page title query. Prefix with &quot;&gt;&quot; to sort by most recently modified; use &quot;\name&quot; to scope to a notebook (&quot;\*&quot; for all), and &quot;#tag&quot; to filter by hashtag..
+        ///   Looks up a localized string similar to Enter a page title query. Searches all notebooks by default. Use &quot;\name&quot; to scope to a matching notebook, &quot;\\&quot; for the current notebook only, and &quot;#tag&quot; to filter by hashtag. Prefix with &quot;&gt;&quot; to sort by most recently modified..
         /// </summary>
         internal static string SearchTitleDialog_introLabel_Text {
             get {
