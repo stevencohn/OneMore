@@ -671,6 +671,11 @@ namespace River.OneMoreAddIn.Models
 			// there always seems to be two MediaIndex elements, one for the media file and one
 			// for the citation; only when the recording is complete will the first instance be
 			// accompanied by a MediaFile element, so we need to check all unique IDs
+			//
+			// content pasted from the web can include multiple duplicate MediaIndex elements
+			// that each appear active but have no MediaFile; that duplication is impossible for
+			// a genuine in-progress recording, which will only ever produce exactly one active
+			// MediaIndex, so we only treat the page as having active media in that single case
 
 			var empty = Guid.Empty.ToString("B");
 
@@ -682,6 +687,8 @@ namespace River.OneMoreAddIn.Models
 				.Where(a => a != empty)
 				.Distinct();
 
+			var activeCount = 0;
+
 			foreach (var mediaID in mediaIDs)
 			{
 				var file = Root.Descendants(Namespace + "MediaFile")
@@ -691,11 +698,11 @@ namespace River.OneMoreAddIn.Models
 				if (file is null)
 				{
 					// MediaFile element exists only after recording has stopped
-					return true;
+					activeCount++;
 				}
 			}
 
-			return false;
+			return activeCount == 1;
 		}
 
 
