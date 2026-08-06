@@ -852,6 +852,12 @@
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
         onAction="FitGridToTextCmd"/>
+      <button
+        id="ribSnapToGridButton"
+        imageMso="SnapToGrid"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="SnapToGridCmd"/>
       <menuSeparator id="ribPageMenuUtility"/>
       <button
         id="ribUpdatePageTimeButton"
