@@ -4,7 +4,9 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Styles;
+	using System;
 	using System.Drawing;
 	using System.Globalization;
 	using System.Linq;
@@ -43,14 +45,15 @@ namespace River.OneMoreAddIn.Commands
 			try
 			{
 				await using var one = new OneNote(out var page, out var ns, OneNote.PageDetail.Basic);
-				var rule = page.Root
+				var ruleLines = page.Root
 					.Elements(ns + "PageSettings")
 					.Elements(ns + "RuleLines")
-					.Where(e => e.Attribute("visible")?.Value == "true")
-					.Select(e => e.Element(ns + "Horizontal"))
-					.FirstOrDefault();
+					.FirstOrDefault(e => e.Attribute("visible")?.Value == "true");
 
-				if (rule == null)
+				var horizontal = ruleLines?.Element(ns + "Horizontal");
+				var vertical = ruleLines?.Element(ns + "Vertical");
+
+				if (horizontal == null && vertical == null)
 				{
 					ShowError(Resx.FitGridToTextCommand_noGrid);
 					return;
@@ -89,8 +92,6 @@ namespace River.OneMoreAddIn.Commands
 
 				if (common != null)
 				{
-					//var quickStyle = quickStyles.FirstOrDefault(s => s.Index.ToString() == common.Index);
-
 					var analyzer = new StyleAnalyzer(page.Root);
 					var style = analyzer.CollectStyleFrom(common.Element);
 					var height = CalculateLineHeight(style);
@@ -98,13 +99,12 @@ namespace River.OneMoreAddIn.Commands
 					using var dialog = new FitGridToTextDialog(style.FontSize, height);
 					if (dialog.ShowDialog(owner) == System.Windows.Forms.DialogResult.OK)
 					{
-						rule.Attribute("spacing").Value = dialog.Spacing.ToString();
+						var spacing = dialog.Spacing.ToString(CultureInfo.InvariantCulture);
 
-						var vertical = rule.Parent.Element(ns + "Vertical");
-						if (vertical != null)
-						{
-							vertical.Attribute("spacing").Value = dialog.Spacing.ToString();
-						}
+						horizontal?.SetAttributeValue("spacing", spacing);
+						vertical?.SetAttributeValue("spacing", spacing);
+
+						AdjustOutlinePositions(page, ns, horizontal, vertical);
 
 						await one.Update(page);
 					}
@@ -117,7 +117,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private double CalculateLineHeight(StyleBase style)
+		private static double CalculateLineHeight(StyleBase style)
 		{
 			using var image = new Bitmap(1, 1);
 			using var g = Graphics.FromImage(image);
@@ -135,6 +135,51 @@ namespace River.OneMoreAddIn.Commands
 			// and for %150 desktop scaling...
 
 			return (size1.Height - linespace) / (g.DpiY / 144) / 2;
+		}
+
+
+		/// <summary>
+		/// Snaps every body outline's Position to the nearest multiple of the grid
+		/// spacing, X to the Vertical spacing and Y to the Horizontal spacing.
+		/// </summary>
+		/// <param name="page">The page whose outlines will be adjusted</param>
+		/// <param name="ns">The page namespace</param>
+		/// <param name="horizontal">The RuleLines Horizontal element, or null</param>
+		/// <param name="vertical">The RuleLines Vertical element, or null</param>
+		private static void AdjustOutlinePositions(
+			Page page, XNamespace ns, XElement horizontal, XElement vertical)
+		{
+			var ySpacing = horizontal?.GetAttributeDouble("spacing") ?? double.NaN;
+			var xSpacing = vertical?.GetAttributeDouble("spacing") ?? double.NaN;
+
+			foreach (var outline in page.BodyOutlines)
+			{
+				var position = outline.Element(ns + "Position");
+				if (position == null)
+				{
+					continue;
+				}
+
+				if (!double.IsNaN(xSpacing) && xSpacing > 0)
+				{
+					var x = position.GetAttributeDouble("x");
+					position.SetAttributeValue("x",
+						SnapToGrid(x, xSpacing).ToString(CultureInfo.InvariantCulture));
+				}
+
+				if (!double.IsNaN(ySpacing) && ySpacing > 0)
+				{
+					var y = position.GetAttributeDouble("y");
+					position.SetAttributeValue("y",
+						SnapToGrid(y, ySpacing).ToString(CultureInfo.InvariantCulture));
+				}
+			}
+		}
+
+
+		private static double SnapToGrid(double value, double spacing)
+		{
+			return Math.Round(value / spacing) * spacing;
 		}
 	}
 }
