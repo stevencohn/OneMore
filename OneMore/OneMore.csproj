@@ -214,6 +214,7 @@
     </Compile>
     <Compile Include="Commands\Office\OutlookContactCommand.cs" />
     <Compile Include="Commands\Office\ReportControlHelper.cs" />
+    <Compile Include="Commands\Page\SnapToGridCommand.cs" />
     <Compile Include="Commands\References\IndexModifiedCommand.cs" />
     <Compile Include="Commands\Settings\MarkdownSheet.cs">
       <SubType>UserControl</SubType>
