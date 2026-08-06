@@ -1601,6 +1601,10 @@ OneNote 文件 (*.one)</value>
     <value>尺寸</value>
     <comment>label</comment>
   </data>
+  <data name="FitGridToTextDialog_snapOutlinesBox.Text" xml:space="preserve">
+    <value>将轮廓对齐到网格</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="FitGridToTextDialog_Text" xml:space="preserve">
     <value>调整单元格以适应文本</value>
     <comment>dialog title</comment>

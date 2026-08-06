@@ -1,11 +1,11 @@
 ﻿//************************************************************************************************
-// Copyright © 2021 Steven M Cohn.  All rights reserved.
+// Copyright © 2021 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
 {
 	using System;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	internal partial class FitGridToTextDialog : UI.MoreForm
@@ -26,6 +26,7 @@ namespace River.OneMoreAddIn.Commands
 					"autoButton",
 					"customButton",
 					"sizeLabel",
+					"snapOutlinesBox",
 					"okButton=word_OK",
 					"cancelButton=word_Cancel"
 				});
@@ -42,6 +43,9 @@ namespace River.OneMoreAddIn.Commands
 			recommendBox.Text = string.Format(
 				Resx.FitGridToTextDialog_recommendation, fontSize, this.spacing);
 		}
+
+
+		public bool SnapOutlines => snapOutlinesBox.Checked;
 
 
 		public double Spacing => customButton.Enabled ? (double)sizeBox.Value : spacing;

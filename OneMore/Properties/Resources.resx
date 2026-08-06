@@ -1606,6 +1606,10 @@ OneNote File (*.one)</value>
     <value>Size</value>
     <comment>label</comment>
   </data>
+  <data name="FitGridToTextDialog_snapOutlinesBox.Text" xml:space="preserve">
+    <value>Snap outlines to grid</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="FitGridToTextDialog_Text" xml:space="preserve">
     <value>Fit Grid to Text</value>
     <comment>dialog title</comment>
