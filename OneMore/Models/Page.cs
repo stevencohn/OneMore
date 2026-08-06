@@ -672,19 +672,26 @@ namespace River.OneMoreAddIn.Models
 			// for the citation; only when the recording is complete will the first instance be
 			// accompanied by a MediaFile element, so we need to check all unique IDs
 			//
-			// content pasted from the web can include multiple duplicate MediaIndex elements
-			// that each appear active but have no MediaFile; that duplication is impossible for
-			// a genuine in-progress recording, which will only ever produce exactly one active
-			// MediaIndex, so we only treat the page as having active media in that single case
+			// content pasted from the web can include whole MediaIndex elements duplicated
+			// verbatim - same timeIndex and mediaID - each appearing active but with no
+			// MediaFile; that duplication is impossible for a genuine in-progress recording,
+			// so we discard any (timeIndex, mediaID) pair that repeats and only look for
+			// activity among what remains. A genuine in-progress recording will only ever
+			// produce exactly one such active MediaIndex
 
 			var empty = Guid.Empty.ToString("B");
 
 			var mediaIDs = Root
 				.Descendants(Namespace + "MediaIndex")
-				.Elements(Namespace + "MediaReference")
-				.Attributes("mediaID")
-				.Select(a => a.Value)
-				.Where(a => a != empty)
+				.Select(index => new
+				{
+					TimeIndex = (string)index.Attribute("timeIndex"),
+					MediaID = (string)index.Element(Namespace + "MediaReference")?.Attribute("mediaID")
+				})
+				.Where(p => !string.IsNullOrEmpty(p.MediaID) && p.MediaID != empty)
+				.GroupBy(p => new { p.TimeIndex, p.MediaID })
+				.Where(g => g.Count() == 1)
+				.Select(g => g.Key.MediaID)
 				.Distinct();
 
 			var activeCount = 0;
@@ -705,6 +712,13 @@ namespace River.OneMoreAddIn.Models
 			return activeCount == 1;
 		}
 
+		/*
+OneNote let's users record audio and video on a page. Only one recording can be active at a time. 
+
+This ticket describes a case where there are multiple "active" media elements on the page at the same time, which should be impossible. The user copied the content from the Web and pasted it onto their page. This copied content contained multiple rogue active media elements.
+
+The fix is to ignore multiple active media elements.
+		 */
 
 		/// <summary>
 		/// Determines if the page is configured for right-to-left text or the Windows
