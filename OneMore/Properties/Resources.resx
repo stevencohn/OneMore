@@ -5378,6 +5378,14 @@ Help Tab</value>
     <value>Stop and close the Timer window</value>
     <comment>ribbon extras</comment>
   </data>
+  <data name="ribSnapToGridButton_Label" xml:space="preserve">
+    <value>Snap to Grid</value>
+    <comment>ribbon page NODUP</comment>
+  </data>
+  <data name="ribSnapToGridButton_Screentip" xml:space="preserve">
+    <value>Snap outline positions to the background grid</value>
+    <comment>ribbon page NODUP</comment>
+  </data>
   <data name="ribSnippetsMenu_Label" xml:space="preserve">
     <value>Snippets</value>
     <comment>ribbon menu NODUP</comment>
@@ -6056,6 +6064,14 @@ Are you sure you want to continue?</value>
   <data name="ShowXmlDialog_wrapBox.Text" xml:space="preserve">
     <value>Wrap text</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="SnapToGridCommand_noContainers" xml:space="preserve">
+    <value>No containers found on this page</value>
+    <comment>message</comment>
+  </data>
+  <data name="SnapToGridCommand_noGrid" xml:space="preserve">
+    <value>Enable grid lines before using this command</value>
+    <comment>message</comment>
   </data>
   <data name="SnippetsSheet_codeStyleBox.Text" xml:space="preserve">
     <value>Always apply "code" style to Code Box content</value>

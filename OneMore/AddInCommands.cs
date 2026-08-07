@@ -1046,6 +1046,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<TimerWindowCommand>(TimerWindow.ShutdownCmd);
 
 
+		[Command("ribSnapToGridButton_Label", Keys.None, "ribPageMenu")]
+		public async Task SnapToGridCmd(IRibbonControl control)
+			=> await factory.Run<SnapToGridCommand>();
+
+
 		[Command("ribSortButton_Label", Keys.None)]
 		public async Task SortCmd(IRibbonControl control)
 			=> await factory.Run<SortCommand>();

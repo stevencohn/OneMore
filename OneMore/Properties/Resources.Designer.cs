@@ -12659,6 +12659,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Snap to Grid.
+        /// </summary>
+        internal static string ribSnapToGridButton_Label {
+            get {
+                return ResourceManager.GetString("ribSnapToGridButton_Label", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Snap outline positions to the background grid.
+        /// </summary>
+        internal static string ribSnapToGridButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribSnapToGridButton_Screentip", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Snippets.
         /// </summary>
         internal static string ribSnippetsMenu_Label {
@@ -14155,6 +14173,24 @@ namespace River.OneMoreAddIn.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to No containers found on this page.
+        /// </summary>
+        internal static string SnapToGridCommand_noContainers {
+            get {
+                return ResourceManager.GetString("SnapToGridCommand_noContainers", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Enable grid lines before using this command.
+        /// </summary>
+        internal static string SnapToGridCommand_noGrid {
+            get {
+                return ResourceManager.GetString("SnapToGridCommand_noGrid", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
