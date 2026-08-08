@@ -4371,6 +4371,14 @@ Help Tab</value>
     <value>Download and insert referenced images</value>
     <comment>ribbon references</comment>
   </data>
+  <data name="ribCompleteHashtagButton_Label" xml:space="preserve">
+    <value>Complete Hashtag</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribCompleteHashtagButton_Screentip" xml:space="preserve">
+    <value>Complete the current word into a hashtag chosen from an autocomplete list (Alt+G)</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribHashtaggerButton_Label" xml:space="preserve">
     <value>Insert Hashtags</value>
     <comment>ribbon search</comment>

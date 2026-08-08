@@ -137,6 +137,32 @@ namespace River.OneMoreAddIn.UI
 				(rect.Top + ((rect.Bottom - rect.Top) / 2)) - (Height / 2) - yoffset
 				);
 
+			RunModelessCore(closedAction);
+		}
+
+
+		/// <summary>
+		/// Runs the current form as a modeless window positioned at an explicit screen
+		/// location rather than centered over the OneNote window, e.g. for a popup that
+		/// must be anchored near a specific point on the page.
+		/// </summary>
+		/// <param name="location">The explicit screen location for the form</param>
+		/// <param name="closedAction">
+		/// An event handler to run when the modeless dialog is closed
+		/// </param>
+		public void RunModeless(Point location, EventHandler closedAction = null)
+		{
+			StartPosition = FormStartPosition.Manual;
+			modeless = true;
+			ManualLocation = true;
+			Location = location;
+
+			RunModelessCore(closedAction);
+		}
+
+
+		private void RunModelessCore(EventHandler closedAction)
+		{
 			if (closedAction != null)
 			{
 				ModelessClosed += (sender, e) => { closedAction(sender, e); };
