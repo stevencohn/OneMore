@@ -66,6 +66,13 @@ namespace River.OneMoreAddIn.Commands
 
 			try
 			{
+				if (dialog != null)
+				{
+					// single instance
+					dialog.Elevate();
+					return;
+				}
+
 				string word;
 				System.IntPtr windowHandle;
 
@@ -119,18 +126,18 @@ namespace River.OneMoreAddIn.Commands
 					logger.Verbose("CompleteHashtagCommand.Execute: on message thread, " +
 						$"Application.MessageLoop={Application.MessageLoop}");
 
-					dialog.RunModeless(location, async (sender, e) =>
-					{
+				dialog.RunModeless(location, async (sender, e) =>
+				{
 						logger.Verbose("CompleteHashtagCommand: RunModeless closedAction invoked, " +
 							$"DialogResult={(sender as CompleteHashtagDialog)?.DialogResult}");
 
-						var d = sender as CompleteHashtagDialog;
-						if (d.DialogResult == DialogResult.OK)
-						{
+					var d = sender as CompleteHashtagDialog;
+					if (d.DialogResult == DialogResult.OK)
+					{
 							try
 							{
-								await ApplyTag(d.SelectedTag);
-							}
+						await ApplyTag(d.SelectedTag);
+					}
 							catch (System.Exception exc)
 							{
 								// this callback runs detached from Execute()'s call stack, after
@@ -139,7 +146,7 @@ namespace River.OneMoreAddIn.Commands
 								logger.WriteLine("CompleteHashtagCommand: error applying tag", exc);
 							}
 						}
-					});
+				});
 				});
 			}
 			finally
