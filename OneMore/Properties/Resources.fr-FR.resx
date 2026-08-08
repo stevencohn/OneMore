@@ -3706,6 +3706,10 @@ Sélectionnez Non pour conserver une ligne vide entre les paragraphes</value>
     <value>Ajouter une légende à l'image sélectionnée</value>
     <comment>ribbon images</comment>
   </data>
+  <data name="ribAddFavoriteButton_Label" xml:space="preserve">
+    <value>Ajouter une page aux favoris</value>
+    <comment>page context menu</comment>
+  </data>
   <data name="ribAddFavoritePageButton_Label" xml:space="preserve">
     <value>Ajouter la page actuelle</value>
     <comment>favorites menu command</comment>
@@ -5347,6 +5351,14 @@ Onglet Aide</value>
     <value>Arrêtez et fermez la fenêtre du minuteur</value>
     <comment>ribbon extras</comment>
   </data>
+  <data name="ribSnapToGridButton_Label" xml:space="preserve">
+    <value>Accrocher à la grille</value>
+    <comment>ribbon page NODUP</comment>
+  </data>
+  <data name="ribSnapToGridButton_Screentip" xml:space="preserve">
+    <value>Aligner les positions du contour sur la grille d'arrière-plan</value>
+    <comment>ribbon page NODUP</comment>
+  </data>
   <data name="ribSnippetsMenu_Label" xml:space="preserve">
     <value>Extraits</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
@@ -6004,6 +6016,14 @@ Des modifications incorrectes peuvent entraîner la perte de données.
   <data name="ShowXmlDialog_wrapBox.Text" xml:space="preserve">
     <value>Texte enveloppant</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="SnapToGridCommand_noContainers" xml:space="preserve">
+    <value>Aucun conteneur trouvé sur cette page</value>
+    <comment>message</comment>
+  </data>
+  <data name="SnapToGridCommand_noGrid" xml:space="preserve">
+    <value>Activer les lignes de quadrillage avant d'utiliser cette commande</value>
+    <comment>message</comment>
   </data>
   <data name="SnippetsSheet_codeStyleBox.Text" xml:space="preserve">
     <value>Appliquez toujours le style « code » au contenu de la Code Box</value>

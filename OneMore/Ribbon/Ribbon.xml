@@ -78,6 +78,12 @@
     </contextMenu>
     <contextMenu idMso="ContextMenuPage">
       <button
+        id="ctxAddFavoriteButton"
+        imageMso="AddToFavorites"
+        getLabel="GetRibbonLabel"
+        onAction="AddFavoritePageCmd"
+        insertBeforeMso="RenamePageOneNote"/>
+      <button
         id="ctxDuplicatePageButton"
         imageMso="PasteDuplicate"
         getLabel="GetRibbonLabel"
@@ -118,13 +124,6 @@
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
         onAction="PageColorCmd"
-        insertBeforeMso="RenamePageOneNote"/>
-      <button
-        id="ctxSplitButton"
-        imageMso="MasterDocumentSplitSubdocuments"
-        getLabel="GetRibbonLabel"
-        getScreentip="GetRibbonScreentip"
-        onAction="SplitCmd"
         insertBeforeMso="RenamePageOneNote"/>
       <button
         id="ctxSortPageButton"

@@ -3694,6 +3694,10 @@ Seleccione No para mantener una línea vacía entre los párrafos</value>
     <value>Agregar título a la imagen seleccionada</value>
     <comment>ribbon images</comment>
   </data>
+  <data name="ribAddFavoriteButton_Label" xml:space="preserve">
+    <value>Agregar página a favoritos</value>
+    <comment>page context menu</comment>
+  </data>
   <data name="ribAddFavoritePageButton_Label" xml:space="preserve">
     <value>Añadir página actual</value>
     <comment>favorites menu command</comment>
@@ -5335,6 +5339,14 @@ Pestaña Ayuda</value>
     <value>Detener y cerrar la ventana del temporizador</value>
     <comment>ribbon extras</comment>
   </data>
+  <data name="ribSnapToGridButton_Label" xml:space="preserve">
+    <value>Ajustar a cuadrícula</value>
+    <comment>ribbon page NODUP</comment>
+  </data>
+  <data name="ribSnapToGridButton_Screentip" xml:space="preserve">
+    <value>Ajustar posiciones de contorno a la cuadrícula de fondo</value>
+    <comment>ribbon page NODUP</comment>
+  </data>
   <data name="ribSnippetsMenu_Label" xml:space="preserve">
     <value>Fragmentos</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
@@ -5992,6 +6004,14 @@ Estás seguro de que quieres continuar?</value>
   <data name="ShowXmlDialog_wrapBox.Text" xml:space="preserve">
     <value>Ajustar texto</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="SnapToGridCommand_noContainers" xml:space="preserve">
+    <value>No se encontraron contenedores en esta página.</value>
+    <comment>message</comment>
+  </data>
+  <data name="SnapToGridCommand_noGrid" xml:space="preserve">
+    <value>Habilite las líneas de cuadrícula antes de usar este comando</value>
+    <comment>message</comment>
   </data>
   <data name="SnippetsSheet_codeStyleBox.Text" xml:space="preserve">
     <value>Aplique siempre el estilo "código" al contenido del cuadro de código</value>

@@ -8864,6 +8864,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Page to Favorites.
+        /// </summary>
+        internal static string ribAddFavoriteButton_Label {
+            get {
+                return ResourceManager.GetString("ribAddFavoriteButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add current page.
         /// </summary>
         internal static string ribAddFavoritePageButton_Label {
@@ -12666,7 +12675,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribSnapToGridButton_Label", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Snap outline positions to the background grid.
         /// </summary>
@@ -12675,7 +12684,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribSnapToGridButton_Screentip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Snippets.
         /// </summary>
@@ -14181,7 +14190,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("SnapToGridCommand_noContainers", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Enable grid lines before using this command.
         /// </summary>
@@ -14190,7 +14199,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("SnapToGridCommand_noGrid", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>

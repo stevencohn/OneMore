@@ -3694,6 +3694,10 @@ Wähle Nein, um eine leere Zeile zwischen den Absätzen zu halten</value>
     <value>Bildunterschrift zum ausgewählten Bild hinzufügen</value>
     <comment>ribbon images</comment>
   </data>
+  <data name="ribAddFavoriteButton_Label" xml:space="preserve">
+    <value>Seite zu Favoriten hinzufügen</value>
+    <comment>page context menu</comment>
+  </data>
   <data name="ribAddFavoritePageButton_Label" xml:space="preserve">
     <value>Aktuelle Seite hinzufügen</value>
     <comment>favorites menu command</comment>
@@ -5336,6 +5340,14 @@ Registerkarte „Hilfe“.</value>
     <value>Halten Sie an und schließen Sie das Timer-Fenster</value>
     <comment>ribbon extras</comment>
   </data>
+  <data name="ribSnapToGridButton_Label" xml:space="preserve">
+    <value>Am Raster ausrichten</value>
+    <comment>ribbon page NODUP</comment>
+  </data>
+  <data name="ribSnapToGridButton_Screentip" xml:space="preserve">
+    <value>Umrisspositionen am Hintergrundraster ausrichten</value>
+    <comment>ribbon page NODUP</comment>
+  </data>
   <data name="ribSnippetsMenu_Label" xml:space="preserve">
     <value>Snippets</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
@@ -5994,6 +6006,14 @@ Bist du dir sicher, dass du weitermachen willst?</value>
   <data name="ShowXmlDialog_wrapBox.Text" xml:space="preserve">
     <value>Zeilenumbruch</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="SnapToGridCommand_noContainers" xml:space="preserve">
+    <value>Auf dieser Seite wurden keine Container gefunden</value>
+    <comment>message</comment>
+  </data>
+  <data name="SnapToGridCommand_noGrid" xml:space="preserve">
+    <value>Aktivieren Sie Rasterlinien, bevor Sie diesen Befehl verwenden</value>
+    <comment>message</comment>
   </data>
   <data name="SnippetsSheet_codeStyleBox.Text" xml:space="preserve">
     <value>Wenden Sie immer den „Code“-Stil auf den Inhalt der Codebox an</value>

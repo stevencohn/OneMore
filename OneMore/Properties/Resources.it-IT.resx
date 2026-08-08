@@ -3699,6 +3699,10 @@ Selezionare No per mantenere una riga vuota tra i paragrafi</value>
     <value>Aggiungi didascalia all'immagine selezionata</value>
     <comment>ribbon images</comment>
   </data>
+  <data name="ribAddFavoriteButton_Label" xml:space="preserve">
+    <value>Aggiungi pagina ai preferiti</value>
+    <comment>page context menu</comment>
+  </data>
   <data name="ribAddFavoritePageButton_Label" xml:space="preserve">
     <value>Aggiungi la pagina corrente</value>
     <comment>ribbon favorites</comment>
@@ -5342,6 +5346,14 @@ Scheda Aiuto</value>
     <value>Arresta e chiudi la finestra del timer</value>
     <comment>ribbon extras</comment>
   </data>
+  <data name="ribSnapToGridButton_Label" xml:space="preserve">
+    <value>Aggancia alla griglia</value>
+    <comment>ribbon page NODUP</comment>
+  </data>
+  <data name="ribSnapToGridButton_Screentip" xml:space="preserve">
+    <value>Blocca le posizioni dei contorni sulla griglia di sfondo</value>
+    <comment>ribbon page NODUP</comment>
+  </data>
   <data name="ribSnippetsMenu_Label" xml:space="preserve">
     <value>Snippet</value>
     <comment>ribbon menu NODUP</comment>
@@ -6000,6 +6012,14 @@ Sei sicuro di voler continuare?</value>
   <data name="ShowXmlDialog_wrapBox.Text" xml:space="preserve">
     <value>Avvolgi il testo</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="SnapToGridCommand_noContainers" xml:space="preserve">
+    <value>Nessun contenitore trovato in questa pagina</value>
+    <comment>message</comment>
+  </data>
+  <data name="SnapToGridCommand_noGrid" xml:space="preserve">
+    <value>Abilita le linee della griglia prima di utilizzare questo comando</value>
+    <comment>message</comment>
   </data>
   <data name="SnippetsSheet_codeStyleBox.Text" xml:space="preserve">
     <value>Applica sempre lo stile "codice" al contenuto della casella codice</value>
