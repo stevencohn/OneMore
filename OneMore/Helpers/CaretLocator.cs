@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn
 	using System.Drawing;
 	using System.Runtime.InteropServices;
 	using System.Windows.Automation;
+	using System.Windows.Forms;
 
 
 	/// <summary>
@@ -34,10 +35,10 @@ namespace River.OneMoreAddIn
 				TryLocate("automation", () => LocateCaretViaAutomation(oneNoteWindowHandle)) ??
 				TryLocate("guithread", () => LocateCaretViaGuiThread(oneNoteWindowHandle));
 
-			if (rectangle.HasValue)
-			{
-				return rectangle.Value;
-			}
+				if (rectangle.HasValue)
+				{
+					return rectangle.Value;
+				}
 
 			var center = GetWindowCenter(oneNoteWindowHandle);
 			Logger.Current.Verbose(
@@ -64,6 +65,9 @@ namespace River.OneMoreAddIn
 				Logger.Current.WriteLine($"CaretLocator: [{strategy}] threw", exc);
 				return null;
 			}
+
+			var cursor = Cursor.Position;
+			return new Rectangle(cursor.X, cursor.Y, 0, 0);
 		}
 
 
@@ -71,6 +75,7 @@ namespace River.OneMoreAddIn
 		// may not expose this at all; this only succeeds if some descendant advertises support.
 		private static Rectangle? LocateCaretViaAutomation(IntPtr handle)
 		{
+			var handle = GetTopLevelWindow(oneNoteWindowHandle);
 			if (handle == IntPtr.Zero)
 			{
 				Logger.Current.Verbose("CaretLocator.automation: window handle is zero");
@@ -181,7 +186,7 @@ namespace River.OneMoreAddIn
 			}
 
 			var topLeft = new Native.Point
-			{
+		{
 				X = info.rcCaret.Left,
 				Y = info.rcCaret.Top
 			};
@@ -195,14 +200,14 @@ namespace River.OneMoreAddIn
 			var width = info.rcCaret.Right - info.rcCaret.Left;
 			var height = info.rcCaret.Bottom - info.rcCaret.Top;
 			if (height <= 0)
-			{
+				{
 				Logger.Current.Verbose(
 					$"CaretLocator.guithread: degenerate caret rect, height={height}");
 				return null;
 			}
 
 			return new Rectangle(topLeft.X, topLeft.Y, Math.Max(width, 1), height);
-		}
+				}
 
 
 		private static Rectangle GetWindowCenter(IntPtr handle)
