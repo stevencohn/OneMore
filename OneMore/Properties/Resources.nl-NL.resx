@@ -3695,6 +3695,10 @@ Selecteer NO om één lege regel tussen paragrafen te behouden</value>
     <value>Voeg een bijschrift toe aan de geselecteerde afbeelding</value>
     <comment>ribbon images</comment>
   </data>
+  <data name="ribAddFavoriteButton_Label" xml:space="preserve">
+    <value>Pagina toevoegen aan favorieten</value>
+    <comment>page context menu</comment>
+  </data>
   <data name="ribAddFavoritePageButton_Label" xml:space="preserve">
     <value>Huidige pagina toevoegen</value>
     <comment>favorites menu command</comment>
@@ -5336,6 +5340,14 @@ Tabblad Help</value>
     <value>Stop en sluit het timervenster</value>
     <comment>ribbon extras</comment>
   </data>
+  <data name="ribSnapToGridButton_Label" xml:space="preserve">
+    <value>Uitlijnen op raster</value>
+    <comment>ribbon page NODUP</comment>
+  </data>
+  <data name="ribSnapToGridButton_Screentip" xml:space="preserve">
+    <value>Plaats omtrekposities op het achtergrondraster</value>
+    <comment>ribbon page NODUP</comment>
+  </data>
   <data name="ribSnippetsMenu_Label" xml:space="preserve">
     <value>Fragmenten</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
@@ -5993,6 +6005,14 @@ Weet je zeker dat je door wilt gaan?</value>
   <data name="ShowXmlDialog_wrapBox.Text" xml:space="preserve">
     <value>Omloop tekst</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="SnapToGridCommand_noContainers" xml:space="preserve">
+    <value>Er zijn geen containers gevonden op deze pagina</value>
+    <comment>message</comment>
+  </data>
+  <data name="SnapToGridCommand_noGrid" xml:space="preserve">
+    <value>Schakel rasterlijnen in voordat u deze opdracht gebruikt</value>
+    <comment>message</comment>
   </data>
   <data name="SnippetsSheet_codeStyleBox.Text" xml:space="preserve">
     <value>Pas altijd de 'code'-stijl toe op Code Box-inhoud</value>

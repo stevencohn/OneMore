@@ -3709,6 +3709,10 @@ ISO-code then comma then language name</comment>
     <value>在所选图像底部添加说明文字</value>
     <comment>ribbon images</comment>
   </data>
+  <data name="ribAddFavoriteButton_Label" xml:space="preserve">
+    <value>将页面添加到收藏夹</value>
+    <comment>page context menu</comment>
+  </data>
   <data name="ribAddFavoritePageButton_Label" xml:space="preserve">
     <value>收藏当前页面</value>
     <comment>favorites menu command</comment>
@@ -5350,6 +5354,14 @@ ISO-code then comma then language name</comment>
     <value>停止并关闭计时器窗口</value>
     <comment>ribbon extras</comment>
   </data>
+  <data name="ribSnapToGridButton_Label" xml:space="preserve">
+    <value>对齐网格</value>
+    <comment>ribbon page NODUP</comment>
+  </data>
+  <data name="ribSnapToGridButton_Screentip" xml:space="preserve">
+    <value>将轮廓位置对齐到背景网格</value>
+    <comment>ribbon page NODUP</comment>
+  </data>
   <data name="ribSnippetsMenu_Label" xml:space="preserve">
     <value>片段</value>
     <comment>Ribbon OneMore menu item, Snippets...</comment>
@@ -6011,6 +6023,14 @@ ISO-code then comma then language name</comment>
   <data name="ShowXmlDialog_wrapBox.Text" xml:space="preserve">
     <value>自动换行</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="SnapToGridCommand_noContainers" xml:space="preserve">
+    <value>该页面未找到容器</value>
+    <comment>message</comment>
+  </data>
+  <data name="SnapToGridCommand_noGrid" xml:space="preserve">
+    <value>使用此命令之前启用网格线</value>
+    <comment>message</comment>
   </data>
   <data name="SnippetsSheet_codeStyleBox.Text" xml:space="preserve">
     <value>始终将“代码”样式应用于代码框内容</value>

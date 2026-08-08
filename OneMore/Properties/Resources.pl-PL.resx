@@ -3695,6 +3695,10 @@ Wybierz Nie, aby zachować jedną pustą linię między akapitami</value>
     <value>Dodaj podpis do wybranego obrazu</value>
     <comment>ribbon images</comment>
   </data>
+  <data name="ribAddFavoriteButton_Label" xml:space="preserve">
+    <value>Dodaj stronę do ulubionych</value>
+    <comment>page context menu</comment>
+  </data>
   <data name="ribAddFavoritePageButton_Label" xml:space="preserve">
     <value>Dodaj bieżącą stronę</value>
     <comment>favorites menu command</comment>
@@ -5336,6 +5340,14 @@ Zakładka Pomoc</value>
     <value>Zatrzymaj i zamknij okno Timera</value>
     <comment>ribbon extras</comment>
   </data>
+  <data name="ribSnapToGridButton_Label" xml:space="preserve">
+    <value>Przyciągaj do siatki</value>
+    <comment>ribbon page NODUP</comment>
+  </data>
+  <data name="ribSnapToGridButton_Screentip" xml:space="preserve">
+    <value>Przyciągaj pozycje konturów do siatki tła</value>
+    <comment>ribbon page NODUP</comment>
+  </data>
   <data name="ribSnippetsMenu_Label" xml:space="preserve">
     <value>Fragmenty</value>
     <comment>Ribbon OneMore menu item, Snippets... NODUP</comment>
@@ -5993,6 +6005,14 @@ Jesteś pewien, że chcesz kontynuować?</value>
   <data name="ShowXmlDialog_wrapBox.Text" xml:space="preserve">
     <value>Owiń tekst</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="SnapToGridCommand_noContainers" xml:space="preserve">
+    <value>Na tej stronie nie znaleziono kontenerów</value>
+    <comment>message</comment>
+  </data>
+  <data name="SnapToGridCommand_noGrid" xml:space="preserve">
+    <value>Włącz linie siatki przed użyciem tego polecenia</value>
+    <comment>message</comment>
   </data>
   <data name="SnippetsSheet_codeStyleBox.Text" xml:space="preserve">
     <value>Zawsze stosuj styl „kodu” do zawartości Code Box</value>

@@ -3731,6 +3731,10 @@ Select No to keep one empty line between paragraphs</value>
     <value>Add caption to selected image</value>
     <comment>ribbon images</comment>
   </data>
+  <data name="ribAddFavoriteButton_Label" xml:space="preserve">
+    <value>Add Page to Favorites</value>
+    <comment>page context menu</comment>
+  </data>
   <data name="ribAddFavoritePageButton_Label" xml:space="preserve">
     <value>Add current page</value>
     <comment>ribbon favorites</comment>

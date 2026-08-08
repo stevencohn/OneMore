@@ -3702,6 +3702,10 @@ ISO-code then comma then language name</comment>
     <value>選択した画像にキャプションをつける</value>
     <comment>ribbon images</comment>
   </data>
+  <data name="ribAddFavoriteButton_Label" xml:space="preserve">
+    <value>ページをお気に入りに追加</value>
+    <comment>page context menu</comment>
+  </data>
   <data name="ribAddFavoritePageButton_Label" xml:space="preserve">
     <value>OneMore に関する情報を表示</value>
     <comment>ribbon favorites</comment>
@@ -5345,6 +5349,14 @@ ISO-code then comma then language name</comment>
     <value>タイマーウィンドウを停止して閉じます</value>
     <comment>ribbon extras</comment>
   </data>
+  <data name="ribSnapToGridButton_Label" xml:space="preserve">
+    <value>グリッドにスナップ</value>
+    <comment>ribbon page NODUP</comment>
+  </data>
+  <data name="ribSnapToGridButton_Screentip" xml:space="preserve">
+    <value>アウトラインの位置を背景グリッドにスナップします</value>
+    <comment>ribbon page NODUP</comment>
+  </data>
   <data name="ribSnippetsMenu_Label" xml:space="preserve">
     <value>スニペット</value>
     <comment>ribbon menu NODUP</comment>
@@ -6003,6 +6015,14 @@ ISO-code then comma then language name</comment>
   <data name="ShowXmlDialog_wrapBox.Text" xml:space="preserve">
     <value>テキストを折り返す</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="SnapToGridCommand_noContainers" xml:space="preserve">
+    <value>このページにはコンテナが見つかりません</value>
+    <comment>message</comment>
+  </data>
+  <data name="SnapToGridCommand_noGrid" xml:space="preserve">
+    <value>このコマンドを使用する前にグリッド線を有効にしてください</value>
+    <comment>message</comment>
   </data>
   <data name="SnippetsSheet_codeStyleBox.Text" xml:space="preserve">
     <value>コード ボックスのコンテンツには常に「コード」スタイルを適用します</value>
