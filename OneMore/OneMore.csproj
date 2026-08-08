@@ -170,6 +170,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="UIAutomationClient" />
+    <Reference Include="UIAutomationTypes" />
     <Reference Include="Windows">
       <HintPath>C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.26100.0\Windows.winmd</HintPath>
     </Reference>
@@ -439,6 +440,13 @@
     <Compile Include="Commands\Tables\Formulas\Calculator.cs" />
     <Compile Include="Commands\Tables\SelectTablesCommand.cs" />
     <Compile Include="Commands\Tables\TableThemePainter.cs" />
+    <Compile Include="Commands\Tagging\CompleteHashtagCommand.cs" />
+    <Compile Include="Commands\Tagging\CompleteHashtagDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Tagging\CompleteHashtagDialog.Designer.cs">
+      <DependentUpon>CompleteHashtagDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Tagging\Hashtag.cs" />
     <Compile Include="Commands\Tagging\HashtagCommand.cs" />
     <Compile Include="Commands\Tagging\HashtagContext.cs" />
@@ -506,6 +514,7 @@
     <Compile Include="Commands\Workspaces\Layouts\RestoreLayoutCommand.cs" />
     <Compile Include="Commands\Workspaces\Layouts\ExportLayoutsCommand.cs" />
     <Compile Include="Commands\Workspaces\Layouts\ImportLayoutsCommand.cs" />
+    <Compile Include="Helpers\CaretLocator.cs" />
     <Compile Include="Helpers\ColorHelper.cs" />
     <Compile Include="Helpers\DatabaseProvider.cs" />
     <Compile Include="Helpers\Extensions\ArrayExtensions.cs" />
@@ -1872,6 +1881,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Styles\PageColorSelector.resx">
       <DependentUpon>PageColorSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Tagging\CompleteHashtagDialog.resx">
+      <DependentUpon>CompleteHashtagDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Tagging\HashtagContextControl.resx">
       <DependentUpon>HashtagContextControl.cs</DependentUpon>

@@ -10360,6 +10360,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Complete Hashtag.
+        /// </summary>
+        internal static string ribCompleteHashtagButton_Label {
+            get {
+                return ResourceManager.GetString("ribCompleteHashtagButton_Label", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Complete the current word into a hashtag chosen from an autocomplete list (Alt+G).
+        /// </summary>
+        internal static string ribCompleteHashtagButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribCompleteHashtagButton_Screentip", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Insert Hashtags.
         /// </summary>
         internal static string ribHashtaggerButton_Label {
