@@ -4011,6 +4011,14 @@ Registerkarte „Hilfe“.</value>
     <value>Öffnen Sie das Befehlspalettenfenster</value>
     <comment>ribbon main</comment>
   </data>
+  <data name="ribCompleteHashtagButton_Label" xml:space="preserve">
+    <value>Vollständiger Hashtag</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribCompleteHashtagButton_Screentip" xml:space="preserve">
+    <value>Vervollständigen Sie das aktuelle Wort zu einem Hashtag, der aus einer Autovervollständigungsliste ausgewählt wird (Alt+G).</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribCompleteReminderButton_Label" xml:space="preserve">
     <value>Vollständige Erinnerung</value>
     <comment>ribbon button</comment>

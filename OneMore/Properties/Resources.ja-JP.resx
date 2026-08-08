@@ -4019,6 +4019,14 @@ ISO-code then comma then language name</comment>
     <value>コマンドパレットウィンドウを開く</value>
     <comment>ribbon main</comment>
   </data>
+  <data name="ribCompleteHashtagButton_Label" xml:space="preserve">
+    <value>完全なハッシュタグ</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribCompleteHashtagButton_Screentip" xml:space="preserve">
+    <value>オートコンプリート リストから選択したハッシュタグに現在の単語を補完します (Alt+G)</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribCompleteReminderButton_Label" xml:space="preserve">
     <value>リマインダーの完了</value>
     <comment>ribbon reminders</comment>

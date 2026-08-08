@@ -4012,6 +4012,14 @@ Tabblad Help</value>
     <value>Open het opdrachtpaletvenster</value>
     <comment>ribbon main</comment>
   </data>
+  <data name="ribCompleteHashtagButton_Label" xml:space="preserve">
+    <value>Volledige hashtag</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribCompleteHashtagButton_Screentip" xml:space="preserve">
+    <value>Vul het huidige woord in een hashtag gekozen uit een lijst met automatisch aanvullen (Alt+G)</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribCompleteReminderButton_Label" xml:space="preserve">
     <value>Herinnering voltooien</value>
     <comment>ribbon button</comment>

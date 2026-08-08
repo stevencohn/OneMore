@@ -4011,6 +4011,14 @@ Pestaña Ayuda</value>
     <value>Abra la ventana de la paleta de comandos</value>
     <comment>ribbon main</comment>
   </data>
+  <data name="ribCompleteHashtagButton_Label" xml:space="preserve">
+    <value>Hashtag completo</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribCompleteHashtagButton_Screentip" xml:space="preserve">
+    <value>Complete la palabra actual en un hashtag elegido de una lista de autocompletar (Alt+G)</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribCompleteReminderButton_Label" xml:space="preserve">
     <value>Recordatorio completo</value>
     <comment>ribbon button</comment>

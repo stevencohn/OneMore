@@ -4012,6 +4012,14 @@ Guia Ajuda</value>
     <value>Abra a janela Paleta de comandos</value>
     <comment>ribbon main</comment>
   </data>
+  <data name="ribCompleteHashtagButton_Label" xml:space="preserve">
+    <value>Hashtag completa</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribCompleteHashtagButton_Screentip" xml:space="preserve">
+    <value>Complete a palavra atual em uma hashtag escolhida em uma lista de preenchimento automático (Alt+G)</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribCompleteReminderButton_Label" xml:space="preserve">
     <value>Lembrete Completo</value>
     <comment>ribbon button</comment>

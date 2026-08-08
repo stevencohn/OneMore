@@ -4023,6 +4023,14 @@ ISO-code then comma then language name</comment>
     <value>افتح نافذة لوحة الأوامر</value>
     <comment>ribbon main</comment>
   </data>
+  <data name="ribCompleteHashtagButton_Label" xml:space="preserve">
+    <value>الهاشتاج الكامل</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribCompleteHashtagButton_Screentip" xml:space="preserve">
+    <value>أكمل الكلمة الحالية في علامة تصنيف مختارة من قائمة الإكمال التلقائي (Alt+G)</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribCompleteReminderButton_Label" xml:space="preserve">
     <value>تذكير كامل</value>
     <comment>ribbon button</comment>
