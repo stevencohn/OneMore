@@ -12,7 +12,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading;
 	using System.Threading.Tasks;
 	using Windows.UI.Notifications;
-	using Resx = River.OneMoreAddIn.Properties.Resources;
+	using Resx = Properties.Resources;
 
 
 	internal class ReminderService : Loggable
@@ -200,19 +200,16 @@ namespace River.OneMoreAddIn.Commands
 		{
 			// this is for debugging; if SilentReminders value exists then only log
 			using var key = Registry.ClassesRoot.OpenSubKey(@"River.OneMoreAddIn", false);
-			if (key != null)
+			if (key is not null && (string)key.GetValue("SilentReminders") == "true")
 			{
 				if (!warned)
 				{
-					logger.WriteLine("HKCR::River.OneMoreAddin SilientReminders is set to true");
+					logger.WriteLine("HKCR::River.OneMoreAddin SilentReminders is set to true");
 					warned = true;
 				}
 
-				if ((string)key.GetValue("SilentReminders") == "true")
-				{
-					logger.WriteLine($"Toast: {message}");
-					return;
-				}
+				logger.WriteLine($"Toast: {message}");
+				return;
 			}
 
 			/*
