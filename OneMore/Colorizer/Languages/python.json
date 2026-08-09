@@ -28,6 +28,13 @@
       ]
     },
     {
+      // shebang line, must be the very first line of the file
+      "pattern": "\\A(#![^\\r\\n]*)",
+      "captures": [
+        "Shebang"
+      ]
+    },
+    {
       // [5] (# comment)
       "pattern": "(#[^\\r\\n]*)[]\\r\\n]?$",
       "captures": [
