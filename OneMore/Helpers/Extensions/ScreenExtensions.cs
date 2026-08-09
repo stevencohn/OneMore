@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Helpers.Extensions
 {
+	using System;
 	using System.Drawing;
 	using System.Windows.Forms;
 
@@ -36,6 +37,37 @@ namespace River.OneMoreAddIn.Helpers.Extensions
 				area.X + (area.Width - form.Width - ReasonableMargin),
 				area.Height - form.Height - ReasonableMargin
 				);
+		}
+
+
+		/// <summary>
+		/// Calculate a Left/Top location for a popup of the given size, positioned beside
+		/// the given anchor rectangle (e.g. a word or caret on the OneNote page) so the
+		/// anchor remains visible. Prefers showing to the right of the anchor, flipping to
+		/// the left if that would run off the screen; vertically aligned with the anchor and
+		/// clamped to stay within the working area.
+		/// </summary>
+		/// <param name="screen">The screen within which to corral the popup</param>
+		/// <param name="anchor">The screen-coordinate rectangle to show the popup beside</param>
+		/// <param name="formSize">The size of the popup to be positioned</param>
+		/// <returns></returns>
+		public static Point GetBoundedLocationNear(this Screen screen, Rectangle anchor, Size formSize)
+		{
+			var area = screen.WorkingArea;
+
+			// prefer showing to the right of the anchor; flip to the left if it would
+			// otherwise run off the right edge of the working area
+			var x = anchor.Right + ReasonableMargin;
+			if (x + formSize.Width > area.Right)
+			{
+				x = anchor.Left - ReasonableMargin - formSize.Width;
+			}
+
+			x = Math.Max(area.X, Math.Min(x, area.Right - formSize.Width));
+
+			var y = Math.Max(area.Y, Math.Min(anchor.Top, area.Bottom - formSize.Height));
+
+			return new Point(x, y);
 		}
 	}
 }

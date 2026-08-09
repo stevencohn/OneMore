@@ -4023,6 +4023,14 @@ Onglet Aide</value>
     <value>Ouvrir la fenêtre de la palette de commandes</value>
     <comment>ribbon main</comment>
   </data>
+  <data name="ribCompleteHashtagButton_Label" xml:space="preserve">
+    <value>Hashtag complet</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribCompleteHashtagButton_Screentip" xml:space="preserve">
+    <value>Complétez le mot actuel dans un hashtag choisi dans une liste de saisie semi-automatique (Alt+G)</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribCompleteReminderButton_Label" xml:space="preserve">
     <value>Rappel complet</value>
     <comment>ribbon button</comment>

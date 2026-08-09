@@ -211,6 +211,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<CommandPaletteCommand>();
 
 
+		[Command("ribCompleteHashtagButton_Label", Keys.Alt | Keys.G, "ribSearchMenu")]
+		public async Task CompleteHashtagCmd(IRibbonControl control)
+			=> await factory.Run<CompleteHashtagCommand>();
+
+
 		[Command("ribCompleteReminderButton_Label", Keys.None, "ribRemindersMenu")]
 		public async Task CompleteReminderCmd(IRibbonControl control)
 			=> await factory.Run<CompleteReminderCommand>();

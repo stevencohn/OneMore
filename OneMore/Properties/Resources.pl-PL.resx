@@ -4012,6 +4012,14 @@ Zakładka Pomoc</value>
     <value>Otwórz okno palety poleceń</value>
     <comment>ribbon main</comment>
   </data>
+  <data name="ribCompleteHashtagButton_Label" xml:space="preserve">
+    <value>Kompletny hashtag</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribCompleteHashtagButton_Screentip" xml:space="preserve">
+    <value>Uzupełnij bieżące słowo hashtagiem wybranym z listy autouzupełniania (Alt+G)</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribCompleteReminderButton_Label" xml:space="preserve">
     <value>Pełne przypomnienie</value>
     <comment>ribbon button</comment>

@@ -4016,6 +4016,14 @@ Scheda Aiuto</value>
     <value>Apri la finestra della tavolozza dei comandi</value>
     <comment>ribbon main</comment>
   </data>
+  <data name="ribCompleteHashtagButton_Label" xml:space="preserve">
+    <value>Hashtag completo</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribCompleteHashtagButton_Screentip" xml:space="preserve">
+    <value>Completa la parola corrente in un hashtag scelto da un elenco di completamento automatico (Alt+G)</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribCompleteReminderButton_Label" xml:space="preserve">
     <value>Promemoria completo</value>
     <comment>ribbon reminders</comment>

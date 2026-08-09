@@ -99,17 +99,17 @@ namespace River.OneMoreAddIn.Commands
 
 		private void MoveUp(object sender, System.EventArgs e)
 		{
-			Move(-1);
+			MoveItem(-1);
 		}
 
 
 		private void MoveDown(object sender, System.EventArgs e)
 		{
-			Move(1);
+			MoveItem(1);
 		}
 
 
-		private void Move(int direction)
+		private void MoveItem(int direction)
 		{
 			if (styleList.SelectedItems.Count == 0)
 			{

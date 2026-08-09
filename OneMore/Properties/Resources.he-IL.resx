@@ -4016,6 +4016,14 @@ ISO-code then comma then language name</comment>
     <value>פתח את חלון לוח הפקודה</value>
     <comment>ribbon main</comment>
   </data>
+  <data name="ribCompleteHashtagButton_Label" xml:space="preserve">
+    <value>השלם את האשטאג</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribCompleteHashtagButton_Screentip" xml:space="preserve">
+    <value>השלם את המילה הנוכחית לתוך האשטאג שנבחר מרשימת השלמה אוטומטית (Alt+G)</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribCompleteReminderButton_Label" xml:space="preserve">
     <value>תזכורת מלאה</value>
     <comment>ribbon button</comment>

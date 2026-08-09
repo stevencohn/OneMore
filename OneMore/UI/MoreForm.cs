@@ -137,6 +137,32 @@ namespace River.OneMoreAddIn.UI
 				(rect.Top + ((rect.Bottom - rect.Top) / 2)) - (Height / 2) - yoffset
 				);
 
+			RunModelessCore(closedAction);
+		}
+
+
+		/// <summary>
+		/// Runs the current form as a modeless window positioned at an explicit screen
+		/// location rather than centered over the OneNote window, e.g. for a popup that
+		/// must be anchored near a specific point on the page.
+		/// </summary>
+		/// <param name="location">The explicit screen location for the form</param>
+		/// <param name="closedAction">
+		/// An event handler to run when the modeless dialog is closed
+		/// </param>
+		public void RunModeless(Point location, EventHandler closedAction = null)
+		{
+			StartPosition = FormStartPosition.Manual;
+			modeless = true;
+			ManualLocation = true;
+			Location = location;
+
+			RunModelessCore(closedAction);
+		}
+
+
+		private void RunModelessCore(EventHandler closedAction)
+		{
 			if (closedAction != null)
 			{
 				ModelessClosed += (sender, e) => { closedAction(sender, e); };
@@ -159,6 +185,17 @@ namespace River.OneMoreAddIn.UI
 		{
 			base.OnFormClosed(e);
 			appContext?.Dispose();
+
+			if (ElevatedWithOneNote)
+			{
+				// undo the AddAutomationFocusChangedEventHandler from OnShown; otherwise this
+				// (now disposed) form keeps receiving process-wide focus-change callbacks and
+				// Elevate() throws ObjectDisposedException on every one of them, silently, for
+				// as long as the process lives - this compounds quickly for dialogs that are
+				// shown and closed repeatedly, like CompleteHashtagDialog
+				Automation.RemoveAutomationFocusChangedEventHandler(OnFocusChanged);
+			}
+
 			ModelessClosed?.Invoke(this, e);
 		}
 
@@ -346,6 +383,13 @@ namespace River.OneMoreAddIn.UI
 		/// <param name="e"></param>
 		private void OnFocusChanged(object sender, AutomationFocusChangedEventArgs e)
 		{
+			// defensive guard against any stale handler still registered on a disposed form,
+			// e.g. from a session predating the OnFormClosed cleanup added alongside this
+			if (IsDisposed)
+			{
+				return;
+			}
+
 			if (sender is AutomationElement element)
 			{
 				var pid = element.Current.ProcessId;
@@ -374,7 +418,7 @@ namespace River.OneMoreAddIn.UI
 		/// <param name="keepTop">True to maintain this form as a TopMost form</param>
 		public void Elevate(bool keepTop = true)
 		{
-			if (DesignMode)
+			if (DesignMode || IsDisposed)
 			{
 				return;
 			}

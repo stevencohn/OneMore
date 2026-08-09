@@ -4026,6 +4026,14 @@ ISO-code then comma then language name</comment>
     <value>打开命令面板窗口</value>
     <comment>ribbon main</comment>
   </data>
+  <data name="ribCompleteHashtagButton_Label" xml:space="preserve">
+    <value>完整标签</value>
+    <comment>ribbon search</comment>
+  </data>
+  <data name="ribCompleteHashtagButton_Screentip" xml:space="preserve">
+    <value>将当前单词补充到从自动完成列表中选择的主题标签中 (Alt+G)</value>
+    <comment>ribbon search</comment>
+  </data>
   <data name="ribCompleteReminderButton_Label" xml:space="preserve">
     <value>完成提醒</value>
     <comment>ribbon button</comment>

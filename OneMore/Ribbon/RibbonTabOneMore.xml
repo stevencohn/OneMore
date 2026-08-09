@@ -331,6 +331,12 @@
         getScreentip="GetRibbonScreentip"
         onAction="SearchTitleCmd"/>
       <button
+        id="ribCompleteHashtagButton"
+        imageMso="AutoCorrect"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="CompleteHashtagCmd"/>
+      <button
         id="ribAddTagBankButton"
         imageMso="DataFormAddRecord"
         getLabel="GetRibbonLabel"

@@ -188,6 +188,26 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Contains information about a GUI thread, including the caret's owning window
+		/// and its bounding rectangle in that window's client coordinates.
+		/// https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-guithreadinfo
+		/// </summary>
+		[StructLayout(LayoutKind.Sequential)]
+		public struct GUITHREADINFO
+		{
+			public int cbSize;
+			public uint flags;
+			public IntPtr hwndActive;
+			public IntPtr hwndFocus;
+			public IntPtr hwndCapture;
+			public IntPtr hwndMenuOwner;
+			public IntPtr hwndMoveSize;
+			public IntPtr hwndCaret;
+			public Rectangle rcCaret;
+		}
+
+
+		/// <summary>
 		/// Contains basic information about a physical font. All sizes are specified in logical
 		/// units; that is, they depend on the current mapping mode of the display context.
 		/// https://learn.microsoft.com/en-us/windows/win32/api/wingdi/ns-wingdi-textmetricw
@@ -270,6 +290,12 @@ namespace River.OneMoreAddIn
 		public static extern bool BringWindowToTop(IntPtr hWnd);
 
 
+		// https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-clienttoscreen
+		[DllImport("user32.dll")]
+		[return: MarshalAs(UnmanagedType.Bool)]
+		public static extern bool ClientToScreen(IntPtr hWnd, ref Point lpPoint);
+
+
 		// https://learn.microsoft.com/en-us/windows/win32/api/shlwapi/nf-shlwapi-colorhlstorgb
 		[DllImport("shlwapi.dll")]
 		public static extern int ColorHLSToRGB(int H, int L, int S);
@@ -316,6 +342,11 @@ namespace River.OneMoreAddIn
 		// https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getparent
 		[DllImport("user32.dll")]
 		public static extern IntPtr GetParent(IntPtr hWnd);
+
+
+		// https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getguithreadinfo
+		[DllImport("user32.dll")]
+		public static extern bool GetGUIThreadInfo(uint idThread, ref GUITHREADINFO lpgui);
 
 
 		// https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getsystemmenu
