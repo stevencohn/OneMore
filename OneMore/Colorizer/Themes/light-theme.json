@@ -233,6 +233,10 @@
       "foreground": "Gray"
     },
     {
+      "name": "Shebang",
+      "foreground": "OliveDrab"
+    },
+    {
       "name": "ShellKnownVariable",
       "foreground": "Firebrick"
     },
