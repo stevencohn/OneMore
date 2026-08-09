@@ -1,11 +1,10 @@
 ﻿//************************************************************************************************
-// Copyright © 2024 Steven M Cohn.  All rights reserved.
+// Copyright © 2024 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
-	using System.Collections.Generic;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using Resx = Properties.Resources;
@@ -20,7 +19,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			await using var one = new OneNote(out var page, out var ns);
+			await using var one = new OneNote(out var page, out _);
 
 			var serializer = new ReminderSerializer();
 			var reminders = serializer.LoadReminders(page);
@@ -30,11 +29,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			var map = new List<string>();
-			page.Root.Descendants(ns + "OE").ForEach(e =>
-			{
-				map.Add(one.GetHyperlink(page.PageId, e.Attribute("objectID").Value));
-			});
+			var locator = new ReminderLocator(one, page, reminders);
 
 			var count = 0;
 			for (var i = reminders.Count - 1; i >= 0; i--)
@@ -46,16 +41,11 @@ namespace River.OneMoreAddIn.Commands
 				var start = reminder.Start.ToLocalTime().ToString();
 				var due = reminder.Due.ToLocalTime().ToString();
 
-				if (!page.Root.Descendants(ns + "OE").Any(e =>
-					e.Attribute("objectID").Value == reminder.ObjectId))
+				if (locator.Locate(reminder) is null)
 				{
-					if (string.IsNullOrEmpty(reminder.ObjectUri) ||
-						!map.Contains(reminder.ObjectUri))
-					{
-						logger.WriteLine($"removing orphaned reminder:{start,22} due:{due,22} \"{subject}\"");
-						reminders.RemoveAt(i);
-						count++;
-					}
+					logger.WriteLine($"removing orphaned reminder:{start,22} due:{due,22} \"{subject}\"");
+					reminders.RemoveAt(i);
+					count++;
 				}
 			}
 

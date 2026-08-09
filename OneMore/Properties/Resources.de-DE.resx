@@ -3128,6 +3128,10 @@ Bewerben Sie sich auf dieses Notizbuch</value>
   <data name="phrase_AppendToThisPage" xml:space="preserve">
     <value>An diese Seite anhängen</value>
   </data>
+  <data name="phrase_AssigneeContains" xml:space="preserve">
+    <value>Beauftragter enthält</value>
+    <comment>label</comment>
+  </data>
   <data name="phrase_CreateANewPage" xml:space="preserve">
     <value>Erstellen Sie eine neue Seite</value>
   </data>
@@ -6604,6 +6608,10 @@ Danke schön!</value>
   </data>
   <data name="word_Apply" xml:space="preserve">
     <value>Sich bewerben</value>
+  </data>
+  <data name="word_Assignee" xml:space="preserve">
+    <value>Bevollmächtigter</value>
+    <comment>label</comment>
   </data>
   <data name="word_Brightness" xml:space="preserve">
     <value>Helligkeit</value>

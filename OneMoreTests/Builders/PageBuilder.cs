@@ -131,8 +131,12 @@ namespace River.OneMoreAddIn.Tests.Builders
 					oeChildren.Add(oe);
 				}
 
-				page.Add(new XElement(Ns + "Outline",
-					new XElement(Ns + "OEChildren", oeChildren.Elements())));
+				// add oeChildren directly rather than re-wrapping it in a new
+				// OEChildren element: since its OE children already have oeChildren
+				// as their parent at that point, re-wrapping would clone them,
+				// silently replacing the exact instances callers passed to
+				// WithElement with unrelated copies
+				page.Add(new XElement(Ns + "Outline", oeChildren));
 			}
 
 			return page;

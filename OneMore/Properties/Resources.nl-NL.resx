@@ -3129,6 +3129,10 @@ Toepassen op dit notitieboekje</value>
   <data name="phrase_AppendToThisPage" xml:space="preserve">
     <value>Voeg toe aan deze pagina</value>
   </data>
+  <data name="phrase_AssigneeContains" xml:space="preserve">
+    <value>Ontvanger bevat</value>
+    <comment>label</comment>
+  </data>
   <data name="phrase_CreateANewPage" xml:space="preserve">
     <value>Maak een nieuwe pagina aan</value>
   </data>
@@ -6604,6 +6608,10 @@ Bedankt!</value>
   </data>
   <data name="word_Apply" xml:space="preserve">
     <value>Van toepassing zijn</value>
+  </data>
+  <data name="word_Assignee" xml:space="preserve">
+    <value>Cessionaris</value>
+    <comment>label</comment>
   </data>
   <data name="word_Brightness" xml:space="preserve">
     <value>Helderheid</value>
