@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2021 Steven M Cohn.  All rights reserved.
+// Copyright © 2021 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -56,7 +56,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			var reminder = GetReminder(one, paragraph);
+			var reminder = await GetReminder(one, paragraph);
 
 			using var dialog = new RemindDialog(reminder, false);
 			if (dialog.ShowDialog(owner) == DialogResult.OK)
@@ -85,8 +85,8 @@ namespace River.OneMoreAddIn.Commands
 			var paragraph = page.Root.Descendants(ns + "OE")
 				.FirstOrDefault(e => e.Attribute("objectID").Value == objectId);
 
-			var reminder = GetReminder(one, paragraph);
-			if (reminder == null)
+			var reminder = await GetReminder(one, paragraph);
+			if (reminder is null)
 			{
 				// TODO: message?
 				return;
@@ -117,69 +117,54 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private Reminder GetReminder(OneNote one, XElement paragraph)
+		private async Task<Reminder> GetReminder(OneNote one, XElement paragraph)
 		{
-			Reminder reminder;
-			XElement tag;
-
 			var objectID = paragraph.Attribute("objectID").Value;
 
 			var reminders = new ReminderSerializer().LoadReminders(page);
-			if (reminders.Any())
+			var locator = new ReminderLocator(one, page, reminders);
+			var reminder = await locator.Resolve(paragraph);
+
+			if (reminder is not null &&
+				!string.IsNullOrEmpty(reminder.Symbol) && reminder.Symbol != "0")
 			{
-				reminder = reminders.Find(r => r.ObjectId == objectID);
-
-				if (reminder == null)
+				// check tag still exists
+				var index = page.GetTagDefIndex(reminder.Symbol);
+				if (index is not null)
 				{
-					// second-chance for multi-client users
-					// reminder might be orphaned or we're looking at it from another machine;
-					// object IDs are mutable per client but differ across clients so lookup URI
+					var tag = paragraph.Elements(ns + "Tag")
+						.FirstOrDefault(e => e.Attribute("index").Value == index);
 
-					var uri = one.GetHyperlink(page.PageId, objectID);
-					reminder = reminders.Find(r => r.ObjectUri == uri);
-				}
-
-				if (reminder != null &&
-					!string.IsNullOrEmpty(reminder.Symbol) && reminder.Symbol != "0")
-				{
-					// check tag still exists
-					var index = page.GetTagDefIndex(reminder.Symbol);
-					if (index != null)
+					if (tag is not null)
 					{
-						tag = paragraph.Elements(ns + "Tag")
-							.FirstOrDefault(e => e.Attribute("index").Value == index);
-
-						if (tag != null)
+						// synchronize reminder with tag
+						if (tag.Attribute("completed").Value == "true" &&
+							reminder.Status != ReminderStatus.Completed)
 						{
-							// synchronize reminder with tag
-							if (tag.Attribute("completed").Value == "true" &&
-								reminder.Status != ReminderStatus.Completed)
-							{
-								reminder.Status = ReminderStatus.Completed;
-								reminder.Percent = 100;
-								reminder.Completed = DateTime
-									.Parse(tag.Attribute("completionDate").Value, AddIn.Culture);
-							}
-
-							if (string.IsNullOrEmpty(reminder.ObjectUri))
-							{
-								// patch old reminders with objectID
-								reminder.ObjectUri = one.GetHyperlink(page.PageId, objectID);
-							}
-
-							return reminder;
+							reminder.Status = ReminderStatus.Completed;
+							reminder.Percent = 100;
+							reminder.Completed = DateTime
+								.Parse(tag.Attribute("completionDate").Value, AddIn.Culture);
 						}
+
+						if (string.IsNullOrEmpty(reminder.ObjectUri))
+						{
+							// patch old reminders with objectID
+							reminder.ObjectUri = one.GetHyperlink(page.PageId, objectID);
+						}
+
+						return reminder;
 					}
 				}
 			}
 
 			// either no meta or meta is orphaned from its tag so create a new one...
 
-			return MakeReminder(one, paragraph, objectID);
+			return MakeReminder(one, locator, paragraph, objectID);
 		}
 
 
-		private Reminder MakeReminder(OneNote one, XElement paragraph, string objectID)
+		private Reminder MakeReminder(OneNote one, ReminderLocator locator, XElement paragraph, string objectID)
 		{
 			var text = paragraph.Value;
 
@@ -194,6 +179,7 @@ namespace River.OneMoreAddIn.Commands
 			var reminder = new Reminder(objectID)
 			{
 				ObjectUri = one.GetHyperlink(page.PageId, objectID),
+				AnchorId = locator.CreateAnchor(paragraph),
 				Subject = text
 			};
 

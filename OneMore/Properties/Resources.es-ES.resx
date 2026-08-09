@@ -3132,6 +3132,10 @@ Aplicar a este cuaderno</value>
   <data name="phrase_AppendToThisPage" xml:space="preserve">
     <value>Añadir a esta página</value>
   </data>
+  <data name="phrase_AssigneeContains" xml:space="preserve">
+    <value>El cesionario contiene</value>
+    <comment>label</comment>
+  </data>
   <data name="phrase_CreateANewPage" xml:space="preserve">
     <value>Crear una nueva página</value>
   </data>
@@ -6603,6 +6607,10 @@ Puede habilitar o deshabilitar la telemetría en cualquier momento desde el cuad
   </data>
   <data name="word_Apply" xml:space="preserve">
     <value>Aplicar</value>
+  </data>
+  <data name="word_Assignee" xml:space="preserve">
+    <value>Cesionario</value>
+    <comment>label</comment>
   </data>
   <data name="word_Brightness" xml:space="preserve">
     <value>Brillo</value>

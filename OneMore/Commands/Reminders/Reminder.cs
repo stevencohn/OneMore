@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2021 Steven M Cohn.  All rights reserved.
+// Copyright © 2021 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -79,7 +79,9 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
-		/// Gets or sets the ID of the tagged paragraph
+		/// Gets or sets the ID of the tagged paragraph. This is a same-session fast-path
+		/// hint only; it is not stable across machines and must never be relied on as the
+		/// sole source of truth for identity. See AnchorId.
 		/// </summary>
 		public string ObjectId { get; set; }
 
@@ -88,6 +90,25 @@ namespace River.OneMoreAddIn.Commands
 		/// Gets or sets the URI of the tagged paragraph
 		/// </summary>
 		public string ObjectUri { get; set; }
+
+
+		/// <summary>
+		/// Gets or sets the OneMore-owned GUID anchor stored in a dedicated one:Meta nested
+		/// in the tagged OE. This is the authoritative, cross-machine-stable identity of the
+		/// reminder's paragraph; ObjectId and ObjectUri are both native OneNote IDs that are
+		/// only reliable within a single client/session. Null for reminders created before
+		/// this field was introduced, until migrated by ReminderLocator.
+		/// </summary>
+		public string AnchorId { get; set; }
+
+
+		/// <summary>
+		/// Gets or sets the free-text name or identifier of the person this reminder is
+		/// assigned to. Not validated against notebook contributors since the assignee may
+		/// not correspond to anyone with current access to the notebook. Informational only;
+		/// does not affect notification delivery.
+		/// </summary>
+		public string Assignee { get; set; }
 
 
 		// one:Tag.index
@@ -192,9 +213,10 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var now = DateTime.UtcNow;
 
-			Version = 2;
+			Version = 3;
 			ObjectId = objectId;
 			Symbol = BellSymbol;
+			Assignee = string.Empty;
 			Created = now;
 			Start = now;
 			Started = now;

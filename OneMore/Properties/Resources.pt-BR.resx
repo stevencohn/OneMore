@@ -3129,6 +3129,10 @@ Aplicar a este caderno</value>
   <data name="phrase_AppendToThisPage" xml:space="preserve">
     <value>Anexar a esta página</value>
   </data>
+  <data name="phrase_AssigneeContains" xml:space="preserve">
+    <value>O cessionário contém</value>
+    <comment>label</comment>
+  </data>
   <data name="phrase_CreateANewPage" xml:space="preserve">
     <value>Criar uma nova página</value>
   </data>
@@ -6604,6 +6608,10 @@ Obrigado!</value>
   </data>
   <data name="word_Apply" xml:space="preserve">
     <value>Aplicar</value>
+  </data>
+  <data name="word_Assignee" xml:space="preserve">
+    <value>Cessionário</value>
+    <comment>label</comment>
   </data>
   <data name="word_Brightness" xml:space="preserve">
     <value>Brilho</value>

@@ -37,6 +37,8 @@
 			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.showCompletedBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.groupByNotebookBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.assigneeFilterLabel = new River.OneMoreAddIn.UI.MoreLabel();
+			this.assigneeFilterBox = new River.OneMoreAddIn.UI.MoreTextBox();
 			this.SuspendLayout();
 			// 
 			// introLabel
@@ -90,7 +92,7 @@
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
-			this.cancelButton.Location = new System.Drawing.Point(420, 301);
+			this.cancelButton.Location = new System.Drawing.Point(420, 341);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(120, 38);
@@ -108,7 +110,7 @@
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
-			this.okButton.Location = new System.Drawing.Point(294, 301);
+			this.okButton.Location = new System.Drawing.Point(294, 341);
 			this.okButton.Name = "okButton";
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(120, 38);
@@ -133,30 +135,55 @@
 			this.showCompletedBox.ThemedBack = null;
 			this.showCompletedBox.ThemedFore = null;
 			this.showCompletedBox.UseVisualStyleBackColor = false;
-			//
+			// 
 			// groupByNotebookBox
-			//
+			// 
 			this.groupByNotebookBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.groupByNotebookBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.groupByNotebookBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.groupByNotebookBox.Location = new System.Drawing.Point(22, 231);
 			this.groupByNotebookBox.Name = "groupByNotebookBox";
-			this.groupByNotebookBox.Size = new System.Drawing.Size(247, 25);
+			this.groupByNotebookBox.Size = new System.Drawing.Size(253, 25);
 			this.groupByNotebookBox.StylizeImage = false;
 			this.groupByNotebookBox.TabIndex = 14;
 			this.groupByNotebookBox.Text = "Group reminders by notebook";
 			this.groupByNotebookBox.ThemedBack = null;
 			this.groupByNotebookBox.ThemedFore = null;
 			this.groupByNotebookBox.UseVisualStyleBackColor = false;
-			//
+			// 
+			// assigneeFilterLabel
+			// 
+			this.assigneeFilterLabel.AutoSize = true;
+			this.assigneeFilterLabel.Location = new System.Drawing.Point(22, 278);
+			this.assigneeFilterLabel.Name = "assigneeFilterLabel";
+			this.assigneeFilterLabel.Size = new System.Drawing.Size(139, 20);
+			this.assigneeFilterLabel.TabIndex = 15;
+			this.assigneeFilterLabel.Text = "Assignee contains";
+			this.assigneeFilterLabel.ThemedBack = null;
+			this.assigneeFilterLabel.ThemedFore = null;
+			// 
+			// assigneeFilterBox
+			// 
+			this.assigneeFilterBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.assigneeFilterBox.Location = new System.Drawing.Point(180, 275);
+			this.assigneeFilterBox.MaxLength = 100;
+			this.assigneeFilterBox.Name = "assigneeFilterBox";
+			this.assigneeFilterBox.ProcessEnterKey = false;
+			this.assigneeFilterBox.Size = new System.Drawing.Size(353, 26);
+			this.assigneeFilterBox.TabIndex = 3;
+			this.assigneeFilterBox.ThemedBack = null;
+			this.assigneeFilterBox.ThemedFore = null;
+			// 
 			// ReportRemindersDialog
-			//
+			// 
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(553, 352);
+			this.ClientSize = new System.Drawing.Size(553, 392);
+			this.Controls.Add(this.assigneeFilterBox);
+			this.Controls.Add(this.assigneeFilterLabel);
 			this.Controls.Add(this.groupByNotebookBox);
 			this.Controls.Add(this.showCompletedBox);
 			this.Controls.Add(this.notebookRadio);
@@ -185,5 +212,7 @@
 		private UI.MoreButton okButton;
 		private UI.MoreCheckBox showCompletedBox;
 		private UI.MoreCheckBox groupByNotebookBox;
+		private UI.MoreLabel assigneeFilterLabel;
+		private UI.MoreTextBox assigneeFilterBox;
 	}
 }

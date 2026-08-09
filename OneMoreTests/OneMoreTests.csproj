@@ -72,6 +72,8 @@
     <Compile Include="Commands\File\Evernote\EnmlConverterTests.cs" />
     <Compile Include="Commands\References\EmbedCommandTests.cs" />
     <Compile Include="Commands\References\FootnoteCommandTests.cs" />
+    <Compile Include="Commands\Reminders\ReminderLocatorTests.cs" />
+    <Compile Include="Commands\Reminders\ReminderSerializerTests.cs" />
     <Compile Include="Commands\Styles\ApplyStylesCommandTests.cs" />
     <Compile Include="Commands\Edit\ConvertMarkdownCommandTests.cs" />
     <Compile Include="Commands\Edit\HighlightCommandTests.cs" />

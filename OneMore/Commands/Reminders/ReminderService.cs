@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2021 Steven M Cohn.  All rights reserved.
+// Copyright © 2021 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -153,8 +153,8 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		// if the user deletes the paragraph containing a reminder, the Meta will be orphaned
-		// so this verifies that the paragraph still exists and clears the Meta if it does not
+		// if the user deletes the paragraph containing a reminder, its anchor Meta is
+		// deleted along with it, so this verifies that the paragraph still exists
 		private async Task<bool> ReminderIsValid(Reminder reminder, string pageID, OneNote one)
 		{
 			var page = await one.GetPage(pageID, OneNote.PageDetail.Basic);
@@ -165,43 +165,31 @@ namespace River.OneMoreAddIn.Commands
 				return false;
 			}
 
-			if (page.Root.Descendants(page.Namespace + "OE")
-				.Any(e => e.Attribute("objectID").Value == reminder.ObjectId))
+			var hadAnchor = !string.IsNullOrEmpty(reminder.AnchorId);
+			var oe = new ReminderLocator(one, page, null).Locate(reminder);
+
+			if (oe != null)
 			{
+				if (!hadAnchor && !string.IsNullOrEmpty(reminder.AnchorId))
+				{
+					// legacy pre-anchor record just migrated in place; persist it
+					new ReminderSerializer().StoreReminder(page, reminder);
+					await one.Update(page);
+				}
+
 				// reminder is valid, keep it!
 				return true;
 			}
 
-			// clear the orphaned reminder...
+			// the anchor travels with the paragraph's own Meta, so a page moved to another
+			// section (which changes pageID and native object IDs) self-heals on the next
+			// scan once the reminder has been migrated to the anchor scheme. What remains
+			// unresolved (documented as a known limitation, out of scope here) is the
+			// same-page concurrent-edit race: two machines editing the same page's reminder
+			// Meta blob before sync completes can still produce a OneNote page-conflict copy.
+			// Either way we don't want to silently delete the reminder, only flag it here.
 
-			var serializer = new ReminderSerializer();
-			var reminders = serializer.LoadReminders(page);
-			if (!reminders.Any())
-			{
-				// must be an error?
-				logger.WriteLine($"reminder not found on page {pageID}");
-				return false;
-			}
-
-			var orphan = reminders.Find(r => r.ObjectId == reminder.ObjectId);
-			if (orphan == null)
-			{
-				// must be an error?
-				logger.WriteLine($"reminder not found in page meta {pageID}");
-				return false;
-			}
-
-			// TODO - reminder might be lost if a page is moved to another section, changing
-			// its pageID and the IDs of its objects, thereby breaking the reminder hyperlink.
-			// But we don't want to just delete the reminder, instead highlight it to the
-			// user as broken. Do we need to capture more path info in the reminder so the
-			// user has a chance of rewiring it???
-
-			logger.WriteLine($"reminder hyperlink broken \"{reminder.Subject}\" ({reminder.ObjectUri})");
-
-			//reminders.Remove(orphan);
-			//page.SetMeta(MetaNames.Reminder, serializer.EncodeContent(reminders));
-			//await one.Update(page);
+			logger.WriteLine($"reminder paragraph not found, flagging as broken \"{reminder.Subject}\"");
 
 			return false;
 		}

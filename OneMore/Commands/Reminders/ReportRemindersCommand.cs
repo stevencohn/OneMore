@@ -1,5 +1,5 @@
 ﻿//************************************************************************************************
-// Copyright © 2021 Steven M Cohn.  All rights reserved.
+// Copyright © 2021 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
@@ -42,6 +42,7 @@ namespace River.OneMoreAddIn.Commands
 		private OneNote.Scope scope;
 		private bool showCompleted;
 		private bool groupByNotebook;
+		private string assigneeFilter = string.Empty;
 		private OneNote one;
 		private Page page;
 		private XNamespace ns;
@@ -93,6 +94,13 @@ namespace River.OneMoreAddIn.Commands
 						groupByNotebook = false;
 					}
 
+					// backwards-compatible with refresh links generated before this option existed;
+					// an empty filter segment is also dropped by InvokeCommand's path splitter, so
+					// "absent" and "empty" both correctly mean "no filter"
+					assigneeFilter = args.Length > 4 && args[4] is string assigneeArg
+						? assigneeArg
+						: string.Empty;
+
 					if (!await CollectReminders(scope))
 					{
 						return;
@@ -114,6 +122,7 @@ namespace River.OneMoreAddIn.Commands
 					scope = dialog.Scope;
 					showCompleted = dialog.IncludeCompleted;
 					groupByNotebook = dialog.GroupByNotebook;
+					assigneeFilter = dialog.AssigneeFilter;
 
 					if (!await CollectReminders(scope))
 					{
@@ -149,9 +158,10 @@ namespace River.OneMoreAddIn.Commands
 				container = page.EnsureContentContainer();
 
 				var now = DateTime.Now.ToShortFriendlyString();
+				var encodedAssigneeFilter = Uri.EscapeDataString(assigneeFilter ?? string.Empty);
 				container.Add(
 					new Paragraph($"{Resx.ReminderReport_LastUpdated} {now} " +
-						$"(<a href=\"onemore://ReportRemindersCommand/refresh/{scope}/{showCompleted}/{groupByNotebook}\">{Resx.word_Refresh}</a>)"),
+						$"(<a href=\"onemore://ReportRemindersCommand/refresh/{scope}/{showCompleted}/{groupByNotebook}/{encodedAssigneeFilter}\">{Resx.word_Refresh}</a>)"),
 					new Paragraph(string.Empty)
 					);
 
@@ -227,6 +237,13 @@ namespace River.OneMoreAddIn.Commands
 				var reminders = serializer.DecodeContent(meta.Attribute("content").Value);
 				foreach (var reminder in reminders)
 				{
+					if (!string.IsNullOrEmpty(assigneeFilter) &&
+						(reminder.Assignee ?? string.Empty)
+							.IndexOf(assigneeFilter, StringComparison.OrdinalIgnoreCase) < 0)
+					{
+						continue;
+					}
+
 					var item = new Item
 					{
 						Meta = meta,
@@ -374,7 +391,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void BuildActiveTable(IEnumerable<Item> items)
 		{
-			var table = new Table(ns, 1, 6)
+			var table = new Table(ns, 1, 7)
 			{
 				HasHeaderRow = true,
 				BordersVisible = true
@@ -386,6 +403,7 @@ namespace River.OneMoreAddIn.Commands
 			table.SetColumnWidth(3, 130);
 			table.SetColumnWidth(4, 60);
 			table.SetColumnWidth(5, 60);
+			table.SetColumnWidth(6, 90);
 
 			var row = table[0];
 			row.SetShading(HeaderShading);
@@ -395,13 +413,15 @@ namespace River.OneMoreAddIn.Commands
 			row[3].SetContent(new Paragraph(Resx.RemindDialog_dueDateLabel_Text).SetStyle(HeaderCss));
 			row[4].SetContent(new Paragraph(Resx.RemindDialog_priorityLabel_Text).SetStyle(HeaderCss));
 			row[5].SetContent(new Paragraph(Resx.phrase_PctComplete).SetStyle(HeaderCss));
+			row[6].SetContent(new Paragraph(Resx.word_Assignee).SetStyle(HeaderCss));
 
 			var now = DateTime.UtcNow;
 
 			foreach (var item in items
 				.OrderBy(i => i.Year)
 				.ThenBy(i => i.WoYear)
-				.ThenByDescending(i => i.Reminder.Priority))
+				.ThenByDescending(i => i.Reminder.Priority)
+				.ThenBy(i => i.Reminder.Assignee))
 			{
 				row = table.AddRow();
 				row[0].SetContent(MakeReminder(one, item));
@@ -442,6 +462,7 @@ namespace River.OneMoreAddIn.Commands
 
 				row[4].SetContent(MakePriority(item.Reminder.Priority));
 				row[5].SetContent((item.Reminder.Percent / 100.0).ToString("P0"));
+				row[6].SetContent(item.Reminder.Assignee ?? string.Empty);
 
 				if (now.CompareTo(item.Reminder.Due) > 0)
 				{
@@ -487,7 +508,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void BuildInactiveTable(IEnumerable<Item> items)
 		{
-			var table = new Table(ns, 1, 5)
+			var table = new Table(ns, 1, 6)
 			{
 				HasHeaderRow = true,
 				BordersVisible = true
@@ -498,6 +519,7 @@ namespace River.OneMoreAddIn.Commands
 			table.SetColumnWidth(2, 150);
 			table.SetColumnWidth(3, 170);
 			table.SetColumnWidth(4, 60);
+			table.SetColumnWidth(5, 90);
 
 			var row = table[0];
 			row.SetShading(HeaderShading);
@@ -506,11 +528,13 @@ namespace River.OneMoreAddIn.Commands
 			row[2].SetContent(new Paragraph(Resx.word_Planned).SetStyle(HeaderCss));
 			row[3].SetContent(new Paragraph(Resx.word_Actual).SetStyle(HeaderCss));
 			row[4].SetContent(new Paragraph(Resx.RemindDialog_priorityLabel_Text).SetStyle(HeaderCss));
+			row[5].SetContent(new Paragraph(Resx.word_Assignee).SetStyle(HeaderCss));
 
 			foreach (var item in items
 				.OrderBy(i => i.Reminder.Status)
 				.ThenByDescending(i => i.Reminder.Completed)
-				.ThenByDescending(i => i.Reminder.Priority))
+				.ThenByDescending(i => i.Reminder.Priority)
+				.ThenBy(i => i.Reminder.Assignee))
 			{
 				row = table.AddRow();
 				row[0].SetContent(MakeReminder(one, item));
@@ -523,6 +547,7 @@ namespace River.OneMoreAddIn.Commands
 					);
 
 				row[4].SetContent(MakePriority(item.Reminder.Priority));
+				row[5].SetContent(item.Reminder.Assignee ?? string.Empty);
 
 				if (item.Reminder.Status == ReminderStatus.Completed)
 				{

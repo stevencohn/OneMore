@@ -48,14 +48,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			var objectID = paragraph.Attribute("objectID").Value;
-			var reminder = reminders.Find(r => r.ObjectId == objectID);
-			if (reminder is null)
-			{
-				// second-chance for multi-client users
-				var uri = one.GetHyperlink(page.PageId, objectID);
-				reminder = reminders.Find(r => r.ObjectUri == uri);
-			}
+			var reminder = await new ReminderLocator(one, page, reminders).Resolve(paragraph);
 
 			if (reminder is null)
 			{

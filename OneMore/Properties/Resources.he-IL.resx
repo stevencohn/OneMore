@@ -3129,6 +3129,10 @@ Total Row Font
   <data name="phrase_AppendToThisPage" xml:space="preserve">
     <value>צרף לדף זה</value>
   </data>
+  <data name="phrase_AssigneeContains" xml:space="preserve">
+    <value>המוקצה מכיל</value>
+    <comment>label</comment>
+  </data>
   <data name="phrase_CreateANewPage" xml:space="preserve">
     <value>צור דף חדש</value>
   </data>
@@ -6608,6 +6612,10 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Apply" xml:space="preserve">
     <value>להגיש מועמדות</value>
+  </data>
+  <data name="word_Assignee" xml:space="preserve">
+    <value>נִמחֶה</value>
+    <comment>label</comment>
   </data>
   <data name="word_Brightness" xml:space="preserve">
     <value>בְּהִירוּת</value>

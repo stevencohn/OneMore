@@ -44,6 +44,8 @@ namespace River.OneMoreAddIn.Commands
 			this.priorityLabel = new UI.MoreLabel();
 			this.percentLabel = new UI.MoreLabel();
 			this.percentBox = new River.OneMoreAddIn.UI.MoreNumericUpDown();
+			this.assigneeLabel = new UI.MoreLabel();
+			this.assigneeBox = new River.OneMoreAddIn.UI.MoreTextBox();
 			this.startedBox = new River.OneMoreAddIn.UI.MoreTextBox();
 			this.startedLabel = new UI.MoreLabel();
 			this.completedLabel = new UI.MoreLabel();
@@ -72,7 +74,7 @@ namespace River.OneMoreAddIn.Commands
 			this.okButton.Name = "okButton";
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
-			this.okButton.TabIndex = 7;
+			this.okButton.TabIndex = 8;
 			this.okButton.Text = "OK";
 			this.okButton.ThemedBack = null;
 			this.okButton.ThemedFore = null;
@@ -90,7 +92,7 @@ namespace River.OneMoreAddIn.Commands
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
-			this.cancelButton.TabIndex = 8;
+			this.cancelButton.TabIndex = 9;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.ThemedBack = null;
 			this.cancelButton.ThemedFore = null;
@@ -208,7 +210,28 @@ namespace River.OneMoreAddIn.Commands
 			this.priorityLabel.Size = new System.Drawing.Size(56, 20);
 			this.priorityLabel.TabIndex = 19;
 			this.priorityLabel.Text = "Priority";
-			// 
+			//
+			// assigneeLabel
+			//
+			this.assigneeLabel.AutoSize = true;
+			this.assigneeLabel.Location = new System.Drawing.Point(460, 320);
+			this.assigneeLabel.Name = "assigneeLabel";
+			this.assigneeLabel.Size = new System.Drawing.Size(73, 20);
+			this.assigneeLabel.TabIndex = 21;
+			this.assigneeLabel.Text = "Assignee";
+			//
+			// assigneeBox
+			//
+			this.assigneeBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.assigneeBox.Location = new System.Drawing.Point(550, 317);
+			this.assigneeBox.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
+			this.assigneeBox.MaxLength = 200;
+			this.assigneeBox.Name = "assigneeBox";
+			this.assigneeBox.Size = new System.Drawing.Size(230, 26);
+			this.assigneeBox.TabIndex = 6;
+			this.assigneeBox.ThemedBack = null;
+			this.assigneeBox.ThemedFore = null;
+			//
 			// percentLabel
 			// 
 			this.percentLabel.AutoSize = true;
@@ -229,7 +252,7 @@ namespace River.OneMoreAddIn.Commands
 			this.percentBox.Location = new System.Drawing.Point(181, 358);
 			this.percentBox.Name = "percentBox";
 			this.percentBox.Size = new System.Drawing.Size(92, 26);
-			this.percentBox.TabIndex = 6;
+			this.percentBox.TabIndex = 7;
 			this.percentBox.ThemedBack = null;
 			this.percentBox.ThemedFore = "ControlText";
 			this.percentBox.ValueChanged += new System.EventHandler(this.ChangePercent);
@@ -414,6 +437,8 @@ namespace River.OneMoreAddIn.Commands
 			this.Controls.Add(this.percentLabel);
 			this.Controls.Add(this.priorityLabel);
 			this.Controls.Add(this.priorityBox);
+			this.Controls.Add(this.assigneeLabel);
+			this.Controls.Add(this.assigneeBox);
 			this.Controls.Add(this.statusBox);
 			this.Controls.Add(this.statusLabel);
 			this.Controls.Add(this.subjectBox);
@@ -455,6 +480,8 @@ namespace River.OneMoreAddIn.Commands
 		private UI.MoreComboBox statusBox;
 		private UI.MoreComboBox priorityBox;
 		private UI.MoreLabel priorityLabel;
+		private UI.MoreLabel assigneeLabel;
+		private UI.MoreTextBox assigneeBox;
 		private UI.MoreLabel percentLabel;
 		private UI.MoreNumericUpDown percentBox;
 		private UI.MoreTextBox startedBox;

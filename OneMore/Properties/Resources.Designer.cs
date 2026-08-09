@@ -7616,7 +7616,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("phrase_AppendToThisPage", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Assignee contains.
+        /// </summary>
+        internal static string phrase_AssigneeContains {
+            get {
+                return ResourceManager.GetString("phrase_AssigneeContains", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Create a new page.
         /// </summary>
@@ -15653,7 +15662,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("word_Apply", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Assignee.
+        /// </summary>
+        internal static string word_Assignee {
+            get {
+                return ResourceManager.GetString("word_Assignee", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Brightness.
         /// </summary>

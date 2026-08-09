@@ -32,6 +32,10 @@ namespace River.OneMoreAddIn.Models
 		// serialized reminder store for current page
 		public static readonly string Reminder = "omReminder";
 
+		// per-OE anchor GUID nested in a tagged paragraph, owned by OneMore, used to
+		// stably identify a reminder's paragraph across machines
+		public static readonly string ReminderAnchor = "omReminderAnchor";
+
 		// page is a reminder summary report, content is scope
 		public static readonly string ReminderReport = "omReminderReport";
 

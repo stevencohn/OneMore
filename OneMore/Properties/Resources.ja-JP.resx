@@ -3132,6 +3132,10 @@ OneDriveに保存されているノートブックのフォルダーを開くこ
   <data name="phrase_AppendToThisPage" xml:space="preserve">
     <value>このページに追加</value>
   </data>
+  <data name="phrase_AssigneeContains" xml:space="preserve">
+    <value>譲受人の内容</value>
+    <comment>label</comment>
+  </data>
   <data name="phrase_CreateANewPage" xml:space="preserve">
     <value>新しいページを作成</value>
   </data>
@@ -6614,6 +6618,10 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Apply" xml:space="preserve">
     <value>適用</value>
+  </data>
+  <data name="word_Assignee" xml:space="preserve">
+    <value>譲受人</value>
+    <comment>label</comment>
   </data>
   <data name="word_Brightness" xml:space="preserve">
     <value>明るさ</value>

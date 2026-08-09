@@ -3140,6 +3140,10 @@
   <data name="phrase_AppendToThisPage" xml:space="preserve">
     <value>إلحاق بهذه الصفحة</value>
   </data>
+  <data name="phrase_AssigneeContains" xml:space="preserve">
+    <value>يحتوي المكلف</value>
+    <comment>label</comment>
+  </data>
   <data name="phrase_CreateANewPage" xml:space="preserve">
     <value>قم بإنشاء صفحة جديدة</value>
   </data>
@@ -6615,6 +6619,10 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Apply" xml:space="preserve">
     <value>يتقدم</value>
+  </data>
+  <data name="word_Assignee" xml:space="preserve">
+    <value>المكلف</value>
+    <comment>label</comment>
   </data>
   <data name="word_Brightness" xml:space="preserve">
     <value>سطوع</value>

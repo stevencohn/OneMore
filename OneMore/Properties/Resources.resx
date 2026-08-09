@@ -3157,6 +3157,10 @@ Apply to this notebook</value>
   <data name="phrase_AppendToThisPage" xml:space="preserve">
     <value>Append to this page</value>
   </data>
+  <data name="phrase_AssigneeContains" xml:space="preserve">
+    <value>Assignee contains</value>
+    <comment>label</comment>
+  </data>
   <data name="phrase_CreateANewPage" xml:space="preserve">
     <value>Create a new page</value>
   </data>
@@ -6673,6 +6677,10 @@ Thank you!</value>
   </data>
   <data name="word_Apply" xml:space="preserve">
     <value>Apply</value>
+  </data>
+  <data name="word_Assignee" xml:space="preserve">
+    <value>Assignee</value>
+    <comment>label</comment>
   </data>
   <data name="word_Brightness" xml:space="preserve">
     <value>Brightness</value>

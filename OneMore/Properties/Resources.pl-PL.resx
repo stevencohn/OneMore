@@ -3129,6 +3129,10 @@ Zastosuj do tego notatnika</value>
   <data name="phrase_AppendToThisPage" xml:space="preserve">
     <value>Dołącz do tej strony</value>
   </data>
+  <data name="phrase_AssigneeContains" xml:space="preserve">
+    <value>Osoba przypisana zawiera</value>
+    <comment>label</comment>
+  </data>
   <data name="phrase_CreateANewPage" xml:space="preserve">
     <value>Utwórz nową stronę</value>
   </data>
@@ -6604,6 +6608,10 @@ Dziękuję!</value>
   </data>
   <data name="word_Apply" xml:space="preserve">
     <value>Stosować</value>
+  </data>
+  <data name="word_Assignee" xml:space="preserve">
+    <value>Mandatariusz</value>
+    <comment>label</comment>
   </data>
   <data name="word_Brightness" xml:space="preserve">
     <value>Jasność</value>

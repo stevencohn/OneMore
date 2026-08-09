@@ -3129,6 +3129,10 @@ Applica a questo taccuino</value>
   <data name="phrase_AppendToThisPage" xml:space="preserve">
     <value>Aggiungi a questa pagina</value>
   </data>
+  <data name="phrase_AssigneeContains" xml:space="preserve">
+    <value>L'assegnatario contiene</value>
+    <comment>label</comment>
+  </data>
   <data name="phrase_CreateANewPage" xml:space="preserve">
     <value>Crea una nuova pagina</value>
   </data>
@@ -6611,6 +6615,10 @@ Grazie!</value>
   </data>
   <data name="word_Apply" xml:space="preserve">
     <value>Fare domanda a</value>
+  </data>
+  <data name="word_Assignee" xml:space="preserve">
+    <value>Assegnatario</value>
+    <comment>label</comment>
   </data>
   <data name="word_Brightness" xml:space="preserve">
     <value>Luminosità</value>
