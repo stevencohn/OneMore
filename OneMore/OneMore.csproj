@@ -679,6 +679,13 @@
     <Compile Include="Commands\Tools\TimerWindow.Designer.cs">
       <DependentUpon>TimerWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Tools\WhereAmICommand.cs" />
+    <Compile Include="Commands\Tools\WhereAmIWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Tools\WhereAmIWindow.Designer.cs">
+      <DependentUpon>WhereAmIWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Tools\DateStampCommand.cs" />
     <Compile Include="Commands\File\CopyFolderCommand.cs" />
     <Compile Include="Commands\File\ImportWebCommand.cs" />

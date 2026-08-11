@@ -13280,6 +13280,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Where am I?.
+        /// </summary>
+        internal static string ribWhereAmIButton_Label {
+            get {
+                return ResourceManager.GetString("ribWhereAmIButton_Label", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Show the hierarchy path of the current page, with dropdowns to jump to any level.
+        /// </summary>
+        internal static string ribWhereAmIButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribWhereAmIButton_Screentip", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Word Count.
         /// </summary>
         internal static string ribWordCountButton_Label {
@@ -16608,6 +16626,15 @@ namespace River.OneMoreAddIn.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to Where Am I?.
+        /// </summary>
+        internal static string WhereAmIWindow_Text {
+            get {
+                return ResourceManager.GetString("WhereAmIWindow.Text", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Total words on page: {0}.
         /// </summary>

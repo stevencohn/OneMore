@@ -1193,6 +1193,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<ViewSectionInBrowserCommand>();
 
 
+		[Command("ribWhereAmIButton_Label", Keys.Control | Keys.Alt | Keys.W)]
+		public async Task WhereAmICmd(IRibbonControl control)
+			=> await factory.Run<WhereAmICommand>();
+
+
 		[Command("ribWordCountButton_Label", Keys.None, "ribPageMenu")]
 		public async Task WordCountCmd(IRibbonControl control)
 			=> await factory.Run<WordCountCommand>();

@@ -98,12 +98,9 @@ namespace River.OneMoreAddIn.UI
 
 	internal class MoreMenuItem : ToolStripMenuItem
 	{
-		private readonly ThemeManager manager;
+		private readonly ThemeManager manager = ThemeManager.Instance;
 
-		public MoreMenuItem() : base()
-		{
-			manager = ThemeManager.Instance;
-		}
+		public MoreMenuItem() : base() { }
 
 		public MoreMenuItem(string text) : base(text) { }
 
