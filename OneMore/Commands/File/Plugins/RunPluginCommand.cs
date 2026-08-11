@@ -261,6 +261,12 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		// prevents an unbalanced quote in a plugin-authored Arguments/UserArguments value
+		// from swallowing the quote delimiters around the temp file path below
+		private static string EscapeQuotes(string value) =>
+			string.IsNullOrEmpty(value) ? value : value.Replace("\"", "\\\"");
+
+
 		private async Task<bool> ExecuteWorker(ProgressDialog progress, CancellationToken token)
 		{
 			var path = (string)progress.Tag;
@@ -271,8 +277,8 @@ namespace River.OneMoreAddIn.Commands
 			try
 			{
 				var abscmd = Environment.ExpandEnvironmentVariables(plugin.Command);
-				var absargs = Environment.ExpandEnvironmentVariables(plugin.Arguments);
-				var userargs = Environment.ExpandEnvironmentVariables(plugin.UserArguments);
+				var absargs = EscapeQuotes(Environment.ExpandEnvironmentVariables(plugin.Arguments));
+				var userargs = EscapeQuotes(Environment.ExpandEnvironmentVariables(plugin.UserArguments));
 
 				var op = trialRun ? "trialing" : "running";
 				logger.WriteLine($"{op} {abscmd} {absargs} \"{path}\" {userargs}");
