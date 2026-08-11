@@ -3,14 +3,17 @@ name: Build
 on:
   workflow_dispatch:
     inputs:
-      beta_build:
-        description: 'Mark as beta build (shows Beta in About box)'
-        required: false
-        type: boolean
-        default: false
-      beta:
-        description: 'Beta number (e.g. 1 for 7.1.0-beta.1)'
+      build_type:
+        description: 'Build type'
         required: true
+        type: choice
+        options:
+          - beta
+          - release
+        default: beta
+      beta:
+        description: 'Beta number (e.g. 1 for 7.1.0-beta.1) — required when build type is beta'
+        required: false
         type: number
       output_build_log:
         description: 'Output build log to console'
@@ -38,12 +41,21 @@ jobs:
       - name: Setup NuGet
         uses: NuGet/setup-nuget@d105a947828025cd7a980103c35ba2bfae586d0f # v2
 
+      - name: Validate inputs
+        shell: pwsh
+        run: |
+          if ('${{ inputs.build_type }}' -eq 'beta' -and [string]::IsNullOrWhiteSpace('${{ inputs.beta }}')) {
+            throw "Beta number is required when build_type is 'beta'"
+          }
+
       - name: Build solution
         shell: pwsh
         run: |
-          $beta = '${{ inputs.beta_build }}' -eq 'true' ? "-Beta -BetaNumber ${{ inputs.beta }}" : ''
+          $isBeta = '${{ inputs.build_type }}' -eq 'beta'
+          $arch = $isBeta ? 'x64' : 'All'
+          $beta = $isBeta ? "-Beta -BetaNumber ${{ inputs.beta }}" : ''
           $echoLog = '${{ inputs.output_build_log }}' -eq 'true' ? '-EchoLog' : ''
-          Invoke-Expression ".\build.ps1 -Architecture x64 $beta $echoLog"
+          Invoke-Expression ".\build.ps1 -Architecture $arch $beta $echoLog"
 
       - name: Upload build log
         if: always()
@@ -70,31 +82,39 @@ jobs:
         id: stage
         shell: pwsh
         run: |
-          $msi = Get-ChildItem "$env:USERPROFILE\Downloads\OneMore_*_Setupx64.msi" | Select-Object -First 1
-          if (-not $msi) { throw "MSI not found in $env:USERPROFILE\Downloads" }
-          Move-Item $msi.FullName $msi.Name
-          $exe = Get-ChildItem "$env:USERPROFILE\Downloads\OneMore_*_Setupx64.exe" | Select-Object -First 1
-          if ($exe) { Move-Item $exe.FullName $exe.Name }
-          $version = $msi.BaseName -replace '^OneMore_(.+)_Setupx64$', '$1'
+          $msis = Get-ChildItem "$env:USERPROFILE\Downloads\OneMore_*_Setup*.msi"
+          if (-not $msis) { throw "No MSI found in $env:USERPROFILE\Downloads" }
+          foreach ($msi in $msis) { Move-Item $msi.FullName $msi.Name -Force }
+          $exes = Get-ChildItem "$env:USERPROFILE\Downloads\OneMore_*_Setup*.exe" -ErrorAction SilentlyContinue
+          foreach ($exe in $exes) { Move-Item $exe.FullName $exe.Name -Force }
+          $version = $msis[0].BaseName -replace '^OneMore_(.+)_Setup\w+$', '$1'
           echo "version=$version" >> $env:GITHUB_OUTPUT
 
       - name: Upload installer
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
-          name: OneMore-${{ steps.stage.outputs.version }}-x64
-          path: OneMore_*_Setupx64.*
+          name: OneMore-${{ steps.stage.outputs.version }}${{ inputs.build_type == 'beta' && '-x64' || '' }}
+          path: OneMore_*_Setup*.*
 
       - name: Create release
         shell: pwsh
         run: |
-          $tag = "${{ steps.stage.outputs.version }}-beta.${{ inputs.beta }}"
-          $notes = "_This is a preview of what's to come. These changes have not yet been fully tested and no guarantee is provided. Be cautious using this build against your production notebooks. But if you're curious and willing to give it a try, please send feedback by opening a ticket. Thanks!_`n`n"
-          $msi = Get-ChildItem "OneMore_*_Setupx64.msi" | Select-Object -First 1 -ExpandProperty FullName
-          if (-not $msi) { throw "MSI not found in working directory" }
-          $exe = Get-ChildItem "OneMore_*_Setupx64.exe" -ErrorAction SilentlyContinue | Select-Object -First 1 -ExpandProperty FullName
-          $ghArgs = @('release', 'create', $tag, $msi)
-          if ($exe) { $ghArgs += $exe }
-          $ghArgs += @('--title', "OneMore $tag", '--notes', $notes, '--generate-notes', '--prerelease')
+          $isBeta = '${{ inputs.build_type }}' -eq 'beta'
+          $version = "${{ steps.stage.outputs.version }}"
+          $assets = Get-ChildItem "OneMore_*_Setup*.msi","OneMore_*_Setup*.exe" -ErrorAction SilentlyContinue |
+            Select-Object -ExpandProperty FullName
+          if (-not $assets) { throw "No installer assets found in working directory" }
+
+          if ($isBeta) {
+            $tag = "$version-beta.${{ inputs.beta }}"
+            $notes = "_This is a preview of what's to come. These changes have not yet been fully tested and no guarantee is provided. Be cautious using this build against your production notebooks. But if you're curious and willing to give it a try, please send feedback by opening a ticket. Thanks!_`n`n"
+            $ghArgs = @('release', 'create', $tag) + $assets +
+              @('--title', "OneMore $tag", '--notes', $notes, '--generate-notes', '--prerelease')
+          } else {
+            $tag = $version
+            $ghArgs = @('release', 'create', $tag) + $assets +
+              @('--title', "OneMore $tag", '--generate-notes')
+          }
           & gh @ghArgs
         env:
           GH_TOKEN: ${{ github.token }}
