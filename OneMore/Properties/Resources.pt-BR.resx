@@ -3679,6 +3679,22 @@ Selecione Não para manter uma linha vazia entre os parágrafos</value>
     <value>Velho ou novo</value>
     <comment>title</comment>
   </data>
+  <data name="RestoreBackgroundImagesCommand_invalid" xml:space="preserve">
+    <value>Não foi possível restaurar imagens de fundo porque a página resultante falhou na validação; nenhuma alteração foi feita</value>
+    <comment>error message</comment>
+  </data>
+  <data name="RestoreBackgroundImagesCommand_lostImages" xml:space="preserve">
+    <value>Ocorreu um erro ao restaurar imagens de fundo e o OneMore não conseguiu recuperar os originais; use o Desfazer do OneNote para recuperar a página</value>
+    <comment>error message</comment>
+  </data>
+  <data name="RestoreBackgroundImagesCommand_noImages" xml:space="preserve">
+    <value>Esta página não tem imagens de fundo para restaurar</value>
+    <comment>error message</comment>
+  </data>
+  <data name="RestoreBackgroundImagesCommand_restoredAfterError" xml:space="preserve">
+    <value>Ocorreu um erro ao restaurar imagens de fundo; as imagens originais foram colocadas de volta</value>
+    <comment>error message</comment>
+  </data>
   <data name="RestoreLayoutCommand_notFound" xml:space="preserve">
     <value>O layout '{0}' não foi encontrado.</value>
     <comment>message box</comment>
@@ -5175,6 +5191,14 @@ Guia Ajuda</value>
   <data name="ribRestoreAutosizeButton_Screentip" xml:space="preserve">
     <value>Redefinir a largura automática de todos os contêineres</value>
     <comment>ribbon clean</comment>
+  </data>
+  <data name="ribRestoreBackgroundImagesButton_Label" xml:space="preserve">
+    <value>Restaurar imagens de fundo</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribRestoreBackgroundImagesButton_Screentip" xml:space="preserve">
+    <value>Mova todas as imagens de fundo da página para o corpo da página, de cima para baixo</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribRestoreCollapsedButton_Label" xml:space="preserve">
     <value>Restaurar esboço recolhido</value>

@@ -3678,6 +3678,22 @@ Wähle Nein, um eine leere Zeile zwischen den Absätzen zu halten</value>
     <value>Alt oder neu</value>
     <comment>title</comment>
   </data>
+  <data name="RestoreBackgroundImagesCommand_invalid" xml:space="preserve">
+    <value>Hintergrundbilder konnten nicht wiederhergestellt werden, da die Validierung der resultierenden Seite fehlgeschlagen ist. Es wurden keine Änderungen vorgenommen</value>
+    <comment>error message</comment>
+  </data>
+  <data name="RestoreBackgroundImagesCommand_lostImages" xml:space="preserve">
+    <value>Beim Wiederherstellen der Hintergrundbilder ist ein Fehler aufgetreten und OneMore konnte die Originale nicht wiederherstellen. Verwenden Sie die Funktion „Rückgängig“ von OneNote, um die Seite wiederherzustellen</value>
+    <comment>error message</comment>
+  </data>
+  <data name="RestoreBackgroundImagesCommand_noImages" xml:space="preserve">
+    <value>Auf dieser Seite sind keine Hintergrundbilder zum Wiederherstellen vorhanden</value>
+    <comment>error message</comment>
+  </data>
+  <data name="RestoreBackgroundImagesCommand_restoredAfterError" xml:space="preserve">
+    <value>Beim Wiederherstellen der Hintergrundbilder ist ein Fehler aufgetreten. Die Originalbilder wurden zurückgesetzt</value>
+    <comment>error message</comment>
+  </data>
   <data name="RestoreLayoutCommand_notFound" xml:space="preserve">
     <value>Layout „{0}“ wurde nicht gefunden.</value>
     <comment>message box</comment>
@@ -5175,6 +5191,14 @@ Registerkarte „Hilfe“.</value>
   <data name="ribRestoreAutosizeButton_Screentip" xml:space="preserve">
     <value>Automatische Breite aller Container zurücksetzen</value>
     <comment>ribbon clean</comment>
+  </data>
+  <data name="ribRestoreBackgroundImagesButton_Label" xml:space="preserve">
+    <value>Hintergrundbilder wiederherstellen</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribRestoreBackgroundImagesButton_Screentip" xml:space="preserve">
+    <value>Verschieben Sie alle Seitenhintergrundbilder von oben nach unten in den Seitenhauptteil</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribRestoreCollapsedButton_Label" xml:space="preserve">
     <value>Zugeklappte Gliederung wiederherstellen</value>

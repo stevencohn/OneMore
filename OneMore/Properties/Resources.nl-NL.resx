@@ -3679,6 +3679,22 @@ Selecteer NO om één lege regel tussen paragrafen te behouden</value>
     <value>Oud of nieuw</value>
     <comment>title</comment>
   </data>
+  <data name="RestoreBackgroundImagesCommand_invalid" xml:space="preserve">
+    <value>Kon de achtergrondafbeeldingen niet herstellen omdat de validatie van de resulterende pagina mislukte; er zijn geen wijzigingen aangebracht</value>
+    <comment>error message</comment>
+  </data>
+  <data name="RestoreBackgroundImagesCommand_lostImages" xml:space="preserve">
+    <value>Er is een fout opgetreden bij het herstellen van achtergrondafbeeldingen en OneMore kon de originelen niet herstellen; gebruik OneNote's Ongedaan maken om de pagina te herstellen</value>
+    <comment>error message</comment>
+  </data>
+  <data name="RestoreBackgroundImagesCommand_noImages" xml:space="preserve">
+    <value>Deze pagina heeft geen achtergrondafbeeldingen om te herstellen</value>
+    <comment>error message</comment>
+  </data>
+  <data name="RestoreBackgroundImagesCommand_restoredAfterError" xml:space="preserve">
+    <value>Er is een fout opgetreden bij het herstellen van achtergrondafbeeldingen; de originele afbeeldingen zijn teruggeplaatst</value>
+    <comment>error message</comment>
+  </data>
   <data name="RestoreLayoutCommand_notFound" xml:space="preserve">
     <value>Lay-out '{0}' is niet gevonden.</value>
     <comment>message box</comment>
@@ -5175,6 +5191,14 @@ Tabblad Help</value>
   <data name="ribRestoreAutosizeButton_Screentip" xml:space="preserve">
     <value>Reset automatische breedte van alle containers</value>
     <comment>ribbon clean</comment>
+  </data>
+  <data name="ribRestoreBackgroundImagesButton_Label" xml:space="preserve">
+    <value>Achtergrondafbeeldingen herstellen</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribRestoreBackgroundImagesButton_Screentip" xml:space="preserve">
+    <value>Verplaats alle pagina-achtergrondafbeeldingen naar de paginatekst, van boven naar beneden</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribRestoreCollapsedButton_Label" xml:space="preserve">
     <value>Samengevouwen overzicht herstellen</value>

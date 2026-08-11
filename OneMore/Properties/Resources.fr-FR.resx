@@ -3690,6 +3690,22 @@ Sélectionnez Non pour conserver une ligne vide entre les paragraphes</value>
     <value>Ancien ou nouveau</value>
     <comment>title</comment>
   </data>
+  <data name="RestoreBackgroundImagesCommand_invalid" xml:space="preserve">
+    <value>Impossible de restaurer les images d'arrière-plan car la page résultante a échoué à la validation ; aucun changement n'a été apporté</value>
+    <comment>error message</comment>
+  </data>
+  <data name="RestoreBackgroundImagesCommand_lostImages" xml:space="preserve">
+    <value>Une erreur s'est produite lors de la restauration des images d'arrière-plan et OneMore n'a pas pu récupérer les originaux ; utilisez l'annulation de OneNote pour récupérer la page</value>
+    <comment>error message</comment>
+  </data>
+  <data name="RestoreBackgroundImagesCommand_noImages" xml:space="preserve">
+    <value>Cette page n'a pas d'image d'arrière-plan à restaurer</value>
+    <comment>error message</comment>
+  </data>
+  <data name="RestoreBackgroundImagesCommand_restoredAfterError" xml:space="preserve">
+    <value>Une erreur s'est produite lors de la restauration des images d'arrière-plan ; les images originales ont été remises</value>
+    <comment>error message</comment>
+  </data>
   <data name="RestoreLayoutCommand_notFound" xml:space="preserve">
     <value>La mise en page « {0} » est introuvable.</value>
     <comment>message box</comment>
@@ -5186,6 +5202,14 @@ Onglet Aide</value>
   <data name="ribRestoreAutosizeButton_Screentip" xml:space="preserve">
     <value>Réinitialiser la largeur automatique de tous les conteneurs</value>
     <comment>ribbon clean</comment>
+  </data>
+  <data name="ribRestoreBackgroundImagesButton_Label" xml:space="preserve">
+    <value>Restaurer les images d'arrière-plan</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribRestoreBackgroundImagesButton_Screentip" xml:space="preserve">
+    <value>Déplacez toutes les images d'arrière-plan de la page dans le corps de la page, de haut en bas</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribRestoreCollapsedButton_Label" xml:space="preserve">
     <value>Restaurer le contour réduit</value>

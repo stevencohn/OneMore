@@ -3678,6 +3678,22 @@ Seleccione No para mantener una línea vacía entre los párrafos</value>
     <value>Viejo o nuevo</value>
     <comment>title</comment>
   </data>
+  <data name="RestoreBackgroundImagesCommand_invalid" xml:space="preserve">
+    <value>No se pudieron restaurar las imágenes de fondo porque la página resultante no superó la validación; no se hicieron cambios</value>
+    <comment>error message</comment>
+  </data>
+  <data name="RestoreBackgroundImagesCommand_lostImages" xml:space="preserve">
+    <value>Se produjo un error al restaurar las imágenes de fondo y OneMore no pudo recuperar los originales; use Deshacer de OneNote para recuperar la página</value>
+    <comment>error message</comment>
+  </data>
+  <data name="RestoreBackgroundImagesCommand_noImages" xml:space="preserve">
+    <value>Esta página no tiene imágenes de fondo para restaurar.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="RestoreBackgroundImagesCommand_restoredAfterError" xml:space="preserve">
+    <value>Se produjo un error al restaurar las imágenes de fondo; las imágenes originales han sido devueltas</value>
+    <comment>error message</comment>
+  </data>
   <data name="RestoreLayoutCommand_notFound" xml:space="preserve">
     <value>No se encontró el diseño '{0}'.</value>
     <comment>message box</comment>
@@ -5174,6 +5190,14 @@ Pestaña Ayuda</value>
   <data name="ribRestoreAutosizeButton_Screentip" xml:space="preserve">
     <value>Restablecer el ancho automático de todos los contenedores</value>
     <comment>ribbon clean</comment>
+  </data>
+  <data name="ribRestoreBackgroundImagesButton_Label" xml:space="preserve">
+    <value>Restaurar imágenes de fondo</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribRestoreBackgroundImagesButton_Screentip" xml:space="preserve">
+    <value>Mueva todas las imágenes de fondo de la página al cuerpo de la página, de arriba a abajo</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribRestoreCollapsedButton_Label" xml:space="preserve">
     <value>Restaurar esquema contraído</value>

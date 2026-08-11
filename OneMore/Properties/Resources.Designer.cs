@@ -7616,7 +7616,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("phrase_AppendToThisPage", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Assignee contains.
         /// </summary>
@@ -7625,7 +7625,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("phrase_AssigneeContains", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Create a new page.
         /// </summary>
@@ -8828,6 +8828,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Could not restore background images because the resulting page failed validation; no changes were made.
+        /// </summary>
+        internal static string RestoreBackgroundImagesCommand_invalid {
+            get {
+                return ResourceManager.GetString("RestoreBackgroundImagesCommand_invalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred while restoring background images and OneMore could not recover the originals; use OneNote&apos;s Undo to recover the page.
+        /// </summary>
+        internal static string RestoreBackgroundImagesCommand_lostImages {
+            get {
+                return ResourceManager.GetString("RestoreBackgroundImagesCommand_lostImages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This page has no background images to restore.
         /// </summary>
         internal static string RestoreBackgroundImagesCommand_noImages {
@@ -8835,7 +8853,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("RestoreBackgroundImagesCommand_noImages", resourceCulture);
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred while restoring background images; the original images have been put back.
+        /// </summary>
+        internal static string RestoreBackgroundImagesCommand_restoredAfterError {
+            get {
+                return ResourceManager.GetString("RestoreBackgroundImagesCommand_restoredAfterError", resourceCulture);
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Layout &apos;{0}&apos; was not found..
         /// </summary>
@@ -9649,6 +9676,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Complete Hashtag.
+        /// </summary>
+        internal static string ribCompleteHashtagButton_Label {
+            get {
+                return ResourceManager.GetString("ribCompleteHashtagButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Complete the current word into a hashtag chosen from an autocomplete list (Alt+G).
+        /// </summary>
+        internal static string ribCompleteHashtagButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribCompleteHashtagButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Complete Reminder.
         /// </summary>
         internal static string ribCompleteReminderButton_Label {
@@ -10377,24 +10422,6 @@ namespace River.OneMoreAddIn.Properties {
             }
         }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Complete Hashtag.
-        /// </summary>
-        internal static string ribCompleteHashtagButton_Label {
-            get {
-                return ResourceManager.GetString("ribCompleteHashtagButton_Label", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Complete the current word into a hashtag chosen from an autocomplete list (Alt+G).
-        /// </summary>
-        internal static string ribCompleteHashtagButton_Screentip {
-            get {
-                return ResourceManager.GetString("ribCompleteHashtagButton_Screentip", resourceCulture);
-            }
-        }
-
         /// <summary>
         ///   Looks up a localized string similar to Insert Hashtags.
         /// </summary>
@@ -12296,7 +12323,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribRestoreAutosizeButton_Screentip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Restore Background Images.
         /// </summary>
@@ -12305,7 +12332,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribRestoreBackgroundImagesButton_Label", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Move all page-background images into the page body, top to bottom.
         /// </summary>
@@ -12314,7 +12341,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribRestoreBackgroundImagesButton_Screentip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Restore Collapsed Outline.
         /// </summary>
@@ -15689,7 +15716,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("word_Apply", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Assignee.
         /// </summary>
@@ -15698,7 +15725,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("word_Assignee", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Brightness.
         /// </summary>

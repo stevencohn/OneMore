@@ -3686,6 +3686,22 @@ ISO-code then comma then language name</comment>
     <value>旧もしくは新</value>
     <comment>title</comment>
   </data>
+  <data name="RestoreBackgroundImagesCommand_invalid" xml:space="preserve">
+    <value>結果のページが検証に失敗したため、背景画像を復元できませんでした。変更は行われませんでした</value>
+    <comment>error message</comment>
+  </data>
+  <data name="RestoreBackgroundImagesCommand_lostImages" xml:space="preserve">
+    <value>背景画像の復元中にエラーが発生し、OneMore は元の画像を復元できませんでした。 OneNote の「元に戻す」を使用してページを復元する</value>
+    <comment>error message</comment>
+  </data>
+  <data name="RestoreBackgroundImagesCommand_noImages" xml:space="preserve">
+    <value>このページには復元する背景画像がありません</value>
+    <comment>error message</comment>
+  </data>
+  <data name="RestoreBackgroundImagesCommand_restoredAfterError" xml:space="preserve">
+    <value>背景画像の復元中にエラーが発生しました。元の画像が元に戻されました</value>
+    <comment>error message</comment>
+  </data>
   <data name="RestoreLayoutCommand_notFound" xml:space="preserve">
     <value>レイアウト '{0}' が見つかりませんでした。</value>
     <comment>message box</comment>
@@ -5184,6 +5200,14 @@ ISO-code then comma then language name</comment>
   <data name="ribRestoreAutosizeButton_Screentip" xml:space="preserve">
     <value>すべてのコンテナの自動幅をリセット</value>
     <comment>ribbon clean</comment>
+  </data>
+  <data name="ribRestoreBackgroundImagesButton_Label" xml:space="preserve">
+    <value>背景画像を復元する</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribRestoreBackgroundImagesButton_Screentip" xml:space="preserve">
+    <value>すべてのページの背景画像をページ本文に上から下に移動します。</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribRestoreCollapsedButton_Label" xml:space="preserve">
     <value>アウトラインの折りたたみ状態復元</value>
