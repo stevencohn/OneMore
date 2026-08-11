@@ -6541,6 +6541,14 @@ Code——代码块段落
     <value>切换</value>
     <comment>group box</comment>
   </data>
+  <data name="Update_ChecksumMismatch" xml:space="preserve">
+    <value>下载的安装程序的校验和与发行说明中发布的值不匹配。这可能表明下载已损坏或被篡改。仍然继续安装吗？</value>
+    <comment>warning</comment>
+  </data>
+  <data name="Update_ChecksumNotFound" xml:space="preserve">
+    <value>在发行说明中找不到已发布的校验和来验证下载的安装程序。仍然继续安装吗？</value>
+    <comment>warning</comment>
+  </data>
   <data name="UpdateDialog.Text" xml:space="preserve">
     <value>检查 OneMore 更新</value>
     <comment>dialog title</comment>

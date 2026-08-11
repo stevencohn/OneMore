@@ -6523,6 +6523,14 @@ Bedankt!</value>
     <value>Wissel</value>
     <comment>group box</comment>
   </data>
+  <data name="Update_ChecksumMismatch" xml:space="preserve">
+    <value>De controlesom van het gedownloade installatieprogramma komt niet overeen met de waarde die is gepubliceerd in de releaseopmerkingen. Dit kan duiden op een beschadigde download of geknoei. Toch doorgaan met de installatie?</value>
+    <comment>warning</comment>
+  </data>
+  <data name="Update_ChecksumNotFound" xml:space="preserve">
+    <value>Kon geen gepubliceerde controlesom vinden in de releaseopmerkingen om het gedownloade installatieprogramma te verifiëren. Toch doorgaan met de installatie?</value>
+    <comment>warning</comment>
+  </data>
   <data name="UpdateDialog.Text" xml:space="preserve">
     <value>Controleer op OneMore-updates</value>
     <comment>dialog title</comment>

@@ -6533,6 +6533,14 @@ ISO-code then comma then language name</comment>
     <value>トグル</value>
     <comment>group box</comment>
   </data>
+  <data name="Update_ChecksumMismatch" xml:space="preserve">
+    <value>ダウンロードしたインストーラーのチェックサムが、リリース ノートで公開されている値と一致しません。これは、ダウンロードの破損または改ざんを示している可能性があります。とにかくインストールを続行しますか?</value>
+    <comment>warning</comment>
+  </data>
+  <data name="Update_ChecksumNotFound" xml:space="preserve">
+    <value>ダウンロードしたインストーラーを検証するための公開されたチェックサムがリリース ノートに見つかりませんでした。とにかくインストールを続行しますか?</value>
+    <comment>warning</comment>
+  </data>
   <data name="UpdateDialog.Text" xml:space="preserve">
     <value>OneMoreのアップデートを確認</value>
     <comment>dialog title</comment>

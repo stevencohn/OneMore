@@ -6523,6 +6523,14 @@ Danke schön!</value>
     <value>Umschalten</value>
     <comment>group box</comment>
   </data>
+  <data name="Update_ChecksumMismatch" xml:space="preserve">
+    <value>Die Prüfsumme des heruntergeladenen Installationsprogramms stimmt nicht mit dem in den Versionshinweisen veröffentlichten Wert überein. Dies könnte auf einen beschädigten Download oder eine Manipulation hinweisen. Trotzdem mit der Installation fortfahren?</value>
+    <comment>warning</comment>
+  </data>
+  <data name="Update_ChecksumNotFound" xml:space="preserve">
+    <value>In den Versionshinweisen konnte keine veröffentlichte Prüfsumme gefunden werden, um das heruntergeladene Installationsprogramm zu überprüfen. Trotzdem mit der Installation fortfahren?</value>
+    <comment>warning</comment>
+  </data>
   <data name="UpdateDialog.Text" xml:space="preserve">
     <value>Nach OneMore-Updates suchen</value>
     <comment>dialog title</comment>

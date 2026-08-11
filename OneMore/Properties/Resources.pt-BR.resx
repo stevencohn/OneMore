@@ -6523,6 +6523,14 @@ Obrigado!</value>
     <value>Alternancia</value>
     <comment>group box</comment>
   </data>
+  <data name="Update_ChecksumMismatch" xml:space="preserve">
+    <value>A soma de verificação do instalador baixado não corresponde ao valor publicado nas notas de versão. Isso pode indicar um download corrompido ou adulteração. Continuar com a instalação mesmo assim?</value>
+    <comment>warning</comment>
+  </data>
+  <data name="Update_ChecksumNotFound" xml:space="preserve">
+    <value>Não foi possível encontrar uma soma de verificação publicada nas notas de versão para verificar o instalador baixado. Continuar com a instalação mesmo assim?</value>
+    <comment>warning</comment>
+  </data>
   <data name="UpdateDialog.Text" xml:space="preserve">
     <value>Verifique se há atualizações do OneMore</value>
     <comment>dialog title</comment>

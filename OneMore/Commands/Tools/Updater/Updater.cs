@@ -16,6 +16,7 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 	using System.Reflection;
 	using System.Reflection.PortableExecutable;
 	using System.Runtime.InteropServices;
+	using System.Security.Cryptography;
 	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 	using System.Web.Script.Serialization;
@@ -260,7 +261,7 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
-		public async Task<bool> Update()
+		public async Task<bool> Update(Func<ChecksumStatus, bool> confirmProceed = null)
 		{
 			if (string.IsNullOrEmpty(productCode))
 			{
@@ -294,6 +295,15 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 			catch (Exception exc)
 			{
 				logger.WriteLine($"error downloading {asset.browser_download_url}", exc);
+				return false;
+			}
+
+			var status = VerifyChecksum(msi, key);
+			logger.WriteLine($"checksum verification: {status}");
+			if (status != ChecksumStatus.Verified &&
+				(confirmProceed is null || !confirmProceed(status)))
+			{
+				logger.WriteLine("update aborted by checksum verification");
 				return false;
 			}
 
@@ -344,6 +354,42 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 			provider.Save();
 
 			return true;
+		}
+
+
+		private ChecksumStatus VerifyChecksum(string filePath, string key)
+		{
+			var expected = ParseChecksum(release.body, key);
+			if (expected is null)
+			{
+				return ChecksumStatus.NotFound;
+			}
+
+			using var sha256 = SHA256.Create();
+			using var stream = File.OpenRead(filePath);
+			var hash = sha256.ComputeHash(stream);
+			var actual = BitConverter.ToString(hash).Replace("-", string.Empty);
+
+			return string.Equals(actual, expected, StringComparison.OrdinalIgnoreCase)
+				? ChecksumStatus.Verified
+				: ChecksumStatus.Mismatch;
+		}
+
+
+		// release notes carry a hand-maintained "## Checksums" section per architecture,
+		// e.g. "- x64 = <sha256>" or "- ARM64 bundle = <sha256>" for the Burn bundle installer;
+		// heading level and item order vary release to release since it's typed by hand, so match
+		// the bullet line directly rather than anchoring to the heading
+		private static string ParseChecksum(string body, string key)
+		{
+			if (string.IsNullOrEmpty(body))
+			{
+				return null;
+			}
+
+			var pattern = $@"(?im)^-\s*{Regex.Escape(key)}(?:\s+bundle)?\s*=\s*([0-9A-Fa-f]{{64}})\s*$";
+			var match = Regex.Match(body, pattern);
+			return match.Success ? match.Groups[1].Value : null;
 		}
 	}
 }

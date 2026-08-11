@@ -6530,6 +6530,14 @@ Grazie!</value>
     <value>Attiva/disattiva</value>
     <comment>group box</comment>
   </data>
+  <data name="Update_ChecksumMismatch" xml:space="preserve">
+    <value>Il checksum del programma di installazione scaricato non corrisponde al valore pubblicato nelle note di rilascio. Ciò potrebbe indicare un download danneggiato o una manomissione. Procedere comunque con l'installazione?</value>
+    <comment>warning</comment>
+  </data>
+  <data name="Update_ChecksumNotFound" xml:space="preserve">
+    <value>Impossibile trovare un checksum pubblicato nelle note di rilascio per verificare il programma di installazione scaricato. Procedere comunque con l'installazione?</value>
+    <comment>warning</comment>
+  </data>
   <data name="UpdateDialog.Text" xml:space="preserve">
     <value>Controlla gli aggiornamenti di OneMore</value>
     <comment>dialog title</comment>

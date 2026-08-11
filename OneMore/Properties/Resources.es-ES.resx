@@ -6522,6 +6522,14 @@ Puede habilitar o deshabilitar la telemetría en cualquier momento desde el cuad
     <value>Palanca</value>
     <comment>group box</comment>
   </data>
+  <data name="Update_ChecksumMismatch" xml:space="preserve">
+    <value>La suma de comprobación del instalador descargado no coincide con el valor publicado en las notas de la versión. Esto podría indicar una descarga corrupta o manipulación. ¿Continuar con la instalación de todos modos?</value>
+    <comment>warning</comment>
+  </data>
+  <data name="Update_ChecksumNotFound" xml:space="preserve">
+    <value>No se pudo encontrar una suma de verificación publicada en las notas de la versión para verificar el instalador descargado. ¿Continuar con la instalación de todos modos?</value>
+    <comment>warning</comment>
+  </data>
   <data name="UpdateDialog.Text" xml:space="preserve">
     <value>Buscar actualizaciones de OneMore</value>
     <comment>dialog title</comment>

@@ -89,7 +89,7 @@ namespace River.OneMoreAddIn.Commands
 				var result = question.ShowDialog(owner);
 				if (result == DialogResult.OK)
 				{
-					Updated = await updater.Update();
+					Updated = await updater.Update(ConfirmChecksumStatus);
 				}
 				else if (result == DialogResult.Ignore)
 				{
@@ -100,6 +100,16 @@ namespace River.OneMoreAddIn.Commands
 			{
 				commandIsActive = false;
 			}
+		}
+
+
+		private bool ConfirmChecksumStatus(ChecksumStatus status)
+		{
+			var text = status == ChecksumStatus.Mismatch
+				? Properties.Resources.Update_ChecksumMismatch
+				: Properties.Resources.Update_ChecksumNotFound;
+
+			return MoreMessageBox.ShowQuestion(owner, text, cancel: true) == DialogResult.Yes;
 		}
 
 

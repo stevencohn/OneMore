@@ -6523,6 +6523,14 @@ Dziękuję!</value>
     <value>Przełącznik</value>
     <comment>group box</comment>
   </data>
+  <data name="Update_ChecksumMismatch" xml:space="preserve">
+    <value>Suma kontrolna pobranego instalatora nie jest zgodna z wartością opublikowaną w uwagach do wydania. Może to wskazywać na uszkodzone pobieranie lub manipulację. Kontynuować instalację mimo to?</value>
+    <comment>warning</comment>
+  </data>
+  <data name="Update_ChecksumNotFound" xml:space="preserve">
+    <value>Nie można znaleźć opublikowanej sumy kontrolnej w informacjach o wydaniu, aby zweryfikować pobrany instalator. Kontynuować instalację mimo to?</value>
+    <comment>warning</comment>
+  </data>
   <data name="UpdateDialog.Text" xml:space="preserve">
     <value>Sprawdź aktualizacje OneMore</value>
     <comment>dialog title</comment>
