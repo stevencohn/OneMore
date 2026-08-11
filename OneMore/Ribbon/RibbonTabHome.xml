@@ -592,6 +592,12 @@
           getScreentip="GetRibbonScreentip"
           onAction="StylizeImagesCmd"/>
         <button
+          id="ribRestoreBackgroundImagesButton"
+          imageMso="GroupPosition"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="RestoreBackgroundImagesCmd"/>
+        <button
           id="ribStackBackgroundImagesButton"
           imageMso="GroupBorder"
           getLabel="GetRibbonLabel"

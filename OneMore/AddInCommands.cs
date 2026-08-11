@@ -921,6 +921,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<RestoreAutosizeCommand>();
 
 
+		[Command("ribRestoreBackgroundImagesButton_Label", Keys.None, "ribImagesMenu")]
+		public async Task RestoreBackgroundImagesCmd(IRibbonControl control)
+			=> await factory.Run<RestoreBackgroundImagesCommand>();
+
+
 		[Command("ribRestoreCollapsedButton_Label", Keys.None, "ribPageMenu")]
 		public async Task RestoreCollapsedCmd(IRibbonControl control)
 			=> await factory.Run<ExpandoCommand>(Expando.Restore);

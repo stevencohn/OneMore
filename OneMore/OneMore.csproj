@@ -285,6 +285,7 @@
     <Compile Include="Commands\Images\DiagramCommand.cs" />
     <Compile Include="Commands\Images\OpenImageWithCommand.cs" />
     <Compile Include="Commands\Images\Diagrams\PlantUmlDiagramProvider.cs" />
+    <Compile Include="Commands\Images\RestoreBackgroundImagesCommand.cs" />
     <Compile Include="Commands\Images\StackBackgroundImagesCommand.cs" />
     <Compile Include="Commands\Images\StylizeImagesCommand.cs" />
     <Compile Include="Commands\Images\StylizeImagesDialog.cs">

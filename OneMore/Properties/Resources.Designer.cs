@@ -8828,6 +8828,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This page has no background images to restore.
+        /// </summary>
+        internal static string RestoreBackgroundImagesCommand_noImages {
+            get {
+                return ResourceManager.GetString("RestoreBackgroundImagesCommand_noImages", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Layout &apos;{0}&apos; was not found..
         /// </summary>
         internal static string RestoreLayoutCommand_notFound {
@@ -12287,7 +12296,25 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribRestoreAutosizeButton_Screentip", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Restore Background Images.
+        /// </summary>
+        internal static string ribRestoreBackgroundImagesButton_Label {
+            get {
+                return ResourceManager.GetString("ribRestoreBackgroundImagesButton_Label", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Move all page-background images into the page body, top to bottom.
+        /// </summary>
+        internal static string ribRestoreBackgroundImagesButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribRestoreBackgroundImagesButton_Screentip", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Restore Collapsed Outline.
         /// </summary>
