@@ -111,7 +111,7 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 
 		private string InferArchitectureKey()
 		{
-			// The msi will have one of these keywords in its name: x86, x64, or ARM64.
+			// The installer asset will have one of these keywords in its name: x86, x64, or ARM64.
 			// Read the PE header of the executing assembly to determine which installer to
 			// download. Apply the ARM64EC heuristic: Office on ARM64 ships as ARM64EC whose
 			// COFF Machine field reports Amd64; treat it as ARM64 so we download the right
@@ -273,23 +273,26 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 
 			logger.WriteLine($"architecture is {key}");
 
-			var asset = release.assets.Find(a => a.browser_download_url.Contains($"Setup{key}.msi"));
+			// ARM64 never ships a standalone MSI; its distributable is a Burn bundle
+			// .exe wrapping the x64 MSI (see build.ps1 BuildKit) - x86/x64 ship a plain MSI
+			var extension = key == "ARM64" ? "exe" : "msi";
+			var asset = release.assets.Find(a => a.browser_download_url.Contains($"Setup{key}.{extension}"));
 			if (asset is null)
 			{
 				logger.WriteLine($"did not find installer asset for {key}");
 				return false;
 			}
 
-			var msi = Path.Combine(Path.GetTempPath(), asset.name);
+			var installerPath = Path.Combine(Path.GetTempPath(), asset.name);
 
 			try
 			{
-				logger.WriteLine($"downloading MSI from {asset.browser_download_url}");
+				logger.WriteLine($"downloading installer from {asset.browser_download_url}");
 
 				var client = HttpClientFactory.Create();
 				using var response = await client.GetAsync(asset.browser_download_url);
 				using var stream = await response.Content.ReadAsStreamAsync();
-				using var file = File.OpenWrite(msi);
+				using var file = File.OpenWrite(installerPath);
 				await stream.CopyToAsync(file);
 			}
 			catch (Exception exc)
@@ -298,7 +301,7 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 				return false;
 			}
 
-			var status = VerifyChecksum(msi, key);
+			var status = VerifyChecksum(installerPath, key);
 			logger.WriteLine($"checksum verification: {status}");
 			if (status != ChecksumStatus.Verified &&
 				(confirmProceed is null || !confirmProceed(status)))
@@ -311,7 +314,7 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 			// https://docs.microsoft.com/en-us/windows/win32/msi/command-line-options?redirectedfrom=MSDN
 
 			// make installer script, which runs as a separate process so we have a chance
-			// to terminate onenote before the msi runs
+			// to terminate onenote before the installer runs
 
 			var path = Path.Combine(Path.GetTempPath(), "OneMoreInstaller.cmd");
 			logger.WriteLine($"creating install script {path}");
@@ -324,7 +327,7 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 
 			using var writer = new StreamWriter(path, false);
 			await writer.WriteLineAsync(shutdown);
-			await writer.WriteLineAsync(msi);
+			await writer.WriteLineAsync(installerPath);
 #if Interactive
 			writer.WriteLine("set /p \"continue: \""); // for debugging
 #endif
