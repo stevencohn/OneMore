@@ -914,6 +914,86 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Gets the hierarchy nodes for the given parent and scope; used to populate "sibling"
+		/// pickers such as the WhereAmI breadcrumb dropdowns.
+		/// </summary>
+		/// <param name="parentId">
+		/// The ID of the parent object, or string.Empty for the root when scope is Notebooks
+		/// </param>
+		/// <param name="scope">
+		/// Scope.Children returns only the immediate children of parentId (a mix of node types,
+		/// mirroring whatever OneNote nests directly under that parent). Scope.Sections or
+		/// Scope.Pages return all matching descendants regardless of intervening SectionGroup
+		/// or Section nesting. Scope.Notebooks returns all open notebooks (parentId is ignored).
+		/// </param>
+		/// <returns>A list of matching hierarchy nodes</returns>
+		public async Task<List<HierarchyNode>> GetScopedNodes(string parentId, Scope scope)
+		{
+			XElement root = null;
+
+			await InvokeWithRetry(() =>
+			{
+				onenote.GetHierarchy(
+					parentId ?? string.Empty, (HierarchyScope)scope, out var xml, XMLSchema.xs2013);
+
+				if (!string.IsNullOrEmpty(xml))
+				{
+					root = XElement.Parse(xml);
+				}
+			});
+
+			var nodes = new List<HierarchyNode>();
+			if (root is null)
+			{
+				return nodes;
+			}
+
+			// Scope.Children/Notebooks yield a flat single level of direct children; for
+			// Scope.Sections/Pages the matching leaf elements may be nested inside intervening
+			// SectionGroup/Section container elements, so search all descendants in that case
+			var elements = scope is Scope.Sections or Scope.Pages
+				? root.Descendants().Where(e => e.Name.LocalName ==
+					(scope == Scope.Sections ? "Section" : "Page"))
+				: root.Elements();
+
+			foreach (var element in elements)
+			{
+				// exclude the Deleted Notes / OneNote_RecycleBin section group, its Deleted
+				// Pages section, and anything nested within either of them
+				if (element.Attribute("isRecycleBin") is not null ||
+					element.Attribute("isInRecycleBin") is not null)
+				{
+					continue;
+				}
+
+				if (!Enum.TryParse(element.Name.LocalName, out NodeType type))
+				{
+					continue;
+				}
+
+				var id = element.Attribute("ID")?.Value;
+				if (string.IsNullOrEmpty(id))
+				{
+					continue;
+				}
+
+				// Link is intentionally left unset: callers navigate by ID (onenote.NavigateTo
+				// accepts any hierarchy ID directly), which avoids both the per-item
+				// GetHyperlinkToObject COM round-trip and the local-notebook hyperlink
+				// construction that can fail for file-system paths that aren't cloud-hosted
+				nodes.Add(new HierarchyNode
+				{
+					Id = id,
+					NodeType = type,
+					Name = element.Attribute("name")?.Value
+				});
+			}
+
+			return nodes;
+		}
+
+
+		/// <summary>
 		/// Gets the current page.
 		/// </summary>
 		/// <param name="detail">The desired verbosity of the XML</param>
@@ -1115,6 +1195,50 @@ namespace River.OneMoreAddIn
 			{
 				return null;
 			}
+		}
+
+
+		/// <summary>
+		/// Gets the full top-down ancestor chain (Notebook, any SectionGroups, Section, Page)
+		/// for the given page, e.g. for the WhereAmI breadcrumb.
+		/// </summary>
+		/// <param name="pageId">The ID of the page, or null for the current page</param>
+		/// <returns>
+		/// An ordered list from the owning Notebook down to the Page itself, or null if the
+		/// page could not be found (e.g. no current page)
+		/// </returns>
+		public async Task<List<HierarchyNode>> GetPageBreadcrumb(string pageId = null)
+		{
+			var info = await GetPageInfo(pageId);
+			if (info is null)
+			{
+				return null;
+			}
+
+			var segments = new List<HierarchyNode>();
+
+			var id = GetParent(info.PageId);
+			while (!string.IsNullOrEmpty(id))
+			{
+				var node = GetHierarchyNode(id);
+				if (node is null)
+				{
+					break;
+				}
+
+				segments.Insert(0, node);
+				id = GetParent(node.Id);
+			}
+
+			segments.Add(new HierarchyNode
+			{
+				Id = info.PageId,
+				NodeType = NodeType.Page,
+				Name = info.Name,
+				Link = info.Link
+			});
+
+			return segments;
 		}
 
 

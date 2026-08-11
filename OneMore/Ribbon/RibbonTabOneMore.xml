@@ -1185,6 +1185,12 @@
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
         onAction="ManageLayoutsCmd"/>
+      <button
+        id="ribWhereAmIButton"
+        imageMso="PanAndZoomWindow"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="WhereAmICmd"/>
     </menu>
     <separator id="sepShowXml"/>
     <button

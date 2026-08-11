@@ -5654,6 +5654,14 @@ Help Tab</value>
     <value>View section in web browser</value>
     <comment>section context menu</comment>
   </data>
+  <data name="ribWhereAmIButton_Label" xml:space="preserve">
+    <value>Where am I?</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribWhereAmIButton_Screentip" xml:space="preserve">
+    <value>Show the hierarchy path of the current page, with dropdowns to jump to any level</value>
+    <comment>ribbon extras</comment>
+  </data>
   <data name="ribWordCountButton_Label" xml:space="preserve">
     <value>Word Count</value>
     <comment>ribbon page</comment>
@@ -7002,6 +7010,10 @@ Thank you!</value>
   </data>
   <data name="word_Yes" xml:space="preserve">
     <value>Yes</value>
+  </data>
+  <data name="WhereAmIWindow.Text" xml:space="preserve">
+    <value>Where Am I?</value>
+    <comment>window title</comment>
   </data>
   <data name="WordCountCommand_Count" xml:space="preserve">
     <value>Total words on page: {0}</value>
