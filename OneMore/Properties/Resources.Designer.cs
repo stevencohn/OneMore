@@ -7719,7 +7719,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://www.plantuml.com/plantuml/png/.
+        ///   Looks up a localized string similar to https://www.plantuml.com/plantuml/png/.
         /// </summary>
         internal static string PlantUmlCommand_PlantUrl {
             get {
