@@ -577,6 +577,26 @@ namespace River.OneMoreAddIn.UI
 				var itemHeight = GetItemRect(0).Height;
 				Height = (itemHeight + 1) * 15;
 
+				// ToolStripDropDown.Show(Control, Point) only clamps its own top edge to
+				// stay on screen; it does not reposition itself above Owner, so when there
+				// isn't room below Owner for the full list, the clamp can pull the list's
+				// top edge up past Owner and cover it. Move Owner's form up first so the
+				// list still fits below Owner without needing that clamp. This runs before
+				// popup.Show() below, so the Move handler subscribed above is a no-op here
+				// (popup isn't Visible yet); it still fires normally for later user-driven
+				// moves once the popup is shown.
+				var form = Owner.FindForm();
+				if (form != null)
+				{
+					var area = Screen.FromControl(form).WorkingArea;
+					var ownerBottom = Owner.PointToScreen(new Point(0, Owner.Height)).Y;
+					var shortfall = (ownerBottom + Height) - area.Bottom;
+					if (shortfall > 0)
+					{
+						form.Top = Math.Max(area.Top, form.Top - shortfall);
+					}
+				}
+
 				popup.Show(Owner, new Point(0, Owner.Height));
 			}
 
