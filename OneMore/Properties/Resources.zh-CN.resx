@@ -3693,6 +3693,22 @@ ISO-code then comma then language name</comment>
     <value>旧的或新的</value>
     <comment>title</comment>
   </data>
+  <data name="RestoreBackgroundImagesCommand_invalid" xml:space="preserve">
+    <value>无法恢复背景图像，因为生成的页面验证失败；没有做任何改变</value>
+    <comment>error message</comment>
+  </data>
+  <data name="RestoreBackgroundImagesCommand_lostImages" xml:space="preserve">
+    <value>恢复背景图片时出错，OneMore无法恢复原图；使用 OneNote 的撤消功能恢复页面</value>
+    <comment>error message</comment>
+  </data>
+  <data name="RestoreBackgroundImagesCommand_noImages" xml:space="preserve">
+    <value>该页面没有可恢复的背景图片</value>
+    <comment>error message</comment>
+  </data>
+  <data name="RestoreBackgroundImagesCommand_restoredAfterError" xml:space="preserve">
+    <value>恢复背景图片时出错；原始图像已放回</value>
+    <comment>error message</comment>
+  </data>
   <data name="RestoreLayoutCommand_notFound" xml:space="preserve">
     <value>未找到布局“{0}”。</value>
     <comment>message box</comment>
@@ -5189,6 +5205,14 @@ ISO-code then comma then language name</comment>
   <data name="ribRestoreAutosizeButton_Screentip" xml:space="preserve">
     <value>重置所有容器的自动宽度</value>
     <comment>ribbon clean</comment>
+  </data>
+  <data name="ribRestoreBackgroundImagesButton_Label" xml:space="preserve">
+    <value>恢复背景图像</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribRestoreBackgroundImagesButton_Screentip" xml:space="preserve">
+    <value>将所有页面背景图像从上到下移动到页面正文中</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribRestoreCollapsedButton_Label" xml:space="preserve">
     <value>恢复折叠的大纲</value>

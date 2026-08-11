@@ -3690,6 +3690,22 @@ ISO-code then comma then language name</comment>
     <value>قديم أو جديد</value>
     <comment>title</comment>
   </data>
+  <data name="RestoreBackgroundImagesCommand_invalid" xml:space="preserve">
+    <value>تعذرت استعادة صور الخلفية لأن الصفحة الناتجة فشلت في التحقق من الصحة؛ لم يتم إجراء أي تغييرات</value>
+    <comment>error message</comment>
+  </data>
+  <data name="RestoreBackgroundImagesCommand_lostImages" xml:space="preserve">
+    <value>حدث خطأ أثناء استعادة صور الخلفية ولم يتمكن OneMore من استعادة النسخ الأصلية؛ استخدم التراجع في OneNote لاستعادة الصفحة</value>
+    <comment>error message</comment>
+  </data>
+  <data name="RestoreBackgroundImagesCommand_noImages" xml:space="preserve">
+    <value>لا تحتوي هذه الصفحة على صور خلفية لاستعادتها</value>
+    <comment>error message</comment>
+  </data>
+  <data name="RestoreBackgroundImagesCommand_restoredAfterError" xml:space="preserve">
+    <value>حدث خطأ أثناء استعادة صور الخلفية؛ تم إرجاع الصور الأصلية</value>
+    <comment>error message</comment>
+  </data>
   <data name="RestoreLayoutCommand_notFound" xml:space="preserve">
     <value>لم يتم العثور على التخطيط '{0}'.</value>
     <comment>message box</comment>
@@ -5186,6 +5202,14 @@ ISO-code then comma then language name</comment>
   <data name="ribRestoreAutosizeButton_Screentip" xml:space="preserve">
     <value>إعادة تعيين العرض التلقائي لجميع الحاويات</value>
     <comment>ribbon clean</comment>
+  </data>
+  <data name="ribRestoreBackgroundImagesButton_Label" xml:space="preserve">
+    <value>استعادة صور الخلفية</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribRestoreBackgroundImagesButton_Screentip" xml:space="preserve">
+    <value>انقل جميع صور خلفية الصفحة إلى نص الصفحة، من الأعلى إلى الأسفل</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribRestoreCollapsedButton_Label" xml:space="preserve">
     <value>استعادة المخطط التفصيلي المطوي</value>

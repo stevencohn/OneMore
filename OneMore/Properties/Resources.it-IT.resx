@@ -3683,6 +3683,22 @@ Selezionare No per mantenere una riga vuota tra i paragrafi</value>
     <value>Vecchio o nuovo</value>
     <comment>title</comment>
   </data>
+  <data name="RestoreBackgroundImagesCommand_invalid" xml:space="preserve">
+    <value>Impossibile ripristinare le immagini di sfondo perché la convalida della pagina risultante non è riuscita; non sono state apportate modifiche</value>
+    <comment>error message</comment>
+  </data>
+  <data name="RestoreBackgroundImagesCommand_lostImages" xml:space="preserve">
+    <value>Si è verificato un errore durante il ripristino delle immagini di sfondo e OneMore non è riuscito a recuperare gli originali; utilizzare Annulla di OneNote per ripristinare la pagina</value>
+    <comment>error message</comment>
+  </data>
+  <data name="RestoreBackgroundImagesCommand_noImages" xml:space="preserve">
+    <value>Questa pagina non ha immagini di sfondo da ripristinare</value>
+    <comment>error message</comment>
+  </data>
+  <data name="RestoreBackgroundImagesCommand_restoredAfterError" xml:space="preserve">
+    <value>Si è verificato un errore durante il ripristino delle immagini di sfondo; le immagini originali sono state rimesse</value>
+    <comment>error message</comment>
+  </data>
   <data name="RestoreLayoutCommand_notFound" xml:space="preserve">
     <value>Il layout '{0}' non è stato trovato.</value>
     <comment>message box</comment>
@@ -5181,6 +5197,14 @@ Scheda Aiuto</value>
   <data name="ribRestoreAutosizeButton_Screentip" xml:space="preserve">
     <value>Reimposta la larghezza automatica di tutti i contenitori</value>
     <comment>ribbon clean</comment>
+  </data>
+  <data name="ribRestoreBackgroundImagesButton_Label" xml:space="preserve">
+    <value>Ripristina immagini di sfondo</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribRestoreBackgroundImagesButton_Screentip" xml:space="preserve">
+    <value>Sposta tutte le immagini di sfondo della pagina nel corpo della pagina, dall'alto verso il basso</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribRestoreCollapsedButton_Label" xml:space="preserve">
     <value>Ripristina struttura compressa</value>

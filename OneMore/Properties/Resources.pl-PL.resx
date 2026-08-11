@@ -3679,6 +3679,22 @@ Wybierz Nie, aby zachować jedną pustą linię między akapitami</value>
     <value>Stare lub nowe</value>
     <comment>title</comment>
   </data>
+  <data name="RestoreBackgroundImagesCommand_invalid" xml:space="preserve">
+    <value>Nie można przywrócić obrazów tła, ponieważ wynikowa strona nie przeszła weryfikacji; nie wprowadzono żadnych zmian</value>
+    <comment>error message</comment>
+  </data>
+  <data name="RestoreBackgroundImagesCommand_lostImages" xml:space="preserve">
+    <value>Wystąpił błąd podczas przywracania obrazów tła i OneMore nie mógł odzyskać oryginałów; użyj funkcji Cofnij w programie OneNote, aby odzyskać stronę</value>
+    <comment>error message</comment>
+  </data>
+  <data name="RestoreBackgroundImagesCommand_noImages" xml:space="preserve">
+    <value>Ta strona nie zawiera obrazów tła do przywrócenia</value>
+    <comment>error message</comment>
+  </data>
+  <data name="RestoreBackgroundImagesCommand_restoredAfterError" xml:space="preserve">
+    <value>Wystąpił błąd podczas przywracania obrazów tła; oryginalne obrazy zostały przywrócone</value>
+    <comment>error message</comment>
+  </data>
   <data name="RestoreLayoutCommand_notFound" xml:space="preserve">
     <value>Nie znaleziono układu „{0}”.</value>
     <comment>message box</comment>
@@ -5175,6 +5191,14 @@ Zakładka Pomoc</value>
   <data name="ribRestoreAutosizeButton_Screentip" xml:space="preserve">
     <value>Zresetuj automatyczną szerokość wszystkich kontenerów</value>
     <comment>ribbon clean</comment>
+  </data>
+  <data name="ribRestoreBackgroundImagesButton_Label" xml:space="preserve">
+    <value>Przywróć obrazy tła</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribRestoreBackgroundImagesButton_Screentip" xml:space="preserve">
+    <value>Przenieś wszystkie obrazy tła strony do treści strony, od góry do dołu</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribRestoreCollapsedButton_Label" xml:space="preserve">
     <value>Przywrócić zwinięty zarys</value>

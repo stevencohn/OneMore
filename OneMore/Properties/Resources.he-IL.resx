@@ -3683,6 +3683,22 @@ ISO-code then comma then language name</comment>
     <value>ישן או חדש</value>
     <comment>title</comment>
   </data>
+  <data name="RestoreBackgroundImagesCommand_invalid" xml:space="preserve">
+    <value>לא ניתן לשחזר תמונות רקע מכיוון שהדף שהתקבל נכשל באימות; לא נעשו שינויים</value>
+    <comment>error message</comment>
+  </data>
+  <data name="RestoreBackgroundImagesCommand_lostImages" xml:space="preserve">
+    <value>אירעה שגיאה במהלך שחזור תמונות רקע ו-OneMore לא הצליחה לשחזר את המקורות; השתמש ב-Ondo של OneNote כדי לשחזר את הדף</value>
+    <comment>error message</comment>
+  </data>
+  <data name="RestoreBackgroundImagesCommand_noImages" xml:space="preserve">
+    <value>לדף זה אין תמונות רקע לשחזור</value>
+    <comment>error message</comment>
+  </data>
+  <data name="RestoreBackgroundImagesCommand_restoredAfterError" xml:space="preserve">
+    <value>אירעה שגיאה בעת שחזור תמונות רקע; התמונות המקוריות הוחזרו</value>
+    <comment>error message</comment>
+  </data>
   <data name="RestoreLayoutCommand_notFound" xml:space="preserve">
     <value>הפריסה '{0}' לא נמצאה.</value>
     <comment>message box</comment>
@@ -5179,6 +5195,14 @@ ISO-code then comma then language name</comment>
   <data name="ribRestoreAutosizeButton_Screentip" xml:space="preserve">
     <value>אפס רוחב אוטומטי של כל המכולות</value>
     <comment>ribbon clean</comment>
+  </data>
+  <data name="ribRestoreBackgroundImagesButton_Label" xml:space="preserve">
+    <value>שחזור תמונות רקע</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribRestoreBackgroundImagesButton_Screentip" xml:space="preserve">
+    <value>העבר את כל תמונות הרקע של הדף לגוף העמוד, מלמעלה למטה</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribRestoreCollapsedButton_Label" xml:space="preserve">
     <value>שחזר קווי מתאר מכווץ</value>

@@ -3715,6 +3715,22 @@ Select No to keep one empty line between paragraphs</value>
     <value>Old or New</value>
     <comment>title</comment>
   </data>
+  <data name="RestoreBackgroundImagesCommand_invalid" xml:space="preserve">
+    <value>Could not restore background images because the resulting page failed validation; no changes were made</value>
+    <comment>error message</comment>
+  </data>
+  <data name="RestoreBackgroundImagesCommand_lostImages" xml:space="preserve">
+    <value>An error occurred while restoring background images and OneMore could not recover the originals; use OneNote's Undo to recover the page</value>
+    <comment>error message</comment>
+  </data>
+  <data name="RestoreBackgroundImagesCommand_noImages" xml:space="preserve">
+    <value>This page has no background images to restore</value>
+    <comment>error message</comment>
+  </data>
+  <data name="RestoreBackgroundImagesCommand_restoredAfterError" xml:space="preserve">
+    <value>An error occurred while restoring background images; the original images have been put back</value>
+    <comment>error message</comment>
+  </data>
   <data name="RestoreLayoutCommand_notFound" xml:space="preserve">
     <value>Layout '{0}' was not found.</value>
     <comment>message box</comment>
@@ -5217,6 +5233,14 @@ Help Tab</value>
   <data name="ribRestoreAutosizeButton_Screentip" xml:space="preserve">
     <value>Reset automatic width of all containers</value>
     <comment>ribbon clean</comment>
+  </data>
+  <data name="ribRestoreBackgroundImagesButton_Label" xml:space="preserve">
+    <value>Restore Background Images</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribRestoreBackgroundImagesButton_Screentip" xml:space="preserve">
+    <value>Move all page-background images into the page body, top to bottom</value>
+    <comment>ribbon images</comment>
   </data>
   <data name="ribRestoreCollapsedButton_Label" xml:space="preserve">
     <value>Restore Collapsed Outline</value>
