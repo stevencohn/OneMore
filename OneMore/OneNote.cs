@@ -1325,7 +1325,8 @@ namespace River.OneMoreAddIn
 			// Wildcard '*' returns all pages; otherwise filter to the named page.
 			var pageNameTrimmed = (pageName ?? "*").Trim();
 			var sectionNs = GetNamespace(section);
-			var pages = section.Elements(sectionNs + "Page");
+			var allPages = section.Elements(sectionNs + "Page").ToList();
+			IEnumerable<XElement> pages = allPages;
 
 			if (pageNameTrimmed != "*")
 			{
@@ -1335,7 +1336,7 @@ namespace River.OneMoreAddIn
 					// clipboard URI (e.g. ✓ encoded to ? by Windows). Treat each '?' as
 					// a single-character wildcard so the match still succeeds.
 					var pattern = "^" + Regex.Escape(pageNameTrimmed).Replace(@"\?", ".") + "$";
-					pages = pages.Where(p =>
+					pages = allPages.Where(p =>
 					{
 						var name = p.Attribute("name")?.Value?.Trim() ?? string.Empty;
 						return Regex.IsMatch(name, pattern,
@@ -1344,9 +1345,25 @@ namespace River.OneMoreAddIn
 				}
 				else
 				{
-					pages = pages.Where(p => string.Equals(
+					var matches = allPages.Where(p => string.Equals(
 						p.Attribute("name")?.Value?.Trim(), pageNameTrimmed,
 						StringComparison.InvariantCultureIgnoreCase));
+
+					if (!matches.Any())
+					{
+						// OneNote's "Copy Link to Page/Paragraph" strips filesystem-illegal
+						// characters (e.g. ':') from the page name it embeds in the onenote:
+						// URI fragment, since that fragment doubles as a path-like locator.
+						// So a title like "This: is the way" arrives here as "This is the
+						// way" and never matches exactly. Retry comparing with the same
+						// characters stripped from the candidate names.
+						matches = allPages.Where(p => string.Equals(
+							StripLinkIllegalChars(p.Attribute("name")?.Value?.Trim()),
+							pageNameTrimmed,
+							StringComparison.InvariantCultureIgnoreCase));
+					}
+
+					pages = matches;
 				}
 			}
 
@@ -1356,6 +1373,20 @@ namespace River.OneMoreAddIn
 				.Distinct()
 				.ToArray();
 		}
+
+
+		/// <summary>
+		/// Removes filesystem-illegal characters from a page name, mirroring the
+		/// sanitization OneNote itself applies when embedding a page name in a
+		/// "Copy Link to Page/Paragraph" onenote: URI fragment. Used only to recover
+		/// a match in <see cref="FindPagesByPath(string, string, string)"/> when the
+		/// exact name comparison fails.
+		/// </summary>
+		private static string StripLinkIllegalChars(string name) =>
+			name is null
+				? null
+				: new string(name.Where(c => Array.IndexOf(
+					Path.GetInvalidFileNameChars(), c) < 0).ToArray());
 
 
 		/// <summary>
