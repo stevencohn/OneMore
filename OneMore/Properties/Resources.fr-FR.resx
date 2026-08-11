@@ -6533,6 +6533,14 @@ Merci!</value>
     <value>Basculer</value>
     <comment>group box</comment>
   </data>
+  <data name="Update_ChecksumMismatch" xml:space="preserve">
+    <value>La somme de contrôle du programme d'installation téléchargé ne correspond pas à la valeur publiée dans les notes de version. Cela pourrait indiquer un téléchargement corrompu ou une falsification. Procéder quand même à l'installation ?</value>
+    <comment>warning</comment>
+  </data>
+  <data name="Update_ChecksumNotFound" xml:space="preserve">
+    <value>Impossible de trouver une somme de contrôle publiée dans les notes de version pour vérifier le programme d'installation téléchargé. Procéder quand même à l'installation ?</value>
+    <comment>warning</comment>
+  </data>
   <data name="UpdateDialog.Text" xml:space="preserve">
     <value>Rechercher les mises à jour OneMore</value>
     <comment>dialog title</comment>

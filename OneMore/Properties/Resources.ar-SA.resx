@@ -6534,6 +6534,14 @@ ISO-code then comma then language name</comment>
     <value>تبديل</value>
     <comment>group box</comment>
   </data>
+  <data name="Update_ChecksumMismatch" xml:space="preserve">
+    <value>لا يتطابق المجموع الاختباري لبرنامج التثبيت الذي تم تنزيله مع القيمة المنشورة في ملاحظات الإصدار. قد يشير هذا إلى تنزيل تالف أو تلاعب. المضي قدما في التثبيت على أية حال؟</value>
+    <comment>warning</comment>
+  </data>
+  <data name="Update_ChecksumNotFound" xml:space="preserve">
+    <value>تعذر العثور على المجموع الاختباري المنشور في ملاحظات الإصدار للتحقق من المثبت الذي تم تنزيله. المضي قدما في التثبيت على أية حال؟</value>
+    <comment>warning</comment>
+  </data>
   <data name="UpdateDialog.Text" xml:space="preserve">
     <value>تحقق من وجود تحديثات OneMore</value>
     <comment>dialog title</comment>

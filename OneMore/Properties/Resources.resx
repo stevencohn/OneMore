@@ -6592,6 +6592,14 @@ Thank you!</value>
     <value>Toggle</value>
     <comment>group box</comment>
   </data>
+  <data name="Update_ChecksumMismatch" xml:space="preserve">
+    <value>The downloaded installer's checksum does not match the value published in the release notes. This could indicate a corrupted download or tampering. Proceed with installation anyway?</value>
+    <comment>warning</comment>
+  </data>
+  <data name="Update_ChecksumNotFound" xml:space="preserve">
+    <value>Could not find a published checksum in the release notes to verify the downloaded installer. Proceed with installation anyway?</value>
+    <comment>warning</comment>
+  </data>
   <data name="UpdateDialog.Text" xml:space="preserve">
     <value>Check for OneMore Updates</value>
     <comment>dialog title</comment>

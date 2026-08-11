@@ -15447,6 +15447,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The downloaded installer&apos;s checksum does not match the value published in the release notes. This could indicate a corrupted download or tampering. Proceed with installation anyway?.
+        /// </summary>
+        internal static string Update_ChecksumMismatch {
+            get {
+                return ResourceManager.GetString("Update_ChecksumMismatch", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Could not find a published checksum in the release notes to verify the downloaded installer. Proceed with installation anyway?.
+        /// </summary>
+        internal static string Update_ChecksumNotFound {
+            get {
+                return ResourceManager.GetString("Update_ChecksumNotFound", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to OneMore is up to date.
         /// </summary>
         internal static string UpdateDialog_currentLabel_Text {

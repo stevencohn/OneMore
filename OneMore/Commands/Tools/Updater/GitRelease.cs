@@ -25,6 +25,8 @@ namespace River.OneMoreAddIn.Commands.Tools.Updater
 
 		public string published_at { get; set; }
 
+		public string body { get; set; }
+
 		public List<GitAsset> assets { get; set; }
 	}
 }

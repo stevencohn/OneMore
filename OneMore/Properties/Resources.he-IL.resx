@@ -6527,6 +6527,14 @@ ISO-code then comma then language name</comment>
     <value>לְמַתֵג</value>
     <comment>group box</comment>
   </data>
+  <data name="Update_ChecksumMismatch" xml:space="preserve">
+    <value>סכום הבדיקה של המתקין שהורד אינו תואם לערך שפורסם בהערות הגרסה. זה יכול להצביע על הורדה פגומה או חבלה. להמשיך בהתקנה בכל זאת?</value>
+    <comment>warning</comment>
+  </data>
+  <data name="Update_ChecksumNotFound" xml:space="preserve">
+    <value>לא ניתן היה למצוא סכום בדיקה שפורסם בהערות הגרסה כדי לאמת את המתקין שהורד. להמשיך בהתקנה בכל זאת?</value>
+    <comment>warning</comment>
+  </data>
   <data name="UpdateDialog.Text" xml:space="preserve">
     <value>בדוק אם יש עדכונים של OneMore</value>
     <comment>dialog title</comment>
