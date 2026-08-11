@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Cli;
 	using River.OneMoreAddIn.Models;
 	using System;
 	using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace River.OneMoreAddIn.Commands
 	/// Finds all images locked to the page background and moves them into the last
 	/// outline on the page, in document order, top-to-bottom then left-to-right.
 	/// </summary>
-	internal class RestoreBackgroundImagesCommand : Command
+	internal class RestoreBackgroundImagesCommand : Command, ICliPageCommand
 	{
 		private const double MinOutlineWidth = 600.0;
 
@@ -27,10 +28,41 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		#region CLI Implementation
+
+		public string CommandName => "RestoreBackgroundImages";
+
+		public string Description => "Move page-background images into the page body";
+
+		public CliParameterDefinition DefineParameters() =>
+			new CliParameterDefinition()
+			.AddString("notebook", "Name of notebook", required: true)
+			.AddString("section", "Path of section", required: false)
+			.AddString("page", "Name of page", required: false);
+
+		#endregion CLI Implementation
+
+
 		public override async Task Execute(params object[] args)
 		{
-			await using var one = new OneNote(out var page, out var ns, OneNote.PageDetail.All);
+			var cliParams = args.Length > 0 ? args[0] as CliParameterSet : null;
+			if (cliParams != null)
+			{
+				cliParams.TryGet("pageId", out string pageId);
+				if (string.IsNullOrWhiteSpace(pageId)) { return; }
+				await using var one = new OneNote();
+				var page = await one.GetPage(pageId, OneNote.PageDetail.All);
+				await Run(one, page, page.Namespace);
+				return;
+			}
 
+			await using var ribbon = new OneNote(out var rpage, out var rns, OneNote.PageDetail.All);
+			await Run(ribbon, rpage, rns);
+		}
+
+
+		private async Task Run(OneNote one, Page page, XNamespace ns)
+		{
 			var images = page.Root.Elements(ns + "Image").ToList();
 			if (!images.Any())
 			{
