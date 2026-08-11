@@ -39,7 +39,7 @@ namespace River.OneMoreAddIn.Commands
 			if (NeedsLocalizing())
 			{
 				Text = Resx.WhereAmIWindow_Text;
-				Localize(new[] { "cancelButton=word_Cancel" });
+				Localize(new[] { "cancelButton=word_Cancel", "copyButton=word_Copy" });
 			}
 
 			this.maxDesktopWidth = maxDesktopWidth;
@@ -48,6 +48,8 @@ namespace River.OneMoreAddIn.Commands
 			// (Show(), not ShowDialog()) setting DialogResult alone does not close the form,
 			// so the actual close must happen explicitly here
 			cancelButton.Click += (s, e) => Close();
+
+			copyButton.Click += async (s, e) => await CopyBreadcrumb();
 
 			// keep this popup above the ONENOTE window at all times
 			TopMost = true;
@@ -260,6 +262,29 @@ namespace River.OneMoreAddIn.Commands
 			// NavigateTo can bring the ONENOTE window to the foreground, burying this popup;
 			// keepTop=true re-asserts TopMost since this call happens outside of OnActivated
 			Elevate(true);
+		}
+
+
+		private async Task CopyBreadcrumb()
+		{
+			// build from segment data, not the MoreLinkLabel controls' Text, since their
+			// visible text includes the display-only " ▼" dropdown caret
+			var html = string.Join(" → ",
+				segments.Select(s => $"<a href=\"{s.Link}\">{s.Name}</a>"));
+
+			var text = string.Join(" → ", segments.Select(s => s.Name));
+
+			var board = new ClipboardProvider();
+			board.Stash(System.Windows.TextDataFormat.Html,
+				ClipboardProvider.WrapWithHtmlPreamble(html));
+			board.Stash(System.Windows.TextDataFormat.Text, text);
+			board.Stash(System.Windows.TextDataFormat.UnicodeText, text);
+
+			var success = await board.RestoreState();
+			if (!success)
+			{
+				MoreMessageBox.ShowError(this, Resx.Clipboard_locked);
+			}
 		}
 	}
 }

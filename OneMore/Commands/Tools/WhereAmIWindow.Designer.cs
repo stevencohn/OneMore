@@ -30,6 +30,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			this.flowPanel = new River.OneMoreAddIn.UI.MoreFlowLayoutPanel();
 			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
+			this.copyButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.SuspendLayout();
 			//
 			// flowPanel
@@ -61,6 +62,23 @@ namespace River.OneMoreAddIn.Commands
 			this.cancelButton.ThemedFore = null;
 			this.cancelButton.UseVisualStyleBackColor = true;
 			//
+			// copyButton
+			//
+			this.copyButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.copyButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+			this.copyButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.copyButton.ImageOver = null;
+			this.copyButton.Location = new System.Drawing.Point(178, 70);
+			this.copyButton.Name = "copyButton";
+			this.copyButton.ShowBorder = true;
+			this.copyButton.Size = new System.Drawing.Size(96, 34);
+			this.copyButton.StylizeImage = false;
+			this.copyButton.TabIndex = 2;
+			this.copyButton.Text = "Copy";
+			this.copyButton.ThemedBack = null;
+			this.copyButton.ThemedFore = null;
+			this.copyButton.UseVisualStyleBackColor = true;
+			//
 			// WhereAmIWindow
 			//
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -68,6 +86,7 @@ namespace River.OneMoreAddIn.Commands
 			this.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(400, 124);
+			this.Controls.Add(this.copyButton);
 			this.Controls.Add(this.cancelButton);
 			this.Controls.Add(this.flowPanel);
 			this.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -90,5 +109,6 @@ namespace River.OneMoreAddIn.Commands
 
 		private UI.MoreFlowLayoutPanel flowPanel;
 		private UI.MoreButton cancelButton;
+		private UI.MoreButton copyButton;
 	}
 }
