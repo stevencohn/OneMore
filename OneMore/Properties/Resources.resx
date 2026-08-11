@@ -3195,7 +3195,7 @@ High</value>
     <value>Your content here...</value>
   </data>
   <data name="PlantUmlCommand_PlantUrl" xml:space="preserve">
-    <value>http://www.plantuml.com/plantuml/png/</value>
+    <value>https://www.plantuml.com/plantuml/png/</value>
     <comment>PlantUML Remote servier !SKIP</comment>
   </data>
   <data name="Plugin_InvalidSchema" xml:space="preserve">
