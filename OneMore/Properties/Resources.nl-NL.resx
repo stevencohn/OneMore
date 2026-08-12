@@ -3716,8 +3716,8 @@ Selecteer NO om één lege regel tussen paragrafen te behouden</value>
     <comment>ribbon images</comment>
   </data>
   <data name="ribAddFavoriteButton_Label" xml:space="preserve">
-    <value>Pagina toevoegen aan favorieten</value>
-    <comment>page context menu</comment>
+    <value>Toevoegen aan Favorieten</value>
+    <comment>page, section group, and notebook context menus</comment>
   </data>
   <data name="ribAddFavoritePageButton_Label" xml:space="preserve">
     <value>Huidige pagina toevoegen</value>
@@ -5611,6 +5611,14 @@ Tabblad Help</value>
     <value>Bekijk sectie in webbrowser</value>
     <comment>section context menu</comment>
   </data>
+  <data name="ribWhereAmIButton_Label" xml:space="preserve">
+    <value>Waar ben ik?</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribWhereAmIButton_Screentip" xml:space="preserve">
+    <value>Toon het hiërarchiepad van de huidige pagina, met vervolgkeuzelijsten om naar elk niveau te springen</value>
+    <comment>ribbon extras</comment>
+  </data>
   <data name="ribWordCountButton_Label" xml:space="preserve">
     <value>Aantal woorden</value>
     <comment>Ribbon OneMore menu extras</comment>
@@ -6625,6 +6633,10 @@ Bedankt!</value>
   <data name="VariablesSheet_uniqueError" xml:space="preserve">
     <value>Variabele namen moeten uniek zijn</value>
     <comment>messagebox</comment>
+  </data>
+  <data name="WhereAmIWindow.Text" xml:space="preserve">
+    <value>Waar ben ik?</value>
+    <comment>window title</comment>
   </data>
   <data name="word_Actual" xml:space="preserve">
     <value>Werkelijk</value>

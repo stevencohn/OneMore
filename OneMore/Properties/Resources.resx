@@ -3752,8 +3752,8 @@ Select No to keep one empty line between paragraphs</value>
     <comment>ribbon images</comment>
   </data>
   <data name="ribAddFavoriteButton_Label" xml:space="preserve">
-    <value>Add Page to Favorites</value>
-    <comment>page context menu</comment>
+    <value>Add to Favorites</value>
+    <comment>page, section group, and notebook context menus</comment>
   </data>
   <data name="ribAddFavoritePageButton_Label" xml:space="preserve">
     <value>Add current page</value>
@@ -6703,6 +6703,10 @@ Thank you!</value>
     <value>Variable names must be unique</value>
     <comment>messagebox</comment>
   </data>
+  <data name="WhereAmIWindow.Text" xml:space="preserve">
+    <value>Where Am I?</value>
+    <comment>window title</comment>
+  </data>
   <data name="word_Actual" xml:space="preserve">
     <value>Actual</value>
   </data>
@@ -7010,10 +7014,6 @@ Thank you!</value>
   </data>
   <data name="word_Yes" xml:space="preserve">
     <value>Yes</value>
-  </data>
-  <data name="WhereAmIWindow.Text" xml:space="preserve">
-    <value>Where Am I?</value>
-    <comment>window title</comment>
   </data>
   <data name="WordCountCommand_Count" xml:space="preserve">
     <value>Total words on page: {0}</value>

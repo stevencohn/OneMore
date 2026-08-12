@@ -56,6 +56,8 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 			listView.SetColumnProportions(0.4f, 0.6f);
 			listView.GetCellStyle = GetCellStyle;
+			listView.GetCellImage = (item, col) =>
+				col == 0 && item.Tag is Favorite f ? FavoriteKindGlyphs.GetGlyph(f) : null;
 
 			DefaultControl = searchBox;
 		}

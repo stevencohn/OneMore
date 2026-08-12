@@ -64,6 +64,14 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		public string PageID { get; set; }
 
 		/// <summary>
+		/// Distinguishes the kind of target this favorite points to when PageID is not set:
+		/// null or "section" for a section (including legacy rows predating this field),
+		/// "sectiongroup" for a section group, or "notebook" for a notebook. Used only to
+		/// pick an icon in the Favorites menu.
+		/// </summary>
+		public string Kind { get; set; }
+
+		/// <summary>
 		/// The custom sort order of the favorite. Default sort order is alphabetic by alias.
 		/// </summary>
 		public int SortOrder { get; set; }

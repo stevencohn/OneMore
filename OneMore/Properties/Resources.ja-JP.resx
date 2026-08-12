@@ -3723,8 +3723,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon images</comment>
   </data>
   <data name="ribAddFavoriteButton_Label" xml:space="preserve">
-    <value>ページをお気に入りに追加</value>
-    <comment>page context menu</comment>
+    <value>お気に入りに追加</value>
+    <comment>page, section group, and notebook context menus</comment>
   </data>
   <data name="ribAddFavoritePageButton_Label" xml:space="preserve">
     <value>OneMore に関する情報を表示</value>
@@ -5621,6 +5621,14 @@ ISO-code then comma then language name</comment>
     <value>Webブラウザでセクションを表示</value>
     <comment>section context menu</comment>
   </data>
+  <data name="ribWhereAmIButton_Label" xml:space="preserve">
+    <value>私はどこにいるの？</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribWhereAmIButton_Screentip" xml:space="preserve">
+    <value>現在のページの階層パスを表示し、任意のレベルにジャンプするためのドロップダウンを表示します。</value>
+    <comment>ribbon extras</comment>
+  </data>
   <data name="ribWordCountButton_Label" xml:space="preserve">
     <value>単語数(日本語は文字数)カウント</value>
     <comment>ribbon page</comment>
@@ -6635,6 +6643,10 @@ ISO-code then comma then language name</comment>
   <data name="VariablesSheet_uniqueError" xml:space="preserve">
     <value>変数名は一意でなければなりません</value>
     <comment>messagebox</comment>
+  </data>
+  <data name="WhereAmIWindow.Text" xml:space="preserve">
+    <value>私はどこにいるの？</value>
+    <comment>window title</comment>
   </data>
   <data name="word_Actual" xml:space="preserve">
     <value>実績</value>

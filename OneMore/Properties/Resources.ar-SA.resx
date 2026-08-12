@@ -3727,8 +3727,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon images</comment>
   </data>
   <data name="ribAddFavoriteButton_Label" xml:space="preserve">
-    <value>إضافة الصفحة إلى المفضلة</value>
-    <comment>page context menu</comment>
+    <value>أضف إلى المفضلة</value>
+    <comment>page, section group, and notebook context menus</comment>
   </data>
   <data name="ribAddFavoritePageButton_Label" xml:space="preserve">
     <value>أضف الصفحة الحالية</value>
@@ -5622,6 +5622,14 @@ ISO-code then comma then language name</comment>
     <value>عرض القسم في متصفح الويب</value>
     <comment>section context menu</comment>
   </data>
+  <data name="ribWhereAmIButton_Label" xml:space="preserve">
+    <value>أين أنا؟</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribWhereAmIButton_Screentip" xml:space="preserve">
+    <value>إظهار المسار الهرمي للصفحة الحالية، مع القوائم المنسدلة للانتقال إلى أي مستوى</value>
+    <comment>ribbon extras</comment>
+  </data>
   <data name="ribWordCountButton_Label" xml:space="preserve">
     <value>عدد الكلمات</value>
     <comment>Ribbon OneMore menu extras</comment>
@@ -6636,6 +6644,10 @@ ISO-code then comma then language name</comment>
   <data name="VariablesSheet_uniqueError" xml:space="preserve">
     <value>يجب أن تكون الأسماء المتغيرة فريدة من نوعها</value>
     <comment>messagebox</comment>
+  </data>
+  <data name="WhereAmIWindow.Text" xml:space="preserve">
+    <value>أين أنا؟</value>
+    <comment>window title</comment>
   </data>
   <data name="word_Actual" xml:space="preserve">
     <value>فعلي</value>

@@ -107,9 +107,14 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 		private static XElement MakeButton(Favorite favorite)
 		{
-			var imageMso = string.IsNullOrWhiteSpace(favorite.PageID)
-				? "FileLinksToFiles"
-				: "GroupInsertLinks";
+			var imageMso = !string.IsNullOrWhiteSpace(favorite.PageID)
+				? "GroupInsertLinks"
+				: favorite.Kind switch
+				{
+					"notebook" => "CategoryCollapse",
+					"sectiongroup" => "SharingOpenNotesFolder",
+					_ => "FileLinksToFiles"
+				};
 
 			return new XElement(ns + "button",
 				new XAttribute("id", $"omFavorite{favorite.ID}"),

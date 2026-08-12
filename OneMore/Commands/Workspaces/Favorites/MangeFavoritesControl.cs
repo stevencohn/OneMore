@@ -75,6 +75,8 @@ namespace River.OneMoreAddIn.Commands.Favorites
 			listView.CanDragItem = item => item.Tag is Favorite;
 			listView.IsInsertionAnchor = item => item.Tag is FolderRow;
 			listView.GetCellStyle = GetCellStyle;
+			listView.GetCellImage = (item, col) =>
+				col == 0 && item.Tag is Favorite f ? FavoriteKindGlyphs.GetGlyph(f) : null;
 		}
 
 

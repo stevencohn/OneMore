@@ -3716,8 +3716,8 @@ Selecione Não para manter uma linha vazia entre os parágrafos</value>
     <comment>ribbon images</comment>
   </data>
   <data name="ribAddFavoriteButton_Label" xml:space="preserve">
-    <value>Adicionar página aos favoritos</value>
-    <comment>page context menu</comment>
+    <value>Adicionar aos Favoritos</value>
+    <comment>page, section group, and notebook context menus</comment>
   </data>
   <data name="ribAddFavoritePageButton_Label" xml:space="preserve">
     <value>Adicionar página atual</value>
@@ -5611,6 +5611,14 @@ Guia Ajuda</value>
     <value>Ver seção no navegador da web</value>
     <comment>section context menu</comment>
   </data>
+  <data name="ribWhereAmIButton_Label" xml:space="preserve">
+    <value>Onde estou?</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribWhereAmIButton_Screentip" xml:space="preserve">
+    <value>Mostrar o caminho hierárquico da página atual, com menus suspensos para pular para qualquer nível</value>
+    <comment>ribbon extras</comment>
+  </data>
   <data name="ribWordCountButton_Label" xml:space="preserve">
     <value>Contagem de palavras</value>
     <comment>Ribbon OneMore menu extras</comment>
@@ -6625,6 +6633,10 @@ Obrigado!</value>
   <data name="VariablesSheet_uniqueError" xml:space="preserve">
     <value>Nomes variáveis ​​devem ser únicos</value>
     <comment>messagebox</comment>
+  </data>
+  <data name="WhereAmIWindow.Text" xml:space="preserve">
+    <value>Onde estou?</value>
+    <comment>window title</comment>
   </data>
   <data name="word_Actual" xml:space="preserve">
     <value>Real</value>
