@@ -3720,8 +3720,8 @@ Selezionare No per mantenere una riga vuota tra i paragrafi</value>
     <comment>ribbon images</comment>
   </data>
   <data name="ribAddFavoriteButton_Label" xml:space="preserve">
-    <value>Aggiungi pagina ai preferiti</value>
-    <comment>page context menu</comment>
+    <value>Aggiungi ai preferiti</value>
+    <comment>page, section group, and notebook context menus</comment>
   </data>
   <data name="ribAddFavoritePageButton_Label" xml:space="preserve">
     <value>Aggiungi la pagina corrente</value>
@@ -5618,6 +5618,14 @@ Scheda Aiuto</value>
     <value>Visualizza la sezione nel browser web</value>
     <comment>section context menu</comment>
   </data>
+  <data name="ribWhereAmIButton_Label" xml:space="preserve">
+    <value>Dove sono?</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribWhereAmIButton_Screentip" xml:space="preserve">
+    <value>Mostra il percorso gerarchico della pagina corrente, con menu a discesa per passare a qualsiasi livello</value>
+    <comment>ribbon extras</comment>
+  </data>
   <data name="ribWordCountButton_Label" xml:space="preserve">
     <value>Conteggio parole</value>
     <comment>ribbon page</comment>
@@ -6632,6 +6640,10 @@ Grazie!</value>
   <data name="VariablesSheet_uniqueError" xml:space="preserve">
     <value>I nomi delle variabili devono essere univoci</value>
     <comment>messagebox</comment>
+  </data>
+  <data name="WhereAmIWindow.Text" xml:space="preserve">
+    <value>Dove sono?</value>
+    <comment>window title</comment>
   </data>
   <data name="word_Actual" xml:space="preserve">
     <value>Reale</value>

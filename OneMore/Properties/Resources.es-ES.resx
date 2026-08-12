@@ -3715,8 +3715,8 @@ Seleccione No para mantener una línea vacía entre los párrafos</value>
     <comment>ribbon images</comment>
   </data>
   <data name="ribAddFavoriteButton_Label" xml:space="preserve">
-    <value>Agregar página a favoritos</value>
-    <comment>page context menu</comment>
+    <value>Añadir a favoritos</value>
+    <comment>page, section group, and notebook context menus</comment>
   </data>
   <data name="ribAddFavoritePageButton_Label" xml:space="preserve">
     <value>Añadir página actual</value>
@@ -5610,6 +5610,14 @@ Pestaña Ayuda</value>
     <value>Ver sección en el navegador web</value>
     <comment>section context menu</comment>
   </data>
+  <data name="ribWhereAmIButton_Label" xml:space="preserve">
+    <value>¿Dónde estoy?</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribWhereAmIButton_Screentip" xml:space="preserve">
+    <value>Muestra la ruta jerárquica de la página actual, con menús desplegables para saltar a cualquier nivel.</value>
+    <comment>ribbon extras</comment>
+  </data>
   <data name="ribWordCountButton_Label" xml:space="preserve">
     <value>El recuento de palabras</value>
     <comment>Ribbon OneMore menu extras</comment>
@@ -6624,6 +6632,10 @@ Puede habilitar o deshabilitar la telemetría en cualquier momento desde el cuad
   <data name="VariablesSheet_uniqueError" xml:space="preserve">
     <value>Los nombres variables deben ser únicos</value>
     <comment>messagebox</comment>
+  </data>
+  <data name="WhereAmIWindow.Text" xml:space="preserve">
+    <value>¿Dónde estoy?</value>
+    <comment>window title</comment>
   </data>
   <data name="word_Actual" xml:space="preserve">
     <value>Real</value>

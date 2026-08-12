@@ -3716,8 +3716,8 @@ Wybierz Nie, aby zachować jedną pustą linię między akapitami</value>
     <comment>ribbon images</comment>
   </data>
   <data name="ribAddFavoriteButton_Label" xml:space="preserve">
-    <value>Dodaj stronę do ulubionych</value>
-    <comment>page context menu</comment>
+    <value>Dodaj do ulubionych</value>
+    <comment>page, section group, and notebook context menus</comment>
   </data>
   <data name="ribAddFavoritePageButton_Label" xml:space="preserve">
     <value>Dodaj bieżącą stronę</value>
@@ -5611,6 +5611,14 @@ Zakładka Pomoc</value>
     <value>Wyświetl sekcję w przeglądarce internetowej</value>
     <comment>section context menu</comment>
   </data>
+  <data name="ribWhereAmIButton_Label" xml:space="preserve">
+    <value>Gdzie jestem?</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribWhereAmIButton_Screentip" xml:space="preserve">
+    <value>Pokaż ścieżkę hierarchii bieżącej strony z listami rozwijanymi umożliwiającymi przejście do dowolnego poziomu</value>
+    <comment>ribbon extras</comment>
+  </data>
   <data name="ribWordCountButton_Label" xml:space="preserve">
     <value>Liczba słów</value>
     <comment>Ribbon OneMore menu extras</comment>
@@ -6625,6 +6633,10 @@ Dziękuję!</value>
   <data name="VariablesSheet_uniqueError" xml:space="preserve">
     <value>Nazwy zmiennych muszą być unikalne</value>
     <comment>messagebox</comment>
+  </data>
+  <data name="WhereAmIWindow.Text" xml:space="preserve">
+    <value>Gdzie jestem?</value>
+    <comment>window title</comment>
   </data>
   <data name="word_Actual" xml:space="preserve">
     <value>Rzeczywisty</value>

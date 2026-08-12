@@ -163,9 +163,15 @@ namespace River.OneMoreAddIn.Commands.Workspaces
 
 			var targetID = reference.PageID ?? reference.SectionID;
 
-			if (notebook is not null &&
-				notebook.Descendants()
-					.FirstOrDefault(e => e.Attribute("ID")?.Value == targetID) is XElement node)
+			// a notebook-only favorite stores its own notebookID as a SectionID sentinel,
+			// so it targets the notebook itself rather than one of its descendants
+			var node = notebook is null
+				? null
+				: targetID == reference.NotebookID
+					? notebook
+					: notebook.Descendants().FirstOrDefault(e => e.Attribute("ID")?.Value == targetID);
+
+			if (node is not null)
 			{
 				reference.Status = TargetStatus.Known;
 
@@ -203,9 +209,9 @@ namespace River.OneMoreAddIn.Commands.Workspaces
 			}
 
 			var parts = reference.Location.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
-			if (parts.Length < 2)
+			if (parts.Length < 1)
 			{
-				// must be at least: /notebook/section
+				// must be at least: /notebook
 				return Broken(reference);
 			}
 
@@ -239,31 +245,31 @@ namespace River.OneMoreAddIn.Commands.Workspaces
 				}
 			}
 
-			// match section/group/page parts...
+			// match section/group/page parts, if any; no remaining parts means the
+			// location is just the notebook itself (a notebook-only favorite)...
 
 			parts = parts.Skip(1).ToArray();
 
-			if (parts.Length == 0)
-			{
-				return Broken(reference);
-			}
-
 			var node = notebook;
 			var previous = notebook;
-			foreach (var part in parts)
-			{
-				node = node.Elements()
-					.FirstOrDefault(e =>
-						string.Equals(e.Attribute("name")?.Value, part,
-							StringComparison.InvariantCultureIgnoreCase));
 
-				if (node is null) break;
-				previous = node;
-			}
-
-			if (node is null)
+			if (parts.Length > 0)
 			{
-				return Broken(reference);
+				foreach (var part in parts)
+				{
+					node = node.Elements()
+						.FirstOrDefault(e =>
+							string.Equals(e.Attribute("name")?.Value, part,
+								StringComparison.InvariantCultureIgnoreCase));
+
+					if (node is null) break;
+					previous = node;
+				}
+
+				if (node is null)
+				{
+					return Broken(reference);
+				}
 			}
 
 			reference.Status = TargetStatus.Known;
@@ -278,6 +284,12 @@ namespace River.OneMoreAddIn.Commands.Workspaces
 			{
 				sectionID = previous.Attribute("ID").Value;
 				pageID = node.Attribute("ID").Value;
+			}
+			else if (node.Name.LocalName == "Notebook")
+			{
+				// notebook-only favorite; SectionID sentinel equals NotebookID
+				sectionID = notebookID;
+				pageID = null;
 			}
 			else
 			{

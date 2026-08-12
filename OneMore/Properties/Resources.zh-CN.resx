@@ -3730,8 +3730,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon images</comment>
   </data>
   <data name="ribAddFavoriteButton_Label" xml:space="preserve">
-    <value>将页面添加到收藏夹</value>
-    <comment>page context menu</comment>
+    <value>添加到收藏夹</value>
+    <comment>page, section group, and notebook context menus</comment>
   </data>
   <data name="ribAddFavoritePageButton_Label" xml:space="preserve">
     <value>收藏当前页面</value>
@@ -5625,6 +5625,14 @@ ISO-code then comma then language name</comment>
     <value>在网络浏览器中查看部分</value>
     <comment>section context menu</comment>
   </data>
+  <data name="ribWhereAmIButton_Label" xml:space="preserve">
+    <value>我在哪里？</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribWhereAmIButton_Screentip" xml:space="preserve">
+    <value>显示当前页面的层次路径，带有下拉菜单可跳转到任意级别</value>
+    <comment>ribbon extras</comment>
+  </data>
   <data name="ribWordCountButton_Label" xml:space="preserve">
     <value>字数</value>
     <comment>Ribbon OneMore menu extras</comment>
@@ -6643,6 +6651,10 @@ Code——代码块段落
   <data name="VariablesSheet_uniqueError" xml:space="preserve">
     <value>变量名称必须唯一</value>
     <comment>messagebox</comment>
+  </data>
+  <data name="WhereAmIWindow.Text" xml:space="preserve">
+    <value>我在哪里？</value>
+    <comment>window title</comment>
   </data>
   <data name="word_Actual" xml:space="preserve">
     <value>实际的</value>

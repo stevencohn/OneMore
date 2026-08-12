@@ -3715,8 +3715,8 @@ Wähle Nein, um eine leere Zeile zwischen den Absätzen zu halten</value>
     <comment>ribbon images</comment>
   </data>
   <data name="ribAddFavoriteButton_Label" xml:space="preserve">
-    <value>Seite zu Favoriten hinzufügen</value>
-    <comment>page context menu</comment>
+    <value>Zu Favoriten hinzufügen</value>
+    <comment>page, section group, and notebook context menus</comment>
   </data>
   <data name="ribAddFavoritePageButton_Label" xml:space="preserve">
     <value>Aktuelle Seite hinzufügen</value>
@@ -5612,6 +5612,14 @@ Registerkarte „Hilfe“.</value>
     <value>Abschnitt im Webbrowser anzeigen</value>
     <comment>section context menu</comment>
   </data>
+  <data name="ribWhereAmIButton_Label" xml:space="preserve">
+    <value>Wo bin ich?</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribWhereAmIButton_Screentip" xml:space="preserve">
+    <value>Zeigen Sie den Hierarchiepfad der aktuellen Seite an, mit Dropdown-Menüs zum Springen zu jeder Ebene</value>
+    <comment>ribbon extras</comment>
+  </data>
   <data name="ribWordCountButton_Label" xml:space="preserve">
     <value>Wortzahl</value>
     <comment>Ribbon OneMore menu extras</comment>
@@ -6625,6 +6633,10 @@ Danke schön!</value>
   <data name="VariablesSheet_uniqueError" xml:space="preserve">
     <value>Variablennamen müssen eindeutig sein</value>
     <comment>messagebox</comment>
+  </data>
+  <data name="WhereAmIWindow.Text" xml:space="preserve">
+    <value>Wo bin ich?</value>
+    <comment>window title</comment>
   </data>
   <data name="word_Actual" xml:space="preserve">
     <value>Tatsächlich</value>

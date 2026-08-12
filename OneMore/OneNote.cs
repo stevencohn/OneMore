@@ -1679,6 +1679,33 @@ namespace River.OneMoreAddIn
 		}
 
 
+		/// <summary>
+		/// Gets the name and OneNote hyperlink to the current notebook; used to build up
+		/// Favorites
+		/// </summary>
+		/// <returns></returns>
+		public async Task<HierarchyInfo> GetNotebookInfo(string notebookId = null)
+		{
+			notebookId ??= CurrentNotebookId;
+
+			var notebook = await GetNotebook(notebookId, Scope.Self);
+			if (notebook == null)
+			{
+				return null;
+			}
+
+			var name = notebook.Attribute("name")?.Value;
+
+			return new HierarchyInfo
+			{
+				NotebookId = notebookId,
+				Name = name,
+				Path = $"/{name}",
+				Link = GetHyperlink(notebookId, string.Empty)
+			};
+		}
+
+
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 		// Update...
 

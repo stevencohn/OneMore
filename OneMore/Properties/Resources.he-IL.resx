@@ -3720,8 +3720,8 @@ ISO-code then comma then language name</comment>
     <comment>ribbon images</comment>
   </data>
   <data name="ribAddFavoriteButton_Label" xml:space="preserve">
-    <value>הוסף עמוד למועדפים</value>
-    <comment>page context menu</comment>
+    <value>הוסף למועדפים</value>
+    <comment>page, section group, and notebook context menus</comment>
   </data>
   <data name="ribAddFavoritePageButton_Label" xml:space="preserve">
     <value>הוסף עמוד נוכחי</value>
@@ -5615,6 +5615,14 @@ ISO-code then comma then language name</comment>
     <value>צפה בקטע בדפדפן אינטרנט</value>
     <comment>section context menu</comment>
   </data>
+  <data name="ribWhereAmIButton_Label" xml:space="preserve">
+    <value>איפה אני?</value>
+    <comment>ribbon extras</comment>
+  </data>
+  <data name="ribWhereAmIButton_Screentip" xml:space="preserve">
+    <value>הצג את נתיב ההיררכיה של הדף הנוכחי, עם תפריטים נפתחים לקפיצה לכל רמה</value>
+    <comment>ribbon extras</comment>
+  </data>
   <data name="ribWordCountButton_Label" xml:space="preserve">
     <value>ספירת מילים</value>
     <comment>Ribbon OneMore menu extras</comment>
@@ -6629,6 +6637,10 @@ ISO-code then comma then language name</comment>
   <data name="VariablesSheet_uniqueError" xml:space="preserve">
     <value>שמות משתנים חייבים להיות ייחודיים</value>
     <comment>messagebox</comment>
+  </data>
+  <data name="WhereAmIWindow.Text" xml:space="preserve">
+    <value>איפה אני?</value>
+    <comment>window title</comment>
   </data>
   <data name="word_Actual" xml:space="preserve">
     <value>מַמָשִׁי</value>
