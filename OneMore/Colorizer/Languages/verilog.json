@@ -20,7 +20,7 @@
       ]
     },
     {
-      "pattern": "^([^\\r\\n]*\\*/)",
+      "pattern": "^((?:(?!/\\*)[^\\r\\n])*\\*/)",
       "scope": "",
       "captures": [
         "Comment"
