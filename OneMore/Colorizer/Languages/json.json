@@ -24,7 +24,7 @@
     },
     {
       // sinle line comment without opening
-      "pattern": "^([^\\r\\n]*\\*/)\\s*$",
+      "pattern": "^((?:(?!/\\*)[^\\r\\n])*\\*/)\\s*$",
       "scope": "",
       "captures": [
         "Comment"
