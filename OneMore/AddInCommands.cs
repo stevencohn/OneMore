@@ -35,6 +35,16 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<AddFavoriteSectionCommand>();
 
 
+		[Command("ribAddFavoriteButton_Label", Keys.None, "ribFavoritesMenu")]
+		public async Task AddFavoriteSectionGroupCmd(IRibbonControl control)
+			=> await factory.Run<AddFavoriteSectionGroupCommand>();
+
+
+		[Command("ribAddFavoriteButton_Label", Keys.None, "ribFavoritesMenu")]
+		public async Task AddFavoriteNotebookCmd(IRibbonControl control)
+			=> await factory.Run<AddFavoriteNotebookCommand>();
+
+
 		[Command("ribAddFootnoteButton_Label", Keys.Control | Keys.Alt | Keys.F, "ribReferencesMenu")]
 		public async Task AddFootnoteCmd(IRibbonControl control)
 			=> await factory.Run<AddFootnoteCommand>();

@@ -18,6 +18,12 @@
     </contextMenu>
     <contextMenu idMso="ContextMenuNotebook">
       <button
+        id="ct2AddFavoriteButton"
+        imageMso="AddToFavorites"
+        getLabel="GetRibbonLabel"
+        onAction="AddFavoriteNotebookCmd"
+        insertBeforeMso="ShareThisNotebook"/>
+      <button
         id="ctxArchiveNotebookButton"
         imageMso="SaveAttachments"
         getLabel="GetRibbonLabel"
@@ -324,6 +330,12 @@
         insertBeforeMso="SectionInsert"/>
     </contextMenu>
     <contextMenu idMso="ContextMenuSectionGroup">
+      <button
+        id="ctgAddFavoriteButton"
+        imageMso="AddToFavorites"
+        getLabel="GetRibbonLabel"
+        onAction="AddFavoriteSectionGroupCmd"
+        insertBeforeMso="FolderRename"/>
       <button
         id="ctgArchiveSectionGroupButton"
         imageMso="SaveAttachments"

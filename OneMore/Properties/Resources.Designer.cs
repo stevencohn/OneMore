@@ -3445,8 +3445,8 @@ namespace River.OneMoreAddIn.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to CREATE TABLE IF NOT EXISTS favorites_folder (folderID INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, UNIQUE(name));
-        ///CREATE TABLE IF NOT EXISTS favorite (favoriteID INTEGER PRIMARY KEY AUTOINCREMENT, folderID INTEGER REFERENCES favorites_folder(folderID) ON DELETE CASCADE, name TEXT NOT NULL, alias TEXT, location TEXT, uri TEXT NOT NULL, notebookID TEXT NOT NULL, sectionID TEXT NOT NULL, pageID TEXT, sortOrder INTEGER NOT NULL DEFAULT 0);
-        ///CREATE INDEX IF NOT EXISTS idx_favorites_folder ON Favorite( [rest of string was truncated]&quot;;.
+        ///CREATE TABLE IF NOT EXISTS favorite (favoriteID INTEGER PRIMARY KEY AUTOINCREMENT, folderID INTEGER REFERENCES favorites_folder(folderID) ON DELETE CASCADE, name TEXT NOT NULL, alias TEXT, location TEXT, uri TEXT NOT NULL, notebookID TEXT NOT NULL, sectionID TEXT NOT NULL, pageID TEXT, kind TEXT, sortOrder INTEGER NOT NULL DEFAULT 0);
+        ///CREATE TABLE IF NOT EXISTS favorites_schema (sche [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string FavoritesDB {
             get {
@@ -8909,7 +8909,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add Page to Favorites.
+        ///   Looks up a localized string similar to Add to Favorites.
         /// </summary>
         internal static string ribAddFavoriteButton_Label {
             get {
@@ -13287,7 +13287,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribWhereAmIButton_Label", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Show the hierarchy path of the current page, with dropdowns to jump to any level.
         /// </summary>
@@ -13296,7 +13296,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribWhereAmIButton_Screentip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Word Count.
         /// </summary>
@@ -15472,7 +15472,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("Update_ChecksumMismatch", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Could not find a published checksum in the release notes to verify the downloaded installer. Proceed with installation anyway?.
         /// </summary>
@@ -15481,7 +15481,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("Update_ChecksumNotFound", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to OneMore is up to date.
         /// </summary>
@@ -15705,6 +15705,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string VariablesSheet_uniqueError {
             get {
                 return ResourceManager.GetString("VariablesSheet_uniqueError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Where Am I?.
+        /// </summary>
+        internal static string WhereAmIWindow_Text {
+            get {
+                return ResourceManager.GetString("WhereAmIWindow.Text", resourceCulture);
             }
         }
         
@@ -16626,15 +16635,6 @@ namespace River.OneMoreAddIn.Properties {
             }
         }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Where Am I?.
-        /// </summary>
-        internal static string WhereAmIWindow_Text {
-            get {
-                return ResourceManager.GetString("WhereAmIWindow.Text", resourceCulture);
-            }
-        }
-
         /// <summary>
         ///   Looks up a localized string similar to Total words on page: {0}.
         /// </summary>

@@ -3752,8 +3752,8 @@ Select No to keep one empty line between paragraphs</value>
     <comment>ribbon images</comment>
   </data>
   <data name="ribAddFavoriteButton_Label" xml:space="preserve">
-    <value>Add Page to Favorites</value>
-    <comment>page context menu</comment>
+    <value>Add to Favorites</value>
+    <comment>page, section group, and notebook context menus !EDIT</comment>
   </data>
   <data name="ribAddFavoritePageButton_Label" xml:space="preserve">
     <value>Add current page</value>

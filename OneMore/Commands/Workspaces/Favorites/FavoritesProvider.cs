@@ -29,7 +29,126 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				RefreshDataSchema(Domain, Resx.FavoritesDB);
 				MigrateFavoritesFile();
 			}
+			else
+			{
+				UpgradeCatalog();
+			}
 		}
+
+
+		#region UpgradeCatalog
+		/// <summary>
+		/// Reads the current favorites_schema version and runs any pending incremental
+		/// upgrades, following the same pattern as HashtagProvider.UpgradeCatalog.
+		/// </summary>
+		private void UpgradeCatalog()
+		{
+			using var cmd = con.CreateCommand();
+			cmd.CommandType = CommandType.Text;
+			cmd.CommandText = "SELECT version FROM favorites_schema WHERE schemaID = 0";
+
+			var version = 1;
+			try
+			{
+				using var reader = cmd.ExecuteReader();
+				if (reader.Read())
+				{
+					version = reader.GetInt32(0);
+				}
+			}
+			catch (SQLiteException)
+			{
+				// favorites_schema doesn't exist yet; this DB predates schema versioning
+			}
+
+			if (version == 1)
+			{
+				version = Upgrade1to2(con);
+			}
+		}
+
+
+		/// <summary>
+		/// Introduces favorites_schema versioning and adds the "kind" column, used to
+		/// distinguish notebook and section-group favorites in the Favorites menu.
+		/// </summary>
+		private int Upgrade1to2(SQLiteConnection con)
+		{
+			var version = 2;
+			logger.WriteLine($"upgrading favorites catalog to version {version}");
+			logger.Start();
+
+			using var cmd = con.CreateCommand();
+			cmd.CommandType = CommandType.Text;
+			using var transaction = con.BeginTransaction();
+
+			try
+			{
+				logger.WriteLine("creating table favorites_schema");
+				cmd.CommandText =
+					"CREATE TABLE IF NOT EXISTS favorites_schema " +
+					"(schemaID INTEGER PRIMARY KEY UNIQUE NOT NULL, version NUMERIC (12) UNIQUE NOT NULL)";
+				cmd.ExecuteNonQuery();
+
+				logger.WriteLine("adding kind column to favorite table");
+				cmd.CommandText = "ALTER TABLE favorite ADD COLUMN kind TEXT";
+				cmd.ExecuteNonQuery();
+			}
+			catch (Exception exc)
+			{
+				transaction.Rollback();
+				logger.End();
+				logger.WriteLine("error upgrading favorites catalog to version 2", exc);
+				return 1;
+			}
+
+			if (!UpgradeSchemaVersion(cmd, transaction, version))
+			{
+				return 1;
+			}
+
+			try
+			{
+				transaction.Commit();
+			}
+			catch (Exception exc)
+			{
+				logger.End();
+				logger.WriteLine($"error committing changes for version {version}", exc);
+				return 1;
+			}
+
+			logger.End();
+			return version;
+		}
+
+
+		private bool UpgradeSchemaVersion(SQLiteCommand cmd, SQLiteTransaction transaction, int version)
+		{
+			try
+			{
+				logger.WriteLine($"updating favorites_schema version v{version}");
+
+				// upsert, not a plain UPDATE like HashtagProvider's version: unlike
+				// hashtag_scanner, favorites_schema has no guaranteed pre-existing row
+				// on a database that predates this versioning scheme
+				cmd.CommandText =
+					"INSERT INTO favorites_schema (schemaID, version) VALUES (0, @v) " +
+					"ON CONFLICT(schemaID) DO UPDATE SET version = @v";
+				cmd.Parameters.AddWithValue("@v", version);
+				cmd.ExecuteNonQuery();
+			}
+			catch (Exception exc)
+			{
+				logger.End();
+				logger.WriteLine($"error updating favorites_schema version v{version}", exc);
+				transaction.Rollback();
+				return false;
+			}
+
+			return true;
+		}
+		#endregion UpgradeCatalog
 
 
 		/// <summary>
@@ -244,6 +363,7 @@ SELECT
   f.notebookID,
   f.sectionID,
   f.pageID,
+  f.kind,
   f.sortOrder
 FROM favorites_folder o
 LEFT JOIN favorite f ON f.folderID = o.folderID
@@ -259,6 +379,7 @@ SELECT
   f.notebookID,
   f.sectionID,
   f.pageID,
+  f.kind,
   f.sortOrder
 FROM favorite f
 WHERE f.folderID = 0
@@ -307,7 +428,8 @@ ORDER BY folderName NULLS LAST, sortOrder, name;
 						NotebookID = reader.GetString(7),
 						SectionID = reader.GetString(8),
 						PageID = reader.IsDBNull(9) ? null : reader.GetString(9),
-						SortOrder = reader.GetInt32(10)
+						Kind = reader.IsDBNull(10) ? null : reader.GetString(10),
+						SortOrder = reader.GetInt32(11)
 					};
 
 					folder.Items.Add(favorite);
@@ -422,8 +544,8 @@ ORDER BY folderName NULLS LAST, sortOrder, name;
 			cmd.CommandType = CommandType.Text;
 
 			cmd.CommandText = "INSERT INTO favorite " +
-				"(folderID, name, alias, location, uri, notebookID, sectionID, pageID, sortOrder) " +
-				"VALUES (@f, @n, @a, @l, @u, @b, @s, @g, @o)";
+				"(folderID, name, alias, location, uri, notebookID, sectionID, pageID, kind, sortOrder) " +
+				"VALUES (@f, @n, @a, @l, @u, @b, @s, @g, @k, @o)";
 
 			cmd.Parameters.Clear();
 			cmd.Parameters.Add("@f", DbType.Int32);
@@ -434,6 +556,7 @@ ORDER BY folderName NULLS LAST, sortOrder, name;
 			cmd.Parameters.Add("@b", DbType.String);
 			cmd.Parameters.Add("@s", DbType.String);
 			cmd.Parameters.Add("@g", DbType.String);
+			cmd.Parameters.Add("@k", DbType.String);
 			cmd.Parameters.Add("@o", DbType.Int32);
 
 			logger.Verbose($"writing favorite {favorite.Location}");
@@ -448,6 +571,7 @@ ORDER BY folderName NULLS LAST, sortOrder, name;
 			cmd.Parameters["@b"].Value = favorite.NotebookID;
 			cmd.Parameters["@s"].Value = favorite.SectionID;
 			cmd.Parameters["@g"].Value = favorite.PageID;
+			cmd.Parameters["@k"].Value = favorite.Kind;
 			cmd.Parameters["@o"].Value = favorite.SortOrder;
 
 			try
