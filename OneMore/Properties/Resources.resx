@@ -667,6 +667,12 @@ Do you want to replace its contents? Choose No to create a new page instead.</va
     <value>{0}. See log file for details</value>
     <comment>messagebox (0 arg is Command_Error)</comment>
   </data>
+  <data name="Command_multiWindowWarning" xml:space="preserve">
+    <value>This page is open in multiple windows; the selection may not be correct.
+
+Do you want to continue?</value>
+    <comment>warning message</comment>
+  </data>
   <data name="CommandPalette_clear" xml:space="preserve">
     <value>Clear recent command history?</value>
     <comment>message box</comment>
@@ -752,12 +758,6 @@ Normal</value>
   <data name="CopyFolderCommand_InvalidTarget" xml:space="preserve">
     <value>Cannot copy a folder into itself or one of its children</value>
     <comment>error message</comment>
-  </data>
-  <data name="CopyLinkCommand_multiWindowWarning" xml:space="preserve">
-    <value>This page is open in multiple windows; the selection may not be correct.
-
-Do you want to continue?</value>
-    <comment>warning message</comment>
   </data>
   <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">
     <value>No hyperlinks found in range</value>

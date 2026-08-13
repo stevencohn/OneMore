@@ -51,7 +51,11 @@ namespace River.OneMoreAddIn.Commands
 
 			if (!await CreateLinks())
 			{
-				ShowError(string.Format(Resx.BiLinkCommand_BadTarget, error));
+				if (error is not null)
+				{
+					ShowError(string.Format(Resx.BiLinkCommand_BadTarget, error));
+				}
+
 				return;
 			}
 
@@ -102,6 +106,11 @@ namespace River.OneMoreAddIn.Commands
 			{
 				targetPage = await one.GetPage();
 				targetPageId = targetPage.PageId;
+			}
+
+			if (!await ConfirmSingleWindow(one, targetPageId))
+			{
+				return false;
 			}
 
 			var range = new SelectionRange(targetPage);

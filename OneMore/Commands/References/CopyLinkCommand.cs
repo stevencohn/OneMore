@@ -4,12 +4,10 @@
 
 namespace River.OneMoreAddIn
 {
-	using System.Linq;
 	using System.Text;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
 	using River.OneMoreAddIn.Models;
-	using River.OneMoreAddIn.UI;
 	using Resx = Properties.Resources;
 	using Win = System.Windows;
 
@@ -57,18 +55,9 @@ namespace River.OneMoreAddIn
 
 			if (specific)
 			{
-				// guard against page viewed in multiple OneNote windows...
-
-				var windows = await one.GetWindows();
-				if (windows.Count(w => w.CurrentPageId == page.PageId) > 1)
+				if (!await ConfirmSingleWindow(one, page.PageId))
 				{
-					var result = MoreMessageBox
-						.ShowQuestion(owner, Resx.CopyLinkCommand_multiWindowWarning);
-
-					if (result != Win.Forms.DialogResult.Yes)
-					{
-						return;
-					}
+					return;
 				}
 
 				// capture link to paragraph, anchored to the OE containing the cursor or

@@ -662,6 +662,12 @@
     <value>{0}。 请参阅日志文件以获取详细信息</value>
     <comment>messagebox (0 arg is Command_Error)</comment>
   </data>
+  <data name="Command_multiWindowWarning" xml:space="preserve">
+    <value>该页面在多个窗口中打开；选择可能不正确。
+
+您想继续吗？</value>
+    <comment>warning message</comment>
+  </data>
   <data name="CommandPalette_clear" xml:space="preserve">
     <value>清除最近的命令历史记录？</value>
     <comment>message box</comment>
@@ -747,12 +753,6 @@
   <data name="CopyFolderCommand_InvalidTarget" xml:space="preserve">
     <value>无法将文件夹复制到其自身或其子级之一</value>
     <comment>error message</comment>
-  </data>
-  <data name="CopyLinkCommand_multiWindowWarning" xml:space="preserve">
-    <value>该页面在多个窗口中打开；选择可能不正确。
-
-您想继续吗？</value>
-    <comment>warning message</comment>
   </data>
   <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">
     <value>范围内没有发现超链接</value>

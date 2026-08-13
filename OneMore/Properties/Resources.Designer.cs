@@ -1299,6 +1299,17 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This page is open in multiple windows; the selection may not be correct.
+        ///
+        ///Do you want to continue?.
+        /// </summary>
+        internal static string Command_multiWindowWarning {
+            get {
+                return ResourceManager.GetString("Command_multiWindowWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clear recent command history?.
         /// </summary>
         internal static string CommandPalette_clear {
@@ -1476,17 +1487,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string CopyFolderCommand_InvalidTarget {
             get {
                 return ResourceManager.GetString("CopyFolderCommand_InvalidTarget", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This page is open in multiple windows; the selection may not be correct.
-        ///
-        ///Do you want to continue?.
-        /// </summary>
-        internal static string CopyLinkCommand_multiWindowWarning {
-            get {
-                return ResourceManager.GetString("CopyLinkCommand_multiWindowWarning", resourceCulture);
             }
         }
         

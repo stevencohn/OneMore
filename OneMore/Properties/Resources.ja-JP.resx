@@ -659,6 +659,12 @@
     <value>{0}。詳細はログファイルを参照してください。</value>
     <comment>messagebox (0 arg is Command_Error)</comment>
   </data>
+  <data name="Command_multiWindowWarning" xml:space="preserve">
+    <value>このページは複数のウィンドウで開かれます。選択が正しくない可能性があります。
+
+続けますか?</value>
+    <comment>warning message</comment>
+  </data>
   <data name="CommandPalette_clear" xml:space="preserve">
     <value>最近のコマンド履歴をクリアしますか？</value>
     <comment>message box</comment>
@@ -746,12 +752,6 @@
   <data name="CopyFolderCommand_InvalidTarget" xml:space="preserve">
     <value>フォルダーを自分自身またはその子フォルダーにコピーすることはできません</value>
     <comment>error message</comment>
-  </data>
-  <data name="CopyLinkCommand_multiWindowWarning" xml:space="preserve">
-    <value>このページは複数のウィンドウで開かれます。選択が正しくない可能性があります。
-
-続けますか?</value>
-    <comment>warning message</comment>
   </data>
   <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">
     <value>範囲内にハイパーリンクが見つかりませんでした</value>

@@ -661,6 +661,12 @@ Möchten Sie den Inhalt ersetzen? Wählen Sie Nein, um stattdessen eine neue Sei
     <value>{0}. </value>
     <comment>messagebox (0 arg is Command_Error)</comment>
   </data>
+  <data name="Command_multiWindowWarning" xml:space="preserve">
+    <value>Diese Seite ist in mehreren Fenstern geöffnet; Die Auswahl ist möglicherweise nicht korrekt.
+
+Möchten Sie fortfahren?</value>
+    <comment>warning message</comment>
+  </data>
   <data name="CommandPalette_clear" xml:space="preserve">
     <value>Letzten Befehlsverlauf löschen?</value>
     <comment>message box</comment>
@@ -746,12 +752,6 @@ Normal</value>
   <data name="CopyFolderCommand_InvalidTarget" xml:space="preserve">
     <value>Ein Ordner kann nicht in sich selbst oder eines seiner untergeordneten Elemente kopiert werden</value>
     <comment>error message</comment>
-  </data>
-  <data name="CopyLinkCommand_multiWindowWarning" xml:space="preserve">
-    <value>Diese Seite ist in mehreren Fenstern geöffnet; Die Auswahl ist möglicherweise nicht korrekt.
-
-Möchten Sie fortfahren?</value>
-    <comment>warning message</comment>
   </data>
   <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">
     <value>Keine Hyperlinks in Reichweite gefunden</value>

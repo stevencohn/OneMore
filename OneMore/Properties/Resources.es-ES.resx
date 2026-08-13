@@ -661,6 +661,12 @@ Invertir</value>
     <value>{0}. </value>
     <comment>messagebox (0 arg is Command_Error)</comment>
   </data>
+  <data name="Command_multiWindowWarning" xml:space="preserve">
+    <value>Esta página está abierta en varias ventanas; Es posible que la selección no sea correcta.
+
+¿Quieres continuar?</value>
+    <comment>warning message</comment>
+  </data>
   <data name="CommandPalette_clear" xml:space="preserve">
     <value>¿Borrar el historial de comandos reciente?</value>
     <comment>message box</comment>
@@ -746,12 +752,6 @@ Normal</value>
   <data name="CopyFolderCommand_InvalidTarget" xml:space="preserve">
     <value>No se puede copiar una carpeta en sí misma o en uno de sus elementos secundarios</value>
     <comment>error message</comment>
-  </data>
-  <data name="CopyLinkCommand_multiWindowWarning" xml:space="preserve">
-    <value>Esta página está abierta en varias ventanas; Es posible que la selección no sea correcta.
-
-¿Quieres continuar?</value>
-    <comment>warning message</comment>
   </data>
   <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">
     <value>No se han encontrado hipervínculos en el rango.</value>

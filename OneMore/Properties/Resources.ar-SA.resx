@@ -661,6 +661,12 @@
     <value>{0}. </value>
     <comment>messagebox (0 arg is Command_Error)</comment>
   </data>
+  <data name="Command_multiWindowWarning" xml:space="preserve">
+    <value>هذه الصفحة مفتوحة في نوافذ متعددة؛ قد لا يكون الاختيار صحيحا.
+
+هل تريد الاستمرار؟</value>
+    <comment>warning message</comment>
+  </data>
   <data name="CommandPalette_clear" xml:space="preserve">
     <value>هل تريد مسح محفوظات الأوامر الحديثة؟</value>
     <comment>message box</comment>
@@ -746,12 +752,6 @@
   <data name="CopyFolderCommand_InvalidTarget" xml:space="preserve">
     <value>لا يمكن نسخ مجلد إلى نفسه أو إلى أحد توابعه</value>
     <comment>error message</comment>
-  </data>
-  <data name="CopyLinkCommand_multiWindowWarning" xml:space="preserve">
-    <value>هذه الصفحة مفتوحة في نوافذ متعددة؛ قد لا يكون الاختيار صحيحا.
-
-هل تريد الاستمرار؟</value>
-    <comment>warning message</comment>
   </data>
   <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">
     <value>لا ارتباطات تشعبية موجودة في النطاق</value>
