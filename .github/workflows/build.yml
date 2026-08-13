@@ -113,7 +113,7 @@ jobs:
           } else {
             $tag = $version
             $ghArgs = @('release', 'create', $tag) + $assets +
-              @('--title', "OneMore $tag", '--generate-notes')
+              @('--title', "OneMore $tag", '--generate-notes', '--draft')
           }
           & gh @ghArgs
         env:
