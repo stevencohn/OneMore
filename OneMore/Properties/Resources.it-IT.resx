@@ -659,6 +659,12 @@ Vuoi sostituirne il contenuto? Scegli No per creare invece una nuova pagina.</va
     <value>{0}. Per i dettagli vedere il file di registro</value>
     <comment>messagebox (0 arg is Command_Error)</comment>
   </data>
+  <data name="Command_multiWindowWarning" xml:space="preserve">
+    <value>Questa pagina è aperta in più finestre; la selezione potrebbe non essere corretta.
+
+Vuoi continuare?</value>
+    <comment>warning message</comment>
+  </data>
   <data name="CommandPalette_clear" xml:space="preserve">
     <value>Cancellare la cronologia recente dei comandi?</value>
     <comment>message box</comment>
@@ -744,12 +750,6 @@ Normale</value>
   <data name="CopyFolderCommand_InvalidTarget" xml:space="preserve">
     <value>Impossibile copiare una cartella in se stessa o in una delle sue figlie</value>
     <comment>error message</comment>
-  </data>
-  <data name="CopyLinkCommand_multiWindowWarning" xml:space="preserve">
-    <value>Questa pagina è aperta in più finestre; la selezione potrebbe non essere corretta.
-
-Vuoi continuare?</value>
-    <comment>warning message</comment>
   </data>
   <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">
     <value>Nessun collegamento ipertestuale trovato nell'intervallo</value>

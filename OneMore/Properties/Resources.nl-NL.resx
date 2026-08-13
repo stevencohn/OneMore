@@ -658,6 +658,12 @@ Wilt u de inhoud ervan vervangen? Kies Nee om in plaats daarvan een nieuwe pagin
     <value>{0}. </value>
     <comment>messagebox (0 arg is Command_Error)</comment>
   </data>
+  <data name="Command_multiWindowWarning" xml:space="preserve">
+    <value>Deze pagina is in meerdere vensters geopend; de selectie is mogelijk niet correct.
+
+Wil je doorgaan?</value>
+    <comment>warning message</comment>
+  </data>
   <data name="CommandPalette_clear" xml:space="preserve">
     <value>Recente opdrachtgeschiedenis wissen?</value>
     <comment>message box</comment>
@@ -743,12 +749,6 @@ Normaal</value>
   <data name="CopyFolderCommand_InvalidTarget" xml:space="preserve">
     <value>Kan een map niet naar zichzelf of een van de onderliggende mappen kopiëren</value>
     <comment>error message</comment>
-  </data>
-  <data name="CopyLinkCommand_multiWindowWarning" xml:space="preserve">
-    <value>Deze pagina is in meerdere vensters geopend; de selectie is mogelijk niet correct.
-
-Wil je doorgaan?</value>
-    <comment>warning message</comment>
   </data>
   <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">
     <value>Geen hyperlinks gevonden in het bereik</value>

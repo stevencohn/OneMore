@@ -45,6 +45,11 @@ namespace River.OneMoreAddIn.Commands
 			await using var one = new OneNote(out page, out ns);
 			PageNamespace.Set(ns);
 
+			if (!await ConfirmSingleWindow(one, page.PageId))
+			{
+				return;
+			}
+
 			var paragraph = page.Root.Descendants(ns + "T")
 				.Where(e => e.Attribute("selected")?.Value == "all")
 				.Select(e => e.Parent)

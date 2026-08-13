@@ -8,10 +8,12 @@ namespace River.OneMoreAddIn
 	using River.OneMoreAddIn.Cli;
 	using System;
 	using System.Collections.Generic;
+	using System.Linq;
 	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
+	using Resx = Properties.Resources;
 
 
 	/// <summary>
@@ -182,6 +184,31 @@ namespace River.OneMoreAddIn
 			box.SetIcon(MessageBoxIcon.None);
 
 			UI.MoreMessageBox.Show(owner, message);
+		}
+
+
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		// shared helpers...
+
+		/// <summary>
+		/// Guards against the known OneNote COM Interop issue where the API can report
+		/// content from the wrong window when the same page is open in more than one
+		/// OneNote window (see GH #1563, #2444). Warns the user and lets them decide
+		/// whether to proceed with a possibly-incorrect selection.
+		/// </summary>
+		/// <param name="one">The active OneNote wrapper</param>
+		/// <param name="pageId">The ID of the page being acted upon</param>
+		/// <returns>True if the command should proceed, false if it should abort</returns>
+		protected async Task<bool> ConfirmSingleWindow(OneNote one, string pageId)
+		{
+			var windows = await one.GetWindows();
+			if (windows.Count(w => w.CurrentPageId == pageId) <= 1)
+			{
+				return true;
+			}
+
+			return UI.MoreMessageBox.ShowQuestion(owner, Resx.Command_multiWindowWarning)
+				== DialogResult.Yes;
 		}
 	}
 }

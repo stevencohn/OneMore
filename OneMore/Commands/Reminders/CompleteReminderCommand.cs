@@ -25,6 +25,12 @@ namespace River.OneMoreAddIn.Commands
 		public override async Task Execute(params object[] args)
 		{
 			await using var one = new OneNote(out var page, out var ns);
+
+			if (!await ConfirmSingleWindow(one, page.PageId))
+			{
+				return;
+			}
+
 			var paragraph = page.Root.Descendants(ns + "T")
 				.Where(e => e.Attribute("selected")?.Value == "all")
 				.Select(e => e.Parent)

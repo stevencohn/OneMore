@@ -658,6 +658,12 @@
     <value>{0}. ראה קובץ יומן לפרטים</value>
     <comment>messagebox (0 arg is Command_Error)</comment>
   </data>
+  <data name="Command_multiWindowWarning" xml:space="preserve">
+    <value>דף זה פתוח במספר חלונות; ייתכן שהבחירה אינה נכונה.
+
+האם אתה רוצה להמשיך?</value>
+    <comment>warning message</comment>
+  </data>
   <data name="CommandPalette_clear" xml:space="preserve">
     <value>לנקות את היסטוריית הפקודות האחרונות?</value>
     <comment>message box</comment>
@@ -743,12 +749,6 @@
   <data name="CopyFolderCommand_InvalidTarget" xml:space="preserve">
     <value>לא ניתן להעתיק תיקיה לעצמה או לאחד מהילדים שלה</value>
     <comment>error message</comment>
-  </data>
-  <data name="CopyLinkCommand_multiWindowWarning" xml:space="preserve">
-    <value>דף זה פתוח במספר חלונות; ייתכן שהבחירה אינה נכונה.
-
-האם אתה רוצה להמשיך?</value>
-    <comment>warning message</comment>
   </data>
   <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">
     <value>לא נמצאו היפר-קישורים בטווח</value>

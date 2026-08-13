@@ -43,7 +43,12 @@ namespace River.OneMoreAddIn.Commands
 		public override async Task Execute(params object[] args)
 		{
 			await using var one = new OneNote(out var page, out _);
-	
+
+			if (!await ConfirmSingleWindow(one, page.PageId))
+			{
+				return;
+			}
+
 			if (!MakeBookmark(page))
 			{
 				ShowError(Resx.BookmarkCommand_Invalid);
