@@ -914,17 +914,16 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Gets the hierarchy nodes for the given parent and scope; used to populate "sibling"
-		/// pickers such as the WhereAmI breadcrumb dropdowns.
+		/// Gets the immediate child hierarchy nodes for the given parent and scope; used to
+		/// populate "sibling" pickers such as the WhereAmI breadcrumb dropdowns.
 		/// </summary>
 		/// <param name="parentId">
 		/// The ID of the parent object, or string.Empty for the root when scope is Notebooks
 		/// </param>
 		/// <param name="scope">
-		/// Scope.Children returns only the immediate children of parentId (a mix of node types,
-		/// mirroring whatever OneNote nests directly under that parent). Scope.Sections or
-		/// Scope.Pages return all matching descendants regardless of intervening SectionGroup
-		/// or Section nesting. Scope.Notebooks returns all open notebooks (parentId is ignored).
+		/// Scope.Children returns the immediate children of parentId (a mix of node types,
+		/// mirroring whatever OneNote nests directly under that parent). Scope.Notebooks
+		/// returns all open notebooks (parentId is ignored).
 		/// </param>
 		/// <returns>A list of matching hierarchy nodes</returns>
 		public async Task<List<HierarchyNode>> GetScopedNodes(string parentId, Scope scope)
@@ -948,15 +947,7 @@ namespace River.OneMoreAddIn
 				return nodes;
 			}
 
-			// Scope.Children/Notebooks yield a flat single level of direct children; for
-			// Scope.Sections/Pages the matching leaf elements may be nested inside intervening
-			// SectionGroup/Section container elements, so search all descendants in that case
-			var elements = scope is Scope.Sections or Scope.Pages
-				? root.Descendants().Where(e => e.Name.LocalName ==
-					(scope == Scope.Sections ? "Section" : "Page"))
-				: root.Elements();
-
-			foreach (var element in elements)
+			foreach (var element in root.Elements())
 			{
 				// exclude the Deleted Notes / OneNote_RecycleBin section group, its Deleted
 				// Pages section, and anything nested within either of them

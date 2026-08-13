@@ -208,23 +208,17 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var node = segments[index];
 
-			switch (node.NodeType)
+			if (node.NodeType == OneNote.NodeType.Notebook)
 			{
-				case OneNote.NodeType.Notebook:
-					return await one.GetScopedNodes(string.Empty, OneNote.Scope.Notebooks);
-
-				// "current scope" for sections is the whole enclosing notebook, so the user can
-				// jump directly to any section regardless of which section group nests it
-				case OneNote.NodeType.Section:
-					return await one.GetScopedNodes(segments[0].Id, OneNote.Scope.Sections);
-
-				case OneNote.NodeType.Page:
-					return await one.GetScopedNodes(segments[index - 1].Id, OneNote.Scope.Pages);
-
-				default: // SectionGroup: sibling section groups under its own parent container
-					var children = await one.GetScopedNodes(segments[index - 1].Id, OneNote.Scope.Children);
-					return children.Where(n => n.NodeType == OneNote.NodeType.SectionGroup).ToList();
+				return await one.GetScopedNodes(string.Empty, OneNote.Scope.Notebooks);
 			}
+
+			// Section, SectionGroup, and Page all follow the same rule: show the immediate
+			// children of this segment's own parent, i.e. its true siblings at that level.
+			// For Section/SectionGroup that's a mix of both types (OneNote allows either to
+			// nest side by side); for Page it's naturally just pages, since a Section's only
+			// children are pages.
+			return await one.GetScopedNodes(segments[index - 1].Id, OneNote.Scope.Children);
 		}
 
 
