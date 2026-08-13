@@ -21,6 +21,8 @@ namespace River.OneMoreAddIn.Commands
 	internal class RestoreBackgroundImagesCommand : Command, ICliPageCommand
 	{
 		private const double MinOutlineWidth = 600.0;
+		private const double DefaultOutlineX = 36.0;
+		private const double DefaultOutlineY = 86.0;
 
 
 		public RestoreBackgroundImagesCommand()
@@ -111,6 +113,15 @@ namespace River.OneMoreAddIn.Commands
 				image.Attributes("isPrintOut").Remove();
 
 				image.Remove();
+
+				// separate stacked images with a blank line so they aren't flush
+				// against one another
+				if (container.Elements(ns + "OE").Any())
+				{
+					container.Add(new XElement(ns + "OE",
+						new XElement(ns + "T", new XCData(string.Empty))));
+				}
+
 				container.Add(new XElement(ns + "OE", image));
 			}
 
@@ -170,13 +181,31 @@ namespace River.OneMoreAddIn.Commands
 
 		private static XElement FindLastContainer(Page page, XNamespace ns)
 		{
-			var outline = page.BodyOutlines.LastOrDefault();
+			var outlines = page.BodyOutlines.ToList();
+
+			if (outlines.Count > 0 && outlines.All(o => IsEmptyPlaceholderOutline(o, ns)))
+			{
+				// every outline on the page is an invisible cursor placeholder that
+				// OneNote leaves behind on an otherwise blank page; each one's Position
+				// is wherever OneNote happened to put the cursor rather than a sensible
+				// default, so discard them all and start fresh with a single, properly
+				// positioned outline instead of reusing an arbitrary rogue spot
+				foreach (var rogue in outlines)
+				{
+					rogue.Remove();
+				}
+
+				outlines.Clear();
+			}
+
+			var outline = outlines.LastOrDefault();
 			XElement container;
 
 			if (outline is null)
 			{
 				container = page.EnsureContentContainer();
 				outline = container.Parent;
+				ResetToDefaultPosition(outline, ns);
 			}
 			else
 			{
@@ -191,6 +220,52 @@ namespace River.OneMoreAddIn.Commands
 			EnsureMinimumWidth(outline, ns);
 
 			return container;
+		}
+
+
+		/// <summary>
+		/// True if the given outline consists of exactly one OEChildren containing exactly
+		/// one OE whose only content is a single, entirely empty T run - i.e. the
+		/// text-cursor placeholder OneNote leaves on an otherwise blank outline
+		/// </summary>
+		private static bool IsEmptyPlaceholderOutline(XElement outline, XNamespace ns)
+		{
+			var containers = outline.Elements(ns + "OEChildren").ToList();
+			if (containers.Count != 1)
+			{
+				return false;
+			}
+
+			var oes = containers[0].Elements(ns + "OE").ToList();
+			if (oes.Count != 1)
+			{
+				return false;
+			}
+
+			var children = oes[0].Elements().ToList();
+			if (children.Count != 1 || children[0].Name != ns + "T")
+			{
+				return false;
+			}
+
+			var cdata = children[0].GetCData();
+			return cdata is not null && cdata.Value.Length == 0;
+		}
+
+
+		private static void ResetToDefaultPosition(XElement outline, XNamespace ns)
+		{
+			var position = outline.Element(ns + "Position");
+			if (position is null)
+			{
+				position = new XElement(ns + "Position");
+
+				// Position must precede Size per PageObject schema
+				outline.AddFirst(position);
+			}
+
+			position.SetAttributeValue("x", FormattableString.Invariant($"{DefaultOutlineX:0.0}"));
+			position.SetAttributeValue("y", FormattableString.Invariant($"{DefaultOutlineY:0.0}"));
 		}
 
 
