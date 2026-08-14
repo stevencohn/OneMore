@@ -124,6 +124,28 @@ namespace River.OneMoreAddIn.Commands
 				};
 
 				link.LinkClicked += (s, e) => ShowDropdown(index, link);
+
+				// LinkLabel doesn't treat Down as an input key when the whole segment is a
+				// single implicit link, so it's otherwise swallowed as an inert dialog key;
+				// claim it here to let Down open the dropdown the same way a click does
+				link.PreviewKeyDown += (s, e) =>
+				{
+					if (e.KeyCode == Keys.Down)
+					{
+						e.IsInputKey = true;
+					}
+				};
+
+				link.KeyDown += (s, e) =>
+				{
+					if (e.KeyCode == Keys.Down)
+					{
+						e.Handled = true;
+						e.SuppressKeyPress = true;
+						ShowDropdown(index, link);
+					}
+				};
+
 				flowPanel.Controls.Add(link);
 
 				if (i < lastIndex)
