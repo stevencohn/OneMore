@@ -2,12 +2,16 @@ const API_URL = 'https://uetc84spi9.execute-api.us-east-1.amazonaws.com/prod/que
 
 let allCommands = [];
 let unusedCommandsTimer = null;
+let earliestDate = null; // "YYYY-MM-DD", from ReportStartTime
 
-async function runQuery(queryId) {
+async function runQuery(queryId, startDate) {
+  const body = { queryId };
+  if (startDate) body.startDate = startDate;
+
   const response = await fetch(API_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ queryId })
+    body: JSON.stringify(body)
   });
 
   if (response.status === 429) {
@@ -27,59 +31,111 @@ function loadManifest() {
   Promise.all([
     fetch("/telemetry/manifest.json").then(r => r.json()),
     fetch("/telemetry/commands.json").then(r => r.json())
-  ]).then(([manifest, commandsData]) => {
+  ]).then(async ([manifest, commandsData]) => {
     allCommands = commandsData.commands;
     unusedCommandsTimer = startProgress(document.getElementById("unused-commands"));
-    loadSubtitle(manifest);
-    loadReport(manifest);
+
+    const el = document.getElementById("subtitle");
+    const timer = startProgress(el);
+
+    try {
+      earliestDate = await fetchEarliestDate(manifest);
+      clearInterval(timer);
+      const startDate = initDateControls(manifest, earliestDate);
+      runAll(manifest, startDate);
+    } catch (err) {
+      clearInterval(timer);
+      clearInterval(unusedCommandsTimer);
+      if (err.status === 429) {
+        el.classList.remove('text-muted');
+        el.style.color = 'red';
+        el.textContent = 'Rate limited. Please try again in an hour.';
+      } else {
+        el.textContent = '';
+      }
+      console.error("[earliest-date] failed:", err);
+    }
   });
 }
 
-async function loadSubtitle(manifest) {
+async function fetchEarliestDate(manifest) {
   const queryId = manifest["ReportStartTime"]?.id;
-  if (!queryId) return;
+  if (!queryId) return null;
 
+  const rows = await runQuery(queryId);
+  if (rows.length > 1 && rows[1].Data.length > 0) {
+    return toDateInputValue(new Date(rows[1].Data[0].VarCharValue));
+  }
+  return null;
+}
+
+function toDateInputValue(date) {
+  return date.toISOString().slice(0, 10);
+}
+
+function initDateControls(manifest, earliest) {
+  const input = document.getElementById("start-date");
+  const button = document.getElementById("apply-date");
+  const today = toDateInputValue(new Date());
+
+  const threeMonthsAgo = new Date();
+  threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() - 3);
+  let defaultStart = toDateInputValue(threeMonthsAgo);
+  if (earliest && defaultStart < earliest) defaultStart = earliest;
+
+  if (earliest) input.min = earliest;
+  input.max = today;
+  input.value = defaultStart;
+
+  button.addEventListener("click", () => {
+    let selected = input.value;
+    if (!selected) return;
+    if (earliest && selected < earliest) selected = earliest;
+    if (selected > today) selected = today;
+    input.value = selected;
+    runAll(manifest, selected);
+  });
+
+  return defaultStart;
+}
+
+function renderSubtitle(startDate) {
   const el = document.getElementById("subtitle");
-  const timer = startProgress(el);
+  el.classList.add('text-muted');
+  el.style.color = '';
 
-  try {
-    const rows = await runQuery(queryId);
-    clearInterval(timer);
-    if (rows.length > 1 && rows[1].Data.length > 0) {
-      const date = new Date(rows[1].Data[0].VarCharValue);
-      const dateStr = date.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
-      const timeStr = date.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit", hour12: true });
-      el.textContent = `Reporting since first event on ${dateStr} at ${timeStr}`;
-    } else {
-      el.textContent = "";
-    }
-  } catch (err) {
-    clearInterval(timer);
-    if (err.status === 429) {
-      el.classList.remove('text-muted');
-      el.style.color = 'red';
-      el.textContent = 'Rate limited. Please try again in an hour.';
-    } else {
-      el.textContent = '';
-    }
-    console.error("[subtitle] failed:", err);
+  const dateOpts = { year: "numeric", month: "long", day: "numeric" };
+  const startStr = new Date(startDate + "T00:00:00").toLocaleDateString("en-US", dateOpts);
+
+  if (earliestDate) {
+    const earliestStr = new Date(earliestDate + "T00:00:00").toLocaleDateString("en-US", dateOpts);
+    el.textContent = `Showing data from ${startStr} to now — earliest event on record: ${earliestStr}`;
+  } else {
+    el.textContent = `Showing data from ${startStr} to now`;
   }
 }
 
-function loadReport(manifest) {
+function runAll(manifest, startDate) {
+  const button = document.getElementById("apply-date");
+  button.disabled = true;
+  renderSubtitle(startDate);
+  loadReport(manifest, startDate).finally(() => { button.disabled = false; });
+}
+
+function loadReport(manifest, startDate) {
   const sections = Object.entries(manifest)
     .filter(([, v]) => v.target)
     .map(([key, v]) => ({ key, ...v }));
-  Promise.all(sections.map(section => loadSection(section)));
+  return Promise.all(sections.map(section => loadSection(section, startDate)));
 }
 
-async function loadSection({ key, id, target, heatCol }) {
+async function loadSection({ key, id, target, heatCol }, startDate) {
   const el = document.getElementById(target);
   if (!id || !el) return;
 
   const timer = startProgress(el);
   try {
-    const rows = await runQuery(id);
+    const rows = await runQuery(id, startDate);
     clearInterval(timer);
     el.innerHTML = renderTable(rows);
     if (key !== "ReportEventTypeCounts") makeSortable(el.querySelector("table"));
@@ -88,11 +144,20 @@ async function loadSection({ key, id, target, heatCol }) {
     if (key === "ReportCommandCounts") renderUnusedCommands(rows);
   } catch (err) {
     clearInterval(timer);
-    if (err instanceof TypeError) {
-      setRetryLink(el, () => loadSection({ key, id, target, heatCol }));
+    if (err.status === 429) {
+      el.style.color = 'red';
+      el.textContent = 'Rate limited. Please try again in an hour.';
       if (key === "ReportCommandCounts") {
         clearInterval(unusedCommandsTimer);
-        setRetryLink(document.getElementById("unused-commands"), () => loadSection({ key, id, target, heatCol }));
+        const unusedEl = document.getElementById("unused-commands");
+        unusedEl.style.color = 'red';
+        unusedEl.textContent = 'Rate limited. Please try again in an hour.';
+      }
+    } else if (err instanceof TypeError) {
+      setRetryLink(el, () => loadSection({ key, id, target, heatCol }, startDate));
+      if (key === "ReportCommandCounts") {
+        clearInterval(unusedCommandsTimer);
+        setRetryLink(document.getElementById("unused-commands"), () => loadSection({ key, id, target, heatCol }, startDate));
       }
     } else {
       el.textContent = "Failed to load.";
