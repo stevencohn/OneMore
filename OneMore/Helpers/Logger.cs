@@ -557,7 +557,7 @@ namespace River.OneMoreAddIn
 			{
 				return
 					$"{Thread.CurrentThread.ManagedThreadId:00}|" +
-					$"{DateTime.Now:hh:mm:ss.fff}{timeBar} {preamble}";
+					$"{DateTime.Now:HH:mm:ss.fff}{timeBar} {preamble}";
 			}
 
 			return string.Empty;
