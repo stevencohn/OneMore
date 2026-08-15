@@ -13,6 +13,7 @@
     integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
   <link href="/nav.css" rel="stylesheet">
   <link href="/toc.css" rel="stylesheet">
+  <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
 </head>
 
 <body class="sidebar-layout">
@@ -83,6 +84,7 @@
           <a class="nav-link" href="/context-menus/index.html" id="context-menus-section">Context Menus</a>
           <a class="nav-link" href="/developers/index.html" id="developers-section">Developers</a>
         </div>
+        <div id="search" class="d-flex flex-grow-1 mx-lg-3"></div>
         <div class="d-flex">
           <a class="nav-link nav-glyph py-2 px-lg-2" href="https://facebook.com/OneMoreAddIn" target="_blank" rel="noopener">
             <svg width="22px" height="22px" viewBox="0 0 512 512" id="fbglyph" xmlns="http://www.w3.org/2000/svg"
@@ -171,7 +173,7 @@
 <P style="FONT-SIZE: 1pt">&nbsp;</P></TD>
 <TD style="HEIGHT: 0.177in; WIDTH: 2.494in; VERTICAL-ALIGN: top; PADDING-BOTTOM: 0pt; PADDING-TOP: 0pt; PADDING-LEFT: 0pt; MARGIN: 0in; PADDING-RIGHT: 0pt" vAlign=top rowSpan=3>
 <P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">October 29, 2024</P>
-<P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">Last updated on July 31, 2026</P></TD>
+<P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">Last updated on August 13, 2026</P></TD>
 <TD style="FONT-SIZE: 1pt; HEIGHT: 0.007in; WIDTH: 0.163in; VERTICAL-ALIGN: top; PADDING-BOTTOM: 0pt; PADDING-TOP: 0pt; PADDING-LEFT: 0pt; MARGIN: 0in; PADDING-RIGHT: 0pt" vAlign=top>
 <P style="FONT-SIZE: 1pt"></P></TD>
 <TD style="FONT-SIZE: 1pt; HEIGHT: 0.007in; WIDTH: 3.224in; VERTICAL-ALIGN: top; PADDING-BOTTOM: 0pt; PADDING-TOP: 0pt; PADDING-LEFT: 0pt; MARGIN: 0in; PADDING-RIGHT: 0pt" vAlign=top>
@@ -183,7 +185,7 @@
 <P style="FONT-SIZE: 1pt"></P></TD>
 <TD style="HEIGHT: 0.16in; WIDTH: 3.224in; VERTICAL-ALIGN: top; PADDING-BOTTOM: 0pt; PADDING-TOP: 0pt; PADDING-LEFT: 0pt; MARGIN: 0in; PADDING-RIGHT: 0pt" vAlign=top>
 <UL style="MARGIN-BOTTOM: 0in; unicode-bidi: embed; MARGIN-TOP: 0in; DIRECTION: ltr">
-<P lang=yo style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in; TEXT-INDENT: -0.133in"><IMG alt="Page Tags" src="Hashtag%20Commands_files/image001.png" width=16 height=16>&nbsp;<SPAN style="FONT-WEIGHT: bold"> #OneNote #OneMore #hashtags-are-awesome</SPAN></P></UL></TD></TR>
+<P lang=yo style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in; TEXT-INDENT: -0.133in"><IMG alt="Page Tags" src="/commands/Hashtag%20Commands_files/image001.png" width=16 height=16>&nbsp;<SPAN style="FONT-WEIGHT: bold"> #OneNote #OneMore #hashtags-are-awesome</SPAN></P></UL></TD></TR>
 <TR>
 <TD style="FONT-SIZE: 1pt; HEIGHT: 0.009in; WIDTH: 1px; VERTICAL-ALIGN: top; PADDING-BOTTOM: 0pt; PADDING-TOP: 0pt; PADDING-LEFT: 0pt; MARGIN: 0in; PADDING-RIGHT: 0pt" vAlign=top>
 <P style="FONT-SIZE: 1pt">&nbsp;</P></TD>
@@ -207,6 +209,10 @@
 <P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">PowerShell, Python and shell scripts use the hash symbol to start a single-line comment. If a space is not inserted immediately following the hash symbol then OneMore will pick that up as a hashtag. To tell OneMore to ignore these blocks of text, surround the text with the special hashtags markers </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #ecf5ff'>#SkipHashtags</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> and </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #ecf5ff'>#KeepHashtags</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">. These are not case-sensitive. Anything between those two markers is ignored. If only the </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #ecf5ff'>#SkipHashtags</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> marker is present on a page without a </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #ecf5ff'>#KeepHashtags</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> marker, then the remainder of the page is ignored. Notice that this section of this page is surrounded by these markers.</SPAN></P>
 <P><CITE lang=yo style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">#KeepHashtags</CITE></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H2 id=complete-hashtag style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Complete Hashtag </H2>
+<P><CITE lang=yo style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">Default shortcut is Ctrl + G</CITE></P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Opens a popup window with type-ahead matching on available hashtags that match the selected word. Choose a hashtag to replace or complete the selected word on the page.</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <H2 lang=yo id=scan-hashtags style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Scan Hashtags</H2>
 <P><CITE lang=yo style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">Default shortcut is Ctrl + Alt + F9</CITE></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: gray; MARGIN: 0in"><SPAN style="FONT-STYLE: italic">Available only from the Command Palette</SPAN></P>
@@ -225,7 +231,7 @@
 <P><CITE lang=yo style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">Default shortcut is Alt + F9</CITE></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">To search for hashtags use the <SPAN style="FONT-STYLE: italic">Search Hashtags</SPAN> dialog. All pages that contain the specified hashtags will be displayed. The date shows the last date the page was updated. Hover over each contextual snippet to see when that paragraph was last updated. Click the page to navigate to the top of the page. Click a contextual snippet to navigate directly to that paragraph.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<P style="MARGIN: 0in 0in 0in 0.375in"><IMG src="Hashtag%20Commands_files/image002.png" width=514 height=371></P>
+<P style="MARGIN: 0in 0in 0in 0.375in"><IMG src="/commands/Hashtag%20Commands_files/image002.png" width=514 height=371></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">As you start typing a hashtag, a list of known tags is displayed. You can enter a partial hashtag or select a tag from the list. Tags can be combined with </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #ecf5ff'>AND</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> or </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #ecf5ff'>OR</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> logical operators; </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #ecf5ff'>AND</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> is implied if not specified between two tags. Double ampersand, </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #ecf5ff'>&amp;&amp;</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, is equivalent to </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #ecf5ff'>AND</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, and double vertical bar, </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #ecf5ff'>||</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, is equivalent to </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #ecf5ff'>OR</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">. Precedence can be specified using parentheses. Use an asterisk as a wildcard; to search for "abc" and not "abcdef", terminate the tag with a period such as </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #ecf5ff'>abc</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">. Some valid query expressions include:</SPAN></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
@@ -293,6 +299,10 @@
     let pageID = '#' + window.location.pathname.match(/.*\/(.*).htm$/)[1];
     pageID = pageID.toLowerCase().replace(/%20| |\./g,'-')
     if ( $(pageID).length > 0) { $(pageID).addClass('active'); }
+  </script>
+  <script src="/pagefind/pagefind-ui.js"></script>
+  <script>
+    new PagefindUI({ element: "#search", showSubResults: true });
   </script>
 </body>
 

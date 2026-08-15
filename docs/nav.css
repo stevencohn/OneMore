@@ -115,3 +115,42 @@ TD P:has(> code) {
 cite {
   font-style: normal;
 }
+
+/* Pagefind search widget */
+#search {
+  --pagefind-ui-scale: 0.65;
+  --pagefind-ui-primary: #4d1569;
+  --pagefind-ui-text: #333333;
+  --pagefind-ui-background: #F0D9FB;
+  --pagefind-ui-border: #d8d0e0;
+  --search-height-scale: 0.9;
+  max-width: 480px;
+  align-self: center;
+}
+
+#search .pagefind-ui__form {
+  position: relative;
+}
+
+#search .pagefind-ui__search-input {
+  height: calc(64px * var(--pagefind-ui-scale) * var(--search-height-scale));
+}
+
+#search .pagefind-ui__form:before {
+  top: calc((64px * var(--pagefind-ui-scale) * var(--search-height-scale) - 18px * var(--pagefind-ui-scale)) / 2);
+}
+
+#search .pagefind-ui__drawer {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background-color: #ffffff;
+  border: 1px solid #d8d0e0;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  max-height: 70vh;
+  overflow-y: auto;
+  padding: 12px 20px;
+  z-index: 1040;
+}

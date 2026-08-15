@@ -13,6 +13,7 @@
     integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
   <link href="/nav.css" rel="stylesheet">
   <link href="/toc.css" rel="stylesheet">
+  <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
 </head>
 
 <body class="sidebar-layout">
@@ -83,6 +84,7 @@
           <a class="nav-link" href="/context-menus/index.html" id="context-menus-section">Context Menus</a>
           <a class="nav-link" href="/developers/index.html" id="developers-section">Developers</a>
         </div>
+        <div id="search" class="d-flex flex-grow-1 mx-lg-3"></div>
         <div class="d-flex">
           <a class="nav-link nav-glyph py-2 px-lg-2" href="https://facebook.com/OneMoreAddIn" target="_blank" rel="noopener">
             <svg width="22px" height="22px" viewBox="0 0 512 512" id="fbglyph" xmlns="http://www.w3.org/2000/svg"
@@ -171,9 +173,9 @@
 <P style="FONT-SIZE: 12pt; FONT-FAMILY: -apple-system; MARGIN: 0in"><SPAN style="FONT-WEIGHT: bold">Styles Editor</SPAN></P></TD></TR>
 <TR>
 <TD style="BORDER-LEFT-WIDTH: 0pt; BORDER-RIGHT-WIDTH: 0pt; WIDTH: 2.909in; VERTICAL-ALIGN: top; BORDER-BOTTOM-WIDTH: 0pt; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; PADDING-RIGHT: 3pt; BORDER-TOP-WIDTH: 0pt">
-<P style="MARGIN: 0in"><IMG src="My%20Styles%20Commands_files/image001.png" width=252 height=364></P></TD>
+<P style="MARGIN: 0in"><IMG src="/commands/My%20Styles%20Commands_files/image001.png" width=252 height=364></P></TD>
 <TD style="BORDER-LEFT-WIDTH: 0pt; BORDER-RIGHT-WIDTH: 0pt; WIDTH: 5in; VERTICAL-ALIGN: top; BORDER-BOTTOM-WIDTH: 0pt; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; PADDING-RIGHT: 3pt; BORDER-TOP-WIDTH: 0pt">
-<P style="MARGIN: 0in"><IMG src="My%20Styles%20Commands_files/image002.png" width=476 height=300></P>
+<P style="MARGIN: 0in"><IMG src="/commands/My%20Styles%20Commands_files/image002.png" width=476 height=300></P>
 <P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P></TD></TR></TBODY></TABLE></DIV>
 <P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">The first nine styles are automatically bound to the key sequences <SPAN style="BACKGROUND: #ffff99">Ctrl+Alt+Shift + 1</SPAN> through <SPAN style="BACKGROUND: #ffff99">Ctrl+Alt+Shift + 9</SPAN>. You can override these key bindings in the <A href="../the-basics/Settings.htm">Settings dialog</A>. You can also define command aliases for use in the <A href="../the-basics/Basics.htm">Command Palette</A>.</P>
@@ -222,7 +224,7 @@
 <P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">If you've selected a darker page background color, OneMore will generate the information box, warning box, and code box with darker colors as well, such as:</P>
 <P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<P style="MARGIN: 0in 0in 0in 0.375in"><IMG alt="Info Boxes" src="My%20Styles%20Commands_files/image003.jpg" width=480 height=103></P>
+<P style="MARGIN: 0in 0in 0in 0.375in"><IMG alt="Info Boxes" src="/commands/My%20Styles%20Commands_files/image003.jpg" width=480 height=103></P>
 <P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P><CITE style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">#omwiki #omcommands</CITE></P>
@@ -240,6 +242,10 @@
     let pageID = '#' + window.location.pathname.match(/.*\/(.*).htm$/)[1];
     pageID = pageID.toLowerCase().replace(/%20| |\./g,'-')
     if ( $(pageID).length > 0) { $(pageID).addClass('active'); }
+  </script>
+  <script src="/pagefind/pagefind-ui.js"></script>
+  <script>
+    new PagefindUI({ element: "#search", showSubResults: true });
   </script>
 </body>
 

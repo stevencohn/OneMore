@@ -173,6 +173,7 @@ Begin
         $body = $html.all.tags('body')
 
         PatchSectionRefs $body
+        PatchImageRefs $body $sectionID
         $inner = $body | foreach InnerHtml
 
         $template = Get-Content -Path template.htm -Encoding utf8 -Raw
@@ -204,6 +205,33 @@ Begin
                     }
                 }
             } }
+    }
+
+    function PatchImageRefs
+    {
+        # rewrite page-relative image src values (e.g. "PageName_files/image001.png")
+        # to be root-relative, so they still resolve when reused out of context, such as
+        # in pagefind search-result thumbnails rendered on an unrelated page
+        param($body, $sectionID)
+        $body | where { $_.all } | foreach {
+            $_.all.tags('img') | foreach {
+                $src = $_.attributes['src']
+                if ($src.textContent -and $src.textContent -notmatch '^(https?:)?//|^/|^data:')
+                {
+                    $src.textContent = "/$sectionID/$($src.textContent)"
+                }
+            } }
+    }
+
+    function RunPagefind
+    {
+        if (-not (Get-Command pagefind -ErrorAction SilentlyContinue))
+        {
+            Write-Host 'pagefind not found on PATH; skipping search index build' -ForegroundColor Yellow
+            return
+        }
+        Write-Host 'building pagefind search index' -ForegroundColor Blue
+        pagefind --site . --glob '**/*.{html,htm}'
     }
 
     function UpdateTelemetrySidebar
@@ -297,6 +325,8 @@ Process
 
     Write-Host 'saving sitemap.xml'
     $sitemap.ToString() | Out-File 'sitemap.xml'
+
+    RunPagefind
 
     Remove-Item $ZipName -Force -Confirm:$false
 
