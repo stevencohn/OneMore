@@ -13,6 +13,7 @@
     integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
   <link href="/nav.css" rel="stylesheet">
   <link href="/toc.css" rel="stylesheet">
+  <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
 </head>
 
 <body class="sidebar-layout">
@@ -83,6 +84,7 @@
           <a class="nav-link" href="/context-menus/index.html" id="context-menus-section">Context Menus</a>
           <a class="nav-link" href="/developers/index.html" id="developers-section">Developers</a>
         </div>
+        <div id="search" class="d-flex flex-grow-1 mx-lg-3"></div>
         <div class="d-flex">
           <a class="nav-link nav-glyph py-2 px-lg-2" href="https://facebook.com/OneMoreAddIn" target="_blank" rel="noopener">
             <svg width="22px" height="22px" viewBox="0 0 512 512" id="fbglyph" xmlns="http://www.w3.org/2000/svg"
@@ -166,7 +168,7 @@
 <P lang=yo style='FONT-SIZE: 20pt; FONT-FAMILY: "Calibri Light"; MARGIN: 0in'>Setup</P></DIV>
 <DIV style="WIDTH: 2.572in; MARGIN-TOP: 0.042in; DIRECTION: ltr; MARGIN-LEFT: 0in">
 <P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">February 18, 2023</P>
-<P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">Last updated on July 31, 2026</P></DIV>
+<P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">Last updated on August 11, 2026</P></DIV>
 <DIV style="WIDTH: 8.437in; MARGIN-TOP: 0.434in; DIRECTION: ltr; MARGIN-LEFT: 0in">
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Are you a programmer? Please feel free to explore the source code and have a play. This section is chock full of technical references and information regarding how I develop and debug the OneNote add-in.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
@@ -189,18 +191,18 @@
 <H3 lang=yo id=net-framework-4-8 style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; COLOR: #5b9bd5; MARGIN: 0in">.NET Framework 4.8</H3>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">OneMore is currently developed using .NET Framework 4.8. Ensure that the <SPAN style="FONT-STYLE: italic">SDK</SPAN> and <SPAN style="FONT-STYLE: italic">targeting pack</SPAN> components are selected.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<P style="MARGIN: 0in 0in 0in 0.375in"><IMG src="Setup_files/image001.png" width=289 height=66></P>
+<P style="MARGIN: 0in 0in 0in 0.375in"><IMG src="/developers/Setup_files/image001.png" width=289 height=66></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <H3 lang=yo id=visual-studio-tools-for-office style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; COLOR: #5b9bd5; MARGIN: 0in">Visual Studio Tools for Office</H3>
 <P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Add the </SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-STYLE: italic">Visual Studio Tools for Office (VSTO)</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> component; this installs the necessary Primary Interop Assemblies for Office below </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #ecf5ff'>C:\Program Files (x86)\Microsoft Visual Studio\Shared\Visual Studio Tools for Office\PIA\Office15</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">. The Office interop assemblies are referenced by OneMore.csproj<BR>&nbsp;</SPAN></P>
-<P style="MARGIN: 0in 0in 0in 0.375in"><IMG src="Setup_files/image002.png" width=306 height=90></P>
+<P style="MARGIN: 0in 0in 0in 0.375in"><IMG src="/developers/Setup_files/image002.png" width=306 height=90></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <H3 lang=yo id=latest-version-of-the-windows-sdk style="FONT-SIZE: 12pt; FONT-FAMILY: Calibri; COLOR: #5b9bd5; MARGIN: 0in">Latest Version of the Windows SDK</H3>
 <P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">OneMore references Windows.winmd out of the Windows SDK to consume PDF files and other features. Select the latest version of the SDK for your current OS, either Windows 10 or Windows 11. The winmd is expecting to exist at </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #ecf5ff'>C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.version.0\Windows.winmd</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, where&nbsp;the </SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-STYLE: italic">version</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">&nbsp;string is the version of the SDK you selected, for example 22621. </SPAN></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">To automate the update of your csproj file, use the </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; BACKGROUND: #ecf5ff'>update-sdk.ps1</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> script as explained below under the heading </SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-STYLE: italic">Upgrade OneMore Project References</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">.</SPAN></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<P style="MARGIN: 0in 0in 0in 0.375in"><IMG src="Setup_files/image003.png" width=307 height=161></P>
+<P style="MARGIN: 0in 0in 0in 0.375in"><IMG src="/developers/Setup_files/image003.png" width=307 height=161></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <H2 lang=yo id=install-wix-toolset style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Install WiX Toolset</H2>
 <P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in"><SPAN lang=yo>Install the&nbsp;</SPAN><A href="https://github.com/wixtoolset/wix/releases"><SPAN lang=en-US>WiX Toolset v7x CLI</SPAN></A><SPAN lang=yo>. The OneMoreSetup folder contains a WiX project and files needed to build an installer. The build.ps1 script is used to compile the add-in in various architectures and generate appropriate MSI installers for each.</SPAN></P>
@@ -211,7 +213,7 @@
 <H2 lang=yo id=configure-nuget-options style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Configure NuGet Options</H2>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Ensure that nuget.org ( <A href="https://api.nuget.org/v3/index.json">https://api.nuget.org/v3/index.json</A>) is included in the NuGet Package Sources in the Visual Studio Options</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in 0in 0in 0.75in">&nbsp;</P>
-<P style="MARGIN: 0in 0in 0in 0.375in"><IMG src="Setup_files/image004.png" width=564 height=306></P>
+<P style="MARGIN: 0in 0in 0in 0.375in"><IMG src="/developers/Setup_files/image004.png" width=564 height=306></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <H2 lang=yo id=update-onemore-project-references style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Update OneMore Project References</H2>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Windows SDK versions are released frequently so it's likely that you have a different version than is currently in OneMore.csproj. If so then you must replace the&nbsp;reference hints in OneMore.csproj to include your version of the SDK. This can be automated using the provided update-sdk.ps1 script located in the OneMore repo:</P>
@@ -250,6 +252,10 @@
     let pageID = '#' + window.location.pathname.match(/.*\/(.*).htm$/)[1];
     pageID = pageID.toLowerCase().replace(/%20| |\./g,'-')
     if ( $(pageID).length > 0) { $(pageID).addClass('active'); }
+  </script>
+  <script src="/pagefind/pagefind-ui.js"></script>
+  <script>
+    new PagefindUI({ element: "#search", showSubResults: true });
   </script>
 </body>
 
