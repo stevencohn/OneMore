@@ -169,6 +169,14 @@
     <value>Berekend</value>
     <comment>tag name</comment>
   </data>
+  <data name="AddTopSectionGroupCommand_DefaultName" xml:space="preserve">
+    <value>Nieuwe sectiegroep</value>
+    <comment>default section group name</comment>
+  </data>
+  <data name="AddTopSectionGroupCommand_Error" xml:space="preserve">
+    <value>Er is een fout opgetreden bij het toevoegen van de nieuwe sectiegroep. Zie het logboek voor details.</value>
+    <comment>error message</comment>
+  </data>
   <data name="AdjustImagesDialog.Text" xml:space="preserve">
     <value>De grootte van het formaat wijzigen en aanpassen</value>
     <comment>dialog title</comment>
@@ -3758,6 +3766,14 @@ Selecteer NO om één lege regel tussen paragrafen te behouden</value>
   <data name="ribAddTagBankButton_Screentip" xml:space="preserve">
     <value>Voeg een tagoverzicht bovenaan de pagina toe</value>
     <comment>ribbon search</comment>
+  </data>
+  <data name="ribAddTopSectionGroupButton_Label" xml:space="preserve">
+    <value>Voeg bovenste sectiegroep toe</value>
+    <comment>notebook context menu</comment>
+  </data>
+  <data name="ribAddTopSectionGroupButton_Screentip" xml:space="preserve">
+    <value>Voeg een nieuwe sectiegroep toe aan het hoogste niveau van dit notitieblok</value>
+    <comment>notebook context menu</comment>
   </data>
   <data name="ribAdjustImagesButton_Label" xml:space="preserve">
     <value>Afbeeldingen bewerken</value>

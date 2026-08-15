@@ -174,6 +174,14 @@
     <value>OneMoreAddIn</value>
     <comment>!SKIP</comment>
   </data>
+  <data name="AddTopSectionGroupCommand_DefaultName" xml:space="preserve">
+    <value>New Section Group</value>
+    <comment>default section group name</comment>
+  </data>
+  <data name="AddTopSectionGroupCommand_Error" xml:space="preserve">
+    <value>An error occurred adding the new section group. See the log for details.</value>
+    <comment>error message</comment>
+  </data>
   <data name="AdjustImagesDialog.Text" xml:space="preserve">
     <value>Resize and Adjust Image</value>
     <comment>dialog title</comment>
@@ -3794,6 +3802,14 @@ Select No to keep one empty line between paragraphs</value>
   <data name="ribAddTagBankButton_Screentip" xml:space="preserve">
     <value>Add top-of-page tag outline</value>
     <comment>ribbon search</comment>
+  </data>
+  <data name="ribAddTopSectionGroupButton_Label" xml:space="preserve">
+    <value>Add Top Section Group</value>
+    <comment>notebook context menu</comment>
+  </data>
+  <data name="ribAddTopSectionGroupButton_Screentip" xml:space="preserve">
+    <value>Add a new section group to the top level of this notebook</value>
+    <comment>notebook context menu</comment>
   </data>
   <data name="ribAdjustImagesButton_Label" xml:space="preserve">
     <value>Edit Images</value>

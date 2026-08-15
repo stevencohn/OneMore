@@ -24,6 +24,13 @@
         onAction="AddFavoriteNotebookCmd"
         insertBeforeMso="ShareThisNotebook"/>
       <button
+        id="ctxAddTopSectionGroupButton"
+        imageMso="Folder"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="AddTopSectionGroupCmd"
+        insertBeforeMso="ShareThisNotebook"/>
+      <button
         id="ctxArchiveNotebookButton"
         imageMso="SaveAttachments"
         getLabel="GetRibbonLabel"

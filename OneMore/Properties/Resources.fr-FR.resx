@@ -172,6 +172,14 @@
   <data name="AddInTitle" xml:space="preserve">
     <value>OneMoreAddIn</value>
   </data>
+  <data name="AddTopSectionGroupCommand_DefaultName" xml:space="preserve">
+    <value>Nouveau groupe de sections</value>
+    <comment>default section group name</comment>
+  </data>
+  <data name="AddTopSectionGroupCommand_Error" xml:space="preserve">
+    <value>Une erreur s'est produite lors de l'ajout du nouveau groupe de sections. Voir le journal pour plus de détails.</value>
+    <comment>error message</comment>
+  </data>
   <data name="AdjustImagesDialog.Text" xml:space="preserve">
     <value>Redimensionner et ajuster l'image</value>
     <comment>dialog title</comment>
@@ -3769,6 +3777,14 @@ Sélectionnez Non pour conserver une ligne vide entre les paragraphes</value>
   <data name="ribAddTagBankButton_Screentip" xml:space="preserve">
     <value>Ajouter un contour de balise de haut de page</value>
     <comment>ribbon search</comment>
+  </data>
+  <data name="ribAddTopSectionGroupButton_Label" xml:space="preserve">
+    <value>Ajouter un groupe de sections supérieures</value>
+    <comment>notebook context menu</comment>
+  </data>
+  <data name="ribAddTopSectionGroupButton_Screentip" xml:space="preserve">
+    <value>Ajouter un nouveau groupe de sections au niveau supérieur de ce bloc-notes</value>
+    <comment>notebook context menu</comment>
   </data>
   <data name="ribAdjustImagesButton_Label" xml:space="preserve">
     <value>Modifier les images</value>

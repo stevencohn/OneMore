@@ -207,7 +207,25 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("AddInTitle", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to New Section Group.
+        /// </summary>
+        internal static string AddTopSectionGroupCommand_DefaultName {
+            get {
+                return ResourceManager.GetString("AddTopSectionGroupCommand_DefaultName", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred adding the new section group. See the log for details.
+        /// </summary>
+        internal static string AddTopSectionGroupCommand_Error {
+            get {
+                return ResourceManager.GetString("AddTopSectionGroupCommand_Error", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Absolute.
         /// </summary>
@@ -9006,7 +9024,25 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribAddTagBankButton_Screentip", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Add Top Section Group.
+        /// </summary>
+        internal static string ribAddTopSectionGroupButton_Label {
+            get {
+                return ResourceManager.GetString("ribAddTopSectionGroupButton_Label", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Add a new section group to the top level of this notebook.
+        /// </summary>
+        internal static string ribAddTopSectionGroupButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribAddTopSectionGroupButton_Screentip", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Edit Images.
         /// </summary>

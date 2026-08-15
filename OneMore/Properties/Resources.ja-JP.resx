@@ -170,6 +170,14 @@
     <value>Calculated</value>
     <comment>tag name</comment>
   </data>
+  <data name="AddTopSectionGroupCommand_DefaultName" xml:space="preserve">
+    <value>新しいセクショングループ</value>
+    <comment>default section group name</comment>
+  </data>
+  <data name="AddTopSectionGroupCommand_Error" xml:space="preserve">
+    <value>新しいセクション グループの追加でエラーが発生しました。詳細についてはログを参照してください。</value>
+    <comment>error message</comment>
+  </data>
   <data name="AdjustImagesDialog.Text" xml:space="preserve">
     <value>画像のサイズ変更と調整</value>
     <comment>dialog title</comment>
@@ -3765,6 +3773,14 @@ ISO-code then comma then language name</comment>
   <data name="ribAddTagBankButton_Screentip" xml:space="preserve">
     <value>ページのトップにタグのアウトラインを追加</value>
     <comment>ribbon search</comment>
+  </data>
+  <data name="ribAddTopSectionGroupButton_Label" xml:space="preserve">
+    <value>トップセクショングループを追加</value>
+    <comment>notebook context menu</comment>
+  </data>
+  <data name="ribAddTopSectionGroupButton_Screentip" xml:space="preserve">
+    <value>新しいセクション グループをこのノートブックの最上位に追加します</value>
+    <comment>notebook context menu</comment>
   </data>
   <data name="ribAdjustImagesButton_Label" xml:space="preserve">
     <value>画像の編集</value>

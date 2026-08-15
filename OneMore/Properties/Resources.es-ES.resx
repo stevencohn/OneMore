@@ -172,6 +172,14 @@
   <data name="AddInTitle" xml:space="preserve">
     <value>OneMoreAddIn</value>
   </data>
+  <data name="AddTopSectionGroupCommand_DefaultName" xml:space="preserve">
+    <value>Nuevo grupo de sección</value>
+    <comment>default section group name</comment>
+  </data>
+  <data name="AddTopSectionGroupCommand_Error" xml:space="preserve">
+    <value>Se produjo un error al agregar el nuevo grupo de secciones. Consulte el registro para obtener más detalles.</value>
+    <comment>error message</comment>
+  </data>
   <data name="AdjustImagesDialog.Text" xml:space="preserve">
     <value>Cambiar el tamaño y ajustar la imagen.</value>
     <comment>dialog title</comment>
@@ -3757,6 +3765,14 @@ Seleccione No para mantener una línea vacía entre los párrafos</value>
   <data name="ribAddTagBankButton_Screentip" xml:space="preserve">
     <value>Agregar esquema de etiqueta en la parte superior de la página</value>
     <comment>ribbon search</comment>
+  </data>
+  <data name="ribAddTopSectionGroupButton_Label" xml:space="preserve">
+    <value>Agregar grupo de sección superior</value>
+    <comment>notebook context menu</comment>
+  </data>
+  <data name="ribAddTopSectionGroupButton_Screentip" xml:space="preserve">
+    <value>Agregue un nuevo grupo de secciones al nivel superior de este cuaderno</value>
+    <comment>notebook context menu</comment>
   </data>
   <data name="ribAdjustImagesButton_Label" xml:space="preserve">
     <value>Editar imágenes</value>

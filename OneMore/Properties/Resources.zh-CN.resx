@@ -172,6 +172,14 @@
   <data name="AddInTitle" xml:space="preserve">
     <value>OneMoreAddIn</value>
   </data>
+  <data name="AddTopSectionGroupCommand_DefaultName" xml:space="preserve">
+    <value>新组</value>
+    <comment>default section group name</comment>
+  </data>
+  <data name="AddTopSectionGroupCommand_Error" xml:space="preserve">
+    <value>添加新分区组时出错。详细信息请参阅日志。</value>
+    <comment>error message</comment>
+  </data>
   <data name="AdjustImagesDialog.Text" xml:space="preserve">
     <value>图像大小与样式调整</value>
     <comment>dialog title</comment>
@@ -3772,6 +3780,14 @@ ISO-code then comma then language name</comment>
   <data name="ribAddTagBankButton_Screentip" xml:space="preserve">
     <value>在页面顶部添加标签块</value>
     <comment>ribbon search</comment>
+  </data>
+  <data name="ribAddTopSectionGroupButton_Label" xml:space="preserve">
+    <value>添加顶部部分组</value>
+    <comment>notebook context menu</comment>
+  </data>
+  <data name="ribAddTopSectionGroupButton_Screentip" xml:space="preserve">
+    <value>将新的分区组添加到此笔记本的顶层</value>
+    <comment>notebook context menu</comment>
   </data>
   <data name="ribAdjustImagesButton_Label" xml:space="preserve">
     <value>图像大小与样式调整</value>

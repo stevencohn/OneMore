@@ -172,6 +172,14 @@
   <data name="AddInTitle" xml:space="preserve">
     <value>OneMoreAddIn</value>
   </data>
+  <data name="AddTopSectionGroupCommand_DefaultName" xml:space="preserve">
+    <value>Neue Abschnittsgruppe</value>
+    <comment>default section group name</comment>
+  </data>
+  <data name="AddTopSectionGroupCommand_Error" xml:space="preserve">
+    <value>Beim Hinzufügen der neuen Abschnittsgruppe ist ein Fehler aufgetreten. Einzelheiten finden Sie im Protokoll.</value>
+    <comment>error message</comment>
+  </data>
   <data name="AdjustImagesDialog.Text" xml:space="preserve">
     <value>Größe ändern und einstellen</value>
     <comment>dialog title</comment>
@@ -3757,6 +3765,14 @@ Wähle Nein, um eine leere Zeile zwischen den Absätzen zu halten</value>
   <data name="ribAddTagBankButton_Screentip" xml:space="preserve">
     <value>Fügen Sie die Top-of-Page-Tag-Gliederung hinzu</value>
     <comment>ribbon search</comment>
+  </data>
+  <data name="ribAddTopSectionGroupButton_Label" xml:space="preserve">
+    <value>Obere Abschnittsgruppe hinzufügen</value>
+    <comment>notebook context menu</comment>
+  </data>
+  <data name="ribAddTopSectionGroupButton_Screentip" xml:space="preserve">
+    <value>Fügen Sie der obersten Ebene dieses Notizbuchs eine neue Abschnittsgruppe hinzu</value>
+    <comment>notebook context menu</comment>
   </data>
   <data name="ribAdjustImagesButton_Label" xml:space="preserve">
     <value>Bilder bearbeiten</value>

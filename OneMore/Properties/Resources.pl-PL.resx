@@ -169,6 +169,14 @@
     <value>Obliczony</value>
     <comment>tag name</comment>
   </data>
+  <data name="AddTopSectionGroupCommand_DefaultName" xml:space="preserve">
+    <value>Nowa grupa sekcji</value>
+    <comment>default section group name</comment>
+  </data>
+  <data name="AddTopSectionGroupCommand_Error" xml:space="preserve">
+    <value>Wystąpił błąd podczas dodawania nowej grupy sekcji. Szczegóły znajdziesz w logu.</value>
+    <comment>error message</comment>
+  </data>
   <data name="AdjustImagesDialog.Text" xml:space="preserve">
     <value>Zmień rozmiar i dostosuj obraz</value>
     <comment>dialog title</comment>
@@ -3758,6 +3766,14 @@ Wybierz Nie, aby zachować jedną pustą linię między akapitami</value>
   <data name="ribAddTagBankButton_Screentip" xml:space="preserve">
     <value>Dodaj zarys tagu na górze strony</value>
     <comment>ribbon search</comment>
+  </data>
+  <data name="ribAddTopSectionGroupButton_Label" xml:space="preserve">
+    <value>Dodaj górną grupę sekcji</value>
+    <comment>notebook context menu</comment>
+  </data>
+  <data name="ribAddTopSectionGroupButton_Screentip" xml:space="preserve">
+    <value>Dodaj nową grupę sekcji na najwyższym poziomie tego notesu</value>
+    <comment>notebook context menu</comment>
   </data>
   <data name="ribAdjustImagesButton_Label" xml:space="preserve">
     <value>Edytuj obrazy</value>

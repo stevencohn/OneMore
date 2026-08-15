@@ -172,6 +172,14 @@
   <data name="AddInTitle" xml:space="preserve">
     <value>OneMoreAddIn</value>
   </data>
+  <data name="AddTopSectionGroupCommand_DefaultName" xml:space="preserve">
+    <value>مجموعة الأقسام الجديدة</value>
+    <comment>default section group name</comment>
+  </data>
+  <data name="AddTopSectionGroupCommand_Error" xml:space="preserve">
+    <value>حدث خطأ أثناء إضافة مجموعة الأقسام الجديدة. راجع السجل للحصول على التفاصيل.</value>
+    <comment>error message</comment>
+  </data>
   <data name="AdjustImagesDialog.Text" xml:space="preserve">
     <value>تغيير حجم وتعديل الصورة</value>
     <comment>dialog title</comment>
@@ -3769,6 +3777,14 @@ ISO-code then comma then language name</comment>
   <data name="ribAddTagBankButton_Screentip" xml:space="preserve">
     <value>إضافة مخطط تفصيلي لعلامة أعلى الصفحة</value>
     <comment>ribbon search</comment>
+  </data>
+  <data name="ribAddTopSectionGroupButton_Label" xml:space="preserve">
+    <value>إضافة مجموعة الأقسام العليا</value>
+    <comment>notebook context menu</comment>
+  </data>
+  <data name="ribAddTopSectionGroupButton_Screentip" xml:space="preserve">
+    <value>أضف مجموعة مقاطع جديدة إلى المستوى الأعلى من دفتر الملاحظات هذا</value>
+    <comment>notebook context menu</comment>
   </data>
   <data name="ribAdjustImagesButton_Label" xml:space="preserve">
     <value>تحرير الصور</value>
