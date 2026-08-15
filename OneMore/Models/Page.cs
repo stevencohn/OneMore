@@ -848,5 +848,21 @@ The fix is to ignore multiple active media elements.
 					.ReplaceNodes(new XElement(ns + "T", new XCData(title)));
 			}
 		}
+
+
+		/// <summary>
+		/// Guards against a OneNote save-time normalization defect where a local style
+		/// attribute that looks redundant with its QuickStyleDef gets stripped, silently
+		/// falling back to the QuickStyleDef's color, which can be invisible against the
+		/// page background. Pins an explicit, contrasting color onto any at-risk local
+		/// style so the text stays visible and the local style is no longer identical to
+		/// its QuickStyleDef.
+		/// </summary>
+		public void StabilizeTextColors()
+		{
+			var background = GetPageColor(out _, out _);
+			var contrast = GetBestTextColor();
+			ColorStabilizer.Stabilize(Root, Namespace, background, contrast);
+		}
 	}
 }

@@ -1767,6 +1767,13 @@ namespace River.OneMoreAddIn
 			// must optimize before we can validate schema...
 			page.OptimizeForSave(force);
 
+			// guard against OneNote's own save-time style normalization silently producing
+			// invisible text on paragraphs whose local style looks redundant with their
+			// QuickStyleDef; run after OptimizeForSave so only content actually being sent
+			// is scanned, and unconditionally of force since the risk depends on what IS
+			// being sent, not on whether OptimizeForSave pruned anything
+			page.StabilizeTextColors();
+
 			// Skip schema validation when onenote is a test mock (non-COM object).
 			// ValidateSchema is only meaningful against a real OneNote COM endpoint.
 			if (Marshal.IsComObject(onenote) && !ValidateSchema(page.Root))
