@@ -26,16 +26,29 @@ namespace River.OneMoreAddIn.Commands
 		public override async Task Execute(params object[] args)
 		{
 			await using var one = new OneNote(out var page, out _, OneNote.PageDetail.Basic);
-			var pageColor = page.GetPageColor(out var automatic, out var black);
 
-			if (automatic)
+			Color pageColor;
+			bool black;
+
+			if (page is null)
 			{
+				// no page available (e.g., empty section); default sample to light mode
 				pageColor = Color.Transparent;
+				black = false;
 			}
-			else if (black)
+			else
 			{
-				// if Office Black theme, translate to slightly softer shade
-				pageColor = BasicColors.BlackSmoke;
+				pageColor = page.GetPageColor(out var automatic, out black);
+
+				if (automatic)
+				{
+					pageColor = Color.Transparent;
+				}
+				else if (black)
+				{
+					// if Office Black theme, translate to slightly softer shade
+					pageColor = BasicColors.BlackSmoke;
+				}
 			}
 
 			var theme = new ThemeProvider().Theme;

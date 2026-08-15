@@ -99,6 +99,12 @@ Read `ONENOTE.EXE`'s PE header directly when you need OneNote's architecture.
   explicitly told otherwise.
   When modifying an existing resource string, append the token "!EDIT" to its comment field, preceded by a space, if that token isn't already present.
 
+- **C# coding style:** follow the conventions in `.editorconfig`. Use `var` for local
+  variables when the type is obvious from the right-hand side. Use explicit types
+  when the type is not obvious. Use `nameof()` instead of string literals for
+  member names. Use `using` statements instead of `using` declarations (C# 8+).
+  Avoid LINQ queries that allocate intermediate collections unless necessary. Use `is null` and `is not null` instead of `== null` and `!= null`. Use `string.IsNullOrEmpty()` and `string.IsNullOrWhiteSpace()` instead of comparing to `""`.
+
 ## Where to read more
 
 ### General local documentation

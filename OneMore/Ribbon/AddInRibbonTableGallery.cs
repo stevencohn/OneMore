@@ -43,7 +43,7 @@ namespace River.OneMoreAddIn
 
 				// ribbon handlers apparently cannot be async so we need to do this
 				var section = await one.GetSection();
-				if (section.Attribute("locked") == null)
+				if (section is not null && section.Attribute("locked") == null)
 				{
 					// ribbon handlers apparently cannot be async so we need to do this
 					var page = await one.GetPage(OneNote.PageDetail.Basic);
