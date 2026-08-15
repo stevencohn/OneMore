@@ -763,9 +763,21 @@ Normal</value>
     <value>Copied markdown</value>
     <comment>message box</comment>
   </data>
+  <data name="CopyFolderCommand_AndMore" xml:space="preserve">
+    <value>...and {0} more</value>
+    <comment>message box, {0} is a count of additional failed pages not listed</comment>
+  </data>
   <data name="CopyFolderCommand_InvalidTarget" xml:space="preserve">
     <value>Cannot copy a folder into itself or one of its children</value>
     <comment>error message</comment>
+  </data>
+  <data name="CopyFolderCommand_NoSourceFolder" xml:space="preserve">
+    <value>Could not determine the source folder to copy. Please open a page within the folder you want to copy and try again.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="CopyFolderCommand_PartialFailure" xml:space="preserve">
+    <value>Copy completed but {0} of {1} page(s) could not be copied</value>
+    <comment>message box, {0} is failed count, {1} is total count</comment>
   </data>
   <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">
     <value>No hyperlinks found in range</value>

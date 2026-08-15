@@ -414,6 +414,11 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public static XElement FirstAncestor(this XElement element, XName name, XName breakout = null)
 		{
+			if (element is null)
+			{
+				return null;
+			}
+
 			var found = false;
 			var ancestor = element.Parent;
 			while (ancestor != null && !found)

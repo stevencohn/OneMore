@@ -757,9 +757,21 @@
     <value>تخفيض السعر المنسوخ</value>
     <comment>message box</comment>
   </data>
+  <data name="CopyFolderCommand_AndMore" xml:space="preserve">
+    <value>...و{0} أخرى</value>
+    <comment>message box, {0} is a count of additional failed pages not listed</comment>
+  </data>
   <data name="CopyFolderCommand_InvalidTarget" xml:space="preserve">
     <value>لا يمكن نسخ مجلد إلى نفسه أو إلى أحد توابعه</value>
     <comment>error message</comment>
+  </data>
+  <data name="CopyFolderCommand_NoSourceFolder" xml:space="preserve">
+    <value>تعذر تحديد المجلد المصدر لنسخه. يرجى فتح صفحة داخل المجلد الذي تريد نسخه والمحاولة مرة أخرى.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="CopyFolderCommand_PartialFailure" xml:space="preserve">
+    <value>اكتمل النسخ ولكن تعذر نسخ {0} من {1} صفحة (صفحات).</value>
+    <comment>message box, {0} is failed count, {1} is total count</comment>
   </data>
   <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">
     <value>لا ارتباطات تشعبية موجودة في النطاق</value>

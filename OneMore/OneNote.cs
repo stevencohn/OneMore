@@ -1755,12 +1755,13 @@ namespace River.OneMoreAddIn
 		/// </summary>
 		/// <param name="page">A Page</param>
 		/// <param name="force">Keep all Outlines to force full page update</param>
-		public async Task Update(Page page, bool force = false)
+		/// <returns>True if the page content was updated successfully</returns>
+		public async Task<bool> Update(Page page, bool force = false)
 		{
 			if (page.HasActiveMedia())
 			{
 				UI.MoreMessageBox.Show(Window, Resx.HasActiveMedia);
-				return;
+				return false;
 			}
 
 			// must optimize before we can validate schema...
@@ -1770,7 +1771,7 @@ namespace River.OneMoreAddIn
 			// ValidateSchema is only meaningful against a real OneNote COM endpoint.
 			if (Marshal.IsComObject(onenote) && !ValidateSchema(page.Root))
 			{
-				return;
+				return false;
 			}
 
 			// dateExpectedLastModified is merely a pessimistic-locking safeguard to prevent
@@ -1783,7 +1784,7 @@ namespace River.OneMoreAddIn
 			//logger.WriteLine(page.Root);
 			var xml = page.Root.ToString(SaveOptions.DisableFormatting);
 
-			await InvokeWithRetry(() =>
+			return await InvokeWithRetry(() =>
 			{
 				onenote.UpdatePageContent(xml, DateTime.MinValue, XMLSchema.xs2013, true);
 			});

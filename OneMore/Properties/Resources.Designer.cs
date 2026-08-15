@@ -1507,7 +1507,34 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("CopyFolderCommand_InvalidTarget", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Could not determine the source folder to copy. Please open a page within the folder you want to copy and try again..
+        /// </summary>
+        internal static string CopyFolderCommand_NoSourceFolder {
+            get {
+                return ResourceManager.GetString("CopyFolderCommand_NoSourceFolder", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Copy completed but {0} of {1} page(s) could not be copied.
+        /// </summary>
+        internal static string CopyFolderCommand_PartialFailure {
+            get {
+                return ResourceManager.GetString("CopyFolderCommand_PartialFailure", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to ...and {0} more.
+        /// </summary>
+        internal static string CopyFolderCommand_AndMore {
+            get {
+                return ResourceManager.GetString("CopyFolderCommand_AndMore", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to No hyperlinks found in range.
         /// </summary>

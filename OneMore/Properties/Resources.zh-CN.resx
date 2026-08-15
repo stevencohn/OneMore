@@ -758,9 +758,21 @@
     <value>已复制为 Markdown</value>
     <comment>message box</comment>
   </data>
+  <data name="CopyFolderCommand_AndMore" xml:space="preserve">
+    <value>...还有 {0} 个</value>
+    <comment>message box, {0} is a count of additional failed pages not listed</comment>
+  </data>
   <data name="CopyFolderCommand_InvalidTarget" xml:space="preserve">
     <value>无法将文件夹复制到其自身或其子级之一</value>
     <comment>error message</comment>
+  </data>
+  <data name="CopyFolderCommand_NoSourceFolder" xml:space="preserve">
+    <value>无法确定要复制的源文件夹。请打开要复制的文件夹中的页面，然后重试。</value>
+    <comment>error message</comment>
+  </data>
+  <data name="CopyFolderCommand_PartialFailure" xml:space="preserve">
+    <value>复制已完成，但无法复制 {0} 页（共 {1} 页）</value>
+    <comment>message box, {0} is failed count, {1} is total count</comment>
   </data>
   <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">
     <value>范围内没有发现超链接</value>

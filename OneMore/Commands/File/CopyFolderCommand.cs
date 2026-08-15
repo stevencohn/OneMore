@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using System;
+	using System.Collections.Generic;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
@@ -21,6 +22,7 @@ namespace River.OneMoreAddIn.Commands
 		private const string SectionGroupName = "SectionGroup";
 
 		private UI.ProgressDialog progress;
+		private List<string> failures;
 
 		public CopyFolderCommand()
 		{
@@ -53,7 +55,7 @@ namespace River.OneMoreAddIn.Commands
 				await using var one = new OneNote();
 				// user might choose a sectiongroup or a notebook; GetSection will get either
 				var target = await one.GetSection(targetId);
-				if (target == null)
+				if (target is null)
 				{
 					logger.WriteLine("invalid target section");
 					return;
@@ -67,10 +69,26 @@ namespace River.OneMoreAddIn.Commands
 				var element = notebook.Descendants(ns + "Page")
 					.FirstOrDefault(e => e.Attribute("ID").Value == one.CurrentPageId);
 
+				if (element is null)
+				{
+					logger.WriteLine("could not locate current page in notebook; cannot determine source folder");
+
+					UI.MoreMessageBox.Show(owner,
+						Resx.CopyFolderCommand_NoSourceFolder,
+						MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+					return;
+				}
+
 				var folder = element.FirstAncestor(ns + SectionGroupName);
-				if (folder == null)
+				if (folder is null)
 				{
 					logger.WriteLine("error finding ancestor folder");
+
+					UI.MoreMessageBox.Show(owner,
+						Resx.CopyFolderCommand_NoSourceFolder,
+						MessageBoxButtons.OK, MessageBoxIcon.Information);
+
 					return;
 				}
 
@@ -111,13 +129,31 @@ namespace River.OneMoreAddIn.Commands
 
 				clone = upTarget.Elements().FirstOrDefault(e => e.Attribute("ID").Value == cloneID);
 
+				var total = folder.Descendants(ns + "Page").Count();
+				failures = new List<string>();
+
 				using (progress = new UI.ProgressDialog())
 				{
-					progress.SetMaximum(folder.Descendants(ns + "Page").Count());
+					progress.SetMaximum(total);
 					progress.Show();
 
 					// now with a new SectionGroup with a valid ID, copy all pages into it
 					await CopyPages(folder, clone, one, ns);
+				}
+
+				if (failures.Count > 0)
+				{
+					const int maxListed = 20;
+					var listed = failures.Take(maxListed).ToList();
+					if (failures.Count > maxListed)
+					{
+						listed.Add(string.Format(Resx.CopyFolderCommand_AndMore, failures.Count - maxListed));
+					}
+
+					UI.MoreMessageBox.Show(owner,
+						string.Format(Resx.CopyFolderCommand_PartialFailure, failures.Count, total) +
+						Environment.NewLine + Environment.NewLine + string.Join(Environment.NewLine, listed),
+						MessageBoxButtons.OK, MessageBoxIcon.Warning);
 				}
 			}
 			catch (Exception exc)
@@ -180,22 +216,21 @@ namespace River.OneMoreAddIn.Commands
 				// remove all objectID values and let OneNote generate new IDs
 				page.Root.Descendants().Attributes("objectID").Remove();
 
-				await one.Update(page);
+				var ok = await one.Update(page);
+				if (!ok)
+				{
+					logger.WriteLine($"..failed to copy page content for '{page.Title}'");
+					failures.Add(page.Title);
+				}
+
 				progress.Increment();
 			}
 
 			// recurse...
 
-			// NOTE that these find target sections by name, so the names must be unique otherwise
-			// this will copy all pages into the first occurance with a matching name!
-
-			foreach (var section in root.Elements(ns + SectionGroupName).Elements(ns + SectionName))
-			{
-				var cloneSection = clone.Elements(ns + SectionGroupName).Elements(ns + SectionName)
-					.FirstOrDefault(e => e.Attribute("name").Value == section.Attribute("name").Value);
-
-				await CopyPages(section, cloneSection, one, ns);
-			}
+			// NOTE that OneNote does not allow duplicate section names at the same level in the
+			// hierarchy. We take advantage of that, otherwise this will copy all pages into the
+			// first occurance with a matching name!
 
 			foreach (var section in root.Elements(ns + SectionName))
 			{
@@ -203,6 +238,14 @@ namespace River.OneMoreAddIn.Commands
 					.FirstOrDefault(e => e.Attribute("name").Value == section.Attribute("name").Value);
 
 				await CopyPages(section, cloneSection, one, ns);
+			}
+
+			foreach (var group in root.Elements(ns + SectionGroupName))
+			{
+				var cloneGroup = clone.Elements(ns + SectionGroupName)
+					.FirstOrDefault(e => e.Attribute("name").Value == group.Attribute("name").Value);
+
+				await CopyPages(group, cloneGroup, one, ns);
 			}
 		}
 	}
