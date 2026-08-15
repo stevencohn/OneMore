@@ -169,6 +169,14 @@
     <value>Calculado</value>
     <comment>tag name</comment>
   </data>
+  <data name="AddTopSectionGroupCommand_DefaultName" xml:space="preserve">
+    <value>Novo grupo de seções</value>
+    <comment>default section group name</comment>
+  </data>
+  <data name="AddTopSectionGroupCommand_Error" xml:space="preserve">
+    <value>Ocorreu um erro ao adicionar o novo grupo de seções. Consulte o registro para obter detalhes.</value>
+    <comment>error message</comment>
+  </data>
   <data name="AdjustImagesDialog.Text" xml:space="preserve">
     <value>Redimensionar e ajustar a imagem</value>
     <comment>dialog title</comment>
@@ -3758,6 +3766,14 @@ Selecione Não para manter uma linha vazia entre os parágrafos</value>
   <data name="ribAddTagBankButton_Screentip" xml:space="preserve">
     <value>Adicionar contorno de tag no topo da página</value>
     <comment>ribbon search</comment>
+  </data>
+  <data name="ribAddTopSectionGroupButton_Label" xml:space="preserve">
+    <value>Adicionar grupo de seção superior</value>
+    <comment>notebook context menu</comment>
+  </data>
+  <data name="ribAddTopSectionGroupButton_Screentip" xml:space="preserve">
+    <value>Adicione um novo grupo de seções ao nível superior deste notebook</value>
+    <comment>notebook context menu</comment>
   </data>
   <data name="ribAdjustImagesButton_Label" xml:space="preserve">
     <value>Editar imagens</value>

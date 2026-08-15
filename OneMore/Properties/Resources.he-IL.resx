@@ -169,6 +169,14 @@
     <value>מְחוֹשָׁב</value>
     <comment>tag name</comment>
   </data>
+  <data name="AddTopSectionGroupCommand_DefaultName" xml:space="preserve">
+    <value>קבוצת מדור חדשה</value>
+    <comment>default section group name</comment>
+  </data>
+  <data name="AddTopSectionGroupCommand_Error" xml:space="preserve">
+    <value>אירעה שגיאה בהוספת קבוצת המדורים החדשה. עיין ביומן לפרטים.</value>
+    <comment>error message</comment>
+  </data>
   <data name="AdjustImagesDialog.Text" xml:space="preserve">
     <value>שנה גודל והתאם תמונה</value>
     <comment>dialog title</comment>
@@ -3762,6 +3770,14 @@ ISO-code then comma then language name</comment>
   <data name="ribAddTagBankButton_Screentip" xml:space="preserve">
     <value>הוסף מתאר תג בראש הדף</value>
     <comment>ribbon search</comment>
+  </data>
+  <data name="ribAddTopSectionGroupButton_Label" xml:space="preserve">
+    <value>הוסף קבוצת מדור עליון</value>
+    <comment>notebook context menu</comment>
+  </data>
+  <data name="ribAddTopSectionGroupButton_Screentip" xml:space="preserve">
+    <value>הוסף קבוצת מדור חדשה לרמה העליונה של מחברת זו</value>
+    <comment>notebook context menu</comment>
   </data>
   <data name="ribAdjustImagesButton_Label" xml:space="preserve">
     <value>ערוך תמונות</value>

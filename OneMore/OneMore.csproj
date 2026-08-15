@@ -1235,6 +1235,7 @@
     <Compile Include="Commands\Search\SearchAndReplaceEditor.cs" />
     <Compile Include="Commands\Search\Atoms\TextAtom.cs" />
     <Compile Include="Commands\Tools\AboutCommand.cs" />
+    <Compile Include="Commands\Tools\AddTopSectionGroupCommand.cs" />
     <Compile Include="Commands\Tools\SortCommand.cs" />
     <Compile Include="Commands\Edit\ToCaseCommand.cs" />
     <Compile Include="Commands\Clean\TrimCommand.cs" />

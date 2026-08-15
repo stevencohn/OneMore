@@ -60,6 +60,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<TagBankCommand>(true);
 
 
+		[Command("ribAddTopSectionGroupButton_Label", Keys.None)]
+		public async Task AddTopSectionGroupCmd(IRibbonControl control)
+			=> await factory.Run<AddTopSectionGroupCommand>();
+
+
 		[Command("ribAdjustImagesButton_Label", Keys.None, "ribImagesMenu")]
 		public async Task AdjustImagesCmd(IRibbonControl control)
 			=> await factory.Run<AdjustImagesOnPageCommand>();
