@@ -757,9 +757,21 @@ Normal</value>
     <value>descuento copiado</value>
     <comment>message box</comment>
   </data>
+  <data name="CopyFolderCommand_AndMore" xml:space="preserve">
+    <value>...y {0} más</value>
+    <comment>message box, {0} is a count of additional failed pages not listed</comment>
+  </data>
   <data name="CopyFolderCommand_InvalidTarget" xml:space="preserve">
     <value>No se puede copiar una carpeta en sí misma o en uno de sus elementos secundarios</value>
     <comment>error message</comment>
+  </data>
+  <data name="CopyFolderCommand_NoSourceFolder" xml:space="preserve">
+    <value>No se pudo determinar la carpeta de origen para copiar. Abra una página dentro de la carpeta que desea copiar e inténtelo nuevamente.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="CopyFolderCommand_PartialFailure" xml:space="preserve">
+    <value>Copia completada pero no se pudo copiar {0} de {1} páginas</value>
+    <comment>message box, {0} is failed count, {1} is total count</comment>
   </data>
   <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">
     <value>No se han encontrado hipervínculos en el rango.</value>

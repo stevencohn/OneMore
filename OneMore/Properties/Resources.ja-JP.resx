@@ -757,9 +757,21 @@
     <value>Markdownをコピーしました</value>
     <comment>message box</comment>
   </data>
+  <data name="CopyFolderCommand_AndMore" xml:space="preserve">
+    <value>...その他{0}個</value>
+    <comment>message box, {0} is a count of additional failed pages not listed</comment>
+  </data>
   <data name="CopyFolderCommand_InvalidTarget" xml:space="preserve">
     <value>フォルダーを自分自身またはその子フォルダーにコピーすることはできません</value>
     <comment>error message</comment>
+  </data>
+  <data name="CopyFolderCommand_NoSourceFolder" xml:space="preserve">
+    <value>コピー元のフォルダーを特定できませんでした。コピーしたいフォルダー内のページを開いて、もう一度お試しください。</value>
+    <comment>error message</comment>
+  </data>
+  <data name="CopyFolderCommand_PartialFailure" xml:space="preserve">
+    <value>コピーは完了しましたが、{1} ページ中 {0} ページをコピーできませんでした</value>
+    <comment>message box, {0} is failed count, {1} is total count</comment>
   </data>
   <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">
     <value>範囲内にハイパーリンクが見つかりませんでした</value>

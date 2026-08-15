@@ -754,9 +754,21 @@ Normal</value>
     <value>Remarcação copiada</value>
     <comment>message box</comment>
   </data>
+  <data name="CopyFolderCommand_AndMore" xml:space="preserve">
+    <value>...e {0} mais</value>
+    <comment>message box, {0} is a count of additional failed pages not listed</comment>
+  </data>
   <data name="CopyFolderCommand_InvalidTarget" xml:space="preserve">
     <value>Não é possível copiar uma pasta para ela mesma ou para um de seus filhos</value>
     <comment>error message</comment>
+  </data>
+  <data name="CopyFolderCommand_NoSourceFolder" xml:space="preserve">
+    <value>Não foi possível determinar a pasta de origem a ser copiada. Abra uma página dentro da pasta que deseja copiar e tente novamente.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="CopyFolderCommand_PartialFailure" xml:space="preserve">
+    <value>Cópia concluída, mas {0} de {1} páginas não puderam ser copiadas</value>
+    <comment>message box, {0} is failed count, {1} is total count</comment>
   </data>
   <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">
     <value>Nenhum hiperlink encontrado no intervalo</value>
