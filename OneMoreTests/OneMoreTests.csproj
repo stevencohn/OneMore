@@ -87,6 +87,7 @@
     <Compile Include="Helpers\PathHelperTests.cs" />
     <Compile Include="MockApplication.cs" />
     <Compile Include="OneNoteTests.cs" />
+    <Compile Include="Styles\ColorStabilizerTests.cs" />
     <Compile Include="TestBase.cs" />
   </ItemGroup>
   <ItemGroup>
