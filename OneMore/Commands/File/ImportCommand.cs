@@ -65,11 +65,19 @@ namespace River.OneMoreAddIn.Commands
 					break;
 
 				case ImportDialog.Formats.Xml:
-					await ImportXml(dialog.FilePath);
+					if (!await ImportXml(dialog.FilePath))
+					{
+						MoreMessageBox.ShowErrorWithLogLink(
+							owner, "Could not import. See log file for details");
+					}
 					break;
 
 				case ImportDialog.Formats.OneNote:
-					await ImportOneNote(dialog.FilePath);
+					if (!await ImportOneNote(dialog.FilePath))
+					{
+						MoreMessageBox.ShowErrorWithLogLink(
+							owner, "Could not import. See log file for details");
+					}
 					break;
 
 				case ImportDialog.Formats.Markdown:
@@ -95,7 +103,7 @@ namespace River.OneMoreAddIn.Commands
 		/// <param name="path">The file path to action</param>
 		/// <param name="action">The action to execute</param>
 		/// <returns></returns>
-		private bool RunWithProgress(int timeout, string path, Func<CancellationToken, Task<bool>> action)
+		internal bool RunWithProgress(int timeout, string path, Func<CancellationToken, Task<bool>> action)
 		{
 			using (progress = new ProgressDialog(timeout))
 			{
@@ -178,9 +186,10 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task<bool> ImportWordFile(string filepath, bool append, CancellationToken token)
+		internal async Task<bool> ImportWordFile(
+			string filepath, bool append, CancellationToken token, string sectionId = null)
 		{
-			progress.SetMessage($"Importing {filepath}...");
+			progress?.SetMessage($"Importing {filepath}...");
 
 			string html;
 
@@ -223,7 +232,7 @@ namespace River.OneMoreAddIn.Commands
 				try
 				{
 					await using var one = new OneNote();
-					one.CreatePage(one.CurrentSectionId, out var pageId);
+					one.CreatePage(sectionId ?? one.CurrentSectionId, out var pageId);
 					var page = await one.GetPage(pageId);
 
 					page.Title = Path.GetFileName(filepath);
@@ -298,10 +307,10 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task<bool> ImportPowerPointFile(
-			string filepath, bool append, bool split, CancellationToken token)
+		internal async Task<bool> ImportPowerPointFile(
+			string filepath, bool append, bool split, CancellationToken token, string sectionId = null)
 		{
-			progress.SetMessage($"Importing {filepath}...");
+			progress?.SetMessage($"Importing {filepath}...");
 
 			// PowerPoint is opened with WithWindow=msoFalse (windowless automation). If its
 			// using-scope extends across the OneNote awaits below, the Application RCW can
@@ -331,15 +340,15 @@ namespace River.OneMoreAddIn.Commands
 				{
 					await using var one = new OneNote();
 					var section = await one.CreateSection(Path.GetFileNameWithoutExtension(filepath));
-					var sectionId = section.Attribute("ID").Value;
+					var newSectionId = section.Attribute("ID").Value;
 					var ns = one.GetNamespace(section);
 
-					await one.NavigateTo(sectionId);
+					await one.NavigateTo(newSectionId);
 
 					int i = 1;
 					foreach (var file in Directory.GetFiles(outpath, "*.jpg"))
 					{
-						one.CreatePage(sectionId, out var pageId);
+						one.CreatePage(newSectionId, out var pageId);
 						var page = await one.GetPage(pageId);
 						page.Title = $"Slide {i}";
 						var container = page.EnsureContentContainer();
@@ -371,7 +380,7 @@ namespace River.OneMoreAddIn.Commands
 					}
 					else
 					{
-						one.CreatePage(one.CurrentSectionId, out var pageId);
+						one.CreatePage(sectionId ?? one.CurrentSectionId, out var pageId);
 						page = await one.GetPage(pageId);
 						page.Title = Path.GetFileName(filepath);
 					}
@@ -486,9 +495,10 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task<bool> ImportPdfFile(string filepath, bool append, CancellationToken token)
+		internal async Task<bool> ImportPdfFile(
+			string filepath, bool append, CancellationToken token, string sectionId = null)
 		{
-			progress.SetMessage($"Importing {filepath}...");
+			progress?.SetMessage($"Importing {filepath}...");
 
 			Page page;
 
@@ -501,7 +511,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 				else
 				{
-					one.CreatePage(one.CurrentSectionId, out var pageId);
+					one.CreatePage(sectionId ?? one.CurrentSectionId, out var pageId);
 					page = await one.GetPage(pageId);
 					page.Title = Path.GetFileName(filepath);
 				}
@@ -543,8 +553,8 @@ namespace River.OneMoreAddIn.Commands
 			{
 				for (int i = 0; i < doc.PageCount; i++)
 				{
-					progress.SetMessage($"Rasterizing image {i} of {doc.PageCount}");
-					progress.Increment();
+					progress?.SetMessage($"Rasterizing image {i} of {doc.PageCount}");
+					progress?.Increment();
 
 					//logger.WriteLine($"rasterizing page {i}");
 					var pdfpage = doc.GetPage((uint)i);
@@ -646,7 +656,8 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task<bool> ImportMarkdownFile(string filepath, CancellationToken token)
+		internal async Task<bool> ImportMarkdownFile(
+			string filepath, CancellationToken token, string sectionId = null)
 		{
 			try
 			{
@@ -670,7 +681,7 @@ namespace River.OneMoreAddIn.Commands
 				if (!string.IsNullOrEmpty(body))
 				{
 					await using var one = new OneNote();
-					one.CreatePage(one.CurrentSectionId, out var pageId);
+					one.CreatePage(sectionId ?? one.CurrentSectionId, out var pageId);
 
 					var page = await one.GetPage(pageId, OneNote.PageDetail.Basic);
 					var ns = page.Namespace;
@@ -770,7 +781,8 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task<bool> ImportTextFile(string filepath, CancellationToken token)
+		internal async Task<bool> ImportTextFile(
+			string filepath, CancellationToken token, string sectionId = null)
 		{
 			try
 			{
@@ -786,7 +798,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 
 				await using var one = new OneNote();
-				one.CreatePage(one.CurrentSectionId, out var pageId);
+				one.CreatePage(sectionId ?? one.CurrentSectionId, out var pageId);
 
 				var page = await one.GetPage(pageId, OneNote.PageDetail.Basic);
 				var ns = page.Namespace;
@@ -820,7 +832,7 @@ namespace River.OneMoreAddIn.Commands
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 		// XML...
 
-		private async Task ImportXml(string filepath)
+		internal async Task<bool> ImportXml(string filepath, string sectionId = null)
 		{
 			try
 			{
@@ -828,7 +840,7 @@ namespace River.OneMoreAddIn.Commands
 				var template = new Page(XElement.Load(filepath));
 
 				await using var one = new OneNote();
-				one.CreatePage(one.CurrentSectionId, out var pageId);
+				one.CreatePage(sectionId ?? one.CurrentSectionId, out var pageId);
 
 				// remove any objectID values and let OneNote generate new IDs
 				template.Root.Descendants().Attributes("objectID").Remove();
@@ -843,12 +855,12 @@ namespace River.OneMoreAddIn.Commands
 
 				await one.Update(template);
 				await one.NavigateTo(pageId);
+				return true;
 			}
 			catch (Exception exc)
 			{
 				logger.WriteLine(exc);
-				MoreMessageBox.ShowErrorWithLogLink(
-					owner, "Could not import. See log file for details");
+				return false;
 			}
 		}
 
@@ -856,23 +868,25 @@ namespace River.OneMoreAddIn.Commands
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 		// OneNote...
 
-		private async Task ImportOneNote(string filepath)
+		internal async Task<bool> ImportOneNote(string filepath, string sectionId = null)
 		{
 			try
 			{
 				await using var one = new OneNote();
-				var pageId = await one.Import(filepath);
+				var pageId = await one.Import(filepath, sectionId);
 
 				if (!string.IsNullOrEmpty(pageId))
 				{
 					await one.NavigateTo(pageId);
+					return true;
 				}
+
+				return false;
 			}
 			catch (Exception exc)
 			{
 				logger.WriteLine(exc);
-				MoreMessageBox.ShowErrorWithLogLink(
-					owner, "Could not import. See log file for details");
+				return false;
 			}
 		}
 	}

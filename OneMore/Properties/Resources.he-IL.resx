@@ -1570,8 +1570,36 @@ Total Row Font
     <comment>settings</comment>
   </data>
   <data name="FileImportSheet_introBox.Text" xml:space="preserve">
-    <value>התאם אישית אפשרויות ייבוא ​​של PowerPoint ו-PDF</value>
+    <value>אפשרויות ייבוא ​​קבצים</value>
     <comment>label</comment>
+  </data>
+  <data name="FileImportSheet_ppGroup.Text" xml:space="preserve">
+    <value>PowerPoint ו-PDF</value>
+    <comment>settings groupbox</comment>
+  </data>
+  <data name="FileImportSheet_quickGroup.Text" xml:space="preserve">
+    <value>ייבוא ​​מהיר</value>
+    <comment>settings groupbox</comment>
+  </data>
+  <data name="FileImportSheet_quickIntroLabel.Text" xml:space="preserve">
+    <value>אפשרויות אלה מאפשרות את תכונת הייבוא ​​המהיר</value>
+    <comment>label</comment>
+  </data>
+  <data name="FileImportSheet_sectionLink.Text" xml:space="preserve">
+    <value>בחר קטע...</value>
+    <comment>label</comment>
+  </data>
+  <data name="FileImportSheet_SelectFolderText" xml:space="preserve">
+    <value>בחר את התיקיה לסריקה לאיתור קבצי ייבוא ​​מהיר</value>
+    <comment>folder browser dialog description</comment>
+  </data>
+  <data name="FileImportSheet_SelectSectionIntro" xml:space="preserve">
+    <value>בחר את הקטע המשמש כיעד לייבוא ​​מהיר</value>
+    <comment>quick filing dialog intro</comment>
+  </data>
+  <data name="FileImportSheet_SelectSectionTitle" xml:space="preserve">
+    <value>בחר סעיף</value>
+    <comment>quick filing dialog title</comment>
   </data>
   <data name="FileImportSheet_Title" xml:space="preserve">
     <value>ייבוא ​​קבצים</value>
@@ -3341,6 +3369,30 @@ zh-CN,סינית (פשוטה)</value>
     <comment>Recognized languages, one per line.
 ISO-code then comma then language name</comment>
   </data>
+  <data name="QuickImportCommand_ImportedFolderName" xml:space="preserve">
+    <value>מְיוֹבָּא</value>
+    <comment>quick-import destination subfolder name</comment>
+  </data>
+  <data name="QuickImportCommand_InvalidPath" xml:space="preserve">
+    <value>תיקיית הייבוא ​​המהיר לא קיימת. בדוק את ההגדרה בהגדרות &gt; ייבוא ​​קבצים.</value>
+    <comment>message</comment>
+  </data>
+  <data name="QuickImportCommand_NoFilesFound" xml:space="preserve">
+    <value>לא נמצאו קבצים ניתנים לייבוא ​​בתיקיית הייבוא ​​המהיר.</value>
+    <comment>message</comment>
+  </data>
+  <data name="QuickImportCommand_ResultFormat" xml:space="preserve">
+    <value>יובאו {0} מתוך {1} קבצים; {2} נכשל.</value>
+    <comment>message format string</comment>
+  </data>
+  <data name="QuickImportCommand_SectionNotFound" xml:space="preserve">
+    <value>לא ניתן למצוא את קטע היעד לייבוא ​​מהיר. בדוק את ההגדרה בהגדרות &gt; ייבוא ​​קבצים.</value>
+    <comment>message</comment>
+  </data>
+  <data name="QuickImportCommand_SettingsNotSet" xml:space="preserve">
+    <value>יש להגדיר תחילה את התיקיה והקטע של הייבוא ​​המהיר בהגדרות &gt; ייבוא ​​קבצים.</value>
+    <comment>message</comment>
+  </data>
   <data name="QuickNotesSheet_groupingBox.Text" xml:space="preserve">
     <value>שבוע עבודה (2023-02-13 W7)
 חודש (2023-02)
@@ -5021,6 +5073,14 @@ ISO-code then comma then language name</comment>
   <data name="ribProofingMenu_Label" xml:space="preserve">
     <value>שפת הגהה</value>
     <comment>ribbon menu</comment>
+  </data>
+  <data name="ribQuickImportButton_Label" xml:space="preserve">
+    <value>ייבוא ​​מהיר</value>
+    <comment>ribbon file</comment>
+  </data>
+  <data name="ribQuickImportButton_Screentip" xml:space="preserve">
+    <value>ייבא את כל הקבצים המוכרים מהתיקייה המוגדרת למקטע המוגדר</value>
+    <comment>ribbon file</comment>
   </data>
   <data name="ribQuickPaletteButton_Label" xml:space="preserve">
     <value>פלטה מהירה</value>

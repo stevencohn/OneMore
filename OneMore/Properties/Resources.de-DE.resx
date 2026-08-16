@@ -1565,8 +1565,36 @@ OneNote-Datei (*.one)</value>
     <comment>settings</comment>
   </data>
   <data name="FileImportSheet_introBox.Text" xml:space="preserve">
-    <value>Passen Sie PowerPoint- und PDF-Importoptionen an</value>
+    <value>Dateiimportoptionen</value>
     <comment>label</comment>
+  </data>
+  <data name="FileImportSheet_ppGroup.Text" xml:space="preserve">
+    <value>PowerPoint und PDF</value>
+    <comment>settings groupbox</comment>
+  </data>
+  <data name="FileImportSheet_quickGroup.Text" xml:space="preserve">
+    <value>Schneller Import</value>
+    <comment>settings groupbox</comment>
+  </data>
+  <data name="FileImportSheet_quickIntroLabel.Text" xml:space="preserve">
+    <value>Diese Optionen aktivieren die Schnellimportfunktion</value>
+    <comment>label</comment>
+  </data>
+  <data name="FileImportSheet_sectionLink.Text" xml:space="preserve">
+    <value>Abschnitt auswählen...</value>
+    <comment>label</comment>
+  </data>
+  <data name="FileImportSheet_SelectFolderText" xml:space="preserve">
+    <value>Wählen Sie den Ordner aus, der nach Schnellimportdateien durchsucht werden soll</value>
+    <comment>folder browser dialog description</comment>
+  </data>
+  <data name="FileImportSheet_SelectSectionIntro" xml:space="preserve">
+    <value>Wählen Sie den Abschnitt aus, der als Ziel für den Schnellimport verwendet wird</value>
+    <comment>quick filing dialog intro</comment>
+  </data>
+  <data name="FileImportSheet_SelectSectionTitle" xml:space="preserve">
+    <value>Abschnitt auswählen</value>
+    <comment>quick filing dialog title</comment>
   </data>
   <data name="FileImportSheet_Title" xml:space="preserve">
     <value>Dateiimport</value>
@@ -3340,6 +3368,30 @@ zh-CN,Chinesisch (vereinfacht)</value>
     <comment>Recognized languages, one per line.
 ISO-code then comma then language name</comment>
   </data>
+  <data name="QuickImportCommand_ImportedFolderName" xml:space="preserve">
+    <value>Importiert</value>
+    <comment>quick-import destination subfolder name</comment>
+  </data>
+  <data name="QuickImportCommand_InvalidPath" xml:space="preserve">
+    <value>Der Quick-Import-Ordner existiert nicht. Überprüfen Sie die Einstellung unter Einstellungen &gt; Dateiimport.</value>
+    <comment>message</comment>
+  </data>
+  <data name="QuickImportCommand_NoFilesFound" xml:space="preserve">
+    <value>Im Quick-Import-Ordner wurden keine importierbaren Dateien gefunden.</value>
+    <comment>message</comment>
+  </data>
+  <data name="QuickImportCommand_ResultFormat" xml:space="preserve">
+    <value>{0} von {1} Datei(en) importiert; {2} ist fehlgeschlagen.</value>
+    <comment>message format string</comment>
+  </data>
+  <data name="QuickImportCommand_SectionNotFound" xml:space="preserve">
+    <value>Der Zielabschnitt für den Schnellimport konnte nicht gefunden werden. Überprüfen Sie die Einstellung unter Einstellungen &gt; Dateiimport.</value>
+    <comment>message</comment>
+  </data>
+  <data name="QuickImportCommand_SettingsNotSet" xml:space="preserve">
+    <value>Der Ordner und Abschnitt für den Schnellimport muss zunächst unter „Einstellungen“ &gt; „Dateiimport“ konfiguriert werden.</value>
+    <comment>message</comment>
+  </data>
   <data name="QuickNotesSheet_groupingBox.Text" xml:space="preserve">
     <value>Arbeitswoche (2023-02-13 W7)
 Monat (2023-02)
@@ -5016,6 +5068,14 @@ Registerkarte „Hilfe“.</value>
   <data name="ribProofingMenu_Label" xml:space="preserve">
     <value>Sprache prüfen</value>
     <comment>ribbon menu</comment>
+  </data>
+  <data name="ribQuickImportButton_Label" xml:space="preserve">
+    <value>Schneller Import</value>
+    <comment>ribbon file</comment>
+  </data>
+  <data name="ribQuickImportButton_Screentip" xml:space="preserve">
+    <value>Importieren Sie alle bekannten Dateien aus dem konfigurierten Ordner in den konfigurierten Abschnitt</value>
+    <comment>ribbon file</comment>
   </data>
   <data name="ribQuickPaletteButton_Label" xml:space="preserve">
     <value>Schnelle Palette</value>

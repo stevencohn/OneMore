@@ -3590,14 +3590,77 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Customize PowerPoint and PDF import options.
+        ///   Looks up a localized string similar to File Import Options.
         /// </summary>
         internal static string FileImportSheet_introBox_Text {
             get {
                 return ResourceManager.GetString("FileImportSheet_introBox.Text", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to PowerPoint and PDF.
+        /// </summary>
+        internal static string FileImportSheet_ppGroup_Text {
+            get {
+                return ResourceManager.GetString("FileImportSheet_ppGroup.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Quick Import.
+        /// </summary>
+        internal static string FileImportSheet_quickGroup_Text {
+            get {
+                return ResourceManager.GetString("FileImportSheet_quickGroup.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to These options enable the quick-import feature.
+        /// </summary>
+        internal static string FileImportSheet_quickIntroLabel_Text {
+            get {
+                return ResourceManager.GetString("FileImportSheet_quickIntroLabel.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Select the folder to scan for quick-import files.
+        /// </summary>
+        internal static string FileImportSheet_SelectFolderText {
+            get {
+                return ResourceManager.GetString("FileImportSheet_SelectFolderText", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Select the section used as the target for quick-import.
+        /// </summary>
+        internal static string FileImportSheet_SelectSectionIntro {
+            get {
+                return ResourceManager.GetString("FileImportSheet_SelectSectionIntro", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Select Section.
+        /// </summary>
+        internal static string FileImportSheet_SelectSectionTitle {
+            get {
+                return ResourceManager.GetString("FileImportSheet_SelectSectionTitle", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Select section....
+        /// </summary>
+        internal static string FileImportSheet_sectionLink_Text {
+            get {
+                return ResourceManager.GetString("FileImportSheet_sectionLink.Text", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to File Import.
         /// </summary>
@@ -8097,6 +8160,60 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Imported.
+        /// </summary>
+        internal static string QuickImportCommand_ImportedFolderName {
+            get {
+                return ResourceManager.GetString("QuickImportCommand_ImportedFolderName", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The quick-import folder does not exist. Check the setting in Settings &gt; File Import..
+        /// </summary>
+        internal static string QuickImportCommand_InvalidPath {
+            get {
+                return ResourceManager.GetString("QuickImportCommand_InvalidPath", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to No importable files were found in the quick-import folder..
+        /// </summary>
+        internal static string QuickImportCommand_NoFilesFound {
+            get {
+                return ResourceManager.GetString("QuickImportCommand_NoFilesFound", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Imported {0} of {1} file(s); {2} failed..
+        /// </summary>
+        internal static string QuickImportCommand_ResultFormat {
+            get {
+                return ResourceManager.GetString("QuickImportCommand_ResultFormat", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The quick-import target section could not be found. Check the setting in Settings &gt; File Import..
+        /// </summary>
+        internal static string QuickImportCommand_SectionNotFound {
+            get {
+                return ResourceManager.GetString("QuickImportCommand_SectionNotFound", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The quick-import folder and section must be configured first in Settings &gt; File Import..
+        /// </summary>
+        internal static string QuickImportCommand_SettingsNotSet {
+            get {
+                return ResourceManager.GetString("QuickImportCommand_SettingsNotSet", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Work Week (2023-02-13 W7)
         ///Month (2023-02)
         ///Quarter (2023 Q1)
@@ -11928,6 +12045,24 @@ namespace River.OneMoreAddIn.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to Quick Import.
+        /// </summary>
+        internal static string ribQuickImportButton_Label {
+            get {
+                return ResourceManager.GetString("ribQuickImportButton_Label", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Import all known files from the configured folder into the configured section.
+        /// </summary>
+        internal static string ribQuickImportButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribQuickImportButton_Screentip", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Quick Palette.
         /// </summary>

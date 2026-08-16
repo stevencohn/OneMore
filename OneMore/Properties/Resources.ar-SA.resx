@@ -1573,8 +1573,36 @@
     <comment>settings</comment>
   </data>
   <data name="FileImportSheet_introBox.Text" xml:space="preserve">
-    <value>تخصيص خيارات استيراد PowerPoint و PDF</value>
+    <value>خيارات استيراد الملف</value>
     <comment>label</comment>
+  </data>
+  <data name="FileImportSheet_ppGroup.Text" xml:space="preserve">
+    <value>باور بوينت وPDF</value>
+    <comment>settings groupbox</comment>
+  </data>
+  <data name="FileImportSheet_quickGroup.Text" xml:space="preserve">
+    <value>استيراد سريع</value>
+    <comment>settings groupbox</comment>
+  </data>
+  <data name="FileImportSheet_quickIntroLabel.Text" xml:space="preserve">
+    <value>تعمل هذه الخيارات على تمكين ميزة الاستيراد السريع</value>
+    <comment>label</comment>
+  </data>
+  <data name="FileImportSheet_sectionLink.Text" xml:space="preserve">
+    <value>اختر القسم...</value>
+    <comment>label</comment>
+  </data>
+  <data name="FileImportSheet_SelectFolderText" xml:space="preserve">
+    <value>حدد المجلد للبحث عن ملفات الاستيراد السريع</value>
+    <comment>folder browser dialog description</comment>
+  </data>
+  <data name="FileImportSheet_SelectSectionIntro" xml:space="preserve">
+    <value>حدد القسم المستخدم كهدف للاستيراد السريع</value>
+    <comment>quick filing dialog intro</comment>
+  </data>
+  <data name="FileImportSheet_SelectSectionTitle" xml:space="preserve">
+    <value>حدد القسم</value>
+    <comment>quick filing dialog title</comment>
   </data>
   <data name="FileImportSheet_Title" xml:space="preserve">
     <value>استيراد ملف</value>
@@ -3352,6 +3380,30 @@ zh-CN ، الصينية (المبسطة)</value>
     <comment>Recognized languages, one per line.
 ISO-code then comma then language name</comment>
   </data>
+  <data name="QuickImportCommand_ImportedFolderName" xml:space="preserve">
+    <value>مستورد</value>
+    <comment>quick-import destination subfolder name</comment>
+  </data>
+  <data name="QuickImportCommand_InvalidPath" xml:space="preserve">
+    <value>مجلد الاستيراد السريع غير موجود. تحقق من الإعداد في الإعدادات &gt; استيراد الملف.</value>
+    <comment>message</comment>
+  </data>
+  <data name="QuickImportCommand_NoFilesFound" xml:space="preserve">
+    <value>لم يتم العثور على ملفات قابلة للاستيراد في مجلد الاستيراد السريع.</value>
+    <comment>message</comment>
+  </data>
+  <data name="QuickImportCommand_ResultFormat" xml:space="preserve">
+    <value>تم استيراد {0} من {1} ملف (ملفات)؛ {2} فشل.</value>
+    <comment>message format string</comment>
+  </data>
+  <data name="QuickImportCommand_SectionNotFound" xml:space="preserve">
+    <value>تعذر العثور على قسم هدف الاستيراد السريع. تحقق من الإعداد في الإعدادات &gt; استيراد الملف.</value>
+    <comment>message</comment>
+  </data>
+  <data name="QuickImportCommand_SettingsNotSet" xml:space="preserve">
+    <value>يجب تكوين مجلد وقسم الاستيراد السريع أولاً في الإعدادات &gt; استيراد الملف.</value>
+    <comment>message</comment>
+  </data>
   <data name="QuickNotesSheet_groupingBox.Text" xml:space="preserve">
     <value>أسبوع العمل (2023-02-13 W7)
 الشهر (2023-02)
@@ -5028,6 +5080,14 @@ ISO-code then comma then language name</comment>
   <data name="ribProofingMenu_Label" xml:space="preserve">
     <value>لغة التدقيق</value>
     <comment>ribbon menu</comment>
+  </data>
+  <data name="ribQuickImportButton_Label" xml:space="preserve">
+    <value>استيراد سريع</value>
+    <comment>ribbon file</comment>
+  </data>
+  <data name="ribQuickImportButton_Screentip" xml:space="preserve">
+    <value>قم باستيراد كافة الملفات المعروفة من المجلد الذي تم تكوينه إلى القسم الذي تم تكوينه</value>
+    <comment>ribbon file</comment>
   </data>
   <data name="ribQuickPaletteButton_Label" xml:space="preserve">
     <value>لوحة سريعة</value>

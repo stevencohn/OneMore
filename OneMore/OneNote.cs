@@ -2038,13 +2038,19 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Imports the specified file under the current section.
+		/// Imports the specified file under the given section, or the current section
+		/// if none is specified.
 		/// </summary>
 		/// <param name="path">The path to a .one file</param>
+		/// <param name="targetSectionId">
+		/// The section to merge the file into; defaults to CurrentSectionId if not specified
+		/// </param>
 		/// <returns>The ID of the new hierarchy object (pageId)</returns>
-		public async Task<string> Import(string path)
+		public async Task<string> Import(string path, string targetSectionId = null)
 		{
-			var start = await GetSection();
+			targetSectionId ??= CurrentSectionId;
+
+			var start = await GetSection(targetSectionId);
 
 			// Opening a .one file places its content in the transient OpenSections area
 			// with its own notebook structure; need to dive down to find the page...
@@ -2068,10 +2074,10 @@ namespace River.OneMoreAddIn
 
 			await InvokeWithRetry(() =>
 			{
-				onenote.MergeSections(openSectionId, CurrentSectionId);
+				onenote.MergeSections(openSectionId, targetSectionId);
 			});
 
-			var section = await GetSection();
+			var section = await GetSection(targetSectionId);
 			var ns = GetNamespace(section);
 
 			// determine newly added pageId by comparing new section against what we started with
