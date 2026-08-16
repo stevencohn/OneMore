@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description"
+    content="OneMore is an add-in for OneNote with simple and powerful features that make OneNote a better OneNote">
+  <meta name="author" content="Steven M Cohn">
+  <meta name="generator" content="OneMore">
+  <title>OneMore - a OneNote add-in</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+  <link href="/nav.css" rel="stylesheet">
+  <link href="/toc.css" rel="stylesheet">
+  <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+</head>
+
+<body class="sidebar-layout">
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="book-half" viewBox="0 0 16 16">
+      <path fill="currentColor" fill-rule="evenodd"
+        d="M8.5 2.687c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z">
+      </path>
+    </symbol>
+    <symbol id="three-dots" viewBox="0 0 16 16">
+      <path fill="currentColor" fill-rule="evenodd"
+        d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z">
+      </path>
+    </symbol>
+    <symbol id="facebook">
+      <path fill="currentColor" fill-rule="evenodd"
+        d="M480,257.35c0-123.7-100.3-224-224-224s-224,100.3-224,224c0,111.8,81.9,204.47,189,221.29V322.12H164.11V257.35H221V208c0-56.13,33.45-87.16,84.61-87.16,24.51,0,50.15,4.38,50.15,4.38v55.13H327.5c-27.81,0-36.51,17.26-36.51,35v42h62.12l-9.92,64.77H291V478.66C398.1,461.85,480,369.18,480,257.35Z">
+      </path>
+    </symbol>
+    <symbol id="github">
+      <path fill="currentColor" fill-rule="evenodd"
+        d="M256 0C114.64 0 0 114.61 0 256c0 113.09 73.34 209 175.08 242.9 12.8 2.35 17.47-5.56 17.47-12.34 0-6.08-.22-22.18-.35-43.54-71.2 15.49-86.2-34.34-86.2-34.34-11.64-29.57-28.42-37.45-28.42-37.45-23.27-15.84 1.73-15.55 1.73-15.55 25.69 1.81 39.21 26.38 39.21 26.38 22.84 39.12 59.92 27.82 74.5 21.27 2.33-16.54 8.94-27.82 16.25-34.22-56.84-6.43-116.6-28.43-116.6-126.49 0-27.95 10-50.8 26.35-68.69-2.63-6.48-11.42-32.5 2.51-67.75 0 0 21.49-6.88 70.4 26.24a242.65 242.65 0 0 1 128.18 0c48.87-33.13 70.33-26.24 70.33-26.24 14 35.25 5.18 61.27 2.55 67.75 16.41 17.9 26.31 40.75 26.31 68.69 0 98.35-59.85 120-116.88 126.32 9.19 7.9 17.38 23.53 17.38 47.41 0 34.22-.31 61.83-.31 70.23 0 6.85 4.61 14.81 17.6 12.31C438.72 464.97 512 369.08 512 256.02 512 114.62 397.37 0 256 0z">
+      </path>
+    </symbol>
+    <symbol id="heart">
+      <path stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        d="M12 7.69431C10 2.99988 3 3.49988 3 9.49991C3 15.4999 12 20.5001 12 20.5001C12 20.5001 21 15.4999 21 9.49991C21 3.49988 14 2.99988 12 7.69431Z">
+      </path>
+    </symbol>
+  </svg>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+    integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+    crossorigin="anonymous"></script>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top" aria-label="OneMore-navbar">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">
+        <img src="/Logo.png" alt="OneMore" height="45" class="logo d-inline-block align-text-middle">
+        <div class="logo-text">OneMore</div>
+      </a>
+
+      <div class="navbar-toggler d-flex d-lg-none order-3 p-2" style="display:block">
+        <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasResponsive" aria-controls="offcanvasResponsive" aria-label="TOC">
+          <svg class="bi" aria-hidden="true">
+            <use xlink:href="#book-half"></use>
+          </svg>
+        </button>
+
+        <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav me-auto mb-2 mb-lg-0">
+          <!-- TODO class+active aria-currrent=page -->
+          <a class="nav-link" href="/get-started/index.html" id="get-started-section">Get started</a>
+          <a class="nav-link" href="/the-basics/index.html" id="the-basics-section">The Basics</a>
+          <a class="nav-link" href="/commands/index.html" id="commands-section">Commands</a>
+          <a class="nav-link" href="/context-menus/index.html" id="context-menus-section">Context Menus</a>
+          <a class="nav-link" href="/developers/index.html" id="developers-section">Developers</a>
+        </div>
+        <div id="search" class="d-flex flex-grow-1 mx-lg-3"></div>
+        <div class="d-flex">
+          <a class="nav-link nav-glyph py-2 px-lg-2" href="https://facebook.com/OneMoreAddIn" target="_blank" rel="noopener">
+            <svg width="22px" height="22px" viewBox="0 0 512 512" id="fbglyph" xmlns="http://www.w3.org/2000/svg"
+              stroke="#FFFFFF" role="img" class="navbar-nav-svg">
+              <title>OneMore on Facebook</title>
+              <use xlink:href="#facebook"></use>
+            </svg>
+            <small class="d-lg-none ms-2">Facebook</small>
+          </a>
+          <a class="nav-link nav-glyph py-2 px-lg-2" href="https://github.com/stevencohn/OneMore" target="_blank" rel="noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" class="navbar-nav-svg"
+              viewBox="0 0 512 499.36" role="img">
+              <title>See the project on GitHub</title>
+              <use xlink:href="#github"></use>
+            </svg>
+            <small class="d-lg-none ms-2">GitHub</small>
+          </a>
+          <a class="nav-link nav-glyph py-2 px-lg-2" href="https://github.com/sponsors/stevencohn" target="_blank" rel="noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="navbar-nav-svg" viewBox="0 0 24 24"
+              role="img" fill="none">
+              <title>Please consider a donation</title>
+              <use xlink:href="#heart"></use>
+            </svg>
+            <small class="d-lg-none ms-2">Donate</small>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="wrapper">
+
+    <!-- Sidebar -->
+    <nav id="sidebar" style="background-color:#EBE5E1; " aria-label="Sidebar">
+      <div class="offcanvas-lg offcanvas-end" tabindex="-1" id="offcanvasResponsive"
+        aria-labelledby="offcanvasResponsiveLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasResponsiveLabel">Get Started</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#offcanvasResponsive"
+            aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav">
+            <li><a id="setup" href="Setup.htm">Setup</a></li>
+<li><a id="building-the-installer" href="Building The Installer.htm">Building The Installer</a></li>
+<li><a id="debugging-onemore" href="Debugging OneMore.htm">Debugging OneMore</a></li>
+<li><a id="experimental-features" href="Experimental Features.htm">Experimental Features</a></li>
+<li><a id="how-to-add-a-new-command" href="How to Add A New Command.htm">How to Add A New Command</a></li>
+<li><a id="how-to-add-a-settings-sheet" href="How to Add A Settings Sheet.htm">How to Add A Settings Sheet</a></li>
+<li><a id="language-translations" href="Language Translations.htm">Language Translations</a></li>
+<li><a id="logging-options" href="Logging Options.htm">Logging Options</a></li>
+<li><a id="nuget-dependencies" href="Nuget Dependencies.htm">Nuget Dependencies</a></li>
+<li><a id="scripts" href="Scripts.htm">Scripts</a></li>
+<li><a id="smoke-tests" href="Smoke Tests.htm">Smoke Tests</a></li>
+<li><a id="references" href="References.htm">References</a></li>
+<li><a id="design---command-framework" href="Design - Command Framework.htm">Design - Command Framework</a></li>
+<li><a id="design---command-service" href="Design - Command Service.htm">Design - Command Service</a></li>
+<li><a id="design---com-layer" href="Design - COM Layer.htm">Design - COM Layer</a></li>
+<li><a id="design---favorites" href="Design - Favorites.htm">Design - Favorites</a></li>
+<li><a id="design---hashtags" href="Design - Hashtags.htm">Design - Hashtags</a></li>
+<li><a id="design---telemetry" href="Design - Telemetry.htm">Design - Telemetry</a></li>
+<li><a id="design---window-layouts" href="Design - Window Layouts.htm">Design - Window Layouts</a></li>
+<li><a id="technote---colors" href="TechNote - Colors.htm">TechNote - Colors</a></li>
+<li><a id="technote---com-registration" href="TechNote - COM Registration.htm">TechNote - COM Registration</a></li>
+<li><a id="technote---com-surrogate" href="TechNote - COM Surrogate.htm">TechNote - COM Surrogate</a></li>
+<li><a id="technote---editing-text" href="TechNote - Editing Text.htm">TechNote - Editing Text</a></li>
+<li><a id="technote---hyperlinks" href="TechNote - Hyperlinks.htm">TechNote - Hyperlinks</a></li>
+<li><a id="technote---interop" href="TechNote - Interop.htm">TechNote - Interop</a></li>
+<li><a id="technote---styles" href="TechNote - Styles.htm">TechNote - Styles</a></li>
+<li><a id="technote---window-focus" href="TechNote - Window Focus.htm">TechNote - Window Focus</a></li>
+<li><a id="onenote-defects" href="OneNote Defects.htm">OneNote Defects</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div id="content">
+      <DIV style="DIRECTION: ltr">
+<DIV style="WIDTH: 9.038in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0in">
+<DIV style="WIDTH: 2.725in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0.075in">
+<P lang=yo style='FONT-SIZE: 20pt; MARGIN-BOTTOM: 14pt; FONT-FAMILY: "Calibri Light"; MARGIN-TOP: 0pt; COLOR: #464646'>Design - COM Layer</P></DIV>
+<DIV style="WIDTH: 2.309in; MARGIN-TOP: 0.042in; DIRECTION: ltr; MARGIN-LEFT: 0.075in">
+<P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">August 16, 2026</P>
+<P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">&nbsp;</P></DIV>
+<DIV style="WIDTH: 9.038in; MARGIN-TOP: 0.427in; DIRECTION: ltr; MARGIN-LEFT: 0in">
+<P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">OneMore never talks to OneNote directly. Every call into the OneNote object model goes through a small COM layer — </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>ApplicationFactory</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> and </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>OneNote</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> — that owns activation, retry, and cleanup of the underlying </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>Microsoft.Office.Interop.OneNote.IApplication</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> COM object.</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">This layer exists because of </SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-STYLE: italic">where</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> OneMore runs. As described in </SPAN><A href="https://onemoreaddin.com/developers/TechNote%20-%20COM%20Surrogate.htm"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">TechNote - COM Surrogate</SPAN></A><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, the add-in is hosted inside a </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>dllhost.exe</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> COM surrogate process, separate from </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>ONENOTE.EXE</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, and that surrogate runs in an </SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: bold">MTA</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> apartment. Two consequences follow directly from that hosting model:</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<OL style="FONT-SIZE: 11.5pt; MARGIN-BOTTOM: 0in; FONT-FAMILY: Calibri; unicode-bidi: embed; MARGIN-TOP: 0in; FONT-WEIGHT: normal; DIRECTION: ltr; FONT-STYLE: normal" type=1>
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px" value=1><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: normal; FONT-STYLE: normal">Cross-process, cross-apartment calls into OneNote are more prone to transient failure (the app is busy, an RPC channel drops) than an in-proc call would be, so every call needs a recovery story, not just a try/catch.</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">.NET's ordinary GC-driven finalization of COM proxies (RCWs) is not trustworthy timing under this hosting model — a proxy released "whenever the finalizer gets around to it" can stall OneNote. Proxies have to be released explicitly, immediately after use.</SPAN> </LI></OL>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">The result is a design that favors <SPAN style="FONT-WEIGHT: bold">short-lived, defensively-managed COM objects</SPAN> over a single long-lived cached proxy protected by a lock.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H2 lang=yo id=architecture style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Architecture</H2>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Three pieces cooperate:</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<UL style="MARGIN-BOTTOM: 0in; unicode-bidi: embed; MARGIN-TOP: 0in; DIRECTION: ltr" type=disc>
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>ApplicationFactory</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> (</SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>OneMore/Helpers/ApplicationFactory.cs</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">) — the only place that actually activates the COM object: </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>new Application()</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">. Wraps activation in its own retry loop. Also doubles as a "poor-man's IOC" so tests can register a mock </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>IApplication</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> instead.</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>OneNote</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> (</SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>OneMore/OneNote.cs</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">) — the wrapper commands actually use. Holds one </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>IApplication onenote</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> field, adds retry/recovery around calls, converts raw XML into typed models, and implements </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>IDisposable</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> / </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>IAsyncDisposable</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> to guarantee the COM proxy is released.</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: bold">Commands</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> — never hold a cached </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>OneNote</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">/</SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>IApplication</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> reference. Each command creates its own short-lived </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>OneNote</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> instance for the duration of </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>Execute()</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">:</SPAN> </LI></UL>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: #2e75b5">await using</SPAN><SPAN style="COLOR: black"> (one = </SPAN><SPAN style="COLOR: #2e75b5">new</SPAN><SPAN style="COLOR: black"> OneNote())</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in 0in 0in 0.375in'>{</CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: #2e75b5"><SPAN style="mso-spacerun: yes">&nbsp; </SPAN>var</SPAN><SPAN style="COLOR: black"> section = </SPAN><SPAN style="COLOR: #2e75b5">await</SPAN><SPAN style="COLOR: black"> one.GetSection();</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: #2e75b5"><SPAN style="mso-spacerun: yes">&nbsp; </SPAN>var</SPAN><SPAN style="COLOR: black"> ns = one.GetNamespace(section);</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in 0in 0in 0.375in'><SPAN style="mso-spacerun: yes">&nbsp; </SPAN>...</CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in 0in 0in 0.375in'>}</CODE></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<DIV style="DIRECTION: ltr">
+<TABLE title="" style="BORDER-TOP: #a3a3a3 0pt solid; BORDER-RIGHT: #a3a3a3 0pt solid; BORDER-COLLAPSE: collapse; BORDER-BOTTOM: #a3a3a3 0pt solid; DIRECTION: ltr; MARGIN-LEFT: 0.333in; BORDER-LEFT: #a3a3a3 0pt solid" cellSpacing=0 cellPadding=0 summary="" border=0 valign="top">
+<TBODY>
+<TR>
+<TD style="BORDER-LEFT-WIDTH: 0pt; BORDER-RIGHT-WIDTH: 0pt; WIDTH: 6.441in; VERTICAL-ALIGN: top; BORDER-BOTTOM-WIDTH: 0pt; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; PADDING-RIGHT: 3pt; BORDER-TOP-WIDTH: 0pt">
+<P style="MARGIN: 0in"><IMG src="/developers/Design%20-%20COM%20Layer_files/image001.png" width=600 height=393></P>
+<P lang=yo style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; TEXT-ALIGN: center; MARGIN: 0in"><SPAN style="FONT-WEIGHT: bold; COLOR: #5b9bd5">Command PlantUML (</SPAN><A href="onemore://PlantUmlCommand/ed178817596f4896ad8a8ce0a2be36a8/extract"><SPAN style="FONT-WEIGHT: bold">Extract</SPAN></A><SPAN style="FONT-WEIGHT: bold; COLOR: #5b9bd5">)</SPAN></P></TD>
+<TD style="BORDER-LEFT-WIDTH: 0pt; BORDER-RIGHT-WIDTH: 0pt; WIDTH: 0.534in; VERTICAL-ALIGN: top; BORDER-BOTTOM-WIDTH: 0pt; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; PADDING-RIGHT: 3pt; BORDER-TOP-WIDTH: 0pt">
+<P lang=yo style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #5b9bd5; TEXT-ALIGN: center; MARGIN: 0in">&nbsp;</P></TD></TR></TBODY></TABLE></DIV>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Every activation is independent — there is no shared singleton in production. </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>ApplicationFactory</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">'s </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>singleton</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">/</SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>type</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> fields exist solely so </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>OneMoreTests</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> can inject </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>MockApplication</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> for unit tests; the real code path always calls </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>new Application()</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">.</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H2 lang=yo id=retry-recovery-mechanics style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Retry &amp; recovery mechanics</H2>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Two retry loops exist, at two different layers:</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<DIV style="DIRECTION: ltr">
+<TABLE title="" style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; BORDER-COLLAPSE: collapse; BORDER-BOTTOM: #a3a3a3 1pt solid; DIRECTION: ltr; BORDER-LEFT: #a3a3a3 1pt solid" cellSpacing=0 cellPadding=0 summary="" border=1 valign="top">
+<TBODY>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.862in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in"><SPAN style="FONT-WEIGHT: bold">Layer</SPAN></P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 2.364in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in"><SPAN style="FONT-WEIGHT: bold">Method</SPAN></P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.686in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in"><SPAN style="FONT-WEIGHT: bold">Retries</SPAN></P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 2.002in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in"><SPAN style="FONT-WEIGHT: bold">Backoff</SPAN></P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 2.707in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in"><SPAN style="FONT-WEIGHT: bold">Guards</SPAN></P></TD></TR>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.878in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Activation</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 2.364in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in'>ApplicationFactory</CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in'><SPAN style="mso-spacerun: yes">&nbsp; </SPAN>.CreateApplication()</CODE></P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.667in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">3</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 2.002in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">250ms × retryCount</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 2.921in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P lang=yo style="MARGIN: 0in"><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>hrCOMBusy</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>hrRpcSysCallFailed</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>hrRpcFailed</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>hrRpcFailed2</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>hrRpcUnavailable</SPAN></P></TD></TR>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.862in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Per-call</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 2.364in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in'>OneNote</CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in'><SPAN style="mso-spacerun: yes">&nbsp; </SPAN>.InvokeWithRetry(Action)</CODE></P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 0.667in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">3</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 2.018in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">250ms × retryCount (+250ms extra for RPC errors)</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 3in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P lang=yo style="MARGIN: 0in"><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>InvalidComObjectException</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>COMException</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> (see table below)</SPAN></P></TD></TR></TBODY></TABLE></DIV>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="MARGIN: 0in"><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>InvokeWithRetry</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> (</SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>OneMore/OneNote.cs:349-431</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">) is the workhorse — it wraps ~17 call sites in </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>OneNote.cs</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">. On failure it decides whether the error is worth retrying at all:</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<DIV style="DIRECTION: ltr">
+<TABLE title="" style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; BORDER-COLLAPSE: collapse; BORDER-BOTTOM: #a3a3a3 1pt solid; DIRECTION: ltr; BORDER-LEFT: #a3a3a3 1pt solid" cellSpacing=0 cellPadding=0 summary="" border=1 valign="top">
+<TBODY>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 3in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in"><SPAN style="FONT-WEIGHT: bold">HRESULT</SPAN></P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 2.055in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in"><SPAN style="FONT-WEIGHT: bold">Meaning</SPAN></P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 3.568in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in"><SPAN style="FONT-WEIGHT: bold">Behavior</SPAN></P></TD></TR>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 3in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in'>0x80042001 hrXmlIsInvalid</CODE></P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 2.055in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">The XML is invalid</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 3.568in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Abort immediately, no retry</P></TD></TR>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 3in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in'>0x800706BE hrRpcFailed2</CODE></P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 2.055in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">RPC call failed</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 3.596in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Abort immediately — known OneNote API defect (a paragraph linked to another paragraph containing an equation)</P></TD></TR>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 3in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P><CODE lang=yo style='FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in'><SPAN style="FONT-SIZE: 9pt">0x800706BA hrRpcFailed</SPAN><SPAN style="FONT-SIZE: 11.5pt"> / </SPAN><SPAN style="FONT-SIZE: 9pt">0x800706BE hrRpcUnavailable</SPAN></CODE></P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 2.055in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">RPC channel down</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 3.596in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Retry, with an extra 250ms added to let a new RPC connection bind</P></TD></TR>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 3.004in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in'>0x8001010A hrCOMBusy, 0x80042014 hrObjectMissing, other COMException</CODE></P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 2.055in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Application busy / object gone</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 3.564in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Retry with standard backoff</P></TD></TR>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 3in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in'>InvalidComObjectException</CODE></P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 2.055in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">The RCW's underlying COM object was already released</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 3.568in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt">
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Retry with standard backoff</P></TD></TR></TBODY></TABLE></DIV>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Any retry — regardless of which branch triggered it — first calls </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>ReplaceApplication()</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> (</SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>OneMore/OneNote.cs:434-450</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">), which releases the current proxy and re-activates a fresh one via </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>ApplicationFactory</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> before the action is attempted again:</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'><SPAN style="COLOR: #2e75b5">private void</SPAN><SPAN style="COLOR: black"> ReplaceApplication()</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in'>{</CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'><SPAN style="COLOR: #2e75b5"><SPAN style="mso-spacerun: yes">&nbsp; </SPAN>if</SPAN><SPAN style="COLOR: black"> (onenote </SPAN><SPAN style="COLOR: #2e75b5">is</SPAN><SPAN style="COLOR: black"> not </SPAN><SPAN style="COLOR: #2e75b5">null</SPAN><SPAN style="COLOR: black">)</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in'><SPAN style="mso-spacerun: yes">&nbsp; </SPAN>{</CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; COLOR: #2e75b5; MARGIN: 0in'><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </SPAN>try</CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in'><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </SPAN>{</CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'><SPAN style="COLOR: #2e75b5"><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>if</SPAN><SPAN style="COLOR: black"> (Marshal.IsComObject(onenote))</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'><SPAN style="COLOR: #2e75b5"><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN></SPAN><SPAN style="COLOR: black">Marshal.FinalReleaseComObject(onenote);</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'><SPAN style="COLOR: #2e75b5"><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </SPAN></SPAN><SPAN style="COLOR: black">}</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'><SPAN style="COLOR: #2e75b5"><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </SPAN>catch</SPAN><SPAN style="COLOR: black"> (Exception exc) { logger.WriteLine(</SPAN><SPAN style="COLOR: firebrick">"error releasing onenote in retry"</SPAN><SPAN style="COLOR: black">, exc); }</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'><SPAN style="COLOR: #2e75b5"><SPAN style="mso-spacerun: yes">&nbsp; </SPAN></SPAN><SPAN style="COLOR: black">}</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'><SPAN style="COLOR: #2e75b5"><SPAN style="mso-spacerun: yes">&nbsp; </SPAN></SPAN><SPAN style="COLOR: black">onenote = ApplicationFactory.CreateApplication();</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in'>}</CODE></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="MARGIN: 0in"><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>FinalReleaseComObject</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> (not the ordinary </SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Consolas">ReleaseComObject</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">) is used here deliberately — the old proxy may already be in a bad state, which is </SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-STYLE: italic">why</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> we're recovering, so its reference count is forced to zero in one call rather than decremented normally.</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<DIV style="DIRECTION: ltr">
+<TABLE title="" style="BORDER-TOP: #a3a3a3 0pt solid; BORDER-RIGHT: #a3a3a3 0pt solid; BORDER-COLLAPSE: collapse; BORDER-BOTTOM: #a3a3a3 0pt solid; DIRECTION: ltr; BORDER-LEFT: #a3a3a3 0pt solid" cellSpacing=0 cellPadding=0 summary="" border=0 valign="top">
+<TBODY>
+<TR>
+<TD style="BORDER-LEFT-WIDTH: 0pt; BORDER-RIGHT-WIDTH: 0pt; WIDTH: 8.486in; VERTICAL-ALIGN: top; BORDER-BOTTOM-WIDTH: 0pt; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; PADDING-RIGHT: 3pt; BORDER-TOP-WIDTH: 0pt">
+<P style="MARGIN: 0in"><IMG src="/developers/Design%20-%20COM%20Layer_files/image002.png" width=801 height=374></P>
+<P lang=yo style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; TEXT-ALIGN: center; MARGIN: 0in"><SPAN style="FONT-WEIGHT: bold; COLOR: #5b9bd5">Retry Signaling Flow PlantUML (</SPAN><A href="onemore://PlantUmlCommand/5a65ea2d631b4359b2ff3b40cf15d854/extract"><SPAN style="FONT-WEIGHT: bold">Extract</SPAN></A><SPAN style="FONT-WEIGHT: bold; COLOR: #5b9bd5">)</SPAN></P></TD></TR></TBODY></TABLE></DIV>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H2 lang=yo id=rcw-lifecycle-management style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">RCW lifecycle management</H2>
+<P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Beyond the retry path, the wrapper is careful about </SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-STYLE: italic">every</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> COM proxy it touches, not just the top-level </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>IApplication</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">. </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>WithCurrentWindow&lt;T&gt;</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> (</SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>OneMore/OneNote.cs:299-340</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">) backs several properties (</SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>CurrentPageId</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>WindowHandle</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>OwnerWindow</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, ...) and explicitly releases the intermediate </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>Windows</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> collection and </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>Window</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> proxies as soon as it's done with them, rather than leaving that to garbage collection:</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'><SPAN style="COLOR: #2e75b5">private</SPAN><SPAN style="COLOR: black"> T WithCurrentWindow&lt;T&gt;(Func&lt;Window, T&gt; reader, T fallback)</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in'>{</CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'><SPAN style="COLOR: #2e75b5"><SPAN style="mso-spacerun: yes">&nbsp; </SPAN>if</SPAN><SPAN style="COLOR: black"> (onenote </SPAN><SPAN style="COLOR: #2e75b5">is null</SPAN><SPAN style="COLOR: black">) </SPAN><SPAN style="COLOR: #2e75b5">return</SPAN><SPAN style="COLOR: black"> fallback;</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in'><SPAN style="mso-spacerun: yes">&nbsp; </SPAN>Windows windows;</CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'><SPAN style="COLOR: #2e75b5"><SPAN style="mso-spacerun: yes">&nbsp; </SPAN>try</SPAN><SPAN style="COLOR: black"> { windows = onenote.Windows; }</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'><SPAN style="COLOR: #2e75b5"><SPAN style="mso-spacerun: yes">&nbsp; </SPAN>catch</SPAN><SPAN style="COLOR: black"> (COMException exc)</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in'><SPAN style="mso-spacerun: yes">&nbsp; </SPAN>{</CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'><SPAN style="COLOR: black"><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </SPAN>logger.WriteLine($</SPAN><SPAN style="COLOR: firebrick">"cannot read Windows collection ({exc.ErrorCode:X})"</SPAN><SPAN style="COLOR: black">, exc);</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'><SPAN style="COLOR: #2e75b5"><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </SPAN>return</SPAN><SPAN style="COLOR: black"> fallback;</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'><SPAN style="COLOR: #2e75b5"><SPAN style="mso-spacerun: yes">&nbsp; </SPAN></SPAN><SPAN style="COLOR: black">}</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; COLOR: #2e75b5; MARGIN: 0in'><SPAN style="mso-spacerun: yes">&nbsp; </SPAN>try</CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'><SPAN style="COLOR: #2e75b5"><SPAN style="mso-spacerun: yes">&nbsp; </SPAN></SPAN><SPAN style="COLOR: black">{</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'><SPAN style="COLOR: #2e75b5"><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </SPAN>var</SPAN><SPAN style="COLOR: black"> window = windows.CurrentWindow;</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'><SPAN style="COLOR: #2e75b5"><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </SPAN>try</SPAN><SPAN style="COLOR: black"> { </SPAN><SPAN style="COLOR: #2e75b5">return</SPAN><SPAN style="COLOR: black"> window </SPAN><SPAN style="COLOR: #2e75b5">is null</SPAN><SPAN style="COLOR: black"> ? fallback : reader(window); }</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'><SPAN style="COLOR: #2e75b5"><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </SPAN>catch</SPAN><SPAN style="COLOR: black"> (COMException exc)</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'><SPAN style="COLOR: #2e75b5"><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </SPAN></SPAN><SPAN style="COLOR: black">{</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'><SPAN style="COLOR: #2e75b5"><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN></SPAN><SPAN style="COLOR: black">logger.WriteLine($</SPAN><SPAN style="COLOR: firebrick">"cannot read Window property ({exc.ErrorCode:X})"</SPAN><SPAN style="COLOR: black">, exc);</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'><SPAN style="COLOR: #2e75b5"><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>return</SPAN><SPAN style="COLOR: black"> fallback;</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'><SPAN style="COLOR: #2e75b5"><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </SPAN></SPAN><SPAN style="COLOR: black">}</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; COLOR: #2e75b5; MARGIN: 0in'><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </SPAN>finally</CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'><SPAN style="COLOR: #2e75b5"><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </SPAN></SPAN><SPAN style="COLOR: black">{</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'><SPAN style="COLOR: #2e75b5"><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>if</SPAN><SPAN style="COLOR: black"> (window </SPAN><SPAN style="COLOR: #2e75b5">is</SPAN><SPAN style="COLOR: black"> not </SPAN><SPAN style="COLOR: #2e75b5">null</SPAN><SPAN style="COLOR: black"> &amp;&amp; Marshal.IsComObject(window))</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'><SPAN style="COLOR: #2e75b5"><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN></SPAN><SPAN style="COLOR: black">Marshal.ReleaseComObject(window);</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'><SPAN style="COLOR: #2e75b5"><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </SPAN></SPAN><SPAN style="COLOR: black">}</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'><SPAN style="COLOR: #2e75b5"><SPAN style="mso-spacerun: yes">&nbsp; </SPAN></SPAN><SPAN style="COLOR: black">}</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; COLOR: #2e75b5; MARGIN: 0in'><SPAN style="mso-spacerun: yes">&nbsp; </SPAN>finally</CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'><SPAN style="COLOR: #2e75b5"><SPAN style="mso-spacerun: yes">&nbsp; </SPAN></SPAN><SPAN style="COLOR: black">{</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'><SPAN style="COLOR: #2e75b5"><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </SPAN>if</SPAN><SPAN style="COLOR: black"> (Marshal.IsComObject(windows))</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'><SPAN style="COLOR: #2e75b5"><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN></SPAN><SPAN style="COLOR: black">Marshal.ReleaseComObject(windows);</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'><SPAN style="COLOR: #2e75b5"><SPAN style="mso-spacerun: yes">&nbsp; </SPAN></SPAN><SPAN style="COLOR: black">}</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in'>}</CODE></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="MARGIN: 0in"><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>OneNote.Dispose</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> follows the same principle for the top-level proxy, and carries a pointed comment about the one thing </SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-STYLE: italic">not</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> to do:</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'><SPAN style="COLOR: #2e75b5">public void</SPAN><SPAN style="COLOR: black"> Dispose()</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in'>{</CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in'><SPAN style="COLOR: black"><SPAN style="mso-spacerun: yes">&nbsp; </SPAN>Dispose(disposing: </SPAN><SPAN style="COLOR: #2e75b5">true</SPAN><SPAN style="COLOR: black">);</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; COLOR: #00b050; MARGIN: 0in'><SPAN style="mso-spacerun: yes">&nbsp; </SPAN>// DO NOT call this otherwise OneNote will not shutdown properly</CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; COLOR: #00b050; MARGIN: 0in'><SPAN style="mso-spacerun: yes">&nbsp; </SPAN>//GC.SuppressFinalize(this);</CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9.5pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in'>}</CODE></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Suppressing the finalizer here would remove the safety net that eventually releases the RCW if </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>Dispose</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> was somehow skipped — under the MTA hosting model, that safety net matters more than the minor GC cost of keeping it.</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H2 lang=yo id=concurrency-model style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Concurrency model</H2>
+<P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">There is deliberately </SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: bold">no lock, semaphore, or mutex</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> guarding </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>IApplication</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> access anywhere in </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>OneNote.cs</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> or </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>ApplicationFactory.cs</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">. Instead of serializing concurrent commands onto one shared proxy, the design gives each command its own short-lived </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>IApplication</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> activation and treats failures — including failures caused by two commands colliding on the OneNote app at once — as an expected, retryable condition.</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">This is a different concern from </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>SingleThreaded</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> (</SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>OneMore/Helpers/SingleThreaded.cs</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">), which marshals </SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: bold">STA-bound UI work</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> (clipboard access, </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>OpenFileDialog</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">) onto a throwaway STA thread. OneNote COM calls are not routed through </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>SingleThreaded</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> — they run wherever the command runs, relying on </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>InvokeWithRetry</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">/</SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>ReplaceApplication</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> for resilience rather than thread affinity.</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H2 lang=yo id=recent-hardening-issue-2455 style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Recent hardening: issue #2455</H2>
+<P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Commit </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>05ef7edf</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> ("harden concurrent COM layer", #2464, relates to #2455) is a concrete example of this pattern evolving under real-world failures:</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<UL style="MARGIN-BOTTOM: 0in; unicode-bidi: embed; MARGIN-TOP: 0in; DIRECTION: ltr" type=disc>
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>ApplicationFactory.CreateApplication()</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> — the retry filter only caught </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>hrCOMBusy</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">. It was widened to also retry on </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>hrRpcSysCallFailed</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>hrRpcFailed</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>hrRpcFailed2</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, and </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>hrRpcUnavailable</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, matching the set already handled by </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>InvokeWithRetry</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> — activation itself can hit the same RPC failures as any other call.</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>ErrorCodes</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> — added </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>hrRpcSysCallFailed = 0x80010100</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> and its description ("RPC system call failed").</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>WithCurrentWindow&lt;T&gt;</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> — previously called </SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Consolas">onenote.Windows</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> with no guard at all. Hardened to null-check </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>onenote</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> up front and wrap the </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>Windows</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> access in a try/catch, logging and returning the caller's </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>fallback</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> on </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>COMException</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> instead of letting the exception propagate.</SPAN> </LI></UL>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">The theme across all three changes: treat COM failure as routine at <SPAN style="FONT-STYLE: italic">every</SPAN> boundary the wrapper crosses, not just the ones already known to be flaky.</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H2 lang=yo id=references style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">References</H2>
+<UL style="MARGIN-BOTTOM: 0in; unicode-bidi: embed; MARGIN-TOP: 0in; DIRECTION: ltr" type=disc>
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>OneMore/OneNote.cs</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> — wrapper class, </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>InvokeWithRetry</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>ReplaceApplication</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>WithCurrentWindow&lt;T&gt;</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>Dispose</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>OneMore/Helpers/ApplicationFactory.cs</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> — COM activation + activation-time retry</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>OneMore/Helpers/ErrorCodes.cs</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> — HRESULT constants and descriptions</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>OneMore/Helpers/SingleThreaded.cs</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> — STA marshaling for UI-only work (contrast)</SPAN> 
+<LI style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><A href="https://onemoreaddin.com/developers/TechNote%20-%20COM%20Surrogate.htm"><SPAN lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">TechNote - COM Surrogate</SPAN></A> 
+<LI style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><A href="https://onemoreaddin.com/developers/TechNote%20-%20Interop.htm"><SPAN lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">TechNote - Interop</SPAN></A> 
+<LI style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><A href="https://onemoreaddin.com/developers/Design%20-%20Command%20Framework.htm"><SPAN lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Design - Command Framework</SPAN></A> </LI></UL>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Courier New"; COLOR: #0080ff; MARGIN: 0in'>───────────────────────────────────────────────────────────────────────────────────────────────────</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in"><SPAN style="FONT-STYLE: italic">Command PlantUML (</SPAN><A href="onemore://PlantUmlCommand/ed178817596f4896ad8a8ce0a2be36a8"><SPAN style="FONT-STYLE: italic">Refresh</SPAN></A><SPAN style="FONT-STYLE: italic">)</SPAN></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; COLOR: #5b9bd5; MARGIN: 0in 0in 0in 0.375in'><SPAN style="FONT-WEIGHT: bold">@startuml</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: #a5a5a5">skinparam</SPAN><SPAN style="COLOR: black"> componentStyle </SPAN><SPAN style="COLOR: lightseagreen">rectangle</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: lightseagreen">component </SPAN><SPAN style="COLOR: firebrick">"Command\n(e.g. DateStampCommand)" </SPAN><SPAN style="COLOR: #2e75b5">as</SPAN><SPAN style="COLOR: black"> Command</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: lightseagreen">component </SPAN><SPAN style="COLOR: firebrick">"OneNote\n(OneMore/OneNote.cs)" </SPAN><SPAN style="COLOR: #2e75b5">as</SPAN><SPAN style="COLOR: black"> OneNote</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: lightseagreen">component </SPAN><SPAN style="COLOR: firebrick">"ApplicationFactory\n(OneMore/Helpers/ApplicationFactory.cs)" </SPAN><SPAN style="COLOR: #2e75b5">as</SPAN><SPAN style="COLOR: black"> Factory</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: lightseagreen">component </SPAN><SPAN style="COLOR: firebrick">"ErrorCodes" </SPAN><SPAN style="COLOR: #2e75b5">as</SPAN><SPAN style="COLOR: black"> Errors</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: lightseagreen">interface </SPAN><SPAN style="COLOR: firebrick">"IApplication\n(OneNote COM)" </SPAN><SPAN style="COLOR: #2e75b5">as</SPAN><SPAN style="COLOR: black"> IApp</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">Command </SPAN><SPAN style="COLOR: #5b9bd5">--&gt;</SPAN><SPAN style="COLOR: black"> OneNote : </SPAN><SPAN style="COLOR: firebrick">new OneNote() / await using</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">OneNote </SPAN><SPAN style="COLOR: #5b9bd5">--&gt;</SPAN><SPAN style="COLOR: black"> Factory : </SPAN><SPAN style="COLOR: firebrick">CreateApplication()</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">Factory </SPAN><SPAN style="COLOR: #5b9bd5">--&gt;</SPAN><SPAN style="COLOR: black"> IApp : </SPAN><SPAN style="COLOR: firebrick">new Application()</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">OneNote </SPAN><SPAN style="COLOR: #5b9bd5">--&gt;</SPAN><SPAN style="COLOR: black"> IApp : </SPAN><SPAN style="COLOR: firebrick">onenote.* calls</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">OneNote </SPAN><SPAN style="COLOR: #5b9bd5">--&gt;</SPAN><SPAN style="COLOR: black"> Errors : </SPAN><SPAN style="COLOR: firebrick">classify HRESULT</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in 0in 0in 0.375in'>OneNote ..&gt; OneNote : WithCurrentWindow&lt;T&gt;\n(releases Windows/Window RCWs)</CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; COLOR: #5b9bd5; MARGIN: 0in 0in 0in 0.375in'><SPAN style="FONT-WEIGHT: bold">@enduml</SPAN></CODE></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in"><SPAN style="FONT-STYLE: italic">Retry Signaling Flow PlantUML (</SPAN><A href="onemore://PlantUmlCommand/5a65ea2d631b4359b2ff3b40cf15d854"><SPAN style="FONT-STYLE: italic">Refresh</SPAN></A><SPAN style="FONT-STYLE: italic">)</SPAN></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; COLOR: #5b9bd5; MARGIN: 0in 0in 0in 0.375in'><SPAN style="FONT-WEIGHT: bold">@startuml</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: lightseagreen">participant</SPAN><SPAN style="COLOR: black"> Command</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: lightseagreen">participant </SPAN><SPAN style="COLOR: firebrick">"OneNote" </SPAN><SPAN style="COLOR: #2e75b5">as</SPAN><SPAN style="COLOR: black"> One</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: lightseagreen">participant </SPAN><SPAN style="COLOR: firebrick">"InvokeWithRetry" </SPAN><SPAN style="COLOR: #2e75b5">as</SPAN><SPAN style="COLOR: black"> Retry</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: lightseagreen">participant </SPAN><SPAN style="COLOR: firebrick">"IApplication" </SPAN><SPAN style="COLOR: #2e75b5">as</SPAN><SPAN style="COLOR: black"> IApp</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: lightseagreen">participant </SPAN><SPAN style="COLOR: firebrick">"ApplicationFactory" </SPAN><SPAN style="COLOR: #2e75b5">as</SPAN><SPAN style="COLOR: black"> Factory</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">Command </SPAN><SPAN style="COLOR: #5b9bd5">-&gt;</SPAN><SPAN style="COLOR: black"> One : </SPAN><SPAN style="COLOR: firebrick">GetSection() / UpdatePageContent() / ...</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">One </SPAN><SPAN style="COLOR: #5b9bd5">-&gt;</SPAN><SPAN style="COLOR: black"> Retry : </SPAN><SPAN style="COLOR: firebrick">InvokeWithRetry(work)</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">Retry </SPAN><SPAN style="COLOR: #5b9bd5">-&gt;</SPAN><SPAN style="COLOR: black"> IApp : </SPAN><SPAN style="COLOR: firebrick">work() → onenote.*</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">IApp </SPAN><SPAN style="COLOR: #5b9bd5">--&gt;</SPAN><SPAN style="COLOR: black"> Retry : </SPAN><SPAN style="COLOR: firebrick">throws COMException (hrRpcUnavailable)</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">Retry </SPAN><SPAN style="COLOR: #5b9bd5">-&gt;</SPAN><SPAN style="COLOR: black"> Retry : </SPAN><SPAN style="COLOR: firebrick">ReplaceApplication()</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">Retry </SPAN><SPAN style="COLOR: #5b9bd5">-&gt;</SPAN><SPAN style="COLOR: black"> Factory : </SPAN><SPAN style="COLOR: firebrick">CreateApplication()</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">Factory </SPAN><SPAN style="COLOR: #5b9bd5">--&gt;</SPAN><SPAN style="COLOR: black"> Retry : </SPAN><SPAN style="COLOR: firebrick">new IApplication</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">Retry </SPAN><SPAN style="COLOR: #5b9bd5">-&gt;</SPAN><SPAN style="COLOR: black"> Retry : </SPAN><SPAN style="COLOR: firebrick">Task.Delay(ms)</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">Retry </SPAN><SPAN style="COLOR: #5b9bd5">-&gt;</SPAN><SPAN style="COLOR: black"> IApp : </SPAN><SPAN style="COLOR: firebrick">work() (2nd attempt)</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">IApp </SPAN><SPAN style="COLOR: #5b9bd5">--&gt;</SPAN><SPAN style="COLOR: black"> Retry : </SPAN><SPAN style="COLOR: firebrick">success</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">Retry </SPAN><SPAN style="COLOR: #5b9bd5">--&gt;</SPAN><SPAN style="COLOR: black"> One : </SPAN><SPAN style="COLOR: firebrick">true</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">One </SPAN><SPAN style="COLOR: #5b9bd5">--&gt;</SPAN><SPAN style="COLOR: black"> Command : </SPAN><SPAN style="COLOR: firebrick">result</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; COLOR: #5b9bd5; MARGIN: 0in 0in 0in 0.375in'><SPAN style="FONT-WEIGHT: bold">@enduml</SPAN></CODE></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P><CITE lang=yo style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">#omwiki #omdeveloper #omdesign</CITE></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P><CITE lang=yo style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">© 2020 Steven M Cohn. All rights reserved.</CITE></P>
+<P><CITE lang=yo style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">Please consider a <A href="https://github.com/sponsors/stevencohn">sponsorship or one-time donation</A> to support ongoing development</CITE></P></DIV></DIV></DIV>
+<DIV>
+<P style="MARGIN: 0in">&nbsp;</P>
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Arial; COLOR: #969696; DIRECTION: ltr; TEXT-ALIGN: left; MARGIN: 0in">Created with OneNote.</P></DIV>
+    </div>
+
+  </div>
+  <script>
+    $('#developers-section').addClass('active');
+    let pageID = '#' + window.location.pathname.match(/.*\/(.*).htm$/)[1];
+    pageID = pageID.toLowerCase().replace(/%20| |\./g,'-')
+    if ( $(pageID).length > 0) { $(pageID).addClass('active'); }
+  </script>
+  <script src="/pagefind/pagefind-ui.js"></script>
+  <script>
+    new PagefindUI({ element: "#search", showSubResults: true });
+  </script>
+</body>
+
+</html>
