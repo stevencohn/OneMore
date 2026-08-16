@@ -770,7 +770,7 @@ Normale</value>
     <comment>error message</comment>
   </data>
   <data name="CopyFolderCommand_PartialFailure" xml:space="preserve">
-    <value>Copie terminée, mais {0} page(s) sur {1} n'a pas pu être copiée</value>
+    <value>Copie terminée, mais {0} des {1} pages n'ont pas pu être copiées. Consultez le fichier journal pour plus de détails.</value>
     <comment>message box, {0} is failed count, {1} is total count</comment>
   </data>
   <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">

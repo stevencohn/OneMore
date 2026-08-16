@@ -771,7 +771,7 @@
     <comment>error message</comment>
   </data>
   <data name="CopyFolderCommand_PartialFailure" xml:space="preserve">
-    <value>复制已完成，但无法复制 {0} 页（共 {1} 页）</value>
+    <value>复制已完成，但无法复制 {0} 页（共 {1} 页）。 有关详细信息，请参阅日志文件。</value>
     <comment>message box, {0} is failed count, {1} is total count</comment>
   </data>
   <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">

@@ -223,7 +223,7 @@ namespace River.OneMoreAddIn.Commands
 					var path = $"{hinfo.Path}/{page.Title}";
 
 					logger.WriteLine($"..failed to copy page content for '{path}'");
-					failures.Add(path);
+					failures.Add(page.Title);
 				}
 
 				progress.Increment();

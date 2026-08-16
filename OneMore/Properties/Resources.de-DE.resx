@@ -770,7 +770,7 @@ Normal</value>
     <comment>error message</comment>
   </data>
   <data name="CopyFolderCommand_PartialFailure" xml:space="preserve">
-    <value>Der Kopiervorgang wurde abgeschlossen, aber {0} von {1} Seite(n) konnten nicht kopiert werden</value>
+    <value>Der Kopiervorgang wurde abgeschlossen, aber {0} von {1} Seite(n) konnten nicht kopiert werden. Einzelheiten finden Sie in der Protokolldatei.</value>
     <comment>message box, {0} is failed count, {1} is total count</comment>
   </data>
   <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">

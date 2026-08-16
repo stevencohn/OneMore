@@ -767,7 +767,7 @@ Normalna</value>
     <comment>error message</comment>
   </data>
   <data name="CopyFolderCommand_PartialFailure" xml:space="preserve">
-    <value>Kopiowanie zostało ukończone, ale nie udało się skopiować {0} z {1} stron</value>
+    <value>Kopiowanie zostało ukończone, ale nie udało się skopiować {0} z {1} stron. Szczegóły znajdziesz w pliku dziennika.</value>
     <comment>message box, {0} is failed count, {1} is total count</comment>
   </data>
   <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">

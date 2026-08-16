@@ -767,7 +767,7 @@ Normaal</value>
     <comment>error message</comment>
   </data>
   <data name="CopyFolderCommand_PartialFailure" xml:space="preserve">
-    <value>Kopiëren voltooid, maar {0} van {1} pagina('s) konden niet worden gekopieerd</value>
+    <value>Kopiëren voltooid, maar {0} van {1} pagina('s) konden niet worden gekopieerd. Zie het logbestand voor details.</value>
     <comment>message box, {0} is failed count, {1} is total count</comment>
   </data>
   <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">
