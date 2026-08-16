@@ -219,8 +219,11 @@ namespace River.OneMoreAddIn.Commands
 				var ok = await one.Update(page);
 				if (!ok)
 				{
-					logger.WriteLine($"..failed to copy page content for '{page.Title}'");
-					failures.Add(page.Title);
+					var hinfo = one.GetPageHierarchyInfo(element.Attribute("ID").Value);
+					var path = $"{hinfo.Path}/{page.Title}";
+
+					logger.WriteLine($"..failed to copy page content for '{path}'");
+					failures.Add(path);
 				}
 
 				progress.Increment();
