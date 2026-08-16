@@ -298,7 +298,22 @@ namespace River.OneMoreAddIn
 		// release of these proxies under the dllhost MTA can stall OneNote.
 		private T WithCurrentWindow<T>(Func<Window, T> reader, T fallback)
 		{
-			var windows = onenote.Windows;
+			if (onenote is null)
+			{
+				return fallback;
+			}
+
+			Windows windows;
+			try
+			{
+				windows = onenote.Windows;
+			}
+			catch (COMException exc)
+			{
+				logger.WriteLine($"cannot read Windows collection ({exc.ErrorCode:X})", exc);
+				return fallback;
+			}
+
 			try
 			{
 				var window = windows.CurrentWindow;

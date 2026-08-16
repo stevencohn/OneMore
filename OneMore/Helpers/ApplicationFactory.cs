@@ -50,12 +50,19 @@ namespace River.OneMoreAddIn
 
 						retries = int.MaxValue;
 					}
-					catch (COMException exc) when ((uint)exc.ErrorCode == ErrorCodes.hrCOMBusy)
+					catch (COMException exc) when (
+						(uint)exc.ErrorCode == ErrorCodes.hrCOMBusy ||
+						(uint)exc.ErrorCode == ErrorCodes.hrRpcSysCallFailed ||
+						(uint)exc.ErrorCode == ErrorCodes.hrRpcFailed ||
+						(uint)exc.ErrorCode == ErrorCodes.hrRpcFailed2 ||
+						(uint)exc.ErrorCode == ErrorCodes.hrRpcUnavailable)
 					{
 						retries++;
 						var ms = 250 * retries;
 
-						logger.WriteLine($"OneNote is busy, retyring in {ms}ms");
+						logger.WriteLine(
+							$"OneNote is busy ({exc.ErrorCode:X}), retyring in {ms}ms");
+
 						System.Threading.Thread.Sleep(ms);
 					}
 				}
