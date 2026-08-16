@@ -493,6 +493,12 @@
           getScreentip="GetRibbonScreentip"
           onAction="OpenLocationCmd"/>
         <button
+          id="ribQuickImportButton"
+          imageMso="ImportSavedImports"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="QuickImportCmd"/>
+        <button
           id="ribScanButton"
           imageMso="ImagerScan"
           getLabel="GetRibbonLabel"

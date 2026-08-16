@@ -810,6 +810,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<PronunciateCommand>();
 
 
+		[Command("ribQuickImportButton_Label", Keys.Control | Keys.Alt | Keys.I, "ribFileMenu")]
+		public async Task QuickImportCmd(IRibbonControl control)
+			=> await factory.Run<QuickImportCommand>();
+
+
 		[IgnorePalette]
 		[Command("ribQuickPaletteButton_Label", Keys.Control | Keys.Oemcomma)]
 		public async Task QuickPaletteCmd(IRibbonControl control)

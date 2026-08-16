@@ -1027,6 +1027,7 @@
       <DependentUpon>ImportDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\File\ImportCommand.cs" />
+    <Compile Include="Commands\File\QuickImportCommand.cs" />
     <Compile Include="Commands\Tools\ClearLogCommand.cs" />
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\Page\WordCountCommand.cs" />
