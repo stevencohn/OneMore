@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Collections.Generic;
 	using System.Diagnostics;
+	using System.IO;
 	using System.Linq;
 	using System.Reflection;
 	using System.Runtime.InteropServices;
@@ -89,10 +90,12 @@ namespace River.OneMoreAddIn.Commands
 			var ad = Assembly.GetExecutingAssembly();
 			var adloc = ad.Location;
 			var adarc = ad.GetName().ProcessorArchitecture;
+			var adVersion = $"{AssemblyInfo.Version}{AssemblyInfo.BuildTag}";
+			var adTime = GetLinkerTimestamp(adloc);
 
 			log.WriteLine($"Windows...: {GetWindowsProductName()}");
 			log.WriteLine($"ONENOTE...: {moduledesc}");
-			log.WriteLine($"Addin path: {adloc}, {adarc}, Version {AssemblyInfo.Version}{AssemblyInfo.BuildTag}");
+			log.WriteLine($"Addin path: {adloc}, {adarc}, Version {adVersion}, built {adTime}");
 			log.WriteLine($"Data path.: {PathHelper.GetAppDataPath()}");
 			log.WriteLine($"Log path..: {log.LogPath}");
 			log.WriteLine();
@@ -198,6 +201,33 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			await Task.Yield();
+		}
+
+
+		private static DateTime GetLinkerTimestamp(string filePath)
+		{
+			// gets the PE header timestamp, also called the LinkerTimestamp. This is the time
+			// when the assembly was built, never affected by file copy or modification times
+
+			using var file = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+			using var reader = new BinaryReader(file);
+
+			// seek to offset 0x3C (60 bytes) - this is where the PE header offset is stored
+			// in the DOS header. All .NET assemblies start with a DOS stub header
+			file.Seek(0x3C, SeekOrigin.Begin);
+
+			// read 4-byte unix timestamp from PE header
+			int peOffset = reader.ReadInt32();
+
+			// Seek to the PE header's TimeDateStamp field
+			// peOffset + 0 = "PE\0\0" signature (4 bytes)
+			// peOffset + 4 = Machine field (2 bytes)
+			// peOffset + 6 = NumberOfSections (2 bytes)
+			// peOffset + 8 = TimeDateStamp (4 bytes) - this is what we want
+			file.Seek(peOffset + 8, SeekOrigin.Begin);
+
+			int timestamp = reader.ReadInt32();
+			return DateTimeOffset.FromUnixTimeSeconds(timestamp).LocalDateTime;
 		}
 
 
