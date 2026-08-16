@@ -768,7 +768,7 @@ Normale</value>
     <comment>error message</comment>
   </data>
   <data name="CopyFolderCommand_PartialFailure" xml:space="preserve">
-    <value>Copia completata ma non è stato possibile copiare {0} di {1} pagina/e</value>
+    <value>Copia completata ma non è stato possibile copiare {0} di {1} pagina/e. Per i dettagli vedere il file di registro.</value>
     <comment>message box, {0} is failed count, {1} is total count</comment>
   </data>
   <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">

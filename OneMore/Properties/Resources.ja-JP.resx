@@ -770,7 +770,7 @@
     <comment>error message</comment>
   </data>
   <data name="CopyFolderCommand_PartialFailure" xml:space="preserve">
-    <value>コピーは完了しましたが、{1} ページ中 {0} ページをコピーできませんでした</value>
+    <value>コピーは完了しましたが、{1} ページ中 {0} ページをコピーできませんでした。 詳細については、ログ ファイルを参照してください。</value>
     <comment>message box, {0} is failed count, {1} is total count</comment>
   </data>
   <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">
