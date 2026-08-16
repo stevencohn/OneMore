@@ -10,6 +10,7 @@ namespace River.OneMoreAddIn
 		public const uint hrObjectMissing = 0x80042014;
 		public const uint hrRpcFailed = 0x800706BA;
 		public const uint hrRpcFailed2 = 0x800706BE;
+		public const uint hrRpcSysCallFailed = 0x80010100;
 		public const uint hrRpcUnavailable = 0x800706BE;
 		public const uint hrXmlIsInvalid = 0x80042001;
 
@@ -19,6 +20,7 @@ namespace River.OneMoreAddIn
 			return (uint)code switch
 			{
 				0x8001010A => "The message filter indicated that the application is busy",
+				0x80010100 => "RPC system call failed",
 				0x80042000 => "The XML is not well-formed",
 				0x80042001 => "The XML is invalid",
 				0x80042002 => "The section could not be created",
