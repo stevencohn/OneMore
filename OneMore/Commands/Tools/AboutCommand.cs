@@ -9,9 +9,6 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class AboutCommand : Command
 	{
-		private static bool commandIsActive = false;
-
-
 		public AboutCommand()
 		{
 			// prevent replay
@@ -21,20 +18,13 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			if (commandIsActive) { return; }
-			commandIsActive = true;
+			using var guard = EnterOnce();
+			if (guard is null) { return; }
 
-			try
-			{
-				using var dialog = new AboutDialog(factory);
-				dialog.ShowDialog(owner);
+			using var dialog = new AboutDialog(factory);
+			dialog.ShowDialog(owner);
 
-				await Task.Yield();
-			}
-			finally
-			{
-				commandIsActive = false;
-			}
+			await Task.Yield();
 		}
 	}
 }

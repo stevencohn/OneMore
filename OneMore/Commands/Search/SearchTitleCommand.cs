@@ -19,8 +19,6 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class SearchTitleCommand : Command, ICliCommand
 	{
-		private static bool commandIsActive = false;
-
 		private IEnumerable<CardModel> selectedCards;
 		private string query;
 		private static SearchTitleDialog dialog;
@@ -65,45 +63,55 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			if (commandIsActive) { return; }
-			commandIsActive = true;
+			var guard = EnterOnce();
+			if (guard is null) { return; }
 
-			// Cleanup runs from the RunModeless close callback rather than a finally block
-			// here, because RunModeless only blocks until the dialog closes when the calling
-			// thread has no message loop yet (e.g. a plain ribbon click, dispatched through
-			// CommandFactory's Task.Run wrapper). When invoked with a message loop already
-			// running on this thread (e.g. Replay, which calls Execute directly), RunModeless
-			// just Show()s the dialog and returns immediately — disposing it right here would
-			// close it before the user ever sees it.
-			dialog = new SearchTitleDialog();
-			dialog.RunModeless((sender, e) =>
+			try
 			{
-				var d = sender as SearchTitleDialog;
-				var indexRequested = d?.DialogResult == DialogResult.OK;
-
-				if (indexRequested)
+				// Cleanup runs from the RunModeless close callback rather than a finally
+				// block here, because RunModeless only blocks until the dialog closes when
+				// the calling thread has no message loop yet (e.g. a plain ribbon click,
+				// dispatched through CommandFactory's Task.Run wrapper). When invoked with a
+				// message loop already running on this thread (e.g. Replay, which calls
+				// Execute directly), RunModeless just Show()s the dialog and returns
+				// immediately — disposing it right here would close it before the user ever
+				// sees it.
+				dialog = new SearchTitleDialog();
+				dialog.RunModeless((sender, e) =>
 				{
-					query = d.Query;
-					selectedCards = d.SelectedCards;
-				}
+					var d = sender as SearchTitleDialog;
+					var indexRequested = d?.DialogResult == DialogResult.OK;
 
-				// reset re-entry state synchronously, before kicking off SelectLocation below,
-				// so it can never be left stranded behind an async continuation that the modeless
-				// dialog's message loop exits before scheduling (which would leave commandIsActive
-				// stuck true and the dialog unable to reappear until OneNote is restarted)
-				commandIsActive = false;
-				dialog?.Dispose();
-				dialog = null;
+					if (indexRequested)
+					{
+						query = d.Query;
+						selectedCards = d.SelectedCards;
+					}
 
-				if (indexRequested)
-				{
-					using var one = new OneNote();
-					one.SelectLocation(
-						Resx.SearchQF_Title, Resx.SearchQF_DescriptionIndex,
-						OneNote.Scope.Sections, Callback);
-				}
-			},
-			20);
+					// reset re-entry state synchronously, before kicking off SelectLocation
+					// below, so it can never be left stranded behind an async continuation
+					// that the modeless dialog's message loop exits before scheduling (which
+					// would leave the guard held and the dialog unable to reappear until
+					// OneNote is restarted)
+					guard.Dispose();
+					dialog?.Dispose();
+					dialog = null;
+
+					if (indexRequested)
+					{
+						using var one = new OneNote();
+						one.SelectLocation(
+							Resx.SearchQF_Title, Resx.SearchQF_DescriptionIndex,
+							OneNote.Scope.Sections, Callback);
+					}
+				},
+				20);
+			}
+			catch
+			{
+				guard.Dispose();
+				throw;
+			}
 
 			// only reached immediately (dialog still open) when RunModeless didn't block;
 			// when it did block, the callback above already ran and cleared dialog

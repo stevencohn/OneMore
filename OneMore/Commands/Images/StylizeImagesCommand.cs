@@ -18,7 +18,6 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class StylizeImagesCommand : Command
 	{
-		private static bool commandIsActive = false;
 		private XNamespace ns;
 
 		public StylizeImagesCommand()
@@ -28,87 +27,80 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			if (commandIsActive) { return; }
-			commandIsActive = true;
+			using var guard = EnterOnce();
+			if (guard is null) { return; }
 
-			try
+			await using var one = new OneNote(out var page, out ns, OneNote.PageDetail.All);
+
+			var foreElements = page.Root
+				.Elements(ns + "Outline")
+				.Descendants(ns + "Image")
+				.ToList();
+
+			var backElements = page.Root
+				.Elements(ns + "Image")
+				.ToList();
+
+			if (!foreElements.Any() && !backElements.Any())
 			{
-				await using var one = new OneNote(out var page, out ns, OneNote.PageDetail.All);
+				ShowError(Resx.StylizeImagesCommand_noImages);
+				return;
+			}
 
-				var foreElements = page.Root
-					.Elements(ns + "Outline")
-					.Descendants(ns + "Image")
-					.ToList();
+			var foreSelected = foreElements
+				.Where(e => e.Attribute("selected")?.Value == "all")
+				.ToList();
 
-				var backElements = page.Root
-					.Elements(ns + "Image")
-					.ToList();
+			var backSelected = backElements
+				.Where(e => e.Attribute("selected")?.Value == "all")
+				.ToList();
 
-				if (!foreElements.Any() && !backElements.Any())
+			using var dialog = new StylizeImagesDialog(
+				foreElements.Count, foreSelected.Count,
+				backElements.Count, backSelected.Count);
+
+			var result = dialog.ShowDialog(owner);
+			if (result != DialogResult.OK)
+			{
+				return;
+			}
+
+			var count = 0;
+			if (foreSelected.Any() && dialog.ApplyForeground)
+			{
+				Stylize(foreSelected, dialog.Style);
+				count += foreSelected.Count;
+				logger.WriteLine($"updated {foreSelected.Count} selected foreground images");
+			}
+
+			if (backSelected.Any() && dialog.ApplyBackground)
+			{
+				Stylize(backSelected, dialog.Style);
+				count += backSelected.Count;
+				logger.WriteLine($"updated {backSelected.Count} selected background images");
+			}
+
+			if (count == 0)
+			{
+				if (foreElements.Any() && dialog.ApplyForeground)
 				{
-					ShowError(Resx.StylizeImagesCommand_noImages);
-					return;
+					Stylize(foreElements, dialog.Style);
+					count += foreElements.Count;
+					logger.WriteLine($"updated {foreElements.Count} foreground images");
 				}
 
-				var foreSelected = foreElements
-					.Where(e => e.Attribute("selected")?.Value == "all")
-					.ToList();
-
-				var backSelected = backElements
-					.Where(e => e.Attribute("selected")?.Value == "all")
-					.ToList();
-
-				using var dialog = new StylizeImagesDialog(
-					foreElements.Count, foreSelected.Count,
-					backElements.Count, backSelected.Count);
-
-				var result = dialog.ShowDialog(owner);
-				if (result != DialogResult.OK)
+				if (backElements.Any() && dialog.ApplyBackground)
 				{
-					return;
-				}
-
-				var count = 0;
-				if (foreSelected.Any() && dialog.ApplyForeground)
-				{
-					Stylize(foreSelected, dialog.Style);
-					count += foreSelected.Count;
-					logger.WriteLine($"updated {foreSelected.Count} selected foreground images");
-				}
-
-				if (backSelected.Any() && dialog.ApplyBackground)
-				{
-					Stylize(backSelected, dialog.Style);
-					count += backSelected.Count;
-					logger.WriteLine($"updated {backSelected.Count} selected background images");
-				}
-
-				if (count == 0)
-				{
-					if (foreElements.Any() && dialog.ApplyForeground)
-					{
-						Stylize(foreElements, dialog.Style);
-						count += foreElements.Count;
-						logger.WriteLine($"updated {foreElements.Count} foreground images");
-					}
-
-					if (backElements.Any() && dialog.ApplyBackground)
-					{
-						Stylize(backElements, dialog.Style);
-						count += backElements.Count;
-						logger.WriteLine($"updated {backElements.Count} background images");
-					}
-				}
-
-				if (count > 0)
-				{
-					logger.WriteLine($"updating {count} total images");
-					await one.Update(page);
+					Stylize(backElements, dialog.Style);
+					count += backElements.Count;
+					logger.WriteLine($"updated {backElements.Count} background images");
 				}
 			}
-			finally
+
+			if (count > 0)
 			{
-				commandIsActive = false;
+				logger.WriteLine($"updating {count} total images");
+				await one.Update(page);
 			}
 		}
 

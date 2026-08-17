@@ -34,9 +34,6 @@ namespace River.OneMoreAddIn.Commands
 		// noise rather than a deliberate offset - but it's small either way.
 		private const double VerticalOrigin = 0.493202209472678;
 
-		private static bool commandIsActive = false;
-
-
 		public SnapToGridCommand()
 		{
 		}
@@ -44,53 +41,46 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			if (commandIsActive) { return; }
-			commandIsActive = true;
+			using var guard = EnterOnce();
+			if (guard is null) { return; }
 
-			try
+			await using var one = new OneNote(out var page, out var ns);
+
+			var rootObjects = page.BodyOutlines
+				.Concat(page.Root.Elements(ns + "InkDrawing"))
+				.Concat(page.Root.Elements(ns + "Image"))
+				.ToList();
+
+			if (!rootObjects.Any())
 			{
-				await using var one = new OneNote(out var page, out var ns);
-
-				var rootObjects = page.BodyOutlines
-					.Concat(page.Root.Elements(ns + "InkDrawing"))
-					.Concat(page.Root.Elements(ns + "Image"))
-					.ToList();
-
-				if (!rootObjects.Any())
-				{
-					ShowInfo(Resx.SnapToGridCommand_noContainers);
-					return;
-				}
-
-				var ruleLines = page.Root
-					.Elements(ns + "PageSettings")
-					.Elements(ns + "RuleLines")
-					.FirstOrDefault(e => e.Attribute("visible")?.Value == "true");
-
-				var horizontal = ruleLines?.Element(ns + "Horizontal");
-				var vertical = ruleLines?.Element(ns + "Vertical");
-
-				if (horizontal == null && vertical == null)
-				{
-					ShowError(Resx.SnapToGridCommand_noGrid);
-					return;
-				}
-
-				var selected = rootObjects
-					.Where(e => e.Attribute("selected") is XAttribute a &&
-						(a.Value == "all" || a.Value == "partial"))
-					.ToList();
-
-				var targets = selected.Any() ? selected : page.BodyOutlines.ToList();
-
-				SnapPositions(targets, ns, horizontal, vertical);
-
-				await one.Update(page);
+				ShowInfo(Resx.SnapToGridCommand_noContainers);
+				return;
 			}
-			finally
+
+			var ruleLines = page.Root
+				.Elements(ns + "PageSettings")
+				.Elements(ns + "RuleLines")
+				.FirstOrDefault(e => e.Attribute("visible")?.Value == "true");
+
+			var horizontal = ruleLines?.Element(ns + "Horizontal");
+			var vertical = ruleLines?.Element(ns + "Vertical");
+
+			if (horizontal == null && vertical == null)
 			{
-				commandIsActive = false;
+				ShowError(Resx.SnapToGridCommand_noGrid);
+				return;
 			}
+
+			var selected = rootObjects
+				.Where(e => e.Attribute("selected") is XAttribute a &&
+					(a.Value == "all" || a.Value == "partial"))
+				.ToList();
+
+			var targets = selected.Any() ? selected : page.BodyOutlines.ToList();
+
+			SnapPositions(targets, ns, horizontal, vertical);
+
+			await one.Update(page);
 		}
 
 

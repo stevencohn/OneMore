@@ -23,7 +23,6 @@ namespace River.OneMoreAddIn.Commands
 	internal class CompleteHashtagCommand : Command
 	{
 		private static CompleteHashtagDialog dialog;
-		private static bool commandIsActive;
 		private static System.IDisposable pauseHandle;
 
 
@@ -37,32 +36,31 @@ namespace River.OneMoreAddIn.Commands
 		public override async Task Execute(params object[] args)
 		{
 			logger.Verbose(
-				$"CompleteHashtagCommand.Execute: commandIsActive={commandIsActive}, " +
+				$"CompleteHashtagCommand.Execute: " +
 				$"dialog={(dialog is null ? "null" : $"non-null,IsDisposed={dialog.IsDisposed}")}");
 
 			if (dialog != null)
 			{
-				// Single instance. This must be checked first, independent of
-				// commandIsActive below: RunModeless can block synchronously for the
+				// Single instance. This must be checked first, independent of the
+				// re-entry guard below: RunModeless can block synchronously for the
 				// dialog's ENTIRE lifetime (observed via logging - when
 				// Application.MessageLoop is false at the point RunModeless is called,
 				// it starts its own nested message loop and doesn't return until the
-				// dialog closes). If commandIsActive were still guarding at that point,
-				// every repeated Alt+G pressed while the popup is open would bail out
-				// below instead of ever reaching this elevate.
+				// dialog closes). If the guard were still held at that point, every
+				// repeated Alt+G pressed while the popup is open would bail out below
+				// instead of ever reaching this elevate.
 				logger.Verbose("CompleteHashtagCommand.Execute: elevating existing dialog");
 				dialog.Elevate();
 				return;
 			}
 
-			if (commandIsActive)
+			using var guard = EnterOnce();
+			if (guard is null)
 			{
 				// another invocation is concurrently in the brief setup below
-				logger.Verbose("CompleteHashtagCommand.Execute: commandIsActive, bailing out");
+				logger.Verbose("CompleteHashtagCommand.Execute: already active, bailing out");
 				return;
 			}
-
-			commandIsActive = true;
 
 			try
 			{
@@ -111,7 +109,7 @@ namespace River.OneMoreAddIn.Commands
 				// that call may not return until the dialog closes (see comment above) -
 				// dialog is already non-null by this point, so a repeated Alt+G from here
 				// on correctly reaches the elevate branch above instead of bailing out here
-				commandIsActive = false;
+				guard.Dispose();
 
 				// CommandFactory.RunCore runs every command's Execute() inside Task.Run,
 				// i.e. on a throwaway threadpool thread with no message loop of its own.
@@ -151,10 +149,11 @@ namespace River.OneMoreAddIn.Commands
 			}
 			finally
 			{
-				// redundant in the success path (already reset above); still needed to
-				// clear the guard if something threw during setup, before that reset ran
-				commandIsActive = false;
-				logger.Verbose("CompleteHashtagCommand.Execute: commandIsActive reset to false");
+				// guard.Dispose() here is redundant in the success path (already released
+				// above); still needed to clear it if something threw during setup, before
+				// that release ran - Dispose() is idempotent
+				guard.Dispose();
+				logger.Verbose("CompleteHashtagCommand.Execute: guard released");
 
 				if (dialog is null)
 				{

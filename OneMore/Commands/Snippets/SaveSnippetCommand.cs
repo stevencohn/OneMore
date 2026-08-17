@@ -11,9 +11,6 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class SaveSnippetCommand : Command
 	{
-		private static bool commandIsActive = false;
-
-
 		public SaveSnippetCommand()
 		{
 		}
@@ -21,51 +18,44 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			if (commandIsActive) { return; }
-			commandIsActive = true;
+			using var guard = EnterOnce();
+			if (guard is null) { return; }
 
-			try
+			await using var one = new OneNote(out var page, out _);
+
+			var range = new Models.SelectionRange(page);
+			range.GetSelection(allowNonEmpty: true);
+
+			if (range.Scope != SelectionScope.Range &&
+				range.Scope != SelectionScope.Run)
 			{
-				await using var one = new OneNote(out var page, out _);
-
-				var range = new Models.SelectionRange(page);
-				range.GetSelection(allowNonEmpty: true);
-
-				if (range.Scope != SelectionScope.Range &&
-					range.Scope != SelectionScope.Run)
-				{
-					ShowError(Resx.SaveSnippet_NeedSelection);
-					return;
-				}
-
-				// since the Hotkey message loop is watching all input, explicitly setting
-				// focus on the OneNote main window provides a direct path for SendKeys
-				Native.SetForegroundWindow(one.WindowHandle);
-
-				await ClipboardProvider.Copy();
-
-				var html = await ClipboardProvider.GetHtml();
-				if (string.IsNullOrWhiteSpace(html))
-				{
-					logger.WriteLine($"{nameof(SaveSnippetCommand)} empty HTML");
-					ShowError(Resx.SaveSnippet_NoContext);
-					return;
-				}
-
-				using var dialog = new SaveSnippetDialog();
-				if (dialog.ShowDialog(owner) != DialogResult.OK)
-				{
-					return;
-				}
-
-				await new SnippetsProvider().Save(html, dialog.SnippetName);
-
-				ribbon.InvalidateControl("ribCustomSnippetsMenu");
+				ShowError(Resx.SaveSnippet_NeedSelection);
+				return;
 			}
-			finally
+
+			// since the Hotkey message loop is watching all input, explicitly setting
+			// focus on the OneNote main window provides a direct path for SendKeys
+			Native.SetForegroundWindow(one.WindowHandle);
+
+			await ClipboardProvider.Copy();
+
+			var html = await ClipboardProvider.GetHtml();
+			if (string.IsNullOrWhiteSpace(html))
 			{
-				commandIsActive = false; 
+				logger.WriteLine($"{nameof(SaveSnippetCommand)} empty HTML");
+				ShowError(Resx.SaveSnippet_NoContext);
+				return;
 			}
+
+			using var dialog = new SaveSnippetDialog();
+			if (dialog.ShowDialog(owner) != DialogResult.OK)
+			{
+				return;
+			}
+
+			await new SnippetsProvider().Save(html, dialog.SnippetName);
+
+			ribbon.InvalidateControl("ribCustomSnippetsMenu");
 		}
 	}
 }

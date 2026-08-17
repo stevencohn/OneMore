@@ -17,8 +17,6 @@ namespace River.OneMoreAddIn.Commands
 	[CommandService]
 	internal class InsertTocCommand : Command, ICliPageCommand
 	{
-		private static bool commandIsActive = false;
-
 		private string pageId;
 
 
@@ -72,33 +70,26 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			if (commandIsActive) { return; }
-			commandIsActive = true;
+			using var guard = EnterOnce();
+			if (guard is null) { return; }
 
-			try
+			var parameters = await CollectParameterDefaults();
+
+			var scope = args.Length > 0 ? args[0] as string : null;
+
+			using MoreForm dialog = scope switch
 			{
-				var parameters = await CollectParameterDefaults();
+				"section" => new InsertSectionTocDialog(parameters),
+				"notebook" => new InsertNotebookTocDialog(parameters),
+				_ => new InsertPageTocDialog(parameters)
+			};
 
-				var scope = args.Length > 0 ? args[0] as string : null;
-
-				using MoreForm dialog = scope switch
-				{
-					"section" => new InsertSectionTocDialog(parameters),
-					"notebook" => new InsertNotebookTocDialog(parameters),
-					_ => new InsertPageTocDialog(parameters)
-				};
-
-				if (dialog.ShowDialog(owner) == DialogResult.Cancel)
-				{
-					return;
-				}
-
-				await Build(parameters);
-			}
-			finally
+			if (dialog.ShowDialog(owner) == DialogResult.Cancel)
 			{
-				commandIsActive = false;
+				return;
 			}
+
+			await Build(parameters);
 		}
 
 

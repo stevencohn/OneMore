@@ -22,8 +22,6 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class CrawlWebPageCommand : Command
 	{
-		private static bool commandIsActive = false;
-
 		private Page parentPage;
 		private ImportWebCommand importer;
 		private List<CrawlHyperlink> selections;
@@ -38,53 +36,46 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			if (commandIsActive) { return; }
-			commandIsActive = true;
+			using var guard = EnterOnce();
+			if (guard is null) { return; }
 
-			try
+			await using var one = new OneNote(
+			out parentPage, out var ns, OneNote.PageDetail.Selection);
+
+			if (parentPage is null)
 			{
-				await using var one = new OneNote(
-				out parentPage, out var ns, OneNote.PageDetail.Selection);
+				ShowError(Resx.CrawlWebCommand_NoHyperlinks);
+				return;
+			}
 
-				if (parentPage is null)
+			var candidates = GetHyperlinks(parentPage);
+			if (!candidates.Any())
+			{
+				ShowError(Resx.CrawlWebCommand_NoHyperlinks);
+				return;
+			}
+
+			using (var dialog = new CrawlWebPageDialog(candidates))
+			{
+				if (dialog.ShowDialog(owner) != DialogResult.OK)
 				{
-					ShowError(Resx.CrawlWebCommand_NoHyperlinks);
 					return;
 				}
 
-				var candidates = GetHyperlinks(parentPage);
-				if (!candidates.Any())
-				{
-					ShowError(Resx.CrawlWebCommand_NoHyperlinks);
-					return;
-				}
-
-				using (var dialog = new CrawlWebPageDialog(candidates))
-				{
-					if (dialog.ShowDialog(owner) != DialogResult.OK)
-					{
-						return;
-					}
-
-					selections = dialog.GetSelectedHyperlinks();
-					useTextTitles = dialog.UseTextTitles;
-					rewireParentLinks = dialog.RewireParentLinks;
-				}
-
-				// reverse so we create subpages in correct order
-				selections.Reverse();
-
-				importer = new ImportWebCommand();
-				importer.SetLogger(logger);
-
-				var progress = new UI.ProgressDialog(DownloadSelectedSubpages);
-				progress.SetMaximum(selections.Count);
-				progress.RunModeless();
+				selections = dialog.GetSelectedHyperlinks();
+				useTextTitles = dialog.UseTextTitles;
+				rewireParentLinks = dialog.RewireParentLinks;
 			}
-			finally
-			{
-				commandIsActive = false;
-			}
+
+			// reverse so we create subpages in correct order
+			selections.Reverse();
+
+			importer = new ImportWebCommand();
+			importer.SetLogger(logger);
+
+			var progress = new UI.ProgressDialog(DownloadSelectedSubpages);
+			progress.SetMaximum(selections.Count);
+			progress.RunModeless();
 		}
 
 

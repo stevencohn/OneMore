@@ -25,7 +25,6 @@ namespace River.OneMoreAddIn.Commands
 	{
 
 		private static TimerWindow window;
-		private static bool commandIsActive = false;
 
 
 		public TimerWindowCommand()
@@ -55,29 +54,22 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			if (commandIsActive) { return; }
-			commandIsActive = true;
+			using var guard = EnterOnce();
+			if (guard is null) { return; }
 
-			try
+			var cmd = (int)args[0];
+
+			if (cmd == TimerWindow.CopyCmd)
 			{
-				var cmd = (int)args[0];
-
-				if (cmd == TimerWindow.CopyCmd)
-				{
-					await CopyAndInsertTime();
-				}
-				else if (cmd == TimerWindow.RestartCmd)
-				{
-					window.Restart();
-				}
-				else if (cmd == TimerWindow.ShutdownCmd)
-				{
-					window.Shutdown();
-				}
+				await CopyAndInsertTime();
 			}
-			finally
+			else if (cmd == TimerWindow.RestartCmd)
 			{
-				commandIsActive = false;
+				window.Restart();
+			}
+			else if (cmd == TimerWindow.ShutdownCmd)
+			{
+				window.Shutdown();
 			}
 		}
 

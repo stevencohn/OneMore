@@ -25,9 +25,6 @@ namespace River.OneMoreAddIn.Commands
 		// search for one space to be replaced by two
 		private const string TwoSpacePattern = @"(\w[\.?;])(\<[^>]+\>)?[\s]+(\<[^>]+\>)?(\w)";
 
-		private static bool commandIsActive = false;
-
-
 		public BreakingCommand()
 		{
 		}
@@ -35,58 +32,51 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			if (commandIsActive) { return; }
-			commandIsActive = true;
+			using var guard = EnterOnce();
+			if (guard is null) { return; }
 
-			try
+			using var dialog = new BreakingDialog();
+			if (dialog.ShowDialog(owner) != DialogResult.OK)
 			{
-				using var dialog = new BreakingDialog();
-				if (dialog.ShowDialog(owner) != DialogResult.OK)
-				{
-					return;
-				}
-
-				Regex regex;
-				string replacement;
-				if (dialog.SingleSpace)
-				{
-					regex = new Regex(OneSpacePattern);
-					replacement = "$1 $2$3$4$5";
-				}
-				else
-				{
-					regex = new Regex(TwoSpacePattern);
-					replacement = "$1  $2$3$4";
-				}
-
-				await using var one = new OneNote(out var page, out var ns);
-				logger.StartClock();
-
-				var nodes = page.Root.DescendantNodes().OfType<XCData>()
-					.Where(n => n.Value.Contains('.'));
-
-				if (nodes.Any())
-				{
-					var updated = false;
-
-					foreach (var cdata in nodes)
-					{
-						cdata.Value = regex.Replace(cdata.Value, replacement);
-						updated = true;
-					}
-
-					if (updated)
-					{
-						await one.Update(page);
-					}
-				}
-
-				logger.StopClock();
+				return;
 			}
-			finally
+
+			Regex regex;
+			string replacement;
+			if (dialog.SingleSpace)
 			{
-				commandIsActive = false;
+				regex = new Regex(OneSpacePattern);
+				replacement = "$1 $2$3$4$5";
 			}
+			else
+			{
+				regex = new Regex(TwoSpacePattern);
+				replacement = "$1  $2$3$4";
+			}
+
+			await using var one = new OneNote(out var page, out var ns);
+			logger.StartClock();
+
+			var nodes = page.Root.DescendantNodes().OfType<XCData>()
+				.Where(n => n.Value.Contains('.'));
+
+			if (nodes.Any())
+			{
+				var updated = false;
+
+				foreach (var cdata in nodes)
+				{
+					cdata.Value = regex.Replace(cdata.Value, replacement);
+					updated = true;
+				}
+
+				if (updated)
+				{
+					await one.Update(page);
+				}
+			}
+
+			logger.StopClock();
 		}
 	}
 }

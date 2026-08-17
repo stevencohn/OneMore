@@ -22,9 +22,6 @@ namespace River.OneMoreAddIn.Commands
 		private const string HeaderShading = "#DEEBF6";
 		private const string nbtab = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 
-		private static bool commandIsActive = false;
-
-
 		public TextToTableCommand()
 		{
 		}
@@ -32,44 +29,37 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			if (commandIsActive) { return; }
-			commandIsActive = true;
+			using var guard = EnterOnce();
+			if (guard is null) { return; }
 
-			try
+			await using var one = new OneNote(out var page, out var ns, OneNote.PageDetail.Selection);
+			var selections = page.Root
+				.Descendants(page.Namespace + "OE")
+				.Elements(page.Namespace + "T")
+				.Where(e => e.Attribute("selected")?.Value == "all")
+				.Select(e => e.Parent)
+				.ToList();
+
+			if (selections.Count == 0 || (selections.Count == 1 && selections[0].Value == string.Empty))
 			{
-				await using var one = new OneNote(out var page, out var ns, OneNote.PageDetail.Selection);
-				var selections = page.Root
-					.Descendants(page.Namespace + "OE")
-					.Elements(page.Namespace + "T")
-					.Where(e => e.Attribute("selected")?.Value == "all")
-					.Select(e => e.Parent)
-					.ToList();
-
-				if (selections.Count == 0 || (selections.Count == 1 && selections[0].Value == string.Empty))
-				{
-					ShowInfo(Resx.TextToTable_NoText);
-					return;
-				}
-
-
-				var table = TextToTable(page.Namespace, selections);
-
-				if (table != null)
-				{
-					var first = selections[0];
-					for (int i = 1; i < selections.Count; i++)
-					{
-						selections[i].Remove();
-					}
-
-					first.ReplaceNodes(table.Root);
-
-					await one.Update(page);
-				}
+				ShowInfo(Resx.TextToTable_NoText);
+				return;
 			}
-			finally
+
+
+			var table = TextToTable(page.Namespace, selections);
+
+			if (table != null)
 			{
-				commandIsActive = false;
+				var first = selections[0];
+				for (int i = 1; i < selections.Count; i++)
+				{
+					selections[i].Remove();
+				}
+
+				first.ReplaceNodes(table.Root);
+
+				await one.Update(page);
 			}
 		}
 

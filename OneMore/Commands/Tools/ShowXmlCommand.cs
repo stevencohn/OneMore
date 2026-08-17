@@ -12,9 +12,6 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class ShowXmlCommand : Command
 	{
-		private static bool commandIsActive = false;
-
-
 		public ShowXmlCommand()
 		{
 			// prevent replay
@@ -24,20 +21,13 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			if (commandIsActive) { return; }
-			commandIsActive = true;
+			using var guard = EnterOnce();
+			if (guard is null) { return; }
 
-			try
-			{
-				using var dialog = new ShowXmlDialog();
-				dialog.ShowDialog(owner);
+			using var dialog = new ShowXmlDialog();
+			dialog.ShowDialog(owner);
 
-				await Task.Yield();
-			}
-			finally
-			{
-				commandIsActive = false;
-			}
+			await Task.Yield();
 		}
 	}
 }

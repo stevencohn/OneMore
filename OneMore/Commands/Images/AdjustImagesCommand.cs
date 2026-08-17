@@ -39,8 +39,6 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class AdjustImagesCommand : Command
 	{
-		private static bool commandIsActive = false;
-
 		private bool scopeFore;
 		private bool pasting;
 
@@ -52,53 +50,46 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			if (commandIsActive) { return; }
-			commandIsActive = true;
+			using var guard = EnterOnce();
+			if (guard is null) { return; }
 
-			try
+			await using var one = new OneNote(out var page, out var ns, OneNote.PageDetail.All);
+
+			pasting = args.Length > 0 && args[0] is bool b && b;
+
+			var elements = pasting
+				? await PreparePastingElement(page, ns)
+				: FindOnPageElements(page, ns);
+
+
+			if (elements is not null && elements.Any())
 			{
-				await using var one = new OneNote(out var page, out var ns, OneNote.PageDetail.All);
+				var updated = elements.Count == 1
+					// single selected image
+					? ResizeOne(elements[0])
+					// multiple selections or all if none selected
+					: ResizeMany(elements, page);
 
-				pasting = args.Length > 0 && args[0] is bool b && b;
-
-				var elements = pasting
-					? await PreparePastingElement(page, ns)
-					: FindOnPageElements(page, ns);
-
-
-				if (elements is not null && elements.Any())
+				if (updated)
 				{
-					var updated = elements.Count == 1
-						// single selected image
-						? ResizeOne(elements[0])
-						// multiple selections or all if none selected
-						: ResizeMany(elements, page);
+					// must force update if any embedded images on the background, such as
+					// PowerPoint slides, as OneNote will complain about invalid XML otherwise
+					var embedded = elements.Any(e =>
+						e.Attribute("xpsFileIndex") is not null ||
+						e.Attribute("originalPageNumber") is not null ||
+						e.Attribute("isPrintOut") is not null);
 
-					if (updated)
-					{
-						// must force update if any embedded images on the background, such as
-						// PowerPoint slides, as OneNote will complain about invalid XML otherwise
-						var embedded = elements.Any(e =>
-							e.Attribute("xpsFileIndex") is not null ||
-							e.Attribute("originalPageNumber") is not null ||
-							e.Attribute("isPrintOut") is not null);
-
-						logger.WriteLine($"embedded:{embedded}");
-						await one.Update(page, force: embedded);
-					}
-				}
-				else if (pasting)
-				{
-					ShowError(Resx.AdjustImagesDialog_noImageToPaste);
-				}
-				else
-				{
-					ShowError(Resx.AdjustImagesDialog_noImages);
+					logger.WriteLine($"embedded:{embedded}");
+					await one.Update(page, force: embedded);
 				}
 			}
-			finally
+			else if (pasting)
 			{
-				commandIsActive = false;
+				ShowError(Resx.AdjustImagesDialog_noImageToPaste);
+			}
+			else
+			{
+				ShowError(Resx.AdjustImagesDialog_noImages);
 			}
 		}
 

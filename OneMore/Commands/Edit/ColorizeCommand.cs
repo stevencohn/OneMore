@@ -19,8 +19,6 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private const string DepthAttributeName = "omDepth";
 
-		private static bool commandIsActive = false;
-
 		private Page page;
 		private XNamespace ns;
 		private readonly bool fontOverride;
@@ -47,8 +45,8 @@ namespace River.OneMoreAddIn.Commands
 		/// <returns></returns>
 		public override async Task Execute(params object[] args)
 		{
-			if (commandIsActive) { return; }
-			commandIsActive = true;
+			using var guard = EnterOnce();
+			if (guard is null) { return; }
 
 			try
 			{
@@ -79,10 +77,6 @@ namespace River.OneMoreAddIn.Commands
 				// gets an actionable message instead of CommandFactory's generic toast
 				logger.WriteLine(exc);
 				ShowError(string.Format(Resx.ColorizeCommand_LanguageError, exc.Name));
-			}
-			finally
-			{
-				commandIsActive = false;
 			}
 		}
 
