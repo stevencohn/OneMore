@@ -40,14 +40,25 @@ namespace River.OneMoreAddIn.Commands
 				dialog.RequestData += PopulateCommands;
 				PopulateCommands(dialog, null);
 
-				if (dialog.ShowDialog(owner) == DialogResult.OK &&
-					dialog.Index >= 0)
-				{
-					var command = dialog.Recent
-						? recent[dialog.Index]
-						: commands[dialog.Index];
+				var result = dialog.ShowDialog(owner);
+				var index = dialog.Index;
+				var isRecent = dialog.Recent;
 
-					//logger.WriteLine($"invoking command[index:{dialog.Index},recent:{dialog.Recent}] 'method:{command.Method.Name}'");
+				// the palette dialog itself is closed at this point; release the
+				// re-entry guard before invoking the chosen command, which may not
+				// return until ITS OWN dialog closes (e.g. SearchCommand/
+				// SearchTitleCommand when invoked with no message loop already
+				// running) - otherwise the palette can't be reopened until that
+				// command's dialog closes
+				commandIsActive = false;
+
+				if (result == DialogResult.OK && index >= 0)
+				{
+					var command = isRecent
+						? recent[index]
+						: commands[index];
+
+					//logger.WriteLine($"invoking command[index:{index},recent:{isRecent}] 'method:{command.Method.Name}'");
 					await (Task)command.Method.Invoke(AddIn.Self, new object[] { null });
 
 					// save if not IsCancelled...
@@ -73,6 +84,8 @@ namespace River.OneMoreAddIn.Commands
 			}
 			finally
 			{
+				// redundant on the success path (already reset above); still needed
+				// to clear the guard if ShowDialog/setup itself throws before that
 				commandIsActive = false;
 			}
 		}
