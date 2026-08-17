@@ -34,7 +34,7 @@ namespace River.OneMoreAddIn.Commands
 			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.indexButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.findLabel = new River.OneMoreAddIn.UI.MoreLabel();
-			this.findBox = new River.OneMoreAddIn.UI.MoreTextBox();
+			this.findBox = new River.OneMoreAddIn.UI.MoreComboBox();
 			this.resultsView = new River.OneMoreAddIn.Commands.SearchResultsCardView();
 			this.morePanel1 = new River.OneMoreAddIn.UI.MorePanel();
 			this.morePanel2 = new River.OneMoreAddIn.UI.MorePanel();
@@ -121,11 +121,10 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.findBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.findBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.findBox.FormattingEnabled = true;
 			this.findBox.Location = new System.Drawing.Point(58, 9);
 			this.findBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.findBox.Name = "findBox";
-			this.findBox.ProcessEnterKey = false;
 			this.findBox.Size = new System.Drawing.Size(677, 26);
 			this.findBox.TabIndex = 1;
 			this.findBox.ThemedBack = null;
@@ -312,7 +311,7 @@ namespace River.OneMoreAddIn.Commands
 		private UI.MoreButton cancelButton;
 		private UI.MoreButton indexButton;
 		private UI.MoreLabel findLabel;
-		private UI.MoreTextBox findBox;
+		private UI.MoreComboBox findBox;
 		private SearchResultsCardView resultsView;
 		private UI.MorePanel morePanel1;
 		private UI.MorePanel morePanel2;
