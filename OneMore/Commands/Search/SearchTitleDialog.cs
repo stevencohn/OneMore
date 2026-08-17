@@ -12,6 +12,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
+	using River.OneMoreAddIn.Settings;
 	using River.OneMoreAddIn.UI;
 	using Resx = Properties.Resources;
 
@@ -27,6 +28,9 @@ namespace River.OneMoreAddIn.Commands
 		private SearchErrorControl errorControl;
 		private bool searching;
 		private bool searchPending;
+		private XElement queries;
+		private string lastSearchedText;
+		private bool lastSearchRemembered;
 
 
 		public SearchTitleDialog()
@@ -55,8 +59,89 @@ namespace River.OneMoreAddIn.Commands
 			resultsView.CheckedChanged += OnCheckedChanged;
 			resultsView.KeyDown += HandleNavKey;
 
+			findBox.Validated += FindBoxValidated;
+
 			debounceTimer = new Timer { Interval = DebounceMilliseconds };
 			debounceTimer.Tick += DebounceTick;
+
+			LoadSettings();
+		}
+
+
+		private void LoadSettings()
+		{
+			var provider = new SettingsProvider();
+			var settings = provider.GetCollection("SearchTitle");
+
+			queries = settings.Get<XElement>("queries");
+			if (queries != null)
+			{
+				foreach (var query in queries.Elements())
+				{
+					findBox.Items.Add(query.Value);
+				}
+			}
+		}
+
+
+		private void SaveQuery(string text)
+		{
+			if (string.IsNullOrWhiteSpace(text))
+			{
+				return;
+			}
+
+			queries ??= new XElement("queries");
+
+			queries.Elements().FirstOrDefault(e => e.Value == text)?.Remove();
+
+			while (queries.Elements().Count() >= 8)
+			{
+				queries.Elements().Last().Remove();
+			}
+
+			queries.AddFirst(new XElement("query", text));
+
+			var provider = new SettingsProvider();
+			var settings = provider.GetCollection("SearchTitle");
+			settings.Add("queries", queries);
+			provider.SetCollection(settings);
+			provider.Save();
+
+			findBox.Items.Clear();
+			foreach (var query in queries.Elements())
+			{
+				findBox.Items.Add(query.Value);
+			}
+		}
+
+
+		/// <summary>
+		/// Remembers the current search term as a successful MRU entry, but only once per
+		/// search cycle and only while findBox still shows the text that produced the results
+		/// currently on screen.
+		/// </summary>
+		private void RememberIfSuccessful()
+		{
+			if (lastSearchRemembered ||
+				string.IsNullOrEmpty(lastSearchedText) ||
+				findBox.Text.Trim() != lastSearchedText ||
+				!resultsView.HasCards)
+			{
+				return;
+			}
+
+			SaveQuery(lastSearchedText);
+			lastSearchRemembered = true;
+		}
+
+
+		private void FindBoxValidated(object sender, EventArgs e)
+		{
+			if (ActiveControl == resultsView)
+			{
+				RememberIfSuccessful();
+			}
 		}
 
 
@@ -113,7 +198,7 @@ namespace River.OneMoreAddIn.Commands
 			if (e.KeyCode == Keys.Enter && findBox.Text.Trim().Length > 0)
 			{
 				debounceTimer.Stop();
-				RunSearch();
+				RunSearch(remember: true);
 				e.Handled = true;
 			}
 		}
@@ -122,7 +207,7 @@ namespace River.OneMoreAddIn.Commands
 		private void Search(object sender, EventArgs e)
 		{
 			debounceTimer.Stop();
-			RunSearch();
+			RunSearch(remember: true);
 		}
 
 
@@ -141,7 +226,7 @@ namespace River.OneMoreAddIn.Commands
 		/// overlapping triggers so a burst of keystrokes while a search is already running
 		/// results in exactly one more run afterward rather than interleaved/dropped updates.
 		/// </summary>
-		private async void RunSearch()
+		private async void RunSearch(bool remember = false)
 		{
 			if (searching)
 			{
@@ -155,7 +240,8 @@ namespace River.OneMoreAddIn.Commands
 				do
 				{
 					searchPending = false;
-					await DoSearchAsync();
+					await DoSearchAsync(remember);
+					remember = false;
 				}
 				while (searchPending);
 			}
@@ -166,8 +252,12 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task DoSearchAsync()
+		private async Task DoSearchAsync(bool remember)
 		{
+			var rawText = findBox.Text.Trim();
+			lastSearchedText = rawText;
+			lastSearchRemembered = false;
+
 			var query = TitleQueryParser.Parse(findBox.Text);
 
 			ClearResults();
@@ -264,6 +354,11 @@ namespace River.OneMoreAddIn.Commands
 					{
 						resultsView.AppendCard(ToCard(match));
 					}
+				}
+
+				if (remember)
+				{
+					RememberIfSuccessful();
 				}
 
 				RestoreControls();
@@ -467,6 +562,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private async void OnCardActivated(object sender, NavigateCardEventArgs e)
 		{
+			RememberIfSuccessful();
 			await NavigateTo(e.PageId, e.NewWindow);
 		}
 
