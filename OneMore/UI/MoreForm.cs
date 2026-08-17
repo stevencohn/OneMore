@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.UI
 	using System;
 	using System.Diagnostics;
 	using System.Drawing;
+	using System.Threading.Tasks;
 	using System.Windows.Automation;
 	using System.Windows.Forms;
 
@@ -25,6 +26,7 @@ namespace River.OneMoreAddIn.UI
 
 		private ApplicationContext appContext;
 		private bool modeless = false;
+		private IntPtr oneNoteHandle = IntPtr.Zero;
 
 		private bool elevatedWithOneNote;
 		private int processId;
@@ -128,6 +130,7 @@ namespace River.OneMoreAddIn.UI
 			using (var one = new OneNote())
 			{
 				Native.GetWindowRect(one.WindowHandle, ref rect);
+				oneNoteHandle = one.WindowHandle;
 			}
 
 			var yoffset = (int)(Height * topDelta / 100.0);
@@ -156,6 +159,11 @@ namespace River.OneMoreAddIn.UI
 			modeless = true;
 			ManualLocation = true;
 			Location = location;
+
+			using (var one = new OneNote())
+			{
+				oneNoteHandle = one.WindowHandle;
+			}
 
 			RunModelessCore(closedAction);
 		}
@@ -186,14 +194,51 @@ namespace River.OneMoreAddIn.UI
 			base.OnFormClosed(e);
 			appContext?.Dispose();
 
+			if (modeless && oneNoteHandle != IntPtr.Zero)
+			{
+				// OneMore runs in dllhost.exe (COM surrogate), not ONENOTE.EXE, so closing
+				// this modeless dialog does not automatically hand foreground focus back to
+				// ONENOTE.EXE's window - it can be left on this (now-closing) dllhost window
+				// or nowhere in particular. Until the user manually reactivates OneNote (a
+				// click, or typing into it), HotkeyManager's WndProc gate - which only
+				// dispatches WM_HOTKEY when GetForegroundWindow() belongs to oneNotePID -
+				// silently swallows every hotkey press. This call is allowed to succeed
+				// without the AttachThreadInput dance that Elevate() needs, because this
+				// window is itself still the foreground window and just received the input
+				// (e.g. Escape) that's closing it - one of the documented exceptions to the
+				// SetForegroundWindow restriction.
+				Native.SetForegroundWindow(oneNoteHandle);
+			}
+
 			if (ElevatedWithOneNote)
 			{
 				// undo the AddAutomationFocusChangedEventHandler from OnShown; otherwise this
 				// (now disposed) form keeps receiving process-wide focus-change callbacks and
 				// Elevate() throws ObjectDisposedException on every one of them, silently, for
 				// as long as the process lives - this compounds quickly for dialogs that are
-				// shown and closed repeatedly, like CompleteHashtagDialog
-				Automation.RemoveAutomationFocusChangedEventHandler(OnFocusChanged);
+				// shown and closed repeatedly, like CompleteHashtagDialog.
+				//
+				// This must NOT run inline here: Automation.RemoveAutomationFocusChangedEventHandler
+				// synchronizes with the UI Automation provider infrastructure and can block for
+				// several seconds. Since ModelessClosed (below) is what releases the owning
+				// command's re-entry guard and clears its static dialog reference, blocking here
+				// blocks that cleanup too - every hotkey/ribbon invocation in the meantime sees
+				// a stale, already-disposed dialog and silently no-ops via Elevate()'s IsDisposed
+				// check, making the dialog appear unable to reopen for however long this call
+				// happens to take. Run it fire-and-forget instead; OnFocusChanged's own IsDisposed
+				// guard already makes any straggling callback in the meantime harmless.
+				Task.Run(() =>
+				{
+					try
+					{
+						Automation.RemoveAutomationFocusChangedEventHandler(OnFocusChanged);
+					}
+					catch
+					{
+						// best-effort cleanup; a failure here just leaves a harmless
+						// (IsDisposed-guarded) stale handler registered
+					}
+				});
 			}
 
 			ModelessClosed?.Invoke(this, e);
@@ -353,7 +398,28 @@ namespace River.OneMoreAddIn.UI
 
 			if (ElevatedWithOneNote)
 			{
-				Automation.AddAutomationFocusChangedEventHandler(OnFocusChanged);
+				// Must not run inline here: Automation.AddAutomationFocusChangedEventHandler
+				// synchronizes with the UI Automation provider infrastructure and can block for
+				// several seconds - the same cost proven out on the RemoveAutomationFocus-
+				// ChangedEventHandler side in OnFormClosed below. Since OnShown runs before the
+				// message loop gets back around to painting this form's child controls, blocking
+				// here shows up as a multi-second delay between the window appearing and its
+				// controls actually painting. This is especially likely to contend with a
+				// still-in-flight background Remove from a just-closed dialog of the same kind
+				// (e.g. reopening this dialog in quick succession), since both sides now run
+				// off-thread instead of being serialized by one blocking the other.
+				Task.Run(() =>
+				{
+					try
+					{
+						Automation.AddAutomationFocusChangedEventHandler(OnFocusChanged);
+					}
+					catch
+					{
+						// best-effort; a failure here just means this form won't elevate
+						// automatically when ONENOTE regains focus
+					}
+				});
 			}
 		}
 

@@ -58,8 +58,7 @@ namespace River.OneMoreAddIn.Commands
 			resultsView.CardActivated += OnCardActivated;
 			resultsView.CheckedChanged += OnCheckedChanged;
 			resultsView.KeyDown += HandleNavKey;
-
-			findBox.Validated += FindBoxValidated;
+			resultsView.Enter += ResultsViewEntered;
 
 			debounceTimer = new Timer { Interval = DebounceMilliseconds };
 			debounceTimer.Tick += DebounceTick;
@@ -136,12 +135,9 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void FindBoxValidated(object sender, EventArgs e)
+		private void ResultsViewEntered(object sender, EventArgs e)
 		{
-			if (ActiveControl == resultsView)
-			{
-				RememberIfSuccessful();
-			}
+			RememberIfSuccessful();
 		}
 
 
