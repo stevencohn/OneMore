@@ -22,125 +22,115 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class CollateTocCommand : Command
 	{
-		private static bool commandIsActive = false;
-
-
 		public override async Task Execute(params object[] args)
 		{
-			if (commandIsActive) { return; }
-			commandIsActive = true;
+			using var guard = EnterOnce();
+			if (guard is null) { return; }
 
-			try
+			await using var one = new OneNote();
+
+			var books = await one.GetNotebooks();
+			var bookNs = one.GetNamespace(books);
+
+			List<string> notebookIds;
+			List<string> hashtags;
+
+			using (var dialog = new CollateTocDialog(books.Elements(bookNs + "Notebook")))
 			{
-				await using var one = new OneNote();
-
-				var books = await one.GetNotebooks();
-				var bookNs = one.GetNamespace(books);
-
-				List<string> notebookIds;
-				List<string> hashtags;
-
-				using (var dialog = new CollateTocDialog(books.Elements(bookNs + "Notebook")))
+				if (dialog.ShowDialog(owner) != DialogResult.OK)
 				{
-					if (dialog.ShowDialog(owner) != DialogResult.OK)
-					{
-						return;
-					}
-
-					notebookIds = dialog.SelectedNotebookIds;
-					hashtags = dialog.Hashtags;
-				}
-
-				var criteria = string.Join(" OR ", hashtags);
-
-				var tags = new Hashtags();
-				using (var provider = new HashtagProvider())
-				{
-					foreach (var notebookId in notebookIds)
-					{
-						tags.AddRange(provider.SearchTags(
-							criteria, false, false, out _, notebookID: notebookId));
-					}
-				}
-
-				var pages = tags
-					.GroupBy(t => t.PageID)
-					.Select(g => new HashtagContext(g.First()))
-					.OrderBy(c => c.HierarchyPath).ThenBy(c => c.PageTitle)
-					.ToList();
-
-				if (pages.Count == 0)
-				{
-					ShowInfo(Resx.CollateTocCommand_noPagesFound);
 					return;
 				}
 
-				var section = await one.GetSection();
-				var sectionNs = one.GetNamespace(section);
+				notebookIds = dialog.SelectedNotebookIds;
+				hashtags = dialog.Hashtags;
+			}
 
-				var existingId = section.Elements(sectionNs + "Page")
-					.Where(e => e.Attribute("isInRecycleBin") is null)
-					.Elements(sectionNs + "Meta")
-					.Where(e =>
-						e.Attribute("name").Value == MetaNames.TableOfContents &&
-						e.Attribute("content").Value == "index")
-					.Select(e => e.Parent.Attribute("ID").Value)
-					.FirstOrDefault();
+			var criteria = string.Join(" OR ", hashtags);
 
-				Page dest;
-
-				if (existingId is not null)
+			var tags = new Hashtags();
+			using (var provider = new HashtagProvider())
+			{
+				foreach (var notebookId in notebookIds)
 				{
-					var result = UI.MoreMessageBox.ShowQuestion(
-						owner, Resx.CollateTocCommand_replaceQuestion, true);
+					tags.AddRange(provider.SearchTags(
+						criteria, false, false, out _, notebookID: notebookId));
+				}
+			}
 
-					if (result == DialogResult.Cancel)
-					{
-						return;
-					}
+			var pages = tags
+				.GroupBy(t => t.PageID)
+				.Select(g => new HashtagContext(g.First()))
+				.OrderBy(c => c.HierarchyPath).ThenBy(c => c.PageTitle)
+				.ToList();
 
-					if (result == DialogResult.Yes)
-					{
-						dest = await one.GetPage(existingId);
-						dest.EnsureContentContainer().Elements().Remove();
-					}
-					else
-					{
-						dest = await CreateDestinationPage(one, section.Attribute("ID").Value);
-					}
+			if (pages.Count == 0)
+			{
+				ShowInfo(Resx.CollateTocCommand_noPagesFound);
+				return;
+			}
+
+			var section = await one.GetSection();
+			var sectionNs = one.GetNamespace(section);
+
+			var existingId = section.Elements(sectionNs + "Page")
+				.Where(e => e.Attribute("isInRecycleBin") is null)
+				.Elements(sectionNs + "Meta")
+				.Where(e =>
+					e.Attribute("name").Value == MetaNames.TableOfContents &&
+					e.Attribute("content").Value == "index")
+				.Select(e => e.Parent.Attribute("ID").Value)
+				.FirstOrDefault();
+
+			Page dest;
+
+			if (existingId is not null)
+			{
+				var result = UI.MoreMessageBox.ShowQuestion(
+					owner, Resx.CollateTocCommand_replaceQuestion, true);
+
+				if (result == DialogResult.Cancel)
+				{
+					return;
+				}
+
+				if (result == DialogResult.Yes)
+				{
+					dest = await one.GetPage(existingId);
+					dest.EnsureContentContainer().Elements().Remove();
 				}
 				else
 				{
 					dest = await CreateDestinationPage(one, section.Attribute("ID").Value);
 				}
-
-				PageNamespace.Set(dest.Namespace);
-
-				dest.SetMeta(MetaNames.TableOfContents, "index");
-				var container = dest.EnsureContentContainer();
-				var pageTitleIndex = dest.GetQuickStyle(StandardStyles.PageTitle).Index;
-
-				using (var progress = new UI.ProgressDialog())
-				{
-					progress.SetMaximum(pages.Count);
-					progress.Show();
-
-					foreach (var context in pages)
-					{
-						progress.SetMessage(context.PageTitle);
-						progress.Increment();
-
-						await CollateOnePage(one, dest, container, context, pageTitleIndex);
-					}
-				}
-
-				await one.Update(dest);
-				await one.NavigateTo(dest.PageId);
 			}
-			finally
+			else
 			{
-				commandIsActive = false;
+				dest = await CreateDestinationPage(one, section.Attribute("ID").Value);
 			}
+
+			PageNamespace.Set(dest.Namespace);
+
+			dest.SetMeta(MetaNames.TableOfContents, "index");
+			var container = dest.EnsureContentContainer();
+			var pageTitleIndex = dest.GetQuickStyle(StandardStyles.PageTitle).Index;
+
+			using (var progress = new UI.ProgressDialog())
+			{
+				progress.SetMaximum(pages.Count);
+				progress.Show();
+
+				foreach (var context in pages)
+				{
+					progress.SetMessage(context.PageTitle);
+					progress.Increment();
+
+					await CollateOnePage(one, dest, container, context, pageTitleIndex);
+				}
+			}
+
+			await one.Update(dest);
+			await one.NavigateTo(dest.PageId);
 		}
 
 

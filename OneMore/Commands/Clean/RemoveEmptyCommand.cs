@@ -22,8 +22,6 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class RemoveEmptyCommand : Command, ICliPageCommand
 	{
-		private static bool commandIsActive = false;
-
 		private Page page;
 		private XNamespace ns;
 		private IEnumerable<XElement> runs;
@@ -73,37 +71,36 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			if (commandIsActive) { return; }
-			commandIsActive = true;
+			using var guard = EnterOnce();
+			if (guard is null) { return; }
 
-			try
+			var result = UI.MoreMessageBox.ShowQuestion(owner,
+			Resx.RemoveEmptyCommand_option, cancel: true);
+
+			if (result == DialogResult.Cancel)
 			{
-				var result = UI.MoreMessageBox.ShowQuestion(owner,
-				Resx.RemoveEmptyCommand_option, cancel: true);
-
-				if (result == DialogResult.Cancel)
-				{
-					return;
-				}
-
-				all = result == DialogResult.Yes;
-
-				logger.StartClock();
-
-				await using var one = new OneNote();
-				page = await one.GetPage(OneNote.PageDetail.Selection);
-				ns = page.Namespace;
-
-				var range = new Models.SelectionRange(page);
-				runs = range.GetSelections(defaulToAnytIfNoRange: true);
-				logger.WriteLine($"found {runs.Count()} runs, scope={range.Scope}");
-
-				await Run(one);
+				return;
 			}
-			finally
-			{
-				commandIsActive = false;
-			}
+
+			all = result == DialogResult.Yes;
+
+			logger.StartClock();
+
+			await RunInteractive();
+		}
+
+
+		private async Task RunInteractive()
+		{
+			await using var one = new OneNote();
+			page = await one.GetPage(OneNote.PageDetail.Selection);
+			ns = page.Namespace;
+
+			var range = new Models.SelectionRange(page);
+			runs = range.GetSelections(defaulToAnytIfNoRange: true);
+			logger.WriteLine($"found {runs.Count()} runs, scope={range.Scope}");
+
+			await Run(one);
 		}
 
 

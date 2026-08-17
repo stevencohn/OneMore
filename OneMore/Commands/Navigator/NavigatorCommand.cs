@@ -16,7 +16,6 @@ namespace River.OneMoreAddIn.Commands
 	internal class NavigatorCommand : Command
 	{
 		private static NavigatorWindow window;
-		private static bool commandIsActive = false;
 
 
 		public NavigatorCommand()
@@ -26,45 +25,38 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			if (commandIsActive) { return; }
-			commandIsActive = true;
+			using var guard = EnterOnce();
+			if (guard is null) { return; }
 
-			try
+			var settings = new SettingsProvider().GetCollection(nameof(NavigatorSheet));
+			if (settings.Get("disabled", false))
 			{
-				var settings = new SettingsProvider().GetCollection(nameof(NavigatorSheet));
-				if (settings.Get("disabled", false))
-				{
-					ShowInfo(Resx.NavigatorWindow_disabled);
-					return;
-				}
-
-				if (window == null)
-				{
-					window = new NavigatorWindow();
-					window.FormClosed += CloseNavigatorWindow;
-					window.RunModeless();
-					return;
-				}
-
-				if (window.IsDisposed)
-				{
-					return;
-				}
-
-				if (window.WindowState == FormWindowState.Minimized)
-				{
-					window.WindowState = FormWindowState.Normal;
-				}
-
-				await window.RefreshPageHeadings();
-				window.Elevate(false);
-
-				await Task.Yield();
+				ShowInfo(Resx.NavigatorWindow_disabled);
+				return;
 			}
-			finally
+
+			if (window == null)
 			{
-				commandIsActive = false;
+				window = new NavigatorWindow();
+				window.FormClosed += CloseNavigatorWindow;
+				window.RunModeless();
+				return;
 			}
+
+			if (window.IsDisposed)
+			{
+				return;
+			}
+
+			if (window.WindowState == FormWindowState.Minimized)
+			{
+				window.WindowState = FormWindowState.Normal;
+			}
+
+			await window.RefreshPageHeadings();
+			window.Elevate(false);
+
+			await Task.Yield();
 		}
 
 

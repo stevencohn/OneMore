@@ -19,8 +19,6 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class CropImageCommand : Command
 	{
-		private static bool commandIsActive = false;
-
 		private Page page;
 		private XNamespace ns;
 
@@ -32,37 +30,30 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			if (commandIsActive) { return; }
-			commandIsActive = true;
+			using var guard = EnterOnce();
+			if (guard is null) { return; }
 
-			try
+			await using var one = new OneNote(out page, out ns, OneNote.PageDetail.All);
+
+			var images = page.Root.Descendants(ns + "Image")?
+				.Where(e => e.Attribute("selected")?.Value == "all");
+
+			if (!images.Any())
 			{
-				await using var one = new OneNote(out page, out ns, OneNote.PageDetail.All);
+				ShowError(Resx.CropImage_oneImage);
+				return;
+			}
 
-				var images = page.Root.Descendants(ns + "Image")?
-					.Where(e => e.Attribute("selected")?.Value == "all");
-
-				if (!images.Any())
+			var image = images.First();
+			if (image.Attributes().Any(a => a.Name == "isPrintOut"))
+			{
+				if (UI.MoreMessageBox.ShowQuestion(owner, Resx.CropImageDialog_printout) != DialogResult.Yes)
 				{
-					ShowError(Resx.CropImage_oneImage);
 					return;
 				}
-
-				var image = images.First();
-				if (image.Attributes().Any(a => a.Name == "isPrintOut"))
-				{
-					if (UI.MoreMessageBox.ShowQuestion(owner, Resx.CropImageDialog_printout) != DialogResult.Yes)
-					{
-						return;
-					}
-				}
-
-				await CropImage(one, image);
 			}
-			finally
-			{
-				commandIsActive = false;
-			}
+
+			await CropImage(one, image);
 		}
 
 

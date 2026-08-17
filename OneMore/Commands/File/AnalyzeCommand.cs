@@ -33,8 +33,6 @@ namespace River.OneMoreAddIn.Commands
 		private const string OfflineSym = "<span style='font-family:\"Symbol\"'>\u00C6</span>";
 		private const string RecycleBin = "OneNote_RecycleBin";
 
-		private static bool commandIsActive = false;
-
 		private bool showNotebookSummary;
 		private bool showSectionSummary;
 		private AnalysisDetail pageDetail;
@@ -69,116 +67,109 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			if (commandIsActive) { return; }
-			commandIsActive = true;
+			using var guard = EnterOnce();
+			if (guard is null) { return; }
 
-			try
+			await using (one = new OneNote())
 			{
-				await using (one = new OneNote())
-				{
-					(backupPath, defaultPath, _) = one.GetFolders();
+				(backupPath, defaultPath, _) = one.GetFolders();
 
-					if (!Directory.Exists(backupPath))
+				if (!Directory.Exists(backupPath))
+				{
+					ShowError(Resx.AnalyzeCommand_NoBackups);
+					return;
+				}
+
+				using (var dialog = new AnalyzeDialog())
+				{
+					if (dialog.ShowDialog(owner) != DialogResult.OK)
 					{
-						ShowError(Resx.AnalyzeCommand_NoBackups);
 						return;
 					}
 
-					using (var dialog = new AnalyzeDialog())
-					{
-						if (dialog.ShowDialog(owner) != DialogResult.OK)
-						{
-							return;
-						}
-
-						showNotebookSummary = dialog.IncludeNotebookSummary;
-						showSectionSummary = dialog.IncludeSectionSummary;
-						pageDetail = dialog.Detail;
-						thumbnailSize = dialog.ThumbnailSize;
-					}
-
-					logger.StartClock();
-
-					one.CreatePage(one.CurrentSectionId, out var pageId);
-					var page = await one.GetPage(pageId);
-					page.Title = Resx.AnalyzeCommand_Title;
-					page.SetMeta(MetaNames.AnalysisReport, "true");
-					page.Root.SetAttributeValue("lang", "yo");
-
-					ns = page.Namespace;
-					PageNamespace.Set(ns);
-
-					heading1Index = page.GetQuickStyle(Styles.StandardStyles.Heading1).Index;
-					heading2Index = page.GetQuickStyle(Styles.StandardStyles.Heading2).Index;
-
-					using (progress = new UI.ProgressDialog())
-					{
-						progress.SetMaximum(5);
-						progress.Show();
-
-						try
-						{
-							var container = page.EnsureContentContainer();
-							var notebooks = await one.GetNotebooks();
-
-							var prev = false;
-
-							if (showNotebookSummary)
-							{
-								ReportNotebooks(container, notebooks);
-								ReportCache(container);
-								prev = true;
-							}
-
-							if (showSectionSummary)
-							{
-								if (prev)
-								{
-									WriteHorizontalLine(page, container);
-								}
-
-								await ReportSections(container, notebooks);
-								prev = true;
-							}
-
-							if (pageDetail == AnalysisDetail.Current)
-							{
-								if (prev)
-								{
-									WriteHorizontalLine(page, container);
-								}
-
-								await ReportPages(container, await one.GetSection(), null, pageId);
-							}
-							else if (pageDetail == AnalysisDetail.All)
-							{
-								if (prev)
-								{
-									WriteHorizontalLine(page, container);
-								}
-
-								await ReportAllPages(container, await one.GetNotebook(), null, pageId);
-							}
-
-							progress.SetMessage("Updating report...");
-							await one.Update(page);
-						}
-						catch (Exception exc)
-						{
-							logger.WriteLine("error analyzing storage", exc);
-						}
-					}
-
-					logger.WriteTime("analysis completed", true);
-
-					await one.NavigateTo(pageId);
-
-					logger.WriteTime("analysis report completed");
+					showNotebookSummary = dialog.IncludeNotebookSummary;
+					showSectionSummary = dialog.IncludeSectionSummary;
+					pageDetail = dialog.Detail;
+					thumbnailSize = dialog.ThumbnailSize;
 				}
-			}
-			finally
-			{
-				commandIsActive = false;
+
+				logger.StartClock();
+
+				one.CreatePage(one.CurrentSectionId, out var pageId);
+				var page = await one.GetPage(pageId);
+				page.Title = Resx.AnalyzeCommand_Title;
+				page.SetMeta(MetaNames.AnalysisReport, "true");
+				page.Root.SetAttributeValue("lang", "yo");
+
+				ns = page.Namespace;
+				PageNamespace.Set(ns);
+
+				heading1Index = page.GetQuickStyle(Styles.StandardStyles.Heading1).Index;
+				heading2Index = page.GetQuickStyle(Styles.StandardStyles.Heading2).Index;
+
+				using (progress = new UI.ProgressDialog())
+				{
+					progress.SetMaximum(5);
+					progress.Show();
+
+					try
+					{
+						var container = page.EnsureContentContainer();
+						var notebooks = await one.GetNotebooks();
+
+						var prev = false;
+
+						if (showNotebookSummary)
+						{
+							ReportNotebooks(container, notebooks);
+							ReportCache(container);
+							prev = true;
+						}
+
+						if (showSectionSummary)
+						{
+							if (prev)
+							{
+								WriteHorizontalLine(page, container);
+							}
+
+							await ReportSections(container, notebooks);
+							prev = true;
+						}
+
+						if (pageDetail == AnalysisDetail.Current)
+						{
+							if (prev)
+							{
+								WriteHorizontalLine(page, container);
+							}
+
+							await ReportPages(container, await one.GetSection(), null, pageId);
+						}
+						else if (pageDetail == AnalysisDetail.All)
+						{
+							if (prev)
+							{
+								WriteHorizontalLine(page, container);
+							}
+
+							await ReportAllPages(container, await one.GetNotebook(), null, pageId);
+						}
+
+						progress.SetMessage("Updating report...");
+						await one.Update(page);
+					}
+					catch (Exception exc)
+					{
+						logger.WriteLine("error analyzing storage", exc);
+					}
+				}
+
+				logger.WriteTime("analysis completed", true);
+
+				await one.NavigateTo(pageId);
+
+				logger.WriteTime("analysis report completed");
 			}
 		}
 

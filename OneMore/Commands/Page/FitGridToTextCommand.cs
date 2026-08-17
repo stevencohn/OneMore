@@ -29,9 +29,6 @@ namespace River.OneMoreAddIn.Commands
 	/// </remarks>
 	internal class FitGridToTextCommand : Command
 	{
-		private static bool commandIsActive = false;
-
-
 		public FitGridToTextCommand()
 		{
 		}
@@ -39,85 +36,78 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			if (commandIsActive) { return; }
-			commandIsActive = true;
+			using var guard = EnterOnce();
+			if (guard is null) { return; }
 
-			try
+			await using var one = new OneNote(out var page, out var ns, OneNote.PageDetail.Basic);
+			var ruleLines = page.Root
+				.Elements(ns + "PageSettings")
+				.Elements(ns + "RuleLines")
+				.FirstOrDefault(e => e.Attribute("visible")?.Value == "true");
+
+			var horizontal = ruleLines?.Element(ns + "Horizontal");
+			var vertical = ruleLines?.Element(ns + "Vertical");
+
+			if (horizontal == null && vertical == null)
 			{
-				await using var one = new OneNote(out var page, out var ns, OneNote.PageDetail.Basic);
-				var ruleLines = page.Root
-					.Elements(ns + "PageSettings")
-					.Elements(ns + "RuleLines")
-					.FirstOrDefault(e => e.Attribute("visible")?.Value == "true");
-
-				var horizontal = ruleLines?.Element(ns + "Horizontal");
-				var vertical = ruleLines?.Element(ns + "Vertical");
-
-				if (horizontal == null && vertical == null)
-				{
-					ShowError(Resx.FitGridToTextCommand_noGrid);
-					return;
-				}
-
-				var quickStyles = page.GetQuickStyles().Where(s => s.Name == "p");
-				if (!quickStyles.Any())
-				{
-					ShowError(Resx.FitGridToTextCommand_noText);
-					return;
-				}
-
-				var pindexes = quickStyles.Select(s => s.Index.ToString());
-
-				var common = page.Root.Descendants(ns + "OE")
-					// find all "p" paragraphs
-					.Where(e => pindexes.Contains(e.Attribute("quickStyleIndex")?.Value))
-					.Select(e => new
-					{
-						Element = e,
-						Index = e.Attribute("quickStyleIndex").Value,
-						Css = e.Attribute("style")?.Value
-					})
-					// count instances of distinct combinations
-					.GroupBy(o => new { o.Index, o.Css })
-					.Select(group => new
-					{
-						group.Key.Index,
-						group.First().Element,
-						Count = group.Count()
-					})
-					// grab the most commonly used; if there are two equally
-					// used styles then this is arbitrary but OK
-					.OrderByDescending(g => g.Count)
-					.FirstOrDefault();
-
-				if (common != null)
-				{
-					var analyzer = new StyleAnalyzer(page.Root);
-					var style = analyzer.CollectStyleFrom(common.Element);
-					var height = CalculateLineHeight(style);
-
-					using var dialog = new FitGridToTextDialog(style.FontSize, height);
-					if (dialog.ShowDialog(owner) == System.Windows.Forms.DialogResult.OK)
-					{
-						var spacing = dialog.Spacing.ToString(CultureInfo.InvariantCulture);
-
-						horizontal?.SetAttributeValue("spacing", spacing);
-						vertical?.SetAttributeValue("spacing", spacing);
-
-						if (dialog.SnapOutlines)
-						{
-							AdjustOutlinePositions(page, ns, horizontal, vertical);
-						}
-
-						AdjustOutlinePositions(page, ns, horizontal, vertical);
-
-						await one.Update(page);
-					}
-				}
+				ShowError(Resx.FitGridToTextCommand_noGrid);
+				return;
 			}
-			finally
+
+			var quickStyles = page.GetQuickStyles().Where(s => s.Name == "p");
+			if (!quickStyles.Any())
 			{
-				commandIsActive = false;
+				ShowError(Resx.FitGridToTextCommand_noText);
+				return;
+			}
+
+			var pindexes = quickStyles.Select(s => s.Index.ToString());
+
+			var common = page.Root.Descendants(ns + "OE")
+				// find all "p" paragraphs
+				.Where(e => pindexes.Contains(e.Attribute("quickStyleIndex")?.Value))
+				.Select(e => new
+				{
+					Element = e,
+					Index = e.Attribute("quickStyleIndex").Value,
+					Css = e.Attribute("style")?.Value
+				})
+				// count instances of distinct combinations
+				.GroupBy(o => new { o.Index, o.Css })
+				.Select(group => new
+				{
+					group.Key.Index,
+					group.First().Element,
+					Count = group.Count()
+				})
+				// grab the most commonly used; if there are two equally
+				// used styles then this is arbitrary but OK
+				.OrderByDescending(g => g.Count)
+				.FirstOrDefault();
+
+			if (common != null)
+			{
+				var analyzer = new StyleAnalyzer(page.Root);
+				var style = analyzer.CollectStyleFrom(common.Element);
+				var height = CalculateLineHeight(style);
+
+				using var dialog = new FitGridToTextDialog(style.FontSize, height);
+				if (dialog.ShowDialog(owner) == System.Windows.Forms.DialogResult.OK)
+				{
+					var spacing = dialog.Spacing.ToString(CultureInfo.InvariantCulture);
+
+					horizontal?.SetAttributeValue("spacing", spacing);
+					vertical?.SetAttributeValue("spacing", spacing);
+
+					if (dialog.SnapOutlines)
+					{
+						AdjustOutlinePositions(page, ns, horizontal, vertical);
+					}
+
+					AdjustOutlinePositions(page, ns, horizontal, vertical);
+
+					await one.Update(page);
+				}
 			}
 		}
 

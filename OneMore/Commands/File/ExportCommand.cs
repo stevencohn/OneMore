@@ -2,8 +2,6 @@
 // Copyright © 2020 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
-#pragma warning disable S2696
-
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Cli;
@@ -23,8 +21,6 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class ExportCommand : Command, ICliPageCommand
 	{
-		private static bool commandIsActive = false;
-
 		private OneNote one;
 		private int quickCount = 0;
 		private string pageId;
@@ -58,8 +54,8 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			if (commandIsActive) { return; }
-			commandIsActive = true;
+			using var guard = EnterOnce();
+			if (guard is null) { return; }
 
 			if (runningFromCli)
 			{
@@ -120,40 +116,31 @@ namespace River.OneMoreAddIn.Commands
 					{
 						await cliOne.DisposeAsync();
 					}
-
-					commandIsActive = false;
 				}
 			}
 
-			try
+			await using (one = new OneNote())
 			{
-				await using (one = new OneNote())
+				var section = await one.GetSection();
+				var ns = one.GetNamespace(section);
+
+				var pageIDs = section.Elements(ns + "Page")
+					.Where(e => e.Attribute("selected")?.Value == "all")
+					.Select(e => e.Attribute("ID").Value)
+					.ToList();
+
+				if (pageIDs.Count == 0)
 				{
-					var section = await one.GetSection();
-					var ns = one.GetNamespace(section);
-
-					var pageIDs = section.Elements(ns + "Page")
-						.Where(e => e.Attribute("selected")?.Value == "all")
-						.Select(e => e.Attribute("ID").Value)
-						.ToList();
-
-					if (pageIDs.Count == 0)
-					{
-						pageIDs.Add(one.CurrentPageId);
-						await Export(pageIDs);
-					}
-					else
-					{
-						await Export(pageIDs);
-					}
+					pageIDs.Add(one.CurrentPageId);
+					await Export(pageIDs);
 				}
+				else
+				{
+					await Export(pageIDs);
+				}
+			}
 
-				await Task.Yield();
-			}
-			finally
-			{
-				commandIsActive = false;
-			}
+			await Task.Yield();
 		}
 
 

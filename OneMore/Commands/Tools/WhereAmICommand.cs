@@ -16,7 +16,6 @@ namespace River.OneMoreAddIn.Commands
 	internal class WhereAmICommand : Command
 	{
 		private static WhereAmIWindow window;
-		private static bool commandIsActive = false;
 
 
 		public WhereAmICommand()
@@ -26,35 +25,28 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			if (commandIsActive) { return; }
-			commandIsActive = true;
+			using var guard = EnterOnce();
+			if (guard is null) { return; }
 
-			try
+			if (window is not null)
 			{
-				if (window is not null)
-				{
-					window.Elevate();
-					return;
-				}
-
-				await using var one = new OneNote();
-
-				var segments = await one.GetPageBreadcrumb();
-				if (segments is null)
-				{
-					return;
-				}
-
-				var maxWidth = Screen.FromHandle(one.WindowHandle).WorkingArea.Width;
-
-				window = new WhereAmIWindow(segments, maxWidth);
-				window.FormClosed += WindowClosed;
-				window.RunModeless();
+				window.Elevate();
+				return;
 			}
-			finally
+
+			await using var one = new OneNote();
+
+			var segments = await one.GetPageBreadcrumb();
+			if (segments is null)
 			{
-				commandIsActive = false;
+				return;
 			}
+
+			var maxWidth = Screen.FromHandle(one.WindowHandle).WorkingArea.Width;
+
+			window = new WhereAmIWindow(segments, maxWidth);
+			window.FormClosed += WindowClosed;
+			window.RunModeless();
 		}
 
 

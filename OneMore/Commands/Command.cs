@@ -22,6 +22,7 @@ namespace River.OneMoreAddIn
 	/// </summary>
 	internal abstract class Command
 	{
+		private static readonly HashSet<Type> activeCommandTypes = new();
 
 		// commands are injected with logger, ribbon, owner window, and the tash collector...
 
@@ -209,6 +210,48 @@ namespace River.OneMoreAddIn
 
 			return UI.MoreMessageBox.ShowQuestion(owner, Resx.Command_multiWindowWarning)
 				== DialogResult.Yes;
+		}
+
+
+		/// <summary>
+		/// Acquires a re-entry guard scoped to this command's concrete type: only one
+		/// invocation of a given command type may hold the guard at a time. Returns null
+		/// if another invocation of the same type is already active - callers should
+		/// treat null as "bail out". Dispose the returned token to release the guard as
+		/// soon as this command's own UI is no longer pending, which is not necessarily
+		/// when Execute() itself returns: RunModeless leaves Execute() suspended for as
+		/// long as its dialog stays open when called from a thread with no message loop
+		/// of its own (see SearchCommand/SearchTitleCommand/CompleteHashtagCommand).
+		/// </summary>
+		protected IDisposable EnterOnce()
+		{
+			var type = GetType();
+			lock (activeCommandTypes)
+			{
+				if (!activeCommandTypes.Add(type))
+				{
+					return null;
+				}
+			}
+
+			return new Guard(type);
+		}
+
+
+		private sealed class Guard : IDisposable
+		{
+			private Type type;
+
+			public Guard(Type type) => this.type = type;
+
+			public void Dispose()
+			{
+				if (type is not null)
+				{
+					lock (activeCommandTypes) { activeCommandTypes.Remove(type); }
+					type = null;
+				}
+			}
 		}
 	}
 }

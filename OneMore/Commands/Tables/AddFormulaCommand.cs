@@ -36,7 +36,6 @@ namespace River.OneMoreAddIn.Commands
 	internal class AddFormulaCommand : Command
 	{
 		public const string BoltSymbol = "140";
-		private static bool commandIsActive = false;
 
 
 		public AddFormulaCommand()
@@ -46,8 +45,8 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			if (commandIsActive) { return; }
-			commandIsActive = true;
+			using var guard = EnterOnce();
+			if (guard is null) { return; }
 
 			try
 			{
@@ -147,10 +146,6 @@ namespace River.OneMoreAddIn.Commands
 			{
 				logger.WriteLine("error adding formula", exc);
 				ShowInfo("Error adding formula. Please check the OneMore.log file");
-			}
-			finally
-			{
-				commandIsActive = false;
 			}
 		}
 

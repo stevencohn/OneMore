@@ -20,8 +20,6 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class OutlineCommand : Command
 	{
-		private static bool commandIsActive = false;
-
 		private XNamespace ns;
 		private List<Heading> headings;
 
@@ -33,54 +31,47 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			if (commandIsActive) { return; }
-			commandIsActive = true;
+			using var guard = EnterOnce();
+			if (guard is null) { return; }
 
-			try
+			using var dialog = new OutlineDialog();
+			if (dialog.ShowDialog(owner) != DialogResult.OK)
 			{
-				using var dialog = new OutlineDialog();
-				if (dialog.ShowDialog(owner) != DialogResult.OK)
-				{
-					return;
-				}
-
-				await using var one = new OneNote(out var page, out ns);
-				if (!page.IsValid)
-				{
-					return;
-				}
-
-				headings = page.GetHeadings(one, secondary: dialog.Secondary);
-				if (dialog.CleanupNumbering)
-				{
-					RemoveOutlineNumbering();
-				}
-
-				if (dialog.NumericNumbering)
-				{
-					AddOutlineNumbering(true, 0, 1, 1, string.Empty);
-				}
-				else if (dialog.AlphaNumbering)
-				{
-					AddOutlineNumbering(false, 0, 1, 1, string.Empty);
-				}
-
-				if (dialog.Indent || dialog.IndentTagged)
-				{
-					IndentContent(page,
-						dialog.Indent,
-						dialog.IndentTagged,
-						dialog.TagSymbol,
-						dialog.RemoveTags);
-				}
-
-				// if OK then something must have happened, so save it
-				await one.Update(page);
+				return;
 			}
-			finally
+
+			await using var one = new OneNote(out var page, out ns);
+			if (!page.IsValid)
 			{
-				commandIsActive = false;
+				return;
 			}
+
+			headings = page.GetHeadings(one, secondary: dialog.Secondary);
+			if (dialog.CleanupNumbering)
+			{
+				RemoveOutlineNumbering();
+			}
+
+			if (dialog.NumericNumbering)
+			{
+				AddOutlineNumbering(true, 0, 1, 1, string.Empty);
+			}
+			else if (dialog.AlphaNumbering)
+			{
+				AddOutlineNumbering(false, 0, 1, 1, string.Empty);
+			}
+
+			if (dialog.Indent || dialog.IndentTagged)
+			{
+				IndentContent(page,
+					dialog.Indent,
+					dialog.IndentTagged,
+					dialog.TagSymbol,
+					dialog.RemoveTags);
+			}
+
+			// if OK then something must have happened, so save it
+			await one.Update(page);
 		}
 
 

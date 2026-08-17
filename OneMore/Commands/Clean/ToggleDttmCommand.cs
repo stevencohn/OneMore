@@ -19,9 +19,6 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class ToggleDttmCommand : Command, ICliPageCommand
 	{
-		private static bool commandIsActive = false;
-
-
 		public ToggleDttmCommand()
 		{
 		}
@@ -60,20 +57,13 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			if (commandIsActive) { return; }
-			commandIsActive = true;
+			using var guard = EnterOnce();
+			if (guard is null) { return; }
 
-			try
+			using var dialog = new ToggleDttmDialog();
+			if (dialog.ShowDialog(owner) == DialogResult.OK)
 			{
-				using var dialog = new ToggleDttmDialog();
-				if (dialog.ShowDialog(owner) == DialogResult.OK)
-				{
-					await Toggle(dialog.PageOnly, dialog.ShowTimestamps);
-				}
-			}
-			finally
-			{
-				commandIsActive = false;
+				await Toggle(dialog.PageOnly, dialog.ShowTimestamps);
 			}
 		}
 

@@ -19,8 +19,6 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class SearchCommand : Command, ICliCommand
 	{
-		private static bool commandIsActive = false;
-
 		private SearchDialog.Commands command;
 		private List<string> pageIds;
 		private IEnumerable<CardModel> selectedCards;
@@ -65,54 +63,63 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			if (commandIsActive) { return; }
-			commandIsActive = true;
+			var guard = EnterOnce();
+			if (guard is null) { return; }
 
-			// Cleanup runs from the RunModeless close callback rather than a finally block
-			// here, because RunModeless only blocks until the dialog closes when the calling
-			// thread has no message loop yet (e.g. a plain ribbon click, dispatched through
-			// CommandFactory's Task.Run wrapper). When invoked with a message loop already
-			// running on this thread (e.g. Replay, which calls Execute directly), RunModeless
-			// just Show()s the dialog and returns immediately — disposing it right here would
-			// close it before the user ever sees it.
-			dialog = new SearchDialog();
-			dialog.RunModeless(async (sender, e) =>
+			try
 			{
-				try
+				// Cleanup runs from the RunModeless close callback rather than a finally
+				// block here, because RunModeless only blocks until the dialog closes when
+				// the calling thread has no message loop yet (e.g. a plain ribbon click,
+				// dispatched through CommandFactory's Task.Run wrapper). When invoked with a
+				// message loop already running on this thread (e.g. Replay, which calls
+				// Execute directly), RunModeless just Show()s the dialog and returns
+				// immediately — disposing it right here would close it before the user ever
+				// sees it.
+				dialog = new SearchDialog();
+				dialog.RunModeless(async (sender, e) =>
 				{
-					if (sender is SearchDialog d && d.DialogResult == DialogResult.OK)
+					try
 					{
-						command = d.Command;
-						query = d.Query;
-
-						if (command == SearchDialog.Commands.Index)
+						if (sender is SearchDialog d && d.DialogResult == DialogResult.OK)
 						{
-							selectedCards = d.SelectedCards;
+							command = d.Command;
+							query = d.Query;
+
+							if (command == SearchDialog.Commands.Index)
+							{
+								selectedCards = d.SelectedCards;
+							}
+							else
+							{
+								pageIds = d.SelectedPages;
+							}
+
+							var desc = command switch
+							{
+								SearchDialog.Commands.Copy => Resx.SearchQF_DescriptionCopy,
+								SearchDialog.Commands.Move => Resx.SearchQF_DescriptionMove,
+								_ => Resx.SearchQF_DescriptionIndex
+							};
+
+							await using var one = new OneNote();
+							one.SelectLocation(Resx.SearchQF_Title, desc, OneNote.Scope.Sections, Callback);
 						}
-						else
-						{
-							pageIds = d.SelectedPages;
-						}
-
-						var desc = command switch
-						{
-							SearchDialog.Commands.Copy => Resx.SearchQF_DescriptionCopy,
-							SearchDialog.Commands.Move => Resx.SearchQF_DescriptionMove,
-							_ => Resx.SearchQF_DescriptionIndex
-						};
-
-						await using var one = new OneNote();
-						one.SelectLocation(Resx.SearchQF_Title, desc, OneNote.Scope.Sections, Callback);
 					}
-				}
-				finally
-				{
-					commandIsActive = false;
-					dialog?.Dispose();
-					dialog = null;
-				}
-			},
-			20);
+					finally
+					{
+						guard.Dispose();
+						dialog?.Dispose();
+						dialog = null;
+					}
+				},
+				20);
+			}
+			catch
+			{
+				guard.Dispose();
+				throw;
+			}
 
 			// only reached immediately (dialog still open) when RunModeless didn't block;
 			// when it did block, the callback above already ran and cleared dialog

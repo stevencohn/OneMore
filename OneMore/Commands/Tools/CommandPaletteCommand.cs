@@ -16,8 +16,6 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class CommandPaletteCommand : Command
 	{
-		private static bool commandIsActive = false;
-
 		private List<CommandInfo> commands;
 		private List<CommandInfo> recent;
 
@@ -31,63 +29,54 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			if (commandIsActive) { return; }
-			commandIsActive = true;
+			using var guard = EnterOnce();
+			if (guard is null) { return; }
 
-			try
+			using var dialog = new CommandPaletteDialog();
+			dialog.RequestData += PopulateCommands;
+			PopulateCommands(dialog, null);
+
+			var result = dialog.ShowDialog(owner);
+			var index = dialog.Index;
+			var isRecent = dialog.Recent;
+
+			// the palette dialog itself is closed at this point; release the
+			// re-entry guard before invoking the chosen command, which may not
+			// return until ITS OWN dialog closes (e.g. SearchCommand/
+			// SearchTitleCommand when invoked with no message loop already
+			// running) - otherwise the palette can't be reopened until that
+			// command's dialog closes
+			guard.Dispose();
+
+			if (result == DialogResult.OK && index >= 0)
 			{
-				using var dialog = new CommandPaletteDialog();
-				dialog.RequestData += PopulateCommands;
-				PopulateCommands(dialog, null);
+				var command = isRecent
+					? recent[index]
+					: commands[index];
 
-				var result = dialog.ShowDialog(owner);
-				var index = dialog.Index;
-				var isRecent = dialog.Recent;
+				//logger.WriteLine($"invoking command[index:{index},recent:{isRecent}] 'method:{command.Method.Name}'");
+				await (Task)command.Method.Invoke(AddIn.Self, new object[] { null });
 
-				// the palette dialog itself is closed at this point; release the
-				// re-entry guard before invoking the chosen command, which may not
-				// return until ITS OWN dialog closes (e.g. SearchCommand/
-				// SearchTitleCommand when invoked with no message loop already
-				// running) - otherwise the palette can't be reopened until that
-				// command's dialog closes
-				commandIsActive = false;
+				// save if not IsCancelled...
 
-				if (result == DialogResult.OK && index >= 0)
+				var type = Type.GetType($"River.OneMoreAddIn.Commands.{command.Method.Name}");
+				if (type != null)
 				{
-					var command = isRecent
-						? recent[index]
-						: commands[index];
-
-					//logger.WriteLine($"invoking command[index:{index},recent:{isRecent}] 'method:{command.Method.Name}'");
-					await (Task)command.Method.Invoke(AddIn.Self, new object[] { null });
-
-					// save if not IsCancelled...
-
-					var type = Type.GetType($"River.OneMoreAddIn.Commands.{command.Method.Name}");
-					if (type != null)
+					var prop = type.GetProperty("IsCancelled");
+					if (prop != null)
 					{
-						var prop = type.GetProperty("IsCancelled");
-						if (prop != null)
+						if (prop.GetValue(Activator.CreateInstance(type)) is bool isCancelled &&
+							!isCancelled)
 						{
-							if (prop.GetValue(Activator.CreateInstance(type)) is bool isCancelled &&
-								!isCancelled)
-							{
-								new CommandProvider().SaveToMRU(command);
-							}
+							new CommandProvider().SaveToMRU(command);
 						}
 					}
 				}
+			}
 
-				// reset focus to OneNote window
-				await using var one = new OneNote();
-				Native.SwitchToThisWindow(one.WindowHandle, false);
-			}
-			finally
-			{
-				// redundant on the success path (already reset above); still needed
-				// to clear the guard if ShowDialog/setup itself throws before that
-				commandIsActive = false;
-			}
+			// reset focus to OneNote window
+			await using var one = new OneNote();
+			Native.SwitchToThisWindow(one.WindowHandle, false);
 		}
 
 

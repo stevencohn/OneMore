@@ -25,8 +25,6 @@ namespace River.OneMoreAddIn.Commands
 		private const double TopMargin = 86.0;
 		private const double OverlapMargin = 40.0;
 
-		private static bool commandIsActive = false;
-
 		private Page page;
 		private XNamespace ns;
 		private double topMargin;
@@ -40,56 +38,48 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			if (commandIsActive) { return; }
+			using var guard = EnterOnce();
+			if (guard is null) { return; }
 
-			try
+			await using var one = new OneNote(out page, out ns);
+
+			if (!page.Root.Elements(ns + "Outline").Any())
 			{
-				commandIsActive = true;
-
-				await using var one = new OneNote(out page, out ns);
-
-				if (!page.Root.Elements(ns + "Outline").Any())
-				{
-					ShowInfo(Resx.ArrangeContainersCommand_noContainers);
-					return;
-				}
-
-				var selected = page.BodyOutlines
-					.Where(e => e.Attribute("selected") is XAttribute a && (a.Value == "all" || a.Value == "partial"))
-					.ToList();
-
-				if (selected.Count > 1)
-				{
-					await AlignSelected(one, selected);
-					return;
-				}
-
-				using var dialog = new ArrangeContainersDialog();
-				if (dialog.ShowDialog(owner) != System.Windows.Forms.DialogResult.OK)
-				{
-					return;
-				}
-
-				FindTopMargin();
-
-				indent = LeftMargin + dialog.Indent;
-
-				var updated = dialog.Vertical
-					? ArrangeVertical(dialog.PageWidth)
-					: ArrangeFlow(dialog.Columns, dialog.PageWidth);
-
-				if (updated)
-				{
-					await one.Update(page);
-				}
-				else
-				{
-					ShowInfo(Resx.ArrangeContainersCommand_noContainers);
-				}
+				ShowInfo(Resx.ArrangeContainersCommand_noContainers);
+				return;
 			}
-			finally
+
+			var selected = page.BodyOutlines
+				.Where(e => e.Attribute("selected") is XAttribute a && (a.Value == "all" || a.Value == "partial"))
+				.ToList();
+
+			if (selected.Count > 1)
 			{
-				commandIsActive = false;
+				await AlignSelected(one, selected);
+				return;
+			}
+
+			using var dialog = new ArrangeContainersDialog();
+			if (dialog.ShowDialog(owner) != System.Windows.Forms.DialogResult.OK)
+			{
+				return;
+			}
+
+			FindTopMargin();
+
+			indent = LeftMargin + dialog.Indent;
+
+			var updated = dialog.Vertical
+				? ArrangeVertical(dialog.PageWidth)
+				: ArrangeFlow(dialog.Columns, dialog.PageWidth);
+
+			if (updated)
+			{
+				await one.Update(page);
+			}
+			else
+			{
+				ShowInfo(Resx.ArrangeContainersCommand_noContainers);
 			}
 		}
 

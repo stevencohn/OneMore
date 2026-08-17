@@ -42,8 +42,6 @@ namespace River.OneMoreAddIn.Commands
 		private const string ClientKey = @"SOFTWARE\WOW6432Node\Microsoft\EdgeUpdate\Clients";
 		private const string RuntimeId = "{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}";
 
-		private static bool commandIsActive = false;
-
 		private sealed class WebPageInfo
 		{
 			public string Content;
@@ -63,51 +61,44 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			if (commandIsActive) { return; }
-			commandIsActive = true;
+			using var guard = EnterOnce();
+			if (guard is null) { return; }
 
-			try
+			if (!HttpClientFactory.IsNetworkAvailable())
 			{
-				if (!HttpClientFactory.IsNetworkAvailable())
+				ShowInfo(Resx.NetwordConnectionUnavailable);
+				return;
+			}
+
+			var key = Registry.LocalMachine.OpenSubKey($"{ClientKey}\\{RuntimeId}");
+			if (key == null)
+			{
+				ShowError(Resx.ImportWebCommand_EdgeNotInstalled);
+				return;
+			}
+
+			using (var dialog = new ImportWebDialog())
+			{
+				if (dialog.ShowDialog(owner) != DialogResult.OK)
 				{
-					ShowInfo(Resx.NetwordConnectionUnavailable);
 					return;
 				}
 
-				var key = Registry.LocalMachine.OpenSubKey($"{ClientKey}\\{RuntimeId}");
-				if (key == null)
-				{
-					ShowError(Resx.ImportWebCommand_EdgeNotInstalled);
-					return;
-				}
-
-				using (var dialog = new ImportWebDialog())
-				{
-					if (dialog.ShowDialog(owner) != DialogResult.OK)
-					{
-						return;
-					}
-
-					address = dialog.Address;
-					target = dialog.Target;
-					importImages = dialog.ImportImages;
-				}
-
-				if (importImages)
-				{
-					ImportAsImages();
-				}
-				else
-				{
-					ImportAsContent();
-				}
-
-				await Task.Yield();
+				address = dialog.Address;
+				target = dialog.Target;
+				importImages = dialog.ImportImages;
 			}
-			finally
+
+			if (importImages)
 			{
-				commandIsActive = false;
+				ImportAsImages();
 			}
+			else
+			{
+				ImportAsContent();
+			}
+
+			await Task.Yield();
 		}
 
 

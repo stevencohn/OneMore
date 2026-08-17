@@ -18,8 +18,6 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class OpenFolderCommand : Command
 	{
-		private static bool commandIsActive = false;
-
 		public OpenFolderCommand()
 		{
 		}
@@ -27,83 +25,76 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			if (commandIsActive) { return; }
-			commandIsActive = true;
+			using var guard = EnterOnce();
+			if (guard is null) { return; }
 
-			try
+			using var dialog = new OpenFolderDialog();
+			var result = dialog.ShowDialog(owner);
+
+			if (result != System.Windows.Forms.DialogResult.OK)
 			{
-				using var dialog = new OpenFolderDialog();
-				var result = dialog.ShowDialog(owner);
+				return;
+			}
 
-				if (result != System.Windows.Forms.DialogResult.OK)
+			var path = dialog.FolderPath;
+			if (string.IsNullOrWhiteSpace(path) || !Directory.Exists(path))
+			{
+				return;
+			}
+
+			// no need to check if the folder is already open as a notebook; OneNote will
+			// handle that by navigating directly to the notebook for the user. This is
+			// also true for subfolders within that notebook.
+
+			using var one = new OneNote();
+			var notebookID = await one.OpenHierarchy(path);
+
+			if (notebookID is null)
+			{
+				logger.WriteLine("could not load notebookID");
+				ShowError(Resx.OpenFolderCommand_error);
+				return;
+			}
+
+			if (dialog.RemoveTimestamps)
+			{
+				var regex = new Regex(
+					@"^(.+?)(\.one)?\s+\(\w+\s+\d{1,4}([-.\/])\d{1,2}\3\d{2,4}\)$",
+					RegexOptions.Compiled | RegexOptions.CultureInvariant);
+
+				var hierarchy = await one.GetNotebook(notebookID, OneNote.Scope.Sections);
+
+				for (int attempt = 1;
+					attempt < 4 && (hierarchy is null || !hierarchy.HasElements);
+					attempt++)
 				{
-					return;
+					await Task.Delay(500 * attempt);
+					hierarchy = await one.GetNotebook(notebookID, OneNote.Scope.Sections);
 				}
 
-				var path = dialog.FolderPath;
-				if (string.IsNullOrWhiteSpace(path) || !Directory.Exists(path))
+				if (hierarchy is null || !hierarchy.HasElements)
 				{
-					return;
-				}
-
-				// no need to check if the folder is already open as a notebook; OneNote will
-				// handle that by navigating directly to the notebook for the user. This is
-				// also true for subfolders within that notebook.
-
-				using var one = new OneNote();
-				var notebookID = await one.OpenHierarchy(path);
-
-				if (notebookID is null)
-				{
-					logger.WriteLine("could not load notebookID");
+					logger.WriteLine("could not load hierarchy to clean section names");
 					ShowError(Resx.OpenFolderCommand_error);
 					return;
 				}
 
-				if (dialog.RemoveTimestamps)
+				var ns = hierarchy.GetNamespaceOfPrefix(OneNote.Prefix);
+
+				var count = 0;
+				var skipped = false;
+				CleanSectionNames(hierarchy, ns, regex, ref count, ref skipped);
+
+				if (skipped)
 				{
-					var regex = new Regex(
-						@"^(.+?)(\.one)?\s+\(\w+\s+\d{1,4}([-.\/])\d{1,2}\3\d{2,4}\)$",
-						RegexOptions.Compiled | RegexOptions.CultureInvariant);
-
-					var hierarchy = await one.GetNotebook(notebookID, OneNote.Scope.Sections);
-
-					for (int attempt = 1; 
-						attempt < 4 && (hierarchy is null || !hierarchy.HasElements); 
-						attempt++)
-					{
-						await Task.Delay(500 * attempt);
-						hierarchy = await one.GetNotebook(notebookID, OneNote.Scope.Sections);
-					}
-
-					if (hierarchy is null || !hierarchy.HasElements)
-					{
-						logger.WriteLine("could not load hierarchy to clean section names");
-						ShowError(Resx.OpenFolderCommand_error);
-						return;
-					}
-
-					var ns = hierarchy.GetNamespaceOfPrefix(OneNote.Prefix);
-
-					var count = 0;
-					var skipped = false;
-					CleanSectionNames(hierarchy, ns, regex, ref count, ref skipped);
-
-					if (skipped)
-					{
-						ShowInfo(Resx.OpenFolderCommand_duplicates);
-					}
-
-					if (count > 0)
-					{
-						logger.WriteLine($"edited {count} section names, updating hierarchy");
-						one.UpdateHierarchy(hierarchy);
-					}
+					ShowInfo(Resx.OpenFolderCommand_duplicates);
 				}
-			}
-			finally
-			{
-				commandIsActive = false;
+
+				if (count > 0)
+				{
+					logger.WriteLine($"edited {count} section names, updating hierarchy");
+					one.UpdateHierarchy(hierarchy);
+				}
 			}
 		}
 

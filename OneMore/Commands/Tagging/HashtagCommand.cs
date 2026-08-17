@@ -21,7 +21,6 @@ namespace River.OneMoreAddIn.Commands
 		private string query;
 
 		private static HashtagDialog dialog;
-		private static bool commandIsActive = false;
 		private static IDisposable pauseHandle;
 
 
@@ -34,8 +33,19 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			if (commandIsActive) { return; }
-			commandIsActive = true;
+			if (dialog != null)
+			{
+				// Single instance. Checked first, independent of the re-entry guard below:
+				// RunModeless can block synchronously for the dialog's entire lifetime when
+				// invoked with no message loop already running, so a guard held across that
+				// call would make every repeated invocation while the dialog is open bail
+				// out below instead of ever reaching this elevate.
+				dialog.Elevate();
+				return;
+			}
+
+			using var guard = EnterOnce();
+			if (guard is null) { return; }
 
 			try
 			{
@@ -72,6 +82,12 @@ namespace River.OneMoreAddIn.Commands
 				// dialog is open, so its DB reads and OneNote COM calls aren't starved
 				pauseHandle = HashtagServicePause.Hold();
 
+				// release the guard now, BEFORE calling RunModeless, since that call may not
+				// return until the dialog closes - dialog is already non-null by this point,
+				// so a repeated invocation from here on correctly reaches the elevate branch
+				// above instead of bailing out here
+				guard.Dispose();
+
 				dialog.RunModeless(async (sender, e) =>
 				{
 					var d = sender as HashtagDialog;
@@ -96,7 +112,9 @@ namespace River.OneMoreAddIn.Commands
 			}
 			finally
 			{
-				commandIsActive = false;
+				// redundant on the success path (already released above); still needed to
+				// clear the guard if something threw during setup, before that release ran
+				guard.Dispose();
 			}
 		}
 

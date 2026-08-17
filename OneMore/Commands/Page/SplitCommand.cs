@@ -36,7 +36,6 @@ namespace River.OneMoreAddIn.Commands
 
 		private const string LinkPattern = @"\<a\s*?href=""onenote\:#";
 		private const string IDPattern = @"section-id=(?<sid>{.*?}).*?page-id=(?<pid>{.*?})";
-		private static bool commandIsActive = false;
 
 		private Dictionary<string, string> hyperlinks;
 		private OneNote one;
@@ -51,23 +50,16 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			if (commandIsActive) { return; }
-			commandIsActive = true;
+			using var guard = EnterOnce();
+			if (guard is null) { return; }
 
-			try
+			using var dialog = new SplitDialog();
+			if (dialog.ShowDialog(owner) == DialogResult.OK)
 			{
-				using var dialog = new SplitDialog();
-				if (dialog.ShowDialog(owner) == DialogResult.OK)
+				await using (one = new OneNote(out page, out ns, OneNote.PageDetail.All))
 				{
-					await using (one = new OneNote(out page, out ns, OneNote.PageDetail.All))
-					{
-						await SplitPage(dialog.SplitByHeading, dialog.Tagged ? dialog.TagSymbol : -1);
-					}
+					await SplitPage(dialog.SplitByHeading, dialog.Tagged ? dialog.TagSymbol : -1);
 				}
-			}
-			finally
-			{
-				commandIsActive = false;
 			}
 		}
 

@@ -14,8 +14,6 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class EditTableThemesCommand : Command
 	{
-		private static bool commandIsActive = false;
-
 		public EditTableThemesCommand()
 		{
 		}
@@ -23,29 +21,22 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			if (commandIsActive) { return; }
-			commandIsActive = true;
+			using var guard = EnterOnce();
+			if (guard is null) { return; }
 
-			try
+			var provider = new TableThemeProvider();
+			var themes = provider.GetUserThemes();
+
+			using var dialog = new EditTableThemesDialog(themes);
+			if (dialog.ShowDialog(owner) == DialogResult.OK)
 			{
-				var provider = new TableThemeProvider();
-				var themes = provider.GetUserThemes();
-
-				using var dialog = new EditTableThemesDialog(themes);
-				if (dialog.ShowDialog(owner) == DialogResult.OK)
+				if (dialog.Modified)
 				{
-					if (dialog.Modified)
-					{
-						ribbon.Invalidate();
-					}
+					ribbon.Invalidate();
 				}
+			}
 
-				await Task.Yield();
-			}
-			finally
-			{
-				commandIsActive = false;
-			}
+			await Task.Yield();
 		}
 	}
 }

@@ -28,8 +28,6 @@ namespace River.OneMoreAddIn.Commands
 		private const string DailyCss = "font-family:Calibri;font-size:11.0pt";
 		private const string GhostCss = "font-family:Calibri;font-size:11.0pt;color:#BFBFBF";
 
-		private static bool commandIsActive = false;
-
 		private Page page;
 		private XNamespace ns;
 
@@ -48,47 +46,40 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			if (commandIsActive) { return; }
-			commandIsActive = true;
+			using var guard = EnterOnce();
+			if (guard is null) { return; }
 
-			try
+			using var dialog = new InsertCalendarDialog();
+			if (dialog.ShowDialog(owner) != DialogResult.OK)
 			{
-				using var dialog = new InsertCalendarDialog();
-				if (dialog.ShowDialog(owner) != DialogResult.OK)
-				{
-					return;
-				}
-
-				logger.WriteLine($"making calendar for {dialog.Month}/{dialog.Year}");
-
-				var days = MakeDayList(dialog.Year, dialog.Month, dialog.FirstDay);
-
-				var root = MakeCalendar(days, dialog.FirstDay, dialog.Large, dialog.HeaderShading);
-				var header = MakeHeader(dialog.Year, dialog.Month);
-
-				var editor = new PageEditor(page);
-
-				if (dialog.Indent)
-				{
-					header.Add(new XElement(ns + "OEChildren",
-							new XElement(ns + "OE",
-							root)
-						));
-
-					editor.AddNextParagraph(header);
-				}
-				else
-				{
-					editor.AddNextParagraph(root);
-					editor.AddNextParagraph(header);
-				}
-
-				await one.Update(page);
+				return;
 			}
-			finally
+
+			logger.WriteLine($"making calendar for {dialog.Month}/{dialog.Year}");
+
+			var days = MakeDayList(dialog.Year, dialog.Month, dialog.FirstDay);
+
+			var root = MakeCalendar(days, dialog.FirstDay, dialog.Large, dialog.HeaderShading);
+			var header = MakeHeader(dialog.Year, dialog.Month);
+
+			var editor = new PageEditor(page);
+
+			if (dialog.Indent)
 			{
-				commandIsActive = false;
+				header.Add(new XElement(ns + "OEChildren",
+						new XElement(ns + "OE",
+						root)
+					));
+
+				editor.AddNextParagraph(header);
 			}
+			else
+			{
+				editor.AddNextParagraph(root);
+				editor.AddNextParagraph(header);
+			}
+
+			await one.Update(page);
 		}
 
 

@@ -13,9 +13,6 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class FavoritesCommand : Command
 	{
-		private static bool commandIsActive = false;
-
-
 		public FavoritesCommand()
 		{
 			// do not write to MRU
@@ -25,59 +22,52 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			if (commandIsActive) { return; }
-			commandIsActive = true;
+			using var guard = EnterOnce();
+			if (guard is null) { return; }
 
-			try
+			var uri = args == null || args.Length == 0 ? null : (string)args[0];
+
+			if (string.IsNullOrWhiteSpace(uri))
 			{
-				var uri = args == null || args.Length == 0 ? null : (string)args[0];
-
-				if (string.IsNullOrWhiteSpace(uri))
-				{
-					using var dialog = new FavoritesDialog(ribbon);
-					if (dialog.ShowDialog(owner) == DialogResult.Cancel)
-					{
-						return;
-					}
-
-					if (dialog.Manage)
-					{
-						await factory.Run<ManageWorkspaceCommand>(WorkspaceTab.Favorites);
-						return;
-					}
-
-					uri = dialog.Uri;
-				}
-
-				if (string.IsNullOrWhiteSpace(uri))
+				using var dialog = new FavoritesDialog(ribbon);
+				if (dialog.ShowDialog(owner) == DialogResult.Cancel)
 				{
 					return;
 				}
 
-				var success = true;
-				try
+				if (dialog.Manage)
 				{
-					await using var one = new OneNote();
-					success = await one.NavigateTo(uri);
-				}
-				catch (Exception exc)
-				{
-					logger.WriteLine($"error navigating to {uri}", exc);
-					success = false;
+					await factory.Run<ManageWorkspaceCommand>(WorkspaceTab.Favorites);
+					return;
 				}
 
-				// reset focus to OneNote window
-				await using var onx = new OneNote();
-				Native.SwitchToThisWindow(onx.WindowHandle, false);
-
-				if (!success)
-				{
-					ShowError("Could not navigate at this time. Try again in a few seconds");
-				}
+				uri = dialog.Uri;
 			}
-			finally
+
+			if (string.IsNullOrWhiteSpace(uri))
 			{
-				commandIsActive = false;
+				return;
+			}
+
+			var success = true;
+			try
+			{
+				await using var one = new OneNote();
+				success = await one.NavigateTo(uri);
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"error navigating to {uri}", exc);
+				success = false;
+			}
+
+			// reset focus to OneNote window
+			await using var onx = new OneNote();
+			Native.SwitchToThisWindow(onx.WindowHandle, false);
+
+			if (!success)
+			{
+				ShowError("Could not navigate at this time. Try again in a few seconds");
 			}
 		}
 	}
