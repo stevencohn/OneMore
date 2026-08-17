@@ -25,7 +25,7 @@ namespace River.OneMoreAddIn.Commands
 		private List<string> pageIds;
 		private IEnumerable<CardModel> selectedCards;
 		private string query;
-		private SearchDialog dialog;
+		private static SearchDialog dialog;
 
 
 		public SearchCommand()

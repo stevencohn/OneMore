@@ -23,7 +23,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private IEnumerable<CardModel> selectedCards;
 		private string query;
-		private SearchTitleDialog dialog;
+		private static SearchTitleDialog dialog;
 
 
 		public SearchTitleCommand()
