@@ -262,6 +262,10 @@ namespace River.OneMoreAddIn
 
 					factory = new CommandFactory(logger, ribbon, trash);
 
+					// theme colors (JSON load + registry check) - pay this once here
+					// instead of on the first dialog the user happens to open
+					_ = UI.ThemeManager.Instance;
+
 					// command listener for Refresh links
 					new CommandService(factory).Startup();
 
