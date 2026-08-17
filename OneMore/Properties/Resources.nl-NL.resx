@@ -6026,6 +6026,10 @@ Zoekmachines verschijnen in het pagina Pagina contextmenu, klik met de rechtermu
     <value>Selecteer een locatie</value>
     <comment>QuickFiling title</comment>
   </data>
+  <data name="SearchResultsCardView_lastModified" xml:space="preserve">
+    <value>Laatst gewijzigd: {0}</value>
+    <comment>hover text</comment>
+  </data>
   <data name="SearchTitleCommand_indexTitle" xml:space="preserve">
     <value>Titelzoekresultaten</value>
     <comment>page title</comment>

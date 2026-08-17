@@ -61,6 +61,7 @@ namespace River.OneMoreAddIn.Commands
 		private Color hitFore;
 		private Color selectionFore;
 		private Color hoverFore;
+		private Color hintFore;
 		private Font titleFont;
 		private Font hitFont;
 		private Pen checkboxPen;
@@ -148,6 +149,7 @@ namespace River.OneMoreAddIn.Commands
 			hitFore          = manager.GetColor("HintText");
 			selectionFore    = manager.GetColor("HighlightText");
 			hoverFore        = manager.GetColor("HoverColor");
+			hintFore         = manager.GetColor("HintText");
 			BackColor         = manager.GetColor("AppWorkspace");
 			headerBackBrush   = new SolidBrush(BackColor);
 			checkboxPen       = new Pen(manager.GetColor("Highlight"));
@@ -361,6 +363,25 @@ namespace River.OneMoreAddIn.Commands
 
 				var titleRect = new Rectangle(titleTextX, y, titleW, TitleRowH);
 				TextRenderer.DrawText(g, card.Title, titleFont ?? Font, titleRect, fore, flags);
+
+				// Hover-only last-modified label, right-justified, drawn over the path text
+				// it overlaps so it takes visual priority while the mouse is over the row.
+				if (isHovered && card.Modified != DateTime.MinValue)
+				{
+					var modifiedText = string.Format(
+						Resx.SearchResultsCardView_lastModified, card.Modified.ToShortFriendlyString());
+
+					var modifiedSize = TextRenderer.MeasureText(
+						g, modifiedText, hitFont ?? Font, new Size(titleW, TitleRowH), flags);
+
+					var modifiedX = Math.Max(titleTextX, titleTextX + titleW - modifiedSize.Width);
+					var modifiedW = Math.Min(modifiedSize.Width, titleW);
+					var modifiedRect = new Rectangle(modifiedX, y, modifiedW, TitleRowH);
+
+					g.FillRectangle(cardBackBrush, modifiedRect);
+					TextRenderer.DrawText(g, modifiedText, hitFont ?? Font, modifiedRect, hintFore, flags);
+				}
+
 				y += TitleRowH;
 			}
 

@@ -6036,6 +6036,10 @@ ISO-code then comma then language name</comment>
     <value>場所の選択</value>
     <comment>QuickFiling title</comment>
   </data>
+  <data name="SearchResultsCardView_lastModified" xml:space="preserve">
+    <value>最終更新日: {0}</value>
+    <comment>hover text</comment>
+  </data>
   <data name="SearchTitleCommand_indexTitle" xml:space="preserve">
     <value>タイトル検索結果</value>
     <comment>page title</comment>

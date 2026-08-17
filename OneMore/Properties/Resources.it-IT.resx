@@ -6033,6 +6033,10 @@ I motori di ricerca verranno visualizzati nel menu contestuale della pagina, far
     <value>Seleziona Posizione</value>
     <comment>QuickFiling title</comment>
   </data>
+  <data name="SearchResultsCardView_lastModified" xml:space="preserve">
+    <value>Ultima modifica: {0}</value>
+    <comment>hover text</comment>
+  </data>
   <data name="SearchTitleCommand_indexTitle" xml:space="preserve">
     <value>Risultati della ricerca del titolo</value>
     <comment>page title</comment>

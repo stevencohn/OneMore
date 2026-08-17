@@ -6040,6 +6040,10 @@ ISO-code then comma then language name</comment>
     <value>选择位置</value>
     <comment>QuickFiling title</comment>
   </data>
+  <data name="SearchResultsCardView_lastModified" xml:space="preserve">
+    <value>最后修改时间：{0}</value>
+    <comment>hover text</comment>
+  </data>
   <data name="SearchTitleCommand_indexTitle" xml:space="preserve">
     <value>标题搜索结果</value>
     <comment>page title</comment>

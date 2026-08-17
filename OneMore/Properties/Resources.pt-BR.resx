@@ -6026,6 +6026,10 @@ Os mecanismos de pesquisa aparecerão no menu de contexto da página, clique com
     <value>Selecione a localização</value>
     <comment>QuickFiling title</comment>
   </data>
+  <data name="SearchResultsCardView_lastModified" xml:space="preserve">
+    <value>Última modificação: {0}</value>
+    <comment>hover text</comment>
+  </data>
   <data name="SearchTitleCommand_indexTitle" xml:space="preserve">
     <value>Resultados da pesquisa de título</value>
     <comment>page title</comment>

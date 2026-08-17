@@ -393,7 +393,8 @@ namespace River.OneMoreAddIn.Commands
 			PageId = match.PageId,
 			SectionColor = string.IsNullOrEmpty(match.Color)
 				? Color.Empty
-				: ColorHelper.FromHtml(match.Color)
+				: ColorHelper.FromHtml(match.Color),
+			Modified = match.Modified
 		};
 
 
