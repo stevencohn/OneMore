@@ -493,10 +493,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (hit.Value.HitIndex == -1 && card.PageId != null)
 			{
-				if (card.Hits.Count > 0)
-				{
-					SelectHit(hit.Value.CardIndex, 0);
-				}
+				SelectHit(hit.Value.CardIndex, StoredHit(hit.Value.CardIndex, 0));
 				CardActivated?.Invoke(this, new NavigateCardEventArgs(card.PageId));
 			}
 			else if (hit.Value.HitIndex >= 0)
