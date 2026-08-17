@@ -279,7 +279,7 @@ namespace River.OneMoreAddIn.Commands
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ControlLight;
-			this.ClientSize = new System.Drawing.Size(820, 566);
+			this.ClientSize = new System.Drawing.Size(900, 700);
 			this.Controls.Add(this.resultsView);
 			this.Controls.Add(this.resultsHeaderPanel);
 			this.Controls.Add(this.queryPanel);
