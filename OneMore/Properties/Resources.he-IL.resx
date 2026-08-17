@@ -3655,13 +3655,25 @@ ISO-code then comma then language name</comment>
     <value>מבנה XML בסיסי</value>
     <comment>radio</comment>
   </data>
+  <data name="RemoveDuplicatesDialog_basicRadioTip" xml:space="preserve">
+    <value>משווה רק את הטקסט הגלוי של כל עמוד, תוך התעלמות מהעיצוב</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="RemoveDuplicatesDialog_deepRadio.Text" xml:space="preserve">
     <value>XML עמוק עם השוואה בינארית (איטית)</value>
     <comment>radio</comment>
   </data>
+  <data name="RemoveDuplicatesDialog_deepRadioTip" xml:space="preserve">
+    <value>משווה XML מלא כולל תמונות מוטבעות ודיו; הכי מדויק אבל הכי איטי</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="RemoveDuplicatesDialog_depthBox.Text" xml:space="preserve">
     <value>עומק סריקה</value>
     <comment>group</comment>
+  </data>
+  <data name="RemoveDuplicatesDialog_fuzzyBox.Text" xml:space="preserve">
+    <value>זהה גם דפים דומים (לא זהים).</value>
+    <comment>checkbox</comment>
   </data>
   <data name="RemoveDuplicatesDialog_includeTitlesBox.Text" xml:space="preserve">
     <value>כלול כותרות עמודים בעת ההשוואה</value>
@@ -3671,11 +3683,27 @@ ISO-code then comma then language name</comment>
     <value>טקסט פשוט (מהיר)</value>
     <comment>radio</comment>
   </data>
+  <data name="RemoveDuplicatesDialog_simpleRadioTip" xml:space="preserve">
+    <value>משווה טקסט גלוי ומבנה XML של כל עמוד</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="RemoveDuplicatesNavigator_confirm1" xml:space="preserve">
     <value>האם אתה בטוח שברצונך למחוק את הדף שנבחר?</value>
   </data>
   <data name="RemoveDuplicatesNavigator_confirmAll" xml:space="preserve">
     <value>האם אתה בטוח שברצונך למחוק את {0} הדפים שנבחרו?</value>
+  </data>
+  <data name="RemoveDuplicatesNavigator_duplicatesOf" xml:space="preserve">
+    <value>כפילויות של {0}</value>
+    <comment>listview group title</comment>
+  </data>
+  <data name="RemoveDuplicatesNavigator_emptyPageTip" xml:space="preserve">
+    <value>מחק את הדף הריק הזה</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="RemoveDuplicatesNavigator_keepNewest" xml:space="preserve">
+    <value>שמור הכי חדש</value>
+    <comment>button</comment>
   </data>
   <data name="RemoveDuplicatesNavigator_pagesSimilarTo" xml:space="preserve">
     <value>דפים דומים ל-{0}</value>

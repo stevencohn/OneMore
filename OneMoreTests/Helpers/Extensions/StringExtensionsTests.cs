@@ -67,5 +67,42 @@ namespace River.OneMoreAddIn.Tests.Helpers.Extensions
 		{
 			Assert.AreEqual("r-d", "R&amp;D".ToSlug());
 		}
+
+
+		[TestMethod]
+		public void DistanceFrom_BothEmpty_ReturnsZero()
+		{
+			Assert.AreEqual(0, string.Empty.DistanceFrom(string.Empty));
+		}
+
+
+		[TestMethod]
+		public void DistanceFrom_OneEmpty_ReturnsLengthOfOther()
+		{
+			Assert.AreEqual(5, string.Empty.DistanceFrom("hello"));
+			Assert.AreEqual(5, "hello".DistanceFrom(string.Empty));
+		}
+
+
+		[TestMethod]
+		public void DistanceFrom_EqualStrings_ReturnsZero()
+		{
+			Assert.AreEqual(0, "hello".DistanceFrom("hello"));
+		}
+
+
+		[TestMethod]
+		public void DistanceFrom_SingleSubstitution_ReturnsOne()
+		{
+			Assert.AreEqual(1, "hello".DistanceFrom("hallo"));
+		}
+
+
+		[TestMethod]
+		public void DistanceFrom_SingleInsertOrDelete_ReturnsOne()
+		{
+			Assert.AreEqual(1, "hello".DistanceFrom("helloo"));
+			Assert.AreEqual(1, "hello".DistanceFrom("hell"));
+		}
 	}
 }

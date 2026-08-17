@@ -3654,11 +3654,23 @@ Verschoven</value>
   <data name="RemoveDuplicatesDialog_basicRadio.Text" xml:space="preserve">
     <value>Basis XML-structuur</value>
   </data>
+  <data name="RemoveDuplicatesDialog_basicRadioTip" xml:space="preserve">
+    <value>Vergelijkt alleen de zichtbare tekst van elke pagina, waarbij de opmaak wordt genegeerd</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="RemoveDuplicatesDialog_deepRadio.Text" xml:space="preserve">
     <value>Deep XML met binaire vergelijking (langzaam)</value>
   </data>
+  <data name="RemoveDuplicatesDialog_deepRadioTip" xml:space="preserve">
+    <value>Vergelijkt volledige XML inclusief ingebedde afbeeldingen en inkt; meest nauwkeurig maar langzaamst</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="RemoveDuplicatesDialog_depthBox.Text" xml:space="preserve">
     <value>Scandiepte</value>
+  </data>
+  <data name="RemoveDuplicatesDialog_fuzzyBox.Text" xml:space="preserve">
+    <value>Detecteer ook vergelijkbare (niet-identieke) pagina's</value>
+    <comment>checkbox</comment>
   </data>
   <data name="RemoveDuplicatesDialog_includeTitlesBox.Text" xml:space="preserve">
     <value>Paginatitels opnemen bij het vergelijken</value>
@@ -3667,11 +3679,27 @@ Verschoven</value>
   <data name="RemoveDuplicatesDialog_simpleRadio.Text" xml:space="preserve">
     <value>Eenvoudige tekst (snel)</value>
   </data>
+  <data name="RemoveDuplicatesDialog_simpleRadioTip" xml:space="preserve">
+    <value>Vergelijkt zichtbare tekst en XML-structuur van elke pagina</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="RemoveDuplicatesNavigator_confirm1" xml:space="preserve">
     <value>Weet u zeker dat u de geselecteerde pagina wilt verwijderen?</value>
   </data>
   <data name="RemoveDuplicatesNavigator_confirmAll" xml:space="preserve">
     <value>Weet u zeker dat u de geselecteerde pagina's {0} wilt verwijderen?</value>
+  </data>
+  <data name="RemoveDuplicatesNavigator_duplicatesOf" xml:space="preserve">
+    <value>Duplicaten van {0}</value>
+    <comment>listview group title</comment>
+  </data>
+  <data name="RemoveDuplicatesNavigator_emptyPageTip" xml:space="preserve">
+    <value>Verwijder deze lege pagina</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="RemoveDuplicatesNavigator_keepNewest" xml:space="preserve">
+    <value>Nieuwste behouden</value>
+    <comment>button</comment>
   </data>
   <data name="RemoveDuplicatesNavigator_pagesSimilarTo" xml:space="preserve">
     <value>Pagina's vergelijkbaar met {0}</value>

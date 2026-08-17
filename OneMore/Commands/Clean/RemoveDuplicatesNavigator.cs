@@ -18,11 +18,14 @@ namespace River.OneMoreAddIn.Commands
 	internal partial class RemoveDuplicatesNavigator : UI.MoreForm
 	{
 		private readonly OneNote one;
+		private readonly ToolTip tooltip;
 
 		public RemoveDuplicatesNavigator()
 			: base()
 		{
 			InitializeComponent();
+
+			tooltip = new ToolTip();
 
 			view.Columns.Add(new MoreColumnHeader(Resx.word_Page, 450) { AutoSizeItems = true });
 			view.Columns.Add(new MoreColumnHeader(Resx.word_Text, 150));
@@ -53,11 +56,18 @@ namespace River.OneMoreAddIn.Commands
 
 				if (group == null)
 				{
-					group = new ListViewGroup(node.GroupID, node.PageID == null
-						? node.Title
-						: String.Format(Resx.RemoveDuplicatesNavigator_pagesSimilarTo, node.Title)
-						);
+					var isEmptyGroup = node.PageID == null;
+					var hasSimilar = node.Siblings.Any(
+						s => s.MatchKind == RemoveDuplicatesCommand.MatchKind.Similar);
 
+					var header = isEmptyGroup
+						? node.Title
+						: String.Format(hasSimilar
+							? Resx.RemoveDuplicatesNavigator_pagesSimilarTo
+							: Resx.RemoveDuplicatesNavigator_duplicatesOf,
+							node.Title);
+
+					group = new ListViewGroup(node.GroupID, header);
 					view.Groups.Add(group);
 				}
 
@@ -71,7 +81,7 @@ namespace River.OneMoreAddIn.Commands
 
 					item.AddHostedSubItem(String.Empty);
 					item.AddHostedSubItem(String.Empty);
-					item.AddHostedSubItem(String.Empty);
+					item.AddHostedSubItem(MakeKeepNewestButton(node));
 					item.AddHostedSubItem(MakeButton(node));
 				}
 
@@ -87,6 +97,11 @@ namespace River.OneMoreAddIn.Commands
 					{
 						subitem = sibitem.AddHostedSubItem("-");
 					}
+					else if (sibling.MatchKind == RemoveDuplicatesCommand.MatchKind.Similar)
+					{
+						subitem = sibitem.AddHostedSubItem(
+							sibling.Similarity is double similarity ? $"{similarity:P0}" : "-");
+					}
 					else
 					{
 						subitem = sibitem.AddHostedSubItem(
@@ -94,7 +109,7 @@ namespace River.OneMoreAddIn.Commands
 					}
 					subitem.Alignment = ContentAlignment.MiddleCenter;
 
-					if (sibling.XmlHash == string.Empty)
+					if (sibling.XmlHash is null)
 					{
 						subitem = sibitem.AddHostedSubItem("-");
 					}
@@ -105,8 +120,15 @@ namespace River.OneMoreAddIn.Commands
 					}
 					subitem.Alignment = ContentAlignment.MiddleCenter;
 
-					sibitem.AddHostedSubItem(sibling.Distance.ToString());
-					sibitem.AddHostedSubItem(MakeButton(node));
+					sibitem.AddHostedSubItem(sibling.Distance?.ToString() ?? "-");
+
+					var button = MakeButton(node);
+					if (node.PageID == null)
+					{
+						sibitem.ForeColor = manager.GetColor("GrayText");
+						tooltip.SetToolTip(button, Resx.RemoveDuplicatesNavigator_emptyPageTip);
+					}
+					sibitem.AddHostedSubItem(button);
 				}
 			}
 
@@ -114,6 +136,40 @@ namespace River.OneMoreAddIn.Commands
 			view.EndUpdate();
 
 			one = new OneNote();
+		}
+
+
+		protected override void OnLoad(EventArgs e)
+		{
+			// set view colors *before* base.OnLoad: MoreForm.OnLoad walks hosted controls
+			// (e.g. MoreLinkLabel) and self-themes them from Parent.BackColor, so view's
+			// colors must already be final by the time that walk runs
+			view.BackColor = manager.GetColor("ListView");
+			view.ForeColor = manager.GetColor("WindowText");
+			view.HeaderBackColor = manager.GetColor("Control");
+			view.HeaderForeColor = manager.GetColor("ControlText");
+
+			// a subtle tint between the list background and the full accent Highlight color:
+			// distinct enough to read as "selected" without the full-saturation Highlight,
+			// paired with normal text color rather than the system's HighlightText (which can
+			// go white-on-near-white against a soft tint)
+			view.HighlightBackground = Blend(
+				manager.GetColor("ListView"), manager.GetColor("Highlight"), 0.35f);
+			view.HighlightForeground = manager.GetColor("WindowText");
+
+			BackColor = manager.GetColor("Control");
+			ForeColor = manager.GetColor("ControlText");
+
+			base.OnLoad(e);
+		}
+
+
+		private static Color Blend(Color from, Color to, float amount)
+		{
+			return Color.FromArgb(
+				(int)(from.R + ((to.R - from.R) * amount)),
+				(int)(from.G + ((to.G - from.G) * amount)),
+				(int)(from.B + ((to.B - from.B) * amount)));
 		}
 
 
@@ -149,15 +205,25 @@ namespace River.OneMoreAddIn.Commands
 
 		private Button MakeButton(RemoveDuplicatesCommand.HashNode node)
 		{
+			Image image = Resx.m_Delete;
+			if (manager.DarkMode)
+			{
+				using var original = image;
+				image = new ImageEditor { Style = ImageEditor.Stylization.Invert }.Apply(original);
+			}
+
 			var button = new Button
 			{
-				Image = Resx.m_Delete,
+				Image = image,
 				Padding = new Padding(0),
 				Margin = new Padding(0),
 				FlatStyle = FlatStyle.Flat,
 				Width = 40,
-				Height = 24
+				Height = 24,
+				BackColor = manager.GetColor("ButtonFace")
 			};
+
+			button.FlatAppearance.BorderColor = manager.GetColor("ButtonBorder");
 
 			button.MouseClick += DeletePages;
 
@@ -172,6 +238,70 @@ namespace River.OneMoreAddIn.Commands
 				view.SelectIf(host);
 			}
 
+			DeleteSelected();
+		}
+
+
+		private Button MakeKeepNewestButton(RemoveDuplicatesCommand.HashNode node)
+		{
+			var button = new Button
+			{
+				Text = Resx.RemoveDuplicatesNavigator_keepNewest,
+				TextAlign = ContentAlignment.MiddleCenter,
+				Padding = new Padding(0),
+				Margin = new Padding(0),
+				FlatStyle = FlatStyle.Flat,
+				Width = 140,
+				Height = 26,
+				BackColor = manager.GetColor("ButtonFace"),
+				ForeColor = manager.GetColor("ControlText")
+			};
+
+			button.FlatAppearance.BorderColor = manager.GetColor("ButtonBorder");
+
+			button.Click += KeepNewestOnly;
+
+			return button;
+		}
+
+
+		private void KeepNewestOnly(object sender, EventArgs e)
+		{
+			if (((Control)sender).Tag is not ListViewItem host)
+			{
+				return;
+			}
+
+			var group = host.Group;
+
+			var members = view.Items.Cast<ListViewItem>()
+				.Where(i => i.Group == group && i.Tag is RemoveDuplicatesCommand.HashNode)
+				.ToList();
+
+			if (members.Count < 2)
+			{
+				return;
+			}
+
+			var newest = members.OrderByDescending(
+				i => ((RemoveDuplicatesCommand.HashNode)i.Tag).LastModified).First();
+
+			view.SelectedItems.Clear();
+
+			foreach (var item in members.Where(i => i != newest))
+			{
+				item.Selected = true;
+			}
+
+			if (view.SelectedItems.Count > 0)
+			{
+				DeleteSelected();
+			}
+		}
+
+
+		private void DeleteSelected()
+		{
 			var msg = view.SelectedItems.Count == 1
 				? Resx.RemoveDuplicatesNavigator_confirm1
 				: String.Format(Resx.RemoveDuplicatesNavigator_confirmAll, view.SelectedItems.Count);

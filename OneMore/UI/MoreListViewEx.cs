@@ -174,6 +174,22 @@ namespace River.OneMoreAddIn.UI
 
 
 		/// <summary>
+		/// Gets or sets the background/foreground colors used to hand-paint the column header
+		/// row. Column headers are a separate native child window that ignores this control's
+		/// BackColor/ForeColor entirely, so there is no way to theme them other than taking
+		/// over their painting. Leave both null (the default) to let the OS draw the header
+		/// normally; set both to opt in.
+		/// </summary>
+		public Color? HeaderBackColor { get; set; }
+
+
+		/// <summary>
+		/// See <see cref="HeaderBackColor"/>.
+		/// </summary>
+		public Color? HeaderForeColor { get; set; }
+
+
+		/// <summary>
 		/// Gets or sets the foreground color of selected rows
 		/// </summary>
 		public Color HighlightForeground
@@ -552,6 +568,15 @@ namespace River.OneMoreAddIn.UI
 			{
 				BoundHostedControls();
 			}
+			// sent directly by the header (a separate native child window whose immediate
+			// parent is this ListView, so unlike WM_DRAWITEM above this is NOT reflected)
+			else if (m.Msg == Native.WM_NOTIFY)
+			{
+				if (HandleHeaderCustomDraw(ref m))
+				{
+					return;
+				}
+			}
 			else if (
 				m.Msg == Native.WM_HSCROLL ||
 				m.Msg == Native.WM_VSCROLL ||
@@ -561,6 +586,81 @@ namespace River.OneMoreAddIn.UI
 			}
 
 			base.WndProc(ref m);
+		}
+
+
+		/// <summary>
+		/// Hand-paints the column header when HeaderBackColor/HeaderForeColor are set, since
+		/// the header is a separate native child window (SysHeader32) that otherwise ignores
+		/// this control's BackColor/ForeColor and any OS theme applied to the ListView itself.
+		/// </summary>
+		private bool HandleHeaderCustomDraw(ref Message m)
+		{
+			if (!HeaderBackColor.HasValue || !HeaderForeColor.HasValue)
+			{
+				return false;
+			}
+
+			var hdr = (Native.NMHDR)m.GetLParam(typeof(Native.NMHDR));
+			if (hdr.code != Native.NM_CUSTOMDRAW)
+			{
+				return false;
+			}
+
+			var header = Native.SendMessage(Handle, Native.LVM_GETHEADER, IntPtr.Zero, IntPtr.Zero);
+			if (hdr.hwndFrom != header)
+			{
+				return false;
+			}
+
+			var nmcd = (Native.NMCUSTOMDRAW)m.GetLParam(typeof(Native.NMCUSTOMDRAW));
+
+			if (nmcd.dwDrawStage == Native.CDDS_PREPAINT)
+			{
+				m.Result = (IntPtr)Native.CDRF_NOTIFYITEMDRAW;
+				return true;
+			}
+
+			if (nmcd.dwDrawStage == Native.CDDS_ITEMPREPAINT)
+			{
+				PaintHeaderItem(nmcd);
+				m.Result = (IntPtr)Native.CDRF_SKIPDEFAULT;
+				return true;
+			}
+
+			m.Result = (IntPtr)Native.CDRF_DODEFAULT;
+			return true;
+		}
+
+
+		private void PaintHeaderItem(Native.NMCUSTOMDRAW nmcd)
+		{
+			var columnIndex = nmcd.dwItemSpec.ToInt32();
+			if (columnIndex < 0 || columnIndex >= Columns.Count)
+			{
+				return;
+			}
+
+			var rect = Rectangle.FromLTRB(nmcd.rc.Left, nmcd.rc.Top, nmcd.rc.Right, nmcd.rc.Bottom);
+
+			using var g = Graphics.FromHdc(nmcd.hdc);
+
+			using var backBrush = new SolidBrush(HeaderBackColor.Value);
+			g.FillRectangle(backBrush, rect);
+
+			var column = Columns[columnIndex];
+			var flags = TextFormatFlags.VerticalCenter | TextFormatFlags.SingleLine |
+				TextFormatFlags.NoPrefix | TextFormatFlags.EndEllipsis;
+
+			flags |= column.TextAlign switch
+			{
+				HorizontalAlignment.Center => TextFormatFlags.HorizontalCenter,
+				HorizontalAlignment.Right => TextFormatFlags.Right,
+				_ => TextFormatFlags.Left
+			};
+
+			rect.Inflate(-6, 0);
+			TextRenderer.DrawText(g, column.Text, Font, rect, HeaderForeColor.Value, flags);
 		}
 
 

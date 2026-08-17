@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.Models;
 	using System;
 	using System.Collections.Generic;
+	using System.Globalization;
 	using System.Linq;
 	using System.Security.Cryptography;
 	using System.Text;
@@ -33,9 +34,29 @@ namespace River.OneMoreAddIn.Commands
 			public string Xml;
 			public string Path;
 			public string Link;
-			public int Distance;
+			public int? Distance;
+			public DateTime LastModified;
+			public MatchKind MatchKind = MatchKind.Exact;
+			public double? Similarity;
+			public string PlainText;
 			public List<HashNode> Siblings = new();
 		}
+
+
+		internal enum MatchKind
+		{
+			Exact,
+			Similar
+		}
+
+		// combined XML char length guard for the O(n*m) DistanceFrom pass in Deep mode
+		private const int MaxDeepCompareLength = 500_000;
+
+		// minimum normalized similarity (0..1) for the optional near-duplicate pass
+		private const double SimilarityThreshold = 0.85;
+
+		// skip the O(k^2) near-duplicate pass entirely above this many unique pages
+		private const int MaxSimilarityCandidates = 2000;
 
 		private static bool commandIsActive = false;
 
@@ -47,6 +68,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private UI.SelectorScope scope;
 		private bool includeTitles;
+		private bool detectSimilar;
 		private IEnumerable<string> books;
 		private RemoveDuplicatesDialog.DepthKind depth;
 		private int scanCount;
@@ -84,6 +106,7 @@ namespace River.OneMoreAddIn.Commands
 					scope = dialog.Scope;
 					books = dialog.SelectedNotebooks;
 					includeTitles = dialog.IncludeTitles;
+					detectSimilar = dialog.DetectSimilar;
 				}
 
 				// analyze pages, scanning for duplicates and close matches...
@@ -169,7 +192,8 @@ namespace River.OneMoreAddIn.Commands
 					}
 
 					var sibling = hashes.Find(n =>
-						n.TextHash == node.TextHash || n.XmlHash == node.XmlHash);
+						n.TextHash == node.TextHash ||
+						(n.XmlHash is not null && n.XmlHash == node.XmlHash));
 
 					if (sibling != null)
 					{
@@ -185,7 +209,18 @@ namespace River.OneMoreAddIn.Commands
 
 						if (deep)
 						{
-							node.Distance = node.Xml.DistanceFrom(sibling.Xml);
+							if (node.XmlHash is not null && node.XmlHash == sibling.XmlHash)
+							{
+								// exact XML match, skip the O(n*m) pass entirely
+								node.Distance = 0;
+							}
+							else if (node.Xml is not null && sibling.Xml is not null &&
+								(node.Xml.Length + sibling.Xml.Length) <= MaxDeepCompareLength)
+							{
+								node.Distance = node.Xml.DistanceFrom(sibling.Xml);
+							}
+							// else leave Distance null; too large to compare, UI shows "-"
+
 							node.Xml = null;
 						}
 
@@ -204,11 +239,20 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
+			if (!token.IsCancellationRequested && detectSimilar && !deep)
+			{
+				FindSimilarMatches(dialog, token);
+			}
+
 			if (!token.IsCancellationRequested)
 			{
 				dialog.SetMessage("Pruning results...");
 				hashes.RemoveAll(n => !n.Siblings.Any());
-				hashes.ForEach(n => n.Xml = null);
+				hashes.ForEach(n =>
+				{
+					n.Xml = null;
+					n.PlainText = null;
+				});
 
 				if (empty.Siblings.Any())
 				{
@@ -217,6 +261,101 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return !token.IsCancellationRequested;
+		}
+
+
+		/// <summary>
+		/// OneMore Extension >> Second pass, opt-in: compares the plain text of pages that
+		/// did not already group by exact hash match, grouping pairs whose normalized edit
+		/// distance clears SimilarityThreshold as "similar" (non-identical) matches.
+		/// </summary>
+		private void FindSimilarMatches(UI.ProgressDialog dialog, CancellationToken token)
+		{
+			if (hashes.Count > MaxSimilarityCandidates)
+			{
+				logger.WriteLine(
+					$"skipping near-duplicate pass; {hashes.Count} candidates exceeds " +
+					$"the {MaxSimilarityCandidates} limit");
+				return;
+			}
+
+			dialog.SetMessage("Comparing for similar pages...");
+			dialog.SetMaximum(hashes.Count);
+
+			var matched = new HashSet<HashNode>();
+
+			for (var i = 0; i < hashes.Count; i++)
+			{
+				if (token.IsCancellationRequested)
+				{
+					break;
+				}
+
+				dialog.Increment();
+
+				var a = hashes[i];
+				if (matched.Contains(a) || string.IsNullOrEmpty(a.PlainText))
+				{
+					continue;
+				}
+
+				for (var j = i + 1; j < hashes.Count; j++)
+				{
+					var b = hashes[j];
+					if (matched.Contains(b) || string.IsNullOrEmpty(b.PlainText))
+					{
+						continue;
+					}
+
+					if (!PassesLengthPrefilter(
+						a.PlainText.Length, b.PlainText.Length, SimilarityThreshold))
+					{
+						continue;
+					}
+
+					var distance = a.PlainText.DistanceFrom(b.PlainText);
+					var similarity = NormalizedSimilarity(
+						distance, a.PlainText.Length, b.PlainText.Length);
+
+					if (similarity >= SimilarityThreshold)
+					{
+						b.MatchKind = MatchKind.Similar;
+						b.Distance = distance;
+						b.Similarity = similarity;
+						b.GroupID = a.GroupID;
+						a.Siblings.Add(b);
+						matched.Add(b);
+					}
+				}
+			}
+
+			hashes.RemoveAll(n => matched.Contains(n));
+		}
+
+
+		/// <summary>
+		/// OneMore Extension >> Cheap pre-filter to skip pairs that cannot possibly meet the
+		/// similarity threshold before running the more expensive edit-distance calculation.
+		/// </summary>
+		internal static bool PassesLengthPrefilter(int lenA, int lenB, double threshold)
+		{
+			if (lenA == 0 || lenB == 0)
+			{
+				return false;
+			}
+
+			return Math.Abs(lenA - lenB) <= (1.0 - threshold) * Math.Max(lenA, lenB);
+		}
+
+
+		/// <summary>
+		/// OneMore Extension >> Converts a Levenshtein edit distance into a 0..1 similarity
+		/// score, normalized against the longer of the two compared strings.
+		/// </summary>
+		internal static double NormalizedSimilarity(int distance, int lenA, int lenB)
+		{
+			var maxLen = Math.Max(lenA, lenB);
+			return maxLen == 0 ? 1.0 : 1.0 - ((double)distance / maxLen);
 		}
 
 
@@ -280,6 +419,12 @@ namespace River.OneMoreAddIn.Commands
 				Title = page.Title
 			};
 
+			var modified = page.Root.Attribute("lastModifiedTime")?.Value;
+
+			node.LastModified = string.IsNullOrEmpty(modified)
+				? DateTime.MinValue
+				: DateTime.Parse(modified, CultureInfo.InvariantCulture);
+
 			// EditedByAttributes and the page ID
 			page.Root.DescendantsAndSelf().Attributes().Where(a =>
 				a.Name.LocalName == "ID"
@@ -331,6 +476,8 @@ namespace River.OneMoreAddIn.Commands
 			node.TextHash = plain.Length == 0
 				? string.Empty
 				: Convert.ToBase64String(hasher.ComputeHash(Encoding.Default.GetBytes(plain)));
+
+			node.PlainText = plain;
 
 			return node;
 		}

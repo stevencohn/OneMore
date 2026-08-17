@@ -3654,11 +3654,23 @@ Odroczony</value>
   <data name="RemoveDuplicatesDialog_basicRadio.Text" xml:space="preserve">
     <value>Podstawowa struktura XML</value>
   </data>
+  <data name="RemoveDuplicatesDialog_basicRadioTip" xml:space="preserve">
+    <value>Porównuje tylko widoczny tekst każdej strony, ignorując formatowanie</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="RemoveDuplicatesDialog_deepRadio.Text" xml:space="preserve">
     <value>Głęboki XML z porównaniem binarnym (wolne)</value>
   </data>
+  <data name="RemoveDuplicatesDialog_deepRadioTip" xml:space="preserve">
+    <value>Porównuje pełny kod XML, w tym osadzone obrazy i atrament; najdokładniejszy, ale najwolniejszy</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="RemoveDuplicatesDialog_depthBox.Text" xml:space="preserve">
     <value>Głębokość skanowania</value>
+  </data>
+  <data name="RemoveDuplicatesDialog_fuzzyBox.Text" xml:space="preserve">
+    <value>Wykrywaj także podobne (nieidentyczne) strony</value>
+    <comment>checkbox</comment>
   </data>
   <data name="RemoveDuplicatesDialog_includeTitlesBox.Text" xml:space="preserve">
     <value>Uwzględnij tytuły stron podczas porównywania</value>
@@ -3667,11 +3679,27 @@ Odroczony</value>
   <data name="RemoveDuplicatesDialog_simpleRadio.Text" xml:space="preserve">
     <value>Prosty tekst (szybko)</value>
   </data>
+  <data name="RemoveDuplicatesDialog_simpleRadioTip" xml:space="preserve">
+    <value>Porównuje widoczny tekst i strukturę XML każdej strony</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="RemoveDuplicatesNavigator_confirm1" xml:space="preserve">
     <value>Czy na pewno chcesz usunąć wybraną stronę?</value>
   </data>
   <data name="RemoveDuplicatesNavigator_confirmAll" xml:space="preserve">
     <value>Czy na pewno chcesz usunąć wybrane strony {0}?</value>
+  </data>
+  <data name="RemoveDuplicatesNavigator_duplicatesOf" xml:space="preserve">
+    <value>Duplikaty {0}</value>
+    <comment>listview group title</comment>
+  </data>
+  <data name="RemoveDuplicatesNavigator_emptyPageTip" xml:space="preserve">
+    <value>Usuń tę pustą stronę</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="RemoveDuplicatesNavigator_keepNewest" xml:space="preserve">
+    <value>Zachowaj najnowsze</value>
+    <comment>button</comment>
   </data>
   <data name="RemoveDuplicatesNavigator_pagesSimilarTo" xml:space="preserve">
     <value>Strony podobne do {0}</value>

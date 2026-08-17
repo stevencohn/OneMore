@@ -8760,7 +8760,25 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("RemoveDuplicatesDialog_deepRadio.Text", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Compares only the visible text of each page, ignoring formatting.
+        /// </summary>
+        internal static string RemoveDuplicatesDialog_basicRadioTip {
+            get {
+                return ResourceManager.GetString("RemoveDuplicatesDialog_basicRadioTip", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Compares full XML including embedded images and ink; most accurate but slowest.
+        /// </summary>
+        internal static string RemoveDuplicatesDialog_deepRadioTip {
+            get {
+                return ResourceManager.GetString("RemoveDuplicatesDialog_deepRadioTip", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Scanning Depth.
         /// </summary>
@@ -8769,7 +8787,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("RemoveDuplicatesDialog_depthBox.Text", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Also detect similar (non-identical) pages.
+        /// </summary>
+        internal static string RemoveDuplicatesDialog_fuzzyBox_Text {
+            get {
+                return ResourceManager.GetString("RemoveDuplicatesDialog_fuzzyBox.Text", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Include page titles when comparing.
         /// </summary>
@@ -8778,7 +8805,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("RemoveDuplicatesDialog_includeTitlesBox.Text", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Simple text (quick).
         /// </summary>
@@ -8787,7 +8814,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("RemoveDuplicatesDialog_simpleRadio.Text", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Compares visible text and XML structure of each page.
+        /// </summary>
+        internal static string RemoveDuplicatesDialog_simpleRadioTip {
+            get {
+                return ResourceManager.GetString("RemoveDuplicatesDialog_simpleRadioTip", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Remove Duplicate Pages.
         /// </summary>
@@ -8796,7 +8832,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("RemoveDuplicatesDialog.Text", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to delete the selected page?.
         /// </summary>
@@ -8805,7 +8841,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("RemoveDuplicatesNavigator_confirm1", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to delete the {0} selected pages?.
         /// </summary>
@@ -8814,7 +8850,34 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("RemoveDuplicatesNavigator_confirmAll", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Duplicates of {0}.
+        /// </summary>
+        internal static string RemoveDuplicatesNavigator_duplicatesOf {
+            get {
+                return ResourceManager.GetString("RemoveDuplicatesNavigator_duplicatesOf", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Delete this empty page.
+        /// </summary>
+        internal static string RemoveDuplicatesNavigator_emptyPageTip {
+            get {
+                return ResourceManager.GetString("RemoveDuplicatesNavigator_emptyPageTip", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Keep Newest.
+        /// </summary>
+        internal static string RemoveDuplicatesNavigator_keepNewest {
+            get {
+                return ResourceManager.GetString("RemoveDuplicatesNavigator_keepNewest", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Pages similar to {0}.
         /// </summary>

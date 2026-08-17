@@ -28,16 +28,19 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RemoveDuplicatesDialog));
 			this.scopeGroupBox = new River.OneMoreAddIn.UI.MoreGroupBox();
 			this.scopeSelector = new River.OneMoreAddIn.UI.ScopeSelector();
 			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.depthBox = new River.OneMoreAddIn.UI.MoreGroupBox();
+			this.fuzzyBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.includeTitlesBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.deepRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.basicRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.simpleRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
+			this.tooltip = new System.Windows.Forms.ToolTip(this.components);
 			this.scopeGroupBox.SuspendLayout();
 			this.depthBox.SuspendLayout();
 			this.SuspendLayout();
@@ -48,7 +51,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.scopeGroupBox.Controls.Add(this.scopeSelector);
-			this.scopeGroupBox.Location = new System.Drawing.Point(18, 219);
+			this.scopeGroupBox.Location = new System.Drawing.Point(18, 249);
 			this.scopeGroupBox.Margin = new System.Windows.Forms.Padding(3, 12, 3, 3);
 			this.scopeGroupBox.Name = "scopeGroupBox";
 			this.scopeGroupBox.Padding = new System.Windows.Forms.Padding(20, 15, 3, 3);
@@ -78,7 +81,7 @@
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
-			this.okButton.Location = new System.Drawing.Point(379, 577);
+			this.okButton.Location = new System.Drawing.Point(379, 607);
 			this.okButton.Name = "okButton";
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(100, 38);
@@ -96,7 +99,7 @@
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
-			this.cancelButton.Location = new System.Drawing.Point(485, 577);
+			this.cancelButton.Location = new System.Drawing.Point(485, 607);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
@@ -108,7 +111,8 @@
 			this.cancelButton.UseVisualStyleBackColor = true;
 			// 
 			// depthBox
-			// 
+			//
+			this.depthBox.Controls.Add(this.fuzzyBox);
 			this.depthBox.Controls.Add(this.includeTitlesBox);
 			this.depthBox.Controls.Add(this.deepRadio);
 			this.depthBox.Controls.Add(this.basicRadio);
@@ -117,20 +121,36 @@
 			this.depthBox.Name = "depthBox";
 			this.depthBox.Padding = new System.Windows.Forms.Padding(3, 15, 3, 3);
 			this.depthBox.ShowOnlyTopEdge = true;
-			this.depthBox.Size = new System.Drawing.Size(567, 191);
+			this.depthBox.Size = new System.Drawing.Size(567, 221);
 			this.depthBox.TabIndex = 8;
 			this.depthBox.TabStop = false;
 			this.depthBox.Text = "Scanning Depth";
 			this.depthBox.ThemedBorder = null;
 			this.depthBox.ThemedFore = null;
-			// 
+			//
+			// fuzzyBox
+			//
+			this.fuzzyBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.fuzzyBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.fuzzyBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.fuzzyBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.fuzzyBox.Location = new System.Drawing.Point(20, 148);
+			this.fuzzyBox.Name = "fuzzyBox";
+			this.fuzzyBox.Size = new System.Drawing.Size(360, 25);
+			this.fuzzyBox.StylizeImage = false;
+			this.fuzzyBox.TabIndex = 4;
+			this.fuzzyBox.Text = "Also detect similar (non-identical) pages";
+			this.fuzzyBox.ThemedBack = null;
+			this.fuzzyBox.ThemedFore = null;
+			this.fuzzyBox.UseVisualStyleBackColor = true;
+			//
 			// includeTitlesBox
-			// 
+			//
 			this.includeTitlesBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.includeTitlesBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.includeTitlesBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.includeTitlesBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.includeTitlesBox.Location = new System.Drawing.Point(20, 148);
+			this.includeTitlesBox.Location = new System.Drawing.Point(20, 178);
 			this.includeTitlesBox.Name = "includeTitlesBox";
 			this.includeTitlesBox.Size = new System.Drawing.Size(293, 25);
 			this.includeTitlesBox.StylizeImage = false;
@@ -139,7 +159,7 @@
 			this.includeTitlesBox.ThemedBack = null;
 			this.includeTitlesBox.ThemedFore = null;
 			this.includeTitlesBox.UseVisualStyleBackColor = true;
-			// 
+			//
 			// deepRadio
 			// 
 			this.deepRadio.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -179,7 +199,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(598, 627);
+			this.ClientSize = new System.Drawing.Size(598, 657);
 			this.Controls.Add(this.depthBox);
 			this.Controls.Add(this.okButton);
 			this.Controls.Add(this.cancelButton);
@@ -188,7 +208,7 @@
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
-			this.MinimumSize = new System.Drawing.Size(500, 500);
+			this.MinimumSize = new System.Drawing.Size(500, 530);
 			this.Name = "RemoveDuplicatesDialog";
 			this.Padding = new System.Windows.Forms.Padding(15, 10, 10, 0);
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
@@ -210,5 +230,7 @@
 		private UI.MoreRadioButton basicRadio;
 		private UI.MoreRadioButton simpleRadio;
 		private UI.MoreCheckBox includeTitlesBox;
+		private UI.MoreCheckBox fuzzyBox;
+		private System.Windows.Forms.ToolTip tooltip;
 	}
 }
