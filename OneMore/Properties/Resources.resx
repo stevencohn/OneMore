@@ -6085,6 +6085,10 @@ Search engines will appear in the page context menu, right-click.</value>
     <value>Select Location</value>
     <comment>QuickFiling title</comment>
   </data>
+  <data name="SearchResultsCardView_lastModified" xml:space="preserve">
+    <value>Last modified: {0}</value>
+    <comment>hover text</comment>
+  </data>
   <data name="SearchTitleCommand_indexTitle" xml:space="preserve">
     <value>Title Search Results</value>
     <comment>page title</comment>

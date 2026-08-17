@@ -14202,7 +14202,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("SearchQF_Title", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Last modified: {0}.
+        /// </summary>
+        internal static string SearchResultsCardView_lastModified {
+            get {
+                return ResourceManager.GetString("SearchResultsCardView_lastModified", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Title Search Results.
         /// </summary>

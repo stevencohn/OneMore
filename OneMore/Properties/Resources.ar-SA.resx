@@ -6037,6 +6037,10 @@ ISO-code then comma then language name</comment>
     <value>اختر موقعا</value>
     <comment>QuickFiling title</comment>
   </data>
+  <data name="SearchResultsCardView_lastModified" xml:space="preserve">
+    <value>آخر تعديل: {0}</value>
+    <comment>hover text</comment>
+  </data>
   <data name="SearchTitleCommand_indexTitle" xml:space="preserve">
     <value>نتائج البحث عن العنوان</value>
     <comment>page title</comment>

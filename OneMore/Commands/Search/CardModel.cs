@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
 
@@ -17,6 +18,7 @@ namespace River.OneMoreAddIn.Commands
 		public bool IsChecked { get; set; }
 		public bool IsHeader { get; set; }       // true for a non-navigable group header row
 		public bool IsPlainText { get; set; }    // true to suppress hyperlink hover/cursor styling
+		public DateTime Modified { get; set; }   // DateTime.MinValue when unknown
 
 		// layout cache — computed by SearchResultsCardView.EnsureLayout
 		internal int Y;
