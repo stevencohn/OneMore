@@ -3665,11 +3665,23 @@ ISO-code then comma then language name</comment>
   <data name="RemoveDuplicatesDialog_basicRadio.Text" xml:space="preserve">
     <value>بنية XML الأساسية</value>
   </data>
+  <data name="RemoveDuplicatesDialog_basicRadioTip" xml:space="preserve">
+    <value>يقارن فقط النص المرئي لكل صفحة، ويتجاهل التنسيق</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="RemoveDuplicatesDialog_deepRadio.Text" xml:space="preserve">
     <value>XML العميق مع مقارنة ثنائية (بطيئة)</value>
   </data>
+  <data name="RemoveDuplicatesDialog_deepRadioTip" xml:space="preserve">
+    <value>يقارن XML الكامل بما في ذلك الصور والحبر المضمن؛ الأكثر دقة ولكن الأبطأ</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="RemoveDuplicatesDialog_depthBox.Text" xml:space="preserve">
     <value>عمق المسح</value>
+  </data>
+  <data name="RemoveDuplicatesDialog_fuzzyBox.Text" xml:space="preserve">
+    <value>اكتشف أيضًا الصفحات المشابهة (غير المتطابقة).</value>
+    <comment>checkbox</comment>
   </data>
   <data name="RemoveDuplicatesDialog_includeTitlesBox.Text" xml:space="preserve">
     <value>تضمين عناوين الصفحات عند المقارنة</value>
@@ -3678,11 +3690,27 @@ ISO-code then comma then language name</comment>
   <data name="RemoveDuplicatesDialog_simpleRadio.Text" xml:space="preserve">
     <value>نص بسيط (سريع)</value>
   </data>
+  <data name="RemoveDuplicatesDialog_simpleRadioTip" xml:space="preserve">
+    <value>يقارن النص المرئي وبنية XML لكل صفحة</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="RemoveDuplicatesNavigator_confirm1" xml:space="preserve">
     <value>هل أنت متأكد من أنك تريد حذف الصفحة المحددة؟</value>
   </data>
   <data name="RemoveDuplicatesNavigator_confirmAll" xml:space="preserve">
     <value>هل أنت متأكد من أنك تريد حذف الصفحات المحددة {0}؟</value>
+  </data>
+  <data name="RemoveDuplicatesNavigator_duplicatesOf" xml:space="preserve">
+    <value>نسخ مكررة من {0}</value>
+    <comment>listview group title</comment>
+  </data>
+  <data name="RemoveDuplicatesNavigator_emptyPageTip" xml:space="preserve">
+    <value>احذف هذه الصفحة الفارغة</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="RemoveDuplicatesNavigator_keepNewest" xml:space="preserve">
+    <value>احتفظ بالأحدث</value>
+    <comment>button</comment>
   </data>
   <data name="RemoveDuplicatesNavigator_pagesSimilarTo" xml:space="preserve">
     <value>صفحات مشابهة لـ {0}</value>

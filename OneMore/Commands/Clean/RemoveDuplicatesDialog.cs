@@ -34,11 +34,25 @@ namespace River.OneMoreAddIn.Commands
 					"basicRadio",
 					"deepRadio",
 					"includeTitlesBox",
+					"fuzzyBox",
 					"scopeGroupBox=word_Scope",
 					"okButton=word_OK",
 					"cancelButton=word_Cancel"
 				});
 			}
+
+			tooltip.SetToolTip(simpleRadio, Resx.RemoveDuplicatesDialog_simpleRadioTip);
+			tooltip.SetToolTip(basicRadio, Resx.RemoveDuplicatesDialog_basicRadioTip);
+			tooltip.SetToolTip(deepRadio, Resx.RemoveDuplicatesDialog_deepRadioTip);
+
+			deepRadio.CheckedChanged += (s, e) =>
+			{
+				fuzzyBox.Enabled = !deepRadio.Checked;
+				if (deepRadio.Checked)
+				{
+					fuzzyBox.Checked = false;
+				}
+			};
 		}
 
 
@@ -49,6 +63,9 @@ namespace River.OneMoreAddIn.Commands
 
 
 		public bool IncludeTitles => includeTitlesBox.Checked;
+
+
+		public bool DetectSimilar => fuzzyBox.Checked;
 
 
 		public SelectorScope Scope => scopeSelector.Scope;

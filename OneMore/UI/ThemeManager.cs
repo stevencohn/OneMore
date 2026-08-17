@@ -96,12 +96,48 @@ namespace River.OneMoreAddIn.UI
 		private const int DWMWA_USE_IMMERSIVE_DARK_MODE = 20;
 		private const int DWMWA_MICA_EFFECT = 1029;
 
+		private static bool appModePreferred;
+
 		[DllImport("dwmapi.dll", PreserveSig = true)]
 		private static extern int DwmSetWindowAttribute(
 			IntPtr hwnd, int attr, ref bool attrValue, int attrSize);
 
 		[DllImport("uxtheme.dll", CharSet = CharSet.Unicode)]
 		public static extern int SetWindowTheme(IntPtr hWnd, String pszSubAppName, String pszSubIdList);
+
+		// undocumented, ordinal-only exports (stable since Windows 10 1809) that opt a window
+		// into dark comctl32 chrome (list view headers, group banners, etc.); without these,
+		// SetWindowTheme(..., "DarkMode_Explorer", ...) alone only partially dark-themes native
+		// controls, leaving things like ListView column/group headers rendered in light colors
+		[DllImport("uxtheme.dll", EntryPoint = "#135")]
+		private static extern int SetPreferredAppMode(int preferredAppMode);
+
+		[DllImport("uxtheme.dll", EntryPoint = "#133")]
+		private static extern bool AllowDarkModeForWindow(IntPtr hWnd, bool allow);
+
+		/// <summary>
+		/// Best-effort opt-in to native dark comctl32 rendering. These are unsupported ordinal
+		/// exports that can vary or be missing across Windows builds, so failures are swallowed
+		/// and theming falls back to whatever SetWindowTheme alone achieves.
+		/// </summary>
+		private static void TryAllowDarkModeForWindow(IntPtr hwnd, bool allow)
+		{
+			try
+			{
+				if (!appModePreferred)
+				{
+					// 1 = AllowDark
+					SetPreferredAppMode(1);
+					appModePreferred = true;
+				}
+
+				AllowDarkModeForWindow(hwnd, allow);
+			}
+			catch
+			{
+				// ordinal not available on this Windows build; ignore
+			}
+		}
 		#endregion Native
 
 
@@ -201,8 +237,30 @@ namespace River.OneMoreAddIn.UI
 
 			bool trueValue = DarkMode;
 
-			// DarkMode_Explorer sets radios, checkboxes, scrollbars to dark mode Explorer 
-			SetWindowTheme(control.Handle, "DarkMode_Explorer", null);
+			TryAllowDarkModeForWindow(control.Handle, trueValue);
+
+			if (control is ListView)
+			{
+				// "ItemsView" is the sub-app theme comctl32 itself uses for Explorer-style
+				// list views (rows, group banners); "DarkMode_Explorer" alone only covers
+				// simpler controls (radios, checkboxes, scrollbars) and leaves list headers
+				// and group banners rendered with light-mode colors/text
+				SetWindowTheme(control.Handle, "ItemsView", null);
+
+				// the column header is a separate native child window (SysHeader32) that
+				// needs the same explicit opt-in to pick up dark colors
+				var header = Native.SendMessage(control.Handle, Native.LVM_GETHEADER, IntPtr.Zero, IntPtr.Zero);
+				if (header != IntPtr.Zero)
+				{
+					TryAllowDarkModeForWindow(header, trueValue);
+					SetWindowTheme(header, "ItemsView", null);
+				}
+			}
+			else
+			{
+				// DarkMode_Explorer sets radios, checkboxes, scrollbars to dark mode Explorer
+				SetWindowTheme(control.Handle, "DarkMode_Explorer", null);
+			}
 
 			DwmSetWindowAttribute(control.Handle,
 				DWMWA_USE_IMMERSIVE_DARK_MODE, ref trueValue, Marshal.SizeOf(typeof(bool)));

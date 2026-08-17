@@ -3658,13 +3658,25 @@ ISO-code then comma then language name</comment>
     <value>基本 XML 構造</value>
     <comment>radio</comment>
   </data>
+  <data name="RemoveDuplicatesDialog_basicRadioTip" xml:space="preserve">
+    <value>書式設定を無視して、各ページの表示テキストのみを比較します。</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="RemoveDuplicatesDialog_deepRadio.Text" xml:space="preserve">
     <value>バイナリ比較による深い XML（遅い）</value>
     <comment>radio</comment>
   </data>
+  <data name="RemoveDuplicatesDialog_deepRadioTip" xml:space="preserve">
+    <value>埋め込み画像とインクを含む完全な XML を比較します。 最も正確だが最も遅い</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="RemoveDuplicatesDialog_depthBox.Text" xml:space="preserve">
     <value>スキャン深度</value>
     <comment>group</comment>
+  </data>
+  <data name="RemoveDuplicatesDialog_fuzzyBox.Text" xml:space="preserve">
+    <value>類似した（同一ではない）ページも検出します</value>
+    <comment>checkbox</comment>
   </data>
   <data name="RemoveDuplicatesDialog_includeTitlesBox.Text" xml:space="preserve">
     <value>比較時にページタイトルを含める</value>
@@ -3674,11 +3686,27 @@ ISO-code then comma then language name</comment>
     <value>シンプルなテキスト（速い）</value>
     <comment>radio</comment>
   </data>
+  <data name="RemoveDuplicatesDialog_simpleRadioTip" xml:space="preserve">
+    <value>各ページの表示テキストと XML 構造を比較します。</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="RemoveDuplicatesNavigator_confirm1" xml:space="preserve">
     <value>選択されたページを削除してもよろしいですか？</value>
   </data>
   <data name="RemoveDuplicatesNavigator_confirmAll" xml:space="preserve">
     <value>選択された {0} ページを削除してもよろしいですか？</value>
+  </data>
+  <data name="RemoveDuplicatesNavigator_duplicatesOf" xml:space="preserve">
+    <value>{0} の重複</value>
+    <comment>listview group title</comment>
+  </data>
+  <data name="RemoveDuplicatesNavigator_emptyPageTip" xml:space="preserve">
+    <value>この空のページを削除します</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="RemoveDuplicatesNavigator_keepNewest" xml:space="preserve">
+    <value>最新の状態を保つ</value>
+    <comment>button</comment>
   </data>
   <data name="RemoveDuplicatesNavigator_pagesSimilarTo" xml:space="preserve">
     <value>{0} に似たページ</value>

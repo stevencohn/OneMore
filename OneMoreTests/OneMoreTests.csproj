@@ -65,6 +65,7 @@
     <Compile Include="Commands\Clean\ClearBackgroundCommandTests.cs" />
     <Compile Include="Commands\Images\DiagramCommandTests.cs" />
     <Compile Include="Commands\Clean\RemoveAuthorsCommandTests.cs" />
+    <Compile Include="Commands\Clean\RemoveDuplicatesCommandTests.cs" />
     <Compile Include="Commands\Edit\AlterSizeCommandTests.cs" />
     <Compile Include="Commands\Edit\ColorizeCommandTests.cs" />
     <Compile Include="Commands\File\ArchivistTests.cs" />

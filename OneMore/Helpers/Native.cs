@@ -19,8 +19,43 @@ namespace River.OneMoreAddIn
 		public const UInt32 LVM_FIRST = 0x1000;
 		public const UInt32 LVM_SETBKCOLOR = (LVM_FIRST + 1);
 		public const UInt32 LVM_SCROLL = (LVM_FIRST + 20);
+		public const UInt32 LVM_GETHEADER = (LVM_FIRST + 31);
 		public const UInt32 LVM_SETTEXTCOLOR = (LVM_FIRST + 36);    // 0x1024
 		public const UInt32 LVM_SETTEXTBKCOLOR = (LVM_FIRST + 38);  // 0x1026
+
+		public const int WM_NOTIFY = 0x004E;
+		public const int NM_CUSTOMDRAW = -12;
+		public const int CDDS_PREPAINT = 0x00000001;
+		public const int CDDS_ITEMPREPAINT = 0x00010001;
+		public const int CDRF_DODEFAULT = 0x00000000;
+		public const int CDRF_SKIPDEFAULT = 0x00000004;
+		public const int CDRF_NOTIFYITEMDRAW = 0x00000020;
+
+		[StructLayout(LayoutKind.Sequential)]
+		public struct NMHDR
+		{
+			public IntPtr hwndFrom;
+			public IntPtr idFrom;
+			public int code;
+		}
+
+		[StructLayout(LayoutKind.Sequential)]
+		public struct RECT
+		{
+			public int Left, Top, Right, Bottom;
+		}
+
+		[StructLayout(LayoutKind.Sequential)]
+		public struct NMCUSTOMDRAW
+		{
+			public NMHDR hdr;
+			public int dwDrawStage;
+			public IntPtr hdc;
+			public RECT rc;
+			public IntPtr dwItemSpec;
+			public int uItemState;
+			public IntPtr lItemlParam;
+		}
 
 		public const int LVS_OWNERDRAWFIXED = 0x0400;
 
@@ -415,6 +450,10 @@ namespace River.OneMoreAddIn
 
 		[DllImport("user32.dll")]
 		public static extern bool SendMessage(IntPtr hWnd, UInt32 m, int wParam, int lParam);
+
+
+		[DllImport("user32.dll")]
+		public static extern IntPtr SendMessage(IntPtr hWnd, UInt32 m, IntPtr wParam, IntPtr lParam);
 
 
 		// https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-registerhotkey
