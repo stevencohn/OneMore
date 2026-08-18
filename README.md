@@ -11,6 +11,7 @@ OneMore is an add-in for OneNote with simple and powerful features that make One
 
 # Highlights
 - Quickly access all OneMore commands from the almighty [Command Palette](https://onemoreaddin.com/the-basics/Basics.htm)!
+- Automate OneMore commands from the command-line using [the OneMore CLI Runner](https://onemoreaddin.com/commands/CLI%20Commands.htm); over 40 commands now available
 - Type and search for [inline #hashtags](https://onemoreaddin.com/commands/Search%20and%20Tag%20Commands.htm)
 - Use the [Navigator window](https://onemoreaddin.com/the-basics/Navigator.htm) to keep track of visited pages, a personalized reading list, and navigate the headings of the current page.
 - Integrating with the [ribbon bar](https://onemoreaddin.com/the-basics/Basics.htm), extends <a href="https://onemoreaddin.com/context-menus/Context%20Menu%20Extensions.htm">context menus</a>, and provides customized <a href="https://onemoreaddin.com/the-basics/OneNote%20Keyboard%20Shortcuts.htm">keyboard shortcuts</a>
@@ -30,7 +31,7 @@ OneMore is an add-in for OneNote with simple and powerful features that make One
 | ![screenshot](OneMore/Properties/Images/Screenshot.png) | ![Calendar](OneMore/Properties/Images/Calendar.png) |
 _Click an image to enlarge_
 
-## 💁 Features - Over 160 commands and growing!
+## 💁 Features - Over 240 commands and growing!
 *Want more from OneMore? OneMore has more...*
 
 See the 📓 **[OneMore Wiki](https://onemoreaddin.com/)** for a full user guide, setup instructions,
