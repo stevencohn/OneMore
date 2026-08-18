@@ -271,8 +271,11 @@ jobs:
         shell: pwsh
         run: |
           $isBeta = '${{ inputs.build_type }}' -eq 'beta'
-          $assets = Get-ChildItem "installers/OneMore_*_Setup*.msi", "installers/OneMore_*_Setup*.exe" -ErrorAction SilentlyContinue |
-            Select-Object -ExpandProperty FullName
+          # @(...) forces an array even when only one file matches (e.g. beta builds, which
+          # produce a single MSI) — without it, Select-Object -ExpandProperty returns a bare
+          # string, and $assets[0] would index its first *character* instead of the element
+          $assets = @(Get-ChildItem "installers/OneMore_*_Setup*.msi", "installers/OneMore_*_Setup*.exe" -ErrorAction SilentlyContinue |
+            Select-Object -ExpandProperty FullName)
           if (-not $assets) { throw "No installer assets found in installers/" }
 
           $version = (Get-Item $assets[0]).BaseName -replace '^OneMore_(.+)_Setup\w+$', '$1'
