@@ -21,6 +21,22 @@ the plain " Beta" tag with no number.
 Clean all projects in the solution, removing all bin and obj directories.
 No build is performed. This is a standalone command that executes and exits.
 
+.PARAMETER CompileOnly
+Compiles the solution for the specified architecture and stops, without building the
+installer kit. Used by CI to insert a code-signing step between compiling assemblies
+and packaging them into the MSI. This is a standalone command that executes and exits.
+
+.PARAMETER BuildMsi
+Builds only the MSI for the specified architecture, reusing whatever is already compiled
+in bin, and stops before building the Burn bundle or moving anything to Downloads. Used by
+CI to insert a code-signing step between building the MSI and (for ARM64) embedding it in
+the bundle. This is a standalone command that executes and exits.
+
+.PARAMETER FinishKit
+Resumes after an MSI has already been built (see -BuildMsi), building the Burn bundle for
+ARM64 and moving the final installer(s) to Downloads. This is a standalone command that
+executes and exits.
+
 .PARAMETER DetailedLog
 Enable verbose logging for MSBuild. This is useful for debugging build issues.
 
@@ -76,7 +92,10 @@ param (
 	[switch] $Main,
 	[switch] $Stepped,
 	[switch] $Test,
-	[switch] $DetailedLog
+	[switch] $DetailedLog,
+	[switch] $CompileOnly,
+	[switch] $BuildMsi,
+	[switch] $FinishKit
 	)
 
 Begin
@@ -376,6 +395,21 @@ Begin
 	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 	# Kit...
 
+	function CompileOnly
+	{
+		# ARM64: bundle is ARM64 but OneMore binaries and MSI are x64 (for ARM64EC Office)
+		# ArmNative: fully native ARM64; solutionPlatform stays ARM64
+		$solutionPlatform = if ($Architecture -eq 'ARM64') { 'x64' } elseif ($Architecture -eq 'ArmNative') { 'ARM64' } else { $Architecture }
+
+		CleanSolution
+		RestoreSolution
+
+		if (BuildSolution $solutionPlatform)
+		{
+			ReportArchitectures
+		}
+	}
+
 	function Build
 	{
 		param($arc)
@@ -477,15 +511,14 @@ Begin
 		Write-Host "... $name`: $arc" -ForegroundColor DarkGray
 	}
 
-	function BuildKit
+	function BuildMsi
 	{
-		Write-Host "`n... building $Architecture kit" -ForegroundColor Cyan
+		Write-Host "`n... building $Architecture MSI" -ForegroundColor Cyan
 		Write-Host
 
 		# ARM64: MSI is x64 (for ARM64EC Office); bundle is native ARM64.
 		# ArmNative: MSI and bundle are both native ARM64.
-		$msiArch    = if ($Architecture -eq 'ARM64') { 'x64' } elseif ($Architecture -eq 'ArmNative') { 'ARM64' } else { $Architecture }
-		$bundleArch = if ($Architecture -eq 'ARM64' -or $Architecture -eq 'ArmNative') { 'ARM64' } else { $Architecture }
+		$msiArch = if ($Architecture -eq 'ARM64') { 'x64' } elseif ($Architecture -eq 'ArmNative') { 'ARM64' } else { $Architecture }
 
 		# Read product version from the built DLL
 		$dllPath = '.\OneMore\bin\Debug\River.OneMoreAddIn.dll'
@@ -506,7 +539,7 @@ Begin
 		# the numeric $ver above always stays plain major.minor.build for WiX/MSI
 		$betaTag = if ($Beta -and $BetaNumber -gt 0) { " (Beta $BetaNumber)" } else { '' }
 
-		Write-Host "... building $Architecture kit for v$ver$betaTag" -ForegroundColor Yellow
+		Write-Host "... building $Architecture MSI for v$ver$betaTag" -ForegroundColor Yellow
 
 		# Locate MSBuild from the VS installation found by FindVisualStudio
 		$vsRoot = Split-Path -Parent (Split-Path -Parent $script:ideroot)
@@ -543,77 +576,7 @@ Begin
 				$msi = Get-ChildItem "bin\$msiArch\Debug\OneMore_*.msi" | Select-Object -First 1
 				if ($msi)
 				{
-					$bundleExe = $null
-					if  ($Architecture -eq 'ARM64')
-					{
-						# only burn the bundle for ARM64...
-						# this could change in the future to solve permission issues writing to TEMP!
-						# see https://github.com/stevencohn/OneMore/issues/2124
-
-						# Build Burn bundle (.exe) while the MSI is still in its output location;
-						# Bundle.wxs resolves the MSI via a relative path from OneMoreBundle/.
-
-						Push-Location ..\OneMoreBundle
-						try
-						{
-							$bundleCmd = "& '$msbuild' OneMoreBundle.wixproj" +
-								" /Restore" +
-								" /p:Platform=$bundleArch" +
-								" /p:Configuration=Debug" +
-								" /p:ProductVersion=$ver" +
-								" /p:BetaTag=`"$betaTag`""
-
-							# ARM64: signal Bundle.wxs to reference the x64 MSI instead of ARM64
-							if ($Architecture -eq 'ARM64')
-							{
-								$bundleCmd += " /p:MixedBundle=true"
-							}
-
-							$bundleCmd += " /nologo /m"
-							Write-Host $bundleCmd -ForegroundColor DarkGray
-							Invoke-Expression $bundleCmd
-							if ($LASTEXITCODE -eq 0)
-							{
-								$bundleExe = Get-ChildItem "bin\$bundleArch\Debug\OneMore_*.exe" | Select-Object -First 1
-							}
-						}
-						finally
-						{
-							Pop-Location
-						}
-					}
-					else
-					{
-						# ARM64: MSI is x64 content embedded in the ARM64 bundle; don't distribute
-						# the MSI separately (the bundle EXE is the distributable for this variant).
-
-						$dest = "$home\Downloads\OneMore_${ver}_Setup${Architecture}.msi"
-						Move-Item $msi $dest -Force -Confirm:$false
-						Write-Host "... $Architecture MSI moved to $dest" -ForegroundColor DarkYellow
-
-						if (Get-Command checksum -ErrorAction SilentlyContinue)
-						{
-							$sum = (checksum -t sha256 $dest)
-							Write-Host "... $Architecture = $sum" -ForegroundColor DarkYellow
-							$script:checksums += "$Architecture = $sum"
-						}
-					}
-
-					# move bundle to Downloads; use $Architecture in filename to distinguish
-					# SetupArmNative.exe (pure ARM64) from SetupARM64.exe (mixed ARM64+x64)
-					if ($bundleExe)
-					{
-						$exeDest = "$home\Downloads\OneMore_${ver}_Setup${Architecture}.exe"
-						Move-Item $bundleExe $exeDest -Force -Confirm:$false
-						Write-Host "... $Architecture bundle moved to $exeDest" -ForegroundColor DarkYellow
-
-						if (Get-Command checksum -ErrorAction SilentlyContinue)
-						{
-							$sum = (checksum -t sha256 $exeDest)
-							Write-Host "... $Architecture bundle = $sum" -ForegroundColor DarkYellow
-							$script:checksums += "$Architecture bundle = $sum"
-						}
-					}
+					Write-Host "... $Architecture MSI built: $($msi.FullName)" -ForegroundColor DarkYellow
 				}
 			}
 		}
@@ -621,6 +584,132 @@ Begin
 		{
 			Pop-Location
 		}
+	}
+
+	function FinishKit
+	{
+		Write-Host "`n... finishing $Architecture kit" -ForegroundColor Cyan
+		Write-Host
+
+		# ARM64: MSI is x64 (for ARM64EC Office); bundle is native ARM64.
+		# ArmNative: MSI and bundle are both native ARM64.
+		$msiArch    = if ($Architecture -eq 'ARM64') { 'x64' } elseif ($Architecture -eq 'ArmNative') { 'ARM64' } else { $Architecture }
+		$bundleArch = if ($Architecture -eq 'ARM64' -or $Architecture -eq 'ArmNative') { 'ARM64' } else { $Architecture }
+
+		# Read product version from the built DLL
+		$dllPath = '.\OneMore\bin\Debug\River.OneMoreAddIn.dll'
+		if (-not (Test-Path $dllPath))
+		{
+			Write-Host "... $dllPath not found; run a solution build first" -ForegroundColor Red
+			return
+		}
+		$ver = (Get-Item $dllPath).VersionInfo.FileVersion
+		if ($ver -match '^(\d+\.\d+\.\d+)\.\d+$') { $ver = $matches[1] }
+		$script:productVersion = $ver
+
+		$betaTag = if ($Beta -and $BetaNumber -gt 0) { " (Beta $BetaNumber)" } else { '' }
+
+		# Locate MSBuild from the VS installation found by FindVisualStudio
+		$vsRoot = Split-Path -Parent (Split-Path -Parent $script:ideroot)
+		$msbuild = Join-Path $vsRoot 'MSBuild\Current\Bin\MSBuild.exe'
+		if (-not (Test-Path $msbuild))
+		{
+			Write-Host "... MSBuild not found at $msbuild; ensure Visual Studio is installed" -ForegroundColor Red
+			return
+		}
+
+		Push-Location OneMoreSetup
+		try
+		{
+			$msi = Get-ChildItem "bin\$msiArch\Debug\OneMore_*.msi" | Select-Object -First 1
+			if (-not $msi)
+			{
+				Write-Host "... no MSI found in OneMoreSetup\bin\$msiArch\Debug; run -BuildMsi first" -ForegroundColor Red
+				return
+			}
+
+			$bundleExe = $null
+			if  ($Architecture -eq 'ARM64')
+			{
+				# only burn the bundle for ARM64...
+				# this could change in the future to solve permission issues writing to TEMP!
+				# see https://github.com/stevencohn/OneMore/issues/2124
+
+				# Build Burn bundle (.exe) while the MSI is still in its output location;
+				# Bundle.wxs resolves the MSI via a relative path from OneMoreBundle/.
+
+				Push-Location ..\OneMoreBundle
+				try
+				{
+					$bundleCmd = "& '$msbuild' OneMoreBundle.wixproj" +
+						" /Restore" +
+						" /p:Platform=$bundleArch" +
+						" /p:Configuration=Debug" +
+						" /p:ProductVersion=$ver" +
+						" /p:BetaTag=`"$betaTag`""
+
+					# ARM64: signal Bundle.wxs to reference the x64 MSI instead of ARM64
+					if ($Architecture -eq 'ARM64')
+					{
+						$bundleCmd += " /p:MixedBundle=true"
+					}
+
+					$bundleCmd += " /nologo /m"
+					Write-Host $bundleCmd -ForegroundColor DarkGray
+					Invoke-Expression $bundleCmd
+					if ($LASTEXITCODE -eq 0)
+					{
+						$bundleExe = Get-ChildItem "bin\$bundleArch\Debug\OneMore_*.exe" | Select-Object -First 1
+					}
+				}
+				finally
+				{
+					Pop-Location
+				}
+			}
+			else
+			{
+				# ARM64: MSI is x64 content embedded in the ARM64 bundle; don't distribute
+				# the MSI separately (the bundle EXE is the distributable for this variant).
+
+				$dest = "$home\Downloads\OneMore_${ver}_Setup${Architecture}.msi"
+				Move-Item $msi $dest -Force -Confirm:$false
+				Write-Host "... $Architecture MSI moved to $dest" -ForegroundColor DarkYellow
+
+				if (Get-Command checksum -ErrorAction SilentlyContinue)
+				{
+					$sum = (checksum -t sha256 $dest)
+					Write-Host "... $Architecture = $sum" -ForegroundColor DarkYellow
+					$script:checksums += "$Architecture = $sum"
+				}
+			}
+
+			# move bundle to Downloads; use $Architecture in filename to distinguish
+			# SetupArmNative.exe (pure ARM64) from SetupARM64.exe (mixed ARM64+x64)
+			if ($bundleExe)
+			{
+				$exeDest = "$home\Downloads\OneMore_${ver}_Setup${Architecture}.exe"
+				Move-Item $bundleExe $exeDest -Force -Confirm:$false
+				Write-Host "... $Architecture bundle moved to $exeDest" -ForegroundColor DarkYellow
+
+				if (Get-Command checksum -ErrorAction SilentlyContinue)
+				{
+					$sum = (checksum -t sha256 $exeDest)
+					Write-Host "... $Architecture bundle = $sum" -ForegroundColor DarkYellow
+					$script:checksums += "$Architecture bundle = $sum"
+				}
+			}
+		}
+		finally
+		{
+			Pop-Location
+		}
+	}
+
+	function BuildKit
+	{
+		BuildMsi
+		FinishKit
 	}
 
 	function ReportChecksums
@@ -660,6 +749,12 @@ Process
 		if ($Clean) { CleanSolution; return }
 
 		if ($Fast) { BuildFast; return }
+
+		if ($CompileOnly) { CompileOnly; return }
+
+		if ($BuildMsi) { BuildMsi; return }
+
+		if ($FinishKit) { FinishKit; return }
 
 		if ($Kit) { BuildKit; return }
 
