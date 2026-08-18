@@ -42,16 +42,26 @@ namespace River.OneMoreAddIn.Settings
 
 		public bool Add(string name, string value)
 		{
-			if (properties.ContainsKey(name))
+			if (properties.TryGetValue(name, out var existing))
 			{
-				if ((string)properties[name] != value)
+				if (existing is string current)
 				{
-					properties[name] = value;
-					IsModified = true;
-					return true;
+					if (current != value)
+					{
+						properties[name] = value;
+						IsModified = true;
+						return true;
+					}
+
+					return false;
 				}
 
-				return false;
+				// existing entry was misclassified as an XElement on load; this happens
+				// for values that were previously saved as an empty string, indistinguishable
+				// on load from an empty complex XElement. Replace with the correct string value
+				properties[name] = value;
+				IsModified = true;
+				return true;
 			}
 
 			properties.Add(name, value);
