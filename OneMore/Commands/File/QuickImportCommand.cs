@@ -4,11 +4,13 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Cli;
 	using River.OneMoreAddIn.Settings;
 	using River.OneMoreAddIn.UI;
 	using System;
 	using System.IO;
 	using System.Linq;
+	using System.Threading;
 	using System.Threading.Tasks;
 	using Resx = Properties.Resources;
 
@@ -18,12 +20,24 @@ namespace River.OneMoreAddIn.Commands
 	/// section, using the folder/section set on the Quick Import group of the File Import
 	/// settings sheet. Presents no UI of its own beyond warning/result message boxes.
 	/// </summary>
-	internal class QuickImportCommand : Command
+	internal class QuickImportCommand : Command, ICliCommand
 	{
 		private static readonly string[] KnownExtensions =
 		{
 			".docx", ".doc", ".pptx", ".ppt", ".pdf", ".md", ".one", ".txt", ".xml"
 		};
+
+
+		#region CLI Implementation
+
+		public string CommandName => "QuickImport";
+
+		public string Description =>
+			"Import files from the preconfigured quick-import folder into the preconfigured section";
+
+		public CliParameterDefinition DefineParameters() => new();
+
+		#endregion CLI Implementation
 
 
 		public override async Task Execute(params object[] args)
@@ -34,13 +48,13 @@ namespace River.OneMoreAddIn.Commands
 
 			if (string.IsNullOrWhiteSpace(folder) || string.IsNullOrWhiteSpace(sectionId))
 			{
-				MoreMessageBox.ShowWarning(owner, Resx.QuickImportCommand_SettingsNotSet);
+				Warn(Resx.QuickImportCommand_SettingsNotSet);
 				return;
 			}
 
 			if (!Directory.Exists(folder))
 			{
-				MoreMessageBox.ShowWarning(owner, Resx.QuickImportCommand_InvalidPath);
+				Warn(Resx.QuickImportCommand_InvalidPath);
 				return;
 			}
 
@@ -49,7 +63,7 @@ namespace River.OneMoreAddIn.Commands
 				var info = await one.GetSectionInfo(sectionId);
 				if (info == null)
 				{
-					MoreMessageBox.ShowWarning(owner, Resx.QuickImportCommand_SectionNotFound);
+					Warn(Resx.QuickImportCommand_SectionNotFound);
 					return;
 				}
 			}
@@ -60,7 +74,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (files.Length == 0)
 			{
-				MoreMessageBox.ShowWarning(owner, Resx.QuickImportCommand_NoFilesFound);
+				Warn(Resx.QuickImportCommand_NoFilesFound);
 				return;
 			}
 
@@ -73,6 +87,35 @@ namespace River.OneMoreAddIn.Commands
 			var good = 0;
 			var failed = 0;
 
+			if (runningFromCli)
+			{
+				foreach (var file in files)
+				{
+					if (Cancellation.IsCancellationRequested)
+					{
+						break;
+					}
+
+					logger.WriteLine($"importing {Path.GetFileName(file)}");
+					await ReportProgress($"importing {Path.GetFileName(file)}");
+
+					if (await ImportOneFile(importer, file, sectionId, Cancellation))
+					{
+						good++;
+						MoveImportedFile(file, importedFolder);
+					}
+					else
+					{
+						failed++;
+					}
+				}
+
+				CliOutput = string.Format(
+					Resx.QuickImportCommand_ResultFormat, good, files.Length, failed);
+
+				return;
+			}
+
 			var timeout = 10 + (files.Length * 5);
 
 			importer.RunWithProgress(timeout, folder, async (token) =>
@@ -84,26 +127,9 @@ namespace River.OneMoreAddIn.Commands
 						break;
 					}
 
-					var succeeded = Path.GetExtension(file).ToLowerInvariant() switch
-					{
-						".doc" or ".docx" =>
-							await importer.ImportWordFile(file, false, token, sectionId),
-						".ppt" or ".pptx" =>
-							await importer.ImportPowerPointFile(file, false, false, token, sectionId),
-						".pdf" =>
-							await importer.ImportPdfFile(file, false, token, sectionId),
-						".md" =>
-							await importer.ImportMarkdownFile(file, token, sectionId),
-						".txt" =>
-							await importer.ImportTextFile(file, token, sectionId),
-						".xml" =>
-							await importer.ImportXml(file, sectionId),
-						".one" =>
-							await importer.ImportOneNote(file, sectionId),
-						_ => false
-					};
+					logger.WriteLine($"importing {Path.GetFileName(file)}");
 
-					if (succeeded)
+					if (await ImportOneFile(importer, file, sectionId, token))
 					{
 						good++;
 						MoveImportedFile(file, importedFolder);
@@ -119,6 +145,42 @@ namespace River.OneMoreAddIn.Commands
 
 			ShowInfo(string.Format(
 				Resx.QuickImportCommand_ResultFormat, good, files.Length, failed));
+		}
+
+
+		private void Warn(string message)
+		{
+			if (runningFromCli)
+			{
+				CliOutput = message;
+				return;
+			}
+
+			MoreMessageBox.ShowWarning(owner, message);
+		}
+
+
+		private static async Task<bool> ImportOneFile(
+			ImportCommand importer, string file, string sectionId, CancellationToken token)
+		{
+			return Path.GetExtension(file).ToLowerInvariant() switch
+			{
+				".doc" or ".docx" =>
+					await importer.ImportWordFile(file, false, token, sectionId),
+				".ppt" or ".pptx" =>
+					await importer.ImportPowerPointFile(file, false, false, token, sectionId),
+				".pdf" =>
+					await importer.ImportPdfFile(file, false, token, sectionId),
+				".md" =>
+					await importer.ImportMarkdownFile(file, token, sectionId),
+				".txt" =>
+					await importer.ImportTextFile(file, token, sectionId),
+				".xml" =>
+					await importer.ImportXml(file, sectionId),
+				".one" =>
+					await importer.ImportOneNote(file, sectionId),
+				_ => false
+			};
 		}
 
 

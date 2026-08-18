@@ -114,6 +114,28 @@ namespace River.OneMoreAddIn
 		}
 
 
+		/// <summary>
+		/// Instantiates and executes the specified command, making the given cancellation token
+		/// and progress reporter available to it via <see cref="Command.Cancellation"/> and
+		/// <see cref="Command.ReportProgress"/>. Used by CommandService to support a single-shot
+		/// CLI command that reports incremental progress mid-<c>Execute</c>.
+		/// </summary>
+		/// <param name="commandType">The command type</param>
+		/// <param name="token">The cancellation token to inject into the command instance</param>
+		/// <param name="progressReporter">Callback invoked for each progress message</param>
+		/// <param name="args">The argument list</param>
+		/// <returns>Task</returns>
+		public async Task<Command> Run(
+			Type commandType, CancellationToken token,
+			Func<string, Task> progressReporter, params object[] args)
+		{
+			var command = (Command)Activator.CreateInstance(commandType);
+			command.SetCancellation(token);
+			command.SetProgressReporter(progressReporter);
+			return await RunCore(command, args);
+		}
+
+
 		private async Task<Command> RunCore(Command command, object[] args)
 		{
 			if (runningFromCli)

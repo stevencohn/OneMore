@@ -366,7 +366,11 @@ namespace OneMoreCli
 				}
 				else
 				{
-					var result = await CliCommandFactory.Make().Run(command.GetType(), token, parameters);
+					// direct-COM fallback runs in this process, so progress is printed straight
+					// to the console instead of relayed through the add-in's named pipe
+					var result = await CliCommandFactory.Make().Run(command.GetType(), token,
+						msg => { CliConsole.WriteInfo(msg); return Task.CompletedTask; },
+						parameters);
 					CliConsole.WriteOutput(result?.CliOutput);
 				}
 			}

@@ -33,6 +33,7 @@ namespace River.OneMoreAddIn
 		protected CommandFactory factory;
 		protected List<IDisposable> trash;
 		protected bool runningFromCli;
+		protected Func<string, Task> progressReporter;
 
 
 		/// <summary>
@@ -155,6 +156,27 @@ namespace River.OneMoreAddIn
 		{
 			trash = value;
 			return this;
+		}
+
+
+		public Command SetProgressReporter(Func<string, Task> value)
+		{
+			progressReporter = value;
+			return this;
+		}
+
+
+		/// <summary>
+		/// Reports incremental progress while a CLI command is running. No-op outside of a
+		/// CLI invocation, where no <see cref="progressReporter"/> is set.
+		/// </summary>
+		/// <param name="message">Text describing the current step</param>
+		protected async Task ReportProgress(string message)
+		{
+			if (progressReporter != null)
+			{
+				await progressReporter(message);
+			}
 		}
 
 
