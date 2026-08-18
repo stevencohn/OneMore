@@ -699,8 +699,8 @@ namespace River.OneMoreAddIn.Commands
 					var converter = new MarkdownConverter(page);
 					converter.RewriteHeadings();
 
-					logger.WriteLine($"saving...");
-					logger.WriteLine(page.Root);
+					//logger.WriteLine($"saving...");
+					//logger.WriteLine(page.Root);
 
 					await one.Update(page);
 
@@ -715,8 +715,8 @@ namespace River.OneMoreAddIn.Commands
 					converter.RewriteCode();
 					converter.RewriteInlineCode();
 
-					logger.WriteLine($"updating...");
-					logger.WriteLine(page.Root);
+					//logger.WriteLine($"updating...");
+					//logger.WriteLine(page.Root);
 
 					await one.Update(page);
 

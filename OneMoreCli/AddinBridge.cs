@@ -104,7 +104,7 @@ namespace OneMoreCli
 							if (line.StartsWith("PROGRESS:", StringComparison.OrdinalIgnoreCase))
 							{
 								pending.Remove(0, idx + 1);
-								CliConsole.WriteInfo($"section: {line.Substring("PROGRESS:".Length)}");
+								CliConsole.WriteInfo(line.Substring("PROGRESS:".Length));
 							}
 							else if (line.StartsWith("HEARTBEAT", StringComparison.OrdinalIgnoreCase))
 							{

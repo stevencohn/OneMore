@@ -427,9 +427,13 @@ namespace River.OneMoreAddIn
 				}
 				else
 				{
-					// single-shot command; no iteration to checkpoint so cancellation
-					// can't be honored mid-call, only ever reported for the page loops above
-					result = await cliFactory.Run(commandType, parameters);
+					// single-shot command; token and progress reporter are only meaningful
+					// to commands that check Cancellation and call ReportProgress themselves
+					// (e.g. QuickImportCommand looping over files) - all others simply ignore
+					// them, same as before
+					result = await cliFactory.Run(commandType, cts.Token,
+						async (msg) => await WriteCliResponse(pipe, $"PROGRESS:{msg}\n"),
+						parameters);
 				}
 			}
 			catch (Exception exc)
@@ -543,7 +547,7 @@ namespace River.OneMoreAddIn
 					var sectionName = section.Attribute("name")?.Value;
 					if (!string.IsNullOrEmpty(sectionName))
 					{
-						await WriteCliResponse(pipe, $"PROGRESS:{sectionName}\n");
+						await WriteCliResponse(pipe, $"PROGRESS:section: {sectionName}\n");
 					}
 
 					foreach (var pageId in pageIds)
@@ -663,7 +667,7 @@ namespace River.OneMoreAddIn
 				var outFile = Path.Combine(outpath, PathHelper.CleanFileName(sectInfo.Name) + ".one");
 				if (File.Exists(outFile)) { File.Delete(outFile); }
 
-				await WriteCliResponse(pipe, $"PROGRESS:{sectInfo.Name}\n");
+				await WriteCliResponse(pipe, $"PROGRESS:section: {sectInfo.Name}\n");
 				one.Export(sectionId, outFile, OneNote.ExportFormat.OneNote);
 			}
 			else
@@ -699,7 +703,7 @@ namespace River.OneMoreAddIn
 					var outFile = Path.Combine(groupPath, PathHelper.CleanFileName(sectInfo.Name) + ".one");
 					if (File.Exists(outFile)) { File.Delete(outFile); }
 
-					await WriteCliResponse(pipe, $"PROGRESS:{sectInfo.Name}\n");
+					await WriteCliResponse(pipe, $"PROGRESS:section: {sectInfo.Name}\n");
 					one.Export(sectionId, outFile, OneNote.ExportFormat.OneNote);
 				}
 			}
