@@ -86,22 +86,23 @@ jobs:
           if-no-files-found: warn
 
       # --- sign assemblies before WiX packages them into the MSI ---
-
-      - name: Zip assemblies for signing
-        shell: pwsh
-        run: |
-          New-Item -ItemType Directory -Force -Path unsigned-assemblies | Out-Null
-          $names = 'River.OneMoreAddIn.dll', 'OneMoreCalendar.exe', 'OneMoreCli.exe', `
-            'OneMoreProtocolHandler.exe', 'OneMoreTray.exe', 'OneMoreSetupActions.exe'
-          Compress-Archive -Path ($names | ForEach-Object { ".\OneMore\bin\Debug\$_" }) `
-            -DestinationPath unsigned-assemblies\assemblies.zip -Force
+      # NOTE: upload-artifact already zips whatever it's given for transit/storage, so we
+      # upload the raw files directly here rather than pre-zipping them ourselves — doing
+      # both would hand SignPath a zip-inside-a-zip, which its "assemblies" (zip-file root)
+      # configuration won't match against.
 
       - name: Upload unsigned assemblies
         id: upload-unsigned-assemblies
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: unsigned-assemblies-${{ matrix.arch }}
-          path: unsigned-assemblies\assemblies.zip
+          path: |
+            OneMore\bin\Debug\River.OneMoreAddIn.dll
+            OneMore\bin\Debug\OneMoreCalendar.exe
+            OneMore\bin\Debug\OneMoreCli.exe
+            OneMore\bin\Debug\OneMoreProtocolHandler.exe
+            OneMore\bin\Debug\OneMoreTray.exe
+            OneMore\bin\Debug\OneMoreSetupActions.exe
 
       - name: Sign assemblies
         uses: SignPath/github-action-submit-signing-request@c92b958760219087e01f8d67a1669ed57afe2627 # v2
@@ -115,12 +116,12 @@ jobs:
           wait-for-completion: true
           output-artifact-directory: 'signed-assemblies'
 
-      - name: Unpack signed assemblies
+      - name: Replace assemblies with signed copies
         shell: pwsh
         run: |
-          $zip = Get-ChildItem signed-assemblies -Recurse -Filter *.zip | Select-Object -First 1
-          if (-not $zip) { throw "Signed assemblies zip not found in signed-assemblies\" }
-          Expand-Archive -Path $zip.FullName -DestinationPath .\OneMore\bin\Debug -Force
+          $files = Get-ChildItem signed-assemblies -Recurse -File
+          if (-not $files) { throw "No signed assemblies found in signed-assemblies\" }
+          foreach ($f in $files) { Copy-Item $f.FullName ".\OneMore\bin\Debug\$($f.Name)" -Force }
 
       # --- build MSI from now-signed assemblies, sign it before it's embedded in a bundle ---
 
