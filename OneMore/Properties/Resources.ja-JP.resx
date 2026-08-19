@@ -2828,6 +2828,14 @@ OneNoteファイル (*.one)</value>
     <value>選択したアイテムを下に移動</value>
     <comment>tooltip</comment>
   </data>
+  <data name="NavigatorWindow_filterButton_Tooltip" xml:space="preserve">
+    <value>このリストをフィルタリングする</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_filterCloseButton_Tooltip" xml:space="preserve">
+    <value>フィルターを閉じてすべての項目を表示</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="NavigatorWindow_menuAddToList" xml:space="preserve">
     <value>読書リストに追加</value>
     <comment>context menu item</comment>

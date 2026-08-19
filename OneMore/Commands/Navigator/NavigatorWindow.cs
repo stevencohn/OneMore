@@ -51,6 +51,9 @@ namespace River.OneMoreAddIn.Commands
 		// disposed
 		private readonly NavigationProvider provider;
 
+		// backing list for the History panel filter
+		private List<HistoryRecord> historyRecords = new();
+
 
 		public NavigatorWindow()
 		{
@@ -76,6 +79,10 @@ namespace River.OneMoreAddIn.Commands
 				tooltip.SetToolTip(copyPinnedButton, Resx.NavigatorWindow_copyTooltip);
 				tooltip.SetToolTip(copyHistoryButton, Resx.NavigatorWindow_copyTooltip);
 				tooltip.SetToolTip(deleteHistoryButton, Resx.NavigatorWindow_deleteHistoryButton_Tooltip);
+				tooltip.SetToolTip(pageFilterButton, Resx.NavigatorWindow_filterButton_Tooltip);
+				tooltip.SetToolTip(historyFilterButton, Resx.NavigatorWindow_filterButton_Tooltip);
+				tooltip.SetToolTip(pageFilterCloseButton, Resx.NavigatorWindow_filterCloseButton_Tooltip);
+				tooltip.SetToolTip(historyFilterCloseButton, Resx.NavigatorWindow_filterCloseButton_Tooltip);
 			}
 
 			ManualLocation = true;
@@ -118,6 +125,10 @@ namespace River.OneMoreAddIn.Commands
 			downButton.Rescale();
 			copyPinnedButton.Rescale();
 			copyHistoryButton.Rescale();
+			pageFilterButton.Rescale();
+			pageFilterCloseButton.Rescale();
+			historyFilterButton.Rescale();
+			historyFilterCloseButton.Rescale();
 
 			pinnedBox.MouseUp += ShowPinnedContextMenu;
 			historyBox.MouseUp += ShowHistoryContextMenu;
@@ -287,6 +298,124 @@ namespace River.OneMoreAddIn.Commands
 			}
 		}
 		#endregion Panel expand/collapse
+
+
+		#region Filtering
+		private void ToggleTocFilterOnClick(object sender, EventArgs e)
+		{
+			SetTocFilterMode(true);
+		}
+
+
+		private void CloseTocFilterOnClick(object sender, EventArgs e)
+		{
+			SetTocFilterMode(false);
+		}
+
+
+		private void SetTocFilterMode(bool filtering)
+		{
+			pageTwistButton.Visible = !filtering;
+			pageHeadLabel.Visible = !filtering;
+			pageFilterButton.Visible = !filtering;
+			refreshButton.Visible = !filtering;
+			pageFilterBox.Visible = filtering;
+			pageFilterCloseButton.Visible = filtering;
+
+			pageFilterBox.Clear();
+			ApplyPageFilter(string.Empty);
+
+			if (filtering)
+			{
+				pageFilterBox.Focus();
+			}
+		}
+
+
+		private void ToggleHistoryFilterOnClick(object sender, EventArgs e)
+		{
+			SetHistoryFilterMode(true);
+		}
+
+
+		private void CloseHistoryFilterOnClick(object sender, EventArgs e)
+		{
+			SetHistoryFilterMode(false);
+		}
+
+
+		private void SetHistoryFilterMode(bool filtering)
+		{
+			historyTwistButton.Visible = !filtering;
+			historyHeadLabel.Visible = !filtering;
+			historyToolPanel.Visible = !filtering;
+			historyFilterBox.Visible = filtering;
+			historyFilterCloseButton.Visible = filtering;
+
+			historyFilterBox.Clear();
+			ApplyHistoryFilter(string.Empty);
+
+			if (filtering)
+			{
+				historyFilterBox.Focus();
+			}
+		}
+
+
+		private void FilterPageHeadings(object sender, EventArgs e)
+		{
+			ApplyPageFilter(pageFilterBox.Text.Trim());
+		}
+
+
+		private void ApplyPageFilter(string text)
+		{
+			var filtering = text.Length > 0;
+			foreach (var link in pageBox.Controls.OfType<MoreLinkLabel>())
+			{
+				link.Visible = !filtering || link.Text.ContainsICIC(text);
+			}
+		}
+
+
+		private void FilterHistoryRecords(object sender, EventArgs e)
+		{
+			ApplyHistoryFilter(historyFilterBox.Text.Trim());
+		}
+
+
+		private void ApplyHistoryFilter(string text)
+		{
+			var filtering = text.Length > 0;
+			RenderHistoryItems(filtering
+				? historyRecords.Where(r => r.Name.ContainsICIC(text))
+				: historyRecords);
+		}
+
+
+		private void SuppressFilterBoxEnter(object sender, EventArgs e)
+		{
+			// swallow Enter so it doesn't fall through to the dialog's AcceptButton
+		}
+
+
+		private void CloseFilterOnEscape(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Escape)
+			{
+				if (sender == pageFilterBox)
+				{
+					SetTocFilterMode(false);
+				}
+				else if (sender == historyFilterBox)
+				{
+					SetHistoryFilterMode(false);
+				}
+
+				e.Handled = true;
+			}
+		}
+		#endregion Filtering
 
 
 		#region Window Management
@@ -697,6 +826,11 @@ namespace River.OneMoreAddIn.Commands
 			pageBox.ResumeLayout();
 			//logger.DebugTime($"resumed layout", keepRunning: true);
 
+			if (pageFilterBox.Visible)
+			{
+				ApplyPageFilter(pageFilterBox.Text.Trim());
+			}
+
 			if (currentLabel is not null)
 			{
 				pageBox.ScrollControlIntoView(currentLabel);
@@ -1022,6 +1156,22 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
+			historyRecords = log.History;
+
+			RenderHistoryItems(historyFilterBox.Visible
+				? historyRecords.Where(r => r.Name.ContainsICIC(historyFilterBox.Text.Trim()))
+				: historyRecords);
+		}
+
+
+		private void RenderHistoryItems(IEnumerable<HistoryRecord> records)
+		{
+			if (historyBox.InvokeRequired)
+			{
+				historyBox.BeginInvoke(new Action(() => RenderHistoryItems(records)));
+				return;
+			}
+
 			historyBox.BeginUpdate();
 
 			foreach (var history in historyBox.GetAllItems<HistoryControl>())
@@ -1032,7 +1182,7 @@ namespace River.OneMoreAddIn.Commands
 
 			var viewColor = manager.GetColor("ListView");
 
-			log.History.ForEach(record =>
+			foreach (var record in records)
 			{
 				var control = new HistoryControl(record)
 				{
@@ -1043,9 +1193,13 @@ namespace River.OneMoreAddIn.Commands
 
 				var item = historyBox.AddHostedItem(control);
 				item.Tag = record;
-			});
+			}
 
-			historyBox.Items[0].Selected = true;
+			if (historyBox.Items.Count > 0)
+			{
+				historyBox.Items[0].Selected = true;
+			}
+
 			historyBox.EndUpdate();
 			historyBox.EnableItemEventBubbling();
 			historyBox.EnableContextMenuBubbling();

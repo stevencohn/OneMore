@@ -2831,6 +2831,14 @@ OneNote 文件 (*.one)</value>
     <value>向下移动所选项目</value>
     <comment>tooltip</comment>
   </data>
+  <data name="NavigatorWindow_filterButton_Tooltip" xml:space="preserve">
+    <value>过滤此列表</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_filterCloseButton_Tooltip" xml:space="preserve">
+    <value>关闭过滤器并显示所有项目</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="NavigatorWindow_menuAddToList" xml:space="preserve">
     <value>添加到阅读列表</value>
     <comment>context menu item</comment>

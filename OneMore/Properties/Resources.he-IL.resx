@@ -2825,6 +2825,14 @@ Total Row Font
     <value>הזז את הפריטים שנבחרו למטה</value>
     <comment>tooltip</comment>
   </data>
+  <data name="NavigatorWindow_filterButton_Tooltip" xml:space="preserve">
+    <value>סנן רשימה זו</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_filterCloseButton_Tooltip" xml:space="preserve">
+    <value>סגור את המסנן והצג את כל הפריטים</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="NavigatorWindow_menuAddToList" xml:space="preserve">
     <value>הוסף לרשימת קריאה</value>
     <comment>context menu item</comment>

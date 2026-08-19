@@ -2825,6 +2825,14 @@ Wilt u de bestaande pagina vernieuwen?</value>
     <value>Verplaats geselecteerde items naar beneden</value>
     <comment>tooltip</comment>
   </data>
+  <data name="NavigatorWindow_filterButton_Tooltip" xml:space="preserve">
+    <value>Filter deze lijst</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_filterCloseButton_Tooltip" xml:space="preserve">
+    <value>Sluit filter en toon alle items</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="NavigatorWindow_menuAddToList" xml:space="preserve">
     <value>Toevoegen aan leeslijst</value>
     <comment>context menu item</comment>

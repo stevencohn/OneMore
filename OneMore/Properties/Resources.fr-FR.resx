@@ -2828,6 +2828,14 @@ Voulez-vous actualiser la page existante ?</value>
     <value>Déplacer les éléments sélectionnés vers le bas</value>
     <comment>tooltip</comment>
   </data>
+  <data name="NavigatorWindow_filterButton_Tooltip" xml:space="preserve">
+    <value>Filtrer cette liste</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_filterCloseButton_Tooltip" xml:space="preserve">
+    <value>Fermer le filtre et afficher tous les éléments</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="NavigatorWindow_menuAddToList" xml:space="preserve">
     <value>Ajouter à la liste de lecture</value>
     <comment>context menu item</comment>

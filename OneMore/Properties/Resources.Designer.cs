@@ -6840,7 +6840,25 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("NavigatorWindow_downButton_Tooltip", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Filter this list.
+        /// </summary>
+        internal static string NavigatorWindow_filterButton_Tooltip {
+            get {
+                return ResourceManager.GetString("NavigatorWindow_filterButton_Tooltip", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Close filter and show all items.
+        /// </summary>
+        internal static string NavigatorWindow_filterCloseButton_Tooltip {
+            get {
+                return ResourceManager.GetString("NavigatorWindow_filterCloseButton_Tooltip", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Add to Reading List.
         /// </summary>
