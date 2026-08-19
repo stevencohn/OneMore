@@ -10133,7 +10133,43 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribCopyLinkToParagraphButton_Screentip", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Copy Page to My Reading List.
+        /// </summary>
+        internal static string ribCopyPageToReadingListButton_Label {
+            get {
+                return ResourceManager.GetString("ribCopyPageToReadingListButton_Label", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Add the current page to My Reading List.
+        /// </summary>
+        internal static string ribCopyPageToReadingListButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribCopyPageToReadingListButton_Screentip", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Copy Paragraph to My Reading List.
+        /// </summary>
+        internal static string ribCopyParagraphToReadingListButton_Label {
+            get {
+                return ResourceManager.GetString("ribCopyParagraphToReadingListButton_Label", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Add the current paragraph to My Reading List.
+        /// </summary>
+        internal static string ribCopyParagraphToReadingListButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribCopyParagraphToReadingListButton_Screentip", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Copy Selected Content.
         /// </summary>

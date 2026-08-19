@@ -945,6 +945,19 @@
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
         onAction="TwoWayPathCmd"/>
+      <menuSeparator id="ribRefMenuReadingList"/>
+      <button
+        id="ribCopyPageToReadingListButton"
+        imageMso="AddToFavorites"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="CopyPageToReadingListCmd"/>
+      <button
+        id="ribCopyParagraphToReadingListButton"
+        imageMso="AddToFavorites"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="CopyParagraphToReadingListCmd"/>
       <menuSeparator id="ribRefMenuFootnotes"/>
       <button
         id="ribAddFootnoteButton"

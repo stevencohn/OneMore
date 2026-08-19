@@ -4243,6 +4243,22 @@ Pestaña Ayuda</value>
     <value>Copiar el contenido seleccionado a una nueva página</value>
     <comment>ribbon page</comment>
   </data>
+  <data name="ribCopyPageToReadingListButton_Label" xml:space="preserve">
+    <value>Copiar página a Mi lista de lectura</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribCopyPageToReadingListButton_Screentip" xml:space="preserve">
+    <value>Agregar la página actual a Mi lista de lectura</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribCopyParagraphToReadingListButton_Label" xml:space="preserve">
+    <value>Copiar párrafo a mi lista de lectura</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribCopyParagraphToReadingListButton_Screentip" xml:space="preserve">
+    <value>Agregar el párrafo actual a Mi lista de lectura</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribCrawlWebPageButton_Label" xml:space="preserve">
     <value>Importar hipervínculos</value>
     <comment>ribbon item</comment>

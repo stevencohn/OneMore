@@ -376,7 +376,9 @@ namespace River.OneMoreAddIn.Commands
 				var updated = false;
 				records.ForEach(record =>
 				{
-					var index = log.Pinned.FindIndex(p => p.PageId == record.PageId);
+					var index = log.Pinned.FindIndex(p =>
+						p.PageId == record.PageId &&
+						(p.ObjectId ?? string.Empty) == (record.ObjectId ?? string.Empty));
 					if (index < 0)
 					{
 						log.Pinned.Add(record);
@@ -441,7 +443,9 @@ namespace River.OneMoreAddIn.Commands
 				var updated = false;
 				records.ForEach(record =>
 				{
-					var index = log.Pinned.FindIndex(p => p.PageId == record.PageId);
+					var index = log.Pinned.FindIndex(p =>
+						p.PageId == record.PageId &&
+						(p.ObjectId ?? string.Empty) == (record.ObjectId ?? string.Empty));
 					if (index >= 0)
 					{
 						log.Pinned.RemoveAt(index);

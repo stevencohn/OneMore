@@ -95,6 +95,7 @@ namespace River.OneMoreAddIn
 			public string Color;        // node color
 			public int Size;            // size in bytes of page
 			public long Visited;        // last time visited in ms
+			public string ObjectId;     // ID of specific paragraph, if this is a paragraph reference
 			public List<string> SectionGroups = new();  // ancestor section group names, outermost first
 		}
 

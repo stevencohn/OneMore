@@ -4243,6 +4243,22 @@ Registerkarte „Hilfe“.</value>
     <value>Ausgewählten Inhalt auf eine neue Seite kopieren</value>
     <comment>ribbon page</comment>
   </data>
+  <data name="ribCopyPageToReadingListButton_Label" xml:space="preserve">
+    <value>Seite in meine Leseliste kopieren</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribCopyPageToReadingListButton_Screentip" xml:space="preserve">
+    <value>Fügen Sie die aktuelle Seite zu meiner Leseliste hinzu</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribCopyParagraphToReadingListButton_Label" xml:space="preserve">
+    <value>Absatz in meine Leseliste kopieren</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribCopyParagraphToReadingListButton_Screentip" xml:space="preserve">
+    <value>Fügen Sie den aktuellen Absatz zu meiner Leseliste hinzu</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribCrawlWebPageButton_Label" xml:space="preserve">
     <value>Hyperlinks importieren.</value>
     <comment>ribbon item</comment>

@@ -4244,6 +4244,22 @@ Guia Ajuda</value>
     <value>Copiar o conteúdo selecionado para uma nova página</value>
     <comment>ribbon page</comment>
   </data>
+  <data name="ribCopyPageToReadingListButton_Label" xml:space="preserve">
+    <value>Copiar página para minha lista de leitura</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribCopyPageToReadingListButton_Screentip" xml:space="preserve">
+    <value>Adicione a página atual à Minha lista de leitura</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribCopyParagraphToReadingListButton_Label" xml:space="preserve">
+    <value>Copiar parágrafo para minha lista de leitura</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribCopyParagraphToReadingListButton_Screentip" xml:space="preserve">
+    <value>Adicione o parágrafo atual à Minha Lista de Leitura</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribCrawlWebPageButton_Label" xml:space="preserve">
     <value>Importar hiperlinks.</value>
     <comment>ribbon item</comment>
