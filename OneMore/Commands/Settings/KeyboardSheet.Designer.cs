@@ -113,7 +113,7 @@
 			this.filterPanel.Dock = System.Windows.Forms.DockStyle.Top;
 			this.filterPanel.Location = new System.Drawing.Point(10, 64);
 			this.filterPanel.Name = "filterPanel";
-			this.filterPanel.Size = new System.Drawing.Size(780, 34);
+			this.filterPanel.Size = new System.Drawing.Size(780, 39);
 			this.filterPanel.TabIndex = 3;
 			this.filterPanel.ThemedBack = "ControlLightLight";
 			this.filterPanel.TopBorderSize = 0;
