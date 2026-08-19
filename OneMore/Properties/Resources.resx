@@ -4272,6 +4272,22 @@ Help Tab</value>
     <value>Copy a path hyperlink to the current paragraph</value>
     <comment>ribbon references</comment>
   </data>
+  <data name="ribCopyPageToReadingListButton_Label" xml:space="preserve">
+    <value>Copy Page to My Reading List</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribCopyPageToReadingListButton_Screentip" xml:space="preserve">
+    <value>Add the current page to My Reading List</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribCopyParagraphToReadingListButton_Label" xml:space="preserve">
+    <value>Copy Paragraph to My Reading List</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribCopyParagraphToReadingListButton_Screentip" xml:space="preserve">
+    <value>Add the current paragraph to My Reading List</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribCopyPageContentButton_Label" xml:space="preserve">
     <value>Copy Selected Content</value>
     <comment>ribbon page</comment>
@@ -4279,6 +4295,22 @@ Help Tab</value>
   <data name="ribCopyPageContentButton_Screentip" xml:space="preserve">
     <value>Copy selected content to a new page</value>
     <comment>ribbon page</comment>
+  </data>
+  <data name="ribCopyPageToReadingListButton_Label" xml:space="preserve">
+    <value>Copy Page to My Reading List</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribCopyPageToReadingListButton_Screentip" xml:space="preserve">
+    <value>Add the current page to My Reading List</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribCopyParagraphToReadingListButton_Label" xml:space="preserve">
+    <value>Copy Paragraph to My Reading List</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribCopyParagraphToReadingListButton_Screentip" xml:space="preserve">
+    <value>Add the current paragraph to My Reading List</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribCrawlWebPageButton_Label" xml:space="preserve">
     <value>Import Hyperlinks</value>

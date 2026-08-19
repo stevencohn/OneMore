@@ -4255,6 +4255,22 @@ Onglet Aide</value>
     <value>Copier le contenu sélectionné sur une nouvelle page</value>
     <comment>ribbon page</comment>
   </data>
+  <data name="ribCopyPageToReadingListButton_Label" xml:space="preserve">
+    <value>Copier la page dans ma liste de lecture</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribCopyPageToReadingListButton_Screentip" xml:space="preserve">
+    <value>Ajouter la page actuelle à Ma liste de lecture</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribCopyParagraphToReadingListButton_Label" xml:space="preserve">
+    <value>Copier le paragraphe dans ma liste de lecture</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribCopyParagraphToReadingListButton_Screentip" xml:space="preserve">
+    <value>Ajouter le paragraphe actuel à Ma liste de lecture</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribCrawlWebPageButton_Label" xml:space="preserve">
     <value>Hyperliens d'importation</value>
     <comment>ribbon item</comment>

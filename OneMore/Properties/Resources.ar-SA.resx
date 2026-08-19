@@ -4255,6 +4255,22 @@ ISO-code then comma then language name</comment>
     <value>انسخ المحتوى المحدد إلى صفحة جديدة</value>
     <comment>ribbon page</comment>
   </data>
+  <data name="ribCopyPageToReadingListButton_Label" xml:space="preserve">
+    <value>انسخ الصفحة إلى قائمة القراءة الخاصة بي</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribCopyPageToReadingListButton_Screentip" xml:space="preserve">
+    <value>أضف الصفحة الحالية إلى قائمة القراءة الخاصة بي</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribCopyParagraphToReadingListButton_Label" xml:space="preserve">
+    <value>انسخ الفقرة إلى قائمة القراءة الخاصة بي</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribCopyParagraphToReadingListButton_Screentip" xml:space="preserve">
+    <value>أضف الفقرة الحالية إلى قائمة القراءة الخاصة بي</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribCrawlWebPageButton_Label" xml:space="preserve">
     <value>استيراد ارتباطات تشعبية</value>
     <comment>ribbon item</comment>

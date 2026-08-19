@@ -4248,6 +4248,22 @@ ISO-code then comma then language name</comment>
     <value>העתק תוכן נבחר לדף חדש</value>
     <comment>ribbon page</comment>
   </data>
+  <data name="ribCopyPageToReadingListButton_Label" xml:space="preserve">
+    <value>העתק עמוד לרשימת הקריאה שלי</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribCopyPageToReadingListButton_Screentip" xml:space="preserve">
+    <value>הוסף את הדף הנוכחי לרשימת הקריאה שלי</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribCopyParagraphToReadingListButton_Label" xml:space="preserve">
+    <value>העתק פסקה לרשימת הקריאה שלי</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribCopyParagraphToReadingListButton_Screentip" xml:space="preserve">
+    <value>הוסף את הפסקה הנוכחית לרשימת הקריאה שלי</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribCrawlWebPageButton_Label" xml:space="preserve">
     <value>ייבוא ​​היפר-קישורים</value>
     <comment>ribbon item</comment>

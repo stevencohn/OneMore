@@ -4258,6 +4258,22 @@ ISO-code then comma then language name</comment>
     <value>将选定的内容复制到新页面</value>
     <comment>ribbon page</comment>
   </data>
+  <data name="ribCopyPageToReadingListButton_Label" xml:space="preserve">
+    <value>将页面复制到我的阅读列表</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribCopyPageToReadingListButton_Screentip" xml:space="preserve">
+    <value>将当前页面添加到我的阅读列表</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribCopyParagraphToReadingListButton_Label" xml:space="preserve">
+    <value>将段落复制到我的阅读列表</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribCopyParagraphToReadingListButton_Screentip" xml:space="preserve">
+    <value>将当前段落添加到我的阅读列表</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribCrawlWebPageButton_Label" xml:space="preserve">
     <value>从链接导入网页</value>
     <comment>ribbon item</comment>

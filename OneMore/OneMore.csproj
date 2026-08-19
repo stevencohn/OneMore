@@ -705,6 +705,7 @@
     </Compile>
     <Compile Include="Commands\References\TwoWayLinkCommand.cs" />
     <Compile Include="Commands\References\CopyLinkCommand.cs" />
+    <Compile Include="Commands\References\CopyToReadingListCommand.cs" />
     <Compile Include="Commands\References\EmbedSubpageProxy.cs" />
     <Compile Include="Commands\References\LinkReferencesCommand.cs" />
     <Compile Include="Commands\References\LinkDialog.cs">

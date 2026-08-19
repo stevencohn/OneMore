@@ -4244,6 +4244,22 @@ Zakładka Pomoc</value>
     <value>Skopiuj wybraną zawartość na nową stronę</value>
     <comment>ribbon page</comment>
   </data>
+  <data name="ribCopyPageToReadingListButton_Label" xml:space="preserve">
+    <value>Skopiuj stronę do mojej listy czytelniczej</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribCopyPageToReadingListButton_Screentip" xml:space="preserve">
+    <value>Dodaj bieżącą stronę do Mojej listy czytelniczej</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribCopyParagraphToReadingListButton_Label" xml:space="preserve">
+    <value>Skopiuj akapit na moją listę czytelniczą</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribCopyParagraphToReadingListButton_Screentip" xml:space="preserve">
+    <value>Dodaj bieżący akapit do Mojej listy czytelniczej</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribCrawlWebPageButton_Label" xml:space="preserve">
     <value>Importuj hiperłącza</value>
     <comment>ribbon item</comment>
