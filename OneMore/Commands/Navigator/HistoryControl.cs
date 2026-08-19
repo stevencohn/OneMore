@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Drawing;
+	using System.Drawing.Drawing2D;
 	using System.Windows.Forms;
 	using HierarchyInfo = OneNote.HierarchyInfo;
 
@@ -19,10 +20,12 @@ namespace River.OneMoreAddIn.Commands
 		/// <summary>
 		/// A thin self-drawn vertical bar indicating the section color, matching the
 		/// treatment used by SearchResultsCardView instead of a color-shifted PNG mask.
+		/// For paragraph references, draws diagonal stripes instead of solid color.
 		/// </summary>
 		private sealed class ColorBar : Panel
 		{
 			public Color BarColor { get; set; }
+			public bool IsStriped { get; set; }
 
 			protected override void OnPaint(PaintEventArgs e)
 			{
@@ -31,8 +34,16 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
-				using var brush = new SolidBrush(BarColor);
-				e.Graphics.FillRectangle(brush, ClientRectangle);
+				if (IsStriped)
+				{
+					using var brush = new HatchBrush(HatchStyle.BackwardDiagonal, BarColor, Color.Transparent);
+					e.Graphics.FillRectangle(brush, ClientRectangle);
+				}
+				else
+				{
+					using var brush = new SolidBrush(BarColor);
+					e.Graphics.FillRectangle(brush, ClientRectangle);
+				}
 			}
 		}
 
@@ -48,8 +59,9 @@ namespace River.OneMoreAddIn.Commands
 			bar = new ColorBar
 			{
 				Dock = DockStyle.Left,
-				Width = 6,
-				BarColor = ColorHelper.FromHtml(info.Color)
+				Width = 8,
+				BarColor = ColorHelper.FromHtml(info.Color),
+				IsStriped = !string.IsNullOrEmpty(info.ObjectId)
 			};
 
 			link = new MoreLinkLabel
