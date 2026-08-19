@@ -241,14 +241,16 @@ namespace River.OneMoreAddIn.UI
 
 			if (control is ListView)
 			{
-				// "ItemsView" is the sub-app theme comctl32 itself uses for Explorer-style
-				// list views (rows, group banners); "DarkMode_Explorer" alone only covers
-				// simpler controls (radios, checkboxes, scrollbars) and leaves list headers
-				// and group banners rendered with light-mode colors/text
-				SetWindowTheme(control.Handle, "ItemsView", null);
+				// Rows/selection are fully owner-drawn by MoreListView/MoreListViewEx
+				// (WM_DRAWITEM), so native "ItemsView" row theming isn't needed here.
+				// "DarkMode_Explorer" is what actually carries dark-themed native
+				// scrollbars, which "ItemsView" alone omits.
+				SetWindowTheme(control.Handle, "DarkMode_Explorer", null);
 
 				// the column header is a separate native child window (SysHeader32) that
-				// needs the same explicit opt-in to pick up dark colors
+				// needs the same explicit opt-in to pick up dark colors; "ItemsView" is
+				// kept here for screens that rely on the header's own native rendering
+				// rather than custom-drawing it (HeaderBackColor/HeaderForeColor unset)
 				var header = Native.SendMessage(control.Handle, Native.LVM_GETHEADER, IntPtr.Zero, IntPtr.Zero);
 				if (header != IntPtr.Zero)
 				{

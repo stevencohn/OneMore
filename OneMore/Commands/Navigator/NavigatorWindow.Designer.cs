@@ -42,11 +42,13 @@
 			this.mainContainer = new System.Windows.Forms.SplitContainer();
 			this.pageBox = new River.OneMoreAddIn.UI.MoreFlowLayoutPanel();
 			this.pageHeadPanel = new River.OneMoreAddIn.UI.MorePanel();
+			this.pageTwistButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.refreshButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.pageHeadLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.subContainer = new System.Windows.Forms.SplitContainer();
 			this.pinnedBox = new River.OneMoreAddIn.UI.MoreListViewEx();
 			this.pinnedHeadPanel = new River.OneMoreAddIn.UI.MorePanel();
+			this.pinnedTwistButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.pinnedToolPanel = new System.Windows.Forms.Panel();
 			this.copyPinnedButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.upButton = new River.OneMoreAddIn.UI.MoreButton();
@@ -55,6 +57,7 @@
 			this.pinnedHeadLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.historyBox = new River.OneMoreAddIn.UI.MoreListViewEx();
 			this.historyHeadPanel = new River.OneMoreAddIn.UI.MorePanel();
+			this.historyTwistButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.historyToolPanel = new System.Windows.Forms.Panel();
 			this.deleteHistoryButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.pinButton = new River.OneMoreAddIn.UI.MoreButton();
@@ -149,6 +152,7 @@
 			this.pageHeadPanel.BackColor = System.Drawing.SystemColors.ControlDarkDark;
 			this.pageHeadPanel.BottomBorderColor = System.Drawing.SystemColors.ActiveBorder;
 			this.pageHeadPanel.BottomBorderSize = 0;
+			this.pageHeadPanel.Controls.Add(this.pageTwistButton);
 			this.pageHeadPanel.Controls.Add(this.refreshButton);
 			this.pageHeadPanel.Controls.Add(this.pageHeadLabel);
 			this.pageHeadPanel.Dock = System.Windows.Forms.DockStyle.Top;
@@ -163,7 +167,30 @@
 			this.pageHeadPanel.TopBorderColor = System.Drawing.SystemColors.Control;
 			this.pageHeadPanel.TopBorderSize = 0;
 			this.pageHeadPanel.Click += new System.EventHandler(this.PanelFocusOnClick);
-			// 
+			//
+			// pageTwistButton
+			//
+			this.pageTwistButton.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+			this.pageTwistButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+			this.pageTwistButton.FlatAppearance.BorderSize = 0;
+			this.pageTwistButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.pageTwistButton.Font = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.pageTwistButton.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.pageTwistButton.ImageOver = null;
+			this.pageTwistButton.Location = new System.Drawing.Point(2, 10);
+			this.pageTwistButton.Name = "pageTwistButton";
+			this.pageTwistButton.ShowBorder = false;
+			this.pageTwistButton.Size = new System.Drawing.Size(20, 20);
+			this.pageTwistButton.StylizeImage = false;
+			this.pageTwistButton.TabIndex = 2;
+			this.pageTwistButton.Text = "▼";
+			this.pageTwistButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.pageTwistButton.ThemedBack = "ControlDarkDark";
+			this.pageTwistButton.ThemedFore = "DarkText";
+			this.tooltip.SetToolTip(this.pageTwistButton, "Expand or collapse this section");
+			this.pageTwistButton.UseVisualStyleBackColor = false;
+			this.pageTwistButton.Click += new System.EventHandler(this.ToggleSectionOnClick);
+			//
 			// refreshButton
 			// 
 			this.refreshButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -192,7 +219,7 @@
 			// 
 			this.pageHeadLabel.AutoSize = true;
 			this.pageHeadLabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.pageHeadLabel.Location = new System.Drawing.Point(12, 9);
+			this.pageHeadLabel.Location = new System.Drawing.Point(36, 9);
 			this.pageHeadLabel.Name = "pageHeadLabel";
 			this.pageHeadLabel.Size = new System.Drawing.Size(216, 22);
 			this.pageHeadLabel.TabIndex = 0;
@@ -251,6 +278,7 @@
 			this.pinnedHeadPanel.BackColor = System.Drawing.SystemColors.ControlDarkDark;
 			this.pinnedHeadPanel.BottomBorderColor = System.Drawing.SystemColors.ActiveBorder;
 			this.pinnedHeadPanel.BottomBorderSize = 0;
+			this.pinnedHeadPanel.Controls.Add(this.pinnedTwistButton);
 			this.pinnedHeadPanel.Controls.Add(this.pinnedToolPanel);
 			this.pinnedHeadPanel.Controls.Add(this.pinnedHeadLabel);
 			this.pinnedHeadPanel.Dock = System.Windows.Forms.DockStyle.Top;
@@ -265,6 +293,29 @@
 			this.pinnedHeadPanel.TopBorderColor = System.Drawing.SystemColors.Control;
 			this.pinnedHeadPanel.TopBorderSize = 0;
 			this.pinnedHeadPanel.Click += new System.EventHandler(this.PanelFocusOnClick);
+			//
+			// pinnedTwistButton
+			//
+			this.pinnedTwistButton.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+			this.pinnedTwistButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+			this.pinnedTwistButton.FlatAppearance.BorderSize = 0;
+			this.pinnedTwistButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.pinnedTwistButton.Font = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.pinnedTwistButton.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.pinnedTwistButton.ImageOver = null;
+			this.pinnedTwistButton.Location = new System.Drawing.Point(2, 10);
+			this.pinnedTwistButton.Name = "pinnedTwistButton";
+			this.pinnedTwistButton.ShowBorder = false;
+			this.pinnedTwistButton.Size = new System.Drawing.Size(20, 20);
+			this.pinnedTwistButton.StylizeImage = false;
+			this.pinnedTwistButton.TabIndex = 2;
+			this.pinnedTwistButton.Text = "▼";
+			this.pinnedTwistButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.pinnedTwistButton.ThemedBack = "ControlDarkDark";
+			this.pinnedTwistButton.ThemedFore = "DarkText";
+			this.tooltip.SetToolTip(this.pinnedTwistButton, "Expand or collapse this section");
+			this.pinnedTwistButton.UseVisualStyleBackColor = false;
+			this.pinnedTwistButton.Click += new System.EventHandler(this.ToggleSectionOnClick);
 			// 
 			// pinnedToolPanel
 			// 
@@ -377,7 +428,7 @@
 			// 
 			this.pinnedHeadLabel.AutoSize = true;
 			this.pinnedHeadLabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.pinnedHeadLabel.Location = new System.Drawing.Point(12, 12);
+			this.pinnedHeadLabel.Location = new System.Drawing.Point(36, 12);
 			this.pinnedHeadLabel.Name = "pinnedHeadLabel";
 			this.pinnedHeadLabel.Size = new System.Drawing.Size(151, 22);
 			this.pinnedHeadLabel.TabIndex = 1;
@@ -412,6 +463,7 @@
 			this.historyHeadPanel.BackColor = System.Drawing.SystemColors.ControlDarkDark;
 			this.historyHeadPanel.BottomBorderColor = System.Drawing.SystemColors.ActiveBorder;
 			this.historyHeadPanel.BottomBorderSize = 0;
+			this.historyHeadPanel.Controls.Add(this.historyTwistButton);
 			this.historyHeadPanel.Controls.Add(this.historyToolPanel);
 			this.historyHeadPanel.Controls.Add(this.historyHeadLabel);
 			this.historyHeadPanel.Dock = System.Windows.Forms.DockStyle.Top;
@@ -426,6 +478,29 @@
 			this.historyHeadPanel.TopBorderColor = System.Drawing.SystemColors.Control;
 			this.historyHeadPanel.TopBorderSize = 0;
 			this.historyHeadPanel.Click += new System.EventHandler(this.PanelFocusOnClick);
+			//
+			// historyTwistButton
+			//
+			this.historyTwistButton.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+			this.historyTwistButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+			this.historyTwistButton.FlatAppearance.BorderSize = 0;
+			this.historyTwistButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.historyTwistButton.Font = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.historyTwistButton.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.historyTwistButton.ImageOver = null;
+			this.historyTwistButton.Location = new System.Drawing.Point(7, 10);
+			this.historyTwistButton.Name = "historyTwistButton";
+			this.historyTwistButton.ShowBorder = false;
+			this.historyTwistButton.Size = new System.Drawing.Size(20, 20);
+			this.historyTwistButton.StylizeImage = false;
+			this.historyTwistButton.TabIndex = 2;
+			this.historyTwistButton.Text = "▼";
+			this.historyTwistButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.historyTwistButton.ThemedBack = "ControlDarkDark";
+			this.historyTwistButton.ThemedFore = "DarkText";
+			this.tooltip.SetToolTip(this.historyTwistButton, "Expand or collapse this section");
+			this.historyTwistButton.UseVisualStyleBackColor = false;
+			this.historyTwistButton.Click += new System.EventHandler(this.ToggleSectionOnClick);
 			// 
 			// historyToolPanel
 			// 
@@ -511,7 +586,7 @@
 			// 
 			this.historyHeadLabel.AutoSize = true;
 			this.historyHeadLabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.historyHeadLabel.Location = new System.Drawing.Point(17, 12);
+			this.historyHeadLabel.Location = new System.Drawing.Point(41, 12);
 			this.historyHeadLabel.Name = "historyHeadLabel";
 			this.historyHeadLabel.Size = new System.Drawing.Size(74, 22);
 			this.historyHeadLabel.TabIndex = 1;
@@ -594,5 +669,8 @@
 		private System.Windows.Forms.Panel historyToolPanel;
 		private System.Windows.Forms.Panel pinnedToolPanel;
 		private UI.MoreButton deleteHistoryButton;
+		private UI.MoreButton pageTwistButton;
+		private UI.MoreButton pinnedTwistButton;
+		private UI.MoreButton historyTwistButton;
 	}
 }

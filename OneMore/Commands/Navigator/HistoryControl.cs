@@ -9,7 +9,6 @@ namespace River.OneMoreAddIn.Commands
 	using System.Drawing;
 	using System.Windows.Forms;
 	using HierarchyInfo = OneNote.HierarchyInfo;
-	using Resx = Properties.Resources;
 
 
 	/// <summary>
@@ -17,7 +16,28 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class HistoryControl : UserControl, IChameleon, IThemedControl
 	{
-		private readonly PictureBox picture;
+		/// <summary>
+		/// A thin self-drawn vertical bar indicating the section color, matching the
+		/// treatment used by SearchResultsCardView instead of a color-shifted PNG mask.
+		/// </summary>
+		private sealed class ColorBar : Panel
+		{
+			public Color BarColor { get; set; }
+
+			protected override void OnPaint(PaintEventArgs e)
+			{
+				if (BarColor == Color.Empty || BarColor == Color.Transparent)
+				{
+					return;
+				}
+
+				using var brush = new SolidBrush(BarColor);
+				e.Graphics.FillRectangle(brush, ClientRectangle);
+			}
+		}
+
+
+		private readonly ColorBar bar;
 		private readonly MoreLinkLabel link;
 		private EventHandler backColorChangedHandler;
 		private ToolTip tip;
@@ -25,12 +45,11 @@ namespace River.OneMoreAddIn.Commands
 
 		public HistoryControl(HierarchyInfo info)
 		{
-			picture = new PictureBox
+			bar = new ColorBar
 			{
-				Image = Resx.SectionMask.MapColor(Color.Black, ColorHelper.FromHtml(info.Color)),
 				Dock = DockStyle.Left,
-				Padding = new(5, 0, 0, 0),
-				Width = 30
+				Width = 6,
+				BarColor = ColorHelper.FromHtml(info.Color)
 			};
 
 			link = new MoreLinkLabel
@@ -39,7 +58,7 @@ namespace River.OneMoreAddIn.Commands
 				Text = info.Name,
 				Tag = info,
 				Font = new("Segoe UI", 8.5f, FontStyle.Regular, GraphicsUnit.Point),
-				Padding = new(0),
+				Padding = new(4, 0, 0, 0),
 				Margin = new(4, 0, 0, 0)
 			};
 
@@ -73,13 +92,12 @@ namespace River.OneMoreAddIn.Commands
 
 			backColorChangedHandler = (s, e) =>
 			{
-				picture.BackColor = ((Control)s).BackColor;
 				link.BackColor = ((Control)s).BackColor;
 			};
 			BackColorChanged += backColorChangedHandler;
 
 			Controls.Add(link);
-			Controls.Add(picture);
+			Controls.Add(bar);
 		}
 
 
@@ -88,7 +106,7 @@ namespace River.OneMoreAddIn.Commands
 			if (disposing)
 			{
 				tip?.Dispose();
-				picture?.Dispose();
+				bar?.Dispose();
 				link?.Dispose();
 				BackColorChanged -= backColorChangedHandler;
 			}
@@ -115,7 +133,6 @@ namespace River.OneMoreAddIn.Commands
 
 		public void ApplyTheme(ThemeManager manager)
 		{
-			picture.BackColor = BackColor;
 			((ILoadControl)link).OnLoad();
 		}
 
