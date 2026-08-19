@@ -66,7 +66,8 @@ namespace River.OneMoreAddIn.Settings
 					"introBox",
 					"clearButton=word_Clear",
 					"resetButton=word_Reset",
-					"resetAllButton"
+					"resetAllButton",
+					"filterLabel"
 				});
 
 				cmdColumn.HeaderText = Resx.word_Command;
@@ -206,6 +207,29 @@ namespace River.OneMoreAddIn.Settings
 					}
 				}
 			}
+		}
+
+
+		private void FilterCommands(object sender, EventArgs e)
+		{
+			var text = filterBox.Text.Trim();
+			var filtering = text.Length >= 2;
+
+			// the currency manager's current row can't be hidden while it's current, so
+			// release it before toggling row visibility
+			gridView.CurrentCell = null;
+
+			for (var i = 0; i < map.Count; i++)
+			{
+				gridView.Rows[i].Visible = !filtering || map[i].Description.ContainsICIC(text);
+			}
+		}
+
+
+		private void ClearFilter(object sender, EventArgs e)
+		{
+			filterBox.Clear();
+			filterBox.Focus();
 		}
 
 
