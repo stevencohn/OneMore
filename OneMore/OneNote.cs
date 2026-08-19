@@ -393,6 +393,13 @@ namespace River.OneMoreAddIn
 							logger.WriteLine("RPC error due to bad XML schema, aborting retries");
 							return false;
 						}
+						else if ((uint)exc.HResult == ErrorCodes.hrObjectMissing)
+						{
+							// the target page/section/notebook no longer exists; retrying
+							// won't help so fail immediately instead of three times over
+							logger.WriteLine("0x80042014 the object does not exist, aborting retries");
+							return false;
+						}
 						else if (
 							(uint)exc.HResult == ErrorCodes.hrRpcFailed ||
 							(uint)exc.HResult == ErrorCodes.hrRpcUnavailable)
@@ -403,7 +410,7 @@ namespace River.OneMoreAddIn
 						}
 						else
 						{
-							// this will include hrCOMBusy and hrObjectMissing
+							// this will include hrCOMBusy
 							var desc = $"{exc.ErrorCode:X} {ErrorCodes.GetDescription(exc.ErrorCode)}";
 							logger.WriteLine(
 								$"error {desc} (HResult {exc.HResult:X}), " +

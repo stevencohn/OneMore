@@ -40,6 +40,13 @@ namespace River.OneMoreAddIn.Commands
 		private readonly bool corralled;
 		private readonly List<IDisposable> trash;
 
+		// panel expand/collapse state
+		private bool pageExpanded;
+		private bool readingExpanded;
+		private bool historyExpanded;
+		private int rememberedSplitter1;
+		private int rememberedSplitter2;
+
 
 		// disposed
 		private readonly NavigationProvider provider;
@@ -97,6 +104,7 @@ namespace River.OneMoreAddIn.Commands
 				subContainer.Panel1Collapsed = true;
 				copyHistoryButton.Left = pinButton.Left;
 				historyToolPanel.Controls.Remove(pinButton);
+				pinnedTwistButton.Visible = false;
 			}
 
 			historyBox.FullRowSelect = true;
@@ -113,6 +121,19 @@ namespace River.OneMoreAddIn.Commands
 
 			pinnedBox.MouseUp += ShowPinnedContextMenu;
 			historyBox.MouseUp += ShowHistoryContextMenu;
+
+			// relax the designer-time minimums so a section can be collapsed down to
+			// just its header height
+			mainContainer.Panel1MinSize = pageHeadPanel.Height;
+			mainContainer.Panel2MinSize = historyHeadPanel.Height + (reading ? pinnedHeadPanel.Height : 0);
+			if (reading)
+			{
+				subContainer.Panel1MinSize = pinnedHeadPanel.Height;
+			}
+			subContainer.Panel2MinSize = historyHeadPanel.Height;
+
+			mainContainer.SplitterMoved += MainSplitterMoved;
+			subContainer.SplitterMoved += SubSplitterMoved;
 		}
 
 
@@ -138,6 +159,134 @@ namespace River.OneMoreAddIn.Commands
 			historyBox.BackColor = viewColor;
 			historyBox.HighlightBackground = manager.GetColor("LinkHighlight");
 		}
+
+
+		#region Panel expand/collapse
+		private void ToggleSectionOnClick(object sender, EventArgs e)
+		{
+			if (sender == pageTwistButton)
+			{
+				pageExpanded = !pageExpanded;
+			}
+			else if (sender == pinnedTwistButton)
+			{
+				readingExpanded = !readingExpanded;
+			}
+			else if (sender == historyTwistButton)
+			{
+				historyExpanded = !historyExpanded;
+			}
+
+			if (!pageExpanded && !(reading && readingExpanded) && !historyExpanded)
+			{
+				// the section just collapsed was the last one standing; expand the next
+				// section in visual order, or the previous one if there is no next
+				var order = reading
+					? new object[] { pageTwistButton, pinnedTwistButton, historyTwistButton }
+					: new object[] { pageTwistButton, historyTwistButton };
+
+				var index = Array.IndexOf(order, sender);
+				var fallback = index < order.Length - 1 ? order[index + 1] : order[index - 1];
+
+				if (fallback == pageTwistButton)
+				{
+					pageExpanded = true;
+				}
+				else if (fallback == pinnedTwistButton)
+				{
+					readingExpanded = true;
+				}
+				else
+				{
+					historyExpanded = true;
+				}
+			}
+
+			UpdatePanelLayout();
+		}
+
+
+		/// <summary>
+		/// Recomputes mainContainer/subContainer SplitterDistance from the current
+		/// expand/collapse state of the three sections. A collapsed section is shrunk to
+		/// exactly its header height; an expanded section either gets all remaining
+		/// space (if it's the only one expanded on its side) or the last known-good
+		/// (remembered) distance, clamped to leave room for a collapsed sibling.
+		/// </summary>
+		private void UpdatePanelLayout()
+		{
+			var total = mainContainer.ClientSize.Height;
+			var subOthersExpanded = reading ? (readingExpanded || historyExpanded) : historyExpanded;
+
+			int pageHeight;
+			if (!pageExpanded)
+			{
+				pageHeight = pageHeadPanel.Height;
+			}
+			else if (!subOthersExpanded)
+			{
+				var subHeaders = (reading ? pinnedHeadPanel.Height : 0) + historyHeadPanel.Height;
+				pageHeight = total - subHeaders;
+			}
+			else
+			{
+				pageHeight = Math.Max(pageHeadPanel.Height,
+					Math.Min(rememberedSplitter1, total - mainContainer.Panel2MinSize));
+			}
+
+			mainContainer.SplitterDistance = pageHeight;
+
+			if (reading)
+			{
+				var subHeight = total - pageHeight;
+
+				int pinnedHeight;
+				if (!readingExpanded)
+				{
+					pinnedHeight = pinnedHeadPanel.Height;
+				}
+				else if (!historyExpanded)
+				{
+					pinnedHeight = subHeight - historyHeadPanel.Height;
+				}
+				else
+				{
+					pinnedHeight = Math.Max(pinnedHeadPanel.Height,
+						Math.Min(rememberedSplitter2, subHeight - historyHeadPanel.Height));
+				}
+
+				subContainer.SplitterDistance = pinnedHeight;
+			}
+
+			UpdateTwistGlyphs();
+		}
+
+
+		private void UpdateTwistGlyphs()
+		{
+			pageTwistButton.Text = pageExpanded ? "▼" : "▶";
+			pinnedTwistButton.Text = readingExpanded ? "▼" : "▶";
+			historyTwistButton.Text = historyExpanded ? "▼" : "▶";
+		}
+
+
+		private void MainSplitterMoved(object sender, SplitterEventArgs e)
+		{
+			if (pageExpanded && (reading ? (readingExpanded || historyExpanded) : historyExpanded))
+			{
+				rememberedSplitter1 = mainContainer.SplitterDistance;
+			}
+		}
+
+
+		private void SubSplitterMoved(object sender, SplitterEventArgs e)
+		{
+			if (reading && readingExpanded && historyExpanded)
+			{
+				rememberedSplitter2 = subContainer.SplitterDistance;
+			}
+		}
+		#endregion Panel expand/collapse
 
 
 		#region Window Management
@@ -220,9 +369,21 @@ namespace River.OneMoreAddIn.Commands
 			// designer defines width but height is calculated
 			MaximumSize = new Size(MaximumSize.Width, screen.WorkingArea.Height - (WindowMargin * 2));
 
-			// restore splitter positions
-			mainContainer.SplitterDistance = settings.Get("splitter1", mainContainer.SplitterDistance);
-			subContainer.SplitterDistance = settings.Get("splitter2", subContainer.SplitterDistance);
+			// restore panel expand/collapse state and splitter positions
+			pageExpanded = settings.Get("pageExpanded", true);
+			readingExpanded = reading && settings.Get("readingExpanded", true);
+			historyExpanded = settings.Get("historyExpanded", true);
+
+			if (!pageExpanded && !readingExpanded && !historyExpanded)
+			{
+				// defensive: enforce "at least one expanded" invariant
+				historyExpanded = true;
+			}
+
+			rememberedSplitter1 = settings.Get("splitter1", mainContainer.SplitterDistance);
+			rememberedSplitter2 = settings.Get("splitter2", subContainer.SplitterDistance);
+
+			UpdatePanelLayout();
 
 			// load data
 			if (reading)
@@ -365,8 +526,11 @@ namespace River.OneMoreAddIn.Commands
 				collection.Add("top", Top);
 				collection.Add("width", Width);
 				collection.Add("height", Height);
-				collection.Add("splitter1", mainContainer.SplitterDistance);
-				collection.Add("splitter2", subContainer.SplitterDistance);
+				collection.Add("pageExpanded", pageExpanded);
+				collection.Add("readingExpanded", readingExpanded);
+				collection.Add("historyExpanded", historyExpanded);
+				collection.Add("splitter1", rememberedSplitter1);
+				collection.Add("splitter2", rememberedSplitter2);
 				settings.SetCollection(collection);
 				settings.Save();
 			}
@@ -704,6 +868,15 @@ namespace River.OneMoreAddIn.Commands
 
 			if (records.Count > 0)
 			{
+				var result = MoreMessageBox.Show(Owner,
+					string.Format(Resx.NavigatorWindow_confirmDelete, records.Count),
+					MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+				if (result != DialogResult.Yes)
+				{
+					return;
+				}
+
 				var item = historyBox.SelectedItems.Count > 0
 					? historyBox.SelectedItems[historyBox.SelectedItems.Count - 1]
 					: historyBox.Items[0];
