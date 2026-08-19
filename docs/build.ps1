@@ -87,7 +87,19 @@ Begin
         }
 
         $indexFile = Join-Path $dir 'index.html'
-        $meta = "<meta http-equiv=""refresh"" content=""0; url=$first"" />"
+
+        $meta = @"
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8">
+  <meta http-equiv="refresh" content="0; url=$first">
+  <title>Redirecting...</title>
+ </head>
+ <body></body>
+</html>
+"@
+
         $meta | Out-File $indexFile -Encoding utf8 -Force -Confirm:$false
 
         return $dir, $sectionID
@@ -177,6 +189,8 @@ Begin
         $inner = $body | foreach InnerHtml
 
         $template = Get-Content -Path template.htm -Encoding utf8 -Raw
+        $template = $template.Replace('~PAGE_TITLE~', $name)
+        $template = $template.Replace('~P~', [string]::join("`n", $toc))
         $template = $template.Replace('~TOC~', [string]::join("`n", $toc))
         $template = $template.Replace('~sectionID~', $sectionID)
         $template = $template.Replace('~content~', $inner)
