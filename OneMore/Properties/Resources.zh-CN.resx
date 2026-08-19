@@ -2596,6 +2596,10 @@ OneNote 文件 (*.one)</value>
     <value>选择两条或多条线加入</value>
     <comment>info message</comment>
   </data>
+  <data name="KeyboardSheet_filterLabel.Text" xml:space="preserve">
+    <value>筛选：</value>
+    <comment>label</comment>
+  </data>
   <data name="KeyboardSheet_introBox.Text" xml:space="preserve">
     <value>自定义键盘快捷键。选中一个命令，然后输入快捷键。</value>
     <comment>label</comment>

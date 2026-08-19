@@ -2590,6 +2590,10 @@ Total Row Font
     <value>בחר שתי שורות או יותר להצטרפות</value>
     <comment>info message</comment>
   </data>
+  <data name="KeyboardSheet_filterLabel.Text" xml:space="preserve">
+    <value>לְסַנֵן:</value>
+    <comment>label</comment>
+  </data>
   <data name="KeyboardSheet_introBox.Text" xml:space="preserve">
     <value>נהל את קיצורי המקשים המותאמים אישית שלי. בחר פקודה ולחץ על רצף מקשים.</value>
     <comment>label</comment>

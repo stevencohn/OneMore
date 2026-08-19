@@ -2590,6 +2590,10 @@ Czy chcesz odświeżyć istniejącą stronę?</value>
     <value>Wybierz dwie lub więcej linii, aby dołączyć</value>
     <comment>info message</comment>
   </data>
+  <data name="KeyboardSheet_filterLabel.Text" xml:space="preserve">
+    <value>Filtr:</value>
+    <comment>label</comment>
+  </data>
   <data name="KeyboardSheet_introBox.Text" xml:space="preserve">
     <value>Zarządzaj moimi niestandardowymi skrótami klawiatury. Wybierz polecenie i naciśnij sekwencję klucza.</value>
     <comment>label</comment>

@@ -2590,6 +2590,10 @@ Wilt u de bestaande pagina vernieuwen?</value>
     <value>Selecteer twee of meer lijnen om mee te doen</value>
     <comment>info message</comment>
   </data>
+  <data name="KeyboardSheet_filterLabel.Text" xml:space="preserve">
+    <value>Filter:</value>
+    <comment>label</comment>
+  </data>
   <data name="KeyboardSheet_introBox.Text" xml:space="preserve">
     <value>Beheer mijn aangepaste sneltoetsen. Selecteer een opdracht en druk op een sleutelreeks.</value>
     <comment>label</comment>

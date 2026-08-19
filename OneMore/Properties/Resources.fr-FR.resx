@@ -2593,6 +2593,10 @@ Voulez-vous actualiser la page existante ?</value>
     <value>Sélectionnez deux ou plusieurs lignes à joindre</value>
     <comment>info message</comment>
   </data>
+  <data name="KeyboardSheet_filterLabel.Text" xml:space="preserve">
+    <value>Filtre:</value>
+    <comment>label</comment>
+  </data>
   <data name="KeyboardSheet_introBox.Text" xml:space="preserve">
     <value>Gérez mes raccourcis clavier personnalisés. Sélectionnez une commande et appuyez sur une séquence de touches.</value>
     <comment>label</comment>

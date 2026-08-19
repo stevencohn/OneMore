@@ -2585,6 +2585,10 @@ Cuadrado Marrón</value>
     <value>Seleccione dos o más líneas para unir</value>
     <comment>info message</comment>
   </data>
+  <data name="KeyboardSheet_filterLabel.Text" xml:space="preserve">
+    <value>Filtrar:</value>
+    <comment>label</comment>
+  </data>
   <data name="KeyboardSheet_introBox.Text" xml:space="preserve">
     <value>Administre mis atajos de teclado personalizados. Seleccione un comando y presione una secuencia de teclas.</value>
     <comment>label</comment>
