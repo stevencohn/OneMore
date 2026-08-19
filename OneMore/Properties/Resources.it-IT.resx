@@ -2590,6 +2590,10 @@ Vuoi aggiornare la pagina esistente?</value>
     <value>Seleziona due o più linee da unire</value>
     <comment>info message</comment>
   </data>
+  <data name="KeyboardSheet_filterLabel.Text" xml:space="preserve">
+    <value>Filtro:</value>
+    <comment>label</comment>
+  </data>
   <data name="KeyboardSheet_introBox.Text" xml:space="preserve">
     <value>Gestisci le mie scorciatoie da tastiera personalizzate. Selezionare un comando e premere una sequenza di tasti.</value>
     <comment>label</comment>

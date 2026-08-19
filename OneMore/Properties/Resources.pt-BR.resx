@@ -2590,6 +2590,10 @@ Deseja atualizar a página existente?</value>
     <value>Selecione duas ou mais linhas para unir</value>
     <comment>info message</comment>
   </data>
+  <data name="KeyboardSheet_filterLabel.Text" xml:space="preserve">
+    <value>Filtro:</value>
+    <comment>label</comment>
+  </data>
   <data name="KeyboardSheet_introBox.Text" xml:space="preserve">
     <value>Gerencie meus atalhos de teclado personalizados. Selecione um comando e pressione uma sequência de teclas.</value>
     <comment>label</comment>

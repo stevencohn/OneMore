@@ -38,8 +38,13 @@
 			this.clearButton = new River.OneMoreAddIn.UI.MoreMenuItem();
 			this.resetButton = new River.OneMoreAddIn.UI.MoreMenuItem();
 			this.resetAllButton = new River.OneMoreAddIn.UI.MoreMenuItem();
+			this.filterPanel = new River.OneMoreAddIn.UI.MorePanel();
+			this.filterLabel = new River.OneMoreAddIn.UI.MoreLabel();
+			this.filterBox = new River.OneMoreAddIn.UI.MoreTextBox();
+			this.filterClearButton = new River.OneMoreAddIn.UI.MoreButton();
 			((System.ComponentModel.ISupportInitialize)(this.gridView)).BeginInit();
 			this.toolstrip.SuspendLayout();
+			this.filterPanel.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// gridView
@@ -98,9 +103,63 @@
 			this.introBox.Text = "Manage my custom keyboard shortcuts. Select a command and press a key sequence.";
 			this.introBox.ThemedBack = "ControlLightLight";
 			this.introBox.ThemedFore = null;
-			// 
+			//
+			// filterPanel
+			//
+			this.filterPanel.BottomBorderSize = 0;
+			this.filterPanel.Controls.Add(this.filterClearButton);
+			this.filterPanel.Controls.Add(this.filterBox);
+			this.filterPanel.Controls.Add(this.filterLabel);
+			this.filterPanel.Dock = System.Windows.Forms.DockStyle.Top;
+			this.filterPanel.Location = new System.Drawing.Point(10, 64);
+			this.filterPanel.Name = "filterPanel";
+			this.filterPanel.Size = new System.Drawing.Size(780, 34);
+			this.filterPanel.TabIndex = 3;
+			this.filterPanel.ThemedBack = "ControlLightLight";
+			this.filterPanel.TopBorderSize = 0;
+			//
+			// filterLabel
+			//
+			this.filterLabel.AutoSize = true;
+			this.filterLabel.Location = new System.Drawing.Point(0, 9);
+			this.filterLabel.Name = "filterLabel";
+			this.filterLabel.Size = new System.Drawing.Size(48, 20);
+			this.filterLabel.TabIndex = 0;
+			this.filterLabel.Text = "Filter:";
+			//
+			// filterBox
+			//
+			this.filterBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.filterBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.filterBox.Location = new System.Drawing.Point(60, 4);
+			this.filterBox.Name = "filterBox";
+			this.filterBox.ProcessEnterKey = true;
+			this.filterBox.Size = new System.Drawing.Size(680, 26);
+			this.filterBox.TabIndex = 1;
+			this.filterBox.ThemedBack = null;
+			this.filterBox.ThemedFore = null;
+			this.filterBox.TextChanged += new System.EventHandler(this.FilterCommands);
+			//
+			// filterClearButton
+			//
+			this.filterClearButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.filterClearButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.filterClearButton.ImageOver = null;
+			this.filterClearButton.Location = new System.Drawing.Point(750, 2);
+			this.filterClearButton.Name = "filterClearButton";
+			this.filterClearButton.ShowBorder = false;
+			this.filterClearButton.Size = new System.Drawing.Size(30, 30);
+			this.filterClearButton.StylizeImage = false;
+			this.filterClearButton.TabIndex = 2;
+			this.filterClearButton.Text = "✕";
+			this.filterClearButton.ThemedBack = null;
+			this.filterClearButton.ThemedFore = null;
+			this.filterClearButton.UseVisualStyleBackColor = true;
+			this.filterClearButton.Click += new System.EventHandler(this.ClearFilter);
+			//
 			// toolstrip
-			// 
+			//
 			this.toolstrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.toolstrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
 			this.toolstrip.ImageScalingSize = new System.Drawing.Size(24, 24);
@@ -151,6 +210,7 @@
 			this.BackColor = System.Drawing.SystemColors.ControlLightLight;
 			this.Controls.Add(this.gridView);
 			this.Controls.Add(this.toolstrip);
+			this.Controls.Add(this.filterPanel);
 			this.Controls.Add(this.introBox);
 			this.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -161,6 +221,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.gridView)).EndInit();
 			this.toolstrip.ResumeLayout(false);
 			this.toolstrip.PerformLayout();
+			this.filterPanel.ResumeLayout(false);
+			this.filterPanel.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -174,6 +236,10 @@
 		private UI.MoreMenuItem clearButton;
 		private UI.MoreMenuItem resetButton;
 		private UI.MoreMenuItem resetAllButton;
+		private UI.MorePanel filterPanel;
+		private UI.MoreLabel filterLabel;
+		private UI.MoreTextBox filterBox;
+		private UI.MoreButton filterClearButton;
 		private System.Windows.Forms.DataGridViewTextBoxColumn cmdColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn keyColumn;
 	}

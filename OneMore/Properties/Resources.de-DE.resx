@@ -2585,6 +2585,10 @@ Möchten Sie die bestehende Seite aktualisieren?</value>
     <value>Wähle zwei oder mehr Linien zum Verbinden aus</value>
     <comment>info message</comment>
   </data>
+  <data name="KeyboardSheet_filterLabel.Text" xml:space="preserve">
+    <value>Filter:</value>
+    <comment>label</comment>
+  </data>
   <data name="KeyboardSheet_introBox.Text" xml:space="preserve">
     <value>Verwalten Sie meine benutzerdefinierten Tastaturverknüpfungen. Wählen Sie einen Befehl aus und drücken Sie eine Schlüsselsequenz.</value>
     <comment>label</comment>

@@ -2593,6 +2593,10 @@
     <value>حدد سطرين أو أكثر للانضمام</value>
     <comment>info message</comment>
   </data>
+  <data name="KeyboardSheet_filterLabel.Text" xml:space="preserve">
+    <value>فلتر:</value>
+    <comment>label</comment>
+  </data>
   <data name="KeyboardSheet_introBox.Text" xml:space="preserve">
     <value>إدارة اختصارات لوحة المفاتيح المخصصة. حدد أمرًا واضغط على تسلسل مفتاح.</value>
     <comment>label</comment>

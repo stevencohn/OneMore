@@ -2593,6 +2593,10 @@ OneNoteファイル (*.one)</value>
     <value>2行以上を選択して結合</value>
     <comment>info message</comment>
   </data>
+  <data name="KeyboardSheet_filterLabel.Text" xml:space="preserve">
+    <value>フィルター：</value>
+    <comment>label</comment>
+  </data>
   <data name="KeyboardSheet_introBox.Text" xml:space="preserve">
     <value>カスタムキーボードショートカットを管理します。コマンドを選択してキーシーケンスを押します。</value>
     <comment>label</comment>
