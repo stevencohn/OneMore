@@ -47,6 +47,10 @@ namespace River.OneMoreAddIn.Commands
 		private int rememberedSplitter1;
 		private int rememberedSplitter2;
 
+		// defer headings load while collapsed
+		private bool pageStale;
+		private string pendingPageId;
+
 
 		// disposed
 		private readonly NavigationProvider provider;
@@ -214,6 +218,12 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			UpdatePanelLayout();
+
+			if (pageExpanded && pageStale)
+			{
+				pageStale = false;
+				_ = LoadPageHeadings(pendingPageId, false);
+			}
 		}
 
 
@@ -684,6 +694,8 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
+			pageStale = false;
+
 			await using var one = new OneNote();
 			var page = await one.GetPage(
 				pageID ?? one.CurrentPageId,
@@ -872,6 +884,13 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task ShowPageOutline(HistoryRecord info)
 		{
+			if (!pageExpanded)
+			{
+				pageStale = true;
+				pendingPageId = info.PageId;
+				return;
+			}
+
 			await LoadPageHeadings(info.PageId, false);
 		}
 
