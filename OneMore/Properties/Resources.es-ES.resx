@@ -2820,6 +2820,14 @@ Cuadrado Marrón</value>
     <value>Mover elementos seleccionados hacia abajo</value>
     <comment>tooltip</comment>
   </data>
+  <data name="NavigatorWindow_filterButton_Tooltip" xml:space="preserve">
+    <value>Filtrar esta lista</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_filterCloseButton_Tooltip" xml:space="preserve">
+    <value>Cerrar filtro y mostrar todos los artículos</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="NavigatorWindow_menuAddToList" xml:space="preserve">
     <value>Agregar a la lista de lectura</value>
     <comment>context menu item</comment>

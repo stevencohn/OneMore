@@ -2825,6 +2825,14 @@ Czy chcesz odświeżyć istniejącą stronę?</value>
     <value>Przenieś wybrane elementy w dół</value>
     <comment>tooltip</comment>
   </data>
+  <data name="NavigatorWindow_filterButton_Tooltip" xml:space="preserve">
+    <value>Przefiltruj tę listę</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_filterCloseButton_Tooltip" xml:space="preserve">
+    <value>Zamknij filtr i pokaż wszystkie elementy</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="NavigatorWindow_menuAddToList" xml:space="preserve">
     <value>Dodaj do listy czytelniczej</value>
     <comment>context menu item</comment>

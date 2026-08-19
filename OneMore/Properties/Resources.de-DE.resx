@@ -2820,6 +2820,14 @@ Möchten Sie die bestehende Seite aktualisieren?</value>
     <value>Ausgewählte Elemente nach unten verschieben</value>
     <comment>tooltip</comment>
   </data>
+  <data name="NavigatorWindow_filterButton_Tooltip" xml:space="preserve">
+    <value>Filtern Sie diese Liste</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_filterCloseButton_Tooltip" xml:space="preserve">
+    <value>Filter schließen und alle Artikel anzeigen</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="NavigatorWindow_menuAddToList" xml:space="preserve">
     <value>Zur Leseliste hinzufügen</value>
     <comment>context menu item</comment>

@@ -2828,6 +2828,14 @@
     <value>نقل العناصر المحددة لأسفل</value>
     <comment>tooltip</comment>
   </data>
+  <data name="NavigatorWindow_filterButton_Tooltip" xml:space="preserve">
+    <value>تصفية هذه القائمة</value>
+    <comment>tooltip</comment>
+  </data>
+  <data name="NavigatorWindow_filterCloseButton_Tooltip" xml:space="preserve">
+    <value>إغلاق عامل التصفية وإظهار كافة العناصر</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="NavigatorWindow_menuAddToList" xml:space="preserve">
     <value>أضف إلى قائمة القراءة</value>
     <comment>context menu item</comment>
