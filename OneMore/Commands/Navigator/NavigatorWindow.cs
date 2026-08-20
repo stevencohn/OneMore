@@ -52,6 +52,11 @@ namespace River.OneMoreAddIn.Commands
 		private bool pageStale;
 		private string pendingPageId;
 
+		// current page's heading fonts; replaced (and the old pair disposed) on every
+		// LoadPageHeadings call rather than accumulating in trash for the window's lifetime
+		private Font headingFont;
+		private Font headingBoldFont;
+
 
 		// disposed
 		private readonly NavigationProvider provider;
@@ -799,10 +804,10 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			var font = new Font("Segoe UI", 8.5F, FontStyle.Regular, GraphicsUnit.Point);
-			var bold = new Font("Segoe UI", 8.5F, FontStyle.Bold, GraphicsUnit.Point);
-			trash.Add(font);
-			trash.Add(bold);
+			headingFont?.Dispose();
+			headingBoldFont?.Dispose();
+			headingFont = new Font("Segoe UI", 8.5F, FontStyle.Regular, GraphicsUnit.Point);
+			headingBoldFont = new Font("Segoe UI", 8.5F, FontStyle.Bold, GraphicsUnit.Point);
 
 			//logger.DebugTime($"suspending layout", keepRunning: true);
 			pageBox.SuspendLayout();
@@ -820,7 +825,7 @@ namespace River.OneMoreAddIn.Commands
 				var leftpad = heading.Level * HeaderIndent;
 				var leftmar = leftpad + 4;
 
-				var headFont = heading == currentHeading ? bold : font;
+				var headFont = heading == currentHeading ? headingBoldFont : headingFont;
 
 				var link = new MoreLinkLabel
 				{

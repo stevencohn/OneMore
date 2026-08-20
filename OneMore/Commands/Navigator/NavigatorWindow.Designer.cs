@@ -23,6 +23,9 @@
 				}
 
 				trash.Clear();
+
+				headingFont?.Dispose();
+				headingBoldFont?.Dispose();
 			}
 			base.Dispose(disposing);
 		}
