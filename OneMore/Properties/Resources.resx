@@ -5111,10 +5111,6 @@ Help Tab</value>
     <value>Paste and Keep Text Only (Ctrl + Shift + V)</value>
     <comment>ribbon edit</comment>
   </data>
-  <data name="ribPinPageButton_Label" xml:space="preserve">
-    <value>Add Page To My Reading List</value>
-    <comment>navigator</comment>
-  </data>
   <data name="ribPlantUmlButton_Label" xml:space="preserve">
     <value>Draw PlantUML</value>
     <comment>ribbon images</comment>

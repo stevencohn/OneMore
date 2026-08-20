@@ -5077,10 +5077,6 @@ Registerkarte „Hilfe“.</value>
     <value>Einfügen und den Text nur einfügen (Strg + Shift + V)</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="ribPinPageButton_Label" xml:space="preserve">
-    <value>Seite zu meiner Leseliste hinzufügen</value>
-    <comment>navigator</comment>
-  </data>
   <data name="ribPlantUmlButton_Label" xml:space="preserve">
     <value>Zeichne PlantUML</value>
     <comment>ribbon images</comment>

@@ -5078,10 +5078,6 @@ Zakładka Pomoc</value>
     <value>Wklej i trzymaj tylko tekst (Ctrl + Shift + V)</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="ribPinPageButton_Label" xml:space="preserve">
-    <value>Dodaj stronę do mojej listy czytelniczej</value>
-    <comment>navigator</comment>
-  </data>
   <data name="ribPlantUmlButton_Label" xml:space="preserve">
     <value>Narysuj PlantUML</value>
     <comment>ribbon images</comment>

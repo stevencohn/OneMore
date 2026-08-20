@@ -5078,10 +5078,6 @@ Tabblad Help</value>
     <value>Plakken en blijf alleen tekst (Ctrl + Shift + V)</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="ribPinPageButton_Label" xml:space="preserve">
-    <value>Pagina toevoegen aan mijn leeslijst</value>
-    <comment>navigator</comment>
-  </data>
   <data name="ribPlantUmlButton_Label" xml:space="preserve">
     <value>Teken PlantUML</value>
     <comment>ribbon images</comment>

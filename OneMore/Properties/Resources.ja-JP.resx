@@ -5086,10 +5086,6 @@ ISO-code then comma then language name</comment>
     <value>テキスト情報のみを貼り付け (Ctrl + Shift + V)</value>
     <comment>ribbon edit</comment>
   </data>
-  <data name="ribPinPageButton_Label" xml:space="preserve">
-    <value>リーディングリストにページを追加</value>
-    <comment>navigator</comment>
-  </data>
   <data name="ribPlantUmlButton_Label" xml:space="preserve">
     <value>PlantUMLの描画</value>
     <comment>ribbon images</comment>

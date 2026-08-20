@@ -5089,10 +5089,6 @@ Onglet Aide</value>
     <value>Coller et garder le texte uniquement (Ctrl + Maj + V)</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="ribPinPageButton_Label" xml:space="preserve">
-    <value>Ajouter une page à ma liste de lecture</value>
-    <comment>navigator</comment>
-  </data>
   <data name="ribPlantUmlButton_Label" xml:space="preserve">
     <value>Dessiner PlantUML</value>
     <comment>ribbon images</comment>

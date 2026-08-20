@@ -12062,16 +12062,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribPasteTextButton_Screentip", resourceCulture);
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Add Page To My Reading List.
-        /// </summary>
-        internal static string ribPinPageButton_Label {
-            get {
-                return ResourceManager.GetString("ribPinPageButton_Label", resourceCulture);
-            }
-        }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Draw PlantUML.
         /// </summary>
