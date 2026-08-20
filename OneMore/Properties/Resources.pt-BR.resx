@@ -5078,10 +5078,6 @@ Guia Ajuda</value>
     <value>Cole e mantenha apenas o texto (Ctrl + Shift + V)</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="ribPinPageButton_Label" xml:space="preserve">
-    <value>Adicionar página à minha lista de leitura</value>
-    <comment>navigator</comment>
-  </data>
   <data name="ribPlantUmlButton_Label" xml:space="preserve">
     <value>Desenhar PlantUML</value>
     <comment>ribbon images</comment>

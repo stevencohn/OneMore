@@ -5077,10 +5077,6 @@ Pestaña Ayuda</value>
     <value>Pegar y mantener solo texto (CTRL + MAYÚS + V)</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="ribPinPageButton_Label" xml:space="preserve">
-    <value>Agregar página a mi lista de lectura</value>
-    <comment>navigator</comment>
-  </data>
   <data name="ribPlantUmlButton_Label" xml:space="preserve">
     <value>Dibujar PlantaUML</value>
     <comment>ribbon images</comment>

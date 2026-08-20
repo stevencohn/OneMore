@@ -5092,10 +5092,6 @@ ISO-code then comma then language name</comment>
     <value>粘贴为纯文本 (Ctrl + Shift + V)</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="ribPinPageButton_Label" xml:space="preserve">
-    <value>将页面添加到我的阅读列表</value>
-    <comment>navigator</comment>
-  </data>
   <data name="ribPlantUmlButton_Label" xml:space="preserve">
     <value>插入 PlantUML 示意图</value>
     <comment>ribbon images</comment>

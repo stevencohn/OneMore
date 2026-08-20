@@ -5083,10 +5083,6 @@ Scheda Aiuto</value>
     <value>Incolla e mantieni solo testo (Ctrl + Maiusc + V)</value>
     <comment>ribbon edit</comment>
   </data>
-  <data name="ribPinPageButton_Label" xml:space="preserve">
-    <value>Aggiungi pagina alla mia lista di lettura</value>
-    <comment>navigator</comment>
-  </data>
   <data name="ribPlantUmlButton_Label" xml:space="preserve">
     <value>Disegna PlantUML</value>
     <comment>ribbon images</comment>

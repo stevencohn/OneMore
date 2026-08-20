@@ -5089,10 +5089,6 @@ ISO-code then comma then language name</comment>
     <value>لصق والحفاظ على النص فقط (CTRL + SHIFT + V)</value>
     <comment>ribbon item</comment>
   </data>
-  <data name="ribPinPageButton_Label" xml:space="preserve">
-    <value>إضافة صفحة إلى قائمة القراءة الخاصة بي</value>
-    <comment>navigator</comment>
-  </data>
   <data name="ribPlantUmlButton_Label" xml:space="preserve">
     <value>رسم النبات</value>
     <comment>ribbon images</comment>

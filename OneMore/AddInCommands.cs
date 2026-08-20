@@ -276,7 +276,7 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<CopyLinkToParagraphCommand>();
 
 
-		[Command("ribCopyPageToReadingListButton_Label", Keys.None, "ribNavigatorButton")]
+		[Command("ribCopyPageToReadingListButton_Label", Keys.Control | Keys.Shift | Keys.B, "ribNavigatorButton")]
 		public async Task CopyPageToReadingListCmd(IRibbonControl control)
 			=> await factory.Run<CopyPageToReadingListCommand>();
 
@@ -802,12 +802,6 @@ namespace River.OneMoreAddIn
 		[Command("ribPasteTextButton_Label", Keys.Control | Keys.Shift | Keys.V, "ribEditMenu")]
 		public async Task PasteTextCmd(IRibbonControl control)
 			=> await factory.Run<PasteTextCommand>();
-
-
-		[IgnorePalette]
-		[Command("ribPinPageButton_Label", Keys.Control | Keys.Shift | Keys.B)]
-		public async Task PinpageCmd(IRibbonControl control)
-			=> await factory.Run<PinPageCommand>();
 
 
 		[Command("ribPlantUmlButton_Label", Keys.None, "ribImagesMenu")]
