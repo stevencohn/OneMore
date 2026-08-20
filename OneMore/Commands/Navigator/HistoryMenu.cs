@@ -34,7 +34,7 @@ namespace River.OneMoreAddIn.Commands
 
 		// the dropdown must stay short even if the user allows a much larger stored
 		// history; the History dialog, with its own filter box, is not similarly capped
-		private const int MaxItems = 40;
+		private const int MaxItems = 20;
 
 
 		/// <summary>
