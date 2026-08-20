@@ -4259,7 +4259,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon page</comment>
   </data>
   <data name="ribCopyPageToReadingListButton_Label" xml:space="preserve">
-    <value>将页面复制到我的阅读列表</value>
+    <value>将页面添加到我的阅读列表</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribCopyPageToReadingListButton_Screentip" xml:space="preserve">
@@ -4267,7 +4267,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon references</comment>
   </data>
   <data name="ribCopyParagraphToReadingListButton_Label" xml:space="preserve">
-    <value>将段落复制到我的阅读列表</value>
+    <value>将段落添加到我的阅读列表</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribCopyParagraphToReadingListButton_Screentip" xml:space="preserve">

@@ -4249,7 +4249,7 @@ Scheda Aiuto</value>
     <comment>ribbon page</comment>
   </data>
   <data name="ribCopyPageToReadingListButton_Label" xml:space="preserve">
-    <value>Copia la pagina nella mia lista di lettura</value>
+    <value>Aggiungi la pagina alla mia lista di lettura</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribCopyPageToReadingListButton_Screentip" xml:space="preserve">
@@ -4257,7 +4257,7 @@ Scheda Aiuto</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribCopyParagraphToReadingListButton_Label" xml:space="preserve">
-    <value>Copia il paragrafo nella mia lista di lettura</value>
+    <value>Aggiungi un paragrafo alla mia lista di lettura</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribCopyParagraphToReadingListButton_Screentip" xml:space="preserve">

@@ -207,7 +207,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("AddInTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to New Section Group.
         /// </summary>
@@ -216,16 +216,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("AddTopSectionGroupCommand_DefaultName", resourceCulture);
             }
         }
-
+        
         /// <summary>
-        ///   Looks up a localized string similar to An error occurred adding the new section group. See the log for details.
+        ///   Looks up a localized string similar to An error occurred adding the new section group. See the log for details..
         /// </summary>
         internal static string AddTopSectionGroupCommand_Error {
             get {
                 return ResourceManager.GetString("AddTopSectionGroupCommand_Error", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Absolute.
         /// </summary>
@@ -1500,6 +1500,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ...and {0} more.
+        /// </summary>
+        internal static string CopyFolderCommand_AndMore {
+            get {
+                return ResourceManager.GetString("CopyFolderCommand_AndMore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot copy a folder into itself or one of its children.
         /// </summary>
         internal static string CopyFolderCommand_InvalidTarget {
@@ -1507,7 +1516,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("CopyFolderCommand_InvalidTarget", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Could not determine the source folder to copy. Please open a page within the folder you want to copy and try again..
         /// </summary>
@@ -1516,25 +1525,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("CopyFolderCommand_NoSourceFolder", resourceCulture);
             }
         }
-
+        
         /// <summary>
-        ///   Looks up a localized string similar to Copy completed but {0} of {1} page(s) could not be copied.
+        ///   Looks up a localized string similar to Copy completed but {0} of {1} page(s) could not be copied. See the log file for details..
         /// </summary>
         internal static string CopyFolderCommand_PartialFailure {
             get {
                 return ResourceManager.GetString("CopyFolderCommand_PartialFailure", resourceCulture);
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized string similar to ...and {0} more.
-        /// </summary>
-        internal static string CopyFolderCommand_AndMore {
-            get {
-                return ResourceManager.GetString("CopyFolderCommand_AndMore", resourceCulture);
-            }
-        }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to No hyperlinks found in range.
         /// </summary>
@@ -3597,7 +3597,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("FileImportSheet_introBox.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to PowerPoint and PDF.
         /// </summary>
@@ -3606,7 +3606,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("FileImportSheet_ppGroup.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Quick Import.
         /// </summary>
@@ -3615,7 +3615,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("FileImportSheet_quickGroup.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to These options enable the quick-import feature.
         /// </summary>
@@ -3624,34 +3624,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("FileImportSheet_quickIntroLabel.Text", resourceCulture);
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Select the folder to scan for quick-import files.
-        /// </summary>
-        internal static string FileImportSheet_SelectFolderText {
-            get {
-                return ResourceManager.GetString("FileImportSheet_SelectFolderText", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Select the section used as the target for quick-import.
-        /// </summary>
-        internal static string FileImportSheet_SelectSectionIntro {
-            get {
-                return ResourceManager.GetString("FileImportSheet_SelectSectionIntro", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Select Section.
-        /// </summary>
-        internal static string FileImportSheet_SelectSectionTitle {
-            get {
-                return ResourceManager.GetString("FileImportSheet_SelectSectionTitle", resourceCulture);
-            }
-        }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Select section....
         /// </summary>
@@ -3660,7 +3633,34 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("FileImportSheet_sectionLink.Text", resourceCulture);
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select the folder to scan for quick-import files.
+        /// </summary>
+        internal static string FileImportSheet_SelectFolderText {
+            get {
+                return ResourceManager.GetString("FileImportSheet_SelectFolderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select the section used as the target for quick-import.
+        /// </summary>
+        internal static string FileImportSheet_SelectSectionIntro {
+            get {
+                return ResourceManager.GetString("FileImportSheet_SelectSectionIntro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Section.
+        /// </summary>
+        internal static string FileImportSheet_SelectSectionTitle {
+            get {
+                return ResourceManager.GetString("FileImportSheet_SelectSectionTitle", resourceCulture);
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to File Import.
         /// </summary>
@@ -5921,7 +5921,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("KeyboardSheet_filterLabel.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Manage my custom keyboard shortcuts. Select a command and press a key sequence..
         /// </summary>
@@ -6840,7 +6840,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("NavigatorWindow_downButton_Tooltip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Filter this list.
         /// </summary>
@@ -6849,7 +6849,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("NavigatorWindow_filterButton_Tooltip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Close filter and show all items.
         /// </summary>
@@ -6858,7 +6858,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("NavigatorWindow_filterCloseButton_Tooltip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Add to Reading List.
         /// </summary>
@@ -8194,7 +8194,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("QuickImportCommand_ImportedFolderName", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to The quick-import folder does not exist. Check the setting in Settings &gt; File Import..
         /// </summary>
@@ -8203,7 +8203,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("QuickImportCommand_InvalidPath", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to No importable files were found in the quick-import folder..
         /// </summary>
@@ -8212,7 +8212,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("QuickImportCommand_NoFilesFound", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Imported {0} of {1} file(s); {2} failed..
         /// </summary>
@@ -8221,7 +8221,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("QuickImportCommand_ResultFormat", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to The quick-import target section could not be found. Check the setting in Settings &gt; File Import..
         /// </summary>
@@ -8230,7 +8230,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("QuickImportCommand_SectionNotFound", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to The quick-import folder and section must be configured first in Settings &gt; File Import..
         /// </summary>
@@ -8239,7 +8239,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("QuickImportCommand_SettingsNotSet", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Work Week (2023-02-13 W7)
         ///Month (2023-02)
@@ -8780,15 +8780,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Deep XML with binary comparison (slow).
-        /// </summary>
-        internal static string RemoveDuplicatesDialog_deepRadio_Text {
-            get {
-                return ResourceManager.GetString("RemoveDuplicatesDialog_deepRadio.Text", resourceCulture);
-            }
-        }
-
-        /// <summary>
         ///   Looks up a localized string similar to Compares only the visible text of each page, ignoring formatting.
         /// </summary>
         internal static string RemoveDuplicatesDialog_basicRadioTip {
@@ -8796,7 +8787,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("RemoveDuplicatesDialog_basicRadioTip", resourceCulture);
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deep XML with binary comparison (slow).
+        /// </summary>
+        internal static string RemoveDuplicatesDialog_deepRadio_Text {
+            get {
+                return ResourceManager.GetString("RemoveDuplicatesDialog_deepRadio.Text", resourceCulture);
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Compares full XML including embedded images and ink; most accurate but slowest.
         /// </summary>
@@ -8805,7 +8805,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("RemoveDuplicatesDialog_deepRadioTip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Scanning Depth.
         /// </summary>
@@ -8814,7 +8814,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("RemoveDuplicatesDialog_depthBox.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Also detect similar (non-identical) pages.
         /// </summary>
@@ -8823,7 +8823,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("RemoveDuplicatesDialog_fuzzyBox.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Include page titles when comparing.
         /// </summary>
@@ -8832,7 +8832,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("RemoveDuplicatesDialog_includeTitlesBox.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Simple text (quick).
         /// </summary>
@@ -8841,7 +8841,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("RemoveDuplicatesDialog_simpleRadio.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Compares visible text and XML structure of each page.
         /// </summary>
@@ -8850,7 +8850,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("RemoveDuplicatesDialog_simpleRadioTip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Remove Duplicate Pages.
         /// </summary>
@@ -8859,7 +8859,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("RemoveDuplicatesDialog.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to delete the selected page?.
         /// </summary>
@@ -8868,7 +8868,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("RemoveDuplicatesNavigator_confirm1", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to delete the {0} selected pages?.
         /// </summary>
@@ -8877,7 +8877,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("RemoveDuplicatesNavigator_confirmAll", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Duplicates of {0}.
         /// </summary>
@@ -8886,7 +8886,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("RemoveDuplicatesNavigator_duplicatesOf", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Delete this empty page.
         /// </summary>
@@ -8895,7 +8895,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("RemoveDuplicatesNavigator_emptyPageTip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Keep Newest.
         /// </summary>
@@ -8904,7 +8904,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("RemoveDuplicatesNavigator_keepNewest", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Pages similar to {0}.
         /// </summary>
@@ -9258,7 +9258,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribAddTagBankButton_Screentip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Add Top Section Group.
         /// </summary>
@@ -9267,7 +9267,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribAddTopSectionGroupButton_Label", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Add a new section group to the top level of this notebook.
         /// </summary>
@@ -9276,7 +9276,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribAddTopSectionGroupButton_Screentip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Edit Images.
         /// </summary>
@@ -10133,43 +10133,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribCopyLinkToParagraphButton_Screentip", resourceCulture);
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Copy Page to My Reading List.
-        /// </summary>
-        internal static string ribCopyPageToReadingListButton_Label {
-            get {
-                return ResourceManager.GetString("ribCopyPageToReadingListButton_Label", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Add the current page to My Reading List.
-        /// </summary>
-        internal static string ribCopyPageToReadingListButton_Screentip {
-            get {
-                return ResourceManager.GetString("ribCopyPageToReadingListButton_Screentip", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Copy Paragraph to My Reading List.
-        /// </summary>
-        internal static string ribCopyParagraphToReadingListButton_Label {
-            get {
-                return ResourceManager.GetString("ribCopyParagraphToReadingListButton_Label", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Add the current paragraph to My Reading List.
-        /// </summary>
-        internal static string ribCopyParagraphToReadingListButton_Screentip {
-            get {
-                return ResourceManager.GetString("ribCopyParagraphToReadingListButton_Screentip", resourceCulture);
-            }
-        }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Copy Selected Content.
         /// </summary>
@@ -10185,6 +10149,42 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribCopyPageContentButton_Screentip {
             get {
                 return ResourceManager.GetString("ribCopyPageContentButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Page to My Reading List.
+        /// </summary>
+        internal static string ribCopyPageToReadingListButton_Label {
+            get {
+                return ResourceManager.GetString("ribCopyPageToReadingListButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add the current page to My Reading List.
+        /// </summary>
+        internal static string ribCopyPageToReadingListButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribCopyPageToReadingListButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Paragraph to My Reading List.
+        /// </summary>
+        internal static string ribCopyParagraphToReadingListButton_Label {
+            get {
+                return ResourceManager.GetString("ribCopyParagraphToReadingListButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add the current paragraph to My Reading List.
+        /// </summary>
+        internal static string ribCopyParagraphToReadingListButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribCopyParagraphToReadingListButton_Screentip", resourceCulture);
             }
         }
         
@@ -10745,16 +10745,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribHashtaggerButton_Screentip", resourceCulture);
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized string similar to History.
-        /// </summary>
-        internal static string ribHistoryButton_Label {
-            get {
-                return ResourceManager.GetString("ribHistoryButton_Label", resourceCulture);
-            }
-        }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Rotating Highlighter.
         /// </summary>
@@ -10806,6 +10797,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribHighlightNoneButton_Label {
             get {
                 return ResourceManager.GetString("ribHighlightNoneButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to History.
+        /// </summary>
+        internal static string ribHistoryButton_Label {
+            get {
+                return ResourceManager.GetString("ribHistoryButton_Label", resourceCulture);
             }
         }
         
@@ -12188,7 +12188,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribQuickImportButton_Label", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Import all known files from the configured folder into the configured section.
         /// </summary>
@@ -12197,7 +12197,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribQuickImportButton_Screentip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Quick Palette.
         /// </summary>
@@ -14274,7 +14274,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("SearchQF_Title", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Last modified: {0}.
         /// </summary>
@@ -14283,7 +14283,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("SearchResultsCardView_lastModified", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Title Search Results.
         /// </summary>
