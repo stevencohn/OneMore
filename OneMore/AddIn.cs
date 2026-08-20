@@ -273,7 +273,7 @@ namespace River.OneMoreAddIn
 					new Commands.ReminderService().Startup();
 
 					// navigation listener
-					new Commands.NavigationService().Startup();
+					new Commands.NavigationService(ribbon).Startup();
 
 					// hashtags scanner
 					new Commands.HashtagService().Startup();

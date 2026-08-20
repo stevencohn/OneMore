@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using Microsoft.Office.Core;
 	using River.OneMoreAddIn.Settings;
 	using System;
 	using System.Threading;
@@ -30,13 +31,15 @@ namespace River.OneMoreAddIn.Commands
 		private readonly int historyDepth;
 		private readonly bool disabled;
 
+		private readonly IRibbonUI ribbon;
 		private readonly NavigationProvider provider;
 		private string currentId = null;
 		private int commitment = 0;
 
 
-		public NavigationService()
+		public NavigationService(IRibbonUI ribbon)
 		{
+			this.ribbon = ribbon;
 			provider = new NavigationProvider();
 
 			var settings = new SettingsProvider();
@@ -108,7 +111,10 @@ namespace River.OneMoreAddIn.Commands
 				commitment++;
 				if (commitment == 1)
 				{
-					await provider.RecordHistory(pageId, historyDepth);
+					if (await provider.RecordHistory(pageId, historyDepth))
+					{
+						ribbon?.InvalidateControl("ribNavigatorButton");
+					}
 				}
 			}
 		}

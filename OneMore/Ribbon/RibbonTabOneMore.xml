@@ -37,16 +37,6 @@
       getLabel="GetRibbonLabel"
       getScreentip="GetRibbonScreentip"
       getContent="GetHistoryContent"
-      getVisible="GetNavigatorMenuVisible"
-      size="large"
-      keytip="N"/>
-    <button
-      id="ribNavigatorFallbackButton"
-      getImage="GetNavigatorMenuImage"
-      getLabel="GetNavigatorButtonLabel"
-      getScreentip="GetNavigatorButtonScreentip"
-      onAction="NavigatorCmd"
-      getVisible="GetNavigatorButtonVisible"
       size="large"
       keytip="N"/>
     <dynamicMenu
@@ -955,19 +945,6 @@
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
         onAction="TwoWayPathCmd"/>
-      <menuSeparator id="ribRefMenuReadingList"/>
-      <button
-        id="ribCopyPageToReadingListButton"
-        imageMso="AddToFavorites"
-        getLabel="GetRibbonLabel"
-        getScreentip="GetRibbonScreentip"
-        onAction="CopyPageToReadingListCmd"/>
-      <button
-        id="ribCopyParagraphToReadingListButton"
-        imageMso="AddToFavorites"
-        getLabel="GetRibbonLabel"
-        getScreentip="GetRibbonScreentip"
-        onAction="CopyParagraphToReadingListCmd"/>
       <menuSeparator id="ribRefMenuFootnotes"/>
       <button
         id="ribAddFootnoteButton"

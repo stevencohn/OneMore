@@ -816,19 +816,6 @@
           getLabel="GetRibbonLabel"
           getScreentip="GetRibbonScreentip"
           onAction="TwoWayPathCmd"/>
-        <menuSeparator id="ribRefMenuReadingList"/>
-        <button
-          id="ribCopyPageToReadingListButton"
-          imageMso="AddToFavorites"
-          getLabel="GetRibbonLabel"
-          getScreentip="GetRibbonScreentip"
-          onAction="CopyPageToReadingListCmd"/>
-        <button
-          id="ribCopyParagraphToReadingListButton"
-          imageMso="AddToFavorites"
-          getLabel="GetRibbonLabel"
-          getScreentip="GetRibbonScreentip"
-          onAction="CopyParagraphToReadingListCmd"/>
         <menuSeparator id="ribRefMenuFootnotes"/>
         <button
           id="ribAddFootnoteButton"
@@ -1147,15 +1134,7 @@
         getImage="GetRibbonImageByID"
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
-        getContent="GetHistoryContent"
-        getVisible="GetNavigatorMenuVisible"/>
-      <button
-        id="ribNavigatorFallbackButton"
-        getImage="GetNavigatorMenuImage"
-        getLabel="GetNavigatorButtonLabel"
-        getScreentip="GetNavigatorButtonScreentip"
-        onAction="NavigatorCmd"
-        getVisible="GetNavigatorButtonVisible"/>
+        getContent="GetHistoryContent"/>
       <button
         id="ribCalendarButton"
         imageMso="OpenAttachedCalendar"
