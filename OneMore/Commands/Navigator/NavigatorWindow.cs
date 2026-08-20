@@ -38,6 +38,7 @@ namespace River.OneMoreAddIn.Commands
 		private readonly int depth;
 		private readonly bool reading;
 		private readonly bool corralled;
+		private readonly bool disabled;
 		private readonly List<IDisposable> trash;
 
 		// panel expand/collapse state
@@ -97,6 +98,7 @@ namespace River.OneMoreAddIn.Commands
 			corralled = settings.Get("corralled", false); //|| Screen.AllScreens.Length == 1;
 			ElevatedWithOneNote = settings.Get("elevated", false);
 			depth = settings.Get("depth", NavigationService.DefaultHistoryDepth);
+			disabled = settings.Get("disabled", false);
 
 			provider = new NavigationProvider();
 			provider.Navigated += ShowHistory;
@@ -332,8 +334,10 @@ namespace River.OneMoreAddIn.Commands
 			pageFilterBox.Visible = filtering;
 			pageFilterCloseButton.Visible = filtering;
 
+			// Clear() already re-applies the filter via TextChanged -> FilterPageHeadings
+			// when there was text to clear, and is a no-op otherwise; an explicit follow-up
+			// call here would either duplicate that render or redo it for no reason
 			pageFilterBox.Clear();
-			ApplyPageFilter(string.Empty);
 
 			if (filtering)
 			{
@@ -362,8 +366,12 @@ namespace River.OneMoreAddIn.Commands
 			historyFilterBox.Visible = filtering;
 			historyFilterCloseButton.Visible = filtering;
 
+			// Clear() already re-applies the filter via TextChanged -> FilterHistoryRecords
+			// when there was text to clear, and is a no-op otherwise; an explicit follow-up
+			// call here would either duplicate that render (a second full teardown/rebuild
+			// of every hosted HistoryControl - the source of the history panel's flicker
+			// on open/close) or redo it for no reason
 			historyFilterBox.Clear();
-			ApplyHistoryFilter(string.Empty);
 
 			if (filtering)
 			{
@@ -519,6 +527,20 @@ namespace River.OneMoreAddIn.Commands
 				historyExpanded = true;
 			}
 
+			if (disabled && reading)
+			{
+				// the tracking service is off, so Headings/History have nothing current to
+				// show; force only the reading list open and freeze the layout so the user
+				// can't expand a section that won't update while the service stays disabled
+				pageExpanded = false;
+				readingExpanded = true;
+				historyExpanded = false;
+
+				pageTwistButton.Enabled = false;
+				pinnedTwistButton.Enabled = false;
+				historyTwistButton.Enabled = false;
+			}
+
 			rememberedSplitter1 = settings.Get("splitter1", mainContainer.SplitterDistance);
 			rememberedSplitter2 = settings.Get("splitter2", subContainer.SplitterDistance);
 
@@ -665,11 +687,20 @@ namespace River.OneMoreAddIn.Commands
 				collection.Add("top", Top);
 				collection.Add("width", Width);
 				collection.Add("height", Height);
-				collection.Add("pageExpanded", pageExpanded);
-				collection.Add("readingExpanded", readingExpanded);
-				collection.Add("historyExpanded", historyExpanded);
-				collection.Add("splitter1", rememberedSplitter1);
-				collection.Add("splitter2", rememberedSplitter2);
+
+				if (!disabled)
+				{
+					// while disabled, the expand state and splitter positions are forced
+					// (see PositionOnLoad) rather than reflecting the user's actual
+					// preference, so leave the saved values alone; re-enabling the service
+					// should restore whatever was last genuinely set, not this forced state
+					collection.Add("pageExpanded", pageExpanded);
+					collection.Add("readingExpanded", readingExpanded);
+					collection.Add("historyExpanded", historyExpanded);
+					collection.Add("splitter1", rememberedSplitter1);
+					collection.Add("splitter2", rememberedSplitter2);
+				}
+
 				settings.SetCollection(collection);
 				settings.Save();
 			}

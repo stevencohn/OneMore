@@ -1142,12 +1142,20 @@
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
         onAction="QuickPaletteCmd"/>
-      <button
+      <dynamicMenu
         id="ribNavigatorButton"
         getImage="GetRibbonImageByID"
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
-        onAction="NavigatorCmd"/>
+        getContent="GetHistoryContent"
+        getVisible="GetNavigatorMenuVisible"/>
+      <button
+        id="ribNavigatorFallbackButton"
+        getImage="GetNavigatorMenuImage"
+        getLabel="GetNavigatorButtonLabel"
+        getScreentip="GetNavigatorButtonScreentip"
+        onAction="NavigatorCmd"
+        getVisible="GetNavigatorButtonVisible"/>
       <button
         id="ribCalendarButton"
         imageMso="OpenAttachedCalendar"

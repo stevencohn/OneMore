@@ -4545,6 +4545,10 @@ ISO-code then comma then language name</comment>
     <value>删除荧光笔标记</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribHistoryButton_Label" xml:space="preserve">
+    <value>历史</value>
+    <comment>ribbon main NODUP</comment>
+  </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>图片</value>
     <comment>ribbon images NODUP</comment>

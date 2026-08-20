@@ -432,10 +432,15 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<FavoritesCommand>(control.Tag); //tag=pageid
 
 
+		// this is the internal history hook for the ribbon dropdown, not directly
+		// accessible to the user
+		public async Task GotoHistoryCmd(IRibbonControl control)
+			=> await factory.Run<HistoryCommand>(control.Tag); //tag=link
+
+
 		[Command("ribHashtaggerButton_Label", Keys.Alt | Keys.T, "ribSearchMenu")]
 		public async Task HashtaggerCmd(IRibbonControl control)
 			=> await factory.Run<HashtaggerCommand>(1);
-
 
 
 		[Command("ribHighlightButton_Label", Keys.Control | Keys.Shift | Keys.H, "ribEditMenu")]
@@ -456,6 +461,11 @@ namespace River.OneMoreAddIn
 		[Command("ribHighlightFormulaButton_Label", Keys.None, "ribTableMenu")]
 		public async Task HighlightFormulaCmd(IRibbonControl control)
 			=> await factory.Run<HighlightFormulaCommand>();
+
+
+		[Command("ribHistoryButton_Label", Keys.Shift | Keys.Alt | Keys.H)]
+		public async Task HistoryCmd(IRibbonControl control)
+			=> await factory.Run<HistoryCommand>();
 
 
 		[Command("ribImportButton_Label", Keys.None)]

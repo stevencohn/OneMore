@@ -4531,6 +4531,10 @@ Zakładka Pomoc</value>
     <value>Usuń wyróżnienie</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribHistoryButton_Label" xml:space="preserve">
+    <value>Historia</value>
+    <comment>ribbon main NODUP</comment>
+  </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>Obrazy</value>
     <comment>ribbon images NODUP</comment>

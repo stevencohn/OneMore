@@ -4542,6 +4542,10 @@ ISO-code then comma then language name</comment>
     <value>إزالة التمييز</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribHistoryButton_Label" xml:space="preserve">
+    <value>تاريخ</value>
+    <comment>ribbon main NODUP</comment>
+  </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>الصور</value>
     <comment>ribbon images NODUP</comment>

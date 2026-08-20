@@ -4530,6 +4530,10 @@ Registerkarte „Hilfe“.</value>
     <value>Hervorhebung entfernen</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribHistoryButton_Label" xml:space="preserve">
+    <value>Geschichte</value>
+    <comment>ribbon main NODUP</comment>
+  </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>Bilder</value>
     <comment>ribbon images NODUP</comment>

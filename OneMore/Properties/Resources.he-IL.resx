@@ -4535,6 +4535,10 @@ ISO-code then comma then language name</comment>
     <value>הסר את ההדגשה</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribHistoryButton_Label" xml:space="preserve">
+    <value>הִיסטוֹרִיָה</value>
+    <comment>ribbon main NODUP</comment>
+  </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>תמונות</value>
     <comment>ribbon images NODUP</comment>

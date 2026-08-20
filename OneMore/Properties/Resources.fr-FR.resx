@@ -4542,6 +4542,10 @@ Onglet Aide</value>
     <value>Supprimer le surlignage</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribHistoryButton_Label" xml:space="preserve">
+    <value>Histoire</value>
+    <comment>ribbon main NODUP</comment>
+  </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>Images</value>
     <comment>ribbon images NODUP</comment>

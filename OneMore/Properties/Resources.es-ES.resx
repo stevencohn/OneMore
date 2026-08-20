@@ -4530,6 +4530,10 @@ Pestaña Ayuda</value>
     <value>Eliminar resaltado</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribHistoryButton_Label" xml:space="preserve">
+    <value>Historia</value>
+    <comment>ribbon main NODUP</comment>
+  </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>Imágenes</value>
     <comment>ribbon images NODUP</comment>
