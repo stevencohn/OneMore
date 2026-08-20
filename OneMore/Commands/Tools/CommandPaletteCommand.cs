@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using System;
 	using System.Collections.Generic;
+	using System.Diagnostics;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
@@ -74,9 +75,18 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			// reset focus to OneNote window
-			await using var one = new OneNote();
-			Native.SwitchToThisWindow(one.WindowHandle, false);
+			// reset focus to OneNote window - but only if the invoked command didn't
+			// leave its own popup open and focused (CompleteHashtagCommand/
+			// SearchCommand/SearchTitleCommand can return before their modeless
+			// dialog closes, see Command.EnterOnce remarks); otherwise this would
+			// steal focus right back from a freshly shown, still-open dialog
+			var foreground = Native.GetForegroundWindow();
+			Native.GetWindowThreadProcessId(foreground, out var pid);
+			if (pid != (uint)Process.GetCurrentProcess().Id)
+			{
+				await using var one = new OneNote();
+				Native.SwitchToThisWindow(one.WindowHandle, false);
+			}
 		}
 
 
