@@ -50,6 +50,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private readonly ColorBar bar;
 		private readonly MoreLinkLabel link;
+		private readonly Font linkFont;
 		private EventHandler backColorChangedHandler;
 		private ToolTip tip;
 
@@ -64,12 +65,14 @@ namespace River.OneMoreAddIn.Commands
 				IsStriped = !string.IsNullOrEmpty(info.ObjectId)
 			};
 
+			linkFont = new Font("Segoe UI", 8.5f, FontStyle.Regular, GraphicsUnit.Point);
+
 			link = new MoreLinkLabel
 			{
 				Dock = DockStyle.Fill,
 				Text = info.Name,
 				Tag = info,
-				Font = new("Segoe UI", 8.5f, FontStyle.Regular, GraphicsUnit.Point),
+				Font = linkFont,
 				Padding = new(4, 0, 0, 0),
 				Margin = new(4, 0, 0, 0)
 			};
@@ -120,6 +123,7 @@ namespace River.OneMoreAddIn.Commands
 				tip?.Dispose();
 				bar?.Dispose();
 				link?.Dispose();
+				linkFont?.Dispose();
 				BackColorChanged -= backColorChangedHandler;
 			}
 

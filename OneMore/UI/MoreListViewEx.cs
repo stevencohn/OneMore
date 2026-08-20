@@ -259,8 +259,15 @@ namespace River.OneMoreAddIn.UI
 				return;
 			}
 
-			hostedControls.Add(new HostedControl(subitem, e.Item, e.Control, e.ColumnIndex));
+			var hosted = new HostedControl(subitem, e.Item, e.Control, e.ColumnIndex);
+			hostedControls.Add(hosted);
 			Controls.Add(e.Control);
+
+			// callers rebuild rows by disposing the old hosted controls rather than
+			// removing them through this class, so prune here or hostedControls grows
+			// unbounded and BoundHostedControls keeps touching disposed controls on
+			// every WM_PAINT
+			e.Control.Disposed += (s, ev) => hostedControls.Remove(hosted);
 		}
 
 
