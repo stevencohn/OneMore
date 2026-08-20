@@ -45,7 +45,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (window == null)
 			{
-				window = new NavigatorWindow();
+				window = new NavigatorWindow(ribbon);
 				window.FormClosed += CloseNavigatorWindow;
 				window.RunModeless();
 				return;

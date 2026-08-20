@@ -15,17 +15,21 @@ namespace River.OneMoreAddIn.Commands
 
 
 	/// <summary>
-	/// Builds the ribbon XML for the Navigator dynamic menu: an "Open Navigator" entry
-	/// followed by a separator and the recently-visited-page history, modeled on
-	/// FavoritesMenu.
+	/// Builds the ribbon XML for the Navigator dynamic menu: an "Open Navigator" entry,
+	/// the reading-list actions, and then a separator and the recently-visited-page
+	/// history, modeled on FavoritesMenu.
 	/// </summary>
 	internal static class HistoryMenu
 	{
 		public const string OpenAction = "NavigatorCmd";
 		public const string GotoAction = "GotoHistoryCmd";
+		public const string AddPageAction = "CopyPageToReadingListCmd";
+		public const string AddParagraphAction = "CopyParagraphToReadingListCmd";
 
 		private static readonly XNamespace ns = "http://schemas.microsoft.com/office/2009/07/customui";
 		private static readonly string OpenButtonId = "omOpenNavigatorButton";
+		private static readonly string AddPageButtonId = "omAddPageToReadingListButton";
+		private static readonly string AddParagraphButtonId = "omAddParagraphToReadingListButton";
 		private static readonly string SeparatorId = "omHistorySeparator";
 
 		// the dropdown must stay short even if the user allows a much larger stored
@@ -70,7 +74,8 @@ namespace River.OneMoreAddIn.Commands
 		{
 			// the root element returned from a dynamicMenu's getContent callback is typed
 			// as CT_MenuRoot, which carries no id attribute - only its children may have one
-			var root = new XElement(ns + "menu", MakeOpenButton());
+			var root = new XElement(ns + "menu",
+				MakeOpenButton(), MakeAddPageButton(), MakeAddParagraphButton());
 
 			if (history.Count > 0)
 			{
@@ -95,6 +100,30 @@ namespace River.OneMoreAddIn.Commands
 				new XAttribute("getImage", "GetNavigatorMenuImage"),
 				new XAttribute("label", Resx.ribNavigatorButton_Label),
 				new XAttribute("screentip", Resx.ribNavigatorButton_Screentip)
+				);
+		}
+
+
+		private static XElement MakeAddPageButton()
+		{
+			return new XElement(ns + "button",
+				new XAttribute("id", AddPageButtonId),
+				new XAttribute("onAction", AddPageAction),
+				new XAttribute("imageMso", "AddToFavorites"),
+				new XAttribute("label", Resx.ribCopyPageToReadingListButton_Label),
+				new XAttribute("screentip", Resx.ribCopyPageToReadingListButton_Screentip)
+				);
+		}
+
+
+		private static XElement MakeAddParagraphButton()
+		{
+			return new XElement(ns + "button",
+				new XAttribute("id", AddParagraphButtonId),
+				new XAttribute("onAction", AddParagraphAction),
+				new XAttribute("imageMso", "AddToFavorites"),
+				new XAttribute("label", Resx.ribCopyParagraphToReadingListButton_Label),
+				new XAttribute("screentip", Resx.ribCopyParagraphToReadingListButton_Screentip)
 				);
 		}
 

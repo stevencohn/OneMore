@@ -102,10 +102,9 @@ namespace River.OneMoreAddIn.Settings
 			{
 				provider.SetCollection(settings);
 
-				// disabled controls which of ribNavigatorButton/ribNavigatorFallbackButton
-				// is shown; getVisible results are cached until explicitly invalidated
+				// disabled controls whether the dropdown includes the history section;
+				// getContent results are cached until explicitly invalidated
 				ribbon.InvalidateControl("ribNavigatorButton");
-				ribbon.InvalidateControl("ribNavigatorFallbackButton");
 			}
 
 			return updated;

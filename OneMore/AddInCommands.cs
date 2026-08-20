@@ -276,12 +276,12 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<CopyLinkToParagraphCommand>();
 
 
-		[Command("ribCopyPageToReadingListButton_Label", Keys.None, "ribReferencesMenu")]
+		[Command("ribCopyPageToReadingListButton_Label", Keys.None, "ribNavigatorButton")]
 		public async Task CopyPageToReadingListCmd(IRibbonControl control)
 			=> await factory.Run<CopyPageToReadingListCommand>();
 
 
-		[Command("ribCopyParagraphToReadingListButton_Label", Keys.None, "ribReferencesMenu")]
+		[Command("ribCopyParagraphToReadingListButton_Label", Keys.None, "ribNavigatorButton")]
 		public async Task CopyParagraphToReadingListCmd(IRibbonControl control)
 			=> await factory.Run<CopyParagraphToReadingListCommand>();
 

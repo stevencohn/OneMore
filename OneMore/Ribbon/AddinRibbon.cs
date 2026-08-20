@@ -550,8 +550,8 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Populates the Navigator dynamic menu: an "Open Navigator" entry followed by
-		/// the recently-visited-page history
+		/// Populates the Navigator dynamic menu: an "Open Navigator" entry, the
+		/// reading-list actions, and then the recently-visited-page history
 		/// </summary>
 		/// <param name="control"></param>
 		/// <returns></returns>
@@ -565,9 +565,8 @@ namespace River.OneMoreAddIn
 
 		/// <summary>
 		/// Returns the Navigator button's own icon; used by the "Open Navigator" entry
-		/// inside its History dropdown and by ribNavigatorFallbackButton, neither of
-		/// which can rely on GetRibbonImageByID's id-based lookup since both have their
-		/// own (distinct) control ids
+		/// inside its History dropdown, which cannot rely on GetRibbonImageByID's
+		/// id-based lookup since it has its own (distinct) control id
 		/// </summary>
 		/// <param name="control"></param>
 		/// <returns></returns>
@@ -590,46 +589,6 @@ namespace River.OneMoreAddIn
 			}
 
 			return null;
-		}
-
-
-		/// <summary>
-		/// Returns the Navigator button's own label, for ribNavigatorFallbackButton
-		/// </summary>
-		/// <param name="control"></param>
-		/// <returns></returns>
-		public string GetNavigatorButtonLabel(IRibbonControl control) => Resx.ribNavigatorButton_Label;
-
-
-		/// <summary>
-		/// Returns the Navigator button's own screentip, for ribNavigatorFallbackButton
-		/// </summary>
-		/// <param name="control"></param>
-		/// <returns></returns>
-		public string GetNavigatorButtonScreentip(IRibbonControl control) => Resx.ribNavigatorButton_Screentip;
-
-
-		/// <summary>
-		/// True when the Navigator service is enabled, in which case ribNavigatorButton
-		/// (the dynamic History menu) is shown
-		/// </summary>
-		/// <param name="control"></param>
-		/// <returns></returns>
-		public bool GetNavigatorMenuVisible(IRibbonControl control) => !IsNavigatorDisabled();
-
-
-		/// <summary>
-		/// True when the Navigator service is disabled, in which case
-		/// ribNavigatorFallbackButton (a plain button, no dropdown) is shown instead
-		/// </summary>
-		/// <param name="control"></param>
-		/// <returns></returns>
-		public bool GetNavigatorButtonVisible(IRibbonControl control) => IsNavigatorDisabled();
-
-
-		private static bool IsNavigatorDisabled()
-		{
-			return new SettingsProvider().GetCollection(nameof(NavigatorSheet)).Get("disabled", false);
 		}
 
 

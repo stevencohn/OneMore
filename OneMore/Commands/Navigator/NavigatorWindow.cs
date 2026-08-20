@@ -6,6 +6,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using Microsoft.Office.Core;
 	using River.OneMoreAddIn.Helpers.Extensions;
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Settings;
@@ -64,9 +65,13 @@ namespace River.OneMoreAddIn.Commands
 		// backing list for the History panel filter
 		private List<HistoryRecord> historyRecords = new();
 
+		private readonly IRibbonUI ribbon;
 
-		public NavigatorWindow()
+
+		public NavigatorWindow(IRibbonUI ribbon)
 		{
+			this.ribbon = ribbon;
+
 			InitializeComponent();
 			trash = new List<IDisposable>();
 
@@ -532,24 +537,23 @@ namespace River.OneMoreAddIn.Commands
 				historyExpanded = true;
 			}
 
-			if (disabled && reading)
-			{
-				// the tracking service is off, so Headings/History have nothing current to
-				// show; force only the reading list open and freeze the layout so the user
-				// can't expand a section that won't update while the service stays disabled
-				pageExpanded = false;
-				readingExpanded = true;
-				historyExpanded = false;
-
-				pageTwistButton.Enabled = false;
-				pinnedTwistButton.Enabled = false;
-				historyTwistButton.Enabled = false;
-			}
-
 			rememberedSplitter1 = settings.Get("splitter1", mainContainer.SplitterDistance);
 			rememberedSplitter2 = settings.Get("splitter2", subContainer.SplitterDistance);
 
-			UpdatePanelLayout();
+			if (disabled && reading)
+			{
+				// the tracking service is off, so Headings/History have nothing current to
+				// show; hide them entirely rather than merely collapsing them, leaving only
+				// the reading list, whose own expand/collapse toggle is meaningless when
+				// it's the only pane shown
+				mainContainer.Panel1Collapsed = true;
+				subContainer.Panel2Collapsed = true;
+				pinnedTwistButton.Visible = false;
+			}
+			else
+			{
+				UpdatePanelLayout();
+			}
 
 			// load data
 			if (reading)
@@ -695,10 +699,10 @@ namespace River.OneMoreAddIn.Commands
 
 				if (!disabled)
 				{
-					// while disabled, the expand state and splitter positions are forced
-					// (see PositionOnLoad) rather than reflecting the user's actual
-					// preference, so leave the saved values alone; re-enabling the service
-					// should restore whatever was last genuinely set, not this forced state
+					// while disabled, Headings/History are hidden entirely (see
+					// PositionOnLoad) rather than reflecting the user's actual preference,
+					// so leave the saved values alone; re-enabling the service should
+					// restore whatever was last genuinely set, not this hidden-away state
 					collection.Add("pageExpanded", pageExpanded);
 					collection.Add("readingExpanded", readingExpanded);
 					collection.Add("historyExpanded", historyExpanded);
@@ -895,7 +899,10 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (TitleChanged(historyBox, page) || TitleChanged(pinnedBox, page))
 			{
-				await provider.RecordHistory(page.PageId, depth);
+				if (await provider.RecordHistory(page.PageId, depth))
+				{
+					ribbon?.InvalidateControl("ribNavigatorButton");
+				}
 			}
 		}
 
