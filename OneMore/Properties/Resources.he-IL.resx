@@ -4249,7 +4249,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon page</comment>
   </data>
   <data name="ribCopyPageToReadingListButton_Label" xml:space="preserve">
-    <value>העתק עמוד לרשימת הקריאה שלי</value>
+    <value>הוסף עמוד לרשימת הקריאה שלי</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribCopyPageToReadingListButton_Screentip" xml:space="preserve">
@@ -4257,7 +4257,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon references</comment>
   </data>
   <data name="ribCopyParagraphToReadingListButton_Label" xml:space="preserve">
-    <value>העתק פסקה לרשימת הקריאה שלי</value>
+    <value>הוסף פסקה לרשימת הקריאה שלי</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribCopyParagraphToReadingListButton_Screentip" xml:space="preserve">

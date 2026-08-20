@@ -4244,7 +4244,7 @@ Registerkarte „Hilfe“.</value>
     <comment>ribbon page</comment>
   </data>
   <data name="ribCopyPageToReadingListButton_Label" xml:space="preserve">
-    <value>Seite in meine Leseliste kopieren</value>
+    <value>Seite zu meiner Leseliste hinzufügen</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribCopyPageToReadingListButton_Screentip" xml:space="preserve">
@@ -4252,7 +4252,7 @@ Registerkarte „Hilfe“.</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribCopyParagraphToReadingListButton_Label" xml:space="preserve">
-    <value>Absatz in meine Leseliste kopieren</value>
+    <value>Absatz zu meiner Leseliste hinzufügen</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribCopyParagraphToReadingListButton_Screentip" xml:space="preserve">

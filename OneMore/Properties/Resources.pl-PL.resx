@@ -4245,7 +4245,7 @@ Zakładka Pomoc</value>
     <comment>ribbon page</comment>
   </data>
   <data name="ribCopyPageToReadingListButton_Label" xml:space="preserve">
-    <value>Skopiuj stronę do mojej listy czytelniczej</value>
+    <value>Dodaj stronę do mojej listy czytelniczej</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribCopyPageToReadingListButton_Screentip" xml:space="preserve">
@@ -4253,7 +4253,7 @@ Zakładka Pomoc</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribCopyParagraphToReadingListButton_Label" xml:space="preserve">
-    <value>Skopiuj akapit na moją listę czytelniczą</value>
+    <value>Dodaj akapit do mojej listy czytelniczej</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribCopyParagraphToReadingListButton_Screentip" xml:space="preserve">

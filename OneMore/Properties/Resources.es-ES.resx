@@ -4244,7 +4244,7 @@ Pestaña Ayuda</value>
     <comment>ribbon page</comment>
   </data>
   <data name="ribCopyPageToReadingListButton_Label" xml:space="preserve">
-    <value>Copiar página a Mi lista de lectura</value>
+    <value>Agregar página a mi lista de lectura</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribCopyPageToReadingListButton_Screentip" xml:space="preserve">
@@ -4252,7 +4252,7 @@ Pestaña Ayuda</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribCopyParagraphToReadingListButton_Label" xml:space="preserve">
-    <value>Copiar párrafo a mi lista de lectura</value>
+    <value>Agregar párrafo a mi lista de lectura</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribCopyParagraphToReadingListButton_Screentip" xml:space="preserve">

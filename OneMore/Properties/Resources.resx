@@ -494,10 +494,6 @@ Invert</value>
     <value>Change Sentence Spacing</value>
     <comment>dialog title</comment>
   </data>
-  <data name="BreakingDialog_Text" xml:space="preserve">
-    <value>Change Sentence Spacing</value>
-    <comment>dialog title</comment>
-  </data>
   <data name="BreakingDialog_twoButton.Text" xml:space="preserve">
     <value>Two spaces between sentences</value>
     <comment>radio</comment>
@@ -4281,15 +4277,7 @@ Help Tab</value>
     <comment>ribbon page</comment>
   </data>
   <data name="ribCopyPageToReadingListButton_Label" xml:space="preserve">
-    <value>Copy Page to My Reading List</value>
-    <comment>ribbon references</comment>
-  </data>
-  <data name="ribCopyPageToReadingListButton_Label" xml:space="preserve">
-    <value>Copy Page to My Reading List</value>
-    <comment>ribbon references</comment>
-  </data>
-  <data name="ribCopyPageToReadingListButton_Screentip" xml:space="preserve">
-    <value>Add the current page to My Reading List</value>
+    <value>Add Page to My Reading List</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribCopyPageToReadingListButton_Screentip" xml:space="preserve">
@@ -4297,15 +4285,7 @@ Help Tab</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribCopyParagraphToReadingListButton_Label" xml:space="preserve">
-    <value>Copy Paragraph to My Reading List</value>
-    <comment>ribbon references</comment>
-  </data>
-  <data name="ribCopyParagraphToReadingListButton_Label" xml:space="preserve">
-    <value>Copy Paragraph to My Reading List</value>
-    <comment>ribbon references</comment>
-  </data>
-  <data name="ribCopyParagraphToReadingListButton_Screentip" xml:space="preserve">
-    <value>Add the current paragraph to My Reading List</value>
+    <value>Add Paragraph to My Reading List</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribCopyParagraphToReadingListButton_Screentip" xml:space="preserve">
@@ -4774,10 +4754,6 @@ Help Tab</value>
   <data name="ribInsertPageTocButton_Label" xml:space="preserve">
     <value>Table of Contents</value>
     <comment>ribbon snippets NODUP</comment>
-  </data>
-  <data name="ribInsertPageTocButton_Screentip" xml:space="preserve">
-    <value>Insert a headings table of contents at the top of the page</value>
-    <comment>ribbon snippets</comment>
   </data>
   <data name="ribInsertPageTocButton_Screentip" xml:space="preserve">
     <value>Insert a headings table of contents at the top of the page</value>
@@ -6077,19 +6053,11 @@ On this page</value>
   </data>
   <data name="SearchEngineSheet_downButton.Text" xml:space="preserve">
     <value>Move down</value>
-    <comment>down buttom</comment>
-  </data>
-  <data name="SearchEngineSheet_downButton.Text" xml:space="preserve">
-    <value>Move down</value>
     <comment>button</comment>
   </data>
   <data name="SearchEngineSheet_iconColumn.HeaderText" xml:space="preserve">
     <value>Icon</value>
     <comment>icon col</comment>
-  </data>
-  <data name="SearchEngineSheet_introBox.Text" xml:space="preserve">
-    <value>URL Patterns must contain a string replacement token, such as &amp;q={0}</value>
-    <comment>intro label</comment>
   </data>
   <data name="SearchEngineSheet_introBox.Text" xml:space="preserve">
     <value>URL Patterns must contain a string replacement token, such as &amp;q={0}
@@ -6104,10 +6072,6 @@ Search engines will appear in the page context menu, right-click.</value>
   <data name="SearchEngineSheet_Text" xml:space="preserve">
     <value>Search Engines</value>
     <comment>dialog title</comment>
-  </data>
-  <data name="SearchEngineSheet_upButton.Text" xml:space="preserve">
-    <value>Move up</value>
-    <comment>up buttom</comment>
   </data>
   <data name="SearchEngineSheet_upButton.Text" xml:space="preserve">
     <value>Move up</value>
