@@ -10745,7 +10745,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribHashtaggerButton_Screentip", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to History.
+        /// </summary>
+        internal static string ribHistoryButton_Label {
+            get {
+                return ResourceManager.GetString("ribHistoryButton_Label", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Rotating Highlighter.
         /// </summary>

@@ -31,12 +31,22 @@
       onAction="CalendarCmd"
       size="normal"
       keytip="D"/>
-    <button
+    <dynamicMenu
       id="ribNavigatorButton"
       getImage="GetRibbonImageByID"
       getLabel="GetRibbonLabel"
       getScreentip="GetRibbonScreentip"
+      getContent="GetHistoryContent"
+      getVisible="GetNavigatorMenuVisible"
+      size="large"
+      keytip="N"/>
+    <button
+      id="ribNavigatorFallbackButton"
+      getImage="GetNavigatorMenuImage"
+      getLabel="GetNavigatorButtonLabel"
+      getScreentip="GetNavigatorButtonScreentip"
       onAction="NavigatorCmd"
+      getVisible="GetNavigatorButtonVisible"
       size="large"
       keytip="N"/>
     <dynamicMenu

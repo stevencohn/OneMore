@@ -4535,6 +4535,10 @@ Scheda Aiuto</value>
     <value>Rimuovi l'evidenziazione</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribHistoryButton_Label" xml:space="preserve">
+    <value>Storia</value>
+    <comment>ribbon main NODUP</comment>
+  </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>Immagini</value>
     <comment>ribbon images NODUP</comment>

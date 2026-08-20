@@ -225,7 +225,7 @@ namespace River.OneMoreAddIn.Settings
 					9 => new ImagesSheet(provider),
 					10 => new KeyboardSheet(provider, ribbon),
 					11 => new MarkdownSheet(provider),
-					12 => new NavigatorSheet(provider),
+					12 => new NavigatorSheet(provider, ribbon),
 					13 => await PluginsSheet.Create(provider, ribbon),
 					14 => new QuickNotesSheet(provider),
 					15 => new RibbonBarSheet(provider),

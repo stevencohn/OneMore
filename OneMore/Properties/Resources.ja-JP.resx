@@ -4538,6 +4538,10 @@ ISO-code then comma then language name</comment>
     <value>ハイライトの削除</value>
     <comment>ribbon edit</comment>
   </data>
+  <data name="ribHistoryButton_Label" xml:space="preserve">
+    <value>歴史</value>
+    <comment>ribbon main NODUP</comment>
+  </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>画像</value>
     <comment>ribbon images NODUP</comment>

@@ -31,8 +31,16 @@ namespace River.OneMoreAddIn.Commands
 			var settings = new SettingsProvider().GetCollection(nameof(NavigatorSheet));
 			if (settings.Get("disabled", false))
 			{
-				ShowInfo(Resx.NavigatorWindow_disabled);
-				return;
+				// the tracking service is off but the reading list is independent of it,
+				// so still let the user get to their pinned pages rather than blocking
+				// the whole window
+				using var provider = new NavigationProvider();
+				var pinned = await provider.ReadPinned();
+				if (pinned.Count == 0)
+				{
+					ShowInfo(Resx.NavigatorWindow_disabled);
+					return;
+				}
 			}
 
 			if (window == null)

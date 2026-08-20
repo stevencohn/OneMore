@@ -296,10 +296,18 @@
     <Compile Include="Commands\Images\StylizeImagesDialog.Designer.cs">
       <DependentUpon>StylizeImagesDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Navigator\HistoryCommand.cs" />
     <Compile Include="Commands\Navigator\HistoryControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Commands\Navigator\HistoryDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Navigator\HistoryDialog.Designer.cs">
+      <DependentUpon>HistoryDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Navigator\HistoryLog.cs" />
+    <Compile Include="Commands\Navigator\HistoryMenu.cs" />
     <Compile Include="Commands\Navigator\NavigationProvider.cs" />
     <Compile Include="Commands\Navigator\NavigationService.cs" />
     <Compile Include="Commands\Navigator\NavigatorCommand.cs" />
@@ -1667,6 +1675,9 @@
     <Content Include="Commands\Tools\sponsor-light.png" />
     <EmbeddedResource Include="Commands\Navigator\HistoryControl.resx">
       <DependentUpon>HistoryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Navigator\HistoryDialog.resx">
+      <DependentUpon>HistoryDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Tools\sponsor-dark.png" />
     <Content Include="Commands\Tools\Telemetry\TLogo.png" />

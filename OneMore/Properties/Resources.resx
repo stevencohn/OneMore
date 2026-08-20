@@ -4272,22 +4272,6 @@ Help Tab</value>
     <value>Copy a path hyperlink to the current paragraph</value>
     <comment>ribbon references</comment>
   </data>
-  <data name="ribCopyPageToReadingListButton_Label" xml:space="preserve">
-    <value>Copy Page to My Reading List</value>
-    <comment>ribbon references</comment>
-  </data>
-  <data name="ribCopyPageToReadingListButton_Screentip" xml:space="preserve">
-    <value>Add the current page to My Reading List</value>
-    <comment>ribbon references</comment>
-  </data>
-  <data name="ribCopyParagraphToReadingListButton_Label" xml:space="preserve">
-    <value>Copy Paragraph to My Reading List</value>
-    <comment>ribbon references</comment>
-  </data>
-  <data name="ribCopyParagraphToReadingListButton_Screentip" xml:space="preserve">
-    <value>Add the current paragraph to My Reading List</value>
-    <comment>ribbon references</comment>
-  </data>
   <data name="ribCopyPageContentButton_Label" xml:space="preserve">
     <value>Copy Selected Content</value>
     <comment>ribbon page</comment>
@@ -4300,12 +4284,28 @@ Help Tab</value>
     <value>Copy Page to My Reading List</value>
     <comment>ribbon references</comment>
   </data>
+  <data name="ribCopyPageToReadingListButton_Label" xml:space="preserve">
+    <value>Copy Page to My Reading List</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribCopyPageToReadingListButton_Screentip" xml:space="preserve">
+    <value>Add the current page to My Reading List</value>
+    <comment>ribbon references</comment>
+  </data>
   <data name="ribCopyPageToReadingListButton_Screentip" xml:space="preserve">
     <value>Add the current page to My Reading List</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribCopyParagraphToReadingListButton_Label" xml:space="preserve">
     <value>Copy Paragraph to My Reading List</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribCopyParagraphToReadingListButton_Label" xml:space="preserve">
+    <value>Copy Paragraph to My Reading List</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribCopyParagraphToReadingListButton_Screentip" xml:space="preserve">
+    <value>Add the current paragraph to My Reading List</value>
     <comment>ribbon references</comment>
   </data>
   <data name="ribCopyParagraphToReadingListButton_Screentip" xml:space="preserve">
@@ -4582,6 +4582,10 @@ Help Tab</value>
   <data name="ribHighlightNoneButton_Label" xml:space="preserve">
     <value>Remove Highlighting</value>
     <comment>ribbon edit</comment>
+  </data>
+  <data name="ribHistoryButton_Label" xml:space="preserve">
+    <value>History</value>
+    <comment>ribbon main NODUP</comment>
   </data>
   <data name="ribImagesMenu_Label" xml:space="preserve">
     <value>Images</value>

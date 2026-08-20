@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Settings
 {
+	using Microsoft.Office.Core;
 	using River.OneMoreAddIn.Commands;
 	using Resx = Properties.Resources;
 
@@ -12,9 +13,13 @@ namespace River.OneMoreAddIn.Settings
 	{
 		private const decimal Millisecond = 1000M;
 
+		private readonly IRibbonUI ribbon;
 
-		public NavigatorSheet(SettingsProvider provider) : base(provider)
+
+		public NavigatorSheet(SettingsProvider provider, IRibbonUI ribbon) : base(provider)
 		{
+			this.ribbon = ribbon;
+
 			InitializeComponent();
 
 			Name = nameof(NavigatorSheet);
@@ -96,6 +101,11 @@ namespace River.OneMoreAddIn.Settings
 			if (updated)
 			{
 				provider.SetCollection(settings);
+
+				// disabled controls which of ribNavigatorButton/ribNavigatorFallbackButton
+				// is shown; getVisible results are cached until explicitly invalidated
+				ribbon.InvalidateControl("ribNavigatorButton");
+				ribbon.InvalidateControl("ribNavigatorFallbackButton");
 			}
 
 			return updated;
