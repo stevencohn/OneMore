@@ -316,7 +316,6 @@ namespace River.OneMoreAddIn.Commands
 			if (pageExpanded && (reading ? (readingExpanded || historyExpanded) : historyExpanded))
 			{
 				rememberedSplitter1 = mainContainer.SplitterDistance;
-				SaveSplitterPositions();
 			}
 		}
 
@@ -326,19 +325,7 @@ namespace River.OneMoreAddIn.Commands
 			if (reading && readingExpanded && historyExpanded)
 			{
 				rememberedSplitter2 = subContainer.SplitterDistance;
-				SaveSplitterPositions();
 			}
-		}
-
-
-		private void SaveSplitterPositions()
-		{
-			var settings = new SettingsProvider();
-			var collection = settings.GetCollection("navigator");
-			collection.Add("splitter1", rememberedSplitter1);
-			collection.Add("splitter2", rememberedSplitter2);
-			settings.SetCollection(collection);
-			settings.Save();
 		}
 		#endregion Panel expand/collapse
 

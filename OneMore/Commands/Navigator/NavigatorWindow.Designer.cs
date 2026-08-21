@@ -212,7 +212,7 @@
 			this.pageFilterBox.Location = new System.Drawing.Point(7, 7);
 			this.pageFilterBox.Name = "pageFilterBox";
 			this.pageFilterBox.ProcessEnterKey = true;
-			this.pageFilterBox.Size = new System.Drawing.Size(456, 26);
+			this.pageFilterBox.Size = new System.Drawing.Size(420, 26);
 			this.pageFilterBox.TabIndex = 3;
 			this.pageFilterBox.ThemedBack = null;
 			this.pageFilterBox.ThemedFore = null;
