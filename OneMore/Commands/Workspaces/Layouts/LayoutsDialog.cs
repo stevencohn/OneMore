@@ -36,6 +36,7 @@ namespace River.OneMoreAddIn.Commands.Layouts
 		public LayoutsDialog()
 		{
 			InitializeComponent();
+			RememberSize = true;
 
 			if (NeedsLocalizing())
 			{

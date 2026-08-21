@@ -35,6 +35,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		public FavoritesDialog()
 		{
 			InitializeComponent();
+			RememberSize = true;
 
 			if (NeedsLocalizing())
 			{

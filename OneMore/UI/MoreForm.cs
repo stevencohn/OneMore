@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.UI
 {
+	using River.OneMoreAddIn.Settings;
 	using System;
 	using System.Diagnostics;
 	using System.Drawing;
@@ -72,6 +73,14 @@ namespace River.OneMoreAddIn.UI
 
 
 		/// <summary>
+		/// Opt-in: when true, this form's Size is saved when it closes and restored
+		/// when it next loads, keyed by the derived class's type name. Only meant for
+		/// forms with a sizable FormBorderStyle (Sizable / SizableToolWindow).
+		/// </summary>
+		protected bool RememberSize { get; set; } = false;
+
+
+		/// <summary>
 		/// Lets inheritors disable theming for specialized cases like TimerWindow
 		/// </summary>
 		protected bool ThemeEnabled { get; set; } = true;
@@ -125,6 +134,14 @@ namespace River.OneMoreAddIn.UI
 		{
 			StartPosition = FormStartPosition.Manual;
 			modeless = true;
+
+			// must happen before centering below, which reads Width/Height, and before
+			// OnLoad's own RestoreSize call, which runs too late here because OnLoad
+			// skips re-centering entirely for modeless forms (see OnLoad)
+			if (RememberSize)
+			{
+				RestoreSize();
+			}
 
 			var rect = new Native.Rectangle();
 			using (var one = new OneNote())
@@ -191,6 +208,11 @@ namespace River.OneMoreAddIn.UI
 
 		protected override void OnFormClosed(FormClosedEventArgs e)
 		{
+			if (RememberSize && WindowState == FormWindowState.Normal)
+			{
+				SaveSize();
+			}
+
 			base.OnFormClosed(e);
 			appContext?.Dispose();
 
@@ -329,6 +351,11 @@ namespace River.OneMoreAddIn.UI
 
 			//logger.WriteLine($"MoreForm.OnLoad try focus");
 			TryFocus();
+
+			if (RememberSize && !DesignMode)
+			{
+				RestoreSize();
+			}
 
 			// RunModeless has already set location so don't repeat that here and only set
 			// location if inheritor hasn't declined by setting it to zero. Also, we're doing
@@ -549,6 +576,43 @@ namespace River.OneMoreAddIn.UI
 
 		public virtual void OnThemeChange()
 		{
+		}
+
+
+		private void RestoreSize()
+		{
+			var settings = new SettingsProvider().GetCollection(GetType().Name);
+			if (!settings.Contains("width") || !settings.Contains("height"))
+			{
+				return;
+			}
+
+			var screen = Screen.FromControl(this);
+			var width = Math.Min(settings.Get("width", Width), screen.WorkingArea.Width);
+			var height = Math.Min(settings.Get("height", Height), screen.WorkingArea.Height);
+
+			if (MinimumSize.Width > 0)
+			{
+				width = Math.Max(width, MinimumSize.Width);
+			}
+
+			if (MinimumSize.Height > 0)
+			{
+				height = Math.Max(height, MinimumSize.Height);
+			}
+
+			Size = new Size(width, height);
+		}
+
+
+		private void SaveSize()
+		{
+			var provider = new SettingsProvider();
+			var settings = provider.GetCollection(GetType().Name);
+			settings.Add("width", Width);
+			settings.Add("height", Height);
+			provider.SetCollection(settings);
+			provider.Save();
 		}
 	}
 }
