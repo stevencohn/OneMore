@@ -195,6 +195,11 @@ namespace River.OneMoreAddIn.Commands
 			historyBox.BackColor = viewColor;
 			historyBox.HighlightBackground = manager.GetColor("LinkHighlight");
 
+			// historyFilterBox/historyFilterCloseButton are no longer Anchor=Right (see
+			// ResizeHistoryHeadPanel); set their initial position explicitly here since the
+			// panel's Resize event may not fire again once layout has already settled
+			ResizeHistoryHeadPanel(historyHeadPanel, EventArgs.Empty);
+
 			Logger.Current.WriteLine(
 				$"NavigatorWindow.OnLoad DPI diagnostics " +
 				$"CurrentAutoScaleDimensions={CurrentAutoScaleDimensions} AutoScaleDimensions={AutoScaleDimensions} " +
@@ -353,6 +358,27 @@ namespace River.OneMoreAddIn.Commands
 			pageTwistButton.Text = pageExpanded ? "▼" : "▶";
 			pinnedTwistButton.Text = readingExpanded ? "▼" : "▶";
 			historyTwistButton.Text = historyExpanded ? "▼" : "▶";
+		}
+
+
+		/// <summary>
+		/// historyHeadPanel is nested two SplitContainers deep (mainContainer -> subContainer
+		/// -> historyHeadPanel), unlike pageHeadPanel's single level; WinForms' Anchor engine
+		/// fixes historyFilterBox/historyFilterCloseButton's stretch baseline against a stale
+		/// intermediate width captured during that deeper nested construction, producing wildly
+		/// wrong bounds on some monitors (button positioned entirely off-panel). Both controls
+		/// are Anchor=Top|Left only (no Right) so they don't auto-stretch; position them here
+		/// instead, computed directly from the panel's real current width.
+		/// </summary>
+		private void ResizeHistoryHeadPanel(object sender, EventArgs e)
+		{
+			const int CloseButtonRightMargin = 8;
+			const int FilterBoxToCloseButtonGap = 10;
+
+			historyFilterCloseButton.Left =
+				historyHeadPanel.ClientSize.Width - CloseButtonRightMargin - historyFilterCloseButton.Width;
+			historyFilterBox.Width =
+				historyFilterCloseButton.Left - FilterBoxToCloseButtonGap - historyFilterBox.Left;
 		}
 
 

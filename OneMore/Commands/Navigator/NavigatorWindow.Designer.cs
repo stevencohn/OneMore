@@ -554,6 +554,7 @@
 			this.historyHeadPanel.TopBorderColor = System.Drawing.SystemColors.Control;
 			this.historyHeadPanel.TopBorderSize = 0;
 			this.historyHeadPanel.Click += new System.EventHandler(this.PanelFocusOnClick);
+			this.historyHeadPanel.Resize += new System.EventHandler(this.ResizeHistoryHeadPanel);
 			//
 			// historyTwistButton
 			//
@@ -580,8 +581,7 @@
 			//
 			// historyFilterBox
 			//
-			this.historyFilterBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-	            | System.Windows.Forms.AnchorStyles.Right)));
+			this.historyFilterBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
 			this.historyFilterBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.historyFilterBox.Location = new System.Drawing.Point(2, 7);
 			this.historyFilterBox.Name = "historyFilterBox";
@@ -597,7 +597,7 @@
 			//
 			// historyFilterCloseButton
 			//
-			this.historyFilterCloseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.historyFilterCloseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
 			this.historyFilterCloseButton.BackColor = System.Drawing.SystemColors.ButtonFace;
 			this.historyFilterCloseButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
 			this.historyFilterCloseButton.FlatAppearance.BorderSize = 0;
