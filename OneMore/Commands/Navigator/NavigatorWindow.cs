@@ -335,8 +335,8 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var settings = new SettingsProvider();
 			var collection = settings.GetCollection("navigator");
-			collection["splitter1"] = rememberedSplitter1;
-			collection["splitter2"] = rememberedSplitter2;
+			collection.Add("splitter1", rememberedSplitter1);
+			collection.Add("splitter2", rememberedSplitter2);
 			settings.SetCollection(collection);
 			settings.Save();
 		}
