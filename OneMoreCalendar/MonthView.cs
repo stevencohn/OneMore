@@ -651,6 +651,8 @@ namespace OneMoreCalendar
 		{
 			if (((MoreButton)sender).Tag is CalendarDay day)
 			{
+				Logger.Current.Debug($"copying links for {day.Pages.Count} pages on {day.Date:yyyy-MM-dd}");
+
 				// fill and correct hyperlinks...
 
 				var candidates = day.Pages

@@ -68,7 +68,7 @@ namespace OneMoreCalendar
 
 			contentPanel.Controls.Add(monthView);
 
-			await SetMonth(monthDelta);
+			await SetMonth(monthDelta, "startup");
 
 			// when started from OneNote, need to force window to top
 			TopMost = true;
@@ -106,7 +106,7 @@ namespace OneMoreCalendar
 		}
 
 
-		private async Task SetMonth(int delta)
+		private async Task SetMonth(int delta, string reason)
 		{
 			if (delta < ManualDelta)
 			{
@@ -124,11 +124,17 @@ namespace OneMoreCalendar
 			var endDate = date.EndOfMonth();
 			var settings = new SettingsProvider();
 
+			Logger.Current.Debug($"{reason}: loading pages for {date:yyyy-MM} " +
+				$"(created:{settings.Created}, modified:{settings.Modified}, deleted:{settings.Deleted})");
+
+			Logger.Current.StartClock();
 			pages = await new OneNoteProvider().GetPages(
 				date.StartOfCalendarMonthView(),
 				date.EndOfCalendarView(),
 				await settings.GetNotebookIDs(),
 				settings.Created, settings.Modified, settings.Deleted);
+
+			Logger.Current.WriteTime($"{reason}: loaded {pages.Count} pages for {date:yyyy-MM}");
 
 			if (monthButton.Checked)
 			{
@@ -152,6 +158,8 @@ namespace OneMoreCalendar
 		/// <param name="e"></param>
 		private void ChangeView(object sender, EventArgs e)
 		{
+			Logger.Current.Debug($"changed view to {(sender == monthButton ? "month" : "day")}");
+
 			if (sender == monthButton)
 			{
 				contentPanel.Controls.Clear();
@@ -168,11 +176,13 @@ namespace OneMoreCalendar
 
 		private async void ClickDayView(object sender, CalendarDayEventArgs e)
 		{
+			Logger.Current.Debug($"clicked day {e.DayDate:yyyy-MM-dd}");
+
 			if (e.DayDate.Month != date.Month)
 			{
 				SuspendLayout();
 				date = e.DayDate.StartOfMonth();
-				await SetMonth(ManualDelta);
+				await SetMonth(ManualDelta, $"day click {e.DayDate:yyyy-MM-dd}");
 				ResumeLayout();
 			}
 
@@ -187,6 +197,8 @@ namespace OneMoreCalendar
 		/// <param name="e"></param>
 		private async void ShowDayView(object sender, CalendarDayEventArgs e)
 		{
+			Logger.Current.Debug($"showing day view for {e.DayDate:yyyy-MM-dd}");
+
 			contentPanel.Controls.Clear();
 
 			if (detailView is null)
@@ -206,12 +218,19 @@ namespace OneMoreCalendar
 
 			var endDate = date.EndOfMonth();
 			var settings = new SettingsProvider();
+			const string reason = "view: day";
 
+			Logger.Current.Debug($"{reason}: loading pages for {date:yyyy-MM} " +
+				$"(created:{settings.Created}, modified:{settings.Modified}, deleted:{settings.Deleted})");
+
+			Logger.Current.StartClock();
 			pages = await new OneNoteProvider().GetPages(
 				date.StartOfCalendarMonthView(),
 				date.EndOfCalendarView(),
 				await settings.GetNotebookIDs(),
 				settings.Created, settings.Modified, settings.Deleted);
+
+			Logger.Current.WriteTime($"{reason}: loaded {pages.Count} pages for {date:yyyy-MM}");
 
 			detailView.SetRange(date, endDate, pages);
 
@@ -226,7 +245,7 @@ namespace OneMoreCalendar
 		/// <param name="e"></param>
 		private async void GotoPrevious(object sender, EventArgs e)
 		{
-			await SetMonth(-1);
+			await SetMonth(-1, "previous month");
 		}
 
 
@@ -237,7 +256,7 @@ namespace OneMoreCalendar
 		/// <param name="e"></param>
 		private async void GotoNext(object sender, EventArgs e)
 		{
-			await SetMonth(1);
+			await SetMonth(1, "next month");
 		}
 
 
@@ -248,13 +267,15 @@ namespace OneMoreCalendar
 		/// <param name="e"></param>
 		private async void ShowToday(object sender, EventArgs e)
 		{
-			await SetMonth(0);
+			await SetMonth(0, "today");
 		}
 
 
 		private SnapshotForm snapForm;
 		private async void SnappedPage(object sender, CalendarSnapshotEventArgs e)
 		{
+			Logger.Current.Debug($"previewing page '{e.Page.Title}' ({e.Page.PageID})");
+
 			var path = await new OneNoteProvider().Export(e.Page.PageID);
 
 			Logger.Current.WriteLine($"exported page '{e.Page.Title}' to {path}");
@@ -316,6 +337,7 @@ namespace OneMoreCalendar
 
 		private async void NavigateToPage(object sender, CalendarPageEventArgs e)
 		{
+			Logger.Current.WriteLine($"navigating to page '{e.Page.Title}' ({e.Page.PageID})");
 			await new OneNoteProvider().NavigateTo(e.Page.PageID);
 		}
 
@@ -337,11 +359,11 @@ namespace OneMoreCalendar
 			}
 			else if (e.KeyCode == Keys.F5)
 			{
-				await SetMonth(date.Year);
+				await SetMonth(date.Year, "refresh (F5)");
 			}
 			else if (e.KeyCode == Keys.Home)
 			{
-				await SetMonth(0);
+				await SetMonth(0, "today (Home)");
 			}
 			else if (e.Control && (e.KeyCode == Keys.Tab))
 			{
@@ -364,6 +386,8 @@ namespace OneMoreCalendar
 
 		private void DropDownYears(object sender, LinkLabelLinkClickedEventArgs e)
 		{
+			Logger.Current.Debug("opened years picker");
+
 			yearsForm = new YearsForm(date.Year);
 			var location = PointToScreen(dateLabel.Location);
 			location.Offset(0, dateLabel.Height);
@@ -381,13 +405,15 @@ namespace OneMoreCalendar
 
 			if (yearsForm.Year > 0)
 			{
+				Logger.Current.Debug($"selected year {yearsForm.Year}");
+
 				date = new DateTime(yearsForm.Year, date.Month, 1);
 				if (date.CompareTo(DateTime.Now.Date) > 0)
 				{
 					date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
 				}
 
-				await SetMonth(date.Year);
+				await SetMonth(date.Year, $"year {yearsForm.Year}");
 			}
 
 			yearsForm.Dispose();
@@ -400,6 +426,8 @@ namespace OneMoreCalendar
 
 		private void ToggleSettings(object sender, EventArgs e)
 		{
+			Logger.Current.Debug(settingsButton.Checked ? "opened settings" : "closed settings");
+
 			if (settingsButton.Checked)
 			{
 				settingsForm = new SettingsForm();
@@ -428,8 +456,13 @@ namespace OneMoreCalendar
 
 			if (settingsForm.DialogResult == DialogResult.OK)
 			{
+				var settings = new SettingsProvider();
+				Logger.Current.Debug($"settings changed, theme:{settings.Theme}, " +
+					$"created:{settings.Created}, modified:{settings.Modified}, " +
+					$"deleted:{settings.Deleted}, empty:{settings.Empty}");
+
 				Theme.InitializeTheme(this);
-				await SetMonth(date.Year);
+				await SetMonth(date.Year, "settings applied");
 			}
 		}
 

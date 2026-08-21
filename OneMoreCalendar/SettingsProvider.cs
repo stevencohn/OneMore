@@ -39,6 +39,7 @@ namespace OneMoreCalendar
 				}
 				catch (Exception exc)
 				{
+					Logger.Current.WriteLine($"error reading {path}", exc);
 					MessageBox.Show($"error reading {path}\n{exc.Message}");
 				}
 			}
@@ -206,8 +207,16 @@ namespace OneMoreCalendar
 
 		public void Save()
 		{
-			PathHelper.EnsurePathExists(Path.GetDirectoryName(path));
-			root.Save(path, SaveOptions.None);
+			try
+			{
+				PathHelper.EnsurePathExists(Path.GetDirectoryName(path));
+				root.Save(path, SaveOptions.None);
+			}
+			catch (Exception exc)
+			{
+				Logger.Current.WriteLine($"error saving {path}", exc);
+				throw;
+			}
 		}
 	}
 }
