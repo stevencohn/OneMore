@@ -624,15 +624,6 @@ namespace River.OneMoreAddIn.Commands
 				minimized = false;
 			}
 
-			if (!(disabled && reading))
-			{
-				// PositionOnLoad computes splitter distances from mainContainer.ClientSize
-				// during the Load event, before the window is fully sized on screen; re-run
-				// it now that Shown guarantees final bounds, so restored splitter positions
-				// (rememberedSplitter1/2) land exactly where the user left them
-				UpdatePanelLayout();
-			}
-
 			Elevate(false);
 			PanelFocusOnClick(historyHeadPanel, e);
 		}
