@@ -547,7 +547,6 @@
 			this.historyHeadPanel.Location = new System.Drawing.Point(0, 0);
 			this.historyHeadPanel.Margin = new System.Windows.Forms.Padding(0);
 			this.historyHeadPanel.Name = "historyHeadPanel";
-			this.historyHeadPanel.Padding = new System.Windows.Forms.Padding(5, 2, 5, 2);
 			this.historyHeadPanel.Size = new System.Drawing.Size(528, 41);
 			this.historyHeadPanel.TabIndex = 1;
 			this.historyHeadPanel.ThemedBack = "ControlDarkDark";
@@ -565,7 +564,7 @@
 			this.historyTwistButton.Font = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.historyTwistButton.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.historyTwistButton.ImageOver = null;
-			this.historyTwistButton.Location = new System.Drawing.Point(7, 10);
+			this.historyTwistButton.Location = new System.Drawing.Point(2, 10);
 			this.historyTwistButton.Name = "historyTwistButton";
 			this.historyTwistButton.ShowBorder = false;
 			this.historyTwistButton.Size = new System.Drawing.Size(20, 20);
@@ -587,7 +586,7 @@
 			this.historyFilterBox.Location = new System.Drawing.Point(2, 7);
 			this.historyFilterBox.Name = "historyFilterBox";
 			this.historyFilterBox.ProcessEnterKey = true;
-			this.historyFilterBox.Size = new System.Drawing.Size(466, 26);
+			this.historyFilterBox.Size = new System.Drawing.Size(476, 26);
 			this.historyFilterBox.TabIndex = 3;
 			this.historyFilterBox.ThemedBack = null;
 			this.historyFilterBox.ThemedFore = null;
@@ -606,7 +605,7 @@
 			this.historyFilterCloseButton.Font = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.historyFilterCloseButton.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.historyFilterCloseButton.ImageOver = null;
-			this.historyFilterCloseButton.Location = new System.Drawing.Point(478, 5);
+			this.historyFilterCloseButton.Location = new System.Drawing.Point(488, 5);
 			this.historyFilterCloseButton.Name = "historyFilterCloseButton";
 			this.historyFilterCloseButton.ShowBorder = true;
 			this.historyFilterCloseButton.Size = new System.Drawing.Size(32, 32);
@@ -628,6 +627,7 @@
 			this.historyToolPanel.Controls.Add(this.copyHistoryButton);
 			this.historyToolPanel.Dock = System.Windows.Forms.DockStyle.Right;
 			this.historyToolPanel.Location = new System.Drawing.Point(335, 2);
+			this.historyToolPanel.Margin = new System.Windows.Forms.Padding(0, 2, 5, 2);
 			this.historyToolPanel.Name = "historyToolPanel";
 			this.historyToolPanel.Size = new System.Drawing.Size(188, 37);
 			this.historyToolPanel.TabIndex = 2;
@@ -729,7 +729,7 @@
 			// 
 			this.historyHeadLabel.AutoSize = true;
 			this.historyHeadLabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.historyHeadLabel.Location = new System.Drawing.Point(41, 12);
+			this.historyHeadLabel.Location = new System.Drawing.Point(36, 12);
 			this.historyHeadLabel.Name = "historyHeadLabel";
 			this.historyHeadLabel.Size = new System.Drawing.Size(74, 22);
 			this.historyHeadLabel.TabIndex = 1;

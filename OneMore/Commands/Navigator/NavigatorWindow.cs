@@ -194,17 +194,6 @@ namespace River.OneMoreAddIn.Commands
 
 			historyBox.BackColor = viewColor;
 			historyBox.HighlightBackground = manager.GetColor("LinkHighlight");
-
-			// historyHeadPanel carries extra Padding (for historyToolPanel) that pageHeadPanel
-			// doesn't have; WinForms' Font-based autoscaling rounds that Padding differently
-			// per DPI than the plain Anchor-Right math used for pageFilterBox, so a Designer-
-			// authored literal Width drifts off by a few px depending on monitor. Measure the
-			// actual runtime position of historyFilterCloseButton (already scaled by WinForms'
-			// autoscale pass, which has completed by this point in OnLoad) instead of guessing
-			// a fixed pixel width.
-			const int FilterCloseGap = 6;
-			historyFilterBox.Width =
-				historyFilterCloseButton.Left - historyFilterBox.Left - FilterCloseGap;
 		}
 
 
@@ -326,12 +315,6 @@ namespace River.OneMoreAddIn.Commands
 					}
 
 					subContainer.SplitterDistance = pinnedHeight;
-
-					Logger.Current.WriteLine(
-						$"NavigatorWindow.UpdatePanelLayout total={total} pageHeight={pageHeight} " +
-						$"subHeight={subHeight} rememberedSplitter2={rememberedSplitter2} " +
-						$"pinnedHeadPanel.Height={pinnedHeadPanel.Height} historyHeadPanel.Height={historyHeadPanel.Height} " +
-						$"computed pinnedHeight={pinnedHeight} actual subContainer.SplitterDistance={subContainer.SplitterDistance}");
 				}
 
 				UpdateTwistGlyphs();
@@ -376,11 +359,6 @@ namespace River.OneMoreAddIn.Commands
 			{
 				rememberedSplitter2 = subContainer.SplitterDistance;
 			}
-
-			Logger.Current.WriteLine(
-				$"NavigatorWindow.SubSplitterMoved subContainer.SplitterDistance={subContainer.SplitterDistance} " +
-				$"reading={reading} readingExpanded={readingExpanded} historyExpanded={historyExpanded} " +
-				$"rememberedSplitter2={rememberedSplitter2}");
 		}
 		#endregion Panel expand/collapse
 
@@ -603,13 +581,6 @@ namespace River.OneMoreAddIn.Commands
 			rememberedSplitter1 = settings.Get("splitter1", mainContainer.SplitterDistance);
 			rememberedSplitter2 = settings.Get("splitter2", subContainer.SplitterDistance);
 
-			Logger.Current.WriteLine(
-				$"NavigatorWindow.PositionOnLoad loaded rememberedSplitter1={rememberedSplitter1} " +
-				$"rememberedSplitter2={rememberedSplitter2} pageExpanded={pageExpanded} " +
-				$"readingExpanded={readingExpanded} historyExpanded={historyExpanded} " +
-				$"disabled={disabled} reading={reading} Height={Height} " +
-				$"mainContainer.ClientSize.Height={mainContainer.ClientSize.Height}");
-
 			if (disabled && reading)
 			{
 				// the tracking service is off, so Headings/History have nothing current to
@@ -778,13 +749,6 @@ namespace River.OneMoreAddIn.Commands
 					collection.Add("historyExpanded", historyExpanded);
 					collection.Add("splitter1", rememberedSplitter1);
 					collection.Add("splitter2", rememberedSplitter2);
-
-					Logger.Current.WriteLine(
-						$"NavigatorWindow.SaveOnFormClosing saving rememberedSplitter1={rememberedSplitter1} " +
-						$"rememberedSplitter2={rememberedSplitter2} pageExpanded={pageExpanded} " +
-						$"readingExpanded={readingExpanded} historyExpanded={historyExpanded} " +
-						$"mainContainer.SplitterDistance={mainContainer.SplitterDistance} " +
-						$"subContainer.SplitterDistance={subContainer.SplitterDistance} Height={Height}");
 				}
 
 				settings.SetCollection(collection);
