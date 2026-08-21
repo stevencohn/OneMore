@@ -584,10 +584,10 @@
 			this.historyFilterBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 	            | System.Windows.Forms.AnchorStyles.Right)));
 			this.historyFilterBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.historyFilterBox.Location = new System.Drawing.Point(2, 7);
+			this.historyFilterBox.Location = new System.Drawing.Point(7, 7);
 			this.historyFilterBox.Name = "historyFilterBox";
 			this.historyFilterBox.ProcessEnterKey = true;
-			this.historyFilterBox.Size = new System.Drawing.Size(466, 26);
+			this.historyFilterBox.Size = new System.Drawing.Size(461, 26);
 			this.historyFilterBox.TabIndex = 3;
 			this.historyFilterBox.ThemedBack = null;
 			this.historyFilterBox.ThemedFore = null;
@@ -606,7 +606,7 @@
 			this.historyFilterCloseButton.Font = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.historyFilterCloseButton.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.historyFilterCloseButton.ImageOver = null;
-			this.historyFilterCloseButton.Location = new System.Drawing.Point(478, 5);
+			this.historyFilterCloseButton.Location = new System.Drawing.Point(483, 5);
 			this.historyFilterCloseButton.Name = "historyFilterCloseButton";
 			this.historyFilterCloseButton.ShowBorder = true;
 			this.historyFilterCloseButton.Size = new System.Drawing.Size(32, 32);
