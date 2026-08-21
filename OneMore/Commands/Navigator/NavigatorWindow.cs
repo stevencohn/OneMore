@@ -48,6 +48,7 @@ namespace River.OneMoreAddIn.Commands
 		private bool historyExpanded;
 		private int rememberedSplitter1;
 		private int rememberedSplitter2;
+		private bool restoringLayout;
 
 		// defer headings load while collapsed
 		private bool pageStale;
@@ -193,6 +194,11 @@ namespace River.OneMoreAddIn.Commands
 
 			historyBox.BackColor = viewColor;
 			historyBox.HighlightBackground = manager.GetColor("LinkHighlight");
+
+			// historyFilterBox/historyFilterCloseButton are no longer Anchor=Right (see
+			// ResizeHistoryHeadPanel); set their initial position explicitly here since the
+			// panel's Resize event may not fire again once layout has already settled
+			ResizeHistoryHeadPanel(historyHeadPanel, EventArgs.Empty);
 		}
 
 
@@ -256,50 +262,72 @@ namespace River.OneMoreAddIn.Commands
 		/// </summary>
 		private void UpdatePanelLayout()
 		{
-			var total = mainContainer.ClientSize.Height;
-			var subOthersExpanded = reading ? (readingExpanded || historyExpanded) : historyExpanded;
-
-			int pageHeight;
-			if (!pageExpanded)
+			// mainContainer.SplitterDistance below resizes mainContainer.Panel2, which
+			// resizes the docked subContainer; because subContainer is itself a
+			// SplitContainer, .NET auto-adjusts ITS SplitterDistance to fit the new size,
+			// firing an incidental SplitterMoved that has nothing to do with the user
+			// dragging anything. MainSplitterMoved/SubSplitterMoved must not treat that as
+			// a real drag and clobber rememberedSplitter1/2 with it, so suppress capture
+			// for the duration of this programmatic layout pass.
+			restoringLayout = true;
+			try
 			{
-				pageHeight = pageHeadPanel.Height;
-			}
-			else if (!subOthersExpanded)
-			{
-				var subHeaders = (reading ? pinnedHeadPanel.Height : 0) + historyHeadPanel.Height;
-				pageHeight = total - subHeaders;
-			}
-			else
-			{
-				pageHeight = Math.Max(pageHeadPanel.Height,
-					Math.Min(rememberedSplitter1, total - mainContainer.Panel2MinSize));
-			}
+				var total = mainContainer.ClientSize.Height;
+				var subOthersExpanded = reading ? (readingExpanded || historyExpanded) : historyExpanded;
 
-			mainContainer.SplitterDistance = pageHeight;
-
-			if (reading)
-			{
-				var subHeight = total - pageHeight;
-
-				int pinnedHeight;
-				if (!readingExpanded)
+				int pageHeight;
+				if (!pageExpanded)
 				{
-					pinnedHeight = pinnedHeadPanel.Height;
+					pageHeight = pageHeadPanel.Height;
 				}
-				else if (!historyExpanded)
+				else if (!subOthersExpanded)
 				{
-					pinnedHeight = subHeight - historyHeadPanel.Height;
+					var subHeaders = (reading ? pinnedHeadPanel.Height : 0) + historyHeadPanel.Height;
+					pageHeight = total - subHeaders;
 				}
 				else
 				{
-					pinnedHeight = Math.Max(pinnedHeadPanel.Height,
-						Math.Min(rememberedSplitter2, subHeight - historyHeadPanel.Height));
+					pageHeight = Math.Max(pageHeadPanel.Height,
+						Math.Min(rememberedSplitter1, total - mainContainer.Panel2MinSize));
 				}
 
-				subContainer.SplitterDistance = pinnedHeight;
-			}
+				mainContainer.SplitterDistance = pageHeight;
 
-			UpdateTwistGlyphs();
+				// setting SplitterDistance above schedules, but does not immediately apply, a
+				// layout pass on mainContainer.Panel2 and its docked child subContainer;
+				// without forcing that layout to run now, subContainer.Height below is still
+				// its stale pre-resize value, so setting subContainer.SplitterDistance would
+				// clamp against the wrong (too-small) bounds
+				mainContainer.Panel2.PerformLayout();
+
+				if (reading)
+				{
+					var subHeight = total - pageHeight;
+
+					int pinnedHeight;
+					if (!readingExpanded)
+					{
+						pinnedHeight = pinnedHeadPanel.Height;
+					}
+					else if (!historyExpanded)
+					{
+						pinnedHeight = subHeight - historyHeadPanel.Height;
+					}
+					else
+					{
+						pinnedHeight = Math.Max(pinnedHeadPanel.Height,
+							Math.Min(rememberedSplitter2, subHeight - historyHeadPanel.Height));
+					}
+
+					subContainer.SplitterDistance = pinnedHeight;
+				}
+
+				UpdateTwistGlyphs();
+			}
+			finally
+			{
+				restoringLayout = false;
+			}
 		}
 
 
@@ -311,8 +339,34 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		/// <summary>
+		/// historyHeadPanel is nested two SplitContainers deep (mainContainer -> subContainer
+		/// -> historyHeadPanel), unlike pageHeadPanel's single level; WinForms' Anchor engine
+		/// fixes historyFilterBox/historyFilterCloseButton's stretch baseline against a stale
+		/// intermediate width captured during that deeper nested construction, producing wildly
+		/// wrong bounds on some monitors (button positioned entirely off-panel). Both controls
+		/// are Anchor=Top|Left only (no Right) so they don't auto-stretch; position them here
+		/// instead, computed directly from the panel's real current width.
+		/// </summary>
+		private void ResizeHistoryHeadPanel(object sender, EventArgs e)
+		{
+			const int CloseButtonRightMargin = 8;
+			const int FilterBoxToCloseButtonGap = 10;
+
+			historyFilterCloseButton.Left =
+				historyHeadPanel.ClientSize.Width - CloseButtonRightMargin - historyFilterCloseButton.Width;
+			historyFilterBox.Width =
+				historyFilterCloseButton.Left - FilterBoxToCloseButtonGap - historyFilterBox.Left;
+		}
+
+
 		private void MainSplitterMoved(object sender, SplitterEventArgs e)
 		{
+			if (restoringLayout)
+			{
+				return;
+			}
+
 			if (pageExpanded && (reading ? (readingExpanded || historyExpanded) : historyExpanded))
 			{
 				rememberedSplitter1 = mainContainer.SplitterDistance;
@@ -322,6 +376,11 @@ namespace River.OneMoreAddIn.Commands
 
 		private void SubSplitterMoved(object sender, SplitterEventArgs e)
 		{
+			if (restoringLayout)
+			{
+				return;
+			}
+
 			if (reading && readingExpanded && historyExpanded)
 			{
 				rememberedSplitter2 = subContainer.SplitterDistance;
