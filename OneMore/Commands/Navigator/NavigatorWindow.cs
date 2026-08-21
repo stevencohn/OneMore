@@ -313,19 +313,13 @@ namespace River.OneMoreAddIn.Commands
 
 		private void MainSplitterMoved(object sender, SplitterEventArgs e)
 		{
-			if (pageExpanded && (reading ? (readingExpanded || historyExpanded) : historyExpanded))
-			{
-				rememberedSplitter1 = mainContainer.SplitterDistance;
-			}
+			rememberedSplitter1 = mainContainer.SplitterDistance;
 		}
 
 
 		private void SubSplitterMoved(object sender, SplitterEventArgs e)
 		{
-			if (reading && readingExpanded && historyExpanded)
-			{
-				rememberedSplitter2 = subContainer.SplitterDistance;
-			}
+			rememberedSplitter2 = subContainer.SplitterDistance;
 		}
 		#endregion Panel expand/collapse
 

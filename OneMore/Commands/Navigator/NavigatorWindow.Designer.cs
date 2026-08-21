@@ -172,6 +172,7 @@
 			this.pageHeadPanel.Location = new System.Drawing.Point(0, 0);
 			this.pageHeadPanel.Margin = new System.Windows.Forms.Padding(0);
 			this.pageHeadPanel.Name = "pageHeadPanel";
+			this.pageHeadPanel.Padding = new System.Windows.Forms.Padding(5, 2, 5, 2);
 			this.pageHeadPanel.Size = new System.Drawing.Size(528, 41);
 			this.pageHeadPanel.TabIndex = 0;
 			this.pageHeadPanel.ThemedBack = "ControlDarkDark";
@@ -189,7 +190,7 @@
 			this.pageTwistButton.Font = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.pageTwistButton.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.pageTwistButton.ImageOver = null;
-			this.pageTwistButton.Location = new System.Drawing.Point(2, 10);
+			this.pageTwistButton.Location = new System.Drawing.Point(7, 10);
 			this.pageTwistButton.Name = "pageTwistButton";
 			this.pageTwistButton.ShowBorder = false;
 			this.pageTwistButton.Size = new System.Drawing.Size(20, 20);
@@ -208,10 +209,10 @@
 			this.pageFilterBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 	            | System.Windows.Forms.AnchorStyles.Right)));
 			this.pageFilterBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.pageFilterBox.Location = new System.Drawing.Point(2, 7);
+			this.pageFilterBox.Location = new System.Drawing.Point(7, 7);
 			this.pageFilterBox.Name = "pageFilterBox";
 			this.pageFilterBox.ProcessEnterKey = true;
-			this.pageFilterBox.Size = new System.Drawing.Size(476, 26);
+			this.pageFilterBox.Size = new System.Drawing.Size(466, 26);
 			this.pageFilterBox.TabIndex = 3;
 			this.pageFilterBox.ThemedBack = null;
 			this.pageFilterBox.ThemedFore = null;
@@ -254,7 +255,7 @@
 			this.pageFilterCloseButton.Font = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.pageFilterCloseButton.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.pageFilterCloseButton.ImageOver = null;
-			this.pageFilterCloseButton.Location = new System.Drawing.Point(488, 5);
+			this.pageFilterCloseButton.Location = new System.Drawing.Point(483, 5);
 			this.pageFilterCloseButton.Name = "pageFilterCloseButton";
 			this.pageFilterCloseButton.ShowBorder = true;
 			this.pageFilterCloseButton.Size = new System.Drawing.Size(32, 32);
@@ -296,7 +297,7 @@
 			// 
 			this.pageHeadLabel.AutoSize = true;
 			this.pageHeadLabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.pageHeadLabel.Location = new System.Drawing.Point(36, 9);
+			this.pageHeadLabel.Location = new System.Drawing.Point(41, 9);
 			this.pageHeadLabel.Name = "pageHeadLabel";
 			this.pageHeadLabel.Size = new System.Drawing.Size(216, 22);
 			this.pageHeadLabel.TabIndex = 0;
@@ -587,7 +588,7 @@
 			this.historyFilterBox.Location = new System.Drawing.Point(7, 7);
 			this.historyFilterBox.Name = "historyFilterBox";
 			this.historyFilterBox.ProcessEnterKey = true;
-			this.historyFilterBox.Size = new System.Drawing.Size(461, 26);
+			this.historyFilterBox.Size = new System.Drawing.Size(466, 26);
 			this.historyFilterBox.TabIndex = 3;
 			this.historyFilterBox.ThemedBack = null;
 			this.historyFilterBox.ThemedFore = null;
