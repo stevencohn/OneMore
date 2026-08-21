@@ -60,6 +60,7 @@ namespace OneMoreCalendar
 		private int dowOffset;
 		private int headHeight;
 		private int maxItems;
+		private int rowLineHeight;
 		private int moreWidth;
 		private int moreHeight;
 		private int weeks;
@@ -478,14 +479,21 @@ namespace OneMoreCalendar
 			using var inbrush = new SolidBrush(Theme.MonthTodayFore);
 			using var outbrush = new SolidBrush(Theme.MonthDayFore);
 
-			// headFont.Height and Font.Height are measured at a fixed logical (96 DPI)
-			// reference regardless of the control's real DPI, so scale them explicitly;
-			// also compact away the font's generous internal leading, same as row spacing
+			// headFont.Height is measured at a fixed logical (96 DPI) reference regardless
+			// of the control's real DPI, so scale it explicitly; also compact away the
+			// font's generous internal leading
 			headHeight = this.Scaled((int)(headFont.Height * RowSpacingFactor) + 2);
-			var rowStep = (int)(this.Scaled(Font.Height) * RowSpacingFactor);
 
-			// how many lines fit in each day box
-			maxItems = (((Height - dowOffset) / weeks) - headHeight) / rowStep;
+			// measure real glyph height instead of using Font.Height (which includes
+			// generous internal leading meant for paragraph spacing); MeasureString on
+			// the live Graphics context already reflects the actual DPI/font rendering
+			// in effect, whether local or over RDP, so no manual scaling or fudge
+			// factor is needed here
+			rowLineHeight = (int)Math.Ceiling(e.Graphics.MeasureString("Ap", Font).Height);
+
+			// how many lines fit in each day box; must match the padding PaintDay
+			// actually carves out of day.Bounds for its content box
+			maxItems = (((Height - dowOffset) / weeks) - headHeight - this.Scaled(8)) / rowLineHeight;
 
 			var now = DateTime.Now.Date;
 
@@ -559,15 +567,19 @@ namespace OneMoreCalendar
 				day.Bounds.Width - this.Scaled(8),
 				day.Bounds.Height - this.Scaled(8));
 
-			// Font.Height is measured at a fixed logical (96 DPI) reference regardless of
-			// the control's real DPI, so scale it explicitly (moreWidth/moreHeight are
-			// computed once in OnLoad)
-			var lineHeight = this.Scaled(Font.Height);
-			var rowStep = (int)(lineHeight * RowSpacingFactor);
-
 			for (int i = day.ScrollOffset, t = 0; i < day.Pages.Count && t < maxItems; i++, t++)
 			{
 				var page = day.Pages[i];
+
+				var top = box.Top + (rowLineHeight * t);
+
+				// hard guard: never draw a row that would overflow the day cell's
+				// bottom edge, regardless of whether the maxItems estimate above was
+				// exactly right for this font/DPI/rendering environment
+				if (top + rowLineHeight > box.Bottom)
+				{
+					break;
+				}
 
 				// shrink width if showing scroller glyphs
 				var width = day.Pages.Count > maxItems && i >= maxItems - 2
@@ -575,7 +587,6 @@ namespace OneMoreCalendar
 					: box.Width;
 
 				var left = box.Left;
-				var top = box.Top + (rowStep * t);
 				if (page.HasReminders)
 				{
 					width -= this.Scaled(14);
@@ -585,7 +596,7 @@ namespace OneMoreCalendar
 				}
 
 				// max length of string with ellipses
-				var clip = new Rectangle(left, top, width, lineHeight);
+				var clip = new Rectangle(left, top, width, rowLineHeight);
 
 				var font = page.IsDeleted ? deletedFont : Font;
 				using var brush = new SolidBrush(page.IsDeleted || day.InMonth
