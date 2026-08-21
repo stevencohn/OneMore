@@ -8,6 +8,7 @@
 
 namespace OneMoreCalendar
 {
+	using River.OneMoreAddIn;
 	using System;
 	using System.ComponentModel;
 	using System.Runtime.InteropServices;
@@ -101,8 +102,8 @@ namespace OneMoreCalendar
 		protected override void OnMouseWheel(MouseEventArgs e)
 		{
 			base.OnMouseWheel(e);
-			//var info = GetScrollInfo();
-			//Logger.Current.WriteLine($"wheel delta:{e.Delta} pos:{info.Position} min:{info.Min} max:{info.Max}");
+			var info = GetScrollInfo();
+			//Logger.Current.Verbose($"wheel delta:{e.Delta} pos:{info.Position} min:{info.Min} max:{info.Max}");
 		}
 
 		protected override void WndProc(ref Message m)
@@ -112,7 +113,7 @@ namespace OneMoreCalendar
 				if (Scrolled != null)
 				{
 					var info = GetScrollInfo();
-					//Logger.Current.WriteLine($"wndproc pos:{info.Position} min:{info.Min} max:{info.Max}");
+					//Logger.Current.Verbose($"wndproc pos:{info.Position} min:{info.Min} max:{info.Max}");
 
 					if (m.WParam.ToInt32() == SB_ENDSCROLL)
 					{

@@ -250,7 +250,7 @@ namespace OneMoreCalendar
 
 		private void ListBoxMouseMove(object sender, MouseEventArgs e)
 		{
-			//Logger.Current.WriteLine($"moveto {e.Location}");
+			//Logger.Current.Verbose($"moveto {e.Location}");
 
 			if (listbox.Items.OfType<ListViewItem>()
 				.FirstOrDefault(d =>
@@ -260,11 +260,14 @@ namespace OneMoreCalendar
 				return;
 			}
 
-			//Logger.Current.WriteLine($"day bounds {day.Bounds}");
+			//Logger.Current.Verbose($"day bounds {day.Bounds}");
 
 			var page = day.Pages.FirstOrDefault(p => p.Bounds.Contains(e.Location));
 
-			//Logger.Current.WriteLine($"page bounds {page.Bounds}");
+			if (page is not null)
+			{
+				//Logger.Current.Verbose($"page bounds {page.Bounds}");
+			}
 
 			if (page == hotpage)
 			{
