@@ -27,6 +27,7 @@ namespace River.OneMoreAddIn.Commands
 		public HistoryDialog()
 		{
 			InitializeComponent();
+			RememberSize = true;
 
 			if (NeedsLocalizing())
 			{

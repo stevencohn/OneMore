@@ -86,6 +86,7 @@ namespace River.OneMoreAddIn.Settings
 			this.ribbon = ribbon;
 			provider = new SettingsProvider();
 			sheets = new Dictionary<int, SheetBase>();
+			RememberSize = true;
 
 			navLinks = new[]
 			{

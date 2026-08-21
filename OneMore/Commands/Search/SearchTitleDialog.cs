@@ -54,6 +54,8 @@ namespace River.OneMoreAddIn.Commands
 
 			DefaultControl = findBox;
 			ElevatedWithOneNote = true;
+			RememberSize = true;
+			StartPosition = FormStartPosition.Manual;
 
 			resultsView.CardActivated += OnCardActivated;
 			resultsView.CheckedChanged += OnCheckedChanged;
