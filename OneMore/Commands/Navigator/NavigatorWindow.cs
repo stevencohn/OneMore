@@ -313,13 +313,32 @@ namespace River.OneMoreAddIn.Commands
 
 		private void MainSplitterMoved(object sender, SplitterEventArgs e)
 		{
-			rememberedSplitter1 = mainContainer.SplitterDistance;
+			if (pageExpanded && (reading ? (readingExpanded || historyExpanded) : historyExpanded))
+			{
+				rememberedSplitter1 = mainContainer.SplitterDistance;
+				SaveSplitterPositions();
+			}
 		}
 
 
 		private void SubSplitterMoved(object sender, SplitterEventArgs e)
 		{
-			rememberedSplitter2 = subContainer.SplitterDistance;
+			if (reading && readingExpanded && historyExpanded)
+			{
+				rememberedSplitter2 = subContainer.SplitterDistance;
+				SaveSplitterPositions();
+			}
+		}
+
+
+		private void SaveSplitterPositions()
+		{
+			var settings = new SettingsProvider();
+			var collection = settings.GetCollection("navigator");
+			collection["splitter1"] = rememberedSplitter1;
+			collection["splitter2"] = rememberedSplitter2;
+			settings.SetCollection(collection);
+			settings.Save();
 		}
 		#endregion Panel expand/collapse
 
