@@ -59,7 +59,7 @@
 			this.topPanel.Dock = System.Windows.Forms.DockStyle.Top;
 			this.topPanel.Location = new System.Drawing.Point(0, 0);
 			this.topPanel.Name = "topPanel";
-			this.topPanel.Size = new System.Drawing.Size(978, 92);
+			this.topPanel.Size = new System.Drawing.Size(978, 80);
 			this.topPanel.TabIndex = 0;
 			this.topPanel.Resize += new System.EventHandler(this.ResizeTopPanel);
 			// 
@@ -224,7 +224,7 @@
 			// CalendarForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.ClientSize = new System.Drawing.Size(978, 644);
 			this.Controls.Add(this.contentPanel);
 			this.Controls.Add(this.statusStrip);

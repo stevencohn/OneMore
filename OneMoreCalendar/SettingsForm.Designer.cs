@@ -114,7 +114,7 @@ namespace OneMoreCalendar
 			this.settingsPanel.Margin = new System.Windows.Forms.Padding(0);
 			this.settingsPanel.Name = "settingsPanel";
 			this.settingsPanel.Padding = new System.Windows.Forms.Padding(20, 20, 10, 10);
-			this.settingsPanel.Size = new System.Drawing.Size(507, 598);
+			this.settingsPanel.Size = new System.Drawing.Size(507, 698);
 			this.settingsPanel.TabIndex = 2;
 			// 
 			// userModeButton
@@ -157,7 +157,7 @@ namespace OneMoreCalendar
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.BackColor = System.Drawing.SystemColors.Window;
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.okButton.Location = new System.Drawing.Point(338, 551);
+			this.okButton.Location = new System.Drawing.Point(338, 651);
 			this.okButton.Name = "okButton";
 			this.okButton.PreferredBack = System.Drawing.Color.Empty;
 			this.okButton.PreferredFore = System.Drawing.Color.Empty;
@@ -173,7 +173,7 @@ namespace OneMoreCalendar
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.BackColor = System.Drawing.SystemColors.Window;
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(419, 551);
+			this.cancelButton.Location = new System.Drawing.Point(419, 651);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.PreferredBack = System.Drawing.Color.Empty;
 			this.cancelButton.PreferredFore = System.Drawing.Color.Empty;
@@ -186,7 +186,8 @@ namespace OneMoreCalendar
 			// 
 			// notebooksBox
 			// 
-			this.notebooksBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+			this.notebooksBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.notebooksBox.BackColor = System.Drawing.SystemColors.Window;
 			this.notebooksBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -194,7 +195,7 @@ namespace OneMoreCalendar
 			this.notebooksBox.FormattingEnabled = true;
 			this.notebooksBox.Location = new System.Drawing.Point(48, 398);
 			this.notebooksBox.Name = "notebooksBox";
-			this.notebooksBox.Size = new System.Drawing.Size(446, 138);
+			this.notebooksBox.Size = new System.Drawing.Size(446, 238);
 			this.notebooksBox.TabIndex = 7;
 			this.notebooksBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.ValidateCheckedItems);
 			// 
@@ -273,7 +274,7 @@ namespace OneMoreCalendar
 			this.logLink.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.logLink.HoverColor = System.Drawing.Color.MediumOrchid;
 			this.logLink.LinkColor = System.Drawing.SystemColors.ControlDark;
-			this.logLink.Location = new System.Drawing.Point(24, 558);
+			this.logLink.Location = new System.Drawing.Point(24, 658);
 			this.logLink.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.logLink.MaximumSize = new System.Drawing.Size(420, 0);
 			this.logLink.Name = "logLink";
@@ -291,7 +292,7 @@ namespace OneMoreCalendar
 			this.aboutLink.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.aboutLink.HoverColor = System.Drawing.Color.MediumOrchid;
 			this.aboutLink.LinkColor = System.Drawing.SystemColors.ControlDark;
-			this.aboutLink.Location = new System.Drawing.Point(144, 558);
+			this.aboutLink.Location = new System.Drawing.Point(144, 658);
 			this.aboutLink.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.aboutLink.MaximumSize = new System.Drawing.Size(420, 0);
 			this.aboutLink.Name = "aboutLink";
@@ -349,9 +350,9 @@ namespace OneMoreCalendar
 			// SettingsForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.White;
-			this.ClientSize = new System.Drawing.Size(515, 606);
+			this.ClientSize = new System.Drawing.Size(515, 706);
 			this.Controls.Add(this.settingsPanel);
 			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

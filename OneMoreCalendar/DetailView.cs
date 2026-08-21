@@ -24,15 +24,16 @@ namespace OneMoreCalendar
 		}
 
 
-		private const int HeadWidth = 170; // day
-		private const int BellWidth = 40;  // reminders
-		private const int PathWidth = 250; // path
-		private const int DateWidth = 170; // created, modified
-		private const int VPadding = 6;
+		// logical (96 DPI) pixel widths, scaled to the control's real DPI at each use so the
+		// layout renders at the same physical size regardless of monitor scaling
+		private int HeadWidth => this.Scaled(170); // day
+		private int BellWidth => this.Scaled(40);  // reminders
+		private int PathWidth => this.Scaled(250); // path
+		private int DateWidth => this.Scaled(170); // created, modified
+		private int VPadding => this.Scaled(6);
 
 		private DayItem hotday;
 		private CalendarPage hotpage;
-		private readonly IntPtr hand;
 		private readonly Font hotFont;
 		private readonly Font deletedFont;
 		private readonly StringFormat format;
@@ -42,7 +43,6 @@ namespace OneMoreCalendar
 		{
 			InitializeComponent();
 
-			hand = Native.LoadCursor(IntPtr.Zero, Native.IDC_HAND);
 			hotFont = new Font(listbox.Font, FontStyle.Regular | FontStyle.Underline);
 			deletedFont = new Font(listbox.Font, FontStyle.Regular | FontStyle.Strikeout);
 
@@ -122,15 +122,16 @@ namespace OneMoreCalendar
 			using var brush = new SolidBrush(Theme.MonthDayFore);
 
 			e.Graphics.DrawString("DATE", font, brush, (HeadWidth - size.Width) / 2, y);
-			e.Graphics.DrawString("SECTION", font, brush, HeadWidth + 20, y);
+			e.Graphics.DrawString("SECTION", font, brush, HeadWidth + this.Scaled(20), y);
 
 			var editor = new ImageEditor { Style = ImageEditor.Stylization.GrayScale };
 			using var gray = editor.Apply(Properties.Resources.Reminder_01_24_Y);
 
 			e.Graphics.DrawImage(gray,
-				HeadWidth + PathWidth + 40 + (BellWidth - 15), y + 3, 12f, 12f);
+				HeadWidth + PathWidth + this.Scaled(40) + (BellWidth - this.Scaled(15)),
+				y + this.Scaled(3), this.Scaled(12f), this.Scaled(12f));
 
-			e.Graphics.DrawString("PAGE", font, brush, HeadWidth + PathWidth + BellWidth + 60, y);
+			e.Graphics.DrawString("PAGE", font, brush, HeadWidth + PathWidth + BellWidth + this.Scaled(60), y);
 			e.Graphics.DrawString("CREATED", font, brush, width - DateWidth * 2, y);
 			e.Graphics.DrawString("MODIFIED", font, brush, width - DateWidth, y);
 		}
@@ -191,18 +192,19 @@ namespace OneMoreCalendar
 					var color = page.IsDeleted ? gray : fore;
 
 					// section
-					var sectionBounds = new RectangleF(HeadWidth + 20, top, PathWidth, listbox.Font.Height);
+					var sectionBounds = new RectangleF(HeadWidth + this.Scaled(20), top, PathWidth, listbox.Font.Height);
 					e.Graphics.DrawString(page.Path, listbox.Font, color, sectionBounds, format);
 
 					// reminder
 					if (page.HasReminders)
 					{
 						e.Graphics.DrawImage(Properties.Resources.Reminder_01_24_Y,
-							HeadWidth + PathWidth + 40 + (BellWidth - 15), top + 3, 12f, 12f);
+							HeadWidth + PathWidth + this.Scaled(40) + (BellWidth - this.Scaled(15)),
+							top + this.Scaled(3), this.Scaled(12f), this.Scaled(12f));
 					}
 
 					// title
-					const int titleX = HeadWidth + PathWidth + BellWidth + 60;
+					var titleX = HeadWidth + PathWidth + BellWidth + this.Scaled(60);
 					var titleWidth = Math.Max(0, e.Bounds.Width - DateWidth * 2 - titleX);
 					var bounds = new Rectangle(titleX, top, titleWidth, listbox.Font.Height);
 
@@ -273,7 +275,7 @@ namespace OneMoreCalendar
 			{
 				if (hotpage != null)
 				{
-					Native.SetCursor(hand);
+					Cursor = Cursors.Hand;
 				}
 
 				return;
@@ -303,6 +305,7 @@ namespace OneMoreCalendar
 
 				hotday = null;
 				hotpage = null;
+				Cursor = Cursors.Default;
 			}
 
 			if (page != null)
@@ -324,7 +327,7 @@ namespace OneMoreCalendar
 
 				hotday = day;
 				hotpage = page;
-				Native.SetCursor(hand);
+				Cursor = Cursors.Hand;
 			}
 		}
 

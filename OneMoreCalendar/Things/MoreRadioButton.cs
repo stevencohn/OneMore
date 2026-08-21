@@ -57,31 +57,37 @@ namespace OneMoreCalendar
 						? Theme.ButtonHotBack
 						: Theme.ButtonBack);
 
-					g.FillRoundedRectangle(brush, pevent.ClipRectangle, Radius);
+					g.FillRoundedRectangle(brush, pevent.ClipRectangle, this.Scaled(Radius));
 
 					using var pen = new Pen(
 						MouseState.HasFlag(MouseState.Pushed) || Checked
 						? Theme.ButtonPressBorder
 						: Theme.Border);
 
-					g.DrawRoundedRectangle(pen, pevent.ClipRectangle, Radius);
+					g.DrawRoundedRectangle(pen, pevent.ClipRectangle, this.Scaled(Radius));
 				}
 
-				g.DrawImageUnscaled(Image,
-					(pevent.ClipRectangle.Width - Image.Width) / 2,
-					(pevent.ClipRectangle.Height - Image.Height) / 2
-					);
+				// scale the source image to the control's real DPI rather than drawing it
+				// 1:1, so raster icons don't stay pinned to their native pixel size
+				var w = this.Scaled(Image.Width);
+				var h = this.Scaled(Image.Height);
+				g.DrawImage(Image,
+					(pevent.ClipRectangle.Width - w) / 2,
+					(pevent.ClipRectangle.Height - h) / 2,
+					w, h);
 			}
 			else
 			{
+				var glyph = this.Scaled(14);
+
 				using var pen = new Pen(Theme.Control);
 				if (Round)
 				{
-					g.DrawArc(pen, 0, 1, 14, 14, 0, 360);
+					g.DrawArc(pen, 0, this.Scaled(1), glyph, glyph, 0, 360);
 				}
 				else
 				{
-					g.DrawRectangle(pen, 0, 1, 14, 14);
+					g.DrawRectangle(pen, 0, this.Scaled(1), glyph, glyph);
 				}
 
 				if (Checked)
@@ -89,21 +95,22 @@ namespace OneMoreCalendar
 					using var fill = new SolidBrush(Theme.Control);
 					if (Round)
 					{
-						g.FillEllipse(fill, new Rectangle(2, 3, 10, 10));
+						g.FillEllipse(fill, new Rectangle(this.Scaled(2), this.Scaled(3), this.Scaled(10), this.Scaled(10)));
 					}
 					else
 					{
-						g.FillRectangle(fill, 2, 3, 11, 11);
+						g.FillRectangle(fill, this.Scaled(2), this.Scaled(3), this.Scaled(11), this.Scaled(11));
 					}
 				}
 
 				var size = g.MeasureString(Text, Font);
 				using var brush = new SolidBrush(Enabled ? ForeColor : Color.Gray);
+				var iconWidth = this.Scaled(16);
 
 				g.DrawString(Text, Font, brush,
-					new Rectangle(16, // standard icon size
+					new Rectangle(iconWidth, // standard icon size
 						(pevent.ClipRectangle.Height - (int)size.Height) / 2,
-						pevent.ClipRectangle.Width - 16,
+						pevent.ClipRectangle.Width - iconWidth,
 						(int)size.Height),
 					new StringFormat
 					{

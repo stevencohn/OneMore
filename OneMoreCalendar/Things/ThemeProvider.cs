@@ -135,9 +135,84 @@ namespace OneMoreCalendar
 		#region Native
 		private const int DWMWA_USE_IMMERSIVE_DARK_MODE = 20;
 
+		private static bool appModePreferred;
+
 		[DllImport("dwmapi.dll", PreserveSig = true)]
 		private static extern int DwmSetWindowAttribute(
 			IntPtr hwnd, int attr, ref bool attrValue, int attrSize);
+
+		[DllImport("uxtheme.dll", CharSet = CharSet.Unicode)]
+		private static extern int SetWindowTheme(IntPtr hWnd, string pszSubAppName, string pszSubIdList);
+
+		// undocumented, ordinal-only exports (stable since Windows 10 1809) that opt a window
+		// into dark comctl32 chrome; without these, SetWindowTheme(..., "DarkMode_Explorer", ...)
+		// alone only partially dark-themes native controls
+		[DllImport("uxtheme.dll", EntryPoint = "#135")]
+		private static extern int SetPreferredAppMode(int preferredAppMode);
+
+		[DllImport("uxtheme.dll", EntryPoint = "#133")]
+		private static extern bool AllowDarkModeForWindow(IntPtr hWnd, bool allow);
+
+		/// <summary>
+		/// Best-effort opt-in to native dark comctl32 rendering, used to carry dark styling
+		/// onto native scrollbars (ListBox, ListView, CheckedListBox). These are unsupported
+		/// ordinal exports that can vary or be missing across Windows builds, so failures are
+		/// swallowed and theming falls back to whatever SetWindowTheme alone achieves.
+		/// </summary>
+		private static void TryAllowDarkModeForWindow(IntPtr hwnd, bool allow)
+		{
+			try
+			{
+				if (!appModePreferred)
+				{
+					// 1 = AllowDark
+					SetPreferredAppMode(1);
+					appModePreferred = true;
+				}
+
+				AllowDarkModeForWindow(hwnd, allow);
+			}
+			catch
+			{
+				// ordinal not available on this Windows build; ignore
+			}
+		}
+
+
+		/// <summary>
+		/// Recursively opts native Win32 controls (and their scrollbars) into dark-mode
+		/// rendering; only called when DarkMode is true since native controls default to
+		/// light rendering otherwise.
+		/// </summary>
+		private void SetWindowTheme(Control control)
+		{
+			TryAllowDarkModeForWindow(control.Handle, true);
+
+			if (control is ListView)
+			{
+				// "DarkMode_Explorer" is what carries the dark-themed native scrollbar
+				SetWindowTheme(control.Handle, "DarkMode_Explorer", null);
+
+				// the column header is a separate native child window (SysHeader32) that
+				// needs the same explicit opt-in to pick up dark colors
+				var header = Native.SendMessage(control.Handle, Native.LVM_GETHEADER, IntPtr.Zero, IntPtr.Zero);
+				if (header != IntPtr.Zero)
+				{
+					TryAllowDarkModeForWindow(header, true);
+					SetWindowTheme(header, "ItemsView", null);
+				}
+			}
+			else
+			{
+				// DarkMode_Explorer sets radios, checkboxes, and scrollbars to dark mode
+				SetWindowTheme(control.Handle, "DarkMode_Explorer", null);
+			}
+
+			foreach (Control child in control.Controls)
+			{
+				SetWindowTheme(child);
+			}
+		}
 		#endregion Native
 
 
@@ -201,6 +276,11 @@ namespace OneMoreCalendar
 			{
 				container.BackColor = MonthHeader;
 				container.ForeColor = ForeColor;
+
+				if (DarkMode)
+				{
+					SetWindowTheme(container);
+				}
 
 				Colorize(container.Controls);
 			}

@@ -103,10 +103,12 @@ namespace OneMoreCalendar
 			var g = pevent.Graphics;
 			g.Clear(PreferredBack.IsEmpty ? Theme.BackColor : PreferredBack);
 
+			var radius = this.Scaled(Radius);
+
 			if (Enabled && MouseState != MouseState.None)
 			{
 				using var brush = new SolidBrush(Theme.ButtonHotBack);
-				g.FillRoundedRectangle(brush, pevent.ClipRectangle, Radius);
+				g.FillRoundedRectangle(brush, pevent.ClipRectangle, radius);
 			}
 
 			if (ShowBorder || (Enabled && MouseState != MouseState.None))
@@ -115,15 +117,19 @@ namespace OneMoreCalendar
 					MouseState.HasFlag(MouseState.Pushed) ? Theme.ButtonPressBorder :
 					MouseState.HasFlag(MouseState.Hover) ? Theme.ButtonHotBorder : Theme.ButtonBorder);
 
-				g.DrawRoundedRectangle(pen, pevent.ClipRectangle, Radius);
+				g.DrawRoundedRectangle(pen, pevent.ClipRectangle, radius);
 			}
 
 			if (Image != null)
 			{
-				g.DrawImageUnscaled(Image,
-					(pevent.ClipRectangle.Width - Image.Width) / 2,
-					(pevent.ClipRectangle.Height - Image.Height) / 2
-					);
+				// scale the source image to the control's real DPI rather than drawing it
+				// 1:1, so raster icons don't stay pinned to their native pixel size
+				var w = this.Scaled(Image.Width);
+				var h = this.Scaled(Image.Height);
+				g.DrawImage(Image,
+					(pevent.ClipRectangle.Width - w) / 2,
+					(pevent.ClipRectangle.Height - h) / 2,
+					w, h);
 			}
 
 			if (!string.IsNullOrEmpty(Text))

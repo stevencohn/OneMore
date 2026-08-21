@@ -18,6 +18,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Logo.ico</ApplicationIcon>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM64'">
     <DebugSymbols>true</DebugSymbols>
@@ -116,6 +117,7 @@
     <Compile Include="Things\MoreButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Things\DpiExtensions.cs" />
     <Compile Include="Things\MoreListBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -232,6 +234,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="app.manifest" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OneMore\OneMore.csproj">
