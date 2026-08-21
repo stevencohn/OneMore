@@ -371,7 +371,7 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<EmbedCommand>();
 
 
-		[Command("ribEnableSpellCheckButton_Label", Keys.None, "ribEditMenu")]
+		[Command("ribEnableSpellCheckButton_Label", Keys.Shift | Keys.F4, "ribEditMenu")]
 		public async Task EnableSpellCheckCmd(IRibbonControl control)
 			=> await factory.Run<EnableSpellCheckCommand>();
 
