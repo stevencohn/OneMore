@@ -62,6 +62,8 @@ namespace OneMoreCalendar
 			Height = this.Scaled(1000);
 			MinimumSize = new System.Drawing.Size(this.Scaled(935), this.Scaled(625));
 
+			ScaleTopPanel();
+
 			monthView = new MonthView
 			{
 				Dock = DockStyle.Fill,
@@ -82,6 +84,40 @@ namespace OneMoreCalendar
 			// when started from OneNote, need to force window to top
 			TopMost = true;
 			TopMost = false;
+		}
+
+
+		/// <summary>
+		/// topPanel and its children were originally authored/tuned by eye directly against
+		/// a 150% (144 DPI) display with no DPI-scaling applied at all, so those literal
+		/// pixel values only look right at that one DPI. This backs out their 96-DPI base
+		/// values and scales them properly, reproducing the current 150%-DPI appearance
+		/// exactly while rendering proportionally smaller at 100% DPI instead of oversized.
+		/// </summary>
+		private void ScaleTopPanel()
+		{
+			topPanel.Height = this.Scaled(53);
+
+			void PlaceRightAnchored(Control control, int width, int height, int rightMargin, int top)
+			{
+				control.Size = new System.Drawing.Size(this.Scaled(width), this.Scaled(height));
+				control.Location = new System.Drawing.Point(
+					topPanel.ClientSize.Width - this.Scaled(rightMargin) - this.Scaled(width),
+					this.Scaled(top));
+			}
+
+			PlaceRightAnchored(dayButton, 43, 43, 76, 8);
+			PlaceRightAnchored(monthButton, 43, 43, 123, 8);
+			PlaceRightAnchored(todayButton, 43, 43, 201, 8);
+			PlaceRightAnchored(settingsButton, 43, 43, 8, 8);
+
+			nextButton.Size = new System.Drawing.Size(this.Scaled(21), this.Scaled(36));
+			nextButton.Location = new System.Drawing.Point(this.Scaled(33), this.Scaled(8));
+
+			prevButton.Size = new System.Drawing.Size(this.Scaled(21), this.Scaled(36));
+			prevButton.Location = new System.Drawing.Point(this.Scaled(8), this.Scaled(8));
+
+			dateLabel.Location = new System.Drawing.Point(this.Scaled(59), this.Scaled(8));
 		}
 
 
