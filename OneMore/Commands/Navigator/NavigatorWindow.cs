@@ -48,6 +48,7 @@ namespace River.OneMoreAddIn.Commands
 		private bool historyExpanded;
 		private int rememberedSplitter1;
 		private int rememberedSplitter2;
+		private bool restoringLayout;
 
 		// defer headings load while collapsed
 		private bool pageStale;
@@ -267,63 +268,78 @@ namespace River.OneMoreAddIn.Commands
 		/// </summary>
 		private void UpdatePanelLayout()
 		{
-			var total = mainContainer.ClientSize.Height;
-			var subOthersExpanded = reading ? (readingExpanded || historyExpanded) : historyExpanded;
-
-			int pageHeight;
-			if (!pageExpanded)
+			// mainContainer.SplitterDistance below resizes mainContainer.Panel2, which
+			// resizes the docked subContainer; because subContainer is itself a
+			// SplitContainer, .NET auto-adjusts ITS SplitterDistance to fit the new size,
+			// firing an incidental SplitterMoved that has nothing to do with the user
+			// dragging anything. MainSplitterMoved/SubSplitterMoved must not treat that as
+			// a real drag and clobber rememberedSplitter1/2 with it, so suppress capture
+			// for the duration of this programmatic layout pass.
+			restoringLayout = true;
+			try
 			{
-				pageHeight = pageHeadPanel.Height;
-			}
-			else if (!subOthersExpanded)
-			{
-				var subHeaders = (reading ? pinnedHeadPanel.Height : 0) + historyHeadPanel.Height;
-				pageHeight = total - subHeaders;
-			}
-			else
-			{
-				pageHeight = Math.Max(pageHeadPanel.Height,
-					Math.Min(rememberedSplitter1, total - mainContainer.Panel2MinSize));
-			}
+				var total = mainContainer.ClientSize.Height;
+				var subOthersExpanded = reading ? (readingExpanded || historyExpanded) : historyExpanded;
 
-			mainContainer.SplitterDistance = pageHeight;
-
-			// setting SplitterDistance above schedules, but does not immediately apply, a
-			// layout pass on mainContainer.Panel2 and its docked child subContainer; without
-			// forcing that layout to run now, subContainer.Height below is still its stale
-			// pre-resize value, so setting subContainer.SplitterDistance would clamp against
-			// the wrong (too-small) bounds
-			mainContainer.Panel2.PerformLayout();
-
-			if (reading)
-			{
-				var subHeight = total - pageHeight;
-
-				int pinnedHeight;
-				if (!readingExpanded)
+				int pageHeight;
+				if (!pageExpanded)
 				{
-					pinnedHeight = pinnedHeadPanel.Height;
+					pageHeight = pageHeadPanel.Height;
 				}
-				else if (!historyExpanded)
+				else if (!subOthersExpanded)
 				{
-					pinnedHeight = subHeight - historyHeadPanel.Height;
+					var subHeaders = (reading ? pinnedHeadPanel.Height : 0) + historyHeadPanel.Height;
+					pageHeight = total - subHeaders;
 				}
 				else
 				{
-					pinnedHeight = Math.Max(pinnedHeadPanel.Height,
-						Math.Min(rememberedSplitter2, subHeight - historyHeadPanel.Height));
+					pageHeight = Math.Max(pageHeadPanel.Height,
+						Math.Min(rememberedSplitter1, total - mainContainer.Panel2MinSize));
 				}
 
-				subContainer.SplitterDistance = pinnedHeight;
+				mainContainer.SplitterDistance = pageHeight;
 
-				Logger.Current.WriteLine(
-					$"NavigatorWindow.UpdatePanelLayout total={total} pageHeight={pageHeight} " +
-					$"subHeight={subHeight} rememberedSplitter2={rememberedSplitter2} " +
-					$"pinnedHeadPanel.Height={pinnedHeadPanel.Height} historyHeadPanel.Height={historyHeadPanel.Height} " +
-					$"computed pinnedHeight={pinnedHeight} actual subContainer.SplitterDistance={subContainer.SplitterDistance}");
+				// setting SplitterDistance above schedules, but does not immediately apply, a
+				// layout pass on mainContainer.Panel2 and its docked child subContainer;
+				// without forcing that layout to run now, subContainer.Height below is still
+				// its stale pre-resize value, so setting subContainer.SplitterDistance would
+				// clamp against the wrong (too-small) bounds
+				mainContainer.Panel2.PerformLayout();
+
+				if (reading)
+				{
+					var subHeight = total - pageHeight;
+
+					int pinnedHeight;
+					if (!readingExpanded)
+					{
+						pinnedHeight = pinnedHeadPanel.Height;
+					}
+					else if (!historyExpanded)
+					{
+						pinnedHeight = subHeight - historyHeadPanel.Height;
+					}
+					else
+					{
+						pinnedHeight = Math.Max(pinnedHeadPanel.Height,
+							Math.Min(rememberedSplitter2, subHeight - historyHeadPanel.Height));
+					}
+
+					subContainer.SplitterDistance = pinnedHeight;
+
+					Logger.Current.WriteLine(
+						$"NavigatorWindow.UpdatePanelLayout total={total} pageHeight={pageHeight} " +
+						$"subHeight={subHeight} rememberedSplitter2={rememberedSplitter2} " +
+						$"pinnedHeadPanel.Height={pinnedHeadPanel.Height} historyHeadPanel.Height={historyHeadPanel.Height} " +
+						$"computed pinnedHeight={pinnedHeight} actual subContainer.SplitterDistance={subContainer.SplitterDistance}");
+				}
+
+				UpdateTwistGlyphs();
 			}
-
-			UpdateTwistGlyphs();
+			finally
+			{
+				restoringLayout = false;
+			}
 		}
 
 
@@ -337,6 +353,11 @@ namespace River.OneMoreAddIn.Commands
 
 		private void MainSplitterMoved(object sender, SplitterEventArgs e)
 		{
+			if (restoringLayout)
+			{
+				return;
+			}
+
 			if (pageExpanded && (reading ? (readingExpanded || historyExpanded) : historyExpanded))
 			{
 				rememberedSplitter1 = mainContainer.SplitterDistance;
@@ -346,6 +367,11 @@ namespace River.OneMoreAddIn.Commands
 
 		private void SubSplitterMoved(object sender, SplitterEventArgs e)
 		{
+			if (restoringLayout)
+			{
+				return;
+			}
+
 			if (reading && readingExpanded && historyExpanded)
 			{
 				rememberedSplitter2 = subContainer.SplitterDistance;
