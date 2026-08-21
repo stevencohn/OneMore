@@ -69,7 +69,7 @@
 			// SnapshotForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(251)))));
 			this.ClientSize = new System.Drawing.Size(384, 500);
 			this.Controls.Add(this.pictureBox);

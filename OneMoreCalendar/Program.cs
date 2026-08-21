@@ -32,6 +32,11 @@ namespace OneMoreCalendar
 			Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
 			Application.ThreadException += CatchThreadException;
 
+			// must run before any Form/Control is constructed; complements the
+			// PerMonitorV2 DpiAwareness declared in App.config
+			AppContext.SetSwitch(
+				"Switch.System.Windows.Forms.EnableWindowsFormsHighDpiAutoResizing", true);
+
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 

@@ -49,6 +49,12 @@ namespace OneMoreCalendar
 		public event ScrollEventHandler Scrolled = null;
 
 
+		public MoreListBox()
+		{
+			DoubleBuffered = true;
+		}
+
+
 		public int GetScrollOffset()
 		{
 			var offset = 0;

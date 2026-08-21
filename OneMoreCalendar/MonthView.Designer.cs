@@ -40,7 +40,7 @@
 			// MonthView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.White;
 			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

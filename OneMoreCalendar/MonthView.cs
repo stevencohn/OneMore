@@ -38,7 +38,10 @@ namespace OneMoreCalendar
 		private const string MoreGlyph = "⏷"; // \u23F7
 		private const string CopyGlyph = "🗇"; // \ud83d\uddc7
 
-		private readonly IntPtr hand;
+		// Font.Height includes generous internal leading; pack page title rows closer
+		// together than a full line height so a day's entries don't look so spread out
+		private const float RowSpacingFactor = 0.8f;
+
 		private readonly Font hotFont;
 		private readonly Font moreFont;
 		private readonly Font copyFont;
@@ -55,7 +58,10 @@ namespace OneMoreCalendar
 		private Hotspot hotspot;
 		private int onFormat;
 		private int dowOffset;
+		private int headHeight;
 		private int maxItems;
+		private int moreWidth;
+		private int moreHeight;
 		private int weeks;
 
 
@@ -68,7 +74,6 @@ namespace OneMoreCalendar
 		{
 			InitializeComponent();
 
-			hand = Native.LoadCursor(IntPtr.Zero, Native.IDC_HAND);
 			hotFont = new Font(Font, FontStyle.Regular | FontStyle.Underline);
 			deletedFont = new Font(Font, FontStyle.Regular | FontStyle.Strikeout);
 			moreFont = new Font("Segoe UI", 14.0f, FontStyle.Regular);
@@ -100,6 +105,20 @@ namespace OneMoreCalendar
 			};
 
 			date = DateTime.Now.StartOfMonth();
+		}
+
+
+		protected override void OnLoad(EventArgs e)
+		{
+			base.OnLoad(e);
+
+			// copyButton and moreSize were sized/measured using a logical (96 DPI) glyph
+			// measurement in the constructor, before DeviceDpi was valid; rescale now that it
+			// is, and compact the padding around the glyph the same way as day header/rows
+			copyButton.Size = new Size(this.Scaled(copyButton.Width), this.Scaled(copyButton.Height));
+
+			moreWidth = (int)(this.Scaled(moreSize.Width) * RowSpacingFactor);
+			moreHeight = (int)(this.Scaled(moreSize.Height) * RowSpacingFactor);
 		}
 
 
@@ -261,12 +280,12 @@ namespace OneMoreCalendar
 			{
 				if (hotspot is not null)
 				{
-					Native.SetCursor(hand);
+					Cursor = Cursors.Hand;
 				}
 				return;
 			}
 
-			var width = Width / 7 - 8;
+			var width = Width / 7 - this.Scaled(8);
 
 			// clear previously active...
 
@@ -309,7 +328,7 @@ namespace OneMoreCalendar
 				}
 
 				hotspot = null;
-				Native.SetCursor(Cursors.Default.Handle);
+				Cursor = Cursors.Default;
 			}
 
 			// highlight hovered...
@@ -322,9 +341,14 @@ namespace OneMoreCalendar
 					{
 						Controls.Add(copyButton);
 
+						// constrain to the (compacted) header box so the button never
+						// protrudes below its bottom edge
+						var buttonHeight = Math.Min(copyButton.Height, headHeight - this.Scaled(2));
+						copyButton.Height = buttonHeight;
+
 						copyButton.Location = new Point(
-							spot.Bounds.X + spot.Bounds.Width - copyButton.Width - 1,
-							spot.Bounds.Y + 1);
+							spot.Bounds.X + spot.Bounds.Width - copyButton.Width - this.Scaled(1),
+							spot.Bounds.Y + ((spot.Bounds.Height - buttonHeight) / 2));
 
 						copyButton.Tag = spot.Day;
 						copyButton.Visible = true;
@@ -348,7 +372,7 @@ namespace OneMoreCalendar
 				}
 
 				hotspot = spot;
-				Native.SetCursor(hand);
+				Cursor = Cursors.Hand;
 			}
 		}
 
@@ -387,7 +411,7 @@ namespace OneMoreCalendar
 			try
 			{
 				var culture = Thread.CurrentThread.CurrentUICulture.DateTimeFormat;
-				dowOffset = dowFont.Height;
+				dowOffset = this.Scaled(dowFont.Height);
 
 				using var dowFormat = new StringFormat
 				{
@@ -406,7 +430,7 @@ namespace OneMoreCalendar
 				for (int i = 0; i < 7; i++, dow++)
 				{
 					var name = culture.GetDayName((DayOfWeek)(dow % 7)).ToUpper();
-					var clip = new Rectangle(dayWidth * i, 1, dayWidth, dowFont.Height + 2);
+					var clip = new Rectangle(dayWidth * i, this.Scaled(1), dayWidth, dowOffset + this.Scaled(2));
 					using var brush = new SolidBrush(Theme.MonthDayFore);
 					e.Graphics.DrawString(name, dowFont, brush, clip, dowFormat);
 
@@ -454,8 +478,14 @@ namespace OneMoreCalendar
 			using var inbrush = new SolidBrush(Theme.MonthTodayFore);
 			using var outbrush = new SolidBrush(Theme.MonthDayFore);
 
+			// headFont.Height and Font.Height are measured at a fixed logical (96 DPI)
+			// reference regardless of the control's real DPI, so scale them explicitly;
+			// also compact away the font's generous internal leading, same as row spacing
+			headHeight = this.Scaled((int)(headFont.Height * RowSpacingFactor) + 2);
+			var rowStep = (int)(this.Scaled(Font.Height) * RowSpacingFactor);
+
 			// how many lines fit in each day box
-			maxItems = (((Height - dowOffset) / weeks) - headFont.Height - 2) / Font.Height;
+			maxItems = (((Height - dowOffset) / weeks) - headHeight) / rowStep;
 
 			var now = DateTime.Now.Date;
 
@@ -465,7 +495,7 @@ namespace OneMoreCalendar
 
 				var box = new Rectangle(
 					col * dayWidth, row * dayHeight + dowOffset,
-					dayWidth, headFont.Height + 2);
+					dayWidth, headHeight);
 
 				var today = day.Date.Date.Equals(now.Date);
 
@@ -478,7 +508,7 @@ namespace OneMoreCalendar
 
 				e.Graphics.DrawString(day.Date.Day.ToString(), headFont,
 					day.InMonth ? inbrush : outbrush,
-					box.X + 3, box.Y + 1);
+					box.X + this.Scaled(3), box.Y + this.Scaled(1));
 
 				// record day header box
 				hotspots.Add(new Hotspot
@@ -491,8 +521,8 @@ namespace OneMoreCalendar
 
 				// day content box
 				day.Bounds = new Rectangle(
-					col * dayWidth + 1, row * dayHeight + headFont.Height + 4 + dowOffset,
-					dayWidth - 2, dayHeight - headFont.Height - 4
+					col * dayWidth + this.Scaled(1), row * dayHeight + headHeight + this.Scaled(2) + dowOffset,
+					dayWidth - this.Scaled(2), dayHeight - headHeight - this.Scaled(2)
 					);
 
 				PaintDay(e.Graphics, day);
@@ -525,9 +555,15 @@ namespace OneMoreCalendar
 
 			// content box with padding
 			var box = new Rectangle(
-				day.Bounds.X + 3, day.Bounds.Y + 2,
-				day.Bounds.Width - 8,
-				day.Bounds.Height - 8);
+				day.Bounds.X + this.Scaled(3), day.Bounds.Y + this.Scaled(2),
+				day.Bounds.Width - this.Scaled(8),
+				day.Bounds.Height - this.Scaled(8));
+
+			// Font.Height is measured at a fixed logical (96 DPI) reference regardless of
+			// the control's real DPI, so scale it explicitly (moreWidth/moreHeight are
+			// computed once in OnLoad)
+			var lineHeight = this.Scaled(Font.Height);
+			var rowStep = (int)(lineHeight * RowSpacingFactor);
 
 			for (int i = day.ScrollOffset, t = 0; i < day.Pages.Count && t < maxItems; i++, t++)
 			{
@@ -535,21 +571,21 @@ namespace OneMoreCalendar
 
 				// shrink width if showing scroller glyphs
 				var width = day.Pages.Count > maxItems && i >= maxItems - 2
-					? box.Width - moreSize.Width
+					? box.Width - moreWidth
 					: box.Width;
 
 				var left = box.Left;
-				var top = box.Top + (Font.Height * t);
+				var top = box.Top + (rowStep * t);
 				if (page.HasReminders)
 				{
-					width -= 14;
-					left += 14;
+					width -= this.Scaled(14);
+					left += this.Scaled(14);
 					g.DrawImage(Properties.Resources.Reminder_01_24_Y,
-						box.Left, top + 3, 12f, 12f);
+						box.Left, top + this.Scaled(3), this.Scaled(12f), this.Scaled(12f));
 				}
 
 				// max length of string with ellipses
-				var clip = new Rectangle(left, top, width, Font.Height);
+				var clip = new Rectangle(left, top, width, lineHeight);
 
 				var font = page.IsDeleted ? deletedFont : Font;
 				using var brush = new SolidBrush(page.IsDeleted || day.InMonth
@@ -563,7 +599,7 @@ namespace OneMoreCalendar
 				hotspots.Add(new Hotspot
 				{
 					Type = Hottype.Page,
-					Bounds = new Rectangle(clip.X, clip.Y, size.Width + 2, size.Height),
+					Bounds = new Rectangle(clip.X, clip.Y, size.Width + this.Scaled(2), size.Height),
 					Page = page,
 					InMonth = day.InMonth
 				});
@@ -575,23 +611,23 @@ namespace OneMoreCalendar
 				if (day.UpButton is null)
 				{
 					MakeScrollButton(Hottype.Up, day,
-						new Point(box.Right - moreSize.Width - 1, box.Bottom - (moreSize.Height * 2) - 7));
+						new Point(box.Right - moreWidth - this.Scaled(1), box.Bottom - (moreHeight * 2) - this.Scaled(7)));
 				}
 				else
 				{
 					day.UpButton.Location =
-						new Point(box.Right - moreSize.Width - 1, box.Bottom - (moreSize.Height * 2) - 7);
+						new Point(box.Right - moreWidth - this.Scaled(1), box.Bottom - (moreHeight * 2) - this.Scaled(7));
 				}
 
 				if (day.DownButton is null)
 				{
 					MakeScrollButton(Hottype.Down, day,
-						new Point(box.Right - moreSize.Width - 1, box.Bottom - moreSize.Height - 4));
+						new Point(box.Right - moreWidth - this.Scaled(1), box.Bottom - moreHeight - this.Scaled(4)));
 				}
 				else
 				{
 					day.DownButton.Location =
-						new Point(box.Right - moreSize.Width - 1, box.Bottom - moreSize.Height - 4);
+						new Point(box.Right - moreWidth - this.Scaled(1), box.Bottom - moreHeight - this.Scaled(4));
 				}
 			}
 			else
@@ -629,7 +665,7 @@ namespace OneMoreCalendar
 				PreferredFore = Theme.LinkColor,
 				Location = location,
 				Text = type == Hottype.Up ? LessGlyph : MoreGlyph,
-				Size = new Size(moreSize.Width + 4, moreSize.Height + 2),
+				Size = new Size(moreWidth + this.Scaled(4), moreHeight + this.Scaled(2)),
 				Tag = spot
 			};
 

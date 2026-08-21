@@ -66,7 +66,7 @@
 			// DayView
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.Controls.Add(this.listbox);
 			this.Controls.Add(this.headerPanel);
 			this.Margin = new System.Windows.Forms.Padding(0);

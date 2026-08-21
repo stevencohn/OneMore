@@ -19,6 +19,12 @@ namespace OneMoreCalendar
 	{
 		private const int ManualDelta = 1000;
 
+		// a single space rather than string.Empty: an empty ToolStripStatusLabel measures
+		// shorter than one with real text, so clearing to "" shrinks statusStrip's auto height,
+		// which shrinks contentPanel (Dock=Fill), which shifts hotspot bounds enough to toggle
+		// the hover state right back on - an endless resize/repaint feedback loop
+		private const string BlankStatus = " ";
+
 		private DateTime date;
 		private CalendarPages pages;
 		private int monthDelta;
@@ -36,12 +42,9 @@ namespace OneMoreCalendar
 			monthDelta = userMonthDelta;
 			date = DateTime.Now.StartOfMonth();
 
-			statusLabel.Text = string.Empty;
-			statusCreatedLabel.Text = string.Empty;
-			statusModifiedLabel.Text = string.Empty;
-
-			Width = 1500; // TODO: save as settings?
-			Height = 1000;
+			statusLabel.Text = BlankStatus;
+			statusCreatedLabel.Text = BlankStatus;
+			statusModifiedLabel.Text = BlankStatus;
 		}
 
 
@@ -50,8 +53,14 @@ namespace OneMoreCalendar
 			base.OnLoad(e);
 
 			// autoscale must be set prior to setting minsize otherwise it isn't applied
-			AutoScaleMode = AutoScaleMode.Font;
-			MinimumSize = new System.Drawing.Size(935, 625);
+			AutoScaleMode = AutoScaleMode.None;
+
+			// DeviceDpi isn't valid until the window handle exists, so size the form here
+			// rather than in the constructor, scaling to render at the same physical size
+			// regardless of the monitor's DPI
+			Width = this.Scaled(1500); // TODO: save as settings?
+			Height = this.Scaled(1000);
+			MinimumSize = new System.Drawing.Size(this.Scaled(935), this.Scaled(625));
 
 			monthView = new MonthView
 			{
@@ -328,9 +337,9 @@ namespace OneMoreCalendar
 			}
 			else
 			{
-				statusLabel.Text = string.Empty;
-				statusCreatedLabel.Text = string.Empty;
-				statusModifiedLabel.Text = string.Empty;
+				statusLabel.Text = BlankStatus;
+				statusCreatedLabel.Text = BlankStatus;
+				statusModifiedLabel.Text = BlankStatus;
 			}
 		}
 

@@ -29,17 +29,18 @@ namespace OneMoreCalendar
 			}
 
 			var g = e.Graphics;
+			var iconWidth = this.Scaled(16);
 
 			using var fill = new SolidBrush(BackColor);
-			g.FillRectangle(fill, 0, e.Bounds.Y, e.Bounds.Width, 16);
+			g.FillRectangle(fill, 0, e.Bounds.Y, e.Bounds.Width, iconWidth);
 
 			using var pen = new Pen(Theme.Control);
-			g.DrawRectangle(pen, 0, e.Bounds.Y + 1, 12, 12);
+			g.DrawRectangle(pen, 0, e.Bounds.Y + this.Scaled(1), this.Scaled(12), this.Scaled(12));
 
 			if (CheckedIndices.Contains(e.Index))
 			{
 				using var brush = new SolidBrush(Theme.Control);
-				g.FillRectangle(brush, 2, e.Bounds.Y + 3, 9, 9);
+				g.FillRectangle(brush, this.Scaled(2), e.Bounds.Y + this.Scaled(3), this.Scaled(9), this.Scaled(9));
 			}
 
 			var size = g.MeasureString(Text, Font);
@@ -47,9 +48,9 @@ namespace OneMoreCalendar
 			using var forebrush = new SolidBrush(ForeColor);
 
 			g.DrawString(Items[e.Index].ToString(), Font, forebrush,
-				new Rectangle(16, // standard icon size
+				new Rectangle(iconWidth, // standard icon size
 					e.Bounds.Y,
-					e.Bounds.Width - 16,
+					e.Bounds.Width - iconWidth,
 					(int)size.Height),
 				new StringFormat
 				{

@@ -40,7 +40,8 @@ namespace OneMoreCalendar
 			if (!DesignMode)
 			{
 				FormBorderStyle = FormBorderStyle.None;
-				Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, Radius, Radius));
+				var radius = this.Scaled(Radius);
+				Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, radius, radius));
 			}
 		}
 
@@ -49,15 +50,16 @@ namespace OneMoreCalendar
 		{
 			//base.OnPaintBackground(e);
 
+			var radius = this.Scaled(Radius);
 			Rectangle r;
 
 			using var brush = new SolidBrush(BackColor);
 			r = new Rectangle(0, 0, e.ClipRectangle.Width, e.ClipRectangle.Height);
-			e.Graphics.FillRoundedRectangle(brush, r, Radius);
+			e.Graphics.FillRoundedRectangle(brush, r, radius);
 
 			using var pen = new Pen(Theme.Border);
 			r = new Rectangle(0, 0, e.ClipRectangle.Width - 1, e.ClipRectangle.Height - 1);
-			e.Graphics.DrawRoundedRectangle(pen, r, Radius);
+			e.Graphics.DrawRoundedRectangle(pen, r, radius);
 		}
 	}
 }

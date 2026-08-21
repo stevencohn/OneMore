@@ -49,6 +49,10 @@ namespace OneMoreCalendar
 		/// <param name="e"></param>
 		protected override async void OnLoad(EventArgs e)
 		{
+			// ClientSize was set in the Designer at a logical (96 DPI) baseline; scale it here,
+			// before calling base.OnLoad, so RoundedForm's rounded region uses the final size
+			ClientSize = new Size(this.Scaled(ClientSize.Width), this.Scaled(ClientSize.Height));
+
 			// call RoundForm.base to draw background
 			base.OnLoad(e);
 
