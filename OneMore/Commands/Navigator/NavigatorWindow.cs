@@ -146,6 +146,14 @@ namespace River.OneMoreAddIn.Commands
 			historyFilterButton.Rescale();
 			historyFilterCloseButton.Rescale();
 
+			// Set DPI-aware row heights for history and pinned list views
+			using (var g = historyBox.CreateGraphics())
+			{
+				var rowHeight = HistoryControl.GetPreferredRowHeight(g);
+				historyBox.RowHeight = rowHeight;
+				pinnedBox.RowHeight = rowHeight;
+			}
+
 			pinnedBox.MouseUp += ShowPinnedContextMenu;
 			historyBox.MouseUp += ShowHistoryContextMenu;
 

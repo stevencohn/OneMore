@@ -343,7 +343,6 @@
 			this.pinnedBox.HighlightForeground = System.Drawing.SystemColors.HighlightText;
 			this.pinnedBox.Location = new System.Drawing.Point(0, 41);
 			this.pinnedBox.Name = "pinnedBox";
-			this.pinnedBox.RowHeight = 29;
 			this.pinnedBox.Size = new System.Drawing.Size(528, 212);
 			this.pinnedBox.SortedBackground = System.Drawing.SystemColors.Window;
 			this.pinnedBox.TabIndex = 0;
@@ -527,7 +526,6 @@
 			this.historyBox.HighlightForeground = System.Drawing.SystemColors.HighlightText;
 			this.historyBox.Location = new System.Drawing.Point(0, 41);
 			this.historyBox.Name = "historyBox";
-			this.historyBox.RowHeight = 29;
 			this.historyBox.Size = new System.Drawing.Size(528, 287);
 			this.historyBox.SortedBackground = System.Drawing.SystemColors.Window;
 			this.historyBox.TabIndex = 0;
@@ -589,7 +587,7 @@
 			this.historyFilterBox.Location = new System.Drawing.Point(2, 7);
 			this.historyFilterBox.Name = "historyFilterBox";
 			this.historyFilterBox.ProcessEnterKey = true;
-			this.historyFilterBox.Size = new System.Drawing.Size(476, 26);
+			this.historyFilterBox.Size = new System.Drawing.Size(466, 26);
 			this.historyFilterBox.TabIndex = 3;
 			this.historyFilterBox.ThemedBack = null;
 			this.historyFilterBox.ThemedFore = null;
@@ -608,7 +606,7 @@
 			this.historyFilterCloseButton.Font = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.historyFilterCloseButton.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.historyFilterCloseButton.ImageOver = null;
-			this.historyFilterCloseButton.Location = new System.Drawing.Point(488, 5);
+			this.historyFilterCloseButton.Location = new System.Drawing.Point(478, 5);
 			this.historyFilterCloseButton.Name = "historyFilterCloseButton";
 			this.historyFilterCloseButton.ShowBorder = true;
 			this.historyFilterCloseButton.Size = new System.Drawing.Size(32, 32);
