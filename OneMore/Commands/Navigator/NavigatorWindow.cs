@@ -194,6 +194,28 @@ namespace River.OneMoreAddIn.Commands
 
 			historyBox.BackColor = viewColor;
 			historyBox.HighlightBackground = manager.GetColor("LinkHighlight");
+
+			Logger.Current.WriteLine(
+				$"NavigatorWindow.OnLoad DPI diagnostics " +
+				$"CurrentAutoScaleDimensions={CurrentAutoScaleDimensions} AutoScaleDimensions={AutoScaleDimensions} " +
+				$"DeviceDpi={DeviceDpi}");
+			Logger.Current.WriteLine(
+				$"  pageHeadPanel Bounds={pageHeadPanel.Bounds} ClientSize={pageHeadPanel.ClientSize} " +
+				$"Padding={pageHeadPanel.Padding} DisplayRectangle={pageHeadPanel.DisplayRectangle}");
+			Logger.Current.WriteLine(
+				$"  pageFilterBox Bounds={pageFilterBox.Bounds} Right={pageFilterBox.Right}");
+			Logger.Current.WriteLine(
+				$"  pageFilterCloseButton Bounds={pageFilterCloseButton.Bounds} Left={pageFilterCloseButton.Left}");
+			Logger.Current.WriteLine(
+				$"  historyHeadPanel Bounds={historyHeadPanel.Bounds} ClientSize={historyHeadPanel.ClientSize} " +
+				$"Padding={historyHeadPanel.Padding} DisplayRectangle={historyHeadPanel.DisplayRectangle}");
+			Logger.Current.WriteLine(
+				$"  historyFilterBox Bounds={historyFilterBox.Bounds} Right={historyFilterBox.Right}");
+			Logger.Current.WriteLine(
+				$"  historyFilterCloseButton Bounds={historyFilterCloseButton.Bounds} Left={historyFilterCloseButton.Left}");
+			Logger.Current.WriteLine(
+				$"  historyToolPanel Bounds={historyToolPanel.Bounds} Visible={historyToolPanel.Visible} " +
+				$"Margin={historyToolPanel.Margin}");
 		}
 
 
