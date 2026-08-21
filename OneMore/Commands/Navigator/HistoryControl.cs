@@ -17,6 +17,8 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class HistoryControl : UserControl, IChameleon, IThemedControl
 	{
+		private static readonly Font LinkFont = new Font("Segoe UI", 8.5f, FontStyle.Regular, GraphicsUnit.Point);
+
 		/// <summary>
 		/// A thin self-drawn vertical bar indicating the section color, matching the
 		/// treatment used by SearchResultsCardView instead of a color-shifted PNG mask.
@@ -50,7 +52,6 @@ namespace River.OneMoreAddIn.Commands
 
 		private readonly ColorBar bar;
 		private readonly MoreLinkLabel link;
-		private readonly Font linkFont;
 		private EventHandler backColorChangedHandler;
 		private ToolTip tip;
 
@@ -65,14 +66,12 @@ namespace River.OneMoreAddIn.Commands
 				IsStriped = !string.IsNullOrEmpty(info.ObjectId)
 			};
 
-			linkFont = new Font("Segoe UI", 8.5f, FontStyle.Regular, GraphicsUnit.Point);
-
 			link = new MoreLinkLabel
 			{
 				Dock = DockStyle.Fill,
 				Text = info.Name,
 				Tag = info,
-				Font = linkFont,
+				Font = LinkFont,
 				Padding = new(4, 0, 0, 0),
 				Margin = new(4, 0, 0, 0)
 			};
@@ -123,7 +122,6 @@ namespace River.OneMoreAddIn.Commands
 				tip?.Dispose();
 				bar?.Dispose();
 				link?.Dispose();
-				linkFont?.Dispose();
 				BackColorChanged -= backColorChangedHandler;
 			}
 
@@ -132,6 +130,19 @@ namespace River.OneMoreAddIn.Commands
 
 
 		public override string Text { get => link.Text; set => link.Text = value; }
+
+
+		/// <summary>
+		/// Calculate the preferred row height for HistoryControl rows based on the current DPI.
+		/// </summary>
+		public static int GetPreferredRowHeight(Graphics graphics)
+		{
+			var textSize = TextRenderer.MeasureText(graphics, "Xy", LinkFont);
+			var lineHeight = textSize.Height;
+			var verticalMargin = 4; // top and bottom margin combined (2px each)
+			var comfortPadding = 2; // small fixed padding to match visual proportions
+			return lineHeight + verticalMargin + comfortPadding;
+		}
 
 
 		public string ThemedBack { get; set; }
