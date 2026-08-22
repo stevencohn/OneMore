@@ -55,8 +55,14 @@ namespace River.OneMoreAddIn.Commands
 
 		public void Replace(int index, int length, XElement replacement)
 		{
+			// defensively clamp against the actual text length in case the caller's index
+			// was computed against a different (longer) length than this node's own text
+			var textLength = text.Value.Length;
+			index = Math.Min(index, textLength);
+			length = Math.Min(length, textLength - index);
+
 			var before = index > 0 ? text.Value.Substring(0, index) : string.Empty;
-			var after = index + length < text.Value.Length ? text.Value.Substring(index + length) : string.Empty;
+			var after = index + length < textLength ? text.Value.Substring(index + length) : string.Empty;
 
 			text.ReplaceWith(
 				before,
