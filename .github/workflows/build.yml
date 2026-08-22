@@ -302,7 +302,9 @@ jobs:
           # fetch generated notes ourselves rather than passing --notes and --generate-notes
           # together to `gh release create` (that combination was intermittently rejected
           # with a spurious "tag_name is not a valid tag" 422 from a shallow/detached checkout)
-          $generated = gh api "repos/${{ github.repository }}/releases/generate-notes" -f "tag_name=$tag" -q '.body'
+          # gh's stdout is captured line-by-line as a string array by PowerShell; re-join with
+          # real newlines so later string interpolation doesn't collapse them into single spaces
+          $generated = (gh api "repos/${{ github.repository }}/releases/generate-notes" -f "tag_name=$tag" -q '.body') -join "`n"
 
           if ($isBeta) {
             $preview = "_This is a preview of what's to come. These changes have not yet been fully tested and no guarantee is provided. Be cautious using this build against your production notebooks. But if you're curious and willing to give it a try, please send feedback by opening a ticket. Thanks!_`n`n"
