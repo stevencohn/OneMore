@@ -45,6 +45,23 @@ namespace River.OneMoreAddIn
 			public int Left, Top, Right, Bottom;
 		}
 
+
+		/// <summary>
+		/// Contains information about a combo box.
+		/// https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-comboboxinfo
+		/// </summary>
+		[StructLayout(LayoutKind.Sequential)]
+		public struct COMBOBOXINFO
+		{
+			public int cbSize;
+			public RECT rcItem;
+			public RECT rcButton;
+			public int stateButton;    // 2 = pressed
+			public IntPtr hwndCombo;
+			public IntPtr hwndEdit;
+			public IntPtr hwndList;
+		}
+
 		[StructLayout(LayoutKind.Sequential)]
 		public struct NMCUSTOMDRAW
 		{
@@ -357,6 +374,12 @@ namespace River.OneMoreAddIn
 		// https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-getcurrentthreadid
 		[DllImport("kernel32.dll")]
 		public static extern uint GetCurrentThreadId();
+
+
+		// https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getcomboboxinfo
+		[DllImport("user32.dll")]
+		[return: MarshalAs(UnmanagedType.Bool)]
+		public static extern bool GetComboBoxInfo(IntPtr hwndCombo, ref COMBOBOXINFO pcbi);
 
 
 		// https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getcursorpos

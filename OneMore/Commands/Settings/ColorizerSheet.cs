@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Settings
 {
 	using River.OneMoreAddIn.Styles;
+	using System;
 	using System.Drawing;
 	using System.IO;
 	using System.Linq;
@@ -72,6 +73,26 @@ namespace River.OneMoreAddIn.Settings
 			size2Box.SelectedIndex = size2Box.Items.IndexOf(size.ToString());
 
 			LoadLanguages(settings.Get(HiddenKey, new XElement(HiddenKey)));
+		}
+
+
+		protected override void OnLoad(EventArgs e)
+		{
+			base.OnLoad(e);
+
+			ActiveControl = applyBox;
+
+			// ComboBox.SelectedIndex (CB_SETCURSEL) leaves the edit portion's text selected;
+			// deselect so the boxes don't appear highlighted as soon as the sheet is shown.
+			// Deferred via BeginInvoke because familyBox/family2Box (FontComboBox) re-select
+			// their text on a message queued after OnLoad; a synchronous call here is too early
+			BeginInvoke(new MethodInvoker(() =>
+			{
+				familyBox.Select(0, 0);
+				sizeBox.Select(0, 0);
+				family2Box.Select(0, 0);
+				size2Box.Select(0, 0);
+			}));
 		}
 
 
