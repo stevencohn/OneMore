@@ -2,7 +2,6 @@
 // Copyright © 2026 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
-#pragma warning disable S125    // ignore commented-out code                                
 #pragma warning disable S6418   // ignore embedded API key                             
 #pragma warning disable CS8632	// ignore nullable reference types
 
@@ -109,6 +108,12 @@ namespace River.OneMoreAddIn
 		public static async Task LogException(string eventName, string message, Exception exc)
 		{
 			await Log("error", eventName, message, exc.FormatDetails());
+		}
+
+
+		public static async Task LogTiming(string eventName, string message, string info = "")
+		{
+			await Log("timing", eventName, message, info);
 		}
 
 

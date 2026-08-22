@@ -15,6 +15,7 @@ namespace River.OneMoreAddIn
 	using River.OneMoreAddIn.Models;
 	using System;
 	using System.Collections.Generic;
+	using System.Diagnostics;
 	using System.IO;
 	using System.Linq;
 	using System.Runtime.InteropServices;
@@ -27,9 +28,6 @@ namespace River.OneMoreAddIn
 	using System.Xml.Schema;
 	using Forms = System.Windows.Forms;
 	using Resx = Properties.Resources;
-#if VerboseDispose
-	using System.Diagnostics;
-#endif
 
 
 	/// <summary>
@@ -126,7 +124,14 @@ namespace River.OneMoreAddIn
 
 		private IApplication onenote;
 		private bool disposed = false;
+		private bool telemetryFlushed = false;
 		private readonly ILogger logger;
+
+		private int updateCount;
+		private long updateElapsedMs;
+		private long updateBytes;
+		private long updateMaxMs;
+		private long updateMaxBytes;
 
 
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
@@ -160,6 +165,7 @@ namespace River.OneMoreAddIn
 		#region Lifecycle
 		public void Dispose()
 		{
+			FlushUpdateTelemetry();
 			Dispose(disposing: true);
 			// DO NOT call this otherwise OneNote will not shutdown properly
 			//GC.SuppressFinalize(this);
@@ -168,11 +174,25 @@ namespace River.OneMoreAddIn
 
 		public async ValueTask DisposeAsync()
 		{
+			FlushUpdateTelemetry();
 			await DisposeAsyncCore().ConfigureAwait(false);
 			Dispose(disposing: false);
 
 			// DO NOT call this otherwise OneNote will not shutdown properly
 			GC.SuppressFinalize(this);
+		}
+
+
+		private void FlushUpdateTelemetry()
+		{
+			if (telemetryFlushed || updateCount == 0)
+			{
+				return;
+			}
+
+			telemetryFlushed = true;
+			OneNoteExtensions.ReportUpdateTelemetry(
+				updateCount, updateElapsedMs, updateBytes, updateMaxMs, updateMaxBytes);
 		}
 
 
@@ -1804,9 +1824,9 @@ namespace River.OneMoreAddIn
 				return false;
 			}
 
-			// dateExpectedLastModified is merely a pessimistic-locking safeguard to prevent
-			// updating parts of a shared page that have since been updated
-			//
+			// dateExpectedLastModified (second param to UpdatePageConent) is merely a
+			// pessimistic-locking safeguard to prevent updating parts of a shared page that
+			// have since been updated; but we just don't use it at all, hence DateTime.MinValue
 			//var lastModTime = element.Attribute("lastModifiedTime") is XAttribute att
 			//	? DateTime.Parse(att.Value).ToUniversalTime()
 			//	: DateTime.MinValue;
@@ -1814,10 +1834,27 @@ namespace River.OneMoreAddIn
 			//logger.WriteLine(page.Root);
 			var xml = page.Root.ToString(SaveOptions.DisableFormatting);
 
-			return await InvokeWithRetry(() =>
+			var stopwatch = Stopwatch.StartNew();
+
+			var result = await InvokeWithRetry(() =>
 			{
 				onenote.UpdatePageContent(xml, DateTime.MinValue, XMLSchema.xs2013, true);
 			});
+
+			stopwatch.Stop();
+			var elapsed = stopwatch.ElapsedMilliseconds;
+
+			updateCount++;
+			updateElapsedMs += elapsed;
+			updateBytes += xml.Length;
+
+			if (elapsed > updateMaxMs)
+			{
+				updateMaxMs = elapsed;
+				updateMaxBytes = xml.Length;
+			}
+
+			return result;
 		}
 
 
