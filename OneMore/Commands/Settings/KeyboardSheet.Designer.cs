@@ -125,7 +125,7 @@
 			this.filterLabel.Name = "filterLabel";
 			this.filterLabel.Size = new System.Drawing.Size(48, 20);
 			this.filterLabel.TabIndex = 0;
-			this.filterLabel.Text = "Filter:";
+			this.filterLabel.Text = "Filter";
 			//
 			// filterBox
 			//
@@ -140,6 +140,8 @@
 			this.filterBox.ThemedBack = null;
 			this.filterBox.ThemedFore = null;
 			this.filterBox.TextChanged += new System.EventHandler(this.FilterCommands);
+			this.filterBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FilterBoxKeyDown);
+			this.filterBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FilterBoxKeyUp);
 			//
 			// filterClearButton
 			//

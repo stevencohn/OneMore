@@ -6,6 +6,7 @@
 
 namespace River.OneMoreAddIn.Settings
 {
+	using System;
 	using System.Collections.Generic;
 	using System.ComponentModel;
 	using System.Linq;
@@ -42,7 +43,8 @@ namespace River.OneMoreAddIn.Settings
 			{
 				Localize(new string[]
 				{
-					"introBox"
+					"introBox",
+					"filterLabel=word_Filter"
 				});
 
 				cmdColumn.HeaderText = Resx.word_Command;
@@ -100,6 +102,31 @@ namespace River.OneMoreAddIn.Settings
 					};
 				}
 			}
+		}
+
+
+		private void FilterCommands(object sender, EventArgs e)
+		{
+			var text = filterBox.Text.Trim();
+			var filtering = text.Length >= 2;
+
+			// the currency manager's current row can't be hidden while it's current, so
+			// release it before toggling row visibility
+			gridView.CurrentCell = null;
+
+			for (var i = 0; i < map.Count; i++)
+			{
+				gridView.Rows[i].Visible = !filtering ||
+					map[i].Command.ContainsICIC(text) ||
+					(map[i].Alias?.ContainsICIC(text) ?? false);
+			}
+		}
+
+
+		private void ClearFilter(object sender, EventArgs e)
+		{
+			filterBox.Clear();
+			filterBox.Focus();
 		}
 
 

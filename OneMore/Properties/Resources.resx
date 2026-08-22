@@ -2602,10 +2602,6 @@ Do you want to refresh the existing page?</value>
     <value>Select two or more lines to join</value>
     <comment>info message</comment>
   </data>
-  <data name="KeyboardSheet_filterLabel.Text" xml:space="preserve">
-    <value>Filter:</value>
-    <comment>label</comment>
-  </data>
   <data name="KeyboardSheet_introBox.Text" xml:space="preserve">
     <value>Manage my custom keyboard shortcuts. Select a command and press a key sequence.</value>
     <comment>label</comment>
@@ -6933,6 +6929,9 @@ Thank you!</value>
   </data>
   <data name="word_Feeder" xml:space="preserve">
     <value>Feeder</value>
+  </data>
+  <data name="word_Filter" xml:space="preserve">
+    <value>Filter</value>
   </data>
   <data name="word_Find" xml:space="preserve">
     <value>Find</value>

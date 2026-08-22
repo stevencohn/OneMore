@@ -5932,15 +5932,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Filter:.
-        /// </summary>
-        internal static string KeyboardSheet_filterLabel_Text {
-            get {
-                return ResourceManager.GetString("KeyboardSheet_filterLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Manage my custom keyboard shortcuts. Select a command and press a key sequence..
         /// </summary>
         internal static string KeyboardSheet_introBox_Text {
@@ -16337,7 +16328,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("word_Feeder", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Filter.
+        /// </summary>
+        internal static string word_Filter {
+            get {
+                return ResourceManager.GetString("word_Filter", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Find.
         /// </summary>
