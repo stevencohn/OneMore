@@ -28,9 +28,10 @@ namespace River.OneMoreAddIn.UI
 			if (m.Msg == WM_MOUSEWHEEL ||
 				m.Msg == WM_VSCROLL)
 			{
+				var viewport = ClientRectangle;
 				foreach (Control control in Controls)
 				{
-					if (control.Visible)
+					if (control.Visible && viewport.IntersectsWith(control.Bounds))
 					{
 						control.Refresh();
 					}

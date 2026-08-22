@@ -427,6 +427,16 @@ namespace River.OneMoreAddIn
 
 
 		// https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-releasecapture
+		// https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-lockwindowupdate
+		// unlike WM_SETREDRAW (per-window only), this suppresses drawing for the given
+		// window AND all its child windows, so it can batch updates to multiple hosted
+		// child controls (see MoreListViewEx) into a single visible repaint; pass
+		// IntPtr.Zero to unlock. Only one window may be locked system-wide at a time -
+		// always unlock in a finally block.
+		[DllImport("user32.dll")]
+		public static extern bool LockWindowUpdate(IntPtr hWndLock);
+
+
 		[DllImport("user32.dll")]
 		public static extern bool ReleaseCapture();
 
