@@ -33,6 +33,8 @@ namespace River.OneMoreAddIn.Commands
 			public int DirtyPages;
 			public int Tags;
 			public long Time;
+			public long FetchTime;
+			public long ThrottleTime;
 		}
 
 		public const int DefaultThrottle = 20;
@@ -331,6 +333,9 @@ namespace River.OneMoreAddIn.Commands
 							var sectionPath = $"{path}/{section.Attribute("name").Value}";
 							//logger.Verbose($"scanning section {sectionPath} ({pages.Count()} pages)");
 
+							var clock = new Stopwatch();
+							var canceled = false;
+
 							foreach (var page in pages)
 							{
 								if (token.IsCancellationRequested)
@@ -344,26 +349,46 @@ namespace River.OneMoreAddIn.Commands
 								if (forceThru ||
 									page.Attribute("lastModifiedTime").Value.CompareTo(lastTime) > 0)
 								{
-									if (await ScanPage(one,
-										pid, notebookID, sectionID, sectionPath, forceThru))
+									// only pages that are actually fetched via COM incur any real
+									// cost, so only these are timed and throttled; unmodified pages
+									// are skipped entirely and shouldn't pay an idle delay - this
+									// used to run for every page walked, adding ~(pageCount * delay)
+									// dead time to every scan regardless of how much had changed
+
+									clock.Restart();
+									var dirty = await ScanPage(
+										one, pid, notebookID, sectionID, sectionPath, forceThru);
+
+									clock.Stop();
+									Stats.FetchTime += clock.ElapsedMilliseconds;
+
+									if (dirty)
 									{
 										dirtyPages++;
 									}
+
+									// throttle the workload to give breathing room to OneNote UI;
+									// use an extended delay when a foreground command is active
+									if (throttle > 0)
+									{
+										var delay = HashtagServicePause.IsPaused ? PausedThrottle : throttle;
+										try
+										{
+											clock.Restart();
+											await Task.Delay(delay, token);
+											clock.Stop();
+											Stats.ThrottleTime += clock.ElapsedMilliseconds;
+										}
+										catch (OperationCanceledException)
+										{
+											canceled = true;
+										}
+									}
 								}
 
-								// throttle the workload to give breathing room to OneNote UI;
-								// use an extended delay when a foreground command is active
-								if (throttle > 0)
+								if (canceled)
 								{
-									var delay = HashtagServicePause.IsPaused ? PausedThrottle : throttle;
-									try
-									{
-										await Task.Delay(delay, token);
-									}
-									catch (OperationCanceledException)
-									{
-										break;
-									}
+									break;
 								}
 							}
 
@@ -507,7 +532,8 @@ namespace River.OneMoreAddIn.Commands
 			logger.WriteLine($"scanned {Stats.TotalPages} pages, " +
 				$"{Stats.KnownNotebooks}/{Stats.Notebooks} notebooks, " +
 				$"{Stats.Sections} sections, updating {Stats.DirtyPages} pages, " +
-				$"saving {Stats.Tags} tags, in {Stats.Time}ms");
+				$"saving {Stats.Tags} tags, in {Stats.Time}ms " +
+				$"(fetch {Stats.FetchTime}ms, throttle {Stats.ThrottleTime}ms)");
 		}
 	}
 }
