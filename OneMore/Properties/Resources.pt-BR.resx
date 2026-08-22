@@ -6075,7 +6075,7 @@ Os mecanismos de pesquisa aparecerão no menu de contexto da página, clique com
     <comment>link</comment>
   </data>
   <data name="SearchTitleDialog_introLabel.Text" xml:space="preserve">
-    <value>Insira uma consulta de título de página. Pesquisa todos os blocos de anotações por padrão. Use "\name" para definir o escopo de um bloco de notas correspondente, "\\" apenas para o bloco de notas atual e "#tag" para filtrar por hashtag. Prefixe com "&gt;" para classificar pelos modificados mais recentemente.</value>
+    <value>Insira uma consulta de título de página. Pesquisa todos os blocos de anotações por padrão. Use "\name" para definir o escopo de um notebook correspondente, "\\" apenas para o notebook atual, "#tag" para filtrar por hashtag e "-#tag" para excluir uma hashtag. Prefixe com "&gt;" para classificar pelos modificados mais recentemente.</value>
     <comment>label</comment>
   </data>
   <data name="SearchTitleDialog_noHashtagCatalog" xml:space="preserve">

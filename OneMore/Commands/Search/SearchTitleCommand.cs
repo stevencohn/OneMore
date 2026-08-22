@@ -39,7 +39,8 @@ namespace River.OneMoreAddIn.Commands
 		public CliParameterDefinition DefineParameters() =>
 			new CliParameterDefinition()
 			.AddString("query",
-				"Search terms; supports \">\" (sort by modified) and \"#hashtag\" filters",
+				"Search terms; supports \">\" (sort by modified), \"#hashtag\" filters, " +
+				"and \"-#hashtag\" to exclude a hashtag",
 				required: true)
 			.AddString("notebook",
 				"Name of the notebook to search; * or omit to search all notebooks, " +
@@ -268,7 +269,8 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			HashSet<string> hashtagPageIds = null;
-			if (parsed.Hashtags.Count > 0)
+			HashSet<string> excludedHashtagPageIds = null;
+			if (parsed.Hashtags.Count > 0 || parsed.ExcludeHashtags.Count > 0)
 			{
 				if (!HashtagProvider.CatalogExists())
 				{
@@ -276,27 +278,9 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
-				hashtagPageIds = new HashSet<string>();
-				var hashtagQuery = string.Join(" ", parsed.Hashtags);
-				using var provider = new HashtagProvider();
-
-				if (targets.Count == 1)
-				{
-					var tags = provider.SearchTags(
-						hashtagQuery, false, false, out _, notebookID: targets[0].Id);
-
-					foreach (var tag in tags) { hashtagPageIds.Add(tag.PageID); }
-				}
-				else
-				{
-					var ids = new HashSet<string>(targets.Select(t => t.Id));
-					var tags = provider.SearchTags(hashtagQuery, false, false, out _);
-
-					foreach (var tag in tags)
-					{
-						if (ids.Contains(tag.NotebookID)) { hashtagPageIds.Add(tag.PageID); }
-					}
-				}
+				var notebookIds = targets.Select(t => t.Id).ToList();
+				(hashtagPageIds, excludedHashtagPageIds) = SearchTitleEngine.ResolveHashtagFilters(
+					parsed.Hashtags, parsed.ExcludeHashtags, notebookIds);
 			}
 
 			var results = new List<TitleSearchResult>();
@@ -305,7 +289,8 @@ namespace River.OneMoreAddIn.Commands
 				var tree = await one.GetNotebook(id, OneNote.Scope.Pages);
 				if (tree == null) { continue; }
 
-				results.AddRange(SearchTitleEngine.SearchNotebook(tree, name, finder, hashtagPageIds));
+				results.AddRange(SearchTitleEngine.SearchNotebook(
+					tree, name, finder, hashtagPageIds, excludedHashtagPageIds));
 			}
 
 			SearchTitleEngine.Sort(results, parsed.SortByModified);

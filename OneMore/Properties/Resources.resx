@@ -6114,7 +6114,7 @@ Search engines will appear in the page context menu, right-click.</value>
     <comment>link</comment>
   </data>
   <data name="SearchTitleDialog_introLabel.Text" xml:space="preserve">
-    <value>Enter a page title query. Searches all notebooks by default. Use "\name" to scope to a matching notebook, "\\" for the current notebook only, and "#tag" to filter by hashtag. Prefix with "&gt;" to sort by most recently modified.</value>
+    <value>Enter a page title query. Searches all notebooks by default. Use "\name" to scope to a matching notebook, "\\" for the current notebook only, "#tag" to filter by hashtag, and "-#tag" to exclude a hashtag. Prefix with "&gt;" to sort by most recently modified.</value>
     <comment>label</comment>
   </data>
   <data name="SearchTitleDialog_noHashtagCatalog" xml:space="preserve">

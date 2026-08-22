@@ -6089,7 +6089,7 @@ ISO-code then comma then language name</comment>
     <comment>link</comment>
   </data>
   <data name="SearchTitleDialog_introLabel.Text" xml:space="preserve">
-    <value>输入页面标题查询。默认搜索所有笔记本。使用“\name”来限定匹配的笔记本，使用“\\”仅适用于当前笔记本，使用“#tag”按主题标签进行过滤。前缀为“&gt;”，可按最近修改的顺序排序。</value>
+    <value>输入页面标题查询。默认搜索所有笔记本。使用“\name”限定匹配笔记本的范围，“\\”仅适用于当前笔记本，“#tag”按主题标签过滤，“-#tag”排除主题标签。前缀为“&gt;”，可按最近修改的顺序排序。</value>
     <comment>label</comment>
   </data>
   <data name="SearchTitleDialog_noHashtagCatalog" xml:space="preserve">
