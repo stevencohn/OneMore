@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
+	using Resx = Properties.Resources;
 
 	internal class Processor : Loggable
 	{
@@ -23,7 +24,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		}
 
 
-		public void Execute(IEnumerable<TableCell> cells)
+		public void Execute(IEnumerable<TableCell> cells, UI.ProgressDialog progress = null)
 		{
 			var calculator = new Calculator();
 			calculator.SetVariable("tablecols", table.ColumnCount);
@@ -35,6 +36,8 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 
 			foreach (var cell in cells)
 			{
+				progress?.SetMessage(string.Format(Resx.FormulaCommand_Progress, cell.Coordinates));
+
 				var formula = new Formula(cell);
 				if (!formula.Valid)
 				{

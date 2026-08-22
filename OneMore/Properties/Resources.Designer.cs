@@ -3806,7 +3806,25 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("FormulaCommand_Linear", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Calculating {0}.
+        /// </summary>
+        internal static string FormulaCommand_Progress {
+            get {
+                return ResourceManager.GetString("FormulaCommand_Progress", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Calculations complete, saving page....
+        /// </summary>
+        internal static string FormulaCommand_Saving {
+            get {
+                return ResourceManager.GetString("FormulaCommand_Saving", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Select one or more table cells.
         /// </summary>

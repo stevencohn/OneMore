@@ -7,8 +7,10 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.Cli;
 	using River.OneMoreAddIn.Commands.Tables.Formulas;
 	using River.OneMoreAddIn.Models;
+	using System;
 	using System.Linq;
 	using System.Threading.Tasks;
+	using System.Windows.Forms;
 	using System.Xml.Linq;
 	using Resx = Properties.Resources;
 
@@ -28,22 +30,66 @@ namespace River.OneMoreAddIn.Commands
 		{
 			logger.StartClock();
 
-			await using var one = new OneNote(out var page, out var ns);
+			XElement element;
+			Page page;
 
-			var element = page.Root.Descendants(ns + "Cell")
-				// first dive down to find the selected T
-				.Elements(ns + "OEChildren")
-				.Elements(ns + "OE")
-				.Elements(ns + "T")
-				.Where(e => e.Attribute("selected")?.Value == "all")
-				// now move back up to the Table
-				.Select(e => e.FirstAncestor(ns + "Table"))
-				.FirstOrDefault();
+			await using (var one = new OneNote(out page, out var ns))
+			{
+				element = page.Root.Descendants(ns + "Cell")
+					// first dive down to find the selected T
+					.Elements(ns + "OEChildren")
+					.Elements(ns + "OE")
+					.Elements(ns + "T")
+					.Where(e => e.Attribute("selected")?.Value == "all")
+					// now move back up to the Table
+					.Select(e => e.FirstAncestor(ns + "Table"))
+					.FirstOrDefault();
+			}
 
-			if (element != null && RecalculateTable(page, element))
+			var updated = false;
+			var faulted = false;
+
+			if (element != null)
+			{
+				// one/page are no longer needed here; the page is a POCO so it is safe
+				// to carry across the boundary, but a fresh OneNote COM instance is
+				// created inside the worker callback since it will run on its own STA
+				// thread.
+
+				using var progress = new UI.ProgressDialog(10);
+				var result = progress.ShowTimedDialog(async (dialog, token) =>
+				{
+					try
+					{
+						updated = RecalculateTable(page, element, dialog);
+
+						if (updated)
+						{
+							dialog.SetMessage(Resx.FormulaCommand_Saving);
+
+							await using var one = new OneNote();
+							await one.Update(page);
+						}
+
+						return true;
+					}
+					catch (Exception exc)
+					{
+						logger.WriteLine("error recalculating formula", exc);
+						return false;
+					}
+				}, cancelable: false);
+
+				faulted = result != DialogResult.OK;
+			}
+
+			if (updated && !faulted)
 			{
 				logger.WriteTime("calculation completed", true);
-				await one.Update(page);
+			}
+			else if (faulted)
+			{
+				ShowInfo("Error recalculating formula. Please check the OneMore.log file");
 			}
 			else
 			{
@@ -54,7 +100,8 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		internal static bool RecalculateTable(Page page, XElement tableElement)
+		internal static bool RecalculateTable(
+			Page page, XElement tableElement, UI.ProgressDialog progress = null)
 		{
 			var ns = page.Namespace;
 			var table = new Table(tableElement);
@@ -67,7 +114,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (cells.Count == 0) return false;
 
-			new Processor(table).Execute(cells);
+			new Processor(table).Execute(cells, progress);
 			return true;
 		}
 	}

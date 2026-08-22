@@ -1657,6 +1657,14 @@ Total Row Font
     <value>התאים שנבחרו חייבים להיות באותה שורה או באותה עמודה</value>
     <comment>warning message</comment>
   </data>
+  <data name="FormulaCommand_Progress" xml:space="preserve">
+    <value>מחשב את {0}</value>
+    <comment>formula progress message</comment>
+  </data>
+  <data name="FormulaCommand_Saving" xml:space="preserve">
+    <value>החישובים הושלמו, דף שמירת...</value>
+    <comment>formula progress message</comment>
+  </data>
   <data name="FormulaCommand_SelectOne" xml:space="preserve">
     <value>בחר תא טבלה אחד או יותר</value>
     <comment>warning message</comment>
