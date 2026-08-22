@@ -13,12 +13,11 @@ namespace River.OneMoreAddIn.UI
 	using System.Windows.Forms;
 
 
-	public class FontComboBox : ComboBox
+	internal class FontComboBox : MoreComboBox
 	{
 		private readonly Dictionary<string, Font> cache;
 		private int itemHeight;
 		private int previewFontSize;
-		private StringFormat stringFormat;
 
 
 		public FontComboBox()
@@ -30,7 +29,6 @@ namespace River.OneMoreAddIn.UI
 			PreviewFontSize = 14;
 
 			CalculateLayout();
-			CreateStringFormat();
 		}
 
 
@@ -40,17 +38,7 @@ namespace River.OneMoreAddIn.UI
 		protected override void Dispose(bool disposing)
 		{
 			ClearFontCache();
-			stringFormat?.Dispose();
 			base.Dispose(disposing);
-		}
-
-		[Browsable(false), DesignerSerializationVisibility
-		(DesignerSerializationVisibility.Hidden),
-		EditorBrowsable(EditorBrowsableState.Never)]
-		public new DrawMode DrawMode
-		{
-			get { return base.DrawMode; }
-			set { base.DrawMode = value; }
 		}
 
 		[Category("Appearance"), DefaultValue(14)]
@@ -75,25 +63,7 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
-		protected override void OnDrawItem(DrawItemEventArgs e)
-		{
-			base.OnDrawItem(e);
-
-			if (e.Index > -1 && e.Index < Items.Count)
-			{
-				e.DrawBackground();
-
-				if ((e.State & DrawItemState.Focus) == DrawItemState.Focus)
-					e.DrawFocusRectangle();
-
-				using SolidBrush textBrush = new(e.ForeColor);
-				string fontFamilyName;
-
-				fontFamilyName = Items[e.Index].ToString();
-				e.Graphics.DrawString(fontFamilyName, GetFont(fontFamilyName),
-				textBrush, e.Bounds, stringFormat);
-			}
-		}
+		protected override Font GetItemFont(object item) => GetFont(item.ToString());
 
 
 		protected override void OnFontChanged(EventArgs e)
@@ -110,6 +80,15 @@ namespace River.OneMoreAddIn.UI
 			base.OnGotFocus(e);
 		}
 
+		protected override void OnHandleCreated(EventArgs e)
+		{
+			base.OnHandleCreated(e);
+
+			// re-measure now that a real, per-monitor-correct handle exists; the constructor's
+			// measurement runs before the control is placed on its final monitor
+			CalculateLayout();
+		}
+
 		protected override void OnMeasureItem(MeasureItemEventArgs e)
 		{
 			base.OnMeasureItem(e);
@@ -124,7 +103,7 @@ namespace River.OneMoreAddIn.UI
 		{
 			base.OnRightToLeftChanged(e);
 
-			CreateStringFormat();
+			MakeStringFormat();
 		}
 
 		protected override void OnTextChanged(EventArgs e)
@@ -205,9 +184,23 @@ namespace River.OneMoreAddIn.UI
 			ClearFontCache();
 
 			using var font = new Font(Font.FontFamily, PreviewFontSize);
-			Size textSize;
 
-			textSize = TextRenderer.MeasureText("yY", font);
+			// TextRenderer.MeasureText(string, Font) measures against a cached, process-wide
+			// screen DC that isn't tied to this control's monitor, so on a per-monitor-DPI-aware
+			// process it can report stale metrics from whatever DPI that DC was first created
+			// at. Once this control has a real handle, measure through it directly so the
+			// result reflects the DPI of the monitor it's actually showing on.
+			Size textSize;
+			if (IsHandleCreated)
+			{
+				using var g = Graphics.FromHwnd(Handle);
+				textSize = TextRenderer.MeasureText(g, "yY", font);
+			}
+			else
+			{
+				textSize = TextRenderer.MeasureText("yY", font);
+			}
+
 			itemHeight = textSize.Height + 2;
 		}
 
@@ -235,17 +228,9 @@ namespace River.OneMoreAddIn.UI
 			}
 		}
 
-		private void CreateStringFormat()
+		protected override void MakeStringFormat()
 		{
-			stringFormat?.Dispose();
-
-			stringFormat = new StringFormat(StringFormatFlags.NoWrap)
-			{
-				Trimming = StringTrimming.EllipsisCharacter,
-				HotkeyPrefix = HotkeyPrefix.None,
-				Alignment = StringAlignment.Near,
-				LineAlignment = StringAlignment.Center
-			};
+			base.MakeStringFormat();
 
 			if (IsUsingRTL(this))
 				stringFormat.FormatFlags |= StringFormatFlags.DirectionRightToLeft;

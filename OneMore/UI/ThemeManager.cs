@@ -262,6 +262,18 @@ namespace River.OneMoreAddIn.UI
 			{
 				// DarkMode_Explorer sets radios, checkboxes, scrollbars to dark mode Explorer
 				SetWindowTheme(control.Handle, "DarkMode_Explorer", null);
+
+				if (control is ComboBox)
+				{
+					// the drop-down list is a separate native popup window (not part of
+					// Controls), so it needs its own explicit opt-in for its scrollbar
+					var info = new Native.COMBOBOXINFO { cbSize = Marshal.SizeOf<Native.COMBOBOXINFO>() };
+					if (Native.GetComboBoxInfo(control.Handle, ref info) && info.hwndList != IntPtr.Zero)
+					{
+						TryAllowDarkModeForWindow(info.hwndList, trueValue);
+						SetWindowTheme(info.hwndList, "DarkMode_Explorer", null);
+					}
+				}
 			}
 
 			DwmSetWindowAttribute(control.Handle,

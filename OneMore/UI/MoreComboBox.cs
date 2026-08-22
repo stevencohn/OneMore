@@ -20,7 +20,7 @@ namespace River.OneMoreAddIn.UI
 	{
 		private const int ImagePad = 4;
 
-		private StringFormat stringFormat;
+		protected StringFormat stringFormat;
 
 
 		/// <summary>
@@ -169,14 +169,21 @@ namespace River.OneMoreAddIn.UI
 			e.Graphics.DrawString(
 				// use GetItemText here to pick up DisplayMember when there is a DataSource
 				GetItemText(raw),
-				Font, foreBrush, textBounds, stringFormat);
+				GetItemFont(raw), foreBrush, textBounds, stringFormat);
 
 			if (!isEdit && (e.State & DrawItemState.Focus) != 0)
 				e.DrawFocusRectangle();
 		}
 
 
-		private void MakeStringFormat()
+		/// <summary>
+		/// Gets the font to use when drawing the given item's text. Overridable so subclasses
+		/// like FontComboBox can render each item in its own font family.
+		/// </summary>
+		protected virtual Font GetItemFont(object item) => Font;
+
+
+		protected virtual void MakeStringFormat()
 		{
 			stringFormat?.Dispose();
 			stringFormat = new StringFormat(StringFormatFlags.NoWrap)
@@ -191,29 +198,6 @@ namespace River.OneMoreAddIn.UI
 
 		// dark-mode dropdown button theming - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-		[StructLayout(LayoutKind.Sequential)]
-		private struct RECT
-		{
-			public int Left, Top, Right, Bottom;
-			public Rectangle ToRectangle() => Rectangle.FromLTRB(Left, Top, Right, Bottom);
-		}
-
-		[StructLayout(LayoutKind.Sequential)]
-		private struct COMBOBOXINFO
-		{
-			public int cbSize;
-			public RECT rcItem;
-			public RECT rcButton;
-			public int stateButton;    // 2 = pressed
-			public IntPtr hwndCombo;
-			public IntPtr hwndEdit;
-			public IntPtr hwndList;
-		}
-
-		[DllImport("user32.dll")]
-		private static extern bool GetComboBoxInfo(IntPtr hwndCombo, ref COMBOBOXINFO pcbi);
-
-
 		protected override void WndProc(ref Message m)
 		{
 			base.WndProc(ref m);
@@ -221,11 +205,13 @@ namespace River.OneMoreAddIn.UI
 			if (m.Msg != Native.WM_PAINT || !ThemeManager.Instance.DarkMode)
 				return;
 
-			var info = new COMBOBOXINFO { cbSize = Marshal.SizeOf<COMBOBOXINFO>() };
-			if (!GetComboBoxInfo(Handle, ref info))
+			var info = new Native.COMBOBOXINFO { cbSize = Marshal.SizeOf<Native.COMBOBOXINFO>() };
+			if (!Native.GetComboBoxInfo(Handle, ref info))
 				return;
 
-			var btnRect = info.rcButton.ToRectangle();
+			var btnRect = Rectangle.FromLTRB(
+				info.rcButton.Left, info.rcButton.Top, info.rcButton.Right, info.rcButton.Bottom);
+
 			if (btnRect.IsEmpty)
 				return;
 
