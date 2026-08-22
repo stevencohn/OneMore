@@ -573,8 +573,6 @@ namespace River.OneMoreAddIn.UI
 			}
 			else if (m.Msg == Native.WM_PAINT)
 			{
-				Logger.Current.WriteLine(
-					$"[HIST-DIAG] {Name} WM_PAINT at {DateTime.Now:HH:mm:ss.fff}");
 				BoundHostedControls();
 			}
 			// sent directly by the header (a separate native child window whose immediate
@@ -752,10 +750,6 @@ namespace River.OneMoreAddIn.UI
 
 		private void BoundHostedControls()
 		{
-			Logger.Current.WriteLine(
-				$"[HIST-DIAG] {Name} BoundHostedControls count={hostedControls.Count} " +
-				$"at {DateTime.Now:HH:mm:ss.fff}");
-
 			foreach (var hosted in hostedControls)
 			{
 				var bounds = hosted.Host.Bounds;

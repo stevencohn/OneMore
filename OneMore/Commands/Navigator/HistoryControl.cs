@@ -132,16 +132,6 @@ namespace River.OneMoreAddIn.Commands
 		public override string Text { get => link.Text; set => link.Text = value; }
 
 
-		protected override void SetVisibleCore(bool value)
-		{
-			Logger.Current.WriteLine(
-				$"[HIST-DIAG] HistoryControl.SetVisibleCore({value}) '{Text}' " +
-				$"at {DateTime.Now:HH:mm:ss.fff}");
-
-			base.SetVisibleCore(value);
-		}
-
-
 		/// <summary>
 		/// Calculate the preferred row height for HistoryControl rows based on the current DPI.
 		/// </summary>
