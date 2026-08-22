@@ -32,8 +32,18 @@ namespace River.OneMoreAddIn.Commands
 		/// <summary>
 		/// Hashtag tokens (including their leading '#') extracted from the query. Pages must
 		/// match every hashtag in this list (implicit AND) in addition to the TitleText match.
+		/// An "AND", "OR", or "NOT" appearing immediately before a hashtag token is ignored
+		/// rather than treated as title text.
 		/// </summary>
 		public List<string> Hashtags { get; } = new List<string>();
+
+
+		/// <summary>
+		/// Hashtag tokens (including their leading '#') extracted from a "-#hashtag" negation
+		/// in the query. Pages carrying any of these hashtags are excluded from the results,
+		/// even if they otherwise match the TitleText and Hashtags criteria.
+		/// </summary>
+		public List<string> ExcludeHashtags { get; } = new List<string>();
 
 
 		/// <summary>
@@ -49,8 +59,9 @@ namespace River.OneMoreAddIn.Commands
 	/// in the query, to sort by most-recently-modified, a "\&lt;name&gt;" token to scope the
 	/// search to matching notebook(s) ("\*" for all notebooks, the default when no "\" token
 	/// is present; "\\" for just the current notebook), and "#hashtag" tokens to additionally
-	/// filter by the hashtag catalog. Whatever remains is matched against page titles via
-	/// TextMatchBuilder.
+	/// filter by the hashtag catalog. A "-#hashtag" token excludes pages carrying that hashtag,
+	/// and an "AND", "OR", or "NOT" immediately preceding a hashtag token is ignored rather than
+	/// left as title text. Whatever remains is matched against page titles via TextMatchBuilder.
 	/// </summary>
 	internal static class TitleQueryParser
 	{
@@ -60,8 +71,15 @@ namespace River.OneMoreAddIn.Commands
 			@"(?<!\S)\\(?:""(?<quoted>[^""]*)""|(?<bare>\S*))",
 			RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
+		// matches a "#hashtag" token at a word boundary, optionally preceded by a no-op "AND",
+		// "OR", or "NOT" (which is discarded rather than left dangling as title text - use the
+		// "-#hashtag" prefix, not "NOT", to actually exclude a hashtag) and optionally prefixed
+		// with "-" to mark it as an exclusion; the leading (?<!\S) anchor covers the whole
+		// optional prefix, so e.g. a hyphen glued to a prior word ("well-#tag") is not mistaken
+		// for negation
 		private static readonly Regex HashtagPattern = new Regex(
-			@"(?<!\S)#\S+", RegexOptions.Compiled);
+			@"(?<!\S)(?:(?:AND|OR|NOT)\s+)?(?<neg>-)?(?<tag>#\S+)",
+			RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
 		// matches a ">" only at a word boundary (start of string or preceded by whitespace) so
 		// it can appear anywhere in the query - ">foo \*" or "\* >foo" - without
@@ -109,10 +127,17 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (Match m in HashtagPattern.Matches(text))
 			{
-				result.Hashtags.Add(m.Value);
+				if (m.Groups["neg"].Success)
+				{
+					result.ExcludeHashtags.Add(m.Groups["tag"].Value);
+				}
+				else
+				{
+					result.Hashtags.Add(m.Groups["tag"].Value);
+				}
 			}
 
-			if (result.Hashtags.Count > 0)
+			if (result.Hashtags.Count > 0 || result.ExcludeHashtags.Count > 0)
 			{
 				text = HashtagPattern.Replace(text, string.Empty);
 			}

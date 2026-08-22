@@ -6086,7 +6086,7 @@ Les moteurs de recherche apparaîtront dans le menu du contexte de la page, cliq
     <comment>link</comment>
   </data>
   <data name="SearchTitleDialog_introLabel.Text" xml:space="preserve">
-    <value>Saisissez une requête de titre de page. Recherche tous les blocs-notes par défaut. Utilisez "\name" pour cibler un bloc-notes correspondant, "\\" pour le bloc-notes actuel uniquement et "#tag" pour filtrer par hashtag. Préfixez par "&gt;" pour trier selon les modifications les plus récentes.</value>
+    <value>Saisissez une requête de titre de page. Recherche tous les blocs-notes par défaut. Utilisez "\name" pour étendre la portée à un bloc-notes correspondant, "\\" pour le bloc-notes actuel uniquement, "#tag" pour filtrer par hashtag et "-#tag" pour exclure un hashtag. Préfixez par "&gt;" pour trier selon les modifications les plus récentes.</value>
     <comment>label</comment>
   </data>
   <data name="SearchTitleDialog_noHashtagCatalog" xml:space="preserve">

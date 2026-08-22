@@ -43,11 +43,16 @@ namespace River.OneMoreAddIn.Commands
 		/// If non-null, only pages whose ID appears in this set are included, implementing the
 		/// AND-filter between hashtag terms and the title text match
 		/// </param>
+		/// <param name="excludedHashtagPageIds">
+		/// If non-null, pages whose ID appears in this set are skipped, implementing "-#hashtag"
+		/// exclusion
+		/// </param>
 		public static List<TitleSearchResult> SearchNotebook(
 			XElement notebook,
 			string notebookName,
 			Regex finder,
-			ISet<string> hashtagPageIds = null)
+			ISet<string> hashtagPageIds = null,
+			ISet<string> excludedHashtagPageIds = null)
 		{
 			var results = new List<TitleSearchResult>();
 			var ns = notebook.GetNamespaceOfPrefix(OneNote.Prefix);
@@ -82,6 +87,11 @@ namespace River.OneMoreAddIn.Commands
 						}
 
 						if (hashtagPageIds != null && !hashtagPageIds.Contains(id))
+						{
+							continue;
+						}
+
+						if (excludedHashtagPageIds != null && excludedHashtagPageIds.Contains(id))
 						{
 							continue;
 						}
@@ -138,6 +148,76 @@ namespace River.OneMoreAddIn.Commands
 				results.Sort((a, b) =>
 					string.Compare(a.Name, b.Name, StringComparison.CurrentCultureIgnoreCase));
 			}
+		}
+
+
+		/// <summary>
+		/// Resolves the sets of page IDs to include and exclude based on the given hashtag
+		/// criteria, restricted to the given notebooks. Shared by SearchTitleDialog and
+		/// SearchTitleCommand's CLI path so GUI and CLI results are always consistent.
+		/// </summary>
+		/// <param name="includeHashtags">
+		/// Hashtags a page must carry every one of (implicit AND); Included is null if empty
+		/// </param>
+		/// <param name="excludeHashtags">
+		/// Hashtags that exclude a page if it carries any one of them; Excluded is null if empty
+		/// </param>
+		/// <param name="notebookIds">The notebook IDs to restrict the search to</param>
+		public static (HashSet<string> Included, HashSet<string> Excluded) ResolveHashtagFilters(
+			List<string> includeHashtags, List<string> excludeHashtags, List<string> notebookIds)
+		{
+			using var provider = new HashtagProvider();
+
+			// allTags:true matches against the page's full aggregated tag set rather than one
+			// tag row at a time, which is required for implicit AND across distinct hashtags to
+			// work correctly (a single row's tag column can't equal two different values at once)
+			var included = includeHashtags.Count > 0
+				? SearchTagPageIds(provider, string.Join(" ", includeHashtags), allTags: true, notebookIds)
+				: null;
+
+			// OR-of-rows is sufficient for exclusion: we only need to know whether a page
+			// carries any one of the excluded hashtags, so no aggregation is needed. Pages with
+			// no tags at all simply never appear here, so they're never excluded.
+			var excluded = excludeHashtags.Count > 0
+				? SearchTagPageIds(provider, string.Join(" OR ", excludeHashtags), allTags: false, notebookIds)
+				: null;
+
+			return (included, excluded);
+		}
+
+
+		private static HashSet<string> SearchTagPageIds(
+			HashtagProvider provider, string hashtagQuery, bool allTags, List<string> notebookIds)
+		{
+			var pageIds = new HashSet<string>();
+
+			if (notebookIds.Count == 1)
+			{
+				var tags = provider.SearchTags(
+					hashtagQuery, caseSensitive: false, allTags: allTags,
+					parsed: out _, notebookID: notebookIds[0]);
+
+				foreach (var tag in tags)
+				{
+					pageIds.Add(tag.PageID);
+				}
+			}
+			else
+			{
+				var ids = new HashSet<string>(notebookIds);
+				var tags = provider.SearchTags(
+					hashtagQuery, caseSensitive: false, allTags: allTags, parsed: out _);
+
+				foreach (var tag in tags)
+				{
+					if (ids.Contains(tag.NotebookID))
+					{
+						pageIds.Add(tag.PageID);
+					}
+				}
+			}
+
+			return pageIds;
 		}
 	}
 }

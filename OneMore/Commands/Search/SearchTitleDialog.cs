@@ -260,12 +260,14 @@ namespace River.OneMoreAddIn.Commands
 
 			ClearResults();
 
-			if (string.IsNullOrEmpty(query.TitleText) && query.Hashtags.Count == 0)
+			if (string.IsNullOrEmpty(query.TitleText) &&
+				query.Hashtags.Count == 0 && query.ExcludeHashtags.Count == 0)
 			{
 				return;
 			}
 
-			if (query.Hashtags.Count > 0 && !HashtagProvider.CatalogExists())
+			if ((query.Hashtags.Count > 0 || query.ExcludeHashtags.Count > 0) &&
+				!HashtagProvider.CatalogExists())
 			{
 				ShowMessageCard(Resx.SearchTitleDialog_noHashtagCatalog);
 				return;
@@ -289,10 +291,14 @@ namespace River.OneMoreAddIn.Commands
 				}
 
 				ISet<string> hashtagPageIds = null;
-				if (query.Hashtags.Count > 0)
+				ISet<string> excludedHashtagPageIds = null;
+				if (query.Hashtags.Count > 0 || query.ExcludeHashtags.Count > 0)
 				{
-					hashtagPageIds = ResolveHashtagPageIds(query.Hashtags, notebooks);
-					if (hashtagPageIds.Count == 0)
+					var notebookIds = notebooks.Select(n => n.Id).ToList();
+					(hashtagPageIds, excludedHashtagPageIds) = SearchTitleEngine.ResolveHashtagFilters(
+						query.Hashtags, query.ExcludeHashtags, notebookIds);
+
+					if (hashtagPageIds != null && hashtagPageIds.Count == 0)
 					{
 						RestoreControls();
 						return;
@@ -307,7 +313,7 @@ namespace River.OneMoreAddIn.Commands
 						foreach (var nb in notebooks)
 						{
 							all.AddRange(SearchTitleEngine.SearchNotebook(
-								nb.Tree, nb.Name, finder, hashtagPageIds));
+								nb.Tree, nb.Name, finder, hashtagPageIds, excludedHashtagPageIds));
 						}
 
 						SearchTitleEngine.Sort(all, sortByModified: true);
@@ -323,7 +329,7 @@ namespace River.OneMoreAddIn.Commands
 							.OrderBy(n => n.Name, StringComparer.CurrentCultureIgnoreCase))
 						{
 							var matches = SearchTitleEngine.SearchNotebook(
-								nb.Tree, nb.Name, finder, hashtagPageIds);
+								nb.Tree, nb.Name, finder, hashtagPageIds, excludedHashtagPageIds);
 
 							if (matches.Count == 0)
 							{
@@ -344,7 +350,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					var nb = notebooks[0];
 					var matches = SearchTitleEngine.SearchNotebook(
-						nb.Tree, nb.Name, finder, hashtagPageIds);
+						nb.Tree, nb.Name, finder, hashtagPageIds, excludedHashtagPageIds);
 
 					SearchTitleEngine.Sort(matches, query.SortByModified);
 
@@ -435,48 +441,6 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return result;
-		}
-
-
-		/// <summary>
-		/// Looks up the set of page IDs carrying every one of the given hashtags (implicit AND,
-		/// same as the hashtag catalog's own query semantics), restricted to the given notebooks.
-		/// </summary>
-		private static HashSet<string> ResolveHashtagPageIds(
-			List<string> hashtags, List<(string Id, XElement Tree, string Name)> notebooks)
-		{
-			var pageIds = new HashSet<string>();
-			var hashtagQuery = string.Join(" ", hashtags);
-
-			using var provider = new HashtagProvider();
-
-			if (notebooks.Count == 1)
-			{
-				var tags = provider.SearchTags(
-					hashtagQuery, caseSensitive: false, allTags: false,
-					parsed: out _, notebookID: notebooks[0].Id);
-
-				foreach (var tag in tags)
-				{
-					pageIds.Add(tag.PageID);
-				}
-			}
-			else
-			{
-				var ids = new HashSet<string>(notebooks.Select(n => n.Id));
-				var tags = provider.SearchTags(
-					hashtagQuery, caseSensitive: false, allTags: false, parsed: out _);
-
-				foreach (var tag in tags)
-				{
-					if (ids.Contains(tag.NotebookID))
-					{
-						pageIds.Add(tag.PageID);
-					}
-				}
-			}
-
-			return pageIds;
 		}
 
 

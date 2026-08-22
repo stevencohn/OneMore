@@ -6082,7 +6082,7 @@ I motori di ricerca verranno visualizzati nel menu contestuale della pagina, far
     <comment>link</comment>
   </data>
   <data name="SearchTitleDialog_introLabel.Text" xml:space="preserve">
-    <value>Inserisci una query sul titolo della pagina. Per impostazione predefinita, esegue la ricerca in tutti i taccuini. Utilizzare "\name" per individuare un taccuino corrispondente, "\\" solo per il taccuino corrente e "#tag" per filtrare in base all'hashtag. Prefisso con "&gt;" per ordinare in base alla modifica più recente.</value>
+    <value>Inserisci una query sul titolo della pagina. Per impostazione predefinita, esegue la ricerca in tutti i taccuini. Utilizzare "\name" per individuare un taccuino corrispondente, "\\" solo per il taccuino corrente, "#tag" per filtrare per hashtag e "-#tag" per escludere un hashtag. Prefisso con "&gt;" per ordinare in base alla modifica più recente.</value>
     <comment>label</comment>
   </data>
   <data name="SearchTitleDialog_noHashtagCatalog" xml:space="preserve">
