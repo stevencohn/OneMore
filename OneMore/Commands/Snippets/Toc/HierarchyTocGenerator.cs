@@ -112,6 +112,17 @@ namespace River.OneMoreAddIn.Commands.Snippets.Toc
 				var pageID = element.Attribute("ID").Value;
 
 				var pageLevel = int.Parse(element.Attribute("pageLevel").Value);
+
+				// no prior sibling OE to attach an indented child to (e.g. this page's
+				// pageLevel doesn't line up with what's already been emitted); fall back
+				// to treating it as though it belongs at the current level
+				// Theoretically impossible because OneNote prevents the user from creating
+				// this case, but maybe in older/newer versions??
+				if (pageLevel > level && !container.Elements().Any())
+				{
+					pageLevel = level;
+				}
+
 				if (pageLevel > level)
 				{
 					// reuse an OEChildren already attached by AddPageHeadings below, if any,

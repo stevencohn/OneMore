@@ -109,14 +109,7 @@ namespace River.OneMoreAddIn.Commands
 				generator = new PageTocGenerator(parameters, pageId);
 			}
 
-			try
-			{
-				await generator.Refresh();
-			}
-			catch (Exception exc)
-			{
-				logger.WriteLine($"error executing {nameof(InsertTocCommand)}", exc);
-			}
+			await generator.Refresh();
 		}
 
 
@@ -197,22 +190,15 @@ namespace River.OneMoreAddIn.Commands
 				generator = new PageTocGenerator(parameters);
 			}
 
-			try
+			var option = await generator.RefreshExistingPage();
+			if (option == RefreshOption.Refresh)
 			{
-				var option = await generator.RefreshExistingPage();
-				if (option == RefreshOption.Refresh)
-				{
-					logger.WriteLine("refreshing instead of building");
-					await generator.Refresh();
-				}
-				else if (option == RefreshOption.Build)
-				{
-					await generator.Build();
-				}
+				logger.WriteLine("refreshing instead of building");
+				await generator.Refresh();
 			}
-			catch (Exception exc)
+			else if (option == RefreshOption.Build)
 			{
-				logger.WriteLine($"error executing {nameof(InsertTocCommand)}", exc);
+				await generator.Build();
 			}
 		}
 	}
