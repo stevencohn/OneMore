@@ -41,8 +41,6 @@ namespace River.OneMoreAddIn.Commands.Snippets.Toc
 
 		public const int MinToCWidth = 400;
 		private const string TodoChars = "☐⭕🟥🟦🟧🟨🟩🟪🟫"; // Segoe UI Emoji
-		private const int LargeContentThreshold = 512 * 1024; // 1/2 MB
-		private const int LargeUpdateTimeoutSeconds = 300; // 5 minutes
 
 		private Page page;
 		private XNamespace ns;
@@ -162,39 +160,8 @@ namespace River.OneMoreAddIn.Commands.Snippets.Toc
 				RemoveTopLinksFromHeadings(headings);
 			}
 
-			await UpdatePage(one, page);
+			await one.UpdateWithProgress(page);
 			return true;
-		}
-
-
-		private async Task UpdatePage(OneNote one, Page page)
-		{
-			var size = page.Root.ToString(SaveOptions.DisableFormatting).Length;
-			if (size <= LargeContentThreshold)
-			{
-				await one.Update(page);
-				return;
-			}
-
-			logger.WriteLine($"page content is {size} bytes, showing progress while saving");
-
-			using var progress = new UI.ProgressDialog(LargeUpdateTimeoutSeconds);
-			progress.SetMessage(Resx.InsertTocCommand_Saving);
-
-			progress.ShowTimedDialog(async (dialog, token) =>
-			{
-				try
-				{
-					await one.Update(page);
-				}
-				catch (Exception exc)
-				{
-					logger.WriteLine("error saving page", exc);
-					return false;
-				}
-
-				return true;
-			}, cancelable: false);
 		}
 
 
@@ -257,7 +224,7 @@ namespace River.OneMoreAddIn.Commands.Snippets.Toc
 				{
 					meta.Parent.Remove();
 					page.EnsureContentContainer();
-					await UpdatePage(one, page);
+					await one.UpdateWithProgress(page);
 				}
 			}
 			else

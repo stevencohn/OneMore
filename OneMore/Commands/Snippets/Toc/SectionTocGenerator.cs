@@ -146,7 +146,7 @@ namespace River.OneMoreAddIn.Commands.Snippets.Toc
 				}
 			}
 
-			await one.Update(page);
+			await one.UpdateWithProgress(page);
 		}
 	}
 }

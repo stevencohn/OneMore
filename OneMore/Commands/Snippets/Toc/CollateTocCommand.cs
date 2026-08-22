@@ -129,7 +129,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			await one.Update(dest);
+			await one.UpdateWithProgress(dest);
 			await one.NavigateTo(dest.PageId);
 		}
 

@@ -995,6 +995,7 @@
     <Compile Include="Helpers\Extensions\ColorMatrixExtensions.cs" />
     <Compile Include="Helpers\Extensions\DateTimeExtensions.cs" />
     <Compile Include="Helpers\Extensions\ImageExtensions.cs" />
+    <Compile Include="Helpers\Extensions\OneNoteExtensions.cs" />
     <Compile Include="Helpers\Extensions\ProcessExtensions.cs" />
     <Compile Include="Commands\CommandAttribute.cs" />
     <Compile Include="Helpers\Extensions\UriExtensions.cs" />
