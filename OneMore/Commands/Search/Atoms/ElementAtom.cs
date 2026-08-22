@@ -56,7 +56,13 @@ namespace River.OneMoreAddIn.Commands
 		public void Replace(int index, int length, XElement replacement)
 		{
 			var first = element.FirstNode;
-			if (first.NodeType == System.Xml.XmlNodeType.Text)
+
+			// Length is based on element.Value, the concatenation of all descendant text.
+			// Only delegate directly to the first child when it is the sole child; otherwise
+			// its own text is shorter than element.Value and index/length (computed against
+			// Length) would run out of bounds against it.
+
+			if (first.NodeType == System.Xml.XmlNodeType.Text && first == element.LastNode)
 			{
 				new TextAtom(first).Replace(index, length, replacement);
 			}

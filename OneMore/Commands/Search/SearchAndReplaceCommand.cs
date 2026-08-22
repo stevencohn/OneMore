@@ -104,7 +104,11 @@ namespace River.OneMoreAddIn.Commands
 		private async Task<bool> SearchPage()
 		{
 			var count = editor.SearchAndReplace(currentPage);
-			logger.WriteLine($"found {count} matches on {currentPage.Title}");
+
+			if (count > 0)
+			{
+				logger.WriteLine($"found {count} matches on {currentPage.Title}");
+			}
 
 			if (count > 0)
 			{
@@ -120,7 +124,7 @@ namespace River.OneMoreAddIn.Commands
 		private async Task<bool> SearchPageStepwise()
 		{
 			var matches = editor.FindAllMatches(currentPage);
-			logger.WriteLine($"found {matches.Count} matches on {currentPage.Title}");
+			logger.WriteLine($"found {matches.Count} stepwise matches on {currentPage.Title}");
 
 			if (matches.Count == 0)
 			{
