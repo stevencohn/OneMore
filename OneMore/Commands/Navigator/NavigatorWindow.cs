@@ -58,6 +58,10 @@ namespace River.OneMoreAddIn.Commands
 		// LoadPageHeadings call rather than accumulating in trash for the window's lifetime
 		private Font headingFont;
 		private Font headingBoldFont;
+		private MoreLinkLabel currentLabel;
+
+		// TEMP diagnostics for issue #2517 (oscillating pageBox scrollbar); remove once resolved
+		private int resizeDiagCount;
 
 
 		// disposed
@@ -820,134 +824,172 @@ namespace River.OneMoreAddIn.Commands
 				? Resx.phrase_QuickNote
 				: title;
 
-			foreach (var control in pageBox.Controls)
+			// see RenderHistoryItems for why this uses LockWindowUpdate: the MoreLinkLabels
+			// added below are real child windows that paint themselves the instant they're
+			// added (default Visible=true), regardless of pageBox's own redraw state, so
+			// only a subtree-wide lock keeps a large heading list from visibly popping in
+			// one row at a time. Scope covers the dispose/clear/rebuild only, including the
+			// headings.Count==0 early return - unlocking still happens via finally.
+			Native.LockWindowUpdate(pageBox.Handle);
+			try
 			{
-				if (control is MoreLinkLabel label)
+				foreach (var control in pageBox.Controls)
 				{
-					label.Dispose();
-				}
-			}
-			pageBox.Controls.Clear();
-
-			// inject the page Title as the top-most Heading
-			if (page.TitleID != null)
-			{
-				var ns = page.Root.GetNamespaceOfPrefix(OneNote.Prefix);
-				var root = page.Root
-						.Elements(ns + "Title")
-						.Elements(ns + "OE")
-						.FirstOrDefault();
-
-				if (root != null)
-				{
-					headings.Insert(0, new()
+					if (control is MoreLinkLabel label)
 					{
-						// defer URL lookup until clicked
-						Link = string.Empty,
-						Root = root,
-						Text = title
+						label.Dispose();
+					}
+				}
+				pageBox.Controls.Clear();
+
+				// inject the page Title as the top-most Heading
+				if (page.TitleID != null)
+				{
+					var ns = page.Root.GetNamespaceOfPrefix(OneNote.Prefix);
+					var root = page.Root
+							.Elements(ns + "Title")
+							.Elements(ns + "OE")
+							.FirstOrDefault();
+
+					if (root != null)
+					{
+						headings.Insert(0, new()
+						{
+							// defer URL lookup until clicked
+							Link = string.Empty,
+							Root = root,
+							Text = title
+						});
+					}
+				}
+
+				if (headings.Count == 0)
+				{
+					//logger.VerboseTime("LoadPageHeadings done, 0 headings");
+					return;
+				}
+
+				Heading currentHeading = null;
+				if (highlight)
+				{
+					var range = new Models.SelectionRange(page);
+					var cursor = range.GetSelections(true).FirstOrDefault();
+
+					if (cursor is not null)
+					{
+						for (var i = headings.Count - 1; i > 0; i--)
+						{
+							if (XNode.CompareDocumentOrder(headings[i].Root, cursor) < 0)
+							{
+								currentHeading = headings[i];
+								break;
+							}
+						}
+					}
+				}
+
+				headingFont?.Dispose();
+				headingBoldFont?.Dispose();
+				headingFont = new Font("Segoe UI", 8.5F, FontStyle.Regular, GraphicsUnit.Point);
+				headingBoldFont = new Font("Segoe UI", 8.5F, FontStyle.Bold, GraphicsUnit.Point);
+
+				//logger.DebugTime($"suspending layout", keepRunning: true);
+				pageBox.SuspendLayout();
+
+				var margin = SystemInformation.VerticalScrollBarWidth * 2;
+				currentLabel = null;
+
+				resizeDiagCount = 0;
+				logger.WriteLine(
+					$"[NAV-DIAG] LoadPageHeadings begin headings={headings.Count} " +
+					$"pageBox.Width={pageBox.Width} pageBox.ClientSize={pageBox.ClientSize} " +
+					$"margin={margin} VerticalScrollBarWidth={SystemInformation.VerticalScrollBarWidth}");
+
+				using var g = pageBox.CreateGraphics();
+
+				foreach (var heading in headings)
+				{
+					var wrapper = new XElement("T", new XCData(heading.Text));
+					var text = wrapper.TextValue(true);
+
+					var leftpad = heading.Level * HeaderIndent;
+					var leftmar = leftpad + 4;
+
+					var headFont = heading == currentHeading ? headingBoldFont : headingFont;
+
+					var link = new MoreLinkLabel
+					{
+						Text = text,
+						Tag = heading,
+						Font = headFont,
+						Padding = new Padding(0),
+						Margin = new Padding(leftmar, 0, 0, 4),
+						Width = pageBox.Width - leftmar - margin,
+						ThemedFore = heading == currentHeading ? "HintText" : null,
+						Visible = false
+					};
+
+					var size = g.MeasureString(text, headFont);
+					link.Height = (int)(size.Height + link.Padding.Top + link.Padding.Bottom);
+
+					link.LinkClicked += new LinkLabelLinkClickedEventHandler(async (s, e) =>
+					{
+						if (s is MoreLinkLabel label)
+						{
+							var heading = (Heading)label.Tag;
+
+							// navigate by raw objectID rather than a constructed onenote:
+							// hyperlink; the hyperlink path (GetHyperlinkToObject + NavigateToUrl)
+							// triggers OneNote's own "searching for section" resolution UI on the
+							// first jump to an object, while the ID-based overload jumps directly
+							var objectId = heading.Root.Attribute("objectID")?.Value;
+							if (!string.IsNullOrEmpty(objectId))
+							{
+								await using var one = new OneNote();
+								await one.NavigateTo(page.PageId, objectId);
+							}
+
+							HighlightHeading(label);
+						}
 					});
-				}
-			}
 
-			if (headings.Count == 0)
-			{
-				//logger.VerboseTime("LoadPageHeadings done, 0 headings");
-				return;
-			}
-
-			Heading currentHeading = null;
-			if (highlight)
-			{
-				var range = new Models.SelectionRange(page);
-				var cursor = range.GetSelections(true).FirstOrDefault();
-
-				if (cursor is not null)
-				{
-					for (var i = headings.Count - 1; i > 0; i--)
+					if (heading == currentHeading)
 					{
-						if (XNode.CompareDocumentOrder(headings[i].Root, cursor) < 0)
-						{
-							currentHeading = headings[i];
-							break;
-						}
+						currentLabel = link;
 					}
-				}
-			}
 
-			headingFont?.Dispose();
-			headingBoldFont?.Dispose();
-			headingFont = new Font("Segoe UI", 8.5F, FontStyle.Regular, GraphicsUnit.Point);
-			headingBoldFont = new Font("Segoe UI", 8.5F, FontStyle.Bold, GraphicsUnit.Point);
+					pageBox.Controls.Add(link);
+					pageBox.SetFlowBreak(link, true);
 
-			//logger.DebugTime($"suspending layout", keepRunning: true);
-			pageBox.SuspendLayout();
+					((ILoadControl)link).OnLoad();
 
-			var margin = SystemInformation.VerticalScrollBarWidth * 2;
-			MoreLinkLabel currentLabel = null;
-
-			using var g = pageBox.CreateGraphics();
-
-			foreach (var heading in headings)
-			{
-				var wrapper = new XElement("T", new XCData(heading.Text));
-				var text = wrapper.TextValue(true);
-
-				var leftpad = heading.Level * HeaderIndent;
-				var leftmar = leftpad + 4;
-
-				var headFont = heading == currentHeading ? headingBoldFont : headingFont;
-
-				var link = new MoreLinkLabel
-				{
-					Text = text,
-					Tag = heading,
-					Font = headFont,
-					Padding = new Padding(0),
-					Margin = new Padding(leftmar, 0, 0, 4),
-					Width = pageBox.Width - leftmar - margin
-				};
-
-				var size = g.MeasureString(text, headFont);
-				link.Height = (int)(size.Height + link.Padding.Top + link.Padding.Bottom);
-
-				link.LinkClicked += new LinkLabelLinkClickedEventHandler(async (s, e) =>
-				{
-					if (s is MoreLinkLabel label)
-					{
-						await using var one = new OneNote();
-						var heading = (Heading)label.Tag;
-						if (heading.Link == string.Empty)
-						{
-							//logger.Verbose($"fetching URL for [{heading.Text}]");
-							heading.Link = page.GetHyperlink(heading.Root, one);
-						}
-						else
-						{
-							//logger.Verbose($"found URL for [{heading.Text}]");
-						}
-
-						await one.NavigateTo(heading.Link);
-					}
-				});
-
-				if (heading == currentHeading)
-				{
-					currentLabel = link;
+					// force native window creation now, while still hidden and locked,
+					// instead of paying that cost later when it's revealed
+					_ = link.Handle;
+					link.Visible = true;
 				}
 
-				pageBox.Controls.Add(link);
-				pageBox.SetFlowBreak(link, true);
+				pageBox.ResumeLayout();
+				//logger.DebugTime($"resumed layout", keepRunning: true);
 
-				((ILoadControl)link).OnLoad();
+				logger.WriteLine(
+					$"[NAV-DIAG] LoadPageHeadings end, ResizePageBox fired {resizeDiagCount} times " +
+					$"during load; pageBox.Width={pageBox.Width} pageBox.ClientSize={pageBox.ClientSize}");
+
+				if (pageFilterBox.Visible)
+				{
+					ApplyPageFilter(pageFilterBox.Text.Trim());
+				}
 			}
-
-			pageBox.ResumeLayout();
-			//logger.DebugTime($"resumed layout", keepRunning: true);
-
-			if (pageFilterBox.Visible)
+			finally
 			{
-				ApplyPageFilter(pageFilterBox.Text.Trim());
+				pageBox.Invalidate();
+				pageBox.Update();
+
+				Native.LockWindowUpdate(IntPtr.Zero);
+
+				pageBox.Invalidate();
+				pageBox.Update();
 			}
 
 			if (currentLabel is not null)
@@ -959,6 +1001,33 @@ namespace River.OneMoreAddIn.Commands
 			await UpdateTitles(page);
 
 			//logger.DebugTime("LoadPageHeadings done");
+		}
+
+
+		/// <summary>
+		/// Marks the given heading label as the current one, restoring the previously
+		/// highlighted label (if any) back to its normal font/color.
+		/// </summary>
+		/// <param name="label">The heading label to highlight as current</param>
+		private void HighlightHeading(MoreLinkLabel label)
+		{
+			if (ReferenceEquals(currentLabel, label))
+			{
+				return;
+			}
+
+			if (currentLabel is not null)
+			{
+				currentLabel.Font = headingFont;
+				currentLabel.ThemedFore = null;
+				((ILoadControl)currentLabel).OnLoad();
+			}
+
+			label.Font = headingBoldFont;
+			label.ThemedFore = "HintText";
+			((ILoadControl)label).OnLoad();
+
+			currentLabel = label;
 		}
 
 
@@ -1029,6 +1098,14 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ResizePageBox(object sender, EventArgs e)
 		{
+			resizeDiagCount++;
+			logger.WriteLine(
+				$"[NAV-DIAG] ResizePageBox #{resizeDiagCount} at {DateTime.Now:HH:mm:ss.fff} " +
+				$"pageBox.Width={pageBox.Width} pageBox.ClientSize={pageBox.ClientSize} " +
+				$"VScroll={pageBox.VerticalScroll.Visible} HScroll={pageBox.HorizontalScroll.Visible} " +
+				$"AutoScrollMinSize={pageBox.AutoScrollMinSize} " +
+				$"DisplayRectangle={pageBox.DisplayRectangle}");
+
 			var margin = SystemInformation.VerticalScrollBarWidth * 2;
 
 			foreach (MoreLinkLabel link in pageBox.Controls)
@@ -1060,31 +1137,52 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			pinnedBox.BeginUpdate();
-
-			foreach (var label in pinnedBox.GetAllItems<MoreLinkLabel>())
+			// see RenderHistoryItems for why this uses LockWindowUpdate rather than
+			// BeginUpdate/WM_SETREDRAW: the hosted HistoryControls are real child windows
+			// that paint themselves the instant they're made visible, regardless of
+			// pinnedBox's own redraw state, so only a subtree-wide lock keeps the rebuild
+			// from visibly popping in one row at a time
+			Native.LockWindowUpdate(pinnedBox.Handle);
+			try
 			{
-				label.Dispose();
-			}
-			pinnedBox.Items.Clear();
-
-			var viewColor = manager.GetColor("ListView");
-			pinned.ForEach(record =>
-			{
-				var control = new HistoryControl(record)
+				foreach (var label in pinnedBox.GetAllItems<MoreLinkLabel>())
 				{
-					BackColor = viewColor
-				};
+					label.Dispose();
+				}
+				pinnedBox.Items.Clear();
 
-				control.ApplyTheme(manager);
+				var viewColor = manager.GetColor("ListView");
+				pinned.ForEach(record =>
+				{
+					var control = new HistoryControl(record)
+					{
+						BackColor = viewColor,
+						Visible = false
+					};
 
-				var item = pinnedBox.AddHostedItem(control);
-				item.Tag = record;
-			});
+					control.ApplyTheme(manager);
 
-			pinnedBox.EndUpdate();
-			pinnedBox.EnableItemEventBubbling();
-			pinnedBox.EnableContextMenuBubbling();
+					var item = pinnedBox.AddHostedItem(control);
+					item.Tag = record;
+
+					// force native window creation now, while still hidden and locked,
+					// instead of paying that cost later inside BoundHostedControls
+					_ = control.Handle;
+				});
+
+				pinnedBox.EnableItemEventBubbling();
+				pinnedBox.EnableContextMenuBubbling();
+			}
+			finally
+			{
+				pinnedBox.Invalidate();
+				pinnedBox.Update();
+
+				Native.LockWindowUpdate(IntPtr.Zero);
+
+				pinnedBox.Invalidate();
+				pinnedBox.Update();
+			}
 		}
 
 		#region Pin control
@@ -1301,37 +1399,88 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			historyBox.BeginUpdate();
+			// hosted HistoryControls are real child controls of historyBox, not native
+			// ListView rows. WM_SETREDRAW only suppresses historyBox's OWN drawing, not
+			// its children's - each HistoryControl paints itself independently the moment
+			// it becomes visible, regardless of historyBox's redraw state, which is why
+			// that approach alone still showed rows popping in one at a time. LockWindowUpdate
+			// suppresses on-screen drawing for the given window AND its entire child subtree,
+			// so nothing here reaches the screen until unlocked at the very end, when
+			// Windows flushes it all together as a single repaint.
+			logger.WriteLine($"[HIST-DIAG] RenderHistoryItems begin at {DateTime.Now:HH:mm:ss.fff}");
 
-			foreach (var history in historyBox.GetAllItems<HistoryControl>())
+			Native.LockWindowUpdate(historyBox.Handle);
+			try
 			{
-				history.Dispose();
-			}
-			historyBox.Items.Clear();
-
-			var viewColor = manager.GetColor("ListView");
-
-			foreach (var record in records)
-			{
-				var control = new HistoryControl(record)
+				foreach (var history in historyBox.GetAllItems<HistoryControl>())
 				{
-					BackColor = viewColor
-				};
+					history.Dispose();
+				}
+				historyBox.Items.Clear();
 
-				control.ApplyTheme(manager);
+				logger.WriteLine(
+					$"[HIST-DIAG] items cleared at {DateTime.Now:HH:mm:ss.fff}");
 
-				var item = historyBox.AddHostedItem(control);
-				item.Tag = record;
+				var viewColor = manager.GetColor("ListView");
+
+				foreach (var record in records)
+				{
+					var control = new HistoryControl(record)
+					{
+						BackColor = viewColor,
+						// stay hidden at the default (0,0) position until BoundHostedControls
+						// (MoreListViewEx's WM_PAINT handler) places and reveals it at its real
+						// row bounds below, otherwise it flashes into view at the wrong spot
+						// the instant it's added, before the list view has laid out its rows
+						Visible = false
+					};
+
+					control.ApplyTheme(manager);
+
+					var item = historyBox.AddHostedItem(control);
+					item.Tag = record;
+
+					// while Visible=false, WinForms defers creating this control's native
+					// window (and its ColorBar/MoreLinkLabel children's windows) until it's
+					// first shown; without this, that one-time creation cost (~15-25ms per
+					// row) happens later, one row at a time, inside BoundHostedControls when
+					// it flips Visible=true - THAT staggered creation is what looked like the
+					// panel clearing and redrawing row by row. Forcing it now, while still
+					// hidden and while redraw is suppressed below, makes the later reveal a
+					// cheap ShowWindow per row instead
+					_ = control.Handle;
+				}
+
+				if (historyBox.Items.Count > 0)
+				{
+					historyBox.Items[0].Selected = true;
+				}
+
+				historyBox.EnableItemEventBubbling();
+				historyBox.EnableContextMenuBubbling();
+
+				logger.WriteLine(
+					$"[HIST-DIAG] rebuild loop done, {historyBox.Items.Count} items, " +
+					$"at {DateTime.Now:HH:mm:ss.fff}");
 			}
-
-			if (historyBox.Items.Count > 0)
+			finally
 			{
-				historyBox.Items[0].Selected = true;
-			}
+				// while still locked, force the paint pass that runs BoundHostedControls
+				// (positions and reveals every row) - none of it reaches the screen yet
+				historyBox.Invalidate();
+				historyBox.Update();
 
-			historyBox.EndUpdate();
-			historyBox.EnableItemEventBubbling();
-			historyBox.EnableContextMenuBubbling();
+				Native.LockWindowUpdate(IntPtr.Zero);
+				logger.WriteLine(
+					$"[HIST-DIAG] window unlocked at {DateTime.Now:HH:mm:ss.fff}, " +
+					$"calling final Invalidate/Update");
+
+				// now that the lock is released, ask Windows to flush the fully-assembled
+				// state to the screen in one repaint
+				historyBox.Invalidate();
+				historyBox.Update();
+				logger.WriteLine($"[HIST-DIAG] RenderHistoryItems end at {DateTime.Now:HH:mm:ss.fff}");
+			}
 		}
 
 
