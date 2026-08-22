@@ -1652,6 +1652,14 @@ Archivo de OneNote (* .one)</value>
     <value>Las celdas seleccionadas deben estar en la misma fila o en la misma columna</value>
     <comment>warning message</comment>
   </data>
+  <data name="FormulaCommand_Progress" xml:space="preserve">
+    <value>Calculando {0}</value>
+    <comment>formula progress message</comment>
+  </data>
+  <data name="FormulaCommand_Saving" xml:space="preserve">
+    <value>Cálculos completos, guardando página...</value>
+    <comment>formula progress message</comment>
+  </data>
   <data name="FormulaCommand_SelectOne" xml:space="preserve">
     <value>Seleccione una o más celdas de la tabla</value>
     <comment>warning message</comment>

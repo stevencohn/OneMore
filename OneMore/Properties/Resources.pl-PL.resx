@@ -1657,6 +1657,14 @@ Plik OneNote (* .o)</value>
     <value>Wybrane komórki muszą znajdować się w tym samym wierszu lub w tej samej kolumnie</value>
     <comment>warning message</comment>
   </data>
+  <data name="FormulaCommand_Progress" xml:space="preserve">
+    <value>Obliczanie {0}</value>
+    <comment>formula progress message</comment>
+  </data>
+  <data name="FormulaCommand_Saving" xml:space="preserve">
+    <value>Obliczenia zakończone, zapisywanie strony...</value>
+    <comment>formula progress message</comment>
+  </data>
   <data name="FormulaCommand_SelectOne" xml:space="preserve">
     <value>Wybierz jedną lub więcej komórek tabeli</value>
     <comment>warning message</comment>

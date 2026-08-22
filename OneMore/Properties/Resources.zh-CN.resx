@@ -1661,6 +1661,14 @@ OneNote 文件 (*.one)</value>
     <value>所选单元格必须在同一行或同一列中</value>
     <comment>warning message</comment>
   </data>
+  <data name="FormulaCommand_Progress" xml:space="preserve">
+    <value>正在计算{0}</value>
+    <comment>formula progress message</comment>
+  </data>
+  <data name="FormulaCommand_Saving" xml:space="preserve">
+    <value>计算完成，正在保存页面...</value>
+    <comment>formula progress message</comment>
+  </data>
   <data name="FormulaCommand_SelectOne" xml:space="preserve">
     <value>选择一个或多个表格单元格</value>
     <comment>warning message</comment>

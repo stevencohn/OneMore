@@ -1660,6 +1660,14 @@ OneNoteファイル (*.one)</value>
     <value>選択されたセルは同じ行または同じ列にある必要があります</value>
     <comment>warning message</comment>
   </data>
+  <data name="FormulaCommand_Progress" xml:space="preserve">
+    <value>{0} を計算しています</value>
+    <comment>formula progress message</comment>
+  </data>
+  <data name="FormulaCommand_Saving" xml:space="preserve">
+    <value>計算が完了しました。ページを保存しています...</value>
+    <comment>formula progress message</comment>
+  </data>
   <data name="FormulaCommand_SelectOne" xml:space="preserve">
     <value>1つ以上のセルを選択してください</value>
     <comment>warning message</comment>

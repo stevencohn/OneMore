@@ -1657,6 +1657,14 @@ OneNote-bestand (*.one)</value>
     <value>Geselecteerde cellen moeten in dezelfde rij of in dezelfde kolom staan</value>
     <comment>warning message</comment>
   </data>
+  <data name="FormulaCommand_Progress" xml:space="preserve">
+    <value>Berekenen van {0}</value>
+    <comment>formula progress message</comment>
+  </data>
+  <data name="FormulaCommand_Saving" xml:space="preserve">
+    <value>Berekeningen voltooid, pagina opslaan...</value>
+    <comment>formula progress message</comment>
+  </data>
   <data name="FormulaCommand_SelectOne" xml:space="preserve">
     <value>Selecteer een of meer tabelcellen</value>
     <comment>warning message</comment>
