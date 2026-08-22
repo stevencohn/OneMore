@@ -60,9 +60,6 @@ namespace River.OneMoreAddIn.Commands
 		private Font headingBoldFont;
 		private MoreLinkLabel currentLabel;
 
-		// TEMP diagnostics for issue #2517 (oscillating pageBox scrollbar); remove once resolved
-		private int resizeDiagCount;
-
 
 		// disposed
 		private readonly NavigationProvider provider;
@@ -899,12 +896,6 @@ namespace River.OneMoreAddIn.Commands
 				var margin = SystemInformation.VerticalScrollBarWidth * 2;
 				currentLabel = null;
 
-				resizeDiagCount = 0;
-				logger.WriteLine(
-					$"[NAV-DIAG] LoadPageHeadings begin headings={headings.Count} " +
-					$"pageBox.Width={pageBox.Width} pageBox.ClientSize={pageBox.ClientSize} " +
-					$"margin={margin} VerticalScrollBarWidth={SystemInformation.VerticalScrollBarWidth}");
-
 				using var g = pageBox.CreateGraphics();
 
 				foreach (var heading in headings)
@@ -971,10 +962,6 @@ namespace River.OneMoreAddIn.Commands
 
 				pageBox.ResumeLayout();
 				//logger.DebugTime($"resumed layout", keepRunning: true);
-
-				logger.WriteLine(
-					$"[NAV-DIAG] LoadPageHeadings end, ResizePageBox fired {resizeDiagCount} times " +
-					$"during load; pageBox.Width={pageBox.Width} pageBox.ClientSize={pageBox.ClientSize}");
 
 				if (pageFilterBox.Visible)
 				{
@@ -1098,14 +1085,6 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ResizePageBox(object sender, EventArgs e)
 		{
-			resizeDiagCount++;
-			logger.WriteLine(
-				$"[NAV-DIAG] ResizePageBox #{resizeDiagCount} at {DateTime.Now:HH:mm:ss.fff} " +
-				$"pageBox.Width={pageBox.Width} pageBox.ClientSize={pageBox.ClientSize} " +
-				$"VScroll={pageBox.VerticalScroll.Visible} HScroll={pageBox.HorizontalScroll.Visible} " +
-				$"AutoScrollMinSize={pageBox.AutoScrollMinSize} " +
-				$"DisplayRectangle={pageBox.DisplayRectangle}");
-
 			var margin = SystemInformation.VerticalScrollBarWidth * 2;
 
 			foreach (MoreLinkLabel link in pageBox.Controls)
@@ -1407,8 +1386,6 @@ namespace River.OneMoreAddIn.Commands
 			// suppresses on-screen drawing for the given window AND its entire child subtree,
 			// so nothing here reaches the screen until unlocked at the very end, when
 			// Windows flushes it all together as a single repaint.
-			logger.WriteLine($"[HIST-DIAG] RenderHistoryItems begin at {DateTime.Now:HH:mm:ss.fff}");
-
 			Native.LockWindowUpdate(historyBox.Handle);
 			try
 			{
@@ -1417,9 +1394,6 @@ namespace River.OneMoreAddIn.Commands
 					history.Dispose();
 				}
 				historyBox.Items.Clear();
-
-				logger.WriteLine(
-					$"[HIST-DIAG] items cleared at {DateTime.Now:HH:mm:ss.fff}");
 
 				var viewColor = manager.GetColor("ListView");
 
@@ -1458,10 +1432,6 @@ namespace River.OneMoreAddIn.Commands
 
 				historyBox.EnableItemEventBubbling();
 				historyBox.EnableContextMenuBubbling();
-
-				logger.WriteLine(
-					$"[HIST-DIAG] rebuild loop done, {historyBox.Items.Count} items, " +
-					$"at {DateTime.Now:HH:mm:ss.fff}");
 			}
 			finally
 			{
@@ -1471,15 +1441,11 @@ namespace River.OneMoreAddIn.Commands
 				historyBox.Update();
 
 				Native.LockWindowUpdate(IntPtr.Zero);
-				logger.WriteLine(
-					$"[HIST-DIAG] window unlocked at {DateTime.Now:HH:mm:ss.fff}, " +
-					$"calling final Invalidate/Update");
 
 				// now that the lock is released, ask Windows to flush the fully-assembled
 				// state to the screen in one repaint
 				historyBox.Invalidate();
 				historyBox.Update();
-				logger.WriteLine($"[HIST-DIAG] RenderHistoryItems end at {DateTime.Now:HH:mm:ss.fff}");
 			}
 		}
 
