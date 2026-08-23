@@ -498,6 +498,12 @@ namespace River.OneMoreAddIn.UI
 					//logger.WriteLine($"focused tracking elevating");
 					Elevate();
 				}
+				else if (name != "ONENOTE" && pid != processId && TopMost)
+				{
+					// some other application took focus away from ONENOTE; let this
+					// window submerge along with ONENOTE instead of staying stuck on top
+					TopMost = false;
+				}
 
 				trackedId = pid;
 			}
