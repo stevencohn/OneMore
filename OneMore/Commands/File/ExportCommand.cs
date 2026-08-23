@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.Settings;
 	using System;
 	using System.Collections.Generic;
+	using System.Globalization;
 	using System.IO;
 	using System.Linq;
 	using System.Threading.Tasks;
@@ -124,6 +125,12 @@ namespace River.OneMoreAddIn.Commands
 				var section = await one.GetSection();
 				var ns = one.GetNamespace(section);
 
+				var hierarchyModified = section.Elements(ns + "Page")
+					.Where(e => e.Attribute("ID") != null)
+					.ToDictionary(
+						e => e.Attribute("ID").Value,
+						e => ParseHierarchyModified(e));
+
 				var pageIDs = section.Elements(ns + "Page")
 					.Where(e => e.Attribute("selected")?.Value == "all")
 					.Select(e => e.Attribute("ID").Value)
@@ -132,19 +139,26 @@ namespace River.OneMoreAddIn.Commands
 				if (pageIDs.Count == 0)
 				{
 					pageIDs.Add(one.CurrentPageId);
-					await Export(pageIDs);
 				}
-				else
-				{
-					await Export(pageIDs);
-				}
+
+				await Export(pageIDs, hierarchyModified);
 			}
 
 			await Task.Yield();
 		}
 
 
-		private async Task Export(List<string> pageIDs)
+		private static DateTime? ParseHierarchyModified(XElement pageElement)
+		{
+			return DateTime.TryParse(
+				pageElement.Attribute("lastModifiedTime")?.Value,
+				CultureInfo.InvariantCulture, DateTimeStyles.None, out var modified)
+				? modified
+				: (DateTime?)null;
+		}
+
+
+		private async Task Export(List<string> pageIDs, Dictionary<string, DateTime?> hierarchyModified)
 		{
 			OneNote.ExportFormat format;
 			string path;
@@ -223,7 +237,8 @@ namespace River.OneMoreAddIn.Commands
 						{
 							if (withAttachments)
 							{
-								await archivist.ExportHTML(page, filename);
+								hierarchyModified.TryGetValue(page.PageId, out var modified);
+								await archivist.ExportHTML(page, filename, hierarchyModified: modified);
 							}
 							else
 							{
