@@ -24,6 +24,7 @@ Begin
     $script:smns = $null
     $script:writable = $true
     $script:DevelopersTOC = $null
+    $script:PageLog = @()
 
     function MakeSiteMap
     {
@@ -155,6 +156,41 @@ Begin
         return $toc, $first
     }
 
+    function GetPageModified
+    {
+        # each page starts with a title heading followed by one or two citation
+        # lines: a creation date, and optionally "Last updated on <date>". Both
+        # lines share this exact style, so pull them out and parse whichever
+        # date applies rather than trusting filesystem timestamps (which reflect
+        # zip extraction, not the page's real OneNote edit history)
+        param($source, $pageFile)
+
+        $found = [regex]::Matches($source, '<P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">(.*?)</P>')
+        if ($found.Count -gt 0)
+        {
+            $dateText = $found[0].Groups[1].Value.Trim()
+            if ($found.Count -gt 1)
+            {
+                $second = $found[1].Groups[1].Value.Trim()
+                if ($second -match '^Last updated on\s+(.+)$')
+                {
+                    $dateText = $Matches[1].Trim()
+                }
+            }
+
+            try
+            {
+                return [datetime]::Parse($dateText, [System.Globalization.CultureInfo]::InvariantCulture)
+            }
+            catch
+            {
+                Write-Host "could not parse page date '$dateText' in $pageFile" -ForegroundColor Yellow
+            }
+        }
+
+        return (Get-Item $pageFile).LastWriteTime
+    }
+
     function MakePage
     {
         param($sectionID, $pageName, $pageFile, $toc)
@@ -187,6 +223,7 @@ Begin
         PatchSectionRefs $body
         PatchImageRefs $body $sectionID
         $inner = $body | foreach InnerHtml
+        $modified = GetPageModified $inner $pageFile
 
         $template = Get-Content -Path template.htm -Encoding utf8 -Raw
         $template = $template.Replace('~PAGE_TITLE~', $name)
@@ -198,6 +235,12 @@ Begin
         $template | Out-File $pageFile -Encoding utf8 -Force -Confirm:$false
 
         AddToSiteMap "$RootUrl/$sectionID/$name`.htm" 0.5
+
+        $script:PageLog += [pscustomobject]@{
+            Title    = "$sectionID/$name"
+            Url      = "/$sectionID/$name`.htm"
+            Modified = $modified
+        }
     }
 
     function PatchSectionRefs
@@ -270,6 +313,54 @@ Begin
         $updated | Out-File $file -Encoding utf8 -Force -Confirm:$false
     }
 
+    function UpdateChangelog
+    {
+        $file = '.\get-started\About This Web Site.htm'
+        if (-not (Test-Path $file))
+        {
+            Write-Host "$file not found; skipping changelog table update" -ForegroundColor Yellow
+            return
+        }
+
+        if ($script:PageLog.Count -eq 0)
+        {
+            Write-Host 'no pages were recorded; skipping changelog table update' -ForegroundColor Yellow
+            return
+        }
+
+        Write-Host "updating changelog table ($($script:PageLog.Count) pages)" -ForegroundColor Blue
+
+        $rows = ($script:PageLog | Sort-Object @{Expression = 'Modified'; Descending = $true}, @{Expression = 'Title'; Descending = $false} | foreach {
+            $when = Get-Date $_.Modified -Format 'MMMM d, yyyy'
+@"
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; WHITE-SPACE: nowrap">
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in"><A href="$($_.Url)">$($_.Title)</A></P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; WHITE-SPACE: nowrap">
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">$when</P></TD></TR>
+"@
+        }) -join "`n"
+
+        $content = Get-Content -Path $file -Encoding utf8 -Raw
+
+        # locate the table structurally by its "Page" / "Last Modified" header
+        # cells rather than the heading text above it (which has already been
+        # renamed once, from "Changelog" to "Recent Updates") or the placeholder
+        # row's exact markup (which varies with the table's column widths);
+        # group 2 is everything between the header row and </TBODY>, i.e. the
+        # single empty placeholder row to be replaced
+        $match = [regex]::Match($content, '(?s)(<TBODY>\s*<TR>\s*<TD[^>]*>.*?>Page</SPAN></P></TD>\s*<TD[^>]*>.*?>Last Modified</SPAN></P></TD></TR>\s*)(.*?)(\s*</TBODY>)')
+        if (-not $match.Success)
+        {
+            Write-Host 'changelog table structure not found; table left unchanged' -ForegroundColor Yellow
+            return
+        }
+
+        $dataRows = $match.Groups[2]
+        $updated = $content.Substring(0, $dataRows.Index) + $rows + $content.Substring($dataRows.Index + $dataRows.Length)
+        $updated | Out-File $file -Encoding utf8 -Force -Confirm:$false
+    }
+
 	function CompareFolders
 	{
 		$here = (Get-Location).path
@@ -336,6 +427,8 @@ Process
     {
         UpdateTelemetrySidebar $script:DevelopersTOC
     }
+
+    UpdateChangelog
 
     Write-Host 'saving sitemap.xml'
     $sitemap.ToString() | Out-File 'sitemap.xml'
