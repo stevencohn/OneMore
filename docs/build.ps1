@@ -318,13 +318,20 @@ Begin
         $file = '.\get-started\About This Web Site.htm'
         if (-not (Test-Path $file))
         {
-            Write-Host "$file not found; skipping changelog table update" -ForegroundColor Yellow
+            Write-Warning "$file not found; skipping changelog table update"
             return
         }
 
         if ($script:PageLog.Count -eq 0)
         {
-            Write-Host 'no pages were recorded; skipping changelog table update' -ForegroundColor Yellow
+            Write-Warning 'no pages were recorded; skipping changelog table update'
+            return
+        }
+
+        $content = Get-Content -Path $file -Encoding utf8 -Raw
+        if ($content -notmatch [regex]::Escape('~CHANGELOG~'))
+        {
+            Write-Warning "~CHANGELOG~ token not found in $file; table left unchanged"
             return
         }
 
@@ -341,23 +348,20 @@ Begin
 "@
         }) -join "`n"
 
-        $content = Get-Content -Path $file -Encoding utf8 -Raw
+        $table = @"
+<DIV style="DIRECTION: ltr">
+<TABLE title="" style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; BORDER-COLLAPSE: collapse; BORDER-BOTTOM: #a3a3a3 1pt solid; DIRECTION: ltr; BORDER-LEFT: #a3a3a3 1pt solid" cellSpacing=0 cellPadding=0 summary="" border=1 valign="top">
+<TBODY>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #e5e0ec">
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in"><SPAN style="FONT-WEIGHT: bold">Page</SPAN></P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #e5e0ec">
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in"><SPAN style="FONT-WEIGHT: bold">Last Modified</SPAN></P></TD></TR>
+$rows
+</TBODY></TABLE></DIV>
+"@
 
-        # locate the table structurally by its "Page" / "Last Modified" header
-        # cells rather than the heading text above it (which has already been
-        # renamed once, from "Changelog" to "Recent Updates") or the placeholder
-        # row's exact markup (which varies with the table's column widths);
-        # group 2 is everything between the header row and </TBODY>, i.e. the
-        # single empty placeholder row to be replaced
-        $match = [regex]::Match($content, '(?s)(<TBODY>\s*<TR>\s*<TD[^>]*>.*?>Page</SPAN></P></TD>\s*<TD[^>]*>.*?>Last Modified</SPAN></P></TD></TR>\s*)(.*?)(\s*</TBODY>)')
-        if (-not $match.Success)
-        {
-            Write-Host 'changelog table structure not found; table left unchanged' -ForegroundColor Yellow
-            return
-        }
-
-        $dataRows = $match.Groups[2]
-        $updated = $content.Substring(0, $dataRows.Index) + $rows + $content.Substring($dataRows.Index + $dataRows.Length)
+        $updated = $content.Replace('~CHANGELOG~', $table)
         $updated | Out-File $file -Encoding utf8 -Force -Confirm:$false
     }
 
