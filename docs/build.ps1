@@ -162,7 +162,11 @@ Begin
         # lines: a creation date, and optionally "Last updated on <date>". Both
         # lines share this exact style, so pull them out and parse whichever
         # date applies rather than trusting filesystem timestamps (which reflect
-        # zip extraction, not the page's real OneNote edit history)
+        # zip extraction, not the page's real OneNote edit history). The "Last
+        # updated on" date is stamped by OneMore's wiki-export (Archivist.cs)
+        # from the notebook hierarchy's lastModifiedTime, not the page-content
+        # lastModifiedTime attribute, which OneNote stamps with the current
+        # time on every export and would make every page look freshly edited
         param($source, $pageFile)
 
         $found = [regex]::Matches($source, '<P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">(.*?)</P>')

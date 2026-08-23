@@ -129,7 +129,8 @@ namespace River.OneMoreAddIn.Commands
 		/// <param name="hpath"></param>
 		/// <param name="bookScope"></param>
 		public async Task<string> ExportHTML(
-			Page page, string filename, string hpath = null, bool bookScope = false)
+			Page page, string filename, string hpath = null, bool bookScope = false,
+			DateTime? hierarchyModified = null)
 		{
 			// expand C:\folder\name.htm --> C:\folder\name\name.htm
 			var name = Path.GetFileNameWithoutExtension(filename);              // "name"
@@ -149,7 +150,7 @@ namespace River.OneMoreAddIn.Commands
 					}
 
 					ArchiveAttachments(page, filename, path);
-					UpdatePageDates(page, filename);
+					UpdatePageDates(page, filename, hierarchyModified);
 				}
 			}
 
@@ -454,7 +455,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 		}
 
-		private void UpdatePageDates(Page page, string filename)
+		private void UpdatePageDates(Page page, string filename, DateTime? hierarchyModified)
 		{
 			var text = File.ReadAllText(filename);
 
@@ -476,9 +477,10 @@ namespace River.OneMoreAddIn.Commands
 				page.Root.Attribute("dateTime").Value, CultureInfo.InvariantCulture)
 				.ToLocalTime();
 
-			var modified = DateTime.Parse(
-				page.Root.Attribute("lastModifiedTime").Value, CultureInfo.InvariantCulture)
-				.ToLocalTime();
+			var modifiedRaw = hierarchyModified ?? DateTime.Parse(
+				page.Root.Attribute("lastModifiedTime").Value, CultureInfo.InvariantCulture);
+
+			var modified = modifiedRaw.ToLocalTime();
 
 			var dateReplacement =
 				$"<P style=\"{dateMatch.Groups["style"].Value}\">{created:MMMM d, yyyy}</P>";

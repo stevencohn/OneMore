@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Generic;
+	using System.Globalization;
 	using System.IO;
 	using System.IO.Compression;
 	using System.Linq;
@@ -501,7 +502,14 @@ namespace River.OneMoreAddIn.Commands
 				return null;
 			}
 
-			filename = await archivist.ExportHTML(page, filename, path, bookScope);
+			DateTime? hierarchyModified = null;
+			if (DateTime.TryParse(element.Attribute("lastModifiedTime")?.Value,
+				CultureInfo.InvariantCulture, DateTimeStyles.None, out var hmod))
+			{
+				hierarchyModified = hmod;
+			}
+
+			filename = await archivist.ExportHTML(page, filename, path, bookScope, hierarchyModified);
 			await ArchiveAssets(Path.GetDirectoryName(filename), path);
 			pageCount++;
 			return name;
