@@ -168,7 +168,7 @@ namespace River.OneMoreAddIn.Commands
 					dialog.SetMessage($"Scanning {page.Title}...");
 					dialog.Increment();
 
-					var node = CalculateHash(page);
+					var node = CalculateHash(page, pageRef);
 					//logger.WriteLine($"text~ [{node.TextHash}] xml~ [{node.XmlHash}]");
 
 					if (token.IsCancellationRequested)
@@ -402,7 +402,7 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private HashNode CalculateHash(Page page)
+		private HashNode CalculateHash(Page page, XElement pageRef)
 		{
 			var node = new HashNode
 			{
@@ -410,7 +410,9 @@ namespace River.OneMoreAddIn.Commands
 				Title = page.Title
 			};
 
-			var modified = page.Root.Attribute("lastModifiedTime")?.Value;
+			// use the hierarchy's lastModifiedTime, not the page-content one, which
+			// OneNote stamps with the current time on every GetPageContent call
+			var modified = pageRef.Attribute("lastModifiedTime")?.Value;
 
 			node.LastModified = string.IsNullOrEmpty(modified)
 				? DateTime.MinValue
