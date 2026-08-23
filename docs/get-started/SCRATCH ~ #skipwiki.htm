@@ -27,7 +27,7 @@ font-size:20.0pt;color:#464646'>SCRATCH ~ #skipwiki</p>
 
 <P style="margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676">June 3, 2026</P>
 
-<P style="margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676">Last updated on August 18, 2026</P>
+<P style="margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676">Last updated on August 22, 2026</P>
 
 </div>
 
@@ -71,15 +71,13 @@ font-size:20.0pt;color:#464646'>SCRATCH ~ #skipwiki</p>
 
 </div>
 
-<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>&nbsp;</p>
-
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
 style='mso-spacerun:yes'>  </span></p>
 
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>This release
 introduces a migration path for Evernote users who want to move to OneNote.
 Export your Evernotes into .enex files and then import them into OneNote using
-OneMore's new *Import Evernote* command. Remember to unprotect encrypted note,
+OneMore's new *Import Evernote* command. Remember to unprotect encrypted notes,
 otherwise the importer skips them.<span style='mso-spacerun:yes'>  </span></p>
 
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
@@ -106,7 +104,7 @@ migration easier,
 style='mso-spacerun:yes'>  </span></p>
 
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Added a *Quick
-Import *command to import files from a folder into a section as configured in
+Import* command to import files from a folder into a section as configured in
 Settings, [#2465](https://github.com/stevencohn/OneMore/issues/2465)<span
 style='mso-spacerun:yes'>  </span></p>
 
@@ -121,7 +119,7 @@ sections, [#2379](https://github.com/stevencohn/OneMore/issues/2379)<span
 style='mso-spacerun:yes'>  </span></p>
 
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Added a *Complete
-Hashtag* command with substring matching via `Ctrl+G` while typing a hashtag,
+Hashtag* command with substring matching via `Alt+G` while typing a hashtag,
 [#1514](https://github.com/stevencohn/OneMore/issues/1514)<span
 style='mso-spacerun:yes'>  </span></p>
 
@@ -150,6 +148,11 @@ Favorites* context menu to the Notebooks and Section Groups,
 [#1756](https://github.com/stevencohn/OneMore/issues/1756)<span
 style='mso-spacerun:yes'>  </span></p>
 
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Added two commands
+to add a page or a paragraph to Navigator's My Reading List,
+[#2482](https://github.com/stevencohn/OneMore/issues/2482)<span
+style='mso-spacerun:yes'>  </span></p>
+
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Added a basic
 search bar to the onemoreaddin.com site for local site-wide searches,
 [#2460](https://github.com/stevencohn/OneMore/issues/2460)<span
@@ -170,9 +173,35 @@ Titles* command with last modified time and most-recently used list,
 [#2470](https://github.com/stevencohn/OneMore/issues/2470)<span
 style='mso-spacerun:yes'>  </span></p>
 
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Updated *Search
+Titles* command to recognize `-#hashtag` as a way to exclude pages with that
+hashtag, [#2518](https://github.com/stevencohn/OneMore/issues/2518)<span
+style='mso-spacerun:yes'>  </span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Updated *Add
+Formula* and *Recalculate Formula* to show progress while saving pages,<span
+style='mso-spacerun:yes'> 
+</span>[#2514](https://github.com/stevencohn/OneMore/issues/2514)<span
+style='mso-spacerun:yes'>  </span></p>
+
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Updated Reminders
 to support cross-machine and small-team use, including assignees,
 [#1346](https://github.com/stevencohn/OneMore/issues/1346)<span
+style='mso-spacerun:yes'>  </span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Updated the
+Navigator to allow collapsing panels and quick-filtering results,
+[#2483](https://github.com/stevencohn/OneMore/issues/2483)<span
+style='mso-spacerun:yes'>  </span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Updated all ToC
+commands to show save progress for pages larger than 512KB,
+[#2516](https://github.com/stevencohn/OneMore/issues/2516)<span
+style='mso-spacerun:yes'>  </span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Updated the
+Keyboard Shortcuts setting sheet to include a filter to easily find the command
+to set, [#2492](https://github.com/stevencohn/OneMore/issues/2492)<span
 style='mso-spacerun:yes'>  </span></p>
 
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Updated the code
@@ -191,16 +220,26 @@ output to write 24-hour time to aid in tracking and diagnostics,
 [#2457](https://github.com/stevencohn/OneMore/issues/2457)<span
 style='mso-spacerun:yes'>  </span></p>
 
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Updated various
+dialogs to save their size on close, such as Search Titles, Favorites, and
+History, [#2508](https://github.com/stevencohn/OneMore/issues/2508)<span
+style='mso-spacerun:yes'>  </span></p>
+
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Enhanced
 mark-and-act commands to warn when the wrong text might be affected if open in
 multiple windows,
-[#2444](https://github.com/stevencohn/OneMore/issues/2444)<span
+[#2432](https://github.com/stevencohn/OneMore/issues/2432)<span
 style='mso-spacerun:yes'>  </span></p>
 
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Enhanced
 reliability and privacy, validating Update download, PlantUML service comms,
 and plugin execution,
 [#2432](https://github.com/stevencohn/OneMore/issues/2432)<span
+style='mso-spacerun:yes'>  </span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Fixed an issue
+where the Calendar app did not always follow DPI scaling preferences,
+[#2446](https://github.com/stevencohn/OneMore/issues/2446)<span
 style='mso-spacerun:yes'>  </span></p>
 
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Fixed an issue
@@ -220,6 +259,11 @@ where OneMore dialogs may not appear on second invocation,
 style='mso-spacerun:yes'>  </span></p>
 
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Fixed an issue
+where Navigator did not refresh properly, flickering, and slow to navigate to
+headings, [#2517](https://github.com/stevencohn/OneMore/issues/2517)<span
+style='mso-spacerun:yes'>  </span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Fixed an issue
 where any page update command could fail with a &quot;there is an active
 recording&quot; message,
 [#2416](https://github.com/stevencohn/OneMore/issues/2416)<span
@@ -229,6 +273,11 @@ style='mso-spacerun:yes'>  </span></p>
 where a notebook Table of Contents did not refresh for pages in an empty or
 Quick Notes section,
 [#2418](https://github.com/stevencohn/OneMore/issues/2418)<span
+style='mso-spacerun:yes'>  </span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Fixed an issue
+where a notebook ToC may log an exception (still investigating…)
+[#2519](https://github.com/stevencohn/OneMore/issues/2519)<span
 style='mso-spacerun:yes'>  </span></p>
 
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Fixed an issue
