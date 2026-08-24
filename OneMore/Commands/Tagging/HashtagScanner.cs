@@ -256,7 +256,8 @@ namespace River.OneMoreAddIn.Commands
 					if (accepted)
 					{
 						logger.Verbose(
-							$"scanning notebook {notebookID} \"{name}\", forceThru={forceThru}");
+							$"scanning notebook {notebookID} \"{name}\"" +
+							(forceThru ? " (forceThru)" : ""));
 
 						var dp = 0;
 
