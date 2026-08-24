@@ -150,6 +150,19 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
+		private void FormatHotkeyCell(object sender, DataGridViewCellFormattingEventArgs e)
+		{
+			if (e.ColumnIndex != keyColumn.Index || e.RowIndex < 0 || e.RowIndex >= defaultMap.Count)
+			{
+				return;
+			}
+
+			e.CellStyle.ForeColor = map[e.RowIndex].Hotkey.Equals(defaultMap[e.RowIndex].Hotkey)
+				? gridView.ForeColor
+				: UI.ThemeManager.Instance.GetColor("HintText");
+		}
+
+
 		private void AssignOnKeyDown(object sender, KeyEventArgs e)
 		{
 			// clear assignment (Back is explicit clear, None is implicit resolve)
