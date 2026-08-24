@@ -30,10 +30,11 @@ namespace River.OneMoreAddIn
 		private static readonly AsyncLocal<ILogger> mirror = new();
 		[ThreadStatic] private static bool mirrorGuard;
 
+		private static readonly AsyncLocal<string> preamble = new();
+
 		private readonly bool stdio;
 		private bool debug;
 		private bool verbose;
-		private string preamble;
 		private string timeBar;
 		private bool isNewline;
 		private bool isDisposed;
@@ -51,7 +52,6 @@ namespace River.OneMoreAddIn
 				Path.GetTempPath(),
 				designMode ? $"{appname}-design.log" : $"{appname}.log");
 
-			preamble = string.Empty;
 			timeBar = "|";
 			writer = null;
 			isNewline = true;
@@ -161,7 +161,7 @@ namespace River.OneMoreAddIn
 
 			File.Delete(LogPath);
 
-			preamble = string.Empty;
+			preamble.Value = string.Empty;
 			isNewline = true;
 
 			if (EnsureWriter())
@@ -228,7 +228,7 @@ namespace River.OneMoreAddIn
 
 		public void End()
 		{
-			preamble = string.Empty;
+			preamble.Value = string.Empty;
 			writeHeader = true;
 		}
 
@@ -284,7 +284,7 @@ namespace River.OneMoreAddIn
 				WriteLine(message);
 			}
 
-			preamble = "..";
+			preamble.Value = "..";
 		}
 
 
@@ -557,7 +557,7 @@ namespace River.OneMoreAddIn
 			{
 				return
 					$"{Thread.CurrentThread.ManagedThreadId:00}|" +
-					$"{DateTime.Now:HH:mm:ss.fff}{timeBar} {preamble}";
+					$"{DateTime.Now:HH:mm:ss.fff}{timeBar} {preamble.Value ?? string.Empty}";
 			}
 
 			return string.Empty;

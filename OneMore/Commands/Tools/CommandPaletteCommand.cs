@@ -49,6 +49,12 @@ namespace River.OneMoreAddIn.Commands
 			// command's dialog closes
 			guard.Dispose();
 
+			// likewise, close out our own logger block here rather than leaving it
+			// open for however long the chosen command takes to run; otherwise that
+			// command's own "Running command X" line inherits our stale ".." preamble
+			// even though, from here on, it's running as its own independent command
+			logger.End();
+
 			if (result == DialogResult.OK && index >= 0)
 			{
 				var command = isRecent
