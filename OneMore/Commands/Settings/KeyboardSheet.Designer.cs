@@ -69,6 +69,7 @@
 			this.gridView.Size = new System.Drawing.Size(780, 389);
 			this.gridView.TabIndex = 2;
 			this.gridView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AssignOnKeyDown);
+			this.gridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.FormatHotkeyCell);
 			// 
 			// cmdColumn
 			// 
