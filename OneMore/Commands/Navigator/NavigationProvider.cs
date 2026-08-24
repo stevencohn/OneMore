@@ -26,6 +26,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private readonly string path;
 		private readonly bool quickNotes;
+		private readonly int historyDepth;
 		private FileSystemWatcher watcher;
 		private EventHandler<HistoryLog> navigated;
 		private int watcherRefCount;
@@ -41,6 +42,7 @@ namespace River.OneMoreAddIn.Commands
 			var settings = new SettingsProvider();
 			var collection = settings.GetCollection("NavigatorSheet");
 			quickNotes = collection.Get("quickNotes", false);
+			historyDepth = collection.Get("depth", NavigationService.DefaultHistoryDepth);
 		}
 
 
@@ -219,6 +221,14 @@ namespace River.OneMoreAddIn.Commands
 				return false;
 			}
 
+			// resolve the page's current info via OneNote's COM interface *before*
+			// taking semalock. GetPageInfo round-trips to OneNote and can block for a
+			// long time if OneNote itself is busy (autosave, sync, continuous editing
+			// or dictation on the current page) - holding the shared semaphore across
+			// that call would stall every other reader/writer of Navigator.json,
+			// including HistoryMenu.LoadMenu's synchronous block on the ribbon thread
+			var resolved = await Resolve(pageID);
+
 			await semalock.WaitAsync();
 
 			try
@@ -226,44 +236,43 @@ namespace River.OneMoreAddIn.Commands
 				var log = await Read();
 
 				var updated = false;
+				HistoryRecord record = null;
 
-				HistoryRecord record;
 				var index = log.History.FindIndex(r => r.PageId == pageID);
 				if (index < 0)
 				{
-					record = await Resolve(pageID);
-					if (record != null)
+					if (resolved != null)
 					{
 						// tracking Quick Notes?
-						if (record.TitleId == null)
+						if (resolved.TitleId == null)
 						{
 							if (quickNotes)
 							{
-								record.Name = Resx.phrase_QuickNote;
-								log.History.Insert(0, record);
+								resolved.Name = Resx.phrase_QuickNote;
+								log.History.Insert(0, resolved);
+								record = resolved;
 								updated = true;
 							}
 						}
 						else
 						{
-							log.History.Insert(0, record);
+							log.History.Insert(0, resolved);
+							record = resolved;
 							updated = true;
 						}
 					}
 				}
-				else
+				else if (resolved != null)
 				{
 					record = log.History[index];
-					if (await UpdateTitle(record))
-					{
-						log.History.RemoveAt(index);
-						log.History.Insert(0, record);
-						updated = true;
-					}
+					record.Name = resolved.Name;
+					log.History.RemoveAt(index);
+					log.History.Insert(0, record);
+					updated = true;
 				}
 
 				// record might be null if page is still loading after previously
-				// clearing the notebook cache...
+				// clearing the notebook cache, or OneNote failed to resolve it...
 
 				if (updated && (record != null))
 				{
@@ -304,33 +313,6 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return null;
-		}
-
-
-		private async Task<bool> UpdateTitle(HistoryRecord record)
-		{
-			try
-			{
-				await using var one = new OneNote { FallThrough = true };
-				var page = await one.GetPage(record.PageId, OneNote.PageDetail.Basic);
-
-				if (page.TitleID != null)
-				{
-					record.Name = page.Title;
-				}
-
-				return true;
-			}
-			catch (System.Runtime.InteropServices.COMException exc)
-			{
-				logger.WriteLine($"navigator update title skipping broken or unloaded page {record.PageId}", exc);
-			}
-			catch (Exception exc)
-			{
-				logger.WriteLine($"navigator can't udpate title for page {record.PageId}", exc);
-			}
-
-			return false;
 		}
 
 
@@ -497,7 +479,17 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			return log ?? new HistoryLog();
+			log ??= new HistoryLog();
+
+			// a file that grew past the configured depth (e.g. before this trim
+			// existed, or edited by hand) would otherwise stay oversized forever;
+			// RecordHistory only trims on write, never on load
+			if (log.History.Count > historyDepth)
+			{
+				log.History.RemoveRange(historyDepth, log.History.Count - historyDepth);
+			}
+
+			return log;
 		}
 
 
@@ -517,11 +509,19 @@ namespace River.OneMoreAddIn.Commands
 					FileAccess.Write,
 					FileShare.ReadWrite);
 
-				// clear contents if writing less bytes than file contains
-				stream.SetLength(0);
-
+				// write the new content first, then truncate to its length; the
+				// reverse order (truncate-then-write, as this used to do via
+				// stream.SetLength(0) before writing) leaves a window where a
+				// concurrent reader - or a crash mid-write - can observe the file
+				// as empty. Writing first still isn't fully atomic against a crash,
+				// but it removes the specific always-invalid-empty-file failure
+				// mode, and unlike a temp-file-plus-rename swap it keeps this as a
+				// plain write to the existing file handle, which is what the
+				// FileSystemWatcher below (NotifyFilters.LastWrite) is set up to see
 				using var writer = new StreamWriter(stream);
 				await writer.WriteAsync(json);
+				await writer.FlushAsync();
+				stream.SetLength(stream.Position);
 			}
 			catch (Exception exc)
 			{
