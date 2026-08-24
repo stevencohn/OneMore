@@ -266,9 +266,14 @@ namespace River.OneMoreAddIn
 			{
 				if (m.Msg == Native.WM_HOTKEY)
 				{
-					// check if this is the main OneNote.exe thread and not a dllhost.exe thread
+					// accept the keypress if the foreground window belongs to OneNote or to
+					// this add-in's own dllhost.exe process; mirrors the same pid check in
+					// WinEventProc above, which keeps hotkeys registered while one of OneMore's
+					// own modeless popups (Navigator, Search, Command Palette, etc.) has focus -
+					// without this, those windows stayed "registered" but every keypress while
+					// they were focused was silently dropped right here
 					Native.GetWindowThreadProcessId(Native.GetForegroundWindow(), out var pid);
-					if (pid == oneNotePID)
+					if (pid == oneNotePID || pid == selfPID)
 					{
 						OnHotKeyPressed(new HotkeyEventArgs(m.LParam));
 					}
