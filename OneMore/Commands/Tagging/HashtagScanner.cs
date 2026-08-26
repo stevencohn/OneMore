@@ -41,6 +41,7 @@ namespace River.OneMoreAddIn.Commands
 		private const int MaxPagesThreshold = 100;
 
 		private readonly string lastTime;
+		private readonly string startTime;
 		private readonly HashtagPageSannerFactory factory;
 		private readonly SettingsCollection settings;
 		private readonly int throttle;
@@ -81,6 +82,8 @@ namespace River.OneMoreAddIn.Commands
 
 			lastTime = provider.ReadScanTime();
 			//logger.Verbose($"HashtagScanner lastTime {lastTime}");
+
+			startTime = DateTime.Now.ToZuluString();
 		}
 
 
@@ -301,7 +304,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			provider.WriteScanTime();
+			provider.WriteScanTime(startTime);
 
 			clock.Stop();
 			Stats.Time = clock.ElapsedMilliseconds;

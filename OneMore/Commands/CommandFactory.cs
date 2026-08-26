@@ -169,6 +169,13 @@ namespace River.OneMoreAddIn
 			var type = command.GetType();
 			logger.Start($"{note} command {type.Name}");
 
+			if (logger.IsVerbose)
+			{
+				var ws = System.Diagnostics.Process.GetCurrentProcess().WorkingSet64 / 1_048_576;
+				var heap = GC.GetTotalMemory(false) / 1_048_576;
+				logger.Verbose($"workingSet {ws}MB, managedHeap {heap}MB");
+			}
+
 			// CLI commands never show UI, so there's no owner window to discover; skip the
 			// throwaway OneNote() activation that exists solely to read OwnerWindow. This
 			// avoids unnecessary COM churn during batched CLI page operations.
