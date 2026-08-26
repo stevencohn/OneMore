@@ -44,20 +44,33 @@ namespace River.OneMoreAddIn.Commands
 		private readonly HashtagPageSannerFactory factory;
 		private readonly SettingsCollection settings;
 		private readonly int throttle;
+		private readonly bool ownsProvider;
 		private HashtagProvider provider;
 		private string[] notebookFilters;
 		private bool disposed;
 
 
 		/// <summary>
-		/// 
+		/// Initialize a new instance, creating and owning its own HashtagProvider
 		/// </summary>
-		public HashtagScanner()
+		public HashtagScanner() : this(new HashtagProvider())
+		{
+			ownsProvider = true;
+		}
+
+
+		/// <summary>
+		/// Initialize a new instance using the given HashtagProvider, whose lifetime remains
+		/// the responsibility of the caller (used by HashtagService to reuse one connection
+		/// across many scans instead of opening/closing one every cycle)
+		/// </summary>
+		/// <param name="provider">A provider owned and disposed by the caller</param>
+		public HashtagScanner(HashtagProvider provider)
 		{
 			settings = new SettingsProvider().GetCollection("HashtagSheet");
 			throttle = settings.Get("delay", DefaultThrottle);
 
-			provider = new HashtagProvider();
+			this.provider = provider;
 
 			factory = new HashtagPageSannerFactory(
 				GetStyleTemplate(),
@@ -125,7 +138,11 @@ namespace River.OneMoreAddIn.Commands
 			{
 				if (disposing)
 				{
-					provider.Dispose();
+					if (ownsProvider)
+					{
+						provider.Dispose();
+					}
+
 					provider = null;
 				}
 
@@ -531,7 +548,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			logger.WriteLine($"scanned {Stats.TotalPages} pages, " +
-				$"{Stats.KnownNotebooks}/{Stats.Notebooks} notebooks, " +
+				$"{Stats.Notebooks} notebooks ({Stats.KnownNotebooks} known), " +
 				$"{Stats.Sections} sections, updating {Stats.DirtyPages} pages, " +
 				$"saving {Stats.Tags} tags, in {Stats.Time}ms " +
 				$"(fetch {Stats.FetchTime}ms, throttle {Stats.ThrottleTime}ms)");
