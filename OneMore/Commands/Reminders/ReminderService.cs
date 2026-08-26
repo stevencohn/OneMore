@@ -22,7 +22,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public void Startup()
 		{
-			logger.WriteLine("starting reminder service");
+			logger.WriteLine("Startup: starting reminder service");
 
 			var thread = new Thread(async () =>
 			{

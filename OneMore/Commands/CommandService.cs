@@ -68,11 +68,11 @@ namespace River.OneMoreAddIn
 		{
 			if (string.IsNullOrEmpty(pipe))
 			{
-				logger.WriteLine("command service not started, missing pipe name");
+				logger.WriteLine("Startup: command service not started, missing pipe name");
 				return;
 			}
 
-			logger.WriteLine("starting command service");
+			logger.WriteLine("Startup: starting command service");
 
 			var thread = new Thread(async () =>
 			{

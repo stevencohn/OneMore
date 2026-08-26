@@ -54,11 +54,11 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (disabled)
 			{
-				logger.WriteLine("navigation service is disabled");
+				logger.WriteLine("Startup: navigation service is disabled");
 				return;
 			}
 
-			logger.WriteLine("starting navigation service");
+			logger.WriteLine("Startup: starting navigation service");
 
 			var thread = new Thread(async () =>
 			{

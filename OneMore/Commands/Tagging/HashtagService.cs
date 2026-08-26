@@ -82,14 +82,14 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (disabled)
 			{
-				logger.WriteLine("hashtag service is disabled");
+				logger.WriteLine("Startup: hashtag service is disabled");
 				return;
 			}
 
 			scheduler = new HashtagScheduler();
 
 			var state = scheduler.State == ScanningState.None ? "ready" : scheduler.State.ToString();
-			logger.WriteLine($"starting hashtag service, {state}");
+			logger.WriteLine($"Startup: starting hashtag service, {state}");
 
 			hour = DateTime.Now.Hour;
 
@@ -114,7 +114,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private void OnApplicationExit(object sender, EventArgs e)
 		{
-			logger.WriteLine("cancelling HashtagService on ApplicationExit");
+			logger.WriteLine("Shutdown: cancelling HashtagService on ApplicationExit");
 			serviceToken?.Cancel();
 		}
 
@@ -166,7 +166,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			CleanupToken();
-			logger.WriteLine("hashtag service has stopped");
+			logger.WriteLine("Shutdown: hashtag service has stopped");
 		}
 
 
@@ -203,7 +203,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					if (count % (Minute / WaitDelay) == 0) // every minute
 					{
-						logger.WriteLine($"hashtag service waiting, {scheduler.State}");
+						logger.WriteLine($"Startup: hashtag service waiting, {scheduler.State}");
 					}
 
 					await Task.Delay(delay, token);
@@ -217,7 +217,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (OperationCanceledException)
 			{
-				logger.Verbose("WaitForReady canceled");
+				logger.Verbose("HashtagService WaitForReady canceled");
 			}
 
 			return !token.IsCancellationRequested;

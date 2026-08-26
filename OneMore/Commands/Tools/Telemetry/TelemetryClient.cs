@@ -95,7 +95,7 @@ namespace River.OneMoreAddIn
 			await client.GetAsync($"https://{ApiRoot}/prod/ping");
 
 			logger.StopClock();
-			logger.WriteTime("telemetry warmup completed", after: true);
+			logger.WriteTime("Startup: telemetry warmup completed", after: true);
 		}
 
 
