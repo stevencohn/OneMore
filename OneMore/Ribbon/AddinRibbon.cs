@@ -49,7 +49,7 @@ namespace River.OneMoreAddIn
 		/// <returns>XML starting at the customUI root element</returns>
 		public string GetCustomUI(string RibbonID)
 		{
-			logger.WriteLine("building ribbon");
+			logger.WriteLine("Startup: building ribbon");
 
 			try
 			{
@@ -176,7 +176,7 @@ namespace River.OneMoreAddIn
 
 		private void AddColorizerCommands(XElement root, SettingsCollection settings)
 		{
-			logger.WriteLine("building ribbon colorizer commands");
+			logger.WriteLine("Startup: building ribbon colorizer commands");
 
 			try
 			{
@@ -210,7 +210,7 @@ namespace River.OneMoreAddIn
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error building colorize menu", exc);
+				logger.WriteLine("Startup: error building colorize menu", exc);
 			}
 		}
 
@@ -223,7 +223,7 @@ namespace River.OneMoreAddIn
 				return;
 			}
 
-			logger.WriteLine("building ribbon language proofing commands");
+			logger.WriteLine("Startup: building ribbon language proofing commands");
 
 			try
 			{
@@ -259,7 +259,7 @@ namespace River.OneMoreAddIn
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error building ribbon proofing menu", exc);
+				logger.WriteLine("Startup: error building ribbon proofing menu", exc);
 			}
 		}
 
@@ -287,7 +287,7 @@ namespace River.OneMoreAddIn
 			}
 
 
-			logger.WriteLine("building ribbon groups");
+			logger.WriteLine("Startup: building ribbon groups");
 
 			var group = root.Descendants(ns + "group")
 				.FirstOrDefault(e => e.Attribute("id")?.Value == "ribOneMoreGroup");
@@ -358,7 +358,7 @@ namespace River.OneMoreAddIn
 		private void AddContextMenuCommands(
 			SettingsCollection ccommands, XElement root, XElement menu)
 		{
-			logger.WriteLine("building context menu");
+			logger.WriteLine("Startup: building context menu");
 
 			var keysRoot = ccommands.Get<XElement>("items");
 			if (keysRoot == null)
@@ -476,7 +476,7 @@ namespace River.OneMoreAddIn
 		private void AddContextMenuSearchers(
 			SettingsCollection ccommands, XElement menu)
 		{
-			logger.WriteLine("building context menu search engines");
+			logger.WriteLine("Startup: building context menu search engines");
 
 			engines = ccommands.Get<XElement>("engines");
 

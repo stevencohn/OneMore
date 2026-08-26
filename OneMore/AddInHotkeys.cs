@@ -48,7 +48,7 @@ namespace River.OneMoreAddIn
 
 			if (!methods.Any())
 			{
-				logger.WriteLine("no hotkey definitions found");
+				logger.WriteLine("Startup: no hotkey definitions found");
 				await Task.Yield();
 				return;
 			}
@@ -112,7 +112,7 @@ namespace River.OneMoreAddIn
 				}
 			});
 
-			logger.WriteLine($"defined {count} hotkeys for input locale {locale}");
+			logger.WriteLine($"Startup: defined {count} hotkeys for input locale {locale}");
 		}
 	}
 }

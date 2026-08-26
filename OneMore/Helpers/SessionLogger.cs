@@ -33,15 +33,14 @@ namespace River.OneMoreAddIn.Helpers
 			var arc = GetAssemblyArchitecture(new Uri(codebase).LocalPath);
 
 			logger.WriteLine();
-			using (logger.Indent(
+			logger.WriteLine(
 				$"Starting {process.ProcessName} {process.Id}, {cpu} Mhz, {uram}, " +
 				$"{thread.CurrentCulture.Name}/{thread.CurrentUICulture.Name}, " +
 				$"v{AssemblyInfo.Version}{AssemblyInfo.BuildTag} {arc}, " +
 				$"{DateTime.Now.ToString("yyyy-MM-dd HH:mm")} " +
-				$"[{TelemetryClient.Template.SessionId}]"))
-			{
-				logger.WriteLine(DescribeProducts());
-			}
+				$"[{TelemetryClient.Template.SessionId}]");
+
+			logger.WriteLine(DescribeProducts());
 		}
 
 

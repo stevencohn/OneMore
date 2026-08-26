@@ -237,21 +237,21 @@ namespace River.OneMoreAddIn
 			// from shutting down. Instead, use our ApplicationManager only as needed.
 
 			var cude = DescribeCustom(custom);
-			logger.WriteLine($"OnConnection(ConnectionMode:{ConnectMode},custom[{cude}])");
+			logger.WriteLine($"Startup: OnConnection(ConnectionMode:{ConnectMode},custom[{cude}])");
 		}
 
 
 		public void OnAddInsUpdate(ref Array custom)
 		{
 			var cude = DescribeCustom(custom);
-			logger.WriteLine($"OneAddInsUpdate(custom[{cude}])");
+			logger.WriteLine($"Startup: OneAddInsUpdate(custom[{cude}])");
 		}
 
 
 		public void OnStartupComplete(ref Array custom)
 		{
 			var cude = DescribeCustom(custom);
-			logger.WriteLine($"OnStartupComplete(custom[{cude}])");
+			logger.WriteLine($"Startup: OnStartupComplete(custom[{cude}])");
 
 			try
 			{
@@ -286,7 +286,7 @@ namespace River.OneMoreAddIn
 						await TelemetryClient.Warmup();
 					}
 
-					logger.WriteLine($"ready");
+					logger.WriteLine($"Startup: ready");
 				});
 			}
 			catch (Exception exc)
@@ -294,8 +294,6 @@ namespace River.OneMoreAddIn
 				Logger.Current.WriteLine("error starting add-on", exc);
 				UI.MoreMessageBox.ShowError(null, Properties.Resources.StartupFailureMessage);
 			}
-
-			logger.End();
 		}
 
 
@@ -331,7 +329,7 @@ namespace River.OneMoreAddIn
 			}
 
 			Telemetry = settings.Get("telemetry", false);
-			logger.WriteLine("telemetry is " + (Telemetry ? "enabled" : "disabled"));
+			logger.WriteLine("Startup: telemetry is " + (Telemetry ? "enabled" : "disabled"));
 		}
 
 
@@ -345,11 +343,11 @@ namespace River.OneMoreAddIn
 		public void OnBeginShutdown(ref Array custom)
 		{
 			var cude = DescribeCustom(custom);
-			using var indent = logger.Indent($"OnBeginShutdown(custom[{cude}])");
+			logger.WriteLine($"Shutdown: OnBeginShutdown(custom[{cude}])");
 
 			try
 			{
-				logger.WriteLine("shutting down UI");
+				logger.WriteLine("Shutdown: shutting down UI");
 
 				HotkeyManager.Unregister();
 
@@ -357,7 +355,7 @@ namespace River.OneMoreAddIn
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error shutting down UI", exc);
+				logger.WriteLine("Shutdown: error shutting down UI", exc);
 			}
 		}
 
@@ -365,7 +363,7 @@ namespace River.OneMoreAddIn
 		public void OnDisconnection(ext_DisconnectMode RemoveMode, ref Array custom)
 		{
 			var cude = DescribeCustom(custom);
-			logger.WriteLine($"OnDisconnection(RemoveMode:{RemoveMode},custom:[{cude}])");
+			logger.WriteLine($"Shutdown: OnDisconnection(RemoveMode:{RemoveMode},custom:[{cude}])");
 
 			AppDomain.CurrentDomain.AssemblyResolve -= CustomAssemblyResolve;
 			AppDomain.CurrentDomain.UnhandledException -= CatchUnhandledException;
@@ -374,7 +372,7 @@ namespace River.OneMoreAddIn
 			{
 				if (trash.Count > 0)
 				{
-					logger.WriteLine($"disposing {trash.Count} streams");
+					logger.WriteLine($"Shutdown: disposing {trash.Count} streams");
 
 					foreach (var item in trash)
 					{
@@ -384,10 +382,10 @@ namespace River.OneMoreAddIn
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine("error disconnecting", exc);
+				logger.WriteLine("Shutdown: error disconnecting", exc);
 			}
 
-			logger.WriteLine("closing log");
+			logger.WriteLine("Shutdown: closing log");
 			logger.Dispose();
 			logger = null;
 
