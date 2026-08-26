@@ -20,8 +20,6 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private const int ScannerID = 0;
 
-		private readonly string timestamp;
-
 
 		/// <summary>
 		/// Initialize this provider, opening the standard database
@@ -37,8 +35,6 @@ namespace River.OneMoreAddIn.Commands
 			{
 				RefreshDataSchema("hashtag", Resources.HashtagsDB);
 			}
-
-			timestamp = DateTime.Now.ToZuluString();
 		}
 
 
@@ -987,10 +983,12 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
-		/// Records the timestamp value that was initialized at construction of this class
-		/// instance
+		/// Records the given timestamp as the time of the most recently completed scan
 		/// </summary>
-		public void WriteScanTime()
+		/// <param name="timestamp">
+		/// The Zulu-formatted timestamp captured at the start of the scan cycle
+		/// </param>
+		public void WriteScanTime(string timestamp)
 		{
 			using var cmd = con.CreateCommand();
 			cmd.CommandText = "UPDATE hashtag_scanner SET scanTime = @d WHERE scannerID = 0";
