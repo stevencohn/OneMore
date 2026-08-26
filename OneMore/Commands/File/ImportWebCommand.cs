@@ -119,7 +119,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task ImportImages(ProgressDialog progress, CancellationToken token)
 		{
-			logger.Start();
+			using var indent = logger.Indent();
 			logger.StartClock();
 
 			progress.SetMaximum(4);
@@ -228,7 +228,6 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			logger.WriteTime("import complete");
-			logger.End();
 		}
 
 		private static async Task<Page> CreatePage(OneNote one, Page parent, string title)

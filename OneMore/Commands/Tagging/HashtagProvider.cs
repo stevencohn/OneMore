@@ -104,7 +104,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var version = 2;
 			logger.WriteLine($"upgrading hashtag catalog to version {version}");
-			logger.Start();
+			using var indent = logger.Indent();
 
 			using var cmd = con.CreateCommand();
 			using var transaction = con.BeginTransaction();
@@ -121,7 +121,6 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.End();
 				logger.WriteLine("error creating view hashtag_hashtags", exc);
 				return 0;
 			}
@@ -137,12 +136,10 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.End();
 				logger.WriteLine($"error committing changes for version {version}", exc);
 				return 0;
 			}
 
-			logger.End();
 			return version;
 		}
 
@@ -151,7 +148,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var version = 3;
 			logger.WriteLine($"upgrading hashtag catalog to version {version}");
-			logger.Start();
+			using var indent = logger.Indent();
 
 			using var cmd = con.CreateCommand();
 			using var transaction = con.BeginTransaction();
@@ -168,7 +165,6 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.End();
 				logger.WriteLine("error creating table hashtag_notebook", exc);
 				return 0;
 			}
@@ -184,12 +180,10 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.End();
 				logger.WriteLine($"error committing changes for version {version}", exc);
 				return 0;
 			}
 
-			logger.End();
 			return version;
 		}
 
@@ -198,7 +192,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			int version = 4;
 			logger.WriteLine($"upgrading hashtag catalog to version {version}");
-			logger.Start();
+			using var indent = logger.Indent();
 
 			using var cmd = con.CreateCommand();
 			cmd.CommandType = CommandType.Text;
@@ -229,7 +223,6 @@ namespace River.OneMoreAddIn.Commands
 			catch (Exception exc)
 			{
 				transaction.Rollback();
-				logger.End();
 				logger.WriteLine("error updating table hashtag_notebook", exc);
 				return 0;
 			}
@@ -285,7 +278,6 @@ namespace River.OneMoreAddIn.Commands
 			catch (Exception exc)
 			{
 				transaction.Rollback();
-				logger.End();
 				logger.WriteLine("error updating table hashtag", exc);
 				return 0;
 			}
@@ -301,12 +293,10 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.End();
 				logger.WriteLine($"error committing changes for version {version}", exc);
 				return 0;
 			}
 
-			logger.End();
 			return version;
 		}
 
@@ -315,7 +305,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			int version = 5;
 			logger.WriteLine($"upgrading hashtag catalog to version {version}");
-			logger.Start();
+			using var indent = logger.Indent();
 
 			using var cmd = con.CreateCommand();
 			cmd.CommandType = CommandType.Text;
@@ -335,7 +325,6 @@ namespace River.OneMoreAddIn.Commands
 			catch (Exception exc)
 			{
 				transaction.Rollback();
-				logger.End();
 				logger.WriteLine("error updating table hashtag_notebook", exc);
 				return 0;
 			}
@@ -351,12 +340,10 @@ namespace River.OneMoreAddIn.Commands
 			}
 			catch (Exception exc)
 			{
-				logger.End();
 				logger.WriteLine($"error committing changes for version {version}", exc);
 				return 0;
 			}
 
-			logger.End();
 			return version;
 		}
 

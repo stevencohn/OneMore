@@ -76,7 +76,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		{
 			var version = 2;
 			logger.WriteLine($"upgrading favorites catalog to version {version}");
-			logger.Start();
+			using var indent = logger.Indent();
 
 			using var cmd = con.CreateCommand();
 			cmd.CommandType = CommandType.Text;
@@ -97,7 +97,6 @@ namespace River.OneMoreAddIn.Commands.Favorites
 			catch (Exception exc)
 			{
 				transaction.Rollback();
-				logger.End();
 				logger.WriteLine("error upgrading favorites catalog to version 2", exc);
 				return 1;
 			}
@@ -113,12 +112,10 @@ namespace River.OneMoreAddIn.Commands.Favorites
 			}
 			catch (Exception exc)
 			{
-				logger.End();
 				logger.WriteLine($"error committing changes for version {version}", exc);
 				return 1;
 			}
 
-			logger.End();
 			return version;
 		}
 

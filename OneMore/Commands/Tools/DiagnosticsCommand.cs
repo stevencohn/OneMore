@@ -65,7 +65,7 @@ namespace River.OneMoreAddIn.Commands
 				log = logger;
 			}
 
-			log.StartDiagnostic();
+			using var diag = log.Diagnostic();
 
 			if (runningFromCli)
 			{
@@ -191,9 +191,6 @@ namespace River.OneMoreAddIn.Commands
 				using var dialog = new DiagnosticsDialog(logger.LogPath);
 				dialog.ShowDialog(owner);
 			}
-
-			// turn headers back on
-			log.End();
 
 			if (runningFromCli)
 			{

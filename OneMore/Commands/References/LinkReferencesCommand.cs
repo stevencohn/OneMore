@@ -159,7 +159,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task Scan(UI.ProgressDialog progress, CancellationToken token)
 		{
-			logger.Start();
+			using var indent = logger.Indent();
 			logger.StartClock();
 
 			referrals = new List<Referral>();
@@ -228,7 +228,6 @@ namespace River.OneMoreAddIn.Commands
 			finally
 			{
 				logger.WriteTime("manual linking complete");
-				logger.End();
 			}
 		}
 

@@ -345,7 +345,7 @@ namespace River.OneMoreAddIn
 		public void OnBeginShutdown(ref Array custom)
 		{
 			var cude = DescribeCustom(custom);
-			logger.Start($"OnBeginShutdown(custom[{cude}])");
+			using var indent = logger.Indent($"OnBeginShutdown(custom[{cude}])");
 
 			try
 			{

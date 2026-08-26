@@ -94,7 +94,7 @@ namespace River.OneMoreAddIn.Commands
 		// Invoked by the ProgressDialog OnShown callback
 		private async Task Execute(ProgressDialog progress, CancellationToken token)
 		{
-			logger.Start();
+			using var indent = logger.Indent();
 			logger.StartClock();
 
 			var scope = GetOneNoteScope();
@@ -128,7 +128,6 @@ namespace River.OneMoreAddIn.Commands
 			progress.Close();
 
 			logger.WriteTime("check complete");
-			logger.End();
 		}
 
 

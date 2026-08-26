@@ -48,7 +48,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			logger.Start($"..target folder {targetId}");
+			using var indent = logger.Indent($"..target folder {targetId}");
 
 			try
 			{
@@ -159,10 +159,6 @@ namespace River.OneMoreAddIn.Commands
 			catch (Exception exc)
 			{
 				logger.WriteLine(exc);
-			}
-			finally
-			{
-				logger.End();
 			}
 		}
 

@@ -167,7 +167,7 @@ namespace River.OneMoreAddIn
 		private async Task Run(string note, Command command, params object[] args)
 		{
 			var type = command.GetType();
-			logger.Start($"{note} command {type.Name}");
+			using var indent = logger.Indent($"{note} command {type.Name}");
 
 			if (logger.IsVerbose)
 			{
@@ -230,8 +230,6 @@ namespace River.OneMoreAddIn
 					try { await telemetryTask; }
 					catch (Exception tex) { logger.WriteLine($"telemetry error: {tex.Message}"); }
 				}
-
-				logger.End();
 			}
 			catch (OperationCanceledException)
 			{
