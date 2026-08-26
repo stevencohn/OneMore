@@ -33,6 +33,7 @@ namespace River.OneMoreAddIn
 		private static readonly AsyncLocal<string> preamble = new();
 
 		private readonly bool stdio;
+		private readonly object writeLock = new();
 		private bool debug;
 		private bool verbose;
 		private string timeBar;
@@ -277,7 +278,7 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public void Start(string message = null)
+		public IDisposable Indent(string message = null)
 		{
 			if (message is not null)
 			{
@@ -285,6 +286,27 @@ namespace River.OneMoreAddIn
 			}
 
 			preamble.Value = "..";
+			return new EndScope(this);
+		}
+
+
+		/// <summary>
+		/// Closes the scope opened by Indent() or Diagnostic() when disposed, guaranteeing
+		/// End() runs on every exit path (normal return, early return, or exception).
+		/// </summary>
+		private sealed class EndScope : IDisposable
+		{
+			private readonly ILogger logger;
+
+			public EndScope(ILogger logger)
+			{
+				this.logger = logger;
+			}
+
+			public void Dispose()
+			{
+				logger.End();
+			}
 		}
 
 
@@ -303,9 +325,10 @@ namespace River.OneMoreAddIn
 		}
 
 
-		public void StartDiagnostic()
+		public IDisposable Diagnostic()
 		{
 			writeHeader = false;
+			return new EndScope(this);
 		}
 
 
@@ -361,34 +384,40 @@ namespace River.OneMoreAddIn
 
 		public virtual void Write(string message)
 		{
-			if (EnsureWriter())
+			lock (writeLock)
 			{
-				if (isNewline && writeHeader)
+				if (EnsureWriter())
 				{
-					writer.Write(MakeHeader());
+					if (isNewline && writeHeader)
+					{
+						writer.Write(MakeHeader());
+					}
+
+					if (stdio)
+						Console.Write(message);
+					else
+						writer.Write(message);
+
+					isNewline = false;
 				}
-
-				if (stdio)
-					Console.Write(message);
-				else
-					writer.Write(message);
-
-				isNewline = false;
 			}
 		}
 
 
 		public virtual void WriteLine()
 		{
-			if (EnsureWriter())
+			lock (writeLock)
 			{
-				if (stdio)
+				if (EnsureWriter())
 				{
-					Console.WriteLine();
-				}
-				else
-				{
-					writer.WriteLine();
+					if (stdio)
+					{
+						Console.WriteLine();
+					}
+					else
+					{
+						writer.WriteLine();
+					}
 				}
 			}
 		}
@@ -396,100 +425,115 @@ namespace River.OneMoreAddIn
 
 		public virtual void WriteLine(string message)
 		{
-			if (EnsureWriter())
+			lock (writeLock)
 			{
-				if (isNewline && writeHeader)
+				if (EnsureWriter())
 				{
-					writer.Write(MakeHeader());
-				}
+					if (isNewline && writeHeader)
+					{
+						writer.Write(MakeHeader());
+					}
 
-				if (stdio)
-				{
-					Console.WriteLine(message);
-				}
-				else
-				{
-					writer.WriteLine(message);
-					writer.Flush();
-				}
+					if (stdio)
+					{
+						Console.WriteLine(message);
+					}
+					else
+					{
+						writer.WriteLine(message);
+						writer.Flush();
+					}
 
-				isNewline = true;
+					isNewline = true;
+				}
 			}
 		}
 
 
 		public virtual void WriteLine(Exception exc)
 		{
-			if (EnsureWriter())
+			lock (writeLock)
 			{
-				if (isNewline && writeHeader)
+				if (EnsureWriter())
 				{
-					writer.Write(MakeHeader());
+					if (isNewline && writeHeader)
+					{
+						writer.Write(MakeHeader());
+					}
+
+					if (stdio)
+					{
+						Console.WriteLine(exc.FormatDetails());
+					}
+					else
+					{
+						writer.WriteLine(exc.FormatDetails());
+						writer.Flush();
+					}
+
+					isNewline = true;
 				}
 
-				if (stdio)
+				if (!mirrorGuard)
 				{
-					Console.WriteLine(exc.FormatDetails());
+					mirrorGuard = true;
+					try { mirror.Value?.WriteLine(exc); }
+					finally { mirrorGuard = false; }
 				}
-				else
-				{
-					writer.WriteLine(exc.FormatDetails());
-					writer.Flush();
-				}
-
-				isNewline = true;
-			}
-
-			if (!mirrorGuard)
-			{
-				mirrorGuard = true;
-				try { mirror.Value?.WriteLine(exc); }
-				finally { mirrorGuard = false; }
 			}
 		}
 
 
 		public void WriteLine(string message, Exception exc)
 		{
-			WriteLine(message);
-
-			var wh = writeHeader;
-			writeHeader = false;
-			mirrorGuard = true;    // suppress mirror inside the composed call below
-			WriteLine(exc);        // file only
-			mirrorGuard = false;
-			writeHeader = wh;
-
-			var m = mirror.Value;
-			if (m != null)
+			lock (writeLock)
 			{
-				m.WriteLine(message);
-				m.WriteLine(exc);
+				WriteLine(message);
+
+				var wh = writeHeader;
+				writeHeader = false;
+				mirrorGuard = true;    // suppress mirror inside the composed call below
+				WriteLine(exc);        // file only
+				mirrorGuard = false;
+				writeHeader = wh;
+
+				var m = mirror.Value;
+				if (m != null)
+				{
+					m.WriteLine(message);
+					m.WriteLine(exc);
+				}
 			}
 		}
 
 
 		public void WriteLine(string message, XElement element)
 		{
-			WriteLine(message);
+			lock (writeLock)
+			{
+				WriteLine(message);
 
-			var wh = writeHeader;
-			writeHeader = false;
+				var wh = writeHeader;
+				writeHeader = false;
 
-			WriteLine(element);
+				WriteLine(element);
 
-			writeHeader = wh;
+				writeHeader = wh;
+			}
 		}
 
 
 		public void WriteLine(XElement element)
 		{
-			var wh = writeHeader;
-			writeHeader = false;
+			lock (writeLock)
+			{
+				var wh = writeHeader;
+				writeHeader = false;
 
-			WriteLine(element.ToString());
+				WriteLine(element.ToString());
 
-			writeHeader = wh;
+				writeHeader = wh;
+			}
 		}
 
 

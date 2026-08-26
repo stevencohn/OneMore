@@ -66,7 +66,7 @@ namespace River.OneMoreAddIn.Commands
 
 			var progress = new UI.ProgressDialog(async (self, token) =>
 			{
-				logger.Start();
+				using var indent = logger.Indent();
 				logger.StartClock();
 
 				var sectionId = one.CurrentSectionId;
@@ -115,7 +115,6 @@ namespace River.OneMoreAddIn.Commands
 				}
 
 				logger.WriteTime("create pages complete");
-				logger.End();
 			});
 
 			progress.RunModeless();

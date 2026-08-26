@@ -177,7 +177,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			logger.Start($"..{command} {selectedPages.Count()} pages");
+			using var indent = logger.Indent($"..{command} {selectedPages.Count()} pages");
 
 			try
 			{
@@ -204,10 +204,6 @@ namespace River.OneMoreAddIn.Commands
 			catch (Exception exc)
 			{
 				logger.WriteLine(exc);
-			}
-			finally
-			{
-				logger.End();
 			}
 		}
 

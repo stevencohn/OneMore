@@ -69,17 +69,21 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Ends the current log section; clears the preamble
+		/// Ends the current log section; clears the preamble. Normally unnecessary since
+		/// the IDisposable returned by Indent()/Diagnostic() calls this automatically, but
+		/// remains available for a callee that needs to close an ancestor's still-open
+		/// scope early.
 		/// </summary>
 		void End();
 
 
 		/// <summary>
-		/// Writes a new message line and begins a section that will be
-		/// prefaced with a ".." preamble to indent related log entries
+		/// Writes a new message line and begins a section that will be prefaced with a
+		/// ".." preamble to indent related log entries, until the returned IDisposable
+		/// is disposed
 		/// </summary>
 		/// <param name="message"></param>
-		void Start(string message = null);
+		IDisposable Indent(string message = null);
 
 
 		/// <summary>
@@ -95,9 +99,10 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
-		/// Starts a diagnostics section without headers; end with Stop()
+		/// Begins a diagnostics section without headers, until the returned IDisposable
+		/// is disposed
 		/// </summary>
-		void StartDiagnostic();
+		IDisposable Diagnostic();
 
 
 		/// <summary>

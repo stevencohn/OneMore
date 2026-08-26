@@ -257,7 +257,7 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
-				logger.Start();
+				using var indent = logger.Indent();
 				logger.StartClock();
 
 				archivist = new Archivist(one, zipPath);
@@ -303,7 +303,6 @@ namespace River.OneMoreAddIn.Commands
 				}
 
 				logger.WriteTime("archive complete");
-				logger.End();
 			}
 		}
 
@@ -313,7 +312,7 @@ namespace River.OneMoreAddIn.Commands
 		// Invoked by the ProgressDialog OnShown callback
 		private async Task Execute(ProgressDialog progress, CancellationToken token)
 		{
-			logger.Start();
+			using var indent = logger.Indent();
 			logger.StartClock();
 
 			archivist = new Archivist(one, zipPath);
@@ -357,7 +356,6 @@ namespace River.OneMoreAddIn.Commands
 			progress.Close();
 
 			logger.WriteTime("archive complete");
-			logger.End();
 		}
 
 

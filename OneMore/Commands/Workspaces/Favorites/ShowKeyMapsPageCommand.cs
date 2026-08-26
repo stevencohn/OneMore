@@ -89,7 +89,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task<string> DownloadTemplate()
 		{
-			logger.Start();
+			using var indent = logger.Indent();
 			logger.WriteLine("downloading template");
 
 			var client = HttpClientFactory.Create();
@@ -122,7 +122,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private Page ExtractTemplate(string path)
 		{
-			logger.Start();
+			using var indent = logger.Indent();
 			logger.WriteLine($"extracting {path}");
 
 			try
@@ -146,7 +146,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			try
 			{
-				logger.Start();
+				using var indent = logger.Indent();
 				logger.WriteLine("importing template");
 				one.CreatePage(one.CurrentSectionId, out var pageId);
 

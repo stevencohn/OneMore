@@ -130,7 +130,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			logger.Start("..indexing title search results");
+			using var indent = logger.Indent("..indexing title search results");
 
 			try
 			{
@@ -139,10 +139,6 @@ namespace River.OneMoreAddIn.Commands
 			catch (Exception exc)
 			{
 				logger.WriteLine(exc);
-			}
-			finally
-			{
-				logger.End();
 			}
 		}
 
