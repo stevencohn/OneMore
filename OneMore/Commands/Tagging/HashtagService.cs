@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Settings;
 	using System;
+	using System.Diagnostics;
 	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
@@ -33,6 +34,7 @@ namespace River.OneMoreAddIn.Commands
 		protected ThreadPriority threadPriority;
 		protected CancellationTokenSource serviceToken;
 
+		private HashtagProvider provider;
 		private int scanCount;
 		private long scanTime;
 		protected int hour;
@@ -173,6 +175,9 @@ namespace River.OneMoreAddIn.Commands
 			Application.ApplicationExit -= OnApplicationExit;
 			serviceToken?.Dispose();
 			serviceToken = null;
+
+			provider?.Dispose();
+			provider = null;
 		}
 
 
@@ -230,7 +235,9 @@ namespace River.OneMoreAddIn.Commands
 
 			try
 			{
-				using var scanner = new HashtagScanner();
+				provider ??= new HashtagProvider();
+
+				using var scanner = new HashtagScanner(provider);
 
 				if (notebookFilters is not null && notebookFilters.Length > 0)
 				{
@@ -250,7 +257,10 @@ namespace River.OneMoreAddIn.Commands
 
 				if (hour != DateTime.Now.Hour)
 				{
-					logger.WriteLine($"hashtag service scanned {scanCount} times in the last hour, averaging {avg}ms");
+					var ws = Process.GetCurrentProcess().WorkingSet64 / 1_048_576;
+					var heap = GC.GetTotalMemory(false) / 1_048_576;
+					logger.WriteLine($"hashtag service scanned {scanCount} times in the last hour, " +
+						$"averaging {avg}ms, workingSet {ws}MB, managedHeap {heap}MB");
 					hour = DateTime.Now.Hour;
 					scanCount = 0;
 					scanTime = 0;
