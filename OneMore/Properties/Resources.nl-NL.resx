@@ -177,6 +177,14 @@
     <value>Er is een fout opgetreden bij het toevoegen van de nieuwe sectiegroep. Zie het logboek voor details.</value>
     <comment>error message</comment>
   </data>
+  <data name="AddTopSectionGroupCommand_Saving" xml:space="preserve">
+    <value>Sectiegroep opslaan...</value>
+    <comment>progress message</comment>
+  </data>
+  <data name="AddTopSectionGroupDialog_Text" xml:space="preserve">
+    <value>Sectiegroep op het hoogste niveau toevoegen</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="AdjustImagesDialog.Text" xml:space="preserve">
     <value>De grootte van het formaat wijzigen en aanpassen</value>
     <comment>dialog title</comment>
@@ -2598,10 +2606,6 @@ Wilt u de bestaande pagina vernieuwen?</value>
     <value>Selecteer twee of meer lijnen om mee te doen</value>
     <comment>info message</comment>
   </data>
-  <data name="KeyboardSheet_filterLabel.Text" xml:space="preserve">
-    <value>Filter:</value>
-    <comment>label</comment>
-  </data>
   <data name="KeyboardSheet_introBox.Text" xml:space="preserve">
     <value>Beheer mijn aangepaste sneltoetsen. Selecteer een opdracht en druk op een sleutelreeks.</value>
     <comment>label</comment>
@@ -3880,7 +3884,7 @@ Selecteer NO om één lege regel tussen paragrafen te behouden</value>
     <comment>ribbon search</comment>
   </data>
   <data name="ribAddTopSectionGroupButton_Label" xml:space="preserve">
-    <value>Voeg bovenste sectiegroep toe</value>
+    <value>Sectiegroep op het hoogste niveau toevoegen</value>
     <comment>notebook context menu</comment>
   </data>
   <data name="ribAddTopSectionGroupButton_Screentip" xml:space="preserve">
@@ -6884,6 +6888,9 @@ Bedankt!</value>
   </data>
   <data name="word_Feeder" xml:space="preserve">
     <value>Voeder</value>
+  </data>
+  <data name="word_Filter" xml:space="preserve">
+    <value>Filter</value>
   </data>
   <data name="word_Find" xml:space="preserve">
     <value>Vinden</value>

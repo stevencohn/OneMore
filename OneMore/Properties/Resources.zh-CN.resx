@@ -180,6 +180,14 @@
     <value>添加新分区组时出错。详细信息请参阅日志。</value>
     <comment>error message</comment>
   </data>
+  <data name="AddTopSectionGroupCommand_Saving" xml:space="preserve">
+    <value>正在保存分区组...</value>
+    <comment>progress message</comment>
+  </data>
+  <data name="AddTopSectionGroupDialog_Text" xml:space="preserve">
+    <value>添加顶级分区组</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="AdjustImagesDialog.Text" xml:space="preserve">
     <value>图像大小与样式调整</value>
     <comment>dialog title</comment>
@@ -2604,10 +2612,6 @@ OneNote 文件 (*.one)</value>
     <value>选择两条或多条线加入</value>
     <comment>info message</comment>
   </data>
-  <data name="KeyboardSheet_filterLabel.Text" xml:space="preserve">
-    <value>筛选：</value>
-    <comment>label</comment>
-  </data>
   <data name="KeyboardSheet_introBox.Text" xml:space="preserve">
     <value>自定义键盘快捷键。选中一个命令，然后输入快捷键。</value>
     <comment>label</comment>
@@ -3894,7 +3898,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon search</comment>
   </data>
   <data name="ribAddTopSectionGroupButton_Label" xml:space="preserve">
-    <value>添加顶部部分组</value>
+    <value>添加顶级分区组</value>
     <comment>notebook context menu</comment>
   </data>
   <data name="ribAddTopSectionGroupButton_Screentip" xml:space="preserve">
@@ -6902,6 +6906,9 @@ Code——代码块段落
   </data>
   <data name="word_Feeder" xml:space="preserve">
     <value>供纸器</value>
+  </data>
+  <data name="word_Filter" xml:space="preserve">
+    <value>筛选</value>
   </data>
   <data name="word_Find" xml:space="preserve">
     <value>查找</value>
