@@ -1,4 +1,4 @@
-﻿//************************************************************************************************
+//************************************************************************************************
 // Copyright © 2021 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
+	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
@@ -21,8 +22,9 @@ namespace River.OneMoreAddIn.Commands
 		private const string SectionName = "Section";
 		private const string SectionGroupName = "SectionGroup";
 
-		private UI.ProgressDialog progress;
 		private List<string> failures;
+		private int totalPages;
+		private string infoMessage;
 
 		public CopyFolderCommand()
 		{
@@ -50,9 +52,28 @@ namespace River.OneMoreAddIn.Commands
 
 			using var indent = logger.Indent($"..target folder {targetId}");
 
+			infoMessage = null;
+			failures = new List<string>();
+			totalPages = 0;
+
+			// this can take a minute or more for a large folder; run modeless so the copy
+			// happens on a background thread and doesn't block OneNote's own UI thread while
+			// OneNote is waiting for this QuickFiling OnDialogClosed callback to return
+			var progress = new UI.ProgressDialog(async (dialog, token) =>
+				await CopyFolder(targetId, dialog, token));
+
+			progress.RunModeless(ReportResult);
+
+			await Task.Yield();
+		}
+
+
+		private async Task CopyFolder(string targetId, UI.ProgressDialog dialog, CancellationToken token)
+		{
 			try
 			{
 				await using var one = new OneNote();
+
 				// user might choose a sectiongroup or a notebook; GetSection will get either
 				var target = await one.GetSection(targetId);
 				if (target is null)
@@ -72,11 +93,7 @@ namespace River.OneMoreAddIn.Commands
 				if (element is null)
 				{
 					logger.WriteLine("could not locate current page in notebook; cannot determine source folder");
-
-					UI.MoreMessageBox.Show(owner,
-						Resx.CopyFolderCommand_NoSourceFolder,
-						MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+					infoMessage = Resx.CopyFolderCommand_NoSourceFolder;
 					return;
 				}
 
@@ -84,22 +101,14 @@ namespace River.OneMoreAddIn.Commands
 				if (folder is null)
 				{
 					logger.WriteLine("error finding ancestor folder");
-
-					UI.MoreMessageBox.Show(owner,
-						Resx.CopyFolderCommand_NoSourceFolder,
-						MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+					infoMessage = Resx.CopyFolderCommand_NoSourceFolder;
 					return;
 				}
 
 				if (folder.DescendantsAndSelf().Any(e => e.Attribute("ID")?.Value == targetId))
 				{
 					logger.WriteLine("cannot copy a folder into itself or one of its children");
-
-					UI.MoreMessageBox.Show(owner,
-						Resx.CopyFolderCommand_InvalidTarget,
-						MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+					infoMessage = Resx.CopyFolderCommand_InvalidTarget;
 					return;
 				}
 
@@ -114,51 +123,69 @@ namespace River.OneMoreAddIn.Commands
 				target.Add(clone);
 				one.UpdateHierarchy(target);
 
-				// re-fetch target to find newly assigned ID values
+				// re-fetch target to find the newly copied folder and its assigned ID values;
+				// match by name rather than diffing IDs before/after UpdateHierarchy since
+				// OneNote may reassign IDs of more than just the new element on update, which
+				// can make an ID-diff pick the wrong element (or none at all)
 				var upTarget = await one.GetSection(targetId);
+				var folderName = folder.Attribute("name").Value;
 
-				var cloneID = upTarget.Elements()
-					.Where(e => !e.Attributes().Any(a => a.Name == "isRecycleBin"))
-					.Select(e => e.Attribute("ID").Value)
-					.Except(
-						target.Elements()
-							.Where(e => e.Attributes().Any(a => a.Name == "ID")
-								&& !e.Attributes().Any(a => a.Name == "isRecycleBin"))
-							.Select(e => e.Attribute("ID").Value)
-					).FirstOrDefault();
+				clone = upTarget.Elements()
+					.FirstOrDefault(e => e.Attribute("name")?.Value == folderName);
 
-				clone = upTarget.Elements().FirstOrDefault(e => e.Attribute("ID").Value == cloneID);
-
-				var total = folder.Descendants(ns + "Page").Count();
-				failures = new List<string>();
-
-				using (progress = new UI.ProgressDialog())
+				if (clone is null)
 				{
-					progress.SetMaximum(total);
-					progress.Show();
-
-					// now with a new SectionGroup with a valid ID, copy all pages into it
-					await CopyPages(folder, clone, one, ns);
+					logger.WriteLine($"could not locate newly copied folder '{folderName}' in target");
+					return;
 				}
 
-				if (failures.Count > 0)
-				{
-					const int maxListed = 20;
-					var listed = failures.Take(maxListed).ToList();
-					if (failures.Count > maxListed)
-					{
-						listed.Add(string.Format(Resx.CopyFolderCommand_AndMore, failures.Count - maxListed));
-					}
+				totalPages = folder.Descendants(ns + "Page").Count();
+				dialog.SetMaximum(totalPages);
 
-					UI.MoreMessageBox.Show(owner,
-						string.Format(Resx.CopyFolderCommand_PartialFailure, failures.Count, total) +
-						Environment.NewLine + Environment.NewLine + string.Join(Environment.NewLine, listed),
-						MessageBoxButtons.OK, MessageBoxIcon.Warning);
-				}
+				// now with a new SectionGroup with a valid ID, copy all pages into it
+				await CopyPages(folder, clone, one, ns, dialog, token);
 			}
 			catch (Exception exc)
 			{
 				logger.WriteLine(exc);
+			}
+			finally
+			{
+				dialog.Close();
+			}
+		}
+
+
+		// runs on the UI thread after the modeless progress dialog closes
+		private void ReportResult(object sender, EventArgs e)
+		{
+			if (sender is UI.ProgressDialog dialog)
+			{
+				// otherwise MoreMessageBox window could appear behind the progress dialog
+				dialog.Visible = false;
+			}
+
+			if (!string.IsNullOrEmpty(infoMessage))
+			{
+				UI.MoreMessageBox.Show(owner,
+					infoMessage, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+				return;
+			}
+
+			if (failures.Count > 0)
+			{
+				const int maxListed = 20;
+				var listed = failures.Take(maxListed).ToList();
+				if (failures.Count > maxListed)
+				{
+					listed.Add(string.Format(Resx.CopyFolderCommand_AndMore, failures.Count - maxListed));
+				}
+
+				UI.MoreMessageBox.Show(owner,
+					string.Format(Resx.CopyFolderCommand_PartialFailure, failures.Count, totalPages) +
+					Environment.NewLine + Environment.NewLine + string.Join(Environment.NewLine, listed),
+					MessageBoxButtons.OK, MessageBoxIcon.Warning);
 			}
 		}
 
@@ -193,15 +220,28 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task CopyPages(XElement root, XElement clone, OneNote one, XNamespace ns)
+		private async Task CopyPages(
+			XElement root, XElement clone, OneNote one, XNamespace ns,
+			UI.ProgressDialog dialog, CancellationToken token)
 		{
+			if (token.IsCancellationRequested)
+			{
+				return;
+			}
+
 			var cloneID = clone.Attribute("ID").Value;
 
 			foreach (var element in root.Elements(ns + "Page"))
 			{
+				if (token.IsCancellationRequested)
+				{
+					logger.WriteLine("..copy cancelled by user");
+					return;
+				}
+
 				// get the page to copy
 				var page = await one.GetPage(element.Attribute("ID").Value);
-				progress.SetMessage(page.Title);
+				dialog.SetMessage(page.Title);
 
 				// create a new page to get a new ID
 				one.CreatePage(cloneID, out var newPageId);
@@ -222,7 +262,12 @@ namespace River.OneMoreAddIn.Commands
 					failures.Add(page.Title);
 				}
 
-				progress.Increment();
+				dialog.Increment();
+			}
+
+			if (token.IsCancellationRequested)
+			{
+				return;
 			}
 
 			// recurse...
@@ -233,18 +278,28 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (var section in root.Elements(ns + SectionName))
 			{
+				if (token.IsCancellationRequested)
+				{
+					return;
+				}
+
 				var cloneSection = clone.Elements(ns + SectionName)
 					.FirstOrDefault(e => e.Attribute("name").Value == section.Attribute("name").Value);
 
-				await CopyPages(section, cloneSection, one, ns);
+				await CopyPages(section, cloneSection, one, ns, dialog, token);
 			}
 
 			foreach (var group in root.Elements(ns + SectionGroupName))
 			{
+				if (token.IsCancellationRequested)
+				{
+					return;
+				}
+
 				var cloneGroup = clone.Elements(ns + SectionGroupName)
 					.FirstOrDefault(e => e.Attribute("name").Value == group.Attribute("name").Value);
 
-				await CopyPages(group, cloneGroup, one, ns);
+				await CopyPages(group, cloneGroup, one, ns, dialog, token);
 			}
 		}
 	}
