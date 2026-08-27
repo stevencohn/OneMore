@@ -180,6 +180,14 @@
     <value>Une erreur s'est produite lors de l'ajout du nouveau groupe de sections. Voir le journal pour plus de détails.</value>
     <comment>error message</comment>
   </data>
+  <data name="AddTopSectionGroupCommand_Saving" xml:space="preserve">
+    <value>Sauvegarde du groupe de sections...</value>
+    <comment>progress message</comment>
+  </data>
+  <data name="AddTopSectionGroupDialog_Text" xml:space="preserve">
+    <value>Ajouter un groupe de sections de niveau supérieur</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="AdjustImagesDialog.Text" xml:space="preserve">
     <value>Redimensionner et ajuster l'image</value>
     <comment>dialog title</comment>
@@ -2601,10 +2609,6 @@ Voulez-vous actualiser la page existante ?</value>
     <value>Sélectionnez deux ou plusieurs lignes à joindre</value>
     <comment>info message</comment>
   </data>
-  <data name="KeyboardSheet_filterLabel.Text" xml:space="preserve">
-    <value>Filtre:</value>
-    <comment>label</comment>
-  </data>
   <data name="KeyboardSheet_introBox.Text" xml:space="preserve">
     <value>Gérez mes raccourcis clavier personnalisés. Sélectionnez une commande et appuyez sur une séquence de touches.</value>
     <comment>label</comment>
@@ -3891,7 +3895,7 @@ Sélectionnez Non pour conserver une ligne vide entre les paragraphes</value>
     <comment>ribbon search</comment>
   </data>
   <data name="ribAddTopSectionGroupButton_Label" xml:space="preserve">
-    <value>Ajouter un groupe de sections supérieures</value>
+    <value>Ajouter un groupe de sections de niveau supérieur</value>
     <comment>notebook context menu</comment>
   </data>
   <data name="ribAddTopSectionGroupButton_Screentip" xml:space="preserve">
@@ -6894,6 +6898,9 @@ Merci!</value>
   </data>
   <data name="word_Feeder" xml:space="preserve">
     <value>Mangeur</value>
+  </data>
+  <data name="word_Filter" xml:space="preserve">
+    <value>Filtre</value>
   </data>
   <data name="word_Find" xml:space="preserve">
     <value>Trouver</value>

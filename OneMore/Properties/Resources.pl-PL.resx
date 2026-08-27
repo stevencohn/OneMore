@@ -177,6 +177,14 @@
     <value>Wystąpił błąd podczas dodawania nowej grupy sekcji. Szczegóły znajdziesz w logu.</value>
     <comment>error message</comment>
   </data>
+  <data name="AddTopSectionGroupCommand_Saving" xml:space="preserve">
+    <value>Zapisywanie grupy sekcji...</value>
+    <comment>progress message</comment>
+  </data>
+  <data name="AddTopSectionGroupDialog_Text" xml:space="preserve">
+    <value>Dodaj grupę sekcji najwyższego poziomu</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="AdjustImagesDialog.Text" xml:space="preserve">
     <value>Zmień rozmiar i dostosuj obraz</value>
     <comment>dialog title</comment>
@@ -2598,10 +2606,6 @@ Czy chcesz odświeżyć istniejącą stronę?</value>
     <value>Wybierz dwie lub więcej linii, aby dołączyć</value>
     <comment>info message</comment>
   </data>
-  <data name="KeyboardSheet_filterLabel.Text" xml:space="preserve">
-    <value>Filtr:</value>
-    <comment>label</comment>
-  </data>
   <data name="KeyboardSheet_introBox.Text" xml:space="preserve">
     <value>Zarządzaj moimi niestandardowymi skrótami klawiatury. Wybierz polecenie i naciśnij sekwencję klucza.</value>
     <comment>label</comment>
@@ -3880,7 +3884,7 @@ Wybierz Nie, aby zachować jedną pustą linię między akapitami</value>
     <comment>ribbon search</comment>
   </data>
   <data name="ribAddTopSectionGroupButton_Label" xml:space="preserve">
-    <value>Dodaj górną grupę sekcji</value>
+    <value>Dodaj grupę sekcji najwyższego poziomu</value>
     <comment>notebook context menu</comment>
   </data>
   <data name="ribAddTopSectionGroupButton_Screentip" xml:space="preserve">
@@ -6884,6 +6888,9 @@ Dziękuję!</value>
   </data>
   <data name="word_Feeder" xml:space="preserve">
     <value>Podajnik</value>
+  </data>
+  <data name="word_Filter" xml:space="preserve">
+    <value>Filtr</value>
   </data>
   <data name="word_Find" xml:space="preserve">
     <value>Znajdować</value>

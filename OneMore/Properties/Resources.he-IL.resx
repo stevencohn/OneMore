@@ -177,6 +177,14 @@
     <value>אירעה שגיאה בהוספת קבוצת המדורים החדשה. עיין ביומן לפרטים.</value>
     <comment>error message</comment>
   </data>
+  <data name="AddTopSectionGroupCommand_Saving" xml:space="preserve">
+    <value>שומר קבוצת מקטעים...</value>
+    <comment>progress message</comment>
+  </data>
+  <data name="AddTopSectionGroupDialog_Text" xml:space="preserve">
+    <value>הוסף קבוצת מדור ברמה העליונה</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="AdjustImagesDialog.Text" xml:space="preserve">
     <value>שנה גודל והתאם תמונה</value>
     <comment>dialog title</comment>
@@ -2598,10 +2606,6 @@ Total Row Font
     <value>בחר שתי שורות או יותר להצטרפות</value>
     <comment>info message</comment>
   </data>
-  <data name="KeyboardSheet_filterLabel.Text" xml:space="preserve">
-    <value>לְסַנֵן:</value>
-    <comment>label</comment>
-  </data>
   <data name="KeyboardSheet_introBox.Text" xml:space="preserve">
     <value>נהל את קיצורי המקשים המותאמים אישית שלי. בחר פקודה ולחץ על רצף מקשים.</value>
     <comment>label</comment>
@@ -3884,7 +3888,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon search</comment>
   </data>
   <data name="ribAddTopSectionGroupButton_Label" xml:space="preserve">
-    <value>הוסף קבוצת מדור עליון</value>
+    <value>הוסף קבוצת מדור ברמה העליונה</value>
     <comment>notebook context menu</comment>
   </data>
   <data name="ribAddTopSectionGroupButton_Screentip" xml:space="preserve">
@@ -6888,6 +6892,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Feeder" xml:space="preserve">
     <value>מֵזִין</value>
+  </data>
+  <data name="word_Filter" xml:space="preserve">
+    <value>לְסַנֵן</value>
   </data>
   <data name="word_Find" xml:space="preserve">
     <value>לִמצוֹא</value>

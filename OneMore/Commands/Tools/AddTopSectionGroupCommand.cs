@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Linq;
 	using System.Threading.Tasks;
+	using System.Windows.Forms;
 	using System.Xml.Linq;
 	using Resx = Properties.Resources;
 
@@ -48,8 +49,8 @@ namespace River.OneMoreAddIn.Commands
 				.ToHashSet(StringComparer.CurrentCultureIgnoreCase);
 
 			var baseName = Resx.AddTopSectionGroupCommand_DefaultName;
-			var name = baseName;
-			if (existingNames.Contains(name))
+			var defaultName = baseName;
+			if (existingNames.Contains(defaultName))
 			{
 				var n = 2;
 				while (existingNames.Contains($"{baseName} {n}"))
@@ -57,18 +58,40 @@ namespace River.OneMoreAddIn.Commands
 					n++;
 				}
 
-				name = $"{baseName} {n}";
+				defaultName = $"{baseName} {n}";
 			}
 
-			notebook.Add(new XElement(ns + "SectionGroup", new XAttribute("name", name)));
-
-			try
+			using var dialog = new AddTopSectionGroupDialog(existingNames, defaultName);
+			if (dialog.ShowDialog(owner) != DialogResult.OK)
 			{
-				one.UpdateHierarchy(notebook);
+				return;
 			}
-			catch (Exception exc)
+
+			// OneNote always displays top-level section groups alphabetically regardless of
+			// where they're added to the hierarchy XML, so there's no benefit in trying to
+			// control the insertion point here
+			notebook.Add(new XElement(ns + "SectionGroup", new XAttribute("name", dialog.GroupName)));
+
+			using var progress = new UI.ProgressDialog(10);
+			var result = progress.ShowTimedDialog(async (dlg, token) =>
 			{
-				logger.WriteLine("error creating top-level section group", exc);
+				try
+				{
+					dlg.SetMessage(Resx.AddTopSectionGroupCommand_Saving);
+
+					await using var one2 = new OneNote();
+					one2.UpdateHierarchy(notebook);
+					return true;
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine("error creating top-level section group", exc);
+					return false;
+				}
+			}, cancelable: false);
+
+			if (result != DialogResult.OK)
+			{
 				ShowError(Resx.AddTopSectionGroupCommand_Error);
 			}
 		}

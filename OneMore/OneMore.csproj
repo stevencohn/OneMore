@@ -1246,6 +1246,12 @@
     <Compile Include="Commands\Search\Atoms\TextAtom.cs" />
     <Compile Include="Commands\Tools\AboutCommand.cs" />
     <Compile Include="Commands\Tools\AddTopSectionGroupCommand.cs" />
+    <Compile Include="Commands\Tools\AddTopSectionGroupDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Tools\AddTopSectionGroupDialog.Designer.cs">
+      <DependentUpon>AddTopSectionGroupDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Tools\SortCommand.cs" />
     <Compile Include="Commands\Edit\ToCaseCommand.cs" />
     <Compile Include="Commands\Clean\TrimCommand.cs" />
@@ -2047,6 +2053,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Tools\SortDialog.resx">
       <DependentUpon>SortDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Tools\AddTopSectionGroupDialog.resx">
+      <DependentUpon>AddTopSectionGroupDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Styles\StyleDialog.resx">
       <DependentUpon>StyleDialog.cs</DependentUpon>

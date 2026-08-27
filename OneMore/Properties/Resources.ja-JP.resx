@@ -178,6 +178,14 @@
     <value>新しいセクション グループの追加でエラーが発生しました。詳細についてはログを参照してください。</value>
     <comment>error message</comment>
   </data>
+  <data name="AddTopSectionGroupCommand_Saving" xml:space="preserve">
+    <value>セクショングループを保存中...</value>
+    <comment>progress message</comment>
+  </data>
+  <data name="AddTopSectionGroupDialog_Text" xml:space="preserve">
+    <value>最上位のセクショングループを追加</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="AdjustImagesDialog.Text" xml:space="preserve">
     <value>画像のサイズ変更と調整</value>
     <comment>dialog title</comment>
@@ -2601,10 +2609,6 @@ OneNoteファイル (*.one)</value>
     <value>2行以上を選択して結合</value>
     <comment>info message</comment>
   </data>
-  <data name="KeyboardSheet_filterLabel.Text" xml:space="preserve">
-    <value>フィルター：</value>
-    <comment>label</comment>
-  </data>
   <data name="KeyboardSheet_introBox.Text" xml:space="preserve">
     <value>カスタムキーボードショートカットを管理します。コマンドを選択してキーシーケンスを押します。</value>
     <comment>label</comment>
@@ -3887,7 +3891,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon search</comment>
   </data>
   <data name="ribAddTopSectionGroupButton_Label" xml:space="preserve">
-    <value>トップセクショングループを追加</value>
+    <value>最上位のセクショングループを追加</value>
     <comment>notebook context menu</comment>
   </data>
   <data name="ribAddTopSectionGroupButton_Screentip" xml:space="preserve">
@@ -6894,6 +6898,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Feeder" xml:space="preserve">
     <value>フィーダ</value>
+  </data>
+  <data name="word_Filter" xml:space="preserve">
+    <value>フィルター</value>
   </data>
   <data name="word_Find" xml:space="preserve">
     <value>探す</value>

@@ -180,6 +180,14 @@
     <value>Se produjo un error al agregar el nuevo grupo de secciones. Consulte el registro para obtener más detalles.</value>
     <comment>error message</comment>
   </data>
+  <data name="AddTopSectionGroupCommand_Saving" xml:space="preserve">
+    <value>Guardando grupo de secciones...</value>
+    <comment>progress message</comment>
+  </data>
+  <data name="AddTopSectionGroupDialog_Text" xml:space="preserve">
+    <value>Agregar grupo de secciones de nivel superior</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="AdjustImagesDialog.Text" xml:space="preserve">
     <value>Cambiar el tamaño y ajustar la imagen.</value>
     <comment>dialog title</comment>
@@ -2593,10 +2601,6 @@ Cuadrado Marrón</value>
     <value>Seleccione dos o más líneas para unir</value>
     <comment>info message</comment>
   </data>
-  <data name="KeyboardSheet_filterLabel.Text" xml:space="preserve">
-    <value>Filtrar:</value>
-    <comment>label</comment>
-  </data>
   <data name="KeyboardSheet_introBox.Text" xml:space="preserve">
     <value>Administre mis atajos de teclado personalizados. Seleccione un comando y presione una secuencia de teclas.</value>
     <comment>label</comment>
@@ -3879,7 +3883,7 @@ Seleccione No para mantener una línea vacía entre los párrafos</value>
     <comment>ribbon search</comment>
   </data>
   <data name="ribAddTopSectionGroupButton_Label" xml:space="preserve">
-    <value>Agregar grupo de sección superior</value>
+    <value>Agregar grupo de secciones de nivel superior</value>
     <comment>notebook context menu</comment>
   </data>
   <data name="ribAddTopSectionGroupButton_Screentip" xml:space="preserve">
@@ -6883,6 +6887,9 @@ Puede habilitar o deshabilitar la telemetría en cualquier momento desde el cuad
   </data>
   <data name="word_Feeder" xml:space="preserve">
     <value>Alimentador</value>
+  </data>
+  <data name="word_Filter" xml:space="preserve">
+    <value>Filtrar</value>
   </data>
   <data name="word_Find" xml:space="preserve">
     <value>Encontrar</value>

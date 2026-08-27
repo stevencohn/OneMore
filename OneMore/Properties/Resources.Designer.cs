@@ -225,7 +225,25 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("AddTopSectionGroupCommand_Error", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Saving section group....
+        /// </summary>
+        internal static string AddTopSectionGroupCommand_Saving {
+            get {
+                return ResourceManager.GetString("AddTopSectionGroupCommand_Saving", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Add Top-Level Section Group.
+        /// </summary>
+        internal static string AddTopSectionGroupDialog_Text {
+            get {
+                return ResourceManager.GetString("AddTopSectionGroupDialog_Text", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Absolute.
         /// </summary>
@@ -9269,7 +9287,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add Top Section Group.
+        ///   Looks up a localized string similar to Add Top-Level Section Group.
         /// </summary>
         internal static string ribAddTopSectionGroupButton_Label {
             get {

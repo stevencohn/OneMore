@@ -180,6 +180,14 @@
     <value>Beim Hinzufügen der neuen Abschnittsgruppe ist ein Fehler aufgetreten. Einzelheiten finden Sie im Protokoll.</value>
     <comment>error message</comment>
   </data>
+  <data name="AddTopSectionGroupCommand_Saving" xml:space="preserve">
+    <value>Abschnittsgruppe wird gespeichert...</value>
+    <comment>progress message</comment>
+  </data>
+  <data name="AddTopSectionGroupDialog_Text" xml:space="preserve">
+    <value>Abschnittsgruppe der obersten Ebene hinzufügen</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="AdjustImagesDialog.Text" xml:space="preserve">
     <value>Größe ändern und einstellen</value>
     <comment>dialog title</comment>
@@ -2593,10 +2601,6 @@ Möchten Sie die bestehende Seite aktualisieren?</value>
     <value>Wähle zwei oder mehr Linien zum Verbinden aus</value>
     <comment>info message</comment>
   </data>
-  <data name="KeyboardSheet_filterLabel.Text" xml:space="preserve">
-    <value>Filter:</value>
-    <comment>label</comment>
-  </data>
   <data name="KeyboardSheet_introBox.Text" xml:space="preserve">
     <value>Verwalten Sie meine benutzerdefinierten Tastaturverknüpfungen. Wählen Sie einen Befehl aus und drücken Sie eine Schlüsselsequenz.</value>
     <comment>label</comment>
@@ -3879,7 +3883,7 @@ Wähle Nein, um eine leere Zeile zwischen den Absätzen zu halten</value>
     <comment>ribbon search</comment>
   </data>
   <data name="ribAddTopSectionGroupButton_Label" xml:space="preserve">
-    <value>Obere Abschnittsgruppe hinzufügen</value>
+    <value>Abschnittsgruppe der obersten Ebene hinzufügen</value>
     <comment>notebook context menu</comment>
   </data>
   <data name="ribAddTopSectionGroupButton_Screentip" xml:space="preserve">
@@ -6884,6 +6888,9 @@ Danke schön!</value>
   </data>
   <data name="word_Feeder" xml:space="preserve">
     <value>Feeder</value>
+  </data>
+  <data name="word_Filter" xml:space="preserve">
+    <value>Filter</value>
   </data>
   <data name="word_Find" xml:space="preserve">
     <value>Finden</value>

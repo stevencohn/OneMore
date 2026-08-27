@@ -178,6 +178,14 @@
     <value>Si è verificato un errore durante l'aggiunta del nuovo gruppo di sezioni. Consulta il registro per i dettagli.</value>
     <comment>error message</comment>
   </data>
+  <data name="AddTopSectionGroupCommand_Saving" xml:space="preserve">
+    <value>Salvataggio del gruppo di sezioni...</value>
+    <comment>progress message</comment>
+  </data>
+  <data name="AddTopSectionGroupDialog_Text" xml:space="preserve">
+    <value>Aggiungi gruppo di sezioni di primo livello</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="AdjustImagesDialog.Text" xml:space="preserve">
     <value>Ridimensiona e regola l'immagine</value>
     <comment>dialog title</comment>
@@ -2598,10 +2606,6 @@ Vuoi aggiornare la pagina esistente?</value>
     <value>Seleziona due o più linee da unire</value>
     <comment>info message</comment>
   </data>
-  <data name="KeyboardSheet_filterLabel.Text" xml:space="preserve">
-    <value>Filtro:</value>
-    <comment>label</comment>
-  </data>
   <data name="KeyboardSheet_introBox.Text" xml:space="preserve">
     <value>Gestisci le mie scorciatoie da tastiera personalizzate. Selezionare un comando e premere una sequenza di tasti.</value>
     <comment>label</comment>
@@ -3884,7 +3888,7 @@ Selezionare No per mantenere una riga vuota tra i paragrafi</value>
     <comment>ribbon search</comment>
   </data>
   <data name="ribAddTopSectionGroupButton_Label" xml:space="preserve">
-    <value>Aggiungi gruppo sezione superiore</value>
+    <value>Aggiungi gruppo di sezioni di primo livello</value>
     <comment>notebook context menu</comment>
   </data>
   <data name="ribAddTopSectionGroupButton_Screentip" xml:space="preserve">
@@ -6891,6 +6895,9 @@ Grazie!</value>
   </data>
   <data name="word_Feeder" xml:space="preserve">
     <value>Mangiatoia</value>
+  </data>
+  <data name="word_Filter" xml:space="preserve">
+    <value>Filtro</value>
   </data>
   <data name="word_Find" xml:space="preserve">
     <value>Trovare</value>
