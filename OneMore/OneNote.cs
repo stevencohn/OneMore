@@ -1992,7 +1992,7 @@ namespace River.OneMoreAddIn
 						break;
 					case Scope.SectionGroups:
 						dialog.TreeDepth = HierarchyElement.heSectionGroups;
-						dialog.TreeCollapsedState = TreeCollapsedStateType.tcsExpanded;
+						//dialog.TreeCollapsedState = TreeCollapsedStateType.tcsExpanded;
 						dialog.ShowCreateNewNotebook();
 						restriction = HierarchyElement.heSectionGroups | HierarchyElement.heNotebooks;
 						break;
