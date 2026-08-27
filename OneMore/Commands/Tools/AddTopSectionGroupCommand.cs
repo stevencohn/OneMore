@@ -72,7 +72,7 @@ namespace River.OneMoreAddIn.Commands
 			// control the insertion point here
 			notebook.Add(new XElement(ns + "SectionGroup", new XAttribute("name", dialog.GroupName)));
 
-			using var progress = new UI.ProgressDialog(10);
+			using var progress = new UI.ProgressDialog(60);
 			var result = progress.ShowTimedDialog(async (dlg, token) =>
 			{
 				try
