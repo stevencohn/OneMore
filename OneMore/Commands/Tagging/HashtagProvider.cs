@@ -314,13 +314,20 @@ namespace River.OneMoreAddIn.Commands
 
 			try
 			{
-				logger.WriteLine("updating table hashtag_notebook");
+				if (ColumnExists(con, "hashtag_notebook", "included"))
+				{
+					logger.WriteLine("table hashtag_notebook already has column included");
+				}
+				else
+				{
+					logger.WriteLine("updating table hashtag_notebook");
 
-				cmd.CommandText =
-					"ALTER TABLE hashtag_notebook " +
-					"ADD COLUMN included INTEGER NOT NULL DEFAULT 1 CHECK(included IN(0, 1))";
+					cmd.CommandText =
+						"ALTER TABLE hashtag_notebook " +
+						"ADD COLUMN included INTEGER NOT NULL DEFAULT 1 CHECK(included IN(0, 1))";
 
-				cmd.ExecuteNonQuery();
+					cmd.ExecuteNonQuery();
+				}
 			}
 			catch (Exception exc)
 			{
@@ -345,6 +352,25 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return version;
+		}
+
+
+		private static bool ColumnExists(SQLiteConnection con, string table, string column)
+		{
+			using var cmd = con.CreateCommand();
+			cmd.CommandType = CommandType.Text;
+			cmd.CommandText = $"PRAGMA table_info({table})";
+
+			using var reader = cmd.ExecuteReader();
+			while (reader.Read())
+			{
+				if (string.Equals(reader.GetString(1), column, StringComparison.OrdinalIgnoreCase))
+				{
+					return true;
+				}
+			}
+
+			return false;
 		}
 
 
