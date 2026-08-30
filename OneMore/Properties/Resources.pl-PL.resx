@@ -5521,7 +5521,7 @@ Zakładka Pomoc</value>
     <comment>favorite</comment>
   </data>
   <data name="ribShowWindowsButton_Label" xml:space="preserve">
-    <value>Otwórz system Windows</value>
+    <value>Pokaż Otwórz okno</value>
     <comment>ribbon extras</comment>
   </data>
   <data name="ribShowXmlButton_Label" xml:space="preserve">

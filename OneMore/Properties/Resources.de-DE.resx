@@ -5521,7 +5521,7 @@ Registerkarte „Hilfe“.</value>
     <comment>favorite</comment>
   </data>
   <data name="ribShowWindowsButton_Label" xml:space="preserve">
-    <value>Öffnen Sie Windows</value>
+    <value>Offene Fenster anzeigen</value>
     <comment>ribbon extras</comment>
   </data>
   <data name="ribShowXmlButton_Label" xml:space="preserve">

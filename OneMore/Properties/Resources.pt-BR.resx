@@ -5521,7 +5521,7 @@ Guia Ajuda</value>
     <comment>favorite</comment>
   </data>
   <data name="ribShowWindowsButton_Label" xml:space="preserve">
-    <value>Abra as janelas</value>
+    <value>Mostrar janelas abertas</value>
     <comment>ribbon extras</comment>
   </data>
   <data name="ribShowXmlButton_Label" xml:space="preserve">

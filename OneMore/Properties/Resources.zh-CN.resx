@@ -5535,7 +5535,7 @@ ISO-code then comma then language name</comment>
     <comment>favorite</comment>
   </data>
   <data name="ribShowWindowsButton_Label" xml:space="preserve">
-    <value>打开窗户</value>
+    <value>显示打开的窗口</value>
     <comment>ribbon extras</comment>
   </data>
   <data name="ribShowXmlButton_Label" xml:space="preserve">

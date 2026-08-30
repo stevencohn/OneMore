@@ -5525,7 +5525,7 @@ ISO-code then comma then language name</comment>
     <comment>favorite</comment>
   </data>
   <data name="ribShowWindowsButton_Label" xml:space="preserve">
-    <value>פתח את Windows</value>
+    <value>הצג Windows פתוח</value>
     <comment>ribbon extras</comment>
   </data>
   <data name="ribShowXmlButton_Label" xml:space="preserve">

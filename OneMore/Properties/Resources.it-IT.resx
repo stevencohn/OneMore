@@ -5527,7 +5527,7 @@ Scheda Aiuto</value>
     <comment>ribbon favorites</comment>
   </data>
   <data name="ribShowWindowsButton_Label" xml:space="preserve">
-    <value>Apri Windows</value>
+    <value>Mostra Apri finestre</value>
     <comment>ribbon extras</comment>
   </data>
   <data name="ribShowXmlButton_Label" xml:space="preserve">

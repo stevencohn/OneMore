@@ -1138,6 +1138,25 @@
     </menu>
     <menu id="ribExtrasMenu" getLabel="GetRibbonLabel" imageMso="OutlineDemote" showImage="true" keytip="EX">
       <button
+        id="ribManageLayoutsButton"
+        imageMso="WindowsCascade"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="ManageLayoutsCmd"/>
+      <button
+        id="ribShowWindowsButton"
+        imageMso="WindowsSwitch"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="ShowWindowsCmd"/>
+      <button
+        id="ribWhereAmIButton"
+        imageMso="PanAndZoomWindow"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="WhereAmICmd"/>
+      <menuSeparator id="sepExtrasMenu"/>
+      <button
         id="ribCollapsePagesButton"
         imageMso="CollapseAll"
         getLabel="GetRibbonLabel"
@@ -1185,24 +1204,6 @@
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
         onAction="ShowContainersCmd"/>
-      <button
-        id="ribManageLayoutsButton"
-        imageMso="WindowsCascade"
-        getLabel="GetRibbonLabel"
-        getScreentip="GetRibbonScreentip"
-        onAction="ManageLayoutsCmd"/>
-      <button
-        id="ribWhereAmIButton"
-        imageMso="PanAndZoomWindow"
-        getLabel="GetRibbonLabel"
-        getScreentip="GetRibbonScreentip"
-        onAction="WhereAmICmd"/>
-      <button
-        id="ribShowWindowsButton"
-        imageMso="ViewSwitchWindows"
-        getLabel="GetRibbonLabel"
-        getScreentip="GetRibbonScreentip"
-        onAction="ShowWindowsCmd"/>
     </menu>
     <separator id="sepShowXml"/>
     <button
