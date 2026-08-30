@@ -25,7 +25,7 @@ namespace River.OneMoreAddIn.Commands
 		private List<string> failures;
 		private int totalPages;
 		private string infoMessage;
-		private string sourcePageId;
+		private string sourceFolderId;
 		private string sourceNotebookId;
 
 		public CopyFolderCommand()
@@ -37,19 +37,49 @@ namespace River.OneMoreAddIn.Commands
 		{
 			await using var one = new OneNote();
 
-			// capture the source page and notebook now, before the QuickFiling picker opens
+			// capture the source folder and notebook now, before the QuickFiling picker opens
 			// and while OneNote's UI is still guaranteed to reflect what the user was looking
 			// at when they invoked this command; once the picker is up and the copy is running
-			// on a background thread, OneNote's UI is no longer blocked so CurrentPageId/
-			// CurrentNotebookId could otherwise drift out from under a later read
-			sourcePageId = one.CurrentPageId;
+			// on a background thread, OneNote's UI is no longer blocked so the "currently
+			// viewed" node could otherwise drift out from under a later read
 			sourceNotebookId = one.CurrentNotebookId;
+
+			var notebook = await one.GetNotebook(sourceNotebookId, OneNote.Scope.Sections);
+			var ns = one.GetNamespace(notebook);
+			sourceFolderId = FindCurrentFolderId(notebook, ns);
+
+			if (string.IsNullOrEmpty(sourceFolderId))
+			{
+				logger.WriteLine("could not determine current source folder");
+				ShowInfo(Resx.CopyFolderCommand_NoSourceFolder);
+				return;
+			}
 
 			one.SelectLocation(
 				Resx.SearchQF_Title, Resx.SearchQF_DescriptionCopy,
 				OneNote.Scope.SectionGroups, Callback);
 
 			await Task.Yield();
+		}
+
+
+		// finds the folder (SectionGroup) that OneNote currently has selected/active; a
+		// currently-viewed Section ascends to its nearest enclosing SectionGroup, but a
+		// currently-viewed SectionGroup with no Section of its own (a folder containing only
+		// nested folders) is itself the folder to copy
+		private static string FindCurrentFolderId(XElement notebook, XNamespace ns)
+		{
+			var section = notebook.Descendants(ns + SectionName)
+				.FirstOrDefault(e => e.Attribute("isCurrentlyViewed")?.Value == "true");
+
+			if (section is not null)
+			{
+				return section.FirstAncestor(ns + SectionGroupName)?.Attribute("ID")?.Value;
+			}
+
+			return notebook.Descendants(ns + SectionGroupName)
+				.FirstOrDefault(e => e.Attribute("isCurrentlyViewed")?.Value == "true")
+				?.Attribute("ID")?.Value;
 		}
 
 
@@ -94,26 +124,17 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
-				// source folder will be in the notebook that was current when invoked
+				// source folder will be in the notebook that was current when invoked; look it
+				// up by the id captured in Execute (before the QuickFiling picker opened)
 				var notebook = await one.GetNotebook(sourceNotebookId, OneNote.Scope.Pages);
 				var ns = one.GetNamespace(notebook);
 
-				// use the page that was current when the command was invoked (captured in
-				// Execute) to ascend back to closest folder to handle nesting...
-				var element = notebook.Descendants(ns + "Page")
-					.FirstOrDefault(e => e.Attribute("ID").Value == sourcePageId);
+				var folder = notebook.Descendants(ns + SectionGroupName)
+					.FirstOrDefault(e => e.Attribute("ID")?.Value == sourceFolderId);
 
-				if (element is null)
-				{
-					logger.WriteLine("could not locate source page in notebook; cannot determine source folder");
-					infoMessage = Resx.CopyFolderCommand_NoSourceFolder;
-					return;
-				}
-
-				var folder = element.FirstAncestor(ns + SectionGroupName);
 				if (folder is null)
 				{
-					logger.WriteLine("error finding ancestor folder");
+					logger.WriteLine("could not locate source folder in notebook");
 					infoMessage = Resx.CopyFolderCommand_NoSourceFolder;
 					return;
 				}
@@ -178,10 +199,19 @@ namespace River.OneMoreAddIn.Commands
 				dialog.Visible = false;
 			}
 
+			// route the report dialog through HotkeyManager's own dedicated, persistent
+			// message-pump thread rather than showing it synchronously from deep inside
+			// this ModelessClosed callback - itself nested inside the background copy
+			// thread's marshaled Invoke() call into ProgressDialog.Close(). Starting a
+			// brand-new modal dialog underneath an already-nested cross-thread Invoke
+			// dispatch leaves it fighting OneNote for foreground/activation and losing:
+			// it briefly appears then gets torn down (HandleDestroyed, no FormClosing)
+			// before the user ever sees it. Marshaling onto HotkeyManager's clean,
+			// already-running message loop avoids that nesting entirely.
 			if (!string.IsNullOrEmpty(infoMessage))
 			{
-				UI.MoreMessageBox.Show(owner,
-					infoMessage, MessageBoxButtons.OK, MessageBoxIcon.Information);
+				HotkeyManager.InvokeOnMessageThread(() => UI.MoreMessageBox.Show(owner,
+					infoMessage, MessageBoxButtons.OK, MessageBoxIcon.Information));
 
 				return;
 			}
@@ -195,10 +225,11 @@ namespace River.OneMoreAddIn.Commands
 					listed.Add(string.Format(Resx.CopyFolderCommand_AndMore, failures.Count - maxListed));
 				}
 
-				UI.MoreMessageBox.Show(owner,
+				HotkeyManager.InvokeOnMessageThread(() => UI.MoreMessageBox.Show(owner,
 					string.Format(Resx.CopyFolderCommand_PartialFailure, failures.Count, totalPages) +
 					Environment.NewLine + Environment.NewLine + string.Join(Environment.NewLine, listed),
-					MessageBoxButtons.OK, MessageBoxIcon.Warning);
+					MessageBoxButtons.OK, MessageBoxIcon.Warning,
+					widthScale: 1.5f, heightScale: 2.5f));
 			}
 		}
 

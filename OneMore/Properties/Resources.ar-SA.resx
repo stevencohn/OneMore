@@ -774,7 +774,7 @@
     <comment>error message</comment>
   </data>
   <data name="CopyFolderCommand_NoSourceFolder" xml:space="preserve">
-    <value>تعذر تحديد المجلد المصدر لنسخه. يرجى فتح صفحة داخل المجلد الذي تريد نسخه والمحاولة مرة أخرى.</value>
+    <value>تعذر تحديد المجلد المصدر لنسخه. الرجاء تحديد المجلد في المتصفح والمحاولة مرة أخرى.</value>
     <comment>error message</comment>
   </data>
   <data name="CopyFolderCommand_PartialFailure" xml:space="preserve">

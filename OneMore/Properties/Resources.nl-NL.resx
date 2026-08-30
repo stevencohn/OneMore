@@ -771,7 +771,7 @@ Normaal</value>
     <comment>error message</comment>
   </data>
   <data name="CopyFolderCommand_NoSourceFolder" xml:space="preserve">
-    <value>Kan de te kopiëren bronmap niet bepalen. Open een pagina in de map die u wilt kopiëren en probeer het opnieuw.</value>
+    <value>Kan de te kopiëren bronmap niet bepalen. Selecteer de map in de Navigator en probeer het opnieuw.</value>
     <comment>error message</comment>
   </data>
   <data name="CopyFolderCommand_PartialFailure" xml:space="preserve">

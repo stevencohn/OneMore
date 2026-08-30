@@ -774,7 +774,7 @@ Normal</value>
     <comment>error message</comment>
   </data>
   <data name="CopyFolderCommand_NoSourceFolder" xml:space="preserve">
-    <value>No se pudo determinar la carpeta de origen para copiar. Abra una página dentro de la carpeta que desea copiar e inténtelo nuevamente.</value>
+    <value>No se pudo determinar la carpeta de origen para copiar. Seleccione la carpeta en el Navegador e inténtelo de nuevo.</value>
     <comment>error message</comment>
   </data>
   <data name="CopyFolderCommand_PartialFailure" xml:space="preserve">

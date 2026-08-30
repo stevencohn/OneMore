@@ -774,7 +774,7 @@
     <comment>error message</comment>
   </data>
   <data name="CopyFolderCommand_NoSourceFolder" xml:space="preserve">
-    <value>コピー元のフォルダーを特定できませんでした。コピーしたいフォルダー内のページを開いて、もう一度お試しください。</value>
+    <value>コピー元のフォルダーを特定できませんでした。ナビゲーターでフォルダーを選択し、再試行してください。</value>
     <comment>error message</comment>
   </data>
   <data name="CopyFolderCommand_PartialFailure" xml:space="preserve">

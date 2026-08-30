@@ -771,7 +771,7 @@ Normalna</value>
     <comment>error message</comment>
   </data>
   <data name="CopyFolderCommand_NoSourceFolder" xml:space="preserve">
-    <value>Nie można określić folderu źródłowego do skopiowania. Otwórz stronę w folderze, który chcesz skopiować, i spróbuj ponownie.</value>
+    <value>Nie można określić folderu źródłowego do skopiowania. Wybierz folder w Nawigatorze i spróbuj ponownie.</value>
     <comment>error message</comment>
   </data>
   <data name="CopyFolderCommand_PartialFailure" xml:space="preserve">

@@ -775,7 +775,7 @@
     <comment>error message</comment>
   </data>
   <data name="CopyFolderCommand_NoSourceFolder" xml:space="preserve">
-    <value>无法确定要复制的源文件夹。请打开要复制的文件夹中的页面，然后重试。</value>
+    <value>无法确定要复制的源文件夹。请在导航器中选择该文件夹，然后重试。</value>
     <comment>error message</comment>
   </data>
   <data name="CopyFolderCommand_PartialFailure" xml:space="preserve">

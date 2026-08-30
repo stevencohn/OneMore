@@ -1536,7 +1536,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Could not determine the source folder to copy. Please open a page within the folder you want to copy and try again..
+        ///   Looks up a localized string similar to Could not determine the source folder to copy. Please select the folder in the Navigator and try again..
         /// </summary>
         internal static string CopyFolderCommand_NoSourceFolder {
             get {
