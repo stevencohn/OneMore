@@ -776,7 +776,7 @@ Normal</value>
     <comment>error message</comment>
   </data>
   <data name="CopyFolderCommand_NoSourceFolder" xml:space="preserve">
-    <value>Could not determine the source folder to copy. Please open a page within the folder you want to copy and try again.</value>
+    <value>Could not determine the source folder to copy. Please select the folder in the Navigator and try again.</value>
     <comment>error message</comment>
   </data>
   <data name="CopyFolderCommand_PartialFailure" xml:space="preserve">

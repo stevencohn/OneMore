@@ -138,12 +138,28 @@ namespace River.OneMoreAddIn.UI
 
 		public static DialogResult Show(IWin32Window owner, string text,
 			MessageBoxButtons buttons,
-			MessageBoxIcon icon)
+			MessageBoxIcon icon,
+			float widthScale = 1f,
+			float heightScale = 1f)
 		{
 			using var box = new MoreMessageBox();
+
+			if (widthScale != 1f || heightScale != 1f)
+			{
+				// scale relative to the current (already DPI-scaled) size rather than a
+				// hardcoded pixel size, so this stays correct across DPI/font settings;
+				// applied before SetMessage so its own auto-grow-to-fit (if the text is
+				// long enough to still not fit) layers on top of this instead of being
+				// multiplied by it
+				box.Size = new Size(
+					(int)(box.Width * widthScale),
+					(int)(box.Height * heightScale));
+			}
+
 			box.SetMessage(text);
 			box.SetIcon(icon);
 			box.SetButtons(buttons);
+
 			if (owner is null)
 			{
 				box.StartPosition = FormStartPosition.CenterScreen;

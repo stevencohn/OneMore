@@ -774,7 +774,7 @@ Normale</value>
     <comment>error message</comment>
   </data>
   <data name="CopyFolderCommand_NoSourceFolder" xml:space="preserve">
-    <value>Impossible de déterminer le dossier source à copier. Veuillez ouvrir une page du dossier que vous souhaitez copier et réessayer.</value>
+    <value>Impossible de déterminer le dossier source à copier. Veuillez sélectionner le dossier dans le navigateur et réessayer.</value>
     <comment>error message</comment>
   </data>
   <data name="CopyFolderCommand_PartialFailure" xml:space="preserve">

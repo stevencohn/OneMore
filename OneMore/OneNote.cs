@@ -279,8 +279,17 @@ namespace River.OneMoreAddIn
 		/// Gets the active OneNote window as a Win32WindowHandle that can be passed as
 		/// the owner parameter to MoreMessageBox Show methods.
 		/// </summary>
+		/// <remarks>
+		/// Must resolve to the top-level frame, not the raw COM Window.WindowHandle (which
+		/// can be an inner pane - see GetTopLevelWindow). A dialog owned by a non-top-level
+		/// HWND has no properly defined Win32 owner/owned relationship, so when OneNote's
+		/// real top-level frame later reclaims activation - e.g. once its UI thread catches
+		/// up after a long run of COM calls from a background copy/import - Windows tears
+		/// the "owned" dialog down instead of protecting it, closing it before the user ever
+		/// sees it (no FormClosing, just a bare HandleDestroyed).
+		/// </remarks>
 		public Win32WindowHandle OwnerWindow =>
-			new(WithCurrentWindow(w => new IntPtr((long)(IntPtr)w.WindowHandle), IntPtr.Zero));
+			new(GetTopLevelWindow(WithCurrentWindow(w => (IntPtr)w.WindowHandle, IntPtr.Zero)));
 
 
 		/// <summary>

@@ -772,7 +772,7 @@ Normale</value>
     <comment>error message</comment>
   </data>
   <data name="CopyFolderCommand_NoSourceFolder" xml:space="preserve">
-    <value>Impossibile determinare la cartella di origine da copiare. Apri una pagina all'interno della cartella che desideri copiare e riprova.</value>
+    <value>Impossibile determinare la cartella di origine da copiare. Seleziona la cartella nel Navigatore e riprova.</value>
     <comment>error message</comment>
   </data>
   <data name="CopyFolderCommand_PartialFailure" xml:space="preserve">

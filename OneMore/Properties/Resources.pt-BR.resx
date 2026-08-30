@@ -771,7 +771,7 @@ Normal</value>
     <comment>error message</comment>
   </data>
   <data name="CopyFolderCommand_NoSourceFolder" xml:space="preserve">
-    <value>Não foi possível determinar a pasta de origem a ser copiada. Abra uma página dentro da pasta que deseja copiar e tente novamente.</value>
+    <value>Não foi possível determinar a pasta de origem a ser copiada. Selecione a pasta no Navegador e tente novamente.</value>
     <comment>error message</comment>
   </data>
   <data name="CopyFolderCommand_PartialFailure" xml:space="preserve">

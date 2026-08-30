@@ -774,7 +774,7 @@ Normal</value>
     <comment>error message</comment>
   </data>
   <data name="CopyFolderCommand_NoSourceFolder" xml:space="preserve">
-    <value>Der zu kopierende Quellordner konnte nicht ermittelt werden. Bitte öffnen Sie eine Seite in dem Ordner, den Sie kopieren möchten, und versuchen Sie es erneut.</value>
+    <value>Der zu kopierende Quellordner konnte nicht ermittelt werden. Bitte wählen Sie den Ordner im Navigator aus und versuchen Sie es erneut.</value>
     <comment>error message</comment>
   </data>
   <data name="CopyFolderCommand_PartialFailure" xml:space="preserve">
