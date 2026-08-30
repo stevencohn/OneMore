@@ -778,6 +778,10 @@
     <value>ההעתקה הושלמה אך לא ניתן היה להעתיק {0} מתוך {1} דפים. עיין בקובץ היומן לפרטים.</value>
     <comment>message box, {0} is failed count, {1} is total count</comment>
   </data>
+  <data name="CopyFolderCommand_Preparing" xml:space="preserve">
+    <value>קבוצת מדור קריאה, רגע בבקשה...</value>
+    <comment>progress dialog initial message, shown while scanning the notebook</comment>
+  </data>
   <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">
     <value>לא נמצאו היפר-קישורים בטווח</value>
     <comment>message box</comment>

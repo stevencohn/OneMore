@@ -1554,6 +1554,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reading section group, one moment please....
+        /// </summary>
+        internal static string CopyFolderCommand_Preparing {
+            get {
+                return ResourceManager.GetString("CopyFolderCommand_Preparing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No hyperlinks found in range.
         /// </summary>
         internal static string CrawlWebCommand_NoHyperlinks {

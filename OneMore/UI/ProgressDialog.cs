@@ -376,5 +376,38 @@ namespace River.OneMoreAddIn.UI
 		{
 			timer.Start();
 		}
+
+
+		/// <summary>
+		/// Closes the dialog, marshaling onto the dialog's own thread first if needed. The
+		/// "execute action" constructor drives its action from a ThreadPool thread with no
+		/// SynchronizationContext, so a consumer's Close() call (typically from a finally
+		/// block once its background work completes) can otherwise arrive here off the UI
+		/// thread - which then runs OnFormClosed/ModelessClosed (and any MoreMessageBox it
+		/// triggers, e.g. CopyFolderCommand.ReportResult) off-thread too, with undefined
+		/// results, including the dialog silently failing to appear.
+		/// </summary>
+		public new void Close()
+		{
+			if (InvokeRequired)
+			{
+				try
+				{
+					Invoke((Action)Close);
+				}
+				catch (ObjectDisposedException)
+				{
+					// already closing/closed
+				}
+				catch (InvalidOperationException)
+				{
+					// handle not created, or no longer valid
+				}
+
+				return;
+			}
+
+			base.Close();
+		}
 	}
 }

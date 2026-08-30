@@ -778,6 +778,10 @@ Normal</value>
     <value>Cópia concluída, mas não foi possível copiar {0} de {1} páginas. Consulte o arquivo de log para obter detalhes.</value>
     <comment>message box, {0} is failed count, {1} is total count</comment>
   </data>
+  <data name="CopyFolderCommand_Preparing" xml:space="preserve">
+    <value>Grupo da seção de leitura, um momento, por favor...</value>
+    <comment>progress dialog initial message, shown while scanning the notebook</comment>
+  </data>
   <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">
     <value>Nenhum hiperlink encontrado no intervalo</value>
     <comment>message box</comment>

@@ -782,6 +782,10 @@
     <value>复制已完成，但无法复制 {0} 页（共 {1} 页）。 有关详细信息，请参阅日志文件。</value>
     <comment>message box, {0} is failed count, {1} is total count</comment>
   </data>
+  <data name="CopyFolderCommand_Preparing" xml:space="preserve">
+    <value>阅读部分小组，请稍等...</value>
+    <comment>progress dialog initial message, shown while scanning the notebook</comment>
+  </data>
   <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">
     <value>范围内没有发现超链接</value>
     <comment>message box</comment>
