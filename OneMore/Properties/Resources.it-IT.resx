@@ -5526,6 +5526,10 @@ Scheda Aiuto</value>
     <value>Scorciatoie da tastiera di OneNote</value>
     <comment>ribbon favorites</comment>
   </data>
+  <data name="ribShowWindowsButton_Label" xml:space="preserve">
+    <value>Apri Windows</value>
+    <comment>ribbon extras</comment>
+  </data>
   <data name="ribShowXmlButton_Label" xml:space="preserve">
     <value>Mostra XML</value>
     <comment>ribbon extras</comment>
@@ -6144,6 +6148,18 @@ I motori di ricerca verranno visualizzati nel menu contestuale della pagina, far
   <data name="SettingsDialog_Text" xml:space="preserve">
     <value>Impostazioni OneMore</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="ShowWindowsDialog_locationColumn_HeaderText" xml:space="preserve">
+    <value>Posizione</value>
+    <comment>listview column header</comment>
+  </data>
+  <data name="ShowWindowsDialog_Text" xml:space="preserve">
+    <value>Apri Windows</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ShowWindowsDialog_zColumn_HeaderText" xml:space="preserve">
+    <value>Ordine Z</value>
+    <comment>listview column header</comment>
   </data>
   <data name="ShowXmlDialog.Text" xml:space="preserve">
     <value>Un altro XML</value>

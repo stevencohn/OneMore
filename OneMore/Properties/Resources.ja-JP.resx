@@ -5529,6 +5529,10 @@ ISO-code then comma then language name</comment>
     <value>OneNoteのショートカットキー</value>
     <comment>ribbon favorites</comment>
   </data>
+  <data name="ribShowWindowsButton_Label" xml:space="preserve">
+    <value>ウィンドウを開く</value>
+    <comment>ribbon extras</comment>
+  </data>
   <data name="ribShowXmlButton_Label" xml:space="preserve">
     <value>XMLの表示</value>
     <comment>ribbon extras</comment>
@@ -6147,6 +6151,18 @@ ISO-code then comma then language name</comment>
   <data name="SettingsDialog_Text" xml:space="preserve">
     <value>OneMoreの設定</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="ShowWindowsDialog_locationColumn_HeaderText" xml:space="preserve">
+    <value>位置</value>
+    <comment>listview column header</comment>
+  </data>
+  <data name="ShowWindowsDialog_Text" xml:space="preserve">
+    <value>ウィンドウを開く</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ShowWindowsDialog_zColumn_HeaderText" xml:space="preserve">
+    <value>Z オーダー</value>
+    <comment>listview column header</comment>
   </data>
   <data name="ShowXmlDialog.Text" xml:space="preserve">
     <value>OneMore XML</value>

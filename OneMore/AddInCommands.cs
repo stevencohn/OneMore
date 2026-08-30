@@ -1080,6 +1080,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<ShowKeyMapsPageCommand>();
 
 
+		[Command("ribShowWindowsButton_Label", Keys.Shift | Keys.Alt | Keys.W)]
+		public async Task ShowWindowsCmd(IRibbonControl control)
+			=> await factory.Run<ShowWindowsCommand>();
+
+
 		[Command("ribShowXmlButton_Label", Keys.Control | Keys.Alt | Keys.Shift | Keys.X)]
 		public async Task ShowXmlCmd(IRibbonControl control)
 			=> await factory.Run<ShowXmlCommand>();

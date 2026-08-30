@@ -1197,6 +1197,12 @@
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
         onAction="WhereAmICmd"/>
+      <button
+        id="ribShowWindowsButton"
+        imageMso="ViewSwitchWindows"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="ShowWindowsCmd"/>
     </menu>
     <separator id="sepShowXml"/>
     <button

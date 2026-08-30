@@ -13071,7 +13071,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribShowKeyMapsPageButton_Label", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Open Windows.
+        /// </summary>
+        internal static string ribShowWindowsButton_Label {
+            get {
+                return ResourceManager.GetString("ribShowWindowsButton_Label", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Show XML.
         /// </summary>
@@ -14483,7 +14492,34 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("SettingsFilename", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Location.
+        /// </summary>
+        internal static string ShowWindowsDialog_locationColumn_HeaderText {
+            get {
+                return ResourceManager.GetString("ShowWindowsDialog_locationColumn_HeaderText", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Open Windows.
+        /// </summary>
+        internal static string ShowWindowsDialog_Text {
+            get {
+                return ResourceManager.GetString("ShowWindowsDialog_Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Z-Order.
+        /// </summary>
+        internal static string ShowWindowsDialog_zColumn_HeaderText {
+            get {
+                return ResourceManager.GetString("ShowWindowsDialog_zColumn_HeaderText", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Enable edit mode.
         /// </summary>

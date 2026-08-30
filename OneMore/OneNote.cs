@@ -1334,7 +1334,7 @@ namespace River.OneMoreAddIn
 						CurrentPageId = window.CurrentPageId,
 						CurrentSectionId = window.CurrentSectionId,
 						CurrentSectionGroupId = window.CurrentSectionGroupId,
-						CurrentPage = $"{page.Path}/{page.Name}",
+						CurrentPage = page?.Path ?? string.Empty,
 						DockedLocation = window.DockedLocation.ToString(),
 						IsFullPageView = window.FullPageView,
 						IsSideNote = window.SideNote,

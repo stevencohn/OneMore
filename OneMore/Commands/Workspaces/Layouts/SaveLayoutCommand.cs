@@ -167,7 +167,7 @@ namespace River.OneMoreAddIn.Commands
 		/// Returns the device name (e.g. "\\.\DISPLAY1") of the monitor showing the window
 		/// with the given handle, or null if it can't be determined.
 		/// </summary>
-		private static string GetDeviceName(string windowHandle)
+		internal static string GetDeviceName(string windowHandle)
 		{
 			// Screen.FromHandle must see real physical pixels regardless of this process's
 			// ambient DPI awareness, which isn't always reliably per-monitor-aware
@@ -192,7 +192,7 @@ namespace River.OneMoreAddIn.Commands
 		/// so this cross-references each window's handle against EnumWindows, which walks
 		/// top-level windows in Z-order.
 		/// </summary>
-		private static List<WindowInfo> OrderByZOrder(List<WindowInfo> windows)
+		internal static List<WindowInfo> OrderByZOrder(List<WindowInfo> windows)
 		{
 			var ranks = new Dictionary<string, int>();
 			var rank = 0;
