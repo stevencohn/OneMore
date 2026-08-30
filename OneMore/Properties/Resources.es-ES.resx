@@ -5519,6 +5519,10 @@ Pestaña Ayuda</value>
     <value>Métodos abreviados de teclado de OneNote</value>
     <comment>favorite</comment>
   </data>
+  <data name="ribShowWindowsButton_Label" xml:space="preserve">
+    <value>Abrir ventanas</value>
+    <comment>ribbon extras</comment>
+  </data>
   <data name="ribShowXmlButton_Label" xml:space="preserve">
     <value>Mostrar XML</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -6136,6 +6140,18 @@ Los motores de búsqueda aparecerán en el menú contextual de la página, haga 
   <data name="SettingsDialog_Text" xml:space="preserve">
     <value>Configuración de OneMore</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="ShowWindowsDialog_locationColumn_HeaderText" xml:space="preserve">
+    <value>Ubicación</value>
+    <comment>listview column header</comment>
+  </data>
+  <data name="ShowWindowsDialog_Text" xml:space="preserve">
+    <value>Abrir ventanas</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ShowWindowsDialog_zColumn_HeaderText" xml:space="preserve">
+    <value>Orden Z</value>
+    <comment>listview column header</comment>
   </data>
   <data name="ShowXmlDialog.Text" xml:space="preserve">
     <value>OneMore XML</value>

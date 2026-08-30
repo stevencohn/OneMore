@@ -5531,6 +5531,10 @@ Onglet Aide</value>
     <value>Raccourcis clavier OneNote</value>
     <comment>favorite</comment>
   </data>
+  <data name="ribShowWindowsButton_Label" xml:space="preserve">
+    <value>Ouvrir Windows</value>
+    <comment>ribbon extras</comment>
+  </data>
   <data name="ribShowXmlButton_Label" xml:space="preserve">
     <value>Afficher XML</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -6148,6 +6152,18 @@ Les moteurs de recherche apparaîtront dans le menu du contexte de la page, cliq
   <data name="SettingsDialog_Text" xml:space="preserve">
     <value>Paramètres OneMore</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="ShowWindowsDialog_locationColumn_HeaderText" xml:space="preserve">
+    <value>Emplacement</value>
+    <comment>listview column header</comment>
+  </data>
+  <data name="ShowWindowsDialog_Text" xml:space="preserve">
+    <value>Ouvrir Windows</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ShowWindowsDialog_zColumn_HeaderText" xml:space="preserve">
+    <value>Ordre Z</value>
+    <comment>listview column header</comment>
   </data>
   <data name="ShowXmlDialog.Text" xml:space="preserve">
     <value>OneMore XML</value>

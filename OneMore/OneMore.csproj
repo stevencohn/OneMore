@@ -608,6 +608,12 @@
     <Compile Include="Commands\Workspaces\ManageWorkspaceDialog.Designer.cs">
       <DependentUpon>ManageWorkspaceDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Workspaces\ShowWindowsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Workspaces\ShowWindowsDialog.Designer.cs">
+      <DependentUpon>ShowWindowsDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Workspaces\PageAliasDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -927,6 +933,7 @@
     </Compile>
     <Compile Include="Commands\Snippets\InsertDateCommand.cs" />
     <Compile Include="Commands\Workspaces\ManageWorkspaceCommand.cs" />
+    <Compile Include="Commands\Workspaces\ShowWindowsCommand.cs" />
     <Compile Include="Commands\Snippets\InsertSnippetCommand.cs" />
     <Compile Include="Commands\Snippets\ManageSnippetsCommand.cs" />
     <Compile Include="Commands\Snippets\SaveSnippetCommand.cs" />
@@ -1538,6 +1545,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Workspaces\ManageWorkspaceDialog.resx">
       <DependentUpon>ManageWorkspaceDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Workspaces\ShowWindowsDialog.resx">
+      <DependentUpon>ShowWindowsDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\File\OpenFolderDialog.resx">
       <DependentUpon>OpenFolderDialog.cs</DependentUpon>

@@ -5524,6 +5524,10 @@ ISO-code then comma then language name</comment>
     <value>קיצורי מקשים של OneNote</value>
     <comment>favorite</comment>
   </data>
+  <data name="ribShowWindowsButton_Label" xml:space="preserve">
+    <value>פתח את Windows</value>
+    <comment>ribbon extras</comment>
+  </data>
   <data name="ribShowXmlButton_Label" xml:space="preserve">
     <value>הצג XML</value>
     <comment>Ribbon OneMore menu item</comment>
@@ -6141,6 +6145,18 @@ ISO-code then comma then language name</comment>
   <data name="SettingsDialog_Text" xml:space="preserve">
     <value>הגדרות אונמורות</value>
     <comment>dialog title</comment>
+  </data>
+  <data name="ShowWindowsDialog_locationColumn_HeaderText" xml:space="preserve">
+    <value>מִקוּם</value>
+    <comment>listview column header</comment>
+  </data>
+  <data name="ShowWindowsDialog_Text" xml:space="preserve">
+    <value>פתח את Windows</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ShowWindowsDialog_zColumn_HeaderText" xml:space="preserve">
+    <value>Z-Order</value>
+    <comment>listview column header</comment>
   </data>
   <data name="ShowXmlDialog.Text" xml:space="preserve">
     <value>Onemore XML</value>
