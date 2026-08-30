@@ -25,6 +25,8 @@ namespace River.OneMoreAddIn.Commands
 		private List<string> failures;
 		private int totalPages;
 		private string infoMessage;
+		private string sourcePageId;
+		private string sourceNotebookId;
 
 		public CopyFolderCommand()
 		{
@@ -34,6 +36,15 @@ namespace River.OneMoreAddIn.Commands
 		public override async Task Execute(params object[] args)
 		{
 			await using var one = new OneNote();
+
+			// capture the source page and notebook now, before the QuickFiling picker opens
+			// and while OneNote's UI is still guaranteed to reflect what the user was looking
+			// at when they invoked this command; once the picker is up and the copy is running
+			// on a background thread, OneNote's UI is no longer blocked so CurrentPageId/
+			// CurrentNotebookId could otherwise drift out from under a later read
+			sourcePageId = one.CurrentPageId;
+			sourceNotebookId = one.CurrentNotebookId;
+
 			one.SelectLocation(
 				Resx.SearchQF_Title, Resx.SearchQF_DescriptionCopy,
 				OneNote.Scope.SectionGroups, Callback);
@@ -62,6 +73,7 @@ namespace River.OneMoreAddIn.Commands
 			var progress = new UI.ProgressDialog(async (dialog, token) =>
 				await CopyFolder(targetId, dialog, token));
 
+			progress.SetMessage(Resx.CopyFolderCommand_Preparing);
 			progress.RunModeless(ReportResult);
 
 			await Task.Yield();
@@ -82,17 +94,18 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
-				// source folder will be in current notebook
-				var notebook = await one.GetNotebook(OneNote.Scope.Pages);
+				// source folder will be in the notebook that was current when invoked
+				var notebook = await one.GetNotebook(sourceNotebookId, OneNote.Scope.Pages);
 				var ns = one.GetNamespace(notebook);
 
-				// use current page to ascend back to closest folder to handle nesting...
+				// use the page that was current when the command was invoked (captured in
+				// Execute) to ascend back to closest folder to handle nesting...
 				var element = notebook.Descendants(ns + "Page")
-					.FirstOrDefault(e => e.Attribute("ID").Value == one.CurrentPageId);
+					.FirstOrDefault(e => e.Attribute("ID").Value == sourcePageId);
 
 				if (element is null)
 				{
-					logger.WriteLine("could not locate current page in notebook; cannot determine source folder");
+					logger.WriteLine("could not locate source page in notebook; cannot determine source folder");
 					infoMessage = Resx.CopyFolderCommand_NoSourceFolder;
 					return;
 				}

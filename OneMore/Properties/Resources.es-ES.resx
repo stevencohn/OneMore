@@ -781,6 +781,10 @@ Normal</value>
     <value>Copia completada pero no se pudieron copiar {0} de {1} páginas. Consulte el archivo de registro para obtener más detalles.</value>
     <comment>message box, {0} is failed count, {1} is total count</comment>
   </data>
+  <data name="CopyFolderCommand_Preparing" xml:space="preserve">
+    <value>Grupo de la sección de lectura, un momento por favor...</value>
+    <comment>progress dialog initial message, shown while scanning the notebook</comment>
+  </data>
   <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">
     <value>No se han encontrado hipervínculos en el rango.</value>
     <comment>message box</comment>

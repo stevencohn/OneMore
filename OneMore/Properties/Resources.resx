@@ -783,6 +783,10 @@ Normal</value>
     <value>Copy completed but {0} of {1} page(s) could not be copied. See the log file for details.</value>
     <comment>message box, {0} is failed count, {1} is total count</comment>
   </data>
+  <data name="CopyFolderCommand_Preparing" xml:space="preserve">
+    <value>Reading section group, one moment please...</value>
+    <comment>progress dialog initial message, shown while scanning the notebook</comment>
+  </data>
   <data name="CrawlWebCommand_NoHyperlinks" xml:space="preserve">
     <value>No hyperlinks found in range</value>
     <comment>message box</comment>
