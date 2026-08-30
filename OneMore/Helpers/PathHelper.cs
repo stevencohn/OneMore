@@ -86,6 +86,21 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Gets a path to the OneMore local (non-roaming) data folder. Unlike
+		/// GetAppDataPath, this folder is never relocated by Windows Folder Redirection
+		/// or roaming profiles, so it is safe for files like SQLite databases that
+		/// require reliable local file locking.
+		/// </summary>
+		/// <returns></returns>
+		public static string GetLocalAppDataPath()
+		{
+			return Path.Combine(
+				Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+				AssemblyInfo.Product);
+		}
+
+
+		/// <summary>
 		/// In its simplest form, appends a counter to the filename if a similarly named file
 		/// already exists to ensure the name is unique, .e.g, "name (1).txt". But this also
 		/// ensures that the full path fits within MAX_PATH for both the filename and a presumed

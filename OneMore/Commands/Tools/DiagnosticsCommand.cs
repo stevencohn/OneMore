@@ -97,6 +97,7 @@ namespace River.OneMoreAddIn.Commands
 			log.WriteLine($"ONENOTE...: {moduledesc}");
 			log.WriteLine($"Addin path: {adloc}, {adarc}, Version {adVersion}, built {adTime}");
 			log.WriteLine($"Data path.: {PathHelper.GetAppDataPath()}");
+			log.WriteLine($"DB path...: {PathHelper.GetLocalAppDataPath()}");
 			log.WriteLine($"Log path..: {log.LogPath}");
 			log.WriteLine();
 
