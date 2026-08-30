@@ -5532,7 +5532,7 @@ Onglet Aide</value>
     <comment>favorite</comment>
   </data>
   <data name="ribShowWindowsButton_Label" xml:space="preserve">
-    <value>Ouvrir Windows</value>
+    <value>Afficher les fenêtres ouvertes</value>
     <comment>ribbon extras</comment>
   </data>
   <data name="ribShowXmlButton_Label" xml:space="preserve">

@@ -5530,7 +5530,7 @@ ISO-code then comma then language name</comment>
     <comment>ribbon favorites</comment>
   </data>
   <data name="ribShowWindowsButton_Label" xml:space="preserve">
-    <value>ウィンドウを開く</value>
+    <value>開いているウィンドウを表示</value>
     <comment>ribbon extras</comment>
   </data>
   <data name="ribShowXmlButton_Label" xml:space="preserve">

@@ -225,7 +225,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("AddTopSectionGroupCommand_Error", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Saving section group....
         /// </summary>
@@ -234,7 +234,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("AddTopSectionGroupCommand_Saving", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Add Top-Level Section Group.
         /// </summary>
@@ -243,7 +243,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("AddTopSectionGroupDialog_Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Absolute.
         /// </summary>
@@ -3833,7 +3833,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("FormulaCommand_Linear", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Calculating {0}.
         /// </summary>
@@ -3842,7 +3842,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("FormulaCommand_Progress", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Calculations complete, saving page....
         /// </summary>
@@ -3851,7 +3851,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("FormulaCommand_Saving", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Select one or more table cells.
         /// </summary>
@@ -12098,7 +12098,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribPasteTextButton_Screentip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Draw PlantUML.
         /// </summary>
@@ -13071,16 +13071,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribShowKeyMapsPageButton_Label", resourceCulture);
             }
         }
-
+        
         /// <summary>
-        ///   Looks up a localized string similar to Open Windows.
+        ///   Looks up a localized string similar to Show Open Windows.
         /// </summary>
         internal static string ribShowWindowsButton_Label {
             get {
                 return ResourceManager.GetString("ribShowWindowsButton_Label", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Show XML.
         /// </summary>
@@ -14492,7 +14492,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("SettingsFilename", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Location.
         /// </summary>
@@ -14501,7 +14501,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ShowWindowsDialog_locationColumn_HeaderText", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Open Windows.
         /// </summary>
@@ -14510,7 +14510,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ShowWindowsDialog_Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Z-Order.
         /// </summary>
@@ -14519,7 +14519,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ShowWindowsDialog_zColumn_HeaderText", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Enable edit mode.
         /// </summary>
@@ -16391,7 +16391,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("word_Feeder", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Filter.
         /// </summary>
@@ -16400,7 +16400,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("word_Filter", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Find.
         /// </summary>

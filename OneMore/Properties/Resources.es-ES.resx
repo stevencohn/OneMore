@@ -5520,7 +5520,7 @@ Pestaña Ayuda</value>
     <comment>favorite</comment>
   </data>
   <data name="ribShowWindowsButton_Label" xml:space="preserve">
-    <value>Abrir ventanas</value>
+    <value>Mostrar ventanas abiertas</value>
     <comment>ribbon extras</comment>
   </data>
   <data name="ribShowXmlButton_Label" xml:space="preserve">

@@ -5555,7 +5555,7 @@ Help Tab</value>
     <comment>ribbon favorites</comment>
   </data>
   <data name="ribShowWindowsButton_Label" xml:space="preserve">
-    <value>Open Windows</value>
+    <value>Show Open Windows</value>
     <comment>ribbon extras</comment>
   </data>
   <data name="ribShowXmlButton_Label" xml:space="preserve">
