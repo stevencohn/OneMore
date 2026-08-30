@@ -12,6 +12,7 @@ namespace River.OneMoreAddIn
 	using System.IO;
 	using System.Linq;
 	using System.Text.RegularExpressions;
+	using System.Threading;
 
 
 	/// <summary>
@@ -23,8 +24,57 @@ namespace River.OneMoreAddIn
 		protected SQLiteConnection con;
 		protected bool disposed;
 
-		protected static readonly string path = Path.Combine(
-			PathHelper.GetAppDataPath(), Resources.DatabaseFilename);
+		protected static readonly string path = ResolveDatabasePath();
+
+
+		/// <summary>
+		/// Resolves the path of OneMore.db under the local (non-roaming) AppData folder,
+		/// migrating an existing db from the legacy roaming AppData location if needed.
+		/// Roaming AppData can be relocated by Windows Folder Redirection to a UNC network
+		/// path, and SQLite's locking and WAL journaling are unreliable over network
+		/// filesystems, so the db must live under local AppData instead.
+		/// </summary>
+		private static string ResolveDatabasePath()
+		{
+			var folder = PathHelper.GetLocalAppDataPath();
+			PathHelper.EnsurePathExists(folder);
+
+			var newPath = Path.Combine(folder, Resources.DatabaseFilename);
+
+			if (!File.Exists(newPath))
+			{
+				var oldPath = Path.Combine(
+					PathHelper.GetAppDataPath(), Resources.DatabaseFilename);
+
+				if (File.Exists(oldPath))
+				{
+					// guard against multiple OneMore processes (add-in instances,
+					// OneMoreTray) racing to migrate the same file concurrently
+					using var mutex = new Mutex(false, @"Global\OneMoreDbMigration");
+					mutex.WaitOne();
+					try
+					{
+						// re-check: another process may have migrated it while we waited
+						if (!File.Exists(newPath) && File.Exists(oldPath))
+						{
+							File.Move(oldPath, newPath);
+							Logger.Current.WriteLine("Startup: moved OneMore.db to Local AppData");
+						}
+					}
+					catch (Exception exc)
+					{
+						Logger.Current.WriteLine(
+							"error migrating OneMore.db to local app data", exc);
+					}
+					finally
+					{
+						mutex.ReleaseMutex();
+					}
+				}
+			}
+
+			return newPath;
+		}
 
 
 		protected DatabaseProvider()
