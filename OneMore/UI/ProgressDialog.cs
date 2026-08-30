@@ -39,6 +39,7 @@ namespace River.OneMoreAddIn.UI
 		private const int CancelHeight = 144;
 
 		private CancellationTokenSource source;
+		private bool positioned;
 
 		// Func<p1, p2, Task> is the async equivalent of Action<p1, p2>
 		private readonly Func<ProgressDialog, CancellationToken, Task> execute;
@@ -126,6 +127,16 @@ namespace River.OneMoreAddIn.UI
 
 			source ??= new CancellationTokenSource();
 
+			// position over OneNote *before* starting the background action below; that
+			// action typically makes its own, possibly long-running, COM call into
+			// OneNote (e.g. UpdateHierarchy), and OneNote's COM server is a single
+			// threaded apartment that can only service one call at a time regardless of
+			// which thread/proxy issues it. Positioning first, while OneNote is still
+			// idle, avoids racing that call for OneNote's apartment - a race that, for a
+			// slow action, this positioning call would otherwise lose, blocking OnLoad
+			// and leaving the dialog unpainted until the action is essentially done
+			PositionOverOneNote();
+
 			try
 			{
 				// process should run in an STA thread otherwise it will conflict with
@@ -200,27 +211,40 @@ namespace River.OneMoreAddIn.UI
 		/// Called after Show()
 		/// </summary>
 		/// <param name="e"></param>
-		protected override async void OnLoad(EventArgs e)
+		protected override void OnLoad(EventArgs e)
 		{
 			base.OnLoad(e);
 
-			if (execute == null)
+			if (execute == null && !positioned)
 			{
-				StartPosition = FormStartPosition.Manual;
-				TopMost = true;
-
-				var rect = new Native.Rectangle();
-
-				await using var one = new OneNote();
-				Native.GetWindowRect(one.WindowHandle, ref rect);
-
-				var yoffset = (int)(Height * 20 / 100.0);
-
-				Location = new System.Drawing.Point(
-					(rect.Left + ((rect.Right - rect.Left) / 2)) - (Width / 2),
-					(rect.Top + ((rect.Bottom - rect.Top) / 2)) - (Height / 2) - yoffset
-					);
+				PositionOverOneNote();
 			}
+		}
+
+
+		/// <summary>
+		/// Positions this dialog centered over the current OneNote window. Makes a live
+		/// COM call into OneNote, so should be called while OneNote's COM apartment is
+		/// known to be idle - see the comment in ShowDialogWithCancel.
+		/// </summary>
+		private void PositionOverOneNote()
+		{
+			positioned = true;
+
+			StartPosition = FormStartPosition.Manual;
+			TopMost = true;
+
+			var rect = new Native.Rectangle();
+
+			using var one = new OneNote();
+			Native.GetWindowRect(one.WindowHandle, ref rect);
+
+			var yoffset = (int)(Height * 20 / 100.0);
+
+			Location = new System.Drawing.Point(
+				(rect.Left + ((rect.Right - rect.Left) / 2)) - (Width / 2),
+				(rect.Top + ((rect.Bottom - rect.Top) / 2)) - (Height / 2) - yoffset
+				);
 		}
 
 
