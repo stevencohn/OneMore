@@ -51,9 +51,9 @@ namespace River.OneMoreAddIn
 			trash = new List<IDisposable>();
 			//process = Process.GetCurrentProcess();
 
-			UI.Scaling.PrepareUI();
-
 			Helpers.SessionLogger.WriteSessionHeader();
+
+			UI.Scaling.PrepareUI();
 
 			Self = this;
 

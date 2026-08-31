@@ -35,7 +35,7 @@ namespace River.OneMoreAddIn.UI
 
 			(FactorX, FactorY) = UI.Scaling.GetScalingFactors();
 
-			//Logger.Current.WriteLine(
+			//Logger.Current.Verbose(
 			//	$"dpiX={dpiX} dpiY={dpiY} scalingX={scalingX} scalingY={scalingY} sx={sx} sy={sy}");
 		}
 
@@ -160,8 +160,8 @@ namespace River.OneMoreAddIn.UI
 
 				// Documented escape hatch for code that cannot rely on the app.config
 				// EnableWindowsFormsHighDpiAutoResizing appSetting; must run before any
-				// Form/Control is constructed, which is guaranteed since this is the
-				// first statement executed by AddIn()'s constructor.
+				// Form/Control is constructed, which is guaranteed since this one of the
+				// first statements executed by AddIn()'s constructor.
 				AppContext.SetSwitch(
 					"Switch.System.Windows.Forms.EnableWindowsFormsHighDpiAutoResizing", true);
 
@@ -187,7 +187,7 @@ namespace River.OneMoreAddIn.UI
 				if (Native.SetProcessDpiAwarenessContext(
 					Native.DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2))
 				{
-					Logger.Current.WriteLine(
+					Logger.Current.Verbose(
 						"DPI awareness: PerMonitorV2 (SetProcessDpiAwarenessContext)");
 					return;
 				}
@@ -201,7 +201,7 @@ namespace River.OneMoreAddIn.UI
 			{
 				if (Native.SetProcessDpiAwareness(Native.PROCESS_PER_MONITOR_DPI_AWARE) == 0)
 				{
-					Logger.Current.WriteLine(
+					Logger.Current.Verbose(
 						"DPI awareness: PerMonitor (SetProcessDpiAwareness)");
 					return;
 				}
@@ -212,7 +212,7 @@ namespace River.OneMoreAddIn.UI
 			}
 
 			Native.SetProcessDPIAware();
-			Logger.Current.WriteLine(
+			Logger.Current.Verbose(
 				"DPI awareness: System (legacy SetProcessDPIAware fallback)");
 		}
 	}
