@@ -155,6 +155,7 @@
 <li><a id="technote---editing-text" href="TechNote - Editing Text.htm">TechNote - Editing Text</a></li>
 <li><a id="technote---hyperlinks" href="TechNote - Hyperlinks.htm">TechNote - Hyperlinks</a></li>
 <li><a id="technote---interop" href="TechNote - Interop.htm">TechNote - Interop</a></li>
+<li><a id="technote---quickfiling-callbacks" href="TechNote - QuickFiling Callbacks.htm">TechNote - QuickFiling Callbacks</a></li>
 <li><a id="technote---styles" href="TechNote - Styles.htm">TechNote - Styles</a></li>
 <li><a id="technote---window-focus" href="TechNote - Window Focus.htm">TechNote - Window Focus</a></li>
 <li><a id="onenote-defects" href="OneNote Defects.htm">OneNote Defects</a></li>
@@ -167,12 +168,12 @@
     <div id="content">
       <DIV style="DIRECTION: ltr">
 <DIV style="WIDTH: 8.437in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0in">
-<DIV style="WIDTH: 3.469in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0in">
+<DIV style="WIDTH: 3.486in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0in">
 <P lang=yo style='FONT-SIZE: 20pt; MARGIN-BOTTOM: 14pt; FONT-FAMILY: "Calibri Light"; MARGIN-TOP: 0pt; COLOR: #464646'>TechNote - Window Focus</P></DIV>
-<DIV style="WIDTH: 2.212in; MARGIN-TOP: 0.042in; DIRECTION: ltr; MARGIN-LEFT: 0in">
+<DIV style="WIDTH: 2.247in; MARGIN-TOP: 0.038in; DIRECTION: ltr; MARGIN-LEFT: 0in">
 <P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">June 4, 2026</P>
 <P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">Last updated on July 31, 2026</P></DIV>
-<DIV style="WIDTH: 8.437in; MARGIN-TOP: 0.427in; DIRECTION: ltr; MARGIN-LEFT: 0in">
+<DIV style="WIDTH: 8.437in; MARGIN-TOP: 0.424in; DIRECTION: ltr; MARGIN-LEFT: 0in">
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">This article discusses how to ensure a modal or modeless dialog displayed by the OneMore add-in can reliably demand keyboard focus when it is shown. This is likely a common case across any Office COM add-in and perhaps other situations, so could be instructive.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">OneMore dialogs (search, command palette, etc.) may open without receiving keyboard focus — the focus stays on the OneNote page. This happens because Windows enforces strict </SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: bold">foreground window security</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, where calls to </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>SetForegroundWindow()</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> silently failf unless the calling thread currently holds "foreground rights."</SPAN></P>

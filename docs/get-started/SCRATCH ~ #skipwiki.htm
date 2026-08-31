@@ -16,22 +16,22 @@ xmlns="http://www.w3.org/TR/REC-html40">
 
 <div style='direction:ltr;margin-top:0in;margin-left:0in;width:8.5354in'>
 
-<div style='direction:ltr;margin-top:0in;margin-left:.075in;width:2.8458in'>
+<div style='direction:ltr;margin-top:0in;margin-left:.075in;width:2.8631in'>
 
 <p style='margin-top:0pt;margin-bottom:14pt;font-family:"Calibri Light";
 font-size:20.0pt;color:#464646'>SCRATCH ~ #skipwiki</p>
 
 </div>
 
-<div style='direction:ltr;margin-top:.0423in;margin-left:.075in;width:2.35in'>
+<div style='direction:ltr;margin-top:.0388in;margin-left:.075in;width:2.3847in'>
 
 <P style="margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676">June 3, 2026</P>
 
-<P style="margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676">Last updated on August 22, 2026</P>
+<P style="margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676">Last updated on August 31, 2026</P>
 
 </div>
 
-<div style='direction:ltr;margin-top:.4277in;margin-left:0in;width:8.5354in'>
+<div style='direction:ltr;margin-top:.4243in;margin-left:0in;width:8.5354in'>
 
 <div style='direction:ltr'>
 
@@ -74,6 +74,9 @@ font-size:20.0pt;color:#464646'>SCRATCH ~ #skipwiki</p>
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
 style='mso-spacerun:yes'>  </span></p>
 
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+style='mso-spacerun:yes'>  </span></p>
+
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>This release
 introduces a migration path for Evernote users who want to move to OneNote.
 Export your Evernotes into .enex files and then import them into OneNote using
@@ -83,10 +86,27 @@ otherwise the importer skips them.<span style='mso-spacerun:yes'>  </span></p>
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
 style='mso-spacerun:yes'>  </span></p>
 
-<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>As always, see the
-user guidance for more information:
-[onemoreaddin.com](https://onemoreaddin.com/).<span style='mso-spacerun:yes'> 
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Other highlights
+include in-place hashtag completion (`Alt+G`), a &quot;*Where Am I*&quot; popup
+with fast navigation (`Ctrl+Alt+W`), and Quick Import to automate multi-file
+imports with a keypress (`Ctrl+Alt+I`).<span style='mso-spacerun:yes'>  </span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+style='mso-spacerun:yes'>  </span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>**Important:** this
+release moves the OneMore.db database file from your Remote AppData folder to
+your Local AppData folder. This should be a non-breaking, one-time only change.
+It fixes a problem where the database was inaccessible if the Remote AppData
+folder was redirected to a network share.<span style='mso-spacerun:yes'> 
 </span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+style='mso-spacerun:yes'>  </span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>See the OneMore user
+guide at [onemoreaddin.com](https://onemoreaddin.com/) and a list of recently
+updated pages on the the About page.<span style='mso-spacerun:yes'>  </span></p>
 
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
 style='mso-spacerun:yes'>  </span></p>
@@ -104,11 +124,11 @@ migration easier,
 style='mso-spacerun:yes'>  </span></p>
 
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Added a *Quick
-Import* command to import files from a folder into a section as configured in
-Settings, [#2465](https://github.com/stevencohn/OneMore/issues/2465)<span
+Import* command and CLI to import files from a folder into a preconfigured
+section, [#2465](https://github.com/stevencohn/OneMore/issues/2465)<span
 style='mso-spacerun:yes'>  </span></p>
 
-<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Added a *Add Top
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Added an *Add Top
 Section Group* command to add a top-level section group to the current
 notebook, [#2452](https://github.com/stevencohn/OneMore/issues/2452)<span
 style='mso-spacerun:yes'>  </span></p>
@@ -136,6 +156,11 @@ style='mso-spacerun:yes'>  </span></p>
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Added a *Restore
 Background Images* command and CLI to batch-unset background images on a page,
 [#1947](https://github.com/stevencohn/OneMore/issues/1947)<span
+style='mso-spacerun:yes'>  </span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Added a *Show Open
+Windows* command to show all open OneNote windows, including duplicates,
+[#2550](https://github.com/stevencohn/OneMore/issues/2550)<span
 style='mso-spacerun:yes'>  </span></p>
 
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Added an *Add to
@@ -237,6 +262,16 @@ and plugin execution,
 [#2432](https://github.com/stevencohn/OneMore/issues/2432)<span
 style='mso-spacerun:yes'>  </span></p>
 
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Enhanced rendering
+of page thumbnails in OneMore Calendar,
+[c5d5708](https://github.com/stevencohn/OneMore/commit/c5d5708fe8f251d0d7d26c7c51ca148aae9881da)<span
+style='mso-spacerun:yes'>  </span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Fixed an issue
+where Hashtag scanner failed when applying styles, also inflated performance
+times, [#2528](https://github.com/stevencohn/OneMore/issues/2528)<span
+style='mso-spacerun:yes'>  </span></p>
+
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Fixed an issue
 where the Calendar app did not always follow DPI scaling preferences,
 [#2446](https://github.com/stevencohn/OneMore/issues/2446)<span
@@ -276,7 +311,7 @@ Quick Notes section,
 style='mso-spacerun:yes'>  </span></p>
 
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Fixed an issue
-where a notebook ToC may log an exception (still investigating…)
+where a notebook ToC may log an exception
 [#2519](https://github.com/stevencohn/OneMore/issues/2519)<span
 style='mso-spacerun:yes'>  </span></p>
 
@@ -292,7 +327,74 @@ style='mso-spacerun:yes'>  </span></p>
 
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Fixed an issue
 where Embed may fail if the source page title includes a colon char,
-[#2435](https://github.com/stevencohn/OneMore/issues/2435)</p>
+[#2435](https://github.com/stevencohn/OneMore/issues/2435)<span
+style='mso-spacerun:yes'>  </span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Fixed an issue
+where OneMore key bindings may not fire,
+[#2484](https://github.com/stevencohn/OneMore/issues/2484)<span
+style='mso-spacerun:yes'>  </span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Fixed an issue
+where commands using the OneMore database would fail silently,
+[#2556](https://github.com/stevencohn/OneMore/issues/2556)<span
+style='mso-spacerun:yes'>  </span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Fixed telemetry
+ERR-137 where InsertCodeBox may fail silently due to a null reference
+exception, [#2558](https://github.com/stevencohn/OneMore/issues/2558)<span
+style='mso-spacerun:yes'>  </span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Fixed telemetry
+ERR-138 where CommandFactory may fail silently due to a null reference
+exception, [#2560](https://github.com/stevencohn/OneMore/issues/2560)<span
+style='mso-spacerun:yes'>  </span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Fixed telemetry
+ERR-139 where InsertToc may fail silently due to a null reference exception,
+[#2562](https://github.com/stevencohn/OneMore/issues/2562)<span
+style='mso-spacerun:yes'>  </span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+style='mso-spacerun:yes'>  </span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'># Which
+Installer?<span style='mso-spacerun:yes'>  </span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>The architecture of
+the installer (x86, x64, arm64) must match the architecture of your installed
+copy of OneNote. This is unrelated to your installed copy of Windows. If you do
+not know your OneNote architecture, refer to *Which Version of Office Do I Have?*
+on the How to Install OneNote page.<span style='mso-spacerun:yes'>  </span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+style='mso-spacerun:yes'>  </span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- If you have 64-bit
+OneNote installed, download the x64 msi<span style='mso-spacerun:yes'>  </span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- If you have 32-bit
+OneNote installed, download the x86 msi<span style='mso-spacerun:yes'>  </span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- If you have ARM64
+OneNote installed, download either the x64 msi or the ARM64 exe bundle
+installer<span style='mso-spacerun:yes'>  </span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>## Checksums<span
+style='mso-spacerun:yes'>  </span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- x64 =
+12b9e457a121635297fbc95650ca5c47f71fd598b10d03af106a1dbe4e85da51<span
+style='mso-spacerun:yes'>  </span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- x86 =
+57e62eddf10af1310540f6b789e16143037528cef5ebef7b677184b9d810114b<span
+style='mso-spacerun:yes'>  </span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- ARM64 bundle =
+22d6514f3686fe57140298fd0a69342caa7970dd97909d0a3b29654ad27857a9</p>
 
 </div>
 

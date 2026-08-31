@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description"
+    content="OneMore is an add-in for OneNote with simple and powerful features that make OneNote a better OneNote">
+  <meta name="author" content="Steven M Cohn">
+  <meta name="generator" content="OneMore">
+  <title>OneMore: TechNote - QuickFiling Callbacks</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+  <link href="/nav.css" rel="stylesheet">
+  <link href="/toc.css" rel="stylesheet">
+  <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+</head>
+
+<body class="sidebar-layout">
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="book-half" viewBox="0 0 16 16">
+      <path fill="currentColor" fill-rule="evenodd"
+        d="M8.5 2.687c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z">
+      </path>
+    </symbol>
+    <symbol id="three-dots" viewBox="0 0 16 16">
+      <path fill="currentColor" fill-rule="evenodd"
+        d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z">
+      </path>
+    </symbol>
+    <symbol id="facebook">
+      <path fill="currentColor" fill-rule="evenodd"
+        d="M480,257.35c0-123.7-100.3-224-224-224s-224,100.3-224,224c0,111.8,81.9,204.47,189,221.29V322.12H164.11V257.35H221V208c0-56.13,33.45-87.16,84.61-87.16,24.51,0,50.15,4.38,50.15,4.38v55.13H327.5c-27.81,0-36.51,17.26-36.51,35v42h62.12l-9.92,64.77H291V478.66C398.1,461.85,480,369.18,480,257.35Z">
+      </path>
+    </symbol>
+    <symbol id="github">
+      <path fill="currentColor" fill-rule="evenodd"
+        d="M256 0C114.64 0 0 114.61 0 256c0 113.09 73.34 209 175.08 242.9 12.8 2.35 17.47-5.56 17.47-12.34 0-6.08-.22-22.18-.35-43.54-71.2 15.49-86.2-34.34-86.2-34.34-11.64-29.57-28.42-37.45-28.42-37.45-23.27-15.84 1.73-15.55 1.73-15.55 25.69 1.81 39.21 26.38 39.21 26.38 22.84 39.12 59.92 27.82 74.5 21.27 2.33-16.54 8.94-27.82 16.25-34.22-56.84-6.43-116.6-28.43-116.6-126.49 0-27.95 10-50.8 26.35-68.69-2.63-6.48-11.42-32.5 2.51-67.75 0 0 21.49-6.88 70.4 26.24a242.65 242.65 0 0 1 128.18 0c48.87-33.13 70.33-26.24 70.33-26.24 14 35.25 5.18 61.27 2.55 67.75 16.41 17.9 26.31 40.75 26.31 68.69 0 98.35-59.85 120-116.88 126.32 9.19 7.9 17.38 23.53 17.38 47.41 0 34.22-.31 61.83-.31 70.23 0 6.85 4.61 14.81 17.6 12.31C438.72 464.97 512 369.08 512 256.02 512 114.62 397.37 0 256 0z">
+      </path>
+    </symbol>
+    <symbol id="heart">
+      <path stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        d="M12 7.69431C10 2.99988 3 3.49988 3 9.49991C3 15.4999 12 20.5001 12 20.5001C12 20.5001 21 15.4999 21 9.49991C21 3.49988 14 2.99988 12 7.69431Z">
+      </path>
+    </symbol>
+  </svg>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+    integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+    crossorigin="anonymous"></script>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top" aria-label="OneMore-navbar">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">
+        <img src="/Logo.png" alt="OneMore" height="45" class="logo d-inline-block align-text-middle">
+        <div class="logo-text">OneMore</div>
+      </a>
+
+      <div class="navbar-toggler d-flex d-lg-none order-3 p-2" style="display:block">
+        <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasResponsive" aria-controls="offcanvasResponsive" aria-label="TOC">
+          <svg class="bi" aria-hidden="true">
+            <use xlink:href="#book-half"></use>
+          </svg>
+        </button>
+
+        <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav me-auto mb-2 mb-lg-0">
+          <!-- TODO class+active aria-currrent=page -->
+          <a class="nav-link" href="/get-started/index.html" id="get-started-section">Get started</a>
+          <a class="nav-link" href="/the-basics/index.html" id="the-basics-section">The Basics</a>
+          <a class="nav-link" href="/commands/index.html" id="commands-section">Commands</a>
+          <a class="nav-link" href="/context-menus/index.html" id="context-menus-section">Context Menus</a>
+          <a class="nav-link" href="/developers/index.html" id="developers-section">Developers</a>
+        </div>
+        <div id="search" class="d-flex flex-grow-1 mx-lg-3"></div>
+        <div class="d-flex">
+          <a class="nav-link nav-glyph py-2 px-lg-2" href="https://facebook.com/OneMoreAddIn" target="_blank" rel="noopener">
+            <svg width="22px" height="22px" viewBox="0 0 512 512" id="fbglyph" xmlns="http://www.w3.org/2000/svg"
+              stroke="#FFFFFF" role="img" class="navbar-nav-svg">
+              <title>OneMore on Facebook</title>
+              <use xlink:href="#facebook"></use>
+            </svg>
+            <small class="d-lg-none ms-2">Facebook</small>
+          </a>
+          <a class="nav-link nav-glyph py-2 px-lg-2" href="https://github.com/stevencohn/OneMore" target="_blank" rel="noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" class="navbar-nav-svg"
+              viewBox="0 0 512 499.36" role="img">
+              <title>See the project on GitHub</title>
+              <use xlink:href="#github"></use>
+            </svg>
+            <small class="d-lg-none ms-2">GitHub</small>
+          </a>
+          <a class="nav-link nav-glyph py-2 px-lg-2" href="https://github.com/sponsors/stevencohn" target="_blank" rel="noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="navbar-nav-svg" viewBox="0 0 24 24"
+              role="img" fill="none">
+              <title>Please consider a donation</title>
+              <use xlink:href="#heart"></use>
+            </svg>
+            <small class="d-lg-none ms-2">Donate</small>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="wrapper">
+
+    <!-- Sidebar -->
+    <nav id="sidebar" style="background-color:#EBE5E1; " aria-label="Sidebar">
+      <div class="offcanvas-lg offcanvas-end" tabindex="-1" id="offcanvasResponsive"
+        aria-labelledby="offcanvasResponsiveLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasResponsiveLabel">Get Started</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#offcanvasResponsive"
+            aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav">
+            <li><a id="setup" href="Setup.htm">Setup</a></li>
+<li><a id="building-the-installer" href="Building The Installer.htm">Building The Installer</a></li>
+<li><a id="debugging-onemore" href="Debugging OneMore.htm">Debugging OneMore</a></li>
+<li><a id="experimental-features" href="Experimental Features.htm">Experimental Features</a></li>
+<li><a id="how-to-add-a-new-command" href="How to Add A New Command.htm">How to Add A New Command</a></li>
+<li><a id="how-to-add-a-settings-sheet" href="How to Add A Settings Sheet.htm">How to Add A Settings Sheet</a></li>
+<li><a id="language-translations" href="Language Translations.htm">Language Translations</a></li>
+<li><a id="logging-options" href="Logging Options.htm">Logging Options</a></li>
+<li><a id="nuget-dependencies" href="Nuget Dependencies.htm">Nuget Dependencies</a></li>
+<li><a id="scripts" href="Scripts.htm">Scripts</a></li>
+<li><a id="smoke-tests" href="Smoke Tests.htm">Smoke Tests</a></li>
+<li><a id="references" href="References.htm">References</a></li>
+<li><a id="design---command-framework" href="Design - Command Framework.htm">Design - Command Framework</a></li>
+<li><a id="design---command-service" href="Design - Command Service.htm">Design - Command Service</a></li>
+<li><a id="design---com-layer" href="Design - COM Layer.htm">Design - COM Layer</a></li>
+<li><a id="design---favorites" href="Design - Favorites.htm">Design - Favorites</a></li>
+<li><a id="design---hashtags" href="Design - Hashtags.htm">Design - Hashtags</a></li>
+<li><a id="design---telemetry" href="Design - Telemetry.htm">Design - Telemetry</a></li>
+<li><a id="design---theming" href="Design - Theming.htm">Design - Theming</a></li>
+<li><a id="design---ui-layer" href="Design - UI Layer.htm">Design - UI Layer</a></li>
+<li><a id="design---window-layouts" href="Design - Window Layouts.htm">Design - Window Layouts</a></li>
+<li><a id="technote---colors" href="TechNote - Colors.htm">TechNote - Colors</a></li>
+<li><a id="technote---com-registration" href="TechNote - COM Registration.htm">TechNote - COM Registration</a></li>
+<li><a id="technote---com-surrogate" href="TechNote - COM Surrogate.htm">TechNote - COM Surrogate</a></li>
+<li><a id="technote---editing-text" href="TechNote - Editing Text.htm">TechNote - Editing Text</a></li>
+<li><a id="technote---hyperlinks" href="TechNote - Hyperlinks.htm">TechNote - Hyperlinks</a></li>
+<li><a id="technote---interop" href="TechNote - Interop.htm">TechNote - Interop</a></li>
+<li><a id="technote---quickfiling-callbacks" href="TechNote - QuickFiling Callbacks.htm">TechNote - QuickFiling Callbacks</a></li>
+<li><a id="technote---styles" href="TechNote - Styles.htm">TechNote - Styles</a></li>
+<li><a id="technote---window-focus" href="TechNote - Window Focus.htm">TechNote - Window Focus</a></li>
+<li><a id="onenote-defects" href="OneNote Defects.htm">OneNote Defects</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div id="content">
+      <DIV style="DIRECTION: ltr">
+<DIV style="WIDTH: 8.788in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0in">
+<DIV style="WIDTH: 4.152in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0.075in">
+<P lang=yo style='FONT-SIZE: 20pt; MARGIN-BOTTOM: 14pt; FONT-FAMILY: "Calibri Light"; MARGIN-TOP: 0pt; COLOR: #464646'>TechNote - QuickFiling Callbacks</P></DIV>
+<DIV style="WIDTH: 2.336in; MARGIN-TOP: 0.038in; DIRECTION: ltr; MARGIN-LEFT: 0.075in">
+<P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">August 30, 2026</P>
+<P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">&nbsp;</P></DIV>
+<DIV style="WIDTH: 8.788in; MARGIN-TOP: 0.424in; DIRECTION: ltr; MARGIN-LEFT: 0in">
+<P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Several commands (</SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>CopyFolderCommand</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>HashtagCommand</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>SearchCommand</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>SearchTitleCommand</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>EmbedCommand</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">/</SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>EmbedSubpageCommand</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, and — via other pickers — </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>ArchiveCommand</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>CheckUrlsCommand</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>RefreshPageLinksCommand</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>ImportEvernoteCommand</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">) share a common shape: the user makes a choice in some modal or callback context, that choice kicks off non-trivial background work, and the work finishes with a follow-up report to the user. Three pieces work together to make this safe.</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H2 lang=yo id=the-pattern style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">The pattern</H2>
+<H2 lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">&nbsp;</H2>
+<P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Some of these commands drive OneNote's native QuickFiling picker (</SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>OneNote.SelectLocation(title, description, scope, callback)</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">). OneNote shows its own picker UI and invokes </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>callback</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> from </SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-STYLE: italic">inside its own </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>OnDialogClosed</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> handling — OneNote's UI thread is blocked, waiting for the callback to return, for as long as the callback takes to run. Others use a modal setup dialog of their own instead. Either way, the same three components carry the work from there:</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<OL style="FONT-SIZE: 11.5pt; MARGIN-BOTTOM: 0in; FONT-FAMILY: Calibri; unicode-bidi: embed; MARGIN-TOP: 0in; FONT-WEIGHT: bold; DIRECTION: ltr; FONT-STYLE: normal" type=1>
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px; FONT-WEIGHT: bold" value=1><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: bold; FONT-STYLE: normal">Background execution.</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: normal; FONT-STYLE: normal"> The real work runs inside </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; FONT-WEIGHT: normal; FONT-STYLE: normal'>ProgressDialog</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: normal; FONT-STYLE: normal">'s </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; FONT-WEIGHT: normal; FONT-STYLE: normal'>Func&lt;ProgressDialog, CancellationToken, Task&gt;</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: normal; FONT-STYLE: normal"> constructor, shown via </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; FONT-WEIGHT: normal; FONT-STYLE: normal'>RunModeless</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: normal; FONT-STYLE: normal"> (inherited from </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; FONT-WEIGHT: normal; FONT-STYLE: normal'>MoreForm</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: normal; FONT-STYLE: normal">). Control returns to the caller — including OneNote's own UI thread, when the caller is a </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; FONT-WEIGHT: normal; FONT-STYLE: normal'>SelectLocation</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: normal; FONT-STYLE: normal"> callback — almost immediately, instead of blocking it for the duration of the work.</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px; FONT-WEIGHT: bold"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: bold">Correct ownership. </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; FONT-WEIGHT: normal'>OneNote.OwnerWindow</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: normal"> always resolves through an internal </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; FONT-WEIGHT: normal'>GetTopLevelWindow()</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: normal"> helper before wrapping a window handle, so every dialog it owns is owned by OneNote's actual top-level frame — never an inner pane.</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px; FONT-WEIGHT: bold"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: bold">Decoupled reporting.</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: normal"> The follow-up report (</SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; FONT-WEIGHT: normal'>MoreMessageBox</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: normal">) is shown via </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; FONT-WEIGHT: normal'>HotkeyManager.InvokeOnMessageThread(() =&gt; MoreMessageBox.Show(...))</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: normal">, which marshals dialog creation onto a dedicated, persistent message-pump thread — instead of showing it synchronously from inside the </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; FONT-WEIGHT: normal'>RunModeless</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: normal"> closed-action (</SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; FONT-WEIGHT: normal'>ModelessClosed</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: normal">) handler, which itself runs nested inside a cross-thread </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; FONT-WEIGHT: normal'>Invoke</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: normal"> that is unwinding the progress dialog's own </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; FONT-WEIGHT: normal'>Close()</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: normal">.</SPAN> </LI></OL>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H2 lang=yo id=architecture style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Architecture</H2>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<DIV style="DIRECTION: ltr">
+<TABLE title="" style="BORDER-TOP: #a3a3a3 0pt solid; BORDER-RIGHT: #a3a3a3 0pt solid; BORDER-COLLAPSE: collapse; BORDER-BOTTOM: #a3a3a3 0pt solid; DIRECTION: ltr; BORDER-LEFT: #a3a3a3 0pt solid" cellSpacing=0 cellPadding=0 summary="" border=0 valign="top">
+<TBODY>
+<TR>
+<TD style="BORDER-LEFT-WIDTH: 0pt; BORDER-RIGHT-WIDTH: 0pt; WIDTH: 8.625in; VERTICAL-ALIGN: top; BORDER-BOTTOM-WIDTH: 0pt; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; PADDING-RIGHT: 3pt; BORDER-TOP-WIDTH: 0pt">
+<P style="MARGIN: 0in"><IMG src="/developers/TechNote%20-%20QuickFiling%20Callbacks_files/image001.png" width=814 height=85></P>
+<P lang=yo style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; TEXT-ALIGN: center; MARGIN: 0in"><SPAN style="FONT-WEIGHT: bold; COLOR: #5b9bd5">Architecture PlantUML (</SPAN><A href="onemore://PlantUmlCommand/7e8913bce1954106915f8ec80afda530/extract"><SPAN style="FONT-WEIGHT: bold">Extract</SPAN></A><SPAN style="FONT-WEIGHT: bold; COLOR: #5b9bd5">)</SPAN></P></TD></TR></TBODY></TABLE></DIV>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H2 lang=yo id=sequence style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Sequence</H2>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<DIV style="DIRECTION: ltr">
+<TABLE title="" style="BORDER-TOP: #a3a3a3 0pt solid; BORDER-RIGHT: #a3a3a3 0pt solid; BORDER-COLLAPSE: collapse; BORDER-BOTTOM: #a3a3a3 0pt solid; DIRECTION: ltr; BORDER-LEFT: #a3a3a3 0pt solid" cellSpacing=0 cellPadding=0 summary="" border=0 valign="top">
+<TBODY>
+<TR>
+<TD style="BORDER-LEFT-WIDTH: 0pt; BORDER-RIGHT-WIDTH: 0pt; WIDTH: 8.625in; VERTICAL-ALIGN: top; BORDER-BOTTOM-WIDTH: 0pt; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; PADDING-RIGHT: 3pt; BORDER-TOP-WIDTH: 0pt">
+<P style="MARGIN: 0in"><IMG src="/developers/TechNote%20-%20QuickFiling%20Callbacks_files/image002.png" width=814 height=208></P>
+<P lang=yo style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; TEXT-ALIGN: center; MARGIN: 0in"><SPAN style="FONT-WEIGHT: bold; COLOR: #5b9bd5">Sequence PlantUML (</SPAN><A href="onemore://PlantUmlCommand/983563d7ce76491b9350a354fe8e8f40/extract"><SPAN style="FONT-WEIGHT: bold">Extract</SPAN></A><SPAN style="FONT-WEIGHT: bold; COLOR: #5b9bd5">)</SPAN></P></TD></TR></TBODY></TABLE></DIV>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H2 lang=yo id=why-ownership-resolves-to-the-top-level-frame style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Why ownership resolves to the top-level frame</H2>
+<H2 lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">&nbsp;</H2>
+<P lang=yo style="MARGIN: 0in"><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>OneNote.OwnerWindow</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> can't simply wrap the COM </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>Window.WindowHandle</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> property, because that handle isn't guaranteed to be OneNote's top-level window — it can be an inner pane:</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<DIV style="DIRECTION: ltr">
+<TABLE title="" style="BORDER-TOP: #a3a3a3 0pt solid; BORDER-RIGHT: #a3a3a3 0pt solid; BORDER-COLLAPSE: collapse; BORDER-BOTTOM: #a3a3a3 0pt solid; DIRECTION: ltr; BORDER-LEFT: #a3a3a3 0pt solid" cellSpacing=0 cellPadding=0 summary="" border=0 valign="top">
+<TBODY>
+<TR>
+<TD style="BORDER-LEFT-WIDTH: 0pt; BORDER-RIGHT-WIDTH: 0pt; WIDTH: 5.845in; VERTICAL-ALIGN: top; BORDER-BOTTOM-WIDTH: 0pt; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; PADDING-RIGHT: 3pt; BORDER-TOP-WIDTH: 0pt">
+<P style="MARGIN: 0in"><IMG src="/developers/TechNote%20-%20QuickFiling%20Callbacks_files/image003.png" width=547 height=58></P>
+<P lang=yo style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; TEXT-ALIGN: center; MARGIN: 0in"><SPAN style="FONT-WEIGHT: bold; COLOR: #5b9bd5">Structural PlantUML (</SPAN><A href="onemore://PlantUmlCommand/f843cbad07ec47a792c4c091b098c67e/extract"><SPAN style="FONT-WEIGHT: bold">Extract</SPAN></A><SPAN style="FONT-WEIGHT: bold; COLOR: #5b9bd5">)</SPAN></P></TD></TR></TBODY></TABLE></DIV>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">A dialog owned by a non-top-level HWND has no properly defined Win32 owner/owned relationship, so Windows' normal Z-order and activation protections for "owned" windows don't apply to it. </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>GetTopLevelWindow()</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> — a private helper on </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>OneNote</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> that walks </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>GetParent</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> until there's no parent left — is what </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>OwnerWindow</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> routes through so every dialog is anchored to the real frame instead.</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H2 lang=yo id=where-this-pattern-is-used-today style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Where this pattern is used today</H2>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<DIV style="DIRECTION: ltr">
+<TABLE title="" style="BORDER-TOP: #a3a3a3 0pt solid; BORDER-RIGHT: #a3a3a3 0pt solid; BORDER-COLLAPSE: collapse; BORDER-BOTTOM: #a3a3a3 0pt solid; DIRECTION: ltr; BORDER-LEFT: #a3a3a3 0pt solid" cellSpacing=0 cellPadding=0 summary="" border=0 valign="top">
+<TBODY>
+<TR>
+<TD style="BORDER-LEFT-WIDTH: 0pt; BORDER-RIGHT-WIDTH: 0pt; WIDTH: 4.182in; VERTICAL-ALIGN: top; BORDER-BOTTOM-WIDTH: 0pt; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; PADDING-RIGHT: 3pt; BORDER-TOP-WIDTH: 0pt">
+<P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: bold">Uses </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>OneNote.SelectLocation</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: bold"> (QuickFiling)</SPAN></P></TD>
+<TD style="BORDER-LEFT-WIDTH: 0pt; BORDER-RIGHT-WIDTH: 0pt; WIDTH: 4.442in; VERTICAL-ALIGN: top; BORDER-BOTTOM-WIDTH: 0pt; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; PADDING-RIGHT: 3pt; BORDER-TOP-WIDTH: 0pt">
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in"><SPAN style="FONT-WEIGHT: bold">Uses its own setup dialog, same progress+report backbone</SPAN></P></TD></TR>
+<TR>
+<TD style="BORDER-LEFT-WIDTH: 0pt; BORDER-RIGHT-WIDTH: 0pt; WIDTH: 4.182in; VERTICAL-ALIGN: top; BORDER-BOTTOM-WIDTH: 0pt; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; PADDING-RIGHT: 3pt; BORDER-TOP-WIDTH: 0pt">
+<P lang=yo style="MARGIN: 0in"><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>CopyFolderCommand</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>HashtagCommand</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>SearchCommand</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>SearchTitleCommand</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>EmbedCommand</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">/</SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>EmbedSubpageCommand</SPAN></P></TD>
+<TD style="BORDER-LEFT-WIDTH: 0pt; BORDER-RIGHT-WIDTH: 0pt; WIDTH: 4.442in; VERTICAL-ALIGN: top; BORDER-BOTTOM-WIDTH: 0pt; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; PADDING-RIGHT: 3pt; BORDER-TOP-WIDTH: 0pt">
+<P lang=yo style="MARGIN: 0in"><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>ArchiveCommand</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>CheckUrlsCommand</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>RefreshPageLinksCommand</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">, </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>ImportEvernoteCommand</SPAN></P></TD></TR></TBODY></TABLE></DIV>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H2 lang=yo id=building-a-new-command-on-this-pattern style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Building a new command on this pattern</H2>
+<H2 lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">&nbsp;</H2>
+<UL style="MARGIN-BOTTOM: 0in; unicode-bidi: embed; MARGIN-TOP: 0in; DIRECTION: ltr" type=disc>
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Do the real work inside </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>ProgressDialog</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">'s work delegate, run via </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>RunModeless</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> — never inline in a picker/dialog callback.</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Let </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>OneNote.OwnerWindow</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> supply every dialog's owner. Don't source a raw COM window handle as an owner anywhere else without routing it through the same top-level resolution.</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Show the follow-up report via </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>HotkeyManager.InvokeOnMessageThread(() =&gt; MoreMessageBox.Show(...))</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> — never directly from the </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>RunModeless</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> closed-action/</SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>ModelessClosed</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> handler.</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">For forced-activation needs, </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>MoreForm.Elevate()</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> is the proven </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>AttachThreadInput</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">/</SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>SetForegroundWindow</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">/</SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>BringWindowToTop</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> technique. It solves focus-</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-STYLE: italic">priority</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> contention; it isn't a substitute for correct ownership or threading if a dialog is being destroyed outright rather than merely losing focus.</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>OnActivated</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> (synchronous) is the reliable hook for anything that must run before a window could be lost. </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>OnShown</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> is </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>BeginInvoke</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">-queued and can lose that race.</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>ProgressDialog.OnShown</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">'s </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>Task.Factory.StartNew(async () =&gt; ...)</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> currently has no </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>.Unwrap()</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> (or </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>Task.Run</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">) — a known sharp edge, worth tightening opportunistically if that code is touched again.</SPAN> 
+<LI lang=yo style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>MoreMessageBox.Show(...)</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> accepts optional </SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Consolas">widthScale</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">/</SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>heightScale</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> for report dialogs that need more room, e.g. a long partial-failure list.</SPAN> </LI></UL>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H2 lang=yo id=history style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">History</H2>
+<H2 lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">&nbsp;</H2>
+<P lang=yo style="MARGIN: 0in"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">This pattern was hardened after a regression surfaced during #2455 work, where </SPAN><SPAN style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"'>CopyFolderCommand</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">'s report dialog appeared and was torn down within about 20ms — before a user could ever read it.</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style='FONT-SIZE: 10pt; FONT-FAMILY: "Courier New"; COLOR: #0080ff; MARGIN: 0in'>───────────────────────────────────────────────────────────────────────────────────────────────────</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in"><SPAN style="FONT-STYLE: italic">Architecture PlantUML (</SPAN><A href="onemore://PlantUmlCommand/7e8913bce1954106915f8ec80afda530"><SPAN style="FONT-STYLE: italic">Refresh</SPAN></A><SPAN style="FONT-STYLE: italic">)</SPAN></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; COLOR: #5b9bd5; MARGIN: 0in 0in 0in 0.375in'><SPAN style="FONT-WEIGHT: bold">@startuml</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: #a5a5a5">skinparam</SPAN><SPAN style="COLOR: black"> componentStyle </SPAN><SPAN style="COLOR: lightseagreen">rectangle</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: lightseagreen">actor </SPAN><SPAN style="COLOR: firebrick">"User" </SPAN><SPAN style="COLOR: #2e75b5">as</SPAN><SPAN style="COLOR: black"> user</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: lightseagreen">component </SPAN><SPAN style="COLOR: firebrick">"OneNote UI Thread" </SPAN><SPAN style="COLOR: #2e75b5">as</SPAN><SPAN style="COLOR: black"> one {</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">[SelectLocation callback] </SPAN><SPAN style="COLOR: #2e75b5">as</SPAN><SPAN style="COLOR: black"> picker</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in 0in 0in 0.375in'>}</CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: lightseagreen">component </SPAN><SPAN style="COLOR: firebrick">"Background Worker\n(ThreadPool)" </SPAN><SPAN style="COLOR: #2e75b5">as</SPAN><SPAN style="COLOR: black"> worker {</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">[ProgressDialog work delegate] </SPAN><SPAN style="COLOR: #2e75b5">as</SPAN><SPAN style="COLOR: black"> work</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in 0in 0in 0.375in'>}</CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: lightseagreen">component </SPAN><SPAN style="COLOR: firebrick">"HotkeyManager\nMessage-Pump Thread" </SPAN><SPAN style="COLOR: #2e75b5">as</SPAN><SPAN style="COLOR: black"> pump {</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">[InvokeOnMessageThread] </SPAN><SPAN style="COLOR: #2e75b5">as</SPAN><SPAN style="COLOR: black"> invoke</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in 0in 0in 0.375in'>}</CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">user </SPAN><SPAN style="COLOR: #5b9bd5">-&gt;</SPAN><SPAN style="COLOR: black"> picker : </SPAN><SPAN style="COLOR: firebrick">chooses target</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">picker </SPAN><SPAN style="COLOR: #5b9bd5">-&gt;</SPAN><SPAN style="COLOR: black"> work : </SPAN><SPAN style="COLOR: firebrick">new ProgressDialog(...).RunModeless()\n[returns immediately]</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">work </SPAN><SPAN style="COLOR: #5b9bd5">-&gt;</SPAN><SPAN style="COLOR: black"> work : </SPAN><SPAN style="COLOR: firebrick">performs copy/import/refresh</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">work </SPAN><SPAN style="COLOR: #5b9bd5">-&gt;</SPAN><SPAN style="COLOR: black"> invoke : </SPAN><SPAN style="COLOR: firebrick">on completion,\nMoreMessageBox via InvokeOnMessageThread</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">invoke </SPAN><SPAN style="COLOR: #5b9bd5">-&gt;</SPAN><SPAN style="COLOR: black"> user : </SPAN><SPAN style="COLOR: firebrick">report dialog shown\n(owned by top-level frame)</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: #2e75b5">note right</SPAN><SPAN style="COLOR: #bf9000"> of picker</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; COLOR: #bf9000; MARGIN: 0in 0in 0in 0.375in'>Released almost instantly —</CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: #bf9000">OneNote's UI thread is</SPAN><SPAN style="COLOR: black"> never</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">blocked for the duration </SPAN><SPAN style="COLOR: #2e75b5">of</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in 0in 0in 0.375in'>the background work.</CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; COLOR: #2e75b5; MARGIN: 0in 0in 0in 0.375in'>end note</CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: #2e75b5">note right</SPAN><SPAN style="COLOR: #bf9000"> of pump</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; COLOR: #bf9000; MARGIN: 0in 0in 0in 0.375in'>A dedicated, already-running</CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: #bf9000">Application.Run loop</SPAN><SPAN style="COLOR: black"> — dialog</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in 0in 0in 0.375in'>creation never nests inside a</CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in 0in 0in 0.375in'>cross-thread Invoke/Close chain.</CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; COLOR: #2e75b5; MARGIN: 0in 0in 0in 0.375in'>end note</CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; COLOR: #5b9bd5; MARGIN: 0in 0in 0in 0.375in'><SPAN style="FONT-WEIGHT: bold">@enduml</SPAN></CODE></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in"><SPAN style="FONT-STYLE: italic">Sequence PlantUML (</SPAN><A href="onemore://PlantUmlCommand/983563d7ce76491b9350a354fe8e8f40"><SPAN style="FONT-STYLE: italic">Refresh</SPAN></A><SPAN style="FONT-STYLE: italic">)</SPAN></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; COLOR: #5b9bd5; MARGIN: 0in 0in 0in 0.375in'><SPAN style="FONT-WEIGHT: bold">@startuml</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: #a5a5a5">skinparam</SPAN><SPAN style="COLOR: black"> sequenceMessageAlign </SPAN><SPAN style="COLOR: #2e75b5">center</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: lightseagreen">participant </SPAN><SPAN style="COLOR: firebrick">"Background\nThread\n(copy/import work)" </SPAN><SPAN style="COLOR: #2e75b5">as</SPAN><SPAN style="COLOR: black"> BG</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: lightseagreen">participant </SPAN><SPAN style="COLOR: firebrick">"ProgressDialog\n.Close()" </SPAN><SPAN style="COLOR: #2e75b5">as</SPAN><SPAN style="COLOR: black"> Close</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: lightseagreen">participant </SPAN><SPAN style="COLOR: firebrick">"UI Thread\n(via Invoke)" </SPAN><SPAN style="COLOR: #2e75b5">as</SPAN><SPAN style="COLOR: black"> UI</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: lightseagreen">participant </SPAN><SPAN style="COLOR: firebrick">"ReportResult\n(ModelessClosed\nhandler)" </SPAN><SPAN style="COLOR: #2e75b5">as</SPAN><SPAN style="COLOR: black"> Report</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: lightseagreen">participant </SPAN><SPAN style="COLOR: firebrick">"HotkeyManager\nMessage Thread" </SPAN><SPAN style="COLOR: #2e75b5">as</SPAN><SPAN style="COLOR: black"> Hotkey</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: lightseagreen">participant </SPAN><SPAN style="COLOR: firebrick">"MoreMessageBox\n.ShowDialog()" </SPAN><SPAN style="COLOR: #2e75b5">as</SPAN><SPAN style="COLOR: black"> Box</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">BG </SPAN><SPAN style="COLOR: #5b9bd5">-&gt;</SPAN><SPAN style="COLOR: black"> Close: </SPAN><SPAN style="COLOR: firebrick">finally { dialog.Close(); }</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">Close </SPAN><SPAN style="COLOR: #5b9bd5">-&gt;</SPAN><SPAN style="COLOR: black"> UI: </SPAN><SPAN style="COLOR: firebrick">Invoke((Action)Close)</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: #2e75b5">activate</SPAN><SPAN style="COLOR: black"> UI</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">UI </SPAN><SPAN style="COLOR: #5b9bd5">-&gt;</SPAN><SPAN style="COLOR: black"> Report: </SPAN><SPAN style="COLOR: firebrick">OnFormClosed -&gt; ModelessClosed</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">Report </SPAN><SPAN style="COLOR: #5b9bd5">-&gt;</SPAN><SPAN style="COLOR: black"> Hotkey: </SPAN><SPAN style="COLOR: firebrick">InvokeOnMessageThread(() =&gt; MoreMessageBox.Show(...))</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">Report </SPAN><SPAN style="COLOR: #5b9bd5">-&gt;</SPAN><SPAN style="COLOR: black"> UI: </SPAN><SPAN style="COLOR: firebrick">returns immediately</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">UI </SPAN><SPAN style="COLOR: #5b9bd5">-&gt;</SPAN><SPAN style="COLOR: black"> Close: </SPAN><SPAN style="COLOR: firebrick">Invoke() returns</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: #2e75b5">deactivate</SPAN><SPAN style="COLOR: black"> UI</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">Close </SPAN><SPAN style="COLOR: #5b9bd5">-&gt;</SPAN><SPAN style="COLOR: black"> BG: </SPAN><SPAN style="COLOR: firebrick">dialog.Close() returns\n(background task finishes cleanly)</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: #2e75b5">activate</SPAN><SPAN style="COLOR: black"> Hotkey</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">Hotkey </SPAN><SPAN style="COLOR: #5b9bd5">-&gt;</SPAN><SPAN style="COLOR: black"> Box: </SPAN><SPAN style="COLOR: firebrick">MoreMessageBox.Show(owner, ...)</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">Box </SPAN><SPAN style="COLOR: #5b9bd5">-&gt;</SPAN><SPAN style="COLOR: black"> Box: </SPAN><SPAN style="COLOR: firebrick">shown, activated, held</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: #2e75b5">note right</SPAN><SPAN style="COLOR: black">: </SPAN><SPAN style="COLOR: #bf9000">owner is OneNote's top-level\nframe (OwnerWindow), so Windows'\nnormal owner/owned protection applies</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: #2e75b5">deactivate</SPAN><SPAN style="COLOR: black"> Hotkey</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; COLOR: #5b9bd5; MARGIN: 0in 0in 0in 0.375in'><SPAN style="FONT-WEIGHT: bold">@enduml</SPAN></CODE></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in"><SPAN style="FONT-STYLE: italic">Structural PlantUML (</SPAN><A href="onemore://PlantUmlCommand/f843cbad07ec47a792c4c091b098c67e"><SPAN style="FONT-STYLE: italic">Refresh</SPAN></A><SPAN style="FONT-STYLE: italic">)</SPAN></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; COLOR: #5b9bd5; MARGIN: 0in 0in 0in 0.375in'><SPAN style="FONT-WEIGHT: bold">@startsalt</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in 0in 0in 0.375in'>{</CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in 0in 0in 0.375in'>{T</CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">+ Framework::CFrame </SPAN><SPAN style="COLOR: firebrick">" - OneNote"</SPAN><SPAN style="COLOR: black"> (</SPAN><SPAN style="COLOR: #2e75b5">top</SPAN><SPAN style="COLOR: black">-level window)</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in 0in 0in 0.375in'>++ ... ribbon, tabs, navigation panes ...</CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; MARGIN: 0in 0in 0in 0.375in'><SPAN style="COLOR: black">++ </SPAN><A href="OneNote::CWorkspace"><SPAN style="COLOR: black">OneNote::CWorkspace</SPAN></A><SPAN style="COLOR: black"> </SPAN><SPAN style="COLOR: firebrick">""</SPAN><SPAN style="COLOR: black"> (inner pane - what Window.WindowHandle returns)</SPAN></CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in 0in 0in 0.375in'>}</CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; COLOR: black; MARGIN: 0in 0in 0in 0.375in'>}</CODE></P>
+<P><CODE lang=yo style='FONT-SIZE: 9pt; FONT-FAMILY: "Lucida Console"; COLOR: #5b9bd5; MARGIN: 0in 0in 0in 0.375in'><SPAN style="FONT-WEIGHT: bold">@endsalt</SPAN></CODE></P>
+<P><CODE lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">&nbsp;</CODE></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P><CITE lang=yo style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">#omwiki #omdeveloper #omtechnote</CITE></P>
+<P><CITE lang=yo style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">&nbsp;</CITE></P>
+<P><CITE lang=yo style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">© 2026 Steven M Cohn. All rights reserved.</CITE></P>
+<P><CITE lang=yo style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">Please consider a <A href="https://github.com/sponsors/stevencohn">sponsorship or one-time donation</A> to support ongoing development</CITE></P></DIV></DIV></DIV>
+<DIV>
+<P style="MARGIN: 0in">&nbsp;</P>
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Arial; COLOR: #969696; DIRECTION: ltr; TEXT-ALIGN: left; MARGIN: 0in">Created with OneNote.</P></DIV>
+    </div>
+
+  </div>
+  <script>
+    $('#developers-section').addClass('active');
+    let pageID = '#' + window.location.pathname.match(/.*\/(.*).htm$/)[1];
+    pageID = pageID.toLowerCase().replace(/%20| |\./g,'-')
+    if ( $(pageID).length > 0) { $(pageID).addClass('active'); }
+  </script>
+  <script src="/pagefind/pagefind-ui.js"></script>
+  <script>
+    new PagefindUI({ element: "#search", showSubResults: true });
+  </script>
+</body>
+
+</html>
