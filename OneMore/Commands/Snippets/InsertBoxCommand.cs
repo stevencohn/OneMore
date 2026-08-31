@@ -121,7 +121,13 @@ namespace River.OneMoreAddIn.Commands
 				editor.ExtractSelectedContent(breakParagraph: true);
 
 				var box = new XElement(ns + "OE", table.Root);
-				if (editor.Anchor.Name.LocalName.In("OE", "HTMLBlock"))
+
+				if (editor.Anchor is null)
+				{
+					// page had no existing content to anchor to (e.g. a brand-new blank page)
+					page.EnsureContentContainer().AddFirst(box);
+				}
+				else if (editor.Anchor.Name.LocalName.In("OE", "HTMLBlock"))
 				{
 					editor.Anchor.AddAfterSelf(box);
 				}
