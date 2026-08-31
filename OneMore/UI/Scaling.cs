@@ -188,7 +188,7 @@ namespace River.OneMoreAddIn.UI
 					Native.DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2))
 				{
 					Logger.Current.Verbose(
-						"DPI awareness: PerMonitorV2 (SetProcessDpiAwarenessContext)");
+						"Startup: DPI awareness - PerMonitorV2 (SetProcessDpiAwarenessContext)");
 					return;
 				}
 			}
@@ -202,7 +202,7 @@ namespace River.OneMoreAddIn.UI
 				if (Native.SetProcessDpiAwareness(Native.PROCESS_PER_MONITOR_DPI_AWARE) == 0)
 				{
 					Logger.Current.Verbose(
-						"DPI awareness: PerMonitor (SetProcessDpiAwareness)");
+						"Startup: DPI awareness - PerMonitor (SetProcessDpiAwareness)");
 					return;
 				}
 			}
@@ -213,7 +213,7 @@ namespace River.OneMoreAddIn.UI
 
 			Native.SetProcessDPIAware();
 			Logger.Current.Verbose(
-				"DPI awareness: System (legacy SetProcessDPIAware fallback)");
+				"Startup: DPI awareness - System (legacy SetProcessDPIAware fallback)");
 		}
 	}
 }
