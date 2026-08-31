@@ -146,8 +146,7 @@ namespace River.OneMoreAddIn
 
 			var payload = MakeEvent(eventType, eventName, message, info);
 			var json = JsonConvert.SerializeObject(payload);
-			Logger.Current.Verbose("telemetry:");
-			Logger.Current.Verbose(json);
+			Logger.Current.Verbose($"telemetry: {json}");
 
 			// add per-call header to a HttpRequestMessage instead of the HttpClient
 			var request = new HttpRequestMessage(HttpMethod.Post, ApiUrl);
