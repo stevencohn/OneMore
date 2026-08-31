@@ -58,6 +58,11 @@ namespace River.OneMoreAddIn.Commands
 				pageId = cliParams?.Get<string>("pageId");
 
 				var tocParams = await CollectParameterDefaults(pageId);
+				if (tocParams is null)
+				{
+					return;
+				}
+
 				if (doRefresh)
 				{
 					await Refresh(tocParams);
@@ -74,6 +79,10 @@ namespace River.OneMoreAddIn.Commands
 			if (guard is null) { return; }
 
 			var parameters = await CollectParameterDefaults();
+			if (parameters is null)
+			{
+				return;
+			}
 
 			var scope = args.Length > 0 ? args[0] as string : null;
 
@@ -122,6 +131,14 @@ namespace River.OneMoreAddIn.Commands
 			var page = pageId is null
 				? await one.GetPage(OneNote.PageDetail.Basic)
 				: await one.GetPage(pageId, OneNote.PageDetail.Basic);
+
+			if (page is null)
+			{
+				Logger.Current.WriteLine(
+					$"InsertTocCommand could not load page {pageId ?? "(current)"}");
+
+				return null;
+			}
 
 			var ns = page.Namespace;
 
