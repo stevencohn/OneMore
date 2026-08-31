@@ -1,14 +1,16 @@
 ﻿//************************************************************************************************
-// Copyright © 2022 Steven M. Cohn. All Rights Reserved.
+// Copyright © 2022 Steven M Cohn. All Rights Reserved.
 //************************************************************************************************
 
 namespace OneMoreCalendar
 {
 	using System;
 	using System.Drawing;
-	using System.Drawing.Imaging;
 	using System.IO;
 	using System.Windows.Forms;
+	using System.Windows.Media;
+	using System.Windows.Media.Imaging;
+	using System.Windows.Xps.Packaging;
 
 
 	/// <summary>
@@ -32,7 +34,7 @@ namespace OneMoreCalendar
 		/// <summary>
 		/// Initialize the form
 		/// </summary>
-		/// <param name="path">Path of the .emf file to display</param>
+		/// <param name="path">Path of the .xps file to display</param>
 		public SnapshotForm(CalendarPage page, string path)
 			: this()
 		{
@@ -56,25 +58,27 @@ namespace OneMoreCalendar
 
 			if (!DesignMode && File.Exists(Path))
 			{
-				using var source = new Metafile(Path);
-				var target = new Bitmap(pictureBox.Width, pictureBox.Height);
-				using var g = Graphics.FromImage(target);
+				using var xpsDoc = new XpsDocument(Path, FileAccess.Read);
+				var sequence = xpsDoc.GetFixedDocumentSequence();
+				using var page = sequence.DocumentPaginator.GetPage(0);
 
-				// resize the image 150%
-				g.DrawImage(source,
-					new Rectangle(0, 0, (int)(target.Width * 1.5), (int)(target.Height * 1.5)),
-					new Rectangle(0, 0, source.Width, source.Height),
-					GraphicsUnit.Pixel
-					);
+				// resize the image 150%, matching the picture box's pixel size so any
+				// overflow is cropped rather than stretching the whole page into view
+				var dpiX = 96.0 * pictureBox.Width * 1.5 / page.Size.Width;
+				var dpiY = 96.0 * pictureBox.Height * 1.5 / page.Size.Height;
 
-				//var path = System.IO.Path.Combine(
-				//	System.IO.Path.GetTempPath(),
-				//	System.IO.Path.GetRandomFileName() + ".png");
+				var rtb = new RenderTargetBitmap(
+					pictureBox.Width, pictureBox.Height, dpiX, dpiY, PixelFormats.Pbgra32);
 
-				//target.Save(path, ImageFormat.Png);
-				//pictureBox.ImageLocation = path;
+				rtb.Render(page.Visual);
 
-				pictureBox.Image = target;
+				var encoder = new PngBitmapEncoder();
+				encoder.Frames.Add(BitmapFrame.Create(rtb));
+
+				using var stream = new MemoryStream();
+				encoder.Save(stream);
+
+				pictureBox.Image = new Bitmap(Image.FromStream(stream));
 			}
 		}
 

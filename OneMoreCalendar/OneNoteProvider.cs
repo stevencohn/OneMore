@@ -29,7 +29,7 @@ namespace OneMoreCalendar
 
 
 		/// <summary>
-		/// Export an EMF representation of the specified page to the TEMP folder
+		/// Export an XPS representation of the specified page to the TEMP folder
 		/// </summary>
 		/// <param name="pageID"></param>
 		/// <returns>The path of the file generated</returns>
@@ -37,12 +37,12 @@ namespace OneMoreCalendar
 		{
 			var path = Path.Combine(
 				Path.GetTempPath(),
-				Path.GetFileNameWithoutExtension(Path.GetRandomFileName()) + ".emf");
+				Path.GetFileNameWithoutExtension(Path.GetRandomFileName()) + ".xps");
 
 			try
 			{
 				await using var one = new OneNote();
-				one.Export(pageID, path, OneNote.ExportFormat.EMF);
+				one.Export(pageID, path, OneNote.ExportFormat.XPS);
 			}
 			catch (Exception exc)
 			{
