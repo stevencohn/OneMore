@@ -257,14 +257,16 @@ namespace River.OneMoreAddIn
 			{
 				Task.Run(async () =>
 				{
-					// hotkeys
-					await RegisterHotkeys();
-
+					// assign factory first so ribbon/hotkey/palette commands invoked
+					// while startup is still running don't NRE on a null factory
 					factory = new CommandFactory(logger, ribbon, trash);
 
 					// theme colors (JSON load + registry check) - pay this once here
 					// instead of on the first dialog the user happens to open
 					_ = UI.ThemeManager.Instance;
+
+					// hotkeys
+					await RegisterHotkeys();
 
 					// command listener for Refresh links
 					new CommandService(factory).Startup();
