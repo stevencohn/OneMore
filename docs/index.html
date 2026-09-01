@@ -26,6 +26,23 @@
     #footer .footer DIV {
       display: flex;
     }
+
+    #content {
+      margin-left: 100px;
+      margin-top: 100px;
+    }
+
+    @media (max-width: 768px) {
+      #content {
+        margin-left: 16px;
+        margin-right: 16px;
+        margin-top: 80px;
+      }
+
+      #footer {
+        padding: 10px 20px 10px 20px;
+      }
+    }
   </style>
 </head>
 
@@ -125,7 +142,7 @@
 
   <div class="wrapper">
     <!-- Page Content -->
-    <div id="content" style="margin-left: 100px; margin-top:100px;">
+    <div id="content">
 
       <div class="intro">
         OneMore is an add-in for OneNote with simple and powerful features that make OneNote a better OneNote
