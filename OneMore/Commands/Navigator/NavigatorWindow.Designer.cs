@@ -42,7 +42,7 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NavigatorWindow));
 			this.controlPanel = new System.Windows.Forms.Panel();
 			this.closeButton = new River.OneMoreAddIn.UI.MoreButton();
-			this.mainContainer = new System.Windows.Forms.SplitContainer();
+			this.sectionsPanel = new River.OneMoreAddIn.UI.MoreBufferedPanel();
 			this.pageBox = new River.OneMoreAddIn.UI.MoreFlowLayoutPanel();
 			this.pageHeadPanel = new River.OneMoreAddIn.UI.MorePanel();
 			this.pageTwistButton = new River.OneMoreAddIn.UI.MoreButton();
@@ -51,22 +51,23 @@
 			this.pageFilterButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.refreshButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.pageHeadLabel = new River.OneMoreAddIn.UI.MoreLabel();
-			this.subContainer = new System.Windows.Forms.SplitContainer();
+			this.topGrip = new River.OneMoreAddIn.UI.MoreBufferedPanel();
 			this.pinnedBox = new River.OneMoreAddIn.UI.MoreListViewEx();
 			this.pinnedHeadPanel = new River.OneMoreAddIn.UI.MorePanel();
 			this.pinnedTwistButton = new River.OneMoreAddIn.UI.MoreButton();
-			this.pinnedToolPanel = new System.Windows.Forms.Panel();
+			this.pinnedToolPanel = new River.OneMoreAddIn.UI.MoreBufferedPanel();
 			this.copyPinnedButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.upButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.unpinButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.downButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.pinnedHeadLabel = new River.OneMoreAddIn.UI.MoreLabel();
+			this.bottomGrip = new River.OneMoreAddIn.UI.MoreBufferedPanel();
 			this.historyBox = new River.OneMoreAddIn.UI.MoreListViewEx();
 			this.historyHeadPanel = new River.OneMoreAddIn.UI.MorePanel();
 			this.historyTwistButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.historyFilterCloseButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.historyFilterBox = new River.OneMoreAddIn.UI.MoreTextBox();
-			this.historyToolPanel = new System.Windows.Forms.Panel();
+			this.historyToolPanel = new River.OneMoreAddIn.UI.MoreBufferedPanel();
 			this.historyFilterButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.deleteHistoryButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.pinButton = new River.OneMoreAddIn.UI.MoreButton();
@@ -74,15 +75,8 @@
 			this.historyHeadLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.tooltip = new System.Windows.Forms.ToolTip(this.components);
 			this.controlPanel.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.mainContainer)).BeginInit();
-			this.mainContainer.Panel1.SuspendLayout();
-			this.mainContainer.Panel2.SuspendLayout();
-			this.mainContainer.SuspendLayout();
+			this.sectionsPanel.SuspendLayout();
 			this.pageHeadPanel.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.subContainer)).BeginInit();
-			this.subContainer.Panel1.SuspendLayout();
-			this.subContainer.Panel2.SuspendLayout();
-			this.subContainer.SuspendLayout();
 			this.pinnedHeadPanel.SuspendLayout();
 			this.pinnedToolPanel.SuspendLayout();
 			this.historyHeadPanel.SuspendLayout();
@@ -119,35 +113,52 @@
 			this.closeButton.ThemedFore = null;
 			this.closeButton.UseVisualStyleBackColor = true;
 			this.closeButton.Click += new System.EventHandler(this.CloseOnClick);
-			// 
-			// mainContainer
-			// 
-			this.mainContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(32)))), ((int)(((byte)(199)))));
-			this.mainContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.mainContainer.Location = new System.Drawing.Point(0, 0);
-			this.mainContainer.Name = "mainContainer";
-			this.mainContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
-			// 
-			// mainContainer.Panel1
-			// 
-			this.mainContainer.Panel1.BackColor = System.Drawing.SystemColors.Window;
-			this.mainContainer.Panel1.Controls.Add(this.pageBox);
-			this.mainContainer.Panel1.Controls.Add(this.pageHeadPanel);
-			this.mainContainer.Panel1MinSize = 80;
-			// 
-			// mainContainer.Panel2
-			// 
-			this.mainContainer.Panel2.Controls.Add(this.subContainer);
-			this.mainContainer.Panel2MinSize = 100;
-			this.mainContainer.Size = new System.Drawing.Size(528, 880);
-			this.mainContainer.SplitterDistance = 291;
-			this.mainContainer.TabIndex = 1;
-			// 
+			//
+			// sectionsPanel
+			//
+			this.sectionsPanel.BackColor = System.Drawing.SystemColors.Window;
+			this.sectionsPanel.Controls.Add(this.pageHeadPanel);
+			this.sectionsPanel.Controls.Add(this.pageBox);
+			this.sectionsPanel.Controls.Add(this.topGrip);
+			this.sectionsPanel.Controls.Add(this.pinnedHeadPanel);
+			this.sectionsPanel.Controls.Add(this.pinnedBox);
+			this.sectionsPanel.Controls.Add(this.bottomGrip);
+			this.sectionsPanel.Controls.Add(this.historyHeadPanel);
+			this.sectionsPanel.Controls.Add(this.historyBox);
+			this.sectionsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.sectionsPanel.Location = new System.Drawing.Point(0, 0);
+			this.sectionsPanel.Name = "sectionsPanel";
+			this.sectionsPanel.Size = new System.Drawing.Size(528, 880);
+			this.sectionsPanel.TabIndex = 1;
+			//
+			// topGrip
+			//
+			this.topGrip.BackColor = System.Drawing.SystemColors.ControlDark;
+			this.topGrip.Cursor = System.Windows.Forms.Cursors.HSplit;
+			this.topGrip.Location = new System.Drawing.Point(0, 291);
+			this.topGrip.Name = "topGrip";
+			this.topGrip.Size = new System.Drawing.Size(528, 4);
+			this.topGrip.TabIndex = 2;
+			this.topGrip.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GripMouseDown);
+			this.topGrip.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GripMouseMove);
+			this.topGrip.MouseUp += new System.Windows.Forms.MouseEventHandler(this.GripMouseUp);
+			//
+			// bottomGrip
+			//
+			this.bottomGrip.BackColor = System.Drawing.SystemColors.ControlDark;
+			this.bottomGrip.Cursor = System.Windows.Forms.Cursors.HSplit;
+			this.bottomGrip.Location = new System.Drawing.Point(0, 544);
+			this.bottomGrip.Name = "bottomGrip";
+			this.bottomGrip.Size = new System.Drawing.Size(528, 4);
+			this.bottomGrip.TabIndex = 3;
+			this.bottomGrip.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GripMouseDown);
+			this.bottomGrip.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GripMouseMove);
+			this.bottomGrip.MouseUp += new System.Windows.Forms.MouseEventHandler(this.GripMouseUp);
+			//
 			// pageBox
-			// 
+			//
 			this.pageBox.AutoScroll = true;
 			this.pageBox.BackColor = System.Drawing.SystemColors.Control;
-			this.pageBox.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pageBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.pageBox.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.pageBox.Location = new System.Drawing.Point(0, 41);
@@ -167,7 +178,6 @@
 			this.pageHeadPanel.Controls.Add(this.pageFilterButton);
 			this.pageHeadPanel.Controls.Add(this.refreshButton);
 			this.pageHeadPanel.Controls.Add(this.pageHeadLabel);
-			this.pageHeadPanel.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pageHeadPanel.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.pageHeadPanel.Location = new System.Drawing.Point(0, 0);
 			this.pageHeadPanel.Margin = new System.Windows.Forms.Padding(0);
@@ -304,37 +314,11 @@
 			this.pageHeadLabel.ThemedBack = null;
 			this.pageHeadLabel.ThemedFore = null;
 			this.pageHeadLabel.Click += new System.EventHandler(this.PanelFocusOnClick);
-			// 
-			// subContainer
-			// 
-			this.subContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(32)))), ((int)(((byte)(199)))));
-			this.subContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.subContainer.Location = new System.Drawing.Point(0, 0);
-			this.subContainer.Name = "subContainer";
-			this.subContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
-			// 
-			// subContainer.Panel1
-			// 
-			this.subContainer.Panel1.BackColor = System.Drawing.SystemColors.Window;
-			this.subContainer.Panel1.Controls.Add(this.pinnedBox);
-			this.subContainer.Panel1.Controls.Add(this.pinnedHeadPanel);
-			this.subContainer.Panel1MinSize = 80;
-			// 
-			// subContainer.Panel2
-			// 
-			this.subContainer.Panel2.BackColor = System.Drawing.SystemColors.Window;
-			this.subContainer.Panel2.Controls.Add(this.historyBox);
-			this.subContainer.Panel2.Controls.Add(this.historyHeadPanel);
-			this.subContainer.Panel2MinSize = 80;
-			this.subContainer.Size = new System.Drawing.Size(528, 585);
-			this.subContainer.SplitterDistance = 253;
-			this.subContainer.TabIndex = 0;
-			// 
+			//
 			// pinnedBox
-			// 
+			//
 			this.pinnedBox.AllowItemReorder = false;
 			this.pinnedBox.ControlPadding = 2;
-			this.pinnedBox.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pinnedBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.pinnedBox.FullRowSelect = true;
 			this.pinnedBox.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
@@ -357,7 +341,6 @@
 			this.pinnedHeadPanel.Controls.Add(this.pinnedTwistButton);
 			this.pinnedHeadPanel.Controls.Add(this.pinnedToolPanel);
 			this.pinnedHeadPanel.Controls.Add(this.pinnedHeadLabel);
-			this.pinnedHeadPanel.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pinnedHeadPanel.Location = new System.Drawing.Point(0, 0);
 			this.pinnedHeadPanel.Margin = new System.Windows.Forms.Padding(0);
 			this.pinnedHeadPanel.Name = "pinnedHeadPanel";
@@ -517,7 +500,6 @@
 			// 
 			this.historyBox.AllowItemReorder = false;
 			this.historyBox.ControlPadding = 2;
-			this.historyBox.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.historyBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.historyBox.FullRowSelect = true;
 			this.historyBox.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
@@ -543,7 +525,6 @@
 			this.historyHeadPanel.Controls.Add(this.historyFilterBox);
 			this.historyHeadPanel.Controls.Add(this.historyToolPanel);
 			this.historyHeadPanel.Controls.Add(this.historyHeadLabel);
-			this.historyHeadPanel.Dock = System.Windows.Forms.DockStyle.Top;
 			this.historyHeadPanel.Location = new System.Drawing.Point(0, 0);
 			this.historyHeadPanel.Margin = new System.Windows.Forms.Padding(0);
 			this.historyHeadPanel.Name = "historyHeadPanel";
@@ -554,7 +535,6 @@
 			this.historyHeadPanel.TopBorderColor = System.Drawing.SystemColors.Control;
 			this.historyHeadPanel.TopBorderSize = 0;
 			this.historyHeadPanel.Click += new System.EventHandler(this.PanelFocusOnClick);
-			this.historyHeadPanel.Resize += new System.EventHandler(this.ResizeHistoryHeadPanel);
 			//
 			// historyTwistButton
 			//
@@ -581,7 +561,8 @@
 			//
 			// historyFilterBox
 			//
-			this.historyFilterBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
+			this.historyFilterBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+	            | System.Windows.Forms.AnchorStyles.Right)));
 			this.historyFilterBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.historyFilterBox.Location = new System.Drawing.Point(2, 7);
 			this.historyFilterBox.Name = "historyFilterBox";
@@ -597,7 +578,7 @@
 			//
 			// historyFilterCloseButton
 			//
-			this.historyFilterCloseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
+			this.historyFilterCloseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.historyFilterCloseButton.BackColor = System.Drawing.SystemColors.ButtonFace;
 			this.historyFilterCloseButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
 			this.historyFilterCloseButton.FlatAppearance.BorderSize = 0;
@@ -745,7 +726,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.Control;
 			this.ClientSize = new System.Drawing.Size(528, 944);
-			this.Controls.Add(this.mainContainer);
+			this.Controls.Add(this.sectionsPanel);
 			this.Controls.Add(this.controlPanel);
 			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -766,22 +747,15 @@
 			this.Layout += new System.Windows.Forms.LayoutEventHandler(this.TrackMinimizedOnLayout);
 			this.Move += new System.EventHandler(this.RestrictOnMove);
 			this.controlPanel.ResumeLayout(false);
-			this.mainContainer.Panel1.ResumeLayout(false);
-			this.mainContainer.Panel2.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.mainContainer)).EndInit();
-			this.mainContainer.ResumeLayout(false);
 			this.pageHeadPanel.ResumeLayout(false);
 			this.pageHeadPanel.PerformLayout();
-			this.subContainer.Panel1.ResumeLayout(false);
-			this.subContainer.Panel2.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.subContainer)).EndInit();
-			this.subContainer.ResumeLayout(false);
 			this.pinnedHeadPanel.ResumeLayout(false);
 			this.pinnedHeadPanel.PerformLayout();
 			this.pinnedToolPanel.ResumeLayout(false);
 			this.historyHeadPanel.ResumeLayout(false);
 			this.historyHeadPanel.PerformLayout();
 			this.historyToolPanel.ResumeLayout(false);
+			this.sectionsPanel.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -790,9 +764,10 @@
 
 		private System.Windows.Forms.Panel controlPanel;
 		private UI.MoreButton closeButton;
-		private System.Windows.Forms.SplitContainer mainContainer;
+		private UI.MoreBufferedPanel sectionsPanel;
+		private UI.MoreBufferedPanel topGrip;
+		private UI.MoreBufferedPanel bottomGrip;
 		private UI.MorePanel pageHeadPanel;
-		private System.Windows.Forms.SplitContainer subContainer;
 		private UI.MorePanel pinnedHeadPanel;
 		private UI.MorePanel historyHeadPanel;
 		private River.OneMoreAddIn.UI.MoreLabel pageHeadLabel;
@@ -809,8 +784,8 @@
 		private River.OneMoreAddIn.UI.MoreButton downButton;
 		private River.OneMoreAddIn.UI.MoreButton copyPinnedButton;
 		private River.OneMoreAddIn.UI.MoreButton copyHistoryButton;
-		private System.Windows.Forms.Panel historyToolPanel;
-		private System.Windows.Forms.Panel pinnedToolPanel;
+		private UI.MoreBufferedPanel historyToolPanel;
+		private UI.MoreBufferedPanel pinnedToolPanel;
 		private UI.MoreButton deleteHistoryButton;
 		private UI.MoreButton pageTwistButton;
 		private UI.MoreButton pinnedTwistButton;

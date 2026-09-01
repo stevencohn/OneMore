@@ -805,6 +805,9 @@
     <Compile Include="Ribbon\RibbonPosiition.cs" />
     <Compile Include="UI\EventRouter.cs" />
     <Compile Include="UI\ILoadControl.cs" />
+    <Compile Include="UI\MoreBufferedPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UI\MoreCheckList.cs">
       <SubType>Component</SubType>
     </Compile>
