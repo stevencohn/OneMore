@@ -21,6 +21,16 @@ section.contact {
     font: normal normal normal 20px/1.4em Barlow-Regular, Barlow, sans-serif;
 }
 
+#content {
+    margin-left: 100px;
+    margin-top: 100px;
+    width: 80%;
+}
+
+#ccc {
+    padding: 40px 30px 40px 80px;
+}
+
 detail.contactLeft {
     position: relative;
     font-weight: bold;
@@ -41,6 +51,7 @@ detail.contactRight {
     font: var(--font-B20R);
     font-size: 16px;
     width: 420px;
+    max-width: 100%;
     margin-bottom: 25px;
     border-color: lightgray;
     border-radius: 4px;
@@ -102,7 +113,7 @@ detail.contactRight {
     border-radius: 4px;
     width: 60%;
     height: 100px;
-    max-width: 80%;
+    max-width: 100%;
     min-width: 420px;
     max-height: 400px;
     min-height: 100px;
@@ -116,4 +127,25 @@ detail.contactRight {
 
 #contactForm #honeyp {
     visibility: collapse;
+}
+
+@media (max-width: 768px) {
+    #content {
+        margin-left: 16px;
+        margin-top: 80px;
+        width: auto;
+    }
+
+    #ccc {
+        padding: 24px 16px;
+    }
+
+    section.contact {
+        height: auto;
+        padding: 24px 20px 0px 20px;
+    }
+
+    #contactForm textarea {
+        min-width: 0;
+    }
 }

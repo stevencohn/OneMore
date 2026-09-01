@@ -51,6 +51,7 @@
 
 .offcanvas-lg {
     width: 300px !important;
+    background-color: #EBE5E1 !important;
 }
 
 .wrapper {
@@ -70,6 +71,7 @@ body.sidebar-layout #sidebar {
     width: 300px;
     height: calc(100vh - 60px);
     overflow-y: auto;
+    z-index: 1045;
 }
 
 body.sidebar-layout #content {
@@ -82,13 +84,16 @@ body.sidebar-layout #content {
     padding: 20px 30px;
 }
 
-@media (max-width: 768px) {
-    #sidebar {
-        margin-left: -300px;
+@media (max-width: 991.98px) {
+    body.sidebar-layout #sidebar {
+        width: auto;
+        height: auto;
+        background-color: transparent !important;
     }
 
-    #sidebar.active {
-        margin-left: 0;
+    body.sidebar-layout #content {
+        left: 0;
+        padding: 15px;
     }
 
     .offcanvas-body {
