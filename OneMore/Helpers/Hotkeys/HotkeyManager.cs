@@ -50,6 +50,7 @@ namespace River.OneMoreAddIn
 		private static uint selfPID;                    // this add-in's own (dllhost) process ID
 
 		private static bool registered = false;
+		private static bool suspended = false;
 
 
 		/// <summary>
@@ -123,6 +124,55 @@ namespace River.OneMoreAddIn
 		private static void Register(IntPtr hwnd, int id, uint modifiers, uint key)
 		{
 			Native.RegisterHotKey(hwnd, id, modifiers, key);
+		}
+
+
+		/// <summary>
+		/// Temporarily unregisters all hotkeys, e.g. while a modal dialog such as the
+		/// Settings dialog is open and needs to capture key sequences of its own without
+		/// triggering the global commands they're normally bound to.
+		/// </summary>
+		/// <remarks>
+		/// Sets a sticky "suspended" flag so the WinEventProc's own foreground/minimize
+		/// re-registration logic won't race with this and silently undo it; only Resume()
+		/// clears that flag.
+		/// </remarks>
+		public static void Suspend()
+		{
+			resetEvent.WaitOne();
+
+			mwindow.Invoke(new Action(() =>
+			{
+				if (registered && registeredKeys.Count > 0)
+				{
+					registeredKeys.ForEach(k => Native.UnregisterHotKey(mhandle, k.Id));
+					registered = false;
+				}
+
+				suspended = true;
+			}));
+		}
+
+
+		/// <summary>
+		/// Reinstates hotkeys previously suspended by Suspend().
+		/// </summary>
+		public static void Resume()
+		{
+			resetEvent.WaitOne();
+
+			mwindow.Invoke(new Action(() =>
+			{
+				suspended = false;
+
+				if (!registered && registeredKeys.Count > 0)
+				{
+					registeredKeys.ForEach(k =>
+						Native.RegisterHotKey(mhandle, k.Id, k.HotModifiers, k.Key));
+
+					registered = true;
+				}
+			}));
 		}
 
 
@@ -238,7 +288,7 @@ namespace River.OneMoreAddIn
 					// (e.g. repeated Alt+G) intermittently do nothing
 					if (pid == oneNotePID || pid == selfPID)
 					{
-						if (!registered && registeredKeys.Count > 0)
+						if (!registered && !suspended && registeredKeys.Count > 0)
 						{
 							//Logger.Current.WriteLine("hotkey re-registering");
 							registeredKeys.ForEach(k =>

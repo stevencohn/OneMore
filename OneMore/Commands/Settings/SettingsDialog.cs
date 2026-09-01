@@ -105,6 +105,24 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
+		protected override void OnLoad(EventArgs e)
+		{
+			base.OnLoad(e);
+
+			// several sheets (e.g. KeyboardSheet) capture key sequences of their own;
+			// suspend global command hotkeys for the lifetime of this dialog so those
+			// captures aren't also interpreted as command invocations
+			HotkeyManager.Suspend();
+		}
+
+
+		protected override void OnFormClosed(FormClosedEventArgs e)
+		{
+			HotkeyManager.Resume();
+			base.OnFormClosed(e);
+		}
+
+
 		private void InitializeLoad(object sender, EventArgs e)
 		{
 			// Sheets use AutoScaleMode.Font (SizeF 9,20); the dialog uses AutoScaleMode.Dpi.
