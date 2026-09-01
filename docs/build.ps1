@@ -292,7 +292,33 @@ Begin
             return
         }
         Write-Host 'building pagefind search index' -ForegroundColor Blue
-        pagefind --site . --glob '**/*.{html,htm}'
+
+        $prevEncoding = [Console]::OutputEncoding
+        $prevForceColor = $env:CLICOLOR_FORCE
+        try
+        {
+            # pagefind emits UTF-8; force that decoding regardless of the
+            # console's codepage, and force color back on since piping
+            # through ForEach-Object makes pagefind think it's not a tty
+            [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+            $env:CLICOLOR_FORCE = '1'
+
+            $inBanner = $false
+            pagefind --site . --glob '**/*.{html,htm}' | ForEach-Object {
+                if ($_ -match '┌') { $inBanner = $true; return }
+                if ($inBanner)
+                {
+                    if ($_ -match '└') { $inBanner = $false }
+                    return
+                }
+                Write-Host $_
+            }
+        }
+        finally
+        {
+            [Console]::OutputEncoding = $prevEncoding
+            $env:CLICOLOR_FORCE = $prevForceColor
+        }
     }
 
     function UpdateTelemetrySidebar
