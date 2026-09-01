@@ -40,6 +40,7 @@ namespace River.OneMoreAddIn.Commands
 		private readonly bool reading;
 		private readonly bool corralled;
 		private readonly bool disabled;
+		private readonly bool readingOnly;
 		private readonly List<IDisposable> trash;
 
 		// panel expand/collapse state
@@ -48,7 +49,11 @@ namespace River.OneMoreAddIn.Commands
 		private bool historyExpanded;
 		private int rememberedSplitter1;
 		private int rememberedSplitter2;
-		private bool restoringLayout;
+
+		// active drag state for topGrip/bottomGrip
+		private Panel draggedGrip;
+		private int dragStartScreenY;
+		private int dragStartSplitterValue;
 
 		// defer headings load while collapsed
 		private bool pageStale;
@@ -75,6 +80,18 @@ namespace River.OneMoreAddIn.Commands
 			this.ribbon = ribbon;
 
 			InitializeComponent();
+
+			// sectionsPanel (a plain Panel covering most of the client area) and its children
+			// are repositioned directly on every live-resize tick by LayoutSections; without
+			// double buffering here, that many rapid Bounds changes can leave visible ghosting
+			// on buttons that never moved themselves (e.g. closeButton, positioned solely by
+			// its own Anchor), because the form's own background repaint isn't buffered. The
+			// nested SplitContainers this replaced buffered their own painting, which
+			// incidentally smoothed repaints across the whole form; a plain Panel doesn't.
+			SetStyle(
+				ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer |
+				ControlStyles.UserPaint, true);
+
 			trash = new List<IDisposable>();
 
 			if (NeedsLocalizing())
@@ -111,6 +128,7 @@ namespace River.OneMoreAddIn.Commands
 			ElevatedWithOneNote = settings.Get("elevated", false);
 			depth = settings.Get("depth", NavigationService.DefaultHistoryDepth);
 			disabled = settings.Get("disabled", false);
+			readingOnly = disabled && reading;
 
 			provider = new NavigationProvider();
 			provider.Navigated += ShowHistory;
@@ -126,7 +144,9 @@ namespace River.OneMoreAddIn.Commands
 			}
 			else
 			{
-				subContainer.Panel1Collapsed = true;
+				pinnedHeadPanel.Visible = false;
+				pinnedBox.Visible = false;
+				bottomGrip.Visible = false;
 				copyHistoryButton.Left = pinButton.Left;
 				historyToolPanel.Controls.Remove(pinButton);
 				pinnedTwistButton.Visible = false;
@@ -158,19 +178,6 @@ namespace River.OneMoreAddIn.Commands
 
 			pinnedBox.MouseUp += ShowPinnedContextMenu;
 			historyBox.MouseUp += ShowHistoryContextMenu;
-
-			// relax the designer-time minimums so a section can be collapsed down to
-			// just its header height
-			mainContainer.Panel1MinSize = pageHeadPanel.Height;
-			mainContainer.Panel2MinSize = historyHeadPanel.Height + (reading ? pinnedHeadPanel.Height : 0);
-			if (reading)
-			{
-				subContainer.Panel1MinSize = pinnedHeadPanel.Height;
-			}
-			subContainer.Panel2MinSize = historyHeadPanel.Height;
-
-			mainContainer.SplitterMoved += MainSplitterMoved;
-			subContainer.SplitterMoved += SubSplitterMoved;
 		}
 
 
@@ -196,10 +203,12 @@ namespace River.OneMoreAddIn.Commands
 			historyBox.BackColor = viewColor;
 			historyBox.HighlightBackground = manager.GetColor("LinkHighlight");
 
-			// historyFilterBox/historyFilterCloseButton are no longer Anchor=Right (see
-			// ResizeHistoryHeadPanel); set their initial position explicitly here since the
-			// panel's Resize event may not fire again once layout has already settled
-			ResizeHistoryHeadPanel(historyHeadPanel, EventArgs.Empty);
+			// MenuHighlight is the same purple that used to show through from
+			// mainContainer/subContainer's debug BackColor - reuse it here so the grips stay
+			// themed rather than a hard-coded color
+			var gripColor = manager.GetColor("MenuHighlight");
+			topGrip.BackColor = gripColor;
+			bottomGrip.BackColor = gripColor;
 		}
 
 
@@ -244,7 +253,7 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			UpdatePanelLayout();
+			LayoutSections();
 
 			if (pageExpanded && pageStale)
 			{
@@ -255,80 +264,112 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
-		/// Recomputes mainContainer/subContainer SplitterDistance from the current
-		/// expand/collapse state of the three sections. A collapsed section is shrunk to
-		/// exactly its header height; an expanded section either gets all remaining
-		/// space (if it's the only one expanded on its side) or the last known-good
-		/// (remembered) distance, clamped to leave room for a collapsed sibling.
+		/// Positions every section's header/content controls (and the two drag grips) in one
+		/// pass, computed directly from sectionsPanel.ClientSize rather than relying on nested
+		/// SplitContainers - see the class remarks in the design notes for why: a SplitContainer
+		/// nested inside another SplitContainer is a real child HWND two levels deep, and during
+		/// a live resize drag Windows can visibly lag laying out/painting that deep before it
+		/// catches up with the window's real size. Setting every control's Bounds explicitly
+		/// here, from a single parent one hop from the form, removes that multi-level cascade
+		/// entirely. A collapsed section is shrunk to exactly its header height; an expanded
+		/// section either gets all remaining space (if it's the only one expanded on its side)
+		/// or the last known-good (remembered) height, clamped to leave room for a collapsed
+		/// sibling - matching the three-way logic the old SplitterDistance-based version used.
 		/// </summary>
-		private void UpdatePanelLayout()
+		private void LayoutSections()
 		{
-			// mainContainer.SplitterDistance below resizes mainContainer.Panel2, which
-			// resizes the docked subContainer; because subContainer is itself a
-			// SplitContainer, .NET auto-adjusts ITS SplitterDistance to fit the new size,
-			// firing an incidental SplitterMoved that has nothing to do with the user
-			// dragging anything. MainSplitterMoved/SubSplitterMoved must not treat that as
-			// a real drag and clobber rememberedSplitter1/2 with it, so suppress capture
-			// for the duration of this programmatic layout pass.
-			restoringLayout = true;
-			try
+			if (readingOnly)
 			{
-				var total = mainContainer.ClientSize.Height;
-				var subOthersExpanded = reading ? (readingExpanded || historyExpanded) : historyExpanded;
+				// tracking is disabled: Page/History have nothing current to show, so hide them
+				// entirely and give the reading list the full height
+				pageHeadPanel.Visible = pageBox.Visible = topGrip.Visible = false;
+				historyHeadPanel.Visible = historyBox.Visible = bottomGrip.Visible = false;
 
-				int pageHeight;
-				if (!pageExpanded)
+				var readingWidth = sectionsPanel.ClientSize.Width;
+				pinnedHeadPanel.Bounds = new Rectangle(0, 0, readingWidth, pinnedHeadPanel.Height);
+				pinnedBox.Bounds = new Rectangle(0, pinnedHeadPanel.Height, readingWidth,
+					Math.Max(0, sectionsPanel.ClientSize.Height - pinnedHeadPanel.Height));
+
+				sectionsPanel.Invalidate(true);
+				sectionsPanel.Update();
+				return;
+			}
+
+			var width = sectionsPanel.ClientSize.Width;
+			var total = sectionsPanel.ClientSize.Height;
+			var gripHeight = topGrip.Height;
+
+			var subOthersExpanded = reading ? (readingExpanded || historyExpanded) : historyExpanded;
+			var restMin = historyHeadPanel.Height + (reading ? pinnedHeadPanel.Height + gripHeight : 0);
+
+			int pageHeight;
+			if (!pageExpanded)
+			{
+				pageHeight = pageHeadPanel.Height;
+			}
+			else if (!subOthersExpanded)
+			{
+				pageHeight = total - restMin - gripHeight;
+			}
+			else
+			{
+				pageHeight = Math.Max(pageHeadPanel.Height,
+					Math.Min(rememberedSplitter1, total - restMin - gripHeight));
+			}
+
+			pageHeadPanel.Visible = pageBox.Visible = topGrip.Visible = true;
+			pageHeadPanel.Bounds = new Rectangle(0, 0, width, pageHeadPanel.Height);
+			pageBox.Bounds = new Rectangle(0, pageHeadPanel.Height, width,
+				Math.Max(0, pageHeight - pageHeadPanel.Height));
+
+			var top = pageHeight;
+			topGrip.Bounds = new Rectangle(0, top, width, gripHeight);
+			top += gripHeight;
+
+			if (reading)
+			{
+				var subHeight = total - top;
+
+				int pinnedHeight;
+				if (!readingExpanded)
 				{
-					pageHeight = pageHeadPanel.Height;
+					pinnedHeight = pinnedHeadPanel.Height;
 				}
-				else if (!subOthersExpanded)
+				else if (!historyExpanded)
 				{
-					var subHeaders = (reading ? pinnedHeadPanel.Height : 0) + historyHeadPanel.Height;
-					pageHeight = total - subHeaders;
+					pinnedHeight = subHeight - historyHeadPanel.Height;
 				}
 				else
 				{
-					pageHeight = Math.Max(pageHeadPanel.Height,
-						Math.Min(rememberedSplitter1, total - mainContainer.Panel2MinSize));
+					pinnedHeight = Math.Max(pinnedHeadPanel.Height,
+						Math.Min(rememberedSplitter2, subHeight - historyHeadPanel.Height));
 				}
 
-				mainContainer.SplitterDistance = pageHeight;
+				pinnedHeadPanel.Visible = pinnedBox.Visible = bottomGrip.Visible = true;
+				pinnedHeadPanel.Bounds = new Rectangle(0, top, width, pinnedHeadPanel.Height);
+				pinnedBox.Bounds = new Rectangle(0, top + pinnedHeadPanel.Height, width,
+					Math.Max(0, pinnedHeight - pinnedHeadPanel.Height));
 
-				// setting SplitterDistance above schedules, but does not immediately apply, a
-				// layout pass on mainContainer.Panel2 and its docked child subContainer;
-				// without forcing that layout to run now, subContainer.Height below is still
-				// its stale pre-resize value, so setting subContainer.SplitterDistance would
-				// clamp against the wrong (too-small) bounds
-				mainContainer.Panel2.PerformLayout();
-
-				if (reading)
-				{
-					var subHeight = total - pageHeight;
-
-					int pinnedHeight;
-					if (!readingExpanded)
-					{
-						pinnedHeight = pinnedHeadPanel.Height;
-					}
-					else if (!historyExpanded)
-					{
-						pinnedHeight = subHeight - historyHeadPanel.Height;
-					}
-					else
-					{
-						pinnedHeight = Math.Max(pinnedHeadPanel.Height,
-							Math.Min(rememberedSplitter2, subHeight - historyHeadPanel.Height));
-					}
-
-					subContainer.SplitterDistance = pinnedHeight;
-				}
-
-				UpdateTwistGlyphs();
+				top += pinnedHeight;
+				bottomGrip.Bounds = new Rectangle(0, top, width, gripHeight);
+				top += gripHeight;
 			}
-			finally
-			{
-				restoringLayout = false;
-			}
+
+			historyHeadPanel.Visible = historyBox.Visible = true;
+			historyHeadPanel.Bounds = new Rectangle(0, top, width, historyHeadPanel.Height);
+			historyBox.Bounds = new Rectangle(0, top + historyHeadPanel.Height, width,
+				Math.Max(0, total - top - historyHeadPanel.Height));
+
+			UpdateTwistGlyphs();
+
+			// buttons anchored/docked within the repositioned header panels don't reliably
+			// repaint themselves after their Bounds move this way - they'd otherwise sit there
+			// visibly distorted until something else (e.g. a mouse hover) forces their own
+			// Invalidate; force the whole subtree to repaint immediately after every layout
+			// pass instead of waiting for the next idle cycle, which during a live resize drag
+			// may not come until the drag ends
+			sectionsPanel.Invalidate(true);
+			sectionsPanel.Update();
 		}
 
 
@@ -341,51 +382,67 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
-		/// historyHeadPanel is nested two SplitContainers deep (mainContainer -> subContainer
-		/// -> historyHeadPanel), unlike pageHeadPanel's single level; WinForms' Anchor engine
-		/// fixes historyFilterBox/historyFilterCloseButton's stretch baseline against a stale
-		/// intermediate width captured during that deeper nested construction, producing wildly
-		/// wrong bounds on some monitors (button positioned entirely off-panel). Both controls
-		/// are Anchor=Top|Left only (no Right) so they don't auto-stretch; position them here
-		/// instead, computed directly from the panel's real current width.
+		/// Starts a drag on topGrip (the Page/rest boundary) or bottomGrip (the Reading/History
+		/// boundary), capturing the mouse so GripMouseMove keeps firing even once the cursor
+		/// leaves the grip's thin 4px band.
 		/// </summary>
-		private void ResizeHistoryHeadPanel(object sender, EventArgs e)
+		private void GripMouseDown(object sender, MouseEventArgs e)
 		{
-			const int CloseButtonRightMargin = 8;
-			const int FilterBoxToCloseButtonGap = 10;
-
-			historyFilterCloseButton.Left =
-				historyHeadPanel.ClientSize.Width - CloseButtonRightMargin - historyFilterCloseButton.Width;
-			historyFilterBox.Width =
-				historyFilterCloseButton.Left - FilterBoxToCloseButtonGap - historyFilterBox.Left;
+			draggedGrip = (Panel)sender;
+			dragStartScreenY = Cursor.Position.Y;
+			dragStartSplitterValue = draggedGrip == topGrip ? rememberedSplitter1 : rememberedSplitter2;
+			draggedGrip.Capture = true;
 		}
 
 
-		private void MainSplitterMoved(object sender, SplitterEventArgs e)
+		/// <summary>
+		/// Only has an effect while the boundary being dragged is in the "both sides expanded"
+		/// state - matching the old SplitContainer-based behavior, where dragging while a
+		/// section was collapsed didn't persist (MainSplitterMoved/SubSplitterMoved only
+		/// captured rememberedSplitter1/2 under the same condition).
+		/// </summary>
+		private void GripMouseMove(object sender, MouseEventArgs e)
 		{
-			if (restoringLayout)
+			if (draggedGrip is null)
 			{
 				return;
 			}
 
-			if (pageExpanded && (reading ? (readingExpanded || historyExpanded) : historyExpanded))
+			var delta = Cursor.Position.Y - dragStartScreenY;
+
+			if (draggedGrip == topGrip)
 			{
-				rememberedSplitter1 = mainContainer.SplitterDistance;
+				var subOthersExpanded = reading ? (readingExpanded || historyExpanded) : historyExpanded;
+				if (!pageExpanded || !subOthersExpanded)
+				{
+					return;
+				}
+
+				var restMin = historyHeadPanel.Height + (reading ? pinnedHeadPanel.Height + bottomGrip.Height : 0);
+				rememberedSplitter1 = Math.Max(pageHeadPanel.Height, Math.Min(
+					dragStartSplitterValue + delta,
+					sectionsPanel.ClientSize.Height - restMin - topGrip.Height));
 			}
+			else
+			{
+				if (!readingExpanded || !historyExpanded)
+				{
+					return;
+				}
+
+				var subHeight = sectionsPanel.ClientSize.Height - rememberedSplitter1 - topGrip.Height;
+				rememberedSplitter2 = Math.Max(pinnedHeadPanel.Height, Math.Min(
+					dragStartSplitterValue + delta,
+					subHeight - historyHeadPanel.Height));
+			}
+
+			LayoutSections();
 		}
 
 
-		private void SubSplitterMoved(object sender, SplitterEventArgs e)
+		private void GripMouseUp(object sender, MouseEventArgs e)
 		{
-			if (restoringLayout)
-			{
-				return;
-			}
-
-			if (reading && readingExpanded && historyExpanded)
-			{
-				rememberedSplitter2 = subContainer.SplitterDistance;
-			}
+			draggedGrip = null;
 		}
 		#endregion Panel expand/collapse
 
@@ -605,23 +662,21 @@ namespace River.OneMoreAddIn.Commands
 				historyExpanded = true;
 			}
 
-			rememberedSplitter1 = settings.Get("splitter1", mainContainer.SplitterDistance);
-			rememberedSplitter2 = settings.Get("splitter2", subContainer.SplitterDistance);
+			// matches the original designer-time SplitContainer.SplitterDistance defaults, so
+			// first-run layout proportions are unchanged
+			rememberedSplitter1 = settings.Get("splitter1", 291);
+			rememberedSplitter2 = settings.Get("splitter2", 253);
 
-			if (disabled && reading)
+			if (readingOnly)
 			{
 				// the tracking service is off, so Headings/History have nothing current to
-				// show; hide them entirely rather than merely collapsing them, leaving only
-				// the reading list, whose own expand/collapse toggle is meaningless when
-				// it's the only pane shown
-				mainContainer.Panel1Collapsed = true;
-				subContainer.Panel2Collapsed = true;
+				// show; LayoutSections hides them entirely rather than merely collapsing them,
+				// leaving only the reading list, whose own expand/collapse toggle is
+				// meaningless when it's the only pane shown
 				pinnedTwistButton.Visible = false;
 			}
-			else
-			{
-				UpdatePanelLayout();
-			}
+
+			LayoutSections();
 
 			// load data
 			if (reading)
@@ -652,6 +707,8 @@ namespace River.OneMoreAddIn.Commands
 
 			// SizeChanged is invoked after Load which sets screenArea
 			corral = GetCorral(screen);
+
+			LayoutSections();
 
 			var rowWidth = Width - SystemInformation.VerticalScrollBarWidth * 2;
 

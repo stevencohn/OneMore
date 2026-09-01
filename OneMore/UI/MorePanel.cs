@@ -15,6 +15,15 @@ namespace River.OneMoreAddIn.UI
 	internal class MorePanel : Panel, ILoadControl
 	{
 
+		public MorePanel()
+		{
+			SetStyle(
+				ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer |
+				ControlStyles.UserPaint | ControlStyles.ResizeRedraw,
+				true);
+		}
+
+
 		[Description("Specifies the color of the bottom border")]
 		public Color BottomBorderColor { get; set; } = SystemColors.ActiveBorder;
 
