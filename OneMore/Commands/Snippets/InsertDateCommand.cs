@@ -4,9 +4,10 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using River.OneMoreAddIn.Models;
+	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Threading.Tasks;
+	using Resx = Properties.Resources;
 
 	internal class InsertDateCommand : Command
 	{
@@ -18,15 +19,29 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			await using var one = new OneNote(out var page, out _);
-
 			var includeTime = (bool)args[0];
 			var text = DateTime.Now.ToString(includeTime ? "yyy-MM-dd hh:mm tt" : "yyy-MM-dd");
 
-			var editor = new PageEditor(page);
-			editor.InsertOrReplace(text);
+			var clipboard = new ClipboardProvider();
+			await clipboard.StashState();
 
-			await one.Update(page);
+			try
+			{
+				var success = await clipboard.SetText(text, unicode: true);
+				if (!success)
+				{
+					MoreMessageBox.ShowWarning(owner, Resx.Clipboard_locked);
+					return;
+				}
+
+				await using var one = new OneNote();
+				Native.SetForegroundWindow(one.WindowHandle);
+				await ClipboardProvider.Paste();
+			}
+			finally
+			{
+				await clipboard.RestoreState();
+			}
 		}
 	}
 }
