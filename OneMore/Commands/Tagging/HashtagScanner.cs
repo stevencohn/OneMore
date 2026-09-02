@@ -48,7 +48,6 @@ namespace River.OneMoreAddIn.Commands
 		private readonly bool ownsProvider;
 		private HashtagProvider provider;
 		private string[] notebookFilters;
-		private bool logPerNotebook;
 		private bool disposed;
 
 
@@ -83,9 +82,6 @@ namespace River.OneMoreAddIn.Commands
 
 			lastTime = provider.ReadScanTime();
 			//logger.Verbose($"HashtagScanner lastTime {lastTime}");
-
-			logPerNotebook = string.IsNullOrWhiteSpace(
-				Environment.GetEnvironmentVariable("ONEMORE_QUIET_SCAN"));
 
 			startTime = DateTime.Now.ToZuluString();
 		}
@@ -279,12 +275,9 @@ namespace River.OneMoreAddIn.Commands
 
 					if (accepted)
 					{
-						if (logPerNotebook)
-						{
-							logger.Verbose(
-								$"scanning notebook {notebookID} \"{name}\"" +
-								(forceThru ? " (forceThru)" : ""));
-						}
+						logger.Debug(
+							$"scanning notebook {notebookID} \"{name}\"" +
+							(forceThru ? " (forceThru)" : ""));
 
 						var dp = 0;
 
