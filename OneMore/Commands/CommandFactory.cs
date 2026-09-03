@@ -167,14 +167,15 @@ namespace River.OneMoreAddIn
 		private async Task Run(string note, Command command, params object[] args)
 		{
 			var type = command.GetType();
-			using var indent = logger.Indent($"{note} command {type.Name}");
-
+			var msg = $"{note} command {type.Name}";
 			if (logger.IsVerbose)
 			{
 				var ws = System.Diagnostics.Process.GetCurrentProcess().WorkingSet64 / 1_048_576;
 				var heap = GC.GetTotalMemory(false) / 1_048_576;
-				logger.Verbose($"workingSet {ws}MB, managedHeap {heap}MB");
+				msg = $"{msg} (workingSet {ws}MB, managedHeap {heap}MB)";
 			}
+
+			using var indent = logger.Indent(msg);
 
 			// CLI commands never show UI, so there's no owner window to discover; skip the
 			// throwaway OneNote() activation that exists solely to read OwnerWindow. This
@@ -241,7 +242,7 @@ namespace River.OneMoreAddIn
 			{
 				// catch-all exception hander
 
-				var msg = $"error running command {type.Name}";
+				msg = $"error running command {type.Name}";
 
 				if (AddIn.Telemetry)
 				{
