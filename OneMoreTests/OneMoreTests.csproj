@@ -62,10 +62,17 @@
   <ItemGroup>
     <Compile Include="Builders\HierarchyBuilder.cs" />
     <Compile Include="Builders\PageBuilder.cs" />
+    <Compile Include="Commands\Clean\BreakingCommandTests.cs" />
     <Compile Include="Commands\Clean\ClearBackgroundCommandTests.cs" />
     <Compile Include="Commands\Images\DiagramCommandTests.cs" />
     <Compile Include="Commands\Clean\RemoveAuthorsCommandTests.cs" />
+    <Compile Include="Commands\Clean\RemoveCitationsCommandTests.cs" />
     <Compile Include="Commands\Clean\RemoveDuplicatesCommandTests.cs" />
+    <Compile Include="Commands\Clean\RemoveEmptyCommandTests.cs" />
+    <Compile Include="Commands\Clean\RemoveInkCommandTests.cs" />
+    <Compile Include="Commands\Clean\RemoveTagsCommandTests.cs" />
+    <Compile Include="Commands\Clean\ToggleDttmCommandTests.cs" />
+    <Compile Include="Commands\Clean\TrimCommandTests.cs" />
     <Compile Include="Commands\Edit\AlterSizeCommandTests.cs" />
     <Compile Include="Commands\Edit\ColorizeCommandTests.cs" />
     <Compile Include="Commands\File\ArchivistTests.cs" />
@@ -99,6 +106,41 @@
     <PackageReference Include="MSTest.TestFramework">
       <Version>3.8.3</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data\Evernote\01-basic-note.enex" />
+    <None Include="data\Evernote\02-encrypted-section.enex" />
+    <None Include="data\Evernote\03-multi-tag.enex" />
+    <None Include="data\Evernote\04-checklist.enex" />
+    <None Include="data\Evernote\05-nested-table.enex" />
+    <None Include="data\Evernote\06-resources-image-attachment.enex" />
+    <None Include="data\Evernote\07-timestamp-edge-cases.enex" />
+    <None Include="data\Evernote\08-kitchen-sink-notebook.enex" />
+    <None Include="data\Evernote\99-large-multi-note-sample.enex" />
+    <None Include="data\Evernote\README.md" />
+    <None Include="SmokeTestProtocols\OneMoreTests\Clean.one" />
+    <None Include="SmokeTestProtocols\OneMoreTests\Demo Section Group\Demo Section.one" />
+    <None Include="SmokeTestProtocols\OneMoreTests\Demo Section Group\Open Notebook.onetoc2" />
+    <None Include="SmokeTestProtocols\OneMoreTests\Demo Target Group\Open Notebook.onetoc2" />
+    <None Include="SmokeTestProtocols\OneMoreTests\Edit.one" />
+    <None Include="SmokeTestProtocols\OneMoreTests\File.one" />
+    <None Include="SmokeTestProtocols\OneMoreTests\General.one" />
+    <None Include="SmokeTestProtocols\OneMoreTests\Images.one" />
+    <None Include="SmokeTestProtocols\OneMoreTests\Numbering.one" />
+    <None Include="SmokeTestProtocols\OneMoreTests\Open Notebook.onetoc2" />
+    <None Include="SmokeTestProtocols\OneMoreTests\Page.one" />
+    <None Include="SmokeTestProtocols\OneMoreTests\References.one" />
+    <None Include="SmokeTestProtocols\OneMoreTests\Reminders.one" />
+    <None Include="SmokeTestProtocols\OneMoreTests\Search.one" />
+    <None Include="SmokeTestProtocols\OneMoreTests\Styles.one" />
+    <None Include="SmokeTestProtocols\OneMoreTests\Tables.one" />
+    <None Include="SmokeTestProtocols\OneMoreTests\Tools.one" />
+    <None Include="SmokeTestProtocols\README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="data\Evernote\generate.py" />
+    <Content Include="SmokeTestProtocols\OneMoreTests\Attachment1.txt" />
+    <Content Include="SmokeTestProtocols\OneMoreTests\Attachment2.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -41,9 +41,31 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
+			await using var one = new OneNote(out var page, out var ns);
+			logger.StartClock();
+
+			if (Run(page, dialog.SingleSpace))
+			{
+				await one.Update(page);
+			}
+
+			logger.StopClock();
+		}
+
+
+		/// <summary>
+		/// Compresses or expands sentence break spacing throughout the page.
+		/// </summary>
+		/// <param name="page">The page to update</param>
+		/// <param name="singleSpace">
+		/// True to collapse double spaces to one; false to expand single spaces to two
+		/// </param>
+		/// <returns>True if the page was modified</returns>
+		internal bool Run(Models.Page page, bool singleSpace)
+		{
 			Regex regex;
 			string replacement;
-			if (dialog.SingleSpace)
+			if (singleSpace)
 			{
 				regex = new Regex(OneSpacePattern);
 				replacement = "$1 $2$3$4$5";
@@ -54,29 +76,22 @@ namespace River.OneMoreAddIn.Commands
 				replacement = "$1  $2$3$4";
 			}
 
-			await using var one = new OneNote(out var page, out var ns);
-			logger.StartClock();
-
 			var nodes = page.Root.DescendantNodes().OfType<XCData>()
 				.Where(n => n.Value.Contains('.'));
 
-			if (nodes.Any())
+			var updated = false;
+
+			foreach (var cdata in nodes)
 			{
-				var updated = false;
-
-				foreach (var cdata in nodes)
+				var replaced = regex.Replace(cdata.Value, replacement);
+				if (replaced != cdata.Value)
 				{
-					cdata.Value = regex.Replace(cdata.Value, replacement);
+					cdata.Value = replaced;
 					updated = true;
-				}
-
-				if (updated)
-				{
-					await one.Update(page);
 				}
 			}
 
-			logger.StopClock();
+			return updated;
 		}
 	}
 }
