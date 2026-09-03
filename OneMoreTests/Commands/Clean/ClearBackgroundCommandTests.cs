@@ -314,5 +314,140 @@ namespace River.OneMoreAddIn.Tests.Commands.Clean
 			Assert.IsTrue(oeStyle.Contains("#000000"),
 				$"Expected corrected color '#000000' but style was: {oeStyle}");
 		}
+
+
+		[TestMethod]
+		public async Task ClearBackground_HighlightedSpanWithLowContrastColor_CorrectsSpanColor()
+		{
+			// Arrange: light (automatic/white) page with a single span whose font color
+			// (#F2F2F2, brightness ~0.95) is set directly on the span rather than the OE, as
+			// seen when a highlighted run also carries its own inline color, e.g.
+			// <span style='color:#F2F2F2;background:maroon;mso-highlight:maroon'>Content</span>.
+			// Once the maroon highlight is stripped, near-white text on a white page is
+			// nearly invisible, so the span-level CheckContrast pass (wrapper.Elements("span"))
+			// must reset the span's own color, not just the OE's.
+			var oe = new XElement(Ns + "OE",
+				new XElement(Ns + "T",
+					new XCData("<span style='color:#F2F2F2;background:maroon;mso-highlight:maroon'>Content</span>")));
+
+			var xml = new PageBuilder(PageId, "Span Contrast Test")
+				.WithElement(oe)
+				.Build();
+
+			SetupPage(PageId, xml);
+
+			// Act
+			await ExecuteCommand();
+
+			// Assert
+			var updated = GetUpdatedPage(PageId);
+			Assert.IsNotNull(updated, "UpdatePageContent was never called");
+
+			var cdata = updated
+				.Descendants(Ns + "T")
+				.Select(t => t.FirstNode as XCData)
+				.FirstOrDefault(cd => cd != null);
+
+			Assert.IsNotNull(cdata, "Expected a T element with CDATA");
+			Assert.IsFalse(cdata.Value.Contains("background:"),
+				"Expected 'background:' to be removed from the span");
+			Assert.IsFalse(cdata.Value.Contains("#F2F2F2"),
+				$"Expected low-contrast span color '#F2F2F2' to be replaced but found: {cdata.Value}");
+			Assert.IsTrue(cdata.Value.Contains("#000000"),
+				$"Expected corrected span color '#000000' but CDATA was: {cdata.Value}");
+		}
+
+
+		[TestMethod]
+		public async Task ClearBackground_CollapsedParagraphWithHiddenHighlightedChild_ClearsDescendantHighlight()
+		{
+			// Arrange: an explicitly-selected run (selected="all") inside an OE marked
+			// collapsed="1", whose OEChildren holds a sub-paragraph with its own highlighted
+			// span that is NOT itself selected. Because exactly one run is explicitly selected,
+			// SelectionRange.Scope resolves to Run rather than None/TextCursor, so
+			// GetSelections(defaulToAnytIfNoRange:true) returns only that one run - it does NOT
+			// fall back to every T on the page. The only way the hidden child's highlight gets
+			// cleared is the collapsed-OE deep-recursion branch in ClearTextBackground.
+			var childOe = new XElement(Ns + "OE",
+				new XElement(Ns + "T",
+					new XCData("<span style='background:#00FF00'>hidden child text</span>")));
+
+			var parentOe = new XElement(Ns + "OE",
+				new XAttribute("collapsed", "1"),
+				new XElement(Ns + "T",
+					new XAttribute("selected", "all"),
+					new XCData("<span style='background:#FFFF00'>selected parent text</span>")),
+				new XElement(Ns + "OEChildren", childOe));
+
+			var xml = new PageBuilder(PageId, "Collapsed Deep Scan Test")
+				.WithElement(parentOe)
+				.Build();
+
+			SetupPage(PageId, xml);
+
+			// Act
+			await ExecuteCommand();
+
+			// Assert
+			var updated = GetUpdatedPage(PageId);
+			Assert.IsNotNull(updated, "UpdatePageContent was never called");
+
+			var cdataValues = updated
+				.Descendants(Ns + "T")
+				.Select(t => t.FirstNode as XCData)
+				.Where(cd => cd != null)
+				.Select(cd => cd.Value)
+				.ToList();
+
+			Assert.IsTrue(cdataValues.Any(v => v.Contains("selected parent text")),
+				"Expected the explicitly selected parent run to remain");
+			Assert.IsTrue(cdataValues.Any(v => v.Contains("hidden child text")),
+				"Expected the unselected child run to remain");
+			Assert.IsFalse(cdataValues.Any(v => v.Contains("background:")),
+				"Expected 'background:' to be removed from both the selected parent run and " +
+				"the unselected descendant run reached via the collapsed-OE deep scan");
+		}
+
+
+		[TestMethod]
+		public async Task ClearBackground_HighlightedSpanWrappedInAnchor_RemovesHighlightPreservesLink()
+		{
+			// Arrange: highlighted text inside a hyperlink, e.g.
+			// <a href="..."><span style='background:yellow;mso-highlight:yellow'>HTML</span></a>,
+			// using named CSS colors (as OneNote emits for its highlight palette) rather than
+			// hex. The <span> here is not a direct child of the CDATA root - it's nested inside
+			// <a> - so this also exercises regex-based removal independent of the XML-wrapper
+			// based span walk used for contrast correction.
+			var oe = new XElement(Ns + "OE",
+				new XElement(Ns + "T",
+					new XCData("<a href=\"https://github.com/stevencohn/OneMore\">" +
+						"<span style='background:yellow;mso-highlight:yellow'>HTML</span></a>")));
+
+			var xml = new PageBuilder(PageId, "Anchor Highlight Test")
+				.WithElement(oe)
+				.Build();
+
+			SetupPage(PageId, xml);
+
+			// Act
+			await ExecuteCommand();
+
+			// Assert
+			var updated = GetUpdatedPage(PageId);
+			Assert.IsNotNull(updated, "UpdatePageContent was never called");
+
+			var cdata = updated
+				.Descendants(Ns + "T")
+				.Select(t => t.FirstNode as XCData)
+				.FirstOrDefault(cd => cd != null);
+
+			Assert.IsNotNull(cdata, "Expected a T element with CDATA");
+			Assert.IsFalse(cdata.Value.Contains("background:"),
+				$"Expected 'background:' to be removed but CDATA still contains: {cdata.Value}");
+			Assert.IsFalse(cdata.Value.Contains("mso-highlight:"),
+				"Expected 'mso-highlight:' to be removed");
+			Assert.IsTrue(cdata.Value.Contains("<a href="),
+				"Expected the hyperlink to be preserved");
+		}
 	}
 }
