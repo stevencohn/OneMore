@@ -54,7 +54,6 @@ namespace River.OneMoreAddIn.Commands
 			// because RunModeless now runs on HotkeyManager's own thread, that multi-second
 			// stall would otherwise block the whole thread's message loop, including the
 			// next Alt+G's WM_HOTKEY, until it cleared.
-			logger.Verbose($"CompleteHashtagDialog: constructed, hash={GetHashCode()}");
 		}
 
 
@@ -69,8 +68,6 @@ namespace River.OneMoreAddIn.Commands
 		{
 			base.OnActivated(e);
 
-			logger.Verbose($"CompleteHashtagDialog[{GetHashCode()}]: OnActivated");
-
 			// MoreForm.OnActivated calls Elevate(false), which leaves TopMost off; undo that
 			// here so this popup can't disappear behind OneNote if the user clicks back into
 			// it, which otherwise makes it easy to forget it's still open
@@ -81,8 +78,6 @@ namespace River.OneMoreAddIn.Commands
 		protected override void OnDeactivate(EventArgs e)
 		{
 			base.OnDeactivate(e);
-
-			logger.Verbose($"CompleteHashtagDialog[{GetHashCode()}]: OnDeactivate");
 
 			// WM_ACTIVATE(WA_INACTIVE) is delivered to the losing window only after Windows
 			// has already updated the foreground window, so this can run synchronously here
@@ -96,16 +91,12 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (IsDisposed)
 			{
-				logger.Verbose($"CompleteHashtagDialog[{GetHashCode()}]: " +
-					"CloseIfFocusLeftOneNote, already disposed, skipping");
 				return;
 			}
 
 			var foreground = Native.GetForegroundWindow();
 			if (foreground == IntPtr.Zero || foreground == Handle)
 			{
-				logger.Verbose($"CompleteHashtagDialog[{GetHashCode()}]: " +
-					$"CloseIfFocusLeftOneNote, foreground is self or zero, staying open");
 				return;
 			}
 
@@ -116,8 +107,6 @@ namespace River.OneMoreAddIn.Commands
 			// only a genuinely different application, or the desktop, should dismiss this
 			if (pid == (uint)Process.GetCurrentProcess().Id)
 			{
-				logger.Verbose($"CompleteHashtagDialog[{GetHashCode()}]: " +
-					$"CloseIfFocusLeftOneNote, foreground pid={pid} is this process, staying open");
 				return;
 			}
 
@@ -126,18 +115,18 @@ namespace River.OneMoreAddIn.Commands
 				var name = Process.GetProcessById((int)pid).ProcessName;
 				if (name == "ONENOTE")
 				{
-					logger.Verbose($"CompleteHashtagDialog[{GetHashCode()}]: " +
+					logger.Debug($"CompleteHashtagDialog[{GetHashCode()}]: " +
 						"CloseIfFocusLeftOneNote, foreground is ONENOTE, staying open");
 					return;
 				}
 
-				logger.Verbose($"CompleteHashtagDialog[{GetHashCode()}]: " +
+				logger.Debug($"CompleteHashtagDialog[{GetHashCode()}]: " +
 					$"CloseIfFocusLeftOneNote, foreground pid={pid} process={name}, closing");
 			}
 			catch (ArgumentException)
 			{
 				// process already exited; treat as "elsewhere" and fall through to close
-				logger.Verbose($"CompleteHashtagDialog[{GetHashCode()}]: " +
+				logger.Debug($"CompleteHashtagDialog[{GetHashCode()}]: " +
 					$"CloseIfFocusLeftOneNote, foreground pid={pid} process exited, closing");
 			}
 
@@ -153,8 +142,6 @@ namespace River.OneMoreAddIn.Commands
 			{
 				// unlike HashtagDialog, there's no other content here worth keeping open
 				// after dismissing the autocomplete list, so a single Esc dismisses both
-				logger.Verbose($"CompleteHashtagDialog[{GetHashCode()}]: Escape, closing");
-
 				if (palette.IsPopupVisible)
 				{
 					palette.HidePopup(this, EventArgs.Empty);
@@ -183,25 +170,14 @@ namespace River.OneMoreAddIn.Commands
 			var text = tagBox.Text.Trim();
 			if (string.IsNullOrEmpty(text) || text == "#")
 			{
-				logger.Verbose($"CompleteHashtagDialog[{GetHashCode()}]: Accept, empty text, closing");
 				Close();
 				return;
 			}
 
 			SelectedTag = AddHashtagCommand.NormalizeTags(text);
-			logger.Verbose($"CompleteHashtagDialog[{GetHashCode()}]: Accept, tag=[{SelectedTag}]");
 
 			DialogResult = DialogResult.OK;
 			Close();
-		}
-
-
-		protected override void OnFormClosed(FormClosedEventArgs e)
-		{
-			logger.Verbose($"CompleteHashtagDialog[{GetHashCode()}]: OnFormClosed, " +
-				$"DialogResult={DialogResult}");
-
-			base.OnFormClosed(e);
 		}
 	}
 }

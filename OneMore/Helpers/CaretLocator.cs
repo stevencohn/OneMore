@@ -14,7 +14,7 @@ namespace River.OneMoreAddIn
 	/// Attempts to locate the screen rectangle of the current text caret/selection within
 	/// the OneNote editor surface. OneNote's editor is a custom-rendered control so neither
 	/// strategy here is guaranteed to succeed; callers should treat the window-center
-	/// fallback as a normal outcome rather than an error case. Enable verbose logging to
+	/// fallback as a normal outcome rather than an error case. Enable Debug logging to
 	/// see which strategy (if any) located the caret for a given invocation.
 	/// </summary>
 	internal static class CaretLocator
@@ -40,7 +40,7 @@ namespace River.OneMoreAddIn
 			}
 
 			var center = GetWindowCenter(oneNoteWindowHandle);
-			Logger.Current.Verbose(
+			Logger.Current.Debug(
 				$"CaretLocator: no strategy located the caret, using window center {center}");
 
 			return center;
@@ -53,7 +53,7 @@ namespace River.OneMoreAddIn
 			{
 				var rectangle = locate();
 
-				Logger.Current.Verbose(rectangle.HasValue
+				Logger.Current.Debug(rectangle.HasValue
 					? $"CaretLocator: [{strategy}] found caret at {rectangle.Value}"
 					: $"CaretLocator: [{strategy}] did not find the caret");
 
@@ -73,7 +73,7 @@ namespace River.OneMoreAddIn
 		{
 			if (handle == IntPtr.Zero)
 			{
-				Logger.Current.Verbose("CaretLocator.automation: window handle is zero");
+				Logger.Current.Debug("CaretLocator.automation: window handle is zero");
 				return null;
 			}
 
@@ -84,13 +84,13 @@ namespace River.OneMoreAddIn
 			}
 			catch (ElementNotAvailableException)
 			{
-				Logger.Current.Verbose("CaretLocator.automation: window element not available");
+				Logger.Current.Debug("CaretLocator.automation: window element not available");
 				return null;
 			}
 
 			if (window is null)
 			{
-				Logger.Current.Verbose("CaretLocator.automation: FromHandle returned null");
+				Logger.Current.Debug("CaretLocator.automation: FromHandle returned null");
 				return null;
 			}
 
@@ -101,14 +101,14 @@ namespace River.OneMoreAddIn
 
 			if (editor is null)
 			{
-				Logger.Current.Verbose(
+				Logger.Current.Debug(
 					"CaretLocator.automation: no descendant advertises TextPattern support");
 				return null;
 			}
 
 			if (editor.GetCurrentPattern(TextPattern.Pattern) is not TextPattern pattern)
 			{
-				Logger.Current.Verbose(
+				Logger.Current.Debug(
 					"CaretLocator.automation: GetCurrentPattern(TextPattern) failed");
 				return null;
 			}
@@ -117,14 +117,14 @@ namespace River.OneMoreAddIn
 			var ranges = pattern.GetSelection();
 			if (ranges is null || ranges.Length == 0)
 			{
-				Logger.Current.Verbose("CaretLocator.automation: GetSelection() returned no ranges");
+				Logger.Current.Debug("CaretLocator.automation: GetSelection() returned no ranges");
 				return null;
 			}
 
 			var bounds = ranges[0].GetBoundingRectangles();
 			if (bounds is null || bounds.Length == 0)
 			{
-				Logger.Current.Verbose(
+				Logger.Current.Debug(
 					"CaretLocator.automation: GetBoundingRectangles() returned nothing");
 				return null;
 			}
@@ -133,7 +133,7 @@ namespace River.OneMoreAddIn
 			if (rect.IsEmpty || rect.Width <= 0 || rect.Height <= 0 ||
 				double.IsInfinity(rect.Width) || double.IsInfinity(rect.Height))
 			{
-				Logger.Current.Verbose($"CaretLocator.automation: degenerate bounding rect {rect}");
+				Logger.Current.Debug($"CaretLocator.automation: degenerate bounding rect {rect}");
 				return null;
 			}
 
@@ -150,14 +150,14 @@ namespace River.OneMoreAddIn
 		{
 			if (handle == IntPtr.Zero)
 			{
-				Logger.Current.Verbose("CaretLocator.guithread: window handle is zero");
+				Logger.Current.Debug("CaretLocator.guithread: window handle is zero");
 				return null;
 			}
 
 			var threadId = Native.GetWindowThreadProcessId(handle, out _);
 			if (threadId == 0)
 			{
-				Logger.Current.Verbose(
+				Logger.Current.Debug(
 					"CaretLocator.guithread: GetWindowThreadProcessId returned 0");
 				return null;
 			}
@@ -169,13 +169,13 @@ namespace River.OneMoreAddIn
 
 			if (!Native.GetGUIThreadInfo(threadId, ref info))
 			{
-				Logger.Current.Verbose("CaretLocator.guithread: GetGUIThreadInfo failed");
+				Logger.Current.Debug("CaretLocator.guithread: GetGUIThreadInfo failed");
 				return null;
 			}
 
 			if (info.hwndCaret == IntPtr.Zero)
 			{
-				Logger.Current.Verbose(
+				Logger.Current.Debug(
 					"CaretLocator.guithread: no hwndCaret reported for this thread");
 				return null;
 			}
@@ -188,7 +188,7 @@ namespace River.OneMoreAddIn
 
 			if (!Native.ClientToScreen(info.hwndCaret, ref topLeft))
 			{
-				Logger.Current.Verbose("CaretLocator.guithread: ClientToScreen failed");
+				Logger.Current.Debug("CaretLocator.guithread: ClientToScreen failed");
 				return null;
 			}
 
@@ -196,7 +196,7 @@ namespace River.OneMoreAddIn
 			var height = info.rcCaret.Bottom - info.rcCaret.Top;
 			if (height <= 0)
 			{
-				Logger.Current.Verbose(
+				Logger.Current.Debug(
 					$"CaretLocator.guithread: degenerate caret rect, height={height}");
 				return null;
 			}

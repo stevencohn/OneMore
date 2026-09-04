@@ -35,10 +35,6 @@ namespace River.OneMoreAddIn.Commands
 
 		public override async Task Execute(params object[] args)
 		{
-			logger.Verbose(
-				$"CompleteHashtagCommand.Execute: " +
-				$"dialog={(dialog is null ? "null" : $"non-null,IsDisposed={dialog.IsDisposed}")}");
-
 			if (dialog != null)
 			{
 				// Single instance. This must be checked first, independent of the
@@ -49,7 +45,7 @@ namespace River.OneMoreAddIn.Commands
 				// dialog closes). If the guard were still held at that point, every
 				// repeated Alt+G pressed while the popup is open would bail out below
 				// instead of ever reaching this elevate.
-				logger.Verbose("CompleteHashtagCommand.Execute: elevating existing dialog");
+				logger.Debug("CompleteHashtagCommand.Execute: elevating existing dialog");
 				dialog.Elevate();
 				return;
 			}
@@ -58,7 +54,7 @@ namespace River.OneMoreAddIn.Commands
 			if (guard is null)
 			{
 				// another invocation is concurrently in the brief setup below
-				logger.Verbose("CompleteHashtagCommand.Execute: already active, bailing out");
+				logger.Debug("CompleteHashtagCommand.Execute: already active, bailing out");
 				return;
 			}
 
@@ -91,18 +87,17 @@ namespace River.OneMoreAddIn.Commands
 				using var provider = new HashtagProvider();
 				var names = provider.ReadTagNames().ToArray();
 				var recent = provider.ReadLatestTagNames().ToArray();
-				logger.Verbose($"CompleteHashtagCommand.Execute: read {names.Length} tag names, " +
+				logger.Debug($"CompleteHashtagCommand.Execute: read {names.Length} tag names, " +
 					$"{recent.Length} recent, in {watch.ElapsedMilliseconds}ms");
 
 				dialog = new CompleteHashtagDialog(word, names, recent);
 				dialog.FormClosed += Dialog_FormClosed;
-				logger.Verbose($"CompleteHashtagCommand.Execute: created new dialog, seed=[{word}]");
 
 				var anchor = CaretLocator.Locate(windowHandle);
 				var location = Screen.FromPoint(anchor.Location)
 					.GetBoundedLocationNear(anchor, dialog.Size);
 
-				logger.Verbose($"CompleteHashtagCommand.Execute: showing dialog at {location}, " +
+				logger.Debug($"CompleteHashtagCommand.Execute: showing dialog at {location}, " +
 					$"Application.MessageLoop={Application.MessageLoop}");
 
 				// setup is done; release the guard now, BEFORE calling RunModeless, since
@@ -121,29 +116,29 @@ namespace River.OneMoreAddIn.Commands
 				// does not wait for the dialog to close.
 				HotkeyManager.InvokeOnMessageThread(() =>
 				{
-					logger.Verbose("CompleteHashtagCommand.Execute: on message thread, " +
+					logger.Debug("CompleteHashtagCommand.Execute: on message thread, " +
 						$"Application.MessageLoop={Application.MessageLoop}");
 
 				dialog.RunModeless(location, async (sender, e) =>
 				{
-						logger.Verbose("CompleteHashtagCommand: RunModeless closedAction invoked, " +
+						logger.Debug("CompleteHashtagCommand: RunModeless closedAction invoked, " +
 							$"DialogResult={(sender as CompleteHashtagDialog)?.DialogResult}");
 
 					var d = sender as CompleteHashtagDialog;
 					if (d.DialogResult == DialogResult.OK)
 					{
-							try
-							{
-						await ApplyTag(d.SelectedTag);
-					}
-							catch (System.Exception exc)
-							{
-								// this callback runs detached from Execute()'s call stack, after
-								// the dialog has already closed, so an unhandled exception here
-								// would otherwise vanish silently instead of surfacing anywhere
-								logger.WriteLine("CompleteHashtagCommand: error applying tag", exc);
-							}
+						try
+						{
+							await ApplyTag(d.SelectedTag);
 						}
+						catch (System.Exception exc)
+						{
+							// this callback runs detached from Execute()'s call stack, after
+							// the dialog has already closed, so an unhandled exception here
+							// would otherwise vanish silently instead of surfacing anywhere
+							logger.WriteLine("CompleteHashtagCommand: error applying tag", exc);
+						}
+					}
 				});
 				});
 			}
@@ -153,7 +148,6 @@ namespace River.OneMoreAddIn.Commands
 				// above); still needed to clear it if something threw during setup, before
 				// that release ran - Dispose() is idempotent
 				guard.Dispose();
-				logger.Verbose("CompleteHashtagCommand.Execute: guard released");
 
 				if (dialog is null)
 				{
@@ -175,15 +169,15 @@ namespace River.OneMoreAddIn.Commands
 				new PageEditor(page).InsertOrReplace(tag);
 			}
 
+			using var indent = logger.Indent();
+			logger.WriteLine($"applied hashtag '{tag}'");
+
 			await one.Update(page);
 		}
 
 
 		private void Dialog_FormClosed(object sender, System.EventArgs e)
 		{
-			logger.Verbose($"CompleteHashtagCommand.Dialog_FormClosed: fired, " +
-				$"sender==dialog={ReferenceEquals(sender, dialog)}, dialog is null={dialog is null}");
-
 			if (dialog != null)
 			{
 				dialog.FormClosed -= Dialog_FormClosed;
@@ -191,7 +185,6 @@ namespace River.OneMoreAddIn.Commands
 				dialog = null;
 				pauseHandle?.Dispose();
 				pauseHandle = null;
-				logger.Verbose("CompleteHashtagCommand.Dialog_FormClosed: dialog cleared");
 			}
 		}
 
