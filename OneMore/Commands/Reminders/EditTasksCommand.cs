@@ -117,6 +117,7 @@ namespace River.OneMoreAddIn.Commands
 				if (completed)
 				{
 					tag.SetAttributeValue("completed", "false");
+					modified = true; // resetting the tag itself is always a modification
 
 					// each OE can only have 0..1 cdata but there can be more than one run after
 					// the tag if the text caret is position on the paragraph so must enumerate
