@@ -3221,10 +3221,6 @@ Apply to this notebook</value>
     <value>Duplicate Page</value>
     <comment>group box</comment>
   </data>
-  <data name="PageSheet_Title" xml:space="preserve">
-    <value>Page</value>
-    <comment>sheet title</comment>
-  </data>
   <data name="PageSheet_insertBacklinksBox.Text" xml:space="preserve">
     <value>Insert heading back-links</value>
     <comment>checkbox</comment>
@@ -3240,6 +3236,10 @@ Apply to this notebook</value>
   <data name="PageSheet_refreshTocBox.Text" xml:space="preserve">
     <value>Refresh Table of Contents</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="PageSheet_Title" xml:space="preserve">
+    <value>Page</value>
+    <comment>sheet title</comment>
   </data>
   <data name="PasteCellsCommand_NoContent" xml:space="preserve">
     <value>No content to paste; copy one or more table cells to paste</value>
@@ -3966,6 +3966,14 @@ Select No to keep one empty line between paragraphs</value>
   <data name="ribAdjustImagesButton_Screentip" xml:space="preserve">
     <value>Resize and adjust selected images</value>
     <comment>ribbon images</comment>
+  </data>
+  <data name="ribAdjustImagesMenuButton_Label" xml:space="preserve">
+    <value>Resize and Adjust</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribAdjustImagesMenuButton_Screentip" xml:space="preserve">
+    <value>Resize and adjust selected images</value>
+    <comment>ribbon images NODUP</comment>
   </data>
   <data name="ribAnalyzeButton_Label" xml:space="preserve">
     <value>Analyze Data Storage</value>
@@ -4806,6 +4814,14 @@ Help Tab</value>
   <data name="ribInsertPageTocButton_Screentip" xml:space="preserve">
     <value>Insert a headings table of contents at the top of the page</value>
     <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertPageTocMenuButton_Label" xml:space="preserve">
+    <value>Table of Contents</value>
+    <comment>ribbon snippets NODUP</comment>
+  </data>
+  <data name="ribInsertPageTocMenuButton_Screentip" xml:space="preserve">
+    <value>Insert a headings table of contents at the top of the page</value>
+    <comment>ribbon snippets NODUP</comment>
   </data>
   <data name="ribInsertQRButton_Label" xml:space="preserve">
     <value>Insert QR Code</value>

@@ -1029,6 +1029,14 @@
     <value>اعادة الضبط</value>
     <comment>system menu</comment>
   </data>
+  <data name="DuplicatePageCommand_basedOn" xml:space="preserve">
+    <value>استنادًا إلى {0} ({1})</value>
+    <comment>{0}=hyperlinked heading text, {1}=date; reorder placeholders as needed</comment>
+  </data>
+  <data name="DuplicatePageCommand_duplicatedFrom" xml:space="preserve">
+    <value>مكرر من {0}</value>
+    <comment>{0}=hyperlinked page title; reorder as needed</comment>
+  </data>
   <data name="EditTableThemesDialog_colorsTab.Text" xml:space="preserve">
     <value>الألوان</value>
     <comment>tab</comment>
@@ -3196,6 +3204,30 @@
 تنطبق على هذا دفتر الملاحظات</value>
     <comment>combobox</comment>
   </data>
+  <data name="PageSheet_duplicateGroup.Text" xml:space="preserve">
+    <value>صفحة مكررة</value>
+    <comment>group box</comment>
+  </data>
+  <data name="PageSheet_insertBacklinksBox.Text" xml:space="preserve">
+    <value>أدخل الروابط الخلفية للعناوين</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="PageSheet_insertNoteBox.Text" xml:space="preserve">
+    <value>أدخل ملاحظة مكررة</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="PageSheet_introBox.Text" xml:space="preserve">
+    <value>تخصيص الخيارات لأوامر الصفحة</value>
+    <comment>sheet intro</comment>
+  </data>
+  <data name="PageSheet_refreshTocBox.Text" xml:space="preserve">
+    <value>تحديث جدول المحتويات</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="PageSheet_Title" xml:space="preserve">
+    <value>صفحة</value>
+    <comment>sheet title</comment>
+  </data>
   <data name="PasteCellsCommand_NoContent" xml:space="preserve">
     <value>لا يوجد محتوى للصقه ؛ </value>
     <comment>message box</comment>
@@ -3913,6 +3945,14 @@ ISO-code then comma then language name</comment>
   <data name="ribAdjustImagesButton_Screentip" xml:space="preserve">
     <value>تغيير حجم الصور المحددة وضبطها</value>
     <comment>ribbon images</comment>
+  </data>
+  <data name="ribAdjustImagesMenuButton_Label" xml:space="preserve">
+    <value>تغيير الحجم والضبط</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribAdjustImagesMenuButton_Screentip" xml:space="preserve">
+    <value>تغيير حجم وضبط الصور المحددة</value>
+    <comment>ribbon images NODUP</comment>
   </data>
   <data name="ribAnalyzeButton_Label" xml:space="preserve">
     <value>تحليل تخزين البيانات</value>
@@ -4753,6 +4793,14 @@ ISO-code then comma then language name</comment>
   <data name="ribInsertPageTocButton_Screentip" xml:space="preserve">
     <value>قم بإدراج جدول محتويات العناوين في أعلى الصفحة</value>
     <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertPageTocMenuButton_Label" xml:space="preserve">
+    <value>جدول المحتويات</value>
+    <comment>ribbon snippets NODUP</comment>
+  </data>
+  <data name="ribInsertPageTocMenuButton_Screentip" xml:space="preserve">
+    <value>قم بإدراج جدول محتويات العناوين في أعلى الصفحة</value>
+    <comment>ribbon snippets NODUP</comment>
   </data>
   <data name="ribInsertQRButton_Label" xml:space="preserve">
     <value>أدخل رمز الاستجابة السريعة</value>

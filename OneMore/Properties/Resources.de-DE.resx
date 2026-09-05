@@ -1021,6 +1021,14 @@ Normal</value>
     <value>Einstellungen zurücksetzen</value>
     <comment>system menu</comment>
   </data>
+  <data name="DuplicatePageCommand_basedOn" xml:space="preserve">
+    <value>Basierend auf {0} ({1})</value>
+    <comment>{0}=hyperlinked heading text, {1}=date; reorder placeholders as needed</comment>
+  </data>
+  <data name="DuplicatePageCommand_duplicatedFrom" xml:space="preserve">
+    <value>Dupliziert von {0}</value>
+    <comment>{0}=hyperlinked page title; reorder as needed</comment>
+  </data>
   <data name="EditTableThemesDialog_colorsTab.Text" xml:space="preserve">
     <value>Farben</value>
     <comment>tab</comment>
@@ -3184,6 +3192,30 @@ Bewerben Sie sich für diesen Abschnitt
 Bewerben Sie sich auf dieses Notizbuch</value>
     <comment>combobox</comment>
   </data>
+  <data name="PageSheet_duplicateGroup.Text" xml:space="preserve">
+    <value>Doppelte Seite</value>
+    <comment>group box</comment>
+  </data>
+  <data name="PageSheet_insertBacklinksBox.Text" xml:space="preserve">
+    <value>Überschriften-Backlinks einfügen</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="PageSheet_insertNoteBox.Text" xml:space="preserve">
+    <value>Vervielfältigungsnotiz einfügen</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="PageSheet_introBox.Text" xml:space="preserve">
+    <value>Passen Sie die Optionen für die Seitenbefehle an</value>
+    <comment>sheet intro</comment>
+  </data>
+  <data name="PageSheet_refreshTocBox.Text" xml:space="preserve">
+    <value>Inhaltsverzeichnis aktualisieren</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="PageSheet_Title" xml:space="preserve">
+    <value>Seite</value>
+    <comment>sheet title</comment>
+  </data>
   <data name="PasteCellsCommand_NoContent" xml:space="preserve">
     <value>Kein Inhalt zum Einfügen; </value>
     <comment>message box</comment>
@@ -3901,6 +3933,14 @@ Wähle Nein, um eine leere Zeile zwischen den Absätzen zu halten</value>
   <data name="ribAdjustImagesButton_Screentip" xml:space="preserve">
     <value>Ändern Sie die Größe und passen Sie ausgewählte Bilder an</value>
     <comment>ribbon images</comment>
+  </data>
+  <data name="ribAdjustImagesMenuButton_Label" xml:space="preserve">
+    <value>Größe ändern und anpassen</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribAdjustImagesMenuButton_Screentip" xml:space="preserve">
+    <value>Ändern Sie die Größe ausgewählter Bilder und passen Sie sie an</value>
+    <comment>ribbon images NODUP</comment>
   </data>
   <data name="ribAnalyzeButton_Label" xml:space="preserve">
     <value>Datenspeicher analysieren</value>
@@ -4741,6 +4781,14 @@ Registerkarte „Hilfe“.</value>
   <data name="ribInsertPageTocButton_Screentip" xml:space="preserve">
     <value>Fügen Sie oben auf der Seite ein Überschriften-Inhaltsverzeichnis ein</value>
     <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertPageTocMenuButton_Label" xml:space="preserve">
+    <value>Inhaltsverzeichnis</value>
+    <comment>ribbon snippets NODUP</comment>
+  </data>
+  <data name="ribInsertPageTocMenuButton_Screentip" xml:space="preserve">
+    <value>Fügen Sie oben auf der Seite ein Überschriften-Inhaltsverzeichnis ein</value>
+    <comment>ribbon snippets NODUP</comment>
   </data>
   <data name="ribInsertQRButton_Label" xml:space="preserve">
     <value>QR-Code einfügen</value>

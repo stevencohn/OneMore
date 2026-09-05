@@ -1029,6 +1029,14 @@
     <value>設定をリセット</value>
     <comment>system menu</comment>
   </data>
+  <data name="DuplicatePageCommand_basedOn" xml:space="preserve">
+    <value>{0} ({1}) に基づく</value>
+    <comment>{0}=hyperlinked heading text, {1}=date; reorder placeholders as needed</comment>
+  </data>
+  <data name="DuplicatePageCommand_duplicatedFrom" xml:space="preserve">
+    <value>{0} から複製されました</value>
+    <comment>{0}=hyperlinked page title; reorder as needed</comment>
+  </data>
   <data name="EditTableThemesDialog_colorsTab.Text" xml:space="preserve">
     <value>色</value>
     <comment>tab</comment>
@@ -3188,6 +3196,30 @@ OneDriveに保存されているノートブックのフォルダーを開くこ
 このノートブックに適用</value>
     <comment>combobox</comment>
   </data>
+  <data name="PageSheet_duplicateGroup.Text" xml:space="preserve">
+    <value>重複ページ</value>
+    <comment>group box</comment>
+  </data>
+  <data name="PageSheet_insertBacklinksBox.Text" xml:space="preserve">
+    <value>見出しのバックリンクを挿入する</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="PageSheet_insertNoteBox.Text" xml:space="preserve">
+    <value>重複メモを挿入</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="PageSheet_introBox.Text" xml:space="preserve">
+    <value>ページコマンドのオプションをカスタマイズする</value>
+    <comment>sheet intro</comment>
+  </data>
+  <data name="PageSheet_refreshTocBox.Text" xml:space="preserve">
+    <value>目次を更新</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="PageSheet_Title" xml:space="preserve">
+    <value>ページ</value>
+    <comment>sheet title</comment>
+  </data>
   <data name="PasteCellsCommand_NoContent" xml:space="preserve">
     <value>ペーストするコンテンツがありません。1つ以上のセルをコピーしてペーストする必要があります</value>
     <comment>message box</comment>
@@ -3909,6 +3941,14 @@ ISO-code then comma then language name</comment>
   <data name="ribAdjustImagesButton_Screentip" xml:space="preserve">
     <value>選択した画像のサイズを変更し、調整します</value>
     <comment>ribbon images</comment>
+  </data>
+  <data name="ribAdjustImagesMenuButton_Label" xml:space="preserve">
+    <value>サイズ変更と調整</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribAdjustImagesMenuButton_Screentip" xml:space="preserve">
+    <value>選択した画像のサイズ変更と調整</value>
+    <comment>ribbon images NODUP</comment>
   </data>
   <data name="ribAnalyzeButton_Label" xml:space="preserve">
     <value>データストレージの分析</value>
@@ -4749,6 +4789,14 @@ ISO-code then comma then language name</comment>
   <data name="ribInsertPageTocButton_Screentip" xml:space="preserve">
     <value>ページの上部に見出しの目次を挿入します。</value>
     <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertPageTocMenuButton_Label" xml:space="preserve">
+    <value>目次</value>
+    <comment>ribbon snippets NODUP</comment>
+  </data>
+  <data name="ribInsertPageTocMenuButton_Screentip" xml:space="preserve">
+    <value>ページの上部に見出しの目次を挿入します。</value>
+    <comment>ribbon snippets NODUP</comment>
   </data>
   <data name="ribInsertQRButton_Label" xml:space="preserve">
     <value>QRコードの挿入</value>

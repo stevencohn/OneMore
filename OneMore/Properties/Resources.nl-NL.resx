@@ -1026,6 +1026,14 @@ Normaal</value>
     <value>Reset instellingen</value>
     <comment>system menu</comment>
   </data>
+  <data name="DuplicatePageCommand_basedOn" xml:space="preserve">
+    <value>Gebaseerd op {0} ({1})</value>
+    <comment>{0}=hyperlinked heading text, {1}=date; reorder placeholders as needed</comment>
+  </data>
+  <data name="DuplicatePageCommand_duplicatedFrom" xml:space="preserve">
+    <value>Gedupliceerd van {0}</value>
+    <comment>{0}=hyperlinked page title; reorder as needed</comment>
+  </data>
   <data name="EditTableThemesDialog_colorsTab.Text" xml:space="preserve">
     <value>Kleuren</value>
     <comment>tab</comment>
@@ -3185,6 +3193,30 @@ Toepassen op deze sectie
 Toepassen op dit notitieboekje</value>
     <comment>combobox</comment>
   </data>
+  <data name="PageSheet_duplicateGroup.Text" xml:space="preserve">
+    <value>Dubbele pagina</value>
+    <comment>group box</comment>
+  </data>
+  <data name="PageSheet_insertBacklinksBox.Text" xml:space="preserve">
+    <value>Voeg kop-backlinks in</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="PageSheet_insertNoteBox.Text" xml:space="preserve">
+    <value>Dupliceernotitie invoegen</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="PageSheet_introBox.Text" xml:space="preserve">
+    <value>Pas opties voor de paginaopdrachten aan</value>
+    <comment>sheet intro</comment>
+  </data>
+  <data name="PageSheet_refreshTocBox.Text" xml:space="preserve">
+    <value>Inhoudsopgave vernieuwen</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="PageSheet_Title" xml:space="preserve">
+    <value>Pagina</value>
+    <comment>sheet title</comment>
+  </data>
   <data name="PasteCellsCommand_NoContent" xml:space="preserve">
     <value>Geen inhoud om te plakken; </value>
     <comment>message box</comment>
@@ -3902,6 +3934,14 @@ Selecteer NO om één lege regel tussen paragrafen te behouden</value>
   <data name="ribAdjustImagesButton_Screentip" xml:space="preserve">
     <value>Formaat wijzigen en geselecteerde afbeeldingen aanpassen</value>
     <comment>ribbon images</comment>
+  </data>
+  <data name="ribAdjustImagesMenuButton_Label" xml:space="preserve">
+    <value>Formaat wijzigen en aanpassen</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribAdjustImagesMenuButton_Screentip" xml:space="preserve">
+    <value>Formaat wijzigen en geselecteerde afbeeldingen aanpassen</value>
+    <comment>ribbon images NODUP</comment>
   </data>
   <data name="ribAnalyzeButton_Label" xml:space="preserve">
     <value>Gegevensopslag analyseren</value>
@@ -4742,6 +4782,14 @@ Tabblad Help</value>
   <data name="ribInsertPageTocButton_Screentip" xml:space="preserve">
     <value>Voeg bovenaan de pagina een inhoudsopgave met kopjes in</value>
     <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertPageTocMenuButton_Label" xml:space="preserve">
+    <value>Inhoudsopgave</value>
+    <comment>ribbon snippets NODUP</comment>
+  </data>
+  <data name="ribInsertPageTocMenuButton_Screentip" xml:space="preserve">
+    <value>Voeg bovenaan de pagina een inhoudsopgave met kopjes in</value>
+    <comment>ribbon snippets NODUP</comment>
   </data>
   <data name="ribInsertQRButton_Label" xml:space="preserve">
     <value>QR-code invoegen</value>

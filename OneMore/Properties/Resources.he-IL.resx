@@ -1026,6 +1026,14 @@
     <value>אפס הגדרות</value>
     <comment>system menu</comment>
   </data>
+  <data name="DuplicatePageCommand_basedOn" xml:space="preserve">
+    <value>מבוסס על {0} ({1})</value>
+    <comment>{0}=hyperlinked heading text, {1}=date; reorder placeholders as needed</comment>
+  </data>
+  <data name="DuplicatePageCommand_duplicatedFrom" xml:space="preserve">
+    <value>משוכפל מ-{0}</value>
+    <comment>{0}=hyperlinked page title; reorder as needed</comment>
+  </data>
   <data name="EditTableThemesDialog_colorsTab.Text" xml:space="preserve">
     <value>צבעים</value>
     <comment>tab</comment>
@@ -3185,6 +3193,30 @@ Total Row Font
 החל על מחברת זו</value>
     <comment>combobox</comment>
   </data>
+  <data name="PageSheet_duplicateGroup.Text" xml:space="preserve">
+    <value>עמוד כפול</value>
+    <comment>group box</comment>
+  </data>
+  <data name="PageSheet_insertBacklinksBox.Text" xml:space="preserve">
+    <value>הכנס קישורים אחוריים לכותרת</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="PageSheet_insertNoteBox.Text" xml:space="preserve">
+    <value>הכנס הערת שכפול</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="PageSheet_introBox.Text" xml:space="preserve">
+    <value>התאם אישית אפשרויות עבור פקודות הדף</value>
+    <comment>sheet intro</comment>
+  </data>
+  <data name="PageSheet_refreshTocBox.Text" xml:space="preserve">
+    <value>רענן את תוכן העניינים</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="PageSheet_Title" xml:space="preserve">
+    <value>עַמוּד</value>
+    <comment>sheet title</comment>
+  </data>
   <data name="PasteCellsCommand_NoContent" xml:space="preserve">
     <value>אין תוכן להדביק; העתק תא טבלה אחד או יותר להדבקה</value>
     <comment>message box</comment>
@@ -3906,6 +3938,14 @@ ISO-code then comma then language name</comment>
   <data name="ribAdjustImagesButton_Screentip" xml:space="preserve">
     <value>שינוי גודל והתאם תמונות שנבחרו</value>
     <comment>ribbon images</comment>
+  </data>
+  <data name="ribAdjustImagesMenuButton_Label" xml:space="preserve">
+    <value>שנה גודל והתאם</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribAdjustImagesMenuButton_Screentip" xml:space="preserve">
+    <value>שנה את הגודל והתאם את התמונות שנבחרו</value>
+    <comment>ribbon images NODUP</comment>
   </data>
   <data name="ribAnalyzeButton_Label" xml:space="preserve">
     <value>ניתוח אחסון נתונים</value>
@@ -4746,6 +4786,14 @@ ISO-code then comma then language name</comment>
   <data name="ribInsertPageTocButton_Screentip" xml:space="preserve">
     <value>הוסף תוכן עניינים של כותרות בראש העמוד</value>
     <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertPageTocMenuButton_Label" xml:space="preserve">
+    <value>תוֹכֶן הָעִניָנִים</value>
+    <comment>ribbon snippets NODUP</comment>
+  </data>
+  <data name="ribInsertPageTocMenuButton_Screentip" xml:space="preserve">
+    <value>הוסף תוכן עניינים של כותרות בראש העמוד</value>
+    <comment>ribbon snippets NODUP</comment>
   </data>
   <data name="ribInsertQRButton_Label" xml:space="preserve">
     <value>הכנס קוד QR</value>

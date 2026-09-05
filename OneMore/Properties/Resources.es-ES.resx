@@ -1021,6 +1021,14 @@ Normal</value>
     <value>Reiniciar ajustes</value>
     <comment>system menu</comment>
   </data>
+  <data name="DuplicatePageCommand_basedOn" xml:space="preserve">
+    <value>Basado en {0} ({1})</value>
+    <comment>{0}=hyperlinked heading text, {1}=date; reorder placeholders as needed</comment>
+  </data>
+  <data name="DuplicatePageCommand_duplicatedFrom" xml:space="preserve">
+    <value>Duplicado de {0}</value>
+    <comment>{0}=hyperlinked page title; reorder as needed</comment>
+  </data>
   <data name="EditTableThemesDialog_colorsTab.Text" xml:space="preserve">
     <value>Colores</value>
     <comment>tab</comment>
@@ -3188,6 +3196,30 @@ Aplicar a esta sección
 Aplicar a este cuaderno</value>
     <comment>combobox</comment>
   </data>
+  <data name="PageSheet_duplicateGroup.Text" xml:space="preserve">
+    <value>Página duplicada</value>
+    <comment>group box</comment>
+  </data>
+  <data name="PageSheet_insertBacklinksBox.Text" xml:space="preserve">
+    <value>Insertar enlaces de retroceso de encabezado</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="PageSheet_insertNoteBox.Text" xml:space="preserve">
+    <value>Insertar nota de duplicación</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="PageSheet_introBox.Text" xml:space="preserve">
+    <value>Personalizar opciones para los comandos de página</value>
+    <comment>sheet intro</comment>
+  </data>
+  <data name="PageSheet_refreshTocBox.Text" xml:space="preserve">
+    <value>Actualizar tabla de contenidos</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="PageSheet_Title" xml:space="preserve">
+    <value>Página</value>
+    <comment>sheet title</comment>
+  </data>
   <data name="PasteCellsCommand_NoContent" xml:space="preserve">
     <value>Sin contenido para pegar; </value>
     <comment>message box</comment>
@@ -3901,6 +3933,14 @@ Seleccione No para mantener una línea vacía entre los párrafos</value>
   <data name="ribAdjustImagesButton_Screentip" xml:space="preserve">
     <value>Cambiar el tamaño y ajustar las imágenes seleccionadas</value>
     <comment>ribbon images</comment>
+  </data>
+  <data name="ribAdjustImagesMenuButton_Label" xml:space="preserve">
+    <value>Cambiar tamaño y ajustar</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribAdjustImagesMenuButton_Screentip" xml:space="preserve">
+    <value>Cambiar el tamaño y ajustar las imágenes seleccionadas</value>
+    <comment>ribbon images NODUP</comment>
   </data>
   <data name="ribAnalyzeButton_Label" xml:space="preserve">
     <value>Analizar el almacenamiento de datos</value>
@@ -4741,6 +4781,14 @@ Pestaña Ayuda</value>
   <data name="ribInsertPageTocButton_Screentip" xml:space="preserve">
     <value>Insertar una tabla de contenido de encabezados en la parte superior de la página.</value>
     <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertPageTocMenuButton_Label" xml:space="preserve">
+    <value>Tabla de contenido</value>
+    <comment>ribbon snippets NODUP</comment>
+  </data>
+  <data name="ribInsertPageTocMenuButton_Screentip" xml:space="preserve">
+    <value>Insertar una tabla de contenido de encabezados en la parte superior de la página.</value>
+    <comment>ribbon snippets NODUP</comment>
   </data>
   <data name="ribInsertQRButton_Label" xml:space="preserve">
     <value>Insertar código QR</value>
