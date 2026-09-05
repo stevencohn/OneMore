@@ -1,0 +1,1086 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=OneNote.File>
+<meta name=Generator content="Microsoft OneNote 15">
+<link id=Main-File rel=Main-File href="&#128208;COM%20Layer%20%23skipwiki.htm">
+<link rel=File-List href="&#128208;COM%20Layer%20%23skipwiki_files/filelist.xml">
+</head>
+
+<body lang=en-US style='font-family:Calibri;font-size:11.5pt'>
+
+<div style='direction:ltr;border-width:100%'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:8.5562in'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:.075in;width:3.2229in'>
+
+<p style='margin-top:0pt;margin-bottom:14pt;font-size:20.0pt;color:#464646'><span
+style='font-family:"Segoe UI Emoji"'>&#128208;</span><span style='font-family:
+"Calibri Light"'>COM Layer #skipwiki</span></p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.0423in;margin-left:.075in;width:2.6381in'>
+
+<P style="margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676">September 3, 2026</P>
+
+<P style="margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676">&nbsp;</P>
+
+</div>
+
+<div style='direction:ltr;margin-top:.3923in;margin-left:0in;width:8.5562in'>
+
+<div style='direction:ltr'>
+
+<table border=1 cellpadding=0 cellspacing=0 valign=top style='direction:ltr;
+ border-collapse:collapse;border-style:solid;border-color:#A3A3A3;border-width:
+ 1pt' title="" summary="">
+ <tr>
+  <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+  background-color:#E5E0EC;vertical-align:top;width:8.534in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <div style='direction:ltr'>
+  <table border=0 cellpadding=0 cellspacing=0 valign=top style='direction:ltr;
+   border-collapse:collapse;border-style:solid;border-color:#A3A3A3;border-width:
+   0pt' title="" summary="">
+   <tr>
+    <td style='border-width:0pt;vertical-align:top;width:.6673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+    <p style='margin:0in;font-family:"Segoe UI Symbol";font-size:22.0pt;
+    color:#5F497A;text-align:center'><span style='font-weight:bold'>&#128211;</span></p>
+    </td>
+    <td style='border-width:0pt;vertical-align:top;width:7.7131in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+    <p style='margin:0in;font-family:Calibri;font-size:11.5pt;color:#333333'><span
+    style='font-weight:bold'>Claude Prompt</span></p>
+    <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>&nbsp;</p>
+    <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Look at <a
+    href="https://onemoreaddin.com/developers/Design%20-%20COM%20Layer.htm">OneMore:
+    Design - COM Layer</a></p>
+    <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>&nbsp;</p>
+    <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Apply <span
+    style='font-weight:bold'>ASD-STE100</span> technical writing principles to
+    rewrite this article in a more understandable way. Generate output as
+    markdown that can be downloaded. For any simplified diagrams, use PlantUML</p>
+    </td>
+   </tr>
+  </table>
+  </div>
+  </td>
+ </tr>
+</table>
+
+</div>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>&nbsp;</p>
+
+<h2 id="what-is-the-com-layer" style='margin:0in;font-family:Calibri;font-size:14.0pt;color:#2E75B5'>What
+is the COM Layer?</h2>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>The OneMore add-in
+never talks directly to OneNote. All commands must go through a small
+connection layer. This layer has two main parts:</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>&nbsp;</p>
+
+<ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+ 0in;font-family:Calibri;font-size:11.5pt;font-weight:bold;font-style:normal'>
+ <li value=1 style='margin-top:0;margin-bottom:0;vertical-align:middle;
+     font-weight:bold'><span style='font-family:Calibri;font-size:11.5pt;
+     font-weight:bold;font-style:normal;font-weight:bold;font-family:Calibri;
+     font-size:11.5pt'>ApplicationFactory</span><span style='font-family:Calibri;
+     font-size:11.5pt;font-weight:normal;font-style:normal;font-weight:normal;
+     font-family:Calibri;font-size:11.5pt'> - Creates and activates the OneNote
+     connection</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;font-weight:
+     bold'><span style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>OneNote
+     wrapper</span><span style='font-weight:normal;font-family:Calibri;
+     font-size:11.5pt'> - Sends commands and handles problems</span></li>
+</ol>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>This design exists
+because OneMore runs in a special location that makes direct communication
+risky.</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>&nbsp;</p>
+
+<h2 id="why-this-design-exists" style='margin:0in;font-family:Calibri;font-size:14.0pt;color:#2E75B5'>Why
+This Design Exists</h2>
+
+<h2 style='margin:0in;font-family:Calibri;font-size:11.5pt;color:#2E75B5'>&nbsp;</h2>
+
+<h3 id="where-onemore-runs" style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'>Where
+OneMore Runs</h3>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>OneMore runs inside
+a separate process. It does not run inside OneNote itself. This separate
+location causes two problems:</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+style='font-weight:bold'>Problem 1: Calls often fail</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Commands travel
+across a process boundary. The connection is weak. OneNote might be busy. The
+connection might drop. A simple command is risky.</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+style='font-weight:bold'>Solution:</span> Retry every call. If it fails, try
+again.</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+style='font-weight:bold'>Problem 2: Objects are not released quickly</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>.NET normally waits
+for &quot;garbage collection&quot; to release OneNote objects. This is too
+slow. While waiting, OneNote gets stuck.</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+style='font-weight:bold'>Solution:</span> Release objects immediately after
+use. Do not wait for garbage collection.</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>&nbsp;</p>
+
+<h2 id="how-the-layer-works" style='margin:0in;font-family:Calibri;font-size:14.0pt;color:#2E75B5'>How
+the Layer Works</h2>
+
+<h2 style='margin:0in;font-family:Calibri;font-size:11.5pt;color:#2E75B5'>&nbsp;</h2>
+
+<h3 id="three-components-work-together" style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'>Three
+Components Work Together</h3>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>&nbsp;</p>
+
+<h4 id="1-applicationfactory-activation" style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'><span
+style='font-style:italic'>1. ApplicationFactory (Activation)</span></h4>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+style='font-weight:bold'>Job:</span> Create the OneNote connection.</p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>Creates a new OneNote
+     connection when needed</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>Retries 3 times if activation
+     fails</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>Acts as a helper for tests to
+     use fake connections</span></li>
+</ul>
+
+<p style='margin:0in'><span style='font-weight:bold;font-family:Calibri;
+font-size:11.5pt'>Code location: </span><span style='font-family:"Lucida Console";
+font-size:9.0pt'>OneMore/Helpers/ApplicationFactory.cs</span></p>
+
+<h4 style='margin:0in;font-family:Calibri;font-size:11.5pt;color:#5B9BD5'>&nbsp;</h4>
+
+<h4 id="2-onenote-wrapper-commands" style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'><span
+style='font-style:italic'>2. OneNote Wrapper (Commands)</span></h4>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+style='font-weight:bold'>Job:</span> Send commands safely.</p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>Holds the OneNote connection</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>Adds retry logic around every
+     call</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>Converts raw XML data into
+     usable objects</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>Releases the connection when
+     done</span></li>
+</ul>
+
+<p style='margin:0in'><span style='font-weight:bold;font-family:Calibri;
+font-size:11.5pt'>Code location: </span><span style='font-family:"Lucida Console";
+font-size:9.0pt'>OneMore/OneNote.cs</span></p>
+
+<h4 style='margin:0in;font-family:Calibri;font-size:11.5pt;color:#5B9BD5'>&nbsp;</h4>
+
+<h4 id="3-commands-usage" style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'><span
+style='font-style:italic'>3. Commands (Usage)</span></h4>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+style='font-weight:bold'>Job:</span> Use the OneNote connection for a short
+time.</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Each command:</p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>Creates its own OneNote
+     connection when it starts</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>Uses it to do work</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>Releases it when finished</span></li>
+</ul>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+style='font-weight:bold'>Example:</span></p>
+
+<p><code style='margin:0in;font-family:Calibri;font-size:11.5pt;color:black'>&nbsp;</code></p>
+
+<p><code style='margin:0in;margin-left:.375in;font-family:"Lucida Console";
+font-size:9.5pt' lang=yo><span style='color:#2E75B5'>await using</span><span
+style='color:black'> (one = </span><span style='color:#2E75B5'>new</span><span
+style='color:black'> OneNote())</span></code></p>
+
+<p><code style='margin:0in;margin-left:.375in;font-family:"Lucida Console";
+font-size:9.5pt;color:black' lang=yo>{</code></p>
+
+<p><code style='margin:0in;margin-left:.75in;font-family:"Lucida Console";
+font-size:9.5pt' lang=yo><span style='color:#2E75B5'>var</span><span
+style='color:black'> section = </span><span style='color:#2E75B5'>await</span><span
+style='color:black'> one.GetSection();</span></code></p>
+
+<p><code style='margin:0in;margin-left:.75in;font-family:"Lucida Console";
+font-size:9.5pt' lang=yo><span style='color:#2E75B5'>var</span><span
+style='color:black'> ns = one.GetNamespace(section);</span></code></p>
+
+<p><code style='margin:0in;margin-left:.75in;font-family:"Lucida Console";
+font-size:9.5pt;color:#00B050' lang=yo>// Use the objects here</code></p>
+
+<p><code style='margin:0in;margin-left:.375in;font-family:"Lucida Console";
+font-size:9.5pt;color:black' lang=yo>}</code></p>
+
+<p><code style='margin:0in;margin-left:.375in;font-family:"Lucida Console";
+font-size:9.5pt;color:#00B050' lang=yo>// OneNote connection is released
+automatically</code></p>
+
+<h3 style='margin:0in;font-family:Calibri;font-size:11.5pt;color:#5B9BD5'>&nbsp;</h3>
+
+<h3 id="architecture-diagram" style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'>Architecture
+Diagram</h3>
+
+<h3 style='margin:0in;font-family:Calibri;font-size:11.5pt;color:#5B9BD5'>&nbsp;</h3>
+
+<div style='direction:ltr'>
+
+<table border=0 cellpadding=0 cellspacing=0 valign=top style='direction:ltr;
+ border-collapse:collapse;border-style:solid;border-color:#A3A3A3;border-width:
+ 0pt' title="" summary="">
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:7.0305in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in'><img
+  src="&#128208;COM%20Layer%20%23skipwiki_files/image001.png" width=661
+  height=495></p>
+  <p style='margin:0in;font-family:Calibri;font-size:10.0pt;text-align:center'><span
+  style='font-weight:bold;color:#5B9BD5'>PlantUML (</span><a
+  href="onemore://PlantUmlCommand/950d28fe933047199c11db95dbd5058e/extract"><span
+  style='font-weight:bold'>Extract</span></a><span style='font-weight:bold;
+  color:#5B9BD5'>)</span></p>
+  </td>
+ </tr>
+</table>
+
+</div>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+style='font-style:italic'>PlantUML (</span><a
+href="onemore://PlantUmlCommand/950d28fe933047199c11db95dbd5058e"><span
+style='font-style:italic'>Refresh</span></a><span style='font-style:italic'>)</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>&nbsp;</p>
+
+<h2 id="retry-and-recovery" style='margin:0in;font-family:Calibri;font-size:14.0pt;color:#2E75B5'>Retry
+and Recovery</h2>
+
+<h3 style='margin:0in;font-family:Calibri;font-size:11.5pt;color:#5B9BD5'>&nbsp;</h3>
+
+<h3 id="two-levels-of-retries" style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'>Two
+Levels of Retries</h3>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>The system retries
+at two different points:</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>&nbsp;</p>
+
+<div style='direction:ltr'>
+
+<table border=0 cellpadding=0 cellspacing=0 valign=top style='direction:ltr;
+ border-collapse:collapse;border-style:solid;border-color:#A3A3A3;border-width:
+ 0pt' title="" summary="">
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:1.5097in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>When</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:1.9284in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>Where</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:.6868in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>Retries</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:.9361in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>Wait Time</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:1.5284in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Creating
+  connection</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:1.9284in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>ApplicationFactory</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:.6868in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>3 times</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:1.0402in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>250ms per try</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:1.5097in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Each command call</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:1.9479in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>OneNote.InvokeWithRetry</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:.6868in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>3 times</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:1.0402in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>250ms per try</p>
+  </td>
+ </tr>
+</table>
+
+</div>
+
+<h3 style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'>&nbsp;</h3>
+
+<h3 id="when-to-retry-and-when-not-to" style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'>When
+to Retry (and When Not To)</h3>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>The system checks
+the error code. Some errors are worth retrying. Some are not.</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>&nbsp;</p>
+
+<div style='direction:ltr'>
+
+<table border=0 cellpadding=0 cellspacing=0 valign=top style='direction:ltr;
+ border-collapse:collapse;border-style:solid;border-color:#A3A3A3;border-width:
+ 0pt' title="" summary="">
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:2.0368in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>Error Code</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:1.6111in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>Meaning</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:2.7555in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>What to Do</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:2.0368in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>hrXmlIsInvalid</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:1.6111in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Bad XML sent</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:2.7555in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Stop. Do not
+  retry.</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:2.0368in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>hrRpcFailed2</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:1.6111in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Known OneNote bug</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:2.7555in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Stop. Do not
+  retry.</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:2.0368in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>hrRpcFailed</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:1.6111in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Connection lost</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:2.8875in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Retry. Give time
+  for connection to reopen.</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:2.0368in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>hrRpcUnavailable</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:1.6111in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Service not
+  available</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:2.7833in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Retry. Give time
+  for service to restart.</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:2.0368in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>hrCOMBusy</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:1.6111in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>OneNote is busy</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:2.7555in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Retry. Let OneNote
+  catch up.</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:2.0368in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>hrObjectMissing</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:1.6111in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Object is gone</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:2.7555in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Retry. Create new
+  objects.</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:2.0562in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>InvalidComObjectException</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:1.6305in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Object was
+  destroyed</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:2.7166in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Retry. Create new
+  objects.</p>
+  </td>
+ </tr>
+</table>
+
+</div>
+
+<h3 style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'>&nbsp;</h3>
+
+<h3 id="how-recovery-works" style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'>How
+Recovery Works</h3>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>When a retry is
+needed:</p>
+
+<ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+ 0in;font-family:Calibri;font-size:11.5pt;font-weight:normal;font-style:normal'>
+ <li value=1 style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt;font-weight:normal;font-style:
+     normal;font-family:Calibri;font-size:11.5pt'>Release the old broken
+     connection</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>Create a new connection</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>Wait (250ms minimum for
+     connection problems)</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>Try the command again</span></li>
+</ol>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+style='font-weight:bold'>Code example:</span></p>
+
+<p><code style='margin:0in;font-family:Calibri;font-size:11.5pt;color:black'>&nbsp;</code></p>
+
+<p><code style='margin:0in;margin-left:.375in;font-family:"Lucida Console";
+font-size:9.5pt' lang=yo><span style='color:#2E75B5'>private void</span><span
+style='color:black'> ReplaceApplication()</span></code></p>
+
+<p><code style='margin:0in;margin-left:.375in;font-family:"Lucida Console";
+font-size:9.5pt;color:black' lang=yo>{</code></p>
+
+<p><code style='margin:0in;margin-left:.375in;font-family:"Lucida Console";
+font-size:9.5pt;color:#00B050' lang=yo>// Release the old connection</code></p>
+
+<p><code style='margin:0in;margin-left:.375in;font-family:"Lucida Console";
+font-size:9.5pt' lang=yo><span style='color:#2E75B5'>if</span><span
+style='color:black'> (onenote </span><span style='color:#2E75B5'>is</span><span
+style='color:black'> not </span><span style='color:#2E75B5'>null</span><span
+style='color:black'>)</span></code></p>
+
+<p><code style='margin:0in;margin-left:.375in;font-family:"Lucida Console";
+font-size:9.5pt;color:black' lang=yo>{</code></p>
+
+<p><code style='margin:0in;margin-left:.375in;font-family:"Lucida Console";
+font-size:9.5pt;color:#2E75B5' lang=yo>try</code></p>
+
+<p><code style='margin:0in;margin-left:.375in;font-family:"Lucida Console";
+font-size:9.5pt;color:black' lang=yo>{</code></p>
+
+<p><code style='margin:0in;margin-left:.375in;font-family:"Lucida Console";
+font-size:9.5pt' lang=yo><span style='color:#2E75B5'>if</span><span
+style='color:black'> (Marshal.IsComObject(onenote))</span></code></p>
+
+<p><code style='margin:0in;margin-left:.375in;font-family:"Lucida Console";
+font-size:9.5pt;color:black' lang=yo>Marshal.FinalReleaseComObject(onenote);</code></p>
+
+<p><code style='margin:0in;margin-left:.375in;font-family:"Lucida Console";
+font-size:9.5pt;color:black' lang=yo>}</code></p>
+
+<p><code style='margin:0in;margin-left:.375in;font-family:"Lucida Console";
+font-size:9.5pt' lang=yo><span style='color:#2E75B5'>catch</span><span
+style='color:black'> (Exception exc) </span></code></p>
+
+<p><code style='margin:0in;margin-left:.375in;font-family:"Lucida Console";
+font-size:9.5pt;color:black' lang=yo>{ </code></p>
+
+<p><code style='margin:0in;margin-left:.375in;font-family:"Lucida Console";
+font-size:9.5pt' lang=yo><span style='color:black'>logger.WriteLine(</span><span
+style='color:firebrick'>&quot;error releasing onenote&quot;</span><span
+style='color:black'>, exc); </span></code></p>
+
+<p><code style='margin:0in;margin-left:.375in;font-family:"Lucida Console";
+font-size:9.5pt;color:black' lang=yo>}</code></p>
+
+<p><code style='margin:0in;margin-left:.375in;font-family:"Lucida Console";
+font-size:9.5pt;color:black' lang=yo>}</code></p>
+
+<p><code style='margin:0in;margin-left:.375in;font-family:"Lucida Console";
+font-size:9.5pt;color:#00B050' lang=yo>// Create a new connection</code></p>
+
+<p><code style='margin:0in;margin-left:.375in;font-family:"Lucida Console";
+font-size:9.5pt;color:black' lang=yo>onenote =
+ApplicationFactory.CreateApplication();</code></p>
+
+<p><code style='margin:0in;margin-left:.375in;font-family:"Lucida Console";
+font-size:9.5pt;color:black' lang=yo>}</code></p>
+
+<h3 style='margin:0in;font-family:Calibri;font-size:11.5pt;color:#5B9BD5'>&nbsp;</h3>
+
+<h3 id="retry-flow-diagram" style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'>Retry
+Flow Diagram</h3>
+
+<p><code style='margin:0in;font-family:Calibri;font-size:11.5pt;color:black'>&nbsp;</code></p>
+
+<div style='direction:ltr'>
+
+<table border=0 cellpadding=0 cellspacing=0 valign=top style='direction:ltr;
+ border-collapse:collapse;border-style:solid;border-color:#A3A3A3;border-width:
+ 0pt' title="" summary="">
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:8.1673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in'><img
+  src="&#128208;COM%20Layer%20%23skipwiki_files/image002.png" width=770
+  height=432></p>
+  <p style='margin:0in;font-family:Calibri;font-size:10.0pt;text-align:center'><span
+  style='font-weight:bold;color:#5B9BD5'>PlantUML (</span><a
+  href="onemore://PlantUmlCommand/31a972dd497f468aa1b762598cf165fa/extract"><span
+  style='font-weight:bold'>Extract</span></a><span style='font-weight:bold;
+  color:#5B9BD5'>)</span></p>
+  </td>
+ </tr>
+</table>
+
+</div>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+style='font-style:italic'>PlantUML (</span><a
+href="onemore://PlantUmlCommand/31a972dd497f468aa1b762598cf165fa"><span
+style='font-style:italic'>Refresh</span></a><span style='font-style:italic'>)</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>&nbsp;</p>
+
+<h2 id="object-lifecycle-management" style='margin:0in;font-family:Calibri;font-size:14.0pt;color:#2E75B5'>Object
+Lifecycle Management</h2>
+
+<h3 style='margin:0in;font-family:Calibri;font-size:11.5pt;color:#5B9BD5'>&nbsp;</h3>
+
+<h3 id="release-objects-immediately" style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'>Release
+Objects Immediately</h3>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>The system does not
+wait for garbage collection. It releases objects right after use.</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+style='font-weight:bold'>Special care:</span> The system releases not just the
+main connection, but also temporary objects.</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+style='font-weight:bold'>Example - Releasing temporary objects:</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>&nbsp;</p>
+
+<p><code style='margin:0in;margin-left:.375in;font-family:"Lucida Console";
+font-size:9.5pt' lang=yo><span style='color:#2E75B5'>private</span><span
+style='color:black'> T WithCurrentWindow&lt;T&gt;(Func&lt;Window, T&gt; reader,
+T fallback)</span></code></p>
+
+<p><code style='margin:0in;margin-left:.375in;font-family:"Lucida Console";
+font-size:9.5pt;color:black' lang=yo>{</code></p>
+
+<p><code style='margin:0in;margin-left:.75in;font-family:"Lucida Console";
+font-size:9.5pt' lang=yo><span style='color:#2E75B5'>if</span><span
+style='color:black'> (onenote </span><span style='color:#2E75B5'>is null</span><span
+style='color:black'>) </span><span style='color:#2E75B5'>return</span><span
+style='color:black'> fallback;</span></code></p>
+
+<p><code style='margin:0in;margin-left:.75in;font-family:"Lucida Console";
+font-size:9.5pt;color:black' lang=yo>Windows windows;</code></p>
+
+<p><code style='margin:0in;margin-left:.75in;font-family:"Lucida Console";
+font-size:9.5pt;color:#2E75B5' lang=yo>try </code></p>
+
+<p><code style='margin:0in;margin-left:.75in;font-family:"Lucida Console";
+font-size:9.5pt;color:black' lang=yo>{ </code></p>
+
+<p><code style='margin:0in;margin-left:1.125in;font-family:"Lucida Console";
+font-size:9.5pt' lang=yo><span style='color:black'>windows = onenote.Windows; </span><span
+style='color:#00B050'>// Get the Windows collection</span></code></p>
+
+<p><code style='margin:0in;margin-left:.75in;font-family:"Lucida Console";
+font-size:9.5pt;color:black' lang=yo>}</code></p>
+
+<p><code style='margin:0in;margin-left:.75in;font-family:"Lucida Console";
+font-size:9.5pt' lang=yo><span style='color:#2E75B5'>catch</span><span
+style='color:black'> (COMException exc)</span></code></p>
+
+<p><code style='margin:0in;margin-left:.75in;font-family:"Lucida Console";
+font-size:9.5pt;color:black' lang=yo>{</code></p>
+
+<p><code style='margin:0in;margin-left:1.125in;font-family:"Lucida Console";
+font-size:9.5pt' lang=yo><span style='color:black'>logger.WriteLine(</span><span
+style='color:firebrick'>&quot;Cannot get Windows collection&quot;</span><span
+style='color:black'>, exc);</span></code></p>
+
+<p><code style='margin:0in;margin-left:1.125in;font-family:"Lucida Console";
+font-size:9.5pt' lang=yo><span style='color:#2E75B5'>return</span><span
+style='color:black'> fallback;</span></code></p>
+
+<p><code style='margin:0in;margin-left:.75in;font-family:"Lucida Console";
+font-size:9.5pt;color:black' lang=yo>}</code></p>
+
+<p><code style='margin:0in;margin-left:.75in;font-family:"Lucida Console";
+font-size:9.5pt;color:#2E75B5' lang=yo>try</code></p>
+
+<p><code style='margin:0in;margin-left:.75in;font-family:"Lucida Console";
+font-size:9.5pt;color:black' lang=yo>{</code></p>
+
+<p><code style='margin:0in;margin-left:1.125in;font-family:"Lucida Console";
+font-size:9.5pt' lang=yo><span style='color:#2E75B5'>var</span><span
+style='color:black'> window = windows.CurrentWindow; </span><span
+style='color:#00B050'>// Get the current window</span></code></p>
+
+<p><code style='margin:0in;margin-left:1.125in;font-family:"Lucida Console";
+font-size:9.5pt;color:#2E75B5' lang=yo>try </code></p>
+
+<p><code style='margin:0in;margin-left:1.125in;font-family:"Lucida Console";
+font-size:9.5pt;color:black' lang=yo>{ </code></p>
+
+<p><code style='margin:0in;margin-left:1.5in;font-family:"Lucida Console";
+font-size:9.5pt' lang=yo><span style='color:#2E75B5'>return</span><span
+style='color:black'> window </span><span style='color:#2E75B5'>is null</span><span
+style='color:black'> ? fallback : reader(window); </span></code></p>
+
+<p><code style='margin:0in;margin-left:1.125in;font-family:"Lucida Console";
+font-size:9.5pt;color:black' lang=yo>}</code></p>
+
+<p><code style='margin:0in;margin-left:1.125in;font-family:"Lucida Console";
+font-size:9.5pt' lang=yo><span style='color:#2E75B5'>catch</span><span
+style='color:black'> (COMException exc)</span></code></p>
+
+<p><code style='margin:0in;margin-left:1.125in;font-family:"Lucida Console";
+font-size:9.5pt;color:black' lang=yo>{</code></p>
+
+<p><code style='margin:0in;margin-left:1.5in;font-family:"Lucida Console";
+font-size:9.5pt' lang=yo><span style='color:black'>logger.WriteLine(</span><span
+style='color:firebrick'>&quot;Cannot get Window property&quot;</span><span
+style='color:black'>, exc);</span></code></p>
+
+<p><code style='margin:0in;margin-left:1.5in;font-family:"Lucida Console";
+font-size:9.5pt' lang=yo><span style='color:#2E75B5'>return</span><span
+style='color:black'> fallback;</span></code></p>
+
+<p><code style='margin:0in;margin-left:1.125in;font-family:"Lucida Console";
+font-size:9.5pt;color:black' lang=yo>}</code></p>
+
+<p><code style='margin:0in;margin-left:1.125in;font-family:"Lucida Console";
+font-size:9.5pt;color:#2E75B5' lang=yo>finally</code></p>
+
+<p><code style='margin:0in;margin-left:1.125in;font-family:"Lucida Console";
+font-size:9.5pt;color:black' lang=yo>{</code></p>
+
+<p><code style='margin:0in;margin-left:1.5in;font-family:"Lucida Console";
+font-size:9.5pt;color:#00B050' lang=yo>// Release the window object right away</code></p>
+
+<p><code style='margin:0in;margin-left:1.5in;font-family:"Lucida Console";
+font-size:9.5pt' lang=yo><span style='color:#2E75B5'>if</span><span
+style='color:black'> (window </span><span style='color:#2E75B5'>is</span><span
+style='color:black'> not </span><span style='color:#2E75B5'>null</span><span
+style='color:black'> &amp;&amp; Marshal.IsComObject(window))</span></code></p>
+
+<p><code style='margin:0in;margin-left:1.5in;font-family:"Lucida Console";
+font-size:9.5pt;color:black' lang=yo>Marshal.ReleaseComObject(window);</code></p>
+
+<p><code style='margin:0in;margin-left:1.125in;font-family:"Lucida Console";
+font-size:9.5pt;color:black' lang=yo>}</code></p>
+
+<p><code style='margin:0in;margin-left:.75in;font-family:"Lucida Console";
+font-size:9.5pt;color:black' lang=yo>}</code></p>
+
+<p><code style='margin:0in;margin-left:.75in;font-family:"Lucida Console";
+font-size:9.5pt;color:#2E75B5' lang=yo>finally</code></p>
+
+<p><code style='margin:0in;margin-left:.75in;font-family:"Lucida Console";
+font-size:9.5pt;color:black' lang=yo>{</code></p>
+
+<p><code style='margin:0in;margin-left:1.125in;font-family:"Lucida Console";
+font-size:9.5pt;color:#00B050' lang=yo>// Release the windows collection right
+away</code></p>
+
+<p><code style='margin:0in;margin-left:1.125in;font-family:"Lucida Console";
+font-size:9.5pt' lang=yo><span style='color:#2E75B5'>if</span><span
+style='color:black'> (Marshal.IsComObject(windows))</span></code></p>
+
+<p><code style='margin:0in;margin-left:1.125in;font-family:"Lucida Console";
+font-size:9.5pt;color:black' lang=yo>Marshal.ReleaseComObject(windows);</code></p>
+
+<p><code style='margin:0in;margin-left:.75in;font-family:"Lucida Console";
+font-size:9.5pt;color:black' lang=yo>}</code></p>
+
+<p><code style='margin:0in;margin-left:.375in;font-family:"Lucida Console";
+font-size:9.5pt;color:black' lang=yo>}</code></p>
+
+<h3 style='margin:0in;font-family:Calibri;font-size:11.5pt;color:#5B9BD5'>&nbsp;</h3>
+
+<h3 id="key-rules-for-object-release" style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'>Key
+Rules for Object Release</h3>
+
+<ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+ 0in;font-family:Calibri;font-size:11.5pt;font-weight:bold;font-style:normal'>
+ <li value=1 style='margin-top:0;margin-bottom:0;vertical-align:middle;
+     font-weight:bold'><span style='font-family:Calibri;font-size:11.5pt;
+     font-weight:bold;font-style:normal;font-weight:bold;font-family:Calibri;
+     font-size:11.5pt'>Release immediately.</span><span style='font-family:
+     Calibri;font-size:11.5pt;font-weight:normal;font-style:normal;font-weight:
+     normal;font-family:Calibri;font-size:11.5pt'> Do not wait for garbage
+     collection.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;font-weight:
+     bold'><span style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>Use
+     finally blocks.</span><span style='font-weight:normal;font-family:Calibri;
+     font-size:11.5pt'> This ensures release even if errors occur.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;font-weight:
+     bold'><span style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>Check
+     before release.</span><span style='font-weight:normal;font-family:Calibri;
+     font-size:11.5pt'> Use </span><span style='font-weight:normal;font-family:
+     "Lucida Console";font-size:9.0pt'>Marshal.IsComObject()</span><span
+     style='font-weight:normal;font-family:Calibri;font-size:11.5pt'> to verify
+     the object exists.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;font-weight:
+     bold'><span style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>Use
+     FinalReleaseComObject for broken objects.</span><span style='font-weight:
+     normal;font-family:Calibri;font-size:11.5pt'> For objects in a bad state,
+     force release immediately with </span><span style='font-weight:normal;
+     font-family:"Lucida Console";font-size:9.0pt'>FinalReleaseComObject</span><span
+     style='font-weight:normal;font-family:Calibri;font-size:11.5pt'>.</span></li>
+</ol>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>&nbsp;</p>
+
+<h2 id="how-concurrent-commands-work" style='margin:0in;font-family:Calibri;font-size:14.0pt;color:#2E75B5'>How
+Concurrent Commands Work</h2>
+
+<h2 style='margin:0in;font-family:Calibri;font-size:11.5pt;color:#2E75B5'>&nbsp;</h2>
+
+<h3 id="no-shared-connection" style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'>No
+Shared Connection</h3>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>The system does not
+use locks or shared connections. Each command gets its own separate connection.</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+style='font-weight:bold'>Design principle:</span> If two commands run at the
+same time, they use separate connections. If they collide, the retry system
+handles the failure.</p>
+
+<p style='margin:0in'><span style='font-weight:bold;font-family:Calibri;
+font-size:11.5pt'>Different from UI marshaling:</span><span style='font-family:
+Calibri;font-size:11.5pt'> The system </span><span style='font-family:"Lucida Console";
+font-size:9.0pt'>SingleThreaded</span><span style='font-family:Calibri;
+font-size:11.5pt'> exists for UI work (clipboard, file dialogs). OneNote
+commands do NOT use </span><span style='font-family:"Lucida Console";
+font-size:9.0pt'>SingleThreaded</span><span style='font-family:Calibri;
+font-size:11.5pt'>. They rely on retries instead.</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>&nbsp;</p>
+
+<h2 id="recent-improvements-issue-2455" style='margin:0in;font-family:Calibri;font-size:14.0pt;color:#2E75B5'>Recent
+Improvements (Issue #2455)</h2>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>The system learned
+from real failures. These changes made it stronger:</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>&nbsp;</p>
+
+<h3 id="change-1-more-errors-trigger-retry-at-activation" style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'>Change
+1: More Errors Trigger Retry at Activation</h3>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+style='font-weight:bold'>Before:</span> Only hrCOMBusy triggered retry.</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+style='font-weight:bold'>After:</span> Also retry on:</p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>hrRpcSysCallFailed</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>hrRpcFailed</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>hrRpcFailed2</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>hrRpcUnavailable</span></li>
+</ul>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+style='font-weight:bold'>Why:</span> These RPC errors can happen during
+activation, just like during normal calls.</p>
+
+<h3 style='margin:0in;font-family:Calibri;font-size:11.5pt;color:#5B9BD5'>&nbsp;</h3>
+
+<h3 id="change-2-added-error-codes" style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'>Change
+2: Added Error Codes</h3>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+style='font-weight:bold'>Added:</span></p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>hrRpcSysCallFailed =
+     0x80010100 (&quot;RPC system call failed&quot;)</span></li>
+</ul>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+style='font-weight:bold'>Why:</span> Better error identification and logging.</p>
+
+<h3 style='margin:0in;font-family:Calibri;font-size:11.5pt;color:#5B9BD5'>&nbsp;</h3>
+
+<h3 id="change-3-protected-window-access" style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'>Change
+3: Protected Window Access</h3>
+
+<p style='margin:0in'><span style='font-weight:bold;font-family:Calibri;
+font-size:11.5pt'>Before:</span><span style='font-family:Calibri;font-size:
+11.5pt'> Called </span><span style='font-family:"Lucida Console";font-size:
+9.0pt'>onenote.Windows</span><span style='font-family:Calibri;font-size:11.5pt'>
+with no protection.</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+style='font-weight:bold'>After:</span></p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>Null-check onenote first</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>Wrap in try/catch</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>Return fallback on error
+     instead of crashing</span></li>
+</ul>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+style='font-weight:bold'>Why:</span> Treat COM failure as normal at every
+boundary, not just known problem spots.</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>&nbsp;</p>
+
+<h2 id="summary-key-design-points" style='margin:0in;font-family:Calibri;font-size:14.0pt;color:#2E75B5'>Summary:
+Key Design Points</h2>
+
+<div style='direction:ltr'>
+
+<table border=0 cellpadding=0 cellspacing=0 valign=top style='direction:ltr;
+ border-collapse:collapse;border-style:solid;border-color:#A3A3A3;border-width:
+ 0pt' title="" summary="">
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:1.6541in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>Principle</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:2.9451in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>Reason</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:2.7784in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>Implementation</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:1.6736in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>No shared connection</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:2.9645in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Reduces
+  interference between commands</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:2.9104in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Each command
+  creates its own connection</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:1.6541in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>Automatic retries</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:2.9451in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Network and timing
+  failures are normal</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:2.7784in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Retry up to 3
+  times with delays</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:1.6541in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>Immediate release</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:2.9451in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Slow garbage
+  collection blocks OneNote</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:2.7784in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Release objects in
+  finally blocks</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:1.6541in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>Smart error handling</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:2.9451in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Some errors are
+  retryable, some are not</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:2.7784in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Check error code
+  before deciding</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:1.6541in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>Expect failure</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:2.9451in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Cross-process
+  calls are fragile</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:2.7784in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Treat all failure
+  as recoverable</p>
+  </td>
+ </tr>
+</table>
+
+</div>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>&nbsp;</p>
+
+<h2 id="code-locations" style='margin:0in;font-family:Calibri;font-size:14.0pt;color:#2E75B5'>Code
+Locations</h2>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>Main wrapper: </span><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>OneMore/OneNote.cs</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>Activation: </span><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>OneMore/Helpers/ApplicationFactory.cs</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>Error codes: </span><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>OneMore/Helpers/ErrorCodes.cs</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>UI marshaling (contrast): </span><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>OneMore/Helpers/SingleThreaded.cs</span></li>
+</ul>
+
+<h2 style='margin:0in;font-family:Calibri;font-size:11.5pt;color:#2E75B5'>&nbsp;</h2>
+
+<h2 id="related-documents" style='margin:0in;font-family:Calibri;font-size:14.0pt;color:#2E75B5'>Related
+Documents</h2>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>TechNote - COM Surrogate</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>TechNote - Interop</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>Design - Command Framework</span></li>
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+
+<p style='margin:0in'>&nbsp;</p>
+
+<p style='text-align:left;margin:0in;font-family:Arial;font-size:9pt;
+color:#969696;direction:ltr'>Created with OneNote.</p>
+
+</div>
+
+</body>
+
+</html>
