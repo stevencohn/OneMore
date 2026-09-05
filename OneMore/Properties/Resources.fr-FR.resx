@@ -1029,6 +1029,14 @@ Normale</value>
     <value>Réinitialiser les options</value>
     <comment>system menu</comment>
   </data>
+  <data name="DuplicatePageCommand_basedOn" xml:space="preserve">
+    <value>Basé sur {0} ({1})</value>
+    <comment>{0}=hyperlinked heading text, {1}=date; reorder placeholders as needed</comment>
+  </data>
+  <data name="DuplicatePageCommand_duplicatedFrom" xml:space="preserve">
+    <value>Dupliqué à partir de {0}</value>
+    <comment>{0}=hyperlinked page title; reorder as needed</comment>
+  </data>
   <data name="EditTableThemesDialog_colorsTab.Text" xml:space="preserve">
     <value>Couleurs</value>
     <comment>tab</comment>
@@ -3196,6 +3204,30 @@ Appliquer à cette section
 Appliquer à ce notebook</value>
     <comment>combobox</comment>
   </data>
+  <data name="PageSheet_duplicateGroup.Text" xml:space="preserve">
+    <value>Page en double</value>
+    <comment>group box</comment>
+  </data>
+  <data name="PageSheet_insertBacklinksBox.Text" xml:space="preserve">
+    <value>Insérer des liens retour de titre</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="PageSheet_insertNoteBox.Text" xml:space="preserve">
+    <value>Insérer une note de duplication</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="PageSheet_introBox.Text" xml:space="preserve">
+    <value>Personnaliser les options des commandes de page</value>
+    <comment>sheet intro</comment>
+  </data>
+  <data name="PageSheet_refreshTocBox.Text" xml:space="preserve">
+    <value>Actualiser la table des matières</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="PageSheet_Title" xml:space="preserve">
+    <value>Page</value>
+    <comment>sheet title</comment>
+  </data>
   <data name="PasteCellsCommand_NoContent" xml:space="preserve">
     <value>Aucun contenu à coller ; </value>
     <comment>message box</comment>
@@ -3913,6 +3945,14 @@ Sélectionnez Non pour conserver une ligne vide entre les paragraphes</value>
   <data name="ribAdjustImagesButton_Screentip" xml:space="preserve">
     <value>Redimensionner et ajuster les images sélectionnées</value>
     <comment>ribbon images</comment>
+  </data>
+  <data name="ribAdjustImagesMenuButton_Label" xml:space="preserve">
+    <value>Redimensionner et ajuster</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribAdjustImagesMenuButton_Screentip" xml:space="preserve">
+    <value>Redimensionner et ajuster les images sélectionnées</value>
+    <comment>ribbon images NODUP</comment>
   </data>
   <data name="ribAnalyzeButton_Label" xml:space="preserve">
     <value>Analyser le stockage des données</value>
@@ -4753,6 +4793,14 @@ Onglet Aide</value>
   <data name="ribInsertPageTocButton_Screentip" xml:space="preserve">
     <value>Insérer une table des matières des titres en haut de la page</value>
     <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertPageTocMenuButton_Label" xml:space="preserve">
+    <value>Table des matières</value>
+    <comment>ribbon snippets NODUP</comment>
+  </data>
+  <data name="ribInsertPageTocMenuButton_Screentip" xml:space="preserve">
+    <value>Insérer une table des matières des titres en haut de la page</value>
+    <comment>ribbon snippets NODUP</comment>
   </data>
   <data name="ribInsertQRButton_Label" xml:space="preserve">
     <value>Insérer le QR code</value>

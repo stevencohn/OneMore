@@ -9402,7 +9402,25 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribAdjustImagesButton_Screentip", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Resize and Adjust.
+        /// </summary>
+        internal static string ribAdjustImagesMenuButton_Label {
+            get {
+                return ResourceManager.GetString("ribAdjustImagesMenuButton_Label", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Resize and adjust selected images.
+        /// </summary>
+        internal static string ribAdjustImagesMenuButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribAdjustImagesMenuButton_Screentip", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Analyze Data Storage.
         /// </summary>
@@ -11358,7 +11376,25 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribInsertPageTocButton_Screentip", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Table of Contents.
+        /// </summary>
+        internal static string ribInsertPageTocMenuButton_Label {
+            get {
+                return ResourceManager.GetString("ribInsertPageTocMenuButton_Label", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Insert a headings table of contents at the top of the page.
+        /// </summary>
+        internal static string ribInsertPageTocMenuButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribInsertPageTocMenuButton_Screentip", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Insert QR Code.
         /// </summary>

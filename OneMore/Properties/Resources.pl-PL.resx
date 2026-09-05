@@ -1026,6 +1026,14 @@ Normalna</value>
     <value>Resetowanie ustawień</value>
     <comment>system menu</comment>
   </data>
+  <data name="DuplicatePageCommand_basedOn" xml:space="preserve">
+    <value>Na podstawie {0} ({1})</value>
+    <comment>{0}=hyperlinked heading text, {1}=date; reorder placeholders as needed</comment>
+  </data>
+  <data name="DuplicatePageCommand_duplicatedFrom" xml:space="preserve">
+    <value>Duplikowane z {0}</value>
+    <comment>{0}=hyperlinked page title; reorder as needed</comment>
+  </data>
   <data name="EditTableThemesDialog_colorsTab.Text" xml:space="preserve">
     <value>Zabarwienie</value>
     <comment>tab</comment>
@@ -3185,6 +3193,30 @@ Zastosuj się do tej sekcji
 Zastosuj do tego notatnika</value>
     <comment>combobox</comment>
   </data>
+  <data name="PageSheet_duplicateGroup.Text" xml:space="preserve">
+    <value>Zduplikowana strona</value>
+    <comment>group box</comment>
+  </data>
+  <data name="PageSheet_insertBacklinksBox.Text" xml:space="preserve">
+    <value>Wstaw linki zwrotne do nagłówków</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="PageSheet_insertNoteBox.Text" xml:space="preserve">
+    <value>Wstaw notatkę o powielaniu</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="PageSheet_introBox.Text" xml:space="preserve">
+    <value>Dostosuj opcje poleceń strony</value>
+    <comment>sheet intro</comment>
+  </data>
+  <data name="PageSheet_refreshTocBox.Text" xml:space="preserve">
+    <value>Odśwież spis treści</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="PageSheet_Title" xml:space="preserve">
+    <value>Strona</value>
+    <comment>sheet title</comment>
+  </data>
   <data name="PasteCellsCommand_NoContent" xml:space="preserve">
     <value>Brak treści do pasty; skopiuj jedną lub więcej komórek tabeli do pasty</value>
     <comment>message box</comment>
@@ -3902,6 +3934,14 @@ Wybierz Nie, aby zachować jedną pustą linię między akapitami</value>
   <data name="ribAdjustImagesButton_Screentip" xml:space="preserve">
     <value>Zmień rozmiar i dostosuj wybrane obrazy</value>
     <comment>ribbon images</comment>
+  </data>
+  <data name="ribAdjustImagesMenuButton_Label" xml:space="preserve">
+    <value>Zmień rozmiar i dostosuj</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribAdjustImagesMenuButton_Screentip" xml:space="preserve">
+    <value>Zmień rozmiar i dostosuj wybrane obrazy</value>
+    <comment>ribbon images NODUP</comment>
   </data>
   <data name="ribAnalyzeButton_Label" xml:space="preserve">
     <value>Analizuj przechowywanie danych.</value>
@@ -4742,6 +4782,14 @@ Zakładka Pomoc</value>
   <data name="ribInsertPageTocButton_Screentip" xml:space="preserve">
     <value>Wstaw spis treści nagłówków u góry strony</value>
     <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertPageTocMenuButton_Label" xml:space="preserve">
+    <value>Spis treści</value>
+    <comment>ribbon snippets NODUP</comment>
+  </data>
+  <data name="ribInsertPageTocMenuButton_Screentip" xml:space="preserve">
+    <value>Wstaw spis treści nagłówków u góry strony</value>
+    <comment>ribbon snippets NODUP</comment>
   </data>
   <data name="ribInsertQRButton_Label" xml:space="preserve">
     <value>Włóż kod QR.</value>

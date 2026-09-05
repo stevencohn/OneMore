@@ -1030,6 +1030,14 @@
     <value>重置设置</value>
     <comment>system menu</comment>
   </data>
+  <data name="DuplicatePageCommand_basedOn" xml:space="preserve">
+    <value>基于 {0} ({1})</value>
+    <comment>{0}=hyperlinked heading text, {1}=date; reorder placeholders as needed</comment>
+  </data>
+  <data name="DuplicatePageCommand_duplicatedFrom" xml:space="preserve">
+    <value>复制自 {0}</value>
+    <comment>{0}=hyperlinked page title; reorder as needed</comment>
+  </data>
   <data name="EditTableThemesDialog_colorsTab.Text" xml:space="preserve">
     <value>颜色</value>
     <comment>tab</comment>
@@ -3199,6 +3207,30 @@ OneNote 文件 (*.one)</value>
 适用于本笔记本</value>
     <comment>combobox</comment>
   </data>
+  <data name="PageSheet_duplicateGroup.Text" xml:space="preserve">
+    <value>重复页</value>
+    <comment>group box</comment>
+  </data>
+  <data name="PageSheet_insertBacklinksBox.Text" xml:space="preserve">
+    <value>插入标题反向链接</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="PageSheet_insertNoteBox.Text" xml:space="preserve">
+    <value>插入重复注释</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="PageSheet_introBox.Text" xml:space="preserve">
+    <value>自定义页面命令的选项</value>
+    <comment>sheet intro</comment>
+  </data>
+  <data name="PageSheet_refreshTocBox.Text" xml:space="preserve">
+    <value>刷新目录</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="PageSheet_Title" xml:space="preserve">
+    <value>页</value>
+    <comment>sheet title</comment>
+  </data>
   <data name="PasteCellsCommand_NoContent" xml:space="preserve">
     <value>没有要粘贴的内容；</value>
     <comment>message box</comment>
@@ -3916,6 +3948,14 @@ ISO-code then comma then language name</comment>
   <data name="ribAdjustImagesButton_Screentip" xml:space="preserve">
     <value>调整所选图像的大小与样式</value>
     <comment>ribbon images</comment>
+  </data>
+  <data name="ribAdjustImagesMenuButton_Label" xml:space="preserve">
+    <value>调整大小和调整</value>
+    <comment>ribbon images</comment>
+  </data>
+  <data name="ribAdjustImagesMenuButton_Screentip" xml:space="preserve">
+    <value>调整所选图像的大小和调整</value>
+    <comment>ribbon images NODUP</comment>
   </data>
   <data name="ribAnalyzeButton_Label" xml:space="preserve">
     <value>分析数据存储</value>
@@ -4756,6 +4796,14 @@ ISO-code then comma then language name</comment>
   <data name="ribInsertPageTocButton_Screentip" xml:space="preserve">
     <value>在页面顶部插入标题目录</value>
     <comment>ribbon snippets</comment>
+  </data>
+  <data name="ribInsertPageTocMenuButton_Label" xml:space="preserve">
+    <value>目录</value>
+    <comment>ribbon snippets NODUP</comment>
+  </data>
+  <data name="ribInsertPageTocMenuButton_Screentip" xml:space="preserve">
+    <value>在页面顶部插入标题目录</value>
+    <comment>ribbon snippets NODUP</comment>
   </data>
   <data name="ribInsertQRButton_Label" xml:space="preserve">
     <value>插入二维码</value>

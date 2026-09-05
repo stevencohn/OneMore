@@ -249,6 +249,12 @@
         onAction="InsertPageTocCmd"/>
       <menu id="ribInsertTocSplitMenu">
         <button
+          id="ribInsertPageTocMenuButton"
+          imageMso="WordInsertTableOfContents2"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="InsertPageTocCmd"/>
+        <button
           id="ribInsertSectionTocButton"
           imageMso="GroupWorkbookViews"
           getLabel="GetRibbonLabel"
@@ -372,6 +378,12 @@
         getScreentip="GetRibbonScreentip"
         onAction="AdjustImagesCmd"/>
       <menu id="ribImagesSplitMenu">
+        <button
+          id="ribAdjustImagesMenuButton"
+          imageMso="PictureStylesGallery"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="AdjustImagesCmd"/>
         <button
           id="ribAddCaptionButton"
           imageMso="CaptionInsert"
