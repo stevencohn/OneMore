@@ -387,6 +387,12 @@
     <Compile Include="Commands\Settings\HashtagSheet.Designer.cs">
       <DependentUpon>HashtagSheet.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Settings\PageSheet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Commands\Settings\PageSheet.Designer.cs">
+      <DependentUpon>PageSheet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\Settings\NotebooksDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1545,6 +1551,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Settings\NotebooksDialog.resx">
       <DependentUpon>NotebooksDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Settings\PageSheet.resx">
+      <DependentUpon>PageSheet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Workspaces\ManageWorkspaceDialog.resx">
       <DependentUpon>ManageWorkspaceDialog.cs</DependentUpon>

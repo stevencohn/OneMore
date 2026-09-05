@@ -2252,6 +2252,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Based on {0} ({1}).
+        /// </summary>
+        internal static string DuplicatePageCommand_basedOn {
+            get {
+                return ResourceManager.GetString("DuplicatePageCommand_basedOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duplicated from {0}.
+        /// </summary>
+        internal static string DuplicatePageCommand_duplicatedFrom {
+            get {
+                return ResourceManager.GetString("DuplicatePageCommand_duplicatedFrom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap e_CheckMark {
@@ -7731,6 +7749,60 @@ namespace River.OneMoreAddIn.Properties {
         internal static string PageColorDialog_Text {
             get {
                 return ResourceManager.GetString("PageColorDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duplicate Page.
+        /// </summary>
+        internal static string PageSheet_duplicateGroup_Text {
+            get {
+                return ResourceManager.GetString("PageSheet_duplicateGroup.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert heading back-links.
+        /// </summary>
+        internal static string PageSheet_insertBacklinksBox_Text {
+            get {
+                return ResourceManager.GetString("PageSheet_insertBacklinksBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert duplication note.
+        /// </summary>
+        internal static string PageSheet_insertNoteBox_Text {
+            get {
+                return ResourceManager.GetString("PageSheet_insertNoteBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customize options for the Page commands.
+        /// </summary>
+        internal static string PageSheet_introBox_Text {
+            get {
+                return ResourceManager.GetString("PageSheet_introBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Refresh Table of Contents.
+        /// </summary>
+        internal static string PageSheet_refreshTocBox_Text {
+            get {
+                return ResourceManager.GetString("PageSheet_refreshTocBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Page.
+        /// </summary>
+        internal static string PageSheet_Title {
+            get {
+                return ResourceManager.GetString("PageSheet_Title", resourceCulture);
             }
         }
         

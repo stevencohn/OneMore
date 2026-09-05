@@ -1031,6 +1031,14 @@ Normal</value>
     <value>Reset Settings</value>
     <comment>system menu</comment>
   </data>
+  <data name="DuplicatePageCommand_basedOn" xml:space="preserve">
+    <value>Based on {0} ({1})</value>
+    <comment>{0}=hyperlinked heading text, {1}=date; reorder placeholders as needed</comment>
+  </data>
+  <data name="DuplicatePageCommand_duplicatedFrom" xml:space="preserve">
+    <value>Duplicated from {0}</value>
+    <comment>{0}=hyperlinked page title; reorder as needed</comment>
+  </data>
   <data name="EditTableThemesDialog_colorsTab.Text" xml:space="preserve">
     <value>Colors</value>
     <comment>tab</comment>
@@ -3208,6 +3216,30 @@ Deferred</value>
 Apply to this section
 Apply to this notebook</value>
     <comment>combobox</comment>
+  </data>
+  <data name="PageSheet_duplicateGroup.Text" xml:space="preserve">
+    <value>Duplicate Page</value>
+    <comment>group box</comment>
+  </data>
+  <data name="PageSheet_Title" xml:space="preserve">
+    <value>Page</value>
+    <comment>sheet title</comment>
+  </data>
+  <data name="PageSheet_insertBacklinksBox.Text" xml:space="preserve">
+    <value>Insert heading back-links</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="PageSheet_insertNoteBox.Text" xml:space="preserve">
+    <value>Insert duplication note</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="PageSheet_introBox.Text" xml:space="preserve">
+    <value>Customize options for the Page commands</value>
+    <comment>sheet intro</comment>
+  </data>
+  <data name="PageSheet_refreshTocBox.Text" xml:space="preserve">
+    <value>Refresh Table of Contents</value>
+    <comment>checkbox</comment>
   </data>
   <data name="PasteCellsCommand_NoContent" xml:space="preserve">
     <value>No content to paste; copy one or more table cells to paste</value>

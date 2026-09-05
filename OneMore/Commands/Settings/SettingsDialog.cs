@@ -2,13 +2,12 @@
 // Copyright © 2020 Steven M. Cohn. All Rights Reserved.
 //************************************************************************************************
 
-#pragma warning disable S3267 // Loops should be simplified with "LINQ" expressions
-
 namespace River.OneMoreAddIn.Settings
 {
 	using Microsoft.Office.Core;
 	using System;
 	using System.Collections.Generic;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using Resx = Properties.Resources;
 
@@ -30,6 +29,7 @@ namespace River.OneMoreAddIn.Settings
 			Keyboard,
 			Markdown,
 			Navigator,
+			Page,
 			Plugins,
 			QuickNotes,
 			Ribbon,
@@ -74,6 +74,7 @@ namespace River.OneMoreAddIn.Settings
 				keyboardLink.Text = Resx.SettingsDialog_keyboardNode_Text;
 				markdownLink.Text = Resx.MarkdownSheet_Title;
 				navigatorLink.Text = Resx.word_Navigator;
+				pageLink.Text = Resx.PageSheet_Title;
 				pluginsLink.Text = Resx.word_Plugins;
 				quickNotesLink.Text = Resx.QuickNotesSheet_Title;
 				ribbonLink.Text = Resx.RibbonBarSheet_Title;
@@ -92,8 +93,8 @@ namespace River.OneMoreAddIn.Settings
 			{
 				generalLink, colorizerLink, colorsLink, aliasLink, contextLink,
 				favoritesLink, fileImportLink, hashtagsLink, highlightLink, imagesLink,
-				keyboardLink, markdownLink, navigatorLink, pluginsLink, quickNotesLink, ribbonLink,
-				searchLink, snippetsLink, tableThemesLink, variablesLink
+				keyboardLink, markdownLink, navigatorLink, pageLink, pluginsLink, quickNotesLink,
+				ribbonLink, searchLink, snippetsLink, tableThemesLink, variablesLink
 			};
 
 			activeIndex = 0;
@@ -220,7 +221,7 @@ namespace River.OneMoreAddIn.Settings
 		}
 
 
-		private async void Navigate(int index)
+		private async Task Navigate(int index)
 		{
 			SheetBase sheet;
 
@@ -245,12 +246,13 @@ namespace River.OneMoreAddIn.Settings
 					10 => new KeyboardSheet(provider, ribbon),
 					11 => new MarkdownSheet(provider),
 					12 => new NavigatorSheet(provider, ribbon),
-					13 => await PluginsSheet.Create(provider, ribbon),
-					14 => new QuickNotesSheet(provider),
-					15 => new RibbonBarSheet(provider),
-					16 => new SearchEngineSheet(provider),
-					17 => new SnippetsSheet(provider, ribbon),
-					18 => new TableThemesSheet(provider, ribbon),
+					13 => new PageSheet(provider),
+					14 => await PluginsSheet.Create(provider, ribbon),
+					15 => new QuickNotesSheet(provider),
+					16 => new RibbonBarSheet(provider),
+					17 => new SearchEngineSheet(provider),
+					18 => new SnippetsSheet(provider, ribbon),
+					19 => new TableThemesSheet(provider, ribbon),
 					_ => new VariablesSheet(provider)
 				};
 
