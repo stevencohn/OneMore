@@ -73,12 +73,13 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
-		/// Copy the given content as markdown to the clipboard using the current
-		/// page as a template for tag and style references.
+		/// Renders the given content as markdown text using the current page as a
+		/// template for tag and style references.
 		/// </summary>
 		/// <param name="content"></param>
 		/// <param name="includeTitle">True to prepend the page title as an H1 heading</param>
-		public async Task Copy(XElement content, bool includeTitle = true)
+		/// <returns>The generated markdown text</returns>
+		public async Task<string> Render(XElement content, bool includeTitle = true)
 		{
 			using var stream = new MemoryStream();
 			using (writer = new StreamWriter(stream))
@@ -104,25 +105,37 @@ namespace River.OneMoreAddIn.Commands
 
 				stream.Position = 0;
 				using var reader = new StreamReader(stream);
-				var text = await reader.ReadToEndAsync();
-
-#if DBGLOG
-				logger.Debug("markdown - - - - - - - -");
-				logger.Debug(text);
-				logger.Debug("end markdown - - - - - -");
-#endif
-
-				var clippy = new ClipboardProvider();
-				var success = await clippy.SetText(text, true);
-				if (!success)
-				{
-					MoreMessageBox.ShowError(null, Resx.Clipboard_locked);
-				}
-
-#if DBGLOG
-				logger.Debug("copied");
-#endif
+				return await reader.ReadToEndAsync();
 			}
+		}
+
+
+		/// <summary>
+		/// Copy the given content as markdown to the clipboard using the current
+		/// page as a template for tag and style references.
+		/// </summary>
+		/// <param name="content"></param>
+		/// <param name="includeTitle">True to prepend the page title as an H1 heading</param>
+		public async Task Copy(XElement content, bool includeTitle = true)
+		{
+			var text = await Render(content, includeTitle);
+
+#if DBGLOG
+			logger.Debug("markdown - - - - - - - -");
+			logger.Debug(text);
+			logger.Debug("end markdown - - - - - -");
+#endif
+
+			var clippy = new ClipboardProvider();
+			var success = await clippy.SetText(text, true);
+			if (!success)
+			{
+				MoreMessageBox.ShowError(null, Resx.Clipboard_locked);
+			}
+
+#if DBGLOG
+			logger.Debug("copied");
+#endif
 		}
 
 
