@@ -379,12 +379,6 @@
         onAction="AdjustImagesCmd"/>
       <menu id="ribImagesSplitMenu">
         <button
-          id="ribAdjustImagesMenuButton"
-          imageMso="PictureStylesGallery"
-          getLabel="GetRibbonLabel"
-          getScreentip="GetRibbonScreentip"
-          onAction="AdjustImagesCmd"/>
-        <button
           id="ribAddCaptionButton"
           imageMso="CaptionInsert"
           getLabel="GetRibbonLabel"
@@ -402,6 +396,12 @@
           getLabel="GetRibbonLabel"
           getScreentip="GetRibbonScreentip"
           onAction="CropImageCmd"/>
+        <button
+          id="ribAdjustImagesMenuButton"
+          imageMso="PictureStylesGallery"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="AdjustImagesCmd"/>
         <button
           id="ribStylizeImagesButton"
           imageMso="GroupPictureStyles"
