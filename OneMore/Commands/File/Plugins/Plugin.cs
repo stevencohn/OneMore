@@ -44,6 +44,9 @@ namespace River.OneMoreAddIn.Commands
 		{
 			Version = SchemaVersion;
 			timeout = DefaultTimeout;
+			command = string.Empty;
+			arguments = string.Empty;
+			userArguments = string.Empty;
 		}
 
 
