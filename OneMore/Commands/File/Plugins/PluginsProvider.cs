@@ -121,6 +121,10 @@ namespace River.OneMoreAddIn.Commands
 					plugin.Target = PluginTarget.Page;
 				}
 
+				plugin.Command ??= string.Empty;
+				plugin.Arguments ??= string.Empty;
+				plugin.UserArguments ??= string.Empty;
+
 				return plugin;
 			}
 			catch (Exception exc)
