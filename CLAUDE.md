@@ -87,8 +87,10 @@ Read `ONENOTE.EXE`'s PE header directly when you need OneNote's architecture.
 - **Commits are GPG-signed.** See `.github/pull_request_template.md`.
 
 - **Branching:** `main` is protected. Use feature branches named like
-  `1234-calendar-integration`, where the prefix `1234-` is the GitHub issue number 
-  for the work in that branch. If the current branch already has a prefix machting that pattern then use that active branch rather than trying to create a new branch.
+  `1234-something`, where the prefix `1234-` is the GitHub issue number 
+  for the work in that branch. First, check the current active branch and confirm if it already has a prefix machting that pattern then use that active branch rather than trying to create a new branch.
+
+- **Github issues:** never create a GitHub issue without asking first.
 
 - **PRs:** When asked to open a PR, take the name of the branch, replace hyphens with spaces, and use that
   as the title of the PR.
