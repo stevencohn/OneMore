@@ -1294,8 +1294,16 @@ namespace River.OneMoreAddIn
 		{
 			var windows = new List<WindowInfo>();
 
-			var currentWindow = onenote.Windows?.CurrentWindow;
-			var currentHandle = currentWindow?.WindowHandle ?? 0;
+			ulong currentHandle = 0;
+			try
+			{
+				var currentWindow = onenote.Windows?.CurrentWindow;
+				currentHandle = currentWindow?.WindowHandle ?? 0;
+			}
+			catch (COMException exc)
+			{
+				logger.WriteLine($"GetWindows: cannot read CurrentWindow ({exc.ErrorCode:X})", exc);
+			}
 
 			var e = onenote.Windows?.GetEnumerator();
 			if (e is not null)
@@ -1303,55 +1311,62 @@ namespace River.OneMoreAddIn
 				var bounds = new Native.Rectangle();
 				while (e.MoveNext())
 				{
-					var window = e.Current as Window;
-					var rawHandle = (IntPtr)window.WindowHandle;
-					var topHandle = GetTopLevelWindow(rawHandle);
-
-					logger.WriteLine(rawHandle == topHandle
-						? $"GetWindows: handle {rawHandle.ToInt64():x} has no parent (already top-level)"
-						: $"GetWindows: handle {rawHandle.ToInt64():x} walked up to top-level {topHandle.ToInt64():x}");
-
-					uint threadId;
-					uint processId;
-
-					// GetWindowRect must see real physical pixels regardless of this
-					// process's ambient DPI awareness, which isn't always reliably
-					// per-monitor-aware; scoped tightly since this can't span an await
-					// without risking a thread hop invalidating the per-thread context
-					using (new Native.ThreadDpiAwarenessScope(
-						Native.DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2))
+					try
 					{
-						threadId = Native.GetWindowThreadProcessId(topHandle, out processId);
-						Native.GetWindowRect(topHandle, ref bounds);
-					}
-					var isCurrent = window.WindowHandle == currentHandle;
-					var page = await GetPageInfo(window.CurrentPageId);
+						var window = e.Current as Window;
+						var rawHandle = (IntPtr)window.WindowHandle;
+						var topHandle = GetTopLevelWindow(rawHandle);
 
-					var info = new WindowInfo
-					{
-						IsCurrent = isCurrent,
-						CurrentNotebookId = window.CurrentNotebookId,
-						CurrentPageId = window.CurrentPageId,
-						CurrentSectionId = window.CurrentSectionId,
-						CurrentSectionGroupId = window.CurrentSectionGroupId,
-						CurrentPage = page?.Path ?? string.Empty,
-						DockedLocation = window.DockedLocation.ToString(),
-						IsFullPageView = window.FullPageView,
-						IsSideNote = window.SideNote,
-						Active = window.Active,
-						ProcessId = processId,
-						ThreadId = threadId,
-						WindowHandle = $"{topHandle.ToInt64():x}",
-						Bounds = new BoundsInfo
+						logger.WriteLine(rawHandle == topHandle
+							? $"GetWindows: handle {rawHandle.ToInt64():x} has no parent (already top-level)"
+							: $"GetWindows: handle {rawHandle.ToInt64():x} walked up to top-level {topHandle.ToInt64():x}");
+
+						uint threadId;
+						uint processId;
+
+						// GetWindowRect must see real physical pixels regardless of this
+						// process's ambient DPI awareness, which isn't always reliably
+						// per-monitor-aware; scoped tightly since this can't span an await
+						// without risking a thread hop invalidating the per-thread context
+						using (new Native.ThreadDpiAwarenessScope(
+							Native.DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2))
 						{
-							Left = bounds.Left,
-							Top = bounds.Top,
-							Right = bounds.Right,
-							Bottom = bounds.Bottom
+							threadId = Native.GetWindowThreadProcessId(topHandle, out processId);
+							Native.GetWindowRect(topHandle, ref bounds);
 						}
-					};
+						var isCurrent = window.WindowHandle == currentHandle;
+						var page = await GetPageInfo(window.CurrentPageId);
 
-					windows.Add(info);
+						var info = new WindowInfo
+						{
+							IsCurrent = isCurrent,
+							CurrentNotebookId = window.CurrentNotebookId,
+							CurrentPageId = window.CurrentPageId,
+							CurrentSectionId = window.CurrentSectionId,
+							CurrentSectionGroupId = window.CurrentSectionGroupId,
+							CurrentPage = page?.Path ?? string.Empty,
+							DockedLocation = window.DockedLocation.ToString(),
+							IsFullPageView = window.FullPageView,
+							IsSideNote = window.SideNote,
+							Active = window.Active,
+							ProcessId = processId,
+							ThreadId = threadId,
+							WindowHandle = $"{topHandle.ToInt64():x}",
+							Bounds = new BoundsInfo
+							{
+								Left = bounds.Left,
+								Top = bounds.Top,
+								Right = bounds.Right,
+								Bottom = bounds.Bottom
+							}
+						};
+
+						windows.Add(info);
+					}
+					catch (COMException exc)
+					{
+						logger.WriteLine($"GetWindows: cannot read window property ({exc.ErrorCode:X})", exc);
+					}
 				}
 			}
 
