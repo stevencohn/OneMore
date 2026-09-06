@@ -45,13 +45,13 @@ namespace River.OneMoreAddIn.Commands
 			{
 				if (obj is ColorFont other)
 				{
-					return other.Font.Equals(Font) && other.Foreground == Foreground;
+					return Equals(other.Font, Font) && other.Foreground == Foreground;
 				}
 				return false;
 			}
 			public override int GetHashCode()
 			{
-				return Font.GetHashCode() ^ Foreground.GetHashCode();
+				return (Font?.GetHashCode() ?? 0) ^ Foreground.GetHashCode();
 			}
 			public override string ToString()
 			{
