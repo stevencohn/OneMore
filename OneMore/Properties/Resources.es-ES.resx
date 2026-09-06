@@ -1892,33 +1892,13 @@ esta pagina</value>
     <value>Agregar al banco de etiquetas en la parte superior de la página</value>
     <comment>checkbox</comment>
   </data>
-  <data name="HashtaggerDialog_cloudGroup.Text" xml:space="preserve">
-    <value>Todos los hashtags</value>
-    <comment>groupbox</comment>
+  <data name="HashtaggerDialog_commonWordsButton.Text" xml:space="preserve">
+    <value>Palabras comunes</value>
+    <comment>button</comment>
   </data>
-  <data name="HashtaggerDialog_commonGroup.Text" xml:space="preserve">
-    <value>Palabras comunes en esta página</value>
-    <comment>groupbox</comment>
-  </data>
-  <data name="HashtaggerDialog_hideCommonMenuItem" xml:space="preserve">
-    <value>Ocultar palabras comunes</value>
-    <comment>context menu item text</comment>
-  </data>
-  <data name="HashtaggerDialog_hideRecentMenuItem" xml:space="preserve">
-    <value>Ocultar usado recientemente</value>
-    <comment>context menu item text</comment>
-  </data>
-  <data name="HashtaggerDialog_recentGroup.Text" xml:space="preserve">
-    <value>Etiquetas utilizadas recientemente</value>
-    <comment>groupbox</comment>
-  </data>
-  <data name="HashtaggerDialog_showCommonMenuItem" xml:space="preserve">
-    <value>Mostrar palabras comunes</value>
-    <comment>context menu item text</comment>
-  </data>
-  <data name="HashtaggerDialog_showRecentMenuItem" xml:space="preserve">
-    <value>Mostrar usado recientemente</value>
-    <comment>context menu item text</comment>
+  <data name="HashtaggerDialog_findLabel.Text" xml:space="preserve">
+    <value>Encontrar</value>
+    <comment>label</comment>
   </data>
   <data name="HashtaggerDialog_tagsLabel.Text" xml:space="preserve">
     <value>Etiquetas</value>
