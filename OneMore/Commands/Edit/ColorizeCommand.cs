@@ -112,6 +112,12 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (var run in runs.ToList())
 			{
+				// never touch mathML equations
+				if (run.IsMathML())
+				{
+					continue;
+				}
+
 				run.SetAttributeValue("lang", "yo");
 				run.Parent.Attributes("spaceAfter").Remove();
 				run.Parent.Attributes("spaceBefore").Remove();

@@ -161,8 +161,10 @@ namespace River.OneMoreAddIn.Commands
 
 		private void PrefixHeader(XElement root, bool numeric, int level, int counter, string prefix)
 		{
-			// text cursor might be inside header so find first non-empty text run
+			// text cursor might be inside header so find first non-empty text run;
+			// exclude mathML equations, whose CDATA is non-whitespace but not real text
 			var cdata = root.Elements(ns + "T")
+				.Where(t => !t.IsMathML())
 				.Select(t => t.GetCData())
 				.FirstOrDefault(c => !string.IsNullOrWhiteSpace(c.Value));
 

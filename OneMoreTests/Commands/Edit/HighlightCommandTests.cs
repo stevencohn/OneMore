@@ -177,6 +177,53 @@ namespace River.OneMoreAddIn.Tests.Commands.Edit
 		}
 
 
+		// Reproduces GitHub #1425: mathML equations are stored as a one:T whose CDATA is
+		// entirely an XML comment. When a single mathML run is the only selection,
+		// SelectionRange already special-cases it (Scope.SpecialCursor) to avoid touching it.
+		// But when a multi-run selection (Scope.Range) happens to include a mathML run
+		// alongside plain text — e.g. a drag-selection spanning several paragraphs —
+		// PageEditor.EditSelected() used to hand the bare XComment node straight to this
+		// command's edit delegate, which unconditionally casts to XElement and threw
+		// InvalidCastException. The mathML run must be skipped and left untouched while the
+		// plain text run is still highlighted normally.
+		[TestMethod]
+		public async Task Highlight_SelectionSpanningMathMLEquation_SkipsEquationOnly()
+		{
+			const string mathml =
+				"<!--[if mathML]><math xmlns=\"http://www.w3.org/1998/Math/MathML\" " +
+				"display=\"block\"><mi>A</mi><mo>=</mo><mi>&#120587;</mi><msup><mi>r</mi>" +
+				"<mn>2</mn></msup></math><![endif]-->";
+
+			var mathOe = new XElement(Ns + "OE",
+				new XElement(Ns + "T",
+					new XAttribute("selected", "all"),
+					new XCData(mathml)));
+
+			var pageXml = new PageBuilder(PageId, "MathML Test")
+				.WithParagraph("Hello world", selected: true)
+				.WithElement(mathOe)
+				.Build();
+
+			SetupPage(PageId, pageXml);
+
+			await new HighlightCommand().Execute(1);
+
+			var updated = GetUpdatedPage(PageId);
+			Assert.IsNotNull(updated, "UpdatePageContent was never called");
+
+			var runs = updated.Descendants(Ns + "Outline").Descendants(Ns + "T").ToList();
+			Assert.AreEqual(2, runs.Count);
+
+			var mathCdata = (XCData)runs[1].FirstNode;
+			Assert.AreEqual(mathml, mathCdata.Value, "mathML CDATA must remain byte-for-byte unchanged");
+
+			var textCdata = (XCData)runs[0].FirstNode;
+			Assert.IsTrue(
+				textCdata.Value.IndexOf("background:", System.StringComparison.Ordinal) >= 0,
+				"expected the plain text run to still be highlighted");
+		}
+
+
 		[TestMethod]
 		public async Task Highlight_NoSelection_DoesNotCallUpdate()
 		{

@@ -350,11 +350,13 @@ namespace River.OneMoreAddIn
 				note.Add(new XAttribute("style", "color:'#5B9BD5'"));
 			}
 
-			// find the element in the new page instance of XML
+			// find the element in the new page instance of XML; exclude mathML equations
+			// since we're about to append the footnote anchor directly onto its CDATA
 			var element = page.Root.Elements(ns + "Outline")
 				.Where(e => e.Attributes("selected").Any())
 				.Descendants(ns + "T")
-				.LastOrDefault(e => e.Attribute("selected")?.Value == "all");
+				.LastOrDefault(e =>
+					e.Attribute("selected")?.Value == "all" && !e.IsMathML());
 
 			if (element is not null)
 			{
