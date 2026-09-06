@@ -77,7 +77,8 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			var nodes = page.Root.DescendantNodes().OfType<XCData>()
-				.Where(n => n.Value.Contains('.'));
+				.Where(n => n.Value.Contains('.') &&
+					!(n.Parent is XElement parent && parent.IsMathML()));
 
 			var updated = false;
 

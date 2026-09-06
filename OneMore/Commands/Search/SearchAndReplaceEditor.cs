@@ -165,6 +165,12 @@ namespace River.OneMoreAddIn.Commands
 		// Replace all matches in the given T run
 		private int ScanElement(XElement element)
 		{
+			// never touch mathML equations
+			if (element.IsMathML())
+			{
+				return 0;
+			}
+
 			// get a cleaned-up wrapper of the CDATA that we can parse
 			var cdata = element.GetCData();
 			if (cdata.Value.Length == 0)
@@ -372,6 +378,12 @@ namespace River.OneMoreAddIn.Commands
 		// Collect all regex matches within a single T element, appending to results
 		private void CollectMatches(XElement element, List<MatchInfo> results)
 		{
+			// never touch mathML equations
+			if (element.IsMathML())
+			{
+				return;
+			}
+
 			var cdata = element.GetCData();
 			if (cdata.Value.Length == 0) return;
 
@@ -408,6 +420,12 @@ namespace River.OneMoreAddIn.Commands
 		/// </summary>
 		public void ReplaceMatch(MatchInfo match)
 		{
+			// never touch mathML equations
+			if (match.TElement.IsMathML())
+			{
+				return;
+			}
+
 			var cdata = match.TElement.GetCData();
 			if (cdata.Value.Length == 0) return;
 

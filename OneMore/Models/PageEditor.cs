@@ -450,6 +450,12 @@ namespace River.OneMoreAddIn.Models
 				// use ToList, otherwise enumeration will stop after first ReplaceWith
 				foreach (var node in wrapper.Nodes().ToList())
 				{
+					// mathML equations are wrapped in an XML comment; leave them untouched
+					if (node is XComment)
+					{
+						continue;
+					}
+
 					node.ReplaceWith(edit(node));
 				}
 

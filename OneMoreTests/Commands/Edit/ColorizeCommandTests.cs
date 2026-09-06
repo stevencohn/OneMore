@@ -177,6 +177,49 @@ namespace River.OneMoreAddIn.Tests.Commands.Edit
 		}
 
 
+		// Reproduces GitHub #1425: mathML equations are stored as a one:T whose CDATA is
+		// entirely an XML comment. GetWrapper().Value on a comment-only CDATA returns "",
+		// so the un-guarded code used to call colorizer.ColorizeOne("") and overwrite the
+		// equation's CDATA with colorized-empty output, destroying it. The mathML run must
+		// be skipped entirely while sibling runs are still colorized normally.
+		[TestMethod]
+		public void Colorize_SelectionIncludesMathMLEquation_SkipsEquationOnly()
+		{
+			const string mathml =
+				"<!--[if mathML]><math xmlns=\"http://www.w3.org/1998/Math/MathML\" " +
+				"display=\"block\"><mi>A</mi><mo>=</mo><mi>&#120587;</mi><msup><mi>r</mi>" +
+				"<mn>2</mn></msup></math><![endif]-->";
+
+			var mathOe = new XElement(Ns + "OE",
+				new XElement(Ns + "T",
+					new XAttribute("selected", "all"),
+					new XCData(mathml)));
+
+			var pageElement = new PageBuilder(PageId, "MathML Colorize Test")
+				.WithParagraph("var x = 1;", selected: true)
+				.WithElement(mathOe)
+				.BuildElement();
+
+			var (page, command) = Setup(pageElement);
+			var runs = SelectedRuns(page);
+
+			var updated = command.Colorize("csharp", runs);
+
+			Assert.IsTrue(updated, "Expected the plain text run to still be colorized");
+			Assert.AreEqual(2, runs.Count);
+
+			var mathRun = runs[1];
+			Assert.IsNull(mathRun.Attribute("lang"), "mathML run must not be touched at all");
+			Assert.AreEqual(mathml, mathRun.GetCData().Value,
+				"mathML CDATA must remain byte-for-byte unchanged");
+
+			var textRun = runs[0];
+			Assert.AreEqual("yo", textRun.Attribute("lang")?.Value);
+			StringAssert.Contains(textRun.GetCData().Value, "<span",
+				"Expected the plain text run to still be colorized");
+		}
+
+
 		[TestMethod]
 		public void Colorize_UnknownLanguage_Throws()
 		{

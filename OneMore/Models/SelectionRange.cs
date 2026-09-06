@@ -211,7 +211,7 @@ namespace River.OneMoreAddIn.Models
 				var si = new Style(runs[i].CollectStyleProperties());
 				var sj = new Style(runs[j].CollectStyleProperties());
 
-				if (si.Equals(sj))
+				if (si.Equals(sj) && !runs[i].IsMathML() && !runs[j].IsMathML())
 				{
 					var ci = runs[i].GetCData();
 					var cj = runs[j].GetCData();
@@ -249,7 +249,7 @@ namespace River.OneMoreAddIn.Models
 			if (parent.Name.LocalName == "OE")
 			{
 				runs = parent.Elements(ns + "T").ToList();
-				if (runs.Count > 1)
+				if (runs.Count > 1 && !runs.Any(r => r.IsMathML()))
 				{
 					var first = runs[0];
 					var cdata = first.GetCData();

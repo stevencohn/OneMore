@@ -54,5 +54,45 @@ namespace River.OneMoreAddIn.Tests.Commands.Search
 			Assert.AreEqual(2, System.Text.RegularExpressions.Regex.Matches(
 				text, "color:red").Count);
 		}
+
+
+		// Reproduces GitHub #1425: mathML equations are stored as a one:T whose CDATA is
+		// entirely an XML comment. XElement.Value skips comment content, so a wildcard regex
+		// (e.g. ".*") that legitimately matches everywhere else also produces a zero-length
+		// match against the comment's empty rawtext, which used to flow into Replace() and
+		// NullReferenceException inside AtomicFactory/ElementAtom. The mathML run must be
+		// skipped entirely and left byte-for-byte untouched.
+		[TestMethod]
+		public void SearchAndReplace_MathMLEquation_IsNotModified()
+		{
+			const string mathml =
+				"<!--[if mathML]><math xmlns=\"http://www.w3.org/1998/Math/MathML\" " +
+				"display=\"block\"><mi>A</mi><mo>=</mo><mi>&#120587;</mi><msup><mi>r</mi>" +
+				"<mn>2</mn></msup></math><![endif]-->";
+
+			var mathT = new XElement(Ns + "T", new XCData(mathml));
+			var textT = new XElement(Ns + "T", new XCData("hello world"));
+
+			var oe = new XElement(Ns + "OE",
+				new XAttribute("objectID", "{OE1}"),
+				new XAttribute("lastModifiedTime", "2026-01-01T00:00:00.000Z"),
+				mathT,
+				textT);
+
+			var page = new PageBuilder().WithElement(oe).BuildElement();
+			var paragraph = page.Elements(Ns + "Outline").Descendants(Ns + "OE").First();
+
+			// wildcard regex matches (and would otherwise zero-length-match the empty
+			// rawtext of the mathML comment)
+			var editor = new SearchAndReplaceEditor(@".*", "X", true, false);
+
+			editor.SearchAndReplace(paragraph);
+
+			var runs = paragraph.Elements(Ns + "T").ToList();
+			Assert.AreEqual(mathml, runs[0].GetCData().Value,
+				"mathML CDATA must remain byte-for-byte unchanged");
+			Assert.AreNotEqual("hello world", runs[1].GetCData().Value,
+				"plain text run should still have been replaced");
+		}
 	}
 }
