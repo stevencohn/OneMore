@@ -478,7 +478,8 @@ namespace River.OneMoreAddIn.Models
 
 		/// <summary>
 		/// Finds the most commonly used words on the page, limited by PoolSize and excluding
-		/// BlackList words. Each word is annotated with the count of that word on the page.
+		/// BlackList words and words appearing 3 or fewer times. Each word is annotated with
+		/// the count of that word on the page.
 		/// </summary>
 		/// <returns>A collection of CountedWord</returns>
 		public IEnumerable<CountedWord> ReadCommonWords()
@@ -535,6 +536,7 @@ namespace River.OneMoreAddIn.Models
 					!Regex.Match(w, @"^\s*\d+\s*$").Success)
 				.GroupBy(w => w)
 				.Select(g => new CountedWord(g.Key, g.Count()))
+				.Where(cw => cw.Count > 3)
 				.OrderByDescending(g => g.Count)
 				.Take(PoolSize);
 

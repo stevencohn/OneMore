@@ -5,9 +5,9 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
-	using River.OneMoreAddIn.Settings;
 	using River.OneMoreAddIn.UI;
 	using System;
+	using System.Collections.Generic;
 	using System.Drawing;
 	using System.Linq;
 	using System.Text.RegularExpressions;
@@ -17,12 +17,11 @@ namespace River.OneMoreAddIn.Commands
 
 	internal partial class HashtaggerDialog : MoreForm
 	{
-		private const string SettingsKey = "Hashtagger";
+		private static readonly char[] TagSeparators = { ' ', '\t', '\r', '\n', ',' };
 
 		private readonly Page page;
-		private readonly Color tagBack;
-		private bool recentLoaded;
-		private bool commonLoaded;
+		private readonly MoreAutoCompleteList palette;
+		private List<PageReader.CountedWord> commonWords;
 
 
 		public HashtaggerDialog()
@@ -37,18 +36,33 @@ namespace River.OneMoreAddIn.Commands
 				{
 					"tagsLabel",
 					"bankBox",
-					"clearLink=word_Clear",
-					"recentGroup",
-					"commonGroup",
-					"cloudGroup",
-					"showRecentMenuItem=HashtaggerDialog_hideRecentMenuItem",
-					"showCommonMenuItem=HashtaggerDialog_hideCommonMenuItem",
+					"findLabel",
+					"commonWordsButton",
 					"okButton=word_OK",
 					"cancelButton=word_Cancel"
 				});
 			}
 
-			tagBack = ThemeManager.Instance.GetColor("Control");
+			palette = new MoreAutoCompleteList
+			{
+				FreeText = true,
+				WordChars = new[] { '#' }
+			};
+
+			palette.SetAutoCompleteList(findBox);
+
+			findBox.PreviewKeyDown += (sender, e) =>
+			{
+				if (e.KeyCode == Keys.Enter ||
+					(e.KeyCode == Keys.Escape && palette.IsPopupVisible))
+				{
+					e.IsInputKey = true;
+				}
+			};
+
+			findBox.KeyDown += DoFindBoxKeyDown;
+
+			DefaultControl = tagsBox;
 		}
 
 
@@ -66,273 +80,137 @@ namespace River.OneMoreAddIn.Commands
 		public bool AddToBank => bankBox.Checked;
 
 
-
 		/// <summary>
-		/// Gets the string containing the selected tags
+		/// Gets the string containing the selected tags, normalized so tags entered in
+		/// tagsBox separated by spaces, commas, or both are each prefaced with at least
+		/// one '#' and separated by single spaces.
 		/// </summary>
-		public string Tags => tagsBox.Text;
+		public string Tags => string.Join(" ",
+			tagsBox.Text
+				.Split(TagSeparators, StringSplitOptions.RemoveEmptyEntries)
+				.Select(t => t[0] == '#' ? t : $"#{t}"));
 
 
 		private void LoadTagsOnLoad(object sender, EventArgs e)
 		{
+			commonWords = new PageReader(page).ReadCommonWords().ToList();
+			PopulateFindPalette();
+			RefreshCommonWordsAvailability();
+		}
+
+
+		private void PopulateFindPalette()
+		{
+			var existing = ExtractHashtags(tagsBox.Text);
+
 			var provider = new HashtagProvider();
-			var settings = new SettingsProvider().GetCollection(SettingsKey);
+			var names = provider.ReadTagNames().Where(t => !existing.Contains(t)).ToArray();
+			var recent = provider.ReadLatestTagNames().Where(t => !existing.Contains(t)).ToArray();
 
-			if (settings.Get("showRecent", true))
-			{
-				LoadRecent(provider);
-			}
-			else
-			{
-				recentGroup.Visible = false;
-			}
-
-			if (settings.Get("showCommon", true))
-			{
-				LoadCommon();
-			}
-			else
-			{
-				commonGroup.Visible = false;
-			}
-
-			var tags = provider.ReadTagNames();
-			if (tags.Any())
-			{
-				foreach (var word in tags.Select(w => new PageReader.CountedWord(w, 0)))
-				{
-					cloudFlow.Controls.Add(MakeLabel(word));
-				}
-			}
-
-
-			ResizeFlows(sender, e);
+			palette.LoadCommands(names, recent);
 		}
 
 
-		private void LoadRecent(HashtagProvider provider)
+		private static HashSet<string> ExtractHashtags(string text)
 		{
-			var latest = provider.ReadLatestTagNames();
-			if (latest.Any())
-			{
-				foreach (var word in latest.Select(w => new PageReader.CountedWord(w, 0)))
-				{
-					recentFlow.Controls.Add(MakeLabel(word));
-				}
-			}
-
-			recentLoaded = true;
-		}
-			
-
-		private void LoadCommon()
-		{
-			var reader = new PageReader(page);
-			var words = reader.ReadCommonWords();
-
-			if (words.Any())
-			{
-				// keep order of most recent first
-				foreach (var word in words)
-				{
-					commonFlow.Controls.Add(MakeLabel(word));
-				}
-			}
-
-			commonLoaded = true;
+			return new HashSet<string>(
+				Regex.Matches(text, @"#\w+").Cast<Match>().Select(m => m.Value),
+				StringComparer.OrdinalIgnoreCase);
 		}
 
 
-		private Label MakeLabel(PageReader.CountedWord word)
+		private void DoFindBoxKeyDown(object sender, KeyEventArgs e)
 		{
-			var manager = ThemeManager.Instance;
-
-			var label = new MoreLabel
+			if (e.KeyCode == Keys.Enter)
 			{
-				Name = word.Word.Replace("#", ""),
-				Tag = word,
-				AutoSize = true,
-				BorderStyle = BorderStyle.FixedSingle,
-				Cursor = Cursors.Hand,
-				Margin = new Padding(4),
-				Padding = new Padding(4, 5, 4, 5),
-				Text = word.Count == 0 ? word.Word : $"{word.Word} ({word.Count})",
-				BackColor = tagBack,
-				ForeColor = manager.GetColor("ControlText"),
-				ThemedBack = "Control",
-				ThemedFore = "ControlText"
-			};
+				e.Handled = true;
+				e.SuppressKeyPress = true;
+				AppendFindTag();
+			}
 
-			label.Click += (sender, e) =>
-			{
-				if (sender is Label label &&
-					label.Tag is PageReader.CountedWord word)
-				{
-					EditTags(word.Word);
-				}
-			};
-
-			label.MouseEnter += (sender, e) =>
-			{
-				((Label)sender).BackColor = ThemeManager.Instance.GetColor("ButtonHighlight");
-			};
-
-			label.MouseLeave += (sender, e) =>
-			{
-				((Label)sender).BackColor = tagBack;
-			};
-
-			return label;
+			// Escape: MoreAutoCompleteList's own KeyDown handler, subscribed before ours via
+			// SetAutoCompleteList, already hid the popup and set e.Handled when a popup was open
 		}
 
 
-		private void ResizeFlows(object sender, EventArgs e)
+		private void AppendFindTag()
 		{
-			var width = mainFlow.Width -
-				mainFlow.Padding.Left - mainFlow.Padding.Right -
-				(SystemInformation.VerticalScrollBarWidth * 2);
+			var text = findBox.Text.Trim();
+			if (!string.IsNullOrEmpty(text))
+			{
+				AppendTag(text);
+			}
 
-			recentGroup.Width = width;
-			var size = new Size(width, CalculateFlowHeight(recentFlow));
-			recentGroup.Size = size;
-			recentGroup.MaximumSize = size;
-			recentGroup.MinimumSize = size;
-
-			commonGroup.Width = width;
-			size = new Size(width, CalculateFlowHeight(commonFlow));
-			commonGroup.Size = size;
-			commonGroup.MaximumSize = size;
-			commonGroup.MinimumSize = size;
-
-			cloudGroup.Width = width;
-			size = new Size(width, CalculateFlowHeight(cloudFlow));
-			cloudGroup.Size = size;
-			cloudGroup.MaximumSize = size;
-			cloudGroup.MinimumSize = size;
-
-			Invalidate();
+			findBox.Clear();
+			findBox.Focus();
 		}
 
 
-		private int CalculateFlowHeight(FlowLayoutPanel layout)
+		private void AppendTag(string text)
 		{
-			var width = 0;
-			var height = 80;
-			foreach (var control in layout.Controls)
-			{
-				var tag = (Control)control;
-				var buffer = tag.Margin.Left + tag.Margin.Right + layout.Padding.Left + layout.Padding.Right;
-
-				width += tag.Width + buffer;
-				if (width > layout.Width)
-				{
-					height += tag.Height + tag.Margin.Top + tag.Margin.Bottom;
-					width = 0;
-				}
-			}
-
-			return height;
-		}
-
-
-		private void ShowMenu(object sender, EventArgs e)
-		{
-			contextMenu.Show(menuButton, new Point(
-				-(contextMenu.Width - menuButton.Width),
-				menuButton.Height));
-		}
-
-
-		private void PrepareContextMenu(object sender, System.ComponentModel.CancelEventArgs e)
-		{
-			if (recentGroup.Visible)
-			{
-				showRecentMenuItem.Image = Resx.e_CheckMark;
-				showRecentMenuItem.Text = Resx.HashtaggerDialog_hideRecentMenuItem;
-			}
-			else
-			{
-				showRecentMenuItem.Image = null;
-				showRecentMenuItem.Text = Resx.HashtaggerDialog_showRecentMenuItem;
-			}
-
-			if (commonGroup.Visible)
-			{
-				showCommonMenuItem.Image = Resx.e_CheckMark;
-				showCommonMenuItem.Text = Resx.HashtaggerDialog_hideCommonMenuItem;
-			}
-			else
-			{
-				showCommonMenuItem.Image = null;
-				showCommonMenuItem.Text = Resx.HashtaggerDialog_showCommonMenuItem;
-			}
-		}
-
-
-		private void ShowHideGroup(object sender, EventArgs e)
-		{
-			if (sender == showRecentMenuItem)
-			{
-				recentGroup.Visible = !recentGroup.Visible;
-				if (recentGroup.Visible && !recentLoaded)
-				{
-					LoadRecent(new HashtagProvider());
-					ResizeFlows(sender, e);
-				}
-			}
-			else
-			{
-				commonGroup.Visible = !commonGroup.Visible;
-				if (commonGroup.Visible && !commonLoaded)
-				{
-					LoadCommon();
-					ResizeFlows(sender, e);
-				}
-			}
-		}
-
-
-		private void EditTags(string text)
-		{
-			// add # to common word
+			// add # to a common word or bare tag name
 			if (text[0] != '#')
 			{
 				text = $"#{text}";
 			}
 
-			if (!tagsBox.Text.Contains(text))
+			if (!ExtractHashtags(tagsBox.Text).Contains(text))
 			{
-				tagsBox.Text = $"{tagsBox.Text} {text}";
+				tagsBox.Text = string.IsNullOrWhiteSpace(tagsBox.Text)
+					? text
+					: $"{tagsBox.Text} {text}";
 			}
-			else
-			{
-				// matches of "<space>tag" or beginning of line; it also looks for a following
-				// space or end of line but leaves that so we don't end up squishing two tags
-				// together; this is why we replace with only $2 - to keep the following space.
-				tagsBox.Text = Regex.Replace(tagsBox.Text, @$"(^|\s){text}($|\s)", "$2").Trim();
-			}
+		}
 
+
+		private void SuppressTagsBoxEnter(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Enter)
+			{
+				e.Handled = true;
+				e.SuppressKeyPress = true;
+			}
+		}
+
+
+		private void DoTagsBoxChanged(object sender, EventArgs e)
+		{
 			okButton.Enabled = !string.IsNullOrWhiteSpace(tagsBox.Text);
-		}
-
-		private void ClearTags(object sender, LinkLabelLinkClickedEventArgs e)
-		{
-			tagsBox.Text = string.Empty;
-			okButton.Enabled = false;
+			RefreshCommonWordsAvailability();
+			PopulateFindPalette();
 		}
 
 
-		private void SaveSettings(object sender, FormClosingEventArgs e)
+		private void RefreshCommonWordsAvailability()
 		{
-			var provider = new SettingsProvider();
-			var settings = provider.GetCollection(SettingsKey);
-			settings.Add("showRecent", recentGroup.Visible);
-			settings.Add("showCommon", commonGroup.Visible);
+			var existing = ExtractHashtags(tagsBox.Text);
+			commonWordsButton.Enabled = commonWords.Any(w => !existing.Contains($"#{w.Word}"));
+		}
 
-			if (settings.IsModified)
+
+		private void ShowCommonWordsMenu(object sender, EventArgs e)
+		{
+			// populate before Show() so the menu's size is already finalized when it is
+			// displayed; populating in the Opening event instead requires a second click
+			// before the drop-down actually renders
+			PopulateCommonWordsMenu();
+
+			commonWordsMenu.Show(commonWordsButton, new Point(
+				-(commonWordsMenu.Width - commonWordsButton.Width),
+				commonWordsButton.Height));
+		}
+
+
+		private void PopulateCommonWordsMenu()
+		{
+			commonWordsMenu.Items.Clear();
+
+			var existing = ExtractHashtags(tagsBox.Text);
+			foreach (var word in commonWords.Where(w => !existing.Contains($"#{w.Word}")))
 			{
-				provider.SetCollection(settings);
-				provider.Save();
+				var item = new MoreMenuItem($"#{word.Word} ({word.Count})");
+				item.Click += (s, ev) => AppendTag(word.Word);
+				commonWordsMenu.Items.Add(item);
 			}
 		}
 	}

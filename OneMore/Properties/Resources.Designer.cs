@@ -4342,68 +4342,23 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to All hashtags.
+        ///   Looks up a localized string similar to Common Words.
         /// </summary>
-        internal static string HashtaggerDialog_cloudGroup_Text {
+        internal static string HashtaggerDialog_commonWordsButton_Text {
             get {
-                return ResourceManager.GetString("HashtaggerDialog_cloudGroup.Text", resourceCulture);
+                return ResourceManager.GetString("HashtaggerDialog_commonWordsButton.Text", resourceCulture);
             }
         }
-        
+
         /// <summary>
-        ///   Looks up a localized string similar to Common words on this page.
+        ///   Looks up a localized string similar to Find.
         /// </summary>
-        internal static string HashtaggerDialog_commonGroup_Text {
+        internal static string HashtaggerDialog_findLabel_Text {
             get {
-                return ResourceManager.GetString("HashtaggerDialog_commonGroup.Text", resourceCulture);
+                return ResourceManager.GetString("HashtaggerDialog_findLabel.Text", resourceCulture);
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Hide common words.
-        /// </summary>
-        internal static string HashtaggerDialog_hideCommonMenuItem {
-            get {
-                return ResourceManager.GetString("HashtaggerDialog_hideCommonMenuItem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Hide recently used.
-        /// </summary>
-        internal static string HashtaggerDialog_hideRecentMenuItem {
-            get {
-                return ResourceManager.GetString("HashtaggerDialog_hideRecentMenuItem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Recently used tags.
-        /// </summary>
-        internal static string HashtaggerDialog_recentGroup_Text {
-            get {
-                return ResourceManager.GetString("HashtaggerDialog_recentGroup.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Show common words.
-        /// </summary>
-        internal static string HashtaggerDialog_showCommonMenuItem {
-            get {
-                return ResourceManager.GetString("HashtaggerDialog_showCommonMenuItem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Show recently used.
-        /// </summary>
-        internal static string HashtaggerDialog_showRecentMenuItem {
-            get {
-                return ResourceManager.GetString("HashtaggerDialog_showRecentMenuItem", resourceCulture);
-            }
-        }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Tags.
         /// </summary>

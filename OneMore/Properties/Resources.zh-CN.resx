@@ -1903,33 +1903,13 @@ OneNote 文件 (*.one)</value>
     <value>添加到页面顶部的标签容器</value>
     <comment>checkbox</comment>
   </data>
-  <data name="HashtaggerDialog_cloudGroup.Text" xml:space="preserve">
-    <value>所有主题标签</value>
-    <comment>groupbox</comment>
+  <data name="HashtaggerDialog_commonWordsButton.Text" xml:space="preserve">
+    <value>常用词</value>
+    <comment>button</comment>
   </data>
-  <data name="HashtaggerDialog_commonGroup.Text" xml:space="preserve">
-    <value>本页常用词</value>
-    <comment>groupbox</comment>
-  </data>
-  <data name="HashtaggerDialog_hideCommonMenuItem" xml:space="preserve">
-    <value>隐藏常用词</value>
-    <comment>context menu item text</comment>
-  </data>
-  <data name="HashtaggerDialog_hideRecentMenuItem" xml:space="preserve">
-    <value>隐藏最近使用的内容</value>
-    <comment>context menu item text</comment>
-  </data>
-  <data name="HashtaggerDialog_recentGroup.Text" xml:space="preserve">
-    <value>最近使用的标签</value>
-    <comment>groupbox</comment>
-  </data>
-  <data name="HashtaggerDialog_showCommonMenuItem" xml:space="preserve">
-    <value>显示常用词</value>
-    <comment>context menu item text</comment>
-  </data>
-  <data name="HashtaggerDialog_showRecentMenuItem" xml:space="preserve">
-    <value>显示最近使用过的内容</value>
-    <comment>context menu item text</comment>
+  <data name="HashtaggerDialog_findLabel.Text" xml:space="preserve">
+    <value>寻找</value>
+    <comment>label</comment>
   </data>
   <data name="HashtaggerDialog_tagsLabel.Text" xml:space="preserve">
     <value>标签</value>

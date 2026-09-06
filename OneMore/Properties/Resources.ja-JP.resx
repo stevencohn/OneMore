@@ -1900,33 +1900,13 @@ OneNoteファイル (*.one)</value>
     <value>タグバンクのページの先頭に追加</value>
     <comment>checkbox</comment>
   </data>
-  <data name="HashtaggerDialog_cloudGroup.Text" xml:space="preserve">
-    <value>すべてのハッシュタグ</value>
-    <comment>groupbox</comment>
+  <data name="HashtaggerDialog_commonWordsButton.Text" xml:space="preserve">
+    <value>よく使われる言葉</value>
+    <comment>button</comment>
   </data>
-  <data name="HashtaggerDialog_commonGroup.Text" xml:space="preserve">
-    <value>このページの一般的な単語</value>
-    <comment>groupbox</comment>
-  </data>
-  <data name="HashtaggerDialog_hideCommonMenuItem" xml:space="preserve">
-    <value>一般的な単語を非表示</value>
-    <comment>context menu item text</comment>
-  </data>
-  <data name="HashtaggerDialog_hideRecentMenuItem" xml:space="preserve">
-    <value>最近使ったタグを表示</value>
-    <comment>context menu item text</comment>
-  </data>
-  <data name="HashtaggerDialog_recentGroup.Text" xml:space="preserve">
-    <value>最近使ったタグ</value>
-    <comment>groupbox</comment>
-  </data>
-  <data name="HashtaggerDialog_showCommonMenuItem" xml:space="preserve">
-    <value>一般的な単語を表示</value>
-    <comment>context menu item text</comment>
-  </data>
-  <data name="HashtaggerDialog_showRecentMenuItem" xml:space="preserve">
-    <value>最近使ったタグを表示</value>
-    <comment>context menu item text</comment>
+  <data name="HashtaggerDialog_findLabel.Text" xml:space="preserve">
+    <value>探す</value>
+    <comment>label</comment>
   </data>
   <data name="HashtaggerDialog_tagsLabel.Text" xml:space="preserve">
     <value>タグ</value>

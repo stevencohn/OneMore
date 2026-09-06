@@ -1892,33 +1892,13 @@ Diese Seite</value>
     <value>Zur Tag-Datenbank oben auf der Seite hinzufügen</value>
     <comment>checkbox</comment>
   </data>
-  <data name="HashtaggerDialog_cloudGroup.Text" xml:space="preserve">
-    <value>Alle Hashtags</value>
-    <comment>groupbox</comment>
+  <data name="HashtaggerDialog_commonWordsButton.Text" xml:space="preserve">
+    <value>Gemeinsame Wörter</value>
+    <comment>button</comment>
   </data>
-  <data name="HashtaggerDialog_commonGroup.Text" xml:space="preserve">
-    <value>Häufige Wörter auf dieser Seite</value>
-    <comment>groupbox</comment>
-  </data>
-  <data name="HashtaggerDialog_hideCommonMenuItem" xml:space="preserve">
-    <value>Verstecke gebräuchliche Wörter</value>
-    <comment>context menu item text</comment>
-  </data>
-  <data name="HashtaggerDialog_hideRecentMenuItem" xml:space="preserve">
-    <value>Zuletzt verwendetes Symbol ausblenden</value>
-    <comment>context menu item text</comment>
-  </data>
-  <data name="HashtaggerDialog_recentGroup.Text" xml:space="preserve">
-    <value>Zuletzt verwendete Tags</value>
-    <comment>groupbox</comment>
-  </data>
-  <data name="HashtaggerDialog_showCommonMenuItem" xml:space="preserve">
-    <value>Zeigen Sie gebräuchliche Wörter an</value>
-    <comment>context menu item text</comment>
-  </data>
-  <data name="HashtaggerDialog_showRecentMenuItem" xml:space="preserve">
-    <value>Kürzlich genutzt anzeigen</value>
-    <comment>context menu item text</comment>
+  <data name="HashtaggerDialog_findLabel.Text" xml:space="preserve">
+    <value>Finden</value>
+    <comment>label</comment>
   </data>
   <data name="HashtaggerDialog_tagsLabel.Text" xml:space="preserve">
     <value>Stichworte</value>
