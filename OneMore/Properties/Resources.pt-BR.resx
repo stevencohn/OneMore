@@ -611,6 +611,10 @@ Deseja substituir seu conteúdo? Escolha Não para criar uma nova página.</valu
     <value>O arquivo de definição de idioma para '{0}' não pôde ser carregado. Pode estar malformado - consulte o arquivo de log para obter detalhes.</value>
     <comment>messagebox (0 arg is language key)</comment>
   </data>
+  <data name="ColorizeDialog_showAllBox.Text" xml:space="preserve">
+    <value>Mostrar todos os idiomas</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="ColorizeDialog_Title" xml:space="preserve">
     <value>Selecione o idioma</value>
     <comment>dialog title</comment>

@@ -611,6 +611,10 @@ Czy chcesz zastąpić jego zawartość? Wybierz opcję Nie, aby zamiast tego utw
     <value>Nie można załadować pliku definicji języka dla '{0}'. Może być zniekształcony — szczegółowe informacje można znaleźć w pliku dziennika.</value>
     <comment>messagebox (0 arg is language key)</comment>
   </data>
+  <data name="ColorizeDialog_showAllBox.Text" xml:space="preserve">
+    <value>Pokaż wszystkie języki</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="ColorizeDialog_Title" xml:space="preserve">
     <value>Wybierz język</value>
     <comment>dialog title</comment>
