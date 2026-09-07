@@ -620,6 +620,10 @@ Do you want to replace its contents? Choose No to create a new page instead.</va
     <value>Select Language</value>
     <comment>dialog title</comment>
   </data>
+  <data name="ColorizeDialog_showAllBox.Text" xml:space="preserve">
+    <value>Show all languages</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="ColorizerSheet_applyBox.Text" xml:space="preserve">
     <value>Always apply the following fonts when colorizing code</value>
     <comment>checkbox</comment>

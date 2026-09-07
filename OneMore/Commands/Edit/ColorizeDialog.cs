@@ -19,6 +19,7 @@ namespace River.OneMoreAddIn.Commands
 	internal partial class ColorizeDialog : UI.MoreForm
 	{
 		private readonly Dictionary<string, Bitmap> languageImages = new();
+		private IDictionary<string, string> allLanguages;
 
 
 		public ColorizeDialog()
@@ -31,22 +32,58 @@ namespace River.OneMoreAddIn.Commands
 
 				Localize(new string[]
 				{
+					"showAllBox",
 					"okButton=word_OK"
 				});
 			}
 
-			var languages = LoadFilteredLanguages();
-			LoadLanguageImages(languages);
+			allLanguages = Colorizer.LoadLanguageNames();
+			LoadLanguageImages(allLanguages);
 
 			view.SmallImageList = new ImageList { ImageSize = new Size(1, 18) };
 			view.GetCellImage = GetLanguageCellImage;
+			view.SetColumnProportions(1f);
+
+			PopulateList(showAllBox.Checked);
+		}
+
+
+		public static IDictionary<string, string> LoadFilteredLanguages()
+		{
+			return FilterHiddenLanguages(Colorizer.LoadLanguageNames());
+		}
+
+
+		private static IDictionary<string, string> FilterHiddenLanguages(
+			IDictionary<string, string> languages)
+		{
+			// load hidden languages from Settings
+			var hidden = new SettingsProvider()
+				.GetCollection(nameof(ColorizerSheet))
+				.Get(ColorizerSheet.HiddenKey, new XElement(ColorizerSheet.HiddenKey));
+
+			// remove hidden languages
+			var filtered = new SortedDictionary<string, string>(languages);
+			var keys = filtered.Keys.ToList();
+			foreach (var key in keys.Where(key => hidden.Element(filtered[key]) is not null))
+			{
+				filtered.Remove(key);
+			}
+
+			return filtered;
+		}
+
+
+		private void PopulateList(bool showAll)
+		{
+			var languages = showAll ? allLanguages : FilterHiddenLanguages(allLanguages);
+
+			view.Items.Clear();
 
 			foreach (var key in languages.Keys)
 			{
 				view.Items.Add(new ListViewItem(key) { Tag = languages[key] });
 			}
-
-			view.SetColumnProportions(1f);
 
 			if (view.Items.Count > 0)
 			{
@@ -55,23 +92,9 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public static IDictionary<string, string> LoadFilteredLanguages()
+		private void ShowAllOnCheckedChanged(object sender, EventArgs e)
 		{
-			var languages = Colorizer.LoadLanguageNames();
-
-			// load hidden languages from Settings
-			var hidden = new SettingsProvider()
-				.GetCollection(nameof(ColorizerSheet))
-				.Get(ColorizerSheet.HiddenKey, new XElement(ColorizerSheet.HiddenKey));
-
-			// remove hidden languages
-			var keys = languages.Keys.ToList();
-			foreach (var key in keys.Where(key => hidden.Element(languages[key]) is not null))
-			{
-				languages.Remove(key);
-			}
-
-			return languages;
+			PopulateList(showAllBox.Checked);
 		}
 
 
