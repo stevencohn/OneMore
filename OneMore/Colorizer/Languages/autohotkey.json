@@ -1,0 +1,94 @@
+{
+  "name": "AutoHotkey",
+  "aliases": [
+    "ahk"
+  ],
+  "rules": [
+    {
+      "pattern": "(/\\*(?:[^*]|[\\r\\n]|(?:\\*+(?:[^*/]|[\\r\\n])))*\\*+/)",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      "pattern": "(/\\*[^\\r\\n]*)$",
+      "scope": "Comment",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      "pattern": "^((?:(?!/\\*)[^\\r\\n])*\\*/)",
+      "scope": "",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      "pattern": "(;.*?)\\r?$",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      "pattern": "^(::[^:\\r\\n]+::)",
+      "captures": [
+        "AutoHotkeyHotkey"
+      ]
+    },
+    {
+      "pattern": "^([~*$]?[<>]?[!^+#]*[A-Za-z0-9]+(?:\\s*&\\s*[<>]?[!^+#]*[A-Za-z0-9]+)?::)",
+      "captures": [
+        "AutoHotkeyHotkey"
+      ]
+    },
+    {
+      "pattern": "^(\\#[A-Za-z]+)\\b",
+      "captures": [
+        "PreprocessorKeyword"
+      ]
+    },
+    {
+      "pattern": "(\"[^\\n]*?(?<!\\\\)\")",
+      "captures": [
+        "String"
+      ]
+    },
+    {
+      "pattern": "(\\{[A-Za-z0-9]+\\})",
+      "captures": [
+        "AutoHotkeyKey"
+      ]
+    },
+    {
+      "pattern": "(%[A-Za-z_][A-Za-z0-9_]*%)",
+      "captures": [
+        "AutoHotkeyVariable"
+      ]
+    },
+    {
+      "pattern": "\\b(A_[A-Za-z]+)\\b",
+      "captures": [
+        "AutoHotkeyVariable"
+      ]
+    },
+    {
+      "pattern": "(?i)\\b(if|else|while|loop|until|for|in|break|continue|return|gosub|goto)\\b",
+      "captures": [
+        "AutoHotkeyKeyword"
+      ]
+    },
+    {
+      "pattern": "\\b([A-Za-z][A-Za-z0-9]*)(?=[,\\(])",
+      "captures": [
+        "AutoHotkeyCommand"
+      ]
+    },
+    {
+      "pattern": "\\b([0-9]{1,})\\b",
+      "captures": [
+        "Number"
+      ]
+    }
+  ]
+}

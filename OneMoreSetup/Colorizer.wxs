@@ -10,6 +10,12 @@
       <Component Id="LangArduinoPng">
         <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\arduino.png" KeyPath="yes" />
       </Component>
+      <Component Id="LangAutohotkeyJson">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\autohotkey.json" KeyPath="yes" />
+      </Component>
+      <Component Id="LangAutohotkeyPng">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\autohotkey.png" KeyPath="yes" />
+      </Component>
       <Component Id="LangBashJson">
         <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\bash.json" KeyPath="yes" />
       </Component>
@@ -63,6 +69,12 @@
       </Component>
       <Component Id="LangJsonPng">
         <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\json.png" KeyPath="yes" />
+      </Component>
+      <Component Id="LangOnetasticJson">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\onetastic.json" KeyPath="yes" />
+      </Component>
+      <Component Id="LangOnetasticPng">
+        <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\onetastic.png" KeyPath="yes" />
       </Component>
       <Component Id="LangPascalJson">
         <File Source="..\OneMore\bin\$(var.Configuration)\Colorizer\Languages\pascal.json" KeyPath="yes" />
