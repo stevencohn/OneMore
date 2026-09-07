@@ -611,6 +611,10 @@
     <value>לא ניתן היה לטעון את קובץ הגדרת השפה עבור '{0}'. ייתכן שהוא פגום - עיין בקובץ היומן לפרטים.</value>
     <comment>messagebox (0 arg is language key)</comment>
   </data>
+  <data name="ColorizeDialog_showAllBox.Text" xml:space="preserve">
+    <value>הצג את כל השפות</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="ColorizeDialog_Title" xml:space="preserve">
     <value>בחר שפה</value>
     <comment>dialog title</comment>

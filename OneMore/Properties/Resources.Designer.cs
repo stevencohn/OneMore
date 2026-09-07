@@ -1198,7 +1198,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ColorizeDialog_Title", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Show all languages.
+        /// </summary>
+        internal static string ColorizeDialog_showAllBox_Text {
+            get {
+                return ResourceManager.GetString("ColorizeDialog_showAllBox.Text", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Always apply the following fonts when colorizing code.
         /// </summary>

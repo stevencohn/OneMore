@@ -614,6 +614,10 @@ Voulez-vous remplacer son contenu ? Choisissez Non pour créer une nouvelle page
     <value>Le fichier de définition de langue pour « {0} » n'a pas pu être chargé. Il est peut-être mal formé – consultez le fichier journal pour plus de détails.</value>
     <comment>messagebox (0 arg is language key)</comment>
   </data>
+  <data name="ColorizeDialog_showAllBox.Text" xml:space="preserve">
+    <value>Afficher toutes les langues</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="ColorizeDialog_Title" xml:space="preserve">
     <value>Choisir la langue</value>
     <comment>dialog title</comment>

@@ -30,6 +30,7 @@
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ColorizeDialog));
 			this.controlPanel = new System.Windows.Forms.Panel();
+			this.showAllBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.mainPanel = new System.Windows.Forms.Panel();
 			this.view = new River.OneMoreAddIn.UI.MoreListView();
@@ -41,12 +42,30 @@
 			// controlPanel
 			// 
 			this.controlPanel.BackColor = System.Drawing.SystemColors.ControlLight;
+			this.controlPanel.Controls.Add(this.showAllBox);
 			this.controlPanel.Controls.Add(this.okButton);
 			this.controlPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.controlPanel.Location = new System.Drawing.Point(0, 516);
 			this.controlPanel.Name = "controlPanel";
-			this.controlPanel.Size = new System.Drawing.Size(373, 62);
+			this.controlPanel.Size = new System.Drawing.Size(373, 96);
 			this.controlPanel.TabIndex = 0;
+			// 
+			// showAllBox
+			// 
+			this.showAllBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.showAllBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.showAllBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.showAllBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.showAllBox.Location = new System.Drawing.Point(12, 6);
+			this.showAllBox.Name = "showAllBox";
+			this.showAllBox.Size = new System.Drawing.Size(220, 25);
+			this.showAllBox.StylizeImage = false;
+			this.showAllBox.TabIndex = 0;
+			this.showAllBox.Text = "Show all languages";
+			this.showAllBox.ThemedBack = null;
+			this.showAllBox.ThemedFore = null;
+			this.showAllBox.UseVisualStyleBackColor = true;
+			this.showAllBox.CheckedChanged += new System.EventHandler(this.ShowAllOnCheckedChanged);
 			// 
 			// okButton
 			// 
@@ -55,12 +74,12 @@
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
-			this.okButton.Location = new System.Drawing.Point(253, 13);
+			this.okButton.Location = new System.Drawing.Point(253, 47);
 			this.okButton.Name = "okButton";
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(108, 38);
 			this.okButton.StylizeImage = false;
-			this.okButton.TabIndex = 0;
+			this.okButton.TabIndex = 1;
 			this.okButton.Text = "OK";
 			this.okButton.ThemedBack = null;
 			this.okButton.ThemedFore = null;
@@ -89,8 +108,12 @@
 			this.view.HideSelection = false;
 			this.view.Location = new System.Drawing.Point(10, 10);
 			this.view.Name = "view";
+			this.view.OwnerDraw = true;
+			this.view.SelectedBackColorKey = "Highlight";
+			this.view.SelectedForeColorKey = "HighlightText";
 			this.view.Size = new System.Drawing.Size(353, 496);
 			this.view.TabIndex = 0;
+			this.view.UseCompatibleStateImageBehavior = false;
 			this.view.View = System.Windows.Forms.View.Details;
 			this.view.DoubleClick += new System.EventHandler(this.SelectOnDoubleClick);
 			this.view.KeyUp += new System.Windows.Forms.KeyEventHandler(this.CancelOnKeyUp);
@@ -104,7 +127,7 @@
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(373, 578);
+			this.ClientSize = new System.Drawing.Size(373, 612);
 			this.Controls.Add(this.mainPanel);
 			this.Controls.Add(this.controlPanel);
 			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -125,6 +148,7 @@
 
 		private System.Windows.Forms.Panel controlPanel;
 		private UI.MoreButton okButton;
+		private UI.MoreCheckBox showAllBox;
 		private System.Windows.Forms.Panel mainPanel;
 		private River.OneMoreAddIn.UI.MoreListView view;
 		private System.Windows.Forms.ColumnHeader nameColumn;
