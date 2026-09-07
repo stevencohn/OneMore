@@ -1,0 +1,68 @@
+{
+  "name": "Onetastic",
+  "aliases": [],
+  "rules": [
+    {
+      "pattern": "(/\\*(?:[^*]|[\\r\\n]|(?:\\*+(?:[^*/]|[\\r\\n])))*\\*+/)",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      "pattern": "(/\\*[^\\r\\n]*)$",
+      "scope": "Comment",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      "pattern": "^((?:(?!/\\*)[^\\r\\n])*\\*/)",
+      "scope": "",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      "pattern": "(//.*?)\\r?$",
+      "captures": [
+        "Comment"
+      ]
+    },
+    {
+      "pattern": "(?s)(\"[^\\n]*?(?<!\\\\)\")",
+      "captures": [
+        "String"
+      ]
+    },
+    {
+      "pattern": "(\\$[A-Za-z_][A-Za-z0-9_]*(?:\\.[A-Za-z_][A-Za-z0-9_]*)*)",
+      "captures": [
+        "OnetasticVariable"
+      ]
+    },
+    {
+      "pattern": "\\b([A-Za-z][A-Za-z0-9]*_[A-Za-z][A-Za-z0-9]*)\\b",
+      "captures": [
+        "OnetasticFunction"
+      ]
+    },
+    {
+      "pattern": "\\b(for|foreach|if|else|switch|case|default|while|break|continue|return|byref)\\b",
+      "captures": [
+        "Keyword"
+      ]
+    },
+    {
+      "pattern": "\\b(true|false)\\b",
+      "captures": [
+        "BuiltinValue"
+      ]
+    },
+    {
+      "pattern": "\\b([0-9]{1,})\\b",
+      "captures": [
+        "Number"
+      ]
+    }
+  ]
+}

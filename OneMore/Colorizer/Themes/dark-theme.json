@@ -41,6 +41,26 @@
       "italic": true
     },
     {
+      "name": "AutoHotkeyCommand",
+      "foreground": "Blue"
+    },
+    {
+      "name": "AutoHotkeyHotkey",
+      "foreground": "Teal"
+    },
+    {
+      "name": "AutoHotkeyKey",
+      "foreground": "CornflowerBlue"
+    },
+    {
+      "name": "AutoHotkeyKeyword",
+      "foreground": "Purple"
+    },
+    {
+      "name": "AutoHotkeyVariable",
+      "foreground": "Orange"
+    },
+    {
       "name": "BuiltinFunction",
       "foreground": "OliveDrab",
       "bold": true
@@ -161,6 +181,14 @@
     {
       "name": "Number",
       "foreground": "Purple"
+    },
+    {
+      "name": "OnetasticFunction",
+      "foreground": "Blue"
+    },
+    {
+      "name": "OnetasticVariable",
+      "foreground": "Orange"
     },
     {
       "name": "Operator"
