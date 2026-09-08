@@ -757,6 +757,10 @@ Normal</value>
     <value>Menú de contexto</value>
     <comment>sheet</comment>
   </data>
+  <data name="ConvertHeadingsCommand_NoHeadings" xml:space="preserve">
+    <value>No se encontraron títulos para convertir</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="ConvertImagesCommand_Converted" xml:space="preserve">
     <value>Comprime {0} imágenes y ahorra {1} bytes</value>
     <comment>messagebox</comment>
@@ -4234,6 +4238,14 @@ Pestaña Ayuda</value>
   <data name="ribCompressImagesButton_Screentip" xml:space="preserve">
     <value>Comprime imágenes convirtiendo PNG a JPG</value>
     <comment>ribbon images</comment>
+  </data>
+  <data name="ribConvertHeadingsButton_Label" xml:space="preserve">
+    <value>Convertir encabezados</value>
+    <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribConvertHeadingsButton_Screentip" xml:space="preserve">
+    <value>Convierta los títulos y su contenido nuevamente en una lista con viñetas anidadas</value>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribConvertMarkdownButton_Label" xml:space="preserve">
     <value>Convertir rebajas</value>

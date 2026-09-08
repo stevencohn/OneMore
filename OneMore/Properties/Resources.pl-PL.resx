@@ -754,6 +754,10 @@ Normalna</value>
     <value>Menu kontekstowe</value>
     <comment>sheet</comment>
   </data>
+  <data name="ConvertHeadingsCommand_NoHeadings" xml:space="preserve">
+    <value>Nie znaleziono żadnych nagłówków do konwersji</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="ConvertImagesCommand_Converted" xml:space="preserve">
     <value>Skompresuj obrazy {0}, oszczędzając {1} bajtów</value>
     <comment>messagebox</comment>
@@ -4235,6 +4239,14 @@ Zakładka Pomoc</value>
   <data name="ribCompressImagesButton_Screentip" xml:space="preserve">
     <value>Kompresuj obrazy, konwertując PNG na JPG</value>
     <comment>ribbon images</comment>
+  </data>
+  <data name="ribConvertHeadingsButton_Label" xml:space="preserve">
+    <value>Konwertuj nagłówki</value>
+    <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribConvertHeadingsButton_Screentip" xml:space="preserve">
+    <value>Konwertuj nagłówki i ich zawartość z powrotem na zagnieżdżoną listę punktowaną</value>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribConvertMarkdownButton_Label" xml:space="preserve">
     <value>Konwertuj Markdown</value>

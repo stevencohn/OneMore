@@ -758,6 +758,10 @@
     <value>上下文菜单</value>
     <comment>sheet</comment>
   </data>
+  <data name="ConvertHeadingsCommand_NoHeadings" xml:space="preserve">
+    <value>未找到可转换的标题</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="ConvertImagesCommand_Converted" xml:space="preserve">
     <value>压缩 {0} 个图像，节省 {1} 个字节</value>
     <comment>messagebox</comment>
@@ -4249,6 +4253,14 @@ ISO-code then comma then language name</comment>
   <data name="ribCompressImagesButton_Screentip" xml:space="preserve">
     <value>通过将 PNG 转换为 JPG 来压缩图像</value>
     <comment>ribbon images</comment>
+  </data>
+  <data name="ribConvertHeadingsButton_Label" xml:space="preserve">
+    <value>转换标题</value>
+    <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribConvertHeadingsButton_Screentip" xml:space="preserve">
+    <value>将标题及其内容转换回嵌套项目符号列表</value>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribConvertMarkdownButton_Label" xml:space="preserve">
     <value>Markdown 转换</value>

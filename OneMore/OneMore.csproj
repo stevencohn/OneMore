@@ -1074,6 +1074,7 @@
     <Compile Include="Commands\Numbering\RemoveSectionNumbersCommand.cs" />
     <Compile Include="Commands\Numbering\OutlineCommand.cs" />
     <Compile Include="Commands\Numbering\ConvertOutlineCommand.cs" />
+    <Compile Include="Commands\Numbering\ConvertHeadingsCommand.cs" />
     <Compile Include="Commands\Edit\PronunciateCommand.cs" />
     <Compile Include="Commands\File\Plugins\RunPluginCommand.cs" />
     <Compile Include="Commands\File\ExportCommand.cs" />

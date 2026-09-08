@@ -757,6 +757,10 @@
     <value>قائمة السياق</value>
     <comment>sheet</comment>
   </data>
+  <data name="ConvertHeadingsCommand_NoHeadings" xml:space="preserve">
+    <value>لم يتم العثور على عناوين للتحويل</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="ConvertImagesCommand_Converted" xml:space="preserve">
     <value>ضغط {0} صورة، مما يوفر {1} بايت</value>
     <comment>messagebox</comment>
@@ -4246,6 +4250,14 @@ ISO-code then comma then language name</comment>
   <data name="ribCompressImagesButton_Screentip" xml:space="preserve">
     <value>ضغط الصور عن طريق تحويل PNG إلى JPG</value>
     <comment>ribbon images</comment>
+  </data>
+  <data name="ribConvertHeadingsButton_Label" xml:space="preserve">
+    <value>تحويل العناوين</value>
+    <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribConvertHeadingsButton_Screentip" xml:space="preserve">
+    <value>تحويل العناوين ومحتواها مرة أخرى إلى قائمة ذات تعداد نقطي متداخلة</value>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribConvertMarkdownButton_Label" xml:space="preserve">
     <value>تحويل تخفيض السعر</value>

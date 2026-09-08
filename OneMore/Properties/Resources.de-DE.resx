@@ -757,6 +757,10 @@ Normal</value>
     <value>Kontextmenü</value>
     <comment>sheet</comment>
   </data>
+  <data name="ConvertHeadingsCommand_NoHeadings" xml:space="preserve">
+    <value>Es wurden keine Überschriften zum Konvertieren gefunden</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="ConvertImagesCommand_Converted" xml:space="preserve">
     <value>Komprimieren Sie {0} Bilder und sparen Sie {1} Bytes</value>
     <comment>messagebox</comment>
@@ -4234,6 +4238,14 @@ Registerkarte „Hilfe“.</value>
   <data name="ribCompressImagesButton_Screentip" xml:space="preserve">
     <value>Komprimieren Sie Bilder, indem Sie PNG in JPG konvertieren</value>
     <comment>ribbon images</comment>
+  </data>
+  <data name="ribConvertHeadingsButton_Label" xml:space="preserve">
+    <value>Überschriften konvertieren</value>
+    <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribConvertHeadingsButton_Screentip" xml:space="preserve">
+    <value>Konvertieren Sie Überschriften und deren Inhalt zurück in eine verschachtelte Liste mit Aufzählungszeichen</value>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribConvertMarkdownButton_Label" xml:space="preserve">
     <value>Markdown konvertieren</value>
