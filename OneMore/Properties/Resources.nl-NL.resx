@@ -754,6 +754,10 @@ Normaal</value>
     <value>Contextmenu</value>
     <comment>sheet</comment>
   </data>
+  <data name="ConvertHeadingsCommand_NoHeadings" xml:space="preserve">
+    <value>Er zijn geen koppen gevonden die kunnen worden geconverteerd</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="ConvertImagesCommand_Converted" xml:space="preserve">
     <value>Comprimeer {0} afbeeldingen en bespaar {1} bytes</value>
     <comment>messagebox</comment>
@@ -4235,6 +4239,14 @@ Tabblad Help</value>
   <data name="ribCompressImagesButton_Screentip" xml:space="preserve">
     <value>Comprimeer afbeeldingen door PNG naar JPG te converteren</value>
     <comment>ribbon images</comment>
+  </data>
+  <data name="ribConvertHeadingsButton_Label" xml:space="preserve">
+    <value>Koppen converteren</value>
+    <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribConvertHeadingsButton_Screentip" xml:space="preserve">
+    <value>Converteer koppen en hun inhoud terug naar een geneste lijst met opsommingstekens</value>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribConvertMarkdownButton_Label" xml:space="preserve">
     <value>Markdown converteren</value>

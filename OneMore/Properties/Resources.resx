@@ -759,6 +759,10 @@ Normal</value>
     <value>Context Menu</value>
     <comment>sheet</comment>
   </data>
+  <data name="ConvertHeadingsCommand_NoHeadings" xml:space="preserve">
+    <value>No headings were found to convert</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="ConvertImagesCommand_Converted" xml:space="preserve">
     <value>Compress {0} images, saving {1} bytes</value>
     <comment>messagebox</comment>
@@ -4267,6 +4271,14 @@ Help Tab</value>
   <data name="ribCompressImagesButton_Screentip" xml:space="preserve">
     <value>Compress images by converting PNG to JPG</value>
     <comment>ribbon images</comment>
+  </data>
+  <data name="ribConvertHeadingsButton_Label" xml:space="preserve">
+    <value>Convert Headings</value>
+    <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribConvertHeadingsButton_Screentip" xml:space="preserve">
+    <value>Convert headings and their content back to a nested bulleted list</value>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribConvertMarkdownButton_Label" xml:space="preserve">
     <value>Convert Markdown</value>

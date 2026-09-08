@@ -757,6 +757,10 @@
     <value>コンテキストメニュー</value>
     <comment>sheet</comment>
   </data>
+  <data name="ConvertHeadingsCommand_NoHeadings" xml:space="preserve">
+    <value>変換する見出しが見つかりませんでした</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="ConvertImagesCommand_Converted" xml:space="preserve">
     <value>{0} 枚の画像を圧縮し、{1} バイトを節約しました</value>
     <comment>messagebox</comment>
@@ -4242,6 +4246,14 @@ ISO-code then comma then language name</comment>
   <data name="ribCompressImagesButton_Screentip" xml:space="preserve">
     <value>PNG を JPG に変換して画像を圧縮</value>
     <comment>ribbon images</comment>
+  </data>
+  <data name="ribConvertHeadingsButton_Label" xml:space="preserve">
+    <value>見出しの変換</value>
+    <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribConvertHeadingsButton_Screentip" xml:space="preserve">
+    <value>見出しとその内容をネストされた箇条書きリストに変換します。</value>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribConvertMarkdownButton_Label" xml:space="preserve">
     <value>Markdownから変換</value>

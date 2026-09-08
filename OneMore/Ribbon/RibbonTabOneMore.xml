@@ -753,8 +753,14 @@
     </menu>
     <menu id="ribNumberingMenu" getLabel="GetRibbonLabel" imageMso="Numbering" showImage="true" keytip="NU">
       <button
+        id="ribConvertHeadingsButton"
+        imageMso="OutlineDemoteToBodyText"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="ConvertHeadingsCmd"/>
+      <button
         id="ribConvertOutlineButton"
-        imageMso="MultilevelListGallery"
+        imageMso="OutlinePromoteToHeading"
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
         onAction="ConvertOutlineCmd"/>

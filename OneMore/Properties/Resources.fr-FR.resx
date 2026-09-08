@@ -757,6 +757,10 @@ Normale</value>
     <value>Menu contextuel</value>
     <comment>sheet</comment>
   </data>
+  <data name="ConvertHeadingsCommand_NoHeadings" xml:space="preserve">
+    <value>Aucun titre à convertir n'a été trouvé</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="ConvertImagesCommand_Converted" xml:space="preserve">
     <value>Compressez {0} images, économisant ainsi {1} octets</value>
     <comment>messagebox</comment>
@@ -4246,6 +4250,14 @@ Onglet Aide</value>
   <data name="ribCompressImagesButton_Screentip" xml:space="preserve">
     <value>Compresser les images en convertissant PNG en JPG</value>
     <comment>ribbon images</comment>
+  </data>
+  <data name="ribConvertHeadingsButton_Label" xml:space="preserve">
+    <value>Convertir les titres</value>
+    <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribConvertHeadingsButton_Screentip" xml:space="preserve">
+    <value>Convertir les titres et leur contenu en une liste à puces imbriquée</value>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribConvertMarkdownButton_Label" xml:space="preserve">
     <value>Convertir Markdown</value>

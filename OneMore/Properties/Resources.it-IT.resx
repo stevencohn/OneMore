@@ -755,6 +755,10 @@ Normale</value>
     <value>Menù contestuale</value>
     <comment>sheet</comment>
   </data>
+  <data name="ConvertHeadingsCommand_NoHeadings" xml:space="preserve">
+    <value>Non è stata trovata alcuna intestazione da convertire</value>
+    <comment>messagebox</comment>
+  </data>
   <data name="ConvertImagesCommand_Converted" xml:space="preserve">
     <value>Comprimi {0} immagini, salvando {1} byte</value>
     <comment>messagebox</comment>
@@ -4239,6 +4243,14 @@ Scheda Aiuto</value>
   <data name="ribCompressImagesButton_Screentip" xml:space="preserve">
     <value>Comprimi le immagini convertendo PNG in JPG</value>
     <comment>ribbon images</comment>
+  </data>
+  <data name="ribConvertHeadingsButton_Label" xml:space="preserve">
+    <value>Converti intestazioni</value>
+    <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribConvertHeadingsButton_Screentip" xml:space="preserve">
+    <value>Converti i titoli e il loro contenuto in un elenco puntato nidificato</value>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribConvertMarkdownButton_Label" xml:space="preserve">
     <value>Converti Markdown</value>

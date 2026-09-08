@@ -1500,6 +1500,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No headings were found to convert.
+        /// </summary>
+        internal static string ConvertHeadingsCommand_NoHeadings {
+            get {
+                return ResourceManager.GetString("ConvertHeadingsCommand_NoHeadings", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Compress {0} images, saving {1} bytes.
         /// </summary>
         internal static string ConvertImagesCommand_Converted {
@@ -10134,6 +10143,24 @@ namespace River.OneMoreAddIn.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to Convert Headings.
+        /// </summary>
+        internal static string ribConvertHeadingsButton_Label {
+            get {
+                return ResourceManager.GetString("ribConvertHeadingsButton_Label", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Convert headings and their content back to a nested bulleted list.
+        /// </summary>
+        internal static string ribConvertHeadingsButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribConvertHeadingsButton_Screentip", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Convert Markdown.
         /// </summary>
