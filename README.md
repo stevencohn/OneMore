@@ -10,14 +10,14 @@ OneMore is an add-in for OneNote with simple and powerful features that make One
 
 
 # Highlights
-- Quickly access all OneMore commands from the almighty [Command Palette](https://onemoreaddin.com/the-basics/Basics.htm)!
+- Quickly access all OneMore commands from the almighty [OneMore: Command Palette](https://onemoreaddin.com/the-basics/Command%20Palette.htm)!
 - Automate over 40 OneMore commands from the command-line using [the OneMore CLI Runner](https://onemoreaddin.com/the-basics/OneMore%20CLI.htm)
-- Type and search for [inline #hashtags](https://onemoreaddin.com/commands/Search%20and%20Tag%20Commands.htm)
-- Use the [Navigator window](https://onemoreaddin.com/the-basics/Navigator.htm) to keep track of visited pages, a personalized reading list, and navigate the headings of the current page.
-- Integrating with the [ribbon bar](https://onemoreaddin.com/the-basics/Basics.htm), extends <a href="https://onemoreaddin.com/context-menus/Context%20Menu%20Extensions.htm">context menus</a>, and provides customized <a href="https://onemoreaddin.com/the-basics/OneNote%20Keyboard%20Shortcuts.htm">keyboard shortcuts</a>
+- Type and search for [inline #hashtags](https://onemoreaddin.com/commands/Hashtag%20Commands.htm)
+- Use the [Navigator window](https://onemoreaddin.com/the-basics/Navigator%20and%20History.htm) to keep track of visited pages, a personalized reading list, and navigate the headings of the current page.
+- Integrating with the [ribbon bar](https://onemoreaddin.com/the-basics/Ribbon%20Menus.htm), extends <a href="https://onemoreaddin.com/context-menus/Context%20Menu%20Extensions.htm">context menus</a>, and provides customized <a href="https://onemoreaddin.com/the-basics/OneNote%20Keyboard%20Shortcuts.htm">keyboard shortcuts</a>
 - Create [customized font styles](https://onemoreaddin.com/commands/My%20Styles%20Commands.htm) in addition to those provided by OneNote, apply a style to selected text, or apply all styles to the entire page
 - Use predefined [table styles](https://onemoreaddin.com/commands/Table%20Style%20Commands.htm) or create your own to selectively set cell background and fonts
-- Manage a collection of [favorite pages and sections](https://onemoreaddin.com/commands/Favorites%20Commands.htm) with shortcuts to quickly jump to a favorite
+- Manage a collection of [favorite pages and section](https://onemoreaddin.com/the-basics/Favorites.htm) with shortcuts to quickly jump to a favorite
 - Add [colorized syntax highlighting](https://onemoreaddin.com/commands/Colorize%20Command.htm) to snippets of source code
 - Add [formulas in table cells](https://onemoreaddin.com/commands/Table%20Commands.htm) using Excel-like expressions
 - [Crop, rotate, or adjust images](https://onemoreaddin.com/commands/Image%20Commands.htm) on a page without opening an external photo editor
@@ -38,7 +38,7 @@ See the 📓 **[OneMore Wiki](https://onemoreaddin.com/)** for a full user guide
 and description of each command.
 
 ## Privacy and code signing policy
-The OneMore [Privacy Policy](https://onemoreaddin.com/get-started/PRIVACY.md) outlines how OneMore collects and uses information. In general, OneMore is committed to protecting your privacy and does not collect any personal information.
+The OneMore [OneMore: Privacy Policy](https://onemoreaddin.com/get-started/Privacy%20Policy.htm) outlines how OneMore collects and uses information. In general, OneMore is committed to protecting your privacy and does not collect any personal information.
 
 Pending: _This program uses free code signing provided by [SignPath.io](https://signpath.io), and a certificate by the SignPath Foundation. Signed releases are published only by the repo owner, Steven Cohn._
 
