@@ -37,7 +37,7 @@ _Click an image to enlarge_
 See the 📓 **[OneMore Wiki](https://onemoreaddin.com/)** for a full user guide, setup instructions,
 and description of each command.
 
-## Privacy and code signing policy
+## 🔒 Privacy and code signing policy
 The OneMore [Privacy Policy](https://onemoreaddin.com/get-started/Privacy%20Policy.htm) outlines how OneMore collects and uses information. In general, OneMore is committed to protecting your privacy and does not collect any personal information.
 
 Pending: _This program uses free code signing provided by [SignPath.io](https://signpath.io), and a certificate by the SignPath Foundation. Signed releases are published only by the repo owner, Steven Cohn._
