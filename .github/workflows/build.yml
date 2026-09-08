@@ -36,6 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.matrix.outputs.matrix }}
+      signing_policy: ${{ steps.signing-policy.outputs.signing_policy }}
     steps:
       - name: Validate inputs
         shell: pwsh
@@ -54,9 +55,24 @@ jobs:
           if ($arches.Count -eq 1) { $json = "[$json]" }
           echo "matrix=$json" >> $env:GITHUB_OUTPUT
 
+      # release builds sign with the SignPath Foundation production certificate, which
+      # requires a human to manually approve each signing request in the SignPath UI;
+      # beta builds keep using the auto-approved test-signing policy so routine dev
+      # builds never block on approval
+      - name: Compute signing policy
+        id: signing-policy
+        shell: pwsh
+        run: |
+          $policy = '${{ inputs.build_type }}' -eq 'release' ? 'release-signing' : 'test-signing'
+          echo "signing_policy=$policy" >> $env:GITHUB_OUTPUT
+
   build:
     needs: setup
     runs-on: windows-2025-vs2026
+    # generous headroom for release builds: signing requests against the SignPath
+    # Foundation production certificate require manual approval in the SignPath UI
+    # and may sit pending for a while, well past the default 360-minute job timeout
+    timeout-minutes: 720
     permissions:
       contents: read
       actions: read
@@ -117,7 +133,7 @@ jobs:
           api-token: '${{ secrets.SIGNPATH_API_TOKEN }}'
           organization-id: '61b65606-056b-43c6-b72d-789abcb45ecf'
           project-slug: 'OneMore'
-          signing-policy-slug: 'test-signing'
+          signing-policy-slug: '${{ needs.setup.outputs.signing_policy }}'
           artifact-configuration-slug: 'assemblies'
           github-artifact-id: '${{ steps.upload-unsigned-assemblies.outputs.artifact-id }}'
           wait-for-completion: true
@@ -168,7 +184,7 @@ jobs:
           api-token: '${{ secrets.SIGNPATH_API_TOKEN }}'
           organization-id: '61b65606-056b-43c6-b72d-789abcb45ecf'
           project-slug: 'OneMore'
-          signing-policy-slug: 'test-signing'
+          signing-policy-slug: '${{ needs.setup.outputs.signing_policy }}'
           artifact-configuration-slug: 'installer-msi'
           github-artifact-id: '${{ steps.upload-unsigned-msi.outputs.artifact-id }}'
           wait-for-completion: true
@@ -218,7 +234,7 @@ jobs:
           api-token: '${{ secrets.SIGNPATH_API_TOKEN }}'
           organization-id: '61b65606-056b-43c6-b72d-789abcb45ecf'
           project-slug: 'OneMore'
-          signing-policy-slug: 'test-signing'
+          signing-policy-slug: '${{ needs.setup.outputs.signing_policy }}'
           artifact-configuration-slug: 'bundle-exe'
           github-artifact-id: '${{ steps.upload-unsigned-bundle.outputs.artifact-id }}'
           wait-for-completion: true
