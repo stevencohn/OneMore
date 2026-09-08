@@ -70,9 +70,9 @@ namespace River.OneMoreAddIn.Commands
 				string word;
 				System.IntPtr windowHandle;
 
-				await using (var one = new OneNote(out var page, out var ns))
+				await using (var one = new OneNote(out var page, out _))
 				{
-					word = PeekCaretWord(page, ns);
+					word = new PageEditor(page).GetSelectedText().Trim().TrimStart('#');
 					windowHandle = one.WindowHandle;
 				}
 
@@ -166,6 +166,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (!ReplaceCaretWord(page, ns, tag))
 			{
+				ConsumeAdjoiningHash(page, ns);
 				new PageEditor(page).InsertOrReplace(tag);
 			}
 
@@ -186,34 +187,6 @@ namespace River.OneMoreAddIn.Commands
 				pauseHandle?.Dispose();
 				pauseHandle = null;
 			}
-		}
-
-
-		/// <summary>
-		/// Read-only peek at the word straddling the empty text cursor, used to seed the
-		/// popup's text box. Does not modify the page.
-		/// </summary>
-		private static string PeekCaretWord(Page page, XNamespace ns)
-		{
-			var selection = FindCaretSelection(page, ns);
-			if (selection is null)
-			{
-				return string.Empty;
-			}
-
-			var (prev, next) = FindAdjoiningRuns(selection);
-
-			var builder = new StringBuilder();
-			if (prev is not null)
-			{
-				builder.Append(prev.Value.SplitAtLastWord().Item1);
-			}
-			if (next is not null)
-			{
-				builder.Append(next.Value.SplitAtFirstWord().Item1);
-			}
-
-			return builder.ToString();
 		}
 
 
@@ -287,6 +260,47 @@ namespace River.OneMoreAddIn.Commands
 				.ReplaceWith(new XCData(tag));
 
 			return true;
+		}
+
+
+		// A real (non-empty) selected run doesn't include an adjoining '#' left over from
+		// an existing hashtag, e.g. selecting just "hashtag" out of "#hashtag" - since the
+		// replacement tag text always supplies its own leading '#', that leftover would
+		// otherwise double up as "##". This finds and consumes it, mirroring the same
+		// TrimEnd('#') handling ReplaceCaretWord does for the empty-cursor case.
+		private static void ConsumeAdjoiningHash(Page page, XNamespace ns)
+		{
+			var selected = page.Root.Descendants(ns + "T")
+				.Where(e => e.Attributes("selected").Any(a => a.Value.Equals("all")))
+				.ToList();
+
+			if (selected.Count == 0)
+			{
+				return;
+			}
+
+			var first = selected[0];
+			if (first.GetCData()?.Value.StartsWith("#") == true)
+			{
+				// selection already includes the '#' so there's nothing to consume
+				return;
+			}
+
+			if (first.PreviousNode is XElement prev && prev.GetCData() is XCData cdata &&
+				cdata.Value.EndsWith("#"))
+			{
+				// TrimEnd, not just the one trailing '#', in case the leftover is itself
+				// a doubled "##" prefix
+				var trimmed = cdata.Value.TrimEnd('#');
+				if (trimmed.Length == 0)
+				{
+					prev.Remove();
+				}
+				else
+				{
+					cdata.Value = trimmed;
+				}
+			}
 		}
 
 
