@@ -779,6 +779,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<OutlineCommand>();
 
 
+		[Command("ribConvertOutlineButton_Label", Keys.None, "ribNumberingMenu")]
+		public async Task ConvertOutlineCmd(IRibbonControl control)
+			=> await factory.Run<ConvertOutlineCommand>();
+
+
 		[Command("ribPageColorButton_Label", Keys.None, "ribPageMenu")]
 		public async Task PageColorCmd(IRibbonControl control)
 			=> await factory.Run<PageColorCommand>();

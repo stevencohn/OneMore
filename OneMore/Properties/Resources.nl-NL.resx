@@ -762,6 +762,26 @@ Normaal</value>
     <value>Er zijn geen afbeeldingen gevonden om te comprimeren</value>
     <comment>messagebox</comment>
   </data>
+  <data name="ConvertOutlineCommand_NoList" xml:space="preserve">
+    <value>Er is geen lijst met opsommingstekens of genummerde items gevonden die kan worden geconverteerd</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="ConvertOutlineDialog.Text" xml:space="preserve">
+    <value>Omtrek converteren</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ConvertOutlineDialog_depthLabel.Text" xml:space="preserve">
+    <value>Koersdiepte</value>
+    <comment>label</comment>
+  </data>
+  <data name="ConvertOutlineDialog_themeBox_BuiltIn" xml:space="preserve">
+    <value>Ingebouwde OneNote-stijlen</value>
+    <comment>combo box item</comment>
+  </data>
+  <data name="ConvertOutlineDialog_themeLabel.Text" xml:space="preserve">
+    <value>Rubriek thema</value>
+    <comment>label</comment>
+  </data>
   <data name="CopyAsMarkdownCommand_copied" xml:space="preserve">
     <value>Afwaardering gekopieerd</value>
     <comment>message box</comment>
@@ -4223,6 +4243,14 @@ Tabblad Help</value>
   <data name="ribConvertMarkdownButton_Screentip" xml:space="preserve">
     <value>Converteer pagina of geselecteerde prijsverlaging naar OneNote-indeling</value>
     <comment>ribbon edit</comment>
+  </data>
+  <data name="ribConvertOutlineButton_Label" xml:space="preserve">
+    <value>Omtrek converteren</value>
+    <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribConvertOutlineButton_Screentip" xml:space="preserve">
+    <value>Converteer een lijst met opsommingstekens of genummerde lijsten naar koppen en sublijsten</value>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribCopyAcrossButton_Label" xml:space="preserve">
     <value>Kopiëren over</value>

@@ -762,6 +762,26 @@
     <value>לא נמצאו תמונות לדחיסה</value>
     <comment>messagebox</comment>
   </data>
+  <data name="ConvertOutlineCommand_NoList" xml:space="preserve">
+    <value>לא נמצאה רשימה עם תבליטים או ממוספרים להמרה</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="ConvertOutlineDialog.Text" xml:space="preserve">
+    <value>המר את Outline</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ConvertOutlineDialog_depthLabel.Text" xml:space="preserve">
+    <value>עומק כיוון</value>
+    <comment>label</comment>
+  </data>
+  <data name="ConvertOutlineDialog_themeBox_BuiltIn" xml:space="preserve">
+    <value>סגנונות OneNote מובנים</value>
+    <comment>combo box item</comment>
+  </data>
+  <data name="ConvertOutlineDialog_themeLabel.Text" xml:space="preserve">
+    <value>נושא הכותרת</value>
+    <comment>label</comment>
+  </data>
   <data name="CopyAsMarkdownCommand_copied" xml:space="preserve">
     <value>סימון מועתק</value>
     <comment>message box</comment>
@@ -4227,6 +4247,14 @@ ISO-code then comma then language name</comment>
   <data name="ribConvertMarkdownButton_Screentip" xml:space="preserve">
     <value>המר את העמוד או הסימון שנבחר לפורמט OneNote</value>
     <comment>ribbon edit</comment>
+  </data>
+  <data name="ribConvertOutlineButton_Label" xml:space="preserve">
+    <value>המר את Outline</value>
+    <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribConvertOutlineButton_Screentip" xml:space="preserve">
+    <value>המר רשימה עם תבליטים או ממוספר לכותרות ותתי רשימות</value>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribCopyAcrossButton_Label" xml:space="preserve">
     <value>העתק</value>

@@ -1516,7 +1516,52 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ConvertImagesCommand_NoImages", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to No bulleted or numbered list was found to convert.
+        /// </summary>
+        internal static string ConvertOutlineCommand_NoList {
+            get {
+                return ResourceManager.GetString("ConvertOutlineCommand_NoList", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Convert Outline.
+        /// </summary>
+        internal static string ConvertOutlineDialog_Text {
+            get {
+                return ResourceManager.GetString("ConvertOutlineDialog.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Heading depth.
+        /// </summary>
+        internal static string ConvertOutlineDialog_depthLabel_Text {
+            get {
+                return ResourceManager.GetString("ConvertOutlineDialog_depthLabel.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Built-in OneNote styles.
+        /// </summary>
+        internal static string ConvertOutlineDialog_themeBox_BuiltIn {
+            get {
+                return ResourceManager.GetString("ConvertOutlineDialog_themeBox_BuiltIn", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Heading theme.
+        /// </summary>
+        internal static string ConvertOutlineDialog_themeLabel_Text {
+            get {
+                return ResourceManager.GetString("ConvertOutlineDialog_themeLabel.Text", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Copied markdown.
         /// </summary>
@@ -10106,7 +10151,25 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribConvertMarkdownButton_Screentip", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Convert Outline.
+        /// </summary>
+        internal static string ribConvertOutlineButton_Label {
+            get {
+                return ResourceManager.GetString("ribConvertOutlineButton_Label", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Convert a bulleted or numbered list to headings and sub-lists.
+        /// </summary>
+        internal static string ribConvertOutlineButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribConvertOutlineButton_Screentip", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Copy Across.
         /// </summary>

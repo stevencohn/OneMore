@@ -765,6 +765,26 @@ Normal</value>
     <value>Es wurden keine Bilder zum Komprimieren gefunden</value>
     <comment>messagebox</comment>
   </data>
+  <data name="ConvertOutlineCommand_NoList" xml:space="preserve">
+    <value>Es wurde keine Liste mit Aufzählungszeichen oder Nummern zum Konvertieren gefunden</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="ConvertOutlineDialog.Text" xml:space="preserve">
+    <value>Umriss konvertieren</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ConvertOutlineDialog_depthLabel.Text" xml:space="preserve">
+    <value>Kurstiefe</value>
+    <comment>label</comment>
+  </data>
+  <data name="ConvertOutlineDialog_themeBox_BuiltIn" xml:space="preserve">
+    <value>Integrierte OneNote-Stile</value>
+    <comment>combo box item</comment>
+  </data>
+  <data name="ConvertOutlineDialog_themeLabel.Text" xml:space="preserve">
+    <value>Überschriftenthema</value>
+    <comment>label</comment>
+  </data>
   <data name="CopyAsMarkdownCommand_copied" xml:space="preserve">
     <value>Abschlag kopiert</value>
     <comment>message box</comment>
@@ -4222,6 +4242,14 @@ Registerkarte „Hilfe“.</value>
   <data name="ribConvertMarkdownButton_Screentip" xml:space="preserve">
     <value>Konvertieren Sie die Seite oder den ausgewählten Markdown in das OneNote-Format</value>
     <comment>ribbon edit</comment>
+  </data>
+  <data name="ribConvertOutlineButton_Label" xml:space="preserve">
+    <value>Umriss konvertieren</value>
+    <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribConvertOutlineButton_Screentip" xml:space="preserve">
+    <value>Wandeln Sie eine Liste mit Aufzählungszeichen oder Nummern in Überschriften und Unterlisten um</value>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribCopyAcrossButton_Label" xml:space="preserve">
     <value>Kopieren</value>
