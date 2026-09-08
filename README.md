@@ -38,8 +38,8 @@ See the 📓 **[OneMore Wiki](https://onemoreaddin.com/)** for a full user guide
 and description of each command.
 
 ## Privacy and code signing policy
-OneMore uses [various online services]([OneMore: Online Services](https://onemoreaddin.com/get-started/Online%20Services.htm)) automatically during normal operation (e.g., to check for updates). No personal information is transmitted to these systems unless specifically requested by the user. See the documentation for details.
+The OneMore [Privacy Policy](PRIVACY.md) outlines how OneMore collects and uses information. In general, OneMore is committed to protecting your privacy and does not collect any personal information.
 
-Pending: _This program uses free code signing provided by SignPath.io, and a certificate by the SignPath Foundation. Signed releases are published only by the repo owner, Steven Cohn._
+Pending: _This program uses free code signing provided by [SignPath.io](https://signpath.io), and a certificate by the SignPath Foundation. Signed releases are published only by the repo owner, Steven Cohn._
 
 © 2020 Steven M Cohn. All rights reserved.
