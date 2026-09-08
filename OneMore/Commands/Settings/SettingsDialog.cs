@@ -99,7 +99,10 @@ namespace River.OneMoreAddIn.Settings
 
 			activeIndex = 0;
 			navLinks[0].Active = true;
-			Navigate(0);
+
+			// discard Task returned by Navigate() since we can't await it here
+			_ = Navigate(0);
+
 			navLinks[0].Focus();
 
 			restart = false;
@@ -217,7 +220,8 @@ namespace River.OneMoreAddIn.Settings
 			activeIndex = index;
 			navLinks[index].Focus();
 
-			Navigate(index);
+			// discard Task returned by Navigate(); no need to await
+			_ = Navigate(index);
 		}
 
 
