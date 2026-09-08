@@ -644,7 +644,7 @@
         <menuSeparator id="sepNumbering" />
         <button
           id="ribNumberSectionsButton"
-          imageMso="LineNumbersMenu"
+          imageMso="NumberInsert"
           getLabel="GetRibbonLabel"
           getScreentip="GetRibbonScreentip"
           onAction="NumberSectionsCmd"/>
