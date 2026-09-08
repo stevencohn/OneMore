@@ -765,6 +765,26 @@ Normal</value>
     <value>No se encontraron imágenes para comprimir.</value>
     <comment>messagebox</comment>
   </data>
+  <data name="ConvertOutlineCommand_NoList" xml:space="preserve">
+    <value>No se encontró ninguna lista numerada o con viñetas para convertir</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="ConvertOutlineDialog.Text" xml:space="preserve">
+    <value>Convertir esquema</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ConvertOutlineDialog_depthLabel.Text" xml:space="preserve">
+    <value>Profundidad de rumbo</value>
+    <comment>label</comment>
+  </data>
+  <data name="ConvertOutlineDialog_themeBox_BuiltIn" xml:space="preserve">
+    <value>Estilos integrados de OneNote</value>
+    <comment>combo box item</comment>
+  </data>
+  <data name="ConvertOutlineDialog_themeLabel.Text" xml:space="preserve">
+    <value>tema de encabezado</value>
+    <comment>label</comment>
+  </data>
   <data name="CopyAsMarkdownCommand_copied" xml:space="preserve">
     <value>descuento copiado</value>
     <comment>message box</comment>
@@ -4222,6 +4242,14 @@ Pestaña Ayuda</value>
   <data name="ribConvertMarkdownButton_Screentip" xml:space="preserve">
     <value>Convertir página o rebajas seleccionadas al formato OneNote</value>
     <comment>ribbon edit</comment>
+  </data>
+  <data name="ribConvertOutlineButton_Label" xml:space="preserve">
+    <value>Convertir esquema</value>
+    <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribConvertOutlineButton_Screentip" xml:space="preserve">
+    <value>Convierta una lista numerada o con viñetas en encabezados y sublistas</value>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribCopyAcrossButton_Label" xml:space="preserve">
     <value>Copiar</value>

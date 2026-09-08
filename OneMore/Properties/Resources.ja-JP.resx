@@ -765,6 +765,26 @@
     <value>圧縮する画像が見つかりませんでした</value>
     <comment>messagebox</comment>
   </data>
+  <data name="ConvertOutlineCommand_NoList" xml:space="preserve">
+    <value>変換する箇条書きまたは番号付きリストが見つかりませんでした</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="ConvertOutlineDialog.Text" xml:space="preserve">
+    <value>アウトラインの変換</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="ConvertOutlineDialog_depthLabel.Text" xml:space="preserve">
+    <value>見出しの深さ</value>
+    <comment>label</comment>
+  </data>
+  <data name="ConvertOutlineDialog_themeBox_BuiltIn" xml:space="preserve">
+    <value>組み込みの OneNote スタイル</value>
+    <comment>combo box item</comment>
+  </data>
+  <data name="ConvertOutlineDialog_themeLabel.Text" xml:space="preserve">
+    <value>見出しテーマ</value>
+    <comment>label</comment>
+  </data>
   <data name="CopyAsMarkdownCommand_copied" xml:space="preserve">
     <value>Markdownをコピーしました</value>
     <comment>message box</comment>
@@ -4230,6 +4250,14 @@ ISO-code then comma then language name</comment>
   <data name="ribConvertMarkdownButton_Screentip" xml:space="preserve">
     <value>ページまたは選択したMarkdown形式のテキストをOneNote形式に変換する</value>
     <comment>ribbon edit</comment>
+  </data>
+  <data name="ribConvertOutlineButton_Label" xml:space="preserve">
+    <value>アウトラインの変換</value>
+    <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribConvertOutlineButton_Screentip" xml:space="preserve">
+    <value>箇条書きまたは番号付きリストを見出しとサブリストに変換する</value>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribCopyAcrossButton_Label" xml:space="preserve">
     <value>コピーの横展開</value>

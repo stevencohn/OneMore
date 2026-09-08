@@ -753,6 +753,12 @@
     </menu>
     <menu id="ribNumberingMenu" getLabel="GetRibbonLabel" imageMso="Numbering" showImage="true" keytip="NU">
       <button
+        id="ribConvertOutlineButton"
+        imageMso="MultilevelListGallery"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="ConvertOutlineCmd"/>
+      <button
         id="ribOutlineButton"
         imageMso="OutlineShowDetail"
         getLabel="GetRibbonLabel"
@@ -770,6 +776,7 @@
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
         onAction="NumberLinesCmd"/>
+      <menuSeparator id="sepNumbering" />
       <button
         id="ribNumberSectionsButton"
         imageMso="LineNumbersMenu"
