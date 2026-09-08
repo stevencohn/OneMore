@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
+	using River.OneMoreAddIn.Settings;
 	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Generic;
@@ -21,12 +22,15 @@ namespace River.OneMoreAddIn.Commands
 
 		private readonly Page page;
 		private readonly MoreAutoCompleteList palette;
+		private readonly bool doubled;
 		private List<PageReader.CountedWord> commonWords;
 
 
 		public HashtaggerDialog()
 		{
 			InitializeComponent();
+
+			doubled = new SettingsProvider().GetCollection("HashtagSheet").Get<bool>("doubled");
 
 			if (NeedsLocalizing())
 			{
@@ -82,13 +86,27 @@ namespace River.OneMoreAddIn.Commands
 
 		/// <summary>
 		/// Gets the string containing the selected tags, normalized so tags entered in
-		/// tagsBox separated by spaces, commas, or both are each prefaced with at least
-		/// one '#' and separated by single spaces.
+		/// tagsBox separated by spaces, commas, or both are each prefaced with '#' (or '##'
+		/// when the user's "doubled" hashtag setting is on) and separated by single spaces.
 		/// </summary>
 		public string Tags => string.Join(" ",
 			tagsBox.Text
 				.Split(TagSeparators, StringSplitOptions.RemoveEmptyEntries)
-				.Select(t => t[0] == '#' ? t : $"#{t}"));
+				.Select(EnsureHashPrefix));
+
+
+		/// <summary>
+		/// Prepends '#' (or '##' when doubled) to the given word if it isn't already there.
+		/// </summary>
+		private string EnsureHashPrefix(string text)
+		{
+			if (!doubled)
+			{
+				return text[0] == '#' ? text : $"#{text}";
+			}
+
+			return text.StartsWith("##") ? text : text[0] == '#' ? $"#{text}" : $"##{text}";
+		}
 
 
 		private void LoadTagsOnLoad(object sender, EventArgs e)
@@ -114,7 +132,7 @@ namespace River.OneMoreAddIn.Commands
 		private static HashSet<string> ExtractHashtags(string text)
 		{
 			return new HashSet<string>(
-				Regex.Matches(text, @"#\w+").Cast<Match>().Select(m => m.Value),
+				Regex.Matches(text, @"#{1,2}\w+").Cast<Match>().Select(m => m.Value),
 				StringComparer.OrdinalIgnoreCase);
 		}
 
@@ -148,11 +166,8 @@ namespace River.OneMoreAddIn.Commands
 
 		private void AppendTag(string text)
 		{
-			// add # to a common word or bare tag name
-			if (text[0] != '#')
-			{
-				text = $"#{text}";
-			}
+			// add # (or ##) to a common word or bare tag name
+			text = EnsureHashPrefix(text);
 
 			if (!ExtractHashtags(tagsBox.Text).Contains(text))
 			{
@@ -184,7 +199,7 @@ namespace River.OneMoreAddIn.Commands
 		private void RefreshCommonWordsAvailability()
 		{
 			var existing = ExtractHashtags(tagsBox.Text);
-			commonWordsButton.Enabled = commonWords.Any(w => !existing.Contains($"#{w.Word}"));
+			commonWordsButton.Enabled = commonWords.Any(w => !existing.Contains(EnsureHashPrefix(w.Word)));
 		}
 
 
@@ -206,9 +221,9 @@ namespace River.OneMoreAddIn.Commands
 			commonWordsMenu.Items.Clear();
 
 			var existing = ExtractHashtags(tagsBox.Text);
-			foreach (var word in commonWords.Where(w => !existing.Contains($"#{w.Word}")))
+			foreach (var word in commonWords.Where(w => !existing.Contains(EnsureHashPrefix(w.Word))))
 			{
-				var item = new MoreMenuItem($"#{word.Word} ({word.Count})");
+				var item = new MoreMenuItem($"{EnsureHashPrefix(word.Word)} ({word.Count})");
 				item.Click += (s, ev) => AppendTag(word.Word);
 				commonWordsMenu.Items.Add(item);
 			}

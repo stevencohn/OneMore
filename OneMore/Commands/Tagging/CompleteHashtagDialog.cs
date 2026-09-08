@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Settings;
 	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace River.OneMoreAddIn.Commands
 	internal partial class CompleteHashtagDialog : MoreForm
 	{
 		private readonly MoreAutoCompleteList palette;
+		private readonly bool doubled;
 
 
 		/// <summary>
@@ -31,6 +33,8 @@ namespace River.OneMoreAddIn.Commands
 
 			DefaultControl = tagBox;
 
+			doubled = new SettingsProvider().GetCollection("HashtagSheet").Get<bool>("doubled");
+
 			palette = new MoreAutoCompleteList
 			{
 				FreeText = true,
@@ -41,7 +45,8 @@ namespace River.OneMoreAddIn.Commands
 			palette.SetAutoCompleteList(tagBox);
 			palette.LoadCommands(names, recentNames);
 
-			tagBox.Text = string.IsNullOrEmpty(word) ? "#" : $"#{word}";
+			var prefix = doubled ? "##" : "#";
+			tagBox.Text = string.IsNullOrEmpty(word) ? prefix : $"{prefix}{word}";
 			tagBox.SelectionStart = tagBox.Text.Length;
 
 			// deliberately NOT setting ElevatedWithOneNote here: that mechanism registers a
@@ -58,8 +63,9 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
-		/// Gets the hashtag chosen or typed by the user, always prefixed with '#'.
-		/// Only meaningful when DialogResult is OK.
+		/// Gets the hashtag chosen or typed by the user, always prefixed with '#' (or '##'
+		/// when the user's "doubled" hashtag setting is on). Only meaningful when
+		/// DialogResult is OK.
 		/// </summary>
 		public string SelectedTag { get; private set; }
 
@@ -168,13 +174,13 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			var text = tagBox.Text.Trim();
-			if (string.IsNullOrEmpty(text) || text == "#")
+			if (string.IsNullOrEmpty(text) || text == "#" || text == "##")
 			{
 				Close();
 				return;
 			}
 
-			SelectedTag = AddHashtagCommand.NormalizeTags(text);
+			SelectedTag = AddHashtagCommand.NormalizeTags(text, doubled);
 
 			DialogResult = DialogResult.OK;
 			Close();

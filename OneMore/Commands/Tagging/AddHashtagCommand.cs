@@ -61,18 +61,30 @@ namespace River.OneMoreAddIn.Commands
 
 		/// <summary>
 		/// Normalizes a space/tab-separated list of words into hashtags, adding a leading
-		/// '#' to any token that doesn't already have one. Exposed for reuse by other
-		/// commands (e.g. CreateJournalCommand) that need to tag pages they create directly
-		/// rather than through the CLI.
+		/// '#' (or '##' when <paramref name="doubled"/> is true) to any token that doesn't
+		/// already have one. Exposed for reuse by other commands (e.g. CreateJournalCommand)
+		/// that need to tag pages they create directly rather than through the CLI.
 		/// </summary>
 		/// <param name="tags">A space/tab-separated list of words, with or without '#'</param>
-		/// <returns>A space-separated list of hashtags, each prefixed with '#'</returns>
-		internal static string NormalizeTags(string tags)
+		/// <param name="doubled">
+		/// True to ensure each tag is prefixed with '##' instead of '#', reflecting the
+		/// user's "doubled" hashtag setting
+		/// </param>
+		/// <returns>A space-separated list of hashtags, each prefixed with '#' or '##'</returns>
+		internal static string NormalizeTags(string tags, bool doubled = false)
 		{
 			var tokens = tags
 				.Split(new[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
 
-			return string.Join(" ", tokens.Select(t => t.StartsWith("#") ? t : "#" + t));
+			return string.Join(" ", tokens.Select(t =>
+			{
+				if (!doubled)
+				{
+					return t.StartsWith("#") ? t : "#" + t;
+				}
+
+				return t.StartsWith("##") ? t : t.StartsWith("#") ? "#" + t : "##" + t;
+			}));
 		}
 
 
