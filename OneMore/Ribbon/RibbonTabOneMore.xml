@@ -765,6 +765,12 @@
         getScreentip="GetRibbonScreentip"
         onAction="ConvertOutlineCmd"/>
       <button
+        id="ribNumberLinesButton"
+        imageMso="LineNumbersMenu"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="NumberLinesCmd"/>
+      <button
         id="ribOutlineButton"
         imageMso="OutlineShowDetail"
         getLabel="GetRibbonLabel"
@@ -776,13 +782,13 @@
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
         onAction="SortListCmd"/>
+      <menuSeparator id="sepNumbering" />
       <button
-        id="ribNumberLinesButton"
-        imageMso="LineNumbersMenu"
+        id="ribDateStampButton"
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
-        onAction="NumberLinesCmd"/>
-      <menuSeparator id="sepNumbering" />
+        imageMso="DateAndTimeInsert"
+        onAction="DateStampCmd"/>
       <button
         id="ribNumberSectionsButton"
         imageMso="NumberInsert"
@@ -1187,12 +1193,6 @@
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
         onAction="CollapsePagesCmd"/>
-      <button
-        id="ribDateStampButton"
-        getLabel="GetRibbonLabel"
-        getScreentip="GetRibbonScreentip"
-        imageMso="DateAndTimeInsert"
-        onAction="DateStampCmd"/>
       <button
         id="ribPronunciateButton"
         getLabel="GetRibbonLabel"
