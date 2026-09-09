@@ -80,8 +80,6 @@ namespace River.OneMoreAddIn.Settings
 		{
 			base.OnLoad(e);
 
-			ActiveControl = applyBox;
-
 			// ComboBox.SelectedIndex (CB_SETCURSEL) leaves the edit portion's text selected;
 			// deselect so the boxes don't appear highlighted as soon as the sheet is shown.
 			// Deferred via BeginInvoke because familyBox/family2Box (FontComboBox) re-select
