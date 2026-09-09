@@ -6160,7 +6160,7 @@ Suchmaschinen werden im Seit-Kontextmenü mit der rechten Maustaste angezeigt.</
     <comment>link</comment>
   </data>
   <data name="SearchTitleDialog_introLabel.Text" xml:space="preserve">
-    <value>Geben Sie eine Seitentitelabfrage ein. Durchsucht standardmäßig alle Notizbücher. Verwenden Sie „\name“, um auf ein passendes Notizbuch zu zielen, „\\“ nur für das aktuelle Notizbuch, „#tag“, um nach Hashtag zu filtern, und „-#tag“, um ein Hashtag auszuschließen. Stellen Sie „&gt;“ als Präfix voran, um nach der zuletzt geänderten Datei zu sortieren.</value>
+    <value>Geben Sie eine Titelabfrage ein. Durchsucht standardmäßig alle Notizbücher. Verwenden Sie „\name“, um auf ein passendes Notizbuch zu zielen, „\\“ nur für das aktuelle Notizbuch, „#tag“, um nach Hashtag zu filtern, und „-#tag“, um ein Hashtag auszuschließen. Stellen Sie „&gt;“ als Präfix voran, um nach der zuletzt geänderten Datei zu sortieren.</value>
     <comment>label</comment>
   </data>
   <data name="SearchTitleDialog_noHashtagCatalog" xml:space="preserve">
@@ -6176,7 +6176,7 @@ Suchmaschinen werden im Seit-Kontextmenü mit der rechten Maustaste angezeigt.</
     <comment>link</comment>
   </data>
   <data name="SearchTitleDialog_Text" xml:space="preserve">
-    <value>Seitentitel durchsuchen</value>
+    <value>Titel suchen</value>
     <comment>dialog title</comment>
   </data>
   <data name="SectionColor_Title" xml:space="preserve">

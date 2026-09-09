@@ -32,6 +32,12 @@ namespace River.OneMoreAddIn.Commands
 		private string lastSearchedText;
 		private bool lastSearchRemembered;
 
+		// Search Titles multi-level results: the full unfiltered set built by the last search
+		// (dividers + hit cards, in final display order), re-rendered locally into resultsView
+		// whenever the type filter bar's selection changes, with no re-search involved.
+		private readonly List<CardModel> allCards = new();
+		private bool lastSearchScoped;
+
 
 		public SearchTitleDialog()
 		{
@@ -61,6 +67,7 @@ namespace River.OneMoreAddIn.Commands
 			resultsView.CheckedChanged += OnCheckedChanged;
 			resultsView.KeyDown += HandleNavKey;
 			resultsView.Enter += ResultsViewEntered;
+			typeFilterBar.FilterChanged += (s, e) => RenderFiltered();
 
 			debounceTimer = new Timer { Interval = DebounceMilliseconds };
 			debounceTimer.Tick += DebounceTick;
@@ -279,6 +286,14 @@ namespace River.OneMoreAddIn.Commands
 				finder = new TextMatchBuilder(false, false).BuildRegex(query.TitleText);
 			}
 
+			// A search scoped to one specific notebook (by name, or "\\" for the current
+			// notebook) excludes that notebook itself from matching - it's the search's scope,
+			// not a candidate hit - so its name isn't tested and its filter chip is hidden.
+			var scoped = !string.IsNullOrEmpty(query.NotebookFilter) && query.NotebookFilter != "*";
+			lastSearchScoped = scoped;
+
+			var hashtagSuffix = query.Hashtags.Count > 0 ? string.Join(" ", query.Hashtags) : null;
+
 			try
 			{
 				await using var one = new OneNote();
@@ -313,14 +328,15 @@ namespace River.OneMoreAddIn.Commands
 						foreach (var nb in notebooks)
 						{
 							all.AddRange(SearchTitleEngine.SearchNotebook(
-								nb.Tree, nb.Name, finder, hashtagPageIds, excludedHashtagPageIds));
+								nb.Tree, nb.Name, finder, hashtagPageIds, excludedHashtagPageIds,
+								matchAllLevels: true, matchNotebookName: !scoped));
 						}
 
 						SearchTitleEngine.Sort(all, sortByModified: true);
 
 						foreach (var match in all)
 						{
-							resultsView.AppendCard(ToCard(match));
+							allCards.Add(ToCard(match, hashtagSuffix));
 						}
 					}
 					else
@@ -329,19 +345,20 @@ namespace River.OneMoreAddIn.Commands
 							.OrderBy(n => n.Name, StringComparer.CurrentCultureIgnoreCase))
 						{
 							var matches = SearchTitleEngine.SearchNotebook(
-								nb.Tree, nb.Name, finder, hashtagPageIds, excludedHashtagPageIds);
+								nb.Tree, nb.Name, finder, hashtagPageIds, excludedHashtagPageIds,
+								matchAllLevels: true, matchNotebookName: !scoped);
 
 							if (matches.Count == 0)
 							{
 								continue;
 							}
 
-							SearchTitleEngine.Sort(matches, sortByModified: false);
+							SearchTitleEngine.SortHierarchical(matches);
 
-							resultsView.AppendCard(new CardModel { Title = nb.Name, IsHeader = true, IsPlainText = true });
+							allCards.Add(new CardModel { Title = nb.Name, IsHeader = true, IsPlainText = true });
 							foreach (var match in matches)
 							{
-								resultsView.AppendCard(ToCard(match));
+								allCards.Add(ToCard(match, hashtagSuffix));
 							}
 						}
 					}
@@ -350,15 +367,26 @@ namespace River.OneMoreAddIn.Commands
 				{
 					var nb = notebooks[0];
 					var matches = SearchTitleEngine.SearchNotebook(
-						nb.Tree, nb.Name, finder, hashtagPageIds, excludedHashtagPageIds);
+						nb.Tree, nb.Name, finder, hashtagPageIds, excludedHashtagPageIds,
+						matchAllLevels: true, matchNotebookName: !scoped);
 
-					SearchTitleEngine.Sort(matches, query.SortByModified);
+					if (query.SortByModified)
+					{
+						SearchTitleEngine.Sort(matches, sortByModified: true);
+					}
+					else
+					{
+						SearchTitleEngine.SortHierarchical(matches);
+					}
 
 					foreach (var match in matches)
 					{
-						resultsView.AppendCard(ToCard(match));
+						allCards.Add(ToCard(match, hashtagSuffix));
 					}
 				}
+
+				PopulateFilterBar();
+				RenderFiltered();
 
 				if (remember)
 				{
@@ -444,14 +472,16 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private static CardModel ToCard(TitleSearchResult match) => new()
+		private static CardModel ToCard(TitleSearchResult match, string hashtagSuffix) => new()
 		{
 			Title = match.Path,
 			PageId = match.PageId,
 			SectionColor = string.IsNullOrEmpty(match.Color)
 				? Color.Empty
 				: ColorHelper.FromHtml(match.Color),
-			Modified = match.Modified
+			Modified = match.Modified,
+			Level = match.Level,
+			HashtagSuffix = match.Level == TitleHitLevel.Page ? hashtagSuffix : null
 		};
 
 
@@ -467,10 +497,92 @@ namespace River.OneMoreAddIn.Commands
 				errorControl = null;
 			}
 
+			allCards.Clear();
+			typeFilterBar.Clear();
 			resultsView.Clear();
 			resultsHeaderPanel.Visible = false;
+			filterPanel.Visible = false;
 			indexButton.Visible = false;
 			indexButton.Enabled = false;
+		}
+
+
+		/// <summary>
+		/// Refreshes the type filter chip counts from the current allCards set and resets the
+		/// selection to "All". Called once per actual search - never on a filter click, or the
+		/// chip the user just selected would immediately be reset back to "All".
+		/// </summary>
+		private void PopulateFilterBar()
+		{
+			var counts = new Dictionary<TitleHitLevel, int>();
+			var total = 0;
+
+			foreach (var card in allCards)
+			{
+				if (card.IsHeader || !card.Level.HasValue)
+				{
+					continue;
+				}
+
+				counts.TryGetValue(card.Level.Value, out var n);
+				counts[card.Level.Value] = n + 1;
+				total++;
+			}
+
+			typeFilterBar.SetCounts(total, counts, showNotebookChip: !lastSearchScoped);
+			filterPanel.Visible = allCards.Count > 0;
+		}
+
+
+		/// <summary>
+		/// Re-renders resultsView from allCards under the type filter bar's current selection.
+		/// Purely local - no re-search - so it's cheap to call on every filter chip click.
+		/// A grouping divider is kept only when at least one row from its notebook (its own
+		/// hit, or one of its children) is still visible under the current filter; the same
+		/// CardModel instances are reused (never rebuilt) so IsChecked survives filter switches.
+		/// </summary>
+		private void RenderFiltered()
+		{
+			resultsView.Clear();
+
+			var selected = typeFilterBar.SelectedLevel;
+			CardModel pendingHeader = null;
+			var buffer = new List<CardModel>();
+
+			void FlushGroup()
+			{
+				if (buffer.Count > 0)
+				{
+					if (pendingHeader != null)
+					{
+						resultsView.AppendCard(pendingHeader);
+					}
+
+					foreach (var card in buffer)
+					{
+						resultsView.AppendCard(card);
+					}
+				}
+
+				buffer.Clear();
+			}
+
+			foreach (var card in allCards)
+			{
+				if (card.IsHeader)
+				{
+					FlushGroup();
+					pendingHeader = card;
+					continue;
+				}
+
+				if (selected == null || card.Level == selected)
+				{
+					buffer.Add(card);
+				}
+			}
+
+			FlushGroup();
 		}
 
 

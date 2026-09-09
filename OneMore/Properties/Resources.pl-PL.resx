@@ -6159,7 +6159,7 @@ Wyszukiwarki pojawią się w menu kontekstowym strony, kliknij prawym przyciskie
     <comment>link</comment>
   </data>
   <data name="SearchTitleDialog_introLabel.Text" xml:space="preserve">
-    <value>Wprowadź zapytanie dotyczące tytułu strony. Domyślnie przeszukuje wszystkie notesy. Użyj „\name”, aby określić zakres pasującego notatnika, „\\ tylko dla bieżącego notatnika, „#tag” do filtrowania według hashtagu i „-#tag”, aby wykluczyć hashtag. Przedrostek „&gt;”, aby sortować według ostatnio zmodyfikowanych.</value>
+    <value>Wprowadź zapytanie tytułowe. Domyślnie przeszukuje wszystkie notesy. Użyj „\name”, aby określić zakres pasującego notatnika, „\\ tylko dla bieżącego notatnika, „#tag” do filtrowania według hashtagu i „-#tag”, aby wykluczyć hashtag. Przedrostek „&gt;”, aby sortować według ostatnio zmodyfikowanych.</value>
     <comment>label</comment>
   </data>
   <data name="SearchTitleDialog_noHashtagCatalog" xml:space="preserve">
@@ -6175,7 +6175,7 @@ Wyszukiwarki pojawią się w menu kontekstowym strony, kliknij prawym przyciskie
     <comment>link</comment>
   </data>
   <data name="SearchTitleDialog_Text" xml:space="preserve">
-    <value>Wyszukaj tytuły stron</value>
+    <value>Wyszukaj tytuły</value>
     <comment>dialog title</comment>
   </data>
   <data name="SectionColor_Title" xml:space="preserve">

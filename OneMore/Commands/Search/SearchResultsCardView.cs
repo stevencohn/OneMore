@@ -37,6 +37,9 @@ namespace River.OneMoreAddIn.Commands
 		private const int MaxHits = 10_000;
 		private const int CheckBoxSize = 16; // width/height of the checkbox glyph in the title row
 		private const int CheckBoxGap = 4;   // gap between checkbox right edge and title text
+		private const int TypeChipSize = 16; // height of the Search Titles type-chip badge, and its width for a single-letter code
+		private const int TypeChipPadX = 5;  // horizontal padding either side of a multi-letter code (e.g. "SG")
+		private const int TypeChipGap = 5;   // gap between type chip right edge and title text
 
 		private readonly List<CardModel> cards = new();
 		private bool layoutDirty;
@@ -64,6 +67,7 @@ namespace River.OneMoreAddIn.Commands
 		private Color hintFore;
 		private Font titleFont;
 		private Font hitFont;
+		private Font chipFont;
 		private Pen checkboxPen;
 		private SolidBrush checkboxFillBrush;
 
@@ -157,8 +161,10 @@ namespace River.OneMoreAddIn.Commands
 
 			titleFont?.Dispose();
 			hitFont?.Dispose();
+			chipFont?.Dispose();
 			titleFont = new Font("Segoe UI", 8.5f, FontStyle.Bold, GraphicsUnit.Point);
 			hitFont   = new Font("Segoe UI", 8.5f, FontStyle.Regular, GraphicsUnit.Point);
+			chipFont  = new Font("Segoe UI", 6.5f, FontStyle.Bold, GraphicsUnit.Point);
 
 			Invalidate();
 		}
@@ -182,6 +188,7 @@ namespace River.OneMoreAddIn.Commands
 				DisposeThemed();
 				titleFont?.Dispose();
 				hitFont?.Dispose();
+				chipFont?.Dispose();
 			}
 			base.Dispose(disposing);
 		}
@@ -307,10 +314,17 @@ namespace River.OneMoreAddIn.Commands
 			// A card with keyboard focus (whole-card selection, no focus rectangle) is
 			// indicated by doubling this bar's width instead; falls back to the themed
 			// highlight color when the card itself has no section color to widen.
+			//
+			// For a Search Titles hit (card.Level set), this shows the real OneNote color of
+			// the node the hit belongs to: a page's containing section, or a section's/
+			// notebook's own color. Section groups have no color of their own in OneNote, so
+			// that's the one case that falls back to the type-chip's fixed palette color.
 			var isSelectedCard = hasKeyboardFocus && cardIndex == selectedCard && selectedHit == -1;
 			var swatchColor = card.SectionColor != Color.Empty
 				? card.SectionColor
-				: (isSelectedCard ? manager.GetColor("Highlight") : Color.Empty);
+				: card.Level.HasValue
+					? TitleHitPalette.GetColor(card.Level.Value, manager.DarkMode)
+					: (isSelectedCard ? manager.GetColor("Highlight") : Color.Empty);
 
 			if (swatchColor != Color.Empty)
 			{
@@ -345,9 +359,19 @@ namespace River.OneMoreAddIn.Commands
 
 				// Note that this emulates the styling of MoreCheckbox
 
-				var checkboxX  = contentX;
-				var titleTextX = contentX + CheckBoxSize + CheckBoxGap;
-				var titleW     = contentW - CheckBoxSize - CheckBoxGap;
+				var checkboxX = contentX;
+				var chipX     = contentX + CheckBoxSize + CheckBoxGap;
+				var hasChip   = card.Level.HasValue;
+				var chipWidth = 0;
+				if (hasChip)
+				{
+					var codeSize = TextRenderer.MeasureText(
+						g, TitleHitPalette.GetCode(card.Level.Value), chipFont ?? Font);
+					chipWidth = Math.Max(TypeChipSize, codeSize.Width + TypeChipPadX * 2);
+				}
+				var reserved  = CheckBoxSize + CheckBoxGap + (hasChip ? chipWidth + TypeChipGap : 0);
+				var titleTextX = contentX + reserved;
+				var titleW     = contentW - reserved;
 
 				if (card.PageId != null && (isHovered || card.IsChecked))
 				{
@@ -361,8 +385,38 @@ namespace River.OneMoreAddIn.Commands
 					}
 				}
 
+				// Type-chip badge: small colored glyph (N/SG/S/P) identifying the hierarchy
+				// level of a Search Titles hit; redundant with the left accent bar above.
+				if (hasChip)
+				{
+					var chipY = y + (TitleRowH - TypeChipSize) / 2;
+					var chipRect = new Rectangle(chipX, chipY, chipWidth, TypeChipSize);
+
+					using var chipBrush = new SolidBrush(TitleHitPalette.GetColor(card.Level.Value, manager.DarkMode));
+					g.FillRoundedRectangle(chipBrush, chipRect, 3);
+
+					TextRenderer.DrawText(g, TitleHitPalette.GetCode(card.Level.Value), chipFont ?? Font,
+						chipRect, TitleHitPalette.GetGlyphColor(manager.DarkMode),
+						TextFormatFlags.VerticalCenter | TextFormatFlags.HorizontalCenter |
+						TextFormatFlags.NoPrefix | TextFormatFlags.SingleLine);
+				}
+
 				var titleRect = new Rectangle(titleTextX, y, titleW, TitleRowH);
 				TextRenderer.DrawText(g, card.Title, titleFont ?? Font, titleRect, fore, flags);
+
+				// Muted hashtag suffix, drawn immediately after the (possibly ellipsized) title
+				// text - page hits only, shown whenever the query included a hashtag filter.
+				if (!string.IsNullOrEmpty(card.HashtagSuffix))
+				{
+					var titleSize = TextRenderer.MeasureText(g, card.Title, titleFont ?? Font, titleRect.Size, flags);
+					var suffixX = titleTextX + titleSize.Width + 6;
+					var suffixW = titleRect.Right - suffixX;
+					if (suffixW > 10)
+					{
+						var suffixRect = new Rectangle(suffixX, y, suffixW, TitleRowH);
+						TextRenderer.DrawText(g, card.HashtagSuffix, hitFont ?? Font, suffixRect, hintFore, flags);
+					}
+				}
 
 				// Hover-only last-modified label, right-justified, drawn over the path text
 				// it overlaps so it takes visual priority while the mouse is over the row.

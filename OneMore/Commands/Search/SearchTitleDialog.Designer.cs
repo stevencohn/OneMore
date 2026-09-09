@@ -39,6 +39,8 @@ namespace River.OneMoreAddIn.Commands
 			this.morePanel1 = new River.OneMoreAddIn.UI.MorePanel();
 			this.morePanel2 = new River.OneMoreAddIn.UI.MorePanel();
 			this.queryPanel = new River.OneMoreAddIn.UI.MorePanel();
+			this.filterPanel = new River.OneMoreAddIn.UI.MorePanel();
+			this.typeFilterBar = new River.OneMoreAddIn.Commands.TitleHitFilterBar();
 			this.resultsHeaderPanel = new River.OneMoreAddIn.UI.MorePanel();
 			this.selectAllLink = new River.OneMoreAddIn.UI.MoreLinkLabel();
 			this.barLabel = new River.OneMoreAddIn.UI.MoreLabel();
@@ -46,6 +48,7 @@ namespace River.OneMoreAddIn.Commands
 			this.morePanel1.SuspendLayout();
 			this.morePanel2.SuspendLayout();
 			this.queryPanel.SuspendLayout();
+			this.filterPanel.SuspendLayout();
 			this.resultsHeaderPanel.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -58,7 +61,7 @@ namespace River.OneMoreAddIn.Commands
 			this.introLabel.Name = "introLabel";
 			this.introLabel.Size = new System.Drawing.Size(784, 72);
 			this.introLabel.TabIndex = 0;
-			this.introLabel.Text = "Enter a page title query. Searches all notebooks by default. Use \"\\name\" to " +
+			this.introLabel.Text = "Enter a title query. Searches all notebooks by default. Use \"\\name\" to " +
     "scope to a matching notebook, \"\\\\\" for the current notebook only, and \"#tag\" to filter by hashtag. " +
     "Prefix with \">\" to sort by most recently modified.";
 			this.introLabel.ThemedBack = null;
@@ -138,10 +141,10 @@ namespace River.OneMoreAddIn.Commands
 			this.resultsView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
 			this.resultsView.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.resultsView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.resultsView.Location = new System.Drawing.Point(15, 169);
+			this.resultsView.Location = new System.Drawing.Point(15, 203);
 			this.resultsView.Name = "resultsView";
-			this.resultsView.Size = new System.Drawing.Size(790, 321);
-			this.resultsView.TabIndex = 2;
+			this.resultsView.Size = new System.Drawing.Size(790, 287);
+			this.resultsView.TabIndex = 3;
 			this.resultsView.TabStop = true;
 			// 
 			// morePanel1
@@ -155,7 +158,7 @@ namespace River.OneMoreAddIn.Commands
 			this.morePanel1.Name = "morePanel1";
 			this.morePanel1.Padding = new System.Windows.Forms.Padding(3);
 			this.morePanel1.Size = new System.Drawing.Size(790, 66);
-			this.morePanel1.TabIndex = 4;
+			this.morePanel1.TabIndex = 5;
 			this.morePanel1.ThemedBack = null;
 			this.morePanel1.ThemedFore = null;
 			this.morePanel1.TopBorderColor = System.Drawing.SystemColors.Control;
@@ -195,21 +198,48 @@ namespace River.OneMoreAddIn.Commands
 			this.queryPanel.ThemedFore = null;
 			this.queryPanel.TopBorderColor = System.Drawing.SystemColors.Control;
 			this.queryPanel.TopBorderSize = 0;
-			// 
+			//
+			// filterPanel
+			//
+			this.filterPanel.BottomBorderColor = System.Drawing.SystemColors.ActiveBorder;
+			this.filterPanel.BottomBorderSize = 0;
+			this.filterPanel.Controls.Add(this.typeFilterBar);
+			this.filterPanel.Dock = System.Windows.Forms.DockStyle.Top;
+			this.filterPanel.Location = new System.Drawing.Point(15, 139);
+			this.filterPanel.Margin = new System.Windows.Forms.Padding(0);
+			this.filterPanel.Name = "filterPanel";
+			this.filterPanel.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.filterPanel.Size = new System.Drawing.Size(790, 34);
+			this.filterPanel.TabIndex = 2;
+			this.filterPanel.ThemedBack = null;
+			this.filterPanel.ThemedFore = null;
+			this.filterPanel.TopBorderColor = System.Drawing.SystemColors.Control;
+			this.filterPanel.TopBorderSize = 0;
+			this.filterPanel.Visible = false;
+			//
+			// typeFilterBar
+			//
+			this.typeFilterBar.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.typeFilterBar.Location = new System.Drawing.Point(3, 2);
+			this.typeFilterBar.Name = "typeFilterBar";
+			this.typeFilterBar.Size = new System.Drawing.Size(784, 30);
+			this.typeFilterBar.TabIndex = 0;
+			this.typeFilterBar.TabStop = false;
+			//
 			// resultsHeaderPanel
-			// 
+			//
 			this.resultsHeaderPanel.BottomBorderColor = System.Drawing.SystemColors.ActiveBorder;
 			this.resultsHeaderPanel.BottomBorderSize = 0;
 			this.resultsHeaderPanel.Controls.Add(this.selectAllLink);
 			this.resultsHeaderPanel.Controls.Add(this.barLabel);
 			this.resultsHeaderPanel.Controls.Add(this.clearAllLink);
 			this.resultsHeaderPanel.Dock = System.Windows.Forms.DockStyle.Top;
-			this.resultsHeaderPanel.Location = new System.Drawing.Point(15, 139);
+			this.resultsHeaderPanel.Location = new System.Drawing.Point(15, 173);
 			this.resultsHeaderPanel.Margin = new System.Windows.Forms.Padding(0);
 			this.resultsHeaderPanel.Name = "resultsHeaderPanel";
 			this.resultsHeaderPanel.Padding = new System.Windows.Forms.Padding(3);
 			this.resultsHeaderPanel.Size = new System.Drawing.Size(790, 30);
-			this.resultsHeaderPanel.TabIndex = 3;
+			this.resultsHeaderPanel.TabIndex = 4;
 			this.resultsHeaderPanel.ThemedBack = null;
 			this.resultsHeaderPanel.ThemedFore = null;
 			this.resultsHeaderPanel.TopBorderColor = System.Drawing.SystemColors.Control;
@@ -282,6 +312,7 @@ namespace River.OneMoreAddIn.Commands
 			this.ClientSize = new System.Drawing.Size(900, 700);
 			this.Controls.Add(this.resultsView);
 			this.Controls.Add(this.resultsHeaderPanel);
+			this.Controls.Add(this.filterPanel);
 			this.Controls.Add(this.queryPanel);
 			this.Controls.Add(this.morePanel2);
 			this.Controls.Add(this.morePanel1);
@@ -293,12 +324,13 @@ namespace River.OneMoreAddIn.Commands
 			this.MinimumSize = new System.Drawing.Size(620, 380);
 			this.Name = "SearchTitleDialog";
 			this.Padding = new System.Windows.Forms.Padding(15, 15, 15, 10);
-			this.Text = "Search Page Titles";
+			this.Text = "Search Titles";
 			this.morePanel1.ResumeLayout(false);
 			this.morePanel2.ResumeLayout(false);
 			this.morePanel2.PerformLayout();
 			this.queryPanel.ResumeLayout(false);
 			this.queryPanel.PerformLayout();
+			this.filterPanel.ResumeLayout(false);
 			this.resultsHeaderPanel.ResumeLayout(false);
 			this.resultsHeaderPanel.PerformLayout();
 			this.ResumeLayout(false);
@@ -316,6 +348,8 @@ namespace River.OneMoreAddIn.Commands
 		private UI.MorePanel morePanel1;
 		private UI.MorePanel morePanel2;
 		private UI.MorePanel queryPanel;
+		private UI.MorePanel filterPanel;
+		private TitleHitFilterBar typeFilterBar;
 		private UI.MorePanel resultsHeaderPanel;
 		private UI.MoreLinkLabel selectAllLink;
 		private UI.MoreLabel barLabel;
