@@ -182,12 +182,12 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			if (AddIn.Culture.NumberFormat.NumberDecimalSeparator != ".")
+			if (AddIn.Locale.NumberFormat.NumberDecimalSeparator != ".")
 			{
 				for (int i = 0; i < sizeBox.Items.Count; i++)
 				{
 					sizeBox.Items[i] = sizeBox.Items[i].ToString()
-						.Replace(".", AddIn.Culture.NumberFormat.NumberDecimalSeparator);
+						.Replace(".", AddIn.Locale.NumberFormat.NumberDecimalSeparator);
 				}
 			}
 
@@ -328,7 +328,7 @@ namespace River.OneMoreAddIn.Commands
 
 			// normalize number to remove ".0"
 			sizeBox.Text = double.Parse(selection.FontSize, CultureInfo.InvariantCulture)
-				.ToString("0.#", AddIn.Culture);
+				.ToString("0.#", AddIn.Locale);
 
 			boldButton.Checked = selection.IsBold;
 			italicButton.Checked = selection.IsItalic;
@@ -402,7 +402,7 @@ namespace River.OneMoreAddIn.Commands
 
 			var offset = superButton.Checked || subButton.Checked;
 
-			if (!float.TryParse(sizeBox.Text, NumberStyles.Any, AddIn.Culture, out var sampleFontSize))
+			if (!float.TryParse(sizeBox.Text, NumberStyles.Any, AddIn.Locale, out var sampleFontSize))
 			{
 				sampleFontSize = (float)StyleBase.DefaultFontSize;
 			}
@@ -578,7 +578,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				var save = selection.Font;
 
-				if (!float.TryParse(sizeBox.Text, NumberStyles.Any, AddIn.Culture, out var size))
+				if (!float.TryParse(sizeBox.Text, NumberStyles.Any, AddIn.Locale, out var size))
 				{
 					size = (float)StyleBase.DefaultFontSize;
 				}
@@ -599,7 +599,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				var save = selection.Font;
 
-				if (!float.TryParse(sizeBox.Text, NumberStyles.Any, AddIn.Culture, out var size))
+				if (!float.TryParse(sizeBox.Text, NumberStyles.Any, AddIn.Locale, out var size))
 				{
 					size = (float)StyleBase.DefaultFontSize;
 				}
@@ -620,7 +620,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				var save = selection.Font;
 
-				if (!float.TryParse(sizeBox.Text, NumberStyles.Any, AddIn.Culture, out var size))
+				if (!float.TryParse(sizeBox.Text, NumberStyles.Any, AddIn.Locale, out var size))
 				{
 					size = (float)StyleBase.DefaultFontSize;
 				}

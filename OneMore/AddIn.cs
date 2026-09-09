@@ -179,24 +179,45 @@ namespace River.OneMoreAddIn
 		}
 
 
-		private static CultureInfo GetCultureSetting()
+		private static (CultureInfo Culture, CultureInfo Locale) GetCultureSettings()
 		{
 			var thread = System.Threading.Thread.CurrentThread;
 
 			var settings = new SettingsProvider().GetCollection(nameof(GeneralSheet));
 			var lang = settings.Get("language", thread.CurrentUICulture.Name);
 			var culture = CultureInfo.GetCultureInfo(lang);
-			thread.CurrentCulture = culture;
+
 			thread.CurrentUICulture = culture;
-			return culture;
+
+			// if keeping the workstation locale, leave CurrentCulture as the OS-derived
+			// value; otherwise the selected language also drives number/date/currency
+			// formatting, preserving legacy behavior
+			var locale = settings.Get("keepWorkstationLocale", false)
+				? thread.CurrentCulture
+				: culture;
+
+			thread.CurrentCulture = locale;
+
+			return (culture, locale);
 		}
 
 
+		private static readonly (CultureInfo Culture, CultureInfo Locale) cultureSettings
+			= GetCultureSettings();
+
+
 		/// <summary>
-		/// Gets the thread culture for use in subsequent threads; used primarily for 
-		/// debugging when explicitly setting the culture in the AddIn() constructor
+		/// Gets the culture used for UI string localization; driven by the selected
+		/// Language setting
 		/// </summary>
-		public static CultureInfo Culture { get; private set; } = GetCultureSetting();
+		public static CultureInfo Culture => cultureSettings.Culture;
+
+
+		/// <summary>
+		/// Gets the culture used for number, date, and currency formatting; matches
+		/// Culture unless the user has chosen to keep their workstation locale
+		/// </summary>
+		public static CultureInfo Locale => cultureSettings.Locale;
 
 
 		/// <summary>

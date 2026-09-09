@@ -176,7 +176,7 @@ namespace River.OneMoreAddIn.Commands
 						var hashtags = new List<string>();
 
 						var tags = datum.Value.Split(
-							new string[] { AddIn.Culture.TextInfo.ListSeparator },
+							new string[] { AddIn.Locale.TextInfo.ListSeparator },
 							StringSplitOptions.RemoveEmptyEntries);
 
 						foreach (var tag in tags)
@@ -198,8 +198,8 @@ namespace River.OneMoreAddIn.Commands
 						}
 
 						var sep = page.IsRightToLeft()
-							? $" {AddIn.Culture.TextInfo.ListSeparator}"
-							: $"{AddIn.Culture.TextInfo.ListSeparator} ";
+							? $" {AddIn.Locale.TextInfo.ListSeparator}"
+							: $"{AddIn.Locale.TextInfo.ListSeparator} ";
 
 						datum.Value = string.Join(sep, hashtags);
 					}

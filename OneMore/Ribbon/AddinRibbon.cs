@@ -542,7 +542,7 @@ namespace River.OneMoreAddIn
 			DebugRibbon($"GetFavoritesContent({control.Id}) culture:{AddIn.Culture.Name}");
 
 			// TODO: this doesn't seem to work!
-			System.Threading.Thread.CurrentThread.CurrentCulture = AddIn.Culture;
+			System.Threading.Thread.CurrentThread.CurrentCulture = AddIn.Locale;
 			System.Threading.Thread.CurrentThread.CurrentUICulture = AddIn.Culture;
 
 			return FavoritesMenu.LoadMenu().ToString(SaveOptions.DisableFormatting);

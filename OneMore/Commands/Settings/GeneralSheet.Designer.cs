@@ -32,15 +32,16 @@ namespace River.OneMoreAddIn.Settings
 			this.introBox = new River.OneMoreAddIn.UI.MoreMultilineLabel();
 			this.layoutPanel = new System.Windows.Forms.Panel();
 			this.sequentialBox = new River.OneMoreAddIn.UI.MoreCheckBox();
-			this.themeBox = new UI.MoreComboBox();
-			this.themeLabel = new UI.MoreLabel();
+			this.themeBox = new River.OneMoreAddIn.UI.MoreComboBox();
+			this.themeLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.advancedGroup = new River.OneMoreAddIn.UI.MoreGroupBox();
+			this.telemetryBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.experimentalBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.verboseBox = new River.OneMoreAddIn.UI.MoreCheckBox();
-			this.langBox = new UI.MoreComboBox();
-			this.langLabel = new UI.MoreLabel();
+			this.langBox = new River.OneMoreAddIn.UI.MoreComboBox();
+			this.langLabel = new River.OneMoreAddIn.UI.MoreLabel();
+			this.keepLocaleBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.checkUpdatesBox = new River.OneMoreAddIn.UI.MoreCheckBox();
-			this.telemetryBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.layoutPanel.SuspendLayout();
 			this.advancedGroup.SuspendLayout();
 			this.SuspendLayout();
@@ -67,6 +68,7 @@ namespace River.OneMoreAddIn.Settings
 			this.layoutPanel.Controls.Add(this.advancedGroup);
 			this.layoutPanel.Controls.Add(this.langBox);
 			this.layoutPanel.Controls.Add(this.langLabel);
+			this.layoutPanel.Controls.Add(this.keepLocaleBox);
 			this.layoutPanel.Controls.Add(this.checkUpdatesBox);
 			this.layoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.layoutPanel.Location = new System.Drawing.Point(13, 74);
@@ -80,7 +82,7 @@ namespace River.OneMoreAddIn.Settings
 			this.sequentialBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
 			this.sequentialBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.sequentialBox.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.sequentialBox.Location = new System.Drawing.Point(25, 159);
+			this.sequentialBox.Location = new System.Drawing.Point(25, 185);
 			this.sequentialBox.Margin = new System.Windows.Forms.Padding(0, 10, 0, 0);
 			this.sequentialBox.Name = "sequentialBox";
 			this.sequentialBox.Size = new System.Drawing.Size(461, 25);
@@ -101,8 +103,10 @@ namespace River.OneMoreAddIn.Settings
             "Dark"});
 			this.themeBox.Location = new System.Drawing.Point(186, 20);
 			this.themeBox.Name = "themeBox";
-			this.themeBox.Size = new System.Drawing.Size(300, 28);
+			this.themeBox.Size = new System.Drawing.Size(300, 27);
 			this.themeBox.TabIndex = 0;
+			this.themeBox.ThemedBack = null;
+			this.themeBox.ThemedFore = null;
 			// 
 			// themeLabel
 			// 
@@ -113,6 +117,8 @@ namespace River.OneMoreAddIn.Settings
 			this.themeLabel.Size = new System.Drawing.Size(58, 20);
 			this.themeLabel.TabIndex = 5;
 			this.themeLabel.Text = "Theme";
+			this.themeLabel.ThemedBack = null;
+			this.themeLabel.ThemedFore = null;
 			// 
 			// advancedGroup
 			// 
@@ -123,16 +129,31 @@ namespace River.OneMoreAddIn.Settings
 			this.advancedGroup.Controls.Add(this.experimentalBox);
 			this.advancedGroup.Controls.Add(this.verboseBox);
 			this.advancedGroup.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.advancedGroup.Location = new System.Drawing.Point(7, 266);
+			this.advancedGroup.Location = new System.Drawing.Point(7, 278);
 			this.advancedGroup.Name = "advancedGroup";
 			this.advancedGroup.Padding = new System.Windows.Forms.Padding(15, 10, 10, 10);
 			this.advancedGroup.ShowOnlyTopEdge = true;
-			this.advancedGroup.Size = new System.Drawing.Size(762, 147);
+			this.advancedGroup.Size = new System.Drawing.Size(762, 135);
 			this.advancedGroup.TabIndex = 4;
 			this.advancedGroup.TabStop = false;
 			this.advancedGroup.Text = "Advanced Options";
 			this.advancedGroup.ThemedBorder = null;
 			this.advancedGroup.ThemedFore = null;
+			// 
+			// telemetryBox
+			// 
+			this.telemetryBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+			this.telemetryBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.telemetryBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.telemetryBox.Location = new System.Drawing.Point(18, 32);
+			this.telemetryBox.Name = "telemetryBox";
+			this.telemetryBox.Size = new System.Drawing.Size(250, 25);
+			this.telemetryBox.StylizeImage = false;
+			this.telemetryBox.TabIndex = 2;
+			this.telemetryBox.Text = "Enable anonymous telemetry";
+			this.telemetryBox.ThemedBack = null;
+			this.telemetryBox.ThemedFore = null;
+			this.telemetryBox.UseVisualStyleBackColor = true;
 			// 
 			// experimentalBox
 			// 
@@ -170,8 +191,10 @@ namespace River.OneMoreAddIn.Settings
 			this.langBox.FormattingEnabled = true;
 			this.langBox.Location = new System.Drawing.Point(186, 83);
 			this.langBox.Name = "langBox";
-			this.langBox.Size = new System.Drawing.Size(300, 28);
+			this.langBox.Size = new System.Drawing.Size(300, 27);
 			this.langBox.TabIndex = 1;
+			this.langBox.ThemedBack = null;
+			this.langBox.ThemedFore = null;
 			// 
 			// langLabel
 			// 
@@ -182,6 +205,24 @@ namespace River.OneMoreAddIn.Settings
 			this.langLabel.Size = new System.Drawing.Size(81, 20);
 			this.langLabel.TabIndex = 2;
 			this.langLabel.Text = "Language";
+			this.langLabel.ThemedBack = null;
+			this.langLabel.ThemedFore = null;
+			// 
+			// keepLocaleBox
+			// 
+			this.keepLocaleBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+			this.keepLocaleBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.keepLocaleBox.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.keepLocaleBox.Location = new System.Drawing.Point(186, 123);
+			this.keepLocaleBox.Margin = new System.Windows.Forms.Padding(0, 10, 0, 0);
+			this.keepLocaleBox.Name = "keepLocaleBox";
+			this.keepLocaleBox.Size = new System.Drawing.Size(461, 25);
+			this.keepLocaleBox.StylizeImage = false;
+			this.keepLocaleBox.TabIndex = 6;
+			this.keepLocaleBox.Text = "Keep workstation locale when Language differs from it";
+			this.keepLocaleBox.ThemedBack = null;
+			this.keepLocaleBox.ThemedFore = null;
+			this.keepLocaleBox.UseVisualStyleBackColor = true;
 			// 
 			// checkUpdatesBox
 			// 
@@ -190,7 +231,7 @@ namespace River.OneMoreAddIn.Settings
 			this.checkUpdatesBox.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.checkUpdatesBox.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.checkUpdatesBox.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.checkUpdatesBox.Location = new System.Drawing.Point(25, 194);
+			this.checkUpdatesBox.Location = new System.Drawing.Point(25, 220);
 			this.checkUpdatesBox.Margin = new System.Windows.Forms.Padding(0, 10, 0, 0);
 			this.checkUpdatesBox.Name = "checkUpdatesBox";
 			this.checkUpdatesBox.Size = new System.Drawing.Size(456, 25);
@@ -200,21 +241,6 @@ namespace River.OneMoreAddIn.Settings
 			this.checkUpdatesBox.ThemedBack = null;
 			this.checkUpdatesBox.ThemedFore = null;
 			this.checkUpdatesBox.UseVisualStyleBackColor = true;
-			// 
-			// telemetryBox
-			// 
-			this.telemetryBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-			this.telemetryBox.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.telemetryBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.telemetryBox.Location = new System.Drawing.Point(18, 32);
-			this.telemetryBox.Name = "telemetryBox";
-			this.telemetryBox.Size = new System.Drawing.Size(250, 25);
-			this.telemetryBox.StylizeImage = false;
-			this.telemetryBox.TabIndex = 2;
-			this.telemetryBox.Text = "Enable anonymous telemetry";
-			this.telemetryBox.ThemedBack = null;
-			this.telemetryBox.ThemedFore = null;
-			this.telemetryBox.UseVisualStyleBackColor = true;
 			// 
 			// GeneralSheet
 			// 
@@ -241,6 +267,7 @@ namespace River.OneMoreAddIn.Settings
 		private UI.MoreCheckBox checkUpdatesBox;
 		private UI.MoreComboBox langBox;
 		private UI.MoreLabel langLabel;
+		private UI.MoreCheckBox keepLocaleBox;
 		private UI.MoreGroupBox advancedGroup;
 		private UI.MoreCheckBox verboseBox;
 		private UI.MoreCheckBox experimentalBox;

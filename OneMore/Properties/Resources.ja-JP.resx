@@ -1851,6 +1851,10 @@ OneNoteファイル (*.one)</value>
     <value>OneMoreの全体的な動作をカスタマイズ</value>
     <comment>textbox</comment>
   </data>
+  <data name="GeneralSheet_keepLocaleBox.Text" xml:space="preserve">
+    <value>言語が異なる場合でもワークステーションのロケールを維持する</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="GeneralSheet_sequentialBox.Text" xml:space="preserve">
     <value>コマンド パレットで連続しない名前の一致を許可する</value>
     <comment>checkbox</comment>

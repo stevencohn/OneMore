@@ -70,13 +70,13 @@ namespace River.OneMoreAddIn.Commands
 
 			for (var i = 1; i <= 12; i++)
 			{
-				monthBox.Items.Add(AddIn.Culture.DateTimeFormat.GetMonthName(i));
+				monthBox.Items.Add(AddIn.Locale.DateTimeFormat.GetMonthName(i));
 			}
 			monthBox.SelectedIndex = now.Month - 1;
 
 			foreach (var format in DateFormats)
 			{
-				dateFormatBox.Items.Add(now.ToString(format, AddIn.Culture));
+				dateFormatBox.Items.Add(now.ToString(format, AddIn.Locale));
 			}
 
 			var provider = new SettingsProvider();
@@ -261,7 +261,7 @@ namespace River.OneMoreAddIn.Commands
 		private static bool LooksLikeDate(string text)
 		{
 			return DateTime.TryParse(
-				text, AddIn.Culture, DateTimeStyles.None, out _);
+				text, AddIn.Locale, DateTimeStyles.None, out _);
 		}
 	}
 }

@@ -33,6 +33,7 @@ namespace River.OneMoreAddIn.Settings
 					"themeLabel",
 					"themeBox",
 					"langLabel=word_Language",
+					"keepLocaleBox",
 					"sequentialBox",
 					"checkUpdatesBox",
 					"advancedGroup=phrase_AdvancedOptions",
@@ -55,6 +56,8 @@ namespace River.OneMoreAddIn.Settings
 					break;
 				}
 			}
+
+			keepLocaleBox.Checked = settings.Get("keepWorkstationLocale", false);
 
 			sequentialBox.Checked = settings.Get("nonseqMatching", false);
 			checkUpdatesBox.Checked = settings.Get("checkUpdates", false);
@@ -134,6 +137,11 @@ namespace River.OneMoreAddIn.Settings
 
 			var lang = ((CultureInfo)(langBox.SelectedItem)).Name;
 			var updated = settings.Add("language", lang);
+
+			// requires a restart
+			updated = keepLocaleBox.Checked
+				? settings.Add("keepWorkstationLocale", true) || updated
+				: settings.Remove("keepWorkstationLocale") || updated;
 
 			// does not require a restart
 			save = sequentialBox.Checked

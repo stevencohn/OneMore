@@ -53,8 +53,13 @@ namespace OneMoreTray
 			var settings = new SettingsProvider().GetCollection(nameof(GeneralSheet));
 			var lang = settings.Get("language", "en");
 			var culture = CultureInfo.GetCultureInfo(lang);
-			Thread.CurrentThread.CurrentCulture = culture;
+
 			Thread.CurrentThread.CurrentUICulture = culture;
+
+			if (!settings.Get("keepWorkstationLocale", false))
+			{
+				Thread.CurrentThread.CurrentCulture = culture;
+			}
 		}
 
 

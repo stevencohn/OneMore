@@ -44,12 +44,12 @@ namespace River.OneMoreAddIn.Settings
 			familyBox.LoadFontFamilies();
 			family2Box.LoadFontFamilies();
 
-			if (AddIn.Culture.NumberFormat.NumberDecimalSeparator != ".")
+			if (AddIn.Locale.NumberFormat.NumberDecimalSeparator != ".")
 			{
 				for (int i = 0; i < sizeBox.Items.Count; i++)
 				{
 					var text = sizeBox.Items[i].ToString()
-						.Replace(".", AddIn.Culture.NumberFormat.NumberDecimalSeparator);
+						.Replace(".", AddIn.Locale.NumberFormat.NumberDecimalSeparator);
 
 					sizeBox.Items[i] = text;
 					size2Box.Items[i] = text;

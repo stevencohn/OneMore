@@ -149,7 +149,7 @@ namespace River.OneMoreAddIn.Commands
 							reminder.Status = ReminderStatus.Completed;
 							reminder.Percent = 100;
 							reminder.Completed = DateTime
-								.Parse(tag.Attribute("completionDate").Value, AddIn.Culture);
+								.Parse(tag.Attribute("completionDate").Value, AddIn.Locale);
 						}
 
 						if (string.IsNullOrEmpty(reminder.ObjectUri))
@@ -195,12 +195,12 @@ namespace River.OneMoreAddIn.Commands
 				reminder.TagIndex = tag.Attribute("index").Value;
 				reminder.Symbol = page.GetTagDefSymbol(reminder.TagIndex);
 
-				reminder.Created = DateTime.Parse(tag.Attribute("creationDate").Value, AddIn.Culture);
+				reminder.Created = DateTime.Parse(tag.Attribute("creationDate").Value, AddIn.Locale);
 
 				var completionDate = tag.Attribute("creationDate");
 				if (completionDate != null)
 				{
-					reminder.Completed = DateTime.Parse(completionDate.Value, AddIn.Culture);
+					reminder.Completed = DateTime.Parse(completionDate.Value, AddIn.Locale);
 				}
 			}
 			else

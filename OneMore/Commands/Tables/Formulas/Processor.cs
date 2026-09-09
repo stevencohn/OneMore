@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 	using River.OneMoreAddIn.Models;
 	using System;
 	using System.Collections.Generic;
+	using System.Globalization;
 	using System.Linq;
 	using Resx = Properties.Resources;
 
@@ -82,24 +83,24 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 				return;
 			}
 
-			var text = cell.GetText().Trim()
-				.Replace(AddIn.Culture.NumberFormat.CurrencySymbol, string.Empty)
-				.Replace(AddIn.Culture.NumberFormat.PercentSymbol, string.Empty);
+			var text = cell.GetText().Trim();
 
 			// common case is double
-			if (double.TryParse(text, out var dvalue)) // Culture-specific user input?!
+			if (TryParseNumber(text, out var dvalue))
 			{
-				maxdec = Math.Max(dvalue.ToString().Length - ((int)dvalue).ToString().Length - 1, maxdec);
+				var formatted = dvalue.ToString(CultureInfo.InvariantCulture);
+				var whole = ((int)dvalue).ToString(CultureInfo.InvariantCulture);
+				maxdec = Math.Max(formatted.Length - whole.Length - 1, maxdec);
 
-				e.Value = dvalue.ToString();
+				e.Value = formatted;
 				return;
 			}
 
-			if (TimeSpan.TryParse(text, AddIn.Culture, out var tvalue))
+			if (TimeSpan.TryParse(text, AddIn.Locale, out var tvalue))
 			{
 				// timespans are returned as milliseconds, to be converted
 				// back to formatted strings by the Report() method
-				e.Value = tvalue.TotalMilliseconds.ToString();
+				e.Value = tvalue.TotalMilliseconds.ToString(CultureInfo.InvariantCulture);
 				return;
 			}
 
@@ -137,6 +138,44 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 		}
 
 
+		/// <summary>
+		/// Parses a table cell's displayed text as a number, tolerant of it having
+		/// been formatted under a different culture (currency symbol, decimal
+		/// separator) than the one active during this recalculation - e.g. after
+		/// a Language change.
+		/// </summary>
+		private static bool TryParseNumber(string text, out double value)
+		{
+			// strip currency/percent symbols regardless of which culture produced
+			// them - a referenced cell's formula result may have been formatted
+			// under a different Language/Locale than the one active now
+			var stripped = new string(text.Where(c =>
+				char.GetUnicodeCategory(c) != UnicodeCategory.CurrencySymbol &&
+				c != '%').ToArray()).Trim();
+
+			// a separator followed by only 1-2 digits can only be a decimal point -
+			// no real thousands-grouping convention uses groups smaller than 3
+			// digits - so resolve that specific ambiguity ourselves instead of
+			// depending on whichever locale happens to be active; treat any other
+			// separator characters earlier in the string as thousands decorations
+			var last = Math.Max(stripped.LastIndexOf('.'), stripped.LastIndexOf(','));
+			if (last >= 0 && stripped.Length - last - 1 is > 0 and <= 2)
+			{
+				var whole = stripped.Substring(0, last).Replace(".", string.Empty).Replace(",", string.Empty);
+				var normalized = $"{whole}.{stripped.Substring(last + 1)}";
+
+				if (double.TryParse(normalized, NumberStyles.Number, CultureInfo.InvariantCulture, out value))
+				{
+					return true;
+				}
+			}
+
+			return
+				double.TryParse(stripped, NumberStyles.Number, AddIn.Locale, out value) ||
+				double.TryParse(stripped, NumberStyles.Number, CultureInfo.InvariantCulture, out value);
+		}
+
+
 		private List<TagDef> DiscoverToDoTags()
 		{
 			var pageElement = table.Root.Ancestors().FirstOrDefault(e => e.Name.LocalName == "Page");
@@ -158,15 +197,15 @@ namespace River.OneMoreAddIn.Commands.Tables.Formulas
 			switch (formula.Format)
 			{
 				case FormulaFormat.Currency:
-					text = result.ToString($"C{dplaces}", AddIn.Culture);
+					text = result.ToString($"C{dplaces}", AddIn.Locale);
 					break;
 
 				case FormulaFormat.Number:
-					text = result.ToString($"N{dplaces}", AddIn.Culture);
+					text = result.ToString($"N{dplaces}", AddIn.Locale);
 					break;
 
 				case FormulaFormat.Percentage:
-					text = (result / 100).ToString($"P{dplaces}", AddIn.Culture);
+					text = (result / 100).ToString($"P{dplaces}", AddIn.Locale);
 					break;
 
 				case FormulaFormat.Time:

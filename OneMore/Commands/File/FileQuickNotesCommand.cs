@@ -100,7 +100,7 @@ namespace River.OneMoreAddIn.Commands
 				var page = await one.GetPage(e.Attribute("ID").Value, OneNote.PageDetail.All);
 
 				var section = await FindFilingSection(notebook, grouping, page,
-					DateTime.Parse(dateTime, AddIn.Culture));
+					DateTime.Parse(dateTime, AddIn.Locale));
 
 				sectionID = section.Attribute("ID").Value;
 

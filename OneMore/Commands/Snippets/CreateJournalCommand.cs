@@ -46,9 +46,9 @@ namespace River.OneMoreAddIn.Commands
 			.AddInteger("year", "Year of journal entries", 1900, 2200,
 				required: false, defaultValue: DateTime.Now.Year)
 			.AddString("month", "Month of journal entries, by name or number",
-				required: false, defaultValue: AddIn.Culture.DateTimeFormat.GetMonthName(DateTime.Now.Month))
+				required: false, defaultValue: AddIn.Locale.DateTimeFormat.GetMonthName(DateTime.Now.Month))
 			.AddString("format", "Date format string applied to each page title",
-				required: false, defaultValue: AddIn.Culture.DateTimeFormat.LongDatePattern)
+				required: false, defaultValue: AddIn.Locale.DateTimeFormat.LongDatePattern)
 			.AddBoolean("weekdays", "Restrict journal entries to weekdays only",
 				required: false, defaultValue: false)
 			.AddString("name",
@@ -155,7 +155,7 @@ namespace River.OneMoreAddIn.Commands
 							break;
 						}
 
-						var pageTitle = $"{date.ToString(dateFormat, AddIn.Culture)} - {title}";
+						var pageTitle = $"{date.ToString(dateFormat, AddIn.Locale)} - {title}";
 						self.SetMessage(pageTitle);
 
 						try
@@ -312,7 +312,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (string.IsNullOrWhiteSpace(month))
 			{
-				month = AddIn.Culture.DateTimeFormat.GetMonthName(DateTime.Now.Month);
+				month = AddIn.Locale.DateTimeFormat.GetMonthName(DateTime.Now.Month);
 			}
 
 			if (!TryParseMonth(month, out var monthIndex))
@@ -323,7 +323,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (string.IsNullOrWhiteSpace(dateFormat))
 			{
-				dateFormat = AddIn.Culture.DateTimeFormat.LongDatePattern;
+				dateFormat = AddIn.Locale.DateTimeFormat.LongDatePattern;
 			}
 
 			await using var one = new OneNote();
@@ -367,7 +367,7 @@ namespace River.OneMoreAddIn.Commands
 					}
 
 					var name = string.IsNullOrWhiteSpace(sectionName)
-						? $"{AddIn.Culture.DateTimeFormat.GetMonthName(monthIndex)} {year} {title}"
+						? $"{AddIn.Locale.DateTimeFormat.GetMonthName(monthIndex)} {year} {title}"
 						: sectionName;
 
 					var section = await CreateSectionUnder(one, group, name);
@@ -430,7 +430,7 @@ namespace River.OneMoreAddIn.Commands
 					break;
 				}
 
-				var pageTitle = $"{date.ToString(dateFormat, AddIn.Culture)} - {title}";
+				var pageTitle = $"{date.ToString(dateFormat, AddIn.Locale)} - {title}";
 
 				try
 				{
@@ -476,9 +476,9 @@ namespace River.OneMoreAddIn.Commands
 
 			for (var i = 1; i <= 12; i++)
 			{
-				if (string.Equals(AddIn.Culture.DateTimeFormat.GetMonthName(i), month,
+				if (string.Equals(AddIn.Locale.DateTimeFormat.GetMonthName(i), month,
 						StringComparison.CurrentCultureIgnoreCase) ||
-					string.Equals(AddIn.Culture.DateTimeFormat.GetAbbreviatedMonthName(i), month,
+					string.Equals(AddIn.Locale.DateTimeFormat.GetAbbreviatedMonthName(i), month,
 						StringComparison.CurrentCultureIgnoreCase))
 				{
 					monthIndex = i;

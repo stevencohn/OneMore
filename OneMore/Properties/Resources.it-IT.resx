@@ -1848,6 +1848,10 @@ Intervalli relativi: A1:cella(0,-1)</value>
     <value>Personalizza il comportamento generale di OneMore</value>
     <comment>textbox</comment>
   </data>
+  <data name="GeneralSheet_keepLocaleBox.Text" xml:space="preserve">
+    <value>Mantieni la locale della workstation quando la lingua è diversa da essa</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="GeneralSheet_sequentialBox.Text" xml:space="preserve">
     <value>Consenti la corrispondenza dei nomi non sequenziali nelle tavolozze dei comandi</value>
     <comment>checkbox</comment>

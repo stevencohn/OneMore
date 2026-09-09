@@ -1848,6 +1848,10 @@ Zakresy względne: A1: komórka (0, -1)</value>
     <value>Dostosuj ogólne zachowanie OneMore</value>
     <comment>textbox</comment>
   </data>
+  <data name="GeneralSheet_keepLocaleBox.Text" xml:space="preserve">
+    <value>Zachowaj ustawienia regionalne stacji roboczej, jeśli język jest inny</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="GeneralSheet_sequentialBox.Text" xml:space="preserve">
     <value>Zezwalaj na niesekwencyjne dopasowywanie nazw w paletach poleceń</value>
     <comment>checkbox</comment>

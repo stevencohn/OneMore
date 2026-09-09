@@ -203,7 +203,7 @@ namespace River.OneMoreAddIn.Commands
 			// since a CLI --date value may not match the running culture
 
 			return
-				DateTime.TryParse(text, AddIn.Culture, DateTimeStyles.None, out date) ||
+				DateTime.TryParse(text, AddIn.Locale, DateTimeStyles.None, out date) ||
 				DateTime.TryParse(text, CultureInfo.InvariantCulture, DateTimeStyles.None, out date) ||
 				DateTime.TryParse(text, CultureInfo.CurrentCulture, DateTimeStyles.None, out date);
 		}
