@@ -218,7 +218,7 @@ namespace River.OneMoreAddIn.Commands
 				return false;
 			}
 
-			var culture = AddIn.Culture;
+			var culture = AddIn.Locale;
 			var calendar = culture.Calendar;
 			var weekRule = culture.DateTimeFormat.CalendarWeekRule;
 			var firstDay = culture.DateTimeFormat.FirstDayOfWeek;

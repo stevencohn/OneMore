@@ -211,7 +211,7 @@ namespace River.OneMoreAddIn.Commands
 			reorganizing = true;
 			familyBox.LoadFontFamilies();
 			familyBox.SelectedIndex = familyBox.Items.IndexOf(StyleBase.DefaultFontFamily);
-			sizeBox.SelectedIndex = sizeBox.Items.IndexOf(StyleBase.DefaultFontSize.ToString("0.#", AddIn.Culture));
+			sizeBox.SelectedIndex = sizeBox.Items.IndexOf(StyleBase.DefaultFontSize.ToString("0.#", AddIn.Locale));
 			colorFontsBox.Items[0].Selected = true;
 			reorganizing = false;
 		}
@@ -495,7 +495,7 @@ namespace River.OneMoreAddIn.Commands
 			if (sizeBox.Items.Count > 0)
 			{
 				var size = font.Font?.Size ?? StyleBase.DefaultFontSize;
-				index = sizeBox.Items.IndexOf(size.ToString("0.#", AddIn.Culture));
+				index = sizeBox.Items.IndexOf(size.ToString("0.#", AddIn.Locale));
 
 				if (index < 0) index = 0;
 				sizeBox.SelectedIndex = index;
@@ -637,7 +637,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var text = sizeBox.Text.Trim();
 			if (!float.TryParse(text, NumberStyles.Integer | NumberStyles.AllowDecimalPoint,
-				AddIn.Culture, out var size))
+				AddIn.Locale, out var size))
 			{
 				size = (float)StyleBase.DefaultFontSize;
 			}

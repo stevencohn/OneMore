@@ -57,7 +57,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				var name = Font?.FontFamily.Name ?? StyleBase.DefaultFontFamily;
 				var size = Font?.SizeInPoints ?? StyleBase.DefaultFontSize;
-				return $"{name}, {size.ToString("0.#", AddIn.Culture)}pt, {Foreground.ToNamedString()}";
+				return $"{name}, {size.ToString("0.#", AddIn.Locale)}pt, {Foreground.ToNamedString()}";
 			}
 		}
 

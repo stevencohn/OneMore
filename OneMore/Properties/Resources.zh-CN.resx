@@ -1854,6 +1854,10 @@ OneNote 文件 (*.one)</value>
     <value>OneMore的通用设置</value>
     <comment>textbox</comment>
   </data>
+  <data name="GeneralSheet_keepLocaleBox.Text" xml:space="preserve">
+    <value>当语言与其不同时保留工作站区域设置</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="GeneralSheet_sequentialBox.Text" xml:space="preserve">
     <value>允许命令面板中的关键词非连续匹配</value>
     <comment>checkbox</comment>

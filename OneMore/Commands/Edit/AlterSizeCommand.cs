@@ -267,7 +267,7 @@ namespace River.OneMoreAddIn.Commands
 		private static double ParseFontSize(string size)
 		{
 			var match = Regex.Match(size,
-				@"^([0-9]+(?:\" + AddIn.Culture.NumberFormat.NumberDecimalSeparator + "[0-9]+)?)(?:pt){0,1}");
+				@"^([0-9]+(?:\" + AddIn.Locale.NumberFormat.NumberDecimalSeparator + "[0-9]+)?)(?:pt){0,1}");
 
 			if (match.Success)
 			{

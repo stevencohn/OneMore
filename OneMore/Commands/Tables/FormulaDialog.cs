@@ -166,10 +166,10 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			e.Value = cell.GetText().Trim()
-				.Replace(AddIn.Culture.NumberFormat.CurrencySymbol, string.Empty)
-				.Replace(AddIn.Culture.NumberFormat.PercentSymbol, string.Empty);
+				.Replace(AddIn.Locale.NumberFormat.CurrencySymbol, string.Empty)
+				.Replace(AddIn.Locale.NumberFormat.PercentSymbol, string.Empty);
 
-			if (TimeSpan.TryParse(e.Value, AddIn.Culture, out var tvalue))
+			if (TimeSpan.TryParse(e.Value, AddIn.Locale, out var tvalue))
 			{
 				e.Value = tvalue.TotalMilliseconds.ToString();
 			}

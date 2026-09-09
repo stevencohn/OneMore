@@ -6,7 +6,6 @@ namespace River.OneMoreAddIn.Commands
 {
 	using System;
 	using System.Drawing;
-	using System.Globalization;
 	using System.Windows.Forms;
 	using Resx = Properties.Resources;
 
@@ -36,20 +35,20 @@ namespace River.OneMoreAddIn.Commands
 					"cancelButton=word_Cancel"
 				});
 
-				sundayButton.Text = DateTimeFormatInfo.CurrentInfo.GetDayName(DayOfWeek.Sunday);
-				mondayButton.Text = DateTimeFormatInfo.CurrentInfo.GetDayName(DayOfWeek.Monday);
+				sundayButton.Text = AddIn.Culture.DateTimeFormat.GetDayName(DayOfWeek.Sunday);
+				mondayButton.Text = AddIn.Culture.DateTimeFormat.GetDayName(DayOfWeek.Monday);
 			}
 
 			yearBox.Value = DateTime.Now.Year;
 
 			for (int i = 1; i <= 12; i++)
 			{
-				monthBox.Items.Add(AddIn.Culture.DateTimeFormat.GetMonthName(i));
+				monthBox.Items.Add(AddIn.Locale.DateTimeFormat.GetMonthName(i));
 			}
 
 			monthBox.SelectedIndex = DateTime.Now.Month - 1;
 
-			if (CultureInfo.CurrentUICulture.DateTimeFormat.FirstDayOfWeek == DayOfWeek.Monday)
+			if (AddIn.Locale.DateTimeFormat.FirstDayOfWeek == DayOfWeek.Monday)
 			{
 				mondayButton.Checked = true;
 			}

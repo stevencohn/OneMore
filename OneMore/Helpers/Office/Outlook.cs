@@ -263,7 +263,7 @@ namespace River.OneMoreAddIn.Helpers.Office
 		/// <returns></returns>
 		public OutlookTaskFolders GetTaskHierarchy()
 		{
-			var culture = CultureInfo.CurrentUICulture;
+			var culture = CultureInfo.CurrentCulture;
 			calendar = culture.Calendar;
 			weekRule = culture.DateTimeFormat.CalendarWeekRule;
 			firstDay = culture.DateTimeFormat.FirstDayOfWeek;

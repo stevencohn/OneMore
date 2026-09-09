@@ -147,7 +147,7 @@ namespace River.OneMoreAddIn.Commands
 				: HeaderCss;
 
 			var header = table[0];
-			var format = AddIn.Culture.DateTimeFormat;
+			var format = AddIn.Locale.DateTimeFormat;
 			var dow = firstDay == DayOfWeek.Sunday ? 0 : 1;
 			foreach (var cell in header.Cells)
 			{
@@ -216,7 +216,7 @@ namespace River.OneMoreAddIn.Commands
 		private XElement MakeHeader(int year, int month)
 		{
 			var quick = page.GetQuickStyle(Styles.StandardStyles.Heading2);
-			var monthName = AddIn.Culture.DateTimeFormat.GetMonthName(month);
+			var monthName = AddIn.Locale.DateTimeFormat.GetMonthName(month);
 
 			return new Paragraph(ns, $"{monthName} {year}").SetQuickStyle(quick.Index);
 		}

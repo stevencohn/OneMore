@@ -4222,7 +4222,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("GeneralSheet_introBox.Text", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Keep workstation locale when Language differs from it.
+        /// </summary>
+        internal static string GeneralSheet_keepLocaleBox_Text {
+            get {
+                return ResourceManager.GetString("GeneralSheet_keepLocaleBox.Text", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Allow nonsequential name matching in Command Palettes.
         /// </summary>
