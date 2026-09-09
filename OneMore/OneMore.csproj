@@ -957,6 +957,14 @@
       <DependentUpon>SaveSnippetDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Snippets\SnippetsProvider.cs" />
+    <Compile Include="Commands\Snippets\BoxType.cs" />
+    <Compile Include="Commands\Snippets\BoxTypesProvider.cs" />
+    <Compile Include="Commands\Settings\BoxTypeCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Commands\Settings\BoxTypesPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Commands\Settings\SettingsCommand.cs" />
     <Compile Include="Commands\Settings\SnippetsSheet.cs">
       <SubType>UserControl</SubType>

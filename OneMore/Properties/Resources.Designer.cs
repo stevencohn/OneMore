@@ -917,7 +917,160 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("BookmarkedDialog_Message", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Background shading.
+        /// </summary>
+        internal static string BoxTypeCard_Background {
+            get {
+                return ResourceManager.GetString("BoxTypeCard_Background", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to ▾ Collapse.
+        /// </summary>
+        internal static string BoxTypeCard_Collapse {
+            get {
+                return ResourceManager.GetString("BoxTypeCard_Collapse", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Delete box type &quot;{0}&quot;?.
+        /// </summary>
+        internal static string BoxTypeCard_ConfirmDelete {
+            get {
+                return ResourceManager.GetString("BoxTypeCard_ConfirmDelete", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Delete box type.
+        /// </summary>
+        internal static string BoxTypeCard_DeleteBoxType {
+            get {
+                return ResourceManager.GetString("BoxTypeCard_DeleteBoxType", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Duplicate.
+        /// </summary>
+        internal static string BoxTypeCard_Duplicate {
+            get {
+                return ResourceManager.GetString("BoxTypeCard_Duplicate", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to ▸ Expand.
+        /// </summary>
+        internal static string BoxTypeCard_Expand {
+            get {
+                return ResourceManager.GetString("BoxTypeCard_Expand", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Reset to default.
+        /// </summary>
+        internal static string BoxTypeCard_ResetToDefault {
+            get {
+                return ResourceManager.GetString("BoxTypeCard_ResetToDefault", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Symbol codepoint (hex).
+        /// </summary>
+        internal static string BoxTypeCard_SymbolCode {
+            get {
+                return ResourceManager.GetString("BoxTypeCard_SymbolCode", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Symbol color.
+        /// </summary>
+        internal static string BoxTypeCard_SymbolColor {
+            get {
+                return ResourceManager.GetString("BoxTypeCard_SymbolColor", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Symbol size (px).
+        /// </summary>
+        internal static string BoxTypeCard_SymbolSize {
+            get {
+                return ResourceManager.GetString("BoxTypeCard_SymbolSize", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Body text color.
+        /// </summary>
+        internal static string BoxTypeCard_TextColor {
+            get {
+                return ResourceManager.GetString("BoxTypeCard_TextColor", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Title color.
+        /// </summary>
+        internal static string BoxTypeCard_TitleColor {
+            get {
+                return ResourceManager.GetString("BoxTypeCard_TitleColor", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Title text.
+        /// </summary>
+        internal static string BoxTypeCard_TitleText {
+            get {
+                return ResourceManager.GetString("BoxTypeCard_TitleText", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to {0} Copy.
+        /// </summary>
+        internal static string BoxTypesPanel_CopyTitle {
+            get {
+                return ResourceManager.GetString("BoxTypesPanel_CopyTitle", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Duplicate from….
+        /// </summary>
+        internal static string BoxTypesPanel_DuplicateFrom {
+            get {
+                return ResourceManager.GetString("BoxTypesPanel_DuplicateFrom", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to + New box type.
+        /// </summary>
+        internal static string BoxTypesPanel_NewBoxType {
+            get {
+                return ResourceManager.GetString("BoxTypesPanel_NewBoxType", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Box Types.
+        /// </summary>
+        internal static string BoxTypesPanel_Title {
+            get {
+                return ResourceManager.GetString("BoxTypesPanel_Title", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to One space between sentences.
         /// </summary>
@@ -5672,7 +5825,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("InsertCellsDialog_shiftRightRadio.Text", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to That box type no longer exists.
+        /// </summary>
+        internal static string InsertInfoBoxCommand_UnknownType {
+            get {
+                return ResourceManager.GetString("InsertInfoBoxCommand_UnknownType", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Insert Cells.
         /// </summary>
@@ -14893,9 +15055,27 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("SnippetsSheet_ConfirmDelete", resourceCulture);
             }
         }
-        
+
         /// <summary>
-        ///   Looks up a localized string similar to Manage options and My Snippets.
+        ///   Looks up a localized string similar to Box width:.
+        /// </summary>
+        internal static string SnippetsSheet_boxWidthLabel_Text {
+            get {
+                return ResourceManager.GetString("SnippetsSheet_boxWidthLabel.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to My Snippets.
+        /// </summary>
+        internal static string SnippetsSheet_mySnippetsTab_Text {
+            get {
+                return ResourceManager.GetString("SnippetsSheet_mySnippetsTab.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Manage box options and My Snippets.
         /// </summary>
         internal static string SnippetsSheet_introBox_Text {
             get {
@@ -16346,6 +16526,15 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("word_Brightness", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Built-in.
+        /// </summary>
+        internal static string word_Builtin {
+            get {
+                return ResourceManager.GetString("word_Builtin", resourceCulture);
+            }
+        }
         
         /// <summary>
         ///   Looks up a localized string similar to Cancel.
@@ -16445,7 +16634,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("word_Copy", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Custom.
+        /// </summary>
+        internal static string word_Custom {
+            get {
+                return ResourceManager.GetString("word_Custom", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Default.
         /// </summary>

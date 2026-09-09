@@ -492,6 +492,74 @@
     <value>تم وضع إشارة مرجعية على "{0}"</value>
     <comment>message box</comment>
   </data>
+  <data name="BoxTypeCard_Background" xml:space="preserve">
+    <value>تظليل الخلفية</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypeCard_Collapse" xml:space="preserve">
+    <value>▾ انهيار</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypeCard_ConfirmDelete" xml:space="preserve">
+    <value>هل تريد حذف نوع المربع "{0}"؟</value>
+    <comment>question</comment>
+  </data>
+  <data name="BoxTypeCard_DeleteBoxType" xml:space="preserve">
+    <value>حذف نوع المربع</value>
+    <comment>link</comment>
+  </data>
+  <data name="BoxTypeCard_Duplicate" xml:space="preserve">
+    <value>ينسخ</value>
+    <comment>link</comment>
+  </data>
+  <data name="BoxTypeCard_Expand" xml:space="preserve">
+    <value>▸ توسيع</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypeCard_ResetToDefault" xml:space="preserve">
+    <value>إعادة التعيين إلى الوضع الافتراضي</value>
+    <comment>link</comment>
+  </data>
+  <data name="BoxTypeCard_SymbolCode" xml:space="preserve">
+    <value>نقطة ترميز الرمز (ست عشري)</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypeCard_SymbolColor" xml:space="preserve">
+    <value>لون الرمز</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypeCard_SymbolSize" xml:space="preserve">
+    <value>حجم الرمز (بكسل)</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypeCard_TextColor" xml:space="preserve">
+    <value>لون نص الجسم</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypeCard_TitleColor" xml:space="preserve">
+    <value>لون العنوان</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypeCard_TitleText" xml:space="preserve">
+    <value>نص العنوان</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypesPanel_CopyTitle" xml:space="preserve">
+    <value>{0} نسخ</value>
+    <comment>generated title for a duplicated box type</comment>
+  </data>
+  <data name="BoxTypesPanel_DuplicateFrom" xml:space="preserve">
+    <value>مكررة من…</value>
+    <comment>menu header</comment>
+  </data>
+  <data name="BoxTypesPanel_NewBoxType" xml:space="preserve">
+    <value>+ نوع الصندوق الجديد</value>
+    <comment>button</comment>
+  </data>
+  <data name="BoxTypesPanel_Title" xml:space="preserve">
+    <value>أنواع الصناديق</value>
+    <comment>section header and tab caption</comment>
+  </data>
   <data name="BreakingDialog_oneButton.Text" xml:space="preserve">
     <value>مسافة واحدة بين الجمل</value>
     <comment>radio</comment>
@@ -2476,6 +2544,10 @@
   <data name="InsertCellsDialog_shiftRightRadio.Text" xml:space="preserve">
     <value>خلايا تحول الحق</value>
     <comment>radio</comment>
+  </data>
+  <data name="InsertInfoBoxCommand_UnknownType" xml:space="preserve">
+    <value>لم يعد هذا النوع من المربع موجودًا</value>
+    <comment>error</comment>
   </data>
   <data name="InsertNotebookTocDialog_pagesBox.Text" xml:space="preserve">
     <value>تضمين صفحات في كل قسم</value>
@@ -6321,6 +6393,10 @@ ISO-code then comma then language name</comment>
     <value>تمكين خطوط الشبكة قبل استخدام هذا الأمر</value>
     <comment>message</comment>
   </data>
+  <data name="SnippetsSheet_boxWidthLabel.Text" xml:space="preserve">
+    <value>عرض الصندوق:</value>
+    <comment>label</comment>
+  </data>
   <data name="SnippetsSheet_codeStyleBox.Text" xml:space="preserve">
     <value>قم دائمًا بتطبيق نمط "الكود" على محتوى Code Box</value>
     <comment>label</comment>
@@ -6330,8 +6406,12 @@ ISO-code then comma then language name</comment>
     <comment>question</comment>
   </data>
   <data name="SnippetsSheet_introBox.Text" xml:space="preserve">
-    <value>إدارة الخيارات والمقتطفات الخاصة بي</value>
+    <value>إدارة خيارات المربع ومقتطفاتي</value>
     <comment>label</comment>
+  </data>
+  <data name="SnippetsSheet_mySnippetsTab.Text" xml:space="preserve">
+    <value>مقتطفاتي</value>
+    <comment>tab caption</comment>
   </data>
   <data name="SortDialog.Text" xml:space="preserve">
     <value>فرز</value>
@@ -6923,6 +7003,9 @@ ISO-code then comma then language name</comment>
   <data name="word_Brightness" xml:space="preserve">
     <value>سطوع</value>
   </data>
+  <data name="word_Builtin" xml:space="preserve">
+    <value>مدمج</value>
+  </data>
   <data name="word_Cancel" xml:space="preserve">
     <value>يلغي</value>
   </data>
@@ -6955,6 +7038,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Copy" xml:space="preserve">
     <value>ينسخ</value>
+  </data>
+  <data name="word_Custom" xml:space="preserve">
+    <value>مخصص</value>
   </data>
   <data name="word_Default" xml:space="preserve">
     <value>تقصير</value>

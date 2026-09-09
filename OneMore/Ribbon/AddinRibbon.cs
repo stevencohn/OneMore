@@ -606,6 +606,14 @@ namespace River.OneMoreAddIn
 		public string GetMySnippetsContent(IRibbonControl control)
 		{
 			var snippets = new SnippetsProvider().MakeSnippetsMenu(ns);
+
+			var boxes = new BoxTypesProvider().MakeCustomBoxMenuItems(ns).ToList();
+			if (boxes.Count > 0)
+			{
+				snippets.Add(new XElement(ns + "menuSeparator", new XAttribute("id", "ribCustomBoxMenuSep")));
+				snippets.Add(boxes);
+			}
+
 			return snippets.ToString(SaveOptions.DisableFormatting);
 		}
 

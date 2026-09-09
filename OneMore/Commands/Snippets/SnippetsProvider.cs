@@ -14,6 +14,11 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class SnippetsProvider : Loggable
 	{
+		/// <summary>
+		/// Ribbon control ID of the "My Snippets" dynamic menu
+		/// </summary>
+		public const string MenuID = "ribCustomSnippetsMenu";
+
 		public const string SaveSnippetButtonId = "ribSaveSnippetButton";
 		private const string ManageSnippetsButtonId = "ribManageSnippetsButton";
 		private const string ExpandSnippetButtonId = "ribExpandSnippetButton";

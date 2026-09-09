@@ -26,8 +26,15 @@ namespace River.OneMoreAddIn.Settings
 
 
 		private readonly IRibbonUI ribbon;
-		private readonly BindingList<Snippet> snippets;
 		private readonly SnippetsProvider snipsProvider;
+		private readonly BoxTypesProvider boxTypesProvider;
+		private readonly BoxTypesPanel boxTypesPanel;
+
+		// deferred - built lazily by EnsureSnippetsLoaded() the first time the "My Snippets"
+		// tab is actually selected, since "Box Types" is the default active tab and the
+		// file-listing/grid-binding work here is otherwise wasted on every sheet open
+		private BindingList<Snippet> snippets;
+
 		private bool updated = false;
 
 
@@ -46,7 +53,10 @@ namespace River.OneMoreAddIn.Settings
 					"introBox",
 					"codeStyleBox",
 					"renameButton=word_Rename",
-					"deleteButton=word_Delete"
+					"deleteButton=word_Delete",
+					"boxTypesTab.Text=BoxTypesPanel_Title",
+					"mySnippetsTab",
+					"boxWidthLabel"
 				});
 
 				nameColumn.HeaderText = Resx.word_Name;
@@ -67,6 +77,45 @@ namespace River.OneMoreAddIn.Settings
 
 			this.ribbon = ribbon;
 			snipsProvider = new SnippetsProvider();
+
+			// snippets (My Snippets tab) - deferred; see EnsureSnippetsLoaded()
+			tabs.SelectedIndexChanged += (s, e) => EnsureSnippetsLoaded();
+
+			// box types
+
+			boxTypesProvider = new BoxTypesProvider(provider);
+			boxWidthBox.Value = (decimal)boxTypesProvider.GetBoxWidth();
+			boxWidthBox.ValueChanged += (s, e) => updated = true;
+
+			boxTypesPanel = new BoxTypesPanel(boxTypesProvider.LoadAll())
+			{
+				Dock = DockStyle.Fill
+			};
+			boxTypesPanel.Changed += (s, e) => updated = true;
+			boxTypesTab.Controls.Add(boxTypesPanel);
+
+			// WinForms docks siblings in REVERSE Controls-collection index order (highest
+			// index processed first - this is also why the last-ADDED of several same-Dock
+			// siblings ends up topmost elsewhere in this file). optionsPanel/boxWidthPanel
+			// were added first (lower indices, in InitializeComponent) and boxTypesPanel
+			// (Dock=Fill) was added after (higher index) - meaning Fill got evaluated BEFORE
+			// its Top siblings reserved their space, so it saw the full tab and overlapped
+			// them instead of sitting below them. Moving it to index 0 makes it the LAST
+			// thing evaluated in that reverse sequence, after Top has already been reserved.
+			boxTypesTab.Controls.SetChildIndex(boxTypesPanel, 0);
+		}
+
+
+		/// <summary>
+		/// Builds the file-based "My Snippets" grid the first time that tab is actually
+		/// selected. Safe to call repeatedly; only the first call does anything.
+		/// </summary>
+		private void EnsureSnippetsLoaded()
+		{
+			if (snippets is not null || tabs.SelectedTab != mySnippetsTab)
+			{
+				return;
+			}
 
 			snippets = new BindingList<Snippet>(LoadSnippets());
 			gridView.DataSource = snippets;
@@ -132,7 +181,8 @@ namespace River.OneMoreAddIn.Settings
 			if (updated)
 			{
 				provider.SetCollection(settings);
-				ribbon.InvalidateControl(Commands.Favorites.FavoritesMenu.MenuID);
+				boxTypesProvider.SaveAll(boxTypesPanel.GetBoxTypes(), (float)boxWidthBox.Value);
+				ribbon.InvalidateControl(SnippetsProvider.MenuID);
 			}
 
 			return false;

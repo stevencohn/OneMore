@@ -489,6 +489,74 @@ Odwracać</value>
     <value>Dodano do zakładek „{0}”</value>
     <comment>message box</comment>
   </data>
+  <data name="BoxTypeCard_Background" xml:space="preserve">
+    <value>Cieniowanie tła</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypeCard_Collapse" xml:space="preserve">
+    <value>▾ Zwiń</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypeCard_ConfirmDelete" xml:space="preserve">
+    <value>Usunąć typ skrzynki „{0}”?</value>
+    <comment>question</comment>
+  </data>
+  <data name="BoxTypeCard_DeleteBoxType" xml:space="preserve">
+    <value>Usuń typ skrzynki</value>
+    <comment>link</comment>
+  </data>
+  <data name="BoxTypeCard_Duplicate" xml:space="preserve">
+    <value>Duplikat</value>
+    <comment>link</comment>
+  </data>
+  <data name="BoxTypeCard_Expand" xml:space="preserve">
+    <value>▸ Rozwiń</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypeCard_ResetToDefault" xml:space="preserve">
+    <value>Przywróć ustawienia domyślne</value>
+    <comment>link</comment>
+  </data>
+  <data name="BoxTypeCard_SymbolCode" xml:space="preserve">
+    <value>Punkt kodowy symbolu (szesnastkowy)</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypeCard_SymbolColor" xml:space="preserve">
+    <value>Kolor symbolu</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypeCard_SymbolSize" xml:space="preserve">
+    <value>Rozmiar symbolu (px)</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypeCard_TextColor" xml:space="preserve">
+    <value>Kolor tekstu głównego</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypeCard_TitleColor" xml:space="preserve">
+    <value>Kolor tytułu</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypeCard_TitleText" xml:space="preserve">
+    <value>Tekst tytułu</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypesPanel_CopyTitle" xml:space="preserve">
+    <value>{0} Kopiuj</value>
+    <comment>generated title for a duplicated box type</comment>
+  </data>
+  <data name="BoxTypesPanel_DuplicateFrom" xml:space="preserve">
+    <value>Duplikat z…</value>
+    <comment>menu header</comment>
+  </data>
+  <data name="BoxTypesPanel_NewBoxType" xml:space="preserve">
+    <value>+ Nowy typ skrzynki</value>
+    <comment>button</comment>
+  </data>
+  <data name="BoxTypesPanel_Title" xml:space="preserve">
+    <value>Typy pudełek</value>
+    <comment>section header and tab caption</comment>
+  </data>
   <data name="BreakingDialog_oneButton.Text" xml:space="preserve">
     <value>Jedna przestrzeń między zdaniami</value>
     <comment>radio</comment>
@@ -2473,6 +2541,10 @@ Czerwony pierwszy plan
   <data name="InsertCellsDialog_shiftRightRadio.Text" xml:space="preserve">
     <value>Komórki zmiany w prawo.</value>
     <comment>radio</comment>
+  </data>
+  <data name="InsertInfoBoxCommand_UnknownType" xml:space="preserve">
+    <value>Ten typ skrzynki już nie istnieje</value>
+    <comment>error</comment>
   </data>
   <data name="InsertNotebookTocDialog_pagesBox.Text" xml:space="preserve">
     <value>Uwzględnij strony w każdej sekcji</value>
@@ -6310,6 +6382,10 @@ Jesteś pewien, że chcesz kontynuować?</value>
     <value>Włącz linie siatki przed użyciem tego polecenia</value>
     <comment>message</comment>
   </data>
+  <data name="SnippetsSheet_boxWidthLabel.Text" xml:space="preserve">
+    <value>Szerokość pudełka:</value>
+    <comment>label</comment>
+  </data>
   <data name="SnippetsSheet_codeStyleBox.Text" xml:space="preserve">
     <value>Zawsze stosuj styl „kodu” do zawartości Code Box</value>
     <comment>label</comment>
@@ -6319,8 +6395,12 @@ Jesteś pewien, że chcesz kontynuować?</value>
     <comment>question</comment>
   </data>
   <data name="SnippetsSheet_introBox.Text" xml:space="preserve">
-    <value>Zarządzaj opcjami i Moimi fragmentami</value>
+    <value>Zarządzaj opcjami skrzynek i Moimi fragmentami</value>
     <comment>label</comment>
+  </data>
+  <data name="SnippetsSheet_mySnippetsTab.Text" xml:space="preserve">
+    <value>Moje fragmenty</value>
+    <comment>tab caption</comment>
   </data>
   <data name="SortDialog.Text" xml:space="preserve">
     <value>Sortować</value>
@@ -6912,6 +6992,9 @@ Dziękuję!</value>
   <data name="word_Brightness" xml:space="preserve">
     <value>Jasność</value>
   </data>
+  <data name="word_Builtin" xml:space="preserve">
+    <value>Wbudowany</value>
+  </data>
   <data name="word_Cancel" xml:space="preserve">
     <value>Anuluj</value>
   </data>
@@ -6944,6 +7027,9 @@ Dziękuję!</value>
   </data>
   <data name="word_Copy" xml:space="preserve">
     <value>Kopiuj</value>
+  </data>
+  <data name="word_Custom" xml:space="preserve">
+    <value>Zwyczaj</value>
   </data>
   <data name="word_Default" xml:space="preserve">
     <value>Domyślna</value>

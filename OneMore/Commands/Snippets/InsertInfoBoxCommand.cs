@@ -4,7 +4,6 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using Newtonsoft.Json.Linq;
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Styles;
 	using System.Linq;
@@ -42,14 +41,20 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			var theme = JObject.Parse(Resx.InfoBoxThemes)[keyword];
+			var boxTypes = new BoxTypesProvider();
+			var theme = boxTypes.GetTheme(keyword);
+			if (theme is null)
+			{
+				ShowError(Resx.InsertInfoBoxCommand_UnknownType);
+				return;
+			}
 
 			var symbolStyle =
-				$"font-family:'{theme["symbolFont"]}';font-size:{theme["symbolSize"]}.0pt;" +
-				$"color:{theme["symbolColor"]};text-align:center";
+				$"font-family:'{BoxTypesProvider.SymbolFont}';font-size:{theme.SymbolSize}.0pt;" +
+				$"color:{theme.SymbolColor};text-align:center";
 
 			var normalStyle = page.GetQuickStyle(StandardStyles.Normal);
-			normalStyle.Color = theme["textColor"].ToString();
+			normalStyle.Color = theme.TextColor;
 
 			// find anchor and optional selected content...
 
@@ -96,7 +101,7 @@ namespace River.OneMoreAddIn.Commands
 			var row = inner.AddRow();
 
 			var symbol = char.ConvertFromUtf32(
-				int.Parse(theme["symbol"].ToString(), System.Globalization.NumberStyles.HexNumber));
+				int.Parse(theme.Symbol, System.Globalization.NumberStyles.HexNumber));
 
 			row.Cells.ElementAt(0).SetContent(
 				new XElement(ns + "OE",
@@ -107,9 +112,9 @@ namespace River.OneMoreAddIn.Commands
 						new XCData($"<span style='font-weight:bold'>{symbol}</span>"))
 				));
 
-			var title = Resx.ResourceManager.GetString(theme["titlex"].ToString(), AddIn.Culture);
+			var title = theme.Title;
 
-			normalStyle.Color = theme["titleColor"].ToString();
+			normalStyle.Color = theme.TitleColor;
 			normalStyle.IsBold = true;
 
 			row.Cells.ElementAt(1).SetContent(
@@ -129,12 +134,12 @@ namespace River.OneMoreAddIn.Commands
 				BordersVisible = true
 			};
 
-			outer.AddColumn(600f, true);
+			outer.AddColumn(boxTypes.GetBoxWidth(), true);
 			row = outer.AddRow();
 
 			var cell = row.Cells.ElementAt(0);
 
-			cell.ShadingColor = theme["shading"].ToString();
+			cell.ShadingColor = theme.Shading;
 			cell.SetContent(inner);
 
 			// update...
