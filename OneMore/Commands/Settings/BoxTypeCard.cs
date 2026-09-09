@@ -28,8 +28,10 @@ namespace River.OneMoreAddIn.Settings
 		private const int RowHeight = 56;
 		private const int ContentHeight = 20 + 24 + 10 + (RowHeight * 3) + 10 + 32 + 24; // buffered
 
-		// fixed width of the expand/collapse indicator area at the right of the header
-		private const int IndicatorWidth = 90;
+		// fixed width of the expand/collapse indicator area at the right of the header,
+		// computed once by EnsureIndicatorWidth() to fit the wider of the "Expand"/"Collapse"
+		// labels so it stays constant as a card toggles - see UpdateIndicator()
+		private static int indicatorWidth;
 
 		// "#" + exactly 6 hex digits, matching the shipped InfoBoxThemes.json format (#RRGGBB)
 		private static readonly Regex HexColorPattern = new(@"^#[0-9A-Fa-f]{6}$", RegexOptions.Compiled);
@@ -88,6 +90,7 @@ namespace River.OneMoreAddIn.Settings
 			Margin = new Padding(0, 0, 0, 12);
 
 			EnsureSharedFonts(Font);
+			EnsureIndicatorWidth();
 
 			// header (collapsed) row...
 
@@ -123,7 +126,7 @@ namespace River.OneMoreAddIn.Settings
 			// own Click handler never sees clicks landing on it - it needs its own hookup too.
 			shadingPanel.Click += ToggleExpanded;
 			headerPanel.Resize += (s, e) =>
-				shadingPanel.Width = headerPanel.ClientSize.Width - IndicatorWidth;
+				shadingPanel.Width = headerPanel.ClientSize.Width - indicatorWidth;
 
 			// The header's text labels are plain Labels, not the themed More* controls,
 			// because their color must track the box's own shading/title color rather than
@@ -170,7 +173,7 @@ namespace River.OneMoreAddIn.Settings
 			indicatorPanel = new MorePanel
 			{
 				Dock = DockStyle.Right,
-				Width = IndicatorWidth,
+				Width = indicatorWidth,
 				BackColor = chrome,
 				BottomBorderSize = 0
 			};
@@ -276,8 +279,33 @@ namespace River.OneMoreAddIn.Settings
 			boldTitleFont = new Font(baseFont, FontStyle.Bold);
 			smallTextFont = new Font(baseFont.FontFamily, 8f);
 			arrowFont = new Font(baseFont.FontFamily, 12f);
-			smallFieldFont = new Font(baseFont.FontFamily, Math.Max(6f, baseFont.Size - 2f));
-			smallLinkFont = new Font(baseFont.FontFamily, Math.Max(6f, baseFont.Size - 1.5f));
+			smallFieldFont = new Font(baseFont.FontFamily, Math.Max(8f, baseFont.Size - 2f));
+			smallLinkFont = new Font(baseFont.FontFamily, Math.Max(8f, baseFont.Size - 1.5f));
+		}
+
+
+		/// <summary>
+		/// Computes the width of the expand/collapse indicator panel once, sized to fit
+		/// whichever of the "Expand"/"Collapse" labels is wider (each rendered as a larger
+		/// arrow glyph plus a smaller word, matching UpdateIndicator's layout), so the panel's
+		/// width - and therefore the shaded header fill's right edge - stays fixed as a card
+		/// toggles between the two states instead of jumping with the label's own width.
+		/// </summary>
+		private static void EnsureIndicatorWidth()
+		{
+			if (indicatorWidth > 0)
+			{
+				return;
+			}
+
+			int Measure(string full)
+			{
+				var arrowSize = TextRenderer.MeasureText(full.Substring(0, 1), arrowFont);
+				var wordSize = TextRenderer.MeasureText(full.Substring(1).TrimStart(), smallTextFont);
+				return arrowSize.Width + 4 + wordSize.Width + 12;
+			}
+
+			indicatorWidth = Math.Max(Measure(Resx.BoxTypeCard_Expand), Measure(Resx.BoxTypeCard_Collapse));
 		}
 
 
@@ -361,21 +389,26 @@ namespace River.OneMoreAddIn.Settings
 				fieldsTable, 1, 1, Resx.BoxTypeCard_TextColor, Box.TextColor,
 				c => Box.TextColor = c);
 
-			var sizeGroup = new Panel { Dock = DockStyle.Fill };
-			sizeGroup.Controls.Add(MakeCaption(Resx.BoxTypeCard_SymbolSize, DockStyle.Top, 24));
+			var sizeGroup = new Panel
+			{
+				Dock = DockStyle.Fill,
+				Padding = new Padding(0),
+				Margin = new Padding(0)
+			};
+			sizeGroup.Controls.Add(MakeCaption(Resx.BoxTypeCard_SymbolSize, DockStyle.Top, 0));
 
 			symbolSizeBox = new MoreNumericUpDown
 			{
 				// nudged a few px left of x=28 (where the hex textboxes above sit) to
 				// compensate for NumericUpDown's own text inset being wider than a plain
 				// textbox's, so the "22" itself lines up with the hex value above it
-				Location = new Point(24, 20),
+				Location = new Point(28, 20),
 				Size = new Size(80, 24),
 				Minimum = 12,
 				Maximum = 48,
-				Value = Box.SymbolSize
+				Value = Box.SymbolSize,
+				Font = smallFieldFont
 			};
-			symbolSizeBox.Font = smallFieldFont;
 			symbolSizeBox.ValueChanged += (s, e) =>
 			{
 				Box.SymbolSize = (int)symbolSizeBox.Value;
@@ -385,7 +418,7 @@ namespace River.OneMoreAddIn.Settings
 			sizeGroup.Controls.Add(symbolSizeBox);
 			fieldsTable.Controls.Add(sizeGroup, 0, 2);
 
-			var codeGroup = new Panel { Dock = DockStyle.Fill };
+			var codeGroup = new Panel { Dock = DockStyle.Fill, Padding = new Padding(4, 0, 0, 0) };
 
 			var codeRow = new Panel { Dock = DockStyle.Top, Height = 26 };
 
@@ -398,9 +431,9 @@ namespace River.OneMoreAddIn.Settings
 			{
 				Location = new Point(32, 0),
 				Size = new Size(84, 22),
-				Text = Box.Symbol
+				Text = Box.Symbol,
+				Font = smallFieldFont
 			};
-			symbolCodeBox.Font = smallFieldFont;
 			symbolCodeBox.TextChanged += (s, e) =>
 			{
 				MarkValidity(symbolCodeBox, CodepointPattern.IsMatch(symbolCodeBox.Text));
@@ -414,9 +447,9 @@ namespace River.OneMoreAddIn.Settings
 			// AutoSize=false with a narrow fixed width, just enough for the text plus modest padding
 			var chooseButton = new MoreButton
 			{
-				Location = new Point(symbolCodeBox.Right + 10, -2),
+				Location = new Point(symbolCodeBox.Right + 8, 1),
 				AutoSize = false,
-				Size = new Size(32, 24),
+				Size = new Size(32, 22),
 				Text = "..."
 			};
 			chooseButton.Click += ChooseSymbol;
@@ -426,7 +459,7 @@ namespace River.OneMoreAddIn.Settings
 
 			// Dock=Top stacks such that the LAST control added ends up visually topmost
 			codeGroup.Controls.Add(codeRow);
-			codeGroup.Controls.Add(MakeCaption(Resx.BoxTypeCard_SymbolCode, DockStyle.Top, 28));
+			codeGroup.Controls.Add(MakeCaption(Resx.BoxTypeCard_SymbolCode, DockStyle.Top, 2));
 			fieldsTable.Controls.Add(codeGroup, 1, 2);
 
 			var fieldsSpacer = MakeSpacer(10);
@@ -512,10 +545,10 @@ namespace River.OneMoreAddIn.Settings
 
 
 		/// <summary>
-		/// Sets the arrow/text of the expand-collapse indicator and re-measures its
-		/// containing panel, since "Expand"/"Collapse" differ in width and the arrow is
-		/// deliberately a larger font than the word next to it (so a single Label can't
-		/// be used for both).
+		/// Sets the arrow/text of the expand-collapse indicator, since "Expand"/"Collapse"
+		/// differ in width and the arrow is deliberately a larger font than the word next to
+		/// it (so a single Label can't be used for both). The containing panel's own width is
+		/// fixed (see EnsureIndicatorWidth()) so it doesn't shift as the label text changes.
 		/// </summary>
 		private void UpdateIndicator()
 		{
@@ -525,7 +558,6 @@ namespace River.OneMoreAddIn.Settings
 
 			indicatorArrow.Location = new Point(0, (HeaderHeight - indicatorArrow.Height) / 2);
 			indicatorText.Location = new Point(indicatorArrow.Right + 4, (HeaderHeight - indicatorText.Height) / 2);
-			indicatorPanel.Width = indicatorText.Right + 12;
 		}
 
 
@@ -567,7 +599,7 @@ namespace River.OneMoreAddIn.Settings
 			var colorSwatch = new MorePictureBox
 			{
 				Location = new Point(0, 1),
-				Size = new Size(20, 20),
+				Size = new Size(22, 22),
 				BorderStyle = BorderStyle.FixedSingle,
 				Cursor = Cursors.Hand,
 				BackColor = SafeColor(hex)
@@ -577,7 +609,7 @@ namespace River.OneMoreAddIn.Settings
 			var hexBox = new MoreTextBox
 			{
 				Location = new Point(28, 0),
-				Size = new Size(74, 22),
+				Size = new Size(84, 22),
 				Font = smallFieldFont,
 				Text = hex
 			};
