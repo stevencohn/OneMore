@@ -492,6 +492,74 @@ Umkehren</value>
     <value>Mit Lesezeichen versehen „{0}“</value>
     <comment>message box</comment>
   </data>
+  <data name="BoxTypeCard_Background" xml:space="preserve">
+    <value>Hintergrundschattierung</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypeCard_Collapse" xml:space="preserve">
+    <value>▾ Zusammenbrechen</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypeCard_ConfirmDelete" xml:space="preserve">
+    <value>Boxtyp „{0}“ löschen?</value>
+    <comment>question</comment>
+  </data>
+  <data name="BoxTypeCard_DeleteBoxType" xml:space="preserve">
+    <value>Boxtyp löschen</value>
+    <comment>link</comment>
+  </data>
+  <data name="BoxTypeCard_Duplicate" xml:space="preserve">
+    <value>Duplikat</value>
+    <comment>link</comment>
+  </data>
+  <data name="BoxTypeCard_Expand" xml:space="preserve">
+    <value>▸ Erweitern</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypeCard_ResetToDefault" xml:space="preserve">
+    <value>Auf Standard zurücksetzen</value>
+    <comment>link</comment>
+  </data>
+  <data name="BoxTypeCard_SymbolCode" xml:space="preserve">
+    <value>Symbolcodepunkt (hex)</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypeCard_SymbolColor" xml:space="preserve">
+    <value>Symbolfarbe</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypeCard_SymbolSize" xml:space="preserve">
+    <value>Symbolgröße (px)</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypeCard_TextColor" xml:space="preserve">
+    <value>Farbe des Textkörpers</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypeCard_TitleColor" xml:space="preserve">
+    <value>Titelfarbe</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypeCard_TitleText" xml:space="preserve">
+    <value>Titeltext</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypesPanel_CopyTitle" xml:space="preserve">
+    <value>{0} Kopieren</value>
+    <comment>generated title for a duplicated box type</comment>
+  </data>
+  <data name="BoxTypesPanel_DuplicateFrom" xml:space="preserve">
+    <value>Duplikat von…</value>
+    <comment>menu header</comment>
+  </data>
+  <data name="BoxTypesPanel_NewBoxType" xml:space="preserve">
+    <value>+ Neuer Boxtyp</value>
+    <comment>button</comment>
+  </data>
+  <data name="BoxTypesPanel_Title" xml:space="preserve">
+    <value>Boxtypen</value>
+    <comment>section header and tab caption</comment>
+  </data>
   <data name="BreakingDialog_oneButton.Text" xml:space="preserve">
     <value>Ein Leerzeichen zwischen Sätzen</value>
     <comment>radio</comment>
@@ -2468,6 +2536,10 @@ Gelber Hintergrund</value>
   <data name="InsertCellsDialog_shiftRightRadio.Text" xml:space="preserve">
     <value>Verschiebe die Zellen nach rechts</value>
     <comment>radio</comment>
+  </data>
+  <data name="InsertInfoBoxCommand_UnknownType" xml:space="preserve">
+    <value>Dieser Boxtyp existiert nicht mehr</value>
+    <comment>error</comment>
   </data>
   <data name="InsertNotebookTocDialog_pagesBox.Text" xml:space="preserve">
     <value>Fügen Sie Seiten in jeden Abschnitt ein</value>
@@ -6311,6 +6383,10 @@ Bist du dir sicher, dass du weitermachen willst?</value>
     <value>Aktivieren Sie Rasterlinien, bevor Sie diesen Befehl verwenden</value>
     <comment>message</comment>
   </data>
+  <data name="SnippetsSheet_boxWidthLabel.Text" xml:space="preserve">
+    <value>Kastenbreite:</value>
+    <comment>label</comment>
+  </data>
   <data name="SnippetsSheet_codeStyleBox.Text" xml:space="preserve">
     <value>Wenden Sie immer den „Code“-Stil auf den Inhalt der Codebox an</value>
     <comment>label</comment>
@@ -6320,8 +6396,12 @@ Bist du dir sicher, dass du weitermachen willst?</value>
     <comment>question</comment>
   </data>
   <data name="SnippetsSheet_introBox.Text" xml:space="preserve">
-    <value>Optionen und „Meine Snippets“ verwalten</value>
+    <value>Boxoptionen und „Meine Snippets“ verwalten</value>
     <comment>label</comment>
+  </data>
+  <data name="SnippetsSheet_mySnippetsTab.Text" xml:space="preserve">
+    <value>Meine Ausschnitte</value>
+    <comment>tab caption</comment>
   </data>
   <data name="SortDialog.Text" xml:space="preserve">
     <value>Sortieren</value>
@@ -6912,6 +6992,9 @@ Danke schön!</value>
   <data name="word_Brightness" xml:space="preserve">
     <value>Helligkeit</value>
   </data>
+  <data name="word_Builtin" xml:space="preserve">
+    <value>Eingebaut</value>
+  </data>
   <data name="word_Cancel" xml:space="preserve">
     <value>Abbrechen</value>
   </data>
@@ -6944,6 +7027,9 @@ Danke schön!</value>
   </data>
   <data name="word_Copy" xml:space="preserve">
     <value>Kopieren</value>
+  </data>
+  <data name="word_Custom" xml:space="preserve">
+    <value>Brauch</value>
   </data>
   <data name="word_Default" xml:space="preserve">
     <value>Standard</value>

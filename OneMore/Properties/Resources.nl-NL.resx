@@ -489,6 +489,74 @@ Omkeren</value>
     <value>Favoriet gemaakt voor '{0}'</value>
     <comment>message box</comment>
   </data>
+  <data name="BoxTypeCard_Background" xml:space="preserve">
+    <value>Achtergrondschaduw</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypeCard_Collapse" xml:space="preserve">
+    <value>▾ Samenvouwen</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypeCard_ConfirmDelete" xml:space="preserve">
+    <value>Vaktype "{0}" verwijderen?</value>
+    <comment>question</comment>
+  </data>
+  <data name="BoxTypeCard_DeleteBoxType" xml:space="preserve">
+    <value>Vaktype verwijderen</value>
+    <comment>link</comment>
+  </data>
+  <data name="BoxTypeCard_Duplicate" xml:space="preserve">
+    <value>Duplicaat</value>
+    <comment>link</comment>
+  </data>
+  <data name="BoxTypeCard_Expand" xml:space="preserve">
+    <value>▸ Uitbreiden</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypeCard_ResetToDefault" xml:space="preserve">
+    <value>Terugzetten naar standaard</value>
+    <comment>link</comment>
+  </data>
+  <data name="BoxTypeCard_SymbolCode" xml:space="preserve">
+    <value>Symbool codepunt (hex)</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypeCard_SymbolColor" xml:space="preserve">
+    <value>Symbool kleur</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypeCard_SymbolSize" xml:space="preserve">
+    <value>Symboolgrootte (px)</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypeCard_TextColor" xml:space="preserve">
+    <value>Kleur van de hoofdtekst</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypeCard_TitleColor" xml:space="preserve">
+    <value>Titel kleur</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypeCard_TitleText" xml:space="preserve">
+    <value>Titel tekst</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypesPanel_CopyTitle" xml:space="preserve">
+    <value>{0} Kopiëren</value>
+    <comment>generated title for a duplicated box type</comment>
+  </data>
+  <data name="BoxTypesPanel_DuplicateFrom" xml:space="preserve">
+    <value>Dupliceren van...</value>
+    <comment>menu header</comment>
+  </data>
+  <data name="BoxTypesPanel_NewBoxType" xml:space="preserve">
+    <value>+ Nieuw doostype</value>
+    <comment>button</comment>
+  </data>
+  <data name="BoxTypesPanel_Title" xml:space="preserve">
+    <value>Doostypen</value>
+    <comment>section header and tab caption</comment>
+  </data>
   <data name="BreakingDialog_oneButton.Text" xml:space="preserve">
     <value>Een spatie tussen zinnen</value>
     <comment>radio</comment>
@@ -2473,6 +2541,10 @@ Gele achtergrond</value>
   <data name="InsertCellsDialog_shiftRightRadio.Text" xml:space="preserve">
     <value>Schuif cellen naar rechts</value>
     <comment>radio</comment>
+  </data>
+  <data name="InsertInfoBoxCommand_UnknownType" xml:space="preserve">
+    <value>Dat doostype bestaat niet meer</value>
+    <comment>error</comment>
   </data>
   <data name="InsertNotebookTocDialog_pagesBox.Text" xml:space="preserve">
     <value>Voeg pagina's toe aan elke sectie</value>
@@ -6310,6 +6382,10 @@ Weet je zeker dat je door wilt gaan?</value>
     <value>Schakel rasterlijnen in voordat u deze opdracht gebruikt</value>
     <comment>message</comment>
   </data>
+  <data name="SnippetsSheet_boxWidthLabel.Text" xml:space="preserve">
+    <value>Breedte doos:</value>
+    <comment>label</comment>
+  </data>
   <data name="SnippetsSheet_codeStyleBox.Text" xml:space="preserve">
     <value>Pas altijd de 'code'-stijl toe op Code Box-inhoud</value>
     <comment>label</comment>
@@ -6319,8 +6395,12 @@ Weet je zeker dat je door wilt gaan?</value>
     <comment>question</comment>
   </data>
   <data name="SnippetsSheet_introBox.Text" xml:space="preserve">
-    <value>Beheer opties en Mijn fragmenten</value>
+    <value>Beheer boxopties en Mijn fragmenten</value>
     <comment>label</comment>
+  </data>
+  <data name="SnippetsSheet_mySnippetsTab.Text" xml:space="preserve">
+    <value>Mijn fragmenten</value>
+    <comment>tab caption</comment>
   </data>
   <data name="SortDialog.Text" xml:space="preserve">
     <value>Soort</value>
@@ -6912,6 +6992,9 @@ Bedankt!</value>
   <data name="word_Brightness" xml:space="preserve">
     <value>Helderheid</value>
   </data>
+  <data name="word_Builtin" xml:space="preserve">
+    <value>Ingebouwd</value>
+  </data>
   <data name="word_Cancel" xml:space="preserve">
     <value>Annuleren</value>
   </data>
@@ -6944,6 +7027,9 @@ Bedankt!</value>
   </data>
   <data name="word_Copy" xml:space="preserve">
     <value>Kopiëren</value>
+  </data>
+  <data name="word_Custom" xml:space="preserve">
+    <value>Aangepast</value>
   </data>
   <data name="word_Default" xml:space="preserve">
     <value>Standaard</value>

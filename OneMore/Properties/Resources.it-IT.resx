@@ -490,6 +490,74 @@ Invertire</value>
     <value>Aggiunto "{0}" ai segnalibri</value>
     <comment>message box</comment>
   </data>
+  <data name="BoxTypeCard_Background" xml:space="preserve">
+    <value>Ombreggiatura dello sfondo</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypeCard_Collapse" xml:space="preserve">
+    <value>▾ Crollo</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypeCard_ConfirmDelete" xml:space="preserve">
+    <value>Eliminare il tipo di casella "{0}"?</value>
+    <comment>question</comment>
+  </data>
+  <data name="BoxTypeCard_DeleteBoxType" xml:space="preserve">
+    <value>Elimina tipo di casella</value>
+    <comment>link</comment>
+  </data>
+  <data name="BoxTypeCard_Duplicate" xml:space="preserve">
+    <value>Duplicato</value>
+    <comment>link</comment>
+  </data>
+  <data name="BoxTypeCard_Expand" xml:space="preserve">
+    <value>▸ Espandi</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypeCard_ResetToDefault" xml:space="preserve">
+    <value>Ripristina le impostazioni predefinite</value>
+    <comment>link</comment>
+  </data>
+  <data name="BoxTypeCard_SymbolCode" xml:space="preserve">
+    <value>Punto di codice simbolo (esadecimale)</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypeCard_SymbolColor" xml:space="preserve">
+    <value>Colore del simbolo</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypeCard_SymbolSize" xml:space="preserve">
+    <value>Dimensione simbolo (px)</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypeCard_TextColor" xml:space="preserve">
+    <value>Colore del corpo del testo</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypeCard_TitleColor" xml:space="preserve">
+    <value>Colore del titolo</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypeCard_TitleText" xml:space="preserve">
+    <value>Testo del titolo</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypesPanel_CopyTitle" xml:space="preserve">
+    <value>{0} Copia</value>
+    <comment>generated title for a duplicated box type</comment>
+  </data>
+  <data name="BoxTypesPanel_DuplicateFrom" xml:space="preserve">
+    <value>Duplicato da…</value>
+    <comment>menu header</comment>
+  </data>
+  <data name="BoxTypesPanel_NewBoxType" xml:space="preserve">
+    <value>+ Nuovo tipo di scatola</value>
+    <comment>button</comment>
+  </data>
+  <data name="BoxTypesPanel_Title" xml:space="preserve">
+    <value>Tipi di scatole</value>
+    <comment>section header and tab caption</comment>
+  </data>
   <data name="BreakingDialog_oneButton.Text" xml:space="preserve">
     <value>Uno spazio tra le frasi</value>
     <comment>radio</comment>
@@ -2473,6 +2541,10 @@ Sfondo giallo</value>
   <data name="InsertCellsDialog_shiftRightRadio.Text" xml:space="preserve">
     <value>Sposta le celle a destra</value>
     <comment>radio</comment>
+  </data>
+  <data name="InsertInfoBoxCommand_UnknownType" xml:space="preserve">
+    <value>Quel tipo di casella non esiste più</value>
+    <comment>error</comment>
   </data>
   <data name="InsertNotebookTocDialog_pagesBox.Text" xml:space="preserve">
     <value>Includi pagine in ogni sezione</value>
@@ -6317,6 +6389,10 @@ Sei sicuro di voler continuare?</value>
     <value>Abilita le linee della griglia prima di utilizzare questo comando</value>
     <comment>message</comment>
   </data>
+  <data name="SnippetsSheet_boxWidthLabel.Text" xml:space="preserve">
+    <value>Larghezza della scatola:</value>
+    <comment>label</comment>
+  </data>
   <data name="SnippetsSheet_codeStyleBox.Text" xml:space="preserve">
     <value>Applica sempre lo stile "codice" al contenuto della casella codice</value>
     <comment>label</comment>
@@ -6326,8 +6402,12 @@ Sei sicuro di voler continuare?</value>
     <comment>question</comment>
   </data>
   <data name="SnippetsSheet_introBox.Text" xml:space="preserve">
-    <value>Gestisci le opzioni e i miei frammenti</value>
+    <value>Gestisci le opzioni della casella e I miei frammenti</value>
     <comment>label</comment>
+  </data>
+  <data name="SnippetsSheet_mySnippetsTab.Text" xml:space="preserve">
+    <value>I miei frammenti</value>
+    <comment>tab caption</comment>
   </data>
   <data name="SortDialog.Text" xml:space="preserve">
     <value>Ordinare</value>
@@ -6919,6 +6999,9 @@ Grazie!</value>
   <data name="word_Brightness" xml:space="preserve">
     <value>Luminosità</value>
   </data>
+  <data name="word_Builtin" xml:space="preserve">
+    <value>Integrato</value>
+  </data>
   <data name="word_Cancel" xml:space="preserve">
     <value>Cancellare</value>
   </data>
@@ -6951,6 +7034,9 @@ Grazie!</value>
   </data>
   <data name="word_Copy" xml:space="preserve">
     <value>Copia</value>
+  </data>
+  <data name="word_Custom" xml:space="preserve">
+    <value>Costume</value>
   </data>
   <data name="word_Default" xml:space="preserve">
     <value>Predefinito</value>

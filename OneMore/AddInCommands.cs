@@ -607,6 +607,10 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<InsertSnippetCommand>(control.Tag); // tag=filepath
 
 
+		public async Task InsertCustomBoxCmd(IRibbonControl control)
+			=> await factory.Run<InsertInfoBoxCommand>(control.Tag); // tag=box type id
+
+
 		[Command("ribInsertTimerButton_Label", Keys.F2)]
 		public async Task InsertTimerCmd(IRibbonControl control)
 			=> await factory.Run<TimerWindowCommand>(TimerWindow.CopyCmd);

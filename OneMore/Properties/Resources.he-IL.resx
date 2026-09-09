@@ -489,6 +489,74 @@
     <value>סימניה "{0}"</value>
     <comment>message box</comment>
   </data>
+  <data name="BoxTypeCard_Background" xml:space="preserve">
+    <value>הצללת רקע</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypeCard_Collapse" xml:space="preserve">
+    <value>▾ התמוטטות</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypeCard_ConfirmDelete" xml:space="preserve">
+    <value>למחוק את סוג התיבה "{0}"?</value>
+    <comment>question</comment>
+  </data>
+  <data name="BoxTypeCard_DeleteBoxType" xml:space="preserve">
+    <value>מחק את סוג התיבה</value>
+    <comment>link</comment>
+  </data>
+  <data name="BoxTypeCard_Duplicate" xml:space="preserve">
+    <value>לְשַׁכְפֵּל</value>
+    <comment>link</comment>
+  </data>
+  <data name="BoxTypeCard_Expand" xml:space="preserve">
+    <value>▸ הרחב</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypeCard_ResetToDefault" xml:space="preserve">
+    <value>אפס לברירת המחדל</value>
+    <comment>link</comment>
+  </data>
+  <data name="BoxTypeCard_SymbolCode" xml:space="preserve">
+    <value>נקודת קוד סמל (hex)</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypeCard_SymbolColor" xml:space="preserve">
+    <value>צבע סמל</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypeCard_SymbolSize" xml:space="preserve">
+    <value>גודל סמל (פיקסלים)</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypeCard_TextColor" xml:space="preserve">
+    <value>צבע גוף הטקסט</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypeCard_TitleColor" xml:space="preserve">
+    <value>צבע הכותרת</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypeCard_TitleText" xml:space="preserve">
+    <value>טקסט כותרת</value>
+    <comment>label</comment>
+  </data>
+  <data name="BoxTypesPanel_CopyTitle" xml:space="preserve">
+    <value>{0} העתק</value>
+    <comment>generated title for a duplicated box type</comment>
+  </data>
+  <data name="BoxTypesPanel_DuplicateFrom" xml:space="preserve">
+    <value>שכפול מ...</value>
+    <comment>menu header</comment>
+  </data>
+  <data name="BoxTypesPanel_NewBoxType" xml:space="preserve">
+    <value>+ סוג תיבה חדש</value>
+    <comment>button</comment>
+  </data>
+  <data name="BoxTypesPanel_Title" xml:space="preserve">
+    <value>סוגי קופסאות</value>
+    <comment>section header and tab caption</comment>
+  </data>
   <data name="BreakingDialog_oneButton.Text" xml:space="preserve">
     <value>רווח אחד בין משפטים</value>
     <comment>radio</comment>
@@ -2473,6 +2541,10 @@ Total Row Font
   <data name="InsertCellsDialog_shiftRightRadio.Text" xml:space="preserve">
     <value>העבר תאים ימינה</value>
     <comment>radio</comment>
+  </data>
+  <data name="InsertInfoBoxCommand_UnknownType" xml:space="preserve">
+    <value>סוג התיבה הזה כבר לא קיים</value>
+    <comment>error</comment>
   </data>
   <data name="InsertNotebookTocDialog_pagesBox.Text" xml:space="preserve">
     <value>כלול דפים בכל חלק</value>
@@ -6314,6 +6386,10 @@ ISO-code then comma then language name</comment>
     <value>אפשר קווי רשת לפני השימוש בפקודה זו</value>
     <comment>message</comment>
   </data>
+  <data name="SnippetsSheet_boxWidthLabel.Text" xml:space="preserve">
+    <value>רוחב קופסא:</value>
+    <comment>label</comment>
+  </data>
   <data name="SnippetsSheet_codeStyleBox.Text" xml:space="preserve">
     <value>החל תמיד סגנון "קוד" על תוכן Code Box</value>
     <comment>label</comment>
@@ -6323,8 +6399,12 @@ ISO-code then comma then language name</comment>
     <comment>question</comment>
   </data>
   <data name="SnippetsSheet_introBox.Text" xml:space="preserve">
-    <value>נהל את האפשרויות ואת הקטעים שלי</value>
+    <value>נהל את אפשרויות התיבה ואת הקטעים שלי</value>
     <comment>label</comment>
+  </data>
+  <data name="SnippetsSheet_mySnippetsTab.Text" xml:space="preserve">
+    <value>הקטעים שלי</value>
+    <comment>tab caption</comment>
   </data>
   <data name="SortDialog.Text" xml:space="preserve">
     <value>סוג</value>
@@ -6916,6 +6996,9 @@ ISO-code then comma then language name</comment>
   <data name="word_Brightness" xml:space="preserve">
     <value>בְּהִירוּת</value>
   </data>
+  <data name="word_Builtin" xml:space="preserve">
+    <value>מובנה</value>
+  </data>
   <data name="word_Cancel" xml:space="preserve">
     <value>לְבַטֵל</value>
   </data>
@@ -6948,6 +7031,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Copy" xml:space="preserve">
     <value>עותק</value>
+  </data>
+  <data name="word_Custom" xml:space="preserve">
+    <value>מִנְהָג</value>
   </data>
   <data name="word_Default" xml:space="preserve">
     <value>בְּרִירַת מֶחדָל</value>
