@@ -6143,7 +6143,8 @@ Modificado antes</value>
     <comment>checkbox</comment>
   </data>
   <data name="SearchDialog_introLabel.Text" xml:space="preserve">
-    <value>Insira os critérios de pesquisa, incluindo opcionalmente AND, OR, NOT, aspas e parênteses</value>
+    <value>Insira os critérios de pesquisa, incluindo opcionalmente AND, OR, NOT, aspas e parênteses
+Palavras sem aspas correspondem em qualquer ordem; use aspas para uma frase exata.</value>
     <comment>label</comment>
   </data>
   <data name="SearchDialog_matchBox.Text" xml:space="preserve">
@@ -6235,7 +6236,7 @@ Os mecanismos de pesquisa aparecerão no menu de contexto da página, clique com
     <comment>link</comment>
   </data>
   <data name="SearchTitleDialog_introLabel.Text" xml:space="preserve">
-    <value>Insira uma consulta de título. Pesquisa todos os blocos de anotações por padrão. Use "\name" para definir o escopo de um notebook correspondente, "\\" apenas para o notebook atual, "#tag" para filtrar por hashtag e "-#tag" para excluir uma hashtag. Prefixe com "&gt;" para classificar pelos modificados mais recentemente.</value>
+    <value>Insira uma consulta de título. Palavras sem aspas correspondem em qualquer ordem; use aspas para uma frase exata e AND, OR, NOT, parênteses e * curingas são suportados. Pesquisa todos os blocos de anotações por padrão. Use "\name" para definir o escopo de um notebook correspondente, "\\" apenas para o notebook atual, "#tag" para filtrar por hashtag e "-#tag" para excluir uma hashtag. Prefixe com "&gt;" para classificar pelos modificados mais recentemente.</value>
     <comment>label</comment>
   </data>
   <data name="SearchTitleDialog_noHashtagCatalog" xml:space="preserve">

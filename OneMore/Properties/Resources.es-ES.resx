@@ -6142,7 +6142,8 @@ Modificado antes</value>
     <comment>checkbox</comment>
   </data>
   <data name="SearchDialog_introLabel.Text" xml:space="preserve">
-    <value>Ingrese los criterios de búsqueda, incluyendo opcionalmente AND, OR, NOT, comillas y paréntesis</value>
+    <value>Ingrese los criterios de búsqueda, incluyendo opcionalmente Y, O, NO, comillas y paréntesis
+Las palabras sin comillas coinciden en cualquier orden; Utilice comillas para una frase exacta.</value>
     <comment>label</comment>
   </data>
   <data name="SearchDialog_matchBox.Text" xml:space="preserve">
@@ -6234,7 +6235,7 @@ Los motores de búsqueda aparecerán en el menú contextual de la página, haga 
     <comment>link</comment>
   </data>
   <data name="SearchTitleDialog_introLabel.Text" xml:space="preserve">
-    <value>Ingrese una consulta de título. Busca en todos los cuadernos de forma predeterminada. Utilice "\name" para seleccionar un cuaderno coincidente, "\\" solo para el cuaderno actual, "#tag" para filtrar por hashtag y "-#tag" para excluir un hashtag. Prefije "&gt;" para ordenar por las modificaciones más recientes.</value>
+    <value>Ingrese una consulta de título. Las palabras sin comillas coinciden en cualquier orden; utilice comillas para una frase exacta y se admiten los comodines AND, OR, NOT, paréntesis y *. Busca en todos los cuadernos de forma predeterminada. Utilice "\name" para seleccionar un cuaderno coincidente, "\\" solo para el cuaderno actual, "#tag" para filtrar por hashtag y "-#tag" para excluir un hashtag. Prefije "&gt;" para ordenar por las modificaciones más recientes.</value>
     <comment>label</comment>
   </data>
   <data name="SearchTitleDialog_noHashtagCatalog" xml:space="preserve">

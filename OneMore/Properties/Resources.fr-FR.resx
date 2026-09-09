@@ -6154,7 +6154,8 @@ Modifié avant</value>
     <comment>checkbox</comment>
   </data>
   <data name="SearchDialog_introLabel.Text" xml:space="preserve">
-    <value>Saisissez les critères de recherche, en incluant éventuellement AND, OR, NOT, des guillemets et des parenthèses.</value>
+    <value>Saisissez les critères de recherche, en incluant éventuellement AND, OR, NOT, des guillemets et des parenthèses.
+Les mots non cités correspondent dans n'importe quel ordre ; utilisez des guillemets pour une phrase exacte.</value>
     <comment>label</comment>
   </data>
   <data name="SearchDialog_matchBox.Text" xml:space="preserve">
@@ -6246,7 +6247,7 @@ Les moteurs de recherche apparaîtront dans le menu du contexte de la page, cliq
     <comment>link</comment>
   </data>
   <data name="SearchTitleDialog_introLabel.Text" xml:space="preserve">
-    <value>Saisissez une requête de titre. Recherche tous les blocs-notes par défaut. Utilisez "\name" pour étendre la portée à un bloc-notes correspondant, "\\" pour le bloc-notes actuel uniquement, "#tag" pour filtrer par hashtag et "-#tag" pour exclure un hashtag. Préfixez par "&gt;" pour trier selon les modifications les plus récentes.</value>
+    <value>Saisissez une requête de titre. Les mots non cités correspondent dans n'importe quel ordre ; utilisez des guillemets pour une expression exacte, et les caractères génériques AND, OR, NOT, parenthèses et * sont pris en charge. Recherche tous les blocs-notes par défaut. Utilisez "\name" pour étendre la portée à un bloc-notes correspondant, "\\" pour le bloc-notes actuel uniquement, "#tag" pour filtrer par hashtag et "-#tag" pour exclure un hashtag. Préfixez par "&gt;" pour trier selon les modifications les plus récentes.</value>
     <comment>label</comment>
   </data>
   <data name="SearchTitleDialog_noHashtagCatalog" xml:space="preserve">

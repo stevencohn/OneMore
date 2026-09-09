@@ -71,7 +71,7 @@ namespace River.OneMoreAddIn.Commands
 			this.introLabel.Size = new System.Drawing.Size(603, 20);
 			this.introLabel.TabIndex = 0;
 			this.introLabel.Text = "Enter the search criteria, optionally including AND, OR, NOT, quotes and parenthe" +
-    "sis\r\n";
+    "sis\r\nUnquoted words match in any order; use quotes for an exact phrase.\r\n";
 			this.introLabel.ThemedBack = null;
 			this.introLabel.ThemedFore = null;
 			// 
