@@ -14501,7 +14501,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enter a page title query. Searches all notebooks by default. Use &quot;\name&quot; to scope to a matching notebook, &quot;\\&quot; for the current notebook only, &quot;#tag&quot; to filter by hashtag, and &quot;-#tag&quot; to exclude a hashtag. Prefix with &quot;&gt;&quot; to sort by most recently modified..
+        ///   Looks up a localized string similar to Enter a title query. Searches all notebooks by default. Use &quot;\name&quot; to scope to a matching notebook, &quot;\\&quot; for the current notebook only, &quot;#tag&quot; to filter by hashtag, and &quot;-#tag&quot; to exclude a hashtag. Prefix with &quot;&gt;&quot; to sort by most recently modified..
         /// </summary>
         internal static string SearchTitleDialog_introLabel_Text {
             get {
@@ -14537,7 +14537,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Search Page Titles.
+        ///   Looks up a localized string similar to Search Titles.
         /// </summary>
         internal static string SearchTitleDialog_Text {
             get {

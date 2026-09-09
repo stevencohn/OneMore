@@ -20,6 +20,11 @@ namespace River.OneMoreAddIn.Commands
 		public bool IsPlainText { get; set; }    // true to suppress hyperlink hover/cursor styling
 		public DateTime Modified { get; set; }   // DateTime.MinValue when unknown
 
+		// Search Titles multi-level hits (null for legacy cards, e.g. SearchDialog's page
+		// results, which keep using SectionColor for the left accent bar instead)
+		public TitleHitLevel? Level { get; set; }
+		public string HashtagSuffix { get; set; }
+
 		// layout cache — computed by SearchResultsCardView.EnsureLayout
 		internal int Y;
 		internal int Height;

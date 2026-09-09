@@ -343,11 +343,15 @@
     <Compile Include="Commands\Search\SearchEngine.cs" />
     <Compile Include="Commands\Search\SearchTitleEngine.cs" />
     <Compile Include="Commands\Search\SearchTitleCommand.cs" />
+    <Compile Include="Commands\Search\TitleHitLevel.cs" />
     <Compile Include="Commands\Search\TitleQueryParser.cs" />
     <Compile Include="Commands\Search\SearchGroupControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Commands\Search\SearchResultsCardView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Commands\Search\TitleHitFilterBar.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Commands\Settings\TableThemesSheet.cs">

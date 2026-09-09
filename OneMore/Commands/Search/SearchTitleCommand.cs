@@ -45,7 +45,10 @@ namespace River.OneMoreAddIn.Commands
 			.AddString("notebook",
 				"Name of the notebook to search; * or omit to search all notebooks, " +
 				"\\ to search only the current notebook",
-				required: false);
+				required: false)
+			.AddBoolean("extended",
+				"Also match notebook, section, and section-group names, not just page titles",
+				required: false, defaultValue: false);
 
 		#endregion CLI Implementation
 
@@ -202,11 +205,14 @@ namespace River.OneMoreAddIn.Commands
 		{
 			cliParams.TryGet("query", out string queryText);
 			cliParams.TryGet("notebook", out string notebookOverride);
+			cliParams.TryGet("extended", out bool extended);
 
 			var parsed = TitleQueryParser.Parse(queryText);
 			var notebookFilter = string.IsNullOrEmpty(notebookOverride)
 				? parsed.NotebookFilter
 				: notebookOverride;
+
+			var scoped = !string.IsNullOrEmpty(notebookFilter) && notebookFilter != "*";
 
 			Regex finder = null;
 			if (!string.IsNullOrEmpty(parsed.TitleText))
@@ -286,10 +292,18 @@ namespace River.OneMoreAddIn.Commands
 				if (tree == null) { continue; }
 
 				results.AddRange(SearchTitleEngine.SearchNotebook(
-					tree, name, finder, hashtagPageIds, excludedHashtagPageIds));
+					tree, name, finder, hashtagPageIds, excludedHashtagPageIds,
+					matchAllLevels: extended, matchNotebookName: extended && !scoped));
 			}
 
-			SearchTitleEngine.Sort(results, parsed.SortByModified);
+			if (extended && !parsed.SortByModified)
+			{
+				SearchTitleEngine.SortHierarchical(results);
+			}
+			else
+			{
+				SearchTitleEngine.Sort(results, parsed.SortByModified);
+			}
 
 			var root = new XElement("Results",
 				new XAttribute("query", queryText),
@@ -297,10 +311,17 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (var result in results)
 			{
-				root.Add(new XElement("Page",
+				var element = new XElement("Page",
 					new XAttribute("id", result.PageId),
 					new XAttribute("path", result.Path),
-					new XAttribute("modified", result.Modified.ToString("o"))));
+					new XAttribute("modified", result.Modified.ToString("o")));
+
+				if (extended)
+				{
+					element.Add(new XAttribute("type", result.Level.ToString()));
+				}
+
+				root.Add(element);
 			}
 
 			CliOutput = root.ToString();

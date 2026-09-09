@@ -21,6 +21,7 @@ namespace River.OneMoreAddIn.Commands
 		public string Path { get; set; }
 		public string Color { get; set; }
 		public DateTime Modified { get; set; }
+		public TitleHitLevel Level { get; set; } = TitleHitLevel.Page;
 	}
 
 
@@ -47,15 +48,33 @@ namespace River.OneMoreAddIn.Commands
 		/// If non-null, pages whose ID appears in this set are skipped, implementing "-#hashtag"
 		/// exclusion
 		/// </param>
+		/// <param name="matchAllLevels">
+		/// When true, also test section and section-group names against <paramref name="finder"/>,
+		/// producing Section/SectionGroup level hits in addition to Page hits. Has no effect when
+		/// <paramref name="finder"/> is null (a pure hashtag/sort query has no title text to match
+		/// a hierarchy name against) or when a hashtag filter is active (the tag catalog only
+		/// applies to pages).
+		/// </param>
+		/// <param name="matchNotebookName">
+		/// When true (and <paramref name="matchAllLevels"/> is also true), also test the
+		/// notebook's own name against <paramref name="finder"/>, producing a Notebook level hit.
+		/// Callers should pass false when the search is already scoped to this notebook by name,
+		/// since the notebook itself isn't a meaningful match target in that case.
+		/// </param>
 		public static List<TitleSearchResult> SearchNotebook(
 			XElement notebook,
 			string notebookName,
 			Regex finder,
 			ISet<string> hashtagPageIds = null,
-			ISet<string> excludedHashtagPageIds = null)
+			ISet<string> excludedHashtagPageIds = null,
+			bool matchAllLevels = false,
+			bool matchNotebookName = false)
 		{
 			var results = new List<TitleSearchResult>();
 			var ns = notebook.GetNamespaceOfPrefix(OneNote.Prefix);
+
+			var matchHierarchyNames = matchAllLevels && finder != null &&
+				hashtagPageIds == null && excludedHashtagPageIds == null;
 
 			void TraverseSections(XElement parent, string path)
 			{
@@ -70,6 +89,23 @@ namespace River.OneMoreAddIn.Commands
 					var sectionName = section.Attribute("name")?.Value ?? string.Empty;
 					var sectionPath = $"{path}/{sectionName}";
 					var color = section.Attribute("color")?.Value;
+
+					if (matchHierarchyNames && finder.IsMatch(sectionName))
+					{
+						var sectionId = section.Attribute("ID")?.Value;
+						if (sectionId != null)
+						{
+							results.Add(new TitleSearchResult
+							{
+								PageId = sectionId,
+								Name = sectionName,
+								Path = sectionPath,
+								Color = color,
+								Modified = ParseModified(section),
+								Level = TitleHitLevel.Section
+							});
+						}
+					}
 
 					foreach (var page in section.Elements(ns + "Page"))
 					{
@@ -96,21 +132,14 @@ namespace River.OneMoreAddIn.Commands
 							continue;
 						}
 
-						var modified = DateTime.MinValue;
-						var attr = page.Attribute("lastModifiedTime")?.Value;
-						if (attr != null)
-						{
-							DateTime.TryParse(
-								attr, CultureInfo.InvariantCulture, DateTimeStyles.None, out modified);
-						}
-
 						results.Add(new TitleSearchResult
 						{
 							PageId = id,
 							Name = name,
 							Path = $"{sectionPath}/{name}",
 							Color = color,
-							Modified = modified
+							Modified = ParseModified(page),
+							Level = TitleHitLevel.Page
 						});
 					}
 				}
@@ -123,13 +152,78 @@ namespace River.OneMoreAddIn.Commands
 					}
 
 					var groupName = group.Attribute("name")?.Value ?? string.Empty;
-					TraverseSections(group, $"{path}/{groupName}");
+					var groupPath = $"{path}/{groupName}";
+
+					if (matchHierarchyNames && finder.IsMatch(groupName))
+					{
+						var groupId = group.Attribute("ID")?.Value;
+						if (groupId != null)
+						{
+							results.Add(new TitleSearchResult
+							{
+								PageId = groupId,
+								Name = groupName,
+								Path = groupPath,
+								Modified = ParseModified(group),
+								Level = TitleHitLevel.SectionGroup
+							});
+						}
+					}
+
+					// recurse regardless of whether this group itself matched; a match doesn't
+					// stop traversal of its own children
+					TraverseSections(group, groupPath);
+				}
+			}
+
+			if (matchHierarchyNames && matchNotebookName && finder.IsMatch(notebookName))
+			{
+				var notebookId = notebook.Attribute("ID")?.Value;
+				if (notebookId != null)
+				{
+					results.Add(new TitleSearchResult
+					{
+						PageId = notebookId,
+						Name = notebookName,
+						Path = notebookName,
+						Color = notebook.Attribute("color")?.Value,
+						Modified = ParseModified(notebook),
+						Level = TitleHitLevel.Notebook
+					});
 				}
 			}
 
 			TraverseSections(notebook, notebookName);
 
 			return results;
+		}
+
+
+		private static DateTime ParseModified(XElement element)
+		{
+			var modified = DateTime.MinValue;
+			var attr = element.Attribute("lastModifiedTime")?.Value;
+			if (attr != null)
+			{
+				DateTime.TryParse(
+					attr, CultureInfo.InvariantCulture, DateTimeStyles.None, out modified);
+			}
+
+			return modified;
+		}
+
+
+		/// <summary>
+		/// Sorts results by their hierarchical breadcrumb path so that a matched
+		/// notebook/section/section-group's own hit always immediately precedes any of its
+		/// descendant hits (an exact-prefix string always sorts before any longer string sharing
+		/// that prefix), while siblings still land in a sensible alphabetical order. Used only by
+		/// multi-level (matchAllLevels) searches; plain page-only searches keep using Sort().
+		/// </summary>
+		public static void SortHierarchical(List<TitleSearchResult> results)
+		{
+			results.Sort((a, b) =>
+				string.Compare(a.Path, b.Path, StringComparison.CurrentCultureIgnoreCase));
 		}
 
 
