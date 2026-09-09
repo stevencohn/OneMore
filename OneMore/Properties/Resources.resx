@@ -6182,7 +6182,8 @@ Modified before</value>
     <comment>checkbox</comment>
   </data>
   <data name="SearchDialog_introLabel.Text" xml:space="preserve">
-    <value>Enter the search criteria, optionally including AND, OR, NOT, quotes and parenthesis</value>
+    <value>Enter the search criteria, optionally including AND, OR, NOT, quotes and parenthesis
+Unquoted words match in any order; use quotes for an exact phrase.</value>
     <comment>label</comment>
   </data>
   <data name="SearchDialog_matchBox.Text" xml:space="preserve">
@@ -6274,7 +6275,7 @@ Search engines will appear in the page context menu, right-click.</value>
     <comment>link</comment>
   </data>
   <data name="SearchTitleDialog_introLabel.Text" xml:space="preserve">
-    <value>Enter a title query. Searches all notebooks by default. Use "\name" to scope to a matching notebook, "\\" for the current notebook only, "#tag" to filter by hashtag, and "-#tag" to exclude a hashtag. Prefix with "&gt;" to sort by most recently modified.</value>
+    <value>Enter a title query. Unquoted words match in any order; use quotes for an exact phrase, and AND, OR, NOT, parenthesis and * wildcards are supported. Searches all notebooks by default. Use "\name" to scope to a matching notebook, "\\" for the current notebook only, "#tag" to filter by hashtag, and "-#tag" to exclude a hashtag. Prefix with "&gt;" to sort by most recently modified.</value>
     <comment>label</comment>
   </data>
   <data name="SearchTitleDialog_noHashtagCatalog" xml:space="preserve">

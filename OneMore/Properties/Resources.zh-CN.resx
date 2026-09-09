@@ -6157,7 +6157,8 @@ ISO-code then comma then language name</comment>
     <comment>checkbox</comment>
   </data>
   <data name="SearchDialog_introLabel.Text" xml:space="preserve">
-    <value>输入搜索条件，可以选择包含 AND、OR、NOT、引号和括号</value>
+    <value>输入搜索条件，可以选择包含 AND、OR、NOT、引号和括号
+未加引号的单词以任何顺序匹配；对确切的短语使用引号。</value>
     <comment>label</comment>
   </data>
   <data name="SearchDialog_matchBox.Text" xml:space="preserve">
@@ -6249,7 +6250,7 @@ ISO-code then comma then language name</comment>
     <comment>link</comment>
   </data>
   <data name="SearchTitleDialog_introLabel.Text" xml:space="preserve">
-    <value>输入标题查询。默认搜索所有笔记本。使用“\name”限定匹配笔记本的范围，“\\”仅适用于当前笔记本，“#tag”按主题标签过滤，“-#tag”排除主题标签。前缀为“&gt;”，可按最近修改的顺序排序。</value>
+    <value>输入标题查询。未加引号的单词以任何顺序匹配；使用引号表示精确的短语，并且支持 AND、OR、NOT、括号和 * 通配符。默认搜索所有笔记本。使用“\name”限定匹配笔记本的范围，“\\”仅适用于当前笔记本，“#tag”按主题标签过滤，“-#tag”排除主题标签。前缀为“&gt;”，可按最近修改的顺序排序。</value>
     <comment>label</comment>
   </data>
   <data name="SearchTitleDialog_noHashtagCatalog" xml:space="preserve">

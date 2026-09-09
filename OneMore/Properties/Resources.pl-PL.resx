@@ -6143,7 +6143,8 @@ Zmodyfikowany wcześniej</value>
     <comment>checkbox</comment>
   </data>
   <data name="SearchDialog_introLabel.Text" xml:space="preserve">
-    <value>Wprowadź kryteria wyszukiwania, opcjonalnie uwzględniając AND, OR, NOT, cudzysłowy i nawiasy</value>
+    <value>Wprowadź kryteria wyszukiwania, opcjonalnie uwzględniając AND, OR, NOT, cudzysłowy i nawiasy
+Niecytowane słowa pasują w dowolnej kolejności; użyj cudzysłowu dla dokładnego wyrażenia.</value>
     <comment>label</comment>
   </data>
   <data name="SearchDialog_matchBox.Text" xml:space="preserve">
@@ -6235,7 +6236,7 @@ Wyszukiwarki pojawią się w menu kontekstowym strony, kliknij prawym przyciskie
     <comment>link</comment>
   </data>
   <data name="SearchTitleDialog_introLabel.Text" xml:space="preserve">
-    <value>Wprowadź zapytanie tytułowe. Domyślnie przeszukuje wszystkie notesy. Użyj „\name”, aby określić zakres pasującego notatnika, „\\ tylko dla bieżącego notatnika, „#tag” do filtrowania według hashtagu i „-#tag”, aby wykluczyć hashtag. Przedrostek „&gt;”, aby sortować według ostatnio zmodyfikowanych.</value>
+    <value>Wprowadź zapytanie tytułowe. Niecytowane słowa pasują w dowolnej kolejności; użyj cudzysłowu dla dokładnej frazy, obsługiwane są także znaki AND, OR, NOT, nawiasy i * symbole wieloznaczne. Domyślnie przeszukuje wszystkie notesy. Użyj „\name”, aby określić zakres pasującego notatnika, „\\ tylko dla bieżącego notatnika, „#tag” do filtrowania według hashtagu i „-#tag”, aby wykluczyć hashtag. Przedrostek „&gt;”, aby sortować według ostatnio zmodyfikowanych.</value>
     <comment>label</comment>
   </data>
   <data name="SearchTitleDialog_noHashtagCatalog" xml:space="preserve">

@@ -39,8 +39,9 @@ namespace River.OneMoreAddIn.Commands
 		public CliParameterDefinition DefineParameters() =>
 			new CliParameterDefinition()
 			.AddString("query",
-				"Search terms; supports \">\" (sort by modified), \"#hashtag\" filters, " +
-				"and \"-#hashtag\" to exclude a hashtag",
+				"Search terms; unquoted words match in any order, use quotes for an exact phrase; " +
+				"supports AND/OR/NOT, parenthesis, * wildcards, \">\" (sort by modified), " +
+				"\"#hashtag\" filters, and \"-#hashtag\" to exclude a hashtag",
 				required: true)
 			.AddString("notebook",
 				"Name of the notebook to search; * or omit to search all notebooks, " +

@@ -14470,7 +14470,8 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enter the search criteria, optionally including AND, OR, NOT, quotes and parenthesis.
+        ///   Looks up a localized string similar to Enter the search criteria, optionally including AND, OR, NOT, quotes and parenthesis
+        ///Unquoted words match in any order; use quotes for an exact phrase..
         /// </summary>
         internal static string SearchDialog_introLabel_Text {
             get {
@@ -14672,7 +14673,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enter a title query. Searches all notebooks by default. Use &quot;\name&quot; to scope to a matching notebook, &quot;\\&quot; for the current notebook only, &quot;#tag&quot; to filter by hashtag, and &quot;-#tag&quot; to exclude a hashtag. Prefix with &quot;&gt;&quot; to sort by most recently modified..
+        ///   Looks up a localized string similar to Enter a title query. Unquoted words match in any order; use quotes for an exact phrase, and AND, OR, NOT, parenthesis and * wildcards are supported. Searches all notebooks by default. Use &quot;\name&quot; to scope to a matching notebook, &quot;\\&quot; for the current notebook only, &quot;#tag&quot; to filter by hashtag, and &quot;-#tag&quot; to exclude a hashtag. Prefix with &quot;&gt;&quot; to sort by most recently modified..
         /// </summary>
         internal static string SearchTitleDialog_introLabel_Text {
             get {

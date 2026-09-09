@@ -6153,7 +6153,8 @@ ISO-code then comma then language name</comment>
     <comment>checkbox</comment>
   </data>
   <data name="SearchDialog_introLabel.Text" xml:space="preserve">
-    <value>検索条件を入力します。オプションで AND、OR、NOT、引用符、括弧を含めることができます。</value>
+    <value>検索条件を入力します。オプションで AND、OR、NOT、引用符、括弧を含めることができます。
+引用符で囲まれていない単語は任意の順序で一致します。完全に一致する語句には引用符を使用します。</value>
     <comment>label</comment>
   </data>
   <data name="SearchDialog_matchBox.Text" xml:space="preserve">
@@ -6245,7 +6246,7 @@ ISO-code then comma then language name</comment>
     <comment>link</comment>
   </data>
   <data name="SearchTitleDialog_introLabel.Text" xml:space="preserve">
-    <value>タイトルクエリを入力します。デフォルトですべてのノートブックを検索します。一致するノートブックをスコープするには「\name」を使用し、現在のノートブックのみを指定するには「\\」を、ハッシュタグでフィルターするには「#tag」を、ハッシュタグを除外するには「-#tag」を使用します。最近変更された順に並べ替えるには、プレフィックス「&gt;」を付けます。</value>
+    <value>タイトルクエリを入力します。引用符で囲まれていない単語は任意の順序で一致します。完全に一致する語句には引用符を使用し、AND、OR、NOT、括弧、* ワイルドカードがサポートされています。デフォルトですべてのノートブックを検索します。一致するノートブックをスコープするには「\name」を使用し、現在のノートブックのみを指定するには「\\」を、ハッシュタグでフィルターするには「#tag」を、ハッシュタグを除外するには「-#tag」を使用します。最近変更された順に並べ替えるには、プレフィックス「&gt;」を付けます。</value>
     <comment>label</comment>
   </data>
   <data name="SearchTitleDialog_noHashtagCatalog" xml:space="preserve">

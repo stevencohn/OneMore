@@ -6147,7 +6147,8 @@ ISO-code then comma then language name</comment>
     <comment>checkbox</comment>
   </data>
   <data name="SearchDialog_introLabel.Text" xml:space="preserve">
-    <value>הזן את קריטריוני החיפוש, כולל AND, OR, NOT, מרכאות וסוגריים</value>
+    <value>הזן את קריטריוני החיפוש, כולל AND, OR, NOT, מרכאות וסוגריים
+מילים ללא ציטוט תואמות בכל סדר; השתמש במרכאות עבור ביטוי מדויק.</value>
     <comment>label</comment>
   </data>
   <data name="SearchDialog_matchBox.Text" xml:space="preserve">
@@ -6239,7 +6240,7 @@ ISO-code then comma then language name</comment>
     <comment>link</comment>
   </data>
   <data name="SearchTitleDialog_introLabel.Text" xml:space="preserve">
-    <value>הזן שאילתת כותרת. חיפוש בכל המחברות כברירת מחדל. השתמש ב-"\name" כדי להרחיב למחברת תואמת, "\\" למחברת הנוכחית בלבד, "#tag" כדי לסנן לפי hashtag, וב-"-#tag" כדי לא לכלול hashtag. קידומת עם "&gt;" כדי למיין לפי שהשתנה לאחרונה.</value>
+    <value>הזן שאילתת כותרת. מילים ללא ציטוט תואמות בכל סדר; השתמש במרכאות עבור ביטוי מדויק, AND, OR, NOT, סוגריים ותווים כלליים * נתמכים. חיפוש בכל המחברות כברירת מחדל. השתמש ב-"\name" כדי להרחיב למחברת תואמת, "\\" למחברת הנוכחית בלבד, "#tag" כדי לסנן לפי hashtag, וב-"-#tag" כדי לא לכלול hashtag. קידומת עם "&gt;" כדי למיין לפי שהשתנה לאחרונה.</value>
     <comment>label</comment>
   </data>
   <data name="SearchTitleDialog_noHashtagCatalog" xml:space="preserve">

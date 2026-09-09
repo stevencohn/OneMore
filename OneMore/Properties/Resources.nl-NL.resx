@@ -6143,7 +6143,8 @@ Eerder aangepast</value>
     <comment>checkbox</comment>
   </data>
   <data name="SearchDialog_introLabel.Text" xml:space="preserve">
-    <value>Voer de zoekcriteria in, eventueel inclusief AND, OR, NOT, aanhalingstekens en haakjes</value>
+    <value>Voer de zoekcriteria in, eventueel inclusief AND, OR, NOT, aanhalingstekens en haakjes
+Niet-geciteerde woorden komen in elke volgorde overeen; gebruik aanhalingstekens voor een exacte zin.</value>
     <comment>label</comment>
   </data>
   <data name="SearchDialog_matchBox.Text" xml:space="preserve">
@@ -6235,7 +6236,7 @@ Zoekmachines verschijnen in het pagina Pagina contextmenu, klik met de rechtermu
     <comment>link</comment>
   </data>
   <data name="SearchTitleDialog_introLabel.Text" xml:space="preserve">
-    <value>Voer een titelquery in. Doorzoekt standaard alle notitieboekjes. Gebruik '\name' om een ​​overeenkomend notitieblok te bereiken, '\\' alleen voor het huidige notitieblok, '#tag' om op hashtag te filteren en '-#tag' om een ​​hashtag uit te sluiten. Voeg een voorvoegsel toe met "&gt;" om te sorteren op meest recentelijk gewijzigd.</value>
+    <value>Voer een titelquery in. Niet-geciteerde woorden komen in elke volgorde overeen; gebruik aanhalingstekens voor een exacte woordgroep, en AND, OR, NOT, haakjes en * jokertekens worden ondersteund. Doorzoekt standaard alle notitieboekjes. Gebruik '\name' om een ​​overeenkomend notitieblok te bereiken, '\\' alleen voor het huidige notitieblok, '#tag' om op hashtag te filteren en '-#tag' om een ​​hashtag uit te sluiten. Voeg een voorvoegsel toe met "&gt;" om te sorteren op meest recentelijk gewijzigd.</value>
     <comment>label</comment>
   </data>
   <data name="SearchTitleDialog_noHashtagCatalog" xml:space="preserve">

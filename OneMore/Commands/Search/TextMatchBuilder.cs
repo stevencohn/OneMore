@@ -119,8 +119,6 @@ namespace River.OneMoreAddIn.Commands
 			var pattern = "\"[^\"]+\"|\\(|\\)|\\bAND\\b|\\bOR\\b|\\bNOT\\b|[^()\\s]+";
 			var rawTokens = Regex.Matches(input, pattern, RegexOptions.IgnoreCase);
 
-			List<string> termBuffer = new List<string>();
-
 			foreach (Match m in rawTokens)
 			{
 				string val = m.Value;
@@ -137,29 +135,22 @@ namespace River.OneMoreAddIn.Commands
 
 				if (type is not null)
 				{
-					// flush any buffered terms as one phrase
-					if (termBuffer.Count > 0)
-					{
-						tokens.Add(new Token(TokenType.Term, string.Join(" ", termBuffer)));
-						termBuffer.Clear();
-					}
 					tokens.Add(new Token(type.Value, val));
 				}
 				else
 				{
-					// strip quotes if present
+					// strip quotes if present; a quoted phrase becomes one atomic term,
+					// an unquoted word is its own atomic term. Bare words are never
+					// merged with their neighbors here — juxtaposed terms are combined
+					// by the parser as an implicit AND (any order), not as one phrase.
 					if (val.Length >= 2 && val.StartsWith("\"") && val.EndsWith("\""))
 					{
 						val = val.Substring(1, val.Length - 2);
 					}
 
-					termBuffer.Add(val);
+					tokens.Add(new Token(TokenType.Term, val));
 				}
 			}
-
-			// final flush
-			if (termBuffer.Count > 0)
-				tokens.Add(new Token(TokenType.Term, string.Join(" ", termBuffer)));
 
 			return NormalizeTokens(tokens);
 		}
@@ -179,24 +170,7 @@ namespace River.OneMoreAddIn.Commands
 			if (lastType == TokenType.And || lastType == TokenType.Or || lastType == TokenType.Not)
 				tokens[last] = new Token(TokenType.Term, tokens[last].Value);
 
-			// merge newly-adjacent Term tokens into a single phrase
-			var result = new List<Token>(tokens.Count);
-			foreach (var token in tokens)
-			{
-				if (token.Type == TokenType.Term
-					&& result.Count > 0
-					&& result[result.Count - 1].Type == TokenType.Term)
-				{
-					var prev = result[result.Count - 1];
-					result[result.Count - 1] = new Token(TokenType.Term, prev.Value + " " + token.Value);
-				}
-				else
-				{
-					result.Add(token);
-				}
-			}
-
-			return result;
+			return tokens;
 		}
 
 
@@ -221,7 +195,25 @@ namespace River.OneMoreAddIn.Commands
 							break;
 						case TokenType.Not:
 							index++;
-							var notTarget = ParseExpression();
+							INode notTarget;
+							if (index < tokens.Count && tokens[index].Type == TokenType.LParen)
+							{
+								// grouped operand — unchanged recursive path, still
+								// restricted to a single term by NegateRegex below
+								notTarget = ParseExpression();
+							}
+							else
+							{
+								// distribute NOT over the run of bare terms that follows:
+								// "NOT foo bar" excludes anything containing "foo" or "bar"
+								var notTerms = new List<INode>();
+								while (index < tokens.Count && tokens[index].Type == TokenType.Term)
+								{
+									notTerms.Add(new TermNode(tokens[index].Value));
+									index++;
+								}
+								notTarget = notTerms.Count == 1 ? notTerms[0] : new AndNode(notTerms);
+							}
 							stack.Push(new NotNode(notTarget));
 							break;
 						case TokenType.LParen:
@@ -234,7 +226,7 @@ namespace River.OneMoreAddIn.Commands
 						case TokenType.And:
 						case TokenType.Or:
 							index++;
-							var left = stack.Pop();
+							var left = stack.Count == 1 ? stack.Pop() : new AndNode(stack.ToList());
 							var right = ParseExpression();
 							var combined = token.Type == TokenType.And
 								? (INode)new AndNode(new List<INode> { left, right })
@@ -255,7 +247,7 @@ namespace River.OneMoreAddIn.Commands
 			return INode switch
 			{
 				TermNode t => $@"(?=.*{WildcardToRegex(t.Value)})",
-				NotNode n => $@"(?!.*{WildcardToRegex(ExtractTerm(n.Child))})",
+				NotNode n => NegateRegex(n.Child),
 				AndNode a => string.Join("", a.Children.ConvertAll(ToRegex)) + ".*",
 				OrNode o => "(?:" + string.Join("|", o.Children.ConvertAll(ToRegex)) + ")",
 				_ => ""
@@ -269,14 +261,21 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private static string ExtractTerm(INode node)
+		private static string NegateRegex(INode node)
 		{
 			if (node is TermNode t)
 			{
-				return t.Value;
+				return $@"(?!.*{WildcardToRegex(t.Value)})";
 			}
 
-			throw new InvalidOperationException("NOT only supports single terms");
+			// "NOT foo bar" — a bare run of terms — excludes anything containing any of them
+			if (node is AndNode a && a.Children.TrueForAll(c => c is TermNode))
+			{
+				return string.Concat(a.Children.ConvertAll(
+					c => $@"(?!.*{WildcardToRegex(((TermNode)c).Value)})"));
+			}
+
+			throw new InvalidOperationException("NOT only supports single terms or a bare list of terms");
 		}
 	}
 }

@@ -6154,7 +6154,8 @@ ISO-code then comma then language name</comment>
     <comment>checkbox</comment>
   </data>
   <data name="SearchDialog_introLabel.Text" xml:space="preserve">
-    <value>أدخل معايير البحث، بما في ذلك، اختياريًا، علامات الاقتباس والأقواس و، أو، أو، لا</value>
+    <value>أدخل معايير البحث، بما في ذلك، اختياريًا، علامات الاقتباس والأقواس و، أو، أو، لا
+الكلمات غير المقتبسة تتطابق بأي ترتيب؛ استخدم علامات الاقتباس لعبارة محددة.</value>
     <comment>label</comment>
   </data>
   <data name="SearchDialog_matchBox.Text" xml:space="preserve">
@@ -6246,7 +6247,7 @@ ISO-code then comma then language name</comment>
     <comment>link</comment>
   </data>
   <data name="SearchTitleDialog_introLabel.Text" xml:space="preserve">
-    <value>أدخل استعلام عنوان. يبحث في كافة دفاتر الملاحظات بشكل افتراضي. استخدم "\name" لتحديد نطاق دفتر الملاحظات المطابق، و"\\" لدفتر الملاحظات الحالي فقط، و"#tag" للتصفية حسب علامة التصنيف، و"-#tag" لاستبعاد علامة تصنيف. البادئة بـ "&gt;" للفرز حسب آخر تعديل.</value>
+    <value>أدخل استعلام عنوان. الكلمات غير المقتبسة تتطابق بأي ترتيب؛ استخدم علامات الاقتباس لعبارة محددة، كما يتم دعم AND وOR وNOT والأقواس وأحرف البدل *. يبحث في كافة دفاتر الملاحظات بشكل افتراضي. استخدم "\name" لتحديد نطاق دفتر الملاحظات المطابق، و"\\" لدفتر الملاحظات الحالي فقط، و"#tag" للتصفية حسب علامة التصنيف، و"-#tag" لاستبعاد علامة تصنيف. البادئة بـ "&gt;" للفرز حسب آخر تعديل.</value>
     <comment>label</comment>
   </data>
   <data name="SearchTitleDialog_noHashtagCatalog" xml:space="preserve">
