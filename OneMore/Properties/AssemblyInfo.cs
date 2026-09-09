@@ -37,7 +37,7 @@ namespace River.OneMoreAddIn
 {
 	internal static class AssemblyInfo
 	{
-		public const string Version = "7.4.0";
+		public const string Version = "7.5.0";
 
 		public const string BuildTag =
 #if BETA
