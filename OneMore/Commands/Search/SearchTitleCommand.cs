@@ -311,17 +311,10 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (var result in results)
 			{
-				var element = new XElement("Page",
+				root.Add(new XElement(result.Level.ToString(),
 					new XAttribute("id", result.PageId),
 					new XAttribute("path", result.Path),
-					new XAttribute("modified", result.Modified.ToString("o")));
-
-				if (extended)
-				{
-					element.Add(new XAttribute("type", result.Level.ToString()));
-				}
-
-				root.Add(element);
+					new XAttribute("modified", result.Modified.ToString("o"))));
 			}
 
 			CliOutput = root.ToString();
