@@ -216,10 +216,10 @@ namespace River.OneMoreAddIn.UI
 			base.OnFormClosed(e);
 			appContext?.Dispose();
 
-			if (modeless && oneNoteHandle != IntPtr.Zero)
+			if (oneNoteHandle != IntPtr.Zero)
 			{
 				// OneMore runs in dllhost.exe (COM surrogate), not ONENOTE.EXE, so closing
-				// this modeless dialog does not automatically hand foreground focus back to
+				// this dialog does not automatically hand foreground focus back to
 				// ONENOTE.EXE's window - it can be left on this (now-closing) dllhost window
 				// or nowhere in particular. Until the user manually reactivates OneNote (a
 				// click, or typing into it), HotkeyManager's WndProc gate - which only
@@ -227,8 +227,13 @@ namespace River.OneMoreAddIn.UI
 				// silently swallows every hotkey press. This call is allowed to succeed
 				// without the AttachThreadInput dance that Elevate() needs, because this
 				// window is itself still the foreground window and just received the input
-				// (e.g. Escape) that's closing it - one of the documented exceptions to the
-				// SetForegroundWindow restriction.
+				// (e.g. OK/Cancel/Escape) that's closing it - one of the documented
+				// exceptions to the SetForegroundWindow restriction. This applies equally
+				// to modal ShowDialog(owner) dialogs (oneNoteHandle captured in OnShown from
+				// the native owner) and modeless RunModeless dialogs (captured up front) -
+				// without it, a modal OK handler that goes on to make a blocking COM call
+				// back into OneNote can lose the foreground race to some other app before
+				// Windows' default owned-window reactivation gets around to it.
 				Native.SetForegroundWindow(oneNoteHandle);
 			}
 
@@ -422,6 +427,19 @@ namespace River.OneMoreAddIn.UI
 			//logger.WriteLine($"showing [{Text}]");
 			base.OnShown(e);
 			TryFocus();
+
+			if (oneNoteHandle == IntPtr.Zero)
+			{
+				// RunModeless already captured this above; for a modal ShowDialog(owner)
+				// dialog, WinForms sets the native GWL_HWNDPARENT owner (from the IWin32Window
+				// passed to ShowDialog) when the handle is created, well before OnShown fires,
+				// so pick it up here to feed the same OnFormClosed restoration below.
+				var candidate = Native.GetWindow(Handle, Native.GW_OWNER);
+				if (candidate != IntPtr.Zero)
+				{
+					oneNoteHandle = candidate;
+				}
+			}
 
 			if (ElevatedWithOneNote)
 			{
