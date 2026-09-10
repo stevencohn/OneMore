@@ -220,7 +220,7 @@ namespace River.OneMoreAddIn.Settings
 				Dock = DockStyle.Top,
 				Height = 0,
 				Visible = false,
-				Padding = new Padding(12, 8, 12, 8),
+				Padding = new Padding(32, 8, 12, 8),
 				BackColor = BackColor
 			};
 
