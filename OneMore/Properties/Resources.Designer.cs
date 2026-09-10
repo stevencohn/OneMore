@@ -1814,6 +1814,69 @@ namespace River.OneMoreAddIn.Properties {
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to left.
+        /// </summary>
+        internal static string CompareDialog_directionLeft {
+            get {
+                return ResourceManager.GetString("CompareDialog_directionLeft", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to right.
+        /// </summary>
+        internal static string CompareDialog_directionRight {
+            get {
+                return ResourceManager.GetString("CompareDialog_directionRight", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Copy '{0}' and its descendants to the {1}?.
+        /// </summary>
+        internal static string CompareDialog_confirmCopy {
+            get {
+                return ResourceManager.GetString("CompareDialog_confirmCopy", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Mirror '{0}' to the {1}? This makes the {1} side match exactly, including deleting {2} item(s) that only exist there..
+        /// </summary>
+        internal static string CompareDialog_confirmMirror {
+            get {
+                return ResourceManager.GetString("CompareDialog_confirmMirror", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Mirror '{0}' to the {1}?.
+        /// </summary>
+        internal static string CompareDialog_confirmMirrorNoDeletions {
+            get {
+                return ResourceManager.GetString("CompareDialog_confirmMirrorNoDeletions", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Copying....
+        /// </summary>
+        internal static string CompareDialog_copyingMessage {
+            get {
+                return ResourceManager.GetString("CompareDialog_copyingMessage", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Mirroring....
+        /// </summary>
+        internal static string CompareDialog_mirroringMessage {
+            get {
+                return ResourceManager.GetString("CompareDialog_mirroringMessage", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Built-in OneNote style.
         /// </summary>
         internal static string ConditionalFormatDialog_builtinRadio_Text {

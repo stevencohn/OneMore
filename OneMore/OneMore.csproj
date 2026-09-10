@@ -204,6 +204,7 @@
     <Compile Include="Commands\Compare\HierarchyDiffView.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Commands\Compare\HierarchyDiffSync.cs" />
     <Compile Include="Models\HierarchyDiff.cs" />
     <Compile Include="Commands\Edit\ChooseColorizerCommand.cs" />
     <Compile Include="Commands\Edit\ColorizeDialog.cs">
