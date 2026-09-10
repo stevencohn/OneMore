@@ -777,57 +777,33 @@ Do you want to continue?</value>
     <value>Type a command and press Enter or click and item from the list</value>
     <comment>label</comment>
   </data>
-  <data name="CompareCommand_pickSourceTitle" xml:space="preserve">
-    <value>Select Source</value>
-    <comment>QuickFiling dialog title</comment>
-  </data>
-  <data name="CompareCommand_pickSourceDescription" xml:space="preserve">
-    <value>Choose the source (left) notebook, section, or section group to compare</value>
-    <comment>QuickFiling dialog description</comment>
-  </data>
-  <data name="CompareCommand_pickTargetTitle" xml:space="preserve">
-    <value>Select Target</value>
-    <comment>QuickFiling dialog title</comment>
-  </data>
-  <data name="CompareCommand_pickTargetDescription" xml:space="preserve">
-    <value>Choose the target (right) notebook, section, or section group to compare</value>
-    <comment>QuickFiling dialog description</comment>
-  </data>
   <data name="CompareCommand_invalidSelection" xml:space="preserve">
     <value>Could not determine the selected notebook, section, or section group</value>
-    <comment>messagebox</comment>
-  </data>
-  <data name="CompareCommand_typeMismatch" xml:space="preserve">
-    <value>The source and target must be the same type: both notebooks, both sections, or both section groups.</value>
     <comment>messagebox</comment>
   </data>
   <data name="CompareCommand_overlappingNodes" xml:space="preserve">
     <value>The target cannot be the same as the source, or a parent or child of the source.</value>
     <comment>messagebox</comment>
   </data>
-  <data name="CompareDialog_title" xml:space="preserve">
-    <value>Compare Hierarchy</value>
-    <comment>dialog title</comment>
+  <data name="CompareCommand_pickSourceDescription" xml:space="preserve">
+    <value>Choose the source (left) notebook, section, or section group to compare</value>
+    <comment>QuickFiling dialog description</comment>
   </data>
-  <data name="CompareDialog_notPresent" xml:space="preserve">
-    <value>not present</value>
-    <comment>hierarchy diff row, orphan cell</comment>
+  <data name="CompareCommand_pickSourceTitle" xml:space="preserve">
+    <value>Select Source</value>
+    <comment>QuickFiling dialog title</comment>
   </data>
-  <data name="CompareDialog_scopeHint" xml:space="preserve">
-    <value>This compares hierarchy only - names, types, and timestamps - not page content, similar to comparing folders on disk.</value>
-    <comment>hint text above the legend</comment>
+  <data name="CompareCommand_pickTargetDescription" xml:space="preserve">
+    <value>Choose the target (right) notebook, section, or section group to compare</value>
+    <comment>QuickFiling dialog description</comment>
   </data>
-  <data name="CompareDialog_legendSame" xml:space="preserve">
-    <value>Same</value>
-    <comment>legend</comment>
+  <data name="CompareCommand_pickTargetTitle" xml:space="preserve">
+    <value>Select Target</value>
+    <comment>QuickFiling dialog title</comment>
   </data>
-  <data name="CompareDialog_legendDifferent" xml:space="preserve">
-    <value>Different timestamps</value>
-    <comment>legend</comment>
-  </data>
-  <data name="CompareDialog_legendOrphan" xml:space="preserve">
-    <value>Orphan - missing on one side</value>
-    <comment>legend</comment>
+  <data name="CompareCommand_typeMismatch" xml:space="preserve">
+    <value>The source and target must be the same type: both notebooks, both sections, or both section groups.</value>
+    <comment>messagebox</comment>
   </data>
   <data name="CompareDialog_badgeNotebook" xml:space="preserve">
     <value>Notebook</value>
@@ -841,69 +817,29 @@ Do you want to continue?</value>
     <value>Section Group</value>
     <comment>node type badge</comment>
   </data>
-  <data name="CompareDialog_hierarchyActionsTitle" xml:space="preserve">
-    <value>Hierarchy actions</value>
-    <comment>toolbar card title</comment>
-  </data>
-  <data name="CompareDialog_pageActionsTitle" xml:space="preserve">
-    <value>Page actions</value>
-    <comment>toolbar card title</comment>
-  </data>
-  <data name="CompareDialog_deleteBothCaption" xml:space="preserve">
-    <value>"Delete both" only enables when the row is selected via the center well (both sides).</value>
-    <comment>toolbar card caption</comment>
-  </data>
-  <data name="CompareDialog_copyRight" xml:space="preserve">
-    <value>Copy ▸</value>
-    <comment>button, copies left to right</comment>
-  </data>
-  <data name="CompareDialog_copyLeft" xml:space="preserve">
-    <value>Copy ◂</value>
-    <comment>button, copies right to left</comment>
-  </data>
-  <data name="CompareDialog_mirrorRight" xml:space="preserve">
-    <value>Mirror ▸</value>
-    <comment>button, mirrors left to right</comment>
-  </data>
-  <data name="CompareDialog_mirrorLeft" xml:space="preserve">
-    <value>Mirror ◂</value>
-    <comment>button, mirrors right to left</comment>
-  </data>
-  <data name="CompareDialog_openLeft" xml:space="preserve">
-    <value>Open left</value>
-    <comment>button</comment>
-  </data>
-  <data name="CompareDialog_openRight" xml:space="preserve">
-    <value>Open right</value>
-    <comment>button</comment>
-  </data>
-  <data name="CompareDialog_deleteLeft" xml:space="preserve">
-    <value>Delete left</value>
-    <comment>button</comment>
-  </data>
-  <data name="CompareDialog_deleteRight" xml:space="preserve">
-    <value>Delete right</value>
-    <comment>button</comment>
-  </data>
-  <data name="CompareDialog_deleteBoth" xml:space="preserve">
-    <value>Delete both</value>
-    <comment>button</comment>
-  </data>
   <data name="CompareDialog_compareContents" xml:space="preserve">
     <value>Compare contents…</value>
     <comment>button</comment>
   </data>
-  <data name="CompareDialog_directionLeft" xml:space="preserve">
-    <value>left</value>
-    <comment>used in confirmation messages, e.g. "Copy 'X' to the {0}?"</comment>
-  </data>
-  <data name="CompareDialog_directionRight" xml:space="preserve">
-    <value>right</value>
-    <comment>used in confirmation messages, e.g. "Copy 'X' to the {0}?"</comment>
+  <data name="CompareDialog_comparingMessage" xml:space="preserve">
+    <value>Comparing...</value>
+    <comment>progress dialog message</comment>
   </data>
   <data name="CompareDialog_confirmCopy" xml:space="preserve">
     <value>Copy '{0}' and its descendants to the {1}?</value>
     <comment>confirmation, {0} node name, {1} direction (left/right)</comment>
+  </data>
+  <data name="CompareDialog_confirmCopyPage" xml:space="preserve">
+    <value>Copy '{0}' to the {1}?</value>
+    <comment>confirmation, {0} page name, {1} direction (left/right)</comment>
+  </data>
+  <data name="CompareDialog_confirmDeleteBothPage" xml:space="preserve">
+    <value>Delete '{0}' from both sides? This cannot be undone.</value>
+    <comment>confirmation, {0} page name</comment>
+  </data>
+  <data name="CompareDialog_confirmDeletePage" xml:space="preserve">
+    <value>Delete '{0}' from the {1}? This cannot be undone.</value>
+    <comment>confirmation, {0} page name, {1} direction (left/right)</comment>
   </data>
   <data name="CompareDialog_confirmMirror" xml:space="preserve">
     <value>Mirror '{0}' to the {1}? This makes the {1} side match exactly, including deleting {2} item(s) that only exist there.</value>
@@ -917,25 +853,113 @@ Do you want to continue?</value>
     <value>Copying...</value>
     <comment>progress dialog message</comment>
   </data>
-  <data name="CompareDialog_mirroringMessage" xml:space="preserve">
-    <value>Mirroring...</value>
-    <comment>progress dialog message</comment>
+  <data name="CompareDialog_copyLeft" xml:space="preserve">
+    <value>Copy ˂˂</value>
+    <comment>button, copies right to left</comment>
   </data>
-  <data name="CompareDialog_confirmCopyPage" xml:space="preserve">
-    <value>Copy '{0}' to the {1}?</value>
-    <comment>confirmation, {0} page name, {1} direction (left/right)</comment>
+  <data name="CompareDialog_copyRight" xml:space="preserve">
+    <value>Copy ˃˃</value>
+    <comment>button, copies left to right</comment>
   </data>
-  <data name="CompareDialog_confirmDeletePage" xml:space="preserve">
-    <value>Delete '{0}' from the {1}? This cannot be undone.</value>
-    <comment>confirmation, {0} page name, {1} direction (left/right)</comment>
+  <data name="CompareDialog_deleteBoth" xml:space="preserve">
+    <value>Delete both</value>
+    <comment>button</comment>
   </data>
-  <data name="CompareDialog_confirmDeleteBothPage" xml:space="preserve">
-    <value>Delete '{0}' from both sides? This cannot be undone.</value>
-    <comment>confirmation, {0} page name</comment>
+  <data name="CompareDialog_deleteBothCaption" xml:space="preserve">
+    <value>"Delete both" only enables when the row is selected via the center well (both sides).</value>
+    <comment>toolbar card caption</comment>
+  </data>
+  <data name="CompareDialog_deleteLeft" xml:space="preserve">
+    <value>Delete left</value>
+    <comment>button</comment>
+  </data>
+  <data name="CompareDialog_deleteRight" xml:space="preserve">
+    <value>Delete right</value>
+    <comment>button</comment>
   </data>
   <data name="CompareDialog_deletingMessage" xml:space="preserve">
     <value>Deleting...</value>
     <comment>progress dialog message</comment>
+  </data>
+  <data name="CompareDialog_directionLeft" xml:space="preserve">
+    <value>left</value>
+    <comment>used in confirmation messages, e.g. "Copy 'X' to the {0}?"</comment>
+  </data>
+  <data name="CompareDialog_directionRight" xml:space="preserve">
+    <value>right</value>
+    <comment>used in confirmation messages, e.g. "Copy 'X' to the {0}?"</comment>
+  </data>
+  <data name="CompareDialog_hierarchyActionsTitle" xml:space="preserve">
+    <value>Hierarchy actions</value>
+    <comment>toolbar card title</comment>
+  </data>
+  <data name="CompareDialog_legendDifferent" xml:space="preserve">
+    <value>Different timestamps</value>
+    <comment>legend</comment>
+  </data>
+  <data name="CompareDialog_legendOrphan" xml:space="preserve">
+    <value>Orphan - missing on one side</value>
+    <comment>legend</comment>
+  </data>
+  <data name="CompareDialog_legendSame" xml:space="preserve">
+    <value>Same</value>
+    <comment>legend</comment>
+  </data>
+  <data name="CompareDialog_mirroringMessage" xml:space="preserve">
+    <value>Mirroring...</value>
+    <comment>progress dialog message</comment>
+  </data>
+  <data name="CompareDialog_mirrorLeft" xml:space="preserve">
+    <value>Mirror ˂˂</value>
+    <comment>button, mirrors right to left</comment>
+  </data>
+  <data name="CompareDialog_mirrorRight" xml:space="preserve">
+    <value>Mirror ˃˃</value>
+    <comment>button, mirrors left to right</comment>
+  </data>
+  <data name="CompareDialog_notPresent" xml:space="preserve">
+    <value>not present</value>
+    <comment>hierarchy diff row, orphan cell</comment>
+  </data>
+  <data name="CompareDialog_openLeft" xml:space="preserve">
+    <value>Open left</value>
+    <comment>button</comment>
+  </data>
+  <data name="CompareDialog_openRight" xml:space="preserve">
+    <value>Open right</value>
+    <comment>button</comment>
+  </data>
+  <data name="CompareDialog_pageActionsTitle" xml:space="preserve">
+    <value>Page actions</value>
+    <comment>toolbar card title</comment>
+  </data>
+  <data name="CompareDialog_relinkChoiceSuffix" xml:space="preserve">
+    <value>This will replace one or more already-matched pages, which can break links from other pages that reference them.
+
+Yes = proceed and update those other pages' links too (changes their modified date and author)
+No = proceed but leave those links as they are (they may point at a removed page)
+Cancel = don't proceed</value>
+    <comment>appended to a copy/mirror confirmation when it would replace an already-matched page; turns the confirmation into a 3-way Yes/No/Cancel choice</comment>
+  </data>
+  <data name="CompareDialog_relinkingMessage" xml:space="preserve">
+    <value>Updating links within copied pages...</value>
+    <comment>progress dialog message</comment>
+  </data>
+  <data name="CompareDialog_scanningLinksMessage" xml:space="preserve">
+    <value>Scanning for links to update...</value>
+    <comment>progress dialog message</comment>
+  </data>
+  <data name="CompareDialog_scopeHint" xml:space="preserve">
+    <value>This is a comparison of the hierarchy only - names, types, and timestamps - not page content. Select two pages to compare their contents.</value>
+    <comment>hint text above the legend</comment>
+  </data>
+  <data name="CompareDialog_syncingPageFormat" xml:space="preserve">
+    <value>Copying '{0}'...</value>
+    <comment>progress dialog message, {0} page name</comment>
+  </data>
+  <data name="CompareDialog_title" xml:space="preserve">
+    <value>Compare Hierarchy</value>
+    <comment>dialog title</comment>
   </data>
   <data name="ConditionalFormatDialog_builtinRadio.Text" xml:space="preserve">
     <value>Built-in OneNote style</value>
@@ -6589,6 +6613,70 @@ Are you sure you want to continue?</value>
   <data name="ShowXmlDialog_wrapBox.Text" xml:space="preserve">
     <value>Wrap text</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="Similarity_reasonEmptyBoth" xml:space="preserve">
+    <value>Both pages are empty.</value>
+    <comment>similarity rubric reasoning</comment>
+  </data>
+  <data name="Similarity_reasonEntity" xml:space="preserve">
+    <value>{0} of {1} technical terms and proper names match.</value>
+    <comment>similarity rubric reasoning, {0} shared entity count, {1} total entity count</comment>
+  </data>
+  <data name="Similarity_reasonLexical" xml:space="preserve">
+    <value>{0} of {1} unique words are shared.</value>
+    <comment>similarity rubric reasoning, {0} shared word count, {1} total word count</comment>
+  </data>
+  <data name="Similarity_reasonOneEmpty" xml:space="preserve">
+    <value>One page has no text to compare.</value>
+    <comment>similarity rubric reasoning</comment>
+  </data>
+  <data name="Similarity_reasonStructural" xml:space="preserve">
+    <value>{0} of {1} headings match; paragraph counts are {2} and {3}.</value>
+    <comment>similarity rubric reasoning, {0} shared heading count, {1} total heading count, {2}/{3} paragraph counts</comment>
+  </data>
+  <data name="Similarity_reasonStylistic" xml:space="preserve">
+    <value>Average sentence lengths are {0} and {1} words.</value>
+    <comment>similarity rubric reasoning, {0}/{1} average words per sentence</comment>
+  </data>
+  <data name="Similarity_reasonTfIdf" xml:space="preserve">
+    <value>{0} of {1} weighted terms are shared between the two pages.</value>
+    <comment>similarity rubric reasoning, {0} shared term count, {1} total term count</comment>
+  </data>
+  <data name="Similarity_rubricEntity" xml:space="preserve">
+    <value>Entity similarity</value>
+    <comment>similarity rubric name</comment>
+  </data>
+  <data name="Similarity_rubricLexical" xml:space="preserve">
+    <value>Lexical overlap</value>
+    <comment>similarity rubric name</comment>
+  </data>
+  <data name="Similarity_rubricStructural" xml:space="preserve">
+    <value>Structural similarity</value>
+    <comment>similarity rubric name</comment>
+  </data>
+  <data name="Similarity_rubricStylistic" xml:space="preserve">
+    <value>Stylistic similarity</value>
+    <comment>similarity rubric name</comment>
+  </data>
+  <data name="Similarity_rubricTfIdf" xml:space="preserve">
+    <value>TF-IDF cosine</value>
+    <comment>similarity rubric name</comment>
+  </data>
+  <data name="SimilarityPopup_closeAccessibleName" xml:space="preserve">
+    <value>Close</value>
+    <comment>accessible name for the popup's close glyph</comment>
+  </data>
+  <data name="SimilarityPopup_overallFormat" xml:space="preserve">
+    <value>{0} similar</value>
+    <comment>large overall score label, {0} percentage</comment>
+  </data>
+  <data name="SimilarityPopup_pairFormat" xml:space="preserve">
+    <value>{0} ↔ {1}</value>
+    <comment>header shown when comparing two unrelated pages, {0} left page name, {1} right page name</comment>
+  </data>
+  <data name="SimilarityPopup_weightFormat" xml:space="preserve">
+    <value>{0} · wt {1}</value>
+    <comment>rubric row label, {0} rubric name, {1} weight percentage</comment>
   </data>
   <data name="SnapToGridCommand_noContainers" xml:space="preserve">
     <value>No containers found on this page</value>

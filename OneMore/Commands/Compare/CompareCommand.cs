@@ -4,7 +4,6 @@
 
 namespace River.OneMoreAddIn.Commands.Compare
 {
-	using River.OneMoreAddIn.Models;
 	using System;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
@@ -21,10 +20,19 @@ namespace River.OneMoreAddIn.Commands.Compare
 	{
 		private string sourceId;
 		private IDisposable guard;
+		private static CompareDialog dialog;
 
 
 		public override async Task Execute(params object[] args)
 		{
+			if (dialog is not null)
+			{
+				// already open; bring it to the foreground instead of starting a second
+				// source/target picker flow on top of it, matching SearchCommand/HashtagCommand
+				dialog.Elevate();
+				return;
+			}
+
 			guard = EnterOnce();
 			if (guard is null)
 			{
@@ -124,7 +132,7 @@ namespace River.OneMoreAddIn.Commands.Compare
 			// lightweight, non-blocking Show() path instead
 			HotkeyManager.InvokeOnMessageThread(() =>
 			{
-				var dialog = new CompareDialog(diff, source.NodeType, source.Name, target.Name);
+				dialog = new CompareDialog(diff, source.NodeType, source.Name, target.Name);
 				dialog.RunModeless((sender, e) =>
 				{
 					Release();
@@ -166,6 +174,10 @@ namespace River.OneMoreAddIn.Commands.Compare
 		{
 			guard?.Dispose();
 			guard = null;
+
+			// only ever non-null once the dialog has actually been shown (TargetChosen); a
+			// no-op on every earlier-exit path above
+			dialog = null;
 		}
 	}
 }

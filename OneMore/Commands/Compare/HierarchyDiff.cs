@@ -2,7 +2,7 @@
 // Copyright © 2026 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
-namespace River.OneMoreAddIn.Models
+namespace River.OneMoreAddIn.Commands.Compare
 {
 	using System;
 	using System.Collections.Generic;

@@ -237,10 +237,18 @@ namespace River.OneMoreAddIn.Tests
 			pbstrPathOut = string.Empty;
 		}
 
+		// synthesizes a deterministic, realistic onenote: hyperlink whose embedded page-id
+		// is simply the given hierarchy id wrapped in braces - not what real OneNote
+		// produces (a real page-id is a separate GUID, not the internal hierarchy id -
+		// see HierarchyLinkReconciler's own doc comment on that distinction), but a stable,
+		// traceable-in-tests stand-in so tests exercising the extract-then-match round trip
+		// (HierarchyLinkReconciler.ExtractPageId et al) don't need a real COM server
 		public void GetHyperlinkToObject(string bstrHierarchyID,
 			string bstrPageContentObjectID, out string pbstrHyperlinkOut)
 		{
-			pbstrHyperlinkOut = string.Empty;
+			pbstrHyperlinkOut = string.IsNullOrEmpty(bstrHierarchyID)
+				? string.Empty
+				: $"onenote:https://mock/Test/Section.one#Page&section-id={{mock-section}}&page-id={{{bstrHierarchyID}}}&end";
 		}
 
 		public void FindPages(string bstrStartNodeID, string bstrSearchString,

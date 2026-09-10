@@ -6,7 +6,7 @@ namespace River.OneMoreAddIn.Tests.Models
 {
 	using Microsoft.VisualStudio.TestTools.UnitTesting;
 	using River.OneMoreAddIn;
-	using River.OneMoreAddIn.Models;
+	using River.OneMoreAddIn.Commands.Compare;
 	using System.Linq;
 	using System.Xml.Linq;
 
