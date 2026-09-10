@@ -75,6 +75,7 @@
     <Compile Include="Commands\Clean\TrimCommandTests.cs" />
     <Compile Include="Commands\Edit\AlterSizeCommandTests.cs" />
     <Compile Include="Commands\Edit\ColorizeCommandTests.cs" />
+    <Compile Include="Models\HierarchyDiffTests.cs" />
     <Compile Include="Commands\File\ArchivistTests.cs" />
     <Compile Include="Commands\File\Evernote\EnexReaderTests.cs" />
     <Compile Include="Commands\File\Evernote\EnmlConverterTests.cs" />

@@ -777,6 +777,122 @@ Do you want to continue?</value>
     <value>Type a command and press Enter or click and item from the list</value>
     <comment>label</comment>
   </data>
+  <data name="CompareCommand_pickSourceTitle" xml:space="preserve">
+    <value>Select Source</value>
+    <comment>QuickFiling dialog title</comment>
+  </data>
+  <data name="CompareCommand_pickSourceDescription" xml:space="preserve">
+    <value>Choose the source (left) notebook, section, or section group to compare</value>
+    <comment>QuickFiling dialog description</comment>
+  </data>
+  <data name="CompareCommand_pickTargetTitle" xml:space="preserve">
+    <value>Select Target</value>
+    <comment>QuickFiling dialog title</comment>
+  </data>
+  <data name="CompareCommand_pickTargetDescription" xml:space="preserve">
+    <value>Choose the target (right) notebook, section, or section group to compare</value>
+    <comment>QuickFiling dialog description</comment>
+  </data>
+  <data name="CompareCommand_invalidSelection" xml:space="preserve">
+    <value>Could not determine the selected notebook, section, or section group</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="CompareCommand_typeMismatch" xml:space="preserve">
+    <value>The source and target must be the same type: both notebooks, both sections, or both section groups.</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="CompareCommand_overlappingNodes" xml:space="preserve">
+    <value>The target cannot be the same as the source, or a parent or child of the source.</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="CompareDialog_title" xml:space="preserve">
+    <value>Compare Hierarchy</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="CompareDialog_notPresent" xml:space="preserve">
+    <value>not present</value>
+    <comment>hierarchy diff row, orphan cell</comment>
+  </data>
+  <data name="CompareDialog_scopeHint" xml:space="preserve">
+    <value>This compares hierarchy only - names, types, and timestamps - not page content, similar to comparing folders on disk.</value>
+    <comment>hint text above the legend</comment>
+  </data>
+  <data name="CompareDialog_legendSame" xml:space="preserve">
+    <value>Same</value>
+    <comment>legend</comment>
+  </data>
+  <data name="CompareDialog_legendDifferent" xml:space="preserve">
+    <value>Different timestamps</value>
+    <comment>legend</comment>
+  </data>
+  <data name="CompareDialog_legendOrphan" xml:space="preserve">
+    <value>Orphan - missing on one side</value>
+    <comment>legend</comment>
+  </data>
+  <data name="CompareDialog_badgeNotebook" xml:space="preserve">
+    <value>Notebook</value>
+    <comment>node type badge</comment>
+  </data>
+  <data name="CompareDialog_badgeSection" xml:space="preserve">
+    <value>Section</value>
+    <comment>node type badge</comment>
+  </data>
+  <data name="CompareDialog_badgeSectionGroup" xml:space="preserve">
+    <value>Section Group</value>
+    <comment>node type badge</comment>
+  </data>
+  <data name="CompareDialog_hierarchyActionsTitle" xml:space="preserve">
+    <value>Hierarchy actions</value>
+    <comment>toolbar card title</comment>
+  </data>
+  <data name="CompareDialog_pageActionsTitle" xml:space="preserve">
+    <value>Page actions</value>
+    <comment>toolbar card title</comment>
+  </data>
+  <data name="CompareDialog_deleteBothCaption" xml:space="preserve">
+    <value>"Delete both" only enables when the row is selected via the center well (both sides).</value>
+    <comment>toolbar card caption</comment>
+  </data>
+  <data name="CompareDialog_copyRight" xml:space="preserve">
+    <value>Copy ▸</value>
+    <comment>button, copies left to right</comment>
+  </data>
+  <data name="CompareDialog_copyLeft" xml:space="preserve">
+    <value>Copy ◂</value>
+    <comment>button, copies right to left</comment>
+  </data>
+  <data name="CompareDialog_mirrorRight" xml:space="preserve">
+    <value>Mirror ▸</value>
+    <comment>button, mirrors left to right</comment>
+  </data>
+  <data name="CompareDialog_mirrorLeft" xml:space="preserve">
+    <value>Mirror ◂</value>
+    <comment>button, mirrors right to left</comment>
+  </data>
+  <data name="CompareDialog_openLeft" xml:space="preserve">
+    <value>Open left</value>
+    <comment>button</comment>
+  </data>
+  <data name="CompareDialog_openRight" xml:space="preserve">
+    <value>Open right</value>
+    <comment>button</comment>
+  </data>
+  <data name="CompareDialog_deleteLeft" xml:space="preserve">
+    <value>Delete left</value>
+    <comment>button</comment>
+  </data>
+  <data name="CompareDialog_deleteRight" xml:space="preserve">
+    <value>Delete right</value>
+    <comment>button</comment>
+  </data>
+  <data name="CompareDialog_deleteBoth" xml:space="preserve">
+    <value>Delete both</value>
+    <comment>button</comment>
+  </data>
+  <data name="CompareDialog_compareContents" xml:space="preserve">
+    <value>Compare contents…</value>
+    <comment>button</comment>
+  </data>
   <data name="ConditionalFormatDialog_builtinRadio.Text" xml:space="preserve">
     <value>Built-in OneNote style</value>
     <comment>radio</comment>
@@ -4323,6 +4439,14 @@ Help Tab</value>
   <data name="ribCommandPaletteButton_Screentip" xml:space="preserve">
     <value>Open the Command Palette window</value>
     <comment>ribbon main</comment>
+  </data>
+  <data name="ribCompareHierarchyButton_Label" xml:space="preserve">
+    <value>Compare Hierarchy</value>
+    <comment>ribbon clean</comment>
+  </data>
+  <data name="ribCompareHierarchyButton_Screentip" xml:space="preserve">
+    <value>Compare two notebooks, sections, or section groups</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribCompleteHashtagButton_Label" xml:space="preserve">
     <value>Complete Hashtag</value>

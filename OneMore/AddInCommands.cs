@@ -11,6 +11,7 @@ namespace River.OneMoreAddIn
 	using System.Windows.Forms;
 	using Microsoft.Office.Core;
 	using River.OneMoreAddIn.Commands;
+	using River.OneMoreAddIn.Commands.Compare;
 	using River.OneMoreAddIn.Commands.Favorites;
 	using River.OneMoreAddIn.Commands.Workspaces;
 
@@ -224,6 +225,11 @@ namespace River.OneMoreAddIn
 		[Command("ribCommandPaletteButton_Label", Keys.Control | Keys.Shift | Keys.P)]
 		public async Task CommandPaletteCmd(IRibbonControl control)
 			=> await factory.Run<CommandPaletteCommand>();
+
+
+		[Command("ribCompareHierarchyButton_Label", Keys.None, "ribCleanMenu")]
+		public async Task CompareHierarchyCmd(IRibbonControl control)
+			=> await factory.Run<CompareCommand>();
 
 
 		[Command("ribCompleteHashtagButton_Label", Keys.Alt | Keys.G, "ribSearchMenu")]

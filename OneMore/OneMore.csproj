@@ -194,6 +194,17 @@
     <Compile Include="Cli\ICliPageCommand.cs" />
     <Compile Include="Commands\Clean\RemoveIndentsCommand.cs" />
     <Compile Include="Commands\Clean\RemoveHyperlinksCommand.cs" />
+    <Compile Include="Commands\Compare\CompareCommand.cs" />
+    <Compile Include="Commands\Compare\CompareDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Compare\CompareDialog.Designer.cs">
+      <DependentUpon>CompareDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commands\Compare\HierarchyDiffView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Models\HierarchyDiff.cs" />
     <Compile Include="Commands\Edit\ChooseColorizerCommand.cs" />
     <Compile Include="Commands\Edit\ColorizeDialog.cs">
       <SubType>Form</SubType>
@@ -1858,6 +1869,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Clean\RemoveDuplicatesNavigator.resx">
       <DependentUpon>RemoveDuplicatesNavigator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Compare\CompareDialog.resx">
+      <DependentUpon>CompareDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Edit\ColorizeDialog.resx">
       <DependentUpon>ColorizeDialog.cs</DependentUpon>
