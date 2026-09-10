@@ -40,6 +40,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private readonly List<Pill> pills = new();
 		private TitleHitLevel? selectedLevel;
+		private Pill hoveredPill;
 		private Font font;
 
 
@@ -97,6 +98,7 @@ namespace River.OneMoreAddIn.Commands
 		public void SetCounts(int all, IReadOnlyDictionary<TitleHitLevel, int> counts, bool showNotebookChip)
 		{
 			selectedLevel = null;
+			hoveredPill = null;
 			pills.Clear();
 			pills.Add(new Pill { Level = null, Label = $"All {all}" });
 
@@ -124,6 +126,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			pills.Clear();
 			selectedLevel = null;
+			hoveredPill = null;
 			Invalidate();
 		}
 
@@ -212,6 +215,15 @@ namespace River.OneMoreAddIn.Commands
 
 				TextRenderer.DrawText(e.Graphics, pill.Label, font ?? Font, textRect, fore,
 					TextFormatFlags.VerticalCenter | TextFormatFlags.NoPrefix | TextFormatFlags.SingleLine);
+
+				if (!active && pill == hoveredPill)
+				{
+					var outline = new Rectangle(
+						pill.Bounds.X, pill.Bounds.Y, pill.Bounds.Width - 1, pill.Bounds.Height - 1);
+
+					using var pen = new Pen(manager.ButtonHotBorder);
+					e.Graphics.DrawRoundedRectangle(pen, outline, CornerRadius);
+				}
 			}
 		}
 
@@ -237,7 +249,15 @@ namespace River.OneMoreAddIn.Commands
 		protected override void OnMouseMove(MouseEventArgs e)
 		{
 			base.OnMouseMove(e);
-			Cursor = HitTest(e.Location) != null ? Cursors.Hand : Cursors.Default;
+
+			var pill = HitTest(e.Location);
+			Cursor = pill != null ? Cursors.Hand : Cursors.Default;
+
+			if (pill != hoveredPill)
+			{
+				hoveredPill = pill;
+				Invalidate();
+			}
 		}
 
 
@@ -245,6 +265,12 @@ namespace River.OneMoreAddIn.Commands
 		{
 			base.OnMouseLeave(e);
 			Cursor = Cursors.Default;
+
+			if (hoveredPill != null)
+			{
+				hoveredPill = null;
+				Invalidate();
+			}
 		}
 	}
 }
