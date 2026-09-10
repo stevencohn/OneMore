@@ -18,9 +18,9 @@ namespace River.OneMoreAddIn.Commands.Compare
 	/// Shows a surface-level diff of two OneNote hierarchy branches (notebook, section, or
 	/// section group) - names, node types, and created/modified timestamps only - and lets
 	/// the user act on the selected node or page: Copy/Mirror a container node (see
-	/// HierarchyDiffSync), Open a page (this class), or, in a later phase, Delete/Compare
-	/// page contents. Runs modeless since these all call back into OneNote while this
-	/// dialog stays open.
+	/// HierarchyDiffSync), Open/Copy/Delete a page (this class), or score two pages' content
+	/// similarity (see SimilarityEngine and SimilarityPopup). Runs modeless since these all
+	/// call back into OneNote while this dialog stays open.
 	/// </summary>
 	internal partial class CompareDialog : MoreForm
 	{
@@ -52,12 +52,20 @@ namespace River.OneMoreAddIn.Commands.Compare
 			this.root = root;
 			this.nodeType = nodeType;
 
+			// modeless dialogs otherwise appear behind the OneNote window - sometimes on
+			// first show (racing OneNote's own picker dialog closing), and always whenever
+			// focus returns to OneNote (e.g. after Open left/right navigates to a page in a
+			// new OneNote window); this tracks OneNote's focus and re-elevates on top of it,
+			// same as SearchDialog/HashtagDialog
+			ElevatedWithOneNote = true;
+
 			Text = Resx.CompareDialog_title;
 
 			BuildTopPanel(sourceName, targetName);
 			BuildFooterPanel();
 
 			diffView.SelectionChanged += DiffViewSelectionChanged;
+			diffView.ContextMenuRequested += DiffViewContextMenuRequested;
 			diffView.SetRoot(root);
 		}
 
@@ -365,6 +373,7 @@ namespace River.OneMoreAddIn.Commands.Compare
 			deleteBothButton.Click += DeleteBothClick;
 
 			compareContentsButton = CreateActionButton(Resx.CompareDialog_compareContents, wide: true);
+			compareContentsButton.Click += CompareContentsClick;
 
 			buttonFlow.Controls.Add(openLeftButton);
 			buttonFlow.Controls.Add(openRightButton);
@@ -400,8 +409,7 @@ namespace River.OneMoreAddIn.Commands.Compare
 				Margin = new Padding(0, 0, 8, 8),
 				ThemedFore = danger ? "ErrorText" : "HotTrack",
 
-				// Compare contents is wired up in a later phase; all others are enabled
-				// dynamically as the selection changes, below
+				// enabled dynamically as the selection changes, below
 				Enabled = false
 			};
 		}
@@ -438,10 +446,14 @@ namespace River.OneMoreAddIn.Commands.Compare
 				deleteLeftButton.Enabled = node.LeftId is not null;
 				deleteRightButton.Enabled = node.RightId is not null;
 
-				// per spec, "Delete both" only enables when the row was selected via the
-				// center well (both sides), not merely because both sides happen to exist
-				deleteBothButton.Enabled = node.LeftId is not null && node.RightId is not null
+				// per spec, "Delete both" and "Compare contents..." only enable when the row
+				// was selected via the center well (both sides), not merely because both
+				// sides happen to exist
+				var bothSelected = node.LeftId is not null && node.RightId is not null
 					&& diffView.SelectedSide == DiffSide.Both;
+
+				deleteBothButton.Enabled = bothSelected;
+				compareContentsButton.Enabled = bothSelected;
 			}
 			else
 			{
@@ -453,6 +465,89 @@ namespace River.OneMoreAddIn.Commands.Compare
 				copyLeftButton.Enabled = node.RightId is not null;
 				mirrorLeftButton.Enabled = node.RightId is not null;
 			}
+		}
+
+
+		// right-clicking a row selects it (see HierarchyDiffView.OnMouseUp), which raises
+		// SelectionChanged synchronously above before this fires - so the toolbar buttons'
+		// Enabled state already reflects the right-clicked row and can just be copied onto
+		// the equivalent menu items below, keeping both in lockstep with one source of truth
+		private void DiffViewContextMenuRequested(object sender, DiffNode node)
+		{
+			var menu = node.NodeType == OneNote.NodeType.Page
+				? BuildPageContextMenu()
+				: BuildNodeContextMenu();
+
+			menu.Show(Cursor.Position);
+		}
+
+
+		private MoreContextMenuStrip BuildNodeContextMenu()
+		{
+			var menu = new MoreContextMenuStrip();
+
+			menu.Items.Add(new MoreMenuItem(Resx.CompareDialog_copyRight, null, CopyRightClick)
+			{
+				Enabled = copyRightButton.Enabled
+			});
+			menu.Items.Add(new MoreMenuItem(Resx.CompareDialog_copyLeft, null, CopyLeftClick)
+			{
+				Enabled = copyLeftButton.Enabled
+			});
+			menu.Items.Add(new MoreMenuItem(Resx.CompareDialog_mirrorRight, null, MirrorRightClick)
+			{
+				Enabled = mirrorRightButton.Enabled
+			});
+			menu.Items.Add(new MoreMenuItem(Resx.CompareDialog_mirrorLeft, null, MirrorLeftClick)
+			{
+				Enabled = mirrorLeftButton.Enabled
+			});
+
+			return menu;
+		}
+
+
+		private MoreContextMenuStrip BuildPageContextMenu()
+		{
+			var menu = new MoreContextMenuStrip();
+
+			menu.Items.Add(new MoreMenuItem(Resx.CompareDialog_openLeft, null, OpenLeftClick)
+			{
+				Enabled = openLeftButton.Enabled
+			});
+			menu.Items.Add(new MoreMenuItem(Resx.CompareDialog_openRight, null, OpenRightClick)
+			{
+				Enabled = openRightButton.Enabled
+			});
+			menu.Items.Add(new ToolStripSeparator());
+			menu.Items.Add(new MoreMenuItem(Resx.CompareDialog_copyRight, null, PageCopyRightClick)
+			{
+				Enabled = pageCopyRightButton.Enabled
+			});
+			menu.Items.Add(new MoreMenuItem(Resx.CompareDialog_copyLeft, null, PageCopyLeftClick)
+			{
+				Enabled = pageCopyLeftButton.Enabled
+			});
+			menu.Items.Add(new ToolStripSeparator());
+			menu.Items.Add(new MoreMenuItem(Resx.CompareDialog_deleteLeft, null, DeleteLeftClick)
+			{
+				Enabled = deleteLeftButton.Enabled
+			});
+			menu.Items.Add(new MoreMenuItem(Resx.CompareDialog_deleteRight, null, DeleteRightClick)
+			{
+				Enabled = deleteRightButton.Enabled
+			});
+			menu.Items.Add(new MoreMenuItem(Resx.CompareDialog_deleteBoth, null, DeleteBothClick)
+			{
+				Enabled = deleteBothButton.Enabled
+			});
+			menu.Items.Add(new ToolStripSeparator());
+			menu.Items.Add(new MoreMenuItem(Resx.CompareDialog_compareContents, null, CompareContentsClick)
+			{
+				Enabled = compareContentsButton.Enabled
+			});
+
+			return menu;
 		}
 
 
@@ -715,6 +810,84 @@ namespace River.OneMoreAddIn.Commands.Compare
 			{
 				MoreMessageBox.ShowError(this, exc.Message);
 			}
+		}
+
+
+		private async void CompareContentsClick(object sender, EventArgs e)
+		{
+			var node = diffView.SelectedNode;
+			if (node?.LeftId is null || node.RightId is null)
+			{
+				return;
+			}
+
+			Exception error = null;
+			SimilarityResult result = null;
+
+			using (var progress = new ProgressDialog())
+			{
+				progress.SetMessage(Resx.CompareDialog_comparingMessage);
+
+				progress.ShowDialogWithCancel(async (dialog, token) =>
+				{
+					try
+					{
+						await using var one = new OneNote();
+						var left = await one.GetPage(node.LeftId);
+						var right = await one.GetPage(node.RightId);
+						result = SimilarityEngine.Compare(left, right, one);
+						return true;
+					}
+					catch (Exception exc)
+					{
+						error = exc;
+						return false;
+					}
+				}, cancelable: false);
+			}
+
+			if (error is not null)
+			{
+				MoreMessageBox.ShowError(this, error.Message);
+				return;
+			}
+
+			if (result is null)
+			{
+				return;
+			}
+
+			var popup = new SimilarityPopup(node.Name, result);
+			popup.RunModeless(GetPopupLocation(popup), (s, ev) =>
+			{
+				popup.Dispose();
+
+				// the popup's own OnFormClosed (MoreForm) unconditionally hands foreground
+				// focus back to OneNote on close, since that's correct for a dialog invoked
+				// directly from OneNote; here it submerges this still-open dialog behind
+				// OneNote instead, so re-elevate on top of it
+				Elevate();
+			});
+		}
+
+
+		// positions the popup's bottom-left corner just above the invoking button's
+		// top-left, like a tooltip, clamped so it never renders off the top or right edge
+		// of the screen the dialog is on
+		private Point GetPopupLocation(SimilarityPopup popup)
+		{
+			var anchor = compareContentsButton.PointToScreen(Point.Empty);
+			var size = popup.PreferredSize;
+
+			var x = anchor.X;
+			var y = anchor.Y - size.Height - 6;
+
+			var working = Screen.FromControl(compareContentsButton).WorkingArea;
+			x = Math.Min(x, working.Right - size.Width);
+			x = Math.Max(x, working.Left);
+			y = Math.Max(y, working.Top);
+
+			return new Point(x, y);
 		}
 
 

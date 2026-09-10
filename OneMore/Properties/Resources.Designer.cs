@@ -1913,6 +1913,15 @@ namespace River.OneMoreAddIn.Properties {
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Comparing....
+        /// </summary>
+        internal static string CompareDialog_comparingMessage {
+            get {
+                return ResourceManager.GetString("CompareDialog_comparingMessage", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Built-in OneNote style.
         /// </summary>
         internal static string ConditionalFormatDialog_builtinRadio_Text {
@@ -15397,7 +15406,142 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ShowXmlDialog_wrapBox.Text", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to TF-IDF cosine.
+        /// </summary>
+        internal static string Similarity_rubricTfIdf {
+            get {
+                return ResourceManager.GetString("Similarity_rubricTfIdf", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Lexical overlap.
+        /// </summary>
+        internal static string Similarity_rubricLexical {
+            get {
+                return ResourceManager.GetString("Similarity_rubricLexical", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Structural similarity.
+        /// </summary>
+        internal static string Similarity_rubricStructural {
+            get {
+                return ResourceManager.GetString("Similarity_rubricStructural", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Stylistic similarity.
+        /// </summary>
+        internal static string Similarity_rubricStylistic {
+            get {
+                return ResourceManager.GetString("Similarity_rubricStylistic", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Entity similarity.
+        /// </summary>
+        internal static string Similarity_rubricEntity {
+            get {
+                return ResourceManager.GetString("Similarity_rubricEntity", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Both pages are empty..
+        /// </summary>
+        internal static string Similarity_reasonEmptyBoth {
+            get {
+                return ResourceManager.GetString("Similarity_reasonEmptyBoth", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to One page has no text to compare..
+        /// </summary>
+        internal static string Similarity_reasonOneEmpty {
+            get {
+                return ResourceManager.GetString("Similarity_reasonOneEmpty", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to {0} of {1} weighted terms are shared between the two pages..
+        /// </summary>
+        internal static string Similarity_reasonTfIdf {
+            get {
+                return ResourceManager.GetString("Similarity_reasonTfIdf", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to {0} of {1} unique words are shared..
+        /// </summary>
+        internal static string Similarity_reasonLexical {
+            get {
+                return ResourceManager.GetString("Similarity_reasonLexical", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to {0} of {1} headings match; paragraph counts are {2} and {3}..
+        /// </summary>
+        internal static string Similarity_reasonStructural {
+            get {
+                return ResourceManager.GetString("Similarity_reasonStructural", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Average sentence lengths are {0} and {1} words..
+        /// </summary>
+        internal static string Similarity_reasonStylistic {
+            get {
+                return ResourceManager.GetString("Similarity_reasonStylistic", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to {0} of {1} technical terms and proper names match..
+        /// </summary>
+        internal static string Similarity_reasonEntity {
+            get {
+                return ResourceManager.GetString("Similarity_reasonEntity", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to {0} similar.
+        /// </summary>
+        internal static string SimilarityPopup_overallFormat {
+            get {
+                return ResourceManager.GetString("SimilarityPopup_overallFormat", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to {0} · wt {1}.
+        /// </summary>
+        internal static string SimilarityPopup_weightFormat {
+            get {
+                return ResourceManager.GetString("SimilarityPopup_weightFormat", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        internal static string SimilarityPopup_closeAccessibleName {
+            get {
+                return ResourceManager.GetString("SimilarityPopup_closeAccessibleName", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to No containers found on this page.
         /// </summary>

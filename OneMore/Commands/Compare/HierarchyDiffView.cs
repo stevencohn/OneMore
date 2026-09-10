@@ -4,7 +4,6 @@
 
 namespace River.OneMoreAddIn.Commands.Compare
 {
-	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Generic;
@@ -105,6 +104,16 @@ namespace River.OneMoreAddIn.Commands.Compare
 		/// side) or the center well (both sides).
 		/// </summary>
 		public event EventHandler SelectionChanged;
+
+
+		/// <summary>
+		/// Raised on a right-click within a row. The row is selected first (falling back to
+		/// whichever side(s) actually exist, same as a well click selecting both), so
+		/// SelectedNode/SelectedSide already reflect the right-clicked row by the time this
+		/// fires - letting the owner build a context menu whose enabled items match what the
+		/// equivalent toolbar buttons would show for this row.
+		/// </summary>
+		public event EventHandler<DiffNode> ContextMenuRequested;
 
 
 		/// <summary>
@@ -286,6 +295,28 @@ namespace River.OneMoreAddIn.Commands.Compare
 
 				Select(node, DiffSide.Right);
 			}
+		}
+
+
+		protected override void OnMouseUp(MouseEventArgs e)
+		{
+			base.OnMouseUp(e);
+
+			if (e.Button != MouseButtons.Right)
+			{
+				return;
+			}
+
+			var y = e.Y - AutoScrollPosition.Y;
+			var index = y / RowHeight;
+			if (index < 0 || index >= rows.Count)
+			{
+				return;
+			}
+
+			var node = rows[index].Node;
+			SelectWithFallback(node, DiffSide.Both);
+			ContextMenuRequested?.Invoke(this, node);
 		}
 
 

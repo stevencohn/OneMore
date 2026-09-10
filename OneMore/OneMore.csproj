@@ -205,7 +205,14 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Commands\Compare\HierarchyDiffSync.cs" />
-    <Compile Include="Models\HierarchyDiff.cs" />
+    <Compile Include="Commands\Compare\SimilarityPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Compare\SimilarityPopup.Designer.cs">
+      <DependentUpon>SimilarityPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commands\Compare\HierarchyDiff.cs" />
+    <Compile Include="Commands\Compare\SimilarityEngine.cs" />
     <Compile Include="Commands\Edit\ChooseColorizerCommand.cs" />
     <Compile Include="Commands\Edit\ColorizeDialog.cs">
       <SubType>Form</SubType>

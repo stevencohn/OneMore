@@ -937,6 +937,10 @@ Do you want to continue?</value>
     <value>Deleting...</value>
     <comment>progress dialog message</comment>
   </data>
+  <data name="CompareDialog_comparingMessage" xml:space="preserve">
+    <value>Comparing...</value>
+    <comment>progress dialog message</comment>
+  </data>
   <data name="ConditionalFormatDialog_builtinRadio.Text" xml:space="preserve">
     <value>Built-in OneNote style</value>
     <comment>radio</comment>
@@ -6589,6 +6593,66 @@ Are you sure you want to continue?</value>
   <data name="ShowXmlDialog_wrapBox.Text" xml:space="preserve">
     <value>Wrap text</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="Similarity_rubricTfIdf" xml:space="preserve">
+    <value>TF-IDF cosine</value>
+    <comment>similarity rubric name</comment>
+  </data>
+  <data name="Similarity_rubricLexical" xml:space="preserve">
+    <value>Lexical overlap</value>
+    <comment>similarity rubric name</comment>
+  </data>
+  <data name="Similarity_rubricStructural" xml:space="preserve">
+    <value>Structural similarity</value>
+    <comment>similarity rubric name</comment>
+  </data>
+  <data name="Similarity_rubricStylistic" xml:space="preserve">
+    <value>Stylistic similarity</value>
+    <comment>similarity rubric name</comment>
+  </data>
+  <data name="Similarity_rubricEntity" xml:space="preserve">
+    <value>Entity similarity</value>
+    <comment>similarity rubric name</comment>
+  </data>
+  <data name="Similarity_reasonEmptyBoth" xml:space="preserve">
+    <value>Both pages are empty.</value>
+    <comment>similarity rubric reasoning</comment>
+  </data>
+  <data name="Similarity_reasonOneEmpty" xml:space="preserve">
+    <value>One page has no text to compare.</value>
+    <comment>similarity rubric reasoning</comment>
+  </data>
+  <data name="Similarity_reasonTfIdf" xml:space="preserve">
+    <value>{0} of {1} weighted terms are shared between the two pages.</value>
+    <comment>similarity rubric reasoning, {0} shared term count, {1} total term count</comment>
+  </data>
+  <data name="Similarity_reasonLexical" xml:space="preserve">
+    <value>{0} of {1} unique words are shared.</value>
+    <comment>similarity rubric reasoning, {0} shared word count, {1} total word count</comment>
+  </data>
+  <data name="Similarity_reasonStructural" xml:space="preserve">
+    <value>{0} of {1} headings match; paragraph counts are {2} and {3}.</value>
+    <comment>similarity rubric reasoning, {0} shared heading count, {1} total heading count, {2}/{3} paragraph counts</comment>
+  </data>
+  <data name="Similarity_reasonStylistic" xml:space="preserve">
+    <value>Average sentence lengths are {0} and {1} words.</value>
+    <comment>similarity rubric reasoning, {0}/{1} average words per sentence</comment>
+  </data>
+  <data name="Similarity_reasonEntity" xml:space="preserve">
+    <value>{0} of {1} technical terms and proper names match.</value>
+    <comment>similarity rubric reasoning, {0} shared entity count, {1} total entity count</comment>
+  </data>
+  <data name="SimilarityPopup_overallFormat" xml:space="preserve">
+    <value>{0} similar</value>
+    <comment>large overall score label, {0} percentage</comment>
+  </data>
+  <data name="SimilarityPopup_weightFormat" xml:space="preserve">
+    <value>{0} · wt {1}</value>
+    <comment>rubric row label, {0} rubric name, {1} weight percentage</comment>
+  </data>
+  <data name="SimilarityPopup_closeAccessibleName" xml:space="preserve">
+    <value>Close</value>
+    <comment>accessible name for the popup's close glyph</comment>
   </data>
   <data name="SnapToGridCommand_noContainers" xml:space="preserve">
     <value>No containers found on this page</value>
