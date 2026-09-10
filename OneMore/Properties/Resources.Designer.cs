@@ -1643,6 +1643,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Compare.
+        /// </summary>
+        internal static string CompareDialog_compareActionsTitle {
+            get {
+                return ResourceManager.GetString("CompareDialog_compareActionsTitle", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Compare contents….
         /// </summary>
         internal static string CompareDialog_compareContents {
@@ -1678,6 +1687,15 @@ namespace River.OneMoreAddIn.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to Deep-scan compare page content under &apos;{0}&apos;? This runs a similarity check on every matched page pair and may take a while for a large subtree..
+        /// </summary>
+        internal static string CompareDialog_confirmDeepScan {
+            get {
+                return ResourceManager.GetString("CompareDialog_confirmDeepScan", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Delete &apos;{0}&apos; from both sides? This cannot be undone..
         /// </summary>
@@ -1741,6 +1759,33 @@ namespace River.OneMoreAddIn.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to Deep scan….
+        /// </summary>
+        internal static string CompareDialog_deepScan {
+            get {
+                return ResourceManager.GetString("CompareDialog_deepScan", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Deep scanning....
+        /// </summary>
+        internal static string CompareDialog_deepScanMessage {
+            get {
+                return ResourceManager.GetString("CompareDialog_deepScanMessage", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Comparing &apos;{0}&apos;....
+        /// </summary>
+        internal static string CompareDialog_deepScanPageFormat {
+            get {
+                return ResourceManager.GetString("CompareDialog_deepScanPageFormat", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Delete both.
         /// </summary>

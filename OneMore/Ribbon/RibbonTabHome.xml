@@ -1106,6 +1106,12 @@
           getScreentip="GetRibbonScreentip"
           onAction="CollapsePagesCmd"/>
         <button
+          id="ribCompareHierarchyButton"
+          imageMso="GroupCompare"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="CompareHierarchyCmd"/>
+        <button
           id="ribPronunciateButton"
           getLabel="GetRibbonLabel"
           getScreentip="GetRibbonScreentip"

@@ -227,7 +227,7 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<CommandPaletteCommand>();
 
 
-		[Command("ribCompareHierarchyButton_Label", Keys.None, "ribCleanMenu")]
+		[Command("ribCompareHierarchyButton_Label", Keys.None, "ribExtrasMenu")]
 		public async Task CompareHierarchyCmd(IRibbonControl control)
 			=> await factory.Run<CompareCommand>();
 

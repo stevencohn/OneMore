@@ -815,6 +815,10 @@ Möchten Sie fortfahren?</value>
     <value>Abschnittsgruppe</value>
     <comment>node type badge</comment>
   </data>
+  <data name="CompareDialog_compareActionsTitle" xml:space="preserve">
+    <value>Vergleichen</value>
+    <comment>toolbar card title</comment>
+  </data>
   <data name="CompareDialog_compareContents" xml:space="preserve">
     <value>Inhalte vergleichen…</value>
     <comment>button</comment>
@@ -830,6 +834,10 @@ Möchten Sie fortfahren?</value>
   <data name="CompareDialog_confirmCopyPage" xml:space="preserve">
     <value>„{0}“ nach {1} kopieren?</value>
     <comment>confirmation, {0} page name, {1} direction (left/right)</comment>
+  </data>
+  <data name="CompareDialog_confirmDeepScan" xml:space="preserve">
+    <value>Seiteninhalt unter „{0}“ gründlich scannen? Dadurch wird für jedes übereinstimmende Seitenpaar eine Ähnlichkeitsprüfung durchgeführt, was bei einem großen Teilbaum eine Weile dauern kann.</value>
+    <comment>confirmation, {0} node name</comment>
   </data>
   <data name="CompareDialog_confirmDeleteBothPage" xml:space="preserve">
     <value>„{0}“ von beiden Seiten löschen? Dies kann nicht rückgängig gemacht werden.</value>
@@ -858,6 +866,18 @@ Möchten Sie fortfahren?</value>
   <data name="CompareDialog_copyRight" xml:space="preserve">
     <value>Kopieren Sie ˃˃</value>
     <comment>button, copies left to right</comment>
+  </data>
+  <data name="CompareDialog_deepScan" xml:space="preserve">
+    <value>Tiefenscan…</value>
+    <comment>button, runs a bulk content-similarity scan over a hierarchy node's descendants</comment>
+  </data>
+  <data name="CompareDialog_deepScanMessage" xml:space="preserve">
+    <value>Tiefenscan...</value>
+    <comment>progress dialog message</comment>
+  </data>
+  <data name="CompareDialog_deepScanPageFormat" xml:space="preserve">
+    <value>Vergleich von '{0}'...</value>
+    <comment>progress dialog message, {0} page name</comment>
   </data>
   <data name="CompareDialog_deleteBoth" xml:space="preserve">
     <value>Beides löschen</value>
