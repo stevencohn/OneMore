@@ -5,11 +5,14 @@
 namespace River.OneMoreAddIn.Commands.Compare
 {
 	using River.OneMoreAddIn.Models;
+	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
+	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
+	using Resx = Properties.Resources;
 
 
 	/// <summary>
@@ -49,9 +52,39 @@ namespace River.OneMoreAddIn.Commands.Compare
 		/// its content updated to match the source. Nothing on the target-only side is
 		/// touched or removed.
 		/// </summary>
-		public static async Task Copy(OneNote one, DiffNode node, SyncDirection direction)
+		/// <param name="one">The active OneNote wrapper</param>
+		/// <param name="dialog">Used to report per-stage/per-page progress</param>
+		/// <param name="token">Checked between pages so a long run can be cancelled</param>
+		/// <param name="root">
+		/// The full compared hierarchy's root (may differ from <paramref name="node"/>, the
+		/// specific node being acted on) - used only to scope the backlink-repair scan
+		/// </param>
+		/// <param name="node">The node to copy</param>
+		/// <param name="direction">Which side is the source</param>
+		/// <param name="patchLinks">
+		/// True to also repair other, unselected pages' links to any page replaced by this
+		/// sync (mutates pages outside the caller's selection); false to leave them broken
+		/// </param>
+		public static async Task Copy(OneNote one, ProgressDialog dialog, CancellationToken token,
+			DiffNode root, DiffNode node, SyncDirection direction, bool patchLinks)
 		{
-			await SyncNode(one, node, direction);
+			var renameMap = new Dictionary<string, string>();
+			var syncedPageIds = new List<string>();
+
+			dialog.SetMaximum(Math.Max(1, CountPages(node)));
+			await SyncNode(one, dialog, token, node, direction, renameMap, syncedPageIds);
+
+			if (token.IsCancellationRequested)
+			{
+				return;
+			}
+
+			await HierarchyLinkReconciler.RelinkSyncedPages(one, dialog, token, syncedPageIds, renameMap);
+
+			if (patchLinks && !token.IsCancellationRequested)
+			{
+				await HierarchyLinkReconciler.RepairBacklinks(one, dialog, token, root, renameMap);
+			}
 		}
 
 
@@ -60,9 +93,14 @@ namespace River.OneMoreAddIn.Commands.Compare
 		/// that exists only on the target side, so the target subtree matches the source
 		/// exactly. Returns the display names of everything deleted.
 		/// </summary>
-		public static async Task<List<string>> Mirror(OneNote one, DiffNode node, SyncDirection direction)
+		public static async Task<List<string>> Mirror(OneNote one, ProgressDialog dialog, CancellationToken token,
+			DiffNode root, DiffNode node, SyncDirection direction, bool patchLinks)
 		{
-			await SyncNode(one, node, direction);
+			var renameMap = new Dictionary<string, string>();
+			var syncedPageIds = new List<string>();
+
+			dialog.SetMaximum(Math.Max(1, CountPages(node)));
+			await SyncNode(one, dialog, token, node, direction, renameMap, syncedPageIds);
 
 			var deleted = new List<string>();
 			var targetOnlyStatus = TargetOnlyStatus(direction);
@@ -72,7 +110,30 @@ namespace River.OneMoreAddIn.Commands.Compare
 				DeleteTargetOnly(one, child, direction, targetOnlyStatus, deleted);
 			}
 
+			if (!token.IsCancellationRequested)
+			{
+				await HierarchyLinkReconciler.RelinkSyncedPages(one, dialog, token, syncedPageIds, renameMap);
+			}
+
+			if (patchLinks && !token.IsCancellationRequested)
+			{
+				await HierarchyLinkReconciler.RepairBacklinks(one, dialog, token, root, renameMap);
+			}
+
 			return deleted;
+		}
+
+
+		private static int CountPages(DiffNode node)
+		{
+			var count = node.NodeType == OneNote.NodeType.Page ? 1 : 0;
+
+			foreach (var child in node.Children)
+			{
+				count += CountPages(child);
+			}
+
+			return count;
 		}
 
 
@@ -141,8 +202,15 @@ namespace River.OneMoreAddIn.Commands.Compare
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 		// Copy...
 
-		private static async Task SyncNode(OneNote one, DiffNode node, SyncDirection direction)
+		private static async Task SyncNode(OneNote one, ProgressDialog dialog, CancellationToken token,
+			DiffNode node, SyncDirection direction,
+			Dictionary<string, string> renameMap, List<string> syncedPageIds)
 		{
+			if (token.IsCancellationRequested)
+			{
+				return;
+			}
+
 			var leftToRight = direction == SyncDirection.LeftToRight;
 			var sourceId = leftToRight ? node.LeftId : node.RightId;
 
@@ -155,7 +223,7 @@ namespace River.OneMoreAddIn.Commands.Compare
 
 			if (node.NodeType == OneNote.NodeType.Page)
 			{
-				await SyncPage(one, node, sourceId, leftToRight);
+				await SyncPage(one, dialog, node, sourceId, leftToRight, renameMap, syncedPageIds);
 				return;
 			}
 
@@ -169,24 +237,74 @@ namespace River.OneMoreAddIn.Commands.Compare
 
 			foreach (var child in node.Children)
 			{
-				await SyncNode(one, child, direction);
+				await SyncNode(one, dialog, token, child, direction, renameMap, syncedPageIds);
 			}
 		}
 
 
-		private static async Task SyncPage(OneNote one, DiffNode node, string sourceId, bool leftToRight)
+		// a similarity score at or above this is treated as "identical" for the purposes of
+		// skipping a resync - not exactly 1.0 since summing five independently-weighted
+		// scores (each itself exactly 1.0 for byte-identical extracted text) can accumulate
+		// a tiny binary floating-point rounding error even when nothing actually differs
+		private const double IdenticalSimilarityThreshold = 0.9999;
+
+
+		private static async Task SyncPage(OneNote one, ProgressDialog dialog, DiffNode node,
+			string sourceId, bool leftToRight,
+			Dictionary<string, string> renameMap, List<string> syncedPageIds)
 		{
-			var page = await one.GetPage(sourceId);
+			dialog.SetMessage(string.Format(Resx.CompareDialog_syncingPageFormat, node.Name));
+
 			var targetId = leftToRight ? node.RightId : node.LeftId;
 
-			if (targetId is null)
+			if (targetId is not null && await IsAlreadyIdentical(one, node, sourceId, targetId))
 			{
-				var parentId = ResolveParentTargetId(node, leftToRight);
-				one.CreatePage(parentId, out targetId);
+				// nothing to do: the target already matches the source, so leave it - and
+				// its id - untouched rather than needlessly deleting and recreating it
+				dialog.Increment();
+				return;
 			}
 
-			// retarget the fetched source page onto the (new or existing) target page ID
-			// and let OneNote regenerate every object's ID on save
+			var page = await one.GetPage(sourceId);
+
+			// capture hyperlink-space ids (NOT the same value as OneNote's internal
+			// hierarchy id/objectID - see HierarchyLinkReconciler.ExtractPageId) before any
+			// mutation: the source's, always, so other just-copied pages that linked to it
+			// can be relinked; the existing target's, only if one exists, since it's about
+			// to be deleted below and GetHyperlinkToObject can't resolve an id that no
+			// longer exists
+			var sourceHyperId = HierarchyLinkReconciler.ExtractPageId(
+				one.GetHyperlink(sourceId, string.Empty));
+
+			string oldHyperId = null;
+
+			if (targetId is not null)
+			{
+				oldHyperId = HierarchyLinkReconciler.ExtractPageId(
+					one.GetHyperlink(targetId, string.Empty));
+
+				// OneNote's UpdatePageContent merges by object ID rather than replacing the
+				// page wholesale: submitted content whose objectID doesn't match anything
+				// already on the target page is simply ADDED alongside the target's existing
+				// content, not swapped in for it. Since the source page's own objectIDs are
+				// stripped below (so OneNote assigns fresh ones), updating an already-existing
+				// target page this way would append the source's content rather than replace
+				// it. Deleting and recreating the target page guarantees an empty starting
+				// point - same as the "doesn't exist yet" branch below - so the result is an
+				// exact copy instead of source-plus-target. By this point IsAlreadyIdentical
+				// has already ruled out the case where content matches, so this genuinely is
+				// a change and the target-side id churn is unavoidable; any other page that
+				// already linked to the old id is repaired separately, see
+				// HierarchyLinkReconciler.
+				one.DeleteHierarchy(targetId);
+				targetId = null;
+			}
+
+			var parentId = ResolveParentTargetId(node, leftToRight);
+			one.CreatePage(parentId, out targetId);
+
+			// retarget the fetched source page onto the new target page ID and let OneNote
+			// regenerate every object's ID on save
 			page.Root.Attribute("ID").Value = targetId;
 			page.Root.Descendants().Attributes("objectID").Remove();
 
@@ -197,6 +315,57 @@ namespace River.OneMoreAddIn.Commands.Compare
 			}
 
 			SetTargetId(node, leftToRight, targetId);
+
+			if (sourceHyperId is not null)
+			{
+				renameMap[sourceHyperId] = targetId;
+			}
+
+			if (oldHyperId is not null)
+			{
+				renameMap[oldHyperId] = targetId;
+			}
+
+			syncedPageIds.Add(targetId);
+			dialog.Increment();
+		}
+
+
+		// Status.Same (matching modified timestamps) is trusted outright and skips this
+		// check entirely - about as strong a content-identity signal as OneNote's own
+		// metadata offers, and cheap. Status.DifferentTimestamps is NOT trusted on its own:
+		// once a page has been synced once, the target's lastModifiedTime becomes "time of
+		// the copy" and will essentially never exactly match the source's own timestamp
+		// again, even after the two have fully converged - so treating DifferentTimestamps
+		// as "must resync" would force every subsequent Copy/Mirror to needlessly (and
+		// destructively - see SyncPage's delete-and-recreate comment) redo pages whose
+		// content hasn't actually changed since the last sync. Verifying with the same
+		// content-similarity scorer "Compare contents..." uses (rather than only the
+		// hierarchy-level timestamp) catches that case correctly.
+		private static async Task<bool> IsAlreadyIdentical(
+			OneNote one, DiffNode node, string sourceId, string targetId)
+		{
+			if (node.Status == DiffStatus.Same)
+			{
+				return true;
+			}
+
+			// fetch throwaway Page instances distinct from the one SyncPage goes on to use
+			// for the actual copy below, since Page/XElement instances handed to
+			// SimilarityEngine should never be assumed reusable afterward
+			var sourcePage = await one.GetPage(sourceId);
+			var targetPage = await one.GetPage(targetId);
+
+			var similarity = SimilarityEngine.Compare(sourcePage, targetPage, one).Overall;
+			var identical = similarity >= IdenticalSimilarityThreshold;
+
+			if (identical)
+			{
+				Logger.Current.WriteLine(
+					$"skipping resync of '{node.Name}': content is already {similarity:P1} similar");
+			}
+
+			return identical;
 		}
 
 

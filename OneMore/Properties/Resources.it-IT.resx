@@ -773,6 +773,190 @@ Vuoi continuare?</value>
     <value>Digita un comando e premi Invio o fai clic su un elemento dall'elenco</value>
     <comment>label</comment>
   </data>
+  <data name="CompareCommand_invalidSelection" xml:space="preserve">
+    <value>Impossibile determinare il taccuino, la sezione o il gruppo di sezioni selezionato</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="CompareCommand_overlappingNodes" xml:space="preserve">
+    <value>La destinazione non può essere la stessa dell'origine o un genitore o un figlio dell'origine.</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="CompareCommand_pickSourceDescription" xml:space="preserve">
+    <value>Scegli il taccuino, la sezione o il gruppo di sezioni di origine (a sinistra) da confrontare</value>
+    <comment>QuickFiling dialog description</comment>
+  </data>
+  <data name="CompareCommand_pickSourceTitle" xml:space="preserve">
+    <value>Seleziona Sorgente</value>
+    <comment>QuickFiling dialog title</comment>
+  </data>
+  <data name="CompareCommand_pickTargetDescription" xml:space="preserve">
+    <value>Scegli il taccuino, la sezione o il gruppo di sezioni di destinazione (a destra) da confrontare</value>
+    <comment>QuickFiling dialog description</comment>
+  </data>
+  <data name="CompareCommand_pickTargetTitle" xml:space="preserve">
+    <value>Seleziona Obiettivo</value>
+    <comment>QuickFiling dialog title</comment>
+  </data>
+  <data name="CompareCommand_typeMismatch" xml:space="preserve">
+    <value>L'origine e la destinazione devono essere dello stesso tipo: entrambi i taccuini, entrambe le sezioni o entrambi i gruppi di sezioni.</value>
+    <comment>messagebox</comment>
+  </data>
+  <data name="CompareDialog_badgeNotebook" xml:space="preserve">
+    <value>Taccuino</value>
+    <comment>node type badge</comment>
+  </data>
+  <data name="CompareDialog_badgeSection" xml:space="preserve">
+    <value>Sezione</value>
+    <comment>node type badge</comment>
+  </data>
+  <data name="CompareDialog_badgeSectionGroup" xml:space="preserve">
+    <value>Gruppo di sezioni</value>
+    <comment>node type badge</comment>
+  </data>
+  <data name="CompareDialog_compareContents" xml:space="preserve">
+    <value>Confronta i contenuti...</value>
+    <comment>button</comment>
+  </data>
+  <data name="CompareDialog_comparingMessage" xml:space="preserve">
+    <value>Confrontando...</value>
+    <comment>progress dialog message</comment>
+  </data>
+  <data name="CompareDialog_confirmCopy" xml:space="preserve">
+    <value>Copiare '{0}' e i suoi discendenti in {1}?</value>
+    <comment>confirmation, {0} node name, {1} direction (left/right)</comment>
+  </data>
+  <data name="CompareDialog_confirmCopyPage" xml:space="preserve">
+    <value>Copiare '{0}' in {1}?</value>
+    <comment>confirmation, {0} page name, {1} direction (left/right)</comment>
+  </data>
+  <data name="CompareDialog_confirmDeleteBothPage" xml:space="preserve">
+    <value>Eliminare '{0}' da entrambi i lati? Questa operazione non può essere annullata.</value>
+    <comment>confirmation, {0} page name</comment>
+  </data>
+  <data name="CompareDialog_confirmDeletePage" xml:space="preserve">
+    <value>Eliminare '{0}' da {1}? Questa operazione non può essere annullata.</value>
+    <comment>confirmation, {0} page name, {1} direction (left/right)</comment>
+  </data>
+  <data name="CompareDialog_confirmMirror" xml:space="preserve">
+    <value>Eseguire il mirroring di '{0}' su {1}? Ciò fa corrispondere esattamente il lato {1}, inclusa l'eliminazione di {2} elemento/i che esiste/i solo lì.</value>
+    <comment>confirmation, {0} node name, {1} direction (left/right), {2} delete count</comment>
+  </data>
+  <data name="CompareDialog_confirmMirrorNoDeletions" xml:space="preserve">
+    <value>Eseguire il mirroring di '{0}' su {1}?</value>
+    <comment>confirmation, {0} node name, {1} direction (left/right)</comment>
+  </data>
+  <data name="CompareDialog_copyingMessage" xml:space="preserve">
+    <value>Copia...</value>
+    <comment>progress dialog message</comment>
+  </data>
+  <data name="CompareDialog_copyLeft" xml:space="preserve">
+    <value>Copia ˂˂</value>
+    <comment>button, copies right to left</comment>
+  </data>
+  <data name="CompareDialog_copyRight" xml:space="preserve">
+    <value>Copia ˃˃</value>
+    <comment>button, copies left to right</comment>
+  </data>
+  <data name="CompareDialog_deleteBoth" xml:space="preserve">
+    <value>Elimina entrambi</value>
+    <comment>button</comment>
+  </data>
+  <data name="CompareDialog_deleteBothCaption" xml:space="preserve">
+    <value>"Elimina entrambi" è abilitato solo quando la riga viene selezionata tramite il riquadro centrale (entrambi i lati).</value>
+    <comment>toolbar card caption</comment>
+  </data>
+  <data name="CompareDialog_deleteLeft" xml:space="preserve">
+    <value>Elimina a sinistra</value>
+    <comment>button</comment>
+  </data>
+  <data name="CompareDialog_deleteRight" xml:space="preserve">
+    <value>Elimina a destra</value>
+    <comment>button</comment>
+  </data>
+  <data name="CompareDialog_deletingMessage" xml:space="preserve">
+    <value>Eliminazione...</value>
+    <comment>progress dialog message</comment>
+  </data>
+  <data name="CompareDialog_directionLeft" xml:space="preserve">
+    <value>Sinistra</value>
+    <comment>used in confirmation messages, e.g. "Copy 'X' to the {0}?"</comment>
+  </data>
+  <data name="CompareDialog_directionRight" xml:space="preserve">
+    <value>destra</value>
+    <comment>used in confirmation messages, e.g. "Copy 'X' to the {0}?"</comment>
+  </data>
+  <data name="CompareDialog_hierarchyActionsTitle" xml:space="preserve">
+    <value>Azioni di gerarchia</value>
+    <comment>toolbar card title</comment>
+  </data>
+  <data name="CompareDialog_legendDifferent" xml:space="preserve">
+    <value>Timestamp diversi</value>
+    <comment>legend</comment>
+  </data>
+  <data name="CompareDialog_legendOrphan" xml:space="preserve">
+    <value>Orfano: mancante da un lato</value>
+    <comment>legend</comment>
+  </data>
+  <data name="CompareDialog_legendSame" xml:space="preserve">
+    <value>Stessa</value>
+    <comment>legend</comment>
+  </data>
+  <data name="CompareDialog_mirroringMessage" xml:space="preserve">
+    <value>Mirroring...</value>
+    <comment>progress dialog message</comment>
+  </data>
+  <data name="CompareDialog_mirrorLeft" xml:space="preserve">
+    <value>Specchio</value>
+    <comment>button, mirrors right to left</comment>
+  </data>
+  <data name="CompareDialog_mirrorRight" xml:space="preserve">
+    <value>Specchio</value>
+    <comment>button, mirrors left to right</comment>
+  </data>
+  <data name="CompareDialog_notPresent" xml:space="preserve">
+    <value>non presente</value>
+    <comment>hierarchy diff row, orphan cell</comment>
+  </data>
+  <data name="CompareDialog_openLeft" xml:space="preserve">
+    <value>Aperto a sinistra</value>
+    <comment>button</comment>
+  </data>
+  <data name="CompareDialog_openRight" xml:space="preserve">
+    <value>Apri a destra</value>
+    <comment>button</comment>
+  </data>
+  <data name="CompareDialog_pageActionsTitle" xml:space="preserve">
+    <value>Azioni della pagina</value>
+    <comment>toolbar card title</comment>
+  </data>
+  <data name="CompareDialog_relinkChoiceSuffix" xml:space="preserve">
+    <value>Ciò sostituirà una o più pagine già corrispondenti, il che può interrompere i collegamenti da altre pagine che fanno riferimento ad esse.
+
+Sì = procedi e aggiorna anche i collegamenti di quelle altre pagine (cambia la data di modifica e l'autore)
+No = procedi ma lascia i collegamenti così come sono (potrebbero puntare a una pagina rimossa)
+Annulla = non procedere</value>
+    <comment>appended to a copy/mirror confirmation when it would replace an already-matched page; turns the confirmation into a 3-way Yes/No/Cancel choice</comment>
+  </data>
+  <data name="CompareDialog_relinkingMessage" xml:space="preserve">
+    <value>Aggiornamento dei collegamenti all'interno delle pagine copiate...</value>
+    <comment>progress dialog message</comment>
+  </data>
+  <data name="CompareDialog_scanningLinksMessage" xml:space="preserve">
+    <value>Ricerca di link da aggiornare...</value>
+    <comment>progress dialog message</comment>
+  </data>
+  <data name="CompareDialog_scopeHint" xml:space="preserve">
+    <value>Questo è un confronto solo della gerarchia (nomi, tipi e timestamp) e non del contenuto della pagina. Seleziona due pagine per confrontare i loro contenuti.</value>
+    <comment>hint text above the legend</comment>
+  </data>
+  <data name="CompareDialog_syncingPageFormat" xml:space="preserve">
+    <value>Copia di '{0}'...</value>
+    <comment>progress dialog message, {0} page name</comment>
+  </data>
+  <data name="CompareDialog_title" xml:space="preserve">
+    <value>Confronta la gerarchia</value>
+    <comment>dialog title</comment>
+  </data>
   <data name="ConditionalFormatDialog_builtinRadio.Text" xml:space="preserve">
     <value>Stile OneNote integrato</value>
     <comment>radio</comment>
@@ -4296,6 +4480,14 @@ Scheda Aiuto</value>
     <value>Apri la finestra della tavolozza dei comandi</value>
     <comment>ribbon main</comment>
   </data>
+  <data name="ribCompareHierarchyButton_Label" xml:space="preserve">
+    <value>Confronta la gerarchia</value>
+    <comment>ribbon clean</comment>
+  </data>
+  <data name="ribCompareHierarchyButton_Screentip" xml:space="preserve">
+    <value>Confronta due taccuini, sezioni o gruppi di sezioni</value>
+    <comment>ribbon clean</comment>
+  </data>
   <data name="ribCompleteHashtagButton_Label" xml:space="preserve">
     <value>Hashtag completo</value>
     <comment>ribbon search</comment>
@@ -6385,6 +6577,70 @@ Sei sicuro di voler continuare?</value>
   <data name="ShowXmlDialog_wrapBox.Text" xml:space="preserve">
     <value>Avvolgi il testo</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="Similarity_reasonEmptyBoth" xml:space="preserve">
+    <value>Entrambe le pagine sono vuote.</value>
+    <comment>similarity rubric reasoning</comment>
+  </data>
+  <data name="Similarity_reasonEntity" xml:space="preserve">
+    <value>{0} di {1} termini tecnici e nomi propri corrispondono.</value>
+    <comment>similarity rubric reasoning, {0} shared entity count, {1} total entity count</comment>
+  </data>
+  <data name="Similarity_reasonLexical" xml:space="preserve">
+    <value>{0} di {1} parole univoche sono condivise.</value>
+    <comment>similarity rubric reasoning, {0} shared word count, {1} total word count</comment>
+  </data>
+  <data name="Similarity_reasonOneEmpty" xml:space="preserve">
+    <value>Una pagina non contiene testo da confrontare.</value>
+    <comment>similarity rubric reasoning</comment>
+  </data>
+  <data name="Similarity_reasonStructural" xml:space="preserve">
+    <value>{0} di {1} intestazioni corrispondono; i conteggi dei paragrafi sono {2} e {3}.</value>
+    <comment>similarity rubric reasoning, {0} shared heading count, {1} total heading count, {2}/{3} paragraph counts</comment>
+  </data>
+  <data name="Similarity_reasonStylistic" xml:space="preserve">
+    <value>La lunghezza media delle frasi è di {0} e {1} parole.</value>
+    <comment>similarity rubric reasoning, {0}/{1} average words per sentence</comment>
+  </data>
+  <data name="Similarity_reasonTfIdf" xml:space="preserve">
+    <value>{0} di {1} termini ponderati sono condivisi tra le due pagine.</value>
+    <comment>similarity rubric reasoning, {0} shared term count, {1} total term count</comment>
+  </data>
+  <data name="Similarity_rubricEntity" xml:space="preserve">
+    <value>Somiglianza di entità</value>
+    <comment>similarity rubric name</comment>
+  </data>
+  <data name="Similarity_rubricLexical" xml:space="preserve">
+    <value>Sovrapposizione lessicale</value>
+    <comment>similarity rubric name</comment>
+  </data>
+  <data name="Similarity_rubricStructural" xml:space="preserve">
+    <value>Somiglianza strutturale</value>
+    <comment>similarity rubric name</comment>
+  </data>
+  <data name="Similarity_rubricStylistic" xml:space="preserve">
+    <value>Somiglianza stilistica</value>
+    <comment>similarity rubric name</comment>
+  </data>
+  <data name="Similarity_rubricTfIdf" xml:space="preserve">
+    <value>Coseno TF-IDF</value>
+    <comment>similarity rubric name</comment>
+  </data>
+  <data name="SimilarityPopup_closeAccessibleName" xml:space="preserve">
+    <value>Vicina</value>
+    <comment>accessible name for the popup's close glyph</comment>
+  </data>
+  <data name="SimilarityPopup_overallFormat" xml:space="preserve">
+    <value>{0} simili</value>
+    <comment>large overall score label, {0} percentage</comment>
+  </data>
+  <data name="SimilarityPopup_pairFormat" xml:space="preserve">
+    <value>{0} ↔ {1}</value>
+    <comment>header shown when comparing two unrelated pages, {0} left page name, {1} right page name</comment>
+  </data>
+  <data name="SimilarityPopup_weightFormat" xml:space="preserve">
+    <value>{0} · in peso {1}</value>
+    <comment>rubric row label, {0} rubric name, {1} weight percentage</comment>
   </data>
   <data name="SnapToGridCommand_noContainers" xml:space="preserve">
     <value>Nessun contenitore trovato in questa pagina</value>

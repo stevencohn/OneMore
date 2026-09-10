@@ -28,7 +28,13 @@ namespace River.OneMoreAddIn.Commands.Compare
 		private readonly Color borderColor;
 
 
-		public SimilarityPopup(string pageName, SimilarityResult result)
+		/// <param name="leftName">The left (source) page's name</param>
+		/// <param name="rightName">
+		/// The right (target) page's name - may differ from <paramref name="leftName"/> when
+		/// comparing an ad-hoc, unrelated pair rather than a matched row
+		/// </param>
+		/// <param name="result">The computed similarity result to display</param>
+		public SimilarityPopup(string leftName, string rightName, SimilarityResult result)
 		{
 			InitializeComponent();
 
@@ -37,14 +43,27 @@ namespace River.OneMoreAddIn.Commands.Compare
 			trackColor = manager.GetColor("ControlLight");
 			borderColor = manager.GetColor("ButtonBorder");
 
-			BackColor = manager.GetColor("Window");
-			Text = pageName;
+			// "Window" (the main dialog's own background) is too close to this borderless
+			// popup's own border/track colors to read as a distinct surface floating over
+			// the dialog; "Control" is the same alternate background NavigatorWindow already
+			// uses for the same reason - a floating window that needs to look visually
+			// separate from the plain white/dark Window background behind it
+			BackColor = manager.GetColor("Control");
 
-			BuildContent(pageName, result);
+			// the matched-row case (today's only case until ad-hoc pairing) has the same
+			// name on both sides, so keep that simple single-name look; only an ad-hoc
+			// pair of genuinely different pages needs the "A ↔ B" form
+			var headerText = leftName == rightName
+				? leftName
+				: string.Format(Resx.SimilarityPopup_pairFormat, leftName, rightName);
+
+			Text = headerText;
+
+			BuildContent(headerText, result);
 		}
 
 
-		private void BuildContent(string pageName, SimilarityResult result)
+		private void BuildContent(string headerText, SimilarityResult result)
 		{
 			var root = new TableLayoutPanel
 			{
@@ -55,7 +74,7 @@ namespace River.OneMoreAddIn.Commands.Compare
 			};
 			root.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, ContentWidth));
 
-			AddRow(root, BuildHeader(pageName));
+			AddRow(root, BuildHeader(headerText));
 			AddRow(root, BuildOverall(result.Overall));
 
 			foreach (var rubric in result.Rubrics)
@@ -85,7 +104,7 @@ namespace River.OneMoreAddIn.Commands.Compare
 		}
 
 
-		private Control BuildHeader(string pageName)
+		private Control BuildHeader(string headerText)
 		{
 			var header = new TableLayoutPanel
 			{
@@ -100,7 +119,7 @@ namespace River.OneMoreAddIn.Commands.Compare
 			{
 				AutoSize = true,
 				Font = new Font(Font, FontStyle.Bold),
-				Text = pageName,
+				Text = headerText,
 				MaximumSize = new Size(ContentWidth - 40, 0)
 			};
 

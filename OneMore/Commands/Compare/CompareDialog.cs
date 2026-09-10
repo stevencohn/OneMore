@@ -420,6 +420,33 @@ namespace River.OneMoreAddIn.Commands.Compare
 
 		private void DiffViewSelectionChanged(object sender, EventArgs e)
 		{
+			var adHocLeft = diffView.AdHocLeft;
+			var adHocRight = diffView.AdHocRight;
+
+			if (adHocLeft is not null && adHocRight is not null)
+			{
+				// ad-hoc mode (Ctrl+Click picked two, possibly unrelated, pages): only
+				// Compare contents applies - copy/mirror/delete all assume a real
+				// hierarchical relationship between the two sides that an ad-hoc pair may
+				// not share, so they're simply unavailable while this mode is active
+				hierarchyActionsPanel.Visible = false;
+				pageActionsPanel.Visible = true;
+
+				openLeftButton.Enabled =
+					adHocLeft.NodeType == OneNote.NodeType.Page && adHocLeft.LeftId is not null;
+				openRightButton.Enabled =
+					adHocRight.NodeType == OneNote.NodeType.Page && adHocRight.RightId is not null;
+
+				pageCopyRightButton.Enabled = false;
+				pageCopyLeftButton.Enabled = false;
+				deleteLeftButton.Enabled = false;
+				deleteRightButton.Enabled = false;
+				deleteBothButton.Enabled = false;
+
+				compareContentsButton.Enabled = openLeftButton.Enabled && openRightButton.Enabled;
+				return;
+			}
+
 			var node = diffView.SelectedNode;
 
 			if (node is null)
@@ -553,13 +580,15 @@ namespace River.OneMoreAddIn.Commands.Compare
 
 		private async void OpenLeftClick(object sender, EventArgs e)
 		{
-			await OpenPage(diffView.SelectedNode?.LeftId);
+			var node = diffView.AdHocLeft ?? diffView.SelectedNode;
+			await OpenPage(node?.LeftId);
 		}
 
 
 		private async void OpenRightClick(object sender, EventArgs e)
 		{
-			await OpenPage(diffView.SelectedNode?.RightId);
+			var node = diffView.AdHocRight ?? diffView.SelectedNode;
+			await OpenPage(node?.RightId);
 		}
 
 
@@ -620,7 +649,12 @@ namespace River.OneMoreAddIn.Commands.Compare
 				confirmMessage = string.Format(Resx.CompareDialog_confirmCopy, node.Name, directionWord);
 			}
 
-			if (MoreMessageBox.ShowQuestion(this, confirmMessage) != DialogResult.Yes)
+			// replacing an already-matched page (see HierarchyDiffSync.SyncPage) can break
+			// other, unselected pages' links to it; only in that case does the user need to
+			// choose whether those other pages should be patched too, since that mutates
+			// pages outside their selection (changes their modified date/author)
+			var hasRisk = HierarchyLinkReconciler.HasReplacementRisk(node);
+			if (!TryConfirmWithRelinkChoice(confirmMessage, hasRisk, out var patchLinks))
 			{
 				return;
 			}
@@ -641,11 +675,11 @@ namespace River.OneMoreAddIn.Commands.Compare
 
 						if (mirror)
 						{
-							await HierarchyDiffSync.Mirror(one, node, direction);
+							await HierarchyDiffSync.Mirror(one, dialog, token, root, node, direction, patchLinks);
 						}
 						else
 						{
-							await HierarchyDiffSync.Copy(one, node, direction);
+							await HierarchyDiffSync.Copy(one, dialog, token, root, node, direction, patchLinks);
 						}
 
 						return true;
@@ -655,7 +689,7 @@ namespace River.OneMoreAddIn.Commands.Compare
 						error = exc;
 						return false;
 					}
-				}, cancelable: false);
+				}, cancelable: true);
 			}
 
 			if (error is not null)
@@ -671,6 +705,35 @@ namespace River.OneMoreAddIn.Commands.Compare
 			{
 				MoreMessageBox.ShowError(this, exc.Message);
 			}
+		}
+
+
+		/// <summary>
+		/// Shows the given confirmation, extended with a 3-way Yes/No/Cancel relink choice
+		/// when <paramref name="hasRisk"/> is true (Yes = proceed and also patch other,
+		/// unselected pages' links; No = proceed but leave those links broken; Cancel = don't
+		/// proceed at all); otherwise shows today's plain Yes/No.
+		/// </summary>
+		/// <returns>False if the action should not proceed at all</returns>
+		private bool TryConfirmWithRelinkChoice(string baseMessage, bool hasRisk, out bool patchLinks)
+		{
+			patchLinks = false;
+
+			if (!hasRisk)
+			{
+				return MoreMessageBox.ShowQuestion(this, baseMessage) == DialogResult.Yes;
+			}
+
+			var message = baseMessage + "\n\n" + Resx.CompareDialog_relinkChoiceSuffix;
+			var result = MoreMessageBox.ShowQuestion(this, message, cancel: true);
+
+			if (result == DialogResult.Cancel)
+			{
+				return false;
+			}
+
+			patchLinks = result == DialogResult.Yes;
+			return true;
 		}
 
 
@@ -696,7 +759,8 @@ namespace River.OneMoreAddIn.Commands.Compare
 
 			var confirmMessage = string.Format(Resx.CompareDialog_confirmCopyPage, node.Name, directionWord);
 
-			if (MoreMessageBox.ShowQuestion(this, confirmMessage) != DialogResult.Yes)
+			var hasRisk = HierarchyLinkReconciler.HasReplacementRisk(node);
+			if (!TryConfirmWithRelinkChoice(confirmMessage, hasRisk, out var patchLinks))
 			{
 				return;
 			}
@@ -712,7 +776,7 @@ namespace River.OneMoreAddIn.Commands.Compare
 					try
 					{
 						await using var one = new OneNote();
-						await HierarchyDiffSync.Copy(one, node, direction);
+						await HierarchyDiffSync.Copy(one, dialog, token, root, node, direction, patchLinks);
 						return true;
 					}
 					catch (Exception exc)
@@ -720,7 +784,7 @@ namespace River.OneMoreAddIn.Commands.Compare
 						error = exc;
 						return false;
 					}
-				}, cancelable: false);
+				}, cancelable: true);
 			}
 
 			if (error is not null)
@@ -815,8 +879,12 @@ namespace River.OneMoreAddIn.Commands.Compare
 
 		private async void CompareContentsClick(object sender, EventArgs e)
 		{
-			var node = diffView.SelectedNode;
-			if (node?.LeftId is null || node.RightId is null)
+			// prefer the ad-hoc (Ctrl+Click) pair when one is active - two possibly
+			// unrelated pages, one per side; otherwise fall back to the regular matched-row
+			// selection, same as always
+			var left = diffView.AdHocLeft ?? diffView.SelectedNode;
+			var right = diffView.AdHocRight ?? diffView.SelectedNode;
+			if (left?.LeftId is null || right?.RightId is null)
 			{
 				return;
 			}
@@ -833,9 +901,9 @@ namespace River.OneMoreAddIn.Commands.Compare
 					try
 					{
 						await using var one = new OneNote();
-						var left = await one.GetPage(node.LeftId);
-						var right = await one.GetPage(node.RightId);
-						result = SimilarityEngine.Compare(left, right, one);
+						var leftPage = await one.GetPage(left.LeftId);
+						var rightPage = await one.GetPage(right.RightId);
+						result = SimilarityEngine.Compare(leftPage, rightPage, one);
 						return true;
 					}
 					catch (Exception exc)
@@ -857,7 +925,7 @@ namespace River.OneMoreAddIn.Commands.Compare
 				return;
 			}
 
-			var popup = new SimilarityPopup(node.Name, result);
+			var popup = new SimilarityPopup(left.Name, right.Name, result);
 			popup.RunModeless(GetPopupLocation(popup), (s, ev) =>
 			{
 				popup.Dispose();

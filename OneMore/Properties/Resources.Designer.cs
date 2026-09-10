@@ -917,7 +917,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("BookmarkedDialog_Message", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Background shading.
         /// </summary>
@@ -926,7 +926,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("BoxTypeCard_Background", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to ▾ Collapse.
         /// </summary>
@@ -935,7 +935,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("BoxTypeCard_Collapse", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Delete box type &quot;{0}&quot;?.
         /// </summary>
@@ -944,7 +944,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("BoxTypeCard_ConfirmDelete", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Delete box type.
         /// </summary>
@@ -953,7 +953,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("BoxTypeCard_DeleteBoxType", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Duplicate.
         /// </summary>
@@ -962,7 +962,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("BoxTypeCard_Duplicate", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to ▸ Expand.
         /// </summary>
@@ -971,7 +971,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("BoxTypeCard_Expand", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Reset to default.
         /// </summary>
@@ -980,7 +980,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("BoxTypeCard_ResetToDefault", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Symbol codepoint (hex).
         /// </summary>
@@ -989,7 +989,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("BoxTypeCard_SymbolCode", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Symbol color.
         /// </summary>
@@ -998,7 +998,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("BoxTypeCard_SymbolColor", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Symbol size (px).
         /// </summary>
@@ -1007,7 +1007,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("BoxTypeCard_SymbolSize", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Body text color.
         /// </summary>
@@ -1016,7 +1016,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("BoxTypeCard_TextColor", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Title color.
         /// </summary>
@@ -1025,7 +1025,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("BoxTypeCard_TitleColor", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Title text.
         /// </summary>
@@ -1034,7 +1034,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("BoxTypeCard_TitleText", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to {0} Copy.
         /// </summary>
@@ -1043,7 +1043,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("BoxTypesPanel_CopyTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Duplicate from….
         /// </summary>
@@ -1052,7 +1052,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("BoxTypesPanel_DuplicateFrom", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to + New box type.
         /// </summary>
@@ -1061,7 +1061,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("BoxTypesPanel_NewBoxType", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Box Types.
         /// </summary>
@@ -1070,7 +1070,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("BoxTypesPanel_Title", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to One space between sentences.
         /// </summary>
@@ -1344,15 +1344,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select Language.
-        /// </summary>
-        internal static string ColorizeDialog_Title {
-            get {
-                return ResourceManager.GetString("ColorizeDialog_Title", resourceCulture);
-            }
-        }
-
-        /// <summary>
         ///   Looks up a localized string similar to Show all languages.
         /// </summary>
         internal static string ColorizeDialog_showAllBox_Text {
@@ -1360,7 +1351,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ColorizeDialog_showAllBox.Text", resourceCulture);
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Language.
+        /// </summary>
+        internal static string ColorizeDialog_Title {
+            get {
+                return ResourceManager.GetString("ColorizeDialog_Title", resourceCulture);
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Always apply the following fonts when colorizing code.
         /// </summary>
@@ -1551,43 +1551,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("CommandPaletteDialog_introLabel.Text", resourceCulture);
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Select Source.
-        /// </summary>
-        internal static string CompareCommand_pickSourceTitle {
-            get {
-                return ResourceManager.GetString("CompareCommand_pickSourceTitle", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Choose the source (left) notebook, section, or section group to compare.
-        /// </summary>
-        internal static string CompareCommand_pickSourceDescription {
-            get {
-                return ResourceManager.GetString("CompareCommand_pickSourceDescription", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Select Target.
-        /// </summary>
-        internal static string CompareCommand_pickTargetTitle {
-            get {
-                return ResourceManager.GetString("CompareCommand_pickTargetTitle", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Choose the target (right) notebook, section, or section group to compare.
-        /// </summary>
-        internal static string CompareCommand_pickTargetDescription {
-            get {
-                return ResourceManager.GetString("CompareCommand_pickTargetDescription", resourceCulture);
-            }
-        }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Could not determine the selected notebook, section, or section group.
         /// </summary>
@@ -1596,16 +1560,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("CompareCommand_invalidSelection", resourceCulture);
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized string similar to The source and target must be the same type: both notebooks, both sections, or both section groups..
-        /// </summary>
-        internal static string CompareCommand_typeMismatch {
-            get {
-                return ResourceManager.GetString("CompareCommand_typeMismatch", resourceCulture);
-            }
-        }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to The target cannot be the same as the source, or a parent or child of the source..
         /// </summary>
@@ -1614,61 +1569,52 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("CompareCommand_overlappingNodes", resourceCulture);
             }
         }
-
+        
         /// <summary>
-        ///   Looks up a localized string similar to Compare Hierarchy.
+        ///   Looks up a localized string similar to Choose the source (left) notebook, section, or section group to compare.
         /// </summary>
-        internal static string CompareDialog_title {
+        internal static string CompareCommand_pickSourceDescription {
             get {
-                return ResourceManager.GetString("CompareDialog_title", resourceCulture);
+                return ResourceManager.GetString("CompareCommand_pickSourceDescription", resourceCulture);
             }
         }
-
+        
         /// <summary>
-        ///   Looks up a localized string similar to not present.
+        ///   Looks up a localized string similar to Select Source.
         /// </summary>
-        internal static string CompareDialog_notPresent {
+        internal static string CompareCommand_pickSourceTitle {
             get {
-                return ResourceManager.GetString("CompareDialog_notPresent", resourceCulture);
+                return ResourceManager.GetString("CompareCommand_pickSourceTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
-        ///   Looks up a localized string similar to This compares hierarchy only - names, types, and timestamps - not page content, similar to comparing folders on disk..
+        ///   Looks up a localized string similar to Choose the target (right) notebook, section, or section group to compare.
         /// </summary>
-        internal static string CompareDialog_scopeHint {
+        internal static string CompareCommand_pickTargetDescription {
             get {
-                return ResourceManager.GetString("CompareDialog_scopeHint", resourceCulture);
+                return ResourceManager.GetString("CompareCommand_pickTargetDescription", resourceCulture);
             }
         }
-
+        
         /// <summary>
-        ///   Looks up a localized string similar to Same.
+        ///   Looks up a localized string similar to Select Target.
         /// </summary>
-        internal static string CompareDialog_legendSame {
+        internal static string CompareCommand_pickTargetTitle {
             get {
-                return ResourceManager.GetString("CompareDialog_legendSame", resourceCulture);
+                return ResourceManager.GetString("CompareCommand_pickTargetTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
-        ///   Looks up a localized string similar to Different timestamps.
+        ///   Looks up a localized string similar to The source and target must be the same type: both notebooks, both sections, or both section groups..
         /// </summary>
-        internal static string CompareDialog_legendDifferent {
+        internal static string CompareCommand_typeMismatch {
             get {
-                return ResourceManager.GetString("CompareDialog_legendDifferent", resourceCulture);
+                return ResourceManager.GetString("CompareCommand_typeMismatch", resourceCulture);
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Orphan - missing on one side.
-        /// </summary>
-        internal static string CompareDialog_legendOrphan {
-            get {
-                return ResourceManager.GetString("CompareDialog_legendOrphan", resourceCulture);
-            }
-        }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Notebook.
         /// </summary>
@@ -1677,7 +1623,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("CompareDialog_badgeNotebook", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Section.
         /// </summary>
@@ -1686,7 +1632,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("CompareDialog_badgeSection", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Section Group.
         /// </summary>
@@ -1695,115 +1641,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("CompareDialog_badgeSectionGroup", resourceCulture);
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Hierarchy actions.
-        /// </summary>
-        internal static string CompareDialog_hierarchyActionsTitle {
-            get {
-                return ResourceManager.GetString("CompareDialog_hierarchyActionsTitle", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Page actions.
-        /// </summary>
-        internal static string CompareDialog_pageActionsTitle {
-            get {
-                return ResourceManager.GetString("CompareDialog_pageActionsTitle", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to &quot;Delete both&quot; only enables when the row is selected via the center well (both sides)..
-        /// </summary>
-        internal static string CompareDialog_deleteBothCaption {
-            get {
-                return ResourceManager.GetString("CompareDialog_deleteBothCaption", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Copy ▸.
-        /// </summary>
-        internal static string CompareDialog_copyRight {
-            get {
-                return ResourceManager.GetString("CompareDialog_copyRight", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Copy ◂.
-        /// </summary>
-        internal static string CompareDialog_copyLeft {
-            get {
-                return ResourceManager.GetString("CompareDialog_copyLeft", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Mirror ▸.
-        /// </summary>
-        internal static string CompareDialog_mirrorRight {
-            get {
-                return ResourceManager.GetString("CompareDialog_mirrorRight", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Mirror ◂.
-        /// </summary>
-        internal static string CompareDialog_mirrorLeft {
-            get {
-                return ResourceManager.GetString("CompareDialog_mirrorLeft", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Open left.
-        /// </summary>
-        internal static string CompareDialog_openLeft {
-            get {
-                return ResourceManager.GetString("CompareDialog_openLeft", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Open right.
-        /// </summary>
-        internal static string CompareDialog_openRight {
-            get {
-                return ResourceManager.GetString("CompareDialog_openRight", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Delete left.
-        /// </summary>
-        internal static string CompareDialog_deleteLeft {
-            get {
-                return ResourceManager.GetString("CompareDialog_deleteLeft", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Delete right.
-        /// </summary>
-        internal static string CompareDialog_deleteRight {
-            get {
-                return ResourceManager.GetString("CompareDialog_deleteRight", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Delete both.
-        /// </summary>
-        internal static string CompareDialog_deleteBoth {
-            get {
-                return ResourceManager.GetString("CompareDialog_deleteBoth", resourceCulture);
-            }
-        }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Compare contents….
         /// </summary>
@@ -1812,106 +1650,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("CompareDialog_compareContents", resourceCulture);
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized string similar to left.
-        /// </summary>
-        internal static string CompareDialog_directionLeft {
-            get {
-                return ResourceManager.GetString("CompareDialog_directionLeft", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to right.
-        /// </summary>
-        internal static string CompareDialog_directionRight {
-            get {
-                return ResourceManager.GetString("CompareDialog_directionRight", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Copy '{0}' and its descendants to the {1}?.
-        /// </summary>
-        internal static string CompareDialog_confirmCopy {
-            get {
-                return ResourceManager.GetString("CompareDialog_confirmCopy", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Mirror '{0}' to the {1}? This makes the {1} side match exactly, including deleting {2} item(s) that only exist there..
-        /// </summary>
-        internal static string CompareDialog_confirmMirror {
-            get {
-                return ResourceManager.GetString("CompareDialog_confirmMirror", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Mirror '{0}' to the {1}?.
-        /// </summary>
-        internal static string CompareDialog_confirmMirrorNoDeletions {
-            get {
-                return ResourceManager.GetString("CompareDialog_confirmMirrorNoDeletions", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Copying....
-        /// </summary>
-        internal static string CompareDialog_copyingMessage {
-            get {
-                return ResourceManager.GetString("CompareDialog_copyingMessage", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Mirroring....
-        /// </summary>
-        internal static string CompareDialog_mirroringMessage {
-            get {
-                return ResourceManager.GetString("CompareDialog_mirroringMessage", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Copy '{0}' to the {1}?.
-        /// </summary>
-        internal static string CompareDialog_confirmCopyPage {
-            get {
-                return ResourceManager.GetString("CompareDialog_confirmCopyPage", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Delete '{0}' from the {1}? This cannot be undone..
-        /// </summary>
-        internal static string CompareDialog_confirmDeletePage {
-            get {
-                return ResourceManager.GetString("CompareDialog_confirmDeletePage", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Delete '{0}' from both sides? This cannot be undone..
-        /// </summary>
-        internal static string CompareDialog_confirmDeleteBothPage {
-            get {
-                return ResourceManager.GetString("CompareDialog_confirmDeleteBothPage", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Deleting....
-        /// </summary>
-        internal static string CompareDialog_deletingMessage {
-            get {
-                return ResourceManager.GetString("CompareDialog_deletingMessage", resourceCulture);
-            }
-        }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Comparing....
         /// </summary>
@@ -1920,7 +1659,308 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("CompareDialog_comparingMessage", resourceCulture);
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy &apos;{0}&apos; and its descendants to the {1}?.
+        /// </summary>
+        internal static string CompareDialog_confirmCopy {
+            get {
+                return ResourceManager.GetString("CompareDialog_confirmCopy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy &apos;{0}&apos; to the {1}?.
+        /// </summary>
+        internal static string CompareDialog_confirmCopyPage {
+            get {
+                return ResourceManager.GetString("CompareDialog_confirmCopyPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete &apos;{0}&apos; from both sides? This cannot be undone..
+        /// </summary>
+        internal static string CompareDialog_confirmDeleteBothPage {
+            get {
+                return ResourceManager.GetString("CompareDialog_confirmDeleteBothPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete &apos;{0}&apos; from the {1}? This cannot be undone..
+        /// </summary>
+        internal static string CompareDialog_confirmDeletePage {
+            get {
+                return ResourceManager.GetString("CompareDialog_confirmDeletePage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mirror &apos;{0}&apos; to the {1}? This makes the {1} side match exactly, including deleting {2} item(s) that only exist there..
+        /// </summary>
+        internal static string CompareDialog_confirmMirror {
+            get {
+                return ResourceManager.GetString("CompareDialog_confirmMirror", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mirror &apos;{0}&apos; to the {1}?.
+        /// </summary>
+        internal static string CompareDialog_confirmMirrorNoDeletions {
+            get {
+                return ResourceManager.GetString("CompareDialog_confirmMirrorNoDeletions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copying....
+        /// </summary>
+        internal static string CompareDialog_copyingMessage {
+            get {
+                return ResourceManager.GetString("CompareDialog_copyingMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy ˂˂.
+        /// </summary>
+        internal static string CompareDialog_copyLeft {
+            get {
+                return ResourceManager.GetString("CompareDialog_copyLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy ˃˃.
+        /// </summary>
+        internal static string CompareDialog_copyRight {
+            get {
+                return ResourceManager.GetString("CompareDialog_copyRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete both.
+        /// </summary>
+        internal static string CompareDialog_deleteBoth {
+            get {
+                return ResourceManager.GetString("CompareDialog_deleteBoth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;Delete both&quot; only enables when the row is selected via the center well (both sides)..
+        /// </summary>
+        internal static string CompareDialog_deleteBothCaption {
+            get {
+                return ResourceManager.GetString("CompareDialog_deleteBothCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete left.
+        /// </summary>
+        internal static string CompareDialog_deleteLeft {
+            get {
+                return ResourceManager.GetString("CompareDialog_deleteLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete right.
+        /// </summary>
+        internal static string CompareDialog_deleteRight {
+            get {
+                return ResourceManager.GetString("CompareDialog_deleteRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deleting....
+        /// </summary>
+        internal static string CompareDialog_deletingMessage {
+            get {
+                return ResourceManager.GetString("CompareDialog_deletingMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to left.
+        /// </summary>
+        internal static string CompareDialog_directionLeft {
+            get {
+                return ResourceManager.GetString("CompareDialog_directionLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to right.
+        /// </summary>
+        internal static string CompareDialog_directionRight {
+            get {
+                return ResourceManager.GetString("CompareDialog_directionRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hierarchy actions.
+        /// </summary>
+        internal static string CompareDialog_hierarchyActionsTitle {
+            get {
+                return ResourceManager.GetString("CompareDialog_hierarchyActionsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Different timestamps.
+        /// </summary>
+        internal static string CompareDialog_legendDifferent {
+            get {
+                return ResourceManager.GetString("CompareDialog_legendDifferent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Orphan - missing on one side.
+        /// </summary>
+        internal static string CompareDialog_legendOrphan {
+            get {
+                return ResourceManager.GetString("CompareDialog_legendOrphan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Same.
+        /// </summary>
+        internal static string CompareDialog_legendSame {
+            get {
+                return ResourceManager.GetString("CompareDialog_legendSame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mirroring....
+        /// </summary>
+        internal static string CompareDialog_mirroringMessage {
+            get {
+                return ResourceManager.GetString("CompareDialog_mirroringMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mirror ˂˂.
+        /// </summary>
+        internal static string CompareDialog_mirrorLeft {
+            get {
+                return ResourceManager.GetString("CompareDialog_mirrorLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mirror ˃˃.
+        /// </summary>
+        internal static string CompareDialog_mirrorRight {
+            get {
+                return ResourceManager.GetString("CompareDialog_mirrorRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to not present.
+        /// </summary>
+        internal static string CompareDialog_notPresent {
+            get {
+                return ResourceManager.GetString("CompareDialog_notPresent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open left.
+        /// </summary>
+        internal static string CompareDialog_openLeft {
+            get {
+                return ResourceManager.GetString("CompareDialog_openLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open right.
+        /// </summary>
+        internal static string CompareDialog_openRight {
+            get {
+                return ResourceManager.GetString("CompareDialog_openRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Page actions.
+        /// </summary>
+        internal static string CompareDialog_pageActionsTitle {
+            get {
+                return ResourceManager.GetString("CompareDialog_pageActionsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This will replace one or more already-matched pages, which can break links from other pages that reference them.
+        ///
+        ///Yes = proceed and update those other pages&apos; links too (changes their modified date and author)
+        ///No = proceed but leave those links as they are (they may point at a removed page)
+        ///Cancel = don&apos;t proceed.
+        /// </summary>
+        internal static string CompareDialog_relinkChoiceSuffix {
+            get {
+                return ResourceManager.GetString("CompareDialog_relinkChoiceSuffix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updating links within copied pages....
+        /// </summary>
+        internal static string CompareDialog_relinkingMessage {
+            get {
+                return ResourceManager.GetString("CompareDialog_relinkingMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scanning for links to update....
+        /// </summary>
+        internal static string CompareDialog_scanningLinksMessage {
+            get {
+                return ResourceManager.GetString("CompareDialog_scanningLinksMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This is a comparison of the hierarchy only - names, types, and timestamps - not page content. Select two pages to compare their contents..
+        /// </summary>
+        internal static string CompareDialog_scopeHint {
+            get {
+                return ResourceManager.GetString("CompareDialog_scopeHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copying &apos;{0}&apos;....
+        /// </summary>
+        internal static string CompareDialog_syncingPageFormat {
+            get {
+                return ResourceManager.GetString("CompareDialog_syncingPageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Compare Hierarchy.
+        /// </summary>
+        internal static string CompareDialog_title {
+            get {
+                return ResourceManager.GetString("CompareDialog_title", resourceCulture);
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Built-in OneNote style.
         /// </summary>
@@ -2029,7 +2069,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ConvertHeadingsCommand_NoHeadings", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Compress {0} images, saving {1} bytes.
         /// </summary>
@@ -2047,7 +2087,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ConvertImagesCommand_NoImages", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to No bulleted or numbered list was found to convert.
         /// </summary>
@@ -2056,16 +2096,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ConvertOutlineCommand_NoList", resourceCulture);
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Convert Outline.
-        /// </summary>
-        internal static string ConvertOutlineDialog_Text {
-            get {
-                return ResourceManager.GetString("ConvertOutlineDialog.Text", resourceCulture);
-            }
-        }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Heading depth.
         /// </summary>
@@ -2074,7 +2105,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ConvertOutlineDialog_depthLabel.Text", resourceCulture);
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Convert Outline.
+        /// </summary>
+        internal static string ConvertOutlineDialog_Text {
+            get {
+                return ResourceManager.GetString("ConvertOutlineDialog.Text", resourceCulture);
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Built-in OneNote styles.
         /// </summary>
@@ -2083,7 +2123,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ConvertOutlineDialog_themeBox_BuiltIn", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Heading theme.
         /// </summary>
@@ -2092,7 +2132,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ConvertOutlineDialog_themeLabel.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Copied markdown.
         /// </summary>
@@ -4591,7 +4631,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("GeneralSheet_introBox.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Keep workstation locale when Language differs from it.
         /// </summary>
@@ -4600,7 +4640,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("GeneralSheet_keepLocaleBox.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Allow nonsequential name matching in Command Palettes.
         /// </summary>
@@ -4943,7 +4983,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("HashtaggerDialog_commonWordsButton.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Find.
         /// </summary>
@@ -4952,7 +4992,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("HashtaggerDialog_findLabel.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Tags.
         /// </summary>
@@ -6203,22 +6243,22 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("InsertCellsDialog_shiftRightRadio.Text", resourceCulture);
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized string similar to That box type no longer exists.
-        /// </summary>
-        internal static string InsertInfoBoxCommand_UnknownType {
-            get {
-                return ResourceManager.GetString("InsertInfoBoxCommand_UnknownType", resourceCulture);
-            }
-        }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Insert Cells.
         /// </summary>
         internal static string InsertCellsDialog_Text {
             get {
                 return ResourceManager.GetString("InsertCellsDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to That box type no longer exists.
+        /// </summary>
+        internal static string InsertInfoBoxCommand_UnknownType {
+            get {
+                return ResourceManager.GetString("InsertInfoBoxCommand_UnknownType", resourceCulture);
             }
         }
         
@@ -9960,7 +10000,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribAdjustImagesButton_Screentip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Resize and Adjust.
         /// </summary>
@@ -9969,7 +10009,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribAdjustImagesMenuButton_Label", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Resize and adjust selected images.
         /// </summary>
@@ -9978,7 +10018,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribAdjustImagesMenuButton_Screentip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Analyze Data Storage.
         /// </summary>
@@ -10628,7 +10668,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribCommandPaletteButton_Screentip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Compare Hierarchy.
         /// </summary>
@@ -10637,7 +10677,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribCompareHierarchyButton_Label", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Compare two notebooks, sections, or section groups.
         /// </summary>
@@ -10646,7 +10686,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribCompareHierarchyButton_Screentip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Complete Hashtag.
         /// </summary>
@@ -10709,7 +10749,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribConvertHeadingsButton_Label", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Convert headings and their content back to a nested bulleted list.
         /// </summary>
@@ -10718,7 +10758,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribConvertHeadingsButton_Screentip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Convert Markdown.
         /// </summary>
@@ -10736,7 +10776,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribConvertMarkdownButton_Screentip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Convert Outline.
         /// </summary>
@@ -10745,7 +10785,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribConvertOutlineButton_Label", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Convert a bulleted or numbered list to headings and sub-lists.
         /// </summary>
@@ -10754,7 +10794,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribConvertOutlineButton_Screentip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Copy Across.
         /// </summary>
@@ -11988,7 +12028,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribInsertPageTocButton_Screentip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Table of Contents.
         /// </summary>
@@ -11997,7 +12037,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribInsertPageTocMenuButton_Label", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Insert a headings table of contents at the top of the page.
         /// </summary>
@@ -12006,7 +12046,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribInsertPageTocMenuButton_Screentip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Insert QR Code.
         /// </summary>
@@ -15406,52 +15446,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ShowXmlDialog_wrapBox.Text", resourceCulture);
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized string similar to TF-IDF cosine.
-        /// </summary>
-        internal static string Similarity_rubricTfIdf {
-            get {
-                return ResourceManager.GetString("Similarity_rubricTfIdf", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Lexical overlap.
-        /// </summary>
-        internal static string Similarity_rubricLexical {
-            get {
-                return ResourceManager.GetString("Similarity_rubricLexical", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Structural similarity.
-        /// </summary>
-        internal static string Similarity_rubricStructural {
-            get {
-                return ResourceManager.GetString("Similarity_rubricStructural", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Stylistic similarity.
-        /// </summary>
-        internal static string Similarity_rubricStylistic {
-            get {
-                return ResourceManager.GetString("Similarity_rubricStylistic", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Entity similarity.
-        /// </summary>
-        internal static string Similarity_rubricEntity {
-            get {
-                return ResourceManager.GetString("Similarity_rubricEntity", resourceCulture);
-            }
-        }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Both pages are empty..
         /// </summary>
@@ -15460,25 +15455,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("Similarity_reasonEmptyBoth", resourceCulture);
             }
         }
-
+        
         /// <summary>
-        ///   Looks up a localized string similar to One page has no text to compare..
+        ///   Looks up a localized string similar to {0} of {1} technical terms and proper names match..
         /// </summary>
-        internal static string Similarity_reasonOneEmpty {
+        internal static string Similarity_reasonEntity {
             get {
-                return ResourceManager.GetString("Similarity_reasonOneEmpty", resourceCulture);
+                return ResourceManager.GetString("Similarity_reasonEntity", resourceCulture);
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized string similar to {0} of {1} weighted terms are shared between the two pages..
-        /// </summary>
-        internal static string Similarity_reasonTfIdf {
-            get {
-                return ResourceManager.GetString("Similarity_reasonTfIdf", resourceCulture);
-            }
-        }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to {0} of {1} unique words are shared..
         /// </summary>
@@ -15487,7 +15473,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("Similarity_reasonLexical", resourceCulture);
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized string similar to One page has no text to compare..
+        /// </summary>
+        internal static string Similarity_reasonOneEmpty {
+            get {
+                return ResourceManager.GetString("Similarity_reasonOneEmpty", resourceCulture);
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to {0} of {1} headings match; paragraph counts are {2} and {3}..
         /// </summary>
@@ -15496,7 +15491,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("Similarity_reasonStructural", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Average sentence lengths are {0} and {1} words..
         /// </summary>
@@ -15505,13 +15500,76 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("Similarity_reasonStylistic", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} of {1} weighted terms are shared between the two pages..
+        /// </summary>
+        internal static string Similarity_reasonTfIdf {
+            get {
+                return ResourceManager.GetString("Similarity_reasonTfIdf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Entity similarity.
+        /// </summary>
+        internal static string Similarity_rubricEntity {
+            get {
+                return ResourceManager.GetString("Similarity_rubricEntity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lexical overlap.
+        /// </summary>
+        internal static string Similarity_rubricLexical {
+            get {
+                return ResourceManager.GetString("Similarity_rubricLexical", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Structural similarity.
+        /// </summary>
+        internal static string Similarity_rubricStructural {
+            get {
+                return ResourceManager.GetString("Similarity_rubricStructural", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stylistic similarity.
+        /// </summary>
+        internal static string Similarity_rubricStylistic {
+            get {
+                return ResourceManager.GetString("Similarity_rubricStylistic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TF-IDF cosine.
+        /// </summary>
+        internal static string Similarity_rubricTfIdf {
+            get {
+                return ResourceManager.GetString("Similarity_rubricTfIdf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        internal static string SimilarityPopup_closeAccessibleName {
+            get {
+                return ResourceManager.GetString("SimilarityPopup_closeAccessibleName", resourceCulture);
+            }
+        }
 
         /// <summary>
-        ///   Looks up a localized string similar to {0} of {1} technical terms and proper names match..
+        ///   Looks up a localized string similar to {0} ↔ {1}.
         /// </summary>
-        internal static string Similarity_reasonEntity {
+        internal static string SimilarityPopup_pairFormat {
             get {
-                return ResourceManager.GetString("Similarity_reasonEntity", resourceCulture);
+                return ResourceManager.GetString("SimilarityPopup_pairFormat", resourceCulture);
             }
         }
 
@@ -15523,7 +15581,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("SimilarityPopup_overallFormat", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to {0} · wt {1}.
         /// </summary>
@@ -15532,16 +15590,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("SimilarityPopup_weightFormat", resourceCulture);
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Close.
-        /// </summary>
-        internal static string SimilarityPopup_closeAccessibleName {
-            get {
-                return ResourceManager.GetString("SimilarityPopup_closeAccessibleName", resourceCulture);
-            }
-        }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to No containers found on this page.
         /// </summary>
@@ -15571,6 +15620,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Box width:.
+        /// </summary>
+        internal static string SnippetsSheet_boxWidthLabel_Text {
+            get {
+                return ResourceManager.GetString("SnippetsSheet_boxWidthLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Always apply &quot;code&quot; style to Code Box content.
         /// </summary>
         internal static string SnippetsSheet_codeStyleBox_Text {
@@ -15587,31 +15645,22 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("SnippetsSheet_ConfirmDelete", resourceCulture);
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Box width:.
-        /// </summary>
-        internal static string SnippetsSheet_boxWidthLabel_Text {
-            get {
-                return ResourceManager.GetString("SnippetsSheet_boxWidthLabel.Text", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to My Snippets.
-        /// </summary>
-        internal static string SnippetsSheet_mySnippetsTab_Text {
-            get {
-                return ResourceManager.GetString("SnippetsSheet_mySnippetsTab.Text", resourceCulture);
-            }
-        }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Manage box options and My Snippets.
         /// </summary>
         internal static string SnippetsSheet_introBox_Text {
             get {
                 return ResourceManager.GetString("SnippetsSheet_introBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to My Snippets.
+        /// </summary>
+        internal static string SnippetsSheet_mySnippetsTab_Text {
+            get {
+                return ResourceManager.GetString("SnippetsSheet_mySnippetsTab.Text", resourceCulture);
             }
         }
         
@@ -17058,7 +17107,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("word_Brightness", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Built-in.
         /// </summary>
@@ -17166,7 +17215,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("word_Copy", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Custom.
         /// </summary>
@@ -17175,7 +17224,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("word_Custom", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Default.
         /// </summary>

@@ -57,6 +57,16 @@ namespace River.OneMoreAddIn.Commands.Compare
 		private DiffNode root;
 		private DiffNode selectedNode;
 		private DiffSide selectedSide = DiffSide.None;
+
+		// Ctrl+Click override, used together with the regular selection above to let the
+		// user cherry-pick two possibly-unrelated pages for "Compare contents...": click a
+		// name on one side normally, then Ctrl+Click a name on the OPPOSITE side - the
+		// regular selection supplies one side of the ad-hoc pair, this override supplies
+		// the other (see GetAdHocPair). Any plain click, well click, right-click, or
+		// keyboard navigation clears it, returning to normal single-selection mode.
+		private DiffNode ctrlPick;
+		private DiffSide ctrlPickSide = DiffSide.None;
+
 		private bool darkMode;
 
 		private Color backColor;
@@ -100,8 +110,9 @@ namespace River.OneMoreAddIn.Commands.Compare
 
 
 		/// <summary>
-		/// Raised whenever the current selection changes, either by clicking a name (one
-		/// side) or the center well (both sides).
+		/// Raised whenever the current selection changes - either the regular single
+		/// selection (clicking a name or well, or keyboard navigation) or the ad-hoc
+		/// Ctrl+Click picks.
 		/// </summary>
 		public event EventHandler SelectionChanged;
 
@@ -111,21 +122,68 @@ namespace River.OneMoreAddIn.Commands.Compare
 		/// whichever side(s) actually exist, same as a well click selecting both), so
 		/// SelectedNode/SelectedSide already reflect the right-clicked row by the time this
 		/// fires - letting the owner build a context menu whose enabled items match what the
-		/// equivalent toolbar buttons would show for this row.
+		/// equivalent toolbar buttons would show for this row. A right-click also clears any
+		/// in-progress ad-hoc picks, same as a plain left-click would.
 		/// </summary>
 		public event EventHandler<DiffNode> ContextMenuRequested;
 
 
 		/// <summary>
-		/// Gets the node underlying the current selection, or null if nothing is selected.
+		/// Gets the node underlying the current (regular) selection, or null if nothing is
+		/// selected.
 		/// </summary>
 		public DiffNode SelectedNode => selectedNode;
 
 
 		/// <summary>
-		/// Gets which side(s) of the current selection are selected.
+		/// Gets which side(s) of the current (regular) selection are selected.
 		/// </summary>
 		public DiffSide SelectedSide => selectedSide;
+
+
+		/// <summary>
+		/// Gets the left-side page of the current ad-hoc content-comparison pair (regular
+		/// selection on one side, Ctrl+Click override on the other), or null if the current
+		/// state doesn't form a valid pair - e.g. nothing is Ctrl+picked yet, or the regular
+		/// selection and the Ctrl+Click are on the same side rather than opposite sides.
+		/// </summary>
+		public DiffNode AdHocLeft => GetAdHocPair().Left;
+
+
+		/// <summary>
+		/// Gets the right-side page of the current ad-hoc content-comparison pair. See
+		/// AdHocLeft.
+		/// </summary>
+		public DiffNode AdHocRight => GetAdHocPair().Right;
+
+
+		// Combines the regular selection with the Ctrl+Click override to form an ad-hoc
+		// pair: whichever side the override was picked on comes from it; the other side
+		// comes from the regular selection, but only if the regular selection actually has
+		// something on that side (Left, Right, or - since a well-selected row has both -
+		// Both). Returns (null, null) when there's no override yet, or when the override
+		// and the regular selection are on the same side rather than opposite ones.
+		private (DiffNode Left, DiffNode Right) GetAdHocPair()
+		{
+			if (ctrlPick is null || selectedNode is null)
+			{
+				return (null, null);
+			}
+
+			if (ctrlPickSide == DiffSide.Left)
+			{
+				var right = selectedSide is DiffSide.Right or DiffSide.Both ? selectedNode : null;
+				return (ctrlPick, right);
+			}
+
+			if (ctrlPickSide == DiffSide.Right)
+			{
+				var left = selectedSide is DiffSide.Left or DiffSide.Both ? selectedNode : null;
+				return (left, ctrlPick);
+			}
+
+			return (null, null);
+		}
 
 
 		void ILoadControl.OnLoad()
@@ -160,6 +218,8 @@ namespace River.OneMoreAddIn.Commands.Compare
 			expanded.Clear();
 			selectedNode = null;
 			selectedSide = DiffSide.None;
+			ctrlPick = null;
+			ctrlPickSide = DiffSide.None;
 
 			ExpandAll(root);
 			Rebuild();
@@ -224,6 +284,41 @@ namespace River.OneMoreAddIn.Commands.Compare
 		}
 
 
+		// clears the Ctrl+Click override, used whenever the user interacts with the view in
+		// a way that implies "normal mode" (plain click, right-click, keyboard navigation) -
+		// a no-op (no redundant repaint/event) if nothing was picked
+		private void ClearCtrlPick()
+		{
+			if (ctrlPick is null)
+			{
+				return;
+			}
+
+			ctrlPick = null;
+			ctrlPickSide = DiffSide.None;
+			Invalidate();
+			SelectionChanged?.Invoke(this, EventArgs.Empty);
+		}
+
+
+		private void PickCtrlLeft(DiffNode node)
+		{
+			ctrlPick = node;
+			ctrlPickSide = DiffSide.Left;
+			Invalidate();
+			SelectionChanged?.Invoke(this, EventArgs.Empty);
+		}
+
+
+		private void PickCtrlRight(DiffNode node)
+		{
+			ctrlPick = node;
+			ctrlPickSide = DiffSide.Right;
+			Invalidate();
+			SelectionChanged?.Invoke(this, EventArgs.Empty);
+		}
+
+
 		private void ToggleExpand(DiffNode node)
 		{
 			if (!expanded.Remove(node))
@@ -254,6 +349,7 @@ namespace River.OneMoreAddIn.Commands.Compare
 			var node = row.Node;
 			var colWidth = GetColumnWidth();
 			var indent = row.Depth * IndentWidth;
+			var ctrl = (ModifierKeys & Keys.Control) == Keys.Control;
 
 			if (e.X < colWidth)
 			{
@@ -263,18 +359,31 @@ namespace River.OneMoreAddIn.Commands.Compare
 					return;
 				}
 
+				if (ctrl)
+				{
+					// Ctrl+Click is a dedicated ad-hoc "pick" gesture, distinct from the
+					// expand/collapse caret - even a click over the caret area picks. It
+					// deliberately does NOT touch the regular selection, so a prior plain
+					// click on the opposite side survives to complete the pair (see
+					// GetAdHocPair).
+					PickCtrlLeft(node);
+					return;
+				}
+
 				if (row.HasChildren && e.X >= indent && e.X < indent + CaretWidth)
 				{
 					ToggleExpand(node);
 					return;
 				}
 
+				ClearCtrlPick();
 				Select(node, DiffSide.Left);
 			}
 			else if (e.X < colWidth + WellWidth)
 			{
 				if (node.Status is DiffStatus.Same or DiffStatus.DifferentTimestamps)
 				{
+					ClearCtrlPick();
 					Select(node, DiffSide.Both);
 				}
 			}
@@ -286,6 +395,12 @@ namespace River.OneMoreAddIn.Commands.Compare
 					return;
 				}
 
+				if (ctrl)
+				{
+					PickCtrlRight(node);
+					return;
+				}
+
 				var rightX = e.X - (colWidth + WellWidth);
 				if (row.HasChildren && rightX >= indent && rightX < indent + CaretWidth)
 				{
@@ -293,6 +408,7 @@ namespace River.OneMoreAddIn.Commands.Compare
 					return;
 				}
 
+				ClearCtrlPick();
 				Select(node, DiffSide.Right);
 			}
 		}
@@ -315,6 +431,7 @@ namespace River.OneMoreAddIn.Commands.Compare
 			}
 
 			var node = rows[index].Node;
+			ClearCtrlPick();
 			SelectWithFallback(node, DiffSide.Both);
 			ContextMenuRequested?.Invoke(this, node);
 		}
@@ -336,21 +453,25 @@ namespace River.OneMoreAddIn.Commands.Compare
 			switch (e.KeyCode)
 			{
 				case Keys.Up:
+					ClearCtrlPick();
 					MoveSelection(-1);
 					e.Handled = true;
 					break;
 
 				case Keys.Down:
+					ClearCtrlPick();
 					MoveSelection(1);
 					e.Handled = true;
 					break;
 
 				case Keys.Left:
+					ClearCtrlPick();
 					MoveHorizontal(toRight: false);
 					e.Handled = true;
 					break;
 
 				case Keys.Right:
+					ClearCtrlPick();
 					MoveHorizontal(toRight: true);
 					e.Handled = true;
 					break;
@@ -537,6 +658,23 @@ namespace River.OneMoreAddIn.Commands.Compare
 				DrawSelectedOverlay(g, rightRect);
 			}
 
+			// the Ctrl+Click override gets its own dashed-border highlight on whichever
+			// side it was picked, visually distinct from the regular selection's solid
+			// fill above - independent of it, so a row can show both at once (e.g. right
+			// after Ctrl+clicking a row that's also the regular selection), which just
+			// layers harmlessly
+			if (ReferenceEquals(ctrlPick, node))
+			{
+				if (ctrlPickSide == DiffSide.Left)
+				{
+					DrawAdHocOverlay(g, leftRect);
+				}
+				else if (ctrlPickSide == DiffSide.Right)
+				{
+					DrawAdHocOverlay(g, rightRect);
+				}
+			}
+
 			var showExpanded = expanded.Contains(node);
 
 			if (node.Status == DiffStatus.OrphanRight)
@@ -664,6 +802,23 @@ namespace River.OneMoreAddIn.Commands.Compare
 			g.FillRectangle(brush, rect);
 
 			using var pen = new Pen(selectedBorder, 2);
+			var inset = rect;
+			inset.Inflate(-1, -1);
+			g.DrawRectangle(pen, inset);
+		}
+
+
+		// dashed, unfilled border - deliberately distinct from DrawSelectedOverlay's solid
+		// fill+border so the user can tell an ad-hoc (Ctrl+Click) pick apart from the
+		// regular selection at a glance
+		private void DrawAdHocOverlay(Graphics g, Rectangle rect)
+		{
+			using var pen = new Pen(selectedBorder, 2f)
+			{
+				DashStyle = DashStyle.Dash,
+				DashCap = DashCap.Round
+			};
+
 			var inset = rect;
 			inset.Inflate(-1, -1);
 			g.DrawRectangle(pen, inset);

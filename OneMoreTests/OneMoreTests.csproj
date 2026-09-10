@@ -77,6 +77,7 @@
     <Compile Include="Commands\Edit\ColorizeCommandTests.cs" />
     <Compile Include="Models\HierarchyDiffTests.cs" />
     <Compile Include="Commands\Compare\SimilarityEngineTests.cs" />
+    <Compile Include="Commands\Compare\HierarchyLinkReconcilerTests.cs" />
     <Compile Include="Commands\File\ArchivistTests.cs" />
     <Compile Include="Commands\File\Evernote\EnexReaderTests.cs" />
     <Compile Include="Commands\File\Evernote\EnmlConverterTests.cs" />

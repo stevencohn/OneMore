@@ -6,8 +6,8 @@ namespace River.OneMoreAddIn.Tests.Commands.Compare
 {
 	using Microsoft.VisualStudio.TestTools.UnitTesting;
 	using River.OneMoreAddIn;
+	using River.OneMoreAddIn.Commands.Compare;
 	using River.OneMoreAddIn.Models;
-	using River.OneMoreAddIn.Models.Similarity;
 	using System.Linq;
 	using System.Xml.Linq;
 	using Resx = River.OneMoreAddIn.Properties.Resources;

@@ -205,6 +205,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Commands\Compare\HierarchyDiffSync.cs" />
+    <Compile Include="Commands\Compare\HierarchyLinkReconciler.cs" />
     <Compile Include="Commands\Compare\SimilarityPopup.cs">
       <SubType>Form</SubType>
     </Compile>
