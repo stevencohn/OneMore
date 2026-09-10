@@ -350,11 +350,19 @@ namespace River.OneMoreAddIn.Commands.Compare
 			openRightButton.Click += OpenRightClick;
 
 			pageCopyRightButton = CreateActionButton(Resx.CompareDialog_copyRight);
+			pageCopyRightButton.Click += PageCopyRightClick;
+
 			pageCopyLeftButton = CreateActionButton(Resx.CompareDialog_copyLeft);
+			pageCopyLeftButton.Click += PageCopyLeftClick;
 
 			deleteLeftButton = CreateActionButton(Resx.CompareDialog_deleteLeft, danger: true);
+			deleteLeftButton.Click += DeleteLeftClick;
+
 			deleteRightButton = CreateActionButton(Resx.CompareDialog_deleteRight, danger: true);
+			deleteRightButton.Click += DeleteRightClick;
+
 			deleteBothButton = CreateActionButton(Resx.CompareDialog_deleteBoth, danger: true);
+			deleteBothButton.Click += DeleteBothClick;
 
 			compareContentsButton = CreateActionButton(Resx.CompareDialog_compareContents, wide: true);
 
@@ -392,8 +400,8 @@ namespace River.OneMoreAddIn.Commands.Compare
 				Margin = new Padding(0, 0, 8, 8),
 				ThemedFore = danger ? "ErrorText" : "HotTrack",
 
-				// Delete/Compare contents are wired up in a later phase; all others are
-				// enabled dynamically as the selection changes, below
+				// Compare contents is wired up in a later phase; all others are enabled
+				// dynamically as the selection changes, below
 				Enabled = false
 			};
 		}
@@ -421,6 +429,19 @@ namespace River.OneMoreAddIn.Commands.Compare
 			{
 				openLeftButton.Enabled = node.LeftId is not null;
 				openRightButton.Enabled = node.RightId is not null;
+
+				// copy direction depends only on whether that side has a source to copy
+				// from, same as the hierarchy actions below - not on which side is selected
+				pageCopyRightButton.Enabled = node.LeftId is not null;
+				pageCopyLeftButton.Enabled = node.RightId is not null;
+
+				deleteLeftButton.Enabled = node.LeftId is not null;
+				deleteRightButton.Enabled = node.RightId is not null;
+
+				// per spec, "Delete both" only enables when the row was selected via the
+				// center well (both sides), not merely because both sides happen to exist
+				deleteBothButton.Enabled = node.LeftId is not null && node.RightId is not null
+					&& diffView.SelectedSide == DiffSide.Both;
 			}
 			else
 			{
@@ -545,6 +566,145 @@ namespace River.OneMoreAddIn.Commands.Compare
 			if (error is not null)
 			{
 				MoreMessageBox.ShowError(this, error.Message);
+			}
+
+			try
+			{
+				await RefreshDiff();
+			}
+			catch (Exception exc)
+			{
+				MoreMessageBox.ShowError(this, exc.Message);
+			}
+		}
+
+
+		private async void PageCopyRightClick(object sender, EventArgs e)
+			=> await RunPageCopy(SyncDirection.LeftToRight);
+
+
+		private async void PageCopyLeftClick(object sender, EventArgs e)
+			=> await RunPageCopy(SyncDirection.RightToLeft);
+
+
+		private async Task RunPageCopy(SyncDirection direction)
+		{
+			var node = diffView.SelectedNode;
+			if (node is null)
+			{
+				return;
+			}
+
+			var directionWord = direction == SyncDirection.LeftToRight
+				? Resx.CompareDialog_directionRight
+				: Resx.CompareDialog_directionLeft;
+
+			var confirmMessage = string.Format(Resx.CompareDialog_confirmCopyPage, node.Name, directionWord);
+
+			if (MoreMessageBox.ShowQuestion(this, confirmMessage) != DialogResult.Yes)
+			{
+				return;
+			}
+
+			Exception error = null;
+
+			using (var progress = new ProgressDialog())
+			{
+				progress.SetMessage(Resx.CompareDialog_copyingMessage);
+
+				progress.ShowDialogWithCancel(async (dialog, token) =>
+				{
+					try
+					{
+						await using var one = new OneNote();
+						await HierarchyDiffSync.Copy(one, node, direction);
+						return true;
+					}
+					catch (Exception exc)
+					{
+						error = exc;
+						return false;
+					}
+				}, cancelable: false);
+			}
+
+			if (error is not null)
+			{
+				MoreMessageBox.ShowError(this, error.Message);
+			}
+
+			try
+			{
+				await RefreshDiff();
+			}
+			catch (Exception exc)
+			{
+				MoreMessageBox.ShowError(this, exc.Message);
+			}
+		}
+
+
+		private async void DeleteLeftClick(object sender, EventArgs e)
+			=> await RunPageDelete(DiffSide.Left);
+
+
+		private async void DeleteRightClick(object sender, EventArgs e)
+			=> await RunPageDelete(DiffSide.Right);
+
+
+		private async void DeleteBothClick(object sender, EventArgs e)
+			=> await RunPageDelete(DiffSide.Both);
+
+
+		private async Task RunPageDelete(DiffSide side)
+		{
+			var node = diffView.SelectedNode;
+			if (node is null)
+			{
+				return;
+			}
+
+			string confirmMessage;
+			if (side == DiffSide.Both)
+			{
+				confirmMessage = string.Format(Resx.CompareDialog_confirmDeleteBothPage, node.Name);
+			}
+			else
+			{
+				var directionWord = side == DiffSide.Left
+					? Resx.CompareDialog_directionLeft
+					: Resx.CompareDialog_directionRight;
+
+				confirmMessage = string.Format(Resx.CompareDialog_confirmDeletePage, node.Name, directionWord);
+			}
+
+			if (MoreMessageBox.ShowQuestion(this, confirmMessage) != DialogResult.Yes)
+			{
+				return;
+			}
+
+			using (var progress = new ProgressDialog())
+			{
+				progress.SetMessage(Resx.CompareDialog_deletingMessage);
+
+				progress.ShowDialogWithCancel(async (dialog, token) =>
+				{
+					await using var one = new OneNote();
+
+					// DeleteHierarchy logs and swallows its own failures rather than
+					// throwing, matching HierarchyDiffSync's Mirror delete step
+					if (side is DiffSide.Left or DiffSide.Both && node.LeftId is not null)
+					{
+						one.DeleteHierarchy(node.LeftId);
+					}
+
+					if (side is DiffSide.Right or DiffSide.Both && node.RightId is not null)
+					{
+						one.DeleteHierarchy(node.RightId);
+					}
+
+					return true;
+				}, cancelable: false);
 			}
 
 			try

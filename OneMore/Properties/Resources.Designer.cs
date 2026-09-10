@@ -1877,6 +1877,42 @@ namespace River.OneMoreAddIn.Properties {
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Copy '{0}' to the {1}?.
+        /// </summary>
+        internal static string CompareDialog_confirmCopyPage {
+            get {
+                return ResourceManager.GetString("CompareDialog_confirmCopyPage", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Delete '{0}' from the {1}? This cannot be undone..
+        /// </summary>
+        internal static string CompareDialog_confirmDeletePage {
+            get {
+                return ResourceManager.GetString("CompareDialog_confirmDeletePage", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Delete '{0}' from both sides? This cannot be undone..
+        /// </summary>
+        internal static string CompareDialog_confirmDeleteBothPage {
+            get {
+                return ResourceManager.GetString("CompareDialog_confirmDeleteBothPage", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Deleting....
+        /// </summary>
+        internal static string CompareDialog_deletingMessage {
+            get {
+                return ResourceManager.GetString("CompareDialog_deletingMessage", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Built-in OneNote style.
         /// </summary>
         internal static string ConditionalFormatDialog_builtinRadio_Text {

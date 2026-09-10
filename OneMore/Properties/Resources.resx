@@ -921,6 +921,22 @@ Do you want to continue?</value>
     <value>Mirroring...</value>
     <comment>progress dialog message</comment>
   </data>
+  <data name="CompareDialog_confirmCopyPage" xml:space="preserve">
+    <value>Copy '{0}' to the {1}?</value>
+    <comment>confirmation, {0} page name, {1} direction (left/right)</comment>
+  </data>
+  <data name="CompareDialog_confirmDeletePage" xml:space="preserve">
+    <value>Delete '{0}' from the {1}? This cannot be undone.</value>
+    <comment>confirmation, {0} page name, {1} direction (left/right)</comment>
+  </data>
+  <data name="CompareDialog_confirmDeleteBothPage" xml:space="preserve">
+    <value>Delete '{0}' from both sides? This cannot be undone.</value>
+    <comment>confirmation, {0} page name</comment>
+  </data>
+  <data name="CompareDialog_deletingMessage" xml:space="preserve">
+    <value>Deleting...</value>
+    <comment>progress dialog message</comment>
+  </data>
   <data name="ConditionalFormatDialog_builtinRadio.Text" xml:space="preserve">
     <value>Built-in OneNote style</value>
     <comment>radio</comment>
