@@ -596,16 +596,20 @@ namespace River.OneMoreAddIn.Commands.Compare
 			var level = ToHitLevel(nodeType);
 			var code = TitleHitPalette.GetCode(level);
 
-			var codeSize = TextRenderer.MeasureText(g, code, chipFont);
-			var chipWidth = Math.Max(ChipHeight, codeSize.Width + (ChipPadX * 2));
+			// GDI+ (MeasureString/DrawString) throughout, not TextRenderer: TextRenderer is
+			// GDI-based and does not reliably honor OnPaint's TranslateTransform, so once
+			// scrolled the chip fill (GDI+) moved but its glyph (GDI) stayed put/vanished
+			var codeSize = g.MeasureString(code, chipFont);
+			var chipWidth = (int)Math.Max(ChipHeight, codeSize.Width + (ChipPadX * 2));
 			var chipRect = new Rectangle(x, y, chipWidth, ChipHeight);
 
 			using var brush = new SolidBrush(TitleHitPalette.GetColor(level, darkMode));
 			g.FillRoundedRectangle(brush, chipRect, 3);
 
-			TextRenderer.DrawText(g, code, chipFont, chipRect, TitleHitPalette.GetGlyphColor(darkMode),
-				TextFormatFlags.VerticalCenter | TextFormatFlags.HorizontalCenter |
-				TextFormatFlags.NoPrefix | TextFormatFlags.SingleLine);
+			using var textBrush = new SolidBrush(TitleHitPalette.GetGlyphColor(darkMode));
+			g.DrawString(code, chipFont, textBrush,
+				chipRect.X + ((chipRect.Width - codeSize.Width) / 2f),
+				chipRect.Y + ((chipRect.Height - codeSize.Height) / 2f));
 
 			return chipWidth;
 		}

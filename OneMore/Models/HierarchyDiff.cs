@@ -62,6 +62,13 @@ namespace River.OneMoreAddIn.Models
 
 		public DiffStatus Status { get; set; }
 
+		/// <summary>
+		/// The enclosing DiffNode, or null for the comparison root. Used by hierarchy
+		/// actions (copy/mirror) to resolve the destination parent when a node doesn't yet
+		/// exist on the target side.
+		/// </summary>
+		public DiffNode Parent { get; set; }
+
 		public List<DiffNode> Children { get; } = new();
 	}
 
@@ -130,7 +137,9 @@ namespace River.OneMoreAddIn.Models
 			{
 				var l = leftChildren.FirstOrDefault(e => Key(e) == key);
 				var r = rightChildren.FirstOrDefault(e => Key(e) == key);
-				node.Children.Add(Pair(l, r));
+				var child = Pair(l, r);
+				child.Parent = node;
+				node.Children.Add(child);
 			}
 
 			return node;

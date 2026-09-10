@@ -893,6 +893,34 @@ Do you want to continue?</value>
     <value>Compare contents…</value>
     <comment>button</comment>
   </data>
+  <data name="CompareDialog_directionLeft" xml:space="preserve">
+    <value>left</value>
+    <comment>used in confirmation messages, e.g. "Copy 'X' to the {0}?"</comment>
+  </data>
+  <data name="CompareDialog_directionRight" xml:space="preserve">
+    <value>right</value>
+    <comment>used in confirmation messages, e.g. "Copy 'X' to the {0}?"</comment>
+  </data>
+  <data name="CompareDialog_confirmCopy" xml:space="preserve">
+    <value>Copy '{0}' and its descendants to the {1}?</value>
+    <comment>confirmation, {0} node name, {1} direction (left/right)</comment>
+  </data>
+  <data name="CompareDialog_confirmMirror" xml:space="preserve">
+    <value>Mirror '{0}' to the {1}? This makes the {1} side match exactly, including deleting {2} item(s) that only exist there.</value>
+    <comment>confirmation, {0} node name, {1} direction (left/right), {2} delete count</comment>
+  </data>
+  <data name="CompareDialog_confirmMirrorNoDeletions" xml:space="preserve">
+    <value>Mirror '{0}' to the {1}?</value>
+    <comment>confirmation, {0} node name, {1} direction (left/right)</comment>
+  </data>
+  <data name="CompareDialog_copyingMessage" xml:space="preserve">
+    <value>Copying...</value>
+    <comment>progress dialog message</comment>
+  </data>
+  <data name="CompareDialog_mirroringMessage" xml:space="preserve">
+    <value>Mirroring...</value>
+    <comment>progress dialog message</comment>
+  </data>
   <data name="ConditionalFormatDialog_builtinRadio.Text" xml:space="preserve">
     <value>Built-in OneNote style</value>
     <comment>radio</comment>

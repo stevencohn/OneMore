@@ -17,13 +17,14 @@ namespace River.OneMoreAddIn.Commands.Compare
 	/// <summary>
 	/// Shows a surface-level diff of two OneNote hierarchy branches (notebook, section, or
 	/// section group) - names, node types, and created/modified timestamps only - and lets
-	/// the user act on the selected node or page. Runs modeless since Open Left/Right (and,
-	/// in later phases, Copy/Mirror/Delete) call back into OneNote while this dialog stays
-	/// open.
+	/// the user act on the selected node or page: Copy/Mirror a container node (see
+	/// HierarchyDiffSync), Open a page (this class), or, in a later phase, Delete/Compare
+	/// page contents. Runs modeless since these all call back into OneNote while this
+	/// dialog stays open.
 	/// </summary>
 	internal partial class CompareDialog : MoreForm
 	{
-		private readonly DiffNode root;
+		private DiffNode root;
 		private readonly OneNote.NodeType nodeType;
 
 		private Panel hierarchyActionsPanel;
@@ -293,9 +294,16 @@ namespace River.OneMoreAddIn.Commands.Compare
 			};
 
 			copyRightButton = CreateActionButton(Resx.CompareDialog_copyRight);
+			copyRightButton.Click += CopyRightClick;
+
 			copyLeftButton = CreateActionButton(Resx.CompareDialog_copyLeft);
+			copyLeftButton.Click += CopyLeftClick;
+
 			mirrorRightButton = CreateActionButton(Resx.CompareDialog_mirrorRight);
+			mirrorRightButton.Click += MirrorRightClick;
+
 			mirrorLeftButton = CreateActionButton(Resx.CompareDialog_mirrorLeft);
+			mirrorLeftButton.Click += MirrorLeftClick;
 
 			buttonFlow.Controls.Add(copyRightButton);
 			buttonFlow.Controls.Add(copyLeftButton);
@@ -384,8 +392,8 @@ namespace River.OneMoreAddIn.Commands.Compare
 				Margin = new Padding(0, 0, 8, 8),
 				ThemedFore = danger ? "ErrorText" : "HotTrack",
 
-				// Copy/Mirror/Delete/Compare contents are wired up in later phases; Open
-				// left/right are enabled dynamically as the selection changes below
+				// Delete/Compare contents are wired up in a later phase; all others are
+				// enabled dynamically as the selection changes, below
 				Enabled = false
 			};
 		}
@@ -413,6 +421,16 @@ namespace River.OneMoreAddIn.Commands.Compare
 			{
 				openLeftButton.Enabled = node.LeftId is not null;
 				openRightButton.Enabled = node.RightId is not null;
+			}
+			else
+			{
+				// enabled whenever there's something on that button's source side to act
+				// on, regardless of which side (if any) is currently selected - direction
+				// is chosen by the button, not by the well/name click
+				copyRightButton.Enabled = node.LeftId is not null;
+				mirrorRightButton.Enabled = node.LeftId is not null;
+				copyLeftButton.Enabled = node.RightId is not null;
+				mirrorLeftButton.Enabled = node.RightId is not null;
 			}
 		}
 
@@ -442,6 +460,118 @@ namespace River.OneMoreAddIn.Commands.Compare
 			{
 				await one.NavigateTo(link, true);
 			}
+		}
+
+
+		private async void CopyRightClick(object sender, EventArgs e)
+			=> await RunHierarchyAction(SyncDirection.LeftToRight, mirror: false);
+
+
+		private async void CopyLeftClick(object sender, EventArgs e)
+			=> await RunHierarchyAction(SyncDirection.RightToLeft, mirror: false);
+
+
+		private async void MirrorRightClick(object sender, EventArgs e)
+			=> await RunHierarchyAction(SyncDirection.LeftToRight, mirror: true);
+
+
+		private async void MirrorLeftClick(object sender, EventArgs e)
+			=> await RunHierarchyAction(SyncDirection.RightToLeft, mirror: true);
+
+
+		private async Task RunHierarchyAction(SyncDirection direction, bool mirror)
+		{
+			var node = diffView.SelectedNode;
+			if (node is null)
+			{
+				return;
+			}
+
+			var directionWord = direction == SyncDirection.LeftToRight
+				? Resx.CompareDialog_directionRight
+				: Resx.CompareDialog_directionLeft;
+
+			string confirmMessage;
+			if (mirror)
+			{
+				var count = HierarchyDiffSync.CountTargetOnly(node, direction);
+				confirmMessage = count > 0
+					? string.Format(Resx.CompareDialog_confirmMirror, node.Name, directionWord, count)
+					: string.Format(Resx.CompareDialog_confirmMirrorNoDeletions, node.Name, directionWord);
+			}
+			else
+			{
+				confirmMessage = string.Format(Resx.CompareDialog_confirmCopy, node.Name, directionWord);
+			}
+
+			if (MoreMessageBox.ShowQuestion(this, confirmMessage) != DialogResult.Yes)
+			{
+				return;
+			}
+
+			Exception error = null;
+
+			using (var progress = new ProgressDialog())
+			{
+				progress.SetMessage(mirror
+					? Resx.CompareDialog_mirroringMessage
+					: Resx.CompareDialog_copyingMessage);
+
+				progress.ShowDialogWithCancel(async (dialog, token) =>
+				{
+					try
+					{
+						await using var one = new OneNote();
+
+						if (mirror)
+						{
+							await HierarchyDiffSync.Mirror(one, node, direction);
+						}
+						else
+						{
+							await HierarchyDiffSync.Copy(one, node, direction);
+						}
+
+						return true;
+					}
+					catch (Exception exc)
+					{
+						error = exc;
+						return false;
+					}
+				}, cancelable: false);
+			}
+
+			if (error is not null)
+			{
+				MoreMessageBox.ShowError(this, error.Message);
+			}
+
+			try
+			{
+				await RefreshDiff();
+			}
+			catch (Exception exc)
+			{
+				MoreMessageBox.ShowError(this, exc.Message);
+			}
+		}
+
+
+		private async Task RefreshDiff()
+		{
+			await using var one = new OneNote();
+
+			var left = nodeType == OneNote.NodeType.Notebook
+				? await one.GetNotebook(root.LeftId, OneNote.Scope.Pages)
+				: await one.GetSection(root.LeftId);
+
+			var right = nodeType == OneNote.NodeType.Notebook
+				? await one.GetNotebook(root.RightId, OneNote.Scope.Pages)
+				: await one.GetSection(root.RightId);
+
+			root = HierarchyDiffBuilder.Build(left, right);
+			diffView.SetRoot(root);
 		}
 
 
