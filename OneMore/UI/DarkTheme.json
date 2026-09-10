@@ -58,6 +58,10 @@
     "MenuSeparator": "#989898",
     "SuccessFill": "#3FA34D",
 
+    "CompareWarningBack": "#3A3220",
+    "CompareWarningFill": "#D9A62A",
+    "CompareOrphanBack": "#3A2626",
+
     "XmlComment": "LimeGreen",
     "XmlEditedBy": "#56B1E4",
     "XmlEditMode": "#323232",

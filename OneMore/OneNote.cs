@@ -78,7 +78,16 @@ namespace River.OneMoreAddIn
 			Pages = HierarchyScope.hsPages,
 			Sections = HierarchyScope.hsSections,
 			Self = HierarchyScope.hsSelf,
-			SectionGroups = 100
+			SectionGroups = 100,
+
+			/// <summary>
+			/// SelectLocation only: lets the user navigate down to and pick any container -
+			/// a Notebook, SectionGroup, or Section - unlike Scope.Sections (Sections only)
+			/// or Scope.SectionGroups (Notebooks/SectionGroups only, no drilling into a
+			/// Section). Used by CompareCommand, which accepts any of the three as either
+			/// side of a hierarchy comparison.
+			/// </summary>
+			Containers = 101
 		}
 
 		public class HierarchyInfo
@@ -2023,6 +2032,11 @@ namespace River.OneMoreAddIn
 					case Scope.Sections:
 						dialog.TreeDepth = HierarchyElement.heSections;
 						restriction = HierarchyElement.heSections;
+						break;
+					case Scope.Containers:
+						dialog.TreeDepth = HierarchyElement.heSections;
+						restriction = HierarchyElement.heNotebooks |
+							HierarchyElement.heSectionGroups | HierarchyElement.heSections;
 						break;
 					case Scope.Pages:
 						dialog.TreeDepth = HierarchyElement.hePages;

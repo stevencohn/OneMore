@@ -1258,6 +1258,13 @@
       size="normal"
       showImage="true"
       showLabel="false"/>
+    <button
+      id="ribCompareHierarchyButton"
+      imageMso="GroupCompare"
+      size="large"      
+      getLabel="GetRibbonLabel"
+      getScreentip="GetRibbonScreentip"
+      onAction="CompareHierarchyCmd"/>
   </group>
 
 </tab>
