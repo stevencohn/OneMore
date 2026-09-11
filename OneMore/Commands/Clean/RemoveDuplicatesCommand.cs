@@ -1,9 +1,10 @@
-﻿//************************************************************************************************
+//************************************************************************************************
 // Copyright © 2022 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Commands.Compare;
 	using River.OneMoreAddIn.Models;
 	using System;
 	using System.Collections.Generic;
@@ -31,15 +32,23 @@ namespace River.OneMoreAddIn.Commands
 			public string XmlHash;
 			public string TextHash;
 			public string Title;
-			public string Xml;
 			public string Path;
 			public string Link;
-			public int? Distance;
 			public DateTime LastModified;
 			public MatchKind MatchKind = MatchKind.Exact;
-			public double? Similarity;
-			public string PlainText;
+
+			// full rubric breakdown for a Similar match, so the results dialog's popup can
+			// show it without recomputing anything; null for an Exact match (hashing already
+			// proved identity, nothing to break down) and for unmatched singletons
+			public SimilarityResult Result;
+
+			// transient: built only when detectSimilar is on, for candidates that survive the
+			// exact-hash pass; cleared once the near-duplicate pass finishes (see Scan)
+			public SimilarityProfile Profile;
+
 			public List<HashNode> Siblings = new();
+
+			public double? Similarity => Result?.Overall;
 		}
 
 
@@ -49,10 +58,9 @@ namespace River.OneMoreAddIn.Commands
 			Similar
 		}
 
-		// combined XML char length guard for the O(n*m) DistanceFrom pass in Deep mode
-		private const int MaxDeepCompareLength = 500_000;
-
-		// minimum normalized similarity (0..1) for the optional near-duplicate pass
+		// minimum overall SimilarityEngine score (0..1) for the optional near-duplicate pass
+		// to group a pair as "similar" - a grouping threshold, independent of however the
+		// results dialog colors/displays that score
 		private const double SimilarityThreshold = 0.85;
 
 		// skip the O(k^2) near-duplicate pass entirely above this many unique pages
@@ -65,10 +73,9 @@ namespace River.OneMoreAddIn.Commands
 		private UI.ProgressDialog progress;
 
 		private UI.SelectorScope scope;
-		private bool includeTitles;
 		private bool detectSimilar;
 		private IEnumerable<string> books;
-		private RemoveDuplicatesDialog.DepthKind depth;
+		private Rubric enabledRubrics;
 		private int scanCount;
 
 
@@ -98,10 +105,9 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
-				depth = dialog.Depth;
+				enabledRubrics = dialog.EnabledRubrics;
 				scope = dialog.Scope;
 				books = dialog.SelectedNotebooks;
-				includeTitles = dialog.IncludeTitles;
 				detectSimilar = dialog.DetectSimilar;
 			}
 
@@ -142,7 +148,11 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task<bool> Scan(UI.ProgressDialog dialog, CancellationToken token)
 		{
-			var deep = depth == RemoveDuplicatesDialog.DepthKind.Deep;
+			// only the opt-in Media rubric needs the heavier BinaryData fetch; every other
+			// rubric only ever looks at extracted text/structure
+			var detail = enabledRubrics.HasFlag(Rubric.Media)
+				? OneNote.PageDetail.BinaryData
+				: OneNote.PageDetail.Basic;
 
 			var empty = new HashNode
 			{
@@ -162,8 +172,7 @@ namespace River.OneMoreAddIn.Commands
 						break;
 					}
 
-					var page = await one.GetPage(pageRef.Attribute("ID").Value,
-						deep ? OneNote.PageDetail.BinaryData : OneNote.PageDetail.Basic);
+					var page = await one.GetPage(pageRef.Attribute("ID").Value, detail);
 
 					dialog.SetMessage($"Scanning {page.Title}...");
 					dialog.Increment();
@@ -182,39 +191,20 @@ namespace River.OneMoreAddIn.Commands
 						continue;
 					}
 
-					var sibling = hashes.Find(n =>
-						n.TextHash == node.TextHash ||
-						(n.XmlHash is not null && n.XmlHash == node.XmlHash));
+					// when the near-duplicate pass will run (detectSimilar), require BOTH hashes
+					// to match for the no-popup "identical" bucket - a TextHash-only match
+					// (same visible words, different XML/embedded media) falls through to that
+					// scored pass instead, so the Media rubric gets a chance to catch it. With
+					// "Show only exact duplicates" checked, that pass never runs at all, so
+					// there's nothing left to catch a TextHash-only match if this still
+					// required XmlHash too - it would just silently vanish instead of showing
+					// up as exact; fall back to TextHash alone (content identity) in that mode
+					var sibling = detectSimilar
+						? hashes.Find(n => n.TextHash == node.TextHash && n.XmlHash == node.XmlHash)
+						: hashes.Find(n => n.TextHash == node.TextHash);
 
 					if (sibling != null)
 					{
-						var info = await one.GetPageInfo(node.PageID);
-						node.Path = info.Path;
-						node.Link = info.Link;
-						if (sibling.Path == null)
-						{
-							info = await one.GetPageInfo(sibling.PageID);
-							sibling.Path = info.Path;
-							sibling.Link = info.Link;
-						}
-
-						if (deep)
-						{
-							if (node.XmlHash is not null && node.XmlHash == sibling.XmlHash)
-							{
-								// exact XML match, skip the O(n*m) pass entirely
-								node.Distance = 0;
-							}
-							else if (node.Xml is not null && sibling.Xml is not null &&
-								(node.Xml.Length + sibling.Xml.Length) <= MaxDeepCompareLength)
-							{
-								node.Distance = node.Xml.DistanceFrom(sibling.Xml);
-							}
-							// else leave Distance null; too large to compare, UI shows "-"
-
-							node.Xml = null;
-						}
-
 						//logger.WriteLine($"= [{node.Title}] with [{sibling.Title}]");
 						node.GroupID = sibling.GroupID;
 						sibling.Siblings.Add(node);
@@ -228,26 +218,36 @@ namespace River.OneMoreAddIn.Commands
 
 					scanCount++;
 				}
-			}
 
-			if (!token.IsCancellationRequested && detectSimilar && !deep)
-			{
-				FindSimilarMatches(dialog, token);
-			}
-
-			if (!token.IsCancellationRequested)
-			{
-				dialog.SetMessage("Pruning results...");
-				hashes.RemoveAll(n => !n.Siblings.Any());
-				hashes.ForEach(n =>
+				if (!token.IsCancellationRequested && detectSimilar)
 				{
-					n.Xml = null;
-					n.PlainText = null;
-				});
+					ScoreNearDuplicates(dialog, token);
+				}
 
-				if (empty.Siblings.Any())
+				if (!token.IsCancellationRequested)
 				{
-					hashes.Add(empty);
+					dialog.SetMessage("Pruning results...");
+					hashes.RemoveAll(n => !n.Siblings.Any());
+
+					foreach (var node in hashes)
+					{
+						node.Profile = null;
+						foreach (var sibling in node.Siblings)
+						{
+							sibling.Profile = null;
+						}
+					}
+
+					if (empty.Siblings.Any())
+					{
+						hashes.Add(empty);
+					}
+
+					// covers every surviving node - including the synthetic Empty Pages bucket
+					// just added above - regardless of how it matched (exact hash or scored
+					// near-duplicate); Path/Link used to only be looked up inline for exact
+					// matches, which left near-duplicate rows with no path to show
+					await LoadPaths(dialog, token);
 				}
 			}
 
@@ -256,11 +256,53 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
-		/// OneMore Extension >> Second pass, opt-in: compares the plain text of pages that
-		/// did not already group by exact hash match, grouping pairs whose normalized edit
-		/// distance clears SimilarityThreshold as "similar" (non-identical) matches.
+		/// OneMore Extension >> Loads the full hierarchy path (and onenote: link) for every
+		/// matched node - both group heads and their siblings, whether they matched by exact
+		/// hash or scored near-duplicate - so the results dialog can show/hyperlink it.
 		/// </summary>
-		private void FindSimilarMatches(UI.ProgressDialog dialog, CancellationToken token)
+		private async Task LoadPaths(UI.ProgressDialog dialog, CancellationToken token)
+		{
+			dialog.SetMessage("Loading page paths...");
+
+			foreach (var head in hashes)
+			{
+				if (token.IsCancellationRequested)
+				{
+					return;
+				}
+
+				if (head.PageID != null && head.Path == null)
+				{
+					var info = await one.GetPageInfo(head.PageID);
+					head.Path = info.Path;
+					head.Link = info.Link;
+				}
+
+				foreach (var sibling in head.Siblings)
+				{
+					if (token.IsCancellationRequested)
+					{
+						return;
+					}
+
+					if (sibling.PageID != null && sibling.Path == null)
+					{
+						var info = await one.GetPageInfo(sibling.PageID);
+						sibling.Path = info.Path;
+						sibling.Link = info.Link;
+					}
+				}
+			}
+		}
+
+
+		/// <summary>
+		/// OneMore Extension >> Second pass, opt-in: scores pages that did not already group by
+		/// exact hash match using SimilarityEngine, weighted by whichever metrics the user
+		/// enabled in the config dialog, grouping pairs whose overall score clears
+		/// SimilarityThreshold as "similar" (non-identical) matches.
+		/// </summary>
+		private void ScoreNearDuplicates(UI.ProgressDialog dialog, CancellationToken token)
 		{
 			if (hashes.Count > MaxSimilarityCandidates)
 			{
@@ -273,6 +315,7 @@ namespace River.OneMoreAddIn.Commands
 			dialog.SetMessage("Comparing for similar pages...");
 			dialog.SetMaximum(hashes.Count);
 
+			var options = new SimilarityOptions(enabledRubrics);
 			var matched = new HashSet<HashNode>();
 
 			for (var i = 0; i < hashes.Count; i++)
@@ -285,7 +328,7 @@ namespace River.OneMoreAddIn.Commands
 				dialog.Increment();
 
 				var a = hashes[i];
-				if (matched.Contains(a) || string.IsNullOrEmpty(a.PlainText))
+				if (matched.Contains(a) || a.Profile is null)
 				{
 					continue;
 				}
@@ -293,26 +336,22 @@ namespace River.OneMoreAddIn.Commands
 				for (var j = i + 1; j < hashes.Count; j++)
 				{
 					var b = hashes[j];
-					if (matched.Contains(b) || string.IsNullOrEmpty(b.PlainText))
+					if (matched.Contains(b) || b.Profile is null)
 					{
 						continue;
 					}
 
 					if (!PassesLengthPrefilter(
-						a.PlainText.Length, b.PlainText.Length, SimilarityThreshold))
+						a.Profile.TokenList.Count, b.Profile.TokenList.Count, SimilarityThreshold))
 					{
 						continue;
 					}
 
-					var distance = a.PlainText.DistanceFrom(b.PlainText);
-					var similarity = NormalizedSimilarity(
-						distance, a.PlainText.Length, b.PlainText.Length);
-
-					if (similarity >= SimilarityThreshold)
+					var result = SimilarityEngine.Compare(a.Profile, b.Profile, options);
+					if (result.Overall >= SimilarityThreshold)
 					{
 						b.MatchKind = MatchKind.Similar;
-						b.Distance = distance;
-						b.Similarity = similarity;
+						b.Result = result;
 						b.GroupID = a.GroupID;
 						a.Siblings.Add(b);
 						matched.Add(b);
@@ -326,7 +365,9 @@ namespace River.OneMoreAddIn.Commands
 
 		/// <summary>
 		/// OneMore Extension >> Cheap pre-filter to skip pairs that cannot possibly meet the
-		/// similarity threshold before running the more expensive edit-distance calculation.
+		/// similarity threshold before running the more expensive rubric calculation. Lengths
+		/// are word (token) counts here rather than character counts, but the ratio math is
+		/// identical either way.
 		/// </summary>
 		internal static bool PassesLengthPrefilter(int lenA, int lenB, double threshold)
 		{
@@ -336,17 +377,6 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return Math.Abs(lenA - lenB) <= (1.0 - threshold) * Math.Max(lenA, lenB);
-		}
-
-
-		/// <summary>
-		/// OneMore Extension >> Converts a Levenshtein edit distance into a 0..1 similarity
-		/// score, normalized against the longer of the two compared strings.
-		/// </summary>
-		internal static double NormalizedSimilarity(int distance, int lenA, int lenB)
-		{
-			var maxLen = Math.Max(lenA, lenB);
-			return maxLen == 0 ? 1.0 : 1.0 - ((double)distance / maxLen);
 		}
 
 
@@ -414,9 +444,12 @@ namespace River.OneMoreAddIn.Commands
 			// OneNote stamps with the current time on every GetPageContent call
 			var modified = pageRef.Attribute("lastModifiedTime")?.Value;
 
+			// RoundtripKind preserves the UTC "Z" suffix OneNote writes as DateTimeKind.Utc,
+			// same as HierarchyDiff.cs's own parse - needed so ToShortFriendlyString() below
+			// actually converts to local time instead of silently leaving Kind=Unspecified
 			node.LastModified = string.IsNullOrEmpty(modified)
 				? DateTime.MinValue
-				: DateTime.Parse(modified, CultureInfo.InvariantCulture);
+				: DateTime.Parse(modified, CultureInfo.InvariantCulture, DateTimeStyles.RoundtripKind);
 
 			// EditedByAttributes and the page ID
 			page.Root.DescendantsAndSelf().Attributes().Where(a =>
@@ -434,23 +467,15 @@ namespace River.OneMoreAddIn.Commands
 				|| a.Name.LocalName == "objectID")
 				.Remove();
 
-			if (!includeTitles)
-			{
-				page.Root.Descendants(ns + "Title").Remove();
-			}
+			// content only - the page title never factors into the similarity comparison
+			page.Root.Descendants(ns + "Title").Remove();
 
-			if (depth != RemoveDuplicatesDialog.DepthKind.Basic)
-			{
-				var xml = page.Root.ToString(SaveOptions.DisableFormatting);
-
-				node.XmlHash = Convert.ToBase64String(
-					hasher.ComputeHash(Encoding.Default.GetBytes(xml)));
-
-				if (depth == RemoveDuplicatesDialog.DepthKind.Deep)
-				{
-					node.Xml = xml;
-				}
-			}
+			// XmlHash is now always computed, not just under a "Basic/Deep" toggle - it's what
+			// lets the exact-match pass in Scan require both text AND structure to match,
+			// leaving a text-only match to fall through to the scored near-duplicate pass
+			var xml = page.Root.ToString(SaveOptions.DisableFormatting);
+			node.XmlHash = Convert.ToBase64String(
+				hasher.ComputeHash(Encoding.Default.GetBytes(xml)));
 
 			// this is a fix added to accomodate HTML embedded within OCR text which otherwise
 			// would interfer with the cdata.GetWrapper innards, breaking internal XML parsing
@@ -462,15 +487,22 @@ namespace River.OneMoreAddIn.Commands
 					c.Value = HttpUtility.HtmlEncode(c.Value);
 				});
 
-			// extract plain text last, otherwise XmlHash will not be correct
-			// because TextValue(true) will change the XML
-			var plain = page.Root.TextValue(true).Trim();
+			// extract plain text last, otherwise XmlHash above would not be correct, because
+			// TextValue(true)/BuildProfile mutate the XML they strip HTML from
+			string plain;
+			if (detectSimilar)
+			{
+				node.Profile = SimilarityEngine.BuildProfile(page, one);
+				plain = node.Profile.Text.Trim();
+			}
+			else
+			{
+				plain = (page.Root.TextValue(true) ?? string.Empty).Trim();
+			}
 
 			node.TextHash = plain.Length == 0
 				? string.Empty
 				: Convert.ToBase64String(hasher.ComputeHash(Encoding.Default.GetBytes(plain)));
-
-			node.PlainText = plain;
 
 			return node;
 		}

@@ -9522,86 +9522,61 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Basic XML structure.
+        ///   Looks up a localized string similar to Content similarity
+        ///TF-IDF cosine, Lexical overlap, Structural.
         /// </summary>
-        internal static string RemoveDuplicatesDialog_basicRadio_Text {
+        internal static string RemoveDuplicatesDialog_contentSimilarityBox {
             get {
-                return ResourceManager.GetString("RemoveDuplicatesDialog_basicRadio.Text", resourceCulture);
+                return ResourceManager.GetString("RemoveDuplicatesDialog_contentSimilarityBox", resourceCulture);
             }
         }
-        
+
         /// <summary>
-        ///   Looks up a localized string similar to Compares only the visible text of each page, ignoring formatting.
+        ///   Looks up a localized string similar to Combines TF-IDF cosine, lexical overlap, and structural similarity.
         /// </summary>
-        internal static string RemoveDuplicatesDialog_basicRadioTip {
+        internal static string RemoveDuplicatesDialog_contentSimilarityTip {
             get {
-                return ResourceManager.GetString("RemoveDuplicatesDialog_basicRadioTip", resourceCulture);
+                return ResourceManager.GetString("RemoveDuplicatesDialog_contentSimilarityTip", resourceCulture);
             }
         }
-        
+
         /// <summary>
-        ///   Looks up a localized string similar to Deep XML with binary comparison (slow).
+        ///   Looks up a localized string similar to Show only exact duplicates.
         /// </summary>
-        internal static string RemoveDuplicatesDialog_deepRadio_Text {
+        internal static string RemoveDuplicatesDialog_exactOnlyBox_Text {
             get {
-                return ResourceManager.GetString("RemoveDuplicatesDialog_deepRadio.Text", resourceCulture);
+                return ResourceManager.GetString("RemoveDuplicatesDialog_exactOnlyBox.Text", resourceCulture);
             }
         }
-        
+
         /// <summary>
-        ///   Looks up a localized string similar to Compares full XML including embedded images and ink; most accurate but slowest.
+        ///   Looks up a localized string similar to Similarity metrics.
         /// </summary>
-        internal static string RemoveDuplicatesDialog_deepRadioTip {
+        internal static string RemoveDuplicatesDialog_metricsBox_Text {
             get {
-                return ResourceManager.GetString("RemoveDuplicatesDialog_deepRadioTip", resourceCulture);
+                return ResourceManager.GetString("RemoveDuplicatesDialog_metricsBox.Text", resourceCulture);
             }
         }
-        
+
         /// <summary>
-        ///   Looks up a localized string similar to Scanning Depth.
+        ///   Looks up a localized string similar to Presentation similarity
+        ///Stylistic, Entity, Media.
         /// </summary>
-        internal static string RemoveDuplicatesDialog_depthBox_Text {
+        internal static string RemoveDuplicatesDialog_presentationSimilarityBox {
             get {
-                return ResourceManager.GetString("RemoveDuplicatesDialog_depthBox.Text", resourceCulture);
+                return ResourceManager.GetString("RemoveDuplicatesDialog_presentationSimilarityBox", resourceCulture);
             }
         }
-        
+
         /// <summary>
-        ///   Looks up a localized string similar to Also detect similar (non-identical) pages.
+        ///   Looks up a localized string similar to Combines stylistic, entity, and media similarity; media reads each page&apos;s full binary content, so scans take longer.
         /// </summary>
-        internal static string RemoveDuplicatesDialog_fuzzyBox_Text {
+        internal static string RemoveDuplicatesDialog_presentationSimilarityTip {
             get {
-                return ResourceManager.GetString("RemoveDuplicatesDialog_fuzzyBox.Text", resourceCulture);
+                return ResourceManager.GetString("RemoveDuplicatesDialog_presentationSimilarityTip", resourceCulture);
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Include page titles when comparing.
-        /// </summary>
-        internal static string RemoveDuplicatesDialog_includeTitlesBox_Text {
-            get {
-                return ResourceManager.GetString("RemoveDuplicatesDialog_includeTitlesBox.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Simple text (quick).
-        /// </summary>
-        internal static string RemoveDuplicatesDialog_simpleRadio_Text {
-            get {
-                return ResourceManager.GetString("RemoveDuplicatesDialog_simpleRadio.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Compares visible text and XML structure of each page.
-        /// </summary>
-        internal static string RemoveDuplicatesDialog_simpleRadioTip {
-            get {
-                return ResourceManager.GetString("RemoveDuplicatesDialog_simpleRadioTip", resourceCulture);
-            }
-        }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Remove Duplicate Pages.
         /// </summary>
@@ -9648,6 +9623,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 100% · identical.
+        /// </summary>
+        internal static string RemoveDuplicatesNavigator_identicalChip {
+            get {
+                return ResourceManager.GetString("RemoveDuplicatesNavigator_identicalChip", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Keep Newest.
         /// </summary>
         internal static string RemoveDuplicatesNavigator_keepNewest {
@@ -9655,7 +9639,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("RemoveDuplicatesNavigator_keepNewest", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Pages similar to {0}.
         /// </summary>
@@ -9664,7 +9648,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("RemoveDuplicatesNavigator_pagesSimilarTo", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to {0}% similar.
+        /// </summary>
+        internal static string RemoveDuplicatesNavigator_similarChipFormat {
+            get {
+                return ResourceManager.GetString("RemoveDuplicatesNavigator_similarChipFormat", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Remove all empty lines?
         ///
@@ -15520,6 +15513,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} of {1} embedded images match..
+        /// </summary>
+        internal static string Similarity_reasonMedia {
+            get {
+                return ResourceManager.GetString("Similarity_reasonMedia", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to One page has no text to compare..
         /// </summary>
         internal static string Similarity_reasonOneEmpty {
@@ -15573,6 +15575,15 @@ namespace River.OneMoreAddIn.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to Media similarity.
+        /// </summary>
+        internal static string Similarity_rubricMedia {
+            get {
+                return ResourceManager.GetString("Similarity_rubricMedia", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Structural similarity.
         /// </summary>

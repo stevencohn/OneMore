@@ -82,17 +82,19 @@ namespace River.OneMoreAddIn.Commands.Compare
 				AddRow(root, BuildRubricRow(rubric));
 			}
 
+			// drawn on root itself, last - after its own background fill but before any of its
+			// children paint, none of which reach root's own edge thanks to its 14/12px Padding
+			// - rather than via the form's own OnPaint: root's ambient-inherited BackColor
+			// (unset, so it resolves to the form's own BackColor) spans the form's entire
+			// ClientSize and paints over the form afterward, which is why a form-level border
+			// here rendered invisible - root itself painting its own edge last does not
+			root.Paint += (s, e) =>
+			{
+				using var pen = new Pen(borderColor);
+				e.Graphics.DrawRectangle(pen, 0, 0, root.Width - 1, root.Height - 1);
+			};
+
 			Controls.Add(root);
-		}
-
-
-		// draws a 1px card border around the borderless form, matching the wireframe's card
-		// styling since FormBorderStyle.None otherwise supplies no visible edge at all
-		protected override void OnPaint(PaintEventArgs e)
-		{
-			base.OnPaint(e);
-			using var pen = new Pen(borderColor);
-			e.Graphics.DrawRectangle(pen, 0, 0, ClientSize.Width - 1, ClientSize.Height - 1);
 		}
 
 

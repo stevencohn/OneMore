@@ -4010,36 +4010,30 @@ ISO-code then comma then language name</comment>
     <value>إزالة الصفحات المكررة</value>
     <comment>dialog title</comment>
   </data>
-  <data name="RemoveDuplicatesDialog_basicRadio.Text" xml:space="preserve">
-    <value>بنية XML الأساسية</value>
+  <data name="RemoveDuplicatesDialog_contentSimilarityBox" xml:space="preserve">
+    <value>تشابه المحتوى
+جيب التمام TF-IDF، التداخل المعجمي، الهيكلي</value>
+    <comment>two-line checkbox label: title, then subtitle listing the collapsed rubrics</comment>
   </data>
-  <data name="RemoveDuplicatesDialog_basicRadioTip" xml:space="preserve">
-    <value>يقارن فقط النص المرئي لكل صفحة، ويتجاهل التنسيق</value>
+  <data name="RemoveDuplicatesDialog_contentSimilarityTip" xml:space="preserve">
+    <value>يجمع بين جيب التمام TF-IDF، والتداخل المعجمي، والتشابه الهيكلي</value>
     <comment>tooltip</comment>
   </data>
-  <data name="RemoveDuplicatesDialog_deepRadio.Text" xml:space="preserve">
-    <value>XML العميق مع مقارنة ثنائية (بطيئة)</value>
-  </data>
-  <data name="RemoveDuplicatesDialog_deepRadioTip" xml:space="preserve">
-    <value>يقارن XML الكامل بما في ذلك الصور والحبر المضمن؛ الأكثر دقة ولكن الأبطأ</value>
-    <comment>tooltip</comment>
-  </data>
-  <data name="RemoveDuplicatesDialog_depthBox.Text" xml:space="preserve">
-    <value>عمق المسح</value>
-  </data>
-  <data name="RemoveDuplicatesDialog_fuzzyBox.Text" xml:space="preserve">
-    <value>اكتشف أيضًا الصفحات المشابهة (غير المتطابقة).</value>
+  <data name="RemoveDuplicatesDialog_exactOnlyBox.Text" xml:space="preserve">
+    <value>إظهار التكرارات الدقيقة فقط</value>
     <comment>checkbox</comment>
   </data>
-  <data name="RemoveDuplicatesDialog_includeTitlesBox.Text" xml:space="preserve">
-    <value>تضمين عناوين الصفحات عند المقارنة</value>
-    <comment>checkbox</comment>
+  <data name="RemoveDuplicatesDialog_metricsBox.Text" xml:space="preserve">
+    <value>مقاييس التشابه</value>
+    <comment>group</comment>
   </data>
-  <data name="RemoveDuplicatesDialog_simpleRadio.Text" xml:space="preserve">
-    <value>نص بسيط (سريع)</value>
+  <data name="RemoveDuplicatesDialog_presentationSimilarityBox" xml:space="preserve">
+    <value>تشابه العرض
+الأسلوبية، الكيان، وسائل الإعلام</value>
+    <comment>two-line checkbox label: title, then subtitle listing the collapsed rubrics</comment>
   </data>
-  <data name="RemoveDuplicatesDialog_simpleRadioTip" xml:space="preserve">
-    <value>يقارن النص المرئي وبنية XML لكل صفحة</value>
+  <data name="RemoveDuplicatesDialog_presentationSimilarityTip" xml:space="preserve">
+    <value>يجمع بين التشابه الأسلوبي والكياني والوسائطي؛ تقرأ الوسائط المحتوى الثنائي الكامل لكل صفحة، لذا تستغرق عمليات الفحص وقتًا أطول</value>
     <comment>tooltip</comment>
   </data>
   <data name="RemoveDuplicatesNavigator_confirm1" xml:space="preserve">
@@ -4056,6 +4050,10 @@ ISO-code then comma then language name</comment>
     <value>احذف هذه الصفحة الفارغة</value>
     <comment>tooltip</comment>
   </data>
+  <data name="RemoveDuplicatesNavigator_identicalChip" xml:space="preserve">
+    <value>100% · متطابق</value>
+    <comment>fixed, non-clickable similarity chip for an exact hash match</comment>
+  </data>
   <data name="RemoveDuplicatesNavigator_keepNewest" xml:space="preserve">
     <value>احتفظ بالأحدث</value>
     <comment>button</comment>
@@ -4063,6 +4061,10 @@ ISO-code then comma then language name</comment>
   <data name="RemoveDuplicatesNavigator_pagesSimilarTo" xml:space="preserve">
     <value>صفحات مشابهة لـ {0}</value>
     <comment>listview group title</comment>
+  </data>
+  <data name="RemoveDuplicatesNavigator_similarChipFormat" xml:space="preserve">
+    <value>{0}% متشابهة</value>
+    <comment>clickable similarity chip for a near-duplicate match, {0} rounded percentage</comment>
   </data>
   <data name="RemoveEmptyCommand_option" xml:space="preserve">
     <value>إزالة جميع الخطوط الفارغة؟
@@ -6614,6 +6616,10 @@ ISO-code then comma then language name</comment>
     <value>تمت مشاركة {0} من {1} كلمة فريدة.</value>
     <comment>similarity rubric reasoning, {0} shared word count, {1} total word count</comment>
   </data>
+  <data name="Similarity_reasonMedia" xml:space="preserve">
+    <value>{0} من {1} صورة مضمنة متطابقة.</value>
+    <comment>similarity rubric reasoning, {0} shared image count, {1} total image count</comment>
+  </data>
   <data name="Similarity_reasonOneEmpty" xml:space="preserve">
     <value>لا تحتوي صفحة واحدة على نص للمقارنة.</value>
     <comment>similarity rubric reasoning</comment>
@@ -6636,6 +6642,10 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="Similarity_rubricLexical" xml:space="preserve">
     <value>التداخل المعجمي</value>
+    <comment>similarity rubric name</comment>
+  </data>
+  <data name="Similarity_rubricMedia" xml:space="preserve">
+    <value>تشابه وسائل الإعلام</value>
     <comment>similarity rubric name</comment>
   </data>
   <data name="Similarity_rubricStructural" xml:space="preserve">

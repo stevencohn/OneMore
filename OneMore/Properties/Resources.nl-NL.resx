@@ -3999,36 +3999,30 @@ Verschoven</value>
     <value>Dubbele pagina's verwijderen</value>
     <comment>dialog title</comment>
   </data>
-  <data name="RemoveDuplicatesDialog_basicRadio.Text" xml:space="preserve">
-    <value>Basis XML-structuur</value>
+  <data name="RemoveDuplicatesDialog_contentSimilarityBox" xml:space="preserve">
+    <value>Inhoudelijke gelijkenis
+TF-IDF-cosinus, Lexicale overlap, structureel</value>
+    <comment>two-line checkbox label: title, then subtitle listing the collapsed rubrics</comment>
   </data>
-  <data name="RemoveDuplicatesDialog_basicRadioTip" xml:space="preserve">
-    <value>Vergelijkt alleen de zichtbare tekst van elke pagina, waarbij de opmaak wordt genegeerd</value>
+  <data name="RemoveDuplicatesDialog_contentSimilarityTip" xml:space="preserve">
+    <value>Combineert TF-IDF-cosinus, lexicale overlap en structurele gelijkenis</value>
     <comment>tooltip</comment>
   </data>
-  <data name="RemoveDuplicatesDialog_deepRadio.Text" xml:space="preserve">
-    <value>Deep XML met binaire vergelijking (langzaam)</value>
-  </data>
-  <data name="RemoveDuplicatesDialog_deepRadioTip" xml:space="preserve">
-    <value>Vergelijkt volledige XML inclusief ingebedde afbeeldingen en inkt; meest nauwkeurig maar langzaamst</value>
-    <comment>tooltip</comment>
-  </data>
-  <data name="RemoveDuplicatesDialog_depthBox.Text" xml:space="preserve">
-    <value>Scandiepte</value>
-  </data>
-  <data name="RemoveDuplicatesDialog_fuzzyBox.Text" xml:space="preserve">
-    <value>Detecteer ook vergelijkbare (niet-identieke) pagina's</value>
+  <data name="RemoveDuplicatesDialog_exactOnlyBox.Text" xml:space="preserve">
+    <value>Toon alleen exacte duplicaten</value>
     <comment>checkbox</comment>
   </data>
-  <data name="RemoveDuplicatesDialog_includeTitlesBox.Text" xml:space="preserve">
-    <value>Paginatitels opnemen bij het vergelijken</value>
-    <comment>checkbox</comment>
+  <data name="RemoveDuplicatesDialog_metricsBox.Text" xml:space="preserve">
+    <value>Gelijkenisstatistieken</value>
+    <comment>group</comment>
   </data>
-  <data name="RemoveDuplicatesDialog_simpleRadio.Text" xml:space="preserve">
-    <value>Eenvoudige tekst (snel)</value>
+  <data name="RemoveDuplicatesDialog_presentationSimilarityBox" xml:space="preserve">
+    <value>Presentatie gelijkenis
+Stilistisch, entiteit, media</value>
+    <comment>two-line checkbox label: title, then subtitle listing the collapsed rubrics</comment>
   </data>
-  <data name="RemoveDuplicatesDialog_simpleRadioTip" xml:space="preserve">
-    <value>Vergelijkt zichtbare tekst en XML-structuur van elke pagina</value>
+  <data name="RemoveDuplicatesDialog_presentationSimilarityTip" xml:space="preserve">
+    <value>Combineert stilistische, entiteits- en media-overeenkomst; media leest de volledige binaire inhoud van elke pagina, waardoor scans langer duren</value>
     <comment>tooltip</comment>
   </data>
   <data name="RemoveDuplicatesNavigator_confirm1" xml:space="preserve">
@@ -4045,6 +4039,10 @@ Verschoven</value>
     <value>Verwijder deze lege pagina</value>
     <comment>tooltip</comment>
   </data>
+  <data name="RemoveDuplicatesNavigator_identicalChip" xml:space="preserve">
+    <value>100% · identiek</value>
+    <comment>fixed, non-clickable similarity chip for an exact hash match</comment>
+  </data>
   <data name="RemoveDuplicatesNavigator_keepNewest" xml:space="preserve">
     <value>Nieuwste behouden</value>
     <comment>button</comment>
@@ -4052,6 +4050,10 @@ Verschoven</value>
   <data name="RemoveDuplicatesNavigator_pagesSimilarTo" xml:space="preserve">
     <value>Pagina's vergelijkbaar met {0}</value>
     <comment>listview group title</comment>
+  </data>
+  <data name="RemoveDuplicatesNavigator_similarChipFormat" xml:space="preserve">
+    <value>{0}% vergelijkbaar</value>
+    <comment>clickable similarity chip for a near-duplicate match, {0} rounded percentage</comment>
   </data>
   <data name="RemoveEmptyCommand_option" xml:space="preserve">
     <value>Verwijder alle lege regels?
@@ -6603,6 +6605,10 @@ Weet je zeker dat je door wilt gaan?</value>
     <value>{0} van {1} unieke woorden worden gedeeld.</value>
     <comment>similarity rubric reasoning, {0} shared word count, {1} total word count</comment>
   </data>
+  <data name="Similarity_reasonMedia" xml:space="preserve">
+    <value>{0} van {1} ingesloten afbeeldingen komen overeen.</value>
+    <comment>similarity rubric reasoning, {0} shared image count, {1} total image count</comment>
+  </data>
   <data name="Similarity_reasonOneEmpty" xml:space="preserve">
     <value>Eén pagina bevat geen tekst om te vergelijken.</value>
     <comment>similarity rubric reasoning</comment>
@@ -6625,6 +6631,10 @@ Weet je zeker dat je door wilt gaan?</value>
   </data>
   <data name="Similarity_rubricLexical" xml:space="preserve">
     <value>Lexicale overlap</value>
+    <comment>similarity rubric name</comment>
+  </data>
+  <data name="Similarity_rubricMedia" xml:space="preserve">
+    <value>Media-gelijkenis</value>
     <comment>similarity rubric name</comment>
   </data>
   <data name="Similarity_rubricStructural" xml:space="preserve">
