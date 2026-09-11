@@ -8,7 +8,10 @@ namespace River.OneMoreAddIn.Commands.Compare
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
+	using System.Security.Cryptography;
+	using System.Text;
 	using System.Text.RegularExpressions;
+	using System.Xml.Linq;
 	using Resx = Properties.Resources;
 
 
@@ -41,12 +44,89 @@ namespace River.OneMoreAddIn.Commands.Compare
 
 
 	/// <summary>
+	/// The individual similarity rubrics SimilarityEngine can score. Compare Hierarchy always
+	/// uses SimilarityOptions.Default (everything but Media); Remove Duplicate Pages lets the
+	/// user pick a subset via checkboxes, including the opt-in Media rubric.
+	/// </summary>
+	[Flags]
+	internal enum Rubric
+	{
+		None = 0,
+		TfIdf = 1,
+		Lexical = 2,
+		Structural = 4,
+		Stylistic = 8,
+		Entity = 16,
+		Media = 32
+	}
+
+
+	/// <summary>
+	/// Which rubrics participate in a Compare call. Weights are fixed per rubric (see
+	/// SimilarityEngine's *Weight constants) and renormalize across whichever rubrics are
+	/// enabled, so disabling a rubric never changes the relative balance of the rest.
+	/// </summary>
+	internal readonly struct SimilarityOptions
+	{
+		public SimilarityOptions(Rubric enabled)
+		{
+			Enabled = enabled;
+		}
+
+		public Rubric Enabled { get; }
+
+		public bool Has(Rubric rubric) => (Enabled & rubric) == rubric;
+
+		/// <summary>
+		/// The five rubrics Compare Hierarchy has always used. Their base weights already sum
+		/// to 1.0, so renormalizing this set is a no-op - Compare Hierarchy's scores are
+		/// unaffected by Media's addition to the engine.
+		/// </summary>
+		public static SimilarityOptions Default { get; } =
+			new(Rubric.TfIdf | Rubric.Lexical | Rubric.Structural | Rubric.Stylistic | Rubric.Entity);
+
+		public static SimilarityOptions All { get; } = new(Default.Enabled | Rubric.Media);
+	}
+
+
+	/// <summary>
+	/// Everything extracted from a single Page that SimilarityEngine needs to score it against
+	/// another page's profile. Building this once per candidate page - rather than re-extracting
+	/// from raw Page/XElement data on every pairwise Compare call - is what makes an O(k^2)
+	/// near-duplicate pass (Remove Duplicate Pages) affordable.
+	/// </summary>
+	internal class SimilarityProfile
+	{
+		public string Text { get; set; } = string.Empty;
+
+		public List<string> TokenList { get; set; } = new();
+
+		public HashSet<string> TokenSet { get; set; } = new(StringComparer.Ordinal);
+
+		public HashSet<string> HeadingNames { get; set; } = new(StringComparer.Ordinal);
+
+		public int ParagraphCount { get; set; }
+
+		public HashSet<string> Entities { get; set; } = new(StringComparer.Ordinal);
+
+		/// <summary>
+		/// One hash per embedded one:Image/one:Data element. Empty unless the page was fetched
+		/// with OneNote.PageDetail.BinaryData - same "nothing to compare" convention every other
+		/// rubric already uses for an absent signal.
+		/// </summary>
+		public HashSet<string> ImageHashes { get; set; } = new(StringComparer.Ordinal);
+	}
+
+
+	/// <summary>
 	/// A pure C#, local-only, no-AI page-content similarity scorer used by the Compare
-	/// Hierarchy command's "Compare contents..." page action. Combines five deterministic
-	/// rubrics - TF-IDF cosine, lexical (Jaccard) overlap, structural, stylistic, and named
-	/// entity similarity - into a single weighted score, per the blueprint in
+	/// Hierarchy command's "Compare contents..." page action and by Remove Duplicate Pages'
+	/// near-duplicate pass. Combines up to six deterministic rubrics - TF-IDF cosine, lexical
+	/// (Jaccard) overlap, structural, stylistic, named entity, and embedded-media similarity -
+	/// into a single weighted score, per the blueprint in
 	/// specs/design_handoff_compare_hierarchy/Compare.md. This is a scoring aid, not a
-	/// diff/merge tool: it never mutates either page.
+	/// diff/merge tool: it never mutates either page's hierarchy, though profile-building does
+	/// mutate the in-memory Page.Root passed to it (see BuildProfile).
 	/// </summary>
 	internal static class SimilarityEngine
 	{
@@ -55,6 +135,11 @@ namespace River.OneMoreAddIn.Commands.Compare
 		private const double StructuralWeight = 0.15;
 		private const double StylisticWeight = 0.10;
 		private const double EntityWeight = 0.10;
+
+		// deliberately excluded from SimilarityOptions.Default: Media only matters once a
+		// pair's text-based rubrics already read as near-identical, and it requires the more
+		// expensive PageDetail.BinaryData page fetch, so it's opt-in only
+		private const double MediaWeight = 0.15;
 
 		private static readonly Regex WordPattern =
 			new(@"[\p{L}\p{Nd}]+", RegexOptions.Compiled);
@@ -74,40 +159,108 @@ namespace River.OneMoreAddIn.Commands.Compare
 
 
 		/// <summary>
-		/// Scores the content similarity of two pages, weighting five deterministic rubrics
-		/// per the blueprint's table (TF-IDF cosine 0.45, lexical 0.20, structural 0.15,
-		/// stylistic 0.10, entity 0.10).
+		/// Extracts everything SimilarityEngine needs to score this page against another, in
+		/// one pass. Mutates page.Root the same way the old inline Compare did (TextValue(true)
+		/// strips HTML from the XML it reads), so callers that also need the original,
+		/// unmutated XML (e.g. Remove Duplicate Pages' exact-hash pass) must capture that first.
 		/// </summary>
-		/// <param name="left">The source (left) page</param>
-		/// <param name="right">The target (right) page</param>
+		/// <param name="page">The page to profile</param>
 		/// <param name="one">Forwarded to Page.GetHeadings, which is called with linked:false
 		/// here, so this is never actually dereferenced; a null instance is fine</param>
-		/// <returns>The overall score and its rubric-by-rubric breakdown</returns>
-		public static SimilarityResult Compare(Page left, Page right, OneNote one)
+		public static SimilarityProfile BuildProfile(Page page, OneNote one)
 		{
+			var imageHashes = ExtractImageHashes(page);
+
 			// TextValue(true) mutates the XML it strips HTML from (see RemoveDuplicatesCommand's
-			// own use of it), which is fine here since these Page instances exist only for this
-			// one comparison and are never saved back
-			var textA = left.Root.TextValue(true) ?? string.Empty;
-			var textB = right.Root.TextValue(true) ?? string.Empty;
+			// own use of it) - do it before any extraction that assumes the original
+			// mixed-content shape, but after ImageHashes, which reads Image/Data elements that
+			// TextValue never touches
+			var text = page.Root.TextValue(true) ?? string.Empty;
+			var tokenList = Tokenize(text);
 
-			var tokenListA = Tokenize(textA);
-			var tokenListB = Tokenize(textB);
-			var tokenSetA = new HashSet<string>(tokenListA, StringComparer.Ordinal);
-			var tokenSetB = new HashSet<string>(tokenListB, StringComparer.Ordinal);
+			var headingNames = new HashSet<string>(
+				SafeGetHeadings(page, one).Select(NormalizeHeading), StringComparer.Ordinal);
 
-			var rubrics = new List<RubricScore>
+			return new SimilarityProfile
 			{
-				ScoreTfIdfCosine(tokenListA, tokenListB),
-				ScoreLexicalJaccard(tokenSetA, tokenSetB),
-				ScoreStructural(left, right, one),
-				ScoreStylistic(textA, textB),
-				ScoreEntities(textA, textB)
+				Text = text,
+				TokenList = tokenList,
+				TokenSet = new HashSet<string>(tokenList, StringComparer.Ordinal),
+				HeadingNames = headingNames,
+				ParagraphCount = CountParagraphs(page),
+				Entities = ExtractEntities(text),
+				ImageHashes = imageHashes
 			};
+		}
+
+
+		/// <summary>
+		/// Scores two already-built profiles against each other using only the rubrics named
+		/// in <paramref name="options"/>. Each returned RubricScore's Weight is the *renormalized*
+		/// weight actually used to compute Overall (base weight / sum of enabled base weights),
+		/// so the popup's "wt NN%" display always matches what was actually calculated.
+		/// </summary>
+		public static SimilarityResult Compare(
+			SimilarityProfile left, SimilarityProfile right, SimilarityOptions options)
+		{
+			var rubrics = new List<RubricScore>();
+
+			if (options.Has(Rubric.TfIdf))
+			{
+				rubrics.Add(ScoreTfIdfCosine(left.TokenList, right.TokenList));
+			}
+
+			if (options.Has(Rubric.Lexical))
+			{
+				rubrics.Add(ScoreLexicalJaccard(left.TokenSet, right.TokenSet));
+			}
+
+			if (options.Has(Rubric.Structural))
+			{
+				rubrics.Add(ScoreStructural(left, right));
+			}
+
+			if (options.Has(Rubric.Stylistic))
+			{
+				rubrics.Add(ScoreStylistic(left.Text, right.Text));
+			}
+
+			if (options.Has(Rubric.Entity))
+			{
+				rubrics.Add(ScoreEntities(left.Entities, right.Entities));
+			}
+
+			if (options.Has(Rubric.Media))
+			{
+				rubrics.Add(ScoreMedia(left, right));
+			}
+
+			var totalWeight = rubrics.Sum(r => r.Weight);
+			if (totalWeight > 0)
+			{
+				foreach (var rubric in rubrics)
+				{
+					rubric.Weight /= totalWeight;
+				}
+			}
 
 			var result = new SimilarityResult { Overall = rubrics.Sum(r => r.Weight * r.Score) };
 			result.Rubrics.AddRange(rubrics);
 			return result;
+		}
+
+
+		/// <summary>
+		/// Scores the content similarity of two pages using SimilarityOptions.Default (the
+		/// original five rubrics, no Media) - unchanged from before Media/profiles existed, so
+		/// Compare Hierarchy's behavior and scores are unaffected by this engine's expansion.
+		/// </summary>
+		/// <param name="left">The source (left) page</param>
+		/// <param name="right">The target (right) page</param>
+		/// <param name="one">Forwarded to BuildProfile/Page.GetHeadings; a null instance is fine</param>
+		public static SimilarityResult Compare(Page left, Page right, OneNote one)
+		{
+			return Compare(BuildProfile(left, one), BuildProfile(right, one), SimilarityOptions.Default);
 		}
 
 
@@ -233,33 +386,24 @@ namespace River.OneMoreAddIn.Commands.Compare
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 		// Structural...
 
-		private static RubricScore ScoreStructural(Page left, Page right, OneNote one)
+		private static RubricScore ScoreStructural(SimilarityProfile a, SimilarityProfile b)
 		{
-			var headingsA = SafeGetHeadings(left, one);
-			var headingsB = SafeGetHeadings(right, one);
-
-			var namesA = new HashSet<string>(
-				headingsA.Select(NormalizeHeading), StringComparer.Ordinal);
-			var namesB = new HashSet<string>(
-				headingsB.Select(NormalizeHeading), StringComparer.Ordinal);
-
-			var sharedHeadings = namesA.Count(namesB.Contains);
+			var sharedHeadings = a.HeadingNames.Count(b.HeadingNames.Contains);
 
 			double headingScore;
-			if (namesA.Count == 0 && namesB.Count == 0)
+			if (a.HeadingNames.Count == 0 && b.HeadingNames.Count == 0)
 			{
 				headingScore = 1.0;
 			}
 			else
 			{
-				var union = namesA.Count + namesB.Count - sharedHeadings;
+				var union = a.HeadingNames.Count + b.HeadingNames.Count - sharedHeadings;
 				headingScore = union == 0 ? 0.0 : (double)sharedHeadings / union;
 			}
 
-			var countA = CountParagraphs(left);
-			var countB = CountParagraphs(right);
-			var maxCount = Math.Max(countA, countB);
-			var countScore = maxCount == 0 ? 1.0 : 1.0 - (Math.Abs(countA - countB) / (double)maxCount);
+			var maxCount = Math.Max(a.ParagraphCount, b.ParagraphCount);
+			var countScore = maxCount == 0
+				? 1.0 : 1.0 - (Math.Abs(a.ParagraphCount - b.ParagraphCount) / (double)maxCount);
 
 			return new RubricScore
 			{
@@ -267,7 +411,8 @@ namespace River.OneMoreAddIn.Commands.Compare
 				Weight = StructuralWeight,
 				Score = (headingScore + countScore) / 2.0,
 				Reasoning = string.Format(Resx.Similarity_reasonStructural,
-					sharedHeadings, Math.Max(namesA.Count, namesB.Count), countA, countB)
+					sharedHeadings, Math.Max(a.HeadingNames.Count, b.HeadingNames.Count),
+					a.ParagraphCount, b.ParagraphCount)
 			};
 		}
 
@@ -364,11 +509,8 @@ namespace River.OneMoreAddIn.Commands.Compare
 		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 		// Named entities...
 
-		private static RubricScore ScoreEntities(string textA, string textB)
+		private static RubricScore ScoreEntities(HashSet<string> entitiesA, HashSet<string> entitiesB)
 		{
-			var entitiesA = ExtractEntities(textA);
-			var entitiesB = ExtractEntities(textB);
-
 			var shared = entitiesA.Count(entitiesB.Contains);
 
 			double score;
@@ -432,6 +574,68 @@ namespace River.OneMoreAddIn.Commands.Compare
 			return word.All(char.IsUpper)
 				|| char.IsUpper(word[0])
 				|| word.Skip(1).Any(char.IsUpper);
+		}
+
+
+		// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+		// Embedded media...
+
+		private static RubricScore ScoreMedia(SimilarityProfile a, SimilarityProfile b)
+		{
+			double score;
+			string reasoning;
+
+			if (a.ImageHashes.Count == 0 && b.ImageHashes.Count == 0)
+			{
+				score = 1.0;
+				reasoning = Resx.Similarity_reasonEmptyBoth;
+			}
+			else
+			{
+				var shared = a.ImageHashes.Count(b.ImageHashes.Contains);
+				var union = a.ImageHashes.Count + b.ImageHashes.Count - shared;
+				score = union == 0 ? 0.0 : (double)shared / union;
+				reasoning = string.Format(Resx.Similarity_reasonMedia,
+					shared, Math.Max(a.ImageHashes.Count, b.ImageHashes.Count));
+			}
+
+			return new RubricScore
+			{
+				Name = Resx.Similarity_rubricMedia,
+				Weight = MediaWeight,
+				Score = score,
+				Reasoning = reasoning
+			};
+		}
+
+
+		/// <summary>
+		/// OneMore Extension >> Hashes each embedded image's base64 payload rather than storing
+		/// it verbatim, keeping a page with many/large images cheap to carry on a SimilarityProfile.
+		/// Only ever non-empty when the page was fetched with OneNote.PageDetail.BinaryData.
+		/// </summary>
+		private static HashSet<string> ExtractImageHashes(Page page)
+		{
+			var set = new HashSet<string>(StringComparer.Ordinal);
+
+			var payloads = page.Root.Descendants(page.Namespace + "Image")
+				.Elements(page.Namespace + "Data")
+				.Select(e => (string)e)
+				.Where(v => !string.IsNullOrEmpty(v))
+				.ToList();
+
+			if (payloads.Count == 0)
+			{
+				return set;
+			}
+
+			using var hasher = new SHA1CryptoServiceProvider();
+			foreach (var payload in payloads)
+			{
+				set.Add(Convert.ToBase64String(hasher.ComputeHash(Encoding.UTF8.GetBytes(payload))));
+			}
+
+			return set;
 		}
 	}
 }

@@ -1,4 +1,4 @@
-﻿namespace River.OneMoreAddIn.Commands
+namespace River.OneMoreAddIn.Commands
 {
 	partial class RemoveDuplicatesNavigator
 	{
@@ -30,11 +30,11 @@
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RemoveDuplicatesNavigator));
 			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
-			this.view = new River.OneMoreAddIn.UI.MoreListViewEx();
+			this.resultsPanel = new System.Windows.Forms.Panel();
 			this.SuspendLayout();
-			// 
+			//
 			// cancelButton
-			// 
+			//
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.cancelButton.ImageOver = null;
@@ -43,42 +43,34 @@
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(100, 38);
 			this.cancelButton.TabIndex = 0;
-			this.cancelButton.Text = "Cancel";
+			this.cancelButton.Text = "Close";
 			this.cancelButton.UseVisualStyleBackColor = true;
 			this.cancelButton.Click += new System.EventHandler(this.CloseDialog);
-			// 
-			// view
-			// 
-			this.view.AllowItemReorder = false;
-			this.view.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			// resultsPanel
+			//
+			this.resultsPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.view.ControlPadding = 2;
-			this.view.FullRowSelect = true;
-			this.view.HideSelection = false;
-			this.view.HighlightBackground = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(193)))), ((int)(((byte)(255)))));
-			this.view.HighlightForeground = System.Drawing.SystemColors.HighlightText;
-			this.view.Location = new System.Drawing.Point(12, 35);
-			this.view.Name = "view";
-			this.view.RowHeight = 29;
-			this.view.Size = new System.Drawing.Size(1054, 503);
-			this.view.SortedBackground = System.Drawing.SystemColors.Window;
-			this.view.TabIndex = 1;
-			this.view.UseCompatibleStateImageBehavior = false;
-			this.view.View = System.Windows.Forms.View.Details;
-			// 
+			this.resultsPanel.AutoScroll = true;
+			this.resultsPanel.Location = new System.Drawing.Point(12, 12);
+			this.resultsPanel.Name = "resultsPanel";
+			this.resultsPanel.Size = new System.Drawing.Size(1054, 526);
+			this.resultsPanel.TabIndex = 1;
+			//
 			// RemoveDuplicatesNavigator
-			// 
+			//
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.cancelButton;
 			this.ClientSize = new System.Drawing.Size(1078, 594);
-			this.Controls.Add(this.view);
+			this.Controls.Add(this.resultsPanel);
 			this.Controls.Add(this.cancelButton);
 			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
+			this.MinimumSize = new System.Drawing.Size(700, 400);
 			this.Name = "RemoveDuplicatesNavigator";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Remove Duplicate Pages";
@@ -88,6 +80,6 @@
 
 		#endregion
 		private UI.MoreButton cancelButton;
-		private UI.MoreListViewEx view;
+		private System.Windows.Forms.Panel resultsPanel;
 	}
 }

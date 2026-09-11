@@ -3999,36 +3999,30 @@ Odroczony</value>
     <value>Usuń zduplikowane strony</value>
     <comment>dialog title</comment>
   </data>
-  <data name="RemoveDuplicatesDialog_basicRadio.Text" xml:space="preserve">
-    <value>Podstawowa struktura XML</value>
+  <data name="RemoveDuplicatesDialog_contentSimilarityBox" xml:space="preserve">
+    <value>Podobieństwo treści
+Cosinus TF-IDF, nakładanie się leksykalnych, strukturalny</value>
+    <comment>two-line checkbox label: title, then subtitle listing the collapsed rubrics</comment>
   </data>
-  <data name="RemoveDuplicatesDialog_basicRadioTip" xml:space="preserve">
-    <value>Porównuje tylko widoczny tekst każdej strony, ignorując formatowanie</value>
+  <data name="RemoveDuplicatesDialog_contentSimilarityTip" xml:space="preserve">
+    <value>Łączy cosinus TF-IDF, nakładanie się leksykalnych i podobieństwo strukturalne</value>
     <comment>tooltip</comment>
   </data>
-  <data name="RemoveDuplicatesDialog_deepRadio.Text" xml:space="preserve">
-    <value>Głęboki XML z porównaniem binarnym (wolne)</value>
-  </data>
-  <data name="RemoveDuplicatesDialog_deepRadioTip" xml:space="preserve">
-    <value>Porównuje pełny kod XML, w tym osadzone obrazy i atrament; najdokładniejszy, ale najwolniejszy</value>
-    <comment>tooltip</comment>
-  </data>
-  <data name="RemoveDuplicatesDialog_depthBox.Text" xml:space="preserve">
-    <value>Głębokość skanowania</value>
-  </data>
-  <data name="RemoveDuplicatesDialog_fuzzyBox.Text" xml:space="preserve">
-    <value>Wykrywaj także podobne (nieidentyczne) strony</value>
+  <data name="RemoveDuplicatesDialog_exactOnlyBox.Text" xml:space="preserve">
+    <value>Pokaż tylko dokładne duplikaty</value>
     <comment>checkbox</comment>
   </data>
-  <data name="RemoveDuplicatesDialog_includeTitlesBox.Text" xml:space="preserve">
-    <value>Uwzględnij tytuły stron podczas porównywania</value>
-    <comment>checkbox</comment>
+  <data name="RemoveDuplicatesDialog_metricsBox.Text" xml:space="preserve">
+    <value>Metryki podobieństwa</value>
+    <comment>group</comment>
   </data>
-  <data name="RemoveDuplicatesDialog_simpleRadio.Text" xml:space="preserve">
-    <value>Prosty tekst (szybko)</value>
+  <data name="RemoveDuplicatesDialog_presentationSimilarityBox" xml:space="preserve">
+    <value>Podobieństwo prezentacji
+Stylistyka, podmiot, media</value>
+    <comment>two-line checkbox label: title, then subtitle listing the collapsed rubrics</comment>
   </data>
-  <data name="RemoveDuplicatesDialog_simpleRadioTip" xml:space="preserve">
-    <value>Porównuje widoczny tekst i strukturę XML każdej strony</value>
+  <data name="RemoveDuplicatesDialog_presentationSimilarityTip" xml:space="preserve">
+    <value>Łączy podobieństwo stylistyczne, podmiotowe i medialne; media odczytuje pełną zawartość binarną każdej strony, więc skanowanie trwa dłużej</value>
     <comment>tooltip</comment>
   </data>
   <data name="RemoveDuplicatesNavigator_confirm1" xml:space="preserve">
@@ -4045,6 +4039,10 @@ Odroczony</value>
     <value>Usuń tę pustą stronę</value>
     <comment>tooltip</comment>
   </data>
+  <data name="RemoveDuplicatesNavigator_identicalChip" xml:space="preserve">
+    <value>100% · identyczne</value>
+    <comment>fixed, non-clickable similarity chip for an exact hash match</comment>
+  </data>
   <data name="RemoveDuplicatesNavigator_keepNewest" xml:space="preserve">
     <value>Zachowaj najnowsze</value>
     <comment>button</comment>
@@ -4052,6 +4050,10 @@ Odroczony</value>
   <data name="RemoveDuplicatesNavigator_pagesSimilarTo" xml:space="preserve">
     <value>Strony podobne do {0}</value>
     <comment>listview group title</comment>
+  </data>
+  <data name="RemoveDuplicatesNavigator_similarChipFormat" xml:space="preserve">
+    <value>{0}% podobne</value>
+    <comment>clickable similarity chip for a near-duplicate match, {0} rounded percentage</comment>
   </data>
   <data name="RemoveEmptyCommand_option" xml:space="preserve">
     <value>Usuń wszystkie puste linie?
@@ -6603,6 +6605,10 @@ Jesteś pewien, że chcesz kontynuować?</value>
     <value>Udostępniono {0} z {1} unikalnych słów.</value>
     <comment>similarity rubric reasoning, {0} shared word count, {1} total word count</comment>
   </data>
+  <data name="Similarity_reasonMedia" xml:space="preserve">
+    <value>Pasuje {0} z {1} osadzonych obrazów.</value>
+    <comment>similarity rubric reasoning, {0} shared image count, {1} total image count</comment>
+  </data>
   <data name="Similarity_reasonOneEmpty" xml:space="preserve">
     <value>Na jednej stronie nie ma tekstu do porównania.</value>
     <comment>similarity rubric reasoning</comment>
@@ -6625,6 +6631,10 @@ Jesteś pewien, że chcesz kontynuować?</value>
   </data>
   <data name="Similarity_rubricLexical" xml:space="preserve">
     <value>Nakładanie się leksykalne</value>
+    <comment>similarity rubric name</comment>
+  </data>
+  <data name="Similarity_rubricMedia" xml:space="preserve">
+    <value>Podobieństwo mediów</value>
     <comment>similarity rubric name</comment>
   </data>
   <data name="Similarity_rubricStructural" xml:space="preserve">

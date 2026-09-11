@@ -806,6 +806,9 @@
     <Compile Include="Commands\Clean\RemoveDuplicatesNavigator.Designer.cs">
       <DependentUpon>RemoveDuplicatesNavigator.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Clean\SimilarityChip.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Commands\Settings\AliasSheet.cs">
       <SubType>UserControl</SubType>
     </Compile>

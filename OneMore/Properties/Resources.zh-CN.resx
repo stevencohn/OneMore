@@ -4013,36 +4013,30 @@ ISO-code then comma then language name</comment>
     <value>删除重复页面</value>
     <comment>dialog title</comment>
   </data>
-  <data name="RemoveDuplicatesDialog_basicRadio.Text" xml:space="preserve">
-    <value>基本 XML 结构</value>
+  <data name="RemoveDuplicatesDialog_contentSimilarityBox" xml:space="preserve">
+    <value>内容相似度
+TF-IDF 余弦、词汇重叠、结构</value>
+    <comment>two-line checkbox label: title, then subtitle listing the collapsed rubrics</comment>
   </data>
-  <data name="RemoveDuplicatesDialog_basicRadioTip" xml:space="preserve">
-    <value>仅比较每个页面的可见文本，忽略格式</value>
+  <data name="RemoveDuplicatesDialog_contentSimilarityTip" xml:space="preserve">
+    <value>结合了 TF-IDF 余弦、词汇重叠和结构相似性</value>
     <comment>tooltip</comment>
   </data>
-  <data name="RemoveDuplicatesDialog_deepRadio.Text" xml:space="preserve">
-    <value>具有二进制比较的深度 XML（慢）</value>
-  </data>
-  <data name="RemoveDuplicatesDialog_deepRadioTip" xml:space="preserve">
-    <value>比较完整的 XML，包括嵌入的图像和墨迹； 最准确但最慢</value>
-    <comment>tooltip</comment>
-  </data>
-  <data name="RemoveDuplicatesDialog_depthBox.Text" xml:space="preserve">
-    <value>扫描深度</value>
-  </data>
-  <data name="RemoveDuplicatesDialog_fuzzyBox.Text" xml:space="preserve">
-    <value>还检测相似（不相同）的页面</value>
+  <data name="RemoveDuplicatesDialog_exactOnlyBox.Text" xml:space="preserve">
+    <value>仅显示精确的重复项</value>
     <comment>checkbox</comment>
   </data>
-  <data name="RemoveDuplicatesDialog_includeTitlesBox.Text" xml:space="preserve">
-    <value>比较时包括页面标题</value>
-    <comment>checkbox</comment>
+  <data name="RemoveDuplicatesDialog_metricsBox.Text" xml:space="preserve">
+    <value>相似度指标</value>
+    <comment>group</comment>
   </data>
-  <data name="RemoveDuplicatesDialog_simpleRadio.Text" xml:space="preserve">
-    <value>简单文本（快速）</value>
+  <data name="RemoveDuplicatesDialog_presentationSimilarityBox" xml:space="preserve">
+    <value>演示相似度
+文体、实体、媒体</value>
+    <comment>two-line checkbox label: title, then subtitle listing the collapsed rubrics</comment>
   </data>
-  <data name="RemoveDuplicatesDialog_simpleRadioTip" xml:space="preserve">
-    <value>比较每个页面的可见文本和 XML 结构</value>
+  <data name="RemoveDuplicatesDialog_presentationSimilarityTip" xml:space="preserve">
+    <value>结合风格、实体和媒体相似性；媒体读取每个页面的完整二进制内容，因此扫描需要更长的时间</value>
     <comment>tooltip</comment>
   </data>
   <data name="RemoveDuplicatesNavigator_confirm1" xml:space="preserve">
@@ -4059,6 +4053,10 @@ ISO-code then comma then language name</comment>
     <value>删除此空白页</value>
     <comment>tooltip</comment>
   </data>
+  <data name="RemoveDuplicatesNavigator_identicalChip" xml:space="preserve">
+    <value>100% · 相同</value>
+    <comment>fixed, non-clickable similarity chip for an exact hash match</comment>
+  </data>
   <data name="RemoveDuplicatesNavigator_keepNewest" xml:space="preserve">
     <value>保持最新</value>
     <comment>button</comment>
@@ -4066,6 +4064,10 @@ ISO-code then comma then language name</comment>
   <data name="RemoveDuplicatesNavigator_pagesSimilarTo" xml:space="preserve">
     <value>类似于{0}的页面</value>
     <comment>listview group title</comment>
+  </data>
+  <data name="RemoveDuplicatesNavigator_similarChipFormat" xml:space="preserve">
+    <value>{0}% 相似</value>
+    <comment>clickable similarity chip for a near-duplicate match, {0} rounded percentage</comment>
   </data>
   <data name="RemoveEmptyCommand_option" xml:space="preserve">
     <value>删除所有空行？
@@ -6621,6 +6623,10 @@ ISO-code then comma then language name</comment>
     <value>已共享 {0} 个独特字词（共 {1} 个）。</value>
     <comment>similarity rubric reasoning, {0} shared word count, {1} total word count</comment>
   </data>
+  <data name="Similarity_reasonMedia" xml:space="preserve">
+    <value>{0} 个嵌入图像（共 {1} 个）匹配。</value>
+    <comment>similarity rubric reasoning, {0} shared image count, {1} total image count</comment>
+  </data>
   <data name="Similarity_reasonOneEmpty" xml:space="preserve">
     <value>一页没有可比较的文字。</value>
     <comment>similarity rubric reasoning</comment>
@@ -6643,6 +6649,10 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="Similarity_rubricLexical" xml:space="preserve">
     <value>词汇重叠</value>
+    <comment>similarity rubric name</comment>
+  </data>
+  <data name="Similarity_rubricMedia" xml:space="preserve">
+    <value>媒体相似度</value>
     <comment>similarity rubric name</comment>
   </data>
   <data name="Similarity_rubricStructural" xml:space="preserve">

@@ -10,31 +10,26 @@ namespace River.OneMoreAddIn.Tests.Commands.Clean
 	/*
 	 * Test Protocol - RemoveDuplicatesCommand
 	 *
-	 * Basic-depth matching fix:
-	 *   1. Create 3+ unrelated non-empty pages in a test section, plus one true text-duplicate
-	 *      pair (same visible text, different titles or attributes).
-	 *   2. Invoke Clean/Remove Duplicate Pages with Basic depth.
-	 *   3. Confirm only the true duplicate pair is grouped together; unrelated pages are not
-	 *      grouped under the first page scanned.
-	 *
-	 * Deep-mode performance guard:
-	 *   1. Add an image-heavy page (several MB of embedded pictures/ink) plus a near-duplicate
-	 *      of it to a test section.
-	 *   2. Invoke Clean/Remove Duplicate Pages with Deep depth.
-	 *   3. Confirm the scan completes promptly and the pair's Distance column renders "-"
-	 *      (too large to compare) rather than hanging.
+	 * Exact-match AND-based grouping:
+	 *   1. Create a true text-and-XML duplicate pair (identical export) plus a pair that shares
+	 *      visible text but differs in an embedded image.
+	 *   2. Invoke Clean/Remove Duplicate Pages with the Media metric checked and "Also detect
+	 *      similar" checked.
+	 *   3. Confirm the true duplicate shows the fixed "100% · identical" chip, while the
+	 *      text-identical/image-different pair instead shows a clickable, scored chip whose
+	 *      popup reports a low Media rubric score.
 	 *
 	 * Near-duplicate detection:
 	 *   1. Create two pages with matching structure but a few words changed.
-	 *   2. Invoke Clean/Remove Duplicate Pages, Simple depth, with "Also detect similar
-	 *      (non-identical) pages" checked.
-	 *   3. Confirm the pages group under "Pages similar to X" with a similarity percentage
-	 *      shown, and that true duplicates elsewhere show "Duplicates of X" with no percentage.
+	 *   2. Invoke Clean/Remove Duplicate Pages with "Also detect similar (non-identical) pages"
+	 *      checked and the default metrics selected.
+	 *   3. Confirm the pages group under "Pages similar to X" with a clickable similarity chip,
+	 *      and that true duplicates elsewhere show "Duplicates of X" with the fixed chip.
 	 *
 	 * Keep Newest bulk action:
 	 *   1. Create 3 copies of a page in a test section, editing/saving each at a different time
 	 *      so lastModifiedTime differs.
-	 *   2. Run the scan, then click "Keep Newest" on that group in the results Navigator.
+	 *   2. Run the scan, then click "Keep Newest" on that group in the results dialog.
 	 *   3. Confirm only the two older copies are queued for deletion (with the usual confirm
 	 *      prompt) and the newest page survives.
 	 */
@@ -71,34 +66,6 @@ namespace River.OneMoreAddIn.Tests.Commands.Clean
 			Assert.IsFalse(RemoveDuplicatesCommand.PassesLengthPrefilter(0, 100, 0.85));
 			Assert.IsFalse(RemoveDuplicatesCommand.PassesLengthPrefilter(100, 0, 0.85));
 			Assert.IsFalse(RemoveDuplicatesCommand.PassesLengthPrefilter(0, 0, 0.85));
-		}
-
-
-		[TestMethod]
-		public void NormalizedSimilarity_ZeroDistance_ReturnsOne()
-		{
-			Assert.AreEqual(1.0, RemoveDuplicatesCommand.NormalizedSimilarity(0, 100, 100));
-		}
-
-
-		[TestMethod]
-		public void NormalizedSimilarity_FullDistance_ReturnsZero()
-		{
-			Assert.AreEqual(0.0, RemoveDuplicatesCommand.NormalizedSimilarity(100, 100, 100));
-		}
-
-
-		[TestMethod]
-		public void NormalizedSimilarity_PartialDistance_ReturnsExpectedRatio()
-		{
-			Assert.AreEqual(0.9, RemoveDuplicatesCommand.NormalizedSimilarity(10, 100, 100), 0.0001);
-		}
-
-
-		[TestMethod]
-		public void NormalizedSimilarity_BothEmpty_ReturnsOne()
-		{
-			Assert.AreEqual(1.0, RemoveDuplicatesCommand.NormalizedSimilarity(0, 0, 0));
 		}
 	}
 }

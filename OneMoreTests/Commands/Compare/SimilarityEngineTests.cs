@@ -44,6 +44,24 @@ namespace River.OneMoreAddIn.Tests.Commands.Compare
 		}
 
 
+		private static Page BuildPageWithImage(string id, string title, string imageData, params string[] paragraphs)
+		{
+			var oeChildren = new XElement(ns + "OEChildren",
+				paragraphs.Select(p => new XElement(ns + "OE", new XElement(ns + "T", new XCData(p)))));
+
+			oeChildren.Add(new XElement(ns + "OE",
+				new XElement(ns + "Image", new XElement(ns + "Data", imageData))));
+
+			var root = new XElement(ns + "Page",
+				new XAttribute(XNamespace.Xmlns + "one", ns.NamespaceName),
+				new XAttribute("ID", id),
+				new XAttribute("name", title),
+				new XElement(ns + "Outline", oeChildren));
+
+			return new Page(root);
+		}
+
+
 		[TestMethod]
 		public void Compare_IdenticalPages_ScoresNearPerfect()
 		{
@@ -148,6 +166,78 @@ namespace River.OneMoreAddIn.Tests.Commands.Compare
 
 			Assert.IsTrue(sharedScore > unrelatedScore,
 				$"shared-entity score ({sharedScore:F2}) should exceed unrelated score ({unrelatedScore:F2})");
+		}
+
+
+		[TestMethod]
+		public void BuildProfile_ExtractsImageHashes()
+		{
+			var page = BuildPageWithImage("L1", "Has Image", "AAAABBBB", "Some text.");
+			var profile = SimilarityEngine.BuildProfile(page, null);
+
+			Assert.AreEqual(1, profile.ImageHashes.Count);
+		}
+
+
+		[TestMethod]
+		public void Compare_SameTextDifferentImages_MediaRubricScoresZero()
+		{
+			var left = BuildPageWithImage("L1", "A", "AAAA", "Identical paragraph text here.");
+			var right = BuildPageWithImage("R1", "B", "ZZZZ", "Identical paragraph text here.");
+
+			var profileA = SimilarityEngine.BuildProfile(left, null);
+			var profileB = SimilarityEngine.BuildProfile(right, null);
+
+			var result = SimilarityEngine.Compare(profileA, profileB, new SimilarityOptions(Rubric.Media));
+			var media = result.Rubrics.Single(r => r.Name == Resx.Similarity_rubricMedia);
+
+			Assert.AreEqual(0.0, media.Score, 0.0001);
+		}
+
+
+		[TestMethod]
+		public void Compare_SharedImages_MediaRubricScoresPerfect()
+		{
+			var left = BuildPageWithImage("L1", "A", "SAMEDATA", "Text.");
+			var right = BuildPageWithImage("R1", "B", "SAMEDATA", "Text.");
+
+			var profileA = SimilarityEngine.BuildProfile(left, null);
+			var profileB = SimilarityEngine.BuildProfile(right, null);
+
+			var result = SimilarityEngine.Compare(profileA, profileB, new SimilarityOptions(Rubric.Media));
+			var media = result.Rubrics.Single(r => r.Name == Resx.Similarity_rubricMedia);
+
+			Assert.AreEqual(1.0, media.Score, 0.0001);
+		}
+
+
+		[TestMethod]
+		public void Compare_DefaultOptions_NeverIncludesMediaRubric()
+		{
+			var left = BuildPageWithImage("L1", "A", "AAAA", "Some text.");
+			var right = BuildPageWithImage("R1", "B", "ZZZZ", "Some text.");
+
+			var result = SimilarityEngine.Compare(left, right, null);
+
+			Assert.IsFalse(result.Rubrics.Any(r => r.Name == Resx.Similarity_rubricMedia),
+				"Compare Hierarchy's default options must never score Media");
+		}
+
+
+		[TestMethod]
+		public void Compare_SubsetOfRubrics_WeightsRenormalizeToOne()
+		{
+			var left = BuildPage("L1", "A", "Some content.");
+			var right = BuildPage("R1", "B", "Other content.");
+
+			var profileA = SimilarityEngine.BuildProfile(left, null);
+			var profileB = SimilarityEngine.BuildProfile(right, null);
+
+			var options = new SimilarityOptions(Rubric.TfIdf | Rubric.Lexical);
+			var result = SimilarityEngine.Compare(profileA, profileB, options);
+
+			Assert.AreEqual(2, result.Rubrics.Count);
+			Assert.AreEqual(1.0, result.Rubrics.Sum(r => r.Weight), 0.0001);
 		}
 	}
 }

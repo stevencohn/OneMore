@@ -3999,40 +3999,30 @@ Differito</value>
     <value>Rimuovi le pagine duplicate</value>
     <comment>dialog title</comment>
   </data>
-  <data name="RemoveDuplicatesDialog_basicRadio.Text" xml:space="preserve">
-    <value>Struttura XML di base</value>
-    <comment>radio</comment>
+  <data name="RemoveDuplicatesDialog_contentSimilarityBox" xml:space="preserve">
+    <value>Somiglianza di contenuto
+Coseno TF-IDF, Sovrapposizione lessicale, Strutturale</value>
+    <comment>two-line checkbox label: title, then subtitle listing the collapsed rubrics</comment>
   </data>
-  <data name="RemoveDuplicatesDialog_basicRadioTip" xml:space="preserve">
-    <value>Confronta solo il testo visibile di ciascuna pagina, ignorando la formattazione</value>
+  <data name="RemoveDuplicatesDialog_contentSimilarityTip" xml:space="preserve">
+    <value>Combina il coseno TF-IDF, la sovrapposizione lessicale e la somiglianza strutturale</value>
     <comment>tooltip</comment>
   </data>
-  <data name="RemoveDuplicatesDialog_deepRadio.Text" xml:space="preserve">
-    <value>Deep XML con confronto binario (lento)</value>
-    <comment>radio</comment>
+  <data name="RemoveDuplicatesDialog_exactOnlyBox.Text" xml:space="preserve">
+    <value>Mostra solo duplicati esatti</value>
+    <comment>checkbox</comment>
   </data>
-  <data name="RemoveDuplicatesDialog_deepRadioTip" xml:space="preserve">
-    <value>Confronta l'XML completo, comprese le immagini e l'input penna incorporati; più preciso ma più lento</value>
-    <comment>tooltip</comment>
-  </data>
-  <data name="RemoveDuplicatesDialog_depthBox.Text" xml:space="preserve">
-    <value>Profondità di scansione</value>
+  <data name="RemoveDuplicatesDialog_metricsBox.Text" xml:space="preserve">
+    <value>Metriche di somiglianza</value>
     <comment>group</comment>
   </data>
-  <data name="RemoveDuplicatesDialog_fuzzyBox.Text" xml:space="preserve">
-    <value>Rileva anche pagine simili (non identiche).</value>
-    <comment>checkbox</comment>
+  <data name="RemoveDuplicatesDialog_presentationSimilarityBox" xml:space="preserve">
+    <value>Somiglianza di presentazione
+Stilistica, Entità, Media</value>
+    <comment>two-line checkbox label: title, then subtitle listing the collapsed rubrics</comment>
   </data>
-  <data name="RemoveDuplicatesDialog_includeTitlesBox.Text" xml:space="preserve">
-    <value>Includi i titoli delle pagine durante il confronto</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="RemoveDuplicatesDialog_simpleRadio.Text" xml:space="preserve">
-    <value>Testo semplice (veloce)</value>
-    <comment>radio</comment>
-  </data>
-  <data name="RemoveDuplicatesDialog_simpleRadioTip" xml:space="preserve">
-    <value>Confronta il testo visibile e la struttura XML di ogni pagina</value>
+  <data name="RemoveDuplicatesDialog_presentationSimilarityTip" xml:space="preserve">
+    <value>Combina somiglianza stilistica, di entità e mediatica; media legge l'intero contenuto binario di ogni pagina, quindi le scansioni richiedono più tempo</value>
     <comment>tooltip</comment>
   </data>
   <data name="RemoveDuplicatesNavigator_confirm1" xml:space="preserve">
@@ -4049,6 +4039,10 @@ Differito</value>
     <value>Elimina questa pagina vuota</value>
     <comment>tooltip</comment>
   </data>
+  <data name="RemoveDuplicatesNavigator_identicalChip" xml:space="preserve">
+    <value>100% · identico</value>
+    <comment>fixed, non-clickable similarity chip for an exact hash match</comment>
+  </data>
   <data name="RemoveDuplicatesNavigator_keepNewest" xml:space="preserve">
     <value>Mantieni più recente</value>
     <comment>button</comment>
@@ -4056,6 +4050,10 @@ Differito</value>
   <data name="RemoveDuplicatesNavigator_pagesSimilarTo" xml:space="preserve">
     <value>Pagine simili a {0}</value>
     <comment>listview group title</comment>
+  </data>
+  <data name="RemoveDuplicatesNavigator_similarChipFormat" xml:space="preserve">
+    <value>{0}% simili</value>
+    <comment>clickable similarity chip for a near-duplicate match, {0} rounded percentage</comment>
   </data>
   <data name="RemoveEmptyCommand_option" xml:space="preserve">
     <value>Rimuovere tutte le righe vuote?
@@ -6610,6 +6608,10 @@ Sei sicuro di voler continuare?</value>
     <value>{0} di {1} parole univoche sono condivise.</value>
     <comment>similarity rubric reasoning, {0} shared word count, {1} total word count</comment>
   </data>
+  <data name="Similarity_reasonMedia" xml:space="preserve">
+    <value>{0} di {1} immagini incorporate corrispondono.</value>
+    <comment>similarity rubric reasoning, {0} shared image count, {1} total image count</comment>
+  </data>
   <data name="Similarity_reasonOneEmpty" xml:space="preserve">
     <value>Una pagina non contiene testo da confrontare.</value>
     <comment>similarity rubric reasoning</comment>
@@ -6632,6 +6634,10 @@ Sei sicuro di voler continuare?</value>
   </data>
   <data name="Similarity_rubricLexical" xml:space="preserve">
     <value>Sovrapposizione lessicale</value>
+    <comment>similarity rubric name</comment>
+  </data>
+  <data name="Similarity_rubricMedia" xml:space="preserve">
+    <value>Somiglianza mediatica</value>
     <comment>similarity rubric name</comment>
   </data>
   <data name="Similarity_rubricStructural" xml:space="preserve">

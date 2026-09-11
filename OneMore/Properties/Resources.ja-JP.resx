@@ -4002,40 +4002,30 @@ ISO-code then comma then language name</comment>
     <value>重複ページの削除</value>
     <comment>dialog title</comment>
   </data>
-  <data name="RemoveDuplicatesDialog_basicRadio.Text" xml:space="preserve">
-    <value>基本 XML 構造</value>
-    <comment>radio</comment>
+  <data name="RemoveDuplicatesDialog_contentSimilarityBox" xml:space="preserve">
+    <value>コンテンツの類似性
+TF-IDF コサイン、語彙の重複、構造</value>
+    <comment>two-line checkbox label: title, then subtitle listing the collapsed rubrics</comment>
   </data>
-  <data name="RemoveDuplicatesDialog_basicRadioTip" xml:space="preserve">
-    <value>書式設定を無視して、各ページの表示テキストのみを比較します。</value>
+  <data name="RemoveDuplicatesDialog_contentSimilarityTip" xml:space="preserve">
+    <value>TF-IDF コサイン、語彙の重複、構造の類似性を組み合わせます。</value>
     <comment>tooltip</comment>
   </data>
-  <data name="RemoveDuplicatesDialog_deepRadio.Text" xml:space="preserve">
-    <value>バイナリ比較による深い XML（遅い）</value>
-    <comment>radio</comment>
+  <data name="RemoveDuplicatesDialog_exactOnlyBox.Text" xml:space="preserve">
+    <value>完全な重複のみを表示</value>
+    <comment>checkbox</comment>
   </data>
-  <data name="RemoveDuplicatesDialog_deepRadioTip" xml:space="preserve">
-    <value>埋め込み画像とインクを含む完全な XML を比較します。 最も正確だが最も遅い</value>
-    <comment>tooltip</comment>
-  </data>
-  <data name="RemoveDuplicatesDialog_depthBox.Text" xml:space="preserve">
-    <value>スキャン深度</value>
+  <data name="RemoveDuplicatesDialog_metricsBox.Text" xml:space="preserve">
+    <value>類似性メトリクス</value>
     <comment>group</comment>
   </data>
-  <data name="RemoveDuplicatesDialog_fuzzyBox.Text" xml:space="preserve">
-    <value>類似した（同一ではない）ページも検出します</value>
-    <comment>checkbox</comment>
+  <data name="RemoveDuplicatesDialog_presentationSimilarityBox" xml:space="preserve">
+    <value>プレゼンテーションの類似性
+文体、実体、メディア</value>
+    <comment>two-line checkbox label: title, then subtitle listing the collapsed rubrics</comment>
   </data>
-  <data name="RemoveDuplicatesDialog_includeTitlesBox.Text" xml:space="preserve">
-    <value>比較時にページタイトルを含める</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="RemoveDuplicatesDialog_simpleRadio.Text" xml:space="preserve">
-    <value>シンプルなテキスト（速い）</value>
-    <comment>radio</comment>
-  </data>
-  <data name="RemoveDuplicatesDialog_simpleRadioTip" xml:space="preserve">
-    <value>各ページの表示テキストと XML 構造を比較します。</value>
+  <data name="RemoveDuplicatesDialog_presentationSimilarityTip" xml:space="preserve">
+    <value>文体、実体、メディアの類似性を組み合わせます。メディアは各ページの完全なバイナリ コンテンツを読み取るため、スキャンに時間がかかります</value>
     <comment>tooltip</comment>
   </data>
   <data name="RemoveDuplicatesNavigator_confirm1" xml:space="preserve">
@@ -4052,6 +4042,10 @@ ISO-code then comma then language name</comment>
     <value>この空のページを削除します</value>
     <comment>tooltip</comment>
   </data>
+  <data name="RemoveDuplicatesNavigator_identicalChip" xml:space="preserve">
+    <value>100%・同一</value>
+    <comment>fixed, non-clickable similarity chip for an exact hash match</comment>
+  </data>
   <data name="RemoveDuplicatesNavigator_keepNewest" xml:space="preserve">
     <value>最新の状態を保つ</value>
     <comment>button</comment>
@@ -4059,6 +4053,10 @@ ISO-code then comma then language name</comment>
   <data name="RemoveDuplicatesNavigator_pagesSimilarTo" xml:space="preserve">
     <value>{0} に似たページ</value>
     <comment>listview group title</comment>
+  </data>
+  <data name="RemoveDuplicatesNavigator_similarChipFormat" xml:space="preserve">
+    <value>{0}% 類似</value>
+    <comment>clickable similarity chip for a near-duplicate match, {0} rounded percentage</comment>
   </data>
   <data name="RemoveEmptyCommand_option" xml:space="preserve">
     <value>すべての空行を削除しますか？
@@ -6613,6 +6611,10 @@ ISO-code then comma then language name</comment>
     <value>{1} 個中 {0} 個の一意の単語が共有されています。</value>
     <comment>similarity rubric reasoning, {0} shared word count, {1} total word count</comment>
   </data>
+  <data name="Similarity_reasonMedia" xml:space="preserve">
+    <value>{1} 個の埋め込み画像のうち {0} 個が一致します。</value>
+    <comment>similarity rubric reasoning, {0} shared image count, {1} total image count</comment>
+  </data>
   <data name="Similarity_reasonOneEmpty" xml:space="preserve">
     <value>あるページには比較するテキストがありません。</value>
     <comment>similarity rubric reasoning</comment>
@@ -6635,6 +6637,10 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="Similarity_rubricLexical" xml:space="preserve">
     <value>語彙の重複</value>
+    <comment>similarity rubric name</comment>
+  </data>
+  <data name="Similarity_rubricMedia" xml:space="preserve">
+    <value>メディアの類似性</value>
     <comment>similarity rubric name</comment>
   </data>
   <data name="Similarity_rubricStructural" xml:space="preserve">

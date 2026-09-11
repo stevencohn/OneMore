@@ -3999,40 +3999,30 @@ ISO-code then comma then language name</comment>
     <value>הסר דפים כפולים</value>
     <comment>dialog title</comment>
   </data>
-  <data name="RemoveDuplicatesDialog_basicRadio.Text" xml:space="preserve">
-    <value>מבנה XML בסיסי</value>
-    <comment>radio</comment>
+  <data name="RemoveDuplicatesDialog_contentSimilarityBox" xml:space="preserve">
+    <value>דמיון בתוכן
+TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
+    <comment>two-line checkbox label: title, then subtitle listing the collapsed rubrics</comment>
   </data>
-  <data name="RemoveDuplicatesDialog_basicRadioTip" xml:space="preserve">
-    <value>משווה רק את הטקסט הגלוי של כל עמוד, תוך התעלמות מהעיצוב</value>
+  <data name="RemoveDuplicatesDialog_contentSimilarityTip" xml:space="preserve">
+    <value>משלב קוסינוס TF-IDF, חפיפה מילונית ודמיון מבני</value>
     <comment>tooltip</comment>
   </data>
-  <data name="RemoveDuplicatesDialog_deepRadio.Text" xml:space="preserve">
-    <value>XML עמוק עם השוואה בינארית (איטית)</value>
-    <comment>radio</comment>
+  <data name="RemoveDuplicatesDialog_exactOnlyBox.Text" xml:space="preserve">
+    <value>הצג רק כפילויות מדויקות</value>
+    <comment>checkbox</comment>
   </data>
-  <data name="RemoveDuplicatesDialog_deepRadioTip" xml:space="preserve">
-    <value>משווה XML מלא כולל תמונות מוטבעות ודיו; הכי מדויק אבל הכי איטי</value>
-    <comment>tooltip</comment>
-  </data>
-  <data name="RemoveDuplicatesDialog_depthBox.Text" xml:space="preserve">
-    <value>עומק סריקה</value>
+  <data name="RemoveDuplicatesDialog_metricsBox.Text" xml:space="preserve">
+    <value>מדדי דמיון</value>
     <comment>group</comment>
   </data>
-  <data name="RemoveDuplicatesDialog_fuzzyBox.Text" xml:space="preserve">
-    <value>זהה גם דפים דומים (לא זהים).</value>
-    <comment>checkbox</comment>
+  <data name="RemoveDuplicatesDialog_presentationSimilarityBox" xml:space="preserve">
+    <value>דמיון במצגת
+סגנונית, ישות, מדיה</value>
+    <comment>two-line checkbox label: title, then subtitle listing the collapsed rubrics</comment>
   </data>
-  <data name="RemoveDuplicatesDialog_includeTitlesBox.Text" xml:space="preserve">
-    <value>כלול כותרות עמודים בעת ההשוואה</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="RemoveDuplicatesDialog_simpleRadio.Text" xml:space="preserve">
-    <value>טקסט פשוט (מהיר)</value>
-    <comment>radio</comment>
-  </data>
-  <data name="RemoveDuplicatesDialog_simpleRadioTip" xml:space="preserve">
-    <value>משווה טקסט גלוי ומבנה XML של כל עמוד</value>
+  <data name="RemoveDuplicatesDialog_presentationSimilarityTip" xml:space="preserve">
+    <value>משלב דמיון סגנוני, ישות ומדיה; המדיה קוראת את התוכן הבינארי המלא של כל עמוד, כך שהסריקות נמשכות זמן רב יותר</value>
     <comment>tooltip</comment>
   </data>
   <data name="RemoveDuplicatesNavigator_confirm1" xml:space="preserve">
@@ -4049,6 +4039,10 @@ ISO-code then comma then language name</comment>
     <value>מחק את הדף הריק הזה</value>
     <comment>tooltip</comment>
   </data>
+  <data name="RemoveDuplicatesNavigator_identicalChip" xml:space="preserve">
+    <value>100% · זהה</value>
+    <comment>fixed, non-clickable similarity chip for an exact hash match</comment>
+  </data>
   <data name="RemoveDuplicatesNavigator_keepNewest" xml:space="preserve">
     <value>שמור הכי חדש</value>
     <comment>button</comment>
@@ -4056,6 +4050,10 @@ ISO-code then comma then language name</comment>
   <data name="RemoveDuplicatesNavigator_pagesSimilarTo" xml:space="preserve">
     <value>דפים דומים ל-{0}</value>
     <comment>listview group title</comment>
+  </data>
+  <data name="RemoveDuplicatesNavigator_similarChipFormat" xml:space="preserve">
+    <value>{0}% דומים</value>
+    <comment>clickable similarity chip for a near-duplicate match, {0} rounded percentage</comment>
   </data>
   <data name="RemoveEmptyCommand_option" xml:space="preserve">
     <value>להסיר את כל השורות הריקות?
@@ -6607,6 +6605,10 @@ ISO-code then comma then language name</comment>
     <value>{0} מתוך {1} מילים ייחודיות משותפות.</value>
     <comment>similarity rubric reasoning, {0} shared word count, {1} total word count</comment>
   </data>
+  <data name="Similarity_reasonMedia" xml:space="preserve">
+    <value>{0} מתוך {1} תמונות מוטבעות תואמות.</value>
+    <comment>similarity rubric reasoning, {0} shared image count, {1} total image count</comment>
+  </data>
   <data name="Similarity_reasonOneEmpty" xml:space="preserve">
     <value>בעמוד אחד אין טקסט להשוואה.</value>
     <comment>similarity rubric reasoning</comment>
@@ -6629,6 +6631,10 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="Similarity_rubricLexical" xml:space="preserve">
     <value>חפיפה לקסיקלית</value>
+    <comment>similarity rubric name</comment>
+  </data>
+  <data name="Similarity_rubricMedia" xml:space="preserve">
+    <value>דמיון תקשורתי</value>
     <comment>similarity rubric name</comment>
   </data>
   <data name="Similarity_rubricStructural" xml:space="preserve">
