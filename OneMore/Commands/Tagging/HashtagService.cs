@@ -137,6 +137,12 @@ namespace River.OneMoreAddIn.Commands
 			var errors = 0;
 			while (errors < 5 && !serviceToken.IsCancellationRequested)
 			{
+				if (IsDisabled())
+				{
+					logger.WriteLine("hashtag service disabled by user, stopping");
+					break;
+				}
+
 				try
 				{
 					await Scan(serviceToken.Token);
@@ -167,6 +173,12 @@ namespace River.OneMoreAddIn.Commands
 
 			CleanupToken();
 			logger.WriteLine("Shutdown: hashtag service has stopped");
+		}
+
+
+		private static bool IsDisabled()
+		{
+			return new SettingsProvider().GetCollection("HashtagSheet").Get("disabled", false);
 		}
 
 
