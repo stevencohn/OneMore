@@ -52,6 +52,11 @@ namespace River.OneMoreAddIn.Commands
 		{
 			InitializeComponent();
 
+			// capture the designed gap before mutating either box - metricsBox's own
+			// Size and scopeGroupBox's Location are independently authored constants
+			// in the Designer file, so this is the only link between them
+			var groupGap = scopeGroupBox.Top - metricsBox.Bottom;
+
 			var y = MetricFirstRowY;
 			for (var i = 0; i < MetricDefinitions.Length; i++)
 			{
@@ -59,12 +64,24 @@ namespace River.OneMoreAddIn.Commands
 				var box = CreateMetricBox(definition, y);
 				metricsBox.Controls.Add(box);
 				metrics.Add((definition.Rubric, box));
-				y += MetricBoxHeight + MetricRowGap;
+				y += box.Height + MetricRowGap;
 			}
 
 			y += ExactOnlyRowGap - MetricRowGap;
 			exactOnlyBox = CreateExactOnlyBox(y);
 			metricsBox.Controls.Add(exactOnlyBox);
+
+			// MoreCheckBox.OnTextChanged can grow a box taller than the Metric*Height
+			// constants above at some DPI/font combinations; when that pushes content
+			// past metricsBox's authored Size, grow metricsBox to match and reposition
+			// scopeGroupBox below it so the two groups can never overlap
+			var overflow = exactOnlyBox.Bottom + metricsBox.Padding.Bottom - metricsBox.Height;
+			if (overflow > 0)
+			{
+				metricsBox.Height += overflow;
+			}
+
+			scopeGroupBox.Top = metricsBox.Bottom + groupGap;
 
 			if (NeedsLocalizing())
 			{
