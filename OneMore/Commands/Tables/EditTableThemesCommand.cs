@@ -25,9 +25,10 @@ namespace River.OneMoreAddIn.Commands
 			if (guard is null) { return; }
 
 			var provider = new TableThemeProvider();
-			var themes = provider.GetUserThemes();
+			var systemThemes = provider.GetSystemThemes(unfiltered: true);
+			var userThemes = provider.GetUserThemes();
 
-			using var dialog = new EditTableThemesDialog(themes);
+			using var dialog = new EditTableThemesDialog(systemThemes, userThemes);
 			if (dialog.ShowDialog(owner) == DialogResult.OK)
 			{
 				if (dialog.Modified)

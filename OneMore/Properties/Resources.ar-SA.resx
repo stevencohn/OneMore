@@ -1341,6 +1341,10 @@
     <value>الألوان</value>
     <comment>tab</comment>
   </data>
+  <data name="EditTableThemesDialog_copyTitle" xml:space="preserve">
+    <value>{0} نسخ</value>
+    <comment>{0}=source theme name; generated name for a duplicated theme</comment>
+  </data>
   <data name="EditTableThemesDialog_deleteStyle" xml:space="preserve">
     <value>حذف هذا النمط؟</value>
     <comment>message box</comment>
@@ -1348,6 +1352,10 @@
   <data name="EditTableThemesDialog_discard" xml:space="preserve">
     <value>تجاهل التغييرات غير المحفوظة؟</value>
     <comment>message box</comment>
+  </data>
+  <data name="EditTableThemesDialog_duplicateFrom" xml:space="preserve">
+    <value>مكررة من…</value>
+    <comment>menu header</comment>
   </data>
   <data name="EditTableThemesDialog_elements" xml:space="preserve">
     <value>طاولة كاملة
@@ -1385,9 +1393,21 @@
     <value>إعادة ضبط الجميع</value>
     <comment>button</comment>
   </data>
+  <data name="EditTableThemesDialog_resetToDefault" xml:space="preserve">
+    <value>إعادة التعيين إلى الوضع الافتراضي</value>
+    <comment>link, Fonts tab</comment>
+  </data>
+  <data name="EditTableThemesDialog_sample" xml:space="preserve">
+    <value>نموذج نص الجدول</value>
+    <comment>live font preview text, Fonts tab</comment>
+  </data>
   <data name="EditTableThemesDialog_Text" xml:space="preserve">
     <value>أنماط الجدول المخصصة</value>
     <comment>dialog</comment>
+  </data>
+  <data name="EditTableThemesDialog_yourThemes" xml:space="preserve">
+    <value>المواضيع الخاصة بك</value>
+    <comment>gallery section header</comment>
   </data>
   <data name="EmbedCommand_EmbeddedFrom" xml:space="preserve">
     <value>مضمن من {0}</value>
@@ -7351,6 +7371,9 @@ ISO-code then comma then language name</comment>
   <data name="word_Due" xml:space="preserve">
     <value>بسبب</value>
   </data>
+  <data name="word_Duplicate" xml:space="preserve">
+    <value>ينسخ</value>
+  </data>
   <data name="word_Edit" xml:space="preserve">
     <value>يحرر</value>
   </data>
@@ -7437,6 +7460,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Navigator" xml:space="preserve">
     <value>الملاح</value>
+  </data>
+  <data name="word_New" xml:space="preserve">
+    <value>جديد</value>
   </data>
   <data name="word_No" xml:space="preserve">
     <value>رقم</value>
@@ -7567,6 +7593,9 @@ ISO-code then comma then language name</comment>
   </data>
   <data name="word_Text" xml:space="preserve">
     <value>نص</value>
+  </data>
+  <data name="word_Theme" xml:space="preserve">
+    <value>سمة</value>
   </data>
   <data name="word_Value" xml:space="preserve">
     <value>قيمة</value>

@@ -1338,6 +1338,10 @@ Normaal</value>
     <value>Kleuren</value>
     <comment>tab</comment>
   </data>
+  <data name="EditTableThemesDialog_copyTitle" xml:space="preserve">
+    <value>{0} Kopiëren</value>
+    <comment>{0}=source theme name; generated name for a duplicated theme</comment>
+  </data>
   <data name="EditTableThemesDialog_deleteStyle" xml:space="preserve">
     <value>Deze stijl verwijderen?</value>
     <comment>message box</comment>
@@ -1345,6 +1349,10 @@ Normaal</value>
   <data name="EditTableThemesDialog_discard" xml:space="preserve">
     <value>Niet -geredde veranderingen weggooien?</value>
     <comment>message box</comment>
+  </data>
+  <data name="EditTableThemesDialog_duplicateFrom" xml:space="preserve">
+    <value>Dupliceren van...</value>
+    <comment>menu header</comment>
   </data>
   <data name="EditTableThemesDialog_elements" xml:space="preserve">
     <value>Hele Tafel
@@ -1382,9 +1390,21 @@ Lettertype laatste kolom</value>
     <value>Alles resetten</value>
     <comment>button</comment>
   </data>
+  <data name="EditTableThemesDialog_resetToDefault" xml:space="preserve">
+    <value>Terugzetten naar standaard</value>
+    <comment>link, Fonts tab</comment>
+  </data>
+  <data name="EditTableThemesDialog_sample" xml:space="preserve">
+    <value>Voorbeeld van tabeltekst</value>
+    <comment>live font preview text, Fonts tab</comment>
+  </data>
   <data name="EditTableThemesDialog_Text" xml:space="preserve">
     <value>Aangepaste tabelstijlen</value>
     <comment>dialog</comment>
+  </data>
+  <data name="EditTableThemesDialog_yourThemes" xml:space="preserve">
+    <value>Jouw thema's</value>
+    <comment>gallery section header</comment>
   </data>
   <data name="EmbedCommand_EmbeddedFrom" xml:space="preserve">
     <value>Ingesloten vanaf {0}</value>
@@ -7340,6 +7360,9 @@ Bedankt!</value>
   <data name="word_Due" xml:space="preserve">
     <value>Ten gevolge</value>
   </data>
+  <data name="word_Duplicate" xml:space="preserve">
+    <value>Duplicaat</value>
+  </data>
   <data name="word_Edit" xml:space="preserve">
     <value>Bewerk</value>
   </data>
@@ -7426,6 +7449,9 @@ Bedankt!</value>
   </data>
   <data name="word_Navigator" xml:space="preserve">
     <value>Navigator</value>
+  </data>
+  <data name="word_New" xml:space="preserve">
+    <value>Nieuw</value>
   </data>
   <data name="word_No" xml:space="preserve">
     <value>Nee</value>
@@ -7556,6 +7582,9 @@ Bedankt!</value>
   </data>
   <data name="word_Text" xml:space="preserve">
     <value>Tekst</value>
+  </data>
+  <data name="word_Theme" xml:space="preserve">
+    <value>Thema</value>
   </data>
   <data name="word_Value" xml:space="preserve">
     <value>Waarde</value>

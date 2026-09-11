@@ -479,6 +479,24 @@
     <Compile Include="Commands\Tables\EditTableThemesDialog.Designer.cs">
       <DependentUpon>EditTableThemesDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Tables\ColorSwatchControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\Tables\ThemeColorRow.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\Tables\ThemeFontRoleRow.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\Tables\ThemeGalleryPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Commands\Tables\ThemeGalleryPopup.Designer.cs">
+      <DependentUpon>ThemeGalleryPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commands\Tables\ThemeGalleryTile.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Commands\Tables\Formulas\Calculator.cs" />
     <Compile Include="Commands\Tables\SelectTablesCommand.cs" />
     <Compile Include="Commands\Tables\TableThemePainter.cs" />

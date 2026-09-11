@@ -1333,6 +1333,10 @@ Normal</value>
     <value>Colores</value>
     <comment>tab</comment>
   </data>
+  <data name="EditTableThemesDialog_copyTitle" xml:space="preserve">
+    <value>{0} Copiar</value>
+    <comment>{0}=source theme name; generated name for a duplicated theme</comment>
+  </data>
   <data name="EditTableThemesDialog_deleteStyle" xml:space="preserve">
     <value>¿Eliminar este estilo?</value>
     <comment>message box</comment>
@@ -1340,6 +1344,10 @@ Normal</value>
   <data name="EditTableThemesDialog_discard" xml:space="preserve">
     <value>¿Descartar los cambios no salvos?</value>
     <comment>message box</comment>
+  </data>
+  <data name="EditTableThemesDialog_duplicateFrom" xml:space="preserve">
+    <value>Duplicado de…</value>
+    <comment>menu header</comment>
   </data>
   <data name="EditTableThemesDialog_elements" xml:space="preserve">
     <value>Mesa completa
@@ -1377,9 +1385,21 @@ Fuente de la última columna</value>
     <value>Resetear todo</value>
     <comment>button</comment>
   </data>
+  <data name="EditTableThemesDialog_resetToDefault" xml:space="preserve">
+    <value>Restablecer los valores predeterminados</value>
+    <comment>link, Fonts tab</comment>
+  </data>
+  <data name="EditTableThemesDialog_sample" xml:space="preserve">
+    <value>Ejemplo de texto de tabla</value>
+    <comment>live font preview text, Fonts tab</comment>
+  </data>
   <data name="EditTableThemesDialog_Text" xml:space="preserve">
     <value>Estilos de tabla personalizados</value>
     <comment>dialog</comment>
+  </data>
+  <data name="EditTableThemesDialog_yourThemes" xml:space="preserve">
+    <value>Tus temas</value>
+    <comment>gallery section header</comment>
   </data>
   <data name="EmbedCommand_EmbeddedFrom" xml:space="preserve">
     <value>Incrustada desde {0}</value>
@@ -7339,6 +7359,9 @@ Puede habilitar o deshabilitar la telemetría en cualquier momento desde el cuad
   <data name="word_Due" xml:space="preserve">
     <value>Vencer</value>
   </data>
+  <data name="word_Duplicate" xml:space="preserve">
+    <value>Duplicada</value>
+  </data>
   <data name="word_Edit" xml:space="preserve">
     <value>Editar</value>
   </data>
@@ -7425,6 +7448,9 @@ Puede habilitar o deshabilitar la telemetría en cualquier momento desde el cuad
   </data>
   <data name="word_Navigator" xml:space="preserve">
     <value>Navegador</value>
+  </data>
+  <data name="word_New" xml:space="preserve">
+    <value>Nueva</value>
   </data>
   <data name="word_No" xml:space="preserve">
     <value>No</value>
@@ -7555,6 +7581,9 @@ Puede habilitar o deshabilitar la telemetría en cualquier momento desde el cuad
   </data>
   <data name="word_Text" xml:space="preserve">
     <value>Texto</value>
+  </data>
+  <data name="word_Theme" xml:space="preserve">
+    <value>Tema</value>
   </data>
   <data name="word_Value" xml:space="preserve">
     <value>Valor</value>
