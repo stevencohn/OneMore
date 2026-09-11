@@ -327,17 +327,13 @@ namespace River.OneMoreAddIn.Settings
 
 		public override bool CollectSettings()
 		{
-			// record changes from defaults
+			// record changes from defaults, including explicit clears (Keys.Back), which
+			// are persisted as keys="Back" so AddInHotkeys.RegisterHotkeys and
+			// CommandProvider.LoadPaletteCommands can tell "user cleared this built-in
+			// shortcut" apart from "no override saved, use the hard-coded default"
 			var element = new XElement(SettingsName);
 			for (int i = 0; i < map.Count; i++)
 			{
-				// Back is an explicit clear; never persist it so the command
-				// falls back to its hard-coded default on next load
-				if (map[i].Hotkey.Keys == Keys.Back)
-				{
-					continue;
-				}
-
 				if (!map[i].Hotkey.Equals(defaultMap[i].Hotkey))
 				{
 					element.Add(new XElement("command",
