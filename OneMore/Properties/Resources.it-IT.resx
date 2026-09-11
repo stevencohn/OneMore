@@ -813,6 +813,10 @@ Vuoi continuare?</value>
     <value>Gruppo di sezioni</value>
     <comment>node type badge</comment>
   </data>
+  <data name="CompareDialog_compareActionsTitle" xml:space="preserve">
+    <value>Confrontare</value>
+    <comment>toolbar card title</comment>
+  </data>
   <data name="CompareDialog_compareContents" xml:space="preserve">
     <value>Confronta i contenuti...</value>
     <comment>button</comment>
@@ -828,6 +832,10 @@ Vuoi continuare?</value>
   <data name="CompareDialog_confirmCopyPage" xml:space="preserve">
     <value>Copiare '{0}' in {1}?</value>
     <comment>confirmation, {0} page name, {1} direction (left/right)</comment>
+  </data>
+  <data name="CompareDialog_confirmDeepScan" xml:space="preserve">
+    <value>Eseguire la scansione approfondita per confrontare il contenuto della pagina in "{0}"? Questo esegue un controllo di somiglianza su ogni coppia di pagine corrispondenti e potrebbe richiedere del tempo per un sottoalbero di grandi dimensioni.</value>
+    <comment>confirmation, {0} node name</comment>
   </data>
   <data name="CompareDialog_confirmDeleteBothPage" xml:space="preserve">
     <value>Eliminare '{0}' da entrambi i lati? Questa operazione non può essere annullata.</value>
@@ -856,6 +864,18 @@ Vuoi continuare?</value>
   <data name="CompareDialog_copyRight" xml:space="preserve">
     <value>Copia ˃˃</value>
     <comment>button, copies left to right</comment>
+  </data>
+  <data name="CompareDialog_deepScan" xml:space="preserve">
+    <value>Scansione approfondita...</value>
+    <comment>button, runs a bulk content-similarity scan over a hierarchy node's descendants</comment>
+  </data>
+  <data name="CompareDialog_deepScanMessage" xml:space="preserve">
+    <value>Scansione approfondita...</value>
+    <comment>progress dialog message</comment>
+  </data>
+  <data name="CompareDialog_deepScanPageFormat" xml:space="preserve">
+    <value>Confronto di '{0}'...</value>
+    <comment>progress dialog message, {0} page name</comment>
   </data>
   <data name="CompareDialog_deleteBoth" xml:space="preserve">
     <value>Elimina entrambi</value>

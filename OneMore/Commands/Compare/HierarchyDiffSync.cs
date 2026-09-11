@@ -47,6 +47,20 @@ namespace River.OneMoreAddIn.Commands.Compare
 
 
 		/// <summary>
+		/// Reports what a Copy/Mirror run actually did, so the caller can react without
+		/// re-deriving it: which target-side page ids were created/replaced (used to mark
+		/// those rows as definitively identical post-sync, see CompareDialog), and, for
+		/// Mirror, the display names of anything deleted.
+		/// </summary>
+		internal sealed class SyncResult
+		{
+			public List<string> SyncedPageIds { get; } = new();
+
+			public List<string> Deleted { get; } = new();
+		}
+
+
+		/// <summary>
 		/// Copies the given node and its descendants from the source side to the target
 		/// side. Anything missing on the target is created; anything already matched has
 		/// its content updated to match the source. Nothing on the target-only side is
@@ -65,54 +79,55 @@ namespace River.OneMoreAddIn.Commands.Compare
 		/// True to also repair other, unselected pages' links to any page replaced by this
 		/// sync (mutates pages outside the caller's selection); false to leave them broken
 		/// </param>
-		public static async Task Copy(OneNote one, ProgressDialog dialog, CancellationToken token,
+		public static async Task<SyncResult> Copy(OneNote one, ProgressDialog dialog, CancellationToken token,
 			DiffNode root, DiffNode node, SyncDirection direction, bool patchLinks)
 		{
 			var renameMap = new Dictionary<string, string>();
-			var syncedPageIds = new List<string>();
+			var result = new SyncResult();
 
 			dialog.SetMaximum(Math.Max(1, CountPages(node)));
-			await SyncNode(one, dialog, token, node, direction, renameMap, syncedPageIds);
+			await SyncNode(one, dialog, token, node, direction, renameMap, result.SyncedPageIds);
 
 			if (token.IsCancellationRequested)
 			{
-				return;
+				return result;
 			}
 
-			await HierarchyLinkReconciler.RelinkSyncedPages(one, dialog, token, syncedPageIds, renameMap);
+			await HierarchyLinkReconciler.RelinkSyncedPages(one, dialog, token, result.SyncedPageIds, renameMap);
 
 			if (patchLinks && !token.IsCancellationRequested)
 			{
 				await HierarchyLinkReconciler.RepairBacklinks(one, dialog, token, root, renameMap);
 			}
+
+			return result;
 		}
 
 
 		/// <summary>
 		/// Copies like <see cref="Copy"/>, then deletes every descendant of the given node
 		/// that exists only on the target side, so the target subtree matches the source
-		/// exactly. Returns the display names of everything deleted.
+		/// exactly.
 		/// </summary>
-		public static async Task<List<string>> Mirror(OneNote one, ProgressDialog dialog, CancellationToken token,
+		public static async Task<SyncResult> Mirror(OneNote one, ProgressDialog dialog, CancellationToken token,
 			DiffNode root, DiffNode node, SyncDirection direction, bool patchLinks)
 		{
 			var renameMap = new Dictionary<string, string>();
-			var syncedPageIds = new List<string>();
+			var result = new SyncResult();
 
 			dialog.SetMaximum(Math.Max(1, CountPages(node)));
-			await SyncNode(one, dialog, token, node, direction, renameMap, syncedPageIds);
+			await SyncNode(one, dialog, token, node, direction, renameMap, result.SyncedPageIds);
 
-			var deleted = new List<string>();
 			var targetOnlyStatus = TargetOnlyStatus(direction);
 
 			foreach (var child in node.Children)
 			{
-				DeleteTargetOnly(one, child, direction, targetOnlyStatus, deleted);
+				DeleteTargetOnly(one, child, direction, targetOnlyStatus, result.Deleted);
 			}
 
 			if (!token.IsCancellationRequested)
 			{
-				await HierarchyLinkReconciler.RelinkSyncedPages(one, dialog, token, syncedPageIds, renameMap);
+				await HierarchyLinkReconciler.RelinkSyncedPages(one, dialog, token, result.SyncedPageIds, renameMap);
 			}
 
 			if (patchLinks && !token.IsCancellationRequested)
@@ -120,7 +135,7 @@ namespace River.OneMoreAddIn.Commands.Compare
 				await HierarchyLinkReconciler.RepairBacklinks(one, dialog, token, root, renameMap);
 			}
 
-			return deleted;
+			return result;
 		}
 
 
@@ -152,6 +167,40 @@ namespace River.OneMoreAddIn.Commands.Compare
 			}
 
 			return count;
+		}
+
+
+		/// <summary>
+		/// Marks every page in the given (freshly rebuilt) tree whose post-sync target id
+		/// appears in <paramref name="syncedIds"/> as definitively DiffStatus.Same, so
+		/// HierarchyDiffView renders the classic green "=" immediately rather than the
+		/// "different timestamps" warning a fresh timestamp-based rebuild would otherwise
+		/// show - a page a Copy/Mirror just synced is provably byte-for-byte identical, a
+		/// stronger claim than a measured similarity score, even though its new
+		/// lastModifiedTime won't match the source's.
+		/// </summary>
+		public static void ApplySyncedStatus(DiffNode node, ICollection<string> syncedIds, SyncDirection direction)
+		{
+			if (syncedIds is null || syncedIds.Count == 0)
+			{
+				return;
+			}
+
+			if (node.NodeType == OneNote.NodeType.Page)
+			{
+				var targetId = direction == SyncDirection.LeftToRight ? node.RightId : node.LeftId;
+				if (targetId is not null && syncedIds.Contains(targetId))
+				{
+					node.Status = DiffStatus.Same;
+				}
+
+				return;
+			}
+
+			foreach (var child in node.Children)
+			{
+				ApplySyncedStatus(child, syncedIds, direction);
+			}
 		}
 
 

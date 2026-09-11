@@ -817,6 +817,10 @@ Do you want to continue?</value>
     <value>Section Group</value>
     <comment>node type badge</comment>
   </data>
+  <data name="CompareDialog_compareActionsTitle" xml:space="preserve">
+    <value>Compare</value>
+    <comment>toolbar card title</comment>
+  </data>
   <data name="CompareDialog_compareContents" xml:space="preserve">
     <value>Compare contents…</value>
     <comment>button</comment>
@@ -832,6 +836,10 @@ Do you want to continue?</value>
   <data name="CompareDialog_confirmCopyPage" xml:space="preserve">
     <value>Copy '{0}' to the {1}?</value>
     <comment>confirmation, {0} page name, {1} direction (left/right)</comment>
+  </data>
+  <data name="CompareDialog_confirmDeepScan" xml:space="preserve">
+    <value>Deep-scan compare page content under '{0}'? This runs a similarity check on every matched page pair and may take a while for a large subtree.</value>
+    <comment>confirmation, {0} node name</comment>
   </data>
   <data name="CompareDialog_confirmDeleteBothPage" xml:space="preserve">
     <value>Delete '{0}' from both sides? This cannot be undone.</value>
@@ -860,6 +868,18 @@ Do you want to continue?</value>
   <data name="CompareDialog_copyRight" xml:space="preserve">
     <value>Copy ˃˃</value>
     <comment>button, copies left to right</comment>
+  </data>
+  <data name="CompareDialog_deepScan" xml:space="preserve">
+    <value>Deep scan…</value>
+    <comment>button, runs a bulk content-similarity scan over a hierarchy node's descendants</comment>
+  </data>
+  <data name="CompareDialog_deepScanMessage" xml:space="preserve">
+    <value>Deep scanning...</value>
+    <comment>progress dialog message</comment>
+  </data>
+  <data name="CompareDialog_deepScanPageFormat" xml:space="preserve">
+    <value>Comparing '{0}'...</value>
+    <comment>progress dialog message, {0} page name</comment>
   </data>
   <data name="CompareDialog_deleteBoth" xml:space="preserve">
     <value>Delete both</value>

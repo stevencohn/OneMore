@@ -29,6 +29,7 @@ namespace River.OneMoreAddIn.Commands.Compare
 
 		private Panel hierarchyActionsPanel;
 		private Panel pageActionsPanel;
+		private Panel compareActionsPanel;
 
 		private MoreButton copyRightButton;
 		private MoreButton copyLeftButton;
@@ -263,15 +264,31 @@ namespace River.OneMoreAddIn.Commands.Compare
 				Padding = new Padding(16, 8, 16, 8)
 			};
 
+			// the switchable hierarchy/page panels share one cell (only one Visible at a
+			// time, as before); compareContentsButton lives in its own always-visible cell
+			// alongside them, since it now applies to both node types (single-pair compare
+			// for a page, deep scan for a hierarchy node) as well as an ad-hoc pair
+			var layout = new TableLayoutPanel
+			{
+				Dock = DockStyle.Fill,
+				ColumnCount = 2,
+				RowCount = 1
+			};
+			layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
+			layout.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+
 			hierarchyActionsPanel = BuildHierarchyActionsPanel();
 			pageActionsPanel = BuildPageActionsPanel();
+			compareActionsPanel = BuildCompareActionsPanel();
 
-			footerPanel.Controls.Add(hierarchyActionsPanel);
-			footerPanel.Controls.Add(pageActionsPanel);
+			layout.Controls.Add(hierarchyActionsPanel, 0, 0);
+			layout.Controls.Add(pageActionsPanel, 0, 0);
+			layout.Controls.Add(compareActionsPanel, 1, 0);
 
 			hierarchyActionsPanel.Visible = false;
 			pageActionsPanel.Visible = false;
 
+			footerPanel.Controls.Add(layout);
 			Controls.Add(footerPanel);
 		}
 
@@ -372,9 +389,6 @@ namespace River.OneMoreAddIn.Commands.Compare
 			deleteBothButton = CreateActionButton(Resx.CompareDialog_deleteBoth, danger: true);
 			deleteBothButton.Click += DeleteBothClick;
 
-			compareContentsButton = CreateActionButton(Resx.CompareDialog_compareContents, wide: true);
-			compareContentsButton.Click += CompareContentsClick;
-
 			buttonFlow.Controls.Add(openLeftButton);
 			buttonFlow.Controls.Add(openRightButton);
 			buttonFlow.Controls.Add(pageCopyRightButton);
@@ -382,7 +396,6 @@ namespace River.OneMoreAddIn.Commands.Compare
 			buttonFlow.Controls.Add(deleteLeftButton);
 			buttonFlow.Controls.Add(deleteRightButton);
 			buttonFlow.Controls.Add(deleteBothButton);
-			buttonFlow.Controls.Add(compareContentsButton);
 
 			var caption = new MoreLabel
 			{
@@ -395,6 +408,40 @@ namespace River.OneMoreAddIn.Commands.Compare
 			panel.Controls.Add(title, 0, 0);
 			panel.Controls.Add(buttonFlow, 0, 1);
 			panel.Controls.Add(caption, 0, 2);
+
+			return panel;
+		}
+
+
+		// always visible regardless of whether the current selection is a page, a hierarchy
+		// node, or an ad-hoc pair - CompareContentsClick itself decides which of those three
+		// it's doing
+		private Panel BuildCompareActionsPanel()
+		{
+			var panel = new TableLayoutPanel
+			{
+				Dock = DockStyle.Fill,
+				ColumnCount = 1,
+				RowCount = 2,
+				Padding = new Padding(16, 0, 0, 0)
+			};
+			panel.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+			panel.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
+
+			var title = new MoreLabel
+			{
+				AutoSize = true,
+				Font = new Font(Font, FontStyle.Bold),
+				Text = Resx.CompareDialog_compareActionsTitle,
+				Margin = new Padding(0, 0, 0, 6)
+			};
+
+			compareContentsButton = CreateActionButton(Resx.CompareDialog_compareContents, wide: true);
+			compareContentsButton.Click += CompareContentsClick;
+			compareContentsButton.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+
+			panel.Controls.Add(title, 0, 0);
+			panel.Controls.Add(compareContentsButton, 0, 1);
 
 			return panel;
 		}
@@ -444,6 +491,7 @@ namespace River.OneMoreAddIn.Commands.Compare
 				deleteBothButton.Enabled = false;
 
 				compareContentsButton.Enabled = openLeftButton.Enabled && openRightButton.Enabled;
+				compareContentsButton.Text = Resx.CompareDialog_compareContents;
 				return;
 			}
 
@@ -453,12 +501,26 @@ namespace River.OneMoreAddIn.Commands.Compare
 			{
 				hierarchyActionsPanel.Visible = false;
 				pageActionsPanel.Visible = false;
+				compareContentsButton.Enabled = false;
+				compareContentsButton.Text = Resx.CompareDialog_compareContents;
 				return;
 			}
 
 			var isPage = node.NodeType == OneNote.NodeType.Page;
 			hierarchyActionsPanel.Visible = !isPage;
 			pageActionsPanel.Visible = isPage;
+
+			// "Delete both" and Compare/Deep-scan all only enable when the row was selected
+			// via the center well (both sides), not merely because both sides happen to
+			// exist - for Compare/Deep-scan this is load-bearing, not just consistent: an
+			// orphan hierarchy node has no counterpart subtree to pair descendants against
+			var bothSelected = node.LeftId is not null && node.RightId is not null
+				&& diffView.SelectedSide == DiffSide.Both;
+
+			compareContentsButton.Enabled = bothSelected;
+			compareContentsButton.Text = isPage
+				? Resx.CompareDialog_compareContents
+				: Resx.CompareDialog_deepScan;
 
 			if (isPage)
 			{
@@ -472,15 +534,7 @@ namespace River.OneMoreAddIn.Commands.Compare
 
 				deleteLeftButton.Enabled = node.LeftId is not null;
 				deleteRightButton.Enabled = node.RightId is not null;
-
-				// per spec, "Delete both" and "Compare contents..." only enable when the row
-				// was selected via the center well (both sides), not merely because both
-				// sides happen to exist
-				var bothSelected = node.LeftId is not null && node.RightId is not null
-					&& diffView.SelectedSide == DiffSide.Both;
-
 				deleteBothButton.Enabled = bothSelected;
-				compareContentsButton.Enabled = bothSelected;
 			}
 			else
 			{
@@ -528,6 +582,11 @@ namespace River.OneMoreAddIn.Commands.Compare
 			menu.Items.Add(new MoreMenuItem(Resx.CompareDialog_mirrorLeft, null, MirrorLeftClick)
 			{
 				Enabled = mirrorLeftButton.Enabled
+			});
+			menu.Items.Add(new ToolStripSeparator());
+			menu.Items.Add(new MoreMenuItem(Resx.CompareDialog_deepScan, null, CompareContentsClick)
+			{
+				Enabled = compareContentsButton.Enabled
 			});
 
 			return menu;
@@ -660,6 +719,7 @@ namespace River.OneMoreAddIn.Commands.Compare
 			}
 
 			Exception error = null;
+			HierarchyDiffSync.SyncResult result = null;
 
 			using (var progress = new ProgressDialog())
 			{
@@ -673,14 +733,9 @@ namespace River.OneMoreAddIn.Commands.Compare
 					{
 						await using var one = new OneNote();
 
-						if (mirror)
-						{
-							await HierarchyDiffSync.Mirror(one, dialog, token, root, node, direction, patchLinks);
-						}
-						else
-						{
-							await HierarchyDiffSync.Copy(one, dialog, token, root, node, direction, patchLinks);
-						}
+						result = mirror
+							? await HierarchyDiffSync.Mirror(one, dialog, token, root, node, direction, patchLinks)
+							: await HierarchyDiffSync.Copy(one, dialog, token, root, node, direction, patchLinks);
 
 						return true;
 					}
@@ -700,6 +755,12 @@ namespace River.OneMoreAddIn.Commands.Compare
 			try
 			{
 				await RefreshDiff();
+
+				// mark every page the sync above just synced as provably identical, before
+				// the fresh timestamp-based rebuild's own "different timestamps" status for
+				// them can render as a stale warning (see ApplySyncedStatus)
+				HierarchyDiffSync.ApplySyncedStatus(root, result?.SyncedPageIds, direction);
+				diffView.Invalidate();
 			}
 			catch (Exception exc)
 			{
@@ -766,6 +827,7 @@ namespace River.OneMoreAddIn.Commands.Compare
 			}
 
 			Exception error = null;
+			HierarchyDiffSync.SyncResult result = null;
 
 			using (var progress = new ProgressDialog())
 			{
@@ -776,7 +838,7 @@ namespace River.OneMoreAddIn.Commands.Compare
 					try
 					{
 						await using var one = new OneNote();
-						await HierarchyDiffSync.Copy(one, dialog, token, root, node, direction, patchLinks);
+						result = await HierarchyDiffSync.Copy(one, dialog, token, root, node, direction, patchLinks);
 						return true;
 					}
 					catch (Exception exc)
@@ -795,6 +857,8 @@ namespace River.OneMoreAddIn.Commands.Compare
 			try
 			{
 				await RefreshDiff();
+				HierarchyDiffSync.ApplySyncedStatus(root, result?.SyncedPageIds, direction);
+				diffView.Invalidate();
 			}
 			catch (Exception exc)
 			{
@@ -880,10 +944,37 @@ namespace River.OneMoreAddIn.Commands.Compare
 		private async void CompareContentsClick(object sender, EventArgs e)
 		{
 			// prefer the ad-hoc (Ctrl+Click) pair when one is active - two possibly
-			// unrelated pages, one per side; otherwise fall back to the regular matched-row
-			// selection, same as always
-			var left = diffView.AdHocLeft ?? diffView.SelectedNode;
-			var right = diffView.AdHocRight ?? diffView.SelectedNode;
+			// unrelated pages, one per side; otherwise fall back to the regular selection,
+			// which is either a single matched page pair or, now, a hierarchy node whose
+			// entire subtree of matched page pairs should be deep-scanned at once
+			var adHocLeft = diffView.AdHocLeft;
+			var adHocRight = diffView.AdHocRight;
+
+			if (adHocLeft is not null && adHocRight is not null)
+			{
+				await RunPageCompare(adHocLeft, adHocRight);
+				return;
+			}
+
+			var node = diffView.SelectedNode;
+			if (node is null)
+			{
+				return;
+			}
+
+			if (node.NodeType == OneNote.NodeType.Page)
+			{
+				await RunPageCompare(node, node);
+			}
+			else
+			{
+				await RunDeepScan(node);
+			}
+		}
+
+
+		private async Task RunPageCompare(DiffNode left, DiffNode right)
+		{
 			if (left?.LeftId is null || right?.RightId is null)
 			{
 				return;
@@ -925,6 +1016,15 @@ namespace River.OneMoreAddIn.Commands.Compare
 				return;
 			}
 
+			if (ReferenceEquals(left, right))
+			{
+				// a real matched-row compare, not an ad-hoc cross-row pair (which has no
+				// single well of its own to update) - cache the score so the row's well
+				// shows it from now on instead of the plain "different timestamps" fill
+				left.Similarity = result.Overall;
+				diffView.Invalidate();
+			}
+
 			var popup = new SimilarityPopup(left.Name, right.Name, result);
 			popup.RunModeless(GetPopupLocation(popup), (s, ev) =>
 			{
@@ -936,6 +1036,48 @@ namespace River.OneMoreAddIn.Commands.Compare
 				// OneNote instead, so re-elevate on top of it
 				Elevate();
 			});
+		}
+
+
+		private async Task RunDeepScan(DiffNode node)
+		{
+			if (node.LeftId is null || node.RightId is null)
+			{
+				return;
+			}
+
+			var confirmMessage = string.Format(Resx.CompareDialog_confirmDeepScan, node.Name);
+			if (MoreMessageBox.ShowQuestion(this, confirmMessage) != DialogResult.Yes)
+			{
+				return;
+			}
+
+			Exception error = null;
+
+			using (var progress = new ProgressDialog())
+			{
+				progress.SetMessage(Resx.CompareDialog_deepScanMessage);
+
+				progress.ShowDialogWithCancel(async (dialog, token) =>
+				{
+					try
+					{
+						await using var one = new OneNote();
+						await HierarchyDiffScanner.Scan(one, dialog, token, node, () => diffView.Invalidate());
+						return true;
+					}
+					catch (Exception exc)
+					{
+						error = exc;
+						return false;
+					}
+				}, cancelable: true);
+			}
+
+			if (error is not null)
+			{
+				MoreMessageBox.ShowError(this, error.Message);
+			}
 		}
 
 

@@ -812,6 +812,10 @@ Wil je doorgaan?</value>
     <value>Sectie Groep</value>
     <comment>node type badge</comment>
   </data>
+  <data name="CompareDialog_compareActionsTitle" xml:space="preserve">
+    <value>Vergelijken</value>
+    <comment>toolbar card title</comment>
+  </data>
   <data name="CompareDialog_compareContents" xml:space="preserve">
     <value>Inhoud vergelijken...</value>
     <comment>button</comment>
@@ -827,6 +831,10 @@ Wil je doorgaan?</value>
   <data name="CompareDialog_confirmCopyPage" xml:space="preserve">
     <value>Kopieer '{0}' naar de {1}?</value>
     <comment>confirmation, {0} page name, {1} direction (left/right)</comment>
+  </data>
+  <data name="CompareDialog_confirmDeepScan" xml:space="preserve">
+    <value>Diepgaande scan pagina-inhoud vergelijken onder '{0}'? Hierdoor wordt een gelijkeniscontrole uitgevoerd op elk overeenkomend paginapaar en dit kan enige tijd duren voor een grote subboom.</value>
+    <comment>confirmation, {0} node name</comment>
   </data>
   <data name="CompareDialog_confirmDeleteBothPage" xml:space="preserve">
     <value>'{0}' van beide kanten verwijderen? Dit kan niet ongedaan worden gemaakt.</value>
@@ -855,6 +863,18 @@ Wil je doorgaan?</value>
   <data name="CompareDialog_copyRight" xml:space="preserve">
     <value>Kopieer ˃˃</value>
     <comment>button, copies left to right</comment>
+  </data>
+  <data name="CompareDialog_deepScan" xml:space="preserve">
+    <value>Diepe scan…</value>
+    <comment>button, runs a bulk content-similarity scan over a hierarchy node's descendants</comment>
+  </data>
+  <data name="CompareDialog_deepScanMessage" xml:space="preserve">
+    <value>Diep scannen...</value>
+    <comment>progress dialog message</comment>
+  </data>
+  <data name="CompareDialog_deepScanPageFormat" xml:space="preserve">
+    <value>'{0}' vergelijken...</value>
+    <comment>progress dialog message, {0} page name</comment>
   </data>
   <data name="CompareDialog_deleteBoth" xml:space="preserve">
     <value>Verwijder beide</value>

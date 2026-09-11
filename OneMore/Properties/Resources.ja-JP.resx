@@ -813,6 +813,10 @@
     <value>セクショングループ</value>
     <comment>node type badge</comment>
   </data>
+  <data name="CompareDialog_compareActionsTitle" xml:space="preserve">
+    <value>比較する</value>
+    <comment>toolbar card title</comment>
+  </data>
   <data name="CompareDialog_compareContents" xml:space="preserve">
     <value>内容を比較してみると…</value>
     <comment>button</comment>
@@ -828,6 +832,10 @@
   <data name="CompareDialog_confirmCopyPage" xml:space="preserve">
     <value>「{0}」を {1} にコピーしますか?</value>
     <comment>confirmation, {0} page name, {1} direction (left/right)</comment>
+  </data>
+  <data name="CompareDialog_confirmDeepScan" xml:space="preserve">
+    <value>'{0}' の下のページ コンテンツをディープスキャン比較しますか? これにより、一致したすべてのページ ペアに対して類似性チェックが実行され、大きなサブツリーの場合は時間がかかる場合があります。</value>
+    <comment>confirmation, {0} node name</comment>
   </data>
   <data name="CompareDialog_confirmDeleteBothPage" xml:space="preserve">
     <value>両側から「{0}」を削除しますか? これを元に戻すことはできません。</value>
@@ -856,6 +864,18 @@
   <data name="CompareDialog_copyRight" xml:space="preserve">
     <value>コピー</value>
     <comment>button, copies left to right</comment>
+  </data>
+  <data name="CompareDialog_deepScan" xml:space="preserve">
+    <value>ディープスキャン…</value>
+    <comment>button, runs a bulk content-similarity scan over a hierarchy node's descendants</comment>
+  </data>
+  <data name="CompareDialog_deepScanMessage" xml:space="preserve">
+    <value>ディープスキャン...</value>
+    <comment>progress dialog message</comment>
+  </data>
+  <data name="CompareDialog_deepScanPageFormat" xml:space="preserve">
+    <value>「{0}」を比較しています...</value>
+    <comment>progress dialog message, {0} page name</comment>
   </data>
   <data name="CompareDialog_deleteBoth" xml:space="preserve">
     <value>両方とも削除</value>

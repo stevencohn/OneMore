@@ -47,12 +47,20 @@ namespace River.OneMoreAddIn.Commands.Compare
 		private const int ChipHeight = 16;
 		private const int ChipPadX = 5;
 		private const int CaretWidth = 14;
-		private const int WellDiameter = 16;
+		private const int WellDiameter = 20;
+
+		// display-only thresholds for coloring a computed similarity score in the well -
+		// independent of, and looser than, HierarchyDiffSync's own IdenticalSimilarityThreshold,
+		// which decides whether a resync can be skipped rather than how to color a badge
+		private const int PerfectSimilarityPercent = 100;
+		private const int HighSimilarityPercent = 95;
+		private const int MediumSimilarityPercent = 80;
 
 		private readonly List<Row> rows = new();
 		private readonly HashSet<DiffNode> expanded = new();
 		private readonly Font monoFont;
 		private readonly Font chipFont;
+		private readonly Font wellFont;
 
 		private DiffNode root;
 		private DiffNode selectedNode;
@@ -80,6 +88,8 @@ namespace River.OneMoreAddIn.Commands.Compare
 		private Color selectedBorder;
 		private Color borderColor;
 		private Color successColor;
+		private Color errorFill;
+		private Color highSimilarityFill;
 
 
 		public HierarchyDiffView()
@@ -94,6 +104,7 @@ namespace River.OneMoreAddIn.Commands.Compare
 
 			monoFont = new Font("Consolas", Font.SizeInPoints);
 			chipFont = new Font("Segoe UI", 6.5f, FontStyle.Bold, GraphicsUnit.Point);
+			wellFont = new Font("Segoe UI", 6.5f, FontStyle.Bold, GraphicsUnit.Point);
 		}
 
 
@@ -103,6 +114,7 @@ namespace River.OneMoreAddIn.Commands.Compare
 			{
 				monoFont?.Dispose();
 				chipFont?.Dispose();
+				wellFont?.Dispose();
 			}
 
 			base.Dispose(disposing);
@@ -202,6 +214,8 @@ namespace River.OneMoreAddIn.Commands.Compare
 			selectedBorder = manager.GetColor("HotTrack");
 			borderColor = manager.GetColor("ButtonBorder");
 			successColor = manager.GetColor("SuccessFill");
+			errorFill = manager.GetColor("CompareErrorFill");
+			highSimilarityFill = manager.GetColor("HintText");
 
 			BackColor = backColor;
 			Invalidate();
@@ -631,7 +645,10 @@ namespace River.OneMoreAddIn.Commands.Compare
 			var wellRect = new Rectangle(colWidth, top, WellWidth, RowHeight);
 			var rightRect = new Rectangle(colWidth + WellWidth, top, colWidth, RowHeight);
 
-			if (node.Status == DiffStatus.DifferentTimestamps)
+			// a measured content score that rounds to a perfect 100% is, for display
+			// purposes, no different from Same - drop the yellow "worth a look" tint so
+			// the row's background agrees with the well's own green 100
+			if (node.Status == DiffStatus.DifferentTimestamps && !IsPerfectMatch(node))
 			{
 				using var brush = new SolidBrush(warningBack);
 				g.FillRectangle(brush, leftRect);
@@ -697,7 +714,7 @@ namespace River.OneMoreAddIn.Commands.Compare
 					node.Name, node.RightModified);
 			}
 
-			DrawWell(g, wellRect, node, isSelected && selectedSide == DiffSide.Both);
+			DrawWell(g, wellRect, node);
 
 			using var pen = new Pen(borderColor);
 			g.DrawLine(pen, 0, top + RowHeight - 1, rightRect.Right, top + RowHeight - 1);
@@ -825,7 +842,11 @@ namespace River.OneMoreAddIn.Commands.Compare
 		}
 
 
-		private void DrawWell(Graphics g, Rectangle rect, DiffNode node, bool bothSelected)
+		// deliberately doesn't reflect selection at all - a solid selection fill here used
+		// to obscure whatever status glyph/score the well was already showing; the row's
+		// left/right cell highlighting (DrawSelectedOverlay) is enough to show a well-click
+		// selected both sides
+		private void DrawWell(Graphics g, Rectangle rect, DiffNode node)
 		{
 			var wellRect = new Rectangle(
 				rect.X + ((rect.Width - WellDiameter) / 2),
@@ -845,21 +866,55 @@ namespace River.OneMoreAddIn.Commands.Compare
 				return;
 			}
 
-			if (bothSelected)
+			if (node.Similarity.HasValue)
 			{
-				using var brush = new SolidBrush(selectedBorder);
-				g.FillEllipse(brush, wellRect);
+				DrawScoreGlyph(g, wellRect, node.Similarity.Value);
 				return;
 			}
 
-			if (node.Status == DiffStatus.DifferentTimestamps)
+			if (node.Status == DiffStatus.Same)
 			{
-				using var brush = new SolidBrush(warningFill);
-				g.FillEllipse(brush, wellRect);
+				DrawEqualsGlyph(g, wellRect, successColor);
 				return;
 			}
 
-			DrawEqualsGlyph(g, wellRect, successColor);
+			using var warningBrush = new SolidBrush(warningFill);
+			g.FillEllipse(warningBrush, wellRect);
+		}
+
+
+		// true when a measured content score rounds to a perfect 100% - display-wise,
+		// equivalent to Same (see DrawRow's background fill and DrawScoreGlyph's color)
+		private static bool IsPerfectMatch(DiffNode node)
+		{
+			return node.Similarity.HasValue && RoundPercent(node.Similarity.Value) == PerfectSimilarityPercent;
+		}
+
+
+		private static int RoundPercent(double similarity)
+		{
+			return (int)Math.Round(Math.Max(0.0, Math.Min(1.0, similarity)) * 100);
+		}
+
+
+		private void DrawScoreGlyph(Graphics g, Rectangle wellRect, double similarity)
+		{
+			var percent = RoundPercent(similarity);
+
+			// bucketed off the same rounded percentage that's displayed, not the raw score,
+			// so the color never disagrees with the number the user actually reads
+			var color = percent == PerfectSimilarityPercent ? successColor
+				: percent > HighSimilarityPercent ? highSimilarityFill
+				: percent > MediumSimilarityPercent ? warningFill
+				: errorFill;
+
+			var text = percent.ToString(System.Globalization.CultureInfo.InvariantCulture);
+
+			var size = g.MeasureString(text, wellFont);
+			using var textBrush = new SolidBrush(color);
+			g.DrawString(text, wellFont, textBrush,
+				wellRect.X + ((wellRect.Width - size.Width) / 2f),
+				wellRect.Y + ((wellRect.Height - size.Height) / 2f));
 		}
 
 

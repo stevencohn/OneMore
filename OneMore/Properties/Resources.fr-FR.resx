@@ -815,6 +815,10 @@ Voulez-vous continuer ?</value>
     <value>Groupe de sections</value>
     <comment>node type badge</comment>
   </data>
+  <data name="CompareDialog_compareActionsTitle" xml:space="preserve">
+    <value>Comparer</value>
+    <comment>toolbar card title</comment>
+  </data>
   <data name="CompareDialog_compareContents" xml:space="preserve">
     <value>Comparez les contenus…</value>
     <comment>button</comment>
@@ -830,6 +834,10 @@ Voulez-vous continuer ?</value>
   <data name="CompareDialog_confirmCopyPage" xml:space="preserve">
     <value>Copier '{0}' dans le {1} ?</value>
     <comment>confirmation, {0} page name, {1} direction (left/right)</comment>
+  </data>
+  <data name="CompareDialog_confirmDeepScan" xml:space="preserve">
+    <value>Analyser en profondeur le contenu de la page de comparaison sous « {0} » ? Cela exécute une vérification de similarité sur chaque paire de pages correspondante et peut prendre un certain temps pour un grand sous-arbre.</value>
+    <comment>confirmation, {0} node name</comment>
   </data>
   <data name="CompareDialog_confirmDeleteBothPage" xml:space="preserve">
     <value>Supprimer « {0} » des deux côtés ? Cela ne peut pas être annulé.</value>
@@ -858,6 +866,18 @@ Voulez-vous continuer ?</value>
   <data name="CompareDialog_copyRight" xml:space="preserve">
     <value>Copier ˃˃</value>
     <comment>button, copies left to right</comment>
+  </data>
+  <data name="CompareDialog_deepScan" xml:space="preserve">
+    <value>Analyse approfondie…</value>
+    <comment>button, runs a bulk content-similarity scan over a hierarchy node's descendants</comment>
+  </data>
+  <data name="CompareDialog_deepScanMessage" xml:space="preserve">
+    <value>Analyse approfondie...</value>
+    <comment>progress dialog message</comment>
+  </data>
+  <data name="CompareDialog_deepScanPageFormat" xml:space="preserve">
+    <value>Comparaison de '{0}'...</value>
+    <comment>progress dialog message, {0} page name</comment>
   </data>
   <data name="CompareDialog_deleteBoth" xml:space="preserve">
     <value>Supprimer les deux</value>

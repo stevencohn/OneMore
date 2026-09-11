@@ -816,6 +816,10 @@
     <value>部分组</value>
     <comment>node type badge</comment>
   </data>
+  <data name="CompareDialog_compareActionsTitle" xml:space="preserve">
+    <value>比较</value>
+    <comment>toolbar card title</comment>
+  </data>
   <data name="CompareDialog_compareContents" xml:space="preserve">
     <value>比较内容...</value>
     <comment>button</comment>
@@ -831,6 +835,10 @@
   <data name="CompareDialog_confirmCopyPage" xml:space="preserve">
     <value>将“{0}”复制到{1}？</value>
     <comment>confirmation, {0} page name, {1} direction (left/right)</comment>
+  </data>
+  <data name="CompareDialog_confirmDeepScan" xml:space="preserve">
+    <value>深度扫描比较“{0}”下的页面内容？ 这会对每个匹配的页面对运行相似性检查，对于大型子树可能需要一段时间。</value>
+    <comment>confirmation, {0} node name</comment>
   </data>
   <data name="CompareDialog_confirmDeleteBothPage" xml:space="preserve">
     <value>从两侧删除“{0}”？此操作无法撤消。</value>
@@ -859,6 +867,18 @@
   <data name="CompareDialog_copyRight" xml:space="preserve">
     <value>复制</value>
     <comment>button, copies left to right</comment>
+  </data>
+  <data name="CompareDialog_deepScan" xml:space="preserve">
+    <value>深度扫描...</value>
+    <comment>button, runs a bulk content-similarity scan over a hierarchy node's descendants</comment>
+  </data>
+  <data name="CompareDialog_deepScanMessage" xml:space="preserve">
+    <value>深度扫描...</value>
+    <comment>progress dialog message</comment>
+  </data>
+  <data name="CompareDialog_deepScanPageFormat" xml:space="preserve">
+    <value>比较“{0}”...</value>
+    <comment>progress dialog message, {0} page name</comment>
   </data>
   <data name="CompareDialog_deleteBoth" xml:space="preserve">
     <value>删除两者</value>

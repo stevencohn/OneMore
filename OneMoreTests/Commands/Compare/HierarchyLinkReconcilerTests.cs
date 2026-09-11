@@ -196,7 +196,10 @@ namespace River.OneMoreAddIn.Tests.Commands.Compare
 			var updated = GetUpdatedPage(PageId);
 			Assert.IsNotNull(updated, "UpdatePageContent was never called");
 
-			var text = updated.Descendants(Ns + "T").First().Value;
+			// Last(), not First(): PageBuilder always emits the page's own Title (a T of
+			// "Test Page") before the Outline body, so First() would grab the title's T
+			// rather than the paragraph's T that actually carries the anchor
+			var text = updated.Descendants(Ns + "T").Last().Value;
 			StringAssert.Contains(text, $"page-id={{{NewTargetId}}}");
 			Assert.IsFalse(text.Contains(OldTargetId), "old target id should no longer appear");
 		}
@@ -223,7 +226,10 @@ namespace River.OneMoreAddIn.Tests.Commands.Compare
 			var updated = GetUpdatedPage(PageId);
 			Assert.IsNotNull(updated, "UpdatePageContent was never called");
 
-			var text = updated.Descendants(Ns + "T").First().Value;
+			// Last(), not First(): PageBuilder always emits the page's own Title (a T of
+			// "Test Page") before the Outline body, so First() would grab the title's T
+			// rather than the paragraph's T that actually carries the anchor
+			var text = updated.Descendants(Ns + "T").Last().Value;
 			StringAssert.Contains(text, $"page-id={{{NewTargetId}}}");
 			Assert.IsFalse(text.Contains("object-id="), "paragraph anchor should degrade to page-level");
 		}
@@ -252,7 +258,10 @@ namespace River.OneMoreAddIn.Tests.Commands.Compare
 			var updated = GetUpdatedPage(PageId);
 			Assert.IsNotNull(updated);
 
-			var text = updated.Descendants(Ns + "T").First().Value;
+			// Last(), not First(): PageBuilder always emits the page's own Title (a T of
+			// "Test Page") before the Outline body, so First() would grab the title's T
+			// rather than the paragraph's T that actually carries the anchor
+			var text = updated.Descendants(Ns + "T").Last().Value;
 			StringAssert.Contains(text, originalHref);
 		}
 

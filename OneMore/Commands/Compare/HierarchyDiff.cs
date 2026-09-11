@@ -63,6 +63,14 @@ namespace River.OneMoreAddIn.Commands.Compare
 		public DiffStatus Status { get; set; }
 
 		/// <summary>
+		/// The page-content similarity score (0.0-1.0) from the last "Compare contents..." or
+		/// deep-scan run against this pair, or null if it has never been scored. Cleared
+		/// implicitly on every rebuild, since a score is a snapshot of content that may have
+		/// changed since.
+		/// </summary>
+		public double? Similarity { get; set; }
+
+		/// <summary>
 		/// The enclosing DiffNode, or null for the comparison root. Used by hierarchy
 		/// actions (copy/mirror) to resolve the destination parent when a node doesn't yet
 		/// exist on the target side.

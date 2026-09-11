@@ -61,6 +61,7 @@
     "CompareWarningBack": "#3A3220",
     "CompareWarningFill": "#D9A62A",
     "CompareOrphanBack": "#3A2626",
+    "CompareErrorFill": "#C0453A",
 
     "XmlComment": "LimeGreen",
     "XmlEditedBy": "#56B1E4",
