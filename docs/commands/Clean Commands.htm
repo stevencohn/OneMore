@@ -146,6 +146,8 @@
 <li><a id="→-tables-and-calculations" href="→ Tables and Calculations.htm">→ Tables and Calculations</a></li>
 <li><a id="table-style-commands" href="Table Style Commands.htm">Table Style Commands</a></li>
 <li><a id="extra-commands" href="Extra Commands.htm">Extra Commands</a></li>
+<li><a id="→-compare-hierarchy" href="→ Compare Hierarchy.htm">→ Compare Hierarchy</a></li>
+<li><a id="→-remove-duplicate-pages" href="→ Remove Duplicate Pages.htm">→ Remove Duplicate Pages</a></li>
           </ul>
         </div>
       </div>
@@ -159,7 +161,7 @@
 <P style='FONT-SIZE: 20pt; MARGIN-BOTTOM: 14pt; FONT-FAMILY: "Calibri Light"; MARGIN-TOP: 0pt; COLOR: #464646'>Clean Commands</P></DIV>
 <DIV style="WIDTH: 2.413in; MARGIN-TOP: 0.042in; DIRECTION: ltr; MARGIN-LEFT: 0in">
 <P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">February 19, 2023</P>
-<P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">Last updated on August 17, 2026</P></DIV>
+<P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">Last updated on September 11, 2026</P></DIV>
 <DIV style="WIDTH: 8.437in; MARGIN-TOP: 0.427in; DIRECTION: ltr; MARGIN-LEFT: 0in">
 <P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">These are the commands that are available from the More Clean menu.</P>
 <P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">&nbsp;</P>
@@ -177,16 +179,9 @@
 <P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">Removes all author information from the current page.</P>
 <P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">&nbsp;</P>
 <H1 id=remove-duplicate-pages style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Remove Duplicate Pages</H1>
-<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">Analyzes the current section, or selected notebooks, looking for duplicate and empty pages and presents a dialog from which you can view and cherry pick pages to delete. Ensure Notebook History is enabled prior to cleaning up pages so deleted pages can be recovered from the notebook recycle bin if necessary.</P>
-<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">&nbsp;</P>
-<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">There are three analyzer with varying algorithms for duplicate detection.</P>
-<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">&nbsp;</P>
-<UL style="MARGIN-BOTTOM: 0in; unicode-bidi: embed; MARGIN-TOP: 0in; DIRECTION: ltr" type=disc>
-<LI style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px; COLOR: black"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">The&nbsp;Text&nbsp;analyzer will only compare text content on the page.</SPAN> 
-<LI style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px; COLOR: black"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">The&nbsp;XML&nbsp;analyzer will look at the full XML representation of the page, including images and names of attachments. </SPAN>
-<LI style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px; COLOR: black"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">The Deep analyzer will compare binary content as well as text content; on a large notebook or across large pages, this may take minutes so consider using it when comparing pages within a single section.</SPAN> </LI></UL>
-<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">&nbsp;</P>
-<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">The&nbsp;Distance&nbsp;quantifier, available only with the Text and XML analyzers, indicates how close two pages are - the smaller the number, the closer or more similar they are.</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Scans a section, notebook, or set of notebooks for pages that are identical or merely similar, then lets you review and delete them from one results window. It finds two kinds of matches: pages whose content is byte-for-byte identical, and pages that are just close, scored locally (no AI, no network) against five weighted rubrics — vocabulary overlap, shared words, structure, writing style, and shared proper names/embedded images — grouped into two checkboxes ("Content similarity" and "Presentation similarity") so you can control what factors in and how long the scan takes. Results are grouped into cards, newest page first, with a colored similarity chip on every older page; hover a scored chip to see the same rubric-breakdown popup Compare Hierarchy uses, no click required.</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">For a complete description, see the extended <A href="→ Remove Duplicate Pages.htm">→ Remove Duplicate Pages</A> page.</P>
 <P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">&nbsp;</P>
 <H1 id=remove-empty-lines style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Remove Empty Lines</H1>
 <P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: black; MARGIN: 0in">Removes empty headings with no content and "extra" empty lines between paragraphs, e.g., two or more lines get compressed down to one line. It also attempts to align indented and outdented blank lines with the surrounding content so that consecutive paragraphs can be collapsed below a shared heading.</P>

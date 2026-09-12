@@ -29,7 +29,7 @@ font-size:20.0pt;color:#464646' lang=yo>7.5.0 Release Notes #skipwiki</p>
 
 <P style="margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676">September 2, 2026</P>
 
-<P style="margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676">Last updated on September 7, 2026</P>
+<P style="margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676">Last updated on September 12, 2026</P>
 
 </div>
 
@@ -116,8 +116,17 @@ lang=yo>#SkipHashtags</cite></p>
 <h2 id="what-s-changed" style='margin:0in;font-family:Calibri;font-size:14.0pt;color:#2E75B5'
 lang=yo>What's Changed</h2>
 
-<p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>This release
-…</p>
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>This release brings
+a mix of powerful new features, smarter workflows, and important fixes that
+make everyday use smoother and more intuitive. From fresh Colorizer definitions
+and new conversion commands to enhanced options for duplicating pages, de-duping
+pages, comparing hierarchies, and customizing the info boxes, we’ve expanded
+flexibility while streamlining common tasks. Dialogs like Insert Hashtags and
+Search Titles have been refined for faster, more comprehensive results, while
+updates to date insertion and MathML handling improve accuracy and reliability.
+Alongside these enhancements, a series of targeted fixes—from menu consistency
+to plugin stability and telemetry issues—ensure a more polished, dependable
+experience across the board.</p>
 
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;</p>
 
@@ -136,25 +145,83 @@ lang=yo>Changelog</h3>
 
 <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
  margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt' lang=yo>Added </span><span
+     style='font-style:italic;font-family:Calibri;font-size:11.5pt' lang=yo>Compare
+     Hierarchy</span><span style='font-family:Calibri;font-size:11.5pt'
+     lang=yo> and reworked the </span><span style='font-style:italic;
+     font-family:Calibri;font-size:11.5pt' lang=yo>Remove Duplicate Pages</span><span
+     style='font-family:Calibri;font-size:11.5pt' lang=yo> command, </span><a
+     href="https://github.com/stevencohn/OneMore/issues/1860"><span
+     style='font-family:Calibri;font-size:11.5pt' lang=en-US>#1860</span></a></li>
  <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=yo><span
      style='font-family:Calibri;font-size:11.5pt'>Added Colorizer definitions
      for Autohotkey and Onetastic, </span><a
      href="https://github.com/stevencohn/OneMore/issues/2592"><span
      style='font-family:Calibri;font-size:11.5pt'>#2592</span></a></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt' lang=yo>Added </span><span
+     style='font-style:italic;font-family:Calibri;font-size:11.5pt' lang=yo>Convert
+     Outline</span><span style='font-family:Calibri;font-size:11.5pt' lang=yo>
+     and </span><span style='font-style:italic;font-family:Calibri;font-size:
+     11.5pt' lang=yo>Convert Headings</span><span style='font-family:Calibri;
+     font-size:11.5pt' lang=yo> command to convert between headings and bullet
+     lists, </span><a href="https://github.com/stevencohn/OneMore/issues/1164"><span
+     style='font-family:Calibri;font-size:11.5pt' lang=en-US>#1164</span></a></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt' lang=yo>Added the ability to
+     customize the info, warning, notes boxes and create new boxes like those, </span><a
+     href="https://github.com/stevencohn/OneMore/issues/2575"><span
+     style='font-family:Calibri;font-size:11.5pt' lang=en-US>#2575</span></a></li>
  <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=yo><span
-     style='font-family:Calibri;font-size:11.5pt'>Added options to Duplicate
-     Page that inserts a backlinks to the original page, </span><a
+     style='font-family:Calibri;font-size:11.5pt'>Added options to </span><span
+     style='font-style:italic;font-family:Calibri;font-size:11.5pt'>Duplicate
+     Page</span><span style='font-family:Calibri;font-size:11.5pt'> to insert
+     backlinks to the original page, </span><a
      href="https://github.com/stevencohn/OneMore/issues/2576"><span
      style='font-family:Calibri;font-size:11.5pt'>#2576</span></a></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt' lang=yo>Added an option to
+     separate culture (language) and locale (formatting), </span><a
+     href="https://github.com/stevencohn/OneMore/issues/2578"><span
+     style='font-family:Calibri;font-size:11.5pt' lang=en-US>#2578</span></a></li>
  <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=yo><span
-     style='font-family:Calibri;font-size:11.5pt'>Updated the Insert Hashtags
-     dialog with type-ahead matching and a streamlined layout, </span><a
+     style='font-family:Calibri;font-size:11.5pt'>Updated the </span><span
+     style='font-style:italic;font-family:Calibri;font-size:11.5pt'>Insert
+     Hashtags</span><span style='font-family:Calibri;font-size:11.5pt'> dialog
+     with type-ahead matching, common words, and a streamlined layout, </span><a
      href="https://github.com/stevencohn/OneMore/issues/2564"><span
      style='font-family:Calibri;font-size:11.5pt'>#2564</span></a></li>
 </ul>
 
 <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
  margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:black'><span
+     style='font-family:Calibri;font-size:11.5pt;color:black' lang=yo>Updated </span><span
+     style='font-style:italic;font-family:Calibri;font-size:11.5pt;color:black'
+     lang=yo>Search Titles</span><span style='font-family:Calibri;font-size:
+     11.5pt;color:black' lang=yo> (previously Search Page Titles) to include
+     titles of notebooks, section, and section groups, </span><a
+     href="https://github.com/stevencohn/OneMore/issues/2408"><span
+     style='font-family:Calibri;font-size:11.5pt' lang=en-US>#2408</span></a></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:black'><span
+     style='font-family:Calibri;font-size:11.5pt;color:black' lang=yo>Updated </span><span
+     style='font-style:italic;font-family:Calibri;font-size:11.5pt;color:black'
+     lang=yo>Edit Custom Table Styles </span><span style='font-family:Calibri;
+     font-size:11.5pt;color:black' lang=yo>to improve workflow efficiency and
+     allow duplicating existing definitions, </span><a
+     href="https://github.com/stevencohn/OneMore/issues/2516"><span
+     style='font-family:Calibri;font-size:11.5pt' lang=en-US>#2516</span></a></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:black'><span
+     style='font-family:Calibri;font-size:11.5pt;color:black' lang=yo>Update </span><span
+     style='font-style:italic;font-family:Calibri;font-size:11.5pt;color:black'
+     lang=yo>Search</span><span style='font-family:Calibri;font-size:11.5pt;
+     color:black' lang=yo> and </span><span style='font-style:italic;
+     font-family:Calibri;font-size:11.5pt;color:black' lang=yo>Search Titles</span><span
+     style='font-family:Calibri;font-size:11.5pt;color:black' lang=yo> to allow
+     matching any order of unquoted terms, </span><a
+     href="https://github.com/stevencohn/OneMore/issues/2410"><span
+     style='font-family:Calibri;font-size:11.5pt' lang=en-US>#2410</span></a></li>
  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:black'
      lang=yo><span style='font-family:Calibri;font-size:11.5pt;color:black'>Updated
      the Colorize dialog to optionally show all languages including those
@@ -166,8 +233,10 @@ lang=yo>Changelog</h3>
 <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
  margin-bottom:0in'>
  <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=yo><span
-     style='font-family:Calibri;font-size:11.5pt'>Updated Insert Sortable Date
-     to work as a direct paste operation, </span><a
+     style='font-family:Calibri;font-size:11.5pt'>Updated </span><span
+     style='font-style:italic;font-family:Calibri;font-size:11.5pt'>Insert
+     Sortable Date</span><span style='font-family:Calibri;font-size:11.5pt'> to
+     work as a direct paste operation, </span><a
      href="https://github.com/stevencohn/OneMore/issues/2571"><span
      style='font-family:Calibri;font-size:11.5pt'>#2571</span></a></li>
  <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=yo><span
@@ -175,9 +244,21 @@ lang=yo>Changelog</h3>
      MathML formulas from being altered, </span><a
      href="https://github.com/stevencohn/OneMore/issues/1425"><span
      style='font-family:Calibri;font-size:11.5pt'>#1425</span></a></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt' lang=yo>Updated the hashtag
+     scanner to stop immediately after disabling the service from Settings, </span><a
+     href="https://github.com/stevencohn/OneMore/issues/2609"><span
+     style='font-family:Calibri;font-size:11.5pt' lang=en-US>#2609</span></a></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt' lang=yo>Fixed an issue where
+     cleared OneMore defaulted keys did not save as cleared, </span><a
+     href="https://github.com/stevencohn/OneMore/issues/2495"><span
+     style='font-family:Calibri;font-size:11.5pt' lang=en-US>#2495</span></a></li>
  <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=yo><span
-     style='font-family:Calibri;font-size:11.5pt'>Fixed an issue where Resize
-     and Adjust was missing from the image and right-click menus, </span><a
+     style='font-family:Calibri;font-size:11.5pt'>Fixed an issue where </span><span
+     style='font-style:italic;font-family:Calibri;font-size:11.5pt'>Resize and
+     Adjust</span><span style='font-family:Calibri;font-size:11.5pt'> was
+     missing from the image and right-click menus, </span><a
      href="https://github.com/stevencohn/OneMore/issues/2577"><span
      style='font-family:Calibri;font-size:11.5pt'>#2577</span></a></li>
  <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=yo><span
@@ -195,6 +276,11 @@ lang=yo>Changelog</h3>
      Navigator header buttons did not track the window border when resizing
      quickly, </span><a href="https://github.com/stevencohn/OneMore/issues/2565"><span
      style='font-family:Calibri;font-size:11.5pt'>#2565</span></a></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt' lang=yo>Fixed an issue where
+     multi-selected favorites could not be drag-and-dropped, </span><a
+     href="https://github.com/stevencohn/OneMore/issues/2618"><span
+     style='font-family:Calibri;font-size:11.5pt' lang=en-US>#2618</span></a></li>
  <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=yo><span
      style='font-family:Calibri;font-size:11.5pt'>Fixed telemetry ERR-122 where
      Edit Table Theme could fail silently, </span><a

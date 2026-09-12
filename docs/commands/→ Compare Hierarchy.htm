@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description"
+    content="OneMore is an add-in for OneNote with simple and powerful features that make OneNote a better OneNote">
+  <meta name="author" content="Steven M Cohn">
+  <meta name="generator" content="OneMore">
+  <title>OneMore: → Compare Hierarchy</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+  <link href="/nav.css" rel="stylesheet">
+  <link href="/toc.css" rel="stylesheet">
+  <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+</head>
+
+<body class="sidebar-layout">
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="book-half" viewBox="0 0 16 16">
+      <path fill="currentColor" fill-rule="evenodd"
+        d="M8.5 2.687c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z">
+      </path>
+    </symbol>
+    <symbol id="three-dots" viewBox="0 0 16 16">
+      <path fill="currentColor" fill-rule="evenodd"
+        d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z">
+      </path>
+    </symbol>
+    <symbol id="facebook">
+      <path fill="currentColor" fill-rule="evenodd"
+        d="M480,257.35c0-123.7-100.3-224-224-224s-224,100.3-224,224c0,111.8,81.9,204.47,189,221.29V322.12H164.11V257.35H221V208c0-56.13,33.45-87.16,84.61-87.16,24.51,0,50.15,4.38,50.15,4.38v55.13H327.5c-27.81,0-36.51,17.26-36.51,35v42h62.12l-9.92,64.77H291V478.66C398.1,461.85,480,369.18,480,257.35Z">
+      </path>
+    </symbol>
+    <symbol id="github">
+      <path fill="currentColor" fill-rule="evenodd"
+        d="M256 0C114.64 0 0 114.61 0 256c0 113.09 73.34 209 175.08 242.9 12.8 2.35 17.47-5.56 17.47-12.34 0-6.08-.22-22.18-.35-43.54-71.2 15.49-86.2-34.34-86.2-34.34-11.64-29.57-28.42-37.45-28.42-37.45-23.27-15.84 1.73-15.55 1.73-15.55 25.69 1.81 39.21 26.38 39.21 26.38 22.84 39.12 59.92 27.82 74.5 21.27 2.33-16.54 8.94-27.82 16.25-34.22-56.84-6.43-116.6-28.43-116.6-126.49 0-27.95 10-50.8 26.35-68.69-2.63-6.48-11.42-32.5 2.51-67.75 0 0 21.49-6.88 70.4 26.24a242.65 242.65 0 0 1 128.18 0c48.87-33.13 70.33-26.24 70.33-26.24 14 35.25 5.18 61.27 2.55 67.75 16.41 17.9 26.31 40.75 26.31 68.69 0 98.35-59.85 120-116.88 126.32 9.19 7.9 17.38 23.53 17.38 47.41 0 34.22-.31 61.83-.31 70.23 0 6.85 4.61 14.81 17.6 12.31C438.72 464.97 512 369.08 512 256.02 512 114.62 397.37 0 256 0z">
+      </path>
+    </symbol>
+    <symbol id="heart">
+      <path stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        d="M12 7.69431C10 2.99988 3 3.49988 3 9.49991C3 15.4999 12 20.5001 12 20.5001C12 20.5001 21 15.4999 21 9.49991C21 3.49988 14 2.99988 12 7.69431Z">
+      </path>
+    </symbol>
+  </svg>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+    integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+    crossorigin="anonymous"></script>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top" aria-label="OneMore-navbar">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">
+        <img src="/Logo.png" alt="OneMore" height="45" class="logo d-inline-block align-text-middle">
+        <div class="logo-text">OneMore</div>
+      </a>
+
+      <div class="navbar-toggler d-flex d-lg-none order-3 p-2" style="display:block">
+        <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasResponsive" aria-controls="offcanvasResponsive" aria-label="TOC">
+          <svg class="bi" aria-hidden="true">
+            <use xlink:href="#book-half"></use>
+          </svg>
+        </button>
+
+        <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav me-auto mb-2 mb-lg-0">
+          <!-- TODO class+active aria-currrent=page -->
+          <a class="nav-link" href="/get-started/index.html" id="get-started-section">Get started</a>
+          <a class="nav-link" href="/the-basics/index.html" id="the-basics-section">The Basics</a>
+          <a class="nav-link" href="/commands/index.html" id="commands-section">Commands</a>
+          <a class="nav-link" href="/context-menus/index.html" id="context-menus-section">Context Menus</a>
+          <a class="nav-link" href="/developers/index.html" id="developers-section">Developers</a>
+        </div>
+        <div id="search" class="d-flex flex-grow-1 mx-lg-3"></div>
+        <div class="d-flex">
+          <a class="nav-link nav-glyph py-2 px-lg-2" href="https://facebook.com/OneMoreAddIn" target="_blank" rel="noopener">
+            <svg width="22px" height="22px" viewBox="0 0 512 512" id="fbglyph" xmlns="http://www.w3.org/2000/svg"
+              stroke="#FFFFFF" role="img" class="navbar-nav-svg">
+              <title>OneMore on Facebook</title>
+              <use xlink:href="#facebook"></use>
+            </svg>
+            <small class="d-lg-none ms-2">Facebook</small>
+          </a>
+          <a class="nav-link nav-glyph py-2 px-lg-2" href="https://github.com/stevencohn/OneMore" target="_blank" rel="noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" class="navbar-nav-svg"
+              viewBox="0 0 512 499.36" role="img">
+              <title>See the project on GitHub</title>
+              <use xlink:href="#github"></use>
+            </svg>
+            <small class="d-lg-none ms-2">GitHub</small>
+          </a>
+          <a class="nav-link nav-glyph py-2 px-lg-2" href="https://github.com/sponsors/stevencohn" target="_blank" rel="noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="navbar-nav-svg" viewBox="0 0 24 24"
+              role="img" fill="none">
+              <title>Please consider a donation</title>
+              <use xlink:href="#heart"></use>
+            </svg>
+            <small class="d-lg-none ms-2">Donate</small>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="wrapper">
+
+    <!-- Sidebar -->
+    <nav id="sidebar" style="background-color:#EBE5E1; " aria-label="Sidebar">
+      <div class="offcanvas-lg offcanvas-end" tabindex="-1" id="offcanvasResponsive"
+        aria-labelledby="offcanvasResponsiveLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasResponsiveLabel">Get Started</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#offcanvasResponsive"
+            aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav">
+            <li><a id="clean-commands" href="Clean Commands.htm">Clean Commands</a></li>
+<li><a id="colorize-command" href="Colorize Command.htm">Colorize Command</a></li>
+<li><a id="edit-commands" href="Edit Commands.htm">Edit Commands</a></li>
+<li><a id="file-commands" href="File Commands.htm">File Commands</a></li>
+<li><a id="→-plugins" href="→ Plugins.htm">→ Plugins</a></li>
+<li><a id="hashtag-commands" href="Hashtag Commands.htm">Hashtag Commands</a></li>
+<li><a id="image-commands" href="Image Commands.htm">Image Commands</a></li>
+<li><a id="my-styles-commands" href="My Styles Commands.htm">My Styles Commands</a></li>
+<li><a id="numbering-commands" href="Numbering Commands.htm">Numbering Commands</a></li>
+<li><a id="page-commands" href="Page Commands.htm">Page Commands</a></li>
+<li><a id="reference-commands" href="Reference Commands.htm">Reference Commands</a></li>
+<li><a id="reminder-commands" href="Reminder Commands.htm">Reminder Commands</a></li>
+<li><a id="search-commands" href="Search Commands.htm">Search Commands</a></li>
+<li><a id="snippets-commands" href="Snippets Commands.htm">Snippets Commands</a></li>
+<li><a id="table-commands" href="Table Commands.htm">Table Commands</a></li>
+<li><a id="→-tables-and-calculations" href="→ Tables and Calculations.htm">→ Tables and Calculations</a></li>
+<li><a id="table-style-commands" href="Table Style Commands.htm">Table Style Commands</a></li>
+<li><a id="extra-commands" href="Extra Commands.htm">Extra Commands</a></li>
+<li><a id="→-compare-hierarchy" href="→ Compare Hierarchy.htm">→ Compare Hierarchy</a></li>
+<li><a id="→-remove-duplicate-pages" href="→ Remove Duplicate Pages.htm">→ Remove Duplicate Pages</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div id="content">
+      <DIV style="DIRECTION: ltr">
+<DIV style="WIDTH: 8.556in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0in">
+<DIV style="WIDTH: 3.011in; MARGIN-TOP: 0in; DIRECTION: ltr; MARGIN-LEFT: 0.075in">
+<P style='FONT-SIZE: 20pt; MARGIN-BOTTOM: 14pt; FONT-FAMILY: "Calibri Light"; MARGIN-TOP: 0pt; COLOR: #464646'><SPAN lang=yo>→ </SPAN><SPAN lang=en-US>Compare Hierarchy</SPAN></P></DIV>
+<DIV style="WIDTH: 2.638in; MARGIN-TOP: 0.042in; DIRECTION: ltr; MARGIN-LEFT: 0.075in">
+<P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">September 10, 2026</P>
+<P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">Last updated on September 12, 2026</P></DIV>
+<DIV style="WIDTH: 8.556in; MARGIN-TOP: 0.427in; DIRECTION: ltr; MARGIN-LEFT: 0in">
+<DIV style="DIRECTION: ltr">
+<TABLE title="" style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; BORDER-COLLAPSE: collapse; BORDER-BOTTOM: #a3a3a3 1pt solid; DIRECTION: ltr; BORDER-LEFT: #a3a3a3 1pt solid" cellSpacing=0 cellPadding=0 summary="" border=1 valign="top">
+<TBODY>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 8.402in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #fadbd2">
+<DIV style="DIRECTION: ltr">
+<TABLE title="" style="BORDER-TOP: #a3a3a3 0pt solid; BORDER-RIGHT: #a3a3a3 0pt solid; BORDER-COLLAPSE: collapse; BORDER-BOTTOM: #a3a3a3 0pt solid; DIRECTION: ltr; BORDER-LEFT: #a3a3a3 0pt solid" cellSpacing=0 cellPadding=0 summary="" border=0 valign="top">
+<TBODY>
+<TR>
+<TD style="BORDER-LEFT-WIDTH: 0pt; BORDER-RIGHT-WIDTH: 0pt; WIDTH: 0.681in; VERTICAL-ALIGN: top; BORDER-BOTTOM-WIDTH: 0pt; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; PADDING-RIGHT: 3pt; BORDER-TOP-WIDTH: 0pt">
+<P lang=yo style='FONT-SIZE: 22pt; FONT-FAMILY: "Segoe UI Emoji"; COLOR: #2e75b5; TEXT-ALIGN: center; MARGIN: 0in'>🚩</P></TD>
+<TD style="BORDER-LEFT-WIDTH: 0pt; BORDER-RIGHT-WIDTH: 0pt; WIDTH: 6.629in; VERTICAL-ALIGN: top; BORDER-BOTTOM-WIDTH: 0pt; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; PADDING-RIGHT: 3pt; BORDER-TOP-WIDTH: 0pt">
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: #333333; MARGIN: 0in"><SPAN style="FONT-WEIGHT: bold">Preview</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: #333333; MARGIN: 0in">This page contains descriptions of pre-release functionality available only in the current Beta release</P></TD></TR></TBODY></TABLE></DIV></TD></TR></TBODY></TABLE></DIV>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Compare Hierarchy lets you line up two notebooks, two sections, or two section groups side by side and see exactly what's different between them: which pages exist on only one side, which ones share a name but were modified at different times, and - when you ask it to - how similar their actual content really is. From the same window you can open either side's page, copy or mirror whole branches (or single pages) from one side to the other, delete what you don't need, and score any two pages' content against each other, either one pair at a time or across an entire notebook in one pass.</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<DIV style="DIRECTION: ltr">
+<TABLE title="" style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; BORDER-COLLAPSE: collapse; BORDER-BOTTOM: #a3a3a3 1pt solid; DIRECTION: ltr; BORDER-LEFT: #a3a3a3 1pt solid" cellSpacing=0 cellPadding=0 summary="" border=1 valign="top">
+<TBODY>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 8.534in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #ffffd7">
+<DIV style="DIRECTION: ltr">
+<TABLE title="" style="BORDER-TOP: #a3a3a3 0pt solid; BORDER-RIGHT: #a3a3a3 0pt solid; BORDER-COLLAPSE: collapse; BORDER-BOTTOM: #a3a3a3 0pt solid; DIRECTION: ltr; BORDER-LEFT: #a3a3a3 0pt solid" cellSpacing=0 cellPadding=0 summary="" border=0 valign="top">
+<TBODY>
+<TR>
+<TD style="BORDER-LEFT-WIDTH: 0pt; BORDER-RIGHT-WIDTH: 0pt; WIDTH: 0.667in; VERTICAL-ALIGN: top; BORDER-BOTTOM-WIDTH: 0pt; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; PADDING-RIGHT: 3pt; BORDER-TOP-WIDTH: 0pt">
+<P style='FONT-SIZE: 22pt; FONT-FAMILY: "Segoe UI Symbol"; COLOR: #ed7d31; TEXT-ALIGN: center; MARGIN: 0in'><SPAN style="FONT-WEIGHT: bold">⚠</SPAN></P></TD>
+<TD style="BORDER-LEFT-WIDTH: 0pt; BORDER-RIGHT-WIDTH: 0pt; WIDTH: 7.654in; VERTICAL-ALIGN: top; BORDER-BOTTOM-WIDTH: 0pt; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; PADDING-RIGHT: 3pt; BORDER-TOP-WIDTH: 0pt">
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in"><SPAN style="FONT-WEIGHT: bold">Before you copy or mirror anything</SPAN></P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Compare Hierarchy is a structural/content-similarity tool, not a complete, diff/merge tool. It will tell you that two pages differ and roughly how much, but it doesn't show you <SPAN style="FONT-STYLE: italic">what</SPAN> changed line by line, and Copy and especially Mirror can overwrite or delete content you meant to keep. Before copying or mirroring anything you're not certain about, use <A href="→ Compare Hierarchy.htm#compare-contents">compare contents</A> or a <A href="→ Compare Hierarchy.htm#deep-scan">deep scan</A> to see how similar the pages really are, and open the pages yourself to actually read them. Treat a high similarity score as a reason to look closer, not as a substitute for looking.</P></TD></TR></TBODY></TABLE></DIV></TD></TR></TBODY></TABLE></DIV>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">It's built for situations like:</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<UL style="MARGIN-BOTTOM: 0in; unicode-bidi: embed; MARGIN-TOP: 0in; DIRECTION: ltr" type=disc>
+<LI style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">You keep a personal copy of a shared notebook and want to know what's changed since you last synced it.</SPAN> 
+<LI style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">You're merging two section groups that grew apart and need to see, page by page, where they actually diverge before you copy anything.</SPAN> 
+<LI style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">You suspect a handful of pages were duplicated or forked a while back and want a real similarity score instead of just guessing from titles.</SPAN> </LI></UL>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">This page covers:</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<UL style="MARGIN-BOTTOM: 0in; unicode-bidi: embed; MARGIN-TOP: 0in; DIRECTION: ltr" type=disc>
+<LI style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><A href="→ Compare Hierarchy.htm#opening-compare-hierarchy"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Opening Compare Hierarchy</SPAN></A> 
+<LI style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><A href="→ Compare Hierarchy.htm#parts-of-the-compare-window"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Parts of the Compare window</SPAN></A> 
+<LI style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><A href="→ Compare Hierarchy.htm#the-center-well"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">The center well</SPAN></A> 
+<LI style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><A href="→ Compare Hierarchy.htm#selecting-rows"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Selecting rows</SPAN></A> 
+<LI style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><A href="→ Compare Hierarchy.htm#copying-and-mirroring"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Copying and mirroring</SPAN></A> 
+<LI style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><A href="→ Compare Hierarchy.htm#deleting-pages"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Deleting pages</SPAN></A> 
+<LI style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><A href="→ Compare Hierarchy.htm#comparing-page-content"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Comparing page content</SPAN></A> 
+<LI style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><A href="→ Compare Hierarchy.htm#comparing-two-unrelated-pages"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Comparing two unrelated pages</SPAN></A> 
+<LI style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><A href="→ Compare Hierarchy.htm#deep-scanning-a-notebook-or-section"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Deep scanning a notebook or section</SPAN></A> 
+<LI style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><A href="→ Compare Hierarchy.htm#tips"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri">Tips</SPAN></A> </LI></UL>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H2 id=opening-compare-hierarchy style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Opening Compare Hierarchy</H2>
+<H2 style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">&nbsp;</H2>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">On the <SPAN style="FONT-WEIGHT: bold">OneMore</SPAN> ribbon tab, open the <SPAN style="FONT-WEIGHT: bold">Extras</SPAN> menu, and choose <SPAN style="FONT-WEIGHT: bold">Compare Hierarchy</SPAN>. (If you keep the separate OneMore tab hidden, the same command is also available from OneNote's <SPAN style="FONT-WEIGHT: bold">Home</SPAN> tab, under the OneMore group's <SPAN style="FONT-WEIGHT: bold">Extras</SPAN> menu.)</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">OneMore first asks you to pick a <SPAN style="FONT-WEIGHT: bold">source</SPAN> (the left side) and then a <SPAN style="FONT-WEIGHT: bold">target</SPAN> (the right side). Each can be a notebook, a section, or a section group, but both sides have to be the same kind of thing - you can't compare a notebook to a single section, for instance. The target also can't be the source itself, or a parent or child of it.</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<BLOCKQUOTE style="FONT-SIZE: 11pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in 0in 0in 0.375in"><SPAN style="FONT-STYLE: italic">Note that you'll see the hierarchy selection dialog twice - once for the source and then again for the target</SPAN></BLOCKQUOTE>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Once both sides are chosen, the Compare Hierarchy window opens. It's modeless, so you can keep working in OneNote - clicking around, editing pages - while it stays open alongside it.</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H2 id=parts-of-the-compare-window style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Parts of the Compare window</H2>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in 0in 0in 0.375in">&nbsp;</P>
+<P style="MARGIN: 0in 0in 0in 0.375in"><IMG src="/commands/→%20Compare%20Hierarchy_files/image001.png" width=636 height=344></P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Across the top, the header names both sides you're comparing and shows a small badge for what kind of thing they are (Notebook, Section, or Section Group). Just below it, a reminder that this view compares <SPAN style="FONT-STYLE: italic">structure</SPAN> - names, types, and timestamps - not page content itself; you have to ask for content to be compared explicitly (see <A href="→ Compare Hierarchy.htm#comparing-page-content">Comparing page content</A>).</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Below that is a small legend, then the two-column tree itself: the source side on the left, the target side on the right, and a narrow column of circular <SPAN style="FONT-WEIGHT: bold">wells</SPAN> running down the middle between them. Every notebook, section group, section, and page that exists on either side gets a row, each with a small colored type badge, its name, and its last-modified timestamp. Rows can be expanded and collapsed like any OneNote hierarchy.</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">If something exists on one side but not the other - a page you haven't copied over yet, say - the missing side of that row shows an italic <SPAN style="FONT-STYLE: italic">"not present"</SPAN> placeholder with a faint reddish tint instead of a name.</P>
+<H2 style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">&nbsp;</H2>
+<H2 id=the-center-well style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">The center well</H2>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">The well between the two columns is the fastest way to tell what's going on with a row, before you even read the timestamps:</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<DIV style="DIRECTION: ltr">
+<TABLE title="" style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; BORDER-COLLAPSE: collapse; BORDER-BOTTOM: #a3a3a3 1pt solid; DIRECTION: ltr; BORDER-LEFT: #a3a3a3 1pt solid" cellSpacing=0 cellPadding=0 summary="" border=1 valign="top">
+<TBODY>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.676in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #d8d8d8">
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in"><SPAN style="FONT-WEIGHT: bold">Well</SPAN></P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 6.443in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #d8d8d8">
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in"><SPAN style="FONT-WEIGHT: bold">Meaning</SPAN></P></TD></TR>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.676in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: white">
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Green <SPAN style="FONT-WEIGHT: bold">=</SPAN></P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 6.447in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: white">
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Both sides are the same - either their timestamps matched exactly, or OneMore just confirmed it (see below).</P></TD></TR>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.676in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #f2f2f2">
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Plain yellow circle</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 6.443in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #f2f2f2">
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Both sides exist, but their modified timestamps differ. OneMore hasn't measured the actual content yet, so this just means "worth a look."</P></TD></TR>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.676in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: white">
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Dashed outline circle</P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 6.443in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: white">
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Orphan - this item exists on only one side.</P></TD></TR>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 1.676in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #f2f2f2">
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">A colored <SPAN style="FONT-WEIGHT: bold">number</SPAN></P></TD>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 6.443in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #f2f2f2">
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in"><SPAN lang=en-US>A measured content-similarity score, from either </SPAN><A href="file:///C:/Github/%23comparing-page-content"><SPAN lang=en-US>Compare contents</SPAN><SPAN lang=x-none>…</SPAN></A><SPAN lang=en-US> or a </SPAN><A href="file:///C:/Github/%23deep-scanning-a-notebook-or-section"><SPAN lang=en-US>deep scan</SPAN></A><SPAN lang=en-US>. Green means the pages are practically identical (100%), blue means very similar (over 95%), yellow means moderately similar (over 80%), and red means they've diverged more than that.</SPAN></P></TD></TR></TBODY></TABLE></DIV>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Copying or mirroring a page always leaves it showing the green <SPAN style="FONT-WEIGHT: bold">=</SPAN> afterward, even though its new timestamp won't match the source's - OneMore knows it just made the two sides identical, so it doesn't wait for you to ask.</P>
+<H2 style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">&nbsp;</H2>
+<H2 id=selecting-rows style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Selecting rows</H2>
+<H2 style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">&nbsp;</H2>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Click a name on the left or the right to select just that side of a row. Click the well itself to select <SPAN style="FONT-WEIGHT: bold">both</SPAN> sides of a matched row at once - this is what most of the action buttons below expect. Wells on orphan rows aren't clickable, since there's nothing on the other side to pair with.</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">You can also select and move with the keyboard: <SPAN style="FONT-WEIGHT: bold">Up</SPAN>/<SPAN style="FONT-WEIGHT: bold">Down</SPAN> moves to the adjacent row, keeping whatever you had selected (one side, or both); <SPAN style="FONT-WEIGHT: bold">Left</SPAN> and <SPAN style="FONT-WEIGHT: bold">Right</SPAN> walk across a row - left side, to the well, to the right side - the same path a mouse click through the well would take.</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Right-clicking any row selects it and opens a context menu with the same actions the buttons below would offer for that row.</P>
+<H2 style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">&nbsp;</H2>
+<H2 id=copying-and-mirroring style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Copying and mirroring</H2>
+<P style='FONT-SIZE: 11.5pt; FONT-FAMILY: "Segoe UI Emoji"; MARGIN: 0in'>&nbsp;</P>
+<DIV style="DIRECTION: ltr">
+<TABLE title="" style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; BORDER-COLLAPSE: collapse; BORDER-BOTTOM: #a3a3a3 1pt solid; DIRECTION: ltr; BORDER-LEFT: #a3a3a3 1pt solid" cellSpacing=0 cellPadding=0 summary="" border=1 valign="top">
+<TBODY>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 8.534in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #ffffd7">
+<DIV style="DIRECTION: ltr">
+<TABLE title="" style="BORDER-TOP: #a3a3a3 0pt solid; BORDER-RIGHT: #a3a3a3 0pt solid; BORDER-COLLAPSE: collapse; BORDER-BOTTOM: #a3a3a3 0pt solid; DIRECTION: ltr; BORDER-LEFT: #a3a3a3 0pt solid" cellSpacing=0 cellPadding=0 summary="" border=0 valign="top">
+<TBODY>
+<TR>
+<TD style="BORDER-LEFT-WIDTH: 0pt; BORDER-RIGHT-WIDTH: 0pt; WIDTH: 0.667in; VERTICAL-ALIGN: top; BORDER-BOTTOM-WIDTH: 0pt; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; PADDING-RIGHT: 3pt; BORDER-TOP-WIDTH: 0pt">
+<P style='FONT-SIZE: 22pt; FONT-FAMILY: "Segoe UI Symbol"; COLOR: #df6613; TEXT-ALIGN: center; MARGIN: 0in'><SPAN style="FONT-WEIGHT: bold">⚠</SPAN></P></TD>
+<TD style="BORDER-LEFT-WIDTH: 0pt; BORDER-RIGHT-WIDTH: 0pt; WIDTH: 7.719in; VERTICAL-ALIGN: top; BORDER-BOTTOM-WIDTH: 0pt; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; PADDING-RIGHT: 3pt; BORDER-TOP-WIDTH: 0pt">
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in"><SPAN style="FONT-WEIGHT: bold">Double-check differences</SPAN></P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Copy overwrites the destination page's content with the source's; Mirror does that <SPAN style="FONT-STYLE: italic">and</SPAN> deletes any page on the destination that the source doesn't have. Neither one merges two versions of a page together - whichever side you're overwriting loses whatever made it different. Check the well, run a content comparison, and open both pages if there's any doubt before you proceed.</P></TD></TR></TBODY></TABLE></DIV></TD></TR></TBODY></TABLE></DIV>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Select a notebook, section, or section group row via its well, and two panels appear at the bottom of the window. For a container row, you'll see <SPAN style="FONT-WEIGHT: bold">Hierarchy actions</SPAN>:</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<UL style="MARGIN-BOTTOM: 0in; unicode-bidi: embed; MARGIN-TOP: 0in; DIRECTION: ltr" type=disc>
+<LI style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: bold">Copy </SPAN><SPAN style='FONT-SIZE: 11.5pt; FONT-FAMILY: "Cambria Math"; FONT-WEIGHT: bold'>&gt;&gt;</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> / </SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: bold">Copy &lt;&lt;</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> - copies everything under the selected row from one side to the other. Anything missing on the destination is created; anything already matched there gets its content brought up to date. Anything that exists </SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-STYLE: italic">only</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> on the destination side is left alone.</SPAN> 
+<LI style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: bold">Mirror &gt;&gt;</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> / </SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: bold">Mirror &lt;&lt;</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> - does the same as Copy, and then also deletes anything on the destination side that doesn't exist on the source, so the destination ends up an exact match. OneMore tells you up front how many items that will delete before you confirm.</SPAN> </LI></UL>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Both ask you to confirm first. If the copy is about to replace a page that was already matched on both sides - not create a brand-new one.</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<DIV style="DIRECTION: ltr">
+<TABLE title="" style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; BORDER-COLLAPSE: collapse; BORDER-BOTTOM: #a3a3a3 1pt solid; DIRECTION: ltr; BORDER-LEFT: #a3a3a3 1pt solid" cellSpacing=0 cellPadding=0 summary="" border=1 valign="top">
+<TBODY>
+<TR>
+<TD style="BORDER-TOP: #a3a3a3 1pt solid; BORDER-RIGHT: #a3a3a3 1pt solid; WIDTH: 8.534in; VERTICAL-ALIGN: top; BORDER-BOTTOM: #a3a3a3 1pt solid; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; BORDER-LEFT: #a3a3a3 1pt solid; PADDING-RIGHT: 3pt; BACKGROUND-COLOR: #ffffd7">
+<DIV style="DIRECTION: ltr">
+<TABLE title="" style="BORDER-TOP: #a3a3a3 0pt solid; BORDER-RIGHT: #a3a3a3 0pt solid; BORDER-COLLAPSE: collapse; BORDER-BOTTOM: #a3a3a3 0pt solid; DIRECTION: ltr; BORDER-LEFT: #a3a3a3 0pt solid" cellSpacing=0 cellPadding=0 summary="" border=0 valign="top">
+<TBODY>
+<TR>
+<TD style="BORDER-LEFT-WIDTH: 0pt; BORDER-RIGHT-WIDTH: 0pt; WIDTH: 0.667in; VERTICAL-ALIGN: top; BORDER-BOTTOM-WIDTH: 0pt; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; PADDING-RIGHT: 3pt; BORDER-TOP-WIDTH: 0pt">
+<P style='FONT-SIZE: 22pt; FONT-FAMILY: "Segoe UI Symbol"; COLOR: #df6613; TEXT-ALIGN: center; MARGIN: 0in'><SPAN style="FONT-WEIGHT: bold">⚠</SPAN></P></TD>
+<TD style="BORDER-LEFT-WIDTH: 0pt; BORDER-RIGHT-WIDTH: 0pt; WIDTH: 7.654in; VERTICAL-ALIGN: top; BORDER-BOTTOM-WIDTH: 0pt; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; PADDING-RIGHT: 3pt; BORDER-TOP-WIDTH: 0pt">
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: #333333; MARGIN: 0in"><SPAN style="FONT-WEIGHT: bold">Incoming and Outgoing Hyperlinks</SPAN></P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">OneMore also warns you that any <SPAN style="FONT-STYLE: italic">other</SPAN> pages which link to it might break, and asks whether it should patch those other pages' links too, leave them as-is, or cancel the whole operation. OneMore does not attempt to patch hyperlinks that point outside the scope of the current hierarchy view, or find pages outside that scope that reach into the target pages.</P></TD></TR></TBODY></TABLE></DIV></TD></TR></TBODY></TABLE></DIV>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">A progress dialog tracks the copy page by page and can be canceled at any time; whatever's already been copied stays copied.</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Selecting a single <SPAN style="FONT-WEIGHT: bold">page</SPAN> row instead shows <SPAN style="FONT-WEIGHT: bold">Page actions</SPAN>, which include the same <SPAN style="FONT-WEIGHT: bold">Copy &gt;&gt;</SPAN> / <SPAN style="FONT-WEIGHT: bold">Copy &lt;&lt;</SPAN> buttons scoped to just that one page, plus <SPAN style="FONT-WEIGHT: bold">Open left</SPAN> / <SPAN style="FONT-WEIGHT: bold">Open right</SPAN> to jump straight to either side's copy of the page in OneNote.</P>
+<H2 style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">&nbsp;</H2>
+<H2 id=deleting-pages style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Deleting pages</H2>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">From the Page actions panel, <SPAN style="FONT-WEIGHT: bold">Delete left</SPAN> and <SPAN style="FONT-WEIGHT: bold">Delete right</SPAN> remove that page from just one side. <SPAN style="FONT-WEIGHT: bold">Delete both</SPAN> removes it from both sides at once, but only enables when the row was selected via its center well - a safeguard so you can't accidentally wipe out both copies of a page by clicking one delete button too quickly. Every delete asks you to confirm first, and none of them can be undone.</P>
+<H2 style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">&nbsp;</H2>
+<H2 id=comparing-page-content style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Comparing page content</H2>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in"><SPAN lang=en-US>Select a matched page row via its center well, and the always-visible </SPAN><SPAN lang=en-US style="FONT-WEIGHT: bold">Compare</SPAN><SPAN lang=en-US> panel's button reads </SPAN><SPAN lang=en-US style="FONT-WEIGHT: bold">Compare contents</SPAN><SPAN lang=x-none style="FONT-WEIGHT: bold">…</SPAN><SPAN lang=en-US>. Click it, and OneMore reads both sides' actual page text and scores how similar they are - entirely locally, with no AI model or network call involved.</SPAN></P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">A small popup shows the overall percentage front and center, then breaks it down into five weighted factors, each with its own bar and a one-line explanation:</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<UL style="MARGIN-BOTTOM: 0in; unicode-bidi: embed; MARGIN-TOP: 0in; DIRECTION: ltr" type=disc>
+<LI style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: bold">TF-IDF cosine</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> (45%) - how much the two pages' distinctively-weighted vocabulary overlaps</SPAN> 
+<LI style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: bold">Lexical overlap</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> (20%) - how many unique words the two pages share</SPAN> 
+<LI style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: bold">Structural similarity</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> (15%) - matching headings and comparable paragraph counts</SPAN> 
+<LI style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: bold">Stylistic similarity</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> (10%) - comparable sentence length and writing style</SPAN> 
+<LI style="MARGIN-BOTTOM: 0px; VERTICAL-ALIGN: middle; MARGIN-TOP: 0px"><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; FONT-WEIGHT: bold">Entity similarity</SPAN><SPAN style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> (10%) - shared proper names and technical terms</SPAN> </LI></UL>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Once you close the popup, that row's well updates to show the score itself, colored the same way as the legend above - so you don't have to re-run the comparison to remember how similar two pages were.</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H2 id=comparing-two-unrelated-pages style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Comparing two unrelated pages</H2>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in"><SPAN lang=en-US>Compare contents… doesn't have to be limited to a matched row. Click a page's name on one side as usual, then hold </SPAN><SPAN lang=en-US style="FONT-WEIGHT: bold">Ctrl</SPAN><SPAN lang=en-US> and click a page name anywhere on the </SPAN><SPAN lang=en-US style="FONT-STYLE: italic">other</SPAN><SPAN lang=en-US> side - a different row, even a different section entirely. The two rows you touched now highlight independently (a dashed outline marks the Ctrl-clicked one), and </SPAN><SPAN lang=en-US style="FONT-WEIGHT: bold">Compare contents</SPAN><SPAN lang=x-none style="FONT-WEIGHT: bold">…</SPAN><SPAN lang=en-US> enables for that specific, otherwise-unrelated pair.</SPAN></P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Copy, Mirror, and Delete stay disabled while an ad-hoc pair like this is active, since the two pages don't actually share a position in the hierarchy - there's nothing for those actions to resolve a destination against. Comparing content, on the other hand, works on any two pages regardless of where they live.</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H2 id=deep-scanning-a-notebook-or-section style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Deep scanning a notebook or section</H2>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in"><SPAN lang=en-US>Comparing one pair at a time is fine for a handful of pages, but for a whole notebook you can run the same scoring across every matched page underneath a notebook, section, or section group in one pass. Select that row via its well, and the Compare panel's button relabels itself </SPAN><SPAN lang=en-US style="FONT-WEIGHT: bold">Deep scan</SPAN><SPAN lang=x-none style="FONT-WEIGHT: bold">…</SPAN><SPAN lang=en-US>. Click it, confirm (a deep scan can mean scoring a lot of pages, so OneMore checks first), and it works through every matched pair underneath that row, updating each one's well live as it finishes.</SPAN></P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Pages that already show the green <SPAN style="FONT-WEIGHT: bold">=</SPAN> are skipped - they're already known to match, so there's nothing to measure - and orphaned pages are skipped too, since there's no counterpart to compare against. Like Copy and Mirror, a deep scan can be canceled partway through, and every page it already scored keeps its result.</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<H2 id=notes style="FONT-SIZE: 14pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">Notes</H2>
+<H2 style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: #2e75b5; MARGIN: 0in">&nbsp;</H2>
+<P style="FONT-SIZE: 11.5pt; MARGIN: 0in"><SPAN lang=en-US style='FONT-FAMILY: "Segoe UI Emoji"'>📓 </SPAN><SPAN lang=en-US style="FONT-FAMILY: Calibri">Compare Hierarchy only reads content when you explicitly ask it to - either through </SPAN><SPAN lang=en-US style="FONT-FAMILY: Calibri; FONT-WEIGHT: bold">Compare contents</SPAN><SPAN lang=x-none style="FONT-FAMILY: Calibri; FONT-WEIGHT: bold">…</SPAN><SPAN lang=en-US style="FONT-FAMILY: Calibri"> or </SPAN><SPAN lang=en-US style="FONT-FAMILY: Calibri; FONT-WEIGHT: bold">Deep scan</SPAN><SPAN lang=x-none style="FONT-FAMILY: Calibri; FONT-WEIGHT: bold">…</SPAN><SPAN lang=en-US style="FONT-FAMILY: Calibri">. Simply opening the window and browsing the tree never touches page content, only the hierarchy's own names and timestamps, so it's safe to open on a large notebook just to look around.</SPAN></P>
+<P style='FONT-SIZE: 11.5pt; FONT-FAMILY: "Segoe UI Emoji"; MARGIN: 0in'>&nbsp;</P>
+<P style="FONT-SIZE: 11.5pt; MARGIN: 0in"><SPAN style='FONT-FAMILY: "Segoe UI Emoji"'>📓 </SPAN><SPAN style="FONT-FAMILY: Calibri">Mirror is destructive on the side it's </SPAN><SPAN style="FONT-FAMILY: Calibri; FONT-STYLE: italic">not</SPAN><SPAN style="FONT-FAMILY: Calibri"> copying from - it deletes whatever that side has that the source doesn't. Copy never deletes anything; if you're not sure which one you want, start with Copy.</SPAN></P>
+<P style='FONT-SIZE: 11.5pt; FONT-FAMILY: "Segoe UI Emoji"; MARGIN: 0in'>&nbsp;</P>
+<P style="FONT-SIZE: 11.5pt; MARGIN: 0in"><SPAN style='FONT-FAMILY: "Segoe UI Emoji"'>📓 </SPAN><SPAN style="FONT-FAMILY: Calibri">A green </SPAN><SPAN style="FONT-FAMILY: Calibri; FONT-WEIGHT: bold">=</SPAN><SPAN style="FONT-FAMILY: Calibri"> means OneMore considers the two sides identical, either by timestamp or because it just synced them - not that it has necessarily measured their content. If you want an actual percentage for a page that already shows </SPAN><SPAN style="FONT-FAMILY: Calibri; FONT-WEIGHT: bold">=</SPAN><SPAN style="FONT-FAMILY: Calibri">, that's expected: Compare contents… and Deep scan both skip it, since there's nothing left to reconcile.</SPAN></P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P><CITE lang=yo style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">#omwiki #omcommands</CITE></P>
+<P><CITE lang=yo style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">&nbsp;</CITE></P>
+<P><CITE lang=yo style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">© 2026 Steven M Cohn. All rights reserved.</CITE></P>
+<P><CITE lang=yo style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">Please consider a <A href="https://github.com/sponsors/stevencohn">sponsorship or one-time donation</A> to support ongoing development</CITE></P></DIV></DIV></DIV>
+<DIV>
+<P style="MARGIN: 0in">&nbsp;</P>
+<P style="FONT-SIZE: 9pt; FONT-FAMILY: Arial; COLOR: #969696; DIRECTION: ltr; TEXT-ALIGN: left; MARGIN: 0in">Created with OneNote.</P></DIV>
+    </div>
+
+  </div>
+  <script>
+    $('#commands-section').addClass('active');
+    let pageID = '#' + window.location.pathname.match(/.*\/(.*).htm$/)[1];
+    pageID = pageID.toLowerCase().replace(/%20| |\./g,'-')
+    if ( $(pageID).length > 0) { $(pageID).addClass('active'); }
+  </script>
+  <script src="/pagefind/pagefind-ui.js"></script>
+  <script>
+    new PagefindUI({ element: "#search", showSubResults: true });
+  </script>
+</body>
+
+</html>
