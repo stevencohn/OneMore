@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.UI
 {
 	using River.OneMoreAddIn;
 	using System;
+	using System.Collections.Generic;
 	using System.ComponentModel;
 	using System.Drawing;
 	using System.Drawing.Drawing2D;
@@ -63,25 +64,34 @@ namespace River.OneMoreAddIn.UI
 
 
 		/// <summary>
-		/// Raised after an item has been moved via drag/drop, once the ListView's own
+		/// Raised after an item (or, when AllowMultiItemDrag is enabled, a contiguous or
+		/// scattered block of items) has been moved via drag/drop, once the ListView's own
 		/// Items collection has already been updated to reflect the new position.
 		/// </summary>
 		public sealed class ItemMovedEventArgs : EventArgs
 		{
-			public ItemMovedEventArgs(ListViewItem item, ListViewItem precedingItem, bool movedToEnd)
+			public ItemMovedEventArgs(IReadOnlyList<ListViewItem> items, ListViewItem precedingItem, bool movedToEnd)
 			{
-				Item = item;
+				Items = items;
+				Item = items[0];
 				PrecedingItem = precedingItem;
 				MovedToEnd = movedToEnd;
 			}
 
 			/// <summary>
-			/// The item that was moved.
+			/// The first item that was moved; kept for consumers that only ever drag a
+			/// single item at a time.
 			/// </summary>
 			public ListViewItem Item { get; }
 
 			/// <summary>
-			/// The item now immediately preceding the moved item, or null if it is now the
+			/// The full ordered set of items that were moved together. Has a single entry
+			/// unless AllowMultiItemDrag is enabled and the user dragged a multi-selection.
+			/// </summary>
+			public IReadOnlyList<ListViewItem> Items { get; }
+
+			/// <summary>
+			/// The item now immediately preceding the moved block, or null if it is now the
 			/// first item in the list.
 			/// </summary>
 			public ListViewItem PrecedingItem { get; }
@@ -104,7 +114,8 @@ namespace River.OneMoreAddIn.UI
 
 		// manual (non-OLE) drag/drop state
 		private bool isDragging;
-		private ListViewItem dragItem;
+		private List<ListViewItem> dragItems;
+		private bool dragBlockIsScattered;
 		private Point dragStartPoint;
 		private int insertionIndex = -1;
 		private bool insertAtEnd;
@@ -248,6 +259,18 @@ namespace River.OneMoreAddIn.UI
 		[Browsable(false)]
 		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public Func<ListViewItem, bool> IsInsertionAnchor { get; set; }
+
+
+		/// <summary>
+		/// Gets or sets whether starting a drag from within a multi-item selection drags the
+		/// whole selection as a block instead of just the clicked row. Defaults to false so
+		/// existing single-item-drag consumers are unaffected. When a dragged selection is
+		/// scattered (its indices aren't consecutive), valid drop targets are restricted to
+		/// insertion-anchor rows and the empty space below the last row - there's no
+		/// meaningful relative position to preserve for items that weren't adjacent to begin
+		/// with.
+		/// </summary>
+		public bool AllowMultiItemDrag { get; set; }
 
 
 		/// <summary>
@@ -548,15 +571,46 @@ namespace River.OneMoreAddIn.UI
 				return;
 			}
 
-			var hit = HitTest(e.Location);
-			dragItem = hit.Item != null && (CanDragItem?.Invoke(hit.Item) ?? false) ? hit.Item : null;
+			ResolveDragBlock(HitTest(e.Location).Item);
 			dragStartPoint = e.Location;
+		}
+
+
+		/// <summary>
+		/// Determines what a drag starting on the given row should pick up: the whole
+		/// current multi-selection (only when AllowMultiItemDrag is set, the clicked row is
+		/// part of that selection, and every selected row is draggable), or just the clicked
+		/// row otherwise.
+		/// </summary>
+		private void ResolveDragBlock(ListViewItem clicked)
+		{
+			if (clicked == null || !(CanDragItem?.Invoke(clicked) ?? false))
+			{
+				dragItems = null;
+				dragBlockIsScattered = false;
+				return;
+			}
+
+			if (AllowMultiItemDrag && clicked.Selected && SelectedItems.Count > 1)
+			{
+				var block = SelectedItems.Cast<ListViewItem>().OrderBy(i => i.Index).ToList();
+				if (block.All(i => CanDragItem?.Invoke(i) ?? false))
+				{
+					dragItems = block;
+					dragBlockIsScattered = Enumerable.Range(1, block.Count - 1)
+						.Any(k => block[k].Index != block[k - 1].Index + 1);
+					return;
+				}
+			}
+
+			dragItems = new List<ListViewItem> { clicked };
+			dragBlockIsScattered = false;
 		}
 
 
 		private void OnMouseMove(object sender, MouseEventArgs e)
 		{
-			if (dragItem == null || e.Button != MouseButtons.Left)
+			if ((dragItems?.Count ?? 0) == 0 || e.Button != MouseButtons.Left)
 			{
 				return;
 			}
@@ -587,7 +641,8 @@ namespace River.OneMoreAddIn.UI
 			}
 
 			isDragging = false;
-			dragItem = null;
+			dragItems = null;
+			dragBlockIsScattered = false;
 			insertionIndex = -1;
 			insertAtEnd = false;
 			Cursor = Cursors.Default;
@@ -601,15 +656,20 @@ namespace River.OneMoreAddIn.UI
 			insertionIndex = -1;
 
 			var hit = HitTest(point);
-			if (hit.Item == null)
+			if (hit.Item == null || (dragItems?.Contains(hit.Item) ?? false))
 			{
-				var lastItem = Items.Count > 0 ? Items[Items.Count - 1] : null;
-				if (lastItem != null && point.Y >= lastItem.Bounds.Bottom)
+				if (hit.Item == null)
 				{
-					insertionIndex = Items.Count;
-					insertAtEnd = true;
+					var lastItem = Items.Count > 0 ? Items[Items.Count - 1] : null;
+					if (lastItem != null && point.Y >= lastItem.Bounds.Bottom)
+					{
+						insertionIndex = Items.Count;
+						insertAtEnd = true;
+					}
 				}
 
+				// hovering over a row that's part of the dragged block itself is never a
+				// meaningful drop target
 				return;
 			}
 
@@ -621,6 +681,14 @@ namespace River.OneMoreAddIn.UI
 				return;
 			}
 
+			if (dragBlockIsScattered)
+			{
+				// a scattered (non-contiguous) block has no meaningful relative position to
+				// preserve, so only anchor rows and the end-of-list zone above are valid
+				// targets; leave insertionIndex unset (no indicator, drop is a no-op)
+				return;
+			}
+
 			var midY = hit.Item.Bounds.Top + (hit.Item.Bounds.Height / 2);
 			insertionIndex = point.Y < midY ? hit.Item.Index : hit.Item.Index + 1;
 		}
@@ -628,24 +696,40 @@ namespace River.OneMoreAddIn.UI
 
 		private void PerformDrop()
 		{
-			if (insertionIndex < 0 || dragItem == null)
+			if (insertionIndex < 0 || (dragItems?.Count ?? 0) == 0)
 			{
 				return;
 			}
 
-			var precedingItem = !insertAtEnd && insertionIndex > 0 ? Items[insertionIndex - 1] : null;
-
-			var originalIndex = dragItem.Index;
-			var adjustedIndex = insertionIndex > originalIndex ? insertionIndex - 1 : insertionIndex;
+			var block = dragItems;
+			var originalIndices = block.Select(i => i.Index).ToList();
+			var removedBeforeTarget = originalIndices.Count(index => index < insertionIndex);
+			var adjustedIndex = insertionIndex - removedBeforeTarget;
 
 			BeginUpdate();
-			Items.Remove(dragItem);
-			Items.Insert(adjustedIndex, dragItem);
+
+			foreach (var item in block.AsEnumerable().Reverse())
+			{
+				Items.Remove(item);
+			}
+
+			// MovedToEnd means a fixed, unambiguous target (e.g. root) regardless of what
+			// row now happens to sit last, so it deliberately ignores the computed index
+			var precedingItem = !insertAtEnd && adjustedIndex > 0 ? Items[adjustedIndex - 1] : null;
+
+			for (var k = 0; k < block.Count; k++)
+			{
+				Items.Insert(adjustedIndex + k, block[k]);
+			}
+
 			EndUpdate();
 
-			dragItem.Selected = true;
+			foreach (var item in block)
+			{
+				item.Selected = true;
+			}
 
-			ItemMoved?.Invoke(this, new ItemMovedEventArgs(dragItem, precedingItem, insertAtEnd));
+			ItemMoved?.Invoke(this, new ItemMovedEventArgs(block, precedingItem, insertAtEnd));
 		}
 	}
 }

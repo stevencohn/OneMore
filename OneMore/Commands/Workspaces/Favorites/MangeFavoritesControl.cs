@@ -74,6 +74,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 			listView.SetColumnProportions(0.4f, 0.6f);
 			listView.CanDragItem = item => item.Tag is Favorite;
 			listView.IsInsertionAnchor = item => item.Tag is FolderRow;
+			listView.AllowMultiItemDrag = true;
 			listView.GetCellStyle = GetCellStyle;
 			listView.GetCellImage = (item, col) =>
 				col == 0 && item.Tag is Favorite f ? FavoriteKindGlyphs.GetGlyph(f) : null;
@@ -326,16 +327,21 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 		private void ListViewItemMoved(object sender, MoreListView.ItemMovedEventArgs e)
 		{
-			if (e.Item.Tag is Favorite favorite)
+			var newFolderID = e.MovedToEnd
+				? 0
+				: e.PrecedingItem?.Tag switch
+				{
+					FolderRow row => row.FolderID,
+					Favorite precedingFavorite => precedingFavorite.FolderID,
+					_ => 0
+				};
+
+			foreach (var item in e.Items)
 			{
-				favorite.FolderID = e.MovedToEnd
-					? 0
-					: e.PrecedingItem?.Tag switch
-					{
-						FolderRow row => row.FolderID,
-						Favorite precedingFavorite => precedingFavorite.FolderID,
-						_ => 0
-					};
+				if (item.Tag is Favorite favorite)
+				{
+					favorite.FolderID = newFolderID;
+				}
 			}
 
 			RefreshFolderHints();
@@ -450,15 +456,40 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		}
 
 
-		private ListViewItem GetSingleSelectedFavoriteItem()
+		/// <summary>
+		/// Returns the current selection as an ordered list, but only when every selected
+		/// row is a Favorite (not a folder header), the rows are index-contiguous, and they
+		/// all belong to the same folder. That last check matters at exactly one boundary:
+		/// the last folder's last child and the first root favorite are index-adjacent with
+		/// no folder header between them, but belong to different folders, so such a
+		/// selection is not a valid block for the up/down buttons.
+		/// </summary>
+		private List<ListViewItem> GetSelectedFavoriteBlock()
 		{
-			if (listView.SelectedItems.Count != 1)
+			if (listView.SelectedItems.Count == 0)
 			{
 				return null;
 			}
 
-			var item = listView.SelectedItems[0];
-			return item.Tag is Favorite ? item : null;
+			var items = listView.SelectedItems.Cast<ListViewItem>()
+				.OrderBy(i => i.Index)
+				.ToList();
+
+			if (items.Any(i => i.Tag is not Favorite))
+			{
+				return null;
+			}
+
+			for (var i = 1; i < items.Count; i++)
+			{
+				if (items[i].Index != items[i - 1].Index + 1)
+				{
+					return null;
+				}
+			}
+
+			var folderID = ((Favorite)items[0].Tag).FolderID;
+			return items.All(i => ((Favorite)i.Tag).FolderID == folderID) ? items : null;
 		}
 
 
@@ -474,26 +505,20 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		}
 
 
-		private bool CanMove(ListViewItem item, int direction)
+		private bool CanMoveBlock(List<ListViewItem> block, int direction)
 		{
-			var neighborIndex = item.Index + direction;
-			if (neighborIndex < 0 || neighborIndex >= listView.Items.Count)
-			{
-				return false;
-			}
-
-			var neighbor = listView.Items[neighborIndex];
-			return neighbor.Tag is Favorite neighborFavorite &&
-				neighborFavorite.FolderID == ((Favorite)item.Tag).FolderID;
+			return direction < 0
+				? block[0].Index > 0
+				: block[block.Count - 1].Index < listView.Items.Count - 1;
 		}
 
 
 		private void RefreshToolbarState(object sender, EventArgs e)
 		{
-			var item = GetSingleSelectedFavoriteItem();
+			var block = GetSelectedFavoriteBlock();
 
-			upButton.Enabled = item != null && CanMove(item, -1);
-			downButton.Enabled = item != null && CanMove(item, 1);
+			upButton.Enabled = block != null && CanMoveBlock(block, -1);
+			downButton.Enabled = block != null && CanMoveBlock(block, 1);
 			renameButton.Enabled = GetSingleSelectedRenamableItem() != null;
 			deleteButton.Enabled = listView.SelectedItems.Count > 0;
 		}
@@ -501,43 +526,127 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 		private void MoveUp(object sender, EventArgs e)
 		{
-			var item = GetSingleSelectedFavoriteItem();
-			if (item == null || !CanMove(item, -1))
-			{
-				return;
-			}
-
-			var index = item.Index;
-
-			listView.BeginUpdate();
-			listView.Items.RemoveAt(index);
-			listView.Items.Insert(index - 1, item);
-			listView.EndUpdate();
-
-			item.Selected = true;
-			item.EnsureVisible();
-			RefreshToolbarState(this, EventArgs.Empty);
+			MoveBlock(-1);
 		}
 
 
 		private void MoveDown(object sender, EventArgs e)
 		{
-			var item = GetSingleSelectedFavoriteItem();
-			if (item == null || !CanMove(item, 1))
+			MoveBlock(1);
+		}
+
+
+		/// <summary>
+		/// Moves the current contiguous, same-folder selection one step in the given
+		/// direction (-1 up, +1 down), inspecting the single row immediately outside the
+		/// block's boundary to decide whether this is a plain reorder, a reparent (crossing
+		/// the folder/root boundary in place), or a swap that also crosses into or out of a
+		/// folder (entering or ejecting).
+		/// </summary>
+		private void MoveBlock(int direction)
+		{
+			var block = GetSelectedFavoriteBlock();
+			if (block == null || !CanMoveBlock(block, direction))
 			{
 				return;
 			}
 
-			var index = item.Index;
+			var neighborIndex = direction < 0 ? block[0].Index - 1 : block[block.Count - 1].Index + 1;
+			var neighbor = listView.Items[neighborIndex];
+			var folderID = ((Favorite)block[0].Tag).FolderID;
+
+			bool swap;
+			int? newFolderID;
+
+			switch (neighbor.Tag)
+			{
+				case Favorite neighborFavorite when neighborFavorite.FolderID == folderID:
+					// plain reorder within the current folder (or root)
+					swap = true;
+					newFolderID = null;
+					break;
+
+				case Favorite neighborFavorite:
+					// folder/root boundary: already correctly positioned, just join it
+					swap = false;
+					newFolderID = neighborFavorite.FolderID;
+					break;
+
+				case FolderRow neighborRow when direction < 0 && neighborRow.FolderID == folderID:
+					// eject: this is the block's own folder header, only reachable going up
+					// since a header always precedes its own children
+					swap = true;
+					newFolderID = 0;
+					break;
+
+				case FolderRow neighborRow when direction < 0:
+					// entering an empty folder from below: already correctly positioned
+					// right after its header, so no swap needed
+					swap = false;
+					newFolderID = neighborRow.FolderID;
+					break;
+
+				case FolderRow neighborRow:
+					// entering the next folder from above: must swap so the block ends up
+					// after its new header, or Save()/RebuildCollection() would misfile it
+					swap = true;
+					newFolderID = neighborRow.FolderID;
+					break;
+
+				default:
+					return;
+			}
 
 			listView.BeginUpdate();
-			listView.Items.RemoveAt(index);
-			listView.Items.Insert(index + 1, item);
+
+			if (swap)
+			{
+				SwapBlockWithSingleRow(block, neighbor, direction);
+			}
+
+			if (newFolderID.HasValue)
+			{
+				foreach (var item in block)
+				{
+					((Favorite)item.Tag).FolderID = newFolderID.Value;
+				}
+			}
+
 			listView.EndUpdate();
 
-			item.Selected = true;
-			item.EnsureVisible();
+			foreach (var item in block)
+			{
+				item.Selected = true;
+			}
+
+			(direction < 0 ? block[0] : block[block.Count - 1]).EnsureVisible();
+
+			RefreshFolderHints();
 			RefreshToolbarState(this, EventArgs.Empty);
+		}
+
+
+		/// <summary>
+		/// Swaps the block's position with the single bordering row, moving the row to the
+		/// far side of the block (after it when moving up, before it when moving down). The
+		/// block's own ListViewItems keep their identity and relative order, shifting
+		/// automatically as a side effect of the neighbor's removal/insertion.
+		/// </summary>
+		private void SwapBlockWithSingleRow(List<ListViewItem> block, ListViewItem neighbor, int direction)
+		{
+			if (direction < 0)
+			{
+				var neighborIndex = neighbor.Index;
+				listView.Items.RemoveAt(neighborIndex);
+				listView.Items.Insert(neighborIndex + block.Count, neighbor);
+			}
+			else
+			{
+				var neighborIndex = neighbor.Index;
+				var blockStart = block[0].Index;
+				listView.Items.RemoveAt(neighborIndex);
+				listView.Items.Insert(blockStart, neighbor);
+			}
 		}
 
 
