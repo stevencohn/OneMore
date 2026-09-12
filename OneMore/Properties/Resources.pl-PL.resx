@@ -1386,6 +1386,10 @@ Czcionka ostatniej kolumny</value>
     <value>Czcionki</value>
     <comment>tab</comment>
   </data>
+  <data name="EditTableThemesDialog_multiColor" xml:space="preserve">
+    <value>Wielobarwność</value>
+    <comment>hex field label for TableTheme.Rainbow, the special multi-color sentinel value</comment>
+  </data>
   <data name="EditTableThemesDialog_resetButton.Text" xml:space="preserve">
     <value>Zresetować wszystko</value>
     <comment>button</comment>

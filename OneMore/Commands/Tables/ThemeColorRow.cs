@@ -144,6 +144,16 @@ namespace River.OneMoreAddIn.Commands
 				hexBox.ForeColor = ThemeManager.Instance.GetColor("GrayText");
 				hexBox.Text = Resx.word_Default;
 			}
+			else if (value == TableTheme.Rainbow)
+			{
+				// TableTheme's special multi-color sentinel (see TableThemePainter) - not a
+				// real color, so showing its raw (and, at ~7% alpha, near-invisible) hex
+				// value would look exactly like "unset" even though it isn't; the swatch
+				// already renders a palette sample for this case (see ColorSwatchControl)
+				showingPlaceholder = false;
+				hexBox.ForeColor = ThemeManager.Instance.GetColor("WindowText");
+				hexBox.Text = Resx.EditTableThemesDialog_multiColor;
+			}
 			else
 			{
 				showingPlaceholder = false;

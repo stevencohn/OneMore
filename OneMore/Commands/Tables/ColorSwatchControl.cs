@@ -12,7 +12,8 @@ namespace River.OneMoreAddIn.Commands
 
 	/// <summary>
 	/// A small owner-drawn color swatch used by ThemeColorRow. Paints a checkerboard
-	/// "unset" pattern when Color is empty, otherwise a solid fill.
+	/// "unset" pattern when Color is empty, a palette sample when Color is TableTheme's
+	/// special multi-color "Rainbow" sentinel, otherwise a solid fill.
 	/// </summary>
 	internal sealed class ColorSwatchControl : Control
 	{
@@ -54,6 +55,10 @@ namespace River.OneMoreAddIn.Commands
 			{
 				PaintCheckerboard(g, bounds, manager);
 			}
+			else if (color == TableTheme.Rainbow)
+			{
+				PaintMultiColor(g, bounds);
+			}
 			else
 			{
 				using var brush = new SolidBrush(color);
@@ -89,6 +94,28 @@ namespace River.OneMoreAddIn.Commands
 				}
 
 				rowToggle = !rowToggle;
+			}
+		}
+
+
+		/// <summary>
+		/// TableTheme.Rainbow is a sentinel value (see TableThemePainter) meaning "paint the
+		/// special multi-color pattern here", not a real color - filling with it literally
+		/// would render as an almost-invisible ~7%-alpha tint, indistinguishable from
+		/// "unset" at a glance. Show a sample of the same palette TableThemePainter itself
+		/// uses instead, so this area reads as "set, and multi-colored" rather than blank.
+		/// </summary>
+		private static void PaintMultiColor(Graphics g, Rectangle bounds)
+		{
+			var swatchColors = TableTheme.MediumColorNames;
+			var stripeWidth = Math.Max(1, bounds.Width / swatchColors.Length);
+
+			for (var i = 0; i < swatchColors.Length; i++)
+			{
+				using var brush = new SolidBrush(ColorTranslator.FromHtml(swatchColors[i]));
+				var x = bounds.Left + (i * stripeWidth);
+				var w = i == swatchColors.Length - 1 ? bounds.Right - x : stripeWidth;
+				g.FillRectangle(brush, x, bounds.Top, w, bounds.Height);
 			}
 		}
 	}

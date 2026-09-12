@@ -1386,6 +1386,10 @@ Fonte da última coluna</value>
     <value>Fontes</value>
     <comment>tab</comment>
   </data>
+  <data name="EditTableThemesDialog_multiColor" xml:space="preserve">
+    <value>Multicolorido</value>
+    <comment>hex field label for TableTheme.Rainbow, the special multi-color sentinel value</comment>
+  </data>
   <data name="EditTableThemesDialog_resetButton.Text" xml:space="preserve">
     <value>Reiniciar tudo</value>
     <comment>button</comment>

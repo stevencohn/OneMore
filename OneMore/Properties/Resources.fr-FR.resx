@@ -1389,6 +1389,10 @@ Police de la dernière colonne</value>
     <value>Polices</value>
     <comment>tab</comment>
   </data>
+  <data name="EditTableThemesDialog_multiColor" xml:space="preserve">
+    <value>Multicolore</value>
+    <comment>hex field label for TableTheme.Rainbow, the special multi-color sentinel value</comment>
+  </data>
   <data name="EditTableThemesDialog_resetButton.Text" xml:space="preserve">
     <value>Effacer tout</value>
     <comment>button</comment>
