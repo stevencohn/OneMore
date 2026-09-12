@@ -189,6 +189,16 @@ namespace River.OneMoreAddIn.Commands
 			var popup = new SimilarityPopup(leftName, rightName, result);
 			activePopup = popup;
 
+			// closing the popup hands activation back to HostForm, and Form's own WM_ACTIVATE
+			// handling then re-Selects HostForm's stored ActiveControl (e.g. a delete button
+			// the user focused earlier) - if that control lives inside an AutoScroll panel like
+			// resultsPanel, ScrollableControl's focus-tracking scrolls it back into view,
+			// yanking the user away from wherever they'd scrolled to hover this chip. Save/
+			// restore that panel's scroll position around the popup's lifetime to undo the
+			// implicit re-scroll without touching focus/activation at all
+			var scrollHost = FindScrollableAncestor(this);
+			var savedScroll = scrollHost?.AutoScrollPosition ?? Point.Empty;
+
 			popup.RunModeless(GetPopupLocation(popup), (s, ev) =>
 			{
 				StopHoverTimer();
@@ -197,7 +207,47 @@ namespace River.OneMoreAddIn.Commands
 					activePopup = null;
 				}
 
+				if (scrollHost is { IsDisposed: false })
+				{
+					// the pending WM_ACTIVATE/WM_SETFOCUS dance (see below) scrolls scrollHost
+					// down to HostForm's ActiveControl and paints that before the BeginInvoke'd
+					// restore below scrolls it back - locking the whole subtree now keeps that
+					// transient scroll off-screen so only the final, restored position ever
+					// gets painted (same LockWindowUpdate pattern as NavigatorWindow's rebuilds)
+					Native.LockWindowUpdate(scrollHost.Handle);
+				}
+
 				popup.Dispose();
+
+				if (scrollHost is { IsDisposed: false })
+				{
+					// ModelessClosed fires from FormClosed, which runs *before* the popup's
+					// native window handle is actually torn down - the WM_ACTIVATE/WM_SETFOCUS
+					// dance that hands activation back to HostForm (and triggers the unwanted
+					// re-scroll to its ActiveControl) doesn't happen until Close() continues on
+					// past this point. Restoring synchronously here therefore runs too early and
+					// gets clobbered right after; deferring via BeginInvoke queues the restore to
+					// run once that pending activation/focus processing has already finished.
+					scrollHost.BeginInvoke(new Action(() =>
+					{
+						try
+						{
+							if (!scrollHost.IsDisposed)
+							{
+								scrollHost.AutoScrollPosition = new Point(-savedScroll.X, -savedScroll.Y);
+							}
+						}
+						finally
+						{
+							Native.LockWindowUpdate(IntPtr.Zero);
+							if (!scrollHost.IsDisposed)
+							{
+								scrollHost.Invalidate();
+								scrollHost.Update();
+							}
+						}
+					}));
+				}
 
 				// see HostForm's own comment: without this, closing the popup (by hovering
 				// away, by Esc, or by clicking anywhere else, including back on this same
@@ -272,6 +322,24 @@ namespace River.OneMoreAddIn.Commands
 				hoverTimer.Dispose();
 				hoverTimer = null;
 			}
+		}
+
+
+		/// <summary>
+		/// Walks up the parent chain to find the nearest ancestor whose own scrolling could be
+		/// disturbed by this chip's popup regaining focus for its host - see ShowPopup's comment.
+		/// </summary>
+		private static ScrollableControl FindScrollableAncestor(Control control)
+		{
+			for (var parent = control.Parent; parent != null; parent = parent.Parent)
+			{
+				if (parent is ScrollableControl scrollable && scrollable.AutoScroll)
+				{
+					return scrollable;
+				}
+			}
+
+			return null;
 		}
 
 
