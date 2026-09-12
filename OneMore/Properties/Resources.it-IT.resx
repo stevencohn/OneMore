@@ -1387,6 +1387,10 @@ Carattere dell'ultima colonna</value>
     <value>Caratteri</value>
     <comment>tab</comment>
   </data>
+  <data name="EditTableThemesDialog_multiColor" xml:space="preserve">
+    <value>Multicolore</value>
+    <comment>hex field label for TableTheme.Rainbow, the special multi-color sentinel value</comment>
+  </data>
   <data name="EditTableThemesDialog_resetButton.Text" xml:space="preserve">
     <value>Reimposta tutto</value>
     <comment>button</comment>

@@ -3075,7 +3075,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("EditTableThemesDialog_fontsTab.Text", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Multi-color.
+        /// </summary>
+        internal static string EditTableThemesDialog_multiColor {
+            get {
+                return ResourceManager.GetString("EditTableThemesDialog_multiColor", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Reset All.
         /// </summary>

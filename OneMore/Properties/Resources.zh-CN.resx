@@ -1390,6 +1390,10 @@
     <value>字体</value>
     <comment>tab</comment>
   </data>
+  <data name="EditTableThemesDialog_multiColor" xml:space="preserve">
+    <value>多色的</value>
+    <comment>hex field label for TableTheme.Rainbow, the special multi-color sentinel value</comment>
+  </data>
   <data name="EditTableThemesDialog_resetButton.Text" xml:space="preserve">
     <value>全部重置</value>
     <comment>button</comment>
