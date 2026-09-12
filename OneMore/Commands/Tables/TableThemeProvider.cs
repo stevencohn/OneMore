@@ -153,6 +153,22 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
+		/// Returns only the system-defined (built-in) themes, as a fresh, independent list
+		/// so callers can freely read or clone from it without risking a shared reference
+		/// with this provider's own cached theme list.
+		/// </summary>
+		/// <param name="unfiltered">
+		/// True to ignore the user's TableThemesSheet category filter and return every
+		/// built-in theme
+		/// </param>
+		/// <returns>A List of themes</returns>
+		public List<TableTheme> GetSystemThemes(bool unfiltered = false)
+		{
+			return LoadSystemThemes(unfiltered);
+		}
+
+
+		/// <summary>
 		/// Saves user defines themes to the user's appdata folder
 		/// </summary>
 		/// <param name="themes">A list of themes</param>

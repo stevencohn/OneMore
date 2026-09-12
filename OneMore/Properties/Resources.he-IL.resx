@@ -1338,6 +1338,10 @@
     <value>צבעים</value>
     <comment>tab</comment>
   </data>
+  <data name="EditTableThemesDialog_copyTitle" xml:space="preserve">
+    <value>{0} העתק</value>
+    <comment>{0}=source theme name; generated name for a duplicated theme</comment>
+  </data>
   <data name="EditTableThemesDialog_deleteStyle" xml:space="preserve">
     <value>למחוק את הסגנון הזה?</value>
     <comment>message box</comment>
@@ -1345,6 +1349,10 @@
   <data name="EditTableThemesDialog_discard" xml:space="preserve">
     <value>למחוק שינויים שלא נשמרו?</value>
     <comment>message box</comment>
+  </data>
+  <data name="EditTableThemesDialog_duplicateFrom" xml:space="preserve">
+    <value>שכפול מ...</value>
+    <comment>menu header</comment>
   </data>
   <data name="EditTableThemesDialog_elements" xml:space="preserve">
     <value>שולחן שלם
@@ -1382,9 +1390,21 @@ Total Row Font
     <value>לאפס הכל</value>
     <comment>button</comment>
   </data>
+  <data name="EditTableThemesDialog_resetToDefault" xml:space="preserve">
+    <value>אפס לברירת המחדל</value>
+    <comment>link, Fonts tab</comment>
+  </data>
+  <data name="EditTableThemesDialog_sample" xml:space="preserve">
+    <value>דוגמה לטקסט בטבלה</value>
+    <comment>live font preview text, Fonts tab</comment>
+  </data>
   <data name="EditTableThemesDialog_Text" xml:space="preserve">
     <value>סגנונות שולחן מותאמים אישית</value>
     <comment>dialog</comment>
+  </data>
+  <data name="EditTableThemesDialog_yourThemes" xml:space="preserve">
+    <value>ערכות הנושא שלך</value>
+    <comment>gallery section header</comment>
   </data>
   <data name="EmbedCommand_EmbeddedFrom" xml:space="preserve">
     <value>מוטבע מ-{0}</value>
@@ -7340,6 +7360,9 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
   <data name="word_Due" xml:space="preserve">
     <value>נודע</value>
   </data>
+  <data name="word_Duplicate" xml:space="preserve">
+    <value>לְשַׁכְפֵּל</value>
+  </data>
   <data name="word_Edit" xml:space="preserve">
     <value>לַעֲרוֹך</value>
   </data>
@@ -7426,6 +7449,9 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
   </data>
   <data name="word_Navigator" xml:space="preserve">
     <value>נווט</value>
+  </data>
+  <data name="word_New" xml:space="preserve">
+    <value>חָדָשׁ</value>
   </data>
   <data name="word_No" xml:space="preserve">
     <value>לא</value>
@@ -7556,6 +7582,9 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
   </data>
   <data name="word_Text" xml:space="preserve">
     <value>טֶקסט</value>
+  </data>
+  <data name="word_Theme" xml:space="preserve">
+    <value>נוֹשֵׂא</value>
   </data>
   <data name="word_Value" xml:space="preserve">
     <value>עֵרֶך</value>

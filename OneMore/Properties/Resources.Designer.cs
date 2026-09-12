@@ -2987,7 +2987,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("EditTableThemesDialog_colorsTab.Text", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to {0} Copy.
+        /// </summary>
+        internal static string EditTableThemesDialog_copyTitle {
+            get {
+                return ResourceManager.GetString("EditTableThemesDialog_copyTitle", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Delete this style?.
         /// </summary>
@@ -2996,7 +3005,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("EditTableThemesDialog_deleteStyle", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Discard unsaved changes?.
         /// </summary>
@@ -3005,7 +3014,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("EditTableThemesDialog_discard", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Duplicate from….
+        /// </summary>
+        internal static string EditTableThemesDialog_duplicateFrom {
+            get {
+                return ResourceManager.GetString("EditTableThemesDialog_duplicateFrom", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Whole Table
         ///First Column Stripe
@@ -3066,7 +3084,25 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("EditTableThemesDialog_resetButton.Text", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Reset to default.
+        /// </summary>
+        internal static string EditTableThemesDialog_resetToDefault {
+            get {
+                return ResourceManager.GetString("EditTableThemesDialog_resetToDefault", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Table text sample.
+        /// </summary>
+        internal static string EditTableThemesDialog_sample {
+            get {
+                return ResourceManager.GetString("EditTableThemesDialog_sample", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Custom Table Styles.
         /// </summary>
@@ -3075,7 +3111,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("EditTableThemesDialog_Text", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Your Themes.
+        /// </summary>
+        internal static string EditTableThemesDialog_yourThemes {
+            get {
+                return ResourceManager.GetString("EditTableThemesDialog_yourThemes", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Embedded from {0}.
         /// </summary>
@@ -17334,7 +17379,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("word_Due", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Duplicate.
+        /// </summary>
+        internal static string word_Duplicate {
+            get {
+                return ResourceManager.GetString("word_Duplicate", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
@@ -17595,7 +17649,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("word_Navigator", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to New.
+        /// </summary>
+        internal static string word_New {
+            get {
+                return ResourceManager.GetString("word_New", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to No.
         /// </summary>
@@ -17982,7 +18045,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("word_Text", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Theme.
+        /// </summary>
+        internal static string word_Theme {
+            get {
+                return ResourceManager.GetString("word_Theme", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Value.
         /// </summary>

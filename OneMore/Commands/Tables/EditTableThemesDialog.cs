@@ -1,4 +1,4 @@
-﻿//************************************************************************************************
+//************************************************************************************************
 // Copyright © 2022 Steven M Cohn. All rights reserved.
 //************************************************************************************************
 
@@ -9,6 +9,7 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
+	using System.Drawing.Drawing2D;
 	using System.Globalization;
 	using System.Linq;
 	using System.Text.RegularExpressions;
@@ -20,126 +21,48 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private const int PreviewMargin = 15;
 
-		private static readonly float xScaling;
-		private static readonly float yScaling;
+		/// <summary>
+		/// TableTheme overrides Equals/GetHashCode with value-based semantics (and its hash
+		/// is derived from Name), so it cannot safely be used as a Dictionary key directly -
+		/// renaming a theme after it's been snapshotted would change its hash code and corrupt
+		/// lookups. This comparer keys snapshots by object identity instead.
+		/// </summary>
+		private sealed class ReferenceComparer : IEqualityComparer<TableTheme>
+		{
+			public bool Equals(TableTheme x, TableTheme y) => ReferenceEquals(x, y);
+
+			public int GetHashCode(TableTheme obj) =>
+				System.Runtime.CompilerServices.RuntimeHelpers.GetHashCode(obj);
+		}
+
 
 		private readonly TableThemePainter painter;
-		private List<TableTheme> themes;
-		private TableTheme snapshot;
+		private readonly List<ThemeColorRow> colorRows = new();
+		private readonly List<ThemeFontRoleRow> fontRoleRows = new();
+		private readonly Dictionary<TableTheme, TableTheme> snapshots = new(new ReferenceComparer());
+
+		private List<TableTheme> systemThemes;
+		private List<TableTheme> userThemes;
+
+		// the subset of userThemes that are actually persisted (as of dialog-open or the
+		// last successful Save) - excludes New/Duplicate themes still pending this session
+		// and the auto-inserted blank placeholder, so the Duplicate gallery only ever offers
+		// real, saved themes as sources
+		private List<TableTheme> savedUserThemes;
+
 		private TableTheme.ColorFont colorfont;
+		private Font sampleFont;
+		private int selectedFontRoleIndex = -1;
 		private bool reorganizing;
-
-
-		#region Swatch
-		private sealed class SwatchClickedEventArgs : EventArgs
-		{
-			public SwatchClickedEventArgs(int index) { ItemIndex = index; }
-			public int ItemIndex { get; set; }
-			public bool Reset { get; set; }
-		}
-
-		delegate void SwatchClickedHandler(object sender, SwatchClickedEventArgs e);
-
-		private sealed class Swatch : UserControl
-		{
-			private readonly PictureBox picture;
-			private readonly Image image;
-
-			public Swatch(MoreListViewEx view)
-			{
-				image = new Bitmap((int)(24 * xScaling), (int)(16 * yScaling));
-
-				picture = new PictureBox
-				{
-					Image = image,
-					Dock = DockStyle.Left,
-					Width = image.Width,
-					Height = image.Height
-				};
-
-				SetColor(Color.WhiteSmoke);
-
-				var edit = new MoreLinkLabel
-				{
-					Text = Resx.word_Edit,
-					Font = new Font("Segoe UI", 8, FontStyle.Regular),
-					Margin = new Padding(5, 2, 0, 2),
-					Dock = DockStyle.Left
-				};
-
-				using var g = Graphics.FromImage(image);
-				var size = g.MeasureString(edit.Text, edit.Font);
-				edit.Width = (int)(size.Width + 8);
-
-				edit.LinkClicked += new LinkLabelLinkClickedEventHandler((s, e) =>
-				{
-					if (((Control)s).Parent.Tag is ListViewItem host)
-					{
-						var index = view.Items.IndexOf(host);
-						Clicked?.Invoke(host, new SwatchClickedEventArgs(index));
-					}
-				});
-
-				var reset = new MoreLinkLabel
-				{
-					Text = Resx.word_Reset,
-					Font = new Font("Segoe UI", 8, FontStyle.Regular),
-					Margin = new Padding(7, 2, 0, 2),
-					Dock = DockStyle.Fill
-				};
-
-				reset.LinkClicked += new LinkLabelLinkClickedEventHandler((s, e) =>
-				{
-					if (((Control)s).Parent.Tag is ListViewItem host)
-					{
-						var index = view.Items.IndexOf(host);
-						Clicked?.Invoke(host,
-							new SwatchClickedEventArgs(index) { Reset = true });
-					}
-				});
-
-				Width = 160;
-				Height = 28;
-				Margin = new Padding(0, 2, 0, 2);
-				Padding = new Padding(0, 2, 0, 2);
-
-				Controls.Add(reset);
-				Controls.Add(edit);
-				Controls.Add(picture);
-			}
-
-			public event SwatchClickedHandler Clicked;
-			public Color Color { get; private set; }
-
-			public void SetColor(Color color)
-			{
-				Color = color;
-
-				using var g = Graphics.FromImage(image);
-				g.Clear(SystemColors.Window);
-				var bounds = new Rectangle(0, 0, image.Size.Width - 1, image.Size.Height - 1);
-				using var brush = new SolidBrush(color);
-				g.FillRectangle(brush, bounds);
-				g.DrawRectangle(Pens.DarkGray, new Rectangle(0, 0, bounds.Width, bounds.Height));
-
-				picture.Invalidate();
-			}
-		}
-		#endregion Swatch
-
-
-		static EditTableThemesDialog()
-		{
-			(xScaling, yScaling) = UI.Scaling.GetScalingFactors();
-		}
+		private bool listChanged;
 
 
 		public EditTableThemesDialog()
 		{
 			InitializeComponent();
 
-			InitializeElementsBox();
-			InitializeFontElementsBox();
+			BuildColorRows();
+			BuildFontRoleRows();
 
 			if (NeedsLocalizing())
 			{
@@ -147,23 +70,21 @@ namespace River.OneMoreAddIn.Commands
 
 				Localize(new string[]
 				{
-					"nameLabel=word_Name",
-					"newButton=phrase_NewStyle",
+					"themeLabel=word_Theme",
+					"newButton=word_New",
+					"duplicateButton=word_Duplicate",
 					"renameButton=word_Rename",
-					"saveButton=word_Save",
 					"deleteButton=word_Delete",
 					"colorsTab",
-					"elementsGroup",
-					"elementsBox",
-					"previewGroup=word_Preview",
-					"resetButton",
 					"fontsTab",
-					"fontElementsGroup=EditTableThemesDialog_elementsGroup",
+					"previewGroup=word_Preview",
+					"resetAllLink=EditTableThemesDialog_resetButton.Text",
+					"saveButton=word_Save",
+					"cancelButton=word_Cancel",
 					"fontsGroup=word_Font",
-					"applyFontButton=word_Apply",
-					"resetFontButton=word_Reset",
-					"defaultFontButton=word_Default",
-					"cancelButton=word_Close"
+					"sampleLabel=EditTableThemesDialog_sample",
+					"resetToDefaultLink=EditTableThemesDialog_resetToDefault",
+					"applyFontButton=word_Apply"
 				});
 			}
 
@@ -176,232 +97,313 @@ namespace River.OneMoreAddIn.Commands
 
 			painter = new TableThemePainter(previewBox.Image, bounds, SystemColors.Window);
 
-			// hack to force MoreListView items to layout and repaint
-			colorsTab.Paint += AdjustSizeOnce;
-			colorsTab.Tag = new object();
-			fontsTab.Paint += AdjustSizeOnce;
-			fontsTab.Tag = new object();
+			sampleBorderPanel.Paint += PaintSampleBorder;
 		}
 
 
-		public EditTableThemesDialog(List<TableTheme> themes)
+		public EditTableThemesDialog(List<TableTheme> systemThemes, List<TableTheme> userThemes)
 			: this()
 		{
-			// snapshot should always be a copy of the currently selected theme,
-			// not a reference, so instantiate the snapshot and copy into it
-			snapshot = new TableTheme();
+			this.systemThemes = systemThemes;
+			this.userThemes = userThemes;
 
-			if (themes.Count == 0)
+			// capture before the blank-placeholder insertion below, so that placeholder
+			// never counts as a saved theme
+			savedUserThemes = new List<TableTheme>(userThemes);
+
+			if (userThemes.Count == 0)
 			{
-				themes.Insert(0, new TableTheme { Name = Resx.phrase_NewStyle });
-				newButton.Enabled = false;
-			}
-			else
-			{
-				themes[0].CopyTo(snapshot);
+				userThemes.Add(new TableTheme { Name = Resx.phrase_NewStyle });
 			}
 
-			this.themes = themes;
-
-			themes.ForEach(t => { combo.Items.Add(t); });
-			combo.SelectedIndex = 0;
-
-			painter.Paint(snapshot);
-
-			reorganizing = true;
 			familyBox.LoadFontFamilies();
-			familyBox.SelectedIndex = familyBox.Items.IndexOf(StyleBase.DefaultFontFamily);
-			sizeBox.SelectedIndex = sizeBox.Items.IndexOf(StyleBase.DefaultFontSize.ToString("0.#", AddIn.Locale));
-			colorFontsBox.Items[0].Selected = true;
-			reorganizing = false;
+
+			PopulateCombo();
 		}
 
 
 		public bool Modified { get; private set; }
 
 
-		private void InitializeElementsBox()
+		protected override void OnLoad(EventArgs e)
 		{
-			elementsBox.StateImageList = new ImageList
+			colorsListPanel.BackColor = manager.GetColor("Window");
+			fontsListPanel.BackColor = manager.GetColor("Window");
+			sampleBorderPanel.BackColor = manager.GetColor("Window");
+
+			base.OnLoad(e);
+
+			// MoreForm's one-time ILoadControl walk (just run, inside base.OnLoad) reset
+			// every hex box's ForeColor to the plain "WindowText" default (MoreTextBox.OnLoad
+			// always does this, unconditionally), clobbering the gray-for-placeholder /
+			// black-for-real-value distinction ThemeColorRow.SetColor already applied during
+			// construction. Reapply it now that the walk is done - SetColor is idempotent
+			// (suppressEvents guards it) so this is a pure visual resync, no side effects.
+			foreach (var row in colorRows)
 			{
-				ImageSize = new Size(1, (int)(16 * yScaling))
-			};
+				row.SetColor(row.Color);
+			}
 
-			elementsBox.HighlightBackground = Color.Transparent;
-			elementsBox.HighlightForeground = SystemColors.ControlText;
+			FixFontToolstripLayout();
+		}
 
-			var width = (int)(elementsBox.Width * 0.6);
-			elementsBox.Columns.Add(new MoreColumnHeader(Resx.word_Element, width) { AutoSizeItems = true });
 
-			width = (int)(elementsBox.Width * 0.35);
-			elementsBox.Columns.Add(new MoreColumnHeader(Resx.word_Color, width));
+		/// <summary>
+		/// Fixes two knock-on effects of the same root cause, both only visible away from
+		/// 96 DPI: oversized Bold/Italic/Underline/color buttons, and no gap between the
+		/// font toolbar and the sample text panel below it.
+		///
+		/// MoreToolStrip.OnLoad() (part of the ILoadControl walk that just ran, inside
+		/// base.OnLoad above) sizes its own Height and ImageScalingSize from
+		/// UI.Scaling.GetScalingFactors() - a raw physical/logical DPI ratio - while these
+		/// Designer-declared items' own baseline Size(34,22)/(39,22), and fontToolstrip's own
+		/// Designer-declared Y position, instead get scaled by the form's independent,
+		/// Font-metric-based AutoScaleMode.Font pass. The two scaling sources agree closely
+		/// enough at 96 DPI to look fine, but can diverge at other DPIs: since each item's
+		/// AutoSize (WinForms' default for ToolStripItem) re-expands to fit whichever scaled
+		/// image it lands with, that shows up as oversized buttons; and since the toolstrip's
+		/// own Height can grow taller than the gap the form's own scaling pass reserved for
+		/// it before sampleBorderPanel's fixed Designer-time Y, that shows up as no visible
+		/// gap (or overlap) above the sample panel.
+		///
+		/// Run from OnLoad, after base.OnLoad(e) - i.e. after both the form's own
+		/// autoscale pass and MoreToolStrip's own OnLoad have already happened - so this is
+		/// unambiguously the last word over these values regardless of exactly when either
+		/// of those actually run relative to the constructor.
+		/// </summary>
+		private void FixFontToolstripLayout()
+		{
+			var (scaleX, scaleY) = Scaling.GetScalingFactors();
 
+			boldButton.AutoSize = false;
+			italicButton.AutoSize = false;
+			underlineButton.AutoSize = false;
+			colorButton.AutoSize = false;
+
+			var itemSize = new Size((int)(34 * scaleX), (int)(22 * scaleY));
+			boldButton.Size = itemSize;
+			italicButton.Size = itemSize;
+			underlineButton.Size = itemSize;
+			colorButton.Size = new Size((int)(39 * scaleX), (int)(22 * scaleY));
+
+			// MoreToolStrip.OnLoad() already computed fontToolstrip's own Width (as part of
+			// the same walk, earlier in base.OnLoad) from these items' sizes as they stood
+			// BEFORE the resize just above - recompute it the same way (Items' widths + 16)
+			// now that they've changed, or the last button clips past the stale, now-too-
+			// narrow strip
+			fontToolstrip.Width = fontToolstrip.Items
+				.OfType<ToolStripItem>()
+				.Sum(i => i.Width) + 16;
+
+			// reposition from the toolstrip's real, now-settled Bottom edge rather than
+			// trusting the Designer's fixed Y coordinate to still clear it
+			sampleBorderPanel.Top = fontToolstrip.Bottom + (int)(12 * scaleY);
+		}
+
+
+		// Row construction - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+		private void BuildColorRows()
+		{
 			var names = Regex.Split(Resx.EditTableThemesDialog_elements, @"\r\n|\r|\n");
-			foreach (var name in names)
+			var y = 0;
+
+			for (var i = 0; i < names.Length; i++)
 			{
-				var item = elementsBox.AddHostedItem(name);
-				var swatch = new Swatch(elementsBox);
-				swatch.Clicked += ChangeElementColor;
-				var subitem = item.AddHostedSubItem(swatch);
-				subitem.Alignment = ContentAlignment.MiddleCenter;
-			}
-		}
+				var index = i;
 
-
-		private void InitializeFontElementsBox()
-		{
-			colorFontsBox.StateImageList = new ImageList
-			{
-				ImageSize = new Size(1, (int)(16 * yScaling))
-			};
-
-			var width = (int)(colorFontsBox.Width * 0.35);
-			colorFontsBox.Columns.Add(new MoreColumnHeader(Resx.word_Element, width) { AutoSizeItems = true });
-
-			width = (int)(colorFontsBox.Width * 0.55);
-			colorFontsBox.Columns.Add(new MoreColumnHeader(Resx.word_Font, width));
-
-			var names = Regex.Split(Resx.EditTableThemesDialog_fontElements, @"\r\n|\r|\n");
-			foreach (var name in names)
-			{
-				var item = colorFontsBox.AddHostedItem(name);
-				var link = new MoreLinkLabel
+				// ThemeColorRow sizes its own Width from its (DPI-scaled) children - do not
+				// override it with a hardcoded constant here, see its constructor comment
+				var row = new ThemeColorRow(names[i])
 				{
-					Text = Resx.word_Default,
-					AutoSize = true
+					Location = new Point(0, y)
 				};
-				link.LinkClicked += ChangeElementFont;
-				item.AddHostedSubItem(link);
+
+				row.ColorChanged += (s, color) => ColorRowColorChanged(index, color);
+				row.ResetClicked += (s, e) => ColorRowColorChanged(index, row.Color);
+
+				colorsListPanel.Controls.Add(row);
+				colorRows.Add(row);
+
+				y += row.Height;
 			}
-		}
 
-
-		private void AdjustSizeOnce(object sender, PaintEventArgs e)
-		{
-			// playing tricks here with the Tag property, using it as a flag that something
-			// needs to be done and done exactly once for each of the two tab pages...
-
-			if (sender is TabPage page && page.Tag != null)
+			// colorsListPanel's own Designer-declared width is scaled by the form's
+			// AutoScaleMode.Font pass, which runs once and never revisits controls added
+			// afterward (these rows). Rather than trust that pass and this row's own
+			// Scaling.GetScalingFactors()-based math to agree pixel-for-pixel at every DPI,
+			// size the panel from the rows' actual (already-correct) width directly.
+			if (colorRows.Count > 0)
 			{
-				// by forcing the dialog to resize just one pixel, it will force the incoming
-				// MoreListView to recalculate its layout and redraw itself
-				Size = new Size(Size.Width + 1, Size.Height + 1);
-				page.Tag = null;
+				var contentWidth = colorRows.Max(r => r.Width);
+				colorsListPanel.Width = contentWidth + SystemInformation.VerticalScrollBarWidth + 12;
 			}
 		}
 
 
-		private void SetToolbarState()
+		private void BuildFontRoleRows()
 		{
-			var theme = themes[combo.SelectedIndex];
-			var dirty = !theme.Equals(snapshot);
-			saveButton.Enabled = dirty;
-			resetButton.Enabled = dirty;
+			var names = Regex.Split(Resx.EditTableThemesDialog_fontElements, @"\r\n|\r|\n");
+			var y = 0;
+
+			// ThemeFontRoleRow's children just fill whatever width they're given, so match
+			// fontsListPanel's own actual current width instead of a separate hardcoded
+			// constant that could drift out of sync with it at a different DPI
+			var rowWidth = fontsListPanel.ClientSize.Width;
+
+			for (var i = 0; i < names.Length; i++)
+			{
+				var index = i;
+				var row = new ThemeFontRoleRow(names[i])
+				{
+					Location = new Point(0, y),
+					Width = rowWidth
+				};
+
+				row.Selected += (s, e) => FontRoleSelected(index);
+
+				fontsListPanel.Controls.Add(row);
+				fontRoleRows.Add(row);
+
+				y += row.Height;
+			}
 		}
 
 
-		private void SortThemes()
+		// Theme selection - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		// Only user-defined themes ever appear in the combo - built-in themes are read-only
+		// and are reachable only as sources from the Duplicate menu (see ShowDuplicateMenu).
+
+		private void PopulateCombo(TableTheme selectTheme = null)
 		{
-			var name = themes[combo.SelectedIndex].Name;
-			themes = themes.OrderBy(t => t.Name).ToList();
+			reorganizing = true;
 
 			combo.Items.Clear();
-			themes.ForEach(t => combo.Items.Add(t));
-			combo.SelectedIndex = 0;
 
-			combo.SelectedIndex = themes.FindIndex(t => t.Name == name);
+			foreach (var theme in userThemes.OrderBy(t => t.Name, StringComparer.CurrentCultureIgnoreCase))
+			{
+				combo.Items.Add(theme);
+			}
+
+			var target = 0;
+			if (selectTheme is not null)
+			{
+				for (var i = 0; i < combo.Items.Count; i++)
+				{
+					if (ReferenceEquals(combo.Items[i], selectTheme))
+					{
+						target = i;
+						break;
+					}
+				}
+			}
+
+			if (combo.Items.Count > 0)
+			{
+				combo.SelectedIndex = target;
+			}
+
+			reorganizing = false;
+
+			ChooseTheme(this, EventArgs.Empty);
 		}
 
 
 		private void ChooseTheme(object sender, EventArgs e)
 		{
-			if (combo.SelectedIndex < 0)
-			{
-				// TODO: is there a lifecycle event that causes this?
-				logger.WriteLine($"ChooseTheme -1");
-				return;
-			}
-
-			if (reorganizing)
+			if (reorganizing || combo.SelectedItem is not TableTheme theme)
 			{
 				return;
 			}
 
-			themes[combo.SelectedIndex].CopyTo(snapshot);
+			if (!snapshots.ContainsKey(theme))
+			{
+				var snap = new TableTheme();
+				theme.CopyTo(snap);
+				snapshots[theme] = snap;
+			}
 
-			SetSwatch(0, snapshot.WholeTable);
-			SetSwatch(1, snapshot.FirstColumnStripe);
-			SetSwatch(2, snapshot.SecondColumnStripe);
-			SetSwatch(3, snapshot.FirstRowStripe);
-			SetSwatch(4, snapshot.SecondRowStripe);
-			SetSwatch(5, snapshot.FirstColumn);
-			SetSwatch(6, snapshot.LastColumn);
-			SetSwatch(7, snapshot.HeaderRow);
-			SetSwatch(8, snapshot.TotalRow);
-			SetSwatch(9, snapshot.HeaderFirstCell);
-			SetSwatch(10, snapshot.HeaderLastCell);
-			SetSwatch(11, snapshot.TotalFirstCell);
-			SetSwatch(12, snapshot.TotalLastCell);
+			LoadColorsIntoRows(theme);
+			RepaintPreview(theme);
+			LoadFontSummaries(theme);
 
-			painter.Paint(snapshot);
+			FontRoleSelected(0);
+
+			UpdateButtonStates();
+		}
+
+
+		// Colors tab - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+		private void LoadColorsIntoRows(TableTheme theme)
+		{
+			for (var i = 0; i < colorRows.Count; i++)
+			{
+				colorRows[i].SetColor(GetColorProperty(theme, i));
+			}
+		}
+
+
+		private void RepaintPreview(TableTheme theme)
+		{
+			painter.Paint(theme);
 			previewBox.Invalidate();
-
-			ShowFontLinkLabel(0, snapshot.DefaultFont);
-			ShowFontLinkLabel(1, snapshot.HeaderFont);
-			ShowFontLinkLabel(2, snapshot.TotalFont);
-			ShowFontLinkLabel(3, snapshot.FirstColumnFont);
-			ShowFontLinkLabel(4, snapshot.LastColumnFont);
-
-			void SetSwatch(int index, Color color)
-			{
-				if (color.IsEmpty)
-				{
-					color = Color.WhiteSmoke;
-				}
-
-				GetSwatch(index).SetColor(color);
-			}
 		}
 
 
-		private Swatch GetSwatch(int index)
+		private void ColorRowColorChanged(int index, Color color)
 		{
-			return (Swatch)((MoreHostedListViewSubItem)elementsBox
-				.Items[index].SubItems[1]).Control;
+			if (combo.SelectedItem is not TableTheme theme)
+			{
+				return;
+			}
+
+			SetColorProperty(theme, index, color);
+			RepaintPreview(theme);
+			UpdateButtonStates();
 		}
 
 
-		// Colors - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-		private void ChangeElementColor(object sender, SwatchClickedEventArgs e)
+		private void ResetAllColors(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			var swatch = GetSwatch(e.ItemIndex);
-			Color color;
-
-			if (e.Reset)
+			if (combo.SelectedItem is not TableTheme theme)
 			{
-				color = Color.Empty;
-			}
-			else
-			{
-				var location = PointToScreen(swatch.Location);
-				using var dialog = new MoreColorDialog("Element Color", location.X + 75, location.Y + 60)
-				{
-					Color = swatch.Color
-				};
-
-				var result = dialog.ShowDialog(this);
-				if (result == DialogResult.Cancel)
-				{
-					return;
-				}
-
-				color = dialog.Color;
+				return;
 			}
 
-			var theme = themes[combo.SelectedIndex];
+			for (var i = 0; i < colorRows.Count; i++)
+			{
+				colorRows[i].SetColor(Color.Empty);
+				SetColorProperty(theme, i, Color.Empty);
+			}
 
-			switch (e.ItemIndex)
+			RepaintPreview(theme);
+			UpdateButtonStates();
+		}
+
+
+		private static Color GetColorProperty(TableTheme theme, int index) => index switch
+		{
+			0 => theme.WholeTable,
+			1 => theme.FirstColumnStripe,
+			2 => theme.SecondColumnStripe,
+			3 => theme.FirstRowStripe,
+			4 => theme.SecondRowStripe,
+			5 => theme.FirstColumn,
+			6 => theme.LastColumn,
+			7 => theme.HeaderRow,
+			8 => theme.TotalRow,
+			9 => theme.HeaderFirstCell,
+			10 => theme.HeaderLastCell,
+			11 => theme.TotalFirstCell,
+			12 => theme.TotalLastCell,
+			_ => Color.Empty
+		};
+
+
+		private static void SetColorProperty(TableTheme theme, int index, Color color)
+		{
+			switch (index)
 			{
 				case 0: theme.WholeTable = color; break;
 				case 1: theme.FirstColumnStripe = color; break;
@@ -417,196 +419,100 @@ namespace River.OneMoreAddIn.Commands
 				case 11: theme.TotalFirstCell = color; break;
 				case 12: theme.TotalLastCell = color; break;
 			}
-
-			swatch.SetColor(color.IsEmpty ? Color.WhiteSmoke : color);
-
-			painter.Paint(theme);
-			previewBox.Invalidate();
-
-			SetToolbarState();
 		}
 
 
-		private void ResetTheme(object sender, EventArgs e)
+		// Fonts tab - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+		private void LoadFontSummaries(TableTheme theme)
 		{
-			reorganizing = true;
-			var theme = themes[combo.SelectedIndex];
-			snapshot.CopyTo(theme);
-			SortThemes();
-			SetToolbarState();
-			reorganizing = false;
-
-			ChooseTheme(sender, e);
-		}
-
-
-		// Fonts - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-		private void ShowFontLinkLabel(int index, TableTheme.ColorFont font)
-		{
-			if (colorFontsBox.Items[index].SubItems[1] is MoreHostedListViewSubItem subitem)
+			for (var i = 0; i < fontRoleRows.Count; i++)
 			{
-				if (subitem.Control is MoreLinkLabel label)
-				{
-					if (font != null)
-					{
-						label.Font = Font;
-					}
-
-					label.Text = font?.ToString() ?? Resx.word_Default;
-				}
+				var font = GetFontRole(theme, i);
+				fontRoleRows[i].Summary = font?.ToString() ?? Resx.word_Default;
 			}
 		}
 
 
-		private void ShowFontProperties(object sender, EventArgs e)
+		private void FontRoleSelected(int index)
 		{
-			if (colorFontsBox.SelectedIndices.Count == 0)
+			if (combo.SelectedItem is not TableTheme theme)
 			{
 				return;
 			}
 
-			TableTheme.ColorFont font = null;
-			var theme = themes[combo.SelectedIndex];
-			var itemIndex = colorFontsBox.SelectedIndices[0];
-
-			switch (itemIndex)
+			for (var i = 0; i < fontRoleRows.Count; i++)
 			{
-				case 0: font = theme.DefaultFont; break;
-				case 1: font = theme.HeaderFont; break;
-				case 2: font = theme.TotalFont; break;
-				case 3: font = theme.FirstColumnFont; break;
-				case 4: font = theme.LastColumnFont; break;
+				fontRoleRows[i].IsSelected = i == index;
 			}
 
-			font ??= new TableTheme.ColorFont();
+			selectedFontRoleIndex = index;
+			LoadFontRoleIntoPanel(theme, index);
+		}
 
-			int index;
+
+		private void LoadFontRoleIntoPanel(TableTheme theme, int index)
+		{
+			colorfont = new TableTheme.ColorFont(GetFontRole(theme, index));
+
+			reorganizing = true;
 
 			if (familyBox.Items.Count > 0)
 			{
-				var name = font.Font?.FontFamily.Name ?? StyleBase.DefaultFontFamily;
-				index = familyBox.Items.IndexOf(name);
-
-				if (index < 0) index = 0;
-				familyBox.SelectedIndex = index;
+				var name = colorfont.Font?.FontFamily.Name ?? StyleBase.DefaultFontFamily;
+				var famIndex = familyBox.Items.IndexOf(name);
+				familyBox.SelectedIndex = famIndex < 0 ? 0 : famIndex;
 			}
 
 			if (sizeBox.Items.Count > 0)
 			{
-				var size = font.Font?.Size ?? StyleBase.DefaultFontSize;
-				index = sizeBox.Items.IndexOf(size.ToString("0.#", AddIn.Locale));
-
-				if (index < 0) index = 0;
-				sizeBox.SelectedIndex = index;
+				var size = colorfont.Font?.Size ?? StyleBase.DefaultFontSize;
+				var sizeIndex = sizeBox.Items.IndexOf(size.ToString("0.#", AddIn.Locale));
+				sizeBox.SelectedIndex = sizeIndex < 0 ? 0 : sizeIndex;
 			}
 
-			if (font.Font != null)
-			{
-				boldButton.Checked = font.Font.Bold;
-				italicButton.Checked = font.Font.Italic;
-				underlineButton.Checked = font.Font.Underline;
-			}
-			else
-			{
-				boldButton.Checked = false;
-				italicButton.Checked = false;
-				underlineButton.Checked = false;
-			}
+			boldButton.Checked = colorfont.Font?.Bold ?? false;
+			italicButton.Checked = colorfont.Font?.Italic ?? false;
+			underlineButton.Checked = colorfont.Font?.Underline ?? false;
+
+			reorganizing = false;
+
+			UpdateSample();
 		}
 
 
-		private void ResetSelectedFont(object sender, EventArgs e)
+		private void UpdateSample()
 		{
-			if (colorFontsBox.SelectedIndices.Count == 0)
+			if (colorfont is null)
 			{
 				return;
 			}
 
-			var theme = themes[combo.SelectedIndex];
-			var itemIndex = colorFontsBox.SelectedIndices[0];
-			TableTheme.ColorFont font = null;
+			var font = MakeFont();
+			sampleLabel.Font = font;
 
-			switch (itemIndex)
-			{
-				case 0: font = theme.DefaultFont = new TableTheme.ColorFont(snapshot.DefaultFont); break;
-				case 1: font = theme.HeaderFont = new TableTheme.ColorFont(snapshot.HeaderFont); break;
-				case 2: font = theme.TotalFont = new TableTheme.ColorFont(snapshot.TotalFont); break;
-				case 3: font = theme.FirstColumnFont = new TableTheme.ColorFont(snapshot.FirstColumnFont); break;
-				case 4: font = theme.LastColumnFont = new TableTheme.ColorFont(snapshot.LastColumnFont); break;
-			}
+			var previous = sampleFont;
+			sampleFont = font;
+			previous?.Dispose();
 
-			ShowFontLinkLabel(itemIndex, font);
-			ShowFontProperties(sender, e);
-
-			var dirty = !theme.Equals(snapshot);
-			saveButton.Enabled = dirty;
-			resetButton.Enabled = dirty;
-		}
-
-		private void DefaultSelectedFont(object sender, EventArgs e)
-		{
-			if (colorFontsBox.SelectedIndices.Count == 0)
-			{
-				return;
-			}
-
-			var theme = themes[combo.SelectedIndex];
-			var itemIndex = colorFontsBox.SelectedIndices[0];
-
-			switch (itemIndex)
-			{
-				case 0: { theme.DefaultFont?.Dispose(); theme.DefaultFont = null; break; }
-				case 1: { theme.HeaderFont?.Dispose(); theme.HeaderFont = null; break; }
-				case 2: { theme.TotalFont?.Dispose(); theme.TotalFont = null; break; }
-				case 3: { theme.FirstColumnFont?.Dispose(); theme.FirstColumnFont = null; break; }
-				case 4: { theme.LastColumnFont?.Dispose(); theme.LastColumnFont = null; break; }
-			}
-
-			ShowFontLinkLabel(itemIndex, null);
-			ShowFontProperties(sender, e);
-
-			var dirty = !theme.Equals(snapshot);
-			saveButton.Enabled = dirty;
-			resetButton.Enabled = dirty;
-		}
-
-
-		private void ChangeElementFont(object sender, LinkLabelLinkClickedEventArgs e)
-		{
-			if (((Control)sender).Tag is ListViewItem host)
-			{
-				colorFontsBox.SelectIf(host);
-				ShowFontProperties(sender, new EventArgs());
-
-				var theme = themes[combo.SelectedIndex];
-				switch (host.Index)
-				{
-					case 0: colorfont = theme.DefaultFont; break;
-					case 1: colorfont = theme.HeaderFont; break;
-					case 2: colorfont = theme.TotalFont; break;
-					case 3: colorfont = theme.FirstColumnFont; break;
-					case 4: colorfont = theme.LastColumnFont; break;
-				}
-			}
-
-			colorfont ??= new TableTheme.ColorFont();
-
-			colorFontsBox.Enabled = false;
-			resetFontButton.Enabled = false;
-			defaultFontButton.Enabled = false;
-			fontsGroup.Enabled = true;
+			sampleLabel.ForeColor = colorfont.Foreground.IsEmpty
+				? ThemeManager.Instance.GetColor("ControlText")
+				: colorfont.Foreground;
 		}
 
 
 		private void ChangeFontFont(object sender, EventArgs e)
 		{
-			if (!reorganizing && colorfont != null)
+			if (reorganizing || colorfont is null)
 			{
-				var save = colorfont.Font;
-				colorfont.Font = MakeFont();
-				save?.Dispose();
+				return;
 			}
+
+			var previous = colorfont.Font;
+			colorfont.Font = MakeFont();
+			previous?.Dispose();
+
+			UpdateSample();
 		}
 
 
@@ -616,13 +522,15 @@ namespace River.OneMoreAddIn.Commands
 
 			using var dialog = new MoreColorDialog("Text Color",
 				location.X + colorButton.Bounds.Location.X,
-				location.Y + colorButton.Bounds.Height + 4);
-
-			dialog.Color = colorfont.Foreground;
+				location.Y + colorButton.Bounds.Height + 4)
+			{
+				Color = colorfont.Foreground
+			};
 
 			if (dialog.ShowDialog(this) == DialogResult.OK)
 			{
 				colorfont.Foreground = dialog.Color;
+				UpdateSample();
 			}
 		}
 
@@ -630,6 +538,7 @@ namespace River.OneMoreAddIn.Commands
 		private void SetFontColorDefault(object sender, EventArgs e)
 		{
 			colorfont.Foreground = Color.Empty;
+			UpdateSample();
 		}
 
 
@@ -653,157 +562,310 @@ namespace River.OneMoreAddIn.Commands
 
 		private void ApplyFont(object sender, EventArgs e)
 		{
-			var theme = themes[combo.SelectedIndex];
-			var index = colorFontsBox.SelectedIndices[0];
-
-			switch (index)
+			if (combo.SelectedItem is not TableTheme theme || selectedFontRoleIndex < 0)
 			{
-				case 0:
-					theme.DefaultFont?.Dispose();
-					theme.DefaultFont = colorfont;
-					break;
-
-				case 1:
-					theme.HeaderFont?.Dispose();
-					theme.HeaderFont = colorfont;
-					break;
-
-				case 2:
-					theme.TotalFont?.Dispose();
-					theme.TotalFont = colorfont;
-					break;
-
-				case 3:
-					theme.FirstColumnFont?.Dispose();
-					theme.FirstColumnFont = colorfont;
-					break;
-
-				case 4:
-					theme.LastColumnFont?.Dispose();
-					theme.LastColumnFont = colorfont;
-					break;
+				return;
 			}
 
-			ShowFontLinkLabel(index, colorfont);
+			SetFontRole(theme, selectedFontRoleIndex, colorfont);
 
-			colorfont = null;
+			fontRoleRows[selectedFontRoleIndex].Summary = colorfont.ToString();
 
-			colorFontsBox.Enabled = true;
-			resetFontButton.Enabled = true;
-			defaultFontButton.Enabled = true;
-			fontsGroup.Enabled = false;
+			// re-clone so continued edits act on a fresh pending buffer, matching the
+			// "switching roles without Apply discards the edit" model even right after Apply
+			colorfont = new TableTheme.ColorFont(colorfont);
 
-			var dirty = !theme.Equals(snapshot);
-			saveButton.Enabled = dirty;
-			resetButton.Enabled = dirty;
+			UpdateButtonStates();
 		}
 
 
-		// Theme - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		private void ResetFontRoleToDefault(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			if (combo.SelectedItem is not TableTheme theme || selectedFontRoleIndex < 0)
+			{
+				return;
+			}
+
+			SetFontRole(theme, selectedFontRoleIndex, null);
+
+			fontRoleRows[selectedFontRoleIndex].Summary = Resx.word_Default;
+
+			LoadFontRoleIntoPanel(theme, selectedFontRoleIndex);
+
+			UpdateButtonStates();
+		}
+
+
+		private static TableTheme.ColorFont GetFontRole(TableTheme theme, int index) => index switch
+		{
+			0 => theme.DefaultFont,
+			1 => theme.HeaderFont,
+			2 => theme.TotalFont,
+			3 => theme.FirstColumnFont,
+			4 => theme.LastColumnFont,
+			_ => null
+		};
+
+
+		private static void SetFontRole(TableTheme theme, int index, TableTheme.ColorFont font)
+		{
+			switch (index)
+			{
+				case 0: theme.DefaultFont?.Dispose(); theme.DefaultFont = font; break;
+				case 1: theme.HeaderFont?.Dispose(); theme.HeaderFont = font; break;
+				case 2: theme.TotalFont?.Dispose(); theme.TotalFont = font; break;
+				case 3: theme.FirstColumnFont?.Dispose(); theme.FirstColumnFont = font; break;
+				case 4: theme.LastColumnFont?.Dispose(); theme.LastColumnFont = font; break;
+			}
+		}
+
+
+		private void PaintSampleBorder(object sender, PaintEventArgs e)
+		{
+			using var pen = new Pen(manager.GetColor("ButtonBorder")) { DashStyle = DashStyle.Dash };
+			e.Graphics.DrawRectangle(pen, 0, 0, sampleBorderPanel.Width - 1, sampleBorderPanel.Height - 1);
+		}
+
+
+		// Dirty tracking - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+		private bool IsDirty(TableTheme theme)
+		{
+			return snapshots.TryGetValue(theme, out var snap) && !theme.Equals(snap);
+		}
+
+
+		private bool AnyDirty()
+		{
+			return listChanged || userThemes.Any(IsDirty);
+		}
+
+
+		private void UpdateButtonStates()
+		{
+			var hasSelection = combo.SelectedItem is TableTheme;
+
+			renameButton.Enabled = hasSelection;
+			deleteButton.Enabled = hasSelection;
+
+			saveButton.Enabled = AnyDirty();
+		}
+
+
+		private static string GenerateUniqueName(string baseName, List<string> existingNames)
+		{
+			if (!existingNames.Contains(baseName))
+			{
+				return baseName;
+			}
+
+			var i = 2;
+			string candidate;
+			do
+			{
+				candidate = $"{baseName} ({i})";
+				i++;
+			}
+			while (existingNames.Contains(candidate));
+
+			return candidate;
+		}
+
+
+		// Theme management - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 		private void CreateNewTheme(object sender, EventArgs e)
 		{
-			if (!themes[combo.SelectedIndex].Equals(snapshot))
-			{
-				if (MoreMessageBox.Show(Owner, Resx.EditTableThemesDialog_discard,
-					MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-				{
-					return;
-				}
+			var name = GenerateUniqueName(
+				Resx.phrase_NewStyle, userThemes.Select(t => t.Name).ToList());
 
-				snapshot.CopyTo(themes[combo.SelectedIndex]);
-			}
+			var theme = new TableTheme { Name = name };
 
-			snapshot = new TableTheme();
-			themes.Add(new TableTheme { Name = Resx.phrase_NewStyle });
-			combo.Items.Add(Resx.phrase_NewStyle);
-			combo.SelectedIndex = combo.Items.Count - 1;
+			userThemes.Add(theme);
+			listChanged = true;
 
-			newButton.Enabled = false;
+			PopulateCombo(theme);
+		}
+
+
+		/// <summary>
+		/// Shows a gallery popup of theme thumbnails (built-in themes first, then
+		/// user-defined ones) to duplicate from, replicating the ribbon's own Table Theme
+		/// gallery. This popup is a plain owned modeless window (Show(this)), not a true
+		/// Win32-modal child - EditTableThemesDialog is itself already shown modally
+		/// (ShowDialog) over OneNote's window, so Windows keeps it above OneNote
+		/// automatically; owning the popup by this dialog is enough to keep the popup above
+		/// the dialog in turn, without needing MoreForm.RunModeless's cross-process
+		/// (dllhost.exe vs ONENOTE.EXE) foreground-window machinery that RemoveDuplicates'
+		/// SimilarityChip/SimilarityPopup need only because those host dialogs are modeless.
+		/// </summary>
+		private void ShowDuplicateGallery(object sender, EventArgs e)
+		{
+			var popup = new ThemeGalleryPopup(systemThemes, savedUserThemes);
+			popup.ThemeSelected += (s, theme) => DuplicateFrom(theme);
+			popup.FormClosed += (s, e2) => popup.Dispose();
+
+			popup.StartPosition = FormStartPosition.Manual;
+			popup.ManualLocation = true;
+			popup.Location = GetGalleryLocation(popup);
+
+			popup.Show(this);
+		}
+
+
+		private Point GetGalleryLocation(ThemeGalleryPopup popup)
+		{
+			var anchor = duplicateButton.PointToScreen(new Point(0, duplicateButton.Height));
+			var size = popup.PreferredSize;
+
+			var working = Screen.FromControl(duplicateButton).WorkingArea;
+
+			var x = Math.Min(anchor.X, working.Right - size.Width);
+			x = Math.Max(x, working.Left);
+
+			var y = Math.Min(anchor.Y, working.Bottom - size.Height);
+			y = Math.Max(y, working.Top);
+
+			return new Point(x, y);
+		}
+
+
+		/// <summary>
+		/// Clones source (built-in or user-defined) into a new, immediately-selected
+		/// user-defined theme with an auto-generated name - no name prompt, matching
+		/// BoxTypesPanel.DuplicateBox; the user can Rename it afterward if they want.
+		/// </summary>
+		private void DuplicateFrom(TableTheme source)
+		{
+			var copy = new TableTheme();
+			source.CopyTo(copy);
+
+			copy.Name = GenerateUniqueName(
+				string.Format(Resx.EditTableThemesDialog_copyTitle, source.Name),
+				userThemes.Select(t => t.Name).ToList());
+
+			userThemes.Add(copy);
+			listChanged = true;
+
+			PopulateCombo(copy);
 		}
 
 
 		private void RenameTheme(object sender, EventArgs e)
 		{
-			var names = themes.Select(t => t.Name).ToList();
+			if (combo.SelectedItem is not TableTheme theme)
+			{
+				return;
+			}
 
-			using var dialog = new RenameDialog(names, combo.Text) { Rename = true };
+			var names = userThemes.Select(t => t.Name).ToList();
+
+			using var dialog = new RenameDialog(names, theme.Name) { Rename = true };
 			if (dialog.ShowDialog(this) != DialogResult.OK)
 			{
 				return;
 			}
 
-			themes[combo.SelectedIndex].Name = dialog.Value;
+			theme.Name = dialog.Value;
+			listChanged = true;
 
-			reorganizing = true;
-			SortThemes();
-			SetToolbarState();
-			reorganizing = false;
-		}
-
-
-		private void SaveTheme(object sender, EventArgs e)
-		{
-			new TableThemeProvider().SaveUserThemes(themes);
-			Modified = true;
-
-			themes[combo.SelectedIndex].CopyTo(snapshot);
-
-			SetToolbarState();
-			newButton.Enabled = true;
+			PopulateCombo(theme);
 		}
 
 
 		private void DeleteTheme(object sender, EventArgs e)
 		{
-			if (MoreMessageBox.Show(Owner, Resx.EditTableThemesDialog_deleteStyle,
-				MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+			if (combo.SelectedItem is not TableTheme theme)
 			{
-				reorganizing = true;
-				var index = combo.SelectedIndex;
-				themes.RemoveAt(index);
-				combo.Items.RemoveAt(index);
-
-				new TableThemeProvider().SaveUserThemes(themes);
-				Modified = true;
-
-				if (themes.Count == 0)
-				{
-					themes.Add(new TableTheme { Name = Resx.phrase_NewStyle });
-					snapshot = new TableTheme();
-					combo.Items.Add(themes[0]);
-					combo.SelectedIndex = 0;
-					newButton.Enabled = false;
-				}
-				else
-				{
-					if (index >= themes.Count)
-					{
-						index = themes.Count - 1;
-					}
-
-					themes[index].CopyTo(snapshot);
-					combo.SelectedIndex = index;
-				}
-
-				SetToolbarState();
-				reorganizing = false;
-
-				ChooseTheme(sender, e);
+				return;
 			}
+
+			if (MoreMessageBox.Show(Owner, Resx.EditTableThemesDialog_deleteStyle,
+				MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+			{
+				return;
+			}
+
+			userThemes.Remove(theme);
+			savedUserThemes.Remove(theme);
+			snapshots.Remove(theme);
+			listChanged = true;
+
+			if (userThemes.Count == 0)
+			{
+				// keep the combo from ever going fully empty
+				userThemes.Add(new TableTheme { Name = Resx.phrase_NewStyle });
+			}
+
+			PopulateCombo();
 		}
+
+
+		private void SaveAll(object sender, EventArgs e)
+		{
+			// a "New Style" theme nobody has touched (still the default name, still every
+			// color/font unset) is just the "always have something to show" placeholder,
+			// not a real theme the user asked to keep - never let it leak into the saved
+			// file, even though it stays visible in the combo for the rest of this session
+			// in case the user wants to go back and actually customize it
+			var persisted = userThemes.Where(t => !IsUntouchedNewStyle(t)).ToList();
+
+			new TableThemeProvider().SaveUserThemes(persisted);
+			Modified = true;
+
+			listChanged = false;
+			snapshots.Clear();
+			savedUserThemes = persisted;
+
+			foreach (var theme in userThemes)
+			{
+				var snap = new TableTheme();
+				theme.CopyTo(snap);
+				snapshots[theme] = snap;
+			}
+
+			DialogResult = DialogResult.OK;
+			Close();
+		}
+
+
+		/// <summary>
+		/// True if theme is still exactly the blank state CreateNewTheme produces: the
+		/// default "New Style" name, never renamed, and every color/font still unset.
+		/// </summary>
+		private static bool IsUntouchedNewStyle(TableTheme theme)
+		{
+			return theme.Name == Resx.phrase_NewStyle
+				&& theme.WholeTable.IsEmpty
+				&& theme.FirstColumnStripe.IsEmpty
+				&& theme.SecondColumnStripe.IsEmpty
+				&& theme.FirstRowStripe.IsEmpty
+				&& theme.SecondRowStripe.IsEmpty
+				&& theme.FirstColumn.IsEmpty
+				&& theme.LastColumn.IsEmpty
+				&& theme.HeaderRow.IsEmpty
+				&& theme.TotalRow.IsEmpty
+				&& theme.HeaderFirstCell.IsEmpty
+				&& theme.HeaderLastCell.IsEmpty
+				&& theme.TotalFirstCell.IsEmpty
+				&& theme.TotalLastCell.IsEmpty
+				&& theme.DefaultFont is null
+				&& theme.HeaderFont is null
+				&& theme.TotalFont is null
+				&& theme.FirstColumnFont is null
+				&& theme.LastColumnFont is null;
+		}
+
 
 		private void ConfirmClosing(object sender, FormClosingEventArgs e)
 		{
-			if (fontsGroup.Enabled)
+			if (DialogResult == DialogResult.OK)
 			{
-				colorFontsBox.Enabled = true;
-				resetFontButton.Enabled = true;
-				defaultFontButton.Enabled = true;
-				fontsGroup.Enabled = false;
-				e.Cancel = true;
+				// already saved via SaveAll
+				return;
 			}
-			else if (!themes[combo.SelectedIndex].Equals(snapshot))
+
+			if (AnyDirty())
 			{
 				if (MoreMessageBox.Show(Owner, Resx.EditTableThemesDialog_discard,
 					MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)

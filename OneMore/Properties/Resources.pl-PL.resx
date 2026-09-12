@@ -1338,6 +1338,10 @@ Normalna</value>
     <value>Zabarwienie</value>
     <comment>tab</comment>
   </data>
+  <data name="EditTableThemesDialog_copyTitle" xml:space="preserve">
+    <value>{0} Kopiuj</value>
+    <comment>{0}=source theme name; generated name for a duplicated theme</comment>
+  </data>
   <data name="EditTableThemesDialog_deleteStyle" xml:space="preserve">
     <value>Usuń ten styl?</value>
     <comment>message box</comment>
@@ -1345,6 +1349,10 @@ Normalna</value>
   <data name="EditTableThemesDialog_discard" xml:space="preserve">
     <value>Odrzucić niezbawione zmiany?</value>
     <comment>message box</comment>
+  </data>
+  <data name="EditTableThemesDialog_duplicateFrom" xml:space="preserve">
+    <value>Duplikat z…</value>
+    <comment>menu header</comment>
   </data>
   <data name="EditTableThemesDialog_elements" xml:space="preserve">
     <value>Cały stół
@@ -1382,9 +1390,21 @@ Czcionka ostatniej kolumny</value>
     <value>Zresetować wszystko</value>
     <comment>button</comment>
   </data>
+  <data name="EditTableThemesDialog_resetToDefault" xml:space="preserve">
+    <value>Przywróć ustawienia domyślne</value>
+    <comment>link, Fonts tab</comment>
+  </data>
+  <data name="EditTableThemesDialog_sample" xml:space="preserve">
+    <value>Przykładowy tekst tabeli</value>
+    <comment>live font preview text, Fonts tab</comment>
+  </data>
   <data name="EditTableThemesDialog_Text" xml:space="preserve">
     <value>Niestandardowe style tabel</value>
     <comment>dialog</comment>
+  </data>
+  <data name="EditTableThemesDialog_yourThemes" xml:space="preserve">
+    <value>Twoje motywy</value>
+    <comment>gallery section header</comment>
   </data>
   <data name="EmbedCommand_EmbeddedFrom" xml:space="preserve">
     <value>Osadzone z {0}</value>
@@ -7340,6 +7360,9 @@ Dziękuję!</value>
   <data name="word_Due" xml:space="preserve">
     <value>Z powodu</value>
   </data>
+  <data name="word_Duplicate" xml:space="preserve">
+    <value>Duplikat</value>
+  </data>
   <data name="word_Edit" xml:space="preserve">
     <value>Edytować</value>
   </data>
@@ -7426,6 +7449,9 @@ Dziękuję!</value>
   </data>
   <data name="word_Navigator" xml:space="preserve">
     <value>Nawigator</value>
+  </data>
+  <data name="word_New" xml:space="preserve">
+    <value>Nowy</value>
   </data>
   <data name="word_No" xml:space="preserve">
     <value>Nie</value>
@@ -7556,6 +7582,9 @@ Dziękuję!</value>
   </data>
   <data name="word_Text" xml:space="preserve">
     <value>Tekst</value>
+  </data>
+  <data name="word_Theme" xml:space="preserve">
+    <value>Temat</value>
   </data>
   <data name="word_Value" xml:space="preserve">
     <value>Wartość</value>
