@@ -119,7 +119,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 			}
 
 			var (imported, attempted) = MergeIntoDatabase(collection);
-			ribbon?.InvalidateControl(FavoritesMenu.MenuID);
+			ribbon.SafeInvalidateControl(FavoritesMenu.MenuID);
 
 			if (runningFromCli)
 			{

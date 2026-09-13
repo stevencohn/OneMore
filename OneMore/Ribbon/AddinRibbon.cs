@@ -629,6 +629,12 @@ namespace River.OneMoreAddIn
 		{
 			DebugRibbon("RibbonLoaded()");
 			this.ribbon = ribbon;
+
+			// RibbonLoaded can fire again after startup if OneNote's ribbon COM surrogate
+			// is recycled; propagate the fresh proxy to consumers that cached the original
+			// reference so they don't keep invalidating a dead COM object
+			factory?.RefreshRibbon(ribbon);
+			navigationService?.RefreshRibbon(ribbon);
 		}
 
 

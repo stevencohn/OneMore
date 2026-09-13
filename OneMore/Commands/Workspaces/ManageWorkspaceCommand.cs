@@ -31,7 +31,7 @@ namespace River.OneMoreAddIn.Commands.Workspaces
 			{
 				if (dialog.ShowDialog(owner) == DialogResult.OK)
 				{
-					ribbon?.InvalidateControl(FavoritesMenu.MenuID);
+					ribbon.SafeInvalidateControl(FavoritesMenu.MenuID);
 				}
 
 				restoreLayoutName = dialog.RestoreLayoutName;

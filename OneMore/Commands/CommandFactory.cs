@@ -23,7 +23,7 @@ namespace River.OneMoreAddIn
 	internal class CommandFactory
 	{
 		private readonly ILogger logger;
-		private readonly IRibbonUI ribbon;
+		private IRibbonUI ribbon;
 		private readonly List<IDisposable> trash;
 		private readonly bool runningFromCli;
 
@@ -48,6 +48,18 @@ namespace River.OneMoreAddIn
 			: this(logger, ribbon, trash)
 		{
 			this.runningFromCli = runningFromCli;
+		}
+
+
+		/// <summary>
+		/// Replace the cached ribbon reference, e.g. when OneNote's ribbon COM surrogate
+		/// is recycled mid-session and RibbonLoaded fires again with a new proxy. Without
+		/// this, commands would keep invalidating a dead IRibbonUI indefinitely.
+		/// </summary>
+		/// <param name="ribbon">The current OneNote ribbon</param>
+		public void RefreshRibbon(IRibbonUI ribbon)
+		{
+			this.ribbon = ribbon;
 		}
 
 

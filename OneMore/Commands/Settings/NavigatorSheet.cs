@@ -104,7 +104,7 @@ namespace River.OneMoreAddIn.Settings
 
 				// disabled controls whether the dropdown includes the history section;
 				// getContent results are cached until explicitly invalidated
-				ribbon.InvalidateControl("ribNavigatorButton");
+				ribbon.SafeInvalidateControl("ribNavigatorButton");
 			}
 
 			return updated;

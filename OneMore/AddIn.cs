@@ -34,6 +34,7 @@ namespace River.OneMoreAddIn
 		private IRibbonUI ribbon;                   // the ribbon control
 		private ILogger logger;                     // our diagnostic logger
 		private CommandFactory factory;
+		private Commands.NavigationService navigationService;
 		//private readonly Process process;         // current process, to kill if necessary
 		private List<IDisposable> trash;            // track disposables
 
@@ -296,7 +297,8 @@ namespace River.OneMoreAddIn
 					new Commands.ReminderService().Startup();
 
 					// navigation listener
-					new Commands.NavigationService(ribbon).Startup();
+					navigationService = new Commands.NavigationService(ribbon);
+					navigationService.Startup();
 
 					// hashtags scanner
 					new Commands.HashtagService().Startup();

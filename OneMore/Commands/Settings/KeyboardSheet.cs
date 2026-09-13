@@ -391,7 +391,7 @@ namespace River.OneMoreAddIn.Settings
 					provider.RemoveCollection(Name);
 				}
 
-				ribbon.InvalidateControl("ribOneMoreMenu");
+				ribbon.SafeInvalidateControl("ribOneMoreMenu");
 			}
 
 			return updated;
