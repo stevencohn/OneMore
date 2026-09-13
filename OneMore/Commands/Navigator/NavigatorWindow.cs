@@ -1081,7 +1081,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				if (await provider.RecordHistory(page.PageId, depth))
 				{
-					ribbon?.InvalidateControl("ribNavigatorButton");
+					ribbon.SafeInvalidateControl("ribNavigatorButton");
 				}
 			}
 		}

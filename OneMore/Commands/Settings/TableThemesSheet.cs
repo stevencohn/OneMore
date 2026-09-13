@@ -148,7 +148,7 @@ namespace River.OneMoreAddIn.Settings
 
 			if (updated)
 			{
-				ribbon.InvalidateControl("ribTableThemesButton");
+				ribbon.SafeInvalidateControl("ribTableThemesButton");
 			}
 
 			// restart not required

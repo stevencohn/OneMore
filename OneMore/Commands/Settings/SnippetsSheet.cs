@@ -182,7 +182,7 @@ namespace River.OneMoreAddIn.Settings
 			{
 				provider.SetCollection(settings);
 				boxTypesProvider.SaveAll(boxTypesPanel.GetBoxTypes(), (float)boxWidthBox.Value);
-				ribbon.InvalidateControl(SnippetsProvider.MenuID);
+				ribbon.SafeInvalidateControl(SnippetsProvider.MenuID);
 			}
 
 			return false;

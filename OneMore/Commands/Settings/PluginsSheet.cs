@@ -230,7 +230,7 @@ namespace River.OneMoreAddIn.Settings
 		{
 			if (updated)
 			{
-				ribbon.InvalidateControl(Commands.Favorites.FavoritesMenu.MenuID);
+				ribbon.SafeInvalidateControl(Commands.Favorites.FavoritesMenu.MenuID);
 			}
 
 			return false;

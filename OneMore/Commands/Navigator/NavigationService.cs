@@ -31,7 +31,7 @@ namespace River.OneMoreAddIn.Commands
 		private readonly int historyDepth;
 		private readonly bool disabled;
 
-		private readonly IRibbonUI ribbon;
+		private IRibbonUI ribbon;
 		private readonly NavigationProvider provider;
 		private string currentId = null;
 		private int commitment = 0;
@@ -47,6 +47,17 @@ namespace River.OneMoreAddIn.Commands
 			pollingInterval = collection.Get("interval", DefaultPollingInterval);
 			historyDepth = collection.Get("depth", DefaultHistoryDepth);
 			disabled = collection.Get("disabled", false);
+		}
+
+
+		/// <summary>
+		/// Replace the cached ribbon reference, e.g. when OneNote's ribbon COM surrogate
+		/// is recycled mid-session and RibbonLoaded fires again with a new proxy.
+		/// </summary>
+		/// <param name="ribbon">The current OneNote ribbon</param>
+		public void RefreshRibbon(IRibbonUI ribbon)
+		{
+			this.ribbon = ribbon;
 		}
 
 
@@ -113,7 +124,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					if (await provider.RecordHistory(pageId, historyDepth))
 					{
-						ribbon?.InvalidateControl("ribNavigatorButton");
+						ribbon.SafeInvalidateControl("ribNavigatorButton");
 					}
 				}
 			}

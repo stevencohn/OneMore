@@ -55,7 +55,7 @@ namespace River.OneMoreAddIn.Commands
 
 			await new SnippetsProvider().Save(html, dialog.SnippetName);
 
-			ribbon.InvalidateControl(SnippetsProvider.MenuID);
+			ribbon.SafeInvalidateControl(SnippetsProvider.MenuID);
 		}
 	}
 }

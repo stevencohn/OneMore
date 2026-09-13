@@ -134,7 +134,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 			if (provider.WriteFavorite(favorite, out var duplicate))
 			{
-				ribbon?.InvalidateControl(FavoritesMenu.MenuID);
+				ribbon.SafeInvalidateControl(FavoritesMenu.MenuID);
 			}
 			else if (duplicate)
 			{

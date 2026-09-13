@@ -41,5 +41,29 @@ namespace River.OneMoreAddIn
 				Logger.Current.WriteLine("ribbon invalidate failed, ignoring", exc);
 			}
 		}
+
+
+		/// <summary>
+		/// OneMore Extension >> Invalidate a single ribbon control, swallowing the same
+		/// COM interop failure described in <see cref="SafeInvalidate"/>.
+		/// </summary>
+		/// <param name="ribbon">The ribbon owning the control</param>
+		/// <param name="controlId">The ID of the control to invalidate</param>
+
+		public static void SafeInvalidateControl(this IRibbonUI ribbon, string controlId)
+		{
+			try
+			{
+				ribbon?.InvalidateControl(controlId);
+			}
+			catch (InvalidCastException exc)
+			{
+				Logger.Current.WriteLine("ribbon invalidate control failed, ignoring", exc);
+			}
+			catch (COMException exc)
+			{
+				Logger.Current.WriteLine("ribbon invalidate control failed, ignoring", exc);
+			}
+		}
 	}
 }

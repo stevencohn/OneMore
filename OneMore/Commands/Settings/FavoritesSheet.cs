@@ -53,7 +53,7 @@ namespace River.OneMoreAddIn.Settings
 				using var provider = new FavoritesProvider();
 				if (provider.DropCatalog())
 				{
-					ribbon.InvalidateControl(FavoritesMenu.MenuID);
+					ribbon.SafeInvalidateControl(FavoritesMenu.MenuID);
 					UI.MoreMessageBox.Show(this, Resx.FavoritesSheet_dropped);
 				}
 			}
