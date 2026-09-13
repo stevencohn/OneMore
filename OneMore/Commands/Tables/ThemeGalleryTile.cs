@@ -40,7 +40,7 @@ namespace River.OneMoreAddIn.Commands
 			var painter = new TableThemePainter(
 				image,
 				new Rectangle(3, 3, ImageWidth - 6, ImageHeight - 6),
-				ThemeManager.Instance.GetColor("Window"));
+				Color.White);
 			painter.Paint(theme);
 		}
 
