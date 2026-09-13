@@ -281,12 +281,26 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		/// <summary>
+		/// Chooses the best style to represent code text from the given theme styles,
+		/// preferring one explicitly flagged as code, then falling back to a style named
+		/// "code" or "source code". A style with no name (a malformed or hand-edited theme
+		/// entry) is skipped rather than dereferenced.
+		/// </summary>
+		/// <param name="styles">The theme's styles to search</param>
+		/// <returns>The matching Style or null if none was found</returns>
+		internal static Style SelectCodeStyle(List<Style> styles)
+		{
+			return styles.FirstOrDefault(s => s.IsCode)
+				?? styles.SingleOrDefault(s => s.Name?.ToLower() == "code")
+				?? styles.SingleOrDefault(s => s.Name?.ToLower() == "source code");
+		}
+
+
 		private void ApplyCodeStyle(Page page, XElement content)
 		{
 			var styles = new ThemeProvider().Theme.GetStyles();
-			var codeStyle = styles.FirstOrDefault(s => s.IsCode)
-				?? styles.SingleOrDefault(s => s.Name.ToLower() == "code")
-				?? styles.SingleOrDefault(s => s.Name.ToLower() == "source code");
+			var codeStyle = SelectCodeStyle(styles);
 
 			if (codeStyle is null)
 			{
