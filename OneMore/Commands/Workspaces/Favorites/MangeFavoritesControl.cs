@@ -434,6 +434,13 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		private int FindFolderInsertIndex(string name)
 		{
 			var index = 0;
+
+			// sentinel: no real FolderID equals this, so a Favorite encountered
+			// before any FolderRow (i.e. a root-level favorite, or the list has no
+			// folders yet) immediately stops the scan - folders always sort before
+			// root-level favorites.
+			var currentFolderID = int.MinValue;
+
 			foreach (ListViewItem item in listView.Items)
 			{
 				if (item.Tag is FolderRow row)
@@ -442,10 +449,14 @@ namespace River.OneMoreAddIn.Commands.Favorites
 					{
 						return index;
 					}
+
+					currentFolderID = row.FolderID;
 				}
-				else
+				else if (item.Tag is Favorite favorite && favorite.FolderID != currentFolderID)
 				{
-					// folders always precede favorites; nothing more to scan
+					// this favorite isn't a child of the folder we just passed
+					// (either a root-level favorite, or we haven't seen a folder
+					// yet); nothing more to scan
 					return index;
 				}
 
