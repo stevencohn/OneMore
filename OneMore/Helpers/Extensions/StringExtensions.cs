@@ -416,6 +416,12 @@ namespace River.OneMoreAddIn
 			// quote unquote language attribute, e.g., lang=yo to lang="yo" (or two part en-US)
 			value = Regex.Replace(value, @"(\s)lang=([\w\-]+)([\s/>])", "$1lang=\"$2\"$3");
 
+			// escape any < that isn't the start of a real tag/comment/PI (e.g. a literal
+			// "3 < 5" or "< 10 items" typed as plain text) - CDATA doesn't require this
+			// escaping so it survives into element.Value verbatim, but once unwrapped here
+			// it must be escaped or XElement.Parse throws on the malformed tag name.
+			value = Regex.Replace(value, @"<(?![a-zA-Z/!?])", "&lt;");
+
 			// remove &#N;/&#xN; entity refs whose code point is illegal in XML 1.0
 			value = StripInvalidXmlEntityRefs(value);
 

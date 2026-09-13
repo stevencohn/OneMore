@@ -86,9 +86,11 @@ Read `ONENOTE.EXE`'s PE header directly when you need OneNote's architecture.
   (e.g. `gh issue view 2017 --repo stevencohn/OneMore --comments`).
 - **Commits are GPG-signed.** See `.github/pull_request_template.md`.
 
-- **Branching:** `main` is protected. Use feature branches named like
-  `1234-something`, where the prefix `1234-` is the GitHub issue number 
-  for the work in that branch. First, check the current active branch and confirm if it already has a prefix machting that pattern then use that active branch rather than trying to create a new branch.
+- **Git Branch Behavior:**
+  - **Always** use the current git branch if it is not `main`
+    - _Hint: feature branches normally have the pattern `\d+-\w+(?:-\w+)*`_
+  - **Never** prompt for branch selection if not on `main`
+  - If on `main`, pause with a prompt to the user that says "You are on the main branch. Please switch to a feature branch before proceeding." and wait for user confirmation before proceeding.
 
 - **Github issues:** never create a GitHub issue without asking first.
 
