@@ -6,6 +6,8 @@ namespace River.OneMoreAddIn.Tests.Commands.Snippets
 {
 	using Microsoft.VisualStudio.TestTools.UnitTesting;
 	using River.OneMoreAddIn.Commands;
+	using River.OneMoreAddIn.Styles;
+	using System.Collections.Generic;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
@@ -83,6 +85,60 @@ namespace River.OneMoreAddIn.Tests.Commands.Snippets
 
 			var table = updated.Descendants(Ns + "Table").FirstOrDefault();
 			Assert.IsNotNull(table, "Box table should have been inserted into the page");
+		}
+
+
+		/*
+		 * Test Protocol - InsertBoxCommand.SelectCodeStyle
+		 * Regression test for a telemetry-reported NullReferenceException in
+		 * InsertBoxCommand.ApplyCodeStyle. Style.Name is null for a theme's <Style> element
+		 * that has no name attribute (e.g. a hand-edited or malformed custom theme file), and
+		 * the original code called s.Name.ToLower() unconditionally while searching for a
+		 * style named "code" or "source code", throwing NRE as soon as it enumerated a
+		 * nameless entry. SelectCodeStyle must skip nameless entries instead of throwing.
+		 */
+
+		[TestMethod]
+		public void SelectCodeStyle_WithNamelessStyle_DoesNotThrowAndReturnsNull()
+		{
+			var styles = new List<Style>
+			{
+				new() { Name = null },
+				new() { Name = "Heading 1" }
+			};
+
+			var style = InsertBoxCommand.SelectCodeStyle(styles);
+
+			Assert.IsNull(style);
+		}
+
+
+		[TestMethod]
+		public void SelectCodeStyle_WithNamelessStyleAndNamedCodeStyle_ReturnsNamedStyle()
+		{
+			var codeStyle = new Style { Name = "Code" };
+			var styles = new List<Style>
+			{
+				new() { Name = null },
+				codeStyle
+			};
+
+			var style = InsertBoxCommand.SelectCodeStyle(styles);
+
+			Assert.AreSame(codeStyle, style);
+		}
+
+
+		[TestMethod]
+		public void SelectCodeStyle_WithIsCodeFlaggedStyle_TakesPrecedence()
+		{
+			var flagged = new Style { Name = null, IsCode = true };
+			var named = new Style { Name = "Code" };
+			var styles = new List<Style> { named, flagged };
+
+			var style = InsertBoxCommand.SelectCodeStyle(styles);
+
+			Assert.AreSame(flagged, style);
 		}
 	}
 }
