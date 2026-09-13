@@ -60,7 +60,7 @@ namespace River.OneMoreAddIn
 			if (tableGalleryBackground != background)
 			{
 				tableGalleryBackground = background;
-				ribbon.Invalidate();
+				ribbon.SafeInvalidate();
 			}
 
 			// load/reload cached theme
