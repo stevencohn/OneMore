@@ -22,7 +22,7 @@ namespace River.OneMoreAddIn.Commands
 		/// <summary>
 		/// Fixed symbol font for all box types; not user-configurable.
 		/// </summary>
-		public const string SymbolFont = "Segoe UI Symbol";
+		public const string SymbolFont = "Segoe UI Emoji";
 
 		private const float DefaultBoxWidth = 600f;
 
