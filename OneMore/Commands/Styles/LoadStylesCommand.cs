@@ -54,7 +54,7 @@ namespace River.OneMoreAddIn.Commands
 			if (ribbonTheme != null)
 			{
 				logger.WriteLine($"loaded theme {ribbonTheme.Key}");
-				ribbon.Invalidate();
+				ribbon.SafeInvalidate();
 			}
 
 			await Task.Yield();

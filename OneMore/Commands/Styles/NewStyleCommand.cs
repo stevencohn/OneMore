@@ -51,7 +51,7 @@ namespace River.OneMoreAddIn.Commands
 				if (dialog.Style != null)
 				{
 					ThemeProvider.Save(dialog.Style);
-					ribbon.Invalidate();
+					ribbon.SafeInvalidate();
 				}
 			}
 

@@ -33,7 +33,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				if (dialog.Modified)
 				{
-					ribbon.Invalidate();
+					ribbon.SafeInvalidate();
 				}
 			}
 

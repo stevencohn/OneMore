@@ -59,10 +59,10 @@ namespace River.OneMoreAddIn.Commands
 				ThemeProvider.Save(dialog.Theme);
 				ThemeProvider.RecordTheme(dialog.Theme.Key);
 
-				ribbon.Invalidate();
+				ribbon.SafeInvalidate();
 			}
 
-			ribbon.Invalidate();
+			ribbon.SafeInvalidate();
 
 			await Task.Yield();
 		}

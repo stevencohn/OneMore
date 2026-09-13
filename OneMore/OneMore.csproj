@@ -582,6 +582,7 @@
     <Compile Include="Helpers\Extensions\FontFamilyExtensions.cs" />
     <Compile Include="Helpers\Extensions\GraphicsExtensions.cs" />
     <Compile Include="Helpers\Extensions\HashAlgorithmExtensions.cs" />
+    <Compile Include="Helpers\Extensions\RibbonExtensions.cs" />
     <Compile Include="Helpers\Extensions\ScreenExtensions.cs" />
     <Compile Include="Helpers\Heatmap.cs" />
     <Compile Include="Commands\Tagging\HashtagNotebook.cs" />
