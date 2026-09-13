@@ -90,6 +90,91 @@ namespace River.OneMoreAddIn.Tests.Commands.Favorites
 
 
 		[TestMethod]
+		public void ReadFavorites_RootItems_NameTieBreakIsCaseInsensitive()
+		{
+			using var provider = new FavoritesProvider(connection);
+
+			bool Write(string name) => provider.WriteFavorite(new Favorite
+			{
+				Name = name,
+				Location = $"Notebook1/{name}",
+				Uri = $"onenote:#{name}",
+				NotebookID = "nb-1",
+				SectionID = $"sec-{name}",
+				SortOrder = 0
+			});
+
+			// binary/ordinal order would sort "Zebra" before "apple" since all
+			// uppercase letters precede all lowercase letters
+			Write("Zebra");
+			Write("apple");
+
+			var collection = provider.ReadFavorites();
+
+			CollectionAssert.AreEqual(
+				new[] { "apple", "Zebra" },
+				collection.Items.Select(f => f.Name).ToList());
+		}
+
+
+		[TestMethod]
+		public void GetNextSortOrder_EmptyFolder_ReturnsZero()
+		{
+			using var provider = new FavoritesProvider(connection);
+
+			Assert.AreEqual(0, provider.GetNextSortOrder(0));
+		}
+
+
+		[TestMethod]
+		public void GetNextSortOrder_ExistingItems_ReturnsMaxPlusOne()
+		{
+			using var provider = new FavoritesProvider(connection);
+
+			bool Write(string name, int sortOrder) => provider.WriteFavorite(new Favorite
+			{
+				Name = name,
+				Location = $"Notebook1/{name}",
+				Uri = $"onenote:#{name}",
+				NotebookID = "nb-1",
+				SectionID = $"sec-{name}",
+				SortOrder = sortOrder
+			});
+
+			Write("Alpha", 0);
+			Write("Bravo", 1);
+			Write("Charlie", 2);
+
+			Assert.AreEqual(3, provider.GetNextSortOrder(0));
+		}
+
+
+		[TestMethod]
+		public void GetNextSortOrder_ScopedByFolder_IgnoresOtherFolders()
+		{
+			using var provider = new FavoritesProvider(connection);
+
+			var folderID = provider.CreateFolder("Folder1");
+
+			provider.WriteFavorite(new Favorite
+			{
+				FolderID = folderID,
+				Name = "Page1",
+				Location = "Notebook1/Section1/Page1",
+				Uri = "onenote:#Page1",
+				NotebookID = "nb-1",
+				SectionID = "sec-1",
+				PageID = "page-1",
+				SortOrder = 5
+			});
+
+			// root list is untouched by the folder's items
+			Assert.AreEqual(0, provider.GetNextSortOrder(0));
+			Assert.AreEqual(6, provider.GetNextSortOrder(folderID));
+		}
+
+
+		[TestMethod]
 		public void ReadFavorites_SectionLevelFavorite_NullPageId_DoesNotThrow()
 		{
 			// Regression test: section/notebook-level favorites have no PageID, and the

@@ -13,6 +13,9 @@ namespace River.OneMoreAddIn.Commands.Favorites
 	/// </summary>
 	internal sealed class Favorite : ITargetReference
 	{
+		public const string KindSectionGroup = "sectiongroup";
+		public const string KindNotebook = "notebook";
+
 		/// <summary>
 		/// Database ID of this favorite, used for updates and deletes.
 		/// </summary>
@@ -66,13 +69,18 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		/// <summary>
 		/// Distinguishes the kind of target this favorite points to when PageID is not set:
 		/// null or "section" for a section (including legacy rows predating this field),
-		/// "sectiongroup" for a section group, or "notebook" for a notebook. Used only to
-		/// pick an icon in the Favorites menu.
+		/// "sectiongroup" for a section group, or "notebook" for a notebook. Used to pick an
+		/// icon in the Favorites menu and to determine how to navigate, see
+		/// GetNavigationTarget().
 		/// </summary>
 		public string Kind { get; set; }
 
 		/// <summary>
-		/// The custom sort order of the favorite. Default sort order is alphabetic by alias.
+		/// The custom sort order of the favorite within its folder (or the root list).
+		/// New favorites are appended after the last existing one in their folder, see
+		/// FavoritesProvider.GetNextSortOrder. Ties (e.g. among legacy rows that predate
+		/// this scheme) fall back to sorting alphabetically, case-insensitively, by the
+		/// internal name.
 		/// </summary>
 		public int SortOrder { get; set; }
 
@@ -83,6 +91,17 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		/// </summary>
 		[Newtonsoft.Json.JsonIgnore]
 		public TargetStatus Status { get; set; }
+
+		/// <summary>
+		/// Gets the value to pass to FavoritesCommand/OneNote.NavigateTo to jump to this
+		/// favorite. GetHyperlinkToObject-based links (Uri) are unreliable for notebook and
+		/// section group targets (see OneNote.GetHyperlink), so navigate those directly by
+		/// hierarchy ID instead; sections and pages keep using the cached hyperlink.
+		/// </summary>
+		public string GetNavigationTarget() =>
+			PageID is null && (Kind == KindNotebook || Kind == KindSectionGroup)
+				? SectionID
+				: Uri;
 	}
 
 

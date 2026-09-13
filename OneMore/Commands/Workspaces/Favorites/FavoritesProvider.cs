@@ -380,7 +380,7 @@ SELECT
   f.sortOrder
 FROM favorite f
 WHERE f.folderID = 0
-ORDER BY folderName NULLS LAST, sortOrder, name;
+ORDER BY folderName COLLATE NOCASE NULLS LAST, sortOrder, name COLLATE NOCASE;
 ";
 
 			try
@@ -510,6 +510,33 @@ ORDER BY folderName NULLS LAST, sortOrder, name;
 			}
 
 			return true;
+		}
+
+
+		/// <summary>
+		/// Gets the sort order value that would place a new favorite after every
+		/// existing favorite in the given folder (0 for the root/top-level list).
+		/// </summary>
+		/// <param name="folderID">The folder to scope the lookup to, or 0 for the root</param>
+		/// <returns>The next sort order value for the given folder</returns>
+		public int GetNextSortOrder(int folderID)
+		{
+			using var cmd = con.CreateCommand();
+			cmd.CommandType = CommandType.Text;
+			cmd.CommandText =
+				"SELECT COALESCE(MAX(sortOrder), -1) + 1 FROM favorite WHERE folderID = @f";
+
+			cmd.Parameters.AddWithValue("@f", folderID);
+
+			try
+			{
+				return Convert.ToInt32(cmd.ExecuteScalar());
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error computing next favorite sort order", exc);
+				return 0;
+			}
 		}
 
 
