@@ -45,6 +45,29 @@ namespace River.OneMoreAddIn.Tests.Helpers.Extensions
 
 
 		[TestMethod]
+		public void ToXmlWrapper_WithStrayLessThan_DoesNotThrowAndPreservesText()
+		{
+			var input = "some text with a stray < 5 comparison";
+
+			var element = input.ToXmlWrapper();
+
+			Assert.AreEqual(input, element.Value);
+		}
+
+
+		[TestMethod]
+		public void ToXmlWrapper_WithRealTags_PreservesMarkup()
+		{
+			var input = "before <span style=\"x\">middle</span> after <br> end";
+
+			var element = input.ToXmlWrapper();
+
+			Assert.AreEqual("before middle after  end", element.Value);
+			StringAssert.Contains(element.ToString(), "<span style=\"x\">middle</span>");
+		}
+
+
+		[TestMethod]
 		public void ToSlug_WithPlainText_LowercasesAndHyphenates()
 		{
 			Assert.AreEqual("breadcrumb", "Breadcrumb".ToSlug());
