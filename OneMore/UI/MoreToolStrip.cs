@@ -88,6 +88,46 @@ namespace River.OneMoreAddIn.UI
 				e.ArrowColor = textColor;
 				base.OnRenderArrow(e);
 			}
+
+
+			protected override void OnRenderButtonBackground(ToolStripItemRenderEventArgs e)
+			{
+				if (e.Item.Enabled && IsHighlightValid(e.Item))
+				{
+					base.OnRenderButtonBackground(e);
+				}
+			}
+
+
+			protected override void OnRenderMenuItemBackground(ToolStripItemRenderEventArgs e)
+			{
+				if (e.Item.Enabled && IsHighlightValid(e.Item))
+				{
+					base.OnRenderMenuItemBackground(e);
+				}
+			}
+
+
+			/// <summary>
+			/// A disabled ToolStripItem's Selected flag can get stuck true: ToolStrip
+			/// only clears hover state by firing MouseLeave on the item, and that firing
+			/// is a no-op while the item is disabled. So an item hovered while disabled
+			/// and then re-enabled after the mouse has moved away can still report
+			/// Selected == true even though nothing is really hovering it. Confirm the
+			/// mouse is really over the item (or the toolstrip has keyboard focus, in
+			/// which case Selected reflects real keyboard navigation) before trusting it.
+			/// </summary>
+			private static bool IsHighlightValid(ToolStripItem item)
+			{
+				if (!item.Selected)
+				{
+					return true;
+				}
+
+				return item.Owner is not null &&
+					(item.Owner.ContainsFocus ||
+					item.Bounds.Contains(item.Owner.PointToClient(Cursor.Position)));
+			}
 		}
 	}
 
