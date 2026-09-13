@@ -48,7 +48,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 						e.Attribute(isCurrentlyViewedAtt) is not null &&
 						e.Attribute(isCurrentlyViewedAtt).Value == "true");
 
-				kind = KindSectionGroup;
+				kind = Favorite.KindSectionGroup;
 			}
 
 			if (node is not null)
@@ -71,7 +71,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				return;
 			}
 
-			await base.Execute(one.CurrentNotebookId, sectionGroupId, null, KindSectionGroup);
+			await base.Execute(one.CurrentNotebookId, sectionGroupId, null, Favorite.KindSectionGroup);
 		}
 	}
 
@@ -82,7 +82,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		{
 			await using var one = new OneNote();
 			var notebookId = one.CurrentNotebookId;
-			await base.Execute(notebookId, notebookId, null, KindNotebook);
+			await base.Execute(notebookId, notebookId, null, Favorite.KindNotebook);
 		}
 	}
 	#endregion Wrappers
@@ -90,9 +90,6 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 	internal class AddFavoriteCommand : Command
 	{
-		protected const string KindSectionGroup = "sectiongroup";
-		protected const string KindNotebook = "notebook";
-
 		public override async Task Execute(params object[] args)
 		{
 			var pageID = args.Length > 2 ? args[2] as string : null;
@@ -108,17 +105,33 @@ namespace River.OneMoreAddIn.Commands.Favorites
 
 			await using var one = new OneNote();
 
-			var info = kind == KindNotebook
-				? await one.GetNotebookInfo(favorite.NotebookID)
-				: pageID is null
+			// GetHyperlinkToObject is unreliable for notebook/section-group hierarchy IDs
+			// (see OneNote.GetHyperlink), so those favorites navigate by raw ID instead;
+			// only look up a Name/Location and skip the fragile Link lookup for them.
+			if (kind == Favorite.KindNotebook || kind == Favorite.KindSectionGroup)
+			{
+				var info = kind == Favorite.KindNotebook
+					? await one.GetNotebookInfo(favorite.NotebookID)
+					: await one.GetSectionInfo(favorite.SectionID);
+
+				favorite.Name = info.Name;
+				favorite.Location = info.Path;
+				favorite.Uri = favorite.SectionID;
+			}
+			else
+			{
+				var info = pageID is null
 					? await one.GetSectionInfo(favorite.SectionID)
 					: await one.GetPageInfo(favorite.PageID);
 
-			favorite.Name = info.Name;
-			favorite.Location = info.Path;
-			favorite.Uri = info.Link;
+				favorite.Name = info.Name;
+				favorite.Location = info.Path;
+				favorite.Uri = info.Link;
+			}
 
 			var provider = new FavoritesProvider();
+			favorite.SortOrder = provider.GetNextSortOrder(favorite.FolderID);
+
 			if (provider.WriteFavorite(favorite, out var duplicate))
 			{
 				ribbon?.InvalidateControl(FavoritesMenu.MenuID);

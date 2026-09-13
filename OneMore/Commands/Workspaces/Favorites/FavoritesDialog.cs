@@ -531,7 +531,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				return;
 			}
 
-			Uri = favorite.Uri;
+			Uri = favorite.GetNavigationTarget();
 		}
 
 

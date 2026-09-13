@@ -121,7 +121,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				new XAttribute("onAction", GotoAction),
 				new XAttribute("imageMso", imageMso),
 				new XAttribute("label", Chop(favorite.Alias ?? favorite.Name)),
-				new XAttribute("tag", favorite.Uri),
+				new XAttribute("tag", favorite.GetNavigationTarget()),
 				new XAttribute("screentip", favorite.Location)
 				);
 		}
