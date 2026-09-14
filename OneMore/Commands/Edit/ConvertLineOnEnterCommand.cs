@@ -58,6 +58,12 @@ namespace River.OneMoreAddIn.Commands
 			// this is a background command with no corresponding AddIn ribbon "...Cmd"
 			// method, so it should never be recorded in the MRU/Replay list
 			SkipMRU = true;
+
+			// fires on every Enter keypress and is a no-op most of the time (nothing
+			// to convert, or focus elsewhere); the generic "Running command X" trace
+			// would just be noise - this command logs its own, more meaningful lines
+			// only when there's something worth reporting
+			SkipRunLog = true;
 		}
 
 
@@ -113,6 +119,8 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
+			logger.WriteLine($"Running command {nameof(ConvertLineOnEnterCommand)}");
+			
 			var markdownSettings = new SettingsProvider().GetCollection(nameof(MarkdownSheet));
 			var gfmLineBreaks = markdownSettings.Get("gfmLineBreaks", false);
 			var singleSpacing = markdownSettings.Get("singleSpacing", false);

@@ -61,6 +61,20 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Set to true by commands that run so frequently as a background trigger (e.g.
+		/// on every keypress of some hotkey) that CommandFactory's routine "Running
+		/// command X" trace line would just be log noise rather than a useful trace,
+		/// especially when the command turns out to be a no-op most of the time. Such
+		/// commands are expected to do their own, more meaningful logging internally.
+		/// </summary>
+		public bool SkipRunLog
+		{
+			get;
+			protected set;
+		}
+
+
+		/// <summary>
 		/// Text output produced by a CLI command; populated during Execute and read by
 		/// CommandService to return through the named pipe to the CLI console process.
 		/// </summary>

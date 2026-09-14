@@ -179,12 +179,17 @@ namespace River.OneMoreAddIn
 		private async Task Run(string note, Command command, params object[] args)
 		{
 			var type = command.GetType();
-			var msg = $"{note} command {type.Name}";
-			if (logger.IsVerbose)
+
+			string msg = null;
+			if (!command.SkipRunLog)
 			{
-				var ws = System.Diagnostics.Process.GetCurrentProcess().WorkingSet64 / 1_048_576;
-				var heap = GC.GetTotalMemory(false) / 1_048_576;
-				msg = $"{msg} (workingSet {ws}MB, managedHeap {heap}MB)";
+				msg = $"{note} command {type.Name}";
+				if (logger.IsVerbose)
+				{
+					var ws = System.Diagnostics.Process.GetCurrentProcess().WorkingSet64 / 1_048_576;
+					var heap = GC.GetTotalMemory(false) / 1_048_576;
+					msg = $"{msg} (workingSet {ws}MB, managedHeap {heap}MB)";
+				}
 			}
 
 			using var indent = logger.Indent(msg);
