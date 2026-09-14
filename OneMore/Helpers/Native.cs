@@ -407,6 +407,16 @@ namespace River.OneMoreAddIn
 		public static extern bool GetGUIThreadInfo(uint idThread, ref GUITHREADINFO lpgui);
 
 
+		// https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getclassnamew
+		[DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+		public static extern int GetClassName(IntPtr hWnd, StringBuilder lpClassName, int nMaxCount);
+
+
+		// https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getwindowtextw
+		[DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+		public static extern int GetWindowText(IntPtr hWnd, StringBuilder lpString, int nMaxCount);
+
+
 		// https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getsystemmenu
 		[DllImport("user32.dll")]
 		public static extern IntPtr GetSystemMenu(IntPtr hWnd, bool bRevert);
