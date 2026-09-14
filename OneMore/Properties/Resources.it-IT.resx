@@ -166,6 +166,18 @@
     <value>Impossibile salvare il preferito</value>
     <comment>error message</comment>
   </data>
+  <data name="AddFavoriteNotebookButton_Label" xml:space="preserve">
+    <value>Aggiungi ai preferiti (taccuino)</value>
+    <comment>settings sheets only, disambiguates from other Add to Favorites commands</comment>
+  </data>
+  <data name="AddFavoriteSectionButton_Label" xml:space="preserve">
+    <value>Aggiungi ai preferiti (sezione)</value>
+    <comment>settings sheets only, disambiguates from other Add to Favorites commands</comment>
+  </data>
+  <data name="AddFavoriteSectionGroupButton_Label" xml:space="preserve">
+    <value>Aggiungi ai preferiti (gruppo di sezioni)</value>
+    <comment>settings sheets only, disambiguates from other Add to Favorites commands</comment>
+  </data>
   <data name="AddFormulaCommand_Calculated" xml:space="preserve">
     <value>Calcolato</value>
     <comment>tag name</comment>
