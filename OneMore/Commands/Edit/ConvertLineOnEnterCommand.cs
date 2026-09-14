@@ -64,6 +64,9 @@ namespace River.OneMoreAddIn.Commands
 			// would just be noise - this command logs its own, more meaningful lines
 			// only when there's something worth reporting
 			SkipRunLog = true;
+
+			// experimental command - don't report usage telemetry yet
+			SkipTelemetry = true;
 		}
 
 

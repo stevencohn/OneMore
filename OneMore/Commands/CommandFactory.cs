@@ -234,7 +234,7 @@ namespace River.OneMoreAddIn
 			try
 			{
 				// run synchronously; see comment below
-				var telemetryTask = AddIn.Telemetry
+				var telemetryTask = AddIn.Telemetry && !command.SkipTelemetry
 					? TelemetryClient.LogEvent(eventName, string.Empty)
 					: null;
 
@@ -261,7 +261,7 @@ namespace River.OneMoreAddIn
 
 				msg = $"error running command {type.Name}";
 
-				if (AddIn.Telemetry)
+				if (AddIn.Telemetry && !command.SkipTelemetry)
 				{
 					var telemetryTask = TelemetryClient.LogException(eventName, msg, exc);
 					if (runningFromCli)

@@ -75,6 +75,17 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Set to true by commands that should not report telemetry, e.g. an experimental
+		/// command that isn't ready to have its usage tracked yet.
+		/// </summary>
+		public bool SkipTelemetry
+		{
+			get;
+			protected set;
+		}
+
+
+		/// <summary>
 		/// Text output produced by a CLI command; populated during Execute and read by
 		/// CommandService to return through the named pipe to the CLI console process.
 		/// </summary>
