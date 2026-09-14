@@ -48,6 +48,19 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Set to true by commands that should never be recorded in the MRU/Replay list,
+		/// e.g. a background command with no corresponding AddIn ribbon "...Cmd" method to
+		/// derive an MRU entry from. Skips CommandFactory's call to SaveToMRU entirely,
+		/// avoiding its "method not found" log noise for commands that expect this.
+		/// </summary>
+		public bool SkipMRU
+		{
+			get;
+			protected set;
+		}
+
+
+		/// <summary>
 		/// Text output produced by a CLI command; populated during Execute and read by
 		/// CommandService to return through the named pipe to the CLI console process.
 		/// </summary>

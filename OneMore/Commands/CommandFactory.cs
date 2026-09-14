@@ -166,7 +166,7 @@ namespace River.OneMoreAddIn
 				// CLI commands have no command-palette/replay UI surface, and may pass a
 				// shared OneNote connection through args for batched page operations; that
 				// can't round-trip through SaveToMRU's string-based serialization
-				if (!runningFromCli && !command.IsCancelled)
+				if (!runningFromCli && !command.IsCancelled && !command.SkipMRU)
 				{
 					new CommandProvider().SaveToMRU(command, args);
 				}

@@ -55,6 +55,9 @@ namespace River.OneMoreAddIn.Commands
 
 		public ConvertLineOnEnterCommand()
 		{
+			// this is a background command with no corresponding AddIn ribbon "...Cmd"
+			// method, so it should never be recorded in the MRU/Replay list
+			SkipMRU = true;
 		}
 
 
@@ -104,8 +107,6 @@ namespace River.OneMoreAddIn.Commands
 			var text = GetRawText(paragraph, ns);
 
 			var matched = !string.IsNullOrWhiteSpace(text) && TokenPattern.IsMatch(text);
-			logger.WriteLine($"ConvertLineOnEnter: text=\"{text}\" matched={matched}");
-
 			if (!matched)
 			{
 				await ReplayEnter();
@@ -125,8 +126,6 @@ namespace River.OneMoreAddIn.Commands
 
 			var body = OneMoreDig.ConvertMarkdownToHtml(
 				filepath, text, gfmLineBreaks, singleSpacing, blankBeforeHeadings);
-
-			logger.WriteLine($"ConvertLineOnEnter: html={body}");
 
 			var existingList = paragraph.Element(ns + "List");
 			var bulletMatch = BulletItemPattern.Match(text);
@@ -191,11 +190,6 @@ namespace River.OneMoreAddIn.Commands
 				{
 					touched.Add(preserved);
 				}
-			}
-
-			foreach (var t in touched)
-			{
-				logger.WriteLine("ConvertLineOnEnter: touched", t);
 			}
 
 			if (touched.Any())
