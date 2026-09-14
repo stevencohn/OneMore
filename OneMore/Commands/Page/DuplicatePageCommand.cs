@@ -278,6 +278,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
+			var ns = page.Namespace;
 			var headings = page.GetHeadings(one, linked: false);
 			var index = page.GetQuickStyle(StandardStyles.Citation).Index;
 			var datestamp = DateTime.Now.ToShortFriendlyString();
@@ -297,7 +298,18 @@ namespace River.OneMoreAddIn.Commands
 				var citation = new Paragraph(page.Namespace, content)
 					.SetQuickStyle(index);
 
-				headings[i].Root.AddAfterSelf(citation);
+				// if the heading has its own indented OEChildren, detach it and re-parent
+				// it onto the citation so the citation stays immediately after the heading
+				// text instead of landing after the heading's entire indented subtree
+				var heading = headings[i].Root;
+				var children = heading.Element(ns + "OEChildren");
+				if (children is not null)
+				{
+					children.Remove();
+					citation.Add(children);
+				}
+
+				heading.AddAfterSelf(citation);
 			}
 		}
 
