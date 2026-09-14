@@ -393,8 +393,9 @@ namespace River.OneMoreAddIn
 
 				var element = key == SnippetsProvider.SaveSnippetButtonId
 					? SnippetsProvider.MakeSaveSnippetButton(ns)
-					: root.Descendants()
-						.FirstOrDefault(e => e.Attribute("id")?.Value == key);
+					: FavoritesMenu.MakeContextMenuButton(key)
+						?? root.Descendants()
+							.FirstOrDefault(e => e.Attribute("id")?.Value == key);
 
 				if (element == null)
 				{

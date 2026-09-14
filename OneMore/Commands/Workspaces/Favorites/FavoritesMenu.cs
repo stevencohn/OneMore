@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.Commands.Favorites
 {
+	using System.Collections.Generic;
 	using System.Xml.Linq;
 	using Resx = Properties.Resources;
 
@@ -19,6 +20,17 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		private static readonly string AddButtonId = "omAddFavoriteButton";
 		private static readonly string ManageButtonId = "omManageFavoritesButton";
 		private static readonly string KbdShortcutsId = "omShowKeyMapsPageButton";
+
+		// keys are the [Command] ResID with "_Label" stripped, matching what
+		// ContextMenuSheet.CollectCommandMenus stores as the selected item's id
+		private static readonly Dictionary<string, (string Action, string ImageMso)> ContextMenuButtonMap = new()
+		{
+			["ribAddFavoritePageButton"] = ("AddFavoritePageCmd", "AddToFavorites"),
+			["AddFavoriteSectionButton"] = ("AddFavoriteSectionCmd", "AddToFavorites"),
+			["AddFavoriteSectionGroupButton"] = ("AddFavoriteSectionGroupCmd", "AddToFavorites"),
+			["AddFavoriteNotebookButton"] = ("AddFavoriteNotebookCmd", "AddToFavorites"),
+			["ribManageFavoritesButton"] = ("ManageFavoritesCmd", "NameManager"),
+		};
 
 
 		/// <summary>
@@ -124,6 +136,40 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				new XAttribute("tag", favorite.GetNavigationTarget()),
 				new XAttribute("screentip", favorite.Location)
 				);
+		}
+
+
+		/// <summary>
+		/// Builds a standalone button for one of the Favorites commands that can be
+		/// added to the user's custom context menu (Settings > Context Menu). These
+		/// commands don't otherwise exist as static ribbon controls: their buttons are
+		/// normally only built dynamically inside the Favorites ribbon dropdown, or
+		/// (for section/section group/notebook) under different ids in the per-object
+		/// right-click menus in Ribbon.xml.
+		/// </summary>
+		/// <param name="key">The context menu item id to build, or null if not a Favorites command</param>
+		/// <returns></returns>
+		public static XElement MakeContextMenuButton(string key)
+		{
+			if (!ContextMenuButtonMap.TryGetValue(key, out var info))
+			{
+				return null;
+			}
+
+			var button = new XElement(ns + "button",
+				new XAttribute("id", key),
+				new XAttribute("label", Resx.ResourceManager.GetString($"{key}_Label")),
+				new XAttribute("imageMso", info.ImageMso),
+				new XAttribute("onAction", info.Action)
+				);
+
+			var screentip = Resx.ResourceManager.GetString($"{key}_Screentip");
+			if (!string.IsNullOrEmpty(screentip))
+			{
+				button.Add(new XAttribute("screentip", screentip));
+			}
+
+			return button;
 		}
 
 
