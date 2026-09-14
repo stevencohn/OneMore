@@ -6,7 +6,6 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Settings;
-	using System;
 	using System.IO;
 	using System.Linq;
 	using System.Text;
@@ -47,6 +46,12 @@ namespace River.OneMoreAddIn.Commands
 		private static readonly Regex ListItemHtmlPattern = new(
 			@"<li>(.*?)</li>", RegexOptions.Compiled | RegexOptions.Singleline);
 
+		// Extracts the inline content Markdig wraps in <p>...</p> for what it renders
+		// as a plain paragraph, e.g. when preserving an existing list item's own
+		// List/Bullet element and just replacing its text (see existingList below).
+		private static readonly Regex ParagraphHtmlPattern = new(
+			@"<p>(.*?)</p>", RegexOptions.Compiled | RegexOptions.Singleline);
+
 
 		public ConvertLineOnEnterCommand()
 		{
@@ -75,7 +80,7 @@ namespace River.OneMoreAddIn.Commands
 			using var one = new OneNote(out var page, out var ns);
 			if (!page.IsValid)
 			{
-				await ReplayEnter(one.WindowHandle);
+				await ReplayEnter();
 				return;
 			}
 
@@ -87,7 +92,7 @@ namespace River.OneMoreAddIn.Commands
 				// a real selection, or a caret somewhere this isn't modeled (Title,
 				// table cell, the Navigation pane, Search, the ribbon, ...) - leave
 				// Enter alone
-				await ReplayEnter(one.WindowHandle);
+				await ReplayEnter();
 				return;
 			}
 
@@ -103,7 +108,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (!matched)
 			{
-				await ReplayEnter(one.WindowHandle);
+				await ReplayEnter();
 				return;
 			}
 
@@ -123,10 +128,35 @@ namespace River.OneMoreAddIn.Commands
 
 			logger.WriteLine($"ConvertLineOnEnter: html={body}");
 
+			var existingList = paragraph.Element(ns + "List");
 			var bulletMatch = BulletItemPattern.Match(text);
 			var itemMatch = bulletMatch.Success ? ListItemHtmlPattern.Match(body) : Match.Empty;
 
-			if (itemMatch.Success)
+			string preservedId = null;
+
+			if (existingList != null && !itemMatch.Success)
+			{
+				// Already a native bullet/numbered list item (a <one:List> sibling of
+				// the T runs, unrelated to any literal "-"/"*" text) and the line
+				// didn't also introduce a brand new marker. Keep the paragraph and its
+				// existing List (whatever Bullet/Number formatting it carries) exactly
+				// as-is, and just swap in the newly-converted inline text - going
+				// through the generic HTMLBlock-import path below would replace the
+				// whole OE, discarding its List element and losing the bullet/number
+				// entirely.
+				var paragraphMatch = ParagraphHtmlPattern.Match(body);
+				var inner = paragraphMatch.Success ? paragraphMatch.Groups[1].Value : body;
+
+				paragraph.Elements(ns + "T").Remove();
+				paragraph.Add(new XElement(ns + "T", new XCData(inner)));
+
+				// objectID is stable across Update() for an OE we mutate in place
+				// (rather than remove/recreate), so it can be found again below after
+				// the page is re-fetched, letting Pass 2 still run against it (e.g. if
+				// the new text also introduced inline code needing RewriteInlineCode)
+				preservedId = paragraph.Attribute("objectID")?.Value;
+			}
+			else if (itemMatch.Success)
 			{
 				// build the native bullet OE directly rather than relying on HTML import
 				InsertBulletItem(ns, paragraph, new Bullet(ns, itemMatch.Groups[1].Value));
@@ -151,6 +181,17 @@ namespace River.OneMoreAddIn.Commands
 			var touched = page.Root.Descendants(ns + "OE")
 				.Where(e => !paragraphIDs.Contains(e.Attribute("objectID").Value))
 				.ToList();
+
+			if (preservedId != null)
+			{
+				var preserved = page.Root.Descendants(ns + "OE")
+					.FirstOrDefault(e => e.Attribute("objectID")?.Value == preservedId);
+
+				if (preserved != null)
+				{
+					touched.Add(preserved);
+				}
+			}
 
 			foreach (var t in touched)
 			{
@@ -187,7 +228,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			await ReplayEnter(one.WindowHandle);
+			await ReplayEnter();
 		}
 
 
@@ -208,7 +249,16 @@ namespace River.OneMoreAddIn.Commands
 				builder.Append(cdata?.Value ?? run.Value);
 			}
 
-			return builder.ToString();
+			// OneNote sometimes wraps a styled run's CDATA across lines, e.g.
+			// "<span\nstyle='...'>text</span>" - meaningless whitespace to an HTML
+			// parser, but a single OneNote paragraph is conceptually one markdown
+			// line, so an embedded newline here reads to Markdig as ending that line.
+			// Inside a list item specifically, that prematurely terminates the item
+			// mid-tag, splitting "<span" from "style='...'>" into two separate blocks
+			// that no longer parse as one HTML tag, so each half gets escaped as
+			// literal text instead of surviving as raw HTML. Collapse to a single
+			// space so a wrapped tag stays a valid single-line tag.
+			return Regex.Replace(builder.ToString(), @"\s*[\r\n]+\s*", " ");
 		}
 
 
@@ -249,26 +299,27 @@ namespace River.OneMoreAddIn.Commands
 		// swallowed before OneNote ever saw it. Suspend/Resume brackets the replay so
 		// this synthetic keystroke - which travels through the same OS input pipeline
 		// as a physical one - isn't caught by our own (or any other) registered hotkey,
-		// which would otherwise re-trigger this command forever.
-		// <paramref name="targetWindow"/> is omitted when whatever currently has focus
-		// (e.g. a OneMore dialog) should just receive the keystroke in place; pass
-		// OneNote's window handle to explicitly reclaim foreground focus for it first.
-		private static async Task ReplayEnter(IntPtr targetWindow = default)
+		// which would otherwise re-trigger this command forever. Always replays "in
+		// place" - i.e. to whatever currently has focus - rather than forcing OneNote's
+		// window to the foreground first: this command never takes focus away from
+		// anything, so there's never a legitimate target to reclaim it for. An earlier
+		// version passed OneNote's window handle here for the SelectionScope bail-out
+		// below, which actively stole focus away from a focused ribbon control or one
+		// of OneNote's own dialogs (e.g. Edit Hyperlink) right before the replay,
+		// sending the keystroke to the wrong place entirely.
+		private static async Task ReplayEnter()
 		{
 			HotkeyManager.Suspend();
 			try
 			{
-				if (targetWindow != default)
-				{
-					Native.SetForegroundWindow(targetWindow);
-					await Task.Yield();
-				}
-
 				new InputSimulator().Keyboard.KeyPress(VirtualKeyCode.RETURN);
 
-				// give the target a moment to actually consume the keystroke before
-				// hotkeys are re-armed below
-				await Task.Delay(100);
+				// Give the target a moment to actually consume the keystroke before
+				// hotkeys are re-armed below. It's Suspend() above - not this delay -
+				// that prevents the replayed keystroke from re-triggering this hotkey;
+				// this only needs to outlast actual OS keystroke delivery, which is
+				// low single-digit milliseconds.
+				await Task.Delay(20);
 			}
 			finally
 			{
