@@ -166,7 +166,7 @@ namespace River.OneMoreAddIn
 				// CLI commands have no command-palette/replay UI surface, and may pass a
 				// shared OneNote connection through args for batched page operations; that
 				// can't round-trip through SaveToMRU's string-based serialization
-				if (!runningFromCli && !command.IsCancelled)
+				if (!runningFromCli && !command.IsCancelled && !command.SkipMRU)
 				{
 					new CommandProvider().SaveToMRU(command, args);
 				}
@@ -179,12 +179,17 @@ namespace River.OneMoreAddIn
 		private async Task Run(string note, Command command, params object[] args)
 		{
 			var type = command.GetType();
-			var msg = $"{note} command {type.Name}";
-			if (logger.IsVerbose)
+
+			string msg = null;
+			if (!command.SkipRunLog)
 			{
-				var ws = System.Diagnostics.Process.GetCurrentProcess().WorkingSet64 / 1_048_576;
-				var heap = GC.GetTotalMemory(false) / 1_048_576;
-				msg = $"{msg} (workingSet {ws}MB, managedHeap {heap}MB)";
+				msg = $"{note} command {type.Name}";
+				if (logger.IsVerbose)
+				{
+					var ws = System.Diagnostics.Process.GetCurrentProcess().WorkingSet64 / 1_048_576;
+					var heap = GC.GetTotalMemory(false) / 1_048_576;
+					msg = $"{msg} (workingSet {ws}MB, managedHeap {heap}MB)";
+				}
 			}
 
 			using var indent = logger.Indent(msg);
