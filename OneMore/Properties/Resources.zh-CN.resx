@@ -165,6 +165,18 @@
     <value>无法保存收藏夹</value>
     <comment>error message</comment>
   </data>
+  <data name="AddFavoriteNotebookButton_Label" xml:space="preserve">
+    <value>添加到收藏夹（笔记本）</value>
+    <comment>settings sheets only, disambiguates from other Add to Favorites commands</comment>
+  </data>
+  <data name="AddFavoriteSectionButton_Label" xml:space="preserve">
+    <value>添加到收藏夹（部分）</value>
+    <comment>settings sheets only, disambiguates from other Add to Favorites commands</comment>
+  </data>
+  <data name="AddFavoriteSectionGroupButton_Label" xml:space="preserve">
+    <value>添加到收藏夹（部分组）</value>
+    <comment>settings sheets only, disambiguates from other Add to Favorites commands</comment>
+  </data>
   <data name="AddFormulaCommand_Calculated" xml:space="preserve">
     <value>公式计算完成</value>
     <comment>tag name</comment>

@@ -189,7 +189,34 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("AddFavoriteCommand_error", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Add to Favorites (notebook).
+        /// </summary>
+        internal static string AddFavoriteNotebookButton_Label {
+            get {
+                return ResourceManager.GetString("AddFavoriteNotebookButton_Label", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Add to Favorites (section).
+        /// </summary>
+        internal static string AddFavoriteSectionButton_Label {
+            get {
+                return ResourceManager.GetString("AddFavoriteSectionButton_Label", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Add to Favorites (section group).
+        /// </summary>
+        internal static string AddFavoriteSectionGroupButton_Label {
+            get {
+                return ResourceManager.GetString("AddFavoriteSectionGroupButton_Label", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Calculated.
         /// </summary>

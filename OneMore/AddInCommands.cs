@@ -31,17 +31,17 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<AddFavoritePageCommand>();
 
 
-		[Command("ribAddFavoriteSectionButton_Label", Keys.None, "ribFavoritesMenu")]
+		[Command("AddFavoriteSectionButton_Label", Keys.None, "ribFavoritesMenu")]
 		public async Task AddFavoriteSectionCmd(IRibbonControl control)
 			=> await factory.Run<AddFavoriteSectionCommand>();
 
 
-		[Command("ribAddFavoriteButton_Label", Keys.None, "ribFavoritesMenu")]
+		[Command("AddFavoriteSectionGroupButton_Label", Keys.None, "ribFavoritesMenu")]
 		public async Task AddFavoriteSectionGroupCmd(IRibbonControl control)
 			=> await factory.Run<AddFavoriteSectionGroupCommand>();
 
 
-		[Command("ribAddFavoriteButton_Label", Keys.None, "ribFavoritesMenu")]
+		[Command("AddFavoriteNotebookButton_Label", Keys.None, "ribFavoritesMenu")]
 		public async Task AddFavoriteNotebookCmd(IRibbonControl control)
 			=> await factory.Run<AddFavoriteNotebookCommand>();
 

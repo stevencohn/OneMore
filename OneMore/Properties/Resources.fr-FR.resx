@@ -165,6 +165,18 @@
     <value>Impossible d'enregistrer le favori</value>
     <comment>error message</comment>
   </data>
+  <data name="AddFavoriteNotebookButton_Label" xml:space="preserve">
+    <value>Ajouter aux Favoris (ordinateur portable)</value>
+    <comment>settings sheets only, disambiguates from other Add to Favorites commands</comment>
+  </data>
+  <data name="AddFavoriteSectionButton_Label" xml:space="preserve">
+    <value>Ajouter aux Favoris (section)</value>
+    <comment>settings sheets only, disambiguates from other Add to Favorites commands</comment>
+  </data>
+  <data name="AddFavoriteSectionGroupButton_Label" xml:space="preserve">
+    <value>Ajouter aux Favoris (groupe de sections)</value>
+    <comment>settings sheets only, disambiguates from other Add to Favorites commands</comment>
+  </data>
   <data name="AddFormulaCommand_Calculated" xml:space="preserve">
     <value>Calculé</value>
     <comment>tag name</comment>
