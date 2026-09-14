@@ -3081,6 +3081,10 @@ Deseja atualizar a página existente?</value>
     <value>Insira uma linha em branco antes dos títulos</value>
     <comment>checkbox</comment>
   </data>
+  <data name="MarkdownSheet_convertOnEnterBox.Text" xml:space="preserve">
+    <value>(Experimental) Converter markdown em conteúdo do OneNote ao pressionar Enter</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="MarkdownSheet_gfmLineBreaksBox.Text" xml:space="preserve">
     <value>Trate quebras de linha únicas como quebras de linha Markdown com sabor do GitHub</value>
     <comment>checkbox</comment>

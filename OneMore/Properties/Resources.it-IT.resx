@@ -3081,6 +3081,10 @@ Vuoi aggiornare la pagina esistente?</value>
     <value>Inserisci una riga vuota prima delle intestazioni</value>
     <comment>checkbox</comment>
   </data>
+  <data name="MarkdownSheet_convertOnEnterBox.Text" xml:space="preserve">
+    <value>(Sperimentale) Converti markdown in contenuto OneNote quando premi Invio</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="MarkdownSheet_gfmLineBreaksBox.Text" xml:space="preserve">
     <value>Tratta le interruzioni di riga singole come interruzioni di riga GitHub-Flavored Markdown</value>
     <comment>checkbox</comment>

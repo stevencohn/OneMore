@@ -3087,6 +3087,10 @@ OneNote 文件 (*.one)</value>
     <value>在标题前插入一个空行</value>
     <comment>checkbox</comment>
   </data>
+  <data name="MarkdownSheet_convertOnEnterBox.Text" xml:space="preserve">
+    <value>（实验）按 Enter 键时将 markdown 转换为 OneNote 内容</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="MarkdownSheet_gfmLineBreaksBox.Text" xml:space="preserve">
     <value>将单行符视为 GitHub 风格的 Markdown 换行符</value>
     <comment>checkbox</comment>

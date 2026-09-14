@@ -3084,6 +3084,10 @@
     <value>أدخل سطرًا فارغًا قبل العناوين</value>
     <comment>checkbox</comment>
   </data>
+  <data name="MarkdownSheet_convertOnEnterBox.Text" xml:space="preserve">
+    <value>(تجريبي) قم بتحويل تخفيض السعر إلى محتوى OneNote عند الضغط على Enter</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="MarkdownSheet_gfmLineBreaksBox.Text" xml:space="preserve">
     <value>تعامل مع فواصل الأسطر المفردة على أنها فواصل أسطر GitHub-Flavored Markdown</value>
     <comment>checkbox</comment>

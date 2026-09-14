@@ -3076,6 +3076,10 @@ Cuadrado Marrón</value>
     <value>Insertar una línea en blanco antes de los títulos</value>
     <comment>checkbox</comment>
   </data>
+  <data name="MarkdownSheet_convertOnEnterBox.Text" xml:space="preserve">
+    <value>(Experimental) Convertir Markdown a contenido de OneNote al presionar Enter</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="MarkdownSheet_gfmLineBreaksBox.Text" xml:space="preserve">
     <value>Trate los saltos de línea simples como saltos de línea Markdown con sabor a GitHub</value>
     <comment>checkbox</comment>

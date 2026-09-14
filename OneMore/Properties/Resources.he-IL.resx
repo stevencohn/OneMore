@@ -3081,6 +3081,10 @@ Total Row Font
     <value>הוסף שורה ריקה לפני הכותרות</value>
     <comment>checkbox</comment>
   </data>
+  <data name="MarkdownSheet_convertOnEnterBox.Text" xml:space="preserve">
+    <value>(ניסיוני) המר סימון לתוכן OneNote בעת לחיצה על Enter</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="MarkdownSheet_gfmLineBreaksBox.Text" xml:space="preserve">
     <value>התייחסו להפסקות שורה בודדת כאל מעברי שורה בטעם GitHub</value>
     <comment>checkbox</comment>

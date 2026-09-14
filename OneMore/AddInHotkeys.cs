@@ -114,5 +114,35 @@ namespace River.OneMoreAddIn
 
 			logger.WriteLine($"Startup: defined {count} hotkeys for input locale {locale}");
 		}
+
+
+		/// <summary>
+		/// Registers a global hotkey for the bare Enter key that triggers live markdown
+		/// conversion of the current line. This is a background behavior rather than a
+		/// user-facing command, so it is registered directly here instead of through the
+		/// CommandAttribute/RegisterHotkeys discovery mechanism, keeping it out of the
+		/// Keyboard settings sheet, Command Palette, and wiki keyboard reference.
+		/// </summary>
+		/// <remarks>
+		/// This is an experimental feature, off by default; its checkbox on the Markdown
+		/// settings sheet is itself only shown when the General sheet's experimental
+		/// features flag is enabled. See MarkdownSheet.
+		/// </remarks>
+		private void RegisterMarkdownEnterHotkey()
+		{
+			var enabled = new SettingsProvider()
+				.GetCollection(nameof(MarkdownSheet)).Get("convertOnEnter", false);
+
+			if (!enabled)
+			{
+				return;
+			}
+
+			HotkeyManager.RegisterHotKey(
+				async () => await factory.Run<Commands.ConvertLineOnEnterCommand>(),
+				new Hotkey(Keys.Enter));
+
+			logger.WriteLine("Startup: registered markdown convert-on-Enter hotkey");
+		}
 	}
 }

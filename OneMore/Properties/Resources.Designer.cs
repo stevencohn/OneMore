@@ -7411,7 +7411,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("MarkdownSheet_blankBeforeHeadingsBox.Text", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to (Experimental) Convert markdown to OneNote content when pressing Enter.
+        /// </summary>
+        internal static string MarkdownSheet_convertOnEnterBox_Text {
+            get {
+                return ResourceManager.GetString("MarkdownSheet_convertOnEnterBox.Text", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Treat single line breaks as GitHub-Flavored Markdown line breaks.
         /// </summary>

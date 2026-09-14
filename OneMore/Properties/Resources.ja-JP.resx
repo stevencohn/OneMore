@@ -3084,6 +3084,10 @@ OneNoteファイル (*.one)</value>
     <value>見出しの前に空行を挿入する</value>
     <comment>checkbox</comment>
   </data>
+  <data name="MarkdownSheet_convertOnEnterBox.Text" xml:space="preserve">
+    <value>(実験的) Enter キーを押すとマークダウンを OneNote コンテンツに変換します</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="MarkdownSheet_gfmLineBreaksBox.Text" xml:space="preserve">
     <value>単一の改行を GitHub 風味の Markdown 改行として扱う</value>
     <comment>checkbox</comment>

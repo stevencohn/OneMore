@@ -3081,6 +3081,10 @@ Wilt u de bestaande pagina vernieuwen?</value>
     <value>Voeg vóór de kopjes een lege regel in</value>
     <comment>checkbox</comment>
   </data>
+  <data name="MarkdownSheet_convertOnEnterBox.Text" xml:space="preserve">
+    <value>(Experimenteel) Converteer prijsverlaging naar OneNote-inhoud wanneer u op Enter drukt</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="MarkdownSheet_gfmLineBreaksBox.Text" xml:space="preserve">
     <value>Behandel enkele regeleinden als Markdown-regeleinden met GitHub-smaak</value>
     <comment>checkbox</comment>
