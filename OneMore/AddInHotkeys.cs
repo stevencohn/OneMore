@@ -133,16 +133,14 @@ namespace River.OneMoreAddIn
 			var enabled = new SettingsProvider()
 				.GetCollection(nameof(MarkdownSheet)).Get("convertOnEnter", false);
 
-			if (!enabled)
+			if (enabled)
 			{
-				return;
+				HotkeyManager.RegisterHotKey(
+					async () => await factory.Run<Commands.ConvertLineOnEnterCommand>(),
+					new Hotkey(Keys.Enter));
+
+				logger.WriteLine("Startup: registered markdown convert-on-Enter");
 			}
-
-			HotkeyManager.RegisterHotKey(
-				async () => await factory.Run<Commands.ConvertLineOnEnterCommand>(),
-				new Hotkey(Keys.Enter));
-
-			logger.WriteLine("Startup: registered markdown convert-on-Enter hotkey");
 		}
 	}
 }
