@@ -289,6 +289,7 @@ namespace River.OneMoreAddIn
 
 					// hotkeys
 					await RegisterHotkeys();
+					RegisterMarkdownEnterHotkey();
 
 					// command listener for Refresh links
 					new CommandService(factory).Startup();

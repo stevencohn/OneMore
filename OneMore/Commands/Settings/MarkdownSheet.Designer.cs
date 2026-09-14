@@ -34,6 +34,7 @@ namespace River.OneMoreAddIn.Settings
 			this.gfmLineBreaksBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.singleSpacingBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.blankBeforeHeadingsBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.convertOnEnterBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.layoutPanel.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -56,6 +57,7 @@ namespace River.OneMoreAddIn.Settings
 			this.layoutPanel.Controls.Add(this.gfmLineBreaksBox);
 			this.layoutPanel.Controls.Add(this.singleSpacingBox);
 			this.layoutPanel.Controls.Add(this.blankBeforeHeadingsBox);
+			this.layoutPanel.Controls.Add(this.convertOnEnterBox);
 			this.layoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.layoutPanel.Location = new System.Drawing.Point(13, 74);
 			this.layoutPanel.Margin = new System.Windows.Forms.Padding(0);
@@ -110,9 +112,25 @@ namespace River.OneMoreAddIn.Settings
 			this.blankBeforeHeadingsBox.ThemedBack = null;
 			this.blankBeforeHeadingsBox.ThemedFore = null;
 			this.blankBeforeHeadingsBox.UseVisualStyleBackColor = true;
-			// 
+			//
+			// convertOnEnterBox
+			//
+			this.convertOnEnterBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+			this.convertOnEnterBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.convertOnEnterBox.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.convertOnEnterBox.Location = new System.Drawing.Point(18, 146);
+			this.convertOnEnterBox.Margin = new System.Windows.Forms.Padding(0, 10, 0, 0);
+			this.convertOnEnterBox.Name = "convertOnEnterBox";
+			this.convertOnEnterBox.Size = new System.Drawing.Size(700, 25);
+			this.convertOnEnterBox.StylizeImage = false;
+			this.convertOnEnterBox.TabIndex = 3;
+			this.convertOnEnterBox.Text = "(Experimental) Convert markdown to OneNote content when pressing Enter";
+			this.convertOnEnterBox.ThemedBack = null;
+			this.convertOnEnterBox.ThemedFore = null;
+			this.convertOnEnterBox.UseVisualStyleBackColor = true;
+			//
 			// MarkdownSheet
-			// 
+			//
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ControlLightLight;
@@ -134,5 +152,6 @@ namespace River.OneMoreAddIn.Settings
 		private UI.MoreCheckBox gfmLineBreaksBox;
 		private UI.MoreCheckBox singleSpacingBox;
 		private UI.MoreCheckBox blankBeforeHeadingsBox;
+		private UI.MoreCheckBox convertOnEnterBox;
 	}
 }

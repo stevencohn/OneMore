@@ -23,7 +23,8 @@ namespace River.OneMoreAddIn.Settings
 					"introBox",
 					"gfmLineBreaksBox",
 					"singleSpacingBox",
-					"blankBeforeHeadingsBox"
+					"blankBeforeHeadingsBox",
+					"convertOnEnterBox"
 				});
 			}
 
@@ -35,6 +36,17 @@ namespace River.OneMoreAddIn.Settings
 			// blank-before-headings only makes sense when single spacing is on
 			singleSpacingBox.CheckedChanged += (s, e) => UpdateBlankBeforeHeadingsState();
 			UpdateBlankBeforeHeadingsState();
+
+			// experimental: live markdown conversion on Enter. Hidden entirely unless
+			// the General sheet's experimental features flag is on, and off by default
+			if (provider.GetCollection(nameof(GeneralSheet)).Get("experimental", false))
+			{
+				convertOnEnterBox.Checked = settings.Get("convertOnEnter", false);
+			}
+			else
+			{
+				convertOnEnterBox.Visible = false;
+			}
 		}
 
 
@@ -68,13 +80,23 @@ namespace River.OneMoreAddIn.Settings
 				? settings.Add("blankBeforeHeadings", true) || save
 				: settings.Remove("blankBeforeHeadings") || save;
 
-			if (save)
+			// requires a restart: the convert-on-Enter hotkey is only (un)registered at
+			// startup. Only touched while the box is visible (experimental mode is on),
+			// so toggling experimental mode off and back on doesn't clobber the setting
+			var restart = false;
+			if (convertOnEnterBox.Visible)
+			{
+				restart = convertOnEnterBox.Checked
+					? settings.Add("convertOnEnter", true) || restart
+					: settings.Remove("convertOnEnter") || restart;
+			}
+
+			if (save || restart)
 			{
 				provider.SetCollection(settings);
 			}
 
-			// restart not required
-			return false;
+			return restart;
 		}
 	}
 }

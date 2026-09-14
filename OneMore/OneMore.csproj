@@ -222,6 +222,7 @@
     <Compile Include="Commands\Edit\ColorizeDialog.Designer.cs">
       <DependentUpon>ColorizeDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Edit\ConvertLineOnEnterCommand.cs" />
     <Compile Include="Commands\Edit\ConvertMarkdownCommand.cs" />
     <Compile Include="Commands\Edit\CopyAsTextCommand.cs" />
     <Compile Include="Commands\Edit\RecolorInkCommand.cs" />

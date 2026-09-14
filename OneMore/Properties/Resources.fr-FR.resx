@@ -3084,6 +3084,10 @@ Voulez-vous actualiser la page existante ?</value>
     <value>Insérer une ligne vide avant les titres</value>
     <comment>checkbox</comment>
   </data>
+  <data name="MarkdownSheet_convertOnEnterBox.Text" xml:space="preserve">
+    <value>(Expérimental) Convertissez le démarque en contenu OneNote lorsque vous appuyez sur Entrée</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="MarkdownSheet_gfmLineBreaksBox.Text" xml:space="preserve">
     <value>Traitez les sauts de ligne uniques comme des sauts de ligne Markdown aromatisés à GitHub</value>
     <comment>checkbox</comment>

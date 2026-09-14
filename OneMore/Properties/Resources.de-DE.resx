@@ -3076,6 +3076,10 @@ Möchten Sie die bestehende Seite aktualisieren?</value>
     <value>Fügen Sie vor Überschriften eine Leerzeile ein</value>
     <comment>checkbox</comment>
   </data>
+  <data name="MarkdownSheet_convertOnEnterBox.Text" xml:space="preserve">
+    <value>(Experimentell) Konvertieren Sie Markdown in OneNote-Inhalte, wenn Sie die Eingabetaste drücken</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="MarkdownSheet_gfmLineBreaksBox.Text" xml:space="preserve">
     <value>Behandeln Sie einzelne Zeilenumbrüche als GitHub-Flavored Markdown-Zeilenumbrüche</value>
     <comment>checkbox</comment>

@@ -3085,6 +3085,10 @@ Do you want to refresh the existing page?</value>
     <value>Insert a blank line before headings</value>
     <comment>checkbox</comment>
   </data>
+  <data name="MarkdownSheet_convertOnEnterBox.Text" xml:space="preserve">
+    <value>(Experimental) Convert markdown to OneNote content when pressing Enter</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="MarkdownSheet_gfmLineBreaksBox.Text" xml:space="preserve">
     <value>Treat single line breaks as GitHub-Flavored Markdown line breaks</value>
     <comment>checkbox</comment>

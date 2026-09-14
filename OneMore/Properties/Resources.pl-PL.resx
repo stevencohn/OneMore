@@ -3081,6 +3081,10 @@ Czy chcesz odświeżyć istniejącą stronę?</value>
     <value>Wstaw pustą linię przed nagłówkami</value>
     <comment>checkbox</comment>
   </data>
+  <data name="MarkdownSheet_convertOnEnterBox.Text" xml:space="preserve">
+    <value>(Eksperymentalnie) Konwertuj przecenę na zawartość programu OneNote po naciśnięciu klawisza Enter</value>
+    <comment>checkbox</comment>
+  </data>
   <data name="MarkdownSheet_gfmLineBreaksBox.Text" xml:space="preserve">
     <value>Traktuj podziały pojedynczych wierszy jako podziały wierszy w formacie GitHub-Flavored Markdown</value>
     <comment>checkbox</comment>
