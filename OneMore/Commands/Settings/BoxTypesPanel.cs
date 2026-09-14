@@ -99,19 +99,45 @@ namespace River.OneMoreAddIn.Settings
 		/// </summary>
 		private void LayoutCards()
 		{
+			var width = cardsHost.ClientSize.Width;
+			var totalHeight = 0;
+
+			foreach (var card in cards)
+			{
+				totalHeight += card.Height + CardGap;
+			}
+
+			// Assigning a smaller AutoScrollMinSize (e.g. after a card collapses while
+			// scrolled near the old bottom) clamps AutoScrollPosition to the new range as a
+			// side effect of this assignment - do this first and read the (possibly just
+			// clamped) position back afterward, rather than trying to separately compute or
+			// reassert a scroll position ourselves.
+			cardsHost.AutoScrollMinSize = new Size(0, totalHeight);
+
+			// Children of an AutoScroll panel are NOT automatically repositioned when the
+			// panel is scrolled - only Dock/Anchor-driven layout and WinForms' own internal
+			// scroll handling get that translation applied for free. These cards are
+			// positioned by hand (no Dock/Anchor - see the comment on cardsHost above), so
+			// the current scroll offset has to be folded into their Location explicitly, or
+			// every manual re-layout (e.g. on expand/collapse) snaps every card back to its
+			// unscrolled position - this, not the scroll range itself, was the actual cause
+			// of cards ending up misplaced whenever the panel had been scrolled before a
+			// card's own resize triggered this method; dragging the scrollbar "fixed" it only
+			// because that's the one path where WinForms' own (offset-aware) scroll handling
+			// runs instead of this method.
+			var offset = cardsHost.AutoScrollPosition;
+
 			cardsHost.SuspendLayout();
 
-			var width = cardsHost.ClientSize.Width;
 			var y = 0;
 
 			foreach (var card in cards)
 			{
 				card.Width = width;
-				card.Location = new Point(0, y);
+				card.Location = new Point(offset.X, y + offset.Y);
 				y += card.Height + CardGap;
 			}
 
-			cardsHost.AutoScrollMinSize = new Size(0, y);
 			cardsHost.ResumeLayout(true);
 		}
 
