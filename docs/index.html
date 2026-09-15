@@ -14,36 +14,7 @@
   <link href="/nav.css" rel="stylesheet">
   <link href="/toc.css" rel="stylesheet">
   <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
-  <style type="text/css">
-    #footer {
-      background-color: #F0D9FB;
-      width: 100%;
-      margin-top: 80px;
-      padding: 10px 100px 10px 100px;
-      text-align: center;
-    }
-
-    #footer .footer DIV {
-      display: flex;
-    }
-
-    #content {
-      margin-left: 100px;
-      margin-top: 100px;
-    }
-
-    @media (max-width: 768px) {
-      #content {
-        margin-left: 16px;
-        margin-right: 16px;
-        margin-top: 80px;
-      }
-
-      #footer {
-        padding: 10px 20px 10px 20px;
-      }
-    }
-  </style>
+  <link href="/index.css" rel="stylesheet">
 </head>
 
 <body>
@@ -140,192 +111,309 @@
     </div>
   </nav>
 
-  <div class="wrapper">
-    <!-- Page Content -->
-    <div id="content">
+  <!-- Page Content -->
+  <div id="content">
 
-      <div class="intro">
-        OneMore is an add-in for OneNote with simple and powerful features that make OneNote a better OneNote
-      </div>
-
-      <div class="row">
-        <div class="col-sm-7 mb-3 mb-sm-0">
-          <div class="card width-50">
-            <div class="card-header">
-              <h5 class="card-title">Highlights</h5>
+      <!-- Hero -->
+      <section class="om-section om-hero">
+        <div class="om-hero-copy">
+          <div class="om-eyebrow">Free &amp; open-source add-in for OneNote</div>
+          <h1>Make OneNote work the way you do</h1>
+          <p class="om-subhead">OneMore adds the editing tools, formatting shortcuts, and organization features that
+            OneNote leaves out — without slowing you down or costing you a thing.</p>
+          <div class="om-hero-actions">
+            <a class="om-btn om-btn-primary" href="/get-started/index.html">Get started free</a>
+            <a class="om-btn om-btn-secondary" href="https://github.com/stevencohn/OneMore" target="_blank"
+              rel="noopener">View on GitHub</a>
+          </div>
+        </div>
+        <div class="om-hero-visual">
+          <div class="om-carousel">
+            <!--div class="om-slide om-slide-notebook active" data-slide="0">
+              <div class="om-nb-dots">
+                <span class="om-nb-dot"></span><span class="om-nb-dot"></span><span class="om-nb-dot"></span>
+              </div>
+              <div class="om-nb-bar wide" style="height:14px;width:55%;"></div>
+              <div class="om-nb-bar" style="height:10px;width:90%;"></div>
+              <div class="om-nb-bar" style="height:10px;width:78%;"></div>
+              <div class="om-nb-accent" style="height:60px;"></div>
+              <div class="om-nb-bar" style="height:10px;width:65%;"></div>
+              <div class="om-nb-bar" style="height:10px;width:40%;"></div>
+              <div class="om-nb-caption">notebook page preview</div>
+            </div-->
+            <!--
+            Images should be sized at 740 × 530px maximum, giving a 4:3 ratio, although doesn't need to fit 4:3 perfectly
+            -->
+            <div class="om-slide om-slide-text active" data-slide="0">
+              <div class="om-slide-eyebrow">Compare and De-dupe</div>
+              <div class="om-slide-title">Compare Notebooks</div>
+              <div class="om-slide-body">
+                <p>Compare, sync, and de-duplicate notes using Compare Notebooks and Remove Duplicates</p>
+                <img class="om-slide-img" src="images/compare.png" alt="Compare Hierarchy">
+                </div>
             </div>
-            <div class="card-body">
-              <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
-              margin-bottom:0in'>
-                <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:black' lang=yo><span
-                    style='font-family:Calibri;font-size:11.5pt'>Quickly access
-                    all OneMore commands from the almighty&nbsp;</span><a href="/the-basics/Basics.htm"><span
-                      style='font-family:Calibri;font-size:11.5pt'>Command Palette</span></a><span
-                    style='font-family:Calibri;font-size:11.5pt'>!</span></li>
-                <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:black' lang=yo><span
-                    style='font-family:Calibri;font-size:11.5pt'>Automate over 40 OneMore
-                    commands from the command-line using the&nbsp;</span><a href="/the-basics/OneMore%20CLI.htm"><span
-                      style='font-family:Calibri;font-size:11.5pt'>OneMore CLI Runner</span></a></span></li>
-                <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:black' lang=yo><span
-                    style='font-family:Calibri;font-size:11.5pt'>Use the&nbsp;</span><a
-                    href="/the-basics/Navigator.htm"><span style='font-family:Calibri;font-size:11.5pt'>Navigator
-                      window</span></a><span style='font-family:Calibri;font-size:11.5pt'>&nbsp;to keep track of
-                    visited pages, a personalized reading list, and navigate the headings of
-                    the current page.</span></li>
-                <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:black' lang=yo><span
-                    style='font-family:Calibri;font-size:11.5pt'>Integrating
-                    with the&nbsp;</span><a href="/the-basics/Basics.htm"><span
-                      style='font-family:Calibri;font-size:11.5pt'>ribbon bar</span></a><span
-                    style='font-family:Calibri;font-size:11.5pt'>, extends&nbsp;</span><a
-                    href="/context-menus/Context%20Menu%20Extensions.htm"><span
-                      style='font-family:Calibri;font-size:11.5pt'>context menus</span></a><span
-                    style='font-family:Calibri;font-size:11.5pt'>, and provides
-                    customized&nbsp;</span><a href="/the-basics/OneNote%20Keyboard%20Shortcuts.htm"><span
-                      style='font-family:Calibri;font-size:11.5pt'>keyboard shortcuts</span></a></li>
-                <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:black' lang=yo><span
-                    style='font-family:Calibri;font-size:11.5pt'>Create&nbsp;</span><a
-                    href="/commands/My%20Styles%20Commands.htm"><span
-                      style='font-family:Calibri;font-size:11.5pt'>customized
-                      font styles</span></a><span style='font-family:Calibri;font-size:11.5pt'>&nbsp;in addition to
-                    those
-                    provided by OneNote, apply a style to selected text, or apply all styles
-                    to the entire page</span></li>
-                <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:black' lang=yo><span
-                    style='font-family:Calibri;font-size:11.5pt'>Use
-                    predefined&nbsp;</span><a href="/commands/Table%20Style%20Commands.htm"><span
-                      style='font-family:Calibri;font-size:11.5pt'>table styles</span></a><span
-                    style='font-family:Calibri;font-size:11.5pt'>&nbsp;or create your own to
-                    selectively set cell background and fonts</span></li>
-                <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:black' lang=yo><span
-                    style='font-family:Calibri;font-size:11.5pt'>Manage a
-                    collection of&nbsp;</span><a href="/the-basics/Favorites.htm"><span
-                      style='font-family:Calibri;font-size:11.5pt'>favorite pages and sections</span></a><span
-                    style='font-family:Calibri;font-size:11.5pt'>&nbsp;with shortcuts to
-                    quickly jump to a favorite</span></li>
-                <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:black' lang=yo><span
-                    style='font-family:Calibri;font-size:11.5pt'>Add&nbsp;</span><a
-                    href="/commands/Colorize%20Command.htm"><span style='font-family:Calibri;font-size:11.5pt'>colorized
-                      syntax
-                      highlighting</span></a><span style='font-family:Calibri;font-size:11.5pt'>&nbsp;to snippets of
-                    source
-                    code</span></li>
-                <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:black' lang=yo><span
-                    style='font-family:Calibri;font-size:11.5pt'>Add&nbsp;</span><a
-                    href="/commands/Table%20Commands.htm"><span style='font-family:Calibri;font-size:11.5pt'>formulas in
-                      table cells</span></a><span style='font-family:Calibri;font-size:11.5pt'>&nbsp;using Excel-like
-                    expressions</span></li>
-                <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:black'><a
-                    href="/commands/Image%20Commands.htm"><span style='font-family:Calibri;font-size:11.5pt'
-                      lang=yo>Crop,
-                      rotate, or
-                      adjust images</span></a><span style='font-family:Calibri;font-size:11.5pt' lang=yo>&nbsp;on a page
-                    without
-                    opening an external photo editor</span></li>
-                <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:black' lang=yo><span
-                    style='font-family:Calibri;font-size:11.5pt'>Save and
-                    reuse&nbsp;</span><a href="/commands/Snippets%20Commands.htm"><span
-                      style='font-family:Calibri;font-size:11.5pt'>custom snippets</span></a><span
-                    style='font-family:Calibri;font-size:11.5pt'>&nbsp;of content anywhere on
-                    any page</span></li>
-                <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:black' lang=yo><span
-                    style='font-family:Calibri;font-size:11.5pt'>And so much more...</span></li>
-              </ul>
+            <div class="om-slide om-slide-image" data-slide="1">
+              <div class="om-slide-eyebrow">Make the Switch</div>
+              <div class="om-slide-title">Migrate from Evernote</div>
+              <div class="om-slide-body">
+                <p>Want to switch from Evernote to OneNote? OneMore makes it easy with .enex file conversion</p>
+                <img class="om-slide-img" src="images/evernote.png" alt="Evernote to OneNote Migration">
+              </div>
+            </div>
+            <div class="om-slide om-slide-text" data-slide="2">
+              <div class="om-slide-eyebrow">Automate from the command line</div>
+              <div class="om-slide-title">OneMore CLI Runner</div>
+              <div class="om-slide-body">
+                <p>Over 40 command available from the command line to automate common tasks</p>
+                <img class="om-slide-img" src="images/cli-runner.png" alt="OneMore CLI Runner">
+              </div>
+            </div>
+            <div class="om-slide om-slide-text" data-slide="3">
+              <div class="om-slide-eyebrow">No Excel? No Problem!</div>
+              <div class="om-slide-title">Table Formulas</div>
+              <div class="om-slide-body">
+                <p>Add formulas in table cells using Excel-like expressions and recalculate them at any time</p>
+                <img class="om-slide-img" src="images/table-formulas.png" alt="Table Formulas in OneMore">
+              </div>
+            </div>
+          </div>
+          <div class="om-carousel-controls">
+            <button type="button" id="om-carousel-toggle" class="om-carousel-toggle" aria-label="Pause">&#10074;&#10074;</button>
+            <div class="om-carousel-dots" id="om-carousel-dots">
+              <button type="button" class="om-dot active" data-dot="0" aria-label="View slide 1"></button>
+              <button type="button" class="om-dot" data-dot="1" aria-label="View slide 2"></button>
+              <button type="button" class="om-dot" data-dot="2" aria-label="View slide 3"></button>
+              <button type="button" class="om-dot" data-dot="3" aria-label="View slide 4"></button>
             </div>
           </div>
         </div>
-        <div class="col-sm-4">
-          <div class="card width-25">
-            <div class="card-header">
-              <h5 class="card-title">Get OneMore</h5>
-            </div>
-            <div class="card-body">
-              <ul type=disc>
-                <li>
-                  <span style='font-family:Calibri;font-size:11.5pt'>Download the&nbsp;</span><a
-                    href="https://github.com/stevencohn/OneMore/releases/latest"><span
-                      style='font-family:Calibri;font-size:11.5pt'>latest release</span></a>
-                </li>
-                <li>
-                  <span style='font-family:Calibri;font-size:11.5pt'>Read the&nbsp;</span><a
-                    href="get-started/How%20to%20Install%20OneMore.htm"><span
-                      style='font-family:Calibri;font-size:11.5pt'>installation instructions</span></a>
-                </li>
-              </ul>
-            </div>
+      </section>
+
+      <!-- Feature highlights -->
+      <section class="om-features-wrap">
+        <div class="om-features-head">
+          <h2>Everything OneNote should have shipped with</h2>
+          <p>A few hundred small conveniences, all built into one add-in.</p>
+        </div>
+        <div class="om-feature-grid">
+          <div class="om-card om-feature-card om-c-purple">
+            <div class="om-feature-icon">&#8984;</div>
+            <h3>Command Palette</h3>
+            <p>Jump to any of 200+ commands, like ApplyStyle or InsertToc, without leaving the keyboard.</p>
           </div>
-          &nbsp;
-          <div class="card width-25">
-            <div class="card-header">
-              <h5 class="card-title">Contact Us</h5>
-            </div>
-            <div class="card-body">
-              <p class="card-text">
-                Have a question or comment or a really good suggestion or just want to say Hi!?
-                Then <a href="contact.htm">contact us</a>!
-              </p>
-            </div>
+          <div class="om-card om-feature-card om-c-blue">
+            <div class="om-feature-icon">A</div>
+            <h3>Styles &amp; formatting</h3>
+            <p>One-click paragraph and table styles, custom color themes, and consistent formatting across every
+              notebook.</p>
           </div>
-          &nbsp;
-          <div class="card width-25">
-            <div class="card-header">
-              <h5 class="card-title">Sponsor</h5>
+          <div class="om-card om-feature-card om-c-teal">
+            <div class="om-feature-icon">&#9776;</div>
+            <h3>Table of contents</h3>
+            <p>Auto-generate a table of contents for any page, section, or notebook — kept in sync as you edit.</p>
+          </div>
+          <div class="om-card om-feature-card om-c-purple">
+            <div class="om-feature-icon">&lt;&gt;</div>
+            <h3>Code &amp; Markdown</h3>
+            <p>Paste Markdown straight into OneNote, or drop in a syntax-highlighted code box for snippets.</p>
+          </div>
+          <div class="om-card om-feature-card om-c-orange">
+            <div class="om-feature-icon">&#9733;</div>
+            <h3>Favorites &amp; hashtags</h3>
+            <p>Pin your most-used pages as Favorites, and tag notes with inline #hashtags to find them again instantly.</p>
+          </div>
+          <div class="om-card om-feature-card om-c-blue">
+            <div class="om-feature-icon">&#9638;</div>
+            <h3>Image editing &amp; diagrams</h3>
+            <p>Crop, rotate, and adjust images without leaving OneNote — plus render Mermaid and PlantUML diagrams
+              straight from code.</p>
+          </div>
+          <div class="om-card om-feature-card om-c-red">
+            <div class="om-feature-icon">&#9986;</div>
+            <h3>Snippets</h3>
+            <p>Save any block of content as a reusable snippet, then drop it into any page whenever you need it
+              again.</p>
+          </div>
+          <div class="om-card om-feature-card om-c-teal">
+            <div class="om-feature-icon">&#9881;</div>
+            <h3>Free &amp; open source</h3>
+            <p>No subscription, no telemetry opt-in required, no catch. Built in the open on GitHub since 2018.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact & Sponsor -->
+      <section class="om-section om-simple-grid">
+        <div class="om-card">
+          <h3>Contact Us</h3>
+          <p>Have a question, a comment, or a really good suggestion — or just want to say hi? <a
+              href="contact.htm">Contact us</a>.</p>
+        </div>
+        <div class="om-card">
+          <h3>Sponsor</h3>
+          <p>OneMore is a hobby project, free of charge. Please consider a small donation to support ongoing
+            development — <a href="https://github.com/sponsors/stevencohn" target="_blank" rel="noopener">click
+              here</a>.</p>
+        </div>
+      </section>
+
+      <!-- Popular with users -->
+      <section class="om-section om-popular-wrap">
+        <div class="om-popular">
+          <div class="om-popular-head">
+            <h2>Popular with users</h2>
+            <p>Pulled from real usage across the OneMore community</p>
+          </div>
+          <div class="om-popular-grid">
+            <div class="om-popular-tile">
+              <div class="om-popular-glyph">AS</div>
+              <div class="om-popular-info">
+                <div class="om-popular-name">Apply Style</div>
+                <div class="om-popular-count">5,443 uses per month</div>
+              </div>
             </div>
-            <div class="card-body">
-              <p class="card-text">
-                I do this as a hobby and provide OneMore free of charge. Please consider a small
-                donation to support the ongoing development of OneMore.
-                <a href="https://github.com/sponsors/stevencohn">Click Here</a>!
-              </p>
+            <div class="om-popular-tile">
+              <div class="om-popular-glyph">IT</div>
+              <div class="om-popular-info">
+                <div class="om-popular-name">Insert TOC</div>
+                <div class="om-popular-count">1,958 uses per month</div>
+              </div>
+            </div>
+            <div class="om-popular-tile">
+              <div class="om-popular-glyph">IC</div>
+              <div class="om-popular-info">
+                <div class="om-popular-name">Insert Code Box</div>
+                <div class="om-popular-count">1,213 uses per month</div>
+              </div>
+            </div>
+            <div class="om-popular-tile">
+              <div class="om-popular-glyph">CM</div>
+              <div class="om-popular-info">
+                <div class="om-popular-name">Convert Markdown</div>
+                <div class="om-popular-count">847 uses per month</div>
+              </div>
+            </div>
+            <div class="om-popular-tile">
+              <div class="om-popular-glyph">CP</div>
+              <div class="om-popular-info">
+                <div class="om-popular-name">Command Palette</div>
+                <div class="om-popular-count">741 uses per month</div>
+              </div>
+            </div>
+            <div class="om-popular-tile">
+              <div class="om-popular-glyph">TT</div>
+              <div class="om-popular-info">
+                <div class="om-popular-name">Table Themes</div>
+                <div class="om-popular-count">732 uses per month</div>
+              </div>
+            </div>
+            <div class="om-popular-tile">
+              <div class="om-popular-glyph">F</div>
+              <div class="om-popular-info">
+                <div class="om-popular-name">Favorites</div>
+                <div class="om-popular-count">1,003 uses per month</div>
+              </div>
+            </div>
+            <div class="om-popular-tile">
+              <div class="om-popular-glyph">PT</div>
+              <div class="om-popular-info">
+                <div class="om-popular-name">Paste Text</div>
+                <div class="om-popular-count">2,210 uses per month</div>
+              </div>
+            </div>
+            <div class="om-popular-tile">
+              <div class="om-popular-glyph">C</div>
+              <div class="om-popular-info">
+                <div class="om-popular-name">Colorize</div>
+                <div class="om-popular-count">1,172 uses per month</div>
+              </div>
+            </div>
+            <div class="om-popular-tile">
+              <div class="om-popular-glyph">JP</div>
+              <div class="om-popular-info">
+                <div class="om-popular-name">Join Paragraph</div>
+                <div class="om-popular-count">1,529 uses per month</div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div class="row">
-        <div class="col-md-6 col-sm-1 col-lg-10">
-          &nbsp;</br>
-          <h5>Why OneMore</h5>
-          <p>
-            OneNote's
-            <a href="https://learn.microsoft.com/en-us/archive/blogs/chris_pratley/onenote-genesis">origin was
-              sparked</a>
-            by the lack of solutions that let people capture and manage
-            information that is "not yet a document"; it's a knowledge management system with a mostly
-            minimalistic "notebook" paradigm with sections and pages just like a real notebook that
-            everyone used in grade school. And yet, it's missing common features many of us have become
-            accustom to while working with modern software applications.</br>&nbsp;
-          </p>
-          <p>
-            OneMore was born out of curiosity, imagination, and user feedback, both in OneNote social
-            channels and from OneMore users as it grew and evolved. My primary goal is to "<u><i>make OneNote
-                a better OneNote</i></u>" without forcing OneNote to be more like its competitors; those alternatives
-            are great in their own spaces and have their own niche communities. OneMore tries to stay true
-            to OneNote.</br>&nbsp;
-          </p>
-          <p>
-            So come along with me on this journey. If you have ideas of how to make OneNote better, how
-            to enhance the knowledge management experience and utility,
-            <a href="contact.htm">let me know</a>.</br>&nbsp;
-          </p>
-          <p>
-            OneMore now includes the ability to capture anonymous telemetry data. Please opt-in to help me improve OneMore! 
-            You can see what's captured and how it's used on the <a href="developers/Design%20-%20Telemetry.htm">design page</a>.
-          </p>
+      <!-- Download CTA -->
+      <section class="om-section om-cta-wrap">
+        <div class="om-cta">
+          <h2>Ready to get more out of OneNote?</h2>
+          <p>Free, open source, and installs in under a minute. Windows only.</p>
+          <div class="om-cta-actions">
+            <a class="om-btn om-btn-cta-primary" href="https://github.com/stevencohn/OneMore/releases/latest" target="_blank">Download OneMore</a>
+            <a class="om-btn om-btn-cta-secondary" href="https://github.com/stevencohn/OneMore" target="_blank"
+              rel="noopener">Star on GitHub</a>
+          </div>
         </div>
-      </div>
+      </section>
 
-    </div>
   </div>
-  <div id="footer">
-    <div class="row">
-      <div class="col">
-        <div class="float-right">© 2020 Steven M Cohn. All rights reserved</div>
-      </div>
-      </nav>
+
+  <footer class="om-footer">
+    <div class="om-footer-brand">
+      <span class="om-footer-mark"></span>
+      OneMore — an add-in for OneNote
     </div>
+    <div class="om-footer-links">
+      <a href="/get-started/index.html">Get started</a>
+      <a href="/commands/index.html">Commands</a>
+      <a href="/developers/index.html">Developers</a>
+      <a href="https://github.com/stevencohn/OneMore" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </footer>
+
   <script src="/pagefind/pagefind-ui.js"></script>
   <script>
     new PagefindUI({ element: "#search", showSubResults: true });
+  </script>
+  <script>
+    (function () {
+      var slides = document.querySelectorAll('.om-slide');
+      var dots = document.querySelectorAll('.om-dot');
+      var playBtn = document.getElementById('om-carousel-toggle');
+      var index = 0;
+      var playing = true;
+      var timer = null;
+
+      function show(i) {
+        index = (i + slides.length) % slides.length;
+        slides.forEach(function (s, n) { s.classList.toggle('active', n === index); });
+        dots.forEach(function (d, n) { d.classList.toggle('active', n === index); });
+      }
+
+      function start() {
+        stop();
+        timer = setInterval(function () { show(index + 1); }, 4500);
+      }
+
+      function stop() {
+        if (timer) { clearInterval(timer); timer = null; }
+      }
+
+      function setPlaying(next) {
+        playing = next;
+        playBtn.innerHTML = playing ? '&#10074;&#10074;' : '&#9654;';
+        playBtn.setAttribute('aria-label', playing ? 'Pause' : 'Play');
+        if (playing) { start(); } else { stop(); }
+      }
+
+      playBtn.addEventListener('click', function () { setPlaying(!playing); });
+
+      dots.forEach(function (d, n) {
+        d.addEventListener('click', function () {
+          setPlaying(false);
+          show(n);
+        });
+      });
+
+      show(0);
+      start();
+    })();
   </script>
 </body>
 
