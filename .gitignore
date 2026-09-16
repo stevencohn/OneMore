@@ -298,5 +298,7 @@ design_handoff_*/
 *.clean.vdproj
 *.vdproj.json
 OneMoreSetup/installer.md
+.claude/CLAUDE.md
+.claude/settings.json
 .claude/settings.local.json
 settings.local.json
