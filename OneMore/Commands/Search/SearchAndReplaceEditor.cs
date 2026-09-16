@@ -162,6 +162,58 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		/// <summary>
+		/// Finds the objectID of the nearest OE ancestor of the first match within the given
+		/// scope, without applying any replacements. Used to link back to the specific
+		/// paragraph a match was found in rather than just the containing page.
+		/// </summary>
+		/// <param name="scope">The element to search, e.g. a page Outline or OE</param>
+		/// <returns>An objectID or null if no match was found</returns>
+		public string FindFirstMatchObjectId(XElement scope)
+		{
+			var ns = scope.GetNamespaceOfPrefix(OneNote.Prefix);
+
+			foreach (var element in scope.Descendants(ns + "T"))
+			{
+				// never touch mathML equations
+				if (element.IsMathML())
+				{
+					continue;
+				}
+
+				var cdata = element.GetCData();
+				if (cdata.Value.Length == 0)
+				{
+					continue;
+				}
+
+				var wrapper = cdata.GetWrapper();
+				var rawtext = wrapper.Value.Replace(' ', ' ');
+				var hasReplaceableMatch = regex.Matches(rawtext).Cast<Match>().Any(match =>
+				{
+					var groupIndex = match.Groups.Count > 1 ? match.Groups[1].Index : match.Index;
+					var groupLength = match.Groups.Count > 1 ? match.Groups[1].Length : match.Length;
+					return !OverlapsExistingLink(wrapper, groupIndex, groupLength);
+				});
+
+				if (!hasReplaceableMatch)
+				{
+					continue;
+				}
+
+				var oe = element.Parent;
+				while (oe != null && oe.Name.LocalName != "OE")
+				{
+					oe = oe.Parent;
+				}
+
+				return oe?.Attribute("objectID")?.Value;
+			}
+
+			return null;
+		}
+
+
 		// Replace all matches in the given T run
 		private int ScanElement(XElement element)
 		{
@@ -192,6 +244,8 @@ namespace River.OneMoreAddIn.Commands
 				// iterate backwards to avoid cumulative offets if Match length differs
 				// from length of replacement text...
 
+				var replaced = 0;
+
 				for (var i = matches.Count - 1; i >= 0; i--)
 				{
 					var match = matches[i];
@@ -199,6 +253,16 @@ namespace River.OneMoreAddIn.Commands
 					// if there is exactly one group then the regex has neither capturing nor
 					// non-capturing groups; otherwise there must be at least one group in the
 					// regex so iterate the captures
+
+					var groupIndex = match.Groups.Count > 1 ? match.Groups[1].Index : match.Index;
+					var groupLength = match.Groups.Count > 1 ? match.Groups[1].Length : match.Length;
+
+					// when replacing with a hyperlink element, never overwrite or nest inside
+					// text that is already a hyperlink
+					if (replacementElement != null && OverlapsExistingLink(wrapper, groupIndex, groupLength))
+					{
+						continue;
+					}
 
 					if (match.Groups.Count == 1)
 					{
@@ -225,14 +289,52 @@ namespace River.OneMoreAddIn.Commands
 								stringValue: ExpandSubstitutions(match, replacementString));
 						}
 					}
+
+					replaced++;
 				}
 
-				cdata.Value = wrapper.GetInnerXml();
+				if (replaced > 0)
+				{
+					cdata.Value = wrapper.GetInnerXml();
+				}
 
-				return matches.Count;
+				return replaced;
 			}
 
 			return 0;
+		}
+
+
+		// Determines whether the given match range falls within (or covers) an existing
+		// hyperlink element, so we don't overwrite or nest a new link inside it.
+		private bool OverlapsExistingLink(XElement wrapper, int searchIndex, int searchLength)
+		{
+			var searchEnd = searchIndex + searchLength;
+			var nodeEnd = -1;
+
+			foreach (var node in wrapper.Nodes())
+			{
+				var atom = AtomicFactory.MakeAtom(node);
+				var nodeStart = nodeEnd + 1;
+				nodeEnd += atom.Length;
+
+				if (searchIndex <= nodeEnd && searchEnd > nodeStart)
+				{
+					if (node is XElement element &&
+						(element.Name.LocalName == "a" ||
+						 element.Descendants().Any(d => d.Name.LocalName == "a")))
+					{
+						return true;
+					}
+				}
+
+				if (nodeEnd >= searchEnd)
+				{
+					break;
+				}
+			}
+
+			return false;
 		}
 
 
@@ -388,7 +490,7 @@ namespace River.OneMoreAddIn.Commands
 			if (cdata.Value.Length == 0) return;
 
 			var wrapper = cdata.GetWrapper();
-			var rawtext = wrapper.Value.Replace(' ', ' ');
+			var rawtext = wrapper.Value.Replace(' ', ' ');
 
 			var matches = regex.Matches(rawtext);
 			if (matches.Count == 0) return;
@@ -430,7 +532,7 @@ namespace River.OneMoreAddIn.Commands
 			if (cdata.Value.Length == 0) return;
 
 			var wrapper = cdata.GetWrapper();
-			var rawtext = wrapper.Value.Replace(' ', ' ');
+			var rawtext = wrapper.Value.Replace(' ', ' ');
 
 			var matches = regex.Matches(rawtext);
 

@@ -31,6 +31,7 @@ namespace River.OneMoreAddIn.Commands
 		private sealed class Referral
 		{
 			public string PageID { get; set; }
+			public string ObjectId { get; set; }
 			public string Title { get; set; }
 			public string Synopsis { get; set; }
 		}
@@ -170,25 +171,15 @@ namespace River.OneMoreAddIn.Commands
 				{
 					if (scope == OneNote.Scope.Notebooks)
 					{
-						var notebooks = await one.GetNotebooks();
+						var notebooks = await one.GetNotebooks(OneNote.Scope.Pages);
 						var ns = notebooks.GetNamespaceOfPrefix(OneNote.Prefix);
-						foreach (var notebook in notebooks.Elements(ns + "notebook"))
-						{
-							var book = await one.GetNotebook(
-								notebooks.Attribute("ID").Value, OneNote.Scope.Pages);
 
-							// skip recycle bin sections by removing those nodes
-							book.Descendants(ns + "Section")
-								.Where(e => e.Attribute("isRecycleBin") is not null)
-								.Remove();
+						// skip recycle bin sections by removing those nodes
+						notebooks.Descendants(ns + "Section")
+							.Where(e => e.Attribute("isRecycleBin") is not null)
+							.Remove();
 
-							await ScanPages(progress, token, book);
-							if (token.IsCancellationRequested)
-							{
-								logger.WriteLine($"{nameof(LinkReferencesCommand)} cancelled");
-								break;
-							}
-						}
+						await ScanPages(progress, token, notebooks);
 					}
 					else if (scope == OneNote.Scope.Sections)
 					{
@@ -264,6 +255,7 @@ namespace River.OneMoreAddIn.Commands
 				// search and replace...
 
 				var replacements = 0;
+				string objectId = null;
 
 				// exclude the omLinkedReferences block
 				var block = page.Root.Descendants(ns + "Meta")
@@ -272,6 +264,10 @@ namespace River.OneMoreAddIn.Commands
 				if (block is null)
 				{
 					// no omLinkedReferences so just scan the whole page
+					objectId = page.Root.Elements(ns + "Outline")
+						.Select(o => editor.FindFirstMatchObjectId(o))
+						.FirstOrDefault(id => id is not null);
+
 					replacements = editor.SearchAndReplace(page);
 				}
 				else
@@ -284,6 +280,7 @@ namespace River.OneMoreAddIn.Commands
 					// scan the remaining content of the page
 					foreach (var oe in page.Root.Descendants(ns + "OE").Except(blocked))
 					{
+						objectId ??= editor.FindFirstMatchObjectId(oe);
 						replacements += editor.SearchAndReplace(oe);
 					}
 				}
@@ -298,6 +295,7 @@ namespace River.OneMoreAddIn.Commands
 					referrals.Add(new Referral
 					{
 						PageID = pageID,
+						ObjectId = objectId,
 						Title = title,
 						Synopsis = showSynopsis ? GetSynopsis(page) : string.Empty
 					});
@@ -366,7 +364,7 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (var referral in referrals.OrderBy(e => e.Title))
 			{
-				var link = one.GetHyperlink(referral.PageID, string.Empty);
+				var link = one.GetHyperlink(referral.PageID, referral.ObjectId ?? string.Empty);
 
 				children.Add(
 					new Paragraph(
