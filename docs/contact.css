@@ -1,3 +1,14 @@
+:root {
+    --contact-accent: #7C3AED;
+    --contact-tint: #F3EEFB;
+    --contact-bg: #FAF9F8;
+    --contact-border: #E5E1DE;
+    --contact-border-btn: #DDD9D6;
+    --contact-text: #201F1E;
+    --contact-text-muted: #6B6866;
+    --error-color: #dc3545;
+}
+
 label.error {
     color: var(--error-color);
     margin-left: 10px;
@@ -6,99 +17,143 @@ label.error {
 #contactName-error,
 #contactEmail-error,
 #contactMessage-error {
-    vertical-align: top;
+    display: block;
     font-size: 10pt;
-    color: #dc3545;
-}
-
-section.contact {
-    clear: both;
-    height: 320px;
-    background-color: linen;
-    padding: 40px 100px 0px 100px;
-    color: black;
-    /* height: 350px; */
-    font: normal normal normal 20px/1.4em Barlow-Regular, Barlow, sans-serif;
+    color: var(--error-color);
+    margin-top: 4px;
 }
 
 #content {
-    margin-left: 100px;
     margin-top: 100px;
-    width: 80%;
+    padding: 40px 20px 80px;
+    display: flex;
+    justify-content: center;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
 }
 
-#ccc {
-    padding: 40px 30px 40px 80px;
+.contact-card {
+    width: 100%;
+    max-width: 1050px;
+    background: #FFFFFF;
+    border: 1px solid var(--contact-border);
+    border-radius: 14px;
+    box-shadow: 0 8px 24px -8px rgba(32, 31, 30, 0.10);
+    display: flex;
+    overflow: hidden;
 }
 
-detail.contactLeft {
-    position: relative;
-    font-weight: bold;
-    color: #606060;
-    float: left;
-    width: 30%;
-    text-align: right;
-    margin-right: 20px;
+.contact-intro {
+    width: 260px;
+    flex-shrink: 0;
+    background: var(--contact-tint);
+    padding: 36px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
-detail.contactRight {
-    position: relative;
-    float: left;
-    font: var(--font-R13);
+.contact-intro h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0;
+    color: var(--contact-text);
 }
 
-#contactForm input {
-    font: var(--font-B20R);
-    font-size: 16px;
-    width: 420px;
-    max-width: 100%;
-    margin-bottom: 25px;
-    border-color: lightgray;
-    border-radius: 4px;
-    border-style: ridge;
-    border-width: 1px;
-    padding-left: 3px;
+.contact-intro p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #4B4A66;
+    margin: 0;
 }
 
-#contactForm #submit {
-    background-color: #8F20C7;
-    border-radius: 4px;
-    color: white;
-    font-size:11pt;
-    width: 80px;
+.contact-note {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13.5px;
+    color: #4B4A66;
 }
 
-#contactForm #submit:disabled {
-    background-color:#EBE5E1;
-    color:#808080;
+.contact-note-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    background: var(--contact-accent);
+    flex-shrink: 0;
+    display: inline-block;
 }
 
-#contactForm #submit:focus {
-    border-style: solid;
+.contact-form-panel {
+    flex: 1;
+    min-width: 0;
+    padding: 36px 32px;
 }
 
-#contactForm input:focus:not(#submit),
+#contactForm {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.contact-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #3B3A39;
+}
+
+#contactForm input[type="text"],
+#contactForm input[type="email"],
+#contactForm textarea {
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: normal;
+    padding: 10px 12px;
+    border: 1px solid var(--contact-border-btn);
+    border-radius: 8px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#contactForm textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+#contactForm input[type="text"]:focus,
+#contactForm input[type="email"]:focus,
 #contactForm textarea:focus {
-    border-style: dashed;
-    border-color: darkgray;
     outline: none;
+    border-color: var(--contact-accent);
 }
 
-#contactForm .label {
-    display: block;
-    font-size: .825rem;
-    margin-bottom: 5px;
-    font-weight: 500;
+.contact-spamcheck {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    background: var(--contact-bg);
+    border: 1px solid var(--contact-border);
+    border-radius: 8px;
+    padding: 10px 12px;
 }
 
-#contactForm CITE {
-    font-size: 10pt;
-    color: #595959;
+.contact-spamcheck span {
+    font-size: 12.5px;
+    color: var(--contact-text-muted);
 }
 
-#contactForm #honey {
-    width: 35px;
-    margin-right: 10px;
+#contactForm .contact-spamcheck #honey {
+    width: 60px;
+    padding: 6px 8px;
+    margin: 0;
+    border: 1px solid var(--contact-border-btn);
+    border-radius: 6px;
+    font-size: 13px;
+    font-family: inherit;
     text-align: center;
 }
 
@@ -107,45 +162,66 @@ detail.contactRight {
     visibility: collapse;
 }
 
-#contactForm textarea {
-    font: var(--font-B20R);
-    font-size: 16px;
-    border-radius: 4px;
-    width: 60%;
-    height: 100px;
-    max-width: 100%;
-    min-width: 420px;
-    max-height: 400px;
-    min-height: 100px;
-    margin-bottom: 15px;
-    border-color: lightgray;
-    border-width: 1px;
-    border-style: ridge;
-    padding-left: 3px;
-    resize: both;
+#contactForm #honeyp {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    visibility: collapse;
 }
 
-#contactForm #honeyp {
-    visibility: collapse;
+.contact-submit#submit {
+    align-self: flex-start;
+    background: var(--contact-accent);
+    color: #FFFFFF;
+    border: none;
+    font-size: 14.5px;
+    font-weight: 600;
+    padding: 11px 24px;
+    border-radius: 7px;
+    cursor: pointer;
+    width: auto;
+    margin: 0;
+}
+
+.contact-submit#submit:disabled {
+    background: #EBE5E1;
+    color: #808080;
+    cursor: not-allowed;
+}
+
+.contact-submit#submit:focus {
+    outline: 2px solid var(--contact-accent);
+    outline-offset: 2px;
+}
+
+@media (max-width: 700px) {
+    .contact-card {
+        flex-direction: column;
+    }
+
+    .contact-intro {
+        width: auto;
+    }
+
+    .contact-note {
+        margin-top: 0;
+    }
 }
 
 @media (max-width: 768px) {
     #content {
-        margin-left: 16px;
         margin-top: 80px;
-        width: auto;
+        padding: 24px 16px 48px;
     }
 
-    #ccc {
-        padding: 24px 16px;
-    }
-
-    section.contact {
-        height: auto;
-        padding: 24px 20px 0px 20px;
-    }
-
-    #contactForm textarea {
-        min-width: 0;
+    .contact-intro,
+    .contact-form-panel {
+        padding: 24px 20px;
     }
 }

@@ -115,34 +115,41 @@
     <!-- Page Content -->
     <div id="content">
 
-      <div class="intro">
-        Have questions? Comments? Suggestions?
-        <p class="detail">
-          All of those are welcome! Please be as specific and descriptive as possible.
-          The more detail you provide, the better and faster we can help.
-        </p>
-      </div>
-
-      <div class="card">
-        <div class="card-header">
-          <h5 class="card-title">Contact Us</h5>
+      <div class="contact-card">
+        <div class="contact-intro">
+          <h2>Get in touch</h2>
+          <p>Questions, comments, or suggestions are all welcome. The more detail
+            you provide, the faster we can help.</p>
+          <div class="contact-note">
+            <span class="contact-note-dot"></span> Usually reply within a few days
+          </div>
         </div>
-        <div id="ccc" class="card-body">
+        <div id="ccc" class="contact-form-panel">
           <form id="contactForm" method="POST">
-            <div class="label">Full Name</div>
-            <input type="text" id="contactName" name="name" required data-msg-required="Name is required"
-              placeholder="Your name" tabindex="1" /></br>
-              <div class="label">Email Address</div>
-              <input type="email" id="contactEmail" name="email" required data-msg-required="Email is required"
-              placeholder="Your email" tabindex="2" /></br>
-              <div class="label">Message</div>
-              <textarea id="contactMessage" name="message" required data-msg-required="Message is required"
-              placeholder="Type your message..." tabindex="4"></textarea></br>
-            <p><cite>To enable the send button, enter the calendar day of the current month:</cite></p>
-            <input type="hidden" name="_subject" id="email-subject" tabindex="-1" value="OneMore Contact Form Submission">
-            <input type="text" id="honey" name="honey" tabindex="5" data-msg-range="Not valid" />
-            <input type="submit" id="submit" value="Send" disabled tabindex="6" />
-            <input type="text" id="honeyp" name="honeyp" tabindex="-1" />
+            <label class="contact-field">
+              <span class="contact-label">Full Name</span>
+              <input type="text" id="contactName" name="name" required
+                data-msg-required="Name is required" placeholder="Your name" tabindex="1">
+            </label>
+            <label class="contact-field">
+              <span class="contact-label">Email Address</span>
+              <input type="email" id="contactEmail" name="email" required
+                data-msg-required="Email is required" placeholder="Your email" tabindex="2">
+            </label>
+            <label class="contact-field">
+              <span class="contact-label">Message</span>
+              <textarea id="contactMessage" name="message" required
+                data-msg-required="Message is required" placeholder="Type your message..."
+                rows="6" tabindex="4"></textarea>
+            </label>
+            <div class="contact-spamcheck">
+              <span>Spam check — enter today's day of the month:</span>
+              <input type="hidden" name="_subject" id="email-subject" tabindex="-1"
+                value="OneMore Contact Form Submission">
+              <input type="text" id="honey" name="honey" tabindex="5" data-msg-range="Not valid">
+            </div>
+            <input type="text" id="honeyp" name="honeyp" tabindex="-1">
+            <input type="submit" id="submit" value="Send message" class="contact-submit" disabled tabindex="6">
           </form>
         </div>
       </div>
