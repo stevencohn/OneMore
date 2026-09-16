@@ -118,7 +118,7 @@
   <div class="wrapper">
 
     <!-- Sidebar -->
-    <nav id="sidebar" style="background-color:#EBE5E1; " aria-label="Sidebar">
+    <nav id="sidebar" aria-label="Sidebar">
       <div class="offcanvas-lg offcanvas-end" tabindex="-1" id="offcanvasResponsive"
         aria-labelledby="offcanvasResponsiveLabel">
         <div class="offcanvas-header">
@@ -175,7 +175,7 @@
 <TD style="BORDER-LEFT-WIDTH: 0pt; BORDER-RIGHT-WIDTH: 0pt; WIDTH: 0.681in; VERTICAL-ALIGN: top; BORDER-BOTTOM-WIDTH: 0pt; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; PADDING-RIGHT: 3pt; BORDER-TOP-WIDTH: 0pt">
 <P lang=yo style='FONT-SIZE: 22pt; FONT-FAMILY: "Segoe UI Emoji"; COLOR: #2e75b5; TEXT-ALIGN: center; MARGIN: 0in'>🚩</P></TD>
 <TD style="BORDER-LEFT-WIDTH: 0pt; BORDER-RIGHT-WIDTH: 0pt; WIDTH: 6.629in; VERTICAL-ALIGN: top; BORDER-BOTTOM-WIDTH: 0pt; PADDING-BOTTOM: 2pt; PADDING-TOP: 2pt; PADDING-LEFT: 3pt; PADDING-RIGHT: 3pt; BORDER-TOP-WIDTH: 0pt">
-<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: #333333; MARGIN: 0in"><SPAN style="FONT-WEIGHT: bold">Preview</SPAN></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: #333333; MARGIN: 0in"><SPAN style="FONT-WEIGHT: bold">#Preview</SPAN></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: #333333; MARGIN: 0in">This page contains descriptions of pre-release functionality available only in the current Beta release</P></TD></TR></TBODY></TABLE></DIV></TD></TR></TBODY></TABLE></DIV>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">Compare Hierarchy lets you line up two notebooks, two sections, or two section groups side by side and see exactly what's different between them: which pages exist on only one side, which ones share a name but were modified at different times, and - when you ask it to - how similar their actual content really is. From the same window you can open either side's page, copy or mirror whole branches (or single pages) from one side to the other, delete what you don't need, and score any two pages' content against each other, either one pair at a time or across an entire notebook in one pass.</P>
@@ -373,7 +373,7 @@
   </div>
   <script>
     $('#commands-section').addClass('active');
-    let pageID = '#' + window.location.pathname.match(/.*\/(.*).htm$/)[1];
+    let pageID = '#' + decodeURIComponent(window.location.pathname.match(/.*\/(.*).htm$/)[1]);
     pageID = pageID.toLowerCase().replace(/%20| |\./g,'-')
     if ( $(pageID).length > 0) { $(pageID).addClass('active'); }
   </script>

@@ -118,7 +118,7 @@
   <div class="wrapper">
 
     <!-- Sidebar -->
-    <nav id="sidebar" style="background-color:#EBE5E1; " aria-label="Sidebar">
+    <nav id="sidebar" aria-label="Sidebar">
       <div class="offcanvas-lg offcanvas-end" tabindex="-1" id="offcanvasResponsive"
         aria-labelledby="offcanvasResponsiveLabel">
         <div class="offcanvas-header">
@@ -457,7 +457,7 @@
   </div>
   <script>
     $('#developers-section').addClass('active');
-    let pageID = '#' + window.location.pathname.match(/.*\/(.*).htm$/)[1];
+    let pageID = '#' + decodeURIComponent(window.location.pathname.match(/.*\/(.*).htm$/)[1]);
     pageID = pageID.toLowerCase().replace(/%20| |\./g,'-')
     if ( $(pageID).length > 0) { $(pageID).addClass('active'); }
   </script>
