@@ -5498,6 +5498,10 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <value>粘贴具有预设宽度的图像</value>
     <comment>images menu</comment>
   </data>
+  <data name="ribPastePresetWidthImageButton_Screentip" xml:space="preserve">
+    <value>调整并粘贴剪贴板中的图像，调整大小至预设宽度</value>
+    <comment>images menu</comment>
+  </data>
   <data name="ribPasteRtfButton_Label" xml:space="preserve">
     <value>粘贴富文本</value>
     <comment>Ribbon OneMore menu item, paste rich text</comment>
@@ -5758,6 +5762,10 @@ TF-IDF 余弦、词汇重叠、结构</value>
   </data>
   <data name="ribResizeContainerToPresetWidthButton_Label" xml:space="preserve">
     <value>将容器大小调整为预设宽度</value>
+    <comment>page context menu</comment>
+  </data>
+  <data name="ribResizeContainerToPresetWidthButton_Screentip" xml:space="preserve">
+    <value>将选定容器的大小调整为预设宽度</value>
     <comment>page context menu</comment>
   </data>
   <data name="ribRestartTimerButton_Label" xml:space="preserve">

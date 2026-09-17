@@ -428,8 +428,14 @@
           getScreentip="GetRibbonScreentip"
           onAction="PasteImageCmd"/>
         <button
+          id="ribPastePresetWidthImageButton"
+          imageMso="TableWidth"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="PastePresetWidthImageCmd"/>
+        <button
           id="ribOpenImageWithButton"
-          imageMso="PictureInsertFromFile"
+          imageMso="GroupPictureReset"
           getLabel="GetRibbonLabel"
           getScreentip="GetRibbonScreentip"
           onAction="OpenImageWithCmd"/>
@@ -901,6 +907,12 @@
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
         onAction="FitGridToTextCmd"/>
+      <button
+        id="ribResizeContainerToPresetWidthButton"
+        imageMso="ColumnWidth"
+        getLabel="GetRibbonLabel"
+        getScreentip="GetRibbonScreentip"
+        onAction="ResizeContainerToPresetWidthCmd"/>
       <button
         id="ribSnapToGridButton"
         imageMso="SnapToGrid"
