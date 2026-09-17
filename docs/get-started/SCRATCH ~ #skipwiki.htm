@@ -27,7 +27,7 @@ font-size:20.0pt;color:#464646'>SCRATCH ~ #skipwiki</p>
 
 <P style="margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676">June 3, 2026</P>
 
-<P style="margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676">Last updated on September 12, 2026</P>
+<P style="margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676">Last updated on September 15, 2026</P>
 
 </div>
 
@@ -71,8 +71,7 @@ font-size:20.0pt;color:#464646'>SCRATCH ~ #skipwiki</p>
 
 </div>
 
-<p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
-style='mso-spacerun:yes'>  </span></p>
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>&nbsp;</p>
 
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>&gt; **WARNING**:
 The Compare Hierarchy and Remove Duplicate Pages commands can overwrite or
@@ -94,21 +93,17 @@ Alongside these enhancements, a series of targeted fixes—from menu consistency
 to plugin stability and telemetry issues—ensure a more polished, dependable
 experience across the board.<span style='mso-spacerun:yes'>  </span></p>
 
-<p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
-style='mso-spacerun:yes'>  </span></p>
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>&nbsp;</p>
 
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>See the OneMore user
 guide at [onemoreaddin.com](https://onemoreaddin.com/) and a list of recently
-updated pages on the the About page.<span style='mso-spacerun:yes'>  </span></p>
+updated pages on the About page.<span style='mso-spacerun:yes'>  </span></p>
 
-<p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
-style='mso-spacerun:yes'>  </span></p>
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>### Changelog<span
-style='mso-spacerun:yes'>  </span></p>
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>### Changelog</p>
 
-<p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
-style='mso-spacerun:yes'>  </span></p>
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>&nbsp;</p>
 
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Added *Compare
 Hierarchy* and reworked the *Remove Duplicate Pages* command,
@@ -133,6 +128,11 @@ style='mso-spacerun:yes'>  </span></p>
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Added options to
 *Duplicate Page* to insert backlinks to the original page,
 [#2576](https://github.com/stevencohn/OneMore/issues/2576)<span
+style='mso-spacerun:yes'>  </span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Added an
+experimental feature to convert markdown in the current paragraph when you
+press Enter, [#2642](https://github.com/stevencohn/OneMore/issues/2642)<span
 style='mso-spacerun:yes'>  </span></p>
 
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Added an option to
@@ -213,6 +213,17 @@ where multi-selected favorites could not be drag-and-dropped,
 [#2618](https://github.com/stevencohn/OneMore/issues/2618)<span
 style='mso-spacerun:yes'>  </span></p>
 
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Fixed an issue
+where notebooks and section groups were not added to Favorites properly,
+[#2622](https://github.com/stevencohn/OneMore/issues/2622)<span
+style='mso-spacerun:yes'>  </span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Fixed an issue
+where &quot;Add to Favorites&quot; appeared multiple times in the Settings
+context menu page,
+[#2641](https://github.com/stevencohn/OneMore/issues/2641)<span
+style='mso-spacerun:yes'>  </span></p>
+
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Fixed telemetry
 ERR-122 where Edit Table Theme could fail silently,
 [#2589](https://github.com/stevencohn/OneMore/issues/2589)<span
@@ -220,7 +231,22 @@ style='mso-spacerun:yes'>  </span></p>
 
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Fixed telemetry
 ERR-153 where Copy Link to Paragraph could fail silently,
-[#2586](https://github.com/stevencohn/OneMore/issues/2586)</p>
+[#2586](https://github.com/stevencohn/OneMore/issues/2586)<span
+style='mso-spacerun:yes'>  </span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Fixed telemetry
+ERR-062 and ERR-104 where invalidating the ribbon may fail silently,
+[#2634](https://github.com/stevencohn/OneMore/issues/2634)<span
+style='mso-spacerun:yes'>  </span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Fixed telemetry
+ERR-171 where InsertCodeBox may fail silentlly due to NRE,
+[#2632](https://github.com/stevencohn/OneMore/issues/2632)<span
+style='mso-spacerun:yes'>  </span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>- Fixed telemetry
+ERR-105 where RemoveEmpty may fail silently due to an invalid character in path
+titles, [#2630](https://github.com/stevencohn/OneMore/issues/2630)</p>
 
 <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
 style='mso-spacerun:yes'>  </span></p>

@@ -118,7 +118,7 @@
   <div class="wrapper">
 
     <!-- Sidebar -->
-    <nav id="sidebar" style="background-color:#EBE5E1; " aria-label="Sidebar">
+    <nav id="sidebar" aria-label="Sidebar">
       <div class="offcanvas-lg offcanvas-end" tabindex="-1" id="offcanvasResponsive"
         aria-labelledby="offcanvasResponsiveLabel">
         <div class="offcanvas-header">
@@ -161,7 +161,7 @@
 <P lang=yo style='FONT-SIZE: 20pt; FONT-FAMILY: "Calibri Light"; MARGIN: 0in'>File Commands</P></DIV>
 <DIV style="WIDTH: 2.413in; MARGIN-TOP: 0.042in; DIRECTION: ltr; MARGIN-LEFT: 0in">
 <P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">February 19, 2023</P>
-<P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">Last updated on August 24, 2026</P></DIV>
+<P style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #767676; MARGIN: 0in">Last updated on September 16, 2026</P></DIV>
 <DIV style="WIDTH: 8.715in; MARGIN-TOP: 0.427in; DIRECTION: ltr; MARGIN-LEFT: 0in">
 <H1 lang=yo id=archive style="FONT-SIZE: 16pt; FONT-FAMILY: Calibri; COLOR: #1e4e79; MARGIN: 0in">Archive</H1>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; COLOR: gray; MARGIN: 0in"><SPAN style="FONT-STYLE: italic">Available only by right-clicking a section or notebook</SPAN></P>
@@ -218,7 +218,7 @@
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">The Notes field can only preserve basic text - no styling or formatting whatsoever. At this time, categories cannot be modified from OneNote.</P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
-<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">The <SPAN style="FONT-STYLE: italic">Refresh</SPAN> link at the top of the top level contact list page will refresh that page only; it will not refresh individual contact child pages.</P>
+<P style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in"><SPAN lang=yo>The </SPAN><SPAN lang=yo style="FONT-STYLE: italic">Refresh</SPAN><A href="File Commands.htm#1"><SPAN lang=yo style="VERTICAL-ALIGN: super">[1]</SPAN></A><SPAN lang=yo> link at the top of the top level contact list page will refresh that page only; it will not refresh individual contact child pages.</SPAN></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
 <P style="MARGIN: 0in 0in 0in 0.375in"><IMG src="/commands/File%20Commands_files/image002.png" width=534 height=468></P>
 <P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
@@ -312,7 +312,11 @@
 <P><CITE lang=yo style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">#omwiki #omcommands</CITE></P>
 <P><CITE lang=yo style="FONT-SIZE: 9pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">&nbsp;</CITE></P>
 <P><CITE lang=yo style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">© 2020 Steven M Cohn. All rights reserved.</CITE></P>
-<P><CITE lang=yo style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">Please consider a <A href="https://github.com/sponsors/stevencohn">sponsorship or one-time donation</A> to support ongoing development</CITE></P></DIV></DIV></DIV>
+<P><CITE lang=yo style="FONT-SIZE: 10pt; FONT-FAMILY: Calibri; COLOR: #595959; MARGIN: 0in">Please consider a <A href="https://github.com/sponsors/stevencohn">sponsorship or one-time donation</A> to support ongoing development</CITE></P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri; MARGIN: 0in">&nbsp;</P>
+<P lang=yo style='FONT-FAMILY: "Courier New"; MARGIN: 0in'><SPAN style="FONT-SIZE: 10pt; COLOR: #999696">- - - - - - - - - - - - - - - - - - - - - [</SPAN><A href="onemore://RefreshFootnotesCommand/"><SPAN style="FONT-SIZE: 9pt; FONT-STYLE: italic">Refresh</SPAN></A><SPAN style="FONT-SIZE: 9pt; COLOR: gray; FONT-STYLE: italic">]</SPAN></P>
+<P style="MARGIN: 0in"><A href="File Commands.htm#1"><SPAN lang=yo style='FONT-SIZE: 11pt; FONT-FAMILY: "Calibri Light"'>[1]</SPAN></A><SPAN lang=en-US style="FONT-SIZE: 11.5pt; FONT-FAMILY: Calibri"> </SPAN><SPAN lang=en-US style='FONT-SIZE: 11pt; FONT-FAMILY: "Calibri Light"; COLOR: #151515'>If clicking the [Refresh] link results in a OneNote error message, this may be due to a corporate IT policy that blocks Office applications from starting subprocesses, such as the OneMoreProtocolHandler.exe that would be run from that action.</SPAN></P></DIV></DIV></DIV>
 <DIV>
 <P style="MARGIN: 0in">&nbsp;</P>
 <P style="FONT-SIZE: 9pt; FONT-FAMILY: Arial; COLOR: #969696; DIRECTION: ltr; TEXT-ALIGN: left; MARGIN: 0in">Created with OneNote.</P></DIV>
@@ -321,7 +325,7 @@
   </div>
   <script>
     $('#commands-section').addClass('active');
-    let pageID = '#' + window.location.pathname.match(/.*\/(.*).htm$/)[1];
+    let pageID = '#' + decodeURIComponent(window.location.pathname.match(/.*\/(.*).htm$/)[1]);
     pageID = pageID.toLowerCase().replace(/%20| |\./g,'-')
     if ( $(pageID).length > 0) { $(pageID).addClass('active'); }
   </script>

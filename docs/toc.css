@@ -1,42 +1,58 @@
+/* Redesigned TOC sidebar — Option 1C: pill selection, full-height shaded column.
+   Drop-in replacement for docs/toc.css. No changes to template.htm or build.ps1
+   needed — same #sidebar / .offcanvas-body / ul.navbar-nav markup, same ~TOC~
+   injection, same .active class already applied by the existing inline script. */
+
 .offcanvasResponsive {
     height: 100%;
     width: 300px;
     position: fixed;
     top: 0;
     left: 0;
-    background-color: #EBE5E1;
+    background-color: #F4F2F0;
     overflow-x: hidden;
     padding-top: 80px;
 }
 
 .offcanvas-body {
-    width: 300px;
-    margin-top: 20px;
-    background-color: #EBE5E1;
-}
-
-.offcanvas-body a {
-    padding: 4px 8px 0px 16px;
-    text-decoration: none;
-    color: #606060;
-    display: block;
-}
-
-.offcanvas-body a:hover {
-    color: #bb89d8;
-}
-
-.offcanvas-body a.active {
-    color: #000000;
-    background-color: #B5B2AF;
-}
-
-.offcanvas-body a:focus {
-    color: #898989;
+    width: 100%;
+    margin-top: 30px;
+    padding: 20px 12px;
+    background-color: #F4F2F0;
 }
 
 .offcanvas-body .navbar-nav {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.offcanvas-body a {
+    margin: 0 5px;
+    padding: 7px 10px 7px 15px;
+    border-radius: 7px;
+    text-decoration: none;
+    color: #8A8785;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.3;
+    display: block;
+}
+
+.offcanvas-body a:hover {
+    background-color: #E8E4E1;
+    color: #201F1E;
+}
+
+.offcanvas-body a.active {
+    background-color: #D9D0E1;
+    color: #201F1E;
+    font-weight: 700;
+}
+
+.offcanvas-body a:focus {
+    color: #201F1E;
 }
 
 @media screen and (max-height: 450px) {
@@ -51,7 +67,7 @@
 
 .offcanvas-lg {
     width: 300px !important;
-    background-color: #EBE5E1 !important;
+    background-color: #F4F2F0 !important;
 }
 
 .wrapper {
@@ -62,6 +78,8 @@
 #sidebar {
     min-width: 300px;
     max-width: 300px;
+    background-color: #F4F2F0;
+    border-right: 1px solid #E5E1DE;
 }
 
 body.sidebar-layout #sidebar {
@@ -70,6 +88,7 @@ body.sidebar-layout #sidebar {
     left: 0;
     width: 300px;
     height: calc(100vh - 60px);
+    overflow-x: hidden;
     overflow-y: auto;
     z-index: 1045;
 }
