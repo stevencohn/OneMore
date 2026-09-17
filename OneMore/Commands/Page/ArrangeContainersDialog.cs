@@ -12,10 +12,22 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private const int DefaultWidth = 500;
 
+		private readonly bool focusWidth;
 
-		public ArrangeContainersDialog()
+
+		/// <summary>
+		/// Initializes the dialog.
+		/// </summary>
+		/// <param name="focusWidth">
+		/// True to open directly on the vertical-mode width field, checked and focused,
+		/// regardless of any previously saved settings; used when falling back from a
+		/// preset-only container resize that has no stored width yet
+		/// </param>
+		public ArrangeContainersDialog(bool focusWidth = false)
 		{
 			InitializeComponent();
+
+			this.focusWidth = focusWidth;
 
 			if (NeedsLocalizing())
 			{
@@ -48,6 +60,24 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			indentBox.Value = settings.Get("indent", 0);
+
+			if (this.focusWidth)
+			{
+				verticalButton.Checked = true;
+				setWidthCheckBox.Checked = true;
+			}
+		}
+
+
+		protected override void OnLoad(System.EventArgs e)
+		{
+			base.OnLoad(e);
+
+			if (focusWidth)
+			{
+				setWidthBox.Focus();
+				setWidthBox.Select(0, setWidthBox.Text.Length);
+			}
 		}
 
 

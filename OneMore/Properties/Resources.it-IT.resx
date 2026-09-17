@@ -5481,6 +5481,10 @@ Scheda Aiuto</value>
     <value>Regola e incolla l'immagine dagli appunti</value>
     <comment>images menu</comment>
   </data>
+  <data name="ribPastePresetWidthImageButton_Label" xml:space="preserve">
+    <value>Incolla immagine con larghezza preimpostata</value>
+    <comment>images menu</comment>
+  </data>
   <data name="ribPasteRtfButton_Label" xml:space="preserve">
     <value>Incolla testo RTF</value>
     <comment>ribbon edit NODUP</comment>
@@ -5739,6 +5743,10 @@ Scheda Aiuto</value>
   <data name="ribResetTasksButton_Screentip" xml:space="preserve">
     <value>Deseleziona e ripristina tutte le attività completate in questa pagina</value>
     <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribResizeContainerToPresetWidthButton_Label" xml:space="preserve">
+    <value>Ridimensiona il contenitore alla larghezza preimpostata</value>
+    <comment>page context menu</comment>
   </data>
   <data name="ribRestartTimerButton_Label" xml:space="preserve">
     <value>Riavvia il timer</value>

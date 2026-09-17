@@ -5491,6 +5491,10 @@ ISO-code then comma then language name</comment>
     <value>ضبط ولصق الصورة من الحافظة</value>
     <comment>images menu</comment>
   </data>
+  <data name="ribPastePresetWidthImageButton_Label" xml:space="preserve">
+    <value>لصق الصورة بعرض محدد مسبقًا</value>
+    <comment>images menu</comment>
+  </data>
   <data name="ribPasteRtfButton_Label" xml:space="preserve">
     <value>لصق نص منسق</value>
     <comment>Ribbon OneMore menu item, paste rich text</comment>
@@ -5748,6 +5752,10 @@ ISO-code then comma then language name</comment>
   <data name="ribResetTasksButton_Screentip" xml:space="preserve">
     <value>قم بإلغاء تحديد وإعادة تعيين جميع المهام المكتملة في هذه الصفحة</value>
     <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribResizeContainerToPresetWidthButton_Label" xml:space="preserve">
+    <value>تغيير حجم الحاوية إلى العرض المحدد مسبقًا</value>
+    <comment>page context menu</comment>
   </data>
   <data name="ribRestartTimerButton_Label" xml:space="preserve">
     <value>إعادة تشغيل الموقت</value>

@@ -814,6 +814,11 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<AdjustImageFromClipboardCommand>();
 
 
+		[Command("ribPastePresetWidthImageButton_Label", Keys.Control | Keys.Alt | Keys.Shift | Keys.I, "ribImagesMenu")]
+		public async Task PastePresetWidthImageCmd(IRibbonControl control)
+			=> await factory.Run<PastePresetWidthImageCommand>();
+
+
 		[Command("ribPasteRtfButton_Label", Keys.Control | Keys.Alt | Keys.V, "ribEditMenu")]
 		public async Task PasteRtfCmd(IRibbonControl control)
 			=> await factory.Run<PasteRtfCommand>();
@@ -963,6 +968,11 @@ namespace River.OneMoreAddIn
 		[Command("ribResetTasksButton_Label", Keys.None, "ribRemindersMenu")]
 		public async Task ResetTasksCmd(IRibbonControl control)
 			=> await factory.Run<ResetTasksCommand>();
+
+
+		[Command("ribResizeContainerToPresetWidthButton_Label", Keys.Control | Keys.Alt | Keys.Shift | Keys.A, "ribPageMenu")]
+		public async Task ResizeContainerToPresetWidthCmd(IRibbonControl control)
+			=> await factory.Run<ResizeContainerToPresetWidthCommand>();
 
 
 		[Command("ribRestartTimerButton_Label", Keys.Shift | Keys.F2)]

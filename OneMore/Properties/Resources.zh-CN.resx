@@ -5494,6 +5494,10 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <value>调整并粘贴剪贴板图像</value>
     <comment>images menu</comment>
   </data>
+  <data name="ribPastePresetWidthImageButton_Label" xml:space="preserve">
+    <value>粘贴具有预设宽度的图像</value>
+    <comment>images menu</comment>
+  </data>
   <data name="ribPasteRtfButton_Label" xml:space="preserve">
     <value>粘贴富文本</value>
     <comment>Ribbon OneMore menu item, paste rich text</comment>
@@ -5751,6 +5755,10 @@ TF-IDF 余弦、词汇重叠、结构</value>
   <data name="ribResetTasksButton_Screentip" xml:space="preserve">
     <value>取消选中并重置此页面上所有已完成的任务</value>
     <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribResizeContainerToPresetWidthButton_Label" xml:space="preserve">
+    <value>将容器大小调整为预设宽度</value>
+    <comment>page context menu</comment>
   </data>
   <data name="ribRestartTimerButton_Label" xml:space="preserve">
     <value>重置计时器</value>

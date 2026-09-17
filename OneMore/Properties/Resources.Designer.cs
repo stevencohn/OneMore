@@ -189,7 +189,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("AddFavoriteCommand_error", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Add to Favorites (notebook).
         /// </summary>
@@ -198,7 +198,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("AddFavoriteNotebookButton_Label", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Add to Favorites (section).
         /// </summary>
@@ -207,7 +207,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("AddFavoriteSectionButton_Label", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Add to Favorites (section group).
         /// </summary>
@@ -216,7 +216,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("AddFavoriteSectionGroupButton_Label", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Calculated.
         /// </summary>
@@ -1677,7 +1677,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("CompareDialog_compareActionsTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Compare contents….
         /// </summary>
@@ -1722,7 +1722,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("CompareDialog_confirmDeepScan", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Delete &apos;{0}&apos; from both sides? This cannot be undone..
         /// </summary>
@@ -1794,7 +1794,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("CompareDialog_deepScan", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Deep scanning....
         /// </summary>
@@ -1803,7 +1803,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("CompareDialog_deepScanMessage", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Comparing &apos;{0}&apos;....
         /// </summary>
@@ -1812,7 +1812,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("CompareDialog_deepScanPageFormat", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Delete both.
         /// </summary>
@@ -3014,7 +3014,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("EditTableThemesDialog_colorsTab.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to {0} Copy.
         /// </summary>
@@ -3023,7 +3023,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("EditTableThemesDialog_copyTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Delete this style?.
         /// </summary>
@@ -3032,7 +3032,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("EditTableThemesDialog_deleteStyle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Discard unsaved changes?.
         /// </summary>
@@ -3041,7 +3041,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("EditTableThemesDialog_discard", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Duplicate from….
         /// </summary>
@@ -3050,7 +3050,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("EditTableThemesDialog_duplicateFrom", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Whole Table
         ///First Column Stripe
@@ -3102,7 +3102,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("EditTableThemesDialog_fontsTab.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Multi-color.
         /// </summary>
@@ -3111,7 +3111,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("EditTableThemesDialog_multiColor", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Reset All.
         /// </summary>
@@ -3120,7 +3120,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("EditTableThemesDialog_resetButton.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Reset to default.
         /// </summary>
@@ -3129,7 +3129,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("EditTableThemesDialog_resetToDefault", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Table text sample.
         /// </summary>
@@ -3138,7 +3138,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("EditTableThemesDialog_sample", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Custom Table Styles.
         /// </summary>
@@ -3147,7 +3147,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("EditTableThemesDialog_Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Your Themes.
         /// </summary>
@@ -3156,7 +3156,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("EditTableThemesDialog_yourThemes", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Embedded from {0}.
         /// </summary>
@@ -7438,7 +7438,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("MarkdownSheet_blankBeforeHeadingsBox.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to (Experimental) Convert markdown to OneNote content when pressing Enter.
         /// </summary>
@@ -7447,7 +7447,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("MarkdownSheet_convertOnEnterBox.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Treat single line breaks as GitHub-Flavored Markdown line breaks.
         /// </summary>
@@ -9620,7 +9620,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("RemoveDuplicatesDialog_contentSimilarityBox", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Combines TF-IDF cosine, lexical overlap, and structural similarity.
         /// </summary>
@@ -9629,7 +9629,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("RemoveDuplicatesDialog_contentSimilarityTip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Show only exact duplicates.
         /// </summary>
@@ -9638,7 +9638,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("RemoveDuplicatesDialog_exactOnlyBox.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Similarity metrics.
         /// </summary>
@@ -9647,7 +9647,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("RemoveDuplicatesDialog_metricsBox.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Presentation similarity
         ///Stylistic, Entity, Media.
@@ -9657,7 +9657,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("RemoveDuplicatesDialog_presentationSimilarityBox", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Combines stylistic, entity, and media similarity; media reads each page&apos;s full binary content, so scans take longer.
         /// </summary>
@@ -9666,7 +9666,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("RemoveDuplicatesDialog_presentationSimilarityTip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Remove Duplicate Pages.
         /// </summary>
@@ -9720,7 +9720,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("RemoveDuplicatesNavigator_identicalChip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Keep Newest.
         /// </summary>
@@ -9729,7 +9729,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("RemoveDuplicatesNavigator_keepNewest", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Pages similar to {0}.
         /// </summary>
@@ -9738,7 +9738,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("RemoveDuplicatesNavigator_pagesSimilarTo", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to {0}% similar.
         /// </summary>
@@ -9747,7 +9747,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("RemoveDuplicatesNavigator_similarChipFormat", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Remove all empty lines?
         ///
@@ -12952,6 +12952,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Paste Image With Preset Width.
+        /// </summary>
+        internal static string ribPastePresetWidthImageButton_Label {
+            get {
+                return ResourceManager.GetString("ribPastePresetWidthImageButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Paste Rich Text.
         /// </summary>
         internal static string ribPasteRtfButton_Label {
@@ -13533,6 +13542,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribResetTasksButton_Screentip {
             get {
                 return ResourceManager.GetString("ribResetTasksButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resize Container to Preset Width.
+        /// </summary>
+        internal static string ribResizeContainerToPresetWidthButton_Label {
+            get {
+                return ResourceManager.GetString("ribResizeContainerToPresetWidthButton_Label", resourceCulture);
             }
         }
         
@@ -15610,7 +15628,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("Similarity_reasonMedia", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to One page has no text to compare..
         /// </summary>
@@ -15673,7 +15691,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("Similarity_rubricMedia", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Structural similarity.
         /// </summary>
@@ -15709,22 +15727,22 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("SimilarityPopup_closeAccessibleName", resourceCulture);
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized string similar to {0} ↔ {1}.
-        /// </summary>
-        internal static string SimilarityPopup_pairFormat {
-            get {
-                return ResourceManager.GetString("SimilarityPopup_pairFormat", resourceCulture);
-            }
-        }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to {0} similar.
         /// </summary>
         internal static string SimilarityPopup_overallFormat {
             get {
                 return ResourceManager.GetString("SimilarityPopup_overallFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} ↔ {1}.
+        /// </summary>
+        internal static string SimilarityPopup_pairFormat {
+            get {
+                return ResourceManager.GetString("SimilarityPopup_pairFormat", resourceCulture);
             }
         }
         
@@ -17424,7 +17442,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("word_Due", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Duplicate.
         /// </summary>
@@ -17433,7 +17451,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("word_Duplicate", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
@@ -17694,7 +17712,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("word_Navigator", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to New.
         /// </summary>
@@ -17703,7 +17721,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("word_New", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to No.
         /// </summary>
@@ -18090,7 +18108,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("word_Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Theme.
         /// </summary>
@@ -18099,7 +18117,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("word_Theme", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Value.
         /// </summary>
