@@ -283,6 +283,14 @@ namespace River.OneMoreAddIn.Commands
 			var reduction = (int)Math.Round(indent * IndentUnit * scaleX);
 
 			var adjusted = Math.Max(MinPresetWidth, width - reduction);
+
+			if (adjusted >= image.Width)
+			{
+				// never enlarge an image smaller than the preset; keep its original view size
+				wrapper.SetSize(image.Width, image.Height, true);
+				return;
+			}
+
 			var height = (int)Math.Round(image.Height * ((double)adjusted / image.Width));
 			wrapper.SetSize(adjusted, height, true);
 		}
