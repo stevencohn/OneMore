@@ -5513,6 +5513,10 @@ Help Tab</value>
     <value>Paste Image With Preset Width</value>
     <comment>images menu</comment>
   </data>
+  <data name="ribPastePresetWidthImageButton_Screentip" xml:space="preserve">
+    <value>Adjust and paste image from clipboard, resized to a preset width</value>
+    <comment>images menu</comment>
+  </data>
   <data name="ribPasteRtfButton_Label" xml:space="preserve">
     <value>Paste Rich Text</value>
     <comment>ribbon edit NODUP</comment>
@@ -5774,6 +5778,10 @@ Help Tab</value>
   </data>
   <data name="ribResizeContainerToPresetWidthButton_Label" xml:space="preserve">
     <value>Resize Container to Preset Width</value>
+    <comment>page context menu</comment>
+  </data>
+  <data name="ribResizeContainerToPresetWidthButton_Screentip" xml:space="preserve">
+    <value>Resize the selected container to a preset width</value>
     <comment>page context menu</comment>
   </data>
   <data name="ribRestartTimerButton_Label" xml:space="preserve">
