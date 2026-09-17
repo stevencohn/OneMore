@@ -143,6 +143,7 @@ namespace River.OneMoreAddIn.Commands
 				if (await Export(page.PageId, filename, OneNote.ExportFormat.HTML))
 				{
 					InjectHeadingAnchors(filename);
+					InjectFootnoteAnchors(filename);
 
 					if (map != null)
 					{
@@ -203,7 +204,7 @@ namespace River.OneMoreAddIn.Commands
 			return HeadingPattern.Replace(html, match =>
 			{
 				var attrs = match.Groups["attrs"].Value;
-				if (Regex.IsMatch(attrs, @"\bid\s*=", RegexOptions.IgnoreCase))
+				if (Regex.IsMatch(attrs, @"(?:^|\s)id\s*=", RegexOptions.IgnoreCase))
 				{
 					// defensive: OneNote export doesn't emit id attrs today, but don't clobber
 					// one if it ever does
@@ -230,6 +231,132 @@ namespace River.OneMoreAddIn.Commands
 
 				var tag = match.Groups["tag"].Value;
 				return $"<{tag} id=\"{slug}\"{attrs}>{raw}</{tag}>";
+			});
+		}
+
+
+		// matches any exported <a>...</a> tag so its inner content can be tested against
+		// the footnote ref/backlink signatures below and, if matched, given a stable id
+		private static readonly Regex FootnoteAnchorTagPattern = new(
+			@"<a(?<attrs>\s[^>]*)?>(?<inner>.*?)</a>",
+			RegexOptions.Singleline | RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
+		// matches the [N] label FootnoteEditor writes into both the ref marker and backlink
+		private static readonly Regex FootnoteLabelPattern = new(
+			@"\[(?<label>\d+)\]", RegexOptions.Compiled);
+
+		/// <summary>
+		/// Detects whether the inner HTML of an exported footnote &lt;a&gt; tag is one of
+		/// the two link shapes FootnoteEditor stamps out: a "ref" marker in the body
+		/// (styled vertical-align:super) or a "note" backlink in the footer (styled
+		/// Calibri Light), each carrying a "[N]" label. OneNote's HTML export drops
+		/// per-paragraph object IDs, so this text/style signature - rather than the
+		/// object-id GUID - is what correlates the two ends after export.
+		/// </summary>
+		private static bool TryMatchFootnoteAnchor(string inner, out string kind, out string label)
+		{
+			kind = null;
+			label = null;
+
+			if (string.IsNullOrEmpty(inner))
+			{
+				return false;
+			}
+
+			var match = FootnoteLabelPattern.Match(inner);
+			if (!match.Success)
+			{
+				return false;
+			}
+
+			if (Regex.IsMatch(inner, @"vertical-align\s*:\s*super", RegexOptions.IgnoreCase))
+			{
+				kind = "ref";
+			}
+			else if (inner.IndexOf("Calibri Light", StringComparison.OrdinalIgnoreCase) >= 0)
+			{
+				kind = "note";
+			}
+			else
+			{
+				return false;
+			}
+
+			label = match.Groups["label"].Value;
+			return true;
+		}
+
+
+		/// <summary>
+		/// Resolves the anchor fragment that an exported footnote ref/backlink link's own
+		/// href should navigate to, given the raw inner HTML of its &lt;a&gt; tag. A "ref"
+		/// marker (in the body) navigates down to its "note" backlink's id, and a "note"
+		/// backlink (in the footer) navigates back up to its "ref" marker's id. Returns
+		/// null if inner is not one of FootnoteEditor's known footnote link shapes.
+		/// </summary>
+		internal static string ResolveFootnoteAnchor(string inner)
+		{
+			return TryMatchFootnoteAnchor(inner, out var kind, out var label)
+				? (kind == "ref" ? $"omfn-{label}" : $"omfnref-{label}")
+				: null;
+		}
+
+
+		/// <summary>
+		/// Injects a stable id attribute into every exported footnote ref marker and
+		/// footer backlink so the other end's onenote: object-id link (see
+		/// ResolveFootnoteAnchor, used by RewirePageLinks) has something to anchor to.
+		/// The id is appended after any existing attributes so the leading href
+		/// attribute RewirePageLinks matches against is left undisturbed.
+		/// </summary>
+		/// <param name="filename">The exported HTML file to patch in place</param>
+		private void InjectFootnoteAnchors(string filename)
+		{
+			var text = File.ReadAllText(filename);
+			var updated = InjectFootnoteAnchorsInHtml(text);
+
+			if (!string.Equals(text, updated, StringComparison.Ordinal))
+			{
+				try
+				{
+					File.WriteAllText(filename, updated);
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine($"error writing {filename}", exc);
+				}
+			}
+		}
+
+
+		/// <summary>
+		/// Pure text transform behind InjectFootnoteAnchors(filename), split out for testability.
+		/// </summary>
+		internal static string InjectFootnoteAnchorsInHtml(string html)
+		{
+			return FootnoteAnchorTagPattern.Replace(html, match =>
+			{
+				var attrs = match.Groups["attrs"].Value;
+				if (Regex.IsMatch(attrs, @"(?:^|\s)id\s*=", RegexOptions.IgnoreCase))
+				{
+					// defensive: don't clobber an id if one is ever already present. Note:
+					// must not use a bare \bid\s*= here - a word boundary fires right after
+					// the hyphen in "object-id=", "page-id=", "section-id=" (all present in
+					// every onenote: href this runs against), which would false-positive on
+					// every single link and skip injection entirely
+					return match.Value;
+				}
+
+				var inner = match.Groups["inner"].Value;
+				if (!TryMatchFootnoteAnchor(inner, out var kind, out var label))
+				{
+					return match.Value;
+				}
+
+				// the id assigned here is the id the OPPOSITE end's link navigates to;
+				// see ResolveFootnoteAnchor
+				var id = kind == "ref" ? $"omfnref-{label}" : $"omfn-{label}";
+				return $"<a{attrs} id=\"{id}\">{inner}</a>";
 			});
 		}
 
@@ -262,8 +389,10 @@ namespace River.OneMoreAddIn.Commands
 			//  <p> = page ID
 			//  <o> = object ID (present only for paragraph-level links)
 			//  <n> = page name
+			// note: "[^>]*>" (rather than a literal "\">") after the href value tolerates
+			// a trailing id="..." attribute, such as the one InjectFootnoteAnchors adds
 			var matches = Regex.Matches(text,
-				@"<a\s+href=""(?<u>onenote:[^;]*?[#;]section-id=(?<s>{[^}]*?})(?:&amp;page-id=(?<p>{[^}]*?}))?(?:&amp;object-id=(?<o>{[^}]*?}))?[^""]*?)"">(?<n>.*?)</a>",
+				@"<a\s+href=""(?<u>onenote:[^;]*?[#;]section-id=(?<s>{[^}]*?})(?:&amp;page-id=(?<p>{[^}]*?}))?(?:&amp;object-id=(?<o>{[^}]*?}))?[^""]*?)""[^>]*>(?<n>.*?)</a>",
 				RegexOptions.Singleline);
 
 			var updated = false;
@@ -313,19 +442,27 @@ namespace River.OneMoreAddIn.Commands
 
 						if (groups["o"].Success)
 						{
-							// paragraph-level link; try to resolve to the matching heading's
-							// anchor by slugging the link's own display text (object-id GUIDs
-							// cannot be correlated to exported HTML, see TechNote - Hyperlinks)
-							var linkText = groups["n"].Value;
-							if (linkText.Contains('<'))
-							{
-								linkText = linkText.ToXmlWrapper().Value;
-							}
+							var rawText = groups["n"].Value;
+							var footnoteAnchor = ResolveFootnoteAnchor(rawText);
 
-							var slug = linkText.ToSlug();
-							if (!string.IsNullOrEmpty(slug))
+							if (footnoteAnchor != null)
 							{
-								relative = $"{relative}#{slug}";
+								relative = $"{relative}#{footnoteAnchor}";
+							}
+							else
+							{
+								// paragraph-level link; try to resolve to the matching heading's
+								// anchor by slugging the link's own display text (object-id GUIDs
+								// cannot be correlated to exported HTML, see TechNote - Hyperlinks)
+								var linkText = rawText.Contains('<')
+									? rawText.ToXmlWrapper().Value
+									: rawText;
+
+								var slug = linkText.ToSlug();
+								if (!string.IsNullOrEmpty(slug))
+								{
+									relative = $"{relative}#{slug}";
+								}
 							}
 						}
 
