@@ -5483,6 +5483,10 @@ Registerkarte „Hilfe“.</value>
     <value>Bild mit voreingestellter Breite einfügen</value>
     <comment>images menu</comment>
   </data>
+  <data name="ribPastePresetWidthImageButton_Screentip" xml:space="preserve">
+    <value>Passen Sie das Bild an, fügen Sie es aus der Zwischenablage ein und ändern Sie die Größe auf eine voreingestellte Breite</value>
+    <comment>images menu</comment>
+  </data>
   <data name="ribPasteRtfButton_Label" xml:space="preserve">
     <value>Rich Text einfügen</value>
     <comment>Ribbon OneMore menu item, paste rich text</comment>
@@ -5744,6 +5748,10 @@ Registerkarte „Hilfe“.</value>
   </data>
   <data name="ribResizeContainerToPresetWidthButton_Label" xml:space="preserve">
     <value>Ändern Sie die Größe des Containers auf die voreingestellte Breite</value>
+    <comment>page context menu</comment>
+  </data>
+  <data name="ribResizeContainerToPresetWidthButton_Screentip" xml:space="preserve">
+    <value>Ändern Sie die Größe des ausgewählten Containers auf eine voreingestellte Breite</value>
     <comment>page context menu</comment>
   </data>
   <data name="ribRestartTimerButton_Label" xml:space="preserve">

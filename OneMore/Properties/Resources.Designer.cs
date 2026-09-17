@@ -12959,7 +12959,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribPastePresetWidthImageButton_Label", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Adjust and paste image from clipboard, resized to a preset width.
+        /// </summary>
+        internal static string ribPastePresetWidthImageButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribPastePresetWidthImageButton_Screentip", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Paste Rich Text.
         /// </summary>
@@ -13553,7 +13562,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribResizeContainerToPresetWidthButton_Label", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Resize the selected container to a preset width.
+        /// </summary>
+        internal static string ribResizeContainerToPresetWidthButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribResizeContainerToPresetWidthButton_Screentip", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Restart Timer.
         /// </summary>

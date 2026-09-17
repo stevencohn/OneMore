@@ -5485,6 +5485,10 @@ Scheda Aiuto</value>
     <value>Incolla immagine con larghezza preimpostata</value>
     <comment>images menu</comment>
   </data>
+  <data name="ribPastePresetWidthImageButton_Screentip" xml:space="preserve">
+    <value>Regola e incolla l'immagine dagli appunti, ridimensionata a una larghezza preimpostata</value>
+    <comment>images menu</comment>
+  </data>
   <data name="ribPasteRtfButton_Label" xml:space="preserve">
     <value>Incolla testo RTF</value>
     <comment>ribbon edit NODUP</comment>
@@ -5746,6 +5750,10 @@ Scheda Aiuto</value>
   </data>
   <data name="ribResizeContainerToPresetWidthButton_Label" xml:space="preserve">
     <value>Ridimensiona il contenitore alla larghezza preimpostata</value>
+    <comment>page context menu</comment>
+  </data>
+  <data name="ribResizeContainerToPresetWidthButton_Screentip" xml:space="preserve">
+    <value>Ridimensiona il contenitore selezionato a una larghezza preimpostata</value>
     <comment>page context menu</comment>
   </data>
   <data name="ribRestartTimerButton_Label" xml:space="preserve">

@@ -5495,6 +5495,10 @@ Onglet Aide</value>
     <value>Coller l'image avec une largeur prédéfinie</value>
     <comment>images menu</comment>
   </data>
+  <data name="ribPastePresetWidthImageButton_Screentip" xml:space="preserve">
+    <value>Ajustez et collez l'image du presse-papiers, redimensionnée à une largeur prédéfinie</value>
+    <comment>images menu</comment>
+  </data>
   <data name="ribPasteRtfButton_Label" xml:space="preserve">
     <value>Coller du texte enrichi</value>
     <comment>Ribbon OneMore menu item, paste rich text</comment>
@@ -5755,6 +5759,10 @@ Onglet Aide</value>
   </data>
   <data name="ribResizeContainerToPresetWidthButton_Label" xml:space="preserve">
     <value>Redimensionner le conteneur à une largeur prédéfinie</value>
+    <comment>page context menu</comment>
+  </data>
+  <data name="ribResizeContainerToPresetWidthButton_Screentip" xml:space="preserve">
+    <value>Redimensionner le conteneur sélectionné à une largeur prédéfinie</value>
     <comment>page context menu</comment>
   </data>
   <data name="ribRestartTimerButton_Label" xml:space="preserve">

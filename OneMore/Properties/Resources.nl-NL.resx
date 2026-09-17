@@ -5484,6 +5484,10 @@ Tabblad Help</value>
     <value>Afbeelding plakken met vooraf ingestelde breedte</value>
     <comment>images menu</comment>
   </data>
+  <data name="ribPastePresetWidthImageButton_Screentip" xml:space="preserve">
+    <value>Pas de afbeelding aan en plak deze vanaf het klembord, verkleind naar een vooraf ingestelde breedte</value>
+    <comment>images menu</comment>
+  </data>
   <data name="ribPasteRtfButton_Label" xml:space="preserve">
     <value>Plak Rich Text</value>
     <comment>Ribbon OneMore menu item, paste rich text</comment>
@@ -5744,6 +5748,10 @@ Tabblad Help</value>
   </data>
   <data name="ribResizeContainerToPresetWidthButton_Label" xml:space="preserve">
     <value>Wijzig het formaat van de container naar de vooraf ingestelde breedte</value>
+    <comment>page context menu</comment>
+  </data>
+  <data name="ribResizeContainerToPresetWidthButton_Screentip" xml:space="preserve">
+    <value>Wijzig het formaat van de geselecteerde container naar een vooraf ingestelde breedte</value>
     <comment>page context menu</comment>
   </data>
   <data name="ribRestartTimerButton_Label" xml:space="preserve">
