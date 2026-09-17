@@ -5,7 +5,10 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
+	using River.OneMoreAddIn.Settings;
+	using System;
 	using System.Collections.Generic;
+	using System.Drawing;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
@@ -31,6 +34,14 @@ namespace River.OneMoreAddIn.Commands
 			return base.Execute(false);
 		}
 	}
+	internal class PastePresetWidthImageCommand : AdjustImagesCommand
+	{
+		public PastePresetWidthImageCommand() : base() { }
+		public override Task Execute(params object[] args)
+		{
+			return base.Execute(true, true);
+		}
+	}
 	#endregion Wrappers
 
 
@@ -39,8 +50,15 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class AdjustImagesCommand : Command
 	{
+		// estimated per-level indent at 100% display scaling; scaled by the current
+		// monitor's DPI factor since the visual indent step grows with it
+		private const int IndentUnit = 36;
+		// floor so a deeply nested preset-width paste never collapses to something illegible
+		private const int MinPresetWidth = 150;
+
 		private bool scopeFore;
 		private bool pasting;
+		private bool presetOnly;
 
 
 		public AdjustImagesCommand()
@@ -56,6 +74,7 @@ namespace River.OneMoreAddIn.Commands
 			await using var one = new OneNote(out var page, out var ns, OneNote.PageDetail.All);
 
 			pasting = args.Length > 0 && args[0] is bool b && b;
+			presetOnly = args.Length > 1 && args[1] is bool p && p;
 
 			var elements = pasting
 				? await PreparePastingElement(page, ns)
@@ -115,6 +134,17 @@ namespace River.OneMoreAddIn.Commands
 					new XElement(ns + "Data", image.ToBase64String())
 				);
 
+			if (FindEmptyCursorParagraph(page, ns) is XElement paragraph)
+			{
+				// cursor is a blinking caret in an otherwise empty paragraph; insert directly
+				// into it rather than going through anchor/extraction math, which anchors
+				// relative to sibling paragraphs and, once a paragraph is indented into its
+				// own nested OEChildren with no siblings, lands before it instead of in it
+				paragraph.Elements().Where(e => e.Name.LocalName != "List").Remove();
+				paragraph.Add(element);
+				return new List<XElement> { element };
+			}
+
 			var editor = new PageEditor(page);
 			editor.ExtractSelectedContent(breakParagraph: true);
 
@@ -130,6 +160,31 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return new List<XElement> { element };
+		}
+
+
+		// Finds the OE containing the cursor when it is nothing more than a blinking caret
+		// in an empty paragraph (no real text/content), so the image can be inserted directly
+		// into that paragraph. Returns null for anything else (real selected text/content, no
+		// selection found at all, etc.) so the caller falls back to the normal extract/anchor
+		// path, which already handles those cases correctly.
+		private static XElement FindEmptyCursorParagraph(Page page, XNamespace ns)
+		{
+			var marked = page.Root.Elements(ns + "Outline").Descendants(ns + "OE")
+				.Elements()
+				.Where(e => e.Attribute("selected")?.Value == "all")
+				.ToList();
+
+			if (marked.Count != 1 || marked[0].Name.LocalName != "T" ||
+				marked[0].GetCData().Value != string.Empty)
+			{
+				return null;
+			}
+
+			var paragraph = marked[0].Parent;
+			var content = paragraph.Elements().Where(e => e.Name.LocalName != "List").ToList();
+
+			return content.Count == 1 ? paragraph : null;
 		}
 
 
@@ -188,7 +243,17 @@ namespace River.OneMoreAddIn.Commands
 			var wrapper = new OneImage(element);
 			using var image = wrapper.ReadImage();
 
-			using var dialog = new AdjustImagesDialog(image, wrapper.Width, wrapper.Height);
+			if (presetOnly)
+			{
+				var collection = new SettingsProvider().GetCollection("images");
+				if (collection.Contains("mruWidth"))
+				{
+					ApplyPresetWidth(element, wrapper, image, collection.Get("mruWidth", 500));
+					return true;
+				}
+			}
+
+			using var dialog = new AdjustImagesDialog(image, wrapper.Width, wrapper.Height, presetOnly);
 			var result = dialog.ShowDialog(owner);
 			if (result == DialogResult.OK)
 			{
@@ -201,6 +266,25 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return false;
+		}
+
+
+		// Applies the stored preset width directly to the wrapper, estimating a reduction
+		// for indented insertion points since OneNote does not expose their rendered width.
+		private static void ApplyPresetWidth(XElement element, OneImage wrapper, Image image, int width)
+		{
+			// IndentLevel counts every OEChildren between the element and its nearest
+			// Outline/Cell, including the one baseline OEChildren that even a non-indented
+			// OE always sits in, so subtract 1 to get the actual (relative) indent depth
+			var indent = Math.Max(0, PageEditor.IndentLevel(element) - 1);
+
+			//var (scaleX, _) = UI.Scaling.GetScalingFactors();
+			var scaleX = 1.0f;
+			var reduction = (int)Math.Round(indent * IndentUnit * scaleX);
+
+			var adjusted = Math.Max(MinPresetWidth, width - reduction);
+			var height = (int)Math.Round(image.Height * ((double)adjusted / image.Width));
+			wrapper.SetSize(adjusted, height, true);
 		}
 
 

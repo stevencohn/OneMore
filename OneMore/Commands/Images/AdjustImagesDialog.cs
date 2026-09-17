@@ -20,6 +20,7 @@ namespace River.OneMoreAddIn.Commands
 		private readonly int originalWidth;
 		private readonly int originalHeight;
 		private readonly bool singleImage;
+		private readonly bool forcePreset;
 		private SettingsProvider settings;
 		private Image preview;
 		private int storageSize;
@@ -83,13 +84,20 @@ namespace River.OneMoreAddIn.Commands
 		/// Initializes a new dialog to resize a selected image
 		/// </summary>
 		/// <param name="image"></param>
-		public AdjustImagesDialog(Image image, int viewWidth, int viewHeight)
+		/// <param name="viewWidth"></param>
+		/// <param name="viewHeight"></param>
+		/// <param name="forcePreset">
+		/// True to open directly on the preset width field regardless of the last-used mode,
+		/// used when falling back from a preset-only paste that has no stored preset yet
+		/// </param>
+		public AdjustImagesDialog(Image image, int viewWidth, int viewHeight, bool forcePreset = false)
 		{
 			Initialize();
 
 			MinimumSize = new Size(Width, Height);
 
 			singleImage = true;
+			this.forcePreset = forcePreset;
 
 			this.image = image;
 
@@ -185,31 +193,45 @@ namespace River.OneMoreAddIn.Commands
 			settings = new SettingsProvider();
 			var collection = settings.GetCollection("images");
 
-			int value = collection.Get("mruSizeBy", singleImage ? 0 : 2);
-			if (value == 0)
-			{
-				pctRadio.Checked = true;
-				percentBox.Value = collection.Get("mruPercent", 100);
-				RadioClick(pctRadio, EventArgs.Empty);
-			}
-			else if (value == 1)
-			{
-				absRadio.Checked = true;
-				RadioClick(absRadio, EventArgs.Empty);
-			}
-			else if (value == 2)
+			if (forcePreset)
 			{
 				presetRadio.Checked = true;
 				RadioClick(presetRadio, EventArgs.Empty);
 			}
 			else
 			{
-				autoSizeRadio.Checked = true;
-				RadioClick(autoSizeRadio, EventArgs.Empty);
+				int value = collection.Get("mruSizeBy", singleImage ? 0 : 2);
+				if (value == 0)
+				{
+					pctRadio.Checked = true;
+					percentBox.Value = collection.Get("mruPercent", 100);
+					RadioClick(pctRadio, EventArgs.Empty);
+				}
+				else if (value == 1)
+				{
+					absRadio.Checked = true;
+					RadioClick(absRadio, EventArgs.Empty);
+				}
+				else if (value == 2)
+				{
+					presetRadio.Checked = true;
+					RadioClick(presetRadio, EventArgs.Empty);
+				}
+				else
+				{
+					autoSizeRadio.Checked = true;
+					RadioClick(autoSizeRadio, EventArgs.Empty);
+				}
 			}
 
 			presetBox.Value = collection.Get("mruWidth",
 				settings.GetCollection(nameof(ImagesSheet)).Get("presetWidth", 500));
+
+			if (forcePreset)
+			{
+				presetBox.Focus();
+				presetBox.Select(0, presetBox.Text.Length);
+			}
 
 			if (singleImage)
 			{

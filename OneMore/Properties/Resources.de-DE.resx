@@ -5479,6 +5479,10 @@ Registerkarte „Hilfe“.</value>
     <value>Stellen Sie das Bild aus der Zwischenablage ein und fügen Sie sie ein</value>
     <comment>images menu</comment>
   </data>
+  <data name="ribPastePresetWidthImageButton_Label" xml:space="preserve">
+    <value>Bild mit voreingestellter Breite einfügen</value>
+    <comment>images menu</comment>
+  </data>
   <data name="ribPasteRtfButton_Label" xml:space="preserve">
     <value>Rich Text einfügen</value>
     <comment>Ribbon OneMore menu item, paste rich text</comment>
@@ -5737,6 +5741,10 @@ Registerkarte „Hilfe“.</value>
   <data name="ribResetTasksButton_Screentip" xml:space="preserve">
     <value>Deaktivieren Sie alle abgeschlossenen Aufgaben auf dieser Seite und setzen Sie sie zurück</value>
     <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribResizeContainerToPresetWidthButton_Label" xml:space="preserve">
+    <value>Ändern Sie die Größe des Containers auf die voreingestellte Breite</value>
+    <comment>page context menu</comment>
   </data>
   <data name="ribRestartTimerButton_Label" xml:space="preserve">
     <value>Timer neu starten</value>

@@ -5480,6 +5480,10 @@ Zakładka Pomoc</value>
     <value>Dostosuj i wklej obraz ze schowka</value>
     <comment>images menu</comment>
   </data>
+  <data name="ribPastePresetWidthImageButton_Label" xml:space="preserve">
+    <value>Wklej obraz o zadanej szerokości</value>
+    <comment>images menu</comment>
+  </data>
   <data name="ribPasteRtfButton_Label" xml:space="preserve">
     <value>Wklej bogaty tekst</value>
     <comment>Ribbon OneMore menu item, paste rich text NODUP</comment>
@@ -5737,6 +5741,10 @@ Zakładka Pomoc</value>
   <data name="ribResetTasksButton_Screentip" xml:space="preserve">
     <value>Odznacz i zresetuj wszystkie ukończone zadania na tej stronie</value>
     <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribResizeContainerToPresetWidthButton_Label" xml:space="preserve">
+    <value>Zmień rozmiar kontenera na ustawioną szerokość</value>
+    <comment>page context menu</comment>
   </data>
   <data name="ribRestartTimerButton_Label" xml:space="preserve">
     <value>Uruchom ponownie stoper</value>
