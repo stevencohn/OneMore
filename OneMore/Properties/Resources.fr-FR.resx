@@ -5491,6 +5491,10 @@ Onglet Aide</value>
     <value>Ajuster et coller l'image à partir du presse-papiers</value>
     <comment>images menu</comment>
   </data>
+  <data name="ribPastePresetWidthImageButton_Label" xml:space="preserve">
+    <value>Coller l'image avec une largeur prédéfinie</value>
+    <comment>images menu</comment>
+  </data>
   <data name="ribPasteRtfButton_Label" xml:space="preserve">
     <value>Coller du texte enrichi</value>
     <comment>Ribbon OneMore menu item, paste rich text</comment>
@@ -5748,6 +5752,10 @@ Onglet Aide</value>
   <data name="ribResetTasksButton_Screentip" xml:space="preserve">
     <value>Décochez et réinitialisez toutes les tâches terminées sur cette page</value>
     <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribResizeContainerToPresetWidthButton_Label" xml:space="preserve">
+    <value>Redimensionner le conteneur à une largeur prédéfinie</value>
+    <comment>page context menu</comment>
   </data>
   <data name="ribRestartTimerButton_Label" xml:space="preserve">
     <value>Redémarrer la minuterie</value>

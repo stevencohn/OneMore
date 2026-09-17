@@ -5480,6 +5480,10 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <value>התאם והדבק תמונה מהלוח</value>
     <comment>images menu</comment>
   </data>
+  <data name="ribPastePresetWidthImageButton_Label" xml:space="preserve">
+    <value>הדבק תמונה עם רוחב מוגדר מראש</value>
+    <comment>images menu</comment>
+  </data>
   <data name="ribPasteRtfButton_Label" xml:space="preserve">
     <value>הדבק טקסט עשיר</value>
     <comment>Ribbon OneMore menu item, paste rich text NODUP</comment>
@@ -5737,6 +5741,10 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
   <data name="ribResetTasksButton_Screentip" xml:space="preserve">
     <value>בטל את הסימון ואפס את כל המשימות שהושלמו בדף זה</value>
     <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribResizeContainerToPresetWidthButton_Label" xml:space="preserve">
+    <value>שנה את גודל המיכל לרוחב מוגדר מראש</value>
+    <comment>page context menu</comment>
   </data>
   <data name="ribRestartTimerButton_Label" xml:space="preserve">
     <value>הפעל מחדש את הטיימר</value>

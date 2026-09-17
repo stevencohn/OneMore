@@ -5479,6 +5479,10 @@ Pestaña Ayuda</value>
     <value>Ajustar y pegar la imagen del portapapeles</value>
     <comment>images menu</comment>
   </data>
+  <data name="ribPastePresetWidthImageButton_Label" xml:space="preserve">
+    <value>Pegar imagen con ancho preestablecido</value>
+    <comment>images menu</comment>
+  </data>
   <data name="ribPasteRtfButton_Label" xml:space="preserve">
     <value>Pegar texto enriquecido</value>
     <comment>Ribbon OneMore menu item, paste rich text</comment>
@@ -5736,6 +5740,10 @@ Pestaña Ayuda</value>
   <data name="ribResetTasksButton_Screentip" xml:space="preserve">
     <value>Desmarque y restablezca todas las tareas completadas en esta página</value>
     <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribResizeContainerToPresetWidthButton_Label" xml:space="preserve">
+    <value>Cambiar el tamaño del contenedor al ancho preestablecido</value>
+    <comment>page context menu</comment>
   </data>
   <data name="ribRestartTimerButton_Label" xml:space="preserve">
     <value>Reiniciar temporizador</value>

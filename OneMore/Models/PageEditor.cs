@@ -987,7 +987,7 @@ namespace River.OneMoreAddIn.Models
 		}
 
 
-		private static int IndentLevel(XElement element)
+		internal static int IndentLevel(XElement element)
 		{
 			if (element is null || element.Parent is null)
 			{

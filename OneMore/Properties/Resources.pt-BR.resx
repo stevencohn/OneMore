@@ -5480,6 +5480,10 @@ Guia Ajuda</value>
     <value>Ajustar e colar a imagem da área de transferência</value>
     <comment>images menu</comment>
   </data>
+  <data name="ribPastePresetWidthImageButton_Label" xml:space="preserve">
+    <value>Colar imagem com largura predefinida</value>
+    <comment>images menu</comment>
+  </data>
   <data name="ribPasteRtfButton_Label" xml:space="preserve">
     <value>Colar Rich Text</value>
     <comment>Ribbon OneMore menu item, paste rich text</comment>
@@ -5737,6 +5741,10 @@ Guia Ajuda</value>
   <data name="ribResetTasksButton_Screentip" xml:space="preserve">
     <value>Desmarque e redefina todas as tarefas concluídas nesta página</value>
     <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribResizeContainerToPresetWidthButton_Label" xml:space="preserve">
+    <value>Redimensionar contêiner para largura predefinida</value>
+    <comment>page context menu</comment>
   </data>
   <data name="ribRestartTimerButton_Label" xml:space="preserve">
     <value>Reiniciar temporizador</value>

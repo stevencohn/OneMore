@@ -5480,6 +5480,10 @@ Tabblad Help</value>
     <value>Pas en plak de afbeelding van het klembord</value>
     <comment>images menu</comment>
   </data>
+  <data name="ribPastePresetWidthImageButton_Label" xml:space="preserve">
+    <value>Afbeelding plakken met vooraf ingestelde breedte</value>
+    <comment>images menu</comment>
+  </data>
   <data name="ribPasteRtfButton_Label" xml:space="preserve">
     <value>Plak Rich Text</value>
     <comment>Ribbon OneMore menu item, paste rich text</comment>
@@ -5737,6 +5741,10 @@ Tabblad Help</value>
   <data name="ribResetTasksButton_Screentip" xml:space="preserve">
     <value>Schakel alle voltooide taken op deze pagina uit en reset ze</value>
     <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribResizeContainerToPresetWidthButton_Label" xml:space="preserve">
+    <value>Wijzig het formaat van de container naar de vooraf ingestelde breedte</value>
+    <comment>page context menu</comment>
   </data>
   <data name="ribRestartTimerButton_Label" xml:space="preserve">
     <value>Start de timer opnieuw</value>

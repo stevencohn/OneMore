@@ -5509,6 +5509,10 @@ Help Tab</value>
     <value>Adjust and paste image from clipboard</value>
     <comment>images menu</comment>
   </data>
+  <data name="ribPastePresetWidthImageButton_Label" xml:space="preserve">
+    <value>Paste Image With Preset Width</value>
+    <comment>images menu</comment>
+  </data>
   <data name="ribPasteRtfButton_Label" xml:space="preserve">
     <value>Paste Rich Text</value>
     <comment>ribbon edit NODUP</comment>
@@ -5767,6 +5771,10 @@ Help Tab</value>
   <data name="ribResetTasksButton_Screentip" xml:space="preserve">
     <value>Uncheck and reset all completed tasks on this page</value>
     <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribResizeContainerToPresetWidthButton_Label" xml:space="preserve">
+    <value>Resize Container to Preset Width</value>
+    <comment>page context menu</comment>
   </data>
   <data name="ribRestartTimerButton_Label" xml:space="preserve">
     <value>Restart Timer</value>

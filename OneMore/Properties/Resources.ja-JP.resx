@@ -5484,6 +5484,10 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <value>クリップボードから画像を調整して貼り付けます</value>
     <comment>images menu</comment>
   </data>
+  <data name="ribPastePresetWidthImageButton_Label" xml:space="preserve">
+    <value>プリセット幅で画像を貼り付け</value>
+    <comment>images menu</comment>
+  </data>
   <data name="ribPasteRtfButton_Label" xml:space="preserve">
     <value>リッチテキストの貼り付け</value>
     <comment>ribbon edit NODUP</comment>
@@ -5742,6 +5746,10 @@ TF-IDF コサイン、語彙の重複、構造</value>
   <data name="ribResetTasksButton_Screentip" xml:space="preserve">
     <value>このページ上の完了したタスクをすべてオフにしてリセットします</value>
     <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribResizeContainerToPresetWidthButton_Label" xml:space="preserve">
+    <value>コンテナのサイズをプリセット幅に変更</value>
+    <comment>page context menu</comment>
   </data>
   <data name="ribRestartTimerButton_Label" xml:space="preserve">
     <value>リスタートタイマー</value>
