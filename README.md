@@ -9,37 +9,105 @@ OneMore is an add-in for OneNote with simple and powerful features that make One
 # [![version](https://img.shields.io/github/v/release/stevencohn/OneMore?display_name=tag&color=7E5C81)](https://github.com/stevencohn/OneMore/releases/latest) [![downloads](https://img.shields.io/github/downloads/stevencohn/OneMore/total?color=blue)](https://github.com/stevencohn/OneMore/releases/latest) [![platform](https://img.shields.io/badge/platform-windows%20%7C%20onenote%20desktop-649BC1)](https://onemoreaddin.com/get-started/How%20to%20Install%20OneNote.htm) [![GitHub license](https://img.shields.io/badge/license-mpl--2.0-BF6A48)](https://github.com/stevencohn/OneMore/blob/main/LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://onemoreaddin.com/developers/Setup.htm) ![](https://tokei.rs/b1/github/project-jedi/jcl)
 
 
-# Highlights
-- Quickly access all OneMore commands from the almighty [OneMore: Command Palette](https://onemoreaddin.com/the-basics/Command%20Palette.htm)!
-- Automate over 40 OneMore commands from the command-line using [the OneMore CLI Runner](https://onemoreaddin.com/the-basics/OneMore%20CLI.htm)
-- Type and search for [inline #hashtags](https://onemoreaddin.com/commands/Hashtag%20Commands.htm)
-- Use the [Navigator window](https://onemoreaddin.com/the-basics/Navigator%20and%20History.htm) to keep track of visited pages, a personalized reading list, and navigate the headings of the current page.
-- Integrating with the [ribbon bar](https://onemoreaddin.com/the-basics/Ribbon%20Menus.htm), extends <a href="https://onemoreaddin.com/context-menus/Context%20Menu%20Extensions.htm">context menus</a>, and provides customized <a href="https://onemoreaddin.com/the-basics/OneNote%20Keyboard%20Shortcuts.htm">keyboard shortcuts</a>
-- Create [customized font styles](https://onemoreaddin.com/commands/My%20Styles%20Commands.htm) in addition to those provided by OneNote, apply a style to selected text, or apply all styles to the entire page
-- Use predefined [table styles](https://onemoreaddin.com/commands/Table%20Style%20Commands.htm) or create your own to selectively set cell background and fonts
-- Manage a collection of [favorite pages and section](https://onemoreaddin.com/the-basics/Favorites.htm) with shortcuts to quickly jump to a favorite
-- Add [colorized syntax highlighting](https://onemoreaddin.com/commands/Colorize%20Command.htm) to snippets of source code
-- Add [formulas in table cells](https://onemoreaddin.com/commands/Table%20Commands.htm) using Excel-like expressions
-- [Crop, rotate, or adjust images](https://onemoreaddin.com/commands/Image%20Commands.htm) on a page without opening an external photo editor
-- Save and reuse [custom snippets](https://onemoreaddin.com/commands/Snippets%20Commands.htm) of content anywhere on any page
-- - And many, many more… see below
+## Everything OneNote should have shipped with
 
-## Screenshots
+A few hundred small conveniences, all built into one add-in. Free, open source, and installs in under a minute.
 
-| Some of the OneMore menus | The OneMore Calendar |
-|---|---|
-| ![screenshot](OneMore/Properties/Images/Screenshot.png) | ![Calendar](OneMore/Properties/Images/Calendar.png) |
-_Click an image to enlarge_
+### Key Features
 
-## 💁 Features - Over 240 commands and growing!
-*Want more from OneMore? OneMore has more...*
+- **[Command Palette](https://onemoreaddin.com/the-basics/Command%20Palette.htm)** — Access 200+ commands or use the Quick Palette to apply styles, without leaving the keyboard
+- **Styles & Formatting** — One-click [text styles](https://onemoreaddin.com/commands/My%20Styles%20Commands.htm) and [table styles](https://onemoreaddin.com/commands/Table%20Style%20Commands.htm), custom color themes, and consistent formatting across every notebook
+- **[Table of Contents](https://onemoreaddin.com/commands/Snippets%20Commands.htm#table-of-contents)** — Auto-generate a table of contents for any page, section, or notebook — kept in sync as you edit
+- **Code & Markdown** — Paste [Markdown](https://onemoreaddin.com/commands/Edit%20Commands.htm#markdown) straight into OneNote, or drop in [syntax-highlighted](https://onemoreaddin.com/commands/Colorize%20Command.htm) code boxes for snippets
+- **Favorites & Hashtags** — Pin your most-used pages as [Favorites](https://onemoreaddin.com/the-basics/Favorites.htm), and tag notes with [inline #hashtags](https://onemoreaddin.com/commands/Hashtag%20Commands.htm) to find them instantly
+- **[Image Editing & Diagrams](https://onemoreaddin.com/commands/Image%20Commands.htm)** — Crop, rotate, and adjust images without leaving OneNote — plus render Mermaid and PlantUML diagrams
+- **[Snippets](https://onemoreaddin.com/commands/Snippets%20Commands.htm)** — Save any block of content as a reusable snippet, then drop it into any page whenever you need it
+- **[Free & Open Source](https://github.com/stevencohn/OneMore)** — No subscription, no telemetry opt-in required, no catch. Built in the open on GitHub since 2018
 
-See the 📓 **[OneMore Wiki](https://onemoreaddin.com/)** for a full user guide, setup instructions,
-and description of each command.
+### Popular with Users
 
-## 🔒 Privacy and code signing policy
-The OneMore [Privacy Policy](https://onemoreaddin.com/get-started/Privacy%20Policy.htm) outlines how OneMore collects and uses information. In general, OneMore is committed to protecting your privacy and does not collect any personal information.
+Top commands from real usage across the OneMore community:
+- **[Apply Style](https://onemoreaddin.com/commands/My%20Styles%20Commands.htm)** — 23,902 uses/month
+- **[Paste Text](https://onemoreaddin.com/commands/Edit%20Commands.htm#paste-and-keep-text-only)** — 9,055 uses/month  
+- **[Insert TOC](https://onemoreaddin.com/commands/Snippets%20Commands.htm#table-of-contents)** — 8,543 uses/month
+- **[Join Paragraph](https://onemoreaddin.com/commands/Edit%20Commands.htm#join-paragraph)** — 7,670 uses/month
+- **[Insert Code Box](https://onemoreaddin.com/commands/Snippets%20Commands.htm#code-box)** — 5,197 uses/month
+- **[Colorize](https://onemoreaddin.com/commands/Colorize%20Command.htm)** — 5,155 uses/month
 
-Pending: _This program uses free code signing provided by [SignPath.io](https://signpath.io), and a certificate by the SignPath Foundation. Signed releases are published only by the repo owner, Steven Cohn._
+See the full [OneMore Wiki](https://onemoreaddin.com/) for complete feature documentation and command descriptions.
 
-© 2020 Steven M Cohn. All rights reserved.
+### Get Started
+
+- **[Installation Guide](https://onemoreaddin.com/get-started/index.html)** — Step-by-step setup instructions
+- **[Feature Documentation](https://onemoreaddin.com/)** — Full user guide and command reference
+- **[Command Line Interface](https://onemoreaddin.com/the-basics/OneMore%20CLI.htm)** — Automate 40+ commands from the command line
+
+---
+
+# For Developers
+
+OneMore is a comprehensive OneNote add-in built with C# and the OneNote Object Model. The project is organized into multiple components to support core functionality, testing, and deployment.
+
+### Repository Structure
+
+**Core Components**
+- **OneMore/** — Primary add-in source code and ribbon UI
+- **OneMoreCalendar/** — Specialized calendar application for tracking page creation/modification
+- **OneMoreCli/** — Command-line interface runner for automating OneMore commands
+- **OneMoreTray/** — System tray application component
+- **OneMoreProtocolHandler/** — URI protocol handler for deep linking
+
+**Setup & Installation**
+- **OneMoreSetup/** — Installation package and setup wizard
+- **OneMoreSetupActions/** — Custom setup actions and configuration
+- **OneMoreBundle/** — Bundle packaging utilities
+
+**Testing & Quality**
+- **OneMoreTests/** — Unit and integration test suite
+
+**Extensibility**
+- **Plugins/** — Plugin architecture for extending OneMore functionality
+- **Templates/** — Reusable content templates
+- **Themes/** — UI theme definitions and customization
+
+**Documentation & Resources**
+- **docs/** — User documentation, guides, and website source
+- **Reference/** — Reference materials and specifications
+- **packers/** — Packaging and distribution utilities
+
+### Build & Development
+
+The project uses a Visual Studio solution structure (OneMore.sln) with PowerShell build scripts for compilation and deployment.
+
+**Key Technologies**
+- **Language:** C# (.NET Framework)
+- **Platform:** Windows Desktop with OneNote Desktop integration
+- **UI Framework:** OneNote Ribbon UI and WinForms/WPF components
+- **Testing:** Unit tests in OneMoreTests
+
+**Build Requirements**
+- Visual Studio 2019 or later
+- .NET Framework 4.7.2 or higher
+- OneNote Desktop Edition
+
+See the [Developers Guide](https://onemoreaddin.com/developers/Setup.htm) for detailed setup instructions and contribution guidelines.
+
+### Solution Architecture
+
+The modular architecture allows OneMore to:
+- Maintain a stable core add-in (OneMore/) while supporting specialized features
+- Provide automation through the CLI runner without bloating the main add-in
+- Enable plugin-based extensibility for advanced users
+- Separate concerns between UI (Calendar, Tray), backend (Core), and tooling (CLI)
+
+### License & Privacy
+
+OneMore is released under the [Mozilla Public License 2.0](https://github.com/stevencohn/OneMore/blob/main/LICENSE). See the [Privacy Policy](https://onemoreaddin.com/get-started/Privacy%20Policy.htm) for information about how we handle user data — we don't collect personal information and remain committed to your privacy.
+
+### Contributing
+
+Contributions are welcome! Please see the [Developers Guide](https://onemoreaddin.com/developers/Setup.htm) for information on setting up a development environment and submitting pull requests.
+
+---
+
+**© 2020 Steven M Cohn. All rights reserved.**
