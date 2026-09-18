@@ -15,14 +15,14 @@ A few hundred small conveniences, all built into one add-in. Free, open source, 
 
 ### Key Features
 
-- **[Command Palette](https://onemoreaddin.com/the-basics/Command%20Palette.htm)** — Access 200+ commands or use the Quick Palette to apply styles, without leaving the keyboard
-- **Styles & Formatting** — One-click [text styles](https://onemoreaddin.com/commands/My%20Styles%20Commands.htm) and [table styles](https://onemoreaddin.com/commands/Table%20Style%20Commands.htm), custom color themes, and consistent formatting across every notebook
-- **[Table of Contents](https://onemoreaddin.com/commands/Snippets%20Commands.htm#table-of-contents)** — Auto-generate a table of contents for any page, section, or notebook — kept in sync as you edit
-- **Code & Markdown** — Paste [Markdown](https://onemoreaddin.com/commands/Edit%20Commands.htm#markdown) straight into OneNote, or drop in [syntax-highlighted](https://onemoreaddin.com/commands/Colorize%20Command.htm) code boxes for snippets
-- **Favorites & Hashtags** — Pin your most-used pages as [Favorites](https://onemoreaddin.com/the-basics/Favorites.htm), and tag notes with [inline #hashtags](https://onemoreaddin.com/commands/Hashtag%20Commands.htm) to find them instantly
-- **[Image Editing & Diagrams](https://onemoreaddin.com/commands/Image%20Commands.htm)** — Crop, rotate, and adjust images without leaving OneNote — plus render Mermaid and PlantUML diagrams
-- **[Snippets](https://onemoreaddin.com/commands/Snippets%20Commands.htm)** — Save any block of content as a reusable snippet, then drop it into any page whenever you need it
-- **[Free & Open Source](https://github.com/stevencohn/OneMore)** — No subscription, no telemetry opt-in required, no catch. Built in the open on GitHub since 2018
+- Use the **[Command Palette](https://onemoreaddin.com/the-basics/Command%20Palette.htm)** and **[Quick Palette](https://onemoreaddin.com/the-basics/Quick%20Palette.htm)** - 200+ commands and styles without leaving the keyboard
+- Custom **[Text styles](https://onemoreaddin.com/commands/My%20Styles%20Commands.htm)** and **[Table themes](https://onemoreaddin.com/commands/Table%20Style%20Commands.htm)** provide consistent formatting across all notebooks
+- Aut-generate **[Table of Contents](https://onemoreaddin.com/commands/Snippets%20Commands.htm#table-of-contents)** for any page, section, or notebook — kept in sync as you edit
+- Paste **[Markdown](https://onemoreaddin.com/commands/Edit%20Commands.htm#markdown)** straight into OneNote, or drop in **[syntax-highlighted](https://onemoreaddin.com/commands/Colorize%20Command.htm)** code boxes for snippets
+- Pin your most-used pages as **[Favorites](https://onemoreaddin.com/the-basics/Favorites.htm)** and tag notes with **[inline #hashtags](https://onemoreaddin.com/commands/Hashtag%20Commands.htm)** to find them instantly
+- Crop, rotate, and **[Adjust images](https://onemoreaddin.com/commands/Image%20Commands.htm)** without leaving OneNote — plus render Mermaid and PlantUML diagrams
+- Save any block of content as a reusable **[Snippet](https://onemoreaddin.com/commands/Snippets%20Commands.htm)**, then drop it into any page whenever you need it
+- No subscription, no telemetry opt-in required, no catch. Built in the open on GitHub since 2018
 
 ### Popular with Users
 
