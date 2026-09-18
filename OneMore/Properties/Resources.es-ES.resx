@@ -6437,7 +6437,8 @@ Las palabras sin comillas coinciden en cualquier orden; Utilice comillas para un
     <comment>link</comment>
   </data>
   <data name="SearchDialogText_scopeOptions" xml:space="preserve">
-    <value>En este cuaderno
+    <value>en este cuaderno
+En este grupo de secciones
 En esta sección
 En esta página</value>
     <comment>combobox</comment>

@@ -6439,8 +6439,9 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
   </data>
   <data name="SearchDialogText_scopeOptions" xml:space="preserve">
     <value>במחברת זו
-בחלק זה
-בדף זה</value>
+בקבוצת מדור זה
+בסעיף זה
+בעמוד הזה</value>
     <comment>combobox</comment>
   </data>
   <data name="SearchEngineSheet_DeleteMessage" xml:space="preserve">

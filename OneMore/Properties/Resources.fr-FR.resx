@@ -6450,6 +6450,7 @@ Les mots non cités correspondent dans n'importe quel ordre ; utilisez des guil
   </data>
   <data name="SearchDialogText_scopeOptions" xml:space="preserve">
     <value>Dans ce cahier
+Dans ce groupe de sections
 Dans cette section
 Sur cette page</value>
     <comment>combobox</comment>

@@ -277,6 +277,13 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Gets the ID of the section group containing the currently viewed section, or null
+		/// if the current section sits directly under the notebook root
+		/// </summary>
+		public string CurrentSectionGroupId => WithCurrentWindow(w => w.CurrentSectionGroupId, null);
+
+
+		/// <summary>
 		/// Gets or sets whether exceptions are allowed to fall through back to caller or
 		/// are caught and reported by this class. This is a special case for some consumers
 		/// who wish to handle certain exceptions themselves to serve data management.

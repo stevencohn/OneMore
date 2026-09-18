@@ -6439,6 +6439,7 @@ Niet-geciteerde woorden komen in elke volgorde overeen; gebruik aanhalingstekens
   </data>
   <data name="SearchDialogText_scopeOptions" xml:space="preserve">
     <value>In dit notitieboekje
+In deze sectiegroep
 In deze sectie
 Op deze pagina</value>
     <comment>combobox</comment>

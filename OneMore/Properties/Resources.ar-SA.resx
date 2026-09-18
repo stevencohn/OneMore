@@ -6449,7 +6449,8 @@ ISO-code then comma then language name</comment>
     <comment>link</comment>
   </data>
   <data name="SearchDialogText_scopeOptions" xml:space="preserve">
-    <value>في هذا الكمبيوتر الدفتري
+    <value>في هذا دفتر الملاحظات
+في هذه المجموعة القسم
 في هذا القسم
 في هذه الصفحة</value>
     <comment>combobox</comment>

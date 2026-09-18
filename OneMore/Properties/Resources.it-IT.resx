@@ -6442,6 +6442,7 @@ Le parole non quotate corrispondono in qualsiasi ordine; utilizzare le virgolett
   </data>
   <data name="SearchDialogText_scopeOptions" xml:space="preserve">
     <value>In questo quaderno
+In questa sezione gruppo
 In questa sezione
 In questa pagina</value>
     <comment>combobox</comment>

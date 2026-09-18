@@ -6444,9 +6444,10 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <comment>link</comment>
   </data>
   <data name="SearchDialogText_scopeOptions" xml:space="preserve">
-    <value>このノートブックで
-このセクションで
-このページで</value>
+    <value>このノートでは
+このセクショングループでは
+このセクションでは
+このページでは</value>
     <comment>combobox</comment>
   </data>
   <data name="SearchEngineSheet_DeleteMessage" xml:space="preserve">

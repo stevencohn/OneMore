@@ -30,6 +30,13 @@ namespace River.OneMoreAddIn.Commands
 		private SearchErrorControl errorControl;
 		private Regex lastFinder;
 
+		// scopeBox indices; "In this section group" (index 1) is omitted from the combo
+		// entirely when the current section has no enclosing section group, which shifts
+		// the Section and Page indices down by one
+		private int sectionGroupScopeIndex;
+		private int sectionScopeIndex;
+		private int pageScopeIndex;
+
 
 		public SearchDialog()
 		{
@@ -61,7 +68,22 @@ namespace River.OneMoreAddIn.Commands
 				dateSelector.Items.AddRange(Resx.SearchDialog_dateOptions.Split('\n'));
 			}
 
-			scopeBox.SelectedIndex = 2;
+			bool hasSectionGroup;
+			using (var one = new OneNote())
+			{
+				hasSectionGroup = !string.IsNullOrEmpty(one.CurrentSectionGroupId);
+			}
+
+			if (!hasSectionGroup)
+			{
+				scopeBox.Items.RemoveAt(1);
+			}
+
+			sectionGroupScopeIndex = hasSectionGroup ? 1 : -1;
+			sectionScopeIndex = hasSectionGroup ? 2 : 1;
+			pageScopeIndex = scopeBox.Items.Count - 1;
+
+			scopeBox.SelectedIndex = pageScopeIndex;
 			dateSelector.SelectedIndex = 0;
 			dateTimePicker.MaxDate = DateTime.Today.AddDays(1);
 			pageLabel.Text = string.Empty;
@@ -309,7 +331,18 @@ namespace River.OneMoreAddIn.Commands
 				{
 					await engine.SearchNotebook(one, finder);
 				}
-				else if (scopeBox.SelectedIndex == 1)
+				else if (scopeBox.SelectedIndex == sectionGroupScopeIndex)
+				{
+					// GetSection just calls GetHierarchy(id, hsPages), which is node-kind
+					// agnostic, so it also works for a section group ID (see
+					// CompareCommand.FetchSubtree for the same precedent)
+					var group = await one.GetSection(one.CurrentSectionGroupId);
+					if (group is not null)
+					{
+						await engine.SearchNotebook(one, group, finder);
+					}
+				}
+				else if (scopeBox.SelectedIndex == sectionScopeIndex)
 				{
 					var section = await one.GetSection();
 					await engine.SearchSection(one, section, finder);

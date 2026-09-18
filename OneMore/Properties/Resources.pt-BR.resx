@@ -6439,6 +6439,7 @@ Palavras sem aspas correspondem em qualquer ordem; use aspas para uma frase exat
   </data>
   <data name="SearchDialogText_scopeOptions" xml:space="preserve">
     <value>Neste caderno
+Neste grupo de seções
 Nesta seção
 Nesta página</value>
     <comment>combobox</comment>

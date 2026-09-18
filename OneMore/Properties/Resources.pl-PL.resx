@@ -6439,6 +6439,7 @@ Niecytowane słowa pasują w dowolnej kolejności; użyj cudzysłowu dla dokład
   </data>
   <data name="SearchDialogText_scopeOptions" xml:space="preserve">
     <value>W tym notatniku
+W tej grupie sekcji
 W tej sekcji
 Na tej stronie</value>
     <comment>combobox</comment>

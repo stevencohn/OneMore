@@ -433,6 +433,7 @@ namespace River.OneMoreAddIn.Commands
 			this.scopeBox.FormattingEnabled = true;
 			this.scopeBox.Items.AddRange(new object[] {
             "In this notebook",
+            "In this section group",
             "In this section",
             "On this page"});
 			this.scopeBox.Location = new System.Drawing.Point(826, 9);
