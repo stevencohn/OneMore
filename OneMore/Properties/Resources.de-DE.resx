@@ -6438,7 +6438,8 @@ Vorher geändert</value>
     <comment>link</comment>
   </data>
   <data name="SearchDialogText_scopeOptions" xml:space="preserve">
-    <value>In diesem Notebook
+    <value>In diesem Notizbuch
+In dieser Abschnittsgruppe
 In diesem Abschnitt
 Auf dieser Seite</value>
     <comment>combobox</comment>

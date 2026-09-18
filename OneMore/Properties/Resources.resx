@@ -6474,6 +6474,7 @@ Unquoted words match in any order; use quotes for an exact phrase.</value>
   </data>
   <data name="SearchDialogText_scopeOptions" xml:space="preserve">
     <value>In this notebook
+In this section group
 In this section
 On this page</value>
     <comment>combobox</comment>
