@@ -86,8 +86,8 @@ The project uses a Visual Studio solution structure (OneMore.sln) with PowerShel
 - **Testing:** Unit tests in OneMoreTests
 
 **Build Requirements**
-- Visual Studio 2019 or later
-- .NET Framework 4.7.2 or higher
+- Visual Studio 2026 Community Edition
+- .NET Framework 4.8.1
 - OneNote Desktop Edition
 
 See the [Developers Guide](https://onemoreaddin.com/developers/Setup.htm) for detailed setup instructions and contribution guidelines.
