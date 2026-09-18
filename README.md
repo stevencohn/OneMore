@@ -7,7 +7,7 @@ OneMore is an add-in for OneNote with simple and powerful features that make One
 
 * Download the [latest release](https://github.com/stevencohn/OneMore/releases/latest)
 * Read the [installation instructions](https://onemoreaddin.com/get-started/How%20to%20Install%20OneMore.htm)
-* See the new [OneMore Wiki](https://onemoreaddin.com/) for a full user guide
+* See the [OneMore Guide](https://onemoreaddin.com/) for complete feature documentation and Command descriptions
 
 ## Everything OneNote should have shipped with
 
@@ -34,7 +34,7 @@ Top commands from real usage across the OneMore community:
 - **[Insert Code Box](https://onemoreaddin.com/commands/Snippets%20Commands.htm#code-box)** — 5,197 uses/month
 - **[Colorize](https://onemoreaddin.com/commands/Colorize%20Command.htm)** — 5,155 uses/month
 
-See the full [OneMore Wiki](https://onemoreaddin.com/) for complete feature documentation and command descriptions.
+See the full [OneMore User Guide](https://onemoreaddin.com/) for complete feature documentation and command descriptions.
 
 ### Get Started
 
