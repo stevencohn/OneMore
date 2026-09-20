@@ -62,7 +62,8 @@ namespace River.OneMoreAddIn.Commands
 				});
 
 				scopeBox.Items.Clear();
-				scopeBox.Items.AddRange(Resx.SearchDialogText_scopeOptions.Split('\n'));
+				scopeBox.Items.AddRange(
+					Resx.SearchDialogText_scopeOptions.Split('\n').Select(s => s.Trim()).ToArray());
 
 				dateSelector.Items.Clear();
 				dateSelector.Items.AddRange(Resx.SearchDialog_dateOptions.Split('\n'));

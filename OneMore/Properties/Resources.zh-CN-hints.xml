@@ -1777,11 +1777,17 @@
     </hint>
     <hint name="SearchDialogText_scopeOptions">
         <source>In this notebook
+            In this section group
             In this section
             On this page</source>
         <preferred>在此笔记本中
+            在此分区组中
             在此分区中
             在此页面上</preferred>
+    </hint>
+    <hint name="SearchDialog_matchBox.Text">
+        <source>Match case</source>
+        <preferred>区分大小写</preferred>
     </hint>
     <hint name="SearchEngineSheet_refreshButton.Text">
         <source>Refresh icons</source>
