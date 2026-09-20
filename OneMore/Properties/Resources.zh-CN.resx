@@ -6432,7 +6432,7 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <comment>label</comment>
   </data>
   <data name="SearchDialog_matchBox.Text" xml:space="preserve">
-    <value>火柴盒</value>
+    <value>区分大小写</value>
     <comment>checkbox</comment>
   </data>
   <data name="SearchDialog_menuOpenInNew" xml:space="preserve">
@@ -6453,6 +6453,7 @@ TF-IDF 余弦、词汇重叠、结构</value>
   </data>
   <data name="SearchDialogText_scopeOptions" xml:space="preserve">
     <value>在此笔记本中
+            在此分区组中
             在此分区中
             在此页面上</value>
     <comment>combobox</comment>
