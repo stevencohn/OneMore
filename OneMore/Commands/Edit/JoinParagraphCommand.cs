@@ -25,7 +25,13 @@ namespace River.OneMoreAddIn.Commands
 		// whitespace) -- all of these must count as "space" here
 		private const string Space = @"(?: |&#160;|&nbsp;)";
 		private const string SpaceUnit = @"(?:" + Space + "|<span[^>]*>" + Space + @"*</span>)";
-		private static readonly Regex SoftBreak = new Regex($@"<br>\n{SpaceUnit}*", RegexOptions.Compiled);
+
+		// a soft break can be serialized as <br>, <br/>, or <br /> (with or
+		// without a space before the self-closing slash), optionally followed
+		// by the line's own newline character(s)
+		private static readonly Regex SoftBreak =
+			new Regex($@"<br\s*/?>\r?\n?{SpaceUnit}*", RegexOptions.Compiled);
+
 		private static readonly Regex LeadingSpaces = new Regex($@"^{SpaceUnit}+", RegexOptions.Compiled);
 
 		private XNamespace ns;

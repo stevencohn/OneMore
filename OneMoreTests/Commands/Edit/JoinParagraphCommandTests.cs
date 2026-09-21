@@ -283,6 +283,101 @@ namespace River.OneMoreAddIn.Tests.Commands.Edit
 
 
 		[TestMethod]
+		public async Task JoinParagraph_SelfClosedSoftBreak_WithSiblingOE_JoinsAndRemovesBreak()
+		{
+			// Arrange: real-world repro -- a paragraph with a self-closed soft
+			// break ("<br />" with a space before the slash, not "<br>"), fully
+			// selected together with a sibling OE that should join in too.
+			var oe1 = new XElement(Ns + "OE",
+				new XAttribute("quickStyleIndex", "3"),
+				new XElement(Ns + "T",
+					new XAttribute("selected", "all"),
+					new XCData("one<br />\ntwo")));
+
+			var oe2 = new XElement(Ns + "OE",
+				new XAttribute("quickStyleIndex", "3"),
+				new XElement(Ns + "T",
+					new XAttribute("selected", "all"),
+					new XCData("three")));
+
+			var xml = new PageBuilder(PageId, "Self-Closed Break Test")
+				.WithElement(oe1)
+				.WithElement(oe2)
+				.Build();
+
+			SetupPage(PageId, xml);
+
+			// Act
+			await new JoinParagraphCommand().Execute();
+
+			// Assert
+			var updated = GetUpdatedPage(PageId);
+			Assert.IsNotNull(updated, "UpdatePageContent was never called");
+
+			var oes = updated.Element(Ns + "Outline")
+				.Descendants(Ns + "OE")
+				.Where(e => e.Elements(Ns + "T").Any())
+				.ToList();
+
+			Assert.AreEqual(1, oes.Count,
+				"Expected the soft-break paragraph and its sibling to collapse into one OE");
+
+			var joined = string.Concat(oes[0].Elements(Ns + "T").Select(t => t.GetCData().Value));
+			Assert.IsFalse(joined.Contains("<br"),
+				"The self-closed soft break must be removed, not left embedded in the text");
+			Assert.AreEqual("one two three", joined);
+		}
+
+
+		[TestMethod]
+		public async Task JoinParagraph_CursorAtSelfClosedSoftBreak_WithSiblingOE_JoinsAndRemovesBreak()
+		{
+			// Arrange: same as above, but via a bare cursor parked at the self-closed
+			// soft break, with nothing selected -- exercises the block-join path
+			// together with the self-closed break format together.
+			var oe1 = new XElement(Ns + "OE",
+				new XAttribute("quickStyleIndex", "3"),
+				new XElement(Ns + "T", new XCData("one<br />\n")),
+				new XElement(Ns + "T",
+					new XAttribute("selected", "all"),
+					new XCData(string.Empty)),
+				new XElement(Ns + "T", new XCData("two")));
+
+			var oe2 = new XElement(Ns + "OE",
+				new XAttribute("quickStyleIndex", "3"),
+				new XElement(Ns + "T", new XCData("three")));
+
+			var xml = new PageBuilder(PageId, "Cursor At Self-Closed Break Test")
+				.WithElement(oe1)
+				.WithElement(oe2)
+				.Build();
+
+			SetupPage(PageId, xml);
+
+			// Act
+			await new JoinParagraphCommand().Execute();
+
+			// Assert
+			var updated = GetUpdatedPage(PageId);
+			Assert.IsNotNull(updated, "UpdatePageContent was never called");
+
+			var oes = updated.Element(Ns + "Outline")
+				.Descendants(Ns + "OE")
+				.Where(e => e.Elements(Ns + "T").Any())
+				.ToList();
+
+			Assert.AreEqual(1, oes.Count,
+				"Expected the soft-break paragraph and its sibling to collapse into one OE, " +
+				"with no leftover empty OE debris");
+
+			var joined = string.Concat(oes[0].Elements(Ns + "T").Select(t => t.GetCData().Value));
+			Assert.IsFalse(joined.Contains("<br"),
+				"The self-closed soft break must be removed, not left embedded in the text");
+			Assert.AreEqual("one two three", joined);
+		}
+
+
+		[TestMethod]
 		public async Task JoinParagraph_CursorSplitMidWord_PreservesAdjacentSpace()
 		{
 			// Arrange: no soft breaks at all -- just a plain one-line paragraph where
