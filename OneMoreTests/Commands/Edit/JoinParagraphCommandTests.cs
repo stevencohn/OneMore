@@ -174,6 +174,73 @@ namespace River.OneMoreAddIn.Tests.Commands.Edit
 
 
 		[TestMethod]
+		public async Task JoinParagraph_CursorAtEndOfLine_RealWorldSqlSample_JoinsCorrectly()
+		{
+			// Arrange: reproduces a real page exactly -- cursor (bare, zero-width)
+			// parked at the very end of "SELECT", nothing after it in that OE, and
+			// the next paragraph's indentation is nbsp entities wrapped in their
+			// own <span> for coloring (syntax highlighting). This exercises three
+			// things together: leading indentation hidden inside a span, a
+			// boundary that sits on the far side of the caret (nothing between the
+			// caret and the next paragraph in its own OE), and differing styles.
+			var oe1 = new XElement(Ns + "OE",
+				new XAttribute("alignment", "left"),
+				new XAttribute("quickStyleIndex", "1"),
+				new XAttribute("style",
+					"font-family:'Lucida Console';font-size:10.0pt;color:#2E75B5"),
+				new XElement(Ns + "T", new XCData("SELECT")),
+				new XElement(Ns + "T",
+					new XAttribute("selected", "all"),
+					new XCData(string.Empty)));
+
+			var oe2 = new XElement(Ns + "OE",
+				new XAttribute("alignment", "left"),
+				new XAttribute("quickStyleIndex", "1"),
+				new XAttribute("style", "font-family:'Lucida Console';font-size:10.0pt"),
+				new XElement(Ns + "T", new XCData(
+					"<span style='color:black'>&nbsp;&nbsp;&nbsp;&nbsp;</span>" +
+					"<span style='color:#CC00FF'>GETDATE</span>" +
+					"<span style='color:black'>() </span>" +
+					"<span style='color:#2E75B5'>AS</span>" +
+					"<span style='color:black'> [Today],</span>")));
+
+			var xml = new PageBuilder(PageId, "Real World Sql Test")
+				.WithElement(oe1)
+				.WithElement(oe2)
+				.Build();
+
+			SetupPage(PageId, xml);
+
+			// Act
+			await new JoinParagraphCommand().Execute();
+
+			// Assert
+			var updated = GetUpdatedPage(PageId);
+			Assert.IsNotNull(updated, "UpdatePageContent was never called");
+
+			var oes = updated.Element(Ns + "Outline")
+				.Descendants(Ns + "OE")
+				.Where(e => e.Elements(Ns + "T").Any())
+				.ToList();
+
+			Assert.AreEqual(1, oes.Count, "Expected the two lines to join into a single OE");
+
+			var joined = string.Concat(oes[0].Elements(Ns + "T").Select(t => t.GetCData().Value));
+			Assert.AreEqual(
+				"SELECT <span style=\"font-family:'Lucida Console';font-size:10.0pt\">" +
+				"<span style='color:#CC00FF'>GETDATE</span>" +
+				"<span style='color:black'>() </span>" +
+				"<span style='color:#2E75B5'>AS</span>" +
+				"<span style='color:black'> [Today],</span></span>",
+				joined,
+				"Expected: a single separating space after SELECT (even though the " +
+				"caret sits between it and the paragraph boundary), the span-wrapped " +
+				"nbsp indentation fully stripped, and the second line's own style " +
+				"preserved via an outer span");
+		}
+
+
+		[TestMethod]
 		public async Task JoinParagraph_CaretAtSoftBreak_JoinsLinesIntoSingleParagraph()
 		{
 			// Arrange: one paragraph already containing soft breaks (<br>), with the caret

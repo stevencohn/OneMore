@@ -19,11 +19,14 @@ namespace River.OneMoreAddIn.Commands
 	internal class JoinParagraphCommand : Command
 	{
 		// OneNote commonly encodes preserved indentation as non-breaking-space
-		// entities rather than plain ASCII spaces, so both must count as "space"
-		// here (same convention as StringExtensions.StartsWithWhitespace)
+		// entities rather than plain ASCII spaces (same convention as
+		// StringExtensions.StartsWithWhitespace), and that indentation is often
+		// itself wrapped in its own <span> for coloring (e.g. syntax-highlighted
+		// whitespace) -- all of these must count as "space" here
 		private const string Space = @"(?: |&#160;|&nbsp;)";
-		private static readonly Regex SoftBreak = new Regex($@"<br>\n{Space}*", RegexOptions.Compiled);
-		private static readonly Regex LeadingSpaces = new Regex($@"^{Space}+", RegexOptions.Compiled);
+		private const string SpaceUnit = @"(?:" + Space + "|<span[^>]*>" + Space + @"*</span>)";
+		private static readonly Regex SoftBreak = new Regex($@"<br>\n{SpaceUnit}*", RegexOptions.Compiled);
+		private static readonly Regex LeadingSpaces = new Regex($@"^{SpaceUnit}+", RegexOptions.Compiled);
 
 		private XNamespace ns;
 
@@ -255,9 +258,17 @@ namespace River.OneMoreAddIn.Commands
 			// give the wrong answer for a run whose predecessor already moved
 			var originalParents = runs.Select(r => r.Parent).ToList();
 
+			// the caret is zero-width and contributes no text, so it must be
+			// transparent to boundary detection: a run sitting right next to
+			// the caret still needs to see the real paragraph boundary on the
+			// caret's far side, not treat "same OE as the caret" as "no boundary"
+			var contentIndexes = Enumerable.Range(0, runs.Count)
+				.Where(i => runs[i] != caret)
+				.ToList();
+
 			if (first != caret)
 			{
-				Defrag(first, runs, 0, originalParents, parent);
+				Defrag(first, runs, 0, originalParents, parent, contentIndexes);
 			}
 
 			// let OneNote combine and optimize so we don't have to...
@@ -279,7 +290,7 @@ namespace River.OneMoreAddIn.Commands
 					continue;
 				}
 
-				Defrag(run, runs, i, originalParents, parent);
+				Defrag(run, runs, i, originalParents, parent, contentIndexes);
 
 				// collate all runs into first run's parent
 				if (run.Parent != parent)
@@ -292,7 +303,8 @@ namespace River.OneMoreAddIn.Commands
 
 
 		private void Defrag(
-			XElement run, List<XElement> runs, int index, List<XElement> originalParents, XElement survivor)
+			XElement run, List<XElement> runs, int index, List<XElement> originalParents,
+			XElement survivor, List<int> contentIndexes)
 		{
 			// deselect
 			run.Attributes().Where(a => a.Name == "selected").Remove();
@@ -304,7 +316,13 @@ namespace River.OneMoreAddIn.Commands
 			// single separating space rather than the original indentation
 			var text = SoftBreak.Replace(cdata.Value, " ");
 
-			if (index > 0 && originalParents[index] != originalParents[index - 1])
+			// find the nearest real (non-caret) neighbors on either side, so a
+			// run sitting next to the caret still detects the true boundary
+			var pos = contentIndexes.IndexOf(index);
+			int? prevIndex = pos > 0 ? contentIndexes[pos - 1] : null;
+			int? nextIndex = pos < contentIndexes.Count - 1 ? contentIndexes[pos + 1] : null;
+
+			if (prevIndex is not null && originalParents[index] != originalParents[prevIndex.Value])
 			{
 				// this run is the first piece of a new hard-break paragraph (a
 				// "line" other than the first); its own leading indentation is
@@ -313,8 +331,8 @@ namespace River.OneMoreAddIn.Commands
 				text = LeadingSpaces.Replace(text, string.Empty);
 			}
 
-			if ((index < runs.Count - 1) &&
-				(originalParents[index] != originalParents[index + 1]) &&
+			if (nextIndex is not null &&
+				originalParents[index] != originalParents[nextIndex.Value] &&
 				!text.EndsWithWhitespace())
 			{
 				text = $"{text} ";
