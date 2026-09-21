@@ -657,7 +657,7 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<InvertSelectionCommand>();
 
 
-		[Command("ribJoinParagraphButton_Label", Keys.None, "ribEditMenu")]
+		[Command("ribJoinParagraphButton_Label", Keys.Control | Keys.J, "ribEditMenu")]
 		public async Task JoinParagraphCmd(IRibbonControl control)
 			=> await factory.Run<JoinParagraphCommand>();
 
