@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.Models;
 	using System.Collections.Generic;
 	using System.Linq;
+	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
 	using Resx = Properties.Resources;
@@ -17,6 +18,13 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal class JoinParagraphCommand : Command
 	{
+		// OneNote commonly encodes preserved indentation as non-breaking-space
+		// entities rather than plain ASCII spaces, so both must count as "space"
+		// here (same convention as StringExtensions.StartsWithWhitespace)
+		private const string Space = @"(?: |&#160;|&nbsp;)";
+		private static readonly Regex SoftBreak = new Regex($@"<br>\n{Space}*", RegexOptions.Compiled);
+		private static readonly Regex LeadingSpaces = new Regex($@"^{Space}+", RegexOptions.Compiled);
+
 		private XNamespace ns;
 
 
@@ -143,10 +151,10 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private bool IsBlockMember(XElement oe, (string quickStyle, string style) fingerprint)
+		private bool IsBlockMember(XElement oe, string fingerprint)
 		{
 			return IsPlainParagraph(oe) && !IsBlank(oe) &&
-				GetStyleFingerprint(oe).Equals(fingerprint);
+				GetStyleFingerprint(oe) == fingerprint;
 		}
 
 
@@ -167,9 +175,14 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private static (string quickStyle, string style) GetStyleFingerprint(XElement oe)
+		private static string GetStyleFingerprint(XElement oe)
 		{
-			return ((string)oe.Attribute("quickStyleIndex"), (string)oe.Attribute("style"));
+			// quickStyleIndex is the real "paragraph type" signal (heading vs.
+			// normal, etc.); the free-form "style" attribute captures incidental
+			// per-paragraph formatting (e.g. syntax-highlighting color) that can
+			// legitimately differ between lines of the same kind and must not
+			// block the join
+			return (string)oe.Attribute("quickStyleIndex");
 		}
 
 
@@ -237,9 +250,14 @@ namespace River.OneMoreAddIn.Commands
 			// parent OE into which all runs are collated
 			var parent = first.Parent;
 
+			// snapshot each run's original OE before anything moves; runs get
+			// relocated into "parent" as we go, so live .Parent lookups would
+			// give the wrong answer for a run whose predecessor already moved
+			var originalParents = runs.Select(r => r.Parent).ToList();
+
 			if (first != caret)
 			{
-				Defrag(first, runs, 0);
+				Defrag(first, runs, 0, originalParents, parent);
 			}
 
 			// let OneNote combine and optimize so we don't have to...
@@ -261,7 +279,7 @@ namespace River.OneMoreAddIn.Commands
 					continue;
 				}
 
-				Defrag(run, runs, i);
+				Defrag(run, runs, i, originalParents, parent);
 
 				// collate all runs into first run's parent
 				if (run.Parent != parent)
@@ -273,31 +291,51 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private void Defrag(XElement run, List<XElement> runs, int index)
+		private void Defrag(
+			XElement run, List<XElement> runs, int index, List<XElement> originalParents, XElement survivor)
 		{
-			// inhert style from OE
-			run.Parent.GetAttributeValue("style", out var pstyle);
-			if (pstyle != null)
-			{
-				run.GetAttributeValue("style", out var style);
-				run.SetAttributeValue("style", style == null ? pstyle : $"{pstyle};{style}");
-			}
-
 			// deselect
 			run.Attributes().Where(a => a.Name == "selected").Remove();
 
 			var cdata = run.GetCData();
 
-			// collapse soft-breaks; don't trim the result -- a run being reassembled
-			// within the same paragraph (soft breaks, or a cursor split mid-sentence)
-			// may carry a real, meaningful leading/trailing space that must survive
-			var text = cdata.Value.Replace("<br>\n", " ");
+			// collapse soft-breaks; a soft-break line other than the first may carry
+			// meaningful leading indentation (e.g. a SQL sample) -- keep only a
+			// single separating space rather than the original indentation
+			var text = SoftBreak.Replace(cdata.Value, " ");
+
+			if (index > 0 && originalParents[index] != originalParents[index - 1])
+			{
+				// this run is the first piece of a new hard-break paragraph (a
+				// "line" other than the first); its own leading indentation is
+				// redundant with the single separating space added below, so
+				// drop it rather than let it pile up in the joined text
+				text = LeadingSpaces.Replace(text, string.Empty);
+			}
 
 			if ((index < runs.Count - 1) &&
-				(run.Parent != runs[index + 1].Parent) &&
+				(originalParents[index] != originalParents[index + 1]) &&
 				!text.EndsWithWhitespace())
 			{
 				text = $"{text} ";
+			}
+
+			// this run's own paragraph may have carried a different style than
+			// the paragraph it's being merged into (e.g. two lines of the same
+			// quickStyle but with different syntax-highlighting colors); rather
+			// than let it silently inherit the survivor's style, wrap it in a
+			// span carrying its own original style, the same way OneNote itself
+			// expresses mixed formatting within a single run of text
+			var oe = originalParents[index];
+			if (oe != survivor)
+			{
+				oe.GetAttributeValue("style", out var pstyle);
+				survivor.GetAttributeValue("style", out var sstyle);
+
+				if (!string.IsNullOrEmpty(pstyle) && pstyle != sstyle)
+				{
+					text = $"<span style=\"{pstyle}\">{text}</span>";
+				}
 			}
 
 			cdata.Value = text;

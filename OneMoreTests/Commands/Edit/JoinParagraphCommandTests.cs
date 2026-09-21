@@ -72,10 +72,9 @@ namespace River.OneMoreAddIn.Tests.Commands.Edit
 		[TestMethod]
 		public async Task JoinParagraph_MultipleSelectedParagraphs_JoinsIntoSingleParagraphPreservingStyle()
 		{
-			// Arrange: three separate paragraphs (hard breaks), all selected. The first OE
-			// carries a style so we can confirm it is inherited onto the joined runs.
+			// Arrange: three separate paragraphs (hard breaks), all selected, none of
+			// which carry a paragraph-level style of their own.
 			var oe1 = new XElement(Ns + "OE",
-				new XAttribute("style", "font-weight:bold"),
 				new XElement(Ns + "T",
 					new XAttribute("selected", "all"),
 					new XCData("Paragraph one.")));
@@ -114,15 +113,63 @@ namespace River.OneMoreAddIn.Tests.Commands.Edit
 				"Expected the three paragraphs to collapse into a single OE");
 
 			var joined = string.Concat(oes[0].Elements(Ns + "T").Select(t => t.GetCData().Value));
-			StringAssert.Contains(joined, "Paragraph one.");
-			StringAssert.Contains(joined, "Paragraph two.");
-			StringAssert.Contains(joined, "Paragraph three.");
+			Assert.AreEqual("Paragraph one. Paragraph two. Paragraph three.", joined);
 
-			// style from the first (anchor) OE must be inherited onto its run
-			var styledRun = oes[0].Elements(Ns + "T")
-				.FirstOrDefault(t => t.GetCData().Value.Contains("Paragraph one."));
-			Assert.IsNotNull(styledRun);
-			StringAssert.Contains((string)styledRun.Attribute("style") ?? "", "font-weight:bold");
+			Assert.IsFalse(joined.Contains("<span"),
+				"None of the source paragraphs had a distinct style, so nothing needed wrapping");
+		}
+
+
+		[TestMethod]
+		public async Task JoinParagraph_DifferingParagraphStyles_WrapsMergedInTextInASpan()
+		{
+			// Arrange: two paragraphs share the same quickStyle (e.g. both are SQL
+			// code lines) but carry different "style" attributes -- reproduces a
+			// real page where a syntax-highlighted continuation line lacked the
+			// first line's "color" declaration. The join must not let the second
+			// line silently inherit the first line's style.
+			var oe1 = new XElement(Ns + "OE",
+				new XAttribute("quickStyleIndex", "1"),
+				new XAttribute("style", "font-family:'Lucida Console';font-size:10.0pt;color:#2E75B5"),
+				new XElement(Ns + "T",
+					new XAttribute("selected", "all"),
+					new XCData("SELECT")));
+
+			var oe2 = new XElement(Ns + "OE",
+				new XAttribute("quickStyleIndex", "1"),
+				new XAttribute("style", "font-family:'Lucida Console';font-size:10.0pt"),
+				new XElement(Ns + "T",
+					new XAttribute("selected", "all"),
+					new XCData("GETDATE() AS [Today],")));
+
+			var xml = new PageBuilder(PageId, "Differing Style Join Test")
+				.WithElement(oe1)
+				.WithElement(oe2)
+				.Build();
+
+			SetupPage(PageId, xml);
+
+			// Act
+			await new JoinParagraphCommand().Execute();
+
+			// Assert
+			var updated = GetUpdatedPage(PageId);
+			Assert.IsNotNull(updated, "UpdatePageContent was never called");
+
+			var oes = updated.Element(Ns + "Outline")
+				.Descendants(Ns + "OE")
+				.Where(e => e.Elements(Ns + "T").Any())
+				.ToList();
+
+			Assert.AreEqual(1, oes.Count, "Expected the two lines to join despite differing style");
+
+			var joined = string.Concat(oes[0].Elements(Ns + "T").Select(t => t.GetCData().Value));
+			Assert.AreEqual(
+				"SELECT <span style=\"font-family:'Lucida Console';font-size:10.0pt\">" +
+				"GETDATE() AS [Today],</span>",
+				joined,
+				"Expected the second line's own style to be preserved via a span, " +
+				"rather than blending into the first line's style");
 		}
 
 
@@ -205,6 +252,170 @@ namespace River.OneMoreAddIn.Tests.Commands.Edit
 			var joined = string.Concat(oes[0].Elements(Ns + "T").Select(t => t.GetCData().Value));
 			Assert.AreEqual("Lorem ipsum dolor sit amet", joined,
 				"Expected the space adjacent to the removed caret to be preserved");
+		}
+
+
+		[TestMethod]
+		public async Task JoinParagraph_HardBreakIndentation_CollapsesToSingleSpace()
+		{
+			// Arrange: a SQL-style sample as three separate hard-break paragraphs,
+			// where the continuation lines carry leading indentation. Joining must
+			// not pile that indentation up into a run of several spaces.
+			var middle = BuildCursorParagraph("    FROM ", "foo");
+
+			var xml = new PageBuilder(PageId, "SQL Indent Test")
+				.WithParagraph("SELECT *")
+				.WithElement(middle)
+				.WithParagraph("    WHERE x = 1")
+				.Build();
+
+			SetupPage(PageId, xml);
+
+			// Act
+			await new JoinParagraphCommand().Execute();
+
+			// Assert
+			var updated = GetUpdatedPage(PageId);
+			Assert.IsNotNull(updated, "UpdatePageContent was never called");
+
+			var oes = updated.Element(Ns + "Outline")
+				.Descendants(Ns + "OE")
+				.Where(e => e.Elements(Ns + "T").Any())
+				.ToList();
+
+			Assert.AreEqual(1, oes.Count);
+
+			var joined = string.Concat(oes[0].Elements(Ns + "T").Select(t => t.GetCData().Value));
+			Assert.AreEqual("SELECT * FROM foo WHERE x = 1", joined,
+				"Expected each continuation line's indentation to collapse to a single space");
+		}
+
+
+		[TestMethod]
+		public async Task JoinParagraph_HardBreakIndentation_EncodedAsNumericNbsp_CollapsesToSingleSpace()
+		{
+			// Arrange: OneNote sometimes encodes preserved/pasted indentation as
+			// "&#160;" (numeric non-breaking-space entity) rather than plain
+			// ASCII spaces, not just for a single space but for a whole
+			// indentation run -- confirm those collapse too.
+			var oe1 = new XElement(Ns + "OE",
+				new XElement(Ns + "T",
+					new XAttribute("selected", "all"),
+					new XCData("SELECT")));
+
+			var oe2 = new XElement(Ns + "OE",
+				new XElement(Ns + "T",
+					new XAttribute("selected", "all"),
+					new XCData("&#160;&#160;&#160;&#160;GETDATE() AS [Today],")));
+
+			var xml = new PageBuilder(PageId, "Numeric Nbsp Indent Test")
+				.WithElement(oe1)
+				.WithElement(oe2)
+				.Build();
+
+			SetupPage(PageId, xml);
+
+			// Act
+			await new JoinParagraphCommand().Execute();
+
+			// Assert
+			var updated = GetUpdatedPage(PageId);
+			Assert.IsNotNull(updated, "UpdatePageContent was never called");
+
+			var oes = updated.Element(Ns + "Outline")
+				.Descendants(Ns + "OE")
+				.Where(e => e.Elements(Ns + "T").Any())
+				.ToList();
+
+			Assert.AreEqual(1, oes.Count);
+
+			var joined = string.Concat(oes[0].Elements(Ns + "T").Select(t => t.GetCData().Value));
+			Assert.AreEqual("SELECT GETDATE() AS [Today],", joined,
+				"Expected the &#160;-encoded indentation to collapse to a single space, " +
+				"not survive untouched alongside the boundary separator");
+		}
+
+
+		[TestMethod]
+		public async Task JoinParagraph_HardBreakIndentation_EncodedAsNamedNbsp_CollapsesToSingleSpace()
+		{
+			// Arrange: real-world repro -- pasted indentation encoded with the
+			// named "&nbsp;" entity (not the numeric "&#160;" form), e.g. a
+			// SQL sample pasted as:
+			//   SELECT
+			//       GETDATE() AS [Today],
+			// which must not survive as literal "&nbsp;" runs once joined.
+			var oe1 = new XElement(Ns + "OE",
+				new XElement(Ns + "T",
+					new XAttribute("selected", "all"),
+					new XCData("SELECT")));
+
+			var oe2 = new XElement(Ns + "OE",
+				new XElement(Ns + "T",
+					new XAttribute("selected", "all"),
+					new XCData("&nbsp;&nbsp;&nbsp;&nbsp;GETDATE() AS [Today],")));
+
+			var xml = new PageBuilder(PageId, "Named Nbsp Indent Test")
+				.WithElement(oe1)
+				.WithElement(oe2)
+				.Build();
+
+			SetupPage(PageId, xml);
+
+			// Act
+			await new JoinParagraphCommand().Execute();
+
+			// Assert
+			var updated = GetUpdatedPage(PageId);
+			Assert.IsNotNull(updated, "UpdatePageContent was never called");
+
+			var oes = updated.Element(Ns + "Outline")
+				.Descendants(Ns + "OE")
+				.Where(e => e.Elements(Ns + "T").Any())
+				.ToList();
+
+			Assert.AreEqual(1, oes.Count);
+
+			var joined = string.Concat(oes[0].Elements(Ns + "T").Select(t => t.GetCData().Value));
+			Assert.AreEqual("SELECT GETDATE() AS [Today],", joined,
+				"Expected the &nbsp;-encoded indentation to collapse to a single space, " +
+				"not survive untouched alongside the boundary separator");
+		}
+
+
+		[TestMethod]
+		public async Task JoinParagraph_SoftBreakIndentation_CollapsesToSingleSpace()
+		{
+			// Arrange: the same SQL sample, but as soft breaks within one selected
+			// run (the more common shape for a pasted multi-line snippet).
+			var oe = new XElement(Ns + "OE",
+				new XElement(Ns + "T",
+					new XAttribute("selected", "all"),
+					new XCData("SELECT *<br>\n    FROM foo<br>\n    WHERE x = 1")));
+
+			var xml = new PageBuilder(PageId, "SQL Soft Break Test")
+				.WithElement(oe)
+				.Build();
+
+			SetupPage(PageId, xml);
+
+			// Act
+			await new JoinParagraphCommand().Execute();
+
+			// Assert
+			var updated = GetUpdatedPage(PageId);
+			Assert.IsNotNull(updated, "UpdatePageContent was never called");
+
+			var oes = updated.Element(Ns + "Outline")
+				.Descendants(Ns + "OE")
+				.Where(e => e.Elements(Ns + "T").Any())
+				.ToList();
+
+			Assert.AreEqual(1, oes.Count);
+
+			var joined = string.Concat(oes[0].Elements(Ns + "T").Select(t => t.GetCData().Value));
+			Assert.AreEqual("SELECT * FROM foo WHERE x = 1", joined,
+				"Expected each soft-break continuation's indentation to collapse to a single space");
 		}
 
 
