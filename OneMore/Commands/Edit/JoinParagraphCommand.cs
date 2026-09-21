@@ -29,52 +29,147 @@ namespace River.OneMoreAddIn.Commands
 		{
 			await using var one = new OneNote(out var page, out ns);
 
-			var anchor = FindAnchor(page);
-			if (anchor == null)
+			var cursorRun = FindSelectedRun(page);
+			if (cursorRun == null)
 			{
 				ShowInfo(Resx.JoinParagraphCommand_Select);
 				return;
 			}
 
+			XElement anchor;
+			List<XElement> runs;
+			XElement caret;
+			bool preserveCaret;
+
+			if (cursorRun.GetCData().Value.Length == 0)
+			{
+				// bare cursor, no drag-selected range; find the block of adjacent
+				// same-style paragraphs (hard breaks) surrounding the cursor, along
+				// with any soft-break siblings already in its own OE
+				var block = FindBlock(cursorRun.Parent);
+				runs = block.SelectMany(oe => oe.Elements(ns + "T")).ToList();
+
+				if (runs.Count <= 1)
+				{
+					ShowInfo(Resx.JoinParagraphCommand_Select);
+					return;
+				}
+
+				anchor = block[0].Elements(ns + "T").First();
+				caret = cursorRun;
+				preserveCaret = true;
+			}
+			else
+			{
+				// real drag-selected range, possibly already spanning multiple paragraphs
+				anchor = cursorRun;
+				var container = FindScopedContainer(anchor);
+				runs = CollectRuns(container, out caret);
+				preserveCaret = false;
+			}
+
 			// remember parent so we can add a new caret later
 			var parent = anchor.Parent;
-
-			var container = FindScopedContainer(anchor);
-			var runs = CollectRuns(container, out var caret);
-
-			//Debug.Assert(anchor == runs[0], "anchor does not match first selected T run");
 
 			Join(runs, caret);
 
 			// clean up any left-over elements; must be in this order:
 			Cleanup(page);
 
-			// insert caret position
-			caret = new XElement(ns + "T", new XCData(string.Empty));
-			caret.SetAttributeValue("selected", "all");
-			parent.AddFirst(caret);
+			if (preserveCaret)
+			{
+				// Join already relocated the caret to its original relative position
+				// within the joined text; Cleanup's Deselect() strips its "selected"
+				// marker along with everyone else's, so restore it here to give the
+				// user continuity of cursor position after the join
+				caret.SetAttributeValue("selected", "all");
+			}
+			else
+			{
+				// no single cursor position to restore; place a fresh caret at the
+				// start of the joined paragraph, as before
+				var newCaret = new XElement(ns + "T", new XCData(string.Empty));
+				newCaret.SetAttributeValue("selected", "all");
+				parent.AddFirst(newCaret);
+			}
 
 			await one.Update(page);
 		}
 
 
-		private XElement FindAnchor(Page page)
+		private XElement FindSelectedRun(Page page)
 		{
-			// anchor is first selected T run, regardless of content
+			// first selected T run, regardless of content; this is either a real
+			// selected range or the zero-width caret OneNote reports when nothing
+			// is actually selected
 
-			var anchor = page.Root.Elements(ns + "Outline")
+			return page.Root.Elements(ns + "Outline")
 				.Descendants(ns + "T")
-				.FirstOrDefault(e =>
-					e.Attributes().Any(a => a.Name.LocalName == "selected" && a.Value == "all"));
+				.FirstOrDefault(e => e.Attribute("selected")?.Value == "all");
+		}
 
-			// don't use the caret as an anchor because it's going to be removed later
-			if (anchor?.GetCData().Value.Length == 0)
+
+		private List<XElement> FindBlock(XElement cursorOE)
+		{
+			// walk outward from the cursor's OE, collecting adjacent sibling OEs
+			// that are plain, non-blank paragraphs sharing the same paragraph
+			// style; stops at an empty paragraph, a style change (e.g. a
+			// heading), or any non-paragraph content (table, list, and so on)
+
+			var block = new List<XElement> { cursorOE };
+
+			if (!IsPlainParagraph(cursorOE) || IsBlank(cursorOE))
 			{
-				anchor = anchor.ElementsAfterSelf(ns + "T").FirstOrDefault()
-					?? anchor.ElementsBeforeSelf(ns + "T").FirstOrDefault();
+				return block;
 			}
 
-			return anchor;
+			var fingerprint = GetStyleFingerprint(cursorOE);
+
+			var node = cursorOE.PreviousNode;
+			while (node is XElement sibling && IsBlockMember(sibling, fingerprint))
+			{
+				block.Insert(0, sibling);
+				node = sibling.PreviousNode;
+			}
+
+			node = cursorOE.NextNode;
+			while (node is XElement sibling && IsBlockMember(sibling, fingerprint))
+			{
+				block.Add(sibling);
+				node = sibling.NextNode;
+			}
+
+			return block;
+		}
+
+
+		private bool IsBlockMember(XElement oe, (string quickStyle, string style) fingerprint)
+		{
+			return IsPlainParagraph(oe) && !IsBlank(oe) &&
+				GetStyleFingerprint(oe).Equals(fingerprint);
+		}
+
+
+		private static bool IsPlainParagraph(XElement oe)
+		{
+			// an OE whose only children are T runs; excludes lists, tables,
+			// tagged/task paragraphs, and paragraphs with nested sub-content
+			return oe.Name.LocalName == "OE" &&
+				oe.Elements().Any() &&
+				oe.Elements().All(e => e.Name.LocalName == "T");
+		}
+
+
+		private static bool IsBlank(XElement oe)
+		{
+			return !oe.Elements(oe.Name.Namespace + "T")
+				.Any(t => t.GetCData().Value.Trim().Length > 0);
+		}
+
+
+		private static (string quickStyle, string style) GetStyleFingerprint(XElement oe)
+		{
+			return ((string)oe.Attribute("quickStyleIndex"), (string)oe.Attribute("style"));
 		}
 
 
@@ -137,35 +232,32 @@ namespace River.OneMoreAddIn.Commands
 
 		private void Join(List<XElement> runs, XElement caret)
 		{
-			var start = 0;
-			var first = runs[start];
+			var first = runs[0];
 
 			// parent OE into which all runs are collated
 			var parent = first.Parent;
 
-			if (first == caret && runs.Count > 1)
+			if (first != caret)
 			{
-				first.Remove();
-				start = 1;
-				first = runs[start];
-				parent = first.Parent;
-			}
-
-			Defrag(first, runs, start);
-
-			if (runs.Count == start)
-			{
-				return;
+				Defrag(first, runs, 0);
 			}
 
 			// let OneNote combine and optimize so we don't have to...
 
-			for (int i = start; i < runs.Count; i++)
+			for (int i = 0; i < runs.Count; i++)
 			{
 				var run = runs[i];
 				if (run == caret)
 				{
-					run.Remove();
+					// relocate rather than remove: this preserves the run's own
+					// "selected" state and its position relative to the other
+					// joined text, so the caller can restore the user's cursor
+					// to where it was after the join
+					if (run.Parent != parent)
+					{
+						run.Remove();
+						parent.Add(run);
+					}
 					continue;
 				}
 
@@ -196,8 +288,10 @@ namespace River.OneMoreAddIn.Commands
 
 			var cdata = run.GetCData();
 
-			// collapse soft-breaks
-			var text = cdata.Value.Replace("<br>\n", " ").Trim();
+			// collapse soft-breaks; don't trim the result -- a run being reassembled
+			// within the same paragraph (soft breaks, or a cursor split mid-sentence)
+			// may carry a real, meaningful leading/trailing space that must survive
+			var text = cdata.Value.Replace("<br>\n", " ");
 
 			if ((index < runs.Count - 1) &&
 				(run.Parent != runs[index + 1].Parent) &&
