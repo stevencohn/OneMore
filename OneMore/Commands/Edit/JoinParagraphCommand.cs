@@ -40,6 +40,12 @@ namespace River.OneMoreAddIn.Commands
 		// that already ends in a real space
 		private static readonly Regex TrailingSpace = new Regex($@"{Space}$", RegexOptions.Compiled);
 
+		// a manually-typed "- " bullet marker, optionally indented; used to stop
+		// the block-walk at a sibling bullet's own line even when every line
+		// shares the same paragraph style, since these aren't real one:List/
+		// one:Bullet items and quickStyleIndex alone can't tell them apart
+		private static readonly Regex HyphenBullet = new Regex($@"^{SpaceUnit}*-{SpaceUnit}", RegexOptions.Compiled);
+
 		private XNamespace ns;
 
 
@@ -148,18 +154,34 @@ namespace River.OneMoreAddIn.Commands
 
 			var fingerprint = GetStyleFingerprint(cursorOE);
 
-			var node = cursorOE.PreviousNode;
-			while (node is XElement sibling && IsBlockMember(sibling, fingerprint))
+			// a manually-typed "- " bullet marker starts a new group of lines
+			// even when every line shares the same paragraph style; if the
+			// cursor's own line is such a marker, it's already the start of
+			// its group, so there's nothing to walk backward into
+			if (!IsHyphenBullet(cursorOE))
 			{
-				block.Insert(0, sibling);
-				node = sibling.PreviousNode;
+				var node = cursorOE.PreviousNode;
+				while (node is XElement sibling && IsBlockMember(sibling, fingerprint))
+				{
+					block.Insert(0, sibling);
+
+					// this sibling is the group's own marker; whatever
+					// precedes it belongs to the previous bullet, so stop
+					if (IsHyphenBullet(sibling))
+					{
+						break;
+					}
+
+					node = sibling.PreviousNode;
+				}
 			}
 
-			node = cursorOE.NextNode;
-			while (node is XElement sibling && IsBlockMember(sibling, fingerprint))
+			var next = cursorOE.NextNode;
+			while (next is XElement nextSibling &&
+				IsBlockMember(nextSibling, fingerprint) && !IsHyphenBullet(nextSibling))
 			{
-				block.Add(sibling);
-				node = sibling.NextNode;
+				block.Add(nextSibling);
+				next = nextSibling.NextNode;
 			}
 
 			return block;
@@ -173,13 +195,33 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		private static bool IsHyphenBullet(XElement oe)
+		{
+			var text = string.Concat(
+				oe.Elements(oe.Name.Namespace + "T").Select(t => t.GetCData().Value));
+
+			return HyphenBullet.IsMatch(text);
+		}
+
+
 		private static bool IsPlainParagraph(XElement oe)
 		{
-			// an OE whose only children are T runs; excludes lists, tables,
-			// tagged/task paragraphs, and paragraphs with nested sub-content
-			return oe.Name.LocalName == "OE" &&
-				oe.Elements().Any() &&
-				oe.Elements().All(e => e.Name.LocalName == "T");
+			// an OE whose only children are T runs, ignoring a trailing
+			// OEChildren (nested/indented sub-content); excludes lists,
+			// tables, and tagged/task paragraphs. The nested OEChildren, if
+			// any, isn't part of this paragraph's own text and is relocated
+			// onto the surviving OE by RelocateNestedChildren rather than
+			// blocking the join
+			if (oe.Name.LocalName != "OE")
+			{
+				return false;
+			}
+
+			var content = oe.Elements()
+				.Where(e => e.Name.LocalName != "OEChildren")
+				.ToList();
+
+			return content.Count > 0 && content.All(e => e.Name.LocalName == "T");
 		}
 
 
@@ -310,6 +352,49 @@ namespace River.OneMoreAddIn.Commands
 					run.Remove();
 					parent.Add(run);
 				}
+			}
+
+			RelocateNestedChildren(originalParents, parent);
+		}
+
+
+		private void RelocateNestedChildren(List<XElement> originalParents, XElement survivor)
+		{
+			// any other original OE that carried its own nested/indented
+			// OEChildren must hand that content over to the surviving OE
+			// rather than have it silently dropped or left as an orphaned
+			// element once its own T runs have been relocated away
+
+			var sourceOEs = originalParents.Distinct().Where(oe => oe != survivor);
+
+			var survivorChildren = survivor.Element(ns + "OEChildren");
+
+			foreach (var oe in sourceOEs)
+			{
+				var children = oe.Element(ns + "OEChildren");
+				if (children is null)
+				{
+					continue;
+				}
+
+				if (survivorChildren is null)
+				{
+					survivorChildren = new XElement(ns + "OEChildren");
+					survivor.Add(survivorChildren);
+				}
+
+				foreach (var child in children.Elements().ToList())
+				{
+					child.Remove();
+					survivorChildren.Add(child);
+				}
+
+				// remove the now-empty wrapper directly rather than relying
+				// on Cleanup(), whose Bullet/Number/List/OE/OEChildren
+				// removal order only catches one level of empty-parent
+				// cascade per pass and would miss the now-empty source OE
+				// if left for Cleanup alone
+				children.Remove();
 			}
 		}
 
