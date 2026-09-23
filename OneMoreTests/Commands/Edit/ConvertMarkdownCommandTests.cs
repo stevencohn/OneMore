@@ -173,6 +173,52 @@ para2";
 
 
 		[TestMethod]
+		public async Task ConvertMarkdown_PageHasEmptyOutline_DoesNotThrowAndConvertsOtherOutline()
+		{
+			// Regression test: a plain text cursor causes ConvertMarkdownCommand to process
+			// every body Outline on the page (allContent=true). If any other Outline on the
+			// page has no OE content at all (e.g. an empty text box), PageEditor
+			// .ExtractSelectedContent sets Anchor to null for it, and the unguarded call to
+			// InsertAtAnchor threw NullReferenceException even though the user never touched
+			// that empty outline. ConvertMarkdownCommand must skip outlines with a null Anchor.
+			var pageElement = new PageBuilder(PageId, "Markdown Test")
+				.WithParagraph("# Hello World")
+				.BuildElement();
+
+			var cursorOe = new XElement(Ns + "OE",
+				new XAttribute("objectID", "oe-cursor"),
+				new XElement(Ns + "T",
+					new XAttribute("selected", "all"),
+					new XCData(string.Empty)));
+
+			pageElement
+				.Element(Ns + "Outline")
+				?.Element(Ns + "OEChildren")
+				?.AddFirst(cursorOe);
+
+			// second Outline with no OEChildren/OE at all
+			pageElement.Add(new XElement(Ns + "Outline",
+				new XElement(Ns + "Position",
+					new XAttribute("x", "36.0"), new XAttribute("y", "200.0")),
+				new XElement(Ns + "Size",
+					new XAttribute("width", "300.0"), new XAttribute("height", "14.0"))));
+
+			SetupPage(PageId, AssignObjectIds(pageElement));
+
+			// Act
+			await WithLogger(new ConvertMarkdownCommand()).Execute();
+
+			// Assert
+			var updated = GetUpdatedPage(PageId);
+			Assert.IsNotNull(updated, "UpdatePageContent was never called");
+
+			var htmlBlock = updated.Descendants(Ns + "HTMLBlock").FirstOrDefault();
+			Assert.IsNotNull(htmlBlock,
+				"Expected the non-empty outline to still be converted despite the empty outline");
+		}
+
+
+		[TestMethod]
 		public async Task ConvertMarkdown_CursorOnBlankLineBetweenParagraphs_PreservesParagraphBreak()
 		{
 			// Arrange: paragraph1, then a blank OE with the caret parked on it (empty

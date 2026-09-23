@@ -67,6 +67,14 @@ namespace River.OneMoreAddIn.Commands
 			foreach (var outline in outlines.ToList())
 			{
 				var content = editor.ExtractSelectedContent(outline);
+
+				if (editor.Anchor is null)
+				{
+					// outline has no OE content to anchor to (e.g. an empty outline/text
+					// box on the page); nothing to convert or insert here
+					continue;
+				}
+
 				logger.Debug("outline - - - - - - - - - - - - - - - - - - - - - -");
 				logger.Debug(content);
 				logger.Debug("/outline");
