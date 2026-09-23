@@ -1779,10 +1779,12 @@
         <source>In this notebook
             In this section group
             In this section
+            In this page group
             On this page</source>
         <preferred>在此笔记本中
             在此分区组中
             在此分区中
+            在此页面组中
             在此页面上</preferred>
     </hint>
     <hint name="SearchDialog_matchBox.Text">

@@ -134,6 +134,78 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		/// <summary>
+		/// Finds the page group containing the specified page: the nearest level-1 page at or
+		/// before it, plus all of the subpages (pageLevel &gt; 1) that immediately follow.
+		/// </summary>
+		/// <param name="section">A section element with its Page children</param>
+		/// <param name="ns">The OneNote namespace of the section</param>
+		/// <param name="pageId">The ID of a page in the group, typically the current page</param>
+		/// <returns>
+		/// The Page elements of the group in hierarchy order, or null if the page is not found
+		/// or the page is a lone level-1 page with no subpages
+		/// </returns>
+		public static IList<XElement> GetPageGroup(XElement section, XNamespace ns, string pageId)
+		{
+			var pages = section.Elements(ns + "Page").ToList();
+
+			var index = pages.FindIndex(e => e.Attribute("ID")?.Value == pageId);
+			if (index < 0)
+			{
+				return null;
+			}
+
+			var first = index;
+			while (first > 0 && GetPageLevel(pages[first]) > 1)
+			{
+				first--;
+			}
+
+			var last = first;
+			while (last + 1 < pages.Count && GetPageLevel(pages[last + 1]) > 1)
+			{
+				last++;
+			}
+
+			return last > first ? pages.GetRange(first, last - first + 1) : null;
+
+			static int GetPageLevel(XElement page)
+			{
+				page.GetAttributeValue("pageLevel", out int level, 1);
+				return level;
+			}
+		}
+
+
+		/// <summary>
+		/// Searches only the pages in the page group containing the specified page.
+		/// </summary>
+		/// <param name="one">The OneNote instance</param>
+		/// <param name="section">A section element with its Page children; it is pruned in place</param>
+		/// <param name="pageId">The ID of a page in the group, typically the current page</param>
+		/// <param name="finder">The compiled search expression</param>
+		public async Task SearchPageGroup(OneNote one, XElement section, string pageId, Regex finder)
+		{
+			var ns = one.GetNamespace(section);
+			var group = GetPageGroup(section, ns, pageId);
+
+			if (group is null)
+			{
+				// the current page no longer has subpages so degrade to searching just the page
+				var page = await one.GetPage(pageId, OneNote.PageDetail.Basic);
+				onTotalPageCount(1);
+				await SearchPage(page, finder);
+				return;
+			}
+
+			// prune the freshly loaded section down to the group so that SearchSection applies
+			// date filtering, progress counts, and result titles exactly as it does for a section
+			section.Elements(ns + "Page").Where(e => !group.Contains(e)).Remove();
+
+			await SearchSection(one, section, finder);
+		}
+
+
 		// Inner page loop used by both SearchNotebook (already filtered) and SearchSection.
 		private async Task SearchSectionPages(OneNote one, XElement section, Regex finder)
 		{

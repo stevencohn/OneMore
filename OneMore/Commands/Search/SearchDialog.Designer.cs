@@ -435,6 +435,7 @@ namespace River.OneMoreAddIn.Commands
             "In this notebook",
             "In this section group",
             "In this section",
+            "In this page group",
             "On this page"});
 			this.scopeBox.Location = new System.Drawing.Point(826, 9);
 			this.scopeBox.Name = "scopeBox";

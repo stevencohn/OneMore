@@ -63,6 +63,10 @@ A full-text search UI panel. It is hidden unless the `GeneralSheet → experimen
 
 **Threading** — `one.GetPage()` (COM) runs on the UI thread. Paragraph text extraction and `Regex.IsMatch` run on `Task.Run()` background thread. `one.GetHyperlink()` (COM) runs back on the UI thread after the background work completes. The `TextMatchBuilder`/`Regex` is compiled once before the search loop and shared across all pages.
 
+### Search dialog scopes
+
+`SearchDialog.scopeBox` items come from `SearchDialogText_scopeOptions` in fixed order: Notebook, Section group, Section, Page group, Page. Section group and Page group are removed by index when not applicable, so every locale resx must carry all five lines. Page group is offered only when `SearchEngine.GetPageGroup` finds the current page has subpages or is a subpage (a level-1 page plus following pages with `pageLevel > 1`); `SearchCommand.Execute` computes this and passes it to the dialog constructor.
+
 ### `SearchServices`
 
 Handles the actual page copy/move operations triggered by `SearchCommand`:

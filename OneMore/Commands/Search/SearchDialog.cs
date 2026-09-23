@@ -31,14 +31,16 @@ namespace River.OneMoreAddIn.Commands
 		private Regex lastFinder;
 
 		// scopeBox indices; "In this section group" (index 1) is omitted from the combo
-		// entirely when the current section has no enclosing section group, which shifts
-		// the Section and Page indices down by one
+		// entirely when the current section has no enclosing section group, and "In this
+		// page group" (index 3) is omitted when the current page has no subpages and is not
+		// a subpage; omitting an item shifts the indices of the items after it down by one
 		private int sectionGroupScopeIndex;
 		private int sectionScopeIndex;
+		private int pageGroupScopeIndex;
 		private int pageScopeIndex;
 
 
-		public SearchDialog()
+		public SearchDialog(bool hasPageGroup)
 		{
 			InitializeComponent();
 
@@ -75,6 +77,12 @@ namespace River.OneMoreAddIn.Commands
 				hasSectionGroup = !string.IsNullOrEmpty(one.CurrentSectionGroupId);
 			}
 
+			// remove the higher index first so the lower index remains valid
+			if (!hasPageGroup)
+			{
+				scopeBox.Items.RemoveAt(3);
+			}
+
 			if (!hasSectionGroup)
 			{
 				scopeBox.Items.RemoveAt(1);
@@ -82,6 +90,7 @@ namespace River.OneMoreAddIn.Commands
 
 			sectionGroupScopeIndex = hasSectionGroup ? 1 : -1;
 			sectionScopeIndex = hasSectionGroup ? 2 : 1;
+			pageGroupScopeIndex = hasPageGroup ? sectionScopeIndex + 1 : -1;
 			pageScopeIndex = scopeBox.Items.Count - 1;
 
 			scopeBox.SelectedIndex = pageScopeIndex;
@@ -347,6 +356,14 @@ namespace River.OneMoreAddIn.Commands
 				{
 					var section = await one.GetSection();
 					await engine.SearchSection(one, section, finder);
+				}
+				else if (scopeBox.SelectedIndex == pageGroupScopeIndex)
+				{
+					var section = await one.GetSection();
+					if (section is not null)
+					{
+						await engine.SearchPageGroup(one, section, one.CurrentPageId, finder);
+					}
 				}
 				else
 				{
