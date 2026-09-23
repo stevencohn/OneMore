@@ -856,5 +856,348 @@ namespace River.OneMoreAddIn.Tests.Commands.Edit
 			Assert.AreEqual("Cursor text. Trailing text.", mergedText,
 				"Expected exactly one space between the joined paragraphs");
 		}
+
+
+		[TestMethod]
+		public async Task JoinParagraph_CursorLineFollowedByNestedList_RelocatesNestedListOntoMergedLine()
+		{
+			// Arrange: reproduces the reported bug exactly -- a bare cursor sits in
+			// "foo", and the next same-style sibling ("one") carries its own nested,
+			// indented list ("dsdf") via a trailing OEChildren. Previously this OE
+			// shape wasn't recognized as a joinable "plain paragraph" at all, so the
+			// block never grew past the cursor's own OE and the command did nothing.
+			var nested = new XElement(Ns + "OE",
+				new XElement(Ns + "List",
+					new XElement(Ns + "Bullet", new XAttribute("bullet", "2"))),
+				new XElement(Ns + "T", new XCData("dsdf")));
+
+			var oe1 = new XElement(Ns + "OE",
+				new XAttribute("quickStyleIndex", "1"),
+				new XElement(Ns + "T",
+					new XAttribute("selected", "all"),
+					new XCData(string.Empty)),
+				new XElement(Ns + "T", new XCData("foo")));
+
+			var oe2 = new XElement(Ns + "OE",
+				new XAttribute("quickStyleIndex", "1"),
+				new XElement(Ns + "T", new XCData("one")),
+				new XElement(Ns + "OEChildren", nested));
+
+			var xml = new PageBuilder(PageId, "Nested List Join Test")
+				.WithElement(oe1)
+				.WithElement(oe2)
+				.Build();
+
+			SetupPage(PageId, xml);
+
+			// Act
+			await new JoinParagraphCommand().Execute();
+
+			// Assert
+			var updated = GetUpdatedPage(PageId);
+			Assert.IsNotNull(updated, "UpdatePageContent was never called");
+
+			var oes = updated.Element(Ns + "Outline").Element(Ns + "OEChildren")
+				.Elements(Ns + "OE")
+				.ToList();
+
+			Assert.AreEqual(1, oes.Count,
+				"Expected 'foo' and 'one' to collapse into a single top-level OE");
+
+			var survivor = oes[0];
+			var joined = string.Concat(survivor.Elements(Ns + "T").Select(t => t.GetCData().Value));
+			Assert.AreEqual("foo one", joined);
+
+			var nestedChildren = survivor.Element(Ns + "OEChildren");
+			Assert.IsNotNull(nestedChildren,
+				"Expected 'one's nested list to be relocated onto the merged paragraph, not dropped");
+
+			var nestedOes = nestedChildren.Elements(Ns + "OE").ToList();
+			Assert.AreEqual(1, nestedOes.Count);
+			Assert.AreEqual("dsdf", nestedOes[0].Element(Ns + "T").GetCData().Value);
+
+			// NOTE: JoinParagraphCommand.Cleanup() strips every empty Bullet/List
+			// page-wide (see JoinParagraph_MultipleSelectedListItems_JoinsIntoFirstSelectedItem),
+			// and a self-closed <one:Bullet/> always reports !HasElements, so the
+			// nested item's own List/Bullet markup does not survive -- this is the
+			// same pre-existing Cleanup bug, not a regression introduced by
+			// relocating the nested OEChildren itself.
+		}
+
+
+		[TestMethod]
+		public async Task JoinParagraph_BothLinesHaveNestedChildren_AppendsAfterSurvivorsOwnChildren()
+		{
+			// Arrange: the surviving (first) paragraph already has its own nested
+			// child ("alpha"); the paragraph being merged into it also has a nested
+			// child ("beta"). Both should end up under the survivor, in document
+			// order: the survivor's own child first, the merged-in child after.
+			var survivorNested = new XElement(Ns + "OE", new XElement(Ns + "T", new XCData("alpha")));
+			var oe1 = new XElement(Ns + "OE",
+				new XAttribute("quickStyleIndex", "1"),
+				new XElement(Ns + "T",
+					new XAttribute("selected", "all"),
+					new XCData("foo")),
+				new XElement(Ns + "OEChildren", survivorNested));
+
+			var mergedNested = new XElement(Ns + "OE", new XElement(Ns + "T", new XCData("beta")));
+			var oe2 = new XElement(Ns + "OE",
+				new XAttribute("quickStyleIndex", "1"),
+				new XElement(Ns + "T",
+					new XAttribute("selected", "all"),
+					new XCData("one")),
+				new XElement(Ns + "OEChildren", mergedNested));
+
+			var xml = new PageBuilder(PageId, "Both Nested Children Test")
+				.WithElement(oe1)
+				.WithElement(oe2)
+				.Build();
+
+			SetupPage(PageId, xml);
+
+			// Act
+			await new JoinParagraphCommand().Execute();
+
+			// Assert
+			var updated = GetUpdatedPage(PageId);
+			Assert.IsNotNull(updated, "UpdatePageContent was never called");
+
+			var oes = updated.Element(Ns + "Outline").Element(Ns + "OEChildren")
+				.Elements(Ns + "OE")
+				.ToList();
+
+			Assert.AreEqual(1, oes.Count);
+
+			var survivor = oes[0];
+			var joined = string.Concat(survivor.Elements(Ns + "T").Select(t => t.GetCData().Value));
+			Assert.AreEqual("foo one", joined);
+
+			var nestedOes = survivor.Element(Ns + "OEChildren").Elements(Ns + "OE").ToList();
+			Assert.AreEqual(2, nestedOes.Count,
+				"Expected both the survivor's own nested child and the merged-in one to be kept");
+			Assert.AreEqual("alpha", nestedOes[0].Element(Ns + "T").GetCData().Value,
+				"Expected the survivor's own pre-existing nested child to stay first");
+			Assert.AreEqual("beta", nestedOes[1].Element(Ns + "T").GetCData().Value,
+				"Expected the merged-in paragraph's nested child to be appended after");
+		}
+
+
+		[TestMethod]
+		public async Task JoinParagraph_MiddleOfBlockHasNestedChildren_RelocatesOntoSurvivor()
+		{
+			// Arrange: three same-style paragraphs joined via the cursor's block-walk;
+			// only the middle one carries a nested, indented child. The child must
+			// survive the join, relocated onto the first (surviving) paragraph.
+			var nested = new XElement(Ns + "OE", new XElement(Ns + "T", new XCData("nested")));
+			var middle = new XElement(Ns + "OE",
+				new XElement(Ns + "T", new XCData("Paragraph ")),
+				new XElement(Ns + "T",
+					new XAttribute("selected", "all"),
+					new XCData(string.Empty)),
+				new XElement(Ns + "T", new XCData("two.")),
+				new XElement(Ns + "OEChildren", nested));
+
+			var xml = new PageBuilder(PageId, "Block Nested Children Test")
+				.WithParagraph("Paragraph one.")
+				.WithElement(middle)
+				.WithParagraph("Paragraph three.")
+				.Build();
+
+			SetupPage(PageId, xml);
+
+			// Act
+			await new JoinParagraphCommand().Execute();
+
+			// Assert
+			var updated = GetUpdatedPage(PageId);
+			Assert.IsNotNull(updated, "UpdatePageContent was never called");
+
+			var oes = updated.Element(Ns + "Outline").Element(Ns + "OEChildren")
+				.Elements(Ns + "OE")
+				.ToList();
+
+			Assert.AreEqual(1, oes.Count,
+				"Expected all three paragraphs of the block to collapse into a single OE");
+
+			var survivor = oes[0];
+			var joined = string.Concat(survivor.Elements(Ns + "T").Select(t => t.GetCData().Value));
+			Assert.AreEqual("Paragraph one. Paragraph two. Paragraph three.", joined);
+
+			var nestedChildren = survivor.Element(Ns + "OEChildren");
+			Assert.IsNotNull(nestedChildren,
+				"Expected the middle paragraph's nested child to be relocated onto the survivor");
+
+			var nestedOes = nestedChildren.Elements(Ns + "OE").ToList();
+			Assert.AreEqual(1, nestedOes.Count);
+			Assert.AreEqual("nested", nestedOes[0].Element(Ns + "T").GetCData().Value);
+		}
+
+
+		[TestMethod]
+		public async Task JoinParagraph_CursorLineHasOwnNestedChildren_StillJoinsBackwardIntoPriorLine()
+		{
+			// Arrange: the cursor's own paragraph already has a nested/indented
+			// child; previously IsPlainParagraph rejected any OE with a trailing
+			// OEChildren outright, which aborted FindBlock before it ever walked
+			// backward. Confirm the cursor's own nested content no longer blocks
+			// the block-walk from reaching the matching paragraph before it.
+			var nested = new XElement(Ns + "OE", new XElement(Ns + "T", new XCData("nested")));
+			var cursor = new XElement(Ns + "OE",
+				new XElement(Ns + "T", new XCData("Cursor ")),
+				new XElement(Ns + "T",
+					new XAttribute("selected", "all"),
+					new XCData(string.Empty)),
+				new XElement(Ns + "T", new XCData("text.")),
+				new XElement(Ns + "OEChildren", nested));
+
+			var xml = new PageBuilder(PageId, "Own Nested Children Test")
+				.WithParagraph("Before text.")
+				.WithElement(cursor)
+				.Build();
+
+			SetupPage(PageId, xml);
+
+			// Act
+			await new JoinParagraphCommand().Execute();
+
+			// Assert
+			var updated = GetUpdatedPage(PageId);
+			Assert.IsNotNull(updated, "UpdatePageContent was never called");
+
+			var oes = updated.Element(Ns + "Outline").Element(Ns + "OEChildren")
+				.Elements(Ns + "OE")
+				.ToList();
+
+			Assert.AreEqual(1, oes.Count,
+				"Expected 'Before text.' and the cursor's own paragraph to collapse into one OE");
+
+			var survivor = oes[0];
+			var joined = string.Concat(survivor.Elements(Ns + "T").Select(t => t.GetCData().Value));
+			Assert.AreEqual("Before text. Cursor text.", joined);
+
+			var nestedOes = survivor.Element(Ns + "OEChildren")?.Elements(Ns + "OE").ToList();
+			Assert.IsNotNull(nestedOes, "Expected the cursor line's own nested child to carry over");
+			Assert.AreEqual(1, nestedOes.Count);
+			Assert.AreEqual("nested", nestedOes[0].Element(Ns + "T").GetCData().Value);
+		}
+
+
+		[TestMethod]
+		public async Task JoinParagraph_HyphenBulletLines_JoinsOnlyWithinSameBulletGroup()
+		{
+			// Arrange:
+			//   - one
+			//   - two      <- cursor here
+			//   three
+			//   - four
+			// None of these carry real one:List/one:Bullet markup -- they're
+			// manually-typed "- " bullets, all sharing the same paragraph style.
+			// The join must stop at each sibling bullet's own "- " marker, only
+			// absorbing "three" (a wrapped continuation line of "- two").
+			var cursor = BuildCursorParagraph("- two", string.Empty);
+
+			var xml = new PageBuilder(PageId, "Hyphen Bullet Test")
+				.WithParagraph("- one")
+				.WithElement(cursor)
+				.WithParagraph("three")
+				.WithParagraph("- four")
+				.Build();
+
+			SetupPage(PageId, xml);
+
+			// Act
+			await new JoinParagraphCommand().Execute();
+
+			// Assert
+			var updated = GetUpdatedPage(PageId);
+			Assert.IsNotNull(updated, "UpdatePageContent was never called");
+
+			var oes = updated.Element(Ns + "Outline").Element(Ns + "OEChildren")
+				.Elements(Ns + "OE")
+				.ToList();
+
+			Assert.AreEqual(3, oes.Count,
+				"Expected '- one', the merged '- two three', and '- four' to remain as three lines");
+
+			Assert.IsTrue(oes.Any(e =>
+				e.Elements(Ns + "T").Count() == 1 &&
+				e.Elements(Ns + "T").First().GetCData().Value == "- one"),
+				"Expected '- one' to remain untouched, not absorbed into the cursor's bullet");
+
+			Assert.IsTrue(oes.Any(e =>
+				e.Elements(Ns + "T").Count() == 1 &&
+				e.Elements(Ns + "T").First().GetCData().Value == "- four"),
+				"Expected '- four' to remain untouched, not absorbed into the cursor's bullet");
+
+			var merged = oes.SingleOrDefault(e =>
+				e.Elements(Ns + "T").Any(t => t.GetCData().Value.Contains("two")));
+			Assert.IsNotNull(merged, "Expected to find the bullet that absorbed 'three'");
+
+			var mergedText = string.Concat(merged.Elements(Ns + "T").Select(t => t.GetCData().Value));
+			Assert.AreEqual("- two three", mergedText);
+		}
+
+
+		[TestMethod]
+		public async Task JoinParagraph_HyphenBulletLines_MultiLineBulletsStayIsolatedFromSiblingGroup()
+		{
+			// Arrange:
+			//   - one
+			//   one        <- already-wrapped continuation of "- one"
+			//   - two      <- cursor here
+			//   three
+			//   - four
+			// Confirms the join reaches only "- two"'s own group ("- two" +
+			// "three"), leaving the *other* multi-line bullet group ("- one" +
+			// "one") completely alone even though it's directly adjacent and
+			// shares the same paragraph style.
+			var cursor = BuildCursorParagraph("- two", string.Empty);
+
+			var xml = new PageBuilder(PageId, "Hyphen Bullet Multiline Group Test")
+				.WithParagraph("- one")
+				.WithParagraph("one")
+				.WithElement(cursor)
+				.WithParagraph("three")
+				.WithParagraph("- four")
+				.Build();
+
+			SetupPage(PageId, xml);
+
+			// Act
+			await new JoinParagraphCommand().Execute();
+
+			// Assert
+			var updated = GetUpdatedPage(PageId);
+			Assert.IsNotNull(updated, "UpdatePageContent was never called");
+
+			var oes = updated.Element(Ns + "Outline").Element(Ns + "OEChildren")
+				.Elements(Ns + "OE")
+				.ToList();
+
+			Assert.AreEqual(4, oes.Count,
+				"Expected '- one', 'one', the merged '- two three', and '- four' to remain");
+
+			Assert.IsTrue(oes.Any(e =>
+				e.Elements(Ns + "T").Count() == 1 &&
+				e.Elements(Ns + "T").First().GetCData().Value == "- one"),
+				"Expected '- one' to remain untouched");
+
+			Assert.IsTrue(oes.Any(e =>
+				e.Elements(Ns + "T").Count() == 1 &&
+				e.Elements(Ns + "T").First().GetCData().Value == "one"),
+				"Expected 'one', the previous bullet's own continuation line, to remain untouched");
+
+			Assert.IsTrue(oes.Any(e =>
+				e.Elements(Ns + "T").Count() == 1 &&
+				e.Elements(Ns + "T").First().GetCData().Value == "- four"),
+				"Expected '- four' to remain untouched");
+
+			var merged = oes.SingleOrDefault(e =>
+				e.Elements(Ns + "T").Any(t => t.GetCData().Value.Contains("two")));
+			Assert.IsNotNull(merged, "Expected to find the bullet that absorbed 'three'");
+
+			var mergedText = string.Concat(merged.Elements(Ns + "T").Select(t => t.GetCData().Value));
+			Assert.AreEqual("- two three", mergedText);
+		}
 	}
 }
