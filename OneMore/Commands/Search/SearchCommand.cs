@@ -76,7 +76,17 @@ namespace River.OneMoreAddIn.Commands
 				// Execute directly), RunModeless just Show()s the dialog and returns
 				// immediately — disposing it right here would close it before the user ever
 				// sees it.
-				dialog = new SearchDialog();
+				// the Page Group scope is only offered if the current page has subpages or is one
+				bool hasPageGroup;
+				await using (var one = new OneNote())
+				{
+					var section = await one.GetSection();
+					hasPageGroup = section is not null &&
+						SearchEngine.GetPageGroup(
+							section, one.GetNamespace(section), one.CurrentPageId) is not null;
+				}
+
+				dialog = new SearchDialog(hasPageGroup);
 				dialog.RunModeless(async (sender, e) =>
 				{
 					try

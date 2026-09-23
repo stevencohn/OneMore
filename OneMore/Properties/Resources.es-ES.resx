@@ -6440,7 +6440,8 @@ Las palabras sin comillas coinciden en cualquier orden; Utilice comillas para un
     <value>en este cuaderno
 En este grupo de secciones
 En esta sección
-En esta página</value>
+En este grupo de páginas
+En esta pagina</value>
     <comment>combobox</comment>
   </data>
   <data name="SearchEngineSheet_DeleteMessage" xml:space="preserve">
