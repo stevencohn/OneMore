@@ -34,6 +34,12 @@ namespace River.OneMoreAddIn.Commands
 
 		private static readonly Regex LeadingSpaces = new Regex($@"^{SpaceUnit}+", RegexOptions.Compiled);
 
+		// unlike StringExtensions.EndsWithWhitespace (which treats punctuation as
+		// a word boundary too, for style/hashtag word-detection callers), this
+		// needs a literal trailing-space check to avoid double-spacing a boundary
+		// that already ends in a real space
+		private static readonly Regex TrailingSpace = new Regex($@"{Space}$", RegexOptions.Compiled);
+
 		private XNamespace ns;
 
 
@@ -339,7 +345,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (nextIndex is not null &&
 				originalParents[index] != originalParents[nextIndex.Value] &&
-				!text.EndsWithWhitespace())
+				!TrailingSpace.IsMatch(text))
 			{
 				text = $"{text} ";
 			}

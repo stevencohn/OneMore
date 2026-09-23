@@ -66,7 +66,9 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public static bool EndsWithWhitespace(this string value)
 		{
-			// \s includes space, tab, CR, NL, FF, VT, and \u00A0
+			// intentionally \W (word-boundary), not \s -- callers use this to
+			// detect whether text is still part of the "current word" (e.g. for
+			// style/hashtag extension), where punctuation is also a delimiter
 			return Regex.IsMatch(value, @"(\W|&#160;|&nbsp;)$");
 		}
 
@@ -79,7 +81,9 @@ namespace River.OneMoreAddIn
 		/// <returns></returns>
 		public static bool StartsWithWhitespace(this string value)
 		{
-			// \s includes space, tab, CR, NL, FF, VT, and \u00A0
+			// intentionally \W (word-boundary), not \s -- callers use this to
+			// detect whether text is still part of the "current word" (e.g. for
+			// style/hashtag extension), where punctuation is also a delimiter
 			return Regex.IsMatch(value, @"^(\W|&#160;|&nbsp;)");
 		}
 
