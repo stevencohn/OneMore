@@ -638,10 +638,15 @@ namespace OneMoreCalendar
 			if (settingsButton.Checked)
 			{
 				settingsForm = new SettingsForm();
-				var location = PointToScreen(settingsButton.Location);
-				location.Offset(-(settingsForm.Width - settingsButton.Width), settingsButton.Height);
+				var anchor = PointToScreen(settingsButton.Location);
+				anchor.Offset(settingsButton.Width, settingsButton.Height);
 
-				settingsForm.Location = location;
+				// the settings form scales itself when it loads so its final width isn't known
+				// until then; right-align it under the settings button at that point
+				settingsForm.Location = anchor;
+				settingsForm.Load += (s, args) =>
+					settingsForm.Location = new System.Drawing.Point(anchor.X - settingsForm.Width, anchor.Y);
+
 				settingsForm.FormClosing += ClosingSettings;
 				settingsForm.FormClosed += ClosedSettings;
 				settingsForm.Deactivate += DeactivateSettings;
