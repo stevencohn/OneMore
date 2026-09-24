@@ -282,6 +282,11 @@ namespace OneMoreCalendar
 				}
 
 				Colorize(container.Controls);
+
+				if (container is ThemedForm themedForm)
+				{
+					themedForm.OnThemeColorized();
+				}
 			}
 		}
 

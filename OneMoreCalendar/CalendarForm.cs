@@ -250,6 +250,14 @@ namespace OneMoreCalendar
 		}
 
 
+		public override void OnThemeColorized()
+		{
+			// match the color of adjacent-month days in the month grid
+			filterBox.BackColor = Theme.MonthSecondary;
+			clearLabel.BackColor = Theme.MonthSecondary;
+		}
+
+
 		/// <summary>
 		/// Loads the pages for the calendar grid of the current month, showing a busy status
 		/// since the first load may need to start OneNote and read all selected notebooks.

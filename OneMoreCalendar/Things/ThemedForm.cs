@@ -35,5 +35,14 @@ namespace OneMoreCalendar
 		public virtual void OnThemeChange()
 		{
 		}
+
+
+		/// <summary>
+		/// Called after the theme colors have been applied to all child controls, allowing
+		/// a form to override the colors of specific controls.
+		/// </summary>
+		public virtual void OnThemeColorized()
+		{
+		}
 	}
 }
