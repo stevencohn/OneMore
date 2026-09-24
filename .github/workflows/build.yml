@@ -31,6 +31,9 @@ on:
         type: boolean
         default: false
 
+permissions:
+  contents: read
+
 jobs:
   setup:
     runs-on: ubuntu-latest
