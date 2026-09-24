@@ -108,6 +108,10 @@ namespace OneMoreCalendar
 			AppContext.SetSwitch(
 				"Switch.System.Windows.Forms.EnableWindowsFormsHighDpiAutoResizing", true);
 
+			// use the add-in's language for resources and date formatting; must precede the
+			// command line date parsing and the construction of any Form
+			SettingsProvider.ApplyAddInCulture();
+
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 

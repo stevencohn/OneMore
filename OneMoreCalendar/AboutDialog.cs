@@ -15,6 +15,18 @@ namespace OneMoreCalendar
 		{
 			InitializeComponent();
 
+			// must precede the string.Format calls below
+			Translator.Localize(this, new[]
+			{
+				"this",
+				"titleLabel",
+				"versionLabel",
+				"copyLabel",
+				"okButton",
+				"pleaseLabel",
+				"homeLink"
+			});
+
 			sponsorButton.SetHandCursor();
 
 			versionLabel.Text = string.Format(versionLabel.Text, AssemblyInfo.Version + AssemblyInfo.BuildTag);

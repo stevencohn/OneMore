@@ -4,6 +4,7 @@
 
 namespace OneMoreCalendar
 {
+	using OneMoreCalendar.Properties;
 	using System;
 	using System.Drawing;
 	using System.Windows.Forms;
@@ -18,39 +19,42 @@ namespace OneMoreCalendar
 		private const int EdgePadding = 4;      // border ring around the content
 		private const int ContentPadding = 20;  // space between the content and the border
 
-		private static readonly (string Heading, (string Keys, string Action)[] Rows)[] Sections =
+		private static (string Heading, (string Keys, string Action)[] Rows)[] GetSections()
 		{
-			("Navigation", new[]
+			return new[]
 			{
-				("PageUp  /  Ctrl+Left", "Previous month"),
-				("PageDown  /  Ctrl+Right", "Next month"),
-				("Home", "Jump to today"),
-				("Ctrl+Tab", "Switch between month and day views"),
-				("F5", "Refresh from OneNote")
-			}),
-			("Filter box", new[]
-			{
-				("Enter", "Apply the filter now"),
-				("Esc", "Clear the filter")
-			}),
-			("Day view", new[]
-			{
-				("Up  /  Down", "Scroll the list of pages")
-			}),
-			("Mouse", new[]
-			{
-				("Click a page", "Open it in OneNote"),
-				("Right-click a page", "Preview a snapshot of it"),
-				("Click a day heading", "Open that day in the day view"),
-				("Click the month and year", "Choose a different year"),
-				("Mouse wheel", "Scroll the pages within a day")
-			}),
-			("General", new[]
-			{
-				("F1", "Show or hide this help"),
-				("Esc", "Close a popup window")
-			})
-		};
+				(Resources.HelpForm_Nav, new[]
+				{
+					(Resources.HelpForm_Nav1_Keys, Resources.HelpForm_Nav1_Action),
+					(Resources.HelpForm_Nav2_Keys, Resources.HelpForm_Nav2_Action),
+					(Resources.HelpForm_Nav3_Keys, Resources.HelpForm_Nav3_Action),
+					(Resources.HelpForm_Nav4_Keys, Resources.HelpForm_Nav4_Action),
+					(Resources.HelpForm_Nav5_Keys, Resources.HelpForm_Nav5_Action)
+				}),
+				(Resources.HelpForm_Filter, new[]
+				{
+					(Resources.HelpForm_Filter1_Keys, Resources.HelpForm_Filter1_Action),
+					(Resources.HelpForm_Filter2_Keys, Resources.HelpForm_Filter2_Action)
+				}),
+				(Resources.HelpForm_Day, new[]
+				{
+					(Resources.HelpForm_Day1_Keys, Resources.HelpForm_Day1_Action)
+				}),
+				(Resources.HelpForm_Mouse, new[]
+				{
+					(Resources.HelpForm_Mouse1_Keys, Resources.HelpForm_Mouse1_Action),
+					(Resources.HelpForm_Mouse2_Keys, Resources.HelpForm_Mouse2_Action),
+					(Resources.HelpForm_Mouse3_Keys, Resources.HelpForm_Mouse3_Action),
+					(Resources.HelpForm_Mouse4_Keys, Resources.HelpForm_Mouse4_Action),
+					(Resources.HelpForm_Mouse5_Keys, Resources.HelpForm_Mouse5_Action)
+				}),
+				(Resources.HelpForm_General, new[]
+				{
+					(Resources.HelpForm_General1_Keys, Resources.HelpForm_General1_Action),
+					(Resources.HelpForm_General2_Keys, Resources.HelpForm_General2_Action)
+				})
+			};
+		}
 
 
 		private Font titleFont;
@@ -116,7 +120,7 @@ namespace OneMoreCalendar
 			{
 				AutoSize = true,
 				Font = titleFont,
-				Text = "Keyboard shortcuts",
+				Text = Resources.HelpForm_Title,
 				Location = new Point(pad, pad)
 			};
 
@@ -128,7 +132,7 @@ namespace OneMoreCalendar
 			};
 
 			var row = 0;
-			foreach (var section in Sections)
+			foreach (var section in GetSections())
 			{
 				var heading = new Label
 				{
@@ -177,7 +181,7 @@ namespace OneMoreCalendar
 			{
 				Cursor = Cursors.Hand,
 				Size = new Size(this.Scaled(28), this.Scaled(28)),
-				Text = "✕",
+				Text = Resources.HelpForm_Close,
 				TextAlign = ContentAlignment.MiddleCenter
 			};
 

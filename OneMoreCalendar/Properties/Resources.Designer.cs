@@ -61,6 +61,159 @@ namespace OneMoreCalendar.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copyright @ 2021-{0} Steven M Cohn.
+        /// </summary>
+        internal static string AboutDialog_copyLabel_Text {
+            get {
+                return ResourceManager.GetString("AboutDialog_copyLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://github.com/stevencohn/OneMore.
+        /// </summary>
+        internal static string AboutDialog_homeLink_Text {
+            get {
+                return ResourceManager.GetString("AboutDialog_homeLink.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string AboutDialog_okButton_Text {
+            get {
+                return ResourceManager.GetString("AboutDialog_okButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please support future development of OneMore.
+        /// </summary>
+        internal static string AboutDialog_pleaseLabel_Text {
+            get {
+                return ResourceManager.GetString("AboutDialog_pleaseLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OneMore Calendar for OneNote.
+        /// </summary>
+        internal static string AboutDialog_titleLabel_Text {
+            get {
+                return ResourceManager.GetString("AboutDialog_titleLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version {0}.
+        /// </summary>
+        internal static string AboutDialog_versionLabel_Text {
+            get {
+                return ResourceManager.GetString("AboutDialog_versionLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OneMore Calendar.
+        /// </summary>
+        internal static string AboutDialog_Text {
+            get {
+                return ResourceManager.GetString("AboutDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ✕.
+        /// </summary>
+        internal static string CalendarForm_clearLabel_Text {
+            get {
+                return ResourceManager.GetString("CalendarForm_clearLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Created: {0}.
+        /// </summary>
+        internal static string CalendarForm_Created {
+            get {
+                return ResourceManager.GetString("CalendarForm_Created", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type a filter....
+        /// </summary>
+        internal static string CalendarForm_FilterCue {
+            get {
+                return ResourceManager.GetString("CalendarForm_FilterCue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loading....
+        /// </summary>
+        internal static string CalendarForm_Loading {
+            get {
+                return ResourceManager.GetString("CalendarForm_Loading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modified: {0}.
+        /// </summary>
+        internal static string CalendarForm_Modified {
+            get {
+                return ResourceManager.GetString("CalendarForm_Modified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ⏵.
+        /// </summary>
+        internal static string CalendarForm_nextButton_Text {
+            get {
+                return ResourceManager.GetString("CalendarForm_nextButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ⏴.
+        /// </summary>
+        internal static string CalendarForm_prevButton_Text {
+            get {
+                return ResourceManager.GetString("CalendarForm_prevButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Created:.
+        /// </summary>
+        internal static string CalendarForm_statusCreatedLabel_Text {
+            get {
+                return ResourceManager.GetString("CalendarForm_statusCreatedLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modified:.
+        /// </summary>
+        internal static string CalendarForm_statusModifiedLabel_Text {
+            get {
+                return ResourceManager.GetString("CalendarForm_statusModifiedLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OneMore Calendar.
+        /// </summary>
+        internal static string CalendarForm_Text {
+            get {
+                return ResourceManager.GetString("CalendarForm.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {
         ///  &quot;DarkMode&quot;: true,
         ///  &quot;Colors&quot;: {
@@ -94,6 +247,384 @@ namespace OneMoreCalendar.Properties {
             get {
                 object obj = ResourceManager.GetObject("day_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CREATED.
+        /// </summary>
+        internal static string DetailView_Created {
+            get {
+                return ResourceManager.GetString("DetailView_Created", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DATE.
+        /// </summary>
+        internal static string DetailView_Date {
+            get {
+                return ResourceManager.GetString("DetailView_Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MODIFIED.
+        /// </summary>
+        internal static string DetailView_Modified {
+            get {
+                return ResourceManager.GetString("DetailView_Modified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PAGE.
+        /// </summary>
+        internal static string DetailView_Page {
+            get {
+                return ResourceManager.GetString("DetailView_Page", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SECTION.
+        /// </summary>
+        internal static string DetailView_Section {
+            get {
+                return ResourceManager.GetString("DetailView_Section", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ✕.
+        /// </summary>
+        internal static string HelpForm_Close {
+            get {
+                return ResourceManager.GetString("HelpForm_Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Day view.
+        /// </summary>
+        internal static string HelpForm_Day {
+            get {
+                return ResourceManager.GetString("HelpForm_Day", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scroll the list of pages.
+        /// </summary>
+        internal static string HelpForm_Day1_Action {
+            get {
+                return ResourceManager.GetString("HelpForm_Day1_Action", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Up  /  Down.
+        /// </summary>
+        internal static string HelpForm_Day1_Keys {
+            get {
+                return ResourceManager.GetString("HelpForm_Day1_Keys", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter box.
+        /// </summary>
+        internal static string HelpForm_Filter {
+            get {
+                return ResourceManager.GetString("HelpForm_Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply the filter now.
+        /// </summary>
+        internal static string HelpForm_Filter1_Action {
+            get {
+                return ResourceManager.GetString("HelpForm_Filter1_Action", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter.
+        /// </summary>
+        internal static string HelpForm_Filter1_Keys {
+            get {
+                return ResourceManager.GetString("HelpForm_Filter1_Keys", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear the filter.
+        /// </summary>
+        internal static string HelpForm_Filter2_Action {
+            get {
+                return ResourceManager.GetString("HelpForm_Filter2_Action", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Esc.
+        /// </summary>
+        internal static string HelpForm_Filter2_Keys {
+            get {
+                return ResourceManager.GetString("HelpForm_Filter2_Keys", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to General.
+        /// </summary>
+        internal static string HelpForm_General {
+            get {
+                return ResourceManager.GetString("HelpForm_General", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show or hide this help.
+        /// </summary>
+        internal static string HelpForm_General1_Action {
+            get {
+                return ResourceManager.GetString("HelpForm_General1_Action", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to F1.
+        /// </summary>
+        internal static string HelpForm_General1_Keys {
+            get {
+                return ResourceManager.GetString("HelpForm_General1_Keys", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close a popup window.
+        /// </summary>
+        internal static string HelpForm_General2_Action {
+            get {
+                return ResourceManager.GetString("HelpForm_General2_Action", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Esc.
+        /// </summary>
+        internal static string HelpForm_General2_Keys {
+            get {
+                return ResourceManager.GetString("HelpForm_General2_Keys", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mouse.
+        /// </summary>
+        internal static string HelpForm_Mouse {
+            get {
+                return ResourceManager.GetString("HelpForm_Mouse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open it in OneNote.
+        /// </summary>
+        internal static string HelpForm_Mouse1_Action {
+            get {
+                return ResourceManager.GetString("HelpForm_Mouse1_Action", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click a page.
+        /// </summary>
+        internal static string HelpForm_Mouse1_Keys {
+            get {
+                return ResourceManager.GetString("HelpForm_Mouse1_Keys", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preview a snapshot of it.
+        /// </summary>
+        internal static string HelpForm_Mouse2_Action {
+            get {
+                return ResourceManager.GetString("HelpForm_Mouse2_Action", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Right-click a page.
+        /// </summary>
+        internal static string HelpForm_Mouse2_Keys {
+            get {
+                return ResourceManager.GetString("HelpForm_Mouse2_Keys", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open that day in the day view.
+        /// </summary>
+        internal static string HelpForm_Mouse3_Action {
+            get {
+                return ResourceManager.GetString("HelpForm_Mouse3_Action", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click a day heading.
+        /// </summary>
+        internal static string HelpForm_Mouse3_Keys {
+            get {
+                return ResourceManager.GetString("HelpForm_Mouse3_Keys", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose a different year.
+        /// </summary>
+        internal static string HelpForm_Mouse4_Action {
+            get {
+                return ResourceManager.GetString("HelpForm_Mouse4_Action", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click the month and year.
+        /// </summary>
+        internal static string HelpForm_Mouse4_Keys {
+            get {
+                return ResourceManager.GetString("HelpForm_Mouse4_Keys", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scroll the pages within a day.
+        /// </summary>
+        internal static string HelpForm_Mouse5_Action {
+            get {
+                return ResourceManager.GetString("HelpForm_Mouse5_Action", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mouse wheel.
+        /// </summary>
+        internal static string HelpForm_Mouse5_Keys {
+            get {
+                return ResourceManager.GetString("HelpForm_Mouse5_Keys", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Navigation.
+        /// </summary>
+        internal static string HelpForm_Nav {
+            get {
+                return ResourceManager.GetString("HelpForm_Nav", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Previous month.
+        /// </summary>
+        internal static string HelpForm_Nav1_Action {
+            get {
+                return ResourceManager.GetString("HelpForm_Nav1_Action", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PageUp  /  Ctrl+Left.
+        /// </summary>
+        internal static string HelpForm_Nav1_Keys {
+            get {
+                return ResourceManager.GetString("HelpForm_Nav1_Keys", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Next month.
+        /// </summary>
+        internal static string HelpForm_Nav2_Action {
+            get {
+                return ResourceManager.GetString("HelpForm_Nav2_Action", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PageDown  /  Ctrl+Right.
+        /// </summary>
+        internal static string HelpForm_Nav2_Keys {
+            get {
+                return ResourceManager.GetString("HelpForm_Nav2_Keys", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jump to today.
+        /// </summary>
+        internal static string HelpForm_Nav3_Action {
+            get {
+                return ResourceManager.GetString("HelpForm_Nav3_Action", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Home.
+        /// </summary>
+        internal static string HelpForm_Nav3_Keys {
+            get {
+                return ResourceManager.GetString("HelpForm_Nav3_Keys", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Switch between month and day views.
+        /// </summary>
+        internal static string HelpForm_Nav4_Action {
+            get {
+                return ResourceManager.GetString("HelpForm_Nav4_Action", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ctrl+Tab.
+        /// </summary>
+        internal static string HelpForm_Nav4_Keys {
+            get {
+                return ResourceManager.GetString("HelpForm_Nav4_Keys", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Refresh from OneNote.
+        /// </summary>
+        internal static string HelpForm_Nav5_Action {
+            get {
+                return ResourceManager.GetString("HelpForm_Nav5_Action", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to F5.
+        /// </summary>
+        internal static string HelpForm_Nav5_Keys {
+            get {
+                return ResourceManager.GetString("HelpForm_Nav5_Keys", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keyboard shortcuts.
+        /// </summary>
+        internal static string HelpForm_Title {
+            get {
+                return ResourceManager.GetString("HelpForm_Title", resourceCulture);
             }
         }
         
@@ -156,6 +687,78 @@ namespace OneMoreCalendar.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 🗇.
+        /// </summary>
+        internal static string MonthView_CopyGlyph {
+            get {
+                return ResourceManager.GetString("MonthView_CopyGlyph", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy links to all pages from this day.
+        /// </summary>
+        internal static string MonthView_CopyLinks {
+            get {
+                return ResourceManager.GetString("MonthView_CopyLinks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gathering page links....
+        /// </summary>
+        internal static string MonthView_GatheringLinks {
+            get {
+                return ResourceManager.GetString("MonthView_GatheringLinks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ⏶.
+        /// </summary>
+        internal static string MonthView_LessGlyph {
+            get {
+                return ResourceManager.GetString("MonthView_LessGlyph", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ⏷.
+        /// </summary>
+        internal static string MonthView_MoreGlyph {
+            get {
+                return ResourceManager.GetString("MonthView_MoreGlyph", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Web view.
+        /// </summary>
+        internal static string MonthView_WebView {
+            get {
+                return ResourceManager.GetString("MonthView_WebView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string ProgressDialog_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("ProgressDialog_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OneMore Calendar.
+        /// </summary>
+        internal static string ProgressDialog_Text {
+            get {
+                return ResourceManager.GetString("ProgressDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Reminder_01_24_Y {
@@ -172,6 +775,178 @@ namespace OneMoreCalendar.Properties {
             get {
                 object obj = ResourceManager.GetObject("settings_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        internal static string SettingsForm_aboutLink_Text {
+            get {
+                return ResourceManager.GetString("SettingsForm_aboutLink.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to |.
+        /// </summary>
+        internal static string SettingsForm_barLabel_Text {
+            get {
+                return ResourceManager.GetString("SettingsForm_barLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string SettingsForm_cancelButton_Text {
+            get {
+                return ResourceManager.GetString("SettingsForm_cancelButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Created on.
+        /// </summary>
+        internal static string SettingsForm_createdBox_Text {
+            get {
+                return ResourceManager.GetString("SettingsForm_createdBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dark.
+        /// </summary>
+        internal static string SettingsForm_darkModeButton_Text {
+            get {
+                return ResourceManager.GetString("SettingsForm_darkModeButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Included deleted pages.
+        /// </summary>
+        internal static string SettingsForm_deletedBox_Text {
+            get {
+                return ResourceManager.GetString("SettingsForm_deletedBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hide empty days in detail view.
+        /// </summary>
+        internal static string SettingsForm_emptyBox_Text {
+            get {
+                return ResourceManager.GetString("SettingsForm_emptyBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Light.
+        /// </summary>
+        internal static string SettingsForm_lightModeButton_Text {
+            get {
+                return ResourceManager.GetString("SettingsForm_lightModeButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open log file.
+        /// </summary>
+        internal static string SettingsForm_logLink_Text {
+            get {
+                return ResourceManager.GetString("SettingsForm_logLink.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last modified on.
+        /// </summary>
+        internal static string SettingsForm_modifiedBox_Text {
+            get {
+                return ResourceManager.GetString("SettingsForm_modifiedBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notebooks.
+        /// </summary>
+        internal static string SettingsForm_notebooksLabel_Text {
+            get {
+                return ResourceManager.GetString("SettingsForm_notebooksLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply.
+        /// </summary>
+        internal static string SettingsForm_okButton_Text {
+            get {
+                return ResourceManager.GetString("SettingsForm_okButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Options.
+        /// </summary>
+        internal static string SettingsForm_optionsLabel_Text {
+            get {
+                return ResourceManager.GetString("SettingsForm_optionsLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select All.
+        /// </summary>
+        internal static string SettingsForm_selectAllLink_Text {
+            get {
+                return ResourceManager.GetString("SettingsForm_selectAllLink.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select None.
+        /// </summary>
+        internal static string SettingsForm_selectNoneLink_Text {
+            get {
+                return ResourceManager.GetString("SettingsForm_selectNoneLink.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to System.
+        /// </summary>
+        internal static string SettingsForm_systemModeButton_Text {
+            get {
+                return ResourceManager.GetString("SettingsForm_systemModeButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Theme.
+        /// </summary>
+        internal static string SettingsForm_themeLabel_Text {
+            get {
+                return ResourceManager.GetString("SettingsForm_themeLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Custom.
+        /// </summary>
+        internal static string SettingsForm_userModeButton_Text {
+            get {
+                return ResourceManager.GetString("SettingsForm_userModeButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to error reading {0}
+        ///{1}.
+        /// </summary>
+        internal static string SettingsProvider_ReadError {
+            get {
+                return ResourceManager.GetString("SettingsProvider_ReadError", resourceCulture);
             }
         }
         
@@ -202,6 +977,15 @@ namespace OneMoreCalendar.Properties {
             get {
                 object obj = ResourceManager.GetObject("today_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recycle Bin.
+        /// </summary>
+        internal static string word_RecycleBin {
+            get {
+                return ResourceManager.GetString("word_RecycleBin", resourceCulture);
             }
         }
     }

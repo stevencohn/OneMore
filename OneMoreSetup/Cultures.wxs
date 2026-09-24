@@ -11,6 +11,9 @@
       <Component Id="SatelliteArSaTray" Directory="CultureArSA">
         <File Source="..\OneMore\bin\$(var.Configuration)\ar-SA\OneMoreTray.resources.dll" KeyPath="yes" />
       </Component>
+      <Component Id="SatelliteArSaCalendar" Directory="CultureArSA">
+        <File Source="..\OneMore\bin\$(var.Configuration)\ar-SA\OneMoreCalendar.resources.dll" KeyPath="yes" />
+      </Component>
 
       <!-- de-DE -->
       <Component Id="SatelliteDeDeDe" Directory="CultureDeDe">
@@ -18,6 +21,9 @@
       </Component>
       <Component Id="SatelliteDeDeT" Directory="CultureDeDe">
         <File Source="..\OneMore\bin\$(var.Configuration)\de-DE\OneMoreTray.resources.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="SatelliteDeDeCalendar" Directory="CultureDeDe">
+        <File Source="..\OneMore\bin\$(var.Configuration)\de-DE\OneMoreCalendar.resources.dll" KeyPath="yes" />
       </Component>
 
       <!-- es-ES -->
@@ -27,6 +33,9 @@
       <Component Id="SatelliteEsEsT" Directory="CultureEsEs">
         <File Source="..\OneMore\bin\$(var.Configuration)\es-ES\OneMoreTray.resources.dll" KeyPath="yes" />
       </Component>
+      <Component Id="SatelliteEsEsCalendar" Directory="CultureEsEs">
+        <File Source="..\OneMore\bin\$(var.Configuration)\es-ES\OneMoreCalendar.resources.dll" KeyPath="yes" />
+      </Component>
 
       <!-- fr-FR -->
       <Component Id="SatelliteFrFr" Directory="CultureFrFr">
@@ -34,6 +43,9 @@
       </Component>
       <Component Id="SatelliteFrFrT" Directory="CultureFrFr">
         <File Source="..\OneMore\bin\$(var.Configuration)\fr-FR\OneMoreTray.resources.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="SatelliteFrFrCalendar" Directory="CultureFrFr">
+        <File Source="..\OneMore\bin\$(var.Configuration)\fr-FR\OneMoreCalendar.resources.dll" KeyPath="yes" />
       </Component>
 
       <!-- he-IL -->
@@ -43,10 +55,16 @@
       <Component Id="SatelliteHeIlT" Directory="CultureHeIl">
         <File Source="..\OneMore\bin\$(var.Configuration)\he-IL\OneMoreTray.resources.dll" KeyPath="yes" />
       </Component>
+      <Component Id="SatelliteHeIlCalendar" Directory="CultureHeIl">
+        <File Source="..\OneMore\bin\$(var.Configuration)\he-IL\OneMoreCalendar.resources.dll" KeyPath="yes" />
+      </Component>
 
       <!-- it-IT -->
       <Component Id="SatelliteItIt" Directory="CultureItIt">
         <File Source="..\OneMore\bin\$(var.Configuration)\it-IT\River.OneMoreAddIn.resources.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="SatelliteItItCalendar" Directory="CultureItIt">
+        <File Source="..\OneMore\bin\$(var.Configuration)\it-IT\OneMoreCalendar.resources.dll" KeyPath="yes" />
       </Component>
 
       <!-- ja-JP -->
@@ -56,6 +74,9 @@
       <Component Id="SatelliteJaJpT" Directory="CultureJaJp">
         <File Source="..\OneMore\bin\$(var.Configuration)\ja-JP\OneMoreTray.resources.dll" KeyPath="yes" />
       </Component>
+      <Component Id="SatelliteJaJpCalendar" Directory="CultureJaJp">
+        <File Source="..\OneMore\bin\$(var.Configuration)\ja-JP\OneMoreCalendar.resources.dll" KeyPath="yes" />
+      </Component>
 
       <!-- nl-NL -->
       <Component Id="SatelliteNlNl" Directory="CultureNlNl">
@@ -63,6 +84,9 @@
       </Component>
       <Component Id="SatelliteNlNlT" Directory="CultureNlNl">
         <File Source="..\OneMore\bin\$(var.Configuration)\nl-NL\OneMoreTray.resources.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="SatelliteNlNlCalendar" Directory="CultureNlNl">
+        <File Source="..\OneMore\bin\$(var.Configuration)\nl-NL\OneMoreCalendar.resources.dll" KeyPath="yes" />
       </Component>
 
       <!-- pl-PL -->
@@ -72,6 +96,9 @@
       <Component Id="SatellitePlPlT" Directory="CulturePlPl">
         <File Source="..\OneMore\bin\$(var.Configuration)\pl-PL\OneMoreTray.resources.dll" KeyPath="yes" />
       </Component>
+      <Component Id="SatellitePlPlCalendar" Directory="CulturePlPl">
+        <File Source="..\OneMore\bin\$(var.Configuration)\pl-PL\OneMoreCalendar.resources.dll" KeyPath="yes" />
+      </Component>
 
       <!-- pt-BR -->
       <Component Id="SatellitePtBr" Directory="CulturePtBr">
@@ -80,6 +107,9 @@
       <Component Id="SatellitePtBrT" Directory="CulturePtBr">
         <File Source="..\OneMore\bin\$(var.Configuration)\pt-BR\OneMoreTray.resources.dll" KeyPath="yes" />
       </Component>
+      <Component Id="SatellitePtBrCalendar" Directory="CulturePtBr">
+        <File Source="..\OneMore\bin\$(var.Configuration)\pt-BR\OneMoreCalendar.resources.dll" KeyPath="yes" />
+      </Component>
 
       <!-- zh-CN -->
       <Component Id="SatelliteZhCn" Directory="CultureZhCn">
@@ -87,6 +117,9 @@
       </Component>
       <Component Id="SatelliteZhCnT" Directory="CultureZhCn">
         <File Source="..\OneMore\bin\$(var.Configuration)\zh-CN\OneMoreTray.resources.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="SatelliteZhCnCalendar" Directory="CultureZhCn">
+        <File Source="..\OneMore\bin\$(var.Configuration)\zh-CN\OneMoreCalendar.resources.dll" KeyPath="yes" />
       </Component>
 
     </ComponentGroup>

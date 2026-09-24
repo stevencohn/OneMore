@@ -176,7 +176,8 @@ namespace OneMoreCalendar
 
 					if (path.EndsWith(DeletedPages))
 					{
-						path = path.Substring(0, path.Length - DeletedPages.Length) + "Recycle Bin";
+						path = path.Substring(0, path.Length - DeletedPages.Length)
+								+ Properties.Resources.word_RecycleBin;
 					}
 
 					return new CalendarPage

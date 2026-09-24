@@ -158,13 +158,14 @@ namespace OneMoreCalendar
 			headerPanel.Height = font.Height + VPadding;
 			var y = (headerPanel.Height - font.Height) / 2;
 
-			var size = e.Graphics.MeasureString("DATE", font);
+			var dateHead = Properties.Resources.DetailView_Date;
+			var size = e.Graphics.MeasureString(dateHead, font);
 			var width = e.ClipRectangle.Width - SystemInformation.VerticalScrollBarWidth;
 
 			using var brush = new SolidBrush(Theme.MonthDayFore);
 
-			e.Graphics.DrawString("DATE", font, brush, (HeadWidth - size.Width) / 2, y);
-			e.Graphics.DrawString("SECTION", font, brush, HeadWidth + this.Scaled(20), y);
+			e.Graphics.DrawString(dateHead, font, brush, (HeadWidth - size.Width) / 2, y);
+			e.Graphics.DrawString(Properties.Resources.DetailView_Section, font, brush, HeadWidth + this.Scaled(20), y);
 
 			var editor = new ImageEditor { Style = ImageEditor.Stylization.GrayScale };
 			using var gray = editor.Apply(Properties.Resources.Reminder_01_24_Y);
@@ -173,9 +174,14 @@ namespace OneMoreCalendar
 				HeadWidth + PathWidth + this.Scaled(40) + (BellWidth - this.Scaled(15)),
 				y + this.Scaled(3), this.Scaled(12f), this.Scaled(12f));
 
-			e.Graphics.DrawString("PAGE", font, brush, HeadWidth + PathWidth + BellWidth + this.Scaled(60), y);
-			e.Graphics.DrawString("CREATED", font, brush, width - DateWidth * 2, y);
-			e.Graphics.DrawString("MODIFIED", font, brush, width - DateWidth, y);
+			e.Graphics.DrawString(Properties.Resources.DetailView_Page, font, brush,
+				HeadWidth + PathWidth + BellWidth + this.Scaled(60), y);
+
+			e.Graphics.DrawString(Properties.Resources.DetailView_Created, font, brush,
+				width - DateWidth * 2, y);
+
+			e.Graphics.DrawString(Properties.Resources.DetailView_Modified, font, brush,
+				width - DateWidth, y);
 		}
 
 
