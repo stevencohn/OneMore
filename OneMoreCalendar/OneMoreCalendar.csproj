@@ -114,6 +114,7 @@
     <Compile Include="DetailView.Designer.cs">
       <DependentUpon>DetailView.cs</DependentUpon>
     </Compile>
+    <Compile Include="HelpForm.cs" />
     <Compile Include="Things\ThemeMode.cs" />
     <Compile Include="Things\BitmapExtensions.cs" />
     <Compile Include="Things\DateTimeExtensions.cs" />
