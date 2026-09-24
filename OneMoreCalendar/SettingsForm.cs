@@ -22,6 +22,28 @@ namespace OneMoreCalendar
 			: base()
 		{
 			InitializeComponent();
+
+			Translator.Localize(this, new[]
+			{
+				"optionsLabel",
+				"notebooksLabel",
+				"themeLabel",
+				"userModeButton",
+				"darkModeButton",
+				"lightModeButton",
+				"systemModeButton",
+				"emptyBox",
+				"deletedBox",
+				"createdBox",
+				"modifiedBox",
+				"okButton",
+				"cancelButton",
+				"logLink",
+				"aboutLink",
+				"selectAllLink",
+				"selectNoneLink",
+				"barLabel"
+			});
 		}
 
 

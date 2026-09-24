@@ -119,44 +119,40 @@
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="AboutDialog.Text" xml:space="preserve">
-    <value>OneMore Calendar</value>
+    <value>Un calendario más</value>
   </data>
   <data name="AboutDialog_copyLabel.Text" xml:space="preserve">
-    <value>Copyright @ 2021-{0} Steven M Cohn</value>
-  </data>
-  <data name="AboutDialog_homeLink.Text" xml:space="preserve">
-    <value>https://github.com/stevencohn/OneMore</value>
-    <comment>!SKIP</comment>
+    <value>Copyright @ 2021-{0} Steven M. Cohn</value>
   </data>
   <data name="AboutDialog_okButton.Text" xml:space="preserve">
-    <value>OK</value>
+    <value>DE ACUERDO</value>
   </data>
   <data name="AboutDialog_pleaseLabel.Text" xml:space="preserve">
-    <value>Please support future development of OneMore</value>
+    <value>Por favor apoye el desarrollo futuro de OneMore</value>
   </data>
   <data name="AboutDialog_titleLabel.Text" xml:space="preserve">
-    <value>OneMore Calendar for OneNote</value>
+    <value>Calendario OneMore para OneNote</value>
   </data>
   <data name="AboutDialog_versionLabel.Text" xml:space="preserve">
-    <value>Version {0}</value>
+    <value>Versión {0}</value>
   </data>
   <data name="CalendarForm.Text" xml:space="preserve">
-    <value>OneMore Calendar</value>
+    <value>Un calendario más</value>
   </data>
   <data name="CalendarForm_clearLabel.Text" xml:space="preserve">
     <value>✕</value>
   </data>
   <data name="CalendarForm_Created" xml:space="preserve">
-    <value>Created: {0}</value>
+    <value>Creado: {0}</value>
   </data>
   <data name="CalendarForm_FilterCue" xml:space="preserve">
-    <value>Type a filter...</value>
+    <value>Escribe un filtro...</value>
   </data>
   <data name="CalendarForm_Loading" xml:space="preserve">
-    <value>Loading...</value>
+    <value>Cargando...</value>
   </data>
   <data name="CalendarForm_Modified" xml:space="preserve">
-    <value>Modified: {0}</value>
+    <value>Modificada: {0}</value>
   </data>
   <data name="CalendarForm_nextButton.Text" xml:space="preserve">
     <value>⏵</value>
@@ -165,160 +161,160 @@
     <value>⏴</value>
   </data>
   <data name="CalendarForm_statusCreatedLabel.Text" xml:space="preserve">
-    <value>Created:</value>
+    <value>Creada:</value>
   </data>
   <data name="CalendarForm_statusModifiedLabel.Text" xml:space="preserve">
-    <value>Modified:</value>
+    <value>Modificada:</value>
   </data>
   <data name="DetailView_Created" xml:space="preserve">
-    <value>CREATED</value>
+    <value>CREADA</value>
   </data>
   <data name="DetailView_Date" xml:space="preserve">
-    <value>DATE</value>
+    <value>FECHA</value>
   </data>
   <data name="DetailView_Modified" xml:space="preserve">
-    <value>MODIFIED</value>
+    <value>MODIFICADA</value>
   </data>
   <data name="DetailView_Page" xml:space="preserve">
-    <value>PAGE</value>
+    <value>PÁGINA</value>
   </data>
   <data name="DetailView_Section" xml:space="preserve">
-    <value>SECTION</value>
+    <value>SECCIÓN</value>
   </data>
   <data name="HelpForm_Close" xml:space="preserve">
     <value>✕</value>
   </data>
   <data name="HelpForm_Day" xml:space="preserve">
-    <value>Day view</value>
+    <value>Vista diurna</value>
   </data>
   <data name="HelpForm_Day1_Action" xml:space="preserve">
-    <value>Scroll the list of pages</value>
+    <value>Desplazarse por la lista de páginas</value>
   </data>
   <data name="HelpForm_Day1_Keys" xml:space="preserve">
-    <value>Up  /  Down</value>
+    <value>Arriba / Abajo</value>
   </data>
   <data name="HelpForm_Filter" xml:space="preserve">
-    <value>Filter box</value>
+    <value>Caja de filtro</value>
   </data>
   <data name="HelpForm_Filter1_Action" xml:space="preserve">
-    <value>Apply the filter now</value>
+    <value>Aplicar el filtro ahora</value>
   </data>
   <data name="HelpForm_Filter1_Keys" xml:space="preserve">
-    <value>Enter</value>
+    <value>Ingresar</value>
   </data>
   <data name="HelpForm_Filter2_Action" xml:space="preserve">
-    <value>Clear the filter</value>
+    <value>Limpiar el filtro</value>
   </data>
   <data name="HelpForm_Filter2_Keys" xml:space="preserve">
-    <value>Esc</value>
+    <value>ESC</value>
   </data>
   <data name="HelpForm_General" xml:space="preserve">
     <value>General</value>
   </data>
   <data name="HelpForm_General1_Action" xml:space="preserve">
-    <value>Show or hide this help</value>
+    <value>Mostrar u ocultar esta ayuda</value>
   </data>
   <data name="HelpForm_General1_Keys" xml:space="preserve">
     <value>F1</value>
   </data>
   <data name="HelpForm_General2_Action" xml:space="preserve">
-    <value>Close a popup window</value>
+    <value>Cerrar una ventana emergente</value>
   </data>
   <data name="HelpForm_General2_Keys" xml:space="preserve">
-    <value>Esc</value>
+    <value>ESC</value>
   </data>
   <data name="HelpForm_Mouse" xml:space="preserve">
-    <value>Mouse</value>
+    <value>Ratón</value>
   </data>
   <data name="HelpForm_Mouse1_Action" xml:space="preserve">
-    <value>Open it in OneNote</value>
+    <value>Ábrelo en OneNote</value>
   </data>
   <data name="HelpForm_Mouse1_Keys" xml:space="preserve">
-    <value>Click a page</value>
+    <value>Haga clic en una página</value>
   </data>
   <data name="HelpForm_Mouse2_Action" xml:space="preserve">
-    <value>Preview a snapshot of it</value>
+    <value>Vista previa de una instantánea del mismo</value>
   </data>
   <data name="HelpForm_Mouse2_Keys" xml:space="preserve">
-    <value>Right-click a page</value>
+    <value>Haga clic derecho en una página</value>
   </data>
   <data name="HelpForm_Mouse3_Action" xml:space="preserve">
-    <value>Open that day in the day view</value>
+    <value>Abrir ese día en la vista de día</value>
   </data>
   <data name="HelpForm_Mouse3_Keys" xml:space="preserve">
-    <value>Click a day heading</value>
+    <value>Haga clic en el título de un día</value>
   </data>
   <data name="HelpForm_Mouse4_Action" xml:space="preserve">
-    <value>Choose a different year</value>
+    <value>Elige un año diferente</value>
   </data>
   <data name="HelpForm_Mouse4_Keys" xml:space="preserve">
-    <value>Click the month and year</value>
+    <value>Haga clic en el mes y el año</value>
   </data>
   <data name="HelpForm_Mouse5_Action" xml:space="preserve">
-    <value>Scroll the pages within a day</value>
+    <value>Desplazarse por las páginas en un día</value>
   </data>
   <data name="HelpForm_Mouse5_Keys" xml:space="preserve">
-    <value>Mouse wheel</value>
+    <value>Rueda del ratón</value>
   </data>
   <data name="HelpForm_Nav" xml:space="preserve">
-    <value>Navigation</value>
+    <value>Navegación</value>
   </data>
   <data name="HelpForm_Nav1_Action" xml:space="preserve">
-    <value>Previous month</value>
+    <value>Mes anterior</value>
   </data>
   <data name="HelpForm_Nav1_Keys" xml:space="preserve">
-    <value>PageUp  /  Ctrl+Left</value>
+    <value>Re Pág / Ctrl+Izquierda</value>
   </data>
   <data name="HelpForm_Nav2_Action" xml:space="preserve">
-    <value>Next month</value>
+    <value>Mes próximo</value>
   </data>
   <data name="HelpForm_Nav2_Keys" xml:space="preserve">
-    <value>PageDown  /  Ctrl+Right</value>
+    <value>AvPág / Ctrl+Derecha</value>
   </data>
   <data name="HelpForm_Nav3_Action" xml:space="preserve">
-    <value>Jump to today</value>
+    <value>Saltar a hoy</value>
   </data>
   <data name="HelpForm_Nav3_Keys" xml:space="preserve">
-    <value>Home</value>
+    <value>Hogar</value>
   </data>
   <data name="HelpForm_Nav4_Action" xml:space="preserve">
-    <value>Switch between month and day views</value>
+    <value>Cambiar entre vistas de mes y día</value>
   </data>
   <data name="HelpForm_Nav4_Keys" xml:space="preserve">
     <value>Ctrl+Tab</value>
   </data>
   <data name="HelpForm_Nav5_Action" xml:space="preserve">
-    <value>Refresh from OneNote</value>
+    <value>Actualizar desde OneNote</value>
   </data>
   <data name="HelpForm_Nav5_Keys" xml:space="preserve">
     <value>F5</value>
   </data>
   <data name="HelpForm_Title" xml:space="preserve">
-    <value>Keyboard shortcuts</value>
+    <value>Atajos de teclado</value>
   </data>
   <data name="HtmlClipboardPreamble" xml:space="preserve">
     <value>
-&lt;html xmlns:o="urn:schemas-microsoft-com:office:office"
+&lt;html xmlns:o="urna:esquemas-microsoft-com:oficina:oficina"
 xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
 xmlns="http://www.w3.org/TR/REC-html40"&gt;
 
-&lt;head&gt;
-&lt;meta http-equiv=Content-Type content="text/html; charset=utf-8"&gt;
-&lt;meta name=ProgId content=OneNote.File&gt;
-&lt;meta name=Generator content="Microsoft OneNote 15"&gt;
-&lt;/head&gt;
+&lt;cabeza&gt;
+&lt;meta http-equiv=Tipo de contenido content="text/html; charset=utf-8"&gt;
+&lt;meta nombre=ProgId contenido=OneNote.File&gt;
+&lt;meta nombre=Generador de contenido="Microsoft OneNote 15"&gt;
+&lt;/cabeza&gt;
 
-&lt;body lang=en-US&gt;
-&lt;!--StartFragment--&gt;</value>
+&lt;cuerpo idioma=en-US&gt;
+&lt;!--InicioFragmento--&gt;</value>
   </data>
   <data name="MonthView_CopyGlyph" xml:space="preserve">
     <value>🗇</value>
   </data>
   <data name="MonthView_CopyLinks" xml:space="preserve">
-    <value>Copy links to all pages from this day</value>
+    <value>Copiar enlaces a todas las páginas de este día.</value>
   </data>
   <data name="MonthView_GatheringLinks" xml:space="preserve">
-    <value>Gathering page links...</value>
+    <value>Recopilando enlaces de páginas...</value>
   </data>
   <data name="MonthView_LessGlyph" xml:space="preserve">
     <value>⏶</value>
@@ -327,109 +323,73 @@ xmlns="http://www.w3.org/TR/REC-html40"&gt;
     <value>⏷</value>
   </data>
   <data name="MonthView_WebView" xml:space="preserve">
-    <value>Web view</value>
+    <value>vista web</value>
   </data>
   <data name="ProgressDialog.Text" xml:space="preserve">
-    <value>OneMore Calendar</value>
+    <value>Un calendario más</value>
   </data>
   <data name="ProgressDialog_cancelButton.Text" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Cancelar</value>
   </data>
   <data name="SettingsForm_aboutLink.Text" xml:space="preserve">
-    <value>About</value>
+    <value>Acerca de</value>
   </data>
   <data name="SettingsForm_barLabel.Text" xml:space="preserve">
     <value>|</value>
   </data>
   <data name="SettingsForm_cancelButton.Text" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Cancelar</value>
   </data>
   <data name="SettingsForm_createdBox.Text" xml:space="preserve">
-    <value>Created on</value>
+    <value>Creado el</value>
   </data>
   <data name="SettingsForm_darkModeButton.Text" xml:space="preserve">
-    <value>Dark</value>
+    <value>Oscura</value>
   </data>
   <data name="SettingsForm_deletedBox.Text" xml:space="preserve">
-    <value>Included deleted pages</value>
+    <value>Páginas eliminadas incluidas</value>
   </data>
   <data name="SettingsForm_emptyBox.Text" xml:space="preserve">
-    <value>Hide empty days in detail view</value>
+    <value>Ocultar días vacíos en vista detallada</value>
   </data>
   <data name="SettingsForm_lightModeButton.Text" xml:space="preserve">
-    <value>Light</value>
+    <value>Ligera</value>
   </data>
   <data name="SettingsForm_logLink.Text" xml:space="preserve">
-    <value>Open log file</value>
+    <value>Abrir archivo de registro</value>
   </data>
   <data name="SettingsForm_modifiedBox.Text" xml:space="preserve">
-    <value>Last modified on</value>
+    <value>Última modificación el</value>
   </data>
   <data name="SettingsForm_notebooksLabel.Text" xml:space="preserve">
-    <value>Notebooks</value>
+    <value>Cuadernos</value>
   </data>
   <data name="SettingsForm_okButton.Text" xml:space="preserve">
-    <value>Apply</value>
+    <value>Aplicar</value>
   </data>
   <data name="SettingsForm_optionsLabel.Text" xml:space="preserve">
-    <value>Options</value>
+    <value>Opciones</value>
   </data>
   <data name="SettingsForm_selectAllLink.Text" xml:space="preserve">
-    <value>Select All</value>
+    <value>Seleccionar todo</value>
   </data>
   <data name="SettingsForm_selectNoneLink.Text" xml:space="preserve">
-    <value>Select None</value>
+    <value>No seleccionar ninguna</value>
   </data>
   <data name="SettingsForm_systemModeButton.Text" xml:space="preserve">
-    <value>System</value>
+    <value>Sistema</value>
   </data>
   <data name="SettingsForm_themeLabel.Text" xml:space="preserve">
-    <value>Theme</value>
+    <value>Tema</value>
   </data>
   <data name="SettingsForm_userModeButton.Text" xml:space="preserve">
-    <value>Custom</value>
+    <value>Costumbre</value>
   </data>
   <data name="SettingsProvider_ReadError" xml:space="preserve">
-    <value>error reading {0}
+    <value>error de lectura {0}
 {1}</value>
   </data>
   <data name="word_RecycleBin" xml:space="preserve">
-    <value>Recycle Bin</value>
-  </data>
-  <data name="day_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\assets\day-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-    <comment>!SKIP</comment>
-  </data>
-  <data name="month_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\assets\month-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-    <comment>!SKIP</comment>
-  </data>
-  <data name="Reminder_01_24_Y" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\assets\reminder-01-24-y.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-    <comment>!SKIP</comment>
-  </data>
-  <data name="settings_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\assets\settings-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-    <comment>!SKIP</comment>
-  </data>
-  <data name="Sponsor" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\assets\sponsor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-    <comment>!SKIP</comment>
-  </data>
-  <data name="SponsorOver" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\assets\sponsorover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-    <comment>!SKIP</comment>
-  </data>
-  <data name="today_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\assets\today-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-    <comment>!SKIP</comment>
-  </data>
-  <data name="DarkTheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\assets\darktheme.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-    <comment>!SKIP</comment>
-  </data>
-  <data name="LightTheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\assets\lighttheme.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-    <comment>!SKIP</comment>
+    <value>Papelera de reciclaje</value>
   </data>
 </root>

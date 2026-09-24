@@ -34,9 +34,9 @@ namespace OneMoreCalendar
 
 		//private const string HeadBackColor = "#FFF4E8F3";
 		//private const string TodayHeadColor = "#FFD6A6D3";
-		private const string LessGlyph = "⏶"; // \u23F6
-		private const string MoreGlyph = "⏷"; // \u23F7
-		private const string CopyGlyph = "🗇"; // \ud83d\uddc7
+		private static readonly string LessGlyph = Resources.MonthView_LessGlyph; // \u23F6
+		private static readonly string MoreGlyph = Resources.MonthView_MoreGlyph; // \u23F7
+		private static readonly string CopyGlyph = Resources.MonthView_CopyGlyph; // \ud83d\uddc7
 
 		// Font.Height includes generous internal leading; pack page title rows closer
 		// together than a full line height so a day's entries don't look so spread out
@@ -97,7 +97,7 @@ namespace OneMoreCalendar
 			copyButton.MouseDown += ClickCopyPageButton;
 
 			tooltip = new ToolTip(components);
-			tooltip.SetToolTip(copyButton, "Copy links to all pages from this day");
+			tooltip.SetToolTip(copyButton, Resources.MonthView_CopyLinks);
 
 			format = new StringFormat
 			{
@@ -718,7 +718,7 @@ namespace OneMoreCalendar
 						copyButton.Enabled = false;
 
 						progress = new ProgressDialog();
-						progress.SetMessage("Gathering page links...");
+						progress.SetMessage(Resources.MonthView_GatheringLinks);
 						progress.Show(FindForm());
 
 						var one = new OneNoteProvider();
@@ -784,7 +784,7 @@ namespace OneMoreCalendar
 							var web = $"<a href=\"{page.Hyperlink}\">{page.Title}</a>";
 							onlink.AppendLine(many ? $"<p lang=en-US>{web}</p>{Environment.NewLine}" : web);
 
-							var both = $"{web} (<a href=\"{page.WebHyperlink}\">Web view</a>)";
+							var both = $"{web} (<a href=\"{page.WebHyperlink}\">{Resources.MonthView_WebView}</a>)";
 							html.AppendLine(many ? $"<p lang=en-US>{both}</p>{Environment.NewLine}" : both);
 
 							text.AppendLine(page.WebHyperlink);

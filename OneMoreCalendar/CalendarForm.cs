@@ -63,6 +63,16 @@ namespace OneMoreCalendar
 		{
 			InitializeComponent();
 
+			Translator.Localize(this, new[]
+			{
+				"this",
+				"clearLabel",
+				"prevButton",
+				"nextButton",
+				"statusCreatedLabel",
+				"statusModifiedLabel"
+			});
+
 			monthDelta = userMonthDelta;
 			date = DateTime.Now.StartOfMonth();
 
@@ -86,7 +96,7 @@ namespace OneMoreCalendar
 			Height = this.Scaled(1000);
 			MinimumSize = new System.Drawing.Size(this.Scaled(935), this.Scaled(625));
 
-			SendMessage(filterBox.Handle, EM_SETCUEBANNER, (IntPtr)1, "Type a filter...");
+			SendMessage(filterBox.Handle, EM_SETCUEBANNER, (IntPtr)1, Resources.CalendarForm_FilterCue);
 
 			filterRegularFont = filterBox.Font;
 			filterItalicFont = new Font(filterRegularFont, FontStyle.Italic);
@@ -245,7 +255,7 @@ namespace OneMoreCalendar
 		/// </summary>
 		private async Task<CalendarPages> LoadPages(SettingsProvider settings)
 		{
-			statusLabel.Text = "Loading...";
+			statusLabel.Text = Resources.CalendarForm_Loading;
 			UseWaitCursor = true;
 			loading = true;
 
@@ -493,8 +503,11 @@ namespace OneMoreCalendar
 			if (e.Page is not null)
 			{
 				statusLabel.Text = $"{e.Page.Path} > {e.Page.Title}";
-				statusCreatedLabel.Text = $"Created: {e.Page.Created.ToShortFriendlyString()}";
-				statusModifiedLabel.Text = $"Modified: {e.Page.Modified.ToShortFriendlyString()}";
+				statusCreatedLabel.Text = string.Format(
+					Resources.CalendarForm_Created, e.Page.Created.ToShortFriendlyString());
+
+				statusModifiedLabel.Text = string.Format(
+					Resources.CalendarForm_Modified, e.Page.Modified.ToShortFriendlyString());
 			}
 			else
 			{

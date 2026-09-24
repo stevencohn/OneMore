@@ -7,8 +7,10 @@ namespace OneMoreCalendar
 	using River.OneMoreAddIn;
 	using System;
 	using System.Collections.Generic;
+	using System.Globalization;
 	using System.IO;
 	using System.Linq;
+	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using System.Xml.Linq;
@@ -19,6 +21,9 @@ namespace OneMoreCalendar
 	/// </summary>
 	internal class SettingsProvider
 	{
+		// the add-in's settings file; not translated, see OneMore Resources.SettingsFilename
+		private const string AddInSettingsFilename = "Settings.xml";
+
 		private static readonly object locker = new();
 		private static SettingsProvider current;
 
@@ -54,6 +59,53 @@ namespace OneMoreCalendar
 
 
 		/// <summary>
+		/// Special case: applies the language chosen in the OneMore add-in to this process so the
+		/// Calendar localizes the same way. This reads the add-in's own Settings.xml, not the
+		/// OneMoreCalendar.xml file managed by this class, mirroring AddIn.GetCultureSettings:
+		/// GeneralSheet/language sets the UI culture, and the formatting culture follows it unless
+		/// GeneralSheet/keepWorkstationLocale is true. Leaves the OS cultures alone if the file is
+		/// missing or unreadable. Call once at startup, before any form is created.
+		/// </summary>
+		public static void ApplyAddInCulture()
+		{
+			var addInPath = Path.Combine(PathHelper.GetAppDataPath(), AddInSettingsFilename);
+			if (!File.Exists(addInPath))
+			{
+				return;
+			}
+
+			try
+			{
+				var general = XElement.Load(addInPath).Element("GeneralSheet");
+
+				var thread = Thread.CurrentThread;
+				var language = general?.Element("language")?.Value;
+
+				var culture = string.IsNullOrWhiteSpace(language)
+					? thread.CurrentUICulture
+					: CultureInfo.GetCultureInfo(language.Trim());
+
+				var keep = bool.TryParse(
+					general?.Element("keepWorkstationLocale")?.Value, out var value) && value;
+
+				var locale = keep ? thread.CurrentCulture : culture;
+
+				// defaults cover threads created later, e.g. async continuations and tasks
+				CultureInfo.DefaultThreadCurrentUICulture = culture;
+				CultureInfo.DefaultThreadCurrentCulture = locale;
+				thread.CurrentUICulture = culture;
+				thread.CurrentCulture = locale;
+
+				Logger.Current.WriteLine($"using add-in culture:{culture.Name}, locale:{locale.Name}");
+			}
+			catch (Exception exc)
+			{
+				Logger.Current.WriteLine($"error reading language from {addInPath}", exc);
+			}
+		}
+
+
+		/// <summary>
 		/// Discards in-memory settings and re-reads the settings file.
 		/// </summary>
 		public void Reload()
@@ -78,7 +130,8 @@ namespace OneMoreCalendar
 				catch (Exception exc)
 				{
 					Logger.Current.WriteLine($"error reading {path}", exc);
-					MessageBox.Show($"error reading {path}\n{exc.Message}");
+					MessageBox.Show(
+						string.Format(Properties.Resources.SettingsProvider_ReadError, path, exc.Message));
 				}
 			}
 

@@ -25,6 +25,8 @@ namespace OneMoreCalendar
 		{
 			InitializeComponent();
 
+			Translator.Localize(this, new[] { "this", "cancelButton" });
+
 			source = new CancellationTokenSource();
 		}
 
