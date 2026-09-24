@@ -59,6 +59,13 @@ namespace OneMoreCalendar
 		public string Hyperlink { get; set; }
 
 
+		/// <summary>
+		/// The onenote: hyperlink exactly as OneNote resolves it (GetHyperlinkToObject); unlike
+		/// Hyperlink, the "onenote:" scheme is never stripped, so it always opens in OneNote.
+		/// </summary>
+		public string OneNoteHyperlink { get; set; }
+
+
 		public string WebHyperlink { get; set; }
 
 

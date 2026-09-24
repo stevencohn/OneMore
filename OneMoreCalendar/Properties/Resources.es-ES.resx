@@ -233,8 +233,8 @@
     <value>Haga clic en una página</value>
   </data>
   <data name="HelpForm_Mouse2_Action" xml:space="preserve">
-    <value>Vista previa de una instantánea del mismo</value>
-  </data>
+    <value>Mostrar un menú de acciones para ello.</value>
+  <comment>!EDIT</comment></data>
   <data name="HelpForm_Mouse2_Keys" xml:space="preserve">
     <value>Haga clic derecho en una página</value>
   </data>
@@ -324,6 +324,27 @@ xmlns="http://www.w3.org/TR/REC-html40"&gt;
   </data>
   <data name="MonthView_WebView" xml:space="preserve">
     <value>vista web</value>
+  </data>
+  <data name="PageMenu_CopyLink" xml:space="preserve">
+    <value>Copiar enlace</value>
+  </data>
+  <data name="PageMenu_CopyWebLink" xml:space="preserve">
+    <value>Copiar enlace web</value>
+  </data>
+  <data name="PageMenu_Export" xml:space="preserve">
+    <value>Exportar</value>
+  </data>
+  <data name="PageMenu_NoWebLink" xml:space="preserve">
+    <value>Esta página no tiene un enlace web. Es posible que su cuaderno no se almacene en línea.</value>
+  </data>
+  <data name="PageMenu_Open" xml:space="preserve">
+    <value>Abierto</value>
+  </data>
+  <data name="PageMenu_OpenNewWindow" xml:space="preserve">
+    <value>Abrir en ventana nueva</value>
+  </data>
+  <data name="PageMenu_ViewThumbnail" xml:space="preserve">
+    <value>Ver miniatura</value>
   </data>
   <data name="ProgressDialog.Text" xml:space="preserve">
     <value>Un calendario más</value>

@@ -233,8 +233,8 @@
     <value>ページをクリックします</value>
   </data>
   <data name="HelpForm_Mouse2_Action" xml:space="preserve">
-    <value>そのスナップショットをプレビューする</value>
-  </data>
+    <value>アクションのメニューを表示する</value>
+  <comment>!EDIT</comment></data>
   <data name="HelpForm_Mouse2_Keys" xml:space="preserve">
     <value>ページを右クリックします</value>
   </data>
@@ -324,6 +324,27 @@ xmlns="http://www.w3.org/TR/REC-html40"&gt;
   </data>
   <data name="MonthView_WebView" xml:space="preserve">
     <value>ウェブビュー</value>
+  </data>
+  <data name="PageMenu_CopyLink" xml:space="preserve">
+    <value>リンクをコピー</value>
+  </data>
+  <data name="PageMenu_CopyWebLink" xml:space="preserve">
+    <value>Web リンクをコピー</value>
+  </data>
+  <data name="PageMenu_Export" xml:space="preserve">
+    <value>輸出</value>
+  </data>
+  <data name="PageMenu_NoWebLink" xml:space="preserve">
+    <value>このページには Web リンクがありません。そのノートブックはオンラインに保存できない場合があります。</value>
+  </data>
+  <data name="PageMenu_Open" xml:space="preserve">
+    <value>開ける</value>
+  </data>
+  <data name="PageMenu_OpenNewWindow" xml:space="preserve">
+    <value>新しいウィンドウで開く</value>
+  </data>
+  <data name="PageMenu_ViewThumbnail" xml:space="preserve">
+    <value>サムネイルを表示</value>
   </data>
   <data name="ProgressDialog.Text" xml:space="preserve">
     <value>ワンモアカレンダー</value>

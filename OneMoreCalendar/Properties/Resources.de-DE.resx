@@ -233,8 +233,8 @@
     <value>Klicken Sie auf eine Seite</value>
   </data>
   <data name="HelpForm_Mouse2_Action" xml:space="preserve">
-    <value>Sehen Sie sich einen Schnappschuss davon in der Vorschau an</value>
-  </data>
+    <value>Zeigen Sie ein Aktionsmenü dafür an</value>
+  <comment>!EDIT</comment></data>
   <data name="HelpForm_Mouse2_Keys" xml:space="preserve">
     <value>Klicken Sie mit der rechten Maustaste auf eine Seite</value>
   </data>
@@ -324,6 +324,27 @@ xmlns="http://www.w3.org/TR/REC-html40"&gt;
   </data>
   <data name="MonthView_WebView" xml:space="preserve">
     <value>Webansicht</value>
+  </data>
+  <data name="PageMenu_CopyLink" xml:space="preserve">
+    <value>Link kopieren</value>
+  </data>
+  <data name="PageMenu_CopyWebLink" xml:space="preserve">
+    <value>Weblink kopieren</value>
+  </data>
+  <data name="PageMenu_Export" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="PageMenu_NoWebLink" xml:space="preserve">
+    <value>Diese Seite verfügt über keinen Weblink. Sein Notizbuch darf nicht online gespeichert werden.</value>
+  </data>
+  <data name="PageMenu_Open" xml:space="preserve">
+    <value>Offen</value>
+  </data>
+  <data name="PageMenu_OpenNewWindow" xml:space="preserve">
+    <value>In neuem Fenster öffnen</value>
+  </data>
+  <data name="PageMenu_ViewThumbnail" xml:space="preserve">
+    <value>Miniaturansicht anzeigen</value>
   </data>
   <data name="ProgressDialog.Text" xml:space="preserve">
     <value>OneMore-Kalender</value>

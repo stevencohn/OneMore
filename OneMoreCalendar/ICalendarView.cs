@@ -10,7 +10,7 @@ namespace OneMoreCalendar
 	internal delegate void CalendarDayHandler(object sender, CalendarDayEventArgs e);
 	internal delegate void CalendarHoverHandler(object sender, CalendarPageEventArgs e);
 	internal delegate void CalendarPageHandler(object sender, CalendarPageEventArgs e);
-	internal delegate void CalendarSnapshotHandler(object sender, CalendarSnapshotEventArgs e);
+	internal delegate void CalendarPageMenuHandler(object sender, CalendarPageMenuEventArgs e);
 
 
 	/// <summary>
@@ -43,17 +43,22 @@ namespace OneMoreCalendar
 	}
 
 
-	internal class CalendarSnapshotEventArgs : EventArgs
+	/// <summary>
+	/// Describes a right-clicked page and where, in screen coordinates, the click occurred
+	/// </summary>
+	internal class CalendarPageMenuEventArgs : EventArgs
 	{
-		public CalendarSnapshotEventArgs(CalendarPage page, Rectangle bounds)
+		public CalendarPageMenuEventArgs(CalendarPage page, Rectangle bounds, Point screenLocation)
 			: base()
 		{
 			Page = page;
 			Bounds = bounds;
+			ScreenLocation = screenLocation;
 		}
 
 		public CalendarPage Page { get; private set; }
 		public Rectangle Bounds { get; private set; }
+		public Point ScreenLocation { get; private set; }
 	}
 
 
@@ -65,7 +70,7 @@ namespace OneMoreCalendar
 		event CalendarDayHandler ClickedDay;
 		event CalendarHoverHandler HoverPage;
 		event CalendarPageHandler ClickedPage;
-		event CalendarSnapshotHandler SnappedPage;
+		event CalendarPageMenuHandler PageMenu;
 
 		void SetRange(DateTime startDate, DateTime endDate, CalendarPages pages);
 	}

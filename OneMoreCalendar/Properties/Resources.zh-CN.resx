@@ -233,8 +233,8 @@
     <value>单击页面</value>
   </data>
   <data name="HelpForm_Mouse2_Action" xml:space="preserve">
-    <value>预览它的快照</value>
-  </data>
+    <value>显示其操作菜单</value>
+  <comment>!EDIT</comment></data>
   <data name="HelpForm_Mouse2_Keys" xml:space="preserve">
     <value>右键单击页面</value>
   </data>
@@ -324,6 +324,27 @@ xmlns="http://www.w3.org/TR/REC-html40"&gt;
   </data>
   <data name="MonthView_WebView" xml:space="preserve">
     <value>网页视图</value>
+  </data>
+  <data name="PageMenu_CopyLink" xml:space="preserve">
+    <value>复制链接</value>
+  </data>
+  <data name="PageMenu_CopyWebLink" xml:space="preserve">
+    <value>复制网页链接</value>
+  </data>
+  <data name="PageMenu_Export" xml:space="preserve">
+    <value>出口</value>
+  </data>
+  <data name="PageMenu_NoWebLink" xml:space="preserve">
+    <value>该页面没有网络链接。其笔记本可能无法在线存储。</value>
+  </data>
+  <data name="PageMenu_Open" xml:space="preserve">
+    <value>打开</value>
+  </data>
+  <data name="PageMenu_OpenNewWindow" xml:space="preserve">
+    <value>在新窗口中打开</value>
+  </data>
+  <data name="PageMenu_ViewThumbnail" xml:space="preserve">
+    <value>查看缩略图</value>
   </data>
   <data name="ProgressDialog.Text" xml:space="preserve">
     <value>万多日历</value>
