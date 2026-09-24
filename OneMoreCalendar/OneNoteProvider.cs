@@ -28,6 +28,19 @@ namespace OneMoreCalendar
 		public static extern bool SetForegroundWindow(IntPtr hWnd);
 
 
+		// how long an index that includes the current month is trusted before reloading
+		private static readonly TimeSpan LiveTtl = TimeSpan.FromSeconds(60);
+
+		// serializes loads so concurrent requests result in a single OneNote hierarchy dump
+		private static readonly SemaphoreSlim loadLock = new(1, 1);
+
+		// guards the cached index fields below
+		private static readonly object indexLock = new();
+		private static List<CalendarPage> index;
+		private static string indexKey;
+		private static DateTime indexLoaded;
+
+
 		/// <summary>
 		/// Export an XPS representation of the specified page to the TEMP folder
 		/// </summary>
@@ -55,8 +68,27 @@ namespace OneMoreCalendar
 
 
 		/// <summary>
-		/// 
+		/// Discards the cached page index so the next request reloads from OneNote.
 		/// </summary>
+		public static void Invalidate()
+		{
+			lock (indexLock)
+			{
+				index = null;
+			}
+		}
+
+
+		/// <summary>
+		/// Gets the pages created and/or modified within the given date range.
+		/// </summary>
+		/// <remarks>
+		/// OneNote can't filter its hierarchy by date so every load dumps all pages of the
+		/// selected notebooks. That dump is cached in memory and the date range is applied
+		/// to the cache. A range that touches the current month is "live" and reloads when
+		/// the cache is older than LiveTtl; a range wholly before the current month is
+		/// static and is served from the cache regardless of age.
+		/// </remarks>
 		/// <param name="startDate"></param>
 		/// <param name="endDate"></param>
 		/// <param name="notebookIDs"></param>
@@ -69,58 +101,101 @@ namespace OneMoreCalendar
 			IEnumerable<string> notebookIDs,
 			bool created, bool modified, bool deleted)
 		{
-			var notebooks = await GetNotebooks(notebookIDs);
+			var live = endDate >= DateTime.Now.StartOfMonth();
+			var all = await GetIndex(notebookIDs, live);
+
+			return new CalendarPages(all
+				.Where(p => deleted || !p.IsDeleted)
+				// filter by one or both filters
+				.Where(p =>
+					(created && p.Created.InRange(startDate, endDate)) ||
+					(modified && p.Modified.InRange(startDate, endDate)))
+				// prefer creation time
+				.OrderBy(p => created ? p.Created : p.Modified));
+		}
+
+
+		/// <summary>
+		/// Gets the cached index of all pages in the notebooks, loading it if it is missing,
+		/// for a different set of notebooks, or live and past its time-to-live.
+		/// </summary>
+		private async Task<List<CalendarPage>> GetIndex(IEnumerable<string> notebookIDs, bool live)
+		{
+			var ids = notebookIDs.ToList();
+			var key = string.Join("|", ids.OrderBy(i => i, StringComparer.Ordinal));
+
+			await loadLock.WaitAsync();
+			try
+			{
+				bool stale;
+				lock (indexLock)
+				{
+					stale = index is null || key != indexKey ||
+						(live && DateTime.UtcNow - indexLoaded > LiveTtl);
+				}
+
+				if (stale)
+				{
+					var loaded = await LoadIndex(ids);
+					lock (indexLock)
+					{
+						index = loaded;
+						indexKey = key;
+						indexLoaded = DateTime.UtcNow;
+					}
+
+					return loaded;
+				}
+
+				lock (indexLock)
+				{
+					return index;
+				}
+			}
+			finally
+			{
+				loadLock.Release();
+			}
+		}
+
+
+		private async Task<List<CalendarPage>> LoadIndex(IEnumerable<string> ids)
+		{
+			var notebooks = await GetNotebooks(ids);
 			var ns = notebooks.GetNamespaceOfPrefix(OneNote.Prefix);
 
-			// filter to selected month...
+			const string DeletedPages = "OneNote_RecycleBin > Deleted Pages";
 
-			var pages = new CalendarPages();
-
-			pages.AddRange(notebooks.Descendants(ns + "Page")
-				.Where(e => deleted || e.Attribute("isInRecycleBin") == null)
-				// collect all pages
-				.Select(e => new
+			return notebooks.Descendants(ns + "Page")
+				.Select(e =>
 				{
-					Page = e,
-					Created = DateTime.Parse(e.Attribute("dateTime").Value, DateTimeFormatInfo.CurrentInfo),
-					Modified = DateTime.Parse(e.Attribute("lastModifiedTime").Value, DateTimeFormatInfo.CurrentInfo),
-					IsDeleted = e.Attribute("isInRecycleBin") != null
-				})
-				// filter by one or both filters
-				.Where(a =>
-					(created && a.Created.InRange(startDate, endDate)) ||
-					(modified && a.Modified.InRange(startDate, endDate)))
-				// prefer creation time
-				.OrderBy(a => created ? a.Created : a.Modified)
-				// pretty it up
-				.Select(a => new CalendarPage
-				{
-					PageID = a.Page.Attribute("ID").Value,
-					Path = a.Page.Ancestors()
+					var path = e.Ancestors()
 						.Where(n => n.Attribute("name") != null)
 						.Select(n => n.Attribute("name").Value)
-						.Aggregate((name1, name2) => $"{name2} > {name1}"),
-					Title = a.Page.Attribute("name").Value,
-					Created = a.Created,
-					Modified = a.Modified,
-					IsDeleted = a.IsDeleted,
-					HasReminders = a.Page.Elements(ns + "Meta")
-						.Any(e =>
-							e.Attribute("name").Value == MetaNames.Reminder &&
-							e.Attribute("content").Value.Length > 0)
-				}));
+						.Aggregate((name1, name2) => $"{name2} > {name1}");
 
-			pages.ForEach(page =>
-			{
-				var DeletedPages = "OneNote_RecycleBin > Deleted Pages";
-				if (page.Path.EndsWith(DeletedPages))
-				{
-					page.Path = page.Path.Substring(
-						0, page.Path.Length - DeletedPages.Length) + "Recycle Bin";
-				}
-			});
+					if (path.EndsWith(DeletedPages))
+					{
+						path = path.Substring(0, path.Length - DeletedPages.Length) + "Recycle Bin";
+					}
 
-			return pages;
+					return new CalendarPage
+					{
+						PageID = e.Attribute("ID").Value,
+						Path = path,
+						Title = e.Attribute("name").Value,
+						Created = DateTime.Parse(
+							e.Attribute("dateTime").Value, DateTimeFormatInfo.CurrentInfo),
+						Modified = DateTime.Parse(
+							e.Attribute("lastModifiedTime").Value, DateTimeFormatInfo.CurrentInfo),
+						IsDeleted = e.Attribute("isInRecycleBin") != null,
+						HasReminders = e.Elements(ns + "Meta")
+							.Any(m =>
+								m.Attribute("name").Value == MetaNames.Reminder &&
+								m.Attribute("content").Value.Length > 0)
+					};
+				})
+				.ToList();
 		}
 
 
@@ -255,19 +330,15 @@ namespace OneMoreCalendar
 		{
 			try
 			{
-				await using var one = new OneNote();
-				var notebooks = await GetNotebooks(notebookIDs);
-				var ns = notebooks.GetNamespaceOfPrefix(OneNote.Prefix);
-
-				var pages = notebooks.Descendants(ns + "Page");
+				// years don't need a live index; use whatever is cached
+				var pages = await GetIndex(notebookIDs, false);
 
 				var years = pages
-					.Select(p => DateTime.Parse(
-						p.Attribute("dateTime").Value, DateTimeFormatInfo.CurrentInfo).Year)
-					.Union(pages.Select(p => DateTime.Parse(
-						p.Attribute("lastModifiedTime").Value, DateTimeFormatInfo.CurrentInfo).Year))
+					.Select(p => p.Created.Year)
+					.Union(pages.Select(p => p.Modified.Year))
 					.Distinct()
-					.OrderByDescending(y => y);
+					.OrderByDescending(y => y)
+					.ToList();
 
 				return years;
 			}

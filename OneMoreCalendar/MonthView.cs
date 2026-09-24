@@ -157,7 +157,7 @@ namespace OneMoreCalendar
 		{
 			days = new CalendarDays();
 
-			var settings = new SettingsProvider();
+			var settings = SettingsProvider.Current;
 
 			var first = date.DayOfWeek;
 			var last = DateTime.DaysInMonth(date.Year, date.Month);

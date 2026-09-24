@@ -59,7 +59,7 @@ namespace OneMoreCalendar
 			if (!DesignMode)
 			{
 				var years = await new OneNoteProvider()
-					.GetYears(await new SettingsProvider().GetNotebookIDs());
+					.GetYears(await SettingsProvider.Current.GetNotebookIDs());
 
 				years.Where(y => y != skipYear).ToList().ForEach(y =>
 				{

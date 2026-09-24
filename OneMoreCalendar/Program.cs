@@ -8,14 +8,29 @@ namespace OneMoreCalendar
 {
 	using River.OneMoreAddIn;
 	using System;
+	using System.Diagnostics;
 	using System.Globalization;
+	using System.Runtime.InteropServices;
 	using System.Threading;
 	using System.Windows.Forms;
 
 
 	internal static class Program
 	{
+		private const string MutexName = @"Local\OneMoreCalendar.SingleInstance";
+		private const int SW_RESTORE = 9;
+
 		public static CalendarForm MainForm;
+
+
+		[DllImport("user32.dll")]
+		private static extern bool SetForegroundWindow(IntPtr hWnd);
+
+		[DllImport("user32.dll")]
+		private static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+
+		[DllImport("user32.dll")]
+		private static extern bool IsIconic(IntPtr hWnd);
 
 
 		/// <summary>
@@ -23,6 +38,62 @@ namespace OneMoreCalendar
 		/// </summary>
 		[STAThread]
 		static void Main()
+		{
+			// only one instance per user session; if another is running, activate it and exit
+			using (var mutex = new Mutex(true, MutexName, out var isFirstInstance))
+			{
+				if (!isFirstInstance)
+				{
+					ActivateRunningInstance();
+					return;
+				}
+
+				Run();
+			}
+		}
+
+
+		/// <summary>
+		/// Brings the main window of the already running instance to the foreground,
+		/// restoring it first if it is minimized.
+		/// </summary>
+		private static void ActivateRunningInstance()
+		{
+			using (var current = Process.GetCurrentProcess())
+			{
+				var processes = Process.GetProcessesByName(current.ProcessName);
+				foreach (var process in processes)
+				{
+					try
+					{
+						if (process.Id != current.Id &&
+							process.SessionId == current.SessionId &&
+							process.MainWindowHandle != IntPtr.Zero)
+						{
+							var handle = process.MainWindowHandle;
+							if (IsIconic(handle))
+							{
+								ShowWindow(handle, SW_RESTORE);
+							}
+
+							SetForegroundWindow(handle);
+							return;
+						}
+					}
+					catch
+					{
+						// process may have exited or be inaccessible; try the next one
+					}
+					finally
+					{
+						process.Dispose();
+					}
+				}
+			}
+		}
+
+
+		private static void Run()
 		{
 			Logger.SetApplication("OneMoreCalendar");
 			Logger.Current.WriteLine();
