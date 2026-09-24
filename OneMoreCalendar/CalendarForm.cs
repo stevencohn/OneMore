@@ -56,6 +56,7 @@ namespace OneMoreCalendar
 		private DetailView detailView;
 		private YearsForm yearsForm;
 		private SettingsForm settingsForm;
+		private HelpForm helpForm;
 
 
 		public CalendarForm(int userMonthDelta)
@@ -542,6 +543,10 @@ namespace OneMoreCalendar
 			{
 				await SetMonth(0, "today (Home)");
 			}
+			else if (e.KeyCode == Keys.F1)
+			{
+				ShowHelp();
+			}
 		}
 
 
@@ -674,6 +679,33 @@ namespace OneMoreCalendar
 				ClosedSettings(sender, null);
 			}
 		}
+
+
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		// Help form...
+
+		private void ShowHelp()
+		{
+			if (helpForm is not null)
+			{
+				return;
+			}
+
+			Logger.Current.Debug("opened help");
+
+			helpForm = new HelpForm();
+			helpForm.FormClosed += ClosedHelp;
+			helpForm.Show(this);
+		}
+
+
+		private void ClosedHelp(object sender, FormClosedEventArgs e)
+		{
+			helpForm.FormClosed -= ClosedHelp;
+			helpForm.Dispose();
+			helpForm = null;
+		}
+
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 		// Page filter...
