@@ -19,17 +19,55 @@ namespace OneMoreCalendar
 	/// </summary>
 	internal class SettingsProvider
 	{
+		private static readonly object locker = new();
+		private static SettingsProvider current;
+
 		private readonly string path;
-		private readonly XElement root;
+		private XElement root;
 
 
 		/// <summary>
-		/// Initialize a new provider.
+		/// Initialize a new provider; use Current to share the single loaded instance.
 		/// </summary>
-		public SettingsProvider()
+		private SettingsProvider()
 		{
 			path = Path.Combine(
 				PathHelper.GetAppDataPath(), "OneMoreCalendar.xml");
+
+			Load();
+		}
+
+
+		/// <summary>
+		/// Gets the shared provider, loading the settings file only the first time.
+		/// </summary>
+		public static SettingsProvider Current
+		{
+			get
+			{
+				lock (locker)
+				{
+					return current ??= new SettingsProvider();
+				}
+			}
+		}
+
+
+		/// <summary>
+		/// Discards in-memory settings and re-reads the settings file.
+		/// </summary>
+		public void Reload()
+		{
+			lock (locker)
+			{
+				Load();
+			}
+		}
+
+
+		private void Load()
+		{
+			root = null;
 
 			if (File.Exists(path))
 			{
@@ -46,26 +84,19 @@ namespace OneMoreCalendar
 
 			root ??= new XElement("settings");
 
-			var filters = root.Element("filters");
-			if (filters == null)
+			if (root.Element("filters") is null)
 			{
 				root.Add(new XElement("filters",
 					new XElement("modified", true)
 					));
 			}
 
-			var notebooks = root.Element("notebooks");
-			if (notebooks == null || !notebooks.Elements().Any())
+			if (root.Element("notebooks") is null)
 			{
-				if (notebooks == null)
-				{
-					notebooks = new XElement("notebooks");
-					root.Add(notebooks);
-				}
+				root.Add(new XElement("notebooks"));
 			}
 
-			var theme = root.Elements("theme");
-			if (theme == null)
+			if (root.Element("theme") is null)
 			{
 				root.Add(new XElement("theme", ThemeMode.System.ToString()));
 			}
@@ -86,7 +117,7 @@ namespace OneMoreCalendar
 			{
 				// default is true if empty filter is missing
 				var empties = root.Elements("filters").Elements("empty");
-				return empties == null || empties.Any(e => e.Value.Equals("true"));
+				return !empties.Any() || empties.Any(e => e.Value.Equals("true"));
 			}
 		}
 
@@ -112,8 +143,10 @@ namespace OneMoreCalendar
 
 		public async Task<IEnumerable<string>> GetNotebookIDs()
 		{
-			var ids = root.Elements("notebooks").Elements("notebook").Select(e => e.Value);
-			if (!ids.Any())
+			var ids = root.Elements("notebooks").Elements("notebook")
+				.Select(e => e.Value).ToList();
+
+			if (ids.Count == 0)
 			{
 				var books = await new OneNoteProvider().GetNotebooks();
 				ids = books.Select(b => b.ID).ToList();
@@ -127,8 +160,7 @@ namespace OneMoreCalendar
 		{
 			var notebooks = new List<Notebook>();
 
-			var provider = new SettingsProvider();
-			var ids = await provider.GetNotebookIDs();
+			var ids = await GetNotebookIDs();
 
 			var books = await new OneNoteProvider().GetNotebooks();
 			foreach (var book in books)

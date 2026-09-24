@@ -36,7 +36,7 @@ namespace OneMoreCalendar
 
 			if (!DesignMode)
 			{
-				var provider = new SettingsProvider();
+				var provider = SettingsProvider.Current;
 
 				createdBox.Checked = provider.Created;
 				modifiedBox.Checked = provider.Modified;
@@ -169,7 +169,7 @@ namespace OneMoreCalendar
 
 		private void Apply(object sender, EventArgs e)
 		{
-			var provider = new SettingsProvider();
+			var provider = SettingsProvider.Current;
 
 			provider.SetFilter(
 				createdBox.Checked, modifiedBox.Checked,

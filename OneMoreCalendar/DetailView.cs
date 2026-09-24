@@ -72,21 +72,24 @@ namespace OneMoreCalendar
 			SuspendLayout();
 			listbox.Items.Clear();
 
+			var settings = SettingsProvider.Current;
+			var modified = settings.Modified;
+			var created = settings.Created;
+			var empty = settings.Empty;
+
 			var date = startDate;
 			while (date <= endDate)
 			{
-				var settings = new SettingsProvider();
-
 				var daypages = new CalendarPages();
 
 				// filtering prioritizes modified over created and prevent pages from being
 				// displayed twice in the month if both created and modified in the same month
 				daypages.AddRange(pages.Where(p =>
-					(settings.Modified && p.Modified.Date.Equals(date)) ||
-					(settings.Created && p.Created.Date.Equals(date))
+					(modified && p.Modified.Date.Equals(date)) ||
+					(created && p.Created.Date.Equals(date))
 					));
 
-				if (daypages.Any() || settings.Empty)
+				if (daypages.Any() || empty)
 				{
 					var item = new ListViewItem
 					{
@@ -105,6 +108,45 @@ namespace OneMoreCalendar
 
 			Invalidate();
 			ResumeLayout();
+		}
+
+
+		/// <summary>
+		/// Scrolls the list so the given day is the first visible row, leaving its header at
+		/// the top with its pages, and the following days, below it.
+		/// </summary>
+		/// <param name="day">
+		/// The day to show; if that day has no row (empty days may be hidden) then the next
+		/// day that does is used
+		/// </param>
+		public void ScrollToDay(DateTime day)
+		{
+			// defer until after layout, and until the control has a handle the first time
+			BeginInvoke(new Action(() =>
+			{
+				var index = -1;
+				for (var i = 0; i < listbox.Items.Count; i++)
+				{
+					if (listbox.Items[i] is ListViewItem item &&
+						item.Tag is DayItem dayItem &&
+						dayItem.Date.Date >= day.Date)
+					{
+						index = i;
+						break;
+					}
+				}
+
+				if (index < 0)
+				{
+					index = listbox.Items.Count - 1;
+				}
+
+				if (index >= 0)
+				{
+					listbox.TopIndex = index;
+					listbox.Invalidate();
+				}
+			}));
 		}
 
 

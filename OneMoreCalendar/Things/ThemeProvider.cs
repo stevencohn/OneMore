@@ -222,8 +222,7 @@ namespace OneMoreCalendar
 		/// <param name="container"></param>
 		public void InitializeTheme(ContainerControl container)
 		{
-			var provider = new SettingsProvider();
-			var mode = provider.Theme;
+			var mode = SettingsProvider.Current.Theme;
 
 			var designMode = false;
 			if (container is Component component)

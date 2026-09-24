@@ -28,6 +28,7 @@ namespace OneMoreCalendar
 		private DateTime date;
 		private CalendarPages pages;
 		private int monthDelta;
+		private DateTime? pendingDay;
 
 		private MonthView monthView;
 		private DetailView detailView;
@@ -151,6 +152,31 @@ namespace OneMoreCalendar
 		}
 
 
+		/// <summary>
+		/// Loads the pages for the calendar grid of the current month, showing a busy status
+		/// since the first load may need to start OneNote and read all selected notebooks.
+		/// </summary>
+		private async Task<CalendarPages> LoadPages(SettingsProvider settings)
+		{
+			statusLabel.Text = "Loading...";
+			UseWaitCursor = true;
+
+			try
+			{
+				return await new OneNoteProvider().GetPages(
+					date.StartOfCalendarMonthView(),
+					date.EndOfCalendarView(),
+					await settings.GetNotebookIDs(),
+					settings.Created, settings.Modified, settings.Deleted);
+			}
+			finally
+			{
+				UseWaitCursor = false;
+				statusLabel.Text = BlankStatus;
+			}
+		}
+
+
 		private async Task SetMonth(int delta, string reason)
 		{
 			if (delta < ManualDelta)
@@ -167,17 +193,13 @@ namespace OneMoreCalendar
 			}
 
 			var endDate = date.EndOfMonth();
-			var settings = new SettingsProvider();
+			var settings = SettingsProvider.Current;
 
 			Logger.Current.Debug($"{reason}: loading pages for {date:yyyy-MM} " +
 				$"(created:{settings.Created}, modified:{settings.Modified}, deleted:{settings.Deleted})");
 
 			Logger.Current.StartClock();
-			pages = await new OneNoteProvider().GetPages(
-				date.StartOfCalendarMonthView(),
-				date.EndOfCalendarView(),
-				await settings.GetNotebookIDs(),
-				settings.Created, settings.Modified, settings.Deleted);
+			pages = await LoadPages(settings);
 
 			Logger.Current.WriteTime($"{reason}: loaded {pages.Count} pages for {date:yyyy-MM}");
 
@@ -203,6 +225,14 @@ namespace OneMoreCalendar
 		/// <param name="e"></param>
 		private void ChangeView(object sender, EventArgs e)
 		{
+			// CheckedChanged fires for both the button being checked and its sibling being
+			// unchecked; only respond to the one that became checked, otherwise the stale
+			// sibling event rebuilds the previous view on top of the new one
+			if (sender is RadioButton radio && !radio.Checked)
+			{
+				return;
+			}
+
 			Logger.Current.Debug($"changed view to {(sender == monthButton ? "month" : "day")}");
 
 			if (sender == monthButton)
@@ -214,7 +244,8 @@ namespace OneMoreCalendar
 			}
 			else
 			{
-				ShowDayView(sender, new CalendarDayEventArgs(date));
+				ShowDayView(sender, new CalendarDayEventArgs(pendingDay ?? date));
+				pendingDay = null;
 			}
 		}
 
@@ -231,7 +262,10 @@ namespace OneMoreCalendar
 				ResumeLayout();
 			}
 
+			// carried through ChangeView to ShowDayView so the day view can scroll to the day
+			pendingDay = e.DayDate;
 			dayButton.Checked = true;
+			pendingDay = null;
 		}
 
 
@@ -262,24 +296,26 @@ namespace OneMoreCalendar
 			}
 
 			var endDate = date.EndOfMonth();
-			var settings = new SettingsProvider();
+			var settings = SettingsProvider.Current;
 			const string reason = "view: day";
 
 			Logger.Current.Debug($"{reason}: loading pages for {date:yyyy-MM} " +
 				$"(created:{settings.Created}, modified:{settings.Modified}, deleted:{settings.Deleted})");
 
 			Logger.Current.StartClock();
-			pages = await new OneNoteProvider().GetPages(
-				date.StartOfCalendarMonthView(),
-				date.EndOfCalendarView(),
-				await settings.GetNotebookIDs(),
-				settings.Created, settings.Modified, settings.Deleted);
+			pages = await LoadPages(settings);
 
 			Logger.Current.WriteTime($"{reason}: loaded {pages.Count} pages for {date:yyyy-MM}");
 
 			detailView.SetRange(date, endDate, pages);
 
 			contentPanel.Controls.Add(detailView);
+
+			// the month's first day means no specific day; leave the list at the top
+			if (e.DayDate.Date != date.StartOfMonth().Date)
+			{
+				detailView.ScrollToDay(e.DayDate);
+			}
 		}
 
 
@@ -391,11 +427,11 @@ namespace OneMoreCalendar
 		{
 			base.OnKeyDown(e);
 
-			if (e.KeyCode == Keys.PageUp || (e.Control && e.KeyCode == Keys.Right))
+			if (e.KeyCode == Keys.PageUp || (e.Control && e.KeyCode == Keys.Left))
 			{
 				GotoPrevious(this, e);
 			}
-			else if (e.KeyCode == Keys.PageDown || (e.Control && e.KeyCode == Keys.Left))
+			else if (e.KeyCode == Keys.PageDown || (e.Control && e.KeyCode == Keys.Right))
 			{
 				if (nextButton.Enabled)
 				{
@@ -404,25 +440,38 @@ namespace OneMoreCalendar
 			}
 			else if (e.KeyCode == Keys.F5)
 			{
+				OneNoteProvider.Invalidate();
 				await SetMonth(date.Year, "refresh (F5)");
 			}
 			else if (e.KeyCode == Keys.Home)
 			{
 				await SetMonth(0, "today (Home)");
 			}
-			else if (e.Control && (e.KeyCode == Keys.Tab))
+		}
+
+
+		/// <summary>
+		/// Handle Ctrl+Tab here, before the dialog-navigation logic sees it. Tab is a dialog
+		/// key so, by the time OnKeyDown runs, the first press has already been consumed
+		/// moving focus to the next control.
+		/// </summary>
+		protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+		{
+			if (keyData == (Keys.Control | Keys.Tab))
 			{
 				if (monthButton.Checked)
 				{
 					dayButton.Checked = true;
-					monthButton.Checked = false;
 				}
 				else
 				{
 					monthButton.Checked = true;
-					dayButton.Checked = false;
 				}
+
+				return true;
 			}
+
+			return base.ProcessCmdKey(ref msg, keyData);
 		}
 
 
@@ -501,12 +550,13 @@ namespace OneMoreCalendar
 
 			if (settingsForm.DialogResult == DialogResult.OK)
 			{
-				var settings = new SettingsProvider();
+				var settings = SettingsProvider.Current;
 				Logger.Current.Debug($"settings changed, theme:{settings.Theme}, " +
 					$"created:{settings.Created}, modified:{settings.Modified}, " +
 					$"deleted:{settings.Deleted}, empty:{settings.Empty}");
 
 				Theme.InitializeTheme(this);
+				OneNoteProvider.Invalidate();
 				await SetMonth(date.Year, "settings applied");
 			}
 		}
