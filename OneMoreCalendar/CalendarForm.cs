@@ -6,8 +6,14 @@ namespace OneMoreCalendar
 {
 	using OneMoreCalendar.Properties;
 	using River.OneMoreAddIn;
+	using River.OneMoreAddIn.Commands;
 	using System;
+	using System.Drawing;
+	using System.Globalization;
 	using System.IO;
+	using System.Linq;
+	using System.Runtime.InteropServices;
+	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 
@@ -25,10 +31,26 @@ namespace OneMoreCalendar
 		// the hover state right back on - an endless resize/repaint feedback loop
 		private const string BlankStatus = " ";
 
+		private const int EM_SETCUEBANNER = 0x1501;
+		private const int EM_SETMARGINS = 0xD3;
+		private const int EC_RIGHTMARGIN = 2;
+		private const int MinFilterLength = 3;
+
+		[DllImport("user32.dll", CharSet = CharSet.Unicode)]
+		private static extern IntPtr SendMessage(IntPtr hWnd, int msg, IntPtr wParam, string lParam);
+
+		[DllImport("user32.dll")]
+		private static extern IntPtr SendMessage(IntPtr hWnd, int msg, IntPtr wParam, IntPtr lParam);
+
 		private DateTime date;
 		private CalendarPages pages;
 		private int monthDelta;
 		private DateTime? pendingDay;
+		private Regex filter;
+		private bool loading;
+		private int monthLabelWidth;
+		private Font filterRegularFont;
+		private Font filterItalicFont;
 
 		private MonthView monthView;
 		private DetailView detailView;
@@ -62,6 +84,12 @@ namespace OneMoreCalendar
 			Width = this.Scaled(1500); // TODO: save as settings?
 			Height = this.Scaled(1000);
 			MinimumSize = new System.Drawing.Size(this.Scaled(935), this.Scaled(625));
+
+			SendMessage(filterBox.Handle, EM_SETCUEBANNER, (IntPtr)1, "Type a filter...");
+
+			filterRegularFont = filterBox.Font;
+			filterItalicFont = new Font(filterRegularFont, FontStyle.Italic);
+			UpdateFilterFont();
 
 			ScaleTopPanel();
 
@@ -119,6 +147,64 @@ namespace OneMoreCalendar
 			prevButton.Location = new System.Drawing.Point(this.Scaled(8), this.Scaled(8));
 
 			dateLabel.Location = new System.Drawing.Point(this.Scaled(59), this.Scaled(8));
+
+			// widest "<month> yyyy" text; measured once so the filter box stays put as the
+			// month text changes width
+			foreach (var name in DateTimeFormatInfo.CurrentInfo.MonthNames)
+			{
+				var width = TextRenderer.MeasureText($"{name} 0000", dateLabel.Font).Width;
+				if (width > monthLabelWidth)
+				{
+					monthLabelWidth = width;
+				}
+			}
+
+			LayoutFilterBox();
+		}
+
+
+		/// <summary>
+		/// Centers the filter box in the space between the month label and the Today button
+		/// </summary>
+		private void LayoutFilterBox()
+		{
+			// Resize fires during construction, before ScaleTopPanel has measured anything
+			if (monthLabelWidth == 0)
+			{
+				return;
+			}
+
+			var gap = this.Scaled(16);
+			var left = dateLabel.Left + monthLabelWidth + gap;
+			var right = todayButton.Left - gap;
+			var available = right - left;
+
+			var width = Math.Min(this.Scaled(320), available);
+			if (width < this.Scaled(100))
+			{
+				width = this.Scaled(100);
+			}
+
+			clearLabel.Width = this.Scaled(22);
+			SetFilterMargin();
+
+			filterBox.Width = width;
+			filterBox.Location = new System.Drawing.Point(
+				left + ((available - width) / 2),
+				(topPanel.Height - filterBox.Height) / 2);
+
+			// nestle the clear button inside the box, clear of its border
+			var inset = this.Scaled(3);
+			clearLabel.Height = filterBox.ClientSize.Height - (inset * 2);
+			clearLabel.Location = new System.Drawing.Point(
+				filterBox.ClientSize.Width - clearLabel.Width - inset, inset);
+		}
+
+
+		protected override void OnFormClosed(FormClosedEventArgs e)
+		{
+			base.OnFormClosed(e);
+			filterItalicFont?.Dispose();
 		}
 
 
@@ -160,6 +246,7 @@ namespace OneMoreCalendar
 		{
 			statusLabel.Text = "Loading...";
 			UseWaitCursor = true;
+			loading = true;
 
 			try
 			{
@@ -171,6 +258,7 @@ namespace OneMoreCalendar
 			}
 			finally
 			{
+				loading = false;
 				UseWaitCursor = false;
 				statusLabel.Text = BlankStatus;
 			}
@@ -205,11 +293,11 @@ namespace OneMoreCalendar
 
 			if (monthButton.Checked)
 			{
-				monthView.SetRange(date, endDate, pages);
+				monthView.SetRange(date, endDate, FilteredPages());
 			}
 			else
 			{
-				detailView.SetRange(date, endDate, pages);
+				detailView.SetRange(date, endDate, FilteredPages());
 			}
 
 			dateLabel.Text = date.ToString("MMMM yyyy");
@@ -240,7 +328,7 @@ namespace OneMoreCalendar
 				contentPanel.Controls.Clear();
 				contentPanel.Controls.Add(monthView);
 
-				monthView.SetRange(date, date.EndOfMonth(), pages);
+				monthView.SetRange(date, date.EndOfMonth(), FilteredPages());
 			}
 			else
 			{
@@ -307,7 +395,7 @@ namespace OneMoreCalendar
 
 			Logger.Current.WriteTime($"{reason}: loaded {pages.Count} pages for {date:yyyy-MM}");
 
-			detailView.SetRange(date, endDate, pages);
+			detailView.SetRange(date, endDate, FilteredPages());
 
 			contentPanel.Controls.Add(detailView);
 
@@ -427,11 +515,18 @@ namespace OneMoreCalendar
 		{
 			base.OnKeyDown(e);
 
-			if (e.KeyCode == Keys.PageUp || (e.Control && e.KeyCode == Keys.Left))
+			// Home and Ctrl+Left/Right are text-editing keys while typing a filter
+			var typing = filterBox.Focused;
+
+			if (typing && e.KeyCode == Keys.Escape)
+			{
+				filterBox.Clear();
+			}
+			else if (e.KeyCode == Keys.PageUp || (!typing && e.Control && e.KeyCode == Keys.Left))
 			{
 				GotoPrevious(this, e);
 			}
-			else if (e.KeyCode == Keys.PageDown || (e.Control && e.KeyCode == Keys.Right))
+			else if (e.KeyCode == Keys.PageDown || (!typing && e.Control && e.KeyCode == Keys.Right))
 			{
 				if (nextButton.Enabled)
 				{
@@ -443,7 +538,7 @@ namespace OneMoreCalendar
 				OneNoteProvider.Invalidate();
 				await SetMonth(date.Year, "refresh (F5)");
 			}
-			else if (e.KeyCode == Keys.Home)
+			else if (!typing && e.KeyCode == Keys.Home)
 			{
 				await SetMonth(0, "today (Home)");
 			}
@@ -580,8 +675,138 @@ namespace OneMoreCalendar
 			}
 		}
 
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		// Page filter...
+
+		/// <summary>
+		/// Gets the pages to display: all of them, or only those matching the active filter.
+		/// </summary>
+		private CalendarPages FilteredPages()
+		{
+			return filter is null
+				? pages
+				: new CalendarPages(pages.Where(p => p.Matches(filter)));
+		}
+
+
+		/// <summary>
+		/// Keeps typed text from running under the clear button. Must be re-applied whenever
+		/// the font changes because setting an edit control's font resets its margins.
+		/// </summary>
+		private void SetFilterMargin()
+		{
+			SendMessage(filterBox.Handle, EM_SETMARGINS, (IntPtr)EC_RIGHTMARGIN,
+				(IntPtr)((clearLabel.Width + this.Scaled(3)) << 16));
+		}
+
+
+		/// <summary>
+		/// The cue banner is drawn in the box's own font, so the box is italic while empty
+		/// and regular once the user has typed something.
+		/// </summary>
+		private void UpdateFilterFont()
+		{
+			var empty = filterBox.TextLength == 0;
+			if (filterBox.Font.Italic != empty)
+			{
+				filterBox.Font = empty ? filterItalicFont : filterRegularFont;
+				SetFilterMargin();
+			}
+		}
+
+
+		private void ChangeFilter(object sender, EventArgs e)
+		{
+			clearLabel.Visible = filterBox.TextLength > 0;
+			UpdateFilterFont();
+
+			filterTimer.Stop();
+			filterTimer.Start();
+		}
+
+
+		private void ClearFilter(object sender, EventArgs e)
+		{
+			filterBox.Clear();
+			filterBox.Focus();
+
+			// don't wait for the debounce
+			filterTimer.Stop();
+			ApplyFilter();
+		}
+
+
+		private void HoverClear(object sender, EventArgs e)
+		{
+			clearLabel.ForeColor = clearLabel.ClientRectangle.Contains(clearLabel.PointToClient(Cursor.Position))
+				? Theme.HoverColor
+				: Theme.ForeColor;
+		}
+
+
+		private void FilterTick(object sender, EventArgs e)
+		{
+			filterTimer.Stop();
+			ApplyFilter();
+		}
+
+
+		private void FilterKeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Enter)
+			{
+				filterTimer.Stop();
+				ApplyFilter();
+				e.SuppressKeyPress = true;
+			}
+		}
+
+
+		private void ApplyFilter()
+		{
+			var text = filterBox.Text.Trim();
+			Regex finder = null;
+
+			if (text.Length >= MinFilterLength)
+			{
+				try
+				{
+					// same query syntax as OneMore's Title Search
+					finder = new TextMatchBuilder(false, false).BuildRegex(text);
+				}
+				catch (Exception exc)
+				{
+					// incomplete or unsupported query, e.g. "NOT (a b)"; keep the current filter
+					Logger.Current.Debug($"ignoring filter [{text}]: {exc.Message}");
+					return;
+				}
+			}
+
+			filter = finder;
+
+			// if pages are still loading then SetMonth will apply the new filter when done
+			if (loading || pages is null)
+			{
+				return;
+			}
+
+			if (monthButton.Checked)
+			{
+				monthView.SetRange(date, date.EndOfMonth(), FilteredPages());
+			}
+			else
+			{
+				detailView?.SetRange(date, date.EndOfMonth(), FilteredPages());
+			}
+
+			ShowPageStatus(this, new CalendarPageEventArgs(null));
+		}
+
+
 		private void ResizeTopPanel(object sender, EventArgs e)
 		{
+			LayoutFilterBox();
+
 			prevButton.Invalidate();
 			nextButton.Invalidate();
 			todayButton.Invalidate();
