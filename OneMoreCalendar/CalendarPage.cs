@@ -7,6 +7,7 @@ namespace OneMoreCalendar
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
+	using System.Text.RegularExpressions;
 
 
 	/// <summary>
@@ -59,5 +60,15 @@ namespace OneMoreCalendar
 
 
 		public string WebHyperlink { get; set; }
+
+
+		/// <summary>
+		/// Determines whether the filter matches this page's notebook, section group, section,
+		/// or page title; Path already holds the notebook, section group and section names.
+		/// </summary>
+		public bool Matches(Regex finder)
+		{
+			return finder.IsMatch($"{Path} > {Title}");
+		}
 	}
 }

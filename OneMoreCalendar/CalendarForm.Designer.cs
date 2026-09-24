@@ -29,7 +29,11 @@
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CalendarForm));
+			this.components = new System.ComponentModel.Container();
 			this.topPanel = new System.Windows.Forms.Panel();
+			this.filterBox = new System.Windows.Forms.TextBox();
+			this.clearLabel = new System.Windows.Forms.Label();
+			this.filterTimer = new System.Windows.Forms.Timer(this.components);
 			this.dayButton = new OneMoreCalendar.MoreRadioButton();
 			this.monthButton = new OneMoreCalendar.MoreRadioButton();
 			this.nextButton = new OneMoreCalendar.MoreButton();
@@ -49,6 +53,7 @@
 			// 
 			// topPanel
 			// 
+			this.topPanel.Controls.Add(this.filterBox);
 			this.topPanel.Controls.Add(this.dayButton);
 			this.topPanel.Controls.Add(this.monthButton);
 			this.topPanel.Controls.Add(this.nextButton);
@@ -62,9 +67,39 @@
 			this.topPanel.Size = new System.Drawing.Size(978, 80);
 			this.topPanel.TabIndex = 0;
 			this.topPanel.Resize += new System.EventHandler(this.ResizeTopPanel);
-			// 
+			//
+			// filterBox
+			//
+			this.filterBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.filterBox.Controls.Add(this.clearLabel);
+			this.filterBox.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.filterBox.Location = new System.Drawing.Point(400, 20);
+			this.filterBox.Name = "filterBox";
+			this.filterBox.Size = new System.Drawing.Size(250, 32);
+			this.filterBox.TabIndex = 12;
+			this.filterBox.TextChanged += new System.EventHandler(this.ChangeFilter);
+			this.filterBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FilterKeyDown);
+			//
+			// filterTimer
+			//
+			this.filterTimer.Interval = 300;
+			this.filterTimer.Tick += new System.EventHandler(this.FilterTick);
+			//
+			// clearLabel
+			//
+			this.clearLabel.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.clearLabel.Name = "clearLabel";
+			this.clearLabel.Size = new System.Drawing.Size(24, 30);
+			this.clearLabel.TabIndex = 0;
+			this.clearLabel.Text = "✕";
+			this.clearLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.clearLabel.Visible = false;
+			this.clearLabel.Click += new System.EventHandler(this.ClearFilter);
+			this.clearLabel.MouseEnter += new System.EventHandler(this.HoverClear);
+			this.clearLabel.MouseLeave += new System.EventHandler(this.HoverClear);
+			//
 			// dayButton
-			// 
+			//
 			this.dayButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.dayButton.Appearance = System.Windows.Forms.Appearance.Button;
 			this.dayButton.Image = global::OneMoreCalendar.Properties.Resources.day_32;
@@ -260,6 +295,9 @@
 		private MoreButton nextButton;
 		private MoreRadioButton monthButton;
 		private MoreRadioButton dayButton;
+		private System.Windows.Forms.TextBox filterBox;
+		private System.Windows.Forms.Label clearLabel;
+		private System.Windows.Forms.Timer filterTimer;
 	}
 }
 
