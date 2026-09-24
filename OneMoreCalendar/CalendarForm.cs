@@ -8,6 +8,7 @@ namespace OneMoreCalendar
 	using River.OneMoreAddIn;
 	using River.OneMoreAddIn.Commands;
 	using System;
+	using System.Collections.Generic;
 	using System.Drawing;
 	using System.Globalization;
 	using System.IO;
@@ -115,7 +116,7 @@ namespace OneMoreCalendar
 			monthView.ClickedPage += NavigateToPage;
 			monthView.ClickedDay += ClickDayView;
 			monthView.HoverPage += ShowPageStatus;
-			monthView.SnappedPage += SnappedPage;
+			monthView.PageMenu += ShowPageMenu;
 
 			contentPanel.Controls.Add(monthView);
 
@@ -391,7 +392,7 @@ namespace OneMoreCalendar
 
 				detailView.HoverPage += ShowPageStatus;
 				detailView.ClickedPage += NavigateToPage;
-				detailView.SnappedPage += SnappedPage;
+				detailView.PageMenu += ShowPageMenu;
 			}
 
 			var endDate = date.EndOfMonth();
@@ -451,19 +452,143 @@ namespace OneMoreCalendar
 		}
 
 
-		private SnapshotForm snapForm;
-		private async void SnappedPage(object sender, CalendarSnapshotEventArgs e)
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		// Page context menu...
+
+		private ThemedContextMenuStrip pageMenu;
+		private CalendarPage menuPage;
+		private System.Drawing.Point menuLocation;
+
+
+		/// <summary>
+		/// Respond to a right-click on a page by showing the page actions menu where clicked
+		/// </summary>
+		private void ShowPageMenu(object sender, CalendarPageMenuEventArgs e)
 		{
-			Logger.Current.Debug($"previewing page '{e.Page.Title}' ({e.Page.PageID})");
+			menuPage = e.Page;
+			menuLocation = e.ScreenLocation;
 
-			var path = await new OneNoteProvider().Export(e.Page.PageID);
+			if (pageMenu is null)
+			{
+				pageMenu = new ThemedContextMenuStrip();
+				pageMenu.Items.Add(Resources.PageMenu_Open, null, OpenMenuPage);
+				pageMenu.Items.Add(Resources.PageMenu_OpenNewWindow, null, OpenMenuPageInNewWindow);
+				pageMenu.Items.Add(new ToolStripSeparator());
+				pageMenu.Items.Add(Resources.PageMenu_CopyLink, null, CopyMenuPageLink);
+				pageMenu.Items.Add(Resources.PageMenu_CopyWebLink, null, CopyMenuPageWebLink);
+				pageMenu.Items.Add(new ToolStripSeparator());
+				pageMenu.Items.Add(Resources.PageMenu_Export, null, ExportMenuPage);
+				pageMenu.Items.Add(Resources.PageMenu_ViewThumbnail, null, ViewMenuPageThumbnail);
+			}
 
-			Logger.Current.WriteLine($"exported page '{e.Page.Title}' to {path}");
+			// the theme may have changed since the last time the menu was shown
+			pageMenu.ApplyTheme();
+			pageMenu.Show(menuLocation);
+		}
 
-			var location = PointToScreen(e.Bounds.Location);
-			location.Offset(50, 70);
 
-			snapForm = new SnapshotForm(e.Page, path)
+		private void OpenMenuPage(object sender, EventArgs e)
+		{
+			NavigateToPage(this, new CalendarPageEventArgs(menuPage));
+		}
+
+
+		private async void OpenMenuPageInNewWindow(object sender, EventArgs e)
+		{
+			var page = menuPage;
+			Logger.Current.WriteLine(
+				$"navigating to page '{page.Title}' ({page.PageID}) in a new window");
+
+			await new OneNoteProvider().NavigateTo(page.PageID, newWindow: true);
+		}
+
+
+		private async void CopyMenuPageLink(object sender, EventArgs e)
+		{
+			var page = menuPage;
+			if (await EnsurePageLinks(page) && PageClipboard.CopyOneNoteLink(page))
+			{
+				Logger.Current.WriteLine($"copied hyperlink of page '{page.Title}'");
+			}
+		}
+
+
+		private async void CopyMenuPageWebLink(object sender, EventArgs e)
+		{
+			var page = menuPage;
+			if (await EnsurePageLinks(page) && PageClipboard.CopyWebLink(page))
+			{
+				Logger.Current.WriteLine($"copied web hyperlink of page '{page.Title}'");
+				return;
+			}
+
+			// for example, pages of a notebook that is stored locally have no online address
+			MessageBox.Show(this, Resources.PageMenu_NoWebLink, Text,
+				MessageBoxButtons.OK, MessageBoxIcon.Information);
+		}
+
+
+		/// <summary>
+		/// Fills in the page hyperlinks if they haven't been gathered yet, for example by
+		/// the day header's copy button
+		/// </summary>
+		/// <returns>True if the page has a onenote: hyperlink</returns>
+		private async Task<bool> EnsurePageLinks(CalendarPage page)
+		{
+			if (page.Hyperlink is null)
+			{
+				UseWaitCursor = true;
+				try
+				{
+					await new OneNoteProvider().GetPageLinks(new List<CalendarPage> { page });
+				}
+				catch (Exception exc)
+				{
+					Logger.Current.WriteLine($"error getting links of page '{page.Title}'", exc);
+				}
+				finally
+				{
+					UseWaitCursor = false;
+				}
+			}
+
+			return page.Hyperlink is not null;
+		}
+
+
+		private async void ExportMenuPage(object sender, EventArgs e)
+		{
+			var page = menuPage;
+			Logger.Current.WriteLine($"exporting page '{page.Title}' ({page.PageID})");
+
+			try
+			{
+				// the same command as OneMore's own Export; given a page ID it exports
+				// that page rather than the pages selected in OneNote
+				var command = new ExportCommand();
+				command.SetLogger(Logger.Current).SetOwner(this);
+				await command.Execute(page.PageID);
+			}
+			catch (Exception exc)
+			{
+				Logger.Current.WriteLine($"error exporting page '{page.Title}'", exc);
+			}
+		}
+
+
+		private SnapshotForm snapForm;
+		private async void ViewMenuPageThumbnail(object sender, EventArgs e)
+		{
+			var page = menuPage;
+			var location = menuLocation;
+
+			Logger.Current.Debug($"previewing page '{page.Title}' ({page.PageID})");
+
+			var path = await new OneNoteProvider().Export(page.PageID);
+
+			Logger.Current.WriteLine($"exported page '{page.Title}' to {path}");
+
+			snapForm = new SnapshotForm(page, path)
 			{
 				Location = location
 			};

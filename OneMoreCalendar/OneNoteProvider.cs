@@ -12,6 +12,7 @@ namespace OneMoreCalendar
 	using System.IO;
 	using System.Linq;
 	using System.Runtime.InteropServices;
+	using System.Text.RegularExpressions;
 	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Xml.Linq;
@@ -30,6 +31,9 @@ namespace OneMoreCalendar
 
 		// how long an index that includes the current month is trusted before reloading
 		private static readonly TimeSpan LiveTtl = TimeSpan.FromSeconds(60);
+
+		private static readonly Regex ReversedLink =
+			new(@"onenote:(#.+?&end)&base-path=(https:.+)");
 
 		// serializes loads so concurrent requests result in a single OneNote hierarchy dump
 		private static readonly SemaphoreSlim loadLock = new(1, 1);
@@ -305,7 +309,9 @@ namespace OneMoreCalendar
 
 				try
 				{
-					page.Hyperlink = one.GetHyperlink(page.PageID, string.Empty);
+					var link = one.GetHyperlink(page.PageID, string.Empty);
+					page.OneNoteHyperlink = FixReversedHyperlink(link);
+					page.Hyperlink = NormalizeHyperlink(link);
 					page.WebHyperlink = one.GetWebHyperlink(page.PageID, string.Empty);
 				}
 				catch (Exception exc)
@@ -319,6 +325,42 @@ namespace OneMoreCalendar
 					await stepCallback(page);
 				}
 			}
+		}
+
+
+		/// <summary>
+		/// Hyperlinks may be returned from the OneNote API backwards from the expected
+		/// format so this swaps the two parts that need to be reversed. The result is
+		/// always a onenote: hyperlink.
+		/// </summary>
+		private static string FixReversedHyperlink(string hyperlink)
+		{
+			if (hyperlink is null)
+			{
+				return null;
+			}
+
+			var match = ReversedLink.Match(hyperlink);
+			return match.Success
+				// hyperlink is reversed, so correct it
+				? $"onenote:{match.Groups[2].Value}{match.Groups[1].Value}"
+				: hyperlink;
+		}
+
+
+		/// <summary>
+		/// Fixes a reversed hyperlink and, if it is already correct, strips the onenote:
+		/// scheme, as used when copying the links of a whole day.
+		/// </summary>
+		private static string NormalizeHyperlink(string hyperlink)
+		{
+			if (hyperlink is not null && hyperlink.StartsWith("onenote:https:"))
+			{
+				// hyperlink is correct, just strip onenote: part
+				return hyperlink.Substring(8);
+			}
+
+			return FixReversedHyperlink(hyperlink);
 		}
 
 
@@ -355,8 +397,9 @@ namespace OneMoreCalendar
 		/// Open OneNote and navigate to the specified page
 		/// </summary>
 		/// <param name="pageID"></param>
+		/// <param name="newWindow">True to open the page in a new OneNote window</param>
 		/// <returns></returns>
-		public async Task NavigateTo(string pageID)
+		public async Task NavigateTo(string pageID, bool newWindow = false)
 		{
 			try
 			{
@@ -364,7 +407,7 @@ namespace OneMoreCalendar
 				var url = one.GetHyperlink(pageID, string.Empty);
 				if (!string.IsNullOrEmpty(url))
 				{
-					await one.NavigateTo(url);
+					await one.NavigateTo(url, newWindow);
 					SetForegroundWindow(one.WindowHandle);
 				}
 			}

@@ -64,7 +64,7 @@ namespace OneMoreCalendar
 		public event CalendarDayHandler ClickedDay;
 		public event CalendarHoverHandler HoverPage;
 		public event CalendarPageHandler ClickedPage;
-		public event CalendarSnapshotHandler SnappedPage;
+		public event CalendarPageMenuHandler PageMenu;
 
 
 		public void SetRange(DateTime startDate, DateTime endDate, CalendarPages pages)
@@ -411,7 +411,8 @@ namespace OneMoreCalendar
 
 			if (e.Button == MouseButtons.Right)
 			{
-				SnappedPage?.Invoke(this, new CalendarSnapshotEventArgs(page, page.Bounds));
+				PageMenu?.Invoke(this, new CalendarPageMenuEventArgs(
+					page, page.Bounds, listbox.PointToScreen(e.Location)));
 			}
 			else
 			{

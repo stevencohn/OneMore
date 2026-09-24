@@ -25,6 +25,7 @@ namespace River.OneMoreAddIn.Commands
 		private OneNote one;
 		private int quickCount = 0;
 		private string pageId;
+		private bool centerOnOwner;
 
 
 		public ExportCommand()
@@ -122,6 +123,20 @@ namespace River.OneMoreAddIn.Commands
 
 			await using (one = new OneNote())
 			{
+				// a caller such as OneMoreCalendar may specify exactly which page to export
+				// rather than exporting the pages selected in OneNote
+				if (args.Length > 0 && args[0] is string specifiedId && specifiedId.Length > 0)
+				{
+					// the caller is its own window and OneNote may not even be running, so
+					// dialogs are centered over the caller rather than over OneNote
+					centerOnOwner = true;
+
+					await Export(
+						new List<string> { specifiedId }, new Dictionary<string, DateTime?>());
+
+					return;
+				}
+
 				var section = await one.GetSection();
 				var ns = one.GetNamespace(section);
 
@@ -170,6 +185,12 @@ namespace River.OneMoreAddIn.Commands
 
 			using (var dialog = new ExportDialog(pageIDs.Count))
 			{
+				if (centerOnOwner)
+				{
+					// anything but Manual keeps MoreForm from centering over the OneNote window
+					dialog.StartPosition = FormStartPosition.CenterParent;
+				}
+
 				if (dialog.ShowDialog(owner) != DialogResult.OK)
 				{
 					return;
@@ -202,7 +223,14 @@ namespace River.OneMoreAddIn.Commands
 			using (var progress = new UI.ProgressDialog())
 			{
 				progress.SetMaximum(pageIDs.Count);
-				progress.Show();
+				if (centerOnOwner)
+				{
+					progress.Show(owner);
+				}
+				else
+				{
+					progress.Show();
+				}
 
 				var archivist = new Archivist(one);
 

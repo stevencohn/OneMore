@@ -233,8 +233,8 @@
     <value>לחץ על דף</value>
   </data>
   <data name="HelpForm_Mouse2_Action" xml:space="preserve">
-    <value>תצוגה מקדימה של תמונת מצב שלו</value>
-  </data>
+    <value>הצג עבורו תפריט פעולות</value>
+  <comment>!EDIT</comment></data>
   <data name="HelpForm_Mouse2_Keys" xml:space="preserve">
     <value>לחץ לחיצה ימנית על דף</value>
   </data>
@@ -324,6 +324,27 @@ xmlns="http://www.w3.org/TR/REC-html40"&gt;
   </data>
   <data name="MonthView_WebView" xml:space="preserve">
     <value>תצוגת אינטרנט</value>
+  </data>
+  <data name="PageMenu_CopyLink" xml:space="preserve">
+    <value>העתק קישור</value>
+  </data>
+  <data name="PageMenu_CopyWebLink" xml:space="preserve">
+    <value>העתק קישור אינטרנט</value>
+  </data>
+  <data name="PageMenu_Export" xml:space="preserve">
+    <value>יְצוּא</value>
+  </data>
+  <data name="PageMenu_NoWebLink" xml:space="preserve">
+    <value>לדף זה אין קישור אינטרנט. ייתכן שהמחברת שלו לא תישמר באינטרנט.</value>
+  </data>
+  <data name="PageMenu_Open" xml:space="preserve">
+    <value>לִפְתוֹחַ</value>
+  </data>
+  <data name="PageMenu_OpenNewWindow" xml:space="preserve">
+    <value>פתח בחלון חדש</value>
+  </data>
+  <data name="PageMenu_ViewThumbnail" xml:space="preserve">
+    <value>הצג תמונה ממוזערת</value>
   </data>
   <data name="ProgressDialog.Text" xml:space="preserve">
     <value>לוח שנה של OneMore</value>

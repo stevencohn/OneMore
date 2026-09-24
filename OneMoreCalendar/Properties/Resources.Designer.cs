@@ -449,7 +449,7 @@ namespace OneMoreCalendar.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Preview a snapshot of it.
+        ///   Looks up a localized string similar to Show a menu of actions for it.
         /// </summary>
         internal static string HelpForm_Mouse2_Action {
             get {
@@ -739,7 +739,70 @@ namespace OneMoreCalendar.Properties {
                 return ResourceManager.GetString("MonthView_WebView", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Copy Link.
+        /// </summary>
+        internal static string PageMenu_CopyLink {
+            get {
+                return ResourceManager.GetString("PageMenu_CopyLink", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Copy Web Link.
+        /// </summary>
+        internal static string PageMenu_CopyWebLink {
+            get {
+                return ResourceManager.GetString("PageMenu_CopyWebLink", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Export.
+        /// </summary>
+        internal static string PageMenu_Export {
+            get {
+                return ResourceManager.GetString("PageMenu_Export", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to This page does not have a web link. Its notebook may not be stored online..
+        /// </summary>
+        internal static string PageMenu_NoWebLink {
+            get {
+                return ResourceManager.GetString("PageMenu_NoWebLink", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Open.
+        /// </summary>
+        internal static string PageMenu_Open {
+            get {
+                return ResourceManager.GetString("PageMenu_Open", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Open in New Window.
+        /// </summary>
+        internal static string PageMenu_OpenNewWindow {
+            get {
+                return ResourceManager.GetString("PageMenu_OpenNewWindow", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to View Thumbnail.
+        /// </summary>
+        internal static string PageMenu_ViewThumbnail {
+            get {
+                return ResourceManager.GetString("PageMenu_ViewThumbnail", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>

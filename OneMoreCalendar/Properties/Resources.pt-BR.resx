@@ -233,8 +233,8 @@
     <value>Clique em uma página</value>
   </data>
   <data name="HelpForm_Mouse2_Action" xml:space="preserve">
-    <value>Visualize um instantâneo dele</value>
-  </data>
+    <value>Mostrar um menu de ações para ele</value>
+  <comment>!EDIT</comment></data>
   <data name="HelpForm_Mouse2_Keys" xml:space="preserve">
     <value>Clique com o botão direito em uma página</value>
   </data>
@@ -324,6 +324,27 @@ xmlns="http://www.w3.org/TR/REC-html40"&gt;
   </data>
   <data name="MonthView_WebView" xml:space="preserve">
     <value>Visualização da Web</value>
+  </data>
+  <data name="PageMenu_CopyLink" xml:space="preserve">
+    <value>Copiar link</value>
+  </data>
+  <data name="PageMenu_CopyWebLink" xml:space="preserve">
+    <value>Copiar link da web</value>
+  </data>
+  <data name="PageMenu_Export" xml:space="preserve">
+    <value>Exportar</value>
+  </data>
+  <data name="PageMenu_NoWebLink" xml:space="preserve">
+    <value>Esta página não possui um link da web. Seu notebook não pode ser armazenado online.</value>
+  </data>
+  <data name="PageMenu_Open" xml:space="preserve">
+    <value>Abrir</value>
+  </data>
+  <data name="PageMenu_OpenNewWindow" xml:space="preserve">
+    <value>Abrir em uma nova janela</value>
+  </data>
+  <data name="PageMenu_ViewThumbnail" xml:space="preserve">
+    <value>Ver miniatura</value>
   </data>
   <data name="ProgressDialog.Text" xml:space="preserve">
     <value>Calendário OneMore</value>

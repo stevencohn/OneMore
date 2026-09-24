@@ -184,6 +184,10 @@
     <Compile Include="Things\ThemedUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Things\ThemedContextMenu.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Things\PageClipboard.cs" />
     <Compile Include="Things\ThemeProvider.cs" />
     <Compile Include="Things\Translator.cs" />
     <Compile Include="YearsForm.cs">

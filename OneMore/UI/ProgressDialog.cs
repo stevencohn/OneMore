@@ -234,10 +234,25 @@ namespace River.OneMoreAddIn.UI
 			StartPosition = FormStartPosition.Manual;
 			TopMost = true;
 
+			// shown over another app's window, e.g. OneMoreCalendar, rather than over OneNote
+			if (Owner is not null)
+			{
+				CenterToParent();
+				return;
+			}
+
 			var rect = new Native.Rectangle();
 
 			using var one = new OneNote();
 			Native.GetWindowRect(one.WindowHandle, ref rect);
+
+			if (rect.Right - rect.Left <= 0)
+			{
+				// no OneNote window; without this the dialog would land at the top-left
+				// corner of the screen, partly off-screen
+				CenterToScreen();
+				return;
+			}
 
 			var yoffset = (int)(Height * 20 / 100.0);
 
