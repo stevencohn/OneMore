@@ -6,6 +6,7 @@ namespace OneMoreCalendar
 {
 	using System;
 	using System.Collections.Generic;
+	using System.Drawing;
 	using System.Windows.Forms;
 
 
@@ -15,7 +16,10 @@ namespace OneMoreCalendar
 	internal partial class SettingsForm : RoundedForm
 	{
 
+		private const float DesignDpi = 144f;
+
 		private bool validate = true;
+		private Font ambientFont;
 
 
 		public SettingsForm()
@@ -49,12 +53,30 @@ namespace OneMoreCalendar
 
 		protected override async void OnLoad(EventArgs e)
 		{
+			var logger = River.OneMoreAddIn.Logger.Current;
+			logger.Debug($"settings DPI={DeviceDpi} ambient font={Font.Name} {Font.SizeInPoints}pt " +
+				$"unit={Font.Unit} height={Font.Height}px");
+
+			// the ambient font comes from the system, which is not per-monitor DPI aware and
+			// isn't rescaled with autoscaling off, so text can be too large on a lower-DPI
+			// monitor; pin it to the point size the layout was designed with (Segoe UI 9pt)
+			ambientFont = new Font("Segoe UI", 9F);
+			Font = ambientFont;
+
+			// the designer layout was authored at 150% (144 DPI) with autoscaling off; scale it
+			// to the actual DPI before calling base.OnLoad so RoundedForm's rounded region uses
+			// the final size
+			this.ScaleLayout(DesignDpi);
+
+			logger.Debug($"settings scaled size={Size} font height={Font.Height}px " +
+				$"radio={darkModeButton.Size} check={createdBox.Size}");
+
 			// call RoundForm.base to draw background
 			base.OnLoad(e);
 
 			// TODO: why is emptyBox getting truncated?
 			emptyBox.AutoSize = false;
-			emptyBox.Width += 25;
+			emptyBox.Width += this.Scaled(17);
 
 			if (!DesignMode)
 			{
@@ -90,6 +112,14 @@ namespace OneMoreCalendar
 					notebooksBox.SetItemChecked(notebooksBox.Items.Count - 1, notebook.Checked);
 				}
 			}
+		}
+
+
+		protected override void OnFormClosed(FormClosedEventArgs e)
+		{
+			base.OnFormClosed(e);
+			ambientFont?.Dispose();
+			ambientFont = null;
 		}
 
 

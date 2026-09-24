@@ -5,6 +5,7 @@
 namespace OneMoreCalendar
 {
 	using System;
+	using System.Drawing;
 	using System.Windows.Forms;
 
 
@@ -29,6 +30,22 @@ namespace OneMoreCalendar
 		public static float Scaled(this Control control, float value)
 		{
 			return value * control.ScaleFactor();
+		}
+
+		/// <summary>
+		/// Scales a layout that was authored in the designer at the given DPI to this control's
+		/// actual DPI. Sizes and locations of the control and its children are scaled; fonts
+		/// are not touched.
+		/// </summary>
+		/// <param name="control">The control, typically a Form, to scale</param>
+		/// <param name="designDpi">The DPI at which the layout was authored</param>
+		public static void ScaleLayout(this Control control, float designDpi)
+		{
+			var factor = control.DeviceDpi / designDpi;
+			if (Math.Abs(factor - 1f) > 0.01f)
+			{
+				control.Scale(new SizeF(factor, factor));
+			}
 		}
 	}
 }
