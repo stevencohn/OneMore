@@ -71,11 +71,30 @@ namespace OneMoreCalendar
 
 		/// <summary>
 		/// Determines whether the filter matches this page's notebook, section group, section,
-		/// or page title; Path already holds the notebook, section group and section names.
+		/// or page title, and whether the page carries the requested hashtags; Path already
+		/// holds the notebook, section group and section names. Every specified criterion must
+		/// be satisfied, the same as Search Titles.
 		/// </summary>
-		public bool Matches(Regex finder)
+		/// <param name="finder">The text filter, or null if the filter has no text</param>
+		/// <param name="included">
+		/// IDs of pages carrying all the requested hashtags, or null if none were requested
+		/// </param>
+		/// <param name="excluded">
+		/// IDs of pages carrying any of the excluded hashtags, or null if none were specified
+		/// </param>
+		public bool Matches(Regex finder, HashSet<string> included, HashSet<string> excluded)
 		{
-			return finder.IsMatch($"{Path} > {Title}");
+			if (finder is not null && !finder.IsMatch($"{Path} > {Title}"))
+			{
+				return false;
+			}
+
+			if (included is not null && !included.Contains(PageID))
+			{
+				return false;
+			}
+
+			return excluded is null || !excluded.Contains(PageID);
 		}
 	}
 }
