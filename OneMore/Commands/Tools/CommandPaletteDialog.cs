@@ -118,7 +118,7 @@ namespace River.OneMoreAddIn.Commands
 			// to avoid hitting the wrong substring "Double Horizontal Line" vs "Horizontal Line"
 			var pattern = new Regex(
 				@$"^(?:(?<cat>[^{palette.CategoryDivider}]+){palette.CategoryDivider})?" +
-				text +
+				Regex.Escape(text) +
 				$@"(?:\{palette.KeyDivider}(?<seq>.*))?$",
 				RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
