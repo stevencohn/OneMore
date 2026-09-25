@@ -462,11 +462,13 @@ namespace River.OneMoreAddIn.Commands
 					cdata.Value = string.Empty;
 
 					// OneNote's HTML importer sometimes nests the block immediately
-					// following this marker paragraph (e.g. a list) as its child instead
-					// of as its sibling; promote any such children back out to their
-					// correct flat position so later paragraph-only rewrites see them
+					// following this marker paragraph as its child instead of as its
+					// sibling. A list is left nested so it is indented consistently with
+					// a list that directly follows a paragraph with no blank line between.
+					// Any other nested block is promoted back out to its correct flat
+					// position so later paragraph-only rewrites see it
 					var children = paragraph.Element(ns + "OEChildren");
-					if (children is not null)
+					if (children is not null && !IsListChildren(children))
 					{
 						var items = children.Elements().ToList();
 						foreach (var item in items)
@@ -481,6 +483,16 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			return this;
+		}
+
+
+		/// <summary>
+		/// Determines whether every child paragraph is a list item (bulleted or numbered)
+		/// </summary>
+		private bool IsListChildren(XElement children)
+		{
+			var items = children.Elements(ns + "OE").ToList();
+			return items.Count > 0 && items.All(e => e.Element(ns + "List") is not null);
 		}
 
 
