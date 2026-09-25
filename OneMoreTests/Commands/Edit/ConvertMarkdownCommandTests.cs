@@ -888,6 +888,86 @@ para2";
 		}
 
 
+		private static XElement BuildMarkerOe(string objectId, params XElement[] children)
+		{
+			return new XElement(Ns + "OE",
+				new XAttribute("objectID", objectId),
+				new XElement(Ns + "T", new XCData(OneMoreDig.BlankLineMarker)),
+				new XElement(Ns + "OEChildren", children));
+		}
+
+
+		[TestMethod]
+		public void RewriteBlankLines_MarkerWithListChildren_KeepsListNested()
+		{
+			var page = new Page(XElement.Parse(
+				new PageBuilder("page-blank-1", "Blank Test")
+					.WithElement(BuildMarkerOe("oe-marker",
+						BuildListOe("oe-a", "list a"),
+						BuildListOe("oe-b", "list b")))
+					.Build()));
+
+			new MarkdownConverter(page)
+				.RewriteBlankLines(page.Root.Descendants(Ns + "OE").ToList());
+
+			var marker = FindOe(page, "oe-marker");
+			var cdata = marker.Element(Ns + "T").FirstNode as XCData;
+			Assert.AreEqual(string.Empty, cdata.Value, "Expected the marker to be emptied");
+
+			var nested = marker.Element(Ns + "OEChildren")?.Elements(Ns + "OE").ToList();
+			Assert.IsNotNull(nested, "Expected the list to remain nested under the marker");
+			CollectionAssert.AreEqual(
+				new[] { FindOe(page, "oe-a"), FindOe(page, "oe-b") }, nested);
+		}
+
+
+		[TestMethod]
+		public void RewriteBlankLines_MarkerWithNonListChildren_PromotesToSiblings()
+		{
+			var page = new Page(XElement.Parse(
+				new PageBuilder("page-blank-2", "Blank Test")
+					.WithElement(BuildMarkerOe("oe-marker",
+						new XElement(Ns + "OE",
+							new XAttribute("objectID", "oe-para"),
+							new XElement(Ns + "T", new XCData("plain paragraph")))))
+					.Build()));
+
+			new MarkdownConverter(page)
+				.RewriteBlankLines(page.Root.Descendants(Ns + "OE").ToList());
+
+			var marker = FindOe(page, "oe-marker");
+			Assert.IsNull(marker.Element(Ns + "OEChildren"),
+				"Expected non-list children to be promoted out of the marker");
+			Assert.AreSame(marker.NextNode, FindOe(page, "oe-para"),
+				"Expected the promoted paragraph to follow the marker as a sibling");
+		}
+
+
+		[TestMethod]
+		public void RewriteBlankLines_NoMarker_LeavesStructureUntouched()
+		{
+			var parent = new XElement(Ns + "OE",
+				new XAttribute("objectID", "oe-parent"),
+				new XElement(Ns + "T", new XCData("Here is some text")),
+				new XElement(Ns + "OEChildren", BuildListOe("oe-a", "list a")));
+
+			var page = new Page(XElement.Parse(
+				new PageBuilder("page-blank-3", "Blank Test")
+					.WithElement(parent)
+					.Build()));
+
+			new MarkdownConverter(page)
+				.RewriteBlankLines(page.Root.Descendants(Ns + "OE").ToList());
+
+			var oe = FindOe(page, "oe-parent");
+			var cdata = oe.Element(Ns + "T").FirstNode as XCData;
+			Assert.AreEqual("Here is some text", cdata.Value);
+			CollectionAssert.AreEqual(
+				new[] { FindOe(page, "oe-a") },
+				oe.Element(Ns + "OEChildren").Elements(Ns + "OE").ToList());
+		}
+
+
 		private static string ConvertSample(string sample, bool gfmLineBreaks, bool singleSpacing)
 		{
 			var filepath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
