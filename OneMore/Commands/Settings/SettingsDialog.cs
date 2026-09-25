@@ -129,20 +129,20 @@ namespace River.OneMoreAddIn.Settings
 
 		private void InitializeLoad(object sender, EventArgs e)
 		{
-			// Sheets use AutoScaleMode.Font (SizeF 9,20); the dialog uses AutoScaleMode.Dpi.
-			// At sub-design DPIs the dialog shrinks faster than the sheets, making contentPanel
-			// too small for HashtagSheet and TableThemesSheet (content minimum 816w x 560h).
-			// Grow the form by the gap so no content is clipped on open.
-			var fontScale = Font.Height / 20.0f;
-			var dw = Math.Max(0, (int)(816 * fontScale) - contentPanel.Width);
-			var dh = Math.Max(0, (int)(560 * fontScale) - contentPanel.Height);
-			if (dw > 0 || dh > 0)
-			{
-				Width += dw;
-				Height += dh + 40; // 40 is a fudge factor to accomodate RDP
-			}
+			// The widest sheets (HashtagSheet, TableThemesSheet) need a content area of at least
+			// 816w x 560h at the 150% (144 DPI) design size. Derive the minimum form size from
+			// that plus the dialog's own chrome so the user can still shrink the dialog down to
+			// what the content requires; assigning MinimumSize also grows the form if it is
+			// currently smaller, so no content is clipped on open.
+			PerformLayout();
+			var factor = DeviceDpi / 144f;
+			var chromeWidth = Width - contentPanel.Width;
+			var chromeHeight = Height - contentPanel.Height;
 
-			MinimumSize = new System.Drawing.Size(Width, Height);
+			MinimumSize = new System.Drawing.Size(
+				chromeWidth + (int)Math.Ceiling(816 * factor),
+				chromeHeight + (int)Math.Ceiling(560 * factor));
+
 			FormBorderStyle = FormBorderStyle.Sizable;
 			LayoutNavLinks();
 		}

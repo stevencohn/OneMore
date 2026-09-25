@@ -21,6 +21,7 @@ namespace River.OneMoreAddIn.Commands
 
 		private readonly MoreLabel titleLabel;
 		private readonly MoreLabel summaryLabel;
+		private Font titleFont;
 		private bool selected;
 
 
@@ -40,10 +41,10 @@ namespace River.OneMoreAddIn.Commands
 				Dock = DockStyle.Top,
 				Height = 20,
 				Cursor = Cursors.Hand,
-				Font = new Font(Font, FontStyle.Bold),
 				Text = roleName
 			};
 			Controls.Add(titleLabel);
+			CreateTitleFont();
 
 			summaryLabel = new MoreLabel
 			{
@@ -88,6 +89,38 @@ namespace River.OneMoreAddIn.Commands
 					Invalidate();
 				}
 			}
+		}
+
+
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing)
+			{
+				titleFont?.Dispose();
+			}
+
+			base.Dispose(disposing);
+		}
+
+
+		// this row is constructed before it is parented, so Font is still the system default
+		// here; rebuild the bold title font once the form's ambient font is inherited
+		protected override void OnFontChanged(EventArgs e)
+		{
+			base.OnFontChanged(e);
+
+			if (titleLabel is not null)
+			{
+				CreateTitleFont();
+			}
+		}
+
+
+		private void CreateTitleFont()
+		{
+			titleFont?.Dispose();
+			titleFont = new Font(Font, FontStyle.Bold);
+			titleLabel.Font = titleFont;
 		}
 
 

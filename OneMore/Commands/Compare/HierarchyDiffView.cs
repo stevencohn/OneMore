@@ -58,7 +58,7 @@ namespace River.OneMoreAddIn.Commands.Compare
 
 		private readonly List<Row> rows = new();
 		private readonly HashSet<DiffNode> expanded = new();
-		private readonly Font monoFont;
+		private Font monoFont;
 		private readonly Font chipFont;
 		private readonly Font wellFont;
 
@@ -102,9 +102,26 @@ namespace River.OneMoreAddIn.Commands.Compare
 			AutoScroll = true;
 			TabStop = true;
 
-			monoFont = new Font("Consolas", Font.SizeInPoints);
+			CreateMonoFont();
 			chipFont = new Font("Segoe UI", 6.5f, FontStyle.Bold, GraphicsUnit.Point);
 			wellFont = new Font("Segoe UI", 6.5f, FontStyle.Bold, GraphicsUnit.Point);
+		}
+
+
+		// this control is constructed before it is parented, so Font is still the system
+		// default here; rebuild the date font once the form's ambient font is inherited
+		protected override void OnFontChanged(EventArgs e)
+		{
+			base.OnFontChanged(e);
+			CreateMonoFont();
+			Invalidate();
+		}
+
+
+		private void CreateMonoFont()
+		{
+			monoFont?.Dispose();
+			monoFont = new Font("Consolas", Font.SizeInPoints);
 		}
 
 
