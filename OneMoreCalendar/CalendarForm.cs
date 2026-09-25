@@ -48,6 +48,9 @@ namespace OneMoreCalendar
 		private int monthDelta;
 		private DateTime? pendingDay;
 		private Regex filter;
+		private HashSet<string> filterIncluded;
+		private HashSet<string> filterExcluded;
+		private int filterSeq;
 		private bool loading;
 		private int monthLabelWidth;
 		private Font filterRegularFont;
@@ -866,9 +869,9 @@ namespace OneMoreCalendar
 		/// </summary>
 		private CalendarPages FilteredPages()
 		{
-			return filter is null
+			return filter is null && filterIncluded is null && filterExcluded is null
 				? pages
-				: new CalendarPages(pages.Where(p => p.Matches(filter)));
+				: new CalendarPages(pages.Where(p => p.Matches(filter, filterIncluded, filterExcluded)));
 		}
 
 
@@ -908,14 +911,14 @@ namespace OneMoreCalendar
 		}
 
 
-		private void ClearFilter(object sender, EventArgs e)
+		private async void ClearFilter(object sender, EventArgs e)
 		{
 			filterBox.Clear();
 			filterBox.Focus();
 
 			// don't wait for the debounce
 			filterTimer.Stop();
-			ApplyFilter();
+			await ApplyFilter();
 		}
 
 
@@ -927,45 +930,85 @@ namespace OneMoreCalendar
 		}
 
 
-		private void FilterTick(object sender, EventArgs e)
+		private async void FilterTick(object sender, EventArgs e)
 		{
 			filterTimer.Stop();
-			ApplyFilter();
+			await ApplyFilter();
 		}
 
 
-		private void FilterKeyDown(object sender, KeyEventArgs e)
+		private async void FilterKeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode == Keys.Enter)
 			{
 				filterTimer.Stop();
-				ApplyFilter();
 				e.SuppressKeyPress = true;
+				await ApplyFilter();
 			}
 		}
 
 
-		private void ApplyFilter()
+		/// <summary>
+		/// Applies the filter text. Text is matched against page paths and titles using the same
+		/// query syntax as OneMore's Title Search; any "#hashtag" and "-#hashtag" tokens are looked
+		/// up in the hashtag database. As in Title Search, a page is shown only if it satisfies
+		/// everything specified: the text, all of the hashtags, and none of the excluded hashtags.
+		/// </summary>
+		private async Task ApplyFilter()
 		{
 			var text = filterBox.Text.Trim();
 			Regex finder = null;
+			List<string> includeTags = null;
+			List<string> excludeTags = null;
 
 			if (text.Length >= MinFilterLength)
 			{
-				try
+				var query = TitleQueryParser.Parse(text);
+				if (query.Hashtags.Count > 0)
 				{
-					// same query syntax as OneMore's Title Search
-					finder = new TextMatchBuilder(false, false).BuildRegex(text);
+					includeTags = query.Hashtags;
 				}
-				catch (Exception exc)
+
+				if (query.ExcludeHashtags.Count > 0)
 				{
-					// incomplete or unsupported query, e.g. "NOT (a b)"; keep the current filter
-					Logger.Current.Debug($"ignoring filter [{text}]: {exc.Message}");
+					excludeTags = query.ExcludeHashtags;
+				}
+
+				if (!string.IsNullOrWhiteSpace(query.TitleText))
+				{
+					try
+					{
+						finder = new TextMatchBuilder(false, false).BuildRegex(query.TitleText);
+					}
+					catch (Exception exc)
+					{
+						// incomplete or unsupported query, e.g. "NOT (a b)"; keep the current filter
+						Logger.Current.Debug($"ignoring filter [{text}]: {exc.Message}");
+						return;
+					}
+				}
+			}
+
+			// invalidates any hashtag lookup still in flight for an earlier filter
+			var seq = ++filterSeq;
+			HashSet<string> included = null;
+			HashSet<string> excluded = null;
+
+			if (includeTags is not null || excludeTags is not null)
+			{
+				(included, excluded) = await Task.Run(
+					() => ResolveHashtagPageIDs(includeTags, excludeTags));
+
+				if (seq != filterSeq)
+				{
+					// superseded while the lookup was running
 					return;
 				}
 			}
 
 			filter = finder;
+			filterIncluded = included;
+			filterExcluded = excluded;
 
 			// if pages are still loading then SetMonth will apply the new filter when done
 			if (loading || pages is null)
@@ -983,6 +1026,71 @@ namespace OneMoreCalendar
 			}
 
 			ShowPageStatus(this, new CalendarPageEventArgs(null));
+		}
+
+
+		/// <summary>
+		/// Finds the IDs of pages to include and exclude for the given hashtags, using the same
+		/// rules as SearchTitleEngine.ResolveHashtagFilters. Runs on a background thread and gets
+		/// its own provider since a database connection can't be shared across threads.
+		/// </summary>
+		/// <param name="includeTags">Hashtags a page must carry all of, or null</param>
+		/// <param name="excludeTags">Hashtags that exclude a page if it carries any, or null</param>
+		/// <returns>
+		/// The page IDs, each null if its hashtags weren't specified; empty if there are no
+		/// matches or the hashtag catalog doesn't exist, so an include finds no pages
+		/// </returns>
+		private static (HashSet<string> Included, HashSet<string> Excluded) ResolveHashtagPageIDs(
+			List<string> includeTags, List<string> excludeTags)
+		{
+			var included = includeTags is null ? null : new HashSet<string>();
+			var excluded = excludeTags is null ? null : new HashSet<string>();
+
+			// don't let the provider create an empty catalog just because we asked
+			if (!HashtagProvider.CatalogExists())
+			{
+				Logger.Current.Debug("hashtag catalog not found, hashtags in filter match nothing");
+				return (included, excluded);
+			}
+
+			try
+			{
+				using (var provider = new HashtagProvider())
+				{
+					// no notebook scope; results are intersected with the already loaded pages.
+					// allTags:true matches the page's whole tag set so the implicit AND across
+					// distinct hashtags works; excluding needs just any one tag row, so OR them
+					if (included is not null)
+					{
+						var tags = provider.SearchTags(
+							string.Join(" ", includeTags),
+							caseSensitive: false, allTags: true, parsed: out _);
+
+						foreach (var tag in tags)
+						{
+							included.Add(tag.PageID);
+						}
+					}
+
+					if (excluded is not null)
+					{
+						var tags = provider.SearchTags(
+							string.Join(" OR ", excludeTags),
+							caseSensitive: false, allTags: false, parsed: out _);
+
+						foreach (var tag in tags)
+						{
+							excluded.Add(tag.PageID);
+						}
+					}
+				}
+			}
+			catch (Exception exc)
+			{
+				Logger.Current.Debug($"error searching hashtags: {exc.Message}");
+			}
+
+			return (included, excluded);
 		}
 
 
