@@ -5,6 +5,8 @@
 namespace River.OneMoreAddIn.UI
 {
 	using System;
+	using System.ComponentModel;
+	using System.Drawing;
 	using System.Windows.Forms;
 
 
@@ -16,10 +18,32 @@ namespace River.OneMoreAddIn.UI
 	{
 		protected readonly ThemeManager manager;
 
+		private Font ambientFont;
+
 
 		protected MoreUserControl()
 		{
 			manager = ThemeManager.Instance;
+
+			// keep in sync with MoreForm: pin the design-time ambient font so AutoScaleMode.Font
+			// is deterministic even when the control is created before it is parented
+			if (LicenseManager.UsageMode != LicenseUsageMode.Designtime)
+			{
+				ambientFont = new Font("Microsoft Sans Serif", 8.25F);
+				Font = ambientFont;
+			}
+		}
+
+
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing)
+			{
+				ambientFont?.Dispose();
+				ambientFont = null;
+			}
+
+			base.Dispose(disposing);
 		}
 
 

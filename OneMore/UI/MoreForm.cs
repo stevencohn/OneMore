@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.UI
 {
 	using River.OneMoreAddIn.Settings;
 	using System;
+	using System.ComponentModel;
 	using System.Diagnostics;
 	using System.Drawing;
 	using System.Threading.Tasks;
@@ -32,6 +33,7 @@ namespace River.OneMoreAddIn.UI
 		private bool elevatedWithOneNote;
 		private int processId;
 		private int trackedId;
+		private Font ambientFont;
 
 
 		public MoreForm()
@@ -39,6 +41,29 @@ namespace River.OneMoreAddIn.UI
 			Properties.Resources.Culture = AddIn.Culture;
 			manager = ThemeManager.Instance;
 			logger = Logger.Current;
+
+			// The designers were authored at 150% with Microsoft Sans Serif 8.25pt as the
+			// ambient font (AutoScaleDimensions 9F,20F). Control.DefaultFont comes from the
+			// system and is not rescaled per monitor, so pin the font to keep AutoScaleMode.Font
+			// deterministic on 100%, high-DPI and RDP displays. Skip at design time or the
+			// VS designer will serialize this font into every derived Designer.cs.
+			if (LicenseManager.UsageMode != LicenseUsageMode.Designtime)
+			{
+				ambientFont = new Font("Microsoft Sans Serif", 8.25F);
+				Font = ambientFont;
+			}
+		}
+
+
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing)
+			{
+				ambientFont?.Dispose();
+				ambientFont = null;
+			}
+
+			base.Dispose(disposing);
 		}
 
 
