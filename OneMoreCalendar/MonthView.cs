@@ -6,6 +6,7 @@ namespace OneMoreCalendar
 {
 	using OneMoreCalendar.Properties;
 	using River.OneMoreAddIn;
+	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
@@ -34,6 +35,7 @@ namespace OneMoreCalendar
 		private static readonly string LessGlyph = Resources.MonthView_LessGlyph; // \u23F6
 		private static readonly string MoreGlyph = Resources.MonthView_MoreGlyph; // \u23F7
 		private static readonly string CopyGlyph = Resources.MonthView_CopyGlyph; // \ud83d\uddc7
+		private static readonly string CreateGlyph = Resources.MonthView_CreatePageGlyph;
 
 		// Font.Height includes generous internal leading; pack page title rows closer
 		// together than a full line height so a day's entries don't look so spread out
@@ -43,10 +45,13 @@ namespace OneMoreCalendar
 		private readonly Font moreFont;
 		private readonly Font copyFont;
 		private readonly Font deletedFont;
+		private readonly Font italicFont;
+		private readonly Font italicHotFont;
 		private readonly Size moreSize;
 		private readonly StringFormat format;
 		private readonly List<Hotspot> hotspots;
 		private readonly MoreButton copyButton;
+		private readonly MoreButton createButton;
 		private readonly ToolTip tooltip;
 
 		private DateTime date;
@@ -68,6 +73,8 @@ namespace OneMoreCalendar
 
 			hotFont = new Font(Font, FontStyle.Regular | FontStyle.Underline);
 			deletedFont = new Font(Font, FontStyle.Regular | FontStyle.Strikeout);
+			italicFont = new Font(Font, FontStyle.Italic);
+			italicHotFont = new Font(Font, FontStyle.Italic | FontStyle.Underline);
 			moreFont = new Font("Segoe UI", 14.0f, FontStyle.Regular);
 			moreSize = TextRenderer.MeasureText(MoreGlyph, Font);
 
@@ -87,8 +94,22 @@ namespace OneMoreCalendar
 
 			copyButton.MouseDown += ClickCopyPageButton;
 
+			var createSize = TextRenderer.MeasureText(CreateGlyph, copyFont);
+			createButton = new MoreButton
+			{
+				Font = copyFont,
+				PreferredBack = Theme.MonthDayBack,
+				PreferredFore = Theme.LinkColor,
+				Text = CreateGlyph,
+				Size = new Size(createSize.Width + 4, createSize.Height + 2),
+				Visible = false
+			};
+
+			createButton.MouseDown += ClickCreatePageButton;
+
 			tooltip = new ToolTip(components);
 			tooltip.SetToolTip(copyButton, Resources.MonthView_CopyLinks);
+			tooltip.SetToolTip(createButton, Resources.MonthView_CreatePage);
 
 			format = new StringFormat
 			{
@@ -108,6 +129,7 @@ namespace OneMoreCalendar
 			// measurement in the constructor, before DeviceDpi was valid; rescale now that it
 			// is, and compact the padding around the glyph the same way as day header/rows
 			copyButton.Size = new Size(this.Scaled(copyButton.Width), this.Scaled(copyButton.Height));
+			createButton.Size = new Size(this.Scaled(createButton.Width), this.Scaled(createButton.Height));
 
 			moreWidth = (int)(this.Scaled(moreSize.Width) * RowSpacingFactor);
 			moreHeight = (int)(this.Scaled(moreSize.Height) * RowSpacingFactor);
@@ -118,6 +140,7 @@ namespace OneMoreCalendar
 		public event CalendarHoverHandler HoverPage;
 		public event CalendarPageHandler ClickedPage;
 		public event CalendarPageMenuHandler PageMenu;
+		public event CalendarCreatedPageHandler ClickedCreatePage;
 
 
 		public void SetRange(DateTime startDate, DateTime endDate, CalendarPages pages)
@@ -132,7 +155,7 @@ namespace OneMoreCalendar
 				if (Controls[i] is MoreButton)
 				{
 					var c = Controls[i];
-					if (c != copyButton)
+					if (c != copyButton && c != createButton)
 					{
 						Controls.RemoveAt(i);
 						c.Dispose();
@@ -214,6 +237,21 @@ namespace OneMoreCalendar
 		}
 
 
+		/// <summary>
+		/// True if the given page is showing on the given day specifically because of its
+		/// creation date rather than its last-modified date - only meaningful when both the
+		/// Created and Modified settings are enabled, since only then can the same page show
+		/// up on two different days. Used to render the created-day occurrence in italics.
+		/// </summary>
+		private static bool ShowsAsCreated(CalendarDay day, CalendarPage page)
+		{
+			var settings = SettingsProvider.Current;
+			return settings.Created && settings.Modified
+				&& page.Created.Date.Equals(day.Date)
+				&& !page.Modified.Date.Equals(day.Date);
+		}
+
+
 		protected override void OnMouseClick(MouseEventArgs e)
 		{
 			base.OnMouseClick(e);
@@ -290,6 +328,12 @@ namespace OneMoreCalendar
 						copyButton.Visible = false;
 						Controls.Remove(copyButton);
 					}
+
+					if (createButton.Visible)
+					{
+						createButton.Visible = false;
+						Controls.Remove(createButton);
+					}
 				}
 				else if (hotspot.Type == Hottype.Page)
 				{
@@ -312,7 +356,8 @@ namespace OneMoreCalendar
 							var titleBrush = new SolidBrush(hotspot.InMonth
 								? Theme.MonthTodayFore : Theme.MonthDayFore);
 
-							g.DrawString(hotspot.Page.Title, Font, titleBrush, hotspot.Bounds, format);
+							var titleFont = ShowsAsCreated(hotspot.Day, hotspot.Page) ? italicFont : Font;
+							g.DrawString(hotspot.Page.Title, titleFont, titleBrush, hotspot.Bounds, format);
 						}
 					}
 
@@ -329,6 +374,9 @@ namespace OneMoreCalendar
 			{
 				if (spot.Type == Hottype.Day)
 				{
+					// right edge inside the header box, same margin copyButton always used
+					var right = spot.Bounds.X + spot.Bounds.Width - this.Scaled(1);
+
 					if (spot.Day.Pages.Count > 0)
 					{
 						Controls.Add(copyButton);
@@ -339,12 +387,28 @@ namespace OneMoreCalendar
 						copyButton.Height = buttonHeight;
 
 						copyButton.Location = new Point(
-							spot.Bounds.X + spot.Bounds.Width - copyButton.Width - this.Scaled(1),
+							right - copyButton.Width,
 							spot.Bounds.Y + ((spot.Bounds.Height - buttonHeight) / 2));
 
 						copyButton.Tag = spot.Day;
 						copyButton.Visible = true;
+
+						// createButton sits immediately to the left of copyButton
+						right = copyButton.Location.X - this.Scaled(2);
 					}
+
+					// createButton is always available, even on days with no pages yet
+					Controls.Add(createButton);
+
+					var createHeight = Math.Min(createButton.Height, headHeight - this.Scaled(2));
+					createButton.Height = createHeight;
+
+					createButton.Location = new Point(
+						right - createButton.Width,
+						spot.Bounds.Y + ((spot.Bounds.Height - createHeight) / 2));
+
+					createButton.Tag = spot.Day;
+					createButton.Visible = true;
 				}
 				else if (spot.Type == Hottype.Page)
 				{
@@ -354,8 +418,11 @@ namespace OneMoreCalendar
 						g.FillRectangle(fill, spot.Bounds);
 
 						using var fore = new SolidBrush(Theme.Highlight);
-						g.DrawString(spot.Page.Title,
-							spot.Page.IsDeleted ? deletedFont : hotFont, fore,
+						var hoverFont = spot.Page.IsDeleted ? deletedFont
+							: ShowsAsCreated(spot.Day, spot.Page) ? italicHotFont
+							: hotFont;
+
+						g.DrawString(spot.Page.Title, hoverFont, fore,
 							new Rectangle(spot.Bounds.X, spot.Bounds.Y, width, spot.Bounds.Height),
 							format);
 					}
@@ -546,11 +613,13 @@ namespace OneMoreCalendar
 				return;
 			}
 
-			day.Pages.ForEach(p =>
-			{
-				var index = hotspots.FindIndex(h => h.Page == p);
-				if (index >= 0) hotspots.RemoveAt(index);
-			});
+			// clear this day's own stale page hotspots (e.g. from a previous ScrollDay
+			// repaint) before re-adding fresh ones below. Scoped to this day's bounds rather
+			// than matched by page identity: when both the Created and Modified settings are
+			// enabled, the same CalendarPage can have a separate hotspot on another day too,
+			// and removing by page reference alone would wipe out that other day's hotspot
+			// (making it unclickable) every time this day repaints.
+			hotspots.RemoveAll(h => h.Type == Hottype.Page && day.Bounds.Contains(h.Bounds.Location));
 
 			// content box with padding
 			var box = new Rectangle(
@@ -589,7 +658,10 @@ namespace OneMoreCalendar
 				// max length of string with ellipses
 				var clip = new Rectangle(left, top, width, rowLineHeight);
 
-				var font = page.IsDeleted ? deletedFont : Font;
+				var font = page.IsDeleted ? deletedFont
+					: ShowsAsCreated(day, page) ? italicFont
+					: Font;
+
 				using var brush = new SolidBrush(page.IsDeleted || day.InMonth
 					? Theme.MonthTodayFore
 					: Theme.MonthDayFore);
@@ -602,6 +674,7 @@ namespace OneMoreCalendar
 				{
 					Type = Hottype.Page,
 					Bounds = new Rectangle(clip.X, clip.Y, size.Width + this.Scaled(2), size.Height),
+					Day = day,
 					Page = page,
 					InMonth = day.InMonth
 				});
@@ -744,6 +817,80 @@ namespace OneMoreCalendar
 					progress?.Close();
 					progress?.Dispose();
 				}
+			}
+		}
+
+
+		private void ClickCreatePageButton(object sender, EventArgs e)
+		{
+			if (((MoreButton)sender).Tag is CalendarDay day)
+			{
+				Logger.Current.Debug($"picking section to create a page for {day.Date:yyyy-MM-dd}");
+
+				createButton.Enabled = false;
+
+				// this app may already hold its own COM connection to OneNote (from loading
+				// the page index), so we must not try to launch OneNote ourselves here - a
+				// headless server started first can prevent a subsequent interactive launch
+				// from ever taking over. Just ask the user to start it themselves.
+				if (!OneNoteProvider.IsRunningInteractively())
+				{
+					Logger.Current.WriteLine("cannot create page, OneNote is not running");
+					MoreMessageBox.Show(FindForm(), Resources.MonthView_CreatePageNotRunning);
+					createButton.Enabled = true;
+					return;
+				}
+
+				try
+				{
+					using var one = new OneNote();
+
+					// bring OneNote forward first, otherwise the QuickFiling dialog it owns
+					// opens behind this calendar window
+					OneNoteProvider.SetForegroundWindow(one.WindowHandle);
+
+					one.SelectLocation(
+						Resources.MonthView_CreatePageQFTitle,
+						Resources.MonthView_CreatePageQFDescription,
+						OneNote.Scope.Sections,
+						sectionId => CreatePageInSection(day, sectionId));
+				}
+				catch (Exception exc)
+				{
+					// only reached if the QuickFiling dialog itself fails to open;
+					// once it opens, CreatePageInSection re-enables the button
+					Logger.Current.WriteLine("error opening section picker", exc);
+					createButton.Enabled = true;
+				}
+			}
+		}
+
+
+		private async Task CreatePageInSection(CalendarDay day, string sectionId)
+		{
+			try
+			{
+				if (string.IsNullOrEmpty(sectionId))
+				{
+					// user canceled the QuickFiling picker
+					return;
+				}
+
+				Logger.Current.WriteLine($"creating page for {day.Date:yyyy-MM-dd} in section {sectionId}");
+
+				var pageId = await new OneNoteProvider().CreatePage(day.Date, sectionId);
+
+				ClickedCreatePage?.Invoke(this, new CalendarCreatedPageEventArgs(day.Date, pageId));
+			}
+			catch (Exception exc)
+			{
+				Logger.Current.WriteLine($"error creating page for {day.Date:yyyy-MM-dd}", exc);
+
+				MoreMessageBox.ShowError(FindForm(), Resources.MonthView_CreatePageError);
+			}
+			finally
+			{
+				createButton.Enabled = true;
 			}
 		}
 

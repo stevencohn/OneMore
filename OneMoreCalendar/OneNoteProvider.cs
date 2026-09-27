@@ -8,6 +8,7 @@ namespace OneMoreCalendar
 	using River.OneMoreAddIn.Models;
 	using System;
 	using System.Collections.Generic;
+	using System.Diagnostics;
 	using System.Globalization;
 	using System.IO;
 	using System.Linq;
@@ -46,6 +47,35 @@ namespace OneMoreCalendar
 
 
 		/// <summary>
+		/// Returns true if an interactive ONENOTE.EXE - one with a visible main window, not
+		/// just a headless COM server - is currently running. Read-only: never touches COM or
+		/// launches anything, so it's safe to call even though this app may already hold its
+		/// own COM connection to OneNote (from loading the page index). This app must never try
+		/// to launch OneNote itself: a headless server started first can prevent a subsequent
+		/// interactive launch from ever taking over.
+		/// </summary>
+		public static bool IsRunningInteractively()
+		{
+			foreach (var proc in Process.GetProcessesByName("ONENOTE"))
+			{
+				try
+				{
+					proc.Refresh();
+					if (proc.MainWindowHandle != IntPtr.Zero)
+					{
+						return true;
+					}
+				}
+				catch
+				{
+					// process may exit between enumerate and inspect — skip it
+				}
+			}
+			return false;
+		}
+
+
+		/// <summary>
 		/// Export an XPS representation of the specified page to the TEMP folder
 		/// </summary>
 		/// <param name="pageID"></param>
@@ -68,6 +98,75 @@ namespace OneMoreCalendar
 			}
 
 			return path;
+		}
+
+
+		/// <summary>
+		/// Creates a new page in the given section, titled with the given date, with its
+		/// dateTime attribute set to noon local time on that date.
+		/// </summary>
+		/// <param name="date">The calendar day the new page represents</param>
+		/// <param name="sectionId">The section, chosen via SelectLocation, to contain the page</param>
+		/// <returns>The ID of the newly created page</returns>
+		public async Task<string> CreatePage(DateTime date, string sectionId)
+		{
+			try
+			{
+				await using var one = new OneNote();
+
+				var sectionXml = await one.GetSection(sectionId);
+				var sns = sectionXml.GetNamespaceOfPrefix(OneNote.Prefix);
+				var existingTitles = new HashSet<string>(
+					sectionXml.Elements(sns + "Page").Attributes("name").Select(a => a.Value),
+					StringComparer.CurrentCultureIgnoreCase);
+
+				var title = UniqueTitle(string.Format(
+					Properties.Resources.MonthView_NewPageTitle, date.ToString("yyyy-MM-dd")),
+					existingTitles);
+
+				one.CreatePage(sectionId, out var pageId);
+				var newpage = await one.GetPage(pageId);
+
+				newpage.Title = title;
+
+				// use local noon rather than midnight so converting to UTC (and back to the
+				// viewer's local time) can never cross a day boundary and land on the wrong day
+				var noon = DateTime.SpecifyKind(date.Date.AddHours(12), DateTimeKind.Local);
+				newpage.Root.SetAttributeValue("dateTime", noon.ToZuluString());
+
+				await one.Update(newpage);
+
+				return pageId;
+			}
+			catch (Exception exc)
+			{
+				Logger.Current.WriteLine($"error creating page for {date:yyyy-MM-dd}", exc);
+				throw;
+			}
+		}
+
+
+		/// <summary>
+		/// Appends a " (1)", " (2)", etc. suffix to the given title, incrementing until the
+		/// result no longer collides with an existing title in the section.
+		/// </summary>
+		private static string UniqueTitle(string title, ICollection<string> existingTitles)
+		{
+			if (!existingTitles.Contains(title))
+			{
+				return title;
+			}
+
+			var n = 1;
+			string candidate;
+			do
+			{
+				candidate = $"{title} ({n})";
+				n++;
+			}
+			while (existingTitles.Contains(candidate));
+
+			return candidate;
 		}
 
 

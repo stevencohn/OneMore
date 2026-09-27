@@ -66,6 +66,9 @@ namespace OneMoreCalendar
 		public event CalendarPageHandler ClickedPage;
 		public event CalendarPageMenuHandler PageMenu;
 
+		// DetailView does not support creating pages; declared only to satisfy ICalendarView
+		public event CalendarCreatedPageHandler ClickedCreatePage;
+
 
 		public void SetRange(DateTime startDate, DateTime endDate, CalendarPages pages)
 		{

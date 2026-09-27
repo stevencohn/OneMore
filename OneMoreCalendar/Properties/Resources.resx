@@ -318,6 +318,24 @@ xmlns="http://www.w3.org/TR/REC-html40"&gt;
   <data name="MonthView_CopyLinks" xml:space="preserve">
     <value>Copy links to all pages from this day</value>
   </data>
+  <data name="MonthView_CreatePage" xml:space="preserve">
+    <value>Create a new page on this day</value>
+  </data>
+  <data name="MonthView_CreatePageError" xml:space="preserve">
+    <value>An error occurred while creating the new page. See the log for details.</value>
+  </data>
+  <data name="MonthView_CreatePageGlyph" xml:space="preserve">
+    <value>+</value>
+  </data>
+  <data name="MonthView_CreatePageNotRunning" xml:space="preserve">
+    <value>Please start OneNote first, then try again.</value>
+  </data>
+  <data name="MonthView_CreatePageQFDescription" xml:space="preserve">
+    <value>Pick the section for the new page</value>
+  </data>
+  <data name="MonthView_CreatePageQFTitle" xml:space="preserve">
+    <value>Create Page</value>
+  </data>
   <data name="MonthView_GatheringLinks" xml:space="preserve">
     <value>Gathering page links...</value>
   </data>
@@ -326,6 +344,9 @@ xmlns="http://www.w3.org/TR/REC-html40"&gt;
   </data>
   <data name="MonthView_MoreGlyph" xml:space="preserve">
     <value>⏷</value>
+  </data>
+  <data name="MonthView_NewPageTitle" xml:space="preserve">
+    <value>{0} New Page</value>
   </data>
   <data name="MonthView_WebView" xml:space="preserve">
     <value>Web view</value>

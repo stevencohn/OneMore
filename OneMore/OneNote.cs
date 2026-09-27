@@ -185,7 +185,7 @@ namespace River.OneMoreAddIn
 		{
 			FlushUpdateTelemetry();
 			await DisposeAsyncCore().ConfigureAwait(false);
-			Dispose(disposing: false);
+			Dispose(disposing: true);
 
 			// DO NOT call this otherwise OneNote will not shutdown properly
 			GC.SuppressFinalize(this);

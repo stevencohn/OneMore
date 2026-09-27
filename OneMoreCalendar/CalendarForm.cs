@@ -121,6 +121,7 @@ namespace OneMoreCalendar
 			monthView.ClickedDay += ClickDayView;
 			monthView.HoverPage += ShowPageStatus;
 			monthView.PageMenu += ShowPageMenu;
+			monthView.ClickedCreatePage += CreatedPage;
 
 			contentPanel.Controls.Add(monthView);
 
@@ -657,6 +658,18 @@ namespace OneMoreCalendar
 		{
 			Logger.Current.WriteLine($"navigating to page '{e.Page.Title}' ({e.Page.PageID})");
 			await new OneNoteProvider().NavigateTo(e.Page.PageID);
+		}
+
+
+		private async void CreatedPage(object sender, CalendarCreatedPageEventArgs e)
+		{
+			Logger.Current.WriteLine($"created page {e.PageID} for {e.DayDate:yyyy-MM-dd}");
+
+			// reload so the new page appears in the grid before OneNote steals focus
+			OneNoteProvider.Invalidate();
+			await SetMonth(date.Year, $"created page for {e.DayDate:yyyy-MM-dd}");
+
+			await new OneNoteProvider().NavigateTo(e.PageID);
 		}
 
 
