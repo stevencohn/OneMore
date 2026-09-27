@@ -187,6 +187,19 @@ namespace OneMoreCalendar
 
 		private void Tick(object sender, EventArgs e)
 		{
+			// Tick() always re-arms the timer at the end of this method (see below), so any
+			// state a handler sets from within base.OnMouseDown - disabling this control,
+			// calling some "stop repeat" flag, whatever - gets overwritten before Tick()
+			// returns and has no effect on that re-arm. The only signal that can't be undone
+			// by the handler is the real, current hardware button state, so check that instead
+			// of relying on OnMouseUp (a dialog shown from MouseDown can lose capture and
+			// prevent the matching MouseUp from ever reaching this button in the first place).
+			if (!Enabled || !Control.MouseButtons.HasFlag(MouseButtons.Left))
+			{
+				timer.Enabled = false;
+				return;
+			}
+
 			base.OnMouseDown(downArgs);
 			timer.Interval = timer.Enabled ? RepeatInterval : InitialDelay;
 			timer.Enabled = true;

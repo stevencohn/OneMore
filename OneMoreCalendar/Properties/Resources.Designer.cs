@@ -705,6 +705,60 @@ namespace OneMoreCalendar.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create a new page on this day.
+        /// </summary>
+        internal static string MonthView_CreatePage {
+            get {
+                return ResourceManager.GetString("MonthView_CreatePage", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred while creating the new page. See the log for details..
+        /// </summary>
+        internal static string MonthView_CreatePageError {
+            get {
+                return ResourceManager.GetString("MonthView_CreatePageError", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to +.
+        /// </summary>
+        internal static string MonthView_CreatePageGlyph {
+            get {
+                return ResourceManager.GetString("MonthView_CreatePageGlyph", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Please start OneNote first, then try again..
+        /// </summary>
+        internal static string MonthView_CreatePageNotRunning {
+            get {
+                return ResourceManager.GetString("MonthView_CreatePageNotRunning", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Pick the section for the new page.
+        /// </summary>
+        internal static string MonthView_CreatePageQFDescription {
+            get {
+                return ResourceManager.GetString("MonthView_CreatePageQFDescription", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Create Page.
+        /// </summary>
+        internal static string MonthView_CreatePageQFTitle {
+            get {
+                return ResourceManager.GetString("MonthView_CreatePageQFTitle", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Gathering page links....
         /// </summary>
         internal static string MonthView_GatheringLinks {
@@ -731,6 +785,15 @@ namespace OneMoreCalendar.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to {0} New Page.
+        /// </summary>
+        internal static string MonthView_NewPageTitle {
+            get {
+                return ResourceManager.GetString("MonthView_NewPageTitle", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Web view.
         /// </summary>

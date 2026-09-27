@@ -11,6 +11,7 @@ namespace OneMoreCalendar
 	internal delegate void CalendarHoverHandler(object sender, CalendarPageEventArgs e);
 	internal delegate void CalendarPageHandler(object sender, CalendarPageEventArgs e);
 	internal delegate void CalendarPageMenuHandler(object sender, CalendarPageMenuEventArgs e);
+	internal delegate void CalendarCreatedPageHandler(object sender, CalendarCreatedPageEventArgs e);
 
 
 	/// <summary>
@@ -63,7 +64,24 @@ namespace OneMoreCalendar
 
 
 	/// <summary>
-	/// 
+	/// Describes a newly created page and the day it was created for
+	/// </summary>
+	internal class CalendarCreatedPageEventArgs : EventArgs
+	{
+		public CalendarCreatedPageEventArgs(DateTime dayDate, string pageId)
+			: base()
+		{
+			DayDate = dayDate;
+			PageID = pageId;
+		}
+
+		public DateTime DayDate { get; private set; }
+		public string PageID { get; private set; }
+	}
+
+
+	/// <summary>
+	///
 	/// </summary>
 	internal interface ICalendarView
 	{
@@ -71,6 +89,7 @@ namespace OneMoreCalendar
 		event CalendarHoverHandler HoverPage;
 		event CalendarPageHandler ClickedPage;
 		event CalendarPageMenuHandler PageMenu;
+		event CalendarCreatedPageHandler ClickedCreatePage;
 
 		void SetRange(DateTime startDate, DateTime endDate, CalendarPages pages);
 	}
