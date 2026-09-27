@@ -73,6 +73,14 @@ namespace River.OneMoreAddIn.Commands
 				if (insertBacklinks)
 				{
 					dialog.SetMessage("Capturing heading links...");
+
+					// GetHyperlinkToObject only resolves object-specific links reliably when its
+					// target page is the one OneNote currently considers active; showing this
+					// ProgressDialog (TopMost) can take that away, so restore it first - same
+					// workaround already used below before Phase 2's TOC self-link
+					await one.NavigateTo(originalId, string.Empty);
+					await Task.Delay(150);
+
 					headingLinks = CaptureHeadingLinks(page, one);
 				}
 

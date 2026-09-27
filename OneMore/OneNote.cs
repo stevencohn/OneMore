@@ -810,6 +810,8 @@ namespace River.OneMoreAddIn
 				try
 				{
 					onenote.GetHyperlinkToObject(pageId, string.Empty, out var hyperlink);
+					logger.WriteLine(
+						$"GetHyperlink, falling back to page-only link for object {objectId} on page {pageId}");
 					return hyperlink.SafeUrlEncode();
 				}
 				catch (Exception exc)

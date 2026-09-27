@@ -216,14 +216,20 @@ namespace River.OneMoreAddIn.Models
 
 			// results...
 
-			title = wrapper.GetInnerXml();
-			if (page.Title == title)
+			// update only the run we identified, in place; the title's OE may contain
+			// other T runs (e.g., OneNote splits the title into multiple runs when the
+			// text cursor is left resting inside it) and those must be preserved rather
+			// than collapsed away, so avoid the page.Title setter here since it replaces
+			// every run in the title with a single new one
+			var newRunXml = wrapper.GetInnerXml();
+			if (run.GetCData().Value == newRunXml)
 			{
 				return false;
 			}
 
-			page.Title = title;
-			page.Root.SetAttributeValue("name", title);
+			run.GetCData().Value = newRunXml;
+
+			page.Root.SetAttributeValue("name", page.Title);
 			return true;
 		}
 	}
