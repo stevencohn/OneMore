@@ -52,7 +52,7 @@
 			this.topPanel.Dock = System.Windows.Forms.DockStyle.Top;
 			this.topPanel.Location = new System.Drawing.Point(7, 9);
 			this.topPanel.Name = "topPanel";
-			this.topPanel.Size = new System.Drawing.Size(370, 28);
+			this.topPanel.Size = new System.Drawing.Size(555, 28);
 			this.topPanel.TabIndex = 1;
 			// 
 			// pictureBox
@@ -62,7 +62,7 @@
 			this.pictureBox.Location = new System.Drawing.Point(7, 37);
 			this.pictureBox.Margin = new System.Windows.Forms.Padding(0);
 			this.pictureBox.Name = "pictureBox";
-			this.pictureBox.Size = new System.Drawing.Size(370, 454);
+			this.pictureBox.Size = new System.Drawing.Size(555, 681);
 			this.pictureBox.TabIndex = 2;
 			this.pictureBox.TabStop = false;
 			// 
@@ -71,7 +71,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(251)))));
-			this.ClientSize = new System.Drawing.Size(384, 500);
+			this.ClientSize = new System.Drawing.Size(576, 750);
 			this.Controls.Add(this.pictureBox);
 			this.Controls.Add(this.topPanel);
 			this.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
