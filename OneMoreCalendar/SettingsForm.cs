@@ -37,6 +37,7 @@ namespace OneMoreCalendar
 				"lightModeButton",
 				"systemModeButton",
 				"emptyBox",
+				"markersBox",
 				"deletedBox",
 				"createdBox",
 				"modifiedBox",
@@ -74,9 +75,16 @@ namespace OneMoreCalendar
 			// call RoundForm.base to draw background
 			base.OnLoad(e);
 
-			// TODO: why is emptyBox getting truncated?
-			emptyBox.AutoSize = false;
-			emptyBox.Width += this.Scaled(17);
+			// MoreCheckBox draws its Text after a fixed-width icon rather than relying on
+			// the stock CheckBox layout, so AutoSize (computed before ambientFont above was
+			// applied) can undershoot the text actually rendered; measure it directly instead
+			// of guessing a fixed pixel bump.
+			using (var g = CreateGraphics())
+			{
+				var textWidth = (int)Math.Ceiling(g.MeasureString(emptyBox.Text, emptyBox.Font).Width);
+				emptyBox.AutoSize = false;
+				emptyBox.Width = emptyBox.Scaled(16) + textWidth + emptyBox.Scaled(4);
+			}
 
 			if (!DesignMode)
 			{
@@ -86,6 +94,7 @@ namespace OneMoreCalendar
 				modifiedBox.Checked = provider.Modified;
 				deletedBox.Checked = provider.Deleted;
 				emptyBox.Checked = !provider.Empty;
+				markersBox.Checked = !provider.Markers;
 
 				var hasCustom = ThemeProvider.HasCustomTheme();
 
@@ -130,6 +139,9 @@ namespace OneMoreCalendar
 
 
 		public bool ShowEmpty => !emptyBox.Checked;
+
+
+		public bool ShowMarkers => !markersBox.Checked;
 
 
 		public bool ShowDeleted => deletedBox.Checked;
@@ -225,7 +237,7 @@ namespace OneMoreCalendar
 
 			provider.SetFilter(
 				createdBox.Checked, modifiedBox.Checked,
-				deletedBox.Checked, !emptyBox.Checked);
+				deletedBox.Checked, !emptyBox.Checked, !markersBox.Checked);
 
 			ThemeMode mode;
 			if (lightModeButton.Checked) mode = ThemeMode.Light;

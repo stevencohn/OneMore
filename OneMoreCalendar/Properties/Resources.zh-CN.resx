@@ -313,6 +313,24 @@ xmlns="http://www.w3.org/TR/REC-html40"&gt;
   <data name="MonthView_CopyLinks" xml:space="preserve">
     <value>复制当天起所有页面的链接</value>
   </data>
+  <data name="MonthView_CreatePage" xml:space="preserve">
+    <value>在这一天创建一个新页面</value>
+  </data>
+  <data name="MonthView_CreatePageError" xml:space="preserve">
+    <value>创建新页面时出错。详细信息请参阅日志。</value>
+  </data>
+  <data name="MonthView_CreatePageGlyph" xml:space="preserve">
+    <value>+</value>
+  </data>
+  <data name="MonthView_CreatePageNotRunning" xml:space="preserve">
+    <value>请先启动 OneNote，然后重试。</value>
+  </data>
+  <data name="MonthView_CreatePageQFDescription" xml:space="preserve">
+    <value>选择新页面的部分</value>
+  </data>
+  <data name="MonthView_CreatePageQFTitle" xml:space="preserve">
+    <value>创建页面</value>
+  </data>
   <data name="MonthView_GatheringLinks" xml:space="preserve">
     <value>正在收集页面链接...</value>
   </data>
@@ -321,6 +339,9 @@ xmlns="http://www.w3.org/TR/REC-html40"&gt;
   </data>
   <data name="MonthView_MoreGlyph" xml:space="preserve">
     <value>⏷</value>
+  </data>
+  <data name="MonthView_NewPageTitle" xml:space="preserve">
+    <value>{0}新页面</value>
   </data>
   <data name="MonthView_WebView" xml:space="preserve">
     <value>网页视图</value>
@@ -378,6 +399,9 @@ xmlns="http://www.w3.org/TR/REC-html40"&gt;
   </data>
   <data name="SettingsForm_logLink.Text" xml:space="preserve">
     <value>打开日志文件</value>
+  </data>
+  <data name="SettingsForm_markersBox.Text" xml:space="preserve">
+    <value>隐藏部分指示器</value>
   </data>
   <data name="SettingsForm_modifiedBox.Text" xml:space="preserve">
     <value>上次修改时间</value>

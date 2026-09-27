@@ -38,6 +38,9 @@ namespace OneMoreCalendar
 		public string Path { get; set; }
 
 
+		public Color SectionColor { get; set; }
+
+
 		public string Title { get; set; }
 
 

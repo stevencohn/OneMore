@@ -242,6 +242,17 @@ namespace OneMoreCalendar
 				{
 					var color = page.IsDeleted ? gray : fore;
 
+					// section color swatch
+					if (page.SectionColor != Color.Empty && SettingsProvider.Current.Markers)
+					{
+						var swatchRect = new RectangleF(
+							HeadWidth + this.Scaled(6), top + this.Scaled(1),
+							this.Scaled(4), listbox.Font.Height - this.Scaled(2));
+
+						using var swatchBrush = new SolidBrush(page.SectionColor);
+						e.Graphics.FillRectangle(swatchBrush, swatchRect);
+					}
+
 					// section
 					var sectionBounds = new RectangleF(HeadWidth + this.Scaled(20), top, PathWidth, listbox.Font.Height);
 					e.Graphics.DrawString(page.Path, listbox.Font, color, sectionBounds, format);

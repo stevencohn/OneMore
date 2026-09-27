@@ -313,6 +313,24 @@ xmlns="http://www.w3.org/TR/REC-html40"&gt;
   <data name="MonthView_CopyLinks" xml:space="preserve">
     <value>この日からすべてのページへのリンクをコピーします</value>
   </data>
+  <data name="MonthView_CreatePage" xml:space="preserve">
+    <value>この日に新しいページを作成します</value>
+  </data>
+  <data name="MonthView_CreatePageError" xml:space="preserve">
+    <value>新しいページの作成中にエラーが発生しました。詳細についてはログを参照してください。</value>
+  </data>
+  <data name="MonthView_CreatePageGlyph" xml:space="preserve">
+    <value>+</value>
+  </data>
+  <data name="MonthView_CreatePageNotRunning" xml:space="preserve">
+    <value>まず OneNote を起動してから、もう一度試してください。</value>
+  </data>
+  <data name="MonthView_CreatePageQFDescription" xml:space="preserve">
+    <value>新しいページのセクションを選択してください</value>
+  </data>
+  <data name="MonthView_CreatePageQFTitle" xml:space="preserve">
+    <value>ページの作成</value>
+  </data>
   <data name="MonthView_GatheringLinks" xml:space="preserve">
     <value>ページのリンクを収集しています...</value>
   </data>
@@ -321,6 +339,9 @@ xmlns="http://www.w3.org/TR/REC-html40"&gt;
   </data>
   <data name="MonthView_MoreGlyph" xml:space="preserve">
     <value>⏷</value>
+  </data>
+  <data name="MonthView_NewPageTitle" xml:space="preserve">
+    <value>{0} 新しいページ</value>
   </data>
   <data name="MonthView_WebView" xml:space="preserve">
     <value>ウェブビュー</value>
@@ -378,6 +399,9 @@ xmlns="http://www.w3.org/TR/REC-html40"&gt;
   </data>
   <data name="SettingsForm_logLink.Text" xml:space="preserve">
     <value>ログファイルを開く</value>
+  </data>
+  <data name="SettingsForm_markersBox.Text" xml:space="preserve">
+    <value>セクションインジケーターを非表示にする</value>
   </data>
   <data name="SettingsForm_modifiedBox.Text" xml:space="preserve">
     <value>最終更新日</value>

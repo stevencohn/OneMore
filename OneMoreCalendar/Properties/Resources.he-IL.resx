@@ -313,6 +313,24 @@ xmlns="http://www.w3.org/TR/REC-html40"&gt;
   <data name="MonthView_CopyLinks" xml:space="preserve">
     <value>העתק קישורים לכל הדפים מיום זה</value>
   </data>
+  <data name="MonthView_CreatePage" xml:space="preserve">
+    <value>צור דף חדש ביום זה</value>
+  </data>
+  <data name="MonthView_CreatePageError" xml:space="preserve">
+    <value>אירעה שגיאה בעת יצירת הדף החדש. עיין ביומן לפרטים.</value>
+  </data>
+  <data name="MonthView_CreatePageGlyph" xml:space="preserve">
+    <value>+</value>
+  </data>
+  <data name="MonthView_CreatePageNotRunning" xml:space="preserve">
+    <value>הפעל תחילה את OneNote ולאחר מכן נסה שוב.</value>
+  </data>
+  <data name="MonthView_CreatePageQFDescription" xml:space="preserve">
+    <value>בחר את הקטע עבור הדף החדש</value>
+  </data>
+  <data name="MonthView_CreatePageQFTitle" xml:space="preserve">
+    <value>צור עמוד</value>
+  </data>
   <data name="MonthView_GatheringLinks" xml:space="preserve">
     <value>אוסף קישורים לדף...</value>
   </data>
@@ -321,6 +339,9 @@ xmlns="http://www.w3.org/TR/REC-html40"&gt;
   </data>
   <data name="MonthView_MoreGlyph" xml:space="preserve">
     <value>⏷</value>
+  </data>
+  <data name="MonthView_NewPageTitle" xml:space="preserve">
+    <value>{0} דף חדש</value>
   </data>
   <data name="MonthView_WebView" xml:space="preserve">
     <value>תצוגת אינטרנט</value>
@@ -378,6 +399,9 @@ xmlns="http://www.w3.org/TR/REC-html40"&gt;
   </data>
   <data name="SettingsForm_logLink.Text" xml:space="preserve">
     <value>פתח קובץ יומן</value>
+  </data>
+  <data name="SettingsForm_markersBox.Text" xml:space="preserve">
+    <value>הסתר מחווני מקטעים</value>
   </data>
   <data name="SettingsForm_modifiedBox.Text" xml:space="preserve">
     <value>שונה לאחרונה בתאריך</value>

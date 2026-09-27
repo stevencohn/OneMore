@@ -647,12 +647,29 @@ namespace OneMoreCalendar
 					: box.Width;
 
 				var left = box.Left;
+
+				// section color swatch - always the leftmost element
+				if (page.SectionColor != Color.Empty && SettingsProvider.Current.Markers)
+				{
+					var swatchWidth = this.Scaled(3);
+					var swatchRect = new RectangleF(
+						left, top + this.Scaled(1),
+						swatchWidth, rowLineHeight - this.Scaled(2));
+
+					using var swatchBrush = new SolidBrush(page.SectionColor);
+					g.FillRectangle(swatchBrush, swatchRect);
+
+					var gap = swatchWidth + this.Scaled(3);
+					left += gap;
+					width -= gap;
+				}
+
 				if (page.HasReminders)
 				{
 					width -= this.Scaled(14);
-					left += this.Scaled(14);
 					g.DrawImage(Properties.Resources.Reminder_01_24_Y,
-						box.Left, top + this.Scaled(3), this.Scaled(12f), this.Scaled(12f));
+						left, top + this.Scaled(3), this.Scaled(12f), this.Scaled(12f));
+					left += this.Scaled(14);
 				}
 
 				// max length of string with ellipses
