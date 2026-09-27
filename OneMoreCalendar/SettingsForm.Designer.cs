@@ -36,6 +36,7 @@ namespace OneMoreCalendar
 			this.settingsPanel = new System.Windows.Forms.Panel();
 			this.userModeButton = new OneMoreCalendar.MoreRadioButton();
 			this.emptyBox = new OneMoreCalendar.MoreCheckBox();
+			this.markersBox = new OneMoreCalendar.MoreCheckBox();
 			this.deletedBox = new OneMoreCalendar.MoreCheckBox();
 			this.okButton = new OneMoreCalendar.MoreButton();
 			this.cancelButton = new OneMoreCalendar.MoreButton();
@@ -70,7 +71,7 @@ namespace OneMoreCalendar
 			this.notebooksLabel.AutoSize = true;
 			this.notebooksLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.notebooksLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(53)))), ((int)(((byte)(110)))));
-			this.notebooksLabel.Location = new System.Drawing.Point(23, 354);
+			this.notebooksLabel.Location = new System.Drawing.Point(23, 384);
 			this.notebooksLabel.Name = "notebooksLabel";
 			this.notebooksLabel.Size = new System.Drawing.Size(131, 32);
 			this.notebooksLabel.TabIndex = 1;
@@ -81,7 +82,7 @@ namespace OneMoreCalendar
 			this.themeLabel.AutoSize = true;
 			this.themeLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.themeLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(53)))), ((int)(((byte)(110)))));
-			this.themeLabel.Location = new System.Drawing.Point(22, 190);
+			this.themeLabel.Location = new System.Drawing.Point(22, 220);
 			this.themeLabel.Name = "themeLabel";
 			this.themeLabel.Size = new System.Drawing.Size(88, 32);
 			this.themeLabel.TabIndex = 1;
@@ -95,6 +96,7 @@ namespace OneMoreCalendar
 			this.settingsPanel.Controls.Add(this.selectAllLink);
 			this.settingsPanel.Controls.Add(this.userModeButton);
 			this.settingsPanel.Controls.Add(this.emptyBox);
+			this.settingsPanel.Controls.Add(this.markersBox);
 			this.settingsPanel.Controls.Add(this.deletedBox);
 			this.settingsPanel.Controls.Add(this.okButton);
 			this.settingsPanel.Controls.Add(this.cancelButton);
@@ -114,19 +116,19 @@ namespace OneMoreCalendar
 			this.settingsPanel.Margin = new System.Windows.Forms.Padding(0);
 			this.settingsPanel.Name = "settingsPanel";
 			this.settingsPanel.Padding = new System.Windows.Forms.Padding(20, 20, 10, 10);
-			this.settingsPanel.Size = new System.Drawing.Size(507, 698);
+			this.settingsPanel.Size = new System.Drawing.Size(507, 728);
 			this.settingsPanel.TabIndex = 2;
 			// 
 			// userModeButton
 			// 
 			this.userModeButton.AutoSize = true;
 			this.userModeButton.BackColor = System.Drawing.Color.White;
-			this.userModeButton.Location = new System.Drawing.Point(48, 321);
+			this.userModeButton.Location = new System.Drawing.Point(48, 351);
 			this.userModeButton.Margin = new System.Windows.Forms.Padding(3, 3, 3, 2);
 			this.userModeButton.Name = "userModeButton";
 			this.userModeButton.Round = true;
 			this.userModeButton.Size = new System.Drawing.Size(89, 24);
-			this.userModeButton.TabIndex = 15;
+			this.userModeButton.TabIndex = 16;
 			this.userModeButton.Text = "Custom";
 			this.userModeButton.UseVisualStyleBackColor = false;
 			// 
@@ -140,9 +142,20 @@ namespace OneMoreCalendar
 			this.emptyBox.TabIndex = 11;
 			this.emptyBox.Text = "Hide empty days in detail view";
 			this.emptyBox.UseVisualStyleBackColor = false;
-			// 
+			//
+			// markersBox
+			//
+			this.markersBox.AutoSize = true;
+			this.markersBox.BackColor = System.Drawing.Color.White;
+			this.markersBox.Location = new System.Drawing.Point(48, 183);
+			this.markersBox.Name = "markersBox";
+			this.markersBox.Size = new System.Drawing.Size(201, 24);
+			this.markersBox.TabIndex = 12;
+			this.markersBox.Text = "Hide section indicators";
+			this.markersBox.UseVisualStyleBackColor = false;
+			//
 			// deletedBox
-			// 
+			//
 			this.deletedBox.AutoSize = true;
 			this.deletedBox.BackColor = System.Drawing.Color.White;
 			this.deletedBox.Location = new System.Drawing.Point(48, 123);
@@ -157,7 +170,7 @@ namespace OneMoreCalendar
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.BackColor = System.Drawing.SystemColors.Window;
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.okButton.Location = new System.Drawing.Point(338, 651);
+			this.okButton.Location = new System.Drawing.Point(338, 681);
 			this.okButton.Name = "okButton";
 			this.okButton.PreferredBack = System.Drawing.Color.Empty;
 			this.okButton.PreferredFore = System.Drawing.Color.Empty;
@@ -173,7 +186,7 @@ namespace OneMoreCalendar
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.BackColor = System.Drawing.SystemColors.Window;
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.cancelButton.Location = new System.Drawing.Point(419, 651);
+			this.cancelButton.Location = new System.Drawing.Point(419, 681);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.PreferredBack = System.Drawing.Color.Empty;
 			this.cancelButton.PreferredFore = System.Drawing.Color.Empty;
@@ -193,7 +206,7 @@ namespace OneMoreCalendar
 			this.notebooksBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.notebooksBox.CheckOnClick = true;
 			this.notebooksBox.FormattingEnabled = true;
-			this.notebooksBox.Location = new System.Drawing.Point(48, 398);
+			this.notebooksBox.Location = new System.Drawing.Point(48, 428);
 			this.notebooksBox.Name = "notebooksBox";
 			this.notebooksBox.Size = new System.Drawing.Size(446, 238);
 			this.notebooksBox.TabIndex = 7;
@@ -229,12 +242,12 @@ namespace OneMoreCalendar
 			// 
 			this.darkModeButton.AutoSize = true;
 			this.darkModeButton.BackColor = System.Drawing.Color.White;
-			this.darkModeButton.Location = new System.Drawing.Point(48, 234);
+			this.darkModeButton.Location = new System.Drawing.Point(48, 264);
 			this.darkModeButton.Margin = new System.Windows.Forms.Padding(3, 3, 3, 2);
 			this.darkModeButton.Name = "darkModeButton";
 			this.darkModeButton.Round = true;
 			this.darkModeButton.Size = new System.Drawing.Size(68, 24);
-			this.darkModeButton.TabIndex = 12;
+			this.darkModeButton.TabIndex = 13;
 			this.darkModeButton.Text = "Dark";
 			this.darkModeButton.UseVisualStyleBackColor = false;
 			// 
@@ -242,12 +255,12 @@ namespace OneMoreCalendar
 			// 
 			this.lightModeButton.AutoSize = true;
 			this.lightModeButton.BackColor = System.Drawing.Color.White;
-			this.lightModeButton.Location = new System.Drawing.Point(48, 263);
+			this.lightModeButton.Location = new System.Drawing.Point(48, 293);
 			this.lightModeButton.Margin = new System.Windows.Forms.Padding(3, 3, 3, 2);
 			this.lightModeButton.Name = "lightModeButton";
 			this.lightModeButton.Round = true;
 			this.lightModeButton.Size = new System.Drawing.Size(69, 24);
-			this.lightModeButton.TabIndex = 13;
+			this.lightModeButton.TabIndex = 14;
 			this.lightModeButton.Text = "Light";
 			this.lightModeButton.UseVisualStyleBackColor = false;
 			// 
@@ -256,12 +269,12 @@ namespace OneMoreCalendar
 			this.systemModeButton.AutoSize = true;
 			this.systemModeButton.BackColor = System.Drawing.Color.White;
 			this.systemModeButton.Checked = true;
-			this.systemModeButton.Location = new System.Drawing.Point(48, 292);
+			this.systemModeButton.Location = new System.Drawing.Point(48, 322);
 			this.systemModeButton.Margin = new System.Windows.Forms.Padding(3, 3, 3, 2);
 			this.systemModeButton.Name = "systemModeButton";
 			this.systemModeButton.Round = true;
 			this.systemModeButton.Size = new System.Drawing.Size(87, 24);
-			this.systemModeButton.TabIndex = 14;
+			this.systemModeButton.TabIndex = 15;
 			this.systemModeButton.TabStop = true;
 			this.systemModeButton.Text = "System";
 			this.systemModeButton.UseVisualStyleBackColor = false;
@@ -274,7 +287,7 @@ namespace OneMoreCalendar
 			this.logLink.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.logLink.HoverColor = System.Drawing.Color.MediumOrchid;
 			this.logLink.LinkColor = System.Drawing.SystemColors.ControlDark;
-			this.logLink.Location = new System.Drawing.Point(24, 658);
+			this.logLink.Location = new System.Drawing.Point(24, 688);
 			this.logLink.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.logLink.MaximumSize = new System.Drawing.Size(420, 0);
 			this.logLink.Name = "logLink";
@@ -292,7 +305,7 @@ namespace OneMoreCalendar
 			this.aboutLink.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.aboutLink.HoverColor = System.Drawing.Color.MediumOrchid;
 			this.aboutLink.LinkColor = System.Drawing.SystemColors.ControlDark;
-			this.aboutLink.Location = new System.Drawing.Point(144, 658);
+			this.aboutLink.Location = new System.Drawing.Point(144, 688);
 			this.aboutLink.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.aboutLink.MaximumSize = new System.Drawing.Size(420, 0);
 			this.aboutLink.Name = "aboutLink";
@@ -310,12 +323,12 @@ namespace OneMoreCalendar
 			this.selectAllLink.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.selectAllLink.HoverColor = System.Drawing.Color.MediumOrchid;
 			this.selectAllLink.LinkColor = System.Drawing.SystemColors.ControlDark;
-			this.selectAllLink.Location = new System.Drawing.Point(221, 364);
+			this.selectAllLink.Location = new System.Drawing.Point(221, 394);
 			this.selectAllLink.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.selectAllLink.MaximumSize = new System.Drawing.Size(420, 0);
 			this.selectAllLink.Name = "selectAllLink";
 			this.selectAllLink.Size = new System.Drawing.Size(75, 20);
-			this.selectAllLink.TabIndex = 16;
+			this.selectAllLink.TabIndex = 17;
 			this.selectAllLink.TabStop = true;
 			this.selectAllLink.Text = "Select All";
 			this.selectAllLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ToggleAllNotebooks);
@@ -328,12 +341,12 @@ namespace OneMoreCalendar
 			this.selectNoneLink.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.selectNoneLink.HoverColor = System.Drawing.Color.MediumOrchid;
 			this.selectNoneLink.LinkColor = System.Drawing.SystemColors.ControlDark;
-			this.selectNoneLink.Location = new System.Drawing.Point(318, 364);
+			this.selectNoneLink.Location = new System.Drawing.Point(318, 394);
 			this.selectNoneLink.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.selectNoneLink.MaximumSize = new System.Drawing.Size(420, 0);
 			this.selectNoneLink.Name = "selectNoneLink";
 			this.selectNoneLink.Size = new System.Drawing.Size(96, 20);
-			this.selectNoneLink.TabIndex = 17;
+			this.selectNoneLink.TabIndex = 18;
 			this.selectNoneLink.TabStop = true;
 			this.selectNoneLink.Text = "Select None";
 			this.selectNoneLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ToggleAllNotebooks);
@@ -341,10 +354,10 @@ namespace OneMoreCalendar
 			// barLabel
 			// 
 			this.barLabel.AutoSize = true;
-			this.barLabel.Location = new System.Drawing.Point(300, 365);
+			this.barLabel.Location = new System.Drawing.Point(300, 395);
 			this.barLabel.Name = "barLabel";
 			this.barLabel.Size = new System.Drawing.Size(14, 20);
-			this.barLabel.TabIndex = 18;
+			this.barLabel.TabIndex = 19;
 			this.barLabel.Text = "|";
 			// 
 			// SettingsForm
@@ -352,7 +365,7 @@ namespace OneMoreCalendar
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.White;
-			this.ClientSize = new System.Drawing.Size(515, 706);
+			this.ClientSize = new System.Drawing.Size(515, 736);
 			this.Controls.Add(this.settingsPanel);
 			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -390,6 +403,7 @@ namespace OneMoreCalendar
 		private River.OneMoreAddIn.UI.MoreLinkLabel logLink;
 		private River.OneMoreAddIn.UI.MoreLinkLabel aboutLink;
 		private MoreCheckBox emptyBox;
+		private MoreCheckBox markersBox;
 		private MoreRadioButton userModeButton;
 		private System.Windows.Forms.Label barLabel;
 		private River.OneMoreAddIn.UI.MoreLinkLabel selectNoneLink;

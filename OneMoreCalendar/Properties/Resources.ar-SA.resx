@@ -313,6 +313,24 @@ xmlns="http://www.w3.org/TR/REC-html40"&gt;
   <data name="MonthView_CopyLinks" xml:space="preserve">
     <value>انسخ الروابط إلى كافة الصفحات اعتبارًا من هذا اليوم</value>
   </data>
+  <data name="MonthView_CreatePage" xml:space="preserve">
+    <value>إنشاء صفحة جديدة في هذا اليوم</value>
+  </data>
+  <data name="MonthView_CreatePageError" xml:space="preserve">
+    <value>حدث خطأ أثناء إنشاء الصفحة الجديدة. راجع السجل للحصول على التفاصيل.</value>
+  </data>
+  <data name="MonthView_CreatePageGlyph" xml:space="preserve">
+    <value>+</value>
+  </data>
+  <data name="MonthView_CreatePageNotRunning" xml:space="preserve">
+    <value>الرجاء تشغيل OneNote أولاً، ثم حاول مرة أخرى.</value>
+  </data>
+  <data name="MonthView_CreatePageQFDescription" xml:space="preserve">
+    <value>اختر القسم للصفحة الجديدة</value>
+  </data>
+  <data name="MonthView_CreatePageQFTitle" xml:space="preserve">
+    <value>إنشاء صفحة</value>
+  </data>
   <data name="MonthView_GatheringLinks" xml:space="preserve">
     <value>تجميع روابط الصفحة...</value>
   </data>
@@ -321,6 +339,9 @@ xmlns="http://www.w3.org/TR/REC-html40"&gt;
   </data>
   <data name="MonthView_MoreGlyph" xml:space="preserve">
     <value>⏷</value>
+  </data>
+  <data name="MonthView_NewPageTitle" xml:space="preserve">
+    <value>{0} صفحة جديدة</value>
   </data>
   <data name="MonthView_WebView" xml:space="preserve">
     <value>عرض الويب</value>
@@ -378,6 +399,9 @@ xmlns="http://www.w3.org/TR/REC-html40"&gt;
   </data>
   <data name="SettingsForm_logLink.Text" xml:space="preserve">
     <value>فتح ملف السجل</value>
+  </data>
+  <data name="SettingsForm_markersBox.Text" xml:space="preserve">
+    <value>إخفاء مؤشرات القسم</value>
   </data>
   <data name="SettingsForm_modifiedBox.Text" xml:space="preserve">
     <value>آخر تعديل بتاريخ</value>

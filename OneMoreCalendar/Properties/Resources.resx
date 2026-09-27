@@ -405,6 +405,9 @@ xmlns="http://www.w3.org/TR/REC-html40"&gt;
   <data name="SettingsForm_logLink.Text" xml:space="preserve">
     <value>Open log file</value>
   </data>
+  <data name="SettingsForm_markersBox.Text" xml:space="preserve">
+    <value>Hide section indicators</value>
+  </data>
   <data name="SettingsForm_modifiedBox.Text" xml:space="preserve">
     <value>Last modified on</value>
   </data>

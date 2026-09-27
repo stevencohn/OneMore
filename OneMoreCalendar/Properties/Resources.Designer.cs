@@ -984,7 +984,16 @@ namespace OneMoreCalendar.Properties {
                 return ResourceManager.GetString("SettingsForm_logLink.Text", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Hide section indicators.
+        /// </summary>
+        internal static string SettingsForm_markersBox_Text {
+            get {
+                return ResourceManager.GetString("SettingsForm_markersBox.Text", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Last modified on.
         /// </summary>

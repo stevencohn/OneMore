@@ -313,6 +313,24 @@ xmlns="http://www.w3.org/TR/REC-html40"&gt;
   <data name="MonthView_CopyLinks" xml:space="preserve">
     <value>Skopiuj linki do wszystkich stron z tego dnia</value>
   </data>
+  <data name="MonthView_CreatePage" xml:space="preserve">
+    <value>Utwórz nową stronę tego dnia</value>
+  </data>
+  <data name="MonthView_CreatePageError" xml:space="preserve">
+    <value>Wystąpił błąd podczas tworzenia nowej strony. Szczegóły znajdziesz w logu.</value>
+  </data>
+  <data name="MonthView_CreatePageGlyph" xml:space="preserve">
+    <value>+</value>
+  </data>
+  <data name="MonthView_CreatePageNotRunning" xml:space="preserve">
+    <value>Najpierw uruchom program OneNote, a następnie spróbuj ponownie.</value>
+  </data>
+  <data name="MonthView_CreatePageQFDescription" xml:space="preserve">
+    <value>Wybierz sekcję dla nowej strony</value>
+  </data>
+  <data name="MonthView_CreatePageQFTitle" xml:space="preserve">
+    <value>Utwórz stronę</value>
+  </data>
   <data name="MonthView_GatheringLinks" xml:space="preserve">
     <value>Gromadzenie linków do stron...</value>
   </data>
@@ -321,6 +339,9 @@ xmlns="http://www.w3.org/TR/REC-html40"&gt;
   </data>
   <data name="MonthView_MoreGlyph" xml:space="preserve">
     <value>⏷</value>
+  </data>
+  <data name="MonthView_NewPageTitle" xml:space="preserve">
+    <value>{0} Nowa strona</value>
   </data>
   <data name="MonthView_WebView" xml:space="preserve">
     <value>Widok sieciowy</value>
@@ -378,6 +399,9 @@ xmlns="http://www.w3.org/TR/REC-html40"&gt;
   </data>
   <data name="SettingsForm_logLink.Text" xml:space="preserve">
     <value>Otwórz plik dziennika</value>
+  </data>
+  <data name="SettingsForm_markersBox.Text" xml:space="preserve">
+    <value>Ukryj wskaźniki sekcji</value>
   </data>
   <data name="SettingsForm_modifiedBox.Text" xml:space="preserve">
     <value>Ostatnia modyfikacja dnia</value>

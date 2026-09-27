@@ -9,6 +9,7 @@ namespace OneMoreCalendar
 	using System;
 	using System.Collections.Generic;
 	using System.Diagnostics;
+	using System.Drawing;
 	using System.Globalization;
 	using System.IO;
 	using System.Linq;
@@ -44,6 +45,17 @@ namespace OneMoreCalendar
 		private static List<CalendarPage> index;
 		private static string indexKey;
 		private static DateTime indexLoaded;
+
+
+		/// <summary>
+		/// Constructs a new OneNote wrapper on a background thread. Its constructor calls
+		/// into COM to activate OneNote (ApplicationFactory.CreateApplication), which blocks
+		/// synchronously and, when OneNote isn't already running, can take several seconds to
+		/// cold-start the process plus further blocking Thread.Sleep retries on transient
+		/// busy/RPC errors while it finishes initializing. Awaiting this instead of calling
+		/// "new OneNote()" directly keeps that blocking work off the UI thread.
+		/// </summary>
+		private static Task<OneNote> NewOneNote() => Task.Run(() => new OneNote());
 
 
 		/// <summary>
@@ -88,7 +100,7 @@ namespace OneMoreCalendar
 
 			try
 			{
-				await using var one = new OneNote();
+				await using var one = await NewOneNote();
 				one.Export(pageID, path, OneNote.ExportFormat.XPS);
 			}
 			catch (Exception exc)
@@ -112,7 +124,7 @@ namespace OneMoreCalendar
 		{
 			try
 			{
-				await using var one = new OneNote();
+				await using var one = await NewOneNote();
 
 				var sectionXml = await one.GetSection(sectionId);
 				var sns = sectionXml.GetNamespaceOfPrefix(OneNote.Prefix);
@@ -272,7 +284,9 @@ namespace OneMoreCalendar
 			return notebooks.Descendants(ns + "Page")
 				.Select(e =>
 				{
-					var path = e.Ancestors()
+					var ancestors = e.Ancestors().ToList();
+
+					var path = ancestors
 						.Where(n => n.Attribute("name") != null)
 						.Select(n => n.Attribute("name").Value)
 						.Aggregate((name1, name2) => $"{name2} > {name1}");
@@ -283,10 +297,16 @@ namespace OneMoreCalendar
 								+ Properties.Resources.word_RecycleBin;
 					}
 
+					// nearest ancestor is always the page's own Section
+					var sectionColor = ancestors[0].Attribute("color")?.Value;
+
 					return new CalendarPage
 					{
 						PageID = e.Attribute("ID").Value,
 						Path = path,
+						SectionColor = string.IsNullOrEmpty(sectionColor)
+							? Color.Empty
+							: ColorHelper.FromHtml(sectionColor),
 						Title = e.Attribute("name").Value,
 						Created = DateTime.Parse(
 							e.Attribute("dateTime").Value, DateTimeFormatInfo.CurrentInfo),
@@ -309,7 +329,7 @@ namespace OneMoreCalendar
 			{
 				// attempt optimal ways to load...
 
-				await using var one = new OneNote();
+				await using var one = await NewOneNote();
 
 				if (!ids.Any())
 				{
@@ -363,7 +383,7 @@ namespace OneMoreCalendar
 		{
 			try
 			{
-				await using var one = new OneNote();
+				await using var one = await NewOneNote();
 				var notebooks = await one.GetNotebooks();
 				var ns = notebooks.GetNamespaceOfPrefix(OneNote.Prefix);
 
@@ -398,7 +418,7 @@ namespace OneMoreCalendar
 		{
 			setMaximum?.Invoke(pages.Count);
 
-			await using var one = new OneNote();
+			await using var one = await NewOneNote();
 			foreach (var page in pages)
 			{
 				if (token.IsCancellationRequested)
@@ -502,7 +522,7 @@ namespace OneMoreCalendar
 		{
 			try
 			{
-				await using var one = new OneNote();
+				await using var one = await NewOneNote();
 				var url = one.GetHyperlink(pageID, string.Empty);
 				if (!string.IsNullOrEmpty(url))
 				{
