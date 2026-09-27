@@ -347,7 +347,7 @@ namespace OneMoreCalendar
 
 						if (hotspot.Page.IsDeleted)
 						{
-							g.DrawString(hotspot.Page.Title, deletedFont, Brushes.Gray,
+							TitleRenderer.DrawTitle(g, hotspot.Page.Title, deletedFont, Brushes.Gray,
 								new Rectangle(hotspot.Bounds.X, hotspot.Bounds.Y, width, hotspot.Bounds.Height),
 								format);
 						}
@@ -357,7 +357,7 @@ namespace OneMoreCalendar
 								? Theme.MonthTodayFore : Theme.MonthDayFore);
 
 							var titleFont = ShowsAsCreated(hotspot.Day, hotspot.Page) ? italicFont : Font;
-							g.DrawString(hotspot.Page.Title, titleFont, titleBrush, hotspot.Bounds, format);
+							TitleRenderer.DrawTitle(g, hotspot.Page.Title, titleFont, titleBrush, hotspot.Bounds, format);
 						}
 					}
 
@@ -422,7 +422,7 @@ namespace OneMoreCalendar
 							: ShowsAsCreated(spot.Day, spot.Page) ? italicHotFont
 							: hotFont;
 
-						g.DrawString(spot.Page.Title, hoverFont, fore,
+						TitleRenderer.DrawTitle(g, spot.Page.Title, hoverFont, fore,
 							new Rectangle(spot.Bounds.X, spot.Bounds.Y, width, spot.Bounds.Height),
 							format);
 					}
@@ -683,10 +683,8 @@ namespace OneMoreCalendar
 					? Theme.MonthTodayFore
 					: Theme.MonthDayFore);
 
-				g.DrawString(page.Title, font, brush, clip, format);
-
 				// actual length of string for hyperlink hovering
-				var size = g.MeasureString(page.Title, font, clip.Width, format).ToSize();
+				var size = TitleRenderer.DrawTitle(g, page.Title, font, brush, clip, format);
 				hotspots.Add(new Hotspot
 				{
 					Type = Hottype.Page,

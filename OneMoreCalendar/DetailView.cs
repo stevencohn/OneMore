@@ -270,9 +270,9 @@ namespace OneMoreCalendar
 					var titleWidth = Math.Max(0, e.Bounds.Width - DateWidth * 2 - titleX);
 					var bounds = new Rectangle(titleX, top, titleWidth, listbox.Font.Height);
 
-					e.Graphics.DrawString(page.Title,
+					TitleRenderer.DrawTitle(e.Graphics, page.Title,
 						page.IsDeleted ? deletedFont : listbox.Font,
-						color, (RectangleF)bounds, format);
+						color, bounds, format);
 
 					page.Bounds = bounds;
 
@@ -358,7 +358,7 @@ namespace OneMoreCalendar
 
 				using var fore = new SolidBrush(hotpage.IsDeleted ? Color.Gray : Theme.ForeColor);
 
-				g.DrawString(hotpage.Title,
+				TitleRenderer.DrawTitle(g, hotpage.Title,
 					hotpage.IsDeleted ? deletedFont : listbox.Font,
 					fore,
 					hotpage.Bounds, format);
@@ -381,7 +381,7 @@ namespace OneMoreCalendar
 				g.FillRectangle(fill2, page.Bounds);
 
 				using var fore2 = new SolidBrush(Theme.Highlight);
-				g.DrawString(page.Title,
+				TitleRenderer.DrawTitle(g, page.Title,
 					page.IsDeleted ? deletedFont : hotFont,
 					fore2, page.Bounds, format);
 

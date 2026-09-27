@@ -187,8 +187,10 @@
     <Compile Include="Things\ThemedContextMenu.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Things\EmojiRuns.cs" />
     <Compile Include="Things\PageClipboard.cs" />
     <Compile Include="Things\ThemeProvider.cs" />
+    <Compile Include="Things\TitleRenderer.cs" />
     <Compile Include="Things\Translator.cs" />
     <Compile Include="YearsForm.cs">
       <SubType>Form</SubType>
