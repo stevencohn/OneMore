@@ -7,6 +7,7 @@ namespace OneMoreCalendar
 	using OneMoreCalendar.Properties;
 	using River.OneMoreAddIn;
 	using River.OneMoreAddIn.Commands;
+	using River.OneMoreAddIn.Helpers.Extensions;
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
@@ -599,10 +600,8 @@ namespace OneMoreCalendar
 
 			Logger.Current.WriteLine($"exported page '{page.Title}' to {path}");
 
-			snapForm = new SnapshotForm(page, path)
-			{
-				Location = location
-			};
+			snapForm = new SnapshotForm(page, path);
+			snapForm.Location = Screen.FromPoint(location).GetBoundedLocation(location, snapForm.Size);
 
 			snapForm.Deactivate += DeactivateSnap;
 			snapForm.Show(this);

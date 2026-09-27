@@ -41,6 +41,26 @@ namespace River.OneMoreAddIn.Helpers.Extensions
 
 
 		/// <summary>
+		/// Calculate a Left/Top location for a popup of the given size, preferring the given
+		/// origin point (e.g. the cursor location that triggered the popup) but clamped so
+		/// the popup stays fully within the screen's working area.
+		/// </summary>
+		/// <param name="screen">The screen within which to corral the popup</param>
+		/// <param name="origin">The preferred screen-coordinate top-left location</param>
+		/// <param name="formSize">The size of the popup to be positioned</param>
+		/// <returns></returns>
+		public static Point GetBoundedLocation(this Screen screen, Point origin, Size formSize)
+		{
+			var area = screen.WorkingArea;
+
+			var x = Math.Max(area.X, Math.Min(origin.X, area.Right - formSize.Width));
+			var y = Math.Max(area.Y, Math.Min(origin.Y, area.Bottom - formSize.Height));
+
+			return new Point(x, y);
+		}
+
+
+		/// <summary>
 		/// Calculate a Left/Top location for a popup of the given size, positioned beside
 		/// the given anchor rectangle (e.g. a word or caret on the OneNote page) so the
 		/// anchor remains visible. Prefers showing to the right of the anchor, flipping to
