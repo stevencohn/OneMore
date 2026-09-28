@@ -328,9 +328,13 @@ namespace River.OneMoreAddIn.Commands
 
 		private static Style FindThemeHeading(Theme theme, int level)
 		{
+			// match any of (h1, head1, head 1, heading1, heading 1); restricted to
+			// styles explicitly typed as Heading so an unrelated style with a similar
+			// name (e.g. "Highlight 1") isn't picked up
 			return theme.GetStyles()
 				.Where(s => s.StyleType == StyleType.Heading)
-				.FirstOrDefault(s => Regex.IsMatch(s.Name, $@"^[Hh](?:ead)?.*?{level}$"));
+				.FirstOrDefault(s => Regex.IsMatch(
+					s.Name, $@"^(?:h|head|header|heading)\s*{level}$", RegexOptions.IgnoreCase));
 		}
 	}
 }

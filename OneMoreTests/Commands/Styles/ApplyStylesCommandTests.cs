@@ -201,5 +201,59 @@ namespace River.OneMoreAddIn.Tests.Commands.Styles
 			Assert.IsNull(unselectedStyle,
 				"Unselected normal paragraph should not have an inline style applied");
 		}
+
+
+		[TestMethod]
+		public async Task ApplyStyles_WithDuplicateHeadingNames_DoesNotThrow()
+		{
+			// Arrange: a theme with two Heading-type styles whose names both resolve to
+			// "h1" under the loose name matching in ApplyStylesCommand.FindStyle (e.g. a
+			// user renames/adds "Header 1" alongside the stock "Heading 1"). Previously
+			// FindStyle used SingleOrDefault for this lookup, throwing
+			// InvalidOperationException ("Sequence contains more than one matching
+			// element"); see the reported bug where Apply Styles fails after the user
+			// creates a custom style named "Header 1".
+			var duplicateTheme = new Theme(
+				XElement.Parse(
+					"<Theme key=\"Dup\" name=\"Dup\" color=\"\"" +
+					" setColor=\"False\" dark=\"False\">" +
+					"  <Style index=\"0\" name=\"Heading 1\" font=\"FirstHeadFont\"" +
+					"   fontColor=\"#AA0000\" fontSize=\"24.0\" spaceBefore=\"12.0\"" +
+					"   spaceAfter=\"2.0\" applyColors=\"true\" styleType=\"Heading\" />" +
+					"  <Style index=\"1\" name=\"Header 1\" font=\"SecondHeadFont\"" +
+					"   fontColor=\"#00AA00\" fontSize=\"24.0\" spaceBefore=\"12.0\"" +
+					"   spaceAfter=\"2.0\" applyColors=\"true\" styleType=\"Heading\" />" +
+					"  <Style index=\"2\" name=\"Normal\" font=\"TestBodyFont\"" +
+					"   fontColor=\"Black\" fontSize=\"12.0\" spaceBefore=\"4.0\"" +
+					"   spaceAfter=\"4.0\" applyColors=\"true\" styleType=\"Paragraph\" />" +
+					"</Theme>"),
+				"Dup");
+
+			var page = BuildPageWithQuickStyleDefs();
+
+			var h1OE = new XElement(Ns + "OE",
+				new XAttribute("quickStyleIndex", "1"),
+				new XElement(Ns + "T",
+					new XAttribute("selected", "all"),
+					new XCData("Heading text")));
+
+			page.Add(new XElement(Ns + "Outline",
+				new XElement(Ns + "OEChildren", h1OE)));
+
+			SetupPage(PageId, page.ToString(SaveOptions.OmitDuplicateNamespaces));
+
+			// Act: must not throw InvalidOperationException
+			await new ApplyStylesCommand(duplicateTheme).Execute();
+
+			// Assert: resolves deterministically to the first matching Heading style
+			var updated = GetUpdatedPage(PageId);
+			Assert.IsNotNull(updated, "UpdatePageContent was never called");
+
+			var selectedStyle = (string)updated.Descendants(Ns + "OE")
+				.FirstOrDefault(oe => (string)oe.Attribute("quickStyleIndex") == "1")
+				?.Attribute("style");
+			StringAssert.Contains(selectedStyle, "FirstHeadFont",
+				"Should deterministically resolve to the first matching Heading style");
+		}
 	}
 }

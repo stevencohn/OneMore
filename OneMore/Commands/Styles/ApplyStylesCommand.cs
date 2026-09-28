@@ -382,22 +382,22 @@ namespace River.OneMoreAddIn.Commands
 			switch (name)
 			{
 				case "p":
-					style = styles.SingleOrDefault(s => s.Name.ToLower() == "normal")
-						?? styles.SingleOrDefault(s => s.Name.ToLower() == "body")
-						?? styles.SingleOrDefault(s => s.Name.ToLower() == "p");
+					style = styles.FirstOrDefault(s => s.Name.ToLower() == "normal")
+						?? styles.FirstOrDefault(s => s.Name.ToLower() == "body")
+						?? styles.FirstOrDefault(s => s.Name.ToLower() == "p");
 					break;
 
 				case "cite":
 					style = styles.FirstOrDefault(s => s.StyleType == StyleType.Citation)
-						?? styles.SingleOrDefault(s => s.Name.ToLower() == "citation")
-						?? styles.SingleOrDefault(s => s.Name.ToLower() == "cite");
+						?? styles.FirstOrDefault(s => s.Name.ToLower() == "citation")
+						?? styles.FirstOrDefault(s => s.Name.ToLower() == "cite");
 					break;
 
 				case "blockquote":
 					style = styles.FirstOrDefault(s => s.StyleType == StyleType.Quote)
-						?? styles.SingleOrDefault(s => s.Name.ToLower() == "quote")
-						?? styles.SingleOrDefault(s => s.Name.ToLower() == "quotation")
-						?? styles.SingleOrDefault(s => s.Name.ToLower() == "blockquote");
+						?? styles.FirstOrDefault(s => s.Name.ToLower() == "quote")
+						?? styles.FirstOrDefault(s => s.Name.ToLower() == "quotation")
+						?? styles.FirstOrDefault(s => s.Name.ToLower() == "blockquote");
 					break;
 
 				case "code":
@@ -407,15 +407,15 @@ namespace River.OneMoreAddIn.Commands
 					// been resaved yet still resolve
 					style = styles.FirstOrDefault(s => s.IsCode)
 						?? styles.FirstOrDefault(s => s.StyleType == StyleType.Code)
-						?? styles.SingleOrDefault(s => s.Name.ToLower() == "code")
-						?? styles.SingleOrDefault(s => s.Name.ToLower() == "source code");
+						?? styles.FirstOrDefault(s => s.Name.ToLower() == "code")
+						?? styles.FirstOrDefault(s => s.Name.ToLower() == "source code");
 					break;
 
 				case "PageTitle":
 					style = styles.FirstOrDefault(s => s.StyleType == StyleType.PageTitle)
-						?? styles.SingleOrDefault(s => s.Name.ToLower() == "page title")
-						?? styles.SingleOrDefault(s => s.Name.ToLower() == "pagetitle")
-						?? styles.SingleOrDefault(s => s.Name.ToLower() == "title");
+						?? styles.FirstOrDefault(s => s.Name.ToLower() == "page title")
+						?? styles.FirstOrDefault(s => s.Name.ToLower() == "pagetitle")
+						?? styles.FirstOrDefault(s => s.Name.ToLower() == "title");
 					break;
 
 				default:
@@ -424,9 +424,16 @@ namespace River.OneMoreAddIn.Commands
 					{
 						var index = nmatch.Groups[1].Captures[0].Value;
 
-						// match any of (h1, head1, head 1, heading1, heading 1)
-						style = styles.SingleOrDefault(s =>
-							Regex.IsMatch(s.Name, $@"^[Hh](?:ead)?.*?{index}$"));
+						// match any of (h1, head1, head 1, heading1, heading 1); restrict
+						// to styles explicitly typed as Heading, and use FirstOrDefault
+						// (not SingleOrDefault) so a duplicate/similarly-named style (e.g.
+						// both "Heading 1" and a user-added "Header 1") resolves
+						// deterministically instead of throwing
+						style = styles
+							.Where(s => s.StyleType == StyleType.Heading)
+							.FirstOrDefault(s => Regex.IsMatch(
+								s.Name, $@"^(?:h|head|header|heading)\s*{index}$",
+								RegexOptions.IgnoreCase));
 					}
 					break;
 			}
@@ -856,7 +863,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var quickDefs = page.Root.Elements(ns + "QuickStyleDef").ToList();
 
-			var normalStyle = styles.SingleOrDefault(s =>
+			var normalStyle = styles.FirstOrDefault(s =>
 				s.Name.ToLower() == "normal" ||
 				s.Name.ToLower() == "body" ||
 				s.Name.ToLower() == "p")
