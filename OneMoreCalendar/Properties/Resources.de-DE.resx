@@ -234,7 +234,7 @@
   </data>
   <data name="HelpForm_Mouse2_Action" xml:space="preserve">
     <value>Zeigen Sie ein Aktionsmenü dafür an</value>
-  <comment>!EDIT</comment></data>
+  </data>
   <data name="HelpForm_Mouse2_Keys" xml:space="preserve">
     <value>Klicken Sie mit der rechten Maustaste auf eine Seite</value>
   </data>
@@ -429,7 +429,7 @@ xmlns="http://www.w3.org/TR/REC-html40"&gt;
   </data>
   <data name="SettingsForm_userModeButton.Text" xml:space="preserve">
     <value>Benutzer</value>
-  <comment>!EDIT</comment></data>
+  </data>
   <data name="SettingsProvider_ReadError" xml:space="preserve">
     <value>Fehler beim Lesen von {0}
 {1}</value>
