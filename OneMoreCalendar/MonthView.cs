@@ -651,7 +651,7 @@ namespace OneMoreCalendar
 				// section color swatch - always the leftmost element
 				if (page.SectionColor != Color.Empty && SettingsProvider.Current.Markers)
 				{
-					var swatchWidth = this.Scaled(3);
+					var swatchWidth = this.Scaled(4);
 					var swatchRect = new RectangleF(
 						left, top + this.Scaled(1),
 						swatchWidth, rowLineHeight - this.Scaled(2));

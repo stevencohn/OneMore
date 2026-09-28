@@ -46,8 +46,8 @@
 			// 
 			this.listbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.listbox.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.listbox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-			this.listbox.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.listbox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+			this.listbox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.listbox.FormattingEnabled = true;
 			this.listbox.Location = new System.Drawing.Point(0, 37);
 			this.listbox.Margin = new System.Windows.Forms.Padding(0);
@@ -56,7 +56,6 @@
 			this.listbox.Size = new System.Drawing.Size(743, 372);
 			this.listbox.TabIndex = 0;
 			this.listbox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.ListBoxDrawItem);
-			this.listbox.MeasureItem += new System.Windows.Forms.MeasureItemEventHandler(this.ListBoxMeasureItem);
 			this.listbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ListBoxKeyDown);
 			this.listbox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ListBoxMouseMove);
 			this.listbox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ListBoxMouseUp);
