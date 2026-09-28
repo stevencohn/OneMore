@@ -45,7 +45,15 @@ namespace River.OneMoreAddIn.Settings
 
 			var settings = provider.GetCollection(Name);
 
-			themeBox.SelectedIndex = settings.Get("theme", 0);
+			// the User option, chosen explicitly, is offered only when OneMoreTheme.json exists;
+			// it must follow Dark to line up with the ThemeMode enum index
+			if (ThemeManager.HasCustomTheme())
+			{
+				themeBox.Items.Add(Resx.word_User);
+			}
+
+			var theme = settings.Get("theme", 0);
+			themeBox.SelectedIndex = theme < themeBox.Items.Count ? theme : 0;
 
 			var lang = settings.Get("language", "en-US");
 			foreach (CultureInfo info in langBox.Items)

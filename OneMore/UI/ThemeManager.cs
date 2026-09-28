@@ -68,6 +68,15 @@ namespace River.OneMoreAddIn.UI
 
 
 		/// <summary>
+		/// Gets or sets a theme mode that takes the place of the Theme setting in OneMore's
+		/// settings.xml. A host process such as OneMoreCalendar sets this before any control
+		/// is created so the shared More* controls follow the host's own theme choice. Null
+		/// means follow OneMore's setting.
+		/// </summary>
+		public static ThemeMode? ModeOverride { get; set; }
+
+
+		/// <summary>
 		/// Gets a value indicating whether code is currently running inside the VS designer.
 		/// Use this to skip explicit BackColor/ForeColor assignments at design time instead of
 		/// relying on ShouldSerializeXxx/ResetXxx overrides - confirmed (via a standalone
@@ -186,43 +195,83 @@ namespace River.OneMoreAddIn.UI
 
 		public void LoadColors(int modeIndex = -1)
 		{
-			ThemeManager cache;
-
+			// deserializing constructs a ThemeManager so guard against recursion
 			loading = true;
-			var path = Path.Combine(PathHelper.GetAppDataPath(), CustomThemeFile);
-			if (File.Exists(path))
-			{
-				try
-				{
-					var json = File.ReadAllText(path);
-					cache = JsonConvert.DeserializeObject<ThemeManager>(json, new ColorConverter());
 
-					Colors = cache.Colors;
-					DarkMode = cache.DarkMode;
-					return;
-				}
-				catch (Exception exc)
+			try
+			{
+				var overridden = modeIndex < 0 && ModeOverride.HasValue;
+
+				var mode = modeIndex >= 0
+					? (ThemeMode)modeIndex
+					: ModeOverride ?? new SettingsProvider().Theme;
+
+				if (mode == ThemeMode.User)
 				{
-					logger.WriteLine("error loading custom theme file, using default theme", exc);
+					if (!IsDesignTime && TryLoadCustomTheme())
+					{
+						return;
+					}
+
+					// file is missing or unreadable so a host's override defers to OneMore's
+					// own setting; if that is also User then follow the system theme instead
+					mode = overridden ? new SettingsProvider().Theme : ThemeMode.System;
+					if (mode == ThemeMode.User)
+					{
+						mode = ThemeMode.System;
+					}
 				}
+
+				DarkMode = !IsDesignTime &&
+					(mode == ThemeMode.Dark ||
+					(mode == ThemeMode.System && Office.IsBlackThemeEnabled(true)));
+
+				// set colors...
+
+				var cache = JsonConvert.DeserializeObject<ThemeManager>(
+					DarkMode ? Resx.DarkTheme : Resx.LightTheme,
+					new ColorConverter());
+
+				Colors = cache.Colors;
+			}
+			finally
+			{
+				loading = false;
+			}
+		}
+
+
+		/// <summary>
+		/// Loads the user's OneMoreTheme.json file, if it exists, as the active theme.
+		/// </summary>
+		/// <returns>True if the file was loaded; otherwise false</returns>
+		private bool TryLoadCustomTheme()
+		{
+			var path = Path.Combine(PathHelper.GetAppDataPath(), CustomThemeFile);
+			if (!File.Exists(path))
+			{
+				return false;
 			}
 
-			var mode = modeIndex >= 0
-				? (ThemeMode)modeIndex
-				: new SettingsProvider().Theme;
+			try
+			{
+				var json = File.ReadAllText(path);
+				var cache = JsonConvert.DeserializeObject<ThemeManager>(json, new ColorConverter());
+				if (cache?.Colors is null)
+				{
+					logger.WriteLine("custom theme file has no colors, using default theme");
+					return false;
+				}
 
-			DarkMode = !IsDesignTime &&
-				(mode == ThemeMode.Dark ||
-				(mode == ThemeMode.System && Office.IsBlackThemeEnabled(true)));
-
-			// set colors...
-
-			cache = JsonConvert.DeserializeObject<ThemeManager>(
-				DarkMode ? Resx.DarkTheme : Resx.LightTheme,
-				new ColorConverter());
-
-			Colors = cache.Colors;
-			loading = false;
+				Colors = cache.Colors;
+				DarkMode = cache.DarkMode;
+				return true;
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error loading custom theme file, using default theme", exc);
+				return false;
+			}
 		}
 
 

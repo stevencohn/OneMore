@@ -7623,6 +7623,9 @@ Puede habilitar o deshabilitar la telemetría en cualquier momento desde el cuad
   <data name="word_Theme" xml:space="preserve">
     <value>Tema</value>
   </data>
+  <data name="word_User" xml:space="preserve">
+    <value>Usuario</value>
+  </data>
   <data name="word_Value" xml:space="preserve">
     <value>Valor</value>
   </data>

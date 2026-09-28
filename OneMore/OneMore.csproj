@@ -1893,6 +1893,7 @@
     </None>
     <None Include="UI\DarkTheme.json" />
     <None Include="UI\LightTheme.json" />
+    <None Include="UI\OneMoreTheme.json" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Commands\Clean\BreakingDialog.resx">

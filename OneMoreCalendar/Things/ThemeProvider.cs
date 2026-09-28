@@ -17,6 +17,7 @@ namespace OneMoreCalendar
 	using System.Reflection;
 	using System.Runtime.InteropServices;
 	using System.Windows.Forms;
+	using SharedThemeMode = River.OneMoreAddIn.UI.ThemeMode;
 
 
 	/// <summary>
@@ -217,7 +218,32 @@ namespace OneMoreCalendar
 
 
 		/// <summary>
-		/// 
+		/// Points the shared OneMore controls and dialogs, such as MoreMessageBox and the Export
+		/// dialog, at Calendar's own theme choice rather than the one chosen in OneMore's settings.
+		/// Must be called before any of those controls are created and again when the Calendar
+		/// theme changes.
+		/// </summary>
+		/// <remarks>
+		/// System is resolved here, using the same Windows check as InitializeTheme, so both theme
+		/// engines agree; OneMore's own System check looks at the Office theme instead.
+		/// </remarks>
+		public void SyncSharedControlTheme()
+		{
+			var mode = SettingsProvider.Current.Theme switch
+			{
+				ThemeMode.Light => SharedThemeMode.Light,
+				ThemeMode.Dark => SharedThemeMode.Dark,
+				ThemeMode.User => SharedThemeMode.User,
+				_ => Office.SystemDefaultDarkMode() ? SharedThemeMode.Dark : SharedThemeMode.Light
+			};
+
+			River.OneMoreAddIn.UI.ThemeManager.ModeOverride = mode;
+			River.OneMoreAddIn.UI.ThemeManager.Instance.LoadColors();
+		}
+
+
+		/// <summary>
+		///
 		/// </summary>
 		/// <param name="container"></param>
 		public void InitializeTheme(ContainerControl container)

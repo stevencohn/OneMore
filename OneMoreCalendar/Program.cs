@@ -112,6 +112,11 @@ namespace OneMoreCalendar
 			// command line date parsing and the construction of any Form
 			SettingsProvider.ApplyAddInCulture();
 
+			// theme the shared OneMore controls and dialogs from Calendar's own theme choice
+			// rather than OneMore's; must precede the construction of any Form or control
+			// because some, like MoreButton, cache their colors when constructed
+			ThemeProvider.Instance.SyncSharedControlTheme();
+
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 
