@@ -1067,7 +1067,7 @@ namespace OneMoreCalendar.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Custom.
+        ///   Looks up a localized string similar to User.
         /// </summary>
         internal static string SettingsForm_userModeButton_Text {
             get {
