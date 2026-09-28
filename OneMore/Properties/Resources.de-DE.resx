@@ -4168,6 +4168,10 @@ Wähle Nein, um eine leere Zeile zwischen den Absätzen zu halten</value>
     <value>Alt oder neu</value>
     <comment>title</comment>
   </data>
+  <data name="ResetListStyleCommand_NoList" xml:space="preserve">
+    <value>Bewegen Sie den Textcursor auf ein Element einer Liste oder wählen Sie Listenelemente aus</value>
+    <comment>message box</comment>
+  </data>
   <data name="RestoreBackgroundImagesCommand_invalid" xml:space="preserve">
     <value>Hintergrundbilder konnten nicht wiederhergestellt werden, da die Validierung der resultierenden Seite fehlgeschlagen ist. Es wurden keine Änderungen vorgenommen</value>
     <comment>error message</comment>
@@ -5737,6 +5741,14 @@ Registerkarte „Hilfe“.</value>
   <data name="ribReportRemindersButton_Screentip" xml:space="preserve">
     <value>Generiert einen zusammenfassenden Bericht der Erinnerungen</value>
     <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribResetListStyleButton_Label" xml:space="preserve">
+    <value>Listenstil zurücksetzen</value>
+    <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribResetListStyleButton_Screentip" xml:space="preserve">
+    <value>Entfernen Sie den Stil von den Zahlen oder Aufzählungszeichen der Liste am Cursor oder der ausgewählten Listenelemente und wenden Sie die Standardschriftart und -größe „Normal“ an</value>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribResetTasksButton_Label" xml:space="preserve">
     <value>Alle abgeschlossenen Aufgaben zurücksetzen</value>

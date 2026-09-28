@@ -1085,6 +1085,7 @@
     <Compile Include="Helpers\SynchronizationContextAwaiter.cs" />
     <Compile Include="Commands\Tools\Updater\IUpdateReport.cs" />
     <Compile Include="Models\Bullet.cs" />
+    <Compile Include="Models\ListMarker.cs" />
     <Compile Include="Models\ContentList.cs" />
     <Compile Include="Models\Meta.cs" />
     <Compile Include="Models\MetaNames.cs" />
@@ -1132,6 +1133,7 @@
     <Compile Include="Commands\Numbering\OutlineCommand.cs" />
     <Compile Include="Commands\Numbering\ConvertOutlineCommand.cs" />
     <Compile Include="Commands\Numbering\ConvertHeadingsCommand.cs" />
+    <Compile Include="Commands\Numbering\ResetListStyleCommand.cs" />
     <Compile Include="Commands\Edit\PronunciateCommand.cs" />
     <Compile Include="Commands\File\Plugins\RunPluginCommand.cs" />
     <Compile Include="Commands\File\ExportCommand.cs" />

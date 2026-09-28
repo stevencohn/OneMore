@@ -714,6 +714,7 @@ namespace River.OneMoreAddIn.Commands
 					converter.RewriteTodo();
 					converter.RewriteCode();
 					converter.RewriteInlineCode();
+					converter.RewriteListMarkers();
 
 					//logger.WriteLine($"updating...");
 					//logger.WriteLine(page.Root);

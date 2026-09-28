@@ -4180,6 +4180,10 @@ Sélectionnez Non pour conserver une ligne vide entre les paragraphes</value>
     <value>Ancien ou nouveau</value>
     <comment>title</comment>
   </data>
+  <data name="ResetListStyleCommand_NoList" xml:space="preserve">
+    <value>Déplacez le curseur de texte sur un élément d'une liste ou sélectionnez des éléments de liste</value>
+    <comment>message box</comment>
+  </data>
   <data name="RestoreBackgroundImagesCommand_invalid" xml:space="preserve">
     <value>Impossible de restaurer les images d'arrière-plan car la page résultante a échoué à la validation ; aucun changement n'a été apporté</value>
     <comment>error message</comment>
@@ -5748,6 +5752,14 @@ Onglet Aide</value>
   <data name="ribReportRemindersButton_Screentip" xml:space="preserve">
     <value>Générer un rapport récapitulatif des rappels</value>
     <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribResetListStyleButton_Label" xml:space="preserve">
+    <value>Réinitialiser le style de la liste</value>
+    <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribResetListStyleButton_Screentip" xml:space="preserve">
+    <value>Supprimez le style des chiffres ou des puces de la liste au niveau du curseur ou des éléments de liste sélectionnés et appliquez la police et la taille normales par défaut.</value>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribResetTasksButton_Label" xml:space="preserve">
     <value>Réinitialiser toutes les tâches terminées</value>

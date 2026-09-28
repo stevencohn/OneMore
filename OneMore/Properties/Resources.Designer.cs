@@ -9378,6 +9378,15 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("RemindCommand_noReminder", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Move the text cursor to an item of a list or select list items.
+        /// </summary>
+        internal static string ResetListStyleCommand_NoList {
+            get {
+                return ResourceManager.GetString("ResetListStyleCommand_NoList", resourceCulture);
+            }
+        }
         
         /// <summary>
         ///   Looks up a localized string similar to Due date.
@@ -13536,6 +13545,24 @@ namespace River.OneMoreAddIn.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to Reset List Styling.
+        /// </summary>
+        internal static string ribResetListStyleButton_Label {
+            get {
+                return ResourceManager.GetString("ribResetListStyleButton_Label", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Remove styling from the numbers or bullets of the list at the cursor or of the selected list items and apply the default Normal font and size.
+        /// </summary>
+        internal static string ribResetListStyleButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribResetListStyleButton_Screentip", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Reset All Completed Tasks.
         /// </summary>

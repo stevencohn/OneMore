@@ -4180,6 +4180,10 @@ ISO-code then comma then language name</comment>
     <value>قديم أو جديد</value>
     <comment>title</comment>
   </data>
+  <data name="ResetListStyleCommand_NoList" xml:space="preserve">
+    <value>حرك مؤشر النص إلى عنصر القائمة أو حدد عناصر القائمة</value>
+    <comment>message box</comment>
+  </data>
   <data name="RestoreBackgroundImagesCommand_invalid" xml:space="preserve">
     <value>تعذرت استعادة صور الخلفية لأن الصفحة الناتجة فشلت في التحقق من الصحة؛ لم يتم إجراء أي تغييرات</value>
     <comment>error message</comment>
@@ -5748,6 +5752,14 @@ ISO-code then comma then language name</comment>
   <data name="ribReportRemindersButton_Screentip" xml:space="preserve">
     <value>قم بإنشاء تقرير موجز للتذكيرات</value>
     <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribResetListStyleButton_Label" xml:space="preserve">
+    <value>إعادة تعيين نمط القائمة</value>
+    <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribResetListStyleButton_Screentip" xml:space="preserve">
+    <value>قم بإزالة النمط من الأرقام أو الرموز النقطية الموجودة في القائمة عند المؤشر أو من عناصر القائمة المحددة وقم بتطبيق الخط والحجم العادي الافتراضي</value>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribResetTasksButton_Label" xml:space="preserve">
     <value>إعادة تعيين جميع المهام المكتملة</value>

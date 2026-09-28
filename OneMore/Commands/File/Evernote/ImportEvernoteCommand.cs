@@ -342,6 +342,7 @@ namespace River.OneMoreAddIn.Commands
 			converter.RewriteTodo();
 			converter.RewriteCode();
 			converter.RewriteInlineCode();
+			converter.RewriteListMarkers();
 
 			page.SetMeta(MetaNames.EvernoteGuid, identity);
 
