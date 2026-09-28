@@ -234,7 +234,7 @@
   </data>
   <data name="HelpForm_Mouse2_Action" xml:space="preserve">
     <value>Toon een menu met acties ervoor</value>
-  <comment>!EDIT</comment></data>
+  </data>
   <data name="HelpForm_Mouse2_Keys" xml:space="preserve">
     <value>Klik met de rechtermuisknop op een pagina</value>
   </data>
@@ -428,7 +428,7 @@ xmlns="http://www.w3.org/TR/REC-html40"&gt;
     <value>Thema</value>
   </data>
   <data name="SettingsForm_userModeButton.Text" xml:space="preserve">
-    <value>Aangepast</value>
+    <value>Gebruiker</value>
   </data>
   <data name="SettingsProvider_ReadError" xml:space="preserve">
     <value>fout bij lezen {0}

@@ -19,7 +19,7 @@ namespace OneMoreCalendar.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -97,6 +97,15 @@ namespace OneMoreCalendar.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to OneMore Calendar.
+        /// </summary>
+        internal static string AboutDialog_Text {
+            get {
+                return ResourceManager.GetString("AboutDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OneMore Calendar for OneNote.
         /// </summary>
         internal static string AboutDialog_titleLabel_Text {
@@ -111,15 +120,6 @@ namespace OneMoreCalendar.Properties {
         internal static string AboutDialog_versionLabel_Text {
             get {
                 return ResourceManager.GetString("AboutDialog_versionLabel.Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to OneMore Calendar.
-        /// </summary>
-        internal static string AboutDialog_Text {
-            get {
-                return ResourceManager.GetString("AboutDialog.Text", resourceCulture);
             }
         }
         
@@ -712,7 +712,7 @@ namespace OneMoreCalendar.Properties {
                 return ResourceManager.GetString("MonthView_CreatePage", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to An error occurred while creating the new page. See the log for details..
         /// </summary>
@@ -721,7 +721,7 @@ namespace OneMoreCalendar.Properties {
                 return ResourceManager.GetString("MonthView_CreatePageError", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to +.
         /// </summary>
@@ -730,7 +730,7 @@ namespace OneMoreCalendar.Properties {
                 return ResourceManager.GetString("MonthView_CreatePageGlyph", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Please start OneNote first, then try again..
         /// </summary>
@@ -739,7 +739,7 @@ namespace OneMoreCalendar.Properties {
                 return ResourceManager.GetString("MonthView_CreatePageNotRunning", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Pick the section for the new page.
         /// </summary>
@@ -748,7 +748,7 @@ namespace OneMoreCalendar.Properties {
                 return ResourceManager.GetString("MonthView_CreatePageQFDescription", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Create Page.
         /// </summary>
@@ -757,7 +757,7 @@ namespace OneMoreCalendar.Properties {
                 return ResourceManager.GetString("MonthView_CreatePageQFTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Gathering page links....
         /// </summary>
@@ -793,7 +793,7 @@ namespace OneMoreCalendar.Properties {
                 return ResourceManager.GetString("MonthView_NewPageTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Web view.
         /// </summary>
@@ -802,7 +802,7 @@ namespace OneMoreCalendar.Properties {
                 return ResourceManager.GetString("MonthView_WebView", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Copy Link.
         /// </summary>
@@ -811,7 +811,7 @@ namespace OneMoreCalendar.Properties {
                 return ResourceManager.GetString("PageMenu_CopyLink", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Copy Web Link.
         /// </summary>
@@ -820,7 +820,7 @@ namespace OneMoreCalendar.Properties {
                 return ResourceManager.GetString("PageMenu_CopyWebLink", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Export.
         /// </summary>
@@ -829,7 +829,7 @@ namespace OneMoreCalendar.Properties {
                 return ResourceManager.GetString("PageMenu_Export", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to This page does not have a web link. Its notebook may not be stored online..
         /// </summary>
@@ -838,7 +838,7 @@ namespace OneMoreCalendar.Properties {
                 return ResourceManager.GetString("PageMenu_NoWebLink", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Open.
         /// </summary>
@@ -847,7 +847,7 @@ namespace OneMoreCalendar.Properties {
                 return ResourceManager.GetString("PageMenu_Open", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Open in New Window.
         /// </summary>
@@ -856,7 +856,7 @@ namespace OneMoreCalendar.Properties {
                 return ResourceManager.GetString("PageMenu_OpenNewWindow", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to View Thumbnail.
         /// </summary>
@@ -865,7 +865,7 @@ namespace OneMoreCalendar.Properties {
                 return ResourceManager.GetString("PageMenu_ViewThumbnail", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
@@ -984,7 +984,7 @@ namespace OneMoreCalendar.Properties {
                 return ResourceManager.GetString("SettingsForm_logLink.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Hide section indicators.
         /// </summary>
@@ -993,7 +993,7 @@ namespace OneMoreCalendar.Properties {
                 return ResourceManager.GetString("SettingsForm_markersBox.Text", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Last modified on.
         /// </summary>
@@ -1067,7 +1067,7 @@ namespace OneMoreCalendar.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Custom.
+        ///   Looks up a localized string similar to User.
         /// </summary>
         internal static string SettingsForm_userModeButton_Text {
             get {

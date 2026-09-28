@@ -821,6 +821,7 @@ namespace OneMoreCalendar
 					$"created:{settings.Created}, modified:{settings.Modified}, " +
 					$"deleted:{settings.Deleted}, empty:{settings.Empty}");
 
+				Theme.SyncSharedControlTheme();
 				Theme.InitializeTheme(this);
 				OneNoteProvider.Invalidate();
 				await SetMonth(date.Year, "settings applied");

@@ -7630,6 +7630,9 @@ TF-IDF コサイン、語彙の重複、構造</value>
   <data name="word_Theme" xml:space="preserve">
     <value>テーマ</value>
   </data>
+  <data name="word_User" xml:space="preserve">
+    <value>ユーザー</value>
+  </data>
   <data name="word_Value" xml:space="preserve">
     <value>価値</value>
   </data>

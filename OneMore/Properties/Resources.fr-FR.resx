@@ -7634,6 +7634,9 @@ Merci!</value>
   <data name="word_Theme" xml:space="preserve">
     <value>Thème</value>
   </data>
+  <data name="word_User" xml:space="preserve">
+    <value>Utilisateur</value>
+  </data>
   <data name="word_Value" xml:space="preserve">
     <value>Valeur</value>
   </data>

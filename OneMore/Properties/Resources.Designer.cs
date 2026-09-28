@@ -18139,6 +18139,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User.
+        /// </summary>
+        internal static string word_User {
+            get {
+                return ResourceManager.GetString("word_User", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Value.
         /// </summary>
         internal static string word_Value {

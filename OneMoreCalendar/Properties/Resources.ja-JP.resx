@@ -234,7 +234,7 @@
   </data>
   <data name="HelpForm_Mouse2_Action" xml:space="preserve">
     <value>アクションのメニューを表示する</value>
-  <comment>!EDIT</comment></data>
+  </data>
   <data name="HelpForm_Mouse2_Keys" xml:space="preserve">
     <value>ページを右クリックします</value>
   </data>
@@ -428,7 +428,7 @@ xmlns="http://www.w3.org/TR/REC-html40"&gt;
     <value>テーマ</value>
   </data>
   <data name="SettingsForm_userModeButton.Text" xml:space="preserve">
-    <value>カスタム</value>
+    <value>ユーザー</value>
   </data>
   <data name="SettingsProvider_ReadError" xml:space="preserve">
     <value>{0} の読み取りエラー

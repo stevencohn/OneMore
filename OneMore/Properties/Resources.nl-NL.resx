@@ -7624,6 +7624,9 @@ Bedankt!</value>
   <data name="word_Theme" xml:space="preserve">
     <value>Thema</value>
   </data>
+  <data name="word_User" xml:space="preserve">
+    <value>Gebruiker</value>
+  </data>
   <data name="word_Value" xml:space="preserve">
     <value>Waarde</value>
   </data>

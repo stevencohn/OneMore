@@ -129,7 +129,7 @@ namespace OneMoreCalendar
 			this.userModeButton.Round = true;
 			this.userModeButton.Size = new System.Drawing.Size(89, 24);
 			this.userModeButton.TabIndex = 16;
-			this.userModeButton.Text = "Custom";
+			this.userModeButton.Text = "User";
 			this.userModeButton.UseVisualStyleBackColor = false;
 			// 
 			// emptyBox
