@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+
+  <!--
+    Sample "User" color themes installed to %APPDATA%\OneMore\
+    - OneMoreTheme.json is loaded by OneMore and shared controls when User is chosen in Settings
+    - OneMoreCalendarTheme.json is loaded by OneMoreCalendar when User is chosen in its Settings
+    Their presence is what makes the User option available in each app.
+  -->
+  <Fragment>
+    <ComponentGroup Id="AppDataUserThemes" Directory="OneMoreAppDataDir">
+      <Component Id="UserThemeOneMore">
+        <File Source="..\OneMore\UI\OneMoreTheme.json" KeyPath="yes" />
+      </Component>
+      <Component Id="UserThemeOneMoreCalendar">
+        <File Source="..\OneMoreCalendar\Assets\OneMoreCalendarTheme.json" KeyPath="yes" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+
+</Wix>
