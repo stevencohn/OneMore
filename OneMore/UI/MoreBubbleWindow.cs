@@ -14,6 +14,7 @@ namespace River.OneMoreAddIn.UI
 	{
 		private const int SolidTime = 500;
 		private const int FadeoutTime = 750;
+		private const int RegionRadius = 20;
 		private float fadeIncrement;
 		private int time;
 
@@ -29,9 +30,6 @@ namespace River.OneMoreAddIn.UI
 					"okButton=word_OK"
 				});
 			}
-
-			// create mask with rounded corners to overlay form
-			Region = Region.FromHrgn(Native.CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
 
 			// increments to get to 100%
 			fadeIncrement = 1 / (FadeoutTime / (float)timer.Interval);
@@ -88,7 +86,22 @@ namespace River.OneMoreAddIn.UI
 		protected override void OnLoad(EventArgs e)
 		{
 			base.OnLoad(e);
+
+			// create mask with rounded corners to overlay form, once its final size is known
+			ApplyRoundedRegion(RegionRadius);
+
 			timer.Start();
+		}
+
+
+		protected override void OnSizeChanged(EventArgs e)
+		{
+			base.OnSizeChanged(e);
+
+			if (IsHandleCreated)
+			{
+				ApplyRoundedRegion(RegionRadius);
+			}
 		}
 
 

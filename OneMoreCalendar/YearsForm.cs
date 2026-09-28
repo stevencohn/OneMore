@@ -99,13 +99,16 @@ namespace OneMoreCalendar
 			if (hoveredItem == e.Item)
 			{
 				var size = e.Graphics.MeasureString(e.Item.Text, listView.Font);
-				var bounds = new Rectangle(e.Bounds.X, e.Bounds.Y, (int)size.Width + 8, e.Bounds.Height);
+				var bounds = new Rectangle(
+					e.Bounds.X, e.Bounds.Y, (int)size.Width + this.Scaled(8), e.Bounds.Height);
+
+				var radius = this.Scaled(ItemRadius);
 
 				using var fill = new SolidBrush(Theme.ButtonBack);
-				e.Graphics.FillRoundedRectangle(fill, bounds, ItemRadius);
+				e.Graphics.FillRoundedRectangle(fill, bounds, radius);
 
 				using var fore = new Pen(Theme.Control);
-				e.Graphics.DrawRoundedRectangle(fore, bounds, ItemRadius);
+				e.Graphics.DrawRoundedRectangle(fore, bounds, radius);
 			}
 			else
 			{

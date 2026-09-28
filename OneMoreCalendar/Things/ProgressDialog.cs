@@ -7,6 +7,7 @@ namespace OneMoreCalendar
 	using System;
 	using System.Drawing;
 	using System.Threading;
+	using System.Windows.Forms;
 
 
 	/// <summary>
@@ -15,7 +16,10 @@ namespace OneMoreCalendar
 	/// </summary>
 	internal partial class ProgressDialog : ThemedForm
 	{
+		private const float DesignDpi = 144f;
+
 		private readonly CancellationTokenSource source;
+		private Font ambientFont;
 
 
 		/// <summary>
@@ -39,6 +43,15 @@ namespace OneMoreCalendar
 
 		protected override void OnLoad(EventArgs e)
 		{
+			// the ambient font comes from the system, which isn't rescaled per monitor with
+			// autoscaling off; pin it to the point size the layout was designed with
+			ambientFont = new Font("Segoe UI", 9F);
+			Font = ambientFont;
+
+			// the designer layout was authored at 150% (144 DPI) with autoscaling off; scale it
+			// to the actual DPI before centering so the final size is used
+			this.ScaleLayout(DesignDpi);
+
 			base.OnLoad(e);
 
 			// StartPosition is Manual; CenterParent is unreliable for a non-modally
@@ -49,6 +62,14 @@ namespace OneMoreCalendar
 					Owner.Location.X + ((Owner.Width - Width) / 2),
 					Owner.Location.Y + ((Owner.Height - Height) / 2));
 			}
+		}
+
+
+		protected override void OnFormClosed(FormClosedEventArgs e)
+		{
+			base.OnFormClosed(e);
+			ambientFont?.Dispose();
+			ambientFont = null;
 		}
 
 
