@@ -5,6 +5,7 @@
 namespace OneMoreCalendar
 {
 	using System;
+	using River.OneMoreAddIn.Helpers.Extensions;
 	using System.Drawing;
 	using System.IO;
 	using System.Windows.Forms;
@@ -18,6 +19,10 @@ namespace OneMoreCalendar
 	/// </summary>
 	internal partial class SnapshotForm : RoundedForm
 	{
+		private const float DesignDpi = 144f;
+
+		private readonly Point origin;
+
 
 		/// <summary>
 		/// Consumers should call SnapshotForm(string)
@@ -34,12 +39,17 @@ namespace OneMoreCalendar
 		/// <summary>
 		/// Initialize the form
 		/// </summary>
+		/// <param name="page">The page being displayed</param>
 		/// <param name="path">Path of the .xps file to display</param>
-		public SnapshotForm(CalendarPage page, string path)
+		/// <param name="origin">
+		/// The preferred screen-coordinate top-left location of the popup
+		/// </param>
+		public SnapshotForm(CalendarPage page, string path, Point origin)
 			: this()
 		{
 			Path = path;
 			pathLabel.Text = page.Path;
+			this.origin = origin;
 		}
 
 
@@ -53,6 +63,15 @@ namespace OneMoreCalendar
 		/// <param name="e"></param>
 		protected override void OnLoad(EventArgs e)
 		{
+			// the designer layout was authored at 150% (144 DPI) with autoscaling off; scale it
+			// to the actual DPI before calling base.OnLoad so RoundedForm's rounded region uses
+			// the final size
+			this.ScaleLayout(DesignDpi);
+
+			// DeviceDpi isn't valid until the handle exists, so the popup can only be kept
+			// on screen once its scaled size is known
+			Location = Screen.FromPoint(origin).GetBoundedLocation(origin, Size);
+
 			// call RoundForm.base to draw background
 			base.OnLoad(e);
 

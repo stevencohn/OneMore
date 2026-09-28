@@ -19,6 +19,8 @@ namespace River.OneMoreAddIn.Commands
 		public const int RestartCmd = 2;
 		public const int ShutdownCmd = 3;
 
+		private const int RegionRadius = 20;
+
 		private readonly float scalingX;
 		private readonly float scalingY;
 		private int maxLeft;
@@ -43,8 +45,6 @@ namespace River.OneMoreAddIn.Commands
 
 			ManualLocation = true;
 
-			// create mask with rounded corners to overlay form
-			Region = Region.FromHrgn(Native.CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
 			TopMost = true;
 			TopLevel = true;
 
@@ -61,6 +61,20 @@ namespace River.OneMoreAddIn.Commands
 			// tell ThemeManager to ignore this window
 			ThemeEnabled = false;
 			base.OnLoad(e);
+
+			// create mask with rounded corners to overlay form, once its final size is known
+			ApplyRoundedRegion(RegionRadius);
+		}
+
+
+		protected override void OnSizeChanged(EventArgs e)
+		{
+			base.OnSizeChanged(e);
+
+			if (IsHandleCreated)
+			{
+				ApplyRoundedRegion(RegionRadius);
+			}
 		}
 
 
@@ -84,7 +98,8 @@ namespace River.OneMoreAddIn.Commands
 			// must add to area.X here to handle extended mode in which the coord of the secondary
 			// display is an extension of the first, so X would be greater than zero
 			Left = (int)(area.X + (area.Width - Width - (40 * scalingX)));
-			Top = (int)((SystemInformation.CaptionHeight + 60) * scalingY);
+			// CaptionHeight is a system metric that is already DPI-scaled
+			Top = SystemInformation.CaptionHeight + (int)(60 * scalingY);
 
 			maxLeft = Left;
 			maxTop = area.Height - Height - 50;

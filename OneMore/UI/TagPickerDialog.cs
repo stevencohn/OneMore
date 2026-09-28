@@ -7,6 +7,7 @@
 
 namespace River.OneMoreAddIn.UI
 {
+	using River.OneMoreAddIn.Helpers.Extensions;
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
@@ -22,10 +23,10 @@ namespace River.OneMoreAddIn.UI
 		}
 
 		private readonly Graphics graphics;
-		private readonly float xScalingFactor;
-		private readonly float yScalingFactor;
 
 		private readonly List<Zone> zones;
+		private readonly int anchorY;
+		private readonly int defaultTop;
 		private Zone preset;
 		private Zone active;
 
@@ -209,12 +210,46 @@ namespace River.OneMoreAddIn.UI
 				#endregion Zones
 			};
 
-			(xScalingFactor, yScalingFactor) = UI.Scaling.GetScalingFactors();
+			anchorY = y;
 
 			Left = x;
-			Top = y + (Height / 2);
+			Top = defaultTop = y + (Height / 2);
 
 			preset = null;
+		}
+
+
+		protected override void OnLoad(EventArgs e)
+		{
+			// the bitmap is a tag map at its native size at 96 DPI; size the borderless form to
+			// show it at that size scaled to this monitor's DPI. DeviceDpi isn't valid until
+			// the handle exists, so this can't be done in the constructor
+			var factor = DeviceDpi / 96f;
+			ClientSize = new Size(
+				(int)Math.Round(pictureBox.Image.Width * factor),
+				(int)Math.Round(pictureBox.Image.Height * factor));
+
+			// the constructor positioned the form using its designer height, so redo that with
+			// the real height unless the consumer has since moved the form itself
+			if (Top == defaultTop)
+			{
+				Top = anchorY + (Height / 2);
+			}
+
+			// now that the final size is known, keep the form fully on screen
+			Location = Screen.FromPoint(Location).GetBoundedLocation(Location, Size);
+
+			base.OnLoad(e);
+		}
+
+
+		protected override void OnShown(EventArgs e)
+		{
+			base.OnShown(e);
+
+			// hold the mouse so a click anywhere outside of the form, even on its disabled
+			// owner window, is delivered here and can be treated as a cancel
+			pictureBox.Capture = true;
 		}
 
 
@@ -269,10 +304,56 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
+		/// <summary>
+		/// Maps a mouse location within the stretched picture box to the coordinates of the
+		/// underlying image, which is what the zone bounds are expressed in
+		/// </summary>
+		private Point ToImagePoint(MouseEventArgs e)
+		{
+			var size = pictureBox.ClientSize;
+			if (size.Width <= 0 || size.Height <= 0)
+			{
+				return e.Location;
+			}
+
+			return new Point(
+				(int)Math.Round(e.X * (double)pictureBox.Image.Width / size.Width),
+				(int)Math.Round(e.Y * (double)pictureBox.Image.Height / size.Height));
+		}
+
+
+		/// <summary>
+		/// Closes the dialog without making a selection
+		/// </summary>
+		private void Cancel()
+		{
+			// ignore if already closing, e.g. Deactivate firing after a selection was made
+			if (DialogResult == DialogResult.None)
+			{
+				active = null;
+
+				DialogResult = DialogResult.Cancel;
+				Close();
+			}
+		}
+
+
+		private void pictureBox_MouseDown(object sender, MouseEventArgs e)
+		{
+			// the picture box holds the mouse capture (see OnShown), so a click that lands
+			// outside of it is reported here with coordinates outside of its bounds
+			if (!pictureBox.ClientRectangle.Contains(e.Location))
+			{
+				Cancel();
+			}
+		}
+
+
 		private void pictureBox_MouseMove(object sender, MouseEventArgs e)
 		{
-			var mouseX = xScalingFactor.EstEquals(0f) ? e.X : (int)Math.Round(e.X / xScalingFactor);
-			var mouseY = yScalingFactor.EstEquals(0f) ? e.Y : (int)Math.Round(e.Y / yScalingFactor);
+			var point = ToImagePoint(e);
+			var mouseX = point.X;
+			var mouseY = point.Y;
 
 			var zone = zones.Find(z =>
 				mouseX >= z.Bounds.Left && mouseX <= z.Bounds.Right &&
@@ -310,8 +391,9 @@ namespace River.OneMoreAddIn.UI
 
 		private void pictureBox_MouseUp(object sender, MouseEventArgs e)
 		{
-			var mouseX = xScalingFactor.EstEquals(0f) ? e.X : (int)Math.Round(e.X / xScalingFactor);
-			var mouseY = yScalingFactor.EstEquals(0f) ? e.Y : (int)Math.Round(e.Y / yScalingFactor);
+			var point = ToImagePoint(e);
+			var mouseX = point.X;
+			var mouseY = point.Y;
 
 			var zone = zones.Find(z =>
 				mouseX >= z.Bounds.Left && mouseX <= z.Bounds.Right &&
@@ -337,6 +419,12 @@ namespace River.OneMoreAddIn.UI
 				DialogResult = DialogResult.OK;
 				Close();
 			}
+			else
+			{
+				// a click inside the picture but not on a tag; a click ends the mouse capture
+				// so take it back to continue detecting clicks outside of the form
+				pictureBox.Capture = true;
+			}
 		}
 
 
@@ -344,11 +432,15 @@ namespace River.OneMoreAddIn.UI
 		{
 			if (e.KeyCode == Keys.Escape)
 			{
-				active = null;
-
-				DialogResult = DialogResult.Cancel;
-				Close();
+				Cancel();
 			}
+		}
+
+
+		private void TagPickerDialog_Deactivate(object sender, EventArgs e)
+		{
+			// another window, possibly of another application, took the focus
+			Cancel();
 		}
 	}
 }

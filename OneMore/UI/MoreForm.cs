@@ -447,6 +447,28 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
+		/// <summary>
+		/// Masks the form with rounded corners sized to its current dimensions. Call this from
+		/// OnLoad and OnSizeChanged rather than the constructor, so the mask matches the size
+		/// and DPI the form actually has after autoscaling.
+		/// </summary>
+		/// <param name="designRadius">
+		/// The corner ellipse diameter as authored at 150% (144 DPI), like the Designer layouts
+		/// </param>
+		protected void ApplyRoundedRegion(int designRadius)
+		{
+			var radius = (int)Math.Round(designRadius * DeviceDpi / 144f);
+
+			var handle = Native.CreateRoundRectRgn(0, 0, Width, Height, radius, radius);
+			var previous = Region;
+			Region = Region.FromHrgn(handle);
+			previous?.Dispose();
+
+			// Region.FromHrgn copies the GDI region so the original handle can be released
+			Native.DeleteObject(handle);
+		}
+
+
 		protected override void OnShown(EventArgs e)
 		{
 			//logger.WriteLine($"showing [{Text}]");

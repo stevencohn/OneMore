@@ -98,8 +98,10 @@ namespace River.OneMoreAddIn.UI
 				int physScreenWidth = Native.GetDeviceCaps(desktop, Native.DEVICECAPS_DESKTOPHORZRES);
 				int physScreenHeight = Native.GetDeviceCaps(desktop, Native.DEVICECAPS_DESKTOPVERTRES);
 
-				xScalingFactor = physScreenWidth / (float)System.Windows.SystemParameters.WorkArea.Width;
-				yScalingFactor = physScreenHeight / (float)System.Windows.SystemParameters.WorkArea.Height;
+				// use the full primary screen, not WorkArea, which excludes the taskbar and
+				// would skew the factor along the axis the taskbar occupies
+				xScalingFactor = physScreenWidth / (float)System.Windows.SystemParameters.PrimaryScreenWidth;
+				yScalingFactor = physScreenHeight / (float)System.Windows.SystemParameters.PrimaryScreenHeight;
 			}
 
 			return (xScalingFactor, yScalingFactor); // 1.25 = 125%
