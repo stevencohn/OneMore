@@ -4197,6 +4197,10 @@ Select No to keep one empty line between paragraphs</value>
     <value>Old or New</value>
     <comment>title</comment>
   </data>
+  <data name="ResetListStyleCommand_NoList" xml:space="preserve">
+    <value>Move the text cursor to an item of a list or select list items</value>
+    <comment>message box</comment>
+  </data>
   <data name="RestoreBackgroundImagesCommand_invalid" xml:space="preserve">
     <value>Could not restore background images because the resulting page failed validation; no changes were made</value>
     <comment>error message</comment>
@@ -5767,6 +5771,14 @@ Help Tab</value>
   <data name="ribReportRemindersButton_Screentip" xml:space="preserve">
     <value>Generate a summary report of reminders</value>
     <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribResetListStyleButton_Label" xml:space="preserve">
+    <value>Reset List Styling</value>
+    <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribResetListStyleButton_Screentip" xml:space="preserve">
+    <value>Remove styling from the numbers or bullets of the list at the cursor or of the selected list items and apply the default Normal font and size</value>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribResetTasksButton_Label" xml:space="preserve">
     <value>Reset All Completed Tasks</value>

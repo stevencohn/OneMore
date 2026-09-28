@@ -4183,6 +4183,10 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <value>旧的或新的</value>
     <comment>title</comment>
   </data>
+  <data name="ResetListStyleCommand_NoList" xml:space="preserve">
+    <value>将文本光标移动到列表中的一项或选择列表项</value>
+    <comment>message box</comment>
+  </data>
   <data name="RestoreBackgroundImagesCommand_invalid" xml:space="preserve">
     <value>无法恢复背景图像，因为生成的页面验证失败；没有做任何改变</value>
     <comment>error message</comment>
@@ -5751,6 +5755,14 @@ TF-IDF 余弦、词汇重叠、结构</value>
   <data name="ribReportRemindersButton_Screentip" xml:space="preserve">
     <value>生成提醒摘要报告</value>
     <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribResetListStyleButton_Label" xml:space="preserve">
+    <value>重置列表样式</value>
+    <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribResetListStyleButton_Screentip" xml:space="preserve">
+    <value>删除光标处列表或选定列表项的数字或项目符号的样式，并应用默认的普通字体和大小</value>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribResetTasksButton_Label" xml:space="preserve">
     <value>重置所有已完成的任务</value>

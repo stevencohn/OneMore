@@ -4169,6 +4169,10 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <value>ישן או חדש</value>
     <comment>title</comment>
   </data>
+  <data name="ResetListStyleCommand_NoList" xml:space="preserve">
+    <value>הזז את סמן הטקסט לפריט ברשימה או בחר פריטי רשימה</value>
+    <comment>message box</comment>
+  </data>
   <data name="RestoreBackgroundImagesCommand_invalid" xml:space="preserve">
     <value>לא ניתן לשחזר תמונות רקע מכיוון שהדף שהתקבל נכשל באימות; לא נעשו שינויים</value>
     <comment>error message</comment>
@@ -5737,6 +5741,14 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
   <data name="ribReportRemindersButton_Screentip" xml:space="preserve">
     <value>צור דוח סיכום של תזכורות</value>
     <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribResetListStyleButton_Label" xml:space="preserve">
+    <value>אפס את עיצוב הרשימה</value>
+    <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribResetListStyleButton_Screentip" xml:space="preserve">
+    <value>הסר סגנון מהמספרים או התבליטים של הרשימה בסמן או של פריטי הרשימה שנבחרו והחל את הגופן והגודל הרגילים המוגדרים כברירת מחדל</value>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribResetTasksButton_Label" xml:space="preserve">
     <value>אפס את כל המשימות שהושלמו</value>

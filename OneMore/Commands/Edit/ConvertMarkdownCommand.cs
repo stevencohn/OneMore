@@ -129,6 +129,7 @@ namespace River.OneMoreAddIn.Commands
 					.RewriteTodo(touched)
 					.RewriteCode(touched)
 					.RewriteInlineCode(touched)
+					.RewriteListMarkers(touched)
 					.SpaceOutParagraphs(touched, singleSpacing ? 0f : 12f);
 
 				// force a full update: OptimizeForSave's omHash-based "unchanged, skip

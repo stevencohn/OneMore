@@ -4169,6 +4169,10 @@ Selecione Não para manter uma linha vazia entre os parágrafos</value>
     <value>Velho ou novo</value>
     <comment>title</comment>
   </data>
+  <data name="ResetListStyleCommand_NoList" xml:space="preserve">
+    <value>Mova o cursor de texto para um item de uma lista ou selecione itens da lista</value>
+    <comment>message box</comment>
+  </data>
   <data name="RestoreBackgroundImagesCommand_invalid" xml:space="preserve">
     <value>Não foi possível restaurar imagens de fundo porque a página resultante falhou na validação; nenhuma alteração foi feita</value>
     <comment>error message</comment>
@@ -5737,6 +5741,14 @@ Guia Ajuda</value>
   <data name="ribReportRemindersButton_Screentip" xml:space="preserve">
     <value>Gerar um relatório resumido de lembretes</value>
     <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribResetListStyleButton_Label" xml:space="preserve">
+    <value>Redefinir estilo de lista</value>
+    <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribResetListStyleButton_Screentip" xml:space="preserve">
+    <value>Remova o estilo dos números ou marcadores da lista no cursor ou dos itens da lista selecionados e aplique a fonte e o tamanho Normal padrão</value>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribResetTasksButton_Label" xml:space="preserve">
     <value>Redefinir todas as tarefas concluídas</value>

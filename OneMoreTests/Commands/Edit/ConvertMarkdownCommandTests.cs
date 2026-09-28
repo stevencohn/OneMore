@@ -390,6 +390,65 @@ para2";
 
 
 		[TestMethod]
+		public void ConvertMarkdown_ListMarkers_RemovesStyleAttributes()
+		{
+			// OneNote's HTML importer copies the style of a list item's first run, such as
+			// an inline code span, onto its number or bullet. RewriteListMarkers must strip
+			// that styling but keep the attributes that define the list itself.
+			var numbered = new XElement(Ns + "OE",
+				new XAttribute("objectID", "oe-numbered"),
+				new XElement(Ns + "List",
+					new XElement(Ns + "Number",
+						new XAttribute("numberSequence", "0"),
+						new XAttribute("numberFormat", "##."),
+						new XAttribute("fontColor", "#000000"),
+						new XAttribute("fontSize", "11.5"),
+						new XAttribute("font", "Consolas"),
+						new XAttribute("bold", "true"),
+						new XAttribute("text", "1."))),
+				new XElement(Ns + "T", new XCData("OneMore")));
+
+			var bulleted = new XElement(Ns + "OE",
+				new XAttribute("objectID", "oe-bulleted"),
+				new XElement(Ns + "List",
+					new XElement(Ns + "Bullet",
+						new XAttribute("bullet", "2"),
+						new XAttribute("fontColor", "#000000"),
+						new XAttribute("fontSize", "9.0"))),
+				new XElement(Ns + "T", new XCData("item")));
+
+			var plain = new XElement(Ns + "OE",
+				new XAttribute("objectID", "oe-plain"),
+				new XElement(Ns + "T", new XCData("not a list item")));
+
+			var page = new Page(XElement.Parse(
+				new PageBuilder("page-markers", "List Markers")
+					.WithElement(numbered)
+					.WithElement(bulleted)
+					.WithElement(plain)
+					.Build()));
+
+			new MarkdownConverter(page).RewriteListMarkers();
+
+			var number = page.Root.Descendants(Ns + "Number").Single();
+			Assert.AreEqual(3, number.Attributes().Count(),
+				"Only numberSequence, numberFormat and text should remain");
+			Assert.AreEqual("##.", (string)number.Attribute("numberFormat"));
+			Assert.AreEqual("1.", (string)number.Attribute("text"));
+
+			var bullet = page.Root.Descendants(Ns + "Bullet").Single();
+			Assert.AreEqual(1, bullet.Attributes().Count(), "Only bullet should remain");
+			Assert.AreEqual("2", (string)bullet.Attribute("bullet"));
+
+			Assert.AreEqual("not a list item",
+				((XCData)page.Root.Descendants(Ns + "T")
+					.Last(t => t.Parent.Attribute("objectID")?.Value == "oe-plain")
+					.FirstNode).Value,
+				"Non-list paragraphs must be untouched");
+		}
+
+
+		[TestMethod]
 		public async Task ConvertMarkdown_NoSelection_InsertsNoHtmlBlock()
 		{
 			// Arrange: plain page with no selected T elements.  SelectionScope = None

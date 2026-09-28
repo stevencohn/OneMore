@@ -425,6 +425,36 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
+		/// Removes the style attributes from the Bullet or Number of every list item in all
+		/// Outlines on the page so they retain their default styling
+		/// </summary>
+		public void RewriteListMarkers()
+		{
+			foreach (var outline in page.BodyOutlines)
+			{
+				RewriteListMarkers(outline.Descendants(ns + "OE"));
+			}
+		}
+
+
+		/// <summary>
+		/// Removes the style attributes from the Bullet or Number of every list item in the
+		/// given paragraph collection so they retain their default styling. OneNote's HTML
+		/// importer copies the style of a list item's first run, such as an inline code span,
+		/// onto its marker.
+		/// </summary>
+		public MarkdownConverter RewriteListMarkers(IEnumerable<XElement> paragraphs)
+		{
+			foreach (var para in paragraphs)
+			{
+				ListMarker.Reset(para);
+			}
+
+			return this;
+		}
+
+
+		/// <summary>
 		/// Collapses marker paragraphs inserted by OneMoreDig.RenderPreservingBlankLines
 		/// (OneMoreDig.BlankLineMarker) into genuinely empty OneNote paragraphs, in all
 		/// Outlines on the page

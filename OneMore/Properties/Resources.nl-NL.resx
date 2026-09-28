@@ -4169,6 +4169,10 @@ Selecteer NO om één lege regel tussen paragrafen te behouden</value>
     <value>Oud of nieuw</value>
     <comment>title</comment>
   </data>
+  <data name="ResetListStyleCommand_NoList" xml:space="preserve">
+    <value>Verplaats de tekstcursor naar een item in een lijst of selecteer lijstitems</value>
+    <comment>message box</comment>
+  </data>
   <data name="RestoreBackgroundImagesCommand_invalid" xml:space="preserve">
     <value>Kon de achtergrondafbeeldingen niet herstellen omdat de validatie van de resulterende pagina mislukte; er zijn geen wijzigingen aangebracht</value>
     <comment>error message</comment>
@@ -5737,6 +5741,14 @@ Tabblad Help</value>
   <data name="ribReportRemindersButton_Screentip" xml:space="preserve">
     <value>Genereer een overzichtsrapport van herinneringen</value>
     <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribResetListStyleButton_Label" xml:space="preserve">
+    <value>Lijststijl opnieuw instellen</value>
+    <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribResetListStyleButton_Screentip" xml:space="preserve">
+    <value>Verwijder de stijl van de cijfers of opsommingstekens van de lijst bij de cursor of van de geselecteerde lijstitems en pas het standaard lettertype en de standaardgrootte toe</value>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribResetTasksButton_Label" xml:space="preserve">
     <value>Reset alle voltooide taken</value>

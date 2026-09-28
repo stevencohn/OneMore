@@ -642,6 +642,12 @@
           getScreentip="GetRibbonScreentip"
           onAction="OutlineCmd"/>
         <button
+          id="ribResetListStyleButton"
+          imageMso="ClearFormatting"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="ResetListStyleCmd"/>
+        <button
           id="ribSortListButton"
           imageMso="Bullets"
           getLabel="GetRibbonLabel"

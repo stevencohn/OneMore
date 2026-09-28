@@ -4172,6 +4172,10 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <value>旧もしくは新</value>
     <comment>title</comment>
   </data>
+  <data name="ResetListStyleCommand_NoList" xml:space="preserve">
+    <value>テキスト カーソルをリストの項目に移動するか、リスト項目を選択します</value>
+    <comment>message box</comment>
+  </data>
   <data name="RestoreBackgroundImagesCommand_invalid" xml:space="preserve">
     <value>結果のページが検証に失敗したため、背景画像を復元できませんでした。変更は行われませんでした</value>
     <comment>error message</comment>
@@ -5742,6 +5746,14 @@ TF-IDF コサイン、語彙の重複、構造</value>
   <data name="ribReportRemindersButton_Screentip" xml:space="preserve">
     <value>リマインダーの概要レポートを生成</value>
     <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribResetListStyleButton_Label" xml:space="preserve">
+    <value>リストのスタイルをリセット</value>
+    <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribResetListStyleButton_Screentip" xml:space="preserve">
+    <value>カーソル位置のリストまたは選択したリスト項目の番号または箇条書きからスタイルを削除し、デフォルトの標準フォントとサイズを適用します。</value>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribResetTasksButton_Label" xml:space="preserve">
     <value>完了したタスクをすべてリセット</value>

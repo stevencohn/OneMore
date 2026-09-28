@@ -92,6 +92,7 @@
     <Compile Include="Commands\Edit\CopyAsMarkdownCommandTests.cs" />
     <Compile Include="Commands\Edit\HighlightCommandTests.cs" />
     <Compile Include="Commands\Edit\JoinParagraphCommandTests.cs" />
+    <Compile Include="Commands\Numbering\ResetListStyleCommandTests.cs" />
     <Compile Include="Commands\Page\WordCountCommandTests.cs" />
     <Compile Include="Commands\Snippets\BoxTypesProviderTests.cs" />
     <Compile Include="Commands\Snippets\InsertBoxCommandTests.cs" />

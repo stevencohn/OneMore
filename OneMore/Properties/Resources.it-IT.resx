@@ -4169,6 +4169,10 @@ Selezionare No per mantenere una riga vuota tra i paragrafi</value>
     <value>Vecchio o nuovo</value>
     <comment>title</comment>
   </data>
+  <data name="ResetListStyleCommand_NoList" xml:space="preserve">
+    <value>Spostare il cursore del testo su un elemento di un elenco o selezionare gli elementi dell'elenco</value>
+    <comment>message box</comment>
+  </data>
   <data name="RestoreBackgroundImagesCommand_invalid" xml:space="preserve">
     <value>Impossibile ripristinare le immagini di sfondo perché la convalida della pagina risultante non è riuscita; non sono state apportate modifiche</value>
     <comment>error message</comment>
@@ -5739,6 +5743,14 @@ Scheda Aiuto</value>
   <data name="ribReportRemindersButton_Screentip" xml:space="preserve">
     <value>Genera un rapporto riepilogativo dei promemoria</value>
     <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribResetListStyleButton_Label" xml:space="preserve">
+    <value>Reimposta lo stile dell'elenco</value>
+    <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribResetListStyleButton_Screentip" xml:space="preserve">
+    <value>Rimuovi lo stile dai numeri o dai punti elenco del cursore o dagli elementi dell'elenco selezionati e applica il carattere e la dimensione Normale predefiniti</value>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribResetTasksButton_Label" xml:space="preserve">
     <value>Reimposta tutte le attività completate</value>

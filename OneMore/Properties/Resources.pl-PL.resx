@@ -4169,6 +4169,10 @@ Wybierz Nie, aby zachować jedną pustą linię między akapitami</value>
     <value>Stare lub nowe</value>
     <comment>title</comment>
   </data>
+  <data name="ResetListStyleCommand_NoList" xml:space="preserve">
+    <value>Przesuń kursor tekstowy do elementu listy lub wybierz elementy listy</value>
+    <comment>message box</comment>
+  </data>
   <data name="RestoreBackgroundImagesCommand_invalid" xml:space="preserve">
     <value>Nie można przywrócić obrazów tła, ponieważ wynikowa strona nie przeszła weryfikacji; nie wprowadzono żadnych zmian</value>
     <comment>error message</comment>
@@ -5737,6 +5741,14 @@ Zakładka Pomoc</value>
   <data name="ribReportRemindersButton_Screentip" xml:space="preserve">
     <value>Wygeneruj raport podsumowujący przypomnienia</value>
     <comment>ribbon reminders</comment>
+  </data>
+  <data name="ribResetListStyleButton_Label" xml:space="preserve">
+    <value>Zresetuj styl listy</value>
+    <comment>ribbon numbering</comment>
+  </data>
+  <data name="ribResetListStyleButton_Screentip" xml:space="preserve">
+    <value>Usuń stylizację z numerów lub punktorów listy przy kursorze lub z wybranych elementów listy i zastosuj domyślną czcionkę i rozmiar Normalny</value>
+    <comment>ribbon numbering</comment>
   </data>
   <data name="ribResetTasksButton_Label" xml:space="preserve">
     <value>Zresetuj wszystkie ukończone zadania</value>
