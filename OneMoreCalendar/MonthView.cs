@@ -659,7 +659,7 @@ namespace OneMoreCalendar
 					using var swatchBrush = new SolidBrush(page.SectionColor);
 					g.FillRectangle(swatchBrush, swatchRect);
 
-					var gap = swatchWidth + this.Scaled(3);
+					var gap = swatchWidth + this.Scaled(4);
 					left += gap;
 					width -= gap;
 				}
