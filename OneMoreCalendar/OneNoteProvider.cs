@@ -313,10 +313,11 @@ namespace OneMoreCalendar
 						Modified = DateTime.Parse(
 							e.Attribute("lastModifiedTime").Value, DateTimeFormatInfo.CurrentInfo),
 						IsDeleted = e.Attribute("isInRecycleBin") != null,
-						HasReminders = e.Elements(ns + "Meta")
-							.Any(m =>
+						ReminderContent = e.Elements(ns + "Meta")
+							.FirstOrDefault(m =>
 								m.Attribute("name").Value == MetaNames.Reminder &&
 								m.Attribute("content").Value.Length > 0)
+							?.Attribute("content").Value
 					};
 				})
 				.ToList();

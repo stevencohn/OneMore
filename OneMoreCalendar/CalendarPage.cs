@@ -4,6 +4,7 @@
 
 namespace OneMoreCalendar
 {
+	using River.OneMoreAddIn.Commands;
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
@@ -56,7 +57,23 @@ namespace OneMoreCalendar
 		public Rectangle Bounds { get; set; } = Rectangle.Empty;
 
 
-		public bool HasReminders { get; set; }
+		/// <summary>
+		/// The raw, encoded page-level reminder Meta content; decoded lazily on hover
+		/// </summary>
+		public string ReminderContent { get; set; }
+
+
+		public bool HasReminders => !string.IsNullOrEmpty(ReminderContent);
+
+
+		private List<Reminder> reminders;
+
+
+		/// <summary>
+		/// Gets the reminders decoded from ReminderContent; empty if there are none
+		/// </summary>
+		public List<Reminder> Reminders =>
+			reminders ??= new ReminderSerializer().DecodeContent(ReminderContent);
 
 
 		public string Hyperlink { get; set; }

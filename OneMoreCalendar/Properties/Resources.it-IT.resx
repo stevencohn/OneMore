@@ -373,6 +373,21 @@ xmlns="http://www.w3.org/TR/REC-html40"&gt;
   <data name="ProgressDialog_cancelButton.Text" xml:space="preserve">
     <value>Cancellare</value>
   </data>
+  <data name="ReminderPopup_Complete" xml:space="preserve">
+    <value>Completare:</value>
+  </data>
+  <data name="ReminderPopup_Due" xml:space="preserve">
+    <value>Dovuto:</value>
+  </data>
+  <data name="ReminderPopup_MoreMany" xml:space="preserve">
+    <value>+{0} altri promemoria</value>
+  </data>
+  <data name="ReminderPopup_MoreOne" xml:space="preserve">
+    <value>+1 altro promemoria</value>
+  </data>
+  <data name="ReminderPopup_Status" xml:space="preserve">
+    <value>Stato:</value>
+  </data>
   <data name="SettingsForm_aboutLink.Text" xml:space="preserve">
     <value>Di</value>
   </data>
