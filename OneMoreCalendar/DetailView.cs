@@ -46,11 +46,16 @@ namespace OneMoreCalendar
 		private readonly Font hotFont;
 		private readonly Font deletedFont;
 		private readonly StringFormat format;
+		private readonly BellHover bellHover;
 
 
 		public DetailView()
 		{
 			InitializeComponent();
+
+			bellHover = new BellHover(listbox);
+			Disposed += (_, _) => bellHover.Dispose();
+			listbox.MouseLeave += (_, _) => bellHover.Cancel();
 
 			hotFont = new Font(listbox.Font, FontStyle.Regular | FontStyle.Underline);
 			deletedFont = new Font(listbox.Font, FontStyle.Regular | FontStyle.Strikeout);
@@ -81,6 +86,7 @@ namespace OneMoreCalendar
 
 		public void SetRange(DateTime startDate, DateTime endDate, CalendarPages pages)
 		{
+			bellHover.Cancel();
 			SuspendLayout();
 			listbox.Items.Clear();
 
@@ -294,9 +300,7 @@ namespace OneMoreCalendar
 			// reminder
 			if (page.HasReminders)
 			{
-				e.Graphics.DrawImage(Properties.Resources.Reminder_01_24_Y,
-					HeadWidth + PathWidth + this.Scaled(40) + (BellWidth - this.Scaled(15)),
-					top + this.Scaled(3), this.Scaled(12f), this.Scaled(12f));
+				e.Graphics.DrawImage(Properties.Resources.Reminder_01_24_Y, BellRect(e.Bounds));
 			}
 
 			// title
@@ -347,6 +351,16 @@ namespace OneMoreCalendar
 		/// <summary>
 		/// Expands a page's text hit bounds to the full title column for drawing.
 		/// </summary>
+		// bell icon bounds within the given list item bounds
+		private Rectangle BellRect(Rectangle item)
+		{
+			var size = this.Scaled(12);
+			return new Rectangle(
+				HeadWidth + PathWidth + this.Scaled(40) + (BellWidth - this.Scaled(15)),
+				item.Top + (VPadding / 2) + this.Scaled(3), size, size);
+		}
+
+
 		private Rectangle TitleArea(Rectangle hit)
 		{
 			var width = listbox.ClientSize.Width - DateWidth * 2 - hit.X;
@@ -363,8 +377,15 @@ namespace OneMoreCalendar
 				listbox.Items[index] is not ListViewItem hit ||
 				hit.Tag is not DayItem row)
 			{
+				bellHover.Cancel();
 				return;
 			}
+
+			var bell = row.Page is not null && row.Page.HasReminders
+				? BellRect(listbox.GetItemRectangle(index))
+				: Rectangle.Empty;
+
+			bellHover.Track(e.Location, bell.Contains(e.Location) ? row.Page : null, bell);
 
 			var page = row.Page is not null && row.Page.Bounds.Contains(e.Location) ? row.Page : null;
 
@@ -433,6 +454,8 @@ namespace OneMoreCalendar
 		 */
 		private void ListBoxMouseUp(object sender, MouseEventArgs e)
 		{
+			bellHover.Cancel();
+
 			var index = listbox.IndexFromPoint(e.Location);
 			if (index < 0 ||
 				listbox.Items[index] is not ListViewItem hit ||
@@ -461,6 +484,7 @@ namespace OneMoreCalendar
 
 		private void ListBoxScrolled(object sender, ScrollEventArgs e)
 		{
+			bellHover.Cancel();
 			listbox.Invalidate();
 			Logger.Current.WriteLine(
 				$"scrolled {e.Type} @ {e.ScrollOrientation}, {e.OldValue} >> {e.NewValue}");

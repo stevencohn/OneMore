@@ -117,6 +117,10 @@
     <Compile Include="HelpForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Things\BellHover.cs" />
+    <Compile Include="Things\ReminderPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Things\ThemeMode.cs" />
     <Compile Include="Things\BitmapExtensions.cs" />
     <Compile Include="Things\DateTimeExtensions.cs" />

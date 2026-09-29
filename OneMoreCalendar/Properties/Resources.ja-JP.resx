@@ -373,6 +373,21 @@ xmlns="http://www.w3.org/TR/REC-html40"&gt;
   <data name="ProgressDialog_cancelButton.Text" xml:space="preserve">
     <value>キャンセル</value>
   </data>
+  <data name="ReminderPopup_Complete" xml:space="preserve">
+    <value>完了：</value>
+  </data>
+  <data name="ReminderPopup_Due" xml:space="preserve">
+    <value>期限：</value>
+  </data>
+  <data name="ReminderPopup_MoreMany" xml:space="preserve">
+    <value>+{0} 件のリマインダー</value>
+  </data>
+  <data name="ReminderPopup_MoreOne" xml:space="preserve">
+    <value>+1 件のリマインダー</value>
+  </data>
+  <data name="ReminderPopup_Status" xml:space="preserve">
+    <value>状態：</value>
+  </data>
   <data name="SettingsForm_aboutLink.Text" xml:space="preserve">
     <value>について</value>
   </data>

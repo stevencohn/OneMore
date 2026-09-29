@@ -24,8 +24,17 @@ namespace OneMoreCalendar
 		{
 			public Hottype Type;
 			public Rectangle Bounds;
+
+			// the box the title is truncated to when painted; hover draws and erases within it
+			public Rectangle Clip;
 			public bool InMonth;
 			public CalendarDay Day;
+			public CalendarPage Page;
+		}
+
+		private sealed class BellSpot
+		{
+			public Rectangle Bounds;
 			public CalendarPage Page;
 		}
 
@@ -50,6 +59,8 @@ namespace OneMoreCalendar
 		private readonly Size moreSize;
 		private readonly StringFormat format;
 		private readonly List<Hotspot> hotspots;
+		private readonly List<BellSpot> bells;
+		private readonly BellHover bellHover;
 		private readonly MoreButton copyButton;
 		private readonly MoreButton createButton;
 		private readonly ToolTip tooltip;
@@ -79,6 +90,10 @@ namespace OneMoreCalendar
 			moreSize = TextRenderer.MeasureText(MoreGlyph, Font);
 
 			hotspots = new List<Hotspot>();
+			bells = new List<BellSpot>();
+
+			bellHover = new BellHover(this);
+			Disposed += (_, _) => bellHover.Dispose();
 
 			copyFont = new Font("Segoe UI Symbol", 9.0f, FontStyle.Regular);
 			var copySize = TextRenderer.MeasureText(CopyGlyph, copyFont);
@@ -145,6 +160,7 @@ namespace OneMoreCalendar
 
 		public void SetRange(DateTime startDate, DateTime endDate, CalendarPages pages)
 		{
+			bellHover.Cancel();
 			date = startDate.StartOfMonth();
 
 			firstDow = Thread.CurrentThread.CurrentUICulture.DateTimeFormat.FirstDayOfWeek;
@@ -256,6 +272,8 @@ namespace OneMoreCalendar
 		{
 			base.OnMouseClick(e);
 
+			bellHover.Cancel();
+
 			Hotspot spot;
 
 			if (e.Button == MouseButtons.Right)
@@ -292,6 +310,8 @@ namespace OneMoreCalendar
 				return;
 			}
 
+			bellHover.Cancel();
+
 			day.ScrollOffset = offset;
 
 			using var g = CreateGraphics();
@@ -302,6 +322,9 @@ namespace OneMoreCalendar
 		protected override void OnMouseMove(MouseEventArgs e)
 		{
 			//base.OnMouseMove(e);
+
+			var bell = bells.Find(b => b.Bounds.Contains(e.Location));
+			bellHover.Track(e.Location, bell?.Page, bell?.Bounds ?? Rectangle.Empty);
 
 			var spot = hotspots.Find(h => h.Bounds.Contains(e.Location));
 
@@ -314,8 +337,6 @@ namespace OneMoreCalendar
 				}
 				return;
 			}
-
-			var width = Width / 7 - this.Scaled(8);
 
 			// clear previously active...
 
@@ -343,21 +364,20 @@ namespace OneMoreCalendar
 							? new SolidBrush(Theme.MonthPrimary)
 							: new SolidBrush(Theme.MonthSecondary);
 
-						g.FillRectangle(brush, hotspot.Bounds);
+						g.FillRectangle(brush, hotspot.Clip);
 
 						if (hotspot.Page.IsDeleted)
 						{
 							TitleRenderer.DrawTitle(g, hotspot.Page.Title, deletedFont, Brushes.Gray,
-								new Rectangle(hotspot.Bounds.X, hotspot.Bounds.Y, width, hotspot.Bounds.Height),
-								format);
+								hotspot.Clip, format);
 						}
 						else
 						{
-							var titleBrush = new SolidBrush(hotspot.InMonth
+							using var titleBrush = new SolidBrush(hotspot.InMonth
 								? Theme.MonthTodayFore : Theme.MonthDayFore);
 
 							var titleFont = ShowsAsCreated(hotspot.Day, hotspot.Page) ? italicFont : Font;
-							TitleRenderer.DrawTitle(g, hotspot.Page.Title, titleFont, titleBrush, hotspot.Bounds, format);
+							TitleRenderer.DrawTitle(g, hotspot.Page.Title, titleFont, titleBrush, hotspot.Clip, format);
 						}
 					}
 
@@ -415,16 +435,14 @@ namespace OneMoreCalendar
 					using (var g = CreateGraphics())
 					{
 						using var fill = new SolidBrush(spot.InMonth ? Theme.MonthPrimary : Theme.MonthSecondary);
-						g.FillRectangle(fill, spot.Bounds);
+						g.FillRectangle(fill, spot.Clip);
 
 						using var fore = new SolidBrush(Theme.Highlight);
 						var hoverFont = spot.Page.IsDeleted ? deletedFont
 							: ShowsAsCreated(spot.Day, spot.Page) ? italicHotFont
 							: hotFont;
 
-						TitleRenderer.DrawTitle(g, spot.Page.Title, hoverFont, fore,
-							new Rectangle(spot.Bounds.X, spot.Bounds.Y, width, spot.Bounds.Height),
-							format);
+						TitleRenderer.DrawTitle(g, spot.Page.Title, hoverFont, fore, spot.Clip, format);
 					}
 
 					HoverPage?.Invoke(this, new CalendarPageEventArgs(spot.Page));
@@ -436,6 +454,13 @@ namespace OneMoreCalendar
 		}
 
 
+		protected override void OnMouseLeave(EventArgs e)
+		{
+			base.OnMouseLeave(e);
+			bellHover.Cancel();
+		}
+
+
 		protected override void OnPaint(PaintEventArgs e)
 		{
 			SuspendLayout();
@@ -443,6 +468,7 @@ namespace OneMoreCalendar
 			base.OnPaint(e);
 
 			hotspots.Clear();
+			bells.Clear();
 
 			if (days is not null && days.Count > 0)
 			{
@@ -620,6 +646,7 @@ namespace OneMoreCalendar
 			// and removing by page reference alone would wipe out that other day's hotspot
 			// (making it unclickable) every time this day repaints.
 			hotspots.RemoveAll(h => h.Type == Hottype.Page && day.Bounds.Contains(h.Bounds.Location));
+			bells.RemoveAll(b => day.Bounds.Contains(b.Bounds.Location));
 
 			// content box with padding
 			var box = new Rectangle(
@@ -667,8 +694,10 @@ namespace OneMoreCalendar
 				if (page.HasReminders)
 				{
 					width -= this.Scaled(14);
-					g.DrawImage(Properties.Resources.Reminder_01_24_Y,
-						left, top + this.Scaled(3), this.Scaled(12f), this.Scaled(12f));
+					var bellSize = this.Scaled(12);
+					var bellBounds = new Rectangle(left, top + this.Scaled(3), bellSize, bellSize);
+					g.DrawImage(Properties.Resources.Reminder_01_24_Y, bellBounds);
+					bells.Add(new BellSpot { Bounds = bellBounds, Page = page });
 					left += this.Scaled(14);
 				}
 
@@ -689,6 +718,7 @@ namespace OneMoreCalendar
 				{
 					Type = Hottype.Page,
 					Bounds = new Rectangle(clip.X, clip.Y, size.Width + this.Scaled(2), size.Height),
+					Clip = clip,
 					Day = day,
 					Page = page,
 					InMonth = day.InMonth
@@ -922,6 +952,8 @@ namespace OneMoreCalendar
 		protected override void OnMouseWheel(MouseEventArgs e)
 		{
 			base.OnMouseWheel(e);
+
+			bellHover.Cancel();
 
 			var day = days?.Find(d => d.Bounds.Contains(e.Location));
 			if (day is not null && (day.UpButton is not null || day.DownButton is not null))

@@ -885,6 +885,51 @@ namespace OneMoreCalendar.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Complete:.
+        /// </summary>
+        internal static string ReminderPopup_Complete {
+            get {
+                return ResourceManager.GetString("ReminderPopup_Complete", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Due:.
+        /// </summary>
+        internal static string ReminderPopup_Due {
+            get {
+                return ResourceManager.GetString("ReminderPopup_Due", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to +{0} more reminders.
+        /// </summary>
+        internal static string ReminderPopup_MoreMany {
+            get {
+                return ResourceManager.GetString("ReminderPopup_MoreMany", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to +1 more reminder.
+        /// </summary>
+        internal static string ReminderPopup_MoreOne {
+            get {
+                return ResourceManager.GetString("ReminderPopup_MoreOne", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Status:.
+        /// </summary>
+        internal static string ReminderPopup_Status {
+            get {
+                return ResourceManager.GetString("ReminderPopup_Status", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Reminder_01_24_Y {

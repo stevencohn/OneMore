@@ -373,6 +373,21 @@ xmlns="http://www.w3.org/TR/REC-html40"&gt;
   <data name="ProgressDialog_cancelButton.Text" xml:space="preserve">
     <value>לְבַטֵל</value>
   </data>
+  <data name="ReminderPopup_Complete" xml:space="preserve">
+    <value>לְהַשְׁלִים:</value>
+  </data>
+  <data name="ReminderPopup_Due" xml:space="preserve">
+    <value>בשל:</value>
+  </data>
+  <data name="ReminderPopup_MoreMany" xml:space="preserve">
+    <value>+{0} תזכורות נוספות</value>
+  </data>
+  <data name="ReminderPopup_MoreOne" xml:space="preserve">
+    <value>+1 תזכורת נוספת</value>
+  </data>
+  <data name="ReminderPopup_Status" xml:space="preserve">
+    <value>סטָטוּס:</value>
+  </data>
   <data name="SettingsForm_aboutLink.Text" xml:space="preserve">
     <value>אוֹדוֹת</value>
   </data>
