@@ -59,6 +59,9 @@ namespace River.OneMoreAddIn.Commands
 				});
 			}
 
+			// refreshButton is reached via ProcessCmdKey so it follows cancelButton in tab order
+			refreshButton.TabStop = false;
+
 			refreshTip = new ToolTip();
 			refreshTip.SetToolTip(refreshButton, Resx.SearchTitleDialog_refreshButton_Tooltip);
 
@@ -180,6 +183,38 @@ namespace River.OneMoreAddIn.Commands
 			{
 				Nevermind(this, EventArgs.Empty);
 				return true;
+			}
+
+			// refreshButton lives in queryPanel but should be last in the tab cycle,
+			// immediately after cancelButton; WinForms tab order is per-container so
+			// route Tab and Shift+Tab manually around it
+			if (keyData == Keys.Tab)
+			{
+				if (cancelButton.ContainsFocus)
+				{
+					refreshButton.Focus();
+					return true;
+				}
+
+				if (refreshButton.ContainsFocus)
+				{
+					findBox.Focus();
+					return true;
+				}
+			}
+			else if (keyData == (Keys.Tab | Keys.Shift))
+			{
+				if (refreshButton.ContainsFocus)
+				{
+					cancelButton.Focus();
+					return true;
+				}
+
+				if (findBox.ContainsFocus)
+				{
+					refreshButton.Focus();
+					return true;
+				}
 			}
 
 			return base.ProcessCmdKey(ref msg, keyData);
