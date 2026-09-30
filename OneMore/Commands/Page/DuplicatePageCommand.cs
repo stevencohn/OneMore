@@ -97,6 +97,21 @@ namespace River.OneMoreAddIn.Commands
 				one.CreatePage(sectionId, out newPageId);
 				var newId = newPageId;
 
+				// the section may define a default page template, which OneNote applies to
+				// the new page; clear its outlines so that only the original content is
+				// duplicated, otherwise the extra template headings shift the heading-link
+				// matching (only outlines can contribute headings, so leave other objects)
+				var blank = await one.GetPage(newId, OneNote.PageDetail.Basic);
+				var templated = blank.Root.Elements(blank.Namespace + "Outline")
+					.Select(e => e.Attribute("objectID")?.Value)
+					.Where(id => !string.IsNullOrEmpty(id))
+					.ToList();
+
+				foreach (var objectId in templated)
+				{
+					one.DeleteContent(newId, objectId);
+				}
+
 				// set the page ID to the new page's ID
 				page.Root.Attribute("ID").Value = newId;
 
