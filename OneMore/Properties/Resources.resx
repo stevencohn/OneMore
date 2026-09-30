@@ -6566,6 +6566,10 @@ Search engines will appear in the page context menu, right-click.</value>
     <value>No results found</value>
     <comment>message</comment>
   </data>
+  <data name="SearchTitleDialog_refreshButton.Tooltip" xml:space="preserve">
+    <value>Reload the page hierarchy</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="SearchTitleDialog_selectAllLink.Text" xml:space="preserve">
     <value>Select all</value>
     <comment>link</comment>

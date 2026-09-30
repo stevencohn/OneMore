@@ -6531,6 +6531,10 @@ Suchmaschinen werden im Seit-Kontextmenü mit der rechten Maustaste angezeigt.</
     <value>Keine Ergebnisse gefunden</value>
     <comment>message</comment>
   </data>
+  <data name="SearchTitleDialog_refreshButton.Tooltip" xml:space="preserve">
+    <value>Laden Sie die Seitenhierarchie neu</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="SearchTitleDialog_selectAllLink.Text" xml:space="preserve">
     <value>Alles auswählen</value>
     <comment>link</comment>

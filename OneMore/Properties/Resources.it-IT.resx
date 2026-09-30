@@ -6534,6 +6534,10 @@ I motori di ricerca verranno visualizzati nel menu contestuale della pagina, far
     <value>Nessun risultato trovato</value>
     <comment>message</comment>
   </data>
+  <data name="SearchTitleDialog_refreshButton.Tooltip" xml:space="preserve">
+    <value>Ricarica la gerarchia delle pagine</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="SearchTitleDialog_selectAllLink.Text" xml:space="preserve">
     <value>Seleziona tutto</value>
     <comment>link</comment>

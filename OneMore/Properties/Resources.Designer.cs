@@ -15320,6 +15320,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reload the page hierarchy.
+        /// </summary>
+        internal static string SearchTitleDialog_refreshButton_Tooltip {
+            get {
+                return ResourceManager.GetString("SearchTitleDialog_refreshButton.Tooltip", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Select all.
         /// </summary>
         internal static string SearchTitleDialog_selectAllLink_Text {
