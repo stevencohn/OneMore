@@ -126,7 +126,9 @@ namespace OneMoreCalendar
 			tooltip.SetToolTip(copyButton, Resources.MonthView_CopyLinks);
 			tooltip.SetToolTip(createButton, Resources.MonthView_CreatePage);
 
-			format = new StringFormat
+			// GenericTypographic has no leading bearing, matching how TitleRenderer lays out
+			// emoji titles so the swatch-to-title gap is the same on every row
+			format = new StringFormat(StringFormat.GenericTypographic)
 			{
 				Trimming = StringTrimming.EllipsisCharacter,
 				FormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoWrap
@@ -686,7 +688,7 @@ namespace OneMoreCalendar
 					using var swatchBrush = new SolidBrush(page.SectionColor);
 					g.FillRectangle(swatchBrush, swatchRect);
 
-					var gap = swatchWidth + this.Scaled(4);
+					var gap = swatchWidth + this.Scaled(6);
 					left += gap;
 					width -= gap;
 				}
