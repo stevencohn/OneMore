@@ -31,7 +31,7 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ContextMenuSheet));
 			this.introBox = new UI.MoreMultilineLabel();
 			this.contentPanel = new System.Windows.Forms.Panel();
-			this.linePanel = new System.Windows.Forms.Panel();
+			this.linePanel = new UI.MorePanel();
 			this.SuspendLayout();
 			// 
 			// introBox
@@ -58,12 +58,17 @@
 			// 
 			// linePanel
 			// 
-			this.linePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(53)))), ((int)(((byte)(110)))));
+			this.linePanel.BottomBorderColor = System.Drawing.SystemColors.ActiveBorder;
+			this.linePanel.BottomBorderSize = 0;
 			this.linePanel.Dock = System.Windows.Forms.DockStyle.Top;
 			this.linePanel.Location = new System.Drawing.Point(10, 168);
 			this.linePanel.Name = "linePanel";
 			this.linePanel.Size = new System.Drawing.Size(757, 5);
 			this.linePanel.TabIndex = 3;
+			this.linePanel.ThemedBack = "Highlight";
+			this.linePanel.ThemedFore = null;
+			this.linePanel.TopBorderColor = System.Drawing.SystemColors.Control;
+			this.linePanel.TopBorderSize = 0;
 			// 
 			// ContextMenuSheet
 			// 
@@ -86,6 +91,6 @@
 
 		private UI.MoreMultilineLabel introBox;
 		private System.Windows.Forms.Panel contentPanel;
-		private System.Windows.Forms.Panel linePanel;
+		private UI.MorePanel linePanel;
 	}
 }
