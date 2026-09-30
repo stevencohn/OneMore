@@ -98,11 +98,13 @@ namespace River.OneMoreAddIn.Commands
 				var newId = newPageId;
 
 				// the section may define a default page template, which OneNote applies to
-				// the new page; clear its outlines so that only the original content is
-				// duplicated, otherwise the extra template headings shift the heading-link
-				// matching (only outlines can contribute headings, so leave other objects)
+				// the new page; clear its content objects so the duplicate is a true mirror
+				// of the original rather than a merge with the template, otherwise extra
+				// template headings also shift the heading-link matching
+				var templateNames = new[] { "Outline", "Image", "InkDrawing", "InsertedFile", "MediaFile" };
 				var blank = await one.GetPage(newId, OneNote.PageDetail.Basic);
-				var templated = blank.Root.Elements(blank.Namespace + "Outline")
+				var templated = blank.Root.Elements()
+					.Where(e => templateNames.Contains(e.Name.LocalName))
 					.Select(e => e.Attribute("objectID")?.Value)
 					.Where(id => !string.IsNullOrEmpty(id))
 					.ToList();
