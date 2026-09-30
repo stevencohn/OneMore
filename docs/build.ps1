@@ -120,7 +120,7 @@ Begin
             Get-Content $file -Encoding utf8 | foreach {
                 $id = $_.ToLower() -replace ' |\.|%20', '-'
                 $name = "$_`.htm"
-                if ($name.Contains('#skipwiki'))
+                if ($name.Contains('#skipwiki') -or $name.Contains('#skipdoc'))
                 {
                     $script:skips += (Join-Path $basepath $name)
                 }
@@ -141,7 +141,7 @@ Begin
             Get-ChildItem (Join-Path $ZipName $sectionName) -File *.htm | foreach {
                 $id = $_.BaseName.ToLower() -replace ' |\.|%20', '-'
                 $name = "$($_.BaseName)`.htm"
-                if ($name.Contains('#skipwiki'))
+                if ($name.Contains('#skipwiki') -or $name.Contains('#skipdoc'))
                 {
                     $script:skips += (Join-Path $basepath $name)
                 }
