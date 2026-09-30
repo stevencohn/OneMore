@@ -6545,6 +6545,10 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <value>没有找到结果</value>
     <comment>message</comment>
   </data>
+  <data name="SearchTitleDialog_refreshButton.Tooltip" xml:space="preserve">
+    <value>重新加载页面层次结构</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="SearchTitleDialog_selectAllLink.Text" xml:space="preserve">
     <value>选择全部</value>
     <comment>link</comment>

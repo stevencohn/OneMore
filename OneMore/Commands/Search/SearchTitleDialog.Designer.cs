@@ -16,6 +16,7 @@ namespace River.OneMoreAddIn.Commands
 			if (disposing)
 			{
 				debounceTimer?.Dispose();
+				refreshTip?.Dispose();
 				components?.Dispose();
 			}
 			base.Dispose(disposing);
@@ -35,6 +36,7 @@ namespace River.OneMoreAddIn.Commands
 			this.indexButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.findLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.findBox = new River.OneMoreAddIn.UI.MoreComboBox();
+			this.refreshButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.resultsView = new River.OneMoreAddIn.Commands.SearchResultsCardView();
 			this.morePanel1 = new River.OneMoreAddIn.UI.MorePanel();
 			this.morePanel2 = new River.OneMoreAddIn.UI.MorePanel();
@@ -130,12 +132,31 @@ namespace River.OneMoreAddIn.Commands
 			this.findBox.Location = new System.Drawing.Point(58, 9);
 			this.findBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.findBox.Name = "findBox";
-			this.findBox.Size = new System.Drawing.Size(677, 26);
+			this.findBox.Size = new System.Drawing.Size(633, 26);
 			this.findBox.TabIndex = 1;
 			this.findBox.ThemedBack = null;
 			this.findBox.ThemedFore = null;
 			this.findBox.TextChanged += new System.EventHandler(this.ChangedText);
 			this.findBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SearchOnKeydown);
+			//
+			// refreshButton
+			//
+			this.refreshButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.refreshButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.refreshButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.refreshButton.Image = global::River.OneMoreAddIn.Properties.Resources.m_Refresh;
+			this.refreshButton.ImageOver = null;
+			this.refreshButton.Location = new System.Drawing.Point(699, 6);
+			this.refreshButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.refreshButton.Name = "refreshButton";
+			this.refreshButton.ShowBorder = true;
+			this.refreshButton.Size = new System.Drawing.Size(40, 32);
+			this.refreshButton.StylizeImage = true;
+			this.refreshButton.TabIndex = 2;
+			this.refreshButton.ThemedBack = null;
+			this.refreshButton.ThemedFore = null;
+			this.refreshButton.UseVisualStyleBackColor = true;
+			this.refreshButton.Click += new System.EventHandler(this.RefreshHierarchy);
 			// 
 			// resultsView
 			// 
@@ -187,6 +208,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.queryPanel.BottomBorderColor = System.Drawing.SystemColors.ActiveBorder;
 			this.queryPanel.BottomBorderSize = 0;
+			this.queryPanel.Controls.Add(this.refreshButton);
 			this.queryPanel.Controls.Add(this.findBox);
 			this.queryPanel.Controls.Add(this.findLabel);
 			this.queryPanel.Dock = System.Windows.Forms.DockStyle.Top;
@@ -346,6 +368,7 @@ namespace River.OneMoreAddIn.Commands
 		private UI.MoreButton indexButton;
 		private UI.MoreLabel findLabel;
 		private UI.MoreComboBox findBox;
+		private UI.MoreButton refreshButton;
 		private SearchResultsCardView resultsView;
 		private UI.MorePanel morePanel1;
 		private UI.MorePanel morePanel2;

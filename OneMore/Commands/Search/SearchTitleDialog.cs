@@ -22,6 +22,7 @@ namespace River.OneMoreAddIn.Commands
 		private const int DebounceMilliseconds = 300;
 
 		private readonly Timer debounceTimer;
+		private readonly ToolTip refreshTip;
 		private readonly Dictionary<string, XElement> notebookCache = new();
 		private List<(string Id, string Name)> notebookList = new();
 		private string currentNotebookId;
@@ -57,6 +58,9 @@ namespace River.OneMoreAddIn.Commands
 					"clearAllLink"
 				});
 			}
+
+			refreshTip = new ToolTip();
+			refreshTip.SetToolTip(refreshButton, Resx.SearchTitleDialog_refreshButton_Tooltip);
 
 			DefaultControl = findBox;
 			ElevatedWithOneNote = true;
@@ -213,6 +217,20 @@ namespace River.OneMoreAddIn.Commands
 		{
 			debounceTimer.Stop();
 			RunSearch(remember: true);
+		}
+
+
+		/// <summary>
+		/// Discards the cached notebook list and page hierarchies so the next search reloads
+		/// them from OneNote, then re-runs the current search.
+		/// </summary>
+		private void RefreshHierarchy(object sender, EventArgs e)
+		{
+			debounceTimer.Stop();
+			notebookCache.Clear();
+			notebookList.Clear();
+			currentNotebookId = null;
+			RunSearch();
 		}
 
 

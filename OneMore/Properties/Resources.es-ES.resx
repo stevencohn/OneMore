@@ -6530,6 +6530,10 @@ Los motores de búsqueda aparecerán en el menú contextual de la página, haga 
     <value>No se encontraron resultados</value>
     <comment>message</comment>
   </data>
+  <data name="SearchTitleDialog_refreshButton.Tooltip" xml:space="preserve">
+    <value>Recargar la jerarquía de páginas</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="SearchTitleDialog_selectAllLink.Text" xml:space="preserve">
     <value>Seleccionar todo</value>
     <comment>link</comment>

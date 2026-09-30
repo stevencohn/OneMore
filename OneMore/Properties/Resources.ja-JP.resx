@@ -6537,6 +6537,10 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <value>結果が見つかりませんでした</value>
     <comment>message</comment>
   </data>
+  <data name="SearchTitleDialog_refreshButton.Tooltip" xml:space="preserve">
+    <value>ページ階層をリロードする</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="SearchTitleDialog_selectAllLink.Text" xml:space="preserve">
     <value>すべて選択</value>
     <comment>link</comment>

@@ -6531,6 +6531,10 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <value>לא נמצאו תוצאות</value>
     <comment>message</comment>
   </data>
+  <data name="SearchTitleDialog_refreshButton.Tooltip" xml:space="preserve">
+    <value>טען מחדש את היררכיית העמודים</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="SearchTitleDialog_selectAllLink.Text" xml:space="preserve">
     <value>בחר הכל</value>
     <comment>link</comment>

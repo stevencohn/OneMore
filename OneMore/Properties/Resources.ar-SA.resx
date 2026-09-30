@@ -6542,6 +6542,10 @@ ISO-code then comma then language name</comment>
     <value>لم يتم العثور على نتائج</value>
     <comment>message</comment>
   </data>
+  <data name="SearchTitleDialog_refreshButton.Tooltip" xml:space="preserve">
+    <value>أعد تحميل التسلسل الهرمي للصفحة</value>
+    <comment>tooltip</comment>
+  </data>
   <data name="SearchTitleDialog_selectAllLink.Text" xml:space="preserve">
     <value>حدد الكل</value>
     <comment>link</comment>
