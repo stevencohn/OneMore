@@ -19,7 +19,7 @@ namespace River.OneMoreAddIn.Commands
 	/// Compare Hierarchy's similarity-score coloring and SimilarityPopup rubric breakdown.
 	/// An exact-hash match shows a fixed, non-interactive "100% - identical" pill (hashing
 	/// already proved identity, nothing to break down); a near-duplicate match shows a
-	/// "NN% similar" pill that shows SimilarityPopup on hover, anchored near the chip, and
+	/// "NN% similar" pill that shows SimilarityPopup after the standard hover delay, anchored near the chip, and
 	/// closes it again once the mouse leaves both the chip and the popup.
 	/// </summary>
 	internal class SimilarityChip : Panel
@@ -42,6 +42,7 @@ namespace River.OneMoreAddIn.Commands
 		private string rightName;
 		private SimilarityPopup activePopup;
 		private Timer hoverTimer;
+		private Timer showTimer;
 
 
 		/// <summary>
@@ -165,9 +166,41 @@ namespace River.OneMoreAddIn.Commands
 		protected override void OnMouseEnter(EventArgs e)
 		{
 			base.OnMouseEnter(e);
-			if (clickable && result != null && activePopup == null)
+			if (clickable && result is not null && activePopup is null)
 			{
-				ShowPopup();
+				StopShowTimer();
+
+				showTimer = new Timer { Interval = SystemInformation.MouseHoverTime };
+				showTimer.Tick += (s, ev) =>
+				{
+					StopShowTimer();
+
+					if (IsHandleCreated && activePopup is null && result is not null &&
+						RectangleToScreen(ClientRectangle).Contains(Cursor.Position))
+					{
+						ShowPopup();
+					}
+				};
+
+				showTimer.Start();
+			}
+		}
+
+
+		protected override void OnMouseLeave(EventArgs e)
+		{
+			base.OnMouseLeave(e);
+			StopShowTimer();
+		}
+
+
+		private void StopShowTimer()
+		{
+			if (showTimer is not null)
+			{
+				showTimer.Stop();
+				showTimer.Dispose();
+				showTimer = null;
 			}
 		}
 
@@ -176,6 +209,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			if (disposing)
 			{
+				StopShowTimer();
 				StopHoverTimer();
 				activePopup?.Close();
 			}
