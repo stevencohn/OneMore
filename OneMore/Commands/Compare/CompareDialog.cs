@@ -916,15 +916,8 @@ namespace River.OneMoreAddIn.Commands.Compare
 
 					// DeleteHierarchy logs and swallows its own failures rather than
 					// throwing, matching HierarchyDiffSync's Mirror delete step
-					if (side is DiffSide.Left or DiffSide.Both && node.LeftId is not null)
-					{
-						one.DeleteHierarchy(node.LeftId);
-					}
-
-					if (side is DiffSide.Right or DiffSide.Both && node.RightId is not null)
-					{
-						one.DeleteHierarchy(node.RightId);
-					}
+					// deleting a page leaves its subpages behind, so they go with it
+					DeletePageTree(one, node, side);
 
 					return true;
 				}, cancelable: false);
@@ -937,6 +930,25 @@ namespace River.OneMoreAddIn.Commands.Compare
 			catch (Exception exc)
 			{
 				MoreMessageBox.ShowError(this, exc.Message);
+			}
+		}
+
+
+		private static void DeletePageTree(OneNote one, DiffNode node, DiffSide side)
+		{
+			foreach (var child in node.Children)
+			{
+				DeletePageTree(one, child, side);
+			}
+
+			if (side is DiffSide.Left or DiffSide.Both && node.LeftId is not null)
+			{
+				one.DeleteHierarchy(node.LeftId);
+			}
+
+			if (side is DiffSide.Right or DiffSide.Both && node.RightId is not null)
+			{
+				one.DeleteHierarchy(node.RightId);
 			}
 		}
 

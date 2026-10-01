@@ -74,7 +74,7 @@ namespace River.OneMoreAddIn.Commands.Compare
 					result.Add(node);
 				}
 
-				return;
+				// fall through to subpages
 			}
 
 			foreach (var child in node.Children)

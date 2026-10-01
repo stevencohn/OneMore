@@ -146,12 +146,17 @@ namespace River.OneMoreAddIn.Commands
 					return;
 				}
 
+				// OneNote does not allow duplicate names at the same level, e.g. when copying a
+				// folder into its own parent, so ensure the copy has a unique name
+				var folderName = GetUniqueName(target, folder.Attribute("name").Value);
+
 				logger.WriteLine(
 					$"copying folder {folder.Attribute("name").Value} " +
-					$"to {target.Attribute("name").Value}");
+					$"to {target.Attribute("name").Value} as '{folderName}'");
 
 				// clone structure of folder; this does not assign ID values
 				var clone = CloneFolder(folder, ns);
+				clone.Attribute("name").Value = folderName;
 
 				// update target so OneNote will apply new ID values
 				target.Add(clone);
@@ -162,7 +167,6 @@ namespace River.OneMoreAddIn.Commands
 				// OneNote may reassign IDs of more than just the new element on update, which
 				// can make an ID-diff pick the wrong element (or none at all)
 				var upTarget = await one.GetSection(targetId);
-				var folderName = folder.Attribute("name").Value;
 
 				clone = upTarget.Elements()
 					.FirstOrDefault(e => e.Attribute("name")?.Value == folderName);
@@ -231,6 +235,41 @@ namespace River.OneMoreAddIn.Commands
 					MessageBoxButtons.OK, MessageBoxIcon.Warning,
 					widthScale: 1.5f, heightScale: 2.5f));
 			}
+		}
+
+
+		// returns name if it is unused among the target's child sections and section groups,
+		// otherwise appends the first available numbered suffix, e.g. "name (1)"
+		private static string GetUniqueName(XElement target, string name)
+		{
+			var names = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+			foreach (var child in target.Elements())
+			{
+				var local = child.Name.LocalName;
+				if (local == SectionName || local == SectionGroupName)
+				{
+					var childName = child.Attribute("name")?.Value;
+					if (childName is not null)
+					{
+						names.Add(childName);
+					}
+				}
+			}
+
+			if (!names.Contains(name))
+			{
+				return name;
+			}
+
+			var index = 1;
+			string candidate;
+			do
+			{
+				candidate = $"{name} ({index++})";
+			}
+			while (names.Contains(candidate));
+
+			return candidate;
 		}
 
 
