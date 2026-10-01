@@ -718,7 +718,7 @@ namespace River.OneMoreAddIn.Commands.Compare
 			else
 			{
 				DrawCell(g, leftRect, indent, row.HasChildren, showExpanded, node.NodeType,
-					node.Name, node.LeftModified);
+					node.LeftName ?? node.Name, node.LeftModified);
 			}
 
 			if (node.Status == DiffStatus.OrphanLeft)
@@ -728,7 +728,7 @@ namespace River.OneMoreAddIn.Commands.Compare
 			else
 			{
 				DrawCell(g, rightRect, indent, row.HasChildren, showExpanded, node.NodeType,
-					node.Name, node.RightModified);
+					node.RightName ?? node.Name, node.RightModified);
 			}
 
 			DrawWell(g, wellRect, node);

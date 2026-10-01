@@ -50,6 +50,18 @@ namespace River.OneMoreAddIn.Commands.Compare
 	{
 		public string Name { get; set; }
 
+		/// <summary>
+		/// The name of the node on the left side, or null if it exists only on the right.
+		/// Differs from RightName only for the comparison root, since descendants are paired
+		/// by name.
+		/// </summary>
+		public string LeftName { get; set; }
+
+		/// <summary>
+		/// The name of the node on the right side, or null if it exists only on the left.
+		/// </summary>
+		public string RightName { get; set; }
+
 		public OneNote.NodeType NodeType { get; set; }
 
 		public string LeftId { get; set; }
@@ -100,17 +112,24 @@ namespace River.OneMoreAddIn.Commands.Compare
 		/// <returns>The root DiffNode, paired with its full descendant tree</returns>
 		public static DiffNode Build(XElement left, XElement right)
 		{
-			return Pair(left, right);
+			// subpages are not nested in the hierarchy XML; they're sibling Page elements
+			// distinguished only by pageLevel. This map records, per page element, the
+			// subpages that follow it, filled in as each section's pages are organized
+			var subpages = new Dictionary<XElement, List<XElement>>();
+			return Pair(left, right, subpages);
 		}
 
 
-		private static DiffNode Pair(XElement left, XElement right)
+		private static DiffNode Pair(XElement left, XElement right,
+			Dictionary<XElement, List<XElement>> subpages)
 		{
 			var source = left ?? right;
 
 			var node = new DiffNode
 			{
 				Name = (string)source.Attribute("name"),
+				LeftName = (string)left?.Attribute("name"),
+				RightName = (string)right?.Attribute("name"),
 				NodeType = GetNodeType(source),
 				LeftId = (string)left?.Attribute("ID"),
 				RightId = (string)right?.Attribute("ID"),
@@ -124,28 +143,27 @@ namespace River.OneMoreAddIn.Commands.Compare
 				node.LeftModified != node.RightModified ? DiffStatus.DifferentTimestamps :
 				DiffStatus.Same;
 
-			var leftChildren = ChildElements(left).ToList();
-			var rightChildren = ChildElements(right).ToList();
+			var leftChildren = KeyChildren(ChildElements(left, subpages));
+			var rightChildren = KeyChildren(ChildElements(right, subpages));
 
 			// preserve left-side ordering first, then append right-only names, so the
 			// resulting row order is stable and deterministic for both display and tests
-			var names = new List<string>();
+			var keys = new List<string>();
 			var seen = new HashSet<string>(StringComparer.Ordinal);
 
-			foreach (var element in leftChildren.Concat(rightChildren))
+			foreach (var key in leftChildren.Keys.Concat(rightChildren.Keys))
 			{
-				var key = Key(element);
 				if (seen.Add(key))
 				{
-					names.Add(key);
+					keys.Add(key);
 				}
 			}
 
-			foreach (var key in names)
+			foreach (var key in keys)
 			{
-				var l = leftChildren.FirstOrDefault(e => Key(e) == key);
-				var r = rightChildren.FirstOrDefault(e => Key(e) == key);
-				var child = Pair(l, r);
+				leftChildren.TryGetValue(key, out var l);
+				rightChildren.TryGetValue(key, out var r);
+				var child = Pair(l, r, subpages);
 				child.Parent = node;
 				node.Children.Add(child);
 			}
@@ -156,19 +174,98 @@ namespace River.OneMoreAddIn.Commands.Compare
 
 		/// <summary>
 		/// Returns the direct child hierarchy elements (Notebook, SectionGroup, Section, or
-		/// Page) of the given element, excluding recycle-bin and unfiled-notes nodes.
+		/// Page) of the given element, excluding recycle-bin and unfiled-notes nodes. A
+		/// section's children are its top-level pages; a page's children are its subpages.
 		/// </summary>
-		private static IEnumerable<XElement> ChildElements(XElement element)
+		private static List<XElement> ChildElements(XElement element,
+			Dictionary<XElement, List<XElement>> subpages)
 		{
 			if (element is null)
 			{
-				return Enumerable.Empty<XElement>();
+				return new List<XElement>();
 			}
 
-			return element.Elements().Where(e =>
+			if (element.Name.LocalName == "Page")
+			{
+				return subpages.TryGetValue(element, out var subs) ? subs : new List<XElement>();
+			}
+
+			var children = element.Elements().Where(e =>
 				IsHierarchyElement(e.Name.LocalName) &&
 				(string)e.Attribute("isRecycleBin") != "true" &&
-				(string)e.Attribute("isInRecycleBin") != "true");
+				(string)e.Attribute("isInRecycleBin") != "true")
+				.ToList();
+
+			var pages = children.Where(e => e.Name.LocalName == "Page").ToList();
+			if (pages.Count == 0)
+			{
+				return children;
+			}
+
+			children.RemoveAll(e => e.Name.LocalName == "Page");
+			children.AddRange(NestPages(pages, subpages));
+			return children;
+		}
+
+
+		// Organizes a section's flat, ordered page list into a tree by pageLevel: a page's
+		// parent is the nearest preceding page with a lower level, which also tolerates
+		// level jumps (e.g. a level 3 page directly after a level 1 page). Returns the
+		// top-level pages and records each page's subpages in the map.
+		private static List<XElement> NestPages(List<XElement> pages,
+			Dictionary<XElement, List<XElement>> subpages)
+		{
+			var top = new List<XElement>();
+			var ancestors = new Stack<(XElement Page, int Level)>();
+
+			foreach (var page in pages)
+			{
+				var level = (int?)page.Attribute("pageLevel") ?? 1;
+
+				while (ancestors.Count > 0 && ancestors.Peek().Level >= level)
+				{
+					ancestors.Pop();
+				}
+
+				if (ancestors.Count == 0)
+				{
+					top.Add(page);
+				}
+				else
+				{
+					var parent = ancestors.Peek().Page;
+					if (!subpages.TryGetValue(parent, out var list))
+					{
+						list = new List<XElement>();
+						subpages[parent] = list;
+					}
+
+					list.Add(page);
+				}
+
+				ancestors.Push((page, level));
+			}
+
+			return top;
+		}
+
+
+		// Keys each child by type+name plus an occurrence number, so sibling pages sharing
+		// a title are paired first-with-first, second-with-second rather than collapsed
+		private static Dictionary<string, XElement> KeyChildren(List<XElement> children)
+		{
+			var map = new Dictionary<string, XElement>(StringComparer.Ordinal);
+			var counts = new Dictionary<string, int>(StringComparer.Ordinal);
+
+			foreach (var element in children)
+			{
+				var key = Key(element);
+				counts.TryGetValue(key, out var count);
+				counts[key] = count + 1;
+				map[$"{key}\n{count}"] = element;
+			}
+
+			return map;
 		}
 
 

@@ -86,7 +86,8 @@ namespace River.OneMoreAddIn.Commands.Compare
 			var result = new SyncResult();
 
 			dialog.SetMaximum(Math.Max(1, CountPages(node)));
-			await SyncNode(one, dialog, token, node, direction, renameMap, result.SyncedPageIds);
+			await SyncNode(one, dialog, token, node, direction, renameMap, result.SyncedPageIds,
+				NewCursor(node));
 
 			if (token.IsCancellationRequested)
 			{
@@ -116,7 +117,8 @@ namespace River.OneMoreAddIn.Commands.Compare
 			var result = new SyncResult();
 
 			dialog.SetMaximum(Math.Max(1, CountPages(node)));
-			await SyncNode(one, dialog, token, node, direction, renameMap, result.SyncedPageIds);
+			await SyncNode(one, dialog, token, node, direction, renameMap, result.SyncedPageIds,
+				NewCursor(node));
 
 			var targetOnlyStatus = TargetOnlyStatus(direction);
 
@@ -136,6 +138,35 @@ namespace River.OneMoreAddIn.Commands.Compare
 			}
 
 			return result;
+		}
+
+
+		/// <summary>
+		/// Tracks where the next synced page belongs on the target side. Pages are synced in
+		/// tree order, so each new page is placed directly after the previously synced one,
+		/// which reproduces the source's page order and subpage nesting.
+		/// </summary>
+		private sealed class PageCursor
+		{
+			// the target page most recently synced (or skipped as identical); null means the
+			// next page goes first in its section
+			public string LastTargetId;
+
+			// false until the first page is synced when the sync root is itself a page, since
+			// a lone page has no section-relative position to restore - it's just appended
+			public bool Placing = true;
+
+			// the page the sync started from, if any; its level is treated as 1 and its
+			// subpages nest relative to it
+			public DiffNode Root;
+		}
+
+
+		private static PageCursor NewCursor(DiffNode node)
+		{
+			return node.NodeType == OneNote.NodeType.Page
+				? new PageCursor { Placing = false, Root = node }
+				: new PageCursor();
 		}
 
 
@@ -194,7 +225,7 @@ namespace River.OneMoreAddIn.Commands.Compare
 					node.Status = DiffStatus.Same;
 				}
 
-				return;
+				// fall through to subpages
 			}
 
 			foreach (var child in node.Children)
@@ -218,9 +249,16 @@ namespace River.OneMoreAddIn.Commands.Compare
 		{
 			if (node.Status == targetOnlyStatus)
 			{
-				// its descendants are implicitly removed along with it; don't recount them
 				count++;
-				return;
+
+				if (node.NodeType != OneNote.NodeType.Page)
+				{
+					// its descendants are implicitly removed along with it; don't recount them
+					return;
+				}
+
+				// deleting a page does not remove its subpages, so each is deleted (and
+				// counted) on its own
 			}
 
 			foreach (var child in node.Children)
@@ -238,7 +276,13 @@ namespace River.OneMoreAddIn.Commands.Compare
 				var id = direction == SyncDirection.LeftToRight ? node.RightId : node.LeftId;
 				one.DeleteHierarchy(id);
 				deleted.Add(node.Name);
-				return;
+
+				if (node.NodeType != OneNote.NodeType.Page)
+				{
+					return;
+				}
+
+				// deleting a page leaves its subpages behind, so delete those too
 			}
 
 			foreach (var child in node.Children)
@@ -253,7 +297,7 @@ namespace River.OneMoreAddIn.Commands.Compare
 
 		private static async Task SyncNode(OneNote one, ProgressDialog dialog, CancellationToken token,
 			DiffNode node, SyncDirection direction,
-			Dictionary<string, string> renameMap, List<string> syncedPageIds)
+			Dictionary<string, string> renameMap, List<string> syncedPageIds, PageCursor cursor)
 		{
 			if (token.IsCancellationRequested)
 			{
@@ -272,7 +316,14 @@ namespace River.OneMoreAddIn.Commands.Compare
 
 			if (node.NodeType == OneNote.NodeType.Page)
 			{
-				await SyncPage(one, dialog, node, sourceId, leftToRight, renameMap, syncedPageIds);
+				await SyncPage(one, dialog, node, sourceId, leftToRight, renameMap, syncedPageIds, cursor);
+
+				// subpages follow their parent, in order
+				foreach (var child in node.Children)
+				{
+					await SyncNode(one, dialog, token, child, direction, renameMap, syncedPageIds, cursor);
+				}
+
 				return;
 			}
 
@@ -284,9 +335,12 @@ namespace River.OneMoreAddIn.Commands.Compare
 				SetTargetId(node, leftToRight, targetId);
 			}
 
+			// a new container has no pages yet, so restart page positioning within it
+			cursor = new PageCursor();
+
 			foreach (var child in node.Children)
 			{
-				await SyncNode(one, dialog, token, child, direction, renameMap, syncedPageIds);
+				await SyncNode(one, dialog, token, child, direction, renameMap, syncedPageIds, cursor);
 			}
 		}
 
@@ -300,7 +354,7 @@ namespace River.OneMoreAddIn.Commands.Compare
 
 		private static async Task SyncPage(OneNote one, ProgressDialog dialog, DiffNode node,
 			string sourceId, bool leftToRight,
-			Dictionary<string, string> renameMap, List<string> syncedPageIds)
+			Dictionary<string, string> renameMap, List<string> syncedPageIds, PageCursor cursor)
 		{
 			dialog.SetMessage(string.Format(Resx.CompareDialog_syncingPageFormat, node.Name));
 
@@ -310,6 +364,8 @@ namespace River.OneMoreAddIn.Commands.Compare
 			{
 				// nothing to do: the target already matches the source, so leave it - and
 				// its id - untouched rather than needlessly deleting and recreating it
+				cursor.LastTargetId = targetId;
+				cursor.Placing = true;
 				dialog.Increment();
 				return;
 			}
@@ -352,6 +408,22 @@ namespace River.OneMoreAddIn.Commands.Compare
 			var parentId = ResolveParentTargetId(node, leftToRight);
 			one.CreatePage(parentId, out targetId);
 
+			// CreatePage appends at level 1; restore the source's order and subpage level
+			var level = GetPageLevel(node, cursor);
+			if (cursor.Placing)
+			{
+				await PlacePage(one, parentId, targetId, cursor.LastTargetId, level);
+			}
+
+			cursor.LastTargetId = targetId;
+			cursor.Placing = true;
+
+			if (level > 1)
+			{
+				// must be set on the hierarchy entry (above) and on the page itself
+				page.Root.SetAttributeValue("pageLevel", level.ToString());
+			}
+
 			// retarget the fetched source page onto the new target page ID and let OneNote
 			// regenerate every object's ID on save
 			page.Root.Attribute("ID").Value = targetId;
@@ -377,6 +449,58 @@ namespace River.OneMoreAddIn.Commands.Compare
 
 			syncedPageIds.Add(targetId);
 			dialog.Increment();
+		}
+
+
+		// 1 for a top-level page, 2 for its subpage, and so on, counting Page ancestors but
+		// stopping at the page the sync started from, whose subpages nest relative to it
+		private static int GetPageLevel(DiffNode node, PageCursor cursor)
+		{
+			var level = 1;
+			var p = node;
+
+			while (p != cursor.Root && p.Parent?.NodeType == OneNote.NodeType.Page)
+			{
+				level++;
+				p = p.Parent;
+			}
+
+			return level;
+		}
+
+
+		// moves a just-created page directly after the previously synced page (or to the top
+		// of the section if there is none) and sets its pageLevel on the hierarchy entry
+		private static async Task PlacePage(
+			OneNote one, string sectionId, string pageId, string afterId, int level)
+		{
+			var section = await one.GetSection(sectionId);
+			var ns = one.GetNamespace(section);
+
+			var entry = section.Elements(ns + "Page")
+				.FirstOrDefault(e => (string)e.Attribute("ID") == pageId);
+
+			if (entry is null)
+			{
+				return;
+			}
+
+			entry.Remove();
+
+			var previous = afterId is null ? null : section.Elements(ns + "Page")
+				.FirstOrDefault(e => (string)e.Attribute("ID") == afterId);
+
+			if (previous is not null)
+			{
+				previous.AddAfterSelf(entry);
+			}
+			else
+			{
+				section.AddFirst(entry);
+			}
+
+			entry.SetAttributeValue("pageLevel", level.ToString());
+			one.UpdateHierarchy(section);
 		}
 
 
@@ -462,6 +586,12 @@ namespace River.OneMoreAddIn.Commands.Compare
 		{
 			var parent = node.Parent
 				?? throw new SyncException($"'{node.Name}' has no parent to create it under.");
+
+			// a subpage is created in its section, not under its parent page
+			while (parent.NodeType == OneNote.NodeType.Page && parent.Parent is not null)
+			{
+				parent = parent.Parent;
+			}
 
 			var parentTargetId = leftToRight ? parent.RightId : parent.LeftId;
 

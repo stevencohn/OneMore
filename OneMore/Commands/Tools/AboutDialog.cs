@@ -38,6 +38,11 @@ namespace River.OneMoreAddIn.Commands
 			var logpath = Logger.Current.LogPath;
 			logLabel.Text = logpath;
 
+			// let the log path use the full dialog width, minus left offset and a right margin
+			logLabel.MaximumSize = new System.Drawing.Size(
+				// symmetric margin
+				ClientSize.Width - logLabel.Left - logLabel.Margin.Right - logLabel.Left, 0);
+
 			clearLogLabel.Visible = File.Exists(logpath);
 
 			if (NeedsLocalizing())
