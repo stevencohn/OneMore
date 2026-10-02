@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.Settings;
+	using System;
 	using System.IO;
 	using System.Linq;
 	using System.Text;
@@ -89,12 +90,29 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
-			using var one = new OneNote(out var page, out var ns);
-			if (!page.IsValid)
+			using var one = new OneNote();
+
+			// The process check above can't tell OneNote's main window from one of its own
+			// dialogs (unlock section, Edit Hyperlink, ...), which live in the same process.
+			// Those are separate top-level windows, so require that the foreground window
+			// is exactly OneNote's frame; GA_ROOT ignores owner windows, unlike GetParent.
+			var frame = Native.GetAncestor(one.WindowHandle, Native.GA_ROOT);
+			var foreground = Native.GetAncestor(Native.GetForegroundWindow(), Native.GA_ROOT);
+			if (frame == IntPtr.Zero || foreground != frame)
 			{
 				await ReplayEnter();
 				return;
 			}
+
+			// page is null when there is no current page, e.g. a locked or empty section
+			var page = await one.GetPage(OneNote.PageDetail.Selection);
+			if (page is null || !page.IsValid)
+			{
+				await ReplayEnter();
+				return;
+			}
+
+			var ns = page.Namespace;
 
 			var range = new SelectionRange(page);
 			var cursor = range.GetSelection(true);

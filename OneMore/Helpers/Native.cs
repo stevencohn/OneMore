@@ -402,6 +402,14 @@ namespace River.OneMoreAddIn
 		public static extern IntPtr GetParent(IntPtr hWnd);
 
 
+		public const uint GA_ROOT = 2;
+
+		// https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getancestor
+		// GA_ROOT walks only the parent chain, ignoring owner windows, unlike GetParent
+		[DllImport("user32.dll")]
+		public static extern IntPtr GetAncestor(IntPtr hWnd, uint gaFlags);
+
+
 		// https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getguithreadinfo
 		[DllImport("user32.dll")]
 		public static extern bool GetGUIThreadInfo(uint idThread, ref GUITHREADINFO lpgui);
