@@ -129,6 +129,11 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				favorite.Uri = info.Link;
 			}
 
+			// find what was just chosen in the open notebooks, so the favorite begins with the keys
+			// that follow it through reopens and moves, and a duplicate is noticed even after OneNote
+			// has changed the IDs; if that is not possible now, the healer fills the keys in later
+			await AddKeys(favorite);
+
 			var provider = new FavoritesProvider();
 			favorite.SortOrder = provider.GetNextSortOrder(favorite.FolderID);
 
@@ -143,6 +148,28 @@ namespace River.OneMoreAddIn.Commands.Favorites
 			else
 			{
 				MoreMessageBox.ShowError(owner, Resx.AddFavoriteCommand_error);
+			}
+		}
+
+
+		private async Task AddKeys(Favorite favorite)
+		{
+			try
+			{
+				var resolution = await Workspaces.WorkspaceResolver.Resolve(
+					Workspaces.TargetQuery.From(favorite));
+
+				if (resolution.IsConfident)
+				{
+					// only the keys: the name, location and link are already what they were
+					favorite.PageKey = favorite.PageID is null ? null : resolution.PageKey;
+					favorite.NotebookKey = resolution.NotebookKey;
+					favorite.SectionKey = resolution.SectionKey;
+				}
+			}
+			catch (System.Exception exc)
+			{
+				logger.WriteLine("could not find the keys of the new favorite", exc);
 			}
 		}
 	}

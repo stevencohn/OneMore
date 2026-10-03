@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Cli;
 	using River.OneMoreAddIn.Commands.Layouts;
+	using River.OneMoreAddIn.Commands.Workspaces;
 	using System;
 	using System.Collections.Generic;
 	using System.Drawing;
@@ -25,6 +26,9 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private const int MaxNewWindowWaitAttempts = 10;
 		private const int NewWindowPollMilliseconds = 300;
+		private const int OpenAttempts = 3;
+		private const int WindowSettleMilliseconds = 1500;
+		private const int RetryDelayMilliseconds = 1500;
 
 
 		public RestoreLayoutCommand()
@@ -83,27 +87,87 @@ namespace River.OneMoreAddIn.Commands
 
 			await using var one = new OneNote();
 
-			// locate or open a window for every page in the layout, gathering handles in
-			// back-to-front order (highest zOrder first) so the stacking pass below can
-			// finish on the window that should end up on top
-			var ordered = layout.Windows.OrderByDescending(w => w.ZOrder).ToList();
-			var handles = new List<IntPtr>();
-
-			foreach (var window in ordered)
+			// OneNote regenerates every page ID when a notebook is reopened, so a window's remembered
+			// ID may not exist any more. Find each page as it is now first; both the search for an
+			// open window and the link to open then use what was found, not what was remembered
+			TargetResolver resolver = null;
+			try
 			{
-				var handle = await FindWindowHandle(one, window.PageID);
+				resolver = await WorkspaceResolver.ReadResolver();
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("could not read the notebooks to restore a layout", exc);
+			}
 
-				if (handle == IntPtr.Zero)
+			string Link(string id) => one.GetHyperlink(id, string.Empty);
+
+			// back-to-front order (highest zOrder first) so the stacking pass below can finish on the
+			// window that should end up on top
+			var plan = LayoutRestorePlan.Plan(
+				layout.Windows.OrderByDescending(w => w.ZOrder), resolver, Link);
+
+			var handles = new List<IntPtr>();
+			var failed = new List<string>();
+			var reused = 0;
+			var opened = 0;
+
+			await LogWindows(one, "before restoring");
+
+			foreach (var item in plan)
+			{
+				if (!item.CanOpen)
 				{
-					// non-destructive: never close/reuse other windows, only add new ones
-					await one.NavigateTo(window.Uri, newWindow: true);
-					handle = await WaitForWindowHandle(one, window.PageID);
+					logger.WriteLine(
+						$"layout window {item.Window.Location} is {item.Outcome}: {item.Reason}");
+
+					failed.Add(Describe(item.Window, ReasonFor(item.Outcome)));
+					continue;
 				}
+
+				var handle = await FindWindowHandle(one, item.PageID);
+				var justOpened = false;
 
 				if (handle != IntPtr.Zero)
 				{
-					ApplyBounds(handle, window);
-					handles.Add(handle);
+					reused++;
+				}
+				else
+				{
+					handle = await OpenWindow(one, item);
+
+					if (handle != IntPtr.Zero)
+					{
+						opened++;
+						justOpened = true;
+					}
+				}
+
+				if (handle == IntPtr.Zero)
+				{
+					logger.WriteLine($"layout window {item.Window.Location} did not open");
+					failed.Add(Describe(item.Window, Resx.RestoreLayoutCommand_failed));
+					continue;
+				}
+
+				ApplyBounds(handle, item.Window);
+				handles.Add(handle);
+
+				await LogWindows(one, $"after {item.Window.Name}");
+
+				// remember what was found, so the next restore finds the page the same way
+				if (item.Resolution is not null && item.Resolution.IsConfident &&
+					WorkspaceResolver.Apply(item.Window, item.Resolution, Link))
+				{
+					provider.UpdateTarget(item.Window, out _);
+				}
+
+				// let a window that was just opened finish loading before asking for the next one: a
+				// second new-window link that arrives while the first is still loading is refused, and a
+				// refused link still leaves a stray window behind, showing the page of the first
+				if (justOpened)
+				{
+					await Task.Delay(WindowSettleMilliseconds);
 				}
 			}
 
@@ -115,9 +179,106 @@ namespace River.OneMoreAddIn.Commands
 				await Task.Delay(50);
 			}
 
-			CliOutput = $"Restored layout '{name}'.";
+			logger.WriteLine(
+				$"layout '{layout.Name}': {reused} windows already open, {opened} opened, " +
+				$"{failed.Count} not restored, of {plan.Count}");
+
+			if (failed.Count == 0)
+			{
+				CliOutput = $"Restored layout '{layout.Name}'.";
+				return;
+			}
+
+			// say which windows were not restored, instead of silently skipping them
+			var list = string.Concat(failed.Select(f => $"{Environment.NewLine}- {f}"));
+			var message = string.Format(
+				Resx.RestoreLayoutCommand_incomplete, handles.Count, plan.Count, list);
+
+			CliOutput = message;
+
+			if (!runningFromCli)
+			{
+				ShowError(message);
+			}
 		}
 
+
+		// Opens a new window for the page, trying again if OneNote refuses the link. Right after a
+		// notebook has been reopened OneNote can refuse a link to a page that it opens a moment later,
+		// typically the second new window in quick succession, so one refusal is not the end of it.
+		private async Task<IntPtr> OpenWindow(OneNote one, RestoreItem item)
+		{
+			for (var attempt = 1; attempt <= OpenAttempts; attempt++)
+			{
+				// non-destructive: never close/reuse other windows, only add new ones. A refused
+				// link opens nothing, so there is no window to wait for
+				if (await one.NavigateTo(item.Uri, newWindow: true))
+				{
+					var handle = await WaitForWindowHandle(one, item.PageID);
+					if (handle != IntPtr.Zero)
+					{
+						return handle;
+					}
+				}
+
+				if (attempt < OpenAttempts)
+				{
+					logger.WriteLine(
+						$"layout window {item.Window.Location} did not open, trying again");
+
+					await LogWindows(one, "after a failed attempt");
+
+					await Task.Delay(attempt * RetryDelayMilliseconds);
+				}
+			}
+
+			return IntPtr.Zero;
+		}
+
+		// says which page each open OneNote window is showing, so that a surprising restore can be
+		// understood afterwards: an ID that no longer exists shows as such
+		private async Task LogWindows(OneNote one, string when)
+		{
+			try
+			{
+				var open = await one.GetWindows();
+				var shown = new List<string>();
+
+				foreach (var window in open)
+				{
+					var info = string.IsNullOrEmpty(window.CurrentPageId)
+						? null
+						: await one.GetPageInfo(window.CurrentPageId);
+
+					shown.Add(info is null ? "(not a current page)" : $"'{info.Name}'");
+				}
+
+				logger.Verbose($"open windows {when}: {open.Count}: {string.Join(", ", shown)}");
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("could not list the open windows", exc);
+			}
+		}
+
+
+		private static string Describe(LayoutWindow window, string reason)
+		{
+			return $"{LayoutRestorePlan.NameOf(window)}: {reason}";
+		}
+
+
+		// the user-facing reason a window could not be opened
+		internal static string ReasonFor(ResolveOutcome? outcome)
+		{
+			return outcome switch
+			{
+				ResolveOutcome.Pending => Resx.RestoreLayoutCommand_pending,
+				ResolveOutcome.Offline => Resx.RestoreLayoutCommand_offline,
+				ResolveOutcome.Ambiguous => Resx.RestoreLayoutCommand_ambiguous,
+				_ => Resx.RestoreLayoutCommand_broken
+			};
+		}
 
 		/// <summary>
 		/// Moves/resizes the window to its saved bounds, leaving z-order untouched (the

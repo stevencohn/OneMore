@@ -302,7 +302,17 @@ namespace River.OneMoreAddIn
 					navigationService.Startup();
 
 					// hashtags scanner
-					new Commands.HashtagService().Startup();
+					new Pipeline.PipelineService(new Pipeline.IPipelineStage[]
+					{
+						new Identity.IdentityStage(),
+
+						// favorites follow their targets through reopens, moves and renames; before
+						// hashtags so that a long scan never delays them
+						new Commands.Workspaces.HealingStage(
+							() => ribbon?.SafeInvalidateControl(Commands.Favorites.FavoritesMenu.MenuID)),
+
+						new Commands.HashtagStage()
+					}).Startup();
 
 					// settings and update check
 					await SetGeneralOptions();

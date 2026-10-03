@@ -9,7 +9,7 @@ namespace River.OneMoreAddIn.Commands
 
 
 	/// <summary>
-	/// Process-wide reference-counted pause signal for the HashtagService scanner.
+	/// Process-wide reference-counted pause signal for the background hashtag scanner.
 	/// Foreground commands that make heavy OneNote COM calls hold a pause token via Hold()
 	/// to signal the background scanner to extend its inter-page throttle delay.
 	/// </summary>

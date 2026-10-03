@@ -248,17 +248,28 @@ namespace River.OneMoreAddIn.Commands
 				.Select(e => e.Attribute("ID").Value).ToList();
 
 			using var provider = new HashtagProvider();
-			string parsed;
+			string parsed = null;
 			var cs = sensitiveBox.Checked;
 
 			var allTags = allTagsBox.Checked;
-			var tags = scopeBox.SelectedIndex switch
+
+			Hashtags RunSearch() => scopeBox.SelectedIndex switch
 			{
 				1 => provider.SearchTags(where, cs, allTags, out parsed, notebookID: one.CurrentNotebookId),
 				2 => provider.SearchTags(where, cs, allTags, out parsed, sectionID: one.CurrentSectionId),
 				3 => provider.SearchTags(where, cs, allTags, out parsed, moreID: moreID),
 				_ => provider.SearchTags(where, cs, allTags, out parsed)
 			};
+
+			var tags = RunSearch();
+
+			// the IDs recorded with the results are only as current as the last scan; if OneNote
+			// has changed any since, a notebook reopened or a page moved, bring those pages up to
+			// date first so that every result opens, then read the results again
+			if (tags.Any() && await HashtagFreshener.Freshen(tags))
+			{
+				tags = RunSearch();
+			}
 
 			if (!ShowOfflineNotebooks)
 			{

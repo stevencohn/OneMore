@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 {
 	using Newtonsoft.Json;
 	using River.OneMoreAddIn.Cli;
+	using River.OneMoreAddIn.Commands.Workspaces;
 	using System;
 	using System.Collections.Generic;
 	using System.IO;
@@ -118,7 +119,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				return;
 			}
 
-			var (imported, attempted) = MergeIntoDatabase(collection);
+			var (imported, attempted) = await MergeIntoDatabase(collection);
 			ribbon.SafeInvalidateControl(FavoritesMenu.MenuID);
 
 			if (runningFromCli)
@@ -132,10 +133,25 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		}
 
 
-		private (int imported, int attempted) MergeIntoDatabase(FavoritesCollection collection)
+		private async Task<(int imported, int attempted)> MergeIntoDatabase(FavoritesCollection collection)
 		{
 			using var provider = new FavoritesProvider();
 			var existing = provider.ReadFavorites();
+
+			// the file's IDs mean nothing here, so look each favorite up in the open notebooks; if
+			// that is not possible, favorites are stored as they came and found later
+			TargetResolver resolver = null;
+			try
+			{
+				resolver = await WorkspaceResolver.ReadResolver();
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("could not read the notebooks to look up imported favorites", exc);
+			}
+
+			await using var one = new OneNote();
+			string Link(string id) => one.GetHyperlink(id, string.Empty);
 
 			var folderIDs = new Dictionary<string, int>(StringComparer.CurrentCultureIgnoreCase);
 			foreach (var folder in existing.Folders)
@@ -166,6 +182,9 @@ namespace River.OneMoreAddIn.Commands.Favorites
 					favorite.ID = 0;
 					favorite.FolderID = folderID;
 
+					// replace what the file carried with what is true here, so that a duplicate is noticed
+					FavoritesExchange.Prepare(favorite, resolver, Link);
+
 					if (provider.WriteFavorite(favorite, out _))
 					{
 						imported++;
@@ -178,6 +197,9 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				attempted++;
 				favorite.ID = 0;
 				favorite.FolderID = 0;
+
+				// replace what the file carried with what is true here, so that a duplicate is noticed
+				FavoritesExchange.Prepare(favorite, resolver, Link);
 
 				if (provider.WriteFavorite(favorite, out _))
 				{

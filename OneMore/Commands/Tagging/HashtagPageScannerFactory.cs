@@ -56,11 +56,12 @@ namespace River.OneMoreAddIn.Commands
 		/// <summary>
 		/// Create a new page scanner
 		/// </summary>
-		/// <param name="root">The root element of the page</param>
+		/// <param name="page">The page to scan</param>
+		/// <param name="moreID">The page key from the identity catalog, as text</param>
 		/// <returns>A HashtagPageScanner instance</returns>
-		public HashtagPageScanner CreatePageScanner(Page page)
+		public HashtagPageScanner CreatePageScanner(Page page, string moreID)
 		{
-			return new HashtagPageScanner(page, hashPattern, styleTemplate);
+			return new HashtagPageScanner(page, moreID, hashPattern, styleTemplate);
 		}
 	}
 }

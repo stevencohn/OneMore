@@ -44,7 +44,7 @@ namespace River.OneMoreAddIn.Settings
 
 			var settings = provider.GetCollection(Name);
 
-			intervalBox.Value = settings.Get("interval", HashtagService.DefaultPollingInterval);
+			intervalBox.Value = settings.Get("interval", HashtagStage.DefaultPollingInterval);
 
 			var disabled = settings.Get("disabled", false);
 			disabledBox.Checked = disabled;

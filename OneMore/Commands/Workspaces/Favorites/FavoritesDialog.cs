@@ -98,6 +98,12 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		public string Uri { get; private set; }
 
 
+		/// <summary>
+		/// Gets the favorite the user chose, so it can be resolved if its link no longer opens.
+		/// </summary>
+		public Favorite Selected { get; private set; }
+
+
 		private static MoreListView.CellStyle GetCellStyle(ListViewItem item, int columnIndex)
 		{
 			if (item.Tag is Favorite favorite)
@@ -531,6 +537,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				return;
 			}
 
+			Selected = favorite;
 			Uri = favorite.GetNavigationTarget();
 		}
 

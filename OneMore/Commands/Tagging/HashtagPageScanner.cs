@@ -33,20 +33,17 @@ namespace River.OneMoreAddIn.Commands
 		/// <summary>
 		/// Do not call directly; use the HashtagPageScannerFactory class to create a new scanner.
 		/// </summary>
-		/// <param name="root">The root element of the page</param>
+		/// <param name="page">The page to scan</param>
+		/// <param name="moreID">The page key from the identity catalog, as text</param>
 		/// <param name="pattern">The compiled regular express used to find ##hashtags</param>
 		/// <param name="styleTemplate">template used to stylize hashtags</param>
-		public HashtagPageScanner(Page page, Regex pattern, XElement styleTemplate)
+		public HashtagPageScanner(Page page, string moreID, Regex pattern, XElement styleTemplate)
 		{
 			this.page = page;
 			ns = page.Root.GetNamespaceOfPrefix(OneNote.Prefix);
 			pageID = page.Root.Attribute("ID").Value;
 
-			MoreID = page.GetMetaContent(MetaNames.PageID);
-			if (string.IsNullOrWhiteSpace(MoreID))
-			{
-				SetMoreID();
-			}
+			MoreID = moreID;
 
 			hashPattern = pattern;
 
@@ -61,32 +58,16 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
-		/// Gets the unique ID assigned to the page
+		/// Gets the page key, as text, that identifies the page in the hashtag catalog. It is
+		/// never written into the page.
 		/// </summary>
-		public string MoreID { get; private set; }
-
-
-		/// <summary>
-		/// Gest an indication of whether the MoreID needs updating
-		/// </summary>
-		public bool UpdateMeta { get; private set; }
+		public string MoreID { get; }
 
 
 		/// <summary>
 		/// Gets an indication of whether hashtags styles were updated
 		/// </summary>
 		public bool UpdateStyle { get; private set; }
-
-
-		/// <summary>
-		/// Sets or updates the moreID of the page and marks UpdateMeta as true.
-		/// </summary>
-		public void SetMoreID()
-		{
-			MoreID = Guid.NewGuid().ToString("N");
-			page.SetMeta(MetaNames.PageID, MoreID);
-			UpdateMeta = true;
-		}
 
 
 		/// <summary>

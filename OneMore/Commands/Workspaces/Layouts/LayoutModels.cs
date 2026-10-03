@@ -90,6 +90,22 @@ namespace River.OneMoreAddIn.Commands.Layouts
 		public string PageID { get; set; }
 
 		/// <summary>
+		/// The key of the page in the identity catalog, or null if it has not been found yet. Unlike
+		/// the IDs above, which OneNote regenerates, the key follows the page through reopens, moves
+		/// and renames. It is local to this database and is never exported.
+		/// </summary>
+		[Newtonsoft.Json.JsonIgnore]
+		public long? PageKey { get; set; }
+
+		/// <summary>
+		/// What identifies the page in an exported file, so it can be found again on another machine;
+		/// see TargetFingerprint. Filled in only when exporting and read only when importing, never
+		/// stored in the database, and left out of the file when there is none.
+		/// </summary>
+		[Newtonsoft.Json.JsonProperty(NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+		public TargetFingerprint Fingerprint { get; set; }
+
+		/// <summary>
 		/// The custom z-order of the window.
 		/// </summary>
 		public int ZOrder { get; set; }

@@ -15,6 +15,9 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		private static readonly string Domain = "favorites";
 		private static readonly string PrimaryTable = "favorite";
 
+		// version 3 adds the page key and the notebook and section keys; see Upgrade2to3
+		private const int CurrentVersion = 3;
+
 
 		/// <summary>
 		/// Initialize this provider, opening the standard database
@@ -43,30 +46,123 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		/// </summary>
 		private void UpgradeCatalog()
 		{
-			using var cmd = con.CreateCommand();
-			cmd.CommandType = CommandType.Text;
-			cmd.CommandText = "SELECT version FROM favorites_schema WHERE schemaID = 0";
+			// a database that predates versioning has no favorites_schema table at all
+			var version = ReadSchemaVersion("favorites_schema", "schemaID", missing: 1);
 
-			var version = 1;
-			try
+			if (IsNewerThanKnown(Domain, version, CurrentVersion))
 			{
-				using var reader = cmd.ExecuteReader();
-				if (reader.Read())
-				{
-					version = reader.GetInt32(0);
-				}
-			}
-			catch (SQLiteException)
-			{
-				// favorites_schema doesn't exist yet; this DB predates schema versioning
+				return;
 			}
 
 			if (version == 1)
 			{
 				version = Upgrade1to2(con);
 			}
+
+			if (version == 2)
+			{
+				version = Upgrade2to3();
+			}
 		}
 
+
+		/// <summary>
+		/// Adds the keys that identify a target by what it is, not by the IDs OneNote regenerates:
+		/// the key of a page in the identity catalog, and the keys of a notebook and a section. The
+		/// columns start empty and are filled in later, when OneNote is available, so this is pure
+		/// SQL. The unique indexes on the old ID columns are kept, and key-based ones are added:
+		/// the same page, or the same notebook, section or section group, cannot be a favorite
+		/// twice even after its IDs have changed.
+		/// </summary>
+		private int Upgrade2to3()
+		{
+			var version = 3;
+			logger.WriteLine($"upgrading favorites catalog to version {version}");
+			using var indent = logger.Indent();
+
+			using var cmd = con.CreateCommand();
+			cmd.CommandType = CommandType.Text;
+
+			// the add-in and the tray can both open this catalog; take the write lock first and
+			// look at the version again under it, so the second one finds the first one done
+			try
+			{
+				cmd.CommandText = "BEGIN IMMEDIATE";
+				cmd.ExecuteNonQuery();
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error starting favorites upgrade transaction", exc);
+				return 2;
+			}
+
+			try
+			{
+				var current = ReadSchemaVersion("favorites_schema", "schemaID", missing: 2);
+				if (current != 2)
+				{
+					cmd.CommandText = "ROLLBACK";
+					cmd.ExecuteNonQuery();
+					return current;
+				}
+
+				foreach (var (column, type) in new[]
+				{
+					("pageKey", "INTEGER"), ("notebookKey", "TEXT"), ("sectionKey", "TEXT")
+				})
+				{
+					if (ColumnExists(con, PrimaryTable, column))
+					{
+						logger.WriteLine($"table favorite already has column {column}");
+					}
+					else
+					{
+						logger.WriteLine($"adding {column} column to favorite table");
+						cmd.CommandText = $"ALTER TABLE favorite ADD COLUMN {column} {type}";
+						cmd.ExecuteNonQuery();
+					}
+				}
+
+				cmd.CommandText =
+					"CREATE UNIQUE INDEX IF NOT EXISTS idx_favorite_target_pagekey " +
+					"ON favorite(pageKey) WHERE pageKey IS NOT NULL";
+				cmd.ExecuteNonQuery();
+
+				cmd.CommandText =
+					"CREATE UNIQUE INDEX IF NOT EXISTS idx_favorite_target_container " +
+					"ON favorite(notebookKey, COALESCE(sectionKey, ''), COALESCE(kind, 'section')) " +
+					"WHERE pageKey IS NULL AND notebookKey IS NOT NULL";
+				cmd.ExecuteNonQuery();
+
+				if (!UpsertSchemaVersion(cmd, "favorites_schema", "schemaID", version))
+				{
+					cmd.CommandText = "ROLLBACK";
+					cmd.ExecuteNonQuery();
+					return 2;
+				}
+
+				cmd.CommandText = "COMMIT";
+				cmd.ExecuteNonQuery();
+				return version;
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"error upgrading favorites catalog to version {version}", exc);
+
+				try
+				{
+					cmd.CommandText = "ROLLBACK";
+					cmd.ExecuteNonQuery();
+				}
+				catch (Exception rollbackExc)
+				{
+					// never mask the error that caused the rollback
+					logger.WriteLine("error rolling back favorites upgrade", rollbackExc);
+				}
+
+				return 2;
+			}
+		}
 
 		/// <summary>
 		/// Introduces favorites_schema versioning and adds the "kind" column, used to
@@ -156,7 +252,15 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		internal FavoritesProvider(SQLiteConnection connection)
 		{
 			con = connection;
-			RefreshDataSchema(Domain, Resx.FavoritesDB);
+
+			if (TableExists(PrimaryTable))
+			{
+				UpgradeCatalog();
+			}
+			else
+			{
+				RefreshDataSchema(Domain, Resx.FavoritesDB);
+			}
 		}
 
 
@@ -361,7 +465,10 @@ SELECT
   f.sectionID,
   f.pageID,
   f.kind,
-  f.sortOrder
+  f.sortOrder,
+  f.pageKey,
+  f.notebookKey,
+  f.sectionKey
 FROM favorites_folder o
 LEFT JOIN favorite f ON f.folderID = o.folderID
 UNION ALL
@@ -377,7 +484,10 @@ SELECT
   f.sectionID,
   f.pageID,
   f.kind,
-  f.sortOrder
+  f.sortOrder,
+  f.pageKey,
+  f.notebookKey,
+  f.sectionKey
 FROM favorite f
 WHERE f.folderID = 0
 ORDER BY folderName COLLATE NOCASE NULLS LAST, sortOrder, name COLLATE NOCASE;
@@ -414,22 +524,7 @@ ORDER BY folderName COLLATE NOCASE NULLS LAST, sortOrder, name COLLATE NOCASE;
 						continue;
 					}
 
-					var favorite = new Favorite
-					{
-						ID = reader.GetInt32(2),
-						FolderID = folderID,
-						Name = reader.GetString(3),
-						Alias = reader.IsDBNull(4) ? null : reader.GetString(4),
-						Location = reader.GetString(5),
-						Uri = reader.GetString(6),
-						NotebookID = reader.GetString(7),
-						SectionID = reader.GetString(8),
-						PageID = reader.IsDBNull(9) ? null : reader.GetString(9),
-						Kind = reader.IsDBNull(10) ? null : reader.GetString(10),
-						SortOrder = reader.GetInt32(11)
-					};
-
-					folder.Items.Add(favorite);
+					folder.Items.Add(Map(reader, folderID));
 				}
 			}
 			catch (Exception exc)
@@ -440,6 +535,125 @@ ORDER BY folderName COLLATE NOCASE NULLS LAST, sortOrder, name COLLATE NOCASE;
 			return collection;
 		}
 
+
+		// reads a favorite from a row of the shape both queries here return: folder ID and name
+		// first, then the favorite's own columns from index 2
+		private static Favorite Map(SQLiteDataReader reader, int folderID)
+		{
+			return new Favorite
+			{
+				ID = reader.GetInt32(2),
+				FolderID = folderID,
+				Name = reader.GetString(3),
+				Alias = reader.IsDBNull(4) ? null : reader.GetString(4),
+				Location = reader.GetString(5),
+				Uri = reader.GetString(6),
+				NotebookID = reader.GetString(7),
+				SectionID = reader.GetString(8),
+				PageID = reader.IsDBNull(9) ? null : reader.GetString(9),
+				Kind = reader.IsDBNull(10) ? null : reader.GetString(10),
+				SortOrder = reader.GetInt32(11),
+				PageKey = reader.IsDBNull(12) ? null : reader.GetInt64(12),
+				NotebookKey = reader.IsDBNull(13) ? null : reader.GetString(13),
+				SectionKey = reader.IsDBNull(14) ? null : reader.GetString(14)
+			};
+		}
+
+
+		/// <summary>
+		/// Reads one favorite.
+		/// </summary>
+		/// <param name="favoriteID">The ID of the favorite record</param>
+		/// <returns>The favorite, or null if there is none</returns>
+		public Favorite ReadFavorite(int favoriteID)
+		{
+			using var cmd = con.CreateCommand();
+			cmd.CommandType = CommandType.Text;
+			cmd.CommandText =
+				"SELECT COALESCE(f.folderID, 0), NULL, f.favoriteID, f.name, f.alias, f.location, " +
+				"f.uri, f.notebookID, f.sectionID, f.pageID, f.kind, f.sortOrder, " +
+				"f.pageKey, f.notebookKey, f.sectionKey " +
+				"FROM favorite f WHERE f.favoriteID = @id";
+
+			cmd.Parameters.AddWithValue("@id", favoriteID);
+
+			try
+			{
+				using var reader = cmd.ExecuteReader();
+				return reader.Read() ? Map(reader, reader.GetInt32(0)) : null;
+			}
+			catch (Exception exc)
+			{
+				ReportError("error reading favorite", cmd, exc);
+				return null;
+			}
+		}
+
+
+		/// <summary>
+		/// Saves what was found about where a favorite points now: its keys, IDs, link and location.
+		/// The name, alias, folder and sort order are the user's and are left alone, so that a save made
+		/// in the background can never overwrite a change just made in the manage dialog; see
+		/// UpdateFavorite for those.
+		/// </summary>
+		/// <param name="favorite">The favorite to update, identified by favorite.ID</param>
+		/// <returns>True if successful</returns>
+		public bool UpdateTarget(Favorite favorite)
+		{
+			return UpdateTarget(favorite, out _);
+		}
+
+
+		/// <summary>
+		/// Saves what was found about where a favorite points now.
+		/// </summary>
+		/// <param name="favorite">The favorite to update, identified by favorite.ID</param>
+		/// <param name="duplicate">True if the update failed because another favorite already
+		/// points at the same target, which can happen when two favorites turn out to be the
+		/// same page once their keys are known</param>
+		/// <returns>True if successful</returns>
+		public bool UpdateTarget(Favorite favorite, out bool duplicate)
+		{
+			duplicate = false;
+
+			using var cmd = con.CreateCommand();
+			cmd.CommandType = CommandType.Text;
+			cmd.CommandText =
+				"UPDATE favorite SET location = @l, uri = @u, notebookID = @b, " +
+				"sectionID = @s, pageID = @g, pageKey = @pk, notebookKey = @nk, sectionKey = @sk " +
+				"WHERE favoriteID = @id";
+
+			cmd.Parameters.AddWithValue("@l", favorite.Location);
+			cmd.Parameters.AddWithValue("@u", favorite.Uri);
+			cmd.Parameters.AddWithValue("@b", favorite.NotebookID);
+			cmd.Parameters.AddWithValue("@s", favorite.SectionID);
+			cmd.Parameters.AddWithValue("@g", (object)favorite.PageID ?? DBNull.Value);
+			cmd.Parameters.AddWithValue("@pk", favorite.PageKey.HasValue ? favorite.PageKey.Value : DBNull.Value);
+			cmd.Parameters.AddWithValue("@nk", (object)favorite.NotebookKey ?? DBNull.Value);
+			cmd.Parameters.AddWithValue("@sk", (object)favorite.SectionKey ?? DBNull.Value);
+			cmd.Parameters.AddWithValue("@id", favorite.ID);
+
+			try
+			{
+				cmd.ExecuteNonQuery();
+				logger.Verbose($"updated target of favorite {favorite.ID}");
+				return true;
+			}
+			catch (Exception exc)
+			{
+				if (exc is SQLiteException && exc.Message.Contains("UNIQUE constraint failed"))
+				{
+					duplicate = true;
+					logger.WriteLine($"favorite {favorite.ID} points at the same target as another");
+				}
+				else
+				{
+					logger.WriteLine($"error updating target of favorite {favorite.ID}", exc);
+				}
+
+				return false;
+			}
+		}
 
 		/// <summary>
 		/// Renames an existing favorites folder.
@@ -568,8 +782,9 @@ ORDER BY folderName COLLATE NOCASE NULLS LAST, sortOrder, name COLLATE NOCASE;
 			cmd.CommandType = CommandType.Text;
 
 			cmd.CommandText = "INSERT INTO favorite " +
-				"(folderID, name, alias, location, uri, notebookID, sectionID, pageID, kind, sortOrder) " +
-				"VALUES (@f, @n, @a, @l, @u, @b, @s, @g, @k, @o)";
+				"(folderID, name, alias, location, uri, notebookID, sectionID, pageID, kind, sortOrder, " +
+				"pageKey, notebookKey, sectionKey) " +
+				"VALUES (@f, @n, @a, @l, @u, @b, @s, @g, @k, @o, @pk, @nk, @sk)";
 
 			cmd.Parameters.Clear();
 			cmd.Parameters.Add("@f", DbType.Int32);
@@ -582,6 +797,9 @@ ORDER BY folderName COLLATE NOCASE NULLS LAST, sortOrder, name COLLATE NOCASE;
 			cmd.Parameters.Add("@g", DbType.String);
 			cmd.Parameters.Add("@k", DbType.String);
 			cmd.Parameters.Add("@o", DbType.Int32);
+			cmd.Parameters.Add("@pk", DbType.Int64);
+			cmd.Parameters.Add("@nk", DbType.String);
+			cmd.Parameters.Add("@sk", DbType.String);
 
 			logger.Verbose($"writing favorite {favorite.Location}");
 
@@ -597,6 +815,9 @@ ORDER BY folderName COLLATE NOCASE NULLS LAST, sortOrder, name COLLATE NOCASE;
 			cmd.Parameters["@g"].Value = favorite.PageID;
 			cmd.Parameters["@k"].Value = favorite.Kind;
 			cmd.Parameters["@o"].Value = favorite.SortOrder;
+			cmd.Parameters["@pk"].Value = favorite.PageKey.HasValue ? favorite.PageKey.Value : DBNull.Value;
+			cmd.Parameters["@nk"].Value = (object)favorite.NotebookKey ?? DBNull.Value;
+			cmd.Parameters["@sk"].Value = (object)favorite.SectionKey ?? DBNull.Value;
 
 			try
 			{

@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands.Favorites
 {
 	using Newtonsoft.Json;
 	using River.OneMoreAddIn.Cli;
+	using River.OneMoreAddIn.Identity;
 	using System;
 	using System.IO;
 	using System.Linq;
@@ -70,6 +71,12 @@ namespace River.OneMoreAddIn.Commands.Favorites
 			using var provider = new FavoritesProvider();
 			var collection = provider.ReadFavorites();
 			var count = collection.Items.Count + collection.Folders.Sum(f => f.Items.Count);
+
+			// say how to find each target again on another machine; the page key is never written
+			using (var identity = new PageIdentityProvider())
+			{
+				FavoritesExchange.AddFingerprints(collection, identity.Read);
+			}
 
 			try
 			{

@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using Newtonsoft.Json;
 	using River.OneMoreAddIn.Cli;
 	using River.OneMoreAddIn.Commands.Layouts;
+	using River.OneMoreAddIn.Commands.Workspaces;
 	using System;
 	using System.Collections.Generic;
 	using System.IO;
@@ -119,7 +120,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			var (imported, attempted) = MergeIntoDatabase(collection);
+			var (imported, attempted) = await MergeIntoDatabase(collection);
 
 			if (runningFromCli)
 			{
@@ -132,10 +133,25 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private (int imported, int attempted) MergeIntoDatabase(LayoutsCollection collection)
+		private async Task<(int imported, int attempted)> MergeIntoDatabase(LayoutsCollection collection)
 		{
 			using var provider = new LayoutsProvider();
 			var existing = provider.ReadLayouts();
+
+			// the file's IDs mean nothing here, so look each window's page up in the open notebooks; if
+			// that is not possible, windows are stored as they came and found later
+			TargetResolver resolver = null;
+			try
+			{
+				resolver = await WorkspaceResolver.ReadResolver();
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("could not read the notebooks to look up imported layouts", exc);
+			}
+
+			await using var one = new OneNote();
+			string Link(string id) => one.GetHyperlink(id, string.Empty);
 
 			var layoutIDs = new Dictionary<string, int>(StringComparer.CurrentCultureIgnoreCase);
 			foreach (var layout in existing.Layouts)
@@ -165,6 +181,9 @@ namespace River.OneMoreAddIn.Commands
 					attempted++;
 					window.ID = 0;
 					window.LayoutID = layoutID;
+
+					// replace what the file carried with what is true here, so that a duplicate is noticed
+					LayoutsExchange.Prepare(window, resolver, Link);
 
 					if (provider.WriteWindow(window, out _))
 					{

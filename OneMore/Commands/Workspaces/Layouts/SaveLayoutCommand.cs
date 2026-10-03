@@ -83,6 +83,10 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
+			// remember which page each window shows by its key, so that the layout can still be restored
+			// after OneNote has changed every ID; if that is not possible now, the healer fills it in later
+			await AddKeys(captured);
+
 			var layout = existing.Layouts.FirstOrDefault(l =>
 				l.Name.Equals(name, StringComparison.CurrentCultureIgnoreCase));
 
@@ -113,6 +117,20 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			CliOutput = $"Saved layout '{name}' with {saved} window(s).";
+		}
+
+
+		private async Task AddKeys(List<LayoutWindow> captured)
+		{
+			try
+			{
+				var resolver = await Workspaces.WorkspaceResolver.ReadResolver();
+				LayoutRestorePlan.AssignKeys(captured, resolver);
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("could not find the keys of the pages in the new layout", exc);
+			}
 		}
 
 

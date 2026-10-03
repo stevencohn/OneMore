@@ -139,6 +139,130 @@ namespace River.OneMoreAddIn
 		}
 
 
+		/// <summary>
+		/// Determines whether a table exists on this provider's own connection. Unlike the
+		/// static CatalogExists, which looks at the standard database file, this also works
+		/// for an injected connection such as the in-memory database used by unit tests.
+		/// </summary>
+		protected bool TableExists(string name)
+		{
+			using var cmd = con.CreateCommand();
+			cmd.CommandType = CommandType.Text;
+			cmd.CommandText = "SELECT COUNT(1) FROM sqlite_master " +
+				"WHERE type = 'table' AND name = @name";
+
+			cmd.Parameters.AddWithValue("@name", name);
+
+			try
+			{
+				return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
+			}
+			catch (Exception exc)
+			{
+				ReportError($"error checking for table {name}", cmd, exc);
+				return false;
+			}
+		}
+
+
+		/// <summary>
+		/// Determines whether a table has the named column. ALTER TABLE ADD COLUMN is not
+		/// idempotent, so each added column is guarded by this.
+		/// </summary>
+		protected static bool ColumnExists(SQLiteConnection con, string table, string column)
+		{
+			using var cmd = con.CreateCommand();
+			cmd.CommandType = CommandType.Text;
+			cmd.CommandText = $"PRAGMA table_info({table})";
+
+			using var reader = cmd.ExecuteReader();
+			while (reader.Read())
+			{
+				if (string.Equals(reader.GetString(1), column, StringComparison.OrdinalIgnoreCase))
+				{
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+
+		/// <summary>
+		/// Reads the schema version from a version table whose single row has a key of zero.
+		/// </summary>
+		/// <param name="table">The version table, such as favorites_schema</param>
+		/// <param name="keyColumn">The name of the key column of that table</param>
+		/// <param name="missing">The version to report if the table or its row does not exist,
+		/// as for a database that predates versioning</param>
+		/// <remarks>Both names come from the calling provider's own code, never from input.</remarks>
+		protected int ReadSchemaVersion(string table, string keyColumn, int missing)
+		{
+			using var cmd = con.CreateCommand();
+			cmd.CommandType = CommandType.Text;
+			cmd.CommandText = $"SELECT version FROM {table} WHERE {keyColumn} = 0";
+
+			try
+			{
+				var value = cmd.ExecuteScalar();
+				return value is null or DBNull ? missing : Convert.ToInt32(value);
+			}
+			catch (SQLiteException)
+			{
+				// the version table does not exist yet
+				return missing;
+			}
+		}
+
+
+		/// <summary>
+		/// Records a schema version, creating the row if it does not exist. This is an upsert
+		/// because a version row may not exist yet, as on a database that predates versioning.
+		/// </summary>
+		/// <remarks>The caller owns the transaction and rolls back if this returns false.</remarks>
+		protected bool UpsertSchemaVersion(
+			SQLiteCommand cmd, string table, string keyColumn, int version)
+		{
+			try
+			{
+				logger.WriteLine($"updating {table} version v{version}");
+
+				cmd.Parameters.Clear();
+				cmd.CommandText =
+					$"INSERT INTO {table} ({keyColumn}, version) VALUES (0, @v) " +
+					$"ON CONFLICT({keyColumn}) DO UPDATE SET version = @v";
+
+				cmd.Parameters.AddWithValue("@v", version);
+				cmd.ExecuteNonQuery();
+				return true;
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"error updating {table} version v{version}", exc);
+				return false;
+			}
+		}
+
+
+		/// <summary>
+		/// Determines whether a catalog is at a version newer than this build knows, in which
+		/// case it must be left alone. A database can hold a newer version because another
+		/// build was run against it.
+		/// </summary>
+		protected bool IsNewerThanKnown(string domain, int found, int known)
+		{
+			if (found > known)
+			{
+				logger.WriteLine(
+					$"{domain} catalog is version {found} but this build only knows version " +
+					$"{known}; leaving it unchanged");
+
+				return true;
+			}
+
+			return false;
+		}
+
 		protected bool DropCatalog(string domain, string DDL)
 		{
 			int Drop(string type, IEnumerable<string> names)
