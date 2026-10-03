@@ -6,9 +6,7 @@
 
 namespace River.OneMoreAddIn.Commands
 {
-	using River.OneMoreAddIn.Settings;
 	using System;
-	using System.Diagnostics;
 	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
@@ -18,31 +16,20 @@ namespace River.OneMoreAddIn.Commands
 	/// Background service to collect ##hashtags within content.
 	/// This is a polling mechanism with specified throttling limits.
 	/// </summary>
+	/// <remarks>
+	/// What is specific to hashtags lives in <see cref="HashtagStage"/>; this class owns the
+	/// thread, cancellation, re-entrancy guard, and the loop and its error policy.
+	/// </remarks>
 	internal class HashtagService : Loggable
 	{
-		public const int DefaultPollingInterval = 2; // 2 minutes
-
-		private const int Minute = 60000;            // ms in 1 minute
-		private const int PollingDelay = 10000;      // 10s polling interval waiting to start
-		private const int WaitDelay = 3000;          // 3s optimistic pause before WaitPolling
-
 		private readonly bool disabled;
 
-		protected string[] notebookFilters;
-		protected HashtagScheduler scheduler;
+		protected HashtagStage stage;
 		protected int scanInterval;
 		protected ThreadPriority threadPriority;
 		protected CancellationTokenSource serviceToken;
 
-		private HashtagProvider provider;
-		private int scanCount;
-		private long scanTime;
-		protected int hour;
-
 		private int running; // re-entrancy guard, Interlocked access only
-
-
-		public delegate void HashtagScannedHandler(object sender, HashtagScannedEventArgs e);
 
 
 		/// <summary>
@@ -50,9 +37,11 @@ namespace River.OneMoreAddIn.Commands
 		/// </summary>
 		public HashtagService()
 		{
-			var settings = new SettingsProvider().GetCollection("HashtagSheet");
-			scanInterval = settings.Get("interval", DefaultPollingInterval) * Minute;
-			disabled = settings.Get<bool>("disabled");
+			stage = new HashtagStage();
+			stage.OnHashtagScanned += (sender, e) => OnHashtagScanned?.Invoke(this, e);
+
+			scanInterval = stage.Interval;
+			disabled = !stage.IsEnabled;
 
 			threadPriority = ThreadPriority.Lowest;
 		}
@@ -61,7 +50,7 @@ namespace River.OneMoreAddIn.Commands
 		/// <summary>
 		/// Fired upon the completion of each full scan
 		/// </summary>
-		public event HashtagScannedHandler OnHashtagScanned;
+		public event HashtagStage.HashtagScannedHandler OnHashtagScanned;
 
 
 		/// <summary>
@@ -86,12 +75,7 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			scheduler = new HashtagScheduler();
-
-			var state = scheduler.State == ScanningState.None ? "ready" : scheduler.State.ToString();
-			logger.WriteLine($"Startup: starting hashtag service, {state}");
-
-			hour = DateTime.Now.Hour;
+			stage.Initialize();
 
 			serviceToken = new CancellationTokenSource();
 			Application.ApplicationExit += OnApplicationExit;
@@ -126,7 +110,7 @@ namespace River.OneMoreAddIn.Commands
 		protected virtual async Task StartupLoop()
 		{
 			logger.Debug("StartupLoop() WaitForReady()");
-			if (!await WaitForReady(serviceToken.Token))
+			if (!await stage.WaitForReady(serviceToken.Token))
 			{
 				CleanupToken();
 				return;
@@ -137,7 +121,7 @@ namespace River.OneMoreAddIn.Commands
 			var errors = 0;
 			while (errors < 5 && !serviceToken.IsCancellationRequested)
 			{
-				if (IsDisabled())
+				if (!stage.IsEnabled)
 				{
 					logger.WriteLine("hashtag service disabled by user, stopping");
 					break;
@@ -176,63 +160,13 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private static bool IsDisabled()
-		{
-			return new SettingsProvider().GetCollection("HashtagSheet").Get("disabled", false);
-		}
-
-
 		private void CleanupToken()
 		{
 			Application.ApplicationExit -= OnApplicationExit;
 			serviceToken?.Dispose();
 			serviceToken = null;
 
-			provider?.Dispose();
-			provider = null;
-		}
-
-
-		private async Task<bool> WaitForReady(CancellationToken token)
-		{
-			if (scheduler.State != ScanningState.None &&
-				scheduler.State != ScanningState.Ready &&
-				!scheduler.Active)
-			{
-				await scheduler.Activate();
-			}
-
-			try
-			{
-				// wait at least once to let OneMore settle before we start
-				// then wait for scheduler to be ready, if necessary...
-
-				// start with 3s interval, optimistically hoping we're in a good state to go!
-				var delay = WaitDelay;
-
-				var count = 0;
-				do
-				{
-					if (count % (Minute / WaitDelay) == 0) // every minute
-					{
-						logger.WriteLine($"Startup: hashtag service waiting, {scheduler.State}");
-					}
-
-					await Task.Delay(delay, token);
-					scheduler.Refresh();
-					count++;
-
-					// resume normal 10s interval
-					delay = PollingDelay;
-				}
-				while (scheduler.State != ScanningState.Ready && !token.IsCancellationRequested);
-			}
-			catch (OperationCanceledException)
-			{
-				logger.Verbose("HashtagService WaitForReady canceled");
-			}
-
-			return !token.IsCancellationRequested;
+			stage.Release();
 		}
 
 
@@ -247,44 +181,7 @@ namespace River.OneMoreAddIn.Commands
 
 			try
 			{
-				provider ??= new HashtagProvider();
-
-				using var scanner = new HashtagScanner(provider);
-
-				if (notebookFilters is not null && notebookFilters.Length > 0)
-				{
-					scanner.SetNotebookFilters(notebookFilters);
-				}
-
-				await scanner.Scan(token);
-
-				var s = scanner.Stats;
-				scanCount++;
-				scanTime += scanner.Stats.Time;
-
-				var avg = scanTime / scanCount;
-
-				OnHashtagScanned?.Invoke(this,
-					new HashtagScannedEventArgs(s.TotalPages, s.DirtyPages, s.Time, scanCount, avg));
-
-				if (hour != DateTime.Now.Hour)
-				{
-					var ws = Process.GetCurrentProcess().WorkingSet64 / 1_048_576;
-					var heap = GC.GetTotalMemory(false) / 1_048_576;
-					logger.WriteLine($"hashtag service scanned {scanCount} times in the last hour, " +
-						$"averaging {avg}ms, workingSet {ws}MB, managedHeap {heap}MB");
-					hour = DateTime.Now.Hour;
-					scanCount = 0;
-					scanTime = 0;
-				}
-				else if (s.DirtyPages > 0 || s.Time > 1000)
-				{
-					scanner.Report("hashtag SERVICE");
-				}
-				else if (logger.IsDebug)
-				{
-					scanner.Report("hashtag service");
-				}
+				await stage.Run(token);
 			}
 			finally
 			{

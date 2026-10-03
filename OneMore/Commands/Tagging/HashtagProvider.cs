@@ -355,25 +355,6 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private static bool ColumnExists(SQLiteConnection con, string table, string column)
-		{
-			using var cmd = con.CreateCommand();
-			cmd.CommandType = CommandType.Text;
-			cmd.CommandText = $"PRAGMA table_info({table})";
-
-			using var reader = cmd.ExecuteReader();
-			while (reader.Read())
-			{
-				if (string.Equals(reader.GetString(1), column, StringComparison.OrdinalIgnoreCase))
-				{
-					return true;
-				}
-			}
-
-			return false;
-		}
-
-
 		private bool UpgradeSchemaVersion(
 			SQLiteCommand cmd, SQLiteTransaction transaction, int version)
 		{

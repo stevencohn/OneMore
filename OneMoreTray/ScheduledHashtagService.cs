@@ -42,7 +42,7 @@ namespace OneMoreTray
 		/// <param name="filters"></param>
 		public void SetNotebookFilters(string[] filters)
 		{
-			notebookFilters = filters;
+			stage.SetNotebookFilters(filters);
 		}
 
 

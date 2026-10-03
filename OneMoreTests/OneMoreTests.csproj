@@ -85,6 +85,8 @@
     <Compile Include="Commands\References\FootnoteCommandTests.cs" />
     <Compile Include="Commands\Reminders\ReminderLocatorTests.cs" />
     <Compile Include="Commands\Reminders\ReminderSerializerTests.cs" />
+    <Compile Include="Identity\PageIdentityMatcherTests.cs" />
+    <Compile Include="Identity\PageIdentityProviderTests.cs" />
     <Compile Include="Commands\Search\TextMatchBuilderTests.cs" />
     <Compile Include="Commands\Search\TitleQueryParserTests.cs" />
     <Compile Include="Commands\Styles\ApplyStylesCommandTests.cs" />
@@ -102,6 +104,7 @@
     <Compile Include="Commands\Favorites\FavoritesProviderTests.cs" />
     <Compile Include="Commands\Workspaces\PageCheckerTests.cs" />
     <Compile Include="Helpers\Extensions\StringExtensionsTests.cs" />
+    <Compile Include="Helpers\DatabaseProviderTests.cs" />
     <Compile Include="Helpers\PathHelperTests.cs" />
     <Compile Include="MockApplication.cs" />
     <Compile Include="OneNoteTests.cs" />

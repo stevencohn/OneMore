@@ -5140,6 +5140,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CREATE TABLE IF NOT EXISTS identity_schema (schemaID INTEGER PRIMARY KEY UNIQUE NOT NULL, version NUMERIC (12) UNIQUE NOT NULL);
+        ///CREATE TABLE IF NOT EXISTS identity_page (pageKey INTEGER PRIMARY KEY AUTOINCREMENT, pageID TEXT NOT NULL, notebookKey TEXT NOT NULL, sectionKey TEXT NOT NULL, title TEXT NOT NULL, created TEXT NOT NULL, modified TEXT NOT NULL, level INTEGER NOT NULL DEFAULT 1, missingSince TEXT, lastSeen TEXT NOT NULL); [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string PageIdentityDB {
+            get {
+                return ResourceManager.GetString("PageIdentityDB", resourceCulture);
+            }
+        }
+                /// <summary>
         ///   Looks up a localized string similar to Disable the hashtag service. This will also disable hashtag searching..
         /// </summary>
         internal static string HashtagSheet_disabledBox_Text {
