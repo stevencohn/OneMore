@@ -1,0 +1,2526 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=OneNote.File>
+<meta name=Generator content="Microsoft OneNote 15">
+<link id=Main-File rel=Main-File
+href="Design%20-%20Page%20Identity2%20%23skipdoc.htm">
+<link rel=File-List
+href="Design%20-%20Page%20Identity2%20%23skipdoc_files/filelist.xml">
+</head>
+
+<body lang=en-US style='font-family:Calibri;font-size:11.5pt'>
+
+<div style='direction:ltr;border-width:100%'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:8.9083in'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:.075in;width:4.1416in'>
+
+<p style='margin-top:0pt;margin-bottom:14pt;font-family:"Calibri Light";
+font-size:20.0pt;color:#464646'>Design - Page Identity2 #skipdoc</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.0423in;margin-left:.075in;width:2.4666in'>
+
+<P style="margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676">October 3, 2026</P>
+
+<P style="margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676">&nbsp;</P>
+
+</div>
+
+<div style='direction:ltr;margin-top:.434in;margin-left:0in;width:8.9083in'>
+
+<h1 id="design-page-identity" style='margin:0in;font-family:Calibri;font-size:16.0pt;color:#1E4E79'>Design:
+Page Identity</h1>
+
+<p style='margin:0in'><span style='font-weight:bold;font-family:Calibri;
+font-size:11.5pt'>Status:</span><span style='font-family:Calibri;font-size:
+11.5pt'> Draft for review, 2026-10-03 </span><span style='font-weight:bold;
+font-family:Calibri;font-size:11.5pt'>Branch: </span><span style='font-family:
+"Lucida Console";font-size:9.0pt'>2709-page-identity </span><span
+style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>Companion: </span><a
+href="file:///C:/Github/OneMore/specs/TechNote%2520-%2520OneNote%2520ID%2520Stability.md"><span
+style='font-family:Calibri;font-size:11.5pt'>TechNote - OneNote ID Stability</span></a><span
+style='font-family:Calibri;font-size:11.5pt'>. The technote explains </span><span
+style='font-style:italic;font-family:Calibri;font-size:11.5pt'>why OneNote IDs
+are fragile</span><span style='font-family:Calibri;font-size:11.5pt'> and
+records what was measured. This document explains </span><span
+style='font-style:italic;font-family:Calibri;font-size:11.5pt'>what OneMore
+does about it</span><span style='font-family:Calibri;font-size:11.5pt'>.</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>&nbsp;</p>
+
+<h2 id="1-problem-and-scope" style='margin:0in;font-family:Calibri;font-size:14.0pt;color:#2E75B5'>1.
+Problem and scope</h2>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>OneNote regenerates
+every page, section, and notebook ID when a notebook is closed and reopened,
+and a moved page receives a new page ID. Created time, title, and content
+survive. OneMore stores those IDs in its database and later treats them as
+keys, so references silently stop resolving.</p>
+
+<h3 id="what-breaks-today" style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'>What
+breaks today</h3>
+
+<div style='direction:ltr'>
+
+<table border=0 cellpadding=0 cellspacing=0 valign=top style='direction:ltr;
+ border-collapse:collapse;border-style:solid;border-color:#A3A3A3;border-width:
+ 0pt' title="" summary="">
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:.7041in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>Feature</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:1.6854in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>Stored IDs</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:6.0222in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>What happens after a reopen</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:.6847in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Hashtags</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:1.7048in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in'><span style='font-family:"Lucida Console";font-size:
+  9.0pt'>hashtag_page</span><span style='font-family:Calibri;font-size:11.5pt'>:
+  </span><span style='font-family:"Lucida Console";font-size:9.0pt'>pageID</span><span
+  style='font-family:Calibri;font-size:11.5pt'>, </span><span style='font-family:
+  "Lucida Console";font-size:9.0pt'>sectionID</span><span style='font-family:
+  Calibri;font-size:11.5pt'>, </span><span style='font-family:"Lucida Console";
+  font-size:9.0pt'>notebookID</span><span style='font-family:Calibri;
+  font-size:11.5pt'>; </span><span style='font-family:"Lucida Console";
+  font-size:9.0pt'>hashtag_notebook.notebookID</span><span style='font-family:
+  Calibri;font-size:11.5pt'>; a </span><span style='font-family:"Lucida Console";
+  font-size:9.0pt'>moreID</span><span style='font-family:Calibri;font-size:
+  11.5pt'> stamp written into each tagged page</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:6.1736in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in'><span style='font-family:Calibri;font-size:11.5pt'>The
+  scanner matches notebooks by ID, so a reopened notebook looks new. A notebook
+  the scanner does not recognize is scanned automatically only if it has fewer
+  than 100 pages (</span><span style='font-family:"Lucida Console";font-size:
+  9.0pt'>MaxPagesThreshold</span><span style='font-family:Calibri;font-size:
+  11.5pt'>); a larger one waits until the user schedules a scan, as the code
+  comment says. In the author's database a reopened 376-page notebook was not
+  re-registered, and reopened smaller ones gained duplicate notebook rows,
+  which is consistent with this (the scanner log was not checked). Phantom
+  deletion matches on section ID and tag purging on page ID, so stale rows
+  accumulate. Identity survives only because the scanner </span><span
+  style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>writes a marker
+  into each tagged page</span><span style='font-family:Calibri;font-size:11.5pt'>.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:.6847in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Favorites</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:1.7048in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in'><span style='font-family:"Lucida Console";font-size:
+  9.0pt'>favorite</span><span style='font-family:Calibri;font-size:11.5pt'>: </span><span
+  style='font-family:"Lucida Console";font-size:9.0pt'>notebookID</span><span
+  style='font-family:Calibri;font-size:11.5pt'>, </span><span style='font-family:
+  "Lucida Console";font-size:9.0pt'>sectionID</span><span style='font-family:
+  Calibri;font-size:11.5pt'>, </span><span style='font-family:"Lucida Console";
+  font-size:9.0pt'>pageID</span><span style='font-family:Calibri;font-size:
+  11.5pt'>, </span><span style='font-family:"Lucida Console";font-size:9.0pt'>uri</span><span
+  style='font-family:Calibri;font-size:11.5pt'> (embeds section and page GUIDs)</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:6.0729in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in'><span style='font-family:Calibri;font-size:11.5pt'>Navigation
+  uses the stored </span><span style='font-family:"Lucida Console";font-size:
+  9.0pt'>uri</span><span style='font-family:Calibri;font-size:11.5pt'>, which
+  no longer resolves; the user sees &quot;Could not navigate at this
+  time&quot;. The &quot;is this page already a favorite?&quot; check compares
+  IDs, so it misses the existing favorite and the same page can be added again.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:.7041in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Layouts</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:1.7048in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in'><span style='font-family:"Lucida Console";font-size:
+  9.0pt'>layout_window</span><span style='font-family:Calibri;font-size:11.5pt'>:
+  </span><span style='font-family:"Lucida Console";font-size:9.0pt'>notebookID</span><span
+  style='font-family:Calibri;font-size:11.5pt'>, </span><span style='font-family:
+  "Lucida Console";font-size:9.0pt'>sectionID</span><span style='font-family:
+  Calibri;font-size:11.5pt'>, </span><span style='font-family:"Lucida Console";
+  font-size:9.0pt'>pageID</span><span style='font-family:Calibri;font-size:
+  11.5pt'>, </span><span style='font-family:"Lucida Console";font-size:9.0pt'>uri</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:6.0694in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in'><span style='font-family:Calibri;font-size:11.5pt'>Restore
+  compares </span><span style='font-family:Consolas;font-size:11.5pt'>window.PageID</span><span
+  style='font-family:Calibri;font-size:11.5pt'> with the open windows and
+  navigates by </span><span style='font-family:"Lucida Console";font-size:9.0pt'>uri</span><span
+  style='font-family:Calibri;font-size:11.5pt'>. Both fail and the window is </span><span
+  style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>silently
+  skipped</span><span style='font-family:Calibri;font-size:11.5pt'>.</span></p>
+  </td>
+ </tr>
+</table>
+
+</div>
+
+<p style='margin:0in'><span style='font-family:Calibri;font-size:11.5pt'>There
+is a manual repair path, </span><span style='font-family:"Lucida Console";
+font-size:9.0pt'>TargetChecker</span><span style='font-family:Calibri;
+font-size:11.5pt'> (the Check button in the manage dialogs). It resolves by ID
+and then by location path, but it is manual, matches by title path only, and </span><span
+style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>its repairs are
+never saved</span><span style='font-family:Calibri;font-size:11.5pt'>: </span><span
+style='font-family:"Lucida Console";font-size:9.0pt'>UpdateFavorite</span><span
+style='font-family:Calibri;font-size:11.5pt'> and </span><span
+style='font-family:"Lucida Console";font-size:9.0pt'>UpdateWindow</span><span
+style='font-family:Calibri;font-size:11.5pt'> do not write IDs or the URI, so a
+repaired reference reverts when the dialog closes.</span></p>
+
+<h3 id="goals" style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'>Goals</h3>
+
+<ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+ 0in;font-family:Verdana;font-size:10.0pt;font-weight:normal;font-style:normal'>
+ <li value=1 style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt;font-weight:normal;font-style:
+     normal;font-family:Calibri;font-size:11.5pt'>A reference to a page,
+     section, section group, or notebook keeps resolving across </span><span
+     style='font-family:Calibri;font-size:11.5pt;font-weight:bold;font-style:
+     normal;font-weight:bold;font-family:Calibri;font-size:11.5pt'>close/reopen</span><span
+     style='font-family:Calibri;font-size:11.5pt;font-weight:normal;font-style:
+     normal;font-family:Calibri;font-size:11.5pt'>, </span><span
+     style='font-family:Calibri;font-size:11.5pt;font-weight:bold;font-style:
+     normal;font-weight:bold;font-family:Calibri;font-size:11.5pt'>page moves</span><span
+     style='font-family:Calibri;font-size:11.5pt;font-weight:normal;font-style:
+     normal;font-family:Calibri;font-size:11.5pt'> (between sections and
+     between notebooks), and </span><span style='font-family:Calibri;
+     font-size:11.5pt;font-weight:bold;font-style:normal;font-weight:bold;
+     font-family:Calibri;font-size:11.5pt'>creation-date edits</span><span
+     style='font-family:Calibri;font-size:11.5pt;font-weight:normal;font-style:
+     normal;font-family:Calibri;font-size:11.5pt'>.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>Nothing is
+     written to the user's pages</span><span style='font-family:Calibri;
+     font-size:11.5pt'> to identify them.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>One shared mechanism serves
+     hashtags, favorites, and layouts, rather than three private ones.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>References that cannot be
+     resolved are shown as broken, never silently dropped or deleted.</span></li>
+</ol>
+
+<h3 id="non-goals" style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'>Non-goals</h3>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>The full-text search index
+     (planned later; it will consume this layer).</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>Bookmarks and reminders. Both
+     store OneNote IDs and are natural future consumers, but are out of scope
+     here.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>Roaming or sharing </span><span
+     style='font-family:Consolas;font-size:11.5pt'>OneMore.db</span><span
+     style='font-family:Calibri;font-size:11.5pt'> between machines. Each
+     machine keeps its own database and its own keys.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>Paragraph (object) IDs. Their
+     stability across a reopen has not been measured.</span></li>
+</ul>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>&nbsp;</p>
+
+<h2 id="2-concepts" style='margin:0in;font-family:Calibri;font-size:14.0pt;color:#2E75B5'>2.
+Concepts</h2>
+
+<h3 id="page-key" style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'>Page
+key</h3>
+
+<p style='margin:0in'><span style='font-family:Calibri;font-size:11.5pt'>A </span><span
+style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>page key</span><span
+style='font-family:Calibri;font-size:11.5pt'> is an integer assigned by OneMore
+in its own database (</span><span style='font-family:"Lucida Console";
+font-size:9.0pt'>identity_page.pageKey</span><span style='font-family:Calibri;
+font-size:11.5pt'>, </span><span style='font-family:"Lucida Console";
+font-size:9.0pt'>AUTOINCREMENT</span><span style='font-family:Calibri;
+font-size:11.5pt'>). It is not derived from the page, so OneNote cannot change
+it. What </span><span style='font-style:italic;font-family:Calibri;font-size:
+11.5pt'>can</span><span style='font-family:Calibri;font-size:11.5pt'> fail is
+attaching the key to the right page again after OneNote changes the IDs; that
+is the job of the matcher.</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Keys are never
+reused after a record is deleted. A reused key would attach data stored against
+the old page to a different page.</p>
+
+<h3 id="container-keys" style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'>Container
+keys</h3>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Notebook and section
+IDs also change, so containers are identified by <span style='font-weight:bold'>name
+and path</span> instead of a surrogate:</p>
+
+<div style='direction:ltr'>
+
+<table border=0 cellpadding=0 cellspacing=0 valign=top style='direction:ltr;
+ border-collapse:collapse;border-style:solid;border-color:#A3A3A3;border-width:
+ 0pt' title="" summary="">
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:1.1986in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>Key</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:7.2131in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>Built from</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:1.1986in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+  color:black'>notebookKey</code></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:7.2131in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-size:11.5pt'><span style='font-family:Calibri'>the
+  notebook's </span><span style='font-family:Consolas'>path</span><span
+  style='font-family:Calibri'> (cloud URL or local folder), trimmed and
+  lower-cased; the name if there is no path</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:1.1986in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+  color:black'>sectionKey</code></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:7.2131in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in'><span style='font-family:Calibri;font-size:11.5pt'>the
+  names of the enclosing section groups, outermost first, plus the section
+  name, e.g. </span><span style='font-family:"Lucida Console";font-size:9.0pt'>/Group
+  A/More Group/Section 3</span></p>
+  </td>
+ </tr>
+</table>
+
+</div>
+
+<h3 id="fingerprint" style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'>Fingerprint</h3>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>What is known about
+a page from the hierarchy alone, without loading it:</p>
+
+<p style='margin:0in'><span style='font-family:"Lucida Console";font-size:9.0pt'>notebookKey</span><span
+style='font-family:Calibri;font-size:11.5pt'>, </span><span style='font-family:
+"Lucida Console";font-size:9.0pt'>sectionKey</span><span style='font-family:
+Calibri;font-size:11.5pt'>, </span><span style='font-family:"Lucida Console";
+font-size:9.0pt'>title</span><span style='font-family:Calibri;font-size:11.5pt'>,
+</span><span style='font-family:"Lucida Console";font-size:9.0pt'>created</span><span
+style='font-family:Calibri;font-size:11.5pt'> (millisecond precision), and </span><span
+style='font-family:"Lucida Console";font-size:9.0pt'>modified</span><span
+style='font-family:Calibri;font-size:11.5pt'>.</span></p>
+
+<p style='margin:0in'><span style='font-family:"Lucida Console";font-size:9.0pt'>modified</span><span
+style='font-family:Calibri;font-size:11.5pt'> is used only to pair pages that
+are otherwise identical.</span></p>
+
+<h3 id="resolution-ladder" style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'>Resolution
+ladder</h3>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Each current page
+that has no stored record with the same OneNote ID is compared against the
+stored records that no page has claimed, strongest evidence first. Each step
+considers only what earlier steps left unclaimed.</p>
+
+<div style='direction:ltr'>
+
+<table border=0 cellpadding=0 cellspacing=0 valign=top style='direction:ltr;
+ border-collapse:collapse;border-style:solid;border-color:#A3A3A3;border-width:
+ 0pt' title="" summary="">
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:.6673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>Step</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:2.5076in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>Evidence</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:2.4305in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>Covers</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:2.5166in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>Cost</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:.6673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>1</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:2.5076in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Same OneNote page
+  ID</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:2.4305in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>nothing changed</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:2.5166in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>none</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:.6673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>2</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:2.5263in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>notebook + section
+  + title + created</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:2.4305in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>notebook <span
+  style='font-weight:bold'>reopen</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:2.4972in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>hierarchy only</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:.6673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>3</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:2.5076in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>notebook + title +
+  created</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:2.4305in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>page <span
+  style='font-weight:bold'>moved to another section</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:2.5166in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>hierarchy only</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:.6673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>4</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:2.5076in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>title + created</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:2.45in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>page <span
+  style='font-weight:bold'>moved to another notebook</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:2.4972in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>hierarchy only</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:.6673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>5</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:2.5076in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>notebook + section
+  + title</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:2.4305in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>creation date <span
+  style='font-weight:bold'>edited</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:2.7319in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>hierarchy only;
+  flagged as a <span style='font-style:italic'>weak</span> match</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:.6673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>6</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:2.5076in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>none</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:2.4305in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>a new page</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:2.5166in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>none</p>
+  </td>
+ </tr>
+</table>
+
+</div>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Measured results for
+steps 2 to 5 are in the technote.</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>A further step that
+loads the page and matches a hash of its text was considered and <span
+style='font-weight:bold'>deliberately left out</span> of this design. Nothing
+in hashtags, favorites, or layouts needs it; only the later text index would.
+It will be added with the index, as a small upgrade of the identity catalog
+(section 7). When a page matches nothing above, it is treated as a new page,
+which costs a re-read and is never wrong.</p>
+
+<h3 id="rules" style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'>Rules</h3>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>One-to-one
+     only.</span><span style='font-family:Calibri;font-size:11.5pt'> A step
+     matches a page to a record only when exactly one candidate qualifies on
+     each side. If several pages are indistinguishable, the match is declined
+     and they are treated as new. That costs a re-read, but is never wrong. The
+     single exception is identical pages in the same location with the same
+     modified time: their content is the same, so which record each gets does
+     not matter.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>Claimed
+     records are excluded.</span><span style='font-family:Calibri;font-size:
+     11.5pt'> A page copied into another notebook keeps its title and creation
+     time. Because the original claims its own record by ID first, the copy
+     cannot be mistaken for it.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>A weak match
+     (step 5) forces a re-read</span><span style='font-family:Calibri;
+     font-size:11.5pt'> of the page by any consumer that caches content,
+     because title alone is not proof.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>Do not
+     delete on the first miss.</span><span style='font-family:Calibri;
+     font-size:11.5pt'> A page that is not seen is marked </span><span
+     style='font-style:italic;font-family:Calibri;font-size:11.5pt'>missing</span><span
+     style='font-family:Calibri;font-size:11.5pt'> (</span><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>missingSince</span><span
+     style='font-family:Calibri;font-size:11.5pt'>) and kept. It is deleted
+     only after a grace period (hours), because a reopened notebook fills in
+     over minutes. If it reappears under a new ID, the ladder reconnects it.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>Skipped
+     sections are not deleted sections.</span><span style='font-family:Calibri;
+     font-size:11.5pt'> A locked or unreadable section is recorded as </span><span
+     style='font-style:italic;font-family:Calibri;font-size:11.5pt'>skipped</span><span
+     style='font-family:Calibri;font-size:11.5pt'> for that pass, so its pages
+     are left alone instead of being marked missing.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>Refresh </span><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>created</span><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'> on every
+     pass.</span><span style='font-family:Calibri;font-size:11.5pt'> A
+     creation-date edit changes neither the page ID nor </span><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>lastModifiedTime</span><span
+     style='font-family:Calibri;font-size:11.5pt'>, so the stored value must be
+     refreshed from the hierarchy every time.</span></li>
+</ul>
+
+<h3 id="what-is-deliberately-not-part-of-identity" style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'>What
+is deliberately not part of identity</h3>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>No marker
+     written into pages.</span><span style='font-family:Calibri;font-size:11.5pt'>
+     The earlier </span><span style='font-family:"Lucida Console";font-size:
+     9.0pt'>omPageID</span><span style='font-family:Calibri;font-size:11.5pt'>
+     stamp worked across reopens but is a write to a page the user did not
+     edit.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>No reliance
+     on OneNote IDs beyond one session.</span><span style='font-family:Calibri;
+     font-size:11.5pt'> They are used to load or navigate </span><span
+     style='font-style:italic;font-family:Calibri;font-size:11.5pt'>now</span><span
+     style='font-family:Calibri;font-size:11.5pt'>, never remembered.</span></li>
+</ul>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>&nbsp;</p>
+
+<h2 id="3-architecture" style='margin:0in;font-family:Calibri;font-size:14.0pt;color:#2E75B5'>3.
+Architecture</h2>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>@startuml</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>skinparam componentStyle rectangle</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>skinparam shadowing false</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>package &quot;OneNote&quot; {</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>component &quot;Hierarchy&quot; as H</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>}</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>package &quot;OneMore add-in&quot; {</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>component &quot;IdentityPass&quot; as IS</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>component &quot;PageIdentityMatcher&quot; as M</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>component &quot;Identity resolver&quot; as R</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>component &quot;Hashtag stage&quot; as HS</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>component &quot;Workspace healer&quot; as WH</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>component &quot;FavoritesCommand,\nFavoritesMenu&quot; as FC</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>component &quot;RestoreLayoutCommand&quot; as RL</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>component &quot;SaveLayoutCommand,\nAddFavoriteCommand&quot; as SV</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>}</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>package &quot;OneMore.db&quot; {</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>database &quot;identity_page&quot; as IDP</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>database &quot;hashtag tables&quot; as HT</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>database &quot;favorite&quot; as FAV</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>database &quot;layout tables&quot; as LAY</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>}</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>H --&gt; IS : pages + attributes</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>IS --&gt; M : PageRefs vs stored rows</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>M --&gt; IS : resolutions</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>IS --&gt; IDP : reconcile, soft-missing, purge</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>IS ..&gt; HS : after each pass</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>IS ..&gt; WH : after each pass</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>HS --&gt; HT</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>WH --&gt; FAV</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>WH --&gt; LAY</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>FC --&gt; R</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>RL --&gt; R</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>SV --&gt; R : register page at creation</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>R --&gt; IDP</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>FC --&gt; FAV</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>RL --&gt; LAY</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>@enduml</code></p>
+
+<h3 id="components" style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'>Components</h3>
+
+<div style='direction:ltr'>
+
+<table border=0 cellpadding=0 cellspacing=0 valign=top style='direction:ltr;
+ border-collapse:collapse;border-style:solid;border-color:#A3A3A3;border-width:
+ 0pt' title="" summary="">
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:1.3423in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>Component</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:7.0701in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>Responsibility</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:1.3423in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>IdentityPass</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:7.0701in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-size:11.5pt'><span style='font-family:Calibri'>Stage
+  1 of the </span><span style='font-family:Consolas'>PipelineService</span><span
+  style='font-family:Calibri'>. Runs a </span><span style='font-weight:bold;
+  font-family:Calibri'>hierarchy-only</span><span style='font-family:Calibri'>
+  pass over </span><span style='font-weight:bold;font-family:Calibri'>all open
+  notebooks</span><span style='font-family:Calibri'>, independent of hashtag
+  settings: one hierarchy call per notebook, no page loads. Builds the current
+  page list, calls the matcher, writes results, purges long-missing pages.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:1.3423in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>PageIdentityMatcher</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:7.0701in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Pure function:
+  stored records + current pages in, resolutions out. No database, no OneNote.
+  Easy to test exhaustively.</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:1.3423in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in'><span style='font-weight:bold;font-family:Calibri;
+  font-size:11.5pt'>Identity catalog</span><span style='font-family:Calibri;
+  font-size:11.5pt'> (</span><span style='font-family:"Lucida Console";
+  font-size:9.0pt'>identity_page</span><span style='font-family:Calibri;
+  font-size:11.5pt'>)</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:7.0701in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>The page keys and
+  their last-seen fingerprints.</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:1.3423in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>Identity resolver</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:7.0701in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in'><span style='font-family:Calibri;font-size:11.5pt'>Small
+  read API for consumers: </span><span style='font-family:"Lucida Console";
+  font-size:9.0pt'>key -&gt; current page ID, section ID, notebook ID, URI</span><span
+  style='font-family:Calibri;font-size:11.5pt'>, </span><span style='font-family:
+  "Lucida Console";font-size:9.0pt'>page ID -&gt; key</span><span
+  style='font-family:Calibri;font-size:11.5pt'>, and </span><span
+  style='font-style:italic;font-family:Calibri;font-size:11.5pt'>register this
+  page</span><span style='font-family:Calibri;font-size:11.5pt'> at creation
+  time.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:1.3423in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>Hashtag stage</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:7.0701in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>The existing scan,
+  now consuming identity instead of keeping its own.</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:1.3423in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>Workspace healer</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:7.0701in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>After each pass,
+  repairs favorites and layout windows and persists the repair.</p>
+  </td>
+ </tr>
+</table>
+
+</div>
+
+<h3 id="why-a-separate-always-on-identity-pass" style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'>Why a
+separate, always-on identity pass</h3>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Favorites and
+layouts can point at pages in any notebook, including ones the user excluded
+from hashtag scanning, or when hashtag scanning is disabled. If identity were
+produced only by the hashtag scan, those references would have nothing to
+resolve against. The pass is cheap because it loads no page content.</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Pipeline order for
+each cycle: <span style='font-weight:bold'>identity pass, then hashtag stage,
+then workspace healing.</span></p>
+
+<p style='margin:0in'><span style='font-weight:bold;font-family:Calibri;
+font-size:11.5pt'>Decision: one pipeline in one background loop, hosted by </span><span
+style='font-family:"Lucida Console";font-size:9.0pt'>PipelineService</span><span
+style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>.</span><span
+style='font-family:Calibri;font-size:11.5pt'> The existing hashtag service is
+only half generic, so it is separated first: the generic host (thread,
+cancellation, error policy, run mode, per-stage timing) becomes </span><span
+style='font-family:"Lucida Console";font-size:9.0pt'>PipelineService</span><span
+style='font-family:Calibri;font-size:11.5pt'>, and the hashtag-specific
+machinery (its settings, the scheduler that gates readiness, the provider, the
+results event, and rebuild preparation) moves into a </span><span
+style='font-family:"Lucida Console";font-size:9.0pt'>HashtagStage</span><span
+style='font-family:Calibri;font-size:11.5pt'>. Each stage has its own interval
+and the host ticks at the shortest, so hashtag scanning can be slowed without
+slowing identity. Turning hashtags off stops only that stage, and turning them
+back on resumes it without a restart. The hashtag-specific progress event stays
+on </span><span style='font-family:"Lucida Console";font-size:9.0pt'>HashtagStage</span><span
+style='font-family:Calibri;font-size:11.5pt'>; the host reports nothing itself.
+The three stages run in that order every cycle, so a hashtag scan can never run
+against identity that has not caught up. The hashtag service's </span><span
+style='font-style:italic;font-family:Calibri;font-size:11.5pt'>disabled</span><span
+style='font-family:Calibri;font-size:11.5pt'> setting skips only the hashtag
+stage; the identity pass and healing keep running, because favorites and
+layouts depend on them. The tray's scheduled scan and rebuild call the same
+pipeline, so they too begin with an identity pass. The pipeline's tuning values,
+such as the missing-page grace period, are named constants.</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>&nbsp;</p>
+
+<h2 id="4-data-model" style='margin:0in;font-family:Calibri;font-size:14.0pt;color:#2E75B5'>4.
+Data model</h2>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>@startuml</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>hide circle</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>skinparam linetype ortho</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>entity identity_page {</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>* pageKey : INTEGER &lt;&lt;PK, AUTOINCREMENT&gt;&gt;</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>--</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>pageID : TEXT (last seen, session-scoped)</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>notebookKey : TEXT</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>sectionKey : TEXT</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>title : TEXT</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>created : TEXT</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>modified : TEXT</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>level : INTEGER</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>missingSince : TEXT (NULL = present)</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>lastSeen : TEXT</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>}</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>entity hashtag_page {</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>* moreID : TEXT (holds the page key)</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>--</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>pageID : TEXT (refreshed each pass)</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>notebookID : TEXT (refreshed)</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>sectionID : TEXT (refreshed)</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>path, name, titleID</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>}</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>entity hashtag {</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>* tag, objectID</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>--</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>moreID : TEXT (page key)</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>}</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>entity favorite {</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>* favoriteID : INTEGER</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>--</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>pageKey : INTEGER (new, NULL for containers)</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>notebookKey : TEXT (new)</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>sectionKey : TEXT (new; group or section path)</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>kind : TEXT</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>notebookID, sectionID, pageID, uri (last known)</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>name, alias, location, folderID, sortOrder</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>}</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>entity layout_window {</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>* windowID : INTEGER</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>--</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>pageKey : INTEGER (new)</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>notebookID, sectionID, pageID, uri (last known)</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>name, alias, location, zOrder, device, bounds</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>}</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>identity_page ||--o{ hashtag_page : moreID = pageKey</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>hashtag_page ||--o{ hashtag : moreID</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>identity_page ||--o{ favorite : pageKey</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>identity_page ||--o{ layout_window : pageKey</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>@enduml</code></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Notes:</p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>The OneNote IDs that remain
+     in </span><span style='font-family:"Lucida Console";font-size:9.0pt'>favorite</span><span
+     style='font-family:Calibri;font-size:11.5pt'> and </span><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>layout_window</span><span
+     style='font-family:Calibri;font-size:11.5pt'> are </span><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>last-known
+     values</span><span style='font-family:Calibri;font-size:11.5pt'>, kept
+     current by the healer. They are a cache, not the identity.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>layout_window.pageID</span><span
+     style='font-family:Calibri;font-size:11.5pt'> stays </span><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>NOT NULL</span><span
+     style='font-family:Calibri;font-size:11.5pt'>, so a newly captured window
+     always stores the ID it had when saved.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>Notebook, section-group, and
+     section favorites carry </span><span style='font-weight:bold;font-family:
+     Calibri;font-size:11.5pt'>no </span><span style='font-family:"Lucida Console";
+     font-size:9.0pt'>pageKey</span><span style='font-family:Calibri;
+     font-size:11.5pt'>. They store </span><span style='font-family:"Lucida Console";
+     font-size:9.0pt'>notebookKey</span><span style='font-family:Calibri;
+     font-size:11.5pt'> and </span><span style='font-family:"Lucida Console";
+     font-size:9.0pt'>sectionKey</span><span style='font-family:Calibri;
+     font-size:11.5pt'> and are re-resolved by name and path.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>The hashtag tables keep the </span><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>moreID</span><span
+     style='font-family:Calibri;font-size:11.5pt'> column name and simply hold
+     the page key as text. Renaming it would require a table rebuild for no
+     behavioral gain.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>There is deliberately no </span><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>contentHash</span><span
+     style='font-family:Calibri;font-size:11.5pt'> column. The later text index
+     will add one (with the matching step) as an identity 1 to 2 upgrade.</span></li>
+</ul>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>&nbsp;</p>
+
+<h2 id="5-behavior" style='margin:0in;font-family:Calibri;font-size:14.0pt;color:#2E75B5'>5.
+Behavior</h2>
+
+<h3 id="5-1-background-identity-pass" style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'>5.1
+Background identity pass</h3>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>@startuml</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>participant &quot;IdentityPass&quot; as S</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>participant &quot;OneNote&quot; as O</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>participant &quot;Matcher&quot; as M</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>database &quot;identity_page&quot; as DB</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>S -&gt; O : GetNotebooks()</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>loop each open notebook</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>S -&gt; O : GetNotebook(id, pages)</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>O --&gt; S : sections, pages (ID, name, created, modified)</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>S -&gt; S : build PageRef list;\nnote locked sections as skipped</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>end</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>S -&gt; DB : read candidate rows\n(scoped notebooks + missing
+rows)</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>S -&gt; M : Match(rows, pages)</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>M --&gt; S : resolutions + orphans</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>S -&gt; DB : insert new, update changed,\nmark orphans missing</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>S -&gt; DB : purge missing longer than grace</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>S -&gt; S : notify hashtag stage and healer</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>@enduml</code></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>A notebook whose
+hierarchy could not be read is <span style='font-weight:bold'>left out of the
+scope</span> of the pass, so a failed read is never mistaken for an empty
+notebook.</p>
+
+<h3 id="5-2-a-notebook-is-reopened" style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'>5.2 A
+notebook is reopened</h3>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>@startuml</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>actor User</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>participant &quot;IdentityPass&quot; as S</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>database &quot;identity_page&quot; as DB</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>User -&gt; User : close and reopen notebook\n(all IDs regenerated)</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>S -&gt; DB : pass 1: only part of the notebook is listed</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>note right of DB</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>Listed pages are rehomed by fingerprint:</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>same key, new page ID.</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>Pages not yet listed are marked missing,</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>NOT deleted.</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>end note</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>S -&gt; DB : pass 2: more pages listed, more rehomed</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>S -&gt; DB : pass N: whole notebook listed</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>note right of DB</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>Every page has its original key.</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>missingSince is cleared.</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>Nothing was lost.</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>end note</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>@enduml</code></p>
+
+<h3 id="5-3-navigating-a-favorite" style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'>5.3
+Navigating a favorite</h3>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>@startuml</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>actor User</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>participant &quot;FavoritesCommand&quot; as C</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>participant &quot;Resolver&quot; as R</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>database &quot;identity_page&quot; as DB</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>participant &quot;OneNote&quot; as O</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>database &quot;favorite&quot; as F</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>User -&gt; C : click favorite</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>C -&gt; R : Resolve(favorite.pageKey)</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>R -&gt; DB : read row</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>DB --&gt; R : current pageID, section, notebook</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>R -&gt; O : GetHyperlink(pageID)</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>O --&gt; R : uri</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>alt resolved and navigation succeeds</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>C -&gt; O : NavigateTo(uri)</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>C -&gt; F : persist refreshed IDs and uri\n(if they changed)</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>else stale or unresolved</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>R -&gt; O : read just that notebook's hierarchy</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>R -&gt; R : reconcile that notebook, retry</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>alt now resolved</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>C -&gt; O : NavigateTo(uri)</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>C -&gt; F : persist refreshed IDs and uri</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>else still unresolved</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>C -&gt; User : mark favorite as broken\n(never deleted)</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>end</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>end</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>@enduml</code></p>
+
+<h3 id="5-4-restoring-a-layout" style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'>5.4
+Restoring a layout</h3>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>@startuml</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>participant &quot;RestoreLayoutCommand&quot; as C</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>participant &quot;Resolver&quot; as R</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>participant &quot;OneNote&quot; as O</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>loop each layout_window</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>C -&gt; R : Resolve(window.pageKey)</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>R --&gt; C : current pageID + uri (or unresolved)</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>alt resolved</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>C -&gt; O : find open window for resolved pageID</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>alt not already open</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>C -&gt; O : NavigateTo(resolved uri, newWindow)</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>C -&gt; O : wait for window with resolved pageID</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>end</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>C -&gt; O : position window</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>else unresolved</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>C -&gt; C : record as skipped and report it\n(instead of silently
+ignoring)</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>end</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>end</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>@enduml</code></p>
+
+<h3 id="5-5-adding-a-favorite-or-saving-a-layout" style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'>5.5
+Adding a favorite or saving a layout</h3>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>The page's
+fingerprint is captured at creation time, so the reference is born with a key.</p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>@startuml</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>participant &quot;AddFavoriteCommand /\nSaveLayoutCommand&quot; as
+C</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>participant &quot;OneNote&quot; as O</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>participant &quot;Resolver&quot; as R</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>database &quot;identity_page&quot; as DB</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>C -&gt; O : read current page\n(title, created, section path,
+notebook path)</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>C -&gt; R : EnsurePage(pageRef)</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>R -&gt; DB : find by ID, else reconcile, else insert</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>R --&gt; C : pageKey</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>C -&gt; C : store pageKey + last-known IDs and uri</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>@enduml</code></p>
+
+<h3 id="5-6-background-healing" style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'>5.6
+Background healing</h3>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>@startuml</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>participant &quot;Workspace healer&quot; as W</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>database &quot;identity_page&quot; as ID</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>database &quot;favorite / layout_window&quot; as T</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>participant &quot;OneNote&quot; as O</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>W -&gt; T : rows needing attention</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>note right of T</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>1. pageKey is NULL (legacy rows)</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>2. stored page ID differs from</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>the identity's current ID</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>end note</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>alt legacy row (no pageKey)</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>W -&gt; ID : match stored IDs against current rows</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>alt no match</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>W -&gt; O : resolve by location path + title</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>end</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>W -&gt; T : set pageKey, refresh IDs, location</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>else known key, stale IDs</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>W -&gt; ID : current IDs</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>end</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>W -&gt; O : GetHyperlink(page) to regenerate uri</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>W -&gt; T : persist IDs and uri</code></p>
+
+<p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+color:black'>@enduml</code></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>&nbsp;</p>
+
+<h2 id="6-applying-it-to-each-feature" style='margin:0in;font-family:Calibri;font-size:14.0pt;color:#2E75B5'>6.
+Applying it to each feature</h2>
+
+<h3 id="6-1-hashtags" style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'>6.1
+Hashtags</h3>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>Tags are keyed by the page
+     key, stored as text in the existing </span><span style='font-family:"Lucida Console";
+     font-size:9.0pt'>moreID</span><span style='font-family:Calibri;font-size:
+     11.5pt'> columns. </span><span style='font-family:"Lucida Console";
+     font-size:9.0pt'>ReadPageTags</span><span style='font-family:Calibri;
+     font-size:11.5pt'> and </span><span style='font-family:"Lucida Console";
+     font-size:9.0pt'>WriteTags</span><span style='font-family:Calibri;
+     font-size:11.5pt'> use the key; </span><span style='font-family:"Lucida Console";
+     font-size:9.0pt'>hashtag_page</span><span style='font-family:Calibri;
+     font-size:11.5pt'> is joined by key, not by </span><span style='font-family:
+     "Lucida Console";font-size:9.0pt'>pageID</span><span style='font-family:
+     Calibri;font-size:11.5pt'>.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>The scanner stops matching by
+     ID and </span><span style='font-weight:bold;font-family:Calibri;
+     font-size:11.5pt'>stops writing </span><span style='font-family:"Lucida Console";
+     font-size:9.0pt'>omPageID</span><span style='font-family:Calibri;
+     font-size:11.5pt'> into pages (the stamp set by </span><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>HashtagPageScanner.SetMoreID</span><span
+     style='font-family:Calibri;font-size:11.5pt'> and written by </span><span
+     style='font-family:Consolas;font-size:11.5pt'>HashtagScanner.ScanPage</span><span
+     style='font-family:Calibri;font-size:11.5pt'>, and the stamp in </span><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>DuplicatePageCommand</span><span
+     style='font-family:Calibri;font-size:11.5pt'>). It keeps its one
+     legitimate page write, which applies the hashtag style the user chose.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>Notebook
+     rows</span><span style='font-family:Calibri;font-size:11.5pt'> are adopted
+     by name after a reopen: a stored notebook whose ID is gone is taken to be
+     the open notebook of the same name, keeping its inclusion setting and last
+     scan. If either duplicate was excluded, the notebook stays excluded. This
+     also removes the 100-page &quot;new notebook&quot; threshold problem for
+     reopened notebooks.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>Which pages
+     are read:</span><span style='font-family:Calibri;font-size:11.5pt'>
+     changed pages, new pages, weak matches, and pages that have tags </span><span
+     style='font-style:italic;font-family:Calibri;font-size:11.5pt'>and</span><span
+     style='font-family:Calibri;font-size:11.5pt'> whose ID changed (the object
+     IDs stored with their tags are probably stale). Reopening a notebook
+     therefore re-reads only its tagged pages, not the whole notebook.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>Stored page
+     info</span><span style='font-family:Calibri;font-size:11.5pt'> (</span><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>pageID</span><span
+     style='font-family:Calibri;font-size:11.5pt'>, </span><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>sectionID</span><span
+     style='font-family:Calibri;font-size:11.5pt'>, </span><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>notebookID</span><span
+     style='font-family:Calibri;font-size:11.5pt'>, </span><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>path</span><span
+     style='font-family:Calibri;font-size:11.5pt'>, </span><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>name</span><span
+     style='font-family:Calibri;font-size:11.5pt'>) is refreshed from the
+     hierarchy for every tagged page on every pass, because the dialogs compare
+     these with the IDs of the notebooks open now.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>Deleting
+     tags</span><span style='font-family:Calibri;font-size:11.5pt'> is tied to
+     purging missing pages after the grace period, replacing per-section
+     phantom deletion.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>One-time
+     migration:</span><span style='font-family:Calibri;font-size:11.5pt'> tags
+     recorded under the old stamp keys are cleared and the scan time reset, so
+     one background scan rebuilds them. Tags are derived from page text, so
+     nothing is lost; notebook selections are kept.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>HashtagCommand</span><span
+     style='font-family:Calibri;font-size:11.5pt'> finds the current page's key
+     by asking the resolver for its page ID, instead of reading a stamp from
+     the page.</span></li>
+</ul>
+
+<h3 id="6-2-favorites" style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'>6.2
+Favorites</h3>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>Page favorites gain </span><span
+     style='font-family:Consolas;font-size:11.5pt'>pageKey</span><span
+     style='font-family:Calibri;font-size:11.5pt'>. Navigation resolves the key
+     to current IDs and a freshly generated URI (section 5.3).</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>Section,
+     section-group, and notebook favorites</span><span style='font-family:Calibri;
+     font-size:11.5pt'> gain </span><span style='font-family:"Lucida Console";
+     font-size:9.0pt'>notebookKey</span><span style='font-family:Calibri;
+     font-size:11.5pt'> and </span><span style='font-family:"Lucida Console";
+     font-size:9.0pt'>sectionKey</span><span style='font-family:Calibri;
+     font-size:11.5pt'> and are re-resolved by name and path, using the same
+     keys the identity layer already builds. They need no surrogate and no
+     scan, only a resolve step. A notebook favorite today stores the notebook
+     ID in </span><span style='font-family:"Lucida Console";font-size:9.0pt'>sectionID</span><span
+     style='font-family:Calibri;font-size:11.5pt'> and </span><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>uri</span><span
+     style='font-family:Calibri;font-size:11.5pt'>; the key columns replace
+     that dependence.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>Unique
+     indexes.</span><span style='font-family:Calibri;font-size:11.5pt'> The
+     existing ID-based unique indexes (</span><span style='font-family:"Lucida Console";
+     font-size:9.0pt'>idx_favorite_target_page</span><span style='font-family:
+     Calibri;font-size:11.5pt'> on </span><span style='font-family:"Lucida Console";
+     font-size:9.0pt'>pageID</span><span style='font-family:Calibri;font-size:
+     11.5pt'>, </span><span style='font-family:"Lucida Console";font-size:9.0pt'>idx_favorite_target_section</span><span
+     style='font-family:Calibri;font-size:11.5pt'> on </span><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>sectionID</span><span
+     style='font-family:Calibri;font-size:11.5pt'>) are </span><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>kept</span><span
+     style='font-family:Calibri;font-size:11.5pt'>, and key-based unique
+     indexes are </span><span style='font-weight:bold;font-family:Calibri;
+     font-size:11.5pt'>added</span><span style='font-family:Calibri;font-size:
+     11.5pt'> beside them (on </span><span style='font-family:Consolas;
+     font-size:11.5pt'>pageKey</span><span style='font-family:Calibri;
+     font-size:11.5pt'>, and on kind plus </span><span style='font-family:"Lucida Console";
+     font-size:9.0pt'>notebookKey</span><span style='font-family:Calibri;
+     font-size:11.5pt'> plus </span><span style='font-family:"Lucida Console";
+     font-size:9.0pt'>sectionKey</span><span style='font-family:Calibri;
+     font-size:11.5pt'> for containers). The old ones still reject a second
+     favorite for the same current page ID and cover legacy and imported rows
+     that have no key yet; the new ones cover resolved rows. Keeping them also
+     means an older build that opens an upgraded database still works.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>Legacy rows</span><span
+     style='font-family:Calibri;font-size:11.5pt'> (created before keys
+     existed) are backfilled lazily by the healer, using </span><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>TargetChecker</span><span
+     style='font-family:Calibri;font-size:11.5pt'>'s existing logic: match the
+     stored IDs against the current hierarchy, else walk </span><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>location</span><span
+     style='font-family:Calibri;font-size:11.5pt'> by name. Healed values are
+     then </span><span style='font-weight:bold;font-family:Calibri;font-size:
+     11.5pt'>persisted</span><span style='font-family:Calibri;font-size:11.5pt'>,
+     which today they are not.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>The existing root-folder
+     convention (</span><span style='font-family:"Lucida Console";font-size:
+     9.0pt'>folderID = 0</span><span style='font-family:Calibri;font-size:11.5pt'>,
+     not </span><span style='font-family:"Lucida Console";font-size:9.0pt'>NULL</span><span
+     style='font-family:Calibri;font-size:11.5pt'>) is left alone.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>The manual </span><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>Check</span><span
+     style='font-family:Calibri;font-size:11.5pt'> remains as a fallback and
+     now saves what it repairs.</span></li>
+</ul>
+
+<h3 id="6-3-layouts" style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'>6.3
+Layouts</h3>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>layout_window</span><span
+     style='font-family:Calibri;font-size:11.5pt'> gains </span><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>pageKey</span><span
+     style='font-family:Calibri;font-size:11.5pt'>.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>RestoreLayoutCommand</span><span
+     style='font-family:Calibri;font-size:11.5pt'> compares open windows
+     against the </span><span style='font-weight:bold;font-family:Calibri;
+     font-size:11.5pt'>resolved</span><span style='font-family:Calibri;
+     font-size:11.5pt'> page ID, and navigates by the </span><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>resolved</span><span
+     style='font-family:Calibri;font-size:11.5pt'> URI.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt'>A window that cannot be
+     resolved is reported, not silently skipped.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>LayoutsProvider</span><span
+     style='font-family:Calibri;font-size:11.5pt'> has no version table today.
+     It gains </span><span style='font-family:Consolas;font-size:11.5pt'>layouts_schema</span><span
+     style='font-family:Calibri;font-size:11.5pt'>, following exactly what
+     favorites did when it introduced </span><span style='font-family:"Lucida Console";
+     font-size:9.0pt'>favorites_schema</span><span style='font-family:Calibri;
+     font-size:11.5pt'>.</span></li>
+</ul>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>&nbsp;</p>
+
+<h3 id="6-4-export-and-import-compatibility" style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'>6.4
+Export and import compatibility</h3>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Favorites and
+layouts can be exported to JSON and imported again, possibly after the database
+has been upgraded, or on another machine. The existing code is already
+tolerant, which is what this design relies on:</p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>Export</span><span
+     style='font-family:Calibri;font-size:11.5pt'> serializes the model objects
+     with Newtonsoft (</span><span style='font-family:"Lucida Console";
+     font-size:9.0pt'>ExportFavoritesCommand</span><span style='font-family:
+     Calibri;font-size:11.5pt'>, </span><span style='font-family:"Lucida Console";
+     font-size:9.0pt'>ExportLayoutsCommand</span><span style='font-family:Calibri;
+     font-size:11.5pt'>). </span><span style='font-weight:bold;font-family:
+     Calibri;font-size:11.5pt'>Import</span><span style='font-family:Calibri;
+     font-size:11.5pt'> deserializes with default settings, so properties
+     missing from the file take their defaults and unknown properties are
+     ignored. It then writes each row through </span><span style='font-family:
+     "Lucida Console";font-size:9.0pt'>WriteFavorite</span><span
+     style='font-family:Calibri;font-size:11.5pt'> / </span><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>WriteWindow</span><span
+     style='font-family:Calibri;font-size:11.5pt'>, which use an explicit
+     column list rather than the old schema's shape. Importing resets every
+     database-local ID first (</span><span style='font-family:"Lucida Console";
+     font-size:9.0pt'>favorite.ID = 0</span><span style='font-family:Calibri;
+     font-size:11.5pt'>, </span><span style='font-family:"Lucida Console";
+     font-size:9.0pt'>FolderID</span><span style='font-family:Calibri;
+     font-size:11.5pt'> and </span><span style='font-family:"Lucida Console";
+     font-size:9.0pt'>LayoutID</span><span style='font-family:Calibri;
+     font-size:11.5pt'> reassigned).</span></li>
+</ul>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>What the design must
+therefore guarantee:</p>
+
+<ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+ 0in;font-family:Verdana;font-size:10.0pt;font-weight:normal;font-style:normal'>
+ <li value=1 style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt;font-weight:bold;font-style:
+     normal;font-weight:bold;font-family:Calibri;font-size:11.5pt'>An old file
+     imports into an upgraded database.</span><span style='font-family:Calibri;
+     font-size:11.5pt;font-weight:normal;font-style:normal;font-family:Calibri;
+     font-size:11.5pt'> Old files have no </span><span style='font-family:Consolas;
+     font-size:11.5pt;font-weight:normal;font-style:normal;font-family:Consolas;
+     font-size:11.5pt'>pageKey</span><span style='font-family:Calibri;
+     font-size:11.5pt;font-weight:normal;font-style:normal;font-family:Calibri;
+     font-size:11.5pt'>, </span><span style='font-family:"Lucida Console";
+     font-size:9.0pt;font-weight:normal;font-style:normal;font-family:"Lucida Console";
+     font-size:9.0pt'>notebookKey</span><span style='font-family:Calibri;
+     font-size:11.5pt;font-weight:normal;font-style:normal;font-family:Calibri;
+     font-size:11.5pt'>, or </span><span style='font-family:"Lucida Console";
+     font-size:9.0pt;font-weight:normal;font-style:normal;font-family:"Lucida Console";
+     font-size:9.0pt'>sectionKey</span><span style='font-family:Calibri;
+     font-size:11.5pt;font-weight:normal;font-style:normal;font-family:Calibri;
+     font-size:11.5pt'>, so those arrive unset. The new </span><span
+     style='font-family:"Lucida Console";font-size:9.0pt;font-weight:normal;
+     font-style:normal;font-family:"Lucida Console";font-size:9.0pt'>WriteFavorite</span><span
+     style='font-family:Calibri;font-size:11.5pt;font-weight:normal;font-style:
+     normal;font-family:Calibri;font-size:11.5pt'> / </span><span
+     style='font-family:"Lucida Console";font-size:9.0pt;font-weight:normal;
+     font-style:normal;font-family:"Lucida Console";font-size:9.0pt'>WriteWindow</span><span
+     style='font-family:Calibri;font-size:11.5pt;font-weight:normal;font-style:
+     normal;font-family:Calibri;font-size:11.5pt'> must accept that and store </span><span
+     style='font-family:"Lucida Console";font-size:9.0pt;font-weight:normal;
+     font-style:normal;font-family:"Lucida Console";font-size:9.0pt'>NULL</span><span
+     style='font-family:Calibri;font-size:11.5pt;font-weight:normal;font-style:
+     normal;font-family:Calibri;font-size:11.5pt'>. The model property for </span><span
+     style='font-family:"Lucida Console";font-size:9.0pt;font-weight:normal;
+     font-style:normal;font-family:"Lucida Console";font-size:9.0pt'>pageKey</span><span
+     style='font-family:Calibri;font-size:11.5pt;font-weight:normal;font-style:
+     normal;font-family:Calibri;font-size:11.5pt'> must be </span><span
+     style='font-family:Calibri;font-size:11.5pt;font-weight:bold;font-style:
+     normal;font-weight:bold;font-family:Calibri;font-size:11.5pt'>nullable</span><span
+     style='font-family:Calibri;font-size:11.5pt;font-weight:normal;font-style:
+     normal;font-family:Calibri;font-size:11.5pt'>: a plain integer would
+     deserialize as </span><span style='font-family:"Lucida Console";
+     font-size:9.0pt;font-weight:normal;font-style:normal;font-family:"Lucida Console";
+     font-size:9.0pt'>0</span><span style='font-family:Calibri;font-size:11.5pt;
+     font-weight:normal;font-style:normal;font-family:Calibri;font-size:11.5pt'>
+     and be stored as a real key.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>pageKey</span><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'> is
+     database-local, like </span><span style='font-family:"Lucida Console";
+     font-size:9.0pt'>favorite.ID</span><span style='font-weight:bold;
+     font-family:Calibri;font-size:11.5pt'>, and is never trusted from a file.</span><span
+     style='font-family:Calibri;font-size:11.5pt'> A key is only meaningful in
+     the database that issued it. Key 17 on another machine, or in a database
+     that was since reset, is a different page. Export therefore omits it, and
+     import discards any value it finds, exactly as it already discards </span><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>ID</span><span
+     style='font-family:Calibri;font-size:11.5pt'>. Imported rows are resolved
+     afterwards by the healer.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>Imported
+     rows are treated as legacy rows.</span><span style='font-family:Calibri;
+     font-size:11.5pt'> The healer backfills them the same way as rows that
+     predate the upgrade: stored IDs first (valid only if they happen to match
+     this machine's current IDs), then </span><span style='font-family:"Lucida Console";
+     font-size:9.0pt'>location</span><span style='font-family:Calibri;
+     font-size:11.5pt'> path plus title. A file from another machine will
+     mostly resolve by the location fallback, with today's limits: no created
+     time, so duplicate titles can be ambiguous, and unresolved rows are shown
+     as broken.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>Duplicate
+     detection does not depend on </span><span style='font-family:"Lucida Console";
+     font-size:9.0pt'>pageKey</span><span style='font-weight:bold;font-family:
+     Calibri;font-size:11.5pt'> alone.</span><span style='font-family:Calibri;
+     font-size:11.5pt'> The ID-based unique indexes are kept and key-based ones
+     are added beside them (section 6.2), so an imported row that has no key
+     yet is still rejected as a duplicate by the </span><span style='font-family:
+     "Lucida Console";font-size:9.0pt'>pageID</span><span style='font-family:
+     Calibri;font-size:11.5pt'> index, exactly as today, and resolved rows are
+     covered by the key index. No separate import-time duplicate check is
+     needed.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>The healer
+     must handle two rows resolving to the same page.</span><span
+     style='font-family:Calibri;font-size:11.5pt'> After backfill, two legacy
+     rows can map to one key, which the new unique index forbids. The healer
+     keeps the first and reports the other as a duplicate instead of failing.
+     The same applies when refreshing a stored ID would collide with another
+     row that already holds that ID.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>A newer file
+     imports into an older build.</span><span style='font-family:Calibri;
+     font-size:11.5pt'> Because unknown properties are ignored, the added
+     fields are simply dropped. This holds only while no import code turns on
+     strict member handling, so it is called out as a constraint.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>Enrichment
+     (decided).</span><span style='font-family:Calibri;font-size:11.5pt'>
+     Export adds </span><span style='font-family:"Lucida Console";font-size:
+     9.0pt'>title</span><span style='font-family:Calibri;font-size:11.5pt'>, </span><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>created</span><span
+     style='font-family:Calibri;font-size:11.5pt'>, </span><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>notebookKey</span><span
+     style='font-family:Calibri;font-size:11.5pt'>, and </span><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>sectionKey</span><span
+     style='font-family:Calibri;font-size:11.5pt'> to each favorite and layout
+     window, plus a small </span><span style='font-family:"Lucida Console";
+     font-size:9.0pt'>formatVersion</span><span style='font-family:Calibri;
+     font-size:11.5pt'> field at the top of the file. An import on another
+     machine can then resolve against the local hierarchy by title and creation
+     time instead of falling back to location and title alone. It is additive
+     and compatible with every point above: old builds ignore the new fields,
+     and the </span><span style='font-family:"Lucida Console";font-size:9.0pt'>formatVersion</span><span
+     style='font-family:Calibri;font-size:11.5pt'> lets later changes detect
+     which shape they are reading. </span><span style='font-family:"Lucida Console";
+     font-size:9.0pt'>pageKey</span><span style='font-family:Calibri;
+     font-size:11.5pt'> is still never exported.</span></li>
+</ol>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>&nbsp;</p>
+
+<h2 id="7-migration-and-versioning-summary" style='margin:0in;font-family:Calibri;font-size:14.0pt;color:#2E75B5'>7.
+Migration and versioning (summary)</h2>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Each catalog keeps
+its own version table and upgrade chain. The implementation plan will give the
+details; this is the shape.</p>
+
+<div style='direction:ltr'>
+
+<table border=0 cellpadding=0 cellspacing=0 valign=top style='direction:ltr;
+ border-collapse:collapse;border-style:solid;border-color:#A3A3A3;border-width:
+ 0pt' title="" summary="">
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:.8513in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>Catalog</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:1.209in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>Version table</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:.7666in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>Now</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:.6673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>Target</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:3.6618in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>Schema change</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:1.2541in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>Data step</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:.8513in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Page identity</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:1.209in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+  color:black'>identity_schema</code></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:.7666in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>none</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:.6673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>1</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:3.6618in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in'><span style='font-family:Calibri;font-size:11.5pt'>new
+  tables </span><span style='font-family:"Lucida Console";font-size:9.0pt'>identity_page</span><span
+  style='font-family:Calibri;font-size:11.5pt'> and indexes</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:1.2541in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>none</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:.8513in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Hashtags</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:1.209in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+  color:black'>hashtag_scanner</code></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:.7666in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in'><span style='font-weight:bold;font-family:Calibri;
+  font-size:11.5pt'>5</span><span style='font-family:Calibri;font-size:11.5pt'>
+  (in </span><span style='font-family:"Lucida Console";font-size:9.0pt'>main</span><span
+  style='font-family:Calibri;font-size:11.5pt'>)</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:.6673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>6</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:3.6618in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in'><span style='font-family:Calibri;font-size:11.5pt'>none
+  (the </span><span style='font-family:"Lucida Console";font-size:9.0pt'>moreID</span><span
+  style='font-family:Calibri;font-size:11.5pt'> column now holds the page key)</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:1.5319in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>clear tags, reset
+  scan time (rebuild once)</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:.8513in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Favorites</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:1.209in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p><code style='margin:0in;font-family:"Lucida Console";font-size:11.5pt;
+  color:black'>favorites_schema</code></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:.7666in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>2</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:.6673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>3</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:3.6812in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in'><span style='font-family:Calibri;font-size:11.5pt'>add </span><span
+  style='font-family:"Lucida Console";font-size:9.0pt'>pageKey</span><span
+  style='font-family:Calibri;font-size:11.5pt'>, </span><span style='font-family:
+  "Lucida Console";font-size:9.0pt'>notebookKey</span><span style='font-family:
+  Calibri;font-size:11.5pt'>, </span><span style='font-family:"Lucida Console";
+  font-size:9.0pt'>sectionKey</span><span style='font-family:Calibri;
+  font-size:11.5pt'>; add two key-based unique indexes (the ID-based ones are
+  kept)</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:1.5319in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>lazy, by the
+  healer</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:.8513in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Layouts</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:1.209in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>none (implicit 1)</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:.7666in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>1</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:.6673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>2</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:3.6618in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in'><span style='font-family:Calibri;font-size:11.5pt'>create
+  </span><span style='font-family:"Lucida Console";font-size:9.0pt'>layouts_schema</span><span
+  style='font-family:Calibri;font-size:11.5pt'>; add </span><span
+  style='font-family:"Lucida Console";font-size:9.0pt'>pageKey</span><span
+  style='font-family:Calibri;font-size:11.5pt'>; add a key-based unique index
+  (the ID-based one is kept)</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:1.5319in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>lazy, by the
+  healer</p>
+  </td>
+ </tr>
+</table>
+
+</div>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Principles:</p>
+
+<ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+ 0in;font-family:Verdana;font-size:10.0pt;font-weight:normal;font-style:normal'>
+ <li value=1 style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt;font-weight:bold;font-style:
+     normal;font-weight:bold;font-family:Calibri;font-size:11.5pt'>Schema
+     changes are pure SQL</span><span style='font-family:Calibri;font-size:
+     11.5pt;font-weight:normal;font-style:normal;font-family:Calibri;
+     font-size:11.5pt'> inside </span><span style='font-family:"Lucida Console";
+     font-size:9.0pt;font-weight:normal;font-style:normal;font-family:"Lucida Console";
+     font-size:9.0pt'>UpgradeCatalog</span><span style='font-family:Calibri;
+     font-size:11.5pt;font-weight:normal;font-style:normal;font-family:Calibri;
+     font-size:11.5pt'>, one transaction per step, ending with the version
+     update, so a failed step leaves the old version in place. Providers are
+     constructed in many contexts (dialogs, the tray, the calendar app) and
+     must never need OneNote to open.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>Data that
+     needs OneNote is deferred.</span><span style='font-family:Calibri;
+     font-size:11.5pt'> Resolving legacy favorites and layout windows needs the
+     hierarchy, so it is done by the healer when OneNote is available, not
+     during the upgrade. Until then, rows behave exactly as they do today.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>Fresh
+     databases</span><span style='font-family:Calibri;font-size:11.5pt'> get
+     the final shape from the embedded DDL at the current version; </span><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>existing
+     databases</span><span style='font-family:Calibri;font-size:11.5pt'> get
+     the upgrade chain. Both paths must produce the same schema and are tested
+     against each other.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>A database
+     newer than the code is left alone.</span><span style='font-family:Calibri;
+     font-size:11.5pt'> If a catalog reports a version the code does not know,
+     the provider logs it and runs no step, rather than guessing. (A developer
+     database can hold a newer version from another build.)</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>Shared
+     helpers. </span><span style='font-family:"Lucida Console";font-size:9.0pt'>ColumnExists</span><span
+     style='font-family:Calibri;font-size:11.5pt'> and an upsert-style </span><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>UpgradeSchemaVersion</span><span
+     style='font-family:Calibri;font-size:11.5pt'> are currently private to
+     individual providers and are lifted into </span><span style='font-family:
+     "Lucida Console";font-size:9.0pt'>DatabaseProvider</span><span
+     style='font-family:Calibri;font-size:11.5pt'>. The upsert form is required
+     because a version row may not exist yet (as with </span><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>layouts_schema</span><span
+     style='font-family:Calibri;font-size:11.5pt'>).</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>DDL stays
+     single-line per statement</span><span style='font-family:Calibri;
+     font-size:11.5pt'> with the </span><span style='font-family:"Lucida Console";
+     font-size:9.0pt'>CREATE ... IF NOT EXISTS name</span><span
+     style='font-family:Calibri;font-size:11.5pt'> form, because </span><span
+     style='font-family:Consolas;font-size:11.5pt'>RefreshDataSchema</span><span
+     style='font-family:Calibri;font-size:11.5pt'> and </span><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>DropCatalog</span><span
+     style='font-family:Calibri;font-size:11.5pt'> parse it that way.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>Older builds
+     keep working.</span><span style='font-family:Calibri;font-size:11.5pt'>
+     New columns are nullable and appended at the end, and the existing
+     ID-based unique indexes stay, so a build from before this change can still
+     read and write an upgraded database. This matters because several branches
+     are built against the one real OneMore.db during development.</span></li>
+</ol>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>&nbsp;</p>
+
+<h2 id="8-failure-modes-and-open-questions" style='margin:0in;font-family:Calibri;font-size:14.0pt;color:#2E75B5'>8.
+Failure modes and open questions</h2>
+
+<h3 id="known-limits" style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'>Known
+limits</h3>
+
+<div style='direction:ltr'>
+
+<table border=0 cellpadding=0 cellspacing=0 valign=top style='direction:ltr;
+ border-collapse:collapse;border-style:solid;border-color:#A3A3A3;border-width:
+ 0pt' title="" summary="">
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:2.7479in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>Case</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:5.6638in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>Outcome</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:2.7479in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Page renamed,
+  moved, <span style='font-weight:bold'>and</span> creation date edited all at
+  once, then reopened</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:5.6659in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>No hierarchy
+  signal remains. It becomes a new page with a new key; its old key is purged
+  after the grace period. Hashtags are rebuilt from content; a favorite shows
+  as broken.</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:2.7479in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Several pages
+  identical on every signal</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:5.727in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Paired only if
+  their location and modified time match (content is the same); otherwise
+  treated as new.</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:2.7638in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Reopened notebook
+  not fully loaded at the next pass</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:5.6479in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Pages already
+  listed are rehomed; the rest are marked missing and kept.</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:2.7479in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Stored page ID
+  between a reopen and the next pass</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:5.6638in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Stale. Consumers
+  resolve through the identity row and fall back to a targeted single-notebook
+  reconcile (section 5.3).</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:2.7479in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Locked or
+  encrypted section</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:5.6638in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Its pages are
+  skipped, not deleted. They cannot be hashed or read while locked.</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:2.7479in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Closed notebook</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:5.6638in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Its records are
+  left untouched, and re-match by fingerprint when it is reopened.</p>
+  </td>
+ </tr>
+</table>
+
+</div>
+
+<h3 id="decisions" style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'>Decisions</h3>
+
+<div style='direction:ltr'>
+
+<table border=0 cellpadding=0 cellspacing=0 valign=top style='direction:ltr;
+ border-collapse:collapse;border-style:solid;border-color:#A3A3A3;border-width:
+ 0pt' title="" summary="">
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:.6673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>#</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:1.3229in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>Question</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:6.4208in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>Decision</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:.6673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>1</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:1.3229in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Service topology</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:6.4493in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in'><span style='font-weight:bold;font-family:Calibri;
+  font-size:11.5pt'>One pipeline, one loop</span><span style='font-family:Calibri;
+  font-size:11.5pt'>: identity, then hashtags, then healing. </span><span
+  style='font-family:"Lucida Console";font-size:9.0pt'>PipelineService</span><span
+  style='font-family:Calibri;font-size:11.5pt'> is a generic host that runs
+  stages; hashtag-specific machinery lives in </span><span style='font-family:
+  "Lucida Console";font-size:9.0pt'>HashtagStage</span><span style='font-family:
+  Calibri;font-size:11.5pt'>. Each stage owns its interval. The hashtag </span><span
+  style='font-style:italic;font-family:Calibri;font-size:11.5pt'>disabled</span><span
+  style='font-family:Calibri;font-size:11.5pt'> setting skips only its own
+  stage and takes effect without a restart. The tray composes a one-shot
+  pipeline instead of subclassing the service.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:.6673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>2</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:1.3229in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Grace period for a
+  missing page</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:6.5048in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>6 hours</span>, as a named constant. Longer than any
+  measured reload, short enough that deleted pages leave hashtag results the
+  same day. Not a user setting.</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:.6673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>3</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:1.3229in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Export format</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:6.4493in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in'><span style='font-weight:bold;font-family:Calibri;
+  font-size:11.5pt'>Enriched</span><span style='font-family:Calibri;font-size:
+  11.5pt'>: </span><span style='font-family:"Lucida Console";font-size:9.0pt'>title</span><span
+  style='font-family:Calibri;font-size:11.5pt'>, </span><span style='font-family:
+  "Lucida Console";font-size:9.0pt'>created</span><span style='font-family:
+  Calibri;font-size:11.5pt'>, </span><span style='font-family:"Lucida Console";
+  font-size:9.0pt'>notebookKey</span><span style='font-family:Calibri;
+  font-size:11.5pt'>, </span><span style='font-family:"Lucida Console";
+  font-size:9.0pt'>sectionKey</span><span style='font-family:Calibri;
+  font-size:11.5pt'>, plus a </span><span style='font-family:"Lucida Console";
+  font-size:9.0pt'>formatVersion</span><span style='font-family:Calibri;
+  font-size:11.5pt'> field. </span><span style='font-family:"Lucida Console";
+  font-size:9.0pt'>pageKey</span><span style='font-family:Calibri;font-size:
+  11.5pt'> is never exported.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:.6673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>4</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:1.327in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in'><span style='font-family:Calibri;font-size:11.5pt'>Content-hash
+  matching and </span><span style='font-family:"Lucida Console";font-size:9.0pt'>omPageID</span><span
+  style='font-family:Calibri;font-size:11.5pt'> stamps</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:6.4493in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in'><span style='font-weight:bold;font-family:Calibri;
+  font-size:11.5pt'>Left out</span><span style='font-family:Calibri;font-size:
+  11.5pt'> until the text index. No </span><span style='font-family:"Lucida Console";
+  font-size:9.0pt'>contentHash</span><span style='font-family:Calibri;
+  font-size:11.5pt'> column and no page-loading step in identity v1. Old </span><span
+  style='font-family:"Lucida Console";font-size:9.0pt'>omPageID</span><span
+  style='font-family:Calibri;font-size:11.5pt'> stamps are not read.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:.6673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>5</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:1.3423in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Cadence and cost</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:6.5527in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>No cheap-skip optimization.</span> Run the full
+  hierarchy-only pass over every open notebook each cycle, at the service's
+  existing 2-minute interval. Measured cost is tens of milliseconds per
+  notebook (see Measurements). Log each pass's duration so a slow case shows
+  up.</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:.6673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>6</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:1.3229in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Hierarchy source</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:6.5527in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in'><span style='font-weight:bold;font-family:Calibri;
+  font-size:11.5pt'>One </span><span style='font-family:"Lucida Console";
+  font-size:9.0pt'>GetNotebook(id, Pages)</span><span style='font-weight:bold;
+  font-family:Calibri;font-size:11.5pt'> call per notebook.</span><span
+  style='font-family:Calibri;font-size:11.5pt'> The notebook-wide pages scope
+  carries the same page-level metadata as the per-section call, so the
+  scanner's per-section calls are not needed to skip tag-index pages.</span></p>
+  </td>
+ </tr>
+</table>
+
+</div>
+
+<h3 id="measurements" style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'>Measurements</h3>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Taken 2026-10-03
+against 9 open notebooks (8 cloud, 1 local; 1,984 live pages; 119 sections with
+pages), read-only, with the 2013 schema OneMore uses. OneNote was already
+running, so calls were warm.</p>
+
+<div style='direction:ltr'>
+
+<table border=0 cellpadding=0 cellspacing=0 valign=top style='direction:ltr;
+ border-collapse:collapse;border-style:solid;border-color:#A3A3A3;border-width:
+ 0pt' title="" summary="">
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:2.225in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>Notebook (pages live / all)</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:.9423in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>XML size</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:1.9208in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>One call for the notebook</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:2.527in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>One call per live section, all sections</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:2.225in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>447 / 523 (12
+  sections)</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:.9423in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>132 KB</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:1.9013in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>20 ms</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:2.3118in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>35 ms</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:2.225in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>436 / 437 (30
+  sections)</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:.9423in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>106 KB</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:1.9013in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>20 ms</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:2.3118in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>34 ms</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:2.225in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>376 / 377 (16
+  sections)</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:.9423in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>89 KB</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:1.9013in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>16 ms</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:2.3118in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>26 ms</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:2.225in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>157 / 157 (5
+  sections)</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:.9423in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>38 KB</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:1.9013in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>7 ms</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:2.3118in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>11 ms</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:2.2444in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>the other four, 77
+  to 142 pages</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:.9611in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>30 to 77 KB</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:1.9013in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>7 to 15 ms</p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:2.2729in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>9 to 14 ms</p>
+  </td>
+ </tr>
+</table>
+
+</div>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Times are the
+fastest of three runs for the notebook call. The slowest single section took 6
+ms.</p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>Cost.</span><span
+     style='font-family:Calibri;font-size:11.5pt'> The whole pass over all nine
+     notebooks is on the order of 150 ms. Hierarchy calls are far cheaper than
+     page loads (28 to 72 ms for </span><span style='font-style:italic;
+     font-family:Calibri;font-size:11.5pt'>one</span><span style='font-family:
+     Calibri;font-size:11.5pt'> page), which is why the old 100-page threshold,
+     a guard against page loads, does not apply to this pass. Calling per
+     notebook or per section made no practical difference at this size.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>Page-level
+     metadata.</span><span style='font-family:Calibri;font-size:11.5pt'> Of
+     1,984 pages, 275 carry </span><span style='font-family:"Lucida Console";
+     font-size:9.0pt'>Meta</span><span style='font-family:Calibri;font-size:
+     11.5pt'> elements, and the </span><span style='font-weight:bold;
+     font-family:Calibri;font-size:11.5pt'>notebook-wide pages scope returned
+     exactly the same </span><span style='font-family:"Lucida Console";
+     font-size:9.0pt'>Meta</span><span style='font-weight:bold;font-family:
+     Calibri;font-size:11.5pt'> elements as the per-section call for every page</span><span
+     style='font-family:Calibri;font-size:11.5pt'> (0 differences). So the
+     scanner can identify its tag-index pages from the notebook-wide result. </span><span
+     style='font-style:italic;font-family:Calibri;font-size:11.5pt'>Limit:</span><span
+     style='font-family:Calibri;font-size:11.5pt'> none of these notebooks
+     contains an </span><span style='font-family:"Lucida Console";font-size:
+     9.0pt'>omTagIndex</span><span style='font-family:Calibri;font-size:11.5pt'>
+     page, so that specific marker was not observed; it is the same kind of
+     page-level </span><span style='font-family:"Lucida Console";font-size:
+     9.0pt'>Meta</span><span style='font-family:Calibri;font-size:11.5pt'>
+     element as the 275 compared.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:"Lucida Console";font-size:9.0pt'>lastModifiedTime</span><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'> as a skip
+     signal.</span><span style='font-family:Calibri;font-size:11.5pt'> In every
+     one of the 119 sections with pages, and for all 9 notebooks, the section's
+     and notebook's </span><span style='font-family:"Lucida Console";
+     font-size:9.0pt'>lastModifiedTime</span><span style='font-family:Calibri;
+     font-size:11.5pt'> was at or after its newest page. That relationship
+     holds, but only a static snapshot was taken. It was </span><span
+     style='font-weight:bold;font-family:Calibri;font-size:11.5pt'>not</span><span
+     style='font-family:Calibri;font-size:11.5pt'> tested whether a page </span><span
+     style='font-style:italic;font-family:Calibri;font-size:11.5pt'>move</span><span
+     style='font-family:Calibri;font-size:11.5pt'> or a </span><span
+     style='font-style:italic;font-family:Calibri;font-size:11.5pt'>creation-date
+     edit</span><span style='font-family:Calibri;font-size:11.5pt'> updates the
+     section's or notebook's time, and the technote shows a date edit does not
+     update the page's own. Because the pass is cheap, the design does not take
+     that risk (decision 5).</span></li>
+</ul>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+style='font-style:italic'>Limits:</span> the largest notebook had 523 pages
+including the recycle bin. Larger notebooks, a cold start, and a very slow
+cloud sync were not measured. Extrapolating linearly (not measured) puts a
+10,000-page notebook at roughly half a second per call, which is why the pass
+duration is logged.</p>
+
+<p style='margin:0in'><span style='font-family:Calibri;font-size:11.5pt'>Also
+seen while measuring: 245 of the 1,984 pages still carry an old </span><span
+style='font-family:"Lucida Console";font-size:9.0pt'>omPageID</span><span
+style='font-family:Calibri;font-size:11.5pt'> stamp from the previous hashtag
+scanner. The new design neither reads nor removes them.</span></p>
+
+<h3 id="open-questions" style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'>Open
+questions</h3>
+
+<ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+ 0in;font-family:Verdana;font-size:10.0pt;font-weight:normal;font-style:normal'>
+ <li value=1 style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:Calibri;font-size:11.5pt;font-weight:bold;font-style:
+     normal;font-weight:bold;font-family:Calibri;font-size:11.5pt'>Paragraph
+     identity</span><span style='font-family:Calibri;font-size:11.5pt;
+     font-weight:normal;font-style:normal;font-family:Calibri;font-size:11.5pt'>
+     is unmeasured. Anything that links to a specific paragraph needs its own
+     test before it can build on this layer. This matters most for the later
+     text index, whose results navigate to a paragraph by its object ID.</span></li>
+</ol>
+
+<h3 id="not-measured" style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#5B9BD5'>Not
+measured</h3>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Paragraph object IDs
+across a reopen, a second machine, renames of notebooks, sections, or pages,
+moving or renaming section groups, locked sections, the OneNote UI as the route
+for moves and date edits (the experiments used the API), other platforms, and
+very large notebooks. See the technote.</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>&nbsp;</p>
+
+<h2 id="9-testing-strategy" style='margin:0in;font-family:Calibri;font-size:14.0pt;color:#2E75B5'>9.
+Testing strategy</h2>
+
+<div style='direction:ltr'>
+
+<table border=0 cellpadding=0 cellspacing=0 valign=top style='direction:ltr;
+ border-collapse:collapse;border-style:solid;border-color:#A3A3A3;border-width:
+ 0pt' title="" summary="">
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:1.0034in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>Layer</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:7.409in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>Approach</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:1.0034in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>Matcher</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:7.409in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Pure unit tests
+  for every ladder step and every rule: reopen, gradual reopen, section move,
+  notebook move, edited date, identical duplicates, a copy beside its original,
+  strong signal preferred over weak, ambiguity declined.</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:1.0034in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>Identity provider</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:7.4493in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in'><span style='font-family:Calibri;font-size:11.5pt'>In-memory
+  SQLite (the </span><span style='font-family:"Lucida Console";font-size:9.0pt'>internal</span><span
+  style='font-family:Calibri;font-size:11.5pt'> constructor taking a </span><span
+  style='font-family:"Lucida Console";font-size:9.0pt'>SQLiteConnection</span><span
+  style='font-family:Calibri;font-size:11.5pt'>, as in </span><span
+  style='font-family:"Lucida Console";font-size:9.0pt'>FavoritesProvider</span><span
+  style='font-family:Calibri;font-size:11.5pt'>): persistence, rehoming,
+  soft-missing and purge, key never reused, skipped sections, notebooks out of
+  scope left alone.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:1.0034in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>Upgrades</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:7.409in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>For each catalog,
+  build a database at the <span style='font-weight:bold'>old</span> version
+  from the old DDL, open the new provider, and assert the schema, data,
+  version, and that it matches a fresh database. Include a database newer than
+  the code.</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:1.0034in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>Consumers</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:7.409in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Provider-level
+  tests for the hashtag methods, favorites and layouts resolution, healing that
+  persists, and unresolved references reported. The decision of which pages to
+  read is a small, directly tested function.</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:1.0034in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>Import and export</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:7.4458in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in'><span style='font-family:Calibri;font-size:11.5pt'>Keep
+  fixture JSON files in the old format (captured from the current export
+  commands before they change). Test that each imports into a database upgraded
+  from the old version: rows are stored with </span><span style='font-family:
+  "Lucida Console";font-size:9.0pt'>NULL</span><span style='font-family:Calibri;
+  font-size:11.5pt'> keys, a stray </span><span style='font-family:"Lucida Console";
+  font-size:9.0pt'>pageKey</span><span style='font-family:Calibri;font-size:
+  11.5pt'> in a file is discarded, duplicates are still rejected, and two rows
+  resolving to one page are handled. Also test that a file with extra, unknown
+  properties still imports.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-width:0pt;vertical-align:top;width:1.0034in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'><span
+  style='font-weight:bold'>Manual (needs OneNote)</span></p>
+  </td>
+  <td style='border-width:0pt;vertical-align:top;width:7.409in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.5pt'>Close and reopen
+  each notebook type and confirm favorites, layouts, and hashtags still
+  resolve; move a page between sections and notebooks; edit a creation date and
+  reopen; a half-loaded notebook; a locked section. Scripts from the
+  measurement work can capture before and after snapshots.</p>
+  </td>
+ </tr>
+</table>
+
+</div>
+
+<p style='margin:0in;font-family:Calibri;font-size:11.5pt'>The scan loop and
+the commands talk to OneNote directly and cannot be unit tested; the design
+keeps logic out of them so that what is left untested is thin.</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+
+<p style='margin:0in'>&nbsp;</p>
+
+<p style='text-align:left;margin:0in;font-family:Arial;font-size:9pt;
+color:#969696;direction:ltr'>Created with OneNote.</p>
+
+</div>
+
+</body>
+
+</html>
