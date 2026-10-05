@@ -4285,6 +4285,42 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This favorite could mean more than one page, so OneMore did not guess. Remove it and add it again.
+        /// </summary>
+        internal static string FavoritesCommand_ambiguous {
+            get {
+                return ResourceManager.GetString("FavoritesCommand_ambiguous", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This favorite no longer exists. It may have been deleted or renamed. Remove it and add it again.
+        /// </summary>
+        internal static string FavoritesCommand_broken {
+            get {
+                return ResourceManager.GetString("FavoritesCommand_broken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This favorite is in a notebook that is not open or is still loading, or in a locked section. If you just opened the notebook, try again in a moment.
+        /// </summary>
+        internal static string FavoritesCommand_offline {
+            get {
+                return ResourceManager.GetString("FavoritesCommand_offline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OneMore is still learning where your pages are, so it cannot find this favorite yet. Try again in a few minutes.
+        /// </summary>
+        internal static string FavoritesCommand_pending {
+            get {
+                return ResourceManager.GetString("FavoritesCommand_pending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CREATE TABLE IF NOT EXISTS favorites_folder (folderID INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, UNIQUE(name));
         ///CREATE TABLE IF NOT EXISTS favorite (favoriteID INTEGER PRIMARY KEY AUTOINCREMENT, folderID INTEGER REFERENCES favorites_folder(folderID) ON DELETE CASCADE, name TEXT NOT NULL, alias TEXT, location TEXT, uri TEXT NOT NULL, notebookID TEXT NOT NULL, sectionID TEXT NOT NULL, pageID TEXT, kind TEXT, sortOrder INTEGER NOT NULL DEFAULT 0);
         ///CREATE TABLE IF NOT EXISTS favorites_schema (sche [rest of string was truncated]&quot;;.
@@ -5140,6 +5176,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CREATE TABLE IF NOT EXISTS identity_schema (schemaID INTEGER PRIMARY KEY UNIQUE NOT NULL, version NUMERIC (12) UNIQUE NOT NULL);
+        ///CREATE TABLE IF NOT EXISTS identity_page (pageKey INTEGER PRIMARY KEY AUTOINCREMENT, pageID TEXT NOT NULL, notebookKey TEXT NOT NULL, sectionKey TEXT NOT NULL, title TEXT NOT NULL, created TEXT NOT NULL, modified TEXT NOT NULL, level INTEGER NOT NULL DEFAULT 1, missingSince TEXT, lastSeen TEXT NOT NULL); [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string PageIdentityDB {
+            get {
+                return ResourceManager.GetString("PageIdentityDB", resourceCulture);
+            }
+        }
+                /// <summary>
         ///   Looks up a localized string similar to Disable the hashtag service. This will also disable hashtag searching..
         /// </summary>
         internal static string HashtagSheet_disabledBox_Text {
@@ -9964,6 +10009,60 @@ namespace River.OneMoreAddIn.Properties {
         internal static string RestoreLayoutCommand_notFound {
             get {
                 return ResourceManager.GetString("RestoreLayoutCommand_notFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to more than one page fits it, so OneMore did not guess.
+        /// </summary>
+        internal static string RestoreLayoutCommand_ambiguous {
+            get {
+                return ResourceManager.GetString("RestoreLayoutCommand_ambiguous", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to the page no longer exists, or has been renamed beyond recognition.
+        /// </summary>
+        internal static string RestoreLayoutCommand_broken {
+            get {
+                return ResourceManager.GetString("RestoreLayoutCommand_broken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OneNote did not open it.
+        /// </summary>
+        internal static string RestoreLayoutCommand_failed {
+            get {
+                return ResourceManager.GetString("RestoreLayoutCommand_failed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restored {0} of {1} windows. These could not be opened:{2}.
+        /// </summary>
+        internal static string RestoreLayoutCommand_incomplete {
+            get {
+                return ResourceManager.GetString("RestoreLayoutCommand_incomplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to it is in a notebook that is not open, or in a locked section.
+        /// </summary>
+        internal static string RestoreLayoutCommand_offline {
+            get {
+                return ResourceManager.GetString("RestoreLayoutCommand_offline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OneMore is still learning where your pages are; try again in a few minutes.
+        /// </summary>
+        internal static string RestoreLayoutCommand_pending {
+            get {
+                return ResourceManager.GetString("RestoreLayoutCommand_pending", resourceCulture);
             }
         }
         

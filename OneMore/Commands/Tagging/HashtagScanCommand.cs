@@ -6,6 +6,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Settings;
 	using System.IO;
+	using System.Linq;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
 	using Windows.UI.Notifications;
@@ -40,11 +41,23 @@ namespace River.OneMoreAddIn.Commands
 		{
 			using var one = new OneNote();
 
+			// the page is found in the identity catalog, which is brought up to date first so a
+			// notebook that was just reopened is recognized
+			var snapshot = await HashtagScanner.ReadIdentities();
+			var identity = snapshot?.Pages.FirstOrDefault(p => p.Ref.PageID == one.CurrentPageId);
+			if (identity is null)
+			{
+				logger.WriteLine("could not find the current page to scan for hashtags");
+				return;
+			}
+
 			if (HashtagProvider.CatalogExists())
 			{
 				using var provider = new HashtagProvider();
+				provider.ReconcileNotebooks(snapshot.Notebooks.Select(n => (n.ID, n.Name)).ToList());
+
 				var knownNotebooks = provider.ReadKnownNotebooks();
-				var known = knownNotebooks.Find(n => n.NotebookID == one.CurrentNotebookId);
+				var known = knownNotebooks.Find(n => n.NotebookID == identity.NotebookID);
 				if (known is not null && !known.Included)
 				{
 					ShowInfo(Resx.HashtagCommand_notebookExcluded);
@@ -54,11 +67,7 @@ namespace River.OneMoreAddIn.Commands
 
 			using var scanner = new HashtagScanner();
 
-			var section = await one.GetSectionInfo();
-
-			await scanner.ScanPage(one,
-				one.CurrentPageId, one.CurrentNotebookId, one.CurrentSectionId,
-				section.Path, true);
+			await scanner.ScanPage(one, identity, true);
 
 			if (!runningFromCli)
 			{

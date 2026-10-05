@@ -1,0 +1,203 @@
+//************************************************************************************************
+// Copyright © 2026 Steven M Cohn. All rights reserved.
+//************************************************************************************************
+
+namespace River.OneMoreAddIn.Commands.Workspaces
+{
+	using River.OneMoreAddIn.Commands.Favorites;
+	using River.OneMoreAddIn.Commands.Layouts;
+	using River.OneMoreAddIn.Identity;
+	using System;
+	using System.Threading;
+	using System.Threading.Tasks;
+
+
+	/// <summary>
+	/// Finds where a remembered favorite points now, and says how to navigate there and what to
+	/// save. The choices are pure and tested; only <see cref="Resolve"/> talks to OneNote.
+	/// </summary>
+	internal static class WorkspaceResolver
+	{
+		/// <summary>
+		/// Reads the open notebooks and finds where the remembered target is now. This runs an
+		/// identity pass, so call it when a favorite could not be opened, not before every click.
+		/// </summary>
+		public static async Task<TargetResolution> Resolve(
+			TargetQuery query, CancellationToken token = default)
+		{
+			using var identity = new PageIdentityProvider();
+			await using var source = new OneNoteHierarchySource();
+
+			// someone is waiting, so do not spend time filling in GUIDs; the ones this needs to
+			// match a page are read anyway
+			var snapshot = await new IdentityPass(identity, source).Run(token, fillGuids: false);
+			if (snapshot is null)
+			{
+				return new TargetResolution
+				{
+					Outcome = ResolveOutcome.Pending,
+					Method = ResolveMethod.None,
+					Reason = "OneNote could not be read"
+				};
+			}
+
+			return new TargetResolver(snapshot, identity.Read).Resolve(query);
+		}
+
+
+		/// <summary>
+		/// Reads the open notebooks once and returns a resolver for finding many targets in them, as an
+		/// import does. Returns null if OneNote could not be read.
+		/// </summary>
+		public static async Task<TargetResolver> ReadResolver(CancellationToken token = default)
+		{
+			using var identity = new PageIdentityProvider();
+			await using var source = new OneNoteHierarchySource();
+
+			var snapshot = await new IdentityPass(identity, source).Run(token, fillGuids: false);
+			return snapshot is null ? null : new TargetResolver(snapshot);
+		}
+
+
+		/// <summary>
+		/// Determines whether OneNote ended up where a favorite's stored link points. OneNote does not
+		/// report an error when a link names a page or a section that no longer exists: it opens
+		/// something else, such as the section, or does nothing, and says it succeeded. So after
+		/// navigating, the page or section that is now current is compared with the one the link names.
+		/// </summary>
+		/// <param name="favorite">The favorite that was opened</param>
+		/// <param name="currentPageLink">A link to the page now showing, or null if none could be made</param>
+		/// <param name="currentSectionLink">A link to the section now showing, or null</param>
+		/// <returns>False only if it is certain OneNote is somewhere else. True if it is there, or if
+		/// there is no way to tell, so that a doubt never turns a good click into an error.</returns>
+		internal static bool LandedOn(Favorite favorite, string currentPageLink, string currentSectionLink)
+		{
+			// a notebook or a section group is opened by its ID, which fails loudly
+			if (favorite.PageID is null &&
+				(favorite.Kind == Favorite.KindNotebook || favorite.Kind == Favorite.KindSectionGroup))
+			{
+				return true;
+			}
+
+			var isPage = favorite.PageID is not null;
+			var expected = isPage
+				? LinkGuids.PageGuid(favorite.Uri)
+				: LinkGuids.SectionGuid(favorite.Uri);
+
+			var actual = isPage
+				? LinkGuids.PageGuid(currentPageLink)
+				: LinkGuids.SectionGuid(currentSectionLink);
+
+			if (expected is null || actual is null)
+			{
+				return true;
+			}
+
+			return string.Equals(expected, actual, StringComparison.OrdinalIgnoreCase);
+		}
+
+
+		/// <summary>
+		/// Gets what to hand to OneNote to open a resolved target. A page or a section is opened
+		/// by a link generated now, because a stored link can be out of date. A notebook or a
+		/// section group is opened by its ID, because links to those are unreliable.
+		/// </summary>
+		/// <param name="resolution">A resolved target</param>
+		/// <param name="kind">The favorite's kind; see <see cref="Favorite.Kind"/></param>
+		/// <param name="hyperlink">Makes a link to a page or a section from its ID</param>
+		internal static string NavigationTarget(
+			TargetResolution resolution, string kind, Func<string, string> hyperlink)
+		{
+			var byID = resolution.PageID is null &&
+				(kind == Favorite.KindNotebook || kind == Favorite.KindSectionGroup);
+
+			return byID
+				? resolution.SectionID
+				: hyperlink(resolution.PageID ?? resolution.SectionID);
+		}
+
+
+		/// <summary>
+		/// Copies what was found into a layout window, ready to be saved. The name, alias, layout and
+		/// z-order are the user's and are never touched.
+		/// </summary>
+		/// <returns>True if anything changed</returns>
+		internal static bool Apply(
+			LayoutWindow window, TargetResolution resolution, Func<string, string> hyperlink)
+		{
+			var changed = false;
+
+			void Set<T>(T current, T value, Action<T> assign)
+			{
+				if (!Equals(current, value))
+				{
+					assign(value);
+					changed = true;
+				}
+			}
+
+			Set(window.NotebookID, resolution.NotebookID, v => window.NotebookID = v);
+			Set(window.SectionID, resolution.SectionID, v => window.SectionID = v);
+			Set(window.PageID, resolution.PageID, v => window.PageID = v);
+			Set(window.PageKey, resolution.PageKey, v => window.PageKey = v);
+			Set(window.Location, resolution.Location, v => window.Location = v);
+
+			// a link that could not be made leaves the one stored in place
+			var uri = hyperlink(resolution.PageID);
+			if (!string.IsNullOrEmpty(uri))
+			{
+				Set(window.Uri, uri, v => window.Uri = v);
+			}
+
+			return changed;
+		}
+
+
+		/// <summary>
+		/// Copies what was found into the favorite, ready to be saved. The name, alias, folder and sort
+		/// order are the user's and are never touched: a favorite follows its target when the target is
+		/// renamed or moved, but keeps the name it was given.
+		/// </summary>
+		/// <param name="favorite">The favorite to bring up to date</param>
+		/// <param name="resolution">A resolved target</param>
+		/// <param name="hyperlink">Makes a link to a page or a section from its ID</param>
+		/// <returns>True if anything changed</returns>
+		internal static bool Apply(
+			Favorite favorite, TargetResolution resolution, Func<string, string> hyperlink)
+		{
+			var changed = false;
+
+			void Set<T>(T current, T value, Action<T> assign)
+			{
+				if (!Equals(current, value))
+				{
+					assign(value);
+					changed = true;
+				}
+			}
+
+			var isPage = favorite.PageID is not null;
+
+			Set(favorite.NotebookID, resolution.NotebookID, v => favorite.NotebookID = v);
+			Set(favorite.SectionID, resolution.SectionID, v => favorite.SectionID = v);
+			Set(favorite.NotebookKey, resolution.NotebookKey, v => favorite.NotebookKey = v);
+			Set(favorite.SectionKey, resolution.SectionKey, v => favorite.SectionKey = v);
+			Set(favorite.Location, resolution.Location, v => favorite.Location = v);
+
+			if (isPage)
+			{
+				Set(favorite.PageID, resolution.PageID, v => favorite.PageID = v);
+				Set(favorite.PageKey, resolution.PageKey, v => favorite.PageKey = v);
+			}
+
+			// a link that could not be made leaves the one stored in place
+			var uri = NavigationTarget(resolution, favorite.Kind, hyperlink);
+			if (!string.IsNullOrEmpty(uri))
+			{
+				Set(favorite.Uri, uri, v => favorite.Uri = v);
+			}
+
+			return changed;
+		}
+	}
+}

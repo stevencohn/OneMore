@@ -4,8 +4,10 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Identity;
 	using River.OneMoreAddIn.Models;
 	using System;
+	using System.Globalization;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Threading.Tasks;
@@ -66,12 +68,20 @@ namespace River.OneMoreAddIn.Commands
 
 				// get page moreID...
 
-				await using var one = new OneNote(out var page, out var ns);
+				await using var one = new OneNote(out var page, out _);
 
-				var moreID = page.Root.Elements(ns + "Meta")
-					.Where(e => e.Attribute("name").Value == MetaNames.PageID)
-					.Select(e => e.Attribute("content").Value)
-					.FirstOrDefault();
+				// the page key identifies this page in the hashtag catalog; it is found by the
+				// page's current ID, so no marker is needed in the page
+				string moreID = null;
+				if (PageIdentityProvider.CatalogExists())
+				{
+					using var identity = new PageIdentityProvider();
+					var row = identity.ReadByPageID(page.PageId);
+					if (row is not null)
+					{
+						moreID = row.PageKey.ToString(CultureInfo.InvariantCulture);
+					}
+				}
 
 				// dialog...
 

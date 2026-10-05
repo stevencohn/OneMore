@@ -1889,6 +1889,22 @@ OneNote 文件 (*.one)</value>
     <value>找不到页面；可能已重命名或被删除</value>
     <comment>tooltip</comment>
   </data>
+  <data name="FavoritesCommand_ambiguous" xml:space="preserve">
+    <value>这个收藏可能意味着不止一页，所以 OneMore 没有猜测。将其删除并再次添加。</value>
+    <comment>error message</comment>
+  </data>
+  <data name="FavoritesCommand_broken" xml:space="preserve">
+    <value>这个最爱已经不存在了。它可能已被删除或重命名。将其删除并再次添加。</value>
+    <comment>error message</comment>
+  </data>
+  <data name="FavoritesCommand_offline" xml:space="preserve">
+    <value>此收藏夹位于未打开或仍在加载的笔记本中，或者位于锁定的部分中。如果您刚刚打开笔记本，请稍后重试。</value>
+    <comment>error message !EDIT</comment>
+  </data>
+  <data name="FavoritesCommand_pending" xml:space="preserve">
+    <value>OneMore 仍在了解您的页面所在位置，因此它还无法找到此收藏夹。几分钟后重试。</value>
+    <comment>error message</comment>
+  </data>
   <data name="FavoritesDialog_addButton.Text" xml:space="preserve">
     <value>添加当前页面</value>
     <comment>context menu item</comment>
@@ -4203,8 +4219,32 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <value>恢复背景图片时出错；原始图像已放回</value>
     <comment>error message</comment>
   </data>
+  <data name="RestoreLayoutCommand_ambiguous" xml:space="preserve">
+    <value>不止一页适合它，所以 OneMore 没有猜到</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RestoreLayoutCommand_broken" xml:space="preserve">
+    <value>该页面不再存在，或已被重命名为无法识别</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RestoreLayoutCommand_failed" xml:space="preserve">
+    <value>OneNote 打不开</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RestoreLayoutCommand_incomplete" xml:space="preserve">
+    <value>已恢复 {0} 个窗口（共 {1} 个）。无法打开这些：{2}</value>
+    <comment>message box</comment>
+  </data>
   <data name="RestoreLayoutCommand_notFound" xml:space="preserve">
     <value>未找到布局“{0}”。</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RestoreLayoutCommand_offline" xml:space="preserve">
+    <value>它位于未打开的笔记本中，或位于锁定的部分中</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RestoreLayoutCommand_pending" xml:space="preserve">
+    <value>OneMore 仍在了解您的页面在哪里；几分钟后重试</value>
     <comment>message box</comment>
   </data>
   <data name="ribAboutButton_Label" xml:space="preserve">

@@ -133,7 +133,9 @@ namespace River.OneMoreAddIn.Commands.Favorites
 				new XAttribute("onAction", GotoAction),
 				new XAttribute("imageMso", imageMso),
 				new XAttribute("label", Chop(favorite.Alias ?? favorite.Name)),
-				new XAttribute("tag", favorite.GetNavigationTarget()),
+				// the ID, not a link: the link can be out of date, and the command needs the favorite to
+				// resolve it when the link no longer opens anything
+				new XAttribute("tag", favorite.ID.ToString(System.Globalization.CultureInfo.InvariantCulture)),
 				new XAttribute("screentip", favorite.Location)
 				);
 		}

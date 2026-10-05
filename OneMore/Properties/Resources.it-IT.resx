@@ -1886,6 +1886,22 @@ File OneNote (*.one)</value>
     <value>Pagina non più trovata; potrebbe essere stato cancellato</value>
     <comment>tooltip</comment>
   </data>
+  <data name="FavoritesCommand_ambiguous" xml:space="preserve">
+    <value>Questo preferito potrebbe significare più di una pagina, quindi OneMore non ha indovinato. Rimuovilo e aggiungilo di nuovo.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="FavoritesCommand_broken" xml:space="preserve">
+    <value>Questo preferito non esiste più. Potrebbe essere stato eliminato o rinominato. Rimuovilo e aggiungilo di nuovo.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="FavoritesCommand_offline" xml:space="preserve">
+    <value>Questo preferito si trova in un taccuino non aperto o in fase di caricamento oppure in una sezione bloccata. Se hai appena aperto il taccuino, riprova tra un attimo.</value>
+    <comment>error message !EDIT</comment>
+  </data>
+  <data name="FavoritesCommand_pending" xml:space="preserve">
+    <value>OneMore sta ancora imparando dove sono le tue pagine, quindi non riesce ancora a trovare questo preferito. Riprova tra qualche minuto.</value>
+    <comment>error message</comment>
+  </data>
   <data name="FavoritesDialog_addButton.Text" xml:space="preserve">
     <value>Aggiungi pagina corrente</value>
     <comment>context menu item</comment>
@@ -4189,8 +4205,32 @@ Selezionare No per mantenere una riga vuota tra i paragrafi</value>
     <value>Si è verificato un errore durante il ripristino delle immagini di sfondo; le immagini originali sono state rimesse</value>
     <comment>error message</comment>
   </data>
+  <data name="RestoreLayoutCommand_ambiguous" xml:space="preserve">
+    <value>può contenere più di una pagina, quindi OneMore non ha indovinato</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RestoreLayoutCommand_broken" xml:space="preserve">
+    <value>la pagina non esiste più o è stata rinominata in modo irriconoscibile</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RestoreLayoutCommand_failed" xml:space="preserve">
+    <value>OneNote non l'ha aperto</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RestoreLayoutCommand_incomplete" xml:space="preserve">
+    <value>{0} di {1} finestre ripristinate. Impossibile aprire questi:{2}</value>
+    <comment>message box</comment>
+  </data>
   <data name="RestoreLayoutCommand_notFound" xml:space="preserve">
     <value>Il layout '{0}' non è stato trovato.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RestoreLayoutCommand_offline" xml:space="preserve">
+    <value>è in un taccuino non aperto o in una sezione chiusa a chiave</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RestoreLayoutCommand_pending" xml:space="preserve">
+    <value>OneMore sta ancora imparando dove sono le tue pagine; riprova tra qualche minuto</value>
     <comment>message box</comment>
   </data>
   <data name="ribAboutButton_Label" xml:space="preserve">

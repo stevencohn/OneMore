@@ -67,6 +67,29 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		public string PageID { get; set; }
 
 		/// <summary>
+		/// The key of the target page in the identity catalog, or null if it has not been found yet.
+		/// Unlike the IDs above, which OneNote regenerates, the key follows the page through
+		/// reopens, moves and renames. It is local to this database and is never exported.
+		/// </summary>
+		[Newtonsoft.Json.JsonIgnore]
+		public long? PageKey { get; set; }
+
+		/// <summary>
+		/// Identifies the notebook of the target by path or name rather than by ID; see
+		/// PageIdentityKeys.NotebookKey. Null until found.
+		/// </summary>
+		[Newtonsoft.Json.JsonIgnore]
+		public string NotebookKey { get; set; }
+
+		/// <summary>
+		/// Identifies the section or section group of the target by the names of its groups and its
+		/// own name rather than by ID; see PageIdentityKeys.SectionKey. Null for a notebook favorite
+		/// and until found.
+		/// </summary>
+		[Newtonsoft.Json.JsonIgnore]
+		public string SectionKey { get; set; }
+
+		/// <summary>
 		/// Distinguishes the kind of target this favorite points to when PageID is not set:
 		/// null or "section" for a section (including legacy rows predating this field),
 		/// "sectiongroup" for a section group, or "notebook" for a notebook. Used to pick an
@@ -83,6 +106,14 @@ namespace River.OneMoreAddIn.Commands.Favorites
 		/// internal name.
 		/// </summary>
 		public int SortOrder { get; set; }
+
+		/// <summary>
+		/// What identifies the target in an exported file, so that it can be found again on another
+		/// machine; see TargetFingerprint. It is filled in only when exporting and read only when
+		/// importing, never stored in the database, and left out of the file when there is none.
+		/// </summary>
+		[Newtonsoft.Json.JsonProperty(NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+		public TargetFingerprint Fingerprint { get; set; }
 
 		// runtime only properties
 

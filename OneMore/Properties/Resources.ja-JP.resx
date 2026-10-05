@@ -1888,6 +1888,22 @@ OneNoteファイル (*.one)</value>
     <value>ページが見つからなくなりました。削除された可能性があります</value>
     <comment>tooltip</comment>
   </data>
+  <data name="FavoritesCommand_ambiguous" xml:space="preserve">
+    <value>このお気に入りは複数のページを意味する可能性があるため、OneMore は推測しませんでした。削除して再度追加してください。</value>
+    <comment>error message</comment>
+  </data>
+  <data name="FavoritesCommand_broken" xml:space="preserve">
+    <value>このお気に入りはもう存在しません。削除されたか名前が変更された可能性があります。削除して再度追加してください。</value>
+    <comment>error message</comment>
+  </data>
+  <data name="FavoritesCommand_offline" xml:space="preserve">
+    <value>このお気に入りは、開いていないか読み込み中のノートブック、またはロックされたセクションにあります。ノートブックを開いたばかりの場合は、しばらくしてからもう一度試してください。</value>
+    <comment>error message !EDIT</comment>
+  </data>
+  <data name="FavoritesCommand_pending" xml:space="preserve">
+    <value>OneMore はまだページの場所を学習しているため、このお気に入りをまだ見つけることができません。数分後にもう一度試してください。</value>
+    <comment>error message</comment>
+  </data>
   <data name="FavoritesDialog_addButton.Text" xml:space="preserve">
     <value>現在のページを追加</value>
     <comment>context menu item</comment>
@@ -4192,8 +4208,32 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <value>背景画像の復元中にエラーが発生しました。元の画像が元に戻されました</value>
     <comment>error message</comment>
   </data>
+  <data name="RestoreLayoutCommand_ambiguous" xml:space="preserve">
+    <value>複数のページがそれに適合するため、OneMore は推測しませんでした</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RestoreLayoutCommand_broken" xml:space="preserve">
+    <value>ページはもう存在しないか、認識できないほど名前が変更されています</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RestoreLayoutCommand_failed" xml:space="preserve">
+    <value>OneNote が開かなかった</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RestoreLayoutCommand_incomplete" xml:space="preserve">
+    <value>{1} 個中 {0} 個のウィンドウを復元しました。これらを開けませんでした:{2}</value>
+    <comment>message box</comment>
+  </data>
   <data name="RestoreLayoutCommand_notFound" xml:space="preserve">
     <value>レイアウト '{0}' が見つかりませんでした。</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RestoreLayoutCommand_offline" xml:space="preserve">
+    <value>開かれていないノートブック、またはロックされたセクションにある</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RestoreLayoutCommand_pending" xml:space="preserve">
+    <value>OneMore はあなたのページがどこにあるかをまだ学習しています。数分後にもう一度試してください</value>
     <comment>message box</comment>
   </data>
   <data name="ribAboutButton_Label" xml:space="preserve">

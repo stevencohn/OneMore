@@ -1880,6 +1880,22 @@ OneNote-Datei (*.one)</value>
     <value>Seite nicht mehr gefunden; es wurde möglicherweise gelöscht</value>
     <comment>tooltip</comment>
   </data>
+  <data name="FavoritesCommand_ambiguous" xml:space="preserve">
+    <value>Dieser Favorit könnte mehr als eine Seite bedeuten, also hat OneMore es nicht erraten. Entfernen Sie es und fügen Sie es erneut hinzu.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="FavoritesCommand_broken" xml:space="preserve">
+    <value>Dieser Favorit existiert nicht mehr. Möglicherweise wurde es gelöscht oder umbenannt. Entfernen Sie es und fügen Sie es erneut hinzu.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="FavoritesCommand_offline" xml:space="preserve">
+    <value>Dieser Favorit befindet sich in einem Notizbuch, das nicht geöffnet ist oder noch geladen wird, oder in einem gesperrten Bereich. Wenn Sie das Notizbuch gerade erst geöffnet haben, versuchen Sie es gleich noch einmal.</value>
+    <comment>error message !EDIT</comment>
+  </data>
+  <data name="FavoritesCommand_pending" xml:space="preserve">
+    <value>OneMore lernt noch, wo sich Ihre Seiten befinden, daher kann dieser Favorit noch nicht gefunden werden. Versuchen Sie es in ein paar Minuten noch einmal.</value>
+    <comment>error message</comment>
+  </data>
   <data name="FavoritesDialog_addButton.Text" xml:space="preserve">
     <value>Aktuelle Seite hinzufügen</value>
     <comment>context menu item</comment>
@@ -4188,8 +4204,32 @@ Wähle Nein, um eine leere Zeile zwischen den Absätzen zu halten</value>
     <value>Beim Wiederherstellen der Hintergrundbilder ist ein Fehler aufgetreten. Die Originalbilder wurden zurückgesetzt</value>
     <comment>error message</comment>
   </data>
+  <data name="RestoreLayoutCommand_ambiguous" xml:space="preserve">
+    <value>Da mehr als eine Seite hineinpasst, hat OneMore es nicht erraten</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RestoreLayoutCommand_broken" xml:space="preserve">
+    <value>Die Seite existiert nicht mehr oder wurde bis zur Unkenntlichkeit umbenannt</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RestoreLayoutCommand_failed" xml:space="preserve">
+    <value>OneNote hat es nicht geöffnet</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RestoreLayoutCommand_incomplete" xml:space="preserve">
+    <value>{0} von {1} Fenstern wiederhergestellt. Diese konnten nicht geöffnet werden:{2}</value>
+    <comment>message box</comment>
+  </data>
   <data name="RestoreLayoutCommand_notFound" xml:space="preserve">
     <value>Layout „{0}“ wurde nicht gefunden.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RestoreLayoutCommand_offline" xml:space="preserve">
+    <value>Es befindet sich in einem nicht geöffneten Notizbuch oder in einem gesperrten Bereich</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RestoreLayoutCommand_pending" xml:space="preserve">
+    <value>OneMore lernt immer noch, wo sich Ihre Seiten befinden. Versuchen Sie es in ein paar Minuten noch einmal</value>
     <comment>message box</comment>
   </data>
   <data name="ribAboutButton_Label" xml:space="preserve">

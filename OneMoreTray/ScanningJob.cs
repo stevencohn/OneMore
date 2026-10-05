@@ -6,6 +6,8 @@ namespace OneMoreTray
 {
 	using River.OneMoreAddIn;
 	using River.OneMoreAddIn.Commands;
+	using River.OneMoreAddIn.Identity;
+	using River.OneMoreAddIn.Pipeline;
 	using River.OneMoreAddIn.Settings;
 	using River.OneMoreAddIn.UI;
 	using System;
@@ -142,14 +144,25 @@ namespace OneMoreTray
 
 			trayIcon.ShowBalloonTip(0, Resx.ScannerTitle, Resx.ScanStarting, ToolTipIcon.Info);
 
-			var service = new ScheduledHashtagService(scheduler.State == ScanningState.PendingRebuild);
+			var rebuild = scheduler.State == ScanningState.PendingRebuild;
+
+			// the tray runs the identity stage and then the hashtag stage once, for a scan the user
+			// scheduled
+			var stage = new HashtagStage { Scheduled = true, Rebuild = rebuild };
 
 			if (scheduler.Notebooks is not null && scheduler.Notebooks.Length > 0)
 			{
-				service.SetNotebookFilters(scheduler.Notebooks);
+				stage.SetNotebookFilters(scheduler.Notebooks);
 			}
 
-			service.OnHashtagScanned += DoScanned;
+			stage.OnHashtagScanned += DoScanned;
+
+			var service = new PipelineService(new IPipelineStage[] { new IdentityStage(), stage })
+			{
+				Mode = PipelineMode.OneShot,
+				ThreadPriority = rebuild ? ThreadPriority.BelowNormal : ThreadPriority.Lowest
+			};
+
 			service.Startup();
 
 			scheduler.State = ScanningState.Scanning;

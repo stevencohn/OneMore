@@ -1240,6 +1240,18 @@ namespace River.OneMoreAddIn
 
 
 		/// <summary>
+		/// Determines whether a page ID is still valid. OneNote regenerates page IDs when a notebook
+		/// is reopened and when a page is moved, so an ID that was remembered may no longer exist.
+		/// A call that fails for any other reason, such as OneNote being busy, also reports false.
+		/// </summary>
+		/// <param name="pageId">The ID of the page to look for</param>
+		public bool PageExists(string pageId)
+		{
+			return !string.IsNullOrEmpty(pageId) && !string.IsNullOrEmpty(GetParent(pageId));
+		}
+
+
+		/// <summary>
 		/// Gets the ID of the parent hierachy object that owns the specified object; used when
 		/// copying/moving pages from section to section
 		/// </summary>
@@ -1335,7 +1347,7 @@ namespace River.OneMoreAddIn
 						var rawHandle = (IntPtr)window.WindowHandle;
 						var topHandle = GetTopLevelWindow(rawHandle);
 
-						logger.WriteLine(rawHandle == topHandle
+						logger.Verbose(rawHandle == topHandle
 							? $"GetWindows: handle {rawHandle.ToInt64():x} has no parent (already top-level)"
 							: $"GetWindows: handle {rawHandle.ToInt64():x} walked up to top-level {topHandle.ToInt64():x}");
 

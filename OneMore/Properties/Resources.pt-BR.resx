@@ -1885,6 +1885,22 @@ Arquivo OneNote (* .one)</value>
     <value>A página não foi mais encontrada; pode ter sido deletado</value>
     <comment>tooltip</comment>
   </data>
+  <data name="FavoritesCommand_ambiguous" xml:space="preserve">
+    <value>Este favorito pode significar mais de uma página, então OneMore não adivinhou. Remova-o e adicione-o novamente.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="FavoritesCommand_broken" xml:space="preserve">
+    <value>Este favorito não existe mais. Pode ter sido excluído ou renomeado. Remova-o e adicione-o novamente.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="FavoritesCommand_offline" xml:space="preserve">
+    <value>Este favorito está em um notebook que não está aberto ou ainda está carregando, ou em uma seção trancada. Se você acabou de abrir o bloco de anotações, tente novamente em alguns instantes.</value>
+    <comment>error message !EDIT</comment>
+  </data>
+  <data name="FavoritesCommand_pending" xml:space="preserve">
+    <value>OneMore ainda está aprendendo onde estão suas páginas, por isso ainda não consegue encontrar este favorito. Tente novamente em alguns minutos.</value>
+    <comment>error message</comment>
+  </data>
   <data name="FavoritesDialog_addButton.Text" xml:space="preserve">
     <value>Adicionar página atual</value>
     <comment>context menu item</comment>
@@ -4189,8 +4205,32 @@ Selecione Não para manter uma linha vazia entre os parágrafos</value>
     <value>Ocorreu um erro ao restaurar imagens de fundo; as imagens originais foram colocadas de volta</value>
     <comment>error message</comment>
   </data>
+  <data name="RestoreLayoutCommand_ambiguous" xml:space="preserve">
+    <value>cabe mais de uma página, então OneMore não adivinhou</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RestoreLayoutCommand_broken" xml:space="preserve">
+    <value>a página não existe mais ou foi renomeada de forma irreconhecível</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RestoreLayoutCommand_failed" xml:space="preserve">
+    <value>OneNote não abriu</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RestoreLayoutCommand_incomplete" xml:space="preserve">
+    <value>{0} de {1} janelas restauradas. Não foi possível abri-los:{2}</value>
+    <comment>message box</comment>
+  </data>
   <data name="RestoreLayoutCommand_notFound" xml:space="preserve">
     <value>O layout '{0}' não foi encontrado.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RestoreLayoutCommand_offline" xml:space="preserve">
+    <value>está em um caderno que não está aberto ou em uma seção trancada</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RestoreLayoutCommand_pending" xml:space="preserve">
+    <value>OneMore ainda está aprendendo onde estão suas páginas; tente novamente em alguns minutos</value>
     <comment>message box</comment>
   </data>
   <data name="ribAboutButton_Label" xml:space="preserve">

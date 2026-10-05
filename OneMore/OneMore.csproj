@@ -263,6 +263,11 @@
     <Compile Include="Commands\Workspaces\Favorites\FavoritesMenu.cs" />
     <Compile Include="Commands\Workspaces\Favorites\FavoritesProvider.cs" />
     <Compile Include="Commands\Workspaces\Favorites\ImportFavoritesCommand.cs" />
+    <Compile Include="Commands\Workspaces\HealingStage.cs" />
+    <Compile Include="Commands\Workspaces\WorkspaceHealer.cs" />
+    <Compile Include="Commands\Workspaces\TargetFingerprint.cs" />
+    <Compile Include="Commands\Workspaces\TargetResolver.cs" />
+    <Compile Include="Commands\Workspaces\WorkspaceResolver.cs" />
     <Compile Include="Commands\Workspaces\TargetChecker.cs" />
     <Compile Include="Commands\Workspaces\TargetReference.cs" />
     <Compile Include="Commands\File\Markdown\OneMoreDigCodeRenderer.cs" />
@@ -540,14 +545,16 @@
       <DependentUpon>SearchErrorControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Tagging\HashtagScheduler.cs" />
+    <Compile Include="Commands\Tagging\HashtagFreshener.cs" />
+    <Compile Include="Commands\Tagging\HashtagPageInfo.cs" />
     <Compile Include="Commands\Tagging\HashtagPageScanner.cs" />
     <Compile Include="Commands\Tagging\HashtagPageScannerFactory.cs" />
     <Compile Include="Commands\Tagging\HashtagProvider.cs" />
     <Compile Include="Commands\Tagging\HashtagQueryBuilder.cs" />
     <Compile Include="Commands\Tagging\HashtagScannedEventArgs.cs" />
     <Compile Include="Commands\Tagging\HashtagScanner.cs" />
-    <Compile Include="Commands\Tagging\HashtagService.cs" />
     <Compile Include="Commands\Tagging\HashtagServicePause.cs" />
+    <Compile Include="Commands\Tagging\HashtagStage.cs" />
     <Compile Include="Commands\Tagging\ScanningState.cs" />
     <Compile Include="Commands\Tagging\ScheduleScanDialog.cs">
       <SubType>Form</SubType>
@@ -571,7 +578,9 @@
       <DependentUpon>UpdateGuardDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Workspaces\Layouts\LayoutsProvider.cs" />
+    <Compile Include="Commands\Workspaces\Layouts\LayoutsExchange.cs" />
     <Compile Include="Commands\Workspaces\Layouts\LayoutModels.cs" />
+    <Compile Include="Commands\Workspaces\Layouts\LayoutRestorePlan.cs" />
     <Compile Include="Commands\Workspaces\Layouts\SaveLayoutCommand.cs" />
     <Compile Include="Commands\Workspaces\Layouts\RestoreLayoutCommand.cs" />
     <Compile Include="Commands\Workspaces\Layouts\ExportLayoutsCommand.cs" />
@@ -595,6 +604,16 @@
     <Compile Include="Helpers\OneNoteLinkParser.cs" />
     <Compile Include="Helpers\SessionLogger.cs" />
     <Compile Include="Commands\Tools\Telemetry\TelemetryClient.cs" />
+    <Compile Include="Identity\IdentityGatherer.cs" />
+    <Compile Include="Identity\IdentityPass.cs" />
+    <Compile Include="Identity\IdentitySnapshot.cs" />
+    <Compile Include="Identity\IdentityStage.cs" />
+    <Compile Include="Identity\LinkGuids.cs" />
+    <Compile Include="Identity\PageIdentity.cs" />
+    <Compile Include="Identity\PageIdentityMatcher.cs" />
+    <Compile Include="Identity\PageIdentityProvider.cs" />
+    <Compile Include="Pipeline\IPipelineStage.cs" />
+    <Compile Include="Pipeline\PipelineService.cs" />
     <Compile Include="Models\OneImage.cs" />
     <Compile Include="Models\KnownSchemaAttributes.cs" />
     <Compile Include="Models\PageEditor.cs" />
@@ -1483,6 +1502,7 @@
     <Compile Include="Styles\StyleBase.cs" />
     <Compile Include="Styles\StyleRecord.cs" />
     <Compile Include="Styles\StyleType.cs" />
+    <Compile Include="Commands\Workspaces\Favorites\FavoritesExchange.cs" />
     <Compile Include="Commands\Workspaces\Favorites\FavoritesFileProvider.cs" />
     <Compile Include="Helpers\Logger.cs" />
     <Compile Include="Helpers\ReadOnlyStream.cs" />
@@ -1616,6 +1636,7 @@
     <Content Include="Commands\Navigator\Images\Swap-Up-20.png" />
     <Content Include="Commands\Tables\Formulas\VariablesDB.sql" />
     <Content Include="Commands\Tagging\HashtagsDB.sql" />
+    <Content Include="Identity\PageIdentityDB.sql" />
     <EmbeddedResource Include="Commands\Page\CreatePagesDialog.resx">
       <DependentUpon>CreatePagesDialog.cs</DependentUpon>
     </EmbeddedResource>

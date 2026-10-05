@@ -7,6 +7,7 @@ namespace River.OneMoreAddIn.Commands
 	using Newtonsoft.Json;
 	using River.OneMoreAddIn.Cli;
 	using River.OneMoreAddIn.Commands.Layouts;
+	using River.OneMoreAddIn.Identity;
 	using System;
 	using System.IO;
 	using System.Linq;
@@ -71,6 +72,12 @@ namespace River.OneMoreAddIn.Commands
 			using var provider = new LayoutsProvider();
 			var collection = provider.ReadLayouts();
 			var count = collection.Layouts.Sum(l => l.Windows.Count);
+
+			// say how to find each page again on another machine; the page key is never written
+			using (var identity = new PageIdentityProvider())
+			{
+				LayoutsExchange.AddFingerprints(collection, identity.Read);
+			}
 
 			try
 			{

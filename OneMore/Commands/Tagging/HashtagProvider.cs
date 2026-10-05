@@ -20,6 +20,9 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private const int ScannerID = 0;
 
+		// version 6 keys tags by page key instead of by the omPageID stamp; see Upgrade5to6
+		private const int CurrentVersion = 6;
+
 
 		/// <summary>
 		/// Initialize this provider, opening the standard database
@@ -28,6 +31,24 @@ namespace River.OneMoreAddIn.Commands
 			: base()
 		{
 			if (CatalogExists())
+			{
+				UpgradeCatalog();
+			}
+			else
+			{
+				RefreshDataSchema("hashtag", Resources.HashtagsDB);
+			}
+		}
+
+
+		/// <summary>
+		/// Initialize this provider over an open connection, such as an in-memory database.
+		/// </summary>
+		internal HashtagProvider(SQLiteConnection connection)
+		{
+			con = connection;
+
+			if (TableExists("hashtag_scanner"))
 			{
 				UpgradeCatalog();
 			}
@@ -76,6 +97,11 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
+			if (IsNewerThanKnown("hashtag", version, CurrentVersion))
+			{
+				return;
+			}
+
 			// upgrade incrementally...
 
 			if (version == 1)
@@ -96,6 +122,11 @@ namespace River.OneMoreAddIn.Commands
 			if (version == 4)
 			{
 				version = Upgrade4to5(con);
+			}
+
+			if (version == 5)
+			{
+				version = Upgrade5to6(con);
 			}
 		}
 
@@ -355,24 +386,88 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private static bool ColumnExists(SQLiteConnection con, string table, string column)
+		// Version 6 identifies a page by its page key from the identity catalog, held as text in
+		// the moreID columns, instead of by an omPageID stamp written into the page. Tags recorded
+		// under the old stamps will never be matched again, and they are derived from page text, so
+		// they are cleared and the scan time reset so the next scan rebuilds them. hashtag_notebook
+		// is not touched, so the user's notebook choices survive.
+		private int Upgrade5to6(SQLiteConnection con)
 		{
+			int version = 6;
+			logger.WriteLine($"upgrading hashtag catalog to version {version}");
+			using var indent = logger.Indent();
+
 			using var cmd = con.CreateCommand();
 			cmd.CommandType = CommandType.Text;
-			cmd.CommandText = $"PRAGMA table_info({table})";
 
-			using var reader = cmd.ExecuteReader();
-			while (reader.Read())
+			// the add-in and the tray can both open this catalog at once; take the write lock first
+			// and check the version again under it, so whichever comes second does not clear the
+			// tags the first has already rebuilt
+			try
 			{
-				if (string.Equals(reader.GetString(1), column, StringComparison.OrdinalIgnoreCase))
-				{
-					return true;
-				}
+				cmd.CommandText = "BEGIN IMMEDIATE";
+				cmd.ExecuteNonQuery();
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error starting hashtag upgrade transaction", exc);
+				return 0;
 			}
 
-			return false;
-		}
+			try
+			{
+				cmd.CommandText = $"SELECT version FROM hashtag_scanner WHERE scannerID = {ScannerID}";
+				var current = Convert.ToInt32(cmd.ExecuteScalar());
+				if (current != 5)
+				{
+					logger.WriteLine($"hashtag catalog is already version {current}");
+					cmd.CommandText = "ROLLBACK";
+					cmd.ExecuteNonQuery();
+					return current;
+				}
 
+				logger.WriteLine("clearing tags recorded under page stamps");
+
+				cmd.CommandText = "DELETE FROM hashtag";
+				cmd.ExecuteNonQuery();
+
+				cmd.CommandText = "DELETE FROM hashtag_page";
+				cmd.ExecuteNonQuery();
+
+				cmd.CommandText =
+					$"UPDATE hashtag_scanner SET scanTime = '0001-01-01T00:00:00.0000Z' WHERE scannerID = {ScannerID}";
+
+				cmd.ExecuteNonQuery();
+
+				logger.WriteLine($"updating hashtag_scanner version v{version}");
+				cmd.CommandText =
+					$"UPDATE hashtag_scanner SET version = {version} WHERE scannerID = {ScannerID}";
+
+				cmd.ExecuteNonQuery();
+
+				cmd.CommandText = "COMMIT";
+				cmd.ExecuteNonQuery();
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"error upgrading hashtag catalog to version {version}", exc);
+
+				try
+				{
+					cmd.CommandText = "ROLLBACK";
+					cmd.ExecuteNonQuery();
+				}
+				catch (Exception rollbackExc)
+				{
+					// never mask the error that caused the rollback
+					logger.WriteLine("error rolling back hashtag upgrade", rollbackExc);
+				}
+
+				return 0;
+			}
+
+			return version;
+		}
 
 		private bool UpgradeSchemaVersion(
 			SQLiteCommand cmd, SQLiteTransaction transaction, int version)
@@ -396,83 +491,6 @@ namespace River.OneMoreAddIn.Commands
 			return true;
 		}
 		#endregion UpgradeCatalog
-
-
-		/// <summary>
-		/// Deletes pages that used to have tags but no longer do by comparing the recorded
-		/// pages against the list of knownIDs and deleting any records no longer in that list.
-		/// </summary>
-		/// <param name="knownIDs"></param>
-		public void DeletePhantoms(List<string> knownIDs, string sectionID, string sectionPath)
-		{
-			// HashSet for O(1) membership vs O(n) List.Contains
-			var knownSet = new HashSet<string>(knownIDs, StringComparer.Ordinal);
-
-			// Phase 1: identify phantoms without holding a write transaction
-			using var cmd = con.CreateCommand();
-			cmd.CommandType = CommandType.Text;
-			cmd.CommandText = "SELECT moreID, pageID FROM hashtag_page WHERE sectionID = @sid";
-			cmd.Parameters.AddWithValue("@sid", sectionID);
-
-			var phantomIDs = new List<string>();
-			using (var reader = cmd.ExecuteReader())
-			{
-				while (reader.Read())
-				{
-					var pageID = reader.GetString(1);
-					if (!knownSet.Contains(pageID))
-					{
-						phantomIDs.Add(pageID);
-					}
-				}
-			}
-
-			if (phantomIDs.Count == 0)
-			{
-				return;
-			}
-
-			// Phase 2: two batch DELETEs — 2 round-trips regardless of N
-			var paramNames = string.Join(",",
-				Enumerable.Range(0, phantomIDs.Count).Select(i => $"@p{i}"));
-
-			using var tagcmd = con.CreateCommand();
-			tagcmd.CommandType = CommandType.Text;
-			tagcmd.CommandText =
-				"DELETE FROM hashtag WHERE moreID IN " +
-				$"(SELECT DISTINCT moreID FROM hashtag_page WHERE pageID IN ({paramNames}))";
-
-			using var pagcmd = con.CreateCommand();
-			pagcmd.CommandType = CommandType.Text;
-			pagcmd.CommandText = $"DELETE FROM hashtag_page WHERE pageID IN ({paramNames})";
-
-			// SQLite's default SQLITE_MAX_VARIABLE_NUMBER is 32766. Even a pathological section with
-			// "hundreds" of stale pages is well within that limit. No chunking is needed.
-
-			for (var i = 0; i < phantomIDs.Count; i++)
-			{
-				tagcmd.Parameters.AddWithValue($"@p{i}", phantomIDs[i]);
-				pagcmd.Parameters.AddWithValue($"@p{i}", phantomIDs[i]);
-			}
-
-			// PRAGMA foreign_keys is not enabled in DatabaseProvider.cs, so cascade delete does
-			// not fire automatically.Deleting hashtag rows before hashtag_page rows(the current
-			// order) must be preserved.          
-				
-			using var transaction = con.BeginTransaction();
-			try
-			{
-				tagcmd.ExecuteNonQuery();
-				pagcmd.ExecuteNonQuery();
-				transaction.Commit();
-				logger.WriteLine($"deleted {phantomIDs.Count} phantom pages from {sectionPath}");
-			}
-			catch (Exception exc)
-			{
-				transaction.Rollback();
-				logger.WriteLine("error deleting phantom pages", exc);
-			}
-		}
 
 
 		/// <summary>
@@ -582,20 +600,20 @@ namespace River.OneMoreAddIn.Commands
 		/// <summary>
 		/// Returns a collection of tags on the specified page
 		/// </summary>
-		/// <param name="pageID">The ID of the page</param>
+		/// <param name="moreID">The page key, as text</param>
 		/// <returns>A collection of Hashtags</returns>
-		public Hashtags ReadPageTags(string pageID)
+		public Hashtags ReadPageTags(string moreID)
 		{
 			var sql =
 				"SELECT t.tag, t.moreID, p.pageID, p.titleID, t.objectID, " +
 				"p.notebookID, p.sectionID, t.lastModified " +
 				"FROM hashtag t " +
 				"JOIN hashtag_page p ON p.moreID = t.moreID " +
-				"WHERE p.pageID = @p " +
+				"WHERE t.moreID = @m " +
 				"ORDER BY t.documentOrder";
 
 			return ReadTags(sql,
-				new SQLiteParameter[] { new("@p", pageID) }
+				new SQLiteParameter[] { new("@m", moreID) }
 				);
 		}
 
@@ -800,43 +818,6 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
-		/// Determines if the moreID matches the pageID, otherwise this might be coming
-		/// from a new duplicate or copy of an existing page so need to generate a new moreID
-		/// </summary>
-		/// <param name="pageID"></param>
-		/// <param name="moreID"></param>
-		/// <returns></returns>
-		public bool UniqueMoreID(string pageID, string moreID)
-		{
-			using var cmd = con.CreateCommand();
-			cmd.CommandType = CommandType.Text;
-			cmd.CommandText = "SELECT count(1) " +
-				"FROM hashtag_page WHERE moreID = @mid AND pageID <> @pid";
-
-			cmd.Parameters.AddWithValue("@mid", moreID);
-			cmd.Parameters.AddWithValue("@pid", pageID);
-
-			var unique = false;
-			try
-			{
-				using var reader = cmd.ExecuteReader();
-				if (reader.Read())
-				{
-					var count = reader.GetInt32(0);
-					unique = count == 0;
-				}
-			}
-			catch (Exception exc)
-			{
-				ReportError("error validating moreID", cmd, exc);
-				return false;
-			}
-
-			return unique;
-		}
-
-
-		/// <summary>
 		/// Records the given tags.
 		/// </summary>
 		/// <param name="tags">A collection of Hashtags</param>
@@ -885,6 +866,279 @@ namespace River.OneMoreAddIn.Commands
 			}
 		}
 
+
+		/// <summary>
+		/// Reads where every page that has tags is recorded, keyed by page key.
+		/// </summary>
+		public Dictionary<string, HashtagPageInfo> ReadTaggedPages()
+		{
+			var pages = new Dictionary<string, HashtagPageInfo>(StringComparer.Ordinal);
+
+			using var cmd = con.CreateCommand();
+			cmd.CommandText =
+				"SELECT moreID, pageID, titleID, notebookID, sectionID, path, name FROM hashtag_page";
+
+			try
+			{
+				using var reader = cmd.ExecuteReader();
+				while (reader.Read())
+				{
+					var info = new HashtagPageInfo
+					{
+						MoreID = reader.GetString(0),
+						PageID = reader.GetString(1),
+						TitleID = reader[2] is DBNull ? null : reader.GetString(2),
+						NotebookID = reader.GetString(3),
+						SectionID = reader.GetString(4),
+						Path = reader[5] is DBNull ? null : reader.GetString(5),
+						Name = reader[6] is DBNull ? null : reader.GetString(6)
+					};
+
+					pages[info.MoreID] = info;
+				}
+			}
+			catch (Exception exc)
+			{
+				ReportError("error reading tagged pages", cmd, exc);
+			}
+
+			return pages;
+		}
+
+
+		/// <summary>
+		/// Updates where pages with tags are recorded, after a notebook was reopened or a page was
+		/// moved or renamed. The tags themselves are untouched, and so is the title paragraph ID,
+		/// which only a scan of the page can supply.
+		/// </summary>
+		/// <returns>The number of pages updated</returns>
+		public int RefreshPageInfo(IReadOnlyCollection<HashtagPageInfo> pages)
+		{
+			if (pages.Count == 0)
+			{
+				return 0;
+			}
+
+			using var transaction = con.BeginTransaction();
+
+			using var cmd = con.CreateCommand();
+			cmd.CommandType = CommandType.Text;
+			cmd.CommandText =
+				"UPDATE hashtag_page " +
+				"SET pageID = @pid, notebookID = @nid, sectionID = @sid, path = @pth, name = @nam " +
+				"WHERE moreID = @mid";
+
+			cmd.Parameters.Add("@pid", DbType.String);
+			cmd.Parameters.Add("@nid", DbType.String);
+			cmd.Parameters.Add("@sid", DbType.String);
+			cmd.Parameters.Add("@pth", DbType.String);
+			cmd.Parameters.Add("@nam", DbType.String);
+			cmd.Parameters.Add("@mid", DbType.String);
+
+			var count = 0;
+
+			try
+			{
+				foreach (var page in pages)
+				{
+					cmd.Parameters["@pid"].Value = page.PageID;
+					cmd.Parameters["@nid"].Value = page.NotebookID;
+					cmd.Parameters["@sid"].Value = page.SectionID;
+					cmd.Parameters["@pth"].Value = page.Path;
+					cmd.Parameters["@nam"].Value = page.Name;
+					cmd.Parameters["@mid"].Value = page.MoreID;
+					count += cmd.ExecuteNonQuery();
+				}
+
+				transaction.Commit();
+			}
+			catch (Exception exc)
+			{
+				transaction.Rollback();
+				ReportError("error refreshing page info", cmd, exc);
+				return 0;
+			}
+
+			return count;
+		}
+
+
+		/// <summary>
+		/// Deletes all tags, and the page record, of the given pages, such as pages the identity
+		/// catalog has purged because they were missing for too long.
+		/// </summary>
+		/// <param name="moreIDs">Page keys, as text</param>
+		/// <returns>The number of pages that had tags</returns>
+		public int DeleteTags(IEnumerable<string> moreIDs)
+		{
+			var keys = moreIDs.ToList();
+			if (keys.Count == 0)
+			{
+				return 0;
+			}
+
+			using var transaction = con.BeginTransaction();
+
+			// PRAGMA foreign_keys is not enabled, so the cascade does not fire; delete the tags first
+			using var tagcmd = con.CreateCommand();
+			tagcmd.CommandText = "DELETE FROM hashtag WHERE moreID = @m";
+			tagcmd.Parameters.Add("@m", DbType.String);
+
+			using var pagcmd = con.CreateCommand();
+			pagcmd.CommandText = "DELETE FROM hashtag_page WHERE moreID = @m";
+			pagcmd.Parameters.Add("@m", DbType.String);
+
+			var count = 0;
+
+			try
+			{
+				foreach (var key in keys)
+				{
+					tagcmd.Parameters["@m"].Value = key;
+					pagcmd.Parameters["@m"].Value = key;
+					tagcmd.ExecuteNonQuery();
+					count += pagcmd.ExecuteNonQuery();
+				}
+
+				transaction.Commit();
+			}
+			catch (Exception exc)
+			{
+				transaction.Rollback();
+				ReportError("error deleting tags of purged pages", tagcmd, exc);
+				return 0;
+			}
+
+			return count;
+		}
+
+
+		/// <summary>
+		/// Brings the known notebooks up to date after OneNote regenerated notebook IDs, by
+		/// matching a notebook that is now open to a recorded notebook of the same name whose ID is
+		/// no longer open. The user's choice to exclude a notebook always survives: if either record
+		/// excluded it, the merged record is excluded.
+		/// </summary>
+		/// <param name="open">The ID and name of every notebook that is open now</param>
+		/// <returns>The number of recorded notebooks that were merged or renumbered</returns>
+		/// <remarks>
+		/// A name that more than one open notebook has is skipped, because it cannot say which
+		/// recorded notebook belongs to which. Recorded notebooks that are not open are kept, so a
+		/// closed notebook is recognized when it is opened again.
+		/// </remarks>
+		public int ReconcileNotebooks(IReadOnlyList<(string ID, string Name)> open)
+		{
+			var recorded = new List<(string ID, string Name, int Included, string LastModified)>();
+
+			using var cmd = con.CreateCommand();
+			cmd.CommandType = CommandType.Text;
+			cmd.CommandText = "SELECT notebookID, name, included, lastModified FROM hashtag_notebook";
+
+			try
+			{
+				using var reader = cmd.ExecuteReader();
+				while (reader.Read())
+				{
+					recorded.Add((
+						reader.GetString(0),
+						reader[1] is DBNull ? string.Empty : reader.GetString(1),
+						reader.GetInt32(2),
+						reader.GetString(3)));
+				}
+			}
+			catch (Exception exc)
+			{
+				ReportError("error reading notebooks to reconcile", cmd, exc);
+				return 0;
+			}
+
+			var openIDs = new HashSet<string>(open.Select(o => o.ID), StringComparer.Ordinal);
+			var plan = new List<(string ID, string Name, int Included, string LastModified, List<string> Remove)>();
+
+			foreach (var notebook in open)
+			{
+				if (open.Count(o => string.Equals(o.Name, notebook.Name, StringComparison.OrdinalIgnoreCase)) != 1)
+				{
+					continue;
+				}
+
+				var stale = recorded
+					.Where(r => !openIDs.Contains(r.ID) &&
+						string.Equals(r.Name, notebook.Name, StringComparison.OrdinalIgnoreCase))
+					.ToList();
+
+				if (stale.Count == 0)
+				{
+					continue;
+				}
+
+				var current = recorded.FindIndex(r => r.ID == notebook.ID);
+
+				// exclusion wins, and keep the latest scan time so a reopened notebook is not
+				// treated as never scanned
+				var included = stale.Min(r => r.Included);
+				var lastModified = stale.Max(r => r.LastModified);
+				if (current >= 0)
+				{
+					included = Math.Min(included, recorded[current].Included);
+					if (string.CompareOrdinal(recorded[current].LastModified, lastModified) > 0)
+					{
+						lastModified = recorded[current].LastModified;
+					}
+				}
+
+				plan.Add((notebook.ID, notebook.Name, included, lastModified,
+					stale.Select(r => r.ID).ToList()));
+			}
+
+			if (plan.Count == 0)
+			{
+				return 0;
+			}
+
+			using var transaction = con.BeginTransaction();
+
+			var changed = 0;
+
+			try
+			{
+				foreach (var item in plan)
+				{
+					cmd.Parameters.Clear();
+
+					cmd.CommandText = "DELETE FROM hashtag_notebook WHERE notebookID = @nid";
+					cmd.Parameters.Add("@nid", DbType.String);
+					foreach (var id in item.Remove)
+					{
+						cmd.Parameters["@nid"].Value = id;
+						changed += cmd.ExecuteNonQuery();
+					}
+
+					cmd.Parameters.Clear();
+					cmd.CommandText =
+						"INSERT INTO hashtag_notebook (notebookID, name, included, lastModified) " +
+						"VALUES (@nid, @nam, @inc, @mod) " +
+						"ON CONFLICT(notebookID) DO UPDATE SET " +
+						"name = @nam, included = @inc, lastModified = @mod";
+
+					cmd.Parameters.AddWithValue("@nid", item.ID);
+					cmd.Parameters.AddWithValue("@nam", item.Name);
+					cmd.Parameters.AddWithValue("@inc", item.Included);
+					cmd.Parameters.AddWithValue("@mod", item.LastModified);
+					cmd.ExecuteNonQuery();
+				}
+
+				transaction.Commit();
+			}
+			catch (Exception exc)
+			{
+				transaction.Rollback();
+				ReportError("error reconciling notebooks", cmd, exc);
+				return 0;
+			}
+
+			return changed;
+		}
 
 		/// <summary>
 		/// Records a notebook instance; used to capture "known" notebooks
@@ -1019,10 +1273,11 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
-		/// Records the given tags.
+		/// Replaces all of the tags recorded for a page with the given tags.
 		/// </summary>
+		/// <param name="moreID">The page key, as text</param>
 		/// <param name="tags">A collection of Hashtags</param>
-		public bool WriteTags(string pageID, Hashtags tags)
+		public bool WriteTags(string moreID, Hashtags tags)
 		{
 			using var transaction = con.BeginTransaction();
 
@@ -1031,10 +1286,9 @@ namespace River.OneMoreAddIn.Commands
 
 			// first purge all existing tags for page...
 
-			cmd.CommandText = "DELETE FROM HASHTAG WHERE moreID = " +
-				"(SELECT moreID FROM hashtag_page WHERE pageID = @p);";
+			cmd.CommandText = "DELETE FROM hashtag WHERE moreID = @m";
 
-			cmd.Parameters.AddWithValue("@p", pageID);
+			cmd.Parameters.AddWithValue("@m", moreID);
 
 			try
 			{
@@ -1043,7 +1297,7 @@ namespace River.OneMoreAddIn.Commands
 			catch (Exception exc)
 			{
 				transaction.Rollback();
-				logger.WriteLine($"error deleting tags {pageID}", exc);
+				logger.WriteLine($"error deleting tags {moreID}", exc);
 				return false;
 			}
 

@@ -1885,6 +1885,22 @@ Total Row Font
     <value>הדף כבר לא נמצא; ייתכן שהוא נמחק</value>
     <comment>tooltip</comment>
   </data>
+  <data name="FavoritesCommand_ambiguous" xml:space="preserve">
+    <value>הפייבוריט הזה יכול להיות יותר מעמוד אחד, אז OneMore לא ניחשה. הסר אותו והוסף אותו שוב.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="FavoritesCommand_broken" xml:space="preserve">
+    <value>המועדף הזה כבר לא קיים. ייתכן שהוא נמחק או שונה שם. הסר אותו והוסף אותו שוב.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="FavoritesCommand_offline" xml:space="preserve">
+    <value>המועדף הזה נמצא במחברת שאינה פתוחה או עדיין בטעינה, או בחלק נעול. אם זה עתה פתחת את המחברת, נסה שוב בעוד רגע.</value>
+    <comment>error message !EDIT</comment>
+  </data>
+  <data name="FavoritesCommand_pending" xml:space="preserve">
+    <value>OneMore עדיין לומדת היכן נמצאים הדפים שלך, ולכן היא לא יכולה למצוא את המועדף הזה עדיין. נסה שוב בעוד מספר דקות.</value>
+    <comment>error message</comment>
+  </data>
   <data name="FavoritesDialog_addButton.Text" xml:space="preserve">
     <value>הוסף דף נוכחי</value>
     <comment>context menu item</comment>
@@ -4189,8 +4205,32 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <value>אירעה שגיאה בעת שחזור תמונות רקע; התמונות המקוריות הוחזרו</value>
     <comment>error message</comment>
   </data>
+  <data name="RestoreLayoutCommand_ambiguous" xml:space="preserve">
+    <value>יותר מעמוד אחד מתאים לזה, אז OneMore לא ניחשה</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RestoreLayoutCommand_broken" xml:space="preserve">
+    <value>הדף כבר לא קיים, או ששמו שונה ללא הכר</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RestoreLayoutCommand_failed" xml:space="preserve">
+    <value>OneNote לא פתח אותו</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RestoreLayoutCommand_incomplete" xml:space="preserve">
+    <value>שוחזרו {0} מתוך {1} חלונות. לא ניתן היה לפתוח את אלה:{2}</value>
+    <comment>message box</comment>
+  </data>
   <data name="RestoreLayoutCommand_notFound" xml:space="preserve">
     <value>הפריסה '{0}' לא נמצאה.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RestoreLayoutCommand_offline" xml:space="preserve">
+    <value>הוא נמצא במחברת שאינה פתוחה, או בחלק נעול</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RestoreLayoutCommand_pending" xml:space="preserve">
+    <value>OneMore עדיין לומדת היכן נמצאים הדפים שלך; נסה שוב בעוד מספר דקות</value>
     <comment>message box</comment>
   </data>
   <data name="ribAboutButton_Label" xml:space="preserve">
