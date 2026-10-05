@@ -4303,7 +4303,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This favorite is in a notebook that is not open, or in a locked section.
+        ///   Looks up a localized string similar to This favorite is in a notebook that is not open or is still loading, or in a locked section. If you just opened the notebook, try again in a moment.
         /// </summary>
         internal static string FavoritesCommand_offline {
             get {

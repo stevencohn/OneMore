@@ -1885,6 +1885,22 @@ OneNote-bestand (*.one)</value>
     <value>Pagina niet meer gevonden; het kan zijn verwijderd</value>
     <comment>tooltip</comment>
   </data>
+  <data name="FavoritesCommand_ambiguous" xml:space="preserve">
+    <value>Deze favoriet kon meer dan één pagina betekenen, dus OneMore raadde het niet. Verwijder het en voeg het opnieuw toe.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="FavoritesCommand_broken" xml:space="preserve">
+    <value>Deze favoriet bestaat niet meer. Het is mogelijk verwijderd of hernoemd. Verwijder het en voeg het opnieuw toe.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="FavoritesCommand_offline" xml:space="preserve">
+    <value>Deze favoriet bevindt zich in een notitieboekje dat niet geopend is of nog aan het laden is, of in een afgesloten gedeelte. Als je het notitieboekje net hebt geopend, probeer het dan even opnieuw.</value>
+    <comment>error message !EDIT</comment>
+  </data>
+  <data name="FavoritesCommand_pending" xml:space="preserve">
+    <value>OneMore leert nog steeds waar uw pagina's zich bevinden, dus kan deze favoriet nog niet vinden. Probeer het over een paar minuten opnieuw.</value>
+    <comment>error message</comment>
+  </data>
   <data name="FavoritesDialog_addButton.Text" xml:space="preserve">
     <value>Huidige pagina toevoegen</value>
     <comment>context menu item</comment>
@@ -4189,8 +4205,32 @@ Selecteer NO om één lege regel tussen paragrafen te behouden</value>
     <value>Er is een fout opgetreden bij het herstellen van achtergrondafbeeldingen; de originele afbeeldingen zijn teruggeplaatst</value>
     <comment>error message</comment>
   </data>
+  <data name="RestoreLayoutCommand_ambiguous" xml:space="preserve">
+    <value>er past meer dan één pagina in, dus OneMore raadde het niet</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RestoreLayoutCommand_broken" xml:space="preserve">
+    <value>de pagina bestaat niet meer of is onherkenbaar hernoemd</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RestoreLayoutCommand_failed" xml:space="preserve">
+    <value>OneNote heeft het niet geopend</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RestoreLayoutCommand_incomplete" xml:space="preserve">
+    <value>{0} van {1} vensters hersteld. Deze konden niet worden geopend:{2}</value>
+    <comment>message box</comment>
+  </data>
   <data name="RestoreLayoutCommand_notFound" xml:space="preserve">
     <value>Lay-out '{0}' is niet gevonden.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RestoreLayoutCommand_offline" xml:space="preserve">
+    <value>het bevindt zich in een notitieboekje dat niet geopend is, of in een afgesloten gedeelte</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RestoreLayoutCommand_pending" xml:space="preserve">
+    <value>OneMore leert nog steeds waar uw pagina's zich bevinden; probeer het over een paar minuten opnieuw</value>
     <comment>message box</comment>
   </data>
   <data name="ribAboutButton_Label" xml:space="preserve">

@@ -1888,6 +1888,22 @@
     <value>لم تعد الصفحة موجودة ؛ قد تم حذفه</value>
     <comment>tooltip</comment>
   </data>
+  <data name="FavoritesCommand_ambiguous" xml:space="preserve">
+    <value>يمكن أن تعني هذه المفضلة أكثر من صفحة واحدة، لذلك لم يخمن OneMore. قم بإزالته وأضفه مرة أخرى.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="FavoritesCommand_broken" xml:space="preserve">
+    <value>هذه المفضلة لم تعد موجودة. ربما تم حذفه أو إعادة تسميته. قم بإزالته وأضفه مرة أخرى.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="FavoritesCommand_offline" xml:space="preserve">
+    <value>هذه المفضلة موجودة في دفتر ملاحظات غير مفتوح أو لا يزال قيد التحميل، أو في قسم مقفل. إذا قمت بفتح دفتر الملاحظات للتو، فحاول مرة أخرى بعد قليل.</value>
+    <comment>error message !EDIT</comment>
+  </data>
+  <data name="FavoritesCommand_pending" xml:space="preserve">
+    <value>لا يزال OneMore يتعرف على مكان صفحاتك، لذا لا يمكنه العثور على هذه المفضلة بعد. حاول مرة أخرى خلال بضع دقائق.</value>
+    <comment>error message</comment>
+  </data>
   <data name="FavoritesDialog_addButton.Text" xml:space="preserve">
     <value>إضافة الصفحة الحالية</value>
     <comment>context menu item</comment>
@@ -4200,8 +4216,32 @@ ISO-code then comma then language name</comment>
     <value>حدث خطأ أثناء استعادة صور الخلفية؛ تم إرجاع الصور الأصلية</value>
     <comment>error message</comment>
   </data>
+  <data name="RestoreLayoutCommand_ambiguous" xml:space="preserve">
+    <value>أكثر من صفحة واحدة تناسبها، لذلك لم يخمن OneMore</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RestoreLayoutCommand_broken" xml:space="preserve">
+    <value>الصفحة لم تعد موجودة، أو تمت إعادة تسميتها بحيث لا يمكن التعرف عليها</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RestoreLayoutCommand_failed" xml:space="preserve">
+    <value>OneNote لم يفتحه</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RestoreLayoutCommand_incomplete" xml:space="preserve">
+    <value>تمت استعادة {0} من إجمالي {1} نافذة. لا يمكن فتح هذه:{2}</value>
+    <comment>message box</comment>
+  </data>
   <data name="RestoreLayoutCommand_notFound" xml:space="preserve">
     <value>لم يتم العثور على التخطيط '{0}'.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RestoreLayoutCommand_offline" xml:space="preserve">
+    <value>يكون في دفتر غير مفتوح، أو في قسم مغلق</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RestoreLayoutCommand_pending" xml:space="preserve">
+    <value>لا يزال OneMore يتعرف على مكان وجود صفحاتك؛ حاول مرة أخرى خلال بضع دقائق</value>
     <comment>message box</comment>
   </data>
   <data name="ribAboutButton_Label" xml:space="preserve">

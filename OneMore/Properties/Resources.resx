@@ -1899,7 +1899,7 @@ OneNote File (*.one)</value>
     <comment>error message</comment>
   </data>
   <data name="FavoritesCommand_offline" xml:space="preserve">
-    <value>This favorite is in a notebook that is not open, or in a locked section.</value>
+    <value>This favorite is in a notebook that is not open or is still loading, or in a locked section. If you just opened the notebook, try again in a moment.</value>
     <comment>error message</comment>
   </data>
   <data name="FavoritesCommand_pending" xml:space="preserve">
@@ -4233,10 +4233,6 @@ Select No to keep one empty line between paragraphs</value>
     <value>An error occurred while restoring background images; the original images have been put back</value>
     <comment>error message</comment>
   </data>
-  <data name="RestoreLayoutCommand_notFound" xml:space="preserve">
-    <value>Layout '{0}' was not found.</value>
-    <comment>message box</comment>
-  </data>
   <data name="RestoreLayoutCommand_ambiguous" xml:space="preserve">
     <value>more than one page fits it, so OneMore did not guess</value>
     <comment>message box</comment>
@@ -4251,6 +4247,10 @@ Select No to keep one empty line between paragraphs</value>
   </data>
   <data name="RestoreLayoutCommand_incomplete" xml:space="preserve">
     <value>Restored {0} of {1} windows. These could not be opened:{2}</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RestoreLayoutCommand_notFound" xml:space="preserve">
+    <value>Layout '{0}' was not found.</value>
     <comment>message box</comment>
   </data>
   <data name="RestoreLayoutCommand_offline" xml:space="preserve">
@@ -8020,9 +8020,6 @@ Thank you!</value>
   <data name="VariablesDB" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Commands\Tables\Formulas\VariablesDB.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
-  <data name="PageIdentityDB" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Identity\PageIdentityDB.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
   <data name="HashtagsDB" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Commands\Tagging\HashtagsDB.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
@@ -8031,6 +8028,9 @@ Thank you!</value>
   </data>
   <data name="LayoutsDB" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Commands\Workspaces\Layouts\LayoutsDB.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="PageIdentityDB" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Identity\PageIdentityDB.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="DefaultTableThemes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ribbon\defaulttablethemes.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>

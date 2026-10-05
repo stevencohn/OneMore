@@ -1885,6 +1885,22 @@ Plik OneNote (* .o)</value>
     <value>Strona nie została już znaleziona; mógł zostać usunięty</value>
     <comment>tooltip</comment>
   </data>
+  <data name="FavoritesCommand_ambiguous" xml:space="preserve">
+    <value>Ten faworyt mógł oznaczać więcej niż jedną stronę, więc OneMore nie zgadł. Usuń go i dodaj ponownie.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="FavoritesCommand_broken" xml:space="preserve">
+    <value>Ten ulubiony już nie istnieje. Być może został usunięty lub zmieniono jego nazwę. Usuń go i dodaj ponownie.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="FavoritesCommand_offline" xml:space="preserve">
+    <value>Ten ulubiony znajduje się w notatniku, który nie jest otwarty lub wciąż się ładuje, albo w zablokowanej sekcji. Jeśli właśnie otworzyłeś notatnik, spróbuj ponownie za chwilę.</value>
+    <comment>error message !EDIT</comment>
+  </data>
+  <data name="FavoritesCommand_pending" xml:space="preserve">
+    <value>OneMore wciąż uczy się, gdzie znajdują się Twoje strony, więc nie może jeszcze znaleźć tego ulubionego. Spróbuj ponownie za kilka minut.</value>
+    <comment>error message</comment>
+  </data>
   <data name="FavoritesDialog_addButton.Text" xml:space="preserve">
     <value>Dodaj bieżącą stronę</value>
     <comment>context menu item</comment>
@@ -4189,8 +4205,32 @@ Wybierz Nie, aby zachować jedną pustą linię między akapitami</value>
     <value>Wystąpił błąd podczas przywracania obrazów tła; oryginalne obrazy zostały przywrócone</value>
     <comment>error message</comment>
   </data>
+  <data name="RestoreLayoutCommand_ambiguous" xml:space="preserve">
+    <value>pasuje do niej więcej niż jedna strona, więc OneMore nie zgadł</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RestoreLayoutCommand_broken" xml:space="preserve">
+    <value>strona już nie istnieje lub jej nazwa została zmieniona nie do poznania</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RestoreLayoutCommand_failed" xml:space="preserve">
+    <value>OneNote go nie otworzył</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RestoreLayoutCommand_incomplete" xml:space="preserve">
+    <value>Przywrócono {0} z {1} okien. Nie można otworzyć tych elementów:{2}</value>
+    <comment>message box</comment>
+  </data>
   <data name="RestoreLayoutCommand_notFound" xml:space="preserve">
     <value>Nie znaleziono układu „{0}”.</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RestoreLayoutCommand_offline" xml:space="preserve">
+    <value>znajduje się w notatniku, który nie jest otwarty, lub w zamkniętej sekcji</value>
+    <comment>message box</comment>
+  </data>
+  <data name="RestoreLayoutCommand_pending" xml:space="preserve">
+    <value>OneMore wciąż uczy się, gdzie znajdują się Twoje strony; spróbuj ponownie za kilka minut</value>
     <comment>message box</comment>
   </data>
   <data name="ribAboutButton_Label" xml:space="preserve">
