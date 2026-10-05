@@ -59,7 +59,8 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		public static bool CatalogExists()		{
+		public static bool CatalogExists()
+		{
 			return CatalogExists("hashtag_scanner");
 		}
 
