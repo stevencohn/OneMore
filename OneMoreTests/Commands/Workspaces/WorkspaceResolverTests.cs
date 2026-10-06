@@ -127,6 +127,37 @@ namespace River.OneMoreAddIn.Tests.Commands.Workspaces
 
 
 		[TestMethod]
+		public void Apply_NothingChanged_DoesNotMakeALink()
+		{
+			var favorite = OldPageFavorite();
+			WorkspaceResolver.Apply(favorite, PageFound(), Link);
+
+			var calls = 0;
+			WorkspaceResolver.Apply(favorite, PageFound(), id => { calls++; return "x"; });
+
+			Assert.AreEqual(0, calls);
+		}
+
+
+		[TestMethod]
+		public void Apply_NothingChangedButTheLinkGuidDiffers_MakesALink()
+		{
+			var favorite = OldPageFavorite();
+			WorkspaceResolver.Apply(favorite, PageFound(), Link);
+			favorite.Uri = "onenote:#p&section-id={11111111-1111-1111-1111-111111111111}" +
+				"&page-id={22222222-2222-2222-2222-222222222222}&end";
+
+			var found = PageFound();
+			found.PageGuid = "{33333333-3333-3333-3333-333333333333}";
+
+			var calls = 0;
+			WorkspaceResolver.Apply(favorite, found, id => { calls++; return "x"; });
+
+			Assert.AreEqual(1, calls);
+		}
+
+
+		[TestMethod]
 		public void Apply_ALinkThatCannotBeMade_LeavesTheStoredOneInPlace()
 		{
 			var favorite = OldPageFavorite();

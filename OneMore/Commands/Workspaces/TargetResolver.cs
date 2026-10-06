@@ -151,6 +151,9 @@ namespace River.OneMoreAddIn.Commands.Workspaces
 		public string SectionID { get; set; }
 		public string PageID { get; set; }
 
+		/// <summary>The GUID of a hyperlink to the page, or null if not read yet or not a page.</summary>
+		public string PageGuid { get; set; }
+
 		/// <summary>The name of the page, section, section group or notebook.</summary>
 		public string Name { get; set; }
 
@@ -186,6 +189,10 @@ namespace River.OneMoreAddIn.Commands.Workspaces
 		private readonly Dictionary<string, IdentityPage> pagesByID;
 		private readonly ILookup<string, IdentityPage> pagesByGuid;
 		private readonly List<IdentityPage> pages;
+
+		// built on first use, because most favorites are found by key, ID or GUID and never need them
+		private ILookup<(string, string, string, string), IdentityPage> pagesByPrint;
+		private ILookup<string, IdentityPage> pagesByLocation;
 
 
 		/// <param name="snapshot">The pages and containers of every open notebook</param>
@@ -271,9 +278,10 @@ namespace River.OneMoreAddIn.Commands.Workspaces
 			var print = FingerprintOf(query);
 			if (print is not null)
 			{
-				var same = pages
-					.Where(p => p.Ref.Title == print.Title && p.Ref.Created == print.Created &&
-						p.Ref.NotebookKey == print.NotebookKey && p.Ref.SectionKey == print.SectionKey)
+				pagesByPrint ??= pages.ToLookup(
+					p => (p.Ref.Title, p.Ref.Created, p.Ref.NotebookKey, p.Ref.SectionKey));
+
+				var same = pagesByPrint[(print.Title, print.Created, print.NotebookKey, print.SectionKey)]
 					.ToList();
 
 				if (same.Count == 1)
@@ -297,10 +305,10 @@ namespace River.OneMoreAddIn.Commands.Workspaces
 			// 4. the remembered path by name; a guess, so it is marked as one
 			if (!string.IsNullOrEmpty(query.Location))
 			{
-				var named = pages
-					.Where(p => string.Equals(
-						p.SectionPath + "/" + p.Ref.Title, query.Location, StringComparison.OrdinalIgnoreCase))
-					.ToList();
+				pagesByLocation ??= pages.ToLookup(
+					p => p.SectionPath + "/" + p.Ref.Title, StringComparer.OrdinalIgnoreCase);
+
+				var named = pagesByLocation[query.Location].ToList();
 
 				if (named.Count == 1)
 				{
@@ -344,6 +352,7 @@ namespace River.OneMoreAddIn.Commands.Workspaces
 				NotebookID = page.NotebookID,
 				SectionID = page.SectionID,
 				PageID = page.Ref.PageID,
+				PageGuid = page.PageGuid,
 				Name = page.Ref.Title,
 				Location = page.SectionPath + "/" + page.Ref.Title
 			};

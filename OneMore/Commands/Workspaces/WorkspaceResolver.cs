@@ -118,6 +118,29 @@ namespace River.OneMoreAddIn.Commands.Workspaces
 
 
 		/// <summary>
+		/// Determines whether the stored link might be out of date. Making a link is a call into
+		/// OneNote, so it is only made when something about the target changed, there is no link, or
+		/// the page GUID in the stored link is not the one the page has now.
+		/// </summary>
+		private static bool NeedsLink(bool changed, string storedUri, TargetResolution resolution, bool isPage)
+		{
+			if (changed || string.IsNullOrEmpty(storedUri))
+			{
+				return true;
+			}
+
+			if (isPage && resolution.PageGuid is not null)
+			{
+				var stored = LinkGuids.PageGuid(storedUri);
+				return stored is not null &&
+					!string.Equals(stored, resolution.PageGuid, StringComparison.OrdinalIgnoreCase);
+			}
+
+			return false;
+		}
+
+
+		/// <summary>
 		/// Copies what was found into a layout window, ready to be saved. The name, alias, layout and
 		/// z-order are the user's and are never touched.
 		/// </summary>
@@ -145,7 +168,10 @@ namespace River.OneMoreAddIn.Commands.Workspaces
 			Set(nameof(window.Location), window.Location, resolution.Location, v => window.Location = v);
 
 			// a link that could not be made leaves the one stored in place
-			var uri = hyperlink(resolution.PageID);
+			var uri = NeedsLink(changed, window.Uri, resolution, true)
+				? hyperlink(resolution.PageID)
+				: null;
+
 			if (!string.IsNullOrEmpty(uri))
 			{
 				Set(nameof(window.Uri), window.Uri, uri, v => window.Uri = v);
@@ -200,7 +226,8 @@ namespace River.OneMoreAddIn.Commands.Workspaces
 			}
 
 			// a link that could not be made leaves the one stored in place
-			var uri = NavigationTarget(resolution, favorite.Kind, hyperlink);
+			var needsLink = NeedsLink(changed, favorite.Uri, resolution, isPage);
+			var uri = NavigationTarget(resolution, favorite.Kind, id => needsLink ? hyperlink(id) : null);
 			if (!string.IsNullOrEmpty(uri))
 			{
 				Set(nameof(favorite.Uri), favorite.Uri, uri, v => favorite.Uri = v);
