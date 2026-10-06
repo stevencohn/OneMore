@@ -86,6 +86,7 @@
     <Compile Include="Commands\Reminders\ReminderLocatorTests.cs" />
     <Compile Include="Commands\Reminders\ReminderSerializerTests.cs" />
     <Compile Include="Pipeline\PipelineServiceTests.cs" />
+    <Compile Include="Identity\GuidRetryLedgerTests.cs" />
     <Compile Include="Identity\IdentityPassTests.cs" />
     <Compile Include="Identity\IdentityPassInteractiveTests.cs" />
     <Compile Include="Identity\PageGuidTests.cs" />

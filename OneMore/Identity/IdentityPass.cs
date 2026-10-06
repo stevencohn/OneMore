@@ -66,6 +66,69 @@ namespace River.OneMoreAddIn.Identity
 
 
 	/// <summary>
+	/// Remembers the pages whose hyperlink GUID could not be read, so that the backfill does not
+	/// spend its budget on them every pass. A page is skipped for a growing number of passes after
+	/// each failure, and is given up on for the session after <see cref="MaxAttempts"/>. Lives as long
+	/// as the stage, because every pass is a new <see cref="IdentityPass"/>.
+	/// </summary>
+	internal sealed class GuidRetryLedger
+	{
+		public const int MaxAttempts = 5;
+		private const int MaxSkip = 64;
+
+		private readonly Dictionary<long, (string PageID, int Attempts, int RetryAt)> failures = new();
+		private int pass;
+
+
+		/// <summary>Gets the number of pages being skipped or given up on.</summary>
+		public int Count => failures.Count;
+
+
+		/// <summary>Starts a pass; call once per pass before asking about any page.</summary>
+		public void NextPass()
+		{
+			pass++;
+		}
+
+
+		/// <summary>Gets whether the page should not be tried again yet.</summary>
+		public bool ShouldSkip(long pageKey, string pageID)
+		{
+			if (!failures.TryGetValue(pageKey, out var entry))
+			{
+				return false;
+			}
+
+			// OneNote gave the page a new ID, so it deserves a fresh try
+			if (entry.PageID != pageID)
+			{
+				failures.Remove(pageKey);
+				return false;
+			}
+
+			return entry.Attempts >= MaxAttempts || pass < entry.RetryAt;
+		}
+
+
+		public void Failed(long pageKey, string pageID)
+		{
+			var attempts = failures.TryGetValue(pageKey, out var entry) && entry.PageID == pageID
+				? entry.Attempts + 1
+				: 1;
+
+			var skip = Math.Min(1 << attempts, MaxSkip);
+			failures[pageKey] = (pageID, attempts, pass + skip);
+		}
+
+
+		public void Succeeded(long pageKey)
+		{
+			failures.Remove(pageKey);
+		}
+	}
+
+
+	/// <summary>
 	/// Reads the hierarchy of every open notebook, without loading any page, and reconciles
 	/// the pages found with the stored identities. This is the one place that keeps the identity
 	/// catalog current; everything else asks it what a page is now.
@@ -95,12 +158,17 @@ namespace River.OneMoreAddIn.Identity
 
 		private readonly PageIdentityProvider provider;
 		private readonly IHierarchySource source;
+		private readonly GuidRetryLedger ledger;
 
 
-		public IdentityPass(PageIdentityProvider provider, IHierarchySource source)
+		/// <param name="ledger">Optional. Remembers pages whose GUID could not be read across
+		/// passes; a caller that runs more than one pass should keep one and pass it every time.</param>
+		public IdentityPass(
+			PageIdentityProvider provider, IHierarchySource source, GuidRetryLedger ledger = null)
 		{
 			this.provider = provider;
 			this.source = source;
+			this.ledger = ledger ?? new GuidRetryLedger();
 		}
 
 
@@ -117,6 +185,8 @@ namespace River.OneMoreAddIn.Identity
 		public async Task<IdentitySnapshot> Run(CancellationToken token = default, bool fillGuids = true)
 		{
 			var clock = Stopwatch.StartNew();
+			var phase = Stopwatch.StartNew();
+			ledger.NextPass();
 
 			var root = await source.GetNotebooks();
 			if (root is null)
@@ -124,6 +194,9 @@ namespace River.OneMoreAddIn.Identity
 				logger.WriteLine("error identity pass could not list notebooks");
 				return null;
 			}
+
+			var listMs = phase.ElapsedMilliseconds;
+			phase.Restart();
 
 			var ns = root.Name.Namespace;
 			var skipped = new List<string>();
@@ -151,13 +224,23 @@ namespace River.OneMoreAddIn.Identity
 			var keys = listed.Select(n => n.Key).Distinct().ToList();
 			var refs = pages.Select(p => p.Ref).ToList();
 
+			var readMs = phase.ElapsedMilliseconds;
+			phase.Restart();
+
 			// a page that no stored identity matches may still be one whose name, section and
 			// creation time were all changed; its hyperlink GUID can tell. Read those before the
 			// write lock is taken, so a slow call to OneNote never holds up the database
 			var rescue = provider.FindPagesNeedingGuid(keys, refs, skipped);
+			var findMs = phase.ElapsedMilliseconds;
+			phase.Restart();
+
 			var read = rescue.Count > 0 ? await ReadGuids(rescue, token) : 0;
+			var rescueMs = phase.ElapsedMilliseconds;
+			phase.Restart();
 
 			var resolutions = provider.Reconcile(keys, refs, skipped);
+			var reconcileMs = phase.ElapsedMilliseconds;
+			phase.Restart();
 
 			for (var i = 0; i < pages.Count; i++)
 			{
@@ -165,12 +248,18 @@ namespace River.OneMoreAddIn.Identity
 				pages[i].PageGuid = pages[i].Ref.PageGuid ?? resolutions[i].Row?.PageGuid;
 			}
 
+			var backfill = new BackfillResult();
 			if (fillGuids)
 			{
-				read += await BackfillGuids(pages, token);
+				backfill = await BackfillGuids(pages, token);
+				read += backfill.Found;
 			}
 
+			var backfillMs = phase.ElapsedMilliseconds;
+			phase.Restart();
+
 			var purged = provider.PurgeMissing(MissingGrace);
+			var purgeMs = phase.ElapsedMilliseconds;
 
 			clock.Stop();
 
@@ -181,13 +270,22 @@ namespace River.OneMoreAddIn.Identity
 			var moved = pages.Count(p => p.Resolution.Kind != ResolutionKind.Known &&
 				p.Resolution.Kind != ResolutionKind.SameLocation && p.Resolution.Kind != ResolutionKind.New);
 
-			if (moved > 0 || purged.Count > 0 || read > 0 || logger.IsDebug)
+			if (moved > 0 || purged.Count > 0 || read > 0 || backfill.Calls > 0 || logger.IsDebug)
 			{
 				logger.WriteLine(
 					$"identity pass {pages.Count} pages in {listed.Count} of {notebooks.Count} notebooks, " +
 					$"{moved} moved or renamed, {purged.Count} purged, {skipped.Count} sections skipped, " +
 					$"{read} GUIDs read, {pending} pending, in {clock.ElapsedMilliseconds}ms");
+
 			}
+
+			// every pass, so a quiet pass can be compared with a busy one
+			logger.Verbose(
+				$"identity pass phases: list {listMs}ms, read {readMs}ms, find {findMs}ms, " +
+				$"rescue {rescueMs}ms, reconcile {reconcileMs}ms, " +
+				$"backfill {backfillMs}ms ({backfill.Calls} calls, {backfill.Failed} failed, " +
+				$"{backfill.Skipped} skipped, {ledger.Count} remembered), purge {purgeMs}ms, " +
+				$"{pages.Count} pages in {listed.Count} notebooks");
 
 			return snapshot;
 		}
@@ -219,11 +317,22 @@ namespace River.OneMoreAddIn.Identity
 		}
 
 
-		// fills in the GUIDs of pages that have none, a few at a time, and records them
-		private async Task<int> BackfillGuids(IReadOnlyList<IdentityPage> pages, CancellationToken token)
+		private struct BackfillResult
+		{
+			public int Found;
+			public int Calls;
+			public int Failed;
+			public int Skipped;
+		}
+
+
+		// fills in the GUIDs of pages that have none, a few at a time, and records them; a page
+		// that cannot be read is remembered so it does not use the budget every pass
+		private async Task<BackfillResult> BackfillGuids(IReadOnlyList<IdentityPage> pages, CancellationToken token)
 		{
 			var clock = Stopwatch.StartNew();
 			var found = new List<(long PageKey, string PageGuid)>();
+			var result = new BackfillResult();
 
 			foreach (var page in pages)
 			{
@@ -234,21 +343,35 @@ namespace River.OneMoreAddIn.Identity
 
 				token.ThrowIfCancellationRequested();
 
+				if (ledger.ShouldSkip(page.PageKey, page.Ref.PageID))
+				{
+					result.Skipped++;
+					continue;
+				}
+
 				if (clock.Elapsed > BackfillBudget)
 				{
 					break;
 				}
 
+				result.Calls++;
 				var guid = await source.GetPageGuid(page.Ref.PageID);
 				if (guid is not null)
 				{
 					page.PageGuid = guid;
 					found.Add((page.PageKey, guid));
+					ledger.Succeeded(page.PageKey);
+				}
+				else
+				{
+					result.Failed++;
+					ledger.Failed(page.PageKey, page.Ref.PageID);
 				}
 			}
 
 			provider.WritePageGuids(found);
-			return found.Count;
+			result.Found = found.Count;
+			return result;
 		}
 	}
 }

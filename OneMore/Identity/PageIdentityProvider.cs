@@ -467,26 +467,41 @@ namespace River.OneMoreAddIn.Identity
 			var cutoff = (DateTime.Now - grace).ToZuluString();
 			var keys = new List<long>();
 
+			// look first, so the write lock is only taken when there is something to delete; the
+			// delete is by key, so another process purging the same rows in between does no harm
+			try
+			{
+				using var find = con.CreateCommand();
+				find.CommandType = CommandType.Text;
+				find.CommandText =
+					"SELECT pageKey FROM identity_page " +
+					"WHERE missingSince IS NOT NULL AND missingSince < @cutoff";
+
+				find.Parameters.AddWithValue("@cutoff", cutoff);
+
+				using var reader = find.ExecuteReader();
+				while (reader.Read())
+				{
+					keys.Add(reader.GetInt64(0));
+				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error finding missing page identities to purge", exc);
+				return Array.Empty<long>();
+			}
+
+			if (keys.Count == 0)
+			{
+				return keys;
+			}
+
 			BeginImmediate();
 
 			try
 			{
 				using var cmd = con.CreateCommand();
 				cmd.CommandType = CommandType.Text;
-				cmd.CommandText =
-					"SELECT pageKey FROM identity_page " +
-					"WHERE missingSince IS NOT NULL AND missingSince < @cutoff";
-
-				cmd.Parameters.AddWithValue("@cutoff", cutoff);
-
-				using (var reader = cmd.ExecuteReader())
-				{
-					while (reader.Read())
-					{
-						keys.Add(reader.GetInt64(0));
-					}
-				}
-
 				cmd.CommandText = "DELETE FROM identity_page WHERE pageKey = @pageKey";
 				cmd.Parameters.Clear();
 				var parameter = cmd.Parameters.Add("@pageKey", DbType.Int64);
