@@ -23,7 +23,10 @@ namespace OneMoreTray
 		private readonly ILogger logger;
 		private readonly NotifyIcon trayIcon;
 		private readonly HashtagScheduler scheduler;
+		private static readonly TimeSpan HeartbeatInterval = TimeSpan.FromSeconds(30);
+
 		private CancellationTokenSource source;
+		private System.Threading.Timer heartbeat;
 
 
 		public ScanningJob()
@@ -45,6 +48,12 @@ namespace OneMoreTray
 			}
 
 			River.OneMoreAddIn.Helpers.SessionLogger.WriteSessionHeader();
+
+			// record that this process owns the schedule and keep proving it is alive, so the
+			// add-in can tell a working tray from one that died or hung
+			scheduler.Claim();
+			heartbeat = new System.Threading.Timer(
+				_ => scheduler.Heartbeat(), null, HeartbeatInterval, HeartbeatInterval);
 
 			ScheduleScan();
 		}
@@ -109,23 +118,48 @@ namespace OneMoreTray
 		private void ScheduleScan()
 		{
 			source = new CancellationTokenSource();
+			var token = source.Token;
 			Task.Run(async () =>
 			{
-				if (scheduler.StartTime > DateTime.Now)
+				try
 				{
-					var time = scheduler.StartTime.ToString(Resx.ScheduleTimeFormat);
-					logger.WriteLine($"waiting until {time}");
+					while (scheduler.StartTime > DateTime.Now)
+					{
+						var time = scheduler.StartTime.ToString(Resx.ScheduleTimeFormat);
+						logger.WriteLine($"waiting until {time}");
 
-					trayIcon.ShowBalloonTip(0, Resx.ScannerTitle,
-						string.Format(Resx.ScannerScheduled, time), ToolTipIcon.Info);
+						trayIcon.ShowBalloonTip(0, Resx.ScannerTitle,
+							string.Format(Resx.ScannerScheduled, time), ToolTipIcon.Info);
 
-					var delay = scheduler.StartTime - DateTime.Now;
-					await Task.Delay(delay, source.Token);
+						// Task.Delay cannot wait longer than int.MaxValue ms, about 24 days, so
+						// wait in bounded steps and look at the clock again
+						var delay = scheduler.StartTime - DateTime.Now;
+						var max = TimeSpan.FromDays(1);
+						await Task.Delay(delay > max ? max : delay, token);
+					}
+
+					Execute();
 				}
+				catch (OperationCanceledException)
+				{
+					// rescheduled or run now; a new wait has already been started
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine("scheduled scan failed", exc);
+					Abandon();
+				}
+			}, token);
+		}
 
-				Execute();
 
-			}, source.Token);
+		// the tray cannot finish the schedule, so record that and close rather than linger
+		// as a process that appears to be working
+		private void Abandon()
+		{
+			scheduler.RecordFailure();
+			trayIcon.Visible = false;
+			Application.Exit();
 		}
 
 
@@ -137,14 +171,28 @@ namespace OneMoreTray
 				logger.WriteLine("hashtag scanning is disabled, aborting scheduler");
 				scheduler.ClearSchedule();
 				source.Dispose();
+
+				// nothing left to do, so do not linger as a resident process
+				trayIcon.Visible = false;
+				Application.Exit();
+				return;
+			}
+
+			// take ownership of the work before starting it, so the schedule says Scanning
+			// for as long as the pipeline might be running
+			var rebuild = scheduler.State == ScanningState.PendingRebuild;
+
+			if (!scheduler.TryBeginScan())
+			{
+				logger.WriteLine("scheduled scan was changed by another process, closing OneMoreTray");
+				trayIcon.Visible = false;
+				Application.Exit();
 				return;
 			}
 
 			logger.WriteLine("starting HashtagService");
 
 			trayIcon.ShowBalloonTip(0, Resx.ScannerTitle, Resx.ScanStarting, ToolTipIcon.Info);
-
-			var rebuild = scheduler.State == ScanningState.PendingRebuild;
 
 			// the tray runs the identity stage and then the hashtag stage once, for a scan the user
 			// scheduled
@@ -165,9 +213,6 @@ namespace OneMoreTray
 
 			service.Startup();
 
-			scheduler.State = ScanningState.Scanning;
-			scheduler.SaveSchedule();
-
 			source.Dispose();
 		}
 
@@ -182,7 +227,9 @@ namespace OneMoreTray
 					logger.WriteLine("ScanningJob aborted, closing OneMoreTray");
 				}
 
-				Application.Exit();
+				// counts the failure and abandons the schedule after too many, so a persistent
+				// failure is not retried every time OneNote starts
+				Abandon();
 				return;
 			}
 
@@ -249,7 +296,6 @@ namespace OneMoreTray
 			if (MoreMessageBox.ShowQuestion(null, Resx.ScanNowConfirmation) == DialogResult.Yes)
 			{
 				source.Cancel(false);
-				scheduler.ClearSchedule();
 
 				scheduler.StartTime = DateTime.Now.AddSeconds(-1);
 				scheduler.SaveSchedule();

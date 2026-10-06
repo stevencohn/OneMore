@@ -33,6 +33,7 @@ namespace River.OneMoreAddIn.Commands
 		private bool initialized;
 		private bool activationChecked;
 		private DateTime? lastWaitLog;
+		private DateTime? lastRecoveryCheck;
 		private bool reportedNoSnapshot;
 		private bool disposed;
 
@@ -141,14 +142,30 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			// Activating stops any tray that is running and starts a new one, so the decision is made
-			// once, on the first check when the state was just read, as at startup. It is never made
-			// again: a later check sees a tray that has simply finished its scan and would wrongly
-			// start another.
-			var activate = ShouldActivate(activationChecked, scheduler.State, scheduler.Active);
+			// on the first check, when the state was just read, as at startup. After that it is made
+			// again, at most once a minute, only for a schedule that is recorded in the database and
+			// whose tray has stopped renewing its lease, i.e. one that died or hung. A tray that has
+			// simply finished its scan has cleared the schedule, so it is not started again.
+			var now = DateTime.Now;
+			var recoverable = activationChecked
+				&& scheduler.ScheduleExists
+				&& scheduler.Attempts < HashtagScheduler.MaxAttempts
+				&& (lastRecoveryCheck is null || now - lastRecoveryCheck.Value >= TimeSpan.FromMinutes(1));
+
+			if (recoverable)
+			{
+				scheduler.Refresh();
+				lastRecoveryCheck = now;
+			}
+
+			var activate = ShouldActivate(
+				activationChecked, scheduler.State, scheduler.Active, recoverable);
+
 			activationChecked = true;
 
 			if (activate)
 			{
+				logger.WriteLine($"Startup: activating tray for {scheduler.State}");
 				await scheduler.Activate();
 			}
 
@@ -161,7 +178,6 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			// say so once a minute, not every time we are asked
-			var now = DateTime.Now;
 			if (lastWaitLog is null || now - lastWaitLog.Value >= TimeSpan.FromMilliseconds(Minute))
 			{
 				logger.WriteLine($"Startup: hashtag service waiting, {scheduler.State}");
@@ -174,12 +190,13 @@ namespace River.OneMoreAddIn.Commands
 
 		/// <summary>
 		/// Determines whether to ask the tray to build the hashtag catalog. This is true only on the
-		/// first check, and only if the catalog is waiting to be built or scanned and no tray is
-		/// already working on it.
+		/// first check, or when recovering a recorded schedule whose tray has died, and only if
+		/// the catalog is waiting to be built or scanned and no tray is already working on it.
 		/// </summary>
-		internal static bool ShouldActivate(bool alreadyChecked, ScanningState state, bool trayActive)
+		internal static bool ShouldActivate(
+			bool alreadyChecked, ScanningState state, bool trayActive, bool recoverable = false)
 		{
-			return !alreadyChecked
+			return (!alreadyChecked || recoverable)
 				&& state != ScanningState.None
 				&& state != ScanningState.Ready
 				&& !trayActive;

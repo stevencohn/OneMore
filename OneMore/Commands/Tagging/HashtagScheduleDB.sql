@@ -1,0 +1,1 @@
+CREATE TABLE IF NOT EXISTS hashtag_schedule (scheduleID INTEGER PRIMARY KEY CHECK (scheduleID = 0), state TEXT NOT NULL, startTime TEXT NOT NULL, notebooks TEXT NOT NULL DEFAULT '[]', ownerPid INTEGER, ownerStart TEXT, heartbeat TEXT, attempts INTEGER NOT NULL DEFAULT 0, updated TEXT NOT NULL);

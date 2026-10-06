@@ -124,29 +124,31 @@ namespace River.OneMoreAddIn.Settings
 
 			var settings = provider.GetCollection(Name);
 
+			// requires a restart; the interval is read once when the hashtag stage is created
 			var updated = settings.Add("interval", (int)intervalBox.Value);
-			var save = false;
 
-			updated = settings.Add("styleIndex", styleBox.SelectedIndex) || updated;
-			updated = settings.Add("styleName", styleBox.Text) || updated;
+			// the rest do not require a restart; the scanner reads them again for each scan
+			var save = settings.Add("styleIndex", styleBox.SelectedIndex);
+			save = settings.Add("styleName", styleBox.Text) || save;
 
-			updated = filterBox.Checked
-				? settings.Add("unfiltered", true) || updated
-				: settings.Remove("unfiltered") || updated;
+			save = filterBox.Checked
+				? settings.Add("unfiltered", true) || save
+				: settings.Remove("unfiltered") || save;
 
-			updated = doubledBox.Checked
-				? settings.Add("doubled", true) || updated
-				: settings.Remove("doubled") || updated;
+			save = doubledBox.Checked
+				? settings.Add("doubled", true) || save
+				: settings.Remove("doubled") || save;
 
 			save = notifyBox.Checked
 				? settings.Add("notify", true) || save
 				: settings.Remove("notify") || save;
 
-			updated = disabledBox.Checked
-				? settings.Add("disabled", true) || updated
-				: settings.Remove("disabled") || updated;
+			// does not require a restart; the pipeline reads this every cycle
+			save = disabledBox.Checked
+				? settings.Add("disabled", true) || save
+				: settings.Remove("disabled") || save;
 
-			updated = settings.Add("delay", (int)delayBox.Value) || updated;
+			save = settings.Add("delay", (int)delayBox.Value) || save;
 
 			if (updated || save)
 			{

@@ -5174,7 +5174,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("HashtagsDB", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to CREATE TABLE IF NOT EXISTS hashtag_schedule (scheduleID INTEGER PRIMARY KEY CHECK (scheduleID = 0), state TEXT NOT NULL, startTime TEXT NOT NULL, ...
+        /// </summary>
+        internal static string HashtagScheduleDB {
+            get {
+                return ResourceManager.GetString("HashtagScheduleDB", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to CREATE TABLE IF NOT EXISTS identity_schema (schemaID INTEGER PRIMARY KEY UNIQUE NOT NULL, version NUMERIC (12) UNIQUE NOT NULL);
         ///CREATE TABLE IF NOT EXISTS identity_page (pageKey INTEGER PRIMARY KEY AUTOINCREMENT, pageID TEXT NOT NULL, notebookKey TEXT NOT NULL, sectionKey TEXT NOT NULL, title TEXT NOT NULL, created TEXT NOT NULL, modified TEXT NOT NULL, level INTEGER NOT NULL DEFAULT 1, missingSince TEXT, lastSeen TEXT NOT NULL); [rest of string was truncated]&quot;;.
