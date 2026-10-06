@@ -10,6 +10,7 @@ namespace River.OneMoreAddIn.Commands.Workspaces
 	using River.OneMoreAddIn.Pipeline;
 	using System;
 	using System.Collections.Generic;
+	using System.Diagnostics;
 	using System.Linq;
 	using System.Threading;
 	using System.Threading.Tasks;
@@ -70,19 +71,37 @@ namespace River.OneMoreAddIn.Commands.Workspaces
 
 			// OneNote is only needed to make a link for something that is being saved
 			OneNote one = null;
+			var links = 0;
+			var linkTime = TimeSpan.Zero;
 			string Link(string id)
 			{
+				var linkWatch = Stopwatch.StartNew();
 				one ??= new OneNote();
-				return one.GetHyperlink(id, string.Empty);
+				var link = one.GetHyperlink(id, string.Empty);
+				links++;
+				linkTime += linkWatch.Elapsed;
+				return link;
 			}
 
 			try
 			{
+				var watch = Stopwatch.StartNew();
+
 				using var identity = new PageIdentityProvider();
 				var resolver = new TargetResolver(snapshot, identity.Read);
+				var buildTime = watch.ElapsedMilliseconds;
 
+				watch.Restart();
 				var savedFavorites = Heal("favorites", () => HealFavorites(resolver, Link, token));
+				var favoritesTime = watch.ElapsedMilliseconds;
+
+				watch.Restart();
 				Heal("layouts", () => HealWindows(resolver, Link, token));
+				var layoutsTime = watch.ElapsedMilliseconds;
+
+				logger.Verbose(
+					$"favorites stage: resolver {buildTime}ms, favorites {favoritesTime}ms, " +
+					$"layouts {layoutsTime}ms, {links} links in {linkTime.TotalMilliseconds:0}ms");
 
 				if (savedFavorites > 0)
 				{
