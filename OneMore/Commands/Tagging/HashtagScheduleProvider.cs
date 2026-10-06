@@ -41,6 +41,9 @@ namespace River.OneMoreAddIn.Commands
 		private const string Columns =
 			"state, startTime, notebooks, ownerPid, ownerStart, heartbeat, attempts, updated";
 
+		// the scheduler creates a provider for every operation, so build the schema only once
+		private static bool schemaBuilt;
+
 
 		/// <summary>
 		/// Initialize this provider, opening the standard database
@@ -49,7 +52,12 @@ namespace River.OneMoreAddIn.Commands
 			: base()
 		{
 			OpenDatabase();
-			RefreshDataSchema(Domain, Resx.HashtagScheduleDB);
+
+			if (!schemaBuilt)
+			{
+				RefreshDataSchema(Domain, Resx.HashtagScheduleDB);
+				schemaBuilt = true;
+			}
 		}
 
 
