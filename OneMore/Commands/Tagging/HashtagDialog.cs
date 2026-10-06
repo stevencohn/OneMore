@@ -348,6 +348,13 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var scheduler = new HashtagScheduler();
 
+			// same guard as HashtagScanCommand: do not replace a scan that is under way
+			if (scheduler.State == ScanningState.Scanning && scheduler.Active)
+			{
+				MoreMessageBox.ShowWarning(this, Resx.HashtagCommand_scanning);
+				return;
+			}
+
 			using var dialog =
 				scheduler.State == ScanningState.None ||
 				scheduler.State == ScanningState.Ready

@@ -6,6 +6,7 @@ namespace OneMoreTray
 {
 	using River.OneMoreAddIn;
 	using System;
+	using System.Threading;
 	using System.Windows.Forms;
 	using Resx = Properties.Resources;
 
@@ -29,9 +30,36 @@ namespace OneMoreTray
 		{
 			Logger.SetApplication(Resx.AppName);
 
-			Application.EnableVisualStyles();
-			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new ScanningJob());
+			// only one tray per user session; the add-in stops an old tray before starting a
+			// new one, but two add-in instances could race
+			using var mutex = new Mutex(false, @"Local\OneMoreTray");
+			var owned = false;
+			try
+			{
+				owned = mutex.WaitOne(0);
+			}
+			catch (AbandonedMutexException)
+			{
+				// the previous owner was killed, which is how the add-in stops it
+				owned = true;
+			}
+
+			if (!owned)
+			{
+				Logger.Current.WriteLine("another OneMoreTray is already running, exiting");
+				return;
+			}
+
+			try
+			{
+				Application.EnableVisualStyles();
+				Application.SetCompatibleTextRenderingDefault(false);
+				Application.Run(new ScanningJob());
+			}
+			finally
+			{
+				mutex.ReleaseMutex();
+			}
 		}
 	}
 }

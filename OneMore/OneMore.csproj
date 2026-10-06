@@ -544,6 +544,7 @@
     <Compile Include="Commands\Search\SearchErrorControl.Designer.cs">
       <DependentUpon>SearchErrorControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Tagging\HashtagScheduleProvider.cs" />
     <Compile Include="Commands\Tagging\HashtagScheduler.cs" />
     <Compile Include="Commands\Tagging\HashtagFreshener.cs" />
     <Compile Include="Commands\Tagging\HashtagPageInfo.cs" />
@@ -1635,6 +1636,7 @@
     <Content Include="Commands\Navigator\Images\Swap-Down-20.png" />
     <Content Include="Commands\Navigator\Images\Swap-Up-20.png" />
     <Content Include="Commands\Tables\Formulas\VariablesDB.sql" />
+    <Content Include="Commands\Tagging\HashtagScheduleDB.sql" />
     <Content Include="Commands\Tagging\HashtagsDB.sql" />
     <Content Include="Identity\PageIdentityDB.sql" />
     <EmbeddedResource Include="Commands\Page\CreatePagesDialog.resx">

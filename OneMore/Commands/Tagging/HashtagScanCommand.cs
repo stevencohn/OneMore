@@ -96,8 +96,10 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var scheduler = new HashtagScheduler();
 
-			if (scheduler.State == ScanningState.Rebuilding ||
-				scheduler.State == ScanningState.Scanning)
+			// a Scanning state with no live tray is a schedule that was interrupted, not a scan
+			// under way, so it must not block the user from scheduling a new one
+			if ((scheduler.State == ScanningState.Rebuilding ||
+				scheduler.State == ScanningState.Scanning) && scheduler.Active)
 			{
 				var msg = scheduler.State == ScanningState.Scanning
 					? Resx.HashtagCommand_scanning

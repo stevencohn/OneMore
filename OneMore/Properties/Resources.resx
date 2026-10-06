@@ -8020,6 +8020,9 @@ Thank you!</value>
   <data name="VariablesDB" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Commands\Tables\Formulas\VariablesDB.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="HashtagScheduleDB" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Commands\Tagging\HashtagScheduleDB.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
   <data name="HashtagsDB" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Commands\Tagging\HashtagsDB.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
