@@ -28,6 +28,7 @@ namespace River.OneMoreAddIn.Identity
 		public const int PassInterval = 2 * 60 * 1000;
 
 		private readonly Func<IHierarchySource> sourceFactory;
+		private readonly GuidRetryLedger ledger = new();
 		private PageIdentityProvider provider;
 		private bool disposed;
 
@@ -74,7 +75,7 @@ namespace River.OneMoreAddIn.Identity
 			var source = sourceFactory();
 			try
 			{
-				var snapshot = await new IdentityPass(provider, source).Run(token);
+				var snapshot = await new IdentityPass(provider, source, ledger).Run(token);
 				if (snapshot is not null)
 				{
 					context.Set(snapshot);
