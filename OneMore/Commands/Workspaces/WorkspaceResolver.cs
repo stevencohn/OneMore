@@ -126,27 +126,34 @@ namespace River.OneMoreAddIn.Commands.Workspaces
 			LayoutWindow window, TargetResolution resolution, Func<string, string> hyperlink)
 		{
 			var changed = false;
+			var fields = new System.Collections.Generic.List<string>();
 
-			void Set<T>(T current, T value, Action<T> assign)
+			void Set<T>(string name, T current, T value, Action<T> assign)
 			{
 				if (!Equals(current, value))
 				{
 					assign(value);
 					changed = true;
+					fields.Add(name);
 				}
 			}
 
-			Set(window.NotebookID, resolution.NotebookID, v => window.NotebookID = v);
-			Set(window.SectionID, resolution.SectionID, v => window.SectionID = v);
-			Set(window.PageID, resolution.PageID, v => window.PageID = v);
-			Set(window.PageKey, resolution.PageKey, v => window.PageKey = v);
-			Set(window.Location, resolution.Location, v => window.Location = v);
+			Set(nameof(window.NotebookID), window.NotebookID, resolution.NotebookID, v => window.NotebookID = v);
+			Set(nameof(window.SectionID), window.SectionID, resolution.SectionID, v => window.SectionID = v);
+			Set(nameof(window.PageID), window.PageID, resolution.PageID, v => window.PageID = v);
+			Set(nameof(window.PageKey), window.PageKey, resolution.PageKey, v => window.PageKey = v);
+			Set(nameof(window.Location), window.Location, resolution.Location, v => window.Location = v);
 
 			// a link that could not be made leaves the one stored in place
 			var uri = hyperlink(resolution.PageID);
 			if (!string.IsNullOrEmpty(uri))
 			{
-				Set(window.Uri, uri, v => window.Uri = v);
+				Set(nameof(window.Uri), window.Uri, uri, v => window.Uri = v);
+			}
+
+			if (changed)
+			{
+				Logger.Current.Verbose($"layout window {window.ID} changed: {string.Join(", ", fields)}");
 			}
 
 			return changed;
@@ -166,35 +173,42 @@ namespace River.OneMoreAddIn.Commands.Workspaces
 			Favorite favorite, TargetResolution resolution, Func<string, string> hyperlink)
 		{
 			var changed = false;
+			var fields = new System.Collections.Generic.List<string>();
 
-			void Set<T>(T current, T value, Action<T> assign)
+			void Set<T>(string name, T current, T value, Action<T> assign)
 			{
 				if (!Equals(current, value))
 				{
 					assign(value);
 					changed = true;
+					fields.Add(name);
 				}
 			}
 
 			var isPage = favorite.PageID is not null;
 
-			Set(favorite.NotebookID, resolution.NotebookID, v => favorite.NotebookID = v);
-			Set(favorite.SectionID, resolution.SectionID, v => favorite.SectionID = v);
-			Set(favorite.NotebookKey, resolution.NotebookKey, v => favorite.NotebookKey = v);
-			Set(favorite.SectionKey, resolution.SectionKey, v => favorite.SectionKey = v);
-			Set(favorite.Location, resolution.Location, v => favorite.Location = v);
+			Set(nameof(favorite.NotebookID), favorite.NotebookID, resolution.NotebookID, v => favorite.NotebookID = v);
+			Set(nameof(favorite.SectionID), favorite.SectionID, resolution.SectionID, v => favorite.SectionID = v);
+			Set(nameof(favorite.NotebookKey), favorite.NotebookKey, resolution.NotebookKey, v => favorite.NotebookKey = v);
+			Set(nameof(favorite.SectionKey), favorite.SectionKey, resolution.SectionKey, v => favorite.SectionKey = v);
+			Set(nameof(favorite.Location), favorite.Location, resolution.Location, v => favorite.Location = v);
 
 			if (isPage)
 			{
-				Set(favorite.PageID, resolution.PageID, v => favorite.PageID = v);
-				Set(favorite.PageKey, resolution.PageKey, v => favorite.PageKey = v);
+				Set(nameof(favorite.PageID), favorite.PageID, resolution.PageID, v => favorite.PageID = v);
+				Set(nameof(favorite.PageKey), favorite.PageKey, resolution.PageKey, v => favorite.PageKey = v);
 			}
 
 			// a link that could not be made leaves the one stored in place
 			var uri = NavigationTarget(resolution, favorite.Kind, hyperlink);
 			if (!string.IsNullOrEmpty(uri))
 			{
-				Set(favorite.Uri, uri, v => favorite.Uri = v);
+				Set(nameof(favorite.Uri), favorite.Uri, uri, v => favorite.Uri = v);
+			}
+
+			if (changed)
+			{
+				Logger.Current.Verbose($"favorite {favorite.ID} changed: {string.Join(", ", fields)}");
 			}
 
 			return changed;
