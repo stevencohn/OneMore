@@ -325,6 +325,9 @@
       <DependentUpon>StylizeImagesDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Navigator\HistoryCommand.cs" />
+    <Compile Include="Commands\Navigator\NavigatorLauncher.cs" />
+    <Compile Include="Commands\Navigator\PinnedHealth.cs" />
+    <Compile Include="Commands\Navigator\PinnedProvider.cs" />
     <Compile Include="Commands\Navigator\HistoryControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

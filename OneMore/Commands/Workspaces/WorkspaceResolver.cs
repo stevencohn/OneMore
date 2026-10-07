@@ -187,6 +187,69 @@ namespace River.OneMoreAddIn.Commands.Workspaces
 
 
 		/// <summary>
+		/// Copies what was found into an item of the reading list, ready to be saved. The name and the
+		/// order are the user's and are never touched. A paragraph's object ID changes along with its
+		/// page's ID, so a paragraph whose page was found at a new ID falls back to the page itself.
+		/// </summary>
+		/// <returns>True if anything changed</returns>
+		internal static bool Apply(
+			PinnedItem pinned, TargetResolution resolution, Func<string, string> hyperlink)
+		{
+			var changed = false;
+			var fields = new System.Collections.Generic.List<string>();
+			var info = pinned.Info;
+
+			void Set<T>(string name, T current, T value, Action<T> assign)
+			{
+				if (!Equals(current, value))
+				{
+					assign(value);
+					changed = true;
+					fields.Add(name);
+				}
+			}
+
+			var idChanged = !string.Equals(info.PageId, resolution.PageID, StringComparison.Ordinal);
+
+			Set(nameof(info.NotebookId), info.NotebookId, resolution.NotebookID, v => info.NotebookId = v);
+			Set(nameof(info.SectionId), info.SectionId, resolution.SectionID, v => info.SectionId = v);
+			Set(nameof(info.PageId), info.PageId, resolution.PageID, v => info.PageId = v);
+			Set(nameof(pinned.PageKey), pinned.PageKey, resolution.PageKey, v => pinned.PageKey = v);
+			Set(nameof(pinned.NotebookKey), pinned.NotebookKey, resolution.NotebookKey, v => pinned.NotebookKey = v);
+			Set(nameof(pinned.SectionKey), pinned.SectionKey, resolution.SectionKey, v => pinned.SectionKey = v);
+
+			if (idChanged && !string.IsNullOrEmpty(info.ObjectId))
+			{
+				info.ObjectId = null;
+				changed = true;
+				fields.Add(nameof(info.ObjectId));
+			}
+
+			// a link to a paragraph is still good while its page keeps its ID, and a link made
+			// from the page ID alone would lose the paragraph; a link that could not be made
+			// leaves the one stored in place
+			if (string.IsNullOrEmpty(info.ObjectId))
+			{
+				var uri = NeedsLink(changed, info.Link, resolution, true)
+					? hyperlink(resolution.PageID)
+					: null;
+
+				if (!string.IsNullOrEmpty(uri))
+				{
+					Set(nameof(info.Link), info.Link, uri, v => info.Link = v);
+				}
+			}
+
+			if (changed)
+			{
+				Logger.Current.Verbose($"pinned item {pinned.ID} changed: {string.Join(", ", fields)}");
+			}
+
+			return changed;
+		}
+
+
+		/// <summary>
 		/// Copies what was found into the favorite, ready to be saved. The name, alias, folder and sort
 		/// order are the user's and are never touched: a favorite follows its target when the target is
 		/// renamed or moved, but keeps the name it was given.

@@ -3143,6 +3143,26 @@ OneNote 文件 (*.one)</value>
     <value>没有选择要移动的页面</value>
     <comment>error message</comment>
   </data>
+  <data name="NavigatorLauncher_ambiguous" xml:space="preserve">
+    <value>这一页可能意味着不止一页，所以 OneMore 没有猜测。</value>
+    <comment>error message</comment>
+  </data>
+  <data name="NavigatorLauncher_broken" xml:space="preserve">
+    <value>该页面已不存在。它可能已被删除或重命名。</value>
+    <comment>error message</comment>
+  </data>
+  <data name="NavigatorLauncher_failed" xml:space="preserve">
+    <value>此时无法导航。几秒钟后重试。</value>
+    <comment>error message</comment>
+  </data>
+  <data name="NavigatorLauncher_offline" xml:space="preserve">
+    <value>此页面位于未打开或仍在加载的笔记本中，或者位于锁定的部分中。如果您刚刚打开笔记本，请稍后重试。</value>
+    <comment>error message</comment>
+  </data>
+  <data name="NavigatorLauncher_pending" xml:space="preserve">
+    <value>OneMore 仍在了解您的页面所在位置，因此它还无法找到此页面。几分钟后重试。</value>
+    <comment>error message</comment>
+  </data>
   <data name="NavigatorSheet_corrallBox.Text" xml:space="preserve">
     <value>导航器窗口仅显示当前活动Onenote窗口的内容</value>
     <comment>checkbox</comment>

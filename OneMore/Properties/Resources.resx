@@ -3141,6 +3141,26 @@ Do you want to refresh the existing page?</value>
     <value>There are no pages selected to move</value>
     <comment>error message</comment>
   </data>
+  <data name="NavigatorLauncher_ambiguous" xml:space="preserve">
+    <value>This page could mean more than one page, so OneMore did not guess.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="NavigatorLauncher_broken" xml:space="preserve">
+    <value>This page no longer exists. It may have been deleted or renamed.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="NavigatorLauncher_failed" xml:space="preserve">
+    <value>Could not navigate at this time. Try again in a few seconds.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="NavigatorLauncher_offline" xml:space="preserve">
+    <value>This page is in a notebook that is not open or is still loading, or in a locked section. If you just opened the notebook, try again in a moment.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="NavigatorLauncher_pending" xml:space="preserve">
+    <value>OneMore is still learning where your pages are, so it cannot find this page yet. Try again in a few minutes.</value>
+    <comment>error message</comment>
+  </data>
   <data name="NavigatorSheet_corrallBox.Text" xml:space="preserve">
     <value>Restrict the Navigator window to the active screen</value>
     <comment>checkbox</comment>

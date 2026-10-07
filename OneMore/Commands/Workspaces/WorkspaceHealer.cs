@@ -50,17 +50,22 @@ namespace River.OneMoreAddIn.Commands.Workspaces
 		/// <summary>Set for a window of a layout.</summary>
 		public LayoutWindow Window { get; set; }
 
+		/// <summary>Set for an item of the Navigator's reading list.</summary>
+		public PinnedItem Pinned { get; set; }
+
 		public TargetResolution Resolution { get; set; }
 		public HealKind Kind { get; set; }
 
-		/// <summary>Gets the database ID of the favorite or window.</summary>
-		public int ID => Favorite?.ID ?? Window?.ID ?? 0;
+		/// <summary>Gets the database ID of the favorite, window or pinned item.</summary>
+		public int ID => Favorite?.ID ?? Window?.ID ?? Pinned?.ID ?? 0;
 
-		/// <summary>Gets where the favorite or window pointed, for the log.</summary>
-		public string Label => Favorite?.Location ?? Window?.Location;
+		/// <summary>Gets where the favorite, window or pinned item pointed, for the log.</summary>
+		public string Label => Favorite?.Location ?? Window?.Location ?? Pinned?.Info.Path;
 
 		/// <summary>Gets what this is, for the log.</summary>
-		public string What => Favorite is not null ? "favorite" : "layout window";
+		public string What => Favorite is not null
+			? "favorite"
+			: Pinned is not null ? "pinned item" : "layout window";
 	}
 
 	/// <summary>
@@ -262,6 +267,85 @@ namespace River.OneMoreAddIn.Commands.Workspaces
 			}
 
 			return plan;
+		}
+
+
+		/// <summary>
+		/// Plans the repair of every item of the reading list. A page and a paragraph of the same
+		/// page can both be on it, so a paragraph is only a duplicate of the same paragraph.
+		/// </summary>
+		/// <param name="items">Every item, in the order they should get a target when two turn out
+		/// to be the same, usually by ID</param>
+		/// <param name="resolver">Finds where an item's page is now</param>
+		/// <param name="hyperlink">Makes a link to a page from its ID</param>
+		/// <remarks>The items are updated in memory as they are planned; saving them is up to the
+		/// caller, using <see cref="HealPlan.ToSave"/>.</remarks>
+		public static HealPlan PlanPinned(
+			IEnumerable<PinnedItem> items, TargetResolver resolver, Func<string, string> hyperlink)
+		{
+			var list = items.ToList();
+			var plan = new HealPlan();
+
+			var claimed = new Dictionary<string, int>(StringComparer.Ordinal);
+			foreach (var pinned in list)
+			{
+				if (pinned.PageKey is long held)
+				{
+					var claim = PinnedClaim(held, pinned.Info.ObjectId);
+					if (!claimed.ContainsKey(claim))
+					{
+						claimed.Add(claim, pinned.ID);
+					}
+				}
+			}
+
+			foreach (var pinned in list)
+			{
+				var resolution = resolver.Resolve(TargetQuery.From(pinned));
+				var item = new HealItem { Pinned = pinned, Resolution = resolution };
+				plan.Items.Add(item);
+
+				switch (resolution.Outcome)
+				{
+					case ResolveOutcome.Pending: item.Kind = HealKind.Pending; continue;
+					case ResolveOutcome.Offline: item.Kind = HealKind.Offline; continue;
+					case ResolveOutcome.Ambiguous: item.Kind = HealKind.Ambiguous; continue;
+					case ResolveOutcome.Broken: item.Kind = HealKind.Broken; continue;
+				}
+
+				if (!resolution.IsConfident)
+				{
+					item.Kind = HealKind.Guess;
+					continue;
+				}
+
+				if (resolution.PageKey is long found)
+				{
+					var claim = PinnedClaim(found, pinned.Info.ObjectId);
+					if (claimed.TryGetValue(claim, out var holder) && holder != pinned.ID)
+					{
+						item.Kind = HealKind.Duplicate;
+						continue;
+					}
+
+					if (!claimed.ContainsKey(claim))
+					{
+						claimed.Add(claim, pinned.ID);
+					}
+				}
+
+				item.Kind = WorkspaceResolver.Apply(pinned, resolution, hyperlink)
+					? HealKind.Healed
+					: HealKind.Unchanged;
+			}
+
+			return plan;
+		}
+
+
+		private static string PinnedClaim(long pageKey, string objectID)
+		{
+			return "p:" + pageKey + "|" + (objectID ?? string.Empty);
 		}
 
 

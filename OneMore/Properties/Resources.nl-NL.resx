@@ -3137,6 +3137,26 @@ Wilt u de bestaande pagina vernieuwen?</value>
     <value>Er zijn geen pagina's geselecteerd om te verplaatsen</value>
     <comment>error message</comment>
   </data>
+  <data name="NavigatorLauncher_ambiguous" xml:space="preserve">
+    <value>Deze pagina kon meer dan één pagina betekenen, dus OneMore raadde het niet.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="NavigatorLauncher_broken" xml:space="preserve">
+    <value>Deze pagina bestaat niet meer. Het is mogelijk verwijderd of hernoemd.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="NavigatorLauncher_failed" xml:space="preserve">
+    <value>Kan momenteel niet navigeren. Probeer het over een paar seconden opnieuw.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="NavigatorLauncher_offline" xml:space="preserve">
+    <value>Deze pagina bevindt zich in een notitieblok dat niet is geopend of nog wordt geladen, of in een vergrendeld gedeelte. Als je het notitieboekje net hebt geopend, probeer het dan even opnieuw.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="NavigatorLauncher_pending" xml:space="preserve">
+    <value>OneMore leert nog steeds waar uw pagina's zich bevinden, dus kan deze pagina nog niet vinden. Probeer het over een paar minuten opnieuw.</value>
+    <comment>error message</comment>
+  </data>
   <data name="NavigatorSheet_corrallBox.Text" xml:space="preserve">
     <value>Beperk het Navigator-venster tot het actieve scherm</value>
     <comment>checkbox</comment>

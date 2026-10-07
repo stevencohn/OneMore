@@ -4301,6 +4301,51 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("FavoritesCommand_broken", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to This page could mean more than one page, so OneMore did not guess..
+        /// </summary>
+        internal static string NavigatorLauncher_ambiguous {
+            get {
+                return ResourceManager.GetString("NavigatorLauncher_ambiguous", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to This page no longer exists. It may have been deleted or renamed..
+        /// </summary>
+        internal static string NavigatorLauncher_broken {
+            get {
+                return ResourceManager.GetString("NavigatorLauncher_broken", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Could not navigate at this time. Try again in a few seconds..
+        /// </summary>
+        internal static string NavigatorLauncher_failed {
+            get {
+                return ResourceManager.GetString("NavigatorLauncher_failed", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to This page is in a notebook that is not open or is still loading, or in a locked section. If you just opened the notebook, try again in a moment..
+        /// </summary>
+        internal static string NavigatorLauncher_offline {
+            get {
+                return ResourceManager.GetString("NavigatorLauncher_offline", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to OneMore is still learning where your pages are, so it cannot find this page yet. Try again in a few minutes..
+        /// </summary>
+        internal static string NavigatorLauncher_pending {
+            get {
+                return ResourceManager.GetString("NavigatorLauncher_pending", resourceCulture);
+            }
+        }
         
         /// <summary>
         ///   Looks up a localized string similar to This favorite is in a notebook that is not open or is still loading, or in a locked section. If you just opened the notebook, try again in a moment.

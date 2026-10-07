@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn.Commands
 	using System;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
+	using HierarchyInfo = OneNote.HierarchyInfo;
 	using Resx = Properties.Resources;
 
 
@@ -54,26 +55,27 @@ namespace River.OneMoreAddIn.Commands
 				return;
 			}
 
-			var success = true;
+			// the ribbon dropdown only carries the link, so find the record it came from
+			HierarchyInfo record = null;
 			try
 			{
-				await using var one = new OneNote();
-				success = await one.NavigateTo(uri);
+				using var provider = new NavigationProvider();
+				var log = await provider.ReadHistoryLog();
+				record = log.History.Find(r => r.Link == uri);
 			}
 			catch (Exception exc)
 			{
-				logger.WriteLine($"error navigating to {uri}", exc);
-				success = false;
+				logger.WriteLine($"error reading history for {uri}", exc);
 			}
+
+			// an unknown link can still be opened, and found by the GUID inside it if it is dead
+			record ??= new HierarchyInfo { Link = uri, Path = uri };
+
+			_ = await NavigatorLauncher.OpenAndReport(owner, record);
 
 			// reset focus to OneNote window
 			await using var onx = new OneNote();
 			Native.SwitchToThisWindow(onx.WindowHandle, false);
-
-			if (!success)
-			{
-				ShowError("Could not navigate at this time. Try again in a few seconds");
-			}
 		}
 	}
 }

@@ -3137,6 +3137,26 @@ Vuoi aggiornare la pagina esistente?</value>
     <value>Non ci sono pagine selezionate da spostare</value>
     <comment>error message</comment>
   </data>
+  <data name="NavigatorLauncher_ambiguous" xml:space="preserve">
+    <value>Questa pagina potrebbe significare più di una pagina, quindi OneMore non ha indovinato.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="NavigatorLauncher_broken" xml:space="preserve">
+    <value>Questa pagina non esiste più. Potrebbe essere stato eliminato o rinominato.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="NavigatorLauncher_failed" xml:space="preserve">
+    <value>Impossibile navigare in questo momento. Riprova tra qualche secondo.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="NavigatorLauncher_offline" xml:space="preserve">
+    <value>Questa pagina si trova in un taccuino non aperto o in fase di caricamento oppure in una sezione bloccata. Se hai appena aperto il taccuino, riprova tra un attimo.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="NavigatorLauncher_pending" xml:space="preserve">
+    <value>OneMore sta ancora imparando dove sono le tue pagine, quindi non riesce ancora a trovare questa pagina. Riprova tra qualche minuto.</value>
+    <comment>error message</comment>
+  </data>
   <data name="NavigatorSheet_corrallBox.Text" xml:space="preserve">
     <value>Limita la finestra del Navigatore alla schermata attiva</value>
     <comment>checkbox</comment>

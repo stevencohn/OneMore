@@ -3140,6 +3140,26 @@
     <value>لا توجد صفحات محددة لنقلها</value>
     <comment>error message</comment>
   </data>
+  <data name="NavigatorLauncher_ambiguous" xml:space="preserve">
+    <value>يمكن أن تعني هذه الصفحة أكثر من صفحة واحدة، لذلك لم يخمن OneMore.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="NavigatorLauncher_broken" xml:space="preserve">
+    <value>هذه الصفحة لم تعد موجودة. ربما تم حذفه أو إعادة تسميته.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="NavigatorLauncher_failed" xml:space="preserve">
+    <value>لا يمكن التنقل في هذا الوقت. حاول مرة أخرى خلال بضع ثوان.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="NavigatorLauncher_offline" xml:space="preserve">
+    <value>هذه الصفحة موجودة في دفتر ملاحظات غير مفتوح أو لا يزال قيد التحميل، أو في قسم مقفل. إذا قمت بفتح دفتر الملاحظات للتو، فحاول مرة أخرى بعد قليل.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="NavigatorLauncher_pending" xml:space="preserve">
+    <value>لا يزال OneMore يتعرف على مكان صفحاتك، لذا لا يمكنه العثور على هذه الصفحة بعد. حاول مرة أخرى خلال بضع دقائق.</value>
+    <comment>error message</comment>
+  </data>
   <data name="NavigatorSheet_corrallBox.Text" xml:space="preserve">
     <value>قصر نافذة المستكشف على الشاشة النشطة</value>
     <comment>checkbox</comment>

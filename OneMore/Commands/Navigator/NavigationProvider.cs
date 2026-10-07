@@ -5,10 +5,12 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using Newtonsoft.Json;
+	using River.OneMoreAddIn.Identity;
 	using River.OneMoreAddIn.Settings;
 	using System;
 	using System.Collections.Generic;
 	using System.IO;
+	using System.Linq;
 	using System.Threading;
 	using System.Threading.Tasks;
 	using HistoryRecord = OneNote.HierarchyInfo;
@@ -198,6 +200,7 @@ namespace River.OneMoreAddIn.Commands
 				await semalock.WaitAsync();
 
 				var log = await Read();
+				log.Pinned = await LoadPinned(log);
 				return log;
 			}
 			finally
@@ -266,6 +269,18 @@ namespace River.OneMoreAddIn.Commands
 				{
 					record = log.History[index];
 					record.Name = resolved.Name;
+
+					// a page that was moved or whose notebook was reopened has a new link,
+					// so keep what is stored current, not just the name
+					if (!string.IsNullOrEmpty(resolved.Link))
+					{
+						record.Link = resolved.Link;
+						record.Path = resolved.Path;
+						record.SectionId = resolved.SectionId;
+						record.NotebookId = resolved.NotebookId;
+						record.Color = resolved.Color;
+					}
+
 					log.History.RemoveAt(index);
 					log.History.Insert(0, record);
 					updated = true;
@@ -329,8 +344,7 @@ namespace River.OneMoreAddIn.Commands
 
 			try
 			{
-				var log = await Read();
-				return log.Pinned;
+				return await LoadPinned(await Read());
 			}
 			finally
 			{
@@ -353,25 +367,28 @@ namespace River.OneMoreAddIn.Commands
 
 			try
 			{
-				var log = await Read();
+				using var pinned = await OpenPinned();
+				using var identity = OpenIdentity();
 
 				var updated = false;
-				records.ForEach(record =>
+				var order = pinned.GetNextSortOrder();
+
+				foreach (var record in records)
 				{
-					var index = log.Pinned.FindIndex(p =>
-						p.PageId == record.PageId &&
-						(p.ObjectId ?? string.Empty) == (record.ObjectId ?? string.Empty));
-					if (index < 0)
+					var item = Stamp(identity, record);
+					item.SortOrder = order;
+
+					// a page, or a paragraph, already on the list is not added again
+					if (pinned.Insert(item, out _))
 					{
-						log.Pinned.Add(record);
+						order++;
 						updated = true;
 					}
-				});
-
+				}
 
 				if (updated)
 				{
-					await Save(log);
+					await Touch();
 				}
 
 				return updated;
@@ -394,10 +411,9 @@ namespace River.OneMoreAddIn.Commands
 
 			try
 			{
-				var log = await Read();
-				log.Pinned.Clear();
-				log.Pinned.AddRange(records);
-				await Save(log);
+				using var pinned = await OpenPinned();
+				pinned.Replace(records);
+				await Touch();
 			}
 			finally
 			{
@@ -420,21 +436,78 @@ namespace River.OneMoreAddIn.Commands
 
 			try
 			{
-				var log = await Read();
+				using var pinned = await OpenPinned();
 
 				var updated = false;
-				records.ForEach(record =>
+				foreach (var record in records)
 				{
-					var index = log.Pinned.FindIndex(p =>
-						p.PageId == record.PageId &&
-						(p.ObjectId ?? string.Empty) == (record.ObjectId ?? string.Empty));
-					if (index >= 0)
-					{
-						log.Pinned.RemoveAt(index);
-						updated = true;
-					}
-				});
+					updated = pinned.Delete(record.PageId, record.ObjectId) || updated;
+				}
 
+				if (updated)
+				{
+					await Touch();
+				}
+
+				return updated;
+			}
+			finally
+			{
+				semalock.Release();
+			}
+		}
+
+
+		/// <summary>
+		/// Replaces a stale history or pinned record with the same page as it is now, after the
+		/// page was found at a new ID. A history record keeps its place; if the new ID is already
+		/// in the history the stale one is dropped.
+		/// </summary>
+		/// <param name="stale">The record as it was stored</param>
+		/// <param name="healed">The same page as OneNote has it now</param>
+		/// <returns>True if anything was replaced</returns>
+		public async Task<bool> Replace(HistoryRecord stale, HistoryRecord healed)
+		{
+			await semalock.WaitAsync();
+
+			try
+			{
+				var log = await Read();
+				var updated = false;
+
+				var index = log.History.FindIndex(r => r.PageId == stale.PageId);
+				if (index >= 0)
+				{
+					var duplicate = log.History.FindIndex(r => r.PageId == healed.PageId);
+					if (duplicate >= 0 && duplicate != index)
+					{
+						log.History.RemoveAt(index);
+					}
+					else
+					{
+						healed.Visited = log.History[index].Visited;
+						log.History[index] = healed;
+					}
+
+					updated = true;
+				}
+
+				using var pinned = await OpenPinned();
+				var item = pinned.Find(stale.PageId, stale.ObjectId);
+				if (item is not null)
+				{
+					// the name is the user's, including a paragraph's text, and is not saved here
+					item.Info = healed;
+
+					// keep the old keys if the identity catalog has not caught up with the new IDs
+					using var identity = OpenIdentity();
+					var stamped = Stamp(identity, healed);
+					item.PageKey = stamped.PageKey ?? item.PageKey;
+					item.NotebookKey = stamped.NotebookKey ?? item.NotebookKey;
+					item.SectionKey = stamped.SectionKey ?? item.SectionKey;
+
+					updated = pinned.UpdateTarget(item, out _) || updated;
+				}
 
 				if (updated)
 				{
@@ -447,6 +520,105 @@ namespace River.OneMoreAddIn.Commands
 			{
 				semalock.Release();
 			}
+		}
+
+
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		// Pinned storage...
+
+		// Callers hold semalock. The reading list lives in the local database; Navigator.json
+		// still holds the history, and the list it held before, which each machine copies once.
+		private async Task<PinnedProvider> OpenPinned()
+		{
+			var pinned = new PinnedProvider();
+
+			try
+			{
+				if (!pinned.IsMigrated())
+				{
+					var log = await Read();
+
+					using var identity = OpenIdentity();
+					pinned.Import(log.Pinned, record => Stamp(identity, record));
+				}
+
+				return pinned;
+			}
+			catch
+			{
+				pinned.Dispose();
+				throw;
+			}
+		}
+
+
+		// reads the reading list, or what Navigator.json holds if the database cannot be read
+		private async Task<List<HistoryRecord>> LoadPinned(HistoryLog log)
+		{
+			try
+			{
+				using var pinned = await OpenPinned();
+				return pinned.ReadAll().Select(i => i.Info).ToList();
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error reading the reading list from the database", exc);
+				return log.Pinned;
+			}
+		}
+
+
+		private PageIdentityProvider OpenIdentity()
+		{
+			try
+			{
+				return new PageIdentityProvider();
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error opening the page identity catalog", exc);
+				return null;
+			}
+		}
+
+
+		/// <summary>
+		/// Makes an item for a record, with the keys of its page if the identity catalog knows it.
+		/// A page the catalog has not seen yet is given its keys later, when it is healed.
+		/// </summary>
+		private PinnedItem Stamp(PageIdentityProvider identity, HistoryRecord record)
+		{
+			var item = new PinnedItem { Info = record };
+
+			if (identity is null || string.IsNullOrEmpty(record.PageId))
+			{
+				return item;
+			}
+
+			try
+			{
+				var row = identity.ReadByPageID(record.PageId);
+				if (row is not null && !row.IsMissing)
+				{
+					item.PageKey = row.PageKey;
+					item.NotebookKey = row.NotebookKey;
+					item.SectionKey = row.SectionKey;
+				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine($"error finding the identity of {record.Path}", exc);
+			}
+
+			return item;
+		}
+
+
+		// The reading list is not in the file, so a change to it is not seen by the file watcher
+		// that tells an open Navigator to refresh; rewriting the file makes it see one.
+		private async Task Touch()
+		{
+			await Save(await Read());
 		}
 
 
