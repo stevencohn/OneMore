@@ -114,6 +114,22 @@ namespace River.OneMoreAddIn.Commands.Workspaces
 		}
 
 
+		public static TargetQuery From(PinnedItem pinned)
+		{
+			return new TargetQuery
+			{
+				PageKey = pinned.PageKey,
+				NotebookKey = pinned.NotebookKey,
+				SectionKey = pinned.SectionKey,
+				NotebookID = pinned.Info.NotebookId,
+				SectionID = pinned.Info.SectionId,
+				PageID = pinned.Info.PageId,
+				Uri = pinned.Info.Link,
+				Location = pinned.Info.Path
+			};
+		}
+
+
 		public static TargetQuery From(LayoutWindow window)
 		{
 			return new TargetQuery

@@ -33,6 +33,7 @@ namespace River.OneMoreAddIn.Commands.Workspaces
 		private readonly Action changed;
 		private string lastFavoritesSummary;
 		private string lastLayoutsSummary;
+		private string lastPinnedSummary;
 
 
 		/// <param name="changed">Optional. Called after favorites were saved, so the ribbon menu
@@ -73,11 +74,16 @@ namespace River.OneMoreAddIn.Commands.Workspaces
 			OneNote one = null;
 			var links = 0;
 			var linkTime = TimeSpan.Zero;
+			OneNote One()
+			{
+				one ??= new OneNote();
+				return one;
+			}
+
 			string Link(string id)
 			{
 				var linkWatch = Stopwatch.StartNew();
-				one ??= new OneNote();
-				var link = one.GetHyperlink(id, string.Empty);
+				var link = One().GetHyperlink(id, string.Empty);
 				links++;
 				linkTime += linkWatch.Elapsed;
 				return link;
@@ -99,9 +105,27 @@ namespace River.OneMoreAddIn.Commands.Workspaces
 				Heal("layouts", () => HealWindows(resolver, Link, token));
 				var layoutsTime = watch.ElapsedMilliseconds;
 
+				// the reading list is healed on its own so that a failure in it stops nothing else
+				watch.Restart();
+				try
+				{
+					await HealPinned(resolver, Link, One, token);
+				}
+				catch (OperationCanceledException)
+				{
+					throw;
+				}
+				catch (Exception exc)
+				{
+					logger.WriteLine("error healing pinned", exc);
+				}
+
+				var pinnedTime = watch.ElapsedMilliseconds;
+
 				logger.Verbose(
 					$"favorites stage: resolver {buildTime}ms, favorites {favoritesTime}ms, " +
-					$"layouts {layoutsTime}ms, {links} links in {linkTime.TotalMilliseconds:0}ms");
+					$"layouts {layoutsTime}ms, pinned {pinnedTime}ms, " +
+					$"{links} links in {linkTime.TotalMilliseconds:0}ms");
 
 				if (savedFavorites > 0)
 				{
@@ -209,6 +233,73 @@ namespace River.OneMoreAddIn.Commands.Workspaces
 			}
 
 			LogSummary("layouts", plan, windows.Count, ref lastLayoutsSummary);
+			return saved;
+		}
+
+
+		private async Task<int> HealPinned(
+			TargetResolver resolver, Func<string, string> link, Func<OneNote> one, CancellationToken token)
+		{
+			using var provider = new PinnedProvider();
+			var items = provider.ReadAll();
+
+			if (items.Count == 0)
+			{
+				PinnedHealth.Update(Array.Empty<(string, string, string)>(), saved: false);
+				return 0;
+			}
+
+			var plan = WorkspaceHealer.PlanPinned(items, resolver, link);
+
+			var saved = 0;
+			foreach (var item in plan.ToSave)
+			{
+				token.ThrowIfCancellationRequested();
+
+				// what is only shown can have changed with a move or a rename; a paragraph entry
+				// keeps the path it was given, which names the paragraph
+				var info = item.Pinned.Info;
+				if (string.IsNullOrEmpty(info.ObjectId))
+				{
+					try
+					{
+						var fresh = await one().GetPageInfo(info.PageId);
+						if (fresh is not null)
+						{
+							info.Path = fresh.Path;
+							info.Color = fresh.Color;
+							info.TitleId = fresh.TitleId;
+							info.SectionGroups = fresh.SectionGroups;
+						}
+					}
+					catch (Exception exc)
+					{
+						logger.WriteLine($"error reading healed page {info.Path}", exc);
+					}
+				}
+
+				if (provider.UpdateTarget(item.Pinned, out var duplicate))
+				{
+					saved++;
+					LogSaved(item);
+				}
+				else if (duplicate)
+				{
+					LogDuplicate(item);
+				}
+			}
+
+			LogSummary("pinned", plan, items.Count, ref lastPinnedSummary);
+
+			// anything not found is shown as such; one that is still being learned is not a problem
+			PinnedHealth.Update(
+				plan.Items
+					.Where(i => i.Kind == HealKind.Offline || i.Kind == HealKind.Ambiguous ||
+						i.Kind == HealKind.Broken)
+					.Select(i => (i.Pinned.Info.PageId, i.Pinned.Info.ObjectId,
+						NavigatorLauncher.MessageFor(i.Resolution.Outcome))),
+				saved > 0);
+
 			return saved;
 		}
 

@@ -18,6 +18,7 @@ namespace River.OneMoreAddIn.Commands
 	internal class HistoryControl : UserControl, IChameleon, IThemedControl
 	{
 		private static readonly Font LinkFont = new Font("Segoe UI", 8.5f, FontStyle.Regular, GraphicsUnit.Point);
+		private static readonly Font BrokenFont = new Font("Segoe UI", 8.5f, FontStyle.Strikeout, GraphicsUnit.Point);
 
 		/// <summary>
 		/// A thin self-drawn vertical bar indicating the section color, matching the
@@ -56,7 +57,10 @@ namespace River.OneMoreAddIn.Commands
 		private ToolTip tip;
 
 
-		public HistoryControl(HierarchyInfo info)
+		/// <param name="info">The page or paragraph to show</param>
+		/// <param name="problem">Optional. Says why the page cannot be found, which shows the row
+		/// struck through; clicking it still tries, and explains if it cannot</param>
+		public HistoryControl(HierarchyInfo info, string problem = null)
 		{
 			bar = new ColorBar
 			{
@@ -71,7 +75,7 @@ namespace River.OneMoreAddIn.Commands
 				Dock = DockStyle.Fill,
 				Text = info.Name,
 				Tag = info,
-				Font = LinkFont,
+				Font = string.IsNullOrEmpty(problem) ? LinkFont : BrokenFont,
 				Padding = new(4, 0, 0, 0),
 				Margin = new(4, 0, 0, 0)
 			};
@@ -91,7 +95,12 @@ namespace River.OneMoreAddIn.Commands
 			});
 
 			// history items should have a Visited value but pinned items would not
-			if (info.Visited > 0)
+			if (!string.IsNullOrEmpty(problem))
+			{
+				tip = new ToolTip();
+				tip.SetToolTip(link, $"{info.Path}\n{problem}");
+			}
+			else if (info.Visited > 0)
 			{
 				tip = new ToolTip();
 				var visited = DateTimeHelper.FromTicksSeconds(info.Visited).ToFriendlyString();

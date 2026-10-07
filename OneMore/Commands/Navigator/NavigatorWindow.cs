@@ -133,6 +133,7 @@ namespace River.OneMoreAddIn.Commands
 			provider = new NavigationProvider();
 			provider.Navigated += ShowHistory;
 			trash.Add(provider);
+			PinnedHealth.Changed += PinnedHealthChanged;
 
 			var rowWidth = Width - SystemInformation.VerticalScrollBarWidth * 2;
 
@@ -799,8 +800,27 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
+		// the healer found or fixed something on the reading list
+		private async void PinnedHealthChanged(object sender, EventArgs e)
+		{
+			try
+			{
+				if (reading && !IsDisposed)
+				{
+					await LoadPinned();
+				}
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error refreshing the reading list", exc);
+			}
+		}
+
+
 		private void SaveOnFormClosing(object sender, FormClosingEventArgs e)
 		{
+			PinnedHealth.Changed -= PinnedHealthChanged;
+
 			if (WindowState == FormWindowState.Normal)
 			{
 				screen = Array.Find(Screen.AllScreens, s =>
@@ -1196,7 +1216,7 @@ namespace River.OneMoreAddIn.Commands
 				var viewColor = manager.GetColor("ListView");
 				pinned.ForEach(record =>
 				{
-					var control = new HistoryControl(record)
+					var control = new HistoryControl(record, PinnedHealth.ProblemOf(record))
 					{
 						BackColor = viewColor,
 						Visible = false
