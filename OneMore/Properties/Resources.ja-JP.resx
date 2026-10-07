@@ -3140,6 +3140,26 @@ OneNoteファイル (*.one)</value>
     <value>移動するページが選択されていません</value>
     <comment>error message</comment>
   </data>
+  <data name="NavigatorLauncher_ambiguous" xml:space="preserve">
+    <value>このページは複数のページを意味する可能性があるため、OneMore は推測しませんでした。</value>
+    <comment>error message</comment>
+  </data>
+  <data name="NavigatorLauncher_broken" xml:space="preserve">
+    <value>このページはもう存在しません。削除されたか名前が変更された可能性があります。</value>
+    <comment>error message</comment>
+  </data>
+  <data name="NavigatorLauncher_failed" xml:space="preserve">
+    <value>現時点ではナビゲートできませんでした。数秒後にもう一度試してください。</value>
+    <comment>error message</comment>
+  </data>
+  <data name="NavigatorLauncher_offline" xml:space="preserve">
+    <value>このページは、開いていないか読み込み中のノートブック、またはロックされたセクションにあります。ノートブックを開いたばかりの場合は、しばらくしてからもう一度試してください。</value>
+    <comment>error message</comment>
+  </data>
+  <data name="NavigatorLauncher_pending" xml:space="preserve">
+    <value>OneMore はまだページの場所を学習しているため、このページをまだ見つけることができません。数分後にもう一度試してください。</value>
+    <comment>error message</comment>
+  </data>
   <data name="NavigatorSheet_corrallBox.Text" xml:space="preserve">
     <value>ナビゲーターウィンドウをアクティブな画面に制限</value>
     <comment>checkbox</comment>

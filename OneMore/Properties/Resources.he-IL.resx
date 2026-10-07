@@ -3137,6 +3137,26 @@ Total Row Font
     <value>לא נבחרו דפים להזזה</value>
     <comment>error message</comment>
   </data>
+  <data name="NavigatorLauncher_ambiguous" xml:space="preserve">
+    <value>עמוד זה יכול להיות יותר מעמוד אחד, אז OneMore לא ניחשה.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="NavigatorLauncher_broken" xml:space="preserve">
+    <value>הדף הזה כבר לא קיים. ייתכן שהוא נמחק או שונה שם.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="NavigatorLauncher_failed" xml:space="preserve">
+    <value>לא ניתן היה לנווט בשלב זה. נסה שוב בעוד מספר שניות.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="NavigatorLauncher_offline" xml:space="preserve">
+    <value>דף זה נמצא במחברת שאינה פתוחה או עדיין בטעינה, או בחלק נעול. אם זה עתה פתחת את המחברת, נסה שוב בעוד רגע.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="NavigatorLauncher_pending" xml:space="preserve">
+    <value>OneMore עדיין לומדת היכן נמצאים הדפים שלך, ולכן היא לא יכולה למצוא את הדף הזה עדיין. נסה שוב בעוד מספר דקות.</value>
+    <comment>error message</comment>
+  </data>
   <data name="NavigatorSheet_corrallBox.Text" xml:space="preserve">
     <value>הגבל את חלון הניווט למסך הפעיל</value>
     <comment>checkbox</comment>

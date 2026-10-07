@@ -82,7 +82,10 @@ namespace River.OneMoreAddIn.Commands
 				root.Add(new XElement(ns + "menuSeparator", new XAttribute("id", SeparatorId)));
 
 				var index = 0;
-				foreach (var record in history.Take(max))
+				// a record without a link or a name cannot be shown or opened
+				foreach (var record in history
+					.Where(r => !string.IsNullOrEmpty(r.Link) && !string.IsNullOrEmpty(r.Name))
+					.Take(max))
 				{
 					root.Add(MakeHistoryButton(record, index++));
 				}
@@ -138,7 +141,7 @@ namespace River.OneMoreAddIn.Commands
 				new XAttribute("imageMso", "GroupInsertLinks"),
 				new XAttribute("label", Chop(record.Name)),
 				new XAttribute("tag", record.Link),
-				new XAttribute("screentip", record.Path)
+				new XAttribute("screentip", record.Path ?? record.Name)
 				);
 		}
 

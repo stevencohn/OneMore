@@ -115,6 +115,7 @@
     <Compile Include="Commands\Favorites\FavoritesFileProviderTests.cs" />
     <Compile Include="Commands\Favorites\FavoritesKeysTests.cs" />
     <Compile Include="Commands\Favorites\FavoritesMenuTests.cs" />
+    <Compile Include="Commands\Navigator\NavigatorLauncherTests.cs" />
     <Compile Include="Commands\Favorites\FavoritesProviderTests.cs" />
     <Compile Include="Commands\Workspaces\TargetResolverTests.cs" />
     <Compile Include="Commands\Workspaces\WorkspaceHealerTests.cs" />

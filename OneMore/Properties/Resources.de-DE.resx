@@ -3132,6 +3132,26 @@ Möchten Sie die bestehende Seite aktualisieren?</value>
     <value>Es sind keine Seiten zum Verschieben ausgewählt</value>
     <comment>error message</comment>
   </data>
+  <data name="NavigatorLauncher_ambiguous" xml:space="preserve">
+    <value>Diese Seite könnte mehr als eine Seite bedeuten, OneMore hat also nicht geraten.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="NavigatorLauncher_broken" xml:space="preserve">
+    <value>Diese Seite existiert nicht mehr. Möglicherweise wurde es gelöscht oder umbenannt.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="NavigatorLauncher_failed" xml:space="preserve">
+    <value>Konnte derzeit nicht navigieren. Versuchen Sie es in ein paar Sekunden noch einmal.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="NavigatorLauncher_offline" xml:space="preserve">
+    <value>This page is in a notebook that is not open or is still loading, or in a locked section. Wenn Sie das Notizbuch gerade erst geöffnet haben, versuchen Sie es gleich noch einmal.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="NavigatorLauncher_pending" xml:space="preserve">
+    <value>OneMore lernt noch, wo sich Ihre Seiten befinden, daher kann diese Seite noch nicht gefunden werden. Versuchen Sie es in ein paar Minuten noch einmal.</value>
+    <comment>error message</comment>
+  </data>
   <data name="NavigatorSheet_corrallBox.Text" xml:space="preserve">
     <value>Beschränken Sie das Navigator-Fenster auf den aktiven Bildschirm</value>
     <comment>checkbox</comment>

@@ -3137,6 +3137,26 @@ Czy chcesz odświeżyć istniejącą stronę?</value>
     <value>Nie wybrano żadnych stron do przeniesienia</value>
     <comment>error message</comment>
   </data>
+  <data name="NavigatorLauncher_ambiguous" xml:space="preserve">
+    <value>Ta strona może oznaczać więcej niż jedną stronę, więc OneMore nie zgadł.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="NavigatorLauncher_broken" xml:space="preserve">
+    <value>Ta strona już nie istnieje. Być może został usunięty lub zmieniono jego nazwę.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="NavigatorLauncher_failed" xml:space="preserve">
+    <value>W tej chwili nie można nawigować. Spróbuj ponownie za kilka sekund.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="NavigatorLauncher_offline" xml:space="preserve">
+    <value>Ta strona znajduje się w notatniku, który nie jest otwarty lub wciąż się ładuje, albo w zablokowanej sekcji. Jeśli właśnie otworzyłeś notatnik, spróbuj ponownie za chwilę.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="NavigatorLauncher_pending" xml:space="preserve">
+    <value>Usługa OneMore wciąż uczy się, gdzie znajdują się Twoje strony, więc nie może jeszcze znaleźć tej strony. Spróbuj ponownie za kilka minut.</value>
+    <comment>error message</comment>
+  </data>
   <data name="NavigatorSheet_corrallBox.Text" xml:space="preserve">
     <value>Ogranicz okno Nawigatora do aktywnego ekranu</value>
     <comment>checkbox</comment>

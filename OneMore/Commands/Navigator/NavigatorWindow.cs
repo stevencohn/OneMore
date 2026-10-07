@@ -866,6 +866,12 @@ namespace River.OneMoreAddIn.Commands
 				pageID ?? one.CurrentPageId,
 				highlight ? OneNote.PageDetail.Selection : OneNote.PageDetail.Basic);
 
+			// the page may have been deleted or its ID may be stale
+			if (page is null)
+			{
+				return;
+			}
+
 			//logger.Verbose($"LoadPageHeadings [{page.Title}]");
 			//logger.StartClock();
 
@@ -1675,8 +1681,7 @@ namespace River.OneMoreAddIn.Commands
 
 			if (box.SelectedItems[0] is IMoreHostItem host && host.Tag is HistoryRecord record)
 			{
-				await using var one = new OneNote();
-				await one.NavigateTo(record.Link, true);
+				await NavigatorLauncher.OpenAndReport(this, record, true);
 
 				//System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
 				//{

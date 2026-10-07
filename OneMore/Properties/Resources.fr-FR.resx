@@ -3140,6 +3140,26 @@ Voulez-vous actualiser la page existante ?</value>
     <value>Il n'y a aucune page sélectionnée à déplacer</value>
     <comment>error message</comment>
   </data>
+  <data name="NavigatorLauncher_ambiguous" xml:space="preserve">
+    <value>Cette page pourrait signifier plus d’une page, donc OneMore n’a pas deviné.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="NavigatorLauncher_broken" xml:space="preserve">
+    <value>Cette page n'existe plus. Il a peut-être été supprimé ou renommé.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="NavigatorLauncher_failed" xml:space="preserve">
+    <value>Impossible de naviguer pour le moment. Réessayez dans quelques secondes.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="NavigatorLauncher_offline" xml:space="preserve">
+    <value>Cette page se trouve dans un bloc-notes qui n'est pas ouvert ou en cours de chargement, ou dans une section verrouillée. Si vous venez d'ouvrir le bloc-notes, réessayez dans un instant.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="NavigatorLauncher_pending" xml:space="preserve">
+    <value>OneMore est encore en train d'apprendre où se trouvent vos pages, il ne peut donc pas encore trouver cette page. Réessayez dans quelques minutes.</value>
+    <comment>error message</comment>
+  </data>
   <data name="NavigatorSheet_corrallBox.Text" xml:space="preserve">
     <value>Restreindre la fenêtre du navigateur à l'écran actif</value>
     <comment>checkbox</comment>

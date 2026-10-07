@@ -3132,6 +3132,26 @@ Cuadrado Marrón</value>
     <value>No hay páginas seleccionadas para mover</value>
     <comment>error message</comment>
   </data>
+  <data name="NavigatorLauncher_ambiguous" xml:space="preserve">
+    <value>Esta página podría significar más de una página, por lo que OneMore no lo adivinó.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="NavigatorLauncher_broken" xml:space="preserve">
+    <value>Esta página ya no existe. Es posible que haya sido eliminado o cambiado de nombre.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="NavigatorLauncher_failed" xml:space="preserve">
+    <value>No se pudo navegar en este momento. Inténtalo de nuevo en unos segundos.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="NavigatorLauncher_offline" xml:space="preserve">
+    <value>Esta página está en una libreta que no está abierta o que aún se está cargando, o en una sección bloqueada. Si acabas de abrir la libreta, inténtalo de nuevo en un momento.</value>
+    <comment>error message</comment>
+  </data>
+  <data name="NavigatorLauncher_pending" xml:space="preserve">
+    <value>OneMore todavía está aprendiendo dónde están sus páginas, por lo que todavía no puede encontrar esta página. Inténtalo de nuevo en unos minutos.</value>
+    <comment>error message</comment>
+  </data>
   <data name="NavigatorSheet_corrallBox.Text" xml:space="preserve">
     <value>Restringir la ventana del Navegador a la pantalla activa</value>
     <comment>checkbox</comment>

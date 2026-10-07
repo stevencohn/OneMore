@@ -86,8 +86,7 @@ namespace River.OneMoreAddIn.Commands
 					// not having to wait for the next update, but provides a better UX
 					NavigatorWindow.SetVisited(info.PageId);
 
-					await using var one = new OneNote();
-					await one.NavigateTo(info.Link);
+					await NavigatorLauncher.OpenAndReport(FindForm(), info);
 				}
 			});
 

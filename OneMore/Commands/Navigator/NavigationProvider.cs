@@ -266,6 +266,18 @@ namespace River.OneMoreAddIn.Commands
 				{
 					record = log.History[index];
 					record.Name = resolved.Name;
+
+					// a page that was moved or whose notebook was reopened has a new link,
+					// so keep what is stored current, not just the name
+					if (!string.IsNullOrEmpty(resolved.Link))
+					{
+						record.Link = resolved.Link;
+						record.Path = resolved.Path;
+						record.SectionId = resolved.SectionId;
+						record.NotebookId = resolved.NotebookId;
+						record.Color = resolved.Color;
+					}
+
 					log.History.RemoveAt(index);
 					log.History.Insert(0, record);
 					updated = true;
@@ -435,6 +447,66 @@ namespace River.OneMoreAddIn.Commands
 					}
 				});
 
+
+				if (updated)
+				{
+					await Save(log);
+				}
+
+				return updated;
+			}
+			finally
+			{
+				semalock.Release();
+			}
+		}
+
+
+		/// <summary>
+		/// Replaces a stale history or pinned record with the same page as it is now, after the
+		/// page was found at a new ID. A history record keeps its place; if the new ID is already
+		/// in the history the stale one is dropped.
+		/// </summary>
+		/// <param name="stale">The record as it was stored</param>
+		/// <param name="healed">The same page as OneNote has it now</param>
+		/// <returns>True if anything was replaced</returns>
+		public async Task<bool> Replace(HistoryRecord stale, HistoryRecord healed)
+		{
+			await semalock.WaitAsync();
+
+			try
+			{
+				var log = await Read();
+				var updated = false;
+
+				var index = log.History.FindIndex(r => r.PageId == stale.PageId);
+				if (index >= 0)
+				{
+					var duplicate = log.History.FindIndex(r => r.PageId == healed.PageId);
+					if (duplicate >= 0 && duplicate != index)
+					{
+						log.History.RemoveAt(index);
+					}
+					else
+					{
+						healed.Visited = log.History[index].Visited;
+						log.History[index] = healed;
+					}
+
+					updated = true;
+				}
+
+				index = log.Pinned.FindIndex(p =>
+					p.PageId == stale.PageId &&
+					(p.ObjectId ?? string.Empty) == (stale.ObjectId ?? string.Empty));
+
+				if (index >= 0)
+				{
+					// keep the user's name for the entry, including a paragraph's text
+					healed.Name = log.Pinned[index].Name;
+					log.Pinned[index] = healed;
+					updated = true;
+				}
 
 				if (updated)
 				{
