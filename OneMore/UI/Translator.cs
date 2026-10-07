@@ -88,11 +88,19 @@ namespace River.OneMoreAddIn.UI
 					if (control is ComboBox box)
 					{
 						box.Items.Clear();
-						box.Items.AddRange(text.Split(
+						var items = text.Split(
 							// for some Github cloners, multiline items in the Resx file are
 							// delimeted wth only CR instead of NLCR so allow for any possibility
 							new string[] { Environment.NewLine, "\r", "\n" },
-							StringSplitOptions.RemoveEmptyEntries));
+							StringSplitOptions.RemoveEmptyEntries);
+
+						// culture resx files may indent continuation lines; strip it
+						for (var i = 0; i < items.Length; i++)
+						{
+							items[i] = items[i].Trim();
+						}
+
+						box.Items.AddRange(items);
 					}
 					else
 					{

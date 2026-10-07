@@ -19,7 +19,7 @@ namespace River.OneMoreAddIn.Commands
 	{
 		private const int ImageWidth = 70;
 		private const int ImageHeight = 60;
-		private const int Padding = 5;
+		private const int TilePadding = 5;
 
 		private readonly Image image;
 		private bool hovering;
@@ -34,7 +34,7 @@ namespace River.OneMoreAddIn.Commands
 				ControlStyles.OptimizedDoubleBuffer, true);
 
 			Cursor = Cursors.Hand;
-			Size = new Size(ImageWidth + (Padding * 2), ImageHeight + (Padding * 2));
+			Size = new Size(ImageWidth + (TilePadding * 2), ImageHeight + (TilePadding * 2));
 
 			image = new Bitmap(ImageWidth, ImageHeight);
 			var painter = new TableThemePainter(
@@ -77,10 +77,10 @@ namespace River.OneMoreAddIn.Commands
 				g.FillRectangle(brush, 0, 0, Width, Height);
 			}
 
-			g.DrawImage(image, Padding, Padding);
+			g.DrawImage(image, TilePadding, TilePadding);
 
 			using var pen = new Pen(manager.GetColor("ButtonBorder"));
-			g.DrawRectangle(pen, Padding, Padding, ImageWidth - 1, ImageHeight - 1);
+			g.DrawRectangle(pen, TilePadding, TilePadding, ImageWidth - 1, ImageHeight - 1);
 
 			if (hovering)
 			{

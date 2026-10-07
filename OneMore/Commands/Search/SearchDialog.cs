@@ -68,7 +68,9 @@ namespace River.OneMoreAddIn.Commands
 					Resx.SearchDialogText_scopeOptions.Split('\n').Select(s => s.Trim()).ToArray());
 
 				dateSelector.Items.Clear();
-				dateSelector.Items.AddRange(Resx.SearchDialog_dateOptions.Split('\n'));
+				dateSelector.Items.AddRange(Resx.SearchDialog_dateOptions.Split(
+						new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries)
+						.Select(s => s.Trim()).ToArray());
 			}
 
 			bool hasSectionGroup;
