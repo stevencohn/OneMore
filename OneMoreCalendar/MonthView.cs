@@ -399,6 +399,14 @@ namespace OneMoreCalendar
 					// right edge inside the header box, same margin copyButton always used
 					var right = spot.Bounds.X + spot.Bounds.Width - this.Scaled(1);
 
+					// match the header fill, which differs for today
+					var headBack = spot.Day.Date.Date.Equals(DateTime.Now.Date)
+						? Theme.MonthTodayBack
+						: Theme.MonthDayBack;
+
+					copyButton.PreferredBack = headBack;
+					createButton.PreferredBack = headBack;
+
 					if (spot.Day.Pages.Count > 0)
 					{
 						Controls.Add(copyButton);
@@ -737,6 +745,7 @@ namespace OneMoreCalendar
 				}
 				else
 				{
+					day.UpButton.PreferredBack = day.InMonth ? Theme.MonthPrimary : Theme.MonthSecondary;
 					day.UpButton.Location =
 						new Point(box.Right - moreWidth - this.Scaled(1), box.Bottom - (moreHeight * 2) - this.Scaled(7));
 				}
@@ -748,6 +757,7 @@ namespace OneMoreCalendar
 				}
 				else
 				{
+					day.DownButton.PreferredBack = day.InMonth ? Theme.MonthPrimary : Theme.MonthSecondary;
 					day.DownButton.Location =
 						new Point(box.Right - moreWidth - this.Scaled(1), box.Bottom - moreHeight - this.Scaled(4));
 				}
@@ -783,7 +793,7 @@ namespace OneMoreCalendar
 			var button = new MoreButton
 			{
 				Font = moreFont,
-				PreferredBack = Theme.MonthPrimary,
+				PreferredBack = day.InMonth ? Theme.MonthPrimary : Theme.MonthSecondary,
 				PreferredFore = Theme.LinkColor,
 				Location = location,
 				Text = type == Hottype.Up ? LessGlyph : MoreGlyph,
