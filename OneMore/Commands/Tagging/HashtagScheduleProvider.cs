@@ -55,7 +55,11 @@ namespace River.OneMoreAddIn.Commands
 
 			if (!schemaBuilt)
 			{
-				RefreshDataSchema(Domain, Resx.HashtagScheduleDB);
+				if (!TableExists(Table))
+				{
+					RefreshDataSchema(Domain, Resx.HashtagScheduleDB);
+				}
+
 				schemaBuilt = true;
 			}
 		}
@@ -67,7 +71,11 @@ namespace River.OneMoreAddIn.Commands
 		internal HashtagScheduleProvider(SQLiteConnection connection)
 		{
 			con = connection;
-			RefreshDataSchema(Domain, Resx.HashtagScheduleDB);
+
+			if (!TableExists(Table))
+			{
+				RefreshDataSchema(Domain, Resx.HashtagScheduleDB);
+			}
 		}
 
 
