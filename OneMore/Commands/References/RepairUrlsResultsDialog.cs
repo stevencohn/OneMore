@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
+	using River.OneMoreAddIn.Styles;
 	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Generic;
@@ -27,6 +28,8 @@ namespace River.OneMoreAddIn.Commands
 
 		private readonly IReadOnlyList<RepairUrlsResult> results;
 		private readonly string sectionID;
+		private readonly ToolTip tooltip = new();
+		private ListViewItem tipItem;
 		private bool copying;
 
 
@@ -60,7 +63,11 @@ namespace River.OneMoreAddIn.Commands
 				detailColumn.Text = Resx.RepairUrlsResultsDialog_detailColumn;
 			}
 
-			listView.SetColumnProportions(0.14f, 0.26f, 0.22f, 0.38f);
+			listView.SetColumnProportions(0.14f, 0.22f, 0.26f, 0.38f);
+
+			listView.MouseMove += ShowPagePath;
+			listView.MouseLeave += (s, e) => HidePagePath();
+			Disposed += (s, e) => tooltip.Dispose();
 
 			summaryLabel.Text = string.Format(Resx.RepairUrlsResultsDialog_summaryMsg,
 				Count(RepairUrlsOutcome.Repaired),
@@ -110,8 +117,8 @@ namespace River.OneMoreAddIn.Commands
 				if (index <= 0 || (int)result.Outcome == index - 1)
 				{
 					var item = new ListViewItem(OutcomeText(result.Outcome)) { Tag = result };
-					item.SubItems.Add(result.LinkText);
 					item.SubItems.Add(result.PageTitle);
+					item.SubItems.Add(result.LinkText);
 					item.SubItems.Add(result.Detail);
 					listView.Items.Add(item);
 				}
@@ -126,6 +133,45 @@ namespace River.OneMoreAddIn.Commands
 
 			goButton.Enabled = listView.Items.Count > 0;
 			copyButton.Enabled = !copying && listView.Items.Count > 0;
+		}
+
+
+		// shows the full notebook path of the page while the pointer is over its Page cell
+		private void ShowPagePath(object sender, MouseEventArgs e)
+		{
+			var hit = listView.HitTest(e.Location);
+			var onPage = hit.Item is not null && hit.SubItem is not null &&
+				hit.Item.SubItems.IndexOf(hit.SubItem) == 1;
+
+			if (!onPage || hit.Item.Tag is not RepairUrlsResult result ||
+				string.IsNullOrEmpty(result.PageTitle))
+			{
+				HidePagePath();
+				return;
+			}
+
+			if (hit.Item == tipItem)
+			{
+				return;
+			}
+
+			tipItem = hit.Item;
+
+			var path = string.IsNullOrEmpty(result.PagePath)
+				? result.PageTitle
+				: $"{result.PagePath}/{result.PageTitle}";
+
+			tooltip.Show(path, listView, e.X + 16, e.Y + 20, 10000);
+		}
+
+
+		private void HidePagePath()
+		{
+			if (tipItem is not null)
+			{
+				tipItem = null;
+				tooltip.Hide(listView);
+			}
 		}
 
 
@@ -166,7 +212,7 @@ namespace River.OneMoreAddIn.Commands
 				var ns = page.Namespace;
 				PageNamespace.Set(ns);
 
-				var table = await BuildTable(one, ns, rows);
+				var table = await BuildTable(one, page, rows);
 
 				var container = page.EnsureContentContainer();
 				container.Add(
@@ -198,8 +244,12 @@ namespace River.OneMoreAddIn.Commands
 
 
 		private async Task<Table> BuildTable(
-			OneNote one, XNamespace ns, IReadOnlyList<RepairUrlsResult> rows)
+			OneNote one, Page page, IReadOnlyList<RepairUrlsResult> rows)
 		{
+			var ns = page.Namespace;
+			var todoIndex = page.AddTagDef("3", "To Do", 4);
+			var citeIndex = page.GetQuickStyle(StandardStyles.Citation).Index;
+
 			var table = new Table(ns, 1, 4)
 			{
 				HasHeaderRow = true,
@@ -207,15 +257,15 @@ namespace River.OneMoreAddIn.Commands
 			};
 
 			table.SetColumnWidth(0, 90);
-			table.SetColumnWidth(1, 220);
+			table.SetColumnWidth(1, 240);
 			table.SetColumnWidth(2, 200);
 			table.SetColumnWidth(3, 360);
 
 			var header = table[0];
 			header.SetShading(HeaderShading);
 			header[0].SetContent(new Paragraph(Resx.word_Status).SetStyle(HeaderCss));
-			header[1].SetContent(new Paragraph(Resx.RepairUrlsResultsDialog_linkColumn).SetStyle(HeaderCss));
-			header[2].SetContent(new Paragraph(Resx.word_Page).SetStyle(HeaderCss));
+			header[1].SetContent(new Paragraph(Resx.word_Page).SetStyle(HeaderCss));
+			header[2].SetContent(new Paragraph(Resx.RepairUrlsResultsDialog_linkColumn).SetStyle(HeaderCss));
 			header[3].SetContent(new Paragraph(Resx.RepairUrlsResultsDialog_detailColumn).SetStyle(HeaderCss));
 
 			// many links share a page, and each link to a page is a call into OneNote
@@ -224,8 +274,12 @@ namespace River.OneMoreAddIn.Commands
 			foreach (var result in rows)
 			{
 				var row = table.AddRow();
-				row[0].SetContent(WebUtility.HtmlEncode(OutcomeText(result.Outcome)));
-				row[1].SetContent(WebUtility.HtmlEncode(result.LinkText));
+
+				// an unchecked To Do tag, so the user can tick off each link as it is handled
+				row[0].SetContent(new Paragraph(ns,
+					new Tag(ns, todoIndex, false),
+					new XElement(ns + "T",
+						new XCData(WebUtility.HtmlEncode(OutcomeText(result.Outcome))))));
 
 				var title = WebUtility.HtmlEncode(result.PageTitle);
 				if (!string.IsNullOrEmpty(result.PageID))
@@ -242,7 +296,16 @@ namespace River.OneMoreAddIn.Commands
 					}
 				}
 
-				row[2].SetContent(title);
+				// the title, then the path of the page without its name in Citation style
+				var cell = new XElement(ns + "OEChildren", new Paragraph(ns, title));
+				if (!string.IsNullOrEmpty(result.PagePath))
+				{
+					cell.Add(new Paragraph(ns, WebUtility.HtmlEncode(result.PagePath))
+						.SetQuickStyle(citeIndex));
+				}
+
+				row[1].SetContent(cell);
+				row[2].SetContent(WebUtility.HtmlEncode(result.LinkText));
 				row[3].SetContent(WebUtility.HtmlEncode(result.Detail));
 			}
 

@@ -1147,6 +1147,33 @@ namespace River.OneMoreAddIn.Commands
 			// repaired and highlighted links first, in the order they were found
 			var ordered = results.OrderBy(r => r.Outcome).ToList();
 
+			// many links share a page, and each path is several calls into OneNote
+			var paths = new Dictionary<string, string>();
+			foreach (var result in ordered)
+			{
+				if (string.IsNullOrEmpty(result.PageID))
+				{
+					continue;
+				}
+
+				if (!paths.TryGetValue(result.PageID, out var path))
+				{
+					try
+					{
+						path = one.GetPageHierarchyInfo(result.PageID).Path?.TrimStart('/');
+					}
+					catch (Exception exc)
+					{
+						logger.WriteLine($"error reading path of page [{result.PageTitle}]", exc);
+						path = string.Empty;
+					}
+
+					paths.Add(result.PageID, path);
+				}
+
+				result.PagePath = path;
+			}
+
 			// modeless, not ShowDialog(owner): the list stays open while the user goes to pages,
 			// and navigating hangs OneNote if its window is disabled by a modal owner. The form
 			// disposes itself when closed, so it must not be disposed here, because RunModeless
