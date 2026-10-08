@@ -170,9 +170,9 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<UpdateCommand>(true);
 
 
-		[Command("ribCheckUrlsButton_Label", Keys.None, "ribReferencesMenu")]
-		public async Task CheckUrlsCmd(IRibbonControl control)
-			=> await factory.Run<CheckUrlsCommand>(true);
+		[Command("ribRepairUrlsButton_Label", Keys.None, "ribReferencesMenu")]
+		public async Task RepairUrlsCmd(IRibbonControl control)
+			=> await factory.Run<RepairUrlsCommand>(true);
 
 
 		// opens the Favorites dialog (Choose Favorites)
