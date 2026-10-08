@@ -44,6 +44,7 @@ namespace River.OneMoreAddIn.Commands
 		private readonly List<RepairUrlsResult> results = new();
 		private string sourceID;
 		private string sourceTitle;
+		private string sectionID;
 
 		// names of the open notebooks, to tell a link to a closed or foreign notebook from a broken one
 		private HashSet<string> openNotebooks;
@@ -87,6 +88,9 @@ namespace River.OneMoreAddIn.Commands
 				var hierarchy = await one.GetNotebook(OneNote.Scope.Pages);
 				var ns = one.GetNamespace(hierarchy);
 				var current = GetCurrentPageElement(hierarchy, ns);
+
+				// kept for the results dialog, which copies its list to a page in this section
+				sectionID = current?.Parent?.Attribute("ID")?.Value;
 
 				using var dialog = new RepairUrlsDialog(
 					GetPageGroup(current, ns, out _) is not null,
@@ -1147,7 +1151,7 @@ namespace River.OneMoreAddIn.Commands
 			// and navigating hangs OneNote if its window is disabled by a modal owner. The form
 			// disposes itself when closed, so it must not be disposed here, because RunModeless
 			// returns at once if it joins an existing message loop.
-			var dialog = new RepairUrlsResultsDialog(ordered);
+			var dialog = new RepairUrlsResultsDialog(ordered, sectionID);
 			dialog.RunModeless();
 		}	}
 }

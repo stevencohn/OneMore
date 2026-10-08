@@ -4250,6 +4250,10 @@ Wybierz Nie, aby zachować jedną pustą linię między akapitami</value>
     <value>Napraw adresy URL</value>
     <comment>dialog title</comment>
   </data>
+  <data name="RepairUrlsResultsDialog_copyButton.Text" xml:space="preserve">
+    <value>Skopiuj na nową stronę</value>
+    <comment>button</comment>
+  </data>
   <data name="RepairUrlsResultsDialog_detailColumn" xml:space="preserve">
     <value>Bliższe dane</value>
     <comment>column header</comment>
@@ -4261,6 +4265,10 @@ Wybierz Nie, aby zachować jedną pustą linię między akapitami</value>
   <data name="RepairUrlsResultsDialog_linkColumn" xml:space="preserve">
     <value>Połączyć</value>
     <comment>column header</comment>
+  </data>
+  <data name="RepairUrlsResultsDialog_pageTitle" xml:space="preserve">
+    <value>Wyniki naprawy adresów URL</value>
+    <comment>page title</comment>
   </data>
   <data name="RepairUrlsResultsDialog_repaired" xml:space="preserve">
     <value>Naprawiony</value>

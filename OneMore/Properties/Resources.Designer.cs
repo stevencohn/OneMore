@@ -10043,6 +10043,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Repair URLs Results.
+        /// </summary>
+        internal static string RepairUrlsResultsDialog_pageTitle {
+            get {
+                return ResourceManager.GetString("RepairUrlsResultsDialog_pageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Details.
         /// </summary>
         internal static string RepairUrlsResultsDialog_detailColumn {

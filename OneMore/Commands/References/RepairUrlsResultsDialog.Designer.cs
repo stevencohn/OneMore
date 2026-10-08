@@ -36,6 +36,7 @@ namespace River.OneMoreAddIn.Commands
 			this.pageColumn = new System.Windows.Forms.ColumnHeader();
 			this.detailColumn = new System.Windows.Forms.ColumnHeader();
 			this.buttonPanel = new System.Windows.Forms.Panel();
+			this.copyButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.goButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.closeButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.topPanel = new System.Windows.Forms.Panel();
@@ -88,6 +89,7 @@ namespace River.OneMoreAddIn.Commands
 			// buttonPanel
 			//
 			this.buttonPanel.BackColor = System.Drawing.SystemColors.ControlLight;
+			this.buttonPanel.Controls.Add(this.copyButton);
 			this.buttonPanel.Controls.Add(this.goButton);
 			this.buttonPanel.Controls.Add(this.closeButton);
 			this.buttonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -97,6 +99,24 @@ namespace River.OneMoreAddIn.Commands
 			this.buttonPanel.Padding = new System.Windows.Forms.Padding(8);
 			this.buttonPanel.Size = new System.Drawing.Size(878, 60);
 			this.buttonPanel.TabIndex = 4;
+			//
+			// copyButton
+			//
+			this.copyButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.copyButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.copyButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.copyButton.ImageOver = null;
+			this.copyButton.Location = new System.Drawing.Point(388, 11);
+			this.copyButton.Name = "copyButton";
+			this.copyButton.ShowBorder = true;
+			this.copyButton.Size = new System.Drawing.Size(224, 38);
+			this.copyButton.StylizeImage = false;
+			this.copyButton.TabIndex = 2;
+			this.copyButton.Text = "Copy to new page";
+			this.copyButton.ThemedBack = null;
+			this.copyButton.ThemedFore = null;
+			this.copyButton.UseVisualStyleBackColor = true;
+			this.copyButton.Click += new System.EventHandler(this.CopyToPage);
 			//
 			// goButton
 			//
@@ -218,6 +238,7 @@ namespace River.OneMoreAddIn.Commands
 		private System.Windows.Forms.ColumnHeader pageColumn;
 		private System.Windows.Forms.ColumnHeader detailColumn;
 		private System.Windows.Forms.Panel buttonPanel;
+		private UI.MoreButton copyButton;
 		private UI.MoreButton goButton;
 		private UI.MoreButton closeButton;
 		private System.Windows.Forms.Panel topPanel;

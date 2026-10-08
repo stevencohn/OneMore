@@ -4264,6 +4264,10 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <value>修复网址</value>
     <comment>dialog title</comment>
   </data>
+  <data name="RepairUrlsResultsDialog_copyButton.Text" xml:space="preserve">
+    <value>复制到新页面</value>
+    <comment>button</comment>
+  </data>
   <data name="RepairUrlsResultsDialog_detailColumn" xml:space="preserve">
     <value>细节</value>
     <comment>column header</comment>
@@ -4275,6 +4279,10 @@ TF-IDF 余弦、词汇重叠、结构</value>
   <data name="RepairUrlsResultsDialog_linkColumn" xml:space="preserve">
     <value>关联</value>
     <comment>column header</comment>
+  </data>
+  <data name="RepairUrlsResultsDialog_pageTitle" xml:space="preserve">
+    <value>修复 URL 结果</value>
+    <comment>page title</comment>
   </data>
   <data name="RepairUrlsResultsDialog_repaired" xml:space="preserve">
     <value>已修复</value>

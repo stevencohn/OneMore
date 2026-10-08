@@ -4,11 +4,15 @@
 
 namespace River.OneMoreAddIn.Commands
 {
+	using River.OneMoreAddIn.Models;
 	using River.OneMoreAddIn.UI;
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
+	using System.Net;
+	using System.Threading.Tasks;
 	using System.Windows.Forms;
+	using System.Xml.Linq;
 	using Resx = Properties.Resources;
 
 
@@ -18,15 +22,25 @@ namespace River.OneMoreAddIn.Commands
 	/// </summary>
 	internal partial class RepairUrlsResultsDialog : MoreForm
 	{
+		private const string HeaderShading = "#DEEBF6";
+		private const string HeaderCss = "font-family:'Segoe UI Light';font-size:10.0pt";
+
 		private readonly IReadOnlyList<RepairUrlsResult> results;
+		private readonly string sectionID;
+		private bool copying;
 
 
-		public RepairUrlsResultsDialog(IReadOnlyList<RepairUrlsResult> results)
+		/// <param name="results">The links to list</param>
+		/// <param name="sectionID">
+		/// The section where the command was run, to hold the page made by the Copy button
+		/// </param>
+		public RepairUrlsResultsDialog(IReadOnlyList<RepairUrlsResult> results, string sectionID)
 		{
 			InitializeComponent();
 			RememberSize = true;
 
 			this.results = results;
+			this.sectionID = sectionID;
 
 			if (NeedsLocalizing())
 			{
@@ -35,6 +49,7 @@ namespace River.OneMoreAddIn.Commands
 				Localize(new string[]
 				{
 					"filterLabel=word_Filter",
+					"copyButton",
 					"goButton=word_Go",
 					"closeButton=word_Close"
 				});
@@ -110,6 +125,7 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			goButton.Enabled = listView.Items.Count > 0;
+			copyButton.Enabled = !copying && listView.Items.Count > 0;
 		}
 
 
@@ -117,6 +133,120 @@ namespace River.OneMoreAddIn.Commands
 		private void CloseDialog(object sender, EventArgs e)
 		{
 			Close();
+		}
+
+
+		/// <summary>
+		/// Copies the links now listed, in the order listed, to a new page in the section where
+		/// the command was run, so the user can work through them later.
+		/// </summary>
+		private async void CopyToPage(object sender, EventArgs e)
+		{
+			if (copying || listView.Items.Count == 0 || string.IsNullOrEmpty(sectionID))
+			{
+				return;
+			}
+
+			copying = true;
+			copyButton.Enabled = false;
+
+			try
+			{
+				var rows = listView.Items.Cast<ListViewItem>()
+					.Select(i => i.Tag)
+					.OfType<RepairUrlsResult>()
+					.ToList();
+
+				await using var one = new OneNote();
+				one.CreatePage(sectionID, out var pageId);
+
+				var page = await one.GetPage(pageId);
+				page.Title = Resx.RepairUrlsResultsDialog_pageTitle;
+
+				var ns = page.Namespace;
+				PageNamespace.Set(ns);
+
+				var table = await BuildTable(one, ns, rows);
+
+				var container = page.EnsureContentContainer();
+				container.Add(
+					new Paragraph($"{DateTime.Now.ToShortFriendlyString()} {summaryLabel.Text}"),
+					new Paragraph(string.Empty),
+					new Paragraph(table.Root),
+					new Paragraph(string.Empty)
+					);
+
+				if (await one.Update(page))
+				{
+					await one.NavigateTo(pageId);
+				}
+				else
+				{
+					Logger.Current.WriteLine("could not save the Repair URLs results page");
+				}
+			}
+			catch (Exception exc)
+			{
+				Logger.Current.WriteLine("error copying Repair URLs results to a page", exc);
+			}
+			finally
+			{
+				copying = false;
+				copyButton.Enabled = listView.Items.Count > 0;
+			}
+		}
+
+
+		private async Task<Table> BuildTable(
+			OneNote one, XNamespace ns, IReadOnlyList<RepairUrlsResult> rows)
+		{
+			var table = new Table(ns, 1, 4)
+			{
+				HasHeaderRow = true,
+				BordersVisible = true
+			};
+
+			table.SetColumnWidth(0, 90);
+			table.SetColumnWidth(1, 220);
+			table.SetColumnWidth(2, 200);
+			table.SetColumnWidth(3, 360);
+
+			var header = table[0];
+			header.SetShading(HeaderShading);
+			header[0].SetContent(new Paragraph(Resx.word_Status).SetStyle(HeaderCss));
+			header[1].SetContent(new Paragraph(Resx.RepairUrlsResultsDialog_linkColumn).SetStyle(HeaderCss));
+			header[2].SetContent(new Paragraph(Resx.word_Page).SetStyle(HeaderCss));
+			header[3].SetContent(new Paragraph(Resx.RepairUrlsResultsDialog_detailColumn).SetStyle(HeaderCss));
+
+			// many links share a page, and each link to a page is a call into OneNote
+			var pageLinks = new Dictionary<string, string>();
+
+			foreach (var result in rows)
+			{
+				var row = table.AddRow();
+				row[0].SetContent(WebUtility.HtmlEncode(OutcomeText(result.Outcome)));
+				row[1].SetContent(WebUtility.HtmlEncode(result.LinkText));
+
+				var title = WebUtility.HtmlEncode(result.PageTitle);
+				if (!string.IsNullOrEmpty(result.PageID))
+				{
+					if (!pageLinks.TryGetValue(result.PageID, out var link))
+					{
+						link = await one.GetHyperlinkWithRetry(result.PageID, string.Empty);
+						pageLinks.Add(result.PageID, link);
+					}
+
+					if (!string.IsNullOrEmpty(link))
+					{
+						title = $"<a href=\"{link}\">{title}</a>";
+					}
+				}
+
+				row[2].SetContent(title);
+				row[3].SetContent(WebUtility.HtmlEncode(result.Detail));
+			}
+
+			return table;
 		}
 
 
