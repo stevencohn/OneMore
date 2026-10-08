@@ -36,6 +36,7 @@ namespace River.OneMoreAddIn.Commands
 		private bool perLinkProgress;
 		private bool repairLinks = true;
 		private bool markLinks = true;
+		private bool onenoteOnly;
 
 		private ProgressDialog progressDialog;
 		private readonly TaskCompletionSource<bool> progressClosed = new();
@@ -110,6 +111,7 @@ namespace River.OneMoreAddIn.Commands
 
 				dialog.Repair = settings.Get("repair", true);
 				dialog.Mark = settings.Get("mark", true);
+				dialog.OnenoteOnly = settings.Get("onenoteOnly", false);
 
 				if (dialog.ShowDialog(owner) != System.Windows.Forms.DialogResult.OK)
 				{
@@ -121,7 +123,9 @@ namespace River.OneMoreAddIn.Commands
 				markColor = dialog.MarkColor.ToRGBHtml();
 				repairLinks = dialog.Repair;
 				markLinks = dialog.Mark;
+				onenoteOnly = dialog.OnenoteOnly;
 
+				settings.Add("onenoteOnly", onenoteOnly);
 				settings.Add("markColor", markColor);
 				settings.Add("repair", repairLinks);
 				settings.Add("mark", markLinks);
@@ -594,6 +598,12 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (var item in items)
 			{
+				if (onenoteOnly)
+				{
+					// web links are neither resolved, repaired nor reported
+					break;
+				}
+
 				// do not use await in the body loop; just build list of tasks
 				tasks.Add(ValidateUrl(item, false, token));
 			}
@@ -1146,6 +1156,33 @@ namespace River.OneMoreAddIn.Commands
 
 			// repaired and highlighted links first, in the order they were found
 			var ordered = results.OrderBy(r => r.Outcome).ToList();
+
+			// many links share a page, and each path is several calls into OneNote
+			var paths = new Dictionary<string, string>();
+			foreach (var result in ordered)
+			{
+				if (string.IsNullOrEmpty(result.PageID))
+				{
+					continue;
+				}
+
+				if (!paths.TryGetValue(result.PageID, out var path))
+				{
+					try
+					{
+						path = one.GetPageHierarchyInfo(result.PageID).Path?.TrimStart('/');
+					}
+					catch (Exception exc)
+					{
+						logger.WriteLine($"error reading path of page [{result.PageTitle}]", exc);
+						path = string.Empty;
+					}
+
+					paths.Add(result.PageID, path);
+				}
+
+				result.PagePath = path;
+			}
 
 			// modeless, not ShowDialog(owner): the list stays open while the user goes to pages,
 			// and navigating hangs OneNote if its window is disabled by a modal owner. The form

@@ -4241,6 +4241,10 @@ Sélectionnez Non pour conserver une ligne vide entre les paragraphes</value>
     <value>Mettez en surbrillance les liens qui ne peuvent pas être corrigés</value>
     <comment>check box</comment>
   </data>
+  <data name="RepairUrlsDialog_onenoteBox.Text" xml:space="preserve">
+    <value>Cochez uniquement onenote : URL</value>
+    <comment>check box</comment>
+  </data>
   <data name="RepairUrlsDialog_pageGroupRadio.Text" xml:space="preserve">
     <value>Ce groupe de pages</value>
     <comment>radio button</comment>

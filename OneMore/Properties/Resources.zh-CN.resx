@@ -4244,6 +4244,10 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <value>突出显示无法修复的链接</value>
     <comment>check box</comment>
   </data>
+  <data name="RepairUrlsDialog_onenoteBox.Text" xml:space="preserve">
+    <value>仅检查 onenote: URL</value>
+    <comment>check box</comment>
+  </data>
   <data name="RepairUrlsDialog_pageGroupRadio.Text" xml:space="preserve">
     <value>本页组</value>
     <comment>radio button</comment>

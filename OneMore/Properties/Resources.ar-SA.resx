@@ -4241,6 +4241,10 @@ ISO-code then comma then language name</comment>
     <value>قم بتمييز الروابط التي لا يمكن إصلاحها</value>
     <comment>check box</comment>
   </data>
+  <data name="RepairUrlsDialog_onenoteBox.Text" xml:space="preserve">
+    <value>تحقق من ملاحظة واحدة فقط: عناوين URL</value>
+    <comment>check box</comment>
+  </data>
   <data name="RepairUrlsDialog_pageGroupRadio.Text" xml:space="preserve">
     <value>مجموعة الصفحات هذه</value>
     <comment>radio button</comment>

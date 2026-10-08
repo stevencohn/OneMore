@@ -43,45 +43,48 @@ namespace River.OneMoreAddIn.Commands
 			this.colorSwatch = new System.Windows.Forms.Panel();
 			this.repairBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.markBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.onenoteBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.groupBox.SuspendLayout();
 			this.SuspendLayout();
-			//
+			// 
 			// okButton
-			//
+			// 
 			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.okButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.okButton.ImageOver = null;
-			this.okButton.Location = new System.Drawing.Point(311, 452);
+			this.okButton.Location = new System.Drawing.Point(311, 496);
 			this.okButton.Name = "okButton";
 			this.okButton.ShowBorder = true;
 			this.okButton.Size = new System.Drawing.Size(120, 38);
-			this.okButton.TabIndex = 10;
+			this.okButton.StylizeImage = false;
+			this.okButton.TabIndex = 12;
 			this.okButton.Text = "OK";
 			this.okButton.ThemedBack = null;
 			this.okButton.ThemedFore = null;
 			this.okButton.UseVisualStyleBackColor = true;
-			//
+			// 
 			// cancelButton
-			//
+			// 
 			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
-			this.cancelButton.Location = new System.Drawing.Point(437, 452);
+			this.cancelButton.Location = new System.Drawing.Point(437, 496);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.ShowBorder = true;
 			this.cancelButton.Size = new System.Drawing.Size(120, 38);
-			this.cancelButton.TabIndex = 11;
+			this.cancelButton.StylizeImage = false;
+			this.cancelButton.TabIndex = 13;
 			this.cancelButton.Text = "Cancel";
 			this.cancelButton.ThemedBack = null;
 			this.cancelButton.ThemedFore = null;
 			this.cancelButton.UseVisualStyleBackColor = true;
-			//
+			// 
 			// pageRadio
-			//
+			// 
 			this.pageRadio.Checked = true;
 			this.pageRadio.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.pageRadio.Location = new System.Drawing.Point(23, 42);
@@ -92,9 +95,9 @@ namespace River.OneMoreAddIn.Commands
 			this.pageRadio.TabStop = true;
 			this.pageRadio.Text = "This page or selection";
 			this.pageRadio.UseVisualStyleBackColor = true;
-			//
+			// 
 			// pageGroupRadio
-			//
+			// 
 			this.pageGroupRadio.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.pageGroupRadio.Location = new System.Drawing.Point(23, 79);
 			this.pageGroupRadio.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
@@ -103,9 +106,9 @@ namespace River.OneMoreAddIn.Commands
 			this.pageGroupRadio.TabIndex = 1;
 			this.pageGroupRadio.Text = "This page group";
 			this.pageGroupRadio.UseVisualStyleBackColor = true;
-			//
+			// 
 			// sectionRadio
-			//
+			// 
 			this.sectionRadio.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.sectionRadio.Location = new System.Drawing.Point(23, 116);
 			this.sectionRadio.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
@@ -114,9 +117,9 @@ namespace River.OneMoreAddIn.Commands
 			this.sectionRadio.TabIndex = 2;
 			this.sectionRadio.Text = "The current section";
 			this.sectionRadio.UseVisualStyleBackColor = true;
-			//
+			// 
 			// sectionGroupRadio
-			//
+			// 
 			this.sectionGroupRadio.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.sectionGroupRadio.Location = new System.Drawing.Point(23, 153);
 			this.sectionGroupRadio.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
@@ -125,9 +128,9 @@ namespace River.OneMoreAddIn.Commands
 			this.sectionGroupRadio.TabIndex = 3;
 			this.sectionGroupRadio.Text = "This section group";
 			this.sectionGroupRadio.UseVisualStyleBackColor = true;
-			//
+			// 
 			// notebookRadio
-			//
+			// 
 			this.notebookRadio.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.notebookRadio.Location = new System.Drawing.Point(23, 190);
 			this.notebookRadio.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
@@ -136,9 +139,9 @@ namespace River.OneMoreAddIn.Commands
 			this.notebookRadio.TabIndex = 4;
 			this.notebookRadio.Text = "All sections in the current notebook";
 			this.notebookRadio.UseVisualStyleBackColor = true;
-			//
+			// 
 			// notebooksRadio
-			//
+			// 
 			this.notebooksRadio.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.notebooksRadio.Location = new System.Drawing.Point(23, 227);
 			this.notebooksRadio.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
@@ -147,10 +150,10 @@ namespace River.OneMoreAddIn.Commands
 			this.notebooksRadio.TabIndex = 5;
 			this.notebooksRadio.Text = "All notebooks";
 			this.notebooksRadio.UseVisualStyleBackColor = true;
-			//
+			// 
 			// groupBox
-			//
-			this.groupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+			// 
+			this.groupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox.Controls.Add(this.pageRadio);
 			this.groupBox.Controls.Add(this.pageGroupRadio);
@@ -166,39 +169,43 @@ namespace River.OneMoreAddIn.Commands
 			this.groupBox.TabIndex = 6;
 			this.groupBox.TabStop = false;
 			this.groupBox.Text = "Check links in";
-			//
+			this.groupBox.ThemedBorder = null;
+			this.groupBox.ThemedFore = null;
+			// 
 			// colorLabel
-			//
+			// 
 			this.colorLabel.AutoSize = true;
-			this.colorLabel.Location = new System.Drawing.Point(57, 402);
+			this.colorLabel.Location = new System.Drawing.Point(71, 440);
 			this.colorLabel.Name = "colorLabel";
-			this.colorLabel.Size = new System.Drawing.Size(209, 20);
-			this.colorLabel.TabIndex = 9;
+			this.colorLabel.Size = new System.Drawing.Size(109, 20);
+			this.colorLabel.TabIndex = 10;
 			this.colorLabel.Text = "Highlight color";
 			this.colorLabel.ThemedBack = null;
 			this.colorLabel.ThemedFore = null;
-			//
+			// 
 			// colorSwatch
-			//
+			// 
 			this.colorSwatch.BackColor = System.Drawing.Color.Red;
 			this.colorSwatch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.colorSwatch.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.colorSwatch.Location = new System.Drawing.Point(290, 396);
+			this.colorSwatch.Location = new System.Drawing.Point(252, 438);
 			this.colorSwatch.Name = "colorSwatch";
-			this.colorSwatch.Size = new System.Drawing.Size(70, 32);
-			this.colorSwatch.TabIndex = 12;
+			this.colorSwatch.Size = new System.Drawing.Size(123, 26);
+			this.colorSwatch.TabIndex = 11;
 			this.colorSwatch.Click += new System.EventHandler(this.ChooseColor);
 			// 
 			// repairBox
 			// 
-			this.repairBox.AutoSize = true;
+			this.repairBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.repairBox.Checked = true;
 			this.repairBox.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.repairBox.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.repairBox.Location = new System.Drawing.Point(27, 316);
+			this.repairBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.repairBox.Location = new System.Drawing.Point(46, 354);
 			this.repairBox.Name = "repairBox";
-			this.repairBox.Size = new System.Drawing.Size(255, 24);
-			this.repairBox.TabIndex = 7;
+			this.repairBox.Size = new System.Drawing.Size(246, 25);
+			this.repairBox.StylizeImage = false;
+			this.repairBox.TabIndex = 8;
 			this.repairBox.Text = "Repair links that can be fixed";
 			this.repairBox.ThemedBack = null;
 			this.repairBox.ThemedFore = null;
@@ -206,29 +213,46 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			// markBox
 			// 
-			this.markBox.AutoSize = true;
+			this.markBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
 			this.markBox.Checked = true;
 			this.markBox.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.markBox.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.markBox.Location = new System.Drawing.Point(27, 353);
+			this.markBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.markBox.Location = new System.Drawing.Point(46, 391);
 			this.markBox.Name = "markBox";
-			this.markBox.Size = new System.Drawing.Size(290, 24);
-			this.markBox.TabIndex = 8;
+			this.markBox.Size = new System.Drawing.Size(285, 25);
+			this.markBox.StylizeImage = false;
+			this.markBox.TabIndex = 9;
 			this.markBox.Text = "Highlight links that cannot be fixed";
 			this.markBox.ThemedBack = null;
 			this.markBox.ThemedFore = null;
 			this.markBox.UseVisualStyleBackColor = true;
 			this.markBox.CheckedChanged += new System.EventHandler(this.MarkChanged);
-			// 
+			//
+			// onenoteBox
+			//
+			this.onenoteBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.onenoteBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.onenoteBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.onenoteBox.Location = new System.Drawing.Point(46, 317);
+			this.onenoteBox.Name = "onenoteBox";
+			this.onenoteBox.Size = new System.Drawing.Size(285, 25);
+			this.onenoteBox.StylizeImage = false;
+			this.onenoteBox.TabIndex = 7;
+			this.onenoteBox.Text = "Check only onenote: URLs";
+			this.onenoteBox.ThemedBack = null;
+			this.onenoteBox.ThemedFore = null;
+			this.onenoteBox.UseVisualStyleBackColor = true;
 			//
 			// RepairUrlsDialog
-			//
+			// 
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.CancelButton = this.cancelButton;
-			this.ClientSize = new System.Drawing.Size(580, 503);
+			this.ClientSize = new System.Drawing.Size(580, 557);
+			this.Controls.Add(this.onenoteBox);
 			this.Controls.Add(this.markBox);
 			this.Controls.Add(this.repairBox);
 			this.Controls.Add(this.colorSwatch);
@@ -242,7 +266,7 @@ namespace River.OneMoreAddIn.Commands
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "RepairUrlsDialog";
-			this.Padding = new System.Windows.Forms.Padding(20, 20, 20, 10);
+			this.Padding = new System.Windows.Forms.Padding(20);
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Repair URLs";
 			this.groupBox.ResumeLayout(false);
@@ -266,5 +290,6 @@ namespace River.OneMoreAddIn.Commands
 		private System.Windows.Forms.Panel colorSwatch;
 		private UI.MoreCheckBox repairBox;
 		private UI.MoreCheckBox markBox;
+		private UI.MoreCheckBox onenoteBox;
 	}
 }

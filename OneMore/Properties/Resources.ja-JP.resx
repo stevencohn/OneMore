@@ -4233,6 +4233,10 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <value>修正できないリンクを強調表示する</value>
     <comment>check box</comment>
   </data>
+  <data name="RepairUrlsDialog_onenoteBox.Text" xml:space="preserve">
+    <value>onenote: URL のみを確認してください</value>
+    <comment>check box</comment>
+  </data>
   <data name="RepairUrlsDialog_pageGroupRadio.Text" xml:space="preserve">
     <value>このページグループ</value>
     <comment>radio button</comment>

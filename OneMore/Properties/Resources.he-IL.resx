@@ -4230,6 +4230,10 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <value>הדגש קישורים שלא ניתן לתקן</value>
     <comment>check box</comment>
   </data>
+  <data name="RepairUrlsDialog_onenoteBox.Text" xml:space="preserve">
+    <value>סמן רק הערה אחת: כתובות אתרים</value>
+    <comment>check box</comment>
+  </data>
   <data name="RepairUrlsDialog_pageGroupRadio.Text" xml:space="preserve">
     <value>קבוצת הדפים הזו</value>
     <comment>radio button</comment>

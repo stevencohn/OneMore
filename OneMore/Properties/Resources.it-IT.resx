@@ -4230,6 +4230,10 @@ Selezionare No per mantenere una riga vuota tra i paragrafi</value>
     <value>Evidenzia i collegamenti che non possono essere corretti</value>
     <comment>check box</comment>
   </data>
+  <data name="RepairUrlsDialog_onenoteBox.Text" xml:space="preserve">
+    <value>Controlla solo una nota: URL</value>
+    <comment>check box</comment>
+  </data>
   <data name="RepairUrlsDialog_pageGroupRadio.Text" xml:space="preserve">
     <value>Questo gruppo di pagine</value>
     <comment>radio button</comment>

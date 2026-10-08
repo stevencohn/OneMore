@@ -4230,6 +4230,10 @@ Wybierz Nie, aby zachować jedną pustą linię między akapitami</value>
     <value>Zaznacz linki, których nie można naprawić</value>
     <comment>check box</comment>
   </data>
+  <data name="RepairUrlsDialog_onenoteBox.Text" xml:space="preserve">
+    <value>Sprawdź tylko jedną notatkę: adresy URL</value>
+    <comment>check box</comment>
+  </data>
   <data name="RepairUrlsDialog_pageGroupRadio.Text" xml:space="preserve">
     <value>Ta grupa stron</value>
     <comment>radio button</comment>

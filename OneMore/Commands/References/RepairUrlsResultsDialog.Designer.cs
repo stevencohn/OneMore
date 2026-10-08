@@ -51,8 +51,8 @@ namespace River.OneMoreAddIn.Commands
 			//
 			this.listView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.statusColumn,
-            this.linkColumn,
             this.pageColumn,
+            this.linkColumn,
             this.detailColumn});
 			this.listView.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.listView.FullRowSelect = true;

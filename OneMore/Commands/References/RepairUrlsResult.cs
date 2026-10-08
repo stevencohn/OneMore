@@ -37,6 +37,12 @@ namespace River.OneMoreAddIn.Commands
 		/// <summary>The title of the page that holds the link</summary>
 		public string PageTitle { get; set; }
 
+		/// <summary>
+		/// The path of the notebook, section groups and section that hold the page, without
+		/// the name of the page
+		/// </summary>
+		public string PagePath { get; set; }
+
 		/// <summary>Says why the link was highlighted or left alone, or where it points now</summary>
 		public string Detail { get; set; }
 	}

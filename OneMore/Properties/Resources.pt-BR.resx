@@ -4230,6 +4230,10 @@ Selecione Não para manter uma linha vazia entre os parágrafos</value>
     <value>Destaque links que não podem ser corrigidos</value>
     <comment>check box</comment>
   </data>
+  <data name="RepairUrlsDialog_onenoteBox.Text" xml:space="preserve">
+    <value>Verifique apenas uma nota: URLs</value>
+    <comment>check box</comment>
+  </data>
   <data name="RepairUrlsDialog_pageGroupRadio.Text" xml:space="preserve">
     <value>Este grupo de páginas</value>
     <comment>radio button</comment>
