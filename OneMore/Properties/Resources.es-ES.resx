@@ -4229,6 +4229,10 @@ Seleccione No para mantener una línea vacía entre los párrafos</value>
     <value>Resaltar enlaces que no se pueden arreglar</value>
     <comment>check box</comment>
   </data>
+  <data name="RepairUrlsDialog_onenoteBox.Text" xml:space="preserve">
+    <value>Marque solo una nota: URL</value>
+    <comment>check box</comment>
+  </data>
   <data name="RepairUrlsDialog_pageGroupRadio.Text" xml:space="preserve">
     <value>Este grupo de páginas</value>
     <comment>radio button</comment>

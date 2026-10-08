@@ -9944,6 +9944,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check only onenote: URLs.
+        /// </summary>
+        internal static string RepairUrlsDialog_onenoteBox_Text {
+            get {
+                return ResourceManager.GetString("RepairUrlsDialog_onenoteBox.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Repair links that can be fixed.
         /// </summary>
         internal static string RepairUrlsDialog_repairBox_Text {

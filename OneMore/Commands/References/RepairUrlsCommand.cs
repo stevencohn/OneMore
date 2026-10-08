@@ -36,6 +36,7 @@ namespace River.OneMoreAddIn.Commands
 		private bool perLinkProgress;
 		private bool repairLinks = true;
 		private bool markLinks = true;
+		private bool onenoteOnly;
 
 		private ProgressDialog progressDialog;
 		private readonly TaskCompletionSource<bool> progressClosed = new();
@@ -110,6 +111,7 @@ namespace River.OneMoreAddIn.Commands
 
 				dialog.Repair = settings.Get("repair", true);
 				dialog.Mark = settings.Get("mark", true);
+				dialog.OnenoteOnly = settings.Get("onenoteOnly", false);
 
 				if (dialog.ShowDialog(owner) != System.Windows.Forms.DialogResult.OK)
 				{
@@ -121,7 +123,9 @@ namespace River.OneMoreAddIn.Commands
 				markColor = dialog.MarkColor.ToRGBHtml();
 				repairLinks = dialog.Repair;
 				markLinks = dialog.Mark;
+				onenoteOnly = dialog.OnenoteOnly;
 
+				settings.Add("onenoteOnly", onenoteOnly);
 				settings.Add("markColor", markColor);
 				settings.Add("repair", repairLinks);
 				settings.Add("mark", markLinks);
@@ -594,6 +598,12 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (var item in items)
 			{
+				if (onenoteOnly)
+				{
+					// web links are neither resolved, repaired nor reported
+					break;
+				}
+
 				// do not use await in the body loop; just build list of tasks
 				tasks.Add(ValidateUrl(item, false, token));
 			}

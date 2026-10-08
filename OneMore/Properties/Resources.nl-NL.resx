@@ -4230,6 +4230,10 @@ Selecteer NO om één lege regel tussen paragrafen te behouden</value>
     <value>Markeer links die niet kunnen worden opgelost</value>
     <comment>check box</comment>
   </data>
+  <data name="RepairUrlsDialog_onenoteBox.Text" xml:space="preserve">
+    <value>Vink slechts één opmerking aan: URL's</value>
+    <comment>check box</comment>
+  </data>
   <data name="RepairUrlsDialog_pageGroupRadio.Text" xml:space="preserve">
     <value>Deze paginagroep</value>
     <comment>radio button</comment>

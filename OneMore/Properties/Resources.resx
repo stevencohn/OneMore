@@ -4258,6 +4258,10 @@ Select No to keep one empty line between paragraphs</value>
     <value>Highlight links that cannot be fixed</value>
     <comment>check box</comment>
   </data>
+  <data name="RepairUrlsDialog_onenoteBox.Text" xml:space="preserve">
+    <value>Check only onenote: URLs</value>
+    <comment>check box</comment>
+  </data>
   <data name="RepairUrlsDialog_pageGroupRadio.Text" xml:space="preserve">
     <value>This page group</value>
     <comment>radio button</comment>

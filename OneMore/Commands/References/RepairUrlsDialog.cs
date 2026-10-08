@@ -44,6 +44,7 @@ namespace River.OneMoreAddIn.Commands
 					"sectionGroupRadio",
 					"notebookRadio=phrase_AllSectionInTheCurrentNotebook",
 					"notebooksRadio=phrase_AllNotebooks",
+					"onenoteBox",
 					"repairBox",
 					"markBox",
 					"colorLabel",
@@ -65,6 +66,16 @@ namespace River.OneMoreAddIn.Commands
 				markColor = value;
 				colorSwatch.BackColor = value;
 			}
+		}
+
+
+		/// <summary>
+		/// Gets or sets whether web links are ignored, checking only onenote: links.
+		/// </summary>
+		public bool OnenoteOnly
+		{
+			get => onenoteBox.Checked;
+			set => onenoteBox.Checked = value;
 		}
 
 

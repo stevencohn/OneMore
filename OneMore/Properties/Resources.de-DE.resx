@@ -4229,6 +4229,10 @@ Wähle Nein, um eine leere Zeile zwischen den Absätzen zu halten</value>
     <value>Markieren Sie Links, die nicht repariert werden können</value>
     <comment>check box</comment>
   </data>
+  <data name="RepairUrlsDialog_onenoteBox.Text" xml:space="preserve">
+    <value>Überprüfen Sie nur onenote: URLs</value>
+    <comment>check box</comment>
+  </data>
   <data name="RepairUrlsDialog_pageGroupRadio.Text" xml:space="preserve">
     <value>Diese Seitengruppe</value>
     <comment>radio button</comment>
