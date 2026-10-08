@@ -1015,11 +1015,11 @@
         onAction="RefreshFootnotesCmd"/>
       <menuSeparator id="ribRefMenuUtilities"/>
       <button
-        id="ribCheckUrlsButton"
+        id="ribRepairUrlsButton"
         imageMso="HyperlinksVerify"
         getLabel="GetRibbonLabel"
         getScreentip="GetRibbonScreentip"
-        onAction="CheckUrlsCmd"/>
+        onAction="RepairUrlsCmd"/>
       <button
         id="ribNameUrlsButton"
         imageMso="AutoSigWebInsertHyperlink"

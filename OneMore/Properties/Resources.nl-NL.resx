@@ -621,18 +621,6 @@ Omkeren</value>
     <value>Ongedefinieerde variabele "{0}"</value>
     <comment>error</comment>
   </data>
-  <data name="CheckUrlsCommand_checkingMsg" xml:space="preserve">
-    <value>{0} URL's controleren</value>
-    <comment>message</comment>
-  </data>
-  <data name="CheckUrlsCommand_invaldiMsg" xml:space="preserve">
-    <value>Er zijn {0} ongeldige URL's gevonden op deze pagina</value>
-    <comment>message</comment>
-  </data>
-  <data name="CheckUrlsCommand_mappingMsg" xml:space="preserve">
-    <value>Het in kaart brengen van {0} paginareferenties</value>
-    <comment>message</comment>
-  </data>
   <data name="CleanRemindersCommand_count" xml:space="preserve">
     <value>{0} zwevende herinneringen opgeschoond</value>
     <comment>message box</comment>
@@ -4178,6 +4166,118 @@ Selecteer NO om één lege regel tussen paragrafen te behouden</value>
     <value>Herschik hoe stijlen in de galerij worden weergegeven. </value>
     <comment>instructions</comment>
   </data>
+  <data name="RepairUrlsCommand_checkingMsg" xml:space="preserve">
+    <value>{0} URL's controleren</value>
+    <comment>message</comment>
+  </data>
+  <data name="RepairUrlsCommand_detailAmbiguous" xml:space="preserve">
+    <value>Er komt meer dan één pagina overeen; het kunnen kopieën zijn</value>
+    <comment>message</comment>
+  </data>
+  <data name="RepairUrlsCommand_detailNotFound" xml:space="preserve">
+    <value>De pagina kon niet worden gevonden</value>
+    <comment>message</comment>
+  </data>
+  <data name="RepairUrlsCommand_detailOffline" xml:space="preserve">
+    <value>De pagina bevindt zich in een notitieblok dat niet is geopend</value>
+    <comment>message</comment>
+  </data>
+  <data name="RepairUrlsCommand_detailParagraph" xml:space="preserve">
+    <value>Een link naar een paragraaf, zoals die is; de pagina is nu {0}</value>
+    <comment>message</comment>
+  </data>
+  <data name="RepairUrlsCommand_detailRepaired" xml:space="preserve">
+    <value>Nu links naar {0}</value>
+    <comment>message</comment>
+  </data>
+  <data name="RepairUrlsCommand_detailStale" xml:space="preserve">
+    <value>De link is verouderd; de pagina is nu {0}</value>
+    <comment>message</comment>
+  </data>
+  <data name="RepairUrlsCommand_detailUnverified" xml:space="preserve">
+    <value>De pagina kon nog niet worden geverifieerd</value>
+    <comment>message</comment>
+  </data>
+  <data name="RepairUrlsCommand_detailUpdateFailed" xml:space="preserve">
+    <value>De pagina kon niet worden bijgewerkt, dus de link is niet gewijzigd</value>
+    <comment>message</comment>
+  </data>
+  <data name="RepairUrlsCommand_detailWeb" xml:space="preserve">
+    <value>Het adres was niet bereikbaar</value>
+    <comment>message</comment>
+  </data>
+  <data name="RepairUrlsCommand_mappingMsg" xml:space="preserve">
+    <value>Het in kaart brengen van {0} paginareferenties</value>
+    <comment>message</comment>
+  </data>
+  <data name="RepairUrlsCommand_noneMsg" xml:space="preserve">
+    <value>Er zijn geen ongeldige links gevonden</value>
+    <comment>message</comment>
+  </data>
+  <data name="RepairUrlsCommand_pagesMsg" xml:space="preserve">
+    <value>Links op {0} pagina's controleren</value>
+    <comment>message</comment>
+  </data>
+  <data name="RepairUrlsDialog_colorLabel.Text" xml:space="preserve">
+    <value>Markeer ongeldige links met</value>
+    <comment>label</comment>
+  </data>
+  <data name="RepairUrlsDialog_groupBox.Text" xml:space="preserve">
+    <value>Controleer de links</value>
+    <comment>group box</comment>
+  </data>
+  <data name="RepairUrlsDialog_markBox.Text" xml:space="preserve">
+    <value>Markeer links die niet kunnen worden opgelost</value>
+    <comment>check box</comment>
+  </data>
+  <data name="RepairUrlsDialog_pageGroupRadio.Text" xml:space="preserve">
+    <value>Deze paginagroep</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="RepairUrlsDialog_pageRadio.Text" xml:space="preserve">
+    <value>Deze pagina of selectie</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="RepairUrlsDialog_repairBox.Text" xml:space="preserve">
+    <value>Repareer koppelingen die kunnen worden gerepareerd</value>
+    <comment>check box</comment>
+  </data>
+  <data name="RepairUrlsDialog_sectionGroupRadio.Text" xml:space="preserve">
+    <value>Deze sectiegroep</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="RepairUrlsDialog_Text" xml:space="preserve">
+    <value>URL's repareren</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="RepairUrlsResultsDialog_detailColumn" xml:space="preserve">
+    <value>Details</value>
+    <comment>column header</comment>
+  </data>
+  <data name="RepairUrlsResultsDialog_highlighted" xml:space="preserve">
+    <value>Gemarkeerd</value>
+    <comment>link outcome</comment>
+  </data>
+  <data name="RepairUrlsResultsDialog_linkColumn" xml:space="preserve">
+    <value>Link</value>
+    <comment>column header</comment>
+  </data>
+  <data name="RepairUrlsResultsDialog_repaired" xml:space="preserve">
+    <value>Gerepareerd</value>
+    <comment>link outcome</comment>
+  </data>
+  <data name="RepairUrlsResultsDialog_summaryMsg" xml:space="preserve">
+    <value>{0} gerepareerd, {1} gemarkeerd, {2} ongewijzigd</value>
+    <comment>message</comment>
+  </data>
+  <data name="RepairUrlsResultsDialog_Text" xml:space="preserve">
+    <value>Reparatie URL's Resultaten</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="RepairUrlsResultsDialog_unchanged" xml:space="preserve">
+    <value>Onveranderd</value>
+    <comment>link outcome</comment>
+  </data>
   <data name="ReportRemindersDialog.Text" xml:space="preserve">
     <value>Rapporteerder</value>
   </data>
@@ -4521,14 +4621,6 @@ Tabblad Help</value>
   <data name="ribCheckForUpdatesButton_Label" xml:space="preserve">
     <value>Controleren op updates</value>
     <comment>command</comment>
-  </data>
-  <data name="ribCheckUrlsButton_Label" xml:space="preserve">
-    <value>Controleer URL's</value>
-    <comment>ribbon references</comment>
-  </data>
-  <data name="ribCheckUrlsButton_Screentip" xml:space="preserve">
-    <value>Controleer op ongeldige URL's en markeer deze</value>
-    <comment>ribbon references</comment>
   </data>
   <data name="ribChooseColorizerButton_Label" xml:space="preserve">
     <value>Inkleuren</value>
@@ -5785,6 +5877,14 @@ Tabblad Help</value>
   </data>
   <data name="ribRemoveTagsButton_Screentip" xml:space="preserve">
     <value>Tags verwijderen die niet aan herinneringen zijn gekoppeld</value>
+  </data>
+  <data name="ribRepairUrlsButton_Label" xml:space="preserve">
+    <value>URL's repareren</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribRepairUrlsButton_Screentip" xml:space="preserve">
+    <value>Controleer op ongeldige URL's en repareer of markeer deze</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribReplayButton_Label" xml:space="preserve">
     <value>Laatste opdracht herhalen</value>

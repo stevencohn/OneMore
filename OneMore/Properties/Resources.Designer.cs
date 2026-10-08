@@ -1216,33 +1216,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Checking {0} URLs.
-        /// </summary>
-        internal static string CheckUrlsCommand_checkingMsg {
-            get {
-                return ResourceManager.GetString("CheckUrlsCommand_checkingMsg", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Found {0} invalid URLs on this page.
-        /// </summary>
-        internal static string CheckUrlsCommand_invaldiMsg {
-            get {
-                return ResourceManager.GetString("CheckUrlsCommand_invaldiMsg", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Mapping {0} page references.
-        /// </summary>
-        internal static string CheckUrlsCommand_mappingMsg {
-            get {
-                return ResourceManager.GetString("CheckUrlsCommand_mappingMsg", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Cleaned up {0} orphaned reminders.
         /// </summary>
         internal static string CleanRemindersCommand_count {
@@ -4285,7 +4258,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This favorite could mean more than one page, so OneMore did not guess. Remove it and add it again.
+        ///   Looks up a localized string similar to This favorite could mean more than one page, so OneMore did not guess. Remove it and add it again..
         /// </summary>
         internal static string FavoritesCommand_ambiguous {
             get {
@@ -4294,61 +4267,16 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This favorite no longer exists. It may have been deleted or renamed. Remove it and add it again.
+        ///   Looks up a localized string similar to This favorite no longer exists. It may have been deleted or renamed. Remove it and add it again..
         /// </summary>
         internal static string FavoritesCommand_broken {
             get {
                 return ResourceManager.GetString("FavoritesCommand_broken", resourceCulture);
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized string similar to This page could mean more than one page, so OneMore did not guess..
-        /// </summary>
-        internal static string NavigatorLauncher_ambiguous {
-            get {
-                return ResourceManager.GetString("NavigatorLauncher_ambiguous", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to This page no longer exists. It may have been deleted or renamed..
-        /// </summary>
-        internal static string NavigatorLauncher_broken {
-            get {
-                return ResourceManager.GetString("NavigatorLauncher_broken", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Could not navigate at this time. Try again in a few seconds..
-        /// </summary>
-        internal static string NavigatorLauncher_failed {
-            get {
-                return ResourceManager.GetString("NavigatorLauncher_failed", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to This page is in a notebook that is not open or is still loading, or in a locked section. If you just opened the notebook, try again in a moment..
-        /// </summary>
-        internal static string NavigatorLauncher_offline {
-            get {
-                return ResourceManager.GetString("NavigatorLauncher_offline", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to OneMore is still learning where your pages are, so it cannot find this page yet. Try again in a few minutes..
-        /// </summary>
-        internal static string NavigatorLauncher_pending {
-            get {
-                return ResourceManager.GetString("NavigatorLauncher_pending", resourceCulture);
-            }
-        }
         
         /// <summary>
-        ///   Looks up a localized string similar to This favorite is in a notebook that is not open or is still loading, or in a locked section. If you just opened the notebook, try again in a moment.
+        ///   Looks up a localized string similar to This favorite is in a notebook that is not open or is still loading, or in a locked section. If you just opened the notebook, try again in a moment..
         /// </summary>
         internal static string FavoritesCommand_offline {
             get {
@@ -4357,7 +4285,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to OneMore is still learning where your pages are, so it cannot find this favorite yet. Try again in a few minutes.
+        ///   Looks up a localized string similar to OneMore is still learning where your pages are, so it cannot find this favorite yet. Try again in a few minutes..
         /// </summary>
         internal static string FavoritesCommand_pending {
             get {
@@ -4367,8 +4295,7 @@ namespace River.OneMoreAddIn.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to CREATE TABLE IF NOT EXISTS favorites_folder (folderID INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, UNIQUE(name));
-        ///CREATE TABLE IF NOT EXISTS favorite (favoriteID INTEGER PRIMARY KEY AUTOINCREMENT, folderID INTEGER REFERENCES favorites_folder(folderID) ON DELETE CASCADE, name TEXT NOT NULL, alias TEXT, location TEXT, uri TEXT NOT NULL, notebookID TEXT NOT NULL, sectionID TEXT NOT NULL, pageID TEXT, kind TEXT, sortOrder INTEGER NOT NULL DEFAULT 0);
-        ///CREATE TABLE IF NOT EXISTS favorites_schema (sche [rest of string was truncated]&quot;;.
+        ///CREATE TABLE IF NOT EXISTS favorite (favoriteID INTEGER PRIMARY KEY AUTOINCREMENT, folderID INTEGER REFERENCES favorites_folder(folderID) ON DELETE CASCADE, name TEXT NOT NULL, alias TEXT, location TEXT, uri TEXT NOT NULL, notebookID TEXT NOT NULL, sectionID TEXT NOT NULL, pageID TEXT, kind TEXT, sortOrder INTEGER NOT NULL DEFAULT 0, pageKey INTEGER, notebookKey TEXT, sectionKey TEXT) [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string FavoritesDB {
             get {
@@ -5210,6 +5137,16 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CREATE TABLE IF NOT EXISTS hashtag_schedule (scheduleID INTEGER PRIMARY KEY CHECK (scheduleID = 0), state TEXT NOT NULL, startTime TEXT NOT NULL, notebooks TEXT NOT NULL DEFAULT &apos;[]&apos;, ownerPid INTEGER, ownerStart TEXT, heartbeat TEXT, attempts INTEGER NOT NULL DEFAULT 0, updated TEXT NOT NULL);
+        ///.
+        /// </summary>
+        internal static string HashtagScheduleDB {
+            get {
+                return ResourceManager.GetString("HashtagScheduleDB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CREATE TABLE IF NOT EXISTS hashtag_scanner (scannerID INTEGER PRIMARY KEY UNIQUE NOT NULL, version NUMERIC (12) UNIQUE NOT NULL, scanTime TEXT NOT NULL);
         ///CREATE TABLE IF NOT EXISTS hashtag (tag TEXT NOT NULL, moreID TEXT NOT NULL, objectID TEXT NOT NULL, snippet TEXT, documentOrder INTEGER DEFAULT (0), lastModified TEXT NOT NULL, PRIMARY KEY (tag, objectID), CONSTRAINT FK_moreID FOREIGN KEY (moreID) REFERENCES hashtag_page (moreID) ON DELETE CASCADE);
         ///CREATE TABLE IF NOT EXISTS hashtag_page (moreID PRIMAR [rest of string was truncated]&quot;;.
@@ -5219,26 +5156,8 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("HashtagsDB", resourceCulture);
             }
         }
-
+        
         /// <summary>
-        ///   Looks up a localized string similar to CREATE TABLE IF NOT EXISTS hashtag_schedule (scheduleID INTEGER PRIMARY KEY CHECK (scheduleID = 0), state TEXT NOT NULL, startTime TEXT NOT NULL, ...
-        /// </summary>
-        internal static string HashtagScheduleDB {
-            get {
-                return ResourceManager.GetString("HashtagScheduleDB", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to CREATE TABLE IF NOT EXISTS identity_schema (schemaID INTEGER PRIMARY KEY UNIQUE NOT NULL, version NUMERIC (12) UNIQUE NOT NULL);
-        ///CREATE TABLE IF NOT EXISTS identity_page (pageKey INTEGER PRIMARY KEY AUTOINCREMENT, pageID TEXT NOT NULL, notebookKey TEXT NOT NULL, sectionKey TEXT NOT NULL, title TEXT NOT NULL, created TEXT NOT NULL, modified TEXT NOT NULL, level INTEGER NOT NULL DEFAULT 1, missingSince TEXT, lastSeen TEXT NOT NULL); [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string PageIdentityDB {
-            get {
-                return ResourceManager.GetString("PageIdentityDB", resourceCulture);
-            }
-        }
-                /// <summary>
         ///   Looks up a localized string similar to Disable the hashtag service. This will also disable hashtag searching..
         /// </summary>
         internal static string HashtagSheet_disabledBox_Text {
@@ -6848,7 +6767,8 @@ namespace River.OneMoreAddIn.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to CREATE TABLE IF NOT EXISTS layout (layoutID INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, UNIQUE (name));
-        ///CREATE TABLE IF NOT EXISTS layout_window (windowID INTEGER PRIMARY KEY AUTOINCREMENT, layoutID INTEGER NOT NULL REFERENCES layout (layoutID) ON DELETE CASCADE, name TEXT NOT NULL, alias TEXT, location TEXT, uri TEXT NOT NULL, notebookID TEXT NOT NULL, sectionID TEXT NOT NULL, pageID TEXT NOT NULL, zOrder INTEGER NOT NULL DEFAULT 0, device TEXT, winLeft INTEGER, winTop INTEGER, winRight INTEGER [rest of string was truncated]&quot;;.
+        ///CREATE TABLE IF NOT EXISTS layouts_schema (schemaID INTEGER PRIMARY KEY UNIQUE NOT NULL, version NUMERIC (12) UNIQUE NOT NULL);
+        ///CREATE TABLE IF NOT EXISTS layout_window (windowID INTEGER PRIMARY KEY AUTOINCREMENT, layoutID INTEGER NOT NULL REFERENCES layout (layoutID) ON DELETE CASCADE, name TEXT NOT NULL, alias TEXT, location TEXT, uri TEXT NOT NULL, notebookID TEXT NOT NULL, sectionID TEXT  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string LayoutsDB {
             get {
@@ -7598,6 +7518,51 @@ namespace River.OneMoreAddIn.Properties {
         internal static string MovePageCommand_noPages {
             get {
                 return ResourceManager.GetString("MovePageCommand_noPages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This page could mean more than one page, so OneMore did not guess..
+        /// </summary>
+        internal static string NavigatorLauncher_ambiguous {
+            get {
+                return ResourceManager.GetString("NavigatorLauncher_ambiguous", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This page no longer exists. It may have been deleted or renamed..
+        /// </summary>
+        internal static string NavigatorLauncher_broken {
+            get {
+                return ResourceManager.GetString("NavigatorLauncher_broken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not navigate at this time. Try again in a few seconds..
+        /// </summary>
+        internal static string NavigatorLauncher_failed {
+            get {
+                return ResourceManager.GetString("NavigatorLauncher_failed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This page is in a notebook that is not open or is still loading, or in a locked section. If you just opened the notebook, try again in a moment..
+        /// </summary>
+        internal static string NavigatorLauncher_offline {
+            get {
+                return ResourceManager.GetString("NavigatorLauncher_offline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OneMore is still learning where your pages are, so it cannot find this page yet. Try again in a few minutes..
+        /// </summary>
+        internal static string NavigatorLauncher_pending {
+            get {
+                return ResourceManager.GetString("NavigatorLauncher_pending", resourceCulture);
             }
         }
         
@@ -8585,6 +8550,17 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CREATE TABLE IF NOT EXISTS identity_schema (schemaID INTEGER PRIMARY KEY UNIQUE NOT NULL, version NUMERIC (12) UNIQUE NOT NULL);
+        ///CREATE TABLE IF NOT EXISTS identity_page (pageKey INTEGER PRIMARY KEY AUTOINCREMENT, pageID TEXT NOT NULL, notebookKey TEXT NOT NULL, sectionKey TEXT NOT NULL, title TEXT NOT NULL, created TEXT NOT NULL, modified TEXT NOT NULL, level INTEGER NOT NULL DEFAULT 1, missingSince TEXT, lastSeen TEXT NOT NULL, pageGuid TEXT);
+        ///CREATE INDEX IF NOT EXISTS IDX_identity_pageID ON identity_p [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string PageIdentityDB {
+            get {
+                return ResourceManager.GetString("PageIdentityDB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Duplicate Page.
         /// </summary>
         internal static string PageSheet_duplicateGroup_Text {
@@ -9477,15 +9453,6 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("RemindCommand_noReminder", resourceCulture);
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Move the text cursor to an item of a list or select list items.
-        /// </summary>
-        internal static string ResetListStyleCommand_NoList {
-            get {
-                return ResourceManager.GetString("ResetListStyleCommand_NoList", resourceCulture);
-            }
-        }
         
         /// <summary>
         ///   Looks up a localized string similar to Due date.
@@ -9959,6 +9926,258 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Checking links on {0} pages.
+        /// </summary>
+        internal static string RepairUrlsCommand_pagesMsg {
+            get {
+                return ResourceManager.GetString("RepairUrlsCommand_pagesMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Highlight links that cannot be fixed.
+        /// </summary>
+        internal static string RepairUrlsDialog_markBox_Text {
+            get {
+                return ResourceManager.GetString("RepairUrlsDialog_markBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Repair links that can be fixed.
+        /// </summary>
+        internal static string RepairUrlsDialog_repairBox_Text {
+            get {
+                return ResourceManager.GetString("RepairUrlsDialog_repairBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to More than one page matches; they may be copies.
+        /// </summary>
+        internal static string RepairUrlsCommand_detailAmbiguous {
+            get {
+                return ResourceManager.GetString("RepairUrlsCommand_detailAmbiguous", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The page could not be found.
+        /// </summary>
+        internal static string RepairUrlsCommand_detailNotFound {
+            get {
+                return ResourceManager.GetString("RepairUrlsCommand_detailNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The page is in a notebook that is not open.
+        /// </summary>
+        internal static string RepairUrlsCommand_detailOffline {
+            get {
+                return ResourceManager.GetString("RepairUrlsCommand_detailOffline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A link to a paragraph, left as it is; the page is now {0}.
+        /// </summary>
+        internal static string RepairUrlsCommand_detailParagraph {
+            get {
+                return ResourceManager.GetString("RepairUrlsCommand_detailParagraph", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Now links to {0}.
+        /// </summary>
+        internal static string RepairUrlsCommand_detailRepaired {
+            get {
+                return ResourceManager.GetString("RepairUrlsCommand_detailRepaired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The link is out of date; the page is now {0}.
+        /// </summary>
+        internal static string RepairUrlsCommand_detailStale {
+            get {
+                return ResourceManager.GetString("RepairUrlsCommand_detailStale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The page could not be verified yet.
+        /// </summary>
+        internal static string RepairUrlsCommand_detailUnverified {
+            get {
+                return ResourceManager.GetString("RepairUrlsCommand_detailUnverified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The page could not be updated, so the link was not changed.
+        /// </summary>
+        internal static string RepairUrlsCommand_detailUpdateFailed {
+            get {
+                return ResourceManager.GetString("RepairUrlsCommand_detailUpdateFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The address could not be reached.
+        /// </summary>
+        internal static string RepairUrlsCommand_detailWeb {
+            get {
+                return ResourceManager.GetString("RepairUrlsCommand_detailWeb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No invalid links were found.
+        /// </summary>
+        internal static string RepairUrlsCommand_noneMsg {
+            get {
+                return ResourceManager.GetString("RepairUrlsCommand_noneMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Details.
+        /// </summary>
+        internal static string RepairUrlsResultsDialog_detailColumn {
+            get {
+                return ResourceManager.GetString("RepairUrlsResultsDialog_detailColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Highlighted.
+        /// </summary>
+        internal static string RepairUrlsResultsDialog_highlighted {
+            get {
+                return ResourceManager.GetString("RepairUrlsResultsDialog_highlighted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Link.
+        /// </summary>
+        internal static string RepairUrlsResultsDialog_linkColumn {
+            get {
+                return ResourceManager.GetString("RepairUrlsResultsDialog_linkColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Repaired.
+        /// </summary>
+        internal static string RepairUrlsResultsDialog_repaired {
+            get {
+                return ResourceManager.GetString("RepairUrlsResultsDialog_repaired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} repaired, {1} highlighted, {2} unchanged.
+        /// </summary>
+        internal static string RepairUrlsResultsDialog_summaryMsg {
+            get {
+                return ResourceManager.GetString("RepairUrlsResultsDialog_summaryMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Repair URLs Results.
+        /// </summary>
+        internal static string RepairUrlsResultsDialog_Text {
+            get {
+                return ResourceManager.GetString("RepairUrlsResultsDialog_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unchanged.
+        /// </summary>
+        internal static string RepairUrlsResultsDialog_unchanged {
+            get {
+                return ResourceManager.GetString("RepairUrlsResultsDialog_unchanged", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Highlight color.
+        /// </summary>
+        internal static string RepairUrlsDialog_colorLabel_Text {
+            get {
+                return ResourceManager.GetString("RepairUrlsDialog_colorLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check links in.
+        /// </summary>
+        internal static string RepairUrlsDialog_groupBox_Text {
+            get {
+                return ResourceManager.GetString("RepairUrlsDialog_groupBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This page group.
+        /// </summary>
+        internal static string RepairUrlsDialog_pageGroupRadio_Text {
+            get {
+                return ResourceManager.GetString("RepairUrlsDialog_pageGroupRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This page or selection.
+        /// </summary>
+        internal static string RepairUrlsDialog_pageRadio_Text {
+            get {
+                return ResourceManager.GetString("RepairUrlsDialog_pageRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This section group.
+        /// </summary>
+        internal static string RepairUrlsDialog_sectionGroupRadio_Text {
+            get {
+                return ResourceManager.GetString("RepairUrlsDialog_sectionGroupRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Repair URLs.
+        /// </summary>
+        internal static string RepairUrlsDialog_Text {
+            get {
+                return ResourceManager.GetString("RepairUrlsDialog_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Checking {0} URLs.
+        /// </summary>
+        internal static string RepairUrlsCommand_checkingMsg {
+            get {
+                return ResourceManager.GetString("RepairUrlsCommand_checkingMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mapping {0} page references.
+        /// </summary>
+        internal static string RepairUrlsCommand_mappingMsg {
+            get {
+                return ResourceManager.GetString("RepairUrlsCommand_mappingMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Group reminders by notebook.
         /// </summary>
         internal static string ReportRemindersDialog_groupByNotebookBox_Text {
@@ -10022,6 +10241,15 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Move the text cursor to an item of a list or select list items.
+        /// </summary>
+        internal static string ResetListStyleCommand_NoList {
+            get {
+                return ResourceManager.GetString("ResetListStyleCommand_NoList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not restore background images because the resulting page failed validation; no changes were made.
         /// </summary>
         internal static string RestoreBackgroundImagesCommand_invalid {
@@ -10058,15 +10286,6 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Layout &apos;{0}&apos; was not found..
-        /// </summary>
-        internal static string RestoreLayoutCommand_notFound {
-            get {
-                return ResourceManager.GetString("RestoreLayoutCommand_notFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to more than one page fits it, so OneMore did not guess.
         /// </summary>
         internal static string RestoreLayoutCommand_ambiguous {
@@ -10099,6 +10318,15 @@ namespace River.OneMoreAddIn.Properties {
         internal static string RestoreLayoutCommand_incomplete {
             get {
                 return ResourceManager.GetString("RestoreLayoutCommand_incomplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Layout &apos;{0}&apos; was not found..
+        /// </summary>
+        internal static string RestoreLayoutCommand_notFound {
+            get {
+                return ResourceManager.GetString("RestoreLayoutCommand_notFound", resourceCulture);
             }
         }
         
@@ -10776,24 +11004,6 @@ namespace River.OneMoreAddIn.Properties {
         internal static string ribCheckForUpdatesButton_Label {
             get {
                 return ResourceManager.GetString("ribCheckForUpdatesButton_Label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Check URLs.
-        /// </summary>
-        internal static string ribCheckUrlsButton_Label {
-            get {
-                return ResourceManager.GetString("ribCheckUrlsButton_Label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Check for and highlight invalid URLs.
-        /// </summary>
-        internal static string ribCheckUrlsButton_Screentip {
-            get {
-                return ResourceManager.GetString("ribCheckUrlsButton_Screentip", resourceCulture);
             }
         }
         
@@ -13121,7 +13331,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribPastePresetWidthImageButton_Label", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Adjust and paste image from clipboard, resized to a preset width.
         /// </summary>
@@ -13130,7 +13340,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribPastePresetWidthImageButton_Screentip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Paste Rich Text.
         /// </summary>
@@ -13663,6 +13873,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Repair URLs.
+        /// </summary>
+        internal static string ribRepairUrlsButton_Label {
+            get {
+                return ResourceManager.GetString("ribRepairUrlsButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check for invalid URLs and repair or highlight them.
+        /// </summary>
+        internal static string ribRepairUrlsButton_Screentip {
+            get {
+                return ResourceManager.GetString("ribRepairUrlsButton_Screentip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Replay Last Command.
         /// </summary>
         internal static string ribReplayButton_Label {
@@ -13706,7 +13934,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribResetListStyleButton_Label", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Remove styling from the numbers or bullets of the list at the cursor or of the selected list items and apply the default Normal font and size.
         /// </summary>
@@ -13715,7 +13943,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribResetListStyleButton_Screentip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Reset All Completed Tasks.
         /// </summary>
@@ -13742,7 +13970,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribResizeContainerToPresetWidthButton_Label", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Resize the selected container to a preset width.
         /// </summary>
@@ -13751,7 +13979,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("ribResizeContainerToPresetWidthButton_Screentip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Restart Timer.
         /// </summary>
@@ -15480,7 +15708,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("SearchTitleDialog_refreshButton.Tooltip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Select all.
         /// </summary>
@@ -18335,7 +18563,7 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("word_User", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Value.
         /// </summary>

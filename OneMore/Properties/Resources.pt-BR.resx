@@ -621,18 +621,6 @@ Invertido</value>
     <value>Variável indefinida "{0}"</value>
     <comment>error</comment>
   </data>
-  <data name="CheckUrlsCommand_checkingMsg" xml:space="preserve">
-    <value>Verificando {0} URLs</value>
-    <comment>message</comment>
-  </data>
-  <data name="CheckUrlsCommand_invaldiMsg" xml:space="preserve">
-    <value>Foram encontrados {0} URLs inválidos nesta página</value>
-    <comment>message</comment>
-  </data>
-  <data name="CheckUrlsCommand_mappingMsg" xml:space="preserve">
-    <value>Mapeando {0} referências de página</value>
-    <comment>message</comment>
-  </data>
   <data name="CleanRemindersCommand_count" xml:space="preserve">
     <value>Foram limpos {0} lembretes órfãos</value>
     <comment>message box</comment>
@@ -4178,6 +4166,118 @@ Selecione Não para manter uma linha vazia entre os parágrafos</value>
     <value>Reordene como os estilos aparecem na galeria. </value>
     <comment>instructions</comment>
   </data>
+  <data name="RepairUrlsCommand_checkingMsg" xml:space="preserve">
+    <value>Verificando {0} URLs</value>
+    <comment>message</comment>
+  </data>
+  <data name="RepairUrlsCommand_detailAmbiguous" xml:space="preserve">
+    <value>Mais de uma página corresponde; eles podem ser cópias</value>
+    <comment>message</comment>
+  </data>
+  <data name="RepairUrlsCommand_detailNotFound" xml:space="preserve">
+    <value>A página não foi encontrada</value>
+    <comment>message</comment>
+  </data>
+  <data name="RepairUrlsCommand_detailOffline" xml:space="preserve">
+    <value>A página está em um caderno que não está aberto</value>
+    <comment>message</comment>
+  </data>
+  <data name="RepairUrlsCommand_detailParagraph" xml:space="preserve">
+    <value>Um link para um parágrafo, deixado como está; a página agora é {0}</value>
+    <comment>message</comment>
+  </data>
+  <data name="RepairUrlsCommand_detailRepaired" xml:space="preserve">
+    <value>Agora links para {0}</value>
+    <comment>message</comment>
+  </data>
+  <data name="RepairUrlsCommand_detailStale" xml:space="preserve">
+    <value>O link está desatualizado; a página agora é {0}</value>
+    <comment>message</comment>
+  </data>
+  <data name="RepairUrlsCommand_detailUnverified" xml:space="preserve">
+    <value>A página ainda não pôde ser verificada</value>
+    <comment>message</comment>
+  </data>
+  <data name="RepairUrlsCommand_detailUpdateFailed" xml:space="preserve">
+    <value>A página não pôde ser atualizada, portanto o link não foi alterado</value>
+    <comment>message</comment>
+  </data>
+  <data name="RepairUrlsCommand_detailWeb" xml:space="preserve">
+    <value>Não foi possível encontrar o endereço</value>
+    <comment>message</comment>
+  </data>
+  <data name="RepairUrlsCommand_mappingMsg" xml:space="preserve">
+    <value>Mapeando {0} referências de página</value>
+    <comment>message</comment>
+  </data>
+  <data name="RepairUrlsCommand_noneMsg" xml:space="preserve">
+    <value>Nenhum link inválido foi encontrado</value>
+    <comment>message</comment>
+  </data>
+  <data name="RepairUrlsCommand_pagesMsg" xml:space="preserve">
+    <value>Verificando links em {0} páginas</value>
+    <comment>message</comment>
+  </data>
+  <data name="RepairUrlsDialog_colorLabel.Text" xml:space="preserve">
+    <value>Marcar links inválidos com</value>
+    <comment>label</comment>
+  </data>
+  <data name="RepairUrlsDialog_groupBox.Text" xml:space="preserve">
+    <value>Verifique os links em</value>
+    <comment>group box</comment>
+  </data>
+  <data name="RepairUrlsDialog_markBox.Text" xml:space="preserve">
+    <value>Destaque links que não podem ser corrigidos</value>
+    <comment>check box</comment>
+  </data>
+  <data name="RepairUrlsDialog_pageGroupRadio.Text" xml:space="preserve">
+    <value>Este grupo de páginas</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="RepairUrlsDialog_pageRadio.Text" xml:space="preserve">
+    <value>Esta página ou seleção</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="RepairUrlsDialog_repairBox.Text" xml:space="preserve">
+    <value>Reparar links que podem ser consertados</value>
+    <comment>check box</comment>
+  </data>
+  <data name="RepairUrlsDialog_sectionGroupRadio.Text" xml:space="preserve">
+    <value>Este grupo de seções</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="RepairUrlsDialog_Text" xml:space="preserve">
+    <value>URLs de reparo</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="RepairUrlsResultsDialog_detailColumn" xml:space="preserve">
+    <value>Detalhes</value>
+    <comment>column header</comment>
+  </data>
+  <data name="RepairUrlsResultsDialog_highlighted" xml:space="preserve">
+    <value>Destacado</value>
+    <comment>link outcome</comment>
+  </data>
+  <data name="RepairUrlsResultsDialog_linkColumn" xml:space="preserve">
+    <value>Link</value>
+    <comment>column header</comment>
+  </data>
+  <data name="RepairUrlsResultsDialog_repaired" xml:space="preserve">
+    <value>Reparado</value>
+    <comment>link outcome</comment>
+  </data>
+  <data name="RepairUrlsResultsDialog_summaryMsg" xml:space="preserve">
+    <value>{0} reparado, {1} destacado, {2} inalterado</value>
+    <comment>message</comment>
+  </data>
+  <data name="RepairUrlsResultsDialog_Text" xml:space="preserve">
+    <value>Resultados de URLs de reparo</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="RepairUrlsResultsDialog_unchanged" xml:space="preserve">
+    <value>Inalterado</value>
+    <comment>link outcome</comment>
+  </data>
   <data name="ReportRemindersDialog.Text" xml:space="preserve">
     <value>Escopo de relatório</value>
   </data>
@@ -4521,14 +4621,6 @@ Guia Ajuda</value>
   <data name="ribCheckForUpdatesButton_Label" xml:space="preserve">
     <value>Verificar atualizações</value>
     <comment>command</comment>
-  </data>
-  <data name="ribCheckUrlsButton_Label" xml:space="preserve">
-    <value>Verifique URLs</value>
-    <comment>ribbon references</comment>
-  </data>
-  <data name="ribCheckUrlsButton_Screentip" xml:space="preserve">
-    <value>Verifique e destaque URLs inválidos</value>
-    <comment>ribbon references</comment>
   </data>
   <data name="ribChooseColorizerButton_Label" xml:space="preserve">
     <value>colorir</value>
@@ -5785,6 +5877,14 @@ Guia Ajuda</value>
   </data>
   <data name="ribRemoveTagsButton_Screentip" xml:space="preserve">
     <value>Remover tags não associadas a lembretes</value>
+  </data>
+  <data name="ribRepairUrlsButton_Label" xml:space="preserve">
+    <value>URLs de reparo</value>
+    <comment>ribbon references</comment>
+  </data>
+  <data name="ribRepairUrlsButton_Screentip" xml:space="preserve">
+    <value>Verifique se há URLs inválidos e repare-os ou destaque-os</value>
+    <comment>ribbon references</comment>
   </data>
   <data name="ribReplayButton_Label" xml:space="preserve">
     <value>Repetir o último comando</value>
