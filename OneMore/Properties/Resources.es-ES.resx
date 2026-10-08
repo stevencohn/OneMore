@@ -4249,6 +4249,10 @@ Seleccione No para mantener una línea vacía entre los párrafos</value>
     <value>Reparar URL</value>
     <comment>dialog title</comment>
   </data>
+  <data name="RepairUrlsResultsDialog_copyButton.Text" xml:space="preserve">
+    <value>Copiar a nueva página</value>
+    <comment>button</comment>
+  </data>
   <data name="RepairUrlsResultsDialog_detailColumn" xml:space="preserve">
     <value>Detalles</value>
     <comment>column header</comment>
@@ -4260,6 +4264,10 @@ Seleccione No para mantener una línea vacía entre los párrafos</value>
   <data name="RepairUrlsResultsDialog_linkColumn" xml:space="preserve">
     <value>Enlace</value>
     <comment>column header</comment>
+  </data>
+  <data name="RepairUrlsResultsDialog_pageTitle" xml:space="preserve">
+    <value>Resultados de reparación de URL</value>
+    <comment>page title</comment>
   </data>
   <data name="RepairUrlsResultsDialog_repaired" xml:space="preserve">
     <value>Reparada</value>
