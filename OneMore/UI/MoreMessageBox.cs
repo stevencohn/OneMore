@@ -4,6 +4,7 @@
 
 namespace River.OneMoreAddIn.UI
 {
+	using System;
 	using System.Drawing;
 	using System.Windows.Forms;
 	using Resx = Properties.Resources;
@@ -48,6 +49,7 @@ namespace River.OneMoreAddIn.UI
 		public void AppendMessage(string message, Color color)
 		{
 			messageBox.AppendFormattedText(message, color);
+			FitHeight();
 		}
 
 
@@ -59,17 +61,40 @@ namespace River.OneMoreAddIn.UI
 
 		public void SetMessage(string message)
 		{
-			var size = TextRenderer.MeasureText(
-				message, messageBox.Font, messageBox.Size, TextFormatFlags.NoClipping);
+			messageBox.Text = message;
+			FitHeight();
+		}
 
-			// leave a little room (is this good?)
-			var preferred = size.Height + messageBox.Font.Height;
-			if (preferred > messageBox.Height)
+
+		/// <summary>
+		/// Grows the dialog height, up to a maximum equal to its width, so the message
+		/// fits without a scrollbar. Measures using the RichTextBox's own wrapped layout.
+		/// </summary>
+		private void FitHeight()
+		{
+			if (messageBox.TextLength == 0)
 			{
-				Height += preferred - messageBox.Height;
+				return;
 			}
 
-			messageBox.Text = message;
+			// top of the last line in the control's actual layout, plus that line
+			// and a little room
+			var last = messageBox.GetPositionFromCharIndex(messageBox.TextLength - 1);
+			var needed = last.Y + (messageBox.Font.Height * 2);
+
+			var grow = needed - messageBox.ClientSize.Height;
+			if (grow <= 0)
+			{
+				return;
+			}
+
+			var maxHeight = Width;
+			if (Height >= maxHeight)
+			{
+				return;
+			}
+
+			Height = Math.Min(Height + grow, maxHeight);
 		}
 
 
