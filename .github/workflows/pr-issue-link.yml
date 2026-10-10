@@ -2,10 +2,11 @@ name: Link Issue to PR
 
 on:
   pull_request:
-    types: [opened]
+    types: [opened, closed]
 
 jobs:
   link-issue:
+    if: github.event.action == 'opened'
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
@@ -33,3 +34,57 @@ jobs:
               body: prefix + existing
             });
             console.log(`Prepended "Relates to #${issue}" to PR description.`);
+
+  # GitHub only adds a PR to an issue's Development list when the PR body contains a
+  # closing keyword (Closes/Fixes/Resolves #N); there is no API to link without one.
+  # A closing keyword also closes the issue when the PR merges, but issues here are closed
+  # manually, so after adding the keyword this job reopens the issue if GitHub closed it.
+  link-development:
+    ##
+    ## remove 'false &&' to enable this job !!
+    ##
+    if: true && github.event.action == 'closed' && github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      issues: write
+    steps:
+      - uses: actions/github-script@v8
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const body = pr.body || '';
+
+            // primary: "Relates to #N" in the body; fallback: "#N text" or "N text" title
+            const found = body.match(/relates\s+to\s+#(\d+)/i) || (pr.title || '').match(/^#?(\d+)\b/);
+            if (!found) {
+              console.log('No associated issue found — skipping.');
+              return;
+            }
+            const issue = parseInt(found[1], 10);
+
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+
+            const closing = new RegExp(`\\b(close[sd]?|fix(e[sd])?|resolve[sd]?)\\s+#${issue}\\b`, 'i');
+            if (!closing.test(body)) {
+              await github.rest.pulls.update({
+                owner,
+                repo,
+                pull_number: pr.number,
+                body: `${body}\n\nCloses #${issue}`
+              });
+              console.log(`Appended "Closes #${issue}" to PR description.`);
+            }
+
+            // GitHub closes the issue asynchronously after merge; wait and reopen it
+            for (let i = 0; i < 6; i++) {
+              await new Promise(resolve => setTimeout(resolve, 5000));
+              const { data } = await github.rest.issues.get({ owner, repo, issue_number: issue });
+              if (data.state === 'closed') {
+                await github.rest.issues.update({ owner, repo, issue_number: issue, state: 'open' });
+                console.log(`Reopened issue #${issue}.`);
+                return;
+              }
+            }
+            console.log(`Issue #${issue} remained open.`);
