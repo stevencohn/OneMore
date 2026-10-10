@@ -1257,7 +1257,7 @@
     <value>スペルチェックなし</value>
     <comment>Context menu</comment>
   </data>
-  <data name="ctxRemoveEmptyButton_Label" xml:space="preserve">
+  <data name="ctxAdjustBlankLinesButton_Label" xml:space="preserve">
     <value>空白行を調整する</value>
     <comment>Context menu</comment>
   </data>
@@ -4122,34 +4122,27 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <value>{0}% 類似</value>
     <comment>clickable similarity chip for a near-duplicate match, {0} rounded percentage</comment>
   </data>
-  <data name="RemoveEmptyCommand_option" xml:space="preserve">
-    <value>すべての空行を削除しますか？
-
-段落間の空行をすべて削除するには「はい」を選択してください
-段落間に1行の空行を残すには「いいえ」を選択してください</value>
-    <comment>message box</comment>
-  </data>
-  <data name="RemoveEmptyDialog.Text" xml:space="preserve">
+  <data name="AdjustBlankLinesDialog.Text" xml:space="preserve">
     <value>空白行を調整する</value>
     <comment>dialog title</comment>
   </data>
-  <data name="RemoveEmptyDialog_exactRadio.Text" xml:space="preserve">
+  <data name="AdjustBlankLinesDialog_exactRadio.Text" xml:space="preserve">
     <value>段落間には必ず 1 行の空白行を入れてください</value>
     <comment>radio button</comment>
   </data>
-  <data name="RemoveEmptyDialog_headingBox.Text" xml:space="preserve">
+  <data name="AdjustBlankLinesDialog_headingBox.Text" xml:space="preserve">
     <value>各見出しの後に空白行を 1 行挿入します</value>
     <comment>checkbox !EDIT</comment>
   </data>
-  <data name="RemoveEmptyDialog_keepRadio.Text" xml:space="preserve">
+  <data name="AdjustBlankLinesDialog_keepRadio.Text" xml:space="preserve">
     <value>段落間には最大でも 1 行の空白行を入れてください</value>
     <comment>radio button</comment>
   </data>
-  <data name="RemoveEmptyDialog_noteLabel.Text" xml:space="preserve">
+  <data name="AdjustBlankLinesDialog_noteLabel.Text" xml:space="preserve">
     <value>チェックを外すと、見出しの後の空白行が削除されます。空の見出しは常に削除されるか、通常の空行に変換されます。</value>
     <comment>label !EDIT</comment>
   </data>
-  <data name="RemoveEmptyDialog_removeRadio.Text" xml:space="preserve">
+  <data name="AdjustBlankLinesDialog_removeRadio.Text" xml:space="preserve">
     <value>段落間の空白行をすべて削除する</value>
     <comment>radio button</comment>
   </data>
@@ -5839,11 +5832,11 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <value>重複ページを特定して削除する</value>
     <comment>ribbon clean</comment>
   </data>
-  <data name="ribRemoveEmptyButton_Label" xml:space="preserve">
+  <data name="ribAdjustBlankLinesButton_Label" xml:space="preserve">
     <value>空白行を調整する</value>
     <comment>ribbon clean</comment>
   </data>
-  <data name="ribRemoveEmptyButton_Screentip" xml:space="preserve">
+  <data name="ribAdjustBlankLinesButton_Screentip" xml:space="preserve">
     <value>段落間および見出しの後に空行を削除、折りたたむ、または追加する</value>
     <comment>ribbon clean</comment>
   </data>

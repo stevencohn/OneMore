@@ -2622,9 +2622,9 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Remove Empty Paragraphs and Headings.
         /// </summary>
-        internal static string ctxRemoveEmptyButton_Label {
+        internal static string ctxAdjustBlankLinesButton_Label {
             get {
-                return ResourceManager.GetString("ctxRemoveEmptyButton_Label", resourceCulture);
+                return ResourceManager.GetString("ctxAdjustBlankLinesButton_Label", resourceCulture);
             }
         }
         
@@ -9824,68 +9824,56 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remove all empty lines?
-        ///
-        ///Select Yes to remove all empty lines between paragraphs
-        ///Select No to keep one empty line between paragraphs.
-        /// </summary>
-        internal static string RemoveEmptyCommand_option {
-            get {
-                return ResourceManager.GetString("RemoveEmptyCommand_option", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Adjust Blank Lines.
         /// </summary>
-        internal static string RemoveEmptyDialog_Text {
+        internal static string AdjustBlankLinesDialog_Text {
             get {
-                return ResourceManager.GetString("RemoveEmptyDialog.Text", resourceCulture);
+                return ResourceManager.GetString("AdjustBlankLinesDialog.Text", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Ensure exactly one blank line between paragraphs.
         /// </summary>
-        internal static string RemoveEmptyDialog_exactRadio_Text {
+        internal static string AdjustBlankLinesDialog_exactRadio_Text {
             get {
-                return ResourceManager.GetString("RemoveEmptyDialog_exactRadio.Text", resourceCulture);
+                return ResourceManager.GetString("AdjustBlankLinesDialog_exactRadio.Text", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Put one blank line after each heading.
         /// </summary>
-        internal static string RemoveEmptyDialog_headingBox_Text {
+        internal static string AdjustBlankLinesDialog_headingBox_Text {
             get {
-                return ResourceManager.GetString("RemoveEmptyDialog_headingBox.Text", resourceCulture);
+                return ResourceManager.GetString("AdjustBlankLinesDialog_headingBox.Text", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Keep at most one blank line between paragraphs.
         /// </summary>
-        internal static string RemoveEmptyDialog_keepRadio_Text {
+        internal static string AdjustBlankLinesDialog_keepRadio_Text {
             get {
-                return ResourceManager.GetString("RemoveEmptyDialog_keepRadio.Text", resourceCulture);
+                return ResourceManager.GetString("AdjustBlankLinesDialog_keepRadio.Text", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Unchecked removes blank lines after headings. Empty headings are always removed or converted to normal blank lines..
         /// </summary>
-        internal static string RemoveEmptyDialog_noteLabel_Text {
+        internal static string AdjustBlankLinesDialog_noteLabel_Text {
             get {
-                return ResourceManager.GetString("RemoveEmptyDialog_noteLabel.Text", resourceCulture);
+                return ResourceManager.GetString("AdjustBlankLinesDialog_noteLabel.Text", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Remove all blank lines between paragraphs.
         /// </summary>
-        internal static string RemoveEmptyDialog_removeRadio_Text {
+        internal static string AdjustBlankLinesDialog_removeRadio_Text {
             get {
-                return ResourceManager.GetString("RemoveEmptyDialog_removeRadio.Text", resourceCulture);
+                return ResourceManager.GetString("AdjustBlankLinesDialog_removeRadio.Text", resourceCulture);
             }
         }
         
@@ -13767,18 +13755,18 @@ namespace River.OneMoreAddIn.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Remove Empty Lines.
         /// </summary>
-        internal static string ribRemoveEmptyButton_Label {
+        internal static string ribAdjustBlankLinesButton_Label {
             get {
-                return ResourceManager.GetString("ribRemoveEmptyButton_Label", resourceCulture);
+                return ResourceManager.GetString("ribAdjustBlankLinesButton_Label", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Remove, collapse, or add blank lines between paragraphs and after headings.
         /// </summary>
-        internal static string ribRemoveEmptyButton_Screentip {
+        internal static string ribAdjustBlankLinesButton_Screentip {
             get {
-                return ResourceManager.GetString("ribRemoveEmptyButton_Screentip", resourceCulture);
+                return ResourceManager.GetString("ribAdjustBlankLinesButton_Screentip", resourceCulture);
             }
         }
         

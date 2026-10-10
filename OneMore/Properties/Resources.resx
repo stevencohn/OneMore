@@ -202,6 +202,30 @@
     <value>Add Top-Level Section Group</value>
     <comment>dialog title</comment>
   </data>
+  <data name="AdjustBlankLinesDialog.Text" xml:space="preserve">
+    <value>Adjust Blank Lines</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="AdjustBlankLinesDialog_exactRadio.Text" xml:space="preserve">
+    <value>Ensure exactly one blank line between paragraphs</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="AdjustBlankLinesDialog_headingBox.Text" xml:space="preserve">
+    <value>Put one blank line after each heading</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="AdjustBlankLinesDialog_keepRadio.Text" xml:space="preserve">
+    <value>Keep at most one blank line between paragraphs</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="AdjustBlankLinesDialog_noteLabel.Text" xml:space="preserve">
+    <value>Unchecked removes blank lines after headings. Empty headings are always removed or converted to normal blank lines.</value>
+    <comment>label</comment>
+  </data>
+  <data name="AdjustBlankLinesDialog_removeRadio.Text" xml:space="preserve">
+    <value>Remove all blank lines between paragraphs</value>
+    <comment>radio button</comment>
+  </data>
   <data name="AdjustImagesDialog.Text" xml:space="preserve">
     <value>Resize and Adjust Image</value>
     <comment>dialog title</comment>
@@ -1247,6 +1271,10 @@ Normal</value>
     <value>This image is from a printout. If it is cropped, it will no longer be associated with that original file. Do you want to continue cropping?</value>
     <comment>message box, question</comment>
   </data>
+  <data name="ctxAdjustBlankLinesButton_Label" xml:space="preserve">
+    <value>Adjust Blank Lines</value>
+    <comment>Context menu</comment>
+  </data>
   <data name="ctxCleanMenu_Label" xml:space="preserve">
     <value>Clean...</value>
     <comment>Context menu</comment>
@@ -1257,10 +1285,6 @@ Normal</value>
   </data>
   <data name="ctxNoSpellCheckButton_Label" xml:space="preserve">
     <value>No Spell Check</value>
-    <comment>Context menu</comment>
-  </data>
-  <data name="ctxRemoveEmptyButton_Label" xml:space="preserve">
-    <value>Adjust Blank Lines</value>
     <comment>Context menu</comment>
   </data>
   <data name="ctxRemoveSpacingButton_Label" xml:space="preserve">
@@ -4147,37 +4171,6 @@ Stylistic, Entity, Media</value>
     <value>{0}% similar</value>
     <comment>clickable similarity chip for a near-duplicate match, {0} rounded percentage</comment>
   </data>
-  <data name="RemoveEmptyCommand_option" xml:space="preserve">
-    <value>Remove all empty lines?
-
-Select Yes to remove all empty lines between paragraphs
-Select No to keep one empty line between paragraphs</value>
-    <comment>message box</comment>
-  </data>
-  <data name="RemoveEmptyDialog.Text" xml:space="preserve">
-    <value>Adjust Blank Lines</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="RemoveEmptyDialog_exactRadio.Text" xml:space="preserve">
-    <value>Ensure exactly one blank line between paragraphs</value>
-    <comment>radio button</comment>
-  </data>
-  <data name="RemoveEmptyDialog_headingBox.Text" xml:space="preserve">
-    <value>Put one blank line after each heading</value>
-    <comment>checkbox</comment>
-  </data>
-  <data name="RemoveEmptyDialog_keepRadio.Text" xml:space="preserve">
-    <value>Keep at most one blank line between paragraphs</value>
-    <comment>radio button</comment>
-  </data>
-  <data name="RemoveEmptyDialog_noteLabel.Text" xml:space="preserve">
-    <value>Unchecked removes blank lines after headings. Empty headings are always removed or converted to normal blank lines.</value>
-    <comment>label</comment>
-  </data>
-  <data name="RemoveEmptyDialog_removeRadio.Text" xml:space="preserve">
-    <value>Remove all blank lines between paragraphs</value>
-    <comment>radio button</comment>
-  </data>
   <data name="RemoveSpacingDialog.Text" xml:space="preserve">
     <value>Remove Spacing</value>
     <comment>dialog title</comment>
@@ -4484,6 +4477,14 @@ Select No to keep one empty line between paragraphs</value>
   <data name="ribAddTopSectionGroupButton_Screentip" xml:space="preserve">
     <value>Add a new section group to the top level of this notebook</value>
     <comment>notebook context menu</comment>
+  </data>
+  <data name="ribAdjustBlankLinesButton_Label" xml:space="preserve">
+    <value>Adjust Blank Lines</value>
+    <comment>ribbon clean</comment>
+  </data>
+  <data name="ribAdjustBlankLinesButton_Screentip" xml:space="preserve">
+    <value>Remove, collapse, or add blank lines between paragraphs and after headings</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribAdjustImagesButton_Label" xml:space="preserve">
     <value>Edit Images</value>
@@ -5862,14 +5863,6 @@ Help Tab</value>
   </data>
   <data name="ribRemoveDuplicatesButton_Screentip" xml:space="preserve">
     <value>Identify and remove duplicate pages</value>
-    <comment>ribbon clean</comment>
-  </data>
-  <data name="ribRemoveEmptyButton_Label" xml:space="preserve">
-    <value>Adjust Blank Lines</value>
-    <comment>ribbon clean</comment>
-  </data>
-  <data name="ribRemoveEmptyButton_Screentip" xml:space="preserve">
-    <value>Remove, collapse, or add blank lines between paragraphs and after headings</value>
     <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveFootnoteButton_Label" xml:space="preserve">

@@ -1,7 +1,7 @@
 ﻿
 namespace River.OneMoreAddIn.Commands
 {
-	partial class RemoveEmptyDialog
+	partial class AdjustBlankLinesDialog
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -142,7 +142,7 @@ namespace River.OneMoreAddIn.Commands
 			this.cancelButton.ThemedFore = null;
 			this.cancelButton.UseVisualStyleBackColor = false;
 			// 
-			// RemoveEmptyDialog
+			// AdjustBlankLinesDialog
 			// 
 			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -161,7 +161,7 @@ namespace River.OneMoreAddIn.Commands
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
-			this.Name = "RemoveEmptyDialog";
+			this.Name = "AdjustBlankLinesDialog";
 			this.Padding = new System.Windows.Forms.Padding(28);
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Adjust Blank Lines";

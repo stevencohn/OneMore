@@ -1254,7 +1254,7 @@ Normal</value>
     <value>Sem verificação ortográfica</value>
     <comment>Context menu</comment>
   </data>
-  <data name="ctxRemoveEmptyButton_Label" xml:space="preserve">
+  <data name="ctxAdjustBlankLinesButton_Label" xml:space="preserve">
     <value>Ajustar linhas em branco</value>
     <comment>Context menu</comment>
   </data>
@@ -4119,34 +4119,27 @@ Estilístico, Entidade, Mídia</value>
     <value>{0}% semelhante</value>
     <comment>clickable similarity chip for a near-duplicate match, {0} rounded percentage</comment>
   </data>
-  <data name="RemoveEmptyCommand_option" xml:space="preserve">
-    <value>Remova todas as linhas vazias?
-
-Selecione Sim para remover todas as linhas vazias entre os parágrafos
-Selecione Não para manter uma linha vazia entre os parágrafos</value>
-    <comment>message box</comment>
-  </data>
-  <data name="RemoveEmptyDialog.Text" xml:space="preserve">
+  <data name="AdjustBlankLinesDialog.Text" xml:space="preserve">
     <value>Ajustar linhas em branco</value>
     <comment>dialog title</comment>
   </data>
-  <data name="RemoveEmptyDialog_exactRadio.Text" xml:space="preserve">
+  <data name="AdjustBlankLinesDialog_exactRadio.Text" xml:space="preserve">
     <value>Garanta exatamente uma linha em branco entre os parágrafos</value>
     <comment>radio button</comment>
   </data>
-  <data name="RemoveEmptyDialog_headingBox.Text" xml:space="preserve">
+  <data name="AdjustBlankLinesDialog_headingBox.Text" xml:space="preserve">
     <value>Coloque uma linha em branco após cada título</value>
     <comment>checkbox !EDIT</comment>
   </data>
-  <data name="RemoveEmptyDialog_keepRadio.Text" xml:space="preserve">
+  <data name="AdjustBlankLinesDialog_keepRadio.Text" xml:space="preserve">
     <value>Mantenha no máximo uma linha em branco entre os parágrafos</value>
     <comment>radio button</comment>
   </data>
-  <data name="RemoveEmptyDialog_noteLabel.Text" xml:space="preserve">
+  <data name="AdjustBlankLinesDialog_noteLabel.Text" xml:space="preserve">
     <value>Desmarcado remove linhas em branco após os títulos. Os títulos vazios são sempre removidos ou convertidos em linhas em branco normais.</value>
     <comment>label !EDIT</comment>
   </data>
-  <data name="RemoveEmptyDialog_removeRadio.Text" xml:space="preserve">
+  <data name="AdjustBlankLinesDialog_removeRadio.Text" xml:space="preserve">
     <value>Remova todas as linhas em branco entre os parágrafos</value>
     <comment>radio button</comment>
   </data>
@@ -5835,11 +5828,11 @@ Guia Ajuda</value>
     <value>Identificar e remover páginas duplicadas</value>
     <comment>ribbon clean</comment>
   </data>
-  <data name="ribRemoveEmptyButton_Label" xml:space="preserve">
+  <data name="ribAdjustBlankLinesButton_Label" xml:space="preserve">
     <value>Ajustar linhas em branco</value>
     <comment>ribbon clean</comment>
   </data>
-  <data name="ribRemoveEmptyButton_Screentip" xml:space="preserve">
+  <data name="ribAdjustBlankLinesButton_Screentip" xml:space="preserve">
     <value>Remover, recolher ou adicionar linhas em branco entre os parágrafos e após os títulos</value>
     <comment>ribbon clean</comment>
   </data>

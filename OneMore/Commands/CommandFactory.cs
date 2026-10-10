@@ -315,24 +315,35 @@ namespace River.OneMoreAddIn
 
 			try
 			{
-				var command = (Command)Activator.CreateInstance(
-					Type.GetType(action.Attribute("type").Value)
-					);
+				// a recorded command may no longer exist, e.g. if it was renamed or removed
+				var typeName = action.Attribute("type")?.Value;
+				var commandType = typeName is null ? null : Type.GetType(typeName, false);
+				if (commandType is null)
+				{
+					logger.WriteLine($"cannot replay last action; command type not found: {typeName}");
+					return;
+				}
+
+				var command = (Command)Activator.CreateInstance(commandType);
 
 				var args = new List<object>();
 				foreach (var arg in action.Element("arguments").Elements("arg"))
 				{
-					var type = Type.GetType(arg.Attribute("type").Value);
+					var argTypeName = arg.Attribute("type")?.Value;
+					var type = argTypeName is null ? null : Type.GetType(argTypeName, false);
+					if (type is null)
+					{
+						logger.WriteLine($"cannot replay last action; argument type not found: {argTypeName}");
+						return;
+					}
+
 					if (type.IsEnum)
 					{
 						args.Add(Enum.Parse(type, arg.Attribute("value").Value));
 					}
 					else
 					{
-						args.Add(Convert.ChangeType(
-							arg.Attribute("value").Value,
-							Type.GetType(arg.Attribute("type").Value)
-							));
+						args.Add(Convert.ChangeType(arg.Attribute("value").Value, type));
 					}
 				}
 

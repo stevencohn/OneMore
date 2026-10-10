@@ -1254,7 +1254,7 @@ Normalna</value>
     <value>Brak sprawdzania pisowni.</value>
     <comment>Context menu</comment>
   </data>
-  <data name="ctxRemoveEmptyButton_Label" xml:space="preserve">
+  <data name="ctxAdjustBlankLinesButton_Label" xml:space="preserve">
     <value>Dostosuj puste linie</value>
     <comment>Context menu</comment>
   </data>
@@ -4119,34 +4119,27 @@ Stylistyka, podmiot, media</value>
     <value>{0}% podobne</value>
     <comment>clickable similarity chip for a near-duplicate match, {0} rounded percentage</comment>
   </data>
-  <data name="RemoveEmptyCommand_option" xml:space="preserve">
-    <value>Usuń wszystkie puste linie?
-
-Wybierz Tak, aby usunąć wszystkie puste linie między akapitami
-Wybierz Nie, aby zachować jedną pustą linię między akapitami</value>
-    <comment>message box</comment>
-  </data>
-  <data name="RemoveEmptyDialog.Text" xml:space="preserve">
+  <data name="AdjustBlankLinesDialog.Text" xml:space="preserve">
     <value>Dostosuj puste linie</value>
     <comment>dialog title</comment>
   </data>
-  <data name="RemoveEmptyDialog_exactRadio.Text" xml:space="preserve">
+  <data name="AdjustBlankLinesDialog_exactRadio.Text" xml:space="preserve">
     <value>Upewnij się, że między akapitami znajduje się dokładnie jedna pusta linia</value>
     <comment>radio button</comment>
   </data>
-  <data name="RemoveEmptyDialog_headingBox.Text" xml:space="preserve">
+  <data name="AdjustBlankLinesDialog_headingBox.Text" xml:space="preserve">
     <value>Po każdym nagłówku umieść jedną pustą linię</value>
     <comment>checkbox !EDIT</comment>
   </data>
-  <data name="RemoveEmptyDialog_keepRadio.Text" xml:space="preserve">
+  <data name="AdjustBlankLinesDialog_keepRadio.Text" xml:space="preserve">
     <value>Zachowaj maksymalnie jedną pustą linię między akapitami</value>
     <comment>radio button</comment>
   </data>
-  <data name="RemoveEmptyDialog_noteLabel.Text" xml:space="preserve">
+  <data name="AdjustBlankLinesDialog_noteLabel.Text" xml:space="preserve">
     <value>Opcja odznaczona usuwa puste linie po nagłówkach. Puste nagłówki są zawsze usuwane lub konwertowane na zwykłe puste linie.</value>
     <comment>label !EDIT</comment>
   </data>
-  <data name="RemoveEmptyDialog_removeRadio.Text" xml:space="preserve">
+  <data name="AdjustBlankLinesDialog_removeRadio.Text" xml:space="preserve">
     <value>Usuń wszystkie puste linie między akapitami</value>
     <comment>radio button</comment>
   </data>
@@ -5835,11 +5828,11 @@ Zakładka Pomoc</value>
     <value>Zidentyfikuj i usuń zduplikowane strony</value>
     <comment>ribbon clean</comment>
   </data>
-  <data name="ribRemoveEmptyButton_Label" xml:space="preserve">
+  <data name="ribAdjustBlankLinesButton_Label" xml:space="preserve">
     <value>Dostosuj puste linie</value>
     <comment>ribbon clean</comment>
   </data>
-  <data name="ribRemoveEmptyButton_Screentip" xml:space="preserve">
+  <data name="ribAdjustBlankLinesButton_Screentip" xml:space="preserve">
     <value>Usuń, zwiń lub dodaj puste linie między akapitami i po nagłówkach</value>
     <comment>ribbon clean</comment>
   </data>

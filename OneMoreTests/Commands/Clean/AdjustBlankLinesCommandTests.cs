@@ -31,15 +31,15 @@ namespace River.OneMoreAddIn.Tests.Commands.Clean
 	 */
 
 	[TestClass]
-	public class RemoveEmptyCommandTests : TestBase
+	public class AdjustBlankLinesCommandTests : TestBase
 	{
 		private const string PageId = "page-1";
 		private static readonly XNamespace Ns =
 			"http://schemas.microsoft.com/office/onenote/2013/onenote";
 
 
-		// RemoveEmptyCommand's dialog-driven path (RunInteractive) cannot be exercised
-		// headlessly since it shows RemoveEmptyDialog. The command also implements
+		// AdjustBlankLinesCommand's dialog-driven path (RunInteractive) cannot be exercised
+		// headlessly since it shows AdjustBlankLinesDialog. The command also implements
 		// ICliPageCommand, whose Execute branch accepts a CliParameterSet carrying "pageId",
 		// "all", "mode" and "headingBlank" and drives the same Run logic without any UI, so
 		// these tests exercise it that way.
@@ -57,7 +57,7 @@ namespace River.OneMoreAddIn.Tests.Commands.Clean
 
 			cliParams.Set("headingBlank", headingBlank);
 
-			var cmd = new RemoveEmptyCommand();
+			var cmd = new AdjustBlankLinesCommand();
 			cmd.SetLogger(Logger.Current);
 			return cmd.Execute(cliParams);
 		}
@@ -87,7 +87,7 @@ namespace River.OneMoreAddIn.Tests.Commands.Clean
 
 
 		[TestMethod]
-		public async Task RemoveEmpty_ConsecutiveEmptyLines_CollapseToOne()
+		public async Task AdjustBlankLines_ConsecutiveEmptyLines_CollapseToOne()
 		{
 			// Arrange: three consecutive empty paragraphs between two text paragraphs
 			var xml = new PageBuilder(PageId, "Collapse Test")
@@ -119,7 +119,7 @@ namespace River.OneMoreAddIn.Tests.Commands.Clean
 
 
 		[TestMethod]
-		public async Task RemoveEmpty_EmptyHeading_RemovedWhenRemovingAll()
+		public async Task AdjustBlankLines_EmptyHeading_RemovedWhenRemovingAll()
 		{
 			// Arrange: Lorem paragraph followed directly by a single empty heading-styled
 			// paragraph (quickStyleIndex references a known "hN" QuickStyleDef), then Ut.
@@ -153,7 +153,7 @@ namespace River.OneMoreAddIn.Tests.Commands.Clean
 
 
 		[TestMethod]
-		public async Task RemoveEmpty_EmptyHeading_BecomesPlainBlankWhenKeepingOne()
+		public async Task AdjustBlankLines_EmptyHeading_BecomesPlainBlankWhenKeepingOne()
 		{
 			// Arrange: same page as above, but the lone empty heading separates the paragraphs
 			var page = new PageBuilder(PageId, "Heading Conversion Test")
@@ -187,7 +187,7 @@ namespace River.OneMoreAddIn.Tests.Commands.Clean
 
 
 		[TestMethod]
-		public async Task RemoveEmpty_AllFlagTrue_RemovesAllEmptyLines()
+		public async Task AdjustBlankLines_AllFlagTrue_RemovesAllEmptyLines()
 		{
 			// Arrange: same consecutive-empty-lines setup as the collapse test
 			var xml = new PageBuilder(PageId, "Remove All Test")
@@ -217,7 +217,7 @@ namespace River.OneMoreAddIn.Tests.Commands.Clean
 
 
 		[TestMethod]
-		public async Task RemoveEmpty_RerunWithAllTrue_RemovesRemainingEmptyLine()
+		public async Task AdjustBlankLines_RerunWithAllTrue_RemovesRemainingEmptyLine()
 		{
 			// Arrange: three consecutive empty paragraphs between two text paragraphs
 			var xml = new PageBuilder(PageId, "Rerun Test")
@@ -257,7 +257,7 @@ namespace River.OneMoreAddIn.Tests.Commands.Clean
 
 
 		[TestMethod]
-		public async Task RemoveEmpty_NoEmptyLines_DoesNotCallUpdate()
+		public async Task AdjustBlankLines_NoEmptyLines_DoesNotCallUpdate()
 		{
 			// Arrange: page with no empty paragraphs anywhere
 			var xml = new PageBuilder(PageId, "No Empty Lines Test")
@@ -279,7 +279,7 @@ namespace River.OneMoreAddIn.Tests.Commands.Clean
 
 
 		[TestMethod]
-		public async Task RemoveEmpty_ExactlyOne_InsertsBlankBetweenPlainParagraphs()
+		public async Task AdjustBlankLines_ExactlyOne_InsertsBlankBetweenPlainParagraphs()
 		{
 			// Arrange: three adjacent paragraphs with no blank lines
 			var xml = new PageBuilder(PageId, "Exactly One Insert Test")
@@ -304,7 +304,7 @@ namespace River.OneMoreAddIn.Tests.Commands.Clean
 
 
 		[TestMethod]
-		public async Task RemoveEmpty_ExactlyOne_CollapsesAndKeepsExistingBlank()
+		public async Task AdjustBlankLines_ExactlyOne_CollapsesAndKeepsExistingBlank()
 		{
 			// Arrange: two blanks between the first pair, none between the second pair
 			var xml = new PageBuilder(PageId, "Exactly One Mixed Test")
@@ -331,7 +331,7 @@ namespace River.OneMoreAddIn.Tests.Commands.Clean
 
 
 		[TestMethod]
-		public async Task RemoveEmpty_ExactlyOne_DoesNotSeparateListItems()
+		public async Task AdjustBlankLines_ExactlyOne_DoesNotSeparateListItems()
 		{
 			// Arrange: two adjacent bulleted list items between plain paragraphs
 			XElement Bullet(string text) =>
@@ -358,7 +358,7 @@ namespace River.OneMoreAddIn.Tests.Commands.Clean
 
 
 		[TestMethod]
-		public async Task RemoveEmpty_HeadingBlank_AddsBlankAfterHeadingWhenRemovingAll()
+		public async Task AdjustBlankLines_HeadingBlank_AddsBlankAfterHeadingWhenRemovingAll()
 		{
 			// Arrange: heading directly followed by a paragraph, then a second paragraph
 			var page = new PageBuilder(PageId, "Heading Blank Test")
@@ -386,7 +386,7 @@ namespace River.OneMoreAddIn.Tests.Commands.Clean
 
 
 		[TestMethod]
-		public async Task RemoveEmpty_HeadingBlank_CollapsesMultipleBlanksAfterHeading()
+		public async Task AdjustBlankLines_HeadingBlank_CollapsesMultipleBlanksAfterHeading()
 		{
 			// Arrange: heading followed by three blank lines
 			var page = new PageBuilder(PageId, "Heading Collapse Test")
@@ -416,7 +416,7 @@ namespace River.OneMoreAddIn.Tests.Commands.Clean
 		[TestMethod]
 		[DataRow("keep")]
 		[DataRow("exactly-one")]
-		public async Task RemoveEmpty_HeadingBlankOff_RemovesBlankAfterHeading(string mode)
+		public async Task AdjustBlankLines_HeadingBlankOff_RemovesBlankAfterHeading(string mode)
 		{
 			// Arrange: heading, a blank line, then paragraphs
 			var page = new PageBuilder(PageId, "Heading No Blank Test")
@@ -447,7 +447,7 @@ namespace River.OneMoreAddIn.Tests.Commands.Clean
 		[TestMethod]
 		[DataRow("keep")]
 		[DataRow("exactly-one")]
-		public async Task RemoveEmpty_ParagraphWithTrailingCursorRun_IsNotRemoved(string mode)
+		public async Task AdjustBlankLines_ParagraphWithTrailingCursorRun_IsNotRemoved(string mode)
 		{
 			// Arrange: with only a text cursor, OneNote emits the caret as an empty selected T
 			// run trailing the paragraph's text run; a blank line follows that paragraph
@@ -480,7 +480,7 @@ namespace River.OneMoreAddIn.Tests.Commands.Clean
 		}
 
 		[TestMethod]
-		public async Task RemoveEmpty_ExactlyOne_NestedTrailingBlankIsNotDoubled()
+		public async Task AdjustBlankLines_ExactlyOne_NestedTrailingBlankIsNotDoubled()
 		{
 			// Arrange: the second paragraph is an empty run above an indented child, and the
 			// last child is already a blank line, so one blank line already follows "5a"
@@ -522,7 +522,7 @@ namespace River.OneMoreAddIn.Tests.Commands.Clean
 		}
 
 		[TestMethod]
-		public async Task RemoveEmpty_RemoveAll_NestedLeadingBlankIsRemoved()
+		public async Task AdjustBlankLines_RemoveAll_NestedLeadingBlankIsRemoved()
 		{
 			// Arrange: the second paragraph is an empty run above an indented child, which
 			// is followed by a blank line; none of these blank lines should remain

@@ -1255,7 +1255,7 @@ Normale</value>
     <value>Nessun controllo ortografico</value>
     <comment>Context menu</comment>
   </data>
-  <data name="ctxRemoveEmptyButton_Label" xml:space="preserve">
+  <data name="ctxAdjustBlankLinesButton_Label" xml:space="preserve">
     <value>Regola le righe vuote</value>
     <comment>Context menu</comment>
   </data>
@@ -4119,34 +4119,27 @@ Stilistica, Entità, Media</value>
     <value>{0}% simili</value>
     <comment>clickable similarity chip for a near-duplicate match, {0} rounded percentage</comment>
   </data>
-  <data name="RemoveEmptyCommand_option" xml:space="preserve">
-    <value>Rimuovere tutte le righe vuote?
-
-Seleziona Sì per rimuovere tutte le righe vuote tra i paragrafi
-Selezionare No per mantenere una riga vuota tra i paragrafi</value>
-    <comment>message box</comment>
-  </data>
-  <data name="RemoveEmptyDialog.Text" xml:space="preserve">
+  <data name="AdjustBlankLinesDialog.Text" xml:space="preserve">
     <value>Regola le righe vuote</value>
     <comment>dialog title</comment>
   </data>
-  <data name="RemoveEmptyDialog_exactRadio.Text" xml:space="preserve">
+  <data name="AdjustBlankLinesDialog_exactRadio.Text" xml:space="preserve">
     <value>Assicurati che ci sia esattamente una riga vuota tra i paragrafi</value>
     <comment>radio button</comment>
   </data>
-  <data name="RemoveEmptyDialog_headingBox.Text" xml:space="preserve">
+  <data name="AdjustBlankLinesDialog_headingBox.Text" xml:space="preserve">
     <value>Metti una riga vuota dopo ogni intestazione</value>
     <comment>checkbox !EDIT</comment>
   </data>
-  <data name="RemoveEmptyDialog_keepRadio.Text" xml:space="preserve">
+  <data name="AdjustBlankLinesDialog_keepRadio.Text" xml:space="preserve">
     <value>Mantieni al massimo una riga vuota tra i paragrafi</value>
     <comment>radio button</comment>
   </data>
-  <data name="RemoveEmptyDialog_noteLabel.Text" xml:space="preserve">
+  <data name="AdjustBlankLinesDialog_noteLabel.Text" xml:space="preserve">
     <value>Deselezionato rimuove le righe vuote dopo le intestazioni. Le intestazioni vuote vengono sempre rimosse o convertite in normali righe vuote.</value>
     <comment>label !EDIT</comment>
   </data>
-  <data name="RemoveEmptyDialog_removeRadio.Text" xml:space="preserve">
+  <data name="AdjustBlankLinesDialog_removeRadio.Text" xml:space="preserve">
     <value>Rimuovi tutte le righe vuote tra i paragrafi</value>
     <comment>radio button</comment>
   </data>
@@ -5836,11 +5829,11 @@ Scheda Aiuto</value>
     <value>Identificare e rimuovere le pagine duplicate</value>
     <comment>ribbon clean</comment>
   </data>
-  <data name="ribRemoveEmptyButton_Label" xml:space="preserve">
+  <data name="ribAdjustBlankLinesButton_Label" xml:space="preserve">
     <value>Regola le righe vuote</value>
     <comment>ribbon clean</comment>
   </data>
-  <data name="ribRemoveEmptyButton_Screentip" xml:space="preserve">
+  <data name="ribAdjustBlankLinesButton_Screentip" xml:space="preserve">
     <value>Rimuovi, comprimi o aggiungi righe vuote tra i paragrafi e dopo i titoli</value>
     <comment>ribbon clean</comment>
   </data>

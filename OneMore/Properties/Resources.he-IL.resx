@@ -1254,7 +1254,7 @@
     <value>אין בדיקת איות</value>
     <comment>Context menu</comment>
   </data>
-  <data name="ctxRemoveEmptyButton_Label" xml:space="preserve">
+  <data name="ctxAdjustBlankLinesButton_Label" xml:space="preserve">
     <value>התאם קווים ריקים</value>
     <comment>Context menu</comment>
   </data>
@@ -4119,34 +4119,27 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <value>{0}% דומים</value>
     <comment>clickable similarity chip for a near-duplicate match, {0} rounded percentage</comment>
   </data>
-  <data name="RemoveEmptyCommand_option" xml:space="preserve">
-    <value>להסיר את כל השורות הריקות?
-
-בחר כן כדי להסיר את כל השורות הריקות בין פסקאות
-בחר לא כדי לשמור שורה ריקה אחת בין פסקאות</value>
-    <comment>message box</comment>
-  </data>
-  <data name="RemoveEmptyDialog.Text" xml:space="preserve">
+  <data name="AdjustBlankLinesDialog.Text" xml:space="preserve">
     <value>התאם קווים ריקים</value>
     <comment>dialog title</comment>
   </data>
-  <data name="RemoveEmptyDialog_exactRadio.Text" xml:space="preserve">
+  <data name="AdjustBlankLinesDialog_exactRadio.Text" xml:space="preserve">
     <value>ודא בדיוק שורה ריקה אחת בין פסקאות</value>
     <comment>radio button</comment>
   </data>
-  <data name="RemoveEmptyDialog_headingBox.Text" xml:space="preserve">
+  <data name="AdjustBlankLinesDialog_headingBox.Text" xml:space="preserve">
     <value>שים שורה ריקה אחת אחרי כל כותרת</value>
     <comment>checkbox !EDIT</comment>
   </data>
-  <data name="RemoveEmptyDialog_keepRadio.Text" xml:space="preserve">
+  <data name="AdjustBlankLinesDialog_keepRadio.Text" xml:space="preserve">
     <value>השאר שורה ריקה אחת לכל היותר בין פסקאות</value>
     <comment>radio button</comment>
   </data>
-  <data name="RemoveEmptyDialog_noteLabel.Text" xml:space="preserve">
+  <data name="AdjustBlankLinesDialog_noteLabel.Text" xml:space="preserve">
     <value>לא מסומן מסיר שורות ריקות אחרי הכותרות. כותרות ריקות תמיד מוסרות או מומרות לשורות ריקות רגילות.</value>
     <comment>label !EDIT</comment>
   </data>
-  <data name="RemoveEmptyDialog_removeRadio.Text" xml:space="preserve">
+  <data name="AdjustBlankLinesDialog_removeRadio.Text" xml:space="preserve">
     <value>הסר את כל השורות הריקות בין פסקאות</value>
     <comment>radio button</comment>
   </data>
@@ -5835,11 +5828,11 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <value>זהה והסר דפים כפולים</value>
     <comment>ribbon clean</comment>
   </data>
-  <data name="ribRemoveEmptyButton_Label" xml:space="preserve">
+  <data name="ribAdjustBlankLinesButton_Label" xml:space="preserve">
     <value>התאם קווים ריקים</value>
     <comment>ribbon clean</comment>
   </data>
-  <data name="ribRemoveEmptyButton_Screentip" xml:space="preserve">
+  <data name="ribAdjustBlankLinesButton_Screentip" xml:space="preserve">
     <value>הסר, כווץ או הוסף שורות ריקות בין פסקאות ואחרי כותרות</value>
     <comment>ribbon clean</comment>
   </data>
