@@ -24,6 +24,20 @@
 
     <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
 
+    <!--
+      Detect-only: sets PRE8VERSIONFOUND when an installed OneMore older than 8.0.0 is found
+      (7.x installers share this UpgradeCode). 8.0.0 migrates OneMore.db, so only those
+      upgrades are offered a database backup; see BackupDlg.wxs. The 8.0.0 limit is fixed on
+      purpose and is not tied to this package's ProductVersion.
+    -->
+    <Upgrade Id="{058F6D04-E0D0-4984-B6B7-7FE0C581680E}">
+      <UpgradeVersion Property="PRE8VERSIONFOUND"
+                      Minimum="0.0.0" IncludeMinimum="yes"
+                      Maximum="8.0.0" IncludeMaximum="no"
+                      OnlyDetect="yes" />
+    </Upgrade>
+    <Property Id="PRE8VERSIONFOUND" Secure="yes" />
+
     <MediaTemplate EmbedCab="yes" />
 
     <!-- Require .NET Framework 4.8 -->
@@ -117,6 +131,23 @@
       - CA_InstallActiveSetup: commit, runs on fresh install or repair (wires Active Setup)
       - CA_Uninstall: deferred, runs before RemoveFiles on uninstall
     -->
+    <!--
+      CA_BackupDatabase: deferred, runs before CA_Install on fresh install/upgrade when the user
+      has a OneMore.db and has not opted out (BACKUPDB=1, the default). The destination folder and
+      source path are resolved here in the user's context as the action runs as SYSTEM; they are
+      passed as a single "dest|source" argument (see BackupDlg.wxs).
+      NOTE: [CustomActionData] is NOT expanded in the ExeCommand of an exe action (it came
+      through empty), but the ExeCommand is formatted when the script is generated, so the
+      properties are referenced directly. They must be secure public properties to be visible
+      to the elevated server-side execute sequence.
+    -->
+    <CustomAction Id="CA_BackupDatabase"
+                  FileRef="OneMoreSetupActionsExe"
+                  ExeCommand="--backup-db &quot;[BACKUPDIR]|[ONEMOREDB]&quot; --$(var.ArchFlag)"
+                  Execute="deferred"
+                  Return="ignore"
+                  Impersonate="no" />
+
     <CustomAction Id="CA_Install"
                   FileRef="OneMoreSetupActionsExe"
                   ExeCommand="--install --$(var.ArchFlag)"
@@ -146,6 +177,7 @@
                   Impersonate="no" />
 
     <InstallExecuteSequence>
+      <Custom Action="CA_BackupDatabase" Before="CA_Install" Condition="NOT Installed AND PRE8VERSIONFOUND AND BACKUPDB=&quot;1&quot; AND ONEMOREDB" />
       <Custom Action="CA_Install" After="InstallFiles" Condition="NOT Installed" />
       <Custom Action="CA_InstallRegistryWow" After="InstallFiles" Condition="NOT Installed OR (Installed AND REINSTALL)" />
       <Custom Action="CA_InstallActiveSetup" After="CA_InstallRegistryWow" Condition="NOT Installed OR (Installed AND REINSTALL)" />
@@ -155,6 +187,8 @@
     <!-- UI: standard install-dir dialog set with banner and license -->
     <Property Id="WIXUI_INSTALLDIR" Value="INSTALLDIR" />
     <ui:WixUI Id="WixUI_InstallDir" />
+    <!-- adds the optional database backup page; see BackupDlg.wxs -->
+    <UIRef Id="OneMoreBackupUI" />
     <WixVariable Id="WixUIBannerBmp" Value="Resources\Banner.jpg" />
     <WixVariable Id="WixUIDialogBmp"  Value="Resources\Dialog.jpg" />
     <WixVariable Id="WixUILicenseRtf" Value="Resources\license.rtf" />

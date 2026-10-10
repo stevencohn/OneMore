@@ -90,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Actions\ActiveSetupAction.cs" />
+    <Compile Include="Actions\BackupDatabaseAction.cs" />
     <Compile Include="Actions\CheckBitnessAction.cs" />
     <Compile Include="Actions\CheckOneNoteAction.cs" />
     <Compile Include="Actions\CustomAction.cs" />

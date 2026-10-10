@@ -104,6 +104,12 @@ namespace OneMoreSetupActions
 					status = new ActiveSetupAction(logger, stepper).Install();
 					break;
 
+				case "--backup-db":
+					// args[1] is "<destination folder>|<source db path>"
+					status = new BackupDatabaseAction(
+						logger, stepper, args.Length > 1 ? args[1] : null).Install();
+					break;
+
 				case "--install-checkonenote":
 					status = new CheckOneNoteAction(logger, stepper).Install();
 					break;
