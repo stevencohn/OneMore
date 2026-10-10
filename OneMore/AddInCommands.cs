@@ -905,9 +905,9 @@ namespace River.OneMoreAddIn
 			=> await factory.Run<RemoveDuplicatesCommand>();
 
 
-		[Command("ribRemoveEmptyButton_Label", Keys.None, "ribCleanMenu")]
-		public async Task RemoveEmptyCmd(IRibbonControl control)
-			=> await factory.Run<RemoveEmptyCommand>();
+		[Command("ribAdjustBlankLinesButton_Label", Keys.None, "ribCleanMenu")]
+		public async Task AdjustBlankLinesCmd(IRibbonControl control)
+			=> await factory.Run<AdjustBlankLinesCommand>();
 
 
 		[Command("ribRemoveFootnoteButton_Label", Keys.Control | Keys.Shift | Keys.F, "ribReferencesMenu")]

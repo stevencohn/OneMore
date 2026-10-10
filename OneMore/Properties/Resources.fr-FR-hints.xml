@@ -354,16 +354,6 @@ zh-CN,chinois (simplifié)</preferred>
     <source>Are you sure you want to delete the {0} selected pages?</source>
     <preferred>Êtes-vous sûr de vouloir supprimer les pages sélectionnées {0} ?</preferred>
   </data>
-  <data name="RemoveEmptyCommand_option">
-    <source>Remove all empty lines?
-
-Select Yes to remove all empty lines between paragraphs
-Select No to keep one empty line between paragraphs</source>
-    <preferred>Enlevez toutes les lignes vides ?
-
-Sélectionnez Oui pour supprimer toutes les lignes vides entre les paragraphes
-Sélectionnez Non pour conserver une ligne vide entre les paragraphes</preferred>
-  </data>
   <data name="ReportRemindersDialog.Text">
     <source>Report Scope</source>
     <preferred>Portée du rapport</preferred>

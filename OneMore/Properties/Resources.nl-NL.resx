@@ -1254,7 +1254,7 @@ Normaal</value>
     <value>Geen spellingcontrole</value>
     <comment>Context menu</comment>
   </data>
-  <data name="ctxRemoveEmptyButton_Label" xml:space="preserve">
+  <data name="ctxAdjustBlankLinesButton_Label" xml:space="preserve">
     <value>Pas lege regels aan</value>
     <comment>Context menu</comment>
   </data>
@@ -4119,34 +4119,27 @@ Stilistisch, entiteit, media</value>
     <value>{0}% vergelijkbaar</value>
     <comment>clickable similarity chip for a near-duplicate match, {0} rounded percentage</comment>
   </data>
-  <data name="RemoveEmptyCommand_option" xml:space="preserve">
-    <value>Verwijder alle lege regels?
-
-Selecteer Ja om alle lege regels tussen paragrafen te verwijderen
-Selecteer NO om één lege regel tussen paragrafen te behouden</value>
-    <comment>message box</comment>
-  </data>
-  <data name="RemoveEmptyDialog.Text" xml:space="preserve">
+  <data name="AdjustBlankLinesDialog.Text" xml:space="preserve">
     <value>Pas lege regels aan</value>
     <comment>dialog title</comment>
   </data>
-  <data name="RemoveEmptyDialog_exactRadio.Text" xml:space="preserve">
+  <data name="AdjustBlankLinesDialog_exactRadio.Text" xml:space="preserve">
     <value>Zorg voor precies één witregel tussen alinea's</value>
     <comment>radio button</comment>
   </data>
-  <data name="RemoveEmptyDialog_headingBox.Text" xml:space="preserve">
+  <data name="AdjustBlankLinesDialog_headingBox.Text" xml:space="preserve">
     <value>Zet na elke kop een lege regel</value>
     <comment>checkbox !EDIT</comment>
   </data>
-  <data name="RemoveEmptyDialog_keepRadio.Text" xml:space="preserve">
+  <data name="AdjustBlankLinesDialog_keepRadio.Text" xml:space="preserve">
     <value>Houd maximaal één witregel tussen alinea's aan</value>
     <comment>radio button</comment>
   </data>
-  <data name="RemoveEmptyDialog_noteLabel.Text" xml:space="preserve">
+  <data name="AdjustBlankLinesDialog_noteLabel.Text" xml:space="preserve">
     <value>Niet aangevinkt verwijdert lege regels na kopjes. Lege koppen worden altijd verwijderd of omgezet naar normale witregels.</value>
     <comment>label !EDIT</comment>
   </data>
-  <data name="RemoveEmptyDialog_removeRadio.Text" xml:space="preserve">
+  <data name="AdjustBlankLinesDialog_removeRadio.Text" xml:space="preserve">
     <value>Verwijder alle lege regels tussen alinea's</value>
     <comment>radio button</comment>
   </data>
@@ -5835,11 +5828,11 @@ Tabblad Help</value>
     <value>Identificeer en verwijder dubbele pagina's</value>
     <comment>ribbon clean</comment>
   </data>
-  <data name="ribRemoveEmptyButton_Label" xml:space="preserve">
+  <data name="ribAdjustBlankLinesButton_Label" xml:space="preserve">
     <value>Pas lege regels aan</value>
     <comment>ribbon clean</comment>
   </data>
-  <data name="ribRemoveEmptyButton_Screentip" xml:space="preserve">
+  <data name="ribAdjustBlankLinesButton_Screentip" xml:space="preserve">
     <value>Verwijder, vouw samen of voeg lege regels toe tussen alinea's en na kopteksten</value>
     <comment>ribbon clean</comment>
   </data>

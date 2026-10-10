@@ -42,7 +42,7 @@ namespace River.OneMoreAddIn.Commands
 	/// removing all lines; otherwise they are converted to normal blank lines and collapsed.
 	/// Also outdents and re-indents empty lines so related paragraphs stay grouped.
 	/// </summary>
-	internal class RemoveEmptyCommand : Command, ICliPageCommand
+	internal class AdjustBlankLinesCommand : Command, ICliPageCommand
 	{
 		private Page page;
 		private XNamespace ns;
@@ -55,14 +55,14 @@ namespace River.OneMoreAddIn.Commands
 		private List<Style> headingCustomStyles;
 
 
-		public RemoveEmptyCommand()
+		public AdjustBlankLinesCommand()
 		{
 		}
 
 
 		#region CLI Implementation
 
-		public string CommandName => "RemoveEmpty";
+		public string CommandName => "AdjustBlankLines";
 
 		public string Description =>
 			"Adjust blank lines between paragraphs: remove all, keep one, or ensure exactly one";
@@ -112,7 +112,7 @@ namespace River.OneMoreAddIn.Commands
 			using var guard = EnterOnce();
 			if (guard is null) { return; }
 
-			using var dialog = new RemoveEmptyDialog();
+			using var dialog = new AdjustBlankLinesDialog();
 			if (dialog.ShowDialog(owner) != DialogResult.OK)
 			{
 				return;

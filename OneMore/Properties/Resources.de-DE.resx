@@ -200,6 +200,30 @@
     <value>Abschnittsgruppe der obersten Ebene hinzufügen</value>
     <comment>dialog title</comment>
   </data>
+  <data name="AdjustBlankLinesDialog.Text" xml:space="preserve">
+    <value>Leerzeilen anpassen</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="AdjustBlankLinesDialog_exactRadio.Text" xml:space="preserve">
+    <value>Stellen Sie sicher, dass zwischen den Absätzen genau eine Leerzeile steht</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="AdjustBlankLinesDialog_headingBox.Text" xml:space="preserve">
+    <value>Fügen Sie nach jeder Überschrift eine Leerzeile ein</value>
+    <comment>checkbox !EDIT</comment>
+  </data>
+  <data name="AdjustBlankLinesDialog_keepRadio.Text" xml:space="preserve">
+    <value>Lassen Sie höchstens eine Leerzeile zwischen den Absätzen</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="AdjustBlankLinesDialog_noteLabel.Text" xml:space="preserve">
+    <value>Wenn diese Option deaktiviert ist, werden Leerzeilen nach Überschriften entfernt. Leere Überschriften werden immer entfernt oder in normale Leerzeilen umgewandelt.</value>
+    <comment>label !EDIT</comment>
+  </data>
+  <data name="AdjustBlankLinesDialog_removeRadio.Text" xml:space="preserve">
+    <value>Entfernen Sie alle Leerzeilen zwischen den Absätzen</value>
+    <comment>radio button</comment>
+  </data>
   <data name="AdjustImagesDialog.Text" xml:space="preserve">
     <value>Größe ändern und einstellen</value>
     <comment>dialog title</comment>
@@ -1245,6 +1269,10 @@ Normal</value>
     <value>Dieses Bild stammt von einem Ausdruck. Wenn es beschnitten wird, ist es nicht mehr mit dieser Originaldatei verknüpft. Mit dem Zuschneiden fortfahren?</value>
     <comment>message box, question</comment>
   </data>
+  <data name="ctxAdjustBlankLinesButton_Label" xml:space="preserve">
+    <value>Leerzeilen anpassen</value>
+    <comment>Context menu</comment>
+  </data>
   <data name="ctxCleanMenu_Label" xml:space="preserve">
     <value>Säubern...</value>
     <comment>Context menu</comment>
@@ -1255,10 +1283,6 @@ Normal</value>
   </data>
   <data name="ctxNoSpellCheckButton_Label" xml:space="preserve">
     <value>Keine Rechtschreibprüfung</value>
-    <comment>Context menu</comment>
-  </data>
-  <data name="ctxRemoveEmptyButton_Label" xml:space="preserve">
-    <value>Leerzeilen anpassen</value>
     <comment>Context menu</comment>
   </data>
   <data name="ctxRemoveSpacingButton_Label" xml:space="preserve">
@@ -4118,37 +4142,6 @@ Stilistisch, Entität, Medien</value>
     <value>{0} % ähnlich</value>
     <comment>clickable similarity chip for a near-duplicate match, {0} rounded percentage</comment>
   </data>
-  <data name="RemoveEmptyCommand_option" xml:space="preserve">
-    <value>Alle leeren Linien entfernen?
-
-Wähle Ja, um alle leeren Zeilen zwischen den Absätzen zu entfernen
-Wähle Nein, um eine leere Zeile zwischen den Absätzen zu halten</value>
-    <comment>message box</comment>
-  </data>
-  <data name="RemoveEmptyDialog.Text" xml:space="preserve">
-    <value>Leerzeilen anpassen</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="RemoveEmptyDialog_exactRadio.Text" xml:space="preserve">
-    <value>Stellen Sie sicher, dass zwischen den Absätzen genau eine Leerzeile steht</value>
-    <comment>radio button</comment>
-  </data>
-  <data name="RemoveEmptyDialog_headingBox.Text" xml:space="preserve">
-    <value>Fügen Sie nach jeder Überschrift eine Leerzeile ein</value>
-    <comment>checkbox !EDIT</comment>
-  </data>
-  <data name="RemoveEmptyDialog_keepRadio.Text" xml:space="preserve">
-    <value>Lassen Sie höchstens eine Leerzeile zwischen den Absätzen</value>
-    <comment>radio button</comment>
-  </data>
-  <data name="RemoveEmptyDialog_noteLabel.Text" xml:space="preserve">
-    <value>Wenn diese Option deaktiviert ist, werden Leerzeilen nach Überschriften entfernt. Leere Überschriften werden immer entfernt oder in normale Leerzeilen umgewandelt.</value>
-    <comment>label !EDIT</comment>
-  </data>
-  <data name="RemoveEmptyDialog_removeRadio.Text" xml:space="preserve">
-    <value>Entfernen Sie alle Leerzeilen zwischen den Absätzen</value>
-    <comment>radio button</comment>
-  </data>
   <data name="RemoveSpacingDialog.Text" xml:space="preserve">
     <value>Abstand entfernen</value>
     <comment>dialog title</comment>
@@ -4455,6 +4448,14 @@ Wähle Nein, um eine leere Zeile zwischen den Absätzen zu halten</value>
   <data name="ribAddTopSectionGroupButton_Screentip" xml:space="preserve">
     <value>Fügen Sie der obersten Ebene dieses Notizbuchs eine neue Abschnittsgruppe hinzu</value>
     <comment>notebook context menu</comment>
+  </data>
+  <data name="ribAdjustBlankLinesButton_Label" xml:space="preserve">
+    <value>Leerzeilen anpassen</value>
+    <comment>ribbon clean</comment>
+  </data>
+  <data name="ribAdjustBlankLinesButton_Screentip" xml:space="preserve">
+    <value>Entfernt, reduziert oder fügt leere Zeilen zwischen Absätzen und nach Überschriften hinzu</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribAdjustImagesButton_Label" xml:space="preserve">
     <value>Bilder bearbeiten</value>
@@ -5832,14 +5833,6 @@ Registerkarte „Hilfe“.</value>
   </data>
   <data name="ribRemoveDuplicatesButton_Screentip" xml:space="preserve">
     <value>Identifizieren und entfernen Sie doppelte Seiten</value>
-    <comment>ribbon clean</comment>
-  </data>
-  <data name="ribRemoveEmptyButton_Label" xml:space="preserve">
-    <value>Leerzeilen anpassen</value>
-    <comment>ribbon clean</comment>
-  </data>
-  <data name="ribRemoveEmptyButton_Screentip" xml:space="preserve">
-    <value>Entfernt zusätzliche leere Zeilen zwischen Absätzen sowie leere Überschriften</value>
     <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveFootnoteButton_Label" xml:space="preserve">

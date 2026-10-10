@@ -15,19 +15,19 @@ namespace River.OneMoreAddIn.Commands
 	/// <summary>
 	/// Prompts for how blank lines between paragraphs should be adjusted.
 	/// </summary>
-	internal partial class RemoveEmptyDialog : UI.MoreForm
+	internal partial class AdjustBlankLinesDialog : UI.MoreForm
 	{
 		private const string ModeKey = "mode";
 		private const string HeadingKey = "headingBlank";
 
 
-		public RemoveEmptyDialog()
+		public AdjustBlankLinesDialog()
 		{
 			InitializeComponent();
 
 			if (NeedsLocalizing())
 			{
-				Text = Resx.RemoveEmptyDialog_Text;
+				Text = Resx.AdjustBlankLinesDialog_Text;
 
 				Localize(new string[]
 				{
@@ -41,7 +41,7 @@ namespace River.OneMoreAddIn.Commands
 				});
 			}
 
-			var collection = new SettingsProvider().GetCollection(nameof(RemoveEmptyDialog));
+			var collection = new SettingsProvider().GetCollection(nameof(AdjustBlankLinesDialog));
 
 			switch ((BlankLineMode)collection.Get(ModeKey, (int)BlankLineMode.KeepOne))
 			{
@@ -77,7 +77,7 @@ namespace River.OneMoreAddIn.Commands
 			{
 				// remember choices for next time
 				var settings = new SettingsProvider();
-				var collection = settings.GetCollection(nameof(RemoveEmptyDialog));
+				var collection = settings.GetCollection(nameof(AdjustBlankLinesDialog));
 				collection.Add(ModeKey, (int)Mode);
 				collection.Add(HeadingKey, HeadingBlank);
 				settings.SetCollection(collection);

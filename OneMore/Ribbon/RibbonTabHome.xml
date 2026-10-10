@@ -235,11 +235,11 @@
         onAction="ReplayCmd"/>
       <menu id="ribCleanMenu" getLabel="GetRibbonLabel" imageMso="Clear" showImage="true">
         <button
-          id="ribRemoveEmptyButton"
+          id="ribAdjustBlankLinesButton"
           imageMso="RecordsDeleteRecord"
           getLabel="GetRibbonLabel"
           getScreentip="GetRibbonScreentip"
-          onAction="RemoveEmptyCmd"/>
+          onAction="AdjustBlankLinesCmd"/>
         <button
           id="ribBreakingButton"
           imageMso="CharacterSpacingGallery"

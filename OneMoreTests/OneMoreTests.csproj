@@ -68,7 +68,7 @@
     <Compile Include="Commands\Clean\RemoveAuthorsCommandTests.cs" />
     <Compile Include="Commands\Clean\RemoveCitationsCommandTests.cs" />
     <Compile Include="Commands\Clean\RemoveDuplicatesCommandTests.cs" />
-    <Compile Include="Commands\Clean\RemoveEmptyCommandTests.cs" />
+    <Compile Include="Commands\Clean\AdjustBlankLinesCommandTests.cs" />
     <Compile Include="Commands\Clean\RemoveInkCommandTests.cs" />
     <Compile Include="Commands\Clean\RemoveTagsCommandTests.cs" />
     <Compile Include="Commands\Clean\ToggleDttmCommandTests.cs" />

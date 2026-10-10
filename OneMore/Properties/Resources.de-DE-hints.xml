@@ -232,16 +232,6 @@
     <source>Are you sure you want to delete the {0} selected pages?</source>
     <preferred>Ausgewählte Seiten {0} wirklich löschen?</preferred>
   </hint>
-  <hint name="RemoveEmptyCommand_option">
-    <source>Remove all empty lines?
-
-Select Yes to remove all empty lines between paragraphs
-Select No to keep one empty line between paragraphs</source>
-    <preferred>Alle leeren Linien entfernen?
-
-Wähle Ja, um alle leeren Zeilen zwischen den Absätzen zu entfernen
-Wähle Nein, um eine leere Zeile zwischen den Absätzen zu halten</preferred>
-  </hint>
   <hint name="RemoveSpacingDialog_beforeBox.Text">
     <source>Remove spacing before paragraphs</source>
     <preferred>Entferne den Abstand vor Absätzen</preferred>
@@ -498,9 +488,9 @@ Vergrößere kleinere Bilder nicht</preferred>
     <source>Remove screen clipping and paste URL citations</source>
     <preferred>Entfernt Bildschirmausschnitte und fügt URL-Zitate ein</preferred>
   </hint>
-  <hint name="ribRemoveEmptyButton_Screentip">
-    <source>Remove extra empty lines between paragraph and remove empty headers</source>
-    <preferred>Entfernt zusätzliche leere Zeilen zwischen Absätzen sowie leere Überschriften</preferred>
+  <hint name="ribAdjustBlankLinesButton_Screentip">
+    <source>Remove, collapse, or add blank lines between paragraphs and after headings</source>
+    <preferred>Leere Zeilen zwischen Absätzen und nach Überschriften entfernen, reduzieren oder hinzufügen</preferred>
   </hint>
   <hint name="ribRemoveInkButton_Screentip">
     <source>Remove all pen drawings from this page</source>
