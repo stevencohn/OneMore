@@ -1255,7 +1255,7 @@
     <comment>Context menu</comment>
   </data>
   <data name="ctxRemoveEmptyButton_Label" xml:space="preserve">
-    <value>הסר פסקאות וכותרות ריקות</value>
+    <value>התאם קווים ריקים</value>
     <comment>Context menu</comment>
   </data>
   <data name="ctxRemoveSpacingButton_Label" xml:space="preserve">
@@ -4126,6 +4126,30 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
 בחר לא כדי לשמור שורה ריקה אחת בין פסקאות</value>
     <comment>message box</comment>
   </data>
+  <data name="RemoveEmptyDialog.Text" xml:space="preserve">
+    <value>התאם קווים ריקים</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="RemoveEmptyDialog_exactRadio.Text" xml:space="preserve">
+    <value>ודא בדיוק שורה ריקה אחת בין פסקאות</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="RemoveEmptyDialog_headingBox.Text" xml:space="preserve">
+    <value>שים שורה ריקה אחת אחרי כל כותרת</value>
+    <comment>checkbox !EDIT</comment>
+  </data>
+  <data name="RemoveEmptyDialog_keepRadio.Text" xml:space="preserve">
+    <value>השאר שורה ריקה אחת לכל היותר בין פסקאות</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="RemoveEmptyDialog_noteLabel.Text" xml:space="preserve">
+    <value>לא מסומן מסיר שורות ריקות אחרי הכותרות. כותרות ריקות תמיד מוסרות או מומרות לשורות ריקות רגילות.</value>
+    <comment>label !EDIT</comment>
+  </data>
+  <data name="RemoveEmptyDialog_removeRadio.Text" xml:space="preserve">
+    <value>הסר את כל השורות הריקות בין פסקאות</value>
+    <comment>radio button</comment>
+  </data>
   <data name="RemoveSpacingDialog.Text" xml:space="preserve">
     <value>הסר מרווחים</value>
     <comment>dialog title</comment>
@@ -5812,12 +5836,12 @@ TF-IDF קוסינוס, חפיפה לקסיקלית, מבנית</value>
     <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveEmptyButton_Label" xml:space="preserve">
-    <value>הסר קווים ריקים</value>
+    <value>התאם קווים ריקים</value>
     <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveEmptyButton_Screentip" xml:space="preserve">
-    <value>הסר שורות ריקות נוספות בין הפסקה והסר כותרות ריקות</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <value>הסר, כווץ או הוסף שורות ריקות בין פסקאות ואחרי כותרות</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveFootnoteButton_Label" xml:space="preserve">
     <value>הסר הערת שוליים</value>

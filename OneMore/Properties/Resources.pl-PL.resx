@@ -1255,7 +1255,7 @@ Normalna</value>
     <comment>Context menu</comment>
   </data>
   <data name="ctxRemoveEmptyButton_Label" xml:space="preserve">
-    <value>Usuń puste akapity i nagłówki</value>
+    <value>Dostosuj puste linie</value>
     <comment>Context menu</comment>
   </data>
   <data name="ctxRemoveSpacingButton_Label" xml:space="preserve">
@@ -4126,6 +4126,30 @@ Wybierz Tak, aby usunąć wszystkie puste linie między akapitami
 Wybierz Nie, aby zachować jedną pustą linię między akapitami</value>
     <comment>message box</comment>
   </data>
+  <data name="RemoveEmptyDialog.Text" xml:space="preserve">
+    <value>Dostosuj puste linie</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="RemoveEmptyDialog_exactRadio.Text" xml:space="preserve">
+    <value>Upewnij się, że między akapitami znajduje się dokładnie jedna pusta linia</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="RemoveEmptyDialog_headingBox.Text" xml:space="preserve">
+    <value>Po każdym nagłówku umieść jedną pustą linię</value>
+    <comment>checkbox !EDIT</comment>
+  </data>
+  <data name="RemoveEmptyDialog_keepRadio.Text" xml:space="preserve">
+    <value>Zachowaj maksymalnie jedną pustą linię między akapitami</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="RemoveEmptyDialog_noteLabel.Text" xml:space="preserve">
+    <value>Opcja odznaczona usuwa puste linie po nagłówkach. Puste nagłówki są zawsze usuwane lub konwertowane na zwykłe puste linie.</value>
+    <comment>label !EDIT</comment>
+  </data>
+  <data name="RemoveEmptyDialog_removeRadio.Text" xml:space="preserve">
+    <value>Usuń wszystkie puste linie między akapitami</value>
+    <comment>radio button</comment>
+  </data>
   <data name="RemoveSpacingDialog.Text" xml:space="preserve">
     <value>Usuń odstępy</value>
     <comment>dialog title</comment>
@@ -5812,12 +5836,12 @@ Zakładka Pomoc</value>
     <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveEmptyButton_Label" xml:space="preserve">
-    <value>Usuń puste linie</value>
+    <value>Dostosuj puste linie</value>
     <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveEmptyButton_Screentip" xml:space="preserve">
-    <value>Usuń dodatkowe puste linie między akapitem a usuwanie pustych nagłówków</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <value>Usuń, zwiń lub dodaj puste linie między akapitami i po nagłówkach</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveFootnoteButton_Label" xml:space="preserve">
     <value>Usuń przypis</value>

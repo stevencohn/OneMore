@@ -1258,7 +1258,7 @@ Normal</value>
     <comment>Context menu</comment>
   </data>
   <data name="ctxRemoveEmptyButton_Label" xml:space="preserve">
-    <value>Leere Absätze und Überschriften entfernen</value>
+    <value>Leerzeilen anpassen</value>
     <comment>Context menu</comment>
   </data>
   <data name="ctxRemoveSpacingButton_Label" xml:space="preserve">
@@ -4125,6 +4125,30 @@ Wähle Ja, um alle leeren Zeilen zwischen den Absätzen zu entfernen
 Wähle Nein, um eine leere Zeile zwischen den Absätzen zu halten</value>
     <comment>message box</comment>
   </data>
+  <data name="RemoveEmptyDialog.Text" xml:space="preserve">
+    <value>Leerzeilen anpassen</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="RemoveEmptyDialog_exactRadio.Text" xml:space="preserve">
+    <value>Stellen Sie sicher, dass zwischen den Absätzen genau eine Leerzeile steht</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="RemoveEmptyDialog_headingBox.Text" xml:space="preserve">
+    <value>Fügen Sie nach jeder Überschrift eine Leerzeile ein</value>
+    <comment>checkbox !EDIT</comment>
+  </data>
+  <data name="RemoveEmptyDialog_keepRadio.Text" xml:space="preserve">
+    <value>Lassen Sie höchstens eine Leerzeile zwischen den Absätzen</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="RemoveEmptyDialog_noteLabel.Text" xml:space="preserve">
+    <value>Wenn diese Option deaktiviert ist, werden Leerzeilen nach Überschriften entfernt. Leere Überschriften werden immer entfernt oder in normale Leerzeilen umgewandelt.</value>
+    <comment>label !EDIT</comment>
+  </data>
+  <data name="RemoveEmptyDialog_removeRadio.Text" xml:space="preserve">
+    <value>Entfernen Sie alle Leerzeilen zwischen den Absätzen</value>
+    <comment>radio button</comment>
+  </data>
   <data name="RemoveSpacingDialog.Text" xml:space="preserve">
     <value>Abstand entfernen</value>
     <comment>dialog title</comment>
@@ -5811,7 +5835,7 @@ Registerkarte „Hilfe“.</value>
     <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveEmptyButton_Label" xml:space="preserve">
-    <value>Leere Linien entfernen</value>
+    <value>Leerzeilen anpassen</value>
     <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveEmptyButton_Screentip" xml:space="preserve">

@@ -1260,7 +1260,7 @@ Normal</value>
     <comment>Context menu</comment>
   </data>
   <data name="ctxRemoveEmptyButton_Label" xml:space="preserve">
-    <value>Remove Empty Paragraphs and Headings</value>
+    <value>Adjust Blank Lines</value>
     <comment>Context menu</comment>
   </data>
   <data name="ctxRemoveSpacingButton_Label" xml:space="preserve">
@@ -4154,6 +4154,30 @@ Select Yes to remove all empty lines between paragraphs
 Select No to keep one empty line between paragraphs</value>
     <comment>message box</comment>
   </data>
+  <data name="RemoveEmptyDialog.Text" xml:space="preserve">
+    <value>Adjust Blank Lines</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="RemoveEmptyDialog_exactRadio.Text" xml:space="preserve">
+    <value>Ensure exactly one blank line between paragraphs</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="RemoveEmptyDialog_headingBox.Text" xml:space="preserve">
+    <value>Put one blank line after each heading</value>
+    <comment>checkbox</comment>
+  </data>
+  <data name="RemoveEmptyDialog_keepRadio.Text" xml:space="preserve">
+    <value>Keep at most one blank line between paragraphs</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="RemoveEmptyDialog_noteLabel.Text" xml:space="preserve">
+    <value>Unchecked removes blank lines after headings. Empty headings are always removed or converted to normal blank lines.</value>
+    <comment>label</comment>
+  </data>
+  <data name="RemoveEmptyDialog_removeRadio.Text" xml:space="preserve">
+    <value>Remove all blank lines between paragraphs</value>
+    <comment>radio button</comment>
+  </data>
   <data name="RemoveSpacingDialog.Text" xml:space="preserve">
     <value>Remove Spacing</value>
     <comment>dialog title</comment>
@@ -5841,11 +5865,11 @@ Help Tab</value>
     <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveEmptyButton_Label" xml:space="preserve">
-    <value>Remove Empty Lines</value>
+    <value>Adjust Blank Lines</value>
     <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveEmptyButton_Screentip" xml:space="preserve">
-    <value>Remove extra empty lines between paragraph and remove empty headers</value>
+    <value>Remove, collapse, or add blank lines between paragraphs and after headings</value>
     <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveFootnoteButton_Label" xml:space="preserve">

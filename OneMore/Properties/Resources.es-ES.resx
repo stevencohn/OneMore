@@ -1258,7 +1258,7 @@ Normal</value>
     <comment>Context menu</comment>
   </data>
   <data name="ctxRemoveEmptyButton_Label" xml:space="preserve">
-    <value>Eliminar párrafos y encabezados vacíos</value>
+    <value>Ajustar líneas en blanco</value>
     <comment>Context menu</comment>
   </data>
   <data name="ctxRemoveSpacingButton_Label" xml:space="preserve">
@@ -4125,6 +4125,30 @@ Seleccione Sí para eliminar todas las líneas vacías entre los párrafos
 Seleccione No para mantener una línea vacía entre los párrafos</value>
     <comment>message box</comment>
   </data>
+  <data name="RemoveEmptyDialog.Text" xml:space="preserve">
+    <value>Ajustar líneas en blanco</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="RemoveEmptyDialog_exactRadio.Text" xml:space="preserve">
+    <value>Asegúrese de que haya exactamente una línea en blanco entre los párrafos.</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="RemoveEmptyDialog_headingBox.Text" xml:space="preserve">
+    <value>Coloque una línea en blanco después de cada título.</value>
+    <comment>checkbox !EDIT</comment>
+  </data>
+  <data name="RemoveEmptyDialog_keepRadio.Text" xml:space="preserve">
+    <value>Mantenga como máximo una línea en blanco entre párrafos.</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="RemoveEmptyDialog_noteLabel.Text" xml:space="preserve">
+    <value>Sin marcar, se eliminan las líneas en blanco después de los títulos. Los títulos vacíos siempre se eliminan o se convierten en líneas en blanco normales.</value>
+    <comment>label !EDIT</comment>
+  </data>
+  <data name="RemoveEmptyDialog_removeRadio.Text" xml:space="preserve">
+    <value>Eliminar todas las líneas en blanco entre párrafos</value>
+    <comment>radio button</comment>
+  </data>
   <data name="RemoveSpacingDialog.Text" xml:space="preserve">
     <value>Quitar espaciado</value>
     <comment>dialog title</comment>
@@ -5811,12 +5835,12 @@ Pestaña Ayuda</value>
     <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveEmptyButton_Label" xml:space="preserve">
-    <value>Eliminar líneas vacías</value>
+    <value>Ajustar líneas en blanco</value>
     <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveEmptyButton_Screentip" xml:space="preserve">
-    <value>Elimina las líneas vacías adicionales entre el párrafo y elimina los encabezados vacíos</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <value>Eliminar, contraer o agregar líneas en blanco entre párrafos y después de los títulos</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveFootnoteButton_Label" xml:space="preserve">
     <value>Quitar nota al pie</value>

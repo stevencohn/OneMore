@@ -1258,7 +1258,7 @@ Normale</value>
     <comment>Context menu</comment>
   </data>
   <data name="ctxRemoveEmptyButton_Label" xml:space="preserve">
-    <value>Supprimer les paragraphes et les en-têtes vides</value>
+    <value>Ajuster les lignes vides</value>
     <comment>Context menu</comment>
   </data>
   <data name="ctxRemoveSpacingButton_Label" xml:space="preserve">
@@ -4137,6 +4137,30 @@ Sélectionnez Oui pour supprimer toutes les lignes vides entre les paragraphes
 Sélectionnez Non pour conserver une ligne vide entre les paragraphes</value>
     <comment>message box</comment>
   </data>
+  <data name="RemoveEmptyDialog.Text" xml:space="preserve">
+    <value>Ajuster les lignes vides</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="RemoveEmptyDialog_exactRadio.Text" xml:space="preserve">
+    <value>Assurez-vous qu'il y a exactement une ligne vide entre les paragraphes</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="RemoveEmptyDialog_headingBox.Text" xml:space="preserve">
+    <value>Mettez une ligne vide après chaque titre</value>
+    <comment>checkbox !EDIT</comment>
+  </data>
+  <data name="RemoveEmptyDialog_keepRadio.Text" xml:space="preserve">
+    <value>Gardez au plus une ligne vide entre les paragraphes</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="RemoveEmptyDialog_noteLabel.Text" xml:space="preserve">
+    <value>Si cette case n'est pas cochée, les lignes vides après les titres sont supprimées. Les titres vides sont toujours supprimés ou convertis en lignes vides normales.</value>
+    <comment>label !EDIT</comment>
+  </data>
+  <data name="RemoveEmptyDialog_removeRadio.Text" xml:space="preserve">
+    <value>Supprimez toutes les lignes vides entre les paragraphes</value>
+    <comment>radio button</comment>
+  </data>
   <data name="RemoveSpacingDialog.Text" xml:space="preserve">
     <value>Supprimer l'espacement</value>
     <comment>dialog title</comment>
@@ -5823,12 +5847,12 @@ Onglet Aide</value>
     <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveEmptyButton_Label" xml:space="preserve">
-    <value>Supprimer les lignes vides</value>
+    <value>Ajuster les lignes vides</value>
     <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveEmptyButton_Screentip" xml:space="preserve">
-    <value>Supprimer les lignes vides supplémentaires entre les paragraphes et supprimer les en-têtes vides</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <value>Supprimez, réduisez ou ajoutez des lignes vides entre les paragraphes et après les titres</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveFootnoteButton_Label" xml:space="preserve">
     <value>Supprimer la note de bas de page</value>
