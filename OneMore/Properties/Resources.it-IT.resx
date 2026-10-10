@@ -1256,7 +1256,7 @@ Normale</value>
     <comment>Context menu</comment>
   </data>
   <data name="ctxRemoveEmptyButton_Label" xml:space="preserve">
-    <value>Rimuovi paragrafi e intestazioni vuoti</value>
+    <value>Regola le righe vuote</value>
     <comment>Context menu</comment>
   </data>
   <data name="ctxRemoveSpacingButton_Label" xml:space="preserve">
@@ -4126,6 +4126,30 @@ Seleziona Sì per rimuovere tutte le righe vuote tra i paragrafi
 Selezionare No per mantenere una riga vuota tra i paragrafi</value>
     <comment>message box</comment>
   </data>
+  <data name="RemoveEmptyDialog.Text" xml:space="preserve">
+    <value>Regola le righe vuote</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="RemoveEmptyDialog_exactRadio.Text" xml:space="preserve">
+    <value>Assicurati che ci sia esattamente una riga vuota tra i paragrafi</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="RemoveEmptyDialog_headingBox.Text" xml:space="preserve">
+    <value>Metti una riga vuota dopo ogni intestazione</value>
+    <comment>checkbox !EDIT</comment>
+  </data>
+  <data name="RemoveEmptyDialog_keepRadio.Text" xml:space="preserve">
+    <value>Mantieni al massimo una riga vuota tra i paragrafi</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="RemoveEmptyDialog_noteLabel.Text" xml:space="preserve">
+    <value>Deselezionato rimuove le righe vuote dopo le intestazioni. Le intestazioni vuote vengono sempre rimosse o convertite in normali righe vuote.</value>
+    <comment>label !EDIT</comment>
+  </data>
+  <data name="RemoveEmptyDialog_removeRadio.Text" xml:space="preserve">
+    <value>Rimuovi tutte le righe vuote tra i paragrafi</value>
+    <comment>radio button</comment>
+  </data>
   <data name="RemoveSpacingDialog.Text" xml:space="preserve">
     <value>Rimuovi spaziatura</value>
     <comment>dialog title</comment>
@@ -5813,11 +5837,11 @@ Scheda Aiuto</value>
     <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveEmptyButton_Label" xml:space="preserve">
-    <value>Rimuovi righe vuote</value>
+    <value>Regola le righe vuote</value>
     <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveEmptyButton_Screentip" xml:space="preserve">
-    <value>Rimuovi le righe vuote in eccesso tra i paragrafi e rimuovi le intestazioni vuote</value>
+    <value>Rimuovi, comprimi o aggiungi righe vuote tra i paragrafi e dopo i titoli</value>
     <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveFootnoteButton_Label" xml:space="preserve">

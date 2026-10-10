@@ -235,6 +235,12 @@
         onAction="ReplayCmd"/>
       <menu id="ribCleanMenu" getLabel="GetRibbonLabel" imageMso="Clear" showImage="true">
         <button
+          id="ribRemoveEmptyButton"
+          imageMso="RecordsDeleteRecord"
+          getLabel="GetRibbonLabel"
+          getScreentip="GetRibbonScreentip"
+          onAction="RemoveEmptyCmd"/>
+        <button
           id="ribBreakingButton"
           imageMso="CharacterSpacingGallery"
           getLabel="GetRibbonLabel"
@@ -264,12 +270,6 @@
           getLabel="GetRibbonLabel"
           getScreentip="GetRibbonScreentip"
           onAction="RemoveDuplicatesCmd"/>
-        <button
-          id="ribRemoveEmptyButton"
-          imageMso="RecordsDeleteRecord"
-          getLabel="GetRibbonLabel"
-          getScreentip="GetRibbonScreentip"
-          onAction="RemoveEmptyCmd"/>
         <button
           id="ribRemoveHyperlinksButton"
           imageMso="HyperlinkRemove"

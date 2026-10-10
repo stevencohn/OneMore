@@ -9836,6 +9836,60 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Adjust Blank Lines.
+        /// </summary>
+        internal static string RemoveEmptyDialog_Text {
+            get {
+                return ResourceManager.GetString("RemoveEmptyDialog.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ensure exactly one blank line between paragraphs.
+        /// </summary>
+        internal static string RemoveEmptyDialog_exactRadio_Text {
+            get {
+                return ResourceManager.GetString("RemoveEmptyDialog_exactRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Put one blank line after each heading.
+        /// </summary>
+        internal static string RemoveEmptyDialog_headingBox_Text {
+            get {
+                return ResourceManager.GetString("RemoveEmptyDialog_headingBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keep at most one blank line between paragraphs.
+        /// </summary>
+        internal static string RemoveEmptyDialog_keepRadio_Text {
+            get {
+                return ResourceManager.GetString("RemoveEmptyDialog_keepRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unchecked removes blank lines after headings. Empty headings are always removed or converted to normal blank lines..
+        /// </summary>
+        internal static string RemoveEmptyDialog_noteLabel_Text {
+            get {
+                return ResourceManager.GetString("RemoveEmptyDialog_noteLabel.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove all blank lines between paragraphs.
+        /// </summary>
+        internal static string RemoveEmptyDialog_removeRadio_Text {
+            get {
+                return ResourceManager.GetString("RemoveEmptyDialog_removeRadio.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remove spacing after paragraphs.
         /// </summary>
         internal static string RemoveSpacingDialog_afterBox_Text {
@@ -13720,7 +13774,7 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remove extra empty lines between paragraph and remove empty headers.
+        ///   Looks up a localized string similar to Remove, collapse, or add blank lines between paragraphs and after headings.
         /// </summary>
         internal static string ribRemoveEmptyButton_Screentip {
             get {

@@ -1258,7 +1258,7 @@
     <comment>Context menu</comment>
   </data>
   <data name="ctxRemoveEmptyButton_Label" xml:space="preserve">
-    <value>قم بإزالة الفقرات والعناوين الفارغة</value>
+    <value>ضبط الخطوط الفارغة</value>
     <comment>Context menu</comment>
   </data>
   <data name="ctxRemoveSpacingButton_Label" xml:space="preserve">
@@ -4137,6 +4137,30 @@ ISO-code then comma then language name</comment>
 حدد لا للحفاظ على خط فارغ واحد بين الفقرات</value>
     <comment>message box</comment>
   </data>
+  <data name="RemoveEmptyDialog.Text" xml:space="preserve">
+    <value>ضبط الخطوط الفارغة</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="RemoveEmptyDialog_exactRadio.Text" xml:space="preserve">
+    <value>تأكد من وجود سطر واحد فارغ بين الفقرات</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="RemoveEmptyDialog_headingBox.Text" xml:space="preserve">
+    <value>ضع سطراً فارغاً بعد كل عنوان</value>
+    <comment>checkbox !EDIT</comment>
+  </data>
+  <data name="RemoveEmptyDialog_keepRadio.Text" xml:space="preserve">
+    <value>احتفظ بسطر واحد فارغ على الأكثر بين الفقرات</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="RemoveEmptyDialog_noteLabel.Text" xml:space="preserve">
+    <value>يؤدي عدم التحديد إلى إزالة الأسطر الفارغة بعد العناوين. تتم دائمًا إزالة العناوين الفارغة أو تحويلها إلى أسطر فارغة عادية.</value>
+    <comment>label !EDIT</comment>
+  </data>
+  <data name="RemoveEmptyDialog_removeRadio.Text" xml:space="preserve">
+    <value>إزالة كافة الأسطر الفارغة بين الفقرات</value>
+    <comment>radio button</comment>
+  </data>
   <data name="RemoveSpacingDialog.Text" xml:space="preserve">
     <value>إزالة التباعد</value>
     <comment>dialog title</comment>
@@ -5823,12 +5847,12 @@ ISO-code then comma then language name</comment>
     <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveEmptyButton_Label" xml:space="preserve">
-    <value>إزالة الخطوط الفارغة</value>
+    <value>ضبط الخطوط الفارغة</value>
     <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveEmptyButton_Screentip" xml:space="preserve">
-    <value>أزل الأسطر الفارغة الزائدة بين الفقرة وأزل الرؤوس الفارغة</value>
-    <comment>Ribbon OneMore menu item</comment>
+    <value>إزالة أو طي أو إضافة أسطر فارغة بين الفقرات وبعد العناوين</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribRemoveFootnoteButton_Label" xml:space="preserve">
     <value>إزالة الحاشية السفلية</value>
