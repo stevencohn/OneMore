@@ -59,6 +59,8 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			headingBox.Checked = collection.Get(HeadingKey, false);
+
+			ActiveControl = okButton;
 		}
 
 
