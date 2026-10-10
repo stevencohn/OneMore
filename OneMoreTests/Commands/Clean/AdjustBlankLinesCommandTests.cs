@@ -80,7 +80,7 @@ namespace River.OneMoreAddIn.Tests.Commands.Clean
 		private static string[] Lines(XElement page)
 		{
 			return page.Descendants(Ns + "OE")
-				.Where(oe => oe.Elements(Ns + "T").Any())
+				.Where(oe => oe.Elements(Ns + "T").Any() && !oe.Ancestors(Ns + "Title").Any())
 				.Select(oe => string.Concat(oe.Elements(Ns + "T").Select(e => e.Value)).Trim())
 				.ToArray();
 		}
