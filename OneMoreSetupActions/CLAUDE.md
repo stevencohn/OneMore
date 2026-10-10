@@ -52,6 +52,7 @@ OneNote bitness they're registering against.
 | File | Purpose |
 |------|---------|
 | `CheckBitnessAction.cs` | Validates installer / OS / OneNote bitness compatibility — gates everything else. |
+| `BackupDatabaseAction.cs` | Optional pre-install copy of `OneMore.db` (plus `-wal`/`-shm`) to a unique `OneMore-backup-<timestamp>.db`. Invoked directly as `--backup-db "<destDir>\|<sourcePath>"` by `CA_BackupDatabase`; paths are resolved by the installer UI (`BackupDlg.wxs`) because the action runs as SYSTEM. Failures are warnings only. Only offered/run when upgrading from a version older than 8.0.0 (`PRE8VERSIONFOUND`, set by a detect-only Upgrade row in `Product.wxs`) and a `OneMore.db` exists. Opt out silently with `BACKUPDB=0`. |
 | `CheckOneNoteAction.cs` | Confirms OneNote is configured to host add-ins. |
 | `ShutdownOneNoteAction.cs` | Force-closes OneNote before file replacement. |
 | `RegistryAction.cs` | Writes OneMore's registry settings. |

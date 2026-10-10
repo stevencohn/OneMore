@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+
+  <!--
+    Optional database backup page, inserted between InstallDirDlg and VerifyReadyDlg
+    of WixUI_InstallDir. The page is skipped when no OneMore.db exists (ONEMOREDB empty).
+
+    The page and backup only apply when upgrading from a version older than 8.0.0:
+    PRE8VERSIONFOUND is set by the detect-only Upgrade row in Product.wxs.
+
+    Properties (all public so they may be set on the msiexec command line):
+      BACKUPDB   "1" to back up (default); set to 0 or empty to opt out, e.g. when silent
+      BACKUPDIR  destination folder, default %LOCALAPPDATA%\OneMore\
+      ONEMOREDB  full path of the existing database, set by the search below
+
+    The backup itself is performed by CA_BackupDatabase declared in Product.wxs.
+  -->
+
+  <?define BackupHelpUrl = "https://onemoreaddin.com/TBD" ?>
+
+  <Fragment>
+
+    <!-- Secure so the values set in the UI reach the elevated execute sequence -->
+    <Property Id="BACKUPDB" Value="1" Secure="yes" />
+    <Property Id="BACKUPDIR" Secure="yes" />
+
+    <StandardDirectory Id="LocalAppDataFolder">
+      <!-- default value is [LocalAppDataFolder]OneMore\ -->
+      <Directory Id="BACKUPDIR" Name="OneMore" />
+    </StandardDirectory>
+
+    <!--
+      Locate an existing database in the interactive user's local app data.
+      AppSearch runs before CostFinalize resolves folder properties such as [LocalAppDataFolder],
+      so the path must use the environment variable form [%LOCALAPPDATA].
+    -->
+    <Property Id="ONEMOREDB" Secure="yes">
+      <DirectorySearch Id="OneMoreDbFolder" Path="[%LOCALAPPDATA]\OneMore" Depth="0">
+        <FileSearch Id="OneMoreDbFile" Name="OneMore.db" />
+      </DirectorySearch>
+    </Property>
+
+    <UI Id="OneMoreBackupUI">
+
+      <Dialog Id="BackupDlg" Width="370" Height="270" Title="[ProductName] Setup">
+
+        <Control Id="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44"
+                 TabSkip="no" Text="WixUI_Bmp_Banner" />
+        <Control Id="BannerLine" Type="Line" X="0" Y="44" Width="370" Height="0" />
+        <Control Id="BottomLine" Type="Line" X="0" Y="234" Width="370" Height="0" />
+
+        <Control Id="Title" Type="Text" X="15" Y="6" Width="340" Height="15"
+                 Transparent="yes" NoPrefix="yes"
+                 Text="{\WixUI_Font_Title}Back up your OneMore database" />
+        <Control Id="Description" Type="Text" X="25" Y="23" Width="340" Height="15"
+                 Transparent="yes" NoPrefix="yes"
+                 Text="This version changes how pages, tags, favorites, and layouts are stored." />
+
+        <Control Id="Explain" Type="Text" X="20" Y="55" Width="330" Height="42" NoPrefix="yes"
+                 Text="OneMore will rebuild some of its data the first time it runs. A copy of your existing database lets you go back to your previous version if you need to. The copy is a new file named OneMore-backup- followed by the date and time, so no existing file is overwritten." />
+
+        <Control Id="BackupCheck" Type="CheckBox" X="20" Y="106" Width="330" Height="18"
+                 Property="BACKUPDB" CheckBoxValue="1"
+                 Text="&amp;Back up my OneMore database before installing">
+          <!-- path controls are only meaningful when the backup is requested -->
+          <Publish Event="EnableCtrl" Value="FolderLabel" Order="1" Condition="BACKUPDB" />
+          <Publish Event="EnableCtrl" Value="FolderEdit" Order="2" Condition="BACKUPDB" />
+          <Publish Event="EnableCtrl" Value="Browse" Order="3" Condition="BACKUPDB" />
+          <Publish Event="DisableCtrl" Value="FolderLabel" Order="4" Condition="NOT BACKUPDB" />
+          <Publish Event="DisableCtrl" Value="FolderEdit" Order="5" Condition="NOT BACKUPDB" />
+          <Publish Event="DisableCtrl" Value="Browse" Order="6" Condition="NOT BACKUPDB" />
+        </Control>
+
+        <Control Id="FolderLabel" Type="Text" X="20" Y="134" Width="330" Height="12"
+                 NoPrefix="yes" Text="Copy the backup to this folder:" />
+        <Control Id="FolderEdit" Type="PathEdit" X="20" Y="148" Width="260" Height="18"
+                 Property="BACKUPDIR" Indirect="no" />
+        <Control Id="Browse" Type="PushButton" X="288" Y="147" Width="56" Height="17"
+                 Text="Br&amp;owse...">
+          <Publish Property="_BrowseProperty" Value="BACKUPDIR" Order="1" />
+          <Publish Event="SpawnDialog" Value="BrowseDlg" Order="2" />
+        </Control>
+
+        <Control Id="HelpLink" Type="Hyperlink" X="20" Y="190" Width="330" Height="30"
+                 Text="Learn how to &lt;a href=&quot;$(var.BackupHelpUrl)&quot;&gt;back up and restore your OneMore database&lt;/a&gt;." />
+
+        <Control Id="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17"
+                 Text="!(loc.WixUIBack)">
+          <Publish Event="NewDialog" Value="InstallDirDlg" />
+        </Control>
+        <Control Id="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17"
+                 Default="yes" Text="!(loc.WixUINext)">
+          <Publish Event="NewDialog" Value="VerifyReadyDlg" />
+        </Control>
+        <Control Id="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17"
+                 Cancel="yes" Text="!(loc.WixUICancel)">
+          <Publish Event="SpawnDialog" Value="CancelDlg" />
+        </Control>
+
+      </Dialog>
+
+      <!--
+        InstallDirDlg -> BackupDlg when a database exists. WixUI_InstallDir already publishes
+        NewDialog VerifyReadyDlg at order 4 with condition 1 (path validation is done by the
+        CheckTargetPath event at order 1), so this later NewDialog supersedes it.
+      -->
+      <Publish Dialog="InstallDirDlg" Control="Next" Event="NewDialog" Value="BackupDlg" Order="5"
+               Condition="ONEMOREDB AND PRE8VERSIONFOUND AND NOT Installed" />
+
+      <!-- VerifyReadyDlg Back -> BackupDlg when the page was shown -->
+      <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="BackupDlg" Order="3"
+               Condition="NOT Installed AND ONEMOREDB AND PRE8VERSIONFOUND" />
+
+    </UI>
+  </Fragment>
+</Wix>
