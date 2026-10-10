@@ -16,7 +16,7 @@
     The backup itself is performed by CA_BackupDatabase declared in Product.wxs.
   -->
 
-  <?define BackupHelpUrl = "https://onemoreaddin.com/TBD" ?>
+  <?define BackupHelpUrl = "https://onemoreaddin.com/the-basics/OneMore%20User%20Data.htm" ?>
 
   <Fragment>
 
