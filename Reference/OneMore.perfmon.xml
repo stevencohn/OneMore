@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  OneMore Performance Monitor data collector set template.
+
+  Import (elevated):   logman import -n OneMore -xml OneMore.perfmon.xml
+  Or in Perfmon:       Data Collector Sets > User Defined > New > Data Collector Set
+                       > Create from a template > Browse...
+  Run:                 logman start OneMore   /   logman stop OneMore
+
+  This static template uses wildcards (dllhost*, ONENOTE) because Perfmon cannot filter
+  counter instances by command line. The add-in's dllhost.exe is the one whose
+  "ID Process" value matches the PID of the process with the OneMore CLSID
+  88AB88AB-CDFB-4C68-9C3A-F10B75A5BC61 on its command line. Start OneNote first; instances
+  that start after the collector starts are not captured. For PID-exact collection and the
+  OneMore.db file IO trace, use Start-OneMorePerfmon.ps1 instead.
+-->
+<DataCollectorSet>
+  <Status>1</Status>
+  <Duration>0</Duration>
+  <Description>OneMore: OneNote and COM surrogate (dllhost) process, .NET CLR, interop and IO counters</Description>
+  <DescriptionUnresolved>OneMore: OneNote and COM surrogate (dllhost) process, .NET CLR, interop and IO counters</DescriptionUnresolved>
+  <DisplayName>OneMore</DisplayName>
+  <DisplayNameUnresolved>OneMore</DisplayNameUnresolved>
+  <SchedulesEnabled>-1</SchedulesEnabled>
+  <LatestOutputLocation></LatestOutputLocation>
+  <Name>OneMore</Name>
+  <OutputLocation>C:\PerfLogs\OneMore</OutputLocation>
+  <RootPath>%systemdrive%\PerfLogs\OneMore</RootPath>
+  <Segment>0</Segment>
+  <SegmentMaxDuration>0</SegmentMaxDuration>
+  <SegmentMaxSize>0</SegmentMaxSize>
+  <SerialNumber>1</SerialNumber>
+  <Server></Server>
+  <Subdirectory></Subdirectory>
+  <SubdirectoryFormat>1</SubdirectoryFormat>
+  <SubdirectoryFormatPattern>yyyyMMdd\-NNNNNN</SubdirectoryFormatPattern>
+  <Task></Task>
+  <TaskRunAsSelf>0</TaskRunAsSelf>
+  <TaskArguments></TaskArguments>
+  <TaskUserTextArguments></TaskUserTextArguments>
+  <StopOnCompletion>0</StopOnCompletion>
+  <PerformanceCounterDataCollector>
+    <DataCollectorType>0</DataCollectorType>
+    <Name>OneMore Counters</Name>
+    <FileName>OneMore</FileName>
+    <FileNameFormat>1</FileNameFormat>
+    <FileNameFormatPattern>\-NNNNNN</FileNameFormatPattern>
+    <LogAppend>0</LogAppend>
+    <LogCircular>0</LogCircular>
+    <LogOverwrite>0</LogOverwrite>
+    <LatestOutputLocation></LatestOutputLocation>
+    <DataSourceName></DataSourceName>
+    <SampleInterval>5</SampleInterval>
+    <SegmentMaxRecords>0</SegmentMaxRecords>
+    <LogFileFormat>3</LogFileFormat>
+
+    <!-- Process: OneNote and every dllhost; ID Process identifies the OneMore host -->
+    <Counter>\Process(ONENOTE)\ID Process</Counter>
+    <Counter>\Process(ONENOTE)\% Processor Time</Counter>
+    <Counter>\Process(ONENOTE)\Private Bytes</Counter>
+    <Counter>\Process(ONENOTE)\Working Set</Counter>
+    <Counter>\Process(ONENOTE)\Virtual Bytes</Counter>
+    <Counter>\Process(ONENOTE)\Handle Count</Counter>
+    <Counter>\Process(ONENOTE)\Thread Count</Counter>
+    <Counter>\Process(ONENOTE)\IO Read Operations/sec</Counter>
+    <Counter>\Process(ONENOTE)\IO Write Operations/sec</Counter>
+    <Counter>\Process(ONENOTE)\IO Read Bytes/sec</Counter>
+    <Counter>\Process(ONENOTE)\IO Write Bytes/sec</Counter>
+
+    <Counter>\Process(dllhost*)\ID Process</Counter>
+    <Counter>\Process(dllhost*)\% Processor Time</Counter>
+    <Counter>\Process(dllhost*)\Private Bytes</Counter>
+    <Counter>\Process(dllhost*)\Working Set</Counter>
+    <Counter>\Process(dllhost*)\Virtual Bytes</Counter>
+    <Counter>\Process(dllhost*)\Handle Count</Counter>
+    <Counter>\Process(dllhost*)\Thread Count</Counter>
+    <Counter>\Process(dllhost*)\IO Read Operations/sec</Counter>
+    <Counter>\Process(dllhost*)\IO Write Operations/sec</Counter>
+    <Counter>\Process(dllhost*)\IO Read Bytes/sec</Counter>
+    <Counter>\Process(dllhost*)\IO Write Bytes/sec</Counter>
+
+    <!-- .NET CLR memory / GC -->
+    <Counter>\.NET CLR Memory(dllhost*)\Process ID</Counter>
+    <Counter>\.NET CLR Memory(dllhost*)\# Bytes in all Heaps</Counter>
+    <Counter>\.NET CLR Memory(dllhost*)\# Gen 0 Collections</Counter>
+    <Counter>\.NET CLR Memory(dllhost*)\# Gen 1 Collections</Counter>
+    <Counter>\.NET CLR Memory(dllhost*)\# Gen 2 Collections</Counter>
+    <Counter>\.NET CLR Memory(dllhost*)\% Time in GC</Counter>
+    <Counter>\.NET CLR Memory(dllhost*)\Large Object Heap size</Counter>
+
+    <!-- .NET CLR exceptions and threading -->
+    <Counter>\.NET CLR Exceptions(dllhost*)\# of Exceps Thrown / sec</Counter>
+    <Counter>\.NET CLR LocksAndThreads(dllhost*)\# of current logical Threads</Counter>
+    <Counter>\.NET CLR LocksAndThreads(dllhost*)\Current Queue Length</Counter>
+    <Counter>\.NET CLR LocksAndThreads(dllhost*)\Contention Rate / sec</Counter>
+
+    <!-- .NET CLR interop: COM callable wrappers, marshalling, stubs -->
+    <Counter>\.NET CLR Interop(dllhost*)\# of CCWs</Counter>
+    <Counter>\.NET CLR Interop(dllhost*)\# of Stubs</Counter>
+    <Counter>\.NET CLR Interop(dllhost*)\# of marshalling</Counter>
+    <Counter>\.NET CLR Interop(dllhost*)\# of TLB imports / sec</Counter>
+    <Counter>\.NET CLR Interop(dllhost*)\# of TLB exports / sec</Counter>
+
+    <!-- System context -->
+    <Counter>\Processor(_Total)\% Processor Time</Counter>
+    <Counter>\Memory\Available MBytes</Counter>
+    <Counter>\LogicalDisk(*)\Avg. Disk sec/Read</Counter>
+    <Counter>\LogicalDisk(*)\Avg. Disk sec/Write</Counter>
+  </PerformanceCounterDataCollector>
+</DataCollectorSet>
