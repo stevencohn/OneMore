@@ -8,7 +8,9 @@ namespace River.OneMoreAddIn.Commands
 	using River.OneMoreAddIn.Pipeline;
 	using River.OneMoreAddIn.Settings;
 	using System;
+	using System.Collections.Generic;
 	using System.Diagnostics;
+	using System.Linq;
 	using System.Threading;
 	using System.Threading.Tasks;
 
@@ -35,7 +37,10 @@ namespace River.OneMoreAddIn.Commands
 		private DateTime? lastWaitLog;
 		private DateTime? lastRecoveryCheck;
 		private bool reportedNoSnapshot;
+		private bool hashtagsReady;
 		private bool disposed;
+
+		private readonly List<(IPageConsumer Consumer, Func<bool> IsEnabled)> shared = new();
 
 
 		public delegate void HashtagScannedHandler(object sender, HashtagScannedEventArgs e);
@@ -70,8 +75,32 @@ namespace River.OneMoreAddIn.Commands
 		/// Gets whether the user has left hashtag scanning enabled. This reads the setting
 		/// each time, so it reflects a change made while OneNote is running.
 		/// </summary>
-		public bool IsEnabled =>
+		public bool HashtagsEnabled =>
 			!new SettingsProvider().GetCollection("HashtagSheet").Get("disabled", false);
+
+
+		/// <summary>
+		/// Gets whether the stage has anything to do: hashtags are on, or another consumer that
+		/// shares the pages this stage reads is on. This is read every cycle, so turning either
+		/// off or on takes effect without a restart.
+		/// </summary>
+		public bool IsEnabled => HashtagsEnabled || AnySharedEnabled;
+
+
+		/// <summary>
+		/// Adds a consumer that shares the pages this stage reads, such as the text index. Reading
+		/// a page is the expensive step, so a page is read once however many consumers want it.
+		/// The consumer runs even when hashtags are turned off.
+		/// </summary>
+		/// <param name="consumer">The consumer to give pages to</param>
+		/// <param name="isEnabled">Says whether the user has the consumer turned on, read every cycle</param>
+		public void AddConsumer(IPageConsumer consumer, Func<bool> isEnabled)
+		{
+			shared.Add((consumer, isEnabled));
+		}
+
+
+		private bool AnySharedEnabled => shared.Any(s => s.IsEnabled());
 
 
 		/// <summary>
@@ -99,7 +128,7 @@ namespace River.OneMoreAddIn.Commands
 
 		public void Initialize()
 		{
-			if (!IsEnabled)
+			if (!HashtagsEnabled)
 			{
 				logger.WriteLine("Startup: hashtag service is disabled");
 				return;
@@ -129,10 +158,19 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
-		/// Determines whether the hashtag catalog is ready to be scanned, asking the tray to
-		/// build it if need be.
+		/// Determines whether the stage can run: the hashtag catalog is ready to be scanned, asking
+		/// the tray to build it if need be, or a shared consumer is turned on. A shared consumer
+		/// does not wait for the hashtag catalog, which can take a long time to build.
 		/// </summary>
 		public async Task<bool> IsReady(CancellationToken token)
+		{
+			hashtagsReady = HashtagsEnabled && await AreHashtagsReady();
+			return hashtagsReady || AnySharedEnabled;
+		}
+
+
+		// determines whether the hashtag catalog is ready to be scanned
+		private async Task<bool> AreHashtagsReady()
 		{
 			EnsureInitialized();
 
@@ -233,6 +271,26 @@ namespace River.OneMoreAddIn.Commands
 
 			reportedNoSnapshot = false;
 
+			var consumers = shared
+				.Where(s => s.IsEnabled())
+				.Select(s => s.Consumer)
+				.ToList();
+
+			if (!hashtagsReady)
+			{
+				// hashtags are off, or the catalog is still being built by the tray, but a shared
+				// consumer is waiting; give it the pages without touching the hashtag catalog
+				if (consumers.Count > 0)
+				{
+					var pass = new PageContentPass(
+						consumers, HashtagScanner.ReadThrottle(), () => HashtagServicePause.IsPaused);
+
+					await pass.Run(snapshot, token);
+				}
+
+				return;
+			}
+
 			if (Rebuild)
 			{
 				// at this point the tray is "active" and the rebuild will commence immediately,
@@ -255,7 +313,7 @@ namespace River.OneMoreAddIn.Commands
 				scanner.SetNotebookFilters(notebookFilters);
 			}
 
-			await scanner.Scan(snapshot, token);
+			await scanner.Scan(snapshot, consumers, token);
 
 			var s = scanner.Stats;
 			scanCount++;
@@ -328,6 +386,11 @@ namespace River.OneMoreAddIn.Commands
 				if (disposing)
 				{
 					Release();
+
+					foreach (var (consumer, _) in shared)
+					{
+						(consumer as IDisposable)?.Dispose();
+					}
 				}
 
 				disposed = true;

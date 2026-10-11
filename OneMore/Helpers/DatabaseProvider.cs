@@ -26,6 +26,15 @@ namespace River.OneMoreAddIn
 
 		protected static readonly string path = ResolveDatabasePath();
 
+		/// <summary>
+		/// Matches a single-line CREATE statement in a schema DDL, capturing the entity type
+		/// (TABLE, INDEX, VIEW, TRIGGER) and its name. A VIRTUAL TABLE, such as an FTS5 index,
+		/// is reported as type TABLE so it is dropped along with its shadow tables.
+		/// </summary>
+		internal static readonly Regex EntityPattern = new Regex(
+			@"CREATE(?: UNIQUE| VIRTUAL)? ([^\s]+) IF NOT EXISTS ([^\s]+)",
+			RegexOptions.Compiled);
+
 
 		/// <summary>
 		/// Resolves the path of OneMore.db under the local (non-roaming) AppData folder,
@@ -301,12 +310,9 @@ namespace River.OneMoreAddIn
 				return true;
 			}
 
-			var pattern = new Regex(@"CREATE(?: UNIQUE)? ([^\s]+) IF NOT EXISTS ([^\s]+)",
-				RegexOptions.Compiled);
-
 			var entities = Regex.Split(DDL, @"\r\n|\n\r|\n")
 				.AsEnumerable()
-				.Select(d => pattern.Match(d))
+				.Select(d => EntityPattern.Match(d))
 				.Where(m => m.Success)
 				.Select(m => (m.Groups[1].Value, m.Groups[2].Value))
 				.ToList();
@@ -393,8 +399,67 @@ namespace River.OneMoreAddIn
 					"PRAGMA busy_timeout=3000;" +
 					"PRAGMA temp_store=MEMORY;";
 				pragma.ExecuteNonQuery();
+
+				OnDatabaseOpened(con);
 			}
 		}
+
+
+		/// <summary>
+		/// Called once after the standard connection is opened, so a provider can add
+		/// per-connection capabilities such as loading a SQLite extension.
+		/// </summary>
+		protected virtual void OnDatabaseOpened(SQLiteConnection connection)
+		{
+		}
+
+
+		#region Write transactions
+		// A deferred transaction reads first and only then tries to write, so two of them, such as
+		// one in the add-in and one in the tray, could each find that a row is missing and each
+		// add it. An immediate transaction takes the write lock before reading, so the second waits
+		// for the first and then finds its row. The connection's busy timeout covers the wait.
+
+		/// <summary>
+		/// Starts a transaction that takes the write lock immediately.
+		/// </summary>
+		protected void BeginImmediate()
+		{
+			using var cmd = con.CreateCommand();
+			cmd.CommandText = "BEGIN IMMEDIATE";
+			cmd.ExecuteNonQuery();
+		}
+
+
+		/// <summary>
+		/// Commits the transaction started by <see cref="BeginImmediate"/>.
+		/// </summary>
+		protected void Commit()
+		{
+			using var cmd = con.CreateCommand();
+			cmd.CommandText = "COMMIT";
+			cmd.ExecuteNonQuery();
+		}
+
+
+		/// <summary>
+		/// Rolls back the transaction started by <see cref="BeginImmediate"/>, without ever
+		/// masking the error that caused the rollback.
+		/// </summary>
+		protected void Rollback()
+		{
+			try
+			{
+				using var cmd = con.CreateCommand();
+				cmd.CommandText = "ROLLBACK";
+				cmd.ExecuteNonQuery();
+			}
+			catch (Exception exc)
+			{
+				logger.WriteLine("error rolling back database changes", exc);
+			}
+		}
+		#endregion Write transactions
 
 
 		protected void RefreshDataSchema(string domain, string DDL)

@@ -15,11 +15,28 @@ namespace River.OneMoreAddIn.Settings
 	internal partial class NotebooksDialog : MoreForm
 	{
 		private readonly MoreCheckList booksList;
+		private readonly bool forIndex;
 
 
+		/// <summary>
+		/// Initialize a dialog that chooses the notebooks scanned for hashtags
+		/// </summary>
 		public NotebooksDialog()
+			: this(false)
+		{
+		}
+
+
+		/// <summary>
+		/// Initialize a dialog that chooses notebooks
+		/// </summary>
+		/// <param name="forIndex">True to choose the notebooks that are in the text index; false
+		/// to choose the notebooks that are scanned for hashtags</param>
+		public NotebooksDialog(bool forIndex)
 		{
 			InitializeComponent();
+
+			this.forIndex = forIndex;
 
 			if (NeedsLocalizing())
 			{
@@ -34,6 +51,12 @@ namespace River.OneMoreAddIn.Settings
 					"okButton=word_OK",
 					"cancelButton=word_Cancel"
 				});
+			}
+
+			if (forIndex)
+			{
+				Text = Resx.IndexNotebooksDialog_Title;
+				infoLabel.Text = Resx.IndexNotebooksDialog_infoLabel;
 			}
 
 			booksList = new MoreCheckList
@@ -55,6 +78,13 @@ namespace River.OneMoreAddIn.Settings
 		{
 			base.OnLoad(e);
 			AlignHyperlinks();
+
+			if (forIndex)
+			{
+				await LoadIndexNotebooks();
+				FocusButtons();
+				return;
+			}
 
 			// load scanned notebooks from DB for inclusion state and scanned indicator
 			HashtagNotebooks knownNotebooks = null;
@@ -89,6 +119,42 @@ namespace River.OneMoreAddIn.Settings
 			booksList.EndUpdate();
 
 			FocusButtons();
+		}
+
+
+		// lists the open notebooks with the choice made for the text index; a notebook that has
+		// not been chosen is not indexed. The index knows a notebook by its path or name, as the
+		// identity catalog does, not by the ID OneNote gives it, which changes when it is reopened
+		private async System.Threading.Tasks.Task LoadIndexNotebooks()
+		{
+			var choices = new System.Collections.Generic.Dictionary<string, bool>();
+			if (TextIndex.IndexProvider.IsAvailable && TextIndex.IndexProvider.CatalogExists())
+			{
+				using var index = new TextIndex.IndexProvider();
+				foreach (var notebook in index.ReadNotebooks())
+				{
+					choices[notebook.NotebookKey] = notebook.Included;
+				}
+			}
+
+			await using var one = new OneNote();
+			var books = await one.GetNotebooks();
+			var ns = one.GetNamespace(books);
+
+			booksList.BeginUpdate();
+			foreach (var book in books.Elements(ns + "Notebook"))
+			{
+				var name = book.Attribute("name").Value;
+				var path = book.Attribute("path")?.Value;
+				var key = Identity.PageIdentityKeys.NotebookKey(path, name);
+
+				booksList.Items.Add(new ListViewItem(name)
+				{
+					Tag = (key, name),
+					Checked = choices.TryGetValue(key, out var included) && included
+				});
+			}
+			booksList.EndUpdate();
 		}
 
 
@@ -134,6 +200,31 @@ namespace River.OneMoreAddIn.Settings
 
 		private void SaveInclusion(object sender, EventArgs e)
 		{
+			if (forIndex)
+			{
+				using var index = new TextIndex.IndexProvider();
+				var chosen = new System.Collections.Generic.HashSet<string>();
+
+				foreach (ListViewItem item in booksList.Items)
+				{
+					var (key, _) = ((string, string))item.Tag;
+					index.WriteNotebook(key, item.Checked);
+
+					if (item.Checked)
+					{
+						chosen.Add(key);
+					}
+				}
+
+				// a notebook that is no longer chosen keeps nothing in the index; this dialog is
+				// only offered when the user has not chosen every notebook
+				index.PruneNotebooks(chosen.Contains);
+
+				DialogResult = DialogResult.OK;
+				Close();
+				return;
+			}
+
 			using var provider = new HashtagProvider();
 			foreach (ListViewItem item in booksList.Items)
 			{

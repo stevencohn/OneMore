@@ -2,7 +2,7 @@
 <Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
 
   <!--
-    Optional database backup page, inserted between InstallDirDlg and VerifyReadyDlg
+    Optional database backup page, inserted between InstallDirDlg and IndexDlg (IndexDlg.wxs)
     of WixUI_InstallDir. The page is skipped when no OneMore.db exists (ONEMOREDB empty).
 
     The page and backup only apply when upgrading from a version older than 8.0.0:
@@ -90,7 +90,7 @@
         </Control>
         <Control Id="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17"
                  Default="yes" Text="!(loc.WixUINext)">
-          <Publish Event="NewDialog" Value="VerifyReadyDlg" />
+          <Publish Event="NewDialog" Value="IndexDlg" />
         </Control>
         <Control Id="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17"
                  Cancel="yes" Text="!(loc.WixUICancel)">

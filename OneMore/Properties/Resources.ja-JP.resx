@@ -198,6 +198,30 @@
     <value>最上位のセクショングループを追加</value>
     <comment>dialog title</comment>
   </data>
+  <data name="AdjustBlankLinesDialog.Text" xml:space="preserve">
+    <value>空白行を調整する</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="AdjustBlankLinesDialog_exactRadio.Text" xml:space="preserve">
+    <value>段落間には必ず 1 行の空白行を入れてください</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="AdjustBlankLinesDialog_headingBox.Text" xml:space="preserve">
+    <value>各見出しの後に空白行を 1 行挿入します</value>
+    <comment>checkbox !EDIT</comment>
+  </data>
+  <data name="AdjustBlankLinesDialog_keepRadio.Text" xml:space="preserve">
+    <value>段落間には最大でも 1 行の空白行を入れてください</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="AdjustBlankLinesDialog_noteLabel.Text" xml:space="preserve">
+    <value>チェックを外すと、見出しの後の空白行が削除されます。空の見出しは常に削除されるか、通常の空行に変換されます。</value>
+    <comment>label !EDIT</comment>
+  </data>
+  <data name="AdjustBlankLinesDialog_removeRadio.Text" xml:space="preserve">
+    <value>段落間の空白行をすべて削除する</value>
+    <comment>radio button</comment>
+  </data>
   <data name="AdjustImagesDialog.Text" xml:space="preserve">
     <value>画像のサイズ変更と調整</value>
     <comment>dialog title</comment>
@@ -1245,6 +1269,10 @@
     <value>この画像は印刷物からのものです。トリミングすると、元のファイルとの関連が失われます。トリミングを続行しますか？</value>
     <comment>message box, question</comment>
   </data>
+  <data name="ctxAdjustBlankLinesButton_Label" xml:space="preserve">
+    <value>空白行を調整する</value>
+    <comment>Context menu</comment>
+  </data>
   <data name="ctxCleanMenu_Label" xml:space="preserve">
     <value>クリーン...</value>
     <comment>Context menu</comment>
@@ -1255,10 +1283,6 @@
   </data>
   <data name="ctxNoSpellCheckButton_Label" xml:space="preserve">
     <value>スペルチェックなし</value>
-    <comment>Context menu</comment>
-  </data>
-  <data name="ctxAdjustBlankLinesButton_Label" xml:space="preserve">
-    <value>空白行を調整する</value>
     <comment>Context menu</comment>
   </data>
   <data name="ctxRemoveSpacingButton_Label" xml:space="preserve">
@@ -2733,6 +2757,66 @@ OneNoteファイル (*.one)</value>
     <value>{0} ページが変更されました</value>
     <comment>page title</comment>
   </data>
+  <data name="IndexNotebooksDialog_infoLabel" xml:space="preserve">
+    <value>検索インデックスに含めるノートブックを選択します。</value>
+  </data>
+  <data name="IndexNotebooksDialog_Title" xml:space="preserve">
+    <value>インデックス ノートブックの検索</value>
+  </data>
+  <data name="IndexSheet_allBox.Text" xml:space="preserve">
+    <value>すべてのノートブックにインデックスを付ける</value>
+  </data>
+  <data name="IndexSheet_buildCancelled" xml:space="preserve">
+    <value>{0:N0} ページのインデックス作成後に停止しました。 インデックス作成はバックグラウンドで続行されます。</value>
+  </data>
+  <data name="IndexSheet_buildDone" xml:space="preserve">
+    <value>{0:N0} ページのインデックスが作成されました</value>
+  </data>
+  <data name="IndexSheet_buildFailed" xml:space="preserve">
+    <value>OneNote を読み取れなかったため、何もインデックスが作成されませんでした</value>
+  </data>
+  <data name="IndexSheet_buildLink.Text" xml:space="preserve">
+    <value>今すぐインデックスを構築する</value>
+  </data>
+  <data name="IndexSheet_buildMessage" xml:space="preserve">
+    <value>ノートブックのインデックスを作成しています...</value>
+  </data>
+  <data name="IndexSheet_buildNote.Text" xml:space="preserve">
+    <value>まだインデックスが作成されていないすべてのページを読み取ります。 大規模なコレクションの場合、これには数分かかる場合があり、OneNote の実行速度が遅くなる可能性があります。 それ以外の場合、インデックスはバックグラウンドで少しずつ構築されます。</value>
+  </data>
+  <data name="IndexSheet_buildProgress" xml:space="preserve">
+    <value>{1:N0} ページ中 {0:N0} のインデックスが付けられました</value>
+  </data>
+  <data name="IndexSheet_deleteConfirm" xml:space="preserve">
+    <value>インデックス付けされているものをすべて削除しますか? 検索は、インデックスを再度オンにしてインデックスが再構築されるまで、ノートブックを直接スキャンします。 ページは変更されません。</value>
+  </data>
+  <data name="IndexSheet_deleteDone" xml:space="preserve">
+    <value>インデックスが削除されました。 {0:N0} ページが削除されました。</value>
+  </data>
+  <data name="IndexSheet_deleteLink.Text" xml:space="preserve">
+    <value>インデックスを削除する</value>
+  </data>
+  <data name="IndexSheet_enabledBox.Text" xml:space="preserve">
+    <value>ノートブックの検索インデックスを最新の状態に保つ</value>
+  </data>
+  <data name="IndexSheet_introBox.Text" xml:space="preserve">
+    <value>ノートブックのテキストのインデックスを作成して、検索コマンドでほぼ即座にテキストを検索できるようにします。 インデックスはこのコンピュータに保存され、バックグラウンドで最新の状態に更新されます。 あなたのページは決して変更されません。</value>
+  </data>
+  <data name="IndexSheet_selectLink.Text" xml:space="preserve">
+    <value>インデックスを作成するノートブックを選択します</value>
+  </data>
+  <data name="IndexSheet_status" xml:space="preserve">
+    <value>{0:N0} ページと {1:N0} 段落にインデックスが付けられ、{2:N1} MB を使用します</value>
+  </data>
+  <data name="IndexSheet_statusNone" xml:space="preserve">
+    <value>まだインデックスされたページはありません</value>
+  </data>
+  <data name="IndexSheet_Title" xml:space="preserve">
+    <value>検索インデックス</value>
+  </data>
+  <data name="IndexSheet_unavailable" xml:space="preserve">
+    <value>このコンピュータでは検索インデックスを使用できません</value>
+  </data>
   <data name="InsertBoxCommand_Code" xml:space="preserve">
     <value>あなたのコードはこちら...</value>
     <comment>text</comment>
@@ -4122,30 +4206,6 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <value>{0}% 類似</value>
     <comment>clickable similarity chip for a near-duplicate match, {0} rounded percentage</comment>
   </data>
-  <data name="AdjustBlankLinesDialog.Text" xml:space="preserve">
-    <value>空白行を調整する</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="AdjustBlankLinesDialog_exactRadio.Text" xml:space="preserve">
-    <value>段落間には必ず 1 行の空白行を入れてください</value>
-    <comment>radio button</comment>
-  </data>
-  <data name="AdjustBlankLinesDialog_headingBox.Text" xml:space="preserve">
-    <value>各見出しの後に空白行を 1 行挿入します</value>
-    <comment>checkbox !EDIT</comment>
-  </data>
-  <data name="AdjustBlankLinesDialog_keepRadio.Text" xml:space="preserve">
-    <value>段落間には最大でも 1 行の空白行を入れてください</value>
-    <comment>radio button</comment>
-  </data>
-  <data name="AdjustBlankLinesDialog_noteLabel.Text" xml:space="preserve">
-    <value>チェックを外すと、見出しの後の空白行が削除されます。空の見出しは常に削除されるか、通常の空行に変換されます。</value>
-    <comment>label !EDIT</comment>
-  </data>
-  <data name="AdjustBlankLinesDialog_removeRadio.Text" xml:space="preserve">
-    <value>段落間の空白行をすべて削除する</value>
-    <comment>radio button</comment>
-  </data>
   <data name="RemoveSpacingDialog.Text" xml:space="preserve">
     <value>間隔を削除</value>
     <comment>dialog title</comment>
@@ -4452,6 +4512,14 @@ TF-IDF コサイン、語彙の重複、構造</value>
   <data name="ribAddTopSectionGroupButton_Screentip" xml:space="preserve">
     <value>新しいセクション グループをこのノートブックの最上位に追加します</value>
     <comment>notebook context menu</comment>
+  </data>
+  <data name="ribAdjustBlankLinesButton_Label" xml:space="preserve">
+    <value>空白行を調整する</value>
+    <comment>ribbon clean</comment>
+  </data>
+  <data name="ribAdjustBlankLinesButton_Screentip" xml:space="preserve">
+    <value>段落間および見出しの後に空行を削除、折りたたむ、または追加する</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribAdjustImagesButton_Label" xml:space="preserve">
     <value>画像の編集</value>
@@ -5832,14 +5900,6 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <value>重複ページを特定して削除する</value>
     <comment>ribbon clean</comment>
   </data>
-  <data name="ribAdjustBlankLinesButton_Label" xml:space="preserve">
-    <value>空白行を調整する</value>
-    <comment>ribbon clean</comment>
-  </data>
-  <data name="ribAdjustBlankLinesButton_Screentip" xml:space="preserve">
-    <value>段落間および見出しの後に空行を削除、折りたたむ、または追加する</value>
-    <comment>ribbon clean</comment>
-  </data>
   <data name="ribRemoveFootnoteButton_Label" xml:space="preserve">
     <value>脚注の削除</value>
     <comment>ribbon references</comment>
@@ -6619,6 +6679,12 @@ TF-IDF コサイン、語彙の重複、構造</value>
     <value>目次内のテキストを検索する</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SearchDialog_indexChecking" xml:space="preserve">
+    <value>検索インデックスを確認しています...</value>
+  </data>
+  <data name="SearchDialog_indexSummary" xml:space="preserve">
+    <value>検索インデックスから {0:N0} ページ、OneNote から読み取られた {1:N0} ページ</value>
+  </data>
   <data name="SearchDialog_introLabel.Text" xml:space="preserve">
     <value>検索条件を入力します。オプションで AND、OR、NOT、引用符、括弧を含めることができます。
 引用符で囲まれていない単語は任意の順序で一致します。完全に一致する語句には引用符を使用します。</value>
@@ -6639,6 +6705,10 @@ TF-IDF コサイン、語彙の重複、構造</value>
   <data name="SearchDialog_regBox.Text" xml:space="preserve">
     <value>正規表現を使用する</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="SearchDialog_scopeAll" xml:space="preserve">
+    <value>すべてのノートブックで</value>
+    <comment>combobox item, searches every open notebook</comment>
   </data>
   <data name="SearchDialog_selectAllLink.Text" xml:space="preserve">
     <value>すべて選択</value>

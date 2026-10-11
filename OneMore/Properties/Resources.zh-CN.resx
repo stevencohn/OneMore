@@ -200,6 +200,30 @@
     <value>添加顶级分区组</value>
     <comment>dialog title</comment>
   </data>
+  <data name="AdjustBlankLinesDialog.Text" xml:space="preserve">
+    <value>调整空白行</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="AdjustBlankLinesDialog_exactRadio.Text" xml:space="preserve">
+    <value>确保段落之间只有一个空行</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="AdjustBlankLinesDialog_headingBox.Text" xml:space="preserve">
+    <value>每个标题后放置一个空行</value>
+    <comment>checkbox !EDIT</comment>
+  </data>
+  <data name="AdjustBlankLinesDialog_keepRadio.Text" xml:space="preserve">
+    <value>段落之间最多保留一个空行</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="AdjustBlankLinesDialog_noteLabel.Text" xml:space="preserve">
+    <value>取消选中会删除标题后的空行。空标题始终会被删除或转换为正常的空行。</value>
+    <comment>label !EDIT</comment>
+  </data>
+  <data name="AdjustBlankLinesDialog_removeRadio.Text" xml:space="preserve">
+    <value>删除段落之间的所有空白行</value>
+    <comment>radio button</comment>
+  </data>
   <data name="AdjustImagesDialog.Text" xml:space="preserve">
     <value>图像大小与样式调整</value>
     <comment>dialog title</comment>
@@ -1246,6 +1270,10 @@
     <value>这张图片来自打印输出。如果对它裁剪，它将不再与原始文件关联。您要继续裁剪吗？</value>
     <comment>message box, question</comment>
   </data>
+  <data name="ctxAdjustBlankLinesButton_Label" xml:space="preserve">
+    <value>调整空白行</value>
+    <comment>Context menu</comment>
+  </data>
   <data name="ctxCleanMenu_Label" xml:space="preserve">
     <value>清理</value>
     <comment>Context menu</comment>
@@ -1256,10 +1284,6 @@
   </data>
   <data name="ctxNoSpellCheckButton_Label" xml:space="preserve">
     <value>关闭拼写检查</value>
-    <comment>Context menu</comment>
-  </data>
-  <data name="ctxAdjustBlankLinesButton_Label" xml:space="preserve">
-    <value>调整空白行</value>
     <comment>Context menu</comment>
   </data>
   <data name="ctxRemoveSpacingButton_Label" xml:space="preserve">
@@ -2736,6 +2760,66 @@ OneNote 文件 (*.one)</value>
     <value>{0} 个已修改的页面</value>
     <comment>page title</comment>
   </data>
+  <data name="IndexNotebooksDialog_infoLabel" xml:space="preserve">
+    <value>选择要包含在搜索索引中的笔记本。</value>
+  </data>
+  <data name="IndexNotebooksDialog_Title" xml:space="preserve">
+    <value>搜索索引笔记本</value>
+  </data>
+  <data name="IndexSheet_allBox.Text" xml:space="preserve">
+    <value>索引所有笔记本</value>
+  </data>
+  <data name="IndexSheet_buildCancelled" xml:space="preserve">
+    <value>为 {0:N0} 页面编制索引后停止。索引编制在后台继续进行。</value>
+  </data>
+  <data name="IndexSheet_buildDone" xml:space="preserve">
+    <value>已编入索引的 {0:N0} 页</value>
+  </data>
+  <data name="IndexSheet_buildFailed" xml:space="preserve">
+    <value>OneNote 无法读取，因此没有索引任何内容</value>
+  </data>
+  <data name="IndexSheet_buildLink.Text" xml:space="preserve">
+    <value>立即建立索引</value>
+  </data>
+  <data name="IndexSheet_buildMessage" xml:space="preserve">
+    <value>为你的笔记本建立索引...</value>
+  </data>
+  <data name="IndexSheet_buildNote.Text" xml:space="preserve">
+    <value>读取尚未编入索引的每一页。对于大型集合，这可能需要几分钟的时间，并且可能会降低 OneNote 的运行速度。否则，索引会在后台一次构建一点。</value>
+  </data>
+  <data name="IndexSheet_buildProgress" xml:space="preserve">
+    <value>已将 {0:N0} 个页面（共 {1:N0} 个）编入索引</value>
+  </data>
+  <data name="IndexSheet_deleteConfirm" xml:space="preserve">
+    <value>删除所有已索引的内容？搜索将直接扫描您的笔记本，直到您再次打开索引并重建索引。您的页面没有更改。</value>
+  </data>
+  <data name="IndexSheet_deleteDone" xml:space="preserve">
+    <value>索引被删除。 {0:N0} 页已删除。</value>
+  </data>
+  <data name="IndexSheet_deleteLink.Text" xml:space="preserve">
+    <value>删除索引</value>
+  </data>
+  <data name="IndexSheet_enabledBox.Text" xml:space="preserve">
+    <value>使我的笔记本的搜索索引保持最新</value>
+  </data>
+  <data name="IndexSheet_introBox.Text" xml:space="preserve">
+    <value>建立笔记本文本的索引，以便“搜索”命令几乎可以立即找到文本。索引保存在这台计算机上，并在后台更新。您的页面永远不会改变。</value>
+  </data>
+  <data name="IndexSheet_selectLink.Text" xml:space="preserve">
+    <value>选择要索引的笔记本</value>
+  </data>
+  <data name="IndexSheet_status" xml:space="preserve">
+    <value>{0:N0} 个页面和 {1:N0} 个段落已编入索引，使用 {2:N1} MB</value>
+  </data>
+  <data name="IndexSheet_statusNone" xml:space="preserve">
+    <value>尚未对任何页面建立索引</value>
+  </data>
+  <data name="IndexSheet_Title" xml:space="preserve">
+    <value>搜索索引</value>
+  </data>
+  <data name="IndexSheet_unavailable" xml:space="preserve">
+    <value>搜索索引无法在此计算机上使用</value>
+  </data>
   <data name="InsertBoxCommand_Code" xml:space="preserve">
     <value>在这里输入代码内容...</value>
     <comment>text</comment>
@@ -4133,30 +4217,6 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <value>{0}% 相似</value>
     <comment>clickable similarity chip for a near-duplicate match, {0} rounded percentage</comment>
   </data>
-  <data name="AdjustBlankLinesDialog.Text" xml:space="preserve">
-    <value>调整空白行</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="AdjustBlankLinesDialog_exactRadio.Text" xml:space="preserve">
-    <value>确保段落之间只有一个空行</value>
-    <comment>radio button</comment>
-  </data>
-  <data name="AdjustBlankLinesDialog_headingBox.Text" xml:space="preserve">
-    <value>每个标题后放置一个空行</value>
-    <comment>checkbox !EDIT</comment>
-  </data>
-  <data name="AdjustBlankLinesDialog_keepRadio.Text" xml:space="preserve">
-    <value>段落之间最多保留一个空行</value>
-    <comment>radio button</comment>
-  </data>
-  <data name="AdjustBlankLinesDialog_noteLabel.Text" xml:space="preserve">
-    <value>取消选中会删除标题后的空行。空标题始终会被删除或转换为正常的空行。</value>
-    <comment>label !EDIT</comment>
-  </data>
-  <data name="AdjustBlankLinesDialog_removeRadio.Text" xml:space="preserve">
-    <value>删除段落之间的所有空白行</value>
-    <comment>radio button</comment>
-  </data>
   <data name="RemoveSpacingDialog.Text" xml:space="preserve">
     <value>删除间距</value>
     <comment>dialog title</comment>
@@ -4463,6 +4523,14 @@ TF-IDF 余弦、词汇重叠、结构</value>
   <data name="ribAddTopSectionGroupButton_Screentip" xml:space="preserve">
     <value>将新的分区组添加到此笔记本的顶层</value>
     <comment>notebook context menu</comment>
+  </data>
+  <data name="ribAdjustBlankLinesButton_Label" xml:space="preserve">
+    <value>调整空白行</value>
+    <comment>ribbon clean</comment>
+  </data>
+  <data name="ribAdjustBlankLinesButton_Screentip" xml:space="preserve">
+    <value>删除、折叠或在段落之间和标题后添加空行</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribAdjustImagesButton_Label" xml:space="preserve">
     <value>图像大小与样式调整</value>
@@ -5842,14 +5910,6 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <value>识别并删除重复页面</value>
     <comment>ribbon clean</comment>
   </data>
-  <data name="ribAdjustBlankLinesButton_Label" xml:space="preserve">
-    <value>调整空白行</value>
-    <comment>ribbon clean</comment>
-  </data>
-  <data name="ribAdjustBlankLinesButton_Screentip" xml:space="preserve">
-    <value>删除、折叠或在段落之间和标题后添加空行</value>
-    <comment>ribbon clean</comment>
-  </data>
   <data name="ribRemoveFootnoteButton_Label" xml:space="preserve">
     <value>删除脚注</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
@@ -6627,6 +6687,12 @@ TF-IDF 余弦、词汇重叠、结构</value>
     <value>在目录中搜索文本</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SearchDialog_indexChecking" xml:space="preserve">
+    <value>正在检查搜索索引...</value>
+  </data>
+  <data name="SearchDialog_indexSummary" xml:space="preserve">
+    <value>{0:N0} 个页面来自搜索索引，{1:N0} 个页面来自 OneNote</value>
+  </data>
   <data name="SearchDialog_introLabel.Text" xml:space="preserve">
     <value>输入搜索条件，可以选择包含 AND、OR、NOT、引号和括号
 未加引号的单词以任何顺序匹配；对确切的短语使用引号。</value>
@@ -6647,6 +6713,10 @@ TF-IDF 余弦、词汇重叠、结构</value>
   <data name="SearchDialog_regBox.Text" xml:space="preserve">
     <value>使用正则表达式</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="SearchDialog_scopeAll" xml:space="preserve">
+    <value>在所有笔记本中</value>
+    <comment>combobox item, searches every open notebook</comment>
   </data>
   <data name="SearchDialog_selectAllLink.Text" xml:space="preserve">
     <value>选择全部</value>

@@ -73,6 +73,9 @@ namespace River.OneMoreAddIn.Commands
 		#endregion Supporting types
 
 
+		// the shortest piece of a term the trigram text index can look up
+		private const int TextIndexMinimum = 3;
+
 		private readonly bool asRegex;
 		private readonly bool caseSensitive;
 
@@ -106,10 +109,135 @@ namespace River.OneMoreAddIn.Commands
 				}
 			}
 
+			// A paragraph can hold line breaks (a <br /> is followed by a newline in OneNote's
+			// text), and a term may be on any line of it. Without Singleline, ".*" stops at the
+			// first newline and the terms on later lines are never found.
+			options |= RegexOptions.Singleline;
+
 			var tokens = Tokenize(query);
 			var ast = Parse(tokens);
 			var pattern = $"^{ToRegex(ast)}.*$";
 			return new Regex(pattern, options);
+		}
+
+
+		/// <summary>
+		/// Builds an FTS5 MATCH expression for the trigram text index that finds every paragraph
+		/// the query can match, and possibly others. The caller must still test each paragraph
+		/// found with <see cref="BuildRegex"/>, which gives the exact answer; the index only
+		/// narrows what has to be tested.
+		/// </summary>
+		/// <param name="query">The query, as given to <see cref="BuildRegex"/></param>
+		/// <returns>The expression, or null if the index cannot narrow the query, such as for a
+		/// regular expression, a query of only short terms, or one that is only NOT. Then every
+		/// paragraph is a candidate.</returns>
+		/// <remarks>
+		/// A term is looked up by its literal pieces between wildcards, each as a substring, which
+		/// is how the trigram tokenizer sees it and how <see cref="BuildRegex"/> treats a term. A
+		/// piece shorter than three characters cannot be looked up and is left to the regex. NOT is
+		/// left to the regex as well, because excluding what an inexact lookup found could exclude
+		/// paragraphs that do not contain the term.
+		/// </remarks>
+		public string BuildIndexQuery(string query)
+		{
+			if (asRegex || string.IsNullOrWhiteSpace(query))
+			{
+				return null;
+			}
+
+			try
+			{
+				return ToIndexQuery(Parse(Tokenize(query)));
+			}
+			catch (Exception exc)
+			{
+				Logger.Current.WriteLine($"error translating query [{query}] for the index", exc);
+				return null;
+			}
+		}
+
+
+		private static string ToIndexQuery(INode node)
+		{
+			switch (node)
+			{
+				case TermNode t:
+					return TermToIndexQuery(t.Value);
+
+				case AndNode a:
+					// a child that cannot narrow is left out; the regex enforces it
+					var required = new List<string>();
+					foreach (var child in a.Children)
+					{
+						var part = ToIndexQuery(child);
+						if (part is not null)
+						{
+							required.Add(part);
+						}
+					}
+
+					return Join(required, " AND ");
+
+				case OrNode o:
+					// if any alternative cannot narrow, then any paragraph could be a candidate
+					var either = new List<string>();
+					foreach (var child in o.Children)
+					{
+						var part = ToIndexQuery(child);
+						if (part is null)
+						{
+							return null;
+						}
+
+						either.Add(part);
+					}
+
+					return Join(either, " OR ");
+
+				default:
+					return null;
+			}
+
+			static string Join(List<string> parts, string op)
+			{
+				return parts.Count == 0 ? null
+					: parts.Count == 1 ? parts[0]
+					: "(" + string.Join(op, parts) + ")";
+			}
+		}
+
+
+		private static string TermToIndexQuery(string term)
+		{
+			var pieces = new List<string>();
+
+			foreach (var piece in term.Split('*'))
+			{
+				if (CountCharacters(piece) >= TextIndexMinimum)
+				{
+					pieces.Add($"\"{piece.Replace("\"", "\"\"")}\"");
+				}
+			}
+
+			return pieces.Count == 0 ? null
+				: pieces.Count == 1 ? pieces[0]
+				: "(" + string.Join(" AND ", pieces) + ")";
+		}
+
+
+		// the trigram tokenizer counts characters, not UTF-16 code units
+		private static int CountCharacters(string text)
+		{
+			var count = 0;
+			foreach (var c in text)
+			{
+				if (!char.IsLowSurrogate(c))
+				{
+					count++;
+				}
+			}
+
+			return count;
 		}
 
 

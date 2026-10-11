@@ -1,0 +1,10 @@
+CREATE TABLE IF NOT EXISTS index_schema (schemaID INTEGER PRIMARY KEY UNIQUE NOT NULL, version NUMERIC (12) UNIQUE NOT NULL);
+CREATE TABLE IF NOT EXISTS index_page (pageKey INTEGER PRIMARY KEY NOT NULL, pageID TEXT NOT NULL, indexedModified TEXT NOT NULL, indexedAt TEXT NOT NULL, paragraphs INTEGER NOT NULL DEFAULT 0);
+CREATE TABLE IF NOT EXISTS index_text (textID INTEGER PRIMARY KEY AUTOINCREMENT, pageKey INTEGER NOT NULL, objectID TEXT NOT NULL, ordinal INTEGER NOT NULL, text TEXT NOT NULL);
+CREATE INDEX IF NOT EXISTS IDX_index_text_pageKey ON index_text (pageKey);
+CREATE VIRTUAL TABLE IF NOT EXISTS index_fts USING fts5(text, content='index_text', content_rowid='textID', tokenize='trigram');
+CREATE TRIGGER IF NOT EXISTS index_text_ai AFTER INSERT ON index_text BEGIN INSERT INTO index_fts(rowid, text) VALUES (new.textID, new.text); END;
+CREATE TRIGGER IF NOT EXISTS index_text_ad AFTER DELETE ON index_text BEGIN INSERT INTO index_fts(index_fts, rowid, text) VALUES ('delete', old.textID, old.text); END;
+CREATE TRIGGER IF NOT EXISTS index_text_au AFTER UPDATE OF text ON index_text BEGIN INSERT INTO index_fts(index_fts, rowid, text) VALUES ('delete', old.textID, old.text); INSERT INTO index_fts(rowid, text) VALUES (new.textID, new.text); END;
+CREATE TABLE IF NOT EXISTS index_notebook (notebookKey TEXT PRIMARY KEY NOT NULL, included INTEGER NOT NULL DEFAULT 0, lastIndexed TEXT);
+REPLACE INTO index_schema (schemaID, version) VALUES (0, 1);

@@ -85,6 +85,7 @@
     <Compile Include="Commands\References\FootnoteCommandTests.cs" />
     <Compile Include="Commands\Reminders\ReminderLocatorTests.cs" />
     <Compile Include="Commands\Reminders\ReminderSerializerTests.cs" />
+    <Compile Include="Pipeline\PageContentPassTests.cs" />
     <Compile Include="Pipeline\PipelineServiceTests.cs" />
     <Compile Include="Identity\GuidRetryLedgerTests.cs" />
     <Compile Include="Identity\IdentityPassTests.cs" />
@@ -96,7 +97,11 @@
     <Compile Include="Commands\Tagging\HashtagProviderTests.cs" />
     <Compile Include="Commands\Tagging\HashtagScheduleTests.cs" />
     <Compile Include="Commands\Tagging\HashtagStageTests.cs" />
+    <Compile Include="Commands\Search\PageTextExtractorTests.cs" />
     <Compile Include="Commands\Search\TextMatchBuilderTests.cs" />
+    <Compile Include="TextIndex\IndexConsumerTests.cs" />
+    <Compile Include="TextIndex\IndexProviderTests.cs" />
+    <Compile Include="TextIndex\IndexedHitsTests.cs" />
     <Compile Include="Commands\Search\TitleQueryParserTests.cs" />
     <Compile Include="Commands\Styles\ApplyStylesCommandTests.cs" />
     <Compile Include="Commands\Edit\ConvertMarkdownCommandTests.cs" />

@@ -197,6 +197,30 @@
     <value>Sectiegroep op het hoogste niveau toevoegen</value>
     <comment>dialog title</comment>
   </data>
+  <data name="AdjustBlankLinesDialog.Text" xml:space="preserve">
+    <value>Pas lege regels aan</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="AdjustBlankLinesDialog_exactRadio.Text" xml:space="preserve">
+    <value>Zorg voor precies één witregel tussen alinea's</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="AdjustBlankLinesDialog_headingBox.Text" xml:space="preserve">
+    <value>Zet na elke kop een lege regel</value>
+    <comment>checkbox !EDIT</comment>
+  </data>
+  <data name="AdjustBlankLinesDialog_keepRadio.Text" xml:space="preserve">
+    <value>Houd maximaal één witregel tussen alinea's aan</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="AdjustBlankLinesDialog_noteLabel.Text" xml:space="preserve">
+    <value>Niet aangevinkt verwijdert lege regels na kopjes. Lege koppen worden altijd verwijderd of omgezet naar normale witregels.</value>
+    <comment>label !EDIT</comment>
+  </data>
+  <data name="AdjustBlankLinesDialog_removeRadio.Text" xml:space="preserve">
+    <value>Verwijder alle lege regels tussen alinea's</value>
+    <comment>radio button</comment>
+  </data>
   <data name="AdjustImagesDialog.Text" xml:space="preserve">
     <value>De grootte van het formaat wijzigen en aanpassen</value>
     <comment>dialog title</comment>
@@ -1242,6 +1266,10 @@ Normaal</value>
     <value>Deze afbeelding is van een afdruk. Als het wordt bijgesneden, wordt het niet langer gekoppeld aan dat originele bestand. Wil je doorgaan met croppen?</value>
     <comment>message box, question</comment>
   </data>
+  <data name="ctxAdjustBlankLinesButton_Label" xml:space="preserve">
+    <value>Pas lege regels aan</value>
+    <comment>Context menu</comment>
+  </data>
   <data name="ctxCleanMenu_Label" xml:space="preserve">
     <value>Schoon...</value>
     <comment>Context menu</comment>
@@ -1252,10 +1280,6 @@ Normaal</value>
   </data>
   <data name="ctxNoSpellCheckButton_Label" xml:space="preserve">
     <value>Geen spellingcontrole</value>
-    <comment>Context menu</comment>
-  </data>
-  <data name="ctxAdjustBlankLinesButton_Label" xml:space="preserve">
-    <value>Pas lege regels aan</value>
     <comment>Context menu</comment>
   </data>
   <data name="ctxRemoveSpacingButton_Label" xml:space="preserve">
@@ -2730,6 +2754,66 @@ Gele achtergrond</value>
     <value>{0} Aangepaste pagina's</value>
     <comment>page title</comment>
   </data>
+  <data name="IndexNotebooksDialog_infoLabel" xml:space="preserve">
+    <value>Kies de notitieboekjes die u in de zoekindex wilt opnemen.</value>
+  </data>
+  <data name="IndexNotebooksDialog_Title" xml:space="preserve">
+    <value>Zoek in indexnotitieboekjes</value>
+  </data>
+  <data name="IndexSheet_allBox.Text" xml:space="preserve">
+    <value>Indexeer alle notitieboekjes</value>
+  </data>
+  <data name="IndexSheet_buildCancelled" xml:space="preserve">
+    <value>Gestopt na het indexeren van {0:N0} pagina's. Het indexeren gaat door op de achtergrond.</value>
+  </data>
+  <data name="IndexSheet_buildDone" xml:space="preserve">
+    <value>Geïndexeerde {0:N0} pagina's</value>
+  </data>
+  <data name="IndexSheet_buildFailed" xml:space="preserve">
+    <value>OneNote kon niet worden gelezen, dus er werd niets geïndexeerd</value>
+  </data>
+  <data name="IndexSheet_buildLink.Text" xml:space="preserve">
+    <value>Bouw nu de index</value>
+  </data>
+  <data name="IndexSheet_buildMessage" xml:space="preserve">
+    <value>Uw notitieboekjes indexeren...</value>
+  </data>
+  <data name="IndexSheet_buildNote.Text" xml:space="preserve">
+    <value>Leest elke pagina die nog niet is geïndexeerd. Dit kan enkele minuten duren voor een grote verzameling en kan OneNote vertragen terwijl het actief is. Anders wordt de index beetje bij beetje op de achtergrond opgebouwd.</value>
+  </data>
+  <data name="IndexSheet_buildProgress" xml:space="preserve">
+    <value>Geïndexeerd {0:N0} van {1:N0} pagina's</value>
+  </data>
+  <data name="IndexSheet_deleteConfirm" xml:space="preserve">
+    <value>Alles verwijderen dat is geïndexeerd? Zoeken scant uw notitieblokken rechtstreeks totdat u de index opnieuw inschakelt en deze opnieuw wordt opgebouwd. Uw pagina's zijn niet gewijzigd.</value>
+  </data>
+  <data name="IndexSheet_deleteDone" xml:space="preserve">
+    <value>De index is verwijderd. {0:N0} pagina's zijn verwijderd.</value>
+  </data>
+  <data name="IndexSheet_deleteLink.Text" xml:space="preserve">
+    <value>Verwijder de index</value>
+  </data>
+  <data name="IndexSheet_enabledBox.Text" xml:space="preserve">
+    <value>Houd een zoekindex van mijn notitieboekjes up-to-date</value>
+  </data>
+  <data name="IndexSheet_introBox.Text" xml:space="preserve">
+    <value>Bouw een index van de tekst van uw notitieboekjes, zodat de opdracht Zoeken vrijwel onmiddellijk tekst kan vinden. De index wordt op deze computer bijgehouden en op de achtergrond bijgewerkt. Uw pagina's worden nooit gewijzigd.</value>
+  </data>
+  <data name="IndexSheet_selectLink.Text" xml:space="preserve">
+    <value>Selecteer de notitieblokken die u wilt indexeren</value>
+  </data>
+  <data name="IndexSheet_status" xml:space="preserve">
+    <value>{0:N0} pagina's en {1:N0} alinea's worden geïndexeerd met behulp van {2:N1} MB</value>
+  </data>
+  <data name="IndexSheet_statusNone" xml:space="preserve">
+    <value>Er zijn nog geen pagina's geïndexeerd</value>
+  </data>
+  <data name="IndexSheet_Title" xml:space="preserve">
+    <value>Zoekindex</value>
+  </data>
+  <data name="IndexSheet_unavailable" xml:space="preserve">
+    <value>De zoekindex kan op deze computer niet worden gebruikt</value>
+  </data>
   <data name="InsertBoxCommand_Code" xml:space="preserve">
     <value>Uw code hier...</value>
     <comment>text</comment>
@@ -4119,30 +4203,6 @@ Stilistisch, entiteit, media</value>
     <value>{0}% vergelijkbaar</value>
     <comment>clickable similarity chip for a near-duplicate match, {0} rounded percentage</comment>
   </data>
-  <data name="AdjustBlankLinesDialog.Text" xml:space="preserve">
-    <value>Pas lege regels aan</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="AdjustBlankLinesDialog_exactRadio.Text" xml:space="preserve">
-    <value>Zorg voor precies één witregel tussen alinea's</value>
-    <comment>radio button</comment>
-  </data>
-  <data name="AdjustBlankLinesDialog_headingBox.Text" xml:space="preserve">
-    <value>Zet na elke kop een lege regel</value>
-    <comment>checkbox !EDIT</comment>
-  </data>
-  <data name="AdjustBlankLinesDialog_keepRadio.Text" xml:space="preserve">
-    <value>Houd maximaal één witregel tussen alinea's aan</value>
-    <comment>radio button</comment>
-  </data>
-  <data name="AdjustBlankLinesDialog_noteLabel.Text" xml:space="preserve">
-    <value>Niet aangevinkt verwijdert lege regels na kopjes. Lege koppen worden altijd verwijderd of omgezet naar normale witregels.</value>
-    <comment>label !EDIT</comment>
-  </data>
-  <data name="AdjustBlankLinesDialog_removeRadio.Text" xml:space="preserve">
-    <value>Verwijder alle lege regels tussen alinea's</value>
-    <comment>radio button</comment>
-  </data>
   <data name="RemoveSpacingDialog.Text" xml:space="preserve">
     <value>Tussenruimte verwijderen</value>
     <comment>dialog title</comment>
@@ -4449,6 +4509,14 @@ Stilistisch, entiteit, media</value>
   <data name="ribAddTopSectionGroupButton_Screentip" xml:space="preserve">
     <value>Voeg een nieuwe sectiegroep toe aan het hoogste niveau van dit notitieblok</value>
     <comment>notebook context menu</comment>
+  </data>
+  <data name="ribAdjustBlankLinesButton_Label" xml:space="preserve">
+    <value>Pas lege regels aan</value>
+    <comment>ribbon clean</comment>
+  </data>
+  <data name="ribAdjustBlankLinesButton_Screentip" xml:space="preserve">
+    <value>Verwijder, vouw samen of voeg lege regels toe tussen alinea's en na kopteksten</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribAdjustImagesButton_Label" xml:space="preserve">
     <value>Afbeeldingen bewerken</value>
@@ -5828,14 +5896,6 @@ Tabblad Help</value>
     <value>Identificeer en verwijder dubbele pagina's</value>
     <comment>ribbon clean</comment>
   </data>
-  <data name="ribAdjustBlankLinesButton_Label" xml:space="preserve">
-    <value>Pas lege regels aan</value>
-    <comment>ribbon clean</comment>
-  </data>
-  <data name="ribAdjustBlankLinesButton_Screentip" xml:space="preserve">
-    <value>Verwijder, vouw samen of voeg lege regels toe tussen alinea's en na kopteksten</value>
-    <comment>ribbon clean</comment>
-  </data>
   <data name="ribRemoveFootnoteButton_Label" xml:space="preserve">
     <value>Voetnoot verwijderen</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
@@ -6613,6 +6673,12 @@ Eerder aangepast</value>
     <value>Zoek tekst in de inhoudsopgave</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SearchDialog_indexChecking" xml:space="preserve">
+    <value>De zoekindex controleren...</value>
+  </data>
+  <data name="SearchDialog_indexSummary" xml:space="preserve">
+    <value>{0:N0} pagina's uit de zoekindex, {1:N0} gelezen uit OneNote</value>
+  </data>
   <data name="SearchDialog_introLabel.Text" xml:space="preserve">
     <value>Voer de zoekcriteria in, eventueel inclusief AND, OR, NOT, aanhalingstekens en haakjes
 Niet-geciteerde woorden komen in elke volgorde overeen; gebruik aanhalingstekens voor een exacte zin.</value>
@@ -6633,6 +6699,10 @@ Niet-geciteerde woorden komen in elke volgorde overeen; gebruik aanhalingstekens
   <data name="SearchDialog_regBox.Text" xml:space="preserve">
     <value>Gebruik reguliere expressies</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="SearchDialog_scopeAll" xml:space="preserve">
+    <value>In alle notitieboekjes</value>
+    <comment>combobox item, searches every open notebook</comment>
   </data>
   <data name="SearchDialog_selectAllLink.Text" xml:space="preserve">
     <value>Selecteer alles</value>

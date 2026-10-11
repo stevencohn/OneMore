@@ -12,6 +12,7 @@ namespace River.OneMoreAddIn.Commands
 	using System.Threading;
 	using System.Threading.Tasks;
 	using System.Windows.Forms;
+	using River.OneMoreAddIn.TextIndex;
 	using River.OneMoreAddIn.UI;
 	using Resx = Properties.Resources;
 
@@ -30,10 +31,13 @@ namespace River.OneMoreAddIn.Commands
 		private SearchErrorControl errorControl;
 		private Regex lastFinder;
 
-		// scopeBox indices; "In this section group" (index 1) is omitted from the combo
-		// entirely when the current section has no enclosing section group, and "In this
-		// page group" (index 3) is omitted when the current page has no subpages and is not
-		// a subpage; omitting an item shifts the indices of the items after it down by one
+		// scopeBox indices; "In all notebooks" is always first (index 0). "In this section
+		// group" is omitted from the combo entirely when the current section has no enclosing
+		// section group, and "In this page group" is omitted when the current page has no
+		// subpages and is not a subpage; omitting an item shifts the indices of the items
+		// after it down by one
+		private const int allScopeIndex = 0;
+		private int notebookScopeIndex;
 		private int sectionGroupScopeIndex;
 		private int sectionScopeIndex;
 		private int pageGroupScopeIndex;
@@ -90,8 +94,13 @@ namespace River.OneMoreAddIn.Commands
 				scopeBox.Items.RemoveAt(1);
 			}
 
-			sectionGroupScopeIndex = hasSectionGroup ? 1 : -1;
-			sectionScopeIndex = hasSectionGroup ? 2 : 1;
+			// "All notebooks" is added apart from the localized list so that a translation that
+			// has only the original five lines still works; it is the first, widest scope
+			scopeBox.Items.Insert(0, Resx.SearchDialog_scopeAll);
+
+			notebookScopeIndex = 1;
+			sectionGroupScopeIndex = hasSectionGroup ? 2 : -1;
+			sectionScopeIndex = hasSectionGroup ? 3 : 2;
 			pageGroupScopeIndex = hasPageGroup ? sectionScopeIndex + 1 : -1;
 			pageScopeIndex = scopeBox.Items.Count - 1;
 
@@ -305,8 +314,8 @@ namespace River.OneMoreAddIn.Commands
 			moveButton.Visible = copyButton.Visible = indexButton.Visible = false;
 
 			// Build the regex once for the entire search; all scope methods share it
-			var finder = new TextMatchBuilder(regBox.Checked, matchBox.Checked)
-				.BuildRegex(findBox.Text);
+			var builder = new TextMatchBuilder(regBox.Checked, matchBox.Checked);
+			var finder = builder.BuildRegex(findBox.Text);
 
 			if (finder is null)
 			{
@@ -316,6 +325,8 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			lastFinder = finder;
+
+			string summary = null;
 
 			// async void must not let exceptions escape to the SynchronizationContext,
 			// which under the dllhost surrogate can take down OneNote
@@ -337,9 +348,23 @@ namespace River.OneMoreAddIn.Commands
 
 				var engine = new SearchEngine(options, source.Token, OnTotal, OnPage, OnFound);
 
-				await using var one = new OneNote();
+				// The text index answers for the pages it has current; the rest are read as before.
+				// It does not hold the paragraphs of a generated table of contents, and a single
+				// page is always read.
+				if (!options.IncludeToc && scopeBox.SelectedIndex != pageScopeIndex)
+				{
+					pageLabel.Text = Resx.SearchDialog_indexChecking;
+					engine.Indexed = await IndexedHits.Load(builder, findBox.Text, finder, source.Token);
+				}
 
-				if (scopeBox.SelectedIndex == 0)
+				await using var one = new OneNote();
+				engine.LivePageID = one.CurrentPageId;
+
+				if (scopeBox.SelectedIndex == allScopeIndex)
+				{
+					await engine.SearchAllNotebooks(one, finder);
+				}
+				else if (scopeBox.SelectedIndex == notebookScopeIndex)
 				{
 					await engine.SearchNotebook(one, finder);
 				}
@@ -375,6 +400,14 @@ namespace River.OneMoreAddIn.Commands
 					await engine.SearchPage(page, finder);
 					logger.WriteTime("search complete");
 				}
+
+				if (engine.Indexed is not null)
+				{
+					summary = string.Format(
+						Resx.SearchDialog_indexSummary, engine.IndexedPageCount, engine.ReadPageCount);
+
+					logger.WriteLine(summary);
+				}
 			}
 			catch (OperationCanceledException)
 			{
@@ -390,14 +423,14 @@ namespace River.OneMoreAddIn.Commands
 				source?.Dispose();
 				source = null;
 
-				RestoreControls();
+				RestoreControls(summary);
 			}
 		}
 
 
-		private void RestoreControls()
+		private void RestoreControls(string summary = null)
 		{
-			pageLabel.Text = string.Empty;
+			pageLabel.Text = summary ?? string.Empty;
 			progressBar.Visible = false;
 			findBox.Enabled = true;
 			searchButton.Enabled = true;

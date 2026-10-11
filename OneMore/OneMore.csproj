@@ -371,6 +371,7 @@
     <Compile Include="Commands\Reminders\CleanRemindersCommand.cs" />
     <Compile Include="Commands\Search\CardHit.cs" />
     <Compile Include="Commands\Search\CardModel.cs" />
+    <Compile Include="Commands\Search\PageTextExtractor.cs" />
     <Compile Include="Commands\Search\SearchEngine.cs" />
     <Compile Include="Commands\Search\SearchTitleEngine.cs" />
     <Compile Include="Commands\Search\SearchTitleCommand.cs" />
@@ -421,6 +422,12 @@
     </Compile>
     <Compile Include="Commands\Settings\HashtagSheet.Designer.cs">
       <DependentUpon>HashtagSheet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commands\Settings\IndexSheet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Commands\Settings\IndexSheet.Designer.cs">
+      <DependentUpon>IndexSheet.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\Settings\PageSheet.cs">
       <SubType>UserControl</SubType>
@@ -616,7 +623,13 @@
     <Compile Include="Identity\PageIdentity.cs" />
     <Compile Include="Identity\PageIdentityMatcher.cs" />
     <Compile Include="Identity\PageIdentityProvider.cs" />
+    <Compile Include="TextIndex\IndexBuilder.cs" />
+    <Compile Include="TextIndex\IndexConsumer.cs" />
+    <Compile Include="TextIndex\IndexedHits.cs" />
+    <Compile Include="TextIndex\IndexProvider.cs" />
+    <Compile Include="Pipeline\IPageConsumer.cs" />
     <Compile Include="Pipeline\IPipelineStage.cs" />
+    <Compile Include="Pipeline\PageContentPass.cs" />
     <Compile Include="Pipeline\PipelineService.cs" />
     <Compile Include="Models\OneImage.cs" />
     <Compile Include="Models\KnownSchemaAttributes.cs" />
@@ -1662,6 +1675,7 @@
     <Content Include="Commands\Tagging\HashtagScheduleDB.sql" />
     <Content Include="Commands\Tagging\HashtagsDB.sql" />
     <Content Include="Identity\PageIdentityDB.sql" />
+    <Content Include="TextIndex\TextIndexDB.sql" />
     <EmbeddedResource Include="Commands\Clean\AdjustBlankLinesDialog.resx">
       <DependentUpon>AdjustBlankLinesDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -2049,6 +2063,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Settings\HashtagSheet.resx">
       <DependentUpon>HashtagSheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Commands\Settings\IndexSheet.resx">
+      <DependentUpon>IndexSheet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Commands\Settings\NavigatorSheet.resx">
       <DependentUpon>NavigatorSheet.cs</DependentUpon>
