@@ -6675,6 +6675,10 @@ TF-IDF コサイン、語彙の重複、構造</value>
 以前に変更されました</value>
     <comment>combobox</comment>
   </data>
+  <data name="SearchDialog_imageHit" xml:space="preserve">
+    <value>[画像] {0}</value>
+    <comment>a search result found in the text OneNote recognized in an image; {0} is an excerpt of that text</comment>
+  </data>
   <data name="SearchDialog_includeTocBox.Text" xml:space="preserve">
     <value>目次内のテキストを検索する</value>
     <comment>checkbox</comment>
@@ -6701,6 +6705,10 @@ TF-IDF コサイン、語彙の重複、構造</value>
   <data name="SearchDialog_menuShowInCurrent" xml:space="preserve">
     <value>現在のウィンドウに表示</value>
     <comment>context menu item</comment>
+  </data>
+  <data name="SearchDialog_ocrBox.Text" xml:space="preserve">
+    <value>画像内のテキストを検索する</value>
+    <comment>checkbox</comment>
   </data>
   <data name="SearchDialog_regBox.Text" xml:space="preserve">
     <value>正規表現を使用する</value>

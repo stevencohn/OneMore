@@ -57,9 +57,11 @@ namespace River.OneMoreAddIn.TextIndex
 		/// <param name="query">The text the user entered</param>
 		/// <param name="finder">The expression that tests each paragraph, from the same builder</param>
 		/// <param name="token">Cancels the search</param>
+		/// <param name="includeOcr">True to include the text recognized in images</param>
 		/// <returns>The answer, or null if the index cannot be used and every page must be read</returns>
 		public static Task<IndexedHits> Load(
-			TextMatchBuilder builder, string query, Regex finder, CancellationToken token)
+			TextMatchBuilder builder, string query, Regex finder, CancellationToken token,
+			bool includeOcr = false)
 		{
 			return Task.Run(() =>
 			{
@@ -71,7 +73,7 @@ namespace River.OneMoreAddIn.TextIndex
 					}
 
 					using var provider = new IndexProvider();
-					return Load(provider, builder.BuildIndexQuery(query), finder, token);
+					return Load(provider, builder.BuildIndexQuery(query), finder, token, includeOcr);
 				}
 				catch (OperationCanceledException)
 				{
@@ -95,8 +97,10 @@ namespace River.OneMoreAddIn.TextIndex
 		/// match, or null if every paragraph must be tested</param>
 		/// <param name="finder">The expression that tests each paragraph</param>
 		/// <param name="token">Cancels the search</param>
+		/// <param name="includeOcr">True to include the text recognized in images</param>
 		internal static IndexedHits Load(
-			IndexProvider provider, string match, Regex finder, CancellationToken token)
+			IndexProvider provider, string match, Regex finder, CancellationToken token,
+			bool includeOcr = false)
 		{
 			var result = new IndexedHits();
 
@@ -107,7 +111,7 @@ namespace River.OneMoreAddIn.TextIndex
 				keys[stamp.Key] = stamp.Value.PageID;
 			}
 
-			foreach (var paragraph in provider.Query(match))
+			foreach (var paragraph in provider.Query(match, includeOcr))
 			{
 				token.ThrowIfCancellationRequested();
 
@@ -122,11 +126,15 @@ namespace River.OneMoreAddIn.TextIndex
 					result.hits.Add(paragraph.PageKey, list);
 				}
 
+				var isImage = paragraph.Kind == ParagraphKind.Image;
+
 				list.Add(new SearchHit
 				{
-					// decoded for display, as the live search does; the match was on the raw text
-					PlainText = HttpUtility.HtmlDecode(paragraph.Text),
-					ObjectId = paragraph.ObjectID
+					// decoded for display, as the live search does; the match was on the raw text.
+					// Text recognized in an image is plain text and has no markup to decode.
+					PlainText = isImage ? paragraph.Text : HttpUtility.HtmlDecode(paragraph.Text),
+					ObjectId = paragraph.ObjectID,
+					IsImageText = isImage
 				});
 
 				result.Paragraphs++;

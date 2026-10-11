@@ -362,7 +362,7 @@ namespace River.OneMoreAddIn.TextIndex
 			// Paragraph text only; a generated table of contents is not searched. The modified
 			// time recorded is the one in the hierarchy when the pass began, which can only be
 			// older than the page just read, so a page edited in between is indexed again.
-			var paragraphs = PageTextExtractor.Extract(page, includeToc: false);
+			var paragraphs = PageTextExtractor.Extract(page, includeToc: false, includeOcr: true);
 
 			provider.ReplacePage(
 				identity.PageKey, identity.Ref.PageID, identity.Ref.Modified, paragraphs);

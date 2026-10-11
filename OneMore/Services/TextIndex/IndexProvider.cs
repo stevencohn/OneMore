@@ -30,6 +30,9 @@ namespace River.OneMoreAddIn.TextIndex
 		public int Ordinal { get; set; }
 
 		public string Text { get; set; }
+
+		/// <summary>Gets whether this is typed text or text recognized in an image.</summary>
+		public ParagraphKind Kind { get; set; }
 	}
 
 
@@ -365,19 +368,21 @@ namespace River.OneMoreAddIn.TextIndex
 
 				cmd.Parameters.Clear();
 				cmd.CommandText =
-					"INSERT INTO index_text (pageKey, objectID, ordinal, text) " +
-					"VALUES (@pageKey, @objectID, @ordinal, @text)";
+					"INSERT INTO index_text (pageKey, objectID, ordinal, text, kind) " +
+					"VALUES (@pageKey, @objectID, @ordinal, @text, @kind)";
 
 				cmd.Parameters.Add("@pageKey", DbType.Int64).Value = pageKey;
 				var objectID = cmd.Parameters.Add("@objectID", DbType.String);
 				var ordinal = cmd.Parameters.Add("@ordinal", DbType.Int32);
 				var text = cmd.Parameters.Add("@text", DbType.String);
+				var kind = cmd.Parameters.Add("@kind", DbType.Int32);
 
 				foreach (var paragraph in paragraphs)
 				{
 					objectID.Value = paragraph.ObjectID;
 					ordinal.Value = paragraph.Ordinal;
 					text.Value = paragraph.Text;
+					kind.Value = (int)paragraph.Kind;
 					cmd.ExecuteNonQuery();
 				}
 
@@ -629,17 +634,19 @@ namespace River.OneMoreAddIn.TextIndex
 		/// <see cref="MinTermLength"/>.
 		/// </summary>
 		/// <param name="match">An FTS5 query, such as <c>"error" AND "fail"</c></param>
+		/// <param name="includeOcr">True to include the text recognized in images</param>
 		/// <returns>The paragraphs, in page and document order</returns>
-		public List<IndexHit> Find(string match)
+		public List<IndexHit> Find(string match, bool includeOcr = true)
 		{
 			var hits = new List<IndexHit>();
 
 			using var cmd = con.CreateCommand();
 			cmd.CommandType = CommandType.Text;
 			cmd.CommandText =
-				"SELECT t.pageKey, t.objectID, t.ordinal, t.text " +
+				"SELECT t.pageKey, t.objectID, t.ordinal, t.text, t.kind " +
 				"FROM index_fts f JOIN index_text t ON t.textID = f.rowid " +
 				"WHERE index_fts MATCH @match " +
+				(includeOcr ? string.Empty : "AND t.kind = 0 ") +
 				"ORDER BY t.pageKey, t.ordinal";
 
 			cmd.Parameters.AddWithValue("@match", match);
@@ -652,7 +659,8 @@ namespace River.OneMoreAddIn.TextIndex
 					PageKey = reader.GetInt64(0),
 					ObjectID = reader.GetString(1),
 					Ordinal = reader.GetInt32(2),
-					Text = reader.GetString(3)
+					Text = reader.GetString(3),
+					Kind = (ParagraphKind)reader.GetInt32(4)
 				});
 			}
 
@@ -666,9 +674,10 @@ namespace River.OneMoreAddIn.TextIndex
 		/// </summary>
 		/// <param name="match">An FTS5 query as for <see cref="Find"/>, or null for every paragraph
 		/// of the index</param>
+		/// <param name="includeOcr">True to include the text recognized in images</param>
 		/// <returns>The paragraphs, in page and document order. The index must not be written
 		/// through this provider until the enumeration is finished or disposed.</returns>
-		public IEnumerable<IndexHit> Query(string match)
+		public IEnumerable<IndexHit> Query(string match, bool includeOcr = true)
 		{
 			using var cmd = con.CreateCommand();
 			cmd.CommandType = CommandType.Text;
@@ -676,15 +685,17 @@ namespace River.OneMoreAddIn.TextIndex
 			if (match is null)
 			{
 				cmd.CommandText =
-					"SELECT pageKey, objectID, ordinal, text FROM index_text " +
+					"SELECT pageKey, objectID, ordinal, text, kind FROM index_text " +
+					(includeOcr ? string.Empty : "WHERE kind = 0 ") +
 					"ORDER BY pageKey, ordinal";
 			}
 			else
 			{
 				cmd.CommandText =
-					"SELECT t.pageKey, t.objectID, t.ordinal, t.text " +
+					"SELECT t.pageKey, t.objectID, t.ordinal, t.text, t.kind " +
 					"FROM index_fts f JOIN index_text t ON t.textID = f.rowid " +
 					"WHERE index_fts MATCH @match " +
+					(includeOcr ? string.Empty : "AND t.kind = 0 ") +
 					"ORDER BY t.pageKey, t.ordinal";
 
 				cmd.Parameters.AddWithValue("@match", match);
@@ -698,7 +709,8 @@ namespace River.OneMoreAddIn.TextIndex
 					PageKey = reader.GetInt64(0),
 					ObjectID = reader.GetString(1),
 					Ordinal = reader.GetInt32(2),
-					Text = reader.GetString(3)
+					Text = reader.GetString(3),
+					Kind = (ParagraphKind)reader.GetInt32(4)
 				};
 			}
 		}

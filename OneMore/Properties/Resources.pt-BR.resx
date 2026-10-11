@@ -6669,6 +6669,10 @@ Modificado depois
 Modificado antes</value>
     <comment>combobox</comment>
   </data>
+  <data name="SearchDialog_imageHit" xml:space="preserve">
+    <value>[imagem] {0}</value>
+    <comment>a search result found in the text OneNote recognized in an image; {0} is an excerpt of that text</comment>
+  </data>
   <data name="SearchDialog_includeTocBox.Text" xml:space="preserve">
     <value>Pesquisar texto no sumário</value>
     <comment>checkbox</comment>
@@ -6695,6 +6699,10 @@ Palavras sem aspas correspondem em qualquer ordem; use aspas para uma frase exat
   <data name="SearchDialog_menuShowInCurrent" xml:space="preserve">
     <value>Mostrar na janela atual</value>
     <comment>context menu item</comment>
+  </data>
+  <data name="SearchDialog_ocrBox.Text" xml:space="preserve">
+    <value>Pesquisar texto em imagens</value>
+    <comment>checkbox</comment>
   </data>
   <data name="SearchDialog_regBox.Text" xml:space="preserve">
     <value>Use expressões regulares</value>

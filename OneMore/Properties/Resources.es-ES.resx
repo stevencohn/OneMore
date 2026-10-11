@@ -6668,6 +6668,10 @@ Modificado después
 Modificado antes</value>
     <comment>combobox</comment>
   </data>
+  <data name="SearchDialog_imageHit" xml:space="preserve">
+    <value>[imagen] {0}</value>
+    <comment>a search result found in the text OneNote recognized in an image; {0} is an excerpt of that text</comment>
+  </data>
   <data name="SearchDialog_includeTocBox.Text" xml:space="preserve">
     <value>Buscar texto en la tabla de contenido</value>
     <comment>checkbox</comment>
@@ -6694,6 +6698,10 @@ Las palabras sin comillas coinciden en cualquier orden; Utilice comillas para un
   <data name="SearchDialog_menuShowInCurrent" xml:space="preserve">
     <value>Mostrar en la ventana actual</value>
     <comment>context menu item</comment>
+  </data>
+  <data name="SearchDialog_ocrBox.Text" xml:space="preserve">
+    <value>Buscar texto en imágenes</value>
+    <comment>checkbox</comment>
   </data>
   <data name="SearchDialog_regBox.Text" xml:space="preserve">
     <value>Usa expresiones regulares</value>

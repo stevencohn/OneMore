@@ -99,6 +99,37 @@ namespace River.OneMoreAddIn.Tests.TextIndex
 
 
 		[TestMethod]
+		public void Load_ImageText_OnlyWhenRequested_AndMarked()
+		{
+			provider.ReplacePage(1, "id1", Modified, new List<ParagraphText>
+			{
+				new ParagraphText { ObjectID = "{t}", Ordinal = 0, Text = "alpha typed" },
+				new ParagraphText
+				{
+					ObjectID = "{i}", Ordinal = 1, Text = "alpha &amp; picture", Kind = ParagraphKind.Image
+				}
+			});
+
+			var builder = new TextMatchBuilder(false, false);
+			var finder = builder.BuildRegex("alpha");
+			var match = builder.BuildIndexQuery("alpha");
+
+			var without = IndexedHits.Load(provider, match, finder, CancellationToken.None);
+			Assert.IsTrue(without.TryGet("id1", Modified, out var typed));
+			Assert.AreEqual(1, typed.Count);
+			Assert.IsFalse(typed[0].IsImageText);
+
+			var with = IndexedHits.Load(provider, match, finder, CancellationToken.None, includeOcr: true);
+			Assert.IsTrue(with.TryGet("id1", Modified, out var both));
+			Assert.AreEqual(2, both.Count);
+			Assert.IsTrue(both[1].IsImageText);
+
+			// image text is plain text, so it is not HTML decoded for display
+			Assert.AreEqual("alpha &amp; picture", both[1].PlainText);
+		}
+
+
+		[TestMethod]
 		public void TryGet_PageWithoutMatches_IsCurrentAndEmpty()
 		{
 			provider.ReplacePage(1, "id1", Modified, Paras("alpha"));

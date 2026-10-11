@@ -63,7 +63,7 @@ A full-text search UI panel. It is hidden unless the `GeneralSheet → experimen
 
 **Threading** — `one.GetPage()` (COM) runs on the UI thread. Paragraph text extraction and `Regex.IsMatch` run on `Task.Run()` background thread. `one.GetHyperlink()` (COM) runs back on the UI thread after the background work completes. The `TextMatchBuilder`/`Regex` is compiled once before the search loop and shared across all pages.
 
-### Text index (`TextIndex\`)
+### Text index (`Services\TextIndex\`)
 
 When the user has turned on the search index (Settings, Search Index), `SearchDialog.Search` first asks
 `IndexedHits.Load` (background thread) for the paragraphs that match. `TextMatchBuilder.BuildIndexQuery`
@@ -74,6 +74,16 @@ candidate is then tested with the same `BuildRegex` the live scan uses, so resul
 `lastModifiedTime`) equals the hierarchy's is answered from the index without a COM load; stale,
 never-indexed and the current page (`LivePageID`) are read as before. The index does not hold TOC
 paragraphs, so "include TOC" and the single-page scope always read. The CLI path is live only.
+
+**Image text (OCR).** `PageTextExtractor.Extract(page, includeToc, includeOcr)` also returns the
+`one:Image/one:OCRData/one:OCRText` of each image as one `ParagraphKind.Image` item, collapsed to one
+line and not cleaned like typed text, in document order among the paragraphs. The indexer always
+passes `includeOcr: true` and stores `index_text.kind` (0 text, 1 image); queries add `kind = 0`
+unless `SearchOptions.IncludeOcr` (the dialog's "Search text in images" box, off by default) is set,
+so toggling the box needs no reindex. The live scan goes through the same `Extract`, which keeps both
+paths identical. Image hits are shown as a `[image] ...` excerpt around the first match
+(`SearchDialog.FormatImageHit`). OneNote can finish OCR after a page's `lastModifiedTime` was
+recorded, in which case the text is picked up on the page's next change or an index rebuild.
 
 ### Search dialog scopes
 
