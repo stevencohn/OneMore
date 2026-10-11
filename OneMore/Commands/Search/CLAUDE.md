@@ -63,9 +63,21 @@ A full-text search UI panel. It is hidden unless the `GeneralSheet → experimen
 
 **Threading** — `one.GetPage()` (COM) runs on the UI thread. Paragraph text extraction and `Regex.IsMatch` run on `Task.Run()` background thread. `one.GetHyperlink()` (COM) runs back on the UI thread after the background work completes. The `TextMatchBuilder`/`Regex` is compiled once before the search loop and shared across all pages.
 
+### Text index (`TextIndex\`)
+
+When the user has turned on the search index (Settings, Search Index), `SearchDialog.Search` first asks
+`IndexedHits.Load` (background thread) for the paragraphs that match. `TextMatchBuilder.BuildIndexQuery`
+turns the query AST into an FTS5 trigram expression that finds a **superset** (terms under 3
+characters, NOT and regex mode are left out, null means every paragraph is a candidate), and every
+candidate is then tested with the same `BuildRegex` the live scan uses, so results are identical.
+`SearchEngine.SearchSectionPages` is hybrid per page: a page whose index stamp (`pageID` +
+`lastModifiedTime`) equals the hierarchy's is answered from the index without a COM load; stale,
+never-indexed and the current page (`LivePageID`) are read as before. The index does not hold TOC
+paragraphs, so "include TOC" and the single-page scope always read. The CLI path is live only.
+
 ### Search dialog scopes
 
-`SearchDialog.scopeBox` items come from `SearchDialogText_scopeOptions` in fixed order: Notebook, Section group, Section, Page group, Page. Section group and Page group are removed by index when not applicable, so every locale resx must carry all five lines. Page group is offered only when `SearchEngine.GetPageGroup` finds the current page has subpages or is a subpage (a level-1 page plus following pages with `pageLevel > 1`); `SearchCommand.Execute` computes this and passes it to the dialog constructor.
+`SearchDialog.scopeBox` items come from `SearchDialogText_scopeOptions` in fixed order: Notebook, Section group, Section, Page group, Page. "In all notebooks" (`SearchDialog_scopeAll`, `SearchEngine.SearchAllNotebooks`) is inserted at index 0 in code, apart from that list, so older translations with five lines keep working. Section group and Page group are removed by index when not applicable, so every locale resx must carry all five lines. Page group is offered only when `SearchEngine.GetPageGroup` finds the current page has subpages or is a subpage (a level-1 page plus following pages with `pageLevel > 1`); `SearchCommand.Execute` computes this and passes it to the dialog constructor.
 
 ### `SearchServices`
 

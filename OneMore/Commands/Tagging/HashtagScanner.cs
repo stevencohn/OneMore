@@ -8,6 +8,7 @@ namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Identity;
 	using River.OneMoreAddIn.Models;
+	using River.OneMoreAddIn.Pipeline;
 	using River.OneMoreAddIn.Settings;
 	using River.OneMoreAddIn.Styles;
 	using System;
@@ -21,9 +22,12 @@ namespace River.OneMoreAddIn.Commands
 
 
 	/// <summary>
-	/// Scans all notebooks for hashtags
+	/// Scans all notebooks for hashtags. As an <see cref="IPageConsumer"/> it can share each page
+	/// it reads with other consumers in a <see cref="PageContentPass"/>; the
+	/// <see cref="Scan(IdentitySnapshot, CancellationToken)"/> method runs a pass of its own for
+	/// callers that have no other consumers.
 	/// </summary>
-	internal class HashtagScanner : Loggable, IDisposable
+	internal class HashtagScanner : Loggable, IPageConsumer, IDisposable
 	{
 		public class Statistics
 		{
@@ -51,6 +55,12 @@ namespace River.OneMoreAddIn.Commands
 		private HashtagProvider provider;
 		private string[] notebookFilters;
 		private bool disposed;
+
+		// state of the pass in progress, set by Begin and BeginNotebook
+		private HashtagNotebooks knownNotebooks;
+		private Dictionary<string, HashtagPageInfo> tagged;
+		private bool notebookForceThru;
+		private HashSet<long> rehomed = new();
 
 
 		/// <summary>
@@ -90,6 +100,22 @@ namespace River.OneMoreAddIn.Commands
 
 
 		public Statistics Stats { get; private set; }
+
+
+		/// <summary>
+		/// Gets the delay, in milliseconds, between pages that a page content pass should wait
+		/// for when it is not run by a scanner, so that every pass honors the same setting.
+		/// </summary>
+		public static int ReadThrottle()
+		{
+			return new SettingsProvider().GetCollection("HashtagSheet").Get("delay", DefaultThrottle);
+		}
+
+
+		/// <summary>
+		/// Gets a short name used in log messages.
+		/// </summary>
+		public string Name => "hashtags";
 
 
 		/// <summary>
@@ -163,10 +189,6 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		// extended delay used when a foreground command holds a HashtagServicePause token
-		private const int PausedThrottle = 500;
-
-
 		/// <summary>
 		/// Reads the hierarchy of every open notebook and brings the identity catalog up to
 		/// date, for callers that run outside the pipeline and so have no snapshot.
@@ -224,17 +246,53 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
-		/// Scan the pages of an identity snapshot for all hashtags
+		/// Scan the pages of an identity snapshot for all hashtags, with a page content pass of
+		/// this scanner alone
 		/// </summary>
 		/// <param name="snapshot">The pages of every open notebook, each with its page key</param>
 		/// <param name="token">Optional token to cancel the scan between pages</param>
-		public async Task Scan(IdentitySnapshot snapshot, CancellationToken token = default)
+		public Task Scan(IdentitySnapshot snapshot, CancellationToken token = default)
+		{
+			return Scan(snapshot, Array.Empty<IPageConsumer>(), token);
+		}
+
+
+		/// <summary>
+		/// Scan the pages of an identity snapshot for all hashtags, in a page content pass that
+		/// also gives each page it reads to other consumers
+		/// </summary>
+		/// <param name="snapshot">The pages of every open notebook, each with its page key</param>
+		/// <param name="others">Other consumers that share the pages this pass reads. They are
+		/// called before this scanner, which may write a hashtag style to a page</param>
+		/// <param name="token">Optional token to cancel the scan between pages</param>
+		public async Task Scan(
+			IdentitySnapshot snapshot, IReadOnlyList<IPageConsumer> others, CancellationToken token = default)
 		{
 			var clock = new Stopwatch();
 			clock.Start();
 
-			await using var one = new OneNote();
+			var consumers = new List<IPageConsumer>(others);
+			consumers.Add(this);
 
+			var pass = new PageContentPass(consumers, throttle, () => HashtagServicePause.IsPaused);
+
+			await pass.Run(snapshot, token);
+
+			Stats.FetchTime += pass.Stats.FetchTime;
+			Stats.ThrottleTime += pass.Stats.ThrottleTime;
+
+			clock.Stop();
+			Stats.Time = clock.ElapsedMilliseconds;
+		}
+
+
+		#region IPageConsumer
+		// hashtags are only scanned for pages that changed, so the user's throttle is enough
+		int IPageConsumer.MinimumThrottle => 0;
+
+
+		void IPageConsumer.Begin(IdentitySnapshot snapshot)
+		{
 			var notebooks = snapshot.Notebooks;
 
 			// OneNote regenerates notebook IDs when a notebook is reopened, so recognize a known
@@ -242,105 +300,135 @@ namespace River.OneMoreAddIn.Commands
 			provider.ReconcileNotebooks(
 				notebooks.Select(n => (n.ID, n.Name)).ToList());
 
-			var knownNotebooks = provider.ReadKnownNotebooks();
+			knownNotebooks = provider.ReadKnownNotebooks();
 
 			Stats.Notebooks += notebooks.Count;
 			Stats.KnownNotebooks += knownNotebooks.Count;
 
-			var tagged = provider.ReadTaggedPages();
+			tagged = provider.ReadTaggedPages();
+		}
 
-			foreach (var notebook in notebooks)
+
+		bool IPageConsumer.BeginNotebook(IdentityNotebook notebook)
+		{
+			rehomed = new HashSet<long>();
+			notebookForceThru = true;
+
+			var known = knownNotebooks.Find(n => n.NotebookID == notebook.ID);
+
+			if (known is not null && !known.Included)
 			{
-				if (token.IsCancellationRequested)
+				logger.Verbose($"skipping excluded notebook {notebook.ID} \"{notebook.Name}\"");
+				return false;
+			}
+
+			// Filter on three levels...
+			//
+			// knownNotebooks
+			//   If knownNotebooks is empty, then we assume that this is the first scan
+			//   and will allow all; otherwise only scan known notebooks, also include
+			//   newly added notebooks that are below the size threshold to avoid causing
+			//   OneNote to behave sluggishly - user must schedule a scan to pull in those
+			//   new notebooks explicitly.
+			//
+			// notebookFilters
+			//   If notebookFilters is empty then allow any notebook that has passed the
+			//   knownNotebook test; otherwise, the user has explicitly requested a scan
+			//   of notebooks specified in the notebookFilters list or the notebook is
+			//   within the size threshold.
+			//
+			// size
+			//   If there are known notebooks, yet this notebook is not one of them, and
+			//   not filtered, then check the size of the new notebook; if below the set
+			//   threshold then scan it, otherwise user must schedule explicitly.
+			//
+
+			// known is empty so accept any and all
+			var accepted = knownNotebooks.Count == 0;
+
+			if (accepted)
+			{
+				// force a full rescan of a known notebook if selected
+				notebookForceThru =
+					notebookFilters is not null && notebookFilters.Contains(notebook.ID);
+			}
+			else
+			{
+				if (notebookFilters is null)
 				{
-					break;
-				}
-
-				var known = knownNotebooks.Find(n => n.NotebookID == notebook.ID);
-
-				if (known is not null && !known.Included)
-				{
-					logger.Verbose($"skipping excluded notebook {notebook.ID} \"{notebook.Name}\"");
-					continue;
-				}
-
-				// Filter on three levels...
-				//
-				// knownNotebooks
-				//   If knownNotebooks is empty, then we assume that this is the first scan
-				//   and will allow all; otherwise only scan known notebooks, also include
-				//   newly added notebooks that are below the size threshold to avoid causing
-				//   OneNote to behave sluggishly - user must schedule a scan to pull in those
-				//   new notebooks explicitly.
-				//
-				// notebookFilters
-				//   If notebookFilters is empty then allow any notebook that has passed the
-				//   knownNotebook test; otherwise, the user has explicitly requested a scan
-				//   of notebooks specified in the notebookFilters list or the notebook is
-				//   within the size threshold.
-				//
-				// size
-				//   If there are known notebooks, yet this notebook is not one of them, and
-				//   not filtered, then check the size of the new notebook; if below the set
-				//   threshold then scan it, otherwise user must schedule explicitly.
-				//
-
-				// known is empty so accept any and all
-				var accepted = knownNotebooks.Count == 0;
-
-				var forceThru = true;
-
-				if (accepted)
-				{
-					// force a full rescan of a known notebook if selected
-					forceThru =
-						notebookFilters is not null && notebookFilters.Contains(notebook.ID);
-				}
-				else
-				{
-					if (notebookFilters is null)
+					// known notebook so accept it
+					if (known is not null)
 					{
-						// known notebook so accept it
-						if (known is not null)
-						{
-							accepted = true;
-							forceThru = known.LastModified == string.Empty;
-						}
-						else
-						{
-							// notebook size is within threshold?
-							accepted = notebook.Pages.Count < MaxPagesThreshold;
-						}
+						accepted = true;
+						notebookForceThru = known.LastModified == string.Empty;
 					}
 					else
 					{
-						accepted = notebookFilters.Contains(notebook.ID);
+						// notebook size is within threshold?
+						accepted = notebook.Pages.Count < MaxPagesThreshold;
 					}
 				}
-
-				if (!accepted)
+				else
 				{
-					logger.Verbose($"skipping notebook {notebook.ID} \"{notebook.Name}\"");
-					continue;
+					accepted = notebookFilters.Contains(notebook.ID);
 				}
-
-				logger.Debug(
-					$"scanning notebook {notebook.ID} \"{notebook.Name}\"" +
-					(forceThru ? " (forceThru)" : ""));
-
-				var dp = 0;
-
-				if (notebook.Listed)
-				{
-					dp = await ScanNotebook(one, notebook, tagged, forceThru, token);
-					Stats.DirtyPages += dp;
-				}
-
-				// record the notebook regardless of whether we find tags; must be done
-				// on initial discovery or user would have to explicitly pull it in
-				provider.WriteNotebook(notebook.ID, notebook.Name, dp > 0);
 			}
 
+			if (!accepted)
+			{
+				logger.Verbose($"skipping notebook {notebook.ID} \"{notebook.Name}\"");
+				return false;
+			}
+
+			logger.Debug(
+				$"scanning notebook {notebook.ID} \"{notebook.Name}\"" +
+				(notebookForceThru ? " (forceThru)" : ""));
+
+			if (notebook.Listed)
+			{
+				PrepareNotebook(notebook);
+			}
+
+			return true;
+		}
+
+
+		bool IPageConsumer.NeedsPage(IdentityPage page)
+		{
+			// a page OneMore generated to index hashtags is not content
+			if (page.IsTagIndex)
+			{
+				return false;
+			}
+
+			return NeedsScan(
+				notebookForceThru, page.Ref.Modified, lastTime, page.Resolution.Kind,
+				rehomed.Contains(page.PageKey));
+		}
+
+
+		async Task<bool> IPageConsumer.Consume(OneNote one, Page page, IdentityPage identity)
+		{
+			// rewrite a rehomed page's tags whether or not they look changed, so the new title and
+			// paragraph IDs are recorded
+			var forceThru = notebookForceThru || rehomed.Contains(identity.PageKey);
+
+			return await ScanLoadedPage(one, page, identity, forceThru);
+		}
+
+
+		void IPageConsumer.EndNotebook(IdentityNotebook notebook, int dirtyPages)
+		{
+			Stats.DirtyPages += dirtyPages;
+
+			// record the notebook regardless of whether we find tags; must be done
+			// on initial discovery or user would have to explicitly pull it in
+			provider.WriteNotebook(notebook.ID, notebook.Name, dirtyPages > 0);
+		}
+
+
+		void IPageConsumer.End(IdentitySnapshot snapshot, bool cancelled)
+		{
 			// pages the identity catalog gave up on because they were missing for too long
 			var purged = provider.DeleteTags(snapshot.PurgedKeys.Select(Key));
 			if (purged > 0)
@@ -350,14 +438,12 @@ namespace River.OneMoreAddIn.Commands
 
 			// a scan that was cut short has not seen every page, so leave the time alone and
 			// let the next scan pick up what it missed
-			if (!token.IsCancellationRequested)
+			if (!cancelled)
 			{
 				provider.WriteScanTime(startTime);
 			}
-
-			clock.Stop();
-			Stats.Time = clock.ElapsedMilliseconds;
 		}
+		#endregion IPageConsumer
 
 
 		private static string Key(long pageKey)
@@ -366,22 +452,18 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private async Task<int> ScanNotebook(
-			OneNote one, IdentityNotebook notebook,
-			Dictionary<string, HashtagPageInfo> tagged, bool forceThru,
-			CancellationToken token)
+		// counts what is about to be scanned and finds the tagged pages that moved or whose ID
+		// changed, before the pages of a notebook are visited
+		private void PrepareNotebook(IdentityNotebook notebook)
 		{
-			var dirtyPages = 0;
-
 			var pages = notebook.Pages.Where(p => !p.IsTagIndex).ToList();
 			Stats.TotalPages += pages.Count;
 			Stats.Sections += pages.Select(p => p.SectionID).Distinct().Count();
 
 			// where tagged pages are recorded must follow them through reopens, moves and
-			// renames; a page whose ID changed is also scanned again below, because the IDs of
-			// its title and paragraphs changed with it
+			// renames; a page whose ID changed is also scanned again, because the IDs of its
+			// title and paragraphs changed with it
 			var moved = new List<HashtagPageInfo>();
-			var rehomed = new HashSet<long>();
 			foreach (var page in pages)
 			{
 				if (tagged.TryGetValue(Key(page.PageKey), out var info))
@@ -404,60 +486,6 @@ namespace River.OneMoreAddIn.Commands
 				var count = provider.RefreshPageInfo(moved);
 				logger.Verbose($"refreshed the location of {count} tagged pages in \"{notebook.Name}\"");
 			}
-
-			var clock = new Stopwatch();
-
-			foreach (var page in pages)
-			{
-				if (token.IsCancellationRequested)
-				{
-					break;
-				}
-
-				var isRehomed = rehomed.Contains(page.PageKey);
-
-				if (!NeedsScan(forceThru, page.Ref.Modified, lastTime, page.Resolution.Kind, isRehomed))
-				{
-					continue;
-				}
-
-				// only pages that are actually fetched via COM incur any real cost, so only
-				// these are timed and throttled; unmodified pages are skipped entirely and
-				// shouldn't pay an idle delay
-
-				clock.Restart();
-				// rewrite a rehomed page's tags whether or not they look changed, so the new title and
-				// paragraph IDs are recorded
-				var dirty = await ScanPage(one, page, forceThru || isRehomed);
-
-				clock.Stop();
-				Stats.FetchTime += clock.ElapsedMilliseconds;
-
-				if (dirty)
-				{
-					dirtyPages++;
-				}
-
-				// throttle the workload to give breathing room to OneNote UI;
-				// use an extended delay when a foreground command is active
-				if (throttle > 0)
-				{
-					var delay = HashtagServicePause.IsPaused ? PausedThrottle : throttle;
-					try
-					{
-						clock.Restart();
-						await Task.Delay(delay, token);
-						clock.Stop();
-						Stats.ThrottleTime += clock.ElapsedMilliseconds;
-					}
-					catch (OperationCanceledException)
-					{
-						break;
-					}
-				}
-			}
-
-			return dirtyPages;
 		}
 
 
@@ -485,26 +513,22 @@ namespace River.OneMoreAddIn.Commands
 		/// <returns>True if tags were recorded or removed</returns>
 		public async Task<bool> ScanPage(OneNote one, IdentityPage identity, bool forceThru)
 		{
-			var pageID = identity.Ref.PageID;
-			var path = identity.SectionPath;
-			Page page;
-
-			try
-			{
-				page = await one.GetPage(pageID, OneNote.PageDetail.Basic);
-			}
-			catch (Exception exc)
-			{
-				logger.WriteLine("error scanning page, possibly locked", exc);
-				return false;
-			}
-
-			// avoids defect #1268: GetPage throws generic COM exception and returns null...
+			var page = await PageContentPass.LoadPage(one, identity);
 			if (page is null)
 			{
-				logger.WriteLine($"skipping null page {pageID} '{path}'");
 				return false;
 			}
+
+			return await ScanLoadedPage(one, page, identity, forceThru);
+		}
+
+
+		// scans a page that has already been read, which a pass shares with other consumers
+		private async Task<bool> ScanLoadedPage(
+			OneNote one, Page page, IdentityPage identity, bool forceThru)
+		{
+			var pageID = identity.Ref.PageID;
+			var path = identity.SectionPath;
 
 			// the page key identifies the page in the catalog; nothing is written into the page
 			var moreID = Key(identity.PageKey);
@@ -571,6 +595,7 @@ namespace River.OneMoreAddIn.Commands
 
 			return false;
 		}
+
 
 		public void Report(string title = null)
 		{

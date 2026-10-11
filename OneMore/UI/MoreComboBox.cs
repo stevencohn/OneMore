@@ -165,11 +165,28 @@ namespace River.OneMoreAddIn.UI
 			var textBounds = new Rectangle(
 				textX, e.Bounds.Y, e.Bounds.Right - textX - 2, e.Bounds.Height);
 
+			// A draw message can still arrive while the dialog is closing and its controls, fonts
+			// and formats are being disposed, or after the combo has been collapsed to nothing;
+			// GDI+ answers either with "Parameter is not valid", which is not worth reporting.
+			if (IsDisposed || Disposing || textBounds.Width <= 0 || textBounds.Height <= 0)
+			{
+				return;
+			}
+
 			using var foreBrush = new SolidBrush(fore);
-			e.Graphics.DrawString(
-				// use GetItemText here to pick up DisplayMember when there is a DataSource
-				GetItemText(raw),
-				GetItemFont(raw), foreBrush, textBounds, stringFormat);
+
+			try
+			{
+				e.Graphics.DrawString(
+					// use GetItemText here to pick up DisplayMember when there is a DataSource
+					GetItemText(raw),
+					GetItemFont(raw), foreBrush, textBounds, stringFormat);
+			}
+			catch (ArgumentException)
+			{
+				// the font or format was disposed while the form was closing
+				return;
+			}
 
 			if (!isEdit && (e.State & DrawItemState.Focus) != 0)
 				e.DrawFocusRectangle();

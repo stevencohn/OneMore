@@ -117,6 +117,7 @@
     <Feature Id="ProductFeature" Title="OneMore Add-in" Level="1">
       <ComponentGroupRef Id="MainFiles" />
       <ComponentGroupRef Id="RegistryEntries" />
+      <ComponentGroupRef Id="TextIndexEntries" />
       <ComponentGroupRef Id="ColorizerLanguages" />
       <ComponentGroupRef Id="ColorizerThemes" />
       <ComponentGroupRef Id="AppDataThemes" />
@@ -189,6 +190,8 @@
     <ui:WixUI Id="WixUI_InstallDir" />
     <!-- adds the optional database backup page; see BackupDlg.wxs -->
     <UIRef Id="OneMoreBackupUI" />
+    <!-- adds the optional full text search index page; see IndexDlg.wxs -->
+    <UIRef Id="OneMoreIndexUI" />
     <WixVariable Id="WixUIBannerBmp" Value="Resources\Banner.jpg" />
     <WixVariable Id="WixUIDialogBmp"  Value="Resources\Dialog.jpg" />
     <WixVariable Id="WixUILicenseRtf" Value="Resources\license.rtf" />

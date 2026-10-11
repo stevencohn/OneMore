@@ -197,6 +197,30 @@
     <value>Adicionar grupo de seções de nível superior</value>
     <comment>dialog title</comment>
   </data>
+  <data name="AdjustBlankLinesDialog.Text" xml:space="preserve">
+    <value>Ajustar linhas em branco</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="AdjustBlankLinesDialog_exactRadio.Text" xml:space="preserve">
+    <value>Garanta exatamente uma linha em branco entre os parágrafos</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="AdjustBlankLinesDialog_headingBox.Text" xml:space="preserve">
+    <value>Coloque uma linha em branco após cada título</value>
+    <comment>checkbox !EDIT</comment>
+  </data>
+  <data name="AdjustBlankLinesDialog_keepRadio.Text" xml:space="preserve">
+    <value>Mantenha no máximo uma linha em branco entre os parágrafos</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="AdjustBlankLinesDialog_noteLabel.Text" xml:space="preserve">
+    <value>Desmarcado remove linhas em branco após os títulos. Os títulos vazios são sempre removidos ou convertidos em linhas em branco normais.</value>
+    <comment>label !EDIT</comment>
+  </data>
+  <data name="AdjustBlankLinesDialog_removeRadio.Text" xml:space="preserve">
+    <value>Remova todas as linhas em branco entre os parágrafos</value>
+    <comment>radio button</comment>
+  </data>
   <data name="AdjustImagesDialog.Text" xml:space="preserve">
     <value>Redimensionar e ajustar a imagem</value>
     <comment>dialog title</comment>
@@ -1242,6 +1266,10 @@ Normal</value>
     <value>Esta imagem é de uma impressão. Se for cortado, não será mais associado a esse arquivo original. Deseja continuar cortando?</value>
     <comment>message box, question</comment>
   </data>
+  <data name="ctxAdjustBlankLinesButton_Label" xml:space="preserve">
+    <value>Ajustar linhas em branco</value>
+    <comment>Context menu</comment>
+  </data>
   <data name="ctxCleanMenu_Label" xml:space="preserve">
     <value>Limpar \ limpo...</value>
     <comment>Context menu</comment>
@@ -1252,10 +1280,6 @@ Normal</value>
   </data>
   <data name="ctxNoSpellCheckButton_Label" xml:space="preserve">
     <value>Sem verificação ortográfica</value>
-    <comment>Context menu</comment>
-  </data>
-  <data name="ctxAdjustBlankLinesButton_Label" xml:space="preserve">
-    <value>Ajustar linhas em branco</value>
     <comment>Context menu</comment>
   </data>
   <data name="ctxRemoveSpacingButton_Label" xml:space="preserve">
@@ -2730,6 +2754,66 @@ Fundo Amarelo</value>
     <value>{0} Páginas modificadas</value>
     <comment>page title</comment>
   </data>
+  <data name="IndexNotebooksDialog_infoLabel" xml:space="preserve">
+    <value>Escolha os cadernos a serem incluídos no índice de pesquisa.</value>
+  </data>
+  <data name="IndexNotebooksDialog_Title" xml:space="preserve">
+    <value>Cadernos de índice de pesquisa</value>
+  </data>
+  <data name="IndexSheet_allBox.Text" xml:space="preserve">
+    <value>Indexar todos os cadernos</value>
+  </data>
+  <data name="IndexSheet_buildCancelled" xml:space="preserve">
+    <value>Interrompido após a indexação de {0:N0} páginas. A indexação continua em segundo plano.</value>
+  </data>
+  <data name="IndexSheet_buildDone" xml:space="preserve">
+    <value>{0:N0} páginas indexadas</value>
+  </data>
+  <data name="IndexSheet_buildFailed" xml:space="preserve">
+    <value>O OneNote não pôde ser lido, então nada foi indexado</value>
+  </data>
+  <data name="IndexSheet_buildLink.Text" xml:space="preserve">
+    <value>Crie o índice agora</value>
+  </data>
+  <data name="IndexSheet_buildMessage" xml:space="preserve">
+    <value>Indexando seus cadernos...</value>
+  </data>
+  <data name="IndexSheet_buildNote.Text" xml:space="preserve">
+    <value>Lê todas as páginas que ainda não estão indexadas. Isso pode levar alguns minutos para uma coleção grande e pode tornar o OneNote lento durante a execução. Caso contrário, o índice será construído aos poucos em segundo plano.</value>
+  </data>
+  <data name="IndexSheet_buildProgress" xml:space="preserve">
+    <value>Indexado {0:N0} de {1:N0} páginas</value>
+  </data>
+  <data name="IndexSheet_deleteConfirm" xml:space="preserve">
+    <value>Excluir tudo o que foi indexado? A pesquisa examinará seus blocos de anotações diretamente até que você ative o índice novamente e ele seja reconstruído. Suas páginas não foram alteradas.</value>
+  </data>
+  <data name="IndexSheet_deleteDone" xml:space="preserve">
+    <value>O índice foi excluído. {0:N0} páginas foram removidas.</value>
+  </data>
+  <data name="IndexSheet_deleteLink.Text" xml:space="preserve">
+    <value>Exclua o índice</value>
+  </data>
+  <data name="IndexSheet_enabledBox.Text" xml:space="preserve">
+    <value>Manter um índice de pesquisa dos meus cadernos atualizado</value>
+  </data>
+  <data name="IndexSheet_introBox.Text" xml:space="preserve">
+    <value>Crie um índice do texto dos seus cadernos para que o comando Pesquisar possa encontrar o texto quase instantaneamente. O índice é mantido neste computador e atualizado em segundo plano. Suas páginas nunca são alteradas.</value>
+  </data>
+  <data name="IndexSheet_selectLink.Text" xml:space="preserve">
+    <value>Selecione os blocos de anotações para indexar</value>
+  </data>
+  <data name="IndexSheet_status" xml:space="preserve">
+    <value>{0:N0} páginas e {1:N0} parágrafos são indexados, usando {2:N1} MB</value>
+  </data>
+  <data name="IndexSheet_statusNone" xml:space="preserve">
+    <value>Nenhuma página foi indexada ainda</value>
+  </data>
+  <data name="IndexSheet_Title" xml:space="preserve">
+    <value>Índice de pesquisa</value>
+  </data>
+  <data name="IndexSheet_unavailable" xml:space="preserve">
+    <value>O índice de pesquisa não pode ser usado neste computador</value>
+  </data>
   <data name="InsertBoxCommand_Code" xml:space="preserve">
     <value>Seu código aqui...</value>
     <comment>text</comment>
@@ -4119,30 +4203,6 @@ Estilístico, Entidade, Mídia</value>
     <value>{0}% semelhante</value>
     <comment>clickable similarity chip for a near-duplicate match, {0} rounded percentage</comment>
   </data>
-  <data name="AdjustBlankLinesDialog.Text" xml:space="preserve">
-    <value>Ajustar linhas em branco</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="AdjustBlankLinesDialog_exactRadio.Text" xml:space="preserve">
-    <value>Garanta exatamente uma linha em branco entre os parágrafos</value>
-    <comment>radio button</comment>
-  </data>
-  <data name="AdjustBlankLinesDialog_headingBox.Text" xml:space="preserve">
-    <value>Coloque uma linha em branco após cada título</value>
-    <comment>checkbox !EDIT</comment>
-  </data>
-  <data name="AdjustBlankLinesDialog_keepRadio.Text" xml:space="preserve">
-    <value>Mantenha no máximo uma linha em branco entre os parágrafos</value>
-    <comment>radio button</comment>
-  </data>
-  <data name="AdjustBlankLinesDialog_noteLabel.Text" xml:space="preserve">
-    <value>Desmarcado remove linhas em branco após os títulos. Os títulos vazios são sempre removidos ou convertidos em linhas em branco normais.</value>
-    <comment>label !EDIT</comment>
-  </data>
-  <data name="AdjustBlankLinesDialog_removeRadio.Text" xml:space="preserve">
-    <value>Remova todas as linhas em branco entre os parágrafos</value>
-    <comment>radio button</comment>
-  </data>
   <data name="RemoveSpacingDialog.Text" xml:space="preserve">
     <value>Remover Espaçamento</value>
     <comment>dialog title</comment>
@@ -4449,6 +4509,14 @@ Estilístico, Entidade, Mídia</value>
   <data name="ribAddTopSectionGroupButton_Screentip" xml:space="preserve">
     <value>Adicione um novo grupo de seções ao nível superior deste notebook</value>
     <comment>notebook context menu</comment>
+  </data>
+  <data name="ribAdjustBlankLinesButton_Label" xml:space="preserve">
+    <value>Ajustar linhas em branco</value>
+    <comment>ribbon clean</comment>
+  </data>
+  <data name="ribAdjustBlankLinesButton_Screentip" xml:space="preserve">
+    <value>Remover, recolher ou adicionar linhas em branco entre os parágrafos e após os títulos</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribAdjustImagesButton_Label" xml:space="preserve">
     <value>Editar imagens</value>
@@ -5828,14 +5896,6 @@ Guia Ajuda</value>
     <value>Identificar e remover páginas duplicadas</value>
     <comment>ribbon clean</comment>
   </data>
-  <data name="ribAdjustBlankLinesButton_Label" xml:space="preserve">
-    <value>Ajustar linhas em branco</value>
-    <comment>ribbon clean</comment>
-  </data>
-  <data name="ribAdjustBlankLinesButton_Screentip" xml:space="preserve">
-    <value>Remover, recolher ou adicionar linhas em branco entre os parágrafos e após os títulos</value>
-    <comment>ribbon clean</comment>
-  </data>
   <data name="ribRemoveFootnoteButton_Label" xml:space="preserve">
     <value>Remover nota de rodapé</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
@@ -6613,6 +6673,12 @@ Modificado antes</value>
     <value>Pesquisar texto no sumário</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SearchDialog_indexChecking" xml:space="preserve">
+    <value>Verificando o índice de pesquisa...</value>
+  </data>
+  <data name="SearchDialog_indexSummary" xml:space="preserve">
+    <value>{0:N0} páginas do índice de pesquisa, {1:N0} lidas no OneNote</value>
+  </data>
   <data name="SearchDialog_introLabel.Text" xml:space="preserve">
     <value>Insira os critérios de pesquisa, incluindo opcionalmente AND, OR, NOT, aspas e parênteses
 Palavras sem aspas correspondem em qualquer ordem; use aspas para uma frase exata.</value>
@@ -6633,6 +6699,10 @@ Palavras sem aspas correspondem em qualquer ordem; use aspas para uma frase exat
   <data name="SearchDialog_regBox.Text" xml:space="preserve">
     <value>Use expressões regulares</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="SearchDialog_scopeAll" xml:space="preserve">
+    <value>Em todos os cadernos</value>
+    <comment>combobox item, searches every open notebook</comment>
   </data>
   <data name="SearchDialog_selectAllLink.Text" xml:space="preserve">
     <value>Selecionar tudo</value>

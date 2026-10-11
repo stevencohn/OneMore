@@ -88,45 +88,9 @@ namespace River.OneMoreAddIn.Identity
 		}
 
 
-		#region Write transactions
-		// The identity catalog can be written by the add-in and by the tray at the same time.
-		// A deferred transaction would read first and only then try to write, so two of them
-		// could each find that a new page has no key and each give it one. An immediate
-		// transaction takes the write lock before reading, so the second waits for the first
-		// and then finds its row. The connection's busy timeout covers the wait.
-
-		private void BeginImmediate()
-		{
-			using var cmd = con.CreateCommand();
-			cmd.CommandText = "BEGIN IMMEDIATE";
-			cmd.ExecuteNonQuery();
-		}
-
-
-		private void Commit()
-		{
-			using var cmd = con.CreateCommand();
-			cmd.CommandText = "COMMIT";
-			cmd.ExecuteNonQuery();
-		}
-
-
-		private void Rollback()
-		{
-			try
-			{
-				using var cmd = con.CreateCommand();
-				cmd.CommandText = "ROLLBACK";
-				cmd.ExecuteNonQuery();
-			}
-			catch (Exception exc)
-			{
-				// never mask the error that caused the rollback
-				logger.WriteLine("error rolling back page identity changes", exc);
-			}
-		}
-		#endregion Write transactions
-
+		// The identity catalog can be written by the add-in and by the tray at the same time, so
+		// writes use the base class's immediate transactions: two deferred ones could each find
+		// that a new page has no key and each give it one.
 
 		/// <summary>
 		/// Resolves every current page to a stored identity, creating identities for new

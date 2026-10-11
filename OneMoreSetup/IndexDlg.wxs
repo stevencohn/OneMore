@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+
+  <!--
+    Optional full text search index page, inserted after BackupDlg (when it is shown) or
+    InstallDirDlg, and before VerifyReadyDlg of WixUI_InstallDir. Indexing is off unless the
+    user turns it on here, or later in Settings, Search Index.
+
+    The choice is a machine-wide default, kept in HKLM\SOFTWARE\River\OneMoreAddIn "TextIndex"
+    ("1"). OneMore uses it only for a user who has not saved their own choice in Settings, so
+    every user can still change it. The value is a per-user-profile setting in Settings.xml,
+    which an installer running as SYSTEM cannot write for the interactive user, which is why
+    the default is a registry value instead.
+
+    Properties (public so they may be set on the msiexec command line):
+      INDEXING   "1" to enable indexing by default; empty or 0 leaves it off. It is read from
+                 the registry so that the previous choice is the default on an upgrade, and so
+                 that a repair run without UI (Active Setup) does not remove the value.
+  -->
+
+  <Fragment>
+
+    <Property Id="INDEXING" Secure="yes">
+      <RegistrySearch Id="TextIndexSearch" Root="HKLM" Key="SOFTWARE\River\OneMoreAddIn"
+                      Name="TextIndex" Type="raw" />
+    </Property>
+
+    <ComponentGroup Id="TextIndexEntries" Directory="INSTALLDIR">
+      <Component Id="RegHklmTextIndex" Condition="INDEXING = &quot;1&quot;">
+        <RegistryKey Root="HKLM" Key="SOFTWARE\River\OneMoreAddIn"
+                     ForceCreateOnInstall="yes" ForceDeleteOnUninstall="yes">
+          <RegistryValue Name="TextIndex" Value="1" Type="string" KeyPath="yes" />
+        </RegistryKey>
+      </Component>
+    </ComponentGroup>
+
+    <UI Id="OneMoreIndexUI">
+
+      <Dialog Id="IndexDlg" Width="370" Height="270" Title="[ProductName] Setup">
+
+        <Control Id="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44"
+                 TabSkip="no" Text="WixUI_Bmp_Banner" />
+        <Control Id="BannerLine" Type="Line" X="0" Y="44" Width="370" Height="0" />
+        <Control Id="BottomLine" Type="Line" X="0" Y="234" Width="370" Height="0" />
+
+        <Control Id="Title" Type="Text" X="15" Y="6" Width="340" Height="15"
+                 Transparent="yes" NoPrefix="yes"
+                 Text="{\WixUI_Font_Title}Full text search" />
+        <Control Id="Description" Type="Text" X="25" Y="23" Width="340" Height="15"
+                 Transparent="yes" NoPrefix="yes"
+                 Text="Make the Search command find text almost instantly." />
+
+        <Control Id="Explain" Type="Text" X="20" Y="55" Width="330" Height="54" NoPrefix="yes"
+                 Text="OneMore can keep a search index of the text of your notebooks on this computer, so that searching a large collection takes a moment instead of reading every page. Your pages are never changed. The index is built a little at a time in the background and uses disk space in your OneMore database." />
+
+        <Control Id="IndexCheck" Type="CheckBox" X="20" Y="120" Width="330" Height="18"
+                 Property="INDEXING" CheckBoxValue="1"
+                 Text="&amp;Enable full text search indexing" />
+
+        <Control Id="Note" Type="Text" X="20" Y="150" Width="330" Height="42" NoPrefix="yes"
+                 Text="This is optional and is off by default. You can turn it on or off at any time, and choose which notebooks are indexed, in Settings under Search Index." />
+
+        <Control Id="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17"
+                 Text="!(loc.WixUIBack)">
+          <!-- back to the backup page when it was shown, otherwise the install folder page -->
+          <Publish Event="NewDialog" Value="InstallDirDlg" Order="1" />
+          <Publish Event="NewDialog" Value="BackupDlg" Order="2"
+                   Condition="ONEMOREDB AND PRE8VERSIONFOUND" />
+        </Control>
+        <Control Id="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17"
+                 Default="yes" Text="!(loc.WixUINext)">
+          <Publish Event="NewDialog" Value="VerifyReadyDlg" />
+        </Control>
+        <Control Id="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17"
+                 Cancel="yes" Text="!(loc.WixUICancel)">
+          <Publish Event="SpawnDialog" Value="CancelDlg" />
+        </Control>
+
+      </Dialog>
+
+      <!--
+        InstallDirDlg -> IndexDlg when the backup page is not shown. WixUI_InstallDir publishes
+        NewDialog VerifyReadyDlg at order 4; BackupDlg.wxs supersedes it at order 5 when it is
+        needed, and this supersedes it at order 6 in every other case. The two conditions never
+        both hold.
+      -->
+      <Publish Dialog="InstallDirDlg" Control="Next" Event="NewDialog" Value="IndexDlg" Order="6"
+               Condition="NOT Installed AND NOT (ONEMOREDB AND PRE8VERSIONFOUND)" />
+
+      <!-- VerifyReadyDlg Back -> IndexDlg, after BackupDlg.wxs's order 3 -->
+      <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="IndexDlg" Order="4"
+               Condition="NOT Installed" />
+
+    </UI>
+  </Fragment>
+</Wix>

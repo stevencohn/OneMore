@@ -82,7 +82,7 @@ namespace River.OneMoreAddIn.Commands
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.cancelButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.cancelButton.ImageOver = null;
-			this.cancelButton.Location = new System.Drawing.Point(973, 16);
+			this.cancelButton.Location = new System.Drawing.Point(973, 48);
 			this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 15);
 			this.cancelButton.Name = "cancelButton";
 			this.cancelButton.ShowBorder = true;
@@ -102,7 +102,7 @@ namespace River.OneMoreAddIn.Commands
 			this.indexButton.Enabled = false;
 			this.indexButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.indexButton.ImageOver = null;
-			this.indexButton.Location = new System.Drawing.Point(613, 16);
+			this.indexButton.Location = new System.Drawing.Point(613, 48);
 			this.indexButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 15);
 			this.indexButton.Name = "indexButton";
 			this.indexButton.ShowBorder = true;
@@ -123,7 +123,7 @@ namespace River.OneMoreAddIn.Commands
 			this.moveButton.Enabled = false;
 			this.moveButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.moveButton.ImageOver = null;
-			this.moveButton.Location = new System.Drawing.Point(853, 16);
+			this.moveButton.Location = new System.Drawing.Point(853, 48);
 			this.moveButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 15);
 			this.moveButton.Name = "moveButton";
 			this.moveButton.ShowBorder = true;
@@ -144,7 +144,7 @@ namespace River.OneMoreAddIn.Commands
 			this.copyButton.Enabled = false;
 			this.copyButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.copyButton.ImageOver = null;
-			this.copyButton.Location = new System.Drawing.Point(733, 16);
+			this.copyButton.Location = new System.Drawing.Point(733, 48);
 			this.copyButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 15);
 			this.copyButton.Name = "copyButton";
 			this.copyButton.ShowBorder = true;
@@ -235,7 +235,7 @@ namespace River.OneMoreAddIn.Commands
 			this.morePanel1.Location = new System.Drawing.Point(15, 647);
 			this.morePanel1.Name = "morePanel1";
 			this.morePanel1.Padding = new System.Windows.Forms.Padding(3);
-			this.morePanel1.Size = new System.Drawing.Size(1092, 66);
+			this.morePanel1.Size = new System.Drawing.Size(1092, 98);
 			this.morePanel1.TabIndex = 4;
 			this.morePanel1.ThemedBack = null;
 			this.morePanel1.ThemedFore = null;
@@ -248,7 +248,7 @@ namespace River.OneMoreAddIn.Commands
 			this.prevButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.prevButton.Image = global::River.OneMoreAddIn.Properties.Resources.UpArrow;
 			this.prevButton.ImageOver = null;
-			this.prevButton.Location = new System.Drawing.Point(93, 18);
+			this.prevButton.Location = new System.Drawing.Point(93, 50);
 			this.prevButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 15);
 			this.prevButton.Name = "prevButton";
 			this.prevButton.ShowBorder = true;
@@ -267,7 +267,7 @@ namespace River.OneMoreAddIn.Commands
 			this.nextButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.nextButton.Image = global::River.OneMoreAddIn.Properties.Resources.DownArrow;
 			this.nextButton.ImageOver = null;
-			this.nextButton.Location = new System.Drawing.Point(25, 18);
+			this.nextButton.Location = new System.Drawing.Point(25, 50);
 			this.nextButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 15);
 			this.nextButton.Name = "nextButton";
 			this.nextButton.ShowBorder = true;
@@ -283,7 +283,7 @@ namespace River.OneMoreAddIn.Commands
 			// pageLabel
 			// 
 			this.pageLabel.AutoSize = true;
-			this.pageLabel.Location = new System.Drawing.Point(21, 8);
+			this.pageLabel.Location = new System.Drawing.Point(21, 6);
 			this.pageLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 15);
 			this.pageLabel.Name = "pageLabel";
 			this.pageLabel.Size = new System.Drawing.Size(45, 20);
@@ -296,7 +296,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.progressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.progressBar.Location = new System.Drawing.Point(25, 32);
+			this.progressBar.Location = new System.Drawing.Point(25, 30);
 			this.progressBar.Name = "progressBar";
 			this.progressBar.Size = new System.Drawing.Size(925, 16);
 			this.progressBar.Step = 1;
@@ -524,7 +524,7 @@ namespace River.OneMoreAddIn.Commands
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ControlLight;
-			this.ClientSize = new System.Drawing.Size(1122, 723);
+			this.ClientSize = new System.Drawing.Size(1122, 755);
 			this.Controls.Add(this.resultsView);
 			this.Controls.Add(this.resultsHeaderPanel);
 			this.Controls.Add(this.optionsPanel);

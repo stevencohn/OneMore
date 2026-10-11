@@ -2758,6 +2758,66 @@ Yellow Background</value>
     <value>{0} Modified Pages</value>
     <comment>page title</comment>
   </data>
+  <data name="IndexNotebooksDialog_infoLabel" xml:space="preserve">
+    <value>Choose the notebooks to include in the search index.</value>
+  </data>
+  <data name="IndexNotebooksDialog_Title" xml:space="preserve">
+    <value>Search Index Notebooks</value>
+  </data>
+  <data name="IndexSheet_allBox.Text" xml:space="preserve">
+    <value>Index all notebooks</value>
+  </data>
+  <data name="IndexSheet_buildCancelled" xml:space="preserve">
+    <value>Stopped after indexing {0:N0} pages. Indexing continues in the background.</value>
+  </data>
+  <data name="IndexSheet_buildDone" xml:space="preserve">
+    <value>Indexed {0:N0} pages</value>
+  </data>
+  <data name="IndexSheet_buildFailed" xml:space="preserve">
+    <value>OneNote could not be read, so nothing was indexed</value>
+  </data>
+  <data name="IndexSheet_buildLink.Text" xml:space="preserve">
+    <value>Build the index now</value>
+  </data>
+  <data name="IndexSheet_buildMessage" xml:space="preserve">
+    <value>Indexing your notebooks...</value>
+  </data>
+  <data name="IndexSheet_buildNote.Text" xml:space="preserve">
+    <value>Reads every page that is not yet indexed. This can take a few minutes for a large collection and may slow OneNote while it runs. Otherwise the index is built a little at a time in the background.</value>
+  </data>
+  <data name="IndexSheet_buildProgress" xml:space="preserve">
+    <value>Indexed {0:N0} of {1:N0} pages</value>
+  </data>
+  <data name="IndexSheet_deleteConfirm" xml:space="preserve">
+    <value>Delete everything that has been indexed? Search will scan your notebooks directly until you turn the index on again and it is rebuilt. Your pages are not changed.</value>
+  </data>
+  <data name="IndexSheet_deleteDone" xml:space="preserve">
+    <value>The index was deleted. {0:N0} pages were removed.</value>
+  </data>
+  <data name="IndexSheet_deleteLink.Text" xml:space="preserve">
+    <value>Delete the index</value>
+  </data>
+  <data name="IndexSheet_enabledBox.Text" xml:space="preserve">
+    <value>Keep a search index of my notebooks up to date</value>
+  </data>
+  <data name="IndexSheet_introBox.Text" xml:space="preserve">
+    <value>Build an index of the text of your notebooks so that the Search command can find text almost instantly. The index is kept on this computer and is brought up to date in the background. Your pages are never changed.</value>
+  </data>
+  <data name="IndexSheet_selectLink.Text" xml:space="preserve">
+    <value>Select the notebooks to index</value>
+  </data>
+  <data name="IndexSheet_status" xml:space="preserve">
+    <value>{0:N0} pages and {1:N0} paragraphs are indexed, using {2:N1} MB</value>
+  </data>
+  <data name="IndexSheet_statusNone" xml:space="preserve">
+    <value>No pages are indexed yet</value>
+  </data>
+  <data name="IndexSheet_Title" xml:space="preserve">
+    <value>Search Index</value>
+  </data>
+  <data name="IndexSheet_unavailable" xml:space="preserve">
+    <value>The search index cannot be used on this computer</value>
+  </data>
   <data name="InsertBoxCommand_Code" xml:space="preserve">
     <value>Your code here...</value>
     <comment>text</comment>
@@ -6648,6 +6708,12 @@ Modified before</value>
     <value>Search text in table of contents</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SearchDialog_indexChecking" xml:space="preserve">
+    <value>Checking the search index...</value>
+  </data>
+  <data name="SearchDialog_indexSummary" xml:space="preserve">
+    <value>{0:N0} pages from the search index, {1:N0} read from OneNote</value>
+  </data>
   <data name="SearchDialog_introLabel.Text" xml:space="preserve">
     <value>Enter the search criteria, optionally including AND, OR, NOT, quotes and parenthesis
 Unquoted words match in any order; use quotes for an exact phrase.</value>
@@ -6668,6 +6734,10 @@ Unquoted words match in any order; use quotes for an exact phrase.</value>
   <data name="SearchDialog_regBox.Text" xml:space="preserve">
     <value>Use regular expressions</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="SearchDialog_scopeAll" xml:space="preserve">
+    <value>In all notebooks</value>
+    <comment>combobox item, searches every open notebook</comment>
   </data>
   <data name="SearchDialog_selectAllLink.Text" xml:space="preserve">
     <value>Select all</value>
@@ -8198,6 +8268,9 @@ Thank you!</value>
   </data>
   <data name="DefaultStyles" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\styles\defaultstyles.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="TextIndexDB" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TextIndex\TextIndexDB.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="DarkTheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\UI\DarkTheme.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>

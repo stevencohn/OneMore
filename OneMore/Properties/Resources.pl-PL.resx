@@ -197,6 +197,30 @@
     <value>Dodaj grupę sekcji najwyższego poziomu</value>
     <comment>dialog title</comment>
   </data>
+  <data name="AdjustBlankLinesDialog.Text" xml:space="preserve">
+    <value>Dostosuj puste linie</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="AdjustBlankLinesDialog_exactRadio.Text" xml:space="preserve">
+    <value>Upewnij się, że między akapitami znajduje się dokładnie jedna pusta linia</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="AdjustBlankLinesDialog_headingBox.Text" xml:space="preserve">
+    <value>Po każdym nagłówku umieść jedną pustą linię</value>
+    <comment>checkbox !EDIT</comment>
+  </data>
+  <data name="AdjustBlankLinesDialog_keepRadio.Text" xml:space="preserve">
+    <value>Zachowaj maksymalnie jedną pustą linię między akapitami</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="AdjustBlankLinesDialog_noteLabel.Text" xml:space="preserve">
+    <value>Opcja odznaczona usuwa puste linie po nagłówkach. Puste nagłówki są zawsze usuwane lub konwertowane na zwykłe puste linie.</value>
+    <comment>label !EDIT</comment>
+  </data>
+  <data name="AdjustBlankLinesDialog_removeRadio.Text" xml:space="preserve">
+    <value>Usuń wszystkie puste linie między akapitami</value>
+    <comment>radio button</comment>
+  </data>
   <data name="AdjustImagesDialog.Text" xml:space="preserve">
     <value>Zmień rozmiar i dostosuj obraz</value>
     <comment>dialog title</comment>
@@ -1242,6 +1266,10 @@ Normalna</value>
     <value>Ten obraz pochodzi z wydruku. Jeśli zostanie przycięte, nie będzie już powiązany z tym oryginalnym plikiem. Czy chcesz kontynuować przycinanie?</value>
     <comment>message box, question</comment>
   </data>
+  <data name="ctxAdjustBlankLinesButton_Label" xml:space="preserve">
+    <value>Dostosuj puste linie</value>
+    <comment>Context menu</comment>
+  </data>
   <data name="ctxCleanMenu_Label" xml:space="preserve">
     <value>Czysty...</value>
     <comment>Context menu</comment>
@@ -1252,10 +1280,6 @@ Normalna</value>
   </data>
   <data name="ctxNoSpellCheckButton_Label" xml:space="preserve">
     <value>Brak sprawdzania pisowni.</value>
-    <comment>Context menu</comment>
-  </data>
-  <data name="ctxAdjustBlankLinesButton_Label" xml:space="preserve">
-    <value>Dostosuj puste linie</value>
     <comment>Context menu</comment>
   </data>
   <data name="ctxRemoveSpacingButton_Label" xml:space="preserve">
@@ -2730,6 +2754,66 @@ Czerwony pierwszy plan
     <value>{0} Zmodyfikowane strony</value>
     <comment>page title</comment>
   </data>
+  <data name="IndexNotebooksDialog_infoLabel" xml:space="preserve">
+    <value>Wybierz notesy, które chcesz uwzględnić w indeksie wyszukiwania.</value>
+  </data>
+  <data name="IndexNotebooksDialog_Title" xml:space="preserve">
+    <value>Wyszukaj notesy indeksowe</value>
+  </data>
+  <data name="IndexSheet_allBox.Text" xml:space="preserve">
+    <value>Indeksuj wszystkie notesy</value>
+  </data>
+  <data name="IndexSheet_buildCancelled" xml:space="preserve">
+    <value>Zatrzymano po zaindeksowaniu {0:N0} stron. Indeksowanie jest kontynuowane w tle.</value>
+  </data>
+  <data name="IndexSheet_buildDone" xml:space="preserve">
+    <value>Zaindeksowane strony: {0:N0}</value>
+  </data>
+  <data name="IndexSheet_buildFailed" xml:space="preserve">
+    <value>Nie można odczytać programu OneNote, więc nic nie zostało zindeksowane</value>
+  </data>
+  <data name="IndexSheet_buildLink.Text" xml:space="preserve">
+    <value>Zbuduj indeks teraz</value>
+  </data>
+  <data name="IndexSheet_buildMessage" xml:space="preserve">
+    <value>Indeksowanie notatników...</value>
+  </data>
+  <data name="IndexSheet_buildNote.Text" xml:space="preserve">
+    <value>Czyta każdą stronę, która nie została jeszcze zindeksowana. W przypadku dużej kolekcji może to zająć kilka minut i może spowolnić działanie programu OneNote. W przeciwnym razie indeks jest budowany stopniowo w tle.</value>
+  </data>
+  <data name="IndexSheet_buildProgress" xml:space="preserve">
+    <value>Zaindeksowano {0:N0} z {1:N0} stron</value>
+  </data>
+  <data name="IndexSheet_deleteConfirm" xml:space="preserve">
+    <value>Usunąć wszystko, co zostało zaindeksowane? Wyszukiwanie będzie skanować Twoje notesy bezpośrednio do momentu ponownego włączenia indeksu i jego odbudowania. Twoje strony nie uległy zmianie.</value>
+  </data>
+  <data name="IndexSheet_deleteDone" xml:space="preserve">
+    <value>Indeks został usunięty. Usunięto {0:N0} stron.</value>
+  </data>
+  <data name="IndexSheet_deleteLink.Text" xml:space="preserve">
+    <value>Usuń indeks</value>
+  </data>
+  <data name="IndexSheet_enabledBox.Text" xml:space="preserve">
+    <value>Aktualizuj indeks wyszukiwania moich notatników</value>
+  </data>
+  <data name="IndexSheet_introBox.Text" xml:space="preserve">
+    <value>Utwórz indeks tekstu swoich notatników, aby polecenie Szukaj mogło niemal natychmiast znaleźć tekst. Indeks jest przechowywany na tym komputerze i jest aktualizowany w tle. Twoje strony nigdy nie są zmieniane.</value>
+  </data>
+  <data name="IndexSheet_selectLink.Text" xml:space="preserve">
+    <value>Wybierz notesy do indeksowania</value>
+  </data>
+  <data name="IndexSheet_status" xml:space="preserve">
+    <value>Indeksowanych jest {0:N0} stron i {1:N0} akapitów przy użyciu {2:N1} MB</value>
+  </data>
+  <data name="IndexSheet_statusNone" xml:space="preserve">
+    <value>Żadna strona nie jest jeszcze zindeksowana</value>
+  </data>
+  <data name="IndexSheet_Title" xml:space="preserve">
+    <value>Indeks wyszukiwania</value>
+  </data>
+  <data name="IndexSheet_unavailable" xml:space="preserve">
+    <value>Na tym komputerze nie można używać indeksu wyszukiwania</value>
+  </data>
   <data name="InsertBoxCommand_Code" xml:space="preserve">
     <value>Twój kod tutaj...</value>
     <comment>text</comment>
@@ -4119,30 +4203,6 @@ Stylistyka, podmiot, media</value>
     <value>{0}% podobne</value>
     <comment>clickable similarity chip for a near-duplicate match, {0} rounded percentage</comment>
   </data>
-  <data name="AdjustBlankLinesDialog.Text" xml:space="preserve">
-    <value>Dostosuj puste linie</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="AdjustBlankLinesDialog_exactRadio.Text" xml:space="preserve">
-    <value>Upewnij się, że między akapitami znajduje się dokładnie jedna pusta linia</value>
-    <comment>radio button</comment>
-  </data>
-  <data name="AdjustBlankLinesDialog_headingBox.Text" xml:space="preserve">
-    <value>Po każdym nagłówku umieść jedną pustą linię</value>
-    <comment>checkbox !EDIT</comment>
-  </data>
-  <data name="AdjustBlankLinesDialog_keepRadio.Text" xml:space="preserve">
-    <value>Zachowaj maksymalnie jedną pustą linię między akapitami</value>
-    <comment>radio button</comment>
-  </data>
-  <data name="AdjustBlankLinesDialog_noteLabel.Text" xml:space="preserve">
-    <value>Opcja odznaczona usuwa puste linie po nagłówkach. Puste nagłówki są zawsze usuwane lub konwertowane na zwykłe puste linie.</value>
-    <comment>label !EDIT</comment>
-  </data>
-  <data name="AdjustBlankLinesDialog_removeRadio.Text" xml:space="preserve">
-    <value>Usuń wszystkie puste linie między akapitami</value>
-    <comment>radio button</comment>
-  </data>
   <data name="RemoveSpacingDialog.Text" xml:space="preserve">
     <value>Usuń odstępy</value>
     <comment>dialog title</comment>
@@ -4449,6 +4509,14 @@ Stylistyka, podmiot, media</value>
   <data name="ribAddTopSectionGroupButton_Screentip" xml:space="preserve">
     <value>Dodaj nową grupę sekcji na najwyższym poziomie tego notesu</value>
     <comment>notebook context menu</comment>
+  </data>
+  <data name="ribAdjustBlankLinesButton_Label" xml:space="preserve">
+    <value>Dostosuj puste linie</value>
+    <comment>ribbon clean</comment>
+  </data>
+  <data name="ribAdjustBlankLinesButton_Screentip" xml:space="preserve">
+    <value>Usuń, zwiń lub dodaj puste linie między akapitami i po nagłówkach</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribAdjustImagesButton_Label" xml:space="preserve">
     <value>Edytuj obrazy</value>
@@ -5828,14 +5896,6 @@ Zakładka Pomoc</value>
     <value>Zidentyfikuj i usuń zduplikowane strony</value>
     <comment>ribbon clean</comment>
   </data>
-  <data name="ribAdjustBlankLinesButton_Label" xml:space="preserve">
-    <value>Dostosuj puste linie</value>
-    <comment>ribbon clean</comment>
-  </data>
-  <data name="ribAdjustBlankLinesButton_Screentip" xml:space="preserve">
-    <value>Usuń, zwiń lub dodaj puste linie między akapitami i po nagłówkach</value>
-    <comment>ribbon clean</comment>
-  </data>
   <data name="ribRemoveFootnoteButton_Label" xml:space="preserve">
     <value>Usuń przypis</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
@@ -6613,6 +6673,12 @@ Zmodyfikowany wcześniej</value>
     <value>Wyszukaj tekst w spisie treści</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SearchDialog_indexChecking" xml:space="preserve">
+    <value>Sprawdzam indeks wyszukiwania...</value>
+  </data>
+  <data name="SearchDialog_indexSummary" xml:space="preserve">
+    <value>{0:N0} stron z indeksu wyszukiwania, {1:N0} odczytane z OneNote</value>
+  </data>
   <data name="SearchDialog_introLabel.Text" xml:space="preserve">
     <value>Wprowadź kryteria wyszukiwania, opcjonalnie uwzględniając AND, OR, NOT, cudzysłowy i nawiasy
 Niecytowane słowa pasują w dowolnej kolejności; użyj cudzysłowu dla dokładnego wyrażenia.</value>
@@ -6633,6 +6699,10 @@ Niecytowane słowa pasują w dowolnej kolejności; użyj cudzysłowu dla dokład
   <data name="SearchDialog_regBox.Text" xml:space="preserve">
     <value>Używaj wyrażeń regularnych</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="SearchDialog_scopeAll" xml:space="preserve">
+    <value>We wszystkich notesach</value>
+    <comment>combobox item, searches every open notebook</comment>
   </data>
   <data name="SearchDialog_selectAllLink.Text" xml:space="preserve">
     <value>Zaznacz wszystko</value>

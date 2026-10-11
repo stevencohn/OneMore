@@ -8559,6 +8559,18 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("PageIdentityDB", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to CREATE TABLE IF NOT EXISTS index_schema (schemaID INTEGER PRIMARY KEY UNIQUE NOT NULL, version NUMERIC (12) UNIQUE NOT NULL);
+        ///CREATE TABLE IF NOT EXISTS index_page (pageKey INTEGER PRIMARY KEY NOT NULL, indexedModified TEXT NOT NULL, indexedAt TEXT NOT NULL, paragraphs INTEGER NOT NULL DEFAULT 0);
+        ///CREATE TABLE IF NOT EXISTS index_text (textID INTEGER PRIMARY KEY AUTOINCREMENT, pageKey INTEGER NOT NULL, objectID TEXT NOT NULL, ordinal INTEGER NOT NULL, text TEXT NOT NULL);
+        ///CREATE INDEX IF NOT EXISTS IDX_index_text_pageKey ON index_text (pageKey [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string TextIndexDB {
+            get {
+                return ResourceManager.GetString("TextIndexDB", resourceCulture);
+            }
+        }
         
         /// <summary>
         ///   Looks up a localized string similar to Duplicate Page.
@@ -18767,5 +18779,209 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("WordCountsCommand_Title", resourceCulture);
             }
         }
+        /// <summary>
+        ///   Looks up a localized string similar to Search Index.
+        /// </summary>
+        internal static string IndexSheet_Title {
+            get {
+                return ResourceManager.GetString("IndexSheet_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Build an index of the text of your notebooks so that the Search command can find text almost instantly. The index is kept on this computer and is brought up to date in the background. Your pages are never changed..
+        /// </summary>
+        internal static string IndexSheet_introBox_Text {
+            get {
+                return ResourceManager.GetString("IndexSheet_introBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keep a search index of my notebooks up to date.
+        /// </summary>
+        internal static string IndexSheet_enabledBox_Text {
+            get {
+                return ResourceManager.GetString("IndexSheet_enabledBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Index all notebooks.
+        /// </summary>
+        internal static string IndexSheet_allBox_Text {
+            get {
+                return ResourceManager.GetString("IndexSheet_allBox.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select the notebooks to index.
+        /// </summary>
+        internal static string IndexSheet_selectLink_Text {
+            get {
+                return ResourceManager.GetString("IndexSheet_selectLink.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Build the index now.
+        /// </summary>
+        internal static string IndexSheet_buildLink_Text {
+            get {
+                return ResourceManager.GetString("IndexSheet_buildLink.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In all notebooks.
+        /// </summary>
+        internal static string SearchDialog_scopeAll {
+            get {
+                return ResourceManager.GetString("SearchDialog_scopeAll", resourceCulture);
+            }
+        }
+                /// <summary>
+        ///   Looks up a localized string similar to Checking the search index....
+        /// </summary>
+        internal static string SearchDialog_indexChecking {
+            get {
+                return ResourceManager.GetString("SearchDialog_indexChecking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0:N0} pages from the search index, {1:N0} read from OneNote.
+        /// </summary>
+        internal static string SearchDialog_indexSummary {
+            get {
+                return ResourceManager.GetString("SearchDialog_indexSummary", resourceCulture);
+            }
+        }
+                /// <summary>
+        ///   Looks up a localized string similar to Delete the index.
+        /// </summary>
+        internal static string IndexSheet_deleteLink_Text {
+            get {
+                return ResourceManager.GetString("IndexSheet_deleteLink.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete everything that has been indexed? Search will scan your notebooks directly until you turn the index on again and it is rebuilt. Your pages are not changed..
+        /// </summary>
+        internal static string IndexSheet_deleteConfirm {
+            get {
+                return ResourceManager.GetString("IndexSheet_deleteConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The index was deleted. {0:N0} pages were removed..
+        /// </summary>
+        internal static string IndexSheet_deleteDone {
+            get {
+                return ResourceManager.GetString("IndexSheet_deleteDone", resourceCulture);
+            }
+        }
+                /// <summary>
+        ///   Looks up a localized string similar to Reads every page that is not yet indexed. This can take a few minutes for a large collection and may slow OneNote while it runs. Otherwise the index is built a little at a time in the background..
+        /// </summary>
+        internal static string IndexSheet_buildNote_Text {
+            get {
+                return ResourceManager.GetString("IndexSheet_buildNote.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0:N0} pages and {1:N0} paragraphs are indexed, using {2:N1} MB.
+        /// </summary>
+        internal static string IndexSheet_status {
+            get {
+                return ResourceManager.GetString("IndexSheet_status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No pages are indexed yet.
+        /// </summary>
+        internal static string IndexSheet_statusNone {
+            get {
+                return ResourceManager.GetString("IndexSheet_statusNone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The search index cannot be used on this computer.
+        /// </summary>
+        internal static string IndexSheet_unavailable {
+            get {
+                return ResourceManager.GetString("IndexSheet_unavailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Indexing your notebooks....
+        /// </summary>
+        internal static string IndexSheet_buildMessage {
+            get {
+                return ResourceManager.GetString("IndexSheet_buildMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Indexed {0:N0} of {1:N0} pages.
+        /// </summary>
+        internal static string IndexSheet_buildProgress {
+            get {
+                return ResourceManager.GetString("IndexSheet_buildProgress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Indexed {0:N0} pages.
+        /// </summary>
+        internal static string IndexSheet_buildDone {
+            get {
+                return ResourceManager.GetString("IndexSheet_buildDone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stopped after indexing {0:N0} pages. Indexing continues in the background..
+        /// </summary>
+        internal static string IndexSheet_buildCancelled {
+            get {
+                return ResourceManager.GetString("IndexSheet_buildCancelled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OneNote could not be read, so nothing was indexed.
+        /// </summary>
+        internal static string IndexSheet_buildFailed {
+            get {
+                return ResourceManager.GetString("IndexSheet_buildFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search Index Notebooks.
+        /// </summary>
+        internal static string IndexNotebooksDialog_Title {
+            get {
+                return ResourceManager.GetString("IndexNotebooksDialog_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose the notebooks to include in the search index..
+        /// </summary>
+        internal static string IndexNotebooksDialog_infoLabel {
+            get {
+                return ResourceManager.GetString("IndexNotebooksDialog_infoLabel", resourceCulture);
+            }
+        }
+        
     }
 }

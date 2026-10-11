@@ -2749,6 +2749,66 @@ Gelber Hintergrund</value>
     <value>{0} Geänderte Seiten</value>
     <comment>page title</comment>
   </data>
+  <data name="IndexNotebooksDialog_infoLabel" xml:space="preserve">
+    <value>Wählen Sie die Notizbücher aus, die in den Suchindex aufgenommen werden sollen.</value>
+  </data>
+  <data name="IndexNotebooksDialog_Title" xml:space="preserve">
+    <value>Suchindex-Notizbücher</value>
+  </data>
+  <data name="IndexSheet_allBox.Text" xml:space="preserve">
+    <value>Indizieren Sie alle Notizbücher</value>
+  </data>
+  <data name="IndexSheet_buildCancelled" xml:space="preserve">
+    <value>Nach der Indexierung von {0:N0} Seiten gestoppt. Die Indizierung läuft im Hintergrund weiter.</value>
+  </data>
+  <data name="IndexSheet_buildDone" xml:space="preserve">
+    <value>Indizierte {0:N0} Seiten</value>
+  </data>
+  <data name="IndexSheet_buildFailed" xml:space="preserve">
+    <value>OneNote konnte nicht gelesen werden, daher wurde nichts indiziert</value>
+  </data>
+  <data name="IndexSheet_buildLink.Text" xml:space="preserve">
+    <value>Erstellen Sie jetzt den Index</value>
+  </data>
+  <data name="IndexSheet_buildMessage" xml:space="preserve">
+    <value>Indizieren Sie Ihre Notizbücher...</value>
+  </data>
+  <data name="IndexSheet_buildNote.Text" xml:space="preserve">
+    <value>Liest jede Seite, die noch nicht indiziert ist. Dies kann bei einer großen Sammlung einige Minuten dauern und OneNote während der Ausführung verlangsamen. Ansonsten wird der Index nach und nach im Hintergrund aufgebaut.</value>
+  </data>
+  <data name="IndexSheet_buildProgress" xml:space="preserve">
+    <value>Indiziert {0:N0} von {1:N0} Seiten</value>
+  </data>
+  <data name="IndexSheet_deleteConfirm" xml:space="preserve">
+    <value>Alles löschen, was indiziert wurde? Die Suche durchsucht Ihre Notizbücher direkt, bis Sie den Index wieder aktivieren und er neu erstellt wird. Ihre Seiten werden nicht verändert.</value>
+  </data>
+  <data name="IndexSheet_deleteDone" xml:space="preserve">
+    <value>Der Index wurde gelöscht. {0:N0} Seiten wurden entfernt.</value>
+  </data>
+  <data name="IndexSheet_deleteLink.Text" xml:space="preserve">
+    <value>Löschen Sie den Index</value>
+  </data>
+  <data name="IndexSheet_enabledBox.Text" xml:space="preserve">
+    <value>Halten Sie einen Suchindex meiner Notizbücher auf dem neuesten Stand</value>
+  </data>
+  <data name="IndexSheet_introBox.Text" xml:space="preserve">
+    <value>Erstellen Sie einen Index für den Text Ihrer Notizbücher, damit der Suchbefehl Text fast sofort finden kann. Der Index wird auf diesem Rechner geführt und im Hintergrund aktualisiert. Ihre Seiten werden nie verändert.</value>
+  </data>
+  <data name="IndexSheet_selectLink.Text" xml:space="preserve">
+    <value>Wählen Sie die zu indizierenden Notizbücher aus</value>
+  </data>
+  <data name="IndexSheet_status" xml:space="preserve">
+    <value>{0:N0} Seiten und {1:N0} Absätze werden mit {2:N1} MB indiziert</value>
+  </data>
+  <data name="IndexSheet_statusNone" xml:space="preserve">
+    <value>Es sind noch keine Seiten indexiert</value>
+  </data>
+  <data name="IndexSheet_Title" xml:space="preserve">
+    <value>Suchindex</value>
+  </data>
+  <data name="IndexSheet_unavailable" xml:space="preserve">
+    <value>Der Suchindex kann auf diesem Computer nicht verwendet werden</value>
+  </data>
   <data name="InsertBoxCommand_Code" xml:space="preserve">
     <value>Dein Code hier...</value>
     <comment>text</comment>
@@ -4454,7 +4514,7 @@ Stilistisch, Entität, Medien</value>
     <comment>ribbon clean</comment>
   </data>
   <data name="ribAdjustBlankLinesButton_Screentip" xml:space="preserve">
-    <value>Entfernt, reduziert oder fügt leere Zeilen zwischen Absätzen und nach Überschriften hinzu</value>
+    <value>Leere Zeilen zwischen Absätzen und nach Überschriften entfernen, reduzieren oder hinzufügen</value>
     <comment>ribbon clean</comment>
   </data>
   <data name="ribAdjustImagesButton_Label" xml:space="preserve">
@@ -6614,6 +6674,12 @@ Vorher geändert</value>
     <value>Text im Inhaltsverzeichnis durchsuchen</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SearchDialog_indexChecking" xml:space="preserve">
+    <value>Suchindex wird überprüft...</value>
+  </data>
+  <data name="SearchDialog_indexSummary" xml:space="preserve">
+    <value>{0:N0} Seiten aus dem Suchindex, {1:N0} aus OneNote gelesen</value>
+  </data>
   <data name="SearchDialog_introLabel.Text" xml:space="preserve">
     <value>Gib ein oder mehrere Schlüsselwörter, \"Phrasen in Anführungszeichen\", ein und verwende UND und ODER in Großbuchstaben</value>
     <comment>label</comment>
@@ -6633,6 +6699,10 @@ Vorher geändert</value>
   <data name="SearchDialog_regBox.Text" xml:space="preserve">
     <value>Verwenden Sie reguläre Ausdrücke</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="SearchDialog_scopeAll" xml:space="preserve">
+    <value>In allen Notizbüchern</value>
+    <comment>combobox item, searches every open notebook</comment>
   </data>
   <data name="SearchDialog_selectAllLink.Text" xml:space="preserve">
     <value>Alles auswählen</value>

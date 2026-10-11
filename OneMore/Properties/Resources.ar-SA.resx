@@ -200,6 +200,30 @@
     <value>إضافة مجموعة أقسام ذات المستوى الأعلى</value>
     <comment>dialog title</comment>
   </data>
+  <data name="AdjustBlankLinesDialog.Text" xml:space="preserve">
+    <value>ضبط الخطوط الفارغة</value>
+    <comment>dialog title</comment>
+  </data>
+  <data name="AdjustBlankLinesDialog_exactRadio.Text" xml:space="preserve">
+    <value>تأكد من وجود سطر واحد فارغ بين الفقرات</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="AdjustBlankLinesDialog_headingBox.Text" xml:space="preserve">
+    <value>ضع سطراً فارغاً بعد كل عنوان</value>
+    <comment>checkbox !EDIT</comment>
+  </data>
+  <data name="AdjustBlankLinesDialog_keepRadio.Text" xml:space="preserve">
+    <value>احتفظ بسطر واحد فارغ على الأكثر بين الفقرات</value>
+    <comment>radio button</comment>
+  </data>
+  <data name="AdjustBlankLinesDialog_noteLabel.Text" xml:space="preserve">
+    <value>يؤدي عدم التحديد إلى إزالة الأسطر الفارغة بعد العناوين. تتم دائمًا إزالة العناوين الفارغة أو تحويلها إلى أسطر فارغة عادية.</value>
+    <comment>label !EDIT</comment>
+  </data>
+  <data name="AdjustBlankLinesDialog_removeRadio.Text" xml:space="preserve">
+    <value>إزالة كافة الأسطر الفارغة بين الفقرات</value>
+    <comment>radio button</comment>
+  </data>
   <data name="AdjustImagesDialog.Text" xml:space="preserve">
     <value>تغيير حجم وتعديل الصورة</value>
     <comment>dialog title</comment>
@@ -1245,6 +1269,10 @@
     <value>This image is from a printout. If it is cropped, it will no longer be associated with that original file. Do you want to continue cropping?</value>
     <comment>message box, question</comment>
   </data>
+  <data name="ctxAdjustBlankLinesButton_Label" xml:space="preserve">
+    <value>ضبط الخطوط الفارغة</value>
+    <comment>Context menu</comment>
+  </data>
   <data name="ctxCleanMenu_Label" xml:space="preserve">
     <value>نظيف ...</value>
     <comment>Context menu</comment>
@@ -1255,10 +1283,6 @@
   </data>
   <data name="ctxNoSpellCheckButton_Label" xml:space="preserve">
     <value>لا تدقيق إملائي</value>
-    <comment>Context menu</comment>
-  </data>
-  <data name="ctxAdjustBlankLinesButton_Label" xml:space="preserve">
-    <value>ضبط الخطوط الفارغة</value>
     <comment>Context menu</comment>
   </data>
   <data name="ctxRemoveSpacingButton_Label" xml:space="preserve">
@@ -2733,6 +2757,66 @@
     <value>{0} الصفحات المعدلة</value>
     <comment>page title</comment>
   </data>
+  <data name="IndexNotebooksDialog_infoLabel" xml:space="preserve">
+    <value>اختر دفاتر الملاحظات المراد تضمينها في فهرس البحث.</value>
+  </data>
+  <data name="IndexNotebooksDialog_Title" xml:space="preserve">
+    <value>بحث في دفاتر الملاحظات الفهرس</value>
+  </data>
+  <data name="IndexSheet_allBox.Text" xml:space="preserve">
+    <value>فهرسة جميع دفاتر الملاحظات</value>
+  </data>
+  <data name="IndexSheet_buildCancelled" xml:space="preserve">
+    <value>تم التوقف بعد فهرسة صفحات {0:N0}. تستمر الفهرسة في الخلفية.</value>
+  </data>
+  <data name="IndexSheet_buildDone" xml:space="preserve">
+    <value>الصفحات المفهرسة {0:N0}.</value>
+  </data>
+  <data name="IndexSheet_buildFailed" xml:space="preserve">
+    <value>تعذرت قراءة OneNote، لذلك لم تتم فهرسة أي شيء</value>
+  </data>
+  <data name="IndexSheet_buildLink.Text" xml:space="preserve">
+    <value>قم ببناء الفهرس الآن</value>
+  </data>
+  <data name="IndexSheet_buildMessage" xml:space="preserve">
+    <value>فهرسة دفاتر الملاحظات...</value>
+  </data>
+  <data name="IndexSheet_buildNote.Text" xml:space="preserve">
+    <value>يقرأ كل صفحة لم تتم فهرستها بعد. يمكن أن يستغرق ذلك بضع دقائق لمجموعة كبيرة وقد يؤدي إلى إبطاء OneNote أثناء تشغيله. وإلا فسيتم إنشاء الفهرس قليلاً في كل مرة في الخلفية.</value>
+  </data>
+  <data name="IndexSheet_buildProgress" xml:space="preserve">
+    <value>تمت فهرسة {0:N0} من صفحات {1:N0}.</value>
+  </data>
+  <data name="IndexSheet_deleteConfirm" xml:space="preserve">
+    <value>هل تريد حذف كل ما تمت فهرسته؟ سيقوم البحث بفحص دفاتر الملاحظات الخاصة بك مباشرة حتى تقوم بتشغيل الفهرس مرة أخرى ويتم إعادة بنائه. لم يتم تغيير صفحاتك.</value>
+  </data>
+  <data name="IndexSheet_deleteDone" xml:space="preserve">
+    <value>تم حذف الفهرس. تمت إزالة الصفحات {0:N0}.</value>
+  </data>
+  <data name="IndexSheet_deleteLink.Text" xml:space="preserve">
+    <value>حذف الفهرس</value>
+  </data>
+  <data name="IndexSheet_enabledBox.Text" xml:space="preserve">
+    <value>احتفظ بفهرس البحث في دفاتر ملاحظاتي محدثًا</value>
+  </data>
+  <data name="IndexSheet_introBox.Text" xml:space="preserve">
+    <value>أنشئ فهرسًا لنص دفاتر الملاحظات الخاصة بك حتى يتمكن أمر البحث من العثور على النص على الفور تقريبًا. يتم الاحتفاظ بالفهرس على هذا الكمبيوتر ويتم تحديثه في الخلفية. صفحاتك لا تتغير أبدا.</value>
+  </data>
+  <data name="IndexSheet_selectLink.Text" xml:space="preserve">
+    <value>حدد دفاتر الملاحظات المراد فهرستها</value>
+  </data>
+  <data name="IndexSheet_status" xml:space="preserve">
+    <value>تتم فهرسة صفحات {0:N0} وفقرات {1:N0} باستخدام {2:N1} ميغابايت</value>
+  </data>
+  <data name="IndexSheet_statusNone" xml:space="preserve">
+    <value>لم تتم فهرسة أي صفحات حتى الآن</value>
+  </data>
+  <data name="IndexSheet_Title" xml:space="preserve">
+    <value>فهرس البحث</value>
+  </data>
+  <data name="IndexSheet_unavailable" xml:space="preserve">
+    <value>لا يمكن استخدام فهرس البحث على هذا الكمبيوتر</value>
+  </data>
   <data name="InsertBoxCommand_Code" xml:space="preserve">
     <value>الكود الخاص بك هنا ...</value>
     <comment>text</comment>
@@ -4130,30 +4214,6 @@ ISO-code then comma then language name</comment>
     <value>{0}% متشابهة</value>
     <comment>clickable similarity chip for a near-duplicate match, {0} rounded percentage</comment>
   </data>
-  <data name="AdjustBlankLinesDialog.Text" xml:space="preserve">
-    <value>ضبط الخطوط الفارغة</value>
-    <comment>dialog title</comment>
-  </data>
-  <data name="AdjustBlankLinesDialog_exactRadio.Text" xml:space="preserve">
-    <value>تأكد من وجود سطر واحد فارغ بين الفقرات</value>
-    <comment>radio button</comment>
-  </data>
-  <data name="AdjustBlankLinesDialog_headingBox.Text" xml:space="preserve">
-    <value>ضع سطراً فارغاً بعد كل عنوان</value>
-    <comment>checkbox !EDIT</comment>
-  </data>
-  <data name="AdjustBlankLinesDialog_keepRadio.Text" xml:space="preserve">
-    <value>احتفظ بسطر واحد فارغ على الأكثر بين الفقرات</value>
-    <comment>radio button</comment>
-  </data>
-  <data name="AdjustBlankLinesDialog_noteLabel.Text" xml:space="preserve">
-    <value>يؤدي عدم التحديد إلى إزالة الأسطر الفارغة بعد العناوين. تتم دائمًا إزالة العناوين الفارغة أو تحويلها إلى أسطر فارغة عادية.</value>
-    <comment>label !EDIT</comment>
-  </data>
-  <data name="AdjustBlankLinesDialog_removeRadio.Text" xml:space="preserve">
-    <value>إزالة كافة الأسطر الفارغة بين الفقرات</value>
-    <comment>radio button</comment>
-  </data>
   <data name="RemoveSpacingDialog.Text" xml:space="preserve">
     <value>إزالة التباعد</value>
     <comment>dialog title</comment>
@@ -4460,6 +4520,14 @@ ISO-code then comma then language name</comment>
   <data name="ribAddTopSectionGroupButton_Screentip" xml:space="preserve">
     <value>أضف مجموعة مقاطع جديدة إلى المستوى الأعلى من دفتر الملاحظات هذا</value>
     <comment>notebook context menu</comment>
+  </data>
+  <data name="ribAdjustBlankLinesButton_Label" xml:space="preserve">
+    <value>ضبط الخطوط الفارغة</value>
+    <comment>ribbon clean</comment>
+  </data>
+  <data name="ribAdjustBlankLinesButton_Screentip" xml:space="preserve">
+    <value>إزالة أو طي أو إضافة أسطر فارغة بين الفقرات وبعد العناوين</value>
+    <comment>ribbon clean</comment>
   </data>
   <data name="ribAdjustImagesButton_Label" xml:space="preserve">
     <value>تحرير الصور</value>
@@ -5839,14 +5907,6 @@ ISO-code then comma then language name</comment>
     <value>تحديد وإزالة الصفحات المكررة</value>
     <comment>ribbon clean</comment>
   </data>
-  <data name="ribAdjustBlankLinesButton_Label" xml:space="preserve">
-    <value>ضبط الخطوط الفارغة</value>
-    <comment>ribbon clean</comment>
-  </data>
-  <data name="ribAdjustBlankLinesButton_Screentip" xml:space="preserve">
-    <value>إزالة أو طي أو إضافة أسطر فارغة بين الفقرات وبعد العناوين</value>
-    <comment>ribbon clean</comment>
-  </data>
   <data name="ribRemoveFootnoteButton_Label" xml:space="preserve">
     <value>إزالة الحاشية السفلية</value>
     <comment>Ribbon OneMore menu item, Extras...</comment>
@@ -6624,6 +6684,12 @@ ISO-code then comma then language name</comment>
     <value>البحث عن نص في جدول المحتويات</value>
     <comment>checkbox</comment>
   </data>
+  <data name="SearchDialog_indexChecking" xml:space="preserve">
+    <value>التحقق من فهرس البحث...</value>
+  </data>
+  <data name="SearchDialog_indexSummary" xml:space="preserve">
+    <value>{0:N0} صفحة من فهرس البحث، {1:N0} قراءة من OneNote</value>
+  </data>
   <data name="SearchDialog_introLabel.Text" xml:space="preserve">
     <value>أدخل معايير البحث، بما في ذلك، اختياريًا، علامات الاقتباس والأقواس و، أو، أو، لا
 الكلمات غير المقتبسة تتطابق بأي ترتيب؛ استخدم علامات الاقتباس لعبارة محددة.</value>
@@ -6644,6 +6710,10 @@ ISO-code then comma then language name</comment>
   <data name="SearchDialog_regBox.Text" xml:space="preserve">
     <value>استخدم التعبيرات العادية</value>
     <comment>checkbox</comment>
+  </data>
+  <data name="SearchDialog_scopeAll" xml:space="preserve">
+    <value>في جميع الدفاتر</value>
+    <comment>combobox item, searches every open notebook</comment>
   </data>
   <data name="SearchDialog_selectAllLink.Text" xml:space="preserve">
     <value>حدد الكل</value>

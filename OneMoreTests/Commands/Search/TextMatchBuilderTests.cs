@@ -117,6 +117,112 @@ namespace River.OneMoreAddIn.Tests.Commands.Search
 
 
 		[TestMethod]
+		public void Term_OnALaterLineOfTheParagraph_IsFound()
+		{
+			// OneNote text with a line break: <br /> followed by a newline
+			var text = "OneMore/UI/Scaling.cs (lines 101-102).<br />\nReplace System.Windows with";
+
+			Assert.IsTrue(Matches("Replace", text));
+			Assert.IsTrue(Matches("lines AND Replace", text));
+			Assert.IsTrue(Matches("\"Replace System\"", text));
+			Assert.IsFalse(Matches("Replace AND NOT lines", text));
+			Assert.IsFalse(Matches("NOT Replace", text));
+			Assert.IsTrue(Matches("NOT missing", text));
+		}
+
+
+		private static string IndexQuery(string query, bool asRegex = false)
+		{
+			return new TextMatchBuilder(asRegex, caseSensitive: false).BuildIndexQuery(query);
+		}
+
+
+		[TestMethod]
+		public void IndexQuery_SingleTerm_IsQuoted()
+		{
+			Assert.AreEqual("\"error\"", IndexQuery("error"));
+		}
+
+
+		[TestMethod]
+		public void IndexQuery_BareWords_AreAnded()
+		{
+			// the parser collects bare words from a stack, so they come back in reverse; the
+			// order of an AND does not matter
+			Assert.AreEqual("(\"bar\" AND \"foo\")", IndexQuery("foo bar"));
+		}
+
+
+		[TestMethod]
+		public void IndexQuery_Or_IsKept()
+		{
+			Assert.AreEqual("(\"error\" OR \"fail\")", IndexQuery("error* OR fail*"));
+		}
+
+
+		[TestMethod]
+		public void IndexQuery_QuotedPhrase_IsOneSubstring()
+		{
+			Assert.AreEqual("\"page identity\"", IndexQuery("\"page identity\""));
+		}
+
+
+		[TestMethod]
+		public void IndexQuery_WildcardPieces_AreEachLookedUp()
+		{
+			Assert.AreEqual("(\"bcd\" AND \"efg\")", IndexQuery("a*bcd*efg"));
+		}
+
+
+		[TestMethod]
+		public void IndexQuery_QuoteInTerm_IsDoubled()
+		{
+			Assert.AreEqual("\"say\"\"hi\"\"\"", IndexQuery("say\"hi\""));
+		}
+
+
+		[TestMethod]
+		public void IndexQuery_TermsUnderThreeCharacters_CannotNarrow()
+		{
+			Assert.IsNull(IndexQuery("ab"));
+			Assert.IsNull(IndexQuery("*ab*"));
+
+			// the short term is left to the regex; the other still narrows
+			Assert.AreEqual("\"foo\"", IndexQuery("ab foo"));
+		}
+
+
+		[TestMethod]
+		public void IndexQuery_Not_IsLeftToTheRegex()
+		{
+			Assert.IsNull(IndexQuery("NOT foo"));
+			Assert.AreEqual("\"foo\"", IndexQuery("foo AND NOT bar"));
+		}
+
+
+		[TestMethod]
+		public void IndexQuery_OrWithAnAlternativeThatCannotNarrow_CannotNarrow()
+		{
+			Assert.IsNull(IndexQuery("foo OR NOT bar"));
+			Assert.IsNull(IndexQuery("foo OR ab"));
+		}
+
+
+		[TestMethod]
+		public void IndexQuery_RegexMode_CannotNarrow()
+		{
+			Assert.IsNull(IndexQuery("^foo.*bar$", asRegex: true));
+		}
+
+
+		[TestMethod]
+		public void IndexQuery_EmptyQuery_CannotNarrow()
+		{
+			Assert.IsNull(IndexQuery("   "));
+		}
+
+
+		[TestMethod]
 		public void RegexMode_BypassesQueryParsing()
 		{
 			var regex = new TextMatchBuilder(asRegex: true, caseSensitive: false).BuildRegex("^foo.*bar$");

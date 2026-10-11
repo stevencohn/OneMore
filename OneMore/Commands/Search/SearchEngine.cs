@@ -5,6 +5,7 @@
 namespace River.OneMoreAddIn.Commands
 {
 	using River.OneMoreAddIn.Models;
+	using River.OneMoreAddIn.TextIndex;
 	using System;
 	using System.Collections.Generic;
 	using System.Globalization;
@@ -43,7 +44,6 @@ namespace River.OneMoreAddIn.Commands
 
 	internal class SearchEngine
 	{
-		private readonly Regex cleaner;
 		private readonly SearchOptions options;
 		private readonly CancellationToken cancellationToken;
 		private readonly Action<int> onTotalPageCount;
@@ -63,11 +63,33 @@ namespace River.OneMoreAddIn.Commands
 			this.onTotalPageCount = onTotalPageCount;
 			this.onPageSearching = onPageSearching;
 			this.onPageFound = onPageFound;
-
-			cleaner = new Regex(
-				@"(?:<\s*(?:span|a)[^>]*?>)|(?:</(?:span|a)>)|(?:&#\d+;)",
-				RegexOptions.Compiled);
 		}
+
+
+		/// <summary>
+		/// Gets or sets what the text index found, if it is being used. A page the index knows
+		/// as it is now is answered from it, without reading the page from OneNote.
+		/// </summary>
+		public IndexedHits Indexed { get; set; }
+
+
+		/// <summary>
+		/// Gets or sets the ID of a page that is always read from OneNote, even when the index
+		/// has it.
+		/// </summary>
+		public string LivePageID { get; set; }
+
+
+		/// <summary>
+		/// Gets how many pages were answered by the index.
+		/// </summary>
+		public int IndexedPageCount { get; private set; }
+
+
+		/// <summary>
+		/// Gets how many pages were read from OneNote by searching sections.
+		/// </summary>
+		public int ReadPageCount { get; private set; }
 
 
 		public async Task SearchNotebook(OneNote one, Regex finder)
@@ -87,35 +109,70 @@ namespace River.OneMoreAddIn.Commands
 			}
 
 			onTotalPageCount(notebook.Descendants(ns + "Page").Count());
-			await TraverseSections(notebook, string.Empty);
+			await TraverseSections(one, ns, notebook, string.Empty, finder);
+		}
 
-			// Pages are already filtered at notebook level; do not re-filter per section.
-			async Task TraverseSections(XElement parent, string path)
+
+		/// <summary>
+		/// Searches every open notebook.
+		/// </summary>
+		public async Task SearchAllNotebooks(OneNote one, Regex finder)
+		{
+			var root = await one.GetNotebooks(OneNote.Scope.Pages);
+			if (root is null)
 			{
-				var sections = parent.Elements(ns + "Section").Where(e =>
-					e.Attribute("isRecycleBin") is null &&
-					e.Attribute("isInRecycleBin") is null);
+				return;
+			}
 
-				foreach (var section in sections)
-				{
-					if (cancellationToken.IsCancellationRequested) break;
-					await Task.Yield();
-					await SearchSectionPages(one, section, finder);
-				}
+			var ns = one.GetNamespace(root);
 
-				var sectionGroups = parent.Elements(ns + "SectionGroup")
-					.Where(e => e.Attribute("isRecycleBin") is null);
+			if (options.DateFilter != DateFilterMode.None)
+			{
+				FilterPagesByDate(root, ns);
+			}
 
-				foreach (var group in sectionGroups)
-				{
-					if (cancellationToken.IsCancellationRequested) break;
-					await Task.Yield();
+			// the notebooks, and the sections that were opened outside of any notebook
+			var containers = root.Elements()
+				.Where(e => e.Name.LocalName == "Notebook" || e.Name.LocalName == "OpenSections")
+				.ToList();
 
-					var groupName = group.Attribute("name").Value;
-					path = path.Length == 0 ? groupName : $"{path}/{groupName}";
+			onTotalPageCount(containers.Sum(c => c.Descendants(ns + "Page").Count()));
 
-					await TraverseSections(group, path);
-				}
+			foreach (var container in containers)
+			{
+				if (cancellationToken.IsCancellationRequested) break;
+				await TraverseSections(one, ns, container, string.Empty, finder);
+			}
+		}
+
+
+		// Pages are already filtered at notebook level; do not re-filter per section.
+		private async Task TraverseSections(
+			OneNote one, XNamespace ns, XElement parent, string path, Regex finder)
+		{
+			var sections = parent.Elements(ns + "Section").Where(e =>
+				e.Attribute("isRecycleBin") is null &&
+				e.Attribute("isInRecycleBin") is null);
+
+			foreach (var section in sections)
+			{
+				if (cancellationToken.IsCancellationRequested) break;
+				await Task.Yield();
+				await SearchSectionPages(one, section, finder);
+			}
+
+			var sectionGroups = parent.Elements(ns + "SectionGroup")
+				.Where(e => e.Attribute("isRecycleBin") is null);
+
+			foreach (var group in sectionGroups)
+			{
+				if (cancellationToken.IsCancellationRequested) break;
+				await Task.Yield();
+
+				var groupName = group.Attribute("name").Value;
+				path = path.Length == 0 ? groupName : $"{path}/{groupName}";
+
+				await TraverseSections(one, ns, group, path, finder);
 			}
 		}
 
@@ -213,19 +270,39 @@ namespace River.OneMoreAddIn.Commands
 			var sectionId = section.Attribute("ID").Value;
 			var info = await one.GetSectionInfo(sectionId);
 
-			var pageIds = section.Elements(ns + "Page")
-				.Select(e => e.Attribute("ID").Value)
-				.ToList();
+			var pageElements = section.Elements(ns + "Page").ToList();
 
-			foreach (var pageId in pageIds)
+			foreach (var pageElement in pageElements)
 			{
 				if (cancellationToken.IsCancellationRequested) break;
 				await Task.Yield();
+
+				var pageId = pageElement.Attribute("ID").Value;
+
+				// A page whose index entry is current has already been searched. The page the user
+				// is on is always read, as it may have edits that OneNote has not yet recorded.
+				if (Indexed is not null &&
+					pageId != LivePageID &&
+					Indexed.TryGet(pageId,
+						pageElement.Attribute("lastModifiedTime")?.Value, out var indexedHits))
+				{
+					var indexedName = pageElement.Attribute("name")?.Value ?? string.Empty;
+					onPageSearching(indexedName);
+					IndexedPageCount++;
+
+					if (indexedHits.Count > 0)
+					{
+						onPageFound(pageId, $"{info.Path}/{indexedName}", info.Color, indexedHits);
+					}
+
+					continue;
+				}
 
 				var page = await one.GetPage(pageId, OneNote.PageDetail.Basic);
 				var pageName = page.Root.Attribute("name").Value;
 
 				onPageSearching(pageName);
+				ReadPageCount++;
 
 				var hits = await SearchPageBody(page, finder);
 
@@ -253,22 +330,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var ns = page.Namespace;
 
-			var paragraphs = page.BodyOutlines
-				.Descendants(ns + "OE")
-				.ToList();
-
-			if (!options.IncludeToc)
-			{
-				paragraphs = paragraphs.Where(e =>
-					(e.Elements(ns + "T").Any()
-					&& !e.AncestorsAndSelf(ns + "OE")
-						.Any(a => a.Elements(ns + "Meta")
-							.Any(m => m.Attribute("name")?.Value == "omToc"))
-					) ||
-					e.Elements(ns + "InsertedFile").Any()
-				)
-				.ToList();
-			}
+			var paragraphs = PageTextExtractor.SelectParagraphs(page, options.IncludeToc);
 
 			if (paragraphs.Count == 0)
 			{
@@ -282,7 +344,7 @@ namespace River.OneMoreAddIn.Commands
 				{
 					if (cancellationToken.IsCancellationRequested) break;
 
-					var text = GetRawText(paragraph, ns);
+					var text = PageTextExtractor.GetRawText(paragraph, ns);
 					if (text.Length > 0 && finder.IsMatch(text))
 					{
 						hits.Add((paragraph.Attribute("objectID").Value, text));
@@ -296,38 +358,6 @@ namespace River.OneMoreAddIn.Commands
 				PlainText = HttpUtility.HtmlDecode(m.text),
 				ObjectId = m.objectId
 			}).ToList();
-		}
-
-
-		private string GetRawText(XElement paragraph, XNamespace ns)
-		{
-			var text = string.Empty;
-			paragraph.Elements(ns + "T").ForEach(e =>
-			{
-				var line = cleaner.Replace(e.Value, string.Empty).Trim();
-				if (line.Length > 0)
-				{
-					text = $"{text}{line} ";
-				}
-			});
-
-			if (text.Length == 0)
-			{
-				paragraph.Elements(ns + "InsertedFile").ForEach(e =>
-				{
-					if (e.Attribute("pathSource")?.Value is string pathSource)
-					{
-						text = $"{text} {pathSource}";
-					}
-
-					if (e.Attribute("preferredName")?.Value is string preferredName)
-					{
-						text = $"{text} {preferredName}";
-					}
-				});
-			}
-
-			return text.Trim();
 		}
 
 

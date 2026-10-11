@@ -301,6 +301,12 @@ namespace River.OneMoreAddIn
 					navigationService = new Commands.NavigationService(ribbon);
 					navigationService.Startup();
 
+					// the stage that reads page content shares each page it reads between hashtags
+					// and, when the user has turned it on, the text index
+					var contentStage = new Commands.HashtagStage();
+					contentStage.AddConsumer(
+						new TextIndex.IndexConsumer(), TextIndex.IndexConsumer.IsEnabled);
+
 					// hashtags scanner
 					new Pipeline.PipelineService(new Pipeline.IPipelineStage[]
 					{
@@ -311,7 +317,7 @@ namespace River.OneMoreAddIn
 						new Commands.Workspaces.HealingStage(
 							() => ribbon?.SafeInvalidateControl(Commands.Favorites.FavoritesMenu.MenuID)),
 
-						new Commands.HashtagStage()
+						contentStage
 					}).Startup();
 
 					// settings and update check

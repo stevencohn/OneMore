@@ -34,6 +34,7 @@ namespace River.OneMoreAddIn.Settings
 			QuickNotes,
 			Ribbon,
 			Search,
+			SearchIndex,
 			Snippets,
 			TableThemes,
 			Variables
@@ -79,6 +80,7 @@ namespace River.OneMoreAddIn.Settings
 				quickNotesLink.Text = Resx.QuickNotesSheet_Title;
 				ribbonLink.Text = Resx.RibbonBarSheet_Title;
 				searchLink.Text = Resx.SearchEngineSheet_Text;
+				searchIndexLink.Text = Resx.IndexSheet_Title;
 				snippetsLink.Text = Resx.word_Snippets;
 				tableThemesLink.Text = Resx.TableThemesSheet_Title;
 				variablesLink.Text = Resx.VariablesSheet_Title;
@@ -94,7 +96,7 @@ namespace River.OneMoreAddIn.Settings
 				generalLink, colorizerLink, colorsLink, aliasLink, contextLink,
 				favoritesLink, fileImportLink, hashtagsLink, highlightLink, imagesLink,
 				keyboardLink, markdownLink, navigatorLink, pageLink, pluginsLink, quickNotesLink,
-				ribbonLink, searchLink, snippetsLink, tableThemesLink, variablesLink
+				ribbonLink, searchLink, searchIndexLink, snippetsLink, tableThemesLink, variablesLink
 			};
 
 			activeIndex = 0;
@@ -255,8 +257,9 @@ namespace River.OneMoreAddIn.Settings
 					15 => new QuickNotesSheet(provider),
 					16 => new RibbonBarSheet(provider),
 					17 => new SearchEngineSheet(provider),
-					18 => new SnippetsSheet(provider, ribbon),
-					19 => new TableThemesSheet(provider, ribbon),
+					18 => new IndexSheet(provider),
+					19 => new SnippetsSheet(provider, ribbon),
+					20 => new TableThemesSheet(provider, ribbon),
 					_ => new VariablesSheet(provider)
 				};
 
