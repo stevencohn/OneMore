@@ -8252,7 +8252,7 @@ Thank you!</value>
     <value>..\Commands\Workspaces\Layouts\LayoutsDB.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="PageIdentityDB" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Identity\PageIdentityDB.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+    <value>..\Services\Identity\PageIdentityDB.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="DefaultTableThemes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ribbon\defaulttablethemes.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
@@ -8270,7 +8270,7 @@ Thank you!</value>
     <value>..\styles\defaultstyles.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="TextIndexDB" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\TextIndex\TextIndexDB.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+    <value>..\Services\TextIndex\TextIndexDB.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="DarkTheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\UI\DarkTheme.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
