@@ -56,9 +56,6 @@ namespace River.OneMoreAddIn.Commands
 				{
 					"introLabel",
 					"findLabel=word_Find",
-					"matchBox",
-					"regBox",
-					"includeTocBox",
 					"indexButton=word_Index",
 					"moveButton=word_Move",
 					"copyButton=word_Copy",
@@ -75,6 +72,20 @@ namespace River.OneMoreAddIn.Commands
 				dateSelector.Items.AddRange(Resx.SearchDialog_dateOptions.Split(
 						new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries)
 						.Select(s => s.Trim()).ToArray());
+			}
+
+			// the options are icon-only toggles; their names are the tooltips and accessible names
+			// and are not Localize()d because that would replace the glyphs with text
+			foreach (var (box, name) in new[]
+			{
+				(matchBox, Resx.SearchDialog_matchBox_Text),
+				(regBox, Resx.SearchDialog_regBox_Text),
+				(includeTocBox, Resx.SearchDialog_includeTocBox_Text),
+				(ocrBox, Resx.SearchDialog_ocrBox_Text)
+			})
+			{
+				tooltip.SetToolTip(box, name);
+				box.AccessibleName = name;
 			}
 
 			bool hasSectionGroup;
@@ -337,6 +348,7 @@ namespace River.OneMoreAddIn.Commands
 				var options = new SearchOptions
 				{
 					IncludeToc = includeTocBox.Checked,
+					IncludeOcr = ocrBox.Checked,
 					DateFilter = (DateFilterMode)dateSelector.SelectedIndex,
 					DateValue = dateTimePicker.Value.Date
 				};
@@ -354,7 +366,8 @@ namespace River.OneMoreAddIn.Commands
 				if (!options.IncludeToc && scopeBox.SelectedIndex != pageScopeIndex)
 				{
 					pageLabel.Text = Resx.SearchDialog_indexChecking;
-					engine.Indexed = await IndexedHits.Load(builder, findBox.Text, finder, source.Token);
+					engine.Indexed = await IndexedHits.Load(
+							builder, findBox.Text, finder, source.Token, options.IncludeOcr);
 				}
 
 				await using var one = new OneNote();
@@ -504,13 +517,49 @@ namespace River.OneMoreAddIn.Commands
 			{
 				card.Hits.Add(new CardHit
 				{
-					PlainText = hit.PlainText,
+					PlainText = hit.IsImageText
+						? FormatImageHit(hit.PlainText)
+						: hit.PlainText,
 					PageId = pageId,
 					ObjectId = hit.ObjectId
 				});
 			}
 
 			resultsView.AppendCard(card);
+		}
+
+
+		/// <summary>
+		/// Text recognized in an image can be a whole screenshot of text, so show a short excerpt
+		/// around the first match, marked as coming from an image.
+		/// </summary>
+		private string FormatImageHit(string text)
+		{
+			const int Radius = 80;
+
+			var start = 0;
+			var length = text.Length;
+			var match = lastFinder?.Match(text);
+
+			if (text.Length > Radius * 2)
+			{
+				var at = match is not null && match.Success ? match.Index : 0;
+				start = Math.Max(0, at - Radius);
+				length = Math.Min(text.Length - start, Radius * 2 + (match?.Length ?? 0));
+			}
+
+			var excerpt = text.Substring(start, length);
+			if (start > 0)
+			{
+				excerpt = "…" + excerpt;
+			}
+
+			if (start + length < text.Length)
+			{
+				excerpt += "…";
+			}
+
+			return string.Format(Resx.SearchDialog_imageHit, excerpt);
 		}
 
 

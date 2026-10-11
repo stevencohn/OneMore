@@ -15532,6 +15532,24 @@ namespace River.OneMoreAddIn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to [image] {0}.
+        /// </summary>
+        internal static string SearchDialog_imageHit {
+            get {
+                return ResourceManager.GetString("SearchDialog_imageHit", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Search text in images.
+        /// </summary>
+        internal static string SearchDialog_ocrBox_Text {
+            get {
+                return ResourceManager.GetString("SearchDialog_ocrBox.Text", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Search text in table of contents.
         /// </summary>
         internal static string SearchDialog_includeTocBox_Text {

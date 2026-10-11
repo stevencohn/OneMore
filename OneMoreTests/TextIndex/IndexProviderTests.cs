@@ -101,6 +101,33 @@ namespace River.OneMoreAddIn.Tests.TextIndex
 
 
 		[TestMethod]
+		public void Find_ImageText_IsKindImage_AndExcludedWhenNotRequested()
+		{
+			provider.ReplacePage(1, "id1", Modified, new List<ParagraphText>
+			{
+				new ParagraphText { ObjectID = "{t}", Ordinal = 0, Text = "typed zebra" },
+				new ParagraphText
+				{
+					ObjectID = "{i}", Ordinal = 1, Text = "pictured zebra", Kind = ParagraphKind.Image
+				}
+			});
+
+			var all = provider.Find("\"zebra\"");
+			Assert.AreEqual(2, all.Count);
+			Assert.AreEqual(ParagraphKind.Text, all[0].Kind);
+			Assert.AreEqual(ParagraphKind.Image, all[1].Kind);
+
+			var typed = provider.Find("\"zebra\"", includeOcr: false);
+			Assert.AreEqual(1, typed.Count);
+			Assert.AreEqual("{t}", typed[0].ObjectID);
+
+			Assert.AreEqual(1, provider.Query("\"zebra\"", includeOcr: false).Count());
+			Assert.AreEqual(1, provider.Query(null, includeOcr: false).Count());
+			Assert.AreEqual(2, provider.Query(null).Count());
+		}
+
+
+		[TestMethod]
 		public void Find_MatchesInsideWords_LikeTheLiveSearch()
 		{
 			provider.ReplacePage(1, "id1", Modified, Paras("my notebook is here", "unrelated"));

@@ -6669,6 +6669,10 @@ Zmodyfikowano po
 Zmodyfikowany wcześniej</value>
     <comment>combobox</comment>
   </data>
+  <data name="SearchDialog_imageHit" xml:space="preserve">
+    <value>[obraz] {0}</value>
+    <comment>a search result found in the text OneNote recognized in an image; {0} is an excerpt of that text</comment>
+  </data>
   <data name="SearchDialog_includeTocBox.Text" xml:space="preserve">
     <value>Wyszukaj tekst w spisie treści</value>
     <comment>checkbox</comment>
@@ -6695,6 +6699,10 @@ Niecytowane słowa pasują w dowolnej kolejności; użyj cudzysłowu dla dokład
   <data name="SearchDialog_menuShowInCurrent" xml:space="preserve">
     <value>Pokaż w bieżącym oknie</value>
     <comment>context menu item</comment>
+  </data>
+  <data name="SearchDialog_ocrBox.Text" xml:space="preserve">
+    <value>Wyszukaj tekst w obrazach</value>
+    <comment>checkbox</comment>
   </data>
   <data name="SearchDialog_regBox.Text" xml:space="preserve">
     <value>Używaj wyrażeń regularnych</value>

@@ -6683,6 +6683,10 @@ TF-IDF 余弦、词汇重叠、结构</value>
 之前修改过</value>
     <comment>combobox</comment>
   </data>
+  <data name="SearchDialog_imageHit" xml:space="preserve">
+    <value>[图片]{0}</value>
+    <comment>a search result found in the text OneNote recognized in an image; {0} is an excerpt of that text</comment>
+  </data>
   <data name="SearchDialog_includeTocBox.Text" xml:space="preserve">
     <value>在目录中搜索文本</value>
     <comment>checkbox</comment>
@@ -6709,6 +6713,10 @@ TF-IDF 余弦、词汇重叠、结构</value>
   <data name="SearchDialog_menuShowInCurrent" xml:space="preserve">
     <value>在当前窗口中显示</value>
     <comment>context menu item</comment>
+  </data>
+  <data name="SearchDialog_ocrBox.Text" xml:space="preserve">
+    <value>搜索图像中的文本</value>
+    <comment>checkbox</comment>
   </data>
   <data name="SearchDialog_regBox.Text" xml:space="preserve">
     <value>使用正则表达式</value>

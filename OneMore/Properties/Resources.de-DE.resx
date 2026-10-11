@@ -6670,6 +6670,10 @@ Nachträglich geändert
 Vorher geändert</value>
     <comment>combobox</comment>
   </data>
+  <data name="SearchDialog_imageHit" xml:space="preserve">
+    <value>[Bild] {0}</value>
+    <comment>a search result found in the text OneNote recognized in an image; {0} is an excerpt of that text</comment>
+  </data>
   <data name="SearchDialog_includeTocBox.Text" xml:space="preserve">
     <value>Text im Inhaltsverzeichnis durchsuchen</value>
     <comment>checkbox</comment>
@@ -6695,6 +6699,10 @@ Vorher geändert</value>
   <data name="SearchDialog_menuShowInCurrent" xml:space="preserve">
     <value>Im aktuellen Fenster anzeigen</value>
     <comment>context menu item</comment>
+  </data>
+  <data name="SearchDialog_ocrBox.Text" xml:space="preserve">
+    <value>Suchen Sie nach Text in Bildern</value>
+    <comment>checkbox</comment>
   </data>
   <data name="SearchDialog_regBox.Text" xml:space="preserve">
     <value>Verwenden Sie reguläre Ausdrücke</value>

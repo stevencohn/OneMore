@@ -29,7 +29,9 @@ namespace River.OneMoreAddIn.Commands
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SearchDialog));
+			this.tooltip = new System.Windows.Forms.ToolTip(this.components);
 			this.introLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.indexButton = new River.OneMoreAddIn.UI.MoreButton();
@@ -47,6 +49,7 @@ namespace River.OneMoreAddIn.Commands
 			this.morePanel2 = new River.OneMoreAddIn.UI.MorePanel();
 			this.optionsPanel = new River.OneMoreAddIn.UI.MorePanel();
 			this.includeTocBox = new River.OneMoreAddIn.UI.MoreCheckBox();
+			this.ocrBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.dateSelector = new River.OneMoreAddIn.UI.MoreComboBox();
 			this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
 			this.regBox = new River.OneMoreAddIn.UI.MoreCheckBox();
@@ -324,6 +327,7 @@ namespace River.OneMoreAddIn.Commands
 			// 
 			this.optionsPanel.BottomBorderColor = System.Drawing.SystemColors.ActiveBorder;
 			this.optionsPanel.BottomBorderSize = 0;
+			this.optionsPanel.Controls.Add(this.ocrBox);
 			this.optionsPanel.Controls.Add(this.includeTocBox);
 			this.optionsPanel.Controls.Add(this.dateSelector);
 			this.optionsPanel.Controls.Add(this.dateTimePicker);
@@ -338,7 +342,7 @@ namespace River.OneMoreAddIn.Commands
 			this.optionsPanel.Margin = new System.Windows.Forms.Padding(0);
 			this.optionsPanel.Name = "optionsPanel";
 			this.optionsPanel.Padding = new System.Windows.Forms.Padding(3);
-			this.optionsPanel.Size = new System.Drawing.Size(1092, 146);
+			this.optionsPanel.Size = new System.Drawing.Size(1092, 86);
 			this.optionsPanel.TabIndex = 1;
 			this.optionsPanel.ThemedBack = null;
 			this.optionsPanel.ThemedFore = null;
@@ -348,19 +352,39 @@ namespace River.OneMoreAddIn.Commands
 			// includeTocBox
 			// 
 			this.includeTocBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.includeTocBox.Appearance = System.Windows.Forms.Appearance.Button;
 			this.includeTocBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.includeTocBox.Font = new System.Drawing.Font("Segoe UI Symbol", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.includeTocBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.includeTocBox.Location = new System.Drawing.Point(58, 101);
-			this.includeTocBox.Margin = new System.Windows.Forms.Padding(4, 1, 4, 3);
+			this.includeTocBox.Location = new System.Drawing.Point(130, 44);
+			this.includeTocBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 3);
 			this.includeTocBox.Name = "includeTocBox";
-			this.includeTocBox.Size = new System.Drawing.Size(261, 25);
+			this.includeTocBox.Size = new System.Drawing.Size(32, 32);
 			this.includeTocBox.StylizeImage = false;
 			this.includeTocBox.TabIndex = 6;
-			this.includeTocBox.Text = "Search text in table of contents";
+			this.includeTocBox.Text = "☰";
 			this.includeTocBox.ThemedBack = null;
 			this.includeTocBox.ThemedFore = null;
-			this.includeTocBox.UseVisualStyleBackColor = true;
-			// 
+			this.includeTocBox.UseVisualStyleBackColor = false;
+			//
+			// ocrBox
+			//
+			this.ocrBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.ocrBox.Appearance = System.Windows.Forms.Appearance.Button;
+			this.ocrBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.ocrBox.Font = new System.Drawing.Font("Segoe UI Symbol", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.ocrBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.ocrBox.Location = new System.Drawing.Point(166, 44);
+			this.ocrBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 3);
+			this.ocrBox.Name = "ocrBox";
+			this.ocrBox.Size = new System.Drawing.Size(32, 32);
+			this.ocrBox.StylizeImage = false;
+			this.ocrBox.TabIndex = 7;
+			this.ocrBox.Text = "\U0001F5BC";
+			this.ocrBox.ThemedBack = null;
+			this.ocrBox.ThemedFore = null;
+			this.ocrBox.UseVisualStyleBackColor = false;
+			//
 			// dateSelector
 			// 
 			this.dateSelector.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -376,7 +400,7 @@ namespace River.OneMoreAddIn.Commands
 			this.dateSelector.Location = new System.Drawing.Point(585, 44);
 			this.dateSelector.Name = "dateSelector";
 			this.dateSelector.Size = new System.Drawing.Size(234, 27);
-			this.dateSelector.TabIndex = 7;
+			this.dateSelector.TabIndex = 8;
 			this.dateSelector.ThemedBack = null;
 			this.dateSelector.ThemedFore = null;
 			this.dateSelector.SelectedIndexChanged += new System.EventHandler(this.ChangeDateSelector);
@@ -391,40 +415,44 @@ namespace River.OneMoreAddIn.Commands
 			this.dateTimePicker.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
 			this.dateTimePicker.Name = "dateTimePicker";
 			this.dateTimePicker.Size = new System.Drawing.Size(183, 26);
-			this.dateTimePicker.TabIndex = 8;
+			this.dateTimePicker.TabIndex = 9;
 			// 
 			// regBox
 			// 
 			this.regBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.regBox.Appearance = System.Windows.Forms.Appearance.Button;
 			this.regBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.regBox.Font = new System.Drawing.Font("Consolas", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.regBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			this.regBox.Location = new System.Drawing.Point(58, 72);
-			this.regBox.Margin = new System.Windows.Forms.Padding(4, 1, 4, 3);
+			this.regBox.Location = new System.Drawing.Point(94, 44);
+			this.regBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 3);
 			this.regBox.Name = "regBox";
-			this.regBox.Size = new System.Drawing.Size(213, 25);
+			this.regBox.Size = new System.Drawing.Size(32, 32);
 			this.regBox.StylizeImage = false;
 			this.regBox.TabIndex = 5;
-			this.regBox.Text = "Use regular expressions";
+			this.regBox.Text = ".*";
 			this.regBox.ThemedBack = null;
 			this.regBox.ThemedFore = null;
-			this.regBox.UseVisualStyleBackColor = true;
+			this.regBox.UseVisualStyleBackColor = false;
 			this.regBox.CheckedChanged += new System.EventHandler(this.TogglerRegBox);
 			// 
 			// matchBox
 			// 
 			this.matchBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
+			this.matchBox.Appearance = System.Windows.Forms.Appearance.Button;
 			this.matchBox.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.matchBox.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.matchBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.matchBox.Location = new System.Drawing.Point(58, 44);
 			this.matchBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 3);
 			this.matchBox.Name = "matchBox";
-			this.matchBox.Size = new System.Drawing.Size(119, 25);
+			this.matchBox.Size = new System.Drawing.Size(32, 32);
 			this.matchBox.StylizeImage = false;
 			this.matchBox.TabIndex = 4;
-			this.matchBox.Text = "Match case";
+			this.matchBox.Text = "Aa";
 			this.matchBox.ThemedBack = null;
 			this.matchBox.ThemedFore = null;
-			this.matchBox.UseVisualStyleBackColor = true;
+			this.matchBox.UseVisualStyleBackColor = false;
 			// 
 			// scopeBox
 			// 
@@ -579,5 +607,7 @@ namespace River.OneMoreAddIn.Commands
 		private UI.MoreComboBox dateSelector;
 		private System.Windows.Forms.DateTimePicker dateTimePicker;
 		private UI.MoreCheckBox includeTocBox;
+		private UI.MoreCheckBox ocrBox;
+		private System.Windows.Forms.ToolTip tooltip;
 	}
 }

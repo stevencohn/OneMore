@@ -6672,6 +6672,10 @@ Modificato dopo
 Modificato prima</value>
     <comment>combobox</comment>
   </data>
+  <data name="SearchDialog_imageHit" xml:space="preserve">
+    <value>[immagine] {0}</value>
+    <comment>a search result found in the text OneNote recognized in an image; {0} is an excerpt of that text</comment>
+  </data>
   <data name="SearchDialog_includeTocBox.Text" xml:space="preserve">
     <value>Cerca testo nel sommario</value>
     <comment>checkbox</comment>
@@ -6698,6 +6702,10 @@ Le parole non quotate corrispondono in qualsiasi ordine; utilizzare le virgolett
   <data name="SearchDialog_menuShowInCurrent" xml:space="preserve">
     <value>Mostra nella finestra corrente</value>
     <comment>context menu item</comment>
+  </data>
+  <data name="SearchDialog_ocrBox.Text" xml:space="preserve">
+    <value>Cerca testo nelle immagini</value>
+    <comment>checkbox</comment>
   </data>
   <data name="SearchDialog_regBox.Text" xml:space="preserve">
     <value>Utilizza le espressioni regolari</value>

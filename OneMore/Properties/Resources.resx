@@ -6704,6 +6704,10 @@ Modified after
 Modified before</value>
     <comment>combobox</comment>
   </data>
+  <data name="SearchDialog_imageHit" xml:space="preserve">
+    <value>[image] {0}</value>
+    <comment>a search result found in the text OneNote recognized in an image; {0} is an excerpt of that text</comment>
+  </data>
   <data name="SearchDialog_includeTocBox.Text" xml:space="preserve">
     <value>Search text in table of contents</value>
     <comment>checkbox</comment>
@@ -6730,6 +6734,10 @@ Unquoted words match in any order; use quotes for an exact phrase.</value>
   <data name="SearchDialog_menuShowInCurrent" xml:space="preserve">
     <value>Show in Current Window</value>
     <comment>context menu item</comment>
+  </data>
+  <data name="SearchDialog_ocrBox.Text" xml:space="preserve">
+    <value>Search text in images</value>
+    <comment>checkbox</comment>
   </data>
   <data name="SearchDialog_regBox.Text" xml:space="preserve">
     <value>Use regular expressions</value>
@@ -8251,9 +8259,6 @@ Thank you!</value>
   <data name="LayoutsDB" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Commands\Workspaces\Layouts\LayoutsDB.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
-  <data name="PageIdentityDB" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Services\Identity\PageIdentityDB.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
   <data name="DefaultTableThemes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ribbon\defaulttablethemes.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
@@ -8266,11 +8271,14 @@ Thank you!</value>
   <data name="RibbonTabOneMore" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Ribbon\RibbonTabOneMore.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
-  <data name="DefaultStyles" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\styles\defaultstyles.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  <data name="PageIdentityDB" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Services\Identity\PageIdentityDB.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="TextIndexDB" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Services\TextIndex\TextIndexDB.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="DefaultStyles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\styles\defaultstyles.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="DarkTheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\UI\DarkTheme.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>

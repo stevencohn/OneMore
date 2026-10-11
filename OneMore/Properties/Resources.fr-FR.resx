@@ -6680,6 +6680,10 @@ Modifié après
 Modifié avant</value>
     <comment>combobox</comment>
   </data>
+  <data name="SearchDialog_imageHit" xml:space="preserve">
+    <value>[image] {0}</value>
+    <comment>a search result found in the text OneNote recognized in an image; {0} is an excerpt of that text</comment>
+  </data>
   <data name="SearchDialog_includeTocBox.Text" xml:space="preserve">
     <value>Rechercher du texte dans la table des matières</value>
     <comment>checkbox</comment>
@@ -6706,6 +6710,10 @@ Les mots non cités correspondent dans n'importe quel ordre ; utilisez des guil
   <data name="SearchDialog_menuShowInCurrent" xml:space="preserve">
     <value>Afficher dans la fenêtre actuelle</value>
     <comment>context menu item</comment>
+  </data>
+  <data name="SearchDialog_ocrBox.Text" xml:space="preserve">
+    <value>Rechercher du texte dans les images</value>
+    <comment>checkbox</comment>
   </data>
   <data name="SearchDialog_regBox.Text" xml:space="preserve">
     <value>Utiliser des expressions régulières</value>

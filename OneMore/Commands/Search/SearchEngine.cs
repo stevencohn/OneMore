@@ -21,6 +21,9 @@ namespace River.OneMoreAddIn.Commands
 	{
 		public string PlainText { get; set; }
 		public string ObjectId { get; set; }
+
+		/// <summary>Gets whether the text was recognized in an image rather than typed on the page.</summary>
+		public bool IsImageText { get; set; }
 	}
 
 
@@ -37,6 +40,10 @@ namespace River.OneMoreAddIn.Commands
 	internal sealed class SearchOptions
 	{
 		public bool IncludeToc { get; set; }
+
+		/// <summary>Gets or sets whether to search the text OneNote recognized in images.</summary>
+		public bool IncludeOcr { get; set; }
+
 		public DateFilterMode DateFilter { get; set; }
 		public DateTime DateValue { get; set; }
 	}
@@ -328,26 +335,18 @@ namespace River.OneMoreAddIn.Commands
 
 		private async Task<IList<SearchHit>> SearchPageBody(Page page, Regex finder)
 		{
-			var ns = page.Namespace;
-
-			var paragraphs = PageTextExtractor.SelectParagraphs(page, options.IncludeToc);
-
-			if (paragraphs.Count == 0)
-			{
-				return Array.Empty<SearchHit>();
-			}
-
+			// the same extraction the text index uses, so that both answer alike
 			var matched = await Task.Run(() =>
 			{
-				var hits = new List<(string objectId, string text)>();
-				foreach (var paragraph in paragraphs)
+				var hits = new List<ParagraphText>();
+				foreach (var paragraph in PageTextExtractor.Extract(
+					page, options.IncludeToc, options.IncludeOcr))
 				{
 					if (cancellationToken.IsCancellationRequested) break;
 
-					var text = PageTextExtractor.GetRawText(paragraph, ns);
-					if (text.Length > 0 && finder.IsMatch(text))
+					if (finder.IsMatch(paragraph.Text))
 					{
-						hits.Add((paragraph.Attribute("objectID").Value, text));
+						hits.Add(paragraph);
 					}
 				}
 				return hits;
@@ -355,8 +354,9 @@ namespace River.OneMoreAddIn.Commands
 
 			return matched.Select(m => new SearchHit
 			{
-				PlainText = HttpUtility.HtmlDecode(m.text),
-				ObjectId = m.objectId
+				PlainText = m.Kind == ParagraphKind.Image ? m.Text : HttpUtility.HtmlDecode(m.Text),
+				ObjectId = m.ObjectID,
+				IsImageText = m.Kind == ParagraphKind.Image
 			}).ToList();
 		}
 

@@ -101,6 +101,82 @@ namespace River.OneMoreAddIn.Tests.Commands.Search
 		}
 
 
+		private static string Image(string objectID, string ocrText, string attributes = "")
+		{
+			var id = objectID is null ? string.Empty : $" objectID=\"{objectID}\"";
+			return $"<one:Image{id}{attributes}>" +
+				$"<one:OCRData lang=\"en-US\"><one:OCRText><![CDATA[{ocrText}]]></one:OCRText></one:OCRData>" +
+				"</one:Image>";
+		}
+
+
+		[TestMethod]
+		public void Extract_Image_OmittedUnlessRequested()
+		{
+			var page = MakePage(
+				OE("{a}", "text") +
+				$"<one:OE objectID=\"{{img}}\">{Image("{pic}", "from the picture")}</one:OE>");
+
+			Assert.AreEqual(1, PageTextExtractor.Extract(page).Count);
+
+			var all = PageTextExtractor.Extract(page, includeOcr: true);
+			Assert.AreEqual(2, all.Count);
+			Assert.AreEqual(ParagraphKind.Image, all[1].Kind);
+			Assert.AreEqual("{pic}", all[1].ObjectID);
+			Assert.AreEqual("from the picture", all[1].Text);
+		}
+
+
+		[TestMethod]
+		public void Extract_Image_IsOrderedAmongTheParagraphsAroundIt()
+		{
+			var page = MakePage(
+				OE("{a}", "first") +
+				$"<one:OE objectID=\"{{img}}\">{Image("{pic}", "middle")}</one:OE>" +
+				OE("{c}", "last"));
+
+			var items = PageTextExtractor.Extract(page, includeOcr: true);
+
+			CollectionAssert.AreEqual(
+				new[] { "first", "middle", "last" }, items.Select(p => p.Text).ToArray());
+			CollectionAssert.AreEqual(new[] { 0, 1, 2 }, items.Select(p => p.Ordinal).ToArray());
+		}
+
+
+		[TestMethod]
+		public void Extract_Image_WithoutObjectID_UsesTheParagraphHoldingIt()
+		{
+			var page = MakePage($"<one:OE objectID=\"{{holder}}\">{Image(null, "no id")}</one:OE>");
+
+			var item = PageTextExtractor.Extract(page, includeOcr: true).Single();
+
+			Assert.AreEqual("{holder}", item.ObjectID);
+		}
+
+
+		[TestMethod]
+		public void Extract_Image_CollapsesLinesAndKeepsMarkupAsText()
+		{
+			var page = MakePage(
+				$"<one:OE objectID=\"{{img}}\">{Image("{pic}", "line one\r\nline <span>two</span>\n\n  three")}</one:OE>");
+
+			var item = PageTextExtractor.Extract(page, includeOcr: true).Single();
+
+			Assert.AreEqual("line one line <span>two</span> three", item.Text);
+		}
+
+
+		[TestMethod]
+		public void Extract_Image_WithoutOrWithEmptyText_IsSkipped()
+		{
+			var page = MakePage(
+				"<one:OE objectID=\"{plain}\"><one:Image objectID=\"{p1}\" /></one:OE>" +
+				$"<one:OE objectID=\"{{blank}}\">{Image("{p2}", "  \r\n ")}</one:OE>");
+
+			Assert.AreEqual(0, PageTextExtractor.Extract(page, includeOcr: true).Count);
+		}
+
+
 		[TestMethod]
 		public void Extract_NestedParagraphs_AreAllFound()
 		{
