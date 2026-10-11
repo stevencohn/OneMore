@@ -54,10 +54,10 @@
                  Text="{\WixUI_Font_Title}Back up your OneMore database" />
         <Control Id="Description" Type="Text" X="25" Y="23" Width="340" Height="15"
                  Transparent="yes" NoPrefix="yes"
-                 Text="This version changes how pages, tags, favorites, and layouts are stored." />
+                 Text="This version changes how OneMore stores its data." />
 
         <Control Id="Explain" Type="Text" X="20" Y="55" Width="330" Height="42" NoPrefix="yes"
-                 Text="OneMore will rebuild some of its data the first time it runs. A copy of your existing database lets you go back to your previous version if you need to. The copy is a new file named OneMore-backup- followed by the date and time, so no existing file is overwritten." />
+                 Text="This version changes how OneMore stores your pages, tags, favorites, and layouts in its database, and OneMore will rebuild some of that data the first time it runs. A copy of your existing database lets you go back to your previous version if you need to. The copy is a new file named OneMore-backup- followed by the date and time, so no existing file is overwritten." />
 
         <Control Id="BackupCheck" Type="CheckBox" X="20" Y="106" Width="330" Height="18"
                  Property="BACKUPDB" CheckBoxValue="1"
@@ -82,7 +82,7 @@
         </Control>
 
         <Control Id="HelpLink" Type="Hyperlink" X="20" Y="190" Width="330" Height="30"
-                 Text="Learn how to &lt;a href=&quot;$(var.BackupHelpUrl)&quot;&gt;back up and restore your OneMore database&lt;/a&gt;." />
+                 Text="Learn more about &lt;a href=&quot;$(var.BackupHelpUrl)&quot;&gt;your OneMore data&lt;/a&gt;." />
 
         <Control Id="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17"
                  Text="!(loc.WixUIBack)">

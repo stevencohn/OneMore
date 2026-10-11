@@ -8,7 +8,8 @@
 
     The choice is a machine-wide default, kept in HKLM\SOFTWARE\River\OneMoreAddIn "TextIndex"
     ("1"). OneMore uses it only for a user who has not saved their own choice in Settings, so
-    every user can still change it. The value is a per-user-profile setting in Settings.xml,
+    every user can still change it. The page links to the Search Indexing help page and explains
+    that Settings, Search Index, "Build the index now" builds the index immediately. The value is a per-user-profile setting in Settings.xml,
     which an installer running as SYSTEM cannot write for the interactive user, which is why
     the default is a registry value instead.
 
@@ -17,6 +18,8 @@
                  the registry so that the previous choice is the default on an upgrade, and so
                  that a repair run without UI (Active Setup) does not remove the value.
   -->
+
+  <?define IndexHelpUrl = "https://onemoreaddin.com/commands/%E2%86%92%20Search%20Indexing.htm" ?>
 
   <Fragment>
 
@@ -51,14 +54,17 @@
                  Text="Make the Search command find text almost instantly." />
 
         <Control Id="Explain" Type="Text" X="20" Y="55" Width="330" Height="54" NoPrefix="yes"
-                 Text="OneMore can keep a search index of the text of your notebooks on this computer, so that searching a large collection takes a moment instead of reading every page. Your pages are never changed. The index is built a little at a time in the background and uses disk space in your OneMore database." />
+                 Text="OneMore can keep a search index of the text of your notebooks on this computer, so that searching a large collection takes a moment instead of reading every page. Your pages are never changed. The index is stored in your OneMore database and uses disk space." />
 
         <Control Id="IndexCheck" Type="CheckBox" X="20" Y="120" Width="330" Height="18"
                  Property="INDEXING" CheckBoxValue="1"
                  Text="&amp;Enable full text search indexing" />
 
-        <Control Id="Note" Type="Text" X="20" Y="150" Width="330" Height="42" NoPrefix="yes"
-                 Text="This is optional and is off by default. You can turn it on or off at any time, and choose which notebooks are indexed, in Settings under Search Index." />
+        <Control Id="Note" Type="Text" X="20" Y="150" Width="330" Height="54" NoPrefix="yes"
+                 Text="This is optional and is off by default. Once turned on, the index is built a little at a time in the background, which can take an hour or more for a large collection. To build it right away, open OneMore, Settings, Search Index and click &quot;Build the index now&quot;; this typically takes just a few minutes. You can also turn indexing off, or choose which notebooks are indexed, there at any time." />
+
+        <Control Id="HelpLink" Type="Hyperlink" X="20" Y="210" Width="330" Height="16"
+                 Text="Learn more about &lt;a href=&quot;$(var.IndexHelpUrl)&quot;&gt;search indexing&lt;/a&gt;." />
 
         <Control Id="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17"
                  Text="!(loc.WixUIBack)">
