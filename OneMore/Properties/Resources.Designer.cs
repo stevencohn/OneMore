@@ -18644,7 +18644,16 @@ namespace River.OneMoreAddIn.Properties {
                 return ResourceManager.GetString("word_Theme", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Today.
+        /// </summary>
+        internal static string word_Today {
+            get {
+                return ResourceManager.GetString("word_Today", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to User.
         /// </summary>

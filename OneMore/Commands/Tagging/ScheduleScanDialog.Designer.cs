@@ -35,7 +35,7 @@
 			this.laterRadio = new River.OneMoreAddIn.UI.MoreRadioButton();
 			this.hintLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.scheduleLabel = new River.OneMoreAddIn.UI.MoreLabel();
-			this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
+			this.dateTimePicker = new River.OneMoreAddIn.UI.MoreDateTimePicker();
 			this.notebooksPanel = new River.OneMoreAddIn.UI.MorePanel();
 			this.booksInfoLabel = new River.OneMoreAddIn.UI.MoreLabel();
 			this.booksPanel = new River.OneMoreAddIn.UI.MorePanel();
@@ -395,7 +395,7 @@
 		private System.Windows.Forms.Panel buttonPanel;
 		private River.OneMoreAddIn.UI.MoreButton cancelButton;
 		private River.OneMoreAddIn.UI.MoreButton okButton;
-		private System.Windows.Forms.DateTimePicker dateTimePicker;
+		private River.OneMoreAddIn.UI.MoreDateTimePicker dateTimePicker;
 		private River.OneMoreAddIn.UI.MoreLabel scheduleLabel;
 		private River.OneMoreAddIn.UI.MoreLabel hintLabel;
 		private UI.MoreRadioButton laterRadio;

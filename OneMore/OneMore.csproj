@@ -1561,6 +1561,17 @@
     <Compile Include="UI\MoreBubbleWindow.Designer.cs">
       <DependentUpon>MoreBubbleWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\DateTimePicker\CalendarLayout.cs" />
+    <Compile Include="UI\DateTimePicker\DateFormatParser.cs" />
+    <Compile Include="UI\DateTimePicker\DatePartMath.cs" />
+    <Compile Include="UI\DateTimePicker\DateSegment.cs" />
+    <Compile Include="UI\DateTimePicker\MoreCalendarDropDown.cs" />
+    <Compile Include="UI\DateTimePicker\MoreDateTimePicker.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\DateTimePicker\MoreMonthCalendar.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UI\MouseState.cs" />
     <Compile Include="UI\ThemedColorTable.cs" />
     <Compile Include="UI\ThemeManager.cs" />
