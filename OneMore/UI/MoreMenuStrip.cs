@@ -14,7 +14,7 @@ namespace River.OneMoreAddIn.UI
 	/// A MenuStrip that provides a themed view
 	/// </summary>
 
-	internal class MoreMenuStrip : MenuStrip, ILoadControl
+	internal class MoreMenuStrip : MenuStrip, ILoadControl, IDpiAware
 	{
 		public MoreMenuStrip()
 		{
@@ -25,7 +25,21 @@ namespace River.OneMoreAddIn.UI
 		void ILoadControl.OnLoad()
 		{
 			AutoSize = false;
-			ImageScalingSize = SystemInformation.SmallIconSize;
+			ApplyScale();
+		}
+
+
+		void IDpiAware.OnDpiChanged(int oldDpi, int newDpi)
+		{
+			ApplyScale();
+		}
+
+
+		private void ApplyScale()
+		{
+			ImageScalingSize = new Size(
+				Scaling.GetSystemMetric(Native.SM_CXSMICON, Scaling.GetDpi(this)),
+				Scaling.GetSystemMetric(Native.SM_CYSMICON, Scaling.GetDpi(this)));
 		}
 	}
 

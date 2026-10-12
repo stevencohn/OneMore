@@ -528,7 +528,7 @@ namespace River.OneMoreAddIn.UI
 		#region Layout
 		private int Scale(int px)
 		{
-			return (int)Math.Round(px * DeviceDpi / 96f);
+			return (int)Math.Round(px * Scaling.GetDpi(this) / 96f);
 		}
 
 

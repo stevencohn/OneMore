@@ -258,7 +258,7 @@ namespace River.OneMoreAddIn.Commands
 
 
 		private int ContentWidth =>
-			Math.Max(400, resultsPanel.ClientSize.Width - (SystemInformation.VerticalScrollBarWidth + 4));
+			Math.Max(400, resultsPanel.ClientSize.Width - (UI.Scaling.GetSystemMetric(Native.SM_CXVSCROLL, UI.Scaling.GetDpi(this)) + 4));
 
 
 		/// <summary>

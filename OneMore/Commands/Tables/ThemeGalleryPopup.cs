@@ -56,7 +56,7 @@ namespace River.OneMoreAddIn.Commands
 		{
 			var manager = ThemeManager.Instance;
 			var gridWidth = Columns * TileSize;
-			var hostWidth = gridWidth + SystemInformation.VerticalScrollBarWidth;
+			var hostWidth = gridWidth + UI.Scaling.GetSystemMetric(Native.SM_CXVSCROLL, UI.Scaling.GetDpi(this));
 
 			var root = new TableLayoutPanel
 			{

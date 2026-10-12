@@ -18,7 +18,7 @@ namespace River.OneMoreAddIn.UI
 	/// <summary>
 	/// A ListView in Detail mode that can host a user control in each cell of grid.
 	/// </summary>
-	internal class MoreListViewEx : ListView
+	internal class MoreListViewEx : ListView, IDpiAware
 	{
 		#region Private types
 
@@ -71,6 +71,8 @@ namespace River.OneMoreAddIn.UI
 		private const string DnGlyph = "▽"; // ▼
 
 		private bool allowItemReorder;
+		private int rowHeight;
+		private bool rowHeightAssigned;
 		private SolidBrush sortedBrush;
 		private SolidBrush highBackBrush;
 		private SolidBrush highForeBrush;
@@ -100,12 +102,24 @@ namespace River.OneMoreAddIn.UI
 				ControlStyles.OptimizedDoubleBuffer |
 				ControlStyles.AllPaintingInWmPaint, true);
 
-			var (_, yScaling) = UI.Scaling.GetScalingFactors();
-			RowHeight = (int)(16 * yScaling);
+			var (_, yScaling) = UI.Scaling.GetScalingFactors(this);
+			rowHeight = (int)(16 * yScaling);
 
 			Click += RouteClick;
 
 			router.Register(this, "Click");
+		}
+
+
+		void IDpiAware.OnDpiChanged(int oldDpi, int newDpi)
+		{
+			// callers that assigned RowHeight explicitly, e.g. from font metrics, recalculate
+			// it themselves in response to the DPI change
+			if (!rowHeightAssigned)
+			{
+				var (_, yScaling) = UI.Scaling.GetScalingFactors(this);
+				SetRowHeight((int)(16 * yScaling));
+			}
 		}
 
 		protected override void Dispose(bool disposing)
@@ -205,7 +219,34 @@ namespace River.OneMoreAddIn.UI
 		/// </summary>
 		[Category("Appearance")]
 		[Description("Sets height of rows in Details view, in pixels")]
-		public int RowHeight { get; set; }
+		public int RowHeight
+		{
+			get => rowHeight;
+
+			set
+			{
+				// an explicit assignment overrides the DPI-derived default from then on
+				rowHeightAssigned = true;
+				SetRowHeight(value);
+			}
+		}
+
+
+		private void SetRowHeight(int value)
+		{
+			if (value == rowHeight)
+			{
+				return;
+			}
+
+			rowHeight = value;
+
+			// WM_MEASUREITEM is sent only once when the native handle is created
+			if (IsHandleCreated)
+			{
+				RecreateHandle();
+			}
+		}
 
 
 		/// <summary>

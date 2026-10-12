@@ -137,7 +137,7 @@ namespace River.OneMoreAddIn.Settings
 			// what the content requires; assigning MinimumSize also grows the form if it is
 			// currently smaller, so no content is clipped on open.
 			PerformLayout();
-			var factor = DeviceDpi / 144f;
+			var factor = UI.Scaling.GetDpi(this) / 144f;
 			var chromeWidth = Width - contentPanel.Width;
 			var chromeHeight = Height - contentPanel.Height;
 
@@ -170,6 +170,22 @@ namespace River.OneMoreAddIn.Settings
 				link.Top = y;
 				y += rowHeight + gap;
 			}
+		}
+
+
+		protected override void OnDpiScaleChanged(int oldDpi, int newDpi)
+		{
+			// sheets that are not currently shown are not in the control tree, so the form
+			// did not reach them; they must catch up now or they'll show at the old scale
+			foreach (var sheet in sheets.Values)
+			{
+				if (sheet.Parent is null)
+				{
+					NotifyDpiChanged(sheet, oldDpi, newDpi);
+				}
+			}
+
+			LayoutNavLinks();
 		}
 
 

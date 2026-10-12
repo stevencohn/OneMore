@@ -224,7 +224,7 @@ namespace River.OneMoreAddIn.UI
 			// the bitmap is a tag map at its native size at 96 DPI; size the borderless form to
 			// show it at that size scaled to this monitor's DPI. DeviceDpi isn't valid until
 			// the handle exists, so this can't be done in the constructor
-			var factor = DeviceDpi / 96f;
+			var factor = Scaling.GetDpi(this) / 96f;
 			ClientSize = new Size(
 				(int)Math.Round(pictureBox.Image.Width * factor),
 				(int)Math.Round(pictureBox.Image.Height * factor));

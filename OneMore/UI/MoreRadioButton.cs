@@ -16,7 +16,6 @@ namespace River.OneMoreAddIn.UI
 		private const int Spacing = 4;
 		private readonly ThemeManager manager;
 		private readonly Color foreColor;
-		private readonly int boxSize;
 		private readonly IntPtr hcursor;
 
 
@@ -35,8 +34,16 @@ namespace River.OneMoreAddIn.UI
 
 			foreColor = ForeColor;
 			manager = ThemeManager.Instance;
-			boxSize = SystemInformation.MenuCheckSize.Width - 4;
 		}
+
+
+		// computed from the control's current DPI so it tracks DPI changes
+		private int BoxSize => MenuCheckSize.Width - 4;
+
+
+		private Size MenuCheckSize => new(
+			Scaling.GetSystemMetric(Native.SM_CXMENUCHECK, Scaling.GetDpi(this)),
+			Scaling.GetSystemMetric(Native.SM_CYMENUCHECK, Scaling.GetDpi(this)));
 
 
 		protected override void Dispose(bool disposing)
@@ -116,22 +123,22 @@ namespace River.OneMoreAddIn.UI
 				? manager.GetColor("Highlight")
 				: color;
 
-			var boxY = (Size.Height - boxSize) / 2;
+			var boxY = (Size.Height - BoxSize) / 2;
 
 			using var radioPen = new Pen(radioColor);
-			g.DrawEllipse(radioPen, 0, boxY, boxSize, boxSize);
+			g.DrawEllipse(radioPen, 0, boxY, BoxSize, BoxSize);
 
 			if (Checked)
 			{
 				using var fillBrush = new SolidBrush(radioColor);
-				g.FillEllipse(fillBrush, 2, boxY + 2, boxSize - 4, boxSize - 4);
+				g.FillEllipse(fillBrush, 2, boxY + 2, BoxSize - 4, BoxSize - 4);
 			}
 
 			using var brush = new SolidBrush(color);
 
-			var bounds = new Rectangle(boxSize + Spacing,
+			var bounds = new Rectangle(BoxSize + Spacing,
 					(pevent.ClipRectangle.Height - Size.Height) / 2 + 2,
-					pevent.ClipRectangle.Width - (boxSize + Spacing),
+					pevent.ClipRectangle.Width - (BoxSize + Spacing),
 					Size.Height);
 
 			g.DrawString(Text, Font, brush, bounds,
@@ -159,7 +166,7 @@ namespace River.OneMoreAddIn.UI
 		{
 			if (Appearance == Appearance.Normal)
 			{
-				var size = SystemInformation.MenuCheckSize;
+				var size = MenuCheckSize;
 				if (string.IsNullOrWhiteSpace(Text) &&
 					(Width < size.Width || Height < size.Height))
 				{
@@ -182,8 +189,8 @@ namespace River.OneMoreAddIn.UI
 
 				using var g = CreateGraphics();
 				size = g.MeasureString(text, Font).ToSize();
-				var w = boxSize + Spacing + size.Width;
-				var h = Math.Max(size.Height, SystemInformation.MenuCheckSize.Height);
+				var w = BoxSize + Spacing + size.Width;
+				var h = Math.Max(size.Height, MenuCheckSize.Height);
 				if (Width < w || Height < h)
 				{
 					AutoSize = false;

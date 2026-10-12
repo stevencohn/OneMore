@@ -20,8 +20,10 @@ namespace River.OneMoreAddIn.Commands
 	internal sealed class ThemeColorRow : Panel
 	{
 		private static readonly Regex HexPattern = new(@"^#?[0-9A-Fa-f]{6}$", RegexOptions.Compiled);
-		private static readonly float xScaling;
-		private static readonly float yScaling;
+
+		// read per instance, never cached statically, since DPI can change while running
+		private readonly float xScaling;
+		private readonly float yScaling;
 
 		private readonly ColorSwatchControl swatch;
 		private readonly MoreLabel label;
@@ -34,14 +36,10 @@ namespace River.OneMoreAddIn.Commands
 		private bool showingPlaceholder;
 
 
-		static ThemeColorRow()
-		{
-			(xScaling, yScaling) = Scaling.GetScalingFactors();
-		}
-
-
 		public ThemeColorRow(string areaName)
 		{
+			(xScaling, yScaling) = Scaling.GetScalingFactors();
+
 			// dynamically-added children (label/hexBox/links) read Parent.BackColor when
 			// MoreForm's one-time ILoadControl walk reaches them, so this must be themed
 			// explicitly rather than left at Panel's plain default
