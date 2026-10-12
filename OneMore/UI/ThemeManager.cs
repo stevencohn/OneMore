@@ -410,13 +410,6 @@ namespace River.OneMoreAddIn.UI
 					item.BackColor = strip.BackColor;
 				}
 			}
-			else if (control is DateTimePicker picker)
-			{
-				picker.CalendarForeColor = Colors["WindowText"];
-				picker.CalendarMonthBackground = Colors["Window"];
-				picker.CalendarTitleBackColor = Colors["Control"];
-				picker.CalendarTitleForeColor = Colors["ControlText"];
-			}
 
 			// temp filter for ListView until that one is refactored
 			foreach (var child in control.Controls.OfType<Control>()

@@ -32,8 +32,8 @@ namespace River.OneMoreAddIn.Commands
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RemindDialog));
 			this.okButton = new River.OneMoreAddIn.UI.MoreButton();
 			this.cancelButton = new River.OneMoreAddIn.UI.MoreButton();
-			this.startDateBox = new System.Windows.Forms.DateTimePicker();
-			this.dueDateBox = new System.Windows.Forms.DateTimePicker();
+			this.startDateBox = new River.OneMoreAddIn.UI.MoreDateTimePicker();
+			this.dueDateBox = new River.OneMoreAddIn.UI.MoreDateTimePicker();
 			this.startDateLabel = new UI.MoreLabel();
 			this.dueDateLabel = new UI.MoreLabel();
 			this.subjectLabel = new UI.MoreLabel();
@@ -470,8 +470,8 @@ namespace River.OneMoreAddIn.Commands
 
 		private UI.MoreButton okButton;
 		private UI.MoreButton cancelButton;
-		private System.Windows.Forms.DateTimePicker startDateBox;
-		private System.Windows.Forms.DateTimePicker dueDateBox;
+		private River.OneMoreAddIn.UI.MoreDateTimePicker startDateBox;
+		private River.OneMoreAddIn.UI.MoreDateTimePicker dueDateBox;
 		private UI.MoreLabel startDateLabel;
 		private UI.MoreLabel dueDateLabel;
 		private UI.MoreLabel subjectLabel;

@@ -51,7 +51,7 @@ namespace River.OneMoreAddIn.Commands
 			this.includeTocBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.ocrBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.dateSelector = new River.OneMoreAddIn.UI.MoreComboBox();
-			this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
+			this.dateTimePicker = new River.OneMoreAddIn.UI.MoreDateTimePicker();
 			this.regBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.matchBox = new River.OneMoreAddIn.UI.MoreCheckBox();
 			this.scopeBox = new River.OneMoreAddIn.UI.MoreComboBox();
@@ -605,7 +605,7 @@ namespace River.OneMoreAddIn.Commands
 		private UI.MoreButton prevButton;
 		private UI.MoreButton nextButton;
 		private UI.MoreComboBox dateSelector;
-		private System.Windows.Forms.DateTimePicker dateTimePicker;
+		private River.OneMoreAddIn.UI.MoreDateTimePicker dateTimePicker;
 		private UI.MoreCheckBox includeTocBox;
 		private UI.MoreCheckBox ocrBox;
 		private System.Windows.Forms.ToolTip tooltip;
