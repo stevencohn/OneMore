@@ -308,7 +308,7 @@ namespace River.OneMoreAddIn.UI
 		[Category("Behavior")]
 		public DayOfWeek FirstDayOfWeek
 		{
-			get => firstDayOfWeek ?? CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek;
+			get => firstDayOfWeek ?? Culture.DateTimeFormat.FirstDayOfWeek;
 			set
 			{
 				firstDayOfWeek = value;
@@ -352,7 +352,7 @@ namespace River.OneMoreAddIn.UI
 		protected override Size DefaultSize => new Size(200, 200);
 
 
-		private CultureInfo Culture => CultureInfo.CurrentCulture;
+		private static CultureInfo Culture => AddIn.Locale;
 		#endregion Properties
 
 

@@ -442,7 +442,7 @@ namespace River.OneMoreAddIn.UI
 		}
 
 
-		private static CultureInfo Culture => CultureInfo.CurrentCulture;
+		private static CultureInfo Culture => AddIn.Locale;
 
 
 		private bool Editable => Enabled && (!showCheckBox || isChecked);
@@ -1120,7 +1120,7 @@ namespace River.OneMoreAddIn.UI
 			{
 				for (var i = 0; i < 12; i++)
 				{
-					if (names[i].StartsWith(prefix, StringComparison.CurrentCultureIgnoreCase))
+					if (Culture.CompareInfo.IsPrefix(names[i], prefix, CompareOptions.IgnoreCase))
 					{
 						return i + 1;
 					}
