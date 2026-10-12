@@ -319,8 +319,10 @@ namespace River.OneMoreAddIn.Commands
 
 
 		/// <summary>
-		/// Inserts a blank line between adjacent plain paragraphs, skipping list items, tables
-		/// and code blocks, so that exactly one blank line separates all plain paragraphs.
+		/// Inserts a blank line between adjacent plain paragraphs, and between plain paragraphs
+		/// and the lists that immediately follow or precede them, skipping tables and code
+		/// blocks, so that exactly one blank line separates plain paragraphs from each other and
+		/// from lists. Blank lines are never inserted between items of the same list.
 		/// </summary>
 		private bool InsertBlankLines(List<XElement> scope)
 		{
@@ -328,13 +330,45 @@ namespace River.OneMoreAddIn.Commands
 
 			foreach (var oe in scope)
 			{
-				if (oe.Parent is null || !IsPlainParagraph(oe))
+				if (oe.Parent is null || oe.Name != ns + "OE")
 				{
 					continue;
 				}
 
-				var next = oe.ElementsAfterSelf().FirstOrDefault();
-				if (next is null || !IsPlainParagraph(next))
+				var next = oe.ElementsAfterSelf(ns + "OE").FirstOrDefault();
+
+				if (IsListItem(oe))
+				{
+					// end of a list followed by a plain paragraph
+					if (next is not null && IsPlainParagraph(next) &&
+						!HasBlankText(LastLine(oe)) && !HasBlankText(next))
+					{
+						oe.AddAfterSelf(NewBlankLine());
+						modified = true;
+					}
+
+					continue;
+				}
+
+				if (!IsPlainLine(oe))
+				{
+					continue;
+				}
+
+				// a plain paragraph with a list nested directly beneath it; the blank line goes
+				// inside the children, ahead of the list, so list numbering is unaffected
+				if (!HasBlankText(oe))
+				{
+					var children = oe.Elements(ns + "OEChildren").FirstOrDefault();
+					var first = children?.Elements(ns + "OE").FirstOrDefault();
+					if (first is not null && IsListItem(first))
+					{
+						children.AddFirst(NewBlankLine());
+						modified = true;
+					}
+				}
+
+				if (next is null)
 				{
 					continue;
 				}
@@ -346,8 +380,13 @@ namespace River.OneMoreAddIn.Commands
 					continue;
 				}
 
-				oe.AddAfterSelf(NewBlankLine());
-				modified = true;
+				// a plain paragraph, possibly ending in a nested list, followed by either a list
+				// or another plain paragraph
+				if (IsListItem(next) || IsPlainParagraph(next))
+				{
+					oe.AddAfterSelf(NewBlankLine());
+					modified = true;
+				}
 			}
 
 			return modified;
@@ -473,7 +512,19 @@ namespace River.OneMoreAddIn.Commands
 		}
 
 
-		private bool IsPlainParagraph(XElement oe)
+		private bool IsListItem(XElement oe)
+		{
+			return oe.Name == ns + "OE" &&
+				oe.Elements(ns + "List").Any() &&
+				!oe.Ancestors(ns + "Table").Any();
+		}
+
+
+		/// <summary>
+		/// Determines if the paragraph's own line is plain text, regardless of whether a list
+		/// is nested beneath it.
+		/// </summary>
+		private bool IsPlainLine(XElement oe)
 		{
 			if (oe.Name != ns + "OE" || IsBlankLine(oe) || oe.IsMathML())
 			{
@@ -487,14 +538,18 @@ namespace River.OneMoreAddIn.Commands
 				return false;
 			}
 
-			if (oe.Descendants(ns + "Table").Any() ||
-				oe.Descendants(ns + "List").Any() ||
-				oe.Ancestors(ns + "Table").Any())
+			if (oe.Descendants(ns + "Table").Any() || oe.Ancestors(ns + "Table").Any())
 			{
 				return false;
 			}
 
 			return !IsCodeBlock(oe);
+		}
+
+
+		private bool IsPlainParagraph(XElement oe)
+		{
+			return IsPlainLine(oe) && !oe.Descendants(ns + "List").Any();
 		}
 
 
